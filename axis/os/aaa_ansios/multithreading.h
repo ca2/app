@@ -3,7 +3,7 @@
 
 #if !defined(WINDOWS_DESKTOP)
 
-void set_defer_process_x_message(bool (* pfn)(htask_t hthread,LPMESSAGE pMsg,oswindow oswindow,bool bPeek));
+void set_defer_process_x_message(bool (* pfn)(htask_t htask,LPMESSAGE pMsg,oswindow oswindow,bool bPeek));
 
 
 #ifdef __cplusplus
@@ -101,7 +101,7 @@ union semun
 
 // CLASS_DECL_AXIS int_bool WINAPI PostThreadMessage(itask_t idthread, ::u32 Msg, WPARAM wParam, LPARAM lParam);
 
-// CLASS_DECL_AXIS void mq_clear(itask_t hthread);
+// CLASS_DECL_AXIS void mq_clear(itask_t htask);
 
 
 // #ifndef _UWP

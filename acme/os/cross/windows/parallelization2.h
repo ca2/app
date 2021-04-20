@@ -4,7 +4,7 @@
 #if !defined(WINDOWS_DESKTOP)
 
 
-void set_defer_process_x_message(bool (* pfn)(htask_t hthread, MESSAGE * pmessage,oswindow oswindow,bool bPeek));
+void set_defer_process_x_message(bool (* pfn)(htask_t htask, MESSAGE * pmessage,oswindow oswindow,bool bPeek));
 
 
 //#ifdef __cplusplus
@@ -95,7 +95,7 @@ enum_synchronization_result WaitForSingleObjectEx(HSYNC hsync, ::u32 dwMilliseco
 
 // CLASS_DECL_ACME int_bool WINAPI PostThreadMessage(itask_t idthread, ::u32 Msg, WPARAM wParam, LPARAM lParam);
 
-// CLASS_DECL_ACME void mq_clear(itask_t hthread);
+// CLASS_DECL_ACME void mq_clear(itask_t htask);
 
 
 // #ifndef _UWP

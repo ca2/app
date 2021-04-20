@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "_linux.h"
 #include "_user.h"
+#include "acme/filesystem/filesystem/acme_dir.h"
 
 
 namespace linux
@@ -160,7 +161,13 @@ namespace linux
 
       ::file::path path;
 
+      auto psystem = m_psystem;
+
+      auto pacmedir = psystem->m_pacmedir;
+
       path = pacmedir->localconfig() / "monitor-0/desk/2desk";
+
+      auto papplication = get_application();
 
       string strPrgName = papplication->m_strAppId;
 
@@ -196,6 +203,8 @@ namespace linux
 
       string_array & straLine = m_straLine;
 
+      auto papplication = get_application();
+
       string strPrgName = papplication->m_strAppId;
 
       strPrgName.replace("/", ".");
@@ -222,6 +231,8 @@ namespace linux
    void desktop_file::create()
    {
 
+      auto pcontext = m_pcontext;
+
       ::file::path path = pcontext->m_papexcontext->dir().matter("app.desktop");
 
       pcontext->m_papexcontext->file().lines(m_straLine, path);
@@ -232,6 +243,8 @@ namespace linux
          create_default();
 
       }
+
+      auto papplication = get_application();
 
       string strTitle = papplication->get_title();
 
@@ -258,6 +271,10 @@ namespace linux
       strName.replace(".", "_");
 
       //pathLaunch = pacmedir->home() / ".config/ca2/bin" / (strName + ".sh");
+
+      auto psystem = m_psystem;
+
+      auto pacmedir = psystem->m_pacmedir;
 
       pathUserBin = pacmedir->home() / "bin" / strName;
 
@@ -391,6 +408,8 @@ namespace linux
    {
 
       ::file::path path = get_file_path();
+
+      auto pcontext = m_pcontext;
 
       pcontext->m_papexcontext->file().put_lines(path, m_straLine);
 

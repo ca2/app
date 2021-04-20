@@ -157,7 +157,7 @@ bool interprocess_intercommunication::start(const string & strApp)
       if(ida.is_empty())
       {
 
-         plauncher->start();
+         branch(plauncher);
 
          int iStep = 0;
 

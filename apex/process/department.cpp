@@ -11,17 +11,38 @@ namespace process
    department::department()
    {
 
-#ifndef WINDOWS
-
-      install_sigchld_handler();
-
-#endif
-
    }
 
 
    department::~department()
    {
+
+   }
+
+
+   ::e_status department::initialize(::object * pobject)
+   {
+
+      auto estatus = ::acme::department::initialize(pobject);
+
+      if(!estatus)
+      {
+
+         return estatus;
+
+      }
+
+#ifndef WINDOWS
+
+      auto psystem = m_psystem;
+
+      auto pnode = psystem->node();
+
+      pnode->install_sigchld_handler();
+
+#endif
+
+      return estatus;
 
    }
 

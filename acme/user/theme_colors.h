@@ -18,9 +18,9 @@ namespace user
 
    void os_set_theme_colors(::os_theme_colors * pthemecolors);
 
-   CLASS_DECL_ACME string _os_get_user_theme();
+   //CLASS_DECL_ACME string _os_get_user_theme();
 
-   CLASS_DECL_ACME void _os_process_user_theme(string strTheme);
+   //CLASS_DECL_ACME void _os_process_user_theme(string strTheme);
 
    CLASS_DECL_ACME void _os_process_user_theme_color(string strTheme);
 

@@ -158,12 +158,18 @@ namespace acme
 
       ::e_status system_construct(Array < String^ >^ refstra);
 
+#elif defined(ANDROID)
+
+      ::e_status system_construct(os_local* poslocal, const ::e_display& edisplay = ::e_display_none);
+
 #else
 
       ::e_status system_construct(const char* pszCommandLine, const ::e_display& edisplay = ::e_display_none);
-      ::e_status system_construct(os_local* poslocal, const ::e_display& edisplay = ::e_display_none);
 
 #endif
+
+
+      virtual ::e_status node_factory_exchange();
 
 
       virtual ::e_status inline_init();
@@ -176,9 +182,10 @@ namespace acme
       virtual ::e_status init_system();
 
 
-      virtual ::e_status on_start();
+      virtual ::e_status on_start_system();
 
-      virtual ::e_status start();
+
+      virtual ::e_status system_main();
       //virtual ::e_status run_system();
       virtual ::e_status main();
 
@@ -260,7 +267,7 @@ namespace acme
       inline ENUM text_enum(ENUM& e, const char* psz, ENUM eDefault = (ENUM)0)
       {
 
-         critical_section_lock synchronouslock(m_csEnumText);
+         critical_section_lock lock(&m_csEnumText);
 
          i64 iValue;
 

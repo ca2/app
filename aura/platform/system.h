@@ -292,7 +292,7 @@ namespace aura
 //      virtual void term_system() override;
 
 
-      virtual ::e_status start() override;
+      virtual ::e_status system_main() override;
 
       virtual void term() override;
 
@@ -335,6 +335,8 @@ namespace aura
       //virtual string install_get_latest_build_number(const char * pszVersion) override;
       //virtual i32 install_start(const char * pszCommandLine,const char * pszBuild) override;
       //virtual i32 install_progress_app_add_up(int iAddUp = 1) override;
+
+      virtual ::e_status node_factory_exchange() override;
 
       virtual ::e_status process_init() override;
 
@@ -714,7 +716,7 @@ namespace aura
 
       //#endif
 
-
+      virtual ::e_status on_start_system() override;
       //virtual void on_start_find_applications_from_cache() override;
       //virtual void on_end_find_applications_from_cache(stream & is) override;
 

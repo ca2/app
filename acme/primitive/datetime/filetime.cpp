@@ -391,7 +391,7 @@ bool get_filetime_set(const char * psz, filetime & creation, filetime & modified
 void copy(payload * ppayload, const filetime * pfiletime)
 {
 
-   ppayload->set_type(type_filetime, false);
+   ppayload->set_type(e_type_filetime, false);
 
    ppayload->m_filetime = pfiletime->m_filetime;
 

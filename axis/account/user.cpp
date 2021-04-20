@@ -429,10 +429,10 @@ namespace account
    }
 
 
-   void user::on_clock(enum_clock eclock)
+   void user::on_clock(enum_timer etimer)
    {
 
-      if(eclock == e_clock_slow)
+      if(etimer == e_clock_slow)
       {
 
          if(m_estatusAuthentication == ::success_authenticated)

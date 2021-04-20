@@ -30,6 +30,7 @@ namespace process
 
          process_thread();
 
+
          virtual void construct_process_thread(const string & strCmdLine, const ::duration & dur, bool * pbPotentialTimeout = nullptr, string * pstrRead = nullptr, bool bElevated = false);
 
          virtual ::e_status     run() override;
@@ -66,6 +67,10 @@ namespace process
 
       department();
       virtual ~department();
+
+
+      virtual ::e_status initialize(::object * pobject) override;
+
 
       // run process and get output
       virtual ::payload get_output(const char * pszCmdLine, const ::duration & dur = ::duration::infinite(), edisplay edisplay = e_display_default, bool * pbPotentialTimeout = nullptr);

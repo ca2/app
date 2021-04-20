@@ -518,6 +518,58 @@ namespace aura
    //}
 
 
+   ::e_status system::node_factory_exchange()
+   {
+
+#ifdef LINUX
+
+      auto edesktop = get_edesktop();
+
+      ::e_status estatus = error_failed;
+
+      if (edesktop & ::user::e_desktop_kde)
+      {
+
+         estatus = do_factory_exchange("desktop_environment", "kde");
+
+      }
+      else if (edesktop & ::user::e_desktop_gnome)
+      {
+
+         estatus = do_factory_exchange("desktop_environment", "gnome");
+
+      }
+      else
+      {
+
+         estatus = do_factory_exchange("desktop_environment", "gnome");
+
+         if (!estatus)
+         {
+
+            estatus = do_factory_exchange("desktop_environment", "kde");
+
+         }
+
+      }
+
+#else
+
+      estatus = do_factory_exchange("aura", "windows");
+
+#endif
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return estatus;
+
+   }
+
 
    ::e_status system::process_init()
    {
@@ -531,14 +583,6 @@ namespace aura
 
       }
 
-      estatus = do_factory_exchange("aura", "windows");
-
-      if (!estatus)
-      {
-
-         return estatus;
-
-      }
 
 
       //auto estatus = system_prep();

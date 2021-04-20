@@ -2,14 +2,14 @@
 #include "acme/os/ansios/_pthread.h"
 
 
-bool set_thread_name(htask_t hthread, const char * psz)
+bool set_thread_name(htask_t htask, const char * psz)
 {
 
    string strName(psz);
 
    thread_name_abbreviate(strName, 15);
 
-   return !pthread_setname_np((pthread_t) hthread, strName);
+   return !pthread_setname_np((pthread_t) htask, strName);
 
 }
 

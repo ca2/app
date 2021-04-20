@@ -28,6 +28,8 @@ CLASS_DECL_ACME ::e_status get_system_time_as_file_time(filetime_t* pfiletime);
 CLASS_DECL_ACME ::e_status file_time_to_system_time(system_time_t* psystemtime, const filetime_t* pfiletime);
 CLASS_DECL_ACME ::e_status file_time_to_local_file_time(filetime_t* pfiletimeLocal, const filetime_t* pfiletime);
 CLASS_DECL_ACME ::e_status is_valid_filetime(const filetime_t* pfiletime);
+CLASS_DECL_ACME ::e_status system_time_to_tm(tm * ptm, const system_time_t * psystemtime);
+CLASS_DECL_ACME ::e_status tm_to_system_time(system_time_t * psystemtime, const tm * ptm);
 CLASS_DECL_ACME filetime get_filetime_now();
 
 

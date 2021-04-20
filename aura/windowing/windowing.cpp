@@ -19,6 +19,10 @@ namespace windowing
    windowing::windowing()
    {
 
+      m_pWindowing = nullptr;
+
+      m_pWindowing2 = nullptr;
+
       m_bSettingCursorMatter = false;
 
    }
@@ -647,7 +651,7 @@ namespace windowing
 
       auto proutine = __sync_routine(routine);
 
-      user_fork(proutine);
+      user_branch(proutine);
 
       proutine->sync_wait(durationTimeout);
 
@@ -656,10 +660,10 @@ namespace windowing
    }
 
 
-   ::e_status windowing::user_fork(const ::routine & routine)
+   ::e_status windowing::user_branch(const ::routine & routine)
    {
 
-      //__throw(error_interface_only);
+      __throw(error_interface_only);
 
       return error_interface_only;
 

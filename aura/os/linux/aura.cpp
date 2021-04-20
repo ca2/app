@@ -1,7 +1,7 @@
 #include "framework.h"
 
 //extern thread_pointer < os_thread > t_posthread;
-//extern thread_pointer < hthread > t_hthread;
+//extern thread_pointer < htask > t_hthread;
 
 
 namespace audio
@@ -30,7 +30,7 @@ CLASS_DECL_AURA bool __node_aura_pre_init()
 CLASS_DECL_AURA bool __node_aura_pos_init()
 {
 
-//   t_hthread = new hthread();
+//   t_hthread = new htask();
 //
 //    //t_hthread-
 //
@@ -69,12 +69,12 @@ CLASS_DECL_AURA bool __node_aura_pos_term()
 
 
 
-::file::path dir::sys_temp()
-{
-
-   return ::file::path(getenv("HOME")) / ".config/ca2/time";
-
-}
+//::file::path dir::sys_temp()
+//{
+//
+//   return ::file::path(getenv("HOME")) / ".config/ca2/time";
+//
+//}
 
 
 // // http://stackoverflow.com/questions/150355/programmatically-find-the-number-of-cores-on-a-machine

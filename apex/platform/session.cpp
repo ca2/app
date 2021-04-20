@@ -609,7 +609,7 @@ namespace apex
 
       }
 
-      return ::apex::context_thread::on_get_thread_name(strThreadName);
+      return ::apex::context::on_get_thread_name(strThreadName);
 
    }
 
@@ -700,7 +700,7 @@ namespace apex
                if (m_papplicationCurrent != nullptr)
                {
                   
-                  m_papplicationCurrent->request({pcreate});
+                  m_papplicationCurrent->request(pcreate);
 
                }
 
@@ -833,7 +833,7 @@ namespace apex
 
                   }
 
-                  papp->request({pcreate});
+                  papp->request(pcreate);
 
                }
 
@@ -2887,7 +2887,7 @@ namespace apex
 
       ::application_container::m_applicationa.erase_all();
 
-      ::apex::context_thread::finalize();
+      ::apex::context::finalize();
 
       return success;
 

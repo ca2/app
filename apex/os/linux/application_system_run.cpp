@@ -130,80 +130,19 @@ namespace apex
 {
 
 
-   ::e_status system::start()
+   ::e_status system::system_main()
    {
 
+      auto estatus = ::acme::system::system_main();
 
-      //   ::e_status estatus = psystem->begin_synch();
-      //
-      //   if(!estatus)
-      //   {
-      //
-      //      return estatus;
-      //
-      //   }
-      //
-
-//      const char *pszName = m_strAppId;
-
-//       g_set_application_name(pszName);
-
-//      const char *pszPrgName = m_strProgName;
-
-//      g_set_prgname(pszPrgName);
-
-      //auto idle_source = g_idle_source_new();
-
-      //g_source_set_callback(idle_source, &linux_start_system, (::apex::system *) m_psystem, nullptr);
-
-      //g_source_attach(idle_source, g_main_context_default());
-
-      //int c = 2;
-
-      //const char * argv[]={"app", "--g-fatal-warnings"};
-
-#if !defined(__SANITIZE_ADDRESS__)
-
+      if(!estatus)
       {
 
-         auto pnode = Node;
-
-         pnode->node_init_check(&m_argc, &m_argv);
+         return estatus;
 
       }
 
-#endif
-
-      ::e_status estatus = ::success;
-
-//      if (m_bUser)
-//      {
-//
-//         estatus = defer_initialize_x11();
-//
-//         if(!estatus)
-//         {
-//
-//            return estatus;
-//
-//         }
-//
-//      }
-
-      if (!begin_synch())
-      {
-
-         output_debug_string("Failed to begin_synch the system (::apex::system or ::apex::system derived)");
-
-         return error_failed;
-
-      }
-
-      auto pnode = Node;
-
-      pnode->start();
-
-      return ::success;
+      return estatus;
 
    }
 

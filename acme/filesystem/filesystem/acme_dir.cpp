@@ -372,7 +372,7 @@ string acme_dir::system_short_name()
 ::file::path acme_dir::bookmark()
 {
 
-   return pacmedir->localconfig() / "bookmark";
+   return localconfig() / "bookmark";
 
 }
 
@@ -404,12 +404,12 @@ void acme_dir::set_path_install_folder(const char* pszPath)
 }
 
 
-::file::path acme_dir::bookmark()
-{
-
-   return localconfig() / "bookmark";
-
-}
+//::file::path acme_dir::bookmark()
+//{
+//
+//   return localconfig() / "bookmark";
+//
+//}
 
 
 
@@ -431,12 +431,12 @@ void acme_dir::set_path_install_folder(const char* pszPath)
 }
 
 
-::file::path acme_dir::home()
-{
-
-   return "";
-
-}
+//::file::path acme_dir::home()
+//{
+//
+//   return "";
+//
+//}
 
 
 ::file::path acme_dir::program_data()

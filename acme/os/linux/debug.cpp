@@ -1,9 +1,11 @@
 #include "framework.h"
 #include "acme/platform/static_start.h"
+#include "acme/platform/static_start_internal.h"
 
 
 #include "acme/os/ansios/_pthread.h"
 #undef USE_MISC
+
 
 
 //#include <stdbool.h

@@ -5,12 +5,12 @@
 
 
 
-bool defer_process_x_message(htask_t hthread, MESSAGE * lpMsg, oswindow interaction_impl, bool bPeek)
+bool defer_process_x_message(htask_t htask, MESSAGE * lpMsg, oswindow interaction_impl, bool bPeek)
 {
 #ifndef ANDROID
 
 
-   if(hthread == nullptr || hthread->m_pthread == nullptr || hthread->get_x_window_count() <= 0)
+   if(htask == nullptr || htask->m_pthread == nullptr || htask->get_x_window_count() <= 0)
       return false;
 
    synchronous_lock synchronouslock(&user_mutex());
@@ -32,7 +32,7 @@ bool defer_process_x_message(htask_t hthread, MESSAGE * lpMsg, oswindow interact
          if(pdata == nullptr || pdata->m_bMessageOnlyWindow)
             continue;
 
-         if(pdata->m_htask != hthread && g_oswindowDesktop != pdata)
+         if(pdata->m_htask != htask && g_oswindowDesktop != pdata)
             continue;
 
          Display * display = pdata->display();
@@ -204,7 +204,7 @@ bool defer_process_x_message(htask_t hthread, MESSAGE * lpMsg, oswindow interact
          if(bRet && lpMsg->hwnd->interaction_impl() != None)
          {
 
-            if(lpMsg->hwnd->m_htask != hthread)
+            if(lpMsg->hwnd->m_htask != htask)
             {
 
                bRet = false;

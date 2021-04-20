@@ -32,20 +32,20 @@ namespace apex
    }
 
 
-   ::e_status apex::parallelization_initialize()
-   {
+   // ::e_status apex::parallelization_initialize()
+   // {
 
-      return ::error_interface_only;
+   //    return ::error_interface_only;
 
-   }
+   // }
    
    
-   ::e_status apex::parallelization_finalize()
-   {
+   // ::e_status apex::parallelization_finalize()
+   // {
 
-      return ::error_interface_only;
+   //    return ::error_interface_only;
 
-   }
+   // }
 
 
    ::e_status apex::thread_initialize(::thread* pthread)
@@ -64,20 +64,20 @@ namespace apex
    }
 
 
-   ::e_status apex::node_thread_initialize(::thread* pthread)
-   {
+   // ::e_status apex::node_thread_initialize(::thread* pthread)
+   // {
 
-      return ::error_interface_only;
+   //    return ::error_interface_only;
 
-   }
+   // }
 
 
-   ::e_status apex::node_thread_finalize(::thread* pthread)
-   {
+   // ::e_status apex::node_thread_finalize(::thread* pthread)
+   // {
 
-      return ::error_interface_only;
+   //    return ::error_interface_only;
 
-   }
+   // }
 
 
    string apex::get_version()
@@ -98,10 +98,10 @@ namespace apex
    }
 
 
-   void apex::show_wait_cursor(bool bShow)
-   {
-
-   }
+//   void apex::show_wait_cursor(bool bShow)
+//   {
+//
+//   }
 
 
    ::e_status apex::get_firefox_installation_info(string& strPathToExe, string& strInstallDirectory)

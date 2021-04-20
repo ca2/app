@@ -1,5 +1,7 @@
 #include "framework.h"
 #include "_linux.h"
+#include "acme/filesystem/filesystem/acme_path.h"
+#include "acme/filesystem/filesystem/acme_dir.h"
 
 
 namespace linux
@@ -66,7 +68,11 @@ namespace linux
 
       m_pathModule = pathAppModule;
 
-      ::file::path pathCa2AppModule = ::path::module();
+      auto psystem = m_psystem;
+
+      auto pacmedir = psystem->m_pacmedir;
+
+      ::file::path pathCa2AppModule = pacmedir->module();
 
       m_pathCa2Module = pathCa2AppModule;
 

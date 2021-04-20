@@ -1338,6 +1338,8 @@ namespace user
 
 #ifdef LINUX
 
+         auto psystem = m_psystem;
+
          auto edesktop = psystem->get_edesktop();
 
          if (edesktop & ::user::e_desktop_kde)

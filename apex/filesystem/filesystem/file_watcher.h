@@ -197,7 +197,7 @@ namespace file
 
       virtual ::e_status run() override;
 
-      virtual ::e_status step();
+      virtual ::e_status step() override;
 
 
    };//end file_watcher

@@ -28,7 +28,7 @@
 //CLASS_DECL_AURA int_bool main_finalize();
 //
 //
-//CLASS_DECL_AURA void set_main_hthread(htask_t hthread);
+//CLASS_DECL_AURA void set_main_hthread(htask_t htask);
 //CLASS_DECL_AURA void set_main_ithread(itask_t itask);
 //
 //

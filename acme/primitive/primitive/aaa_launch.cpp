@@ -93,7 +93,7 @@ void* ___launch::s_os_thread_proc(void* p)
 ::e_status ___launch::fork(::e_priority epriority, ::u32 nStackSize, u32 uiCreateFlags, itask_t* pithread, htask_t* phthread)
 {
 
-   htask_t hthread = null_hthread;
+   htask_t htask = null_hthread;
 
    itask_t itask = NULL_ITHREAD;
 
@@ -101,7 +101,7 @@ void* ___launch::s_os_thread_proc(void* p)
 
    ::u32 dwThread = 0;
 
-   hthread = ::CreateThread(nullptr, nStackSize, &::___launch::s_os_thread_proc, (LPVOID)(___launch*)this, uiCreateFlags, &dwThread);
+   htask = ::CreateThread(nullptr, nStackSize, &::___launch::s_os_thread_proc, (LPVOID)(___launch*)this, uiCreateFlags, &dwThread);
 
    itask = dwThread;
 
@@ -121,7 +121,7 @@ void* ___launch::s_os_thread_proc(void* p)
    pthread_attr_setdetachstate(&threadAttr, PTHREAD_CREATE_DETACHED); // Set thread to detached state. No need for pthread_join
 
    pthread_create(
-      &hthread,
+      &htask,
       &threadAttr,
       &___launch::s_os_thread_proc,
       (LPVOID)plaunch);
@@ -131,7 +131,7 @@ void* ___launch::s_os_thread_proc(void* p)
    if (phthread)
    {
 
-      *phthread = hthread;
+      *phthread = htask;
 
    }
 
@@ -142,7 +142,7 @@ void* ___launch::s_os_thread_proc(void* p)
 
    }
 
-   if (!hthread)
+   if (!htask)
    {
 
       return ::error_failed;

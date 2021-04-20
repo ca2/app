@@ -9,7 +9,7 @@
 #if defined(LINUX) // || defined(ANDROID)
 
 
-bool apex_defer_process_x_message(htask_t hthread,MESSAGE * pMsg,oswindow oswindow,bool bPeek);
+bool apex_defer_process_x_message(htask_t htask,MESSAGE * pMsg,oswindow oswindow,bool bPeek);
 
 
 #endif

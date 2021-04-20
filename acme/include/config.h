@@ -39,7 +39,7 @@
 //#define BSD_STYLE_SOCKETS
 
 
-#define __PLATFORM   "uwp"
+#define PLATFORM_NAME   "uwp"
 
 #ifdef _DEBUG
 #define DEBUG

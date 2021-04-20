@@ -18,7 +18,7 @@ typedef u32 ::u32;
 #endif
 
 
-struct hthread;
+struct htask;
 
 namespace ca2
 {
@@ -72,7 +72,7 @@ CLASS_DECL_CORE bool oswindow_erase(Display * pdisplay, Window window);
 CLASS_DECL_CORE bool oswindow_erase_message_only_window(::user::interaction_impl * puibaseMessageOnlyWindow);
 
 
-struct hthread;
+struct htask;
 
 namespace ca2
 {

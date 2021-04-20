@@ -158,11 +158,11 @@ public:
    virtual bool is_running() const override;
 
 
-   virtual ::e_status start(
-      ::matter * pmatter,
-      ::e_priority epriority = priority_normal,
-      u32 nStackSize = 0,
-      u32 dwCreateFlags = 0 ARG_SEC_ATTRS_DEF) override;
+//   virtual ::e_status branch(
+//      ::matter * pmatter,
+//      ::e_priority epriority = priority_normal,
+//      u32 nStackSize = 0,
+//      u32 dwCreateFlags = 0 ARG_SEC_ATTRS_DEF) override;
 
 
    virtual htask_t get_hthread() const;
@@ -204,7 +204,7 @@ public:
 
    virtual int get_x_window_count() const;
 
-   virtual synchronization_result wait(const duration & duration);
+   //virtual synchronization_result wait(const duration & duration);
 
    bool set_thread_priority(::e_priority epriority);
 
@@ -230,7 +230,7 @@ public:
 
    virtual bool post_object(const ::id & id, wparam wParam, ::matter * pmatter);
 
-   virtual bool send_object(const ::id & id, wparam wParam, lparam lParam, ::duration durationTimeout = ::duration::infinite());
+   virtual bool send_object(const ::id & id, wparam wParam, ::matter * pmatter, ::duration durationTimeout = ::duration::infinite());
 
    virtual bool post_task(const ::routine & routine);
    virtual bool send_task(const ::routine & routine, ::duration durationTimeout = ::duration::infinite());
@@ -290,7 +290,7 @@ public:
 
    virtual bool has_step() const;
    virtual bool has_raw_message() const;
-   virtual bool has_message() const;
+   virtual bool has_message() const override;
 
    // running and idle processing
    virtual void pre_translate_message(::message::message * pmessage);
@@ -304,7 +304,7 @@ public:
    using channel::get_message;
    virtual bool get_message();     // low level message pump
    virtual bool raw_pump_message();     // low level message pump
-   virtual bool defer_pump_message();     // deferred message pump
+   virtual bool defer_pump_message() override;     // deferred message pump
    virtual ::e_status process_message(::message::message * pmessage);
    ///virtual ::e_status process_base_message(::message::message * pmessage);
    virtual ::e_status process_thread_message(::message::message * pmessage);
@@ -321,7 +321,7 @@ public:
    virtual ::e_status on_pre_run_thread();
 
    virtual ::e_status run() override;
-   virtual ::e_status main();
+   virtual ::e_status main() override;
 
    virtual void on_pos_run_thread();
    virtual void term_thread();
@@ -352,7 +352,7 @@ public:
    
 
 
-   virtual void wait();
+   //virtual void wait();
 
 
    virtual iptr item() const;
@@ -376,7 +376,7 @@ public:
    //virtual void close_dependent_threads(const ::duration & dur);
 
 
-   virtual bool do_events();
+   virtual bool do_events() override;
    // virtual bool do_events(const duration& duration);
 
    virtual bool task_get_run() const override;
@@ -445,10 +445,10 @@ public:
 
 
 
-   virtual ::e_status begin(
+   virtual ::e_status branch(
    ::e_priority epriority = ::priority_normal,
    ::u32 nStackSize = 0,
-   u32 uiCreateFlags = 0 ARG_SEC_ATTRS_DEF);
+   u32 uiCreateFlags = 0 ARG_SEC_ATTRS_DEF) override;
 
 
    virtual ::e_status begin_synch(

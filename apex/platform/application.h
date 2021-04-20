@@ -7,7 +7,7 @@ namespace apex
 
    class CLASS_DECL_APEX application :
       virtual public ::apex_main_struct,
-      virtual public ::apex::context_thread,
+      virtual public ::apex::context,
       // apex commented
       //virtual public ::user::callback,
       virtual public int_scalar_source,
@@ -496,7 +496,7 @@ namespace apex
       //virtual ::e_status ui_message_box_timeout(::user::primitive * puiOwner, const char * pszMessage, const char* pszTitle = nullptr, const ::duration& durationTimeOut = duration::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
 
 
-      //using ::apex::context_thread::message_box;
+      //using ::apex::context::message_box;
       //virtual ::e_status message_box(::user::primitive * puiOwner, const char * pszMessage, const char* pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
       //virtual ::e_status message_box_timeout(::user::primitive * puiOwner, const char * pszMessage, const char* pszTitle = nullptr, const ::duration& durationTimeOut = duration::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
 
@@ -528,7 +528,7 @@ namespace apex
       //virtual ::file::path full_process_path(::file::path path);
 
       //virtual void DoWaitCursor(i32 nCode); // 0 => restore, 1=> begin, -1=> end
-      virtual void show_wait_cursor(bool bShow = true);
+      //virtual void show_wait_cursor(bool bShow = true);
 
 
 
@@ -640,7 +640,7 @@ namespace apex
 
       virtual ::e_status get_temp_file_name(string & str,const char * lpszName,const char * pszExtension);
 
-      inline service_handler* service_handler() const { return m_pservicehanlder; }
+      inline ::service_handler* service_handler() const { return m_pservicehanlder; }
 
       //virtual void on_service_request(::create * pcreate);
 

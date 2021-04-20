@@ -1,54 +1,6 @@
 #pragma once
 
 
-#include "common.h"
-
-namespace factory
-{
-
-
-   template < typename TYPE, typename BASE_TYPE >
-   class reusable_factory;
-
-
-} // namespace factory
-
-#ifndef WINDOWS
-
-
-#define MAXIMUM_WAIT_OBJECTS 64
-
-
-#endif
-
-
-#ifdef APPLEOS
-#include <semaphore.h>
-#endif
-
-#include "synchronization_result.h"
-
-#ifdef PARALLELIZATION_PTHREAD
-
-#define CRITICAL_SECTION_FUNCTION_RETURN int
-
-CRITICAL_SECTION_FUNCTION_RETURN pthread_recursive_mutex_init(pthread_mutex_t* pmutex);
-
-#else
-
-#define CRITICAL_SECTION_FUNCTION_RETURN void
-
-#endif
-
-
-#define MAXIMUM_SYNCHRONIZING_OBJECTS 64
-
-using hsync = void *;
-
-#define INVALID_HSYNC_VALUE ((hsync)nullptr)
-
-
-
 CLASS_DECL_ACME ::u64 translate_processor_affinity(int iOrder);
 
 
@@ -162,7 +114,7 @@ CLASS_DECL_ACME ::e_status __call(const ::routine & routine);
 
 
 CLASS_DECL_ACME bool set_thread_name(const char * psz);
-CLASS_DECL_ACME bool set_thread_name(htask_t hthread, const char* pszName);
+CLASS_DECL_ACME bool set_thread_name(htask_t htask, const char* pszName);
 
 
 typedef ::e_status     (*__THREADPROC)(void *);
@@ -380,7 +332,7 @@ CLASS_DECL_ACME bool task_sleep(millis millis = U32_INFINITE_TIMEOUT, ::synchron
 #endif
 
 
-string get_thread_name(htask_t hthread);
+string get_thread_name(htask_t htask);
 
 #include "acme/primitive/collection/runnable_array.h"
 
@@ -395,7 +347,7 @@ string get_thread_name(::thread* pthread);
 
 CLASS_DECL_ACME void thread_name_abbreviate(string & strName, int len);
 
-CLASS_DECL_ACME bool set_thread_name(htask_t hthread, const char * psz);
+CLASS_DECL_ACME bool set_thread_name(htask_t htask, const char * psz);
 CLASS_DECL_ACME bool set_thread_name(const char * psz);
 
 //#include "update_task_item_array.h"

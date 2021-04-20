@@ -76,11 +76,11 @@ namespace acme
    //}
 
 
-   void application::show_wait_cursor(bool bShow)
-   {
-
-
-   }
+//   void application::show_wait_cursor(bool bShow)
+//   {
+//
+//
+//   }
 
 
    //void application::get_time(struct timeval *p)

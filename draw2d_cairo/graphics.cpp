@@ -151,15 +151,6 @@ graphics::graphics()
    m_pdc = nullptr;
    m_ewritetextrendering = ::write_text::e_rendering_anti_alias_grid_fit;
 
-   m_pfont.create();
-
-   auto psystem = get_system();
-
-   auto pnode = psystem->node();
-
-   m_pfont->m_strFontFamilyName = pnode->font_name(e_font_sans);
-
-   m_pfont->m_dFontSize = 12.0;
 
    m_iSaveDCPositiveClip = -1;
 
@@ -225,6 +216,37 @@ bool graphics::IsPrinting()
 //    __throw(error_not_supported);
 //
 //}
+
+
+   ::e_status graphics::initialize(::object * pobject)
+   {
+
+   auto estatus = ::draw2d::graphics::initialize(pobject);
+
+   if(!estatus)
+   {
+
+      return estatus;
+
+   }
+
+      auto psystem = m_psystem;
+
+      auto pnode = psystem->node();
+
+
+      m_pfont.create();
+
+
+      m_pfont->m_strFontFamilyName = pnode->font_name(e_font_sans);
+
+      m_pfont->m_dFontSize = 12.0;
+
+      return estatus;
+
+   }
+
+
 
 
 bool graphics::CreateCompatibleDC(::draw2d::graphics * pgraphics)

@@ -83,7 +83,7 @@ CLASS_DECL_ACME bool __node_acme_pre_init()
 CLASS_DECL_ACME bool __node_acme_pos_init()
 {
 
-   //   t_hthread = new hthread();
+   //   t_hthread = new htask();
    //
    //    //t_hthread-
    //

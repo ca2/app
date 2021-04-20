@@ -126,7 +126,7 @@ namespace interprocess_communication
 
       bool                    m_bRunning;
       bool                    m_bRun;
-      ::thread *              m_pthread;
+      __pointer(::task)  m_pthread;
 
 #endif
 

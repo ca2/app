@@ -2738,6 +2738,16 @@ namespace draw2d
 #include "aura/game/_.h"
 
 
+//namespace PLATFORM_NAMESPACE
+//{
+//
+//
+//   class window;
+//
+//
+//} // namespace PLATFORM_NAMESPACE
+
+
 #include "aura/windowing/_windowing.h"
 
 

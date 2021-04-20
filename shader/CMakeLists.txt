@@ -18,8 +18,8 @@ list(APPEND app_shader_source
     framework.h
     render.cpp
     render.h
-    window.cpp
-    window.h)
+    main_window.cpp
+    main_window.h)
 
 
 if (MSVC)

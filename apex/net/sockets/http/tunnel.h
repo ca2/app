@@ -50,16 +50,16 @@ namespace sockets
       virtual bool proxy_open(const string &host, port_t port);
 
 
-      void OnConnect();
+      void OnConnect() override;
 
-      void OnLine(const string & strParam);
+      void OnLine(const string & strParam) override;
 
       virtual ::e_status step() override;
 
-      virtual void OnFirst();
-      virtual void OnHeader(id idKey, const string &);
-      virtual void OnHeaderComplete();
-      virtual void OnData(const char * psz, memsize size);
+      virtual void OnFirst() override;
+      virtual void OnHeader(id idKey, const string &) override;
+      virtual void OnHeaderComplete() override;
+      virtual void OnData(const char * psz, memsize size) override;
 
 
    };

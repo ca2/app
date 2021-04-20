@@ -143,12 +143,12 @@ inline auto new_predicateicate_task(::object * pobject, PRED pred)
 
 
 template < typename PRED >
-__pointer(::task) & fork(__pointer(::task) & ptask, ::object * pobject, PRED pred)
+__pointer(::task) & branch(__pointer(::task) & ptask, ::object * pobject, PRED pred)
 {
 
    ptask = __new(predicate_task < PRED >(pobject, pred));
 
-   ptask->begin();
+   ptask->branch();
 
    return ptask;
 
@@ -564,7 +564,7 @@ auto fork_count(::object * pobjectParent, ::count iCount, PRED pred, index iStar
 
       ppredtask->m_pcounter = pcounter;
 
-      ppredtask->begin();
+      ppredtask->branch();
 
    }
 
@@ -606,198 +606,198 @@ template < typename PRED, typename PRED_END >
 }
 
 
-template < typename PRED >
-class forking_for_task :
-virtual public task
-{
-public:
+//template < typename PRED >
+//class forking_for_task :
+//virtual public task
+//{
+//public:
+//
+//   PRED     m_predicate;
+//
+//
+//
+//   index    m_iOrder;
+//   index    m_iIndex;
+//   ::count  m_iScan;
+//   ::count  m_iCount;
+//
+//   __pointer(::object)  m_pobjectTaskEnd;
+//
+//   forking_for_task(::object * pobject, index iOrder, index iIndex, ::count iScan, ::count iCount, PRED pred) :
+//   ::object(pobject),
+//   m_predicate(pred),
+//   m_iOrder(iOrder),
+//   m_iIndex(iIndex),
+//   m_iScan(iScan),
+//   m_iCount(iCount)
+//   {
+//      construct();
+//   }
+//
+//   void construct()
+//   {
+//
+//      m_uThreadAffinityMask = translate_processor_affinity(int(m_iOrder));
+//
+//   }
+//
+//   virtual ~forking_for_task()
+//   {
+//
+//   }
+//
+//   ::e_status run()
+//   {
+//
+//      for (; m_iIndex < m_iCount; m_iIndex += m_iScan)
+//      {
+//
+//         m_predicate(m_iIndex);
+//
+//      }
+//
+//      if (m_pobjectTaskEnd)
+//      {
+//
+//         m_pobjectTaskEnd->m_cRun++;
+//
+//         if (m_pobjectTaskEnd->m_cRun == 0)
+//         {
+//
+//            m_pobjectTaskEnd->operator()();
+//
+//         }
+//
+//      }
+//
+//      return ::success;
+//
+//   }
+//
+//};
 
-   PRED     m_predicate;
 
+//template < typename PRED >
+//auto fork_for(::object * pobjectParent, ::count iCount, PRED pred, index iStart = 0)
+//{
+//
+//   int iAffinityOrder = get_current_process_affinity_order();
+//
+//   if (::get_task() == nullptr || ::get_task()->m_bAvoidProcedureFork)
+//   {
+//
+//      iAffinityOrder = 1;
+//
+//   }
+//
+//   ::count iScan = maximum(1, minimum(iCount - iStart, iAffinityOrder));
+//
+//   auto pcounter = __new(::counter < ::i32 >(iScan));
+//
+//   for (index iOrder = 0; iOrder < iScan; iOrder++)
+//   {
+//
+//      auto ppredtask = __new(forking_for_task < PRED >(pobjectParent, iOrder, iOrder + iStart, iScan, iCount, pred));
+//
+//      ppredtask->m_pcounter = pcounter;
+//
+//      ppredtask->begin();
+//
+//   }
+//
+//   return pcounter;
+//
+//}
 
-
-   index    m_iOrder;
-   index    m_iIndex;
-   ::count  m_iScan;
-   ::count  m_iCount;
-
-   __pointer(::object)  m_pobjectTaskEnd;
-
-   forking_for_task(::object * pobject, index iOrder, index iIndex, ::count iScan, ::count iCount, PRED pred) :
-   ::object(pobject),
-   m_predicate(pred),
-   m_iOrder(iOrder),
-   m_iIndex(iIndex),
-   m_iScan(iScan),
-   m_iCount(iCount)
-   {
-      construct();
-   }
-
-   void construct()
-   {
-
-      m_uThreadAffinityMask = translate_processor_affinity(int(m_iOrder));
-
-   }
-
-   virtual ~forking_for_task()
-   {
-
-   }
-
-   ::e_status     run()
-   {
-
-      for (; m_iIndex < m_iCount; m_iIndex += m_iScan)
-      {
-
-         m_predicate(m_iIndex);
-
-      }
-
-      if (m_pobjectTaskEnd)
-      {
-
-         m_pobjectTaskEnd->m_cRun++;
-
-         if (m_pobjectTaskEnd->m_cRun == 0)
-         {
-
-            m_pobjectTaskEnd->operator()();
-
-         }
-
-      }
-
-      return ::success;
-
-   }
-
-};
-
-
-template < typename PRED >
-auto fork_for(::object * pobjectParent, ::count iCount, PRED pred, index iStart = 0)
-{
-
-   int iAffinityOrder = get_current_process_affinity_order();
-
-   if (::get_task() == nullptr || ::get_task()->m_bAvoidProcedureFork)
-   {
-
-      iAffinityOrder = 1;
-
-   }
-
-   ::count iScan = maximum(1, minimum(iCount - iStart, iAffinityOrder));
-
-   auto pcounter = __new(::counter < ::i32 >(iScan));
-
-   for (index iOrder = 0; iOrder < iScan; iOrder++)
-   {
-
-      auto ppredtask = __new(forking_for_task < PRED >(pobjectParent, iOrder, iOrder + iStart, iScan, iCount, pred));
-
-      ppredtask->m_pcounter = pcounter;
-
-      ppredtask->begin();
-
-   }
-
-   return pcounter;
-
-}
-
-template < typename PRED, typename PRED_END >
-auto fork_for_end(::object* pobjectParent, ::count iCount, PRED pred, PRED_END predEnd, index iStart = 0)
-{
-
-   int iAffinityOrder = get_current_process_affinity_order();
-
-   if (::get_task() == nullptr || ::get_task()->m_bAvoidProcedureFork)
-   {
-
-      iAffinityOrder = 1;
-
-   }
-
-   ::count iScan = maximum(1, minimum(iCount - iStart, iAffinityOrder));
-
-   auto pcounter = __new(::counter < ::i32 > (iScan));
-
-   auto pobjectTaskEnd = __runnable(predEnd);
-
-   pobjectTaskEnd->m_cRun = -iScan;
-
-   for (index iOrder = 0; iOrder < iScan; iOrder++)
-   {
-
-      auto ppredtask = __new(forking_for_task < PRED >(pobjectParent, iOrder, iOrder + iStart, iScan, iCount, pred));
-
-      ppredtask->m_pcounter = pcounter;
-
-      ppredtask->m_pobjectTaskEnd = pobjectTaskEnd;
-
-      ppredtask->begin();
-
-   }
-
-   return pcounter;
-
-}
+//template < typename PRED, typename PRED_END >
+//auto fork_for_end(::object* pobjectParent, ::count iCount, PRED pred, PRED_END predEnd, index iStart = 0)
+//{
+//
+//   int iAffinityOrder = get_current_process_affinity_order();
+//
+//   if (::get_task() == nullptr || ::get_task()->m_bAvoidProcedureFork)
+//   {
+//
+//      iAffinityOrder = 1;
+//
+//   }
+//
+//   ::count iScan = maximum(1, minimum(iCount - iStart, iAffinityOrder));
+//
+//   auto pcounter = __new(::counter < ::i32 > (iScan));
+//
+//   auto pobjectTaskEnd = __runnable(predEnd);
+//
+//   pobjectTaskEnd->m_cRun = -iScan;
+//
+//   for (index iOrder = 0; iOrder < iScan; iOrder++)
+//   {
+//
+//      auto ppredtask = __new(forking_for_task < PRED >(pobjectParent, iOrder, iOrder + iStart, iScan, iCount, pred));
+//
+//      ppredtask->m_pcounter = pcounter;
+//
+//      ppredtask->m_pobjectTaskEnd = pobjectTaskEnd;
+//
+//      ppredtask->begin();
+//
+//   }
+//
+//   return pcounter;
+//
+//}
 
 
 
 CLASS_DECL_ACME u32 processor_index_generator();
 
 
-template < typename PRED >
-__pointer_array(::task) fork_proc(::object * pobjectParent, PRED pred, index iCount = -1)
-{
-
-   __pointer_array(::task) taskptra;
-
-   int iProcCount = get_current_process_affinity_order();
-
-   if (iCount < 0 || iCount > iProcCount)
-   {
-
-      iCount = iProcCount;
-
-   }
-
-   iCount = maximum(1, iCount);
-
-   if (::get_task() == nullptr || ::get_task()->m_bAvoidProcedureFork)
-   {
-
-      iCount = 1;
-
-   }
-
-   for (index iProcessor = 0; iProcessor < iCount; iProcessor++)
-   {
-
-      auto ppredtask = __new(predicate_task < PRED >(pobjectParent, pred));
-
-      ::task * ptask = dynamic_cast < ::task * > (ppredtask);
-
-      ptask->m_uThreadAffinityMask = translate_processor_affinity(processor_index_generator() % iProcCount);
-
-      ptask->m_bThreadToolsForIncreasedFps = false;
-
-      //ptask->m_bAvoidProcFork = true;
-
-      taskptra.add(ptask);
-
-      ptask->begin();
-
-   }
-
-   return taskptra;
-
-}
+//template < typename PRED >
+//__pointer_array(::task) fork_proc(::object * pobjectParent, PRED pred, index iCount = -1)
+//{
+//
+//   __pointer_array(::task) taskptra;
+//
+//   int iProcCount = get_current_process_affinity_order();
+//
+//   if (iCount < 0 || iCount > iProcCount)
+//   {
+//
+//      iCount = iProcCount;
+//
+//   }
+//
+//   iCount = maximum(1, iCount);
+//
+//   if (::get_task() == nullptr || ::get_task()->m_bAvoidProcedureFork)
+//   {
+//
+//      iCount = 1;
+//
+//   }
+//
+//   for (index iProcessor = 0; iProcessor < iCount; iProcessor++)
+//   {
+//
+//      auto ppredtask = __new(predicate_task < PRED >(pobjectParent, pred));
+//
+//      ::task * ptask = dynamic_cast < ::task * > (ppredtask);
+//
+//      ptask->m_uThreadAffinityMask = translate_processor_affinity(processor_index_generator() % iProcCount);
+//
+//      ptask->m_bThreadToolsForIncreasedFps = false;
+//
+//      //ptask->m_bAvoidProcFork = true;
+//
+//      taskptra.add(ptask);
+//
+//      ptask->begin();
+//
+//   }
+//
+//   return taskptra;
+//
+//}
 
 
 template < typename PRED >

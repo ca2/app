@@ -8,7 +8,7 @@ namespace apex
    class CLASS_DECL_APEX system:
       virtual public ::app_core,
       virtual public ::acme::system,
-      virtual public ::apex::context_thread
+      virtual public ::apex::context
 #ifndef WINDOWS
       ,virtual public ::exception::translator
 #endif
@@ -255,7 +255,7 @@ namespace apex
 
       virtual ::e_status on_system_construct();
 
-      virtual ::e_status on_start();
+      virtual ::e_status on_start_system();
 
       virtual ::e_status start();
 

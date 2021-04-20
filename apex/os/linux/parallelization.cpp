@@ -129,53 +129,53 @@ bool __os_term_thread()
 
 
 
-CLASS_DECL_APEX void main_sync_runnable(::object * pobjectRunnable, ::duration durationTimeout)
-{
+//CLASS_DECL_APEX void main_sync_runnable(::object * pobjectRunnable, ::duration durationTimeout)
+//{
+//
+//   __pointer(object) prunnable = pobjectRunnable;
+//
+//   auto pevent = __new(manual_reset_event);
+//
+//   auto pnode = Node;
+//
+//   pnode->node_fork([prunnable, pevent]()
+//   {
+//
+//      try
+//      {
+//
+//         prunnable->operator()();
+//
+//      }
+//      catch(...)
+//      {
+//
+//      }
+//
+//      pevent->SetEvent();
+//
+//   });
+//
+//   pevent->wait(durationTimeout);
+//
+//}
 
-   __pointer(object) prunnable = pobjectRunnable;
-
-   auto pevent = __new(manual_reset_event);
-
-   auto pnode = Node;
-
-   pnode->node_fork([prunnable, pevent]()
-   {
-
-      try
-      {
-
-         prunnable->operator()();
-
-      }
-      catch(...)
-      {
-
-      }
-
-      pevent->SetEvent();
-
-   });
-
-   pevent->wait(durationTimeout);
-
-}
-
-
-CLASS_DECL_APEX void main_async_runnable(::object * prunnableParam)
-{
-
-   __pointer(object) prunnable = prunnableParam;
-
-   auto pnode = Node;
-
-   pnode->node_fork([prunnable]()
-   {
-
-      prunnable->operator()();
-
-   });
-
-}
+//
+//CLASS_DECL_APEX void main_async_runnable(::object * prunnableParam)
+//{
+//
+//   __pointer(object) prunnable = prunnableParam;
+//
+//   auto pnode = Node;
+//
+//   pnode->node_fork([prunnable]()
+//   {
+//
+//      prunnable->operator()();
+//
+//   });
+//
+//}
 
 
 

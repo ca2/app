@@ -54,3 +54,17 @@ CLASS_DECL_ACME void sleep(const nanos & nanos)
 }
 
 
+
+
+//::e_status system_time_to_time(time_t* ptime, const system_time_t* psystemtime, i32 nDST)
+//{
+//
+//   struct tm tm;
+//
+//   __copy(tm, psystemtime);
+//
+//   *ptime = timegm(&tm);
+//
+//   return ::success;
+//
+//}

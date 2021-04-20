@@ -65,13 +65,18 @@ public:
    inline bool failed() const { return !succeeded(); }
 
 
-   operator bool() const { return succeeded(); }
-
-
    bool operator !() const { return failed(); }
 
 
    inline ::index signaled_index() const;
+
+
+   bool operator == (enum_synchronization_result eresult) const
+   {
+
+      return m_esynchronizationresult == eresult;
+
+   }
 
 
 };

@@ -15,10 +15,10 @@ namespace acme
       virtual ~department();
 
 
-      virtual ::e_status initialize(::object * pobject);
+      virtual ::e_status initialize(::object * pobject) override;
 
 
-      virtual ::e_status call_member(enum_id eid);
+      virtual ::e_status call_member(::i64 iId) override;
 
 
       virtual ::e_status process_init();

@@ -5408,7 +5408,12 @@ retry_license:
       {
 
          m_iWaitCursorCount = 0;
-         show_wait_cursor(false);
+
+         auto psystem = m_psystem;
+
+         auto pnode = psystem->node()->m_papexnode;
+
+         pnode->show_wait_cursor(false);
 
       }
       else if (nCode == 0)
@@ -5422,12 +5427,21 @@ retry_license:
          if (m_iWaitCursorCount > 0)
          {
 
-            show_wait_cursor(true);
+            auto psystem = m_psystem;
+
+            auto pnode = psystem->node()->m_papexnode;
+
+            pnode->show_wait_cursor(true);
 
          }
 
          m_iWaitCursorCount = 0;
-         show_wait_cursor(false);
+
+         auto psystem = m_psystem;
+
+         auto pnode = psystem->node()->m_papexnode;
+
+         pnode->show_wait_cursor(false);
 
       }
       else
@@ -5440,13 +5454,16 @@ retry_license:
 
          m_iWaitCursorCount++;
 
-         show_wait_cursor(true);
+         auto psystem = m_psystem;
+
+         auto pnode = psystem->node()->m_papexnode;
+
+         pnode->show_wait_cursor(true);
 
       }
 
-
-
    }
+
 
    //void application::show_wait_cursor(bool bShow)
    //{

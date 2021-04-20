@@ -16,7 +16,7 @@
 #if defined(LINUX) // || defined(ANDROID)
 
 
-bool apex_defer_process_x_message(htask_t hthread,MESSAGE * pMsg,::windowing::window * pwindow,bool bPeek);
+bool apex_defer_process_x_message(htask_t htask,MESSAGE * pMsg,::windowing::window * pwindow,bool bPeek);
 
 
 #endif
@@ -213,7 +213,7 @@ int_bool message_queue::peek_message(MESSAGE * pMsg, oswindow oswindow,::u32 wMs
 
 //#if defined(LINUX) // || defined(ANDROID)
 //
-//   if(apex_defer_process_x_message(hthread,pMsg,oswindow,!(wRemoveMsg & PM_REMOVE)))
+//   if(apex_defer_process_x_message(htask,pMsg,oswindow,!(wRemoveMsg & PM_REMOVE)))
 //   {
 //
 //      return true;

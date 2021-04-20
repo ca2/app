@@ -124,7 +124,7 @@ namespace parallelization
 
 
 //CLASS_DECL_APEX bool set_thread_name(const char * psz);
-//CLASS_DECL_APEX bool set_thread_name(htask_t hthread, const char* pszName);
+//CLASS_DECL_APEX bool set_thread_name(htask_t htask, const char* pszName);
 
 // Use instead of PostQuitMessage in OLE server applications
 //CLASS_DECL_APEX void __post_quit_message(i32 nExitCode);
@@ -303,7 +303,7 @@ public:
 //#endif
 
 
-string get_thread_name(htask_t hthread);
+string get_thread_name(htask_t htask);
 
 
 // Use instead of PostQuitMessage in OLE server applications

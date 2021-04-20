@@ -35,10 +35,8 @@
 void copy(payload * ppayload, const system_time_t * psystemtime)
 {
 
-   ppayload->set_type(type_time, false);
+   ppayload->set_type(e_type_time, false);
 
-   auto pnode = Node;
-
-   pnode->system_time_to_time(&ppayload->m_time, psystemtime);
+   system_time_to_time(&ppayload->m_time, psystemtime);
 
 }

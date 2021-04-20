@@ -11,12 +11,12 @@ namespace user
 {
 
 
-   string _os_get_user_theme()
-   {
-
-      return "";
-
-   }
+//   string _os_get_user_theme()
+//   {
+//
+//      return "";
+//
+//   }
 
 
    void _os_process_user_theme(string strTheme)

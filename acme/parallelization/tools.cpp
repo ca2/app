@@ -58,13 +58,13 @@ task_group::task_group(::matter * pmatter, ::e_priority epriority)
       if (epriority == ::priority_none)
       {
 
-         ptooltask->begin(::priority_highest);
+         ptooltask->branch(::priority_highest);
 
       }
       else
       {
 
-         ptooltask->begin(epriority);
+         ptooltask->branch(epriority);
 
       }
 
@@ -78,8 +78,6 @@ task_group::~task_group()
 
 
 }
-
-
 
 
 bool task_group::prepare(::enum_task_op etaskop, ::count cIteration)

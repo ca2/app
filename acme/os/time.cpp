@@ -122,3 +122,158 @@ void copy(struct tm* ptmUTC, const system_time_t* psystemtimeUTC)
    ptmUTC->tm_isdst = ISDST_NO_DAYLIGHT_SAVINGS; // UTC doesn't observe daylight savings (this is what camilox guess...)
 
 }
+
+
+::e_status get_system_time_as_file_time(filetime_t* pfiletime)
+{
+
+   system_time_t systemtime;
+
+   auto estatus = get_system_time(&systemtime);
+
+   if (!estatus)
+   {
+
+      return estatus;
+
+   }
+
+   estatus = system_time_to_file_time(pfiletime, &systemtime);
+
+   if (!estatus)
+   {
+
+      return estatus;
+
+   }
+
+   return estatus;
+
+}
+
+
+//::e_status file_time_to_system_time(system_time_t* psystemtime, const filetime_t* pfiletime)
+//{
+//
+//   if (!FileTimeToSystemTime((const FILETIME*)pfiletime, (SYSTEMTIME*)psystemtime))
+//   {
+//
+//      return error_failed;
+//
+//   }
+//
+//   return ::success;
+//
+//}
+//
+//
+//::e_status file_time_to_local_file_time(filetime_t* pfiletimeLocal, const filetime_t* pfiletime)
+//{
+//
+//   if (!FileTimeToLocalFileTime((const FILETIME*)pfiletime, (FILETIME*)pfiletimeLocal))
+//   {
+//
+//      return error_failed;
+//
+//   }
+//
+//   return success;
+//
+//}
+//
+//
+//::e_status is_valid_filetime(const filetime_t* pfiletime)
+//{
+//
+//   SYSTEMTIME systemtime{};
+//
+//   if (!FileTimeToSystemTime((const FILETIME*)pfiletime, (SYSTEMTIME*)&systemtime))
+//   {
+//
+//      return error_failed;
+//
+//   }
+//
+//   return ::success;
+//
+//}
+
+
+::e_status file_time_to_time(time_t* ptime, const filetime_t* pfiletime, i32 nDST)
+{
+
+   system_time_t systemtime{};
+
+   auto estatus = file_time_to_system_time(&systemtime, pfiletime);
+
+   if(!estatus)
+   {
+
+      return estatus;
+
+   }
+
+   estatus = system_time_to_time(ptime, &systemtime);
+
+   if(!estatus)
+   {
+
+      return estatus;
+
+   }
+
+   return estatus;
+
+}
+
+
+filetime get_filetime_now()
+{
+
+   filetime_t filetime=0;
+
+   auto estatus = get_system_time_as_file_time(&filetime);
+
+   if(!estatus)
+   {
+
+      return 0;
+
+   }
+
+   return filetime;
+
+}
+
+
+::e_status system_time_to_tm(tm * ptm, const system_time_t * psystemtime)
+{
+
+   ptm->tm_hour   = psystemtime->wHour;
+   ptm->tm_min    = psystemtime->wMinute;
+   ptm->tm_sec    = psystemtime->wSecond;
+   ptm->tm_mon    = psystemtime->wMonth;
+   ptm->tm_mday   = psystemtime->wDay;
+   ptm->tm_year   = psystemtime->wYear;
+
+   return ::success;
+
+}
+
+
+::e_status tm_to_system_time(system_time_t * psystemtime, const tm * ptm)
+{
+
+   psystemtime->wHour      = ptm->tm_hour    ;
+   psystemtime->wMinute    = ptm->tm_min     ;
+   psystemtime->wSecond    = ptm->tm_sec     ;
+   psystemtime->wMonth     = ptm->tm_mon     ;
+   psystemtime->wDay       = ptm->tm_mday    ;
+   psystemtime->wYear      = ptm->tm_year    ;
+
+   return ::success;
+
+}
+
+
+

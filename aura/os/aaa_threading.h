@@ -17,7 +17,7 @@ typedef ::u32 ::u32;
 
 
 
-CLASS_DECL_AURA void set_main_hthread(htask_t hthread);
+CLASS_DECL_AURA void set_main_hthread(htask_t htask);
 CLASS_DECL_AURA void set_main_ithread(itask_t itask);
 CLASS_DECL_AURA htask_t get_main_hthread(void);
 CLASS_DECL_AURA itask_t get_main_ithread(void);

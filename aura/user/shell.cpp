@@ -205,7 +205,7 @@ namespace user
 
       __refer(m_pshell, pshell);
 
-      begin();
+      branch();
 
    }
 

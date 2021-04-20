@@ -37,7 +37,7 @@ namespace acme
 
       }
 
-      estatus = on_start();
+      estatus = on_start_system();
 
       if (!estatus)
       {
@@ -171,11 +171,7 @@ namespace acme
    }
 
    
-
-
-
-
-   ::e_status system::on_start()
+   ::e_status system::on_start_system()
    {
 
       return ::success;

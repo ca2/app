@@ -46,26 +46,26 @@ task_pointer & task_pool::defer_start(const ::id& id, const ::routine & routine)
 }
 
 
-void task_pool::start_clock(enum_clock eclock, const duration & duration)
+void task_pool::start_clock(enum_timer etimer, const duration & duration)
 {
 
-   defer_start(eclock, __routine([&, eclock, duration]()
+   defer_start(etimer, __routine([&, etimer, duration]()
       {
 
-         _task_clock(eclock, duration);
+         _task_clock(etimer, duration);
 
       }));
 
 }
 
 
-void task_pool::on_clock(enum_clock eclock)
+void task_pool::on_clock(enum_timer etimer)
 {
 
 }
 
 
-void task_pool::_task_clock(enum_clock eclock, const duration & duration)
+void task_pool::_task_clock(enum_timer etimer, const duration & duration)
 {
 
    ::millis millis = duration.millis();
@@ -83,7 +83,7 @@ void task_pool::_task_clock(enum_clock eclock, const duration & duration)
       try
       {
 
-         on_clock(eclock);
+         on_clock(etimer);
 
       }
       catch (...)

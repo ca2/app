@@ -28,9 +28,9 @@
 
 #ifndef _UWP
 
-CLASS_DECL_AURA BOOL WINAPI SetThreadPriority(htask_t hthread,int iPriority);
+CLASS_DECL_AURA BOOL WINAPI SetThreadPriority(htask_t htask,int iPriority);
 
-CLASS_DECL_AURA int WINAPI GetThreadPriority(htask_t hthread);
+CLASS_DECL_AURA int WINAPI GetThreadPriority(htask_t htask);
 
 #endif
 

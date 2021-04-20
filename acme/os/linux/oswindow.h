@@ -11,7 +11,7 @@ typedef unsigned int u32;
 
 
 
-struct hthread;
+struct htask;
 
 namespace ca2
 {
@@ -65,7 +65,7 @@ CLASS_DECL_AURA bool oswindow_erase(Display * pdisplay, Window window);
 CLASS_DECL_AURA bool oswindow_erase_message_only_window(::user::interaction_impl * puibaseMessageOnlyWindow);
 
 
-struct hthread;
+struct htask;
 
 namespace ca2
 {

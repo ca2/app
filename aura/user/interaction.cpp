@@ -2047,7 +2047,7 @@ namespace user
 
 #ifndef WINDOWS_DESKTOP
 
-      if (get_application() != nullptr && get_context_system() != nullptr && psystem->get_active_ui() == this)
+      if (is_active_window())
       {
 
          auto psession = get_session();

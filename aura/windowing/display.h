@@ -14,6 +14,9 @@ namespace windowing
    public:
 
 
+      void *                        m_pDisplay;
+      void *                        m_pDisplay2;
+
       __pointer_array(monitor)      m_monitora;
 
 

@@ -9,7 +9,7 @@ int main(int argc, char * argv[], char * envp[])
 
    auto papplicationStartup = psystem->new_application(strAppId);
 
-   __bind(psystem, m_papplicationStartup, papplicationStartup);
+   psystem->__refer(psystem->m_papplicationStartup, papplicationStartup);
 
    psystem->set_main_struct(*psystem->m_papplicationStartup);
 
@@ -35,7 +35,7 @@ int main(int argc, char * argv[], char * envp[])
 
    psystem->system_construct(argc, argv, envp);
 
-   estatus = psystem->start();
+   estatus = psystem->system_main();
 
    ::i32 iErrorStatus = estatus.error_status();
 

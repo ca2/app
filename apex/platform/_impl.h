@@ -575,36 +575,36 @@ bool channel::add_handler(const ::id & id, RECEIVER* preceiver, void (RECEIVER::
 #if !defined(DEBUG)
 
 
-inline void object::set_context(::context* pcontext)
-{
-
-   m_pcontext = pcontext;
-
-}
-
-
-inline void object::set_context_thread(::thread* pthread)
-{
-
-   m_pthread = pthread;
-
-}
+//inline void object::set_context(::context* pcontext)
+//{
+//
+//   m_pcontext = pcontext;
+//
+//}
 
 
-inline void object::set_context_app(::apex::application* pappContext)
-{
+//inline void object::set_context_thread(::thread* pthread)
+//{
+//
+//   m_pthread = pthread;
+//
+//}
 
-   m_papplication = pappContext;
 
-}
+//inline void object::set_context_app(::apex::application* pappContext)
+//{
+//
+//   m_papplication = pappContext;
+//
+//}
 
 
-inline void object::set_context_session(::apex::session* psessionContext)
-{
-
-   m_psession = psessionContext;
-
-}
+//inline void object::set_context_session(::apex::session* psessionContext)
+//{
+//
+//   m_psession = psessionContext;
+//
+//}
 
 
 //inline void object::set_context_system(::apex::system* psystemContext)

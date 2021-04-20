@@ -28,6 +28,7 @@ __node_library_is_loaded_callback(struct dl_phdr_info *info, size_t size, void *
     return 0;
 }
 
+
 string __node_library_is_loaded(const char * pszPath)
 {
 
@@ -56,7 +57,7 @@ string __node_library_is_loaded(const char * pszPath)
 }
 
 
-CLASS_DECL_APEX void * __node_library_touch(const char * pszPath, string & strMessage)
+CLASS_DECL_ACME void * __node_library_touch(const char * pszPath, string & strMessage)
 {
 
    string strPath = __node_library_is_loaded(pszPath);
@@ -72,7 +73,8 @@ CLASS_DECL_APEX void * __node_library_touch(const char * pszPath, string & strMe
 
 }
 
-CLASS_DECL_APEX void * __node_library_open(const char * pszPath, string & strMessage)
+
+CLASS_DECL_ACME void * __node_library_open(const char * pszPath, string & strMessage)
 {
 
    string strPath(pszPath);
@@ -140,7 +142,7 @@ CLASS_DECL_APEX void * __node_library_open(const char * pszPath, string & strMes
 }
 
 
-CLASS_DECL_APEX void * __node_library_open_ca2(const char * pszPath, string & strMessage)
+CLASS_DECL_ACME void * __node_library_open_ca2(const char * pszPath, string & strMessage)
 {
 
    string strPath(pszPath);
@@ -193,7 +195,7 @@ CLASS_DECL_APEX void * __node_library_open_ca2(const char * pszPath, string & st
 }
 
 
-CLASS_DECL_APEX bool __node_library_close(void * plibrary)
+CLASS_DECL_ACME bool __node_library_close(void * plibrary)
 {
 
    if(plibrary == nullptr)
@@ -204,37 +206,12 @@ CLASS_DECL_APEX bool __node_library_close(void * plibrary)
 }
 
 
-CLASS_DECL_APEX void * __node_library_raw_get(void * plibrary,const char * pszEntryName)
+CLASS_DECL_ACME void * __node_library_raw_get(void * plibrary,const char * pszEntryName)
 {
 
    return dlsym(plibrary, pszEntryName);
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

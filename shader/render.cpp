@@ -46,19 +46,10 @@ namespace app_shader
 
       m_pcontext = psystem->get_gpu()->create_context();
 
-      if (!m_pcontext)
+      if (m_pcontext)
       {
 
-         return ::error_failed;
-
-      }
-
-      estatus = m_pcontext->initialize(this);
-
-      if (!estatus)
-      {
-
-         return estatus;
+         m_pcontext->initialize(this);
 
       }
 

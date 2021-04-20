@@ -7,25 +7,25 @@ class CLASS_DECL_ACME task_pool :
 protected:
 
 
-   task_pointer & task(const ::id & id) { return m_map[id]; }
+   __composite(::task) & task(const ::id & id) { return m_map[id]; }
 
 
 public:
 
 
-   id_map < ::task_pointer >   m_map;
+   id_map < __composite(::task) >   m_map;
 
 
    task_pool();
    virtual ~task_pool();
 
 
-   virtual ::task * defer_fork(const ::id& id, const ::routine & routine) override;
+   virtual __composite(::task) defer_branch(const ::id& id, const ::routine & routine);
 
 
-   virtual void start_clock(enum_clock eclock, const duration & duration);
-   virtual void _task_clock(enum_clock eclock, const duration & duration);
-   virtual void on_clock(enum_clock eclock);
+   virtual void set_timer(enum_timer etimer, const duration & duration);
+   virtual void _timer_task(enum_timer etimer, const duration & duration);
+   virtual void on_timer(enum_timer etimer);
 
 
 

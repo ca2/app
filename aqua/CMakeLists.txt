@@ -77,7 +77,7 @@ list(APPEND aqua_source
         xml/base_array.h
         xml/data.cpp
         xml/data.h
-        xml/department.h
+        xml/xml.h
         xml/disp_option.cpp
         xml/disp_option.h
         xml/document.cpp

@@ -295,22 +295,22 @@ void __node_term_multithreading()
 
 #if defined(LINUX) // || defined(ANDROID)
 
-bool (*g_pfn_defer_process_x_message)(htask_t hthread, MESSAGE * pMsg, oswindow oswindow, bool bPeek) = nullptr;
+bool (*g_pfn_defer_process_x_message)(htask_t htask, MESSAGE * pMsg, oswindow oswindow, bool bPeek) = nullptr;
 
 
-bool apex_defer_process_x_message(htask_t hthread, MESSAGE * pMsg, oswindow oswindow, bool bPeek)
+bool apex_defer_process_x_message(htask_t htask, MESSAGE * pMsg, oswindow oswindow, bool bPeek)
 
 {
 
    if (g_pfn_defer_process_x_message == nullptr)
       return false;
 
-   return (*g_pfn_defer_process_x_message)(hthread, pMsg, oswindow, bPeek);
+   return (*g_pfn_defer_process_x_message)(htask, pMsg, oswindow, bPeek);
 
 
 }
 
-void set_defer_process_x_message(bool (*pfn)(htask_t hthread, MESSAGE * pMsg, oswindow oswindow, bool bPeek))
+void set_defer_process_x_message(bool (*pfn)(htask_t htask, MESSAGE * pMsg, oswindow oswindow, bool bPeek))
 
 {
 
@@ -336,7 +336,7 @@ void * os_thread_thread_proc(void * pparameter);
 
 
 
-int_bool WINAPI SetThreadPriority(htask_t hthread, i32 nCa2Priority)
+int_bool WINAPI SetThreadPriority(htask_t htask, i32 nCa2Priority)
 {
 
    i32 iPolicy;
@@ -345,7 +345,7 @@ int_bool WINAPI SetThreadPriority(htask_t hthread, i32 nCa2Priority)
 
    thread_get_os_priority(&iPolicy, &schedparam, (::e_priority)nCa2Priority);
 
-   pthread_setschedparam((pthread_t)hthread, iPolicy, &schedparam);
+   pthread_setschedparam((pthread_t)htask, iPolicy, &schedparam);
 
    return true;
 
@@ -363,7 +363,7 @@ i32 get_os_thread_priority(::e_priority epriority)
 
 
 
-i32 WINAPI GetThreadPriority(htask_t  hthread)
+i32 WINAPI GetThreadPriority(htask_t  htask)
 {
 
    int iOsPolicy = SCHED_OTHER;
@@ -372,7 +372,7 @@ i32 WINAPI GetThreadPriority(htask_t  hthread)
 
    schedparam.sched_priority = 0;
 
-   pthread_getschedparam((itask_t)hthread, &iOsPolicy, &schedparam);
+   pthread_getschedparam((itask_t)htask, &iOsPolicy, &schedparam);
 
    return thread_get_scheduling_priority(iOsPolicy, &schedparam);
 
@@ -386,7 +386,7 @@ static htask_t g_hMainThread = (htask_t) nullptr;
 static itask_t g_uiMainThread = (itask_t)-1;
 
 
-CLASS_DECL_APEX void set_main_hthread(htask_t hthread)
+CLASS_DECL_APEX void set_main_hthread(htask_t htask)
 {
 
    // MESSAGE msg;
@@ -394,7 +394,7 @@ CLASS_DECL_APEX void set_main_hthread(htask_t hthread)
    // PeekMessage function used to create message queue Windows Desktop
    // PeekMessage(&msg, nullptr, 0, 0xffffffff, false);
 
-   g_hMainThread = hthread;
+   g_hMainThread = htask;
 
 }
 
@@ -435,10 +435,10 @@ CLASS_DECL_APEX void attach_thread_input_to_main_thread(bool bAttach)
 
 
 
-// LPVOID WINAPI thread_get_data(htask_t hthread, ::u32 dwIndex);
+// LPVOID WINAPI thread_get_data(htask_t htask, ::u32 dwIndex);
 
 
-// int_bool WINAPI thread_set_data(htask_t hthread, ::u32 dwIndex, LPVOID pTlsValue);
+// int_bool WINAPI thread_set_data(htask_t htask, ::u32 dwIndex, LPVOID pTlsValue);
 
 
 

@@ -17,8 +17,6 @@ inline ::user::interaction_impl * __interaction_impl(::windowing::window * pwind
 }
 
 
-
-
 namespace windowing
 {
 
@@ -28,6 +26,9 @@ namespace windowing
    {
    public:
 
+
+      void *                                    m_pWindowing;
+      void *                                    m_pWindowing2;
 
       ::point_i32                               m_pointCursor;
 
@@ -194,7 +195,7 @@ namespace windowing
 
 
       virtual ::e_status user_sync(const ::duration & duration, const ::routine & routine);
-      virtual ::e_status user_fork(const ::routine & routine);
+      virtual ::e_status user_branch(const ::routine & routine);
 
 
       virtual void _main_loop();

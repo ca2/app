@@ -210,7 +210,7 @@ namespace subject
          if (pcontext->m_bFork)
          {
 
-            ::task::launch(pmatter);
+            branch(pmatter);
 
          }
          else
@@ -389,7 +389,7 @@ namespace subject
       if (!should_poll(poll_time()))
       {
 
-         ::task::launch(this);
+         branch(this);
 
       }
 

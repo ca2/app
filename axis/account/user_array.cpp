@@ -269,10 +269,10 @@ namespace account
    }
 
 
-   void user_array::on_clock(enum_clock eclock)
+   void user_array::on_clock(enum_timer etimer)
    {
 
-      if(eclock == e_clock_slow)
+      if(etimer == e_clock_slow)
       {
 
          synchronous_lock synchronouslock(mutex());
@@ -284,7 +284,7 @@ namespace account
          for(auto & pair : map)
          {
 
-            pair.element2()->on_clock(eclock);
+            pair.element2()->on_clock(etimer);
 
          }
 

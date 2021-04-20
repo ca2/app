@@ -329,10 +329,10 @@ namespace acme
 
 
 
-   void application::show_wait_cursor(bool bShow)
-   {
-
-   }
+//   void application::show_wait_cursor(bool bShow)
+//   {
+//
+//   }
 
 
    string application::veriwell_multimedia_music_midi_get_default_library_name()

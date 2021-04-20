@@ -48,7 +48,7 @@ public:
    virtual ~task();
 
 
-   virtual string get_tag() const;
+   virtual string get_tag() const override;
    virtual string thread_get_name() const;
 
 
@@ -91,21 +91,14 @@ public:
    virtual bool do_events();
    virtual bool defer_pump_message();
 
+
    virtual bool has_message() const;
 
-   virtual ::e_status begin(
+
+   virtual ::e_status branch(
       ::e_priority epriority = priority_normal,
       u32 nStackSize = 0,
       u32 dwCreateFlags = 0 ARG_SEC_ATTRS_DEF);
-
-
-   virtual ::e_status start(
-      ::matter* pmatter,
-      ::e_priority epriority = priority_normal,
-      u32 nStackSize = 0,
-      u32 dwCreateFlags = 0 ARG_SEC_ATTRS_DEF);
-
-
 
 
    //template < typename METHOD >
@@ -121,21 +114,21 @@ public:
    //}
 
 
-   static ::task_pointer launch(
-      ::matter* pmatter,
-      ::e_priority epriority = priority_normal,
-      u32 nStackSize = 0,
-      u32 dwCreateFlags = 0);
+//   static ::task_pointer launch(
+//      ::matter* pmatter,
+//      ::e_priority epriority = priority_normal,
+//      u32 nStackSize = 0,
+//      u32 dwCreateFlags = 0);
 
 
    virtual ::property_object * thread_parent();
 
 
    virtual bool is_thread() const override;
-   virtual bool task_get_run() const;
+   virtual bool task_get_run() const override;
 
    virtual bool task_active() const;
-   virtual bool is_running() const;
+   virtual bool is_running() const override;
 
 
    virtual ::e_status main();

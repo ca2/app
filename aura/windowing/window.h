@@ -14,6 +14,11 @@ namespace windowing
    public:
 
 
+      //::PLATFORM_NAMESPACE::window *               m_pplatformwindow;
+
+      void *                                       m_pWindow;
+      void *                                       m_pWindow2;
+
       bool                                         m_bMessageOnlyWindow : 1;
 
 

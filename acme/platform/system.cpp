@@ -135,6 +135,23 @@ namespace acme
    }
 
 
+   ::e_status system::node_factory_exchange()
+   {
+
+      auto estatus = do_factory_exchange("acme", PLATFORM_NAME);
+
+      if(!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return estatus;
+
+   }
+
+
    ::e_status system::process_init()
    {
 
@@ -145,18 +162,18 @@ namespace acme
       if (!m_pfactorymapsquare)
       {
 
-         return ::success;
+         return ::error_no_memory;
 
       }
 
-      auto estatus = do_factory_exchange("acme", "windows");
+      // auto estatus = do_factory_exchange("acme", PLATFORM_NAME);
 
-      if (!estatus)
-      {
+      // if (!estatus)
+      // {
 
-         return estatus;
+      //    return estatus;
 
-      }
+      // }
 
       //estatus = __compose(m_pacmenode);
 
@@ -167,7 +184,7 @@ namespace acme
 
       //}
 
-      estatus = __compose(m_pacmedir);
+      auto estatus = __compose(m_pacmedir);
 
       if (!estatus)
       {
@@ -535,7 +552,25 @@ namespace acme
    ::e_status system::init_system()
    {
 
-      auto estatus = create_os_node();
+      auto estatus = node_factory_exchange();
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      estatus = create_os_node();
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      estatus = process_init();
 
       if (!estatus)
       {
@@ -904,6 +939,115 @@ namespace acme
       return ::success;
 
    }
+
+
+   void system::process_exit_status(::object* pobject, const ::e_status& estatus)
+   {
+
+      if (estatus == error_exit_system)
+      {
+
+         pobject->m_psystem->finish();
+
+      }
+
+   }
+
+
+   ::e_status system::system_main()
+   {
+
+      auto estatus = init_system();
+
+      if(!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      estatus = m_pnode->system_main();
+
+      if(!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return estatus;
+
+   }
+
+
+
+//   ::apex::application* system::get_main_application()
+//   {
+//
+//      return nullptr;
+//
+//   }
+//
+//
+//   void system::system_construct(int argc, char** argv, char** envp)
+//   {
+//
+//
+//   }
+//
+//   void system::system_construct(int argc, wchar_t** argv, wchar_t** envp)
+//   {
+//
+//
+//   }
+//
+//
+//   ::e_status system::inline_init()
+//   {
+//
+//      auto estatus = process_init();
+//
+//      if (!estatus)
+//      {
+//
+//         return estatus;
+//
+//      }
+//
+//      return ::success;
+//
+//   }
+//
+//
+//   ::e_status system::inline_term()
+//   {
+//
+//      return ::success;
+//
+//   }
+
+
+//   ::e_status system::on_start_system()
+//   {
+//
+//      return ::success;
+//
+//   }
+//
+//
+//   ::e_status system::on_end()
+//   {
+//
+//      return ::success;
+//
+//   }
+//
+//
+//   void system::os_construct()
+//   {
+//
+//
+//   }
 
 
 } // namespace acme

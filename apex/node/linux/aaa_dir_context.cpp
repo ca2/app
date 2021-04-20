@@ -92,9 +92,11 @@ namespace linux
 
       }
 
-      __refer(m_pfilesystem, ::apex::get_system()->m_pfilesystem);
+      auto psystem = m_psystem;
 
-      __refer(m_pdirsystem, ::apex::get_system()->m_pdirsystem);
+      __refer(m_pfilesystem, psystem->m_papexsystem->m_pfilesystem.get());
+
+      __refer(m_pdirsystem, psystem->m_papexsystem->m_pdirsystem.get());
 
       return ::success;
 
@@ -536,6 +538,8 @@ namespace linux
                str = stra[i];
 
                str.trim_right("\\/");
+
+               auto pcontext = m_pcontext;
 
                try
                {

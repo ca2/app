@@ -6,6 +6,7 @@
 #include "acme/primitive/primitive/malloc.h"
 #include "acme/astr.h"
 #include "acme/platform/simple_trace.h"
+#include "static_start_internal.h"
 
 
 #ifdef WINDOWS
@@ -1149,6 +1150,31 @@ namespace acme
 
 
 //} // namespace static_start
+
+   critical_section * get_global_critical_section()
+   {
+
+      return g_pcsGlobal;
+
+   }
+
+
+   bool should_output_debug_string()
+   {
+
+      return g_bOutputDebugString;
+
+   }
+
+
+   bool add_matter(::matter * pmatter)
+   {
+
+      g_paAura->add(pmatter);
+
+      return true;
+
+   }
 
 
 } // namespace acme

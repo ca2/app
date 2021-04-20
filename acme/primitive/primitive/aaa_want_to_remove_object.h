@@ -134,9 +134,9 @@ public:
    virtual ::image_pointer load_dib(const ::file::path & pathDib);
 
 
-   virtual void start_clock(e_clock eclock, duration duration);
-   virtual void _task_clock(e_clock eclock, duration duration);
-   virtual void on_clock(e_clock eclock);
+   virtual void start_clock(e_clock etimer, duration duration);
+   virtual void _task_clock(e_clock etimer, duration duration);
+   virtual void on_clock(e_clock etimer);
 
    bool IsSerializable() const;
 

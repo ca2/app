@@ -654,7 +654,7 @@ namespace user
 
             m_pprodevian->m_pevStarted = peventStartedProdevian;
 
-            if (!m_pprodevian->begin())
+            if (!m_pprodevian->branch())
             {
 
                __release(m_pprodevian);
@@ -682,7 +682,7 @@ namespace user
       if (bNewOwnThread)
       {
 
-         if (!m_puserthread->begin())
+         if (!m_puserthread->branch())
          {
 
             __release(m_pprodevian);

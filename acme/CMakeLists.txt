@@ -2,13 +2,6 @@ cmake_minimum_required(VERSION 3.17)
 project(acme CXX)
 
 
-add_compile_options("$<$<CONFIG:DEBUG>:-DDEBUG>")
-
-
-
-set(LIBRARY_OUTPUT_PATH ${CMAKE_CURRENT_SOURCE_DIR}/../../../time-${PLATFORM_NAME}/cmake)
-set(EXECUTABLE_OUTPUT_PATH ${CMAKE_CURRENT_SOURCE_DIR}/../../../time-${PLATFORM_NAME}/cmake)
-
 
 list(APPEND acme_source
    compress/zip/api.cpp
@@ -23,13 +16,13 @@ list(APPEND acme_source
    const/code_page.h
    const/idpool.cpp
    #exception/overflow.cpp
-        #exception/range.cpp
-        #exception/runtime.cpp
-        #exception/archive.cpp
-        #exception/archive_exception.cpp
-        #exception/base.cpp
+   #exception/range.cpp
+   #exception/runtime.cpp
+   #exception/archive.cpp
+   #exception/archive_exception.cpp
+   #exception/base.cpp
    exception/callstack.cpp
-        #exception/cancel.cpp
+   #exception/cancel.cpp
    exception/const.cpp
    exception/debug.cpp
    exception/dump.cpp
@@ -38,34 +31,37 @@ list(APPEND acme_source
    exception/dump_output.cpp
    exception/exception.cpp
    exception/exception_engine.cpp
-        #exception/exit.cpp
+   #exception/exit.cpp
+   exception/extended_status.cpp
+   exception/extended_status.h
+   exception/extended_transport.h
    exception/hresult.cpp
-        #exception/index_out_of_bounds.cpp
-        #exception/installing.cpp
-        #exception/interface_only.cpp
-        #exception/invalid_argument.cpp
-        #exception/invalid_character.cpp
-        #exception/invalid_handle.cpp
-        #exception/invalid_index.cpp
-        #exception/io.cpp
-        #exception/memory.cpp
-        #exception/not_implemented.cpp
-        #exception/not_installed.cpp
-        #exception/not_licensed.cpp
-        #exception/not_supported.cpp
-        #exception/operation_canceled.cpp
-        #exception/os.cpp
+   #exception/index_out_of_bounds.cpp
+   #exception/installing.cpp
+   #exception/interface_only.cpp
+   #exception/invalid_argument.cpp
+   #exception/invalid_character.cpp
+   #exception/invalid_handle.cpp
+   #exception/invalid_index.cpp
+   #exception/io.cpp
+   #exception/memory.cpp
+   #exception/not_implemented.cpp
+   #exception/not_installed.cpp
+   #exception/not_licensed.cpp
+   #exception/not_supported.cpp
+   #exception/operation_canceled.cpp
+   #exception/os.cpp
    exception/parsing.cpp
-        #exception/resource.cpp
-        #exception/result.cpp
-        #exception/simple.cpp
-        #exception/standard_translator.cpp
-        #exception/temporary.cpp
+   #exception/resource.cpp
+   #exception/result.cpp
+   #exception/simple.cpp
+   #exception/standard_translator.cpp
+   #exception/temporary.cpp
    exception/throw.cpp
-        #exception/todo.cpp
-        #exception/user.cpp
-        #exception/void_implementation.cpp
-        #exception/wtf.cpp
+   #exception/todo.cpp
+   #exception/user.cpp
+   #exception/void_implementation.cpp
+   #exception/wtf.cpp
    filesystem/file/_.cpp
    filesystem/file/binary_stream.cpp
    filesystem/file/buffered_buffer.cpp
@@ -91,6 +87,10 @@ list(APPEND acme_source
    filesystem/file/text_file.cpp
    filesystem/file/text_stream.cpp
    filesystem/file/var_stream.cpp
+   filesystem/filesystem/acme_dir.cpp
+   filesystem/filesystem/acme_dir.h
+   filesystem/filesystem/acme_path.cpp
+   filesystem/filesystem/acme_path.h
    filesystem/filesystem/listing.cpp
    filesystem/filesystem/path.cpp
    filesystem/filesystem/path_object.cpp
@@ -107,10 +107,41 @@ list(APPEND acme_source
    memory/allocate_system_heap.cpp
    memory/allocate_x86_cache_oriented.cpp
    memory/allocation.cpp
+   memory/counter.cpp
    memory/heap.cpp
    memory/new.cpp
    memory/plex.cpp
    memory/plex_heap.cpp
+   net/top_level_domain_list.cpp
+   net/url.cpp
+   net/url.h
+   net/url_department.cpp
+   net/url_department.h
+   net/url_domain.cpp
+   net/url_domain.h
+   os/ansios/_pthread.h
+   os/ansios/base.cpp
+   os/ansios/datetime.cpp
+   os/ansios/exception_engine.cpp
+   os/ansios/file.cpp
+   os/ansios/file_raw.cpp
+   os/ansios/file_std.cpp
+   os/ansios/language.cpp
+   os/ansios/memory.cpp
+   os/ansios/process.cpp
+   os/ansios/user.cpp
+   os/ansios/win.cpp
+   os/_.cpp
+   os/argcargv.cpp
+   os/chronometer.cpp
+   os/console.cpp
+   os/debug.cpp
+   os/file.cpp
+   os/http.cpp
+   os/parallelization.cpp
+   os/process.h
+   os/time.cpp
+   os/windowing.cpp
    parallelization/_.cpp
    parallelization/condition.cpp
    parallelization/condition.h
@@ -135,50 +166,24 @@ list(APPEND acme_source
    parallelization/thread.cpp
    parallelization/thread_os.cpp
    parallelization/waitable.cpp
-   os/ansios/_pthread.h
-   os/ansios/base.cpp
-   os/ansios/datetime.cpp
-   os/ansios/exception_engine.cpp
-   os/ansios/file.cpp
-   os/ansios/file_raw.cpp
-   os/ansios/file_std.cpp
-   os/ansios/language.cpp
-   os/ansios/memory.cpp
-   os/ansios/process.cpp
-   os/ansios/user.cpp
-   os/ansios/win.cpp
-   os/_.cpp
-   os/argcargv.cpp
-   os/chronometer.cpp
-   os/console.cpp
-   os/debug.cpp
-   os/file.cpp
-   os/http.cpp
-   os/process.h
-   #process/_.cpp
-   process/_.h
-   process/bidirectional_pipe.cpp
-   process/bidirectional_pipe.h
-   process/exit_status.cpp
-   process/exit_status.h
-   process/pipe.cpp
-   process/pipe.h
-   os/parallelization.cpp
-   os/time.cpp
-   os/windowing.cpp
    platform/_.cpp
    platform/assert.cpp
    platform/aura_str_pool.cpp
    platform/build_debug.cpp
    platform/checked.cpp
+   platform/context.cpp
+   platform/context.h
    platform/debug.cpp
+   platform/department.cpp
+   platform/department.h
    platform/display.cpp
    platform/exclusive.cpp
    platform/factory.cpp
    platform/fixed_alloc.cpp
    platform/flags.cpp
    platform/hyperlink.cpp
-   platform/international.cpp
+   platform/library.cpp
+   platform/library.h
    platform/logic.cpp
    platform/lparam.cpp
    platform/math.cpp
@@ -196,6 +201,8 @@ list(APPEND acme_source
    platform/regex.cpp
    platform/simple_trace.cpp
    platform/sprintf.cpp
+   platform/static_setup.cpp
+   platform/static_setup.h
    platform/static_start.cpp
    platform/static_start_aura.cpp
    platform/system.cpp
@@ -207,9 +214,30 @@ list(APPEND acme_source
    platform/timer_item.cpp
    platform/timer_task.cpp
    platform/trace.cpp
+   platform/trace.h
    platform/trace_category.cpp
    #platform/update.cpp
    platform/version.cpp
+   #process/_.cpp
+   process/_.h
+   process/bidirectional_pipe.cpp
+   process/bidirectional_pipe.h
+   process/exit_status.cpp
+   process/exit_status.h
+   process/pipe.cpp
+   process/pipe.h
+   primitive/text/context.cpp
+   primitive/text/context.h
+   primitive/text/data.h
+   primitive/text/data.cpp
+   primitive/text/international.cpp
+   primitive/text/international.h
+   primitive/text/international_locale_schema.cpp
+   primitive/text/international_locale_schema.h
+   primitive/text/text.cpp
+   primitive/text/text.h
+   primitive/text/translator.cpp
+   primitive/text/translator.h
    primitive/collection/2d_array.cpp
    primitive/collection/array.cpp
    primitive/collection/bit_array.cpp
@@ -231,10 +259,32 @@ list(APPEND acme_source
    primitive/collection/stringl.cpp
    primitive/collection/var_array.cpp
    primitive/comparison/var_strict.cpp
+   primitive/data/_.h
+   primitive/data/_data.h
+   primitive/data/_impl.h
+   primitive/data/_tree.h
+   primitive/data/container.cpp
+   primitive/data/container.h
+   primitive/data/data.cpp
+   primitive/data/data.h
+   primitive/data/item.cpp
+   primitive/data/item.h
+   primitive/data/listener.cpp
+   primitive/data/listener.h
+   primitive/data/node.cpp
+   primitive/data/node.h
+   primitive/data/simple_item.cpp
+   primitive/data/simple_item.h
+   primitive/data/tree.cpp
+   primitive/data/tree.h
+   primitive/data/tree_item.cpp
+   primitive/data/tree_item.h
    primitive/datetime/_.cpp
    primitive/datetime/_c.cpp
    primitive/datetime/date_span.cpp
    primitive/datetime/datetime.cpp
+   primitive/datetime/department.cpp
+   primitive/datetime/department.h
    primitive/datetime/duration.cpp
    primitive/datetime/filetime.cpp
    primitive/datetime/filetime_span.cpp
@@ -256,12 +306,14 @@ list(APPEND acme_source
    primitive/geometry2d/types.cpp
    primitive/geometry3d/box.cpp
    primitive/geometry3d/location.cpp
+   primitive/mathematics/_.cpp
    primitive/mathematics/binary_operation.cpp
    primitive/mathematics/cast.inl
    primitive/mathematics/cvt.cpp
    primitive/mathematics/cvt_g.cpp
    primitive/mathematics/int_biunique.cpp
-   primitive/mathematics/math.cpp
+   primitive/mathematics/mathematics.cpp
+   primitive/mathematics/mathematics.h
    primitive/mathematics/mkint_c.cpp
    primitive/mathematics/natural.cpp
    primitive/mathematics/number.cpp
@@ -279,14 +331,13 @@ list(APPEND acme_source
    primitive/primitive/block.inl
    #primitive/promise/context.cpp
    primitive/primitive/command.cpp
-   primitive/primitive/context_object.cpp
    primitive/primitive/context_object_traits.cpp
    primitive/primitive/edit.cpp
    primitive/primitive/estatus.cpp
    primitive/primitive/element_array.cpp
    primitive/primitive/factory.cpp
-        #primitive/promise_predicate/predicate_function.cpp
-        #primitive/promise/process.cpp
+   #primitive/promise_predicate/predicate_function.cpp
+   #primitive/promise/process.cpp
    primitive/primitive/handler.cpp
    primitive/primitive/id.cpp
    primitive/primitive/id_array.cpp
@@ -295,18 +346,27 @@ list(APPEND acme_source
    primitive/primitive/id_space.cpp
    primitive/primitive/interlocked_long.cpp
    primitive/primitive/interlocked_long_pulse.cpp
-   primitive/primitive/layered.cpp
+   primitive/primitive/object.cpp
+   primitive/primitive/object.h
+   primitive/primitive/property_object.cpp
+   primitive/primitive/property_object.h
    primitive/primitive/linked_property.cpp
    primitive/primitive/linked_property.h
    primitive/primitive/match.cpp
+   primitive/primitive/material_object.cpp
+   primitive/primitive/material_object.h
    primitive/primitive/matter.cpp
    primitive/primitive/memory.cpp
    primitive/primitive/memory_base.cpp
    primitive/primitive/memory_c.cpp
    primitive/primitive/memory_container.cpp
-        #primitive/promise/routine.cpp
-        #primitive/promise/promise.cpp
+   primitive/primitive/object.cpp
+   primitive/primitive/object.h
+   #primitive/promise/routine.cpp
+   #primitive/promise/promise.cpp
    primitive/primitive/property.cpp
+   primitive/primitive/property_object.cpp
+   primitive/primitive/property_object.h
    primitive/primitive/property_set.cpp
    primitive/primitive/property_set_composite.cpp
    primitive/primitive/property_set_papaya.cpp
@@ -349,6 +409,7 @@ list(APPEND acme_source
    primitive/string/to_integer.cpp
    primitive/string/tokenizer.cpp
    primitive/string/x.cpp
+   user/ewindowflag.h
    user/os_colors.cpp
    user/os_theme_colors.h
    user/theme_colors.h
@@ -776,6 +837,8 @@ list(APPEND acme_source
    parallelization/thread_impl.h
    parallelization/thread_os.h
    parallelization/thread_parameter.h
+   parallelization/tools.cpp
+   parallelization/tools.h
    parallelization/zaa_update_task.h
    parallelization/zaa_update_task_item.h
    parallelization/zaa_update_task_item_array.h
@@ -810,7 +873,6 @@ list(APPEND acme_source
    platform/future.cpp
    platform/future.h
    platform/hyperlink.h
-   platform/international.h
    platform/keep.h
    platform/keep_true.h
    platform/less.h
@@ -837,6 +899,7 @@ list(APPEND acme_source
    platform/simple_trace.h
    platform/sprintf.h
    platform/static_start.h
+   platform/static_start_internal.h
    platform/status.h
    platform/string_exchange.h
    platform/system.h
@@ -1023,7 +1086,7 @@ list(APPEND acme_source
    primitive/mathematics/value.h
    primitive/primitive/_.h
    primitive/primitive/_c_memory.h
-   primitive/primitive/_context_object_impl.h
+   primitive/primitive/_property_object_impl.h
    primitive/primitive/_defer.h
    primitive/primitive/_factory_impl.h
    primitive/primitive/_factory_prefix.h
@@ -1042,7 +1105,6 @@ list(APPEND acme_source
    primitive/primitive/collection_file.h
    primitive/primitive/command.h
    primitive/primitive/compare_predicate.h
-   primitive/primitive/context_object.h
    primitive/primitive/edit.h
    primitive/primitive/element_array.h
    primitive/primitive/enumeration.h
@@ -1060,7 +1122,6 @@ list(APPEND acme_source
    primitive/primitive/malloc.h
    primitive/primitive/map.h
    primitive/primitive/match.h
-   primitive/primitive/math_math.h
    primitive/primitive/matter.h
    primitive/primitive/member.h
    primitive/primitive/memory.h
@@ -1186,12 +1247,6 @@ list(APPEND acme_source
    primitive/string/x/x_defines.h
    primitive/string/x/x_encodings.h
    primitive/string/x/x_tables.h
-   primitive/subject/context.cpp
-   primitive/subject/context.h
-   primitive/subject/manager.cpp
-   primitive/subject/manager.h
-   primitive/subject/subject.cpp
-   primitive/subject/subject.h
    procedure.h
    process/main.cpp
    template/list.h
@@ -1319,14 +1374,14 @@ if (WIN32)
 else ()
 
    list(APPEND acme_source
-      node/posix/file_memory_map.cpp
-      node/posix/file_memory_map.h
+      #node/posix/file_memory_map.cpp
+      #node/posix/file_memory_map.h
       os/ansios/dir.cpp
       os/ansios/parallelization.cpp
       os/cross/windows/user.cpp
       os/cross/windows/file.cpp
       os/cross/windows/dir.cpp
-      #os/cross/windows/datetime.cpp
+      os/cross/windows/time.cpp
       #os/cross/windows/crt.cpp
       #os/cross/windows/crt_debug.cpp
       #os/cross/windows/datetime.cpp
@@ -1425,6 +1480,7 @@ if (LINUX)
       os/linux/file.cpp
       #os/linux/gdk.cpp
       os/linux/graphics.cpp
+      os/linux/library.cpp
       os/linux/linux.inl
       os/linux/list_serial_ports.cpp
       os/linux/lock.cpp
@@ -1710,8 +1766,6 @@ endif ()
 
 if (LINUX OR APPLE OR SOLARIS)
    list(APPEND acme_source
-      node/posix/pipe.cpp
-      node/posix/serial.cpp
       node/node_serial.cpp
       os/posix/base_file.cpp
       os/posix/local_memory_map.cpp
@@ -1726,8 +1780,6 @@ if (LINUX OR APPLE OR SOLARIS)
       )
 
    list(APPEND acme_source
-      node/posix/pipe.h
-      node/posix/serial.h
       node/posix/_posix.h
       )
 endif ()
@@ -1749,9 +1801,12 @@ endif ()
 
 add_library(acme SHARED ${acme_source})
 
+
 target_precompile_headers(acme PRIVATE framework.h)
 
+
 set_target_properties(acme PROPERTIES LINKER_LANGUAGE CXX)
+
 
 if (MSVC)
    target_compile_options(acme PRIVATE "/MD$<$<CONFIG:Debug>:d>")
@@ -1764,7 +1819,7 @@ elseif (LINUX)
    target_compile_options(acme PRIVATE -fpermissive)
    target_compile_options(acme PRIVATE ${PKGCONFIG_CFLAGS})
    target_link_options(acme PRIVATE -Wl,-rpath=\$ORIGIN)
-   target_link_libraries(acme PRIVATE z dl pthread ncurses ${PKGCONFIG_LIBRARIES})
+   target_link_libraries(acme PRIVATE z dl idn pthread ncurses ${PKGCONFIG_LIBRARIES})
    target_link_options(acme PRIVATE -Wl,-z,defs)
    message("PKGCONFIG_LIBRARIES is " ${PKGCONFIG_LIBRARIES})
 endif ()
@@ -1779,15 +1834,6 @@ target_include_directories(acme PRIVATE .)
 target_include_directories(acme PRIVATE $ENV{HOME}/__config)
 target_include_directories(acme PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../..)
 target_include_directories(acme PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/..)
-target_include_directories(acme PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../source)
-target_include_directories(acme PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../source/app)
-target_include_directories(acme PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../source/app/_include)
-target_include_directories(acme PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../source/include)
-target_include_directories(acme PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/platform-${PLATFORM_NAME})
-target_include_directories(acme PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/platform-${PLATFORM_NAME}/_include)
-target_include_directories(acme PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/third-${PLATFORM_NAME}/include)
-target_include_directories(acme PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/third-${PLATFORM_NAME}/third/include)
-target_include_directories(acme PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/third-${PLATFORM_NAME}/third/include/include)
 target_include_directories(acme PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 
 

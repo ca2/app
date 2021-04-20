@@ -443,23 +443,23 @@ bool task::has_message() const
 }
 
 
-::e_status task::start(
-   ::matter* pmatter,
-   ::e_priority epriority,
-   u32 nStackSize,
-   u32 uCreateFlags ARG_SEC_ATTRS)
-{
+//::e_status task::branch(
+//   ::matter* pmatter,
+//   ::e_priority epriority,
+//   u32 nStackSize,
+//   u32 uCreateFlags ARG_SEC_ATTRS)
+//{
+//
+//   m_pmatter = pmatter;
+//
+//   m_id = pmatter->type_name();
+//
+//   return branch(epriority, nStackSize, uCreateFlags ADD_PARAM_SEC_ATTRS);
+//
+//}
 
-   m_pmatter = pmatter;
 
-   m_id = pmatter->type_name();
-
-   return begin(epriority, nStackSize, uCreateFlags ADD_PARAM_SEC_ATTRS);
-
-}
-
-
-::e_status task::begin(
+::e_status task::branch(
    ::e_priority epriority,
    u32 nStackSize,
    u32 uCreateFlags ARG_SEC_ATTRS)
@@ -627,16 +627,16 @@ bool task::has_message() const
 }
 
 
-::task_pointer task::launch(::matter * pmatter, ::e_priority epriority, ::u32 nStackSize, u32 uCreateFlags)
-{
-
-   auto ptask = __new(task);
-
-   ptask->start(pmatter, epriority, nStackSize, uCreateFlags);
-
-   return ptask;
-
-}
+//::e_status task::branch(::matter * pmatter, ::e_priority epriority, ::u32 nStackSize, u32 uCreateFlags ARG_SEC_ATTRS)
+//{
+//
+//   auto ptask = __new(task);
+//
+//   ptask->branch(pmatter, epriority, nStackSize, uCreateFlags ADD_PARAM_SEC_ATTRS);
+//
+//   return ptask;
+//
+//}
 
 
 

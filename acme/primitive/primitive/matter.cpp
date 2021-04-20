@@ -270,7 +270,7 @@ i64 matter::release(OBJ_REF_DBG_PARAMS_DEF)
 }
 
 
-::e_status matter::call_member(enum_id eid)
+::e_status matter::call_member(::i64 iId)
 {
 
    return ::success_none;
@@ -294,32 +294,32 @@ void matter::erase_from_any_source()
 }
 
 
-::e_status matter::start()
-{
-
-   if (has(e_object_synchro))
-   {
-
-      return operator()();
-
-   }
-   else
-   {
-
-      auto ptask = ::task::launch(this);
-
-      if (!ptask)
-      {
-
-         return error_failed;
-
-      }
-
-      return success_started;
-
-   }
-
-}
+//::e_status matter::branch()
+//{
+//
+////   if (has(e_object_synchronous))
+////   {
+////
+////      return operator()();
+////
+////   }
+////   else
+////   {
+//
+//     auto ptask = m_psystem->branch(__routine([this](){this->operator()();}));
+//
+//     if(!ptask)
+//     {
+//
+//        return error_failed;
+//
+//     }
+//
+//     return ::success_started;
+//
+//   //}
+//
+//}
 
 
 void matter::defer_create_mutex()
@@ -594,21 +594,21 @@ void matter::on_future(const ::payload & payload)
 }
 
 
-::task* matter::defer_fork(const ::id& id, const ::routine & routine)
-{
-
-   auto ptasktool = taskpool();
-
-   if (!ptasktool)
-   {
-
-      return nullptr;
-
-   }
-
-   return ptasktool->defer_fork(id, routine);
-
-}
+//::task* matter::defer_branch(const ::id& id, const ::routine & routine)
+//{
+//
+//   auto ptasktool = taskpool();
+//
+//   if (!ptasktool)
+//   {
+//
+//      return nullptr;
+//
+//   }
+//
+//   return ptasktool->defer_branch(id, routine);
+//
+//}
 
 
 ::e_status matter::set_generic_object_name(const char* pszName)

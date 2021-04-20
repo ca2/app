@@ -12,6 +12,10 @@ namespace windowing
    display::display()
    {
 
+      m_pDisplay = nullptr;
+
+      m_pDisplay = nullptr;
+
       m_bSystemSynchronizedScreen = true;
       m_iMainMonitor = 0;
       m_iMainWorkspace = 0;

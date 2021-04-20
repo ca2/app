@@ -613,6 +613,9 @@ namespace windowing
    void windowing::set(::message::key * pkey, oswindow oswindow, ::windowing::window * pwindow, const ::id & id, wparam wparam, ::lparam lparam)
    {
 
+      auto pkeyboard = keyboard();
+
+      pkeyboard->translate_os_key_message(pkey);
 
    }
 

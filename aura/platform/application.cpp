@@ -205,6 +205,8 @@ namespace aura
 
       }
 
+      m_pauracontext = this;
+
       return estatus;
 
    }

@@ -176,6 +176,8 @@ namespace aura
       string strId;
       strId = "ca2log";
 
+      m_pauracontext = this;
+
       if (!initialize_log(strId))
       {
 
@@ -1552,19 +1554,6 @@ namespace aura
 
       }
 
-      estatus = __compose_new(m_pimaging);
-
-      if (!estatus)
-      {
-
-         if (m_bUser && m_bDraw2d && m_bImaging)
-         {
-
-            return estatus;
-
-         }
-
-      }
 
       //auto psession = get_session();
 
@@ -1608,20 +1597,6 @@ namespace aura
 #endif
 
 #endif
-
-      if (m_bDraw2d)
-      {
-
-         if (!initialize_draw2d())
-         {
-
-            return false;
-
-         }
-
-      }
-
-
 
       on_update_matter_locator();
 
@@ -5574,6 +5549,49 @@ namespace aura
       }
 
       //post_creation_requests();
+
+      return estatus;
+
+   }
+
+
+   ::e_status system::initialize_context()
+   {
+
+      if (m_bDraw2d)
+      {
+
+         if (!initialize_draw2d())
+         {
+
+            return false;
+
+         }
+
+      }
+
+      auto estatus = __compose_new(m_pimaging);
+
+      if (!estatus)
+      {
+
+         if (m_bUser && m_bDraw2d && m_bImaging)
+         {
+
+            return estatus;
+
+         }
+
+      }
+
+      estatus = ::aura::context::initialize_context();
+
+      if(!estatus)
+      {
+
+         return estatus;
+
+      }
 
       return estatus;
 

@@ -1216,7 +1216,7 @@ public:
 #define __make_identifier(PART1, PART2) PART1 ## PART2
 
 
-#define __defer_branch(ID) defer_branch(m_ptask ## ID, __routine([](){ID ## TaskProcedure();}))
+#define __defer_branch(ID) defer_branch(m_ptask ## ID, __routine([this](){ID ## TaskProcedure();}))
                                                                      \
 
 CLASS_DECL_ACME ::e_status call_sync(const ::routine_array& routinea);

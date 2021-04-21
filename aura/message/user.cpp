@@ -490,6 +490,18 @@ namespace message
    }
 
 
+   scroll::scroll()
+   {
+
+   }
+
+
+   scroll:: ~scroll()
+   {
+
+   }
+
+
    void scroll::set(oswindow oswindow, ::windowing::window * pwindow,const ::id & id,wparam wparam,::lparam lparam)
    {
 
@@ -612,6 +624,32 @@ namespace message
    {
 
       return (i32)m_wparam;
+
+   }
+
+
+   object::object()
+   {
+
+
+   }
+
+
+   object::~object()
+   {
+
+
+   }
+
+
+   void object::set(oswindow oswindow, ::windowing::window * pwindow, const ::id & id, wparam wparam, ::lparam lparam)
+   {
+
+      ::user::message::set(oswindow, pwindow, id, wparam, lparam);
+
+      __pointer(::matter) pmatter(lparam);
+
+      m_pmatter = pmatter;
 
    }
 

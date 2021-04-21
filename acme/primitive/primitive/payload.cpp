@@ -401,8 +401,22 @@ payload::payload(const ::datetime::time & time)
 }
 
 
+payload::payload(const ::color::color & color)
+{
+
+   m_etype = e_type_color;
+   m_color = color;
+
+}
 
 
+payload::payload(const ::color::hls & hls)
+{
+
+   m_etype = e_type_hls;
+   m_hls = hls;
+
+}
 
 
 payload::~payload()
@@ -794,6 +808,30 @@ class ::payload & payload::operator = (const ::datetime::time & time)
     set_type(e_type_time, false);
 
    m_time = time.get_time();
+
+   return *this;
+
+}
+
+
+class ::payload & payload::operator = (const ::color::color & color)
+{
+
+   set_type(e_type_color, false);
+
+   m_color = color;
+
+   return *this;
+
+}
+
+
+class ::payload & payload::operator = (const ::color::hls & hls)
+{
+
+   set_type(e_type_hls, false);
+
+   m_hls = hls;
 
    return *this;
 
@@ -2022,7 +2060,6 @@ string payload::to_r_string() const
 
 string payload::get_string(const char * pszOnNull) const
 {
-
    if(m_etype == e_type_pvar)
    {
       return m_pvar->get_string(pszOnNull);
@@ -2608,6 +2645,63 @@ double payload::get_double(double dDefault) const
 
 }
 
+
+::color::color payload::color(const ::color::color & colorDefault) const
+{
+
+   color::color color;
+
+   if(m_etype == e_type_color)
+   {
+
+      color = m_color;
+
+   }
+   else if(m_etype == e_type_hls)
+   {
+
+      color = m_hls;
+
+   }
+   else
+   {
+
+      color = colorDefault;
+
+   }
+
+   return color;
+
+}
+
+
+::color::hls payload::hls(const ::color::hls & hlsDefault) const
+{
+
+   color::hls hls;
+
+   if(m_etype == e_type_color)
+   {
+
+      hls = m_color;
+
+   }
+   else if(m_etype == e_type_hls)
+   {
+
+      hls = m_hls;
+
+   }
+   else
+   {
+
+      hls = hlsDefault;
+
+   }
+
+   return hls;
+
+}
 
 class ::memory & payload::memory()
 {
@@ -5813,6 +5907,14 @@ payload::operator ::datetime::time() const
 
 }
 
+
+
+payload::operator ::color::color() const
+{
+
+   return color();
+
+}
 
 
 

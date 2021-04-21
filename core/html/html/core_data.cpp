@@ -569,7 +569,7 @@ namespace html
    void core_data::load_image_asynch(image* pimage)
    {
 
-      fork([=]()
+      fork([this,pimage]()
          {
 
             if (load_image(pimage))

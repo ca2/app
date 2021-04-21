@@ -59,17 +59,6 @@ namespace experience
 
       }
 
-#if defined(LINUX) || defined(APPLEOS)
-
-      strLibrary = "lib" + strLibrary;
-
-#elif defined(_UWP)
-
-
-      //      strLibrary = "m_" + strLibrary;
-
-#endif
-
       string strComponent = "experience";
 
       string strImplementation = strLibrary;

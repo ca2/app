@@ -7,9 +7,9 @@ namespace aura
 
    class CLASS_DECL_AURA application :
       virtual public ::aqua::application,
+      virtual public ::aura::context,
       virtual public ::user::callback,
-      virtual public ::filemanager::callback,
-      virtual public ::aura::context
+      virtual public ::filemanager::callback
    {
    public:
 

@@ -7,17 +7,11 @@ namespace aura
 
    class CLASS_DECL_AURA session :
       virtual public ::aqua::session,
+      virtual public ::aura::context,
       virtual public ::filemanager::item_action,
       virtual public ::user::style_base
    {
    public:
-
-
-//#if defined _UWP
-//
-//      ::uwp::directx_framework_view ^                          m_frameworkview;
-//
-//#endif
 
 
       bool                                                  m_bAcceptsFirstResponder;
@@ -49,11 +43,6 @@ namespace aura
 
       session();
       virtual ~session();
-
-
-      //virtual ::u32 get_monitor_color_temperature(index iMonitor);
-      //virtual bool adjust_monitor(index iMonitor, ::u32 dwTemperature, double dBrightness, double dwGamma);
-      //virtual bool os_adjust_monitor(index iMonitor, ::u32 dwTemperature, double dBrightness, double dwGamma);
 
 
 #if defined(WINDOWS)

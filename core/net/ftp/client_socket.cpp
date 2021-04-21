@@ -51,7 +51,7 @@
 #include "framework.h"
 #include "_.h"
 #include "apex/net/sockets/_sockets.h"
-
+#undef __restore
 #include <openssl/x509.h>
 
 namespace ftp
@@ -167,7 +167,7 @@ namespace ftp
    /// Opens the control channel to the FTP server.
    /// @lparam[in] strServerHost IP-::net::address or name of the server
    /// @lparam[in] iServerPort Port for channel. Usually this is port 21.
-   bool client_socket::OpenControlChannel(const string& strServerHost, WINUSHORT ushServerPort/*=DEFAULT_FTP_PORT*/)
+   bool client_socket::OpenControlChannel(const string& strServerHost, ::u16 ushServerPort/*=DEFAULT_FTP_PORT*/)
    {
 
       if (IsConnected() || _is_connected())
@@ -297,7 +297,7 @@ namespace ftp
 
       // are we connecting directly to the host (logon type 0) or via a firewall? (logon type>0)
       string   strTemp;
-      WINUSHORT    ushPort = 0;
+      ::u16    ushPort = 0;
 
       if (_is_connected())
          Logout();
@@ -725,8 +725,8 @@ namespace ftp
       // set one FTP server in passive mode
       // the FTP server opens a port and tell us the socket (ip ::net::address + port)
       // this socket is used for opening the data connection
-      WINULONG  ulIP = 0;
-      WINUSHORT ushSock = 0;
+      ::u32  ulIP = 0;
+      ::u16 ushSock = 0;
       if (PassiveServer.Passive(ulIP, ushSock) != FTP_OK)
          return false;
 
@@ -992,7 +992,7 @@ namespace ftp
       m_psockethandler->add(&sckDataConnection);
 
 
-      WINUSHORT ushLocalSock = 0;
+      ::u16 ushLocalSock = 0;
       try
       {
          // INADDR_ANY = ip ::net::address of localhost
@@ -1076,8 +1076,8 @@ namespace ftp
       ::sockets::transfer_socket & sckDataConnection
          = *(dynamic_cast < ::sockets::transfer_socket * >(&sckDataConnectionParam));
 
-      WINULONG   ulRemoteHostIP = 0;
-      WINUSHORT  ushServerSock = 0;
+      ::u32   ulRemoteHostIP = 0;
+      ::u16  ushServerSock = 0;
 
       if (m_econnectiontype == connection_type_tls_implicit)
       {
@@ -1577,7 +1577,7 @@ auto tickStart = ::millis::now();
    /// @lparam[out] ulIpAddress IP ::net::address the server is listening on.
    /// @lparam[out] ushPort Port the server is listening on.
    /// @return see return values of client_socket::SimpleErrorCheck
-   int client_socket::Passive(WINULONG& ulIpAddress, WINUSHORT& ushPort)
+   int client_socket::Passive(::u32& ulIpAddress, ::u16& ushPort)
    {
       reply Reply;
       if (!SendCommand(command::PASV(), {}, Reply))
@@ -1599,15 +1599,15 @@ auto tickStart = ::millis::now();
    /// @lparam[out] ushPort     Buffer for the port information.
    /// @retval true  Everything went ok.
    /// @retval false An error occurred (invalid format).
-   bool client_socket::GetIpAddressFromResponse(const string& strResponse, WINULONG& ulIpAddress, WINUSHORT& ushPort)
+   bool client_socket::GetIpAddressFromResponse(const string& strResponse, ::u32& ulIpAddress, ::u16& ushPort)
    {
       // parsing of ip-::net::address and port implemented with a finite state machine
       // ...(192,168,1,1,3,44)...
       enum T_enState { state0, state1, state2, state3, state4 } enState = state0;
 
       string strIpAddress, strPort;
-      WINUSHORT ushTempPort = 0;
-      WINULONG  ulTempIpAddress = 0;
+      ::u16 ushTempPort = 0;
+      ::u32  ulTempIpAddress = 0;
       int iCommaCnt = 4;
       for (strsize i = 0; i < strResponse.get_length(); i++)
       {
@@ -1642,7 +1642,7 @@ auto tickStart = ::millis::now();
          case state2:
             if (it == ',')
             {
-               ushTempPort = static_cast<WINUSHORT>(atoi(strPort) << 8);
+               ushTempPort = static_cast<::u16>(atoi(strPort) << 8);
                strPort.clear();
                enState = state3;
             }
@@ -1657,7 +1657,7 @@ auto tickStart = ::millis::now();
             if (it == ')')
             {
                // compiler warning if using +=operator
-               ushTempPort = ushTempPort + static_cast<WINUSHORT>(atoi(strPort));
+               ushTempPort = ushTempPort + static_cast<::u16>(atoi(strPort));
                enState = state4;
             }
             else
@@ -1761,7 +1761,7 @@ auto tickStart = ::millis::now();
    /// @lparam[in] strHostIP IP-::net::address like xxx.xxx.xxx.xxx
    /// @lparam[in] uiPort 16-bit TCP port ::net::address.
    /// @return see return values of client_socket::SimpleErrorCheck
-   int client_socket::DataPort(const string& strHostIP, WINUSHORT ushPort)
+   int client_socket::DataPort(const string& strHostIP, ::u16 ushPort)
    {
       string strPortArguments;
       // convert the port number to 2 bytes + add to the local IP

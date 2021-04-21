@@ -79,9 +79,12 @@ public:
       class nanos *              m_pnanos;
       class duration             m_duration;
       class duration *           m_pduration;
-      ::e_status                  m_estatus;
+      ::e_status                 m_estatus;
       ::enum_command             m_ecommand;
       ::enum_check               m_echeck;
+      ::color::color             m_color;
+      ::color::hls               m_hls;
+
 
       ::matter *                 m_p;
       ::string_array *           m_pstra;
@@ -126,7 +129,8 @@ public:
    payload(const id & id);
    payload(bool * pb);
    payload(const ::datetime::time & time);
-
+   payload(const ::color::color & color);
+   payload(const ::color::hls & hls);
    payload(string * pstr);
    payload(payload * pvar);
    payload(const payload * pvar);
@@ -317,6 +321,8 @@ inline operator ::e ## ENUMTYPE() const { return e ## ENUMTYPE(); }
    inline ::uptr                    uptr(uptr uiDefault = 0)  const;
    float                            get_float(float fDefault = 0.f)   const;
    double                           get_double(double dDefault = 0.0)   const;
+   ::color::color                   color(const ::color::color & colorDefault = ::color::color())  const;
+   ::color::hls                     hls(const ::color::hls & hlsDefault = ::color::hls())  const;
    ::routine               get_routine() const;
    //::future               get_process() const;
    string                           to_r_string() const;
@@ -447,6 +453,8 @@ inline operator ::e ## ENUMTYPE() const { return e ## ENUMTYPE(); }
    operator class duration() const;
    operator ::filetime() const;
    operator ::datetime::time() const;
+   operator ::color::color() const;
+   operator ::color::hls() const;
    operator block () const;
    operator block ();
    //operator class millis() const;
@@ -594,6 +602,8 @@ inline operator ::e ## ENUMTYPE() const { return e ## ENUMTYPE(); }
    payload & operator = (long l);
 #endif
    payload & operator = (const ::datetime::time & time);
+   payload & operator = (const ::color::color & color);
+   payload & operator = (const ::color::hls & color);
    inline payload & operator = (const char * psz);
    inline payload & operator = (const string & str);
    inline payload & operator = (string && str);

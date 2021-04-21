@@ -346,6 +346,8 @@ namespace apex
 
       virtual ::e_status init2();
 
+      virtual ::e_status initialize_context() override;
+
       //virtual ::e_status defer_xml();
 
       virtual __pointer(::data::node) load_xml(const char * pszXml);

@@ -149,7 +149,8 @@ namespace message
       ::user::primitive * m_pscrollbar;
 
 
-      scroll() { }
+      scroll();
+      virtual ~scroll();
 
       using ::user::message::set;
 
@@ -404,7 +405,22 @@ namespace message
    //};
 
 
-   class CLASS_DECL_AURA ctl_color : public ::user::message
+   class CLASS_DECL_AURA object : public ::user::message
+   {
+   public:
+
+      __pointer(::matter)     m_pmatter;
+
+      object();
+       virtual ~object();
+
+
+      virtual void set(oswindow oswindow, ::windowing::window * pwindow, const ::id & id, wparam wparam, ::lparam lparam) override;
+
+
+   };
+
+      class CLASS_DECL_AURA ctl_color : public ::user::message
    {
    public:
 

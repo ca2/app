@@ -27,7 +27,7 @@ public:
 
 
    /// posting/sending matter
-   inline lparam(const ::matter * pobject);
+   lparam(const ::matter * pobject);
 
 
    /// posting/sending matter

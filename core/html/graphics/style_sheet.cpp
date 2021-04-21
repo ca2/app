@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "_graphics.h"
+#include "core/user/user/_user.h"
 
 
 namespace html

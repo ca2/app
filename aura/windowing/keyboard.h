@@ -45,6 +45,7 @@ namespace windowing
 
       bool changeGroup(int increment);
 
+
       //friend std::ostream& operator<<(std::ostream& os, const XKeyboard& xkb);
 
    private:

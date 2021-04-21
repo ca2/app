@@ -1747,9 +1747,9 @@ namespace http
    bool context::http_get(__pointer(::sockets::http_client_socket) & psocket, const char * pszUrl, property_set & set)
    {
 
-      auto ptask = ::get_task();
+      //auto ptask = ::get_task();
 
-      __keep(ptask->payload("work_url"), pszUrl);
+      //__keep(ptask->payload("work_url"), pszUrl);
 
       auto psystem = m_psystem->m_papexsystem;
 
@@ -1943,6 +1943,13 @@ namespace http
       strTopicText.Format(__prhttpget, iHttpGetSerial);
 
       //psocket->set_topic_text(strTopicText);
+
+      if(!psocket->m_psockethandler)
+      {
+
+         psocket->m_psockethandler = __new(::sockets::socket_handler);
+
+      }
 
       psocket->m_bEnablePool = psocket->m_psockethandler->PoolEnabled();
 

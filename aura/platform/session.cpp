@@ -124,6 +124,8 @@ namespace aura
 
       }
 
+      m_pauracontext = this;
+
       m_pnode = m_psystem->node();
 
       m_pimplPendingFocus2             = nullptr;

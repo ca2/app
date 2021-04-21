@@ -1431,7 +1431,7 @@ namespace user
 
       }
 
-      m_puserinteraction->post_routine(__routine(call_message_handler_task(m_puserinteraction, id, wparam, lparam)));
+      m_puserinteraction->post_routine(__new(call_message_handler_task(m_puserinteraction, id, wparam, lparam)));
 
       return true;
 

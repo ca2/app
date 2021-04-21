@@ -104,7 +104,7 @@ bool simple_printer_list_view::on_click(const ::user::item & itemClick)
    pprinttask->m_pprinter = papplication->get_printer(item.m_strText);
    pprinttask->m_pinteraction = m_pview;
 
-   ::task::launch(pprinttask);
+   pprinttask->branch();
    
    return true;
 

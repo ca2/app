@@ -185,7 +185,7 @@ void simple_frame_window::install_message_routing(::channel * pchannel)
 }
 
 
-void simple_frame_window::SaveWindowRectThreadProcedure()
+void simple_frame_window::SaveWindowRectTaskProcedure()
 {
 
    ::output_debug_string("_task_save_window_rect start\n");
@@ -297,7 +297,7 @@ void simple_frame_window::defer_save_window_placement()
 
    m_millisLastSaveWindowRectRequest.Now();
 
-   __defer_fork(SaveWindowRect);
+   __defer_branch(SaveWindowRect);
 
 }
 
@@ -1642,7 +1642,9 @@ void simple_frame_window::_001OnClose(::message::message * pmessage)
 #ifdef LINUX
       //if(is_window_visible())
 
-      auto pnode = Node;
+      auto psystem = m_psystem->m_papexsystem;
+
+      auto pnode = psystem->node();
 
       auto edesktop = psystem->get_edesktop();
 

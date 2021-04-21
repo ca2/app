@@ -6,7 +6,8 @@ namespace aura
 
 
    class CLASS_DECL_AURA system:
-      virtual public ::aqua::system
+      virtual public ::aqua::system,
+      virtual public ::aura::context
    {
    public:
 
@@ -343,6 +344,8 @@ namespace aura
       virtual ::e_status init1() override;
 
       virtual ::e_status init2() override;
+
+      virtual ::e_status initialize_context() override;
 
       //virtual ::e_status defer_xml();
 

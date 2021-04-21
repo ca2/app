@@ -36,14 +36,14 @@ void simple_frame_window::defer_set_icon()
 
       }
 
-      auto papp = &papplication;
+      auto pcontext = m_pcontext->m_pauracontext;
 
-      auto pimage = &papp->image();
+      auto pcontextimage = pcontext->context_image();
 
-      if(::is_set(pimage))
+      if(::is_set(pcontextimage))
       {
 
-         auto d = pimage->get_image("matter://icon.png");
+         auto pimage = pcontextimage->get_image("matter://icon.png");
 
       }
 

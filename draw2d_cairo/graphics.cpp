@@ -1372,6 +1372,13 @@ bool graphics::_draw_raw(const ::rectangle_f64 & rectDst, ::image * pimage, cons
 
       auto pgraphicsSrc = pimage->get_graphics();
 
+      if (::is_null(pgraphicsSrc))
+      {
+
+         return false;
+
+      }
+
       if (pgraphicsSrc->get_os_data() == nullptr)
       {
 

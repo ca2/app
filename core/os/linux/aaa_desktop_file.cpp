@@ -404,7 +404,7 @@ namespace linux
    bool desktop_file::bamf_set_icon(oswindow oswindow)
    {
 
-      ::file::path path = get_file_path();
+      ::file::path path = get_file_path(papplication);
 
       output_debug_string("\nlinux::interaction_impl::set_window_text");
 

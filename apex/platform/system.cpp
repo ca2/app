@@ -135,12 +135,7 @@ namespace apex
       m_bSystemSynchronizedCursor = true;
       m_bSystemSynchronizedScreen = true;
 
-      //set_context_system(this OBJ_REF_DBG_COMMA_THIS_FUNCTION_LINE);
-
-
-
       common_construct();
-
 
    }
 
@@ -175,20 +170,7 @@ namespace apex
 
       }
 
-      //set_context_system(this);
-
-      //set_context(this);
-
       m_pcontext = this;
-
-      ///set_context_thread(this);
-
-      if (::is_set(get_application()))
-      {
-
-         //__compose(m_psystemParent, get_application()->psystem);
-
-      }
 
       __compose_new(m_pthreading);
 
@@ -1090,226 +1072,6 @@ namespace apex
    }
 
 
-   ::e_status system::on_system_construct()
-   {
-
-      //auto estatus = create_os_node();
-
-      //if(m_bUser)
-      //{
-
-      //   if (!estatus)
-      //   {
-
-      //      return estatus;
-
-      //   }
-
-      //}
-
-      //return estatus;
-
-      return ::success;
-
-   }
-
-
-   ::e_status system::on_start_system()
-   {
-
-      //auto papp = m_papplicationMain;
-
-      //auto psession = m_papexsession;
-
-      //papp->initialize(psession);
-
-      //set_main_struct(*papp);
-
-      //papp->inline_init();
-
-      auto pcreate = __create_new< ::create> ();
-
-      string strAppId = m_strAppId;
-
-      if (strAppId.is_empty())
-      {
-
-         if (m_papplicationStartup)
-         {
-
-            strAppId = m_papplicationStartup->m_strAppId;
-
-         }
-
-      }
-
-      pcreate->m_strAppId = strAppId;
-
-      pcreate->m_pcommandline = __create_new < command_line > ();
-
-      string strCommandLine = get_command_line();
-
-      pcreate->m_pcommandline->initialize_command_line(strCommandLine);
-
-      pcreate->finish_initialization();
-
-      add_create(pcreate);
-
-      post_creation_requests();
-
-      return ::success;
-
-   }
-
-
-//   ::e_status system::start()
-//   {
-//
-//      auto pnode = Node;
-//
-//      ::e_status estatus = error_exception;
-//
-//      if(pnode)
-//      {
-//
-//         estatus = pnode->start();
-//
-//      }
-//      else
-//      {
-//
-//         estatus = on_start_system();
-//
-//      }
-//
-//      return estatus;
-//
-//   }
-
-
-   void system::get_time(micro_duration * pmicroduration)
-   {
-
-
-#ifdef _WIN32
-      
-      FILETIME ft; // Contains a 64-bit value representing the number of 100-nanosecond intervals since January 1, 1601 (UTC).
-      
-      GetSystemTimeAsFileTime(&ft);
-      
-      u64 tt;
-      
-      ::memcpy_dup(&tt, &ft, sizeof(tt));
-
-      tt /= 10; // make it usecs
-      
-      pmicroduration->m_secs = (long)tt / 1'000'000;
-      
-      pmicroduration->m_micros = (long)tt % 1'000'000;
-
-#else
-
-      struct timeval timeval;
-
-      gettimeofday(&timeval, nullptr);
-
-      pmicroduration->m_secs = timeval.tv_sec;
-
-      pmicroduration->m_micros = timeval.tv_usec;
-
-#endif
-
-
-   }
-
-
-   ::e_status system::init_thread()
-   {
-
-      //auto estatus = node_factory_exchange();
-
-      //if(!estatus)
-      //{
-
-        // return estatus;
-
-      //}
-
-      auto estatus = process_init();
-
-      if(!estatus)
-      {
-
-         return estatus;
-
-      }
-
-      if (m_psystemParent)
-      {
-
-         m_psystemParent->add_reference(this);
-
-      }
-
-
-      if (!estatus)
-      {
-
-         return estatus;
-
-      }
-
-      estatus = init1();
-
-      if(!estatus)
-      {
-
-         return estatus;
-
-      }
-
-      estatus = init2();
-
-      if (!estatus)
-      {
-
-         return estatus;
-
-      }
-
-
-//      estatus = process_init();
-//
-//      if (!estatus)
-//      {
-//
-//         return estatus;
-//
-//      }
-
-
-      //estatus = process_creation_requests();
-
-      //if (!estatus)
-      //{
-
-      //   return estatus;
-
-      //}
-
-      return true;
-
-   }
-
-
-   ::e_status system::init()
-   {
-
-      return true;
-
-   }
-
-
    ::e_status system::init1()
    {
 
@@ -1571,7 +1333,7 @@ namespace apex
 
 #if 0
 
-                  // Create authorization object
+         // Create authorization object
          OSStatus status;
 
          AuthorizationRef authorizationRef;
@@ -1651,16 +1413,20 @@ namespace apex
 
       }
 
-      if (!__compose(m_pfilesystem))
+      estatus = __compose(m_pfilesystem);
+
+      if(!estatus)
       {
 
          ERR("failed to initialize file-system");
 
-         return false;
+         return estatus;
 
       }
 
-      if (!__compose(m_pdirsystem))
+      estatus = __compose(m_pdirsystem);
+
+      if (!estatus)
       {
 
          ERR("failed to initialize dir-system");
@@ -1818,13 +1584,15 @@ namespace apex
          return estatus;
 
       }
-      
-      //output_debug_string("CommonAppData (matter) : " + m_pcontext->m_papexcontext->dir().commonappdata()  + "\n");
-      //output_debug_string("commonappdata (matter) : " + m_pcontext->m_papexcontext->dir().commonappdata() + "\n");
-      //output_debug_string("Common App Data (matter) : " + m_pcontext->m_papexcontext->dir().commonappdata() + "\n");
-      //output_debug_string("common app data (matter) : " + m_pcontext->m_papexcontext->dir().commonappdata() + "\n");
 
-      __compose_new(m_pcrypto);
+      estatus = __compose_new(m_pcrypto);
+
+      if(!estatus)
+      {
+
+         return estatus;
+
+      }
 
       if (!::is_set(m_pcrypto))
       {
@@ -1832,32 +1600,6 @@ namespace apex
          return false;
 
       }
-
-
-      //#ifdef WINDOWS_DESKTOP
-      //
-      //      if (m_bGdiplus)
-      //      {
-      //
-      //         init_gdi_plus();
-      //
-      //      }
-      //
-      //#endif
-
-            //if(m_bDraw2d)
-            //{
-
-            //   if (!init_draw2d())
-            //   {
-
-            //      return false;
-
-            //   }
-
-            //}
-
-            //enum_display_monitors();
 
       on_update_matter_locator();
 
@@ -1971,7 +1713,7 @@ namespace apex
 
 #endif
 
-         find_applications_from_cache();
+      find_applications_from_cache();
 
 #if !defined(_DEBUG) || defined(WINDOWS)
 
@@ -1997,6 +1739,326 @@ namespace apex
       return true;
 
    }
+
+
+   ::e_status system::init2()
+   {
+
+      ::e_status estatus = create_session();
+
+      if (!estatus)
+      {
+
+         message_box("Failed to allocate get_session()!!");
+
+         return estatus;
+
+      }
+
+      if (m_bConsole)
+      {
+
+         estatus = get_session()->inline_init();
+
+         if (!estatus)
+         {
+
+            return estatus;
+
+         }
+
+      }
+      else
+      {
+
+         if (!m_papexsession->begin_synch())
+         {
+
+            output_debug_string("\nFailed to begin_synch the session (::apex::session or ::apex::session derived)");
+
+            return false;
+
+         }
+
+      }
+
+      estatus = __compose_new(m_ptexttable);
+
+      if (!m_ptexttable || !estatus)
+      {
+
+         return estatus;
+
+      }
+
+      auto psession = get_session();
+
+      psession->m_ptextcontext->defer_ok(m_ptexttable);
+
+
+      //if(!::apex::application::init2())
+      //   return false;
+
+      //auto estatus = ::apex::system::init2();
+
+      //if (!estatus)
+      //{
+
+      //   return estatus;
+
+      //}
+
+      estatus = __compose_new(m_phistory);
+
+      if(!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return estatus;
+
+   }
+
+
+   ::e_status system::initialize_context()
+   {
+
+      auto estatus = ::apex::context::initialize_context();
+
+      if(!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return estatus;
+
+   }
+
+
+   ::e_status system::on_system_construct()
+   {
+
+      //auto estatus = create_os_node();
+
+      //if(m_bUser)
+      //{
+
+      //   if (!estatus)
+      //   {
+
+      //      return estatus;
+
+      //   }
+
+      //}
+
+      //return estatus;
+
+      return ::success;
+
+   }
+
+
+   ::e_status system::on_start_system()
+   {
+
+      //auto papp = m_papplicationMain;
+
+      //auto psession = m_papexsession;
+
+      //papp->initialize(psession);
+
+      //set_main_struct(*papp);
+
+      //papp->inline_init();
+
+      auto pcreate = __create_new< ::create> ();
+
+      string strAppId = m_strAppId;
+
+      if (strAppId.is_empty())
+      {
+
+         if (m_papplicationStartup)
+         {
+
+            strAppId = m_papplicationStartup->m_strAppId;
+
+         }
+
+      }
+
+      pcreate->m_strAppId = strAppId;
+
+      pcreate->m_pcommandline = __create_new < command_line > ();
+
+      string strCommandLine = get_command_line();
+
+      pcreate->m_pcommandline->initialize_command_line(strCommandLine);
+
+      pcreate->finish_initialization();
+
+      add_create(pcreate);
+
+      post_creation_requests();
+
+      return ::success;
+
+   }
+
+
+//   ::e_status system::start()
+//   {
+//
+//      auto pnode = Node;
+//
+//      ::e_status estatus = error_exception;
+//
+//      if(pnode)
+//      {
+//
+//         estatus = pnode->start();
+//
+//      }
+//      else
+//      {
+//
+//         estatus = on_start_system();
+//
+//      }
+//
+//      return estatus;
+//
+//   }
+
+
+   void system::get_time(micro_duration * pmicroduration)
+   {
+
+
+#ifdef _WIN32
+      
+      FILETIME ft; // Contains a 64-bit value representing the number of 100-nanosecond intervals since January 1, 1601 (UTC).
+      
+      GetSystemTimeAsFileTime(&ft);
+      
+      u64 tt;
+      
+      ::memcpy_dup(&tt, &ft, sizeof(tt));
+
+      tt /= 10; // make it usecs
+      
+      pmicroduration->m_secs = (long)tt / 1'000'000;
+      
+      pmicroduration->m_micros = (long)tt % 1'000'000;
+
+#else
+
+      struct timeval timeval;
+
+      gettimeofday(&timeval, nullptr);
+
+      pmicroduration->m_secs = timeval.tv_sec;
+
+      pmicroduration->m_micros = timeval.tv_usec;
+
+#endif
+
+
+   }
+
+
+   ::e_status system::init_thread()
+   {
+
+      //auto estatus = node_factory_exchange();
+
+      //if(!estatus)
+      //{
+
+        // return estatus;
+
+      //}
+
+      auto estatus = process_init();
+
+      if(!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      if (m_psystemParent)
+      {
+
+         m_psystemParent->add_reference(this);
+
+      }
+
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      estatus = init1();
+
+      if(!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      estatus = init2();
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+
+//      estatus = process_init();
+//
+//      if (!estatus)
+//      {
+//
+//         return estatus;
+//
+//      }
+
+
+      //estatus = process_creation_requests();
+
+      //if (!estatus)
+      //{
+
+      //   return estatus;
+
+      //}
+
+      return true;
+
+   }
+
+
+   ::e_status system::init()
+   {
+
+      return true;
+
+   }
+
+
 
 
    ::e_status system::post_creation_requests()
@@ -4777,312 +4839,11 @@ namespace apex
 
    CLASS_DECL_APEX void black_body(float* r, float* g, float* b, ::u32 dwTemp);
 
-   /*  bool system::on_application_menu_action(const char * pszCommand)
-     {
-        return ::apex::system::on_application_menu_action(pszCommand);
-     }*/
-
-
-     //system::system()
-     //{
-
-     //   m_bFinalizeIfNoSessionSetting = true;
-     //   m_bFinalizeIfNoSession = false;
-
-     //   create_factory < ::apex::session, ::apex::session >();
-
-     //}
-
-
-  //   ::e_status system::initialize_system(::object* pobject, app_core* pappcore)
-  //   {
-  //
-  //      auto estatus = ::apex::system::initialize_system(pobject, pappcore);
-  //
-  //      if (!estatus)
-  //      {
-  //
-  //         return estatus;
-  //
-  //      }
-  //
-  //      //estatus = ::apex::application::initialize(pobject);
-  //
-  //     //if (!estatus)
-  //     //{
-  //
-  //     //   return estatus;
-  //
-  //     //}
-  //
-  //     //m_strAppId = "base_system";
-  //     //m_strAppName = "base_system";
-  //     //m_strBaseSupportId = "base_system";
-  //     //m_strInstallToken = "base_system";
-  //
-  //      create_factory < ::draw2d::icon >();
-  //
-  //      //#if defined(_UWP) || defined(APPLE_IOS) || defined(ANDROID)
-  //      //
-  //      //      m_possystemwindow = new os_system_window();
-  //      //
-  //      //#endif
-  //
-  //
-  //
-  //            //estatus = ::apex::application::initialize(pobject);
-  //
-  //            //if (!estatus)
-  //            //{
-  //
-  //            //   return estatus;
-  //
-  //            //}
-  //
-  //            //m_strAppId                    = "core_system";
-  //            //m_strAppName                  = "core_system";
-  //            //m_strBaseSupportId            = "core_system";
-  //            //m_strInstallToken             = "core_system";
-  //
-  //      m_phistory = nullptr;
-  //      m_ppatch = new apex::patch();
-  //      g_pszCooperativeLevel = "apex";
-  //
-  //      estatus = __compose(m_puserset, __new(::account::user_set(this)));
-  //
-  //      if (!estatus)
-  //      {
-  //
-  //         throw ::exception::exception(estatus);
-  //
-  //      }
-  //
-  //      //#ifdef _UWP
-  //      //      m_window                                  = nullptr;
-  //      //#endif
-  //
-  //            //::apex::application * papp = ::get_application(pobject);
-  //
-  //            //if(papp == nullptr)
-  //            //{
-  //
-  //            //   set("parent_system") = nullptr;
-  //
-  //            //}
-  //            //else
-  //            //{
-  //
-  //            //   set("parent_system") = papp->m_psystem;
-  //
-  //            //}
-  //
-  //      string strId;
-  //      //strId = m_strAppName;
-  //      //strId += ::str::has_char(m_strAppId, ".");
-  //      //strId += ::str::has_char(m_strBaseSupportId, ".");
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //      // m_userset.set_app(this);
-  //      //      m_email.set_app(this);
-  //
-  //
-  //
-  //
-  //
-  //
-  //      //m_bInitApplication         = false;
-  //      //m_bInitApplicationResult   = false;
-  //      //m_bProcessInitialize       = false;
-  //      //m_bProcessInitializeResult = false;
-  //
-  //      //m_ptexttable                 = nullptr;
-  //
-  //      //m_pparserfactory           = nullptr;
-  //
-  //      //m_bLicense                 = false;
-  //
-  //      //m_prunstartinstaller       = nullptr;
-  //      //m_bLicense                 = false;
-  //
-  //#ifdef WINDOWS_DESKTOP
-  //
-  //      m_uiWindowsTaskbarCreatedMessage = 0;
-  //
-  //#endif
-  //
-  //      return estatus;
-  //
-  //   }
-
-
-     //system::~system()
-     //{
-
-     //
-
-     //}
-
 
    void system::discard_to_factory(__pointer(object) pca)
    {
 
       UNREFERENCED_PARAMETER(pca);
-
-   }
-
-
-   //bool system::is_system() const
-   //{
-
-   //   return true;
-
-   //}
-
-
-   //::e_status system::defer_xml()
-   //{
-
-   //   if (m_pxml)
-   //   {
-
-   //      return ::success;
-
-   //   }
-
-   //   auto estatus = __compose_new(m_pxml);
-
-   //   if (!estatus)
-   //   {
-
-   //      return estatus;
-
-   //   }
-
-   //   estatus = m_pxml->init1();
-
-   //   if (!estatus)
-   //   {
-
-   //      return estatus;
-
-   //   }
-
-   //   estatus = m_pxml->init();
-
-   //   if (!estatus)
-   //   {
-
-   //      return estatus;
-
-   //   }
-
-   //   return estatus;
-
-   //}
-
-
-
-   ::e_status system::init2()
-   {
-
-      ::e_status estatus = ::success;
-
-      if (!create_session())
-      {
-
-         message_box("Failed to allocate get_session()!!");
-
-         return false;
-
-      }
-
-      if (m_bConsole)
-      {
-
-         estatus = get_session()->inline_init();
-
-         if (!estatus)
-         {
-
-            return estatus;
-
-         }
-
-      }
-      else
-      {
-
-         if (!m_papexsession->begin_synch())
-         {
-
-            output_debug_string("\nFailed to begin_synch the session (::apex::session or ::apex::session derived)");
-
-            return false;
-
-         }
-
-      }
-
-
-      //// apex commented
-      //estatus = __compose(m_pimaging);
-
-      //if (!estatus)
-      //{
-
-      //   if (m_bUser && m_bDraw2d)
-      //   {
-
-      //      return estatus;
-
-      //   }
-
-      //}
-
-      estatus = __compose_new(m_ptexttable);
-
-      if (!m_ptexttable || !estatus)
-      {
-
-         return estatus;
-
-      }
-
-      auto psession = get_session();
-
-      psession->m_ptextcontext->defer_ok(m_ptexttable);
-
-
-      //if(!::apex::application::init2())
-      //   return false;
-
-      //auto estatus = ::apex::system::init2();
-
-      //if (!estatus)
-      //{
-
-      //   return estatus;
-
-      //}
-
-         estatus = __compose_new(m_phistory);
-
-         if(!estatus)
-         {
-
-            return estatus;
-
-      }
-
-      return estatus;
 
    }
 
@@ -5097,23 +4858,6 @@ namespace apex
    }
 
 
-   //bool system::InitApplication()
-   //{
-
-   //   if(m_bInitApplication)
-   //      return m_bInitApplicationResult;
-
-   //   m_bInitApplicationResult      = false;
-   //   m_bInitApplication            = true;
-
-   //   m_bInitApplicationResult = ::apex::system::InitApplication();
-
-   //   return m_bInitApplicationResult;
-   //}
-
-
-
-
    void system::on_start_find_applications_from_cache()
    {
 
@@ -5121,6 +4865,7 @@ namespace apex
      // m_pfilehandler->m_ptree->erase_all();
 
    }
+
 
    void system::on_end_find_applications_from_cache(stream& is)
    {

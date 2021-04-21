@@ -48,7 +48,7 @@ namespace filemanager
 
       void expand(::file::listing & straExpanded,::file::patha & straExpand);
 
-      virtual ::e_status start() override;
+      virtual ::e_status start();
       virtual ::e_status step() override;
       //   virtual bool mark();
       virtual bool end();

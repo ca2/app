@@ -203,6 +203,8 @@ enum enum_type
    e_type_prop,
    e_type_pvar,
    e_type_routine,
+   e_type_color,
+   e_type_hls,
    //e_type_process,
 
    // matter classes
@@ -405,7 +407,7 @@ enum enum_bit
 // {
 
 //    e_clock_none,
-//    e_clock_slow, // indicative usage: few minutes
+//    e_timer_slow, // indicative usage: few minutes
 //    e_clock_fast, // indicative usage: few seconds or big second fraction
 
 // };

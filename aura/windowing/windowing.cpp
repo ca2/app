@@ -685,7 +685,7 @@ namespace windowing
       if (!m_pkeyboard)
       {
 
-         auto estatus = __compose_new(m_pkeyboard);
+         auto estatus = __compose(m_pkeyboard);
 
          if (!m_pkeyboard)
          {

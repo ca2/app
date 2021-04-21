@@ -924,9 +924,7 @@ namespace core
 
 #else
 
-      auto puser = user();
-
-      puser->will_use_view_hint(COLORSEL_IMPACT);
+      will_use_view_hint(COLORSEL_IMPACT);
 
       auto pdocument = m_mapimpactsystem[COLORSEL_IMPACT]->open_document_file(puiOwner->get_application(), ::e_type_null, __visible(true));
 
@@ -1567,64 +1565,64 @@ namespace core
 #elif defined(LINUX)
 
 
-   bool user::impl_set_os_desktop_theme(string strTheme)
-   {
-
-      auto pnode = Node;
-
-      return pnode->os_set_user_theme(strTheme);
-
-   }
-
-
-   string user::impl_get_os_desktop_theme()
-   {
-
-      return ::user::os_get_user_theme();
-
-   }
+//   bool user::impl_set_os_desktop_theme(string strTheme)
+//   {
+//
+//      auto pnode = Node;
+//
+//      return pnode->os_set_user_theme(strTheme);
+//
+//   }
 
 
-   bool user::impl_set_wallpaper(index iScreen, string strLocalImagePath)
-   {
-
-      // wall-changer sourceforge.net contribution
-
-      auto pnode = Node;
-
-      if(::is_null(pnode))
-      {
-
-         return false;
-
-      }
-
-      return pnode->set_wallpaper(iScreen, strLocalImagePath);
-
-   }
+//   string user::impl_get_os_desktop_theme()
+//   {
+//
+//      return ::user::os_get_user_theme();
+//
+//   }
 
 
-   string user::impl_get_wallpaper(index iScreen)
-   {
+//   bool user::impl_set_wallpaper(index iScreen, string strLocalImagePath)
+//   {
+//
+//      // wall-changer sourceforge.net contribution
+//
+//      auto pnode = Node;
+//
+//      if(::is_null(pnode))
+//      {
+//
+//         return false;
+//
+//      }
+//
+//      return pnode->set_wallpaper(iScreen, strLocalImagePath);
+//
+//   }
 
-      return ::os::get_wallpaper(iScreen);
 
-   }
-
-
-   void user::enable_wallpaper_change_notification()
-   {
-
-      auto pnode = Node;
-
-      if(pnode)
-      {
-
-         pnode->enable_wallpaper_change_notification();
-
-      }
-
-   }
+//   string user::impl_get_wallpaper(index iScreen)
+//   {
+//
+//      return ::os::get_wallpaper(iScreen);
+//
+//   }
+//
+//
+//   void user::enable_wallpaper_change_notification()
+//   {
+//
+//      auto pnode = Node;
+//
+//      if(pnode)
+//      {
+//
+//         pnode->enable_wallpaper_change_notification();
+//
+//      }
+//
+//   }
 
 
 #elif defined(APPLE_IOS)

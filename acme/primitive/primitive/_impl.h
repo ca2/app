@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "acme/primitive/comparison/equals.h"
@@ -3959,25 +3959,12 @@ inline __transport(task) object::fork(PREDICATE predicate, ::e_priority epriorit
 
    }
 
-   auto ptask = __create_new < ::task >();
+   auto ptask = this->branch(proutine, epriority, nStackSize, dwCreateFlags ADD_PASS_SEC_ATTRS);
 
    if(!ptask)
    {
 
-      return error_failed;
-
-   }
-
-   ptask->m_pmatter = proutine;
-
-   ptask->m_id = typeid(predicate).name();
-
-   auto estatus = ptask->branch(epriority, nStackSize, dwCreateFlags ADD_PARAM_SEC_ATTRS);
-
-   if(!estatus)
-   {
-
-      return estatus;
+      return ptask;
 
    }
 

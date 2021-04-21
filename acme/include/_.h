@@ -1,4 +1,4 @@
-//        acme / camilo made by thomas
+﻿//        acme / camilo made by thomas
 // 
 //   
 //    
@@ -242,6 +242,24 @@ struct INT_STRING
    const char *m_psz;
 
 };
+
+
+#ifdef WINDOWS 
+#define ARG_SEC_ATTRS_DEF , void * psaAttributes = nullptr
+#define ARG_SEC_ATTRS , void * psaAttributes
+#define PARAM_SEC_ATTRS (LPSECURITY_ATTRIBUTES) psaAttributes
+#define PASS_SEC_ATTRS psaAttributes
+#define INSERT_PARAM_SEC_ATTRS(ATTRS) , ATTRS
+#define ADD_PARAM_SEC_ATTRS , PARAM_SEC_ATTRS
+#define ADD_PASS_SEC_ATTRS , PASS_SEC_ATTRS
+#else
+#define ARG_SEC_ATTRS_DEF 
+#define ARG_SEC_ATTRS
+#define PARAM_SEC_ATTRS
+#define INSERT_PARAM_SEC_ATTRS(ATTRS) 
+#define ADD_PARAM_SEC_ATTRS 
+#endif
+
 
 
 template < typename CONCRETE >
@@ -518,21 +536,6 @@ CLASS_DECL_ACME int throw_assert_exception(const char *pszFileName, int iLineNum
 #endif
 
 
-#endif
-
-
-#ifdef WINDOWS 
-#define ARG_SEC_ATTRS_DEF , void * psaAttributes = nullptr
-#define ARG_SEC_ATTRS , void * psaAttributes
-#define PARAM_SEC_ATTRS (LPSECURITY_ATTRIBUTES) psaAttributes
-#define INSERT_PARAM_SEC_ATTRS(ATTRS) , ATTRS
-#define ADD_PARAM_SEC_ATTRS , PARAM_SEC_ATTRS
-#else
-#define ARG_SEC_ATTRS_DEF 
-#define ARG_SEC_ATTRS
-#define PARAM_SEC_ATTRS
-#define INSERT_PARAM_SEC_ATTRS(ATTRS) 
-#define ADD_PARAM_SEC_ATTRS 
 #endif
 
 
@@ -3128,17 +3131,7 @@ class task;
 template < typename TYPE, typename ARG_TYPE = typename argument_of < TYPE >::type, typename PAIR = pair < ::id, TYPE, typename argument_of < ::id >::type, ARG_TYPE > >
 using id_map = ::map < id, TYPE, typename argument_of < ::id >::type, ARG_TYPE, PAIR >;
 
-#ifdef __GNUC__
-
-#define GCC_PORKBARBECUE_AND_🐷PIGŽ_CPP_ALMOST_STILL_C_BECAUSE_OF_LINUX_TORRVARUDUS
-
-#endif
-
 using routine_array = ::array < routine >;
-
-#define GCC_PORKBARBECUE_AND_🐷PIGŽ_CPP_ALMOST_STILL_C_BECAUSE_OF_LINUX_TORRVARUDUS_routine_array ::array < routine >
-
-
 
 //using process_array = ::array < process >;
 

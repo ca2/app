@@ -1782,6 +1782,45 @@ void object::branch_each(const ::routine_array& routinea)
 }
 
 
+template < typename PREDICATE >
+inline __transport(task) object::branch(matter * pmatter, ::e_priority epriority, ::u32 nStackSize, ::u32 dwCreateFlags ARG_SEC_ATTRS)
+{
+
+   if (::is_null(pmatter))
+   {
+
+      return error_failed;
+
+   }
+
+   auto ptask = __create_new < ::task >();
+
+   if (!ptask)
+   {
+
+      return error_failed;
+
+   }
+
+   ptask->m_pmatter = pmatter;
+
+   ptask->m_id = typeid(predicate).name();
+
+   auto estatus = ptask->branch(epriority, nStackSize, dwCreateFlags ADD_PARAM_SEC_ATTRS);
+
+   if (!estatus)
+   {
+
+      return estatus;
+
+   }
+
+   return ptask;
+
+}
+
+
+
 ::e_status object::handle_exception(const ::exception::exception& e)
 {
 

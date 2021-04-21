@@ -42,13 +42,23 @@ namespace serial
 {
 
    
-   serial::serial(const string& port, u32 baudrate, timeout timeout,
+   serial::serial()
+   {
+   }
+   
+   
+   
+   ::e_status serial::open(const string& port, u32 baudrate, timeout timeout,
       enum_byte_size ebytesize, enum_parity eparity, enum_stop_bit estopbit,
       enum_flow_control eflowcontrol)
-      :
-      m_pimpl(__new(serial_impl(port, baudrate, ebytesize, eparity, estopbit, eflowcontrol)))
+      //:
+      //m_pimpl(__new(serial_impl(port, baudrate, ebytesize, eparity, estopbit, eflowcontrol)))
    {
-      m_pimpl->set_timeout(timeout);
+      set_timeout(timeout);
+
+
+
+      return ::error_failed;
    }
 
    serial::~serial()
@@ -68,32 +78,35 @@ namespace serial
    void
       serial::open()
    {
-      m_pimpl->open();
+      //m_pimpl->open();
    }
 
    void
       serial::close()
    {
-      m_pimpl->close();
+      //m_pimpl->close();
    }
 
    bool
       serial::isOpen() const
    {
-      return m_pimpl->isOpen();
+      //return m_pimpl->isOpen();
+      return false;
    }
 
    size_t
       serial::available()
    {
-      return m_pimpl->available();
+      //return m_pimpl->available();
+      return 0;
    }
 
    bool
       serial::waitReadable()
    {
-      timeout timeout(m_pimpl->getTimeout());
-      return m_pimpl->waitReadable(timeout.m_millisReadTimeoutConstant);
+      //timeout timeout(m_pimpl->getTimeout());
+      //return m_pimpl->waitReadable(timeout.m_millisReadTimeoutConstant);
+      return false;
    }
 
    void
@@ -105,26 +118,29 @@ namespace serial
    size_t
       serial::read_(u8* buffer, size_t size)
    {
-      return this->m_pimpl->read(buffer, size);
+      //return this->m_pimpl->read(buffer, size);
+      return 0;
    }
 
 
    size_t serial::read(u8* buffer, size_t size)
    {
       
-      scoped_read_lock lock(this->m_pimpl);
+      scoped_read_lock lock(mutex());
 
-      return this->m_pimpl->read(buffer, size);
+      return _read(buffer, size);
+
+      //return 0;
 
    }
 
    size_t
       serial::read(memory& buffer, size_t size)
    {
-      scoped_read_lock lock(this->m_pimpl);
+      scoped_read_lock lock(mutex());
       memory bufferRead;
       bufferRead.set_size(size);
-      size_t bytes_read = this->m_pimpl->read(bufferRead.get_data(), (size_t)bufferRead.get_size());
+      size_t bytes_read = _read(bufferRead.get_data(), (size_t)bufferRead.get_size());
       buffer.append(bufferRead);
       return bytes_read;
    }
@@ -132,7 +148,7 @@ namespace serial
    size_t
       serial::read(string& buffer, size_t size)
    {
-      scoped_read_lock lock(this->m_pimpl);
+      scoped_read_lock lock(mutex());
       u8* buffer_ = new u8[size];
       size_t bytes_read = this->m_pimpl->read(buffer_, size);
       buffer.append(reinterpret_cast<const char*>(buffer_), bytes_read);
@@ -154,7 +170,7 @@ namespace serial
 #ifdef WINDOWS
       return this->m_pimpl->readline(buffer, size, eol);
 #else
-      scoped_read_lock lock(this->m_pimpl);
+      scoped_read_lock lock(mutex());
       size_t eol_len = eol.length();
       u8* buffer_ = static_cast<u8*>
          (alloca(size * sizeof(u8)));
@@ -193,7 +209,7 @@ namespace serial
    string_array
       serial::readlines(size_t size, string eol)
    {
-      scoped_read_lock lock(this->m_pimpl);
+      scoped_read_lock lock(mutex());
       string_array lines;
       size_t eol_len = (size_t)eol.length();
       u8* buffer_ = static_cast<u8*>
@@ -363,7 +379,7 @@ namespace serial
 
    void serial::flushInput()
    {
-      scoped_read_lock lock(this->m_pimpl);
+      scoped_read_lock lock(mutex());
       m_pimpl->flushInput();
    }
 

@@ -517,7 +517,10 @@ public:
    //inline auto new_predicateicate_thread(PRED pred);
 
    template < typename TYPE >
-   inline __transport(task) branch(void (TYPE::* pfnMemberProcedure)())
+   inline __transport(task) branch(void (TYPE::* pfnMemberProcedure)(),
+      ::e_priority epriority = priority_normal,
+      ::u32 nStackSize = 0,
+      ::u32 dwCreateFlags = 0 ARG_SEC_ATTRS_DEF)
    {
 
       return fork([this, pfnMemberProcedure]()
@@ -527,23 +530,19 @@ public:
 
          (ptype->*pfnMemberProcedure)();
 
-      });
+      },
+         epriority,
+         nStackSize,
+         dwCreateFlags ADD_PASS_SEC_ATTRS);
+
 
    }
 
 
-   inline __transport(::task) branch(matter * pmatter)
-   {
-
-      return fork([pmatter]()
-                  {
-
-                     pmatter->operator()();
-
-                  });
-
-   }
-
+   __transport(::task) branch(matter* pmatter,
+      ::e_priority epriority = priority_normal,
+      ::u32 nStackSize = 0,
+      ::u32 dwCreateFlags = 0 ARG_SEC_ATTRS_DEF);
 
    template < typename PRED >
    inline ::task_pointer predicate_run(bool bSync, PRED pred);

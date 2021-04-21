@@ -47,14 +47,13 @@ namespace serial
    }
    
    
-   
-   ::e_status serial::open(const string& port, u32 baudrate, timeout timeout,
+   ::e_status serial::initialize_serial(const string& port, u32 baudrate, timeout timeout,
       enum_byte_size ebytesize, enum_parity eparity, enum_stop_bit estopbit,
       enum_flow_control eflowcontrol)
       //:
       //m_pimpl(__new(serial_impl(port, baudrate, ebytesize, eparity, estopbit, eflowcontrol)))
    {
-      set_timeout(timeout);
+//      set_timeout(timeout);
 
 
 

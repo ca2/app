@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "acme/const/timer.h"
 
 
 string chunk_split(const string & body,i32 chunklen,const string & end)
@@ -397,7 +398,7 @@ namespace account
    bool user::is_authenticated()
    {
 
-      on_clock(e_clock_slow);
+      on_clock(e_timer_slow);
 
       if(m_estatusAuthentication != ::success_authenticated)
       {
@@ -432,7 +433,7 @@ namespace account
    void user::on_clock(enum_timer etimer)
    {
 
-      if(etimer == e_clock_slow)
+      if(etimer == e_timer_slow)
       {
 
          if(m_estatusAuthentication == ::success_authenticated)

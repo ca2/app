@@ -1825,7 +1825,9 @@ namespace user
       if (pmessage->m_wparam == 1)
       {
 
-         __pointer(::message::message) pmessage(pmessage->m_lparam);
+         __pointer(::message::object) pobjectmessage(pmessage);
+
+         __pointer(::message::message) pmessage(pobjectmessage->m_pmatter);
 
          if (pmessage)
          {
@@ -1833,6 +1835,8 @@ namespace user
             message_handler(pmessage);
 
          }
+
+         pmessage->m_bRet = true;
 
       }
       else
@@ -3955,6 +3959,11 @@ namespace user
          pmessage = __new(::message::simple_command);
       }
       break;
+         case ::message::PrototypeObject:
+         {
+            pmessage = __new(::message::object);
+         }
+            break;
       default:
       {
          pmessage = __new(::message::message);
@@ -5039,7 +5048,9 @@ namespace user
 
       }
 
-      return post_message(e_message_post_user, 1, pmessage);
+      ::lparam lparam(pmessage);
+
+      return post_message(e_message_post_user, 1, lparam);
 
    }
 

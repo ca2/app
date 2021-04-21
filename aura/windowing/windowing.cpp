@@ -617,6 +617,9 @@ namespace windowing
    void windowing::set(::message::key * pkey, oswindow oswindow, ::windowing::window * pwindow, const ::id & id, wparam wparam, ::lparam lparam)
    {
 
+      auto pkeyboard = keyboard();
+
+      pkeyboard->translate_os_key_message(pkey);
 
    }
 
@@ -648,7 +651,7 @@ namespace windowing
 
       auto proutine = __sync_routine(routine);
 
-      user_fork(proutine);
+      user_branch(proutine);
 
       proutine->sync_wait(durationTimeout);
 
@@ -657,10 +660,10 @@ namespace windowing
    }
 
 
-   ::e_status windowing::user_fork(const ::routine & routine)
+   ::e_status windowing::user_branch(const ::routine & routine)
    {
 
-      //__throw(error_interface_only);
+      __throw(error_interface_only);
 
       return error_interface_only;
 
@@ -682,7 +685,7 @@ namespace windowing
       if (!m_pkeyboard)
       {
 
-         auto estatus = __compose_new(m_pkeyboard);
+         auto estatus = __compose(m_pkeyboard);
 
          if (!m_pkeyboard)
          {

@@ -198,6 +198,8 @@ namespace message
          return PrototypeNcCalcSize;
       case e_message_simple_command:
          return PrototypeSimpleCommand;
+      case e_message_post_user:
+         return PrototypeObject;
       case e_message_paint:
          return PrototypeNone;
       default:

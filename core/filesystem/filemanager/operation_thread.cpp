@@ -129,7 +129,7 @@ namespace filemanager
       m_estate = ::filemanager::state_start;
       m_bStop = false;
       m_iOperation = 0;
-      begin();
+      branch();
    }
 
 

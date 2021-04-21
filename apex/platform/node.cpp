@@ -53,20 +53,20 @@ namespace apex
    }
 
 
-   ::e_status node::parallelization_initialize()
-   {
+   // ::e_status node::parallelization_initialize()
+   // {
 
-      return ::error_interface_only;
+   //    return ::error_interface_only;
 
-   }
+   // }
 
 
-   ::e_status node::parallelization_finalize()
-   {
+   // ::e_status node::parallelization_finalize()
+   // {
 
-      return ::error_interface_only;
+   //    return ::error_interface_only;
 
-   }
+   // }
 
 
    ::e_status node::thread_initialize(::thread * pthread)
@@ -85,20 +85,20 @@ namespace apex
    }
 
 
-   ::e_status node::node_thread_initialize(::thread * pthread)
-   {
+   // ::e_status node::node_thread_initialize(::thread * pthread)
+   // {
 
-      return ::error_interface_only;
+   //    return ::error_interface_only;
 
-   }
+   // }
 
 
-   ::e_status node::node_thread_finalize(::thread * pthread)
-   {
+   // ::e_status node::node_thread_finalize(::thread * pthread)
+   // {
 
-      return ::error_interface_only;
+   //    return ::error_interface_only;
 
-   }
+   // }
 
 
    string node::get_version()
@@ -189,7 +189,7 @@ namespace apex
 
       __pointer(::apex::system) psystem = get_system();
 
-      auto estatus = psystem->on_start();
+      auto estatus = psystem->on_start_system();
 
       if (!estatus)
       {

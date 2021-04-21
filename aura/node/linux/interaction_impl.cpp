@@ -2259,7 +2259,7 @@ namespace linux
       if(pwindowing)
       {
 
-         pwindowing->user_fork(__routine([this]()
+         pwindowing->user_branch(__routine([this]()
                           {
 
                              m_pwindow->exit_iconify();
@@ -2290,7 +2290,7 @@ namespace linux
       if(pwindowing)
       {
 
-         pwindowing->user_fork(__routine([this]()
+         pwindowing->user_branch(__routine([this]()
          {
 
             m_pwindow->exit_full_screen();
@@ -2321,7 +2321,7 @@ namespace linux
       if(pwindowing)
       {
 
-         pwindowing->user_fork(__routine([this]()
+         pwindowing->user_branch(__routine([this]()
          {
 
             m_pwindow->exit_zoomed();

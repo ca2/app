@@ -45,7 +45,7 @@ namespace userpresence
 
       }
 
-      if(!psystem->is_true("do_not_initialize_user_presence"))
+      if(!m_psystem->is_true("do_not_initialize_user_presence"))
       {
          // xxx
          // defer_initialize_user_presence();
@@ -61,6 +61,8 @@ namespace userpresence
    {
 
       defer_finalize_user_presence();
+
+      return ::success;
 
    }
 
@@ -84,6 +86,8 @@ namespace userpresence
          return true;
 
       }
+
+      auto papplication = get_application();
 
       if(papplication->is_true("install") || papplication->is_true("uninstall"))
       {
@@ -130,7 +134,7 @@ namespace userpresence
    void department::_001OnTimer(::timer * ptimer)
    {
 
-      auto psession = get_session();
+      auto psession = get_session()->m_pbasesession;
 
       if(psession->account()->get_user() != nullptr)
       {

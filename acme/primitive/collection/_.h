@@ -257,6 +257,15 @@ inline string ___type_str()
 #define __type_str(TYPE) ::___type_str < TYPE >()
 
 
+#include "acme/graphics/draw2d/_const.h"
+
+
+#include "acme/graphics/draw2d/opacity.h"
+
+
+#include "acme/graphics/draw2d/color.h"
+
+
 #include "acme/primitive/primitive/payload.h"
 
 

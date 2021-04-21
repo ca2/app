@@ -34,7 +34,7 @@ namespace core
    inline ::core::application* core < CORE_OBJECT >::get_application() const 
    {
       
-      return this->m_papplication ? this->m_papplication.cast < ::core::application >() : nullptr;
+      return this->m_pcontext ? this->m_pcontext->m_pcoreapplication : nullptr;
    
    }
 
@@ -43,7 +43,7 @@ namespace core
    inline ::core::session* core < CORE_OBJECT >::get_session() const
    { 
       
-      return this->m_psession ? this->m_psession.cast < ::core::session >() : nullptr;
+      return this->m_pcontext ? this->m_pcontext->m_pcoresesion : nullptr;
    
    }
 
@@ -52,7 +52,7 @@ namespace core
    inline ::core::system* core < CORE_OBJECT >::get_system() const 
    { 
       
-      return ::is_set(this->m_psystem) ? dynamic_cast <::core::system*> (this->m_psystem) : nullptr;
+      return ::is_set(this->m_psystem) ? this->m_psystem->m_pcoresystem : nullptr;
    
    }
 

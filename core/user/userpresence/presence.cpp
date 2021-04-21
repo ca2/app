@@ -6,9 +6,10 @@ namespace userpresence
 {
 
 
-   presence::presence(::object * pobject) :
-      ::object(pobject)
+   presence::presence(::object * pobject)
    {
+
+      initialize(pobject);
 
       m_iShortStatusWayTag = status_online;
 
@@ -64,6 +65,8 @@ namespace userpresence
       //if(psystem->m_strAppName == "netnode" || psystem->m_strAppName == "simpledbcfg")
         // return;
 
+      auto pcontext = m_pcontext;
+
       string strHost = pcontext->m_papexcontext->file().as_string(pcontext->m_papexcontext->dir().appdata() / "database\\text\\last_good_known_account_com.txt");
       string_array straRequestingServer;
       straRequestingServer.add("api.ca2.cc");
@@ -75,6 +78,11 @@ namespace userpresence
       }
 
       string strUrl = "https://" + strHost + "/i2com/pulse_user_presence";
+
+      auto psystem = m_psystem;
+
+      auto purl = psystem->url();
+
       purl->string_set(strUrl, "short_status", __str(m_iShortStatusWayTag));
       purl->string_set(strUrl, "long_status", m_strLongStatus);
 
@@ -95,7 +103,7 @@ namespace userpresence
           || pmouse->get_message() == e_message_mouse_move)
       {
 
-         auto psession = get_session();
+         auto psession = get_session()->m_paxissession;
 
          if (psession->account() != nullptr && psession->account()->get_user() != nullptr)
          {

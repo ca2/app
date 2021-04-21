@@ -49,9 +49,11 @@ namespace user
 	bool text_composition_client::is_text_composition_active() const
 	{
 
+	   return m_bTextCompositionActive;
+
 	   //return m_ptextcompositionclient;
 
-		return m_ptextcompositionclient->is_text_composition_active();
+		//return m_ptextcompositionclient->is_text_composition_active();
 
 	}
 

@@ -31,7 +31,7 @@ public:
    __pointer(::windowing::icon)                    m_piconNotify;
    __pointer(::user::notify_icon)                  m_pnotifyicon;
    ::payload                                       m_varFrame;
-   ::thread_pointer                                m_pthreadSaveWindowRect;
+   __composite(::task)                             m_ptaskSaveWindowRect;
 
 
    simple_frame_window();
@@ -44,7 +44,7 @@ public:
    virtual ::user::enum_translucency get_translucency(::user::style* pstyle) const override;
 
 
-   virtual void SaveWindowRectThreadProcedure();
+   virtual void SaveWindowRectTaskProcedure();
 
 
    virtual void defer_save_window_placement() override;

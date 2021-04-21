@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "acme/filesystem/filesystem/acme_dir.h"
+#include "acme/const/timer.h"
 
 
 namespace account
@@ -272,7 +273,7 @@ namespace account
    void user_array::on_clock(enum_timer etimer)
    {
 
-      if(etimer == e_clock_slow)
+      if(etimer == e_timer_slow)
       {
 
          synchronous_lock synchronouslock(mutex());

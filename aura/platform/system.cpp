@@ -176,6 +176,8 @@ namespace aura
       string strId;
       strId = "ca2log";
 
+      m_pauracontext = this;
+
       if (!initialize_log(strId))
       {
 
@@ -518,44 +520,36 @@ namespace aura
    //}
 
 
-
-   ::e_status system::process_init()
+   ::e_status system::node_factory_exchange()
    {
-
-      auto estatus = ::apex::system::process_init();
-
-      if (!estatus)
-      {
-
-         return estatus;
-
-      }
 
 #ifdef LINUX
 
       auto edesktop = get_edesktop();
 
+      ::e_status estatus = error_failed;
+
       if (edesktop & ::user::e_desktop_kde)
       {
 
-         estatus = do_factory_exchange("node", "kde");
+         estatus = do_factory_exchange("desktop_environment", "kde");
 
       }
       else if (edesktop & ::user::e_desktop_gnome)
       {
 
-         estatus = do_factory_exchange("node", "gnome");
+         estatus = do_factory_exchange("desktop_environment", "gnome");
 
       }
       else
       {
 
-         estatus = do_factory_exchange("node", "kde");
+         estatus = do_factory_exchange("desktop_environment", "gnome");
 
          if (!estatus)
          {
 
-            estatus = do_factory_exchange("node", "gnome");
+            estatus = do_factory_exchange("desktop_environment", "kde");
 
          }
 
@@ -573,6 +567,24 @@ namespace aura
          return estatus;
 
       }
+
+      return estatus;
+
+   }
+
+
+   ::e_status system::process_init()
+   {
+
+      auto estatus = ::apex::system::process_init();
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
 
 
       //auto estatus = system_prep();
@@ -1542,19 +1554,6 @@ namespace aura
 
       }
 
-      estatus = __compose_new(m_pimaging);
-
-      if (!estatus)
-      {
-
-         if (m_bUser && m_bDraw2d && m_bImaging)
-         {
-
-            return estatus;
-
-         }
-
-      }
 
       //auto psession = get_session();
 
@@ -1598,20 +1597,6 @@ namespace aura
 #endif
 
 #endif
-
-      if (m_bDraw2d)
-      {
-
-         if (!initialize_draw2d())
-         {
-
-            return false;
-
-         }
-
-      }
-
-
 
       on_update_matter_locator();
 
@@ -5564,6 +5549,49 @@ namespace aura
       }
 
       //post_creation_requests();
+
+      return estatus;
+
+   }
+
+
+   ::e_status system::initialize_context()
+   {
+
+      if (m_bDraw2d)
+      {
+
+         if (!initialize_draw2d())
+         {
+
+            return false;
+
+         }
+
+      }
+
+      auto estatus = __compose_new(m_pimaging);
+
+      if (!estatus)
+      {
+
+         if (m_bUser && m_bDraw2d && m_bImaging)
+         {
+
+            return estatus;
+
+         }
+
+      }
+
+      estatus = ::aura::context::initialize_context();
+
+      if(!estatus)
+      {
+
+         return estatus;
+
+      }
 
       return estatus;
 

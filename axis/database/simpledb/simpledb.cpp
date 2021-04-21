@@ -475,7 +475,7 @@ namespace simpledb
 
             __refer(pstorage->m_pthreadlocal->m_pstorage, pstorage);
 
-            pstorage->m_pthreadlocal->begin();
+            pstorage->m_pthreadlocal->branch();
 
          }
 
@@ -504,7 +504,7 @@ namespace simpledb
 
             pstorage->m_pthread->m_pstorage = pstorage;
 
-            pstorage->m_pthread->begin();
+            pstorage->m_pthread->branch();
 
          }
 

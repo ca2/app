@@ -60,7 +60,7 @@ namespace acme
    }
 
 
-   ::e_status system::on_start()
+   ::e_status system::on_start_system()
    {
 
       return ::success;
@@ -83,24 +83,9 @@ namespace acme
 //   }
 
 
-   ::e_status system::start()
-   {
-
-      auto estatus = on_start();
-
-      if(!estatus)
-      {
-
-         return estatus;
-
-      }
-
-      return estatus;
-
-   }
 
 
-//   ::e_status system::on_start()
+//   ::e_status system::on_start_system()
 //   {
 //
 //      return ::success;

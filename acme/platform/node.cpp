@@ -81,6 +81,23 @@ namespace acme
 
    }
 
+
+   ::e_status node::system_main()
+   {
+
+      auto estatus = m_psystem->main();
+
+      if(!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return estatus;
+
+   }
+
    //::file::path node::roaming()
    //{
 
@@ -417,7 +434,7 @@ namespace acme
    }
 
 
-   void node::node_fork(const ::routine & routine)
+   void node::node_branch(const ::routine & routine)
    {
 
    }

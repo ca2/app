@@ -169,6 +169,9 @@ namespace acme
 #endif
 
 
+      virtual ::e_status node_factory_exchange();
+
+
       virtual ::e_status inline_init();
       virtual ::e_status inline_term();
 
@@ -179,9 +182,10 @@ namespace acme
       virtual ::e_status init_system();
 
 
-      virtual ::e_status on_start();
+      virtual ::e_status on_start_system();
 
-      virtual ::e_status start();
+
+      virtual ::e_status system_main();
       //virtual ::e_status run_system();
       virtual ::e_status main();
 

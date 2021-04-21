@@ -2,19 +2,6 @@ cmake_minimum_required(VERSION 3.17)
 project(base CXX)
 
 
-add_compile_options("$<$<CONFIG:DEBUG>:-DDEBUG>")
-
-
-if(LINUX)
-elseif(WIN32)
-elseif(UWP)
-endif()
-
-
-set(LIBRARY_OUTPUT_PATH ${CMAKE_CURRENT_SOURCE_DIR}/../../../time-${PLATFORM_NAME}/cmake)
-set(EXECUTABLE_OUTPUT_PATH ${CMAKE_CURRENT_SOURCE_DIR}/../../../time-${PLATFORM_NAME}/cmake)
-
-
 list(APPEND base_source
         const/charset.h
         const/GLOBAL_ID.h
@@ -196,6 +183,8 @@ list(APPEND base_source
         user/user/split_bar.h
         user/user/split_layout.cpp
         user/user/split_layout.h
+        user/user/split_pane.cpp
+        user/user/split_pane.h
         user/user/split_view.cpp
         user/user/split_view.h
         user/user/static_control.cpp

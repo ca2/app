@@ -26,14 +26,14 @@ namespace apex
       virtual ::e_status shell_create_link(::file::path pathObj, ::file::path pathLnk, string strDesc, ::file::path pathIco="", int iIcon=-1);
 
 
-      virtual ::e_status parallelization_initialize();
-      virtual ::e_status parallelization_finalize();
+      //virtual ::e_status parallelization_initialize();
+      //virtual ::e_status parallelization_finalize();
 
       virtual ::e_status thread_initialize(::thread * pthread);
       virtual ::e_status thread_finalize(::thread* pthread);
 
-      virtual ::e_status node_thread_initialize(::thread* pthread);
-      virtual ::e_status node_thread_finalize(::thread* pthread);
+      // virtual ::e_status node_thread_initialize(::thread* pthread);
+      // virtual ::e_status node_thread_finalize(::thread* pthread);
 
       virtual string get_version();
       

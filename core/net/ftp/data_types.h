@@ -388,41 +388,41 @@ namespace ftp
    {
    public:
       logon();
-      logon(const string& strHostname, WINUSHORT ushHostport=DEFAULT_FTP_PORT, const string& strUsername=ANONYMOUS_USER,
+      logon(const string& strHostname, ::u16 ushHostport=DEFAULT_FTP_PORT, const string& strUsername=ANONYMOUS_USER,
             const string& strPassword="anonymous@user.com", const string& strAccount="");
-      logon(const string& strHostname, WINUSHORT ushHostport, const string& strUsername, const string& strPassword,
+      logon(const string& strHostname, ::u16 ushHostport, const string& strUsername, const string& strPassword,
             const string& strAccount, const string& strFwHostname, const string& strFwUsername, const string& strFwPassword,
-            WINUSHORT ushFwPort, const firewall_type& crFwType);
+            ::u16 ushFwPort, const firewall_type& crFwType);
 
-      void SetHost(const string& strHostname, WINUSHORT ushHostport=DEFAULT_FTP_PORT, const string& strUsername=ANONYMOUS_USER,
+      void SetHost(const string& strHostname, ::u16 ushHostport=DEFAULT_FTP_PORT, const string& strUsername=ANONYMOUS_USER,
                    const string& strPassword="anonymous@user.com", const string& strAccount="");
 
       void SetFirewall(const string& strFwHostname, const string& strFwUsername, const string& strFwPassword,
-                       WINUSHORT ushFwPort, const firewall_type& crFwType);
+                       ::u16 ushFwPort, const firewall_type& crFwType);
 
       void DisableFirewall() { m_FwType = firewall_type::None(); }
 
       string&       Hostname()    { return m_strHostname;    }
-      WINUSHORT               Hostport()   const  { return m_ushHostport;    }
+      ::u16               Hostport()   const  { return m_ushHostport;    }
       string&       Username()    { return m_puser->m_strLogin;    }
       string&       Password()    { return m_strPassword;    }
       const string&       Account()    const  { return m_strAccount;     }
       const string&       FwHost()     const  { return m_strFwHostname;  }
       const string&       FwUsername() const  { return m_strFwUsername;  }
       const string&       FwPassword() const  { return m_strFwPassword;  }
-      WINUSHORT               FwPort()     const  { return m_ushFwPort;      }
+      ::u16               FwPort()     const  { return m_ushFwPort;      }
       const firewall_type& FwType()     const  { return m_FwType;         }
       bool           m_bFailedBecauseOfSecurityLevelCanUpgrade;
    private:
       string        m_strHostname;   ///< name or ip-address of the ftp-server
-      WINUSHORT         m_ushHostport;   ///< port of the ftp-server
+      ::u16         m_ushHostport;   ///< port of the ftp-server
 //      string        m_strUsername;   ///< username for ftp-server
 //      string        m_strPassword;   ///< password for ftp-server
       string        m_strAccount;    ///< account mostly needed on ftp-servers running on unix/linux
       string        m_strFwHostname; ///< name or ip-address of the firewall
       string        m_strFwUsername; ///< username for firewall
       string        m_strFwPassword; ///< password for firewall
-      WINUSHORT         m_ushFwPort;     ///< port of the firewall
+      ::u16         m_ushFwPort;     ///< port of the firewall
       firewall_type  m_FwType;        ///< type of firewall
    };
 

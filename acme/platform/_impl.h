@@ -54,24 +54,6 @@ struct lparam_dbg :
 
 CLASS_DECL_ACME lparam_dbg & lparam_debug();
 
-inline lparam::lparam(const ::matter * p)
-{
-
-   if (is_null(p))
-   {
-
-      m_lparam = 0;
-
-      return;
-
-   }
-
-   ((matter *) p)->add_ref(OBJ_REF_DBG_PTR(&lparam_debug()));
-
-   m_lparam = (iptr)(void *) p;
-
-}
-
 
 template<class TYPE>
 inline void dump_elements(dump_context & dumpcontext, const TYPE* pElements, ::count nCount)

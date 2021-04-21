@@ -135,6 +135,23 @@ namespace acme
    }
 
 
+   ::e_status system::node_factory_exchange()
+   {
+
+      auto estatus = do_factory_exchange("acme", PLATFORM_NAME);
+
+      if(!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return estatus;
+
+   }
+
+
    ::e_status system::process_init()
    {
 
@@ -145,18 +162,18 @@ namespace acme
       if (!m_pfactorymapsquare)
       {
 
-         return ::success;
+         return ::error_no_memory;
 
       }
 
-      auto estatus = do_factory_exchange("acme", __PLATFORM);
+      // auto estatus = do_factory_exchange("acme", PLATFORM_NAME);
 
-      if (!estatus)
-      {
+      // if (!estatus)
+      // {
 
-         return estatus;
+      //    return estatus;
 
-      }
+      // }
 
       //estatus = __compose(m_pacmenode);
 
@@ -167,7 +184,7 @@ namespace acme
 
       //}
 
-      estatus = __compose(m_pacmedir);
+      auto estatus = __compose(m_pacmedir);
 
       if (!estatus)
       {
@@ -535,7 +552,25 @@ namespace acme
    ::e_status system::init_system()
    {
 
-      auto estatus = create_os_node();
+      auto estatus = node_factory_exchange();
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      estatus = create_os_node();
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      estatus = process_init();
 
       if (!estatus)
       {
@@ -919,6 +954,30 @@ namespace acme
    }
 
 
+   ::e_status system::system_main()
+   {
+
+      auto estatus = init_system();
+
+      if(!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      estatus = m_pnode->system_main();
+
+      if(!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return estatus;
+
+   }
 
 
 
@@ -968,7 +1027,7 @@ namespace acme
 //   }
 
 
-//   ::e_status system::on_start()
+//   ::e_status system::on_start_system()
 //   {
 //
 //      return ::success;

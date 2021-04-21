@@ -85,7 +85,7 @@ namespace user
       m_bComposite                           = true;
       m_bUpdateGraphics                      = false;
       //m_pwindow                              = nullptr;
-      m_pprimitiveFocus                      = nullptr;
+      //m_pprimitiveFocus                      = nullptr;
       m_bPendingRedraw                       = false;
       m_bTransparentMouseEvents              = false;
 
@@ -4210,12 +4210,12 @@ namespace user
    }
 
 
-   //::user::primitive * interaction_impl::get_keyboard_focus()
-   //{
+   ::user::primitive * interaction_impl::get_keyboard_focus()
+   {
 
-   //   return m_pprimitiveFocus;
+      return m_puserinteractionFocus1;
 
-   //}
+   }
 
 
    void interaction_impl::_001OnSetFocus(::message::message * pmessage)

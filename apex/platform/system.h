@@ -255,14 +255,16 @@ namespace apex
       virtual ::e_status inline_init() override;
       virtual ::e_status inline_term() override;
 
+      virtual ::e_status on_pre_run_thread() override;
+
       virtual ::e_status init_system() override;
       virtual void term_system();
 
       virtual ::e_status on_system_construct() override;
 
-      virtual ::e_status on_start() override;
+      virtual ::e_status on_start_system() override;
 
-      virtual ::e_status start() override;
+      virtual ::e_status system_main() override;
 
       virtual void term();
 
@@ -336,11 +338,15 @@ namespace apex
 
       //virtual ::layered * get_layered_window(oswindow oswindow);
 
+      virtual ::e_status node_factory_exchange() override;
+
       virtual ::e_status process_init() override;
 
       virtual ::e_status init1() override;
 
       virtual ::e_status init2();
+
+      virtual ::e_status initialize_context() override;
 
       //virtual ::e_status defer_xml();
 

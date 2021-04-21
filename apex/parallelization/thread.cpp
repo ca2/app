@@ -2618,7 +2618,7 @@ void thread::__os_initialize()
 
 #endif
 
-   m_psystem->m_papexsystem->m_papexnode->node_thread_initialize(this);
+   //m_psystem->m_papexsystem->m_papexnode->node_thread_initialize(this);
 
 
 }
@@ -2627,7 +2627,7 @@ void thread::__os_initialize()
 void thread::__os_finalize()
 {
 
-   m_psystem->m_papexsystem->m_papexnode->node_thread_finalize(this);
+   //m_psystem->m_papexsystem->m_papexnode->node_thread_finalize(this);
 
 }
 
@@ -2722,7 +2722,7 @@ void thread::__os_finalize()
 
       processor_cache_oriented_set_thread_memory_pool(0); // set default handler cache oriented thread memory pool index to 0 ("zero") (The First One)
 
-      m_psystem->m_papexsystem->m_papexnode->parallelization_initialize();
+      //m_psystem->m_papexsystem->m_papexnode->parallelization_initialize();
 
    }
 

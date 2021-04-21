@@ -25,10 +25,10 @@
 
 
 extern "C"
-void imaging_factory_exchange(::factory_map * pfactorymap)
+void imaging_freeimage_factory_exchange(::factory_map * pfactorymap)
 {
 
-   create_factory < ::imaging_freeimage::context_image, ::context_image >();
+   pfactorymap->create_factory < ::imaging_freeimage::context_image, ::context_image >();
 
 }
 

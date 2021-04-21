@@ -175,7 +175,7 @@ namespace introjection
 #elif defined(_DEBUG)
 
       m_strDynamicSourceConfiguration = "basis";
-      m_strDynamicSourceStage = "time-" __PLATFORM;
+      m_strDynamicSourceStage = "time-" PLATFORM_NAME;
 
 #else
 

@@ -8,6 +8,7 @@
 #include "system_storage.h"
 #include "network_authenticator.h"
 #include "acme/filesystem/filesystem/acme_dir.h"
+#include "acme/const/timer.h"
 
 
 namespace account
@@ -348,7 +349,7 @@ namespace account
 
       }
 
-      m_ptaskpool->start_clock(e_clock_slow, one_minute());
+      m_ptaskpool->set_timer(e_timer_slow, one_minute());
 
       __pointer(::axis::session) psession = get_session();
 
@@ -378,7 +379,7 @@ namespace account
    void department::on_clock(enum_timer etimer)
    {
 
-      if(etimer == e_clock_slow)
+      if(etimer == e_timer_slow)
       {
 
          m_pusera->on_clock(etimer);

@@ -9,66 +9,8 @@ namespace acme
 {
 
 
-   ::e_status system::start()
-   {
-
-      //auto estatus = create_os_node();
-
-      //if (!estatus)
-      //{
-
-      //   return estatus;
-
-      //}
-
-      //if (m_pnode)
-      //{
-
-      //   auto estatus = m_pnode->start();
-
-      //}
-
-      auto estatus = inline_init();
-
-      if (!estatus)
-      {
-
-         return estatus;
-
-      }
-
-      estatus = on_start_system();
-
-      if (!estatus)
-      {
-
-         return estatus;
-
-      }
-
-      return estatus;
-
-   }
-
-
    ::e_status system::end()
    {
-
-      //auto estatus = create_os_node();
-
-      //if (!estatus)
-      //{
-
-      //   return estatus;
-
-      //}
-
-      //if (m_pnode)
-      //{
-
-      //   auto estatus = m_pnode->start();
-
-      //}
 
       auto estatus = on_end();
 
@@ -93,38 +35,6 @@ namespace acme
    }
 
 
-   void system::process_exit_status(::object* pobject, const ::e_status& estatus)
-   {
-
-      if (estatus == error_exit_system)
-      {
-      
-         m_psystem->finish();
-      
-      }
-      //   else if (estatus == error_exit_session)
-      //   {
-      //
-      //      get_session()->finish();
-      //
-      //   }
-      //   else if (estatus == error_exit_application)
-      //   {
-      //
-      //      get_session()->finish();
-      //
-      //   }
-      //   else if (estatus == error_exit_application)
-      //   {
-      //
-      //      ::get_task()->finish();
-      //
-      //   }
-      //
-
-   }
-
-
    ::apex::application* system::get_main_application()
    {
 
@@ -138,6 +48,7 @@ namespace acme
 
 
    }
+
 
    void system::system_construct(int argc, wchar_t** argv, wchar_t** envp)
    {
@@ -171,14 +82,6 @@ namespace acme
    }
 
    
-   ::e_status system::on_start_system()
-   {
-
-      return ::success;
-
-   }
-
-
    ::e_status system::on_end()
    {
 
@@ -208,18 +111,6 @@ namespace acme
       return ::user::e_desktop_windows;
 
    }
-
-
-   // ::file::path system::get_memory_map_base_folder_path() const
-   // {
-      
-   //    auto path = get_known_folder(FOLDERID_RoamingAppData);
-
-   //    path /= "ca2/memory_map";
-
-   //    return path;
-
-   // }
 
 
 } // namespace acme

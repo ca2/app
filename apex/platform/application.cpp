@@ -2528,7 +2528,7 @@ namespace apex
 
       }
 
-      auto psystem = m_psystem->m_papexsystem;
+      //auto psystem = m_psystem->m_papexsystem;
 
       psystem->install_progress_add_up();
 

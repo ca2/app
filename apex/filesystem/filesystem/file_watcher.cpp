@@ -214,7 +214,7 @@ namespace file
          if (m_bCreateWatchThread)
          {
 
-//            auto estatus = __construct_new(m_pthread);
+//            auto estatus = __construct_new(m_ptask);
 //
 //            if (!estatus)
 //            {
@@ -223,7 +223,7 @@ namespace file
 //
 //            }
 
-            m_pthread = m_pcontext->branch(this);
+            m_ptask = m_pcontext->branch(this);
 
          }
 
@@ -280,7 +280,7 @@ namespace file
    ::e_status     watcher::run()
    {
       
-      m_pthread = ::get_task();
+      m_ptask = ::get_task();
 
       while (::task_get_run())
       {
@@ -292,11 +292,11 @@ namespace file
 
          }
 
-         while (m_pthread->defer_pump_message());
+         while (m_ptask->defer_pump_message());
 
       }
       
-      m_pthread.release();
+      m_ptask.release();
 
       return ::success;
 

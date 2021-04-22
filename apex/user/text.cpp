@@ -153,6 +153,28 @@ namespace user
    }
 
 
+   void text::insert_text(string str, bool bForceNewStep, const ::action_context& context)
+   {
+
+
+   }
+
+
+   bool text::edit_undo()
+   {
+
+      return false;
+
+   }
+
+
+   void text::get_text_composition_area(::rectangle_i32& rectangle)
+   {
+
+
+   }
+
+
 } // namespace user
 
 

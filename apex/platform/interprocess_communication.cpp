@@ -113,7 +113,7 @@ namespace interprocess_communication
    string app_install(string strPlatform)
    {
 
-      return "::ca2::account::ca2_spaboot_install_" + strPlatform + "::7807e510-5579-11dd-ae16-0800200c7784";
+      return "::ca2::account::ca2_installer_install_" + strPlatform + "::7807e510-5579-11dd-ae16-0800200c7784";
 
    }
 

@@ -1047,7 +1047,7 @@ run_install:
          rectangle.right     = cy;
          ::FillSolidRect_dup(hdc, &rectangle, rgb(255, 255, 255));
          ::SetTextColor(hdc, rgb(255, 0, 255));
-         const char * psz = "ca is not installed! You may try to install using low level spaboot_install.exe.";
+         const char * psz = "ca is not installed! You may try to install using low level installer_install.exe.";
          ::TextOutU_dup(hdc, 10, 10, psz, ansi_length(psz));*/
       }
       else

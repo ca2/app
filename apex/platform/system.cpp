@@ -1866,46 +1866,6 @@ namespace apex
    ::e_status system::on_start_system()
    {
 
-      //auto papp = m_papplicationMain;
-
-      //auto psession = m_papexsession;
-
-      //papp->initialize(psession);
-
-      //set_main_struct(*papp);
-
-      //papp->inline_init();
-
-      auto pcreate = __create_new< ::create> ();
-
-      string strAppId = m_strAppId;
-
-      if (strAppId.is_empty())
-      {
-
-         if (m_papplicationStartup)
-         {
-
-            strAppId = m_papplicationStartup->m_strAppId;
-
-         }
-
-      }
-
-      pcreate->m_strAppId = strAppId;
-
-      pcreate->m_pcommandline = __create_new < command_line > ();
-
-      string strCommandLine = get_command_line();
-
-      pcreate->m_pcommandline->initialize_command_line(strCommandLine);
-
-      pcreate->finish_initialization();
-
-      add_create(pcreate);
-
-      post_creation_requests();
-
       return ::success;
 
    }
@@ -2077,23 +2037,65 @@ namespace apex
    }
 
 
-   ::e_status system::inline_init()
+   ::e_status system::post_initial_request()
    {
 
-      auto papplicationStartup = new_application(m_strAppId);
+      //auto papp = m_papplicationMain;
 
-      if (!papplicationStartup)
+      //auto psession = m_papexsession;
+
+      //papp->initialize(psession);
+
+      //set_main_struct(*papp);
+
+      //papp->inline_init();
+
+      auto pcreate = __create_new< ::create>();
+
+      string strAppId = m_strAppId;
+
+      if (strAppId.is_empty())
       {
 
-         return -1;
+         if (m_papplicationStartup)
+         {
+
+            strAppId = m_papplicationStartup->m_strAppId;
+
+         }
 
       }
 
-      __refer(m_papplicationStartup, papplicationStartup);
+      pcreate->m_strAppId = strAppId;
 
-      m_papplicationStartup->get_property_set().merge(get_property_set());
+      pcreate->m_pcommandline = __create_new < command_line >();
 
-      set_main_struct(*m_papplicationStartup);
+      string strCommandLine = get_command_line();
+
+      pcreate->m_pcommandline->initialize_command_line(strCommandLine);
+
+      pcreate->finish_initialization();
+
+      add_create(pcreate);
+
+      post_creation_requests();
+
+      return ::success;
+
+   }
+
+
+   ::e_status system::inline_init()
+   {
+
+      //auto estatus = init_system();
+
+      //if (!estatus)
+      //{
+
+      //   return estatus;
+
+      //}
 
       auto estatus = ::apex::context::inline_init();
 
@@ -2174,6 +2176,21 @@ namespace apex
          return estatus;
 
       }
+
+      auto papplicationStartup = new_application(m_strAppId);
+
+      if (!papplicationStartup)
+      {
+
+         return -1;
+
+      }
+
+      __refer(m_papplicationStartup, papplicationStartup);
+
+      m_papplicationStartup->get_property_set().merge(get_property_set());
+
+      set_main_struct(*m_papplicationStartup);
 
       return estatus;
 
@@ -5289,18 +5306,16 @@ namespace apex
    ::e_status system::on_pre_run_thread()
    {
 
-//      auto estatus = m_pnode->on_start_system();
-//
-//      if(!estatus)
-//      {
-//
-//         return estatus;
-//
-//      }
+      auto estatus = m_pnode->on_start_system();
 
-//      return estatus;
+      if(!estatus)
+      {
 
-return ::success;
+         return estatus;
+
+      }
+
+      return estatus;
 
    }
 
@@ -5723,6 +5738,8 @@ string get_bundle_app_library_name();
 
    }
 
+   psystem->m_strAppId = strAppId;
+
    return psystem;
 
 }
@@ -5786,6 +5803,25 @@ namespace apex
       return estatus;
 
    }
+
+
+   ::e_status system::system_main()
+   {
+
+      auto estatus = ::acme::system::system_main();
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return estatus;
+
+   }
+
+
 
 
 } // namespace apex

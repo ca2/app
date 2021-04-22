@@ -51,37 +51,37 @@ namespace aura
    //}
 
 
-   ::e_status system::start()
-   {
+   //::e_status system::system_start()
+   //{
 
-      auto estatus = ::aqua::system::start();
+   //   auto estatus = ::aqua::system::system_start();
 
-      if (!estatus)
-      {
+   //   if (!estatus)
+   //   {
 
-         return estatus;
+   //      return estatus;
 
-      }
+   //   }
 
-      //estatus = create_os_node();
+   //   //estatus = create_os_node();
 
-      //if (!estatus)
-      //{
+   //   //if (!estatus)
+   //   //{
 
-      //   return estatus;
+   //   //   return estatus;
 
-      //}
+   //   //}
 
-      //if (m_pnode)
-      //{
+   //   //if (m_pnode)
+   //   //{
 
-      //   return m_pnode->start();
+   //   //   return m_pnode->start();
 
-      //}
+   //   //}
 
-      return ::success;
+   //   return ::success;
 
-   }
+   //}
 
 
 } // namespace aura

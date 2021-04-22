@@ -1112,6 +1112,7 @@
     <ClCompile Include="graphics\draw2d\device_lock.cpp" />
     <ClCompile Include="graphics\draw2d\image_drawer.cpp" />
     <ClCompile Include="graphics\draw2d\image_drawing.cpp" />
+    <ClCompile Include="graphics\draw2d\task_tool.cpp" />
     <ClCompile Include="graphics\graphics\monitor.cpp" />
     <ClCompile Include="graphics\write_text\font.cpp" />
     <ClCompile Include="graphics\write_text\font_department.cpp" />
@@ -1631,7 +1632,6 @@
     <ClCompile Include="graphics\draw2d\pen.cpp" />
     <ClCompile Include="graphics\draw2d\printer.cpp" />
     <ClCompile Include="graphics\draw2d\region.cpp" />
-    <ClCompile Include="graphics\draw2d\thread_tool.cpp" />
     <ClCompile Include="graphics\draw2d\winrt\image_gif.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>

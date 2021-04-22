@@ -511,6 +511,72 @@ namespace aura
 
    //}
 
+   
+   ::e_status system::system_main()
+   {
+
+      auto estatus = ::aqua::system::system_main();
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      //estatus = create_os_node();
+
+      //if (!estatus)
+      //{
+
+      //   return estatus;
+
+      //}
+
+      //if (m_pnode)
+      //{
+
+      //   return m_pnode->start();
+
+      //}
+
+      return ::success;
+
+   }
+
+
+   ::e_status system::on_start_system()
+   {
+
+      auto estatus = ::aqua::system::on_start_system();
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      //estatus = create_os_node();
+
+      //if (!estatus)
+      //{
+
+      //   return estatus;
+
+      //}
+
+      //if (m_pnode)
+      //{
+
+      //   return m_pnode->start();
+
+      //}
+
+      return ::success;
+
+   }
+
 
    //::aura::str & system::str()
    //{
@@ -523,11 +589,11 @@ namespace aura
    ::e_status system::node_factory_exchange()
    {
 
+      ::e_status estatus = error_failed;
+
 #ifdef LINUX
 
       auto edesktop = get_edesktop();
-
-      ::e_status estatus = error_failed;
 
       if (edesktop & ::user::e_desktop_kde)
       {

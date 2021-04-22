@@ -195,3 +195,21 @@ CLASS_DECL_ACME int_bool get_filetime(HANDLE hFile, LPFILETIME pCreationTime, LP
 //
 //} // namespace windows
 
+
+
+
+::e_status file_time_to_system_time(system_time_t* psystemtime, const filetime_t* pfiletime)
+{
+
+   if (!FileTimeToSystemTime((FILETIME *) pfiletime, (SYSTEMTIME *) psystemtime))
+   {
+
+      return error_failed;
+
+   }
+
+   return ::success;
+
+}
+
+

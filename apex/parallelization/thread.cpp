@@ -102,7 +102,7 @@ thread::thread()
        
    //set_layer(LAYERED_THREAD, this);
 
-   m_pthread = this;
+   //m_pthread = this;
 
    m_bThreadClosed = false;
 

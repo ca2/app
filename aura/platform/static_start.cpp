@@ -6,6 +6,7 @@
 #include "apex/platform/app_core.h"
 #include "acme/primitive/primitive/malloc.h"
 #include "aura/astr.h"
+#include "acme/platform/static_start_internal.h"
 //#include "aura/os/_os.h"
 //
 //#include <sqlite3.h>

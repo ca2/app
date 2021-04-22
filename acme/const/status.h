@@ -174,6 +174,7 @@ enum enum_status : ::i64
    error_io = INT_FAILURE_STATUS(STATUS_RANGE_IO),
    error_serial,
    error_serial_io,
+   error_port_not_opened,
 
 
    error_file = INT_FAILURE_STATUS(STATUS_RANGE_FILE),

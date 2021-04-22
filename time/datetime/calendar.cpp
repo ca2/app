@@ -141,7 +141,9 @@ namespace datetime
       string calendar::GetWeekDay(const ::text::context* pcontext, int32_t iWeekDay) // 1 - domingo
       {
 
-         __pointer(::apex::system) psystem = get_system();
+         auto psystem = m_psystem;
+
+         auto pdatetime = psystem->datetime();
 
          return pdatetime->get_week_day_str(pcontext, iWeekDay);
 
@@ -151,7 +153,9 @@ namespace datetime
       string calendar::GetTinyWeekDay(const ::text::context* pcontext, int32_t iWeekDay) // 1 - domingo
       {
 
-         __pointer(::apex::system) psystem = get_system();
+         auto psystem = m_psystem;
+
+         auto pdatetime = psystem->datetime();
 
          return pdatetime->get_tiny_week_day_str(pcontext, iWeekDay);
 
@@ -161,7 +165,9 @@ namespace datetime
       string calendar::GetMonth(const ::text::context* pcontext, int32_t iMonth)
       {
 
-         __pointer(::apex::system) psystem = get_system();
+         auto psystem = m_psystem;
+
+         auto pdatetime = psystem->datetime();
 
          return pdatetime->get_month_str(pcontext, iMonth);
 

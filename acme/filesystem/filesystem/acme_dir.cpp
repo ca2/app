@@ -366,8 +366,8 @@ string acme_dir::system_short_name()
 #endif
 
 
-#if defined(_UWP) || defined(__APPLE__) || defined(LINUX) || defined(ANDROID)
-
+//#if defined(_UWP) || defined(__APPLE__) || defined(LINUX) || defined(ANDROID)
+//
 
 ::file::path acme_dir::bookmark()
 {
@@ -376,11 +376,11 @@ string acme_dir::system_short_name()
 
 }
 
+//
+//#endif
 
-#endif
 
-
-#ifdef _UWP
+//#ifdef _UWP
 
 
 ::file::path acme_dir::home()
@@ -391,7 +391,7 @@ string acme_dir::system_short_name()
 }
 
 
-#endif
+//#endif
 
 
 

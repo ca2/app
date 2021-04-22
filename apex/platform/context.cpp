@@ -1231,7 +1231,7 @@ namespace apex
 
       ::thread::finalize();
 
-      ::apex::context::finalize();
+      ::acme::context::finalize();
 
       return success;
 

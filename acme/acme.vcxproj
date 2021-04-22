@@ -1296,7 +1296,6 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClCompile Include="node\windows\file_find.cpp" />
     <ClCompile Include="node\windows\pipe.cpp" />
     <ClCompile Include="node\windows\registry.cpp" />
-    <ClCompile Include="node\windows\serial_impl.cpp" />
     <ClCompile Include="node\windows\timer.cpp" />
     <ClCompile Include="node\windows\trace.cpp" />
     <ClCompile Include="node\windows\uac_tools.cpp" />
@@ -1603,7 +1602,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClCompile Include="platform\profiler.cpp" />
     <ClCompile Include="platform\regex.cpp" />
     <ClCompile Include="platform\routine_array.cpp" />
-    <ClCompile Include="platform\serial_impl.cpp" />
+    <ClCompile Include="platform\serial.cpp" />
     <ClCompile Include="platform\simple_trace.cpp" />
     <ClCompile Include="platform\static_setup.cpp" />
     <ClCompile Include="platform\static_start.cpp" />
@@ -1822,7 +1821,6 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClInclude Include="node\windows\path.h" />
     <ClInclude Include="node\windows\pipe.h" />
     <ClInclude Include="node\windows\registry.h" />
-    <ClInclude Include="node\windows\serial_impl.h" />
     <ClInclude Include="node\windows\aaa_stdio_file.h" />
     <ClInclude Include="node\windows\shared_memory.h" />
     <ClInclude Include="node\windows\standard_exception.h" />
@@ -2023,6 +2021,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClInclude Include="platform\sprintf.h" />
     <ClInclude Include="platform\static_setup.h" />
     <ClInclude Include="platform\static_start.h" />
+    <ClInclude Include="platform\static_start_internal.h" />
     <ClInclude Include="platform\status.h" />
     <ClInclude Include="platform\string_exchange.h" />
     <ClInclude Include="platform\str_context.h" />

@@ -49,9 +49,6 @@ namespace serial
 {
 
 
-   class serial_impl;
-
-
    /*!
     * Enumeration defines the possible ebytesizes for the serial port.
     */
@@ -430,8 +427,10 @@ namespace serial
        *
        * \__throw( invalid_argument
        */
-      virtual void
-      setPort (const string &port);
+      virtual void setPort (const string &port);
+
+
+      virtual void _setPort(const string& port);
 
       /*! Gets the serial port identifier.
        *
@@ -478,19 +477,17 @@ namespace serial
        *
        * \see serial::timeout
        */
-      virtual void
-      setTimeout (timeout &timeout);
-
+      virtual void set_timeout (const timeout &timeout);
       /*! Sets the timeout for reads and writes. */
       virtual void
-      setTimeout (u32 inter_byte_timeout, u32 read_timeout_constant,
+         set_timeout(u32 inter_byte_timeout, u32 read_timeout_constant,
                   u32 read_timeout_multiplier, u32 write_timeout_constant,
                   u32 write_timeout_multiplier)
       {
          timeout timeout(inter_byte_timeout, read_timeout_constant,
                          read_timeout_multiplier, write_timeout_constant,
                          write_timeout_multiplier);
-         return setTimeout(timeout);
+         return set_timeout(timeout);
       }
 
       /*! Gets the timeout for reads in seconds.
@@ -500,8 +497,7 @@ namespace serial
        *
        * \see serial::setTimeout
        */
-      virtual timeout
-      getTimeout () const;
+      virtual timeout getTimeout () const;
 
       /*! Sets the baudrate for the serial port.
        *
@@ -665,24 +661,13 @@ namespace serial
       getRI ();
 
       /*! Returns the current status of the CD line. */
-      virtual bool
-      getCD ();
+      virtual bool getCD ();
 
-   private:
-      // Disable copy constructors
-      serial(const serial&);
-      serial& operator=(const serial&);
-
-      // Pimpl idiom, d_pointer
-      //__pointer(serial_impl) m_pimpl;
-
-   protected:
       // Read common function
-      virtual size_t
-      read_ (u8 *buffer, size_t size);
+      virtual size_t _read(u8 *buffer, size_t size);
+      
       // Write common function
-      virtual size_t
-      write_ (const u8 *data, size_t length);
+      virtual size_t _write(const u8 *data, size_t length);
 
 
       virtual void _flush();
@@ -821,6 +806,61 @@ namespace serial
     * \return vector of serial::port_info.
     */
    CLASS_DECL_ACME array<port_info>  list_ports();
+
+
+
+   class scoped_read_lock
+   {
+   public:
+
+
+      serial * m_pserial;
+
+
+      scoped_read_lock(serial * pserial) : 
+         m_pserial(pserial)
+      {
+
+         m_pserial->readLock();
+
+      }
+
+
+      ~scoped_read_lock()
+      {
+
+         m_pserial->readUnlock();
+
+      }
+
+   };
+
+
+   class scoped_write_lock
+   {
+   public:
+
+      serial* m_pserial;
+
+
+      scoped_write_lock(serial * pserial) :
+         m_pserial(pserial)
+      {
+         
+         m_pserial->writeLock();
+
+      }
+
+
+      ~scoped_write_lock()
+      {
+
+         m_pserial->writeUnlock();
+
+      }
+
+   };
+
 
 } // namespace serial
 

@@ -11,7 +11,7 @@ namespace user
 	text_composition_client::text_composition_client()
 	{
 
-	   m_bTextCompositionActive = false;
+	   //m_bTextCompositionActive = false;
 
 	}
 
@@ -22,10 +22,18 @@ namespace user
 	}
 
 
+	void text_composition_client::initialize_text_composition_client(::channel * pchannel, ::user::interaction * pusertext)
+	{
+
+		//m_pusertext = pusertext;
+
+	}
+
+
 	void text_composition_client::on_text_composition_done()
 	{
 
-		m_ptextcompositionclient->on_text_composition_done();
+		//m_ptextcompositionclient->on_text_composition_done();
 
 	}
 
@@ -33,7 +41,7 @@ namespace user
 	void text_composition_client::on_text_composition(string strMessage)
 	{
 
-		m_ptextcompositionclient->on_text_composition(strMessage);
+		//m_ptextcompositionclient->on_text_composition(strMessage);
 
 	}
 
@@ -41,7 +49,7 @@ namespace user
 	void text_composition_client::insert_text(string str, bool bForceNewStep, const ::action_context & context)
 	{
 
-		m_ptextcompositionclient->insert_text(str, bForceNewStep, context);
+		//m_ptextcompositionclient->insert_text(str, bForceNewStep, context);
 
 	}
 
@@ -49,11 +57,9 @@ namespace user
 	bool text_composition_client::is_text_composition_active() const
 	{
 
-	   return m_bTextCompositionActive;
-
-	   //return m_ptextcompositionclient;
-
 		//return m_ptextcompositionclient->is_text_composition_active();
+
+		return false;
 
 	}
 
@@ -63,7 +69,9 @@ namespace user
 
 	   //return m_strImeComposition;
 
-		return m_ptextcompositionclient->get_ime_composition();
+		//return m_ptextcompositionclient->get_ime_composition();
+
+		return "";
 
 	}
 
@@ -71,7 +79,7 @@ namespace user
 	void text_composition_client::clear_ime_composition()
 	{
 
-		return m_ptextcompositionclient->clear_ime_composition();
+		//return m_ptextcompositionclient->clear_ime_composition();
 
 	}
 
@@ -92,7 +100,7 @@ namespace user
 	}
 
 
-	::e_status text_composition_composite::initialize_text_composition_client()
+	::e_status text_composition_composite::initialize_text_composition_client(::channel* pchannel, ::user::interaction * puserinteraction)
 	{
 
 		auto estatus = __construct(m_ptextcompositionclient);
@@ -104,11 +112,61 @@ namespace user
 
 		}
 
-		m_ptextcompositionclient->m_ptextcompositionclient = this;
+		//m_ptextcompositionclient->m_ptextcompositionclient = this;
 
-		m_ptextcompositionclient->install_message_routing(this);
+		m_ptextcompositionclient->initialize_text_composition_client(pchannel, puserinteraction);
 
 		return estatus;
+
+	}
+
+	void text_composition_composite::on_text_composition_done()
+	{
+
+		m_ptextcompositionclient->on_text_composition_done();
+
+	}
+
+
+	void text_composition_composite::on_text_composition(string strMessage)
+	{
+
+		m_ptextcompositionclient->on_text_composition(strMessage);
+
+	}
+
+
+	void text_composition_composite::insert_text(string str, bool bForceNewStep, const ::action_context& context)
+	{
+
+		m_ptextcompositionclient->insert_text(str, bForceNewStep, context);
+
+	}
+
+	
+	bool text_composition_composite::is_text_composition_active() const
+	{
+
+		bool bTextCompositionActive = m_ptextcompositionclient->is_text_composition_active();
+
+		return bTextCompositionActive;
+	}
+
+
+	string text_composition_composite::get_ime_composition() const
+	{
+
+		string strImeComposition = m_ptextcompositionclient->get_ime_composition();
+
+		return strImeComposition;
+
+	}
+
+	
+	void text_composition_composite::clear_ime_composition()
+	{
+
+		m_ptextcompositionclient->clear_ime_composition();
 
 	}
 

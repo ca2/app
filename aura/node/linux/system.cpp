@@ -97,21 +97,21 @@ namespace aura
 {
 
 
-   ::e_status system::system_main()
-   {
+   // ::e_status system::system_main()
+   // {
 
-      auto estatus = ::apex::system::system_main();
+   //    auto estatus = ::apex::system::system_main();
 
-      if(!estatus)
-      {
+   //    if(!estatus)
+   //    {
 
-         return estatus;
+   //       return estatus;
 
-      }
+   //    }
 
-      return estatus;
+   //    return estatus;
 
-   }
+   // }
 
    ::e_status system::on_start_system()
    {

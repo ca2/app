@@ -174,10 +174,6 @@ namespace user
 
       m_iInputConnectionBatch = 0;
 
-      //is_text_composition_active() = false;
-
-      //m_bImeCancelling = false;
-
       m_bEnterKeyOnPaste = false;
 
       //m_pcontrolstyle = new plain_edit_internal();
@@ -855,7 +851,7 @@ namespace user
 
       __pointer(::message::create) pcreate(pmessage);
 
-      auto estatus = initialize_text_composition_client();
+      auto estatus = initialize_text_composition_client(this, this);
 
       if (!estatus)
       {
@@ -5249,6 +5245,10 @@ finished_update:
 //#endif
 
       __release(m_pitemComposing);
+
+      set_need_redraw();
+
+      post_redraw();
 
    }
 

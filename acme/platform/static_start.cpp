@@ -1176,6 +1176,26 @@ namespace acme
 
    }
 
+#ifdef WINDOWS
+
+   _locale_t get_c_locale()
+   {
+
+      return g_localeC;
+
+   }
+
+#else
+
+   locale_t get_c_locale()
+   {
+
+      return g_localeC;
+
+   }
+
+#endif
+
 
 } // namespace acme
 

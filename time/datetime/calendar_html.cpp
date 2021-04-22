@@ -113,8 +113,14 @@ namespace datetime
             pfile->raw_print("<tr>");
             if (pfile->m_strOptions.find("<left-week-of-the-year>") >= 0)
             {
-               time_t w;       if (pfile->m_strOptions.find("<monday-first>") >= 0)
+               time_t w;   
+               
+               if (pfile->m_strOptions.find("<monday-first>") >= 0)
                {
+                  auto psystem = m_psystem;
+
+                  auto pdatetime = psystem->datetime();
+
                   w = atoi(pdatetime->strftime("%V", (time_t)::datetime::time(iYear, iMonth, iDay, 0, 0, 0).get_time()));
                }
                else

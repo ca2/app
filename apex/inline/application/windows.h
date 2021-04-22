@@ -35,7 +35,7 @@ i32 WINAPI _tWinMain(HINSTANCE hinstance, HINSTANCE hPrevInstance, TCHAR * pCmdL
 
    psystem->set_current_handles();
 
-   auto estatus = psystem->start();
+   auto estatus = psystem->system_main();
 
    if (!estatus)
    {

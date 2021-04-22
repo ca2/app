@@ -31,7 +31,9 @@ namespace datetime
       if(m_ptoken->m_etoken == e_token_number || m_ptoken->m_etoken == e_token_identifier)
       {
 
-         __pointer(::apex::system) psystem = get_system();
+         auto psystem = m_psystem;
+
+         auto pdatetime = psystem->datetime();
 
          return ::datetime::time(pdatetime->strtotime(pcontext, m_ptoken->m_str, iPath, iPathCount));
 
@@ -128,7 +130,9 @@ namespace datetime
       if(m_ptoken->m_etoken == e_token_number)
       {
 
-         __pointer(::apex::system) psystem = get_system();
+         auto psystem = m_psystem;
+
+         auto pdatetime = psystem->datetime();
 
          return pdatetime->international().get_gmt_date_time(::datetime::time((pdatetime->strtotime(pcontext,m_ptoken->m_str,iPath,iPathCount))));
 
@@ -136,7 +140,9 @@ namespace datetime
       else if(m_ptoken->m_etoken == e_token_identifier)
       {
 
-         __pointer(::apex::system) psystem = get_system();
+         auto psystem = m_psystem;
+
+         auto pdatetime = psystem->datetime();
 
          return pdatetime->international().get_gmt_date_time(::datetime::time((pdatetime->strtotime(pcontext,m_ptoken->m_str,iPath,iPathCount))));
 

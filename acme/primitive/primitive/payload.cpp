@@ -4,13 +4,13 @@
 
 
 #if defined(WINDOWS)
-//extern _locale_t ::acme::g_localeC;
+//extern _locale_t ::acme::get_c_locale();
 #else
 #if defined(__APPLE__)
 #include <xlocale.h>
 #define _atof_l atof_l
 #endif
-//extern locale_t ::acme::g_localeC;
+//extern locale_t ::acme::get_c_locale();
 #endif
 
 payload::payload(const char * psz)
@@ -2535,7 +2535,7 @@ float payload::get_float(float fDefault) const
    #if defined(LINUX) || defined(ANDROID)
       return (float) atof(m_str);
    #else
-      return (float) _atof_l(m_str, ::acme::g_localeC);
+      return (float) _atof_l(m_str, ::acme::get_c_locale());
    #endif
    case e_type_pvar:
       return m_pvar->get_float(fDefault);
@@ -2617,7 +2617,7 @@ double payload::get_double(double dDefault) const
 
 #else
 
-      d = _atof_l(m_str, ::acme::g_localeC);
+      d = _atof_l(m_str, ::acme::get_c_locale());
 
 #endif
 
@@ -3401,7 +3401,7 @@ bool payload::array_contains_ci(const char * psz, index find, index last) const
 //#if defined(LINUX) || defined(ANDROID)
 //      return atof(m_str) / (double) ul;
 //#else
-//      return _atof_l(m_str, ::acme::g_localeC) / (double) ul;
+//      return _atof_l(m_str, ::acme::get_c_locale()) / (double) ul;
 //#endif
 //   case ::e_type_pvar:
 //      return m_pvar->operator / (ul);
@@ -3458,7 +3458,7 @@ bool payload::array_contains_ci(const char * psz, index find, index last) const
 //#if defined(LINUX) || defined(ANDROID)
 //      return (double) ul / atof(payload.m_str);
 //#else
-//      return (double) ul / _atof_l(payload.m_str, ::acme::g_localeC);
+//      return (double) ul / _atof_l(payload.m_str, ::acme::get_c_locale());
 //#endif
 //   case ::e_type_pvar:
 //      return operator / (ul, *payload.m_pvar);
@@ -3519,7 +3519,7 @@ bool payload::array_contains_ci(const char * psz, index find, index last) const
 //
 //      return atof(m_str) * (double) ul;
 //#else
-//      return _atof_l(m_str, ::acme::g_localeC) * (double) ul;
+//      return _atof_l(m_str, ::acme::get_c_locale()) * (double) ul;
 //#endif
 //   case ::e_type_pvar:
 //      return m_pvar->operator * (ul);
@@ -3576,7 +3576,7 @@ bool payload::array_contains_ci(const char * psz, index find, index last) const
 //#if defined(LINUX) || defined(ANDROID)
 //      return (double) ul * atof(payload.m_str);
 //#else
-//      return (double) ul * _atof_l(payload.m_str, ::acme::g_localeC);
+//      return (double) ul * _atof_l(payload.m_str, ::acme::get_c_locale());
 //#endif
 //   case ::e_type_pvar:
 //      return operator * (ul, *payload.m_pvar);
@@ -3903,8 +3903,8 @@ bool payload::is_real() const
                 && fabs(atof(str)) <= pow(2.0, 31.0)))
 #else
       if(is_scalar()
-            && (fmod(_atof_l(str, ::acme::g_localeC), 1.0) == 0.0
-                && fabs(_atof_l(str, ::acme::g_localeC)) <= pow(2.0, 31.0)))
+            && (fmod(_atof_l(str, ::acme::get_c_locale()), 1.0) == 0.0
+                && fabs(_atof_l(str, ::acme::get_c_locale())) <= pow(2.0, 31.0)))
 #endif
       {
          str.trim();
@@ -4031,8 +4031,8 @@ bool payload::is_double() const
                 && fabs(atof(str)) <= pow(2.0, 31.0)))
 #else
       if(is_scalar()
-            && (fmod(_atof_l(str, ::acme::g_localeC), 1.0) == 0.0
-                && fabs(_atof_l(str, ::acme::g_localeC)) <= pow(2.0, 31.0)))
+            && (fmod(_atof_l(str, ::acme::get_c_locale()), 1.0) == 0.0
+                && fabs(_atof_l(str, ::acme::get_c_locale())) <= pow(2.0, 31.0)))
 #endif
       {
          str.trim();
@@ -4149,8 +4149,8 @@ bool payload::is_integer() const
                 && fabs(atof(str)) <= pow(2.0, 31.0)))
 #else
       if(is_scalar()
-            && (fmod(_atof_l(str, ::acme::g_localeC), 1.0) == 0.0
-                && fabs(_atof_l(str, ::acme::g_localeC)) <= pow(2.0, 31.0)))
+            && (fmod(_atof_l(str, ::acme::get_c_locale()), 1.0) == 0.0
+                && fabs(_atof_l(str, ::acme::get_c_locale())) <= pow(2.0, 31.0)))
 #endif
       {
          str.trim();
@@ -4195,8 +4195,8 @@ bool payload::is_natural() const
                 && fabs(atof(str)) <= pow(2.0, 31.0)))
 #else
       if(is_scalar()
-            && (fmod(_atof_l(str, ::acme::g_localeC), 1.0) == 0.0
-                && fabs(_atof_l(str, ::acme::g_localeC)) <= pow(2.0, 31.0)))
+            && (fmod(_atof_l(str, ::acme::get_c_locale()), 1.0) == 0.0
+                && fabs(_atof_l(str, ::acme::get_c_locale())) <= pow(2.0, 31.0)))
 #endif
       {
          str.trim();
@@ -4682,7 +4682,7 @@ end:
 
 #else
 
-      double d = _atof_l(strNumber, ::acme::g_localeC);
+      double d = _atof_l(strNumber, ::acme::get_c_locale());
 
 #endif
 

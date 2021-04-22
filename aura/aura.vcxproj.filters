@@ -1201,9 +1201,6 @@
     <ClCompile Include="graphics\draw2d\region.cpp">
       <Filter>Source Files\graphics\draw2d</Filter>
     </ClCompile>
-    <ClCompile Include="graphics\draw2d\thread_tool.cpp">
-      <Filter>Source Files\graphics\draw2d</Filter>
-    </ClCompile>
     <ClCompile Include="graphics\draw2d\image_extension.cpp">
       <Filter>Source Files\graphics\draw2d</Filter>
     </ClCompile>
@@ -1641,6 +1638,9 @@
     </ClCompile>
     <ClCompile Include="platform\context.cpp">
       <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\draw2d\task_tool.cpp">
+      <Filter>Source Files\graphics\draw2d</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

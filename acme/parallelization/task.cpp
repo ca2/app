@@ -15,7 +15,7 @@
 task::task()
 {
 
-   m_pthread = nullptr;
+   //m_pthread = nullptr;
    m_bMessageThread = false;
    m_bCoInitialize = false;
    m_bIsRunning = false;

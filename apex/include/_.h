@@ -579,21 +579,21 @@ namespace xml
 } // namespace xml
 
 
-namespace str
-{
-
-
-   namespace international
-   {
-
-
-      class locale_schema;
-
-
-   } // namespace international
-
-
-} // namespace str
+//namespace str
+//{
+//
+//
+//   namespace international
+//   {
+//
+//
+//      class locale_schema;
+//
+//
+//   } // namespace international
+//
+//
+//} // namespace str
 
 
 

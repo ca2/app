@@ -98,6 +98,15 @@ namespace acme
 
    }
 
+
+   ::e_status node::on_start_system()
+   {
+
+      return ::success;
+
+   }
+
+
    //::file::path node::roaming()
    //{
 

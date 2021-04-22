@@ -11432,7 +11432,7 @@ restart:
          if (bStart)
          {
 
-            defer_fork("transparent_mouse_event_thread",
+            defer_branch("transparent_mouse_event_thread",
                __routine([this]()
                   {
 

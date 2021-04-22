@@ -4,7 +4,7 @@
 #if defined()
 
 
-i32 spaboot_start(const char * pszVersion, const char * pszId);
+i32 installer_start(const char * pszVersion, const char * pszId);
 
 
 namespace install

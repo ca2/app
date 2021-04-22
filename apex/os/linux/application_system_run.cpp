@@ -130,21 +130,21 @@ namespace apex
 {
 
 
-   ::e_status system::system_main()
-   {
+   // ::e_status system::system_main()
+   // {
 
-      auto estatus = ::acme::system::system_main();
+   //    auto estatus = ::acme::system::system_main();
 
-      if(!estatus)
-      {
+   //    if(!estatus)
+   //    {
 
-         return estatus;
+   //       return estatus;
 
-      }
+   //    }
 
-      return estatus;
+   //    return estatus;
 
-   }
+   // }
 
 
 } // namespace apex

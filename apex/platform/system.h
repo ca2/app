@@ -346,6 +346,8 @@ namespace apex
 
       virtual ::e_status init2();
 
+      virtual ::e_status post_initial_request() override;
+
       virtual ::e_status initialize_context() override;
 
       //virtual ::e_status defer_xml();

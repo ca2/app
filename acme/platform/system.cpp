@@ -570,14 +570,14 @@ namespace acme
 
       }
 
-      estatus = process_init();
+      //estatus = process_init();
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
       return ::success;
 
@@ -950,6 +950,22 @@ namespace acme
          pobject->m_psystem->finish();
 
       }
+
+   }
+
+
+   ::e_status system::on_start_system()
+   {
+
+      return ::success;
+
+   }
+
+
+   ::e_status system::post_initial_request()
+   {
+
+      return ::success;
 
    }
 

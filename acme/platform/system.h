@@ -185,6 +185,9 @@ namespace acme
       virtual ::e_status on_start_system();
 
 
+      virtual ::e_status post_initial_request();
+
+
       virtual ::e_status system_main();
       //virtual ::e_status run_system();
       virtual ::e_status main();

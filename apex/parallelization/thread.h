@@ -443,7 +443,8 @@ public:
    ::u32 nStackSize = 0,
    u32 uiCreateFlags = 0 ARG_SEC_ATTRS_DEF);
 
-
+   using task::branch;
+   using object::branch;
 
    virtual ::e_status branch(
    ::e_priority epriority = ::priority_normal,

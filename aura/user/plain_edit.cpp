@@ -862,7 +862,15 @@ namespace user
 
       }
 
-      set_cursor(e_cursor_text_select);
+      auto psession = get_session();
+
+      auto puser = psession->user();
+
+      auto pwindowing = puser->windowing();
+
+      auto pcursor = pwindowing->get_cursor(e_cursor_text_select);
+
+      set_mouse_cursor(pcursor);
 
       pcreate->previous();
 
@@ -1877,7 +1885,13 @@ namespace user
 
          __pointer(::message::mouse) pmouse(pmessage);
 
-         pmouse->m_ecursor = e_cursor_text_select;
+         auto psession = get_session();
+
+         auto puser = psession->user();
+
+         auto pwindowing = puser->windowing();
+
+         pmouse->m_pcursor = pwindowing->get_cursor(e_cursor_text_select);
 
          if (m_bLMouseDown)
          {

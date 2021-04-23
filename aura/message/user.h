@@ -247,9 +247,9 @@ namespace message
    public:
 
 
-      ::user::primitive * m_pWnd;
-      ::u32                    m_nHitTest;
-      ::u32                    m_message;
+      ::user::primitive *        m_pWnd;
+      ::u32                      m_nHitTest;
+      ::u32                      m_message;
 
 
       set_cursor();

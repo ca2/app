@@ -55,10 +55,10 @@ namespace multimedia
    }
 
 
-   bool decoder::multimedia_close()
+   ::e_status decoder::multimedia_close()
    {
 
-      return false;
+      return ::success;
 
    }
 
@@ -71,15 +71,12 @@ namespace multimedia
    }
 
 
-   bool decoder::impl_multimedia_close()
+   ::e_status decoder::impl_multimedia_close()
    {
-
 
       m_pathOrigin.Empty();
 
-
-
-      return true;
+      return ::success;
 
    }
 

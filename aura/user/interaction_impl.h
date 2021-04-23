@@ -439,9 +439,9 @@ namespace user
 
       //virtual ::point_i32 get_cursor_position() const override;
 
-      virtual ::e_status set_cursor(::windowing::cursor * pcursor);
+      virtual ::e_status set_mouse_cursor(::windowing::cursor * pcursor) override;
 
-      virtual ::e_status set_cursor(enum_cursor ecursor) override;
+      //virtual ::e_status set_cursor(enum_cursor ecursor) override;
 
       virtual bool DrawCaption(::draw2d::graphics_pointer & pgraphics,const rectangle_i32 & prc,::u32 uFlags);
 

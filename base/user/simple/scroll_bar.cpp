@@ -110,7 +110,15 @@ void simple_scroll_bar::on_message_mouse_move(::message::message * pmessage)
 
       //pmouse->m_bRet = true;
 
-      pmouse->m_ecursor = e_cursor_arrow;
+      auto psession = get_session()->m_paurasession;
+
+      auto puser = psession->user();
+
+      auto pwindowing = puser->windowing();
+
+      auto pcursor = pwindowing->get_cursor(e_cursor_arrow);
+
+      pmouse->m_pcursor = pcursor;
 
    }
    else
@@ -121,7 +129,15 @@ void simple_scroll_bar::on_message_mouse_move(::message::message * pmessage)
       if(eelement.is_set())
       {
 
-         pmouse->m_ecursor = e_cursor_arrow;
+         auto psession = get_session();
+
+         auto puser = psession->user();
+
+         auto pwindowing = puser->windowing();
+
+         auto pcursor = pwindowing->get_cursor(e_cursor_arrow);
+
+         pmouse->m_pcursor = pcursor;
 
       }
 

@@ -951,6 +951,16 @@ namespace core
 class message_queue;
 
 
+namespace windowing
+{
+
+
+   class cursor;
+
+
+} // namespace windowing
+
+
 #include "apex/user/check.h"
 #include "apex/user/text.h"
 #include "apex/user/primitive.h"

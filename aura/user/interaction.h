@@ -309,7 +309,7 @@ namespace user
       string                                       m_strName;
       u64                                          m_uiUserInteractionFlags;
       bool                                         m_bCursorInside;
-      enum_cursor                                  m_ecursor;
+      __pointer(::windowing::cursor)               m_pcursor;
       bool                                         m_bRectOk;
       bool                                         m_bParentScroll;
       string                                       m_strWindowText;
@@ -743,13 +743,13 @@ namespace user
 
 
       
-      virtual enum_cursor get_cursor() override;
+      virtual ::windowing::cursor * get_mouse_cursor() override;
 
 
-      virtual ::e_status set_cursor(enum_cursor ecursor) override;
+      //virtual ::e_status set_cursor(enum_cursor ecursor) override;
 
 
-      virtual ::e_status set_cursor(::windowing::cursor * pcursor);
+      virtual ::e_status set_mouse_cursor(::windowing::cursor * pcursor) override;
 
 
       //virtual ::point_i32 get_cursor_position() const override;
@@ -1265,6 +1265,7 @@ namespace user
       DECLARE_MESSAGE_HANDLER(_001OnShowWindow);
       DECLARE_MESSAGE_HANDLER(on_message_mouse_move);
       DECLARE_MESSAGE_HANDLER(_001OnMouseEnter);
+      DECLARE_MESSAGE_HANDLER(_001OnSetCursor);
       DECLARE_MESSAGE_HANDLER(on_message_mouse_leave);
       DECLARE_MESSAGE_HANDLER(_001OnKeyDown);
       DECLARE_MESSAGE_HANDLER(_001OnKeyUp);

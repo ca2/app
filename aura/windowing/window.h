@@ -14,22 +14,20 @@ namespace windowing
    public:
 
 
-      //::PLATFORM_NAMESPACE::window *               m_pplatformwindow;
-
-      void *                                       m_pWindow;
-      void *                                       m_pWindow2;
-
-      bool                                         m_bMessageOnlyWindow : 1;
+      bool                                      m_bMessageOnlyWindow : 1;
 
 
-      __pointer(::windowing::display)         m_pdisplay;
-      __pointer(::user::interaction_impl)     m_pimpl;
-      string                                       m_strDebug;
-      __pointer(::message_queue)              m_pmessagequeue;
-      millis                                       m_millisLastMouseMove;
-      __pointer(::windowing::window)          m_pwindowParent;
-      ::rectangle_i32                              m_rectangle;
-      __pointer(::windowing::windowing)       m_pwindowing;
+      void *                                    m_pWindow;
+      void *                                    m_pWindow2;
+
+      __pointer(::windowing::display)           m_pdisplay;
+      __pointer(::user::interaction_impl)       m_pimpl;
+      string                                    m_strDebug;
+      __pointer(::message_queue)                m_pmessagequeue;
+      millis                                    m_millisLastMouseMove;
+      __pointer(::windowing::window)            m_pwindowParent;
+      ::rectangle_i32                           m_rectangle;
+      __pointer(::windowing::windowing)         m_pwindowing;
 
 
       window();
@@ -217,7 +215,7 @@ namespace windowing
       virtual __pointer(::windowing::icon) get_icon() const;
 
 
-      virtual ::e_status set_cursor(::windowing::cursor * pcursor);
+      virtual ::e_status set_mouse_cursor(::windowing::cursor * pcursor);
 
 
       virtual ::e_status set_tool_window(bool bSet);

@@ -555,17 +555,29 @@ namespace user
          }
       }
 
+      auto puser = psession->user();
+
+      auto pwindowing = puser->windowing();
+
+      ::windowing::cursor* pcursor = nullptr;
 
       if(m_bHover && m_eelementHover == ElementDivider)
       {
-         pmouse->m_ecursor = e_cursor_size_horizontal;
+         
+         pcursor = pwindowing->get_cursor(e_cursor_size_horizontal);
+
       }
       else
       {
-         pmouse->m_ecursor = e_cursor_arrow;
+
+         pcursor = pwindowing->get_cursor(e_cursor_arrow);
+
       }
 
+      pmouse->m_pcursor = pcursor;
+
       pmouse->m_bRet = false;
+
    }
 
 

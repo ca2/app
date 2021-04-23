@@ -1722,10 +1722,22 @@ void xfplayer_view_line::OnMouseMove(::message::message * pmessage)
    strsize iChar;
    if (CalcChar(pmouse->m_point, iChar))
    {
+
       if (CharHasLink(iChar))
       {
-         pmouse->m_ecursor = e_cursor_hand;
+
+         auto psession = get_session()->m_paurasession;
+
+         auto puser = psession->user();
+
+         auto pwindowing = puser->windowing();
+
+         auto pcursor = pwindowing->get_cursor(e_cursor_hand);
+
+         pmouse->m_pcursor = pcursor;
+
       }
+
    }
    /*
    lyric_view_line_selection & selection = GetSelection();

@@ -139,6 +139,20 @@ bool task::is_running() const
 }
 
 
+::e_status task::stop_task()
+{
+
+   auto estatus = finish();
+
+   // but it should wait for thread to finish...
+
+   __throw(todo);
+
+   return estatus;
+
+}
+
+
 ::property_object * task::thread_parent()
 {
 

@@ -18,6 +18,7 @@ public:
    bool                                            m_bIsPredicate : 1; // Is helper thread (as opposite to a "main" thread)
    bool                                            m_bCoInitialize : 1;
    bool                                            m_bMessageThread : 1;
+   bool                                            m_bTaskToolsForIncreasedFps : 1;
 
 
    ::u64                                           m_uThreadAffinityMask;
@@ -133,6 +134,8 @@ public:
 
    virtual ::e_status main();
 
+
+   virtual ::e_status stop_task();
 
    //virtual bool set_thread_name(const char* pszThreadName);
 

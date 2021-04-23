@@ -89,7 +89,7 @@ namespace user
          
 #ifdef WINDOWS_DESKTOP
 
-         text_composition_composite::install_message_routing(pchannel);
+         text_composition_composite::initialize_text_composition_client(pchannel, this);
          
 #endif
 

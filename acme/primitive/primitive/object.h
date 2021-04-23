@@ -544,12 +544,13 @@ public:
       ::u32 nStackSize = 0,
       ::u32 dwCreateFlags = 0 ARG_SEC_ATTRS_DEF);
 
+
    template < typename PRED >
    inline ::task_pointer predicate_run(bool bSync, PRED pred);
 
    //using property_object::branch;
 
-   ::task_pointer branch(
+   __transport(::task) branch(
       ::e_priority epriority = ::priority_normal,
       ::u32 nStackSize = 0,
       u32 dwCreateFlags = 0 ARG_SEC_ATTRS_DEF);

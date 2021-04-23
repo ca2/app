@@ -160,9 +160,11 @@ namespace user
 
       virtual double _001GetTopLeftWeightedOccludedOpaqueRate();
 
-      virtual enum_cursor get_cursor();
+      virtual ::windowing::cursor * get_mouse_cursor();
 
-      virtual ::e_status set_cursor(enum_cursor ecursor);
+      //virtual ::e_status set_cursor(enum_cursor ecursor);
+
+      virtual ::e_status set_mouse_cursor(::windowing::cursor * pcursor);
 
       //virtual ::point_i32 get_cursor_position() const;
 

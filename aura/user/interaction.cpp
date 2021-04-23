@@ -152,7 +152,7 @@ namespace user
 
       //m_puiOwner = nullptr;
 
-      m_ecursor = e_cursor_default;
+      //m_ecursor = e_cursor_default;
 
       m_bModal = false;
 
@@ -1498,6 +1498,7 @@ namespace user
          MESSAGE_LINK(e_message_show_window, pchannel, this, &interaction::_001OnShowWindow);
          MESSAGE_LINK(e_message_display_change, pchannel, this, &interaction::_001OnDisplayChange);
          MESSAGE_LINK(e_message_left_button_down, pchannel, this, &::user::interaction::on_message_left_button_down);
+         MESSAGE_LINK(e_message_set_cursor, pchannel, this, &::user::interaction::_001OnSetCursor);
          MESSAGE_LINK(e_message_key_down, pchannel, this, &::user::interaction::_001OnKeyDown);
          MESSAGE_LINK(e_message_enable, pchannel, this, &::user::interaction::_001OnEnable);
 
@@ -10493,15 +10494,15 @@ namespace user
    }
 
 
-   enum_cursor interaction::get_cursor()
+   ::windowing::cursor * interaction::get_mouse_cursor()
    {
 
-      return m_ecursor;
+      return m_pcursor;
 
    }
 
 
-   ::e_status interaction::set_cursor(enum_cursor ecursor)
+   ::e_status interaction::set_mouse_cursor(::windowing::cursor * pcursor)
    {
 
       if (!m_pimpl)
@@ -10511,40 +10512,42 @@ namespace user
 
       }
 
-      if (!m_pimpl->set_cursor(ecursor))
+      auto estatus = m_pimpl->set_mouse_cursor(pcursor);
+
+      if(!estatus)
       {
 
-         return false;
+         return estatus;
 
       }
 
-      m_ecursor = ecursor;
+      m_pcursor = pcursor;
 
-      return true;
+      return estatus;
 
    }
 
 
-   ::e_status interaction::set_cursor(::windowing::cursor * pcursor)
-   {
+   //::e_status interaction::set_mouse_cursor(::windowing::cursor * pcursor)
+   //{
 
-      if (!m_pimpl2)
-      {
+   //   if (!m_pimpl2)
+   //   {
 
-         return false;
+   //      return false;
 
-      }
+   //   }
 
-      if (!m_pimpl2->set_cursor(pcursor))
-      {
+   //   if (!m_pimpl2->set_mouse_cursor(pcursor))
+   //   {
 
-         return false;
+   //      return false;
 
-      }
+   //   }
 
-      return true;
+   //   return true;
 
-   }
+   //}
 
 
    //::point_i32 interaction::get_cursor_position() const
@@ -10577,6 +10580,30 @@ namespace user
       pmessage->m_bRet = false;
 
    }
+
+
+   void interaction::_001OnSetCursor(::message::message* pmessage)
+   {
+
+      auto pcursor = get_mouse_cursor();
+
+      if (pcursor)
+      {
+
+         __pointer(::message::set_cursor) psetcursor = pmessage;
+
+
+         if (psetcursor)
+         {
+
+            psetcursor->m_pcursor = pcursor;
+
+         }
+
+      }
+
+   }
+
 
 
    bool interaction::can_merge(::user::interaction * pinteraction)
@@ -15064,11 +15091,9 @@ restart:
 
       }
 
-
-
       synchronous_lock synchronouslock(mutex());
 
-      pmouse->m_ecursor = get_cursor();
+      pmouse->m_pcursor = get_mouse_cursor();
 
       if (m_bSimpleUIDefaultMouseHandling)
       {
@@ -15082,7 +15107,15 @@ restart:
       if (m_pdragmove && m_pdragmove->m_bLButtonDown)
       {
 
-         pmouse->m_ecursor = e_cursor_move;
+         auto psession = get_session();
+
+         auto puser = psession->user();
+
+         auto pwindowing = puser->windowing();
+
+         auto pcursor = pwindowing->get_cursor(e_cursor_move);
+
+         pmouse->m_pcursor = pcursor;
 
          if (!m_pdragmove->m_bDrag)
          {

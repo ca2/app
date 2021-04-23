@@ -2681,22 +2681,18 @@ namespace user
    }
 
 
-   enum_cursor primitive::get_cursor()
+   ::windowing::cursor * primitive::get_mouse_cursor()
    {
 
       ::exception::throw_interface_only();
 
-      return e_cursor_none;
+      return nullptr;
 
    }
 
 
-   ::e_status primitive::set_cursor(enum_cursor ecursor)
+   ::e_status primitive::set_mouse_cursor(::windowing::cursor * pcursor)
    {
-
-      ///::exception::throw_interface_only();
-
-      ///return false;
 
       return success_none;
 

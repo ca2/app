@@ -191,7 +191,15 @@ namespace html
          if (has_link())
          {
 
-            pmouse->m_ecursor = e_cursor_hand;
+            auto psession = get_session()->m_paurasession;
+
+            auto puser = psession->user();
+
+            auto pwindowing = puser->windowing();
+
+            auto pcursor = pwindowing->get_cursor(e_cursor_hand);
+
+            pmouse->m_pcursor = pcursor;
 
          }
 

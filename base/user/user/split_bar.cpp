@@ -169,16 +169,26 @@ namespace user
       if(m_iIndex >= 0 && m_iIndex < m_pparent->m_splitbara.get_count() && !m_pparent->m_splitpanecompositea[m_iIndex]->m_bFixedSize)
       {
 
+         auto psession = get_session();
+
+         auto puser = psession->user();
+
+         auto pwindowing = puser->windowing();
+
          if(m_pparent->GetSplitOrientation() == e_orientation_horizontal)
          {
 
-            pmouse->m_ecursor = e_cursor_size_vertical;
+            auto pcursor = pwindowing->get_cursor(e_cursor_size_vertical);
+
+            pmouse->m_pcursor = pcursor;
 
          }
          else
          {
 
-            pmouse->m_ecursor = e_cursor_size_horizontal;
+            auto pcursor = pwindowing->get_cursor(e_cursor_size_horizontal);
+
+            pmouse->m_pcursor = pcursor;
 
          }
 

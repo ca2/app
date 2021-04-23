@@ -713,7 +713,7 @@ namespace windowing
    }
 
 
-   ::e_status window::set_cursor(::windowing::cursor * pcursor)
+   ::e_status window::set_mouse_cursor(::windowing::cursor * pcursor)
    {
 
       __throw(error_interface_only);

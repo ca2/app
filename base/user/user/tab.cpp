@@ -2470,6 +2470,17 @@ namespace user
       if(pmessage->previous())
          return;
 
+      auto psession = get_session()->m_paurasession;
+
+      auto puser = psession->user();
+
+      auto pwindowing = puser->windowing();
+
+      auto pcursor = pwindowing->get_cursor(e_cursor_arrow);
+
+      set_mouse_cursor(pcursor);
+
+
       __construct_new(get_data()->m_pimagelist);
 
       get_data()->m_pimagelist->create(16, 16, 0, 0, 0);

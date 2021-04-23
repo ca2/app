@@ -299,9 +299,9 @@ namespace message
    mouse::mouse()
    {
 
-      m_ecursor = e_cursor_unmodified;
+      //m_ecursor = e_cursor_unmodified;
 
-      m_pcursor = nullptr;
+      //m_pcursor = nullptr;
 
       m_bTranslated = false;
 
@@ -327,13 +327,7 @@ namespace message
                if (m_pcursor)
                {
 
-                  pwindow->set_cursor(m_pcursor);
-
-               }
-               else if (m_ecursor != e_cursor_unmodified)
-               {
-
-                  puserinteraction->set_cursor(m_ecursor);
+                  pwindow->set_mouse_cursor(m_pcursor);
 
                }
 
@@ -467,13 +461,7 @@ namespace message
                if (m_pcursor)
                {
 
-                  pwindow->set_cursor(m_pcursor);
-
-               }
-               else if (m_ecursor != e_cursor_unmodified)
-               {
-
-                  puserinteraction->set_cursor(m_ecursor);
+                  pwindow->set_mouse_cursor(m_pcursor);
 
                }
 

@@ -2876,24 +2876,26 @@ namespace user
    //}
 
 
-   ::e_status interaction_impl::set_cursor(::windowing::cursor * pcursor)
+   ::e_status interaction_impl::set_mouse_cursor(::windowing::cursor * pcursor)
    {
 
-      if (!m_pwindow)
+      if (::is_null(m_pwindow))
       {
 
          return ::error_failed;
 
       }
 
-      if (!m_pwindow->set_cursor(pcursor))
+      auto estatus = m_pwindow->set_mouse_cursor(pcursor);
+
+      if(!estatus)
       {
 
-         return ::error_failed;
+         return estatus;
 
       }
 
-      return ::success;
+      return estatus;
 
    }
 
@@ -2906,24 +2908,24 @@ namespace user
    }
 
 
-   ::e_status interaction_impl::set_cursor(enum_cursor ecursor)
-   {
+   //::e_status interaction_impl::set_mouse_cursor(enum_cursor ecursor)
+   //{
 
-      auto psession = get_session();
+   //   auto psession = get_session();
 
-      auto puser = psession->user();
+   //   auto puser = psession->user();
 
-      auto pwindowing = puser->windowing();
+   //   auto pwindowing = puser->windowing();
 
-      auto pcursor = pwindowing->get_cursor(ecursor);
+   //   auto pcursor = pwindowing->get_cursor(ecursor);
 
-      auto pwindow = get_window();
+   //   auto pwindow = get_window();
 
-      auto estatus = pwindow->set_cursor(pcursor);
+   //   auto estatus = pwindow->set_cursor(pcursor);
 
-      return estatus;
+   //   return estatus;
 
-   }
+   //}
 
 
    bool interaction_impl::DrawCaption(::draw2d::graphics_pointer & pgraphics,const rectangle_i32 & prc,::u32 uFlags)

@@ -163,6 +163,7 @@ namespace user
       virtual ::size_i32 get_window_minimum_size() override;
 
       DECLARE_MESSAGE_HANDLER(_001OnAppExit);
+      //DECLARE_MESSAGE_HANDLER(_001OnSetCursor);
 
 #ifdef WINDOWS_DESKTOP
       DECLARE_MESSAGE_HANDLER(_001OnSysCommand);

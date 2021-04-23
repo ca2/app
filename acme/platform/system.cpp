@@ -549,6 +549,23 @@ namespace acme
    }
 
 
+   ::e_status system::inline_init()
+   {
+
+      auto estatus = init_system();
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return estatus;
+
+   }
+
+
    ::e_status system::init_system()
    {
 

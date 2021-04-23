@@ -2088,16 +2088,16 @@ namespace apex
    ::e_status system::inline_init()
    {
 
-      //auto estatus = init_system();
+      auto estatus = ::acme::system::inline_init();
 
-      //if (!estatus)
-      //{
+      if (!estatus)
+      {
 
-      //   return estatus;
+         return estatus;
 
-      //}
+      }
 
-      auto estatus = ::apex::context::inline_init();
+      estatus = ::apex::context::inline_init();
 
       if (!estatus)
       {

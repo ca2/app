@@ -1283,8 +1283,6 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClCompile Include="net\url_department.cpp" />
     <ClCompile Include="net\url_domain.cpp" />
     <ClCompile Include="node\cross\windows\os_usleep.cpp" />
-    <ClCompile Include="node\windows\console.cpp" />
-    <ClCompile Include="node\windows\file_memory_map.cpp" />
     <ClCompile Include="node\windows\mutex.cpp" />
     <ClCompile Include="node\windows\shared_memory.cpp" />
     <ClCompile Include="node\windows\standard_exception.cpp" />
@@ -1292,9 +1290,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClCompile Include="node\windows\system.cpp" />
     <ClCompile Include="node\windows\windows_desktop.cpp" />
     <ClCompile Include="node\windows\factory_exchange.cpp" />
-    <ClCompile Include="node\windows\file.cpp" />
     <ClCompile Include="node\windows\file_find.cpp" />
-    <ClCompile Include="node\windows\pipe.cpp" />
     <ClCompile Include="node\windows\registry.cpp" />
     <ClCompile Include="node\windows\timer.cpp" />
     <ClCompile Include="node\windows\trace.cpp" />
@@ -1808,18 +1804,14 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClInclude Include="node\cross\windows\file_memory_map.h" />
     <ClInclude Include="node\opengl\opengl.h" />
     <ClInclude Include="node\windows\a.h" />
-    <ClInclude Include="node\windows\console.h" />
     <ClInclude Include="node\windows\critical_section.h" />
     <ClInclude Include="node\windows\event.h" />
     <ClInclude Include="node\windows\exception.h" />
     <ClInclude Include="node\windows\factory_exchange.h" />
-    <ClInclude Include="node\windows\file.h" />
     <ClInclude Include="node\windows\file_change_event.h" />
     <ClInclude Include="node\windows\file_find.h" />
-    <ClInclude Include="node\windows\file_memory_map.h" />
     <ClInclude Include="node\windows\mutex.h" />
     <ClInclude Include="node\windows\path.h" />
-    <ClInclude Include="node\windows\pipe.h" />
     <ClInclude Include="node\windows\registry.h" />
     <ClInclude Include="node\windows\aaa_stdio_file.h" />
     <ClInclude Include="node\windows\shared_memory.h" />

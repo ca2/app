@@ -1058,22 +1058,13 @@
     <ClInclude Include="node\windows\a.h">
       <Filter>Header Files\node\windows</Filter>
     </ClInclude>
-    <ClInclude Include="node\windows\console.h">
-      <Filter>Header Files\node\windows</Filter>
-    </ClInclude>
     <ClInclude Include="node\windows\exception.h">
       <Filter>Header Files\node\windows</Filter>
     </ClInclude>
     <ClInclude Include="node\windows\factory_exchange.h">
       <Filter>Header Files\node\windows</Filter>
     </ClInclude>
-    <ClInclude Include="node\windows\file.h">
-      <Filter>Header Files\node\windows</Filter>
-    </ClInclude>
     <ClInclude Include="node\windows\file_find.h">
-      <Filter>Header Files\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="node\windows\pipe.h">
       <Filter>Header Files\node\windows</Filter>
     </ClInclude>
     <ClInclude Include="node\windows\registry.h">
@@ -1908,9 +1899,6 @@
       <Filter>Header Files\parallelization</Filter>
     </ClInclude>
     <ClInclude Include="node\windows\shared_memory.h">
-      <Filter>Header Files\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="node\windows\file_memory_map.h">
       <Filter>Header Files\node\windows</Filter>
     </ClInclude>
     <ClInclude Include="primitive\datetime\micro_duration.h">
@@ -3361,13 +3349,7 @@
     <ClCompile Include="node\windows\factory_exchange.cpp">
       <Filter>Source Files\node\windows</Filter>
     </ClCompile>
-    <ClCompile Include="node\windows\file.cpp">
-      <Filter>Source Files\node\windows</Filter>
-    </ClCompile>
     <ClCompile Include="node\windows\file_find.cpp">
-      <Filter>Source Files\node\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="node\windows\pipe.cpp">
       <Filter>Source Files\node\windows</Filter>
     </ClCompile>
     <ClCompile Include="node\windows\registry.cpp">
@@ -3561,9 +3543,6 @@
     </ClCompile>
     <ClCompile Include="platform\text.cpp">
       <Filter>Source Files\platform</Filter>
-    </ClCompile>
-    <ClCompile Include="node\windows\console.cpp">
-      <Filter>Source Files\node\windows</Filter>
     </ClCompile>
     <ClCompile Include="os\windows\extract_icon.cpp">
       <Filter>Source Files\os\windows</Filter>
@@ -3812,9 +3791,6 @@
       <Filter>Source Files\parallelization</Filter>
     </ClCompile>
     <ClCompile Include="node\windows\shared_memory.cpp">
-      <Filter>Source Files\node\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="node\windows\file_memory_map.cpp">
       <Filter>Source Files\node\windows</Filter>
     </ClCompile>
     <ClCompile Include="primitive\primitive\material_object.cpp">

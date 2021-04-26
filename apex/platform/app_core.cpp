@@ -1921,6 +1921,13 @@ __transport(::apex::application) app_core::new_application(const char* pszAppId)
 
    papp->m_strAppId = strAppId;
 
+   if(m_strAppId.is_empty())
+   {
+
+      m_strAppId = strAppId;
+
+   }
+
    return papp;
 
 }

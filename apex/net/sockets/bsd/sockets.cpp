@@ -24,7 +24,7 @@ namespace sockets
    sockets::sockets()
    {
 
-      ::net::g_paddressdepartment = nullptr; 
+      ::net::g_paddressdepartment = nullptr;
 
       m_psslinit = nullptr;
 
@@ -56,7 +56,7 @@ namespace sockets
 
       }
 
-      auto paddressdepartment = pobject->__create_new<class ::net::address_department >();
+      auto paddressdepartment = pobject->__create_new<class ::net::address_department>();
 
       paddressdepartment->add_ref();
 
@@ -64,11 +64,11 @@ namespace sockets
 
       generate_random_bytes(m_baTicketKey, sizeof(m_baTicketKey));
 
-      m_psslinit = __create_new < ::sockets::SSLInitializer >();
+      m_psslinit = __create_new<::sockets::SSLInitializer>();
 
       estatus = __construct_new(m_pnet);
 
-      if(!estatus || !m_pnet)
+      if (!estatus || !m_pnet)
       {
 
          m_iErrorCode = -1986;
@@ -105,7 +105,7 @@ namespace sockets
 
    }
 
-   
+
    ::e_status sockets::finalize()
    {
 
@@ -213,9 +213,41 @@ namespace sockets
       return *m_pnet;
 
    }
-   
 
-} // namespace karaoke
+
+   string sockets::get_http_post_boundary()
+   {
+
+      __pointer(::apex::system) psystem = get_system();
+
+      single_lock lock(&m_mutexHttpPostBoundary, true);
+
+      string strBoundary = "----";
+
+      for (int i = 0; i < 12; i++)
+      {
+
+         char c = m_countHttpPostBoundary++ % 128;
+
+         while (!ansi_char_is_alphanumeric((unsigned char)c))
+         {
+
+            c = m_countHttpPostBoundary++ % 128;
+
+         }
+
+         strBoundary += c;
+
+      }
+
+      strBoundary += "__" + __str(m_countHttpPostBoundary++);
+
+      return strBoundary;
+
+   }
+
+
+} // namespace sockets
 
 
 

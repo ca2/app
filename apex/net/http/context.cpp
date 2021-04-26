@@ -1938,20 +1938,24 @@ namespace http
 
       }
 
+      psocket->initialize(this);
+
       string strTopicText;
 
       strTopicText.Format(__prhttpget, iHttpGetSerial);
 
       //psocket->set_topic_text(strTopicText);
 
-      if(!psocket->m_psockethandler)
+      auto psockethandler = psocket->m_psockethandler;
+
+      if(!psockethandler)
       {
 
-         psocket->m_psockethandler = __new(::sockets::socket_handler);
+         psockethandler = __new(::sockets::socket_handler);
 
       }
 
-      psocket->m_bEnablePool = psocket->m_psockethandler->PoolEnabled();
+      psocket->m_bEnablePool = psockethandler->PoolEnabled();
 
       if ((bool)set["disable_common_name_cert_check"])
       {
@@ -2129,7 +2133,7 @@ namespace http
 
       }
 
-      psocket->m_psockethandler->add(psocket);
+      psockethandler->add(psocket);
 
       i32 iIteration = 1;
 
@@ -2164,9 +2168,7 @@ namespace http
 
       //}
 
-      psocket->m_bEnablePool = psocket->m_psockethandler->PoolEnabled();
-
-      if (psocket->m_psockethandler->PoolEnabled())
+      if (psocket->m_bEnablePool)
       {
 
          psocket->SetRetain();

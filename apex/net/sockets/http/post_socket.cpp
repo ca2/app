@@ -37,29 +37,6 @@ namespace sockets
 
       m_emethod = http_method_post;
 
-      __pointer(::apex::system) psystem = get_system();
-
-      single_lock lock(&psystem->sockets().m_mutexHttpPostBoundary, true);
-
-      m_boundary = "----";
-
-      for (int i = 0; i < 12; i++)
-      {
-
-         char c = psystem->sockets().m_countHttpPostBoundary++ % 128;
-
-         while (!ansi_char_is_alphanumeric((unsigned char)c))
-         {
-
-            c = psystem->sockets().m_countHttpPostBoundary++ % 128;
-
-         }
-
-         m_boundary += c;
-
-      }
-
-      m_boundary += "__" + __str(psystem->sockets().m_countHttpPostBoundary++);
 
    }
 

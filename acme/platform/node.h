@@ -32,6 +32,7 @@ namespace acme
       ::color::color          m_colorSystemAppBackground;
       double                  m_dSystemLuminance;
       int                     m_iWeatherDarkness;
+      ::file::path            m_pathModule;
 
 
       node();
@@ -43,6 +44,7 @@ namespace acme
 //      virtual enum_linux_distribution get_linux_distribution() const;
 //
 //#endif
+
 
 
       virtual string audio_get_default_library_name();
@@ -72,6 +74,16 @@ namespace acme
 #endif
 
 
+      virtual ::file::path module_path_source();
+      //virtual ::file::path module_path_seed();
+      //virtual ::file::path module_path_origin();
+      //::file::path update_module_path();
+
+
+      virtual ::e_status register_extended_event_listener(::matter * pdata, bool bMouse, bool bKeyboard);
+
+
+      virtual ::file::path _module_path();
 
 
       //virtual bool memory_counter_on();

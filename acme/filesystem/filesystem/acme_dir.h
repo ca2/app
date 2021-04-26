@@ -11,9 +11,8 @@ public:
    ::PLATFORM_NAMESPACE::acme_dir *          m_pplatformdir;
 
 
-   ::file::path   m_pathInstallFolder;
-
-
+   ::file::path                              m_pathInstallFolder;
+   ::file::path                              m_pathModuleFolder;
 
 
    virtual ::file::path install();

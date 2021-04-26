@@ -313,9 +313,6 @@ namespace macos
 
 
 
-      //virtual ::user::interaction *  GetCapture();
-//       virtual ::user::interaction *  SetCapture(::user::interaction *   pinterface = nullptr);
-      //     virtual ::user::interaction *  ReleaseCapture();
       virtual ::user::interaction *  GetFocus() override;
       bool  SetFocus() override;
 

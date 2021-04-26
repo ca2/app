@@ -141,7 +141,7 @@ namespace user
       bool              m_bTrackMouseLeave : 1;
       bool              m_bMouseHover : 1;
       bool              m_bSimpleUIDefaultMouseHandling : 1;
-      bool              m_bSimpleUIDefaultMouseHandlingLeftButtonDownCapture : 1;
+      //bool              m_bSimpleUIDefaultMouseHandlingMouseCaptureOnLeftButtonDown : 1;
 
 
             //bool              m_bIsWindow : 1;
@@ -459,9 +459,9 @@ namespace user
 
       //virtual void enumerate_composite(matter_array& a) override;
 
-      virtual ::e_status main_sync(const ::routine & routine, const ::duration & duration = one_minute(), e_priority epriority = priority_normal);
+      virtual ::e_status interaction_sync(const ::duration & duration, const ::routine & routine);
 
-      virtual ::e_status main_async(const ::routine & routine, e_priority epriority = priority_normal) override;
+      virtual ::e_status interaction_branch(const ::routine & routine) override;
 
 
       inline void auto_prodevian_on_show() { m_ewindowflag |= e_window_flag_auto_prodevian_on_show; }

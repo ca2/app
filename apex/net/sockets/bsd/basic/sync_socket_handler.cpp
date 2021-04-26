@@ -6,10 +6,10 @@ namespace sockets
 {
 
 
-   sync_socket_handler::sync_socket_handler(::apex::log * plog) :
+   sync_socket_handler::sync_socket_handler(::apex::log * plog) //:
       //::object(pobject),
       //m_handler(pobject, plog)
-      m_handler(plog)
+      //m_handler(plog)
    {
 
       m_psocket            = nullptr;
@@ -27,11 +27,20 @@ namespace sockets
 
    void sync_socket_handler::handle(socket * psocket)
    {
+
       if(m_psocket != nullptr)
+      {
+
          __throw(error_socket); // busy
+
+      }
+
       m_psocket = psocket;
+
       m_psocket->m_pcallback = this;
-      m_handler.add(m_psocket);
+
+      m_phandler->add(m_psocket);
+
    }
 
 
@@ -65,11 +74,16 @@ namespace sockets
 
    i32 sync_socket_handler::read(void * pdata, i32 len)
    {
-      while(less_than(m_file.get_size(), len) && m_handler.get_count() > 0)
+
+      while(less_than(m_file.get_size(), len) && m_phandler->get_count() > 0)
       {
-         m_handler.select(8, 0);
+
+         m_phandler->select(8, 0);
+
       }
+
       return (i32) m_file.erase_begin(pdata, len);
+
    }
 
 

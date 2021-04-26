@@ -147,7 +147,7 @@ namespace http
    public:
 
 
-      ::sockets::socket_handler                    m_handler;
+      __pointer(::sockets::socket_handler)         m_phandler;
       __pointer(::sockets::http_client_socket)     m_psocket;
 
 

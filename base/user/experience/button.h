@@ -11,8 +11,10 @@ namespace experience
    public:
 
 
-      enum_button          m_ebutton;
-      control_box *        m_pcontrolbox;
+      enum_button                   m_ebutton;
+      __pointer(control_box)        m_pcontrolbox;
+      ::draw2d::region_pointer      m_pregion;
+
 
 
       button();
@@ -20,6 +22,8 @@ namespace experience
 
 
       virtual void install_message_routing(::channel* pchannel) override;
+
+      virtual void on_hit_test(::user::item & item) override;
 
       virtual void UpdateWndRgn();
 

@@ -544,7 +544,7 @@ inline operator ::e ## ENUMTYPE() const { return e ## ENUMTYPE(); }
    }
 
 
-
+   void add_ref();
 
 
 

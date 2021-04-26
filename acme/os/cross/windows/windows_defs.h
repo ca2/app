@@ -585,7 +585,8 @@ typedef OLECHAR *LPOLESTR;
 
 //#define HRESULT ::i32
 //#define FAILED(Status) ((HRESULT)(Status)<0)
-typedef WINULONG PROPID;
+
+typedef ::u32 PROPID;
 typedef ::i32 SCODE;
 
 /*#define S_OK    ((HRESULT)0x00000000L)
@@ -630,6 +631,8 @@ typedef ::i32 SCODE;
 //#endif
 //
 #endif
+
+#ifdef ADVANCED_WINDOWS_NT
 
 #define VARIANT_TRUE ((VARIANT_BOOL)-1)
 #define VARIANT_FALSE ((VARIANT_BOOL)0)
@@ -738,6 +741,7 @@ typedef enum tagSTREAM_SEEK
 
 
 
+#endif // ADVANCED_WINDOWS_NT
 
 
 struct win_handle;

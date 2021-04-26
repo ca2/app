@@ -124,7 +124,7 @@ namespace axis
       m_papplicationCurrent                    = nullptr;
 
 
-      //m_strAppId = "base_session";
+      //m_XstrAppId = "base_session";
 //m_strAppName = "base_session";
 //m_strBaseSupportId = "base_session";
 //m_strInstallToken = "base_session";
@@ -520,7 +520,7 @@ namespace axis
 //
 //      }
 //
-//      papp->m_strAppId = pszAppId;
+//      papp->m_XstrAppId = pszAppId;
 //
 //      set_context_app(papp);
 //

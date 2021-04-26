@@ -99,7 +99,18 @@ string acme_path::from(string str)
 ::file::path acme_path::app_module()
 {
 
-   return "";
+   if(m_pathModule.is_empty())
+   {
+
+      auto pnode = m_psystem->node();
+
+      auto pathModule = pnode->module_path_source();
+
+      m_pathModule = pathModule;
+
+   }
+
+   return m_pathModule;
 
 }
 

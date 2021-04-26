@@ -168,24 +168,24 @@ namespace sockets
       // -------------------------------------------------------------------------
       /** enable asynchronous DNS.
       \lparam port Listen port of asynchronous dns server */
-      virtual void EnableResolver(port_t = 16667) = 0;
+      //virtual void EnableResolver(port_t = 16667) = 0;
       /** Check resolver status.
       \return true if resolver is enabled */
-      virtual bool ResolverEnabled() = 0;
+      //virtual bool ResolverEnabled() = 0;
       /** Queue a dns request.
       \lparam host Hostname to be resolved
       \lparam port Port number will be echoed in socket::OnResolved callback */
-      virtual int Resolve(base_socket *,const string & host,port_t port) = 0;
-      virtual int Resolve6(base_socket *,const string & host,port_t port) = 0;
+      //virtual int Resolve(base_socket *,const string & host,port_t port) = 0;
+      //virtual int Resolve6(base_socket *,const string & host,port_t port) = 0;
       /** Do a reverse dns lookup. */
-      virtual int Resolve(base_socket *,in_addr a) = 0;
-      virtual int Resolve(base_socket *,in6_addr& a) = 0;
+      //virtual int Resolve(base_socket *,in_addr a) = 0;
+      //virtual int Resolve(base_socket *,in6_addr& a) = 0;
       /** get listen port of asynchronous dns server. */
-      virtual port_t GetResolverPort() = 0;
+      //virtual port_t GetResolverPort() = 0;
       /** Resolver thread ready for queries. */
-      virtual bool ResolverReady() = 0;
+      //virtual bool ResolverReady() = 0;
       /** Returns true if socket waiting for a resolve event. */
-      virtual bool Resolving(base_socket *) = 0;
+      //virtual bool Resolving(base_socket *) = 0;
       /** Fetch unique trigger id. */
       virtual int TriggerID(base_socket *src) = 0;
       /** Subscribe socket to trigger id. */

@@ -257,7 +257,8 @@ struct INT_STRING
 #define ARG_SEC_ATTRS
 #define PARAM_SEC_ATTRS
 #define INSERT_PARAM_SEC_ATTRS(ATTRS) 
-#define ADD_PARAM_SEC_ATTRS 
+#define ADD_PARAM_SEC_ATTRS
+#define ADD_PASS_SEC_ATTRS
 #endif
 
 
@@ -2932,6 +2933,9 @@ namespace factory
 } // namespace factory
 
 
+#include "acme/parallelization/synchronization_result.h"
+
+
 #include "acme/primitive/primitive/matter.h"
 #include "acme/primitive/primitive/material_object.h"
 
@@ -3128,10 +3132,15 @@ namespace core
 
 class task;
 
+template < class TYPE, class ARG_TYPE = const TYPE & >
+class list;
+
+
 template < typename TYPE, typename ARG_TYPE = typename argument_of < TYPE >::type, typename PAIR = pair < ::id, TYPE, typename argument_of < ::id >::type, ARG_TYPE > >
 using id_map = ::map < id, TYPE, typename argument_of < ::id >::type, ARG_TYPE, PAIR >;
 
 using routine_array = ::array < routine >;
+using routine_list = ::list < routine >;
 
 //using process_array = ::array < process >;
 

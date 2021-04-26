@@ -2254,6 +2254,7 @@ namespace apex
 
    }
 
+
    string system::get_application_server_name()
    {
 
@@ -2266,6 +2267,7 @@ namespace apex
       return strApplicationServerName;
 
    }
+
 
    bool system::task_get_run() const
    {

@@ -216,9 +216,9 @@ namespace acme
       virtual ::e_status open_url(string strUrl, string strProfile, string strTarget);
 
 
-      virtual ::e_status main_user_async(const ::routine & routine, ::e_priority epriority = priority_normal);
+      //virtual ::e_status main_user_async(const ::routine & routine, ::e_priority epriority = priority_normal);
 
-      virtual ::e_status main_user_sync(const ::routine & routine, const ::duration & duration = one_minute(), e_priority epriority = priority_normal);
+      //virtual ::e_status main_user_sync(const ::routine & routine, const ::duration & duration = one_minute(), e_priority epriority = priority_normal);
 
 
       ::task * get_task(itask_t itask);

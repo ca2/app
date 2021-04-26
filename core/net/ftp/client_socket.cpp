@@ -1514,7 +1514,7 @@ auto tickStart = ::millis::now();
 
             single_lock synchronouslock(mutex());
 
-            strResponse = m_qResponseBuffer.pop_head();
+            strResponse = m_qResponseBuffer.pick_head();
 
          }
 

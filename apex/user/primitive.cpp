@@ -1020,8 +1020,7 @@ namespace user
    }
 
 
-
-   ::e_status primitive::main_async(const ::routine & routine, e_priority epriority)
+   ::e_status primitive::interaction_branch(const ::routine & routine)
    {
 
       __throw(error_interface_only);

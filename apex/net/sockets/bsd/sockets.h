@@ -48,6 +48,8 @@ namespace sockets
 
       virtual ::e_status finalize() override;
 
+      virtual string get_http_post_boundary();
+
 
    };
 

@@ -294,33 +294,33 @@ namespace acme
    }
 
 
-   ::e_status system::main_user_async(const ::routine & routine, ::e_priority epriority)
-   {
-
-      return ::error_interface_only;
-
-   }
-
-
-   ::e_status system::main_user_sync(const ::routine & routine, const ::duration & duration, e_priority epriority)
-   {
-
-      auto proutine = ___sync_routine(routine);
-
-      main_user_async(proutine, epriority);
-
-      auto waitresult = proutine->wait(duration);
-
-      if (!waitresult.succeeded())
-      {
-
-         return ::error_timeout;
-
-      }
-
-      return proutine->m_estatus;
-
-   }
+//   ::e_status system::main_user_async(const ::routine & routine, ::e_priority epriority)
+//   {
+//
+//      return ::error_interface_only;
+//
+//   }
+//
+//
+//   ::e_status system::main_user_sync(const ::routine & routine, const ::duration & duration, e_priority epriority)
+//   {
+//
+//      auto proutine = ___sync_routine(routine);
+//
+//      main_user_async(proutine, epriority);
+//
+//      auto waitresult = proutine->wait(duration);
+//
+//      if (!waitresult.succeeded())
+//      {
+//
+//         return ::error_timeout;
+//
+//      }
+//
+//      return proutine->m_estatus;
+//
+//   }
 
 
    ::task * system::get_task(itask_t itask)

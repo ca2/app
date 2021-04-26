@@ -1534,7 +1534,11 @@ namespace apex
    ::e_status application::france_exit()
    {
 
-      return finish();
+      _001TryCloseApplication();
+
+      //return finish();
+
+      return ::success;
 
    }
 
@@ -2530,7 +2534,9 @@ namespace apex
 
       //auto psystem = m_psystem->m_papexsystem;
 
-      psystem->install_progress_add_up();
+//      auto psystem = m_psystem;
+//
+//      psystem->install_progress_add_up();
 
       m_millisHeartBeat.Now();
 
@@ -2561,6 +2567,8 @@ namespace apex
       }
 
       m_millisHeartBeat.Now();
+
+      auto psystem = m_psystem->m_papexsystem;
 
       try
       {
@@ -5219,7 +5227,7 @@ retry_license:
       wstring desc = L"spafile";          // file type description
       wstring content_type = L"application/x-spa";
 
-      wstring app(m_psystem->m_pacmedir->stage(m_strAppId, process_platform_dir_name(), process_configuration_dir_name()));
+      wstring app(m_psystem->m_pacmedir->stage(m_XstrAppId, process_platform_dir_name(), process_configuration_dir_name()));
 
       wstring icon(app);
 
@@ -5266,7 +5274,7 @@ retry_license:
       RegSetValueExW(hkey, L"", 0, REG_SZ, (byte*)icon.c_str(), ::u32 (icon.length() * sizeof(wchar_t)));
       RegCloseKey(hkey);
 
-      wstring wstr(m_psystem->m_pacmedir->stage(m_strAppId, process_platform_dir_name(), process_configuration_dir_name()) / "spa_register.txt");
+      wstring wstr(m_psystem->m_pacmedir->stage(m_XstrAppId, process_platform_dir_name(), process_configuration_dir_name()) / "spa_register.txt");
 
       int iRetry = 9;
 

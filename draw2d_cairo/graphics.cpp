@@ -3703,14 +3703,17 @@ bool graphics::internal_draw_text_pango(const block & block, const ::rectangle_f
 
     cairo_scale(m_pdc, m_pfont->m_dFontWidth, 1.0);
 
-    pango_cairo_update_layout(m_pdc, playout);
+   if(m_pbrush.is_set())
+   {
 
-    if(m_pbrush.is_set())
-    {
+      _set(m_pbrush, ptRef.x, ptRef.y);
 
-        _set(m_pbrush, ptRef.x, ptRef.y);
+   }
 
-    }
+   pango_layout_context_changed (playout);
+
+   pango_cairo_update_layout(m_pdc, playout);
+
 
     // have changed, update the pango layout to reflect this
     (*pfnPango)(m_pdc, playout);                    // draw the pango layout onto the cairo surface
@@ -4724,7 +4727,12 @@ bool graphics::_set(::draw2d::brush * pbrush, double x, double y)
    else
    {
 
-      cairo_set_source_rgba(m_pdc, colorref_get_r_value(pbrush->m_color) / 255.0, colorref_get_g_value(pbrush->m_color) / 255.0, colorref_get_b_value(pbrush->m_color) / 255.0, colorref_get_a_value(pbrush->m_color) / 255.0);
+      double dR = pbrush->m_color.dr();
+      double dG = pbrush->m_color.dg();
+      double dB = pbrush->m_color.db();
+      double dA = pbrush->m_color.da();
+
+      cairo_set_source_rgba(m_pdc, dR, dG, dB, dA);
 
    }
 

@@ -23,6 +23,9 @@ CLASS_DECL_ACME ::u64 translate_processor_affinity(int iOrder);
 //property_set & thread_property_set();
 
 
+CLASS_DECL_ACME bool is_main_thread();
+
+
 #if defined(ANDROID)
 
 
@@ -372,6 +375,9 @@ CLASS_DECL_ACME bool task_sleep(millis millis, synchronization_object* psync);
 
 
 #include "synchronized_process.h"
+
+
+#include "acme/primitive/promise/signalization.h"
 
 
 #include "acme/platform/synchronized_predicate_routine.h"

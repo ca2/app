@@ -173,3 +173,25 @@ CLASS_DECL_ACME bool acme_task_sleep(millis millis, synchronization_object* psyn
 //
 //}
 //
+
+
+__thread bool t_bMainThread = false;
+
+
+CLASS_DECL_ACME bool set_main_thread()
+{
+
+   t_bMainThread = true;
+
+}
+
+
+CLASS_DECL_ACME bool is_main_thread()
+{
+
+   return t_bMainThread;
+
+}
+
+
+

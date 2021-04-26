@@ -199,6 +199,7 @@ list(APPEND acme_source
    platform/printf.cpp
    platform/profiler.cpp
    platform/regex.cpp
+   platform/serial.cpp
    platform/simple_trace.cpp
    platform/sprintf.cpp
    platform/static_setup.cpp
@@ -226,18 +227,6 @@ list(APPEND acme_source
    process/exit_status.h
    process/pipe.cpp
    process/pipe.h
-   primitive/text/context.cpp
-   primitive/text/context.h
-   primitive/text/data.h
-   primitive/text/data.cpp
-   primitive/text/international.cpp
-   primitive/text/international.h
-   primitive/text/international_locale_schema.cpp
-   primitive/text/international_locale_schema.h
-   primitive/text/text.cpp
-   primitive/text/text.h
-   primitive/text/translator.cpp
-   primitive/text/translator.h
    primitive/collection/2d_array.cpp
    primitive/collection/array.cpp
    primitive/collection/bit_array.cpp
@@ -288,7 +277,10 @@ list(APPEND acme_source
    primitive/datetime/duration.cpp
    primitive/datetime/filetime.cpp
    primitive/datetime/filetime_span.cpp
+   primitive/datetime/micros.cpp
    primitive/datetime/micros.h
+   primitive/datetime/microsecond_sleep.cpp
+   primitive/datetime/microsecond_sleep.h
    primitive/datetime/mktime.cpp
    primitive/datetime/nanos.h
    primitive/datetime/secs.h
@@ -378,6 +370,8 @@ list(APPEND acme_source
    primitive/primitive/var_element.cpp
    primitive/primitive/virtual_memory.cpp
    primitive/primitive/work.cpp
+   primitive/promise/signalization.cpp
+   primitive/promise/signalization.h
    primitive/string/_.cpp
    primitive/string/_c.cpp
    primitive/string/_c_trait_ansi.cpp
@@ -409,6 +403,18 @@ list(APPEND acme_source
    primitive/string/to_integer.cpp
    primitive/string/tokenizer.cpp
    primitive/string/x.cpp
+   primitive/text/context.cpp
+   primitive/text/context.h
+   primitive/text/data.h
+   primitive/text/data.cpp
+   primitive/text/international.cpp
+   primitive/text/international.h
+   primitive/text/international_locale_schema.cpp
+   primitive/text/international_locale_schema.h
+   primitive/text/text.cpp
+   primitive/text/text.h
+   primitive/text/translator.cpp
+   primitive/text/translator.h
    user/ewindowflag.h
    user/os_colors.cpp
    user/os_theme_colors.h
@@ -1766,7 +1772,7 @@ endif ()
 
 if (LINUX OR APPLE OR SOLARIS)
    list(APPEND acme_source
-      node/node_serial.cpp
+      #node/node_serial.cpp
       os/posix/base_file.cpp
       os/posix/local_memory_map.cpp
       os/posix/process.cpp
@@ -1792,14 +1798,8 @@ if (LINUX)
 endif ()
 
 
-if (MSVC)
-   set(LIBCXX_TARGETING_MSVC ON)
-else ()
-   set(LIBCXX_TARGETING_MSVC OFF)
-endif ()
 
-
-add_library(acme SHARED ${acme_source})
+add_library(acme SHARED ${acme_source} )
 
 
 target_precompile_headers(acme PRIVATE framework.h)

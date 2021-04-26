@@ -139,7 +139,7 @@ namespace browser
 
       //      ::database::client::initialize_data_client(&papplication->dataserver());
 
-      if (papplication->m_strAppId == "app-core/flag")
+      if (papplication->m_XstrAppId == "app-core/flag")
       {
 
          slideshow().add_slide("matter://cat.gif");

@@ -648,21 +648,24 @@ namespace windowing
    }
 
 
-   ::e_status windowing::user_sync(const ::duration & durationTimeout, const ::routine & routine)
+   ::e_status windowing::windowing_sync(const ::duration & duration, const ::routine & routine)
    {
 
-      auto proutine = __sync_routine(routine);
+      auto estatus = __sync_routine(duration, this, &windowing::windowing_branch, routine);
 
-      user_branch(proutine);
+      if(!estatus)
+      {
 
-      proutine->sync_wait(durationTimeout);
+         return estatus;
 
-      return ::success;
+      }
+
+      return estatus;
 
    }
 
 
-   ::e_status windowing::user_branch(const ::routine & routine)
+   ::e_status windowing::windowing_branch(const ::routine & routine)
    {
 
       __throw(error_interface_only);

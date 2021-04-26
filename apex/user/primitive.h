@@ -314,15 +314,9 @@ namespace user
       virtual bool GetUpdateRect(RECTANGLE_I32 * prectangle,bool bErase = false);
 
 
-
-      //virtual u32 GetStyle() const;
-      //virtual u32 GetExStyle() const;
+      virtual ::e_status interaction_branch(const ::routine & routine);
 
 
-      virtual ::e_status main_async(const ::routine & routine, e_priority epriority = priority_normal);
-
-
-      //using ::channel::send;
       virtual lresult send(::message::message * pmessage);
       virtual bool post(::message::message * pmessage);
 
@@ -584,12 +578,6 @@ namespace user
 
       virtual void keep_alive(::object * pliveobject = nullptr);
 
-
-
-
-      //virtual void _user_message_handler(::message::message * pmessage);
-
-      //virtual PFN_DISPATCH_MESSAGE_HANDLER _calc_user_message_handler();
 
       virtual bool has_pending_graphical_update();
       virtual void on_after_graphical_update();

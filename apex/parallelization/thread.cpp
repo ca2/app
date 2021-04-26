@@ -4173,7 +4173,7 @@ void thread::message_handler(::message::message * pmessage)
          else if (message.wParam == e_system_message_method)
          {
 
-            ::routine routine(message.lParam);
+            const ::routine & routine(message.lParam);
 
             routine();
 

@@ -28,8 +28,6 @@ namespace factory
 #include <semaphore.h>
 #endif
 
-#include "synchronization_result.h"
-
 #ifdef PARALLELIZATION_PTHREAD
 
 #define CRITICAL_SECTION_FUNCTION_RETURN int

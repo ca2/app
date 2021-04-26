@@ -817,7 +817,7 @@ void object::on_request(::create * pcreate)
 
    //   }
 
-   //   estatus = pcreate->initialize_create(get_application()->m_strAppId, ::e_type_empty, true);
+   //   estatus = pcreate->initialize_create(get_application()->m_XstrAppId, ::e_type_empty, true);
 
    //   if (!estatus)
    //   {

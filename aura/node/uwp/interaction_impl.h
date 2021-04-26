@@ -305,11 +305,6 @@ namespace uwp
 
 
 
-      // capture and focus apply to all windows
-      //virtual ::user::interaction *  GetCapture();
-      //virtual ::user::interaction *  SetCapture(::user::interaction *  pinterface = nullptr);
-      //virtual ::user::interaction *  ReleaseCapture();
-      //virtual ::user::interaction *  GetCapture();
       virtual ::user::interaction *  GetFocus();
       virtual bool  SetFocus() override;
 

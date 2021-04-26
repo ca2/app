@@ -25,7 +25,7 @@ namespace axis
 
       }
 
-      //m_strAppId                    = "axis_session";
+      //m_XstrAppId                    = "axis_session";
       //m_strAppName                  = "axis_session";
       //m_strBaseSupportId            = "axis_session";
       //m_strInstallToken             = "axis_session";

@@ -147,6 +147,40 @@ namespace acme
 
    }
 
+
+   ::file::path node::_module_path()
+   {
+
+      return "";
+
+   }
+
+
+   ::file::path node::module_path_source()
+   {
+
+      if(m_pathModule.has_char())
+      {
+
+         return m_pathModule;
+
+      }
+
+      m_pathModule = _module_path();
+
+      return m_pathModule;
+
+   }
+
+
+   ::e_status node::register_extended_event_listener(::matter * pdata, bool bMouse, bool bKeyboard)
+   {
+
+      return ::success;
+
+   }
+
+
    ::e_status node::datetime_to_filetime(::filetime_t* pfiletime, const ::datetime::time& time)
    {
 
@@ -452,11 +486,29 @@ namespace acme
    void node::node_sync(const ::duration & durationTimeout, const ::routine & routine)
    {
 
-      auto proutine = __sync_routine(routine);
+      auto psignalization = __new(::promise::signalization);
 
-      node_fork(proutine);
+      auto proutine = __routine([this, routine, psignalization]()
+                                {
 
-      proutine->sync_wait(durationTimeout);
+                                   routine();
+
+                                   psignalization->m_evReady.SetEvent();
+
+                                   //::release((::matter * &)psignalization.m_p);
+
+                                });
+
+      node_branch(proutine);
+
+      if (psignalization->m_evReady.wait().failed())
+      {
+
+         return error_timeout;
+
+      }
+
+      return ::success;
 
    }
 

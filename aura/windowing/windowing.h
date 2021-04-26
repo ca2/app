@@ -194,8 +194,8 @@ namespace windowing
       virtual ::e_status lock_set_foreground_window(bool bLock = true);
 
 
-      virtual ::e_status user_sync(const ::duration & duration, const ::routine & routine);
-      virtual ::e_status user_branch(const ::routine & routine);
+      virtual ::e_status windowing_sync(const ::duration & duration, const ::routine & routine);
+      virtual ::e_status windowing_branch(const ::routine & routine);
 
 
       virtual void _main_loop();
@@ -226,6 +226,15 @@ namespace windowing
       //virtual void _window_create_caret(HWND hwnd, HBITMAP hbitmap);
       //virtual void _window_create_solid_caret(HWND hwnd, i32 nWidth, i32 nHeight);
       //virtual void _window_create_gray_caret(HWND hwnd, i32 nWidth, i32 nHeight);
+
+
+      template < typename OBJECT_POINTER, typename OBJECT_METHOD, typename PAYLOAD_POINTER >
+      ::e_status windowing_sync(const ::duration & duration, OBJECT_POINTER pobject, OBJECT_METHOD object_method, PAYLOAD_POINTER ppayload)
+      {
+
+         return ::material_object::__sync_status_payload(duration, this, &windowing::windowing_branch, pobject, object_method, ppayload);
+
+      }
 
 
    };

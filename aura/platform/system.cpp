@@ -682,7 +682,7 @@ namespace aura
 
       //}
 
-      //m_papplicationStartup = get_new_application(get_session(), m_strAppId);
+      //m_papplicationStartup = get_new_application(get_session(), m_XstrAppId);
 
       //if (!m_papplicationStartup)
       //{
@@ -695,7 +695,7 @@ namespace aura
 
       //set_main_struct(*m_papplicationStartup);
 
-      //string strAppId = m_papplicationStartup->m_strAppId;
+      //string strAppId = m_papplicationStartup->m_XstrAppId;
 
       //auto pcommand = get_command();
 
@@ -711,7 +711,7 @@ namespace aura
       //TRACE("m_pcreate COMMENT BEGIN");
       //auto pcreate = m_pcreate;
 
-      //pcreate->m_strAppId = strAppId;
+      //pcreate->m_XstrAppId = strAppId;
       //TRACE("m_pcreate COMMENT END");
 
       //create_factory < ::database::field >();
@@ -5406,7 +5406,7 @@ namespace aura
   //
   //     //}
   //
-  //     //m_strAppId = "base_system";
+  //     //m_XstrAppId = "base_system";
   //     //m_strAppName = "base_system";
   //     //m_strBaseSupportId = "base_system";
   //     //m_strInstallToken = "base_system";
@@ -5430,7 +5430,7 @@ namespace aura
   //
   //            //}
   //
-  //            //m_strAppId                    = "core_system";
+  //            //m_XstrAppId                    = "core_system";
   //            //m_strAppName                  = "core_system";
   //            //m_strBaseSupportId            = "core_system";
   //            //m_strInstallToken             = "core_system";
@@ -5469,7 +5469,7 @@ namespace aura
   //
   //      string strId;
   //      //strId = m_strAppName;
-  //      //strId += ::str::has_char(m_strAppId, ".");
+  //      //strId += ::str::has_char(m_XstrAppId, ".");
   //      //strId += ::str::has_char(m_strBaseSupportId, ".");
   //
   //
@@ -6483,7 +6483,7 @@ namespace aura
 //
 //      //}
 //
-//      //m_strAppId = "base_system";
+//      //m_XstrAppId = "base_system";
 //      //m_strAppName = "base_system";
 //      //m_strBaseSupportId = "base_system";
 //      //m_strInstallToken = "base_system";
@@ -6891,22 +6891,22 @@ namespace aura
    //}
 
 
-   ::e_status system::main_user_async(const ::routine & routine, ::e_priority epriority)
-   {
-
-#ifdef _UWP
-
-      return m_pimplMain->main_async(routine, epriority);
-
-#else
-
-      __throw(error_not_implemented);
-
-      return ::error_interface_only;
-
-#endif
-
-   }
+//   ::e_status system::main_user_async(const ::routine & routine, ::e_priority epriority)
+//   {
+//
+//#ifdef _UWP
+//
+//      return m_pimplMain->main_async(routine, epriority);
+//
+//#else
+//
+//      __throw(error_not_implemented);
+//
+//      return ::error_interface_only;
+//
+//#endif
+//
+//   }
 
 
    //namespace command

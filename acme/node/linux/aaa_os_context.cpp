@@ -715,7 +715,7 @@ namespace linux
 
             SC_HANDLE hdlSCM = OpenSCManager(0, 0, SC_MANAGER_CREATE_SERVICE);
 
-            string strcalling = papp->m_strModulePath + " : app=" + papp->m_strAppId + " service usehos_contexttlogin";
+            string strcalling = papp->m_strModulePath + " : app=" + papp->m_XstrAppId + " service usehos_contexttlogin";
 
             if(hdlSCM == 0)
             {

@@ -168,10 +168,13 @@ namespace user
       virtual ::e_status update_graphics_resources();
 
 
+      virtual ::e_status set_tool_window(bool bSet) override;
+
+
       virtual bool create_host(::user::interaction * pinteraction);
 
 
-      virtual ::e_status main_async(const ::routine & routine, e_priority epriority = priority_normal) override;
+      virtual ::e_status interaction_branch(const ::routine & routine) override;
 
       // call these from window
       //virtual ::e_status set_keyboard_focus();

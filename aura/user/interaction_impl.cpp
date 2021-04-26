@@ -3954,7 +3954,7 @@ namespace user
    }
 
 
-   ::e_status interaction_impl::main_async(const ::routine & routine, e_priority epriority)
+   ::e_status interaction_impl::interaction_branch(const ::routine & routine)
    {
 
       return ::error_interface_only;
@@ -5830,6 +5830,12 @@ namespace user
    }
 
 
+   ::e_status interaction_impl::set_tool_window(bool bSet)
+   {
+
+      return m_pwindow->set_tool_window(bSet);
+
+   }
 
 } // namespace user
 

@@ -260,9 +260,6 @@ namespace ios
       virtual id SetDlgCtrlId(id id) override;
       virtual id GetDlgCtrlId();
 
-
-
-      //virtual ::user::interaction *  GetCapture() override;
       virtual ::user::interaction *  GetFocus() override;
 
       virtual ::user::interaction *  get_desktop_window();

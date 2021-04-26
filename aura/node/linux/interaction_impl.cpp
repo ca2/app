@@ -238,7 +238,7 @@ namespace linux
 
          auto pwindowing = puser->windowing();
 
-         pwindowing->user_sync(15_s, __routine([&]()
+         pwindowing->windowing_sync(15_s, __routine([&]()
          {
 
             auto psession = get_session();
@@ -1233,12 +1233,23 @@ namespace linux
 
          if(pmessage->m_id == e_message_mouse_move)
          {
+
             // We are at the message handler routine.
             // mouse messages originated from message handler and that are mouse move events should end up with the correct cursor.
             // So the routine starts by setting to the default cursor,
             // what forces, at the end of message processing, setting the bergedge cursor to the default cursor, if no other
             // handler has set it to another one.
-            pmouse->m_ecursor = e_cursor_default;
+            __pointer(::message::mouse) pmouse(pmessage);
+
+            auto psession = get_session();
+
+            auto puser = psession->user();
+
+            auto pwindowing = puser->windowing();
+
+            auto pcursor = pwindowing->get_cursor(e_cursor_arrow);
+
+            pmouse->m_pcursor = pcursor;
 
             m_puserinteraction->m_pimpl2->_on_mouse_move_step(pmouse->m_point);
 
@@ -2259,7 +2270,7 @@ namespace linux
       if(pwindowing)
       {
 
-         pwindowing->user_branch(__routine([this]()
+         pwindowing->windowing_branch(__routine([this]()
                           {
 
                              m_pwindow->exit_iconify();
@@ -2290,7 +2301,7 @@ namespace linux
       if(pwindowing)
       {
 
-         pwindowing->user_branch(__routine([this]()
+         pwindowing->windowing_branch(__routine([this]()
          {
 
             m_pwindow->exit_full_screen();
@@ -2321,7 +2332,7 @@ namespace linux
       if(pwindowing)
       {
 
-         pwindowing->user_branch(__routine([this]()
+         pwindowing->windowing_branch(__routine([this]()
          {
 
             m_pwindow->exit_zoomed();

@@ -716,7 +716,7 @@ namespace axis
 
       //string_array stra;
 
-      //stra.explode("/", m_strAppId);
+      //stra.explode("/", m_XstrAppId);
 
       //m_strRoot = stra[0];
 
@@ -1712,9 +1712,7 @@ namespace axis
 
       //}
 
-      ::thread * pthread = get_thread();
-
-      install_message_routing(pthread);
+      install_message_routing(this);
 
       m_bReady = true;
 

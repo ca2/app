@@ -56,7 +56,7 @@ namespace user
 
       m_bEdgeGestureDisableTouchWhenFullscreen = true;
 
-      m_bSimpleUIDefaultMouseHandlingLeftButtonDownCapture = false;
+      //m_bSimpleUIDefaultMouseHandlingMouseCaptureOnLeftButtonDown = false;
 
       m_bMouseHoverOnCapture = false;
 
@@ -4141,7 +4141,7 @@ namespace user
    }
 
    
-   ::e_status interaction::main_async(const ::routine & routine, e_priority epriority)
+   ::e_status interaction::interaction_branch(const ::routine & routine)
    {
 
       auto puserinteractionHost = get_host_window();
@@ -4149,11 +4149,11 @@ namespace user
       if (!puserinteractionHost || puserinteractionHost == this)
       {
 
-         return m_pimpl->main_async(routine, epriority);
+         return m_pimpl->interaction_branch(routine);
 
       }
 
-      return puserinteractionHost->main_async(routine, epriority);
+      return puserinteractionHost->interaction_branch(routine);
 
    }
 
@@ -4178,23 +4178,19 @@ namespace user
    //}
 
 
-   ::e_status interaction::main_sync(const ::routine & routine, const ::duration & duration, e_priority epriority)
+   ::e_status interaction::interaction_sync(const ::duration & duration, const ::routine & routine)
    {
 
-      auto proutine = ___sync_routine(routine);
+      auto estatus = __sync_routine(duration, this, &interaction::interaction_branch, routine);
 
-      main_async(proutine, epriority);
-
-      auto waitresult = proutine->wait(duration);
-
-      if (!waitresult.succeeded())
+      if (!estatus)
       {
 
-         return error_timeout;
+         return estatus;
 
       }
 
-      return proutine->m_estatus;
+      return estatus;
 
    }
 
@@ -14801,12 +14797,12 @@ restart:
 
             psession->m_puiLastLButtonDown = this;
 
-            if(m_bSimpleUIDefaultMouseHandlingLeftButtonDownCapture)
-            {
+            //if(m_bSimpleUIDefaultMouseHandlingMouseCaptureOnLeftButtonDown)
+            //{
 
                set_mouse_capture();
 
-            }
+            //}
 
             pmouse->m_bRet = m_itemLButtonDown.m_eelement != e_element_client;
 
@@ -14914,8 +14910,8 @@ restart:
       if (m_bSimpleUIDefaultMouseHandling)
       {
 
-         if(m_bSimpleUIDefaultMouseHandlingLeftButtonDownCapture)
-         {
+         //if(m_bSimpleUIDefaultMouseHandlingMouseCaptureOnLeftButtonDown)
+         //{
 
             if(has_mouse_capture())
             {
@@ -14926,7 +14922,7 @@ restart:
 
             }
 
-         }
+         //}
 
          auto item = hit_test(pmouse);
 

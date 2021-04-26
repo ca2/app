@@ -356,7 +356,7 @@ namespace aura
    void application::install_message_routing(::channel * pchannel)
    {
 
-      ::thread::install_message_routing(pchannel);
+      ::apex::application::install_message_routing(pchannel);
 
       //connect_command("app_exit", &application::_001OnAppExit);
       connect_command("switch_context_theme", &application::_001OnSwitchContextTheme);
@@ -1751,7 +1751,7 @@ retry_license:
 
          return false;
 
-//         psystem->install().erase_spa_start(m_strAppId);
+//         psystem->install().erase_spa_start(m_XstrAppId);
 
       }
 
@@ -1821,168 +1821,6 @@ retry_license:
       return bOk;
 
    }
-
-
-   //bool application::system_add_app_install(const char * pszId, const char * pszBuild)
-   //{
-
-   //   // cool install
-
-   //   string strBuild(pszBuild);
-
-   //   if (strBuild.is_empty())
-   //   {
-
-   //      strBuild = "0000-00-00 00:00:00";
-
-   //   }
-
-   //   synchronous_lock synchronouslock(psystem->m_spmutexSystemAppData);
-
-   //   string strId(pszId);
-   //   string strSystemLocale = psystem->m_strLocale;
-   //   string strSystemSchema = psystem->m_strSchema;
-   //   string_array straLocale;
-   //   string_array straSchema;
-
-   //   straLocale = value("locale");
-   //   straSchema = value("schema");
-
-   //   ::file::path pathExe = m_psystem->m_pacmepath->app_module();
-
-   //   straLocale.insert_at(0, strSystemLocale);
-   //   straSchema.insert_at(0, strSystemSchema);
-   //   straLocale.insert_at(0, "_std");
-   //   straSchema.insert_at(0, "_std");
-
-
-   //   for (index i = 0; i < straLocale.get_count() && i < straSchema.get_count(); i++)
-   //   {
-
-   //      string strLocale = straLocale[i];
-
-   //      string strSchema = straSchema[i];
-
-   //      set_application_installed(pathExe, strId, strBuild, psystem->get_system_platform(), psystem->get_system_configuration(), strLocale, strSchema);
-
-   //   }
-
-   //   //psystem->install().erase_spa_start(strId);
-   //   //psystem->install().add_app_install(strId, strBuild, strSystemLocale, m_strSchema);
-   //   //psystem->install().add_app_install(strId, strBuild, strSystemLocale, strSystemSchema);
-   //   //psystem->install().add_app_install(strId, strBuild, m_strLocale, m_strSchema);
-
-   //   //for (index iLocale = 0; iLocale < straLocale.get_count(); iLocale++)
-   //   //{
-
-   //   //   psystem->install().add_app_install(strId, strBuild, straLocale[iLocale], m_strSchema);
-
-   //   //}
-
-   //   //for (index iSchema = 0; iSchema < straSchema.get_count(); iSchema++)
-   //   //{
-
-   //   //   psystem->install().add_app_install(strId, strBuild, m_strLocale, straSchema[iSchema]);
-
-   //   //}
-
-   //   //for (index iLocale = 0; iLocale < straLocale.get_count(); iLocale++)
-   //   //{
-
-   //   //   for (index iSchema = 0; iSchema < straSchema.get_count(); iSchema++)
-   //   //   {
-
-   //   //      psystem->install().add_app_install(strId, strBuild, straLocale[iLocale], straSchema[iSchema]);
-
-   //   //   }
-
-   //   //}
-
-   //   //psystem->install().add_app_install(strId, strBuild, strSystemLocale, "");
-   //   //psystem->install().add_app_install(strId, strBuild, m_strLocale, "");
-
-   //   //for (index iLocale = 0; iLocale < straLocale.get_count(); iLocale++)
-   //   //{
-
-   //   //   psystem->install().add_app_install(strId, strBuild, straLocale[iLocale], "");
-
-   //   //}
-
-   //   //psystem->install().add_app_install(strId, strBuild, "", m_strSchema);
-   //   //psystem->install().add_app_install(strId, strBuild, "", strSystemSchema);
-
-   //   //for (index iSchema = 0; iSchema < straSchema.get_count(); iSchema++)
-   //   //{
-
-   //   //   psystem->install().add_app_install(strId, strBuild, "", straSchema[iSchema]);
-
-   //   //}
-
-   //   //psystem->install().add_app_install(strId, strBuild, "", "");
-
-   //   return true;
-
-   //}
-
-
-   //::e_status application::os_native_bergedge_start()
-   //{
-
-   //   return true;
-
-   //}
-
-
-   //::e_status     application::run()
-   //{
-
-   //   if (is_system())
-   //   {
-
-
-
-   //   }
-
-   //   return ::thread::run();
-
-   //}
-
-
-   //bool application::safe_is_running()
-   //{
-
-   //   bool bRunning = false;
-
-   //   try
-   //   {
-
-   //      if (is_running())
-   //      {
-
-   //         bRunning = true;
-
-   //      }
-
-   //   }
-   //   catch (...)
-   //   {
-
-   //      bRunning = false;
-
-   //   }
-
-
-   //   return bRunning;
-
-   //}
-
-
-
-
-
-
-
-
 
 
    ::e_status application::process_init()
@@ -3546,7 +3384,7 @@ retry_license:
    //string application::get_executable_appid()
    //{
 
-   //   return m_strAppId;
+   //   return m_XstrAppId;
 
    //}
 
@@ -3611,7 +3449,7 @@ retry_license:
 //      wstring desc = L"spafile";          // file type description
 //      wstring content_type = L"application/x-spa";
 //
-//      wstring app(m_psystem->m_pacmedir->stage(m_strAppId, process_platform_dir_name(), process_configuration_dir_name()));
+//      wstring app(m_psystem->m_pacmedir->stage(m_XstrAppId, process_platform_dir_name(), process_configuration_dir_name()));
 //
 //      wstring icon(app);
 //
@@ -3658,7 +3496,7 @@ retry_license:
 //      RegSetValueExW(hkey, L"", 0, REG_SZ, (byte*)icon.c_str(), ::u32 (icon.length() * sizeof(wchar_t)));
 //      RegCloseKey(hkey);
 //
-//      wstring wstr(m_psystem->m_pacmedir->stage(m_strAppId, process_platform_dir_name(), process_configuration_dir_name()) / "spa_register.txt");
+//      wstring wstr(m_psystem->m_pacmedir->stage(m_XstrAppId, process_platform_dir_name(), process_configuration_dir_name()) / "spa_register.txt");
 //
 //      int iRetry = 9;
 //
@@ -4490,7 +4328,7 @@ retry_license:
    //bool application::on_start_application()
    //{
 
-   //   string strAppId = m_strAppId;
+   //   string strAppId = m_XstrAppId;
 
    //   auto& file = psystem->file();
 

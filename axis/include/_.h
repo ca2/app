@@ -45,8 +45,6 @@ namespace axis
 } // namespace axis
 
 
-// C-includes
-#include "axis/os/_c.h"
 
 #include "axis/account/_.h"
 
@@ -124,10 +122,6 @@ namespace axis
 
 
 
-// C++ Includes
-#include "axis/os/_.h"
-#include "axis/node/_.h"
-
 
 
 #include "axis/compress/_.h"
@@ -150,7 +144,5 @@ namespace axis
 
 #include "axis/database/database/_impl.h"
 
-
-#include "axis/os/_impl.h"
 
 

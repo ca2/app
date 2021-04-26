@@ -87,7 +87,7 @@ namespace aura
       create_factory < ::user::user >();
       create_factory < ::aura::session, ::aura::session >();
 
-      //m_strAppId                    = "core_session";
+      //m_XstrAppId                    = "core_session";
       //m_strAppName                  = "core_session";
       //m_strBaseSupportId            = "core_session";
       //m_strInstallToken             = "core_session";

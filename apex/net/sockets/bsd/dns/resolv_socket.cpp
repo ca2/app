@@ -219,10 +219,10 @@ namespace sockets
       else if (key == "Failed" && m_parent)
       {
          TRACE(" ************ Resolve failed\n");
-         if (socket_handler()->Resolving(m_parent) || socket_handler()->Valid(m_parent))
-         {
-            m_parent -> OnResolveFailed(m_resolv_id);
-         }
+//         if (socket_handler()->Resolving(m_parent) || socket_handler()->Valid(m_parent))
+//         {
+//            m_parent -> OnResolveFailed(m_resolv_id);
+//         }
          // update cache
          if (!m_cached)
          {
@@ -236,10 +236,10 @@ namespace sockets
       }
       else if (key == "Name" && !m_resolv_host.get_length() && m_parent)
       {
-         if (socket_handler()->Resolving(m_parent) || socket_handler()->Valid(m_parent))
-         {
-            m_parent -> OnReverseResolved(m_resolv_id, value);
-         }
+//         if (socket_handler()->Resolving(m_parent) || socket_handler()->Valid(m_parent))
+//         {
+//            m_parent -> OnReverseResolved(m_resolv_id, value);
+//         }
          // update cache
          if (!m_cached)
          {
@@ -252,12 +252,12 @@ namespace sockets
       }
       else if (key == "A" && m_parent)
       {
-         if (socket_handler()->Resolving(m_parent) || socket_handler()->Valid(m_parent))
-         {
-            in_addr l;
-            m_paddressdepartment->convert(l, value); // ip2ipaddr_t
-            m_parent -> OnResolved(m_resolv_id, ::net::address(l, m_resolv_port));
-         }
+//         if (socket_handler()->Resolving(m_parent) || socket_handler()->Valid(m_parent))
+//         {
+//            in_addr l;
+//            m_paddressdepartment->convert(l, value); // ip2ipaddr_t
+//            m_parent -> OnResolved(m_resolv_id, ::net::address(l, m_resolv_port));
+//         }
          // update cache
          if (!m_cached)
          {
@@ -270,12 +270,12 @@ namespace sockets
       }
       else if (key == "AAAA" && m_parent)
       {
-         if (socket_handler()->Resolving(m_parent) || socket_handler()->Valid(m_parent))
-         {
-            in6_addr a;
-            m_paddressdepartment->convert(value, a);
-            m_parent -> OnResolved(m_resolv_id, ::net::address(a, m_resolv_port));
-         }
+//         if (socket_handler()->Resolving(m_parent) || socket_handler()->Valid(m_parent))
+//         {
+//            in6_addr a;
+//            m_paddressdepartment->convert(value, a);
+//            m_parent -> OnResolved(m_resolv_id, ::net::address(a, m_resolv_port));
+//         }
          // update cache
          if (!m_cached)
          {
@@ -407,10 +407,10 @@ namespace sockets
    {
       if (m_parent)
       {
-         if (socket_handler()->Resolving(m_parent) || socket_handler()->Valid(m_parent))
-         {
-            m_parent -> OnResolveFailed(m_resolv_id);
-         }
+//         if (socket_handler()->Resolving(m_parent) || socket_handler()->Valid(m_parent))
+//         {
+//            m_parent -> OnResolveFailed(m_resolv_id);
+//         }
          // update cache
          if (!m_cached)
          {

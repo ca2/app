@@ -682,25 +682,25 @@ namespace sockets
       \lparam host hostname to be resolved
       \lparam port port number passed along for the ride
       \return Resolve ID */
-      int Resolve(const string & host,port_t port = 0);
-      int Resolve6(const string & host, port_t port = 0);
+      //int Resolve(const string & host,port_t port = 0);
+      //int Resolve6(const string & host, port_t port = 0);
       /** Callback returning a resolved ::net::address.
       \lparam id Resolve ID from Resolve call
       \lparam a resolved ip address/port
       \lparam port port number passed to Resolve */
-      virtual void OnResolved(int id, const ::net::address & addr);
+      //virtual void OnResolved(int id, const ::net::address & addr);
       //virtual void OnResolved(int id, in6_addr & a, port_t port);
       /** Request asynchronous reverse dns lookup.
       \lparam a in_addr to be translated */
-      int Resolve(in_addr a);
-      int Resolve(in6_addr& a);
+      //int Resolve(in_addr a);
+      //int Resolve(in6_addr& a);
       /** Callback returning reverse resolve results.
       \lparam id Resolve ID
       \lparam name Resolved hostname */
-      virtual void OnReverseResolved(int id,const string & name);
+      //virtual void OnReverseResolved(int id,const string & name);
       /** Callback indicating failed dns lookup.
       \lparam id Resolve ID */
-      virtual void OnResolveFailed(int id);
+      //virtual void OnResolveFailed(int id);
       //@}
       /** \name Thread Support */
       //@{

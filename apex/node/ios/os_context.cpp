@@ -615,7 +615,7 @@ namespace ios
 
        SC_HANDLE hdlSCM = OpenSCManager(0, 0, SC_MANAGER_CREATE_SERVICE);
 
-       string strCalling = papp->m_strModulePath + " : app=" + papp->m_strAppId + " service usehostlogin";
+       string strCalling = papp->m_strModulePath + " : app=" + papp->m_XstrAppId + " service usehostlogin";
 
        if(hdlSCM == 0)
        {

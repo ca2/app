@@ -307,43 +307,43 @@ namespace sockets
 
       }
 
-      if(socket_handler()->get_count() >= FD_SETSIZE)
-      {
-
-
-         FATAL(log_this, "open",0,"no space left in fd_set");
-
-         SetCloseAndDelete();
-         return false;
-
-      }
+//      if(socket_handler()->get_count() >= FD_SETSIZE)
+//      {
+//
+//
+//         FATAL(log_this, "open",0,"no space left in fd_set");
+//
+//         SetCloseAndDelete();
+//         return false;
+//
+//      }
 
       SetConnecting(false);
       SetSocks4(false);
 
-      if(socket_handler()->PoolEnabled())
-      {
-
-         __pointer(base_socket_handler::pool_socket) ppoolsocket = socket_handler()->FindConnection(SOCK_STREAM,"tcp",ad);
-
-         if(ppoolsocket)
-         {
-
-            CopyConnection(ppoolsocket);
-
-            SetIsClient();
-
-            SetCallOnConnect(); // base_socket_handler must call OnConnect
-
-            (*this)["from_pool"] = true;
-
-            INFO(log_this, "SetCallOnConnect",0,"Found pooled connection");
-
-            return true;
-
-         }
-
-      }
+//      if(socket_handler()->PoolEnabled())
+//      {
+//
+//         __pointer(base_socket_handler::pool_socket) ppoolsocket = socket_handler()->FindConnection(SOCK_STREAM,"tcp",ad);
+//
+//         if(ppoolsocket)
+//         {
+//
+//            CopyConnection(ppoolsocket);
+//
+//            SetIsClient();
+//
+//            SetCallOnConnect(); // base_socket_handler must call OnConnect
+//
+//            (*this)["from_pool"] = true;
+//
+//            INFO(log_this, "SetCallOnConnect",0,"Found pooled connection");
+//
+//            return true;
+//
+//         }
+//
+//      }
 
       // if not, create new connection
       SOCKET s = CreateSocket(ad.get_family(),SOCK_STREAM,"tcp");
@@ -456,7 +456,8 @@ namespace sockets
 
          auto paddressdepartment = ::net::address_department();
 
-         if(!socket_handler()->ResolverEnabled() || paddressdepartment->isipv6(host))
+         //if(!socket_handler()->ResolverEnabled() || paddressdepartment->isipv6(host))
+         if(paddressdepartment->isipv6(host))
          {
 
             in6_addr a;
@@ -485,7 +486,7 @@ namespace sockets
 
          }
 
-         m_resolver_id = Resolve6(host,port);
+         //m_resolver_id = Resolve6(host,port);
 
          return true;
 
@@ -493,7 +494,8 @@ namespace sockets
 
       auto paddressdepartment = ::net::address_department();
 
-      if(!socket_handler()->ResolverEnabled() || paddressdepartment->isipv4(host))
+      //if(!socket_handler()->ResolverEnabled() || paddressdepartment->isipv4(host))
+      ///if( paddressdepartment->isipv4(host))
       {
 
          in_addr l;
@@ -526,49 +528,49 @@ namespace sockets
 
       // resolve using async resolver thread
 
-      m_resolver_id = Resolve(host,port);
+      //m_resolver_id = Resolve(host,port);
 
       return true;
 
    }
 
 
-   void tcp_socket::OnResolved(i32 id,const ::net::address & a)
-   {
-
-      auto paddressdepartment = ::net::address_department();
-
-      INFO("OnResolved id %d addr %s port %d\n",id,paddressdepartment->canonical_name(a).c_str(),a.u.s.m_port);
-
-      if(id == m_resolver_id)
-      {
-         if(a.is_valid() && a.u.s.m_port)
-         {
-            ::net::address addrLocal;
-            if(open(a,addrLocal))
-            {
-               if(!socket_handler()->Valid(this))
-               {
-                  socket_handler()->add(this);
-               }
-            }
-         }
-         else
-         {
-
-            FATAL(log_this, "OnResolved",0,"Resolver failed");
-
-            SetCloseAndDelete();
-         }
-      }
-      else
-      {
-
-         FATAL(log_this, "OnResolved",id,"Resolver returned wrong job id");
-
-         SetCloseAndDelete();
-      }
-   }
+//   void tcp_socket::OnResolved(i32 id,const ::net::address & a)
+//   {
+//
+//      auto paddressdepartment = ::net::address_department();
+//
+//      INFO("OnResolved id %d addr %s port %d\n",id,paddressdepartment->canonical_name(a).c_str(),a.u.s.m_port);
+//
+//      if(id == m_resolver_id)
+//      {
+//         if(a.is_valid() && a.u.s.m_port)
+//         {
+//            ::net::address addrLocal;
+//            if(open(a,addrLocal))
+//            {
+//               if(!socket_handler()->Valid(this))
+//               {
+//                  socket_handler()->add(this);
+//               }
+//            }
+//         }
+//         else
+//         {
+//
+//            FATAL(log_this, "OnResolved",0,"Resolver failed");
+//
+//            SetCloseAndDelete();
+//         }
+//      }
+//      else
+//      {
+//
+//         FATAL(log_this, "OnResolved",id,"Resolver returned wrong job id");
+//
+//         SetCloseAndDelete();
+//      }
+//   }
 
 
 

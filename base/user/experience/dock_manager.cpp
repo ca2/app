@@ -42,71 +42,6 @@ namespace experience
    }
 
 
-   void dock_manager::dock_button_on_message_left_button_down(::message::message *pmessage)
-   {
-
-      if (!m_pframewindow->WfiOnStartDock())
-      {
-
-         return;
-
-      }
-
-      __pointer(::message::mouse) pmouse(pmessage);
-
-      if (!m_pframewindow->is_docking_enabled())
-      {
-
-         return;
-
-      }
-
-      pmouse->previous();
-
-      auto pointCursor = pmouse->m_point;
-
-      auto rectWindow = m_pframewindow->layout().sketch().screen_rect();
-
-      auto pointDockOrigin = pointCursor;
-
-      dock_button()->ScreenToClient(pointDockOrigin);
-
-      m_pointCursorDockOrigin = pointDockOrigin;
-
-      m_pointWindowOrigin = rectWindow.top_left();
-
-      m_pointMove = m_pointWindowOrigin;
-
-      m_sizeOrigin = rectWindow.size();
-
-      dock_button()->set_mouse_capture();
-
-      auto pwindow = m_pframewindow->window();
-
-      if(!pwindow->has_mouse_capture())
-      {
-
-         m_pframewindow->set_mouse_capture();
-
-      }
-
-      m_edisplayOrigin = m_pframewindow->layout().design().display();
-
-      m_mapWorkspaceRect.erase_all();
-
-      m_bDocking = true;
-
-      m_pframewindow->on_start_layout_experience(e_layout_experience_docking);
-
-      pmouse->m_bRet = true;
-
-      m_iDockMove = 0;
-
-      dock_window(pmouse);
-
-   }
-
-
    bool dock_manager::dock_window(::message::mouse* pmouse)
    {
 
@@ -116,7 +51,9 @@ namespace experience
 
       ::rectangle_i32 rectDockButtonWindow;
 
-      m_pframewindow->m_pframe->get_control_box()->get_button(e_button_dock)->get_window_rect(rectDockButtonWindow);
+      auto pbutton = dock_button();
+
+      pbutton->get_window_rect(rectDockButtonWindow);
 
       ::point_i32 pointDock = rectDockButtonWindow.center();
 
@@ -150,14 +87,7 @@ namespace experience
 
       int iMonitor = (int)pdisplay->get_best_monitor(screen, rectCursor);
 
-      if (!m_mapWorkspaceRect.lookup(iMonitor, rectWork))
-      {
-
-         pdisplay->get_workspace_rectangle(iMonitor, rectWork);
-
-         m_mapWorkspaceRect.set_at(iMonitor, rectWork);
-
-      }
+      pdisplay->get_workspace_rectangle(iMonitor, rectWork);
 
       if (rectWork.is_empty())
       {
@@ -189,8 +119,6 @@ namespace experience
          rectCenter.left -= cxCenterArea / 16;
          rectCenter.right += cxCenterArea / 16;
 
-         //output_debug_string("biggerbottomarea\n");
-
       }
       else
       {
@@ -205,8 +133,6 @@ namespace experience
          rectCenter.top += cyCenterArea / 4;
          rectCenter.left -= cxCenterArea / 16;
          rectCenter.right += cxCenterArea / 16;
-
-         //output_debug_string("biggertoparea\n");
 
       }
       else
@@ -223,8 +149,6 @@ namespace experience
          rectCenter.top -= cyCenterArea / 8;
          rectCenter.bottom += cyCenterArea / 8;
 
-         //output_debug_string("biggerrightarea\n");
-
       }
       else
       {
@@ -239,8 +163,6 @@ namespace experience
          rectCenter.left += cxCenterArea / 4;
          rectCenter.top -= cyCenterArea / 16;
          rectCenter.bottom += cyCenterArea / 16;
-
-         //output_debug_string("biggerleftarea\n");
 
       }
       else
@@ -385,6 +307,8 @@ namespace experience
 
             m_pframewindow->display(e_display_normal);
 
+            m_pframewindow->set_need_layout();
+
             m_pframewindow->set_need_redraw();
 
             m_pframewindow->post_redraw();
@@ -395,30 +319,22 @@ namespace experience
       else if (is_docking_appearance(edisplayDock))
       {
 
-         //if (m_iDockMove <= 0 || m_iDockMove >= m_iConsiderDockMove)
+         if (edisplayDock == edisplayOld || rectDock != rectWindow)
          {
 
-            if (edisplayDock == edisplayOld || rectDock != rectWindow)
-            {
+            m_pframewindow->order(e_zorder_top);
 
-               m_pframewindow->order(e_zorder_top);
+            m_pframewindow->place(rectDock);
 
-               m_pframewindow->place(rectDock);
+            m_pframewindow->display(edisplayDock);
 
-               m_pframewindow->display(edisplayDock);
+            m_pframewindow->set_need_layout();
 
-               m_pframewindow->set_need_redraw();
+            m_pframewindow->set_need_redraw();
 
-               m_pframewindow->post_redraw();
+            m_pframewindow->post_redraw();
 
-               //if (m_iDockMove <= 0)
-               {
-
-                  m_bPendingCursorPos = true;
-
-               }
-
-            }
+            m_bPendingCursorPos = true;
 
          }
 
@@ -429,34 +345,64 @@ namespace experience
    }
 
 
-   //void dock_manager::defer_cursor_pos()
-   //{
+   void dock_manager::dock_button_on_message_left_button_down(::message::message *pmessage)
+   {
 
-   //   if (m_bPendingCursorPos)
-   //   {
+      if (!m_pframewindow->WfiOnStartDock())
+      {
 
-   //      m_bPendingCursorPos = false;
+         return;
 
-   //      //if (window_is_docking())
-   //      //{
+      }
 
-   //      //   auto pointCursor = m_pframewindow->layout().sketch().origin() + (dock_button()->layout().parent_client_rect().origin() + m_pointCursorDockOrigin);
+      if (!m_pframewindow->is_docking_enabled())
+      {
 
-   //      //   auto psession = get_session();
+         return;
 
-   //      //   psession->set_cursor_pos(pointCursor);
+      }
 
-   //      //}
+      __pointer(::message::mouse) pmouse(pmessage);
 
-   //   }
+      auto pbutton = dock_button();
 
-   //}
+      pbutton->set_mouse_capture();
+
+      auto pointCursor = pmouse->m_point;
+
+      auto rectWindow = m_pframewindow->layout().sketch().screen_rect();
+
+      auto pointDockOrigin = pointCursor;
+
+      pbutton->ScreenToClient(pointDockOrigin);
+
+      m_pointCursorDockOrigin = pointDockOrigin;
+
+      m_pointWindowOrigin = rectWindow.top_left();
+
+      m_pointMove = m_pointWindowOrigin;
+
+      m_sizeOrigin = rectWindow.size();
+
+      m_edisplayOrigin = m_pframewindow->layout().design().display();
+
+      m_mapWorkspaceRect.erase_all();
+
+      m_bDocking = true;
+
+      m_pframewindow->on_start_layout_experience(e_layout_experience_docking);
+
+      m_iDockMove = 0;
+
+      dock_window(pmouse);
+
+      pmouse->m_bRet = true;
+
+   }
 
 
    void dock_manager::dock_button_on_message_mouse_move(::message::message *pmessage)
    {
-
-      __pointer(::message::mouse) pmouse(pmessage);
 
       if (!m_pframewindow->is_docking_enabled())
       {
@@ -472,18 +418,9 @@ namespace experience
 
       }
 
+      __pointer(::message::mouse) pmouse(pmessage);
+
       if (pmouse->m_eflagMessage & ::message::flag_synthesized)
-      {
-
-         pmessage->m_bRet = false;
-
-         return;
-
-      }
-
-      auto pwindow = m_pframewindow->window();
-
-      if (!pwindow || !pwindow->has_mouse_capture())
       {
 
          return;
@@ -494,22 +431,13 @@ namespace experience
 
       dock_window(pmouse);
 
-      pmessage->m_bRet = true;
+      pmouse->m_bRet = true;
 
    }
 
 
    void dock_manager::dock_button_on_message_left_button_up(::message::message *pmessage)
    {
-
-      __pointer(::message::mouse) pmouse(pmessage);
-
-      if (!m_pframewindow->is_docking_enabled())
-      {
-
-         return;
-
-      }
 
       if (!window_is_docking())
       {
@@ -518,25 +446,19 @@ namespace experience
 
       }
 
-      __pointer(::base::session) psession = get_session();
-
-      auto puser = psession->user();
-
-      auto puserinteractionCapture = puser->get_mouse_capture(m_pframewindow->m_pthreadUserInteraction);
-
-      TRACE("dock_manager::message_handler oswindow ReleaseCapture 2 %x\n", puserinteractionCapture);
-
       m_bDocking = false;
+
+      __pointer(::message::mouse) pmouse(pmessage);
+
+      auto pbutton = dock_button();
+
+      pbutton->windowing()->release_mouse_capture();
 
       dock_window(pmouse);
 
-      auto pwindowing = puser->windowing();
-
-      pwindowing->release_mouse_capture();
-
       m_pframewindow->on_end_layout_experience(e_layout_experience_docking);
 
-      pmessage->m_bRet = true;
+      pmouse->m_bRet = true;
 
    }
 
@@ -549,17 +471,6 @@ namespace experience
       return true;
 
    }
-
-
-   //void dock_manager::SetSWPFlags(::u32 uFlags)
-   //{
-
-   //   m_uiSWPFlags = uFlags;
-   //   m_uiSWPFlags |= SWP_NOSIZE;
-   //   m_uiSWPFlags |= SWP_FRAMECHANGED;
-   //   m_uiSWPFlags &= ~SWP_NOMOVE;
-
-   //}
 
 
    bool dock_manager::window_is_docking()

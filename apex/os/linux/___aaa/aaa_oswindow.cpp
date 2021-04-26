@@ -447,12 +447,12 @@ oswindow_data * oswindow_get(Window window)
 // }
 
 
-bool oswindow_data::bamf_set_icon()
+bool oswindow_data::bamf_set_icon(::apex::application * papplication)
 {
 
    ::linux::desktop_file file;
 
-   file.bamf_set_icon(this);
+   file.bamf_set_icon(this, papplication);
 
    return true;
 

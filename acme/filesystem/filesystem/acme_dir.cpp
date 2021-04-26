@@ -383,12 +383,12 @@ string acme_dir::system_short_name()
 //#ifdef _UWP
 
 
-::file::path acme_dir::home()
-{
-
-   return "";
-
-}
+//::file::path acme_dir::home()
+//{
+//
+//   return "";
+//
+//}
 
 
 //#endif
@@ -482,7 +482,18 @@ void acme_dir::set_path_install_folder(const char* pszPath)
 ::file::path acme_dir::module()
 {
 
-   return "";
+   if(m_pathModuleFolder.is_empty())
+   {
+
+      auto pnode = m_psystem->node();
+
+      auto pathModule = pnode->module_path_source();
+
+      m_pathModuleFolder = pathModule.folder();
+
+   }
+
+   return m_pathModuleFolder;
 
 }
 

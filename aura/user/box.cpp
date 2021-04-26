@@ -3,7 +3,6 @@
 #include "aura/message.h"
 #include "acme/const/simple_command.h"
 #include "apex/message/simple_command.h"
-//#include "apex/platform/predicate_procedure.h"
 
 
 namespace user
@@ -264,8 +263,11 @@ namespace user
 
          m_ewindowflag |= e_window_flag_loading_window_rect;
 
-         //main_async([this]()
-         //           {
+         auto psession = get_session();
+
+         auto puser = psession->user();
+
+         auto pwindowing = puser->windowing();
 
          bool bRestore = good_restore(nullptr, nullptr, true, e_activation_default, e_zorder_top, initial_restore_display()) >= 0;
 
@@ -276,11 +278,7 @@ namespace user
 
             display();
 
-         }
-
-//         });
-
-         //bool bRestore = true;
+         };
 
          return bRestore;
 

@@ -219,29 +219,6 @@ list(APPEND axis_source
         net/_net.h
         net/email_department.cpp
         net/email_department.h
-        #node/dummy/frame_window.cpp
-        node/_.h
-        node/_node.h
-        #node/node_serial.cpp
-        node/serial.h
-        #os/ansios/_.h
-        #os/ansios/_ansios.h
-        #os/ansios/_c.h
-        #os/ansios/ansios_file.h
-        #os/ansios/callstack.h
-        #os/ansios/datetime_c.h
-        #os/ansios/exception_engine.h
-        #os/ansios/file.h
-        #os/ansios/file_c.h
-        #os/ansios/file_raw.h
-        #os/ansios/multithreading.h
-        os/cairo/_.h
-        os/cairo/_impl.h
-        os/_.h
-        os/_application.h
-        os/_c.h
-        os/_impl.h
-        os/_os.h
         pcre/_.h
         pcre/_pcre.h
         pcre/code.cpp
@@ -674,12 +651,6 @@ if(LINUX OR APPLE OR SOLARIS)
 
 endif()
 
-
-if (MSVC)
-    set(LIBCXX_TARGETING_MSVC ON)
-else()
-    set(LIBCXX_TARGETING_MSVC OFF)
-endif()
 
 
 add_library(axis SHARED ${axis_source})

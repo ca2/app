@@ -915,7 +915,7 @@ typedef DEFER_INIT * PFN_DEFER_INIT;
 //
 //      psystem->system_construct(argc, argv);
 //
-//      psystem->m_strAppId = pszMainAppId;
+//      psystem->m_XstrAppId = pszMainAppId;
 //
 //      iResult = (int) ::aura_aura(psystem);
 //

@@ -20,7 +20,7 @@ namespace aura
       ::aura::application *                           m_pappParent;
       //string                                          m_strAppName;
       //string                                          m_strAppTitle;
-      //string                                          m_strAppId;
+      //string                                          m_XstrAppId;
       //string                                          m_strBaseSupportId;
       //string                                          m_strRoot;
       //string                                          m_strDomain;

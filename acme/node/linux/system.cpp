@@ -35,21 +35,21 @@ namespace acme
    }
 
 
-   ::e_status system::inline_init()
-   {
-
-      auto estatus = process_init();
-
-      if (!estatus)
-      {
-
-         return estatus;
-
-      }
-
-      return ::success;
-
-   }
+//   ::e_status system::inline_init()
+//   {
+//
+//      auto estatus = process_init();
+//
+//      if (!estatus)
+//      {
+//
+//         return estatus;
+//
+//      }
+//
+//      return ::success;
+//
+//   }
 
 
    ::e_status system::inline_term()
@@ -59,14 +59,14 @@ namespace acme
 
    }
 
-
-   ::e_status system::on_start_system()
-   {
-
-      return ::success;
-
-   }
-
+//
+//   ::e_status system::on_start_system()
+//   {
+//
+//      return ::success;
+//
+//   }
+//
 
    ::e_status system::on_end()
    {

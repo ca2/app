@@ -49,7 +49,7 @@ public:
       while (get_count() > m_iLimitCount)
       {
 
-         remove_bigger();
+         erase_bigger();
 
       }
 
@@ -70,42 +70,41 @@ public:
    }
 
 
-
-   void remove_bigger()
+   void erase_bigger()
    {
 
       image_header keyFind;
 
       u64 uAreaMax = 0;
 
-      assoc * passoc = get_start();
+      auto passociation = get_start();
 
-      while (passoc != nullptr)
+      while (passociation != nullptr)
       {
 
-         if (!passoc->element2()->is_shared() && passoc->element2()->area() > uAreaMax)
+         if (!passociation->element2()->is_shared() && passociation->element2()->area() > uAreaMax)
          {
 
-            uAreaMax = passoc->element2()->area();
+            uAreaMax = passociation->element2()->area();
 
-            keyFind = passoc->element1();
+            keyFind = passociation->element1();
 
          }
 
-         passoc = passoc->m_pnext;
+         passociation = passociation->m_pnext;
 
       }
 
       if (uAreaMax > 0)
       {
 
-         remove_key(keyFind);
+         erase_key(keyFind);
 
       }
       else
       {
 
-         remove_key(get_start()->element1());
+         erase_key(get_start()->element1());
 
       }
 

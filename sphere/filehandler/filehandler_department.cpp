@@ -5,8 +5,8 @@ namespace filehandler
 {
 
 
-   department::department(::layered * pobjectContext) :
-      ::apex::department(pobject)
+   department::department(::object * pobject) :
+      ::acme::department(pobject)
    {
 
       m_ptemplateMenu   = nullptr;
@@ -39,7 +39,7 @@ namespace filehandler
       create_factory <frame >();
       create_factory <view >();
 
-      if(!::apex::department::init_instance())
+      if(!::acme::department::init_instance())
          return false;
 
 
@@ -50,7 +50,7 @@ namespace filehandler
       __type(document),
       __type(frame),       // top level SDI frame::user::interaction_impl
       __type(pane_view));
-      Application.add_document_template(pdoctemplate);
+      papplication->add_document_template(pdoctemplate);
       m_ptemplateMenu = pdoctemplate;
 
 
@@ -64,7 +64,7 @@ namespace filehandler
       try
       {
 
-         ::apex::department::term_instance();
+         ::acme::department::term_instance();
 
       }
       catch(...)

@@ -14,7 +14,7 @@ namespace browser
 {
 
 
-   view::view(::layered * pobjectContext):
+   view::view(::object * pobject):
       object(pobject),
       impact_base(pobject)
    {
@@ -26,8 +26,8 @@ namespace browser
       prop(COLORSEL_IMPACT) = true;
 
 
-      m_flagNonClient.remove(non_client_background);
-      m_flagNonClient.remove(non_client_focus_rect);
+      m_flagNonClient.erase(non_client_background);
+      m_flagNonClient.erase(non_client_focus_rect);
 
       m_eeffect                  = effect_none;
 
@@ -47,7 +47,7 @@ namespace browser
 
       m_b001LayoutIgnoreEmpty = false;
 
-      m_ppcre = System->create_pcre("\\:\\-\\)");
+      m_ppcre = psystem->create_pcre("\\:\\-\\)");
 
    }
 
@@ -106,7 +106,7 @@ namespace browser
 
       bool bAlternate = string(m_id).contains_ci("switcher");
 
-      m_prender = __new(render(get_context_application(), bAlternate));
+      m_prender = __new(render(get_application(), bAlternate));
 
       m_prender->m_pview = this;
 
@@ -140,7 +140,7 @@ namespace browser
 
       //set_browser(strText);
 
-      if(Application.m_etype == application::type_normal)
+      if(papplication->m_etype == application::type_normal)
       {
 
          m_prender->begin();
@@ -160,7 +160,7 @@ namespace browser
 
          {
 
-            synchronization_lock synchronizationlock(&m_mutexText);
+            synchronous_lock synchronouslock(&m_mutexText);
 
             calc_processed_browser(m_strProcessedHellomultiverse);
 
@@ -168,7 +168,7 @@ namespace browser
 
          {
 
-            synchronization_lock synchronizationlock(&m_mutexText);
+            synchronous_lock synchronouslock(&m_mutexText);
 
             if (m_bPendingImageChange)
             {
@@ -180,7 +180,7 @@ namespace browser
 
                   string strFork = m_strImage.c_str();
 
-                  synchronizationlock.unlock();
+                  synchronouslock.unlock();
 
                   fork([this, strFork]()
                   {
@@ -210,11 +210,11 @@ namespace browser
    void view::on_layout()
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       {
 
-         synchronization_lock slText(&m_mutexText);
+         synchronous_lock slText(&m_mutexText);
 
          if(m_strNewHelloBrowser.is_empty())
          {
@@ -317,7 +317,7 @@ namespace browser
 
       pmessage->previous();
 
-      Application.m_ppaneview->m_pviewLastBilbo = this;
+      papplication->m_ppaneview->m_pviewLastBilbo = this;
 
       CefMouseEvent event;
 
@@ -331,7 +331,7 @@ namespace browser
       if (pmouse->m_id == e_message_left_button_down)
       {
 
-         Application.m_ppaneview->m_pviewLastBilbo = this;
+         papplication->m_ppaneview->m_pviewLastBilbo = this;
 
          m_pbrowser->GetHost()->SendMouseClickEvent(event, cef_mouse_button_type_t::MBT_LEFT, false, 1);
 
@@ -379,7 +379,7 @@ namespace browser
       if (rectangle.size() != m_pimageBrowser->size())
       {
 
-         if (Application.get_context_application()->m_bCefInitialized)
+         if (papplication->get_application()->m_bCefInitialized)
          {
             if (!m_bBrowser)
             {
@@ -401,7 +401,7 @@ namespace browser
                //                        // main_async([=]()
                //{
 
-               //   cef_main(System->m_hinstance, get_handle(), rectangle);
+               //   cef_main(psystem->m_hinstance, get_handle(), rectangle);
 
                //});
 
@@ -473,7 +473,7 @@ namespace browser
    void view::calc_processed_browser(string & strProcessedHellomultiverse)
    {
 
-      synchronization_lock slText(&m_mutexText);
+      synchronous_lock slText(&m_mutexText);
 
       string str;
 
@@ -600,7 +600,7 @@ namespace browser
    string view::get_browser()
    {
 
-      synchronization_lock synchronizationlock(&m_mutexText);
+      synchronous_lock synchronouslock(&m_mutexText);
 
       if(m_strHelloBrowser.c_str() != m_strNewHelloBrowser.c_str())
       {
@@ -618,13 +618,13 @@ namespace browser
             if(m_dFps != 0.0)
             {
 
-               return "Rolling " + Application.m_strAlternateHelloBrowser;
+               return "Rolling " + papplication->m_strAlternateHelloBrowser;
 
             }
             else
             {
 
-               return Application.m_strAlternateHelloBrowser.c_str();
+               return papplication->m_strAlternateHelloBrowser.c_str();
 
             }
 
@@ -635,13 +635,13 @@ namespace browser
             if(m_dFps != 0.0)
             {
 
-               return "Rolling " + Application.m_strHelloBrowser;
+               return "Rolling " + papplication->m_strHelloBrowser;
 
             }
             else
             {
 
-               return Application.m_strHelloBrowser.c_str();
+               return papplication->m_strHelloBrowser.c_str();
 
             }
 
@@ -664,14 +664,14 @@ namespace browser
       if (m_prender != nullptr)
       {
 
-         synchronization_lock synchronizationlock(&m_mutexText);
+         synchronous_lock synchronouslock(&m_mutexText);
 
          if (m_strProcessedHellomultiverse != m_prender->m_strHelloBrowser)
          {
 
             m_prender->m_strHelloBrowser = m_strProcessedHellomultiverse.c_str(); // rationale : string allocation fork *for parallelization*
 
-            synchronizationlock.unlock();
+            synchronouslock.unlock();
 
             set_need_layout();
 
@@ -685,7 +685,7 @@ namespace browser
    void view::on_draw_image_layer(::draw2d::graphics_pointer & pgraphics)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       if (m_prender->m_bImageEnable && m_prender->m_pimageImage->is_ok())
       {
@@ -722,7 +722,7 @@ namespace browser
 
 /*                  pimage->stretch_image(m_prender->m_pimageImage);
 
-                  synchronization_lock synchronizationlock(mutex());
+                  synchronous_lock synchronouslock(mutex());
 
 /*                  m_prender->m_pimageImageStretched = pimage;
 
@@ -751,7 +751,7 @@ namespace browser
 
       {
 
-         synchronization_lock synchronizationlock(&m_mutexText);
+         synchronous_lock synchronouslock(&m_mutexText);
 
          m_strNewHelloBrowser = strText;
 
@@ -892,7 +892,7 @@ namespace browser
                       int height)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       pixmap p;
 

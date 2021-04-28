@@ -50,7 +50,7 @@ namespace programming
 
          bool bNew = true;
 
-         __pointer(::apex::library) lib = pcompiler->compile(::dir::system() / "config\\xmpp_resident\\room\\ca2@livecoding.tv\\xmpp_bot.cpp", bNew);
+         __pointer(::acme::library) lib = pcompiler->compile(pacmedir->system() / "config\\xmpp_resident\\room\\ca2@livecoding.tv\\xmpp_bot.cpp", bNew);
 
          if (lib->m_pca2library == nullptr)
          {
@@ -60,7 +60,7 @@ namespace programming
 
          }
 
-         __pointer(object) p = lib->alloc(get_context_application(), "plugin", this);
+         __pointer(object) p = lib->alloc(get_application(), "plugin", this);
 
          if (p.is_null())
             return;
@@ -77,9 +77,9 @@ namespace programming
    string application::get_visual_studio_build()
    {
 
-      ::file::path path = dir::config() / "programming/vs_build.txt";
+      ::file::path path = pacmedir->config() / "programming/vs_build.txt";
 
-      string strBuild = Context.file().as_string(path);
+      string strBuild = pcontext->m_papexcontext->file().as_string(path);
 
       strBuild.trim();
 

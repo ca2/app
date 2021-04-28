@@ -850,29 +850,29 @@ bool string_base < TYPE_CHAR >::contains_wci(const string_base < TYPE_CHAR >& st
 }
 
 
-template < typename TYPE_CHAR >
-string_base < TYPE_CHAR >& string_base < TYPE_CHAR >::erase(strsize iStart, strsize strsize)
-{
-
-   if (iStart < 0)
-   {
-
-      strsize = 0;
-
-   }
-
-   if (strsize < 0)
-   {
-
-      strsize = get_length();
-
-   }
-
-   Delete(iStart, strsize);
-
-   return *this;
-
-}
+//template < typename TYPE_CHAR >
+//string_base < TYPE_CHAR >& string_base < TYPE_CHAR >::erase(strsize iStart, strsize strsize)
+//{
+//
+//   if (iStart < 0)
+//   {
+//
+//      strsize = 0;
+//
+//   }
+//
+//   if (strsize < 0)
+//   {
+//
+//      strsize = get_length();
+//
+//   }
+//
+//   Delete(iStart, strsize);
+//
+//   return *this;
+//
+//}
 
 
 template < typename TYPE_CHAR >
@@ -1379,7 +1379,7 @@ string_base < TYPE_CHAR >& string_base < TYPE_CHAR >::replace(strsize iStart, st
 
 
 template < typename TYPE_CHAR >
-strsize string_base < TYPE_CHAR >::remove(CHAR_TYPE chRemove)
+strsize string_base < TYPE_CHAR >::erase(CHAR_TYPE chRemove)
 {
 
    strsize nLength = get_length();
@@ -2176,7 +2176,7 @@ string_base < TYPE_CHAR >& string_base < TYPE_CHAR >::MakeReverse()
 
 // trimming
 
-// remove all trailing whitespace
+// erase all trailing whitespace
 template < typename TYPE_CHAR >
 string_base < TYPE_CHAR >& string_base < TYPE_CHAR >::trim_right()
 {
@@ -2228,7 +2228,7 @@ string_base < TYPE_CHAR >& string_base < TYPE_CHAR >::trim_right()
 
 }
 
-// remove all leading whitespace
+// erase all leading whitespace
 template < typename TYPE_CHAR >
 string_base < TYPE_CHAR >& string_base < TYPE_CHAR >::trim_left()
 {
@@ -2287,21 +2287,21 @@ string_base < TYPE_CHAR >& string_base < TYPE_CHAR >::trim_left()
    return *this;
 }
 
-// remove all leading and trailing whitespace
+// erase all leading and trailing whitespace
 template < typename TYPE_CHAR >
 string_base < TYPE_CHAR >& string_base < TYPE_CHAR >::trim()
 {
    return(trim_right().trim_left());
 }
 
-// remove all leading and trailing occurrences of character 'chTarget'
+// erase all leading and trailing occurrences of character 'chTarget'
 template < typename TYPE_CHAR >
 string_base < TYPE_CHAR >& string_base < TYPE_CHAR >::trim(CHAR_TYPE chTarget)
 {
    return(trim_right(chTarget).trim_left(chTarget));
 }
 
-// remove all leading and trailing occurrences of any of the characters in the string_base < TYPE_CHAR > 'pszTargets'
+// erase all leading and trailing occurrences of any of the characters in the string_base < TYPE_CHAR > 'pszTargets'
 template < typename TYPE_CHAR >
 template < pointer_castable < TYPE_CHAR > PCHAR >
 string_base < TYPE_CHAR >& string_base < TYPE_CHAR >::trim(PCHAR szTargets)
@@ -2311,7 +2311,7 @@ string_base < TYPE_CHAR >& string_base < TYPE_CHAR >::trim(PCHAR szTargets)
 
 // trimming anything (either side)
 
-// remove all trailing occurrences of character 'chTarget'
+// erase all trailing occurrences of character 'chTarget'
 template < typename TYPE_CHAR >
 string_base < TYPE_CHAR >& string_base < TYPE_CHAR >::trim_right(CHAR_TYPE chTarget)
 {
@@ -2349,7 +2349,7 @@ string_base < TYPE_CHAR >& string_base < TYPE_CHAR >::trim_right(CHAR_TYPE chTar
 }
 
 
-// remove all trailing occurrences of any of the characters in string_base < TYPE_CHAR > 'pszTargets'
+// erase all trailing occurrences of any of the characters in string_base < TYPE_CHAR > 'pszTargets'
 template < typename TYPE_CHAR >
 template < pointer_castable < TYPE_CHAR > PCHAR>
 string_base < TYPE_CHAR >& string_base < TYPE_CHAR >::trim_right(PCHAR szTargets)
@@ -2398,7 +2398,7 @@ string_base < TYPE_CHAR >& string_base < TYPE_CHAR >::trim_right(PCHAR szTargets
 }
 
 
-// remove all leading occurrences of character 'chTarget'
+// erase all leading occurrences of character 'chTarget'
 template < typename TYPE_CHAR >
 string_base < TYPE_CHAR >& string_base < TYPE_CHAR >::trim_left(CHAR_TYPE chTarget)
 {
@@ -2424,7 +2424,7 @@ string_base < TYPE_CHAR >& string_base < TYPE_CHAR >::trim_left(CHAR_TYPE chTarg
    return *this;
 }
 
-// remove all leading occurrences of any of the characters in string_base < TYPE_CHAR > 'pszTargets'
+// erase all leading occurrences of any of the characters in string_base < TYPE_CHAR > 'pszTargets'
 template < typename TYPE_CHAR >
 template < pointer_castable < TYPE_CHAR > PCHAR >
 string_base < TYPE_CHAR >& string_base < TYPE_CHAR >::trim_left(PCHAR szTargets)
@@ -2459,7 +2459,7 @@ string_base < TYPE_CHAR >& string_base < TYPE_CHAR >::trim_left(PCHAR szTargets)
 }
 
 
-// remove all trailing whitespace
+// erase all trailing whitespace
 template < typename TYPE_CHAR >
 string_base < TYPE_CHAR > string_base < TYPE_CHAR >::right_trimmed() const
 {
@@ -2473,7 +2473,7 @@ string_base < TYPE_CHAR > string_base < TYPE_CHAR >::right_trimmed() const
 }
 
 
-// remove all leading whitespace
+// erase all leading whitespace
 template < typename TYPE_CHAR >
 string_base < TYPE_CHAR > string_base < TYPE_CHAR >::left_trimmed() const
 {
@@ -2487,7 +2487,7 @@ string_base < TYPE_CHAR > string_base < TYPE_CHAR >::left_trimmed() const
 }
 
 
-// remove all leading and trailing whitespace
+// erase all leading and trailing whitespace
 template < typename TYPE_CHAR >
 string_base < TYPE_CHAR > string_base < TYPE_CHAR >::trimmed() const
 {
@@ -2501,7 +2501,7 @@ string_base < TYPE_CHAR > string_base < TYPE_CHAR >::trimmed() const
 }
 
 
-// remove all leading and trailing occurrences of character 'chTarget'
+// erase all leading and trailing occurrences of character 'chTarget'
 template < typename TYPE_CHAR >
 string_base < TYPE_CHAR > string_base < TYPE_CHAR >::trimmed(CHAR_TYPE chTarget) const
 {
@@ -2515,7 +2515,7 @@ string_base < TYPE_CHAR > string_base < TYPE_CHAR >::trimmed(CHAR_TYPE chTarget)
 }
 
 
-// remove all leading and trailing occurrences of any of the characters in the string_base < TYPE_CHAR > 'pszTargets'
+// erase all leading and trailing occurrences of any of the characters in the string_base < TYPE_CHAR > 'pszTargets'
 template < typename TYPE_CHAR >
 string_base < TYPE_CHAR > string_base < TYPE_CHAR >::trimmed(const CHAR_TYPE * pszTargets) const
 {
@@ -2531,7 +2531,7 @@ string_base < TYPE_CHAR > string_base < TYPE_CHAR >::trimmed(const CHAR_TYPE * p
 
 // trimming anything (either side)
 
-// remove all trailing occurrences of character 'chTarget'
+// erase all trailing occurrences of character 'chTarget'
 template < typename TYPE_CHAR >
 string_base < TYPE_CHAR > string_base < TYPE_CHAR >::right_trimmed(CHAR_TYPE chTarget) const
 {
@@ -2545,7 +2545,7 @@ string_base < TYPE_CHAR > string_base < TYPE_CHAR >::right_trimmed(CHAR_TYPE chT
 }
 
 
-// remove all trailing occurrences of any of the characters in string_base < TYPE_CHAR > 'pszTargets'
+// erase all trailing occurrences of any of the characters in string_base < TYPE_CHAR > 'pszTargets'
 template < typename TYPE_CHAR >
 string_base < TYPE_CHAR > string_base < TYPE_CHAR >::right_trimmed(const CHAR_TYPE * pszTargets) const
 {
@@ -2559,7 +2559,7 @@ string_base < TYPE_CHAR > string_base < TYPE_CHAR >::right_trimmed(const CHAR_TY
 }
 
 
-// remove all leading occurrences of character 'chTarget'
+// erase all leading occurrences of character 'chTarget'
 template < typename TYPE_CHAR >
 string_base < TYPE_CHAR > string_base < TYPE_CHAR >::left_trimmed(CHAR_TYPE chTarget) const
 {
@@ -2573,7 +2573,7 @@ string_base < TYPE_CHAR > string_base < TYPE_CHAR >::left_trimmed(CHAR_TYPE chTa
 }
 
 
-// remove all leading occurrences of any of the characters in string_base < TYPE_CHAR > 'pszTargets'
+// erase all leading occurrences of any of the characters in string_base < TYPE_CHAR > 'pszTargets'
 template < typename TYPE_CHAR >
 string_base < TYPE_CHAR > string_base < TYPE_CHAR >::left_trimmed(const CHAR_TYPE* pszTargets) const
 {
@@ -4627,7 +4627,7 @@ inline string_base < TYPE_CHAR >  string_base < TYPE_CHAR > ::unichar_mid(strsiz
 
 
 template < typename TYPE_CHAR >
-inline strsize string_base < TYPE_CHAR > ::remove(strsize iIndex, strsize nCount)
+inline strsize string_base < TYPE_CHAR > ::erase(strsize iIndex, strsize nCount)
 {
 
    return Delete(iIndex, nCount);

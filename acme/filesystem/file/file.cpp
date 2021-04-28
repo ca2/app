@@ -123,6 +123,14 @@ namespace file
    }
 
 
+   filesize file::set_position(filesize offset)
+   {
+
+      return seek(offset, seek_current);
+
+   }
+
+
    bool file::is_seekable()
    {
 
@@ -596,6 +604,16 @@ namespace file
    }
 
 
+   bool file::read_block(const block & block)
+   {
+
+      auto readBytes = read(block.get_data(), block.get_size());
+
+      return readBytes == block.get_size();
+
+   }
+
+
    bool file::full_read(memory_base & memory)
    {
 
@@ -608,8 +626,6 @@ namespace file
       return readBytes == fileLen;
 
    }
-
-
    bool file::full_read_string(string & str)
    {
 
@@ -1247,7 +1263,25 @@ namespace file
 
       auto pfile = (file *)this;
 
+      auto position = pfile->get_position();
+
       pfile->full_read_string(*str.m_pstr);
+
+      pfile->set_position(position);
+
+   }
+
+
+   void file::as_memory(memory_base & memory) const
+   {
+
+      auto pfile = (file*)this;
+
+      auto position = pfile->get_position();
+
+      pfile->full_read(memory);
+
+      pfile->set_position(position);
 
    }
 
@@ -1260,6 +1294,7 @@ namespace file
       return *this; 
    
    }
+
 
    CLASS_DECL_ACME void set_no_cache(::payload& payload)
    {

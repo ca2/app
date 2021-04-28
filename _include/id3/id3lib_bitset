@@ -16,7 +16,7 @@
 
 // This implementation of bitset<> has a second template parameter,
 // _WordT, which defaults to unsigned long.  *YOU SHOULD NOT USE
-// THIS FEATURE*.  It is experimental, and it may be removed in
+// THIS FEATURE*.  It is experimental, and it may be erased in
 // future releases.
 
 // A bitset of size N, using words of type _WordT, will have

@@ -67,9 +67,9 @@ public:
    ::index get_middle_index(::index i = 0) const;
 
 
-   void remove_duplicates();
+   void erase_duplicates();
 
-   void remove_duplicates_ci();
+   void erase_duplicates_ci();
 
 
    ::index _007FindLine(const RawType & strKey, ::index iStart = 0) const;
@@ -170,11 +170,11 @@ public:
 
 
    class ::memory GetFormatV004();
-   ::count remove_empty();
-   ::count remove_empty_end();
-   ::count remove_empty_begin();
-   ::count remove_empty_trimmed_end();
-   ::count remove_empty_trimmed_begin();
+   ::count erase_empty();
+   ::count erase_empty_end();
+   ::count erase_empty_begin();
+   ::count erase_empty_trimmed_end();
+   ::count erase_empty_trimmed_begin();
    ::index add_normal(const Type& pcsz);
 
    void trim_right(const Type& pszChars);
@@ -211,7 +211,7 @@ public:
 
    Type pop(::index i = -1);
    void slice(string_array_base & stra,::index i,::count ca = -1);
-   void remove(::index i,::count count);
+   void erase(::index i,::count count);
    void splice(const string_array_base & stra,::index i,::count ca = -1);
    void splice(const string_array_base & stra,::index i,string_array_base & straRemoved,::count ca = -1);
 
@@ -351,27 +351,27 @@ public:
    template < typename Pred, typename ArrayOut >
    ::count filter_out(Pred pred, ArrayOut & a, ::index first = 0,::index iLast = -1);
 
-   ::count remove_first_ci(const RawString & pcsz,::index iFind = 0,::index iLast = -1);
+   ::count erase_first_ci(const RawString & pcsz,::index iFind = 0,::index iLast = -1);
 
-   ::count remove_first(const RawString & pcsz,::index iFind = 0,::index iLast = -1);
+   ::count erase_first(const RawString & pcsz,::index iFind = 0,::index iLast = -1);
 
 
-   ::count remove_last_ci(const RawString & pcsz, ::index iFind = 0, ::index iLast = -1);
+   ::count erase_last_ci(const RawString & pcsz, ::index iFind = 0, ::index iLast = -1);
 
-   using array < Type >::remove_last;
-   ::count remove_last(const RawString & pcsz, ::index iFind = 0, ::index iLast = -1);
+   using array < Type >::erase_last;
+   ::count erase_last(const RawString & pcsz, ::index iFind = 0, ::index iLast = -1);
 
    ::count _067RemoveCi(const RawString& pcsz, ::index iFind = 0, ::index iLast = -1, ::count countMin = 0, ::count countMax = -1);
 
    ::count _067Remove(const RawString& pcsz, ::index iFind = 0, ::index iLast = -1, ::count countMin = 0, ::count countMax = -1);
 
-   ::count remove_ci(const RawString & pcsz,::index iFind = 0,::index iLast = -1);
+   ::count erase_ci(const RawString & pcsz,::index iFind = 0,::index iLast = -1);
 
-   ::count remove(const RawString & pcsz,::index iFind = 0,::index iLast = -1);
+   ::count erase(const RawString & pcsz,::index iFind = 0,::index iLast = -1);
 
 
-   ::count remove_ci(const string_array_base & stra);
-   ::count remove(const string_array_base & stra);
+   ::count erase_ci(const string_array_base & stra);
+   ::count erase(const string_array_base & stra);
 
    string_array_base & explode(const Type & strSeparator,const Type & str);
 
@@ -499,7 +499,7 @@ public:
          if (!a.contains(element_at(i)))
          {
 
-            this->remove_at(i);
+            this->erase_at(i);
 
          }
          else
@@ -524,7 +524,7 @@ public:
          if (!a.contains_ci(element_at(i)))
          {
 
-            this->remove_at(i);
+            this->erase_at(i);
 
          }
          else
@@ -1415,7 +1415,7 @@ Type & string_array_base < Type, RawType >::add_get(const Type & newElement)
 
 
 template < typename Type, typename RawType >
-void string_array_base < Type, RawType >::remove_duplicates()
+void string_array_base < Type, RawType >::erase_duplicates()
 {
 
    for(::index i = 1; i < this->get_size();)
@@ -1424,7 +1424,7 @@ void string_array_base < Type, RawType >::remove_duplicates()
       if(find_first(this->element_at(i), 0, i - 1) >= 1)
       {
 
-         this->remove_at(i);
+         this->erase_at(i);
 
       }
       else
@@ -1440,7 +1440,7 @@ void string_array_base < Type, RawType >::remove_duplicates()
 
 
 template < typename Type, typename RawType >
-void string_array_base < Type, RawType >::remove_duplicates_ci()
+void string_array_base < Type, RawType >::erase_duplicates_ci()
 {
 
    for(::index i = 1; i < this->get_size();)
@@ -1449,7 +1449,7 @@ void string_array_base < Type, RawType >::remove_duplicates_ci()
       if(find_first_ci(this->element_at(i), 0, i - 1) >= 1)
       {
 
-         this->remove_at(i);
+         this->erase_at(i);
 
       }
       else
@@ -2713,13 +2713,13 @@ bool string_array_base < Type, RawType > ::_067ContainsSubstring(const Type& pcs
 
 
 template < class Type, class RawType >
-::index string_array_base < Type, RawType > ::remove_first_ci(const RawString & pcsz,::index iFind,::index iLast)
+::index string_array_base < Type, RawType > ::erase_first_ci(const RawString & pcsz,::index iFind,::index iLast)
 {
 
    if ((iFind = find_first_ci(pcsz, iFind, iLast)) >= 0)
    {
 
-      this->remove_at(iFind);
+      this->erase_at(iFind);
 
    }
 
@@ -2729,13 +2729,13 @@ template < class Type, class RawType >
 
 
 template < class Type, class RawType >
-::index string_array_base < Type, RawType > ::remove_first(const RawString & pcsz,::index iFind,::index iLast)
+::index string_array_base < Type, RawType > ::erase_first(const RawString & pcsz,::index iFind,::index iLast)
 {
 
    if ((iFind = find_first(pcsz, iFind, iLast)) >= 0)
    {
 
-      this->remove_at(iFind);
+      this->erase_at(iFind);
 
    }
 
@@ -2745,13 +2745,13 @@ template < class Type, class RawType >
 
 
 template < class Type, class RawType >
-::index string_array_base < Type, RawType > ::remove_last_ci(const RawString & pcsz, ::index iFind, ::index iLast)
+::index string_array_base < Type, RawType > ::erase_last_ci(const RawString & pcsz, ::index iFind, ::index iLast)
 {
 
    if ((iFind = find_last_ci(pcsz, iFind, iLast)) >= 0)
    {
 
-      this->remove_at(iFind);
+      this->erase_at(iFind);
 
    }
 
@@ -2761,13 +2761,13 @@ template < class Type, class RawType >
 
 
 template < class Type, class RawType >
-::index string_array_base < Type, RawType > ::remove_last(const RawString & pcsz, ::index iFind, ::index iLast)
+::index string_array_base < Type, RawType > ::erase_last(const RawString & pcsz, ::index iFind, ::index iLast)
 {
 
    if ((iFind = find_last(pcsz, iFind, iLast)) >= 0)
    {
 
-      this->remove_at(iFind);
+      this->erase_at(iFind);
 
 
    }
@@ -2786,7 +2786,7 @@ template < class Type, class RawType >
    if (_067ContainsCi(pcsz, iFind, iLast, countMin, countMax))
    {
 
-      while (conditional(countMax >= 0, count < countMax) && (iFind = remove_first_ci(pcsz, iFind, iLast)) >= 0)
+      while (conditional(countMax >= 0, count < countMax) && (iFind = erase_first_ci(pcsz, iFind, iLast)) >= 0)
       {
 
          count++;
@@ -2809,7 +2809,7 @@ template < class Type, class RawType >
    if (_067Contains(pcsz, iFind, iLast, countMin, countMax))
    {
 
-      while (conditional(countMax >= 0, count < countMax) && (iFind = remove_first(pcsz, iFind, iLast)) >= 0)
+      while (conditional(countMax >= 0, count < countMax) && (iFind = erase_first(pcsz, iFind, iLast)) >= 0)
       {
          count++;
 
@@ -2823,12 +2823,12 @@ template < class Type, class RawType >
 
 
 template < class Type, class RawType >
-::count string_array_base < Type, RawType > ::remove_ci(const RawType & pcsz, ::index iFind, ::index iLast)
+::count string_array_base < Type, RawType > ::erase_ci(const RawType & pcsz, ::index iFind, ::index iLast)
 {
 
    ::count count = 0;
 
-   while ((iFind = remove_first_ci(pcsz, iFind, iLast)) >= 0)
+   while ((iFind = erase_first_ci(pcsz, iFind, iLast)) >= 0)
    {
 
       count++;
@@ -2841,12 +2841,12 @@ template < class Type, class RawType >
 
 
 template < class Type, class RawType >
-::count string_array_base < Type, RawType > ::remove(const RawString & pcsz, ::index iFind, ::index iLast)
+::count string_array_base < Type, RawType > ::erase(const RawString & pcsz, ::index iFind, ::index iLast)
 {
 
    ::count count = 0;
 
-   while ((iFind = remove_first(pcsz, iFind, iLast)) >= 0)
+   while ((iFind = erase_first(pcsz, iFind, iLast)) >= 0)
    {
 
       count++;
@@ -2860,7 +2860,7 @@ template < class Type, class RawType >
 
 
 template < class Type, class RawType >
-::count string_array_base < Type, RawType > ::remove_ci(const string_array_base & stra)
+::count string_array_base < Type, RawType > ::erase_ci(const string_array_base & stra)
 {
 
    ::count count = 0;
@@ -2868,7 +2868,7 @@ template < class Type, class RawType >
    for(::index i = 0; i < stra.get_size(); i++)
    {
 
-      count += remove_ci(stra[i]);
+      count += erase_ci(stra[i]);
 
    }
 
@@ -2878,7 +2878,7 @@ template < class Type, class RawType >
 
 
 template < class Type, class RawType >
-::count string_array_base < Type, RawType > ::remove(const string_array_base & stra)
+::count string_array_base < Type, RawType > ::erase(const string_array_base & stra)
 {
 
    ::count count = 0;
@@ -2886,7 +2886,7 @@ template < class Type, class RawType >
    for(::index i = 0; i < stra.get_size(); i++)
    {
 
-      count += remove(stra[i]);
+      count += erase(stra[i]);
 
    }
 
@@ -2966,7 +2966,7 @@ template < class Type, class RawType >
 
 
 template < class Type, class RawType >
-::count string_array_base < Type, RawType > ::remove_empty()
+::count string_array_base < Type, RawType > ::erase_empty()
 {
 
    ::count count = 0;
@@ -2976,7 +2976,7 @@ template < class Type, class RawType >
 
       if(this->element_at(i).is_empty())
       {
-         this->remove_at(i);
+         this->erase_at(i);
          count++;
       }
       else
@@ -2991,7 +2991,7 @@ template < class Type, class RawType >
 
 
 template < class Type, class RawType >
-::count string_array_base < Type, RawType > ::remove_empty_begin()
+::count string_array_base < Type, RawType > ::erase_empty_begin()
 {
 
    ::count count = 0;
@@ -3000,7 +3000,7 @@ template < class Type, class RawType >
    {
       if (this->element_at(i).is_empty())
       {
-         this->remove_at(i);
+         this->erase_at(i);
          count++;
       }
       else
@@ -3012,7 +3012,7 @@ template < class Type, class RawType >
 }
 
 template < class Type, class RawType >
-::count string_array_base < Type, RawType > ::remove_empty_end()
+::count string_array_base < Type, RawType > ::erase_empty_end()
 {
 
    ::count count = 0;
@@ -3021,7 +3021,7 @@ template < class Type, class RawType >
    {
       if (this->element_at(i).is_empty())
       {
-         this->remove_at(i);
+         this->erase_at(i);
          count++;
       }
       else
@@ -3034,14 +3034,14 @@ template < class Type, class RawType >
 
 
 template < class Type, class RawType >
-::count string_array_base < Type, RawType > ::remove_empty_trimmed_begin()
+::count string_array_base < Type, RawType > ::erase_empty_trimmed_begin()
 {
    ::count count = 0;
    for (::index i = 0; i < this->get_size();)
    {
       if (this->element_at(i).trimmed().is_empty())
       {
-         this->remove_at(i);
+         this->erase_at(i);
          count++;
       }
       else
@@ -3053,7 +3053,7 @@ template < class Type, class RawType >
 }
 
 template < class Type, class RawType >
-::count string_array_base < Type, RawType > ::remove_empty_trimmed_end()
+::count string_array_base < Type, RawType > ::erase_empty_trimmed_end()
 {
    ::count count = 0;
    ::index i;
@@ -3061,7 +3061,7 @@ template < class Type, class RawType >
    {
       if (this->element_at(i).trimmed().is_empty())
       {
-         this->remove_at(i);
+         this->erase_at(i);
          count++;
       }
       else
@@ -3120,7 +3120,7 @@ const Type& pcsz,
 ::index iMinLength)
 {
 ASSERT(iLength >= iMinLength);
-remove_all();
+erase_all();
 Type str;
 if(pcsz != nullptr)
 
@@ -3281,7 +3281,7 @@ template < class Type, class RawType >
 string_array_base < Type, RawType >  & string_array_base < Type, RawType > ::explode(const Type & strSeparator,const Type & str)
 {
 
-   this->remove_all();
+   this->erase_all();
 
    add_tokens(str,strSeparator,true);
 
@@ -3294,7 +3294,7 @@ template < class Type, class RawType >
 string_array_base < Type, RawType >  & string_array_base < Type, RawType > ::_001Explode(const Type & str)
 {
 
-   this->remove_all();
+   this->erase_all();
 
    _001AddTokens(str);
 
@@ -3502,7 +3502,7 @@ Type string_array_base < Type, RawType > ::surround_and_implode(const Type& pszS
 //string_array_base < Type, RawType >  & string_array_base < Type, RawType > ::operator -=(const string_array_base & stra)
 //{
 //
-//   remove(stra);
+//   erase(stra);
 //
 //   return *this;
 //
@@ -3550,7 +3550,7 @@ bool string_array_base < Type, RawType > ::move_ci(const Type& pcsz,::index iInd
 
    if(i < 0)
       return false;
-   this->remove_at(i);
+   this->erase_at(i);
    insert_at(iIndex,pcsz);
 
    return true;
@@ -3585,7 +3585,7 @@ Type string_array_base < Type, RawType > ::pop(::index i)
 {
    i = get_upper_bound(i);
    Type strRet = this->element_at(i);
-   this->remove_at(i);
+   this->erase_at(i);
    return strRet;
 }
 
@@ -3610,13 +3610,13 @@ void string_array_base < Type, RawType > ::slice(string_array_base < Type, RawTy
 
 
 template < class Type, class RawType >
-void string_array_base < Type, RawType > ::remove(::index iOffset,::count count)
+void string_array_base < Type, RawType > ::erase(::index iOffset,::count count)
 {
 
    for(::index i = iOffset + count - 1; i >= iOffset; i--)
    {
 
-      this->remove_at(i);
+      this->erase_at(i);
 
    }
 }
@@ -3627,7 +3627,7 @@ template < class Type, class RawType >
 void string_array_base < Type, RawType > ::splice(const string_array_base < Type, RawType >  & stra,::index iOffset,::count count)
 {
 
-   remove(iOffset, count);
+   erase(iOffset, count);
 
    insert_at(iOffset,stra);
 
@@ -3641,7 +3641,7 @@ void string_array_base < Type, RawType > ::splice(const string_array_base < Type
 
    slice(straRemoved, iOffset, count);
 
-   remove(iOffset, count);
+   erase(iOffset, count);
 
    insert_at(iOffset,stra);
 
@@ -4131,13 +4131,13 @@ template < class Type, class RawType >
          if (iFind < 0)
          {
 
-            this->remove_at(i, iLast - i + 1);
+            this->erase_at(i, iLast - i + 1);
 
             return count;
 
          }
 
-         this->remove_at(i, iFind - i);
+         this->erase_at(i, iFind - i);
 
          iLast -= iFind - i;
 
@@ -4175,13 +4175,13 @@ template < class Type, class RawType >
          if(iFind < 0)
          {
 
-            this->remove_at(i,iLast - i + 1);
+            this->erase_at(i,iLast - i + 1);
 
             return count;
 
          }
 
-         this->remove_at(i,iFind - i);
+         this->erase_at(i,iFind - i);
 
          iLast -= iFind - i;
 
@@ -4220,7 +4220,7 @@ template < typename Pred >
          else
          {
 
-            this->remove_at(i);
+            this->erase_at(i);
 
             count++;
 
@@ -4259,7 +4259,7 @@ template < typename Pred >
          else
          {
 
-            this->remove_at(i);
+            this->erase_at(i);
 
             count++;
 
@@ -4300,7 +4300,7 @@ template < typename Pred, typename ArrayOut >
 
             a.add(this->element_at(i));
 
-            this->remove_at(i);
+            this->erase_at(i);
 
             count++;
 
@@ -4380,7 +4380,7 @@ Type string_array_base < Type, RawType > ::pop_random_element()
 
    Type str = this->element_at(i);
 
-   this->remove_at(i);
+   this->erase_at(i);
 
    return str;
 

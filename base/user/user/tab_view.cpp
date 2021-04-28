@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "base/user/user/_user.h"
+#include "tab_pane.h"
 
 
 namespace user
@@ -9,8 +10,8 @@ namespace user
    tab_view::tab_view()
    {
 
-      m_flagNonClient.remove(non_client_background);
-      m_flagNonClient.remove(non_client_focus_rect);
+      m_flagNonClient.erase(non_client_background);
+      m_flagNonClient.erase(non_client_focus_rect);
 
       get_data()->m_pcallback       = this;
       m_pimpactdata                   = nullptr;
@@ -93,8 +94,8 @@ namespace user
          if (pinteraction->is_place_holder())
          {
 
-            auto puiptraChild = m_puiptraChild;
-            pview = puiptraChild->first_interaction();
+            auto puserinteractionpointeraChild = m_puserinteractionpointeraChild;
+            pview = puserinteractionpointeraChild->first_interaction();
 
          }
          else
@@ -189,19 +190,19 @@ namespace user
    }
 
 
-   void tab_view::_001OnRemoveTab(class tab_pane * ptab)
+   void tab_view::_001OnRemoveTab(class tab_pane * ptabpane)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
-      ::user::tab::_001OnRemoveTab(ptab);
+      ::user::tab::_001OnRemoveTab(ptabpane);
 
-      if (ptab->m_pplaceholder.is_set())
+      if (ptabpane->m_pplaceholder.is_set())
       {
 
          __pointer(::user::interaction) puiChild;
 
-         ptab->m_pplaceholder->get_child(puiChild);
+         ptabpane->m_pplaceholder->get_child(puiChild);
 
          if (puiChild.is_set())
          {
@@ -219,9 +220,9 @@ namespace user
 
       }
 
-      m_placeholdera.remove(ptab->m_pplaceholder);
+      m_placeholdera.erase(ptabpane->m_pplaceholder);
 
-      id idTab = ptab->m_id;
+      id idTab = ptabpane->m_id;
 
       ::user::impact_data * pimpactdata = m_impactdatamap[idTab];
 
@@ -239,9 +240,7 @@ namespace user
 
       }
 
-      m_impactdatamap.remove_key(idTab);
-
-
+      m_impactdatamap.erase_key(idTab);
 
    }
 
@@ -293,36 +292,36 @@ namespace user
 
          psplitview->initialize_split_layout();
 
-         __pointer(::user::interaction) pwnd1;
+         __pointer(::user::interaction) puserinteraction1;
 
-         __pointer(::user::interaction) pwnd2;
+         __pointer(::user::interaction) puserinteraction2;
 
-         ppane1->m_pplaceholder->get_child(pwnd1);
+         ppane1->m_pplaceholder->get_child(puserinteraction1);
 
-         ppane2->m_pplaceholder->get_child(pwnd2);
+         ppane2->m_pplaceholder->get_child(puserinteraction2);
 
          if (eposition == e_position_top || eposition == e_position_left)
          {
 
-            psplitview->SetPane(0, pwnd2, false);
+            psplitview->SetPane(0, puserinteraction2, false);
 
-            psplitview->SetPane(1, pwnd1, false);
+            psplitview->SetPane(1, puserinteraction1, false);
 
          }
          else
          {
 
-            psplitview->SetPane(0, pwnd1, false);
+            psplitview->SetPane(0, puserinteraction1, false);
 
-            psplitview->SetPane(1, pwnd2, false);
+            psplitview->SetPane(1, puserinteraction2, false);
 
          }
 
          on_create_impact(pimpactdata);
 
-         remove_tab_by_id(id1);
+         erase_tab_by_id(id1);
 
-         remove_tab_by_id(id2);
+         erase_tab_by_id(id2);
 
          set_cur_tab_by_id(id3);
 
@@ -368,7 +367,9 @@ namespace user
 
       create_tab_by_id(::user::tab::tab_id(pchannel->get_data()->m_iClickTab));
 
-      m_pdroptargetwindow = __new(tab_drop_target_window(this, (i32) pchannel->get_data()->m_iClickTab));
+      m_pdroptargetwindow = __new(tab_drop_target_window());
+
+      m_pdroptargetwindow->initialize_tab_drop_target_window(this, (i32)pchannel->get_data()->m_iClickTab);
 
       ::rectangle_i32 rectangle;
 
@@ -412,7 +413,7 @@ namespace user
       UNREFERENCED_PARAMETER(pchannel);
       if(m_pdroptargetwindow != nullptr)
       {
-         //System->remove_frame(m_pdroptargetwindow);
+         //psystem->erase_frame(m_pdroptargetwindow);
          //m_pdroptargetwindow->DestroyWindow();
          //m_pdroptargetwindow = nullptr;
       }
@@ -457,12 +458,12 @@ namespace user
       if(iPane >= 0)
       {
 
-         get_data()->m_panea[iPane]->m_pimpactdata = pimpactdata;
+         get_data()->m_tabpanecompositea[iPane]->m_pimpactdata = pimpactdata;
 
          if(pimpactdata->m_pplaceholder != nullptr)
          {
 
-            get_data()->m_panea[iPane]->m_pplaceholder = pimpactdata->m_pplaceholder;
+            get_data()->m_tabpanecompositea[iPane]->m_pplaceholder = pimpactdata->m_pplaceholder;
 
          }
          else if(pimpactdata->m_puserinteraction != nullptr)
@@ -471,17 +472,17 @@ namespace user
             if(pane_holder(iPane) == nullptr)
             {
 
-               get_data()->m_panea[iPane]->m_pplaceholder = place_hold(pimpactdata->m_puserinteraction,get_data()->m_rectTabClient);
+               get_data()->m_tabpanecompositea[iPane]->m_pplaceholder = place_hold(pimpactdata->m_puserinteraction,get_data()->m_rectTabClient);
 
             }
             else
             {
 
-               //synchronization_lock synchronizationlock(mutex_children());
+               //synchronous_lock synchronouslock(mutex_children());
 
-               get_data()->m_panea[iPane]->m_pplaceholder->m_puiptraChild.release();
+               get_data()->m_tabpanecompositea[iPane]->m_pplaceholder->m_puserinteractionpointeraChild.release();
 
-               get_data()->m_panea[iPane]->m_pplaceholder->place_hold(pimpactdata->m_puserinteraction);
+               get_data()->m_tabpanecompositea[iPane]->m_pplaceholder->place_hold(pimpactdata->m_puserinteraction);
 
             }
 
@@ -489,7 +490,7 @@ namespace user
          else
          {
 
-            get_data()->m_panea[iPane]->m_pplaceholder = get_new_place_holder(get_data()->m_rectTabClient);
+            get_data()->m_tabpanecompositea[iPane]->m_pplaceholder = get_new_place_holder(get_data()->m_rectTabClient);
 
          }
 
@@ -497,17 +498,17 @@ namespace user
 
       {
 
-         synchronization_lock synchronizationlock(mutex());
+         synchronous_lock synchronouslock(mutex());
 
          if (pimpactdata->m_idTitle.has_char())
          {
 
             index iPane = tab_pane(_001GetSel());
 
-            if (iPane >= 0 && get_data()->m_panea[iPane]->m_id == pimpactdata->m_id)
+            if (iPane >= 0 && get_data()->m_tabpanecompositea[iPane]->m_id == pimpactdata->m_id)
             {
 
-               get_data()->m_panea[iPane]->set_title(pimpactdata->m_idTitle);
+               get_data()->m_tabpanecompositea[iPane]->set_title(pimpactdata->m_idTitle);
 
             }
 
@@ -536,16 +537,16 @@ namespace user
       if (m_pimpactdata->m_puserinteraction == nullptr)
       {
 
-//         synchronization_lock synchronizationlock(mutex_children());
+//         synchronous_lock synchronouslock(mutex_children());
 
 
 
-         auto puiptraChild = m_pimpactdata->m_pplaceholder->m_puiptraChild;
+         auto puserinteractionpointeraChild = m_pimpactdata->m_pplaceholder->m_puserinteractionpointeraChild;
 
-         if (puiptraChild && puiptraChild->has_interaction())
+         if (puserinteractionpointeraChild && puserinteractionpointeraChild->has_interaction())
          {
 
-            m_pimpactdata->m_puserinteraction = puiptraChild->first_interaction();
+            m_pimpactdata->m_puserinteraction = puserinteractionpointeraChild->first_interaction();
 
          }
 
@@ -567,12 +568,12 @@ namespace user
             || m_pimpactdata->m_eflag & ::user::e_flag_hide_topic_on_show)
          {
 
-            ::user::tab_pane_array & panea = get_data()->m_panea;
+            ::user::tab_pane_composite_array & panecompositea = get_data()->m_tabpanecompositea;
 
-            for (i32 iTab = 0; iTab < panea.get_count(); iTab++)
+            for (i32 iTab = 0; iTab < panecompositea.get_count(); iTab++)
             {
 
-               auto pimpactdataPane = panea[iTab]->m_pimpactdata;
+               auto pimpactdataPane = panecompositea[iTab]->m_pimpactdata;
 
                if (pimpactdataPane.is_null() || pimpactdataPane == m_pimpactdata)
                {
@@ -655,7 +656,9 @@ namespace user
 
       }
 
-      Application.on_change_cur_sel(this);
+      auto papplication = get_application();
+
+      papplication->on_change_cur_sel(this);
 
    }
 
@@ -704,22 +707,22 @@ namespace user
    }
 
 
-   void tab_view::on_remove_child(::user::interaction* pinteraction)
+   void tab_view::on_erase_child(::user::interaction* pinteraction)
    {
 
-      ::user::impact_host::on_remove_child(pinteraction);
+      ::user::impact_host::on_erase_child(pinteraction);
 
-      ::user::tab::on_remove_child(pinteraction);
+      ::user::tab::on_erase_child(pinteraction);
 
    }
 
 
-   void tab_view::on_remove_place_holder_child(::user::interaction* pinteraction)
+   void tab_view::on_erase_place_holder_child(::user::interaction* pinteraction)
    {
 
-      ::user::impact_host::on_remove_place_holder_child(pinteraction);
+      ::user::impact_host::on_erase_place_holder_child(pinteraction);
 
-      ::user::tab::on_remove_place_holder_child(pinteraction);
+      ::user::tab::on_erase_place_holder_child(pinteraction);
 
    }
 
@@ -772,7 +775,7 @@ namespace user
 
    //         {
 
-   //            synchronization_lock synchronizationlock(mutex());
+   //            synchronous_lock synchronouslock(mutex());
 
    //            if (pimpactdata->m_strCreatorDataTitle.has_char() && ppane->m_id == pimpactdata->m_id)
    //            {
@@ -842,15 +845,15 @@ namespace user
 
       }
 
-      auto puiptraChild = pimpactdata->m_pplaceholder->m_puiptraChild;
+      auto puserinteractionpointeraChild = pimpactdata->m_pplaceholder->m_puserinteractionpointeraChild;
 
-      if (puiptraChild)
+      if (puserinteractionpointeraChild)
       {
 
-         if (pimpactdata->m_pplaceholder != nullptr && puiptraChild->interaction_count() == 1)
+         if (pimpactdata->m_pplaceholder != nullptr && puserinteractionpointeraChild->interaction_count() == 1)
          {
 
-            return puiptraChild->first_interaction();
+            return puserinteractionpointeraChild->first_interaction();
 
          }
 
@@ -941,19 +944,19 @@ namespace user
 
       ::user::tab_pane* ppane = get_pane_by_id(pimpactdata->m_id);
 
-      //if (!ppane)
-      //{
+      if (!ppane)
+      {
 
-      //   if (!add_tab(pimpactdata->m_idTitle, pimpactdata->m_id))
-      //   {
+         if (!add_tab(pimpactdata->m_idTitle, pimpactdata->m_id))
+         {
 
-      //      return false;
+            return false;
 
-      //   }
+         }
 
-      //   ppane = get_pane_by_id(pimpactdata->m_id);
+         ppane = get_pane_by_id(pimpactdata->m_id);
 
-      //}
+      }
 
       if (ppane != nullptr)
       {
@@ -1018,9 +1021,30 @@ namespace user
    }
 
 
-   tab_drop_target_window::tab_drop_target_window(::user::tab * ptab, index iTab) :
-      ::object(ptab->get_context_application())
+   tab_drop_target_window::tab_drop_target_window()
    {
+   }
+
+
+   tab_drop_target_window::~tab_drop_target_window()
+   {
+
+   }
+
+
+   ::e_status tab_drop_target_window::initialize_tab_drop_target_window(::user::tab* ptab, index iTab)
+   {
+
+      auto estatus = ::user::interaction::initialize(ptab);
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+
 
       m_positiona.add(e_position_top);
 
@@ -1030,15 +1054,11 @@ namespace user
 
       m_positiona.add(e_position_left);
 
-      m_ptab         = ptab;
+      m_ptab = ptab;
 
-      m_iTab         = iTab;
+      m_iTab = iTab;
 
-   }
-
-
-   tab_drop_target_window::~tab_drop_target_window()
-   {
+      return estatus;
 
    }
 
@@ -1068,7 +1088,7 @@ namespace user
 
       color32_t crBk;
 
-      auto psession = Session;
+      auto psession = get_session();
 
       auto puser = psession->user();
 
@@ -1127,7 +1147,7 @@ namespace user
 
       __pointer(::message::mouse) pmouse(pmessage);
 
-      auto psession = Session;
+      auto psession = get_session();
 
       auto puser = psession->user();
 
@@ -1145,7 +1165,7 @@ namespace user
 
       display(e_display_none);
 
-      DestroyWindow();
+      start_destroying_window();
 
       pmessage->m_bRet = true;
 

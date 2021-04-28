@@ -51,7 +51,7 @@ timer::~timer()
 bool timer::start(int millis, bool bPeriodic)
 {
 
-   synchronization_lock synchronizationlock(mutex());
+   synchronous_lock synchronouslock(mutex());
 
    if (::is_set(m_pcallback) && !m_pcallback->e_timer_is_ok())
    {
@@ -90,7 +90,7 @@ bool timer::start(int millis, bool bPeriodic)
 
    //this->children_add(this);
 
-   //Application.thread_add(this);
+   //papplication->thread_add(this);
 
    return true;
 
@@ -101,7 +101,7 @@ bool timer::start(int millis, bool bPeriodic)
 void timer::call_on_timer()
 {
 
-   synchronization_lock synchronizationlock(mutex());
+   synchronous_lock synchronouslock(mutex());
 
    __keep_true(m_bHandling);
 
@@ -127,7 +127,7 @@ void timer::call_on_timer()
    try
    {
 
-      if(!thread_get_run())
+      if(!task_get_run())
       {
 
          bRepeat = false;
@@ -147,7 +147,7 @@ void timer::call_on_timer()
 
       m_bTemporary = true;
 
-      synchronizationlock.unlock();
+      synchronouslock.unlock();
 
       try
       {
@@ -165,7 +165,7 @@ void timer::call_on_timer()
 
       }
 
-      synchronizationlock.lock();
+      synchronouslock.lock();
 
    }
 
@@ -299,12 +299,12 @@ void timer::term_thread()
 
    {
 
-   synchronization_lock synchronizationlock(mutex());
+   synchronous_lock synchronouslock(mutex());
 
    try
    {
 
-      m_ptimera->remove_timer(this);
+      m_ptimera->erase_timer(this);
 
    }
    catch (...)
@@ -318,16 +318,16 @@ void timer::term_thread()
 
 }
 
-//void timer::finalize()
+//::e_status timer::finalize()
 //{
 //
 //
-////   Application.thread_remove(this);
+////   papplication->thread_erase(this);
 //
 //
 //   {
 //
-//      synchronization_lock synchronizationlock(mutex());
+//      synchronous_lock synchronouslock(mutex());
 //
 //  //    if(m_bPeriodic)
 //      //{
@@ -540,7 +540,7 @@ bool timer::impl_restart()
 
    }
    //
-   //   if (!thread_get_run())
+   //   if (!task_get_run())
    //   {
    //
    //      return false;

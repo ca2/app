@@ -11,13 +11,15 @@ namespace account
    public:
 
       
-      department *                        m_pdepartment;
-      string_map < __pointer(product) >          m_map;
+      department *                                 m_pdepartment;
+      string_map < __pointer(product) >            m_map;
       
 
-      product_array(department * pdepartment);
+      product_array();
       virtual ~product_array();
 
+
+      virtual ::e_status initialize_product_array(department* pdepartment);
       
       virtual product * get_product(string strAppId, bool bFetch = false, bool bInteractive = true);
 //      virtual product * interactive_get_product(string strAppId);

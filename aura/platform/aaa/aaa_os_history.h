@@ -7,7 +7,7 @@ class CLASS_DECL_AURA os_history :
 public:
 
 
-   os_history(::layered * pobjectContext);
+   os_history(::object * pobject);
          
    
    virtual bool hist(const char *psz);

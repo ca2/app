@@ -31,7 +31,7 @@ namespace user
       virtual bool unplace(::user::interaction * pinteraction);
       virtual bool is_place_holding(::user::interaction * pinteraction);
 
-      virtual void on_remove_child(::user::interaction * pinteraction) override;
+      virtual void on_erase_child(::user::interaction * pinteraction) override;
       virtual void on_hide_child(::user::interaction * pinteraction) override;
 
       virtual void _001DrawThis(::draw2d::graphics_pointer & pgraphics) override;
@@ -39,7 +39,7 @@ namespace user
       virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
       virtual void _001OnNcDraw(::draw2d::graphics_pointer & pgraphics) override;
 
-      DECL_GEN_SIGNAL(_001OnShowWindow);
+      DECLARE_MESSAGE_HANDLER(_001OnShowWindow);
 
       virtual void on_layout(::draw2d::graphics_pointer & pgraphics) override;
 

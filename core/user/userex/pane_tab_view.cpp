@@ -3,6 +3,7 @@
 #include "core/filesystem/filemanager/_filemanager.h"
 #include "core/user/account/_account.h"
 #include "aura/update.h"
+#include "base/user/user/tab_pane.h"
 
 
 namespace core
@@ -160,17 +161,19 @@ namespace userex
 
       //m_pusersystem->m_pcreate = (::create *) pcreate->get_create();
 
-      //if (Application.m_pmainpane == nullptr)
+      //if (papplication->m_pmainpane == nullptr)
       //{
 
-      //   Application.m_pmainpane = this;
+      //   papplication->m_pmainpane = this;
 
       //}
 
-      if (Application.m_puiMainContainer == nullptr)
+      auto papplication = get_application();
+
+      if (papplication->m_puiMainContainer == nullptr)
       {
 
-         Application.m_puiMainContainer = this;
+         papplication->m_puiMainContainer = this;
 
       }
 
@@ -303,7 +306,7 @@ namespace userex
 
       }
 
-      ::user::tab_pane * ppane = (::user::tab_pane *)get_data()->m_panea.element_at(iPane);
+      auto ppane = get_data()->m_tabpanecompositea[iPane].get();
 
       if (ppane == nullptr)
       {
@@ -345,7 +348,7 @@ namespace userex
 
       }
 
-      ::user::tab_pane_array & panea = get_data()->m_panea;
+      auto & panea = get_data()->m_tabpanecompositea;
 
       for(i32 iTab = 0; iTab < panea.get_count(); iTab++)
       {
@@ -407,9 +410,11 @@ namespace userex
    void pane_tab_view::on_create_impact(::user::impact_data * pimpactdata)
    {
 
-      ::apex::library * plibrary = nullptr;
+      ::acme::library * plibrary = nullptr;
 
-      if(pimpactdata->m_id.is_text() && System->m_idmapCreateViewLibrary.lookup(pimpactdata->m_id,plibrary) && plibrary != nullptr)
+      auto psystem = m_psystem->m_paurasystem;
+
+      if(pimpactdata->m_id.is_text() && psystem->m_idmapCreateViewLibrary.lookup(pimpactdata->m_id,plibrary) && plibrary != nullptr)
       {
 
 
@@ -436,7 +441,7 @@ namespace userex
 
          pimpactdata->m_eflag.add(::user::e_flag_modifier_impact);
 
-         auto puser = User;
+         auto puser = user();
 
          puser->will_use_view_hint(FONTSEL_IMPACT);
 
@@ -450,8 +455,11 @@ namespace userex
 
          //pcreate->m_pusersystem
 
-//         auto pdocument = puser->m_mapimpactsystem[FONTSEL_IMPACT]->do_request(get_context_application(), ::e_type_null, false, pimpactdata->m_pplaceholder);
-         auto pdocument = puser->m_mapimpactsystem[FONTSEL_IMPACT]->open_document_file(get_context_application(), ::e_type_null, __visible(true), pimpactdata->m_pplaceholder);
+//         auto pdocument = puser->m_mapimpactsystem[FONTSEL_IMPACT]->do_request(get_application(), ::e_type_null, false, pimpactdata->m_pplaceholder);
+
+         auto ptemplate = puser->m_mapimpactsystem[FONTSEL_IMPACT];
+
+         auto pdocument = ptemplate->open_document_file(get_application(), ::e_type_null, __visible(true), pimpactdata->m_pplaceholder);
 
          m_pfontview = pdocument->get_typed_view < font_view >();
 
@@ -467,13 +475,13 @@ namespace userex
 
          pimpactdata->m_eflag.add(::user::e_flag_modifier_impact);
 
-         auto puser = User;
+         auto puser = user();
 
          puser->will_use_view_hint(COLORSEL_IMPACT);
 
          auto pimpactsystem = puser->m_mapimpactsystem[COLORSEL_IMPACT];
 
-         auto pdocument = pimpactsystem->open_document_file(get_context_application(), ::e_type_null, __visible(false), pimpactdata->m_pplaceholder);
+         auto pdocument = pimpactsystem->open_document_file(get_application(), ::e_type_null, __visible(false), pimpactdata->m_pplaceholder);
 
          m_pcolorview = pdocument->get_typed_view < color_view >();
 
@@ -492,7 +500,7 @@ namespace userex
          if (pfilemanagerdata.is_null())
          {
 
-            auto puser = User;
+            auto puser = user();
 
             pfilemanagerdata = puser->filemanager(pimpactdata->m_id);
 
@@ -555,7 +563,7 @@ namespace userex
 
          }
 
-         auto puser = User;
+         auto puser = user();
 
          puser->filemanager(pimpactdata->m_id)->open();
 
@@ -593,7 +601,7 @@ namespace userex
       //   cc->m_bMakeVisible               = true;
       //   cc->m_puserinteractionParent                  = pimpactdata->m_pplaceholder;
 
-      //   __pointer(::filemanager::document) pmanager = puser->filemanager()->open(get_context_application(), -1, cc);
+      //   __pointer(::filemanager::document) pmanager = puser->filemanager()->open(get_application(), -1, cc);
 
       //   if(pmanager != nullptr)
       //   {
@@ -633,7 +641,7 @@ namespace userex
          if (::str::begins_ci(pimpactdata->m_id.m_psz, "form_"))
          {
 
-            auto puser = User;
+            auto puser = user();
 
             __pointer(form_document) pdocument = puser->create_child_form(this, this, pimpactdata->m_pplaceholder);
 
@@ -789,7 +797,7 @@ namespace userex
 
       payload("app_options_title") = get_pane_by_id(pimpactdata->m_id)->get_title();
 
-      auto puser = User;
+      auto puser = user();
 
       m_pdocAppOptions = puser->create_child_form(this, this, pimpactdata->m_pplaceholder, strAppOptions);
 
@@ -801,7 +809,9 @@ namespace userex
    void pane_tab_view::prepare_form(id id, ::form_document * pdocument)
    {
 
-      Application.prepare_form(id, pdocument);
+      auto papplication = get_application();
+
+      papplication->prepare_form(id, pdocument);
 
    }
 
@@ -811,7 +821,7 @@ namespace userex
 
       ::user::tab_view::_001OnRemoveTab(ptab);
 
-      m_impactdatamap.remove_key(ptab->m_id);
+      m_impactdatamap.erase_key(ptab->m_id);
 
    }
 

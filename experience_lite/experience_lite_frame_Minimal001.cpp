@@ -32,7 +32,7 @@
          {
 
 
-            frame_Minimal001::frame_Minimal001(::layered * pobjectContext) :
+            frame_Minimal001::frame_Minimal001(::object * pobject) :
                object(pobject),
                frame(pobject)
             {
@@ -224,7 +224,7 @@
                }
                else
                {
-                  auto psession = Session;
+                  auto psession = get_session();
 
                   auto pstyle = pframewindow->get_style(pgraphics);
 
@@ -247,9 +247,9 @@
 
                   GetBorderRect(lpcrectClient, rectangle, eside);
 
-                  class imaging & imaging = System->imaging();
 
-                  imaging.color_blend(pgraphics, rectangle, crMoveableBorder, 127);
+
+                  pgraphics->color_blend( rectangle, crMoveableBorder, 127);
 
                }
                /*else if(m_estyle == StyleLightBlue)
@@ -259,9 +259,9 @@
 
                   GetBorderRect(lpcrectClient, rectangle, eside);
 
-                  class imaging & imaging = System->imaging();
 
-                  imaging.color_blend(pgraphics, rectangle, crMoveableBorder, 127);
+
+                  pgraphics->color_blend( rectangle, crMoveableBorder, 127);
 
 
 
@@ -287,9 +287,9 @@
 
                   GetBorderRect(rectClient, rectangle, eside);
 
-                  class imaging & imaging = System->imaging();
 
-                  imaging.color_blend(pgraphics, rectangle, crMoveableBorder, 127);
+
+                  pgraphics->color_blend( rectangle, crMoveableBorder, 127);
 
                }
 

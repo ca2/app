@@ -58,14 +58,16 @@ namespace draw2d
 
 
 
-   void cursor::finalize()
+   ::e_status cursor::finalize()
    {
 
       m_pimage.release();
 
       m_pimageCursor.release();
 
-      ::matter::finalize();
+      auto estatus = ::matter::finalize();
+
+      return estatus;
 
    }
 

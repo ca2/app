@@ -22,10 +22,10 @@
 //#undef App
 //
 //
-//#define ::aura::get_system() (::get_context_system()->m_paurasystem)
-//#define Node (::get_context_system()->m_pnode ? ::get_context_system()->m_pnode->m_pauranode : nullptr)
+//#define ::aura::get_system() (psystem->m_paurasystem)
+//#define Node (psystem->m_pnode ? psystem->m_pnode->m_pauranode : nullptr)
 //#define Sess(pcontextsession) (pcontextsession->m_paurasession)
-//#define App(playered) (*::get_context_application(playered)->m_pauraapplication)
+//#define App(playered) (*::get_application(playered)->m_pauraapplication)
 
 
 #define __spin_namespace aura // back bone / four-letter "spin*" namespace name
@@ -41,7 +41,7 @@ namespace aura
    class node;
 
 
-   inline system * get_system() { return ::acme::get_system()->layer(LAYERED_AURA); }
+//   inline system * get_system() { return get_system()->layer(LAYERED_AURA); }
 
 
 } // namespace aura
@@ -63,6 +63,7 @@ namespace uwp
 
 
 #endif
+
 
 #include "aura/graphics/draw2d/_.h"
 
@@ -550,9 +551,9 @@ CLASS_DECL_AURA void aura_ref();
 //
 //CLASS_DECL_AURA ::matter * trace_object(e_trace_category ecategory);
 //
-//const char * topic_text(::matter * pcontextobject);
+//const char * topic_text(::matter * pobject);
 //
-//e_trace_category object_trace_category(::matter * pcontextobject);
+//e_trace_category object_trace_category(::matter * pobject);
 //
 //
 //
@@ -635,28 +636,28 @@ CLASS_DECL_AURA void aura_ref();
 //enum enum_check: ::i32;
 //
 //template <typename TYPE>
-//struct remove_const_struct { // remove top-level const qualifier
+//struct erase_const_struct { // erase top-level const qualifier
 //   using NON_CONST_TYPE = TYPE;
 //};
 //
 //template <typename TYPE>
-//struct remove_const_struct< TYPE &> {
+//struct erase_const_struct< TYPE &> {
 //   using NON_CONST_TYPE = TYPE &;
 //};
 //
 //
 //template <typename TYPE>
-//struct remove_const_struct<const TYPE> {
+//struct erase_const_struct<const TYPE> {
 //   using NON_CONST_TYPE = TYPE;
 //};
 //
 //template <typename TYPE>
-//struct remove_const_struct<const TYPE &> {
+//struct erase_const_struct<const TYPE &> {
 //   using NON_CONST_TYPE = TYPE &;
 //};
 //
 //template <class TYPE>
-//using non_const = typename remove_const_struct<TYPE>::NON_CONST_TYPE;
+//using non_const = typename erase_const_struct<TYPE>::NON_CONST_TYPE;
 //
 //struct true_type { };
 //struct false_type { };
@@ -967,7 +968,7 @@ using image_pointer_array = __pointer_array(::image);
 //
 //
 //class composite_base;
-//class context_object;
+//class object;
 //class object;
 //
 //
@@ -983,7 +984,7 @@ using image_pointer_array = __pointer_array(::image);
 //
 ////
 ////extern "C"
-////CLASS_DECL_AURA void register_aura_library(const char * psz, ::apex::library * plibrary);
+////CLASS_DECL_AURA void register_aura_library(const char * psz, ::acme::library * plibrary);
 ////
 ////
 ////extern "C"
@@ -991,7 +992,7 @@ using image_pointer_array = __pointer_array(::image);
 //
 //
 //#define DECLARE_NEW_AURA_LIBRARY(X) extern "C" \
-//::apex::library * X##_new_aura_library()
+//::acme::library * X##_new_aura_library()
 //
 //
 //#define REGISTER_GET_NEW_AURA_LIBRARY(X) register_get_new_aura_library(#X, &X##_get_new_library)
@@ -1008,28 +1009,28 @@ using image_pointer_array = __pointer_array(::image);
 //
 //
 //template<class T>
-//struct remove_reference
+//struct erase_reference
 //{
 //   typedef T TYPE;
 //};
 //
 //template<class T>
-//struct remove_reference<T&>
+//struct erase_reference<T&>
 //{
 //   typedef T TYPE;
 //};
 //
 //template<class T>
-//struct remove_reference<T&&>
+//struct erase_reference<T&&>
 //{
 //   typedef T TYPE;
 //};
 //
 //template<class T> inline
-//typename remove_reference<T>::TYPE&& move(T && t)
+//typename erase_reference<T>::TYPE&& move(T && t)
 //{
 //
-//   return (static_cast<typename remove_reference<T>::TYPE&&>(t));
+//   return (static_cast<typename erase_reference<T>::TYPE&&>(t));
 //
 //}
 //
@@ -1776,7 +1777,7 @@ class form_document;
 //      //   Details
 //
 //      // BRT 2015-02-18 19:08
-//      // catch all (...) here in acme::del ... but should remove try catch from all underlying calls (frees, memory_frees, memory_dbg_frees).
+//      // catch all (...) here in acme::del ... but should erase try catch from all underlying calls (frees, memory_frees, memory_dbg_frees).
 //
 //      try
 //      {
@@ -1818,7 +1819,7 @@ class form_document;
 //      //   Details
 //
 //      // BRT 2015-02-18 19:08
-//      // catch all (...) here in acme::del ... but should remove try catch from all underlying calls (frees, memory_frees, memory_dbg_frees).
+//      // catch all (...) here in acme::del ... but should erase try catch from all underlying calls (frees, memory_frees, memory_dbg_frees).
 //
 //      try
 //      {
@@ -1857,7 +1858,7 @@ class form_document;
 //      //   Details
 //
 //      // BRT 2016-11-23 19:08
-//      // catch all (...) here in acme::del ... but should remove try catch from all underlying calls (frees, memory_frees, memory_dbg_frees).
+//      // catch all (...) here in acme::del ... but should erase try catch from all underlying calls (frees, memory_frees, memory_dbg_frees).
 //
 //      try
 //      {
@@ -1898,7 +1899,7 @@ class form_document;
 //      //   Details
 //
 //      // BRT 2016-11-23 19:08
-//      // catch all (...) here in acme::del ... but should remove try catch from all underlying calls (frees, memory_frees, memory_dbg_frees).
+//      // catch all (...) here in acme::del ... but should erase try catch from all underlying calls (frees, memory_frees, memory_dbg_frees).
 //
 //      try
 //      {
@@ -1983,7 +1984,6 @@ namespace aura
    }
 
    class session;
-   class user;
 
 } // namespace aura
 
@@ -2146,17 +2146,17 @@ namespace draw2d
 //#define Sys(pobject) (*::get_context_system(pobject))
 //
 //#undef Sess
-//#define Sess(pobject) (*::get_context_session(pobject))
+//#define Sess(pobject) (*::get_session(pobject))
 //
 //#undef App
-//#define App(pobject) (*::get_context_application(pobject))
+//#define App(pobject) (*::get_application(pobject))
 //
 //
 //#define ::aura::get_system() Sys(get_context())
 //#define Session Sess(get_context())
-//#define Application App(get_context())
+//#define papplication App(get_context())
 //#define ThisApp (*::application_consumer < application >::get_app())
-//#define NamespaceApp(namespace) (*::application_consumer < ::namespace::application >::get_app())
+//#define m_papplication->
 //
 //
 //#undef Ctx
@@ -2171,7 +2171,7 @@ namespace draw2d
 //
 //// __throw( - exception - result exception - if not ok
 //#ifndef TINOK
-//#define TINOK(e, x) { i32 __result__ = (x); if (__result__ != 0) __throw(e(get_context_application(), __result__)); }
+//#define TINOK(e, x) { i32 __result__ = (x); if (__result__ != 0) __throw(e(get_application(), __result__)); }
 //#endif
 //
 //
@@ -2227,11 +2227,11 @@ CLASS_DECL_AURA bool __node_aura_pos_term();
 ////extern "C" CLASS_DECL_AURA void register_get_new_aura_library(const char* psz, PFN_NEW_AURA_LIBRARY pfnNewAuraLibrary);
 //
 //
-////CLASS_DECL_AURA ::apex::library & get_library(const char* psz);
-////CLASS_DECL_AURA void register_aura_library(const char* psz, ::apex::library* plibrary);
+////CLASS_DECL_AURA ::acme::library & get_library(const char* psz);
+////CLASS_DECL_AURA void register_aura_library(const char* psz, ::acme::library* plibrary);
 ////
 ////CLASS_DECL_AURA ::context * get_context();
-////CLASS_DECL_AURA inline ::context * get_context(::layered * pobjectContext);
+////CLASS_DECL_AURA inline ::context * get_context(::object * pobject);
 ////CLASS_DECL_AURA inline ::context * get_context(::context * pcontext);
 //
 //
@@ -2239,18 +2239,18 @@ CLASS_DECL_AURA bool __node_aura_pos_term();
 //CLASS_DECL_AURA ::aura::application * get_global_application();
 //
 //
-//CLASS_DECL_AURA ::aura::application * get_context_application();
-//CLASS_DECL_AURA inline ::aura::application * get_context_application(::layered * pobjectContext);
-//CLASS_DECL_AURA inline ::aura::application * get_context_application(::aura::application * papp);
-//CLASS_DECL_AURA inline ::aura::application * get_app() { return get_context_application(); }
+//CLASS_DECL_AURA ::aura::application * get_application();
+//CLASS_DECL_AURA inline ::aura::application * get_application(::object * pobject);
+//CLASS_DECL_AURA inline ::aura::application * get_application(::aura::application * papp);
+//CLASS_DECL_AURA inline ::aura::application * get_app() { return get_application(); }
 //
 //
-//CLASS_DECL_AURA::aura::session * get_context_session();
-//CLASS_DECL_AURA inline ::aura::session * get_context_session(::layered * pobjectContext);
-//CLASS_DECL_AURA inline ::aura::session * get_context_session(::aura::session * psession);
+//CLASS_DECL_AURA::aura::session * get_session();
+//CLASS_DECL_AURA inline ::aura::session * get_session(::object * pobject);
+//CLASS_DECL_AURA inline ::aura::session * get_session(::aura::session * psession);
 //
 //CLASS_DECL_AURA::aura::system * get_context_system();
-//CLASS_DECL_AURA inline ::aura::system * get_context_system(::layered * pobjectContext);
+//CLASS_DECL_AURA inline ::aura::system * get_context_system(::object * pobject);
 //CLASS_DECL_AURA inline ::aura::system * get_context_system(::aura::system * psystem);
 //
 //
@@ -2620,7 +2620,7 @@ CLASS_DECL_AURA bool __node_aura_pos_term();
 //#include "aura/primitive/primitive/member.h"
 //
 //
-//#include "aura/primitive/primitive/context_object.h"
+//#include "aura/primitive/primitive/object.h"
 //
 //
 //#include "aura/primitive/primitive/trait.h"
@@ -2643,7 +2643,7 @@ CLASS_DECL_AURA bool __node_aura_pos_term();
 //#include "aura/primitive/geometry2d/_.h"
 //
 //
-////#include "aura/primitive/primitive/context_object.h"
+////#include "aura/primitive/primitive/object.h"
 //
 //
 //#include "aura/primitive/primitive/_factory_prefix.h"
@@ -2680,7 +2680,7 @@ CLASS_DECL_AURA bool __node_aura_pos_term();
 //class sticker;
 //
 //
-//inline ::matter * trace_object(::matter * pobjectContext) { return pobjectContext; }
+//inline ::matter * trace_object(::matter * pobject) { return pobject; }
 //
 //template < typename POINTER_TYPE >
 //class ptr_array;
@@ -2689,7 +2689,7 @@ CLASS_DECL_AURA bool __node_aura_pos_term();
 //
 ////using reference_ptra = __pointer_array(::matter); // Please use just for reference (member-based).
 //
-////using object_ptra = __pointer_array(::context_object); // Please use just for keeping non-member-based references.
+////using object_ptra = __pointer_array(::object); // Please use just for keeping non-member-based references.
 //
 //using object_ptra = __pointer_array(::matter); // Please use just for keeping non-member-based references.
 //
@@ -2738,6 +2738,16 @@ namespace draw2d
 #include "aura/game/_.h"
 
 
+//namespace PLATFORM_NAMESPACE
+//{
+//
+//
+//   class window;
+//
+//
+//} // namespace PLATFORM_NAMESPACE
+
+
 #include "aura/windowing/_windowing.h"
 
 
@@ -2748,6 +2758,8 @@ namespace draw2d
 #include "aura/filesystem/filemanager/callback.h"
 
 #include "aura/platform/shell_open.h"
+
+#include "aura/platform/context.h"
 
 #include "aura/platform/application.h"
 
@@ -2769,5 +2781,7 @@ namespace draw2d
 
 #include "aura/os/_impl.h"
 
+#include "aura/platform/_impl.h"
 
+#include "aura/windowing/_impl.h"
 

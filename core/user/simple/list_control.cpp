@@ -68,10 +68,10 @@ void simple_list_control::pre_subclass_window()
 }
 
 
-bool simple_list_control::remove_item(i32 iItem)
+bool simple_list_control::erase_item(i32 iItem)
 {
    
-   if(!m_psimplelistdata->remove_item(iItem))
+   if(!m_psimplelistdata->erase_item(iItem))
       return false;
 
    _001OnUpdateItemCount();
@@ -81,7 +81,7 @@ bool simple_list_control::remove_item(i32 iItem)
 }
 
 
-bool simple_list_control::remove_item(::user::item_range & range)
+bool simple_list_control::erase_item(::user::item_range & range)
 {
    
    bool bOk = true;
@@ -89,7 +89,7 @@ bool simple_list_control::remove_item(::user::item_range & range)
    for(::index iItem = range.get_upper_bound(); iItem >= range.get_lower_bound(); iItem++)
    {
 
-      if(!m_psimplelistdata->remove_item(iItem))
+      if(!m_psimplelistdata->erase_item(iItem))
       {
 
          bOk = false;
@@ -105,7 +105,7 @@ bool simple_list_control::remove_item(::user::item_range & range)
 }
 
 
-bool simple_list_control::remove_item(::user::range & range)
+bool simple_list_control::erase_item(::user::range & range)
 {
    bool bOk = true;
    index_array iaRemove;
@@ -120,7 +120,7 @@ bool simple_list_control::remove_item(::user::range & range)
    ::sort::quick_sort(iaRemove, false);
    for(index i = 0; i < iaRemove.get_size(); i++)
    {
-      if(!m_psimplelistdata->remove_item(iaRemove[i]))
+      if(!m_psimplelistdata->erase_item(iaRemove[i]))
          bOk = false;
    }
    _001OnUpdateItemCount();

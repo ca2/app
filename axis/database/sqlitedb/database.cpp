@@ -15,8 +15,6 @@ namespace sqlite
    database::database()
    {
 
-      defer_create_mutex();
-
       m_bActive = false;
       m_bTransactionActive = false;      // for transaction
 
@@ -56,7 +54,7 @@ namespace sqlite
    ::database::e_connection database::connection_status()
    {
 
-      if (m_bActive == false)
+      if (isActive() == false)
       {
 
          return ::database::connection_none;
@@ -209,6 +207,22 @@ namespace sqlite
 
    }
 
+   
+   __pointer(::database::result_set) database::query(const char* pszQuery, ::count iRowCount, ::count iColumnCount)
+   { 
+      
+      return query_result(pszQuery, iRowCount, iColumnCount); 
+   
+   }
+
+
+   bool database::isActive()
+   {
+
+      return false;
+
+   }
+
 
    string database::get_error_message()
    {
@@ -218,10 +232,99 @@ namespace sqlite
    }
 
 
+   ::e_status database::init()
+   {
+
+      return ::success;
+
+   }
+
+
+   ___pointer<class var_array> database::query_row(const char* psz)
+   {
+
+      return nullptr;
+
+   }
+
+
+
+
+   ::payload database::query_item(const char* psz)
+   {
+
+      return ::payload();
+
+   }
+
+
+   __pointer(var_array) database::query_items(const char* psz)
+   {
+
+      return nullptr;
+
+   }
+
+   ::e_status     database::connect(
+      const char* name,
+      const char* host,
+      const char* port,
+      const char* user,
+      const char* pass,
+      const char* sckt,
+      u64 uConnectionFlags)
+   {
+
+      return error_failed;
+
+   }
+
+
+
+   __pointer(__pointer_array(var_array)) database::query_rows(const char* psz)
+   {
+
+      return nullptr;
+
+   }
+
+
+   bool database::memory_query_item(get_memory getmemory, const char* psz)
+   {
+
+      return ::payload();
+
+   }
+
+
+   ::e_status database::reset()
+   {
+
+      return error_failed;
+
+   }
+
+
+   ::i64 database::get_affected_rows_count()
+   {
+
+      return -1;
+
+   }
+
+
+   bool database::in_transaction()
+   {
+
+      return false;
+
+   }
+
+
    ::e_status     database::_connect()
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       disconnect();
 
@@ -275,7 +378,7 @@ namespace sqlite
    void database::disconnect()
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       if (m_psqlite != nullptr)
       {
@@ -286,7 +389,7 @@ namespace sqlite
 
       }
 
-      if (!m_bActive)
+      if (!isActive())
       {
 
          return;
@@ -305,15 +408,25 @@ namespace sqlite
 
    }
 
-
-   ::e_status      database::drop()
+   string database::add_error_message(const string& str)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      m_strError += str;
+
+      return m_strError;
+
+   }
+
+
+
+   ::e_status database::drop()
+   {
+
+      synchronous_lock synchronouslock(mutex());
 
       disconnect();
 
-      if (m_bActive)
+      if (isActive())
       {
 
          return error_failed;
@@ -323,7 +436,9 @@ namespace sqlite
       try
       {
 
-         Context.file().del(m_strName);
+         auto pcontext = get_context();
+
+         pcontext->m_papexcontext->file().del(m_strName);
 
       }
       catch(...)
@@ -341,9 +456,9 @@ namespace sqlite
    //long database::nextid(const char* sname)
    //{
 
-   //   synchronization_lock synchronizationlock(mutex());
+   //   synchronous_lock synchronouslock(mutex());
 
-   //   if(!m_bActive)
+   //   if(!isActive())
    //   {
 
    //      return DB_UNEXPECTED_RESULT;
@@ -404,9 +519,9 @@ namespace sqlite
    void database::start_transaction()
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
-      if (m_bActive)
+      if (isActive())
       {
          sqlite3_exec((sqlite3 *) m_psqlite,"begin",nullptr,nullptr,nullptr);
          m_bTransactionActive = true;
@@ -417,9 +532,9 @@ namespace sqlite
    void database::commit_transaction()
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
-      if (m_bActive)
+      if (isActive())
       {
          sqlite3_exec((sqlite3 *) m_psqlite,"commit",nullptr,nullptr,nullptr);
          m_bTransactionActive = false;
@@ -430,9 +545,9 @@ namespace sqlite
    void database::rollback_transaction()
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
-      if (m_bActive)
+      if (isActive())
       {
          sqlite3_exec((sqlite3 *) m_psqlite,"rollback",nullptr,nullptr,nullptr);
          m_bTransactionActive = false;
@@ -452,14 +567,14 @@ namespace sqlite
    //void database::create_long_set(const string & strTable)
    //{
 
-   //   synchronization_lock synchronizationlock(mutex());
+   //   synchronous_lock synchronouslock(mutex());
 
    //   try
    //   {
 
    //      dataset dataset(this);
 
-   //      synchronization_lock synchronizationlock(mutex());
+   //      synchronous_lock synchronouslock(mutex());
 
    //      dataset.query("select * from sqlite_master where type like 'table' and name like '" + strTable + "'");
 
@@ -481,14 +596,14 @@ namespace sqlite
    //void database::create_string_set(const string & strTable)
    //{
 
-   //   synchronization_lock synchronizationlock(mutex());
+   //   synchronous_lock synchronouslock(mutex());
 
    //   try
    //   {
 
    //      dataset dataset(this);
 
-   //      synchronization_lock synchronizationlock(mutex());
+   //      synchronous_lock synchronouslock(mutex());
 
    //      dataset.query("select * from sqlite_master where type like 'table' and name like '" + strTable + "'");
 

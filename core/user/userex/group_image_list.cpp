@@ -12,7 +12,6 @@ namespace userex
       m_size.cx = 7;
       m_size.cy = 5;
 
-      m_pimage = Application.image().load_image("project->jpg", false);
 
    }
 
@@ -21,6 +20,9 @@ namespace userex
    {
 
    }
+
+
+
 
 
    void group_image_list_view::assert_valid() const
@@ -97,6 +99,12 @@ namespace userex
 
       __pointer(::message::create) pcreate(pmessage);
 
+      auto pcontext = m_pcontext->m_pauracontext;
+
+      auto pcontextimage = pcontext->context_image();
+
+      m_pimage = pcontextimage->load_image("project->jpg", false);
+
       pcreate->previous();
 
       m_idaHandledCommands.add(m_id);
@@ -109,7 +117,7 @@ namespace userex
       //m_buttonMenu.create_color(::user::color_button_background, argb(255, 255, 255, 255));
       //m_buttonMenu.create_int(::user::int_button_draw_text_and_image_flags, e_align_left_center | DT_SINGLELINE);
 
-      m_buttonMenu.m_flagNonClient.remove(::user::interaction::non_client_focus_rect);
+      m_buttonMenu.m_flagNonClient.erase(::user::interaction::non_client_focus_rect);
 
    }
 
@@ -225,7 +233,7 @@ namespace userex
 
       //auto * plist = get_group_list(strGroup);
 
-     //::image_pointer pimage = Application.matter_image(pgroup->m_strIcon);
+     //::image_pointer pimage = papplication->matter_image(pgroup->m_strIcon);
 
       //m_buttonMenu.set_window_text(get_group_title(pgroup));
 
@@ -265,7 +273,11 @@ namespace userex
 
       m_itemCurrent = plist->m_iIndex;
 
-      ::image_pointer pimage = Application.image().matter_image(pgroup->m_strIcon);
+      auto pcontext = m_pcontext->m_pauracontext;
+
+      auto pcontextimage = pcontext->context_image();
+
+      ::image_pointer pimage = pcontextimage->matter_image(pgroup->m_strIcon);
 
       m_buttonMenu.set_window_text(get_group_title(pgroup));
 
@@ -370,7 +382,7 @@ namespace userex
 
       pinteraction->get_window_rect(rectWindow);
 
-      auto puser = User;
+      auto puser = user();
 
       m_pmenu = puser->track_popup_xml_menu(this, strXml, 0, rectWindow.bottom_left(), ::size_i32(width(), 0));
       //m_pmenu->create_color(::user::color_button_background, argb(255, 255, 255, 255));

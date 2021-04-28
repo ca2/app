@@ -61,7 +61,7 @@ namespace uwp
 
       m_psystem = psystem;
 
-      //      psystem->get_context_session()->m_frameworkview = this;
+      //      psystem->get_session()->m_frameworkview = this;
 
       m_pdxi = psystem->m_papplicationStartup->__create_new < directx_interaction>();
 
@@ -81,7 +81,7 @@ namespace uwp
 
       int nReturnCode = 0;
 
-      if (!m_psystem->m_hthread)
+      if (!m_psystem->m_htask)
       {
 
          if (!m_psystem->begin_synch())
@@ -102,9 +102,9 @@ namespace uwp
 
       }
 
-      //m_psystem->get_context_session()->m_pframeworkview = this;
+      //m_psystem->get_session()->m_pframeworkview = this;
 
-      m_psystem->get_context_session()->m_puiHost = m_pdxi;
+      m_psystem->get_session()->m_puserinteractionHost = m_pdxi;
 
       m_directx->defer_init();
 
@@ -112,7 +112,7 @@ namespace uwp
 
       auto pcs = __new(::user::system);
 
-      auto puiHost = __user_interaction(m_psystem->get_context_session()->m_puiHost);
+      auto puserinteractionHost = __user_interaction(m_psystem->get_session()->m_puserinteractionHost);
 
       auto routine = [this]()
       {
@@ -139,7 +139,7 @@ namespace uwp
 
          ev.wait(15_s);
 
-         auto puiHost = __user_interaction(m_psystem->get_context_session()->m_puiHost);
+         auto puserinteractionHost = __user_interaction(m_psystem->get_session()->m_puserinteractionHost);
 
          auto puserinteraction = m_pdxi;
 
@@ -175,7 +175,7 @@ namespace uwp
 
       //m_pimpl->m_bNotifyLayoutCompletedPending = true;
 
-      if (!puiHost->create_window_ex(pcs))
+      if (!puserinteractionHost->create_window_ex(pcs))
       {
 
          __throw(resource_exception("Couldn't create Main Window"));
@@ -358,7 +358,7 @@ namespace uwp
             //if (papp == nullptr)
             //{
 
-            //   papp = m_psystem->get_context_session()->m_pappCurrent;
+            //   papp = m_psystem->get_session()->m_papplicationCurrent;
 
             //}
 
@@ -387,15 +387,15 @@ namespace uwp
    void directx_framework_view::OnCharacterReceived(Windows::UI::Core::CoreWindow ^, Windows::UI::Core::CharacterReceivedEventArgs ^ args)
    {
 
-      if(m_psystem->get_context_session() == nullptr)
+      if(m_psystem->get_session() == nullptr)
          return;
 
-      auto puiHost = __user_interaction(m_psystem->get_context_session()->m_puiHost);
+      auto puserinteractionHost = __user_interaction(m_psystem->get_session()->m_puserinteractionHost);
 
-      if (puiHost == nullptr)
+      if (puserinteractionHost == nullptr)
          return;
 
-      if (puiHost->m_pimpl == nullptr)
+      if (puserinteractionHost->m_pimpl == nullptr)
          return;
 
       __pointer(::user::message) pusermessage;
@@ -405,10 +405,10 @@ namespace uwp
       pusermessage = pkey;
 
       pkey->m_id = e_message_char;
-      pkey->m_playeredUserPrimitive = puiHost;
+      pkey->m_playeredUserPrimitive = puserinteractionHost;
       pkey->m_nChar = keycode_to_char(args->KeyCode);
 
-      puiHost->m_pimpl->queue_message_handler(pusermessage);
+      puserinteractionHost->m_pimpl->queue_message_handler(pusermessage);
 
    }
 
@@ -423,12 +423,12 @@ namespace uwp
       if(m_psystem == nullptr)
          return;
 
-      auto puiHost = __user_interaction(m_psystem->get_context_session()->m_puiHost);
+      auto puserinteractionHost = __user_interaction(m_psystem->get_session()->m_puserinteractionHost);
 
-      if (puiHost == nullptr)
+      if (puserinteractionHost == nullptr)
          return;
 
-      if (puiHost->m_pimpl == nullptr)
+      if (puserinteractionHost->m_pimpl == nullptr)
          return;
 
       __pointer(::user::message) pusermessage;
@@ -443,12 +443,12 @@ namespace uwp
 
       ::user::enum_key ekey = virtualkey_to_userkey(args->VirtualKey, bSpecialKey);
 
-      if(bSpecialKey || !bTextFocus || m_psystem->get_context_session()->is_key_pressed(::user::e_key_control)
-         || m_psystem->get_context_session()->is_key_pressed(::user::e_key_alt))
+      if(bSpecialKey || !bTextFocus || m_psystem->get_session()->is_key_pressed(::user::e_key_control)
+         || m_psystem->get_session()->is_key_pressed(::user::e_key_alt))
       {
 
          pkey->m_id                 = e_message_key_down;
-         pkey->m_playeredUserPrimitive       = m_psystem->get_context_session()->m_puiHost;
+         pkey->m_playeredUserPrimitive       = m_psystem->get_session()->m_puserinteractionHost;
          pkey->m_nChar              = virtualkey_to_char(args->VirtualKey);
          pkey->m_ekey               = ekey;
          pkey->m_wparam             = pkey->m_nChar;
@@ -462,7 +462,7 @@ namespace uwp
    //      pkey->m_key = args;
 
 
-         puiHost->m_pimpl->queue_message_handler(pusermessage);
+         puserinteractionHost->m_pimpl->queue_message_handler(pusermessage);
 
       }
 
@@ -474,12 +474,12 @@ namespace uwp
       if(m_psystem == nullptr)
          return;
 
-      auto puiHost = __user_interaction(m_psystem->get_context_session()->m_puiHost);
+      auto puserinteractionHost = __user_interaction(m_psystem->get_session()->m_puserinteractionHost);
 
-      if (puiHost == nullptr)
+      if (puserinteractionHost == nullptr)
          return;
 
-      if (puiHost->m_pimpl == nullptr)
+      if (puserinteractionHost->m_pimpl == nullptr)
          return;
 
       __pointer(::user::message) pusermessage;
@@ -504,7 +504,7 @@ namespace uwp
       {
 
          pkey->m_id = e_message_key_up;
-         pkey->m_playeredUserPrimitive = m_psystem->get_context_session()->m_puiHost;
+         pkey->m_playeredUserPrimitive = m_psystem->get_session()->m_puserinteractionHost;
          pkey->m_nChar = virtualkey_to_char(args->VirtualKey);
          pkey->m_ekey = ekey;
          pkey->m_wparam = pkey->m_nChar;
@@ -542,7 +542,7 @@ namespace uwp
                //}
                //else
                //{
-         puiHost->m_pimpl->queue_message_handler(pusermessage);
+         puserinteractionHost->m_pimpl->queue_message_handler(pusermessage);
          //}
 
       }
@@ -616,12 +616,12 @@ namespace uwp
       if(m_psystem == nullptr)
          return;
 
-      auto puiHost = __user_interaction(m_psystem->get_context_session()->m_puiHost);
+      auto puserinteractionHost = __user_interaction(m_psystem->get_session()->m_puserinteractionHost);
 
-      if (puiHost == nullptr)
+      if (puserinteractionHost == nullptr)
          return;
 
-      if (puiHost->m_pimpl == nullptr)
+      if (puserinteractionHost->m_pimpl == nullptr)
          return;
 
       __pointer(::user::message) pusermessage;
@@ -637,17 +637,17 @@ namespace uwp
       pmouse->m_point.x       = (::i32) pointerPoint->RawPosition.X;
       pmouse->m_point.y       = (::i32) pointerPoint->RawPosition.Y;
       pmouse->m_id            = e_message_mouse_move;
-      pmouse->m_playeredUserPrimitive  = m_psystem->get_context_session()->m_puiHost;
+      pmouse->m_playeredUserPrimitive  = m_psystem->get_session()->m_puserinteractionHost;
 
       m_pointLastCursor = pointerPoint->RawPosition;
 
-      auto pimpl = __uwp_user_interaction_impl(puiHost->m_pimpl);
+      auto pimpl = __uwp_user_interaction_impl(puserinteractionHost->m_pimpl);
 
       pimpl->m_pointCursor.set(
          (LONG) pointerPoint->RawPosition.X, 
          (LONG) pointerPoint->RawPosition.Y);
 
-      puiHost->m_pimpl->queue_message_handler(pusermessage);
+      puserinteractionHost->m_pimpl->queue_message_handler(pusermessage);
 
       m_millisLastMouseMove= ::millis::now();
 
@@ -664,16 +664,16 @@ namespace uwp
 
       }
 
-      auto puiHost = __user_interaction(m_psystem->get_context_session()->m_puiHost);
+      auto puserinteractionHost = __user_interaction(m_psystem->get_session()->m_puserinteractionHost);
 
-      if (puiHost == nullptr)
+      if (puserinteractionHost == nullptr)
       {
 
          return;
 
       }
 
-      if (puiHost->m_pimpl == nullptr)
+      if (puserinteractionHost->m_pimpl == nullptr)
       {
 
          return;
@@ -725,11 +725,11 @@ namespace uwp
 
       }
 
-      pmouse->m_playeredUserPrimitive = m_psystem->get_context_session()->m_puiHost;
+      pmouse->m_playeredUserPrimitive = m_psystem->get_session()->m_puserinteractionHost;
 
       m_pointLastCursor = pointerPoint->RawPosition;
 
-      puiHost->m_pimpl->queue_message_handler(pusermessage);
+      puserinteractionHost->m_pimpl->queue_message_handler(pusermessage);
 
    }
 
@@ -748,12 +748,12 @@ namespace uwp
 
       ::g_iMouse = pointerPoint->PointerId;
 
-      auto puiHost = __user_interaction(m_psystem->get_context_session()->m_puiHost);
+      auto puserinteractionHost = __user_interaction(m_psystem->get_session()->m_puserinteractionHost);
 
-      if (puiHost == nullptr)
+      if (puserinteractionHost == nullptr)
          return;
 
-      if (puiHost->m_pimpl == nullptr)
+      if (puserinteractionHost->m_pimpl == nullptr)
          return;
 
       __pointer(::user::message) pusermessage;
@@ -788,11 +788,11 @@ namespace uwp
 
       }
 
-      pmouse->m_playeredUserPrimitive = m_psystem->get_context_session()->m_puiHost;
+      pmouse->m_playeredUserPrimitive = m_psystem->get_session()->m_puserinteractionHost;
 
       m_pointLastCursor = pointerPoint->RawPosition;
 
-      puiHost->m_pimpl->queue_message_handler(pusermessage);
+      puserinteractionHost->m_pimpl->queue_message_handler(pusermessage);
 
    }
 
@@ -954,7 +954,7 @@ namespace uwp
    Windows::Foundation::Point directx_framework_view::get_cursor_position()
    {
 
-      single_lock synchronizationlock(&m_mutex, true);
+      single_lock synchronouslock(&m_mutex, true);
 
       Windows::Foundation::Point p = m_pointLastCursor;
 

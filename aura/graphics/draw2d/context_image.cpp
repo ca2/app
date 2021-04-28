@@ -16,10 +16,10 @@ context_image::~context_image()
 }
 
 
-::e_status context_image::initialize(::layered * pobjectContext)
+::e_status context_image::initialize(::object * pobject)
 {
 
-   auto estatus = ::object::initialize(pobjectContext);
+   auto estatus = ::object::initialize(pobject);
 
    if (!estatus)
    {
@@ -33,13 +33,20 @@ context_image::~context_image()
 }
 
 
-::e_status context_image::set_finish_composites(::context_object * pcontextobjectFinish)
+//::e_status context_image::set_finish_composites(::property_object * pcontextobjectFinish)
+//{
+//
+//   return ::object::set_finish_composites(pcontextobjectFinish);
+//
+//}
+
+
+::e_status context_image::finish_composites()
 {
 
-   return ::object::set_finish_composites(pcontextobjectFinish);
+   return ::object::finish_composites();
 
 }
-
 
 
 ::image_result context_image::_load_image_from_file(const ::payload & varFile, const ::payload & varOptions)
@@ -56,9 +63,13 @@ context_image::~context_image()
 ::e_status context_image::_save_to_file(const ::payload & varFile, const image * pimage, const ::payload & varOptions)
 {
 
-   ::save_image saveimage(varFile, varOptions);
+   auto psystem = m_psystem->m_paurasystem;
 
-   return save_image(varFile, pimage, &saveimage);
+   auto pdraw2d = psystem->draw2d();
+
+   auto psaveimage = pdraw2d->new_save_image(varFile, varOptions);
+
+   return save_image(varFile, pimage, psaveimage);
 
 }
 
@@ -99,7 +110,9 @@ context_image::~context_image()
    if (bCache)
    {
 
-      pimage = ::aura::get_system()->matter_cache_image(this, strMatter);
+      __pointer(::aura::system) psystem = m_psystem;
+
+      pimage = psystem->matter_cache_image(this, strMatter);
 
       if (::is_ok(pimage))
       {
@@ -141,7 +154,9 @@ context_image::~context_image()
    if (bCache)
    {
 
-      pimage = ::aura::get_system()->get_cache_image(this, varFile);
+      __pointer(::aura::system) psystem = get_system();
+
+      pimage = psystem->get_cache_image(this, varFile);
 
       if (::is_ok(pimage))
       {
@@ -183,7 +198,9 @@ context_image::~context_image()
    if (bCache)
    {
 
-      pimage = ::aura::get_system()->matter_cache_image(this, strMatter);
+      __pointer(::aura::system) psystem = get_system();
+
+      pimage = psystem->matter_cache_image(this, strMatter);
 
       if (::is_ok(pimage))
       {
@@ -372,7 +389,9 @@ context_image::~context_image()
 ::e_status context_image::_load_matter_image(image * pimage, const string & strMatter, bool bSync, bool bCreateHelperMaps)
 {
 
-   ::file::path path = Context.dir().matter(strMatter);
+   auto pcontext = get_context();
+
+   ::file::path path = pcontext->m_papexcontext->dir().matter(strMatter);
 
    auto estatus = _load_image(pimage, path, bSync, bCreateHelperMaps);
 
@@ -393,12 +412,14 @@ context_image::~context_image()
 
    ::file::path path;
 
+   auto pcontext = get_context();
+
    for (auto & strMatter : straMatter)
    {
 
       path = strMatter;
 
-      path = Context.dir().matter(path / strIcon);
+      path = pcontext->m_papexcontext->dir().matter(path / strIcon);
 
       auto estatus = _load_image(pimage, path, true);
 
@@ -484,7 +505,9 @@ context_image::~context_image()
 
       pimage->set_nok();
 
-      auto pfile = Context.file().get_file(pathDib, ::file::e_open_read | ::file::e_open_share_deny_write | ::file::e_open_binary);
+      auto pcontext = get_context();
+
+      auto pfile = pcontext->m_papexcontext->file().get_file(pathDib, ::file::e_open_read | ::file::e_open_share_deny_write | ::file::e_open_binary);
 
       if (!pfile)
       {
@@ -535,7 +558,9 @@ context_image::~context_image()
 
    }
 
-   return Context.file().put_contents(varFile, mem);
+   auto pcontext = get_context();
+
+   return pcontext->m_papexcontext->file().put_contents(varFile, mem);
 
 }
 
@@ -565,7 +590,9 @@ context_image::~context_image()
    try
    {
 
-      auto pfile = Context.file().get_file(pathDib, ::file::e_open_create | ::file::e_open_write | ::file::e_open_binary | ::file::e_open_defer_create_directory);
+      auto pcontext = get_context();
+
+      auto pfile = pcontext->m_papexcontext->file().get_file(pathDib, ::file::e_open_create | ::file::e_open_write | ::file::e_open_binary | ::file::e_open_defer_create_directory);
 
       if (pfile)
       {

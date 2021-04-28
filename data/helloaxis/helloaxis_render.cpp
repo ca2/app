@@ -35,7 +35,7 @@ namespace helloaxis
    }
 
 
-   render::render(::layered * pobjectContext) :
+   render::render(::object * pobject) :
       object(pobject),
       thread(pobject),
       m_font(e_create),
@@ -129,9 +129,9 @@ namespace helloaxis
       if (m_bNewLayout)
       {
 
-         synchronization_lock sl2(&m_mutexWork);
-         synchronization_lock sl3(&m_mutexDraw);
-         synchronization_lock sl4(&m_mutexSwap);
+         synchronous_lock sl2(&m_mutexWork);
+         synchronous_lock sl3(&m_mutexDraw);
+         synchronous_lock sl4(&m_mutexSwap);
 
 /*         bool bNewSize = m_pimage->width() != sizeNew.cx || m_pimage->m_size.cy != sizeNew.cy;
 
@@ -169,9 +169,9 @@ namespace helloaxis
    bool render::initialize_render(string strId)
    {
 
-      //      ::database::client::initialize_data_client(&Application.dataserver());
+      //      ::database::client::initialize_data_client(&papplication->dataserver());
 
-      if (Application.m_strAppId == "app-core/flag")
+      if (papplication->m_strAppId == "app-core/flag")
       {
 
          m_bilboa.add(bilbo("matter://cat.gif"));
@@ -248,7 +248,7 @@ namespace helloaxis
 
       index iFrameId;
 
-      while (thread_get_run())
+      while (task_get_run())
       {
 
          try
@@ -289,7 +289,7 @@ namespace helloaxis
                   if (dNow - daFrame[i] >= 1000.0)
                   {
 
-                     daFrame.remove_at(i);
+                     daFrame.erase_at(i);
 
                   }
                   else
@@ -327,7 +327,7 @@ namespace helloaxis
 
       {
 
-         synchronization_lock synchronizationlock(&m_mutexWork);
+         synchronous_lock synchronouslock(&m_mutexWork);
 
 /*         ::image_pointer pimage = m_pimageWork;
 
@@ -372,7 +372,7 @@ namespace helloaxis
 
       //_001OnPostProcess(m_pimageWork);
 
-      synchronization_lock slDraw(&m_mutexDraw);
+      synchronous_lock slDraw(&m_mutexDraw);
 
       if (m_bDib1)
       {
@@ -389,7 +389,7 @@ namespace helloaxis
 
       }
 
-      synchronization_lock slSwap(&m_mutexSwap);
+      synchronous_lock slSwap(&m_mutexSwap);
 
       if (m_bDib1)
       {
@@ -466,7 +466,7 @@ namespace helloaxis
 
       {
 
-         synchronization_lock slText(m_pmutexText);
+         synchronous_lock slText(m_pmutexText);
 
          strHelloAxis = get_helloaxis().c_str(); // rationale : string allocation fork *for parallelization*
 
@@ -497,7 +497,7 @@ namespace helloaxis
 
             {
 
-               synchronization_lock slDib(&m_mutexDib);
+               synchronous_lock slDib(&m_mutexDib);
 
 /*               if (m_pimage->initialize(m_cxCache1, m_cyCache1, int (m_dMaxRadius)))
                {
@@ -520,7 +520,7 @@ namespace helloaxis
 
 /*                  m_pimage->map();
 
-/*                  System->imaging().spread(m_pimage->g(), ::point_i32(), m_pimage->get_size(), m_pimage->g(), ::point_i32(), int (m_dMaxRadius));
+/*                  psystem->imaging().spread(m_pimage->g(), ::point_i32(), m_pimage->get_size(), m_pimage->g(), ::point_i32(), int (m_dMaxRadius));
 
 /*                  m_pimage->blur();
 
@@ -540,7 +540,7 @@ namespace helloaxis
 
       {
 
-         synchronization_lock slText(m_pmutexText);
+         synchronous_lock slText(m_pmutexText);
 
          if (strHelloAxis != get_helloaxis() || m_cxCache1 != m_cxTarget || m_cyCache1 != m_cyTarget || m_pimageTemplate->area() <= 0)
             return;
@@ -593,7 +593,7 @@ namespace helloaxis
 
       pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-      System->imaging().bitmap_blend(pgraphics,
+      psystem->imaging().bitmap_blend(pgraphics,
                                          point_i32((m_cx - m_pimageTemplate2->width()) / 2, (m_cy - m_pimageTemplate2->height()) / 2)
                                          , m_pimageTemplate2->m_size,
                                          m_pimageTemplate2->get_graphics(), ::point_i32(), byte (128 + (255 - 128) * r));
@@ -643,7 +643,7 @@ namespace helloaxis
       if(!m_bFirstDone)
       {
 
-         synchronization_lock slText(m_pmutexText);
+         synchronous_lock slText(m_pmutexText);
 
          if (strHelloAxis == get_helloaxis() && m_cxCache1 == m_cxTarget && m_cyCache1 == m_cyTarget)
          {
@@ -752,7 +752,7 @@ namespace helloaxis
 
       {
 
-         synchronization_lock slDib(&m_mutexDib);
+         synchronous_lock slDib(&m_mutexDib);
 
          if (!psession->savings().is_trying_to_save(::e_resource_display_bandwidth))
          {
@@ -871,12 +871,12 @@ namespace helloaxis
       }
 
 #if 0
-      if (Application.m_iErrorAiFont == 0)
+      if (papplication->m_iErrorAiFont == 0)
       {
 
-         synchronization_lock slAiFont(&Application.m_mutexAiFont);
+         synchronous_lock slAiFont(&papplication->m_mutexAiFont);
 
-         FT_Face & face = (FT_Face &)Application.m_faceAi;
+         FT_Face & face = (FT_Face &)papplication->m_faceAi;
 
          i32 error;
 
@@ -1067,7 +1067,7 @@ auto m_tick23 = ::millis::now();
                if (m_strLast23.has_char())
                {
 
-                  synchronization_lock synchronizationlock(&m_mutexDib23);
+                  synchronous_lock synchronouslock(&m_mutexDib23);
 
 /*                  auto & pimage = image23(m_strLast23);
 
@@ -1076,7 +1076,7 @@ auto m_tick23 = ::millis::now();
 
 /*                     pimage->defer_update();
 
-/*                     System->imaging().bitmap_blend(pgraphics, ::point_i32(), pimage->get_size(), pimage->get_graphics(), ::point_i32(), 255 - uchAlpha);
+/*                     psystem->imaging().bitmap_blend(pgraphics, ::point_i32(), pimage->get_size(), pimage->get_graphics(), ::point_i32(), 255 - uchAlpha);
 
                   }
 
@@ -1085,7 +1085,7 @@ auto m_tick23 = ::millis::now();
                if (m_strCurrent23.has_char())
                {
 
-                  synchronization_lock synchronizationlock(&m_mutexDib23);
+                  synchronous_lock synchronouslock(&m_mutexDib23);
 
 /*                  auto & pimage = image23(m_strCurrent23);
 
@@ -1094,7 +1094,7 @@ auto m_tick23 = ::millis::now();
 
 /*                     pimage->defer_update();
 
-/*                     System->imaging().bitmap_blend(pgraphics, ::point_i32(), pimage->get_size(), pimage->get_graphics(), ::point_i32(), uchAlpha);
+/*                     psystem->imaging().bitmap_blend(pgraphics, ::point_i32(), pimage->get_size(), pimage->get_graphics(), ::point_i32(), uchAlpha);
 
                   }
 
@@ -1104,7 +1104,7 @@ auto m_tick23 = ::millis::now();
             else if (m_strCurrent23.has_char())
             {
 
-               synchronization_lock synchronizationlock(&m_mutexDib23);
+               synchronous_lock synchronouslock(&m_mutexDib23);
 
 /*               auto & pimage = image23(m_strCurrent23);
 
@@ -1127,7 +1127,7 @@ auto m_tick23 = ::millis::now();
 
       }
 
-      if (Application.m_etype == application::type_mili)
+      if (papplication->m_etype == application::type_mili)
       {
 
          {
@@ -1136,7 +1136,7 @@ auto m_tick23 = ::millis::now();
 
             {
 
-               //synchronization_lock slText(&m_pview->m_mutexText);
+               //synchronous_lock slText(&m_pview->m_mutexText);
 
                //strHelloAxis = m_pview->get_processed_helloaxis().c_str();
 
@@ -1151,7 +1151,7 @@ auto m_tick23 = ::millis::now();
 
                ::write_text::font_pointer font(e_create);
 
-               font->create_pixel_font(os_font_name(e_font_sans), fHeight, e_font_weight_bold);
+               font->create_pixel_font(pnode->font_name(e_font_sans), fHeight, e_font_weight_bold);
 
                pgraphics->set_font(font);
 
@@ -1161,7 +1161,7 @@ auto m_tick23 = ::millis::now();
 
                double ratey = fHeight * 0.84 / size.cy;
 
-               font->create_pixel_font(os_font_name(e_font_sans), minimum(m_cy * ratey, m_cx * size.cy * ratey / size.cx), e_font_weight_bold);
+               font->create_pixel_font(pnode->font_name(e_font_sans), minimum(m_cy * ratey, m_cx * size.cy * ratey / size.cx), e_font_weight_bold);
 
                m_font = font;
 
@@ -1202,9 +1202,9 @@ auto m_tick23 = ::millis::now();
       if (m_bFast || !m_bFirstDone || m_millisLastFast.elapsed() < m_millisFastAnime)
       {
 
-//         synchronization_lock sl1(m_pview->get_wnd()->mutex());
+//         synchronous_lock sl1(m_pview->get_wnd()->mutex());
 
-         synchronization_lock slDraw(&m_mutexDraw);
+         synchronous_lock slDraw(&m_mutexDraw);
 
          if (m_bFast || m_pimageFast->is_null())
          {
@@ -1213,7 +1213,7 @@ auto m_tick23 = ::millis::now();
 
             {
 
-               //synchronization_lock slText(&m_pview->m_mutexText);
+               //synchronous_lock slText(&m_pview->m_mutexText);
 
                //helloaxis_fast_render(m_pview->get_processed_helloaxis());
                helloaxis_fast_render("Hello Axis!!");
@@ -1256,9 +1256,9 @@ auto m_tick23 = ::millis::now();
 
       ::image_pointer pimageFast = m_pimageFast;
 
-      synchronization_lock synchronizationlock(&m_mutexDraw);
+      synchronous_lock synchronouslock(&m_mutexDraw);
 
-      synchronization_lock slSwap(&m_mutexSwap);
+      synchronous_lock slSwap(&m_mutexSwap);
 
 /*      pimage = m_pimageOut;
 
@@ -1274,9 +1274,9 @@ auto m_tick23 = ::millis::now();
 
          uchAlpha = byte(maximum(0, minimum(255, (m_millisLastOk.elapsed()) * 255 / m_millisAnime)));
 
-/*         System->imaging().bitmap_blend(pgraphics, ::point_i32(), pimage->get_size(), pimage->g(), ::point_i32(), uchAlpha);
+/*         psystem->imaging().bitmap_blend(pgraphics, ::point_i32(), pimage->get_size(), pimage->g(), ::point_i32(), uchAlpha);
 
-         System->imaging().bitmap_blend(pgraphics, ::point_i32(), imageFast.get_size(), imageFast.get_graphics(), ::point_i32(), 255 - uchAlpha);
+         psystem->imaging().bitmap_blend(pgraphics, ::point_i32(), imageFast.get_size(), imageFast.get_graphics(), ::point_i32(), 255 - uchAlpha);
 
       }
       else
@@ -1306,7 +1306,7 @@ auto m_tick23 = ::millis::now();
 
 /*         pimage->m_eload = ::draw2d::load_going_to_load;
 
-         ::fork(get_context_application(), [=]()
+         ::fork(get_application(), [=]()
          {
 
 /*            if (!m_mapDib23[strImage].load_image(strImage, true, true))
@@ -1328,7 +1328,7 @@ auto m_tick23 = ::millis::now();
    void render::defer_update_bilbo()
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       for (auto & bilbo : m_bilboa)
       {
@@ -1346,7 +1346,7 @@ auto m_tick23 = ::millis::now();
          else if (!bilbo.m_bNew && bilbo.m_b)
          {
 
-            m_stra23.remove(bilbo.m_strPath);
+            m_stra23.erase(bilbo.m_strPath);
 
             bilbo.m_b = false;
 
@@ -1359,7 +1359,7 @@ auto m_tick23 = ::millis::now();
       for (auto str23 : m_stra23)
       {
 
-         synchronization_lock synchronizationlock(&m_mutexDib23);
+         synchronous_lock synchronouslock(&m_mutexDib23);
 
          image23(str23);
 
@@ -1382,7 +1382,7 @@ auto m_tick23 = ::millis::now();
       if (m_cx <= 0 || m_cy <= 0)
          return;
 
-      synchronization_lock slDraw(&m_mutexDraw);
+      synchronous_lock slDraw(&m_mutexDraw);
 
       ::size_i32 sizeNew = ::size_i32(m_cx, m_cy);
 

@@ -115,9 +115,9 @@ CLASS_DECL_APEX void main_branch(::matter* pobjectTask, e_priority epriority)
 
 }
 
-#undef Application
+#undef papplication
 
-::Windows::UI::Xaml::Application^ get_xaml_app();
+::Windows::UI::Xaml::papplication^ get_xaml_app();
 
 
 
@@ -585,7 +585,7 @@ uptr virtualkey_to_code(::Windows::::apex::get_system()::VirtualKey e)
 //    CLASS_DECL_APEX color32_t get_system_app_background_color()
 //    {
 
-//       auto color = ::apex::get_system()->get_context_session()->m_frameworkview->m_puisettings->GetColorValue(Windows::UI::ViewManagement::UIColorType::Background);
+//       auto color = ::apex::get_system()->get_session()->m_frameworkview->m_puisettings->GetColorValue(Windows::UI::ViewManagement::UIColorType::Background);
 
 //       auto r = color.R;
 
@@ -600,7 +600,7 @@ uptr virtualkey_to_code(::Windows::::apex::get_system()::VirtualKey e)
 //    //CLASS_DECL_APEX double get_system_app_luminance()
 //    //{
 
-//    //   auto color = ::apex::get_system()->get_context_session()->m_frameworkview->m_puisettings->GetColorValue(Windows::UI::ViewManagement::UIColorType::Background);
+//    //   auto color = ::apex::get_system()->get_session()->m_frameworkview->m_puisettings->GetColorValue(Windows::UI::ViewManagement::UIColorType::Background);
 
 //    //   double r = color.R;
 
@@ -620,7 +620,7 @@ uptr virtualkey_to_code(::Windows::::apex::get_system()::VirtualKey e)
 //    //   {
 
 
-//    //      auto color = ::apex::get_system()->get_context_session()->m_frameworkview->m_puisettings->GetColorValue(Windows::UI::ViewManagement::UIColorType::Background);
+//    //      auto color = ::apex::get_system()->get_session()->m_frameworkview->m_puisettings->GetColorValue(Windows::UI::ViewManagement::UIColorType::Background);
 
 //    //      auto r = color.R;
 
@@ -637,7 +637,7 @@ uptr virtualkey_to_code(::Windows::::apex::get_system()::VirtualKey e)
 //    //   {
 
 
-//    //      auto color = ::apex::get_system()->get_context_session()->m_frameworkview->m_puisettings->GetColorValue(Windows::UI::ViewManagement::UIColorType::Background);
+//    //      auto color = ::apex::get_system()->get_session()->m_frameworkview->m_puisettings->GetColorValue(Windows::UI::ViewManagement::UIColorType::Background);
 
 //    //      double r = color.R;
 

@@ -10,7 +10,7 @@ namespace helloworld
 
 
 
-   impact_base::impact_base(::layered * pobjectContext):
+   impact_base::impact_base(::object * pobject):
       object(pobject),
       m_pimagePost,
       m_pimageTime,
@@ -163,7 +163,7 @@ auto m_millisRoll = ::millis::now();
 
          if (m_tickaFrame[i].elapsed() > 1000)
          {
-            m_dwaFrame.remove_at(i);
+            m_dwaFrame.erase_at(i);
          }
          else
          {
@@ -209,7 +209,7 @@ auto m_millisRoll = ::millis::now();
 
       //d->get_graphics()->BitBlt(rectClient, pimage->g());
 
-      //d.save_to_file(::dir::system() / "obs.png");
+      //d.save_to_file(pacmedir->system() / "obs.png");
 
 
       //pdcParam->set_font(m_fontDrawStatus);

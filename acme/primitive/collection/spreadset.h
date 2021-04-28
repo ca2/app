@@ -27,7 +27,7 @@ public:
    ::count get_b_pack_count();
 
 
-   void remove_all();
+   void erase_all();
 
 
 };
@@ -86,10 +86,10 @@ get_b_pack_count()
 
 
 template <class TYPEA, class ARG_TYPEA, class TYPEB, class ARG_TYPEB, class ARRAYA, class ARRAYB >
-void spreadset <TYPEA, ARG_TYPEA, TYPEB, ARG_TYPEB, ARRAYA, ARRAYB>::remove_all()
+void spreadset <TYPEA, ARG_TYPEA, TYPEB, ARG_TYPEB, ARRAYA, ARRAYB>::erase_all()
 {
-   m_packsetAB.remove_all();
-   m_packsetBA.remove_all();
+   m_packsetAB.erase_all();
+   m_packsetBA.erase_all();
 }
 
 

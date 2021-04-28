@@ -357,73 +357,73 @@ filesize file_length_dup(const char * path)
 
 
 
-::file::path file::app_module()
-{
-
-#if defined(ANDROID) || defined(LINUX)
-
-   ::file::path path;
-
-   char * pszModule = nullptr;
-
-   if((pszModule = br_find_exe(nullptr)) == nullptr)
-   {
-
-      if (!br_init_lib(nullptr))
-      {
-
-         char path[PATH_MAX * 4];
-
-         char dest[PATH_MAX * 4];
-
-         pid_t pid = getpid();
-
-         sprintf(path, "/proc/%d/exe", pid);
-
-         auto iSize = readlink(path, dest, PATH_MAX);
-
-         if (iSize > 0)
-         {
-
-            dest[iSize] = '\0';
-
-            pszModule = strdup(dest);
-
-
-         }
-
-      }
-
-   }
-
-   path = pszModule;
-
-   ::free(pszModule);
-
-   return path;
-
-#elif defined(WINDOWS)
-
-   wstring pszModuleFolder(MAX_PATH * 8);
-
-
-   wstring pszModuleFilePath(MAX_PATH * 8);
-
-
-   if (!GetModuleFileNameW(nullptr, pszModuleFilePath, (::u32)pszModuleFilePath.count()))
-
-      return "";
-
-   return string(pszModuleFilePath);
-
-
-#elif defined(APPLEOS)
-
-   return apple_app_module_path();
-
-#endif
-
-}
+//::file::path file::app_module()
+//{
+//
+//#if defined(ANDROID) || defined(LINUX)
+//
+//   ::file::path path;
+//
+//   char * pszModule = nullptr;
+//
+//   if((pszModule = br_find_exe(nullptr)) == nullptr)
+//   {
+//
+//      if (!br_init_lib(nullptr))
+//      {
+//
+//         char path[PATH_MAX * 4];
+//
+//         char dest[PATH_MAX * 4];
+//
+//         pid_t pid = getpid();
+//
+//         sprintf(path, "/proc/%d/exe", pid);
+//
+//         auto iSize = readlink(path, dest, PATH_MAX);
+//
+//         if (iSize > 0)
+//         {
+//
+//            dest[iSize] = '\0';
+//
+//            pszModule = strdup(dest);
+//
+//
+//         }
+//
+//      }
+//
+//   }
+//
+//   path = pszModule;
+//
+//   ::free(pszModule);
+//
+//   return path;
+//
+//#elif defined(WINDOWS)
+//
+//   wstring pszModuleFolder(MAX_PATH * 8);
+//
+//
+//   wstring pszModuleFilePath(MAX_PATH * 8);
+//
+//
+//   if (!GetModuleFileNameW(nullptr, pszModuleFilePath, (::u32)pszModuleFilePath.count()))
+//
+//      return "";
+//
+//   return string(pszModuleFilePath);
+//
+//
+//#elif defined(APPLEOS)
+//
+//   return apple_app_module_path();
+//
+//#endif
+//
+//}
 
 
 

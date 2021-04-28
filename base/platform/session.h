@@ -16,10 +16,17 @@ namespace base
       virtual ~session();
 
 
-      virtual ::e_status initialize(::layered * pobjectContext) override;
+      virtual ::e_status initialize(::object * pobject) override;
 
 
-      inline ::base::user* user() { return m_puser ? m_puser->m_pbaseuser : nullptr; }
+
+      virtual void on_instantiate_application(::apex::application* papp) override;
+
+
+      inline ::base::user* user() const;
+
+
+      inline ::base::system* get_system() const;
 
 
    };

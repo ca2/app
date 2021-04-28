@@ -76,7 +76,7 @@ namespace userex
    bool image_list_view::update_data(bool bSaveAndValidate)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       if (bSaveAndValidate)
       {
@@ -87,18 +87,22 @@ namespace userex
       else
       {
 
-         synchronization_lock synchronizationlock(mutex());
+         synchronous_lock synchronouslock(mutex());
 
-         m_imageaThumb.remove_all();
+         m_imageaThumb.erase_all();
 
-         m_imagea.remove_all();
+         m_imagea.erase_all();
+
+         auto pcontext = m_pcontext;
+
+         auto papplication = get_application();
 
          if (m_pathFolder.has_char())
          {
 
-            m_plisting->remove_all();
+            m_plisting->erase_all();
 
-            Application.dir().ls_file_pattern(*m_plisting, m_pathFolder, get_ls_pattern_stra());
+            pcontext->m_papexcontext->dir().ls_file_pattern(*m_plisting, m_pathFolder, get_ls_pattern_stra());
 
          }
 
@@ -119,20 +123,24 @@ namespace userex
       fork([this]()
       {
 
-         synchronization_lock synchronizationlock(mutex());
+         synchronous_lock synchronouslock(mutex());
 
          int iForkDib = m_iForkAddDib;
 
          for (index i = 0; iForkDib == m_iForkAddDib && i < m_plisting->get_count();)
          {
 
-            synchronizationlock.unlock();
+            synchronouslock.unlock();
 
             ::image_pointer pimage1;
 
             ::file::path path = m_plisting->element_at(i);
 
-            pimage1 = Application.image().load_image(path, false);
+            auto pcontext = m_pcontext->m_pauracontext;
+
+            auto pcontextimage = pcontext->context_image();
+
+            pimage1 = pcontextimage->load_image(path, false);
 
             if (pimage1)
             {
@@ -155,7 +163,7 @@ namespace userex
 
                   pimage1->extension()->payload("read_only_link") = get_link_prefix() + path.name();
 
-                  synchronizationlock.lock();
+                  synchronouslock.lock();
 
                   i++;
 
@@ -167,11 +175,11 @@ namespace userex
                else
                {
 
-                  synchronizationlock.lock();
+                  synchronouslock.lock();
 
                   TRACE("(2) Could not pimage->load_from_file.file=" + m_plisting->element_at(i));
 
-                  m_plisting->remove_at(i);
+                  m_plisting->erase_at(i);
 
                }
 
@@ -179,11 +187,11 @@ namespace userex
             else
             {
 
-               synchronizationlock.lock();
+               synchronouslock.lock();
 
                TRACE("Could not pimage->load_from_file.file=" + m_plisting->element_at(i));
 
-               m_plisting->remove_at(i);
+               m_plisting->erase_at(i);
 
             }
 
@@ -212,8 +220,8 @@ namespace userex
       MESSAGE_LINK(e_message_create, pchannel, this, &image_list_view::on_message_create);
       MESSAGE_LINK(e_message_destroy, pchannel, this, &image_list_view::_001OnDestroy);
 //      MESSAGE_LINK(e_message_left_button_down, pchannel, this, &image_list_view::on_message_left_button_down);
-      //    MESSAGE_LINK(e_message_mouse_move, pchannel, this, &image_list_view::_001OnMouseMove);
-      //  MESSAGE_LINK(e_message_mouse_leave, pchannel, this, &image_list_view::_001OnMouseLeave);
+      //    MESSAGE_LINK(e_message_mouse_move, pchannel, this, &image_list_view::on_message_mouse_move);
+      //  MESSAGE_LINK(e_message_mouse_leave, pchannel, this, &image_list_view::on_message_mouse_leave);
 
    }
 
@@ -245,7 +253,7 @@ namespace userex
    //}
 
 
-   //void image_list_view::_001OnMouseMove(::message::message * pmessage)
+   //void image_list_view::on_message_mouse_move(::message::message * pmessage)
    //{
 
    //   __pointer(::message::mouse) pmouse(pmessage);
@@ -276,10 +284,10 @@ namespace userex
    //}
 
 
-   //void image_list_view::_001OnMouseLeave(::message::message * pmessage)
+   //void image_list_view::on_message_mouse_leave(::message::message * pmessage)
    //{
 
-   //auto psession = Session;
+   //auto psession = get_session();
 
    //auto puser = psession->user();
 
@@ -308,7 +316,9 @@ namespace userex
 
       string strText;
 
-      Application.data_get(m_id + ".cur_text", strText);
+      auto papplication = get_application();
+
+      papplication->data_get(m_id + ".cur_text", strText);
 
    }
 
@@ -329,7 +339,7 @@ namespace userex
 
          auto * peditview = _001TypedWindow < ::userex::top_edit_view >();
 
-         if (peditview != nullptr && psubject->m_puserinteraction == peditview)
+         if (peditview != nullptr && psubject->m_puserprimitive == peditview)
          {
 
             string strText;

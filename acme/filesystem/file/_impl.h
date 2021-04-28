@@ -371,7 +371,7 @@ inline stream & operator >>(stream & s, __pointer_array(TYPE) & a)
 //
 //         __pointer(TYPE) pmatter;
 //
-//         pmatter->alloc(get_object());
+//         pmatter->alloc(this);
 //
 //         stream_array(*pmatter);
 //
@@ -596,7 +596,7 @@ inline stream & __save_object(stream & stream, BASE_TYPE * p)
 //void matter::save_to(const ::payload & varFile, BASE_TYPE * pobject)
 //{
 //
-//   auto writer = Context.file().get_writer(varFile, ::file::e_open_binary | ::file::e_open_write | ::file::e_open_create | ::file::e_open_truncate | ::file::e_open_defer_create_directory | ::file::e_open_share_exclusive);
+//   auto writer = m_pcontext->m_papexcontext->file().get_writer(varFile, ::file::e_open_binary | ::file::e_open_write | ::file::e_open_create | ::file::e_open_truncate | ::file::e_open_defer_create_directory | ::file::e_open_share_exclusive);
 //
 //   __save_object(writer, pobject);
 //

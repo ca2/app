@@ -5,7 +5,7 @@ namespace console
 {
 
 
-   prompt_frame::prompt_frame(::layered * pobjectContext) :
+   prompt_frame::prompt_frame(::object * pobject) :
       ::object(pobject),
       simple_frame_window(pobject)
    {
@@ -243,7 +243,7 @@ namespace console
 
 
 
-      m_pimagelist = new image_list(get_object());
+      m_pimagelist = new image_list(this);
       m_pimagelist->create(16, 16, 0, 10, 10);
       m_pimagelist->add_matter_icon("system/language_change->ico");
 
@@ -486,7 +486,7 @@ namespace console
    __pointer(::experience::frame) prompt_frame::experience_get_frame()
    {
 
-      auto pframe = Application.experience()->experience_get_frame("experience_lite","002");
+      auto pframe = papplication->experience()->experience_get_frame("experience_lite","002");
 
       return pframe;
 
@@ -498,7 +498,7 @@ namespace console
 
       ::rectangle_i32 rectangle;
 
-      System->get_monitor_rectangle(0,rectangle_i32);
+      psystem->get_monitor_rectangle(0,rectangle_i32);
 
       int iHeight = m_pframe->calc_caption_height(::e_display_normal) + m_pframe->m_rectMarginNormal.top;
 

@@ -133,7 +133,7 @@ namespace windowing
                else
                {
 
-                  pitem->remove_status(e_status_set_checked);
+                  pitem->erase_status(e_status_set_checked);
 
                }
 
@@ -157,7 +157,7 @@ namespace windowing
                else
                {
 
-                  pitem->remove_status(e_status_set_disabled);
+                  pitem->erase_status(e_status_set_disabled);
 
                }
 

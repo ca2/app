@@ -22,7 +22,7 @@
   Purpose:	Replaces the GNU gcc random function with a Borland random
   		function. 
   Mod history:	03/02/02 RSB	Created.
-  		03/23/02 RSB	Added the __APPLE__ option and removed a
+  		03/23/02 RSB	Added the __APPLE__ option and erased a
 				stray #elif that was supposed to be an
 				#else.
 */

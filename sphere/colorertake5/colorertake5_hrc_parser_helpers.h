@@ -13,7 +13,7 @@ namespace colorertake5
 
 
    /** Information about one parsed keyword.
-       Contains keyword, symbol specifier, region context_object
+       Contains keyword, symbol specifier, region object
        and internal optimization field.
        @ingroup colorer_parsers
    */

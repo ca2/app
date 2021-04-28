@@ -24,13 +24,13 @@ namespace userfs
       virtual ~document();
 
 
-      virtual ::e_status initialize(::layered * pobjectContext) override;
+      virtual ::e_status initialize(::object * pobject) override;
 
 
       ::user::document * get_document();
 
 
-      //virtual ::aura::application * get_context_application() const override;
+      //virtual ::aura::application * get_application() const override;
 
       virtual void assert_valid() const override;
       virtual void dump(dump_context & dumpcontext) const override;

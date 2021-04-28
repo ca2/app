@@ -12,6 +12,10 @@ namespace windowing
    window::window()
    {
 
+      m_pWindow = nullptr;
+
+      m_pWindow2 = nullptr;
+
       set_oswindow(nullptr);
 
       //set_oswindow(oswindow);
@@ -31,7 +35,7 @@ namespace windowing
 //
 //      m_hcursorLast = 0;
 //
-//      m_hthread = 0;
+//      m_htask = 0;
 //
 //      m_window = None;
 
@@ -177,7 +181,7 @@ namespace windowing
    }
 
    
-   void window::set_user_interaction(::layered * pobjectContext)
+   void window::set_user_interaction(::user::interaction * pinteraction)
    {
 
 
@@ -709,7 +713,7 @@ namespace windowing
    }
 
 
-   ::e_status window::set_cursor(::windowing::cursor * pcursor)
+   ::e_status window::set_mouse_cursor(::windowing::cursor * pcursor)
    {
 
       __throw(error_interface_only);

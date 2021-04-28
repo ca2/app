@@ -9,7 +9,7 @@ namespace sockets
 {
 
 
-   SctpSocket::SctpSocket(base_socket_handler& h,i32 type) : stream_socket(h)
+   SctpSocket::SctpSocket(i32 type) : stream_socket(h)
       ,m_type(type)
       ,m_buf(new char[SCTP_BUFSIZE_READ])
    {
@@ -289,7 +289,7 @@ namespace sockets
       socket *point = create();
       point_i32 -> attach(n);
       point_i32 -> SetDeleteByHandler();
-      Handler().add(point);
+      socket_handler()->add(point);
       return n;
    }
 

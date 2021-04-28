@@ -429,7 +429,7 @@ namespace exception
 
 #endif
 
-   engine::engine(::layered * pobjectContext) :
+   engine::engine(::object * pobject) :
       object(pobject)
 #ifdef WINDOWS_DESKTOP
       ,m_bOk(false)
@@ -514,27 +514,27 @@ namespace exception
 
 
 #ifdef AMD64
-      m_stackframe.AddrPC.Offset       = pcontext->Rip;
+      m_stackframe.AddrPC.Offset       = pcontext->m_papexcontext->Rip;
       m_stackframe.AddrPC.Mode         = AddrModeFlat;
-      m_stackframe.AddrStack.Offset    = pcontext->Rsp;
+      m_stackframe.AddrStack.Offset    = pcontext->m_papexcontext->Rsp;
       m_stackframe.AddrStack.Mode      = AddrModeFlat;
-      m_stackframe.AddrFrame.Offset    = pcontext->Rsp;
+      m_stackframe.AddrFrame.Offset    = pcontext->m_papexcontext->Rsp;
       m_stackframe.AddrFrame.Mode      = AddrModeFlat;
 #elif defined(X86)
-      m_stackframe.AddrPC.Offset       = pcontext->Eip;
+      m_stackframe.AddrPC.Offset       = pcontext->m_papexcontext->Eip;
       m_stackframe.AddrPC.Mode         = AddrModeFlat;
-      m_stackframe.AddrStack.Offset    = pcontext->Esp;
+      m_stackframe.AddrStack.Offset    = pcontext->m_papexcontext->Esp;
       m_stackframe.AddrStack.Mode      = AddrModeFlat;
-      m_stackframe.AddrFrame.Offset    = pcontext->Ebp;
+      m_stackframe.AddrFrame.Offset    = pcontext->m_papexcontext->Ebp;
       m_stackframe.AddrFrame.Mode      = AddrModeFlat;
 #else
-      m_stackframe.AddrPC.offset       = (u32)pcontext->Fir;
+      m_stackframe.AddrPC.offset       = (u32)pcontext->m_papexcontext->Fir;
       m_stackframe.AddrPC.Mode         = AddrModeFlat;
-      m_stackframe.AddrReturn.offset   = (u32)pcontext->IntRa;
+      m_stackframe.AddrReturn.offset   = (u32)pcontext->m_papexcontext->IntRa;
       m_stackframe.AddrReturn.Mode     = AddrModeFlat;
-      m_stackframe.AddrStack.offset    = (u32)pcontext->IntSp;
+      m_stackframe.AddrStack.offset    = (u32)pcontext->m_papexcontext->IntSp;
       m_stackframe.AddrStack.Mode      = AddrModeFlat;
-      m_stackframe.AddrFrame.offset    = (u32)pcontext->IntFp;
+      m_stackframe.AddrFrame.offset    = (u32)pcontext->m_papexcontext->IntFp;
       m_stackframe.AddrFrame.Mode      = AddrModeFlat;
 #endif
 
@@ -593,7 +593,7 @@ namespace exception
          bool r = StackWalk64(
                   dwType,   // __in      u32 MachineType,
                   hprocess,        // __in      HANDLE hProcess,
-                  get_current_hthread(),         // __in      hthread_t hthread,
+                  get_current_hthread(),         // __in      htask_t htask,
                   &m_stackframe,                       // __inout   LP STACKFRAME64 StackFrame,
                   &m_context,                  // __inout   PVOID ContextRecord,
                   My_ReadProcessMemory,                     // __in_opt  PREAD_PROCESS_MEMORY_ROUTINE64 ReadMemoryRoutine,
@@ -606,7 +606,7 @@ namespace exception
          bool r = StackWalk(
                   dwType,   // __in      u32 MachineType,
                   hprocess,        // __in      HANDLE hProcess,
-                  get_current_hthread(),         // __in      hthread_t hthread,
+                  get_current_hthread(),         // __in      htask_t htask,
                   &m_stackframe,                       // __inout   LP STACKFRAME64 StackFrame,
                   &m_context,                  // __inout   PVOID ContextRecord,
                   My_ReadProcessMemory32,                     // __in_opt  PREAD_PROCESS_MEMORY_ROUTINE64 ReadMemoryRoutine,
@@ -1275,7 +1275,7 @@ namespace exception
          // must wait in spin lock until Main thread will leave a ResumeThread (must return back to ::account::user context)
          i32 iInverseAgility = 26 + 33; // former iPatienceQuota
          i32 iPatience = iInverseAgility;
-         while(pcontext->signal && iPatience > 0)
+         while(pcontext->m_papexcontext->signal && iPatience > 0)
          {
             if(!SwitchToThread())
                sleep(10_ms); // forces switch to another thread
@@ -1286,9 +1286,9 @@ namespace exception
          //         sprintf(sz, "engine::stack_trace patience near down %u%%\n", iPatience * 100 / iInverseAgility);
          //         ::output_debug_string(sz);
 
-         if (-1 == SuspendThread(pcontext->thread))
+         if (-1 == SuspendThread(pcontext->m_papexcontext->thread))
          {
-            pcontext->signal  = -1;
+            pcontext->m_papexcontext->signal  = -1;
             __leave;
          }
 
@@ -1297,17 +1297,17 @@ namespace exception
 #ifdef AMD64
             GET_CURRENT_CONTEXT(pcontext, USED_CONTEXT_FLAGS);
 #else
-            pcontext->signal = GetThreadContext(pcontext->thread, pcontext) ? 1 : -1;
+            pcontext->m_papexcontext->signal = GetThreadContext(pcontext->m_papexcontext->thread, pcontext) ? 1 : -1;
 #endif
          }
          __finally
          {
-            VERIFY(-1 != ResumeThread(pcontext->thread));
+            VERIFY(-1 != ResumeThread(pcontext->m_papexcontext->thread));
          }
       }
       __except(EXCEPTION_EXECUTE_HANDLER)
       {
-         pcontext->signal  = -1;
+         pcontext->m_papexcontext->signal  = -1;
       }
       return 0;
    }
@@ -1759,7 +1759,7 @@ namespace exception
    void engine::backtrace(void ** ppui, int &c)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       ::u32 maxframes = c;
 

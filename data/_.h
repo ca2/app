@@ -11,12 +11,11 @@
 #endif
 
 
-CLASS_DECL_CA2_DATA int_bool init_data_library();
 
 
-#include <mysql/mysql.h>
+//#include <mysql/mysql.h>
 //#include "app/data/mysql/mysql_result.h"
-#include "app/data/mysql/mysql_database.h"
+//#include "app/data/mysql/mysql_database.h"
 
 
 

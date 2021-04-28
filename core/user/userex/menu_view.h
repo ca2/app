@@ -12,9 +12,9 @@ public:
 
    void on_subject(::subject::subject * psubject, ::subject::context * pcontext);
    virtual void on_control_event(::user::control_event * pevent);
-   DECL_GEN_SIGNAL(on_message_create);
+   DECLARE_MESSAGE_HANDLER(on_message_create);
    void _001OnTimer(::timer * ptimer);
-   //DECL_GEN_SIGNAL(_001OnUser123);
+   //DECLARE_MESSAGE_HANDLER(_001OnUser123);
    virtual void install_message_routing(::channel * pchannel);
 
 

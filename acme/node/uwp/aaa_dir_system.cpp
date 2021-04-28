@@ -18,10 +18,10 @@ namespace uwp
    }
 
 
-   ::e_status dir_system::initialize(::matter * pobjectContext)
+   ::e_status dir_system::initialize(::matter * pobject)
    {
 
-      auto estatus = ::dir_system::initialize(pobjectContext);
+      auto estatus = ::dir_system::initialize(pobject);
 
       if (!estatus)
       {
@@ -43,7 +43,7 @@ namespace uwp
 
       //auto pdocument = create_xml_document();
 
-      //pdocument->load(Context.file().as_string(appdata() / "configuration\\directory.xml"));
+      //pdocument->load(pcontext->m_papexcontext->file().as_string(appdata() / "configuration\\directory.xml"));
 
       //if (pdocument->get_root()->get_name() == "directory_configuration")
       //{
@@ -63,12 +63,12 @@ namespace uwp
       //if (m_strNetSeedFolder.is_empty())
       //   m_strNetSeedFolder = install() / "net";
 
-      //mk(m_strTimeFolder, get_context_application());
+      //mk(m_strTimeFolder, get_application());
 
-      //if (!is(m_strTimeFolder, get_context_application()))
+      //if (!is(m_strTimeFolder, get_application()))
       //   return false;
 
-      //mk(m_strTimeFolder / "time", get_context_application());
+      //mk(m_strTimeFolder / "time", get_application());
 
       //m_pathHome = ::dir_system::ca2roaming() / "home";
 

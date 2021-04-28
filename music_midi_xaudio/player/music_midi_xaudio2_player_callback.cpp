@@ -17,7 +17,7 @@ namespace music
          {
 
 
-            callback::callback(::layered * pobjectContext) :
+            callback::callback(::object * pobject) :
                m_wnd(pobject)
             {
             }

@@ -51,14 +51,14 @@ namespace sockets
       array < ssl_ticket_key >   m_ticketkeya;
 
 
-      static bool s_bReuseSession; // Default ::apex::get_system() Wide Setting
+      static bool s_bReuseSession; // Default psystem Wide Setting
 
       /** Output buffer struct.
       \ingroup internal */
       string m_strTlsHostName;
       
       struct output :
-         virtual public context_object
+         virtual public object
       {
          
          
@@ -101,7 +101,7 @@ namespace sockets
             _t += len;
             _q += len;
          }
-         i32 remove(i32 len)
+         i32 erase(i32 len)
          {
             _b += len;
             _q -= len;
@@ -154,12 +154,12 @@ namespace sockets
       string                     m_strInitSSLClientContext;
 
       /** Constructor with standard values on input/output buffers. */
-      tcp_socket(base_socket_handler& );
+      tcp_socket();
       /** Constructor with custom values for i/o buffer.
-      \lparam h base_socket_handler context_object
+      \lparam h base_socket_handler object
       \lparam isize Input buffer size_i32
       \lparam osize Output buffer size_i32 */
-      tcp_socket(base_socket_handler& h,memsize isize,memsize osize);
+      tcp_socket(memsize isize,memsize osize);
       virtual ~tcp_socket();
 
 
@@ -224,7 +224,7 @@ namespace sockets
 #endif
 
       /** Callback executed when resolver thread has finished a resolve request. */
-      void OnResolved(i32 id, const ::net::address & addr) override;
+      //void OnResolved(i32 id, const ::net::address & addr) override;
       /** Callback for 'New' ssl support - replaces SSLSocket. Internal use. */
       void OnSSLConnect() override;
       /** Callback for 'New' ssl support - replaces SSLSocket. Internal use. */

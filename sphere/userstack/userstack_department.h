@@ -9,12 +9,12 @@
 //
 //
 //   class CLASS_DECL_SPHERE department :
-//      virtual public ::apex::department
+//      virtual public ::acme::department
 //   {
 //   public:
 //
 //
-//      department(::layered * pobjectContext);
+//      department(::object * pobject);
 //      virtual ~department();
 //
 //

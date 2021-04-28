@@ -13,7 +13,7 @@ class image_list;
 
 
 class CLASS_DECL_AURA imaging :
-   virtual public ::apex::department
+   virtual public ::acme::department
 {
 public:
 
@@ -27,7 +27,7 @@ public:
    virtual ~imaging();
 
 
-   virtual ::e_status initialize(::layered * pobjectContext) override;
+   virtual ::e_status initialize(::object * pobject) override;
 
 
    virtual void pixelate_24CC(byte * pbDest, i32 xDest, i32 yDest, i32 wDest, i32 cx, i32 cy, byte * pbSrc, i32 xSrc, i32 ySrc, i32 wSrc, i32 iSize);
@@ -112,15 +112,6 @@ public:
    i32 w3);
 
 
-   bool color_blend(::draw2d::graphics * pgraphics, const ::rectangle_i32 & rectangle, ::draw2d::graphics * pdcColorAlpha, const ::point_i32 & pointAlpha, ::image * pimageWork = nullptr);
-
-   bool color_blend(::draw2d::graphics * pgraphics, const ::rectangle_i32 & rectangle, ::draw2d::graphics * pdcColorAlpha, const ::point_i32 & pointAlpha, double dBlend);
-   bool color_blend(::draw2d::graphics * pgraphics, const ::point_i32 & point, const ::size_i32 & size, ::draw2d::graphics * pdcColorAlpha, const ::point_i32 & pointAlpha, double dBlend);
-
-   bool color_blend(::draw2d::graphics * pgraphics, i32 x, i32 y, i32 cx, i32 cy, color32_t cr, byte bAlpha);
-   bool color_blend(::draw2d::graphics * pgraphics, const ::point_i32 & point, const ::size_i32 & size, color32_t cr, byte alpha);
-   bool color_blend(::draw2d::graphics * pgraphics, const ::rectangle_i32 & rectangle, color32_t cr, byte alpha);
-   bool color_blend(::draw2d::graphics * pgraphics,   const ::rectangle_i64 & rectangle, color32_t cr,   byte alpha);
 
 
    bool clip_color_blend(::draw2d::graphics * pgraphics, const ::point_i32 & point, const ::size_i32 & size, color32_t cr, byte alpha);
@@ -232,8 +223,6 @@ public:
 //      color32_t crAlpha);
 
    bool change_hue(image_list * pilHue, image_list * pil, const ::color::color & crHue, double dCompress);
-   bool color_blend(image_list * pilBlend, image_list * pil, const ::color::color & cr, byte bAlpha);
-   bool color_blend(::image * pimage, const ::color::color & cr, byte bAlpha);
 
    bool BitmapBlend2(::draw2d::graphics * pdcDst, const ::point_i32 & point, const ::size_i32 & size, ::draw2d::graphics * pdcSrc, const ::point_i32 & pointSrc,
                      ::draw2d::graphics * pdcAlpha, // alpha information device (in alpha channel)
@@ -277,8 +266,6 @@ public:
    i32 ySrc,
    i32 wSrc,
    byte bAlpha);
-
-   virtual bool color_blend_3dRect(::draw2d::graphics * pgraphics, const ::rectangle_i32 & rectangle, color32_t crTopLeft, byte bAlphaTopLeft, color32_t crBottomRight, byte bAlphaBottomRight);
 
    virtual bool ColorInvert(::draw2d::graphics * pgraphics, i32 x, i32 y, i32 cx, i32 cy);
 

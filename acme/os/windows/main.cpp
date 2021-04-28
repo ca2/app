@@ -4,50 +4,28 @@
 
 CLASS_DECL_ACME string ca2_command_line(hinstance hinstance);
 
-CLASS_DECL_ACME HRESULT os_create_link(::file::path pathObj, ::file::path pathLink, string strDesc, ::file::path pathIcon = nullptr, int iIcon = 0);
+//CLASS_DECL_ACME HRESULT os_create_link(::file::path pathObj, ::file::path pathLink, string strDesc, ::file::path pathIcon = nullptr, int iIcon = 0);
 
 //const char* get_cube_app_id();
-
-
-
-
-
-
 
 
 CLASS_DECL_ACME i32 ca2_main();
 
 
-void CLASS_DECL_ACME __cdecl _ca2_purecall()
-{
-
-   __throw(::exception::exception());
-
-}
-
-
 void __cdecl _null_se_translator(u32 uiCode, EXCEPTION_POINTERS * ppointers);
-
-
-
 
 
 void __cdecl _null_se_translator(u32 uiCode, EXCEPTION_POINTERS * ppointers)
 {
+
    UNREFERENCED_PARAMETER(uiCode);
    UNREFERENCED_PARAMETER(ppointers);
+
 }
 
 
 
-
-
-
-
-
-
 #undef new
-
 
 
 CLASS_DECL_ACME bool os_init_application()
@@ -60,7 +38,6 @@ CLASS_DECL_ACME bool os_init_application()
 
 CLASS_DECL_ACME void os_term_application()
 {
-
 
 
 }
@@ -107,7 +84,7 @@ string ca2_command_line(hinstance hinstance)
 //
 //         ::file::path pathLnk;
 //
-//         pathObj = Context.file().module();
+//         pathObj = m_pcontext->m_papexcontext->file().module();
 //
 //         string strLinkTitle;
 //
@@ -117,7 +94,7 @@ string ca2_command_line(hinstance hinstance)
 //         strLinkTitle.replace("\\", "_");
 //         strLinkTitle.replace("-", "_");
 //
-//         pathLnk = ::dir::localconfig() / "desk/monitor-0/2desk" / strLinkTitle + ".lnk";
+//         pathLnk = pacmedir->localconfig() / "desk/monitor-0/2desk" / strLinkTitle + ".lnk";
 //
 //         ::dir::mk(pathLnk.folder());
 //
@@ -133,11 +110,9 @@ string ca2_command_line(hinstance hinstance)
 //} // namespace acme
 //
 
-//
-//
+
 void os_post_quit()
 {
-
 
 
 }
@@ -150,7 +125,7 @@ void os_post_quit()
 //
 //   __pointer(::matter) pobjectTask = pobjectTaskParam;
 //   
-//   System->post_predicate([pobjectTask]()
+//   get_system()->post_predicate([pobjectTask]()
 //   {
 //
 //      pobjectTask->call();
@@ -165,7 +140,7 @@ void os_post_quit()
 //   
 //   __pointer(::matter) pobjectTask = pobjectTaskParam;
 //   
-//   System->send_predicate([pobjectTask]()
+//   get_system()->send_predicate([pobjectTask]()
 //   {
 //
 //      pobjectTask->call();

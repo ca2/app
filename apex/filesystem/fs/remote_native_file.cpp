@@ -75,8 +75,12 @@ namespace fs
 
       string strUrl;
 
-      strUrl = "http://fs.veriwell.net/fs/get?path=" + ::apex::get_system()->url().url_encode(::apex::get_system()->url().get_script(m_strPath))
-               + "&server=" + ::apex::get_system()->url().url_encode(::apex::get_system()->url().get_server(m_strPath));
+      auto psystem = m_psystem;
+
+      auto purl = psystem->url();
+
+      strUrl = "http://fs.veriwell.net/fs/get?path=" + purl->url_encode(purl->get_script(m_strPath))
+               + "&server=" + purl->url_encode(purl->get_server(m_strPath));
 
       ::file::e_open eopenAdd;
 
@@ -94,20 +98,24 @@ namespace fs
 
    void remote_native_file::set_file_data()
    {
+
       string strUrl;
 
+      auto psystem = m_psystem;
+
+      auto purl = psystem->url();
 
       if(m_varFile["xmledit"].cast < ::memory_file >() != nullptr)
       {
 
-         strUrl = "http://fs.veriwell.net/fs/xmledit?path=" + ::apex::get_system()->url().url_encode(::apex::get_system()->url().get_script(m_varFile["url"]))
-                  + "&server=" + ::apex::get_system()->url().url_encode(::apex::get_system()->url().get_server(m_varFile["url"]));
+         strUrl = "http://fs.veriwell.net/fs/xmledit?path=" + purl->url_encode(purl->get_script(m_varFile["url"]))
+                  + "&server=" + purl->url_encode(purl->get_server(m_varFile["url"]));
 
          property_set setRequest;
 
          setRequest["get_response"] = ""; // touch/create property to get_response
 
-         get_context()->http().put(strUrl,m_varFile["xmledit"].cast < ::memory_file >(),setRequest);
+         m_pcontext->m_papexcontext->http().put(strUrl,m_varFile["xmledit"].cast < ::memory_file >(),setRequest);
 
          string strResponse(setRequest["get_response"]);
 
@@ -117,7 +125,7 @@ namespace fs
 
          string strMd5Here;
 
-         strMd5Here = get_context()->file().md5(m_varFile["xml"].cast < ::memory_file >());
+         strMd5Here = m_pcontext->m_papexcontext->file().md5(m_varFile["xml"].cast < ::memory_file >());
 
          string strMd5There;
          
@@ -126,23 +134,23 @@ namespace fs
          if(strMd5Here == strMd5There)
             return;
 
-         strUrl = "http://fs.veriwell.net/fs/set?path=" + ::apex::get_system()->url().url_encode(::apex::get_system()->url().get_script(m_varFile["url"]))
-                  + "&server=" + ::apex::get_system()->url().url_encode(::apex::get_system()->url().get_server(m_varFile["url"]));
+         strUrl = "http://fs.veriwell.net/fs/set?path=" + purl->url_encode(purl->get_script(m_varFile["url"]))
+                  + "&server=" + purl->url_encode(purl->get_server(m_varFile["url"]));
 
          property_set setPut;
 
-         get_context()->http().put(strUrl, m_varFile["xml"].cast < ::memory_file >(), setPut);
+         m_pcontext->m_papexcontext->http().put(strUrl, m_varFile["xml"].cast < ::memory_file >(), setPut);
 
          return;
       }
 
 
-      strUrl = "http://fs.veriwell.net/fs/set?path=" + ::apex::get_system()->url().url_encode(::apex::get_system()->url().get_script(m_strPath))
-               + "&server=" + ::apex::get_system()->url().url_encode(::apex::get_system()->url().get_server(m_strPath));
+      strUrl = "http://fs.veriwell.net/fs/set?path=" + purl->url_encode(purl->get_script(m_strPath))
+               + "&server=" + purl->url_encode(purl->get_server(m_strPath));
 
       property_set set;
 
-      get_context()->http().put(strUrl, &m_memfile, set);
+      m_pcontext->m_papexcontext->http().put(strUrl, &m_memfile, set);
 
 
    }

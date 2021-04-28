@@ -27,7 +27,7 @@ namespace filemanager
    void main_view::install_message_routing(::channel * pchannel)
    {
 
-      ::filemanager::impact::install_message_routing(pchannel);
+      ::filemanager_impact::install_message_routing(pchannel);
       ::user::split_view::install_message_routing(pchannel);
 
    }
@@ -96,7 +96,7 @@ namespace filemanager
       if(pleftview == nullptr)
       {
 
-         System->message_box("Could not create folder tree ::user::impact");
+         message_box("Could not create folder tree ::user::impact");
 
       }
 
@@ -180,7 +180,7 @@ namespace filemanager
    void main_view::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
    {
 
-      ::filemanager::impact::on_subject(psubject, pcontext);
+      ::filemanager_impact::on_subject(psubject, pcontext);
 
       ::user::split_view::on_subject(psubject, pcontext);
 

@@ -27,7 +27,7 @@ namespace experience
                virtual void on_initialize_experience_frame() override;
 
                virtual string get_default_user_style() const;
-               virtual void on_style_change() override;
+               virtual void _on_style_change(::draw2d::graphics_pointer& pgraphics)override;
 
 
                void on_draw_frame(::draw2d::graphics_pointer & pgraphics) override;

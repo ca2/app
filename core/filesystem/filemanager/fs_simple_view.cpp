@@ -101,7 +101,7 @@ namespace filemanager
 
             property_set set;
 
-//            Context.http().get("http://file.ca2.cc/", set);
+//            pcontext->m_papexcontext->http().get("http://file.ca2.cc/", set);
 
             open_folder(1000); // user ::music folder
 
@@ -113,7 +113,7 @@ namespace filemanager
 
             property_set set;
 
-            //          Context.http().get("http://file.ca2.cc/", set);
+            //          pcontext->m_papexcontext->http().get("http://file.ca2.cc/", set);
 
             open_folder(1); // user root folder
 
@@ -146,6 +146,8 @@ namespace filemanager
             fork([this, iFolder]()
             {
 
+                  auto pcontext = get_context();
+
                auto phttpmessage = __new(::http::message);
 
                phttpmessage->payload("request") = "";
@@ -154,7 +156,7 @@ namespace filemanager
 
                phttpmessage->want_memory_response();
 
-               Context.http().get(phttpmessage);
+               pcontext->m_papexcontext->http().get(phttpmessage);
 
                on_request_response(phttpmessage);
 
@@ -168,14 +170,18 @@ namespace filemanager
 
             string strUrl;
 
-            strUrl.Format("http://file.ca2.cc/ifs/get?name=" + System->url().url_encode(pszFileName)+ "&folder=%I64d&extension=.%s", iFolder, pszExtension);
+            auto psystem = m_psystem;
 
-            if(m_prequestinterface != nullptr)
-            {
+            auto purl = psystem->url();
 
-               m_prequestinterface->request({strUrl});
+            strUrl.Format("http://file.ca2.cc/ifs/get?name=" + purl->url_encode(pszFileName)+ "&folder=%I64d&extension=.%s", iFolder, pszExtension);
 
-            }
+            //if(m_prequestinterface != nullptr)
+            //{
+
+            //   m_prequestinterface->request({strUrl});
+
+            //}
 
          }
 

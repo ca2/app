@@ -16,11 +16,13 @@ ifs::ifs(const char * pszRoot)
 bool ifs::fast_has_subdir(const ::file::path & path)
 {
 
-   synchronization_lock synchronizationlock(mutex());
+   synchronous_lock synchronouslock(mutex());
 
    dir_listing & dir = m_map[path];
 
-   if(dir.m_millisLast.elapsed() < ::get_context_system()->m_millisFileListingCache)
+   __pointer(::apex::system) psystem = get_system();
+
+   if(dir.m_millisLast.elapsed() < psystem->m_millisFileListingCache)
    {
 
       return dir.get_count() > 0;
@@ -34,24 +36,26 @@ bool ifs::fast_has_subdir(const ::file::path & path)
 bool ifs::has_subdir(const ::file::path & path)
 {
 
-   synchronization_lock synchronizationlock(mutex());
+   synchronous_lock synchronouslock(mutex());
 
    dir_listing & dir = m_map[path];
 
-   if (dir.m_millisLast.elapsed() < ::get_context_system()->m_millisFileListingCache)
+   auto psystem = m_psystem->m_papexsystem;
+
+   if (dir.m_millisLast.elapsed() < psystem->m_millisFileListingCache)
    {
 
       return dir.get_count() > 0;
 
    }
 
-   synchronizationlock.unlock();
+   synchronouslock.unlock();
 
    ::file::listing listing;
 
-   get_context()->dir().ls(listing, path);
+   m_pcontext->m_papexcontext->dir().ls(listing, path);
 
-   synchronizationlock.lock();
+   synchronouslock.lock();
 
    return dir.get_count() > 0;
 
@@ -65,7 +69,7 @@ bool ifs::has_subdir(const ::file::path & path)
 
    path.m_iDir = 1;
 
-   listing.m_straTitle.add("User Intelligent File ::apex::get_system()");
+   listing.m_straTitle.add("User Intelligent File psystem");
 
 
 
@@ -77,11 +81,13 @@ bool ifs::has_subdir(const ::file::path & path)
 ::file::listing & ifs::ls(::file::listing & listing)
 {
 
-   synchronization_lock synchronizationlock(mutex());
+   synchronous_lock synchronouslock(mutex());
 
    dir_listing & dir = m_map[listing.m_pathUser];
 
-   if (dir.m_millisLast.elapsed() < ::get_context_system()->m_millisFileListingCache)
+   auto psystem = m_psystem->m_papexsystem;
+
+   if (dir.m_millisLast.elapsed() < psystem->m_millisFileListingCache)
    {
 
       listing = dir;
@@ -122,13 +128,13 @@ bool ifs::has_subdir(const ::file::path & path)
 
    //string strUrl;
 
-   //strUrl = "http://file.ca2.cc/ifs/ls?path=" + ::apex::get_system()->url().url_encode(listing.m_pathUser);
+   //strUrl = "http://file.ca2.cc/ifs/ls?path=" + purl->url_encode(listing.m_pathUser);
 
    //string strSource;
 
    //property_set set;
 
-   //strSource = get_context()->http().get(strUrl, set);
+   //strSource = m_pcontext->m_papexcontext->http().get(strUrl, set);
 
    //if(strSource.is_empty())
    //{
@@ -284,16 +290,18 @@ int ifs::is_dir(const ::file::path & path)
 
    defer_initialize();
 
-   synchronization_lock synchronizationlock(mutex());
+   synchronous_lock synchronouslock(mutex());
 
    dir_listing & dir = m_map[path.folder()];
 
-   if(dir.m_millisLast.timeout(::get_context_system()->m_millisFileListingCache))
+   auto psystem = m_psystem->m_papexsystem;
+
+   if(dir.m_millisLast.timeout(psystem->m_millisFileListingCache))
    {
 
       ::file::listing listing;
 
-      get_context()->dir().ls(listing, path.folder());
+      m_pcontext->m_papexcontext->dir().ls(listing, path.folder());
 
    }
 

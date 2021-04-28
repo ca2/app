@@ -50,7 +50,7 @@ namespace linux
 
 
       file();
-      //file(::layered * pobjectContext);
+      //file(::object * pobject);
       //file(::object * pobject, int hFile);
       //file(::object * pobject, const ::file::path & pszFileName, const cflag < ::file::e_open > & eflag);
 

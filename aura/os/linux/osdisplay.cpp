@@ -76,7 +76,7 @@
 //   display * find_display(iptr i)
 //   {
 //
-//      synchronization_lock synchronizationlock(get_display_map_mutex());
+//      synchronous_lock synchronouslock(get_display_map_mutex());
 //
 //      return m_pdisplaymap[i];
 //
@@ -134,7 +134,7 @@
 //
 //
 //
-//   bool osdisplay_remove(Display * pdisplay)
+//   bool osdisplay_erase(Display * pdisplay)
 //   {
 //
 //      single_lock slOsWindow(::display::s_pmutex, true);
@@ -148,7 +148,7 @@
 //
 //      XCloseDisplay(pdata->m_pdisplay);
 //
-//      ::display::s_pdataptra->remove_at(iFind);
+//      ::display::s_pdataptra->erase_at(iFind);
 //
 //      return true;
 //

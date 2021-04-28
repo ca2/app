@@ -218,9 +218,9 @@ public:
    CScriptVarLink *findChildOrCreateByPath(const string &path); ///< Tries to find a child with the given path (separated by dots)
    CScriptVarLink *addChild(const string &childName, CScriptVar *child=nullptr);
    CScriptVarLink *addChildNoDup(const string &childName, CScriptVar *child=nullptr); ///< add a child overwriting any with the same name
-   void removeChild(CScriptVar *child);
-   void removeLink(CScriptVarLink *link); ///< Remove a specific link (this is faster than finding via a child)
-   void removeAllChildren();
+   void eraseChild(CScriptVar *child);
+   void eraseLink(CScriptVarLink *link); ///< Remove a specific link (this is faster than finding via a child)
+   void eraseAllChildren();
    CScriptVar *getArrayIndex(i32 idx); ///< The the value at an array index
    void setArrayIndex(i32 idx, CScriptVar *value); ///< set the value at an array index
    i32 getArrayLength(); ///< If this is an array, return the number of items in it (else 0)
@@ -263,8 +263,8 @@ public:
    CScriptVarLink *lastChild;
 
    /// For memory management/garbage collection
-   CScriptVar *ref(); ///< add context_object to this variable
-   void unref(); ///< Remove a context_object, and delete this variable if required
+   CScriptVar *ref(); ///< add object to this variable
+   void unref(); ///< Remove a object, and delete this variable if required
    i32 getRefs(); ///< Get the number of references to this script variable
 protected:
    i32 refs; ///< The number of references held to this - used for garbage collection

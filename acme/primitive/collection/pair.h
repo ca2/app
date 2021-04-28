@@ -20,9 +20,13 @@ public: \
  \
    inline T1 & element1() { return DATA1; } \
    inline T2 & element2() { return DATA2; } \
+   inline T1 & key() { return DATA1; } \
+   inline T2 & value() { return DATA2; } \
  \
    inline const T1 & element1() const { return DATA1; } \
    inline const T2 & element2() const { return DATA2; } \
+   inline const T1 & key() const { return DATA1; } \
+   inline const T2 & value() const { return DATA2; } \
 template<std::size_t N> \
 auto & get() const { \
    if constexpr (N == 0) return element1(); \
@@ -55,9 +59,13 @@ public: \
  \
    inline T1 & element1() { return DATA1; } \
    inline T2 & element2() { return DATA2; } \
+   inline T1 & key() { return DATA1; } \
+   inline T2 & value() { return DATA2; } \
  \
    inline const T1 & element1() const { return DATA1; } \
-   inline const T2 & element2() const { return DATA2; }
+   inline const T2 & element2() const { return DATA2; } \
+inline const T1& key() const { return DATA1; } \
+inline const T2& value() const { return DATA2; }
 
 
 #endif
@@ -87,7 +95,7 @@ PAIR_DEFAULT_CONSTRUCTORS(PAIR, T1, T2, ARG_T1, ARG_T2, DATA1, DATA2)
 
 
 template < typename T1, typename T2, typename ARG_T1, typename ARG_T2 >
-class pair
+class pair 
 {
 
    PAIR_DEFAULT_IMPL(pair, T1, T2, ARG_T1, ARG_T2, m_element1, m_element2)

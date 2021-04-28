@@ -4,8 +4,8 @@
 namespace calculator
 {
 
-   department::department(::layered * pobjectContext) :
-      ::apex::department(pobject)
+   department::department(::object * pobject) :
+      ::acme::department(pobject)
    {
    }
 
@@ -17,7 +17,7 @@ namespace calculator
    bool department::init_instance()
    {
 
-      if (!::apex::department::init_instance())
+      if (!::acme::department::init_instance())
       {
 
          return false;

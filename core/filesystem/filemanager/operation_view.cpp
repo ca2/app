@@ -49,7 +49,7 @@ namespace filemanager
       m_pinfoview = create_view < operation_info_view >();
       if(m_pinfoview == nullptr)
       {
-         System->message_box("Could not create transfer information ::user::impact");
+         message_box("Could not create transfer information ::user::impact");
       }
       SetPane(1,m_pinfoview,false);
 

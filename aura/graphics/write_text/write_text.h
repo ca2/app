@@ -7,7 +7,7 @@ namespace write_text
 
 
    class CLASS_DECL_AURA write_text :
-      virtual public ::apex::department
+      virtual public ::acme::department
    {
    public:
 
@@ -24,8 +24,8 @@ namespace write_text
       class font_department * fonts();
 
 
-      virtual void finalize() override;
-      virtual void term() override;
+      virtual ::e_status finalize() override;
+      virtual ::e_status term() override;
 
 
       //virtual double font_similarity(const char * pszSystem, const char * pszUser);

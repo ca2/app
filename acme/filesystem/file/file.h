@@ -37,7 +37,7 @@ namespace file
 
 
    class CLASS_DECL_ACME file :
-      virtual public ::matter
+      virtual public ::object
    {
    public:
 
@@ -71,6 +71,7 @@ namespace file
       virtual filesize seek_from_begin(filesize position);
       virtual filesize seek(filesize offset, ::file::e_seek seekOrigin);
       virtual filesize get_position() const;
+      virtual filesize set_position(filesize offset);
 
       inline filesize get_remaining_byte_count() { return get_size() - get_position(); }
 
@@ -80,8 +81,9 @@ namespace file
 
       virtual ::filesize get_left() const;
 
-
       virtual void to_string(const string_exchange & str) const override;
+
+      virtual void as_memory(memory_base & memory) const;
 
       virtual void write(const memory_base & memory);
 
@@ -117,7 +119,8 @@ namespace file
       virtual int sbumpc();
       virtual bool read_string(string & str);
       virtual bool read_string(memory_base & mem);
-      virtual bool full_read(memory_base & mem);
+      virtual bool read_block(const block & block);
+      virtual bool full_read(memory_base & memory);
       virtual bool full_read_string(string & str);
 
       virtual void print(const string & str);

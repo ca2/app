@@ -85,9 +85,9 @@ namespace multimedia
 
          //virtual i32 run();
 
-         //DECL_GEN_SIGNAL(OnMultimediaOpen);
-         //DECL_GEN_SIGNAL(OnMultimediaDone);
-         //DECL_GEN_SIGNAL(OnMultimediaClose);
+         //DECLARE_MESSAGE_HANDLER(OnMultimediaOpen);
+         //DECLARE_MESSAGE_HANDLER(OnMultimediaDone);
+         //DECLARE_MESSAGE_HANDLER(OnMultimediaClose);
 
 //         virtual void out_out_buffer_done(int iBuffer);
          //       virtual void out_out_buffer_done(LPWAVEHDR lpwavehdr);

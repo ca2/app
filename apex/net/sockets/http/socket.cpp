@@ -15,12 +15,13 @@ namespace sockets
 {
 
 
-   http_socket::http_socket(base_socket_handler& h) :
-      ::object(&h),
-      base_socket(h),
-      socket(h),
-      stream_socket(h),
-      tcp_socket(h),
+   http_socket::http_socket() :
+      //:
+      //::object(&h),
+      //base_socket(h),
+      //socket(h),
+      //stream_socket(h),
+      //tcp_socket(h),
       m_bFirst(true),
       m_bHeader(true),
       m_bRequest(false),
@@ -44,6 +45,27 @@ namespace sockets
 
    http_socket::~http_socket()
    {
+
+   }
+
+
+   ::e_status http_socket::on_initialize_object()
+   {
+
+      auto estatus = tcp_socket::on_initialize_object();
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      m_request.m_psystem = m_psystem;
+
+      m_response.m_psystem = m_psystem;
+
+      return estatus;
 
    }
 
@@ -236,10 +258,18 @@ namespace sockets
             {
                m_request.attr(__id(http_protocol)) = "http";
             }
+
             string strRequestUri = pa.getword();
-            string strScript = ::apex::get_system()->url().object_get_script(strRequestUri);
-            string strQuery = ::apex::get_system()->url().object_get_query(strRequestUri);
-            m_request.m_strRequestUri = ::apex::get_system()->url().url_decode(strScript) + ::str::has_char(strQuery, "?");
+
+            auto psystem = m_psystem;
+
+            auto purl = psystem->url();
+
+            string strScript = purl->object_get_script(strRequestUri);
+
+            string strQuery = purl->object_get_query(strRequestUri);
+
+            m_request.m_strRequestUri = purl->url_decode(strScript) + ::str::has_char(strQuery, "?");
             m_request.attr(__id(request_uri)) = m_request.m_strRequestUri;
             m_request.attr(__id(http_version)) = pa.getword();
             m_b_http_1_1 = ::str::ends(m_request.attr(__id(http_version)), "/1.1");
@@ -427,7 +457,7 @@ namespace sockets
       else
       {
 
-         m_response.m_propertysetHeader.remove_by_name(__id(content_length));
+         m_response.m_propertysetHeader.erase_by_name(__id(content_length));
 
 
       }
@@ -480,7 +510,7 @@ namespace sockets
 
          response().m_strFile.Empty();
 
-         file_pointer spfile(e_create, get_context_object());
+         file_pointer spfile(e_create, this);
 
          try
          {

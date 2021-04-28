@@ -9,7 +9,7 @@ namespace xml
 
 
    class CLASS_DECL_AQUA exportable :
-      virtual public ::context_object
+      virtual public ::object
    {
    public:
 

@@ -6,7 +6,7 @@ namespace filehandler
 
 
    class CLASS_DECL_SPHERE department :
-      public ::apex::department
+      public ::acme::department
    {
    public:
 
@@ -15,7 +15,7 @@ namespace filehandler
       __pointer(::user::single_document_template)       m_ptemplateMenu;
 
 
-      department(::layered * pobjectContext);
+      department(::object * pobject);
       virtual ~department();
 
       void construct();

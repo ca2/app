@@ -59,7 +59,7 @@ template < class TYPE, class ARG_TYPE, class ALLOCATOR >
 
 
 template < class TYPE, class ARG_TYPE, class ALLOCATOR >
-::index array_base < TYPE, ARG_TYPE, ALLOCATOR >::remove_at(::index nIndex,::count nCount)
+::index array_base < TYPE, ARG_TYPE, ALLOCATOR >::erase_at(::index nIndex,::count nCount)
 {
 
    //ASSERT_VALID(this);
@@ -90,10 +90,10 @@ template < class TYPE, class ARG_TYPE, class ALLOCATOR >
 
 
 template < class TYPE, class ARG_TYPE, class ALLOCATOR >
-::index array_base < TYPE, ARG_TYPE, ALLOCATOR >::remove_item(TYPE * p)
+::index array_base < TYPE, ARG_TYPE, ALLOCATOR >::erase_item(TYPE * p)
 {
 
-   return remove_at(p - m_pData);
+   return erase_at(p - m_pData);
 
 }
 
@@ -273,7 +273,7 @@ void array_base < TYPE, ARG_TYPE, ALLOCATOR >::copy(const array_base < TYPE, ARG
 
 // take in accptr that _001RemoveIndexes machine
 // the ::index raw_array by sorting it and returning
-// only the indexes that could be removed
+// only the indexes that could be erased
 // without indexes duplicates
 template < class TYPE, class ARG_TYPE, class ALLOCATOR >
 void array_base < TYPE, ARG_TYPE, ALLOCATOR >::_001RemoveIndexes(index_array & ia)
@@ -288,7 +288,7 @@ void array_base < TYPE, ARG_TYPE, ALLOCATOR >::_001RemoveIndexes(index_array & i
    while(i >= 0 && ia[i] >= get_size())
    {
 
-      ia.remove_at(i);
+      ia.erase_at(i);
 
       i--;
 
@@ -298,7 +298,7 @@ void array_base < TYPE, ARG_TYPE, ALLOCATOR >::_001RemoveIndexes(index_array & i
    while(ia.get_size() > 0 && ia[0] < 0)
    {
 
-      ia.remove_at(0);
+      ia.erase_at(0);
 
    }
 
@@ -309,27 +309,27 @@ void array_base < TYPE, ARG_TYPE, ALLOCATOR >::_001RemoveIndexes(index_array & i
    {
 
       if(ia[i] == ia[i - 1])
-         ia.remove_at(i);
+         ia.erase_at(i);
 
       i--;
 
    }
 
-   remove_indexes(ia);
+   erase_indexes(ia);
 
 }
 
 
 template < class TYPE, class ARG_TYPE, class ALLOCATOR >
-void array_base < TYPE, ARG_TYPE, ALLOCATOR >::remove_indexes(const index_array & ia)
+void array_base < TYPE, ARG_TYPE, ALLOCATOR >::erase_indexes(const index_array & ia)
 {
 
 
-   // remove indexes
+   // erase indexes
    for(::index i = ia.get_upper_bound(); i >= 0; i--)
    {
 
-      remove_at(ia[i]);
+      erase_at(ia[i]);
 
    }
 
@@ -337,13 +337,13 @@ void array_base < TYPE, ARG_TYPE, ALLOCATOR >::remove_indexes(const index_array 
 
 
 template < class TYPE, class ARG_TYPE, class ALLOCATOR >
-void array_base < TYPE, ARG_TYPE, ALLOCATOR >::remove_descending_indexes(const index_array & ia)
+void array_base < TYPE, ARG_TYPE, ALLOCATOR >::erase_descending_indexes(const index_array & ia)
 {
 
    for(::index i = 0; i < ia.get_count(); i++)
    {
 
-      remove_at(ia[i]);
+      erase_at(ia[i]);
 
    }
 

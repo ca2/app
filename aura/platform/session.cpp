@@ -4,7 +4,7 @@
 //#endif
 //#include "acme/const/id.h"
 //#include "apex/platform/app_core.h"
-#include "apex/platform/static_setup.h"
+#include "acme/platform/static_setup.h"
 //#include "apex/platform/str_context.h"
 
 //#ifdef LINUX
@@ -82,15 +82,12 @@ namespace aura
       m_bSimpleMessageLoop = false;
       m_bMessageThread = true;
       m_iEdge = -1;
-      m_paxissession = nullptr;
-      m_pbasesession = nullptr;
-      m_pcoresession = nullptr;
 
 
       create_factory < ::user::user >();
       create_factory < ::aura::session, ::aura::session >();
 
-      //m_strAppId                    = "core_session";
+      //m_XstrAppId                    = "core_session";
       //m_strAppName                  = "core_session";
       //m_strBaseSupportId            = "core_session";
       //m_strInstallToken             = "core_session";
@@ -115,10 +112,10 @@ namespace aura
    }
 
 
-   ::e_status session::initialize(::layered * pobjectContext)
+   ::e_status session::initialize(::object * pobject)
    {
 
-      auto estatus = ::aqua::session::initialize(pobjectContext);
+      auto estatus = ::aqua::session::initialize(pobject);
 
       if (!estatus)
       {
@@ -127,9 +124,13 @@ namespace aura
 
       }
 
+      m_pauracontext = this;
+
+      m_pnode = m_psystem->node();
+
       m_pimplPendingFocus2             = nullptr;
 
-      m_pappCurrent                    = nullptr;
+      m_papplicationCurrent                    = nullptr;
 
       m_puiLastLButtonDown             = nullptr;
 
@@ -200,18 +201,18 @@ namespace aura
       }
 
 
-      //estatus = __compose_new(m_puserstrcontext);
+      //estatus = __compose_new(m_ptextcontext);
 
       //if (!estatus)
       //{
 
-      //   INFO("apex::str_context Failed to Allocate!!");
+      //   INFO("acme::str_context Failed to Allocate!!");
 
       //   return estatus;
 
       //}
 
-      auto psystem = ::aura::get_system();
+      __pointer(::aura::system) psystem = get_system();
 
       if(psystem->m_bAvoidFirstResponder)
       {
@@ -220,7 +221,7 @@ namespace aura
 
       }
 
-      INFO("apex::str_context Succeeded to Allocate!!");
+      INFO("acme::str_context Succeeded to Allocate!!");
 
       INFO("aura::session::process_init success");
 
@@ -259,7 +260,9 @@ namespace aura
    bool session::on_get_thread_name(string& strThreadName)
    {
 
-      if (::aura::get_system()->is_console_app())
+      __pointer(::aura::system) psystem = get_system();
+
+      if (psystem->is_console_app())
       {
 
          return false;
@@ -286,11 +289,11 @@ namespace aura
 
       pcreateNew->m_pcommandline->m_varFile = pszPathName;
 
-      pcreateNew->m_puserinteractionParent = pcreate->m_puserinteractionParent;
+      pcreateNew->m_puserprimitiveParent = pcreate->m_puserprimitiveParent;
 
       return open_by_file_extension(pcreateNew);
 
-      //return Application.platform_open_by_file_extension(m_iEdge, pszPathName, pcreate);
+      //return papplication->platform_open_by_file_extension(m_iEdge, pszPathName, pcreate);
 
    }
 
@@ -298,7 +301,7 @@ namespace aura
    bool session::open_by_file_extension(::create * pcreate)
    {
 
-      //return Application.platform_open_by_file_extension(m_iEdge, pcc);
+      //return papplication->platform_open_by_file_extension(m_iEdge, pcc);
 
       string strId;
 
@@ -320,14 +323,18 @@ namespace aura
 
       }
 
-      string strProtocol = ::aura::get_system()->url().get_protocol(strPathName);
+      auto psystem = m_psystem;
+
+      auto purl = psystem->url();
+
+      string strProtocol = purl->get_protocol(strPathName);
 
       if (strProtocol == "app")
       {
 
-         strId = ::aura::get_system()->url().get_server(strPathName);
+         strId = purl->get_server(strPathName);
 
-         string str = ::aura::get_system()->url().get_object(strPathName);
+         string str = purl->get_object(strPathName);
 
          ::str::begins_eat(str, "/");
 
@@ -343,7 +350,7 @@ namespace aura
 
          __throw(todo, "filehandler");
 
-         //::aura::get_system()->filehandler().get_extension_app(straApp, strExtension);
+         //psystem->filehandler().get_extension_app(straApp, strExtension);
 
          //if (straApp.get_count() == 1)
          //{
@@ -569,7 +576,7 @@ namespace aura
    //::user::primitive * session::GetActiveWindow()
    //{
 
-   //   return ::aura::get_system()->ui_from_handle(::get_active_window());
+   //   return psystem->ui_from_handle(::get_active_window());
 
    //}
 
@@ -828,7 +835,7 @@ namespace aura
 //   }
 
 
-//   bool session::remove_keyboard_focus(::user::primitive * pprimitive)
+//   bool session::erase_keyboard_focus(::user::primitive * pprimitive)
 //   {
 //
 //      if (pprimitive == nullptr)
@@ -869,7 +876,7 @@ namespace aura
 //
 //      bool bHasFocus = puiImpl->has_keyboard_focus();
 //
-//      if (!pimpl->remove_keyboard_focus(pprimitive))
+//      if (!pimpl->erase_keyboard_focus(pprimitive))
 //      {
 //
 //         return false;
@@ -895,7 +902,7 @@ namespace aura
 ////#endif
 //      {
 //
-//         ::remove_focus(pimpl->m_oswindow);
+//         ::erase_focus(pimpl->m_oswindow);
 //
 //      }
 //
@@ -1178,7 +1185,7 @@ namespace aura
 
    //   }
 
-   //   auto puserinteraction = ::aura::get_system()->ui_from_handle(window);
+   //   auto puserinteraction = psystem->ui_from_handle(window);
 
    //   if (!puserinteraction)
    //   {
@@ -1246,7 +1253,7 @@ namespace aura
          main_async([this]()
          {
 
-            __pointer(::ios::interaction_impl) pimpl = psession->m_puiHost->m_pimpl;
+            __pointer(::ios::interaction_impl) pimpl = psession->get_user_interaction_host()->m_pimpl;
 
             if (pimpl.is_set())
             {
@@ -1313,7 +1320,7 @@ namespace aura
 
    //         {
 
-   //            synchronization_lock synchronizationlock(mutex());
+   //            synchronous_lock synchronouslock(mutex());
 
    //            ::papaya::array::copy(uiptraToolWindow, m_uiptraToolWindow);
 
@@ -1524,10 +1531,10 @@ namespace aura
 
 
 
-   ::e_status session::finish(::context_object * pcontextobjectFinish)
+   ::e_status session::finish()
    {
 
-      return ::aqua::session::finish(pcontextobjectFinish);
+      return ::aqua::session::finish();
 
    }
 
@@ -1650,7 +1657,7 @@ ret:
    void session::on_show_user_input_popup(::user::interaction * pinteraction)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       try
       {
@@ -1697,7 +1704,7 @@ ret:
 
       //}
 
-      //if (::aura::get_system()->m_bUser)
+      //if (psystem->m_bUser)
       //{
 
       //}
@@ -1762,7 +1769,9 @@ ret:
 
       INFO(".2");
 
-      if (::aura::get_system()->m_bUser)
+      __pointer(::aura::system) psystem = get_system();
+
+      if (psystem->m_bUser)
       {
 
          INFO("success");
@@ -1836,7 +1845,7 @@ ret:
 
 #else
 
-      if(m_puiHost)
+      if(m_puserinteractionHost)
       {
 
          return ::success;
@@ -1861,7 +1870,7 @@ ret:
 
       }
 
-      estatus = __refer(m_puiHost, puserinteraction);
+      estatus = __refer(m_puserinteractionHost, puserinteraction);
 
       if (!estatus)
       {
@@ -1887,9 +1896,9 @@ ret:
 
       auto pcs = __new(::user::system(0, nullptr, nullptr, WS_VISIBLE, rectScreen));
 
-      auto puiHost = __user_interaction(m_puiHost);
+      auto puserinteractionHost = __user_interaction(m_puserinteractionHost);
 
-      if (!puiHost->create_window_ex(pcs))
+      if (!puserinteractionHost->create_window_ex(pcs))
       {
 
          return ::error_failed;
@@ -1927,10 +1936,10 @@ ret:
 
       INFO("aura::session::init2 .1");
 
-      //if (::aura::get_system()->m_bUser)
+      //if (psystem->m_bUser)
       //{
 
-      //   if(::aura::get_system()->m_bDraw2d)
+      //   if(psystem->m_bDraw2d)
       //   {
 
       //
@@ -2103,10 +2112,10 @@ ret:
    void session::pre_translate_message(::message::message * pmessage)
    {
 
-      if (::is_set(m_pappCurrent))
+      if (::is_set(m_papplicationCurrent))
       {
 
-         m_pappCurrent->pre_translate_message(pmessage);
+         m_papplicationCurrent->pre_translate_message(pmessage);
 
       }
 
@@ -2129,10 +2138,10 @@ namespace aura
 
 
 
-   //::e_status session::initialize(::layered * pobjectContext)
+   //::e_status session::initialize(::object * pobject)
    //{
 
-   //   auto estatus = ::aura::session::initialize(pobjectContext);
+   //   auto estatus = ::aura::session::initialize(pobject);
 
    //   if (!estatus)
    //   {
@@ -2181,7 +2190,7 @@ namespace aura
    }
 
 
-   ::e_status     session::do_request(::create* pcreate)
+   void session::do_request(::create* pcreate)
    {
 
       return ::thread::do_request(pcreate);
@@ -2191,41 +2200,42 @@ namespace aura
 
 
 
-   void session::request_topic_file(::payload& varQuery)
-   {
+   //void session::request_topic_file(::payload& varQuery)
+   //{
 
-      auto psession = Session;
+   //   auto psession = get_session();
 
-      request_file(psession->m_varTopicFile, varQuery);
+   //   request_file(psession->m_varTopicFile, varQuery);
 
-   }
+   //}
 
 
-   void session::request_topic_file()
-   {
+   //void session::request_topic_file()
+   //{
 
-      auto psession = Session;
+   //   auto psession = get_session();
 
-      request_file(psession->m_varTopicFile);
+   //   request_file(psession->m_varTopicFile);
 
-   }
+   //}
 
 
    __pointer(::aura::application) session::get_current_application()
    {
 
-      auto psession = Session;
+      auto psession = get_session();
 
-      return psession->m_pappCurrent;
+      return psession->m_papplicationCurrent;
 
    }
+
 
    bool session::is_remote_session()
    {
 
+      auto pcontext = get_context();
 
-      return Context.os().is_remote_session();
-
+      return pcontext->m_papexcontext->os().is_remote_session();
 
    }
 
@@ -2233,32 +2243,32 @@ namespace aura
    bool session::is_mouse_button_pressed(::user::enum_mouse emouse)
    {
 
-      auto psession = Session;
-
-
       if (emouse == ::user::e_mouse_left_button)
       {
-         return psession->is_key_pressed(::user::e_key_lbutton);
+
+         return is_key_pressed(::user::e_key_lbutton);
+
       }
       else if (emouse == ::user::e_mouse_right_button)
       {
-         return psession->is_key_pressed(::user::e_key_rbutton);
+
+         return is_key_pressed(::user::e_key_rbutton);
+
       }
       else if (emouse == ::user::e_mouse_middle_button)
       {
-         return psession->is_key_pressed(::user::e_key_mbutton);
+
+         return is_key_pressed(::user::e_key_mbutton);
+
       }
       else
       {
+
          __throw(::exception::exception("not expected enum_mouse value"));
+
       }
 
-
    }
-
-
-
-
 
 
    bool session::open_file(::filemanager::data* pdata, ::file::item_array& itema)
@@ -2306,21 +2316,19 @@ namespace aura
    }
 
 
-   void session::check_topic_file_change()
-   {
+   //void session::check_topic_file_change()
+   //{
 
-      auto psession = Session;
+   //   if (m_varCurrentViewFile != m_varTopicFile && !m_varTopicFile.is_empty())
+   //   {
 
-      if (psession->m_varCurrentViewFile != psession->m_varTopicFile && !psession->m_varTopicFile.is_empty())
-      {
+   //      m_varCurrentViewFile = m_varTopicFile;
 
-         psession->m_varCurrentViewFile = psession->m_varTopicFile;
+   //      request_topic_file();
 
-         request_topic_file();
+   //   }
 
-      }
-
-   }
+   //}
 
    //}
 
@@ -2370,12 +2378,12 @@ namespace aura
    }
 
 
-   __pointer(::apex::session) session::get_context_session()
-   {
+   //__pointer(::apex::session) session::get_session()
+   //{
 
-      return this;
+   //   return this;
 
-   }
+   //}
 
 
 
@@ -2404,7 +2412,7 @@ namespace aura
       //   if (::str::begins_eat_ci(str, "file://"))
       //   {
 
-      //      str = ::aura::get_system()->url().url_decode(str);
+      //      str = purl->url_decode(str);
 
       //   }
 
@@ -2425,9 +2433,9 @@ namespace aura
 
          color32_t crBk;
 
-         auto pnode = ::aura::get_system()->node();
+         __pointer(::aura::system) psystem = get_system();
 
-         if (pnode && pnode->is_app_dark_mode())
+         if (m_pnode && m_pnode->is_app_dark_mode())
          {
 
             crBk = argb(255, 0x40, 0x40, 0x40);
@@ -2448,9 +2456,9 @@ namespace aura
 
          color32_t crBk;
 
-         auto pnode = ::aura::get_system()->node();
+         __pointer(::aura::system) psystem = get_system();
 
-         if (pnode && pnode->is_app_dark_mode())
+         if (m_pnode && m_pnode->is_app_dark_mode())
          {
 
             crBk = argb(255, 127, 127, 127);
@@ -2471,9 +2479,9 @@ namespace aura
 
          color32_t crText;
 
-         auto pnode = ::aura::get_system()->node();
+         __pointer(::aura::system) psystem = get_system();
 
-         if (pnode && pnode->is_app_dark_mode())
+         if (m_pnode && m_pnode->is_app_dark_mode())
          {
 
             crText = argb(255, 255, 255, 255);
@@ -2507,6 +2515,18 @@ namespace aura
    {
 
       return false;
+
+   }
+
+
+   void session::on_instantiate_application(::apex::application* papp)
+   {
+
+      ::aqua::session::on_instantiate_application(papp);
+
+      papp->m_paurasession = this;
+      papp->m_paurasystem = m_paurasystem;
+      papp->m_pauranode = m_pauranode;
 
    }
 
@@ -2596,10 +2616,12 @@ namespace aura
    //}
 
 
-   void session::finalize()
+   ::e_status session::finalize()
    {
 
-      ::apex::session::finalize();
+      auto estatus = ::apex::session::finalize();
+
+      return estatus;
 
    }
 
@@ -2610,26 +2632,29 @@ namespace aura
 } // namespace aura
 
 
-
-
-void os_on_finish_launching()
+namespace aura
 {
 
-   auto psystem = ::get_context_system();
 
-   auto psession = ::aura::get_system()->get_context_session();
+   void system::on_finish_launching()
+   {
 
-   auto puiHost = __user_interaction(psession->m_puiHost);
+      auto psession = get_session();
 
-   puiHost->display(e_display_full_screen);
+      auto puserinteractionHost = psession->m_puserprimitiveHost.cast < ::user::interaction>();
 
-   puiHost->set_need_layout();
+      puserinteractionHost->display(e_display_full_screen);
 
-   puiHost->set_need_redraw();
+      puserinteractionHost->set_need_layout();
 
-   puiHost->post_redraw();
+      puserinteractionHost->set_need_redraw();
 
-}
+      puserinteractionHost->post_redraw();
+
+   }
+
+
+} // namespace aura
 
 
 

@@ -21,7 +21,7 @@ namespace graphics
       //
       // Please, do not create array of reference
       // it is perfectly possible, but...
-      // (But behind, there is a parallel context_object array in the composer (the array type)
+      // (But behind, there is a parallel object array in the composer (the array type)
       // ("mirroring"  the references). So why are you keeping references in the array)
       //
       // Easy-Coding Advantage
@@ -54,7 +54,7 @@ namespace graphics
       virtual synchronization_object * get_draw_lock() override;
       virtual ::draw2d::graphics * on_begin_draw() override;
 
-      // synchronization_lock screen synchronization_object first...
+      // synchronous_lock screen synchronization_object first...
       virtual synchronization_object * get_screen_sync() override;
       virtual ::image_pointer & get_screen_image() override;
 

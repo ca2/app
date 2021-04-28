@@ -27,7 +27,7 @@ namespace user
       bool                                      m_bIgnoreMoveEvent;
       ap(critical_section)                      m_pcsDisplay;
 
-      __composite(::apex::timer_array)          m_ptimerarray;
+      __composite(::acme::timer_array)          m_ptimerarray;
 
       const char *                              m_pszInteractionImplBaseDebug;
 
@@ -35,7 +35,7 @@ namespace user
       u32                                       m_uiLastRedraw;
       bool                                      m_bUpdatingBuffer;
 
-      ::rectangle_i32                                    m_rectangle;
+      ::rectangle_i32                           m_rectangle;
 
 
 
@@ -45,6 +45,12 @@ namespace user
       inline critical_section * cs_display() { return m_pcsDisplay; }
       virtual ::user::interaction_impl * get_user_interaction_impl();
       virtual ::user::interaction_child * get_user_interaction_child();
+
+      
+      inline ::aura::application* get_application() const;
+      inline ::aura::session* get_session() const;
+      inline ::aura::system* get_system() const;
+
 
 
       virtual void prio_install_message_routing(::channel * pchannel);
@@ -70,7 +76,7 @@ namespace user
       virtual void on_reposition() override;
       virtual void on_show_window() override;
 
-      virtual void finalize() override;
+      virtual ::e_status finalize() override;
 
       virtual void window_show_change_visibility(::e_display edisplay, ::e_activation eactivation);
 
@@ -86,14 +92,33 @@ namespace user
       virtual bool window_move(i32 x, i32 y);
 
 
-      virtual bool RedrawWindow(const ::rectangle_i32& rectUpdate = nullptr,::draw2d::region* prgnUpdate = nullptr,::u32 flags = 0) override;
+      virtual bool RedrawWindow(const ::rectangle_i32& rectUpdate = nullptr,::draw2d::region* prgnUpdate = nullptr,::u32 flags = 0);
 
-      virtual void _001Print(::draw2d::graphics_pointer & pgraphics) override;
-      virtual void _000OnDraw(::draw2d::graphics_pointer & pgraphics) override;
-      virtual void _001DrawThis(::draw2d::graphics_pointer & pgraphics) override;
-      virtual void _001DrawChildren(::draw2d::graphics_pointer & pgraphics) override;
-      virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
-      virtual void draw_control_background(::draw2d::graphics_pointer & pgraphics) override;
+
+      virtual i32 GetUpdateRgn(::draw2d::region* pRgn, bool bErase = false);
+      virtual void Invalidate(bool bErase = true) override;
+      virtual void InvalidateRect(const ::rectangle_i32& rectangle, bool bErase = true);
+
+      virtual void InvalidateRgn(::draw2d::region* pRgn, bool bErase = true);
+      virtual void ValidateRect(const ::rectangle_i32& rectangle);
+
+      virtual void ValidateRgn(::draw2d::region* pRgn);
+      virtual void ShowOwnedPopups(bool bShow = true);
+
+
+      virtual ::graphics::graphics* get_window_graphics();
+      virtual bool is_composite();
+
+
+      virtual void _task_transparent_mouse_event();
+
+
+      virtual void _001Print(::draw2d::graphics_pointer & pgraphics);
+      virtual void _000OnDraw(::draw2d::graphics_pointer & pgraphics);
+      virtual void _001DrawThis(::draw2d::graphics_pointer & pgraphics);
+      virtual void _001DrawChildren(::draw2d::graphics_pointer & pgraphics);
+      virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics);
+      virtual void draw_control_background(::draw2d::graphics_pointer & pgraphics);
 
 
       virtual ::user::interaction * get_wnd() const override;
@@ -147,8 +172,8 @@ namespace user
       virtual ::user::interaction * get_wnd(::u32 nCmd) const override;
 
 
-      virtual ::user::frame * frame() const override;
-      virtual ::user::frame * top_level_frame() const override;
+      virtual ::user::frame * frame() const;
+      virtual ::user::frame * top_level_frame() const;
 
 
       //virtual ::user::interaction * GetTopWindow() const override;
@@ -161,7 +186,7 @@ namespace user
       virtual ::user::interaction * get_parent_owner() const override;
       virtual ::user::interaction * get_parent_or_owner() const override;
       virtual ::user::interaction * get_top_level_owner() const override;
-      virtual ::user::frame * get_parent_frame() const override;
+      virtual ::user::frame * get_parent_frame() const;
       //virtual ::user::frame * GetParentTopLevelFrame() const override;
       //virtual ::user::frame * EnsureParentFrame() override;
 
@@ -197,18 +222,22 @@ namespace user
       virtual bool SetTimer(uptr uEvent, ::millis millisElapse, PFN_TIMER pfnTimer = nullptr) override;
       virtual bool KillTimer(uptr uEvent) override;
 
+
+
       virtual void _001OnTimer(::timer * ptimer) override;
 
+      virtual bool IsTopParentActive();
+
       virtual bool destroy_impl_only();
-      virtual bool DestroyWindow() override;
+      virtual bool start_destroying_window() override;
 
 
       //virtual void defer_start_prodevian();
       //virtual void _defer_start_prodevian();
 
 
-      void mouse_hover_add(::user::interaction * pinterface) override;
-      bool mouse_hover_remove(::user::interaction * pinterface) override;
+      virtual bool mouse_hover_add(::user::interaction * pinterface);
+      virtual bool mouse_hover_erase(::user::interaction * pinterface);
 
 
       virtual void register_drop_target();
@@ -216,10 +245,10 @@ namespace user
 
       virtual ::user::primitive * get_keyboard_focus();
       virtual ::e_status set_keyboard_focus(::user::primitive * pprimitive);
-      virtual ::e_status remove_keyboard_focus(::user::primitive * pprimitive);
+      virtual ::e_status erase_keyboard_focus(::user::primitive * pprimitive);
       virtual ::e_status clear_keyboard_focus() override;
       virtual ::e_status impl_set_keyboard_focus(::user::primitive * pprimitive);
-      virtual ::e_status impl_remove_keyboard_focus(::user::primitive * pprimitive);
+      virtual ::e_status impl_erase_keyboard_focus(::user::primitive * pprimitive);
       virtual ::e_status impl_clear_keyboard_focus();
 
 
@@ -229,15 +258,15 @@ namespace user
 
       //virtual bool display(::display edisplay) override;
 
-      DECL_GEN_SIGNAL(_001OnPrioCreate);
-      DECL_GEN_SIGNAL(_001OnShowWindow);
-      DECL_GEN_SIGNAL(_001OnDestroy);
-      DECL_GEN_SIGNAL(_001OnNcDestroy);
+      DECLARE_MESSAGE_HANDLER(_001OnPrioCreate);
+      DECLARE_MESSAGE_HANDLER(_001OnShowWindow);
+      DECLARE_MESSAGE_HANDLER(_001OnDestroy);
+      DECLARE_MESSAGE_HANDLER(_001OnNcDestroy);
 
       virtual void show_task(bool bShow);
 
-      virtual void redraw_add(::context_object * point_i32);
-      virtual void redraw_remove(::context_object * point_i32);
+      virtual void redraw_add(::object * point_i32);
+      virtual void redraw_erase(::object * point_i32);
       virtual bool has_redraw();
 
       virtual ::e_status show_software_keyboard(::user::primitive * pprimitive, string str, strsize iBeg, strsize iEnd) override;

@@ -11,20 +11,20 @@ namespace parallelization
    bool task_registered(::task * ptask)
    {
 
-      return System->get_task_id(ptask) != 0;
+      return ::acme::get_system()->get_task_id(ptask) != 0;
 
    }
 
 
-   void task_register(ithread_t itask, ::task * ptask)
+   void task_register(itask_t itask, ::task * ptask)
    {
 
-      System->set_task(itask, ptask);
+      ::acme::get_system()->set_task(itask, ptask);
 
    }
 
 
-   void task_unregister(ithread_t itask, ::task * ptask)
+   void task_unregister(itask_t itask, ::task * ptask)
    {
 
       auto psystem = ::get_context_system();
@@ -34,7 +34,7 @@ namespace parallelization
    }
 
 
-   //CLASS_DECL_ACME comparable_eq_array<ithread_t> * s_piaThread2 = nullptr;
+   //CLASS_DECL_ACME comparable_eq_array<itask_t> * s_piaThread2 = nullptr;
    //CLASS_DECL_ACME __pointer_array(thread) * s_pthreadptra2 = nullptr;
    //CLASS_DECL_ACMEcritical_section * s_pcs2 = nullptr;
 
@@ -44,7 +44,7 @@ namespace parallelization
 
    //   //s_pcs2 = new critical_section();
 
-   //   //s_piaThread2 = new comparable_eq_array<ithread_t>;
+   //   //s_piaThread2 = new comparable_eq_array<itask_t>;
 
    //   //s_pthreadptra2 = new __pointer_array(thread);
 
@@ -66,14 +66,14 @@ namespace parallelization
 
    //}
 
-   //CLASS_DECL_ACME bool thread_id_registered(ithread_t id)
+   //CLASS_DECL_ACME bool thread_id_registered(itask_t id)
    //{
 
    //   //critical_section_lock lock(s_pcs2);
 
    //   //return s_piaThread2->contains(id);
 
-   //   return System->get_task(id) != nullptr;
+   //   return ::acme::get_system()->get_task(id) != nullptr;
 
    //}
 
@@ -81,25 +81,25 @@ namespace parallelization
    //bool thread_registered(::thread * pthread)
    //{
 
-   //   return System->get_thread_id(pthread) != 0;
+   //   return ::acme::get_system()->get_thread_id(pthread) != 0;
 
    //}
 
 
-   //void thread_register(ithread_t ithread, ::thread * pthread)
+   //void thread_register(itask_t itask, ::thread * pthread)
    //{
 
-   //   System->set_thread(ithread, pthread);
+   //   ::acme::get_system()->set_thread(itask, pthread);
 
    //}
 
 
-   //void thread_unregister(ithread_t ithread, ::thread * pthread)
+   //void thread_unregister(itask_t itask, ::thread * pthread)
    //{
 
    //   auto psystem = ::get_context_system();
 
-   //   psystem->unset_thread(ithread, pthread);
+   //   psystem->unset_thread(itask, pthread);
 
    //}
 
@@ -121,9 +121,9 @@ namespace parallelization
 
    //   }
 
-   //   synchronization_lock synchronizationlock(System->m_mutexThread);
+   //   synchronous_lock synchronouslock(::acme::get_system()->m_mutexThread);
 
-   //   for (auto & pair : System->m_threadidmap)
+   //   for (auto & pair : ::acme::get_system()->m_threadidmap)
    //   {
 
    //      try
@@ -152,9 +152,9 @@ namespace parallelization
    //void post_quit_to_all_threads()
    //{
 
-   //   synchronization_lock synchronizationlock(System->m_mutexThread);
+   //   synchronous_lock synchronouslock(::acme::get_system()->m_mutexThread);
 
-   //   for (auto& pair : System->m_threadidmap)
+   //   for (auto& pair : ::acme::get_system()->m_threadidmap)
    //   {
 
    //      try
@@ -176,9 +176,9 @@ namespace parallelization
    //CLASS_DECL_ACME void post_to_all_threads(const ::id & id, wparam wparam, lparam lparam)
    //{
 
-   //   synchronization_lock synchronizationlock(System->m_mutexThread);
+   //   synchronous_lock synchronouslock(::acme::get_system()->m_mutexThread);
 
-   //   for (auto& pair : System->m_threadidmap)
+   //   for (auto& pair : ::acme::get_system()->m_threadidmap)
    //   {
 
    //      try
@@ -241,7 +241,7 @@ namespace parallelization
 
    //   }
 
-   //   auto papplicationContext = pthread->get_context_application();
+   //   auto papplicationContext = pthread->get_application();
 
    //   if (::is_set(papplicationContext) && papplicationContext != pthread)
    //   {
@@ -250,7 +250,7 @@ namespace parallelization
 
    //   }
 
-   //   auto psessionContext = pthread->get_context_session();
+   //   auto psessionContext = pthread->get_session();
 
    //   if (psessionContext != pthread && ::is_set(psessionContext))
    //   {
@@ -300,7 +300,7 @@ namespace parallelization
 //}
 
 
-//bool thread_get_run()
+//bool task_get_run()
 //{
 //
 //   try
@@ -310,11 +310,11 @@ namespace parallelization
 //      {
 //         ////////// and have short life, so it is safe to keep it running
 //         //return true;
-//         return System->thread_get_run();
+//         return ::acme::get_system()->task_get_run();
 //
 //      }
 //
-//      return ::get_task()->thread_get_run();
+//      return ::get_task()->task_get_run();
 //
 //   }
 //   catch (...)
@@ -748,12 +748,12 @@ CLASS_DECL_ACME ::task * get_task()
 
 
 
-CLASS_DECL_ACME ::thread * get_thread()
-{
+// CLASS_DECL_ACME ::thread * get_thread()
+// {
 
-   return ___thread((layered *) t_ptask.m_p);
+//    return ___thread((layered *) t_ptask.m_p);
 
-}
+// }
 
 CLASS_DECL_ACME void set_task(task * ptask OBJ_REF_DBG_COMMA_PARAMS_DEF)
 {
@@ -772,7 +772,7 @@ CLASS_DECL_ACME void thread_release(OBJ_REF_DBG_PARAMS_DEF)
 
 
 
-bool thread_get_run()
+bool task_get_run()
 {
 
    auto ptask = t_ptask.m_p;
@@ -784,7 +784,7 @@ bool thread_get_run()
 
    }
 
-   return ptask->thread_get_run();
+   return ptask->task_get_run();
 
 }
 

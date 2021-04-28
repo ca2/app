@@ -17,7 +17,7 @@ namespace app_shader
 
 
    class application;
-   class window;
+   class main_window;
 
 
 } // namespace flag

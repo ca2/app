@@ -23,7 +23,7 @@
 //index regex::match(string_array & stra, const string & strParam, strsize iSize)
 //{
 //
-//   stra.remove_all();
+//   stra.erase_all();
 //
 //   ::str::range_array rangeaMatches;
 //

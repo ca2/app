@@ -93,7 +93,7 @@ public:
 
 // \
 // extern "C" \
-// CLASS_DECL_EXPORT ::apex::library * get_new_library() \
+// CLASS_DECL_EXPORT ::acme::library * get_new_library() \
 // {\
 //    return ::NAMESPACE::g_libraryfactory.new_library(); \
 // }
@@ -107,7 +107,7 @@ public:
 
 //  \
 // extern "C" \
-// CLASS_DECL_EXPORT ::apex::library * get_new_library() \
+// CLASS_DECL_EXPORT ::acme::library * get_new_library() \
 // {\
 //    return ::N1::N2::g_libraryfactory.new_library(); \
 // }

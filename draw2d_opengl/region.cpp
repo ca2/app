@@ -270,7 +270,7 @@ namespace draw2d_opengl
    //   for(i32 i = 0; i < m_nCount; i++)
    //   {
    //      i32 jCount = m_lppolycounts[i];
-   //      pa.remove_all();
+   //      pa.erase_all();
    //      for(i32 j = 0; j < jCount; j++)
    //      {
    //         pa.add(plusplus::PointF((plusplus::REAL) m_lppoints[n].x, (plusplus::REAL) m_lppoints[n].y));

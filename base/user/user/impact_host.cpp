@@ -71,7 +71,7 @@ namespace user
    void impact_host::_001OnDestroy(::message::message * pmessage)
    {
 
-      m_impactdatamap.remove_all();
+      m_impactdatamap.erase_all();
 
    }
 
@@ -146,12 +146,12 @@ namespace user
       catch (const ::exception::exception & exception)
       {
 
-         auto pthread = ::get_thread();
+         auto ptask = ::get_task();
 
-         if (pthread)
+         if (ptask)
          {
 
-            pthread->handle_exception(exception);
+            ptask->handle_exception(exception);
 
          }
 
@@ -204,7 +204,7 @@ namespace user
 
             //::acme::del(pimpactdata);
             // todo
-            //remove_impact_data(pimpactdata);
+            //erase_impact_data(pimpactdata);
 
             return nullptr;
 
@@ -234,7 +234,7 @@ namespace user
 
          //::acme::del(pimpactdata);
          // todo
-         //remove_impact_data(pimpactdata);
+         //erase_impact_data(pimpactdata);
 
          return nullptr;
 
@@ -248,8 +248,8 @@ namespace user
    void impact_host::create_impact(impact_data * pimpactdata, impact_creator * pcreator)
    {
 
-      auto puiptraChild = pimpactdata->m_pplaceholder->m_puiptraChild;
-      if (puiptraChild && puiptraChild->interaction_count() > 0)
+      auto puserinteractionpointeraChild = pimpactdata->m_pplaceholder->m_puserinteractionpointeraChild;
+      if (puserinteractionpointeraChild && puserinteractionpointeraChild->interaction_count() > 0)
       {
 
          return;
@@ -259,7 +259,9 @@ namespace user
       if(!_create_impact(pcreator, pimpactdata))
       {
 
-         if (!_create_impact(Application.cast< ::user::impact_creator>(), pimpactdata))
+         auto papplication = get_application();
+
+         if (!_create_impact(papplication->cast< ::user::impact_creator>(), pimpactdata))
          {
 
             if (!_create_impact(this, pimpactdata))
@@ -315,7 +317,7 @@ namespace user
       catch (const ::exception::exception & exception)
       {
 
-         m_impactdatamap.remove_key(pimpactdata->m_id);
+         m_impactdatamap.erase_key(pimpactdata->m_id);
 
          handle_exception(exception);
 
@@ -341,7 +343,7 @@ namespace user
       if(!bCallOnCreateView)
       {
 
-         synchronization_lock synchronizationlock(mutex());
+         synchronous_lock synchronouslock(mutex());
 
          return m_impactdatamap[id];
 
@@ -389,7 +391,7 @@ namespace user
    }
 
 
-   void impact_host::on_remove_child(::user::interaction* pinteraction)
+   void impact_host::on_erase_child(::user::interaction* pinteraction)
    {
 
       //__pointer(::user::interaction) pupdown = pinteraction;
@@ -401,7 +403,7 @@ namespace user
 
       //   string strView = pupdown->m_id;
 
-      //   auto& app = Application;
+      //   auto& app = papplication;
 
       //   auto pdataclient = app.cast < ::database::client >();
 
@@ -421,7 +423,7 @@ namespace user
    }
 
 
-   void impact_host::on_remove_place_holder_child(::user::interaction* pinteraction)
+   void impact_host::on_erase_place_holder_child(::user::interaction* pinteraction)
    {
 
       //__pointer(::user::interaction) pupdown = pinteraction;
@@ -433,7 +435,7 @@ namespace user
 
       //   string strView = pupdown->m_id;
 
-      //   auto pdataclient = Application.cast < ::database::client > ();
+      //   auto pdataclient = papplication->cast < ::database::client > ();
 
       //   if (pdataclient)
       //   {
@@ -463,7 +465,7 @@ namespace user
 
       //   string strView = pupdown->m_id;
 
-      //   auto pdataclient = Application.cast < ::database::client >();
+      //   auto pdataclient = papplication->cast < ::database::client >();
 
       //   if (pdataclient)
       //   {
@@ -493,7 +495,7 @@ namespace user
 
          string strView = pupdown->m_id;
 
-         auto pdataclient = Application.cast < ::database::client >();
+         auto pdataclient = papplication->cast < ::database::client >();
 
          if (pdataclient)
          {

@@ -5,7 +5,7 @@
 CLASS_DECL_AURA int_bool message_queue_post(::windowing::window * pwindow, const ::id & id, wparam wparam, lparam lparam)
 {
 
-   //auto psession = Session;
+   //auto psession = get_session();
 
    //auto puser = psession->m_puser;
 
@@ -44,10 +44,10 @@ CLASS_DECL_AURA int_bool message_queue_post(::windowing::window * pwindow, const
 
 
 
-CLASS_DECL_AURA int_bool mq_remove_window_from_all_queues(::windowing::window * pwindow)
+CLASS_DECL_AURA int_bool mq_erase_window_from_all_queues(::windowing::window * pwindow)
 {
 
-   //auto psession = Session;
+   //auto psession = get_session();
 
    //auto puser = psession->m_puser;
 
@@ -64,14 +64,14 @@ CLASS_DECL_AURA int_bool mq_remove_window_from_all_queues(::windowing::window * 
 
    }
 
-   if(pinteraction->get_context_application() == nullptr)
+   if(pinteraction->get_application() == nullptr)
    {
 
       return false;
 
    }
 
-   ithread_t idthread = pinteraction->get_context_application()->get_ithread();
+   itask_t idthread = pinteraction->get_application()->get_ithread();
 
    message_queue * pmq = get_message_queue(idthread, false);
 
@@ -82,9 +82,9 @@ CLASS_DECL_AURA int_bool mq_remove_window_from_all_queues(::windowing::window * 
 
    }
 
-   synchronization_lock ml(pmq->mutex());
+   synchronous_lock ml(pmq->mutex());
 
-   pmq->m_messagea.predicate_remove([=](MESSAGE & message)
+   pmq->m_messagea.predicate_erase([=](MESSAGE & message)
    {
 
       return message.oswindow == pwindow->get_oswindow();

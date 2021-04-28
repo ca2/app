@@ -50,7 +50,7 @@ namespace hellobase
 
 
 
-      impact_base(::layered * pobjectContext);
+      impact_base(::object * pobject);
       virtual ~impact_base();
 
       virtual i64 add_ref(OBJ_REF_DBG_PARAMS)
@@ -77,8 +77,8 @@ namespace hellobase
 
       virtual void defer_check_on_draw_layout();
 
-      DECL_GEN_SIGNAL(on_message_create);
-      DECL_GEN_SIGNAL(_001OnDestroy);
+      DECLARE_MESSAGE_HANDLER(on_message_create);
+      DECLARE_MESSAGE_HANDLER(_001OnDestroy);
 
 
    };

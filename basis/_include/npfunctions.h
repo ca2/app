@@ -174,7 +174,7 @@ typedef struct _NPNetscapeFuncs {
   NPN_EvaluateProcPtr evaluate;
   NPN_GetPropertyProcPtr getproperty;
   NPN_SetPropertyProcPtr setproperty;
-  NPN_RemovePropertyProcPtr removeproperty;
+  NPN_RemovePropertyProcPtr eraseproperty;
   NPN_HasPropertyProcPtr hasproperty;
   NPN_HasMethodProcPtr hasmethod;
   NPN_ReleaseVariantValueProcPtr releasevariantvalue;

@@ -1,9 +1,9 @@
 ﻿#include "framework.h"
 
 
-exit_exception::exit_exception(__pointer(::layered) playeredThreadExit, const char * pszMessage) :
+exit_exception::exit_exception(__pointer(::task) playeredThreadExit, const char * pszMessage) :
    exception(pszMessage),
-   m_pthreadExit(playeredThreadExit)
+   m_ptaskExit(playeredThreadExit)
 {
 
    //if(m_pthreadExit)
@@ -24,22 +24,24 @@ exit_exception::~exit_exception()
 }
 
 
-::e_status exit_exception::finish(::context_object * pcontextobjectFinish)
+::e_status exit_exception::finish(::property_object * pcontextobjectFinish)
 {
 
    try
    {
 
-      if(m_pthreadExit.is_null())
+      if(m_ptaskExit.is_null())
       {
 
          return ::success;
 
       }
 
-      m_pthreadExit->finish(pcontextobjectFinish);
+      //m_ptaskExit->finish(pcontextobjectFinish);
 
-      m_pthreadExit.release();
+      m_ptaskExit->finish();
+
+      m_ptaskExit.release();
 
    }
    catch(...)

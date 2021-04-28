@@ -2,10 +2,10 @@
 #include "new_api.h"
 
 
-typedef HRESULT WINAPI FN_GetThreadDescription(HANDLE hthread, PWSTR* ppszThreadDescription);
+typedef HRESULT WINAPI FN_GetThreadDescription(HANDLE htask, PWSTR* ppszThreadDescription);
 
 
-string get_thread_name(hthread_t hthread)
+string get_thread_name(htask_t htask)
 {
 
    HRESULT hr;
@@ -14,7 +14,7 @@ string get_thread_name(hthread_t hthread)
 
 #ifdef _UWP
 
-   hr = GetThreadDescription(hthread, &lpwsz);
+   hr = GetThreadDescription(htask, &lpwsz);
 
 #else
 
@@ -25,7 +25,7 @@ string get_thread_name(hthread_t hthread)
    if (pfn_get_thread_description)
    {
 
-      hr = pfn_get_thread_description(hthread, &lpwsz);
+      hr = pfn_get_thread_description(htask, &lpwsz);
 
    }
 
@@ -74,17 +74,17 @@ string get_thread_name(hthread_t hthread)
 
 
 
-typedef HRESULT WINAPI FN_SetThreadDescription(_In_ hthread_t hthread, _In_ PCWSTR pThreadDescription);
+typedef HRESULT WINAPI FN_SetThreadDescription(_In_ htask_t htask, _In_ PCWSTR pThreadDescription);
 
 
-CLASS_DECL_AURA bool set_thread_name(hthread_t hthread, const char* pszName)
+CLASS_DECL_AURA bool set_thread_name(htask_t htask, const char* pszName)
 {
 
    bool bOk1 = false;
 
 #ifdef _UWP
 
-   bOk1 = SUCCEEDED(SetThreadDescription(hthread, wstring(pszName)));
+   bOk1 = SUCCEEDED(SetThreadDescription(htask, wstring(pszName)));
 
 #else
 
@@ -93,14 +93,14 @@ CLASS_DECL_AURA bool set_thread_name(hthread_t hthread, const char* pszName)
    if (pfn_set_thread_description)
    {
 
-      bOk1 = SUCCEEDED(pfn_set_thread_description(hthread, wstring(pszName)));
+      bOk1 = SUCCEEDED(pfn_set_thread_description(htask, wstring(pszName)));
 
    }
 
    if (!bOk1)
    {
 
-      bOk1 = SetThreadName(GetThreadId(hthread), pszName) != false;
+      bOk1 = SetThreadName(GetThreadId(htask), pszName) != false;
 
    }
 
@@ -128,7 +128,7 @@ CLASS_DECL_AURA bool set_thread_name(hthread_t hthread, const char* pszName)
 
 
 
-typedef HRESULT WINAPI FN_SetThreadDescription(_In_ hthread_t hthread, _In_ PCWSTR pThreadDescription);
+typedef HRESULT WINAPI FN_SetThreadDescription(_In_ htask_t htask, _In_ PCWSTR pThreadDescription);
 
 
 i32 get_os_thread_priority(::e_priority epriority)

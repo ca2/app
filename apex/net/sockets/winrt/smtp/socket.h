@@ -42,7 +42,7 @@ namespace sockets
 
 
    public:
-      smtp_socket(base_socket_handler&);
+      smtp_socket();
 
 
       void OnLine(const string &);

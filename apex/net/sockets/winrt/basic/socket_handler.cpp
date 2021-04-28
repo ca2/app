@@ -35,9 +35,9 @@ namespace sockets
 {
 
 
-   socket_handler::socket_handler(::layered * pobjectContext, ::apex::log * plog) :
-      ::object(pobjectContext),
-      base_socket_handler(pobjectContext, plog),
+   socket_handler::socket_handler(::object * pobject, ::apex::log * plog) :
+      ::object(pobject),
+      base_socket_handler(pobject, plog),
       m_b_use_mutex(false)
       ,m_maxsock(0)
       ,m_preverror(-1)
@@ -60,9 +60,9 @@ namespace sockets
    }
 
 
-   //socket_handler::socket_handler(::layered * pobjectContext, ::apex::log *plog) :
-   //   ::object(pobjectContext),
-   //   base_socket_handler(pobjectContext, plog)
+   //socket_handler::socket_handler(::object * pobject, ::apex::log *plog) :
+   //   ::object(pobject),
+   //   base_socket_handler(pobject, plog)
    //   ,m_b_use_mutex(true)
    //   ,m_maxsock(0)
    //   ,m_preverror(-1)
@@ -124,7 +124,7 @@ namespace sockets
             ppair = ppair->m_pnext;
          }
       }
-      m_sockets.remove_all();
+      m_sockets.erase_all();
       if (m_resolver)
       {
          delete m_resolver;
@@ -291,7 +291,7 @@ namespace sockets
 
             m_sockets.set_at(s, psocket);
 
-            m_add.remove_key(s);
+            m_add.erase_key(s);
 
             break;
 
@@ -316,7 +316,7 @@ namespace sockets
             if(psocket->is_connecting())
             {
                psocket->m_estatus = ::error_timeout;
-               remove(psocket);
+               erase(psocket);
                break;
             }
             psocket->run();
@@ -346,7 +346,7 @@ namespace sockets
             if(psocket->m_bClose)
             {
 
-               remove(psocket);
+               erase(psocket);
 
 //               delete psocket;
 
@@ -519,7 +519,7 @@ namespace sockets
       if (!m_resolver)
       {
          m_resolver_port = port;
-         m_resolver = new resolv_server(get_context_application(), port);
+         m_resolver = new resolv_server(get_application(), port);
       }
    }
 
@@ -582,7 +582,7 @@ namespace sockets
                   // %!             pools -> GetClientRemoteAddress() &&
                   pools -> GetClientRemoteAddress() == ad)
             {
-               m_sockets.remove_key(ppair->element1());
+               m_sockets.erase_key(ppair->element1());
                pools -> SetRetain(); // avoid close in socket destructor
                return pools; // Caller is responsible that this socket is deleted
             }
@@ -606,11 +606,11 @@ namespace sockets
    }
 
 
-   void socket_handler::remove(base_socket * p)
+   void socket_handler::erase(base_socket * p)
    {
       bool b;
       if(m_resolve_q.lookup(p, b))
-         m_resolve_q.remove_key(p);
+         m_resolve_q.erase_key(p);
       if(p -> ErasedByHandler())
       {
          return;
@@ -620,8 +620,8 @@ namespace sockets
       {
          if(ppair->element2() == p)
          {
-            WARN(p, "remove", -1, "socket destructor called while still in use");
-            m_sockets.remove_key(ppair->element1());
+            WARN(p, "erase", -1, "socket destructor called while still in use");
+            m_sockets.erase_key(ppair->element1());
             return;
          }
          ppair = ppair->m_pnext;
@@ -631,15 +631,15 @@ namespace sockets
       {
          if (ppair2->element2() == p)
          {
-            WARN(p, "remove", -2, "socket destructor called while still in use");
-            m_add.remove_key(ppair2->element1());
+            WARN(p, "erase", -2, "socket destructor called while still in use");
+            m_add.erase_key(ppair2->element1());
             return;
          }
          ppair2 = ppair2->m_pnext;
       }
-      if(m_delete.remove(p->GetSocket()) > 0)
+      if(m_delete.erase(p->GetSocket()) > 0)
       {
-         WARN(p, "remove", -3, "socket destructor called while still in use");
+         WARN(p, "erase", -3, "socket destructor called while still in use");
          return;
       }
    }
@@ -705,15 +705,15 @@ namespace sockets
                      (which_one == LIST_TIMEOUT) ? "Timeout" :
                      (which_one == LIST_RETRY) ? "Retry" :
                      (which_one == LIST_CLOSE) ? "close" : "<undef>",
-                     add ? "add" : "remove");*/
+                     add ? "add" : "erase");*/
       }
       if (add)
       {
          ref.add_tail_unique(s);
          return;
       }
-      // remove
-      ref.remove(s);
+      // erase
+      ref.erase(s);
       //TRACE("/AddList\n");
    }
 
@@ -780,7 +780,7 @@ namespace sockets
       {
          if(m_trigger_dst[id].plookup(dst) != nullptr)
          {
-            m_trigger_dst[id].remove_key(dst);
+            m_trigger_dst[id].erase_key(dst);
             return true;
          }
          //INFO(log_this, dst, "Unsubscribe", id, "Not subscribed");
@@ -820,9 +820,9 @@ namespace sockets
          if (erase)
          {
 
-            m_trigger_src.remove_key(id);
+            m_trigger_src.erase_key(id);
 
-            m_trigger_dst.remove_key(id);
+            m_trigger_dst.erase_key(id);
 
          }
 

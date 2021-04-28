@@ -148,12 +148,12 @@ namespace user
    }
 
    
-   ::e_status prodevian::do_task()
-   {
+   //::e_status prodevian::do_task()
+   //{
 
-      return ::thread::do_task();
+   //   return ::thread::do_task();
 
-   }
+   //}
 
 
    ::e_status prodevian::run()
@@ -187,7 +187,7 @@ namespace user
 
       }
 
-      while (thread_get_run())
+      while (task_get_run())
       {
 
          pump_runnable();
@@ -224,6 +224,20 @@ namespace user
          {
 
             break;
+
+         }
+
+      }
+
+      if (!(m_puserinteraction->m_ewindowflag & e_window_flag_is_window))
+      {
+
+         if (!m_pimpl->m_bDestroying)
+         {
+
+            m_pimpl->m_bDestroying = true;
+
+            m_puserinteraction->post_message(e_message_destroy_window);
 
          }
 
@@ -294,7 +308,7 @@ void prodevian::term_thread()
 }
 
 
-void prodevian::finalize()
+::e_status prodevian::finalize()
 {
 
    m_evUpdateScreen.SetEvent();
@@ -305,7 +319,9 @@ void prodevian::finalize()
 
    m_synchronizationa.clear();
    
-   ::thread::finalize();
+   auto estatus = ::thread::finalize();
+
+   return estatus;
 
 }
 
@@ -327,7 +343,7 @@ bool prodevian::prodevian_iteration()
    try
    {
 
-      synchronization_lock synchronizationlock(m_puserinteraction->mutex());
+      synchronous_lock synchronouslock(m_puserinteraction->mutex());
 
       if (strType.contains_ci("filemanager"))
       {
@@ -360,7 +376,7 @@ bool prodevian::prodevian_iteration()
 
          bHasProdevian = m_puserinteraction->has_prodevian();
 
-         //synchronization_lock synchronizationlock(m_pimpl->mutex());
+         //synchronous_lock synchronouslock(m_pimpl->mutex());
 
       }
 
@@ -434,7 +450,7 @@ bool prodevian::prodevian_iteration()
             return true;
 
          }
-         else if (!this->thread_get_run())
+         else if (!this->task_get_run())
          {
 
             return false;
@@ -467,7 +483,7 @@ bool prodevian::prodevian_iteration()
 
          }
 
-         if (!this->thread_get_run())
+         if (!this->task_get_run())
          {
 
             return false;
@@ -523,7 +539,7 @@ bool prodevian::prodevian_iteration()
 
    m_nanosNow = get_nanos();
 
-   if (!this->thread_get_run())
+   if (!this->task_get_run())
    {
 
       return false;
@@ -682,7 +698,7 @@ bool prodevian::prodevian_iteration()
 
    }
 
-   if (!this->thread_get_run())
+   if (!this->task_get_run())
    {
 
       return false;
@@ -734,7 +750,7 @@ bool prodevian::prodevian_iteration()
 
    }
 
-   if (!this->thread_get_run())
+   if (!this->task_get_run())
    {
 
       return false;
@@ -782,7 +798,7 @@ bool prodevian::prodevian_iteration()
       if (uDiff > 1'000'000'000LL)
       {
 
-         m_iaFrame.remove_at(i);
+         m_iaFrame.erase_at(i);
 
       }
       else
@@ -871,7 +887,7 @@ bool prodevian::prodevian_iteration()
       try
       {
 
-         synchronization_lock synchronizationlock(m_puserinteraction->mutex());
+         synchronous_lock synchronouslock(m_puserinteraction->mutex());
 
          if(!m_puserinteraction)
          {
@@ -909,7 +925,7 @@ bool prodevian::prodevian_iteration()
 
       //#endif
 
-         if (!::thread_get_run())
+         if (!::task_get_run())
          {
 
             return;
@@ -937,7 +953,7 @@ bool prodevian::prodevian_iteration()
          if (!m_puserinteraction->m_bLockWindowUpdate)
          {
 
-            synchronizationlock.unlock();
+            synchronouslock.unlock();
 
             ::draw2d::graphics_pointer pgraphicsNull(e_create);
 
@@ -945,7 +961,7 @@ bool prodevian::prodevian_iteration()
 
             m_puserinteraction->sketch_to_design(pgraphicsNull, bUpdateBuffer, bUpdateWindow);
 
-            synchronizationlock.lock();
+            synchronouslock.lock();
 
             if(!m_puserinteraction)
             {
@@ -954,7 +970,7 @@ bool prodevian::prodevian_iteration()
 
             }
 
-            if (!this->thread_get_run())
+            if (!this->task_get_run())
             {
 
                return;
@@ -1050,7 +1066,7 @@ bool prodevian::prodevian_iteration()
          if (bDraw && m_pimpl)
          {
 
-            synchronizationlock.unlock();
+            synchronouslock.unlock();
 
             m_millisBeforeDrawing.Now();
 
@@ -1243,6 +1259,6 @@ bool prodevian::prodevian_iteration()
 prodevian::~prodevian()
 {
 
-   m_pinteraction->remove_prodevian(this);
+   m_pinteraction->erase_prodevian(this);
 
 }

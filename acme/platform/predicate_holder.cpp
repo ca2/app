@@ -19,7 +19,7 @@ void predicate_array::run_all()
    for(auto & pred : *this)
    {
 
-      if(!::thread_get_run())
+      if(!::task_get_run())
       {
 
          break;

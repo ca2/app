@@ -6,7 +6,7 @@ namespace sip
 {
 
 
-   request::request(::layered * pobjectContext) :
+   request::request(::object * pobject) :
       ::object(pobject),
       transaction(pobject),
       m_file(pobject),
@@ -17,11 +17,11 @@ namespace sip
 
 
    request::request(const request& src) :
-      ::object(((request&)src).get_context_application()),
+      ::object(((request&)src).get_application()),
       transaction(src),
       m_null(src.m_null),
-      m_file(((request&) src).get_context_application()),
-      m_form(((request&) src).get_context_application())
+      m_file(((request&) src).get_application()),
+      m_form(((request&) src).get_application())
    {
 
       m_file = src.m_file;
@@ -79,7 +79,7 @@ namespace sip
       m_form.clear();
       if(attrs().has_property("request_uri"))
       {
-         attr("query_string") = System->url().object_get_query(attr("request_uri"));
+         attr("query_string") = purl->object_get_query(attr("request_uri"));
          string str = attrs()["query_string"];
          m_form.parse_query_string(str);
       }
@@ -118,7 +118,7 @@ namespace sip
 
       //   m_file = pointer<IFile>(nullptr);
       m_form.clear();
-      m_cookies.remove_all();
+      m_cookies.erase_all();
       file().Truncate(0);
    }
 

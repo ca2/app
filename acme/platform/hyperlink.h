@@ -15,8 +15,9 @@ public:
    virtual ~hyperlink();
 
 
-   static bool open_link(string strLink, string strProfile = "", string strTarget = "");
-   static void open_profile_link(string strUrl, string strProfile, string strTarget);
+   virtual ::e_status run() override;
+   //bool open_link(string strLink, string strProfile = "", string strTarget = "");
+   //void open_profile_link(string strUrl, string strProfile, string strTarget);
    //virtual void sync_open_profile_link(string strUrl, string strProfile, string strTarget);
 
 

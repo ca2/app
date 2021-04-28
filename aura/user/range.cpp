@@ -77,8 +77,8 @@ namespace user
    }
 
 
-   // remove the specified item
-   bool range::remove_item(index iItem)
+   // erase the specified item
+   bool range::erase_item(index iItem)
    {
       for (index i = 0; i < m_itemrangea.get_size();)
       {
@@ -90,7 +90,7 @@ namespace user
                itemrange.set_lower_bound(itemrange.get_lower_bound() + 1);
                if (itemrange.get_lower_bound() > itemrange.get_upper_bound())
                {
-                  m_itemrangea.remove_at(i);
+                  m_itemrangea.erase_at(i);
                   continue;
                }
             }
@@ -107,7 +107,7 @@ namespace user
                itemrangeU = itemrange;
                itemrangeL.set_upper_bound(iItem - 1);
                itemrangeU.set_lower_bound(iItem + 1);
-               m_itemrangea.remove_at(i);
+               m_itemrangea.erase_at(i);
                m_itemrangea.add(itemrangeL);
                m_itemrangea.add(itemrangeU);
                continue;
@@ -118,10 +118,10 @@ namespace user
       return false;
    }
 
-   // remove the specified item and offset remaining items.
+   // erase the specified item and offset remaining items.
    bool range::OnRemoveItem(index iItem)
    {
-      remove_item(iItem);
+      erase_item(iItem);
       // All ranges that has item "iItem + 1",
       // must have all items greater or equal "iItem + 1"
       // decremented by one
@@ -281,7 +281,7 @@ namespace user
 
    void range::clear()
    {
-      m_itemrangea.remove_all();
+      m_itemrangea.erase_all();
    }
 
    void range::add_item(const item_range& itemrange)

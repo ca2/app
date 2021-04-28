@@ -27,7 +27,7 @@ namespace html
             if (m_pcombo->is_window())
             {
 
-               m_pcombo->DestroyWindow();
+               m_pcombo->destroy_window();
 
             }
 

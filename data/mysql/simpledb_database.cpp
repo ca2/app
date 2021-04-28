@@ -5,7 +5,7 @@ namespace simpledb
 {
 
 
-   database::database(::layered * pobjectContext) :
+   database::database(::object * pobject) :
       ::object(pobject),
       m_spfileMeta(pobject),
       m_xmldocumentMeta(pobject)
@@ -16,7 +16,7 @@ namespace simpledb
    {
       string strMetaPath;
 
-      strMetaPath = Context.dir().install("database/" + db, "meta.xml");
+      strMetaPath = pcontext->m_papexcontext->dir().install("database/" + db, "meta.xml");
 
       try
       {
@@ -25,7 +25,7 @@ namespace simpledb
       }
       catch(...)
       {
-         strMetaPath = Context.dir().appdata("database/" + db, "meta.xml");
+         strMetaPath = pcontext->m_papexcontext->dir().appdata("database/" + db, "meta.xml");
          try
          {
             if(!m_spfileMeta->open(strMetaPath, ::file::e_open_binary | ::file::e_open_read_write | ::file::e_open_share_exclusive))

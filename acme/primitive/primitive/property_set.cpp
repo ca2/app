@@ -1,6 +1,7 @@
 #include "framework.h"
-//#include "acme/platform/app_core.h"
 #include "acme/platform/static_start.h"
+#include "acme/platform/static_start_internal.h"
+
 
 #ifdef LINUX
 #include <locale.h>
@@ -226,7 +227,7 @@ bool property_set::contains_value(const char * psz, ::count countMin, ::count co
 }
 
 
-bool property_set::remove_first_value_ci(const ::payload & payload)
+bool property_set::erase_first_value_ci(const ::payload & payload)
 {
 
    property * pproperty = find_value_ci(payload);
@@ -234,7 +235,7 @@ bool property_set::remove_first_value_ci(const ::payload & payload)
    if(pproperty != nullptr)
    {
 
-      return remove_by_name(pproperty->m_id);
+      return erase_by_name(pproperty->m_id);
 
    }
 
@@ -243,7 +244,7 @@ bool property_set::remove_first_value_ci(const ::payload & payload)
 }
 
 
-bool property_set::remove_first_value_ci(const char * pcsz)
+bool property_set::erase_first_value_ci(const char * pcsz)
 {
 
    property * pproperty = find_value_ci(pcsz);
@@ -251,7 +252,7 @@ bool property_set::remove_first_value_ci(const char * pcsz)
    if(pproperty != nullptr)
    {
 
-      return remove_by_name(pproperty->m_id);
+      return erase_by_name(pproperty->m_id);
 
    }
 
@@ -260,7 +261,7 @@ bool property_set::remove_first_value_ci(const char * pcsz)
 }
 
 
-bool property_set::remove_first_value(const ::payload & payload)
+bool property_set::erase_first_value(const ::payload & payload)
 {
 
    property * pproperty = find_value(payload);
@@ -268,7 +269,7 @@ bool property_set::remove_first_value(const ::payload & payload)
    if(pproperty != nullptr)
    {
 
-      return remove_by_name(pproperty->m_id);
+      return erase_by_name(pproperty->m_id);
 
    }
 
@@ -277,7 +278,7 @@ bool property_set::remove_first_value(const ::payload & payload)
 }
 
 
-bool property_set::remove_first_value(const char * pcsz)
+bool property_set::erase_first_value(const char * pcsz)
 {
 
    property * pproperty = find_value(pcsz);
@@ -285,7 +286,7 @@ bool property_set::remove_first_value(const char * pcsz)
    if(pproperty != nullptr)
    {
 
-      return remove_by_name(pproperty->m_id);
+      return erase_by_name(pproperty->m_id);
 
    }
 
@@ -294,7 +295,7 @@ bool property_set::remove_first_value(const char * pcsz)
 }
 
 
-::count property_set::remove_value_ci(const ::payload & payload, ::count countMin, ::count countMax)
+::count property_set::erase_value_ci(const ::payload & payload, ::count countMin, ::count countMax)
 {
 
    ::count count = 0;
@@ -302,7 +303,7 @@ bool property_set::remove_first_value(const char * pcsz)
    if (contains_value_ci(payload, countMin, countMax))
    {
 
-      while (conditional(countMax >= 0, count < countMax) && (remove_first_value_ci(payload)))
+      while (conditional(countMax >= 0, count < countMax) && (erase_first_value_ci(payload)))
       {
 
          count++;
@@ -316,7 +317,7 @@ bool property_set::remove_first_value(const char * pcsz)
 }
 
 
-::count property_set::remove_value_ci(const char * psz, ::count countMin, ::count countMax)
+::count property_set::erase_value_ci(const char * psz, ::count countMin, ::count countMax)
 {
 
    ::count count = 0;
@@ -324,7 +325,7 @@ bool property_set::remove_first_value(const char * pcsz)
    if(contains_value_ci(psz,countMin,countMax))
    {
 
-      while(conditional(countMax >= 0,count < countMax) && remove_first_value_ci(psz))
+      while(conditional(countMax >= 0,count < countMax) && erase_first_value_ci(psz))
       {
 
          count++;
@@ -338,7 +339,7 @@ bool property_set::remove_first_value(const char * pcsz)
 }
 
 
-::count property_set::remove_value(const ::payload & payload, ::count countMin, ::count countMax)
+::count property_set::erase_value(const ::payload & payload, ::count countMin, ::count countMax)
 {
 
    ::count count = 0;
@@ -346,7 +347,7 @@ bool property_set::remove_first_value(const char * pcsz)
    if(contains_value(payload,countMin,countMax))
    {
 
-      while(conditional(countMax >= 0,count < countMax && remove_first_value(payload)))
+      while(conditional(countMax >= 0,count < countMax && erase_first_value(payload)))
       {
 
          count++;
@@ -360,7 +361,7 @@ bool property_set::remove_first_value(const char * pcsz)
 }
 
 
-::count property_set::remove_value(const char * psz, ::count countMin, ::count countMax)
+::count property_set::erase_value(const char * psz, ::count countMin, ::count countMax)
 {
 
    ::count count = 0;
@@ -368,7 +369,7 @@ bool property_set::remove_first_value(const char * pcsz)
    if(contains_value(psz,countMin,countMax))
    {
 
-      while(conditional(countMax >= 0,count < countMax) && remove_first_value(psz))
+      while(conditional(countMax >= 0,count < countMax) && erase_first_value(psz))
       {
 
          count++;
@@ -401,7 +402,7 @@ bool property_set::remove_first_value(const char * pcsz)
 
       }
 
-      remove_at(iFind);
+      erase_at(iFind);
 
       c++;
 
@@ -776,7 +777,9 @@ void property_set::parse_json(const string & strJson)
 {
 
 #ifdef LINUX
+
    uselocale(::acme::g_localeC);
+
 #endif
 
    const char * pszJson = strJson;
@@ -1008,17 +1011,17 @@ string property_set::_001Replace(const string & str) const
 
 }
 
-::count property_set::remove_by_name(const id & idName)
+::count property_set::erase_by_name(const id & idName)
 {
    return unset(idName);
 }
 
-::count property_set::remove_by_name(string_array & stra)
+::count property_set::erase_by_name(string_array & stra)
 {
    ::count count = 0;
    for(i32 i = 0; i < stra.get_count(); i++)
    {
-      count += remove_by_name(stra[i]);
+      count += erase_by_name(stra[i]);
    }
    return count;
 }
@@ -1056,7 +1059,7 @@ string property_set::_001Replace(const string & str) const
 void property_set::clear()
 {
 
-   remove_all();
+   erase_all();
 
 }
 
@@ -1190,10 +1193,10 @@ property_set& property_set::operator = (const ::payload & payload)
       ::papaya::array::copy((property_ptra&)*this, (const property_ptra&)payload.propset());
 
    }
-   else if (payload.m_etype == type_prop)
+   else if (payload.m_etype == e_type_prop)
    {
 
-      remove_all();
+      erase_all();
 
       set_at(payload.m_pprop->m_id, *payload.m_pprop);
 
@@ -1370,7 +1373,7 @@ property_set & property_set::operator |= (const property_set & set)
 //property_set & property_set::operator = (const pair_set_interface & set)
 //{
 //
-//   remove_all();
+//   erase_all();
 //
 //   i32 iCount = set.pair_set_interface_get_count();
 //
@@ -1398,7 +1401,7 @@ property_set & property_set::operator |= (const property_set & set)
 //property_set & property_set::operator = (const str_str_interface & set)
 //{
 //
-//   remove_all();
+//   erase_all();
 //
 //   i32 iCount = set.str_str_interface_get_count();
 //
@@ -1891,7 +1894,7 @@ namespace handle
    //localini::localini(::matter * pobject)
    //{
 
-   //   auto preader = Ctx(pobject).file().get_reader(::dir::localconfig() / "this.ini");
+   //   auto preader = Ctx(pobject).file().get_reader(pacmedir->localconfig() / "this.ini");
 
    //   if (preader)
    //   {

@@ -57,7 +57,7 @@ namespace user
       virtual void scroll_horz(int nPos);
 
 
-      DECL_GEN_SIGNAL(_001OnHScroll);
+      DECLARE_MESSAGE_HANDLER(_001OnHScroll);
 
       virtual int get_final_x_scroll_bar_width() override;
 
@@ -118,8 +118,8 @@ namespace user
       virtual bool validate_viewport_offset(point & point) override;
 
 
-      DECL_GEN_SIGNAL(_001OnVScroll);
-      DECL_GEN_SIGNAL(_001OnMouseWheel);
+      DECLARE_MESSAGE_HANDLER(_001OnVScroll);
+      DECLARE_MESSAGE_HANDLER(_001OnMouseWheel);
 
 
       virtual int get_final_y_scroll_bar_width() override;
@@ -144,7 +144,7 @@ namespace user
 
 
       scroll();
-      scroll(::layered * pobjectContext);
+      scroll(::object * pobject);
       virtual ~scroll();
 
 

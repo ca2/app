@@ -6,7 +6,8 @@ namespace aura
 
 
    class CLASS_DECL_AURA system:
-      virtual public ::aqua::system
+      virtual public ::aqua::system,
+      virtual public ::aura::context
    {
    public:
 
@@ -55,7 +56,7 @@ namespace aura
       //thread_map                                         m_threadmap;
       //thread_id_map                                      m_threadidmap;
       //::mutex                                            m_mutexThreadOn;
-      //map < ithread_t, ithread_t >                        m_mapThreadOn;
+      //map < itask_t, itask_t >                        m_mapThreadOn;
 
       ::mutex                                            m_mutexUserChildren;
       __composite(class imaging)                         m_pimaging;
@@ -77,9 +78,9 @@ namespace aura
       __composite(::gpu::approach)                       m_pgpu;
 
       //::mutex                                            m_mutexLibrary;
-      //string_map < __pointer(::apex::library) >          m_mapLibrary;
+      //string_map < __pointer(::acme::library) >          m_mapLibrary;
       //string_map < PFN_NEW_AURA_LIBRARY >                m_mapNewAuraLibrary;
-      //string_map < __pointer(::apex::library) >          m_mapLibCall;
+      //string_map < __pointer(::acme::library) >          m_mapLibCall;
 
 
 
@@ -183,8 +184,8 @@ namespace aura
       //critical_section                                   m_csEnumText;
       //string_map < i64_map < string > >                  m_mapEnumToText;
       //string_map < string_map < i64 > >                  m_mapTextToEnum;
-      //thread_group_map                                   m_threadgroupmap;
-      //thread_tool_map                                    m_threadtoolmap;
+      //task_group_map                                   m_taskgroupmap;
+      //task_tool_map                                    m_tasktoolmap;
 
 
       //stridsp(type)                                      m_typemap;
@@ -197,7 +198,7 @@ namespace aura
       //double_array                                       m_daLon;
       //double_array                                       m_daLat;
 
-      //string_map < __pointer(::apex::library) >          m_mapLibrary;
+      //string_map < __pointer(::acme::library) >          m_mapLibrary;
 
       //string_map < __pointer(openweather_city) >                   m_mapCity;
 
@@ -248,9 +249,9 @@ namespace aura
       //bool                                         m_bProcessInitialize;
       //bool                                         m_bProcessInitializeResult;
 
-      strid_map < ::apex::library* >                  m_idmapCreateViewLibrary;
+      strid_map < ::acme::library* >                  m_idmapCreateViewLibrary;
 
-      __pointer_array(::apex::library)          m_libraryspa;
+      __pointer_array(::acme::library)          m_libraryspa;
 
 #ifdef _UWP
 
@@ -267,13 +268,18 @@ namespace aura
 
       void common_construct();
 
-      virtual ::e_status  initialize(::layered * pobjectContext) override;
+      virtual ::e_status  initialize(::object * pobject) override;
+
+      virtual void on_add_session(::apex::session* papexsession) override;
 
       virtual ::e_status init() override;
       //virtual ::e_status init_instance() override;
       //virtual void term_instance() override;
       virtual ::e_status inline_init() override;
       virtual ::e_status inline_term() override;
+
+
+      virtual void on_finish_launching();
 
 
 //#ifdef LINUX
@@ -287,7 +293,7 @@ namespace aura
 //      virtual void term_system() override;
 
 
-      virtual ::e_status start() override;
+      virtual ::e_status system_main() override;
 
       virtual void term() override;
 
@@ -295,22 +301,22 @@ namespace aura
 
       //::url::department                           & url()     { return m_urldepartment; }
 
-      //::thread * get_task(ithread_t ithread);
-      //ithread_t get_thread_id(::thread * pthread);
-      //void set_thread(ithread_t ithread, ::thread * pthread);
-      //void unset_thread(ithread_t ithread, ::thread * pthread);
+      //::thread * get_task(itask_t itask);
+      //itask_t get_thread_id(::thread * pthread);
+      //void set_thread(itask_t itask, ::thread * pthread);
+      //void unset_thread(itask_t itask, ::thread * pthread);
 
-      ::aura::estamira& estamira();
+      ::aura::estamira * estamira();
+
+
+      inline ::aura::session* get_session() { return m_pcontext && m_pcontext->m_papexsession ? m_pcontext->m_papexsession->m_paurasession : nullptr; }
+      inline ::aura::node* node() { return m_pnode ? m_pnode->m_pauranode : nullptr; }
 
       inline ::gpu::approach* get_gpu() { if (!m_pgpu) create_gpu(); return m_pgpu.get(); };
       inline ::gpu::approach* gpu() { return m_pgpu.get(); };
       virtual ::e_status create_gpu();
 
-      ::thread_group * thread_group(::e_priority epriority = ::priority_none);
-
-      ::thread_tool * thread_tool(::enum_thread_tool etool);
-
-
+      
       //virtual string install_get_platform() override;
       //virtual void install_set_platform(const char * pszPlatform) override;
       //virtual string install_get_version() override;
@@ -331,11 +337,15 @@ namespace aura
       //virtual i32 install_start(const char * pszCommandLine,const char * pszBuild) override;
       //virtual i32 install_progress_app_add_up(int iAddUp = 1) override;
 
+      virtual ::e_status node_factory_exchange() override;
+
       virtual ::e_status process_init() override;
 
       virtual ::e_status init1() override;
 
       virtual ::e_status init2() override;
+
+      virtual ::e_status initialize_context() override;
 
       //virtual ::e_status defer_xml();
 
@@ -350,7 +360,7 @@ namespace aura
       virtual string crypto_md5_text(const string & str) override;
 
 
-      virtual __pointer(::extended::future < ::conversation >) message_box(const char * pszMessage, const char * pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok) override;
+      virtual __pointer(::extended::future < ::conversation >) _message_box(::object * pobject, const char * pszMessage, const char * pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok) override;
       //virtual ::enum_dialog_result message_box_timeout(const char * pszMessage, const char * pszTitle = nullptr, const ::duration & durationTimeout = ::duration::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, const ::future & process = ::future()) override;
 
 
@@ -358,7 +368,7 @@ namespace aura
 
       //virtual __pointer(::aura::session) on_create_session() override;
 
-      virtual void on_request(::create * pcreate) override;
+      //virtual void on_request(::create * pcreate) override;
 
       //virtual void construct(const char * pszAppId);
 
@@ -367,14 +377,14 @@ namespace aura
       //virtual i32 exit_instance();
       //virtual bool finalize();
 
-      virtual void finalize() override;
+      virtual ::e_status finalize() override;
 
 
 
 
       //virtual bool verb();
 
-      virtual ::e_status main_user_async(const ::routine & routine, ::e_priority epriority = priority_normal) override;
+      //virtual ::e_status main_user_async(const ::routine & routine, ::e_priority epriority = priority_normal) override;
 
 
       //virtual bool process_initialize();
@@ -394,7 +404,7 @@ namespace aura
 
 
 
-      //virtual string dir_appmatter_locator(::layered * pobjectContext);
+      //virtual string dir_appmatter_locator(::object * pobject);
 
 
       //virtual void hist_hist(const char * psz);
@@ -413,17 +423,17 @@ namespace aura
       virtual string get_locale_schema_dir() override;
 
 
-      //virtual ::e_status     initialize_system(::layered * pobjectContext, app_core * pappcore);
+      //virtual ::e_status     initialize_system(::object * pobject, app_core * pappcore);
 
 
-      //__pointer(::thread_tools) create_thread_tools(::enum_thread_tool etool);
+      //__pointer(::thread_tools) create_thread_tools(::enum_task_tool etool);
       //thread_tools * tools(::e_priority epriority);
       //thread_toolset * toolset(e_tool etool);
 
       //class ::user::window_map                     &  window_map();
 
 
-      //__pointer(::apex::library) open_component_library(const char* pszComponent, const char* pszImplementation);
+      //__pointer(::acme::library) open_component_library(const char* pszComponent, const char* pszImplementation);
 
       //::e_status do_factory_exchange(const char* pszComponent, const char* pszImplementation);
 
@@ -513,18 +523,18 @@ namespace aura
       }
 
 
-      virtual void browser(string strUrl, string strBrowser, string strProfile, string strTarget) override;
-      virtual void open_profile_link(string strUrl, string strProfile, string strTarget) override;
-      virtual void open_link(string strUrl, string strProfile, string strTarget) override;
-      virtual void open_url(string strUrl, string strProfile, string strTarget) override;
+      //virtual ::e_status browser(string strUrl, string strBrowser, string strProfile, string strTarget) override;
+      //virtual ::e_status open_profile_link(string strUrl, string strProfile, string strTarget) override;
+      //virtual ::e_status open_link(string strUrl, string strProfile, string strTarget) override;
+      //virtual ::e_status open_url(string strUrl, string strProfile, string strTarget) override;
 
 
-      virtual void __set_thread_on() override;
+      //virtual void __set_thread_on() override;
 
-      virtual string get_local_mutex_name(const char * pszAppName) override;
-      virtual string get_local_id_mutex_name(const char * pszAppName, const char * pszId) override;
-      virtual string get_global_mutex_name(const char * pszAppName) override;
-      virtual string get_global_id_mutex_name(const char * pszAppName, const char * pszId) override;
+      //virtual string get_local_mutex_name(const char * pszAppName) override;
+      //virtual string get_local_id_mutex_name(const char * pszAppName, const char * pszId) override;
+      //virtual string get_global_mutex_name(const char * pszAppName) override;
+      //virtual string get_global_id_mutex_name(const char * pszAppName, const char * pszId) override;
 
 
       //template < class T >
@@ -544,7 +554,7 @@ namespace aura
       //   if(idType.is_empty())
       //      return nullptr;
 
-      //   synchronization_lock synchronizationlock(&m_mutexFactory);
+      //   synchronous_lock synchronouslock(&m_mutexFactory);
 
       //   return m_typemap[idType].m_p;
 
@@ -558,24 +568,24 @@ namespace aura
 
       //virtual ::e_status initialize_sockets();
 
-      ::image_pointer get_cache_image(::layered * pobjectContext, const ::payload & varFile);
-      ::image_pointer matter_cache_image(::layered * pobjectContext, const ::string & strMatter);
+      ::image_pointer get_cache_image(::object * pobject, const ::payload & varFile);
+      ::image_pointer matter_cache_image(::object * pobject, const ::string & strMatter);
 
-      ::image_pointer get_image(::layered * pobjectContext, const ::payload & varFile, bool bCache = true, bool bSync = false);
-      ::image_pointer matter_image(::layered * pobjectContext, const string & strMatter, bool bCache = true, bool bSync = false);
+      ::image_pointer get_image(::object * pobject, const ::payload & varFile, bool bCache = true, bool bSync = false);
+      ::image_pointer matter_image(::object * pobject, const string & strMatter, bool bCache = true, bool bSync = false);
 
-      virtual bool on_get_thread_name(string& strThreadName) override;
+      //virtual bool on_get_thread_name(string& strThreadName) override;
 
-      virtual ::apex::library * on_get_library(const char * pszLibrary) override;
+      //virtual ::acme::library * on_get_library(const char * pszLibrary) override;
 
-      //virtual ::apex::library * get_library(const char * pszLibrary, bool bOpenCa2 = false) override;
+      //virtual ::acme::library * get_library(const char * pszLibrary, bool bOpenCa2 = false) override;
 
 
-      virtual ::u32 os_post_to_all_threads(const ::id & id,wparam wparam = 0,lparam lparam = 0) override;
+      //virtual ::u32 os_post_to_all_threads(const ::id & id,wparam wparam = 0,lparam lparam = 0) override;
 
 
       //virtual void session_add(index iEdge, ::apex::session * psession) overr;
-      //virtual void session_remove(index iEdge);
+      //virtual void session_erase(index iEdge);
 
 
 
@@ -603,7 +613,7 @@ namespace aura
 
       //virtual ::e_status init2();
 
-      virtual ::e_status post_create_requests() override;
+      //virtual ::e_status post_creation_requests() override;
 
       //virtual void term_system();
 
@@ -613,7 +623,7 @@ namespace aura
 
       //virtual void term();
 
-      virtual void TermSystem() override;
+      //virtual void TermSystem() override;
 
 
       virtual void process_term() override;
@@ -624,40 +634,40 @@ namespace aura
 
 
 
-      static inline ::id id(const ::std::type_info & info);
+  /*    static inline ::id id(const ::std::type_info & info);
       static inline ::id id(const char * psz);
       static inline ::id id(const string & str);
       static inline ::id id(i64 i);
       static inline ::id_space & id();
       inline ::id id(const ::payload & payload);
-      inline ::id id(const property & prop);
+      inline ::id id(const property & prop);*/
 
 
-      virtual i32 _001OnDebugReport(i32 i1,const char * psz1,i32 i2,const char * psz2,const char * psz3,va_list args) override;
-      virtual i32 _debug_logging_report(i32 iReportType, const char * pszFilename, i32 iLinenumber, const char * iModuleName, const char * pszFormat, va_list list) override;
-      virtual bool assert_failed_line(const char * pszFileName,i32 iLine) override;
+      //virtual i32 _001OnDebugReport(i32 i1,const char * psz1,i32 i2,const char * psz2,const char * psz3,va_list args) override;
+      //virtual i32 _debug_logging_report(i32 iReportType, const char * pszFilename, i32 iLinenumber, const char * iModuleName, const char * pszFormat, va_list list) override;
+      //virtual bool assert_failed_line(const char * pszFileName,i32 iLine) override;
 
-      virtual bool on_assert_failed_line(const char * pszFileName,i32 iLine) override;
-
-
-
+      //virtual bool on_assert_failed_line(const char * pszFileName,i32 iLine) override;
 
 
 
-      virtual ::e_status initialize_log(const char * pszId) override;
 
 
-      virtual void appa_load_string_table() override;
-      virtual void appa_set_locale(const char * pszLocale, const ::action_context & action_context) override;
-      virtual void appa_set_schema(const char * pszStyle, const ::action_context & action_context) override;
 
-      virtual bool assert_running_global(const char * pszAppName,const char * pszId = nullptr) override;
-      virtual bool assert_running_local(const char * pszAppName,const char * pszId = nullptr) override;
+      //virtual ::e_status initialize_log(const char * pszId) override;
+
+
+      //virtual void appa_load_string_table() override;
+      //virtual void appa_set_locale(const char * pszLocale, const ::action_context & action_context) override;
+      //virtual void appa_set_schema(const char * pszStyle, const ::action_context & action_context) override;
+
+      //virtual bool assert_running_global(const char * pszAppName,const char * pszId = nullptr) override;
+      //virtual bool assert_running_local(const char * pszAppName,const char * pszId = nullptr) override;
 
       //__pointer(application) assert_running(const char * pszAppId);
 
-      virtual ::count get_application_count() override;
-
+  /*    virtual ::count get_application_count() override;
+*/
 
       //virtual string crypto_md5_text(const string & str);
 
@@ -671,23 +681,23 @@ namespace aura
 
       //virtual ::e_status start() override;
 
-      virtual ::file::path local_get_matter_cache_path() override;
-      virtual ::file::path local_get_matter_cache_path(string strMatter) override;
-      virtual ::file::path local_get_matter_path() override;
-      virtual ::file::path local_get_matter_path(string strMatter) override;
+      //virtual ::file::path local_get_matter_cache_path() override;
+      //virtual ::file::path local_get_matter_cache_path(string strMatter) override;
+      //virtual ::file::path local_get_matter_path() override;
+      //virtual ::file::path local_get_matter_path(string strMatter) override;
 
-      virtual bool find_applications_from_cache() override;
-      virtual bool find_applications_to_cache(bool bSave = true) override;
-      virtual bool map_application_library(const char * pszLibrary) override;
+      //virtual bool find_applications_from_cache() override;
+      //virtual bool find_applications_to_cache(bool bSave = true) override;
+      //virtual bool map_application_library(const char * pszLibrary) override;
 
 
-      virtual void install_progress_add_up(int iAddUp = 1) override;
+      //virtual void install_progress_add_up(int iAddUp = 1) override;
 
-      virtual ::e_status create_session(index iEdge = 0) override;
+      //virtual ::e_status create_session(index iEdge = 0) override;
 
-      virtual __transport(::apex::session) on_create_session(index iEdge) override;
+      /*virtual __transport(::apex::session) on_create_session(index iEdge) override;
 
-      virtual ::apex::session * session(index iEdge = 0) override;
+      virtual ::apex::session * session(index iEdge = 0) override;*/
 
       //virtual void on_request(::create * pcreate) override;
 
@@ -696,8 +706,8 @@ namespace aura
       //virtual int pcre_add_tokens(string_array& stra, const string& strTopic, const string& strRegexp, int nCount);
 
 
-      virtual string get_system_platform() override;
-      virtual string get_system_configuration() override;
+      //virtual string get_system_platform() override;
+      //virtual string get_system_configuration() override;
       //virtual string get_latest_build_number(const char * pszConfiguration, const char * pszAppId);
 
 
@@ -709,19 +719,19 @@ namespace aura
 
       //#endif
 
+      virtual ::e_status on_start_system() override;
+      //virtual void on_start_find_applications_from_cache() override;
+      //virtual void on_end_find_applications_from_cache(stream & is) override;
 
-      virtual void on_start_find_applications_from_cache() override;
-      virtual void on_end_find_applications_from_cache(stream & is) override;
+      //virtual void on_end_find_applications_to_cache(stream & os) override;
 
-      virtual void on_end_find_applications_to_cache(stream & os) override;
-
-      virtual void on_map_application_library(::apex::library & library) override;
+      //virtual void on_map_application_library(::acme::library & library) override;
 
       //virtual void defer_check_exit();
 
 
 
-      virtual ::e_status do_request(::create * pcreate) override;
+      //virtual ::e_status do_request(::create * pcreate) override;
 
       //virtual void defer_check_openweather_city_list();
 
@@ -729,27 +739,27 @@ namespace aura
       //virtual index openweather_find_city2(string strQuery, string & strCit, i64 & iId, double & dLat, double & dLon);
       //virtual index openweather_find_city2(string strQ1, string strQ2, string & strCit, i64 & iId, double & dLat, double & dLon, bool bPrefix);
 
-#ifdef ANDROID
-//#pragma message("at macos??")
-      virtual bool android_set_user_wallpaper(string strUrl) override;
-      virtual bool android_get_user_wallpaper(string & strUrl) override;
-
-#endif
-
-      virtual bool defer_accumulate_on_open_file(string_array stra, string strExtra) override;
-
-      virtual bool merge_accumulated_on_open_file(::create * pcreate) override;
-
-      virtual bool on_open_file(::payload varFile, string strExtra) override;
-
-      virtual LPWAVEOUT waveout_open(int iChannel, LPAUDIOFORMAT pformat, LPWAVEOUT_CALLBACK pcallback);
+//#ifdef ANDROID
+////#pragma message("at macos??")
+//      virtual bool android_set_user_wallpaper(string strUrl) override;
+//      virtual bool android_get_user_wallpaper(string & strUrl) override;
+//
+//#endif
+//
+//      virtual bool defer_accumulate_on_open_file(string_array stra, string strExtra) override;
+//
+//      virtual bool merge_accumulated_on_open_file(::create * pcreate) override;
+//
+//      virtual bool on_open_file(::payload varFile, string strExtra) override;
+//
+      //virtual LPWAVEOUT waveout_open(int iChannel, LPAUDIOFORMAT pformat, LPWAVEOUT_CALLBACK pcallback);
 
       //virtual bool initialize_native_window1();
 
       //virtual void * initialize_native_window2(const ::rectangle_i32 & rectangle);
 
 
-      virtual void on_os_text(e_os_text etext, string strText) override;
+      //virtual void on_os_text(e_os_text etext, string strText) override;
 
       //virtual ::user::interaction_impl * impl_from_handle(void * posdata);
       //virtual ::user::interaction * ui_from_handle(void * posdata);
@@ -757,10 +767,10 @@ namespace aura
 
 
 
-      virtual void on_extra(string str) override;
+      //virtual void on_extra(string str) override;
 
-      virtual string standalone_setting(string str) override;
-      virtual bool set_standalone_setting(string str, string strSetting) override;
+      //virtual string standalone_setting(string str) override;
+      //virtual bool set_standalone_setting(string str, string strSetting) override;
 
 
       //virtual void on_event(::u64 u, ::object * pobject) override;
@@ -774,10 +784,10 @@ namespace aura
 
 
 
-      virtual void __tracea(::matter * pcontextobject, enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz) override;
+      //virtual void __tracea(enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz) const override;
 
 
-      void chromium(string strUrl, string strBrowser, string strId, ::file::path path, string strProfile, string strParam);
+      //void chromium(string strUrl, string strBrowser, string strId, ::file::path path, string strProfile, string strParam);
 
       //void defer_create_firefox_profile(::file::path pathFirefox, string strProfileName, ::file::path pathProfile);
 
@@ -786,9 +796,9 @@ namespace aura
 
 
 
-      //virtual ::e_status  initialize_system(::object* pobjectContext, app_core* pappcore) override;
+      //virtual ::e_status  initialize_system(::object* pobject, app_core* pappcore) override;
 
-      virtual void discard_to_factory(__pointer(object) pca) override;
+ /*     virtual void discard_to_factory(__pointer(object) pca) override;*/
 
       //virtual bool is_system() const override;
 
@@ -824,13 +834,13 @@ namespace aura
       //virtual bool base_support() override;
 
 
-      DECL_GEN_SIGNAL(on_application_signal);
+      //DECLARE_MESSAGE_HANDLER(on_application_signal);
 
 
-      ::e_status set_history(::apex::history* phistory);
+      //::e_status set_history(::apex::history* phistory);
 
 
-      //__pointer(::apex::library) on_get_library(const char* pszLibrary) override;
+      //__pointer(::acme::library) on_get_library(const char* pszLibrary) override;
 
 
       //virtual ::aura::session *  get_platform(index iEdge,application_bias * pbiasCreation = nullptr);
@@ -869,8 +879,8 @@ namespace aura
 //
 //#endif
 
-      //bool sync_load_url(string& str, const char* pszUrl, ::account::user* puser = nullptr, ::http::cookies* pcookies = nullptr);
-      bool sync_load_url(string& str, const char* pszUrl,  ::http::cookies* pcookies = nullptr);
+      ////bool sync_load_url(string& str, const char* pszUrl, ::account::user* puser = nullptr, ::http::cookies* pcookies = nullptr);
+      //bool sync_load_url(string& str, const char* pszUrl,  ::http::cookies* pcookies = nullptr);
 
 
 
@@ -898,7 +908,7 @@ namespace aura
 
       virtual string get_host_location_url() override;
 
-      virtual ::e_status add_view_library(::apex::library* plibrary);
+      virtual ::e_status add_view_library(::acme::library* plibrary);
 
       //virtual void get_cursor_position(POINT_I32 * ppoint);
 
@@ -935,7 +945,7 @@ namespace aura
 
       //virtual void on_end_find_applications_to_cache(stream& os) override;
 
-      //virtual void on_map_application_library(::apex::library& library) override;
+      //virtual void on_map_application_library(::acme::library& library) override;
 
       //virtual void on_graphics_ready() override;
 
@@ -945,7 +955,7 @@ namespace aura
       //virtual ~system();
 
 
-      ///virtual ::e_status initialize_system(::object* pobjectContext, app_core* pappcore) override;
+      ///virtual ::e_status initialize_system(::object* pobject, app_core* pappcore) override;
 
 
       //virtual ::e_status process_init() override;
@@ -979,6 +989,9 @@ namespace aura
       virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
 
       virtual ::e_status initialize_estamira();
+
+
+      virtual void _001AddPacks(string_to_string& base64map, string& str);
 
 
       //virtual bool on_application_menu_action(const char * pszCommand);

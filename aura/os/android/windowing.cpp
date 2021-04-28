@@ -36,8 +36,8 @@ CLASS_DECL_AURA oswindow_data * oswindow_get_message_only_window(::user::interac
 //CLASS_DECL_AURA oswindow_data * oswindow_get(Display * pdisplay,Window window,Visual * pvisual = nullptr,int iDepth = -1,int iScreen = -1,Colormap colormap = None);
 //CLASS_DECL_AURA oswindow_data * oswindow_get(Window window);
 //CLASS_DECL_AURA oswindow oswindow_defer_get(Window w);
-//CLASS_DECL_AURA bool oswindow_remove(Display * pdisplay,Window window);
-CLASS_DECL_AURA bool oswindow_remove_message_only_window(::user::interaction_impl * puibaseMessageOnlyWindow);
+//CLASS_DECL_AURA bool oswindow_erase(Display * pdisplay,Window window);
+CLASS_DECL_AURA bool oswindow_erase_message_only_window(::user::interaction_impl * puibaseMessageOnlyWindow);
 
 
 namespace user
@@ -57,7 +57,7 @@ oswindow_data::oswindow_data()
 
    m_pmq = nullptr;
 
-   m_hthread = (hthread_t) nullptr;
+   m_htask = (htask_t) nullptr;
 
    m_pimpl = nullptr;
 
@@ -93,7 +93,7 @@ i32 oswindow_find_message_only_window(::user::interaction_impl * pimpl)
 
    }
 
-   synchronization_lock slOsWindow(oswindow_data::s_pmutex);
+   synchronous_lock slOsWindow(oswindow_data::s_pmutex);
 
    for (i32 i = 0; i < ::oswindow_data::s_pdataptra->get_count(); i++)
    {
@@ -117,7 +117,7 @@ i32 oswindow_find_message_only_window(::user::interaction_impl * pimpl)
 i32 oswindow_find(::user::interaction_impl * pimpl)
 {
 
-   synchronization_lock slOsWindow(::oswindow_data::s_pmutex);
+   synchronous_lock slOsWindow(::oswindow_data::s_pmutex);
 
    for (i32 i = 0; i < ::oswindow_data::s_pdataptra->get_count(); i++)
    {
@@ -138,7 +138,7 @@ oswindow_data * oswindow_get_message_only_window(::user::interaction_impl * pimp
    if (pimpl == nullptr)
       return nullptr;
 
-   synchronization_lock slOsWindow(::oswindow_data::s_pmutex);
+   synchronous_lock slOsWindow(::oswindow_data::s_pmutex);
 
    iptr iFind = oswindow_find_message_only_window(pimpl);
 
@@ -165,7 +165,7 @@ oswindow_data * oswindow_get_message_only_window(::user::interaction_impl * pimp
 oswindow_data * oswindow_get(::user::interaction_impl * pimpl)
 {
 
-   synchronization_lock slOsWindow(::oswindow_data::s_pmutex);
+   synchronous_lock slOsWindow(::oswindow_data::s_pmutex);
 
    iptr iFind = oswindow_find(pimpl);
 
@@ -196,7 +196,7 @@ m_pdata = nullptr;
 oswindow::oswindow(::user::interaction * pinteraction)
 {
 
-synchronization_lock slOsWindow(s_pmutex);
+synchronous_lock slOsWindow(s_pmutex);
 
 m_pdata = get_message_only_window(pinteraction);
 
@@ -207,7 +207,7 @@ m_pdata = get_message_only_window(pinteraction);
 oswindow::oswindow(Display * pdisplay, Window interaction_impl, Visual * pvisual)
 {
 
-synchronization_lock slOsWindow(s_pmutex);
+synchronous_lock slOsWindow(s_pmutex);
 
 m_pdata = get(pdisplay, interaction_impl);
 
@@ -277,34 +277,34 @@ oswindow oswindow_defer_get(::user::interaction_impl * pimpl)
 
 
 
-//int_bool oswindow_remove(::user::interaction * pinteraction)
+//int_bool oswindow_erase(::user::interaction * pinteraction)
 //{
 //
-//   synchronization_lock slOsWindow(::oswindow_data::s_pmutex);
+//   synchronous_lock slOsWindow(::oswindow_data::s_pmutex);
 //
 //   iptr iFind = oswindow_find(pinteraction);
 //
 //   if(iFind < 0)
 //      return false;
 //
-//   ::oswindow_data::s_pdataptra->remove_at(iFind);
+//   ::oswindow_data::s_pdataptra->erase_at(iFind);
 //
 //   return true;
 //
 //}
 
 
-bool oswindow_remove_message_only_window(::user::interaction_impl * pinteraction)
+bool oswindow_erase_message_only_window(::user::interaction_impl * pinteraction)
 {
 
-   synchronization_lock slOsWindow(::oswindow_data::s_pmutex);
+   synchronous_lock slOsWindow(::oswindow_data::s_pmutex);
 
    iptr iFind = oswindow_find_message_only_window(pinteraction);
 
    if (iFind < 0)
       return false;
 
-   ::oswindow_data::s_pdataptra->remove_at(iFind);
+   ::oswindow_data::s_pdataptra->erase_at(iFind);
 
    return true;
 
@@ -314,9 +314,9 @@ bool oswindow_remove_message_only_window(::user::interaction_impl * pinteraction
 i32 oswindow_data::store_name(const char * psz)
 {
 
-   synchronization_lock synchronizationlock(m_pimpl == nullptr || m_pimpl->m_puserinteraction ? nullptr : m_pimpl->m_puserinteraction->mutex());
+   synchronous_lock synchronouslock(m_pimpl == nullptr || m_pimpl->m_puserinteraction ? nullptr : m_pimpl->m_puserinteraction->mutex());
 
-   synchronization_lock slOsWindow(s_pmutex);
+   synchronous_lock slOsWindow(s_pmutex);
 
    /*
 
@@ -334,9 +334,9 @@ i32 oswindow_data::store_name(const char * psz)
 i32 oswindow_data::select_input(i32 iInput)
 {
 
-   synchronization_lock synchronizationlock(m_pimpl == nullptr || m_pimpl->m_puserinteraction ? nullptr : m_pimpl->m_puserinteraction->mutex());
+   synchronous_lock synchronouslock(m_pimpl == nullptr || m_pimpl->m_puserinteraction ? nullptr : m_pimpl->m_puserinteraction->mutex());
 
-   synchronization_lock slOsWindow(s_pmutex);
+   synchronous_lock slOsWindow(s_pmutex);
 
    /*
 
@@ -372,9 +372,9 @@ i32 oswindow_data::map_window()
 
    /*
 
-   synchronization_lock synchronizationlock(m_puserinteraction == nullptr ? nullptr : m_puserinteraction->mutex());
+   synchronous_lock synchronouslock(m_puserinteraction == nullptr ? nullptr : m_puserinteraction->mutex());
 
-   synchronization_lock slOsWindow(s_pmutex);
+   synchronous_lock slOsWindow(s_pmutex);
 
    xdisplay d(display());
 
@@ -390,9 +390,9 @@ i32 oswindow_data::map_window()
 void oswindow_data::post_nc_destroy()
 {
 
-   synchronization_lock slOsWindow(s_pmutex);
+   synchronous_lock slOsWindow(s_pmutex);
 
-   oswindow_remove(this);
+   oswindow_erase(this);
 
 }
 
@@ -400,7 +400,7 @@ void oswindow_data::post_nc_destroy()
 void oswindow_data::set_impl(::user::interaction_impl * pimpl)
 {
 
-   synchronization_lock slOsWindow(s_pmutex);
+   synchronous_lock slOsWindow(s_pmutex);
 
    if (::is_null(this))
    {
@@ -411,7 +411,7 @@ void oswindow_data::set_impl(::user::interaction_impl * pimpl)
 
    m_pimpl = pimpl;
 
-   m_hthread = m_pimpl->m_puserinteraction->get_context_application()->get_os_handle();
+   m_htask = m_pimpl->m_puserinteraction->get_application()->get_os_handle();
 
 }
 
@@ -496,9 +496,9 @@ void oswindow_data::set_impl(::user::interaction_impl * pimpl)
 bool oswindow_data::is_child(::oswindow oswindow)
 {
 
-   synchronization_lock synchronizationlock(m_pimpl == nullptr || m_pimpl->m_puserinteraction ? nullptr : m_pimpl->m_puserinteraction->mutex());
+   synchronous_lock synchronouslock(m_pimpl == nullptr || m_pimpl->m_puserinteraction ? nullptr : m_pimpl->m_puserinteraction->mutex());
 
-   synchronization_lock slOsWindow(s_pmutex);
+   synchronous_lock slOsWindow(s_pmutex);
 
    oswindow = oswindow->get_parent();
 
@@ -532,9 +532,9 @@ oswindow oswindow_data::set_parent(oswindow oswindow)
 bool oswindow_data::show_window(const ::e_display & edisplay, const ::e_activation & eactivation)
 {
 
-   synchronization_lock synchronizationlock(m_pimpl == nullptr || m_pimpl->m_puserinteraction ? nullptr : m_pimpl->m_puserinteraction->mutex());
+   synchronous_lock synchronouslock(m_pimpl == nullptr || m_pimpl->m_puserinteraction ? nullptr : m_pimpl->m_puserinteraction->mutex());
 
-   synchronization_lock slOsWindow(s_pmutex);
+   synchronous_lock slOsWindow(s_pmutex);
 
    if(is_visible(edisplay))
    {
@@ -604,7 +604,7 @@ bool oswindow_data::is_iconic()
 bool oswindow_data::is_window_visible()
 {
 
-   synchronization_lock synchronizationlock(m_pimpl == nullptr || m_pimpl->m_puserinteraction ? nullptr : m_pimpl->m_puserinteraction->mutex());
+   synchronous_lock synchronouslock(m_pimpl == nullptr || m_pimpl->m_puserinteraction ? nullptr : m_pimpl->m_puserinteraction->mutex());
 
    if (m_pimpl == nullptr)
    {
@@ -685,7 +685,7 @@ oswindow get_capture()
 oswindow set_capture(oswindow oswindow)
 {
 
-   synchronization_lock synchronizationlock(::aura::g_pmutexWindowing);
+   synchronous_lock synchronouslock(::aura::g_pmutexWindowing);
 
    ::oswindow oswindowCapturePrevious = g_oswindowCapture;
 
@@ -699,7 +699,7 @@ oswindow set_capture(oswindow oswindow)
 int_bool release_capture()
 {
 
-   synchronization_lock synchronizationlock(::aura::g_pmutexWindowing);
+   synchronous_lock synchronouslock(::aura::g_pmutexWindowing);
 
    g_oswindowCapture = nullptr;
 
@@ -711,7 +711,7 @@ int_bool release_capture()
 oswindow set_focus(oswindow oswindow)
 {
 
-   synchronization_lock synchronizationlock(::aura::g_pmutexWindowing);
+   synchronous_lock synchronouslock(::aura::g_pmutexWindowing);
 
    ::oswindow oswindowFocusPrevious = g_oswindowFocus;
 
@@ -722,10 +722,10 @@ oswindow set_focus(oswindow oswindow)
 }
 
 
-bool remove_focus(oswindow oswindow)
+bool erase_focus(oswindow oswindow)
 {
 
-   synchronization_lock synchronizationlock(::aura::g_pmutexWindowing);
+   synchronous_lock synchronouslock(::aura::g_pmutexWindowing);
 
    ::oswindow oswindowFocusPrevious = g_oswindowFocus;
 
@@ -746,7 +746,7 @@ bool remove_focus(oswindow oswindow)
 bool clear_focus()
 {
 
-   synchronization_lock synchronizationlock(::aura::g_pmutexWindowing);
+   synchronous_lock synchronouslock(::aura::g_pmutexWindowing);
 
    g_oswindowFocus = nullptr;
 
@@ -902,7 +902,7 @@ oswindow set_active_window(oswindow oswindow)
 oswindow get_window(oswindow windowParam, enum_relative erelative)
 {
 
-   synchronization_lock synchronizationlock(windowParam == nullptr ? nullptr : (windowParam->m_pimpl == nullptr || windowParam->m_pimpl->m_puserinteraction == nullptr ? nullptr : windowParam->m_pimpl->m_puserinteraction->mutex()));
+   synchronous_lock synchronouslock(windowParam == nullptr ? nullptr : (windowParam->m_pimpl == nullptr || windowParam->m_pimpl->m_puserinteraction == nullptr ? nullptr : windowParam->m_pimpl->m_puserinteraction->mutex()));
 
    oswindow interaction_impl = windowParam;
 
@@ -922,7 +922,7 @@ oswindow get_window(oswindow windowParam, enum_relative erelative)
 int_bool destroy_window(oswindow w)
 {
 
-   synchronization_lock synchronizationlock(w == nullptr || w->m_pimpl == nullptr || w->m_pimpl->m_puserinteraction == nullptr ? nullptr : w->m_pimpl->m_puserinteraction->mutex());
+   synchronous_lock synchronouslock(w == nullptr || w->m_pimpl == nullptr || w->m_pimpl->m_puserinteraction == nullptr ? nullptr : w->m_pimpl->m_puserinteraction->mutex());
 
    if (!is_window(w))
    {
@@ -1130,15 +1130,15 @@ void android_mouse(unsigned int message, float x, float y)
    if (::get_context_system() == nullptr)
       return;
 
-   if (::aura::get_system()->get_context_session() == nullptr)
+   if (::aura::get_system()->get_session() == nullptr)
       return;
 
-   if (::aura::get_system()->get_context_session()->m_puiHost == nullptr)
+   if (::aura::get_system()->get_session()->m_puserinteractionHost == nullptr)
       return;
 
    MESSAGE msg;
 
-   auto puserinteraction = __user_interaction(::aura::get_system()->get_context_session()->m_puiHost);
+   auto puserinteraction = __user_interaction(::aura::get_system()->get_session()->m_puserinteractionHost);
 
    if (puserinteraction)
    {
@@ -1163,7 +1163,7 @@ void android_mouse(unsigned int message, float x, float y)
 
    msg.pt.y = (long)y;
 
-   //auto puserinteraction = __user_interaction(::aura::get_system()->get_context_session()->m_puiHost);
+   //auto puserinteraction = __user_interaction(::aura::get_system()->get_session()->m_puserinteractionHost);
 
    if (puserinteraction)
    {
@@ -1229,10 +1229,10 @@ void _android_key(unsigned int message, int keyCode, int iUni)
    if (::get_context_system() == nullptr)
       return;
 
-   if (::aura::get_system()->get_context_session() == nullptr)
+   if (::aura::get_system()->get_session() == nullptr)
       return;
 
-   if (::aura::get_system()->get_context_session()->m_puiHost == nullptr)
+   if (::aura::get_system()->get_session()->m_puserinteractionHost == nullptr)
       return;
 
    __pointer(::message::key) pkey = __new(::message::key());
@@ -1246,7 +1246,7 @@ void _android_key(unsigned int message, int keyCode, int iUni)
 
    }
 
-   auto puserinteraction = __user_interaction(::aura::get_system()->get_context_session()->m_puiHost);
+   auto puserinteraction = __user_interaction(::aura::get_system()->get_session()->m_puserinteractionHost);
 
    if (!puserinteraction)
    {
@@ -1270,13 +1270,13 @@ void _android_size(float xDummy, float yDummy, float cx, float cy)
    if (::get_context_system() == nullptr)
       return;
 
-   if (::aura::get_system()->get_context_session() == nullptr)
+   if (::aura::get_system()->get_session() == nullptr)
       return;
 
-   if (::aura::get_system()->get_context_session()->m_puiHost == nullptr)
+   if (::aura::get_system()->get_session()->m_puserinteractionHost == nullptr)
       return;
 
-   auto puserinteraction = __user_interaction(::aura::get_system()->get_context_session()->m_puiHost);
+   auto puserinteraction = __user_interaction(::aura::get_system()->get_session()->m_puserinteractionHost);
 
    if (!puserinteraction)
    {
@@ -1295,7 +1295,7 @@ void _android_size(float xDummy, float yDummy, float cx, float cy)
 
    puserinteraction->post_redraw();
 
-   //::aura::get_system()->get_context_session()->m_puiHost->set_window_position(e_zorder_top, 0, 0, cx, cy, SWP_SHOWWINDOW);
+   //::aura::get_system()->get_session()->m_puserinteractionHost->set_window_position(e_zorder_top, 0, 0, cx, cy, SWP_SHOWWINDOW);
 
 }
 
@@ -1347,7 +1347,7 @@ void android_on_size(float xScreen, float yScreen, float pikachu, float yBitmap)
    //::fork(::get_context_system(), [=]()
    //{
 
-   auto puserinteraction = __user_interaction(::aura::get_system()->get_context_session()->m_puiHost);
+   auto puserinteraction = __user_interaction(::aura::get_system()->get_session()->m_puserinteractionHost);
 
    if (puserinteraction)
    {
@@ -1460,7 +1460,7 @@ void android_on_text(e_os_text etext, const wchar_t * pwch, size_t len)
    //::aura::get_system()->fork([=]()
    //{
 
-   auto puserinteraction = __user_interaction(::aura::get_system()->get_context_session()->m_puiHost);
+   auto puserinteraction = __user_interaction(::aura::get_system()->get_session()->m_puserinteractionHost);
 
    if (puserinteraction)
    {
@@ -1485,7 +1485,7 @@ namespace aura
    void system::on_os_text(e_os_text etext, string strText)
    {
 
-      if (get_context_session() == nullptr || ::is_null(get_context_session()->m_puiHost))
+      if (get_session() == nullptr || ::is_null(get_session()->m_puserinteractionHost))
          return;
 
       __pointer(::message::key) pkey = __new(::message::key());
@@ -1503,17 +1503,17 @@ namespace aura
 
          pkey->m_ekey = ::user::e_key_return;
 
-         //psession->m_puiHost->message_handler(pkey);
+         //psession->get_user_interaction_host()->message_handler(pkey);
 
       }
       else
       {
 
-         //psession->m_puiHost->message_handler(pkey);
+         //psession->get_user_interaction_host()->message_handler(pkey);
 
       }
 
-      auto puserinteraction = __user_interaction(::aura::get_system()->get_context_session()->m_puiHost);
+      auto puserinteraction = __user_interaction(::aura::get_system()->get_session()->m_puserinteractionHost);
 
       if (!puserinteraction)
       {
@@ -1772,7 +1772,7 @@ double _001GetWindowTopLeftWeightedOccludedOpaqueRate(oswindow oswindow)
 int GetMainScreenRect(RECTANGLE_I32 * lprect)
 {
 
-   auto puserinteraction = __user_interaction(::aura::get_system()->get_context_session()->m_puiHost);
+   auto puserinteraction = __user_interaction(::aura::get_system()->get_session()->m_puserinteractionHost);
 
    if (!puserinteraction)
    {
@@ -1791,7 +1791,7 @@ int GetMainScreenRect(RECTANGLE_I32 * lprect)
 int SetMainScreenRect(const RECTANGLE_I32 * lpcrect)
 {
 
-   auto psession = ::aura::get_system()->get_context_session();
+   auto psession = ::aura::get_system()->get_session();
 
    if (!psession)
    {
@@ -1800,7 +1800,7 @@ int SetMainScreenRect(const RECTANGLE_I32 * lpcrect)
 
    }
 
-   auto puserinteraction = __user_interaction(psession->m_puiHost);
+   auto puserinteraction = __user_interaction(psession->get_user_interaction_host());
 
    if (!puserinteraction)
    {

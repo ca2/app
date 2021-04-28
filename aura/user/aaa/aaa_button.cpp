@@ -942,13 +942,13 @@ namespace user
       class imaging & imaging = ::aura::get_system()->imaging();
 
       ::rect rect = rectClient;
-      imaging.color_blend_3dRect(pgraphics,rect,colorExt1TL,215,colorExt1BR,215);
+      pgraphics->color_blend_3dRect(rect,colorExt1TL,215,colorExt1BR,215);
       rect.deflate(1,1,1,1);
-      imaging.color_blend_3dRect(pgraphics,rect,colorExt1TL,210,colorExt1BR,210);
+      pgraphics->color_blend_3dRect(rect,colorExt1TL,210,colorExt1BR,210);
       rect.deflate(1,1,1,1);
-      imaging.color_blend_3dRect(pgraphics,rect,colorExt2TL,205,colorExt2BR,205);
+      pgraphics->color_blend_3dRect(rect,colorExt2TL,205,colorExt2BR,205);
       rect.deflate(1,1,1,1);
-      imaging.color_blend_3dRect(pgraphics,rect,colorExt2TL,200,colorExt2BR,200);
+      pgraphics->color_blend_3dRect(rect,colorExt2TL,200,colorExt2BR,200);
       rect.deflate(1,1,1,1);
       imaging.color_blend(pgraphics,rect.left,rect.top,rect.width(),rect.height(),cr,200);
       rect.deflate(1,1,1,1);
@@ -966,7 +966,7 @@ namespace user
 
       pgraphics->set(pen);
 
-      imaging.color_blend_3dRect(pgraphics,rect,colorExt1TL,220,colorExt1BR,220);
+      pgraphics->color_blend_3dRect(rect,colorExt1TL,220,colorExt1BR,220);
 
 
    }

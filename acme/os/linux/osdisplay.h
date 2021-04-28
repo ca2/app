@@ -122,7 +122,7 @@ public:
       if(i == 0)
       {
 
-         osdisplay_remove(m_pdisplay);
+         osdisplay_erase(m_pdisplay);
 
       }
 
@@ -176,11 +176,11 @@ public:
    virtual ~osdisplay_dataptra()
    {
 
-      remove_all();
+      erase_all();
 
    }
 
-   void remove_all()
+   void erase_all()
    {
 
       for(auto point : *this)
@@ -190,7 +190,7 @@ public:
 
       }
 
-      raw_array < osdisplay_data * >::remove_all();
+      raw_array < osdisplay_data * >::erase_all();
    }
 
 };

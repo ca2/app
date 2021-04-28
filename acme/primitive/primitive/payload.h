@@ -79,9 +79,12 @@ public:
       class nanos *              m_pnanos;
       class duration             m_duration;
       class duration *           m_pduration;
-      ::e_status                  m_estatus;
+      ::e_status                 m_estatus;
       ::enum_command             m_ecommand;
       ::enum_check               m_echeck;
+      ::color::color             m_color;
+      ::color::hls               m_hls;
+
 
       ::matter *                 m_p;
       ::string_array *           m_pstra;
@@ -126,7 +129,8 @@ public:
    payload(const id & id);
    payload(bool * pb);
    payload(const ::datetime::time & time);
-
+   payload(const ::color::color & color);
+   payload(const ::color::hls & hls);
    payload(string * pstr);
    payload(payload * pvar);
    payload(const payload * pvar);
@@ -250,7 +254,7 @@ public:
 
    ::enum_type set_element(::matter * pobject);
 
-   bool is_element() const { return m_etype >= e_type_element && m_etype < __type_last_element; }
+   bool is_element() const { return m_etype >= e_type_element && m_etype < e_type_last_element; }
 
    bool is_element_set() const { return is_element() && ::is_set(m_p); }
 
@@ -275,11 +279,11 @@ public:
    ENUM                             e(ENUM edefault = enum_default < ENUM >())  const { return (ENUM)i64(edefault); }
 
 #define DECL_VAR_FLAG(ENUMTYPE) \
-inline payload(::enum_ ## ENUMTYPE e ## ENUMTYPE) { m_etype = ::type_enum_ ## ENUMTYPE; m_e ## ENUMTYPE = e ## ENUMTYPE; } \
+inline payload(::enum_ ## ENUMTYPE e ## ENUMTYPE) { m_etype = ::e_type_enum_ ## ENUMTYPE; m_e ## ENUMTYPE = e ## ENUMTYPE; } \
 inline ::enum_ ## ENUMTYPE e ## ENUMTYPE(::enum_ ## ENUMTYPE e ## ENUMTYPE ## Default = enum_default < ::enum_ ## ENUMTYPE >()) const { return e < ::enum_ ## ENUMTYPE >(e ## ENUMTYPE ## Default); } \
 ::enum_ ## ENUMTYPE & e ## ENUMTYPE ();         \
-inline payload & operator = (::enum_ ## ENUMTYPE e ## ENUMTYPE) { release(); if(m_etype != ::type_enum_ ## ENUMTYPE) m_etype = ::type_enum_ ## ENUMTYPE; m_e ## ENUMTYPE = e ## ENUMTYPE; return *this; } \
-inline bool operator == (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return m_etype == ::type_enum_ ## ENUMTYPE && m_e ## ENUMTYPE == e ## ENUMTYPE; } \
+inline payload & operator = (::enum_ ## ENUMTYPE e ## ENUMTYPE) { release(); if(m_etype != ::e_type_enum_ ## ENUMTYPE) m_etype = ::e_type_enum_ ## ENUMTYPE; m_e ## ENUMTYPE = e ## ENUMTYPE; return *this; } \
+inline bool operator == (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return m_etype == ::e_type_enum_ ## ENUMTYPE && m_e ## ENUMTYPE == e ## ENUMTYPE; } \
 inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !operator ==(e ## ENUMTYPE); } \
 inline operator ::enum_ ## ENUMTYPE() const { return e ## ENUMTYPE(); } \
 inline operator ::enum_ ## ENUMTYPE & () { return e ## ENUMTYPE(); } \
@@ -289,11 +293,11 @@ inline operator ::e ## ENUMTYPE() const { return e ## ENUMTYPE(); }
    //DECL_VAR_FLAG(check);
 #undef DECL_VAR_FLAG
    #define DECL_VAR_ENUM(ENUMTYPE) \
-   inline payload(::enum_ ## ENUMTYPE e ## ENUMTYPE) { m_etype = ::type_enum_ ## ENUMTYPE; m_e ## ENUMTYPE = e ## ENUMTYPE; } \
+   inline payload(::enum_ ## ENUMTYPE e ## ENUMTYPE) { m_etype = ::e_type_enum_ ## ENUMTYPE; m_e ## ENUMTYPE = e ## ENUMTYPE; } \
    inline ::enum_ ## ENUMTYPE e ## ENUMTYPE(::enum_ ## ENUMTYPE e ## ENUMTYPE ## Default = enum_default < ::enum_ ## ENUMTYPE >()) const { return e < ::enum_ ## ENUMTYPE >(e ## ENUMTYPE ## Default); } \
    ::enum_ ## ENUMTYPE & e ## ENUMTYPE ();         \
-   inline payload & operator = (::enum_ ## ENUMTYPE e ## ENUMTYPE) { release(); if(m_etype != ::type_enum_ ## ENUMTYPE) m_etype = ::type_enum_ ## ENUMTYPE; m_e ## ENUMTYPE = e ## ENUMTYPE; return *this; } \
-   inline bool operator == (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return m_etype == ::type_enum_ ## ENUMTYPE && m_e ## ENUMTYPE == e ## ENUMTYPE; } \
+   inline payload & operator = (::enum_ ## ENUMTYPE e ## ENUMTYPE) { release(); if(m_etype != ::e_type_enum_ ## ENUMTYPE) m_etype = ::e_type_enum_ ## ENUMTYPE; m_e ## ENUMTYPE = e ## ENUMTYPE; return *this; } \
+   inline bool operator == (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return m_etype == ::e_type_enum_ ## ENUMTYPE && m_e ## ENUMTYPE == e ## ENUMTYPE; } \
    inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !operator ==(e ## ENUMTYPE); } \
    inline operator ::enum_ ## ENUMTYPE() const { return e ## ENUMTYPE(); } \
    inline operator ::enum_ ## ENUMTYPE & () { return e ## ENUMTYPE(); }
@@ -305,18 +309,20 @@ inline operator ::e ## ENUMTYPE() const { return e ## ENUMTYPE(); }
    ::u32                            u32(::u32 uiDefault = 0)  const;
    ::i64                            i64(::i64 iDefault = 0)  const;
    inline ::secs                    secs()  const { return duration().secs(); }
-   inline ::secs &                  secs() { if (get_type() != type_secs)set_type(type_secs); return m_secs; }
+   inline ::secs &                  secs() { if (get_type() != e_type_secs)set_type(e_type_secs); return m_secs; }
    inline ::millis                  millis()  const { return duration().millis(); }
-   inline ::millis &                millis() { if (get_type() != type_millis)set_type(type_millis); return m_millis; }
+   inline ::millis &                millis() { if (get_type() != e_type_millis)set_type(e_type_millis); return m_millis; }
    inline ::micros                  micros()  const { return duration().micros(); }
-   inline ::micros &                micros() { if (get_type() != type_micros)set_type(type_micros); return m_micros; }
+   inline ::micros &                micros() { if (get_type() != e_type_micros)set_type(e_type_micros); return m_micros; }
    inline ::nanos                   nanos()  const { return duration().nanos(); }
-   inline ::nanos &                 nanos() { if (get_type() != type_nanos)set_type(type_nanos); return m_nanos; }
+   inline ::nanos &                 nanos() { if (get_type() != e_type_nanos)set_type(e_type_nanos); return m_nanos; }
    ::u64                            u64(::u64 uiDefault = 0)  const;
    inline ::iptr                    iptr(iptr iDefault = 0)  const;
    inline ::uptr                    uptr(uptr uiDefault = 0)  const;
    float                            get_float(float fDefault = 0.f)   const;
    double                           get_double(double dDefault = 0.0)   const;
+   ::color::color                   color(const ::color::color & colorDefault = ::color::color())  const;
+   ::color::hls                     hls(const ::color::hls & hlsDefault = ::color::hls())  const;
    ::routine               get_routine() const;
    //::future               get_process() const;
    string                           to_r_string() const;
@@ -447,6 +453,8 @@ inline operator ::e ## ENUMTYPE() const { return e ## ENUMTYPE(); }
    operator class duration() const;
    operator ::filetime() const;
    operator ::datetime::time() const;
+   operator ::color::color() const;
+   operator ::color::hls() const;
    operator block () const;
    operator block ();
    //operator class millis() const;
@@ -520,6 +528,27 @@ inline operator ::e ## ENUMTYPE() const { return e ## ENUMTYPE(); }
 
    }
 
+   template < typename PREDICATE >
+   void predicate_each(PREDICATE predicate)
+   {
+
+      auto c = array_get_count();
+      
+      for (auto i = 0; i < c; i++)
+      {
+
+         predicate(at(i));
+
+      }
+
+   }
+
+
+   void add_ref();
+
+
+
+
    payload & operator = (const ::matter & o);
 
    inline payload & operator = (const ::file::path & path)
@@ -573,6 +602,8 @@ inline operator ::e ## ENUMTYPE() const { return e ## ENUMTYPE(); }
    payload & operator = (long l);
 #endif
    payload & operator = (const ::datetime::time & time);
+   payload & operator = (const ::color::color & color);
+   payload & operator = (const ::color::hls & color);
    inline payload & operator = (const char * psz);
    inline payload & operator = (const string & str);
    inline payload & operator = (string && str);
@@ -934,6 +965,7 @@ inline operator ::e ## ENUMTYPE() const { return e ## ENUMTYPE(); }
 
    ::extended::status run();
 
+   ::extended::status operator()() { return run(); }
 
    void receive_response(const payload & payload);
 
@@ -1195,11 +1227,11 @@ inline void payload::set_string(const char * psz)
    {
       *m_pstr = psz;
    }
-   else if(get_type() == type_pvar)
+   else if(get_type() == e_type_pvar)
    {
       *m_pvar = psz;
    }
-   else if (get_type() == type_prop)
+   else if (get_type() == e_type_prop)
    {
       ((payload &) *m_pprop) = psz;
    }
@@ -1218,11 +1250,11 @@ inline void payload::set_string(const string & str)
    {
       *m_pstr = str;
    }
-   else if(get_type() == type_pvar)
+   else if(get_type() == e_type_pvar)
    {
       *m_pvar = str;
    }
-   else if (get_type() == type_prop)
+   else if (get_type() == e_type_prop)
    {
       ((payload&)*m_pprop) = str;
    }
@@ -1239,11 +1271,11 @@ inline void payload::set_string(string && str)
    {
       *m_pstr = ::move(str);
    }
-   else if(get_type() == type_pvar)
+   else if(get_type() == e_type_pvar)
    {
       *m_pvar = ::move(str);
    }
-   else if (get_type() == type_prop)
+   else if (get_type() == e_type_prop)
    {
       ((payload&)*m_pprop) = ::move(str);
    }

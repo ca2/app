@@ -16,7 +16,7 @@
 #if defined(LINUX) // || defined(ANDROID)
 
 
-bool apex_defer_process_x_message(hthread_t hthread,MESSAGE * pMsg,::windowing::window * pwindow,bool bPeek);
+bool apex_defer_process_x_message(htask_t htask,MESSAGE * pMsg,::windowing::window * pwindow,bool bPeek);
 
 
 #endif
@@ -74,7 +74,7 @@ int_bool message_queue::post_message(const MESSAGE & message)
 
    }
 
-   synchronization_lock synchronizationlock(mutex());
+   synchronous_lock synchronouslock(mutex());
 
    m_messagea.add(message);
 
@@ -95,7 +95,7 @@ int_bool message_queue::get_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMs
 
    }
 
-   synchronization_lock synchronizationlock(mutex());
+   synchronous_lock synchronouslock(mutex());
 
    while (true)
    {
@@ -110,7 +110,7 @@ int_bool message_queue::get_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMs
 
             m_bQuit = true;
 
-            m_messagea.remove_at(i);
+            m_messagea.erase_at(i);
 
             continue;
 
@@ -121,7 +121,7 @@ int_bool message_queue::get_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMs
 
             *pMsg = msg;
 
-            m_messagea.remove_at(i);
+            m_messagea.erase_at(i);
 
             return true;
 
@@ -157,11 +157,11 @@ int_bool message_queue::get_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMs
 
       {
 
-         synchronizationlock.unlock();
+         synchronouslock.unlock();
 
          m_eventNewMessage.wait();
 
-         synchronizationlock.lock();
+         synchronouslock.lock();
 
          m_eventNewMessage.ResetEvent();
 
@@ -182,7 +182,7 @@ int_bool message_queue::peek_message(MESSAGE * pMsg, oswindow oswindow,::u32 wMs
 
    }
 
-   synchronization_lock synchronizationlock(mutex());
+   synchronous_lock synchronouslock(mutex());
 
    ::count count = m_messagea.get_count();
 
@@ -199,7 +199,7 @@ int_bool message_queue::peek_message(MESSAGE * pMsg, oswindow oswindow,::u32 wMs
          if(wRemoveMsg & PM_REMOVE)
          {
 
-            m_messagea.remove_at(i);
+            m_messagea.erase_at(i);
 
          }
 
@@ -209,11 +209,11 @@ int_bool message_queue::peek_message(MESSAGE * pMsg, oswindow oswindow,::u32 wMs
 
    }
 
-   synchronizationlock.unlock();
+   synchronouslock.unlock();
 
 //#if defined(LINUX) // || defined(ANDROID)
 //
-//   if(apex_defer_process_x_message(hthread,pMsg,oswindow,!(wRemoveMsg & PM_REMOVE)))
+//   if(apex_defer_process_x_message(htask,pMsg,oswindow,!(wRemoveMsg & PM_REMOVE)))
 //   {
 //
 //      return true;

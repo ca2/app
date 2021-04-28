@@ -33,7 +33,7 @@ namespace html
       void text::implement_phase1(html_data * pdata, ::html::element * pelement)
       {
 
-         synchronization_lock lock(pdata->m_pcoredata->mutex());
+         synchronous_lock lock(pdata->m_pcoredata->mutex());
 
          ::html::impl::element::implement_phase1(pdata, pelement);
 
@@ -130,7 +130,7 @@ namespace html
       void text::layout_phase0(html_data * pdata)
       {
 
-         synchronization_lock lock(pdata->m_pcoredata->mutex());
+         synchronous_lock lock(pdata->m_pcoredata->mutex());
 
          ::html::impl::element::layout_phase0(pdata);
 
@@ -354,9 +354,9 @@ namespace html
 
 
 
-         m_straLines.remove_all();
+         m_straLines.erase_all();
 
-         m_sizea.remove_all();
+         m_sizea.erase_all();
 
          ::size_f32 sizeText;
 
@@ -671,7 +671,7 @@ namespace html
             {
                if(m_bHover && m_pelemental->m_pstyle->get_color("background-color", "hover", pdata, m_pelemental, cr))
                {
-                  App(pdata->get_context_application()).imaging().color_blend(
+                  App(pdata->get_application()).imaging().color_blend(
                   pgraphics,
                   rectangle,
                   cr,
@@ -679,7 +679,7 @@ namespace html
                }
                else if(has_link() && m_pelemental->m_pstyle->get_color("background-color", "link", pdata, m_pelemental, cr))
                {
-                  App(pdata->get_context_application()).imaging().color_blend(
+                  App(pdata->get_application()).imaging().color_blend(
                   pgraphics,
                   rectangle,
                   cr,
@@ -687,7 +687,7 @@ namespace html
                }
                else if (m_pelemental->m_pstyle->get_color("background-color", "", pdata, m_pelemental, cr))
                {
-                  App(pdata->get_context_application()).imaging().color_blend(
+                  App(pdata->get_application()).imaging().color_blend(
                   pgraphics,
                   rectangle,
                   cr,
@@ -775,7 +775,7 @@ namespace html
          strsize iSelStart;
          strsize iSelEnd;
          ::size_f32 size3;
-         draw2d::graphics_extension(pdata->m_pcoredata->get_context_application()).GetTextExtent(pgraphics, unitext("gGYIﾍ"), size3);
+         draw2d::graphics_extension(pdata->m_pcoredata->get_application()).GetTextExtent(pgraphics, unitext("gGYIﾍ"), size3);
          i32 maxcy = size3.cy;
 
          _001GetViewSel(iSelStart, iSelEnd);

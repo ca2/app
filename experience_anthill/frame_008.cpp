@@ -224,7 +224,7 @@ SizingNone:
 
                }
 
-               auto psession = Session;
+               auto psession = get_session();
 
                auto estyle = get_style();
 
@@ -241,7 +241,7 @@ SizingNone:
                else
                {
 
-                  auto psession = Session;
+                  auto psession = get_session();
 
                   auto pstyle = pframewindow->get_style(pgraphics);
 
@@ -317,7 +317,7 @@ SizingNone:
             
             ::draw2d::pen_pointer pen(e_create);
 
-            pen->create_solid(1.0, argb((i + 1) * 10, iR, iG, iB));
+            pen->create_solid(1.0, argb((byte) ((i + 1) * 10), iR, iG, iB));
 
             pgraphics->set(pen);
 
@@ -378,7 +378,7 @@ SizingNone:
 
                   //   ::rectangle_i32 rectangle;
                   //   GetBorderRect(rectClient,rectangle,eside);
-                  //   class imaging & imaging = System->imaging();
+                  //   class imaging & imaging = psystem->imaging();
                   //   imaging.color_blend(pgraphics,
                   //      rectangle,
                   //      crMoveableBorder,
@@ -393,8 +393,8 @@ SizingNone:
                {
                   ::rectangle_i32 rectangle;
                   GetBorderRect(rectClient, rectangle, eside);
-                  class imaging & imaging = System->imaging();
-                  imaging.color_blend(pgraphics,
+
+                  pgraphics->color_blend(
                                       rectangle,
                                       colorMoveableBorder,
                                       127);
@@ -403,8 +403,8 @@ SizingNone:
                {
                   ::rectangle_i32 rectangle;
                   GetBorderRect(rectClient, rectangle, eside);
-                  class imaging & imaging = System->imaging();
-                  imaging.color_blend(pgraphics,
+
+                  pgraphics->color_blend(
                                       rectangle,
                                       colorMoveableBorder,
                                       127);
@@ -639,7 +639,7 @@ SizingNone:
             }
 
 
-            void frame_008::on_style_change()
+            void frame_008::_on_style_change(::draw2d::graphics_pointer& pgraphics)
             {
 
                frame::on_style_change();

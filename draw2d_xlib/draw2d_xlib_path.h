@@ -15,7 +15,7 @@ namespace draw2d_xlib
 
 
 
-      path(::layered * pobjectContext);
+      path(::object * pobject);
       virtual ~path();
 
 

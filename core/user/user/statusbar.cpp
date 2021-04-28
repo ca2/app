@@ -12,7 +12,7 @@ namespace user
    __STATUSPANE* status_bar::_GetPanePtr(index nIndex)
    {
 
-      return m_panea[nIndex];
+      return m_panecompositea[nIndex];
 
    }
 
@@ -101,7 +101,7 @@ namespace user
       // first allocate array for panes and copy initial data
       //   if (!AllocElements(nIDCount, sizeof(__STATUSPANE)))
       //      return false;
-      //   ASSERT(nIDCount == m_panea.get_count());
+      //   ASSERT(nIDCount == m_panecompositea.get_count());
 
       // copy initial data from indicator array
       bool bResult = true;
@@ -167,7 +167,7 @@ namespace user
 
       // destruct old elements
       //__STATUSPANE* pSBP = _GetPanePtr(0);
-      //for (i = 0; i < m_panea.get_count(); i++)
+      //for (i = 0; i < m_panecompositea.get_count(); i++)
       //{
       //   pSBP->strText.~string();
       //   ++pSBP;
@@ -179,7 +179,7 @@ namespace user
 
       // construct new elements
       pSBP = _GetPanePtr(0);
-      for (i = 0; i < m_panea.get_count(); i++)
+      for (i = 0; i < m_panecompositea.get_count(); i++)
       {
    #pragma push_macro("new")
    #undef new
@@ -244,7 +244,7 @@ namespace user
 //         i32 cxExtra = rectangle.width() + rgBorders[2];
 //         i32 nStretchyCount = 0;
 //         //__STATUSPANE* pSBP = _GetPanePtr(0);
-//         for (i = 0; i < m_panea.get_count(); i++)
+//         for (i = 0; i < m_panecompositea.get_count(); i++)
 //         {
 //            __STATUSPANE* pSBP = _GetPanePtr(i);
 //            if (pSBP->nStyle & SBPS_STRETCH)
@@ -255,11 +255,11 @@ namespace user
 //
 //         // determine right edge of each pane
 //         memory rgRightsMem;
-//         rgRightsMem.allocate(m_panea.get_count() * sizeof(i32));
+//         rgRightsMem.allocate(m_panecompositea.get_count() * sizeof(i32));
 //         i32* rgRights = (i32*)rgRightsMem.get_data();
 //         i32 right = rgBorders[0];
 //         //      pSBP = _GetPanePtr(0);
-//         for (i = 0; i < m_panea.get_count(); i++)
+//         for (i = 0; i < m_panecompositea.get_count(); i++)
 //         {
 //            __STATUSPANE* pSBP = _GetPanePtr(i);
 //            // determine size_i32 of the pane
@@ -281,14 +281,14 @@ namespace user
 //         }
 //
 //         // set new right edges for all panes
-//         default_window_procedure(SB_SETPARTS, (WPARAM) m_panea.get_count(), (LPARAM)rgRights);
+//         default_window_procedure(SB_SETPARTS, (WPARAM) m_panecompositea.get_count(), (LPARAM)rgRights);
 //
 //      }
 //
 //      // update text in the status panes if specified
 //      if (bUpdateText)
 //      {
-//         for (i = 0; i < m_panea.get_count(); i++)
+//         for (i = 0; i < m_panecompositea.get_count(); i++)
 //         {
 //            __STATUSPANE* pSBP = _GetPanePtr(i);
 //            if (pSBP->nFlags & SBPF_UPDATE)
@@ -312,10 +312,10 @@ namespace user
    {
       ASSERT_VALID(this);
 
-      if (m_panea.get_count() <= 0)
+      if (m_panecompositea.get_count() <= 0)
          return -1;
 
-      for (i32 i = 0; i < m_panea.get_count(); i++)
+      for (i32 i = 0; i < m_panecompositea.get_count(); i++)
       {
          __STATUSPANE* pSBP = _GetPanePtr(i);
          if (pSBP->m_id == id)
@@ -795,7 +795,7 @@ namespace user
    public:
 
 
-      status_command(::layered * pobjectContext);
+      status_command(::object * pobject);
 
       virtual void enable(bool bOn);
       virtual void _001SetCheck(::enum_check echeck, const ::action_context & context) override;
@@ -807,9 +807,10 @@ namespace user
    };
 
 
-   status_command::status_command(::layered * pobjectContext) :
-      ::message::command(pobjectContext)
+   status_command::status_command(::object * pobject)
    {
+
+      initialize(pobject);
 
    }
 
@@ -887,10 +888,10 @@ namespace user
    void status_bar::on_command_probe(::user::frame_window * ptarget, bool bDisableIfNoHndler)
    {
       
-      status_command state(get_context_object());
+      status_command state(this);
 
       state.m_puiOther = this;
-      state.m_iCount = (::u32)m_panea.get_count();
+      state.m_iCount = (::u32)m_panecompositea.get_count();
       for (state.m_iIndex = 0; state.m_iIndex < state.m_iCount; state.m_iIndex++)
       {
          state.m_id = _GetPanePtr((i32) state.m_iIndex)->m_id;
@@ -931,7 +932,7 @@ namespace user
 
       if (dumpcontext.GetDepth() > 0)
       {
-         for (i32 i = 0; i < m_panea.get_count(); i++)
+         for (i32 i = 0; i < m_panecompositea.get_count(); i++)
          {
             __STATUSPANE * ppane = ((status_bar *) this)->_GetPanePtr(i);
             dumpcontext << "\nstatus pane[" << i << "] = {";

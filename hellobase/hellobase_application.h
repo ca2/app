@@ -18,7 +18,7 @@ namespace hellobase
 
 
 
-      application(::layered * pobjectContext);
+      application(::object * pobject);
       virtual ~application();
 
       virtual string preferred_experience() override;

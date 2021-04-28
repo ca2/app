@@ -18,7 +18,7 @@ namespace user
       }
 
 
-      //edit::edit(::layered * pobjectContext) :
+      //edit::edit(::object * pobject) :
       //   ::object(pobject),
       //   ::user::picture(pobject),
       //   ::user::picture_interaction(pobject)
@@ -80,8 +80,8 @@ namespace user
          MESSAGE_LINK(e_message_show_window, pchannel, this, &edit::_001OnShowWindow);
          MESSAGE_LINK(e_message_left_button_down, pchannel, this, &edit::on_message_left_button_down);
          MESSAGE_LINK(e_message_left_button_up, pchannel, this, &edit::on_message_left_button_up);
-         MESSAGE_LINK(e_message_mouse_move, pchannel, this, &edit::_001OnMouseMove);
-         MESSAGE_LINK(e_message_mouse_leave, pchannel, this, &edit::_001OnMouseLeave);
+         MESSAGE_LINK(e_message_mouse_move, pchannel, this, &edit::on_message_mouse_move);
+         MESSAGE_LINK(e_message_mouse_leave, pchannel, this, &edit::on_message_mouse_leave);
          MESSAGE_LINK(e_message_key_down, pchannel, this, &edit::_001OnKeyDown);
          MESSAGE_LINK(e_message_key_up, pchannel, this, &edit::_001OnKeyUp);
 //         MESSAGE_LINK(e_message_set_focus, pchannel, this, &edit::_001OnSetFocus);
@@ -89,7 +89,7 @@ namespace user
          
 #ifdef WINDOWS_DESKTOP
 
-         text_composition_composite::install_message_routing(pchannel);
+         text_composition_composite::initialize_text_composition_client(pchannel, this);
          
 #endif
 
@@ -110,7 +110,7 @@ namespace user
 
          }
 
-         auto psession = Session;
+         auto psession = get_session();
 
 //#if !defined(APPLE_IOS) && !defined(ANDROID)
 
@@ -171,7 +171,7 @@ namespace user
          if (pformattool != nullptr && pformattool->is_showing_for_ui(this))
          {
 
-            auto psession = Session;
+            auto psession = get_session();
 
             auto puser = psession->user();
 
@@ -229,7 +229,7 @@ namespace user
       }
 
 
-      void edit::_001OnMouseMove(::message::message * pmessage)
+      void edit::on_message_mouse_move(::message::message * pmessage)
       {
 
          UNREFERENCED_PARAMETER(pmessage);
@@ -259,10 +259,10 @@ namespace user
 
 
 
-      void edit::_001OnMouseLeave(::message::message * pmessage)
+      void edit::on_message_mouse_leave(::message::message * pmessage)
       {
 
-         auto psession = Session;
+         auto psession = get_session();
 
          auto puser = psession->user();
 
@@ -534,7 +534,7 @@ namespace user
 
          __pointer(::message::key) pkey(pmessage);
 
-         auto psession = Session;
+         auto psession = get_session();
 
          if (pkey->m_ekey == ::user::e_key_return)
          {
@@ -676,7 +676,7 @@ namespace user
 
          __pointer(::message::key) pkey(pmessage);
 
-         auto psession = Session;
+         auto psession = get_session();
 
          if (pkey->m_ekey == ::user::e_key_return)
          {
@@ -761,7 +761,7 @@ namespace user
 
          }
 
-         auto psession = Session;
+         auto psession = get_session();
 
          bool bShift = psession->is_key_pressed(::user::e_key_shift);
 

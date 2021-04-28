@@ -59,10 +59,10 @@ namespace draw2d
    }
 
 
-   ::e_status icon::initialize(::layered * pobjectContext)
+   ::e_status icon::initialize(::object * pobject)
    {
 
-      auto estatus = ::matter::initialize(pobjectContext);
+      auto estatus = ::matter::initialize(pobject);
 
       if (!estatus)
       {

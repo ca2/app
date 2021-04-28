@@ -1,22 +1,28 @@
 #pragma once
 
 
-
-class CLASS_DECL_AURA draw_text :
-   virtual public text_out
+namespace write_text
 {
-public:
 
 
-   ::rectangle_i32            m_rectangle;
-   ::e_align                  m_ealign;
-   ::e_draw_text              m_edrawtext;
+   class CLASS_DECL_AURA draw_text :
+      virtual public text_out
+   {
+   public:
 
 
-   draw_text() {  }
+      ::rectangle_i32            m_rectangle;
+      ::e_align                  m_ealign;
+      ::e_draw_text              m_edrawtext;
 
 
-};
+      draw_text() {  }
+
+
+   };
+
+
+} // namespace write_text
 
 
 

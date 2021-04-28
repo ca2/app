@@ -99,7 +99,7 @@ namespace user
 
          virtual ::e_status run() override;
 
-         virtual ::e_status finish(::context_object * pcontextobject) override;
+         virtual ::e_status finish() override;
 
 
       };
@@ -141,8 +141,13 @@ namespace user
 
 
 
-      virtual ::e_status initialize(::layered * pobjectContext) override;
+      virtual ::e_status initialize(::object * pobject) override;
       virtual void do_initialize();
+
+
+      inline ::aura::application* get_application() { return m_pcontext ? m_pcontext->m_pauraapplication : nullptr; }
+      inline ::aura::session* get_session() { return m_pcontext ? m_pcontext->m_paurasession : nullptr; }
+      inline ::aura::system* get_system() { return m_psystem ? m_psystem->m_paurasystem : nullptr; }
 
 
       virtual void add_thread();
@@ -191,7 +196,7 @@ namespace user
       virtual i32 add_icon_path(::file::path path, color32_t crBk, int iImage);
 
 
-      virtual ::e_status finish(::context_object * pcontextobject) override;
+      virtual ::e_status finish() override;
 
 
    };

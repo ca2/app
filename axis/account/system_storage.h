@@ -20,9 +20,11 @@ namespace account
       department *      m_paccount;
       
       
-      system_storage(department * paccount);
+      system_storage();
       virtual ~system_storage();
       
+
+      virtual ::e_status initialize_system_storage(department* pdepartment);
       
       virtual ::file::path path_prefix(string strToken);
       

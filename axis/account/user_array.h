@@ -11,12 +11,15 @@ namespace account
    public:
 
 
-      department *               m_pdepartment;
+      department *               m_paccount;
       string_map < __pointer(user) >    m_map;
 
 
-      user_array(department * pdepartment);
+      user_array();
       virtual ~user_array();
+
+
+      virtual ::e_status initialize_user_array(department* pdepartment);
 
 
       virtual __pointer(user) allocate_user();
@@ -37,7 +40,7 @@ namespace account
       
       //virtual ::file::path get_default_url();
 
-      virtual void on_clock(enum_clock eclock);
+      virtual void on_clock(enum_timer etimer);
       
       virtual void cleanup_users();
       

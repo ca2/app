@@ -17,7 +17,7 @@ namespace sockets
       virtual public http_base_socket
    {
    public:
-      httpd_socket(base_socket_handler& );
+      httpd_socket();
       ~httpd_socket();
 
 

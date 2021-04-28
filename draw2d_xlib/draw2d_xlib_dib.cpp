@@ -14,7 +14,7 @@ namespace draw2d_xlib
 
 
 
-   image::image_pointer(::layered * pobjectContext) :
+   image::image_pointer(::object * pobject) :
       ::object(pobject),
       m_pbitmap(e_create),
       m_spgraphics(e_create)
@@ -209,7 +209,7 @@ namespace draw2d_xlib
 
    bool image::from(::image * pimage)
    {
-      ::draw2d::bitmap_pointer bitmap(get_object());
+      ::draw2d::bitmap_pointer bitmap(this);
       bitmap->CreateCompatibleBitmap(pgraphics, 1, 1);
       ::draw2d::bitmap * pbitmap = pgraphics->SelectObject(bitmap);
       if(pbitmap == nullptr)
@@ -349,7 +349,7 @@ namespace draw2d_xlib
 
    //   if(imageWork == nullptr)
    //   {
-   //      imageWork = create_image(get_object());
+   //      imageWork = create_image(this);
    //      imageWork = imageWork;
    //   }
 
@@ -1765,7 +1765,7 @@ namespace draw2d_xlib
 
 
       // White blend image
-      ::image_pointer pimage1(get_object());
+      ::image_pointer pimage1(this);
       pimage1 = create_image({cx,  cy});
       pimage1->set(255, 255, 255);
 
@@ -1791,7 +1791,7 @@ namespace draw2d_xlib
       DI_IMAGE | DI_MASK);
 
       // Mask image
-      ::image_pointer pimageM(get_object());
+      ::image_pointer pimageM(this);
       imageM = create_image({cx,  cy});
 
       imageM.m_spgraphics->DrawIcon(
@@ -1842,7 +1842,7 @@ namespace draw2d_xlib
 //
 //   void image::rotate(::image * pimage, double dAngle, double dScale)
 //   {
-//     // ::image_pointer pimage(get_object());
+//     // ::image_pointer pimage(this);
 //   //   pimage->Paste(this);
 //
 //      i32 cx = this->cx;
@@ -2003,7 +2003,7 @@ namespace draw2d_xlib
    //   double dAngle,
    //   double dScale)
    //{
-   //  // ::image_pointer pimage(get_object());
+   //  // ::image_pointer pimage(this);
    ////   pimage->Paste(this);
 
 
@@ -2549,7 +2549,7 @@ namespace draw2d_xlib
    //}
 
 
-   bool image::print_window(::window * pwnd, ::message::message * pmessage)
+   bool image::print_window(::window * puserinteraction, ::message::message * pmessage)
    {
 
       return true;
@@ -2559,13 +2559,13 @@ namespace draw2d_xlib
 
 #if defined(WINDOWS)
 
-   bool image::update_window(::user::user::interaction_impl * pwnd, ::message::message * pmessage)
+   bool image::update_window(::user::user::interaction_impl * puserinteraction, ::message::message * pmessage)
    {
 
 
       rectangle_i64 rectWindow;
 
-      rectWindow = pwnd->m_rectParentClient;
+      rectWindow = puserinteraction->m_rectParentClient;
 
       m_spgraphics->SetViewportOrg(0, 0);
 
@@ -2573,14 +2573,14 @@ namespace draw2d_xlib
 
       ::rectangle_i32 rectangle(rectWindow);
 
-      window_graphics::update_window(pwnd->m_pgraphics, pwnd->get_handle(), m_pcolorref, rectangle, m_iScan);
+      window_graphics::update_window(puserinteraction->m_pgraphics, puserinteraction->get_handle(), m_pcolorref, rectangle, m_iScan);
 
       return true;
 
    }
 
 
-   bool image::print_window(::user::user::interaction_impl * pwnd, ::message::message * pmessage)
+   bool image::print_window(::user::user::interaction_impl * puserinteraction, ::message::message * pmessage)
    {
 
       __pointer(::user::message) pusermessage(pmessage);
@@ -2609,7 +2609,7 @@ namespace draw2d_xlib
 
          ::rectangle_i32 rectWindow;
 
-         pwnd->get_window_rect(rectWindow);
+         puserinteraction->get_window_rect(rectWindow);
 
          ::image_pointer pimage;
 
@@ -2627,17 +2627,17 @@ namespace draw2d_xlib
          rectPaint = rectWindow;
          rectPaint.offset(-rectPaint.top_left());
          m_spgraphics->SelectClipRgn(nullptr);
-         if(pwnd->m_pguie != nullptr && pwnd->m_pguie != this)
+         if(puserinteraction->m_pguie != nullptr && puserinteraction->m_pguie != this)
          {
-            pwnd->m_pguie->_001OnDeferPaintLayeredWindowBackground(pgraphics);
+            puserinteraction->m_pguie->_001OnDeferPaintLayeredWindowBackground(pgraphics);
          }
          else
          {
-            pwnd->_001OnDeferPaintLayeredWindowBackground(pgraphics);
+            puserinteraction->_001OnDeferPaintLayeredWindowBackground(pgraphics);
          }
          m_spgraphics->SelectClipRgn(nullptr);
          m_spgraphics-> SetViewportOrg(::point_i32());
-         pwnd->_000OnDraw(pgraphics);
+         puserinteraction->_000OnDraw(pgraphics);
          m_spgraphics->SetViewportOrg(::point_i32());
          //(dynamic_cast<::win::graphics * >(pgraphics))->FillSolidRect(rectUpdate.left, rectUpdate.top, 100, 100, 255);
          m_spgraphics->SelectClipRgn(nullptr);
@@ -2665,12 +2665,12 @@ namespace draw2d_xlib
 #endif
 
 
-   bool image::update_window(::window * pwnd, ::message::message * pmessage)
+   bool image::update_window(::window * puserinteraction, ::message::message * pmessage)
    {
 
 //      rectangle_i64 rectWindow;
 //
-//      rectWindow = pwnd->m_rectParentClient;
+//      rectWindow = puserinteraction->m_rectParentClient;
 //
 //      m_spgraphics->SetViewportOrg(0, 0);
 //
@@ -2678,7 +2678,7 @@ namespace draw2d_xlib
 //
 //      ::rectangle_i32 rectangle(rectWindow);
 //
-//      window_graphics::update_window(pwnd->m_pgraphics, pwnd->get_handle(), m_pcolorref, rectangle, m_iScan);
+//      window_graphics::update_window(puserinteraction->m_pgraphics, puserinteraction->get_handle(), m_pcolorref, rectangle, m_iScan);
 
       return true;
 

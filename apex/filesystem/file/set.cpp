@@ -106,20 +106,20 @@ namespace file
 
          }
 
-         m_listing.m_pprovider = get_context();
+         m_listing.m_pprovider = m_pcontext->m_papexcontext;
 
          ::file::path & pathFolder = m_ppathaSearch->element_at(i);
 
          if(bRecursive)
          {
 
-            Context.dir().rls_file_pattern(m_listing, pathFolder, m_straFilter);
+            m_pcontext->m_papexcontext->dir().rls_file_pattern(m_listing, pathFolder, m_straFilter);
 
          }
          else
          {
 
-            Context.dir().ls_file_pattern(m_listing, pathFolder, m_straFilter);
+            m_pcontext->m_papexcontext->dir().ls_file_pattern(m_listing, pathFolder, m_straFilter);
 
          }
 
@@ -141,9 +141,9 @@ namespace file
    void set::clear_search()
    {
 
-      m_ppathaSearch->remove_all();
+      m_ppathaSearch->erase_all();
 
-      m_pbaRecursive->remove_all();
+      m_pbaRecursive->erase_all();
 
    }
 
@@ -151,7 +151,7 @@ namespace file
    void set::clear_filter()
    {
 
-      m_straFilter.remove_all();
+      m_straFilter.erase_all();
 
    }
 
@@ -211,7 +211,7 @@ namespace file
    bool set::initialize_os_wallpaper(bool bAddSearch)
    {
 
-      if (!Context.os().initialize_wallpaper_fileset(this, bAddSearch))
+      if (!m_pcontext->m_papexcontext->os().initialize_wallpaper_fileset(this, bAddSearch))
       {
 
          return false;
@@ -226,14 +226,14 @@ namespace file
          if (!bAddSearch)
          {
 
-            Context.os().initialize_wallpaper_fileset(this, true);
+            m_pcontext->m_papexcontext->os().initialize_wallpaper_fileset(this, true);
 
             ::file::set::refresh();
 
             if (m_listing.is_empty())
             {
 
-               Context.os().::os_context::initialize_wallpaper_fileset(this, bAddSearch);
+               m_pcontext->m_papexcontext->os().::os_context::initialize_wallpaper_fileset(this, bAddSearch);
 
                ::file::set::refresh();
 

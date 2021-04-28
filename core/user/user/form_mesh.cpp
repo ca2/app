@@ -302,7 +302,7 @@ namespace user
    void form_mesh::_001HideEditingControls()
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       if(_001GetEditControl() != nullptr)
       {
@@ -560,7 +560,7 @@ namespace user
    //   //      pinteraction = under_sibling(pinteraction);
    //   //      if(bError)
    //   //      {
-   //   //         m_uiptraChild.remove(puiBefore);
+   //   //         m_uiptraChild.erase(puiBefore);
    //   //      }
    //   //   }
    //   //}
@@ -681,7 +681,7 @@ namespace user
    bool form_mesh::_001OnControlSetFocus(::user::interaction * pinteraction)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       //index iItem;
 
@@ -706,7 +706,7 @@ namespace user
    bool form_mesh::_001OnControlKillFocus(::user::interaction * pinteraction)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       //index iItem;
 

@@ -2,6 +2,9 @@
 #include "_imaging_freeimage.h"
 
 
+void set_bypass_cache_if_empty(::payload & varFile);
+
+
 namespace imaging_freeimage
 {
 
@@ -161,7 +164,7 @@ namespace imaging_freeimage
    {
    ::exception::throw_not_implemented();
 
-   ::memory_file file(get_object());
+   ::memory_file file(this);
 
    ::aura::Resource resource;
 
@@ -232,10 +235,14 @@ namespace imaging_freeimage
    //#endif // WINDOWS_DESKTOP
 
 
-   ::e_status context_image::_load_image(::image * pimage, const ::payload & varFile, bool bSync, bool bCreateHelperMaps)
+   ::e_status context_image::_load_image(::image * pimage, const ::payload & varFileParam, bool bSync, bool bCreateHelperMaps)
    {
 
       auto pmemory = create_memory();
+
+      ::payload varFile;
+
+      varFile = varFileParam;
 
       {
 
@@ -250,7 +257,11 @@ namespace imaging_freeimage
 
       }
 
-      Ctx(get_context()).file().as_memory(varFile, *pmemory);
+      set_bypass_cache_if_empty(varFile);
+
+      m_pcontext->m_papexcontext->file().as_memory(varFile, *pmemory);
+
+      //m_pcontext->m_papexcontext->file().non_empty_memory(varFile, *pmemory);
 
       const char * psz = (const char *)pmemory->get_data();
 
@@ -275,7 +286,11 @@ namespace imaging_freeimage
 
       }
 
-      auto estatus = Application.image().load_svg(pimage, pmemory);
+      auto pcontext = m_pcontext->m_pauracontext;
+
+      auto pcontextimage = pcontext->context_image();
+
+      auto estatus = pcontextimage->load_svg(pimage, pmemory);
 
       if (::succeeded(estatus))
       {

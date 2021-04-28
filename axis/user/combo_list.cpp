@@ -69,9 +69,9 @@ namespace user
       MESSAGE_LINK(e_message_left_button_down, pchannel, this, &combo_list::on_message_left_button_down);
       MESSAGE_LINK(e_message_non_client_left_button_down, pchannel, this, &combo_list::on_message_left_button_down);
       MESSAGE_LINK(e_message_left_button_up, pchannel, this, &combo_list::on_message_left_button_up);
-      MESSAGE_LINK(e_message_middle_button_down, pchannel, this, &combo_list::_001OnMButtonDown);
+      MESSAGE_LINK(e_message_middle_button_down, pchannel, this, &combo_list::on_message_middle_button_down);
       MESSAGE_LINK(e_message_right_button_down, pchannel, this, &combo_list::on_message_right_button_down);
-      MESSAGE_LINK(e_message_mouse_move, pchannel, this, &combo_list::_001OnMouseMove);
+      MESSAGE_LINK(e_message_mouse_move, pchannel, this, &combo_list::on_message_mouse_move);
       MESSAGE_LINK(e_message_show_window, pchannel, this, &combo_list::_001OnShowWindow);
 
    }
@@ -103,7 +103,7 @@ namespace user
             if (pimpl)
             {
 
-               synchronization_lock synchronizationlock(pimpl->mutex());
+               synchronous_lock synchronouslock(pimpl->mutex());
 
                pimpl->m_userinteractionaHideOnConfigurationChange.add_unique_interaction(this);
 
@@ -136,9 +136,9 @@ namespace user
             if (pimpl)
             {
 
-               synchronization_lock synchronizationlock(pimpl->mutex());
+               synchronous_lock synchronouslock(pimpl->mutex());
 
-               pimpl->m_userinteractionaHideOnConfigurationChange.remove_interaction(this);
+               pimpl->m_userinteractionaHideOnConfigurationChange.erase_interaction(this);
 
             }
 
@@ -208,7 +208,7 @@ namespace user
 
       }
 
-      auto psession = Session;
+      auto psession = get_session();
 
       auto puser = psession->user();
 
@@ -329,7 +329,7 @@ namespace user
    void combo_list::query_full_size(::draw2d::graphics_pointer& pgraphics, SIZE_I32 * psize)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       pgraphics->set_font(this, ::user::e_element_none);
 
@@ -651,7 +651,7 @@ namespace user
       if (pactivate->m_eactivate == e_activate_inactive)
       {
 
-         auto psession = Session;
+         auto psession = get_session();
 
          auto puser = psession->user();
 
@@ -789,7 +789,7 @@ namespace user
 
       auto rectClient = get_client_rect();
 
-      auto psession = Session;
+      auto psession = get_session();
 
       psession->user()->set_mouse_focus_LButtonDown(this);
 
@@ -818,7 +818,7 @@ namespace user
 
       auto rectClient = get_client_rect();
 
-      auto psession = Session;
+      auto psession = get_session();
 
       psession->user()->set_mouse_focus_LButtonDown(this);
 
@@ -868,7 +868,7 @@ namespace user
    }
 
 
-   void combo_list::_001OnMButtonDown(::message::message * pmessage)
+   void combo_list::on_message_middle_button_down(::message::message * pmessage)
    {
 
       __pointer(::message::mouse) pmouse(pmessage);
@@ -922,7 +922,7 @@ namespace user
    }
 
 
-   void combo_list::_001OnMouseMove(::message::message * pmessage)
+   void combo_list::on_message_mouse_move(::message::message * pmessage)
    {
 
       UNREFERENCED_PARAMETER(pmessage);
@@ -1051,7 +1051,7 @@ namespace user
 
       ::rectangle_i32 rectMonitor;
 
-      auto psession = Session;
+      auto psession = get_session();
 
       auto puser = psession->user();
 
@@ -1190,13 +1190,13 @@ namespace user
 
          {
 
-            auto psession = Session;
+            auto psession = get_session();
 
-            synchronization_lock synchronizationlock(psession->mutex());
+            synchronous_lock synchronouslock(psession->mutex());
 
             auto pinteraction = __create_new < ::user::interaction >();
 
-            auto puser = User;
+            auto puser = psession->user();
 
             puser->m_uiptraToolWindow.add(pinteraction);
 
@@ -1210,20 +1210,18 @@ namespace user
 
          {
 
-            auto psession = Session;
+            auto psession = get_session();
 
-            synchronization_lock synchronizationlock(psession->mutex());
+            synchronous_lock synchronouslock(psession->mutex());
 
-            auto puser = User;
+            auto puser = psession->user();
 
             ::index iFind = puser->m_uiptraToolWindow.predicate_find_first([this](auto& p) {return p.get() == this; });
 
             if (__found(iFind))
             {
 
-               auto puser = User;
-
-               puser->m_uiptraToolWindow.remove_at(iFind);
+               puser->m_uiptraToolWindow.erase_at(iFind);
 
             }
 

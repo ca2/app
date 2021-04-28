@@ -51,7 +51,7 @@ namespace aura
 
       }
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       return m_createaPending.predicate_contains([&pcreate](auto& p) {return p.get() == pcreate; })
       || m_createaHistory.predicate_contains([&pcreate](auto& p) {return p.get() == pcreate; })
@@ -82,7 +82,7 @@ namespace aura
    }
 
 
-   void context_thread::finalize()
+   ::e_status context_thread::finalize()
    {
 
       ::thread::finalize();
@@ -115,7 +115,7 @@ namespace aura
    void context_thread::add_create(::create* pcreate)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       if (::is_null(pcreate) || contains(pcreate))
       {
@@ -147,7 +147,7 @@ namespace aura
    create * context_thread::get_create()
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       if (!m_pcreate || !m_pcreate->m_bNew)
       {
@@ -174,7 +174,7 @@ namespace aura
 
          on_command_create(pcreate);
 
-         m_createaPending.remove_at(0);
+         m_createaPending.erase_at(0);
 
       }
 

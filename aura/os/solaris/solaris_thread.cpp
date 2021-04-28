@@ -1,12 +1,12 @@
 #include "framework.h"
 
-bool defer_process_x_message(hthread_t hthread, MESSAGE * lpMsg, oswindow window, bool bPeek)
+bool defer_process_x_message(htask_t htask, MESSAGE * lpMsg, oswindow window, bool bPeek)
 {
 
-   if(hthread == nullptr || hthread->m_pthread == nullptr || hthread->m_pthread->get_x_window_count() <= 0)
+   if(htask == nullptr || htask->m_pthread == nullptr || htask->m_pthread->get_x_window_count() <= 0)
       return false;
 
-   mutex_lock synchronizationlock(user_mutex(), true);
+   mutex_lock synchronouslock(user_mutex(), true);
 
    bool bRet = false;
 
@@ -25,7 +25,7 @@ bool defer_process_x_message(hthread_t hthread, MESSAGE * lpMsg, oswindow window
          if(pdata == nullptr || pdata->m_bMessageOnlyWindow)
             continue;
 
-         if(pdata->m_hthread != hthread && g_oswindowDesktop != pdata)
+         if(pdata->m_htask != htask && g_oswindowDesktop != pdata)
             continue;
 
          Display * display = pdata->display();
@@ -197,7 +197,7 @@ bool defer_process_x_message(hthread_t hthread, MESSAGE * lpMsg, oswindow window
          if(bRet && lpMsg->hwnd->window() != None)
          {
 
-            if(lpMsg->hwnd->m_hthread != hthread)
+            if(lpMsg->hwnd->m_htask != htask)
             {
 
                bRet = false;

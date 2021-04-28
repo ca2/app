@@ -11,12 +11,12 @@ namespace user
 {
 
 
-   string _os_get_user_theme()
-   {
-
-      return "";
-
-   }
+//   string _os_get_user_theme()
+//   {
+//
+//      return "";
+//
+//   }
 
 
    void _os_process_user_theme(string strTheme)
@@ -69,7 +69,7 @@ namespace user
 
          g_bLastDarkModeSystem = bDarkModeSystem;
 
-         System->set_modified(id_os_dark_mode);
+         ::acme::get_system()->set_modified(id_os_dark_mode);
 
       }
 

@@ -124,14 +124,14 @@ public:
    virtual ::size_i32 CalcSimpleLayout(::draw2d::graphics_pointer& pgraphics) override;
 
    void _001OnImageListAttrib();
-   DECL_GEN_SIGNAL(on_message_create);
-   //DECL_GEN_SIGNAL(_001OnMouseMove);
-   //DECL_GEN_SIGNAL(on_message_left_button_down);
+   DECLARE_MESSAGE_HANDLER(on_message_create);
+   //DECLARE_MESSAGE_HANDLER(on_message_mouse_move);
+   //DECLARE_MESSAGE_HANDLER(on_message_left_button_down);
    void _001OnTimer(::timer * ptimer) override;
-   //DECL_GEN_SIGNAL(on_message_left_button_up);
-   DECL_GEN_SIGNAL(_001OnNcCalcSize);
-   //DECL_GEN_SIGNAL(_001OnNcHitTest);
-   //DECL_GEN_SIGNAL(_001OnMouseLeave);
+   //DECLARE_MESSAGE_HANDLER(on_message_left_button_up);
+   DECLARE_MESSAGE_HANDLER(_001OnNcCalcSize);
+   //DECLARE_MESSAGE_HANDLER(_001OnNcHitTest);
+   //DECLARE_MESSAGE_HANDLER(on_message_mouse_leave);
 
    virtual void install_message_routing(::channel * pchannel) override;
 

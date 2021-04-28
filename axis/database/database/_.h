@@ -22,6 +22,12 @@ namespace database
 
 #include "database.h"
 
+#include "transaction.h"
+
+#include "database_composite.h"
+
+#include "database_impl.h"
+
 #include "field_definition.h"
 
 

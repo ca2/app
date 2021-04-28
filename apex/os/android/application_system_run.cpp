@@ -65,7 +65,7 @@ namespace apex
    ::e_status system::os_application_system_run()
    {
 
-      //string strPrgName = m_strAppId;
+      //string strPrgName = m_XstrAppId;
 
       //strPrgName.replace("/", ".");
 
@@ -73,11 +73,11 @@ namespace apex
 
       //m_strProgName = "com." + strPrgName;
 
-      //::set_main_hthread(m_hthread);
+      //::set_main_hthread(m_htask);
 
       //::set_main_ithread(m_uthread);
 
-      //// ::apex::get_system()->m_strAppId = m_pmaindata->m_strAppId;
+      //// ::apex::get_system()->m_XstrAppId = m_pmaindata->m_XstrAppId;
 
       //if (!begin_synch())
       //{
@@ -88,7 +88,7 @@ namespace apex
 
       //}
 
-      ////::apex::system * psystem = get_context_system();
+      ////::apex::system * psystem = ::apex::get_system();
 
       ////try
       ////{
@@ -105,18 +105,18 @@ namespace apex
 
       ////   initialize.m_rectangle.bottom = pdataexchange->m_iScreenHeight;
 
-      ////   psystem->get_context_session()->defer_initialize_host_window(&initialize.m_rectangle);
+      ////   psystem->get_session()->defer_initialize_host_window(&initialize.m_rectangle);
 
       ////   //::user::system createstruct;
 
-      ////   //if (!psystem->get_context_session()->m_puiHost->create_window_ex(createstruct))
+      ////   //if (!psystem->get_session()->m_puserinteractionHost->create_window_ex(createstruct))
       ////   //{
 
       ////   //    return ::error_failed;
 
       ////   //}
 
-      ////   //__pointer(::user::interaction_impl) pimpl = psystem->get_context_session()->m_puiHost->m_pimpl;
+      ////   //__pointer(::user::interaction_impl) pimpl = psystem->get_session()->m_puserinteractionHost->m_pimpl;
 
       ////   //if (pimpl)
       ////   //{
@@ -141,7 +141,7 @@ namespace apex
 
       ////psystem->main();
 
-      ////::parallelization::post_quit_and_wait(get_context_system(), one_minute());
+      ////::parallelization::post_quit_and_wait(::apex::get_system(), one_minute());
 
       return ::success;
 

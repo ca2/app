@@ -5,13 +5,11 @@
 namespace experience
 {
 
-   move_manager::move_manager(::experience::frame_window * pframewindow) :
-      object(pframewindow)
+   
+   move_manager::move_manager()
    {
 
       m_iConsiderMove = 0;
-      ASSERT(pframewindow != nullptr);
-      m_pframewindow = pframewindow;
       m_bMoving = false;
       //SetSWPFlags(0);
       m_eborderMask = e_border_all;
@@ -21,6 +19,25 @@ namespace experience
 
    move_manager::~move_manager()
    {
+
+   }
+
+
+   ::e_status move_manager::initialize_move_manager(::experience::frame_window* pframewindow)
+   {
+
+      auto estatus = ::object::initialize(pframewindow);
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      m_pframewindow = pframewindow;
+
+      return estatus;
 
    }
 
@@ -84,7 +101,7 @@ namespace experience
    }
 
 
-   bool move_manager::_001OnMouseMove(::message::mouse * pmouse)
+   bool move_manager::on_message_mouse_move(::message::mouse * pmouse)
    {
 
       if (!m_pframewindow->is_moving_enabled())
@@ -179,6 +196,27 @@ namespace experience
    }
 
 
+   bool move_manager::on_message_set_cursor(::message::set_cursor * psetcursor)
+   {
+
+      if (!m_pframewindow->is_moving_enabled())
+      {
+
+         return false;
+
+      }
+
+      if (!window_is_moving())
+      {
+
+         return false;
+
+      }
+
+      return true;
+
+   }
+
 
    bool move_manager::window_stop_moving(bool bApply, ::message::mouse * pmouse)
    {
@@ -192,7 +230,7 @@ namespace experience
 
       m_bMoving = false;
 
-      auto psession = Session;
+      __pointer(::base::session) psession = get_session();
 
       auto puser = psession->user();
 
@@ -225,7 +263,7 @@ namespace experience
 
                pmouse->m_point = -m_pointWindowOrigin + rectRequest.top_left() + m_pointCursorOrigin;
 
-               //auto psession = Session;
+               //auto psession = get_session();
 
                //auto puser = psession->user();
 
@@ -323,7 +361,7 @@ namespace experience
 //      void move_manager::MoveWindow(void * oswindow, const ::point_i32 & point)
 //      {
 //
-//         __pointer(::user::interaction) pframewindow = System->ui_from_handle(oswindow);
+//         __pointer(::user::interaction) pframewindow = psystem->ui_from_handle(oswindow);
 //
 //
 //         ::rectangle_i32 rectWindow;
@@ -332,7 +370,7 @@ namespace experience
 //
 //#ifdef WINDOWS_DESKTOP
 //
-//         critical_section_lock synchronizationlock(m_pframewindow->m_pimpl->cs_display());
+//         critical_section_lock synchronouslock(m_pframewindow->m_pimpl->cs_display());
 //         //m_pframewindow->m_rectParentClient.move_to(point_i64(point));
 //         m_pframewindow->m_pimpl->_001UpdateWindow();
 //

@@ -29,7 +29,7 @@ namespace filehandler
          ::rectangle_i32         m_rectStatusImage;
          ::rectangle_i32         m_rectName;
 
-         item(::layered * pobjectContext);
+         item(::object * pobject);
 
          void parse(const char * pszApp);
 
@@ -44,7 +44,7 @@ namespace filehandler
 
          i32 m_iItemHeight;
 
-         list(::layered * pobjectContext);
+         list(::object * pobject);
 
 
          void parse(::filehandler::handler * phandler, const char * pszTopic);
@@ -62,7 +62,7 @@ namespace filehandler
       ::write_text::font_pointer       m_pfont;
 
 
-      view(::layered * pobjectContext);
+      view(::object * pobject);
       virtual ~view();
 
 
@@ -72,9 +72,9 @@ namespace filehandler
 
       virtual void refresh();
 
-      DECL_GEN_SIGNAL(on_message_create);
+      DECLARE_MESSAGE_HANDLER(on_message_create);
       void _001OnTimer(::timer * ptimer);
-      DECL_GEN_SIGNAL(on_message_left_button_up);
+      DECLARE_MESSAGE_HANDLER(on_message_left_button_up);
 
       virtual void on_layout(::draw2d::graphics_pointer & pgraphics);
 

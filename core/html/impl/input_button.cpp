@@ -27,7 +27,7 @@ namespace html
             if(m_pbutton->is_window())
             {
 
-               m_pbutton->DestroyWindow();
+               m_pbutton->destroy_window();
 
             }
 

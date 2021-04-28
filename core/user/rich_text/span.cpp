@@ -21,9 +21,10 @@ namespace user
 
 
       span::span(data * pdata) :
-         ::object(pdata),
          m_pdata(pdata)
       {
+
+         initialize(pdata);
 
          m_pformat = m_pdata->m_pformatCurrent;
 
@@ -35,10 +36,10 @@ namespace user
 
 
       span::span(data * pdata, ::e_align ealignNewLine) :
-         ::object(pdata),
          m_pdata(pdata)
       {
 
+         initialize(pdata);
          m_pformat = m_pdata->m_pformatCurrent;
          m_ealignNewLine = ealignNewLine;
 
@@ -48,12 +49,13 @@ namespace user
 
 
       span::span(data * pdata, const span & span) :
-         ::object(pdata),
          m_pdata(pdata),
          m_pformat(__new(class format(*span.m_pformat))),
          m_ealignNewLine(span.m_ealignNewLine),
          m_str(span.m_str)
       {
+
+         initialize(pdata);
 
          pdata->m_pformata->add(m_pformat);
 
@@ -63,11 +65,12 @@ namespace user
 
 
       span::span(const span & span) :
-         ::object(span.get_context_object()),
          m_pformat(__new(class format(*span.m_pformat))),
          m_ealignNewLine(span.m_ealignNewLine),
          m_str(span.m_str)
       {
+
+         initialize(span.m_pdata);
 
          ASSERT(m_pformat != nullptr);
 

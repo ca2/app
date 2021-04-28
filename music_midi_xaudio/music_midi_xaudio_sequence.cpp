@@ -13,7 +13,7 @@ namespace music
       {
 
 
-         sequence::sequence(::layered * pobjectContext) :
+         sequence::sequence(::object * pobject) :
             ::object(pobject),
             ::ikaraoke::karaoke(pobject),
             ::music::midi::sequence(pobject)
@@ -220,7 +220,7 @@ Seq_Open_File_Cleanup:
             try
             {
 
-               file = Context.file().get_file(lpFileName, ::file::e_open_read | ::file::e_open_share_deny_write | ::file::e_open_binary);
+               file = pcontext->m_papexcontext->file().get_file(lpFileName, ::file::e_open_read | ::file::e_open_share_deny_write | ::file::e_open_binary);
 
             }
             catch(...)
@@ -365,7 +365,7 @@ Seq_Open_File_Cleanup:
          ::e_status     sequence::CloseFile()
          {
 
-            single_lock synchronizationlock(&m_mutex, true);
+            single_lock synchronouslock(&m_mutex, true);
 
             //if (e_state_no_file == GetState())
             //   return error_unsupported_function;
@@ -445,7 +445,7 @@ Seq_Open_File_Cleanup:
 
             UNREFERENCED_PARAMETER(pthread);
 
-            single_lock synchronizationlock(&m_mutex, true);
+            single_lock synchronouslock(&m_mutex, true);
 
             i32                 i;
             ::e_status                    smfrc;
@@ -457,7 +457,7 @@ Seq_Open_File_Cleanup:
 
             ASSERT(m_iOpenMode == file::open_for_playing || IsInSpecialModeV001());
 
-            m_flags.remove(e_flag_end_of_file);
+            m_flags.erase(e_flag_end_of_file);
 
             m_estatusLastError = ::success;
 
@@ -588,8 +588,8 @@ Seq_Open_File_Cleanup:
 
 
 
-            m_flags.remove(e_flag_end_of_file);
-            file()->GetFlags().remove(file::EndOfFile);
+            m_flags.erase(e_flag_end_of_file);
+            file()->GetFlags().erase(file::EndOfFile);
             for(i = 1; i < m_buffera.get_size(); i++)
             {
                lpmh = m_buffera[i].GetMidiHdr();
@@ -660,7 +660,7 @@ seq_Preroll_Cleanup:
             if (estatus != ::success)
             {
                SetState(e_state_opened);
-               m_flags.remove(::music::midi::sequence::e_flag_waiting);
+               m_flags.erase(::music::midi::sequence::e_flag_waiting);
             }
             else
             {
@@ -695,7 +695,7 @@ seq_Preroll_Cleanup:
          ::e_status     sequence::Start()
          {
 
-            single_lock synchronizationlock(&m_mutex, true);
+            single_lock synchronouslock(&m_mutex, true);
 
             if (::music::midi::sequence::e_state_pre_rolled != GetState())
             {
@@ -715,7 +715,7 @@ seq_Preroll_Cleanup:
             {
                estatus = midiStreamRestart(m_hstream);
             }
-            synchronizationlock.unlock();
+            synchronouslock.unlock();
             if(estatus == ::success)
             {
                thread()->PostMidiSequenceEvent(this, ::music::midi::sequence::e_event_midi_playback_start);
@@ -747,7 +747,7 @@ seq_Preroll_Cleanup:
          ::e_status     sequence::Pause()
 
          {
-            single_lock synchronizationlock(&m_mutex, true);
+            single_lock synchronouslock(&m_mutex, true);
 
             //    assert(nullptr != pSeq);
 
@@ -791,7 +791,7 @@ seq_Preroll_Cleanup:
          {
             //    assert(nullptr != pSeq);
 
-            single_lock synchronizationlock(&m_mutex, true);
+            single_lock synchronouslock(&m_mutex, true);
 
             if (e_state_paused != GetState())
                return error_unsupported_function;
@@ -830,7 +830,7 @@ seq_Preroll_Cleanup:
          ::e_status     sequence::Stop()
          {
 
-            single_lock synchronizationlock(&m_mutex, true);
+            single_lock synchronouslock(&m_mutex, true);
 
             if(GetState() == e_state_stopping)
                return ::success;
@@ -839,7 +839,7 @@ seq_Preroll_Cleanup:
             if (GetState() != e_state_playing
                   && GetState() != e_state_paused)
             {
-               m_flags.remove(::music::midi::sequence::e_flag_waiting);
+               m_flags.erase(::music::midi::sequence::e_flag_waiting);
                GetPlayerLink().OnFinishCommand(::music::midi::player::command_stop);
                return ::success;
             }
@@ -859,7 +859,7 @@ seq_Preroll_Cleanup:
 
                   TRACE( "::music::midi::sequence::Stop() -> midiOutStop() returned %lu in seqStop()!\n", (u32)m_estatusLastError);
 
-                  m_flags.remove(e_flag_waiting);
+                  m_flags.erase(e_flag_waiting);
 
                   return error_not_ready;
 
@@ -901,8 +901,8 @@ seq_Preroll_Cleanup:
          ***************************************************************************/
          ::e_status     sequence::get_ticks(imedia_time &  pTicks)
          {
-            single_lock synchronizationlock(&m_mutex);
-            if(!synchronizationlock.lock(millis(184)))
+            single_lock synchronouslock(&m_mutex);
+            if(!synchronouslock.lock(millis(184)))
                return ::multimedia::result_internal;
 
             ::e_status                    mmr;
@@ -978,8 +978,8 @@ seq_Preroll_Cleanup:
 
          ::e_status     sequence::get_millis(imedia_time & time)
          {
-            single_lock synchronizationlock(&m_mutex);
-            if(!synchronizationlock.lock(millis(184)))
+            single_lock synchronouslock(&m_mutex);
+            if(!synchronouslock.lock(millis(184)))
                return ::multimedia::result_internal;
 
             ::e_status                    mmr;
@@ -1119,7 +1119,7 @@ seq_Preroll_Cleanup:
                //
                if(bSpecialModeV001End)
                {
-                  m_flags.remove(e_flag_operation_end);
+                  m_flags.erase(e_flag_operation_end);
                   TRACE("void CALLBACK ::music::midi::sequence::MidiOutProc m_flags.has(e_flag_operation_end\n");
                   pthread->PostMidiSequenceEvent(
                   this,
@@ -1233,7 +1233,7 @@ seq_Preroll_Cleanup:
                      {
                         plyriceventa = new array <::ikaraoke::lyric_event_v1, ::ikaraoke::lyric_event_v1 &>;
                      }
-                     ::memory_file memFile(get_context_application(), (LPBYTE) &lpdwParam[1], pheader->m_dwLength - sizeof(u32));
+                     ::memory_file memFile(get_application(), (LPBYTE) &lpdwParam[1], pheader->m_dwLength - sizeof(u32));
                      /* x2x                  CArchive ar(&memFile, CArchive::load);
                      lyriceventa.Serialize(ar);
                      plyriceventa->append(lyriceventa); */
@@ -1245,7 +1245,7 @@ seq_Preroll_Cleanup:
                   break;
                   case EVENT_ID_NOTE_ON:
                   {
-                     ::file::byte_stream_memory_file memFile(get_context_application(), (LPBYTE) &lpdwParam[1], pheader->m_dwLength - sizeof(u32));
+                     ::file::byte_stream_memory_file memFile(get_application(), (LPBYTE) &lpdwParam[1], pheader->m_dwLength - sizeof(u32));
                      for(i32 i = 0; i < m_iaLevel.get_size(); i++)
                      {
                         byte b;
@@ -1345,12 +1345,12 @@ seq_Preroll_Cleanup:
             if(m_flags.has(e_flag_operation))
                m_flags.add(e_flag_was_operation);
             else
-               m_flags.remove(e_flag_was_operation);
+               m_flags.erase(e_flag_was_operation);
 
             if(bSet)
                m_flags.add(e_flag_operation);
             else
-               m_flags.remove(e_flag_operation);
+               m_flags.erase(e_flag_operation);
 
          }
 
@@ -1499,7 +1499,7 @@ seq_Preroll_Cleanup:
 
          ::e_status     sequence::CloseStream()
          {
-            single_lock synchronizationlock(&m_mutex, true);
+            single_lock synchronouslock(&m_mutex, true);
             if(IsPlaying())
             {
                Stop();
@@ -1533,7 +1533,7 @@ seq_Preroll_Cleanup:
          void sequence::OnMidiPlaybackEnd(::music::midi::sequence::event * pevent)
          {
             UNREFERENCED_PARAMETER(pevent);
-            single_lock synchronizationlock(&m_mutex, true);
+            single_lock synchronouslock(&m_mutex, true);
             //   LPMIDIHDR lpmh = pevent->m_lpmh;
             //   midi_callback_data * lpData = &m_midicallbackdata;
             ::e_status     estatus;
@@ -1557,7 +1557,7 @@ seq_Preroll_Cleanup:
                }
 
                m_estatusLastError = ::success;
-               m_flags.remove(e_flag_waiting);
+               m_flags.erase(e_flag_waiting);
 
                m_evMmsgDone.SetEvent();
             }
@@ -1591,7 +1591,7 @@ seq_Preroll_Cleanup:
 
 
 
-               single_lock synchronizationlock(&m_mutex, true);
+               single_lock synchronouslock(&m_mutex, true);
 
                ::music::midi::mmsystem::sequence::event * pev = (::music::midi::mmsystem::sequence::event *) pevent;
 
@@ -1682,8 +1682,8 @@ seq_Preroll_Cleanup:
 
          imedia_time sequence::GetPositionTicks()
          {
-            single_lock synchronizationlock(&m_mutex);
-            if(!synchronizationlock.lock(millis(0)))
+            single_lock synchronouslock(&m_mutex);
+            if(!synchronouslock.lock(millis(0)))
                return -1;
             MMTIME mmt;
             mmt.wType = TIME_TICKS;
@@ -1707,7 +1707,7 @@ seq_Preroll_Cleanup:
             if(bSet)
                m_flags.add(::music::midi::sequence::e_flag_tempo_change);
             else
-               m_flags.remove(::music::midi::sequence::e_flag_tempo_change);
+               m_flags.erase(::music::midi::sequence::e_flag_tempo_change);
          }
 
 
@@ -1779,15 +1779,15 @@ seq_Preroll_Cleanup:
             }
             staticdata.m_LyricsDisplay = 30;
 
-            imedia_position_2darray tk2DNoteOnPositions(get_object());
-            imedia_position_2darray tk2DNoteOffPositions(get_object());
-            imedia_position_2darray tk2DBegPositions(get_object());
-            imedia_position_2darray tk2DEndPositions(get_object());
-            imedia_time_2darray ms2DTokensMillis(get_object());
-            imedia_time_2darray ms2DNoteOnMillis(get_object());
-            imedia_time_2darray ms2DNoteOffMillis(get_object());
-            imedia_time_2darray ms2DBegMillis(get_object());
-            imedia_time_2darray ms2DEndMillis(get_object());
+            imedia_position_2darray tk2DNoteOnPositions(this);
+            imedia_position_2darray tk2DNoteOffPositions(this);
+            imedia_position_2darray tk2DBegPositions(this);
+            imedia_position_2darray tk2DEndPositions(this);
+            imedia_time_2darray ms2DTokensMillis(this);
+            imedia_time_2darray ms2DNoteOnMillis(this);
+            imedia_time_2darray ms2DNoteOffMillis(this);
+            imedia_time_2darray ms2DBegMillis(this);
+            imedia_time_2darray ms2DEndMillis(this);
             ::music::midi::events midiEvents;
 
 
@@ -1906,7 +1906,7 @@ seq_Preroll_Cleanup:
                   }
                }
 
-               ::music::midi::util miditutil(get_object());
+               ::music::midi::util miditutil(this);
 
                miditutil.PrepareNoteOnOffEvents(
                &noteOnEvents,
@@ -1933,12 +1933,12 @@ seq_Preroll_Cleanup:
                pLyricEventsV2B->m_dwaNotesData.copy(eventsLevel2Beg.m_dwaEventsData);
                pLyricEventsV2C->m_dwaNotesData.copy(eventsLevel2Beg.m_dwaEventsData);
                pLyricEventsV2_->m_dwaNotesData.copy(eventsLevel2Beg.m_dwaEventsData);
-               midiEvents.remove_all();
-               noteOnEvents.remove_all();
-               noteOffEvents.remove_all();
-               midiEventsLevel2.remove_all();
-               eventsLevel2Beg.remove_all();
-               eventsLevel2End.remove_all();
+               midiEvents.erase_all();
+               noteOnEvents.erase_all();
+               noteOffEvents.erase_all();
+               midiEventsLevel2.erase_all();
+               eventsLevel2Beg.erase_all();
+               eventsLevel2End.erase_all();
                delete pMidiEventsV1;
             }
 
@@ -2235,7 +2235,7 @@ seq_Preroll_Cleanup:
 
             // add Title
             staticdata.m_straTitleFormat.add("%0");
-            staticdata.m_str2aTitle.set_app(get_object());
+            staticdata.m_str2aTitle.set_app(this);
             staticdata.m_str2aTitle.add_new();
             staticdata.m_str2aTitle[0].add(xfihs.m_strSongName);
 
@@ -2521,7 +2521,7 @@ seq_Preroll_Cleanup:
             if(bSet)
                m_flags.add(::music::midi::sequence::e_flag_setting_position);
             else
-               m_flags.remove(::music::midi::sequence::e_flag_setting_position);
+               m_flags.erase(::music::midi::sequence::e_flag_setting_position);
          }
 
          u32 sequence::GetPreviousState()

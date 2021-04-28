@@ -55,10 +55,10 @@ namespace multimedia
    }
 
 
-   bool decoder::multimedia_close()
+   ::e_status decoder::multimedia_close()
    {
 
-      return false;
+      return ::success;
 
    }
 
@@ -71,15 +71,12 @@ namespace multimedia
    }
 
 
-   bool decoder::impl_multimedia_close()
+   ::e_status decoder::impl_multimedia_close()
    {
-
 
       m_pathOrigin.Empty();
 
-
-
-      return true;
+      return ::success;
 
    }
 
@@ -99,9 +96,11 @@ namespace multimedia
 
       {
 
-         auto pmultimedia = ::aqua::get_system()->multimedia();
+         __pointer(::aqua::system) psystem = get_system();
 
-         synchronization_lock synchronizationlock(pmultimedia->mutex());
+         auto pmultimedia = psystem->multimedia();
+
+         synchronous_lock synchronouslock(pmultimedia->mutex());
 
          wstrAttr = pmultimedia->get_media_call_title(strPathOrigin);
 
@@ -196,7 +195,9 @@ namespace multimedia
       if (bMediaCall)
       {
 
-         ::aqua::get_system()->multimedia()->on_decoder_fill_title_info(this, wstraFormat, wstr2aTitle);
+         __pointer(::aqua::system) psystem = get_system();
+
+         psystem->multimedia()->on_decoder_fill_title_info(this, wstraFormat, wstr2aTitle);
 
       }
 
@@ -221,7 +222,7 @@ namespace multimedia
    bool decoder::multimedia_get_attribute(::e_id eattribute, ::payload & payload)
    {
 
-      synchronization_lock lock(mutex());
+      synchronous_lock lock(mutex());
 
       if (eattribute == id_title)
       {

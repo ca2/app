@@ -346,7 +346,7 @@ namespace user
    interaction * form_list::_001GetControl(index iItem, index iSubItem)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       ::user::list_column * pcolumn = m_columna.get_by_subitem(iSubItem);
 
@@ -1261,7 +1261,7 @@ break_click:;
 
       {
 
-         synchronization_lock synchronizationlock(mutex());
+         synchronous_lock synchronouslock(mutex());
 
          for (index i = 0; i < m_columna.get_size(); i++)
          {
@@ -1398,7 +1398,7 @@ break_click:;
 //      //      pinteraction = under_sibling(pinteraction);
 //      //      if(bError)
 //      //      {
-//      //         m_uiptraChild.remove(puiBefore);
+//      //         m_uiptraChild.erase(puiBefore);
 //      //      }
 //      //   }
 //      //}
@@ -1489,7 +1489,7 @@ break_click:;
 //      //      pinteraction = under_sibling(pinteraction);
 //      //      if(bError)
 //      //      {
-//      //         m_uiptraChild.remove(puiBefore);
+//      //         m_uiptraChild.erase(puiBefore);
 //      //      }
 //      //   }
 //      //}
@@ -1914,7 +1914,7 @@ break_click:;
 
          bool bOk;
 
-         auto psession = Session;
+         auto psession = get_session();
 
          if (psession->is_key_pressed(::user::e_key_shift))
          {
@@ -2103,7 +2103,7 @@ break_click:;
 
          _001ClientToScreen(rScreen);
 
-         auto psession = Session;
+         auto psession = get_session();
 
          if (rScreen.contains(psession->m_pointCursor))
          {

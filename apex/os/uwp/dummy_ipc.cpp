@@ -15,7 +15,7 @@
 //   {
 //
 //
-//      base::base(::layered * pobjectContext) :
+//      base::base(::object * pobject) :
 //         object(pobject)
 //      {
 //
@@ -39,7 +39,7 @@
 //      }
 //
 //
-//      tx::tx(::layered * pobjectContext):
+//      tx::tx(::object * pobject):
 //         object(pobject),
 //         base(pobject)
 //      {
@@ -145,7 +145,7 @@
 //
 //
 //
-//      rx::rx(::layered * pobjectContext) :
+//      rx::rx(::object * pobject) :
 //         object(pobject),
 //         base(pobject)
 //      {
@@ -234,7 +234,7 @@
 //               for(auto & strLine : stra)
 //               {
 //
-//                  ::fork(get_context_application(),[=]()
+//                  ::fork(get_application(),[=]()
 //                  {
 //
 //                     on_receive(this,strLine);
@@ -459,7 +459,7 @@
 //
 //      }
 //
-//      ipc::ipc(::layered * pobjectContext):
+//      ipc::ipc(::object * pobject):
 //         object(pobject),
 //         base(pobject),
 //         tx(pobject),

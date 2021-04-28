@@ -370,7 +370,7 @@ void memory_file::load_string(string &str)
 }
 
 
-memsize memory_file::remove_begin(void *pdata, memsize uiCount)
+memsize memory_file::erase_begin(void *pdata, memsize uiCount)
 {
 
    //ASSERT(is_valid());
@@ -462,7 +462,7 @@ void memory_file::dump(dump_context & dumpcontext) const
 //
 //   ASSERT(is_valid());
 //
-//   auto pfile = Context.file().get_file(varFile, ::file::e_open_binary | ::file::e_open_read | ::file::e_open_share_deny_none);
+//   auto pfile = m_pcontext->m_papexcontext->file().get_file(varFile, ::file::e_open_binary | ::file::e_open_read | ::file::e_open_share_deny_none);
 //
 //   if (!pfile)
 //   {

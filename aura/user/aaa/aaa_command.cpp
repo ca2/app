@@ -6,7 +6,7 @@ namespace user
 {
 
 
-   command::command(::layered * pobjectContext)
+   command::command(::object * pobject)
    {
 
       common_construct();
@@ -83,7 +83,7 @@ namespace user
    //}
 
 
-   //command::command(::layered * pobjectContext) :
+   //command::command(::object * pobject) :
    //   ::object(pobject)
    //{
 

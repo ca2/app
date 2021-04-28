@@ -1,18 +1,25 @@
 #pragma once
 
 
-class CLASS_DECL_AURA text_out :
-   virtual public text
+namespace write_text
 {
-public:
 
 
-   point_f64                        m_point;
+   class CLASS_DECL_AURA text_out :
+      virtual public text
+   {
+   public:
 
-   text_out() {  }
+
+      point_f64                        m_point;
+
+      text_out() {  }
 
 
-};
+   };
+
+
+} // namespace write_text
 
 
 

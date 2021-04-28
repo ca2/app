@@ -26,7 +26,7 @@ namespace graphics
    bool buffer::update_window()
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       return update_window(m_pimageBuffer);
 

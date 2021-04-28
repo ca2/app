@@ -212,7 +212,7 @@ SizingNone:;
 
                }
 
-               auto psession = Session;
+               auto psession = get_session();
 
                auto pframewindow = m_pframewindow;
 
@@ -254,9 +254,11 @@ SizingNone:;
 
                   GetBorderRect(rectClient, rectangle, eside);
 
-                  class imaging & imaging = System->imaging();
+                  auto psystem = m_psystem->m_paurasystem;
 
-                  imaging.color_blend(pgraphics, rectangle, crMoveableBorder, 127);
+
+
+                  pgraphics->color_blend( rectangle, crMoveableBorder, 127);
 
                }
                /*else if(m_pframewindow->m_estyle == StyleLightBlue)
@@ -266,9 +268,9 @@ SizingNone:;
 
                   GetBorderRect(rectClient, rectangle, eside);
 
-                  class imaging & imaging = System->imaging();
 
-                  imaging.color_blend(pgraphics, rectangle, crMoveableBorder, 127);
+
+                  pgraphics->color_blend( rectangle, crMoveableBorder, 127);
 
 
 
@@ -294,9 +296,9 @@ SizingNone:;
 
                   GetBorderRect(rectClient, rectangle, eside);
 
-                  class imaging & imaging = System->imaging();
 
-                  imaging.color_blend(pgraphics, rectangle, crMoveableBorder, 127);
+
+                  pgraphics->color_blend( rectangle, crMoveableBorder, 127);
 
                }
 
@@ -1154,7 +1156,7 @@ SizingNone:;
 
                //rectangle.bottom++;
 
-               auto psession = Session;
+               auto psession = get_session();
 
                auto pframewindow = m_pframewindow;
 

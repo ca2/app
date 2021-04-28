@@ -116,7 +116,7 @@ public:
 
 int oswindow_find(nswindow window);
 oswindow_data * oswindow_get(nswindow window);
-bool oswindow_remove(nswindow window);
+bool oswindow_erase(nswindow window);
 
 
 

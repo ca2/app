@@ -9,7 +9,7 @@
 //   {
 //
 //
-//      out::out(::layered * pobjectContext) :
+//      out::out(::object * pobject) :
 //         ::object(pobject)
 //      {
 //
@@ -28,7 +28,7 @@
 //      bool out::out_push_packet(WAVE_OUT_PACKET * ppacket)
 //      {
 //
-//         single_lock synchronizationlock(mutex());
+//         single_lock synchronouslock(mutex());
 //
 //         auto & a = m_mapPacket[ppacket->m_chChannel];
 //
@@ -43,7 +43,7 @@
 //      WAVE_OUT_PACKET * out::out_pop_packet(char chChannel)
 //      {
 //
-//         single_lock synchronizationlock(mutex());
+//         single_lock synchronouslock(mutex());
 //
 //         auto & a = m_mapPacket[chChannel];
 //
@@ -71,7 +71,7 @@
 //CLASS_DECL_AURA bool out_push_packet(WAVE_OUT_PACKET * ppacket)
 //{
 //
-//   return ::aqua::get_system()->m_spwaveout->out_push_packet(ppacket);
+//   return get_system()->m_spwaveout->out_push_packet(ppacket);
 //
 //}
 //
@@ -79,21 +79,21 @@
 //CLASS_DECL_AURA WAVE_OUT_PACKET * out_pop_packet(char chChannel)
 //{
 //
-//   return ::aqua::get_system()->m_spwaveout->out_pop_packet(chChannel);
+//   return get_system()->m_spwaveout->out_pop_packet(chChannel);
 //
 //}
 
 
 
 
-LPWAVEOUT waveout_open(int iChannel, LPAUDIOFORMAT pformat, LPWAVEOUT_CALLBACK pcallback)
-{
-
-   auto paudio = ::aqua::get_system()->audio();
-
-   return paudio->waveout_open(iChannel, pformat, pcallback);
-
-}
+//LPWAVEOUT waveout_open(int iChannel, LPAUDIOFORMAT pformat, LPWAVEOUT_CALLBACK pcallback)
+//{
+//
+//   auto paudio = get_system()->audio();
+//
+//   return paudio->waveout_open(iChannel, pformat, pcallback);
+//
+//}
 
 
 CLASS_DECL_AQUA int waveout_start(LPWAVEOUT pwaveout)

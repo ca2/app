@@ -21,10 +21,10 @@ public:
    virtual void install_message_routing(::channel * pchannel);
 
 
-   DECL_GEN_SIGNAL(_001OnEndTrack);
-   DECL_GEN_SIGNAL(_001OnTrack);
-   DECL_GEN_SIGNAL(_001OnEndDrag);
-   DECL_GEN_SIGNAL(on_message_create);
+   DECLARE_MESSAGE_HANDLER(_001OnEndTrack);
+   DECLARE_MESSAGE_HANDLER(_001OnTrack);
+   DECLARE_MESSAGE_HANDLER(_001OnEndDrag);
+   DECLARE_MESSAGE_HANDLER(on_message_create);
 
 
 };

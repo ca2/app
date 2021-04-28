@@ -28,7 +28,7 @@
     <ClCompile Include=".\hellobase_pane_view.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include=".\aaa_want_to_remove_hellobase_view_update_hint.cpp">
+    <ClCompile Include=".\aaa_want_to_erase_hellobase_view_update_hint.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include=".\hellobase_view.cpp">
@@ -75,7 +75,7 @@
     <ClInclude Include="hellobase_pane_view.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="aaa_want_to_remove_hellobase_view_update_hint.h">
+    <ClInclude Include="aaa_want_to_erase_hellobase_view_update_hint.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="hellobase_view.h">

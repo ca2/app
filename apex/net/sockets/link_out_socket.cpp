@@ -8,12 +8,15 @@ namespace sockets
 
 
 
-   link_out_socket::link_out_socket(base_socket_handler & h) : 
-      ::object(&h),
-      base_socket(h),
-      socket(h),
-      stream_socket(h),
-      tcp_socket(h, 32000, 32000),
+   link_out_socket::link_out_socket() : 
+      //::object(&h),
+      //base_socket(h),
+      //socket(h),
+      //stream_socket(h),
+      //tcp_socket(h, 32000, 32000),
+      //m_in(nullptr),
+      //m_out(nullptr)
+      tcp_socket(32000, 32000),
       m_in(nullptr),
       m_out(nullptr)
    {
@@ -40,9 +43,11 @@ namespace sockets
    void link_out_socket::server_to_link_out(httpd_socket * psocket)
    {
       
-      socket_handler & h = dynamic_cast < socket_handler & > (psocket->Handler());
+      //socket_handler & h = dynamic_cast < socket_handler & > (psocket->socket_handler());
+
+      __pointer(::sockets::socket_handler) phandler = psocket->socket_handler();
       
-      auto p = h.m_sockets.begin();
+      auto p = phandler->m_sockets.begin();
 
       SOCKET key;
 
@@ -52,7 +57,7 @@ namespace sockets
          if(p->m_psocket == psocket)
          {
 
-            h.m_sockets.set_at(key, this);
+            phandler->m_sockets.set_at(key, this);
 
          }
 

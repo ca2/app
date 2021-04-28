@@ -177,7 +177,7 @@ i32 preview_dc::SaveDC()
    i32 nAttribIndex = ::SaveDC(get_handle2());
    if (get_os_data() != nullptr)
    {
-      // remove font from object
+      // erase font from object
       ::SelectObject(get_os_data(), GetStockObject(SYSTEM_FONT));
       m_nSaveDCDelta = ::SaveDC(get_os_data()) - nAttribIndex;
       // Select font back in after save
@@ -198,7 +198,7 @@ int_bool preview_dc::RestoreDC(i32 nSavedDC)
    {
       if (m_nSaveDCDelta != 0x7fff)
       {
-         ASSERT(get_os_data() != nullptr);      // removed Output DC after save
+         ASSERT(get_os_data() != nullptr);      // erased Output DC after save
 
          if (nSavedDC != -1)
             nSavedDC += m_nSaveDCDelta;

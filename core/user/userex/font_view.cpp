@@ -80,10 +80,10 @@ namespace userex
       if (psubject->id() == id_after_change_text)
       {
 
-         if (m_ptopview != nullptr && psubject->m_puserinteraction == m_ptopview->m_peditview)
+         if (m_ptopview != nullptr && psubject->m_puserprimitive == m_ptopview->m_peditview)
          {
 
-            synchronization_lock synchronizationlock(m_pview->m_pfontlist->mutex());
+            synchronous_lock synchronouslock(m_pview->m_pfontlist->mutex());
 
             string strText;
 

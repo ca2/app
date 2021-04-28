@@ -61,9 +61,8 @@ namespace sockets
    ::mutex * base_socket::s_pmutex = nullptr;
 
 
-   base_socket::base_socket(base_socket_handler & h) :
-      m_handler(h)
-      ,m_bDelete(false)
+   base_socket::base_socket() :
+      m_bDelete(false)
       ,m_bClose(false)
       ,m_timeCreate(time(nullptr))
       ,m_psocketParent(nullptr)
@@ -79,9 +78,9 @@ namespace sockets
       ,m_bSocks4(false)
       ,m_b_chunked(false)
       ,m_socket(INVALID_SOCKET)
-      ,m_socks4_host(h.GetSocks4Host())
-      ,m_socks4_port(h.GetSocks4Port())
-      ,m_socks4_userid(h.GetSocks4Userid())
+      //,m_socks4_host(h.GetSocks4Host())
+      //,m_socks4_port(h.GetSocks4Port())
+      //,m_socks4_userid(h.GetSocks4Userid())
       ,m_detach(false)
       ,m_detached(false)
       // Line protocol
@@ -118,7 +117,25 @@ namespace sockets
    }
 
 
-   e_trace_category base_socket::trace_category()
+   ::e_status base_socket::initialize_socket(base_socket_handler* phandler)
+   {
+
+      auto estatus = ::object::initialize(phandler);
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return estatus;
+
+
+   }
+
+
+   e_trace_category base_socket::trace_category() const
    {
 
       return trace_category_socket;
@@ -126,15 +143,15 @@ namespace sockets
    }
 
 
-   void base_socket::on_finalize()
-   {
+   //void base_socket::on_finalize()
+   //{
 
-      //__release(m_psocketthread);
+   //   //__release(m_psocketthread);
 
-      ::object::on_finalize();
+   //   ::object::on_finalize();
 
 
-   }
+   //}
 
 
    void base_socket::Init()
@@ -257,12 +274,12 @@ namespace sockets
 
       if (topic_text() == nullptr)
       {
+         
+          //string strTopicText;
 
-          string strTopicText;
+          //strTopicText.Format("socket_%d> ", s);
 
-          strTopicText.Format("socket_%d> ", s);
-
-          set_topic_text(strTopicText);
+          //set_topic_text(strTopicText);
 
       }
 
@@ -291,7 +308,14 @@ namespace sockets
    {
       if (x ^ m_bClose)
       {
-         Handler().AddList(m_socket, LIST_CLOSE, x);
+
+         if(socket_handler())
+         {
+
+            socket_handler()->AddList(m_socket, LIST_CLOSE, x);
+
+         }
+
          m_bClose = x;
          if (x)
          {
@@ -323,24 +347,26 @@ namespace sockets
    }
 
 
-   base_socket_handler& base_socket::Handler() const
+   base_socket_handler* base_socket::socket_handler() const
    {
 
       if (IsDetached())
       {
 
-         return *m_phandlerSlave;
+         return m_phandlerSlave.m_p;
 
       }
 
-      return m_handler;
+      return m_psockethandler;
 
    }
 
 
-   base_socket_handler& base_socket::MasterHandler() const
+   base_socket_handler* base_socket::master_socket_handler() const
    {
-      return m_handler;
+      
+      return m_psockethandler;
+
    }
 
 
@@ -470,7 +496,7 @@ namespace sockets
 
    void base_socket::Set(bool bRead, bool bWrite, bool bException)
    {
-      Handler().set(m_socket, bRead, bWrite, bException);
+      socket_handler()->set(m_socket, bRead, bWrite, bException);
    }
 
 
@@ -837,7 +863,9 @@ namespace sockets
    void base_socket::SetSocks4Host(const string & host)
    {
 
-      ::apex::get_system()->sockets().net().convert(m_socks4_host, host);
+      auto paddressdepartment = ::net::address_department();
+
+      paddressdepartment->convert(m_socks4_host, host);
 
    }
 
@@ -930,6 +958,8 @@ namespace sockets
 
       SetDetached();
 
+      m_psockethandler.release();
+
       __compose_new(m_psocketthread);
 
       m_psocketthread->initialize_socket_thread(this);
@@ -945,7 +975,7 @@ namespace sockets
 
    void base_socket::SetDetach(bool x)
    {
-      Handler().AddList(m_socket, LIST_DETACH, x);
+      socket_handler()->AddList(m_socket, LIST_DETACH, x);
       m_detach = x;
    }
 
@@ -990,7 +1020,7 @@ namespace sockets
    ::e_status base_socket::socket_thread::initialize_socket_thread(base_socket * psocket)
    {
 
-      auto estatus = initialize(psocket->get_context_object());
+      auto estatus = initialize(psocket);
 
       if (!estatus)
       {
@@ -1001,11 +1031,14 @@ namespace sockets
 
       __refer(m_psocket, psocket);
 
-      m_psocket->set_context_thread(this OBJ_REF_DBG_COMMA_P_FUNCTION_LINE(m_psocket));
+      //m_psocket->set_context_thread(this OBJ_REF_DBG_COMMA_P_FUNCTION_LINE(m_psocket));
          
-      __compose(m_phandler, __new(socket_handler(get_context_object())));
+      __compose(m_phandler, __new(class socket_handler()));
 
-      m_phandler->set_context_thread(this OBJ_REF_DBG_COMMA_P_FUNCTION_LINE(m_phandler));
+
+      m_phandler->add(psocket);
+
+      //m_phandler->set_context_thread(this OBJ_REF_DBG_COMMA_P_FUNCTION_LINE(m_phandler));
 
       begin_synch();
 
@@ -1032,13 +1065,13 @@ namespace sockets
 
       }
 
-      socket_handler& h = *m_phandler;
+      auto phandler = m_phandler;
 
-      h.SetSlave();
+      phandler->SetSlave();
 
-      h.add(m_psocket);
+      phandler->add(m_psocket);
 
-      m_psocket->SetSlaveHandler(&h);
+      m_psocket->SetSlaveHandler(phandler);
 
       m_psocket->OnDetached();
    
@@ -1080,15 +1113,15 @@ namespace sockets
    ::e_status base_socket::socket_thread::run()
    {
 
-      socket_handler& h = *m_phandler;
+      auto phandler = m_phandler;
 
-      while (thread_get_run() && h.get_count())
+      while (task_get_run() && phandler->get_count())
       {
 
          try
          {
 
-            h.select(1, 0);
+            phandler->select(1, 0);
 
          }
          catch(...)
@@ -1109,54 +1142,54 @@ namespace sockets
    }
 
 
-   int base_socket::Resolve(const string & host,port_t port)
-   {
-      
-      return Handler().Resolve(this, host, port);
-
-   }
-
-
-   int base_socket::Resolve6(const string & host,port_t port)
-   {
-      
-      return Handler().Resolve6(this, host, port);
-
-   }
+//   int base_socket::Resolve(const string & host,port_t port)
+//   {
+//
+//      return socket_handler()->Resolve(this, host, port);
+//
+//   }
 
 
-   int base_socket::Resolve(in_addr a)
-   {
-      
-      return Handler().Resolve(this, a);
-
-   }
-
-
-   int base_socket::Resolve(in6_addr& a)
-   {
-      
-      return Handler().Resolve(this, a);
-
-   }
+//   int base_socket::Resolve6(const string & host,port_t port)
+//   {
+//
+//      return socket_handler()->Resolve6(this, host, port);
+//
+//   }
 
 
-   void base_socket::OnResolved(int, const ::net::address & address)
-   {
-
-   }
-
-
-   void base_socket::OnReverseResolved(int,const string &)
-   {
-
-   }
+//   int base_socket::Resolve(in_addr a)
+//   {
+//
+//      return socket_handler()->Resolve(this, a);
+//
+//   }
 
 
-   void base_socket::OnResolveFailed(int)
-   {
+//   int base_socket::Resolve(in6_addr& a)
+//   {
+//
+//      return socket_handler()->Resolve(this, a);
+//
+//   }
 
-   }
+
+//   void base_socket::OnResolved(int, const ::net::address & address)
+//   {
+//
+//   }
+
+
+//   void base_socket::OnReverseResolved(int,const string &)
+//   {
+//
+//   }
+
+
+//   void base_socket::OnResolveFailed(int)
+//   {
+//
+//   }
 
 
    bool base_socket::SetIpOptions(const void *point, socklen_t len)
@@ -2439,13 +2472,13 @@ namespace sockets
 
    void base_socket::Subscribe(int id)
    {
-      Handler().Subscribe(id, this);
+      socket_handler()->Subscribe(id, this);
    }
 
 
    void base_socket::Unsubscribe(int id)
    {
-      Handler().Unsubscribe(id, this);
+      socket_handler()->Unsubscribe(id, this);
    }
 
 
@@ -2465,13 +2498,11 @@ namespace sockets
       if (!secs)
       {
          
-         Handler().AddList(m_socket, LIST_TIMEOUT, false);
+         socket_handler()->AddList(m_socket, LIST_TIMEOUT, false);
          
          return;
 
       }
-      
-      Handler().AddList(m_socket, LIST_TIMEOUT, true);
       
       m_timeTimeoutStart = time(nullptr);
 
@@ -2699,19 +2730,21 @@ namespace sockets
    string base_socket::get_short_description()
    {
 
-      return ::apex::get_system()->sockets().net().canonical_name(GetRemoteAddress());
+      auto paddressdepartment = ::net::address_department();
+
+      return paddressdepartment->canonical_name(GetRemoteAddress());
 
    }
 
 
-   void base_socket::free_ssl_session()
+   void base_socket::destroy_ssl_session()
    {
 
 #ifdef BSD_STYLE_SOCKETS
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
-      if (m_psslcontext->m_pclientcontext->get_context_session() != nullptr)
+      if (m_psslcontext->m_pclientcontext->get_session() != nullptr)
       {
 
          m_psslcontext->m_pclientcontext.release();
@@ -2726,7 +2759,7 @@ namespace sockets
    void base_socket::get_ssl_session()
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
 #ifdef BSD_STYLE_SOCKETS
       if (m_psslcontext->m_pclientcontext->m_psslsession == nullptr)

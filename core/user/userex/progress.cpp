@@ -59,9 +59,11 @@ namespace userex
       if (m_pdocument == nullptr)
       {
 
-         auto puser = User;
+         __pointer(::core::session) psession = get_session();
 
-         m_pdocument = puser->m_ptemplateProgress2->open_document_file(get_context_application(), ::e_type_null, __visible(false));
+         auto puser = psession->user();
+
+         m_pdocument = puser->m_ptemplateProgress2->open_document_file(get_application(), ::e_type_null, __visible(false));
 
          m_pview = m_pdocument->get_typed_view<::userex::progress_view>();
 
@@ -81,7 +83,7 @@ namespace userex
 
       {
 
-         synchronization_lock synchronizationlock(mutex());
+         synchronous_lock synchronouslock(mutex());
 
          pdocument = m_pdocument;
 
@@ -167,7 +169,7 @@ namespace userex
 //
 //         }
 //
-//         children_remove(::get_task());
+//         children_erase(::get_task());
 //
 //         close_progress();
 //
@@ -260,7 +262,7 @@ namespace userex
 
          ::rectangle_i32 rectangle;
 
-         auto psession = Session;
+         auto psession = get_session();
 
          auto puser = psession->user();
 

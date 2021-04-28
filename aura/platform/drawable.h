@@ -4,15 +4,16 @@
 namespace aura
 {
 
+
    class CLASS_DECL_AURA drawable:
       virtual public ::object
    {
    public:
 
 
-
       drawable();
       virtual ~drawable();
+
 
       virtual ::draw2d::graphics_pointer create_memory_graphics();
 

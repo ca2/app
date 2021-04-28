@@ -7,11 +7,12 @@ namespace filemanager
 
    class CLASS_DECL_CORE path_view :
       virtual public ::user::show < ::user::plain_edit >,
-      virtual public ::filemanager::impact
+      virtual public ::filemanager_impact
    {
    public:
 
-            bool m_bVoidSync;
+
+      bool m_bVoidSync;
 
 
       path_view();
@@ -26,6 +27,7 @@ namespace filemanager
       virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics);
 
       virtual void browse_sync(const ::action_context & action_context);
+
 
    };
 

@@ -20,13 +20,13 @@ namespace linux
    }
 
 
-   //AudioVideo   Application for presenting, creating, or processing multimedia (audio/video)
+   //AudioVideo   papplication for presenting, creating, or processing multimedia (audio/video)
    //Audio        An audio application                                                          Desktop entry must include AudioVideo as well
    //Video        A video application	                                                         Desktop entry must include AudioVideo as well
    //Development  An application for development
    //Education    Educational software
    //Game         A game
-   //Graphics     Application for viewing, creating, or processing graphics
+   //Graphics     papplication for viewing, creating, or processing graphics
    //Network      Network application such as a web browser
    //Office       An office type application
    //Science      Scientific software
@@ -148,7 +148,7 @@ namespace linux
 
       }
 
-      straCategory.remove_duplicates_ci();
+      straCategory.erase_duplicates_ci();
 
       return straCategory;
 
@@ -160,9 +160,9 @@ namespace linux
 
       ::file::path path;
 
-      path = ::dir::localconfig() / "monitor-0/desk/2desk";
+      path = pacmedir->localconfig() / "monitor-0/desk/2desk";
 
-      string strPrgName = Application.m_strAppId;
+      string strPrgName = papplication->m_strAppId;
 
       strPrgName.replace("/", ".");
 
@@ -180,11 +180,11 @@ namespace linux
 
       ::file::path path;
 
-      path = ::dir::home();
+      path = pacmedir->home();
 
       path /= ".local/share/applications";
 
-      string strPrgName = Application.m_strAppId;
+      string strPrgName = papplication->m_strAppId;
 
       strPrgName.replace("/", ".");
 
@@ -202,7 +202,7 @@ namespace linux
 
       string_array & straLine = m_straLine;
 
-      string strPrgName = Application.m_strAppId;
+      string strPrgName = papplication->m_strAppId;
 
       strPrgName.replace("/", ".");
 
@@ -210,7 +210,7 @@ namespace linux
 
       straLine.add("[Desktop Entry]");
       straLine.add("Version=1.0");
-      straLine.add("Type=Application");
+      straLine.add("Type=papplication");
       straLine.add("Name=");
       straLine.add("GenericName=");
       straLine.add("Comment=");
@@ -228,9 +228,9 @@ namespace linux
    void desktop_file::create()
    {
 
-      ::file::path path = Context.dir().matter("app.desktop");
+      ::file::path path = pcontext->m_papexcontext->dir().matter("app.desktop");
 
-      Context.file().lines(m_straLine, path);
+      pcontext->m_papexcontext->file().lines(m_straLine, path);
 
       if(m_straLine.is_empty())
       {
@@ -239,11 +239,11 @@ namespace linux
 
       }
 
-      string strTitle = Application.get_title();
+      string strTitle = papplication->get_title();
 
-      string_array straCategories = proper_category(Application.get_categories());
+      string_array straCategories = proper_category(papplication->get_categories());
 
-      string strPrgName = Application.m_strAppId;
+      string strPrgName = papplication->m_strAppId;
 
       strPrgName.replace("/", ".");
 
@@ -255,7 +255,7 @@ namespace linux
 
       string strName;
 
-      strName = Application.m_strAppId;
+      strName = papplication->m_strAppId;
 
       strName.replace("-", "_");
 
@@ -263,15 +263,15 @@ namespace linux
 
       strName.replace(".", "_");
 
-      //pathLaunch = ::dir::home() / ".config/ca2/bin" / (strName + ".sh");
+      //pathLaunch = pacmedir->home() / ".config/ca2/bin" / (strName + ".sh");
 
-      pathUserBin = ::dir::home() / "bin" / strName;
+      pathUserBin = pacmedir->home() / "bin" / strName;
 
-      ::file::path pathIcon = Context.dir().matter("main/icon-256.png");
+      ::file::path pathIcon = pcontext->m_papexcontext->dir().matter("main/icon-256.png");
 
       {
 
-         Context.file().get_file(pathIcon, ::file::e_open_read);
+         pcontext->m_papexcontext->file().get_file(pathIcon, ::file::e_open_read);
 
       }
 
@@ -289,17 +289,17 @@ namespace linux
 
       strScript += "\n";
 
-      strScript += "   cd " + string(Context.file().module().folder()) + "/\n";
+      strScript += "   cd " + string(pcontext->m_papexcontext->file().module().folder()) + "/\n";
 
       strScript += "\n";
 
-      strScript += "   export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:.:" + string(Context.file().module().folder()) + "\n";
+      strScript += "   export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:.:" + string(pcontext->m_papexcontext->file().module().folder()) + "\n";
 
       */
 
       //strScript += "\n";
 
-      //strScript += "   /bin/bash -i -c \"" + string(Context.file().module()) + "\" ${@:1:99}\n";
+      //strScript += "   /bin/bash -i -c \"" + string(pcontext->m_papexcontext->file().module()) + "\" ${@:1:99}\n";
 
       /*
 
@@ -319,14 +319,14 @@ namespace linux
 
       strScript += "\n";
 
-//      strScript += "export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:.:" + string(Context.file().module().folder()) + "\n";
+//      strScript += "export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:.:" + string(pcontext->m_papexcontext->file().module().folder()) + "\n";
 //
 //      strScript += "\n";
 //
 
-      //strScript += "/bin/bash -l -c " + string(Context.file().module()) + " ${@:1:99}\n";
+      //strScript += "/bin/bash -l -c " + string(pcontext->m_papexcontext->file().module()) + " ${@:1:99}\n";
 
-      strScript += string(Context.file().module()) + " ${@:1:99}\n";
+      strScript += string(pcontext->m_papexcontext->file().module()) + " ${@:1:99}\n";
 
       strScript += "\n";
 
@@ -335,18 +335,18 @@ namespace linux
       //chmod(pathLaunch, 0755);
       chmod(pathUserBin, 0600);
 
-      string strModule = Context.file().module();
+      string strModule = pcontext->m_papexcontext->file().module();
 
       straLine._007SetLine("[Desktop Entry]", "GenericName", strTitle);
       straLine._007SetLine("[Desktop Entry]", "Name", strTitle);
       straLine._007SetLine("[Desktop Entry]", "Comment", strTitle + " Comment");
       //straLine._007SetLine("[Desktop Entry]", "Exec", pathLaunch + " %U");
       //straLine._007SetLine("[Desktop Entry]", "Exec", strName + " %U");
-      //straLine._007SetLine("[Desktop Entry]", "Exec", string(Context.file().module()) + " %U");
+      //straLine._007SetLine("[Desktop Entry]", "Exec", string(pcontext->m_papexcontext->file().module()) + " %U");
       straLine._007SetLine("[Desktop Entry]", "Exec", strModule + " %U");
-      //straLine._007SetLine("Path", string(Context.file().module().folder()));
+      //straLine._007SetLine("Path", string(pcontext->m_papexcontext->file().module().folder()));
 
-      if(Context.file().exists(pathIcon))
+      if(pcontext->m_papexcontext->file().exists(pathIcon))
       {
 
          straLine._007SetLine("[Desktop Entry]", "Icon", pathIcon);
@@ -369,7 +369,7 @@ namespace linux
       //straLine._007SetLine("[Desktop Action transparent-frame]", "StartupWMClass", "com." + strPrgName);
       //straLine._007SetLine("[Desktop Action transparent-frame]", "Exec", pathLaunch + " : post transparent_frame");
       //straLine._007SetLine("[Desktop Action transparent-frame]", "Exec", strName + " : post transparent_frame");
-      //straLine._007SetLine("[Desktop Action transparent-frame]", "Exec", string(Context.file().module()) + " : post transparent_frame");
+      //straLine._007SetLine("[Desktop Action transparent-frame]", "Exec", string(pcontext->m_papexcontext->file().module()) + " : post transparent_frame");
       //straLine._007SetLine("[Desktop Action transparent-frame]", "Exec", strName + " : post transparent_frame");
       straLine._007SetLine("[Desktop Action transparent-frame]", "Exec", strModule + " : post transparent_frame");
 
@@ -388,13 +388,13 @@ namespace linux
 
       ::file::path path = get_file_path();
 
-      Context.file().put_lines(path, m_straLine);
+      pcontext->m_papexcontext->file().put_lines(path, m_straLine);
 
       chmod(path, S_IRUSR | S_IWUSR | S_IXUSR);
 
       path = get_board_path();
 
-      Context.file().put_lines(path, m_straLine);
+      pcontext->m_papexcontext->file().put_lines(path, m_straLine);
 
       chmod(path, S_IRUSR | S_IWUSR | S_IXUSR);
 
@@ -404,7 +404,7 @@ namespace linux
    bool desktop_file::bamf_set_icon(oswindow oswindow)
    {
 
-      ::file::path path = get_file_path();
+      ::file::path path = get_file_path(papplication);
 
       output_debug_string("\nlinux::interaction_impl::set_window_text");
 

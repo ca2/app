@@ -75,7 +75,7 @@ public:
    HANDLE                  m_hmap;
    class get_fs_size *     m_pgetfssize;
    FileSystemSizeWnd *     m_puserinteraction;
-   FileSystemSizeWnd *     m_pwndServer;
+   FileSystemSizeWnd *     m_puserinteractionServer;
    oswindow                    m_oswindowServer;
    ::event *               m_pevExec;
    ::event *               m_pevDone;
@@ -85,7 +85,7 @@ public:
 
 
 
-   file_size_table(::layered * pobjectContext);
+   file_size_table(::object * pobject);
    ~file_size_table();
 
    bool check_map();
@@ -104,7 +104,7 @@ public:
    index                     m_iMaxIteration;
 
 
-   DBFileSystemSizeSet(::layered * pobjectContext);
+   DBFileSystemSizeSet(::object * pobject);
    ~DBFileSystemSizeSet();
 
 
@@ -127,7 +127,7 @@ class CLASS_DECL_AURA FileSystemSizeServerThread :
 {
 public:
 
-   FileSystemSizeServerThread(::layered * pobjectContext);
+   FileSystemSizeServerThread(::object * pobject);
 
    bool initialize_thread() override;
 
@@ -160,7 +160,7 @@ public:
    size_map                         m_map;
 
 
-   FileSystemSizeWnd(::layered * pobjectContext);
+   FileSystemSizeWnd(::object * pobject);
 
    bool CreateClient();
    bool CreateServer();
@@ -172,7 +172,7 @@ public:
 
    void install_message_routing(::channel * pchannel);
 
-   DECL_GEN_SIGNAL(_001OnCopyData);
+   DECLARE_MESSAGE_HANDLER(_001OnCopyData);
    void _001OnTimer(::timer * ptimer);
 
 

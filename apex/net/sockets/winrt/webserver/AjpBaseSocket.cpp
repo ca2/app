@@ -84,7 +84,7 @@ namespace sockets
    }
 
 
-   AjpBaseSocket::AjpBaseSocket(base_socket_handler& h) : 
+   AjpBaseSocket::AjpBaseSocket() : 
       socket(h),
       base_socket(h),
       stream_socket(h),

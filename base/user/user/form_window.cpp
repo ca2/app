@@ -619,7 +619,7 @@ namespace user
    bool form_window::_001GetData(const ::id & id, bool &bData)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       __pointer(interaction) pinteraction = get_child_by_id(id);
 
@@ -738,9 +738,9 @@ namespace user
    //void form_window::_001RemoveControls()
    //{
 
-   //   synchronization_lock synchronizationlock(mutex());
+   //   synchronous_lock synchronouslock(mutex());
 
-   //   //m_controldescriptorset.remove_all();
+   //   //m_controldescriptorset.erase_all();
 
    //}
 
@@ -758,7 +758,7 @@ namespace user
    void form_window::data_on_after_change(::database::client* pclient, const ::database::key& key, const ::payload & payload, ::subject::subject * psubject)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       if(psubject != nullptr)
       {
@@ -814,7 +814,9 @@ namespace user
    void form_window::_001UpdateFunctionStatic()
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
+
+      auto papplication = get_application();
 
       for(auto pinteraction : proper_children())
       {
@@ -824,7 +826,7 @@ namespace user
 
             string str;
 
-            str = Application.load_string(pinteraction->m_id);
+            str = papplication->load_string(pinteraction->m_id);
 
             pinteraction->set_window_text(str);
 
@@ -834,7 +836,7 @@ namespace user
 
             string str;
 
-            str = Application.load_string(pinteraction->m_uiText);
+            str = papplication->load_string(pinteraction->m_uiText);
 
             pinteraction->set_window_text(str);
 
@@ -943,8 +945,8 @@ namespace user
          {
             if(!pinteraction->GetComboBox()->m_datakeyFill.IsNull())
             {
-               pinteraction->GetComboBox()->m_wstra.remove_all();
-               pinteraction->GetComboBox()->m_dwaData.remove_all();
+               pinteraction->GetComboBox()->m_wstra.erase_all();
+               pinteraction->GetComboBox()->m_dwaData.erase_all();
                ::payload payload;
                payload.m_etype = ::e_type_element;
                payload.m_pca2 = pinteraction->GetComboBox();
@@ -1030,7 +1032,7 @@ namespace user
 
    //   //}
 
-   //   //auto pinteraction = Application.__id_create <::user::interaction>(pdescriptor->m_type);
+   //   //auto pinteraction = papplication->__id_create <::user::interaction>(pdescriptor->m_type);
 
    //   //if(!pinteraction)
    //   //{
@@ -1178,7 +1180,7 @@ namespace user
             else
             {
 
-               ia.remove(pinteraction->m_iDataValue);
+               ia.erase(pinteraction->m_iDataValue);
 
             }
 
@@ -1197,7 +1199,7 @@ namespace user
       if(m_bInitialized)
          return true;
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       _001InitializeFormPreData();
 
@@ -1242,7 +1244,7 @@ namespace user
 
    //   }
 
-   //   auto psession = Session;
+   //   auto psession = get_session();
 
    //   pdescriptor->m_type = psession->user()->controltype_to_typeinfo(pdescriptor->get_control_type());
 

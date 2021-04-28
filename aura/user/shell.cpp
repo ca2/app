@@ -5,7 +5,7 @@
 #include "acme/compress/zip/_.h"
 #include "acme/compress/gz.h"
 #include "acme/primitive/primitive/atomic.h"
-
+#include "acme/filesystem/filesystem/acme_dir.h"
 
 #if defined(RASPBIAN)
 #define PLATFORM_NAMESPACE linux
@@ -151,7 +151,7 @@ namespace user
    }
 
 
-   ::e_status shell::initialize(::layered * pobjectContext)
+   ::e_status shell::initialize(::object * pobject)
    {
 
       if (m_bInitialized)
@@ -161,7 +161,7 @@ namespace user
 
       }
 
-      auto estatus = ::object::initialize(pobjectContext);
+      auto estatus = ::object::initialize(pobject);
 
       if (!estatus)
       {
@@ -170,7 +170,7 @@ namespace user
 
       }
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       add_thread();
 
@@ -189,7 +189,7 @@ namespace user
    void shell::add_thread()
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       auto pthread = __new(thread(this));
 
@@ -205,7 +205,7 @@ namespace user
 
       __refer(m_pshell, pshell);
 
-      begin();
+      branch();
 
    }
 
@@ -239,7 +239,7 @@ namespace user
    bool shell::reserve_image(const image_key & imagekey, i32 & iImage)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       if (contains_image(imagekey, iImage))
       {
@@ -258,7 +258,7 @@ namespace user
    int shell::_reserve_image(const image_key & key)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       int iImage = -1;
 
@@ -281,7 +281,7 @@ namespace user
    bool shell::contains_image(const image_key & imagekey, i32 & iImage)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       if (m_imagemap.lookup(imagekey, iImage))
       {
@@ -298,7 +298,7 @@ namespace user
    void shell::add_size_interest(int_array iaSize)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       auto cAddedCount = m_iaSize.add_unique(iaSize);
 
@@ -317,7 +317,7 @@ namespace user
    void shell::set_size_interest(int_array iaSize)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       iaSize.sort();
 
@@ -336,9 +336,9 @@ namespace user
    void shell::on_update_sizes_interest()
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
-      m_imagemap.remove_all();
+      m_imagemap.erase_all();
 
       m_iaSize.sort();
 
@@ -355,28 +355,28 @@ namespace user
          if (m_pil[iSize].is_null())
          {
 
-            m_pil[iSize] = __new(::image_list);
+            m_pil[iSize] = __create_new < ::image_list >();
             m_pil[iSize]->create(iSize, iSize, 0, 10, 10);
 
          }
          else
          {
 
-            m_pil[iSize]->remove_all();
+            m_pil[iSize]->erase_all();
 
          }
 
          if (m_pilHover[iSize].is_null())
          {
 
-            m_pilHover[iSize] = __new(::image_list);
+            m_pilHover[iSize] = __create_new < ::image_list >();
             m_pilHover[iSize]->create(iSize, iSize, 0, 10, 10);
 
          }
          else
          {
 
-            m_pilHover[iSize]->remove_all();
+            m_pilHover[iSize]->erase_all();
 
          }
 
@@ -393,21 +393,21 @@ namespace user
    {
 
 
-      while (thread_get_run())
+      while (task_get_run())
       {
 
          {
 
             m_pevNewImageKey->wait();
 
-            synchronization_lock synchronizationlock(mutex());
+            synchronous_lock synchronouslock(mutex());
 
             if (m_imagekeySchedule.has_elements())
             {
 
                imagekey = m_imagekeySchedule[0];
 
-               m_imagekeySchedule.remove_at(0);
+               m_imagekeySchedule.erase_at(0);
 
                return;
 
@@ -430,9 +430,9 @@ namespace user
    void shell::on_add_default_file_image()
    {
 
-      create_file_icon_image(::dir::bookmark(), file_attribute_directory, icon_normal, "matter://quickaccess.ico");
+      create_file_icon_image(m_psystem->m_pacmedir->bookmark(), file_attribute_directory, icon_normal, "matter://quickaccess.ico");
 
-      create_file_icon_image(::dir::bookmark(), file_attribute_directory, icon_open, "matter://quickaccess.ico");
+      create_file_icon_image(m_psystem->m_pacmedir->bookmark(), file_attribute_directory, icon_open, "matter://quickaccess.ico");
 
    }
 
@@ -447,7 +447,7 @@ namespace user
    ::image_list * shell::GetImageList(int iSize)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       if (m_bPendingUpdate)
       {
@@ -492,7 +492,7 @@ namespace user
    ::image_list * shell::GetImageListHover(int iSize)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       if (m_bPendingUpdate)
       {
@@ -557,7 +557,7 @@ namespace user
    i32 shell::get_file_image(const string & strPath, e_file_attribute eattribute, e_icon eicon, color32_t crBk)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       image_key imagekey(strPath, m_strShellThemePrefix, eattribute, eicon, crBk);
 
@@ -602,7 +602,7 @@ namespace user
    i32 shell::get_file_image(const image_key & imagekey)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       if (m_bPendingUpdate)
       {
@@ -641,7 +641,7 @@ namespace user
 
       {
 
-         synchronization_lock synchronizationlock(mutex());
+         synchronous_lock synchronouslock(mutex());
 
          m_imagekeySchedule.add(imagekey);
 
@@ -701,14 +701,14 @@ namespace user
    ::e_status shell::thread::run()
    {
 
-      while (thread_get_run())
+      while (task_get_run())
       {
 
          image_key imagekey;
 
          m_pshell->get_scheduled_image_key(imagekey);
 
-         if (!thread_get_run())
+         if (!task_get_run())
          {
 
             break;
@@ -720,12 +720,12 @@ namespace user
 
             int iImage = m_pshell->impl_get_file_image(imagekey);
 
-            synchronization_lock synchronizationlock(m_pshell->mutex());
+            synchronous_lock synchronouslock(m_pshell->mutex());
 
             if (iImage & 0x80000000)
             {
 
-               m_pshell->m_imagemap.remove_key(imagekey);
+               m_pshell->m_imagemap.erase_key(imagekey);
 
             }
             else
@@ -781,7 +781,7 @@ namespace user
    //int shell::add_hover_image(int iSize, int iImage, color32_t crBk)
    //{
 
-   //   synchronization_lock synchronizationlock(m_pilHover[iSize]->mutex());
+   //   synchronous_lock synchronouslock(m_pilHover[iSize]->mutex());
 
    //   if (crBk == 0)
    //   {
@@ -789,7 +789,7 @@ namespace user
    //      return m_pilHover[iSize]->predicate_add_image([&](auto pimage)
    //         {
 
-   //            ::aura::get_system()->imaging().color_blend(pimage, rgb(255, 255, 240), 64);
+   //            psystem->imaging().color_blend(pimage, rgb(255, 255, 240), 64);
 
    //         }
    //      , m_pil[iSize], iImage, iImage);
@@ -839,24 +839,26 @@ namespace user
    int shell::add_hover_image(int iSize, int iImage, color32_t crBk)
    {
 
-      synchronization_lock synchronizationlock(m_pilHover[iSize]->mutex());
+      synchronous_lock synchronouslock(m_pilHover[iSize]->mutex());
 
       if (crBk == 0)
       {
 
-         return m_pilHover[iSize]->predicate_add_image([&](auto pimage)
-            {
+         auto pimage = m_pil[iSize]->get_image(iImage);
+         
+         pimage->g()->color_blend(pimage->rectangle(), rgb(255, 255, 240), 64);
 
-               ::aura::get_system()->imaging().color_blend(pimage, rgb(255, 255, 240), 64);
+         m_pilHover[iSize]->add_image(pimage, 0, 0, iImage);
 
-            }
-         , m_pil[iSize], iImage, iImage);
+         return iImage;
 
       }
       else
       {
 
-         iImage = m_pilHover[iSize]->add_image(m_pil[iSize], iImage);
+         auto pimage = m_pil[iSize]->get_image(iImage);
+
+         iImage = m_pilHover[iSize]->add_image(pimage, 0, 0,  iImage);
 
          {
 
@@ -896,24 +898,23 @@ namespace user
 
       }
 
+   }
+
+
+   ::e_status shell::thread::finish()
+   {
+
+      return ::thread::finish();
 
    }
 
 
-   ::e_status shell::thread::finish(::context_object * pcontextobject)
+   ::e_status shell::finish()
    {
 
-      return ::thread::finish(pcontextobject);
+      ::object::finish();
 
-   }
-
-
-   ::e_status shell::finish(::context_object * pcontextobject)
-   {
-
-      ::object::finish(pcontextobject);
-
-      //task_remove_all();
+      //task_erase_all();
 
       return ::success;
 

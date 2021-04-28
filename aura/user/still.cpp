@@ -22,14 +22,6 @@ namespace user
    still::~still()
    {
 
-      //if (m_pmenuitemThis.is_set())
-      //{
-
-      //   m_pmenuitemThis->m_puserinteraction = nullptr;
-      //   m_pmenuitemThis->m_pmenu = nullptr;
-
-      //}
-
    }
 
 
@@ -39,22 +31,10 @@ namespace user
       ::user::interaction::install_message_routing(pchannel);
 
       MESSAGE_LINK(e_message_create, pchannel, this, &still::on_message_create);
-      //MESSAGE_LINK(e_message_left_button_down, pchannel, this, &still::on_message_left_button_down);
-      //MESSAGE_LINK(e_message_left_button_up, pchannel, this, &still::on_message_left_button_up);
-      //MESSAGE_LINK(e_message_middle_button_down, pchannel, this, &still::_001OnMButtonDown);
-      //MESSAGE_LINK(e_message_middle_button_up, pchannel, this, &still::_001OnMButtonUp);
-      //MESSAGE_LINK(e_message_mouse_move, pchannel, this, &still::_001OnMouseMove);
-      //MESSAGE_LINK(e_message_mouse_leave, pchannel, this, &still::_001OnMouseLeave);
       MESSAGE_LINK(e_message_key_down, pchannel, this, &still::_001OnKeyDown);
 
    }
 
-
-   //::enum_state still::get_user_state()
-   //{
-
-
-   //}
 
    void still::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
@@ -70,7 +50,7 @@ namespace user
       else
       {
 
-         auto psession = Session;
+         auto psession = get_session();
 
          string strText;
 
@@ -85,31 +65,6 @@ namespace user
          auto color = get_color(pstyle, ::user::e_element_text, estate);
 
          pgraphics->set_text_color(color);
-
-         //if (!is_window_enabled())
-         //{
-
-         //   pgraphics->fill_rectangle(rectClient, argb(255, 192, 192, 192));
-
-         //   pgraphics->set_text_color(argb(255, 160, 160, 160));
-
-         //}
-         //else if (should_hover() && (m_itemHover.is_set() || psession->m_puiLastLButtonDown == this))
-         //{
-
-         //   pgraphics->fill_rectangle(rectClient, argb(255, 200, 200, 230));
-
-         //   pgraphics->set_text_color(argb(255, 80, 80, 180));
-
-         //}
-         //else
-         //{
-
-         //   pgraphics->fill_rectangle(rectClient, argb(255, 255, 255, 255));
-
-         //   pgraphics->set_text_color(argb(255, 0, 0, 0));
-
-         //}
 
          auto rectPadding = get_padding(pstyle);
 
@@ -179,7 +134,7 @@ namespace user
    //}
 
 
-   //void still::_001OnMButtonDown(::message::message * pmessage)
+   //void still::on_message_middle_button_down(::message::message * pmessage)
    //{
 
    //   __pointer(::message::mouse) pmouse(pmessage);
@@ -209,7 +164,7 @@ namespace user
    //}
 
 
-   //void still::_001OnMButtonUp(::message::message * pmessage)
+   //void still::on_message_middle_button_up(::message::message * pmessage)
    //{
 
    //   __pointer(::message::mouse) pmouse(pmessage);
@@ -311,7 +266,7 @@ namespace user
    //}
 
 
-   //void still::_001OnMouseMove(::message::message * pmessage)
+   //void still::on_message_mouse_move(::message::message * pmessage)
    //{
 
    //   //__pointer(::message::mouse) pmouse(pmessage);
@@ -357,7 +312,7 @@ namespace user
    //}
 
 
-   //void still::_001OnMouseLeave(::message::message * pmessage)
+   //void still::on_message_mouse_leave(::message::message * pmessage)
    //{
 
    //   //__pointer(::user::message) pusermessage(pmessage);
@@ -605,16 +560,12 @@ namespace user
 
       auto pstyle = get_style(pgraphics);
 
+      auto psystem = m_psystem->m_paurasystem;
+
       if (get_translucency(pstyle) >= e_translucency_present)
       {
 
-         class imaging & imaging = ::aura::get_system()->imaging();
-
-         imaging.color_blend(
-         pgraphics,
-         rectClient,
-         crBk,
-         127);
+         pgraphics->color_blend(rectClient, crBk, 127);
 
       }
       else
@@ -879,7 +830,11 @@ namespace user
       if (!payload.is_empty())
       {
 
-         m_pimage = Application.image().get_image(payload);
+         auto pcontext = m_pcontext->m_pauracontext;
+
+         auto pcontextimage = pcontext->context_image();
+
+         m_pimage = pcontextimage->get_image(payload);
 
       }
 

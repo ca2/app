@@ -27,6 +27,8 @@ namespace xml
    node::node(::xml::node * pnodeParent)
    {
 
+      initialize(pnodeParent);
+
       m_pxmlnode = this;
       m_pnodeParent           = pnodeParent;
       m_pdocument                  = pnodeParent->m_pdocument;
@@ -255,8 +257,10 @@ namespace xml
 
    const char * node::LoadDocType( const char * pszXml, parse_info * pparseinfo)
    {
+
+      auto pxml = get_system()->xml();
       if(pparseinfo == nullptr)
-         pparseinfo = ::aqua::get_system()->xml().m_pparseinfoDefault;
+         pparseinfo = pxml->m_pparseinfoDefault;
       if(pszXml[0] != '<' || pszXml[1] != '!')
          return pszXml;
 
@@ -357,7 +361,7 @@ namespace xml
       if(pparseinfo == nullptr)
       {
 
-         pparseinfo = ::aqua::get_system()->xml().m_pparseinfoDefault;
+         pparseinfo = get_system()->xml()->m_pparseinfoDefault;
 
       }
 
@@ -524,8 +528,13 @@ namespace xml
    //========================================================
    const char * node::LoadProcessingInstruction( const char * pszXml, parse_info * pparseinfo)
    {
-      if(pparseinfo == nullptr)
-         pparseinfo = ::aqua::get_system()->xml().m_pparseinfoDefault;
+      
+      if (pparseinfo == nullptr)
+      {
+
+         pparseinfo = get_system()->xml()->m_pparseinfoDefault;
+
+      }
 
       // find the end of pparseinfo
       const char * end = _tcsenistr( pszXml, astr.XMLPIClose, astr.XMLPIClose.get_length(), pparseinfo ? pparseinfo->m_chEscapeValue : 0 );
@@ -577,8 +586,13 @@ namespace xml
    //========================================================
    const char * node::LoadAttributes( const char * pszAttrs, const char * pszEnd, parse_info * pparseinfo)
    {
-      if(pparseinfo == nullptr)
-         pparseinfo = ::aqua::get_system()->xml().m_pparseinfoDefault;
+      
+      if (pparseinfo == nullptr)
+      {
+
+         pparseinfo = get_system()->xml()->m_pparseinfoDefault;
+
+      }
 
       const char * xml = pszAttrs;
 
@@ -677,8 +691,13 @@ namespace xml
    //========================================================
    const char * node::LoadComment( const char * pszXml, parse_info * pparseinfo)
    {
-      if(pparseinfo == nullptr)
-         pparseinfo = ::aqua::get_system()->xml().m_pparseinfoDefault;
+
+      if (pparseinfo == nullptr)
+      {
+
+         pparseinfo = get_system()->xml()->m_pparseinfoDefault;
+
+      }
 
       // find the end of comment
       const char * end = _tcsenistr( pszXml, astr.XMLCommentClose, astr.XMLCommentClose.get_length(), pparseinfo ? pparseinfo->m_chEscapeValue : 0 );
@@ -722,8 +741,13 @@ namespace xml
    //========================================================
    const char * node::LoadCDATA( const char * pszXml, parse_info * pparseinfo)
    {
-      if(pparseinfo == nullptr)
-         pparseinfo = ::aqua::get_system()->xml().m_pparseinfoDefault;
+
+      if (pparseinfo == nullptr)
+      {
+
+         pparseinfo = get_system()->xml()->m_pparseinfoDefault;
+
+      }
 
       // find the end of CDATA
       const char * end = _tcsenistr( pszXml, astr.XMLCDATAClose, astr.XMLCDATAClose.get_length(), pparseinfo ? pparseinfo->m_chEscapeValue : 0 );
@@ -769,8 +793,13 @@ namespace xml
    //========================================================
    const char * node::LoadOtherNodes(bool* pbRet, const char * pszXml, parse_info * pparseinfo)
    {
-      if(pparseinfo == nullptr)
-         pparseinfo = ::aqua::get_system()->xml().m_pparseinfoDefault;
+      
+      if (pparseinfo == nullptr)
+      {
+
+         pparseinfo = get_system()->xml()->m_pparseinfoDefault;
+
+      }
 
       const char * xml = pszXml;
       bool do_other_type = true;
@@ -890,8 +919,12 @@ namespace xml
       // close it
       close();
 
-      if(pparseinfo == nullptr)
-         pparseinfo = ::aqua::get_system()->xml().m_pparseinfoDefault;
+      if (pparseinfo == nullptr)
+      {
+
+         pparseinfo = get_system()->xml()->m_pparseinfoDefault;
+
+      }
 
       const char * xml = pszXml;
 
@@ -983,7 +1016,7 @@ namespace xml
                _SetString( xml, pszEnd, &m_strValue, trim, escape );
                xml = pszEnd;
 
-               // TEXTVALUE context_object
+               // TEXTVALUE object
                if( pparseinfo->m_bEntityValue && pparseinfo->m_pentities )
                   m_strValue = pparseinfo->m_pentities->ref_to_entity(m_strValue);
             }
@@ -1142,7 +1175,7 @@ namespace xml
       if(opt == nullptr)
       {
 
-         opt = ::aqua::get_system()->xml().m_poptionDefault;
+         opt = get_system()->xml()->m_poptionDefault;
 
       }
 
@@ -1193,9 +1226,11 @@ namespace xml
                ostring += ' ';
             }
 
+            auto pxml = get_system()->m_pxml;
+
             for (auto & pproperty : m_set)
             {
-               ostring += ::xml::from(pproperty, opt);
+               ostring += pxml->from(pproperty, opt);
             }
             //?>
             ostring += astr.XMLPIClose;
@@ -1227,12 +1262,14 @@ namespace xml
       //if (m_set.has_elements())
         // ostring += ' ';
 
+      auto pxml = get_system()->xml();
+
       for (auto & pproperty : m_set)
       {
 
          ostring += " ";
 
-         ostring += ::xml::from(pproperty, opt);
+         ostring += pxml->from(pproperty, opt);
 
       }
 
@@ -1349,7 +1386,7 @@ namespace xml
 
       if(opt == nullptr)
       {
-         opt = ::aqua::get_system()->xml().m_poptionDefault;
+         opt = get_system()->xml()->m_poptionDefault;
       }
 
       if( m_enode == ::data::e_node_xml_document )
@@ -1425,7 +1462,7 @@ namespace xml
    /*attr_array node::attrs( const char * lpszName )
    {
 
-      attr_array attra(get_object());
+      attr_array attra(this);
 
       for( i32 i = 0 ; i < m_attra.get_count(); i++ )
       {
@@ -1676,7 +1713,7 @@ namespace xml
    void node::get_child_indexed_path(index_array & iaPath, const node * pnode) const
    {
 
-      iaPath.remove_all();
+      iaPath.erase_all();
       while(pnode != nullptr && pnode != this)
       {
          iaPath.insert_at(0, pnode->get_index());
@@ -1851,6 +1888,8 @@ namespace xml
    {
       
       auto pnode = __new(node((node *) this));
+
+      pnode->initialize_matter(this);
       
       pnode->m_strName = lpszName;
 
@@ -1867,6 +1906,8 @@ namespace xml
    {
 
       auto pnode = __new(node((node *) this));
+
+      pnode->initialize_matter(this);
 
       pnode->m_strName = lpszName;
 
@@ -1899,7 +1940,7 @@ namespace xml
    }
 
    //========================================================
-   // Name   : remove_child
+   // Name   : erase_child
    // Desc   : detach node and delete object
    // Param  :
    // Return :
@@ -1907,10 +1948,10 @@ namespace xml
    // Coder    Date                      Desc
    // bro      2002-10-29
    //========================================================
-   bool node::remove_child( node * pnode )
+   bool node::erase_child( node * pnode )
    {
 
-      if(m_nodea.remove(pnode) > 0)
+      if(m_nodea.erase(pnode) > 0)
       {
 
          //   delete pnode;
@@ -1960,7 +2001,7 @@ namespace xml
    //}
 
    //========================================================
-   // Name   : remove_attr
+   // Name   : erase_attr
    // Desc   : detach attr and delete object
    // Param  :
    // Return :
@@ -1968,10 +2009,10 @@ namespace xml
    // Coder    Date                      Desc
    // bro      2002-10-29
    //========================================================
-   //bool node::remove_attr(::xml::attr * pproperty )
+   //bool node::erase_attr(::xml::attr * pproperty )
    //{
 
-   //   if(m_attra.remove_by_name(pproperty->name()) > 0)
+   //   if(m_attra.erase_by_name(pproperty->name()) > 0)
    //   {
 
    //      //delete pproperty;
@@ -2029,7 +2070,7 @@ namespace xml
       index find = m_nodea.find_first(node);
       if(find >= 0)
       {
-         m_nodea.remove_at(find);
+         m_nodea.erase_at(find);
          return node;
       }
       return nullptr;
@@ -2050,7 +2091,7 @@ namespace xml
          if(find >= 0)
          {
             a
-            m_attra.m_propertyptra.remove_at(find);
+            m_attra.m_propertyptra.erase_at(find);
             return attr;
          }
          return nullptr;
@@ -2205,7 +2246,7 @@ namespace xml
          if (!m_nodea[i])
          {
 
-            m_nodea.remove_at(i);
+            m_nodea.erase_at(i);
             i--;
             continue;
          }
@@ -2230,7 +2271,7 @@ namespace xml
    // 0 nothing
    // 1 children
    // 2 children and children of children
-   ::count node::remove_child_with_attr(const char * lpszName, const char * pszAttrName, index iIndex, ::count iCount, index iDepth)
+   ::count node::erase_child_with_attr(const char * lpszName, const char * pszAttrName, index iIndex, ::count iCount, index iDepth)
    {
 
       ::count nRemoveCount = 0;
@@ -2256,7 +2297,7 @@ namespace xml
                   {
                      iCount--;
                      count++;
-                     m_nodea.remove_at(i);
+                     m_nodea.erase_at(i);
                      continue;
                   }
                }
@@ -2267,9 +2308,9 @@ namespace xml
             }
          }
          if(iDepth > 0)
-            nRemoveCount = m_nodea[i]->get_xml_node()->remove_child_with_attr(lpszName, pszAttrName, iIndex, iCount, iDepth - 1);
+            nRemoveCount = m_nodea[i]->get_xml_node()->erase_child_with_attr(lpszName, pszAttrName, iIndex, iCount, iDepth - 1);
          else if(iDepth < 0)
-            nRemoveCount = m_nodea[i]->get_xml_node()->remove_child_with_attr(lpszName, pszAttrName, iIndex, iCount, -1);
+            nRemoveCount = m_nodea[i]->get_xml_node()->erase_child_with_attr(lpszName, pszAttrName, iIndex, iCount, -1);
          if(nRemoveCount > 0)
          {
             count    += nRemoveCount;
@@ -2380,7 +2421,7 @@ namespace xml
    void node::close()
    {
 
-      m_nodea.remove_all();
+      m_nodea.erase_all();
 
       //m_pset.release();
 
@@ -2399,7 +2440,7 @@ namespace xml
 
          set_attribute("column_count", 0);
 
-         m_nodea.remove_all();
+         m_nodea.erase_all();
 
       }
       else
@@ -2457,7 +2498,7 @@ namespace xml
       if(m_nodea.get_count() == 0 ||  iColCount <= 0)
       {
 
-         str2a.remove_all();
+         str2a.erase_all();
 
          return true;
 

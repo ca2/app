@@ -5,8 +5,8 @@ namespace console
 {
 
 
-   department::department(::layered * pobjectContext) :
-      ::apex::department(pobject)
+   department::department(::object * pobject) :
+      ::acme::department(pobject)
    {
 
    }
@@ -26,7 +26,7 @@ namespace console
       create_factory <console::prompt_frame >();
       create_factory <console::prompt_impact >();
 
-      if(!::apex::department::init_instance())
+      if(!::acme::department::init_instance())
          return false;
 
 
@@ -91,7 +91,7 @@ namespace console
 
          bCreate = true;
 
-         m_spprompt->m_pdocumenttemplate->open_document_file(get_context_application(), nullptr,false);
+         m_spprompt->m_pdocumenttemplate->open_document_file(get_application(), nullptr,false);
 
       }
 

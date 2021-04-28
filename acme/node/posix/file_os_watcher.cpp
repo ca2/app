@@ -55,7 +55,7 @@ namespace file
 
       //::parallelization::post_quit_and_wait(m_pthread, seconds(15));
 
-      m_watchmap.remove_all();
+      m_watchmap.erase_all();
 
    }
 
@@ -72,7 +72,7 @@ namespace file
 
       __pointer(listener) plistener(plistenerParam);
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       i32 wd = inotify_add_watch (mFD, pathFolder, IN_MODIFY | IN_CLOSE_WRITE | IN_MOVED_TO | IN_CREATE | IN_MOVED_FROM | IN_DELETE);
 
@@ -165,7 +165,7 @@ namespace file
    //::e_status     os_watcher::run()
    //{
 
-   //   while (::thread_get_run())
+   //   while (::task_get_run())
    //   {
 
    //      if (!step())

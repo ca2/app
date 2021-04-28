@@ -333,13 +333,13 @@ namespace exception
 //      // nHelpContext should come with the message "<helpcontext id=\"123\" />"
 //      strErrorMessage = get_message();
 //      //if (get_message(strErrorMessage, &nHelpContext))
-//      //   nDisposition = Application.message_box(nullptr, strErrorMessage, nType);
+//      //   nDisposition = message_box(nullptr, strErrorMessage, nType);
 //      //else
 //      //{
 //      //   if (pszMessageId == 0)
 //      //      //pszMessageId = __IDP_NO_ERROR_AVAILABLE;
 //      //      pszMessageId = "Error message not available";
-//      nDisposition = Application.message_box(nullptr, pszMessageId, nType);
+//      nDisposition = message_box(nullptr, pszMessageId, nType);
 //      //}
 //      return nDisposition;
 //   }

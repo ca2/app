@@ -2,40 +2,20 @@
 
 
 #include "application_common.h"
+#include "acme/inline/implement.h"
 
 
-int console_end(::e_status estatus)
-{
+#ifdef WINDOWS
 
-   int iStatus = (int)estatus;
+#include "implement/windows.h"
 
-   int iError = 0;
+#else
 
-   if (iStatus < 0)
-   {
+#include "implement/ansi.h"
 
-      iError = iStatus;
+#endif
 
-   }
-   else if (iStatus > 1)
-   {
 
-      iError = 0;
-
-      if (::apex::get_system()->is_true("show_application_information"))
-      {
-
-         printf("return code is %d", iStatus);
-
-      }
-
-   }
-
-   ::apex::get_system()->system_end();
-
-   return iError;
-
-}
 
 
 

@@ -162,10 +162,11 @@ namespace user
 
       virtual ::size_i32 get_window_minimum_size() override;
 
-      DECL_GEN_SIGNAL(_001OnAppExit);
+      DECLARE_MESSAGE_HANDLER(_001OnAppExit);
+      //DECLARE_MESSAGE_HANDLER(_001OnSetCursor);
 
 #ifdef WINDOWS_DESKTOP
-      DECL_GEN_SIGNAL(_001OnSysCommand);
+      DECLARE_MESSAGE_HANDLER(_001OnSysCommand);
 #endif
 
       //virtual bool _001Restore() override;

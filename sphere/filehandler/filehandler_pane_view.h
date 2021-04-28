@@ -11,7 +11,7 @@ namespace filehandler
    public:
 
 
-            pane_view(::layered * pobjectContext);
+            pane_view(::object * pobject);
 
       void rotate() override;
 
@@ -21,13 +21,13 @@ namespace filehandler
       virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
       virtual bool pre_create_window(::user::system * pusersystem) override;
 
-      DECL_GEN_SIGNAL(_001OnMenuMessage);
+      DECLARE_MESSAGE_HANDLER(_001OnMenuMessage);
       virtual ~pane_view();
 
       virtual void assert_valid() const override;
       virtual void dump(dump_context & dumpcontext) const override;
 
-      DECL_GEN_SIGNAL(on_message_create);
+      DECLARE_MESSAGE_HANDLER(on_message_create);
    };
 
 

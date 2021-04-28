@@ -22,7 +22,7 @@
 
 
 
-            experience(::layered * pobjectContext);
+            experience(::object * pobject);
             virtual ~experience();
 
             virtual void update();

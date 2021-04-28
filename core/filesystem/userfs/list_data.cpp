@@ -108,7 +108,7 @@ namespace userfs
    void list_data::_001GetItemText(::user::mesh_item * pitem)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
 //      if(is_locked())
 //         return;
@@ -148,7 +148,7 @@ namespace userfs
          /*      bool bPendingSize = false;
 
                bool bGet;
-               bGet = System->get_fs_size(str, m_itema.get_item(iItem).m_strPath, bPendingSize);
+               bGet = psystem->get_fs_size(str, m_itema.get_item(iItem).m_strPath, bPendingSize);
                if(bGet)
                {
                   m_straFileSize.set_at_grow(iItem, str);
@@ -166,10 +166,12 @@ namespace userfs
                   m_bPendingSize = true;
                }*/
 
+         auto pcontext = get_context();
+
          try
          {
 
-            //::file::path path = Context.defer_process_path(m_itema.get_item(pitem->m_iItem)->m_filepathUser);
+            //::file::path path = pcontext->m_papexcontext->defer_process_path(m_itema.get_item(pitem->m_iItem)->m_filepathUser);
 
             //if (!m_itema.m_parray->contains_index(pitem->m_iItem) || m_itema[pitem->m_iItem].is_null())
             //{
@@ -185,7 +187,7 @@ namespace userfs
             if (path.m_iDir < 0)
             {
 
-               path.m_iDir = Context.dir().is(path) ? 1 : 0;
+               path.m_iDir = pcontext->m_papexcontext->dir().is(path) ? 1 : 0;
 
             }
 
@@ -201,7 +203,7 @@ namespace userfs
                if (path.m_iSize < 0)
                {
 
-                  path.m_iSize = Context.file().length(path);
+                  path.m_iSize = pcontext->m_papexcontext->file().length(path);
 
                }
 
@@ -258,7 +260,7 @@ namespace userfs
    void list_data::_001GetItemImage(::user::mesh_item * pitem)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 //      if(is_locked())
       //return;
       if(pitem->m_iSubItem == m_iNameSubItemText)
@@ -280,7 +282,9 @@ namespace userfs
 
             ::file::path & pathFinal = m_itema.get_item((::index) pitem->m_iItem)->m_filepathFinal;
 
-            auto puser = User;
+            __pointer(::core::session) psession = get_session();
+
+            auto puser = psession->user();
 
             pitem->m_iImage = puser->shell()->get_file_image(
                               pathFinal,

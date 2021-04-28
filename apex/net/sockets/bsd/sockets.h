@@ -16,7 +16,7 @@ namespace sockets
 
       interlocked_i32                  m_lListenSocket;
 
-      SSLInitializer *                 m_psslinit;
+      __pointer(SSLInitializer)        m_psslinit;
 
       byte                             m_baTicketKey[SSL_SESSION_TICKET_KEY_SIZE];
 
@@ -44,9 +44,11 @@ namespace sockets
 
       class ::sockets::net                         & net();
 
-      virtual ::e_status initialize(::layered * pobjectContext) override;
+      virtual ::e_status initialize(::object * pobject) override;
 
-      virtual void finalize() override;
+      virtual ::e_status finalize() override;
+
+      virtual string get_http_post_boundary();
 
 
    };

@@ -52,7 +52,7 @@
 //   if(this != &attribmap)
 //   {
 //
-//      this->remove_all();
+//      this->erase_all();
 //
 //      typename type_map::pair * ppair;
 //

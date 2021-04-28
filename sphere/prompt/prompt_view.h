@@ -22,7 +22,7 @@ namespace prompt
          OpUpdateCurrentArea,
       };
 
-      view(::layered * pobjectContext);
+      view(::object * pobject);
       virtual ~view();
 
 
@@ -41,21 +41,21 @@ namespace prompt
       virtual bool pre_create_window(::user::system * pusersystem) override;
       virtual void OnDraw(::draw2d::graphics_pointer & pgraphics);      // overridden to draw this ::view
       virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
-      DECL_GEN_SIGNAL(on_message_left_button_down);
-      DECL_GEN_SIGNAL(on_message_left_button_up);
+      DECLARE_MESSAGE_HANDLER(on_message_left_button_down);
+      DECLARE_MESSAGE_HANDLER(on_message_left_button_up);
       void _001OnTimer(::timer * ptimer) override;
-      DECL_GEN_SIGNAL(_001OnRButtonUp);
+      DECLARE_MESSAGE_HANDLER(on_message_right_button_up);
 
       ::user::document * get_document();
 
-      DECL_GEN_SIGNAL(_001OnDestroy);
-      DECL_GEN_SIGNAL(_001OnSize);
-      DECL_GEN_SIGNAL(_001OnPaint);
-      DECL_GEN_SIGNAL(on_message_create);
-      DECL_GEN_SIGNAL(_001OnContextMenu);
-      DECL_GEN_SIGNAL(_001OnSetCursor);
-      DECL_GEN_SIGNAL(_001OnOp);
-      DECL_GEN_SIGNAL(_001OnShowWindow);
+      DECLARE_MESSAGE_HANDLER(_001OnDestroy);
+      DECLARE_MESSAGE_HANDLER(_001OnSize);
+      DECLARE_MESSAGE_HANDLER(_001OnPaint);
+      DECLARE_MESSAGE_HANDLER(on_message_create);
+      DECLARE_MESSAGE_HANDLER(_001OnContextMenu);
+      DECLARE_MESSAGE_HANDLER(_001OnSetCursor);
+      DECLARE_MESSAGE_HANDLER(_001OnOp);
+      DECLARE_MESSAGE_HANDLER(_001OnShowWindow);
       virtual void _001OnTabClick(i32 iTab);
    };
 

@@ -17,9 +17,9 @@ public:
    virtual void dump(dump_context & dumpcontext) const;
 
 
-   DECL_GEN_SIGNAL(_001OnSize);
-   DECL_GEN_SIGNAL(on_message_create);
-   DECL_GEN_SIGNAL(_001OnDestroy);
+   DECLARE_MESSAGE_HANDLER(_001OnSize);
+   DECLARE_MESSAGE_HANDLER(on_message_create);
+   DECLARE_MESSAGE_HANDLER(_001OnDestroy);
 
    void on_layout(::draw2d::graphics_pointer & pgraphics);
 
@@ -29,9 +29,9 @@ public:
 
    virtual void install_message_routing(::channel * pchannel);
 
-   DECL_GEN_SIGNAL(on_message_left_button_up);
-   DECL_GEN_SIGNAL(_001OnMouseMove);
-   DECL_GEN_SIGNAL(_001OnMouseLeave);
+   DECLARE_MESSAGE_HANDLER(on_message_left_button_up);
+   DECLARE_MESSAGE_HANDLER(on_message_mouse_move);
+   DECLARE_MESSAGE_HANDLER(on_message_mouse_leave);
 
 };
 

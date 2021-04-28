@@ -21,7 +21,7 @@ namespace music
             HMIDIOUT       m_hmidiout;
 
 
-            out(::layered * pobjectContext);
+            out(::object * pobject);
             virtual ~out();
 
 

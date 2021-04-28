@@ -30,10 +30,10 @@ namespace dynamic_source
 
 #endif
 
-      virtual ::e_status initialize(::layered * pobjectContext) override;
+      virtual ::e_status initialize(::object * pobject) override;
 
 
-      virtual void finalize() override;
+      virtual ::e_status finalize() override;
 
       virtual bool main_initialize();
       virtual bool main_finalize();

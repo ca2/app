@@ -9,10 +9,19 @@ namespace acme
 {
 
 
-   ::e_status system::start()
+   ::e_status system::end()
    {
 
-      auto estatus = on_start();
+      auto estatus = on_end();
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      estatus = inline_term();
 
       if (!estatus)
       {
@@ -26,12 +35,60 @@ namespace acme
    }
 
 
-   ::e_status system::on_start()
+   ::apex::application* system::get_main_application()
+   {
+
+      return nullptr;
+
+   }
+
+
+   void system::system_construct(int argc, char** argv, char** envp)
+   {
+
+
+   }
+
+
+   void system::system_construct(int argc, wchar_t** argv, wchar_t** envp)
+   {
+
+
+   }
+
+
+   ::e_status system::inline_init()
+   {
+
+      auto estatus = process_init();
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return ::success;
+
+   }
+
+
+   ::e_status system::inline_term()
    {
 
       return ::success;
 
    }
+
+   
+   ::e_status system::on_end()
+   {
+
+      return ::success;
+
+   }
+
 
    void system::os_construct()
    {
@@ -52,18 +109,6 @@ namespace acme
    {
 
       return ::user::e_desktop_windows;
-
-   }
-
-
-   ::file::path system::get_memory_map_base_folder_path() const
-   {
-      
-      auto path = get_known_folder(FOLDERID_RoamingAppData);
-
-      path /= "ca2/memory_map";
-
-      return path;
 
    }
 

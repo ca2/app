@@ -1,7 +1,9 @@
 #include "framework.h"
 #include "acme/platform/profiler.h"
 #ifndef _UWP
+#include "acme/operating_system.h"
 #include <mysql/mysql.h>
+#include "mysql_database.h"
 
 
 int_bool init_data_library()
@@ -29,11 +31,17 @@ namespace mysql
       m_uConnectionFlags = 0;
 
       m_cAffectedRows = -1;
+
       m_pmysql = nullptr;
+
 #ifdef WINDOWS
+
       m_protocol = MYSQL_PROTOCOL_MEMORY;
+
 #else
+
       m_protocol = MYSQL_PROTOCOL_DEFAULT;
+
 #endif
 
    }
@@ -47,10 +55,10 @@ namespace mysql
    }
 
 
-   ::e_status database::initialize(::layered * pobjectContext)
+   ::e_status database::initialize(::object * pobject)
    {
 
-      auto estatus = ::database::database::initialize(pobjectContext);
+      auto estatus = ::database::database::initialize(pobject);
 
       if (!estatus)
       {
@@ -64,17 +72,19 @@ namespace mysql
    }
 
 
-   void database::finalize()
+   ::e_status database::finalize()
    {
 
       close_mysql_database();
 
-      ::database::database::finalize();
+      auto estatus = ::database::database::finalize();
+
+      return estatus;
 
    }
 
 
-   void * database::get_handle()
+   void* database::get_handle()
    {
 
       return m_pmysql;
@@ -94,29 +104,29 @@ namespace mysql
    {
 
       /* initialize connection handler */
-      m_pmysql = mysql_init (nullptr);
+      m_pmysql = mysql_init(nullptr);
 
-      if(m_pmysql == nullptr)
+      if (m_pmysql == nullptr)
       {
-         
+
          trace_error1("mysql_init() failed (probably out of memory)\n");
-         
+
          m_pmysql = nullptr;
 
          return error_failed;
 
       }
 
-      mysql_options((MYSQL *)m_pmysql, MYSQL_SET_CHARSET_NAME, "utf8mb4");
+      mysql_options((MYSQL*)m_pmysql, MYSQL_SET_CHARSET_NAME, "utf8mb4");
 
 #ifdef WINDOWS
 
-      if(ansi_compare_ci(m_strHost, "localhost") == 0)
+      if (ansi_compare_ci(m_strHost, "localhost") == 0)
       {
-         
+
          m_protocol = MYSQL_PROTOCOL_MEMORY;
 
-         mysql_options(m_pmysql, MYSQL_OPT_PROTOCOL,  &m_protocol);
+         mysql_options(m_pmysql, MYSQL_OPT_PROTOCOL, &m_protocol);
 
          m_strHost.Empty();
 
@@ -124,20 +134,20 @@ namespace mysql
 
 #endif
 
-      if(mysql_real_connect(
-            (MYSQL *) m_pmysql,
-            m_strHost.is_empty() ? nullptr : m_strHost.c_str(),
-            m_strUser,
-            m_strPass,
-            m_strName,
-            atoi(m_strPort),
-            m_strSckt,
-            (unsigned long) m_uConnectionFlags) == nullptr)
+      if (mysql_real_connect(
+         (MYSQL*)m_pmysql,
+         m_strHost.is_empty() ? nullptr : m_strHost.c_str(),
+         m_strUser,
+         m_strPass,
+         m_strName,
+         atoi(m_strPort),
+         m_strSckt,
+         (unsigned long)m_uConnectionFlags) == nullptr)
       {
 
-         trace_error1( "mysql_real_connect() failed\n");
+         trace_error1("mysql_real_connect() failed\n");
 
-         mysql_close((MYSQL *) m_pmysql);
+         mysql_close((MYSQL*)m_pmysql);
 
          m_pmysql = nullptr;
 
@@ -145,9 +155,9 @@ namespace mysql
 
       }
 
-      mysql_query((MYSQL *)m_pmysql, "SET NAMES 'utf8mb4' COLLATE 'utf8_unicode_ci'");
+      mysql_query((MYSQL*)m_pmysql, "SET NAMES 'utf8mb4' COLLATE 'utf8_unicode_ci'");
 
-      mysql_query((MYSQL *)m_pmysql, "SET CHARACTER SET 'utf8mb4'");
+      mysql_query((MYSQL*)m_pmysql, "SET CHARACTER SET 'utf8mb4'");
 
       return ::success;
 
@@ -165,21 +175,21 @@ namespace mysql
       }
 
 
-//      m_resultptra.remove_all();
+      //      m_resultptra.erase_all();
 
-      /*
+            /*
 
-      for(i32 i = 0; i < m_resultptra.get_count(); i++)
-      {
-         if(m_resultptra(i)->m_bAutoDelete)
-         {
-            delete m_resultptra[i];
-         }
-      }
+            for(i32 i = 0; i < m_resultptra.get_count(); i++)
+            {
+               if(m_resultptra(i)->m_bAutoDelete)
+               {
+                  delete m_resultptra[i];
+               }
+            }
 
-      */
+            */
 
-      mysql_close((MYSQL *) m_pmysql);
+      mysql_close((MYSQL*)m_pmysql);
 
       m_pmysql = nullptr;
 
@@ -188,30 +198,30 @@ namespace mysql
    }
 
 
-   string database::error1(const char * pszPrefix)
+   string database::error1(const char* pszPrefix)
    {
       string strPrefix(pszPrefix);
       string strFormat;
-      if(m_pmysql == nullptr)
+      if (m_pmysql == nullptr)
       {
          strFormat = "mysql error => nullptr sql connection pointer";
       }
       else
       {
          strFormat.Format(
-         "mysql error => %u (%s): %s\n",
-         mysql_errno((MYSQL *) m_pmysql),
-         mysql_sqlstate((MYSQL *) m_pmysql),
-         mysql_error((MYSQL *) m_pmysql));
+            "mysql error => %u (%s): %s\n",
+            mysql_errno((MYSQL*)m_pmysql),
+            mysql_sqlstate((MYSQL*)m_pmysql),
+            mysql_error((MYSQL*)m_pmysql));
       }
-      if(strPrefix.has_char())
+      if (strPrefix.has_char())
          return strPrefix + ": " + strFormat;
       else
          return strPrefix + strFormat;
    }
 
 
-   bool database::exec(const char * pszSql)
+   bool database::exec(const char* pszSql)
    {
 
       m_strLastError = "";
@@ -220,7 +230,7 @@ namespace mysql
 
       m_iLastError = -1;
 
-      MYSQL_RES * pres = nullptr;
+      MYSQL_RES* pres = nullptr;
 
       if (m_pmysql == nullptr)
       {
@@ -241,7 +251,7 @@ namespace mysql
       try
       {
 
-         if (mysql_query((MYSQL *)m_pmysql, pszSql) != 0) /* the statement failed */
+         if (mysql_query((MYSQL*)m_pmysql, pszSql) != 0) /* the statement failed */
          {
 
             if (m_pmysql == nullptr || mysql_errno(m_pmysql) == 2006) // MySQL server has gone away
@@ -258,7 +268,7 @@ namespace mysql
 
                }
 
-               if (mysql_query((MYSQL *)m_pmysql, pszSql) != 0) /* the statement failed */
+               if (mysql_query((MYSQL*)m_pmysql, pszSql) != 0) /* the statement failed */
                {
 
                   trace_error1("Could not execute statement");
@@ -294,7 +304,7 @@ namespace mysql
    }
 
 
-   MYSQL_RES * database::_mysql_query_result(const char * pszSql)
+   MYSQL_RES* database::_mysql_query_result(const char* pszSql)
    {
 
       if (!exec(pszSql))
@@ -305,9 +315,9 @@ namespace mysql
       }
 
       /* the statement succeeded; determine whether it returned data */
-      MYSQL_RES * pres = mysql_store_result ((MYSQL *) m_pmysql);
+      MYSQL_RES* pres = mysql_store_result((MYSQL*)m_pmysql);
 
-      if(pres) /* a result dataset was returned */
+      if (pres) /* a result dataset was returned */
       {
 
          m_iLastUsedTime = ::acme::profiler::micros();
@@ -316,14 +326,14 @@ namespace mysql
 
       }
 
-      m_iLastError = mysql_errno((MYSQL *)m_pmysql);
+      m_iLastError = mysql_errno((MYSQL*)m_pmysql);
 
       if (m_iLastError == 0)
       {
 
          m_iLastUsedTime = ::acme::profiler::micros();
 
-         m_cAffectedRows  = mysql_affected_rows((MYSQL *)m_pmysql);
+         m_cAffectedRows = mysql_affected_rows((MYSQL*)m_pmysql);
 
          TRACE("Number of rows affected: %lu\n", (u32)m_cAffectedRows);
 
@@ -366,7 +376,7 @@ namespace mysql
    }
 
 
-   bool database::_mysql_result_free(MYSQL_RES * pres)
+   bool database::_mysql_result_free(MYSQL_RES* pres)
    {
 
       try
@@ -380,7 +390,7 @@ namespace mysql
          }
 
       }
-      catch(...)
+      catch (...)
       {
 
       }
@@ -390,7 +400,7 @@ namespace mysql
    }
 
 
-   MYSQL_ROW database::_mysql_fetch_row(MYSQL_RES * pres)
+   MYSQL_ROW database::_mysql_fetch_row(MYSQL_RES* pres)
    {
 
       if (pres == nullptr)
@@ -400,12 +410,12 @@ namespace mysql
 
       }
 
-      MYSQL_ROW row = mysql_fetch_row((MYSQL_RES *)pres);
+      MYSQL_ROW row = mysql_fetch_row((MYSQL_RES*)pres);
 
-      if(mysql_errno (m_pmysql) != 0)
+      if (mysql_errno(m_pmysql) != 0)
       {
 
-         trace_error1( "mysql_fetch_row() failed");
+         trace_error1("mysql_fetch_row() failed");
 
       }
 
@@ -414,7 +424,7 @@ namespace mysql
    }
 
 
-   unsigned long * database::_mysql_fetch_lengths(MYSQL_RES * pres)
+   unsigned long* database::_mysql_fetch_lengths(MYSQL_RES* pres)
    {
 
       if (::is_null(pres))
@@ -424,7 +434,7 @@ namespace mysql
 
       }
 
-      unsigned long * lengths = mysql_fetch_lengths((MYSQL_RES *) pres);
+      unsigned long* lengths = mysql_fetch_lengths((MYSQL_RES*)pres);
 
       if (lengths == nullptr)
       {
@@ -440,7 +450,7 @@ namespace mysql
    }
 
 
-   i64 database::_mysql_num_fields(MYSQL_RES * pres)
+   i64 database::_mysql_num_fields(MYSQL_RES* pres)
    {
 
       if (::is_null(pres))
@@ -450,12 +460,12 @@ namespace mysql
 
       }
 
-      return mysql_num_fields((MYSQL_RES *) pres);
+      return mysql_num_fields((MYSQL_RES*)pres);
 
    }
 
 
-   i64 database::_mysql_num_rows(MYSQL_RES * pres)
+   i64 database::_mysql_num_rows(MYSQL_RES* pres)
    {
 
       if (::is_null(pres))
@@ -470,10 +480,10 @@ namespace mysql
    }
 
 
-   __pointer(::database::result_set) database::query_result(const char * pszQuery, ::count iRowCount, ::count iColumnCount)
+   __pointer(::database::result_set) database::query_result(const char* pszQuery, ::count iRowCount, ::count iColumnCount)
    {
 
-      MYSQL_RES * pres = _mysql_query_result(pszQuery);
+      MYSQL_RES* pres = _mysql_query_result(pszQuery);
 
       if (::is_null(pres))
       {
@@ -488,7 +498,7 @@ namespace mysql
 
       pset->m_prowa = __new(::database::row_array());
 
-      auto & prowa = pset->m_prowa;
+      auto& prowa = pset->m_prowa;
 
       i64 iNumRows = _mysql_num_rows(pres);
 
@@ -572,25 +582,26 @@ namespace mysql
    }
 
 
+   
 
-   ::payload database::query_item(const char * pszSql, ::payload varDefault)
+   bool database::query_item(::payload & payload, const char* pszSql)
    {
 
-      MYSQL_RES * pres = _mysql_query_result(pszSql);
+      MYSQL_RES* pres = _mysql_query_result(pszSql);
 
       if (::is_null(pres))
       {
 
-         return varDefault;
+         return false;
 
       }
 
-      MYSQL_ROW row = (MYSQL_ROW) _mysql_fetch_row(pres);
+      MYSQL_ROW row = (MYSQL_ROW)_mysql_fetch_row(pres);
 
       if (row == nullptr)
       {
 
-         return varDefault;
+         return false;
 
       }
       else if (row[0] == nullptr)
@@ -609,10 +620,10 @@ namespace mysql
    }
 
 
-   bool database::query_blob(memory_base & memory, const char * pszSql)
+   bool database::query_blob(memory_base& memory, const char* pszSql)
    {
 
-      MYSQL_RES * pres = _mysql_query_result(pszSql);
+      MYSQL_RES* pres = _mysql_query_result(pszSql);
 
       if (::is_null(pres))
       {
@@ -638,7 +649,7 @@ namespace mysql
       else
       {
 
-         unsigned long * pul =  _mysql_fetch_lengths(pres);
+         unsigned long* pul = _mysql_fetch_lengths(pres);
 
          if (pul == nullptr)
          {
@@ -656,23 +667,21 @@ namespace mysql
    }
 
 
-   __pointer(var_array) database::query_items(const char * pszSql)
+   bool database::query_items(__pointer(var_array) & pvara, const char* pszSql)
    {
 
-      MYSQL_RES * pres = _mysql_query_result(pszSql);
+      MYSQL_RES* pres = _mysql_query_result(pszSql);
 
       if (::is_null(pres))
       {
 
-         return nullptr;
+         return false;
 
       }
 
       MYSQL_ROW row;
 
       i64 iNumRows = _mysql_num_rows(pres);
-
-      auto pvara = __new(var_array);
 
       pvara->set_size(iNumRows);
 
@@ -712,15 +721,15 @@ namespace mysql
    }
 
 
-   __pointer(::database::row) database::query_row(const char * pszSql)
+   bool database::query_row(__pointer(::database::row) & prow, const char* pszSql)
    {
 
-      MYSQL_RES * pres = _mysql_query_result(pszSql);
+      MYSQL_RES* pres = _mysql_query_result(pszSql);
 
       if (::is_null(pres))
       {
 
-         return nullptr;
+         return false;
 
       }
 
@@ -729,17 +738,15 @@ namespace mysql
       if (row == nullptr)
       {
 
-         return nullptr;
+         return false;
 
       }
-
-      auto prow = __new(::database::row);
 
       i64 iNumFields = _mysql_num_fields(pres);
 
       prow->set_size(iNumFields);
 
-      for(i64 iField = 0; iField < iNumFields; iField++)
+      for (i64 iField = 0; iField < iNumFields; iField++)
       {
 
          if (row[iField] == nullptr)
@@ -762,7 +769,7 @@ namespace mysql
    }
 
 
-   __pointer(::database::row_array) database::query_rows(const char * pszQuery)
+   bool database::query_rows(__pointer(::database::row_array) & prowarray, const char* pszQuery)
    {
 
       auto pset = query_result(pszQuery);
@@ -770,7 +777,7 @@ namespace mysql
       if (pset.is_null())
       {
 
-         return nullptr;
+         return false;
 
       }
 
@@ -779,15 +786,15 @@ namespace mysql
    }
 
 
-   ::payload database::query_table_item(const char * table, const char * item, const char *where, ::payload notfound)
-   {
-      string strSql;
-      strSql.Format("SELECT `%s` FROM `%s` WHERE %s", item, table, where);
-      return query_item(strSql, notfound);
-   }
+   //::payload database::query_table_item(const char* table, const char* item, const char* where, ::payload notfound)
+   //{
+   //   string strSql;
+   //   strSql.Format("SELECT `%s` FROM `%s` WHERE %s", item, table, where);
+   //   return database_impl::query_item(strSql, notfound);
+   //}
 
 
-   ::payload database::get_agent(const char * pszTable, const char * psz, const char * pszUser)
+   ::payload database::get_agent(const char* pszTable, const char* psz, const char* pszUser)
    {
       string strSql;
       string strAgent(psz);
@@ -795,27 +802,27 @@ namespace mysql
       strSql = "SELECT id FROM " + strTable + " WHERE value='" + strAgent + "'";
       string strId = query_item(strSql);
 
-      if(strId.is_empty())
+      if (strId.is_empty())
       {
          strId = query_item("SELECT maximum(id) FROM " + strTable + " ORDER BY id");
-         if(strId.is_empty())
+         if (strId.is_empty())
          {
             strId = string("0000000000000000") + string("0000000000000000") + string("0000000000000000") + string("0000000000000000")
-                    + string("0000000000000000") + string("0000000000000000") + string("0000000000000000") + string("0000000000000000")
-                    + string("0000000000000000") + string("0000000000000000") + string("0000000000000000") + string("0000000000000000")
-                    + string("0000000000000000") + string("0000000000000000") + string("0000000000000000") + string("000000000000000");
+               + string("0000000000000000") + string("0000000000000000") + string("0000000000000000") + string("0000000000000000")
+               + string("0000000000000000") + string("0000000000000000") + string("0000000000000000") + string("0000000000000000")
+               + string("0000000000000000") + string("0000000000000000") + string("0000000000000000") + string("000000000000000");
          }
          else
          {
             ::str::increment_digit_letter(strId);
          }
          strSql = "INSERT INTO " + strTable + "(`id`, `value`) VALUES('" + strId + "', '" + strAgent + "')";
-         if(!query(strSql))
+         if (!query(strSql))
             return false;
       }
-      if(pszUser != nullptr)
+      if (pszUser != nullptr)
       {
-         if(!query("UPDATE " + strTable + " SET `user` = '" + string(pszUser) + "' WHERE `id` = '" + strId + "'"))
+         if (!query("UPDATE " + strTable + " SET `user` = '" + string(pszUser) + "' WHERE `id` = '" + strId + "'"))
             return false;
       }
       return strId;
@@ -830,12 +837,12 @@ namespace mysql
    }
 
 
-   string database::escape(void * p, strsize iLen)
+   string database::escape(void* p, strsize iLen)
    {
 
       string str;
 
-      char * psz = str.get_string_buffer(iLen * 2 + 1);
+      char* psz = str.get_string_buffer(iLen * 2 + 1);
 
       if (psz == nullptr)
       {
@@ -844,7 +851,7 @@ namespace mysql
 
       }
 
-      mysql_real_escape_string((MYSQL *) m_pmysql, psz, (const char *) p, (unsigned long) iLen);
+      mysql_real_escape_string((MYSQL*)m_pmysql, psz, (const char*)p, (unsigned long)iLen);
 
       str.release_string_buffer();
 
@@ -853,17 +860,17 @@ namespace mysql
    }
 
 
-   string database::escape(const char * psz)
+   string database::escape(const char* psz)
    {
 
-      return escape((void *) psz, strlen(psz));
+      return escape((void*)psz, strlen(psz));
 
    }
 
 
    ::payload database::get_insert_id()
    {
-      return (u64) mysql_insert_id((MYSQL *) m_pmysql);
+      return (u64)mysql_insert_id((MYSQL*)m_pmysql);
    }
 
 } //   namespace mysql

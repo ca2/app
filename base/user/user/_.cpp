@@ -12,7 +12,7 @@
 //   if(psystem)
 //   {
 //
-//      psystem->message_box(puiOwner, pszMessage, pszTitle, emessagebox, callback);
+//      message_box(puiOwner, pszMessage, pszTitle, emessagebox, callback);
 //
 //   }
 //

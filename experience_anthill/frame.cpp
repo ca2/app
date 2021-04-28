@@ -83,7 +83,7 @@ namespace experience
                rectInflate = rectClient;
                rectInflate.inflate(iInflate, iInflate);
 
-               //__pointer(::user::interaction) pwndDesktop = System->get_desktop_window();
+               //__pointer(::user::interaction) puserinteractionDesktop = psystem->get_desktop_window();
 
                ::rectangle_i32 rectScreen;
 
@@ -135,7 +135,7 @@ namespace experience
 
             }
 
-            color32_t frame::get_border_main_body_color()
+            status < ::color::color > frame::get_border_main_body_color()
             {
                return argb(255, 63, 150, 106);
             }
@@ -156,7 +156,7 @@ namespace experience
                Gdiplus::SolidBrush solidBrush(Gdiplus::Color(bAlpha, colorref_get_r_value(cr), colorref_get_g_value(cr), colorref_get_b_value(cr)));
                g.FillRectangle(&solidBrush, lprect->left, lprect->top, lprect->right - lprect->left, lprect->bottom - lprect->top);*/
 
-               System->imaging().color_blend(pgraphics, rectangle, cr, bAlpha);
+               pgraphics->color_blend(rectangle, cr, bAlpha);
 
             }
 
@@ -333,7 +333,7 @@ namespace experience
             void frame::set_frame_color_system_default_001()
             {
 
-               auto psession = Session;
+               auto psession = get_session();
 
                auto pframewindow = m_pframewindow;
 
@@ -350,10 +350,10 @@ namespace experience
                auto crButtonShadow = pframewindow->get_color(pstyle, ::user::e_element_button_shadow);
 
                m_penText1->create_solid(1, argb(255, 255, 255, 255));
-               m_penFace1->create_solid(1, crButtonFace | 0xff000000);
-               m_penHilight1->create_solid(1, crButtonHilite | 0xff000000);
-               m_penShadow1->create_solid(1, crButtonShadow | 0xff000000);
-               m_penDkShadow1->create_solid(1, crButtonDarkShadow | 0xff000000);
+               m_penFace1->create_solid(1, opaque(crButtonFace));
+               m_penHilight1->create_solid(1, opaque(crButtonHilite));
+               m_penShadow1->create_solid(1, opaque(crButtonShadow));
+               m_penDkShadow1->create_solid(1, opaque(crButtonDarkShadow));
                m_colorDkShadow = crButtonDarkShadow;
                m_colorFrameBorder = argb(255, 0, 0, 0);
 
@@ -537,7 +537,7 @@ namespace experience
 
                }
 
-               auto psession = Session;
+               auto psession = get_session();
 
                pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
@@ -634,7 +634,7 @@ namespace experience
                   }
                   else
                   {
-                  auto psession = Session;
+                  auto psession = get_session();
 
                   auto pstyle = pframewindow->get_style(pgraphics);
 
@@ -668,7 +668,7 @@ namespace experience
 
                   }
 
-                  //class font_department & fonts = System->draw2d()->fonts();
+                  //class font_department & fonts = pdraw2d->fonts();
                   
                   auto pstyle = pframewindow->get_style(pgraphics);
 

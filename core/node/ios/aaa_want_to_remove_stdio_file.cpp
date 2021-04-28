@@ -7,7 +7,7 @@ namespace ios
 
 
 
-   stdio_file::stdio_file(::layered * pobjectContext) :
+   stdio_file::stdio_file(::object * pobject) :
       ::object(pobject),
       ::ios::file(pobject)
    {
@@ -31,7 +31,7 @@ namespace ios
 
       if ((nOpenFlags & ::file::e_open_defer_create_directory) && (nOpenFlags & ::file::e_open_write))
       {
-         Context.dir().mk(::file::path(lpszFileName).folder());
+         pcontext->m_papexcontext->dir().mk(::file::path(lpszFileName).folder());
       }
 
       m_pStream = nullptr;

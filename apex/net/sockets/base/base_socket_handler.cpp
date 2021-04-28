@@ -6,10 +6,7 @@ namespace sockets
 {
 
 
-   base_socket_handler::pool_socket::pool_socket(base_socket_handler& h, base_socket * src) :
-      ::object(h.get_context_application()),
-      base_socket(h),
-      socket(h)
+   base_socket_handler::pool_socket::pool_socket(base_socket * src)
    {
 
       CopyConnection(src);
@@ -38,23 +35,24 @@ namespace sockets
    }
 
 
-   base_socket_handler::base_socket_handler(::layered * pobject, ::apex::log * plogger) :
-      ::object(pobject)
+   base_socket_handler::base_socket_handler(::apex::log * plogger) 
    {
 
-      if(plogger == nullptr)
+      m_plogger = plogger;
+
+     /* if (plogger == nullptr)
       {
 
-         ::apex::application * papp = ::get_context_application(pobject);
+         ::apex::application* papp = ::get_application(pobject);
 
-         if(::apex::get_system() != nullptr)
+         if (psystem != nullptr)
          {
 
-            m_plogger = &::apex::get_system()->log();
+            m_plogger = &psystem->log();
 
          }
 
-      }
+      }*/
 
    }
 
@@ -67,7 +65,7 @@ namespace sockets
    bool base_socket_handler::socket_get_run() const
    {
 
-      return ((base_socket_handler *)this)->get_count() > 0 && ::thread_get_run();
+      return ((base_socket_handler *)this)->get_count() > 0 && ::task_get_run();
 
    }
 

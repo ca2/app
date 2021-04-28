@@ -78,7 +78,7 @@
 //      
 //      virtual void get_time(struct timeval *p);
 //      virtual void set_env_var(const string & payload,const string & value);
-//      virtual ithread_t get_thread_id();
+//      virtual itask_t get_thread_id();
 //      
 //      
 ////      virtual __pointer(::user::printer) get_printer(const char * pszDeviceName);

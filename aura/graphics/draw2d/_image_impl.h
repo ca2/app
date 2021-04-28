@@ -105,7 +105,7 @@
 //      else
 //      {
 //
-//         m_estatus = pimage->initialize(get_object());
+//         m_estatus = pimage->initialize(this);
 //
 //      }
 //
@@ -215,7 +215,7 @@ inline ::image_pointer create_image(const ::size_i32 & size, ::eobject eobjectFl
 }
 
 
-// inline ::image_result __create_image(::layered * pobjectContext)
+// inline ::image_result __create_image(::object * pobject)
 // {
 
 //    auto ptype = __create_new_image();

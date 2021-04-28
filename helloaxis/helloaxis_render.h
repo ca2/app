@@ -93,11 +93,11 @@ namespace helloaxis
                bool                             m_bFastOnEmpty;
       */
 
-      render(::layered * pobjectContext);
+      render(::object * pobject);
       virtual ~render();
 
 
-      string get_helloaura() { synchronization_lock slText(m_pmutexText);  string str(m_strHelloAxis.c_str()); return str; }
+      string get_helloaura() { synchronous_lock slText(m_pmutexText);  string str(m_strHelloAxis.c_str()); return str; }
 
 
       virtual ::e_status     run() override;

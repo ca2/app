@@ -1,14 +1,31 @@
 #include "framework.h"
 #include "_graphics.h"
+#include "core/user/user/_user.h"
 
 
 namespace html
 {
 
 
-   style_sheet::style_sheet(::layered * pobjectContext) :
-      ::object(pobjectContext)
+   style_sheet::style_sheet()
    {
+
+   }
+
+
+   ::e_status style_sheet::initialize(::object * pobject)
+   {
+
+      auto estatus = ::object::initialize(pobject);
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return estatus;
 
    }
 
@@ -37,7 +54,7 @@ namespace html
             psz++;
          }
 
-         auto pstyle = __new(class style(get_context_object()));
+         auto pstyle = __create_new < class style >();
 
          string strStyle = str.Left(psz - pszStart);
 
@@ -54,7 +71,9 @@ namespace html
 
             strStyle.make_lower();
 
-            auto puser = User;
+            __pointer(::core::session) psession = get_session();
+
+            auto puser = psession->user();
 
             pstyle->m_etag = puser->m_phtml->tag_name_to_id(strStyle);
 

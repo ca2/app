@@ -54,7 +54,7 @@ namespace gpu
       virtual ::e_status lock_context();
       virtual ::e_status unlock_context();
 
-      virtual ::e_status initialize(::layered * pobjectContext) override;
+      virtual ::e_status initialize(::object * pobject) override;
 
       virtual string _001GetIntroProjection();
       virtual string _001GetIntroFragment();

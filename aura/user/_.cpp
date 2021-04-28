@@ -12,7 +12,7 @@
 //   if(psystem)
 //   {
 //
-//      psystem->message_box(pszMessage, pszTitle, emessagebox, process);
+//      message_box(pszMessage, pszTitle, emessagebox, process);
 //
 //   }
 //
@@ -28,7 +28,7 @@
 //CLASS_DECL_AURA ::user::primitive * __user_primitive(::windowing::window * pwindow)
 //{
 //
-//   ::user::primitive * pprimitive = ::aura::get_system()->ui_from_handle(oswindow);
+//   ::user::primitive * pprimitive = psystem->ui_from_handle(oswindow);
 //
 //   return pprimitive;
 //

@@ -10,8 +10,7 @@ namespace user
    {
 
 
-      format::format(__pointer_array(format) * pcontainer) :
-         m_pcontainer(pcontainer)
+      format::format()
       {
 
          defer_create_mutex();
@@ -19,7 +18,6 @@ namespace user
          m_bBold = false;
          m_bItalic = false;
          m_bUnderline = false;
-         m_strFontFamily = os_font_name(e_font_sans);
          m_dFontSize = 12.0;
          m_colorForeground = argb(255, 0, 0, 0);
          m_colorBackground = 0;
@@ -27,13 +25,36 @@ namespace user
          m_elineheight = line_height_single;
          m_bUpdated = false;
 
+
       }
 
 
-      format::format(const format & format) :
-         ::object(format.get_context_object()),
-         m_pcontainer(format.m_pcontainer)
+      format::format(__pointer_array(format)* pcontainer)
       {
+
+
+         defer_create_mutex();
+
+         m_bBold = false;
+         m_bItalic = false;
+         m_bUnderline = false;
+         m_dFontSize = 12.0;
+         m_colorForeground = argb(255, 0, 0, 0);
+         m_colorBackground = 0;
+         m_escript = script_normal;
+         m_elineheight = line_height_single;
+         m_bUpdated = false;
+
+         initialize_user_rich_text_format(pcontainer);
+
+      }
+
+
+
+      format::format(const format & format)
+      {
+
+         initialize_user_rich_text_format(format.m_pcontainer);
 
          defer_create_mutex();
 
@@ -47,6 +68,33 @@ namespace user
 
 
       }
+
+
+      ::e_status format::initialize_user_rich_text_format(__pointer_array(format)* pcontainer)
+      {
+
+         __throw(todo);
+         //auto estatus = ::object::initialize(pcontainer);
+
+         //if (!estatus)
+         //{
+
+         //   return estatus;
+
+         //}
+
+         m_pcontainer = pcontainer;
+
+         auto psystem = m_psystem->m_paurasystem;
+
+         auto pnode = psystem->node();
+
+         m_strFontFamily = pnode->font_name(e_font_sans);
+
+         return ::success;
+
+      }
+
 
       bool format::operator==(const format & format) const
       {

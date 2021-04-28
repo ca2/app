@@ -16,7 +16,7 @@ id_space::id_space()
 const char * id_space::get_id(const char * psz)
 {
 
-   critical_section_lock synchronizationlock(m_pcs);
+   critical_section_lock synchronouslock(m_pcs);
 
    index iIndex = 0;
 
@@ -61,7 +61,7 @@ id_space::~id_space()
 void id_space::free_all()
 {
 
-   critical_section_lock synchronizationlock(m_pcs);
+   critical_section_lock synchronouslock(m_pcs);
 
    try
    {
@@ -88,7 +88,7 @@ void id_space::free_all()
 
    }
 
-   m_psza.remove_all();
+   m_psza.erase_all();
 
 }
 
@@ -337,7 +337,7 @@ strid_array::~strid_array()
 void strid_array::sort()
 {
    
-   single_lock synchronizationlock(mutex(),true);
+   single_lock synchronouslock(mutex(),true);
 
    if (m_idptra.m_nSize <= 1)
    {
@@ -420,7 +420,7 @@ void strid_array::sort()
 bool strid_array::find(const char * psz,index & iIndex) const
 {
  
-   single_lock synchronizationlock(mutex(),true);
+   single_lock synchronouslock(mutex(),true);
 
    if(m_idptra.m_nSize == 0)
    {

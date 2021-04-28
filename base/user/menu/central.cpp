@@ -22,12 +22,12 @@ namespace user
    }
 
 
-   bool menu_central::MenuV033AddImageMap(::layered * pobjectContext, ::xml::node * pnode)
+   bool menu_central::MenuV033AddImageMap(::object * pobject, ::xml::node * pnode)
    {
 
       defer_initialize();
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       i32 iIndex;
 
@@ -57,9 +57,12 @@ namespace user
       }
 
       ::draw2d::graphics_pointer spgraphics(e_create);
+
       spgraphics->CreateCompatibleDC(nullptr);
 
-      class imaging & imaging = System->imaging();
+      __pointer(::base::system) psystem = get_system();
+
+      class imaging & imaging = psystem->imaging();
 
       imaging.change_hue(
       m_pilHue,
@@ -67,8 +70,7 @@ namespace user
       rgb(192, 192, 180),
       0.50);
 
-      imaging.color_blend(
-      m_pilBlend,
+      m_pilBlend->color_blend(
       MenuV033GetImageList(),
       rgb(255, 255, 240),
       64);
@@ -134,21 +136,25 @@ namespace user
    void menu_central::defer_initialize()
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
-      if (m_pil.is_set())
+      if (m_pil)
       {
 
          return;
 
       }
 
-      m_pil = __new(image_list);
-      m_pilHue = __new(image_list);
-      m_pilBlend = __new(image_list);
-      m_pilHueLight = __new(image_list);
+      __construct_new(m_pil);
+      __construct_new(m_pilHue);
+      __construct_new(m_pilBlend);
+      __construct_new(m_pilHueLight);
 
-      VERIFY(m_fontMenu->create_point_font(os_font_name(e_font_sans), 11));
+      auto psystem = m_psystem->m_pbasesystem;
+
+      auto pnode = psystem->node();
+
+      VERIFY(m_fontMenu->create_point_font(pnode->font_name(e_font_sans), 11));
 
 //#ifdef WINDOWS_DESKTOP
 //      if (!MenuV033GetImageList()->create(16, 16, ILC_COLOR24 | ILC_MASK, 0, 10))
@@ -158,7 +164,9 @@ namespace user
 //#else
       if (!MenuV033GetImageList()->create(16, 16, 0, 0, 10))
       {
+         
          __throw(::exception::exception("resource exception menu_central constructor"));
+
       }
 //#endif
 

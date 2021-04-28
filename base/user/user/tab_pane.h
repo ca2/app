@@ -11,7 +11,7 @@ namespace user
    {
    public:
 
-      string                              m_strTitle;
+      ::text::text   m_textTitle;
 
 
    public:
@@ -34,12 +34,17 @@ namespace user
       eflag                               m_eflag;
 
 
-      tab_pane(tab * ptab);
+      tab_pane();
       tab_pane(const tab_pane & tab_pane);
       virtual ~tab_pane();
 
 
+      virtual ::e_status initialize_tab_pane(tab* ptab);
+
+
       tab_pane & operator = (const tab_pane & tab_pane);
+
+
 
 
       string get_title();

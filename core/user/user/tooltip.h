@@ -17,7 +17,7 @@ namespace user
       bool                 m_bError;
 
 
-      tooltip(::layered * pobjectContext);
+      tooltip(::object * pobject);
       virtual ~tooltip();
 
 
@@ -29,7 +29,7 @@ namespace user
 
       ::size_i32 CalcSize();
 
-      DECL_GEN_SIGNAL(on_message_create);
+      DECLARE_MESSAGE_HANDLER(on_message_create);
       void _001OnTimer(::timer * ptimer) override;
       void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 

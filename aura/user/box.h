@@ -22,15 +22,15 @@ namespace user
       virtual ~box();
 
       
-      virtual ::e_status initialize(::layered * pobjectContext) override;
+      virtual ::e_status initialize(::object * pobject) override;
 
 
       void install_message_routing(::channel * pchannel) override;
 
       
-      DECL_GEN_SIGNAL(on_message_create);
-      DECL_GEN_SIGNAL(_001OnSize);
-      DECL_GEN_SIGNAL(_001OnShowWindow);
+      DECLARE_MESSAGE_HANDLER(on_message_create);
+      DECLARE_MESSAGE_HANDLER(_001OnSize);
+      DECLARE_MESSAGE_HANDLER(_001OnShowWindow);
 
 
       virtual::e_display window_stored_display() const override;

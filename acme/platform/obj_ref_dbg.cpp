@@ -65,7 +65,7 @@ void matter::add_ref_history(matter* p, const char* pszObjRefDbg)
 
    }
 
-   critical_section_lock synchronizationlock(&::acme::g_csRefDbg);
+   critical_section_lock synchronouslock(&::acme::g_csRefDbg);
 
    if (g_bEnableObjRefDbg)
    {
@@ -137,7 +137,7 @@ void matter::add_ref_history(matter* p, const char* pszObjRefDbg)
 void matter::dec_ref_history(matter* p, const char* /*pszObjRefDbgNotUsedCurrently*/)
 {
 
-   critical_section_lock synchronizationlock(&::acme::g_csRefDbg);
+   critical_section_lock synchronouslock(&::acme::g_csRefDbg);
 
    if (::is_null(m_pobjrefdbg) || m_countReference <= 0 || m_pobjrefdbg->m_itema.isEmpty())
    {
@@ -151,7 +151,7 @@ void matter::dec_ref_history(matter* p, const char* /*pszObjRefDbgNotUsedCurrent
    if (iFind >= 0)
    {
 
-      m_pobjrefdbg->m_itema.remove_at(iFind);
+      m_pobjrefdbg->m_itema.erase_at(iFind);
 
    }
 
@@ -161,7 +161,7 @@ void matter::dec_ref_history(matter* p, const char* /*pszObjRefDbgNotUsedCurrent
 void matter::check_pending_releases()
 {
 
-   critical_section_lock synchronizationlock(&::acme::g_csRefDbg);
+   critical_section_lock synchronouslock(&::acme::g_csRefDbg);
 
    if (m_pobjrefdbg == nullptr)
    {

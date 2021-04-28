@@ -5,9 +5,9 @@ namespace calculator
 {
 
 
-   calculator::calculator(::layered * pobjectContext) :
+   calculator::calculator(::object * pobject) :
       ::object(pobject),
-      ::apex::department(pobject)
+      ::acme::department(pobject)
    {
    
    }

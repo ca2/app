@@ -6,8 +6,7 @@ namespace filemanager
 
 
    class CLASS_DECL_CORE folder_selection_list_view:
-      virtual public ::user::split_view,
-      virtual public ::filemanager::impact
+      virtual public ::filemanager_show < ::user::split_view >
    {
    public:
 
@@ -30,8 +29,8 @@ namespace filemanager
 
       virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
 
-      DECL_GEN_SIGNAL(_001OnAdd);
-      DECL_GEN_SIGNAL(_001OnRemove);
+      DECLARE_MESSAGE_HANDLER(_001OnAdd);
+      DECLARE_MESSAGE_HANDLER(_001OnRemove);
 
       virtual void on_create_split_impact() override;
 

@@ -41,7 +41,7 @@ color32_t SetAValue(byte a, color32_t cr)
 
 
 
-            frame_002::frame_002(::layered * pobjectContext) :
+            frame_002::frame_002(::object * pobject) :
                object(pobject),
                frame(pobject)
             {
@@ -226,7 +226,7 @@ SizingNone:;
                else
                {
 
-                  auto psession = Session;
+                  auto psession = get_session();
 
                   auto pstyle = pframewindow->get_style(pgraphics);
 
@@ -247,8 +247,8 @@ SizingNone:;
                {
                   ::rectangle_i32 rectangle;
                   GetBorderRect(lpcrectClient, rectangle, eside);
-                  class imaging & imaging = System->imaging();
-                  imaging.color_blend(pgraphics,
+
+                  pgraphics->color_blend(
                                       rectangle,
                                       crMoveableBorder,
                                       127);
@@ -269,8 +269,8 @@ SizingNone:;
 
                   ::rectangle_i32 rectangle;
                   GetBorderRect(lpcrectClient, rectangle, eside);
-                  class imaging & imaging = System->imaging();
-                  imaging.color_blend(pgraphics,
+
+                  pgraphics->color_blend(
                                       rectangle,
                                       crMoveableBorder,
                                       127);
@@ -281,8 +281,8 @@ SizingNone:;
                   ::rectangle_i32 rectClient = lpcrectClient;
                   rectClient.deflate(1, 1);
                   GetBorderRect(rectClient, rectangle, eside);
-                  class imaging & imaging = System->imaging();
-                  imaging.color_blend(pgraphics,
+
+                  pgraphics->color_blend(
                                       rectangle,
                                       crMoveableBorder,
                                       200);

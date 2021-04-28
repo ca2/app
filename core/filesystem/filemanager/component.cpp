@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "core/filesystem/filemanager/_filemanager.h"
 #include "aura/user/shell.h"
+#include "acme/filesystem/filesystem/acme_dir.h"
 
 
 CLASS_DECL_CORE ::type __form_document_type();
@@ -27,14 +28,16 @@ namespace filemanager
    }
 
 
-   string create_manager_id(::layered * pobjectContext)
+   string create_manager_id(::object * pobject)
    {
 
       memory mem;
 
       mem.set_size(get_manager_id_byte_len());
 
-      System->math().random_bytes(mem.get_data(), mem.get_size());
+      auto pmathematics = ::mathematics::mathematics();
+
+      pmathematics->random_bytes(mem.get_data(), mem.get_size());
 
       return mem.to_hex().uppered();
 
@@ -133,7 +136,7 @@ namespace filemanager
    }
 
 
-   ::file::path filemanager_project_entry(string& strManagerId, const char* psz, ::context* pcontext)
+   ::file::path filemanager_project_entry(string& strManagerId, const char* psz, ::aura::context* pcontext)
    {
 
       if (is_valid_filemanager_project_entry(psz))
@@ -163,10 +166,10 @@ namespace filemanager
    }
 
 
-   ::e_status component::initialize_filemanager_component(::layered * pobjectContext)
+   ::e_status component::initialize_filemanager_component(::object * pobject)
    {
 
-      auto estatus = ::object::initialize(pobjectContext);
+      auto estatus = ::object::initialize(pobject);
 
       if (!estatus)
       {
@@ -208,7 +211,7 @@ namespace filemanager
 
       //auto pshell = user.shell();
 
-      //estatus = pshell->initialize(pobjectContext);
+      //estatus = pshell->initialize(pobject);
 
       //if (!estatus)
       //{
@@ -225,7 +228,7 @@ namespace filemanager
 
       __compose(m_pdocumenttemplateForm, pmulti);
 
-      auto psession = Session;
+      auto psession = get_session();
 
       psession->add_document_template(pmulti);
 
@@ -328,7 +331,7 @@ namespace filemanager
                              __type(view)));
       }
 
-      auto psession = Session;
+      auto psession = get_session();
 
       psession->add_document_template(pdoctemplate);
 
@@ -366,7 +369,7 @@ namespace filemanager
 
       }
 
-      request_file(itema[0]->m_filepathUser);
+      //request_file(itema[0]->m_filepathUser);
 
    }
 
@@ -394,11 +397,13 @@ namespace filemanager
 
          __keep(m_bRestoring);
 
-         if (pathFilemanagerProject.is_empty() || Context.dir().is(pathFilemanagerProject)
+         auto pcontext = get_context();
+
+         if (pathFilemanagerProject.is_empty() || pcontext->m_papexcontext->dir().is(pathFilemanagerProject)
                || pathFilemanagerProject.extension().compare_ci("component") != 0)
          {
 
-            m_pathFilemanagerProject = ::dir::localconfig() / "user.component";
+            m_pathFilemanagerProject = m_psystem->m_pacmedir->localconfig() / "user.component";
 
          }
          else
@@ -414,23 +419,23 @@ namespace filemanager
 
             ::mutex m(e_create_new, "Local\\ca2-filemanagers");
 
-            synchronization_lock synchronizationlock(&m);
+            synchronous_lock synchronouslock(&m);
 
-            stra.add_lines(Context.file().as_string(m_pathFilemanagerProject), true);
+            stra.add_lines(pcontext->m_papexcontext->file().as_string(m_pathFilemanagerProject), true);
 
          }
 
-         if (Context.dir().is(pathFilemanagerProject))
+         if (pcontext->m_papexcontext->dir().is(pathFilemanagerProject))
          {
 
-            stra.add(create_manager_id(get_context_object()) + ":" + pathFilemanagerProject);
+            stra.add(create_manager_id(this) + ":" + pathFilemanagerProject);
 
          }
 
          if (stra.is_empty())
          {
 
-            stra.add(create_manager_id(get_context_object()) + ":");
+            stra.add(create_manager_id(this) + ":");
 
          }
 
@@ -465,7 +470,7 @@ namespace filemanager
                      if (strOtherPath.compare_ci(strPath) == 0)
                      {
 
-                        stra.remove_at(j);
+                        stra.erase_at(j);
 
                      }
                      else
@@ -491,7 +496,7 @@ namespace filemanager
             else
             {
 
-               stra.remove_at(i);
+               stra.erase_at(i);
 
             }
 
@@ -574,9 +579,9 @@ namespace filemanager
 
       //   ::mutex m(e_create_new, "Local\\ca2-filemanagers");
 
-      //   synchronization_lock synchronizationlock(&m);
+      //   synchronous_lock synchronouslock(&m);
 
-      //   Context.file().put_contents(m_pathFilemanagerProject, stra.implode("\r\n"));
+      //   pcontext->m_papexcontext->file().put_contents(m_pathFilemanagerProject, stra.implode("\r\n"));
 
       //}
 
@@ -632,7 +637,7 @@ namespace filemanager
       //if (pcreate == nullptr)
       //{
 
-      //   pcreate = __new(::create(Application.handler(), varFile, true));
+      //   pcreate = __new(::create(papplication->handler(), varFile, true));
 
       //}
 
@@ -666,7 +671,7 @@ namespace filemanager
 
       //   string strManagerId;
 
-      //   ::file::path pathFolder = filemanager_project_entry(strManagerId, varFile, get_context_application());
+      //   ::file::path pathFolder = filemanager_project_entry(strManagerId, varFile, get_application());
 
       //   ptabview->set_cur_tab_by_id("verifile://" + pathFolder);
 
@@ -719,12 +724,12 @@ namespace filemanager
    }
 
 
-   bool component::remove_filemanager(::payload varFile)
+   bool component::erase_filemanager(::payload varFile)
    {
 
       //document * pdocument = find_manager(varFile);
 
-      //m_pdocumenttemplateProject->remove_document(pdocument);
+      //m_pdocumenttemplateProject->erase_document(pdocument);
 
       //save_filemanager_project();
 
@@ -735,12 +740,12 @@ namespace filemanager
    }
 
 
-   bool component::remove_filemanager(document * pdocument)
+   bool component::erase_filemanager(document * pdocument)
    {
 
       //pdocument->close_document();
 
-      ////m_pdocumenttemplateProject->remove_document(pdocument);
+      ////m_pdocumenttemplateProject->erase_document(pdocument);
 
       //save_filemanager_project();
 
@@ -799,7 +804,7 @@ namespace filemanager
 
 //      pathFolder = pcreate->m_pcommandline->m_varFile;
 
-//      if (Context.dir().is(pathFolder))
+//      if (pcontext->m_papexcontext->dir().is(pathFolder))
 //      {
 
 //         pathFolder.m_iDir = 1;
@@ -930,7 +935,7 @@ namespace filemanager
 
 //      pathFolder = pcreate->m_pcommandline->m_varFile;
 
-//      if (Context.dir().is(pathFolder))
+//      if (pcontext->m_papexcontext->dir().is(pathFolder))
 //      {
 
 //         pathFolder.m_iDir = 1;
@@ -1030,20 +1035,20 @@ namespace filemanager
 //}
 
 
-//document * component::open_child(bool bMakeVisible, bool bTransparentBackground, __pointer(::user::interaction) pwndParent, ::filemanager::__pointer(data) pdata, callback * pcallback)
+//document * component::open_child(bool bMakeVisible, bool bTransparentBackground, __pointer(::user::interaction) puserinteractionParent, ::filemanager::__pointer(data) pdata, callback * pcallback)
 //{
 
 //   if (pfilemanagerdata == nullptr)
 //   {
 
-//      pfilemanagerdata = __new(::filemanager::data(get_object()));
+//      pfilemanagerdata = __new(::filemanager::data(this));
 
 //   }
 
 //   __pointer(::create) pcreate(e_create_new, pfilemanagerdata);
 
 //   pcreate->m_bMakeVisible = false;
-//   pcreate->m_puserinteractionParent = pwndParent;
+//   pcreate->m_puserinteractionParent = puserinteractionParent;
 //   pcreate->prop("filemanager::data") = pfilemanagerdata;
 
 //   if (pfilemanagerdata->m_pcallback == nullptr || pcallback != nullptr)
@@ -1076,7 +1081,7 @@ namespace filemanager
 //}
 
 
-//document * component::open_child_list(bool bMakeVisible, bool bTransparentBackground, __pointer(::user::interaction) pwndParent, ::filemanager::__pointer(data) pdata, callback * pcallback)
+//document * component::open_child_list(bool bMakeVisible, bool bTransparentBackground, __pointer(::user::interaction) puserinteractionParent, ::filemanager::__pointer(data) pdata, callback * pcallback)
 //{
 
 //   UNREFERENCED_PARAMETER(bMakeVisible);
@@ -1085,12 +1090,12 @@ namespace filemanager
 
 //   pcreate->m_bMakeVisible = false;
 
-//   pcreate->m_puserinteractionParent = pwndParent;
+//   pcreate->m_puserinteractionParent = puserinteractionParent;
 
 //   if (pfilemanagerdata == nullptr)
 //   {
 
-//      pfilemanagerdata = __new(::filemanager::data(get_object()));
+//      pfilemanagerdata = __new(::filemanager::data(this));
 
 //   }
 
@@ -1134,7 +1139,7 @@ namespace filemanager
 //}
 
 
-//document * component::open_folder_selection_list(bool bMakeVisible, bool bTransparentBackground, __pointer(::user::interaction) pwndParent, ::filemanager::__pointer(data) pdata, callback * pcallback)
+//document * component::open_folder_selection_list(bool bMakeVisible, bool bTransparentBackground, __pointer(::user::interaction) puserinteractionParent, ::filemanager::__pointer(data) pdata, callback * pcallback)
 //{
 
 //   UNREFERENCED_PARAMETER(bMakeVisible);
@@ -1143,12 +1148,12 @@ namespace filemanager
 
 //   pcreate->m_bMakeVisible = false;
 
-//   pcreate->m_puserinteractionParent = pwndParent;
+//   pcreate->m_puserinteractionParent = puserinteractionParent;
 
 //   if (pfilemanagerdata == nullptr)
 //   {
 
-//      pfilemanagerdata = __new(::filemanager::data(get_object()));
+//      pfilemanagerdata = __new(::filemanager::data(this));
 
 //   }
 

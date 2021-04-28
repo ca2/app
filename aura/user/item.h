@@ -24,7 +24,7 @@ public:
 };
 
 
-#define __stack(xxxx, aaaa) auto stack_at_line ## LINE_NUMBER = ::___stack < ::remove_reference< decltype(xxxx) >::TYPE > (xxxx, aaaa);
+#define __stack(xxxx, aaaa) auto stack_at_line ## LINE_NUMBER = ::___stack < ::erase_reference< decltype(xxxx) >::TYPE > (xxxx, aaaa);
 
 namespace user
 {

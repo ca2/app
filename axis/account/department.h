@@ -10,7 +10,7 @@ namespace account
 
 
    class CLASS_DECL_AXIS department :
-      virtual public ::apex::department
+      virtual public ::acme::department
    {
    public:
 
@@ -36,7 +36,7 @@ namespace account
       virtual ~department();
 
 
-      virtual ::e_status initialize(::layered * pobjectContext) override;
+      virtual ::e_status initialize(::object * pobject) override;
 
 
       class __pointer(class authenticator) authenticator();
@@ -74,7 +74,7 @@ namespace account
 
       ::file::path get_default_url();
 
-      void on_clock(enum_clock eclock);
+      void on_clock(enum_timer etimer);
 
 
    };

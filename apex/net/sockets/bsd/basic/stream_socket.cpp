@@ -6,11 +6,13 @@ namespace sockets
 {
 
 
-   stream_socket::stream_socket(base_socket_handler& h) : 
-      ::object(&h)
-      ,base_socket(h)
-      ,socket(h)
-      ,m_bConnecting(false)
+   stream_socket::stream_socket() : 
+      //::object(&h)
+      //,
+      //base_socket(h)
+      //,socket(h)
+      //,
+      m_bConnecting(false)
       ,m_connect_timeout(5)
       ,m_flush_before_close(true)
       ,m_connection_retry(0)
@@ -134,7 +136,7 @@ namespace sockets
 
    void stream_socket::SetCallOnConnect(bool x)
    {
-      Handler().AddList(GetSocket(), LIST_CALLONCONNECT, x);
+      socket_handler()->AddList(GetSocket(), LIST_CALLONCONNECT, x);
       m_call_on_connect = x;
    }
 
@@ -147,7 +149,7 @@ namespace sockets
 
    void stream_socket::SetRetryClientConnect(bool x)
    {
-      Handler().AddList(GetSocket(), LIST_RETRY, x);
+      socket_handler()->AddList(GetSocket(), LIST_RETRY, x);
       m_b_retry_connect = x;
    }
 

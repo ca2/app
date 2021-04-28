@@ -106,7 +106,7 @@ CLASS_DECL_AURA i32 ca2_main();
 //
 //         ::file::path pathLnk;
 //
-//         pathObj = Context.file().module();
+//         pathObj = pcontext->m_papexcontext->file().module();
 //
 //         string strLinkTitle;
 //
@@ -116,7 +116,7 @@ CLASS_DECL_AURA i32 ca2_main();
 //         strLinkTitle.replace("\\", "_");
 //         strLinkTitle.replace("-", "_");
 //
-//         pathLnk = ::dir::localconfig() / "desk/monitor-0/2desk" / strLinkTitle + ".lnk";
+//         pathLnk = pacmedir->localconfig() / "desk/monitor-0/2desk" / strLinkTitle + ".lnk";
 //
 //         ::dir::mk(pathLnk.folder());
 //
@@ -132,22 +132,22 @@ CLASS_DECL_AURA i32 ca2_main();
 //} // namespace aura
 
 
+//
+//
+//void os_post_quit()
+//{
+//
+//   psystem->exception::translator::detach();
+//
+//}
 
 
-void os_post_quit()
-{
-
-   ::aura::get_system()->exception::translator::detach();
-
-}
-
-
-//CLASS_DECL_AURA void main_async_runnable(::context_object * pobjectTaskParam)
+//CLASS_DECL_AURA void main_async_runnable(::object * pobjectTaskParam)
 //{
 //
 //   __pointer(::object) pobjectTask = pobjectTaskParam;
 //   
-//   ::aura::get_system()->post_predicate([pobjectTask]()
+//   psystem->post_predicate([pobjectTask]()
 //   {
 //
 //      pobjectTask->call();
@@ -157,12 +157,12 @@ void os_post_quit()
 //}
 
 
-//CLASS_DECL_AURA void main_sync_runnable(::context_object * pobjectTaskParam, ::duration durationTimeout)
+//CLASS_DECL_AURA void main_sync_runnable(::object * pobjectTaskParam, ::duration durationTimeout)
 //{
 //   
 //   __pointer(::object) pobjectTask = pobjectTaskParam;
 //   
-//   ::aura::get_system()->send_predicate([pobjectTask]()
+//   psystem->send_predicate([pobjectTask]()
 //   {
 //
 //      pobjectTask->call();

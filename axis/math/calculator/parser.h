@@ -15,7 +15,7 @@ namespace calculator
       __pointer_array(::calculator::element)       m_elementa;
 
 
-      parser(::layered * pobjectContext);
+      parser();
       virtual ~parser();
 
 

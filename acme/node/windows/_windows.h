@@ -7,21 +7,21 @@
 #endif
 
 
-CLASS_DECL_ACME ::file::path get_known_folder(REFKNOWNFOLDERID kfid);
+// CLASS_DECL_ACME ::file::path get_known_folder(REFKNOWNFOLDERID kfid);
 
 //#include "buffer.h"
 //#include "copydesk.h"
 //#include "crypto.h"
 #include "exception.h"
 #include "factory_exchange.h"
-#include "file.h"
+//#include "file.h"
 #include "file_find.h"
 //#include "file_os_watcher.h"
 //#include "folder_watch.h"
 //#include "handle.h"
 //#include "ip_enum.h"
 //#include "os_context.h"
-#include "pipe.h"
+//#include "pipe.h"
 //#include "printer.h"
 //#include "process.h"
 #include "registry.h"

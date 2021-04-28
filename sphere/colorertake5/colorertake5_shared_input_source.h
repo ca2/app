@@ -18,12 +18,12 @@ public:
 
   static SharedInputSource *getInputSource(string path, stream & aura);
 
-  /** Increments context_object counter */
+  /** Increments object counter */
   i32 addref(){
     return ++ref_count;
   }
 
-  /** Decrements context_object counter */
+  /** Decrements object counter */
   i32 delref(){
     if (ref_count == 0){
       CLR_ERROR("SharedInputSource", "delref: already zeroed references");

@@ -42,7 +42,7 @@ namespace filemanager
 
       m_iAnimate = 0;
 
-      auto puser = User;
+      auto puser = user();
 
       __compose(m_pimagelist, puser->shell()->GetImageList(16));
 
@@ -54,7 +54,7 @@ namespace filemanager
    void tree::_017EnsureVisible(const ::file::path & pathUser, const ::action_context & context)
    {
 
-      synchronization_lock synchronizationlock(m_usertreea.has_elements() ? m_usertreea[0]->mutex() : nullptr);
+      synchronous_lock synchronouslock(m_usertreea.has_elements() ? m_usertreea[0]->mutex() : nullptr);
 
       string_array stra;
 
@@ -74,7 +74,7 @@ namespace filemanager
 
       }
 
-      m_straUpdatePtrFilter.remove_all();
+      m_straUpdatePtrFilter.erase_all();
 
       _001EnsureVisible(pitem);
 
@@ -97,6 +97,10 @@ namespace filemanager
 
       ::file::path strDir;
 
+      auto papplication = get_application();
+
+      auto pcontext = m_pcontext;
+
       if(bOnlyParent && pathUser.has_char())
       {
 
@@ -112,14 +116,14 @@ namespace filemanager
 
          strDir = pathUser;
 
-         Application.dir().ls(listing, pathUser);
+         pcontext->m_papexcontext->dir().ls(listing, pathUser);
 
       }
 
       for (auto & item : listing)
       {
 
-         ::file::path pathFinal = Context.defer_process_path(item);
+         ::file::path pathFinal = pcontext->m_papexcontext->defer_process_path(item);
 
          listingFinal.add(pathFinal);
 
@@ -168,7 +172,9 @@ namespace filemanager
 
       synchronization_object *pm = m_usertreea.has_elements() ? m_usertreea[0]->mutex() : nullptr;
 
-      synchronization_lock synchronizationlock(pm);
+      synchronous_lock synchronouslock(pm);
+
+      auto pcontext = get_context();
 
       auto pointOffset = get_viewport_offset();
 
@@ -194,7 +200,7 @@ namespace filemanager
 
             string strName;
 
-            strName = Context.defer_get_file_title(pathAscendant);
+            strName = pcontext->m_papexcontext->defer_get_file_title(pathAscendant);
 
             if (pathAscendant.has_char() && strName.has_char())
             {
@@ -206,7 +212,7 @@ namespace filemanager
 
                   pitemChild->m_filepathUser = pathAscendant;
 
-                  pitemChild->m_filepathFinal = Context.defer_process_path(pathAscendant);
+                  pitemChild->m_filepathFinal = pcontext->m_papexcontext->defer_process_path(pathAscendant);
 
                   pitemChild->m_strName = strName;
 
@@ -287,7 +293,7 @@ namespace filemanager
 
             string strName;
 
-            strName = Context.defer_get_file_title(pathUser);
+            strName = pcontext->m_papexcontext->defer_get_file_title(pathUser);
 
             auto pitemChild = ptreeitemChild->m_pdataitem.cast < ::userfs::item >();
 
@@ -302,7 +308,7 @@ namespace filemanager
 
             pitemChild->m_filepathUser = pathUser;
 
-            pitemChild->m_filepathFinal = Context.defer_process_path(pathFinal);
+            pitemChild->m_filepathFinal = pcontext->m_papexcontext->defer_process_path(pathFinal);
 
             pitemChild->m_strName = strName;
 
@@ -389,7 +395,7 @@ namespace filemanager
 
             auto iMaxLevel = ptreeitem ? ptreeitem->m_iLevel + 2 : -1;
 
-            // remove level 3 with that aren't expanded.
+            // erase level 3 with that aren't expanded.
 
             while (ptreeitem)
             {
@@ -399,9 +405,9 @@ namespace filemanager
                if (ptreeitem->m_iLevel >= iMaxLevel && !ptreeitem->is_expanded())
                {
 
-                  list_remove_all(ptreeitem);
+                  list_erase_all(ptreeitem);
 
-                  list_remove(ptreeitem->m_pparent, ptreeitem);
+                  list_erase(ptreeitem->m_pparent, ptreeitem);
 
                }
 
@@ -431,7 +437,7 @@ namespace filemanager
 
          });
 
-      auto puser = User;
+      auto puser = user();
 
       __compose(m_pimagelist, puser->shell()->GetImageList(filemanager_data()->m_iIconSize));;
 
@@ -664,7 +670,7 @@ namespace filemanager
 
             m_iAnimate = 0;
 
-            ptimer->m_ptimercallback->remove_timer(ptimer);
+            ptimer->m_ptimercallback->erase_timer(ptimer);
 
          }
 
@@ -747,7 +753,7 @@ namespace filemanager
    void tree::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
    {
 
-      ::filemanager::impact::on_subject(psubject, pcontext);
+      ::filemanager_impact::on_subject(psubject, pcontext);
 
    }
 

@@ -5,7 +5,7 @@ namespace turboc
 {
 
 
-   pane_view::pane_view(::layered * pobjectContext) :
+   pane_view::pane_view(::object * pobject) :
       ::object(pobject),
       ::user::tab(pobject),
 
@@ -71,7 +71,7 @@ namespace turboc
       {
       case MAIN_IMPACT:
          {
-         Application.m_ptemplateHelloMultiverseView->open_document_file(get_context_application(), NULL,true,pcreatordata->m_pholder);
+         papplication->m_ptemplateHelloMultiverseView->open_document_file(get_application(), NULL,true,pcreatordata->m_pholder);
 
 
          }
@@ -81,7 +81,7 @@ namespace turboc
       case PaneViewHelloMultiverseSwitcher:
       {
 
-         Application.m_ptemplateHelloMultiverseSwitcher->open_document_file(get_context_application(), NULL,true,pcreatordata->m_pholder);
+         papplication->m_ptemplateHelloMultiverseSwitcher->open_document_file(get_application(), NULL,true,pcreatordata->m_pholder);
 
 
 

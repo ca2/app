@@ -198,7 +198,7 @@ namespace userex
       if (pdocTab == nullptr)
       {
 
-         pdocTab = m_ptemplateTab->open_document_file(get_context_application(), ::e_type_null, __visible(false), this);
+         pdocTab = m_ptemplateTab->open_document_file(get_application(), ::e_type_null, __visible(false), this);
 
       }
 
@@ -414,7 +414,7 @@ namespace userex
 
                      __pointer(::userex::pane_tab_view) ptabview = pdocument->get_typed_view < ::userex::pane_tab_view >();
 
-                     ptabview->remove_tab_by_id(pframewindow->m_id);
+                     ptabview->erase_tab_by_id(pframewindow->m_id);
 
                      if (ptabview.is_set() && ptabview->get_tab_count() <= 0)
                      {
@@ -610,6 +610,8 @@ namespace userex
 
       __pointer(::user::document) pdocument = get_doc(idView);
 
+      auto papplication = get_application();
+
       if (pdocument.is_set())
       {
 
@@ -619,7 +621,7 @@ namespace userex
 
       ::id id = idView;
 
-      auto puser = User;
+      auto puser = user();
 
       ::user::impact_system * pimpactsystem = puser->m_mapimpactsystem[idView];
 
@@ -639,7 +641,7 @@ namespace userex
          else
          {
 
-            pdocument = pimpactsystem->open_document_file(get_context_application(), e_type_empty, __visible(true), this, m_bWfiUpDownTarget ? e_window_flag_updown : e_window_flag_none, id);
+            pdocument = pimpactsystem->open_document_file(get_application(), e_type_empty, __visible(true), this, m_bWfiUpDownTarget ? e_window_flag_updown : e_window_flag_none, id);
 
          }
 
@@ -654,7 +656,7 @@ namespace userex
       else
       {
 
-         pdocument = Application.defer_create_view(idView, this, m_bWfiUpDownTarget ? e_window_flag_updown : e_window_flag_none, id);
+         pdocument = papplication->defer_create_view(idView, this, m_bWfiUpDownTarget ? e_window_flag_updown : e_window_flag_none, id);
 
       }
 
@@ -698,9 +700,11 @@ namespace userex
 
       bool bShow = true;
 
-      Application.data_set("frame::" + idView.to_string() + ".visible", bShow);
+      auto papplication = get_application();
 
-      auto puser = User;
+      papplication->data_set("frame::" + idView.to_string() + ".visible", bShow);
+
+      auto puser = user();
 
       puser->will_use_view_hint(idView);
 
@@ -730,7 +734,9 @@ namespace userex
 
       bool bShow = false;
 
-      Application.data_set("frame::" + idView + ".visible", bShow);
+      auto papplication = get_application();
+
+      papplication->data_set("frame::" + idView + ".visible", bShow);
 
       __pointer(::simple_frame_window) pframewindow = _001GetFrame(idView);
 
@@ -758,7 +764,9 @@ namespace userex
 
             bool bShow = false;
 
-            Application.data_get("frame::" + idView + ".visible", bShow);
+            auto papplication = get_application();
+
+            papplication->data_get("frame::" + idView + ".visible", bShow);
 
             bShow = !bShow;
 
@@ -785,9 +793,9 @@ namespace userex
 
       bool bShow = false;
 
-      auto& app = Application;
+      auto papplication = get_application();
 
-      app.data_get("frame::" + idView + ".visible", bShow);
+      papplication->data_get("frame::" + idView + ".visible", bShow);
 
       if (!bShow)
       {

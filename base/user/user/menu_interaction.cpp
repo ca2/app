@@ -6,9 +6,7 @@ namespace user
 {
 
 
-   menu_interaction::menu_interaction(menu_item * pitem) :
-      m_pmenuitem(pitem),
-      ::object(pitem)
+   menu_interaction::menu_interaction()
    {
 
       m_econtroltype = e_control_type_menu_button;
@@ -18,6 +16,25 @@ namespace user
 
    menu_interaction::~menu_interaction()
    {
+
+   }
+
+
+   ::e_status menu_interaction::initialize_menu_interaction(menu_item* pmenuitem)
+   {
+
+      auto estatus = ::user::interaction::initialize(pmenuitem);
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      m_pmenuitem = pmenuitem;
+         
+      return estatus;
 
    }
 
@@ -147,7 +164,7 @@ namespace user
    }
 
 
-   void menu_interaction::_001OnMouseMove(::message::message * pmessage)
+   void menu_interaction::on_message_mouse_move(::message::message * pmessage)
    {
 
       __pointer(::message::mouse) pmouse(pmessage);

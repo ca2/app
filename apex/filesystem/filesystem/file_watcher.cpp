@@ -43,7 +43,7 @@ namespace file
             try
             {
 
-               plistener->m_watchptra.remove(this);
+               plistener->m_watchptra.erase(this);
 
             }
             catch (...)
@@ -84,17 +84,17 @@ namespace file
    }
 
 
-   void watch::remove_listener(listener * plistener)
+   void watch::erase_listener(listener * plistener)
    {
 
-      m_listenera.remove(plistener);
+      m_listenera.erase(plistener);
 
-      plistener->m_watchptra.remove(this);
+      plistener->m_watchptra.erase(this);
 
       if (m_listenera.is_empty())
       {
 
-         m_pwatcher->remove_watch(m_id);
+         m_pwatcher->erase_watch(m_id);
 
       }
 
@@ -140,7 +140,7 @@ namespace file
             try
             {
 
-               pwatch->remove_listener(this);
+               pwatch->erase_listener(this);
 
             }
             catch (...)
@@ -196,7 +196,7 @@ namespace file
 
       __pointer(listener) plistener(plistenerParam);
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       __pointer(watch) pwatch;
 
@@ -214,23 +214,23 @@ namespace file
          if (m_bCreateWatchThread)
          {
 
-            auto estatus = __construct_new(m_pthread);
+//            auto estatus = __construct_new(m_ptask);
+//
+//            if (!estatus)
+//            {
+//
+//               return estatus;
+//
+//            }
 
-            if (!estatus)
-            {
-
-               return estatus;
-
-            }
-
-            m_pthread->start(this);
+            m_ptask = m_pcontext->branch(this);
 
          }
 
          if (!pwatch->open(pathFolder, bRecursive))
          {
 
-            m_watchmap.remove_key(pwatch->m_id);
+            m_watchmap.erase_key(pwatch->m_id);
 
             return -1;
 
@@ -259,10 +259,10 @@ namespace file
    }
 
 
-   void watcher::remove_watch(watch_id watch_id)
+   void watcher::erase_watch(watch_id watch_id)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       watch_map::pair * ppair = m_watchmap.plookup(watch_id);
 
@@ -280,9 +280,9 @@ namespace file
    ::e_status     watcher::run()
    {
       
-      m_pthread = ::get_task();
+      m_ptask = ::get_task();
 
-      while (::thread_get_run())
+      while (::task_get_run())
       {
 
          if (!step())
@@ -292,21 +292,21 @@ namespace file
 
          }
 
-         while (m_pthread->defer_pump_message());
+         while (m_ptask->defer_pump_message());
 
       }
       
-      m_pthread.release();
+      m_ptask.release();
 
       return ::success;
 
    }
 
 
-   void watcher::remove_watch(const ::file::path & pathFolder)
+   void watcher::erase_watch(const ::file::path & pathFolder)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       for (auto & pair : m_watchmap)
       {
@@ -314,7 +314,7 @@ namespace file
          if (::file_is_equal_path(pathFolder, pair.element2()->m_pathFolder))
          {
 
-            remove_watch(pair.element1());
+            erase_watch(pair.element1());
 
             return;
 
@@ -340,7 +340,7 @@ restart:
 
             pair.element2()->m_pwatchRelease.release();
 
-            m_watchmap.remove_key(pair.element1());
+            m_watchmap.erase_key(pair.element1());
 
             goto restart;
 

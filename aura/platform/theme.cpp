@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "acme/filesystem/filesystem/acme_dir.h"
 
 
 namespace aura
@@ -20,10 +21,10 @@ namespace aura
    }
 
 
-   ::e_status theme::initialize(::layered * pobjectContext)
+   ::e_status theme::initialize(::object * pobject)
    {
 
-      auto estatus = ::object::initialize(pobjectContext);
+      auto estatus = ::object::initialize(pobject);
 
       if (!estatus)
       {
@@ -102,7 +103,9 @@ namespace aura
       if (strContextTheme != strTheme)
       {
 
-         Application.app_set("theme-" + get_current_weather(), strTheme);
+         __pointer(::aura::application) papplication = get_application();
+
+         papplication->app_set("theme-" + get_current_weather(), strTheme);
 
       }
 
@@ -126,7 +129,7 @@ namespace aura
 
       m_pathTheme = ::file::path("theme") / get_theme();
 
-      //auto applicationa = ::aura::get_system()->m_applicationa;
+      //auto applicationa = psystem->m_applicationa;
 
       //for (auto & papp : applicationa)
       //{
@@ -176,9 +179,11 @@ namespace aura
 
 #endif
 
-      ::file::path pathWeatherState = ::dir::config() / "weather_state.txt";
+      ::file::path pathWeatherState = m_psystem->m_pacmedir->config() / "weather_state.txt";
 
-      string strState = Context.file().as_string(pathWeatherState);
+      auto pcontext = get_context();
+
+      string strState = pcontext->m_papexcontext->file().as_string(pathWeatherState);
 
       if (strState.is_empty())
       {
@@ -274,7 +279,9 @@ namespace aura
 
       string strCurrentWeather = get_current_weather();
 
-      string strTheme = Application.app_get("theme-" + strCurrentWeather);
+      __pointer(::aura::application) papplication = get_application();
+
+      string strTheme = papplication->app_get("theme-" + strCurrentWeather);
 
       if (strTheme.is_empty())
       {
@@ -301,9 +308,11 @@ namespace aura
    void theme::on_change_weather_state()
    {
 
-      ::file::path pathWeatherState = ::dir::config() / "weather_state.txt";
+      ::file::path pathWeatherState = m_psystem->m_pacmedir->config() / "weather_state.txt";
 
-      string strWeatherState = Context.file().as_string(pathWeatherState);
+      auto pcontext = get_context();
+
+      string strWeatherState = pcontext->m_papexcontext->file().as_string(pathWeatherState);
 
       m_strWeatherState = strWeatherState;
 
@@ -334,7 +343,9 @@ namespace aura
 
       m_strDayNightTheme = strDayNightTheme;
 
-      if (Application.m_bContextTheme)
+      __pointer(::aura::application) papplication = get_application();
+
+      if (papplication->m_bContextTheme)
       {
 
          sync_with_stored_theme();
@@ -437,7 +448,9 @@ namespace aura
 
       ::file::listing patha;
 
-      Context.dir().matter_ls("sphere/theme", patha);
+      auto pcontext = get_context();
+
+      pcontext->m_papexcontext->dir().matter_ls("sphere/theme", patha);
 
       m_straTheme.add_unique("blue");
       m_straTheme.add_unique("dark");
@@ -446,7 +459,7 @@ namespace aura
       for (auto& path : patha)
       {
 
-         if (Context.dir().is(path))
+         if (pcontext->m_papexcontext->dir().is(path))
          {
 
             string strTheme = path.name();
@@ -459,7 +472,7 @@ namespace aura
 
       sync_with_stored_theme();
 
-      m_watchidWeather = Context.dir().watcher().add_watch(::dir::config(), this, false);
+      m_watchidWeather = pcontext->m_papexcontext->dir().watcher().add_watch(m_psystem->m_pacmedir->config(), this, false);
       
       on_change_theme();
 

@@ -12,12 +12,15 @@ namespace datetime
    public:
 
       
-      scanner                                   m_scanner;
+      __pointer(scanner)                        m_pscanner;
       __pointer_array(::datetime::element)      m_elementa;
 
 
-      parser(const ::apex::str_context * pcontext);
+      parser();
       virtual ~parser();
+
+
+      virtual ::e_status initialize_datetime_parse(::text::context * pcontext);
 
 
       ::datetime::element * parse(const char * psz);

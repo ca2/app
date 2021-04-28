@@ -128,7 +128,7 @@ namespace userfs
 
          }
 
-         get_document()->request_file(varFile, varQuery);
+         //get_document()->request_file(varFile, varQuery);
 
       }
 
@@ -244,7 +244,7 @@ namespace userfs
    void list::get_selected_user_path(::file::patha & patha)
    {
 
-      patha.remove_all();
+      patha.erase_all();
 
       auto itema = get_selected_items();
 
@@ -261,7 +261,7 @@ namespace userfs
    void list::get_selected_final_path(::file::patha & patha)
    {
 
-      patha.remove_all();
+      patha.erase_all();
 
       auto itema = get_selected_items();
 
@@ -675,7 +675,7 @@ namespace userfs
       if (i == 0)
       {
 
-         auto puser = User;
+         auto puser = user();
 
          return puser->shell()->GetImageList(16);
 
@@ -725,7 +725,7 @@ namespace userfs
       UNREFERENCED_PARAMETER(pmessage);
       //      __pointer(::message::show_window) pshow(pmessage);
 
-      //db_server * pcentral = dynamic_cast < db_server * > (System->m_psimpledb->db());
+      //db_server * pcentral = dynamic_cast < db_server * > (psystem->m_psimpledb->db());
       //if (pcentral == nullptr)
       //   return;
       //DBFileSystemSizeSet * pset = pcentral->m_pfilesystemsizeset;
@@ -740,7 +740,7 @@ namespace userfs
       {
       for(i32 i = 0; i < m_itema.get_item_count(); i++)
       {
-      pset->m_table.remove_request(item(i).m_strPath);
+      pset->m_table.erase_request(item(i).m_strPath);
       }
       }*/
    }
@@ -937,7 +937,9 @@ namespace userfs
 
             auto pfsitem = pdata->item((::index) pitem->m_iItem);
 
-            auto puser = User;
+            __pointer(::core::session) psession = get_session();
+
+            auto puser = psession->user();
 
             pitem->m_iImage = puser->shell()->get_file_image(
                               pfsitem->m_filepathFinal,

@@ -4,6 +4,7 @@
 #include "acme/node/windows/registry.h"
 #include "acme/os/windows/environment_variable.h"
 #endif
+#include "acme/filesystem/filesystem/acme_dir.h"
 
 
 
@@ -40,10 +41,10 @@ namespace dynamic_source
    }
 
    
-   ::e_status script_compiler::initialize(::layered * pobjectContext)
+   ::e_status script_compiler::initialize_dynamic_source_script_compiler(script_manager* pscriptmanager)
    {
 
-      auto estatus = ::object::initialize(pobjectContext);
+      auto estatus = ::object::initialize(pscriptmanager);
 
       if (!estatus)
       {
@@ -52,17 +53,21 @@ namespace dynamic_source
 
       }
 
-      m_pmanager = __object(pobjectContext)->cast < script_manager >();
+      m_pmanager = pscriptmanager;
 
 #ifdef WINDOWS_DESKTOP
 
       {
 
+         auto pacmedir = m_psystem->m_pacmedir;
+
          ::file::path path;
 
-         path = ::dir::config() / "programming/vs.txt";
+         path = pacmedir->config() / "programming/vs.txt";
 
-         m_strVs = Context.file().as_string(path);
+         auto pcontext = get_context();
+
+         m_strVs = m_pcontext->m_papexcontext->file().as_string(path);
 
          m_strVs.trim();
 
@@ -91,7 +96,7 @@ namespace dynamic_source
 
             strMessage = "There is a hole here. You should fill it with fullfillment. Missing f**k " + path;
 
-            os_message_box(strMessage, strMessage, e_message_box_ok);
+            message_box(strMessage, strMessage, e_message_box_ok);
 
          }
 
@@ -115,7 +120,7 @@ namespace dynamic_source
 #elif defined(_DEBUG)
 
       m_strDynamicSourceConfiguration = "basis";
-      m_strDynamicSourceStage = "time-" __PLATFORM;
+      m_strDynamicSourceStage = "time-" PLATFORM_NAME;
 
 #else
 
@@ -124,7 +129,7 @@ namespace dynamic_source
 
 #endif
 
-      m_strDynamicSourceStageFolder = Context.dir().install() / m_strDynamicSourceStage;
+      m_strDynamicSourceStageFolder = m_pcontext->m_papexcontext->dir().install() / m_strDynamicSourceStage;
 
       return estatus;
 
@@ -151,7 +156,9 @@ namespace dynamic_source
    void script_compiler::prepare_compile_and_link_environment()
    {
 
-      Context.dir().mk(::dir::system() / "netnodelite/symbols");
+      auto pacmedir = m_psystem->m_pacmedir;
+
+      m_pcontext->m_papexcontext->dir().mk(pacmedir->system() / "netnodelite/symbols");
 
       ::file::path strVars;
 
@@ -166,6 +173,8 @@ namespace dynamic_source
 
 #endif
 
+      __pointer(::aura::application) papplication = get_application();
+
 #ifdef WINDOWS_DESKTOP
 
       try
@@ -176,7 +185,7 @@ namespace dynamic_source
 
             m_strEnv = "C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/VC/Auxiliary/Build/vcvarsall.bat";
 
-            m_strVCVersion = Application.get_visual_studio_build();
+            m_strVCVersion = papplication->get_visual_studio_build();
 
          }
          else if (m_strVs == "2017")
@@ -196,7 +205,7 @@ namespace dynamic_source
 
             m_strEnv = path / "VC/Auxiliary/Build/vcvarsall.bat";
 
-            m_strVCVersion = Application.get_visual_studio_build();
+            m_strVCVersion = papplication->get_visual_studio_build();
 
          }
          else if (m_strVs == "2015")
@@ -218,7 +227,7 @@ namespace dynamic_source
 
 #endif
 
-      m_strTime = Context.dir().install() / "time-" __PLATFORM;
+      m_strTime = m_pcontext->m_papexcontext->dir().install() / "time-" PLATFORM_NAME;
 
 #ifdef WINDOWS_DESKTOP
 
@@ -287,17 +296,17 @@ namespace dynamic_source
 
 #endif
 
-      Context.dir().mk(Context.dir().install()/m_strDynamicSourceStage / "front");
+      m_pcontext->m_papexcontext->dir().mk(m_pcontext->m_papexcontext->dir().install()/m_strDynamicSourceStage / "front");
 
       string str;
 
       string strItem;
 
-      strItem = Context.dir().install() / m_strDynamicSourceStage /m_strStagePlatform;
+      strItem = m_pcontext->m_papexcontext->dir().install() / m_strDynamicSourceStage /m_strStagePlatform;
 
       str = str + strItem + ";";
 
-      strItem = Context.dir().install()/ m_strDynamicSourceStage /  m_strStagePlatform / "dynamic_source\\library";
+      strItem = m_pcontext->m_papexcontext->dir().install()/ m_strDynamicSourceStage /  m_strStagePlatform / "dynamic_source\\library";
 
       str = str + strItem + ";";
 
@@ -317,7 +326,7 @@ namespace dynamic_source
    void script_compiler::compile(ds_script * pscript)
    {
 
-      synchronization_lock synchronizationlock(pscript->mutex());
+      synchronous_lock synchronouslock(pscript->mutex());
 
       TRACE("Compiling script \"%s\"\n",pscript->m_strName.c_str());
 
@@ -342,7 +351,7 @@ namespace dynamic_source
 
       //strName.replace("/", "\\");
       //string strFolder;
-      //strFolder = Context.dir().install();
+      //strFolder = m_pcontext->m_papexcontext->dir().install();
       string str;
       //::file::path strB;
       ::file::path strO;
@@ -371,7 +380,7 @@ namespace dynamic_source
       ::file::path strScript;
       strScript = strName.title();
       ::file::path strTransformName = strName;
-      if(Context.file().exists(strName))
+      if(m_pcontext->m_papexcontext->file().exists(strName))
       {
          pscript->m_strSourcePath = strName;
          strTransformName.replace(":","");
@@ -382,7 +391,7 @@ namespace dynamic_source
       }
       pscript->m_strSourceDir = pscript->m_strSourcePath.folder();
 
-      if(!Context.file().exists(pscript->m_strSourcePath))
+      if(!m_pcontext->m_papexcontext->file().exists(pscript->m_strSourcePath))
       {
          ostreamError << "<pre>";
          str.Format("Source File : \"%s\" does not exist",pscript->m_strSourcePath.c_str());
@@ -399,7 +408,11 @@ namespace dynamic_source
 
       ::ansi_zero_pad(strMillis, 3);
 
-      strRndTitle = "_" + System->datetime().international().get_gmt_date_time("%Y-%m-%d_%H-%M-%S") + "_" + strMillis;
+      auto psystem = m_psystem->m_paurasystem;
+
+      auto pdatetime = psystem->datetime();
+
+      strRndTitle = "_" + pdatetime->international().get_gmt_date_time("%Y-%m-%d_%H-%M-%S") + "_" + strMillis;
 
       string strTime = m_strTime;
 
@@ -424,7 +437,7 @@ namespace dynamic_source
 
       //#ifdef _DEBUG
 #ifdef LINUX
-      //strB = Context.dir().install() / m_strDynamicSourceStage / "front\\dynamic_source\\BuildBat" / strTransformName.name() / strTransformName + ".bat";
+      //strB = m_pcontext->m_papexcontext->dir().install() / m_strDynamicSourceStage / "front\\dynamic_source\\BuildBat" / strTransformName.name() / strTransformName + ".bat";
       strO = ::file::path(m_strTime) / "intermediate" / m_strPlatform / m_pmanager->m_strNamespace + "_dynamic_source_script" / strTransformName / strTransformName.name() + ".o";
 #else
       //strB = m_strDynamicSourceStageFolder / "front\\dynamic_source\\BuildBat" / strTransformName.name() / strTransformName + ".bat";
@@ -439,7 +452,7 @@ namespace dynamic_source
 
 
       //::file::path pathSourceDVP = strDynamicSourceScriptFolder / strTransformName / m_strSdk1 + ".pdb";
-      ::file::path pathSourceNetnodeDSS = "C:\\netnode\\time-" __PLATFORM "\\intermediate\\x64\\basis\\app-core\\netnode_dynamic_source_script";
+      ::file::path pathSourceNetnodeDSS = "C:\\netnode\\time-" PLATFORM_NAME "\\intermediate\\x64\\basis\\app-core\\netnode_dynamic_source_script";
       ::file::path pathSourceDVP = pathSourceNetnodeDSS / m_strSdk1 + ".pdb";
 
       //::file::path pathCompiler;
@@ -466,7 +479,7 @@ namespace dynamic_source
 
          ::dir::mk(pathDVP_Folder);
 
-         Context.file().copy(pathDVP, pathSourceDVP);
+         m_pcontext->m_papexcontext->file().copy(pathDVP, pathSourceDVP);
 
 
       }
@@ -495,9 +508,9 @@ namespace dynamic_source
 
       try
       {
-         if(Context.file().exists(strO))
+         if(m_pcontext->m_papexcontext->file().exists(strO))
          {
-            Context.file().del(strO);
+            m_pcontext->m_papexcontext->file().del(strO);
          }
       }
       catch(...)
@@ -505,9 +518,9 @@ namespace dynamic_source
       }
       try
       {
-         if(Context.file().exists(strObj))
+         if(m_pcontext->m_papexcontext->file().exists(strObj))
          {
-            Context.file().del(strObj);
+            m_pcontext->m_papexcontext->file().del(strObj);
          }
       }
       catch(...)
@@ -516,9 +529,9 @@ namespace dynamic_source
 #ifndef LINUX
       try
       {
-         if(Context.file().exists(strP))
+         if(m_pcontext->m_papexcontext->file().exists(strP))
          {
-            Context.file().del(strP);
+            m_pcontext->m_papexcontext->file().del(strP);
          }
       }
       catch(...)
@@ -526,9 +539,9 @@ namespace dynamic_source
       }
       try
       {
-         if(Context.file().exists(strL))
+         if(m_pcontext->m_papexcontext->file().exists(strL))
          {
-            Context.file().del(strL);
+            m_pcontext->m_papexcontext->file().del(strL);
          }
       }
       catch(...)
@@ -536,9 +549,9 @@ namespace dynamic_source
       }
       try
       {
-         if(Context.file().exists(strE))
+         if(m_pcontext->m_papexcontext->file().exists(strE))
          {
-            Context.file().del(strE);
+            m_pcontext->m_papexcontext->file().del(strE);
          }
       }
       catch(...)
@@ -546,9 +559,9 @@ namespace dynamic_source
       }
       //try
       //{
-      //   if(Context.file().exists(strDPC))
+      //   if(m_pcontext->m_papexcontext->file().exists(strDPC))
       //   {
-      //      Context.file().del(strDPC);
+      //      m_pcontext->m_papexcontext->file().del(strDPC);
       //   }
       //}
       //catch(...)
@@ -556,9 +569,9 @@ namespace dynamic_source
       //}
       //try
       //{
-      //   if(Context.file().exists(strDVP))
+      //   if(m_pcontext->m_papexcontext->file().exists(strDVP))
       //   {
-      //      Context.file().del(strDVP);
+      //      m_pcontext->m_papexcontext->file().del(strDVP);
       //   }
       //}
       //catch(...)
@@ -566,9 +579,9 @@ namespace dynamic_source
       //}
       //try
       //{
-      //   if(Context.file().exists(strDVI))
+      //   if(m_pcontext->m_papexcontext->file().exists(strDVI))
       //   {
-      //      Context.file().del(strDVI);
+      //      m_pcontext->m_papexcontext->file().del(strDVI);
       //   }
       //}
       //catch(...)
@@ -576,9 +589,9 @@ namespace dynamic_source
       //}
       //try
       //{
-      //   if(Context.file().exists(strDO1))
+      //   if(m_pcontext->m_papexcontext->file().exists(strDO1))
       //   {
-      //      Context.file().del(strDO1);
+      //      m_pcontext->m_papexcontext->file().del(strDO1);
       //   }
       //}
       //catch(...)
@@ -586,9 +599,9 @@ namespace dynamic_source
       //}
       //try
       //{
-      //   if(Context.file().exists(strDO2))
+      //   if(m_pcontext->m_papexcontext->file().exists(strDO2))
       //   {
-      //      Context.file().del(strDO2);
+      //      m_pcontext->m_papexcontext->file().del(strDO2);
       //   }
       //}
       //catch(...)
@@ -599,10 +612,10 @@ namespace dynamic_source
       try
       {
 
-         if(Context.file().exists(strClog))
+         if(m_pcontext->m_papexcontext->file().exists(strClog))
          {
 
-            Context.file().del(strClog);
+            m_pcontext->m_papexcontext->file().del(strClog);
 
          }
 
@@ -615,10 +628,10 @@ namespace dynamic_source
       try
       {
 
-         if(Context.file().exists(strLlog))
+         if(m_pcontext->m_papexcontext->file().exists(strLlog))
          {
 
-            Context.file().del(strLlog);
+            m_pcontext->m_papexcontext->file().del(strLlog);
 
          }
 
@@ -633,71 +646,71 @@ namespace dynamic_source
       try
       {
 
-         if(Context.file().exists(pscript->m_strScriptPath + ".old"))
+         if(m_pcontext->m_papexcontext->file().exists(pscript->m_strScriptPath + ".old"))
          {
 
-            Context.file().del(pscript->m_strScriptPath + ".old");
+            m_pcontext->m_papexcontext->file().del(pscript->m_strScriptPath + ".old");
 
          }
 
       }
-      catch (const ::exception::exception & exception)
+      catch (const ::exception::exception &)
       {
 
-         ::exception_pointer esp(pexception);
+         //::exception_pointer esp(pexception);
 
-         TRACE("%s", esp->get_message().c_str());
+         //TRACE("%s", esp->get_message().c_str());
 
       }
 
       try
       {
 
-         if(Context.file().exists(pscript->m_strScriptPath))
+         if(m_pcontext->m_papexcontext->file().exists(pscript->m_strScriptPath))
          {
 
-            Context.file().move(pscript->m_strScriptPath + ".old",pscript->m_strScriptPath);
+            m_pcontext->m_papexcontext->file().move(pscript->m_strScriptPath + ".old",pscript->m_strScriptPath);
 
          }
 
       }
-      catch (const ::exception::exception & exception)
+      catch (const ::exception::exception &)
       {
 
-         ::exception_pointer esp(pexception);
+         //::exception_pointer esp(pexception);
 
-         TRACE("%s", esp->get_message().c_str());
+         //TRACE("%s", esp->get_message().c_str());
 
       }
 
       try
       {
 
-         if(Context.file().exists(pscript->m_strScriptPath + ".old"))
+         if(m_pcontext->m_papexcontext->file().exists(pscript->m_strScriptPath + ".old"))
          {
 
-            Context.file().del(pscript->m_strScriptPath + ".old");
+            m_pcontext->m_papexcontext->file().del(pscript->m_strScriptPath + ".old");
 
          }
 
       }
-      catch (const ::exception::exception & exception)
+      catch (const ::exception::exception &)
       {
 
-         ::exception_pointer esp(pexception);
+         //::exception_pointer esp(pexception);
 
-         TRACE("%s", esp->get_message().c_str());
+         //TRACE("%s", esp->get_message().c_str());
 
       }
 
 
-      Context.dir().mk(pscript->m_strScriptPath.folder());
-      Context.dir().mk(strL.folder());
-      Context.dir().mk(m_strTime / "intermediate" / m_strPlatform / m_strDynamicSourceConfiguration / m_pmanager->m_strRepos / m_pmanager->m_strNamespace + ::file::path("_dynamic_source_script") / strTransformName);
+      m_pcontext->m_papexcontext->dir().mk(pscript->m_strScriptPath.folder());
+      m_pcontext->m_papexcontext->dir().mk(strL.folder());
+      m_pcontext->m_papexcontext->dir().mk(m_strTime / "intermediate" / m_strPlatform / m_strDynamicSourceConfiguration / m_pmanager->m_strRepos / m_pmanager->m_strNamespace + ::file::path("_dynamic_source_script") / strTransformName);
 
       cppize(pscript);
 
-      string strV(Context.dir().install());
+      string strV(m_pcontext->m_papexcontext->dir().install());
       strV.replace("\\","/");
       if(!::str::ends(strV,"/") && !::str::ends(strV,"\\"))
          strV += "/";
@@ -721,7 +734,7 @@ namespace dynamic_source
       {
 
          pathObjFile = strV;
-         pathObjFile /= "time-" __PLATFORM"/intermediate";
+         pathObjFile /= "time-" PLATFORM_NAME"/intermediate";
          pathObjFile /= m_strPlatform;
          pathObjFile /= m_strDynamicSourceConfiguration;
          pathObjFile /= "app-core/netnode_dynamic_source_script";
@@ -739,12 +752,12 @@ namespace dynamic_source
       string strBuildCmd;
 
 #if defined(LINUX) || defined(MACOS)
-      strBuildCmd.Format(Context.dir().install() / "archive" / "platform-" __PLATFORM "\\_stage\\dynamic_source" / m_strDynamicSourceConfiguration + "_cl" + m_strPlat1 + ".bash");
+      strBuildCmd.Format(m_pcontext->m_papexcontext->dir().install() / "archive" / "platform-" PLATFORM_NAME "\\_stage\\dynamic_source" / m_strDynamicSourceConfiguration + "_cl" + m_strPlat1 + ".bash");
 #else
-      strBuildCmd.Format(Context.dir().install() / "archive" / ("platform-" __PLATFORM "\\_stage\\dynamic_source_" + m_strVsTools) / m_strDynamicSourceConfiguration + ::file::path("_c") + m_strPlat1 + ".bat");
+      strBuildCmd.Format(m_pcontext->m_papexcontext->dir().install() / "archive" / ("platform-" PLATFORM_NAME "\\_stage\\dynamic_source_" + m_strVsTools) / m_strDynamicSourceConfiguration + ::file::path("_c") + m_strPlat1 + ".bat");
 #endif
 
-      str = Context.file().as_string(strBuildCmd);
+      str = m_pcontext->m_papexcontext->file().as_string(strBuildCmd);
       str.replace("%ITEM_NAME%",strItemName);
       str.replace("%ITEM_TITLE%",strItemTitle);
       str.replace("%ITEM_DIR%",::str::replace("\\","/",string(strTransformName.folder())) + "/");
@@ -776,9 +789,9 @@ namespace dynamic_source
 #endif
       str.replace("%TARGET_PATH%",strTargetPath);
       //strBuildCmd = pscript->m_strBuildBat;
-      //Context.file().put_contents_utf8(strBuildCmd, str);
+      //m_pcontext->m_papexcontext->file().put_contents_utf8(strBuildCmd, str);
 
-      ///Context.file().put_contents(strBuildCmd,str);
+      ///m_pcontext->m_papexcontext->file().put_contents(strBuildCmd,str);
 
       bool bTimeout = false;
 
@@ -790,7 +803,7 @@ namespace dynamic_source
 
       string strCompiler = str;
 
-      Context.file().put_contents_utf8(pathCompiler, strCompiler);
+      m_pcontext->m_papexcontext->file().put_contents_utf8(pathCompiler, strCompiler);
 
 #ifdef WINDOWS
       process->create_child_process(strCompiler,true,"C:\\netnode\\source\\app-core\\netnode_dynamic_source_script",::priority_highest);
@@ -804,7 +817,7 @@ namespace dynamic_source
 
       string strLog;
 
-      while(::thread_get_run())
+      while(::task_get_run())
       {
 
          strLog += process->read();
@@ -850,7 +863,7 @@ namespace dynamic_source
          if(str.has_char())
          {
 
-            Context.file().put_contents_utf8(strClog, strLog);
+            m_pcontext->m_papexcontext->file().put_contents_utf8(strClog, strLog);
 
             ostreamError << "<pre>";
 
@@ -875,7 +888,7 @@ namespace dynamic_source
 
          int iObjFileMinimumByteCount = 1024;
 
-         if (process->m_exitstatus.m_iExitCode != 0 || Context.file().length(pathObjFile) < iObjFileMinimumByteCount)
+         if (process->m_exitstatus.m_iExitCode != 0 || m_pcontext->m_papexcontext->file().length(pathObjFile) < iObjFileMinimumByteCount)
          {
 
             TRACE("Compilation FAILED: or object file is shorter than %d bytes...", iObjFileMinimumByteCount);
@@ -909,12 +922,12 @@ namespace dynamic_source
          //strBuildCmd;
 
 #if defined(LINUX) || defined(MACOS)
-         strBuildCmd.Format(Context.dir().install() / "archive" / "platform-" __PLATFORM"\\_stage\\dynamic_source" / m_strDynamicSourceConfiguration + "_cl" + m_strPlat1 + ".bash");
+         strBuildCmd.Format(m_pcontext->m_papexcontext->dir().install() / "archive" / "platform-" PLATFORM_NAME"\\_stage\\dynamic_source" / m_strDynamicSourceConfiguration + "_cl" + m_strPlat1 + ".bash");
 #else
-         strBuildCmd.Format(Context.dir().install() / "archive" / ("platform-" __PLATFORM "\\_stage\\dynamic_source_" + m_strVsTools) / m_strDynamicSourceConfiguration + ::file::path("_l") + m_strPlat1 + ".bat");
+         strBuildCmd.Format(m_pcontext->m_papexcontext->dir().install() / "archive" / ("platform-" PLATFORM_NAME "\\_stage\\dynamic_source_" + m_strVsTools) / m_strDynamicSourceConfiguration + ::file::path("_l") + m_strPlat1 + ".bat");
 #endif
 
-         str = Context.file().as_string(strBuildCmd);
+         str = m_pcontext->m_papexcontext->file().as_string(strBuildCmd);
          str.replace("%ITEM_NAME%",::str::replace("\\","/",string(strTransformName)));
          str.replace("%ITEM_TITLE%",strTransformName.name());
          str.replace("%ITEM_DIR%",::str::replace("\\","/",string(strTransformName.folder())) + "/");
@@ -953,14 +966,16 @@ namespace dynamic_source
 
          strSymbolName += strRndTitle;
 
-         strHmhLctvWildPdbPath = ::file::path(::dir::system() / "netnodelite\\symbols") / strSymbolName;
+         auto pacmedir = m_psystem->m_pacmedir;
+
+         strHmhLctvWildPdbPath = ::file::path(pacmedir->system() / "netnodelite\\symbols") / strSymbolName;
 
          str.replace("%HMH_LCTVWILD_PDB_PATH%",strHmhLctvWildPdbPath);
 
          //strBuildCmd = pscript->m_strBuildBat;
-         //Context.file().put_contents_utf8(strBuildCmd, str);
+         //m_pcontext->m_papexcontext->file().put_contents_utf8(strBuildCmd, str);
 
-         //Context.file().put_contents(strBuildCmd,str);
+         //m_pcontext->m_papexcontext->file().put_contents(strBuildCmd,str);
 
          //str.replace("\\", "/");
 
@@ -975,7 +990,7 @@ namespace dynamic_source
          strLinker.replace("\\", "/");
          strLinker.trim();
 
-         Context.file().put_contents_utf8(pathLinker, strLinker);
+         m_pcontext->m_papexcontext->file().put_contents_utf8(pathLinker, strLinker);
 
          process->create_child_process(strLinker,true,nullptr,::priority_highest);
 
@@ -983,7 +998,7 @@ namespace dynamic_source
 
          string strLog;
 
-         while(::thread_get_run())
+         while(::task_get_run())
          {
 
             strLog += process->read();
@@ -1026,7 +1041,7 @@ namespace dynamic_source
             if(str.has_char())
             {
 
-               Context.file().put_contents_utf8(strLlog,strLog);
+               m_pcontext->m_papexcontext->file().put_contents_utf8(strLlog,strLog);
                ostreamError << "Linking...\n";
                //ostreamError << "Linker Command File" << "\n";
                //ostreamError << pathLinker << "\n";
@@ -1053,21 +1068,21 @@ namespace dynamic_source
 
       //try
       //{
-      //   Context.file().del(strDVI);
+      //   m_pcontext->m_papexcontext->file().del(strDVI);
       //}
       //catch(...)
       //{
       //}
       try
       {
-         Context.file().del(strDVP);
+         m_pcontext->m_papexcontext->file().del(strDVP);
       }
       catch(...)
       {
       }
       //try
       //{
-      //   Context.file().del(strDPC);
+      //   m_pcontext->m_papexcontext->file().del(strDPC);
       //}
       //catch(...)
       //{
@@ -1082,7 +1097,7 @@ namespace dynamic_source
 
       auto ftDs = get_filetime_set(pscript->m_strSourcePath);
 
-      if(Context.file().exists(pscript->m_strCppPath))
+      if(m_pcontext->m_papexcontext->file().exists(pscript->m_strCppPath))
       {
 
          if(ftDs == pscript->m_ftDs)
@@ -1094,7 +1109,7 @@ namespace dynamic_source
 
       }
 
-      Context.dir().mk(pscript->m_strCppPath.folder());
+      m_pcontext->m_papexcontext->dir().mk(pscript->m_strCppPath.folder());
 
       cppize1(pscript);
 
@@ -1129,7 +1144,7 @@ namespace dynamic_source
 
       int iTry = 0;
 
-      while ((strSource = Context.file().as_string(pscript->m_strSourcePath)).trimmed().is_empty() && ::thread_get_run())
+      while ((strSource = m_pcontext->m_papexcontext->file().as_string(pscript->m_strSourcePath)).trimmed().is_empty() && ::task_get_run())
       {
 
          sleep(100_ms);
@@ -1222,7 +1237,7 @@ namespace dynamic_source
       strDest += "class " + m_pmanager->m_strNamespace + "_dynamic_source_script : virtual public ::" + m_pmanager->m_strNamespace + "::script_instance, virtual public ::application_consumer < ::netnode::application >\r\n";
       strDest += "{\r\n";
       strDest += "public:\r\n";
-      //strDest += "   " + m_pmanager->m_strNamespace + "_dynamic_source_script(dynamic_source::script * pscript) : ::object(pscript->get_context_application()), dynamic_source::script_instance(pscript), ::" + m_pmanager->m_strNamespace + "::script_instance(pscript), ::" + m_pmanager->m_strNamespace + "::script_impl(pscript) {};  \r\n";
+      //strDest += "   " + m_pmanager->m_strNamespace + "_dynamic_source_script(dynamic_source::script * pscript) : ::object(pscript->get_application()), dynamic_source::script_instance(pscript), ::" + m_pmanager->m_strNamespace + "::script_instance(pscript), ::" + m_pmanager->m_strNamespace + "::script_impl(pscript) {};  \r\n";
       strDest += "   " + m_pmanager->m_strNamespace + "_dynamic_source_script() {};\r\n";
       strDest += "   virtual ~" + m_pmanager->m_strNamespace + "_dynamic_source_script() {};\r\n";
       strDest += "   virtual ::e_status     run() {script_run(); return ::success; };\r\n";
@@ -1240,7 +1255,7 @@ namespace dynamic_source
       strDest += "void " + m_pmanager->m_strNamespace + "_dynamic_source_script::script_run()\r\n";
       strDest += "{\r\n";
       strDest += "//Start parsed user script\r\n";
-      straId.remove_all();
+      straId.erase_all();
       while((iPos = strSource.find("<?", iStart)) >= 0)
       {
          if(iPos > iLastEnd)
@@ -1307,8 +1322,8 @@ namespace dynamic_source
 // \r\n \
 //      }\r\n\r\n\r\n\r\n\r\n";
 
-      //Context.file().put_contents_utf8(pscript->m_strCppPath, strDest);
-      Context.file().put_contents(pscript->m_strCppPath, strDest);
+      //m_pcontext->m_papexcontext->file().put_contents_utf8(pscript->m_strCppPath, strDest);
+      m_pcontext->m_papexcontext->file().put_contents(pscript->m_strCppPath, strDest);
 
    }
 
@@ -1319,6 +1334,9 @@ namespace dynamic_source
 
 
       string strLog;
+
+
+      __pointer(::apex::application) papplication = get_application();
 
 
 #ifdef WINDOWS
@@ -1335,13 +1353,13 @@ namespace dynamic_source
       else if (m_strVs == "2017")
       {
 
-         strBuildCmd = "\"" + strBuildCmd + "\" " + m_strPlat2 + " " + Application.get_visual_studio_build();
+         strBuildCmd = "\"" + strBuildCmd + "\" " + m_strPlat2 + " " + papplication->get_visual_studio_build();
 
       }
       else if (m_strVs == "2019")
       {
 
-         strBuildCmd = "\"" + strBuildCmd + "\" " + m_strPlat2 + " " + Application.get_visual_studio_build();
+         strBuildCmd = "\"" + strBuildCmd + "\" " + m_strPlat2 + " " + papplication->get_visual_studio_build();
 
       }
       ::process::process_pointer process(e_create);
@@ -1349,15 +1367,17 @@ namespace dynamic_source
 
       ::file::path pathEnvTxt;
 
-      pathEnvTxt = dir::system() / "env.txt";
+      auto pacmedir = m_psystem->m_pacmedir;
 
-      file_put_contents(::dir::system() / "env1.bat", ::dir::system() / "env.bat > \"" + pathEnvTxt + "\"");
+      pathEnvTxt = pacmedir->system() / "env.txt";
 
-      file_put_contents(::dir::system() / "env.bat", "@call " + strBuildCmd + "\r\n@set");
+      file_put_contents(pacmedir->system() / "env1.bat", pacmedir->system() / "env.bat > \"" + pathEnvTxt + "\"");
 
-      RunSilent(::dir::system() / "env1.bat", "");
+      file_put_contents(pacmedir->system() / "env.bat", "@call " + strBuildCmd + "\r\n@set");
 
-      strLog = file_as_string(::dir::system() / "env.txt");
+      RunSilent(pacmedir->system() / "env1.bat", "");
+
+      strLog = file_as_string(pacmedir->system() / "env.txt");
 
       stra.add_lines(strLog);
 
@@ -1382,11 +1402,11 @@ namespace dynamic_source
 #endif
 
 //   ::file::path strFolder;
-//   strFolder = Context.dir().install();
+//   strFolder = m_pcontext->m_papexcontext->dir().install();
 //   if (!::str::ends(strFolder, "/") && !::str::ends(strFolder, "\\"))
 //      strFolder += "/";
 //   string strTemplate;
-//   string strSource = "platform/time-" __PLATFORM"/dynamic_source/";
+//   string strSource = "platform/time-" PLATFORM_NAME"/dynamic_source/";
 //   strSource += lpcszSource;
 //
       ::file::path pathN = m_pathProjectDir;
@@ -1399,17 +1419,17 @@ namespace dynamic_source
 //   //#ifdef _DEBUG
 //   strTemplate = strFolder / strSource;
 //   //#else
-//   // strTemplate = strFolder, "app/time-" __PLATFORM"/aura/account/app/main/matter/dynamic_source_cl.bat", false);
+//   // strTemplate = strFolder, "app/time-" PLATFORM_NAME"/aura/account/app/main/matter/dynamic_source_cl.bat", false);
 //   //#endif
 //   string str;
-//   str = Context.file().as_string(strTemplate);
+//   str = m_pcontext->m_papexcontext->file().as_string(strTemplate);
 //   /*string strVars = getenv("VS100COMNTOOLS");
-//   Context.file().path().eat_end_level(strVars, 2, "/");
+//   m_pcontext->m_papexcontext->file().path().eat_end_level(strVars, 2, "/");
 //   strVars += "vc/bin/vcvars32.bat";*/
 //   str.replace("%VS_VARS%", m_strEnv);
 //   str.replace("%VS_VARS_PLAT2%", m_strPlat2);
 //
-//   string strV(Context.dir().install());
+//   string strV(m_pcontext->m_papexcontext->dir().install());
 //   strV.replace("\\", "/");
 //   if (!::str::ends(strV, "/") && !::str::ends(strV, "\\"))
 //      strV += "/";
@@ -1422,12 +1442,12 @@ namespace dynamic_source
 //   //#ifdef _DEBUG
 //   strCmd = strFolder / strDest;
 //   //#else
-//   // strCmd = strFolder, "app\\time-" __PLATFORM"\\aura\\account\\app\\main\\front\\dynamic_source_cl.bat", false);
+//   // strCmd = strFolder, "app\\time-" PLATFORM_NAME"\\aura\\account\\app\\main\\front\\dynamic_source_cl.bat", false);
 //   //#endif
-//   Context.dir().mk(strCmd.folder());
-//   //Context.file().put_contents_utf8(strCmd, str);
-//   Context.file().put_contents(strCmd, str);
-//   Context.dir().mk(m_strTime / "dynamic_source");
+//   m_pcontext->m_papexcontext->dir().mk(strCmd.folder());
+//   //m_pcontext->m_papexcontext->file().put_contents_utf8(strCmd, str);
+//   m_pcontext->m_papexcontext->file().put_contents(strCmd, str);
+//   m_pcontext->m_papexcontext->dir().mk(m_strTime / "dynamic_source");
 //
 //
 //   string strBuildCmd = m_strEnv;
@@ -1437,12 +1457,12 @@ namespace dynamic_source
 //   ::process::process_pointer process(e_create);
 //
 //
-//   file_put_contents(::dir::system() / "env.bat","@call " + strBuildCmd + " "+m_strVCVersion+"\r\n@set");
+//   file_put_contents(pacmedir->system() / "env.bat","@call " + strBuildCmd + " "+m_strVCVersion+"\r\n@set");
 //
 //   set_thread_priority(::priority_highest);
 //   process->prop("inherit") = false;
 //
-//   ::file::path pathCommand = ::dir::system() / "env.bat";
+//   ::file::path pathCommand = pacmedir->system() / "env.bat";
 //
 //   ::file::path pathFolder = ::file::path(m_strEnv).folder();
 //
@@ -1494,7 +1514,7 @@ namespace dynamic_source
 //   //process->write("\n");
 //   u32 dwExitCode;
 //   ::u32 tickStart= ::millis::now();
-//   while(::thread_get_run() && thread_get_run())
+//   while(::task_get_run() && task_get_run())
 //   {
 //
 //      strLog += process->read();
@@ -1557,14 +1577,14 @@ namespace dynamic_source
 //
       stra.add_lines(strLog);
 
-      //string strEnv = file_as_string(::dir::system() / "env.txt");
+      //string strEnv = file_as_string(pacmedir->system() / "env.txt");
 
       ::file::path strFolder;
-      strFolder = Context.dir().install();
+      strFolder = m_pcontext->m_papexcontext->dir().install();
       if(!::str::ends(strFolder, "/") && !::str::ends(strFolder, "\\"))
          strFolder += "/";
       string strTemplate;
-      string strSource = "archive/platform-" __PLATFORM "/_stage/dynamic_source/";
+      string strSource = "archive/platform-" PLATFORM_NAME "/_stage/dynamic_source/";
       strSource += lpcszSource;
 
 //   string strN = m_pmanager->m_strNetnodePath;
@@ -1578,14 +1598,14 @@ namespace dynamic_source
       // strTemplate = strFolder, "app/_stage/aura/account/app/main/matter/dynamic_source_cl.bat", false);
       //#endif
       string str;
-      str = Context.file().as_string(strTemplate);
+      str = m_pcontext->m_papexcontext->file().as_string(strTemplate);
       /*string strVars = getenv("VS100COMNTOOLS");
-      Context.file().path().eat_end_level(strVars, 2, "/");
+      m_pcontext->m_papexcontext->file().path().eat_end_level(strVars, 2, "/");
       strVars += "vc/bin/vcvars32.bat";*/
       str.replace("%VS_VARS%", m_strEnv);
       str.replace("%VS_VARS_PLAT2%", m_strPlat2);
 
-      string strV(Context.dir().install());
+      string strV(m_pcontext->m_papexcontext->dir().install());
       strV.replace("\\","/");
       if(!::str::ends(strV,"/") && !::str::ends(strV,"\\"))
          strV += "/";
@@ -1602,17 +1622,17 @@ namespace dynamic_source
       //#else
       // strCmd = strFolder, "app\\_stage\\aura\\account\\app\\main\\front\\dynamic_source_cl.bat", false);
       //#endif
-      Context.dir().mk(strCmd.folder());
-      //Context.file().put_contents_utf8(strCmd, str);
-      Context.file().put_contents(strCmd, str);
-      Context.dir().mk(m_strTime/ "dynamic_source");
+      m_pcontext->m_papexcontext->dir().mk(strCmd.folder());
+      //m_pcontext->m_papexcontext->file().put_contents_utf8(strCmd, str);
+      m_pcontext->m_papexcontext->file().put_contents(strCmd, str);
+      m_pcontext->m_papexcontext->dir().mk(m_strTime/ "dynamic_source");
    }
 
 
    void script_compiler::handle_file_action(::file::action * paction)
    {
 
-      synchronization_lock synchronizationlock(&m_mutex);
+      synchronous_lock synchronouslock(&m_mutex);
 
       ::file::path path = paction->m_pathFolder / paction->m_pathFile;
 
@@ -1622,6 +1642,8 @@ namespace dynamic_source
       if(::str::find_ci("netnode_persistent_ui_str", strTransfer) >= 0)
          return;
 
+      auto psystem = m_psystem->m_paurasystem;
+
       if(m_straSync.get_count() > 1)
       {
          for(i32 i = 1; i < m_straSync.get_count(); i++)
@@ -1629,7 +1651,9 @@ namespace dynamic_source
 
             property_set set;
 
-            Context.http().get("http://" + m_straSync[i] + "/synchronization_object?src=" +m_straSync[0] + "&url=" + System->url().url_encode(strTransfer) + "&pwd=sym123&authnone=1", set);
+            auto purl = psystem->url();
+
+            m_pcontext->m_papexcontext->http().get("http://" + m_straSync[i] + "/synchronization_object?src=" +m_straSync[0] + "&url=" + purl->url_encode(strTransfer) + "&pwd=sym123&authnone=1", set);
 
          }
 
@@ -1661,7 +1685,7 @@ namespace dynamic_source
    void script_compiler::folder_watch()
    {
 
-      m_filewatcherid  = Context.dir().watcher().add_watch(m_pmanager->m_strNetseedDsCa2Path, this, true);
+      m_filewatcherid  = m_pcontext->m_papexcontext->dir().watcher().add_watch(m_pmanager->m_strNetseedDsCa2Path, this, true);
 
    }
 
@@ -1678,12 +1702,12 @@ namespace dynamic_source
          return *p->element2();
       }
 
-      m_mapLib[pszLibrary] = __new(library(get_context_object()));
+      m_mapLib[pszLibrary] = __new(library(this));
 
       library & l = *m_mapLib[pszLibrary];
 
 
-      string strV(Context.dir().install());
+      string strV(m_pcontext->m_papexcontext->dir().install());
       strV.replace("\\","/");
       if(!::str::ends(strV,"/") && !::str::ends(strV,"\\"))
          strV += "/";
@@ -1700,27 +1724,35 @@ namespace dynamic_source
 
       ::file::path strName = strLibrary;
 
-      m_strLibsLibs = Context.dir().install() / "time-" __PLATFORM"/library" / m_strStagePlatform / "/library/"+strLibrary+".lib";
+      m_strLibsLibs = m_pcontext->m_papexcontext->dir().install() / "time-" PLATFORM_NAME"/library" / m_strStagePlatform / "/library/"+strLibrary+".lib";
 
       //m_memfileLibError.set_length(0);
       string strFolder;
-      strFolder = Context.dir().install();
+      strFolder = m_pcontext->m_papexcontext->dir().install();
 
-      l.m_straLibSourcePath.m_pprovider = get_context();
+
+      auto papplication = get_application();
+
+      l.m_straLibSourcePath.m_pprovider = papplication;
+
       l.m_straLibSourcePath.clear_results();
-      Application.dir().rls(l.m_straLibSourcePath, m_pmanager->m_strNetseedDsCa2Path / "library" / strName);
+
+      auto pcontext = m_pcontext;
+
+      pcontext->m_papexcontext->dir().rls(l.m_straLibSourcePath, m_pmanager->m_strNetseedDsCa2Path / "library" / strName);
+
       for(i32 i = 0; i < l.m_straLibSourcePath.get_size();)
       {
          if(l.m_straLibSourcePath[i].ext() != "ds" && l.m_straLibSourcePath[i].ext() != "cpp")
          {
-            l.m_straLibSourcePath.remove_at(i);
+            l.m_straLibSourcePath.erase_at(i);
          }
          else
          {
             i++;
          }
       }
-      l.m_straLibCppPath.remove_all();
+      l.m_straLibCppPath.erase_all();
       ::file::path strLibRel = ::file::path("dynamic_source/library") / strName;
       for(i32 i = 0; i < l.m_straLibSourcePath.get_size(); i++)
       {
@@ -1729,23 +1761,23 @@ namespace dynamic_source
          str.replace(":","");
          l.m_straLibCppPath.add(m_strTime / strLibRel / str + ".cpp");
       }
-      l.m_straLibIncludePath.m_pprovider = get_context();
+      l.m_straLibIncludePath.m_pprovider = papplication;
       l.m_straLibIncludePath.clear_results();
-      Application.dir().rls(l.m_straLibIncludePath, m_pmanager->m_strNetseedDsCa2Path / "library" / strName);
+      pcontext->m_papexcontext->dir().rls(l.m_straLibIncludePath, m_pmanager->m_strNetseedDsCa2Path / "library" / strName);
       for(i32 i = 0; i < l.m_straLibIncludePath.get_size();)
       {
          if(l.m_straLibIncludePath[i].ext() != "h"
                || ::str::find_ci(l.m_straLibIncludePath[i],"\\.svn\\") >= 0
-               || Context.dir().is(l.m_straLibIncludePath[i]))
+               || m_pcontext->m_papexcontext->dir().is(l.m_straLibIncludePath[i]))
          {
-            l.m_straLibIncludePath.remove_at(i);
+            l.m_straLibIncludePath.erase_at(i);
          }
          else
          {
             i++;
          }
       }
-      l.m_straLibHppPath.remove_all();
+      l.m_straLibHppPath.erase_all();
       for(i32 i = 0; i < l.m_straLibIncludePath.get_size(); i++)
       {
          string str = l.m_straLibIncludePath[i].relative();
@@ -1761,14 +1793,14 @@ namespace dynamic_source
 #ifdef LINUX
       l.m_strLibraryPath = "/aura/" / m_strDynamicSourceStage / "x86/libnetnodelibrary.so";
 #else
-      l.m_strLibraryPath = Context.dir().install() / m_strDynamicSourceStage / m_strStagePlatform / "dynamic_source/" / strName / strLib + ".dll";
+      l.m_strLibraryPath = m_pcontext->m_papexcontext->dir().install() / m_strDynamicSourceStage / m_strStagePlatform / "dynamic_source/" / strName / strLib + ".dll";
 #endif
       //#else
       // plib->m_strLibraryPath.Format(strFolder, "app/_stage/aura/account/app/main/front/Release/%s.dll", false), strName);
       //#endif
 
-      Context.dir().mk(l.m_strLibraryPath.folder());
-      Context.dir().mk(m_strTime / "intermediate" / m_strPlatform / m_strDynamicSourceConfiguration / m_pmanager->m_strRepos / m_pmanager->m_strNamespace + "_dynamic_source_library/library");
+      m_pcontext->m_papexcontext->dir().mk(l.m_strLibraryPath.folder());
+      m_pcontext->m_papexcontext->dir().mk(m_strTime / "intermediate" / m_strPlatform / m_strDynamicSourceConfiguration / m_pmanager->m_strRepos / m_pmanager->m_strNamespace + "_dynamic_source_library/library");
 
       for(i32 i = 0; i < l.m_straLibIncludePath.get_size(); i++)
       {
@@ -1787,20 +1819,20 @@ namespace dynamic_source
       string vars2batSrc;
       string vars1batDst;
       string vars2batDst;
-      vars1batSrc = Context.dir().install() / "archive" / "platform-" __PLATFORM "/_stage/dynamic_source/vc_vars.bat";
-      vars2batSrc = Context.dir().install() / "archive" / "platform-" __PLATFORM "/_stage/dynamic_source/vc_vars_query_registry.bat";
-      vars1batDst = Context.dir().install() / m_strDynamicSourceStage / "front/vc_vars.bat";
-      vars2batDst = Context.dir().install() / m_strDynamicSourceStage / "front/vc_vars_query_registry.bat";
+      vars1batSrc = m_pcontext->m_papexcontext->dir().install() / "archive" / "platform-" PLATFORM_NAME "/_stage/dynamic_source/vc_vars.bat";
+      vars2batSrc = m_pcontext->m_papexcontext->dir().install() / "archive" / "platform-" PLATFORM_NAME "/_stage/dynamic_source/vc_vars_query_registry.bat";
+      vars1batDst = m_pcontext->m_papexcontext->dir().install() / m_strDynamicSourceStage / "front/vc_vars.bat";
+      vars2batDst = m_pcontext->m_papexcontext->dir().install() / m_strDynamicSourceStage / "front/vc_vars_query_registry.bat";
       try
       {
-         Context.file().copy(vars1batDst,vars1batSrc,false);
+         m_pcontext->m_papexcontext->file().copy(vars1batDst,vars1batSrc,false);
       }
       catch(...)
       {
       }
       try
       {
-         Context.file().copy(vars2batDst,vars2batSrc,false);
+         m_pcontext->m_papexcontext->file().copy(vars2batDst,vars2batSrc,false);
       }
       catch(...)
       {
@@ -1828,20 +1860,20 @@ namespace dynamic_source
          string strCmd;
          //#ifdef _DEBUG
 //#ifdef LINUX
-//         strCmd = Context.dir().install()/ m_strDynamicSourceStage / "front"/ m_strDynamicSourceConfiguration + "_libc" + m_strPlat1 + ".bash";
+//         strCmd = m_pcontext->m_papexcontext->dir().install()/ m_strDynamicSourceStage / "front"/ m_strDynamicSourceConfiguration + "_libc" + m_strPlat1 + ".bash";
 //#else
-//         strCmd = Context.dir().install() / m_strDynamicSourceStage / "front" / m_strDynamicSourceConfiguration + "_libc" + m_strPlat1 + ".bat";
+//         strCmd = m_pcontext->m_papexcontext->dir().install() / m_strDynamicSourceStage / "front" / m_strDynamicSourceConfiguration + "_libc" + m_strPlat1 + ".bat";
 //#endif
 #ifdef LINUX
-         strCmd.Format(Context.dir().install() / "archive" / "platform-" __PLATFORM "\\_stage\\dynamic_source" / m_strDynamicSourceConfiguration + "_libc" + m_strPlat1 + ".bash");
+         strCmd.Format(m_pcontext->m_papexcontext->dir().install() / "archive" / "platform-" PLATFORM_NAME "\\_stage\\dynamic_source" / m_strDynamicSourceConfiguration + "_libc" + m_strPlat1 + ".bash");
 #else
-         strCmd.Format(Context.dir().install() / "archive" / "platform-" __PLATFORM "\\_stage\\dynamic_source" / m_strDynamicSourceConfiguration + ::file::path("_libc") + m_strPlat1 + ".bat");
+         strCmd.Format(m_pcontext->m_papexcontext->dir().install() / "archive" / "platform-" PLATFORM_NAME "\\_stage\\dynamic_source" / m_strDynamicSourceConfiguration + ::file::path("_libc") + m_strPlat1 + ".bat");
 #endif
 
          //#else
          //    strCmd.Format(strFolder, "app\\_stage\\aura\\account\\app\\main\\front\\dynamic_source_cl.bat", false));
          //#endif
-         string str = Context.file().as_string(strCmd);
+         string str = m_pcontext->m_papexcontext->file().as_string(strCmd);
 
 
          str.replace("%ITEM_NAME%",::str::replace("\\","/",string(l.m_straLibCppPath[i])));
@@ -1874,8 +1906,8 @@ namespace dynamic_source
          str.replace("%SDK1%",m_strSdk1);
          //str.replace("%DVP%", strDVP_B);
 
-         Context.dir().mk(m_strTime / "intermediate" / m_strPlatform / m_strDynamicSourceConfiguration / m_pmanager->m_strRepos / m_pmanager->m_strNamespace + "_dynamic_source_library" / str1.folder());
-         Context.dir().mk(m_strTime / "library" / m_strStagePlatform / str1.folder());
+         m_pcontext->m_papexcontext->dir().mk(m_strTime / "intermediate" / m_strPlatform / m_strDynamicSourceConfiguration / m_pmanager->m_strRepos / m_pmanager->m_strNamespace + "_dynamic_source_library" / str1.folder());
+         m_pcontext->m_papexcontext->dir().mk(m_strTime / "library" / m_strStagePlatform / str1.folder());
 
          string strFormat = "libc-" + str1;
 
@@ -1887,7 +1919,7 @@ namespace dynamic_source
 #else
          strFormat += ".bat";
 #endif
-         strCmd = Context.dir().install() / m_strDynamicSourceStage / "front" / strFormat;
+         strCmd = m_pcontext->m_papexcontext->dir().install() / m_strDynamicSourceStage / "front" / strFormat;
 
          bool bTimeout = false;
 
@@ -1902,7 +1934,7 @@ auto tickStart = ::millis::now();
 
          string strLog;
 
-         while(::thread_get_run())
+         while(::task_get_run())
          {
 
             strLog += process->read();
@@ -1956,7 +1988,7 @@ auto tickStart = ::millis::now();
             if(str.has_char())
             {
 
-               Context.file().put_contents_utf8(strClog,strLog);
+               m_pcontext->m_papexcontext->file().put_contents_utf8(strClog,strLog);
 
                l.m_memfileError << "<pre>";
 
@@ -1999,21 +2031,21 @@ auto tickStart = ::millis::now();
       }
       ::file::path strCmd;
       //#ifdef _DEBUG
-//      strCmd = Context.dir().install() / m_strDynamicSourceStage / "front" / m_strDynamicSourceConfiguration + "_libl" + m_strPlat1 +
+//      strCmd = m_pcontext->m_papexcontext->dir().install() / m_strDynamicSourceStage / "front" / m_strDynamicSourceConfiguration + "_libl" + m_strPlat1 +
 //#ifdef LINUX
 //         ".bash";
 //#else
 //         ".bat";
 //#endif
 #ifdef LINUX
-      strCmd.Format(Context.dir().install() / "archive" / "platform-" __PLATFORM "\\_stage\\dynamic_source" / m_strDynamicSourceConfiguration + "_libl" + m_strPlat1 + ".bash");
+      strCmd.Format(m_pcontext->m_papexcontext->dir().install() / "archive" / "platform-" PLATFORM_NAME "\\_stage\\dynamic_source" / m_strDynamicSourceConfiguration + "_libl" + m_strPlat1 + ".bash");
 #else
-      strCmd.Format(Context.dir().install() / "archive" / "platform-" __PLATFORM "\\_stage\\dynamic_source" / m_strDynamicSourceConfiguration + ::file::path("_libl") + m_strPlat1 + ".bat");
+      strCmd.Format(m_pcontext->m_papexcontext->dir().install() / "archive" / "platform-" PLATFORM_NAME "\\_stage\\dynamic_source" / m_strDynamicSourceConfiguration + ::file::path("_libl") + m_strPlat1 + ".bat");
 #endif
       //#else
       // strCmd.Format(strFolder, "app\\_stage\\aura\\account\\app\\main\\front\\dynamic_source_libl.bat", false));
       //#endif
-      string str = Context.file().as_string(strCmd);
+      string str = m_pcontext->m_papexcontext->file().as_string(strCmd);
       str.replace("%ITEM_NAME%",::file::path("library")/strName);
       str.replace("%ITEM_DIR%","library");
       str.replace("%OBJECTS%",strObjs);
@@ -2029,15 +2061,15 @@ auto tickStart = ::millis::now();
       string strTargetName = l.m_strLibraryPath;
       ::str::ends_eat_ci(strTargetName,".dll");
       str.replace("%TARGET_NAME%", strTargetName);
-      Context.dir().mk(Context.dir().install()/ m_strDynamicSourceStage / m_strStagePlatform /"library");
+      m_pcontext->m_papexcontext->dir().mk(m_pcontext->m_papexcontext->dir().install()/ m_strDynamicSourceStage / m_strStagePlatform /"library");
 //#ifdef LINUX
 //      //sleep(2000_ms);
-//      strCmd = Context.dir().install()/m_strDynamicSourceStage/ "front\\libl1.bash";
+//      strCmd = m_pcontext->m_papexcontext->dir().install()/m_strDynamicSourceStage/ "front\\libl1.bash";
 //#else
-//      strCmd = Context.dir().install()/ m_strDynamicSourceStage / "front\\libl1.bat";
+//      strCmd = m_pcontext->m_papexcontext->dir().install()/ m_strDynamicSourceStage / "front\\libl1.bat";
 //#endif
 
-      //Context.file().put_contents_utf8(strCmd, str);
+      //m_pcontext->m_papexcontext->file().put_contents_utf8(strCmd, str);
       bool bTimeout = false;
 
       ::process::process_pointer process(e_create);
@@ -2049,7 +2081,7 @@ auto tickStart = ::millis::now();
 
       string strLog;
 
-      while(::thread_get_run())
+      while(::task_get_run())
       {
 
          strLog += process->read();
@@ -2099,7 +2131,7 @@ auto tickStart = ::millis::now();
          if(str.has_char())
          {
 
-            Context.file().put_contents_utf8(strLlog,strLog);
+            m_pcontext->m_papexcontext->file().put_contents_utf8(strLlog,strLog);
             l.m_memfileError << "Linking...\n";
             str.replace("\r\n","\n");
             l.m_memfileError << str;
@@ -2123,7 +2155,7 @@ auto tickStart = ::millis::now();
    void script_compiler::cppize(const ::file::path & lpcszSource,const ::file::path & lpcszDest,ecpptype enum_type)
    {
 
-      Context.dir().mk(lpcszDest.folder());
+      m_pcontext->m_papexcontext->dir().mk(lpcszDest.folder());
 
       cppize1(lpcszSource, lpcszDest, enum_type);
 
@@ -2133,7 +2165,7 @@ auto tickStart = ::millis::now();
    void script_compiler::cppize1(const ::file::path & lpcszSource,const ::file::path & lpcszDest,ecpptype enum_type)
    {
 
-      string strSource = Context.file().as_string(lpcszSource);
+      string strSource = m_pcontext->m_papexcontext->file().as_string(lpcszSource);
 
       bool bCode = false;
 
@@ -2194,8 +2226,8 @@ auto tickStart = ::millis::now();
 
       strDest = strDest.Left(iPosId) + strId + strDest.Mid(iPosId);
 
-      //Context.file().put_contents_utf8(lpcszDest, strDest);
-      Context.file().put_contents(lpcszDest, strDest);
+      //m_pcontext->m_papexcontext->file().put_contents_utf8(lpcszDest, strDest);
+      m_pcontext->m_papexcontext->file().put_contents(lpcszDest, strDest);
 
 
    }
@@ -2882,7 +2914,11 @@ ch_else:
 
       ::file::listing stra;
 
-      Application.dir().rls(stra, strPath);
+      auto papplication = get_application();
+
+      auto pcontext = m_pcontext;
+
+      pcontext->m_papexcontext->dir().rls(stra, strPath);
 
       string strCat;
       strCat = m_pmanager->m_strNetseedDsCa2Path/ "core/netnode_persistent_ui_str.ds";
@@ -2901,11 +2937,11 @@ ch_else:
          if(::str::begins_ci(str, m_pmanager->m_strNetseedDsCa2Path/ "core/persistent")
                && ::str::ends_ci(str, ".ds"))
          {
-            strBody += Context.file().as_string(str);
+            strBody += m_pcontext->m_papexcontext->file().as_string(str);
          }
       }
 
-      Context.file().put_contents(strCat, strBody);
+      m_pcontext->m_papexcontext->file().put_contents(strCat, strBody);
 
       string strInclude = strCat;
       
@@ -3109,9 +3145,10 @@ ch_else:
    }
 
 
-   library::library(::layered * pobjectContext):
-      object(pobjectContext)
+   library::library(::object * pobject)
    {
+
+      initialize(pobject);
 
    }
 
@@ -3157,14 +3194,18 @@ ch_else:
 
       ::file::listing straFile;
 
-      Application.dir().rls(straFile, m_pmanager->m_strNetnodePath / "net/aura/pstr_set");
+      auto papplication = get_application();
+
+      auto pcontext = m_pcontext;
+
+      pcontext->m_papexcontext->dir().rls(straFile, m_pmanager->m_strNetnodePath / "net/aura/pstr_set");
 
       for(int i = 0; i < straFile.get_count(); i++)
       {
          string strFile = straFile[i];
          if(::str::find_ci(".svn",strFile) >= 0 || !::str::ends_ci(strFile,".txt"))
             continue;
-         strFile = Context.file().as_string(strFile);
+         strFile = m_pcontext->m_papexcontext->file().as_string(strFile);
          string_array straLine;
          straLine.explode("\r\n",strFile);
          string strExtra;
@@ -3228,9 +3269,11 @@ ch_else:
    void script_compiler::pstr_set(id pszTopic,id idLocale,id idSchema,const char * psz)
    {
 
-      synchronization_lock synchronizationlock(m_pmanager->mutex());
+      synchronous_lock synchronouslock(m_pmanager->mutex());
 
-      System->str().set(pszTopic,idLocale,idSchema,psz);
+      auto psystem = m_psystem->m_paurasystem;
+
+      psystem->texttable()->set(pszTopic,idLocale,idSchema,psz);
 
    }
 

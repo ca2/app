@@ -5,17 +5,17 @@ namespace hellobase
 {
 
 
-   main_frame::main_frame(::layered * pobjectContext) :
+   main_frame::main_frame(::object * pobject) :
       object(pobject)
    {
 
       WfiEnableFullScreen();
 
-      m_bWindowFrame = !Application.has_property("client_only");
+      m_bWindowFrame = !papplication->has_property("client_only");
 
 
 
-      if (Application.has_property("opaque"))
+      if (papplication->has_property("opaque"))
       {
 
          m_bExplicitTranslucency = true;

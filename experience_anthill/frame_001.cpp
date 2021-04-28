@@ -193,7 +193,7 @@ SizingNone:;
             void frame_001::draw_border_side(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectClientParam, enum_border eside)
             {
                
-               auto psession = Session;
+               auto psession = get_session();
 
                ::rectangle_i32 rectClient(rectClientParam);
 
@@ -217,7 +217,7 @@ SizingNone:;
                }
                else
                {
-                  auto psession = Session;
+                  auto psession = get_session();
 
                   auto pstyle = pframewindow->get_style(pgraphics);
 
@@ -242,9 +242,9 @@ SizingNone:;
 
                   GetBorderRect(rectClient, rectangle, eside);
 
-                  class imaging & imaging = System->imaging();
 
-                  imaging.color_blend(pgraphics, rectangle, crMoveableBorder, 127);
+
+                  pgraphics->color_blend( rectangle, crMoveableBorder, 127);
 
                }
                /*else if(m_estyle == StyleLightBlue)
@@ -254,9 +254,9 @@ SizingNone:;
 
                   GetBorderRect(rectClient, rectangle, eside);
 
-                  class imaging & imaging = System->imaging();
 
-                  imaging.color_blend(pgraphics, rectangle, crMoveableBorder, 127);
+
+                  pgraphics->color_blend( rectangle, crMoveableBorder, 127);
 
 
 
@@ -282,9 +282,9 @@ SizingNone:;
 
                   GetBorderRect(rectClient, rectangle, eside);
 
-                  class imaging & imaging = System->imaging();
 
-                  imaging.color_blend(pgraphics, rectangle, crMoveableBorder, 127);
+
+                  pgraphics->color_blend( rectangle, crMoveableBorder, 127);
 
                }
 
@@ -420,7 +420,7 @@ SizingNone:;
             }
 
 
-            void frame_001::on_style_change()
+            void frame_001::_on_style_change(::draw2d::graphics_pointer& pgraphics)
             {
 
                on_style_change_001_and_002(pgraphics);
@@ -1138,7 +1138,7 @@ SizingNone:;
 
                ::rectangle_i32 rectangle(rectParam);
 
-               auto psession = Session;
+               auto psession = get_session();
 
                auto pframewindow = m_pframewindow;
 
@@ -1152,15 +1152,15 @@ SizingNone:;
 
                auto crButtonShadow = pframewindow->get_color(pstyle, ::user::e_element_button_shadow);
 
-               pgraphics->draw_3drect(rectangle, crButtonFace | 0xff000000, crButtonDarkShadow | 0xff000000);
+               pgraphics->draw_3drect(rectangle, opaque(crButtonFace), opaque(crButtonDarkShadow));
 
                rectangle.deflate(1, 1);
 
-               pgraphics->draw_3drect(rectangle, crButtonHilite | 0xff000000, crButtonShadow | 0xff000000);
+               pgraphics->draw_3drect(rectangle, opaque(crButtonHilite), opaque(crButtonShadow));
 
                rectangle.deflate(1, 1);
 
-               pgraphics->fill_rectangle(rectangle, crButtonFace | 0xff000000);
+               pgraphics->fill_rectangle(rectangle, opaque(crButtonFace));
 
             }
 

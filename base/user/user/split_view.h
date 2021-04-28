@@ -29,9 +29,9 @@ namespace user
       virtual bool create_split_impact();
       virtual void on_create_split_impact();
 
-      DECL_GEN_SIGNAL(on_message_create);
-      DECL_GEN_SIGNAL(_001OnSize);
-      DECL_GEN_SIGNAL(_001OnShowWindow);
+      DECLARE_MESSAGE_HANDLER(on_message_create);
+      DECLARE_MESSAGE_HANDLER(_001OnSize);
+      DECLARE_MESSAGE_HANDLER(_001OnShowWindow);
 
       template < class VIEW >
       inline __pointer(VIEW) create_pane_view(index iPane, id id = ::id(), ::user::interaction * pviewLast = nullptr);

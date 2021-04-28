@@ -34,7 +34,14 @@ namespace base
       virtual ~user();
 
 
-      virtual ::e_status initialize(::layered * pobjectContext) override;
+      inline ::base::application* get_application() const { return m_pcontext ? m_pcontext->m_pbaseapplication : nullptr; }
+      inline ::base::session* get_session() const { return m_pcontext ? m_pcontext->m_pbasesession : nullptr; }
+      inline ::base::system* get_system() const { return m_psystem ? m_psystem->m_pbasesystem : nullptr; }
+
+
+      virtual ::e_status initialize(::object * pobject) override;
+
+
 
 
       //inline ::user::shell* shell() { return m_pshell; }
@@ -67,11 +74,11 @@ namespace base
 
       virtual ::e_status initialize1_experience();
 
-      virtual void finalize() override;
+      virtual ::e_status finalize() override;
 
       virtual void SendMessageToWindows(const ::id & id, wparam wParam, lparam lParam) override;
 
-      virtual void term() override;
+      virtual ::e_status term() override;
 
       virtual ::type controltype_to_typeinfo(::user::enum_control_type econtroltype) override;
 

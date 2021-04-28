@@ -9,9 +9,9 @@
 
 #endif
 
-//extern string_map < __pointer(::apex::library) >* g_pmapLibrary;
+//extern string_map < __pointer(::acme::library) >* g_pmapLibrary;
 
-//extern ::mutex * System->m_mutexLibrary;
+//extern ::mutex * psystem->m_mutexLibrary;
 
 
 //extern "C"
@@ -204,32 +204,32 @@ CLASS_DECL_AXIS u32 g_tickStartTime = 0;
 //
 //#else
 //
-//   ::parallelization::set_finish(::get_context_application());
+//   ::parallelization::set_finish(::get_application());
 //
 //#endif
 //
 //}
 
 
-//string_map < __pointer(::apex::library) >* g_pmapLibrary = nullptr;
+//string_map < __pointer(::acme::library) >* g_pmapLibrary = nullptr;
 //string_map < PFN_NEW_AURA_LIBRARY >* g_pmapNewAuraLibrary = nullptr;
 
 
-//::mutex * System->m_mutexLibrary = nullptr;
+//::mutex * psystem->m_mutexLibrary = nullptr;
 
 
 //CLASS_DECL_AXIS string_map < PFN_NEW_AURA_LIBRARY >& __get_new_aura_library()
 //{
 //
-//   return System->m_mapNewAuraLibrary;
+//   return psystem->m_mapNewAuraLibrary;
 //
 //}
 //
 //
-//CLASS_DECL_AXIS string_map < __pointer(::apex::library) >& __library()
+//CLASS_DECL_AXIS string_map < __pointer(::acme::library) >& __library()
 //{
 //
-//   return System->m_mapLibrary;
+//   return psystem->m_mapLibrary;
 //
 //}
 
@@ -238,9 +238,9 @@ CLASS_DECL_AXIS u32 g_tickStartTime = 0;
 //CLASS_DECL_AXIS PFN_NEW_AURA_LIBRARY get_get_new_aura_library(const char* psz)
 //{
 //
-//   synchronization_lock synchronizationlock(System->m_mutexLibrary);
+//   synchronous_lock synchronouslock(psystem->m_mutexLibrary);
 //
-//   auto ppair = System->m_mapNewAuraLibrary.plookup(psz);
+//   auto ppair = psystem->m_mapNewAuraLibrary.plookup(psz);
 //
 //   if (::is_null(ppair))
 //   {
@@ -254,12 +254,12 @@ CLASS_DECL_AXIS u32 g_tickStartTime = 0;
 //}
 //
 //
-//CLASS_DECL_AXIS::apex::library& get_library(const char* psz)
+//CLASS_DECL_AXIS::acme::library& get_library(const char* psz)
 //{
 //
-//   synchronization_lock synchronizationlock(System->m_mutexLibrary);
+//   synchronous_lock synchronouslock(psystem->m_mutexLibrary);
 //
-//   return *System->m_mapLibrary[psz];
+//   return *psystem->m_mapLibrary[psz];
 //
 //}
 //
@@ -267,17 +267,17 @@ CLASS_DECL_AXIS u32 g_tickStartTime = 0;
 //CLASS_DECL_AXIS void register_get_new_aura_library(const char* psz, PFN_NEW_AURA_LIBRARY pfnNewAuraLibrary)
 //{
 //
-//   synchronization_lock synchronizationlock(System->m_mutexLibrary);
+//   synchronous_lock synchronouslock(psystem->m_mutexLibrary);
 //
 //   __get_new_aura_library()[psz] = pfnNewAuraLibrary;
 //
 //}
 //
 //
-//CLASS_DECL_AXIS void register_library(const char* psz, ::apex::library* plibrary)
+//CLASS_DECL_AXIS void register_library(const char* psz, ::acme::library* plibrary)
 //{
 //
-//   synchronization_lock synchronizationlock(System->m_mutexLibrary);
+//   synchronous_lock synchronouslock(psystem->m_mutexLibrary);
 //
 //   __library()[psz] = plibrary;
 //
@@ -486,7 +486,7 @@ CLASS_DECL_AXIS u32 g_tickStartTime = 0;
 //   lparam lparam = (LPARAM)pparam;
 //
 //
-//   System->post_message(e_message_event2, (WPARAM)u, lparam);
+//   psystem->post_message(e_message_event2, (WPARAM)u, lparam);
 //
 //
 //}
@@ -508,14 +508,14 @@ CLASS_DECL_AXIS u32 g_tickStartTime = 0;
 //{
 //
 //
-//   synchronization_lock synchronizationlock(System->m_mutexLibrary);
+//   synchronous_lock synchronouslock(psystem->m_mutexLibrary);
 //
-//   __pointer(::apex::library)& plibrary = System->m_mapLibrary[strLibrary];
+//   __pointer(::acme::library)& plibrary = psystem->m_mapLibrary[strLibrary];
 //
 //   if (!plibrary)
 //   {
 //
-//      plibrary = new ::apex::library();
+//      plibrary = new ::acme::library();
 //
 //   }
 //

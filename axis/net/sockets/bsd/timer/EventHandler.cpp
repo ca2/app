@@ -35,11 +35,12 @@ namespace sockets
 {
 
 
-   EventHandler::EventHandler(::layered * pobject, ::apex::log *point_i32) :
-      ::object(pobject),
-      socket_handler(pobject, point_i32),
+   EventHandler::EventHandler(::object * pobject, ::apex::log * plog) :
+      socket_handler(plog),
       m_bQuit(false), m_ptcpsocket(nullptr)
    {
+
+      initialize(pobject);
 
    }
 
@@ -56,7 +57,7 @@ namespace sockets
 
          });
 
-      m_eventplist.remove_all();
+      m_eventplist.erase_all();
 
    }
 
@@ -224,7 +225,7 @@ namespace sockets
 
          }
 
-         m_eventplist.remove_all();
+         m_eventplist.erase_all();
       }
       while (repeat);
    }
@@ -274,16 +275,18 @@ namespace sockets
    }
 
 
-   void EventHandler::add(base_socket *point_i32)
+   void EventHandler::add(base_socket *psocket)
    {
       if (!m_ptcpsocket)
       {
-         listen_socket<tcp_socket> *l = new listen_socket<tcp_socket>(*this);
-         l -> SetDeleteByHandler();
-         l -> Bind("127.0.0.1", 0);
-         m_port = l -> GetPort();
-         socket_handler::add(l);
-         m_ptcpsocket = new tcp_socket( *this );
+         auto plistensocket = __new(listen_socket<tcp_socket>());
+         plistensocket-> SetDeleteByHandler();
+         plistensocket-> Bind("127.0.0.1", 0);
+         m_port = plistensocket-> GetPort();
+
+         socket_handler::add(plistensocket);
+
+         m_ptcpsocket = __new(tcp_socket());
          m_ptcpsocket -> SetDeleteByHandler();
          m_ptcpsocket -> SetConnectTimeout(5);
          m_ptcpsocket -> SetConnectionRetry(-1);
@@ -293,7 +296,9 @@ namespace sockets
          m_ptcpsocket -> open(::net::address("127.0.0.1", m_port));
          socket_handler::add(m_ptcpsocket);
       }
-      socket_handler::add( point_i32 );
+
+      socket_handler::add( psocket );
+
    }
 
 }

@@ -39,7 +39,7 @@ namespace fs
 
       virtual bool is_zero_latency(const ::file::path & psz)override;
 
-      virtual void finalize() override;
+      virtual ::e_status finalize() override;
 
 
    };

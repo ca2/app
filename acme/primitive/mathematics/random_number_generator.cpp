@@ -12,14 +12,14 @@
 #define TWIST(b,i,j)   ((b)[i] & UMASK) | ((b)[j] & LMASK)
 #define MAGIC_TWIST(s) (((s) & 1) * MATRIX_A)
 
-namespace math
+namespace mathematics
 {
-   rng::rng() : m_value( 0 )
+   random_number_generator::random_number_generator() : m_value( 0 )
    {
       seed(624, 0);
    }
 
-   void rng::seed(i32 iTwistLen, u32 seed)
+   void random_number_generator::seed(i32 iTwistLen, u32 seed)
    {
       iTwistLen = maximum(TWIST_IA + 10, iTwistLen);
       m_uinta.allocate(iTwistLen);
@@ -31,7 +31,7 @@ namespace math
    }
 
 /* generates a random number on [0,0xffffffff]-interval */
-   u32 rng::get()
+   u32 random_number_generator::get()
    {
       if(m_uinta.get_size() == 0)
          return 0;
@@ -58,7 +58,7 @@ namespace math
       return val;
    }
 
-} // namespace rng
+} // namespace random_number_generator
 
 
    i64 random_context_entropy64(byte bLevel)

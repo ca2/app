@@ -28,10 +28,10 @@ namespace app_shader
    }
 
 
-   ::e_status render::initialize(::layered * pobjectContext)
+   ::e_status render::initialize(::object * pobject)
    {
 
-      auto estatus = ::object::initialize(pobjectContext);
+      auto estatus = ::object::initialize(pobject);
 
       if (!estatus)
       {
@@ -40,23 +40,16 @@ namespace app_shader
 
       }
 
-      initialize_application_consumer();
+      //initialize_application_consumer();
 
-      m_pcontext = System->get_gpu()->create_context();
+      __pointer(::aura::system) psystem = get_system();
 
-      if (!m_pcontext)
+      m_pcontext = psystem->get_gpu()->create_context();
+
+      if (m_pcontext)
       {
 
-         return ::error_failed;
-
-      }
-
-      estatus = m_pcontext->initialize(this);
-
-      if (!estatus)
-      {
-
-         return estatus;
+         m_pcontext->initialize(this);
 
       }
 
@@ -125,7 +118,11 @@ namespace app_shader
 
       ::file::listing listing;
 
-      Application.dir().ls_pattern(listing, "dropbox://shader/simple shader/", { "*.frag" });
+      //auto papplication = get_application();
+
+      auto pcontext = ::object::m_pcontext;
+
+      pcontext->m_papexcontext->dir().ls_pattern(listing, "dropbox://shader/simple shader/", { "*.frag" });
 
       for (auto& path : listing)
       {
@@ -278,7 +275,7 @@ namespace app_shader
 
             {
 
-               auto psession = Session;
+               __pointer(::aura::session) psession = get_session();
 
                auto puser = psession->user();
 
@@ -427,7 +424,7 @@ namespace app_shader
 
       //   pgraphics->selectFont(font);
 
-      //   strTitle = Application.get_main_title();
+      //   strTitle = papplication->get_main_title();
 
       //   size = pgraphics->GetTextExtent(strTitle);
 
@@ -455,7 +452,7 @@ namespace app_shader
       //      
       //}
 
-      //auto& echeckSimple = Application.m_echeckSimple;
+      //auto& echeckSimple = papplication->m_echeckSimple;
 
       //if (__bool(echeckSimple))
       //{
@@ -479,7 +476,7 @@ namespace app_shader
       //else
       //{
 
-      //   if (__bool(Application.m_echeckSimple))
+      //   if (__bool(papplication->m_echeckSimple))
       //   {
 
       //      brush->create_solid(argb(255, 255, 255, 200));
@@ -519,7 +516,7 @@ namespace app_shader
       //else if (m_iDrawing == 3)
       //{
 
-      //   if (__bool(Application.m_echeckSimple))
+      //   if (__bool(papplication->m_echeckSimple))
       //   {
 
       //      brush->create_solid(m_hlsText);
@@ -547,7 +544,7 @@ namespace app_shader
       //else
       //{
 
-      //   if (__bool(Application.m_echeckSimple))
+      //   if (__bool(papplication->m_echeckSimple))
       //   {
 
       //      brush->create_solid(m_hlsText);

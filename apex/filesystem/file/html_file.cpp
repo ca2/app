@@ -18,10 +18,10 @@ namespace html
    }
 
 
-   const ::apex::str_context * file::str_context()
+   const ::text::context * file::textcontext()
    {
       
-      return m_pstrcontext;
+      return m_ptextcontext;
 
    }
 

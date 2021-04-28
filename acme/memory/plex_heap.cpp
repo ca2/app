@@ -6,6 +6,8 @@
 #include "plex_heap_impl1.h"
 
 #include "align_byte_count.h"
+#include "acme/platform/static_start_internal.h"
+
 
 #if !defined(MCHECK) && !defined(_VLD) && !defined(__MCRTDBG) && !MEMDLEAK
 
@@ -235,7 +237,7 @@ plex_heap_alloc_array::~plex_heap_alloc_array()
 
    }
 
-   remove_all();
+   erase_all();
 
    if(::acme::g_pheap == this)
    {
@@ -643,7 +645,7 @@ void plex_heap_alloc_array::_free(void * p,memsize size)
 void * plex_heap_alloc_sync::Alloc()
 {
 
-   critical_section_lock synchronizationlock(&m_criticalsection);
+   critical_section_lock synchronouslock(&m_criticalsection);
 
    if (m_pnodeFree == nullptr)
    {
@@ -710,7 +712,7 @@ void plex_heap_alloc_sync::Free(void * pParam)
 
    node * pnode = (node *)pParam;
 
-   critical_section_lock synchronizationlock(&m_criticalsection);
+   critical_section_lock synchronouslock(&m_criticalsection);
 
 #ifdef MEMDFREE // Free Debug - duplicate freeing ?
 
@@ -842,7 +844,7 @@ void plex_heap::FreeDataChain()     // free this one and links
 void plex_heap_alloc_sync::FreeAll()
 {
 
-   critical_section_lock synchronizationlock(&m_criticalsection);
+   critical_section_lock synchronouslock(&m_criticalsection);
 
    try
    {
@@ -865,7 +867,7 @@ void plex_heap_alloc_sync::FreeAll()
 void plex_heap_alloc_sync::NewBlock()
 {
 
-   critical_section_lock synchronizationlock(&m_criticalsection);
+   critical_section_lock synchronouslock(&m_criticalsection);
 
    ::u32 nAllocSize = m_nAllocSize;
 

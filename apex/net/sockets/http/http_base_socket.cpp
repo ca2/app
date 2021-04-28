@@ -8,26 +8,27 @@ namespace sockets
 {
 
 
-   http_base_socket::http_base_socket(base_socket_handler& h) :
-      ::object(&h),
-      base_socket(h),
-      socket(h),
-      stream_socket(h),
-      tcp_socket(h),
-      http_socket(h)
+   http_base_socket::http_base_socket() 
+      //:
+      //::object(&h),
+      //base_socket(h),
+      //socket(h),
+      //stream_socket(h),
+      //tcp_socket(h),
+      //http_socket(h)
    {
 
 
    }
 
 
-   http_base_socket::http_base_socket(const http_base_socket& s) :
-      ::object(s.get_context_object()),
-      base_socket(s),
-      socket(s),
-      stream_socket(s),
-      tcp_socket(s),
-      http_socket(s)
+   http_base_socket::http_base_socket(const http_base_socket& s) //:
+      //::object(&s),
+      //base_socket(s),
+      //socket(s),
+      //stream_socket(s),
+      //tcp_socket(s),
+      //http_socket(s)
    {
 
 
@@ -229,7 +230,7 @@ namespace sockets
 
                string strLocation = m_response.m_propertysetHeader.lowprop(__id(Location));
 
-               m_response.m_propertysetHeader.remove_by_name("Location");
+               m_response.m_propertysetHeader.erase_by_name("Location");
 
                m_response.m_propertysetHeader["Location"] = strLocation;
 
@@ -337,7 +338,7 @@ namespace sockets
             if (response().m_strFile.has_char())
             {
 
-               compress.gz(pfile, get_context()->file().get_reader(response().m_strFile));
+               compress.gz(pfile, m_pcontext->m_papexcontext->file().get_reader(response().m_strFile));
 
                response().m_strFile.Empty();
 
@@ -478,7 +479,7 @@ namespace sockets
          if (::str::begins_ci(strContentType, "audio/"))
          {
 
-            auto preader = get_context()->file().get_reader(pcsz);
+            auto preader = m_pcontext->m_papexcontext->file().get_reader(pcsz);
 
             compress_context compress(this);
 
@@ -496,7 +497,7 @@ namespace sockets
             if (bMd5Request)
             {
 
-               response().print(get_context()->file().md5(pcsz));
+               response().print(m_pcontext->m_papexcontext->file().md5(pcsz));
 
                return true;
 
@@ -515,7 +516,7 @@ namespace sockets
             else
             {
 
-               auto preader = get_context()->file().shared_reader(pcsz);
+               auto preader = m_pcontext->m_papexcontext->file().shared_reader(pcsz);
 
                if (!preader)
                {
@@ -534,7 +535,7 @@ namespace sockets
       else
       {
 
-         auto preader = get_context()->file().shared_reader(pcsz);
+         auto preader = m_pcontext->m_papexcontext->file().shared_reader(pcsz);
 
          if (!preader)
          {
@@ -620,8 +621,12 @@ namespace sockets
                   if (iPos >= preader->get_size())
                      break;
                }
+
+               auto psystem = m_psystem;
+
+               auto pbase64 = psystem->base64();
                
-               response().println(::apex::get_system()->base64().encode(*pfile->get_memory()));
+               response().println(pbase64->encode(*pfile->get_memory()));
 
             }
             

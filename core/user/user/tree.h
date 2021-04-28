@@ -62,6 +62,14 @@ namespace user
       tree();
       virtual ~tree();
 
+
+
+      inline ::core::application* get_application() const { return m_pcontext ? m_pcontext->m_pcoreapplication : nullptr; }
+      inline ::core::session* get_session() const { return m_pcontext ? m_pcontext->m_pcoresession : nullptr; }
+      inline ::core::system* get_system() const { return m_psystem ? m_psystem->m_pcoresystem : nullptr; }
+      inline ::core::user* user() const { return get_session() ? get_session()->user() : nullptr; }
+
+
       void user_tree_common_construct();
 
       virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
@@ -118,18 +126,18 @@ namespace user
       __pointer(::image_list) get_image_list();
 
       // Overrides
-      DECL_GEN_SIGNAL(_001OnMouseMove);
-      DECL_GEN_SIGNAL(_001OnMouseLeave);
-      DECL_GEN_SIGNAL(on_message_left_button_down);
-      DECL_GEN_SIGNAL(on_message_left_button_up);
-      DECL_GEN_SIGNAL(_001OnLButtonDblClk);
-      DECL_GEN_SIGNAL(on_message_right_button_down);
-      DECL_GEN_SIGNAL(_001OnRButtonUp);
+      DECLARE_MESSAGE_HANDLER(on_message_mouse_move);
+      DECLARE_MESSAGE_HANDLER(on_message_mouse_leave);
+      DECLARE_MESSAGE_HANDLER(on_message_left_button_down);
+      DECLARE_MESSAGE_HANDLER(on_message_left_button_up);
+      DECLARE_MESSAGE_HANDLER(_001OnLButtonDblClk);
+      DECLARE_MESSAGE_HANDLER(on_message_right_button_down);
+      DECLARE_MESSAGE_HANDLER(on_message_right_button_up);
       void _001OnTimer(::timer * ptimer) override;
-      DECL_GEN_SIGNAL(on_message_create);
-      DECL_GEN_SIGNAL(_001OnVScroll);
-      DECL_GEN_SIGNAL(_001OnHScroll);
-      DECL_GEN_SIGNAL(_001OnChangeExperience);
+      DECLARE_MESSAGE_HANDLER(on_message_create);
+      DECLARE_MESSAGE_HANDLER(_001OnVScroll);
+      DECLARE_MESSAGE_HANDLER(_001OnHScroll);
+      DECLARE_MESSAGE_HANDLER(_001OnChangeExperience);
 
 
       virtual bool      hover(::data::tree_item * pitem);
@@ -156,9 +164,9 @@ namespace user
       virtual bool      selection_set(::data::item * pitem, bool bIfNotInSelection = false, bool bIfParentInSelection = false);
       virtual bool      selection_set(index iIndex, ::data::item * pitem, bool bIfNotInSelection = false, bool bIfParentInSelection = false);
 
-      virtual ::count   selection_remove(::data::tree_item_ptr_array & itemptra);
-      virtual bool      selection_remove(::data::tree_item * pitem);
-      virtual bool      selection_remove(::data::item * pitem, index i = 0);
+      virtual ::count   selection_erase(::data::tree_item_ptr_array & itemptra);
+      virtual bool      selection_erase(::data::tree_item * pitem);
+      virtual bool      selection_erase(::data::item * pitem, index i = 0);
 
 
       virtual bool      can_merge(const ::data::tree * ptree) const;

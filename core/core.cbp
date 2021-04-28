@@ -282,7 +282,7 @@
 		<Unit filename="filesystem/filemanager/_.cpp" />
 		<Unit filename="filesystem/filemanager/_.h" />
 		<Unit filename="filesystem/filemanager/_filemanager.h" />
-		<Unit filename="filesystem/filemanager/aaa_want_to_remove_form_view.h" />
+		<Unit filename="filesystem/filemanager/aaa_want_to_erase_form_view.h" />
 		<Unit filename="filesystem/filemanager/child_frame.cpp" />
 		<Unit filename="filesystem/filemanager/child_frame.h" />
 		<Unit filename="filesystem/filemanager/component.cpp" />
@@ -728,7 +728,7 @@
 		<Unit filename="user/userex/_.h" />
 		<Unit filename="user/userex/_impl.h" />
 		<Unit filename="user/userex/_userex.h" />
-		<Unit filename="user/userex/aaa_want_to_remove_form_update_hint.h" />
+		<Unit filename="user/userex/aaa_want_to_erase_form_update_hint.h" />
 		<Unit filename="user/userex/calculator_edit_view.cpp" />
 		<Unit filename="user/userex/calculator_edit_view.h" />
 		<Unit filename="user/userex/color_view.cpp" />

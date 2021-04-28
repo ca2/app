@@ -257,7 +257,7 @@ namespace os
       KeySym keysym;
       XComposeStatus compose;
 
-      single_lock synchronizationlock(&user_mutex(), false);
+      single_lock synchronouslock(&user_mutex(), false);
 
       xdisplay x(m_window->display(), false);
 
@@ -268,7 +268,7 @@ namespace os
 
          {
 
-            synchronizationlock.lock();
+            synchronouslock.lock();
 
             x.lock();
 
@@ -280,7 +280,7 @@ namespace os
 
                   x.unlock();
 
-                  synchronizationlock.unlock();
+                  synchronouslock.unlock();
 
                   if(e.xany.window == m_window->window())
                   {
@@ -476,7 +476,7 @@ namespace os
 
                x.unlock();
 
-               synchronizationlock.unlock();
+               synchronouslock.unlock();
 
                if(bEnableFB && m_bVisible)
                {
@@ -724,7 +724,7 @@ namespace os
       m_rectangle.top = m_point.y;
       m_rectangle.bottom = m_point.y + m_size.cy;
 
-/*      m_pimage = create_image({get_context_application()->create_new,  this});
+/*      m_pimage = create_image({get_application()->create_new,  this});
 /*      m_pimage = create_image({m_size.cx,  m_size.cy});
 
       m_xlib.create(m_window, cx, cy);
@@ -810,7 +810,7 @@ void wm_nodecorations(oswindow w, int map)
    int set;
 
 
-   single_lock synchronizationlock(&user_mutex(), true);
+   single_lock synchronouslock(&user_mutex(), true);
 
    xdisplay d(w->display());
    Display * dpy = w->display();

@@ -59,9 +59,9 @@ namespace filemanager
 
          pcreate->m_bMakeVisible = false;
 
-         pcreate->m_puserinteractionParent = pimpactdata->m_pplaceholder;
+         pcreate->m_puserprimitiveParent = pimpactdata->m_pplaceholder;
 
-         auto puser = User;
+         auto puser = user();
 
          puser->m_pdocumenttemplateForm->do_request(pcreate);
 
@@ -115,9 +115,9 @@ namespace filemanager
 
          pcreate->m_bMakeVisible = false;
 
-         pcreate->m_puserinteractionParent = this;
+         pcreate->m_puserprimitiveParent = this;
 
-         auto puser = User;
+         auto puser = user();
 
          puser->m_pdocumenttemplateOperation->do_request(pcreate);
 
@@ -154,7 +154,7 @@ namespace filemanager
 
          pcreate->m_bMakeVisible = true;
 
-         pcreate->m_puserinteractionParent = pimpactdata->m_pplaceholder;
+         pcreate->m_puserprimitiveParent = pimpactdata->m_pplaceholder;
 
          pcreate->payload("filemanager::data") = pfilemanagerdata;
 
@@ -181,10 +181,12 @@ namespace filemanager
 
          //__pointer(document) pdocument = ::user::__document(pcreate);
 
-         //__pointer(simple_frame_window) pwndTopLevel;
+         //__pointer(simple_frame_window) puserinteractionTopLevel;
          __pointer(document) pdocument = get_document();
 
          create_view < view >(pimpactdata);
+
+         auto pcontext = get_context();
 
          if(pdocument != nullptr)
          {
@@ -197,7 +199,7 @@ namespace filemanager
 
             __pointer(::user::impact) pview = pdocument->get_view(0);
 
-            __pointer(simple_frame_window) pwnd = (pview->get_parent_frame());
+            __pointer(simple_frame_window) puserinteraction = (pview->get_parent_frame());
 
             bool bPathIsDir = false;
 
@@ -206,7 +208,7 @@ namespace filemanager
             try
             {
 
-               bPathIsDir = pathFolder.has_char() && Context.dir().is(pathFolder);
+               bPathIsDir = pathFolder.has_char() && pcontext->m_papexcontext->dir().is(pathFolder);
 
             }
             catch (...)

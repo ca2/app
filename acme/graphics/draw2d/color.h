@@ -87,6 +87,7 @@ namespace color
       color(byte r, byte g, byte b, byte a = 255) { red = r; green = g; blue = b; alpha = a; }
       color(color32_t cr) { u32 = cr; }
       color(const ::color::color & color) { u32 = color.u32; }
+      color(const ::color::color& color, const opacity& opacity) { u32 = color.u32; alpha = opacity.get_alpha(); }
 
 
       float fr() const { return red / 255.f; }
@@ -248,6 +249,17 @@ namespace color
       double get_saturation() const { return get_hls().m_dS; }
       double get_hue() const { return get_hls().m_dH; }
 
+      color operator +(const ::opacity& opacity) const
+      {
+
+         color color(*this);
+
+         color.alpha = opacity.get_alpha();
+
+         return color;
+
+      }
+
    };
 
 
@@ -309,7 +321,7 @@ auto inline rgba(byte r, byte g, byte b, byte a) { return ::color::color(r, g, b
 auto inline argb(byte a, byte r, byte g, byte b) { return ::color::color(r, g, b, a); }
 
 
-inline auto alpha(const ::opacity & opacity, const ::color::color& rgb) { return (rgb.u32 & 0x00ffffff) | (opacity.get_alpha() << 24); }
+inline auto alpha(const ::opacity & opacity, const ::color::color& rgb) { return ::color::color(rgb, opacity); }
 auto inline opaque(const ::color::color& color) { return alpha(255, color); }
 
 

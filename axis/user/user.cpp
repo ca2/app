@@ -9,6 +9,7 @@ namespace axis
    user::user()
    {
 
+      m_paxisuser = this;
 
    }
 
@@ -40,8 +41,10 @@ namespace axis
    }
 
    
-   void user::term()
+   ::e_status user::term()
    {
+
+      return ::success;
 
    }
 

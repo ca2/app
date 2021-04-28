@@ -22,7 +22,7 @@
 //#undef App
 //
 //
-//#define System (::get_context_system()->m_pbasesystem)
+//#define System (psystem->m_pbasesystem)
 //#define Sess(pcontextsession) (pcontextsession->m_pbasesession)
 //#define App(pobject) (*pobject->get_app()->m_pbaseapplication)
 
@@ -37,9 +37,7 @@ namespace base
    class system;
    class session;
    class application;
-
-
-   inline system * get_system() { return ::base::get_system()->layer(LAYERED_BASE); }
+   class user;
 
 
 } // namespace base

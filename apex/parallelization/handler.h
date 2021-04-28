@@ -22,12 +22,13 @@ public:
    virtual ~handler_manager();
 
 
-   virtual ::e_status set_finish_composites(::context_object * pcontextobjectFinish) override;
+   //virtual ::e_status set_finish_composites(::property_object * pcontextobjectFinish) override;
+   virtual ::e_status finish_composites() override;
 
 
-   ::e_status async(const ::routine & routine);
-   ::e_status synchronization_object(const ::routine & routine);
-
+   ::e_status handler_sync(const ::routine & routine);
+   ::e_status handler_branch(const ::routine & routine);
+   
 
    ::e_status handle(const ::routine & routine, bool bSync);
 

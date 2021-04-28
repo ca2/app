@@ -15,8 +15,8 @@ namespace xml
       __pointer(node)                m_pnode;
 
 
-      output_tree(::layered * pobjectContext, tree_schema * pschema);
-      output_tree(::layered * pobjectContext);
+      output_tree();
+      output_tree(tree_schema * pschema);
       virtual ~output_tree();
 
 

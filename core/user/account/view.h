@@ -11,17 +11,17 @@ namespace account
    public:
 
       
-      __pointer(::account::credentials)    m_pcredentials;
-      ::mutex                         m_mutexResponse;
-      manual_reset_event            m_evSubmit;
-      string                        m_strResponse;
-      ::simple_ui::label *          m_plabelUser;
-      ::simple_ui::edit_box *       m_peditUser;
-      ::simple_ui::label *          m_plabelPassword;
-      ::simple_ui::password *       m_ppassword;
-      ::simple_ui::tap *            m_ptap;
-      ::simple_ui::tap *            m_ptapClose;
-      string                        m_strRequestUrl;
+      __pointer(::account::credentials)      m_pcredentials;
+      ::mutex                                m_mutexResponse;
+      manual_reset_event                     m_evSubmit;
+      string                                 m_strResponse;
+      ::user::still *                        m_pstillUser;
+      ::user::plain_edit *                   m_peditUser;
+      ::user::still*                         m_pstillPassword;
+      ::user::plain_edit*                    m_peditPassword;
+      ::user::button *                       m_pbutton;
+      ::user::button *                       m_pbuttonClose;
+      string                                 m_strRequestUrl;
 
       string                        m_strUsername;
       string                        m_strPassword;
@@ -52,7 +52,7 @@ namespace account
 
       virtual void on_layout(::draw2d::graphics_pointer & pgraphics);
 
-      DECL_GEN_SIGNAL(on_message_create);
+      DECLARE_MESSAGE_HANDLER(on_message_create);
 
       virtual void _000OnDraw(::draw2d::graphics_pointer & pgraphics);
 

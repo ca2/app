@@ -133,7 +133,7 @@ namespace draw2d_gdiplus
          break;
       };
 
-      //retry_single_lock slGdiplus(System->s_mutexGdiplus, millis(1), millis(1));
+      //retry_single_lock slGdiplus(psystem->s_mutexGdiplus, millis(1), millis(1));
 
       /*if (m_strFontFamilyName.begins_ci("matter://"))
       {
@@ -142,7 +142,7 @@ namespace draw2d_gdiplus
 
          m_pfontcollection = new FontCollection();
 
-         m_pfontcollection->AddFontFile(Context.dir().matter(m_strFontFamilyName));
+         m_pfontcollection->AddFontFile(pcontext->m_papexcontext->dir().matter(m_strFontFamilyName));
 
       }*/
 

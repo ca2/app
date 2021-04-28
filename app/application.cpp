@@ -60,31 +60,33 @@ namespace app_app
 
       //sleep(0.5_s);
 
-      __compose_new(m_pwindow);
+      __compose_new(m_pmainwindow);
+
+      //add_object(m_pmainwindow);
 
       //rectangle_i32 rectWindow;
 
-      //bool bOk = m_pwindow->_001InitialFramePosition(rectWindow, );
-      m_pwindow->display(e_display_normal);
+      //bool bOk = m_pmainwindow->_001InitialFramePosition(rectWindow, );
+      m_pmainwindow->display(e_display_normal);
 
-      m_pwindow->create_main_window();
+      m_pmainwindow->create_main_window();
 
 
 //      if (bOk)
   //    {
 
-         m_pwindow->start_layout();
+         m_pmainwindow->start_layout();
 
 
-    //     m_pwindow->place(rectWindow);
+    //     m_pmainwindow->place(rectWindow);
 
-         m_pwindow->set_need_layout();
+         m_pmainwindow->set_need_layout();
 
-         m_pwindow->set_need_redraw();
+         m_pmainwindow->set_need_redraw();
 
-         m_pwindow->set_layout_ready();
+         m_pmainwindow->set_layout_ready();
 
-         m_pwindow->post_redraw();
+         m_pmainwindow->post_redraw();
 
       //}
 

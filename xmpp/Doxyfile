@@ -557,14 +557,14 @@ SHOW_USED_FILES        = YES
 SHOW_DIRECTORIES       = NO
 
 # Set the SHOW_FILES tag to NO to disable the generation of the Files page.
-# This will remove the Files entry from the Quick Index and from the
+# This will erase the Files entry from the Quick Index and from the
 # Folder Tree View (if specified). The default is YES.
 
 SHOW_FILES             = YES
 
 # Set the SHOW_NAMESPACES tag to NO to disable the generation of the
 # Namespaces page.
-# This will remove the Namespaces entry from the Quick Index
+# This will erase the Namespaces entry from the Quick Index
 # and from the Folder Tree View (if specified). The default is YES.
 
 SHOW_NAMESPACES        = YES
@@ -1157,7 +1157,7 @@ EXT_LINKS_IN_WINDOW    = NO
 # Use this tag to change the font size of Latex formulas included
 # as images in the HTML documentation. The default is 10. Note that
 # when you change the font size after a successful doxygen run you need
-# to manually remove any form_*.png images from the HTML output directory
+# to manually erase any form_*.png images from the HTML output directory
 # to force them to be regenerated.
 
 FORMULA_FONTSIZE       = 10
@@ -1545,9 +1545,9 @@ PREDEFINED             = "VA_START(f)=" \
 EXPAND_AS_DEFINED      =
 
 # If the SKIP_FUNCTION_MACROS tag is set to YES (the default) then
-# doxygen's preprocessor will remove all references to function-like macros
+# doxygen's preprocessor will erase all references to function-like macros
 # that are alone on a line, have an all uppercase name, and do not end with a
-# semicolon, because these will confuse the parser if not removed.
+# semicolon, because these will confuse the parser if not erased.
 
 SKIP_FUNCTION_MACROS   = YES
 
@@ -1806,7 +1806,7 @@ DOT_MULTI_TARGETS      = NO
 GENERATE_LEGEND        = YES
 
 # If the DOT_CLEANUP tag is set to YES (the default) Doxygen will
-# remove the intermediate dot files that are used to generate
+# erase the intermediate dot files that are used to generate
 # the various graphs.
 
 DOT_CLEANUP            = YES

@@ -54,24 +54,6 @@ struct lparam_dbg :
 
 CLASS_DECL_ACME lparam_dbg & lparam_debug();
 
-inline lparam::lparam(const ::matter * p)
-{
-
-   if (is_null(p))
-   {
-
-      m_lparam = 0;
-
-      return;
-
-   }
-
-   ((matter *) p)->add_ref(OBJ_REF_DBG_PTR(&lparam_debug()));
-
-   m_lparam = (iptr)(void *) p;
-
-}
-
 
 template<class TYPE>
 inline void dump_elements(dump_context & dumpcontext, const TYPE* pElements, ::count nCount)
@@ -204,52 +186,49 @@ inline bool IsDirSep(widechar ch)
 
 
 template < typename T >
-::file::path memcnts_path(T * pthis)
+const char * memory_counter_id(T * pthis)
 {
 
-   string str = typeid(*pthis).name();
-
-   str.replace("::", "/");
-
-   return memcnts_base_path() / (str + ".txt");
+   return typeid(*pthis).name();
 
 }
 
 
 template < typename T >
-void memcnts_inc(T * pthis)
+void memory_counter_increment(T * pthis)
 {
 
-   if (memcnts())
+   if (memory_counter_on())
    {
 
-      synchronization_lock synchronizationlock(g_pmutexMemoryCounters);
+      auto psz = memory_counter_id(pthis);
 
-      ::file::path path = memcnts_path(pthis);
+      _memory_counter_increment(psz);
 
-      int i = atoi(file_as_string(path));
+      //synchronous_lock synchronouslock(g_pmutexMemoryCounters);
 
-      file_put_contents(path, __str(i + 1));
+      //int i = atoi(file_as_string(path));
 
+      //file_put_contents(path, __str(i + 1));
    }
 
 }
 
 
 template < typename T >
-void memcnts_dec(T * pthis)
+void memory_counter_decrement(T * pthis)
 {
 
-   if (memcnts())
+   if (memory_counter_on())
    {
 
-      synchronization_lock synchronizationlock(g_pmutexMemoryCounters);
+      auto psz = memory_counter_id(pthis);
 
-      ::file::path path = memcnts_path(pthis);
+      _memory_counter_decrement(psz);
 
-      int i = atoi(file_as_string(path));
+      //int i = atoi(file_as_string(path));
 
-      file_put_contents(path, __str(i - 1));
+      //file_put_contents(path, __str(i - 1));
 
    }
 
@@ -356,10 +335,10 @@ inline __pointer(T) clone(const __pointer(T) & t)
 
 
 template < typename T >
-inline __pointer(T) & ___pointer < T >::clone(::matter * pobjectContext)
+inline __pointer(T) & ___pointer < T >::clone(::matter * pobject)
 {
 
-   if (::is_null(pobjectContext))
+   if (::is_null(pobject))
    {
 
       release();
@@ -368,7 +347,7 @@ inline __pointer(T) & ___pointer < T >::clone(::matter * pobjectContext)
 
    }
 
-   return operator = (pobjectContext->clone());
+   return operator = (pobject->clone());
 
 }
 
@@ -699,7 +678,6 @@ inline i64 __finalize(__pointer(TYPE)& pointer OBJ_REF_DBG_COMMA_PARAMS_DEF)
 }
 
 
-
 template < class REFERENCE >
 inline i64 release(__reference(REFERENCE) & preference OBJ_REF_DBG_COMMA_PARAMS_DEF)
 {
@@ -965,4 +943,22 @@ FUTURE* asynchronous < OBJECT, TRANSPORT, FUTURE >::future()
     return m_pfuture;
 
 }
+
+
+
+
+//template < typename TYPE >
+//inline __transport(TYPE) property_object::__create_new()
+//{
+//
+//   auto p = __new(TYPE);
+//
+//   p->initialize_matter(this);
+//
+//   return p;
+//
+//}
+
+
+
 

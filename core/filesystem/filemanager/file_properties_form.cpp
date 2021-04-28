@@ -18,10 +18,10 @@ namespace filemanager
    }
 
 
-   ::e_status file_properties_form::initialize(::layered * pobjectContext)
+   ::e_status file_properties_form::initialize(::object * pobject)
    {
 
-      auto estatus = ::user::impact_host::initialize(pobjectContext);
+      auto estatus = ::user::impact_host::initialize(pobject);
 
       if (!estatus)
       {
@@ -41,7 +41,7 @@ namespace filemanager
    }
 
 
-   __pointer(::user::interaction) file_properties_form::open(__pointer(::user::interaction) puieParent, ::file::item_array & itema)
+   __pointer(::user::interaction) file_properties_form::open(__pointer(::user::interaction) puserinteractionParent, ::file::item_array & itema)
    {
 
       m_itema = itema;
@@ -57,7 +57,7 @@ namespace filemanager
 
       pcreate->m_bMakeVisible = false;
 
-      pcreate->m_puserinteractionParent = puieParent;
+      pcreate->m_puserprimitiveParent = puserinteractionParent;
 
       pcreate->finish_initialization();
 
@@ -89,19 +89,29 @@ namespace filemanager
    void file_properties_form::page1()
    {
 
-      if(!m_pdocGeneral->on_open_document(Context.dir().matter("filemanager/file_properties.html")))
+      auto pcontext = get_context();
+
+      ::file::path path = pcontext->m_papexcontext->dir().matter("filemanager/file_properties.html");
+
+      if(!m_pdocGeneral->on_open_document(path))
       {
 
          return;
 
       }
 
-      if(m_itema.get_count() <= 0)
+      if (m_itema.is_empty())
+      {
+
          return;
 
-      __pointer(::user::interaction) pinteraction = m_pviewGeneral->get_child_by_name("name");
+      }
 
-      pinteraction->_001SetText(m_itema[0]->m_filepathFinal.name(), ::e_source_none);
+      auto pinteraction = m_pviewGeneral->get_child_by_name("name");
+
+      string strName = m_itema[0]->m_filepathFinal.name();
+
+      pinteraction->_001SetText(strName, ::e_source_none);
 
    }
 
@@ -113,7 +123,9 @@ namespace filemanager
       case 1:
       {
 
-         auto puser = User;
+         __pointer(::core::session) psession = get_session();
+
+         auto puser = psession->user();
 
          m_pdocGeneral = puser->create_form(this, this, m_ptabview);
 

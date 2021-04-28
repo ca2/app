@@ -1,4 +1,9 @@
-﻿#if !defined(MCHECK) && !defined(_VLD) && !defined(__MCRTDBG) && !MEMDLEAK
+﻿
+
+#include "acme/platform/static_start_internal.h"
+
+
+#if !defined(MCHECK) && !defined(_VLD) && !defined(__MCRTDBG) && !MEMDLEAK
 
 
 #include "acme/memory/heap_memory.h"

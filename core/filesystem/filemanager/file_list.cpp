@@ -122,13 +122,15 @@ namespace filemanager
    void file_list::RenameFile(i32 iLine, string &wstrNameNew, const ::action_context & context)
    {
 
-      synchronization_lock synchronizationlock(fs_list()->mutex());
+      synchronous_lock synchronouslock(fs_list()->mutex());
 
       ::file::path filepath = fs_list_item(iLine)->m_filepathFinal;
 
       ::file::path filepathNew = filepath.folder() / wstrNameNew;
 
-      Context.file().rename(filepathNew, filepath);
+      auto pcontext = get_context();
+
+      pcontext->m_papexcontext->file().rename(filepathNew, filepath);
 
       browse_sync(context);
 
@@ -140,7 +142,7 @@ namespace filemanager
 
       __pointer(::message::mouse) pcontextmenu(pmessage);
 
-      synchronization_lock synchronizationlock(fs_list()->mutex());
+      synchronous_lock synchronouslock(fs_list()->mutex());
 
       index iItem;
 
@@ -160,7 +162,7 @@ namespace filemanager
          else
          {
 
-            auto puser = User;
+            auto puser = user();
 
             puser->track_popup_xml_menu(this, filemanager_data()->m_strXmlPopup, 0, pcontextmenu->m_point);
 
@@ -170,7 +172,7 @@ namespace filemanager
       else
       {
 
-         auto puser = User;
+         auto puser = user();
 
          puser->track_popup_xml_menu(this, filemanager_data()->m_strPopup, 0, pcontextmenu->m_point);
 
@@ -205,7 +207,7 @@ namespace filemanager
 
    //   m_bFileSize = true;
 
-   //   db_server * pcentral = dynamic_cast <db_server *> (System->m_psimpledb->db());
+   //   db_server * pcentral = dynamic_cast <db_server *> (psystem->m_psimpledb->db());
 
    //   if (pcentral == nullptr)
    //   {
@@ -218,7 +220,7 @@ namespace filemanager
 
    //   i32 i;
 
-   //   while (::thread_get_run())
+   //   while (::task_get_run())
    //   {
 
    //      i = 0;
@@ -230,7 +232,7 @@ namespace filemanager
 
    //         bool bPendingSize;
 
-   //         single_lock lock(get_context_application()->mutex());
+   //         single_lock lock(get_application()->mutex());
 
    //         if (!lock.lock(millis(2000)))
    //         {
@@ -284,7 +286,7 @@ namespace filemanager
       if (ptimer->m_uEvent == 888888)
       {
 
-         auto psession = Session;
+         auto psession = get_session();
 
          if (filemanager_data()->m_bSetBergedgeTopicFile)
          {
@@ -384,7 +386,7 @@ namespace filemanager
 
       __pointer(::message::command) pcommand(pmessage);
 
-      synchronization_lock synchronizationlock(fs_list()->mutex());
+      synchronous_lock synchronouslock(fs_list()->mutex());
 
       ::file::item_array itema;
 
@@ -535,7 +537,7 @@ namespace filemanager
 
       auto patha = get_selected_final_path();
 
-      auto psession = Session;
+      auto psession = get_session();
 
       psession->copydesk().set_filea(patha, ::user::copydesk::op_copy);
 
@@ -567,7 +569,9 @@ namespace filemanager
 
       auto patha = get_selected_final_path();
 
-      Context.file().trash_that_is_not_trash(patha);
+      auto pcontext = get_context();
+
+      pcontext->m_papexcontext->file().trash_that_is_not_trash(patha);
 
       _001Refresh();
 
@@ -590,7 +594,7 @@ namespace filemanager
 
          auto pmenu = pitema->element_at(pmenucommandui->m_iIndex)->m_pmenu;
 
-         pitema->remove_at(pcommand->m_iIndex);
+         pitema->erase_at(pcommand->m_iIndex);
 
          index iStartIndex = pcommand->m_iIndex;
 
@@ -604,7 +608,9 @@ namespace filemanager
 
          string_array stra;
 
-         Context.os().file_extension_get_open_with_list_keys(stra, strExt);
+         auto pcontext = get_context();
+
+         pcontext->m_papexcontext->os().file_extension_get_open_with_list_keys(stra, strExt);
 
          m_straOpenWith = stra;
 
@@ -729,7 +735,9 @@ namespace filemanager
 
          ::file::path pathUser = patha.first();
 
-         Context.os().file_open(pathUser);
+         auto pcontext = get_context();
+
+         pcontext->m_papexcontext->os().file_open(pathUser);
 
          pcommand->m_bRet = true;
 
@@ -768,19 +776,19 @@ namespace filemanager
    //   for (i32 i = 0; i < itema.get_size(); i++)
    //   {
 
-   //      if (Context.dir().is(itema[i]->m_filepathFinal) && strcmp(itema[i]->m_filepathFinal.name(), ".svn"))
+   //      if (pcontext->m_papexcontext->dir().is(itema[i]->m_filepathFinal) && strcmp(itema[i]->m_filepathFinal.name(), ".svn"))
    //      {
 
    //         straSub.rls(itema[i]->m_filepathFinal);
 
    //         for (i32 j = 0; j < straSub.get_size(); j++)
    //         {
-   //            if (!Context.dir().is(straSub[j]) && straSub[j].find(".svn") < 0)
+   //            if (!pcontext->m_papexcontext->dir().is(straSub[j]) && straSub[j].find(".svn") < 0)
    //            {
    //               strFileList += straSub[j] + "\n";
    //               strFileCheck += straSub[j] + ",";
-   //               strFileCheck += Context.file().length(straSub[j]).get_string() + ",";
-   //               strFileCheck += Context.file().md5(straSub[j]) + "\n";
+   //               strFileCheck += pcontext->m_papexcontext->file().length(straSub[j]).get_string() + ",";
+   //               strFileCheck += pcontext->m_papexcontext->file().md5(straSub[j]) + "\n";
    //            }
    //         }
    //      }
@@ -788,8 +796,8 @@ namespace filemanager
    //      {
    //         strFileList += itema[i]->m_filepathUser + "\n";
    //         strFileCheck += itema[i]->m_filepathUser + ",";
-   //         strFileCheck += Context.file().length(itema[i]->m_filepathFinal).get_string() + ",";
-   //         strFileCheck += Context.file().md5(itema[i]->m_filepathFinal) + "\n";
+   //         strFileCheck += pcontext->m_papexcontext->file().length(itema[i]->m_filepathFinal).get_string() + ",";
+   //         strFileCheck += pcontext->m_papexcontext->file().md5(itema[i]->m_filepathFinal) + "\n";
    //      }
    //   }
 
@@ -810,8 +818,8 @@ namespace filemanager
    //   string strCheck = strBase + "check_" + strTime + ".txt";
 
 
-   //   Context.file().put_contents(strList, strFileList);
-   //   Context.file().put_contents(strCheck, strFileCheck);
+   //   pcontext->m_papexcontext->file().put_contents(strList, strFileList);
+   //   pcontext->m_papexcontext->file().put_contents(strCheck, strFileCheck);
 
    //}
 
@@ -826,7 +834,7 @@ namespace filemanager
    //void file_list::_001OnSpafy2(::message::message * pmessage)
    //{
 
-   //   synchronization_lock synchronizationlock(fs_list()->mutex());
+   //   synchronous_lock synchronouslock(fs_list()->mutex());
 
    //   __pointer(::userfs::list_data) pdata = fs_list();
    //
@@ -854,15 +862,15 @@ namespace filemanager
 
    //            string strExtension = straSub[j].extension();
 
-   //            if (!Context.dir().is(straSub[j])
+   //            if (!pcontext->m_papexcontext->dir().is(straSub[j])
    //                  && (strExtension == "exe" || strExtension == "dll" || strExtension == "dll.manifest"
    //                      || strExtension == "exe.manifest"))
    //            {
 
    //               strFileList += straSub[j] + "\n";
    //               strFileCheck += straSub[j] + ",";
-   //               strFileCheck += Context.file().length(straSub[j]).get_string() + ",";
-   //               strFileCheck += Context.file().md5(straSub[j]) + "\n";
+   //               strFileCheck += pcontext->m_papexcontext->file().length(straSub[j]).get_string() + ",";
+   //               strFileCheck += pcontext->m_papexcontext->file().md5(straSub[j]) + "\n";
 
    //            }
 
@@ -879,8 +887,8 @@ namespace filemanager
 
    //            strFileList += pdata->item(i)->m_filepathUser + "\n";
    //            strFileCheck += pdata->item(i)->m_filepathUser + ",";
-   //            strFileCheck += Context.file().length(pdata->item(i)->m_filepathFinal).get_string() + ",";
-   //            strFileCheck += Context.file().md5(pdata->item(i)->m_filepathFinal) + "\n";
+   //            strFileCheck += pcontext->m_papexcontext->file().length(pdata->item(i)->m_filepathFinal).get_string() + ",";
+   //            strFileCheck += pcontext->m_papexcontext->file().md5(pdata->item(i)->m_filepathFinal) + "\n";
 
    //         }
 
@@ -905,9 +913,9 @@ namespace filemanager
 
    //   string strCheck = strBase + "check_" + strTime + ".txt";
 
-   //   Context.file().put_contents(strList, strFileList);
+   //   pcontext->m_papexcontext->file().put_contents(strList, strFileList);
 
-   //   Context.file().put_contents(strCheck, strFileCheck);
+   //   pcontext->m_papexcontext->file().put_contents(strCheck, strFileCheck);
 
    //}
 
@@ -971,11 +979,15 @@ namespace filemanager
 
          string_array stra;
 
-         Application.data_get(filemanager_data()->m_dataidStatic, stra);
+         auto papplication = get_application();
 
-         synchronization_lock lock(fs_list()->mutex());
+         auto pcontext = get_context();
 
-         fs_list()->m_itema.remove_all();
+         papplication->data_get(filemanager_data()->m_dataidStatic, stra);
+
+         synchronous_lock lock(fs_list()->mutex());
+
+         fs_list()->m_itema.erase_all();
 
          for (i32 i = 0; i < stra.get_size(); i++)
          {
@@ -984,7 +996,7 @@ namespace filemanager
 
             ::file::path pathItem = stra[i];
 
-            if (Context.dir().is(pathItem))
+            if (pcontext->m_papexcontext->dir().is(pathItem))
             {
 
                item.m_flags.add(::file::e_flag_folder);
@@ -997,7 +1009,7 @@ namespace filemanager
 
             item.m_filepathUser = strPath;
 
-            item.m_filepathFinal = Context.defer_process_path(strPath);
+            item.m_filepathFinal = pcontext->m_papexcontext->defer_process_path(strPath);
 
             item.m_strName = strName;
 
@@ -1020,7 +1032,7 @@ namespace filemanager
 
       string_array straStrictOrder;
 
-//      Application.data_get(data_get_current_sort_id() + "." +  data_get_current_list_layout_id() + ".straStrictOrder", straStrictOrder);
+//      papplication->data_get(data_get_current_sort_id() + "." +  data_get_current_list_layout_id() + ".straStrictOrder", straStrictOrder);
 
       index_biunique iaDisplayToStrict;
 
@@ -1028,7 +1040,7 @@ namespace filemanager
 
       __construct_new(piconlayout);
 
-//      Application.data_get(data_get_current_sort_id() + "." + data_get_current_list_layout_id(), piconlayout);
+//      papplication->data_get(data_get_current_sort_id() + "." + data_get_current_list_layout_id(), piconlayout);
 
       iaDisplayToStrict = piconlayout->m_iaDisplayToStrict;
 
@@ -1050,15 +1062,17 @@ namespace filemanager
 
       iSize = 0;
 
-      m_pathaStrictOrder.remove_all();
+      m_pathaStrictOrder.erase_all();
 
       _001OnUpdateItemCount();
+
+      auto pcontext = get_context();
 
       {
 
          synchronization_object * pm = fs_list()->mutex();
 
-         synchronization_lock lock(pm);
+         synchronous_lock lock(pm);
 
          ::file::listing & listingUser = get_document()->m_listingUser2;
 
@@ -1079,7 +1093,7 @@ namespace filemanager
 
             ::file::path pathFinal = listingFinal[i];
 
-            pathFinal = Context.defer_process_path(pathFinal);
+            pathFinal = pcontext->m_papexcontext->defer_process_path(pathFinal);
 
             pathFinal.m_iDir = listingFinal[i].m_iDir;
 
@@ -1118,7 +1132,7 @@ namespace filemanager
 
       {
 
-         synchronization_lock lock(fs_list()->mutex());
+         synchronous_lock lock(fs_list()->mutex());
 
          if (m_eview == impact_icon)
          {
@@ -1131,7 +1145,7 @@ namespace filemanager
             index find = m_pathaStrictOrder.find_first(str);
             if(find < 0)
             {
-            iaDisplayToStrictNew.remove_b(strictOld);
+            iaDisplayToStrictNew.erase_b(strictOld);
             }
             }*/
             // segundo, reordena conforme a
@@ -1176,7 +1190,7 @@ namespace filemanager
       }*/
       //if (m_eview == impact_icon)
       //{
-         //Application.data_set(data_get_current_sort_id() + "." + data_get_current_list_layout_id() + ".straStrictOrder", m_pathaStrictOrder);
+         //papplication->data_set(data_get_current_sort_id() + "." + data_get_current_list_layout_id() + ".straStrictOrder", m_pathaStrictOrder);
          //m_piconlayout->m_iaDisplayToStrict = iaDisplayToStrictNew;
          //data_set_DisplayToStrict();
       //}
@@ -1279,7 +1293,7 @@ namespace filemanager
          pcolumn->m_uiText = "";
          pcolumn->m_datakey = "FILE_MANAGER_ID_FILE_NAME";
          pcolumn->m_bEditOnSecondClick = false;
-         auto puser = User;
+         auto puser = user();
 
          pcolumn->m_pil = puser->shell()->GetImageList(filemanager_data()->m_iIconSize);
          pcolumn->m_pilHover = puser->shell()->GetImageListHover(filemanager_data()->m_iIconSize);
@@ -1338,7 +1352,7 @@ namespace filemanager
          pcolumn->m_bEditOnSecondClick = true;
          int iIconSize = filemanager_data()->m_iIconSize;
 
-         auto puser = User; 
+         auto puser = user(); 
 
          pcolumn->m_pil = puser->shell()->GetImageList(iIconSize);
          pcolumn->m_pilHover = puser->shell()->GetImageListHover(iIconSize);
@@ -1529,7 +1543,7 @@ namespace filemanager
    void file_list::_017OpenContextMenuSelected(const ::action_context & context)
    {
 
-      synchronization_lock synchronizationlock(fs_list()->mutex());
+      synchronous_lock synchronouslock(fs_list()->mutex());
 
       ::file::item_array itema;
 
@@ -1646,7 +1660,7 @@ namespace filemanager
    //void file_list::GetSelected(::file::item_array &itema)
    //{
 
-   //   synchronization_lock synchronizationlock(fs_list()->mutex());
+   //   synchronous_lock synchronouslock(fs_list()->mutex());
 
    //   index iItemRange, iItem;
    //   ::user::range range;
@@ -1713,7 +1727,7 @@ namespace filemanager
    bool file_list::add_fs_item(::file::path pathUser, ::file::path pathFinal, string strName)
    {
 
-      synchronization_lock synchronizationlock(fs_list()->mutex());
+      synchronous_lock synchronouslock(fs_list()->mutex());
 
       ::userfs::list_item item;
 
@@ -1723,7 +1737,9 @@ namespace filemanager
 
       item.m_strName = strName;
 
-      if (Context.dir().is(pathFinal))
+      auto pcontext = get_context();
+
+      if (pcontext->m_papexcontext->dir().is(pathFinal))
       {
 
          item.m_flags.add(::file::e_flag_folder);
@@ -1745,7 +1761,7 @@ namespace filemanager
       if (i == 0)
       {
 
-         auto puser = User;
+         auto puser = user();
 
          return puser->shell()->GetImageList(filemanager_data()->m_iIconSize);
 
@@ -1761,7 +1777,7 @@ namespace filemanager
 
    //   UNREFERENCED_PARAMETER(bClear);
 
-   //   db_server * pcentral = dynamic_cast <db_server *> (System->m_psimpledb->db());
+   //   db_server * pcentral = dynamic_cast <db_server *> (psystem->m_psimpledb->db());
 
    //   if (pcentral == nullptr)
    //   {
@@ -1772,7 +1788,7 @@ namespace filemanager
 
    //   DBFileSystemSizeSet * pset = pcentral->m_pfilesystemsizeset;
 
-   //   single_lock synchronizationlock(pset->m_table.mutex(), true);
+   //   single_lock synchronouslock(pset->m_table.mutex(), true);
 
    //   for (i32 i = 0; i < fs_list()->m_itema.get_count(); i++)
    //   {
@@ -1797,7 +1813,7 @@ namespace filemanager
    bool file_list::query_drop(index iDisplayDrop, index iDisplayDrag)
    {
 
-      synchronization_lock synchronizationlock(fs_list()->mutex());
+      synchronous_lock synchronouslock(fs_list()->mutex());
 
       if (iDisplayDrag < 0)
          return false;
@@ -1838,11 +1854,13 @@ namespace filemanager
    bool file_list::do_drop(index iDisplayDrop, index iDisplayDrag)
    {
 
-      synchronization_lock synchronizationlock(fs_list()->mutex());
+      synchronous_lock synchronouslock(fs_list()->mutex());
 
       index strict = _001DisplayToStrict(iDisplayDrop);
 
       index strictDrag = _001DisplayToStrict(iDisplayDrag);
+
+      auto pcontext = get_context();
 
       if (strict >= 0 && fs_list_item(strict)->IsFolder())
       {
@@ -1851,7 +1869,7 @@ namespace filemanager
 
          string strName = strPath.name();
 
-         Context.file().move(fs_list_item(strict)->m_filepathFinal, strPath);
+         pcontext->m_papexcontext->file().move(fs_list_item(strict)->m_filepathFinal, strPath);
 
       }
       else
@@ -1928,16 +1946,18 @@ namespace filemanager
    void file_list::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
    {
 
-      ::filemanager::impact::on_subject(psubject, pcontext);
+      ::filemanager_impact::on_subject(psubject, pcontext);
 
       ::userfs::list::on_subject(psubject, pcontext);
+
+      auto papplication = get_application();
 
       if (m_bStatic && psubject->id() == id_add_location)
       {
 
          ::file::patha filepatha;
 
-         filepatha = Application.data_get(filemanager_data()->m_dataidStatic);
+         filepatha = papplication->data_get(filemanager_data()->m_dataidStatic);
 
          ::file::path filepath = filemanager_item()->get_user_path();
 
@@ -1953,7 +1973,7 @@ namespace filemanager
 
                ::papaya::array::copy(stra, filepatha);
 
-               Application.data_set(filemanager_data()->m_dataidStatic, stra);
+               papplication->data_set(filemanager_data()->m_dataidStatic, stra);
 
                add_fs_item(filemanager_item()->get_user_path(),
                   filemanager_item()->get_final_path(), filemanager_item()->m_filepathUser.name());
@@ -2014,12 +2034,12 @@ namespace filemanager
 
             {
 
-               synchronization_lock synchronizationlock(mutex_draw());
+               synchronous_lock synchronouslock(mutex_draw());
 
-               if (filemanager_data()->m_pholderFileList->m_puiptraChild->has_interaction())
+               if (filemanager_data()->m_pholderFileList->m_puserinteractionpointeraChild->has_interaction())
                {
 
-                  filemanager_data()->m_pholderFileList->m_puiptraChild->interaction_at(0)->display(e_display_none);
+                  filemanager_data()->m_pholderFileList->m_puserinteractionpointeraChild->interaction_at(0)->display(e_display_none);
 
                }
 
@@ -2076,7 +2096,7 @@ namespace filemanager
 
             //html::impl::input_text * pinput = dynamic_cast < html::impl::input_text * > (pelemental->m_pimpl);
 
-            auto puserinteractionParent = __user_interaction(psubject->m_puserinteraction);
+            __pointer(::user::interaction) puserinteractionParent = psubject->m_puserprimitive;
 
             auto pinteraction = puserinteractionParent->get_child_by_id("encontrar");
 
@@ -2097,9 +2117,11 @@ namespace filemanager
             if (psubject->payload(id_find).has_char())
             {
 
+               auto pcontext = get_context();
+
                ::file::path pathFolder = filemanager_item()->get_user_path();
 
-               Context.file().replace(pathFolder, psubject->payload(id_find), psubject->payload(id_replace));
+               pcontext->m_papexcontext->file().replace(pathFolder, psubject->payload(id_find), psubject->payload(id_replace));
 
             }
 
@@ -2112,7 +2134,9 @@ namespace filemanager
 
                ::file::path pathFolder = filemanager_item()->get_user_path() / psubject->payload(id_folder);
 
-               Context.dir().mk(pathFolder);
+               auto pcontext = get_context();
+
+               pcontext->m_papexcontext->dir().mk(pathFolder);
 
                psubject->m_bRet = true;
 

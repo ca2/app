@@ -50,7 +50,7 @@ namespace uwp
       try
       {
 
-         if (m_puiptraChild && m_puiptraChild->has_interaction())
+         if (m_puserinteractionpointeraChild && m_puserinteractionpointeraChild->has_interaction())
          {
 
             try
@@ -84,11 +84,11 @@ namespace uwp
 
       ::draw2d::savedc k(pgraphics);
 
-      auto puiptraChild = m_puiptraChild;
+      auto puserinteractionpointeraChild = m_puserinteractionpointeraChild;
 
       // while drawing layout can occur and change z-order.
       // keep this past z-order
-      auto uia = puiptraChild->m_interactiona;
+      auto uia = puserinteractionpointeraChild->m_interactiona;
 
       for (auto & pinteraction : uia)
       {

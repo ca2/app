@@ -20,10 +20,10 @@ namespace android
    }
 
 
-   ::e_status dir_context::initialize(::matter * pobjectContext)
+   ::e_status dir_context::initialize(::matter * pobject)
    {
 
-      auto estatus = ::dir_context::initialize(pobjectContext);
+      auto estatus = ::dir_context::initialize(pobject);
 
       if (!estatus)
       {
@@ -32,7 +32,7 @@ namespace android
 
       }
 
-      estatus = __refer(m_pdirsystem, System->m_pdirsystem);
+      estatus = __refer(m_pdirsystem, ::acme::get_system()->m_pdirsystem);
 
       if (!estatus)
       {
@@ -41,7 +41,7 @@ namespace android
 
       }
       
-      estatus = __refer(m_pfilesystem, System->m_pfilesystem);
+      estatus = __refer(m_pfilesystem, ::acme::get_system()->m_pfilesystem);
 
       if (!estatus)
       {
@@ -69,7 +69,7 @@ namespace android
 
       listing.add("/");
 
-      listing.m_straTitle.add("File System");
+      listing.m_straTitle.add("File ::acme::get_system()");
 
       return listing;
 
@@ -258,7 +258,7 @@ namespace android
    //         for(index i = iStart; i < pstraRelative->get_size(); i++)
    //         {
 
-   //            pstraRelative->element_at(i) = Context.dir_context().path(Context.file().name_(strDir), pstraRelative->element_at(i));
+   //            pstraRelative->element_at(i) = get_context()->dir_context().path(pcontext->m_papexcontext->file().name_(strDir), pstraRelative->element_at(i));
 
    //         }
 
@@ -388,7 +388,7 @@ namespace android
    //      if(!::str::begins_eat(strName, strDir))
    //         continue;
 
-   //      if(!Context.dir_context().is(strPath))
+   //      if(!get_context()->dir_context().is(strPath))
    //         continue;
 
    //      if(pstraPath != nullptr)
@@ -429,7 +429,7 @@ namespace android
    //         for(index i = iStart; i < pstraRelative->get_size(); i++)
    //         {
 
-   //            pstraRelative->element_at(i) = Context.dir_context().path(strPath, pstraRelative->element_at(i));
+   //            pstraRelative->element_at(i) = get_context()->dir_context().path(strPath, pstraRelative->element_at(i));
 
    //         }
 
@@ -476,7 +476,7 @@ namespace android
    //      if(!::str::begins_eat(strName, strDir))
    //         continue;
 
-   //      if(!Context.dir_context().is(strPath))
+   //      if(!get_context()->dir_context().is(strPath))
    //         continue;
 
    //      if(pstraPath != nullptr)
@@ -534,7 +534,7 @@ namespace android
    //      if(!::str::begins_eat(strName, strDir))
    //         continue;
 
-   //      if(Context.dir_context().is(strPath))
+   //      if(get_context()->dir_context().is(strPath))
    //         continue;
 
 
@@ -615,7 +615,7 @@ namespace android
    //      if(pbaIsDir != nullptr || piaSize != nullptr)
    //      {
 
-   //         bIsDir = Context.dir_context().is(strPath);
+   //         bIsDir = get_context()->dir_context().is(strPath);
 
    //      }
 
@@ -830,7 +830,7 @@ namespace android
    ::file::path dir_context::install()
    {
 
-      single_lock synchronizationlock(mutex(), true);
+      single_lock synchronouslock(mutex(), true);
 
       return m_pdirsystem->m_pathInstall;
 
@@ -840,7 +840,7 @@ namespace android
    //::file::path dir_context::module()
    //{
 
-   // return System->get_module_folder();
+   // return ::acme::get_system()->get_module_folder();
 
    //}
 
@@ -848,7 +848,7 @@ namespace android
    //::file::path dir_context::ca2module()
    //{
    //
-   // return System->get_ca2_module_folder();
+   // return ::acme::get_system()->get_ca2_module_folder();
    //
    //}
 
@@ -894,7 +894,7 @@ namespace android
                   str.trim_right("\\/");
                   try
                   {
-                     Context.file().del(str);
+                     pcontext->m_papexcontext->file().del(str);
                   }
                   catch (...)
                   {
@@ -903,7 +903,7 @@ namespace android
                   str.trim_right("\\/");
                   try
                   {
-                     Context.file().del(str);
+                     pcontext->m_papexcontext->file().del(str);
                   }
                   catch (...)
                   {
@@ -993,15 +993,15 @@ namespace android
 
       xml::document doc;
 
-      doc.load(Context.file().as_string(appdata() / "configuration\\directory.xml"));
+      doc.load(pcontext->m_papexcontext->file().as_string(appdata() / "configuration\\directory.xml"));
 
-      ::file::path pathInstall = System->m_pathCacheDir;
+      ::file::path pathInstall = ::acme::get_system()->m_pathCacheDir;
 
       m_pdirsystem->m_pathInstall = pathInstall;
 
-      //nodeos_set_home(::dir::system() / "home");
+      //nodeos_set_home(pacmedir->system() / "home");
 
-      //nodeos_set_temp(::dir::system() / "temp");
+      //nodeos_set_temp(pacmedir->system() / "temp");
 
       m_pdirsystem->m_strCommonAppData = pathInstall / "commonappdata";
 
@@ -1097,7 +1097,7 @@ namespace android
          CSIDL_COMMON_APPDATA,
          false);*/
 
-      str = ::dir::system() / ".ca2/app/appdata";
+      str = pacmedir->system() / ".ca2/app/appdata";
       string strRelative;
       strRelative = install();
       //index iFind = strRelative.find(':');

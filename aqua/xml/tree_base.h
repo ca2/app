@@ -18,8 +18,8 @@ namespace xml
       tree_schema * m_pschema;
 
 
-      tree_base(::layered * pobjectContext, tree_schema * pschema);
-      tree_base(::layered * pobjectContext);
+      tree_base(tree_schema * pschema);
+      tree_base();
       virtual ~tree_base();
 
       string get_node_name(i32 iNameIndex);

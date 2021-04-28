@@ -150,7 +150,11 @@ public:
     * @since 1.0
     * @author Gurmeet S. Kochar
     */
-   ILiteHTMLReaderEvents*   m_pEventHandler;
+   ILiteHTMLReaderEvents *    m_pEventHandler;
+
+   ::html::html *             m_phtml;
+
+   ::axis::session *          m_psession;
 
    /**
     * Pointer to an array of characters being parsed
@@ -190,16 +194,16 @@ public:
 
    /**
     * Changes the current event mask by adding and removing
-    * flags specified by addFlags and removeFlags, respectively.
+    * flags specified by addFlags and eraseFlags, respectively.
     *
     * @lparam addFlags - flags to add in the current event mask
-    * @lparam removeFlags - flags to remove from the current event mask
+    * @lparam eraseFlags - flags to erase from the current event mask
     *
     * @return previous event mask
     * @since 1.0
     * @author Gurmeet S. Kochar
     */
-   EventMaskEnum setEventMask(u32 addFlags, u32 removeFlags);
+   EventMaskEnum setEventMask(u32 addFlags, u32 eraseFlags);
 
    /**
     * Returns a 32-bit application-specific data
@@ -259,13 +263,6 @@ public:
 // Operations
    // parses an HTML document from the specified string
    strsize read_form_document(const string & str);
-#ifdef WINDOWS
-   // parses an HTML document from a file given its HANDLE
-   //strsize read_html_file(HANDLE hFile);
-#else
-   // parses an HTML document from a file given its file descriptor
-   strsize read_html_file(i32 fd);
-#endif
 
 // Helpers
    /** Parsing Helpers */
@@ -289,7 +286,7 @@ public:
    virtual void NormalizeCharacters(string &rCharacters)
    {
       //rCharacters.replace("\r\n", "");
-      //rCharacters.remove('\n');
+      //rCharacters.erase('\n');
       //rCharacters.replace('\r', ' ');
       //rCharacters.replace('\t', ' ');
 //      UNUSED_ALWAYS(rCharacters);

@@ -10,7 +10,7 @@ namespace user
    menu_item::menu_item()
    {
 
-      m_puiHost = nullptr;
+      m_puserinteractionHost = nullptr;
       m_bBreak = false;
       m_puserinteraction = nullptr;
       m_pmenuitema = __new(menu_item_ptra(this));
@@ -76,7 +76,7 @@ namespace user
 
       m_puserinteraction.release();
 
-      m_puiHost.release();
+      m_puserinteractionHost.release();
 
       m_pmenu.release();
 
@@ -100,6 +100,7 @@ namespace user
 
       ::count iItemCount = pnode->get_children_count();
 
+      __pointer(::base::application) papplication = get_application();
 
       m_bPopup = pnode->get_children_count() > 0 && pnode->get_name() == "menubar";
 
@@ -160,7 +161,11 @@ namespace user
          if (strImage.has_char())
          {
 
-            __compose(m_pimage, Application.image().matter_image(strImage));
+            auto pcontext = m_pcontext->m_pauracontext;
+
+            auto pcontextimage = pcontext->context_image();
+
+            __compose(m_pimage, pcontextimage->matter_image(strImage));
 
          }
 
@@ -272,7 +277,7 @@ namespace user
          if (pinteraction->is_window())
          {
 
-            pinteraction->DestroyWindow();
+            pinteraction->start_destroying_window();
 
          }
 

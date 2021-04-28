@@ -207,7 +207,7 @@ SizingNone:;
             void frame_002::draw_border_side(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectClientParam, enum_border eside)
             {
 
-               auto psession = Session;
+               auto psession = get_session();
 
                auto rectClient(rectClientParam);
 
@@ -226,7 +226,7 @@ SizingNone:;
                else
                {
 
-                  auto psession = Session;
+                  auto psession = get_session();
 
                   auto pstyle = pframewindow->get_style(pgraphics);
 
@@ -250,8 +250,8 @@ SizingNone:;
                   ::rectangle_i32 rectangle;
                   GetBorderRect(rectClient, rectangle, eside);
 
-                  class imaging & imaging = System->imaging();
-                  imaging.color_blend(pgraphics,
+
+                  pgraphics->color_blend(
                                       rectangle,
                                       crMoveableBorder,
                                       127);
@@ -273,7 +273,7 @@ SizingNone:;
                   ::rectangle_i32 rectangle;
                   GetBorderRect(rectClient, rectangle, eside);
 
-                  //class imaging & imaging = System->imaging();
+                  //class imaging & imaging = psystem->imaging();
                   //imaging.color_blend(
                      pgraphics->color_blend(
                                       rectangle,
@@ -287,7 +287,7 @@ SizingNone:;
 
                   rectClient.deflate(1, 1);
                   GetBorderRect(rectClient, rectangle, eside);
-                  //class imaging & imaging = System->imaging();
+                  //class imaging & imaging = psystem->imaging();
                   //imaging.color_blend(
                   pgraphics->color_blend(
                                       rectangle,
@@ -344,7 +344,7 @@ SizingNone:;
                bool bZoomed = pframewindow->layout().is_zoomed() != 0;
 
                //    CVMSApp * pApp = (CVMSApp *) System;
-               //::aura::savings & savings = psession->savings();
+               //::aura::savings & savings = psession->m_paurasession->savings();
 
 
                ::rectangle_i32 rectClient;
@@ -984,7 +984,7 @@ SizingNone:;
             void frame_002::DrawRectGrip(::draw2d::graphics_pointer & pgraphics,const rectangle_i32 & rectParam)
             {
 
-               auto psession = Session;
+               auto psession = get_session();
 
                auto pframewindow = m_pframewindow;
 

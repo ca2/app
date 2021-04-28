@@ -424,7 +424,7 @@ synchronization_result event::wait ()
       else if (iResult == WAIT_TIMEOUT)
       {
 
-         if (!thread_get_run())
+         if (!task_get_run())
          {
 
             return e_synchronization_result_abandoned_base;
@@ -546,7 +546,11 @@ synchronization_result event::wait (const duration & durationTimeout)
 
    auto osduration = durationTimeout.u32_millis();
 
-   result = windows_wait_result_to_synchronization_result(::WaitForSingleObjectEx(hsync(), osduration,false));
+   auto hsync = this->hsync();
+
+   DWORD dwResult = ::WaitForSingleObjectEx(hsync, osduration, false);
+
+   result = windows_wait_result_to_synchronization_result(dwResult);
 
 #elif defined(ANDROID)
 
@@ -764,7 +768,7 @@ synchronization_result event::wait (const duration & durationTimeout)
    //   if(pthread)
    //   {
 
-   //      pthread->remove_waiting_event(this);
+   //      pthread->erase_waiting_event(this);
 
    //   }
 

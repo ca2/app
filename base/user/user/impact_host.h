@@ -42,8 +42,8 @@ namespace user
       virtual void install_message_routing(::channel * pchannel) override;
 
 
-      DECL_GEN_SIGNAL(on_message_create);
-      DECL_GEN_SIGNAL(_001OnDestroy);
+      DECLARE_MESSAGE_HANDLER(on_message_create);
+      DECLARE_MESSAGE_HANDLER(_001OnDestroy);
 
       //virtual class impact_data * new_impact_data(impact_creator * pimpactcreator, id id);
 
@@ -63,8 +63,8 @@ namespace user
       virtual ::user::impact_data * impact_host_get_impact_data(const id& id, const ::id& idTitle, ::user::interaction* pinteraction, ::user::document* pdocument);
 
 
-      virtual void on_remove_child(::user::interaction* pinteraction) override;
-      virtual void on_remove_place_holder_child(::user::interaction* pinteraction) override;
+      virtual void on_erase_child(::user::interaction* pinteraction) override;
+      virtual void on_erase_place_holder_child(::user::interaction* pinteraction) override;
 
 
       virtual void on_hide_child(::user::interaction* pinteraction) override;

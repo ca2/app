@@ -100,7 +100,7 @@ namespace dynamic_source
 
       m_millisLastVersionCheck.Now();
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       bool bMatches = false;
 
@@ -115,7 +115,7 @@ namespace dynamic_source
    bool ds_script::ShouldBuild()
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       if (m_bHasFatalError)
       {
@@ -146,7 +146,7 @@ namespace dynamic_source
    void ds_script::on_start_build()
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       m_bShouldCalcTempError     = true;
 
@@ -164,14 +164,14 @@ namespace dynamic_source
 
    bool ds_script::HasTimedOutLastBuild()
    {
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
       return (m_millisLastBuildTime.elapsed()) >
              (m_pmanager->m_iBuildTimeWindow + __random(0, m_pmanager->m_iBuildTimeRandomWindow));
    }
 
    bool ds_script::HasCompileOrLinkError()
    {
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       string str;
 
@@ -201,7 +201,7 @@ namespace dynamic_source
 
    bool ds_script::HasTempError()
    {
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
       // if m_strError is empty, sure there is a error... at least the
       // successfull compilation/linking message ("error message" => m_strError) should exist
       // If it is empty, it is considered a temporary error (due locks or race conditions...)
@@ -216,7 +216,7 @@ namespace dynamic_source
    bool ds_script::CalcHasTempError()
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       if (m_bHasTempOsError)
          return true;
@@ -293,9 +293,11 @@ namespace dynamic_source
    void ds_script::Load()
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
-      if(!Context.file().exists(m_strScriptPath))
+      auto pcontext = get_context();
+
+      if(!pcontext->m_papexcontext->file().exists(m_strScriptPath))
       {
 
          if(HasTempError())
@@ -345,7 +347,7 @@ namespace dynamic_source
             if(dwMessageId == 0x139)
             {
 
-               debug_break();
+               ASSERT(FALSE);
 
             }
 
@@ -396,7 +398,7 @@ namespace dynamic_source
 
       m_evCreationEnabled.ResetEvent();
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       if(m_plibrary != nullptr && m_plibrary->is_opened())
       {
@@ -417,9 +419,11 @@ namespace dynamic_source
    __pointer(script_instance) ds_script::create_instance()
    {
 
-      synchronization_lock slCompiler(&Application.m_semCompiler);
+      __pointer(::aura::application) papplication = get_application();
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock slCompiler(&papplication->m_semCompiler);
+
+      synchronous_lock synchronouslock(mutex());
 
       defer_build();
 
@@ -464,7 +468,7 @@ namespace dynamic_source
    void ds_script::defer_build()
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       if (m_plibrary.is_set() && !m_plibrary->is_closed())
       {
@@ -536,9 +540,9 @@ namespace dynamic_source
          iRetry++;
 
       }
-      while ((bHasTempError = HasTempError()) && iRetry < 8 && ::thread_get_run());
+      while ((bHasTempError = HasTempError()) && iRetry < 8 && ::task_get_run());
 
-      if (!::thread_get_run())
+      if (!::task_get_run())
       {
 
          return;
@@ -551,7 +555,7 @@ namespace dynamic_source
 
       Load();
 
-      if (!::thread_get_run())
+      if (!::task_get_run())
       {
 
          return;
@@ -562,7 +566,7 @@ namespace dynamic_source
 
       {
 
-         synchronization_lock synchronizationlock(&m_pmanager->m_mutexShouldBuild);
+         synchronous_lock synchronouslock(&m_pmanager->m_mutexShouldBuild);
 
          m_pmanager->m_mapShouldBuild[m_strSourcePath] = false;
 
@@ -571,10 +575,10 @@ namespace dynamic_source
    }
 
 
-   //::aura::application * ds_script::get_context_application() const
+   //::aura::application * ds_script::get_application() const
    //{
 
-   //   return m_pmanager->get_context_application();
+   //   return m_pmanager->get_application();
 
    //}
 

@@ -40,10 +40,10 @@ namespace draw2d_cairo
    }
 
 
-   ::e_status draw2d::initialize(::layered * pobjectContext)
+   ::e_status draw2d::initialize(::object * pobject)
    {
 
-      auto estatus = ::draw2d::draw2d::initialize(pobjectContext);
+      auto estatus = ::draw2d::draw2d::initialize(pobject);
 
       if (!estatus)
       {
@@ -83,7 +83,7 @@ namespace draw2d_cairo
 
       }
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       if (!m_papi->open())
       {
@@ -159,10 +159,10 @@ namespace draw2d_cairo
 //   }
 //
 
-   void draw2d::term()
+   ::e_status draw2d::term()
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       try
       {
@@ -182,21 +182,23 @@ namespace draw2d_cairo
 
       }
 
+      m_alpha_spread__24CC_filterMap.erase_all();
 
+      m_alpha_spread__32CC_filterMap.erase_all();
 
-      m_alpha_spread__24CC_filterMap.remove_all();
-
-      m_alpha_spread__32CC_filterMap.remove_all();
+      return ::success;
 
    }
 
 
-   void draw2d::finalize()
+   ::e_status draw2d::finalize()
    {
 
       m_papi.release();
 
-      ::draw2d::draw2d::finalize();
+      auto estatus = ::draw2d::draw2d::finalize();
+
+      return estatus;
 
    }
 
@@ -318,7 +320,7 @@ namespace draw2d_cairo
 //      i32 iRadius2 = iRadius * iRadius;
 //      i32 r2;
 //
-//      synchronization_lock synchronizationlock(mutex());
+//      synchronous_lock synchronouslock(mutex());
 //
 //      auto & filter = m_alpha_spread__24CC_filterMap[iRadius];
 //
@@ -376,7 +378,7 @@ namespace draw2d_cairo
 //
 //      }
 //
-//      synchronizationlock.unlock();
+//      synchronouslock.unlock();
 //
 //      i32 maxx1 = cx;
 //      i32 maxy1 = cy;
@@ -633,7 +635,7 @@ namespace draw2d_cairo
 //      i32 rSquare;
 //
 //
-//      synchronization_lock synchronizationlock(mutex());
+//      synchronous_lock synchronouslock(mutex());
 //
 //      auto & filter = m_alpha_spread__32CC_filterMap[iRadius];
 //
@@ -662,7 +664,7 @@ namespace draw2d_cairo
 //         }
 //      }
 //
-//      synchronizationlock.unlock();
+//      synchronouslock.unlock();
 //
 //      i32 cx = pimageDst->width();
 //      i32 cy = pimageDst->height();
@@ -896,15 +898,19 @@ namespace draw2d_cairo
 //   void draw2d::enum_draw2d_fonts(::write_text::font_enum_item_array& itema)
 //   {
 //
-//      critical_section_lock synchronizationlock(::aura::g_pcsFont);
+//      critical_section_lock synchronouslock(::aura::g_pcsFont);
 //
 //      __pointer(::write_text::font_enum_item) pitem;
 //
 //      double dAndroid = 4.4;
 //
-//      string strSystemFonts = Context.file().as_string("/system/etc/system_fonts.xml");
+//      string strSystemFonts = pcontext->m_papexcontext->file().as_string("/system/etc/system_fonts.xml");
 //
-//      auto pdoc = create_xml_document();
+//            auto psystem = m_psystem->m_paurasystem;
+
+      //auto pxml = psystem->xml();
+
+      //auto pdoc = pxml->create_document();
 //
 //      __pointer(ttf_util) putil;
 //
@@ -1038,91 +1044,91 @@ namespace draw2d_cairo
 //      {
 //
 //
-//#ifdef os_font_name(e_font_mono)
+//#ifdef pnode->font_name(e_font_mono)
 //
 //         pitem = __new(::write_text::font_enum_item);
 //
-//         pitem->m_strFile = os_font_name(e_font_mono);
+//         pitem->m_strFile = pnode->font_name(e_font_mono);
 //
-//         pitem->m_strName = os_font_name(e_font_mono);
+//         pitem->m_strName = pnode->font_name(e_font_mono);
 //
 //         itema.add(pitem);
 //
 //#endif
 //
 //
-//#ifdef os_font_name(e_font_sans)
+//#ifdef pnode->font_name(e_font_sans)
 //
 //         pitem = __new(::write_text::font_enum_item);
 //
-//         pitem->m_strFile = os_font_name(e_font_sans);
+//         pitem->m_strFile = pnode->font_name(e_font_sans);
 //
-//         pitem->m_strName = os_font_name(e_font_sans);
+//         pitem->m_strName = pnode->font_name(e_font_sans);
 //
 //         itema.add(pitem);
 //
 //#endif
 //
 //
-//#ifdef os_font_name(e_font_serif)
+//#ifdef pnode->font_name(e_font_serif)
 //
 //         pitem = __new(::write_text::font_enum_item);
 //
-//         pitem->m_strFile = os_font_name(e_font_serif);
+//         pitem->m_strFile = pnode->font_name(e_font_serif);
 //
-//         pitem->m_strName = os_font_name(e_font_serif);
+//         pitem->m_strName = pnode->font_name(e_font_serif);
 //
 //         itema.add(pitem);
 //
 //#endif
 //
 //
-//#ifdef os_font_name(e_font_sans_ex)
+//#ifdef pnode->font_name(e_font_sans_ex)
 //
 //         pitem = __new(::write_text::font_enum_item);
 //
-//         pitem->m_strFile = os_font_name(e_font_sans_ex);
+//         pitem->m_strFile = pnode->font_name(e_font_sans_ex);
 //
-//         pitem->m_strName = os_font_name(e_font_sans_ex);
+//         pitem->m_strName = pnode->font_name(e_font_sans_ex);
 //
 //         itema.add(pitem);
 //
 //#endif
 //
 //
-//#ifdef os_font_name(e_font_serif_ex)
+//#ifdef pnode->font_name(e_font_serif_ex)
 //
 //         pitem = __new(::write_text::font_enum_item);
 //
-//         pitem->m_strFile = os_font_name(e_font_serif_ex);
+//         pitem->m_strFile = pnode->font_name(e_font_serif_ex);
 //
-//         pitem->m_strName = os_font_name(e_font_serif_ex);
+//         pitem->m_strName = pnode->font_name(e_font_serif_ex);
 //
 //         itema.add(pitem);
 //
 //#endif
 //
 //
-//#ifdef os_font_name(e_font_sans_fx)
+//#ifdef pnode->font_name(e_font_sans_fx)
 //
 //         pitem = __new(::write_text::font_enum_item);
 //
-//         pitem->m_strFile = os_font_name(e_font_sans_fx);
+//         pitem->m_strFile = pnode->font_name(e_font_sans_fx);
 //
-//         pitem->m_strName = os_font_name(e_font_sans_fx);
+//         pitem->m_strName = pnode->font_name(e_font_sans_fx);
 //
 //         itema.add(pitem);
 //
 //#endif
 //
 //
-//#ifdef os_font_name(e_font_serif_fx)
+//#ifdef pnode->font_name(e_font_serif_fx)
 //
 //         pitem = __new(::write_text::font_enum_item);
 //
-//         pitem->m_strFile = os_font_name(e_font_serif_fx);
+//         pitem->m_strFile = pnode->font_name(e_font_serif_fx);
 //
-//         pitem->m_strName = os_font_name(e_font_serif_fx);
+//         pitem->m_strName = pnode->font_name(e_font_serif_fx);
 //
 //         itema.add(pitem);
 //
@@ -1182,7 +1188,7 @@ namespace draw2d_cairo
 //      }
 //
 //
-//      synchronization_lock synchronizationlock(System->m_mutexLibrary);
+//      synchronous_lock synchronouslock(psystem->m_mutexLibrary);
 //
 //      estatus = __construct(m_pwritetext);
 //
@@ -1209,7 +1215,7 @@ namespace draw2d_cairo
 //      if (::succeeded(estatus))
 //      {
 //
-//         create_factory < ::draw2d::thread_tool_item >(::e_thread_tool_draw2d);
+//         create_factory < ::draw2d::task_tool_item >(::e_task_tool_draw2d);
 //
 //      }
 //
@@ -1248,7 +1254,7 @@ namespace draw2d_cairo
 //      if (strLibrary.has_char())
 //      {
 //
-//         estatus = System->do_factory_exchange("write_text", strLibrary);
+//         estatus = psystem->do_factory_exchange("write_text", strLibrary);
 //
 //         if (estatus)
 //         {
@@ -1276,7 +1282,7 @@ namespace draw2d_cairo
 //
 //      }
 //
-//      estatus = System->do_factory_exchange("write_text", strLibrary);
+//      estatus = psystem->do_factory_exchange("write_text", strLibrary);
 //
 //      if (estatus)
 //      {
@@ -1292,7 +1298,7 @@ namespace draw2d_cairo
 //      if (strLibrary != "write_text_gdiplus")
 //      {
 //
-//         estatus = System->do_factory_exchange("write_text", "gdiplus");
+//         estatus = psystem->do_factory_exchange("write_text", "gdiplus");
 //
 //         if (estatus)
 //         {
@@ -1307,7 +1313,7 @@ namespace draw2d_cairo
 //      if (strLibrary != "write_text_direct2d")
 //      {
 //
-//         estatus = System->do_factory_exchange("write_text", "direct2d");
+//         estatus = psystem->do_factory_exchange("write_text", "direct2d");
 //
 //         if (estatus)
 //         {
@@ -1325,7 +1331,7 @@ namespace draw2d_cairo
 //      {
 //
 //
-//         estatus = System->do_factory_exchange("write_text", "cairo");
+//         estatus = psystem->do_factory_exchange("write_text", "cairo");
 //
 //         if (estatus)
 //         {

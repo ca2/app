@@ -179,7 +179,7 @@ bool memory_base::allocate_internal(memsize dwNewLength)
       return true;
    }
 
-   remove_offset();
+   erase_offset();
 
    memsize dwAllocation = calc_allocation(dwNewLength);
 
@@ -299,7 +299,7 @@ void memory_base::reserve(memsize dwNewLength)
 }
 
 
-void memory_base::remove_offset()
+void memory_base::erase_offset()
 {
 
    if(m_memory.m_pbStorage == nullptr || m_memory.m_pdata == nullptr || m_memory.m_iOffset <= 0)
@@ -326,7 +326,7 @@ void memory_base::remove_offset()
 //   if (get_size() > 0)
 //   {
 //
-//      System->math().random_bytes(get_data(), get_size());
+//      get_system()->math().random_bytes(get_data(), get_size());
 //
 //   }
 //
@@ -384,7 +384,7 @@ void memory_base::delete_begin(memsize iSize)
    if(m_memory.m_iOffset >= m_memory.m_iMaxOffset || (memsize)m_memory.m_iOffset >= m_memory.m_iSize)
    {
 
-      remove_offset();
+      erase_offset();
 
    }
 
@@ -879,14 +879,14 @@ bool memory_base::operator == (const memory_base & s)
 
    bool b = false;
 
-   //single_lock synchronizationlock(m_spmutex);
+   //single_lock synchronouslock(m_spmutex);
 
-   //synchronizationlock.lock();
+   //synchronouslock.lock();
 
    if (this->get_size() == s.get_size())
       b = __memcmp(get_data(), s.get_data(), (size_t) this->get_size()) == 0;
 
-   //synchronizationlock.unlock();
+   //synchronouslock.unlock();
 
    return b;
 
@@ -897,14 +897,14 @@ bool memory_base::operator == (const struct block & s)
 
    bool b = false;
 
-   //single_lock synchronizationlock(m_spmutex);
+   //single_lock synchronouslock(m_spmutex);
 
-   //synchronizationlock.lock();
+   //synchronouslock.lock();
 
    if (this->get_size() == s.get_size())
       b = __memcmp(get_data(), s.get_data(), (size_t)this->get_size()) == 0;
 
-   //synchronizationlock.unlock();
+   //synchronouslock.unlock();
 
    return b;
 

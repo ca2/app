@@ -2,7 +2,7 @@
 #include "_uwp.h"
 
 
-#undef System
+#undef ::acme::get_system()
 
 
 using namespace Platform;
@@ -12,9 +12,9 @@ using namespace Windows::UI::Core;
 using namespace Windows::ApplicationModel;
 using namespace Windows::ApplicationModel::Core;
 using namespace Windows::ApplicationModel::Activation;
-using namespace Windows::System;
+using namespace Windows::::acme::get_system();
 using namespace Windows::Graphics::Display;
-using namespace Windows::System::Threading;
+using namespace Windows::::acme::get_system()::Threading;
 using namespace Windows::UI::Text::Core;
 using namespace Windows::UI::ViewManagement;
 
@@ -79,7 +79,7 @@ namespace uwp
       // The system raises this event to request the current selection.
       _editContext->SelectionRequested += ref new TypedEventHandler < CoreTextEditContext^, CoreTextSelectionRequestedEventArgs^>(this, &impact::EditContext_SelectionRequested);
 
-      // The system raises this event when it wants the edit control to remove focus.
+      // The system raises this event when it wants the edit control to erase focus.
       _editContext->FocusRemoved += ref new TypedEventHandler < CoreTextEditContext^, Object^>(this, &impact::EditContext_FocusRemoved);
 
       // The system raises this event to update text in the edit control.
@@ -329,12 +329,12 @@ namespace uwp
 
             spbase = pkey;
 
-            bool bTextFocus = m_psystem->get_context_session()->get_focus_ui() != nullptr;
+            bool bTextFocus = m_psystem->get_session()->get_focus_ui() != nullptr;
 
             bool bSpecialKey = false;
 
             pkey->m_id = e_message_key_down;
-            pkey->m_puserinteraction = m_psystem->get_context_session()->m_puiHost;
+            pkey->m_puserinteraction = m_psystem->get_session()->m_puserinteractionHost;
             pkey->m_nChar = 0;
             pkey->m_ekey = ::user::e_key_refer_to_text_member;
             pkey->m_wparam = pkey->m_nChar;
@@ -344,7 +344,7 @@ namespace uwp
             //      pkey->m_key = args;
 
 
-            m_psystem->get_context_session()->m_puiHost->m_pimpl->queue_message_handler(spbase);
+            m_psystem->get_session()->m_puserinteractionHost->m_pimpl->queue_message_handler(spbase);
 
          }
 

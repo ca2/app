@@ -65,31 +65,31 @@ namespace account
       if (strUser.has_char())
       {
 
-         m_plabelUser->set_window_text(strUser);
+         m_pstillUser->set_window_text(strUser);
 
       }
 
       if (strPass.has_char())
       {
 
-         m_plabelPassword->set_window_text(strPass);
+         m_pstillPassword->set_window_text(strPass);
 
       }
 
       if (strOpen.has_char())
       {
 
-         m_ptap->set_window_text(strOpen);
+         m_pbutton->set_window_text(strOpen);
 
       }
 
    }
 
 
-   ::e_status login::initialize(::layered * pobjectContext)
+   ::e_status login::initialize(::object * pobject)
    {
 
-      auto estatus = ::user::interaction::initialize(pobjectContext);
+      auto estatus = ::user::interaction::initialize(pobject);
       
       if (!estatus)
       {
@@ -100,12 +100,12 @@ namespace account
       
       m_bSubmitted = false;
 
-      if (!(estatus = __compose_new(m_plabelUser))) return false;
+      if (!(estatus = __compose_new(m_pstillUser))) return false;
       if(!(estatus = __compose_new(m_peditUser))) return false;
-      if (!(estatus = __compose_new(m_plabelPassword))) return false;
-      if (!(estatus = __compose_new(m_ppassword))) return false;
-      if (!(estatus = __compose_new(m_ptap))) return false;
-      if (!(estatus = __compose_new(m_ptapClose))) return false;
+      if (!(estatus = __compose_new(m_pstillPassword))) return false;
+      if (!(estatus = __compose_new(m_peditPassword))) return false;
+      if (!(estatus = __compose_new(m_pbutton))) return false;
+      if (!(estatus = __compose_new(m_pbuttonClose))) return false;
 
       return estatus;
 
@@ -154,8 +154,8 @@ namespace account
 
       i32 y = (int) ((49 + 86) * ry);
 
-      m_plabelUser->set_dim(x1,y,w2,h1);
-      m_plabelUser->display(::e_display_normal, e_activation_no_activate);
+      m_pstillUser->set_dim(x1,y,w2,h1);
+      m_pstillUser->display(::e_display_normal, e_activation_no_activate);
 
       y += h1 + pad;
 
@@ -164,23 +164,23 @@ namespace account
 
       y += h1 + pad;
 
-      m_plabelPassword->set_dim(x1,y,w2, h1);
-      m_plabelPassword->display(::e_display_normal, e_activation_no_activate);
+      m_pstillPassword->set_dim(x1,y,w2, h1);
+      m_pstillPassword->display(::e_display_normal, e_activation_no_activate);
 
       y += h1 + pad;
 
-      m_ppassword->set_dim(x1,y,w2,h1);
-      m_ppassword->display(::e_display_normal, e_activation_no_activate);
+      m_peditPassword->set_dim(x1,y,w2,h1);
+      m_peditPassword->display(::e_display_normal, e_activation_no_activate);
 
       y += h1 + pad;
 
       y += pad + h1 + pad;
 
-      m_ptap->set_dim(x1,y,w2,h1 * 3);
-      m_ptap->display(::e_display_normal, e_activation_no_activate);
+      m_pbutton->set_dim(x1,y,w2,h1 * 3);
+      m_pbutton->display(::e_display_normal, e_activation_no_activate);
 
-      m_ptapClose->set_dim(w - 36,12,24,24);
-      m_ptapClose->display(::e_display_normal, e_activation_no_activate);
+      m_pbuttonClose->set_dim(w - 36,12,24,24);
+      m_pbuttonClose->display(::e_display_normal, e_activation_no_activate);
 
    }
 
@@ -298,11 +298,15 @@ namespace account
 
          ::write_text::font_pointer f(e_create);
 
-         /*f->create_pixel_font(os_font_name(e_font_sans_ex), (i32)height(rectClient) * 0.7);
+         /*f->create_pixel_font(pnode->font_name(e_font_sans_ex), (i32)height(rectClient) * 0.7);
 
          float fMargin = (height(rectClient) * ((1.0f - 0.7f) / 2.0f));*/
 
-         f->create_point_font(os_font_name(e_font_sans_ex), fHeight * 1.0);
+         __pointer(::core::system) psystem = get_system();
+
+         auto pnode = psystem->node();
+
+         f->create_point_font(pnode->font_name(e_font_sans_ex), fHeight * 1.0);
 
 
          pgraphics->set(f);
@@ -355,16 +359,18 @@ namespace account
 
          string strText;
 
-         m_ppassword->_001GetText(strText);
+         m_peditPassword->_001GetText(strText);
 
          m_iPasswordOriginalLength = strText.get_length();
 
          if(!m_bCred)
          {
 
-            strText = System->crypto().nessie(strText);
+            auto psystem = m_psystem->m_paurasystem;
 
-            m_ppassword->_001SetText(strText,::e_source_database);
+            strText = psystem->crypto().nessie(strText);
+
+            m_peditPassword->_001SetText(strText,::e_source_database);
 
          }
          
@@ -416,7 +422,7 @@ namespace account
 
          get_parent()->display(e_display_none);
 
-         m_ppassword->_001SetText("",::e_source_database);
+         m_peditPassword->_001SetText("",::e_source_database);
 
          get_parent()->EndModalLoop("cancel");
 
@@ -441,12 +447,12 @@ namespace account
 
       }
 
-      if(!m_plabelUser->create_control(this,"label_user")
+      if(!m_pstillUser->create_control(this,"label_user")
             || !m_peditUser->create_control(this,"edit_user")
-            || !m_plabelPassword->create_control(this,"label_password")
-            || !m_ppassword->create_control(this,"password")
-            || !m_ptap->create_control(this,"submit")
-            || !m_ptapClose->create_control(this,"escape"))
+            || !m_pstillPassword->create_control(this,"label_password")
+            || !m_peditPassword->create_control(this,"password")
+            || !m_pbutton->create_control(this,"submit")
+            || !m_pbuttonClose->create_control(this,"escape"))
       {
 
          pcreate->m_lresult = -1;
@@ -457,19 +463,19 @@ namespace account
 
       }
 
-      m_ptapClose->m_estockicon = stock_icon_close;
+      m_pbuttonClose->m_estockicon = stock_icon_close;
 
-      //m_plabelUser->set_window_text("e-mail:");
-      //m_plabelPassword->set_window_text("password:");
-      //m_ptap->set_window_text("open");
+      //m_pstillUser->set_window_text("e-mail:");
+      //m_pstillPassword->set_window_text("password:");
+      //m_pbutton->set_window_text("open");
 
-      //m_plabelUser->set_window_text("@");
-      //m_plabelPassword->set_window_text("********");
-      //m_ptap->set_window_text("===>");
+      //m_pstillUser->set_window_text("@");
+      //m_pstillPassword->set_window_text("********");
+      //m_pbutton->set_window_text("===>");
 
-      m_plabelUser->set_window_text("");
-      m_plabelPassword->set_window_text("");
-      m_ptap->set_window_text("");
+      m_pstillUser->set_window_text("");
+      m_pstillPassword->set_window_text("");
+      m_pbutton->set_window_text("");
 
       int stdw = 800;
       int stdh = 177 + 23 + 1140;

@@ -32,7 +32,7 @@ namespace datetime
 
 
 
-   ::e_status visual::initialize(::layered * pobjectContext)
+   ::e_status visual::initialize(::object * pobject)
    {
 
       return ::success;
@@ -93,7 +93,7 @@ namespace datetime
                      iDayOfWeek = 1;
                }
                pfile->raw_print("<td>");
-               pfile->printf("%s", GetTinyWeekDay(pfile->str_context(), iDayOfWeek).c_str());
+               pfile->printf("%s", GetTinyWeekDay(pfile->textcontext(), iDayOfWeek).c_str());
                pfile->raw_print("</td>");
             }
             pfile->raw_print("</tr>");
@@ -105,15 +105,23 @@ namespace datetime
          if (((iDayCount + iFirstDayOfWeek - 1) % 7) > 0)
             iLineCount++;
 
+         __pointer(::apex::system) psystem = get_system();
+
          iDay = 1;
          for (int32_t iWeek = 1; iWeek <= iLineCount; iWeek++)
          {
             pfile->raw_print("<tr>");
             if (pfile->m_strOptions.find("<left-week-of-the-year>") >= 0)
             {
-               time_t w;       if (pfile->m_strOptions.find("<monday-first>") >= 0)
+               time_t w;   
+               
+               if (pfile->m_strOptions.find("<monday-first>") >= 0)
                {
-                  w = atoi(System->datetime().strftime("%V", (time_t)::datetime::time(iYear, iMonth, iDay, 0, 0, 0).get_time()));
+                  auto psystem = m_psystem;
+
+                  auto pdatetime = psystem->datetime();
+
+                  w = atoi(pdatetime->strftime("%V", (time_t)::datetime::time(iYear, iMonth, iDay, 0, 0, 0).get_time()));
                }
                else
                {

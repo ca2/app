@@ -18,16 +18,15 @@ namespace user
    }
 
 
-   style::style(::layered * pobjectContext) :
-      ::object(pobjectContext)
-   {
+   //style::style(::object * pobject) :
+   //{
 
-      m_puserstyle = this;
-      m_pgraphics = nullptr;
+   //   m_puserstyle = this;
+   //   m_pgraphics = nullptr;
 
-      default_style_construct();
+   //   default_style_construct();
 
-   }
+   //}
 
 
    style::~style()
@@ -41,7 +40,29 @@ namespace user
 
       m_iUpdate = 0;
 
-      m_pfont = ::write_text::point_font(os_font_name(e_font_sans_ui), 12.0);
+
+   }
+
+
+   ::e_status style::initialize(::object * pobject)
+   {
+
+      auto estatus = style_base::initialize(pobject);
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      __pointer(::aura::system) psystem = get_system();
+
+      m_pnode = psystem->node();
+
+      m_pfont = ::write_text::point_font(m_pnode->font_name(e_font_sans_ui), 12.0);
+
+      return estatus;
 
    }
 
@@ -248,7 +269,7 @@ namespace user
 
       rectClient.top--;
 
-      if (get_context_application() != nullptr && (pinteraction->hover_item().is_set() || pinteraction->has_keyboard_focus()))
+      if (get_application() != nullptr && (pinteraction->hover_item().is_set() || pinteraction->has_keyboard_focus()))
       {
 
          ::draw2d::brush_pointer brush(e_create);
@@ -920,6 +941,76 @@ namespace user
 
       }
 
+      if (eelement == ::user::e_element_background)
+      {
+
+         color32_t crBk;
+
+         __pointer(::aura::system) psystem = get_system();
+
+         if (m_pnode && m_pnode->is_app_dark_mode())
+         {
+
+            crBk = argb(255, 0x40, 0x40, 0x40);
+
+         }
+         else
+         {
+
+            crBk = argb(255, 255, 255, 255);
+
+         }
+
+         return crBk;
+
+      }
+      else if (eelement == ::user::e_element_face)
+      {
+
+         color32_t crBk;
+
+         __pointer(::aura::system) psystem = get_system();
+
+         if (m_pnode && m_pnode->is_app_dark_mode())
+         {
+
+            crBk = argb(255, 127, 127, 127);
+
+         }
+         else
+         {
+
+            crBk = argb(255, 192, 192, 192);
+
+         }
+
+         return crBk;
+
+      }
+      else if (eelement == ::user::e_element_text)
+      {
+
+         color32_t crText;
+
+         __pointer(::aura::system) psystem = get_system();
+
+         if (m_pnode && m_pnode->is_app_dark_mode())
+         {
+
+            crText = argb(255, 255, 255, 255);
+
+         }
+         else
+         {
+
+            crText = argb(255, 49, 50, 42);
+
+         }
+
+         return crText;
+
+      }
+
       return ::color::color();
 
    }
@@ -961,7 +1052,7 @@ namespace user
    //   else
    //   {
 
-   //      pcontext->pstyle.release();
+   //      pcontext->m_papexcontext->pstyle.release();
 
    //   }
 
@@ -994,7 +1085,7 @@ namespace user
    //      if (spuserstyle.is_null())
    //      {
 
-   //         spuserstyle = __new(style(get_object()));
+   //         spuserstyle = __new(style(this));
 
    //      }
 

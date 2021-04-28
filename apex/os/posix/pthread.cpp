@@ -31,7 +31,7 @@
 //   if (!thread_name_buffer[0])
 //      prctl(PR_GET_NAME, thread_name_buffer, 0L, 0L, 0L);
 
-message_queue * get_message_queue(ithread_t idthread, bool bCreate);
+message_queue * get_message_queue(itask_t idthread, bool bCreate);
 
 
 CLASS_DECL_APEX void thread_get_os_priority(i32 * piOsPolicy, sched_param * pparam, ::e_priority epriority);
@@ -91,7 +91,7 @@ enum_synchronization_result MsgWaitForMultipleObjectsEx(::u32 dwSize, HSYNC * sy
             if (pmq.is_set())
             {
 
-               synchronization_lock synchronizationlock(pmq->mutex());
+               synchronous_lock synchronouslock(pmq->mutex());
 
                if (pmq->m_messagea.has_element())
                {
@@ -261,18 +261,18 @@ enum_synchronization_result MsgWaitForMultipleObjectsEx(::u32 dwSize, HSYNC * sy
 //}
 
 
-CLASS_DECL_APEX hthread_t get_current_hthread()
+CLASS_DECL_APEX htask_t get_current_hthread()
 {
 
-   return (hthread_t) ::pthread_self();
+   return (htask_t) ::pthread_self();
 
 }
 
 
-CLASS_DECL_APEX ithread_t get_current_ithread()
+CLASS_DECL_APEX itask_t get_current_ithread()
 {
 
-   return (ithread_t) ::pthread_self();
+   return (itask_t) ::pthread_self();
 
 }
 
@@ -295,22 +295,22 @@ void __node_term_multithreading()
 
 #if defined(LINUX) // || defined(ANDROID)
 
-bool (*g_pfn_defer_process_x_message)(hthread_t hthread, MESSAGE * pMsg, oswindow oswindow, bool bPeek) = nullptr;
+bool (*g_pfn_defer_process_x_message)(htask_t htask, MESSAGE * pMsg, oswindow oswindow, bool bPeek) = nullptr;
 
 
-bool apex_defer_process_x_message(hthread_t hthread, MESSAGE * pMsg, oswindow oswindow, bool bPeek)
+bool apex_defer_process_x_message(htask_t htask, MESSAGE * pMsg, oswindow oswindow, bool bPeek)
 
 {
 
    if (g_pfn_defer_process_x_message == nullptr)
       return false;
 
-   return (*g_pfn_defer_process_x_message)(hthread, pMsg, oswindow, bPeek);
+   return (*g_pfn_defer_process_x_message)(htask, pMsg, oswindow, bPeek);
 
 
 }
 
-void set_defer_process_x_message(bool (*pfn)(hthread_t hthread, MESSAGE * pMsg, oswindow oswindow, bool bPeek))
+void set_defer_process_x_message(bool (*pfn)(htask_t htask, MESSAGE * pMsg, oswindow oswindow, bool bPeek))
 
 {
 
@@ -336,7 +336,7 @@ void * os_thread_thread_proc(void * pparameter);
 
 
 
-int_bool WINAPI SetThreadPriority(hthread_t hthread, i32 nCa2Priority)
+int_bool WINAPI SetThreadPriority(htask_t htask, i32 nCa2Priority)
 {
 
    i32 iPolicy;
@@ -345,7 +345,7 @@ int_bool WINAPI SetThreadPriority(hthread_t hthread, i32 nCa2Priority)
 
    thread_get_os_priority(&iPolicy, &schedparam, (::e_priority)nCa2Priority);
 
-   pthread_setschedparam((pthread_t)hthread, iPolicy, &schedparam);
+   pthread_setschedparam((pthread_t)htask, iPolicy, &schedparam);
 
    return true;
 
@@ -363,7 +363,7 @@ i32 get_os_thread_priority(::e_priority epriority)
 
 
 
-i32 WINAPI GetThreadPriority(hthread_t  hthread)
+i32 WINAPI GetThreadPriority(htask_t  htask)
 {
 
    int iOsPolicy = SCHED_OTHER;
@@ -372,7 +372,7 @@ i32 WINAPI GetThreadPriority(hthread_t  hthread)
 
    schedparam.sched_priority = 0;
 
-   pthread_getschedparam((ithread_t)hthread, &iOsPolicy, &schedparam);
+   pthread_getschedparam((itask_t)htask, &iOsPolicy, &schedparam);
 
    return thread_get_scheduling_priority(iOsPolicy, &schedparam);
 
@@ -381,12 +381,12 @@ i32 WINAPI GetThreadPriority(hthread_t  hthread)
 
 
 
-static hthread_t g_hMainThread = (hthread_t) nullptr;
+static htask_t g_hMainThread = (htask_t) nullptr;
 
-static ithread_t g_uiMainThread = (ithread_t)-1;
+static itask_t g_uiMainThread = (itask_t)-1;
 
 
-CLASS_DECL_APEX void set_main_hthread(hthread_t hthread)
+CLASS_DECL_APEX void set_main_hthread(htask_t htask)
 {
 
    // MESSAGE msg;
@@ -394,12 +394,12 @@ CLASS_DECL_APEX void set_main_hthread(hthread_t hthread)
    // PeekMessage function used to create message queue Windows Desktop
    // PeekMessage(&msg, nullptr, 0, 0xffffffff, false);
 
-   g_hMainThread = hthread;
+   g_hMainThread = htask;
 
 }
 
 
-CLASS_DECL_APEX void set_main_ithread(ithread_t ithread)
+CLASS_DECL_APEX void set_main_ithread(itask_t itask)
 {
 
    //   MESSAGE msg;
@@ -407,12 +407,12 @@ CLASS_DECL_APEX void set_main_ithread(ithread_t ithread)
    // PeekMessage function used to create message queue Windows Desktop
    // PeekMessage(&msg, nullptr, 0, 0xffffffff, false);
 
-   g_uiMainThread = ithread;
+   g_uiMainThread = itask;
 
 }
 
 
-CLASS_DECL_APEX hthread_t get_main_hthread()
+CLASS_DECL_APEX htask_t get_main_hthread()
 {
 
    return g_hMainThread;
@@ -420,7 +420,7 @@ CLASS_DECL_APEX hthread_t get_main_hthread()
 }
 
 
-CLASS_DECL_APEX ithread_t get_main_ithread()
+CLASS_DECL_APEX itask_t get_main_ithread()
 {
 
    return g_uiMainThread;
@@ -435,10 +435,10 @@ CLASS_DECL_APEX void attach_thread_input_to_main_thread(bool bAttach)
 
 
 
-// LPVOID WINAPI thread_get_data(hthread_t hthread, ::u32 dwIndex);
+// LPVOID WINAPI thread_get_data(htask_t htask, ::u32 dwIndex);
 
 
-// int_bool WINAPI thread_set_data(hthread_t hthread, ::u32 dwIndex, LPVOID pTlsValue);
+// int_bool WINAPI thread_set_data(htask_t htask, ::u32 dwIndex, LPVOID pTlsValue);
 
 
 
@@ -454,7 +454,7 @@ int g_iDebug_post_thread_msg_time;
 //CLASS_DECL_APEX int_bool WINAPI mq_post(message_queue * pmq, ::u32 Msg, WPARAM wParam, LPARAM lParam)
 //{
 //
-//   synchronization_lock ml(pmq->mutex());
+//   synchronous_lock ml(pmq->mutex());
 //
 //   MESSAGE msg;
 //
@@ -481,14 +481,14 @@ int g_iDebug_post_thread_msg_time;
 //}
 
 
-// CLASS_DECL_APEX hthread_t GetCurrentThread()
+// CLASS_DECL_APEX htask_t GetCurrentThread()
 // {
 
 //    return pthread_self();
 
 // }
 
-// CLASS_DECL_APEX ithread_t GetCurrentThreadId()
+// CLASS_DECL_APEX itask_t GetCurrentThreadId()
 // {
 
 //    return pthread_self();

@@ -312,7 +312,7 @@ typedef enum sp_connection_rules {
  */
 typedef enum sp_artistbrowse_type {
   SP_ARTISTBROWSE_FULL,         /**< All information except tophit tracks
-                   This mode is deprecated and will removed in a future release */
+                   This mode is deprecated and will erased in a future release */
   SP_ARTISTBROWSE_NO_TRACKS,    /**< Only albums and data about them, no tracks.
              In other words, sp_artistbrowse_num_tracks() will return 0
               */
@@ -1006,7 +1006,7 @@ SP_LIBEXPORT(sp_playlist *) sp_session_starred_for_user_create(sp_session *sessi
  * or the currently logged in user if @a canonical_username is NULL.
  *
  * When done with the list you should call sp_playlistconatiner_release() to
- * decrese the context_object you own by having created it.
+ * decrese the object you own by having created it.
  *
  * @param[in]   session    Your session object.
  * @param[in]   canonical_username   The canonical username, or NULL.
@@ -1489,7 +1489,7 @@ SP_LIBEXPORT(sp_user *) sp_link_as_user(sp_link *link);
 
 
 /**
- * Increase the context_object count of a link
+ * Increase the object count of a link
  *
  * @param[in]   link       The link object
  * @return                 One of the following errors, from ::sp_error
@@ -1498,7 +1498,7 @@ SP_LIBEXPORT(sp_user *) sp_link_as_user(sp_link *link);
 SP_LIBEXPORT(sp_error) sp_link_add_ref(sp_link *link);
 
 /**
- * Decrease the context_object count of a link
+ * Decrease the object count of a link
  *
  * @param[in]   link       The link object
  * @return                 One of the following errors, from ::sp_error
@@ -1743,7 +1743,7 @@ SP_LIBEXPORT(int) sp_track_index(sp_track *track);
 SP_LIBEXPORT(sp_track *) sp_localtrack_create(const char *artist, const char *title, const char *album, int length);
 
 /**
- * Increase the context_object count of a track
+ * Increase the object count of a track
  *
  * @param[in]   track       The track object
  * @return                  One of the following errors, from ::sp_error
@@ -1752,7 +1752,7 @@ SP_LIBEXPORT(sp_track *) sp_localtrack_create(const char *artist, const char *ti
 SP_LIBEXPORT(sp_error) sp_track_add_ref(sp_track *track);
 
 /**
- * Decrease the context_object count of a track
+ * Decrease the object count of a track
  *
  * @param[in]   track       The track object
  * @return                  One of the following errors, from ::sp_error
@@ -1804,7 +1804,7 @@ SP_LIBEXPORT(bool) sp_album_is_available(sp_album *album);
  * Get the artist associated with the given album
  *
  * @param[in]  album       Album object
- * @return A context_object to the artist. NULL if the metadata has not been loaded yet
+ * @return A object to the artist. NULL if the metadata has not been loaded yet
  */
 SP_LIBEXPORT(sp_artist *) sp_album_artist(sp_album *album);
 
@@ -1854,7 +1854,7 @@ SP_LIBEXPORT(sp_albumtype) sp_album_type(sp_album *album);
 
 
 /**
- * Increase the context_object count of an album
+ * Increase the object count of an album
  *
  * @param[in]   album       The album object
  * @return                  One of the following errors, from ::sp_error
@@ -1863,7 +1863,7 @@ SP_LIBEXPORT(sp_albumtype) sp_album_type(sp_album *album);
 SP_LIBEXPORT(sp_error) sp_album_add_ref(sp_album *album);
 
 /**
- * Decrease the context_object count of an album
+ * Decrease the object count of an album
  *
  * @param[in]   album       The album object
  * @return                  One of the following errors, from ::sp_error
@@ -1915,7 +1915,7 @@ SP_LIBEXPORT(bool) sp_artist_is_loaded(sp_artist *artist);
 SP_LIBEXPORT(const byte *) sp_artist_portrait(sp_artist *artist, sp_image_size size_i32);
 
 /**
- * Increase the context_object count of a artist
+ * Increase the object count of a artist
  *
  * @param[in]   artist       The artist object
  * @return                   One of the following errors, from ::sp_error
@@ -1924,7 +1924,7 @@ SP_LIBEXPORT(const byte *) sp_artist_portrait(sp_artist *artist, sp_image_size s
 SP_LIBEXPORT(sp_error) sp_artist_add_ref(sp_artist *artist);
 
 /**
- * Decrease the context_object count of a artist
+ * Decrease the object count of a artist
  *
  * @param[in]   artist       The artist object
  * @return                   One of the following errors, from ::sp_error
@@ -2078,7 +2078,7 @@ SP_LIBEXPORT(int) sp_albumbrowse_backend_request_duration(sp_albumbrowse *alb);
 
 
 /**
- * Increase the context_object count of an album browse result
+ * Increase the object count of an album browse result
  *
  * @param[in]   alb       The album browse result object
  * @return                One of the following errors, from ::sp_error
@@ -2087,7 +2087,7 @@ SP_LIBEXPORT(int) sp_albumbrowse_backend_request_duration(sp_albumbrowse *alb);
 SP_LIBEXPORT(sp_error) sp_albumbrowse_add_ref(sp_albumbrowse *alb);
 
 /**
- * Decrease the context_object count of an album browse result
+ * Decrease the object count of an album browse result
  *
  * @param[in]   alb       The album browse result object
  * @return                One of the following errors, from ::sp_error
@@ -2302,7 +2302,7 @@ SP_LIBEXPORT(int) sp_artistbrowse_backend_request_duration(sp_artistbrowse *arb)
 
 
 /**
- * Increase the context_object count of an artist browse result
+ * Increase the object count of an artist browse result
  *
  * @param[in]   arb       The artist browse result object
  * @return                One of the following errors, from ::sp_error
@@ -2311,7 +2311,7 @@ SP_LIBEXPORT(int) sp_artistbrowse_backend_request_duration(sp_artistbrowse *arb)
 SP_LIBEXPORT(sp_error) sp_artistbrowse_add_ref(sp_artistbrowse *arb);
 
 /**
- * Decrease the context_object count of an artist browse result
+ * Decrease the object count of an artist browse result
  *
  * @param[in]   arb       The artist browse result object
  * @return                One of the following errors, from ::sp_error
@@ -2393,7 +2393,7 @@ SP_LIBEXPORT(sp_error) sp_image_add_load_callback(sp_image * pimage, image_loade
  * @return                One of the following errors, from ::sp_error
  *                        SP_ERROR_OK
  */
-SP_LIBEXPORT(sp_error) sp_image_remove_load_callback(sp_image * pimage, image_loaded_cb *callback, void *userdata);
+SP_LIBEXPORT(sp_error) sp_image_erase_load_callback(sp_image * pimage, image_loaded_cb *callback, void *userdata);
 
 /**
  * Check if an image is loaded. Before the image is loaded, the rest of the
@@ -2449,7 +2449,7 @@ SP_LIBEXPORT(const byte *) sp_image_image_id(sp_image * pimage);
 
 
 /**
- * Increase the context_object count of an image
+ * Increase the object count of an image
  *
  * @param[in]   image     The image object
  * @return                One of the following errors, from ::sp_error
@@ -2458,7 +2458,7 @@ SP_LIBEXPORT(const byte *) sp_image_image_id(sp_image * pimage);
 SP_LIBEXPORT(sp_error) sp_image_add_ref(sp_image * pimage);
 
 /**
- * Decrease the context_object count of an image
+ * Decrease the object count of an image
  *
  * @param[in]   image     The image object
  * @return                One of the following errors, from ::sp_error
@@ -2583,7 +2583,7 @@ SP_LIBEXPORT(int) sp_search_num_playlists(sp_search *search);
  * @param[in]  search     Search object
  * @param[in]  index      Index of the wanted playlist. Should be in the interval [0, sp_search_num_playlists() - 1]
  *
- * @return                A playlist object. This context_object is owned by the caller and should be released with sp_playlist_release()
+ * @return                A playlist object. This object is owned by the caller and should be released with sp_playlist_release()
  */
 SP_LIBEXPORT(sp_playlist *) sp_search_playlist(sp_search *search, int index);
 
@@ -2699,7 +2699,7 @@ SP_LIBEXPORT(int) sp_search_total_artists(sp_search *search);
 SP_LIBEXPORT(int) sp_search_total_playlists(sp_search *search);
 
 /**
- * Increase the context_object count of a search result
+ * Increase the object count of a search result
  *
  * @param[in]   search    The search result object
  * @return                One of the following errors, from ::sp_error
@@ -2708,7 +2708,7 @@ SP_LIBEXPORT(int) sp_search_total_playlists(sp_search *search);
 SP_LIBEXPORT(sp_error) sp_search_add_ref(sp_search *search);
 
 /**
- * Decrease the context_object count of a search result
+ * Decrease the object count of a search result
  *
  * @param[in]   search    The search result object
  * @return                One of the following errors, from ::sp_error
@@ -2753,14 +2753,14 @@ typedef struct sp_playlist_callbacks {
   void (SP_CALLCONV *tracks_added)(sp_playlist *pl, sp_track * const *tracks, int num_tracks, int position, void *userdata);
 
   /**
-   * Called when one or more tracks have been removed from a playlist
+   * Called when one or more tracks have been erased from a playlist
    *
    * @param[in]  pl         Playlist object
-   * @param[in]  tracks     Array of positions representing the tracks that were removed
+   * @param[in]  tracks     Array of positions representing the tracks that were erased
    * @param[in]  num_tracks Number of entries in \p tracks
    * @param[in]  userdata   Userdata passed to sp_playlist_add_callbacks()
    */
-  void (SP_CALLCONV *tracks_removed)(sp_playlist *pl, const int *tracks, int num_tracks, void *userdata);
+  void (SP_CALLCONV *tracks_erased)(sp_playlist *pl, const int *tracks, int num_tracks, void *userdata);
 
   /**
    * Called when one or more tracks have been moved within a playlist
@@ -2901,7 +2901,7 @@ SP_LIBEXPORT(bool) sp_playlist_is_loaded(sp_playlist *playlist);
  * @param[in]  playlist   Playlist object
  * @param[in]  callbacks  Callbacks, see #sp_playlist_callbacks
  * @param[in]  userdata   Userdata to be passed to callbacks
- * @sa sp_playlist_remove_callbacks
+ * @sa sp_playlist_erase_callbacks
  *
  */
 SP_LIBEXPORT(sp_error) sp_playlist_add_callbacks(sp_playlist *playlist, sp_playlist_callbacks *callbacks, void *userdata);
@@ -2909,11 +2909,11 @@ SP_LIBEXPORT(sp_error) sp_playlist_add_callbacks(sp_playlist *playlist, sp_playl
 /**
  * Unregister interest in the given playlist
  *
- * The combination of (\p callbacks, \p userdata) is used to find the entry to be removed
+ * The combination of (\p callbacks, \p userdata) is used to find the entry to be erased
  *
  * Here is a snippet from \c jukebox.c:
  * @dontinclude jukebox.c
- * @skipline sp_playlist_remove_callbacks
+ * @skipline sp_playlist_erase_callbacks
  *
  * @param[in]  playlist   Playlist object
  * @param[in]  callbacks  Callbacks, see #sp_playlist_callbacks
@@ -2923,7 +2923,7 @@ SP_LIBEXPORT(sp_error) sp_playlist_add_callbacks(sp_playlist *playlist, sp_playl
  *                        SP_ERROR_OK
  *
  */
-SP_LIBEXPORT(sp_error) sp_playlist_remove_callbacks(sp_playlist *playlist, sp_playlist_callbacks *callbacks, void *userdata);
+SP_LIBEXPORT(sp_error) sp_playlist_erase_callbacks(sp_playlist *playlist, sp_playlist_callbacks *callbacks, void *userdata);
 
 /**
  * Return number of tracks in the given playlist
@@ -3129,7 +3129,7 @@ SP_LIBEXPORT(sp_error) sp_playlist_add_tracks(sp_playlist *playlist, sp_track *c
  *                            SP_ERROR_OK
  *                            SP_ERROR_PERMISSION_DENIED
  */
-SP_LIBEXPORT(sp_error) sp_playlist_remove_tracks(sp_playlist *playlist, const int *tracks, int num_tracks);
+SP_LIBEXPORT(sp_error) sp_playlist_erase_tracks(sp_playlist *playlist, const int *tracks, int num_tracks);
 
 /**
  * Move tracks in playlist
@@ -3249,7 +3249,7 @@ SP_LIBEXPORT(sp_error) sp_playlist_set_in_ram(sp_session *session, sp_playlist *
  * @param[in]  session        Session object
  * @param[in]  link           Link object referring to a playlist
  *
- * @return     A playlist. The context_object is owned by the caller and should be released with sp_playlist_release()
+ * @return     A playlist. The object is owned by the caller and should be released with sp_playlist_release()
  *
  */
 SP_LIBEXPORT(sp_playlist *) sp_playlist_create(sp_session *session, sp_link *link);
@@ -3294,7 +3294,7 @@ SP_LIBEXPORT(sp_playlist_offline_status) sp_playlist_get_offline_status(sp_sessi
 SP_LIBEXPORT(int) sp_playlist_get_offline_download_completed(sp_session *session, sp_playlist *playlist);
 
 /**
- * Increase the context_object count of a playlist
+ * Increase the object count of a playlist
  *
  * @param[in]   playlist       The playlist object
  * @return                     One of the following errors, from ::sp_error
@@ -3303,7 +3303,7 @@ SP_LIBEXPORT(int) sp_playlist_get_offline_download_completed(sp_session *session
 SP_LIBEXPORT(sp_error) sp_playlist_add_ref(sp_playlist *playlist);
 
 /**
- * Decrease the context_object count of a playlist
+ * Decrease the object count of a playlist
  *
  * @param[in]   playlist       The playlist object
  * @return                     One of the following errors, from ::sp_error
@@ -3317,7 +3317,7 @@ SP_LIBEXPORT(sp_error) sp_playlist_release(sp_playlist *playlist);
  * If some callbacks should not be of interest, set them to NULL.
  *
  * @see sp_playlistcontainer_add_callbacks
- * @see sp_playlistcontainer_remove_callbacks
+ * @see sp_playlistcontainer_erase_callbacks
  */
 typedef struct sp_playlistcontainer_callbacks {
   /**
@@ -3332,14 +3332,14 @@ typedef struct sp_playlistcontainer_callbacks {
 
 
   /**
-   * Called when a new playlist has been removed from playlist container
+   * Called when a new playlist has been erased from playlist container
    *
    * @param[in]  pc         Playlist container
    * @param[in]  playlist   Playlist object.
    * @param[in]  position   Position in list
    * @param[in]  userdata   Userdata as set in sp_playlistcontainer_add_callbacks()
    */
-  void (SP_CALLCONV *playlist_removed)(sp_playlistcontainer *pc, sp_playlist *playlist, int position, void *userdata);
+  void (SP_CALLCONV *playlist_erased)(sp_playlistcontainer *pc, sp_playlist *playlist, int position, void *userdata);
 
 
   /**
@@ -3371,12 +3371,12 @@ typedef struct sp_playlistcontainer_callbacks {
  * @param[in]  userdata  Opaque value passed to callbacks.
  *
  * @note Every sp_playlistcontainer_add_callbacks() needs to be paired with a corresponding
- *       sp_playlistcontainer_remove_callbacks() that is invoked before releasing the
- *       last context_object you own for the container. In other words, you must make sure
- *       to have removed all the callbacks before the container gets destroyed.
+ *       sp_playlistcontainer_erase_callbacks() that is invoked before releasing the
+ *       last object you own for the container. In other words, you must make sure
+ *       to have erased all the callbacks before the container gets destroyed.
  *
  * @sa sp_session_playlistcontainer()
- * @sa sp_playlistcontainer_remove_callbacks
+ * @sa sp_playlistcontainer_erase_callbacks
  * @return              One of the following errors, from ::sp_error
  *                      SP_ERROR_OK
  */
@@ -3395,7 +3395,7 @@ SP_LIBEXPORT(sp_error) sp_playlistcontainer_add_callbacks(sp_playlistcontainer *
  * @return              One of the following errors, from ::sp_error
  *                      SP_ERROR_OK
  */
-SP_LIBEXPORT(sp_error) sp_playlistcontainer_remove_callbacks(sp_playlistcontainer *pc, sp_playlistcontainer_callbacks *callbacks, void *userdata);
+SP_LIBEXPORT(sp_error) sp_playlistcontainer_erase_callbacks(sp_playlistcontainer *pc, sp_playlistcontainer_callbacks *callbacks, void *userdata);
 
 /**
  * Return the number of playlists in the given playlist container
@@ -3497,13 +3497,13 @@ SP_LIBEXPORT(sp_playlist *) sp_playlistcontainer_add_playlist(sp_playlistcontain
  * Remove playlist at index from the given playlist container
  *
  * @param[in]  pc        Playlist container
- * @param[in]  index     Index of playlist to be removed
+ * @param[in]  index     Index of playlist to be erased
  *
  * @return     error     One of the following errors, from ::sp_error
  *                       SP_ERROR_OK
  *                       SP_ERROR_INDEX_OUT_OF_RANGE
  */
-SP_LIBEXPORT(sp_error) sp_playlistcontainer_remove_playlist(sp_playlistcontainer *pc, int index);
+SP_LIBEXPORT(sp_error) sp_playlistcontainer_erase_playlist(sp_playlistcontainer *pc, int index);
 
 /**
  * Move a playlist in the playlist container
@@ -3536,10 +3536,10 @@ SP_LIBEXPORT(sp_error) sp_playlistcontainer_move_playlist(sp_playlistcontainer *
  * type SP_PLAYLIST_TYPE_START_FOLDER and immediately following a
  * SP_PLAYLIST_TYPE_END_FOLDER one.
  *
- * To remove a playlist folder both of these must be deleted or the list
+ * To erase a playlist folder both of these must be deleted or the list
  * will be left in an inconsistant state.
  *
- * There is no way to rename a playlist folder. Instead you need to remove
+ * There is no way to rename a playlist folder. Instead you need to erase
  * the folder and recreate it again.
  */
 SP_LIBEXPORT(sp_error) sp_playlistcontainer_add_folder(sp_playlistcontainer *pc, int index, const char *name);
@@ -3555,7 +3555,7 @@ SP_LIBEXPORT(sp_user *) sp_playlistcontainer_owner(sp_playlistcontainer *pc);
 
 
 /**
- * Increase context_object count on playlistconatiner object
+ * Increase object count on playlistconatiner object
  *
  * @param[in]  pc   Playlist container.
  * @return          One of the following errors, from ::sp_error
@@ -3564,7 +3564,7 @@ SP_LIBEXPORT(sp_user *) sp_playlistcontainer_owner(sp_playlistcontainer *pc);
 SP_LIBEXPORT(sp_error) sp_playlistcontainer_add_ref(sp_playlistcontainer *pc);
 
 /**
- * Release context_object count on playlistconatiner object
+ * Release object count on playlistconatiner object
  *
  * @param[in]  pc   Playlist container.
  * @return          One of the following errors, from ::sp_error
@@ -3650,7 +3650,7 @@ SP_LIBEXPORT(bool) sp_user_is_loaded(sp_user *user);
 
 
 /**
- * Increase the context_object count of an user
+ * Increase the object count of an user
  *
  * @param[in]   user       The user object
  * @return                 One of the following errors, from ::sp_error
@@ -3659,7 +3659,7 @@ SP_LIBEXPORT(bool) sp_user_is_loaded(sp_user *user);
 SP_LIBEXPORT(sp_error) sp_user_add_ref(sp_user *user);
 
 /**
- * Decrease the context_object count of an user
+ * Decrease the object count of an user
  *
  * @param[in]   user       The user object
  * @return                 One of the following errors, from ::sp_error
@@ -3760,7 +3760,7 @@ SP_LIBEXPORT(sp_error) sp_toplistbrowse_error(sp_toplistbrowse *tlb);
 
 
 /**
- * Increase the context_object count of an toplist browse result
+ * Increase the object count of an toplist browse result
  *
  * @param[in]   tlb       The toplist browse result object
  * @return                One of the following errors, from ::sp_error
@@ -3769,7 +3769,7 @@ SP_LIBEXPORT(sp_error) sp_toplistbrowse_error(sp_toplistbrowse *tlb);
 SP_LIBEXPORT(sp_error) sp_toplistbrowse_add_ref(sp_toplistbrowse *tlb);
 
 /**
- * Decrease the context_object count of an toplist browse result
+ * Decrease the object count of an toplist browse result
  *
  * @param[in]   tlb       The toplist browse result object
  * @return                One of the following errors, from ::sp_error
@@ -3901,7 +3901,7 @@ SP_LIBEXPORT(sp_inbox *) sp_inbox_post_tracks(sp_session *session, const char *u
 SP_LIBEXPORT(sp_error) sp_inbox_error(sp_inbox *inbox);
 
 /**
- * Increase the context_object count of a inbox result
+ * Increase the object count of a inbox result
  *
  * @param[in]   inbox    The inbox result object
  * @return               One of the following errors, from ::sp_error
@@ -3910,7 +3910,7 @@ SP_LIBEXPORT(sp_error) sp_inbox_error(sp_inbox *inbox);
 SP_LIBEXPORT(sp_error) sp_inbox_add_ref(sp_inbox *inbox);
 
 /**
- * Decrease the context_object count of a inbox result
+ * Decrease the object count of a inbox result
  *
  * @param[in]   inbox    The inbox result object
  * @return               One of the following errors, from ::sp_error

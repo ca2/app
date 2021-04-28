@@ -63,19 +63,19 @@ public:
 
    bool contains(const ::payload & payload, index find = 0, index last = -1, ::count countMin = 1, ::count countMax = -1) const;
 
-   ::count remove_first_ci(const char * pcsz, index find = 0, index last = -1);
+   ::count erase_first_ci(const char * pcsz, index find = 0, index last = -1);
 
-   ::count remove_first(const char * pcsz, index find = 0, index last = -1);
+   ::count erase_first(const char * pcsz, index find = 0, index last = -1);
 
-   ::count remove_first(const ::payload & payload, index find = 0, index last = -1);
+   ::count erase_first(const ::payload & payload, index find = 0, index last = -1);
 
-   ::count remove_ci(const char * pcsz, index find = 0, index last = -1, ::count countMin = 0, ::count countMax = -1);
+   ::count erase_ci(const char * pcsz, index find = 0, index last = -1, ::count countMin = 0, ::count countMax = -1);
 
-   ::count remove(const char * pcsz, index find = 0, index last = -1, ::count countMin = 0, ::count countMax = -1);
+   ::count erase(const char * pcsz, index find = 0, index last = -1, ::count countMin = 0, ::count countMax = -1);
 
-   ::count remove(const ::payload & payload, index find = 0, index last = -1, ::count countMin = 0, ::count countMax = -1);
+   ::count erase(const ::payload & payload, index find = 0, index last = -1, ::count countMin = 0, ::count countMax = -1);
 
-   ::count remove(const var_array & vara);
+   ::count erase(const var_array & vara);
 
    var_array & operator -=(::payload payload);
    var_array & operator -=(var_array vara);

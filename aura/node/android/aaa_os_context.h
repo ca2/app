@@ -47,7 +47,7 @@ namespace android
       virtual bool native_modern_web_browser(const char * pcsz) override;
 
       virtual ::e_status create_service() override;
-      virtual ::e_status remove_service() override;
+      virtual ::e_status erase_service() override;
 
       virtual ::e_status start_service() override;
       virtual ::e_status stop_service() override;

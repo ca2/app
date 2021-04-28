@@ -81,10 +81,10 @@ namespace linux
    }
 
 
-   ::e_status dir_context::initialize(::layered * pobjectContext)
+   ::e_status dir_context::initialize(::object * pobject)
    {
 
-      auto estatus = ::object::initialize(pobjectContext);
+      auto estatus = ::object::initialize(pobject);
 
       if (!estatus)
       {
@@ -93,9 +93,9 @@ namespace linux
 
       }
 
-      __refer(m_pfilesystem, System->m_pfilesystem);
+      __refer(m_pfilesystem, psystem->m_pfilesystem);
 
-      __refer(m_pdirsystem, System->m_pdirsystem);
+      __refer(m_pdirsystem, psystem->m_pdirsystem);
 
       return ::success;
 
@@ -118,9 +118,13 @@ namespace linux
 
       m_pdirsystem->m_pathCa2 = pathCa2;
 
-      auto pdocument = create_xml_document();
+            auto psystem = m_psystem->m_paurasystem;
 
-      pdocument->load(Context.file().as_string(appdata() /"configuration\\directory.xml"));
+      auto pxml = psystem->xml();
+
+      auto pdocument= pxml->create_document();
+
+      pdocument->load(pcontext->m_papexcontext->file().as_string(appdata() /"configuration\\directory.xml"));
 
       if(pdocument->root() && pdocument->root()->get_name() == "directory_configuration")
       {
@@ -244,7 +248,7 @@ namespace linux
 
             ::file::listing straDir;
 
-            Context.dir().ls_dir(straDir, listing.m_pathFinal);
+            pcontext->m_papexcontext->dir().ls_dir(straDir, listing.m_pathFinal);
 
             for(i32 i = 0; i < straDir.get_count(); i++)
             {
@@ -273,7 +277,7 @@ namespace linux
 
                listing.m_pathFinal = strDir;
 
-               Context.dir().ls(listing);
+               pcontext->m_papexcontext->dir().ls(listing);
 
 
             }
@@ -287,7 +291,7 @@ namespace linux
 
             listing.m_bRecursive = false;
 
-            Context.dir().ls_file(listing, listing.m_pathFinal);
+            pcontext->m_papexcontext->dir().ls_file(listing, listing.m_pathFinal);
 
          }
 
@@ -546,7 +550,7 @@ namespace linux
                try
                {
 
-                  Context.file().del(str);
+                  pcontext->m_papexcontext->file().del(str);
 
                }
                catch(...)
@@ -561,7 +565,7 @@ namespace linux
                try
                {
 
-                  Context.file().del(str);
+                  pcontext->m_papexcontext->file().del(str);
 
                }
                catch(...)
@@ -608,7 +612,7 @@ namespace linux
       if(bRecursive)
       {
 
-         ::file::listing straPath(::get_context());
+         ::file::listing straPath(get_context());
 
          straPath.ls(psz);
 
@@ -692,7 +696,7 @@ namespace linux
    }
 
 
-   ::file::path dir_context::userquicklaunch(::layered * pobjectContext)
+   ::file::path dir_context::userquicklaunch(::object * pobject)
    {
 
       ::file::path path;
@@ -704,7 +708,7 @@ namespace linux
    }
 
 
-   ::file::path dir_context::userprograms(::layered * pobjectContext)
+   ::file::path dir_context::userprograms(::object * pobject)
    {
 
       ::file::path path;

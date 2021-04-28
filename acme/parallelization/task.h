@@ -2,46 +2,54 @@
 
 
 typedef __pointer_array(::matter) object_array;
-typedef map < ithread_t, __pointer(task) > task_map;
-typedef map < task *, ithread_t > task_id_map;
+typedef map < itask_t, __pointer(task) > task_map;
+typedef map < task *, itask_t > task_id_map;
 
 
 class CLASS_DECL_ACME task :
-   virtual public layered
+   virtual public object
 {
 
 public:
 
 
-   int                                 m_bitAvoidProcFork : 1;
-   int                                 m_bitIsRunning : 1;
-   int                                 m_bitIsPred : 1; // Is helper thread (as opposite to a "main" thread)
-   int                                 m_bitCoInitialize : 1;
+   bool                                            m_bAvoidProcedureFork : 1;
+   bool                                            m_bIsRunning : 1;
+   bool                                            m_bIsPredicate : 1; // Is helper thread (as opposite to a "main" thread)
+   bool                                            m_bCoInitialize : 1;
+   bool                                            m_bMessageThread : 1;
+   bool                                            m_bTaskToolsForIncreasedFps : 1;
 
 
-   hthread_t                           m_hthread;
-   ithread_t                           m_ithread;
-   string                              m_strTaskName;
-   string                              m_strTaskTag;
-   __pointer(::layered)                m_pobjectParent;
+   ::u64                                           m_uThreadAffinityMask;
 
-   __pointer(::matter)                 m_pmatter;
-   __pointer(manual_reset_event)       m_pevSleep;
+
+   htask_t                                         m_htask;
+   itask_t                                         m_itask;
+   string                                          m_strTaskName;
+   string                                          m_strTaskTag;
+   __pointer(::property_object)                    m_pobjectParent;
+
+   __pointer(::matter)                             m_pmatter;
+   __pointer(manual_reset_event)                   m_pevSleep;
 
 #ifdef WINDOWS
-   HRESULT                             m_hresultCoInitialize;
+   HRESULT                                         m_hresultCoInitialize;
 #endif
 
 #ifdef __DEBUG
-   char *                              m_pszDebug;
+   char *                                          m_pszDebug;
 #endif
+   __pointer(counter<::i32>)                       m_pcounter;
+   ::task_pointer                                  m_ptask;
+   ::routine                                       m_routineNext;
 
 
    task();
    virtual ~task();
 
 
-   virtual string get_tag() const;
+   virtual string get_tag() const override;
    virtual string thread_get_name() const;
 
 
@@ -49,7 +57,7 @@ public:
    virtual const char * get_task_tag() override;
 
 
-   //virtual context_object * calc_parent_thread();
+   //virtual object * calc_parent_thread();
 
    virtual bool set_thread_name(const char* pszName);
 
@@ -63,8 +71,12 @@ public:
 
 #endif
 
-   virtual void add_notify(::matter* pmatter);
-   virtual void remove_notify(::matter* pmatter);
+   virtual bool is_task_registered() const;
+   virtual void register_task();
+   virtual void unregister_task();
+
+   //virtual void add_notify(::matter* pmatter);
+   //virtual void erase_notify(::matter* pmatter);
 
 
    virtual ::e_status task_caller_on_init();
@@ -74,23 +86,20 @@ public:
 
    virtual void init_task();
    virtual void term_task();
-   virtual ::e_status do_task() override;
-   virtual ::e_status on_task() override;
+   //virtual ::e_status do_task() override;
+   //virtual ::e_status on_task() override;
+
+   virtual bool do_events();
+   virtual bool defer_pump_message();
 
 
-   virtual ::e_status begin_task(
+   virtual bool has_message() const;
+
+
+   virtual ::e_status branch(
       ::e_priority epriority = priority_normal,
       u32 nStackSize = 0,
-      u32 dwCreateFlags = 0);
-
-
-   virtual ::e_status start(
-      ::matter* pmatter,
-      ::e_priority epriority = priority_normal,
-      u32 nStackSize = 0,
-      u32 dwCreateFlags = 0);
-
-
+      u32 dwCreateFlags = 0 ARG_SEC_ATTRS_DEF);
 
 
    //template < typename METHOD >
@@ -106,25 +115,31 @@ public:
    //}
 
 
-   static ::task_pointer launch(
-      ::matter* pmatter,
-      ::e_priority epriority = priority_normal,
-      u32 nStackSize = 0,
-      u32 dwCreateFlags = 0);
+//   static ::task_pointer launch(
+//      ::matter* pmatter,
+//      ::e_priority epriority = priority_normal,
+//      u32 nStackSize = 0,
+//      u32 dwCreateFlags = 0);
 
 
-   virtual ::object * thread_parent();
+   virtual ::property_object * thread_parent();
 
 
    virtual bool is_thread() const override;
-   virtual bool thread_get_run() const;
+   virtual bool task_get_run() const override;
 
    virtual bool task_active() const;
-   virtual bool is_running() const;
+   virtual bool is_running() const override;
+
+
+   virtual ::e_status main();
+
+
+   virtual ::e_status stop_task();
 
    //virtual bool set_thread_name(const char* pszThreadName);
 
-   virtual bool is_predicate() const { return !m_pobjectContext || m_pobjectContext.get() == this; }
+   //virtual bool is_predicate() const { return !m_pobject || m_pobject.get() == this; }
 
    //virtual void set_thread_run(bool bRun = true);
 

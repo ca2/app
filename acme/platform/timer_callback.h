@@ -2,7 +2,7 @@
 
 
 class CLASS_DECL_ACME timer_callback :
-   virtual public ::context_object
+   virtual public ::matter
 {
 public:
 
@@ -11,7 +11,7 @@ public:
    virtual bool e_timer_is_ok();
 
 
-   virtual bool remove_timer(::timer* ptimer);
+   virtual bool erase_timer(::timer* ptimer);
 
    virtual ::user::interaction * get_user_interaction();
 

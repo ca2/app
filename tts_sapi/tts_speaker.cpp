@@ -2,6 +2,7 @@
 #include "aqua/multimedia/_.h"
 #include "tts_speaker.h"
 
+
 #pragma comment(lib, "Shlwapi")
 
 inline bool SpGetDefaultTokenFromCategoryIdAndLang(
@@ -228,7 +229,7 @@ inline bool SpGetDefaultTokenFromCategoryIdAndLang(
    //if (iFind >= 0)
    //{
 
-   //   strVoice = straAttributes.remove_at(iFind);
+   //   strVoice = straAttributes.erase_at(iFind);
 
    //}
 
@@ -424,7 +425,7 @@ namespace tts_sapi
          //   //
          //   // Get token corresponding to default voice
          //   //
-         //   hr = SpGetDefaultTokenFromCategoryIdAndLang(get_context_application(), L"HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Speech_OneCore\\Voices", &m_token[strLang], strLang, false);
+         //   hr = SpGetDefaultTokenFromCategoryIdAndLang(get_application(), L"HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Speech_OneCore\\Voices", &m_token[strLang], strLang, false);
 
          //   if (FAILED(hr))
          //   {
@@ -574,7 +575,7 @@ namespace tts_sapi
 
          //}
 
-         synchronization_lock synchronizationlock(mutex());
+         synchronous_lock synchronouslock(mutex());
 
          defer_co_initialize_ex(false);
 
@@ -610,7 +611,7 @@ namespace tts_sapi
             else
             {
 
-               hr = SpGetDefaultTokenFromCategoryIdAndLang(get_context_application(), L"HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Speech_OneCore\\Voices", &ptoken, strLang, "", false);
+               hr = SpGetDefaultTokenFromCategoryIdAndLang(get_application(), L"HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Speech_OneCore\\Voices", &ptoken, strLang, "", false);
 
                if (FAILED(hr))
                {
@@ -739,9 +740,9 @@ namespace tts_sapi
 
          }
 
-         auto & audio = Au(get_context());
+         auto paudio = m_psystem->m_paquasystem->audio();
 
-         audio.play_audio(pfile, bSync);
+         paudio->play_audio(pfile, bSync);
 
          return true;
 
@@ -777,7 +778,7 @@ namespace tts_sapi
 
          //}
 
-         synchronization_lock synchronizationlock(mutex());
+         synchronous_lock synchronouslock(mutex());
 
          defer_co_initialize_ex(false);
 
@@ -813,7 +814,7 @@ namespace tts_sapi
             else
             {
 
-               hr = SpGetDefaultTokenFromCategoryIdAndLang(get_context_application(), L"HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Speech_OneCore\\Voices", &ptoken, strLang, strAttributes, false);
+               hr = SpGetDefaultTokenFromCategoryIdAndLang(get_application(), L"HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Speech_OneCore\\Voices", &ptoken, strLang, strAttributes, false);
 
                if (FAILED(hr))
                {
@@ -942,7 +943,9 @@ namespace tts_sapi
 
          }
 
-         Au(get_context()).play_audio(pfile, bSync);
+         auto paudio = m_psystem->m_paquasystem->audio();
+
+         paudio->play_audio(pfile, bSync);
 
          return true;
 
@@ -959,7 +962,7 @@ namespace tts_sapi
 
          }
 
-         synchronization_lock synchronizationlock(mutex());
+         synchronous_lock synchronouslock(mutex());
 
          if (m_voice[strLang].is_null())
          {

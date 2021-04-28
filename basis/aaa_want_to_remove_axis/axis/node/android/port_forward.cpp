@@ -9,7 +9,7 @@ namespace android
 {
 
 
-   port_forward::port_forward(::layered * pobjectContext) :
+   port_forward::port_forward(::object * pobject) :
       ::object(pobject)
    {
 

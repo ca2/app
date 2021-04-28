@@ -52,7 +52,7 @@ namespace multimedia
       0,
       CALLBACK_WINDOW)))
       {
-      System->message_box("Could not open audio_mixer device!");
+      message_box("Could not open audio_mixer device!");
       PostMessage(e_message_close);
       return mmrc;
       }
@@ -69,7 +69,7 @@ namespace multimedia
       dwComponentType,
       &pdestination)))
       {
-      System->message_box("Could not open default audio_mixer destination!");
+      message_box("Could not open default audio_mixer destination!");
       PostMessage(e_message_close);
       return mmrc;
       }

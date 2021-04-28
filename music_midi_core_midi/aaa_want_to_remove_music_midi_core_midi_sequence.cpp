@@ -13,7 +13,7 @@ namespace music
       {
          
 
-         sequence::sequence(::layered * pobjectContext) :
+         sequence::sequence(::object * pobject) :
             ::object(pobject),
             ::music::midi::object(pobject),
             ::ikaraoke::karaoke(pobject),
@@ -66,7 +66,7 @@ namespace music
          ::e_status     sequence::Start()
          {
 
-            single_lock synchronizationlock(mutex(), true);
+            single_lock synchronouslock(mutex(), true);
 
             if (sequence::e_state_pre_rolled != get_state())
             {
@@ -81,7 +81,7 @@ namespace music
 
             ::e_status     estatus = ::success;
 
-            synchronizationlock.unlock();
+            synchronouslock.unlock();
 
             if(estatus == ::success)
             {
@@ -116,7 +116,7 @@ namespace music
             
             auto iDevice = m_pthread->m_pplayer->get_midi_out_device().i64();
             
-            __pointer(department) pdepartment = Application.midi();
+            __pointer(department) pdepartment = papplication->midi();
             
             __pointer(play_thread) pthread;
             
@@ -158,7 +158,7 @@ namespace music
 
             //return ::error_internal;
 
-   //         single_lock synchronizationlock(mutex(), true);
+   //         single_lock synchronouslock(mutex(), true);
    //
    //         if(get_state() != e_state_pre_rolled)
    //            return error_unsupported_function;
@@ -321,7 +321,7 @@ namespace music
           ***************************************************************************/
    //      ::e_status     sequence::Pause()
    //      {
-   //         single_lock synchronizationlock(mutex(), true);
+   //         single_lock synchronouslock(mutex(), true);
    //
    //         //    assert(nullptr != pSeq);
    //
@@ -365,7 +365,7 @@ namespace music
    //      {
    //         //    assert(nullptr != pSeq);
    //
-   //         single_lock synchronizationlock(mutex(), true);
+   //         single_lock synchronouslock(mutex(), true);
    //
    //         if (e_state_paused != get_state())
    //            return error_unsupported_function;
@@ -404,7 +404,7 @@ namespace music
          ::e_status     sequence::Stop()
          {
 
-            single_lock synchronizationlock(mutex(), true);
+            single_lock synchronouslock(mutex(), true);
 
             if(get_state() == e_state_stopping)
                return ::success;
@@ -413,7 +413,7 @@ namespace music
             if (get_state() != e_state_playing
                   && get_state() != e_state_paused)
             {
-               m_flags.remove(sequence::e_flag_waiting);
+               m_flags.erase(sequence::e_flag_waiting);
                GetPlayerLink().OnFinishCommand(command_stop);
                return ::success;
             }
@@ -430,7 +430,7 @@ namespace music
             //      if(::success != m_estatusLastError)
             //    {
             //     TRACE( "sequence::Stop() -> midiOutStop() returned %lu in seqStop()!\n", (u32)m_estatusLastError);
-            //   m_flags.remove(e_flag_waiting);
+            //   m_flags.erase(e_flag_waiting);
             // return error_not_ready;
             //}
             // }
@@ -469,7 +469,7 @@ namespace music
          ::e_status     sequence::get_ticks(imedia_time &  pTicks)
          {
 
-            synchronization_lock synchronizationlock(mutex());
+            synchronous_lock synchronouslock(mutex());
 
             //::e_status                    mmr;
 
@@ -516,7 +516,7 @@ namespace music
          ::e_status     sequence::get_millis(imedia_time & time)
          {
 
-            single_lock synchronizationlock(mutex());
+            single_lock synchronouslock(mutex());
 
             if (e_state_playing != get_state() &&
                   e_state_paused != get_state() &&
@@ -677,7 +677,7 @@ namespace music
              {
              plyriceventa = new array <::ikaraoke::lyric_event_v1, ::ikaraoke::lyric_event_v1 &>;
              }
-             ::memory_file memFile(get_context_application(), (LPBYTE) &lpdwParam[1], pheader->m_dwLength - sizeof(u32));
+             ::memory_file memFile(get_application(), (LPBYTE) &lpdwParam[1], pheader->m_dwLength - sizeof(u32));
              // x2x                  CArchive ar(&memFile, CArchive::load);
              lyriceventa.Serialize(ar);
              plyriceventa->append(lyriceventa); //
@@ -689,7 +689,7 @@ namespace music
              break;
              case EVENT_ID_NOTE_ON:
              {
-             ::file::byte_stream_memory_file memFile(get_context_application(), (LPBYTE) &lpdwParam[1], pheader->m_dwLength - sizeof(u32));
+             ::file::byte_stream_memory_file memFile(get_application(), (LPBYTE) &lpdwParam[1], pheader->m_dwLength - sizeof(u32));
              for(i32 i = 0; i < m_iaLevel.get_size(); i++)
              {
              byte b;
@@ -761,12 +761,12 @@ namespace music
    //         if(m_flags.has(e_flag_operation))
    //            m_flags.add(e_flag_was_operation);
    //         else
-   //            m_flags.remove(e_flag_was_operation);
+   //            m_flags.erase(e_flag_was_operation);
    //
    //         if(bSet)
    //            m_flags.add(e_flag_operation);
    //         else
-   //            m_flags.remove(e_flag_operation);
+   //            m_flags.erase(e_flag_operation);
    //      }
 
    //      void sequence::set_operation(e_operation eoperation)
@@ -880,7 +880,7 @@ namespace music
 
    //      ::e_status     sequence::CloseStream()
    //      {
-   //         single_lock synchronizationlock(mutex(), true);
+   //         single_lock synchronouslock(mutex(), true);
    //         if(IsPlaying())
    //         {
    //            Stop();
@@ -914,7 +914,7 @@ namespace music
             void sequence::OnMidiPlaybackEnd(::music::midi::sequence::event * pevent)
          {
             UNREFERENCED_PARAMETER(pevent);
-            single_lock synchronizationlock(mutex(), true);
+            single_lock synchronouslock(mutex(), true);
             //   LPMIDIHDR lpmh = pevent->m_lpmh;
             //   midi_callback_data * lpData = &m_midicallbackdata;
             //::e_status     estatus;
@@ -938,7 +938,7 @@ namespace music
                }
 
                m_estatusLastError = ::success;
-               m_flags.remove(e_flag_waiting);
+               m_flags.erase(e_flag_waiting);
 
                m_evMmsgDone.SetEvent();
             }
@@ -969,8 +969,8 @@ namespace music
 
          /*imedia_time sequence::GetPositionTicks()
           {
-          single_lock synchronizationlock(mutex());
-          if(!synchronizationlock.lock(millis(0)))
+          single_lock synchronouslock(mutex());
+          if(!synchronouslock.lock(millis(0)))
           return -1;
           MMTIME mmt;
           mmt.wType = TIME_TICKS;
@@ -994,7 +994,7 @@ namespace music
             if(bSet)
                m_flags.add(sequence::e_flag_tempo_change);
             else
-               m_flags.remove(sequence::e_flag_tempo_change);
+               m_flags.erase(sequence::e_flag_tempo_change);
          }
 
 
@@ -1272,7 +1272,7 @@ namespace music
             if(bSet)
                m_flags.add(sequence::e_flag_setting_position);
             else
-               m_flags.remove(sequence::e_flag_setting_position);
+               m_flags.erase(sequence::e_flag_setting_position);
          }
 
 

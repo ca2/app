@@ -569,7 +569,7 @@ namespace draw2d
       UNREFERENCED_PARAMETER(ppointOffset);
 
 
-      //::aura::get_system()->draw2d()->api().draw_and_fill_beziers(pgraphics, &m_pointsets, dRateX, ppointOffset);
+      //pdraw2d->api().draw_and_fill_beziers(pgraphics, &m_pointsets, dRateX, ppointOffset);
 
 
    }

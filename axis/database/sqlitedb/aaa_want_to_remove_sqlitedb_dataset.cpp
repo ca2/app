@@ -21,7 +21,7 @@
 //
 //
 //   //dataset::dataset(database * newDb) :
-//   //   object(newDb->get_context_application()),
+//   //   object(newDb->get_application()),
 //   //   ::database::dataset(newDb)
 //   //{
 //
@@ -179,9 +179,9 @@
 //
 //      char * errmsg = nullptr;
 //
-//      m_resultsetExecute.m_fielda.remove_all();
+//      m_resultsetExecute.m_fielda.erase_all();
 //
-//      m_resultsetExecute.m_rowa.remove_all();
+//      m_resultsetExecute.m_rowa.erase_all();
 //
 //      m_iLastResult = sqlite3_exec((sqlite3 *)get_handle(), sql, &axis_sqlite_callback, &m_resultsetExecute, &errmsg);
 //
@@ -278,7 +278,7 @@
 //
 //      }
 //
-//      synchronization_lock synchronizationlock(m_pdatabase->mutex());
+//      synchronous_lock synchronouslock(m_pdatabase->mutex());
 //
 //      close();
 //
@@ -371,10 +371,10 @@
 //
 //      ::database::dataset::close();
 //
-//      m_result.m_rowa.remove_all();
-//      m_result.m_fielda.remove_all();
-//      m_row.remove_all();
-//      m_rowEdit.remove_all();
+//      m_result.m_rowa.erase_all();
+//      m_result.m_fielda.erase_all();
+//      m_row.erase_all();
+//      m_rowEdit.erase_all();
 //      m_edataset = ::database::dataset_none;
 //      m_bActive = false;
 //
@@ -473,14 +473,14 @@
 //            return DB_UNEXPECTED_RESULT;
 //      }
 //
-//      bool dataset::remove_row()
+//      bool dataset::erase_row()
 //      {
 //         if(feof || fbof)
 //         {
 //            return false;
 //         }
 //
-//         m_result.m_records.remove_at(frecno);
+//         m_result.m_records.erase_at(frecno);
 //
 //         fbof = feof = (num_rows()==0)? true: false;
 //
@@ -503,7 +503,7 @@
 ////         }
 ////         if (!found)
 ////         {
-////            __throw(::database::exception(::get_context_application(),"Field not found: %s",f_name));
+////            __throw(::database::exception(::get_application(),"Field not found: %s",f_name));
 ////         }
 ////         return true;
 ////      }
@@ -511,7 +511,7 @@
 ////      {
 ////         return dataset::SetFieldValue(f_name, value);
 ////      }
-//////      __throw(::database::exception(::get_context_application(),"Not in Insert or Edit or Select state"));
+//////      __throw(::database::exception(::get_application(),"Not in Insert or Edit or Select state"));
 //////      //  return false;
 ////   }
 ////
@@ -526,7 +526,7 @@
 ////         }
 ////         else
 ////         {
-////            __throw(::database::exception(::get_context_application(),"Field not found: %d",iFieldIndex));
+////            __throw(::database::exception(::get_application(),"Field not found: %d",iFieldIndex));
 ////         }
 ////      }
 ////      else
@@ -534,7 +534,7 @@
 ////         ASSERT(false);
 ////         //      return dataset::SetFieldValue(f_name, value);
 ////      }
-////      __throw(::database::exception(::get_context_application(),"Not in Insert or Edit or Select state"));
+////      __throw(::database::exception(::get_application(),"Not in Insert or Edit or Select state"));
 ////      //  return false;
 ////   }
 ////
@@ -562,7 +562,7 @@
 ////         }
 ////         else
 ////         {
-////            __throw(::database::exception(::get_context_application(),"Field not found: %d",iFieldIndex));
+////            __throw(::database::exception(::get_application(),"Field not found: %d",iFieldIndex));
 ////         }
 ////      }
 ////      //   else
@@ -571,7 +571,7 @@
 ////         //return dataset::SetFieldValue(f_name, value);
 ////
 ////      }
-////      //__throw(::database::exception(::get_context_application(),"Not in Insert or Edit or Select state"));
+////      //__throw(::database::exception(::get_application(),"Not in Insert or Edit or Select state"));
 ////      //  return false;
 ////   }
 ////
@@ -608,7 +608,7 @@
 //   //            iFound = i;
 //   //            break;
 //   //         }
-//   //      if (iFound < 0) __throw(::database::exception(::get_context_application(),"Field not found: %s",fieldname));
+//   //      if (iFound < 0) __throw(::database::exception(::get_application(),"Field not found: %s",fieldname));
 //   //      ::count iNumRows = num_rows();
 //   //      for(i=0; i < iNumRows; i++)
 //   //         if(m_result.m_records[i][iFound] == value)
@@ -619,7 +619,7 @@
 //
 //   //      return false;
 //   //   }
-//   //   __throw(::database::exception(::get_context_application(),"not in Select state"));
+//   //   __throw(::database::exception(::get_application(),"not in Select state"));
 //   //}
 //
 //   /*void dataset::query_items(string_array & stra, const char * pszSql)

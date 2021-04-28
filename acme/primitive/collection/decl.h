@@ -122,7 +122,7 @@ namespace papaya
 
             itnext++;
 
-            container.remove_item(it.item());
+            container.erase_item(it.item());
 
          }
 
@@ -820,8 +820,10 @@ namespace allocator
 #define new ACME_NEW
 
 
+#include "tiny_array.h"
+
+
 #include "array_base.h"
 #include "array.h"
-
 
 

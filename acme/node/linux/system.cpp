@@ -12,29 +12,85 @@ namespace acme
 {
 
 
-   ::e_status system::start()
+
+
+   ::apex::application* system::get_main_application()
    {
 
-      auto estatus = on_start();
-
-      if(!estatus)
-      {
-
-         return estatus;
-
-      }
-
-      return estatus;
+      return nullptr;
 
    }
 
 
-   ::e_status system::on_start()
+   void system::system_construct(int argc, char** argv, char** envp)
+   {
+
+
+   }
+
+   void system::system_construct(int argc, wchar_t** argv, wchar_t** envp)
+   {
+
+
+   }
+
+
+//   ::e_status system::inline_init()
+//   {
+//
+//      auto estatus = process_init();
+//
+//      if (!estatus)
+//      {
+//
+//         return estatus;
+//
+//      }
+//
+//      return ::success;
+//
+//   }
+
+
+   ::e_status system::inline_term()
    {
 
       return ::success;
 
    }
+
+//
+//   ::e_status system::on_start_system()
+//   {
+//
+//      return ::success;
+//
+//   }
+//
+
+   ::e_status system::on_end()
+   {
+
+      return ::success;
+
+   }
+
+
+//   void system::os_construct()
+//   {
+//
+//
+//   }
+
+
+
+
+//   ::e_status system::on_start_system()
+//   {
+//
+//      return ::success;
+//
+//   }
 
 
    void system::os_construct()
@@ -87,6 +143,15 @@ namespace acme
 
       const char * pszDesktop = getenv("XDG_CURRENT_DESKTOP");
 
+      string strDesktop(pszDesktop);
+
+      if(strDesktop.compare_ci("kde") == 0)
+      {
+
+         return ::user::e_desktop_kde;
+
+      }
+
       utsname name;
 
       memset(&name, 0, sizeof(utsname));
@@ -137,6 +202,48 @@ namespace acme
       }
 
       return ::user::e_desktop_gnome;
+
+   }
+
+
+   ::e_status system::end()
+   {
+
+      //auto estatus = create_os_node();
+
+      //if (!estatus)
+      //{
+
+      //   return estatus;
+
+      //}
+
+      //if (m_pnode)
+      //{
+
+      //   auto estatus = m_pnode->start();
+
+      //}
+
+      auto estatus = on_end();
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      estatus = inline_term();
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return estatus;
 
    }
 

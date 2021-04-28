@@ -59,10 +59,10 @@ public:
    virtual ~progress_control();
 
 
-   virtual void on_set_scalar(e_scalar escalar, double d, int iFlags);
-   virtual void get_scalar_minimum(e_scalar escalar, double& d);
-   virtual void get_scalar(e_scalar escalar, double& d);
-   virtual void get_scalar_maximum(e_scalar escalar, double& d);
+   virtual void on_set_scalar(e_scalar escalar, double d, int iFlags) override;
+   virtual void get_scalar_minimum(e_scalar escalar, double& d) override;
+   virtual void get_scalar(e_scalar escalar, double& d) override;
+   virtual void get_scalar_maximum(e_scalar escalar, double& d) override;
 
    virtual void format_status(const char* pszFormat);
 

@@ -16,7 +16,7 @@
 //      WINUSHORT               m_atomSystemTopic;
 //
 //
-//      application(::layered * pobjectContext);
+//      application(::object * pobject);
 //      virtual ~application();
 //
 //      virtual HINSTANCE GetHinstance();
@@ -96,7 +96,7 @@
 //
 //      virtual void get_time(struct timeval *point);
 //      virtual void set_env_var(const string & payload,const string & value);
-//      virtual ithread_t get_thread_id();
+//      virtual itask_t get_thread_id();
 //      string draw2d_get_default_library_name();
 //
 //      string multimedia_audio_get_default_library_name();

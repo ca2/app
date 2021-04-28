@@ -142,7 +142,7 @@ namespace experience
 
       auto pframewindow = m_pframewindow;
 
-      synchronization_lock synchronizationlock(pframewindow->mutex());
+      synchronous_lock synchronouslock(pframewindow->mutex());
 
       ::rectangle_i32 rectWindow;
 
@@ -282,10 +282,10 @@ namespace experience
    }
 
 
-   bool frame::_001OnMouseMove(::message::mouse * pmouse)
+   bool frame::on_message_mouse_move(::message::mouse * pmouse)
    {
 
-      auto psession = Session;
+      auto psession = get_session();
 
       psession->m_pointCursor = pmouse->m_point;
 
@@ -304,7 +304,7 @@ namespace experience
                //m_pframewindow->prodevian_predicate([this, pmouseHold->()
                //{
 
-//                  m_pframewindow->dock_manager()->_001OnMouseMove(pmouseHold);
+//                  m_pframewindow->dock_manager()->on_message_mouse_move(pmouseHold);
 
                //});
 
@@ -314,7 +314,7 @@ namespace experience
             else
             {
 
-//               if (m_pframewindow->dock_manager()->_001OnMouseMove(pmouse))
+//               if (m_pframewindow->dock_manager()->on_message_mouse_move(pmouse))
 //               {
 //
 //                  return true;
@@ -336,7 +336,7 @@ namespace experience
                //m_pframewindow->prodevian_predicate([this, pmouseHold->()
                //{
 
-                  m_pframewindow->move_manager()->_001OnMouseMove(pmouseHold);
+                  m_pframewindow->move_manager()->on_message_mouse_move(pmouseHold);
 
                //});
 
@@ -346,7 +346,7 @@ namespace experience
             else
             {
 
-               if (m_pframewindow->move_manager()->_001OnMouseMove(pmouse))
+               if (m_pframewindow->move_manager()->on_message_mouse_move(pmouse))
                {
 
                   return true;
@@ -365,7 +365,7 @@ namespace experience
             //m_pframewindow->prodevian_predicate([this, pmouseHold->()
             //{
 
-               m_pframewindow->size_manager()->_001OnMouseMove(pmouseHold);
+               m_pframewindow->size_manager()->on_message_mouse_move(pmouseHold);
 
             //});
 
@@ -375,7 +375,116 @@ namespace experience
          else
          {
 
-            if (m_pframewindow->size_manager()->_001OnMouseMove(pmouse))
+            if (m_pframewindow->size_manager()->on_message_mouse_move(pmouse))
+            {
+
+               return true;
+
+            }
+
+         }
+
+      }
+
+      return false;
+
+   }
+
+
+   bool frame::on_message_set_cursor(::message::set_cursor * psetcursor)
+   {
+
+      auto psession = get_session();
+
+      psession->m_pointCursor = psetcursor->m_point;
+
+      if (!m_pframewindow->layout().is_zoomed() && !m_pframewindow->layout().is_full_screen())
+      {
+
+         if (!m_pframewindow->move_manager()->window_is_moving()
+            && !m_pframewindow->size_manager()->window_is_sizing())
+         {
+
+            if (m_pframewindow->dock_manager()->window_is_docking())
+            {
+
+               __pointer(::message::set_cursor) psetcursorHold = psetcursor;
+
+               //m_pframewindow->prodevian_predicate([this, pmouseHold->()
+               //{
+
+//                  m_pframewindow->dock_manager()->on_message_mouse_move(pmouseHold);
+
+               //});
+
+               return true;
+
+            }
+            else
+            {
+
+               //               if (m_pframewindow->dock_manager()->on_message_mouse_move(pmouse))
+               //               {
+               //
+               //                  return true;
+               //
+               //               }
+
+            }
+
+         }
+
+         if (!m_pframewindow->size_manager()->window_is_sizing())
+         {
+
+            if (m_pframewindow->move_manager()->window_is_moving())
+            {
+
+               __pointer(::message::set_cursor) psetcursorHold = psetcursor;
+
+               //m_pframewindow->prodevian_predicate([this, pmouseHold->()
+               //{
+
+               m_pframewindow->move_manager()->on_message_set_cursor(psetcursorHold);
+
+               //});
+
+               return true;
+
+            }
+            else
+            {
+
+               if (m_pframewindow->move_manager()->on_message_set_cursor(psetcursor))
+               {
+
+                  return true;
+
+               }
+
+            }
+
+         }
+
+         if (m_pframewindow->size_manager()->window_is_sizing())
+         {
+
+            __pointer(::message::set_cursor) psetcursorHold = psetcursor;
+
+            //m_pframewindow->prodevian_predicate([this, pmouseHold->()
+            //{
+
+            m_pframewindow->size_manager()->on_message_set_cursor(psetcursorHold);
+
+            //});
+
+            return true;
+
+         }
+         else
+         {
+
+            if (m_pframewindow->size_manager()->on_message_set_cursor(psetcursor))
             {
 
                return true;
@@ -454,14 +563,14 @@ namespace experience
          if(!m_pframewindow->move_manager()->window_is_moving()
                && !m_pframewindow->size_manager()->window_is_sizing()
             )
-             //  && m_pframewindow->dock_manager()->_001OnMouseMove(pmouse))
+             //  && m_pframewindow->dock_manager()->on_message_mouse_move(pmouse))
             return true;
 
          if(!m_pframewindow->move_manager()->window_is_moving()
-               && m_pframewindow->size_manager()->_001OnMouseMove(pmouse))
+               && m_pframewindow->size_manager()->on_message_mouse_move(pmouse))
             return true;
 
-         if(m_pframewindow->move_manager()->_001OnMouseMove(pmouse))
+         if(m_pframewindow->move_manager()->on_message_mouse_move(pmouse))
             return true;
 
       }
@@ -709,7 +818,7 @@ namespace experience
       if (!m_pcontrolbox)
       {
 
-         __compose(m_pcontrolbox, m_pexperience->m_plibrary->create_object("control_box"));
+         __compose(m_pcontrolbox, m_pexperience->m_plibrary->new_object < ::experience::control_box >());
 
          m_pcontrolbox->initialize(this);
 

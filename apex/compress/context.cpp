@@ -5,10 +5,10 @@
 //#include "compress_bz.h"
 
 
-compress_context::compress_context(::layered * pobjectContext) :
-   ::object(pobjectContext)
+compress_context::compress_context(::object * pobject)
 {
 
+   initialize(pobject);
 
 }
 
@@ -25,7 +25,7 @@ bool compress_context::get_patha(::file::path & path, string_array & straPath, c
 
    bool bFinalIsZip = false;
 
-   straPath.remove_all();
+   straPath.erase_all();
 
    path.Empty();
 
@@ -71,24 +71,21 @@ bool compress_context::get_patha(::file::path & path, string_array & straPath, c
 bool compress_context::ungz(::file::file * pfileOut, ::file::file * pfileIn)
 {
 
-   //uncompress_gz ungz(get_context_object());
+   //uncompress_gz ungz(this);
    uncompress_gz ungz;
 
-   return Context.file().output(pfileOut, &ungz, &::uncompress_gz::transfer, pfileIn);
+   return m_pcontext->m_papexcontext->file().output(pfileOut, &ungz, &::uncompress_gz::transfer, pfileIn);
 
 }
-
-
-
 
 
 bool compress_context::gz(::file::file * pfileOut, ::file::file * pfileIn, int iLevel)
 {
 
-   //compress_gz gz(get_context_object(), iLevel);
+   //compress_gz gz(this, iLevel);
    compress_gz gz( iLevel);
 
-   return Context.file().output(pfileOut, &gz, &compress_gz::transfer, pfileIn);
+   return m_pcontext->m_papexcontext->file().output(pfileOut, &gz, &compress_gz::transfer, pfileIn);
 
 }
 
@@ -104,9 +101,9 @@ bool compress_context::unbz(::file::file* pfileOut, ::file::file* pfileIn)
 
 
 //
-//   uncompress_bz unbz(get_context_object());
+//   uncompress_bz unbz(this);
 //
-//   return Context.file().output(pfileOut, &unbz, &::uncompress_bz::transfer, pfileIn);
+//   return m_pcontext->m_papexcontext->file().output(pfileOut, &unbz, &::uncompress_bz::transfer, pfileIn);
 //
 //}
 //
@@ -125,9 +122,9 @@ bool compress_context::bz(::file::file* pfileOut, ::file::file* pfileIn, int iBl
 
 
 //
-//   compress_bz bz(get_context_object(), iBlockSize, iVerbosity, iWorkFactor);
+//   compress_bz bz(this, iBlockSize, iVerbosity, iWorkFactor);
 //
-//   return Context.file().output(pfileOut, &bz, &::compress_bz::transfer, pfileIn);
+//   return m_pcontext->m_papexcontext->file().output(pfileOut, &bz, &::compress_bz::transfer, pfileIn);
 //
 //
 //}
@@ -233,7 +230,7 @@ bool compress_context::uncompress(memory& memoryOut, const ::memory& memoryIn)
    
    ::file::patha patha;
 
-   //zip_context zip(get_context_object());
+   //zip_context zip(this);
    zip_context zip(this);
    
    zip.extract_all(pszDir, pszFile, &patha);
@@ -259,7 +256,7 @@ bool compress_context::zip(const ::file::path & pszZip, const ::file::path & psz
 
    }
 
-   if (Context.dir().is(psz))
+   if (m_pcontext->m_papexcontext->dir().is(psz))
    {
 
       ::file::listing patha;
@@ -268,12 +265,12 @@ bool compress_context::zip(const ::file::path & pszZip, const ::file::path & psz
 
       file_pointer file;
 
-      Context.dir().rls_file(patha, psz);
+      m_pcontext->m_papexcontext->dir().rls_file(patha, psz);
 
       for (auto & path : patha)
       {
 
-         auto pfile = Context.file().get_reader(path);
+         auto pfile = m_pcontext->m_papexcontext->file().get_reader(path);
 
          infile.add_file(path.relative(), pfile);
 
@@ -299,7 +296,7 @@ bool compress_context::zip(const ::file::path & psz, ::apex::application * pobje
 bool compress_context::unzip(const ::payload & varFile, const ::file::path & pathZipFileCompressed)
 {
 
-   auto pfileTarget = Context.file().get_writer(varFile);
+   auto pfileTarget = m_pcontext->m_papexcontext->file().get_writer(varFile);
 
    if (!pfileTarget)
    {
@@ -327,7 +324,7 @@ bool compress_context::unzip(const ::payload & varFile, const ::file::path & pat
 bool compress_context::unzip(memory & m, const ::file::path & pathZipFileCompressed)
 {
 
-   zip_context zip(get_context_object());
+   zip_context zip(this);
 
    ::file::path pathZip;
 
@@ -340,7 +337,7 @@ bool compress_context::unzip(memory & m, const ::file::path & pathZipFileCompres
 
    }
 
-   auto pfile = Context.file().get_reader(pathZip);
+   auto pfile = m_pcontext->m_papexcontext->file().get_reader(pathZip);
 
    if (!pfile)
    {

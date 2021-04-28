@@ -32,7 +32,7 @@ namespace draw2d
       virtual ~icon();
 
 
-      virtual ::e_status initialize(::layered * pobjectContext) override;
+      virtual ::e_status initialize(::object * pobject) override;
 
 
       virtual void initialize_with_windowing_icon(::windowing::icon * picon);

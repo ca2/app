@@ -2,7 +2,7 @@
 
 
 class CLASS_DECL_APEX channel :
-   virtual public ::object
+   virtual public ::subject::manager
 {
 public:
 
@@ -28,19 +28,26 @@ public:
 
    static inline ::mutex * channel_mutex() { return s_pmutexChannel; }
 
-   virtual void finalize() override;
+   virtual ::e_status finalize() override;
 
-   virtual void remove_receiver(::object * preceiver);
+   virtual void erase_receiver(::object * preceiver);
 
    virtual void transfer_receiver(::message::handler_map & handlermap, ::object * preceiver);
 
-   virtual void remove_all_routes();
+   virtual void erase_all_routes();
 
 //   template < typename RECEIVER, typename MESSAGE >
 //   ::message::typed_route < MESSAGE > & get_typed_route(const ::id & id, RECEIVER * preceiverDerived);
 
    template < typename RECEIVER >
    bool add_handler(const ::id & id, RECEIVER * preceiver, void (RECEIVER:: * phandler)(::message::message * pmessage));
+   template < typename RECEIVER >
+   bool add_message_handler(::i64 iMessage, RECEIVER* preceiver, void (RECEIVER::* phandler)(::message::message* pmessage))
+   {
+
+      return add_handler((const ::id&)(::enum_message)iMessage, preceiver, phandler);
+
+   }
 
    template < typename MESSAGE_PRED >
    //bool add_handler(const ::id & id, ::object * preceiver, void * phandler, MESSAGE_PRED pred);
@@ -59,7 +66,7 @@ public:
 
 //#ifdef LINUX
 //
-//   virtual __pointer(::user::message) get_message_base(void * pevent, ::user::interaction * pwnd = nullptr);
+//   virtual __pointer(::user::message) get_message_base(void * pevent, ::user::interaction * puserinteraction = nullptr);
 //
 //#endif
 

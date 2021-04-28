@@ -79,7 +79,7 @@ public:
    virtual ::file::path side_get_matter_path(string strMatter);
 
 
-   class ::hyperlink hyperlink() { return get_context_object(); }
+   class ::hyperlink hyperlink() { return this; }
 
 
    // get a file and if there are exceptions, should show end user friendly messages
@@ -155,7 +155,7 @@ public:
    inline ::e_status save_to_file(const ::payload& varFile, const ::matter* pobject);
 
 
-   virtual void finalize() override;
+   virtual ::e_status finalize() override;
 
 
 };

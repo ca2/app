@@ -36,11 +36,6 @@ namespace user
       {
       }
 
-      margin(::layered * pobjectContext):
-         ::object(pobjectContext)
-      {
-      }
-
       virtual ~margin()
       {
       }

@@ -476,15 +476,15 @@ namespace hi5
       memHmac.set_size(1024 * 16);
 
       //hmac_context context;
-      System->crypto().hmac(memHmac, sigBase, secretSigningKey);
+      psystem->crypto().hmac(memHmac, sigBase, secretSigningKey);
       //context.digest(memHmac.get_data(), sigBase, secretSigningKey);
 
 
       //string strHmac;
-      //System->memory_to_hex(strHmac, memHmac);
+      //psystem->memory_to_hex(strHmac, memHmac);
 
       /* Do a base64 encode of signature */
-      string base64Str = System->base64().encode(memHmac.get_data(), 20);
+      string base64Str = pbase64->encode(memHmac.get_data(), 20);
 
       /* Do an url encode */
       oAuthSignature = urlencode( base64Str );
@@ -555,7 +555,7 @@ namespace hi5
       /* Get url encoded base64 signature using request type, url and parameters */
       getSignature(eType, pureUrl, setSignature, oauthSignature);
 
-      ::hi5::oAuthKeyValuePairs pairs(get_object());
+      ::hi5::oAuthKeyValuePairs pairs(this);
       /* Now, again build key-value pairs with signature this time */
       buildOAuthTokenKeyValuePairs(includeOAuthVerifierPin, pairs, oauthSignature, setHeader);
 
@@ -596,7 +596,7 @@ namespace hi5
          string str( "" );
 
          /* Push key-value pairs to a list of strings */
-         keyValueList.remove_all();
+         keyValueList.erase_all();
 
          for(auto property : rawParamMap)
          {

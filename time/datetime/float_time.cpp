@@ -3,6 +3,8 @@
 //#include <math.h>
 #include <time.h>
 
+#include "float_time.h"
+
 namespace datetime
 {
 

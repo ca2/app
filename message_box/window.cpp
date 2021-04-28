@@ -57,9 +57,9 @@ namespace app_message_box
 
   //    ModifyStyleEx(0, WS_EX_LAYERED);
 
-      auto & app = App(this);
+      auto papplication = get_application();
 
-      app.m_bInterprocessIntercommunication = false;
+      papplication->m_bInterprocessIntercommunication = false;
 
       ::user::interaction * p = this;
 
@@ -142,7 +142,9 @@ namespace app_message_box
 
          double dFrequency = 1.0 / m_dBreathPeriod;
 
-         double omega = 2.0 * System->math().GetPi() * dFrequency;
+         auto pmathematics = ::mathematics::mathematics();
+
+         double omega = 2.0 * pmathematics->get_pi() * dFrequency;
 
          double angle = omega * time;
 
@@ -170,13 +172,17 @@ namespace app_message_box
 
             dFrequency = 1.0 / m_dBreathPeriod;
 
-            omega = 2.0 * System->math().GetPi() * dFrequency;
+            auto pmathematics = ::mathematics::mathematics();
+
+            omega = 2.0 * pmathematics->get_pi() * dFrequency;
 
             double angleNew = omega * time;
 
             m_dPhaseShift = angle - angleNew;
 
-            m_dPhaseShift = fmod(m_dPhaseShift, 2.0 * System->math().GetPi());
+            //auto pmathematics = ::mathematics::mathematics();
+
+            m_dPhaseShift = fmod(m_dPhaseShift, 2.0 * pmathematics->get_pi());
 
          }
 
@@ -188,7 +194,7 @@ namespace app_message_box
 
          pitem->m_rectangle.bottom = pitem->m_rectangle.top + iSize;
 
-         auto psession = Session;
+         auto psession = get_session();
 
          auto puser = psession->user();
 
@@ -308,7 +314,9 @@ namespace app_message_box
             if (future->m_edialogresult == e_dialog_result_yes)
             {
 
-               Application.finish();
+               auto papplication = get_application();
+
+               papplication->_001TryCloseApplication();
 
             }
             else

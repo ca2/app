@@ -51,7 +51,7 @@ namespace user
 
       m_bMouseHoverOnCapture = true;
 
-      m_bSimpleUIDefaultMouseHandlingLeftButtonDownCapture = true;
+      //m_bSimpleUIDefaultMouseHandlingMouseCaptureOnLeftButtonDown = true;
 
       //m_erectMargin = rect_button_margin;
       //m_erectBorder = rect_button_border;
@@ -340,16 +340,12 @@ namespace user
 
       auto pstyle = get_style(pgraphics);
 
+      auto psystem = m_psystem->m_paurasystem;
+
       if (get_translucency(pstyle) >= e_translucency_present)
       {
 
-         class imaging & imaging = ::aura::get_system()->imaging();
-
-         imaging.color_blend(
-         pgraphics,
-         rectClient,
-         crBk,
-         127);
+         pgraphics->fill_rectangle(rectClient, ::color::color(crBk)+ ::opacity(127));
 
       }
       else
@@ -732,7 +728,7 @@ namespace user
       // use the main bitmap for up, the selected bitmap for down
       ::image_pointer pimage = m_pbitmap->m_pimage;
 
-      auto psession = Session;
+      auto psession = get_session();
 
       if(echeck() == ::check_checked && ::is_ok(m_pbitmap->m_pimageSel))
          pimage = m_pbitmap->m_pimageSel;
@@ -816,7 +812,7 @@ namespace user
          // use the main bitmap for up, the selected bitmap for down
          ::image_pointer pimage = m_pbitmap->m_pimage;
 
-         auto psession = Session;
+         auto psession = get_session();
 
          if (echeck() == ::check_checked && ::is_ok(m_pbitmap->m_pimageSel))
             pimage = m_pbitmap->m_pimageSel;
@@ -924,18 +920,18 @@ namespace user
 
       }
 
-      class imaging & imaging = ::aura::get_system()->imaging();
+      auto psystem = m_psystem->m_paurasystem;
 
       ::rectangle_i32 rectangle = rectClient;
-      imaging.color_blend_3dRect(pgraphics,rectangle,colorExt1TL,215,colorExt1BR,215);
+      pgraphics->color_blend_3dRect(rectangle,colorExt1TL,215,colorExt1BR,215);
       rectangle.deflate(1,1,1,1);
-      imaging.color_blend_3dRect(pgraphics,rectangle,colorExt1TL,210,colorExt1BR,210);
+      pgraphics->color_blend_3dRect(rectangle,colorExt1TL,210,colorExt1BR,210);
       rectangle.deflate(1,1,1,1);
-      imaging.color_blend_3dRect(pgraphics,rectangle,colorExt2TL,205,colorExt2BR,205);
+      pgraphics->color_blend_3dRect(rectangle,colorExt2TL,205,colorExt2BR,205);
       rectangle.deflate(1,1,1,1);
-      imaging.color_blend_3dRect(pgraphics,rectangle,colorExt2TL,200,colorExt2BR,200);
+      pgraphics->color_blend_3dRect(rectangle,colorExt2TL,200,colorExt2BR,200);
       rectangle.deflate(1,1,1,1);
-      imaging.color_blend(pgraphics,rectangle.left,rectangle.top,rectangle.width(),rectangle.height(),cr,200);
+      pgraphics->color_blend(rectangle,cr,200);
       rectangle.deflate(1,1,1,1);
 
       i32 x1 = rectangle.left;
@@ -951,7 +947,7 @@ namespace user
 
       pgraphics->set(pen);
 
-      imaging.color_blend_3dRect(pgraphics,rectangle,colorExt1TL,220,colorExt1BR,220);
+      pgraphics->color_blend_3dRect(rectangle,colorExt1TL,220,colorExt1BR,220);
 
 
    }
@@ -1038,17 +1034,21 @@ namespace user
 
       }
 
+      auto pcontext = m_pcontext->m_pauracontext;
+
+      auto pcontextimage = pcontext->context_image();
+
       if(!payload.is_empty())
       {
 
-         m_pbitmap->m_pimage = Application.image().get_image(payload);
+         m_pbitmap->m_pimage = pcontextimage->get_image(payload);
 
       }
 
       if(!varSel.is_empty())
       {
 
-         m_pbitmap->m_pimageSel = Application.image().get_image(varSel);
+         m_pbitmap->m_pimageSel = pcontextimage->get_image(varSel);
 
       }
 
@@ -1056,7 +1056,7 @@ namespace user
       if(!varFocus.is_empty())
       {
 
-         m_pbitmap->m_pimageFocus = Application.image().get_image(varFocus);
+         m_pbitmap->m_pimageFocus = pcontextimage->get_image(varFocus);
 
       }
 
@@ -1064,7 +1064,7 @@ namespace user
       if(!varDisabled.is_empty())
       {
          
-         m_pbitmap->m_pimageDisabled = Application.image().get_image(varDisabled);
+         m_pbitmap->m_pimageDisabled = pcontextimage->get_image(varDisabled);
 
       }
 
@@ -1072,7 +1072,7 @@ namespace user
       if(!varHover.is_empty())
       {
 
-         m_pbitmap->m_pimageHover = Application.image().get_image(varHover);
+         m_pbitmap->m_pimageHover = pcontextimage->get_image(varHover);
 
       }
 

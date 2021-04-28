@@ -267,7 +267,7 @@ namespace http
 
       m_propertysetHeader.clear();
 
-      m_cookies.remove_all();
+      m_cookies.erase_all();
 
    }
 

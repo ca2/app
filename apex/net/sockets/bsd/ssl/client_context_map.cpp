@@ -28,7 +28,7 @@ namespace sockets
       if (pcontext.is_null())
       {
 
-         pcontext = __new(ssl_client_context(get_context_application(), pmethod));
+         pcontext = __new(ssl_client_context(pmethod));
 
       }
 

@@ -13,7 +13,7 @@ namespace axis
 
       __composite(class ::account::user_set)            m_puserset;
 
-      __composite(class ::xml::department)              m_pxml;
+      //__composite(class ::xml::department)              m_pxml;
 
 
       __composite(class ::geo::department)              m_pgeo;
@@ -31,7 +31,9 @@ namespace axis
 
       void common_construct();
 
-      virtual ::e_status initialize(::layered * pobjectContext) override;
+      virtual ::e_status initialize(::object * pobject) override;
+
+      virtual void on_add_session(::apex::session * papexsession) override;
 
       virtual ::e_status init() override;
       virtual ::e_status inline_init() override;
@@ -57,14 +59,14 @@ namespace axis
 
 
 
-      virtual void on_request(::create * pcreate) override;
+      //virtual void on_request(::create * pcreate) override;
 
 
 
 
       ::net::email_department &                    email();
 
-      ::xml::department &                          xml();
+      //::xml::department &                          xml();
 
       ::geo::department &                          geo();
 
@@ -88,7 +90,7 @@ namespace axis
 
       //virtual ::e_status init2();
 
-      virtual ::e_status post_create_requests() override;
+      virtual ::e_status post_creation_requests() override;
 
       //virtual void term_system();
 

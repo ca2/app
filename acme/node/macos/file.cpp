@@ -515,7 +515,7 @@ namespace macos
       "tooManyOpenFiles",
       "accessDenied",
       "invalidFile",
-      "removeCurrentDir",
+      "eraseCurrentDir",
       "directoryFull",
       "badSeek",
       "hardIO",

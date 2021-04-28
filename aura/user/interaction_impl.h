@@ -100,7 +100,7 @@ namespace user
 
       bool                                      m_bPointInside;
       ::point_i32                               m_pointInside;
-      ::user::primitive *                       m_pprimitiveFocus;
+      //::user::primitive *                       m_pprimitiveFocus;
       ::user::primitive *                       m_pprimitiveSoftwareKeyboard;
 
       __pointer(::windowing::window)            m_pwindow;
@@ -145,9 +145,9 @@ namespace user
       virtual void assert_valid() const override;
       virtual void dump(dump_context & dumpcontext) const override;
 
-      virtual void set_config_fps(double dConfigFps) override;
-      virtual double get_config_fps() override;
-      virtual double get_output_fps() override;
+      virtual void set_config_fps(double dConfigFps);
+      virtual double get_config_fps();
+      virtual double get_output_fps();
 
       void user_common_construct();
 
@@ -168,10 +168,13 @@ namespace user
       virtual ::e_status update_graphics_resources();
 
 
+      virtual ::e_status set_tool_window(bool bSet) override;
+
+
       virtual bool create_host(::user::interaction * pinteraction);
 
 
-      virtual ::e_status main_async(const ::routine & routine, e_priority epriority = priority_normal) override;
+      virtual ::e_status interaction_branch(const ::routine & routine) override;
 
       // call these from window
       //virtual ::e_status set_keyboard_focus();
@@ -209,8 +212,12 @@ namespace user
       //virtual bool ModifyStyleEx(u32 dwRemove,u32 dwAdd,::u32 nFlags = 0) override;
 
 
-      virtual void mouse_hover_add(::user::interaction * pinterface) override;
-      virtual bool mouse_hover_remove(::user::interaction * pinterface) override;
+      virtual ::e_status set_icon(::windowing::icon* picon);
+      virtual __pointer(::windowing::icon) get_icon() const;
+
+
+      virtual bool mouse_hover_add(::user::interaction * pinterface) override;
+      virtual bool mouse_hover_erase(::user::interaction * pinterface) override;
 
 
       virtual void _task_transparent_mouse_event();
@@ -224,8 +231,8 @@ namespace user
       //virtual void mouse_hover_step(const __status < ::point_i32 > & statusPointCursor);
 
 
-      virtual bool add_prodevian(::context_object * pobject) override;
-      virtual bool remove_prodevian(::context_object * pobject) override;
+      virtual bool add_prodevian(::object * pobject) override;
+      virtual bool erase_prodevian(::object * pobject) override;
       inline bool has_prodevian() const noexcept { return m_ptraProdevian.has_element(); }
 
       virtual void prodevian_stop() override;
@@ -242,22 +249,22 @@ namespace user
       //bool attach(::windowing::window * pwindow_New) override;
       //oswindow detach() override;
 
-      virtual void finalize() override;
+      virtual ::e_status finalize() override;
 
       virtual void route_command_message(::message::command * pcommand) override;
 
-      DECL_GEN_SIGNAL(_002OnDraw);
+      DECLARE_MESSAGE_HANDLER(_002OnDraw);
 
-      DECL_GEN_SIGNAL(_001OnKillFocus);
-      DECL_GEN_SIGNAL(_001OnSetFocus);
-      DECL_GEN_SIGNAL(_001OnShowWindow);
-      DECL_GEN_SIGNAL(_001OnApplyVisual);
-      DECL_GEN_SIGNAL(_001OnMove);
-      DECL_GEN_SIGNAL(_001OnSize);
-      DECL_GEN_SIGNAL(_001OnDestroyWindow);
-      DECL_GEN_SIGNAL(on_message_destroy);
-      DECL_GEN_SIGNAL(_001OnRedraw);
-      DECL_GEN_SIGNAL(_001OnDoShowWindow);
+      DECLARE_MESSAGE_HANDLER(_001OnKillFocus);
+      DECLARE_MESSAGE_HANDLER(_001OnSetFocus);
+      DECLARE_MESSAGE_HANDLER(_001OnShowWindow);
+      DECLARE_MESSAGE_HANDLER(_001OnApplyVisual);
+      DECLARE_MESSAGE_HANDLER(_001OnMove);
+      DECLARE_MESSAGE_HANDLER(_001OnSize);
+      DECLARE_MESSAGE_HANDLER(_001OnDestroyWindow);
+      DECLARE_MESSAGE_HANDLER(on_message_destroy);
+      DECLARE_MESSAGE_HANDLER(_001OnRedraw);
+      DECLARE_MESSAGE_HANDLER(_001OnDoShowWindow);
 
 
 //#if (WINVER >= 0x0500) && defined(WINDOWS_DESKTOP)
@@ -309,11 +316,11 @@ namespace user
 
 
       virtual bool destroy_impl_only() override;
-      virtual bool DestroyWindow() override;
+      virtual bool start_destroying_window() override;
       virtual void destroy_window() override;
 
       // special pre-creation and interaction_impl rectangle_i32 adjustment hooks
-      virtual bool pre_create_window(::user::system * pusersystem) override;
+      virtual bool pre_create_window(::user::system * pusersystem);
 
       // Advanced: virtual AdjustWindowRect
 //      enum AdjustType { adjustBorder = 0,adjustOutside = 1 };
@@ -372,16 +379,16 @@ namespace user
       //virtual bool BringWindowToTop() override;
 
 //#ifdef WINDOWS_DESKTOP
-//      virtual bool GetWindowPlacement(WINDOWPLACEMENT* pwndpl);
+//      virtual bool GetWindowPlacement(WINDOWPLACEMENT* puserinteractionpl);
 //
-//      virtual bool SetWindowPlacement(const WINDOWPLACEMENT* pwndpl);
+//      virtual bool SetWindowPlacement(const WINDOWPLACEMENT* puserinteractionpl);
 //
 //#endif
 
       // Coordinate Mapping Functions
-      virtual void MapWindowPoints(::user::interaction_impl* pwndTo,POINT_I32 * pPoint,::u32 nCount);
+      virtual void MapWindowPoints(::user::interaction_impl* puserinteractionTo,POINT_I32 * pPoint,::u32 nCount);
 
-      virtual void MapWindowPoints(::user::interaction_impl* pwndTo,RECTANGLE_I32 * prectangle);
+      virtual void MapWindowPoints(::user::interaction_impl* puserinteractionTo,RECTANGLE_I32 * prectangle);
 
 
       virtual void Print(::draw2d::graphics_pointer & pgraphics,u32 dwFlags) const;
@@ -391,17 +398,17 @@ namespace user
       virtual void SetRedraw(bool bRedraw = true) override;
       virtual bool GetUpdateRect(RECTANGLE_I32 * prectangle,bool bErase = false) override;
 
-      virtual i32 GetUpdateRgn(::draw2d::region* pRgn,bool bErase = false) override;
+      virtual i32 GetUpdateRgn(::draw2d::region* pRgn,bool bErase = false);
       virtual void Invalidate(bool bErase = true) override;
-      virtual void InvalidateRect(const ::rectangle_i32 & rectangle,bool bErase = true) override;
+      virtual void InvalidateRect(const ::rectangle_i32 & rectangle,bool bErase = true);
 
-      virtual void InvalidateRgn(::draw2d::region* pRgn,bool bErase = true) override;
-      virtual void ValidateRect(const ::rectangle_i32 & rectangle) override;
+      virtual void InvalidateRgn(::draw2d::region* pRgn,bool bErase = true);
+      virtual void ValidateRect(const ::rectangle_i32 & rectangle);
 
-      virtual void ValidateRgn(::draw2d::region* pRgn) override;
+      virtual void ValidateRgn(::draw2d::region* pRgn);
       //virtual bool display(::e_display edisplay) override;
       //virtual bool _is_window_visible() override;
-      virtual void ShowOwnedPopups(bool bShow = true) override;
+      virtual void ShowOwnedPopups(bool bShow = true);
 
       //virtual __pointer(::draw2d::graphics) GetDCEx(::draw2d::region* prgnClip,u32 flags);
       virtual bool LockWindowUpdate();
@@ -435,9 +442,9 @@ namespace user
 
       //virtual ::point_i32 get_cursor_position() const override;
 
-      virtual ::e_status set_cursor(::windowing::cursor * pcursor) override;
+      virtual ::e_status set_mouse_cursor(::windowing::cursor * pcursor) override;
 
-      virtual ::e_status set_cursor(enum_cursor ecursor) override;
+      //virtual ::e_status set_cursor(enum_cursor ecursor) override;
 
       virtual bool DrawCaption(::draw2d::graphics_pointer & pgraphics,const rectangle_i32 & prc,::u32 uFlags);
 
@@ -582,17 +589,17 @@ namespace user
       virtual void CenterWindow(::user::interaction * pAlternateOwner = nullptr) override;
 
 
-      DECL_GEN_SIGNAL(on_message_create);
-      DECL_GEN_SIGNAL(_001OnDestroy);
-      DECL_GEN_SIGNAL(_001OnPaint);
-      DECL_GEN_SIGNAL(_001OnPrint);
-      DECL_GEN_SIGNAL(_001OnCaptureChanged);
-      DECL_GEN_SIGNAL(_001OnPrioCreate);
+      DECLARE_MESSAGE_HANDLER(on_message_create);
+      DECLARE_MESSAGE_HANDLER(_001OnDestroy);
+      DECLARE_MESSAGE_HANDLER(_001OnPaint);
+      DECLARE_MESSAGE_HANDLER(_001OnPrint);
+      DECLARE_MESSAGE_HANDLER(_001OnCaptureChanged);
+      DECLARE_MESSAGE_HANDLER(_001OnPrioCreate);
 
 
 #ifdef WINDOWS_DESKTOP
 
-      DECL_GEN_SIGNAL(_001OnWindowPosChanged);
+      DECLARE_MESSAGE_HANDLER(_001OnWindowPosChanged);
 
 #endif
 
@@ -616,7 +623,7 @@ namespace user
 
 
       virtual bool HandleFloatingSysCommand(::u32 nID,lparam lParam);
-      virtual bool IsTopParentActive() override;
+      virtual bool IsTopParentActive();
       virtual void ActivateTopParent() override;
       virtual void on_final_release();
 
@@ -648,7 +655,7 @@ namespace user
       //virtual iptr get_window_long_ptr(i32 nIndex) const override;
       //virtual iptr set_window_long_ptr(i32 nIndex, iptr lValue) override;
 
-      virtual interaction_impl * get_impl() const override;
+      virtual interaction_impl * get_impl() const;
 
       virtual void _001UpdateWindow() override;
 
@@ -668,14 +675,15 @@ namespace user
 
       //virtual void set_handle(::windowing::window * pwindow);
       
-      virtual oswindow get_oswindow() const override;
+      virtual oswindow get_oswindow() const;
 
-      virtual ::graphics::graphics * get_window_graphics() override;
+      virtual ::graphics::graphics * get_window_graphics();
 
-      virtual bool is_composite() override;
+      
+      virtual bool is_composite();
 
 
-      virtual ::e_status set_finish(::context_object * pcontextobject) override;
+      virtual ::e_status set_finish(::object * pobject);
 
 
       virtual void on_layout(::draw2d::graphics_pointer & pgraphics) override;
@@ -684,16 +692,16 @@ namespace user
 
       virtual void on_configuration_change(::user::primitive * pprimitiveSource) override;
 
-      //virtual ::user::primitive * get_keyboard_focus() override;
+      virtual ::user::primitive * get_keyboard_focus() override;
       //virtual ::e_status set_keyboard_focus(::user::primitive * pprimitive) override;
-      //virtual ::e_status remove_keyboard_focus(::user::primitive * pprimitive) override;
+      //virtual ::e_status erase_keyboard_focus(::user::primitive * pprimitive) override;
       //virtual ::e_status clear_keyboard_focus() override;
       //virtual ::e_status impl_set_keyboard_focus(::user::primitive * pprimitive) override;
-      //virtual ::e_status impl_remove_keyboard_focus(::user::primitive * pprimitive) override;
+      //virtual ::e_status impl_erase_keyboard_focus(::user::primitive * pprimitive) override;
       //virtual ::e_status impl_clear_keyboard_focus() override;
 
-      virtual void redraw_add(::context_object * point_i32) override;
-      virtual void redraw_remove(::context_object * point_i32) override;
+      virtual void redraw_add(::object * point_i32) override;
+      virtual void redraw_erase(::object * point_i32) override;
       virtual bool has_redraw() override;
       virtual ::mutex * mutex_redraw();
 
@@ -766,7 +774,7 @@ namespace user
       ::user::interaction * m_puiForward;
 
 
-      guie_message_wnd(::layered * pobjectContext);
+      guie_message_wnd(::property_object * pobject);
 
 
       virtual void message_handler(::message::message * pusermessage);

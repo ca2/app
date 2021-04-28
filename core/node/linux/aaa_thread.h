@@ -11,7 +11,7 @@ namespace linux
 //   public:
 //
 //
-//      thread(::layered * pobjectContext);
+//      thread(::object * pobject);
 //      virtual ~thread();
 //
 //

@@ -29,7 +29,7 @@ namespace colorertake5
       *        text data in line-separated form. Can't be nullptr.
       */
 
-      base_editor(::layered * pobjectContext);
+      base_editor(::object * pobject);
       ~base_editor();
 
       void initialize(line_source * plinesource);
@@ -104,7 +104,7 @@ namespace colorertake5
       /**
       * Removes previously added RegionHandler object.
       */
-      void removeRegionHandler(RegionHandler *rh);
+      void eraseRegionHandler(RegionHandler *rh);
 
       /**
       * Adds specified EditorListener object into parse process.
@@ -114,7 +114,7 @@ namespace colorertake5
       /**
       * Removes previously added EditorListener object.
       */
-      void removeEditorListener(EditorListener *el);
+      void eraseEditorListener(EditorListener *el);
 
       /**
       * Searches and creates pair match object in currently visible text.

@@ -23,7 +23,7 @@ namespace console
       bool                    m_bMoveDrag;
       bool                    m_bLControl;
 
-      prompt_frame(::layered * pobjectContext);
+      prompt_frame(::object * pobject);
       virtual ~prompt_frame();
 
       virtual void install_message_routing(::channel * pchannel) override;
@@ -52,13 +52,13 @@ namespace console
       virtual ::user::enum_translucency get_translucency(::user::style * pstyle) const override;
 
 
-      DECL_GEN_SIGNAL(on_message_create);
+      DECLARE_MESSAGE_HANDLER(on_message_create);
       void _001OnTimer(::timer * ptimer) override;
 
-      DECL_GEN_SIGNAL(_001OnClose);
-      DECL_GEN_SIGNAL(_001OnMove);
-      DECL_GEN_SIGNAL(_001OnShowWindow);
-      DECL_GEN_SIGNAL(_001OnApp2000);
+      DECLARE_MESSAGE_HANDLER(_001OnClose);
+      DECLARE_MESSAGE_HANDLER(_001OnMove);
+      DECLARE_MESSAGE_HANDLER(_001OnShowWindow);
+      DECLARE_MESSAGE_HANDLER(_001OnApp2000);
 
 
       virtual void message_queue_message_handler(::message::message * pmessage) override;

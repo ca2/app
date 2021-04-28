@@ -198,7 +198,7 @@ namespace coreimage_imaging
       
       memory memory;
       
-      bool bOk = Context.file().as_memory(varFile, memory);
+      bool bOk = pcontext->m_papexcontext->file().as_memory(varFile, memory);
       
       if(!bOk)
       {
@@ -207,7 +207,7 @@ namespace coreimage_imaging
          
       }
       
-      auto estatus = Application.image().load_svg(pimage, &memory);
+      auto estatus = pcontextimage->load_svg(pimage, &memory);
       
       if(::succeeded(estatus))
       {

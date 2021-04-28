@@ -6,7 +6,7 @@ namespace http
 {
 
 
-   application::application(::layered * pobjectContext) :
+   application::application(::object * pobject) :
       ::object(pobject)
    {
 
@@ -32,7 +32,7 @@ namespace http
    property_set & application::process_set(property_set & set, const char * pszUrl)
    {
 
-      set["app"] = get_context_application();
+      set["app"] = get_application();
 
       return set;
 
@@ -42,7 +42,7 @@ namespace http
    bool application::get(::sockets::socket_handler & handler, __pointer(::sockets::http_client_socket) & psession, const char * pszUrl,property_set & set)
    {
 
-      return Context.http().http_get(handler, psession, pszUrl, process_set(set, pszUrl));
+      return pcontext->m_papexcontext->http().http_get(handler, psession, pszUrl, process_set(set, pszUrl));
 
    }
 
@@ -65,12 +65,12 @@ namespace http
 
          set = pmessage->m_set;
 
-         single_lock synchronizationlock(Context.http().m_pmutexDownload, true);
+         single_lock synchronouslock(pcontext->m_papexcontext->http().m_pmutexDownload, true);
 
-         if (!(Context.http().m_straDownloading.contains(strUrl)) && !exists(pmessage->m_strUrl, set))
+         if (!(pcontext->m_papexcontext->http().m_straDownloading.contains(strUrl)) && !exists(pmessage->m_strUrl, set))
          {
 
-            synchronizationlock.unlock();
+            synchronouslock.unlock();
 
             pmessage->m_estatusRet = error_http;
 
@@ -84,7 +84,7 @@ namespace http
 
       pmessage->m_set = process_set(pmessage->m_set, pmessage->m_strUrl);
 
-      Context.http().get(pmessage);
+      pcontext->m_papexcontext->http().get(pmessage);
 
    }
 
@@ -94,9 +94,9 @@ namespace http
 
       set["get_memory"] = &memory;
 
-      auto estatus = Context.http().get(pszUrl, process_set(set, pszUrl));
+      auto estatus = pcontext->m_papexcontext->http().get(pszUrl, process_set(set, pszUrl));
 
-      set.remove_by_name("get_memory");
+      set.erase_by_name("get_memory");
 
       return estatus;
 
@@ -108,7 +108,7 @@ namespace http
 //
 //      set["get_response"].get_value() = &str;
 //
-//      return Context.http().get(pszUrl, process_set(set, pszUrl));
+//      return pcontext->m_papexcontext->http().get(pszUrl, process_set(set, pszUrl));
 //
 //   }
 //
@@ -142,7 +142,7 @@ namespace http
 
       set["get_response"] = "";
 
-      set["bool_result"] = Context.http().get(pszUrl, process_set(set,pszUrl));
+      set["bool_result"] = pcontext->m_papexcontext->http().get(pszUrl, process_set(set,pszUrl));
 
       return set["get_estatus"].estatus();
 
@@ -171,7 +171,7 @@ namespace http
 
       set["get_response"] = "";
 
-      set["bool_result"] = Context.http().get(pszUrl, process_set(set, pszUrl));
+      set["bool_result"] = pcontext->m_papexcontext->http().get(pszUrl, process_set(set, pszUrl));
 
       str = set["get_response"].get_string();
 
@@ -202,14 +202,14 @@ namespace http
       strFile.replace(":", "_");
       strFile.replace("//", "/");
       strFile.replace("?", "%19");
-      strFile = Context.dir().cache() / strFile + ".meta_information";
+      strFile = pcontext->m_papexcontext->dir().cache() / strFile + ".meta_information";
 
       string strCache;
 
       if (!set["nocache"].get_bool())
       {
 
-         Context.file().as_string(strFile);
+         pcontext->m_papexcontext->file().as_string(strFile);
 
          if (strCache.has_char())
          {
@@ -280,7 +280,7 @@ namespace http
 
       ::file::enum_type etype = ::file::e_type_none;
 
-      bool bExists = Context.http().is_file_or_dir(strUrl, process_set(set, pszUrl), &etype);
+      bool bExists = pcontext->m_papexcontext->http().is_file_or_dir(strUrl, process_set(set, pszUrl), &etype);
 
       if (bExists)
       {
@@ -318,7 +318,7 @@ namespace http
 
       }
 
-      Context.file().put_contents(strFile, strCache);
+      pcontext->m_papexcontext->file().put_contents(strFile, strCache);
 
       if (::is_set(petype))
       {
@@ -350,7 +350,7 @@ namespace http
       strFile.replace(":", "_");
       strFile.replace("//", "/");
       strFile.replace("?", "%19");
-      strFile = Context.dir().cache() / strFile + ".length_question";
+      strFile = pcontext->m_papexcontext->dir().cache() / strFile + ".length_question";
 
       bool bNoCache = set["nocache"].get_bool();
 
@@ -359,7 +359,7 @@ namespace http
       if (!bNoCache)
       {
 
-         strCache = Context.file().as_string(strFile);
+         strCache = pcontext->m_papexcontext->file().as_string(strFile);
 
          if (strCache.has_char())
          {
@@ -381,7 +381,7 @@ namespace http
 
       }
 
-      ::payload len = Context.http().length(strUrl, process_set(set, pszUrl));
+      ::payload len = pcontext->m_papexcontext->http().length(strUrl, process_set(set, pszUrl));
 
       if (len.is_empty())
       {
@@ -396,7 +396,7 @@ namespace http
 
       }
 
-      Context.file().put_contents(strFile, strCache);
+      pcontext->m_papexcontext->file().put_contents(strFile, strCache);
 
       return len;
 
@@ -406,7 +406,7 @@ namespace http
    bool application::request(const char * pszRequest, const char * pszUrl, property_set & set)
    {
 
-      return Context.http().request(pszRequest, pszUrl, process_set(set, pszUrl));
+      return pcontext->m_papexcontext->http().request(pszRequest, pszUrl, process_set(set, pszUrl));
 
    }
 
@@ -414,25 +414,25 @@ namespace http
    bool application::download(::sockets::socket_handler & handler, __pointer(::sockets::http_session) & psession,const char * pszUrl,::payload varFile,property_set & set)
    {
 
-      return Context.http().download(handler, psession, pszUrl,varFile,process_set(set,pszUrl));
+      return pcontext->m_papexcontext->http().download(handler, psession, pszUrl,varFile,process_set(set,pszUrl));
 
    }
 
 
    bool application::download(const char * pszUrl, ::payload varFile, property_set & set)
    {
-      return Context.http().download(pszUrl, varFile, process_set(set, pszUrl));
+      return pcontext->m_papexcontext->http().download(pszUrl, varFile, process_set(set, pszUrl));
    }
 
    bool application::put(const char * pszUrl, memory & memory, property_set & set)
    {
 
-      return Context.http().put(pszUrl, memory, process_set(set, pszUrl));
+      return pcontext->m_papexcontext->http().put(pszUrl, memory, process_set(set, pszUrl));
    }
 
    bool application::put(const char * pszUrl, file_pointer  pfile, property_set & set)
    {
-      return Context.http().put(pszUrl, pfile, process_set(set, pszUrl));
+      return pcontext->m_papexcontext->http().put(pszUrl, pfile, process_set(set, pszUrl));
    }
 
 
@@ -469,7 +469,7 @@ namespace http
    string application::get_locale_schema(const char * pszUrl,const char * pszLocale,const char * pszSchema)
    {
 
-      Application.message_box(nullptr, "What?!", e_message_box_ok);
+      get_application()->message_box(nullptr, "What?!", e_message_box_ok);
 
       string strUrl = locale_schema_url(pszUrl, pszLocale, pszSchema);
 
@@ -497,14 +497,14 @@ namespace http
 //
 //      }
 //
-//      while(::get_task() == nullptr || thread_get_run())
+//      while(::get_task() == nullptr || task_get_run())
 //      {
 //
 //         {
 //
 //            set["get_response"] = "";
 //
-//            str = Context.http().get(strUrl, set);
+//            str = pcontext->m_papexcontext->http().get(strUrl, set);
 //
 //            if(str.has_char())
 //               return str;

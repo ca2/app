@@ -15,7 +15,7 @@ namespace lite
 {
 
 
-   theme::theme(::layered * pobjectContext):
+   theme::theme(::object * pobject):
       object(pobject),
       ::user::style(pobject),
       ::user::theme(pobject)
@@ -23,7 +23,7 @@ namespace lite
 
       create_translucency(::user::e_element_none, ::user::e_translucency_present);
 
-      create_point_font(::user::font_default,os_font_name(e_font_sans_ui), 12.0);
+      create_point_font(::user::font_default,pnode->font_name(e_font_sans_ui), 12.0);
 
       userstyle()->m_mapFont->operator[](::user::font_default)->m_ewritetextrendering = ::write_text::e_rendering_clear_type_grid_fit;
 
@@ -943,7 +943,7 @@ namespace lite
 
                if ((ptoolbar->m_dwCtrlStyle & TBSTYLE_FLAT) == TBSTYLE_FLAT)
                {
-                  System->imaging().color_blend(
+                  psystem->imaging().color_blend(
                   pgraphics,
                   rectItem.left,
                   rectItem.top,
@@ -1006,7 +1006,7 @@ namespace lite
 
                   ptoolbar->_001GetElementRect(iItem, rectangle, ::user::toolbar::element_image_hover);
 
-/*                  System->imaging().color_blend(pgraphics, rectangle.top_left(), rectangle.get_size(), item.m_pimage->g(), ::point_i32(), 0->84);
+/*                  pgraphics->color_blend(rectangle.top_left(), rectangle.get_size(), item.m_pimage->g(), ::point_i32(), 0->84);
 
                }
                else if (uImage != 0xffffffffu)
@@ -1051,7 +1051,7 @@ namespace lite
 
                ptoolbar->_001GetElementRect(iItem, rectangle, ::user::toolbar::element_image_press);
 
-/*               System->imaging().color_blend(pgraphics, rectangle.top_left(), rectangle.get_size(), item.m_pimage->g(), ::point_i32(), 1->0);
+/*               pgraphics->color_blend(rectangle.top_left(), rectangle.get_size(), item.m_pimage->g(), ::point_i32(), 1->0);
 
             }
             else if (uImage != 0xffffffff)
@@ -1088,7 +1088,7 @@ namespace lite
 
 /*               ptoolbar->_001GetElementRect(iItem, rectangle, ::user::toolbar::element_image);
 
-/*               System->imaging().color_blend(pgraphics, rectangle.top_left(), rectangle.get_size(), item.m_pimage->g(), ::point_i32(), 0->23);
+/*               pgraphics->color_blend(rectangle.top_left(), rectangle.get_size(), item.m_pimage->g(), ::point_i32(), 0->23);
 
             }
             else if (uImage != 0xffffffff)
@@ -1250,7 +1250,7 @@ namespace lite
 
                if ((ptoolbar->m_dwCtrlStyle & TBSTYLE_FLAT) == TBSTYLE_FLAT)
                {
-                  System->imaging().color_blend(
+                  psystem->imaging().color_blend(
                   pgraphics,
                   rectItem.left,
                   rectItem.top,
@@ -1313,7 +1313,7 @@ namespace lite
 
                   ptoolbar->_001GetElementRect(iItem, rectangle, ::user::toolbar::element_image_hover);
 
-/*                  System->imaging().color_blend(pgraphics, rectangle.top_left(), rectangle.get_size(), item.m_pimage->g(), ::point_i32(), 0->84);
+/*                  pgraphics->color_blend(rectangle.top_left(), rectangle.get_size(), item.m_pimage->g(), ::point_i32(), 0->84);
 
                }
                else if (uImage != 0xffffffffu)
@@ -1358,7 +1358,7 @@ namespace lite
 
                ptoolbar->_001GetElementRect(iItem, rectangle, ::user::toolbar::element_image_press);
 
-/*               System->imaging().color_blend(pgraphics, rectangle.top_left(), rectangle.get_size(), item.m_pimage->g(), ::point_i32(), 1->0);
+/*               pgraphics->color_blend(rectangle.top_left(), rectangle.get_size(), item.m_pimage->g(), ::point_i32(), 1->0);
 
             }
             else if (uImage != 0xffffffff)
@@ -1418,7 +1418,7 @@ namespace lite
 
 /*               ptoolbar->_001GetElementRect(iItem, rectangle, ::user::toolbar::element_image);
 
-/*               System->imaging().color_blend(pgraphics, rectangle.top_left(), rectangle.get_size(), item.m_pimage->g(), ::point_i32(), 0->23);
+/*               pgraphics->color_blend(rectangle.top_left(), rectangle.get_size(), item.m_pimage->g(), ::point_i32(), 0->23);
 
             }
             else if (uImage != 0xffffffff)

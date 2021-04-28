@@ -255,7 +255,7 @@ namespace draw2d
 
 
    class CLASS_DECL_AURA fastblur :
-      virtual public ::context_object
+      virtual public ::object
    {
    public:
 

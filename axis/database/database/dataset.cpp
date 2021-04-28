@@ -69,13 +69,13 @@ namespace database
          m_strSqlSelect.Empty();
          break;
       case sql_update:
-         m_strSqlUpdate.remove_all();
+         m_strSqlUpdate.erase_all();
          break;
       case sql_insert:
-         m_strSqlInsert.remove_all();
+         m_strSqlInsert.erase_all();
          break;
       case sql_delete:
-         m_strSqlDelete.remove_all();
+         m_strSqlDelete.erase_all();
          break;
       default:
          ASSERT(false);
@@ -475,17 +475,17 @@ namespace database
 
    //void dataset::clear_update_sql()
    //{
-   //   update_sql.remove_all();
+   //   update_sql.erase_all();
    //}
 
    //void dataset::clear_insert_sql()
    //{
-   //   insert_sql.remove_all();
+   //   insert_sql.erase_all();
    //}
 
    //void dataset::clear_delete_sql()
    //{
-   //   delete_sql.remove_all();
+   //   delete_sql.erase_all();
    //}
 
 

@@ -112,7 +112,7 @@ namespace graphics
 
       }
 
-      synchronization_lock synchronizationlock(m_pmemorymap->mutex());
+      synchronous_lock synchronouslock(m_pmemorymap->mutex());
 
       try
       {

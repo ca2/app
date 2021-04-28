@@ -7,11 +7,11 @@ namespace user
 {
 
 
-   progress::progress(::layered * pobjectContext) :
-      ::object(pobjectContext)
+   progress::progress()
    {
 
    }
+
 
    progress::~progress()
    {

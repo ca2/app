@@ -19,7 +19,7 @@ VOID CALLBACK acme_timer_TimerRoutine(PVOID pParam, BOOLEAN TimerOrWaitFired);
 //   }
 //
 //   begin();
-//   //synchronization_lock synchronizationlock(mutex());
+//   //synchronous_lock synchronouslock(mutex());
 //
 //   //add_ref(OBJ_REF_DBG_ARGS);
 //
@@ -40,7 +40,7 @@ VOID CALLBACK acme_timer_TimerRoutine(PVOID pParam, BOOLEAN TimerOrWaitFired);
 //void timer::impl_init()
 //{
 //
-//   synchronization_lock synchronizationlock(mutex());
+//   synchronous_lock synchronouslock(mutex());
 //
 //   m_hTimer = nullptr;
 //
@@ -59,7 +59,7 @@ VOID CALLBACK acme_timer_TimerRoutine(PVOID pParam, BOOLEAN TimerOrWaitFired);
 //void timer::impl_term()
 //{
 //
-//   synchronization_lock synchronizationlock(mutex());
+//   synchronous_lock synchronouslock(mutex());
 //
 //   if(m_hTimerQueue != nullptr && m_hTimerQueue != INVALID_HANDLE_VALUE)
 //   {
@@ -76,7 +76,7 @@ VOID CALLBACK acme_timer_TimerRoutine(PVOID pParam, BOOLEAN TimerOrWaitFired);
 //void timer::impl_stop()
 //{
 //
-//   synchronization_lock synchronizationlock(mutex());
+//   synchronous_lock synchronouslock(mutex());
 //
 //   if(m_hTimerQueue != nullptr && m_hTimer != nullptr)
 //   {
@@ -94,7 +94,7 @@ VOID CALLBACK acme_timer_TimerRoutine(PVOID pParam, BOOLEAN TimerOrWaitFired);
 //bool timer::impl_restart()
 //{
 //
-//   synchronization_lock synchronizationlock(mutex());
+//   synchronous_lock synchronouslock(mutex());
 //
 //   DeleteTimerQueueTimer(m_hTimerQueue, m_hTimer, nullptr);
 //

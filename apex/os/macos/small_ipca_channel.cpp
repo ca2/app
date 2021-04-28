@@ -375,7 +375,7 @@ namespace interprocess_communication
                          runLoopSource,
                          kCFRunLoopCommonModes);
 
-      //while(m_bRun && ::thread_get_run())
+      //while(m_bRun && ::task_get_run())
       // Set up an autorelease pool here if not using garbage collection.
       bool done = false;
 
@@ -394,7 +394,7 @@ namespace interprocess_communication
          // Check for any other exit conditions here and set the
          // done variable as needed.
       }
-      while(!done && ::thread_get_run());
+      while(!done && ::task_get_run());
 
 //         while(m_bRun)
 //         {

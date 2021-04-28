@@ -33,7 +33,7 @@
 //{
 //   if(m_p == nullptr)
 //      return nullptr;
-//   if(m_p->get_context_application() == nullptr)
+//   if(m_p->get_application() == nullptr)
 //      return nullptr;
 //   return CaSys(m_p).clone(*this);
 //}

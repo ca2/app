@@ -50,8 +50,8 @@ namespace uwp
    }
 
 
-   interaction_impl::interaction_impl(::layered * pobjectContext):
-      ::object(pobjectContext)
+   interaction_impl::interaction_impl(::object * pobject):
+      ::object(pobject)
    {
 
       m_bScreenRelativeMouseMessagePosition  = false;
@@ -208,17 +208,17 @@ namespace uwp
 
       //::size_i32 sizeDrawn;
 
-      //synchronization_lock slGraphics(m_pgraphics->mutex());
+      //synchronous_lock slGraphics(m_pgraphics->mutex());
 
       //::synchronization_object * psync = m_pgraphics->get_draw_lock();
 
-      //synchronization_lock synchronizationlock(psync);
+      //synchronous_lock synchronouslock(psync);
 
       ////::draw2d::graphics_pointer pgraphics = m_pgraphics->on_begin_draw();
 
       //slGraphics.unlock();
 
-      synchronization_lock synchronizationlock(m_puserinteraction->mutex());
+      synchronous_lock synchronouslock(m_puserinteraction->mutex());
 
       m_puserinteraction->place(m_rectangle);
 
@@ -267,7 +267,7 @@ namespace uwp
    //bool interaction_impl::create_native_window(::user::native_window_initialize * pinitialize)
    //{
 
-   //   throw "trying to remove this create native window, it does anything or do less?";
+   //   throw "trying to erase this create native window, it does anything or do less?";
 
    //   //m_window = pinitialize->m_window;
 
@@ -282,19 +282,19 @@ namespace uwp
    //   //fork([&]()
    //   //{
 
-   //   //   while (::thread_get_run())
+   //   //   while (::task_get_run())
    //   //   {
 
    //   //      {
 
-   //   //         synchronization_lock synchronizationlock(&m_mutexQueue);
+   //   //         synchronous_lock synchronouslock(&m_mutexQueue);
 
    //   //         if (m_messageaQueue.has_elements())
    //   //         {
 
    //   //            __pointer(::user::message) pmessage = m_messageaQueue[0];
 
-   //   //            m_messageaQueue.remove_at(0);
+   //   //            m_messageaQueue.erase_at(0);
 
    //   //            if (m_messageaQueue.is_empty())
    //   //            {
@@ -303,7 +303,7 @@ namespace uwp
 
    //   //            }
 
-   //   //            synchronizationlock.unlock();
+   //   //            synchronouslock.unlock();
 
    //   //            m_puserinteraction->message_handler(pmessage);
 
@@ -314,14 +314,14 @@ namespace uwp
    //   //            do
    //   //            {
 
-   //   //               synchronizationlock.unlock();
+   //   //               synchronouslock.unlock();
 
    //   //               m_evQueue.wait(millis(300));
 
-   //   //               synchronizationlock.lock();
+   //   //               synchronouslock.lock();
 
    //   //            }
-   //   //            while (m_messageaQueue.is_empty() && ::thread_get_run());
+   //   //            while (m_messageaQueue.is_empty() && ::task_get_run());
 
    //   //         }
 
@@ -349,10 +349,10 @@ namespace uwp
    interaction_impl::~interaction_impl()
    {
 
-      if(get_context_application() != nullptr)
+      if(get_application() != nullptr)
       {
 
-         ::aura::get_system()->window_map().m_map.remove_key((oswindow)(iptr)(void *)get_handle());
+         ::aura::get_system()->window_map().m_map.erase_key((oswindow)(iptr)(void *)get_handle());
 
       }
 
@@ -500,7 +500,7 @@ namespace uwp
 #endif
 
          // should also be in the permanent or temporary handle ::map
-         //single_lock synchronizationlock(afxMutexHwnd(),true);
+         //single_lock synchronouslock(afxMutexHwnd(),true);
          //hwnd_map * pMap = afxMapHWND();
          //if(pMap == nullptr) // inside thread not having windows
          //   return; // let go
@@ -570,7 +570,7 @@ namespace uwp
 
    bool interaction_impl::DestroyWindow()
    {
-      //single_lock synchronizationlock(m_pthread == nullptr ? nullptr : &m_pthread->m_mutex,true);
+      //single_lock synchronouslock(m_pthread == nullptr ? nullptr : &m_pthread->m_mutex,true);
       //::user::interaction_impl * pWnd;
       //hwnd_map * pMap;
       //oswindow hWndOrig;
@@ -667,18 +667,18 @@ namespace uwp
 #endif
 
 #ifdef WINDOWS_DESKTOP
-   bool interaction_impl::GetWindowPlacement(WINDOWPLACEMENT* lpwndpl)
+   bool interaction_impl::GetWindowPlacement(WINDOWPLACEMENT* lpuserinteractionpl)
    {
       ASSERT(::is_window(get_handle()));
-      lpwndpl->length = sizeof(WINDOWPLACEMENT);
-      return ::GetWindowPlacement(get_handle(), lpwndpl) != false;
+      lpuserinteractionpl->length = sizeof(WINDOWPLACEMENT);
+      return ::GetWindowPlacement(get_handle(), lpuserinteractionpl) != false;
    }
 
-   bool interaction_impl::SetWindowPlacement(const WINDOWPLACEMENT* lpwndpl)
+   bool interaction_impl::SetWindowPlacement(const WINDOWPLACEMENT* lpuserinteractionpl)
    {
       ASSERT(::is_window(get_handle()));
-      ((WINDOWPLACEMENT*)lpwndpl)->length = sizeof(WINDOWPLACEMENT);
-      return ::SetWindowPlacement(get_handle(), lpwndpl) != false;
+      ((WINDOWPLACEMENT*)lpuserinteractionpl)->length = sizeof(WINDOWPLACEMENT);
+      return ::SetWindowPlacement(get_handle(), lpuserinteractionpl) != false;
    }
    /////////////////////////////////////////////////////////////////////////////
    // interaction_impl will delegate owner draw messages to self drawing controls
@@ -829,28 +829,9 @@ namespace uwp
 
    void interaction_impl::PrepareForHelp()
    {
-      if(is_frame_window())
-      {
-         // frame_window windows should be allowed to exit help mode first
-         __pointer(::user::frame) pFrameWnd = m_puserinteraction;
-         pFrameWnd->ExitHelpMode();
-      }
 
-      // cancel any tracking modes
-      send_message(WM_CANCELMODE);
-      send_message_to_descendants(WM_CANCELMODE,0,0,true,true);
-
-      // need to use top level parent (for the case where get_handle() is in DLL)
-      ::user::interaction * pWnd = get_top_level();
-      pWnd->send_message(WM_CANCELMODE);
-      pWnd->send_message_to_descendants(WM_CANCELMODE,0,0,true,true);
-
-      __throw(todo);
-      // attempt to cancel capture
-      //oswindow hWndCapture = ::GetCapture();
-      //if (hWndCapture != nullptr)
-      //   ::SendMessage(hWndCapture, WM_CANCELMODE, 0, 0);
    }
+   
 
 #ifdef WINDOWS_DESKTOP
    void interaction_impl::WinHelpInternal(dword_ptr dwData, ::u32 nCmd)
@@ -996,7 +977,7 @@ namespace uwp
          if(pusermessage->m_id == e_message_key_down || pusermessage->m_id == e_message_sys_key_down)
          {
 
-            auto psession = Session;
+            auto psession = get_session();
 
             try
             {
@@ -1009,7 +990,7 @@ namespace uwp
          else if(pusermessage->m_id == e_message_key_up || pusermessage->m_id == e_message_sys_key_up)
          {
 
-            auto psession = Session;
+            auto psession = get_session();
 
             try
             {
@@ -1023,18 +1004,18 @@ namespace uwp
 
       if(pusermessage->m_id == e_message_timer)
       {
-//         m_puserinteraction->get_context_application()->step_timer();
+//         m_puserinteraction->get_application()->step_timer();
       }
       else if(pusermessage->m_id == e_message_left_button_down)
       {
-         //g_pwndLastLButtonDown = m_puserinteraction;
+         //g_puserinteractionLastLButtonDown = m_puserinteraction;
       }
       /*      else if(pusermessage->m_id == CA2M_BERGEDGE)
       {
       if(pusermessage->m_wparam == BERGEDGE_GETAPP)
       {
       ::aura::application ** ppapp= (::aura::application **) pusermessage->m_lparam;
-      *ppapp = get_context_application();
+      *ppapp = get_application();
       pusermessage->m_bRet = true;
       return;
       }
@@ -1067,23 +1048,23 @@ namespace uwp
 
          }
 
-         auto psession = Session;
+         auto psession = get_session();
 
          psession->on_ui_mouse_message(pmouse);
 
 
-         //Application.m_pointCursor = pmouse->m_point;
-         //if(get_context_application()->m_pcoreapp->m_psession != nullptr)
+         //papplication->m_pointCursor = pmouse->m_point;
+         //if(get_application()->m_pcoreapp->m_psession != nullptr)
          //{
          //   psession->m_pointCursor = pmouse->m_point;
          //}
-         //if(m_puserinteraction != nullptr && m_puserinteraction->get_context_application()->m_pcoreapp->m_psession != nullptr && m_puserinteraction->get_context_application()->m_pcoreapp->m_psession != get_context_application()->m_pcoreapp->m_psession)
+         //if(m_puserinteraction != nullptr && m_puserinteraction->get_application()->m_pcoreapp->m_psession != nullptr && m_puserinteraction->get_application()->m_pcoreapp->m_psession != get_application()->m_pcoreapp->m_psession)
          //{
-         //   Sess(m_puserinteraction->get_context_application()->m_pcoreapp->m_psession).m_pointCursor = pmouse->m_point;
+         //   Sess(m_puserinteraction->get_application()->m_pcoreapp->m_psession).m_pointCursor = pmouse->m_point;
          //}
 
          //__pointer(base_session) psession;
-         //if(get_context_application()->m_pcoreapp->is_system())
+         //if(get_application()->m_pcoreapp->is_system())
          //{
          //   psession = ::aura::get_system()->query_session(0);
          //   if(psession != nullptr && psession->m_bSessionSynchronizedCursor)
@@ -1109,12 +1090,12 @@ namespace uwp
 
             }
 
-            if(get_context_session()->get_monitor_count() > 0)
+            if(get_session()->get_monitor_count() > 0)
             {
                
                ::rectangle_i32 rcMonitor;
 
-               get_context_session()->get_monitor_rectangle(0,&rcMonitor);
+               get_session()->get_monitor_rectangle(0,&rcMonitor);
                if(rectWindow.left >= rcMonitor.left)
                   pmouse->m_point.x += (::i32)rectWindow.left;
                if(rectWindow.top >= rcMonitor.top)
@@ -1151,7 +1132,7 @@ namespace uwp
 
          ::message::key * pkey = (::message::key *) pusermessage;
 
-         auto psession = Session;
+         auto psession = get_session();
 
          ::user::interaction * puiFocus = __user_interaction(m_puserinteraction->get_keyboard_focus());
 
@@ -1827,7 +1808,7 @@ return true;
    //int interaction_impl::message_box(const char * lpszText,const char * lpszCaption,::u32 nType)
    //{
    //   if(lpszCaption == nullptr)
-   //      lpszCaption = Application.m_strAppName;
+   //      lpszCaption = papplication->m_strAppName;
    //   int nResult = ::message_box(get_handle(),lpszText,lpszCaption,nType,callback);
    //   return nResult;
    //}
@@ -2055,7 +2036,7 @@ return true;
    {
       return false;
       //// get the ::map, and if no ::map, then this message does not need reflection
-      //single_lock synchronizationlock(afxMutexHwnd(),true);
+      //single_lock synchronouslock(afxMutexHwnd(),true);
       //hwnd_map * pMap = afxMapHWND();
       //if(pMap == nullptr)
       //   return false;
@@ -2294,11 +2275,11 @@ return true;
    void interaction_impl::on_message_create(::message::message * pmessage)
    {
 
-      //auto psession = Session;
+      //auto psession = get_session();
 
-      //auto phost = psession->m_puiHost;
+      //auto phost = psession->get_user_interaction_host();
 
-      //auto puiHost = __user_interaction(phost);
+      //auto puserinteractionHost = __user_interaction(phost);
 
 
       m_pframeworkview->m_puserinteraction = m_puserinteraction;
@@ -2357,7 +2338,7 @@ return true;
    //void interaction_impl::get_app_wnda(user::oswindow_array & wnda)
    //{
 
-   //   __throw(todo(::get_context_application()));
+   //   __throw(todo(::get_application()));
 
    //   //      EnumWindows(GetAppsEnumWindowsProc, (LPARAM) &wnda);
    //}
@@ -2394,7 +2375,7 @@ return true;
 
    //    ::e_status     c_cdecl print_window(LPVOID pvoid)
    //   {
-   //      __throw(todo(::get_context_application()));
+   //      __throw(todo(::get_application()));
 
    //      //print_window * pprintwindow = (print_window *) pvoid;
    //      //try
@@ -2440,7 +2421,7 @@ return true;
       //if(pusermessage->m_wparam == nullptr)
       //   return;
 
-      //::draw2d::graphics_pointer graphics(get_object());
+      //::draw2d::graphics_pointer graphics(this);
       //METROWIN_DC(graphics.m_p)->Attach((HDC) pusermessage->m_wparam);
       //::rectangle_i32 rectx;
       //::draw2d::bitmap * pbitmap = &pgraphics->GetCurrentBitmap();
@@ -2456,7 +2437,7 @@ return true;
       //   ::rectangle_i32 rectWindow;
       //   get_window_rect(rectWindow);
 
-      //   ::image_pointer pimage(get_object());
+      //   ::image_pointer pimage(this);
       //   if(!pimage = create_image(rectWindow.bottom_right()))
       //      return;
 
@@ -2727,7 +2708,7 @@ return true;
    {
       UNREFERENCED_PARAMETER(pTarget);
       UNREFERENCED_PARAMETER(bDisableIfNoHndler);
-      //::message::command state(get_object());
+      //::message::command state(this);
       //interaction_impl wndTemp;       // very temporary interaction_impl just for CmdUI update
 
       // walk all the kids - assume the IDs are for buttons
@@ -2797,8 +2778,8 @@ return true;
 //      //  m_puserinteraction->m_iModalCount++;
 //
 //      //m_puserinteraction->m_threadptraModal.add(::get_task());
-//      ::aura::application * pappThis1 = dynamic_cast <::aura::application *> (get_context_application());
-//      ::aura::application * pappThis2 = dynamic_cast <::aura::application *> (get_context_application());
+//      ::aura::application * pappThis1 = dynamic_cast <::aura::application *> (get_application());
+//      ::aura::application * pappThis2 = dynamic_cast <::aura::application *> (get_application());
 //      // acquire and dispatch messages until the modal state is done
 //      MESSAGE msg;
 //      for(;;)
@@ -3059,8 +3040,8 @@ return true;
    //{
    //   /*bool b;
    //   bool * pb = &b;
-   //   if(get_context_application()->m_pcoreapp->s_ptwf != nullptr)
-   //   pb = &get_context_application()->m_pcoreapp->s_ptwf->m_bProDevianMode;
+   //   if(get_application()->m_pcoreapp->s_ptwf != nullptr)
+   //   pb = &get_application()->m_pcoreapp->s_ptwf->m_bProDevianMode;
    //   keeper < bool > keepOnDemandDraw(pb, false, *pb, true);
    //   */
    //   //ASSERT(::is_window(get_handle()));
@@ -3602,7 +3583,7 @@ return true;
 
       {
 
-         synchronization_lock synchronizationlock(m_puserinteraction->mutex());
+         synchronous_lock synchronouslock(m_puserinteraction->mutex());
 
          m_strWindowText = lpszString;
 
@@ -3617,7 +3598,7 @@ return true;
 
          {
 
-            synchronization_lock synchronizationlock(m_puserinteraction->mutex());
+            synchronous_lock synchronouslock(m_puserinteraction->mutex());
 
             applicationview->Title = m_strWindowText;
 
@@ -3710,22 +3691,22 @@ return true;
    }
 
 
-   void interaction_impl::MapWindowPoints(::user::interaction_impl * pwndTo,POINT_I32 * lpPoint,::u32 nCount)
+   void interaction_impl::MapWindowPoints(::user::interaction_impl * puserinteractionTo,POINT_I32 * lpPoint,::u32 nCount)
    {
 
       __throw(todo);
 
       //ASSERT(::is_window(get_handle()));
-      //::MapWindowPoints(get_handle(), (oswindow) pwndTo->get_os_data(), lpPoint, nCount);
+      //::MapWindowPoints(get_handle(), (oswindow) puserinteractionTo->get_os_data(), lpPoint, nCount);
    }
 
-   void interaction_impl::MapWindowPoints(::user::interaction_impl * pwndTo,RECTANGLE_I32 * lpRect)
+   void interaction_impl::MapWindowPoints(::user::interaction_impl * puserinteractionTo,RECTANGLE_I32 * lpRect)
    {
 
       __throw(todo);
 
       //ASSERT(::is_window(get_handle()));
-      //::MapWindowPoints(get_handle(), (oswindow) pwndTo->get_os_data(), (POINT_I32 *)lpRect, 2);
+      //::MapWindowPoints(get_handle(), (oswindow) puserinteractionTo->get_os_data(), (POINT_I32 *)lpRect, 2);
    }
 
    ::draw2d::graphics * interaction_impl::GetDC()
@@ -3733,7 +3714,7 @@ return true;
 
       __throw(todo);
 
-      //::draw2d::graphics_pointer g(get_object());
+      //::draw2d::graphics_pointer g(this);
       //if(get_handle() == nullptr)
       //{
       //   (dynamic_cast < ::uwp::graphics * >(g.m_p))->Attach(::GetDC(nullptr));
@@ -3751,7 +3732,7 @@ return true;
       __throw(todo);
 
       //ASSERT(::is_window(get_handle()));
-      //::draw2d::graphics_pointer g(get_object());
+      //::draw2d::graphics_pointer g(this);
       //g->attach(::GetWindowDC(get_handle()));
       //return g.detach();
    }
@@ -3950,7 +3931,7 @@ return true;
       __throw(todo);
 
       //ASSERT(::is_window(get_handle()));
-      //::draw2d::graphics_pointer g(get_object());
+      //::draw2d::graphics_pointer g(this);
       //g->attach(::GetDCEx(get_handle(), (HRGN)prgnClip->get_os_data(), flags));
       //return g.detach();
 
@@ -5257,7 +5238,7 @@ return true;
       {
          try
          {
-            if(App(pinteraction->get_context_application()).on_run_exception((::exception::exception &) e))
+            if(App(pinteraction->get_application()).on_run_exception((::exception::exception &) e))
                goto run;
          }
          catch(...)
@@ -5601,7 +5582,7 @@ CLASS_DECL_AURA const char * __register_window_class(::u32 nClassStyle,
    char * lpszName = __get_thread_state()->m_szTempClassName;
 
    // generate a synthetic name for this class
-   HINSTANCE hInst = Sys(::uwp::get_task()->get_context_application()).m_hInstance;
+   HINSTANCE hInst = Sys(::uwp::get_task()->get_application()).m_hInstance;
 
    if (hCursor == nullptr && hbrBackground == nullptr && hIcon == nullptr)
    {
@@ -5751,7 +5732,7 @@ bool CLASS_DECL_AURA __end_defer_register_class(::i32 fToRegisterParam, const ch
    WNDCLASS wndcls;
    __memset(&wndcls, 0, sizeof(WNDCLASS));   // start with nullptr defaults
    wndcls.lpfnWndProc = DefWindowProc;
-   wndcls.hInstance = Sys(::uwp::get_task()->get_context_application()).m_hInstance;
+   wndcls.hInstance = Sys(::uwp::get_task()->get_application()).m_hInstance;
    //wndcls.hCursor = afxData.hcurArrow;
 
    INITCOMMONCONTROLSEX init;
@@ -5947,7 +5928,7 @@ bool CLASS_DECL_AURA __register_class(WNDCLASS* lpWndClass)
       {
          // class registered successfully, add to registered list
          __MODULE_STATE* pModuleState = __get_module_state();
-         single_lock synchronizationlock(&pModuleState->m_mutexRegClassList, true);
+         single_lock synchronouslock(&pModuleState->m_mutexRegClassList, true);
          if(pModuleState->m_pstrUnregisterList == nullptr)
             pModuleState->m_pstrUnregisterList = new string;
          *pModuleState->m_pstrUnregisterList += lpWndClass->lpszClassName;
@@ -6017,14 +5998,14 @@ namespace uwp
 
       }
 
-      synchronization_lock synchronizationlock(m_puserinteraction->mutex());
+      synchronous_lock synchronouslock(m_puserinteraction->mutex());
 
-      auto puiptraChild = m_puserinteraction->m_puiptraChild;
+      auto puserinteractionpointeraChild = m_puserinteraction->m_puserinteractionpointeraChild;
 
-      if (puiptraChild)
+      if (puserinteractionpointeraChild)
       {
 
-         for (auto p : puiptraChild->m_interactiona)
+         for (auto p : puserinteractionpointeraChild->m_interactiona)
          {
 
             if (p != nullptr)
@@ -6053,14 +6034,14 @@ namespace uwp
 
       //m_puserinteraction->on_after_graphical_update();
 
-      synchronization_lock synchronizationlock(m_puserinteraction->mutex());
+      synchronous_lock synchronouslock(m_puserinteraction->mutex());
 
-      auto puiptraChild = m_puserinteraction->m_puiptraChild;
+      auto puserinteractionpointeraChild = m_puserinteraction->m_puserinteractionpointeraChild;
 
-      if (puiptraChild)
+      if (puserinteractionpointeraChild)
       {
 
-         for (auto p : puiptraChild->m_interactiona)
+         for (auto p : puserinteractionpointeraChild->m_interactiona)
          {
 
             p->on_after_graphical_update();
@@ -6183,7 +6164,7 @@ namespace uwp
 
          //}
 
-         //synchronization_lock synchronizationlock(&m_mutexQueue);
+         //synchronous_lock synchronouslock(&m_mutexQueue);
 
          //m_messageaQueue.add(pusermessage);
 

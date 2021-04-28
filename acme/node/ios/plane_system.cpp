@@ -72,7 +72,7 @@
 //   //      pusersystem->m_createstruct.hwndParent = hWndParent;
 //   //   pusersystem->m_createstruct.hMenu = hWndParent == nullptr ? nullptr : nIDorHMenu;
 //   pusersystem->m_createstruct.hMenu = nullptr;
-//   //      pusersystem->m_createstruct.hInstance = System->m_hInstance;
+//   //      pusersystem->m_createstruct.hInstance = ::acme::get_system()->m_hInstance;
 //   pusersystem->m_createstruct.lpCreateParams = nullptr;
 //
 //   if(pimpl->m_puserinteraction != nullptr)
@@ -126,7 +126,7 @@
 //void plane_system::plane_system_begin()
 //{
 //
-////   m_psystem->m_strAppId = m_pmaindata->m_pmaindata->m_strAppId;
+////   m_psystem->m_XstrAppId = m_pmaindata->m_pmaindata->m_XstrAppId;
 ////
 ////   m_psystem->startup_command(m_pmaindata->m_pmaindata);
 ////

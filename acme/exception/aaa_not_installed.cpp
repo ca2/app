@@ -7,14 +7,14 @@
 //    ::exception::exception()
 // {
 
-//    m_strAppId           = pszAppId;
-//    m_strConfiguration   = pszConfiguration == nullptr ? System->get_system_configuration().c_str() : pszConfiguration;
-//    m_strPlatform        = pszPlatform == nullptr ? System->get_system_platform().c_str() : pszPlatform;
+//    m_XstrAppId           = pszAppId;
+//    m_strConfiguration   = pszConfiguration == nullptr ? get_system()->get_system_configuration().c_str() : pszConfiguration;
+//    m_strPlatform        = pszPlatform == nullptr ? get_system()->get_system_platform().c_str() : pszPlatform;
 //    m_strLocale          = pszLocale == nullptr ? psession->m_strLocale.c_str() : pszLocale;
 //    m_strSchema          = pszSchema == nullptr ? psession->m_strSchema.c_str() : pszSchema;
 
 //    string str;
-//    str += "appid=" + m_strAppId + ";";
+//    str += "appid=" + m_XstrAppId + ";";
 //    str += "configuration=" + m_strConfiguration + ";";
 //    str += "platform=" + m_strPlatform + ";";
 //    str += "locale=" + m_strLocale + ";";
@@ -32,7 +32,7 @@
 
 //    debug_print(":not_installed(copy)");
 
-//    m_strAppId           = e.m_strAppId;
+//    m_XstrAppId           = e.m_XstrAppId;
 //    m_strConfiguration   = e.m_strConfiguration;
 //    m_strPlatform        = e.m_strPlatform;
 //    m_strLocale          = e.m_strLocale;

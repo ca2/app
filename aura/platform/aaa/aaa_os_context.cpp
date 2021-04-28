@@ -266,7 +266,7 @@
    }
 
 
-   ::e_status os_context::remove_service()
+   ::e_status os_context::erase_service()
    {
 
 
@@ -318,7 +318,7 @@
    }
 
 
-   bool os_context::remove_service(const string & strServiceName)
+   bool os_context::erase_service(const string & strServiceName)
    {
 
 
@@ -391,7 +391,7 @@
       if(::str::ends_ci(strSource, ".desktop"))
       {
 
-         string str = Context.file().as_string(strSource);
+         string str = pcontext->m_papexcontext->file().as_string(strSource);
 
          string_array stra;
 

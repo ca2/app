@@ -4,7 +4,7 @@ namespace mail
 {
 
    pop3_socket::pop3_socket(ISocketHandler& h) :
-      ::ca::ca(h.get_context_application()),
+      ::ca::ca(h.get_application()),
       TcpSocket(h),
       m_estate(state_disconnected)
    {
@@ -52,14 +52,14 @@ namespace mail
             m_estate = state_auth_2;
             EnableSSL();
             OnSSLConnect();
-            //Handler().Select(1, 0);
+            //socket_handler()->Select(1, 0);
    /*         if(GetOutputLength())
                OnWrite();
 		      if(IsReconnect())
 				   OnReconnect();
 			   else
                OnConnect();
-            Handler().AddList(GetSocket(), LIST_CALLONCONNECT, false);*/
+            socket_handler()->AddList(GetSocket(), LIST_CALLONCONNECT, false);*/
             string str = "USER " + m_ppop3->m_paccount->m_strLogin + "\r\n";
             Send((const char *) str);
          }
@@ -70,8 +70,8 @@ namespace mail
          {
             m_estate = state_transaction;
             string strPass;
-            Application.crypt().file_get(
-               Context.dir().default_userappdata(m_ppop3->m_paccount->m_strEmail, "license_auth/00003"),
+            papplication->crypt().file_get(
+               pcontext->m_papexcontext->dir().default_userappdata(m_ppop3->m_paccount->m_strEmail, "license_auth/00003"),
                strPass);
             Send("PASS " + strPass + "\r\n");
          }
@@ -181,8 +181,8 @@ namespace mail
       Send((const char *) strSend);
       m_ppop3->m_strHeaders.Empty();
       m_ppop3->m_strBody.Empty();
-      m_ppop3->m_straId.remove_at(0);
-      m_ppop3->m_straIndex.remove_at(0);
+      m_ppop3->m_straId.erase_at(0);
+      m_ppop3->m_straIndex.erase_at(0);
       return true;
    }
 

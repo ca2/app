@@ -64,7 +64,7 @@ namespace multimedia
 
       // BEGIN_MESSAGE_MAP(thread, thread)
       //{{AFX_MSG_MAP(thread)
-      // NOTE - the ClassWizard will add and remove mapping macros here.
+      // NOTE - the ClassWizard will add and erase mapping macros here.
       //}}AFX_MSG_MAP
       //    ON_THREAD_MESSAGE(thread::MessageMixerThread, OnMixerMessage)
       /* xxx   ON_THREAD_MESSAGE(VMSM_V001, OnVmsmV001)
@@ -241,7 +241,7 @@ namespace multimedia
             (CDBBuildAlbumThreadData *)lParam;
             if(!lpdata->m_ptaskdlg->create(IDD_TASK))
             {
-            System->message_box("Could not create task dialog");
+            message_box("Could not create task dialog");
             return;
             }
 

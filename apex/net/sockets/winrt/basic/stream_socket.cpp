@@ -6,8 +6,8 @@ namespace sockets
 {
 
 
-   stream_socket::stream_socket(base_socket_handler& h) :
-      ::object(h.get_context_application()),
+   stream_socket::stream_socket() :
+      ::object(h.get_application()),
       base_socket(h),
       socket(h)
       ,m_bConnecting(false)
@@ -134,7 +134,7 @@ namespace sockets
 
    void stream_socket::SetCallOnConnect(bool x)
    {
-      Handler().AddList(GetSocket(), LIST_CALLONCONNECT, x);
+      socket_handler()->AddList(GetSocket(), LIST_CALLONCONNECT, x);
       m_call_on_connect = x;
    }
 
@@ -147,7 +147,7 @@ namespace sockets
 
    void stream_socket::SetRetryClientConnect(bool x)
    {
-      Handler().AddList(GetSocket(), LIST_RETRY, x);
+      socket_handler()->AddList(GetSocket(), LIST_RETRY, x);
       m_b_retry_connect = x;
    }
 
@@ -193,7 +193,7 @@ namespace sockets
    ::net::address stream_socket::GetRemoteAddress()
    {
 
-      return ::net::address(get_context_application(), m_streamsocket->Information->RemoteAddress->CanonicalName, m_streamsocket->Information->RemotePort);
+      return ::net::address(get_application(), m_streamsocket->Information->RemoteAddress->CanonicalName, m_streamsocket->Information->RemotePort);
 
    }
 
@@ -209,7 +209,7 @@ namespace sockets
    ::net::address stream_socket::GetLocalAddress()
    {
 
-      return ::net::address(get_context_application(), m_streamsocket->Information->LocalAddress->CanonicalName, m_streamsocket->Information->LocalPort);
+      return ::net::address(get_application(), m_streamsocket->Information->LocalAddress->CanonicalName, m_streamsocket->Information->LocalPort);
 
    }
 

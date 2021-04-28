@@ -1,11 +1,10 @@
 #include "framework.h"
 #include "apex/platform/app_core.h"
+#include "acme/filesystem/filesystem/acme_dir.h"
 
 
 dir_system::dir_system()
 {
-
-   m_pathInstall = ::dir::install();
 
 }
 
@@ -16,10 +15,10 @@ dir_system::~dir_system()
 }
 
 
-::e_status dir_system::initialize(::layered * pobjectContext)
+::e_status dir_system::initialize(::object * pobject)
 {
 
-   auto estatus = ::object::initialize(pobjectContext);
+   auto estatus = ::object::initialize(pobject);
 
    if (!estatus)
    {
@@ -28,6 +27,7 @@ dir_system::~dir_system()
 
    }
 
+   m_pathInstall = m_psystem->m_pacmedir->install();
 
    return true;
 
@@ -44,9 +44,10 @@ dir_system::~dir_system()
 
    }
 
-   auto psystem = ::apex::get_system();
+   __pointer(::apex::system) psystem = get_system();
 
    #if defined(__APPLE__) || (defined(DEBUG)) || defined(ANDROID) || defined(_UWP)
+
    if (::dir::is(psystem->side_get_matter_path("app/_matter/main")))
    {
 
@@ -65,9 +66,9 @@ dir_system::~dir_system()
 
    }
 
-   m_pfilewatcher.create();
+   m_pfilewatcher.create(this);
 
-   ::dir::mk(::dir::bookmark());
+   ::dir::mk(m_psystem->m_pacmedir->bookmark());
 
    //if (!update_module_path())
    //{
@@ -83,24 +84,24 @@ dir_system::~dir_system()
 
    //}
 
-   string strRelative = ::dir::app_relative();
+   string strRelative = m_psystem->m_pacmedir->app_relative();
 
-   m_pathDefaultAppData = ::dir::home() / "application";
+   m_pathDefaultAppData = m_psystem->m_pacmedir->home() / "application";
 
    string strAppFolder;
 
-   //if (::apex::get_system()->m_plibrary)
+   //if (psystem->m_plibrary)
    //{
 
-   //   if (::apex::get_system()->m_plibrary->get_ca2_library())
+   //   if (psystem->m_plibrary->get_ca2_library())
    //   {
 
-   //      strAppFolder = ::apex::get_system()->m_plibrary->get_ca2_library()->m_strFolder;
+   //      strAppFolder = psystem->m_plibrary->get_ca2_library()->m_strFolder;
 
    //      if (strAppFolder.is_empty())
    //      {
 
-   //         strAppFolder = ::apex::get_system()->m_plibrary->get_ca2_library()->m_strName;
+   //         strAppFolder = psystem->m_plibrary->get_ca2_library()->m_strName;
 
    //      }
 
@@ -117,16 +118,20 @@ dir_system::~dir_system()
 
    m_pathDefaultAppData /= strAppFolder;
 
-   //m_strCa2DefaultAppData /= ::apex::get_system()->get_system_platform();
+   //m_strCa2DefaultAppData /= psystem->get_system_platform();
 
-   //m_strCa2DefaultAppData /= ::apex::get_system()->get_system_configuration();
+   //m_strCa2DefaultAppData /= psystem->get_system_configuration();
 
    ::file::path pathAppData;
 
-   if (::apex::get_system()->has_property("app_folder"))
+   //__pointer(::apex::system) psystem = get_system();
+
+   if (psystem->has_property("app_folder"))
    {
 
-      pathAppData = ::apex::get_system()->payload("app_folder");
+      //pathAppData = psystem->payload("app_folder");
+
+      pathAppData = psystem->payload("app_folder");
 
    }
 
@@ -152,9 +157,9 @@ dir_system::~dir_system()
 bool dir_system::update_module_path()
 {
 
-   auto & context = Context;
+   //auto & context = Context;
 
-   auto psystem = ::apex::get_system();
+   __pointer(::apex::system) psystem = get_system();
 
    auto pfile = psystem->m_pfilesystem;
 
@@ -173,3 +178,83 @@ bool dir_system::update_module_path()
    return true;
 
 }
+
+
+//::string dir_system::dir_root()
+//{
+//
+//   return "";
+//
+//}
+
+
+//
+//::file::path dir_system::get_memory_map_base_folder_path() const
+//{
+//
+//   return "";
+//
+//}
+//
+//
+//::file::path dir_system::home()
+//{
+//
+//
+//   return "";
+//
+//}
+//
+
+
+//
+//
+//::file::path dir_system::program_data()
+//{
+//
+//   return "";
+//
+//}
+//
+//
+//::file::path dir_system::roaming()
+//{
+//
+//
+//   return "";
+//
+//
+//}
+
+
+::file::path dir_system::application_installer_folder(const ::file::path& pathExe, string strAppId, const char* pszPlatform, const char* pszConfiguration, const char* pszLocale, const char* pszSchema)
+{
+
+   return "";
+
+}
+
+
+::file::path dir_system::get_application_path(string strAppId, const char* pszPlatform, const char* pszConfiguration)
+{
+
+   return "";
+
+}
+
+
+::file::path dir_system::get_last_run_application_path_file(string strAppId)
+{
+
+   return "";
+
+}
+
+
+::file::path dir_system::get_last_run_application_path(string strAppId)
+{
+
+   return "";
+
+}
+

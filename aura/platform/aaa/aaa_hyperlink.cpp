@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-hyperlink::hyperlink(::layered * pobjectContext) :
+hyperlink::hyperlink(::object * pobject) :
    ::object(pobject)
 {
 
@@ -23,7 +23,7 @@ bool hyperlink::open_link(string strLink, string strProfile, string strTarget)
       if (strLink.begins_ci("mailto:"))
       {
 
-         return Context.os().file_open(strLink);
+         return pcontext->m_papexcontext->os().file_open(strLink);
 
       }
 

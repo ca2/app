@@ -9,7 +9,7 @@
 
 #endif
 
-//extern string_map < __pointer(::apex::library) >* g_pmapLibrary;
+//extern string_map < __pointer(::acme::library) >* g_pmapLibrary;
 
 //extern ::mutex* ::aura::get_system()->m_mutexLibrary;
 
@@ -204,14 +204,14 @@ void __post_quit_message(i32 nExitCode)
 
 #else
 
-   ::parallelization::set_finish(::get_context_application());
+   ::parallelization::set_finish(::get_application());
 
 #endif
 
 }
 
 
-//string_map < __pointer(::apex::library) >* g_pmapLibrary = nullptr;
+//string_map < __pointer(::acme::library) >* g_pmapLibrary = nullptr;
 //string_map < PFN_NEW_AURA_LIBRARY >* g_pmapNewAuraLibrary = nullptr;
 
 
@@ -226,7 +226,7 @@ CLASS_DECL_AURA string_map < PFN_NEW_AURA_LIBRARY >& __get_new_aura_library()
 }
 
 
-CLASS_DECL_AURA string_map < __pointer(::apex::library) >& __library()
+CLASS_DECL_AURA string_map < __pointer(::acme::library) >& __library()
 {
 
    return ::aura::get_system()->m_mapLibrary;
@@ -238,7 +238,7 @@ CLASS_DECL_AURA string_map < __pointer(::apex::library) >& __library()
 CLASS_DECL_AURA PFN_NEW_AURA_LIBRARY get_get_new_aura_library(const char* psz)
 {
 
-   synchronization_lock synchronizationlock(::aura::get_system()->m_mutexLibrary);
+   synchronous_lock synchronouslock(::aura::get_system()->m_mutexLibrary);
 
    auto ppair = ::aura::get_system()->m_mapNewAuraLibrary.plookup(psz);
 
@@ -254,10 +254,10 @@ CLASS_DECL_AURA PFN_NEW_AURA_LIBRARY get_get_new_aura_library(const char* psz)
 }
 
 
-CLASS_DECL_AURA::apex::library& get_library(const char* psz)
+CLASS_DECL_AURA::acme::library& get_library(const char* psz)
 {
 
-   synchronization_lock synchronizationlock(::aura::get_system()->m_mutexLibrary);
+   synchronous_lock synchronouslock(::aura::get_system()->m_mutexLibrary);
 
    return *::aura::get_system()->m_mapLibrary[psz];
 
@@ -267,17 +267,17 @@ CLASS_DECL_AURA::apex::library& get_library(const char* psz)
 CLASS_DECL_AURA void register_get_new_aura_library(const char* psz, PFN_NEW_AURA_LIBRARY pfnNewAuraLibrary)
 {
 
-   synchronization_lock synchronizationlock(::aura::get_system()->m_mutexLibrary);
+   synchronous_lock synchronouslock(::aura::get_system()->m_mutexLibrary);
 
    __get_new_aura_library()[psz] = pfnNewAuraLibrary;
 
 }
 
 
-CLASS_DECL_AURA void register_library(const char* psz, ::apex::library* plibrary)
+CLASS_DECL_AURA void register_library(const char* psz, ::acme::library* plibrary)
 {
 
-   synchronization_lock synchronizationlock(::aura::get_system()->m_mutexLibrary);
+   synchronous_lock synchronouslock(::aura::get_system()->m_mutexLibrary);
 
    __library()[psz] = plibrary;
 
@@ -509,14 +509,14 @@ CLASS_DECL_AURA ::e_status load_factory_library(string strLibrary)
 {
 
 
-   synchronization_lock synchronizationlock(::aura::get_system()->m_mutexLibrary);
+   synchronous_lock synchronouslock(::aura::get_system()->m_mutexLibrary);
 
-   __pointer(::apex::library)& plibrary = ::aura::get_system()->m_mapLibrary[strLibrary];
+   __pointer(::acme::library)& plibrary = ::aura::get_system()->m_mapLibrary[strLibrary];
 
    if (!plibrary)
    {
 
-      plibrary = new ::apex::library();
+      plibrary = new ::acme::library();
 
    }
 

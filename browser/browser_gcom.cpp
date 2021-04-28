@@ -5,17 +5,17 @@ namespace browser
 {
 
 
-   gcom::gcom(::layered * pobjectContext) :
+   gcom::gcom(::object * pobject) :
       object(pobject),
       impact_base(pobject)
    {
 
-      if (Application.m_varTopicQuery["hello_bk"].get_string().has_char())
+      if (papplication->m_varTopicQuery["hello_bk"].get_string().has_char())
       {
 
          property_set varFile;
 
-         varFile["url"] = Application.m_varTopicQuery["hello_bk"];
+         varFile["url"] = papplication->m_varTopicQuery["hello_bk"];
          varFile["http_set"]["raw_http"] = true;
          varFile["http_set"]["disable_common_name_cert_check"] = true;
 

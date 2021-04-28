@@ -17,7 +17,7 @@ public:
 
    message_array           m_messagea;
    manual_reset_event      m_eventNewMessage;
-   ithread_t               m_ithread;
+   itask_t               m_itask;
    bool                    m_bKickIdle;
    bool                    m_bQuit;
 
@@ -35,8 +35,8 @@ public:
 };
 
 
-CLASS_DECL_ACME message_queue * get_message_queue(ithread_t id, bool bCreate);
-CLASS_DECL_ACME void clear_message_queue(ithread_t idthread);
+CLASS_DECL_ACME message_queue * get_message_queue(itask_t id, bool bCreate);
+CLASS_DECL_ACME void clear_message_queue(itask_t idthread);
 
 void _c_simple_message_loop();
 

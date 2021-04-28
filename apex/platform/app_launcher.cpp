@@ -1,17 +1,38 @@
 #include "framework.h"
 #include "apex/operating_system.h"
+#include "launcher.h"
+#include "app_launcher.h"
+#include "acme/filesystem/filesystem/acme_path.h"
 
 
 namespace apex
 {
 
 
-   app_launcher::app_launcher(string strPlatform, string strApp)
+   app_launcher::app_launcher()
    {
 
-      m_strPlatform     = strPlatform;
 
-      m_strApp          = strApp;
+   }
+
+
+   ::e_status app_launcher::initialize_app_launcher(::object * pobject, string strPlatform, string strApp)
+   {
+
+      auto estatus = ::object::initialize(pobject);
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      m_strPlatform = strPlatform;
+
+      m_strApp = strApp;
+
+      return estatus;
 
    }
 
@@ -19,7 +40,7 @@ namespace apex
    string app_launcher::get_executable_path()
    {
 
-      ::file::path path = get_last_run_application_path(m_strApp);
+      ::file::path path = m_psystem->m_papexsystem->m_pdirsystem->get_last_run_application_path(m_strApp);
 
       if(file_exists(path))
       {
@@ -40,16 +61,18 @@ namespace apex
 
 #endif
 
-      ::file::path pathCandidate = get_context()->dir().ca2module() / strExe;
+      auto pcontext = get_context();
 
-      if (get_context()->file().exists(pathCandidate))
+      ::file::path pathCandidate = m_pcontext->m_papexcontext->dir().ca2module() / strExe;
+
+      if (m_pcontext->m_papexcontext->file().exists(pathCandidate))
       {
 
          return ::move(pathCandidate);
 
       }
 
-      return ::path::app_app(m_strPlatform, process_configuration_dir_name());
+      return m_psystem->m_pacmepath->app_app(m_strPlatform, process_configuration_dir_name());
 
    }
 
@@ -77,7 +100,7 @@ namespace apex
    }
 
 
-   bool app_launcher::start()
+   ::e_status app_launcher::run()
    {
 
 #ifdef _UWP

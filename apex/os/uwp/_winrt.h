@@ -3,8 +3,8 @@
 
 #define _System ::apex::get_system()
 #define _Platform Platform
-#define _Application Application
-#define _Session Session
+#define _Application papplication
+#define _Session get_session()
 
 
 CLASS_DECL_APEX bool __initialize(bool bDLL, ::u32 dwVersion);

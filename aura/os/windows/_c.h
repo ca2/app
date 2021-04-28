@@ -13,8 +13,8 @@
 //char get_drive_letter(const char * pDevicePath);
 //
 //
-//CLASS_DECL_AURA void set_main_hthread(hthread_t hthread);
-//CLASS_DECL_AURA void set_main_ithread(ithread_t ithread);
+//CLASS_DECL_AURA void set_main_hthread(htask_t htask);
+//CLASS_DECL_AURA void set_main_ithread(itask_t itask);
 //
 //
 //CLASS_DECL_AURA HANDLE get_main_hthread();

@@ -3,7 +3,7 @@
 
 
 extern __pointer(::thread) g_pthreadXlib;
-extern ithread_t g_ithreadXlib;
+extern itask_t g_ithreadXlib;
 
 
 void x11_kick_idle();
@@ -40,7 +40,7 @@ template < typename PRED >
 void x11_sync(PRED pred)
 {
 
-   synchronization_lock synchronizationlock(x11_mutex());
+   synchronous_lock synchronouslock(x11_mutex());
 
    pred();
 

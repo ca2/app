@@ -120,9 +120,9 @@ namespace datetime
    time::time(const filetime & filetime)
    {
 
-      auto pnode = ::acme::get_system()->node();
+      //auto pnode = get_system()->node();
 
-      pnode->file_time_to_time(&m_time, &filetime.m_filetime);
+      file_time_to_time(&m_time, &filetime.m_filetime);
 
    }
 
@@ -241,7 +241,7 @@ namespace datetime
             return nullptr;
 
          // but don't __throw( exception or generate error...
-         // (reason for commenting out below, fat to be removed...)
+         // (reason for commenting out below, fat to be erased...)
 //         if(errno != 0)
          //          return nullptr;
 
@@ -756,7 +756,7 @@ CLASS_DECL_ACME SYSTEMTIME __SYSTEMTIME(const ::datetime::time & time)
 //filetime __filetime(const ::datetime::time & time)
 //{
 //
-//   auto pnode = System->node();
+//   auto pnode = get_system()->node();
 //
 //   SYSTEMTIME systemtime;
 //

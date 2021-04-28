@@ -27,7 +27,7 @@ namespace music
             __pointer(::music::midi::message_out)                  m_pmessageout;
 
 
-            department(::layered * pobjectContext);
+            department(::object * pobject);
             virtual ~department();
 
             

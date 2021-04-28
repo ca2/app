@@ -148,7 +148,7 @@ namespace linux
    string os_context::get_command_line()
    {
 
-      return System->get_command_line();
+      return psystem->get_command_line();
 
    }
 
@@ -492,10 +492,10 @@ namespace linux
                {
 
                   keyPlugin.SetValue("Description", "ca2 plugin for NPAPI");
-                  keyPlugin.SetValue("Path", System->m_strCa2Module("npca2.dll"));
+                  keyPlugin.SetValue("Path", psystem->m_strCa2Module("npca2.dll"));
                   keyPlugin.SetValue("ProductName", "ca2 plugin for NPAPI");
                   keyPlugin.SetValue("Vendor", "ca2 Desenvolvimento de Software Ltda.");
-                  keyPlugin.SetValue("Version", Application.file_as_string(Context.dir().ca2("appdata/x86/ca2_build.txt")));
+                  keyPlugin.SetValue("Version", papplication->file_as_string(pcontext->m_papexcontext->dir().ca2("appdata/x86/ca2_build.txt")));
 
                   registry::Key keyApplicationca2;
 
@@ -701,7 +701,7 @@ namespace linux
 
    }
 
-   bool os_context::create_service(::layered * pobjectContext)
+   bool os_context::create_service(::object * pobject)
    {
 
       //__throw(error_not_implemented);
@@ -754,7 +754,7 @@ namespace linux
    }
 
 
-   bool os_context::remove_service(::layered * pobjectContext)
+   bool os_context::erase_service(::object * pobject)
    {
 //      __throw(error_not_implemented);
       return false;
@@ -795,7 +795,7 @@ namespace linux
       */
    }
 
-   bool os_context::start_service(::layered * pobjectContext)
+   bool os_context::start_service(::object * pobject)
    {
       //__throw(error_not_implemented);
       return false;
@@ -836,7 +836,7 @@ namespace linux
             */
    }
 
-   bool os_context::stop_service(::layered * pobjectContext)
+   bool os_context::stop_service(::object * pobject)
    {
       __throw(error_not_implemented);
       return false;
@@ -946,7 +946,7 @@ namespace linux
    //
    //#elif defined(MACos_context)
    //   //string strDir;
-   //   //strDir = Context.dir().path(getenv("HOME"), "Pictures");
+   //   //strDir = pcontext->m_papexcontext->dir().path(getenv("HOME"), "Pictures");
    //   //imagefileset.add_search(strDir);
    //   string strDir;
    //   strDir = "/Library/Desktop Pictures";
@@ -958,7 +958,7 @@ namespace linux
    bool os_context::get_default_browser(string & strId, ::file::path & path, string & strParam)
    {
 
-      string str = System->process().get_output("/bin/sh -c \"xdg-settings get default-web-browser\"");
+      string str = psystem->process().get_output("/bin/sh -c \"xdg-settings get default-web-browser\"");
 
       str.trim();
 
@@ -982,7 +982,7 @@ namespace linux
 
       }
 
-      //string str = System->process().get_output("xdg-settings get default-web-browser");
+      //string str = psystem->process().get_output("xdg-settings get default-web-browser");
 
       if(str.find_ci("chrome") >= 0)
       {
@@ -1015,7 +1015,7 @@ namespace linux
    bool os_context::file_open(::file::path strTarget, string strParams, string strFolder)
    {
 
-      strTarget = Context.defer_process_path(strTarget);
+      strTarget = pcontext->m_papexcontext->defer_process_path(strTarget);
 
       if(linux_can_exec(strTarget))
       {

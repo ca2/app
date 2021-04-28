@@ -7,12 +7,14 @@
 //#include "apex/os/_os.h"
 
 
+//bool __node_apex_pre_init();
+//bool __node_apex_pos_init();
 
 CLASS_DECL_APEX string __apex_get_text(string str);
 
 
-extern ::mutex * g_pmutexThreadDeferredCreation;
-extern ::array < __pointer(thread) >* g_pthreadaDeferredCreate;
+//extern ::mutex * g_pmutexThreadDeferredCreation;
+//extern ::array < __pointer(thread) >* g_pthreadaDeferredCreate;
 
 
 //#include <sqlite3.h>
@@ -70,7 +72,7 @@ namespace apex
 
    ::mutex * g_pmutexThreadWaitClose;
 
-   //string_map < __pointer(::apex::library) >* g_pmapLibrary;
+   //string_map < __pointer(::acme::library) >* g_pmapLibrary;
    //string_map < PFN_NEW_APEX_LIBRARY >* g_pmapNewAuraLibrary;
 
 
@@ -100,7 +102,7 @@ namespace apex
 #endif
 
 
-   //::mutex * ::apex::get_system()->g_mutexLibrary;
+   //::mutex * psystem->g_mutexLibrary;
 
    //__LPFN_MAIN_DEFERRED_RUN g_main_deferred_run;
 
@@ -154,7 +156,7 @@ namespace apex
 //
 //#endif
 
-   //map < ithread_t, ithread_t, ithread_t, ithread_t > * g_pmapThreadOn;
+   //map < itask_t, itask_t, itask_t, itask_t > * g_pmapThreadOn;
 
 #ifdef WINDOWS
 
@@ -227,7 +229,7 @@ namespace apex
 
 
 
-   void apex::construct()
+   void static_start::construct()
    {
 
       //::set_thread_get_run(&apex_thread_get_run);
@@ -287,7 +289,7 @@ namespace apex
 
       //::map < void *, void *,::apex::application *, ::apex::application * > * g_pmapAura;
 
-      //string_map < __pointer(::apex::library) > * g_pmapLibCall;
+      //string_map < __pointer(::acme::library) > * g_pmapLibCall;
 
       //g_pheap = nullptr;
 
@@ -305,7 +307,7 @@ namespace apex
 //
 //#endif
 
-      //map < ithread_t, ithread_t, ithread_t, ithread_t > * g_pmapThreadOn;
+      //map < itask_t, itask_t, itask_t, itask_t > * g_pmapThreadOn;
 
 #ifdef WINDOWS
 
@@ -374,14 +376,14 @@ namespace apex
 
       //g_pmapFontFaceName = nullptr;
 
-      create_factory < ::apex::idpool >();
+      //create_factory < ::apex::idpool >();
 
 
 
    }
 
 
-   apex::apex()
+   static_start::static_start()
    {
 
       m_bRef = false;
@@ -492,7 +494,7 @@ namespace apex
 
       //g_pmutexThreadOn = new ::mutex();
 
-      //g_pmapThreadOn = new ::map < ithread_t, ithread_t, ithread_t, ithread_t >;
+      //g_pmapThreadOn = new ::map < itask_t, itask_t, itask_t, itask_t >;
 
       //g_pmutexSystemHeap = new critical_section();
 
@@ -522,9 +524,9 @@ namespace apex
 
       //g_pmapRTL = nullptr;
 
-      //::apex::get_system()->g_mutexLibrary = new ::mutex;
+      //psystem->g_mutexLibrary = new ::mutex;
 
-      //g_pmapLibrary = new string_map < __pointer(::apex::library) >();
+      //g_pmapLibrary = new string_map < __pointer(::acme::library) >();
 
       //g_pmapNewAuraLibrary = new string_map < PFN_NEW_APEX_LIBRARY >();
 
@@ -543,7 +545,7 @@ namespace apex
 
 #endif
 
-      //g_pmapLibCall = new string_map < __pointer(::apex::library) >();
+      //g_pmapLibCall = new string_map < __pointer(::acme::library) >();
 
 #ifdef MEMORY_COUNTERS
 
@@ -569,7 +571,7 @@ namespace apex
 
       //::thread::g_pthreadmap = new ::thread_map();
 
-      create_factory < ::context >();
+      create_factory < ::apex::context, ::acme::context >();
 
 
 #if OBJ_TYP_CTR
@@ -580,23 +582,23 @@ namespace apex
 
       //g_pmapFontFaceName = new string_to_string();
 
-      g_pmutexThreadDeferredCreation = new ::mutex;
+      //g_pmutexThreadDeferredCreation = new ::mutex;
 
-      g_pthreadaDeferredCreate = new ::array < __pointer(thread) >();
+      //g_pthreadaDeferredCreate = new ::array < __pointer(thread) >();
 
       init();
 
    }
 
 
-   apex::~apex()
+   static_start::~static_start()
    {
 
       term();
 
-      ::acme::del(g_pthreadaDeferredCreate);
+//      ::acme::del(g_pthreadaDeferredCreate);
 
-      ::acme::del(g_pmutexThreadDeferredCreation);
+//      ::acme::del(g_pmutexThreadDeferredCreation);
 
       //::acme::del(g_pmapFontFaceName);
 
@@ -614,7 +616,7 @@ namespace apex
       //    try
       //    {
 
-      //       g_pmapAura->remove_all();
+      //       g_pmapAura->erase_all();
 
       //    }
       //    catch(...)
@@ -627,9 +629,9 @@ namespace apex
       //try
       //{
 
-      //   synchronization_lock synchronizationlock(::apex::get_system()->g_mutexLibrary);
+      //   synchronous_lock synchronouslock(psystem->g_mutexLibrary);
 
-      //   g_pmapLibCall->remove_all();
+      //   g_pmapLibCall->erase_all();
 
 
       //}
@@ -641,9 +643,9 @@ namespace apex
       //try
       //{
 
-      //   synchronization_lock synchronizationlock(::apex::get_system()->g_mutexLibrary);
+      //   synchronous_lock synchronouslock(psystem->g_mutexLibrary);
 
-      //   ::apex::get_system()->g_mapLibrary.remove_all();
+      //   psystem->g_mapLibrary.erase_all();
 
       //}
       //catch (...)
@@ -657,7 +659,7 @@ namespace apex
       //   try
       //   {
 
-      //      g_pmapRTL->remove_all();
+      //      g_pmapRTL->erase_all();
 
       //   }
       //   catch(...)
@@ -673,7 +675,7 @@ namespace apex
       //   try
       //   {
 
-      //      g_pmapRTL->remove_all();
+      //      g_pmapRTL->erase_all();
 
       //   }
       //   catch(...)
@@ -742,7 +744,7 @@ namespace apex
 
       //del(g_pmapNewAuraLibrary);
 
-      //del(::apex::get_system()->g_mutexLibrary);
+      //del(psystem->g_mutexLibrary);
 
 #if OBJ_TYP_CTR
 
@@ -841,7 +843,7 @@ namespace apex
    }
 
 
-   void apex::this_ref()
+   void static_start::this_ref()
    {
 
       m_bRef = true;
@@ -863,26 +865,26 @@ namespace apex
 
 
 
-   ::e_status apex::init()
+   ::e_status static_start::init()
    {
 
       //::apex::static_start::init();
 
-      if (!__node_apex_pre_init())
-      {
+      //if (!__node_apex_pre_init())
+      //{
 
-         return ::error_failed;
+      //   return ::error_failed;
 
-      }
+      //}
 
-      ::parallelization::init_multithreading();
+      ::parallelization::initialize();
 
-      if (!__node_apex_pos_init())
-      {
+      //if (!__node_apex_pos_init())
+      //{
 
-         return ::error_failed;
+      //   return ::error_failed;
 
-      }
+      //}
 
 //#ifdef WINDOWS
 //
@@ -899,7 +901,7 @@ namespace apex
    }
 
 
-   ::e_status apex::term()
+   ::e_status static_start::term()
    {
 
       //::parallelization::wait_threads(1_min);
@@ -913,9 +915,9 @@ namespace apex
 
       on_term_thread();
 
-      ::parallelization::term_multithreading();
+      ::parallelization::finalize();
 
-      __node_apex_pre_term();
+      //__node_apex_pre_term();
 
 //#ifdef WINDOWS
 //
@@ -927,7 +929,7 @@ namespace apex
 
       processor_cache_oriented_destroy_all_memory_pools();
 
-      __node_apex_pos_term();
+      //__node_apex_pos_term();
 
       //::apex::static_start::term();
 
@@ -1304,7 +1306,7 @@ void apex_ref()
 {
 
 
-   ::apex::apex::g_apex.this_ref();
+   ::apex::static_start::g_staticstart.this_ref();
    set_platform_level(e_platform_level_apex);
 
 

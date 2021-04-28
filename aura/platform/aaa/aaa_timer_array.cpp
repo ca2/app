@@ -39,7 +39,7 @@ namespace aura
 
       }
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       if (!m_bOk)
       {
@@ -58,7 +58,7 @@ namespace aura
 
       m_map.set_at(uEvent, ptimer);
 
-      //synchronizationlock.unlock();
+      //synchronouslock.unlock();
 
       bool bOk = true;
 
@@ -110,7 +110,7 @@ namespace aura
    bool timer_array::delete_timer(uptr uEvent)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       auto * ppair = m_map.plookup(uEvent);
 
@@ -123,7 +123,7 @@ namespace aura
 
       auto ptimer = ppair->element2();
 
-      m_map.remove_key(uEvent);
+      m_map.erase_key(uEvent);
 
       ptimer->set_finish();
 
@@ -132,10 +132,10 @@ namespace aura
    }
 
 
-   bool timer_array::remove_timer(::timer * ptimer)
+   bool timer_array::erase_timer(::timer * ptimer)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       try
       {
@@ -156,7 +156,7 @@ namespace aura
          if(ptimerMapped == ptimer)
          {
 
-            m_map.remove_key(uEvent);
+            m_map.erase_key(uEvent);
 
          }
 
@@ -220,7 +220,7 @@ namespace aura
    }
 
 
-   void timer_array::finalize()
+   ::e_status timer_array::finalize()
    {
 
       m_bOk = false;
@@ -237,7 +237,7 @@ namespace aura
 
       {
 
-         synchronization_lock synchronizationlock(mutex());
+         synchronous_lock synchronouslock(mutex());
 
          __keep(m_bOk, false);
 
@@ -251,7 +251,7 @@ namespace aura
             try
             {
 
-               synchronization_lock synchronizationlock(ptimer->mutex());
+               synchronous_lock synchronouslock(ptimer->mutex());
 
                ptimer->m_eobject -= e_object_success;
 
@@ -276,7 +276,7 @@ namespace aura
 
       {
 
-         synchronization_lock synchronizationlock(mutex());
+         synchronous_lock synchronouslock(mutex());
 
          __keep(m_bOk, false);
 

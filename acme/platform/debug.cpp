@@ -4,10 +4,8 @@
 //#include "acme/user/_user.h"
 CLASS_DECL_ACME void __simple_tracev(e_trace_category ecategory, enum_trace_level elevel, const char* pszFunction, const char* pszFile, i32 iLine, const char* pszFormat, va_list args);
 CLASS_DECL_ACME void __simple_tracea(e_trace_category ecategory, enum_trace_level elevel, const char* pszFunction, const char* pszFileName, i32 iLine, const char* psz);
-CLASS_DECL_ACME void __simple_tracev(::matter* pmatter, enum_trace_level elevel, const char* pszFunction, const char* pszFile, i32 iLine, const char* pszFormat, va_list args);
-CLASS_DECL_ACME void __simple_tracea(::matter* pmatter, enum_trace_level elevel, const char* pszFunction, const char* pszFileName, i32 iLine, const char* psz);
 
-CLASS_DECL_ACME void __tracev(::matter * pmatter, enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, va_list args);
+//CLASS_DECL_ACME void __tracev(const ::matter * pmatter, enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, va_list args);
 
 //#endif
 #include "acme/update.h"
@@ -50,7 +48,7 @@ void debug_object_event_promisse_predicate()
 //void system_call_update_wallpaper_changed()
 //{
 //
-//   System->call_subject(id_wallpaper_changed);
+//   get_system()->call_subject(id_wallpaper_changed);
 //
 //}
 //
@@ -58,21 +56,21 @@ void debug_object_event_promisse_predicate()
 //void system_call_update_app_activated()
 //{
 //
-//   System->call_subject(id_app_activated);
+//   get_system()->call_subject(id_app_activated);
 //
 //}
 //
 //
-void system_call_update_app_activated()
-{
-
-   ::acme::get_system()->process_subject(id_app_activated);
-
-}
+//void system_call_update_app_activated()
+//{
+//
+//   get_system()->process_subject(id_app_activated);
+//
+//}
 //void system_call_update_app_changed_occlusion_state()
 //{
 //
-//   System->call_subject(id_app_changed_occlusion_state);
+//   get_system()->call_subject(id_app_changed_occlusion_state);
 //
 //}
 
@@ -158,131 +156,119 @@ CLASS_DECL_ACME void debug_print(const char* pszFormat, ...)
 
 
 
-int g_iMemoryCounters = -1;
+//int g_iMemoryCounters = -1;
 
-CLASS_DECL_ACME::mutex * g_pmutexMemoryCounters = nullptr;
+//CLASS_DECL_ACME::mutex * g_pmutexMemoryCounters = nullptr;
 
-int g_iMemoryCountersStartable = 0;
 
-CLASS_DECL_ACME bool memcnts()
+
+
+CLASS_DECL_ACME void __tracea(::matter * pmatter, enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz)
 {
 
-   if (g_iMemoryCountersStartable && g_iMemoryCounters < 0)
+   //if (::is_null(::get_context_system()))
+   if (::is_null(pmatter->m_psystem))
    {
 
-      g_iMemoryCounters = file_exists(::dir::config() / "system/memory_counters.txt") ? 1 : 0;
-
-      if (g_iMemoryCounters)
-      {
-
-         g_pmutexMemoryCounters = new ::mutex(e_create_new, false, "Global\\ca2_memory_counters");
-
-      }
-
-   }
-
-   return g_iMemoryCountersStartable && g_iMemoryCounters;
-
-}
-
-
-::file::path* g_pMemoryCounters = nullptr;
-
-
-CLASS_DECL_ACME::file::path memcnts_base_path()
-{
-
-   if (g_iMemoryCountersStartable && g_pMemoryCounters == nullptr)
-   {
-
-      g_pMemoryCounters = new ::file::path();
-
-#if defined(_UWP)
-
-      string strBasePath = ::dir::system() / "memory_counters";
-
-#else
-
-      ::file::path strModule = module_path_from_pid(getpid());
-
-      string strBasePath = ::dir::system() / "memory_counters" / strModule.title() / __str(getpid());
-
-#endif
-
-      * g_pMemoryCounters = strBasePath;
-
-   }
-
-   return *g_pMemoryCounters;
-
-}
-
-
-
-
-
-
-
-
-
-CLASS_DECL_ACME void __tracea(::matter * pobject, enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz)
-{
-
-   if (::is_null(::get_context_system()))
-   {
-
-      __simple_tracea(pobject, elevel, pszFunction, pszFile, iLine, psz);
+      pmatter->__simple_tracea(elevel, pszFunction, pszFile, iLine, psz);
 
       return;
 
    }
 
-   ::acme::get_system()->__tracea(pobject, elevel, pszFunction, pszFile, iLine, psz);
+   pmatter->m_psystem->__tracea(elevel, pszFunction, pszFile, iLine, psz);
 
 }
 
 
-CLASS_DECL_ACME void __tracef(::matter * pobject, enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, ...)
+//CLASS_DECL_ACME void __tracef(const ::matter * pmatter, enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, ...)
+//{
+//
+//   va_list list;
+//
+//   va_start(list, pszFormat);
+//
+//   try
+//   {
+//
+//      __tracev(pmatter, elevel, pszFunction, pszFile, iLine, pszFormat, list);
+//
+//   }
+//   catch (...)
+//   {
+//
+//   }
+//
+//   va_end(list);
+//
+//}
+
+
+//CLASS_DECL_ACME void __tracev(::matter * pmatter, enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, va_list args)
+//{
+//
+//   if (::is_null(pmatter->m_psystem))
+//   {
+//
+//      pmatter->__simple_tracev(elevel, pszFunction, pszFile, iLine, pszFormat, args);
+//
+//      return;
+//
+//   }
+//
+//   pmatter->m_psystem->__tracev(elevel, pszFunction, pszFile, iLine, pszFormat, args);
+//
+//}
+
+//
+//
+//
+//
+//
+
+
+::e_status _003CountStatus(::count countSuccess, ::count countFailed)
 {
 
-   va_list list;
+   ::count countTotal = countFailed + countSuccess;
 
-   va_start(list, pszFormat);
-
-   try
+   if (countTotal <= 0)
    {
 
-      __tracev(pobject, elevel, pszFunction, pszFile, iLine, pszFormat, list);
+      return error_failed;
 
    }
-   catch (...)
+   else if (countSuccess <= 0)
    {
 
+      return error_all_failed;
+
+   }
+   else if (countSuccess == countTotal)
+   {
+
+      return success;
+
+   }
+   else if (countFailed <= countTotal / 3)
+   {
+
+      return partial_one_third_or_less_has_failed;
+
+   }
+   else if (countFailed >= 2 * countTotal / 3)
+   {
+
+      return partial_two_thirds_or_more_but_not_all_has_failed;
+
+   }
+   else
+   {
+
+      return partial_sorf_of_half_has_failed;
+
    }
 
-   va_end(list);
 
 }
 
-
-CLASS_DECL_ACME void __tracev(::matter * pobject, enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, va_list args)
-{
-
-   if (::is_null(::get_context_system()))
-   {
-
-      __simple_tracev(pobject, elevel, pszFunction, pszFile, iLine, pszFormat, args);
-
-      return;
-
-   }
-
-   ::acme::get_system()->__tracev(pobject, elevel, pszFunction, pszFile, iLine, pszFormat, args);
-
-}
-
-//
-//
-//
-//
-//

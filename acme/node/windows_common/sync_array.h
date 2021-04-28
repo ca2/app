@@ -27,9 +27,9 @@ public:
 
    bool add(const synchronization_array & waitablea);
 
-   void remove(class synchronization_object * psync);
+   void erase(class synchronization_object * psync);
 
-   void remove(index index);
+   void erase(index index);
 
    virtual void wait();
 

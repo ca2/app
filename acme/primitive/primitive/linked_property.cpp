@@ -12,14 +12,14 @@ void linked_property::notify_property_changed(const ::action_context & actioncon
 
    }
 
-   if (::is_null(m_pobjectPropertyHolder))
+   if (::is_null(m_ppropertyobject))
    {
 
       return;
 
    }
 
-   m_pobjectPropertyHolder->notify_property_changed(m_pproperty, actioncontext);
+   m_ppropertyobject->notify_property_changed(m_pproperty, actioncontext);
 
 }
 

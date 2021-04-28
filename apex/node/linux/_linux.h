@@ -43,7 +43,7 @@ CLASS_DECL_APEX const char * __get_app_name();
 
 
 #include "parallelization.h"
-#include "os_context.h"
+//#include "os_context.h"
 
 #define NULL_REF(class) (*((class *) nullptr))
 
@@ -75,11 +75,11 @@ CLASS_DECL_APEX __pointer(::user::primitive) __get_main_window();
 CLASS_DECL_APEX const char * __get_app_name();
 
 
-#include "dir_system.h"
-#include "dir_context.h"
-#include "file_system.h"
-#include "file_context.h"
-#include "interprocess_communication.h"
+//#include "dir_system.h"
+//#include "dir_context.h"
+//#include "file_system.h"
+//#include "file_context.h"
+//#include "interprocess_communication.h"
 
 #include "factory_exchange.h"
 

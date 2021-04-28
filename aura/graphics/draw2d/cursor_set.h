@@ -38,7 +38,7 @@
 //      ::count set_cursor_set_system_default();
 //
 //
-//      virtual void finalize() override;
+//      virtual ::e_status finalize() override;
 //
 //
 //   };

@@ -27,7 +27,7 @@ namespace datetime
          virtual ~calendar();
 
 
-         virtual ::e_status initialize(::layered * pobjectContext) override;
+         virtual ::e_status initialize(::object * pobject) override;
 
          virtual void GetRectDay(::datetime::time& time, RECTANGLE_I32 * lprect);
          virtual void GetRectDay(int32_t iWeekDay, int32_t iLine, RECTANGLE_I32 * lprect);
@@ -47,11 +47,11 @@ namespace datetime
 
          void set_pos(point_i32 pt, size_i32 sz);
 
-         virtual void GetDateTime(const ::apex::str_context* pcontext, string& strDateTime);
+         virtual void GetDateTime(const ::text::context* pcontext, string& strDateTime);
 
-         virtual string GetTinyWeekDay(const ::apex::str_context* pcontext, int32_t iWeekDay); // 1 - domingo
-         virtual string GetWeekDay(const ::apex::str_context* pcontext, int32_t iWeekDay); // 1 - domingo
-         virtual string GetMonth(const ::apex::str_context* pcontext, int32_t iMonth); // 1 - janeiro
+         virtual string GetTinyWeekDay(const ::text::context* pcontext, int32_t iWeekDay); // 1 - domingo
+         virtual string GetWeekDay(const ::text::context* pcontext, int32_t iWeekDay); // 1 - domingo
+         virtual string GetMonth(const ::text::context* pcontext, int32_t iMonth); // 1 - janeiro
 
          virtual void previous_month();
          virtual void next_month();

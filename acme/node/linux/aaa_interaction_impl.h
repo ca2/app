@@ -71,10 +71,10 @@ namespace linux
 
       virtual void on_control_event(::user::control_event * pevent) override;
 
-      DECL_GEN_SIGNAL(_001OnEraseBkgnd);
-      DECL_GEN_SIGNAL(_001OnMove);
-      DECL_GEN_SIGNAL(_001OnSize);
-      DECL_GEN_SIGNAL(_001OnShowWindow);
+      DECLARE_MESSAGE_HANDLER(_001OnEraseBkgnd);
+      DECLARE_MESSAGE_HANDLER(_001OnMove);
+      DECLARE_MESSAGE_HANDLER(_001OnSize);
+      DECLARE_MESSAGE_HANDLER(_001OnShowWindow);
 
 
       virtual void window_show_change_visibility(::e_display edisplay, ::e_activation eactivation) override;
@@ -243,15 +243,15 @@ namespace linux
 //      virtual bool _001ScreenToClient(POINT64 * ppoint);
 
 
-      virtual bool GetWindowPlacement(WINDOWPLACEMENT* pwndpl);
+      virtual bool GetWindowPlacement(WINDOWPLACEMENT* puserinteractionpl);
 
-      virtual bool SetWindowPlacement(const WINDOWPLACEMENT* pwndpl);
+      virtual bool SetWindowPlacement(const WINDOWPLACEMENT* puserinteractionpl);
 
 
       // Coordinate Mapping Fufnctions
-//      virtual void MapWindowPoints(::user::interaction * pwndTo, POINT32 * pPoint, ::u32 nCount);
+//      virtual void MapWindowPoints(::user::interaction * puserinteractionTo, POINT32 * pPoint, ::u32 nCount);
 //
-//      virtual void MapWindowPoints(::user::interaction * pwndTo, RECT32 * prect);
+//      virtual void MapWindowPoints(::user::interaction * puserinteractionTo, RECT32 * prect);
 
 
       // Update/Painting Functions
@@ -335,117 +335,23 @@ namespace linux
 
       // the foreground ::user::interaction_impl applies only to top-level windows (frame windows)
       virtual bool SetForegroundWindow() override;
-      //static::user::interaction * PASCAL GetForegroundWindow();
-//
-//      virtual id SetDlgCtrlId(id id);
-//      virtual id GetDlgCtrlId();
 
 
 
-      // capture and focus apply to all windows
-      //virtual ::user::interaction * GetCapture() override;
-      //virtual bool SetCapture(::user::interaction * pinterface = nullptr) override;
-      //virtual bool ReleaseCapture() override;
-      //virtual ::user::interaction * get_capture();
       virtual ::user::interaction * GetFocus() override;
       virtual bool SetFocus() override;
 
       static::user::interaction * PASCAL get_desktop_window();
 
-      // Obsolete and non-portable APIs - not recommended for new code
-//      virtual void CloseWindow();
-//      virtual bool OpenIcon();
-
-      // Dialog-Box Item Functions
-      // (NOTE: Dialog-Box Items/Controls are not necessarily in dialog boxes!)
-//      virtual void CheckDlgButton(i32 nIDButton, ::u32 nCheck);
-//      virtual void CheckRadioButton(i32 nIDFirstButton, i32 nIDLastButton,
-//                                    i32 nIDCheckButton);
-//      virtual i32 GetCheckedRadioButton(i32 nIDFirstButton, i32 nIDLastButton);
-//      virtual i32 DlgDirList(char * pPathSpec, i32 nIDListBox,
-//
-//                             i32 nIDStaticPath, ::u32 nFileType);
-//      virtual i32 DlgDirListComboBox(char * pPathSpec, i32 nIDComboBox,
-//
-//                                     i32 nIDStaticPath, ::u32 nFileType);
-//      virtual bool DlgDirSelect(char * pString, i32 nSize, i32 nIDListBox);
-//
-//      virtual bool DlgDirSelectComboBox(char * pString, i32 nSize, i32 nIDComboBox);
-
-
-      //virtual ::u32 GetChildByIdInt(i32 nID, bool * pTrans = nullptr, bool bSigned = true) const;
-
-      //virtual i32 GetChildByIdText(i32 nID, char * pStr, i32 nMaxCount) const;
-
-      //virtual i32 GetChildByIdText(i32 nID, string & rectString) const;
-//      virtual ::user::interaction * GetNextDlgGroupItem(::user::interaction * pWndCtl, bool bPrevious = false) const;
-//      virtual ::user::interaction * GetNextDlgTabItem(::user::interaction * pWndCtl, bool bPrevious = false) const;
-//      virtual ::u32 IsDlgButtonChecked(i32 nIDButton) const;
-//      virtual LRESULT SendDlgItemMessage(i32 nID, const ::id & id, WPARAM wParam = 0, LPARAM lParam = 0);
-//      virtual void SetDlgItemInt(i32 nID, ::u32 nValue, bool bSigned = true);
-//      virtual void SetDlgItemText(i32 nID, const char * pszString);
-
-
-//      // Scrolling Functions
-//      virtual i32 GetScrollPos(i32 nBar) const;
-//      virtual void GetScrollRange(i32 nBar, LPINT pMinPos, LPINT lpMaxPos) const;
-//
-//      virtual void ScrollWindow(i32 xAmount, i32 yAmount,
-//                                const ::rect & rectClient = nullptr,
-//                                const ::rect & rectClip = nullptr);
-//
-//      virtual i32 SetScrollPos(i32 nBar, i32 nPos, bool bRedraw = true);
-//      virtual void SetScrollRange(i32 nBar, i32 nMinPos, i32 nMaxPos,
-//                                  bool bRedraw = true);
-//      virtual void ShowScrollBar(::u32 nBar, bool bShow = true);
-//      virtual void EnableScrollBarCtrl(i32 nBar, bool bEnable = true);
-//      //      virtual CScrollBar* GetScrollBarCtrl(i32 nBar) const;
-//      // return sibling scrollbar control (or nullptr if none)
-//
-//      virtual i32 ScrollWindowEx(i32 dx, i32 dy,
-//                                 const rect & pRectScroll, const rect & lpRectClip,
-//
-//                                 ::draw2d::region* prgnUpdate, RECT32 * pRectUpdate, ::u32 flags);
-
-      //xxx      virtual bool SetScrollInfo(i32 nBar, LPSCROLLINFO pScrollInfo,
-
-      //xxx         bool bRedraw = true);
-      //xxx      virtual bool GetScrollInfo(i32 nBar, LPSCROLLINFO pScrollInfo, ::u32 nMask = SIF_ALL);
-
-//      virtual i32 GetScrollLimit(i32 nBar);
-//
-//      virtual ::user::interaction * ChildWindowFromPoint(const ::point & point);
-//      virtual ::user::interaction * ChildWindowFromPoint(const ::point & point, ::u32 nFlags);
-//      static::user::interaction * PASCAL FindWindow(const char * pszClassName, const char * pszWindowName);
-//
-//      static::user::interaction * FindWindowEx(oswindow hwndParent, oswindow hwndChildAfter, const char * lpszClass, const char * pszWindow);
-//
-//
-//      virtual ::user::interaction * GetNextWindow(::u32 nFlag = GW_HWNDNEXT);
-//      virtual ::user::interaction * GetTopWindow() const;
-//
-//      virtual ::user::interaction * GetWindow(::u32 nCmd);
-//
-//      virtual bool IsChild(::user::interaction *  pWnd);
-//      virtual ::user::interaction * get_parent();
-//      using ::user::interaction_impl::SetParent;
-//      ::user::interaction * SetParent(::user::interaction * pWndNewParent);
-//      static::user::interaction * PASCAL oswindowFromPoint(const ::point & point);
-
-
-      //virtual i32 message_box(const char * pszText, const char * pszcaption = nullptr, ::u32 nType = e_message_box_ok) override;
-
-
-
 
       virtual bool prodevian_update_screen() override;
 
 
-      DECL_GEN_SIGNAL(on_message_create);
-      DECL_GEN_SIGNAL(_001OnDestroy);
-      DECL_GEN_SIGNAL(_001OnPaint);
-      DECL_GEN_SIGNAL(_001OnPrint);
-      DECL_GEN_SIGNAL(_001OnSetCursor);
+      DECLARE_MESSAGE_HANDLER(on_message_create);
+      DECLARE_MESSAGE_HANDLER(_001OnDestroy);
+      DECLARE_MESSAGE_HANDLER(_001OnPaint);
+      DECLARE_MESSAGE_HANDLER(_001OnPrint);
+      DECLARE_MESSAGE_HANDLER(_001OnSetCursor);
 
 
 

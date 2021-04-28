@@ -11,8 +11,8 @@ namespace xml
 
       
       char     m_chEntity;      // entity ( & " ' < > )
-      string   m_strRef;      // entity context_object ( &amp; &quot; etc )
-      i32      m_iRefLen;      // entity context_object length
+      string   m_strRef;      // entity object ( &amp; &quot; etc )
+      i32      m_iRefLen;      // entity object length
 
       
       entity();

@@ -1,11 +1,9 @@
 #pragma once
 
 
-CLASS_DECL_ACME void __tracef(::matter * pmatter, enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, ...);
-CLASS_DECL_ACME void __tracea(::matter * pmatter, enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz);
-CLASS_DECL_ACME void __tracev(::matter * pmatter, enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, va_list args);
-
-
+//CLASS_DECL_ACME void __tracef(const ::matter * pmatter, enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, ...);
+//CLASS_DECL_ACME void __tracea(const ::matter * pmatter, enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz);
+//CLASS_DECL_ACME void __tracev(const ::matter * pmatter, enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, va_list args);
 
 
 extern const char * g_pszTraceLevelName[];
@@ -25,13 +23,13 @@ class CLASS_DECL_ACME trace_logger
 public:
 
 
-   ::matter *            m_pmatter;
+   const ::matter *      m_pmatter;
    const char * const    m_pszFunction;
    const char * const    m_pszFile;
    const i32             m_iLine;
 
 
-   trace_logger(const char * pszFunction, const char * pszFile, i32 iLine, ::matter * pmatter) :
+   trace_logger(const char * pszFunction, const char * pszFile, i32 iLine, const ::matter * pmatter) :
       m_pszFunction(pszFunction), m_pszFile(pszFile), m_iLine(iLine), m_pmatter(pmatter)
    {
 
@@ -45,7 +43,7 @@ public:
 
       va_start(ptr, pszFormat);
 
-      ::__tracev(m_pmatter, elevel, m_pszFunction, m_pszFile, m_iLine, pszFormat, ptr);
+      m_pmatter->__tracev(elevel, m_pszFunction, m_pszFile, m_iLine, pszFormat, ptr);
 
       va_end(ptr);
 
@@ -55,7 +53,7 @@ public:
    inline void __cdecl operator()(T & t) const
    {
 
-      ::__tracea(m_pmatter, e_trace_level_information, m_pszFunction, m_pszFile, m_iLine, (const char *) t);
+      m_pmatter->__tracea(e_trace_level_information, m_pszFunction, m_pszFile, m_iLine, (const char *) t);
 
    }
 
@@ -67,7 +65,7 @@ public:
 
       va_start(valist, pszFormat);
 
-      ::__tracev(m_pmatter, e_trace_level_none, m_pszFunction, m_pszFile, m_iLine, pszFormat, valist);
+      m_pmatter->__tracev(e_trace_level_none, m_pszFunction, m_pszFile, m_iLine, pszFormat, valist);
 
       va_end(valist);
 
@@ -77,7 +75,7 @@ public:
    inline void __cdecl operator()(e_log elog, const string & strContext, i32 iError, const string & strMessage) const
    {
 
-      ::__tracef(m_pmatter, e_trace_level_none, m_pszFunction, m_pszFile, m_iLine, "%d %d %s", strContext.c_str(), iError, strMessage.c_str());
+      m_pmatter->__tracef(e_trace_level_none, m_pszFunction, m_pszFile, m_iLine, "%d %d %s", strContext.c_str(), iError, strMessage.c_str());
 
    }
 
@@ -85,7 +83,7 @@ public:
    inline void __cdecl operator()(::matter * pmatter, const string & strContext, i32 iError, const string & strMessage) const
    {
 
-      ::__tracef(pmatter, e_trace_level_none, m_pszFunction, m_pszFile, m_iLine, "%d %d %s", strContext.c_str(), iError, strMessage.c_str());
+      pmatter->__tracef(e_trace_level_none, m_pszFunction, m_pszFile, m_iLine, "%d %d %s", strContext.c_str(), iError, strMessage.c_str());
 
    }
 
@@ -102,7 +100,7 @@ public:
    enum_trace_level           m_elevel;
 
 
-   trace_logger_level(const char * pszFunction, const char * pszFile, i32 iLine, ::matter * pmatter, enum_trace_level elevel) :
+   trace_logger_level(const char * pszFunction, const char * pszFile, i32 iLine, const ::matter * pmatter, enum_trace_level elevel) :
       trace_logger(pszFunction, pszFile, iLine, pmatter),
       m_elevel(elevel)
    {
@@ -117,7 +115,7 @@ public:
 
       va_start(ptr, pszFormat);
 
-      ::__tracev(m_pmatter, m_elevel, m_pszFunction, m_pszFile, m_iLine, pszFormat, ptr);
+      m_pmatter->__tracev(m_elevel, m_pszFunction, m_pszFile, m_iLine, pszFormat, ptr);
 
       va_end(ptr);
 
@@ -127,7 +125,7 @@ public:
    inline void operator()(T & t) const
    {
 
-      ::__tracea(m_pmatter, m_elevel, m_pszFunction, m_pszFile, m_iLine, (const char *) t);
+      m_pmatter->__tracea(m_elevel, m_pszFunction, m_pszFile, m_iLine, (const char *) t);
 
    }
 
@@ -145,7 +143,7 @@ public:
 
       va_start(ptr, pszFormat);
 
-      ::__tracev(m_pmatter, m_elevel, m_pszFunction, m_pszFile, m_iLine, pszFormat, ptr);
+      m_pmatter->__tracev(m_elevel, m_pszFunction, m_pszFile, m_iLine, pszFormat, ptr);
 
       va_end(ptr);
 
@@ -158,13 +156,13 @@ public:
       if (iError == 0)
       {
 
-         ::__tracef(m_pmatter, m_elevel, m_pszFunction, m_pszFile, m_iLine, "%s %s", strContext.c_str(), strMessage.c_str());
+         m_pmatter->__tracef(m_elevel, m_pszFunction, m_pszFile, m_iLine, "%s %s", strContext.c_str(), strMessage.c_str());
 
       }
       else
       {
 
-         ::__tracef(m_pmatter, m_elevel, m_pszFunction, m_pszFile, m_iLine, "%s %s (%d)", strContext.c_str(), strMessage.c_str(), iError);
+         m_pmatter->__tracef(m_elevel, m_pszFunction, m_pszFile, m_iLine, "%s %s (%d)", strContext.c_str(), strMessage.c_str(), iError);
 
       }
 
@@ -174,7 +172,7 @@ public:
    inline void operator()(matter * pmatter, const string & strContext, i32 iError, const string & strMessage) const
    {
 
-      ::__tracef(pmatter, m_elevel, m_pszFunction, m_pszFile, m_iLine, "%d %d %s", strContext.c_str(), iError, strMessage.c_str());
+      pmatter->__tracef(m_elevel, m_pszFunction, m_pszFile, m_iLine, "%d %d %s", strContext.c_str(), iError, strMessage.c_str());
 
    }
 

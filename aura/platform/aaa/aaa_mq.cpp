@@ -9,7 +9,7 @@
 #if defined(LINUX) // || defined(ANDROID)
 
 
-bool aura_defer_process_x_message(hthread_t hthread,LPMESSAGE pMsg,oswindow oswindow,bool bPeek);
+bool aura_defer_process_x_message(htask_t htask,LPMESSAGE pMsg,oswindow oswindow,bool bPeek);
 
 
 #endif
@@ -67,7 +67,7 @@ int_bool message_queue::post_message(const MESSAGE & message)
 
    }
 
-   synchronization_lock ml(mutex());
+   synchronous_lock ml(mutex());
 
    m_messagea.add(message);
 
@@ -88,7 +88,7 @@ int_bool message_queue::get_message(LPMESSAGE pMsg, oswindow oswindow, ::u32 wMs
 
    }
 
-   synchronization_lock synchronizationlock(mutex());
+   synchronous_lock synchronouslock(mutex());
 
    while (true)
    {
@@ -103,7 +103,7 @@ int_bool message_queue::get_message(LPMESSAGE pMsg, oswindow oswindow, ::u32 wMs
 
             m_bQuit = true;
 
-            m_messagea.remove_at(i);
+            m_messagea.erase_at(i);
 
             continue;
 
@@ -114,7 +114,7 @@ int_bool message_queue::get_message(LPMESSAGE pMsg, oswindow oswindow, ::u32 wMs
 
             *pMsg = msg;
 
-            m_messagea.remove_at(i);
+            m_messagea.erase_at(i);
 
             return true;
 
@@ -150,11 +150,11 @@ int_bool message_queue::get_message(LPMESSAGE pMsg, oswindow oswindow, ::u32 wMs
 
       {
 
-         synchronizationlock.unlock();
+         synchronouslock.unlock();
 
          m_eventNewMessage.wait();
 
-         synchronizationlock.lock();
+         synchronouslock.lock();
 
          m_eventNewMessage.ResetEvent();
 
@@ -175,7 +175,7 @@ int_bool message_queue::peek_message(LPMESSAGE pMsg,oswindow oswindow,::u32 wMsg
 
    }
 
-   synchronization_lock synchronizationlock(mutex());
+   synchronous_lock synchronouslock(mutex());
 
    ::count count = m_messagea.get_count();
 
@@ -192,7 +192,7 @@ int_bool message_queue::peek_message(LPMESSAGE pMsg,oswindow oswindow,::u32 wMsg
          if(wRemoveMsg & PM_REMOVE)
          {
 
-            m_messagea.remove_at(i);
+            m_messagea.erase_at(i);
 
          }
 
@@ -202,11 +202,11 @@ int_bool message_queue::peek_message(LPMESSAGE pMsg,oswindow oswindow,::u32 wMsg
 
    }
 
-   synchronizationlock.unlock();
+   synchronouslock.unlock();
 
 //#if defined(LINUX) // || defined(ANDROID)
 //
-//   if(aura_defer_process_x_message(hthread,pMsg,oswindow,!(wRemoveMsg & PM_REMOVE)))
+//   if(aura_defer_process_x_message(htask,pMsg,oswindow,!(wRemoveMsg & PM_REMOVE)))
 //   {
 //
 //      return true;
@@ -220,7 +220,7 @@ int_bool message_queue::peek_message(LPMESSAGE pMsg,oswindow oswindow,::u32 wMsg
 }
 
 
-//__pointer(message_queue) get_message_queue(ithread_t idthread, bool bCreate)
+//__pointer(message_queue) get_message_queue(itask_t idthread, bool bCreate)
 //{
 //
 //   ::thread * pthread = ::aura::get_system()->get_task(idthread);
@@ -319,7 +319,7 @@ int_bool message_queue::peek_message(LPMESSAGE pMsg,oswindow oswindow,::u32 wMsg
 //
 //   pthread->__raw_compose_new(pthread->m_pmq);
 //
-//   pthread->m_pmq->m_ithread = idthread;
+//   pthread->m_pmq->m_itask = idthread;
 //
 //   return pthread->m_pmq;
 //
@@ -348,7 +348,7 @@ CLASS_DECL_AURA int_bool post_ui_message(const MESSAGE & message)
 //
 //   }
 //
-//   ithread_t idthread = pinteraction->m_pthreadUserInteraction->get_os_int();
+//   itask_t idthread = pinteraction->m_pthreadUserInteraction->get_os_int();
 //
 //   auto pmq = ::get_message_queue(idthread, message.message != e_message_quit);
 //
@@ -364,7 +364,7 @@ CLASS_DECL_AURA int_bool post_ui_message(const MESSAGE & message)
 }
 
 
-CLASS_DECL_AURA int_bool mq_remove_window_from_all_queues(oswindow oswindow)
+CLASS_DECL_AURA int_bool mq_erase_window_from_all_queues(oswindow oswindow)
 {
 
 //   ::user::interaction * pinteraction = oswindow_interaction(oswindow);
@@ -376,14 +376,14 @@ CLASS_DECL_AURA int_bool mq_remove_window_from_all_queues(oswindow oswindow)
 //
 //   }
 //
-//   if(pinteraction->get_context_application() == nullptr)
+//   if(pinteraction->get_application() == nullptr)
 //   {
 //
 //      return false;
 //
 //   }
 //
-//   ithread_t idthread = pinteraction->get_context_application()->get_os_int();
+//   itask_t idthread = pinteraction->get_application()->get_os_int();
 //
 //   message_queue * pmq = __get_mq(idthread, false);
 //
@@ -394,9 +394,9 @@ CLASS_DECL_AURA int_bool mq_remove_window_from_all_queues(oswindow oswindow)
 //
 //   }
 //
-//   synchronization_lock ml(&pmq->m_mutex);
+//   synchronous_lock ml(&pmq->m_mutex);
 //
-//   pmq->m_messagea.predicate_remove([=](MESSAGE & item)
+//   pmq->m_messagea.predicate_erase([=](MESSAGE & item)
 //   {
 //
 //      return item.hwnd == oswindow;
@@ -408,7 +408,7 @@ CLASS_DECL_AURA int_bool mq_remove_window_from_all_queues(oswindow oswindow)
 }
 
 
-CLASS_DECL_AURA void mq_clear(ithread_t idthread)
+CLASS_DECL_AURA void mq_clear(itask_t idthread)
 {
 
    auto pmq = ::get_message_queue(idthread, false);
@@ -420,14 +420,14 @@ CLASS_DECL_AURA void mq_clear(ithread_t idthread)
 
    }
 
-   synchronization_lock ml(pmq->mutex());
+   synchronous_lock ml(pmq->mutex());
 
-   pmq->m_messagea.remove_all();
+   pmq->m_messagea.erase_all();
 
 }
 
 
-int_bool mq_post_thread_message(ithread_t idthread, const ::id & id, WPARAM wparam, LPARAM lparam)
+int_bool mq_post_thread_message(itask_t idthread, const ::id & id, WPARAM wparam, LPARAM lparam)
 {
 
    auto pmq = get_message_queue(idthread, true);

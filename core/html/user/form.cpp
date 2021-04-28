@@ -9,8 +9,8 @@ html_form::html_form()
    m_pelementLButtonDown = nullptr;
    m_pelementHover = nullptr;
 
-   //m_flagNonClient.remove(non_client_background);
-   m_flagNonClient.remove(non_client_focus_rect);
+   //m_flagNonClient.erase(non_client_background);
+   m_flagNonClient.erase(non_client_focus_rect);
 
    //m_phtmlform = new html::form();
 
@@ -26,10 +26,10 @@ html_form::~html_form()
 }
 
 
-::e_status html_form::initialize(::layered * pobjectContext)
+::e_status html_form::initialize(::object * pobject)
 {
 
-   auto estatus = ::user::form_view::initialize(pobjectContext);
+   auto estatus = ::user::form_view::initialize(pobject);
 
    if (!estatus)
    {
@@ -38,7 +38,9 @@ html_form::~html_form()
 
    }
 
-   estatus = System->defer_create_html();
+   __pointer(::core::system) psystem = get_system();
+
+   estatus = psystem->defer_create_html();
 
    if (!estatus)
    {
@@ -126,7 +128,7 @@ void html_form::_001OnImageLoaded(::message::message * pmessage)
 
          get_html_data()->m_pcoredata->m_box = rectClient;
 
-         synchronization_lock lock(get_html_data()->mutex());
+         synchronous_lock lock(get_html_data()->mutex());
 
          auto pimage = create_image({ 50,  50 });
 
@@ -158,8 +160,8 @@ void html_form::install_message_routing(::channel * pchannel)
    //MESSAGE_LINK(e_message_key_up, pchannel, this, &::user::interaction::_001OnKeyUp);
 
    MESSAGE_LINK(e_message_left_button_down, pchannel, this, &html_form::on_message_left_button_down);
-   MESSAGE_LINK(e_message_mouse_move, pchannel, this, &html_form::_001OnMouseMove);
-   MESSAGE_LINK(e_message_mouse_leave, pchannel, this, &html_form::_001OnMouseLeave);
+   MESSAGE_LINK(e_message_mouse_move, pchannel, this, &html_form::on_message_mouse_move);
+   MESSAGE_LINK(e_message_mouse_leave, pchannel, this, &html_form::on_message_mouse_leave);
    MESSAGE_LINK(e_message_left_button_up, pchannel, this, &html_form::on_message_left_button_up);
 
    MESSAGE_LINK(html::message_on_image_loaded, pchannel, this, &html_form::_001OnImageLoaded);
@@ -184,7 +186,7 @@ void html_form::GetClientBox(::rectangle_f32 & box)
 void html_form::on_layout(::draw2d::graphics_pointer & pgraphics)
 {
 
-   synchronization_lock synchronizationlock(mutex());
+   synchronous_lock synchronouslock(mutex());
 
    if(get_html_data() == nullptr)
    {
@@ -219,7 +221,9 @@ void html_form::on_message_create(::message::message * pmessage)
 
    __pointer(::message::create) pcreate(pmessage);
 
-   System->defer_create_html();
+   auto psystem = m_psystem->m_pcoresystem;
+
+   psystem->defer_create_html();
 
    if(pcreate->previous())
    {
@@ -246,7 +250,7 @@ void html_form::on_message_left_button_down(::message::message * pmessage)
       && get_html_data()->m_pcoredata != nullptr)
    {
 
-      m_pelementLButtonDown = get_html_data()->m_pcoredata->m_element.hit_test(get_html_data(), point);
+      m_pelementLButtonDown = get_html_data()->m_pcoredata->m_pelement->hit_test(get_html_data(), point);
 
    }
 
@@ -278,7 +282,7 @@ void html_form::on_message_left_button_down(::message::message * pmessage)
 }
 
 
-void html_form::_001OnMouseMove(::message::message * pmessage)
+void html_form::on_message_mouse_move(::message::message * pmessage)
 {
 
    __pointer(::message::mouse) pmouse(pmessage);
@@ -289,14 +293,14 @@ void html_form::_001OnMouseMove(::message::message * pmessage)
 
    _001ScreenToClient(point);
 
-   synchronization_lock synchronizationlock(mutex());
+   synchronous_lock synchronouslock(mutex());
 
    if(::is_set(get_html_data()))
    {
 
-      synchronization_lock synchronizationlock(get_html_data()->mutex());
+      synchronous_lock synchronouslock(get_html_data()->mutex());
 
-      html::element * pelement = get_html_data()->m_pcoredata->m_element.hit_test(get_html_data(), point);
+      html::element * pelement = get_html_data()->m_pcoredata->m_pelement->hit_test(get_html_data(), point);
 
       if(pelement != nullptr)
       {
@@ -339,7 +343,7 @@ void html_form::_001OnMouseMove(::message::message * pmessage)
 }
 
 
-void html_form::_001OnMouseLeave(::message::message * pmessage)
+void html_form::on_message_mouse_leave(::message::message * pmessage)
 {
 
    if(m_pelementHover != nullptr)
@@ -374,7 +378,7 @@ void html_form::on_message_left_button_up(::message::message * pmessage)
       && get_html_data()->m_pcoredata != nullptr)
    {
 
-      get_html_data()->m_pcoredata->m_element.hit_test(get_html_data(), point);
+      get_html_data()->m_pcoredata->m_pelement->hit_test(get_html_data(), point);
 
    }
 
@@ -446,7 +450,7 @@ void html_form::soft_reload()
 
       auto psync = phtmldata->mutex();
 
-      synchronization_lock lock(psync);
+      synchronous_lock lock(psync);
 
       str = phtmldata->m_pcoredata->m_strSource;
 
@@ -483,6 +487,8 @@ void html_form::set_need_load_form_data()
 
    auto path = varFile.get_file_path();
 
+   auto psystem = m_psystem->m_paurasystem;
+
    if (path.is_empty())
    {
 
@@ -495,7 +501,11 @@ void html_form::set_need_load_form_data()
       else if (varFile.cast < ::file::file >() != nullptr)
       {
 
-         path = System->datetime().international().get_gmt_date_time() + "." + get_document()->get_document_template()->find_string("default_extension");
+         auto psystem = m_psystem;
+
+         auto pdatetime = psystem->datetime();
+
+         path = pdatetime->international().get_gmt_date_time() + "." + get_document()->get_document_template()->find_string("default_extension");
 
       }
       else
@@ -545,7 +555,7 @@ void html_form::set_need_load_form_data()
 void html_form::_001GetText(string & str) const
 {
 
-   ((html_form *) this)->get_html_data()->m_pcoredata->m_element.get_html((const_cast < html_form * > (this)->get_html_data()), str);
+   ((html_form *) this)->get_html_data()->m_pcoredata->m_pelement->get_html((const_cast < html_form * > (this)->get_html_data()), str);
 
 }
 
@@ -553,7 +563,7 @@ void html_form::_001GetText(string & str) const
 void html_form::_001SetText(const string & str, const ::action_context & context)
 {
 
-   auto psession = Session;
+   auto psession = get_session();
 
    auto puserinteraction = get_keyboard_focus()->cast < ::user::interaction >();
 
@@ -579,7 +589,7 @@ void html_form::_001SetText(const string & str, const ::action_context & context
       if(pfocus != nullptr)
       {
 
-         auto psession = Session;
+         auto psession = get_session();
 
          pfocus->set_keyboard_focus();
 
@@ -811,7 +821,9 @@ void html_form_view::on_subject(::subject::subject * psubject, ::subject::contex
 
             ::file::path matter;
 
-            matter = Context.dir().matter(psubject->payload(id_form));
+            auto pcontext = get_context();
+
+            matter = pcontext->m_papexcontext->dir().matter(psubject->payload(id_form));
 
             if (get_document()->on_open_document(matter))
             {
@@ -858,7 +870,7 @@ void html_view::on_subject(::subject::subject * psubject, ::subject::context * p
 
          {
 
-            synchronization_lock synchronizationlock(mutex());
+            synchronous_lock synchronouslock(mutex());
 
             if (get_html_data() == nullptr)
             {

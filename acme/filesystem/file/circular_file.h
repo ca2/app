@@ -38,7 +38,7 @@ namespace file
       using ::file::file::read;
       memsize read(void * pbuffer, memsize l);
       /** skip l bytes from buffer */
-      bool remove(memsize l);
+      bool erase(memsize l);
       /** read l bytes from buffer, returns as string. */
       using ::file::file::read_string;
       string read_string(memsize l);

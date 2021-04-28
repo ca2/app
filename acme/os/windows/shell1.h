@@ -93,10 +93,10 @@
 //         HINSTANCE hInstance ,
 //         const unichar * pClassName,
 //
-//         LPWNDCLASSW pwndclass);
+//         LPWNDCLASSW puserinteractionclass);
 //
 //      static ATOM WINAPI _RegisterClass(
-//         const WNDCLASSW *pwndclass);
+//         const WNDCLASSW *puserinteractionclass);
 //
 //
 //      static oswindow WINAPI _CreateWindowEx(
@@ -195,11 +195,11 @@
 //         HINSTANCE hInstance ,
 //         const unichar * pClassName,
 //
-//         LPWNDCLASSW pwndclass);
+//         LPWNDCLASSW puserinteractionclass);
 //
 //
 //      ATOM (WINAPI * m_pfnRegisterClass)(
-//         const WNDCLASSW *pwndclass);
+//         const WNDCLASSW *puserinteractionclass);
 //
 //
 //      oswindow (WINAPI * m_pfnCreateWindowEx)(
@@ -305,11 +305,11 @@
 //         HINSTANCE hInstance ,
 //         const unichar * pClassName,
 //
-//         LPWNDCLASSW pwndclass);
+//         LPWNDCLASSW puserinteractionclass);
 //
 //
 //      static ATOM WINAPI RegisterClass(
-//         const WNDCLASSW *pwndclass);
+//         const WNDCLASSW *puserinteractionclass);
 //
 //
 //      static oswindow WINAPI CreateWindowEx(
@@ -524,19 +524,19 @@
 //      HINSTANCE hInstance ,
 //      const unichar * pClassName,
 //
-//      LPWNDCLASSW pwndclass)
+//      LPWNDCLASSW puserinteractionclass)
 //
 //   {
-//      return (*theWindowsShell.m_pfnGetClassInfo)(hInstance, pClassName, pwndclass) != false;
+//      return (*theWindowsShell.m_pfnGetClassInfo)(hInstance, pClassName, puserinteractionclass) != false;
 //
 //   }
 //
 //   inline ATOM shell::RegisterClass(
-//      const WNDCLASSW *pwndclass)
+//      const WNDCLASSW *puserinteractionclass)
 //
 //   {
 //      return (*theWindowsShell.m_pfnRegisterClass)(
-//         pwndclass);
+//         puserinteractionclass);
 //
 //   }
 //

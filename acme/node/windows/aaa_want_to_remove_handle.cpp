@@ -13,7 +13,7 @@ namespace windows
       //if(::is_null(pMap))
       //   return;
 
-      //single_lock synchronizationlock(&pMap->m_mutex, true);
+      //single_lock synchronouslock(&pMap->m_mutex, true);
 
       array < oswindow > oswindowaRemove;
       array < __pointer(::windows::window) > wndptraRemove;
@@ -43,7 +43,7 @@ namespace windows
 
       //for(i32 i = 0; i < oswindowaRemove.get_count(); i++)
       //{
-      //   pMap->m_temporaryMap.remove_key(oswindowaRemove[i]);
+      //   pMap->m_temporaryMap.erase_key(oswindowaRemove[i]);
       //}
 
    }

@@ -4,7 +4,7 @@
 
 
 class CLASS_DECL_APEX action_context :
-   virtual public context_object
+   virtual public object
 {
 public:
 
@@ -58,27 +58,27 @@ public:
 //{
 //
 //   static inline action_context add(e_source esourceAdd, e_source esource) { action_context ctx(esource); return ctx + esourceAdd; }
-//   static inline action_context remove(e_source esource, e_source esourceRemove) { action_context ctx(esource); return ctx - esourceRemove; }
-//   static inline action_context add_remove(e_source esource, e_source esourceAdd, e_source esourceRemove) { action_context ctx(esource); return ctx + esourceAdd - esourceRemove; }
-//   static inline action_context synchronization_object(e_source esourceAdd = source_none, e_source esourceRemove = source_none) { return add_remove(::e_source_sync, esourceAdd, esourceRemove); }
-//   static inline action_context sel(e_source esourceAdd = source_none, e_source esourceRemove = source_none) { return add_remove(source_selection, esourceAdd, esourceRemove); }
-//   static inline action_context user(e_source esourceAdd = source_none, e_source esourceRemove = source_none) { return add_remove(::e_source_user, esourceAdd, esourceRemove); }
-//   static inline action_context database(e_source esourceAdd = source_none, e_source esourceRemove = source_none) { return add_remove(::e_source_database, esourceAdd, esourceRemove); }
-//   static inline action_context system(e_source esourceAdd = source_none, e_source esourceRemove = source_none) { return add_remove(source_system, esourceAdd, esourceRemove); }
-//   static inline action_context data(e_source esourceAdd = source_none, e_source esourceRemove = source_none) { return add_remove(source_data, esourceAdd, esourceRemove); }
-//   static inline action_context op(e_source esourceAdd = source_none, e_source esourceRemove = source_none) { return add_remove(source_operator, esourceAdd, esourceRemove); }
+//   static inline action_context erase(e_source esource, e_source esourceRemove) { action_context ctx(esource); return ctx - esourceRemove; }
+//   static inline action_context add_erase(e_source esource, e_source esourceAdd, e_source esourceRemove) { action_context ctx(esource); return ctx + esourceAdd - esourceRemove; }
+//   static inline action_context synchronization_object(e_source esourceAdd = source_none, e_source esourceRemove = source_none) { return add_erase(::e_source_sync, esourceAdd, esourceRemove); }
+//   static inline action_context sel(e_source esourceAdd = source_none, e_source esourceRemove = source_none) { return add_erase(source_selection, esourceAdd, esourceRemove); }
+//   static inline action_context user(e_source esourceAdd = source_none, e_source esourceRemove = source_none) { return add_erase(::e_source_user, esourceAdd, esourceRemove); }
+//   static inline action_context database(e_source esourceAdd = source_none, e_source esourceRemove = source_none) { return add_erase(::e_source_database, esourceAdd, esourceRemove); }
+//   static inline action_context system(e_source esourceAdd = source_none, e_source esourceRemove = source_none) { return add_erase(source_system, esourceAdd, esourceRemove); }
+//   static inline action_context data(e_source esourceAdd = source_none, e_source esourceRemove = source_none) { return add_erase(source_data, esourceAdd, esourceRemove); }
+//   static inline action_context op(e_source esourceAdd = source_none, e_source esourceRemove = source_none) { return add_erase(source_operator, esourceAdd, esourceRemove); }
 //
 //
 //   static inline action_context add(action_context ctx, e_source esourceAdd) { return ctx + esourceAdd; }
-//   static inline action_context remove(action_context ctx, e_source esourceRemove) { return ctx - esourceRemove; }
-//   static inline action_context add_remove(action_context ctx, e_source esourceAdd, e_source esourceRemove) { return ctx + esourceAdd - esourceRemove; }
-//   static inline action_context synchronization_object(action_context ctx, e_source esourceRemove = source_none) { return add_remove(ctx, ::e_source_sync, esourceRemove); }
-//   static inline action_context sel(action_context ctx, e_source esourceRemove = source_none) { return add_remove(ctx, source_selection, esourceRemove); }
-//   static inline action_context user(action_context ctx, e_source esourceRemove = source_none) { return add_remove(ctx, ::e_source_user, esourceRemove); }
-//   static inline action_context database(action_context ctx, e_source esourceRemove = source_none) { return add_remove(ctx, ::e_source_database, esourceRemove); }
-//   static inline action_context system(action_context ctx, e_source esourceRemove = source_none) { return add_remove(ctx, source_system, esourceRemove); }
-//   static inline action_context data(action_context ctx, e_source esourceRemove = source_none) { return add_remove(ctx, source_data, esourceRemove); }
-//   static inline action_context op(action_context ctx, e_source esourceRemove = source_none) { return add_remove(ctx, source_operator, esourceRemove); }
+//   static inline action_context erase(action_context ctx, e_source esourceRemove) { return ctx - esourceRemove; }
+//   static inline action_context add_erase(action_context ctx, e_source esourceAdd, e_source esourceRemove) { return ctx + esourceAdd - esourceRemove; }
+//   static inline action_context synchronization_object(action_context ctx, e_source esourceRemove = source_none) { return add_erase(ctx, ::e_source_sync, esourceRemove); }
+//   static inline action_context sel(action_context ctx, e_source esourceRemove = source_none) { return add_erase(ctx, source_selection, esourceRemove); }
+//   static inline action_context user(action_context ctx, e_source esourceRemove = source_none) { return add_erase(ctx, ::e_source_user, esourceRemove); }
+//   static inline action_context database(action_context ctx, e_source esourceRemove = source_none) { return add_erase(ctx, ::e_source_database, esourceRemove); }
+//   static inline action_context system(action_context ctx, e_source esourceRemove = source_none) { return add_erase(ctx, source_system, esourceRemove); }
+//   static inline action_context data(action_context ctx, e_source esourceRemove = source_none) { return add_erase(ctx, source_data, esourceRemove); }
+//   static inline action_context op(action_context ctx, e_source esourceRemove = source_none) { return add_erase(ctx, source_operator, esourceRemove); }
 //
 //
 //

@@ -6,7 +6,7 @@
 
 //#ifdef WINDOWS_DESKTOP
 //
-//CLASS_DECL_ACME void os_set_window_procedure(WNDPROC pwndproc);
+//CLASS_DECL_ACME void os_set_window_procedure(WNDPROC puserinteractionproc);
 //
 //
 //CLASS_DECL_AURA WNDPROC windows_user_interaction_impl_get_window_procedure();
@@ -84,7 +84,7 @@ namespace user
 //}
 //
 
-//CLASS_DECL_AURA ::windowing::window * pwindow_remove_impl(::user::interaction_impl * pimpl)
+//CLASS_DECL_AURA ::windowing::window * pwindow_erase_impl(::user::interaction_impl * pimpl)
 //{
 //
 //   ASSERT(pimpl != nullptr);
@@ -100,34 +100,34 @@ namespace user
 //
 //   ::windowing::window * pwindow = ::user::g_pmapHandle->operator[](pimpl);
 //
-//   if (::user::g_pmapImpl->remove_key(oswindow))
+//   if (::user::g_pmapImpl->erase_key(oswindow))
 //   {
 //
 //#if DEBUG_LEVEL > 0
 //
-//      ::output_debug_string("::user::g_pmapImpl removed oswindow");
+//      ::output_debug_string("::user::g_pmapImpl erased oswindow");
 //
 //#endif
 //
 //   }
 //
-//   if(::user::g_pmapImpl->remove_key((::oswindow) pimpl->m_pwindow->get_os_data()))
+//   if(::user::g_pmapImpl->erase_key((::oswindow) pimpl->m_pwindow->get_os_data()))
 //   {
 //
 //#if DEBUG_LEVEL > 0
 //
-//      ::output_debug_string("::user::g_pmapImpl removed pimpl->m_oswindow");
+//      ::output_debug_string("::user::g_pmapImpl erased pimpl->m_oswindow");
 //
 //#endif
 //
 //   }
 //
-//   if (::user::g_pmapHandle->remove_key(pimpl))
+//   if (::user::g_pmapHandle->erase_key(pimpl))
 //   {
 //
 //#if DEBUG_LEVEL > 0
 //
-//      ::output_debug_string("::user::g_pmapHandle removed pimpl");
+//      ::output_debug_string("::user::g_pmapHandle erased pimpl");
 //
 //#endif
 //
@@ -139,7 +139,7 @@ namespace user
 //}
 
 
-//CLASS_DECL_AURA void oswindow_remove(::windowing::window * pwindow)
+//CLASS_DECL_AURA void oswindow_erase(::windowing::window * pwindow)
 //{
 //
 //   ASSERT(oswindow != nullptr);
@@ -155,12 +155,12 @@ namespace user
 //
 //      critical_section_lock slOsWindow(::user::g_pcsImpl);
 //
-//      if (::user::g_pmapImpl->remove_key(oswindow))
+//      if (::user::g_pmapImpl->erase_key(oswindow))
 //      {
 //
 //#if DEBUG_LEVEL > 0
 //
-//         ::output_debug_string("::user::g_pmapImpl removed oswindow");
+//         ::output_debug_string("::user::g_pmapImpl erased oswindow");
 //
 //#endif
 //
@@ -170,14 +170,14 @@ namespace user
 //
 //   {
 //
-//      synchronization_lock slSystem(::aura::get_system()->mutex());
+//      synchronous_lock slSystem(psystem->mutex());
 //
-//      if (::aura::get_system()->m_pwindowmap->m_map.remove_key(oswindow))
+//      if (psystem->m_pwindowmap->m_map.erase_key(oswindow))
 //      {
 //
 //#if DEBUG_LEVEL > 0
 //
-//         ::output_debug_string("::aura::get_system()->m_pwindowmap removed oswindow");
+//         ::output_debug_string("psystem->m_pwindowmap erased oswindow");
 //
 //#endif
 //

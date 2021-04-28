@@ -6,7 +6,7 @@ namespace sip
 {
 
 
-   transaction::transaction(::layered * pobjectContext) :
+   transaction::transaction(::object * pobject) :
       ::object(pobject)
    {
 
@@ -14,7 +14,7 @@ namespace sip
 
 
    transaction::transaction(const transaction & src) :
-      ::object(src.get_context_application()),
+      ::object(src.get_application()),
       m_propertysetAttribute(src.m_propertysetAttribute),
       m_propertysetHeader(src.m_propertysetHeader)
    {
@@ -204,7 +204,7 @@ namespace sip
    {
       m_propertysetAttribute.clear();
       m_propertysetHeader.clear();
-      m_cookies.remove_all();
+      m_cookies.erase_all();
    }
 
    property & transaction::attr(const char * psz)

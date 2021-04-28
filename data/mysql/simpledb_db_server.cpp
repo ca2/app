@@ -5,7 +5,7 @@
 i32 g_idbchange;
 
 
-db_server::db_server(::layered * pobjectContext) :
+db_server::db_server(::object * pobject) :
    ::object(pobject)
 {
 
@@ -57,27 +57,27 @@ bool db_server::initialize_user(mysql::database * pmysqldbUser, const char * psz
 bool db_server::initialize()
 {
 
-   if(System->m_varTopicQuery["app"] == "app-core/netnodelite"
-   || System->m_varTopicQuery["app"] == "app-core/netnode_dynamic_web_server"
-   || System->m_varTopicQuery["app"] == "app-core/netnode_dynamic_web_server_cfg"
-   || System->m_varTopicQuery["app"] == "app-core/netnodecfg"
-   || System->m_varTopicQuery["app"] == "app-core/mydns"
-   || System->m_varTopicQuery["app"] == "app-gtech/sensible_netnode"
-   || System->m_varTopicQuery["app"] == "app-gtech/sensible_service"
-   || System->has_property("no_remote_simpledb"))
+   if(psystem->m_varTopicQuery["app"] == "app-core/netnodelite"
+   || psystem->m_varTopicQuery["app"] == "app-core/netnode_dynamic_web_server"
+   || psystem->m_varTopicQuery["app"] == "app-core/netnode_dynamic_web_server_cfg"
+   || psystem->m_varTopicQuery["app"] == "app-core/netnodecfg"
+   || psystem->m_varTopicQuery["app"] == "app-core/mydns"
+   || psystem->m_varTopicQuery["app"] == "app-gtech/sensible_netnode"
+   || psystem->m_varTopicQuery["app"] == "app-gtech/sensible_service"
+   || psystem->has_property("no_remote_simpledb"))
    {
 
       m_bRemote = false;
 
    }
 
-   m_pdb          = new ::sqlite::database(get_object());
+   m_pdb          = new ::sqlite::database(this);
 
    string str;
 
-   str = Context.dir().userappdata("database.sqlite");
+   str = pcontext->m_papexcontext->dir().userappdata("database.sqlite");
 
-   Context.dir().mk(Context.dir().name(str));
+   pcontext->m_papexcontext->dir().mk(pcontext->m_papexcontext->dir().name(str));
 
    m_pdb->setDatabase(str);
 
@@ -93,7 +93,7 @@ bool db_server::initialize()
 
    i32 iBufferSize = 128 * 1024;
 
-   __pointer(::handler) commandthread = System->handler();
+   __pointer(::handler) commandthread = psystem->handler();
 
    if(commandthread->has_property("filesizebuffer"))
    {

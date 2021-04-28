@@ -13,10 +13,10 @@ namespace axis
    }
 
 
-   ::e_status session::initialize(::layered * pobjectContext)
+   ::e_status session::initialize(::object * pobject)
    {
 
-      auto estatus = ::aura::session::initialize(pobjectContext);
+      auto estatus = ::aura::session::initialize(pobject);
 
       if (!estatus)
       {
@@ -25,7 +25,7 @@ namespace axis
 
       }
 
-      //m_strAppId                    = "axis_session";
+      //m_XstrAppId                    = "axis_session";
       //m_strAppName                  = "axis_session";
       //m_strBaseSupportId            = "axis_session";
       //m_strInstallToken             = "axis_session";
@@ -161,7 +161,7 @@ namespace axis
 
       //}
 
-      //fill_locale_schema(*str_context()->m_plocaleschema);
+      //fill_locale_schema(*textcontext()->m_plocaleschema);
 
       INFO("success");
 
@@ -286,8 +286,8 @@ namespace axis
 
       }
 
-//      if(Application.has_property("uninstall")
-//            || Application.has_property("install"))
+//      if(papplication->has_property("uninstall")
+//            || papplication->has_property("install"))
 //      {
 //
 ////         if(!m_paccount->open_local("system"))

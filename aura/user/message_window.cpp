@@ -124,7 +124,7 @@ namespace user
    bool message_window::message_window_destroy()
    {
 
-      return DestroyWindow() != false;
+      return start_destroying_window() != false;
 
    }
 

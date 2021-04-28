@@ -4,13 +4,13 @@ CLASS_DECL_ACME string executable_get_app_id(hinstance hinstance);
 CLASS_DECL_ACME hinstance get_module_handle(const platform_char* psz);
 
 
-class console
+class console : 
+   virtual public object
 {
 public:
 
 
    ::e_status                       m_estatus;
-   __pointer(::apex::system)        m_psystem;
 
 
    void create_system()
@@ -50,15 +50,15 @@ public:
 
       }
 
-      __bind(psystem, m_papplicationStartup, papplicationStartup);
+      psystem->__refer(psystem->m_papplicationStartup, papplicationStartup);
 
       psystem->m_bConsole = false;
 
       application_common(psystem);
 
-      m_psystem = psystem;
+      psystem->m_bConsole = true;
 
-      m_psystem->m_bConsole = true;
+      m_psystem = psystem;
 
    }
 
@@ -100,21 +100,23 @@ public:
 
       m_estatus = (::e_status) m_psystem->inline_init();
 
+      auto papp = m_psystem->m_papexsystem->m_papplicationStartup;
+
+      __refer(m_psystem->m_papexsystem->m_papplicationMain, m_psystem->m_papexsystem->m_papplicationStartup.get());
+
+      __unbind(m_psystem->m_papexsystem, m_papplicationStartup OBJ_REF_DBG_COMMA_P_NOTE(m_psystem, ""));
+
    }
 
 
    int result()
    {
 
-      m_estatus = Application.m_estatus;
+      auto estatus = m_psystem->inline_term();
 
-      ::i32 iErrorStatus = m_estatus.error_status();
+      ::acme::del(m_psystem);
 
-      m_psystem->inline_term();
-
-      m_psystem.release();
-
-      return iErrorStatus;
+      return estatus;
 
    }
 
@@ -127,6 +129,7 @@ public:
 
          result();
 
+         
       }
 
 

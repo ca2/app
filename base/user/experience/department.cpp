@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "base/user/experience/_experience.h"
+#include "acme/filesystem/filesystem/acme_dir.h"
 
 
 namespace experience
@@ -18,14 +19,16 @@ namespace experience
    }
 
 
-   ::experience::experience * department::get_new_experience2(::layered * pobjectContext, const char * pszExperienceLibrary)
+   __pointer(::experience::experience) department::create_experience2(::object * pobject, const char * pszExperienceLibrary)
    {
 
       string strId(pszExperienceLibrary);
 
       string strBuild;
+
+      __pointer(::base::system) psystem = get_system();
       
-      strBuild = System->payload("build");
+      strBuild = psystem->payload("build");
 
       if(strBuild.is_empty())
       {
@@ -56,18 +59,13 @@ namespace experience
 
       }
 
-#if defined(LINUX) || defined(APPLEOS)
+      string strComponent = "experience";
 
-      strLibrary = "lib" + strLibrary;
+      string strImplementation = strLibrary;
 
-#elif defined(_UWP)
+      strImplementation.begins_eat_ci("experience_");
 
-
-      //      strLibrary = "m_" + strLibrary;
-
-#endif
-
-      auto plibrary = System->get_library(strLibrary, true);
+      auto plibrary = psystem->do_containerized_factory_exchange(strComponent, strImplementation);
 
       if (!plibrary)
       {
@@ -96,7 +94,7 @@ namespace experience
 
       //}
 
-      __pointer(::experience::experience) pexperience = plibrary->create_object("experience");
+      auto pexperience = plibrary->m_pfactorymap->new_object <::experience::experience>();
 
       if(pexperience == nullptr)
       {
@@ -105,7 +103,7 @@ namespace experience
 
       }
 
-      pexperience->initialize(this);
+      pexperience->initialize(pobject);
 
       pexperience->m_plibrary = plibrary;
 
@@ -114,7 +112,7 @@ namespace experience
    }
 
 
-   ::experience::experience * department::get_experience2(::layered * pobjectContext, const char * pszUinteraction)
+   __pointer(::experience::experience) department::get_experience2(::object * pobject, const char * pszUinteraction)
    {
 
       auto & pexperience = m_mapExperience[pszUinteraction];
@@ -122,7 +120,7 @@ namespace experience
       if(pexperience == nullptr)
       {
 
-         __compose(pexperience, get_new_experience2(pobjectContext, pszUinteraction));
+         __compose(pexperience, create_experience2(pobject, pszUinteraction));
 
       }
 
@@ -132,12 +130,14 @@ namespace experience
    }
 
 
-   ::experience::frame * department::experience_get_frame2(::layered * pobjectContext, const char * pszLibrary, const char * pszFrame)
+   __pointer(::experience::frame) department::experience_get_frame2(::object * pobject, const char * pszLibrary, const char * pszFrame)
    {
 
       string_array straLibrary;
 
-      auto strExperience = System->payload("experience").get_string();
+      auto psystem = m_psystem->m_pbasesystem;
+
+      auto strExperience = psystem->payload("experience").get_string();
 
       if (strExperience.has_char())
       {
@@ -175,9 +175,11 @@ namespace experience
 
       }
 
+      auto papplication = pobject->get_application();
+
       {
 
-         string strLibrary = App(pobjectContext).preferred_experience();
+         string strLibrary = papplication->preferred_experience();
 
          if (strLibrary.has_char())
          {
@@ -192,8 +194,8 @@ namespace experience
       {
 
          string strConfig;
-         
-         strConfig = App(pobjectContext).payload("experience");
+
+         strConfig = papplication->payload("experience");
 
          if (strConfig.has_char())
          {
@@ -206,9 +208,11 @@ namespace experience
 
       }
 
+      auto pcontext = get_context();
+
       {
 
-         string strWndFrm = Context.file().as_string(::dir::config() / App(pobjectContext).m_strAppName / "experience.txt");
+         string strWndFrm = pcontext->m_papexcontext->file().as_string(m_psystem->m_pacmedir->config() / papplication->m_strAppName / "experience.txt");
 
          if (strWndFrm.has_char())
          {
@@ -221,7 +225,7 @@ namespace experience
 
       {
 
-         string strWndFrm = Context.file().as_string(::dir::config() / ::file::path(App(pobjectContext).m_strAppName).folder() / "experience.txt");
+         string strWndFrm = pcontext->m_papexcontext->file().as_string(m_psystem->m_pacmedir->config() / ::file::path(papplication->m_strAppName).folder() / "experience.txt");
 
          if (strWndFrm.has_char())
          {
@@ -234,7 +238,20 @@ namespace experience
 
       {
 
-         string strWndFrm = Context.file().as_string(::dir::config() / ::file::path(App(pobjectContext).m_strAppName).name() / "experience.txt");
+         string strWndFrm = pcontext->m_papexcontext->file().as_string(m_psystem->m_pacmedir->config() / ::file::path(papplication->m_strAppName).name() / "experience.txt");
+
+         if (strWndFrm.has_char())
+         {
+
+            straLibrary.add(strWndFrm);
+
+         }
+
+      }
+
+      {
+
+         string strWndFrm = pcontext->m_papexcontext->file().as_string(m_psystem->m_pacmedir->config() / "system/experience.txt");
 
          if (strWndFrm.has_char())
          {
@@ -248,21 +265,7 @@ namespace experience
 
       {
 
-         string strWndFrm = Context.file().as_string(::dir::config() / "system/experience.txt");
-
-         if (strWndFrm.has_char())
-         {
-
-            straLibrary.add(strWndFrm);
-
-         }
-
-      }
-
-
-      {
-
-         string strConfig = Context.file().as_string(::dir::config() / "system/experience.txt");
+         string strConfig = pcontext->m_papexcontext->file().as_string(m_psystem->m_pacmedir->config() / "system/experience.txt");
 
          if (strConfig.has_char())
          {
@@ -281,7 +284,7 @@ namespace experience
       straLibrary.add("experience_hyper");
       straLibrary.add("experience_anthill");
 
-      straLibrary.remove_duplicates_ci();
+      straLibrary.erase_duplicates_ci();
 
       __pointer(::experience::experience) pexperience;
 
@@ -290,7 +293,7 @@ namespace experience
       for(string strLibrary : straLibrary)
       {
 
-         pexperience = get_experience2(pobjectContext, strLibrary);
+         pexperience = get_experience2(pobject, strLibrary);
 
          if (pexperience.is_set())
          {
@@ -306,7 +309,9 @@ namespace experience
       if (pexperience.is_null())
       {
 
-         __throw(exit_exception(System, "no experience_* plugin installed"));
+         auto psystem = m_psystem->m_pbasesystem;
+
+         __throw(exit_exception(psystem, "no experience_* plugin installed"));
 
       }
 

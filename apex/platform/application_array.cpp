@@ -52,10 +52,10 @@ application_array & application_array::operator = (application_array && array)
 application_array::~application_array()
 {
 
-   //if(::is_set(get_context_application()))
+   //if(::is_set(get_application()))
    //{
 
-   //   if(get_context_application()->mutex() == mutex())
+   //   if(get_application()->mutex() == mutex())
    //   {
 
    //      mutex() = nullptr;
@@ -70,7 +70,7 @@ application_array::~application_array()
 ::apex::application * application_array::find_by_app_name(string strAppName)
 {
 
-   //synchronization_lock synchronizationlock(mutex());
+   //synchronous_lock synchronouslock(mutex());
 
 restart:
 
@@ -83,7 +83,7 @@ restart:
          if (papp.is_null())
          {
 
-            remove(papp);
+            erase(papp);
 
             goto restart;
 

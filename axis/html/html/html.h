@@ -6,7 +6,7 @@ namespace html
 
 
    class CLASS_DECL_AXIS html:
-      public ::apex::department
+      public ::acme::department
    {
    public:
 
@@ -22,7 +22,7 @@ namespace html
       virtual ~html();
 
 
-      virtual ::e_status initialize(::layered * pobjectContext) override;
+      virtual ::e_status initialize(::object * pobject) override;
 
 
       string special_chars(const char * psz);
@@ -38,7 +38,7 @@ namespace html
       edisplay tag_to_display(e_tag etag);
       id concat(id id1,id id2);
 
-      virtual bool defer_get_html(string& strHtml, ::file::path& pathHtml, ::object* pobjectContext, const ::payload & payload);
+      virtual bool defer_get_html(string& strHtml, ::file::path& pathHtml, ::object* pobject, const ::payload & payload);
 
       static bool tag_visible(e_tag etag);
 

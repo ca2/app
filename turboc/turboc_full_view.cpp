@@ -6,7 +6,7 @@ namespace turboc
 {
 
 
-   full_view::full_view(::layered * pobjectContext):
+   full_view::full_view(::object * pobject):
       ::object(pobject),
       view(pobject)
    {
@@ -58,12 +58,12 @@ namespace turboc
       if(pcreate->m_bRet)
          return;
 
-      //if(Application.m_etype == application::type_normal)
+      //if(papplication->m_etype == application::type_normal)
       //{
 
-      //   Application.load_ai_font();
+      //   papplication->load_ai_font();
 
-      //   __begin_thread(get_context_application(),&thread_proc_render,this,::priority_normal,0,0,NULL);
+      //   __begin_thread(get_application(),&thread_proc_render,this,::priority_normal,0,0,NULL);
 
       //}
 
@@ -291,12 +291,12 @@ namespace turboc
       }
 
 #if 0
-      if(Application.m_iErrorAiFont == 0)
+      if(papplication->m_iErrorAiFont == 0)
       {
 
-         synchronization_lock slAiFont(&Application.m_mutexAiFont);
+         synchronous_lock slAiFont(&papplication->m_mutexAiFont);
 
-         FT_Face & face = (FT_Face &)Application.m_faceAi;
+         FT_Face & face = (FT_Face &)papplication->m_faceAi;
 
          i32 error;
 

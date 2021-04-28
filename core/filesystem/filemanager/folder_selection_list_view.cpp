@@ -61,7 +61,7 @@ namespace filemanager
       if(m_ptree == nullptr)
       {
 
-         System->message_box("Could not create folder tree");
+         message_box("Could not create folder tree");
       }
 
       m_pusertree->merge(m_ptree, true);
@@ -71,7 +71,7 @@ namespace filemanager
       if(m_plistview == nullptr)
       {
 
-         System->message_box("Could not create file list");
+         message_box("Could not create file list");
 
       }
 
@@ -111,7 +111,7 @@ namespace filemanager
 
       m_plistview->GetSel(wstraSel);
 
-      m_plistview->remove(wstraSel);
+      m_plistview->erase(wstraSel);
 
    }
 
@@ -119,7 +119,7 @@ namespace filemanager
    void folder_selection_list_view::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
    {
 
-      ::filemanager::impact::on_subject(psubject, pcontext);
+      ::filemanager_impact::on_subject(psubject, pcontext);
 
    }
 

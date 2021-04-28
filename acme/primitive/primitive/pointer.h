@@ -7,7 +7,6 @@ struct voidarg : public payload_type < voidarg >{ voidarg(); };
 #define TEMPLATE_ARG __TEMPLATE_TYPE__ t = nullptr
 
 
-class layered;
 namespace factory
 {
 
@@ -60,7 +59,7 @@ public:
    }
 
 
-   inline ___pointer(enum_create_new, ::layered * pobject) :
+   inline ___pointer(enum_create_new, ::object * pobject) :
       m_p(new T)
    {
 
@@ -382,17 +381,17 @@ public:
    ___pointer & copy(const CONTAINER & pcontainer, const OBJECT & pobject)
    {
 
-      ::layered * pobjectParent = m_p->get_context_object();
+      auto pobjectParent = m_p;
 
       auto pOld = m_p;
 
       m_p = new TYPE(*pobject);
 
-      pcontainer->remove(pOld);
+      pcontainer->erase(pOld);
 
       pcontainer->add(m_p);
 
-      m_p->set_context_object(pobjectParent);
+      m_p->initialize(pobjectParent);
 
       m_p->m_pcontainer = pcontainer;
 
@@ -435,10 +434,10 @@ public:
    inline __pointer(T) & create_new();
 
    template < typename TYPE = T, typename OBJECT >
-   inline __pointer(T) & defer_create_new(OBJECT * pobjectContext);
+   inline __pointer(T) & defer_create_new(OBJECT * pobject);
 
    template < typename TYPE = T, typename OBJECT >
-   inline __pointer(T) & create_new(OBJECT * pobjectContext);
+   inline __pointer(T) & create_new(OBJECT * pobject);
 
    template < TEMPLATE_TYPE >
    inline __pointer(T) & defer_create(TEMPLATE_ARG);
@@ -447,15 +446,15 @@ public:
    inline __pointer(T) & create(TEMPLATE_ARG);
 
    template < typename TYPE = T, typename OBJECT  >
-   inline __pointer(T) & defer_create(OBJECT * pobjectContext);
+   inline __pointer(T) & defer_create(OBJECT * pobject);
 
    template < typename TYPE = T, typename OBJECT >
-   inline __pointer(T) & create(OBJECT * pobjectContext);
+   inline __pointer(T) & create(OBJECT * pobject);
 
    template < typename TYPE = T, typename OBJECT >
-   inline __pointer(T) & create(OBJECT * pobjectContext, bool bCreate);
+   inline __pointer(T) & create(OBJECT * pobject, bool bCreate);
 
-   inline __pointer(T) & clone(::matter * pobjectContext);
+   inline __pointer(T) & clone(::matter * pobject);
 
 
 

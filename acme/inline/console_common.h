@@ -2,6 +2,7 @@
 
 
 #include "application_common.h"
+#include "implement.h"
 
 
 int console_end(::e_status estatus)
@@ -22,7 +23,7 @@ int console_end(::e_status estatus)
 
       iError = 0;
 
-      //if (System->is_true("show_application_information"))
+      //if (get_system()->is_true("show_application_information"))
       //{
 
       //   printf("return code is %d", iStatus);
@@ -31,7 +32,7 @@ int console_end(::e_status estatus)
 
    }
 
-   //System->system_end();
+   //get_system()->system_end();
 
    return iError;
 

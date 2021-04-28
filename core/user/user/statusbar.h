@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   class status_bar_control;   // forward context_object (see afxcmn.h for definition)
+   class status_bar_control;   // forward object (see afxcmn.h for definition)
 
 
    struct __STATUSPANE :
@@ -37,7 +37,7 @@ namespace user
 
 
 
-      pointer_array < __STATUSPANE >     m_panea;
+      pointer_array < __STATUSPANE >     m_panecompositea;
       i32                                    m_nMinHeight;
 
 
@@ -99,14 +99,14 @@ namespace user
       void UpdateAllPanes(bool bUpdateRects, bool bUpdateText);
       virtual bool OnChildNotify(::message::message * pmessage) override;
 
-      DECL_GEN_SIGNAL(_001OnNcHitTest);
-      DECL_GEN_SIGNAL(_001OnNcCalcSize);
-      DECL_GEN_SIGNAL(_001OnSize);
-      DECL_GEN_SIGNAL(_001OnWindowPosChanging);
-      DECL_GEN_SIGNAL(_001OnSetText);
-      DECL_GEN_SIGNAL(_001OnGetText);
-      DECL_GEN_SIGNAL(_001OnGetTextLength);
-      DECL_GEN_SIGNAL(_001OnSetMinHeight);
+      DECLARE_MESSAGE_HANDLER(_001OnNcHitTest);
+      DECLARE_MESSAGE_HANDLER(_001OnNcCalcSize);
+      DECLARE_MESSAGE_HANDLER(_001OnSize);
+      DECLARE_MESSAGE_HANDLER(_001OnWindowPosChanging);
+      DECLARE_MESSAGE_HANDLER(_001OnSetText);
+      DECLARE_MESSAGE_HANDLER(_001OnGetText);
+      DECLARE_MESSAGE_HANDLER(_001OnGetTextLength);
+      DECLARE_MESSAGE_HANDLER(_001OnSetMinHeight);
 
       virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
       virtual void install_message_routing(::channel * pchannel) override;

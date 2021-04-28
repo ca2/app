@@ -28,32 +28,35 @@ handler_manager::~handler_manager()
    if (bSync)
    {
 
-      return synchronization_object(routine);
+      return handler_sync(routine);
 
    }
    else
    {
 
-      return async(routine);
+      return handler_branch(routine);
 
    }
 
 }
 
 
-::e_status handler_manager::synchronization_object(const ::routine & routine)
+::e_status handler_manager::handler_sync(const ::routine & routine)
 {
 
    if (m_bUseDedicatedThread)
    {
 
-      auto proutine = ___sync_routine(routine);
+      auto estatus = __sync_routine(1_min, this, &handler_manager::handler_branch, routine);
 
-      async(proutine);
+      if(!estatus)
+      {
 
-      proutine->wait(one_minute());
+         return estatus;
 
-      return ::success;
+      }
+
+      return estatus;
 
    }
    else
@@ -66,21 +69,20 @@ handler_manager::~handler_manager()
 }
 
 
-::e_status handler_manager::set_finish_composites(::context_object * pcontextobjectFinish)
+::e_status handler_manager::finish_composites()
 {
 
-   return ::object::set_finish_composites(pcontextobjectFinish);
+   return ::object::finish_composites();
 
 }
 
 
-
-::e_status handler_manager::async(const ::routine & routine)
+::e_status handler_manager::handler_branch(const ::routine & routine)
 {
 
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       m_routinea.add(routine);
 
@@ -112,16 +114,16 @@ handler_manager::~handler_manager()
 ::routine handler_manager::pick_new_task()
 {
 
-   synchronization_lock synchronizationlock(mutex());
+   synchronous_lock synchronouslock(mutex());
 
    if (m_routinea.is_empty())
    {
 
-      synchronizationlock.unlock();
+      synchronouslock.unlock();
 
       m_pevTaskOnQueue->wait(1_s);
 
-      synchronizationlock.lock();
+      synchronouslock.lock();
 
    }
 
@@ -134,7 +136,7 @@ handler_manager::~handler_manager()
 
    auto method = m_routinea.first();
 
-   m_routinea.remove_at(0);
+   m_routinea.erase_at(0);
 
    if (m_routinea.is_empty())
    {
@@ -164,7 +166,7 @@ void handler_manager::loop()
 
    int iAlive = 0;
 
-   while (::thread_get_run())
+   while (::task_get_run())
    {
 
       auto method = pick_new_task();

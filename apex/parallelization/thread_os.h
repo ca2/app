@@ -7,7 +7,7 @@ typedef THREAD_PROC * thread_proc;
 
 //
 //// very close to the operating system
-//CLASS_DECL_APEX hthread_t create_thread(
+//CLASS_DECL_APEX htask_t create_thread(
 //thread_proc proc,
 //void * p,
 //::e_priority epriority = ::priority_normal,
@@ -15,16 +15,16 @@ typedef THREAD_PROC * thread_proc;
 //u32 uiCreateFlags = 0,
 //LPSECURITY_ATTRIBUTES psa = nullptr,
 //
-//ithread_t * puiId = nullptr);
+//itask_t * puiId = nullptr);
 //
 //
 
 
 
 
-//CLASS_DECL_APEX ithread_t get_current_ithread();
+//CLASS_DECL_APEX itask_t get_current_ithread();
 
-//CLASS_DECL_APEX hthread_t get_current_hthread();
+//CLASS_DECL_APEX htask_t get_current_hthread();
 
 
 
@@ -34,16 +34,16 @@ CLASS_DECL_APEX bool on_init_thread();
 CLASS_DECL_APEX bool on_term_thread();
 
 
-CLASS_DECL_APEX void __init_thread();
-CLASS_DECL_APEX void __term_thread();
+//CLASS_DECL_APEX void __init_thread();
+//CLASS_DECL_APEX void __term_thread();
 
 
 CLASS_DECL_APEX bool __os_init_thread();
 CLASS_DECL_APEX bool __os_term_thread();
 
 
-CLASS_DECL_APEX bool __node_init_thread(::thread * pthread);
-CLASS_DECL_APEX bool __node_term_thread(::thread * pthread);
+//CLASS_DECL_APEX bool __node_init_thread(::thread * pthread);
+//CLASS_DECL_APEX bool __node_term_thread(::thread * pthread);
 
 
 CLASS_DECL_APEX void __init_threading_count();
@@ -79,7 +79,7 @@ CLASS_DECL_APEX void __dec_threading_count();
 //CLASS_DECL_APEX void thread_release();
 
 
-//CLASS_DECL_APEX bool thread_get_run();
+//CLASS_DECL_APEX bool task_get_run();
 
 
 CLASS_DECL_APEX void __node_init_multithreading();
@@ -93,43 +93,43 @@ CLASS_DECL_APEX void __node_term_multithreading();
 
 namespace parallelization
 {
-
-
-   CLASS_DECL_APEX void init_multithreading();
-   CLASS_DECL_APEX void term_multithreading();
-
-   //CLASS_DECL_APEX bool thread_registered(::thread * pthread);
-   //CLASS_DECL_APEX bool thread_id_registered(ithread_t id);
-
-   //CLASS_DECL_APEX void thread_register(ithread_t ithread, ::thread * pthread);
-
-   //CLASS_DECL_APEX void thread_unregister(ithread_t ithread, ::thread * pthread);
-
-   CLASS_DECL_APEX bool is_child(::task * ptask);
-
-   CLASS_DECL_APEX void post_quit_to_all_threads();
-
-   CLASS_DECL_APEX void post_to_all_threads(const ::id & id, wparam wparam, lparam lparam);
-
-   //CLASS_DECL_APEX bool wait_threads(::duration duration, __pointer_array(::thread) threadaExcept = __pointer_array(::thread)());
-
-   CLASS_DECL_APEX __pointer(::thread) calc_parent(::thread * pthread);
-
-   //CLASS_DECL_APEX void __node_on_init_thread(thread * pthread);
-   //CLASS_DECL_APEX void __node_on_term_thread(thread * pthread);
-
-   //CLASS_DECL_APEX extern comparable_eq_array <ithread_t> * s_piaThread;
-   //CLASS_DECL_APEX extern address_array < ::thread * > * s_pthreadptra;
-   //CLASS_DECL_APEX extern ::mutex * s_pmutex;
-
-
+//
+//
+   CLASS_DECL_APEX void initialize();
+   CLASS_DECL_APEX ::e_status finalize();
+//
+//   //CLASS_DECL_APEX bool thread_registered(::thread * pthread);
+//   //CLASS_DECL_APEX bool thread_id_registered(itask_t id);
+//
+//   //CLASS_DECL_APEX void thread_register(itask_t itask, ::thread * pthread);
+//
+//   //CLASS_DECL_APEX void thread_unregister(itask_t itask, ::thread * pthread);
+//
+//   //CLASS_DECL_APEX bool is_child(::task * ptask);
+//
+//   //CLASS_DECL_APEX void post_quit_to_all_threads(::acme::system * psystem);
+//
+//   //CLASS_DECL_APEX void post_to_all_threads(const ::id & id, wparam wparam, lparam lparam);
+//
+//   //CLASS_DECL_APEX bool wait_threads(::duration duration, __pointer_array(::thread) threadaExcept = __pointer_array(::thread)());
+//
+//   
+//
+//   //CLASS_DECL_APEX void __node_on_init_thread(thread * pthread);
+//   //CLASS_DECL_APEX void __node_on_term_thread(thread * pthread);
+//
+//   //CLASS_DECL_APEX extern comparable_eq_array <itask_t> * s_piaThread;
+//   //CLASS_DECL_APEX extern address_array < ::thread * > * s_pthreadptra;
+//   //CLASS_DECL_APEX extern ::mutex * s_pmutex;
+//
+//
 } // namespace parallelization
 
 
 
-//CLASS_DECL_APEX void __end_thread(::layered * pobjectContext);
+//CLASS_DECL_APEX void __end_thread(::object * pobject);
 
-//CLASS_DECL_APEX void __term_thread(::layered * pobjectContext);
+//CLASS_DECL_APEX void __term_thread(::object * pobject);
 
 
 

@@ -77,7 +77,11 @@ void ifs_file::get_file_data()
 
    string strUrl;
 
-   strUrl = "http://file.ca2.cc/ifs/get?path=" + ::apex::get_system()->url().url_encode(m_strPath);
+   auto psystem = m_psystem;
+
+   auto purl = psystem->url();
+
+   strUrl = "http://file.ca2.cc/ifs/get?path=" + purl->url_encode(m_strPath);
 
    ::file::e_open eopenAdd;
 
@@ -98,16 +102,20 @@ void ifs_file::set_file_data()
 
    string strUrl;
 
+   auto psystem = m_psystem;
+
+   auto purl = psystem->url();
+
    if(m_varFile["xmledit"].cast < ::memory_file > () != nullptr)
    {
 
-      strUrl = "http://file.ca2.cc/ifs/xmledit?path=" + ::apex::get_system()->url().url_encode(m_varFile["url"]);
+      strUrl = "http://file.ca2.cc/ifs/xmledit?path=" + purl->url_encode(m_varFile["url"]);
 
       property_set setRequest;
 
       setRequest["get_response"] = "";  // touch/create property to get_response
 
-      get_context()->http().put(strUrl, m_varFile["xmledit"].cast < ::memory_file >(), setRequest);
+      m_pcontext->m_papexcontext->http().put(strUrl, m_varFile["xmledit"].cast < ::memory_file >(), setRequest);
 
       string strResponse(setRequest["get_response"]);
 
@@ -117,7 +125,7 @@ void ifs_file::set_file_data()
 
       string strMd5Here;
 
-      strMd5Here = get_context()->file().md5(m_varFile["xml"].cast < ::memory_file >());
+      strMd5Here = m_pcontext->m_papexcontext->file().md5(m_varFile["xml"].cast < ::memory_file >());
 
       string strMd5There;
       
@@ -130,21 +138,21 @@ void ifs_file::set_file_data()
 
       }
 
-      strUrl = "http://file.ca2.cc/ifs/set?path=" + ::apex::get_system()->url().url_encode(m_varFile["url"]);
+      strUrl = "http://file.ca2.cc/ifs/set?path=" + purl->url_encode(m_varFile["url"]);
 
       property_set setPut;
 
-      get_context()->http().put(strUrl, m_varFile["xml"].cast < ::memory_file >(), setPut);
+      m_pcontext->m_papexcontext->http().put(strUrl, m_varFile["xml"].cast < ::memory_file >(), setPut);
 
       return;
 
    }
 
-   strUrl = "http://file.ca2.cc/ifs/set?path=" + ::apex::get_system()->url().url_encode(m_strPath);
+   strUrl = "http://file.ca2.cc/ifs/set?path=" + purl->url_encode(m_strPath);
 
    property_set setPut;
 
-   get_context()->http().put(strUrl, &m_memfile, setPut);
+   m_pcontext->m_papexcontext->http().put(strUrl, &m_memfile, setPut);
 
 }
 

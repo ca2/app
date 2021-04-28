@@ -23,12 +23,12 @@ namespace message
       }
 
 
-      inline void remove(RECEIVER * preceiver)
+      inline void erase(RECEIVER * preceiver)
       {
 
-         m_listenera.remove(preceiver);
+         m_listenera.erase(preceiver);
 
-         remove_receiver(preceiver);
+         erase_receiver(preceiver);
 
       }
 

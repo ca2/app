@@ -6,9 +6,9 @@ string get_error_message(::u32 dwError);
 
 //::acme::application *     macos_instantiate_application(::acme::application * pappSystem, const char * pszId);
 
-CLASS_DECL_ACME void vfxThrowFileException(::layered * pobjectContext, i32 cause, ::i32 lOsError, const char * lpszFileName = nullptr);
+CLASS_DECL_ACME void vfxThrowFileException(::object * pobject, i32 cause, ::i32 lOsError, const char * lpszFileName = nullptr);
 
-CLASS_DECL_ACME ::file::exception * get_FileException(::layered * pobjectContext, const ::e_status & estatus, ::i32 lOsError, const char * lpszFileName = nullptr);
+CLASS_DECL_ACME ::file::exception * get_FileException(::object * pobject, const ::e_status & estatus, ::i32 lOsError, const char * lpszFileName = nullptr);
 
 #define NULL_REF(class) (*((class *) nullptr))
 

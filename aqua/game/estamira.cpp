@@ -8,6 +8,9 @@ namespace aqua
    estamira::estamira()
    {
 
+      m_pauraestamira = nullptr;
+      m_pestamira = nullptr;
+
    }
 
 

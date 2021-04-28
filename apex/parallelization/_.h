@@ -54,7 +54,7 @@ property_set & thread_property_set();
 #undef MUTEX_NAMED_POSIX
 #undef MUTEX_NAMED_FD
 #define MUTEX_NAMED_FD // File Descriptor "Semaphore"
-//#define MUTEX_NAMED_VSEM // ::apex::get_system() V Semaphore
+//#define MUTEX_NAMED_VSEM // psystem V Semaphore
 #undef MUTEX_NAMED_VSEM
 
 #endif
@@ -95,7 +95,7 @@ namespace parallelization
             if (pobject && pobject->is_thread())
             {
 
-               if (pobject->thread_get_run())
+               if (pobject->task_get_run())
                {
 
                   if (pobject->get_tag().compare(pszTag) == 0)
@@ -124,7 +124,7 @@ namespace parallelization
 
 
 //CLASS_DECL_APEX bool set_thread_name(const char * psz);
-//CLASS_DECL_APEX bool set_thread_name(hthread_t hthread, const char* pszName);
+//CLASS_DECL_APEX bool set_thread_name(htask_t htask, const char* pszName);
 
 // Use instead of PostQuitMessage in OLE server applications
 //CLASS_DECL_APEX void __post_quit_message(i32 nExitCode);
@@ -135,8 +135,8 @@ typedef ::e_status     (*__THREADPROC)(void *);
 //CLASS_DECL_APEX bool do_events();
 //CLASS_DECL_APEX bool do_events(const duration & duration);
 
-class tool_thread;
-class thread_tool;
+class tool_task;
+class task_tool;
 class thread_tools;
 //class thread_toolset;
 //class predicate_set;
@@ -185,7 +185,7 @@ namespace parallelization
 
 
 class sync_interface;
-class synchronization_lock;
+class synchronous_lock;
 
 
 class CLASS_DECL_APEX thread_ptra :
@@ -200,8 +200,9 @@ public:
    virtual ~thread_ptra();
 
    virtual ::count get_count_except_current_thread();
-   virtual ::e_status finish(::context_object * pcontextobjectFinish = nullptr) override;
-   virtual void wait(const duration & duration, ::synchronization_lock & synchronizationlock);
+   //virtual ::e_status finish(::property_object * pcontextobjectFinish = nullptr) override;
+   virtual ::e_status finish() override;
+   virtual void wait(const duration & duration, ::synchronous_lock & synchronouslock);
 
    thread_ptra & operator = (const thread_ptra & ptra) { __pointer_array(thread)::operator =(ptra); return *this; }
    thread_ptra & operator = (thread_ptra && ptra) { __pointer_array(thread)::operator =(::move(ptra)); return *this; }
@@ -226,7 +227,7 @@ public:
 //#include "single_lock.h"
 //#include "retry_single_lock.h"
 //#include "initial_single_lock.h"
-//#include "synchronization_lock.h"
+//#include "synchronous_lock.h"
 //#include "multi_lock.h"
 //#include "retry_multi_lock.h"
 
@@ -289,7 +290,7 @@ public:
 
 
 //CLASS_DECL_APEX ::thread* get_task();
-//CLASS_DECL_APEX ::thread * get_task(ithread_t idthread);
+//CLASS_DECL_APEX ::thread * get_task(itask_t idthread);
 //CLASS_DECL_APEX void set_thread(thread * pthread);
 
 
@@ -302,11 +303,11 @@ public:
 //#endif
 
 
-string get_thread_name(hthread_t hthread);
+string get_thread_name(htask_t htask);
 
 
 // Use instead of PostQuitMessage in OLE server applications
-CLASS_DECL_APEX void __post_quit_message(i32 nExitCode);
+//CLASS_DECL_APEX void __post_quit_message(i32 nExitCode);
 
 
 #if !defined(_UWP)

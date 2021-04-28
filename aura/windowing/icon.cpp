@@ -29,10 +29,12 @@ namespace windowing
    }
 
 
-   void icon::set_tray_icon_name(const ::string & strTrayIconName)
+   ::e_status icon::set_tray_icon_name(const ::string & strTrayIconName)
    {
 
       m_strTrayIconName = strTrayIconName;
+
+      return ::success;
 
    }
 
@@ -58,7 +60,9 @@ namespace windowing
    ::e_status icon::load_matter(string strMatter)
    {
 
-      string strPath = Context.dir().matter(strMatter);
+      auto pcontext = get_context();
+
+      string strPath = pcontext->m_papexcontext->dir().matter(strMatter);
 
       if (!load_file(strPath))
       {

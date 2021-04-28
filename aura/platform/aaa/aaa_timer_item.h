@@ -17,11 +17,11 @@
 //      ::u32                    m_uiLastSent;
 //
 //
-//      timer_item(::layered * pobjectContext);
+//      timer_item(::object * pobject);
 //      virtual ~timer_item();
 //
 //
-//      //bool check(single_lock & synchronizationlock);
+//      //bool check(single_lock & synchronouslock);
 //
 //
 //   };

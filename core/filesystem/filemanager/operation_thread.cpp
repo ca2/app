@@ -56,9 +56,9 @@ namespace filemanager
       case ::filemanager::state_finish:
       {
          m_fileoperationa[m_iOperation]->end();
-         single_lock synchronizationlock(&m_mutexFileOperationA, true);
+         single_lock synchronouslock(&m_mutexFileOperationA, true);
          m_estate = ::filemanager::state_start;
-         m_fileoperationa.remove_at(m_iOperation);
+         m_fileoperationa.erase_at(m_iOperation);
 
          // m_iOperation++;
       }
@@ -80,7 +80,7 @@ namespace filemanager
 
    double operation_thread::get_item_progress(i32 iItem)
    {
-      single_lock synchronizationlock(&m_mutexFileOperationA,true);
+      single_lock synchronouslock(&m_mutexFileOperationA,true);
       i32 iLowerBound = 0;
       i32 iUpperBound;
       for(i32 i = 0; i < m_fileoperationa.get_size(); i++)
@@ -96,7 +96,7 @@ namespace filemanager
 
    string operation_thread::get_item_message(i32 iItem)
    {
-      single_lock synchronizationlock(&m_mutexFileOperationA,true);
+      single_lock synchronouslock(&m_mutexFileOperationA,true);
       i32 iLowerBound = 0;
       i32 iUpperBound;
       for(i32 i = 0; i < m_fileoperationa.get_size(); i++)
@@ -114,7 +114,7 @@ namespace filemanager
 
    i32 operation_thread::get_item_count()
    {
-      single_lock synchronizationlock(&m_mutexFileOperationA,true);
+      single_lock synchronouslock(&m_mutexFileOperationA,true);
       i32 iCount = 0;
       for(i32 i = 0; i < m_fileoperationa.get_size(); i++)
       {
@@ -129,7 +129,7 @@ namespace filemanager
       m_estate = ::filemanager::state_start;
       m_bStop = false;
       m_iOperation = 0;
-      begin();
+      branch();
    }
 
 
@@ -142,7 +142,7 @@ namespace filemanager
       poperation->m_id = id;
       poperation->m_wparamCallback = wparamCallback;
       poperation->m_bReplaceAll = bReplaceAll;
-      poperation->set_context_object(this);
+      poperation->initialize(this);
 
       if(bDeleteOriginOnSuccessfulCopy)
       {
@@ -157,7 +157,7 @@ namespace filemanager
 
       }
 
-      single_lock synchronizationlock(&m_mutexFileOperationA,true);
+      single_lock synchronouslock(&m_mutexFileOperationA,true);
 
       m_fileoperationa.add(poperation);
 
@@ -171,7 +171,7 @@ namespace filemanager
 
       ::millis millisStepSetSleep = 20;
 
-      while(thread_get_run())
+      while(task_get_run())
       {
 
          i32 i = iStepSetCount;
@@ -209,7 +209,7 @@ namespace filemanager
 
    double operation_thread::get_progress_rate()
    {
-      single_lock synchronizationlock(&m_mutexFileOperationA,true);
+      single_lock synchronouslock(&m_mutexFileOperationA,true);
       double dTotal = 0.0;
       for(i32 i = 0; i < m_fileoperationa.get_size(); i++)
       {

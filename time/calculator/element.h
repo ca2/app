@@ -22,8 +22,8 @@ namespace datetime
       element *   m_pelement3;
 
 
-      ::datetime::result get_result(const ::apex::str_context * pcontext, int32_t & iPath, int32_t & iPathCount) const;
-      string get_expression(const ::apex::str_context * pcontext, int32_t & iPath, int32_t & iPathCount) const;
+      ::datetime::result get_result(const ::text::context * pcontext, int32_t & iPath, int32_t & iPathCount) const;
+      string get_expression(const ::text::context * pcontext, int32_t & iPath, int32_t & iPathCount) const;
 
 
    };

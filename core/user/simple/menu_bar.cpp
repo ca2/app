@@ -35,7 +35,7 @@ void simple_menu_bar::install_message_routing(::channel * pchannel)
 
    simple_toolbar::install_message_routing(pchannel);
 
-   //MESSAGE_LINK(e_message_mouse_move, pchannel, this, &simple_menu_bar::_001OnMouseMove);
+   //MESSAGE_LINK(e_message_mouse_move, pchannel, this, &simple_menu_bar::on_message_mouse_move);
    //MESSAGE_LINK(e_message_non_client_mouse_move, pchannel, this, &simple_menu_bar::_001OnNcMouseMove);
    MESSAGE_LINK(e_message_create, pchannel, this, &simple_menu_bar::on_message_create);
    MESSAGE_LINK(e_message_key_down, pchannel, this, &simple_menu_bar::_001OnKeyDown);
@@ -149,7 +149,7 @@ void simple_menu_bar::route_command_message(::message::command * pcommand)
 }
 
 
-//void simple_menu_bar::_001OnMouseMove(::message::message * pmessage)
+//void simple_menu_bar::on_message_mouse_move(::message::message * pmessage)
 //{
 //   __pointer(::message::mouse) pmouse(pmessage);
 //   _001Hover(pmouse->m_point);
@@ -247,7 +247,7 @@ void simple_menu_bar::on_message_create(::message::message * pmessage)
 
    //m_menuhook.Install((__pointer(::user::frame_window)) (__pointer(::user::interaction))this);
 
-   //   SetFont(System->draw2d()->fonts().GetMenuFont());
+   //   SetFont(pdraw2d->fonts().GetMenuFont());
 
    UpdateWindow();
 
@@ -400,7 +400,7 @@ i32_spreadset * prel,
 
 void simple_menu_bar::RemoveAllButtons()
 {
-   m_itema.remove_all();
+   m_itema.erase_all();
 }
 
 void simple_menu_bar::_001OnMenuChar(::message::message * pmessage)
@@ -491,7 +491,7 @@ bool simple_menu_bar::ReloadMenuBar()
 {
    ::rectangle_i32 rectClient;
    get_client_rect(rectClient);
-   class imaging & imaging = System->imaging();
+   class imaging & imaging = psystem->imaging();
    if(m_iHover >= -1)
    {
       imaging.color_blend(
@@ -515,7 +515,7 @@ bool simple_menu_bar::ReloadMenuBar()
          56);
    }
 
-   pgraphics->set(System->draw2d()->fonts().GetMenuFont());
+   pgraphics->set(pdraw2d->fonts().GetMenuFont());
    pgraphics->SetBkMode(TRANSPARENT);
    for(index iItem = 0; iItem < m_buttona.get_size(); iItem++)
    {
@@ -609,7 +609,7 @@ index simple_menu_bar::_001HitTest(const POINT_I32 *ppoint)
 /*void simple_menu_bar::_001Layout()
 {
    ::draw2d::memory_graphics pgraphics(this);;
-   pgraphics->set(System->draw2d()->fonts().GetMenuFont());
+   pgraphics->set(pdraw2d->fonts().GetMenuFont());
 
    ::size_i32 size;
    index ix = ITEMCHECKEDPADLEFT;
@@ -773,14 +773,14 @@ size_i32 simple_menu_bar::CalcFixedLayout(bool bStretch, bool bHorz)
       ::rectangle_i32 rectShadow;
       _001GetItemRect(iItem, rectShadow, e_element_item);
 
-      ::draw2d::pen_pointer penShadow(get_context_application(), PS_SOLID, 1, rgb(127, 127, 127));
-      ::draw2d::brush_pointer brushShadow(get_context_application(), rgb(127, 127, 127));
+      ::draw2d::pen_pointer penShadow(get_application(), PS_SOLID, 1, rgb(127, 127, 127));
+      ::draw2d::brush_pointer brushShadow(get_application(), rgb(127, 127, 127));
       ::draw2d::pen * ppenOld = pgraphics->set(penShadow);
       ::draw2d::brush * pbrushOld = pgraphics->set(brushShadow);
       pgraphics->rectangle(rectShadow);
 
-      ::draw2d::pen_pointer pen(get_context_application(), PS_SOLID, 1, rgb(92, 92, 92));
-      ::draw2d::brush_pointer brush(get_context_application(), rgb(255, 255, 255));
+      ::draw2d::pen_pointer pen(get_application(), PS_SOLID, 1, rgb(92, 92, 92));
+      ::draw2d::brush_pointer brush(get_application(), rgb(255, 255, 255));
       pgraphics->set(pen);
       pgraphics->set(brush);
       pgraphics->rectangle(rectItem);

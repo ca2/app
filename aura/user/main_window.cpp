@@ -11,6 +11,8 @@ namespace user
 
       m_bExtendOnParentIfClientOnly = true;
 
+      enable_drag_move();
+
    }
 
 
@@ -33,8 +35,6 @@ namespace user
    void main_window::on_create_user_interaction()
    {
 
-      //set_prodevian();
-
       add_user_item({ ::user::e_element_close_button, ::user::e_event_close_app });
 
    }
@@ -49,7 +49,9 @@ namespace user
 
       place(rectWindow);
 
-      string strCaption = Application.get_app_user_friendly_task_bar_name();
+      __pointer(::aura::application) papplication = get_application();
+
+      string strCaption = papplication->get_app_user_friendly_task_bar_name();
 
       set_window_text(strCaption);
 
@@ -62,17 +64,12 @@ namespace user
 
       }
 
-      //if (bInitialFramePosition)
-      //{
-      //   
-      //   place(rectWindow);
-
-      //}
-
       return ::success;
 
    }
 
 
-
 } // namespace user
+
+
+

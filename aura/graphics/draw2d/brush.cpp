@@ -39,7 +39,7 @@ namespace draw2d
 //#endif
 
 
-   void brush::finalize()
+   ::e_status brush::finalize()
    {
 
       if (m_pimage)
@@ -48,6 +48,8 @@ namespace draw2d
          m_pimage.release();
 
       }
+
+      return ::success;
 
    }
 

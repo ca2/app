@@ -3,6 +3,8 @@
 //
 #include "framework.h"
 #include "acme/id.h"
+#include "acme/platform/node.h"
+#include "acme/filesystem/filesystem/acme_dir.h"
 
 
 namespace acme
@@ -16,6 +18,23 @@ namespace acme
       m_pauranode = nullptr;
       m_edesktop = ::user::e_desktop_none;
 
+      m_pAcmePosix = nullptr;
+      m_pApexPosix = nullptr;
+      m_pAuraPosix = nullptr;
+
+      m_pAcmePlatform = nullptr;
+      m_pApexPlatform = nullptr;
+      m_pAuraPlatform = nullptr;
+
+      m_pNodeX11 = nullptr;
+      m_pNodeXcb = nullptr;
+
+      m_pNodeGnome = nullptr;
+      m_pNodeKDE = nullptr;
+
+      m_pNodeDesktopEnvironmentGnome = nullptr;
+      m_pNodeDesktopEnvironmentKDE = nullptr;
+
    }
 
 
@@ -23,6 +42,166 @@ namespace acme
    {
 
 
+   }
+
+
+   string node::audio_get_default_library_name()
+   {
+
+      return "";
+
+   }
+
+
+   ::e_status node::initialize(::object * pobject)
+   {
+
+      auto estatus = ::object::initialize(pobject);
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      initialize_memory_counter();
+
+      return estatus;
+
+   }
+
+
+   ::e_status node::on_initialize_object()
+   {
+
+      auto estatus = ::object::on_initialize_object();
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      m_psystem->m_pacmenode = this;
+
+      return estatus;
+
+   }
+
+
+   void node::initialize_memory_counter()
+   {
+
+      ::initialize_memory_counter(this);
+
+   }
+
+
+   ::e_status node::system_main()
+   {
+
+      auto estatus = m_psystem->main();
+
+      if(!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return estatus;
+
+   }
+
+
+   ::e_status node::on_start_system()
+   {
+
+      return ::success;
+
+   }
+
+
+   //::file::path node::roaming()
+   //{
+
+   //   return "";
+
+   //}
+
+
+   //::file::path node::program_data()
+   //{
+
+   //   return "";
+
+   //}
+
+
+#ifdef WINDOWS
+
+
+   ::e_status node::register_dll(const ::file::path& pathDll)
+   {
+
+      __throw(error_interface_only);
+
+      return error_interface_only;
+
+   }
+
+
+#endif
+
+
+   void node::install_crash_dump_reporting(const string& strModuleNameWithTheExeExtension)
+   {
+
+
+
+
+   }
+
+
+   ::file::path node::_module_path()
+   {
+
+      return "";
+
+   }
+
+
+   ::file::path node::module_path_source()
+   {
+
+      if(m_pathModule.has_char())
+      {
+
+         return m_pathModule;
+
+      }
+
+      m_pathModule = _module_path();
+
+      return m_pathModule;
+
+   }
+
+
+   ::e_status node::register_extended_event_listener(::matter * pdata, bool bMouse, bool bKeyboard)
+   {
+
+      return ::success;
+
+   }
+
+
+   ::e_status node::datetime_to_filetime(::filetime_t* pfiletime, const ::datetime::time& time)
+   {
+
+      return error_interface_only;
    }
 
 
@@ -34,7 +213,7 @@ namespace acme
    }
 
 
-   ::e_status node::start()
+   ::e_status node::start_node()
    {
 
       return ::success;
@@ -221,8 +400,6 @@ namespace acme
 
          m_bLastDarkModeSystem = bDarkModeSystem;
 
-         ::acme::get_system()->deliver(id_os_dark_mode);
-
          on_os_dark_mode_change();
 
       }
@@ -264,7 +441,7 @@ namespace acme
    bool node::set_wallpaper(index iScreen, string strLocalImagePath)
    {
 
-      auto pnode = Node;
+      auto pnode = get_system()->node();
 
       if(::is_null(pnode))
       {
@@ -317,20 +494,42 @@ namespace acme
    }
 
 
-   void node::node_fork(const ::routine & routine)
+   ::e_status node::node_branch(const ::routine & routine)
    {
+
+      __throw(error_interface_only);
+
+      return error_interface_only;
 
    }
 
 
-   void node::node_sync(const ::duration & durationTimeout, const ::routine & routine)
+   ::e_status node::node_sync(const ::duration & durationTimeout, const ::routine & routine)
    {
 
-      auto proutine = __sync_routine(routine);
+      auto psignalization = __new(::promise::signalization);
 
-      node_fork(proutine);
+      auto proutine = __routine([this, routine, psignalization]()
+                                {
 
-      proutine->sync_wait(durationTimeout);
+                                   routine();
+
+                                   psignalization->m_evReady.SetEvent();
+
+                                   //::release((::matter * &)psignalization.m_p);
+
+                                });
+
+      node_branch(proutine);
+
+      if (psignalization->m_evReady.wait().failed())
+      {
+
+         return error_timeout;
+
+      }
+
+      return ::success;
 
    }
 
@@ -493,24 +692,24 @@ namespace acme
    }
 
 
-   ::e_status node::get_system_time(system_time_t * psystemtime)
-   {
+   //::e_status node::get_system_time(system_time_t * psystemtime)
+   //{
 
-      __throw(error_interface_only);
+   //   __throw(error_interface_only);
 
-      return error_interface_only;
+   //   return error_interface_only;
 
-   }
+   //}
 
 
-   ::e_status node::file_time_to_local_file_time(filetime_t *, filetime_t const*)
-   {
+   //::e_status node::file_time_to_local_file_time(filetime_t *, filetime_t const*)
+   //{
 
-      __throw(error_interface_only);
+   //   __throw(error_interface_only);
 
-      return error_interface_only;
+   //   return error_interface_only;
 
-   }
+   //}
 
 
    ::e_status node::open_folder(::file::path & pathFolder)
@@ -523,50 +722,153 @@ namespace acme
    }
 
 
-   ::e_status node::get_system_time_as_file_time(filetime_t * pfiletime)
+   //::e_status node::get_system_time_as_file_time(filetime_t * pfiletime)
+   //{
+
+   //   return ::error_interface_only;
+
+   //}
+
+
+   //::e_status node::file_time_to_system_time(system_time_t * psystemtime, const filetime_t * pfiletime)
+   //{
+
+   //   return ::error_interface_only;
+
+   //}
+
+
+   //::e_status node::system_time_to_time(time_t * ptime, const system_time_t * psystemtime, i32 nDST)
+   //{
+
+   //   return error_interface_only;
+
+   //}
+
+
+   //::e_status node::system_time_to_file_time(filetime_t * pfiletime, const system_time_t * psystemtime)
+   //{
+
+   //   return error_interface_only;
+
+   //}
+
+
+   //::e_status node::time_to_system_time(system_time_t * psystem_time, const time_t * ptime)
+   //{
+
+   //   return error_interface_only;
+
+   //}
+
+
+   //::e_status node::time_to_file_time(filetime_t * pfiletime, const time_t * ptime)
+   //{
+
+   //   return error_interface_only;
+
+   //}
+
+
+   string node::font_name(enum_font efont)
    {
 
-      return ::error_interface_only;
+//      auto psystem = m_psystem;
+//
+//#ifdef WINDOWS
+//
+//      return windows_font_name(efont);
+//
+//#elif defined(LINUX)
+//
+//      auto elinuxdistribution = psystem->get_linux_distribution();
+//
+//      return linux_font_name(elinuxdistribution, efont);
+//
+//#else
+
+      return "sans-serif";
+
+//#endif
 
    }
 
 
-   ::e_status node::file_time_to_system_time(system_time_t * psystemtime, const filetime_t * pfiletime)
+   ::e_status node::install_sigchld_handler()
    {
 
-      return ::error_interface_only;
+      return ::success;
 
    }
 
 
-   ::e_status node::system_time_to_time(time_t * ptime, const system_time_t * psystemtime, i32 nDST)
+   //string node::font_name(enum_operating_system eoperatingsystem, int iVariant, enum_font efont)
+   //{
+
+   //   switch (eoperatingsystem)
+   //   {
+   //   case e_operating_system_windows:
+   //   {
+
+   //      return windows_font_name(efont);
+
+   //   }
+   //   case e_operating_system_linux:
+   //   {
+
+   //      auto elinuxdistribution = (::enum_linux_distribution)iVariant;
+
+   //      return linux_font_name(elinuxdistribution, efont);
+
+   //   }
+   //   default:
+   //   {
+
+   //      return "sans-serif";
+
+   //   }
+
+   //   }
+
+   //}
+
+   
+   string node::file_memory_map_path_from_name(const string& strName)
    {
 
-      return error_interface_only;
+      auto psystem = m_psystem;
+
+      auto pacmedir = psystem->acmedir();
+
+      auto pathFolder = pacmedir->get_memory_map_base_folder_path();
+
+      auto path = pathFolder / (strName + ".filememorymap");
+
+      return path;
 
    }
 
 
-   ::e_status node::system_time_to_file_time(filetime_t * pfiletime, const system_time_t * psystemtime)
+   string node::multimedia_audio_mixer_get_default_library_name()
    {
 
-      return error_interface_only;
+      return "audio_mixer_alsa";
 
    }
 
 
-   ::e_status node::time_to_system_time(system_time_t * psystem_time, const time_t * ptime)
+   string node::multimedia_audio_get_default_library_name()
    {
 
-      return error_interface_only;
+      return "audio_alsa";
 
    }
 
 
-   ::e_status node::time_to_file_time(filetime_t * pfiletime, const time_t * ptime)
+   string node::veriwell_multimedia_music_midi_get_default_library_name()
    {
 
-      return error_interface_only;
+      return "music_midi_alsa";
 
    }
 

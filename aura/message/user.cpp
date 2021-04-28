@@ -29,7 +29,7 @@ namespace message
 
 
 
-   //base::base(::layered * pobjectContext) :
+   //base::base(::object * pobject) :
    //   ::message::message(psignal)
    //{
 
@@ -87,7 +87,9 @@ namespace message
 
 #ifdef __DEBUG
 
-      ::aura::get_system()->log().print(pcszErrorMessage);
+      __pointer(::aura::system) psystem = get_system();
+
+      psystem->log().print(pcszErrorMessage);
 
 #endif //__DEBUG
 
@@ -193,9 +195,11 @@ namespace message
       else
       {
 
-         auto psession = Session;
+         auto psession = get_session();
 
-         auto puser = psession->m_puser;
+         auto paurasession = psession->m_paurasession;
+
+         auto puser = paurasession->m_puser;
 
          auto pwindowing = puser->m_pwindowing;
 
@@ -295,9 +299,9 @@ namespace message
    mouse::mouse()
    {
 
-      m_ecursor = e_cursor_unmodified;
+      //m_ecursor = e_cursor_unmodified;
 
-      m_pcursor = nullptr;
+      //m_pcursor = nullptr;
 
       m_bTranslated = false;
 
@@ -323,13 +327,7 @@ namespace message
                if (m_pcursor)
                {
 
-                  pwindow->set_cursor(m_pcursor);
-
-               }
-               else if (m_ecursor != e_cursor_unmodified)
-               {
-
-                  puserinteraction->set_cursor(m_ecursor);
+                  pwindow->set_mouse_cursor(m_pcursor);
 
                }
 
@@ -388,6 +386,13 @@ namespace message
    }
 
 
+   mouse_activate::mouse_activate()
+   {
+
+
+   }
+
+
    ::user::interaction * mouse_activate::get_desktop_window()
    {
 
@@ -415,11 +420,72 @@ namespace message
 
    }
 
+   
+   context_menu::context_menu()
+   {
+
+   }
+
 
    point_i32 context_menu::GetPoint()
    {
 
       return __point(m_lparam);
+
+   }
+
+
+   set_cursor::set_cursor()
+   {
+
+
+   }
+
+
+   set_cursor::~set_cursor()
+   {
+
+      try
+      {
+
+         auto puserinteraction = userinteraction();
+
+         if (puserinteraction)
+         {
+
+            auto pwindow = puserinteraction->get_window();
+
+            if (pwindow)
+            {
+
+               if (m_pcursor)
+               {
+
+                  pwindow->set_mouse_cursor(m_pcursor);
+
+               }
+
+            }
+
+         }
+
+      }
+      catch (...)
+      {
+
+      }
+
+   }
+
+
+   scroll::scroll()
+   {
+
+   }
+
+
+   scroll:: ~scroll()
+   {
 
    }
 
@@ -477,7 +543,7 @@ namespace message
 
       ::user::message::set(oswindow, pwindow, id,wparam,lparam);
 
-      //m_puserinteraction = ::aura::get_system()->ui_from_handle(reinterpret_cast<oswindow>(wparam));
+      //m_puserinteraction = psystem->ui_from_handle(reinterpret_cast<oswindow>(wparam));
 
       //m_puserinteraction = nullptr;
 
@@ -546,6 +612,32 @@ namespace message
    {
 
       return (i32)m_wparam;
+
+   }
+
+
+   object::object()
+   {
+
+
+   }
+
+
+   object::~object()
+   {
+
+
+   }
+
+
+   void object::set(oswindow oswindow, ::windowing::window * pwindow, const ::id & id, wparam wparam, ::lparam lparam)
+   {
+
+      ::user::message::set(oswindow, pwindow, id, wparam, lparam);
+
+      __pointer(::matter) pmatter(lparam);
+
+      m_pmatter = pmatter;
 
    }
 

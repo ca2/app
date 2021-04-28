@@ -22,7 +22,7 @@
             public:
 
 
-               frame_002(::layered * pobjectContext);
+               frame_002(::object * pobject);
                virtual ~frame_002();
 
                virtual void _on_style_change(::draw2d::graphics_pointer & pgraphics) override;

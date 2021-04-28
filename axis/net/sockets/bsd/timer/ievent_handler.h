@@ -57,7 +57,7 @@ namespace sockets
       virtual long AddEvent(IEventOwner *,long sec,long usec) = 0;
       /** clear all events for a specific owner. */
       virtual void ClearEvents(IEventOwner *) = 0;
-      /** remove one specific event for an event owner. */
+      /** erase one specific event for an event owner. */
       virtual void RemoveEvent(IEventOwner *,long) = 0;
 
    };

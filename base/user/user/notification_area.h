@@ -18,7 +18,7 @@
 //      notification_area();
 //      virtual ~notification_area();
 //
-//      virtual void Initialize(::layered * pobjectContext);
+//      virtual void Initialize(::object * pobject);
 //
 //      void ListTrayIcons(i32 defindex = 0);
 //      void EditCopy(i32 iItem);

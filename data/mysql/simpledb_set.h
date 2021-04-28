@@ -52,7 +52,7 @@ namespace simpledb
       Filling the fields information from select statement */
       virtual void fill_fields();
       /* Changing field values during set navigation */
-      bool remove_row();
+      bool erase_row();
 
       /* opens a query  & then sets a query results */
       virtual void open();

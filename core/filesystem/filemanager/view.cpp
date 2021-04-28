@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "core/filesystem/filemanager/_filemanager.h"
 #include "aura/update.h"
+#include "base/user/user/split_pane.h"
 
 
 namespace filemanager
@@ -22,7 +23,7 @@ namespace filemanager
    void view::install_message_routing(::channel * pchannel)
    {
 
-      ::filemanager::impact::install_message_routing(pchannel);
+      ::filemanager_impact::install_message_routing(pchannel);
       ::user::split_view::install_message_routing(pchannel);
 
    }
@@ -43,9 +44,15 @@ namespace filemanager
    {
 
       if (get_pane_count() > 0)
+      {
+
          return;
 
-      bool bPathView = Application.is_false("no_path_view");
+      }
+
+      auto papplication = get_application();
+
+      bool bPathView = papplication->is_false("no_path_view");
 
       SetPaneCount(bPathView ? 2 : 1);
 
@@ -56,7 +63,7 @@ namespace filemanager
 
          set_position(0, 24);
 
-         m_panea[0]->m_bFixedSize = true;
+         m_splitpanecompositea[0]->m_bFixedSize = true;
 
          initialize_split_layout();
 
@@ -65,7 +72,7 @@ namespace filemanager
          if (ppathview == nullptr)
          {
 
-            System->message_box("Could not create filemanager path view");
+            message_box("Could not create filemanager path view");
 
          }
 
@@ -83,11 +90,11 @@ namespace filemanager
       if (pmainview == nullptr)
       {
 
-         System->message_box("Could not create file list ::user::impact");
+         message_box("Could not create file list ::user::impact");
 
       }
 
-      //SetPane(, pmainview, false);
+      //SetPane(pmainview, false);
 
       //pmainview->create_views();
 
@@ -97,9 +104,11 @@ namespace filemanager
    void view::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
    {
 
-      ::filemanager::impact::on_subject(psubject, pcontext);
+      ::filemanager_impact::on_subject(psubject, pcontext);
 
       ::user::split_view::on_subject(psubject, pcontext);
+
+      auto psystem = m_psystem->m_paurasystem;
 
       if (filemanager_document() == psubject->cast < ::user::document >(id_document))
       {
@@ -174,7 +183,7 @@ namespace filemanager
                if (ptopview == nullptr)
                {
 
-                  System->message_box("Could not create folder tree ::user::impact");
+                  message_box("Could not create folder tree ::user::impact");
 
                }
 
@@ -208,7 +217,11 @@ namespace filemanager
 
                }
 
-               strName = strPrefix + System->datetime().international().get_gmt_date_time() + strSuffix;
+               //auto psystem = m_psystem;
+
+               auto pdatetime = psystem->datetime();
+
+               strName = strPrefix + pdatetime->international().get_gmt_date_time() + strSuffix;
 
                strName.replace(":", "-");
 

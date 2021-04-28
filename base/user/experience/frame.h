@@ -73,8 +73,10 @@ namespace experience
       virtual ~frame();
 
 
-
-
+      inline ::base::application* get_application() const { return m_pcontext ? m_pcontext->m_pbaseapplication : nullptr; }
+      inline ::base::session* get_session() const { return m_pcontext ? m_pcontext->m_pbasesession : nullptr; }
+      inline ::base::system* get_system() const { return m_psystem ? m_psystem->m_pbasesystem : nullptr; }
+      inline ::base::user* user() const { return get_session() ? get_session()->user() : nullptr; }
 
 
       virtual int adjust_client_height(int iHeight);
@@ -161,7 +163,8 @@ namespace experience
 
       virtual bool on_message_left_button_down(::message::mouse * pmouse);
       virtual bool on_message_left_button_up(::message::mouse * pmouse);
-      virtual bool _001OnMouseMove(::message::mouse * pmouse);
+      virtual bool on_message_mouse_move(::message::mouse * pmouse);
+      virtual bool on_message_set_cursor(::message::set_cursor * psetcursor);
       virtual bool _001OnNcLButtonDown(::message::mouse * pmouse);
       virtual bool _001OnNcLButtonUp(::message::mouse * pmouse);
       virtual bool _001OnNcMouseMove(::message::mouse * pmouse);

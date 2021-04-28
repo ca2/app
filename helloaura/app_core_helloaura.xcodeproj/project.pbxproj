@@ -16,7 +16,7 @@
 		07A684EC17F0E06700C41DE6 /* helloaura_application.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A684E617F0E06700C41DE6 /* helloaura_application.h */; };
 		07A684ED17F0E06700C41DE6 /* helloaura_document.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A684E717F0E06700C41DE6 /* helloaura_document.h */; };
 		07A684EE17F0E06700C41DE6 /* helloaura_frame.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A684E817F0E06700C41DE6 /* helloaura_frame.h */; };
-		07A684EF17F0E06700C41DE6 /* aaa_want_to_remove_helloaura_view_update_hint.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A684E917F0E06700C41DE6 /* aaa_want_to_remove_helloaura_view_update_hint.h */; };
+		07A684EF17F0E06700C41DE6 /* aaa_want_to_erase_helloaura_view_update_hint.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A684E917F0E06700C41DE6 /* aaa_want_to_erase_helloaura_view_update_hint.h */; };
 		07A684F017F0E06700C41DE6 /* helloaura_pane_view.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A684EA17F0E06700C41DE6 /* helloaura_pane_view.h */; };
 		07A684F117F0E06700C41DE6 /* helloaura_view.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A684EB17F0E06700C41DE6 /* helloaura_view.h */; };
 		07AE494E1CC7A83F00959A6F /* helloaura_gcom.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07AE494A1CC7A83F00959A6F /* helloaura_gcom.cpp */; };
@@ -28,7 +28,7 @@
 		07B65522190F3001002DAADE /* helloaura_document.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEB75CA16F78E600085103B /* helloaura_document.cpp */; };
 		07B65523190F3001002DAADE /* helloaura_frame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEB75CB16F78E600085103B /* helloaura_frame.cpp */; };
 		07B65524190F3001002DAADE /* helloaura_pane_view.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEB75CC16F78E600085103B /* helloaura_pane_view.cpp */; };
-		07B65525190F3001002DAADE /* aaa_want_to_remove_helloaura_view_update_hint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEB75CD16F78E600085103B /* aaa_want_to_remove_helloaura_view_update_hint.cpp */; };
+		07B65525190F3001002DAADE /* aaa_want_to_erase_helloaura_view_update_hint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEB75CD16F78E600085103B /* aaa_want_to_erase_helloaura_view_update_hint.cpp */; };
 		07B65526190F3001002DAADE /* helloaura_view.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEB75CE16F78E600085103B /* helloaura_view.cpp */; };
 		07FB1AA41B744E8800F3FCC1 /* helloaura_render.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07FB1AA21B744E8800F3FCC1 /* helloaura_render.cpp */; };
 		07FB1AA51B744E8800F3FCC1 /* helloaura_render.h in Headers */ = {isa = PBXBuildFile; fileRef = 07FB1AA31B744E8800F3FCC1 /* helloaura_render.h */; };
@@ -56,7 +56,7 @@
 		9AEB75E216F78E600085103B /* helloaura_document.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEB75CA16F78E600085103B /* helloaura_document.cpp */; };
 		9AEB75E316F78E600085103B /* helloaura_frame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEB75CB16F78E600085103B /* helloaura_frame.cpp */; };
 		9AEB75E416F78E600085103B /* helloaura_pane_view.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEB75CC16F78E600085103B /* helloaura_pane_view.cpp */; };
-		9AEB75E516F78E600085103B /* aaa_want_to_remove_helloaura_view_update_hint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEB75CD16F78E600085103B /* aaa_want_to_remove_helloaura_view_update_hint.cpp */; };
+		9AEB75E516F78E600085103B /* aaa_want_to_erase_helloaura_view_update_hint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEB75CD16F78E600085103B /* aaa_want_to_erase_helloaura_view_update_hint.cpp */; };
 		9AEB75E616F78E600085103B /* helloaura_view.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEB75CE16F78E600085103B /* helloaura_view.cpp */; };
 /* End PBXBuildFile section */
 
@@ -159,7 +159,7 @@
 		07A684E617F0E06700C41DE6 /* helloaura_application.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = helloaura_application.h; sourceTree = "<group>"; };
 		07A684E717F0E06700C41DE6 /* helloaura_document.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = helloaura_document.h; sourceTree = "<group>"; };
 		07A684E817F0E06700C41DE6 /* helloaura_frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = helloaura_frame.h; sourceTree = "<group>"; };
-		07A684E917F0E06700C41DE6 /* aaa_want_to_remove_helloaura_view_update_hint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aaa_want_to_remove_helloaura_view_update_hint.h; sourceTree = "<group>"; };
+		07A684E917F0E06700C41DE6 /* aaa_want_to_erase_helloaura_view_update_hint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aaa_want_to_erase_helloaura_view_update_hint.h; sourceTree = "<group>"; };
 		07A684EA17F0E06700C41DE6 /* helloaura_pane_view.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = helloaura_pane_view.h; sourceTree = "<group>"; };
 		07A684EB17F0E06700C41DE6 /* helloaura_view.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = helloaura_view.h; sourceTree = "<group>"; };
 		07AE494A1CC7A83F00959A6F /* helloaura_gcom.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = helloaura_gcom.cpp; sourceTree = "<group>"; };
@@ -201,7 +201,7 @@
 		9AEB75CA16F78E600085103B /* helloaura_document.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = helloaura_document.cpp; sourceTree = "<group>"; };
 		9AEB75CB16F78E600085103B /* helloaura_frame.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = helloaura_frame.cpp; sourceTree = "<group>"; };
 		9AEB75CC16F78E600085103B /* helloaura_pane_view.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = helloaura_pane_view.cpp; sourceTree = "<group>"; };
-		9AEB75CD16F78E600085103B /* aaa_want_to_remove_helloaura_view_update_hint.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = aaa_want_to_remove_helloaura_view_update_hint.cpp; sourceTree = "<group>"; };
+		9AEB75CD16F78E600085103B /* aaa_want_to_erase_helloaura_view_update_hint.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = aaa_want_to_erase_helloaura_view_update_hint.cpp; sourceTree = "<group>"; };
 		9AEB75CE16F78E600085103B /* helloaura_view.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = helloaura_view.cpp; sourceTree = "<group>"; };
 		9AF75DEF1F83EBA100FDE7CC /* libios_aura.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libios_aura.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AF75DF31F83EBAA00FDE7CC /* libios_axis.dylib */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libios_axis.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -349,8 +349,8 @@
 				9AA1008D19971FCE004F84BD /* helloaura_main_view.h */,
 				9AEB75CC16F78E600085103B /* helloaura_pane_view.cpp */,
 				07A684EA17F0E06700C41DE6 /* helloaura_pane_view.h */,
-				9AEB75CD16F78E600085103B /* aaa_want_to_remove_helloaura_view_update_hint.cpp */,
-				07A684E917F0E06700C41DE6 /* aaa_want_to_remove_helloaura_view_update_hint.h */,
+				9AEB75CD16F78E600085103B /* aaa_want_to_erase_helloaura_view_update_hint.cpp */,
+				07A684E917F0E06700C41DE6 /* aaa_want_to_erase_helloaura_view_update_hint.h */,
 				07FB1AA21B744E8800F3FCC1 /* helloaura_render.cpp */,
 				07FB1AA31B744E8800F3FCC1 /* helloaura_render.h */,
 				076D09F11A3FC72C007432B6 /* helloaura_switcher_view.cpp */,
@@ -377,7 +377,7 @@
 				9AA1009119971FCE004F84BD /* helloaura_main_view.h in Headers */,
 				07AE49511CC7A83F00959A6F /* helloaura_view_base.h in Headers */,
 				9A72594D1D1403E6001F56B4 /* helloaura_main_frame.h in Headers */,
-				07A684EF17F0E06700C41DE6 /* aaa_want_to_remove_helloaura_view_update_hint.h in Headers */,
+				07A684EF17F0E06700C41DE6 /* aaa_want_to_erase_helloaura_view_update_hint.h in Headers */,
 				07A684ED17F0E06700C41DE6 /* helloaura_document.h in Headers */,
 				07A684F017F0E06700C41DE6 /* helloaura_pane_view.h in Headers */,
 				07AE494F1CC7A83F00959A6F /* helloaura_gcom.h in Headers */,
@@ -561,7 +561,7 @@
 				07B65522190F3001002DAADE /* helloaura_document.cpp in Sources */,
 				07B65523190F3001002DAADE /* helloaura_frame.cpp in Sources */,
 				07B65524190F3001002DAADE /* helloaura_pane_view.cpp in Sources */,
-				07B65525190F3001002DAADE /* aaa_want_to_remove_helloaura_view_update_hint.cpp in Sources */,
+				07B65525190F3001002DAADE /* aaa_want_to_erase_helloaura_view_update_hint.cpp in Sources */,
 				07B65526190F3001002DAADE /* helloaura_view.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -589,7 +589,7 @@
 				9AEB75E216F78E600085103B /* helloaura_document.cpp in Sources */,
 				9AEB75E316F78E600085103B /* helloaura_frame.cpp in Sources */,
 				9AEB75E416F78E600085103B /* helloaura_pane_view.cpp in Sources */,
-				9AEB75E516F78E600085103B /* aaa_want_to_remove_helloaura_view_update_hint.cpp in Sources */,
+				9AEB75E516F78E600085103B /* aaa_want_to_erase_helloaura_view_update_hint.cpp in Sources */,
 				9AEB75E616F78E600085103B /* helloaura_view.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -241,7 +241,7 @@ namespace user
       inline bool has_appearance(eappearance eappearance) { return ui_state().m_eappearance & eappearance; }
       inline void set_appearance(eappearance eappearance) { request_state().m_eappearance = eappearance; m_bRequestReady = false; }
       inline void add_appearance(eappearance eappearance) { request_state().m_eappearance |= eappearance; m_bRequestReady = false; }
-      inline void remove_appearance(eappearance eappearance) { request_state().m_eappearance -= eappearance; m_bRequestReady = false; }
+      inline void erase_appearance(eappearance eappearance) { request_state().m_eappearance -= eappearance; m_bRequestReady = false; }
       inline void toggle_appearance(eappearance eappearance) { request_state().m_eappearance ^= eappearance; m_bRequestReady = false; }
       inline void clear_appearance() { request_state().m_eappearance.clear(); m_bRequestReady = false; }
 

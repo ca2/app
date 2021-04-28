@@ -205,10 +205,10 @@ namespace acme
 //
 //   __pointer(::user::interaction) application::window_from_os_data_permanent(void * pdata)
 //   {
-//      ::window * pwnd = ::ios::window::FromHandlePermanent((oswindow) pdata);
-//      if(pwnd != nullptr)
-//         return pwnd;
-//      user::interaction_ptr_array wndptra = System->frames();
+//      ::window * puserinteraction = ::ios::window::FromHandlePermanent((oswindow) pdata);
+//      if(puserinteraction != nullptr)
+//         return puserinteraction;
+//      user::interaction_ptr_array wndptra = ::acme::get_system()->frames();
 //      for(i32 i = 0; i < wndptra.get_count(); i++)
 //      {
 //         if(wndptra[i].get_safe_handle() == (oswindow) pdata)
@@ -245,7 +245,7 @@ namespace acme
 //      // versions of ca2 API, this memory was never freed.  In this and future
 //      // versions this memory is automatically freed during application's
 //      // destructor.  If you are freeing the memory yourself, you should
-//      // either remove the code or set the pointers to nullptr after freeing
+//      // either erase the code or set the pointers to nullptr after freeing
 //      // the memory.
 //
 //      // get path of executable
@@ -266,9 +266,9 @@ namespace acme
 //       */
 //
 //      //      string strExeName;
-//      //string strTitle = System->load_string("System->title");
+//      //string strTitle = ::acme::get_system()->load_string("::acme::get_system()->title");
 //      // get the exe title from the full path name [no extension]
-//      //    strExeName = System->get_module_title();
+//      //    strExeName = ::acme::get_system()->get_module_title();
 //
 //
 //
@@ -307,7 +307,7 @@ namespace acme
 ////#endif
 //   }
 
-//   ithread_t application::get_thread_id()
+//   itask_t application::get_thread_id()
 //   {
 //      return ::GetCurrentThreadId();
 //   }
@@ -332,7 +332,7 @@ namespace acme
 //
 //         string strCmdLine          = pdata->m_strCommandLine;
 //
-////         System->m_strCmdLine = strCmdLine;
+////         ::acme::get_system()->m_strCmdLine = strCmdLine;
 //
 //         SetCurrentHandles();
 //
@@ -352,7 +352,7 @@ namespace acme
 //      // handle critical errors and avoid Windows message boxes
 //      // xxx         SetErrorMode(SetErrorMode(0) | SEM_FAILCRITICALERRORS | SEM_NOOPENFILEERRORBOX);
 //
-//      System->m_strCmdLine = strCmdLine;
+//      ::acme::get_system()->m_strCmdLine = strCmdLine;
 //      //pApp->SetCurrentHandles();
 //      SetCurrentHandles();
 //
@@ -425,12 +425,12 @@ namespace acme
 
 
 
-   void application::show_wait_cursor(bool bShow)
-   {
-
-      UNREFERENCED_PARAMETER(bShow);
-
-   }
+//   void application::show_wait_cursor(bool bShow)
+//   {
+//
+//      UNREFERENCED_PARAMETER(bShow);
+//
+//   }
 
 
    bool application::os_on_start_application()

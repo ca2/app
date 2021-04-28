@@ -47,7 +47,7 @@ namespace sockets
          virtual ~socket_thread();
 
 
-         virtual ::e_status     initialize_socket_thread(base_socket * psocket);
+         virtual ::e_status initialize_socket_thread(base_socket * psocket);
 
          virtual ::e_status init_thread() override;
 
@@ -91,7 +91,7 @@ namespace sockets
 #endif
       string                  m_password; ///< ssl password
 
-      base_socket_handler &   m_handler; ///< Reference of base_socket_handler in control of this socket
+      __pointer(base_socket_handler)   m_psockethandler; /// |-xxx-Reference-xxx-> 2021-03-08pointer of base_socket_handler in control of this socket
       SOCKET                  m_socket; ///< File descriptor
 
       static ::mutex *        s_pmutex;
@@ -206,35 +206,32 @@ namespace sockets
       */
 
       /** "Default" constructor */
-      base_socket(base_socket_handler&);
+      base_socket();
 
       virtual ~base_socket();
 
 
-
-
-
-
+      virtual ::e_status initialize_socket(base_socket_handler* phandler);
 
 
       /** base_socket class instantiation method. Used when a "non-standard" constructor
       * needs to be used for the base_socket class. Note: the base_socket class still needs
-      * the "default" constructor with one base_socket_handler& as input parameter.
+      * the "default" constructor with one as input parameter.
       */
       virtual base_socket *new_listen_socket() { return nullptr; }
 
-      /** Returns context_object to sockethandler that owns the base_socket.
-      If the base_socket is detached, this is a context_object to the slave sockethandler.
+      /** Returns object to sockethandler that owns the base_socket.
+      If the base_socket is detached, this is a object to the slave sockethandler.
       */
-      base_socket_handler& Handler() const;
+      base_socket_handler * socket_handler() const;
 
-      /** Returns context_object to sockethandler that owns the base_socket.
-      This one always returns the context_object to the original sockethandler,
+      /** Returns object to sockethandler that owns the base_socket.
+      This one always returns the object to the original sockethandler,
       even if the base_socket is detached.
       */
-      base_socket_handler& MasterHandler() const;
+      base_socket_handler * master_socket_handler() const;
 
-      virtual void free_ssl_session();
+      virtual void destroy_ssl_session();
 
       virtual void get_ssl_session();
 
@@ -382,7 +379,7 @@ namespace sockets
       /** Set close and delete to terminate the connection. */
       void SetCloseAndDelete(bool = true);
       /** Check close and delete flag.
-      \return true if this base_socket should be closed and the instance removed */
+      \return true if this base_socket should be closed and the instance erased */
       bool IsCloseAndDelete();
 
       /** Return number of seconds since base_socket was ordered to close. \sa SetCloseAndDelete */
@@ -685,25 +682,25 @@ namespace sockets
       \lparam host hostname to be resolved
       \lparam port port number passed along for the ride
       \return Resolve ID */
-      int Resolve(const string & host,port_t port = 0);
-      int Resolve6(const string & host, port_t port = 0);
+      //int Resolve(const string & host,port_t port = 0);
+      //int Resolve6(const string & host, port_t port = 0);
       /** Callback returning a resolved ::net::address.
       \lparam id Resolve ID from Resolve call
       \lparam a resolved ip address/port
       \lparam port port number passed to Resolve */
-      virtual void OnResolved(int id, const ::net::address & addr);
+      //virtual void OnResolved(int id, const ::net::address & addr);
       //virtual void OnResolved(int id, in6_addr & a, port_t port);
       /** Request asynchronous reverse dns lookup.
       \lparam a in_addr to be translated */
-      int Resolve(in_addr a);
-      int Resolve(in6_addr& a);
+      //int Resolve(in_addr a);
+      //int Resolve(in6_addr& a);
       /** Callback returning reverse resolve results.
       \lparam id Resolve ID
       \lparam name Resolved hostname */
-      virtual void OnReverseResolved(int id,const string & name);
+      //virtual void OnReverseResolved(int id,const string & name);
       /** Callback indicating failed dns lookup.
       \lparam id Resolve ID */
-      virtual void OnResolveFailed(int id);
+      //virtual void OnResolveFailed(int id);
       //@}
       /** \name Thread Support */
       //@{
@@ -760,15 +757,15 @@ namespace sockets
       virtual ::e_status run() override;
       virtual ::e_status step() override;
 
-      //virtual void __tracef(context_object * pobject, enum_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * pszFormat, ...);
-      //virtual void __tracef(context_object * pobject, enum_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, e_log elog, const string & strContext, i32 err, const string & strMessage);
+      //virtual void __tracef(object * pobject, enum_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * pszFormat, ...);
+      //virtual void __tracef(object * pobject, enum_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, e_log elog, const string & strContext, i32 err, const string & strMessage);
 
       virtual string get_short_description();
 
 
-      virtual e_trace_category trace_category() override;
+      virtual e_trace_category trace_category() const override;
 
-      virtual void on_finalize() override;
+      //virtual void on_finalize() override;
 
 
    };

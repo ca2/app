@@ -17,12 +17,12 @@ namespace user
    public:
 
 
-      uptr                       m_nFlags;
-      point_i32                  m_point;
-      point_i32                  m_pointDesired;
-      bool                       m_bTranslated;
-      enum_cursor                m_ecursor;
-      ::windowing::cursor *      m_pcursor;
+      uptr                                m_nFlags;
+      point_i32                           m_point;
+      point_i32                           m_pointDesired;
+      bool                                m_bTranslated;
+      //enum_cursor                       m_ecursor;
+      __pointer(::windowing::cursor)      m_pcursor;
 
 
       virtual unsigned int get_message()

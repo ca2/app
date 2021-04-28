@@ -66,9 +66,9 @@ namespace str
 
    }
 
-   /// [Idee:ChrifRachid@liveedutv] remove http:// and https:// from resident speech
+   /// [Idee:ChrifRachid@liveedutv] erase http:// and https:// from resident speech
 
-   void x_left_remove(string & str, string strFind)
+   void x_left_erase(string & str, string strFind)
    {
 
       strsize iFind = 0;

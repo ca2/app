@@ -42,7 +42,7 @@ namespace gen
       {
       //    AFX_MANAGE_STATE(AfxGetStaticModuleState())
           ASSERT(pvar->vt == (VT_ARRAY | VT_I4));
-          ar.remove_all();
+          ar.erase_all();
           ::u32 uDim;
 
           if(1 != (uiDim = SafeArrayGetDim(pvar->parray)))

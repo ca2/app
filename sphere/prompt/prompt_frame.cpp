@@ -6,7 +6,7 @@ namespace prompt
 {
 
 
-   frame::frame(::layered * pobjectContext) :
+   frame::frame(::object * pobject) :
       ::object(pobject),
       simple_frame_window(pobject),
       m_spqueue(e_create)
@@ -243,7 +243,7 @@ namespace prompt
 
 
 
-      m_pimagelist = new image_list(get_object());
+      m_pimagelist = new image_list(this);
       m_pimagelist->create(16, 16, 0, 10, 10);
       m_pimagelist->add_matter_icon("system/language_change->ico");
 

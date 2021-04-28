@@ -6,7 +6,7 @@ namespace sockets
 {
 
 
-   listen_socket_base::listen_socket_base(base_socket_handler& h) :
+   listen_socket_base::listen_socket_base() :
       ::object(&h),
       base_socket(h),
       socket(h),
@@ -288,7 +288,7 @@ namespace sockets
 
       //}
 
-      //if (!Handler().OkToAccept(this))
+      //if (!socket_handler()->OkToAccept(this))
       //{
 
       //   WARN(log_this, "accept", -1, "Not OK to accept");
@@ -299,10 +299,10 @@ namespace sockets
 
       //}
 
-      //if (Handler().get_count() >= FD_SETSIZE)
+      //if (socket_handler()->get_count() >= FD_SETSIZE)
       //{
 
-      //   FATAL(log_this, "accept", (i32)Handler().get_count(), "base_socket_handler fd_set limit reached");
+      //   FATAL(log_this, "accept", (i32)socket_handler()->get_count(), "base_socket_handler fd_set limit reached");
 
       //   close_socket(a_s);
 
@@ -342,7 +342,7 @@ namespace sockets
       //tmp->SetConnected(true);
       //tmp->Init();
       //tmp->SetDeleteByHandler(true);
-      //Handler().add(tmp);
+      //socket_handler()->add(tmp);
       //if (m_bDetach)
       //{
       //   tmp->detach();

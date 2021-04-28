@@ -111,7 +111,7 @@ namespace database
 
 
    class CLASS_DECL_APEX transaction :
-      virtual public context_object
+      virtual public object
    {
    public:
 

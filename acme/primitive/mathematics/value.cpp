@@ -9,7 +9,7 @@
 //#include "acme/exception/not_implemented.h"
 
 
-namespace math
+namespace mathematics
 {
 
 
@@ -135,7 +135,7 @@ namespace math
    }
 
 
-} // namespace math
+} // namespace mathematics
 
 
 

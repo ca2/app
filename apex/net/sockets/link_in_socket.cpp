@@ -7,12 +7,15 @@ namespace sockets
 
 
 
-   link_in_socket::link_in_socket(base_socket_handler & h) :
-      ::object(&h),
-      base_socket(h),
-      socket(h),
-      stream_socket(h),
-      tcp_socket(h, 32000, 32000),
+   link_in_socket::link_in_socket() :
+      //::object(&h),
+      //base_socket(h),
+      //socket(h),
+      //stream_socket(h),
+      //tcp_socket(h, 32000, 32000),
+      //m_in(nullptr),
+      //m_out(nullptr)
+      tcp_socket(32000, 32000),
       m_in(nullptr),
       m_out(nullptr)
    {
@@ -43,9 +46,9 @@ namespace sockets
    void link_in_socket::server_to_link_in(httpd_socket * psocket)
    {
       
-      auto & handler = dynamic_cast < socket_handler & > (psocket->Handler());
+      __pointer(::sockets::socket_handler) phandler = psocket->socket_handler();
 
-      auto p = handler.m_sockets.begin();
+      auto p = phandler->m_sockets.begin();
 
       for (; p; p++)
       {
@@ -53,7 +56,7 @@ namespace sockets
          if(p->m_psocket == psocket)
          {
 
-            handler.m_sockets.set_at(p->m_socket, this);
+            phandler->m_sockets.set_at(p->m_socket, this);
 
          }
 
@@ -82,7 +85,9 @@ namespace sockets
    link_in_socket * link_in_socket::from_server(httpd_socket * psocket)
    {
 
-      link_in_socket * pinsocket = new link_in_socket(psocket->Handler());
+      __pointer(link_in_socket) pinsocket = __new(link_in_socket);
+
+      pinsocket->m_psockethandler = psocket->socket_handler();
 
       pinsocket->m_in = psocket;
 

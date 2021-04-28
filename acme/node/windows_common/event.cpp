@@ -411,7 +411,7 @@ synchronization_result event::wait ()
       else if (iResult == WAIT_TIMEOUT)
       {
 
-         if (!thread_get_run())
+         if (!task_get_run())
          {
 
             return synchronization_result(synchronization_result::result_abandon0);
@@ -729,7 +729,7 @@ synchronization_result event::wait (const duration & durationTimeout)
    //   if(pthread)
    //   {
 
-   //      pthread->remove_waiting_event(this);
+   //      pthread->erase_waiting_event(this);
 
    //   }
 

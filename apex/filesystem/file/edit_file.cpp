@@ -872,7 +872,7 @@ namespace file
    void edit_file::flush()
    {
       
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       auto pfile = create_memory_file();
 

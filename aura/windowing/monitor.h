@@ -15,6 +15,7 @@ namespace windowing
       ::index                                               m_iIndex;
       ::rectangle_i32                                       m_rectangle;
       ::rectangle_i32                                       m_rectangleWorkspace;
+      __pointer(::windowing::display)                       m_pdisplay;
 
 
       monitor();
@@ -27,8 +28,8 @@ namespace windowing
       virtual bool adjust_monitor( ::u32 dwTemperature, double dBrightness, double dwGamma);
 
 
-      virtual bool get_monitor_rectangle(::RECTANGLE_I32 * prectangle);
-      virtual bool get_workspace_rectangle(::RECTANGLE_I32 * prectangle);
+      virtual ::e_status get_monitor_rectangle(::RECTANGLE_I32 * prectangle);
+      virtual ::e_status get_workspace_rectangle(::RECTANGLE_I32 * prectangle);
 
 
    };

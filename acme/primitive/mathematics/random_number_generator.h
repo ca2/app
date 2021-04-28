@@ -4,7 +4,7 @@
 CLASS_DECL_ACME i32 random_context_entropy(i32 iLevel= 3);
 
 
-namespace math
+namespace mathematics
 {
 
    // {
@@ -19,10 +19,10 @@ namespace math
    The Mersenne Twister
    http://www.math.keio.ac.jp/~matumoto/emt.html
    */
-   class CLASS_DECL_ACME rng
+   class CLASS_DECL_ACME random_number_generator
    {
    public:
-      rng();
+      random_number_generator();
 
       void seed(i32 iTwistLen, u32 seed);
       u32 get();
@@ -40,7 +40,7 @@ namespace math
    // }
 
 
-} //namespace math
+} //namespace mathematics
 
 
 

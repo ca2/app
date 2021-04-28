@@ -39,9 +39,9 @@ namespace user
       virtual bool pre_create_window(::user::system * pusersystem);
 
 
-      DECL_GEN_SIGNAL(on_message_left_button_down);
-      DECL_GEN_SIGNAL(on_message_left_button_up);
-      DECL_GEN_SIGNAL(_001OnMouseMove);
+      DECLARE_MESSAGE_HANDLER(on_message_left_button_down);
+      DECLARE_MESSAGE_HANDLER(on_message_left_button_up);
+      DECLARE_MESSAGE_HANDLER(on_message_mouse_move);
 
       virtual void on_layout(::draw2d::graphics_pointer & pgraphics);
 

@@ -18,7 +18,7 @@ namespace ios
 
 
 
-         file_system(::layered * pobjectContext);
+         file_system(::object * pobject);
 
          virtual file_pointer get_file(::payload varFile,::u32 nOpenFlags,::extended::status * pfesp,::aura::application * papp);
 

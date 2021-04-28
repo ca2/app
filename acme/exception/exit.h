@@ -8,14 +8,14 @@ public:
 
 
    int                           m_iCheck;
-   __pointer(::layered)          m_pthreadExit;
+   __pointer(::task)             m_ptaskExit;
 
 
-   exit_exception(__pointer(::layered) playeredThreadExit = nullptr, const char * pszMessage = nullptr);
+   exit_exception(__pointer(::task) playeredThreadExit = nullptr, const char * pszMessage = nullptr);
    virtual ~exit_exception();
 
 
-   virtual ::e_status finish(::context_object * pcontextobjectFinish = nullptr);
+   virtual ::e_status finish(::property_object* pcontextobjectFinish = nullptr);
 
 
 };

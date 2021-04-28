@@ -103,25 +103,25 @@ namespace windows
 
       //virtual void window_apply_visual(const ::user::window_state & windowstate) override;
 
-      //DECL_GEN_SIGNAL(_001OnDestroy);
-      //DECL_GEN_SIGNAL(on_message_create);
-      //DECL_GEN_SIGNAL(_001OnKillFocus);
-      //DECL_GEN_SIGNAL(_001OnPaint);
-      //DECL_GEN_SIGNAL(_001OnPrint);
-      //DECL_GEN_SIGNAL(_001OnSetFocus);
-      //DECL_GEN_SIGNAL(_001OnNcCalcSize);
-      //DECL_GEN_SIGNAL(_001OnSetCursor);
-      //DECL_GEN_SIGNAL(_001OnEraseBkgnd);
-      //DECL_GEN_SIGNAL(_001OnMove);
-      //DECL_GEN_SIGNAL(_001OnSize);
-      //DECL_GEN_SIGNAL(_001OnShowWindow);
-      //DECL_GEN_SIGNAL(_001OnActivate);
-      //DECL_GEN_SIGNAL(_001OnDwmNcRenderingChanged);
-      //DECL_GEN_SIGNAL(_001OnProdevianSynch);
-      //DECL_GEN_SIGNAL(_001OnWindowPosChanging);
-      //DECL_GEN_SIGNAL(_001OnWindowPosChanged);
-      //DECL_GEN_SIGNAL(_001OnGetMinMaxInfo);
-      //DECL_GEN_SIGNAL(_001OnEnable);
+      //DECLARE_MESSAGE_HANDLER(_001OnDestroy);
+      //DECLARE_MESSAGE_HANDLER(on_message_create);
+      //DECLARE_MESSAGE_HANDLER(_001OnKillFocus);
+      //DECLARE_MESSAGE_HANDLER(_001OnPaint);
+      //DECLARE_MESSAGE_HANDLER(_001OnPrint);
+      //DECLARE_MESSAGE_HANDLER(_001OnSetFocus);
+      //DECLARE_MESSAGE_HANDLER(_001OnNcCalcSize);
+      //DECLARE_MESSAGE_HANDLER(_001OnSetCursor);
+      //DECLARE_MESSAGE_HANDLER(_001OnEraseBkgnd);
+      //DECLARE_MESSAGE_HANDLER(_001OnMove);
+      //DECLARE_MESSAGE_HANDLER(_001OnSize);
+      //DECLARE_MESSAGE_HANDLER(_001OnShowWindow);
+      //DECLARE_MESSAGE_HANDLER(_001OnActivate);
+      //DECLARE_MESSAGE_HANDLER(_001OnDwmNcRenderingChanged);
+      //DECLARE_MESSAGE_HANDLER(_001OnProdevianSynch);
+      //DECLARE_MESSAGE_HANDLER(_001OnWindowPosChanging);
+      //DECLARE_MESSAGE_HANDLER(_001OnWindowPosChanged);
+      //DECLARE_MESSAGE_HANDLER(_001OnGetMinMaxInfo);
+      //DECLARE_MESSAGE_HANDLER(_001OnEnable);
 
 
       //virtual void win_update_graphics();
@@ -138,7 +138,7 @@ namespace windows
       virtual void * get_os_data() const;
 
 
-      //virtual ::e_status finish(::context_object * pcontextobjectFinish) override;
+      //virtual ::e_status finish(::object * pcontextobjectFinish) override;
 
 
       //      virtual ::user::interaction * from_handle(::windowing::window * pwindow);
@@ -165,7 +165,7 @@ namespace windows
       virtual ::e_status native_create_host() override;
 
       virtual bool destroy_impl_only() override;
-      virtual bool DestroyWindow() override;
+      virtual bool start_destroying_window() override;
 
       virtual void destroy_window() override;
 
@@ -250,14 +250,14 @@ namespace windows
       //virtual point_f64 client_screen_top_left() override;
 
 
-      //virtual bool GetWindowPlacement(WINDOWPLACEMENT* pwndpl);
+      //virtual bool GetWindowPlacement(WINDOWPLACEMENT* puserinteractionpl);
 
-      //virtual bool SetWindowPlacement(const WINDOWPLACEMENT* pwndpl);
+      //virtual bool SetWindowPlacement(const WINDOWPLACEMENT* puserinteractionpl);
 
 
-      //virtual void MapWindowPoints(::user::interaction_impl * pwndTo, POINT_I32 * pPoint, ::u32 nCount);
+      //virtual void MapWindowPoints(::user::interaction_impl * puserinteractionTo, POINT_I32 * pPoint, ::u32 nCount);
 
-      //virtual void MapWindowPoints(::user::interaction_impl * pwndTo, RECTANGLE_I32 * prectangle);
+      //virtual void MapWindowPoints(::user::interaction_impl * puserinteractionTo, RECTANGLE_I32 * prectangle);
 
 
       virtual void Print(::draw2d::graphics_pointer & pgraphics, u32 dwFlags) const;

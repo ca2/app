@@ -22,7 +22,7 @@ namespace html
       font();
       font(const class font & font);
       
-      bool create(::layered * pobjectContext);
+      bool create(::object * pobject);
 
       bool operator == (const font & font);
 

@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "acme/id.h"
-#include "acme/primitive/primitive/layered.h"
+//#include "acme/primitive/primitive/layered.h"
 
 
 #if OBJ_REF_DBG
@@ -29,7 +29,7 @@ matter::~matter()
       if (m_eobject & e_object_any_update)
       {
 
-         remove_from_any_source();
+         erase_from_any_source();
 
       }
 
@@ -50,7 +50,17 @@ void matter::dump(dump_context & dumpcontext) const
 }
 
 
-::e_status matter::initialize(::layered * pobjectContext)
+::e_status matter::initialize_matter(::matter* pmatter)
+{
+
+   m_psystem = pmatter->m_psystem;
+
+   return ::success;
+
+}
+
+
+::e_status matter::on_initialize_object()
 {
 
    return ::success;
@@ -58,14 +68,37 @@ void matter::dump(dump_context & dumpcontext) const
 }
 
 
-void matter::on_finish()
+
+::e_status matter::initialize(::object * pobject)
 {
 
+   auto estatus = initialize_matter(pobject);
+
+   return estatus;
 
 }
 
 
-::e_status matter::set_finish_composites(::context_object * pcontextobjectFinish)
+//::e_status matter::set_object(::object* pobject)
+//{
+//
+//   return ::success;
+//
+//}
+
+
+::e_status matter::on_finish()
+{
+
+   auto estatus = finalize();
+
+   return estatus;
+
+}
+
+
+//::e_status matter::set_finish_composites(::property_object * pcontextobjectFinish)
+::e_status matter::finish_composites()
 {
 
    return ::success;
@@ -76,22 +109,43 @@ void matter::on_finish()
 
 
 
-::e_status matter::set_finish(::context_object * pcontextobjectFinish)
+//::e_status matter::set_finish(::property_object * pcontextobjectFinish)
+//{
+//
+//   set_finish_bit();
+//
+//   return ::success;
+//
+//}
+
+
+//::e_status matter::finish(::property_object * pcontextobjectFinish)
+::e_status matter::finish()
 {
 
-   set_finish_bit();
+   auto estatus = set_finish();
 
-   return ::success;
+   if (estatus == error_pending)
+   {
 
-}
+      //m_psystem->add_pending_finish(this);
 
+      return estatus;
 
-::e_status matter::finish(::context_object * pcontextobjectFinish)
-{
+   }
 
-   set_finish_bit();
+   estatus = on_finish();
 
-   return ::success;
+   if (estatus == error_pending)
+   {
+
+      //m_psystem->add_pending_finish(this);
+
+      return estatus;
+
+   }
+
+   return estatus;
 
 }
 
@@ -104,8 +158,38 @@ void matter::post_quit()
 }
 
 
-void matter::finalize()
+::e_status matter::set_finish()
 {
+
+   set_finish_bit();
+
+   finalize();
+
+   return ::success;
+
+}
+
+
+::e_status matter::finalize()
+{
+
+   return ::success;
+
+}
+
+
+::e_status matter::set_library_name(const char* pszLibraryName)
+{
+
+   return error_none;
+
+}
+
+
+::e_status matter::set_application_id(const char* pszApplicationId)
+{
+
+   return error_none;
 
 }
 
@@ -187,6 +271,14 @@ i64 matter::release(OBJ_REF_DBG_PARAMS_DEF)
 }
 
 
+::e_status matter::call_member(::i64 iId)
+{
+
+   return ::success_none;
+
+}
+
+
 void matter::set_mutex(synchronization_object* psync)
 {
 
@@ -197,12 +289,38 @@ void matter::set_mutex(synchronization_object* psync)
 }
 
 
-void matter::remove_from_any_source()
+void matter::erase_from_any_source()
 {
 
-   ::subject::manager::__remove(this);
-
 }
+
+
+//::e_status matter::branch()
+//{
+//
+////   if (has(e_object_synchronous))
+////   {
+////
+////      return operator()();
+////
+////   }
+////   else
+////   {
+//
+//     auto ptask = m_psystem->branch(__routine([this](){this->operator()();}));
+//
+//     if(!ptask)
+//     {
+//
+//        return error_failed;
+//
+//     }
+//
+//     return ::success_started;
+//
+//   //}
+//
+//}
 
 
 void matter::defer_create_mutex()
@@ -220,20 +338,20 @@ void matter::defer_create_mutex()
 }
 
 
-::e_status matter::do_task()
-{
+//::e_status matter::run()
+//{
+//
+//   return ::success;
+//
+//}
 
-   return on_task();
 
-}
-
-
-::e_status matter::on_task()
-{
-
-   return run();
-   
-}
+//::e_status matter::on_task()
+//{
+//
+//   return run();
+//   
+//}
 
 
 bool matter::is_thread() const
@@ -260,15 +378,23 @@ bool matter::thread_is_running() const
 }
 
 
-::context_object * matter::_get_context_object()
+//::property_object * matter::_get_context_object()
+//{
+//
+//   return nullptr;
+//
+//}
+
+
+::task * matter::get_task()
 {
 
-   return nullptr;
+   return ::get_task();
 
 }
 
 
-::task * matter::get_task()
+::apex::application* matter::_get_application()
 {
 
    return nullptr;
@@ -291,14 +417,14 @@ const char * matter::get_task_tag()
 //}
 
 
-void matter::task_remove(::task* ptask)
+void matter::task_erase(::task* ptask)
 {
 
 
 }
 
 
-void matter::notify_on_finish(::context_object * pcontextobject)
+void matter::notify_on_finish(::property_object * pobject)
 {
 
 }
@@ -394,9 +520,13 @@ void matter::on_future(const ::payload & payload)
 ::e_status matter::add_composite(::matter* pmatter OBJ_REF_DBG_COMMA_PARAMS_DEF)
 {
 
-   __throw(error_not_implemented);
+   //__throw(error_not_implemented);
 
-   return ::error_not_implemented;
+   pmatter->add_ref();
+
+   return ::success;
+
+   //return ::error_not_implemented;
 
 }
 
@@ -441,7 +571,7 @@ void matter::on_future(const ::payload & payload)
 }
 
 
-::layered* matter::taskpool()
+::task_pool* matter::taskpool()
 {
 
    auto pcontainer = get_taskpool_container();
@@ -465,21 +595,21 @@ void matter::on_future(const ::payload & payload)
 }
 
 
-::task* matter::defer_fork(const ::id& id, const ::routine & routine)
-{
-
-   auto ptasktool = __task_pool(taskpool());
-
-   if (!ptasktool)
-   {
-
-      return nullptr;
-
-   }
-
-   return ptasktool->defer_fork(id, routine);
-
-}
+//::task* matter::defer_branch(const ::id& id, const ::routine & routine)
+//{
+//
+//   auto ptasktool = taskpool();
+//
+//   if (!ptasktool)
+//   {
+//
+//      return nullptr;
+//
+//   }
+//
+//   return ptasktool->defer_branch(id, routine);
+//
+//}
 
 
 ::e_status matter::set_generic_object_name(const char* pszName)
@@ -507,40 +637,56 @@ void matter::delete_this()
 }
 
 
-void matter::__tracea(::matter * pobject, enum_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz)
+void matter::__tracea(enum_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz) const
 {
 
 
 }
 
 
-void matter::__tracef(::matter * pobject, enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, ...)
+void matter::__tracef(enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, ...) const
 {
 
    va_list valist;
 
    va_start(valist, pszFormat);
 
-   __tracev(pobject, elevel, pszFunction, pszFile, iLine, pszFormat, valist);
+   __tracev(elevel, pszFunction, pszFile, iLine, pszFormat, valist);
 
    va_end(valist);
 
 }
 
 
-void matter::__tracev(::matter * pobject, enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, va_list valist)
+void matter::__tracev(enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, va_list valist) const
 {
 
    string str;
 
    str.FormatV(pszFormat, valist);
 
-   __tracea(pobject, elevel, pszFunction, pszFile, iLine, str);
+   __tracea(elevel, pszFunction, pszFile, iLine, str);
 
 }
 
 
-e_trace_category matter::trace_category()
+void matter::__simple_tracev(enum_trace_level elevel, const char* pszFunction, const char* pszFile, i32 iLine, const char* pszFormat, va_list args) const
+{
+
+   __tracev(elevel, pszFunction, pszFile, iLine, pszFormat, args);
+
+}
+
+
+void matter::__simple_tracea(enum_trace_level elevel, const char* pszFunction, const char* pszFileName, i32 iLine, const char* psz) const
+{
+
+   __tracea(elevel, pszFunction, pszFileName, iLine, psz);
+
+}
+
+
+e_trace_category matter::trace_category() const
 {
 
    return trace_category_general;
@@ -548,7 +694,7 @@ e_trace_category matter::trace_category()
 }
 
 
-e_trace_category matter::trace_category(::matter * pobject)
+e_trace_category matter::trace_category(const ::matter * pobject) const
 {
 
    return pobject->trace_category();
@@ -564,16 +710,18 @@ const char * matter::topic_text() const
 }
 
 
-void matter::sync_wait()
+::synchronization_result matter::sync_wait()
 {
 
+   return e_synchronization_result_error;
 
 }
 
 
-void matter::sync_wait(const ::duration & duration)
+::synchronization_result matter::sync_wait(const ::duration & duration)
 {
 
+   return e_synchronization_result_error;
 
 }
 

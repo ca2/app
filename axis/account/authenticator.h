@@ -16,7 +16,7 @@ namespace account
    public:
       
       
-      authenticator(::layered * pobjectContext);
+      authenticator();
       virtual ~authenticator();
       
       virtual ::e_status  pre_authenticate(credentials * pcredentials);

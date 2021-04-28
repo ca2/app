@@ -7,7 +7,7 @@ namespace prompt
 
 
    class CLASS_DECL_SPHERE department :
-      public ::apex::department
+      public ::acme::department
    {
    public:
 
@@ -15,7 +15,7 @@ namespace prompt
       __pointer(::user::single_document_template)    m_ptemplateCommandMain;
 
 
-      department(::layered * pobjectContext);
+      department(::object * pobject);
       virtual ~department();
 
 

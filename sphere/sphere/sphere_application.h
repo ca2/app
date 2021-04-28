@@ -23,7 +23,7 @@ namespace sphere
 
       bool                                         m_bShowPlatform;
 
-      __pointer(::aura::application)                      m_pappCurrent;
+      __pointer(::aura::application)                      m_papplicationCurrent;
       
       __pointer(::user::single_document_template)         m_ptemplate_main;
       __pointer(::user::single_document_template)         m_ptemplate_pane;
@@ -39,7 +39,7 @@ namespace sphere
       string_map < __pointer(::experience::experience) >  m_mapExperience;
 
 
-      application(::layered * pobjectContext);
+      application(::object * pobject);
       virtual ~application();
 
       virtual ::e_status init_instance() override;

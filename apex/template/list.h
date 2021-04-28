@@ -11,7 +11,7 @@ void list_predicateicate_add(CONTAINER& a, LIST_ITEM&& pitem)
 
 
 template < typename LIST_ITEM >
-::count list_remove_all(LIST_ITEM&& pitem)
+::count list_erase_all(LIST_ITEM&& pitem)
 {
 
    ::count c = 0;
@@ -250,7 +250,7 @@ void list_add_head(LIST_ITEM&& plist, LIST_ITEM2&& pitemAdd)
 
 
 template < typename LIST_ITEM, typename LIST_ITEM2 >
-void list_remove(LIST_ITEM&& pitem, LIST_ITEM2&& pitemRemove)
+void list_erase(LIST_ITEM&& pitem, LIST_ITEM2&& pitemRemove)
 {
 
    if (pitem->m_phead == pitemRemove)

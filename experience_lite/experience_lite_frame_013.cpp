@@ -16,7 +16,7 @@
          {
 
 
-            frame_013::frame_013(::layered * pobjectContext):
+            frame_013::frame_013(::object * pobject):
                object(pobject),
                frame_008(pobject)
             {

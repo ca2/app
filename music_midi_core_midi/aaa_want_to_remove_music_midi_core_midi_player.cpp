@@ -14,7 +14,7 @@ namespace music
          
 
 
-         player::player(::layered * pobjectContext) :
+         player::player(::object * pobject) :
             object(pobject),
             thread(pobject),
             ::music::midi::player::player(pobject)
@@ -81,7 +81,7 @@ namespace music
 //         bool player::Play(imedia_time tkStart, u32 dwEllapse)
 //         {
 //
-//            auto pcommand = __new(player_command(get_object()));
+//            auto pcommand = __new(player_command(this));
 //
 //            pcommand->m_ecommand = command_play;
 //            pcommand->m_dwEllapse = dwEllapse;
@@ -100,7 +100,7 @@ namespace music
 //         bool player::PlayRate(double dRate, u32 dwEllapse)
 //         {
 //
-//            auto pcommand = __new(player_command(get_object()));
+//            auto pcommand = __new(player_command(this));
 //
 //            pcommand->m_ecommand = player_command::command_play;
 //            pcommand->m_dwEllapse = dwEllapse;
@@ -136,7 +136,7 @@ namespace music
 //         bool player::ExecuteCommand(::music::midi::player::enum_command ecommand, u32 dwEllapse)
 //         {
 //
-//            ::music::midi::player::command * pcommand = new ::music::midi::player::command(get_object());
+//            ::music::midi::player::command * pcommand = new ::music::midi::player::command(this);
 //
 //            pcommand->m_ecommand = ecommand;
 //            pcommand->m_dwEllapse = dwEllapse;
@@ -422,7 +422,7 @@ namespace music
 //         u32 player::GetMidiOutDevice()
 //         {
 //
-//            return Application.midi()->GetMidiOutDevice();
+//            return papplication->midi()->GetMidiOutDevice();
 //         }
 
 

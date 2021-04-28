@@ -12,9 +12,10 @@ dialog::dialog()
 
 }
 
-dialog::dialog(const char * pszMatter, __pointer(::user::interaction) puiParent) :
-   object(puiParent->get_context_application())
+dialog::dialog(const char * pszMatter, __pointer(::user::interaction) puiParent)
 {
+
+   initialize(puiParent);
 
    m_strMatter = pszMatter;
    m_pdocument    = nullptr;
@@ -80,11 +81,11 @@ bool dialog::show(const char * pszMatter)
 
    varArgs["window_frame"] = true;
 
-   auto puser = User;
+   __pointer(::core::session) psession = get_session();
 
-   auto psession = Session;
+   auto puser = psession->user();
 
-   m_pdocument = puser->create_form(this, this, psession->m_puiHost.get(), payload, varArgs);
+   m_pdocument = puser->create_form(this, this, psession->get_user_interaction_host(), payload, varArgs);
 
    if(m_pdocument == nullptr)
    {
@@ -103,7 +104,7 @@ bool dialog::show(const char * pszMatter)
 
    m_pframe->m_bCloseApplicationIfLastVisibleFrame = false;
 
-   m_pframe->add_each_routine_from(DIALOG_RESULT_PROCESS, this);
+   //m_pframe->add_each_routine_from(DIALOG_RESULT_PROCESS, this);
 
    m_pform = m_pdocument->get_typed_view<::user::form>();
 

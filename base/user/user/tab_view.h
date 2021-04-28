@@ -36,16 +36,16 @@ namespace user
       virtual void install_message_routing(::channel * pchannel) override;
 
 
-      DECL_GEN_SIGNAL(_001OnMenuMessage);
-      DECL_GEN_SIGNAL(on_message_create);
-      DECL_GEN_SIGNAL(_001OnSetFocus);
+      DECLARE_MESSAGE_HANDLER(_001OnMenuMessage);
+      DECLARE_MESSAGE_HANDLER(on_message_create);
+      DECLARE_MESSAGE_HANDLER(_001OnSetFocus);
 
 
       virtual void on_change_pane_count(::array < ::user::tab_pane * > array = ::array < ::user::tab_pane * >()) override;
 
-      virtual void on_remove_child(::user::interaction* pinteraction) override;
+      virtual void on_erase_child(::user::interaction* pinteraction) override;
 
-      virtual void on_remove_place_holder_child(::user::interaction* pinteraction) override;
+      virtual void on_erase_place_holder_child(::user::interaction* pinteraction) override;
 
       virtual void on_hide_child(::user::interaction* pinteraction) override;
 

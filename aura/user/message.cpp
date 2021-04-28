@@ -26,7 +26,7 @@ namespace user
    //   set(oswindow, playeredUserPrimitive, id, wparam, lparam);
 
 
-   //   //Application.tellme_destroyed(pwnd, &m_bDestroyed);
+   //   //papplication->tellme_destroyed(puserinteraction, &m_bDestroyed);
 
    //}
 
@@ -44,7 +44,7 @@ namespace user
    //   m_bDoSystemDefault = base.m_bDoSystemDefault;
    //   m_bDestroyed = false;
 
-   //   //Application.tellme_destroyed(m_puserinteraction, &m_bDestroyed);
+   //   //papplication->tellme_destroyed(m_puserinteraction, &m_bDestroyed);
 
    //}
 
@@ -54,7 +54,7 @@ namespace user
       //if(m_puserinteraction != nullptr)
       //{
 
-      //   synchronization_lock synchronizationlock(get_ui_destroyed_mutex());
+      //   synchronous_lock synchronouslock(get_ui_destroyed_mutex());
 
       //   if(m_bDestroyed)
       //   {
@@ -65,7 +65,7 @@ namespace user
       //   else
       //   {
 
-      //      Application.tellme_destroyed(m_puserinteraction, &m_bDestroyed, false);
+      //      papplication->tellme_destroyed(m_puserinteraction, &m_bDestroyed, false);
 
       //   }
 
@@ -112,10 +112,10 @@ namespace user
 
    //}
 
-   //void timer::set(::user::primitive * pwnd,const ::id & id,wparam wparam,::lparam lparam)
+   //void timer::set(::user::primitive * puserinteraction,const ::id & id,wparam wparam,::lparam lparam)
    //{
 
-   //   base::set(pwnd,id,wparam,lparam);
+   //   base::set(puserinteraction,id,wparam,lparam);
 
    //   m_uEvent = static_cast<::u32>(wparam);
 

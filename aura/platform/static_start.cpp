@@ -6,6 +6,7 @@
 #include "apex/platform/app_core.h"
 #include "acme/primitive/primitive/malloc.h"
 #include "aura/astr.h"
+#include "acme/platform/static_start_internal.h"
 //#include "aura/os/_os.h"
 //
 //#include <sqlite3.h>
@@ -91,7 +92,7 @@ namespace aura
 
    ::mutex * g_pmutexChildren;
    ::mutex * g_pmutexThreadWaitClose;
-   //string_map < __pointer(::apex::library) >* g_pmapLibrary;
+   //string_map < __pointer(::acme::library) >* g_pmapLibrary;
    //string_map < PFN_NEW_AURA_LIBRARY >* g_pmapNewAuraLibrary;
 
 
@@ -121,7 +122,7 @@ namespace aura
 #endif
 
 
-   //::mutex * ::aura::get_system()->g_mutexLibrary;
+   //::mutex * psystem->g_mutexLibrary;
 
    //__LPFN_MAIN_DEFERRED_RUN g_main_deferred_run;
 
@@ -180,7 +181,7 @@ namespace aura
 
 #endif
 
-   //map < ithread_t, ithread_t, ithread_t, ithread_t > * g_pmapThreadOn;
+   //map < itask_t, itask_t, itask_t, itask_t > * g_pmapThreadOn;
 
    // aura commented
 //#ifdef WINDOWS
@@ -330,7 +331,7 @@ namespace aura
 
       //::map < void *, void *,::aura::application *, ::aura::application * > * g_pmapAura;
 
-      //string_map < __pointer(::apex::library) > * g_pmapLibCall;
+      //string_map < __pointer(::acme::library) > * g_pmapLibCall;
 
       //g_pheap = nullptr;
 
@@ -348,7 +349,7 @@ namespace aura
 //
 //#endif
 
-      //map < ithread_t, ithread_t, ithread_t, ithread_t > * g_pmapThreadOn;
+      //map < itask_t, itask_t, itask_t, itask_t > * g_pmapThreadOn;
 
 //#ifdef WINDOWS
 //
@@ -539,7 +540,7 @@ namespace aura
 
       //g_pmutexThreadOn = new ::mutex();
 
-      //g_pmapThreadOn = new ::map < ithread_t, ithread_t, ithread_t, ithread_t >;
+      //g_pmapThreadOn = new ::map < itask_t, itask_t, itask_t, itask_t >;
 
       //g_pmutexSystemHeap = new critical_section();
 
@@ -569,9 +570,9 @@ namespace aura
 
       //g_pmapRTL = nullptr;
 
-      //::aura::get_system()->g_mutexLibrary = new ::mutex;
+      //psystem->g_mutexLibrary = new ::mutex;
 
-      //g_pmapLibrary = new string_map < __pointer(::apex::library) >();
+      //g_pmapLibrary = new string_map < __pointer(::acme::library) >();
 
       //g_pmapNewAuraLibrary = new string_map < PFN_NEW_AURA_LIBRARY >();
 
@@ -596,7 +597,7 @@ namespace aura
 
 #endif
 
-      //g_pmapLibCall = new string_map < __pointer(::apex::library) >();
+      //g_pmapLibCall = new string_map < __pointer(::acme::library) >();
 
 #ifdef MEMORY_COUNTERS
 
@@ -624,7 +625,7 @@ namespace aura
 
       //::thread::g_pthreadmap = new ::thread_map();
 
-      create_factory < ::context >();
+      create_factory < ::aura::context >();
 
 
 #if OBJ_TYP_CTR
@@ -679,7 +680,7 @@ namespace aura
       //    try
       //    {
 
-      //       g_pmapAura->remove_all();
+      //       g_pmapAura->erase_all();
 
       //    }
       //    catch(...)
@@ -692,9 +693,9 @@ namespace aura
       //try
       //{
 
-      //   synchronization_lock synchronizationlock(::aura::get_system()->g_mutexLibrary);
+      //   synchronous_lock synchronouslock(psystem->g_mutexLibrary);
 
-      //   g_pmapLibCall->remove_all();
+      //   g_pmapLibCall->erase_all();
 
 
       //}
@@ -706,9 +707,9 @@ namespace aura
       //try
       //{
 
-      //   synchronization_lock synchronizationlock(::aura::get_system()->g_mutexLibrary);
+      //   synchronous_lock synchronouslock(psystem->g_mutexLibrary);
 
-      //   ::aura::get_system()->g_mapLibrary.remove_all();
+      //   psystem->g_mapLibrary.erase_all();
 
       //}
       //catch (...)
@@ -722,7 +723,7 @@ namespace aura
       //   try
       //   {
 
-      //      g_pmapRTL->remove_all();
+      //      g_pmapRTL->erase_all();
 
       //   }
       //   catch(...)
@@ -738,7 +739,7 @@ namespace aura
       //   try
       //   {
 
-      //      g_pmapRTL->remove_all();
+      //      g_pmapRTL->erase_all();
 
       //   }
       //   catch(...)
@@ -809,7 +810,7 @@ namespace aura
 
       //del(g_pmapNewAuraLibrary);
 
-      //del(::aura::get_system()->g_mutexLibrary);
+      //del(psystem->g_mutexLibrary);
 
       trace_category_static_term();
 
@@ -948,7 +949,7 @@ namespace aura
 
       }
 
-      ::parallelization::init_multithreading();
+      ::parallelization::initialize();
 
       if (!__node_aura_pos_init())
       {
@@ -986,7 +987,7 @@ namespace aura
 
       on_term_thread();
 
-      ::parallelization::term_multithreading();
+      ::parallelization::finalize();
 
       __node_aura_pre_term();
 

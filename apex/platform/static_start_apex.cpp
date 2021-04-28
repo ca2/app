@@ -7,7 +7,7 @@
 namespace apex
 {
 
-   ::apex::apex apex::g_apex;
+   static_start static_start::g_staticstart;
 
 } // namespace apex
 

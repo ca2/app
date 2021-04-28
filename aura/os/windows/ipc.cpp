@@ -90,7 +90,7 @@ namespace aura
                int k = 40;
                while (k > 0)
                {
-                  if (!thread_get_run())
+                  if (!task_get_run())
                   {
                      return false;
                   }
@@ -323,7 +323,7 @@ namespace aura
          else
          {
 
-            ::fork(get_context_application(), [=]()
+            ::fork(get_application(), [=]()
             {
 
                if (m_preceiver != nullptr)

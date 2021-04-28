@@ -602,7 +602,7 @@
     <ClInclude Include="database\database_template.h">
       <Filter>Header Files\database</Filter>
     </ClInclude>
-    <ClInclude Include="database\aaa_want_to_remove_database_update_hint.h">
+    <ClInclude Include="database\aaa_want_to_erase_database_update_hint.h">
       <Filter>Header Files\database</Filter>
     </ClInclude>
     <ClInclude Include="database\database_user_interaction.h">
@@ -1838,7 +1838,7 @@
     <ClInclude Include="filesystem\filemanager\filemanager_form_document.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
     </ClInclude>
-    <ClInclude Include="filesystem\filemanager\aaa_want_to_remove_filemanager_form_update_hint.h">
+    <ClInclude Include="filesystem\filemanager\aaa_want_to_erase_filemanager_form_update_hint.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
     </ClInclude>
     <ClInclude Include="filesystem\filemanager\filemanager_form_view.h">
@@ -2567,7 +2567,7 @@
     <ClInclude Include="plane\session\bergedge\bergedge_pane_view.h">
       <Filter>Header Files\plane\session\bergedge</Filter>
     </ClInclude>
-    <ClInclude Include="plane\session\bergedge\aaa_want_to_remove_bergedge_view_update_hint.h">
+    <ClInclude Include="plane\session\bergedge\aaa_want_to_erase_bergedge_view_update_hint.h">
       <Filter>Header Files\plane\session\bergedge</Filter>
     </ClInclude>
     <ClInclude Include="plane\session\bergedge\bergedge_view.h">
@@ -2594,7 +2594,7 @@
     <ClInclude Include="plane\session\nature\nature_pane_view.h">
       <Filter>Header Files\plane\session\nature</Filter>
     </ClInclude>
-    <ClInclude Include="plane\session\nature\aaa_want_to_remove_nature_view_update_hint.h">
+    <ClInclude Include="plane\session\nature\aaa_want_to_erase_nature_view_update_hint.h">
       <Filter>Header Files\plane\session\nature</Filter>
     </ClInclude>
     <ClInclude Include="plane\session\nature\nature_view.h">
@@ -2615,7 +2615,7 @@
     <ClInclude Include="plane\session\platform\platform_pane_view.h">
       <Filter>Header Files\plane\session\platform</Filter>
     </ClInclude>
-    <ClInclude Include="plane\session\platform\aaa_want_to_remove_platform_view_update_hint.h">
+    <ClInclude Include="plane\session\platform\aaa_want_to_erase_platform_view_update_hint.h">
       <Filter>Header Files\plane\session\platform</Filter>
     </ClInclude>
     <ClInclude Include="plane\session\platform\platform_resource.h">
@@ -3011,7 +3011,7 @@
     <ClInclude Include="user\userex\userex_form_frame.h">
       <Filter>Header Files\user\userex</Filter>
     </ClInclude>
-    <ClInclude Include="user\userex\aaa_want_to_remove_userex_form_update_hint.h">
+    <ClInclude Include="user\userex\aaa_want_to_erase_userex_form_update_hint.h">
       <Filter>Header Files\user\userex</Filter>
     </ClInclude>
     <ClInclude Include="user\userex\userex_form_view.h">
@@ -3086,7 +3086,7 @@
     <ClInclude Include="user\userhtml\userhtml_view.h">
       <Filter>Header Files\user\userhtml</Filter>
     </ClInclude>
-    <ClInclude Include="user\userhtml\aaa_want_to_remove_userhtml_view_update_hint.h">
+    <ClInclude Include="user\userhtml\aaa_want_to_erase_userhtml_view_update_hint.h">
       <Filter>Header Files\user\userhtml</Filter>
     </ClInclude>
     <ClInclude Include="ca2.h">
@@ -3128,7 +3128,7 @@
     <ClInclude Include="primitive\_id_space.h">
       <Filter>Header Files\primitive</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\aaa_var_want_to_remove.h">
+    <ClInclude Include="primitive\aaa_var_want_to_erase.h">
       <Filter>Header Files\primitive</Filter>
     </ClInclude>
     <ClInclude Include="primitive\count.h">
@@ -3386,7 +3386,7 @@
     <ClInclude Include="base\ca2\ca2_section.h">
       <Filter>Header Files\base\ca2</Filter>
     </ClInclude>
-    <ClInclude Include="base\ca2\ca2_se_translator.want_to_remove.h">
+    <ClInclude Include="base\ca2\ca2_se_translator.want_to_erase.h">
       <Filter>Header Files\base\ca2</Filter>
     </ClInclude>
     <ClInclude Include="base\ca2\ca2_se_translator.h">
@@ -4087,7 +4087,7 @@
     <ClCompile Include="database\database_stringhelper.cpp">
       <Filter>Source Files\database</Filter>
     </ClCompile>
-    <ClCompile Include="database\aaa_want_to_remove_database_update_hint.cpp">
+    <ClCompile Include="database\aaa_want_to_erase_database_update_hint.cpp">
       <Filter>Source Files\database</Filter>
     </ClCompile>
     <ClCompile Include="database\database_user_interaction.cpp">
@@ -5101,7 +5101,7 @@
     <ClCompile Include="filesystem\filemanager\filemanager_form_view.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\filemanager\aaa_want_to_remove_filemanager_form_update_hint.cpp">
+    <ClCompile Include="filesystem\filemanager\aaa_want_to_erase_filemanager_form_update_hint.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\filemanager\filemanager_form_document.cpp">
@@ -5605,7 +5605,7 @@
     <ClCompile Include="plane\session\bergedge\bergedge_pane_view.cpp">
       <Filter>Source Files\plane\session\bergedge</Filter>
     </ClCompile>
-    <ClCompile Include="plane\session\bergedge\aaa_want_to_remove_bergedge_view_update_hint.cpp">
+    <ClCompile Include="plane\session\bergedge\aaa_want_to_erase_bergedge_view_update_hint.cpp">
       <Filter>Source Files\plane\session\bergedge</Filter>
     </ClCompile>
     <ClCompile Include="plane\session\bergedge\bergedge_view.cpp">
@@ -5629,7 +5629,7 @@
     <ClCompile Include="plane\session\nature\nature_pane_view.cpp">
       <Filter>Source Files\plane\session\nature</Filter>
     </ClCompile>
-    <ClCompile Include="plane\session\nature\aaa_want_to_remove_nature_view_update_hint.cpp">
+    <ClCompile Include="plane\session\nature\aaa_want_to_erase_nature_view_update_hint.cpp">
       <Filter>Source Files\plane\session\nature</Filter>
     </ClCompile>
     <ClCompile Include="plane\session\nature\nature_view.cpp">
@@ -5647,7 +5647,7 @@
     <ClCompile Include="plane\session\platform\platform_pane_view.cpp">
       <Filter>Source Files\plane\session\platform</Filter>
     </ClCompile>
-    <ClCompile Include="plane\session\platform\aaa_want_to_remove_platform_view_update_hint.cpp">
+    <ClCompile Include="plane\session\platform\aaa_want_to_erase_platform_view_update_hint.cpp">
       <Filter>Source Files\plane\session\platform</Filter>
     </ClCompile>
     <ClCompile Include="plane\session\platform\platform_view.cpp">
@@ -5965,7 +5965,7 @@
     <ClCompile Include="user\userex\userex_form_view.cpp">
       <Filter>Source Files\user\userex</Filter>
     </ClCompile>
-    <ClCompile Include="user\userex\aaa_want_to_remove_userex_form_update_hint.cpp">
+    <ClCompile Include="user\userex\aaa_want_to_erase_userex_form_update_hint.cpp">
       <Filter>Source Files\user\userex</Filter>
     </ClCompile>
     <ClCompile Include="user\userex\userex_form_frame.cpp">
@@ -5998,7 +5998,7 @@
     <ClCompile Include="user\userhtml\userhtml_view.cpp">
       <Filter>Source Files\user\userhtml</Filter>
     </ClCompile>
-    <ClCompile Include="user\userhtml\aaa_want_to_remove_userhtml_view_update_hint.cpp">
+    <ClCompile Include="user\userhtml\aaa_want_to_erase_userhtml_view_update_hint.cpp">
       <Filter>Source Files\user\userhtml</Filter>
     </ClCompile>
     <ClCompile Include="user\userpresence\userpresence_user_presence.cpp">
@@ -6148,7 +6148,7 @@
     <ClCompile Include="user\user_tab_view.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\aaa_want_to_remove_user_tab_view_update_hint.cpp">
+    <ClCompile Include="user\aaa_want_to_erase_user_tab_view_update_hint.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
     <ClCompile Include="user\user_tool_cmd_ui.cpp">
@@ -6175,7 +6175,7 @@
     <ClCompile Include="user\user_util.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\aaa_want_to_remove_user_view_update_hint.cpp">
+    <ClCompile Include="user\aaa_want_to_erase_user_view_update_hint.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
     <ClCompile Include="user\user_xfplayer_view_line.cpp">

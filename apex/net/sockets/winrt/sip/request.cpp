@@ -5,7 +5,7 @@ namespace sip
 {
 
 
-   request::request(::layered * pobjectContext) :
+   request::request(::object * pobject) :
       ::object(pobject),
       transaction(pobject),
       m_file(pobject),
@@ -15,11 +15,11 @@ namespace sip
 
 
    request::request(const request& src) :
-   ::object(((request&) src).get_context_application()),
+   ::object(((request&) src).get_application()),
    transaction(src),
    m_null(src.m_null),
-   m_file(((request&) src).get_context_application()),
-   m_form(((request&) src).get_context_application())
+   m_file(((request&) src).get_application()),
+   m_form(((request&) src).get_application())
    {
       m_file = src.m_file;
    }
@@ -108,7 +108,7 @@ namespace sip
 
    //   m_file = std::auto_ptr<IFile>(nullptr);
       m_form.clear();
-      m_cookies.remove_all();
+      m_cookies.erase_all();
       file().Truncate(0);
    }
 

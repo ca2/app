@@ -28,8 +28,8 @@ namespace std
 
 
       bad_alloc() :
-         matter(get_object()),
-         ::callstack(get_object()),
+         matter(this),
+         ::callstack(this),
          ::exception::exception(),
          ::exception::exception(),
          memory_exception()

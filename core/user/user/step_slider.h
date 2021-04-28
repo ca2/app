@@ -18,7 +18,7 @@ namespace user
       virtual ~step_slider();
 
       
-      //bool create_window(::user::interaction * pwndParent, id id);
+      //bool create_window(::user::interaction * puserinteractionParent, id id);
 
 
       virtual void install_message_routing(::channel * pchannel);
@@ -34,11 +34,11 @@ namespace user
       void update_hover();
 
 
-      DECL_GEN_SIGNAL(on_message_create);
+      DECLARE_MESSAGE_HANDLER(on_message_create);
       void _001OnTimer(::timer * ptimer);
-      DECL_GEN_SIGNAL(on_message_left_button_down);
-      DECL_GEN_SIGNAL(on_message_left_button_up);
-      DECL_GEN_SIGNAL(_001OnMouseMove);
+      DECLARE_MESSAGE_HANDLER(on_message_left_button_down);
+      DECLARE_MESSAGE_HANDLER(on_message_left_button_up);
+      DECLARE_MESSAGE_HANDLER(on_message_mouse_move);
    };
 
 } // namespace user

@@ -26,6 +26,8 @@ namespace draw2d
 
       defer_create_mutex();
 
+      m_pimpl = nullptr;
+
       //m_pmutexFont = __new(::mutex);
 
       //create_factory < e_cursor_set >();
@@ -40,10 +42,10 @@ namespace draw2d
    }
 
 
-   ::e_status draw2d::initialize(::layered * pobjectContext)
+   ::e_status draw2d::initialize(::object * pobject)
    {
 
-      auto estatus = ::apex::department::initialize(pobjectContext);
+      auto estatus = ::acme::department::initialize(pobject);
 
       if (!estatus)
       {
@@ -79,14 +81,16 @@ namespace draw2d
    ::e_status draw2d::init1()
    {
 
-      if (!::apex::department::init1())
+      if (!::acme::department::init1())
       {
 
          return false;
 
       }
 
-      if (::aura::get_system()->m_bWriteText)
+      auto psystem = m_psystem->m_paurasystem;
+
+      if (psystem->m_paurasystem->m_bWriteText)
       {
 
          if (!initialize_write_text())
@@ -106,14 +110,14 @@ namespace draw2d
    ::e_status draw2d::process_init()
    {
 
-      if (!::apex::department::process_init())
+      if (!::acme::department::process_init())
       {
 
          return false;
 
       }
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       if (!m_papi->open())
       {
@@ -130,7 +134,7 @@ namespace draw2d
    ::e_status draw2d::init()
    {
 
-      if (!::apex::department::init())
+      if (!::acme::department::init())
       {
 
          return false;
@@ -189,10 +193,10 @@ namespace draw2d
    }
 
 
-   void draw2d::term()
+   ::e_status draw2d::term()
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       try
       {
@@ -212,38 +216,97 @@ namespace draw2d
 
       }
 
+      m_alpha_spread__24CC_filterMap.erase_all();
 
+      m_alpha_spread__32CC_filterMap.erase_all();
 
-      m_alpha_spread__24CC_filterMap.remove_all();
-
-      m_alpha_spread__32CC_filterMap.remove_all();
+      return ::success;
 
    }
 
 
-   void draw2d::finalize()
+   ::e_status draw2d::finalize()
    {
 
       m_papi.release();
 
-      ::apex::department::finalize();
+      auto estatus = ::acme::department::finalize();
+
+      return estatus;
 
    }
 
 
+   __pointer(save_image) draw2d::new_save_image(const ::payload& varFile, const ::payload& varOptions)
+   {
 
+      auto psaveimage = __new(save_image);
 
+      auto psystem = m_psystem->m_paurasystem;
 
+      auto pdraw2d = psystem->draw2d();
+
+      auto eformat = pdraw2d->text_to_format(varOptions["format"]);
+
+      if (eformat != ::draw2d::format_none)
+      {
+
+         __pointer(::aura::system) psystem = m_psystem;
+
+         eformat = pdraw2d->file_extension_to_format(varFile.get_file_path());
+
+      }
+
+      if (eformat == ::draw2d::format_none)
+      {
+
+         psaveimage->m_eformat = ::draw2d::format_png;
+
+      }
+
+      if (varOptions["quality"].get_type() == e_type_double
+         || varOptions["quality"].get_type() == e_type_float)
+      {
+
+         psaveimage->m_iQuality = (int)(varOptions["quality"].get_double() * 100.0);
+
+      }
+      else
+      {
+
+         psaveimage->m_iQuality = varOptions["quality"].i32();
+
+      }
+
+      if (psaveimage->m_iQuality == 0)
+      {
+
+         psaveimage->m_iQuality = 100;
+
+      }
+
+      psaveimage->m_iDpi = varOptions["dpi"];
+
+      if (psaveimage->m_iDpi == 0)
+      {
+
+         psaveimage->m_iDpi = 96;
+
+      }
+
+      return psaveimage;
+
+   }
 
 
    // should not call axis class implementation because draw2d::draw2d is inside a n-furcation of user::draw2d
-   void draw2d::term_instance()
+   ::e_status draw2d::term_instance()
    {
 
       try
       {
 
-         ::apex::department::term_instance();
+         ::acme::department::term_instance();
 
       }
       catch (...)
@@ -252,6 +315,8 @@ namespace draw2d
          message_box("except", "except", e_message_box_ok);
 
       }
+
+      return ::success;
 
    }
 
@@ -348,7 +413,7 @@ namespace draw2d
       i32 iRadius2 = iRadius * iRadius;
       i32 r2;
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       auto & filter = m_alpha_spread__24CC_filterMap[iRadius];
 
@@ -406,7 +471,7 @@ namespace draw2d
 
       }
 
-      synchronizationlock.unlock();
+      synchronouslock.unlock();
 
       i32 maxx1 = cx;
       i32 maxy1 = cy;
@@ -663,7 +728,7 @@ breakFilter:
       i32 rSquare;
 
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       auto & filter = m_alpha_spread__32CC_filterMap[iRadius];
 
@@ -692,7 +757,7 @@ breakFilter:
          }
       }
 
-      synchronizationlock.unlock();
+      synchronouslock.unlock();
 
       i32 cx = pimageDst->width();
       i32 cy = pimageDst->height();
@@ -926,15 +991,19 @@ breakFilter2:
 //   void draw2d::enum_draw2d_fonts(::write_text::font_enum_item_array& itema)
 //   {
 //
-//      critical_section_lock synchronizationlock(::aura::g_pcsFont);
+//      critical_section_lock synchronouslock(::aura::g_pcsFont);
 //
 //      __pointer(::write_text::font_enum_item) pitem;
 //
 //      double dAndroid = 4.4;
 //
-//      string strSystemFonts = Context.file().as_string("/system/etc/system_fonts.xml");
+//      string strSystemFonts = pcontext->m_papexcontext->file().as_string("/system/etc/system_fonts.xml");
 //
-//      auto pdoc = create_xml_document();
+      //auto psystem = m_psystem->m_paurasystem;
+
+      //auto pxml = psystem->xml();
+
+      //auto pdoc = pxml->create_document();
 //
 //      __pointer(ttf_util) putil;
 //
@@ -1068,91 +1137,91 @@ breakFilter2:
 //      {
 //
 //
-//#ifdef os_font_name(e_font_mono)
+//#ifdef pnode->font_name(e_font_mono)
 //
 //         pitem = __new(::write_text::font_enum_item);
 //
-//         pitem->m_strFile = os_font_name(e_font_mono);
+//         pitem->m_strFile = pnode->font_name(e_font_mono);
 //
-//         pitem->m_strName = os_font_name(e_font_mono);
+//         pitem->m_strName = pnode->font_name(e_font_mono);
 //
 //         itema.add(pitem);
 //
 //#endif
 //
 //
-//#ifdef os_font_name(e_font_sans)
+//#ifdef pnode->font_name(e_font_sans)
 //
 //         pitem = __new(::write_text::font_enum_item);
 //
-//         pitem->m_strFile = os_font_name(e_font_sans);
+//         pitem->m_strFile = pnode->font_name(e_font_sans);
 //
-//         pitem->m_strName = os_font_name(e_font_sans);
+//         pitem->m_strName = pnode->font_name(e_font_sans);
 //
 //         itema.add(pitem);
 //
 //#endif
 //
 //
-//#ifdef os_font_name(e_font_serif)
+//#ifdef pnode->font_name(e_font_serif)
 //
 //         pitem = __new(::write_text::font_enum_item);
 //
-//         pitem->m_strFile = os_font_name(e_font_serif);
+//         pitem->m_strFile = pnode->font_name(e_font_serif);
 //
-//         pitem->m_strName = os_font_name(e_font_serif);
+//         pitem->m_strName = pnode->font_name(e_font_serif);
 //
 //         itema.add(pitem);
 //
 //#endif
 //
 //
-//#ifdef os_font_name(e_font_sans_ex)
+//#ifdef pnode->font_name(e_font_sans_ex)
 //
 //         pitem = __new(::write_text::font_enum_item);
 //
-//         pitem->m_strFile = os_font_name(e_font_sans_ex);
+//         pitem->m_strFile = pnode->font_name(e_font_sans_ex);
 //
-//         pitem->m_strName = os_font_name(e_font_sans_ex);
+//         pitem->m_strName = pnode->font_name(e_font_sans_ex);
 //
 //         itema.add(pitem);
 //
 //#endif
 //
 //
-//#ifdef os_font_name(e_font_serif_ex)
+//#ifdef pnode->font_name(e_font_serif_ex)
 //
 //         pitem = __new(::write_text::font_enum_item);
 //
-//         pitem->m_strFile = os_font_name(e_font_serif_ex);
+//         pitem->m_strFile = pnode->font_name(e_font_serif_ex);
 //
-//         pitem->m_strName = os_font_name(e_font_serif_ex);
+//         pitem->m_strName = pnode->font_name(e_font_serif_ex);
 //
 //         itema.add(pitem);
 //
 //#endif
 //
 //
-//#ifdef os_font_name(e_font_sans_fx)
+//#ifdef pnode->font_name(e_font_sans_fx)
 //
 //         pitem = __new(::write_text::font_enum_item);
 //
-//         pitem->m_strFile = os_font_name(e_font_sans_fx);
+//         pitem->m_strFile = pnode->font_name(e_font_sans_fx);
 //
-//         pitem->m_strName = os_font_name(e_font_sans_fx);
+//         pitem->m_strName = pnode->font_name(e_font_sans_fx);
 //
 //         itema.add(pitem);
 //
 //#endif
 //
 //
-//#ifdef os_font_name(e_font_serif_fx)
+//#ifdef pnode->font_name(e_font_serif_fx)
 //
 //         pitem = __new(::write_text::font_enum_item);
 //
-//         pitem->m_strFile = os_font_name(e_font_serif_fx);
+//         pitem->m_strFile = pnode->font_name(e_font_serif_fx);
 //
-//         pitem->m_strName = os_font_name(e_font_serif_fx);
+//         pitem->m_strName = pnode->font_name(e_font_serif_fx);
 //
 //         itema.add(pitem);
 //
@@ -1211,8 +1280,9 @@ breakFilter2:
 
       }
 
+      __pointer(::aura::system) psystem = get_system();
 
-      synchronization_lock synchronizationlock(&::aura::get_system()->m_mutexLibrary);
+      synchronous_lock synchronouslock(&psystem->m_mutexLibrary);
 
       estatus = __construct(m_pwritetext);
 
@@ -1239,7 +1309,7 @@ breakFilter2:
       if (::succeeded(estatus))
       {
 
-         create_factory < ::draw2d::thread_tool_item >(::e_thread_tool_draw2d);
+         create_factory < ::draw2d::task_tool_item >(::e_task_tool_draw2d);
 
       }
 
@@ -1278,7 +1348,9 @@ breakFilter2:
       if (strLibrary.has_char())
       {
 
-         estatus = ::aura::get_system()->do_factory_exchange("write_text", strLibrary);
+         __pointer(::aura::system) psystem = m_psystem;
+
+         estatus = psystem->do_factory_exchange("write_text", strLibrary);
 
          if (estatus)
          {
@@ -1306,7 +1378,9 @@ breakFilter2:
 
       }
 
-      estatus = ::aura::get_system()->do_factory_exchange("write_text", strLibrary);
+      __pointer(::aura::system) psystem = m_psystem;
+
+      estatus = psystem->do_factory_exchange("write_text", strLibrary);
 
       if (estatus.succeeded())
       {
@@ -1318,11 +1392,12 @@ breakFilter2:
 
 #ifdef WINDOWS_DESKTOP
 
-
       if (strLibrary != "write_text_gdiplus")
       {
 
-         estatus = ::aura::get_system()->do_factory_exchange("write_text", "gdiplus");
+         __pointer(::aura::system) psystem = m_psystem;
+
+         estatus = psystem->do_factory_exchange("write_text", "gdiplus");
 
          if (estatus)
          {
@@ -1337,7 +1412,9 @@ breakFilter2:
       if (strLibrary != "write_text_direct2d")
       {
 
-         estatus = ::aura::get_system()->do_factory_exchange("write_text", "direct2d");
+         __pointer(::aura::system) psystem = m_psystem;
+
+         estatus = psystem->do_factory_exchange("write_text", "direct2d");
 
          if (estatus)
          {
@@ -1354,8 +1431,9 @@ breakFilter2:
       if (strLibrary != "write_text_pango")
       {
 
+         __pointer(::aura::system) psystem = m_psystem;
 
-         estatus = ::aura::get_system()->do_factory_exchange("write_text", "pango");
+         estatus = psystem->do_factory_exchange("write_text", "pango");
 
          if (estatus)
          {

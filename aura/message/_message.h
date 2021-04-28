@@ -11,7 +11,7 @@ namespace message
 } // namespace message
 
 
-#define DECL_GEN_SIGNAL(function) void function(::message::message * pmessage)
+#define DECLARE_MESSAGE_HANDLER(function) void function(::message::message * pmessage)
 
 
 #include "const.h"

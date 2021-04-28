@@ -143,7 +143,7 @@ CLASS_DECL_CORE ::user::interaction_impl * oswindow_get(oswindow oswindow)
 //}
 
 
-bool oswindow_remove(UIWindow * window)
+bool oswindow_erase(UIWindow * window)
 {
 
    iptr iFind = oswindow_find(window);
@@ -151,7 +151,7 @@ bool oswindow_remove(UIWindow * window)
    if(iFind < 0)
       return false;
 
-   g_poswindowdataptra->remove_at(iFind);
+   g_poswindowdataptra->erase_at(iFind);
 
    return true;
 
@@ -413,7 +413,7 @@ oswindow get_active_window()
 void deactivate_window(oswindow window)
 {
 
-   synchronization_lock synchronizationlock(g_poswindowdataptra->mutex());
+   synchronous_lock synchronouslock(g_poswindowdataptra->mutex());
 
    if(window == g_oswindowActive)
    {
@@ -592,7 +592,7 @@ void os_term_windowing()
 
 //    }
 
-//    Sess(puiimpl->get_context_application()).get_cursor_position(puiimpl->m_pointCursor);
+//    Sess(puiimpl->get_application()).get_cursor_position(puiimpl->m_pointCursor);
 
 // }
 

@@ -29,10 +29,10 @@ namespace filemanager
          }
 
 
-         ::e_status tree::initialize(::layered * pobjectContext)
+         ::e_status tree::initialize(::object * pobject)
          {
 
-            auto estatus = ::user::tree_data::initialize(pobjectContext);
+            auto estatus = ::user::tree_data::initialize(pobject);
 
             if (!estatus)
             {
@@ -87,7 +87,7 @@ namespace filemanager
             else
             {
 
-               System->message_box("error"); // simple parsing error check
+               message_box("error"); // simple parsing error check
 
                return;
 
@@ -119,7 +119,7 @@ namespace filemanager
             __pointer(::xml::node) pnodeFolder = doc.root()->get_child("folder");
 
 
-            //         xml::node::array childs(get_object());
+            //         xml::node::array childs(this);
 
             //         string wstrType;
             // method 3: Selected Childs with GetChilds()

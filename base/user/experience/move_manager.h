@@ -22,13 +22,17 @@ namespace experience
       int                              m_iConsiderMove;
 
 
-      move_manager(::experience::frame_window * pframewindow);
+      move_manager();
       virtual ~move_manager();
 
 
+      virtual ::e_status initialize_move_manager(::experience::frame_window* pframewindow);
+
+
       bool on_message_left_button_down(::message::mouse * pmouse);
-      bool _001OnMouseMove(::message::mouse * pmouse);
+      bool on_message_mouse_move(::message::mouse * pmouse);
       bool on_message_left_button_up(::message::mouse * pmouse);
+      bool on_message_set_cursor(::message::set_cursor * psetcursor);
       bool _001OnTimer(::u32 uEvent);
 
 

@@ -55,13 +55,13 @@ namespace user
    }
 
 
-   void single_document_template::remove_document(::user::document * pdocument)
+   void single_document_template::erase_document(::user::document * pdocument)
    {
 
       if(m_pdocument == pdocument)
       {
 
-         impact_system::remove_document(pdocument);
+         impact_system::erase_document(pdocument);
 
          m_pdocument.release();
 
@@ -93,10 +93,15 @@ namespace user
 
       pcreate->m_estatus = error_failed;
 
-      pcreate->m_pcommandline->m_varQuery["document"].release();
+      if (pcreate->m_pcommandline)
+      {
+
+         pcreate->m_pcommandline->m_varQuery["document"].release();
+
+      }
 
       //bool bMakeVisible = pcreate->m_pcommandline->m_varQuery["make_visible_boolean"] || pcreate->m_bMakeVisible;
-      //   __pointer(::user::interaction) pwndParent = pcreate->m_pcommandline->m_varQuery["parent_user_interaction"].cast < ::user::interaction > ();
+      //   __pointer(::user::interaction) puserinteractionParent = pcreate->m_pcommandline->m_varQuery["parent_user_interaction"].cast < ::user::interaction > ();
       //   __pointer(::user::impact) pviewAlloc = pcreate->m_pcommandline->m_varQuery["allocation_view"].cast < ::user::impact > ();
 
       __pointer(::user::document) pdocument;
@@ -145,9 +150,9 @@ namespace user
 
       if (pdocument == nullptr)
       {
-         // linux System->message_box(__IDP_FAILED_TO_CREATE_DOC);
+         // linux message_box(__IDP_FAILED_TO_CREATE_DOC);
 
-         System->message_box("Failed to create document");
+         message_box("Failed to create document");
 
          return;
 
@@ -170,17 +175,19 @@ namespace user
 
          pdocument->m_bAutoDelete = bAutoDelete;
 
+         auto psystem = m_psystem->m_pbasesystem;
+
          if (!pFrame)
          {
 
-            auto& result = System->m_result;
+            auto& result = psystem->m_result;
 
             ::e_status estatus;
 
             if(!result.get_exit_status(estatus))
             {
 
-               Context.message_box("Failed to create Document");
+               message_box("Failed to create Document");
 
             }
 
@@ -192,9 +199,18 @@ namespace user
 
       ASSERT_VALID(pFrame);
 
-      bool bMakeVisible = pcreate->m_pcommandline->m_varQuery["make_visible_boolean"] || pcreate->m_bMakeVisible;
+      bool bMakeVisible = true;
+      
+      if (pcreate->m_pcommandline)
+      {
 
-      if (pcreate->m_pcommandline->m_varFile.is_empty() || pcreate->m_pcommandline->m_varFile.is_numeric())
+         bMakeVisible = pcreate->m_pcommandline->m_varQuery["make_visible_boolean"] || pcreate->m_bMakeVisible;
+
+      }
+
+      ::payload varFile = pcreate->get_file();
+
+      if (varFile.is_empty() || varFile.is_numeric())
       {
 
          // create a new ::user::document
@@ -214,7 +230,11 @@ namespace user
             TRACE(trace_category_appmsg, e_trace_level_warning, "::user::document::on_new_document returned false.\n");
 
             if (bCreated)
-               pFrame->DestroyWindow();    // will destroy ::user::document
+            {
+
+               pFrame->destroy_window();    // will destroy ::user::document
+
+            }
 
             return;
 
@@ -226,7 +246,7 @@ namespace user
       else
       {
 
-         wait_cursor wait(pcreate->get_context_object());
+         wait_cursor wait(pcreate);
 
          // open an existing ::user::document
          bWasModified = pdocument->is_modified();
@@ -239,7 +259,9 @@ namespace user
 
             if (bCreated)
             {
-               pFrame->DestroyWindow();    // will destroy ::user::document
+
+               pFrame->destroy_window();    // will destroy ::user::document
+
             }
             else if (!pdocument->is_modified())
             {
@@ -260,7 +282,7 @@ namespace user
             }
             return;        // open failed
          }
-         pdocument->set_path_name(pcreate->m_pcommandline->m_varFile);
+         pdocument->set_path_name(varFile);
          pdocument->update_title();
          pdocument->id_update_all_views(OPEN_DOCUMENT_UPDATE);
 
@@ -283,7 +305,18 @@ namespace user
 
       }
 
-      pcreate->m_pcommandline->m_varQuery["document"] = pdocument;
+      if (pcreate->m_pcommandline)
+      {
+
+         pcreate->m_pcommandline->m_varQuery["document"] = pdocument;
+
+      }
+      else
+      {
+
+         //pcreate->m_varQuery["document"] = pdocument;
+
+      }
 
       pcreate->m_estatus = ::success;
 
@@ -292,41 +325,55 @@ namespace user
 
    void single_document_template::set_default_title(::user::document * pdocument)
    {
+      
       string strDocName;
-      if (!GetDocString(strDocName, impact_system::docName) ||
-            strDocName.is_empty())
-      {
-         strDocName = App(pdocument).load_string("untitled");
-      }
-      pdocument->set_title(strDocName);
-   }
 
-   /////////////////////////////////////////////////////////////////////////////
-   // single_document_template diagnostics
+      if (!GetDocString(strDocName, impact_system::docName) || strDocName.is_empty())
+      {
+
+         auto papplication = get_application();
+
+         strDocName = papplication->load_string("untitled");
+
+      }
+
+      pdocument->set_title(strDocName);
+
+   }
 
 
    void single_document_template::dump(dump_context & dumpcontext) const
    {
+
       impact_system::dump(dumpcontext);
 
       if (m_pdocument)
-         dumpcontext << "with ::user::document: " << (void *)m_pdocument;
+      {
+
+         dumpcontext << "with ::user::document: " << (void*)m_pdocument;
+
+      }
       else
+      {
+
          dumpcontext << "with no ::user::document";
 
+      }
+
       dumpcontext << "\n";
+
    }
+
 
    void single_document_template::assert_valid() const
    {
+
       impact_system::assert_valid();
+
    }
 
 
 } // namespace user
-
-
-
 
 
 

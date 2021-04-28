@@ -24,7 +24,7 @@ namespace filemanager
    void folder_list_view::install_message_routing(::channel * pchannel)
    {
 
-      ::filemanager::impact::install_message_routing(pchannel);
+      ::filemanager_impact::install_message_routing(pchannel);
       ::simple_list_view::install_message_routing(pchannel);
 
    }
@@ -50,7 +50,9 @@ namespace filemanager
 
          pdata->set_data_key_modifier(strDataKeyModifier);
 
-         pdata->initialize_data_client(Application.dataserver());
+         auto papplication = get_application();
+
+         pdata->initialize_data_client(papplication->dataserver());
 
       }
       else
@@ -62,7 +64,9 @@ namespace filemanager
 
          pdata->set_data_key_modifier(strDataKeyModifier);
 
-         pdata->initialize_data_client(Application.dataserver());
+         auto papplication = get_application();
+
+         pdata->initialize_data_client(papplication->dataserver());
 
       }
 
@@ -146,7 +150,7 @@ namespace filemanager
    }
 
 
-   bool folder_list_view::remove(const string_array & stra)
+   bool folder_list_view::erase(const string_array & stra)
    {
 
       if (stra.get_size() == 0)
@@ -161,7 +165,7 @@ namespace filemanager
 
          __pointer(folder_list_data) pdata = m_pmeshdata.cast <folder_list_data >();
 
-         if(!pdata->remove(stra))
+         if(!pdata->erase(stra))
             return false;
 
       }
@@ -170,7 +174,7 @@ namespace filemanager
 
          auto pdata = m_psimplemeshdata.cast <databaseuser::data_key_mesh_data > ();
 
-         if (!pdata->remove(stra))
+         if (!pdata->erase(stra))
          {
 
             return false;
@@ -210,7 +214,7 @@ namespace filemanager
    void folder_list_view::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
    {
 
-      ::filemanager::impact::on_subject(psubject, pcontext);
+      FILEMANAGER_SHOW_IMPACT::on_subject(psubject, pcontext);
 
       if (psubject->id() == INITIALIZE_ID)
       {

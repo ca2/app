@@ -29,7 +29,7 @@ namespace sockets
          pe -> GetFrom() -> SetHandlerInvalid();
          delete pe;
       }
-      m_events.remove_all();
+      m_events.erase_all();
    }
 
 
@@ -82,7 +82,7 @@ namespace sockets
          }
          delete pe;
          if(pos != nullptr)
-            m_events.remove_at(pos);
+            m_events.erase_at(pos);
          pos = m_events.get_head_position();
       }
    }
@@ -124,7 +124,7 @@ namespace sockets
                break;
             }
          }
-         m_events.remove_all();
+         m_events.erase_all();
       } while (repeat);
    }
 
@@ -164,7 +164,7 @@ namespace sockets
          if(from == pe->GetFrom() && eid == pe->GetID())
          {
             delete pe;
-            m_events.remove_at(pos);
+            m_events.erase_at(pos);
             break;
          }
       }

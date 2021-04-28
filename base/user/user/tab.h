@@ -38,13 +38,13 @@ namespace user
 
 
 
-      class CLASS_DECL_BASE remove_tab_exception
+      class CLASS_DECL_BASE erase_tab_exception
       {
       public:
 
          string m_strHint;
 
-         remove_tab_exception(const char * pszHint)
+         erase_tab_exception(const char * pszHint)
          {
             m_strHint = pszHint;
          }
@@ -80,15 +80,15 @@ namespace user
 
       virtual enum_element get_default_element() const override;
 
-      DECL_GEN_SIGNAL(on_message_left_button_down);
-      DECL_GEN_SIGNAL(on_message_left_button_up);
-      DECL_GEN_SIGNAL(_001OnMouseMove);
-      DECL_GEN_SIGNAL(_001OnMouseLeave);
-      DECL_GEN_SIGNAL(on_message_create);
-      DECL_GEN_SIGNAL(_001OnShowWindow);
-      DECL_GEN_SIGNAL(_001OnSize);
-      DECL_GEN_SIGNAL(_001OnStartTabDrag);
-      DECL_GEN_SIGNAL(_001OnAppLanguage);
+      DECLARE_MESSAGE_HANDLER(on_message_left_button_down);
+      DECLARE_MESSAGE_HANDLER(on_message_left_button_up);
+      DECLARE_MESSAGE_HANDLER(on_message_mouse_move);
+      DECLARE_MESSAGE_HANDLER(on_message_mouse_leave);
+      DECLARE_MESSAGE_HANDLER(on_message_create);
+      DECLARE_MESSAGE_HANDLER(_001OnShowWindow);
+      DECLARE_MESSAGE_HANDLER(_001OnSize);
+      DECLARE_MESSAGE_HANDLER(_001OnStartTabDrag);
+      DECLARE_MESSAGE_HANDLER(_001OnAppLanguage);
 
 
       tab_data * get_data();
@@ -162,9 +162,9 @@ namespace user
 
       virtual bool set_image_tab(const char * pcsz, const char * pszImage, id idTab = id(), bool bVisible = true);
 
-      virtual bool remove_tab_by_id(id idTab = id());
-      virtual void remove_tab(::index iTab, bool bVisible = true);
-      virtual void remove_all_tabs();
+      virtual bool erase_tab_by_id(id idTab = id());
+      virtual void erase_tab(::index iTab, bool bVisible = true);
+      virtual void erase_all_tabs();
       virtual bool show_tab_by_id(id idTab = id(), bool bShow = true);
       virtual bool show_pane(::index iPane, bool bShow = true);
       virtual bool hide_tab(::index iTab);
@@ -177,10 +177,10 @@ namespace user
       virtual ::count get_pane_count();
 
       virtual index find_child_pane(::user::interaction * pinteraction);
-      virtual void defer_remove_child_pane(::user::interaction * pinteraction);
+      virtual void defer_erase_child_pane(::user::interaction * pinteraction);
 
-      virtual void on_remove_child(::user::interaction * pinteraction) override;
-      virtual void on_remove_place_holder_child(::user::interaction * pinteraction) override;
+      virtual void on_erase_child(::user::interaction * pinteraction) override;
+      virtual void on_erase_place_holder_child(::user::interaction * pinteraction) override;
 
       virtual void on_hide_child(::user::interaction * pinteraction) override;
       virtual void on_hide_place_holder_child(::user::interaction * pinteraction) override;

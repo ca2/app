@@ -84,10 +84,10 @@ namespace user
 //   }
 
 
-   ::e_status form::initialize(::layered * pobjectContext)
+   ::e_status form::initialize(::object * pobject)
    {
 
-      auto estatus = ::user::interaction::initialize(pobjectContext);
+      auto estatus = ::user::interaction::initialize(pobject);
 
       if (!estatus)
       {

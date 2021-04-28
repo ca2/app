@@ -3,7 +3,7 @@
 
 
 class CLASS_DECL_AURA font_department :
-   virtual public ::apex::department
+   virtual public ::acme::department
 {
 public:
 
@@ -58,8 +58,8 @@ public:
    virtual ~font_department();
 
 
-   virtual ::e_status initialize(::layered * pobjectContext);
-   virtual void finalize();
+   virtual ::e_status initialize(::object * pobject);
+   virtual ::e_status finalize();
 
 
    virtual bool is_initialized();

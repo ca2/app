@@ -16,10 +16,10 @@ namespace user
 
          virtual void install_edit_window_message_routing(channel * pchannel);
 
-         DECL_GEN_SIGNAL(on_message_create);
-         DECL_GEN_SIGNAL(_001OnDestroy);
-         DECL_GEN_SIGNAL(_001OnSetFocus);
-         DECL_GEN_SIGNAL(_001OnKillFocus);
+         DECLARE_MESSAGE_HANDLER(on_message_create);
+         DECLARE_MESSAGE_HANDLER(_001OnDestroy);
+         DECLARE_MESSAGE_HANDLER(_001OnSetFocus);
+         DECLARE_MESSAGE_HANDLER(_001OnKillFocus);
 
       virtual LRESULT _OnCreate(VOID);
       virtual LRESULT _OnDestroy(VOID);

@@ -23,10 +23,10 @@ namespace user
       }
 
 
-      ::e_status edit_impl::initialize(::layered * pobjectContext)
+      ::e_status edit_impl::initialize(::object * pobject)
       {
 
-         auto estatus = ::user::rich_text::edit::initialize(pobjectContext);
+         auto estatus = ::user::rich_text::edit::initialize(pobject);
 
          if (!estatus)
          {
@@ -109,15 +109,15 @@ namespace user
          MESSAGE_LINK(e_message_show_window, pchannel, this, &edit_impl::_001OnShowWindow);
          MESSAGE_LINK(e_message_left_button_down, pchannel, this, &edit_impl::on_message_left_button_down);
          MESSAGE_LINK(e_message_left_button_up, pchannel, this, &edit_impl::on_message_left_button_up);
-         MESSAGE_LINK(e_message_mouse_move, pchannel, this, &edit_impl::_001OnMouseMove);
-         MESSAGE_LINK(e_message_mouse_leave, pchannel, this, &edit_impl::_001OnMouseLeave);
+         MESSAGE_LINK(e_message_mouse_move, pchannel, this, &edit_impl::on_message_mouse_move);
+         MESSAGE_LINK(e_message_mouse_leave, pchannel, this, &edit_impl::on_message_mouse_leave);
          MESSAGE_LINK(e_message_key_down, pchannel, this, &edit_impl::_001OnKeyDown);
          MESSAGE_LINK(e_message_key_up, pchannel, this, &edit_impl::_001OnKeyUp);
          //MESSAGE_LINK(e_message_set_focus, pchannel, this, &edit_impl::_001OnSetFocus);
          //MESSAGE_LINK(e_message_kill_focus, pchannel, this, &edit_impl::_001OnKillFocus);
 
 
-         text_composition_composite::install_message_routing(pchannel);
+         text_composition_composite::initialize_text_composition_client(pchannel, this);
 
 //#ifdef WINDOWS_DESKTOP
 //
@@ -142,7 +142,7 @@ namespace user
 
          }
 
-         auto psession = Session;
+         auto psession = get_session();
 
 
 
@@ -238,7 +238,7 @@ namespace user
          if (pformattool != nullptr && pformattool->is_showing_for_ui(this))
          {
 
-            auto psession = Session;
+            auto psession = get_session();
 
             auto puser = psession->user();
 
@@ -308,7 +308,7 @@ namespace user
 
          }
 
-         auto psession = Session;
+         auto psession = get_session();
 
          auto item = hit_test(pmouse);
 
@@ -392,7 +392,7 @@ namespace user
 
          __pointer(::message::mouse) pmouse(pmessage);
 
-         auto psession = Session;
+         auto psession = get_session();
 
          auto puser = psession->user();
 
@@ -439,7 +439,7 @@ namespace user
       }
 
 
-      void edit_impl::_001OnMouseMove(::message::message* pmessage)
+      void edit_impl::on_message_mouse_move(::message::message* pmessage)
       {
 
          __pointer(::message::mouse) pmouse(pmessage);
@@ -456,7 +456,15 @@ namespace user
          if (m_itemHover.is_set())
          {
 
-            pmouse->m_ecursor = e_cursor_text_select;
+            auto psession = get_session();
+
+            auto puser = psession->user();
+
+            auto pwindowing = puser->windowing();
+
+            auto pcursor = pwindowing->get_cursor(e_cursor_text_select);
+
+            pmouse->m_pcursor = pcursor;
 
             pmouse->m_bRet = true;
 
@@ -487,7 +495,15 @@ namespace user
          if (!m_bClickThrough)
          {
 
-            pmouse->m_ecursor = e_cursor_text_select;
+            auto psession = get_session();
+
+            auto puser = psession->user();
+
+            auto pwindowing = puser->windowing();
+
+            auto pcursor = pwindowing->get_cursor(e_cursor_text_select);
+
+            pmouse->m_pcursor = pcursor;
 
             pmouse->m_bRet = true;
 
@@ -520,10 +536,10 @@ namespace user
 
 
 
-      void edit_impl::_001OnMouseLeave(::message::message * pmessage)
+      void edit_impl::on_message_mouse_leave(::message::message * pmessage)
       {
 
-         auto psession = Session;
+         auto psession = get_session();
 
          auto puser = psession->user();
 
@@ -761,7 +777,7 @@ namespace user
       void edit_impl::draw_impl(::draw2d::graphics_pointer & pgraphics)
       {
 
-         synchronization_lock synchronizationlock(mutex());
+         synchronous_lock synchronouslock(mutex());
 
          //pgraphics->OffsetViewportOrg(m_pointScroll.x, m_pointScroll.y);
 
@@ -984,7 +1000,7 @@ namespace user
       void edit_impl::_001OnKeyDown(::message::message * pmessage)
       {
 
-         //synchronization_lock synchronizationlock(mutex());
+         //synchronous_lock synchronouslock(mutex());
 
          {
 
@@ -1011,7 +1027,7 @@ namespace user
 
          __pointer(::message::key) pkey(pmessage);
 
-         auto psession = Session;
+         auto psession = get_session();
 
          if (pkey->m_ekey == ::user::e_key_return)
          {
@@ -1165,7 +1181,7 @@ namespace user
 
          __pointer(::message::key) pkey(pmessage);
 
-         auto psession = Session;
+         auto psession = get_session();
 
          if (pkey->m_ekey == ::user::e_key_return)
          {
@@ -1231,7 +1247,7 @@ namespace user
 
          ::message::key & key = *pkey;
 
-         auto psession = Session;
+         auto psession = get_session();
 
          if (key.m_ekey == ::user::e_key_shift || key.m_ekey == ::user::e_key_lshift || key.m_ekey == ::user::e_key_rshift
                || key.m_ekey == ::user::e_key_control || key.m_ekey == ::user::e_key_lcontrol || key.m_ekey == ::user::e_key_rcontrol
@@ -1285,7 +1301,7 @@ namespace user
 
          {
 
-            synchronization_lock synchronizationlock(m_pdata->mutex());
+            synchronous_lock synchronouslock(m_pdata->mutex());
 
             strsize i1 = m_pdata->get_sel_beg();
 
@@ -1339,7 +1355,7 @@ namespace user
 
             string strChar;
 
-            auto psession = Session;
+            auto psession = get_session();
 
             if (pkey->m_ekey == ::user::e_key_s)
             {
@@ -1422,7 +1438,7 @@ namespace user
 
             {
 
-               synchronization_lock synchronizationlock(mutex());
+               synchronous_lock synchronouslock(mutex());
 
                bool bControl = psession->is_key_pressed(::user::e_key_control);
 
@@ -1504,7 +1520,7 @@ namespace user
                      on_reset_focus_start_tick();
 
                      {
-                        synchronization_lock synchronizationlock(m_pdata->mutex());
+                        synchronous_lock synchronouslock(m_pdata->mutex());
 
                         strsize i1 = m_pdata->get_sel_beg();
 
@@ -1569,7 +1585,7 @@ namespace user
 
                   on_reset_focus_start_tick();
 
-                  synchronization_lock synchronizationlock(m_pdata->mutex());
+                  synchronous_lock synchronouslock(m_pdata->mutex());
 
                   double x;
 
@@ -1603,7 +1619,7 @@ namespace user
 
                   on_reset_focus_start_tick();
 
-                  synchronization_lock synchronizationlock(m_pdata->mutex());
+                  synchronous_lock synchronouslock(m_pdata->mutex());
 
                   double x;
 
@@ -1641,7 +1657,7 @@ namespace user
                   if (!bShift && m_pdata->m_iSelBeg > m_pdata->m_iSelEnd)
                   {
 
-                     synchronization_lock synchronizationlock(m_pdata->mutex());
+                     synchronous_lock synchronouslock(m_pdata->mutex());
 
                      m_pdata->m_iSelEnd = m_pdata->m_iSelBeg;
 
@@ -1651,7 +1667,7 @@ namespace user
                   else if (!bShift && m_pdata->m_iSelEnd > m_pdata->m_iSelBeg)
                   {
 
-                     synchronization_lock synchronizationlock(m_pdata->mutex());
+                     synchronous_lock synchronouslock(m_pdata->mutex());
 
                      m_pdata->m_iSelBeg = m_pdata->m_iSelEnd;
 
@@ -1661,7 +1677,7 @@ namespace user
                   else
                   {
 
-                     synchronization_lock synchronizationlock(m_pdata->mutex());
+                     synchronous_lock synchronouslock(m_pdata->mutex());
 
                      if (m_pdata->m_iSelEnd < m_pdata->_001GetLayoutTextLength())
                      {
@@ -1700,7 +1716,7 @@ namespace user
                   if (!bShift && m_pdata->m_iSelBeg < m_pdata->m_iSelEnd)
                   {
 
-                     synchronization_lock synchronizationlock(m_pdata->mutex());
+                     synchronous_lock synchronouslock(m_pdata->mutex());
 
                      m_pdata->m_iSelEnd = m_pdata->m_iSelBeg;
 
@@ -1710,7 +1726,7 @@ namespace user
                   else if (!bShift && m_pdata->m_iSelEnd < m_pdata->m_iSelBeg)
                   {
 
-                     synchronization_lock synchronizationlock(m_pdata->mutex());
+                     synchronous_lock synchronouslock(m_pdata->mutex());
 
                      m_pdata->m_iSelBeg = m_pdata->m_iSelEnd;
 
@@ -1720,7 +1736,7 @@ namespace user
                   else if (m_pdata->m_iSelEnd > 0)
                   {
 
-                     synchronization_lock synchronizationlock(m_pdata->mutex());
+                     synchronous_lock synchronouslock(m_pdata->mutex());
 
                      string strText;
 
@@ -1751,7 +1767,7 @@ namespace user
 
                   on_reset_focus_start_tick();
 
-                  synchronization_lock synchronizationlock(m_pdata->mutex());
+                  synchronous_lock synchronouslock(m_pdata->mutex());
 
                   if (bControl)
                   {
@@ -1785,7 +1801,7 @@ namespace user
 
                   on_reset_focus_start_tick();
 
-                  synchronization_lock synchronizationlock(m_pdata->mutex());
+                  synchronous_lock synchronouslock(m_pdata->mutex());
 
                   if (bControl)
                   {

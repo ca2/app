@@ -5,6 +5,8 @@
 //
 // Created by camilo on 19/01/2021. <3-<3ThomasBS!!
 //
+
+// Created by camilo on 2021-03-21 18:11 <3ThomasBS_!!
 #pragma once
 
 
@@ -13,13 +15,30 @@ namespace acme
 
 
    class CLASS_DECL_ACME node :
-      virtual public ::layered
+      virtual public object
+      //, virtual public layered < node >
    {
    public:
 
 
-      ::apex::node *          m_papexnode;
-      ::aura::node *          m_pauranode;
+      ::apex::node *                         m_papexnode;
+      ::aura::node *                         m_pauranode;
+
+      ::acme::posix::node *                  m_pAcmePosix;
+      ::apex::posix::node *                  m_pApexPosix;
+      ::aura::posix::node *                  m_pAuraPosix;
+
+      ::PLATFORM_NAMESPACE::acme::node *     m_pAcmePlatform;
+      ::PLATFORM_NAMESPACE::apex::node *     m_pApexPlatform;
+      ::PLATFORM_NAMESPACE::aura::node *     m_pAuraPlatform;
+
+      ::windowing_x11::node *                m_pNodeX11;
+      ::windowing_xcb::node *                m_pNodeXcb;
+      ::node_gnome::node *                   m_pNodeGnome;
+      ::node_kde::node *                     m_pNodeKDE;
+      ::desktop_environment_gnome::node *    m_pNodeDesktopEnvironmentGnome;
+      ::desktop_environment_kde::node *      m_pNodeDesktopEnvironmentKDE;
+
       ::user::enum_desktop    m_edesktop;
 
       ::logic::bit            m_bLastDarkModeApp;
@@ -29,6 +48,7 @@ namespace acme
       ::color::color          m_colorSystemAppBackground;
       double                  m_dSystemLuminance;
       int                     m_iWeatherDarkness;
+      ::file::path            m_pathModule;
 
 
       node();
@@ -41,9 +61,60 @@ namespace acme
 //
 //#endif
 
+
+
+      virtual string audio_get_default_library_name();
+      virtual string multimedia_audio_get_default_library_name();
+      virtual string multimedia_audio_mixer_get_default_library_name();
+      virtual string veriwell_multimedia_music_midi_get_default_library_name();
+
+
+      virtual ::e_status initialize(::object * pobject) override;
+
+      virtual ::e_status on_initialize_object() override;
+
+      virtual void initialize_memory_counter();
+
+      virtual ::e_status system_main();
+
+      virtual ::e_status on_start_system();
+
+
+      virtual void install_crash_dump_reporting(const string& strModuleNameWithTheExeExtension);
+
+
+#ifdef WINDOWS_DESKTOP
+
+      virtual ::e_status register_dll(const ::file::path& pathDll);
+
+#endif
+
+
+      virtual ::file::path module_path_source();
+      //virtual ::file::path module_path_seed();
+      //virtual ::file::path module_path_origin();
+      //::file::path update_module_path();
+
+
+      virtual ::e_status register_extended_event_listener(::matter * pdata, bool bMouse, bool bKeyboard);
+
+
+      virtual ::file::path _module_path();
+
+
+      //virtual bool memory_counter_on();
+
+      //virtual ::file::path memory_counter_base_path();
+
+      virtual ::e_status datetime_to_filetime(::filetime_t* pfiletime, const ::datetime::time& time);
+
+
+
       virtual int node_init_check(int * pi, char *** ppz);
 
-      virtual ::e_status start();
+      virtual ::e_status start_node();
+
+      virtual ::e_status install_sigchld_handler();
 
       virtual ::color::color get_system_color(enum_system_color esystemcolor);
 
@@ -103,21 +174,30 @@ namespace acme
       void node_fork(PRED pred)
       {
 
-         node_fork(__routine(pred));
+         node_branch(__routine(pred));
 
       }
 
-      virtual void node_fork(const ::routine & routine);
+      virtual ::e_status node_branch(const ::routine & routine);
 
       template < typename PRED >
-      void node_sync(const ::duration & durationTimeout, PRED pred)
+      ::e_status node_sync(const ::duration & durationTimeout, PRED pred)
       {
 
-         node_sync(durationTimeout, __routine(pred));
+         auto estatus = node_sync(durationTimeout, __routine(pred));
+
+         if(!estatus)
+         {
+
+            return estatus;
+
+         }
+
+         return estatus;
 
       }
 
-      virtual void node_sync(const ::duration & durationTimeout, const ::routine & routine);
+      virtual ::e_status node_sync(const ::duration & durationTimeout, const ::routine & routine);
 
 //      template < typename PRED >
 //      void user_fork(PRED pred)
@@ -167,27 +247,14 @@ namespace acme
 
       virtual double get_time_zone();
 
-      virtual ::e_status get_system_time(system_time_t * psystemtime);
 
-      virtual ::e_status file_time_to_time(time_t * ptime, const filetime_t * pfiletime, i32 nDST = -1);
 
-      virtual ::e_status system_time_to_time(time_t * ptime, const system_time_t * psystemtime, i32 nDST = -1);
 
-      virtual ::e_status system_time_to_file_time(filetime_t * pfiletime, const system_time_t * psystemtime);
+      virtual string font_name(enum_font efont);
+      //virtual string font_name(enum_operating_system eoperatingsystem, int iVariant, enum_font efont);
 
-      virtual ::e_status time_to_system_time(system_time_t * psystem_time, const time_t * ptime);
 
-      virtual ::e_status time_to_file_time(filetime_t * pfiletime, const time_t * ptime);
-
-      virtual ::e_status get_system_time_as_file_time(filetime_t * pfiletime);
-
-      virtual ::e_status file_time_to_system_time(system_time_t * psystemtime, const filetime_t * pfiletime);
-
-      virtual ::e_status file_time_to_local_file_time(filetime_t * pfiletimeLocal, const filetime_t * pfiletime);
-
-      virtual ::e_status is_valid_filetime(const filetime_t * pfiletime);
-
-      virtual filetime get_filetime_now();
+      virtual string file_memory_map_path_from_name(const string& strName);
 
 
    };

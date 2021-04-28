@@ -326,7 +326,7 @@ namespace filemanager
             strSql += ";";
 
 
-            /*            critical_section_lock synchronizationlock(get_document()->m_pcsAlbum1);
+            /*            critical_section_lock synchronouslock(get_document()->m_pcsAlbum1);
                         get_document()->m_pdsAlbum1->query(strSql);*/
 
             m_cache._001Invalidate(this);
@@ -365,23 +365,23 @@ namespace filemanager
             if((iFind = pdocument->m_fileinfo.m_wstraAdd.FindFirst(wstrPath)) >= 0)
             {
             mediamanager::GetMediaManager()->album_build().add(wstrPath, pdocument->m_fileinfo.m_timeaAdd[iFind]);
-            pdocument->m_fileinfo.m_wstraAdd.remove_at(iFind);
-            pdocument->m_fileinfo.m_timeaAdd.remove_at(iFind);
+            pdocument->m_fileinfo.m_wstraAdd.erase_at(iFind);
+            pdocument->m_fileinfo.m_timeaAdd.erase_at(iFind);
             }
             else if((iFind = pdocument->m_fileinfo.m_wstraUpdate.FindFirst(wstrPath)) >= 0)
             {
             mediamanager::GetMediaManager()->album_build().Update(wstrPath, pdocument->m_fileinfo.m_timeaUpdate[iFind]);
             pds->SetFieldValue("title", sqlite::CFieldValue(mediamanager::GetMediaManager()->album_build().album_record().m_wstrTitle));
             pds->SetFieldValue("filename", sqlite::CFieldValue(mediamanager::GetMediaManager()->album_build().album_record().m_wstrFileName));
-            pdocument->m_fileinfo.m_iaUpdate.remove_at(iFind);
-            pdocument->m_fileinfo.m_wstraUpdate.remove_at(iFind);
-            pdocument->m_fileinfo.m_timeaUpdate.remove_at(iFind);
+            pdocument->m_fileinfo.m_iaUpdate.erase_at(iFind);
+            pdocument->m_fileinfo.m_wstraUpdate.erase_at(iFind);
+            pdocument->m_fileinfo.m_timeaUpdate.erase_at(iFind);
             }
             else if((iFind = pdocument->m_fileinfo.m_wstraRemove.FindFirst(wstrPath)) >= 0)
             {
-            pdocument->m_fileinfo.m_iaRemove.remove_at(iFind);
-            pdocument->m_fileinfo.m_wstraRemove.remove_at(iFind);
-            pds->remove_row();
+            pdocument->m_fileinfo.m_iaRemove.erase_at(iFind);
+            pdocument->m_fileinfo.m_wstraRemove.erase_at(iFind);
+            pds->erase_row();
             }
 
             pobjectTask->m_pview->PostMessage(WM_USER + 1217, 0, (LPARAM) pobjectTask);*/
@@ -459,16 +459,16 @@ namespace filemanager
             else if((iFind = pdocument->m_fileinfo.m_wstraRemove.FindFirst(wstrPath)) >= 0)
             {
             iaRemove.add(pdocument->m_fileinfo.m_iaRemove[iFind]);
-            pdocument->m_fileinfo.m_iaRemove.remove_at(iFind);
-            pdocument->m_fileinfo.m_wstraRemove.remove_at(iFind);
-            pds->remove_row();
+            pdocument->m_fileinfo.m_iaRemove.erase_at(iFind);
+            pdocument->m_fileinfo.m_wstraRemove.erase_at(iFind);
+            pds->erase_row();
             iRemove--;
             m_buildhelper.m_iStep--;
             if(iRemove < 0)
             break;
             }
             }
-            mediamanager::GetMediaManager()->album_build().remove(iaRemove);
+            mediamanager::GetMediaManager()->album_build().erase(iaRemove);
             }
 
             }
@@ -505,9 +505,9 @@ namespace filemanager
             if(pds->find_first("id", fv))
             {
             iaRemove.add(pdocument->m_fileinfo.m_iaRemove[iFind]);
-            pdocument->m_fileinfo.m_iaRemove.remove_at(iFind);
-            pdocument->m_fileinfo.m_wstraRemove.remove_at(iFind);
-            pds->remove_row();
+            pdocument->m_fileinfo.m_iaRemove.erase_at(iFind);
+            pdocument->m_fileinfo.m_wstraRemove.erase_at(iFind);
+            pds->erase_row();
             iRemove--;
             m_buildhelper.m_iStep--;
             if(iRemove < 0)
@@ -639,7 +639,7 @@ namespace filemanager
 
             /*    if(_001HitTest_(point, iItem))
             {
-            SimpleMenu menu(BaseMenuCentral::GetMenuCentral(get_object()));
+            SimpleMenu menu(BaseMenuCentral::GetMenuCentral(this));
             if (menu.LoadMenu(IDR_POPUP_ALBUM_ITEM))
             {
             SimpleMenu* pPopup = (SimpleMenu *) menu.GetSubMenu(0);
@@ -667,7 +667,7 @@ namespace filemanager
          void list_view::parse(const char * pszSource)
 
          {
-            m_itema.remove_all();
+            m_itema.erase_all();
             _001OnUpdateItemCount(0);
 
             string str;
@@ -681,7 +681,7 @@ namespace filemanager
             }
             else
             {
-               System->message_box("error"); // simple parsing error check
+               message_box("error"); // simple parsing error check
                return;
             }
 

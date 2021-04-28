@@ -213,7 +213,7 @@ namespace http
 
                      }
 
-                     // remove trailing cr/linefeed
+                     // erase trailing cr/linefeed
 
                      while (!val.is_empty() && (val[val.get_length() - 1] == 13 || val[val.get_length() - 1] == 10))
                      {
@@ -252,7 +252,7 @@ namespace http
 
                      //static ::mutex s_mutex(nullptr);
 
-                     //single_lock synchronizationlock(&s_mutex, true);
+                     //single_lock synchronouslock(&s_mutex, true);
 
                      while (true)
                      {
@@ -263,7 +263,7 @@ namespace http
 
                         strTempFile = "C:\\upload\\" + strTime + strIndex + current_filename;
 
-                        if (!Context.file().exists(strTempFile))
+                        if (!m_pcontext->m_papexcontext->file().exists(strTempFile))
                         {
 
                            break;
@@ -272,7 +272,11 @@ namespace http
 
                         string strMessage;
 
-                        strMessage = ::apex::get_system()->datetime().international().get_gmt_date_time() + " " + strTempFile;
+                        auto psystem = m_psystem->m_papexsystem;
+
+                        auto pdatetime = psystem->datetime();
+
+                        strMessage = pdatetime->international().get_gmt_date_time() + " " + strTempFile;
 
                         file_append_wait("C:\\ca2\\toomuchuploads.txt", strMessage);
 
@@ -280,9 +284,9 @@ namespace http
 
                      }
 
-                     file_pointer spfile(Context.file().get_file(strTempFile, ::file::e_open_defer_create_directory | ::file::e_open_binary | ::file::e_open_create | ::file::e_open_write));
+                     file_pointer spfile(m_pcontext->m_papexcontext->file().get_file(strTempFile, ::file::e_open_defer_create_directory | ::file::e_open_binary | ::file::e_open_create | ::file::e_open_write));
 
-                     //synchronizationlock.unlock();
+                     //synchronouslock.unlock();
 
                      if(spfile.is_set())
                      {

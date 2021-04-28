@@ -5,7 +5,7 @@ namespace calculator
 {
 
 
-   frame::frame(::layered * pobjectContext) :
+   frame::frame(::object * pobject) :
       ::object(pobject),
       simple_frame_window(pobject)
    {
@@ -33,7 +33,7 @@ namespace calculator
       SetTimer(4033, 100, 0);
       ModifyStyleEx(WS_EX_OVERLAPPEDWINDOW, 0);
 
-      m_pimagelist = new image_list(get_object());
+      m_pimagelist = new image_list(this);
       m_pimagelist->create(16, 16, 0, 10, 10);
 
 

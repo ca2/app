@@ -3,7 +3,7 @@
 //
 //#if !defined(WINDOWS_DESKTOP)
 //
-//void set_defer_process_x_message(bool (* pfn)(hthread_t hthread,MESSAGE * pMsg,oswindow oswindow,bool bPeek));
+//void set_defer_process_x_message(bool (* pfn)(htask_t htask,MESSAGE * pMsg,oswindow oswindow,bool bPeek));
 //
 //
 //#ifdef __cplusplus
@@ -99,18 +99,18 @@
 //
 //// CLASS_DECL_AURA int_bool WINAPI PeekMessage(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax, ::u32 wRemoveMsg);
 //
-//// CLASS_DECL_AURA int_bool WINAPI PostThreadMessage(ithread_t idthread, ::u32 Msg, WPARAM wParam, LPARAM lParam);
+//// CLASS_DECL_AURA int_bool WINAPI PostThreadMessage(itask_t idthread, ::u32 Msg, WPARAM wParam, LPARAM lParam);
 //
-//// CLASS_DECL_AURA void mq_clear(ithread_t hthread);
+//// CLASS_DECL_AURA void mq_clear(itask_t htask);
 //
 //
 //// #ifndef _UWP
 //
-//// CLASS_DECL_AURA ::u32 WINAPI GetThreadId(hthread_t Thread);
+//// CLASS_DECL_AURA ::u32 WINAPI GetThreadId(htask_t Thread);
 //
-//// CLASS_DECL_AURA hthread_t GetCurrentThread();
+//// CLASS_DECL_AURA htask_t GetCurrentThread();
 //
-//// CLASS_DECL_AURA ithread_t GetCurrentThreadId();
+//// CLASS_DECL_AURA itask_t GetCurrentThreadId();
 //
 //// #endif
 //

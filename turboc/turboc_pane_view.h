@@ -14,7 +14,7 @@ namespace turboc
       ::turboc::view *                     m_pflagview;
 
 
-      pane_view(::layered * pobjectContext);
+      pane_view(::object * pobject);
 	   virtual ~pane_view();
 
       
@@ -26,7 +26,7 @@ namespace turboc
 
       virtual void dump(dump_context & dumpcontext) const;
 
-	   DECL_GEN_SIGNAL(on_message_create);
+	   DECLARE_MESSAGE_HANDLER(on_message_create);
 
    };
 

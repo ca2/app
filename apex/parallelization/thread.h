@@ -34,7 +34,9 @@ public:
    };
 
 
-   __composite(message_queue)                                    m_pmq;
+
+
+   __composite(message_queue)                         m_pmq;
    bool                                               m_bClosedMq;
 
 
@@ -44,7 +46,7 @@ public:
    bool                                               m_bDedicated;
    bool                                               m_bPreferLessGraphicsParallelization;
    bool                                               m_bThreadToolsForIncreasedFps;
-   ::e_status                                          m_estatus;
+   ::e_status                                         m_estatus;
    user_interaction_ptr_array *                       m_puiptraThread;
    ::mutex *                                          m_pmutexThreadUiPtra;
    single_lock *                                      m_pslUser;
@@ -61,14 +63,13 @@ public:
    bool                                               m_bAuraMessageQueue;
    ::millis                                           m_millisHeartBeat;
    bool                                               m_bReady;
-   ::extended::status                                   m_result;
-   __pointer(::layered)                               m_puiMain1;           // Main interaction_impl (usually same ::apex::get_system()->m_puiMain)
-   __pointer(::layered)                               m_puiActive;         // Active Main interaction_impl (may not be m_puiMain)
+   ::extended::status                                 m_result;
+   __pointer(::user::primitive)                       m_puserprimitiveMain;           // Main interaction_impl (usually same psystem->m_puiMain)
+   __pointer(::user::primitive)                       m_puserprimitiveActive;         // Active Main interaction_impl (may not be m_puiMain)
    bool                                               m_bSimpleMessageLoop;
    bool                                               m_bZipIsDir2;
 
    __pointer(file_info)                               m_pfileinfo;
-   __pointer(counter<::i32>)                          m_pcounter;
 
    bool                                               m_bDupHandle;
 
@@ -95,7 +96,6 @@ public:
    string                                             m_strFile;
    int                                                m_iLine;
 
-   ::u64                                              m_uThreadAffinityMask;
    bool                                               m_bTemporary;
    __pointer(::object)                                m_pobjectScript;
 
@@ -140,12 +140,15 @@ public:
    user_interaction_ptr_array & uiptra();
 
 
-   virtual ::e_status set_finish(::context_object * pcontextobjectFinish) override;
-   virtual ::e_status set_finish_composites(::context_object * pcontextobjectFinish) override;
+   virtual ::e_status finish() override;
+   //virtual ::e_status set_finish_composites(::property_object* ppropertyobjectFinish) override;
+
+
+   virtual void update_task_ready_to_quit();
 
 
    void add_waiting_event(event * pevent);
-   void remove_waiting_event(event * pevent);
+   void erase_waiting_event(event * pevent);
 
    // file related stuff
    file_info * get_file_info();
@@ -155,15 +158,15 @@ public:
    virtual bool is_running() const override;
 
 
-   virtual ::e_status start(
-      ::matter * pmatter,
-      ::e_priority epriority = priority_normal,
-      u32 nStackSize = 0,
-      u32 dwCreateFlags = 0) override;
+//   virtual ::e_status branch(
+//      ::matter * pmatter,
+//      ::e_priority epriority = priority_normal,
+//      u32 nStackSize = 0,
+//      u32 dwCreateFlags = 0 ARG_SEC_ATTRS_DEF) override;
 
 
-   virtual hthread_t get_hthread() const;
-   virtual ithread_t get_ithread() const;
+   virtual htask_t get_hthread() const;
+   virtual itask_t get_ithread() const;
 
 
    virtual bool task_active() const override;
@@ -171,7 +174,7 @@ public:
 
    virtual void set_current_handles();
 
-   virtual hthread_t get_os_handle() const;
+   virtual htask_t get_os_handle() const;
 
    //virtual bool thread_active() const;
    virtual bool is_dedicated_thread() const;
@@ -180,7 +183,7 @@ public:
    //virtual bool is_running() const override;
 
    //virtual void set_os_data(void * pvoidOsData);
-   //virtual void set_os_int(ithread_t iData);
+   //virtual void set_os_int(itask_t iData);
 
 
    //static __pointer(thread) start(
@@ -201,7 +204,7 @@ public:
 
    virtual int get_x_window_count() const;
 
-   virtual synchronization_result wait(const duration & duration);
+   //virtual synchronization_result wait(const duration & duration);
 
    bool set_thread_priority(::e_priority epriority);
 
@@ -227,7 +230,7 @@ public:
 
    virtual bool post_object(const ::id & id, wparam wParam, ::matter * pmatter);
 
-   virtual bool send_object(const ::id & id, wparam wParam, lparam lParam, ::duration durationTimeout = ::duration::infinite());
+   virtual bool send_object(const ::id & id, wparam wParam, ::matter * pmatter, ::duration durationTimeout = ::duration::infinite());
 
    virtual bool post_task(const ::routine & routine);
    virtual bool send_task(const ::routine & routine, ::duration durationTimeout = ::duration::infinite());
@@ -287,7 +290,7 @@ public:
 
    virtual bool has_step() const;
    virtual bool has_raw_message() const;
-   virtual bool has_message() const;
+   virtual bool has_message() const override;
 
    // running and idle processing
    virtual void pre_translate_message(::message::message * pmessage);
@@ -301,7 +304,7 @@ public:
    using channel::get_message;
    virtual bool get_message();     // low level message pump
    virtual bool raw_pump_message();     // low level message pump
-   virtual bool defer_pump_message();     // deferred message pump
+   virtual bool defer_pump_message() override;     // deferred message pump
    virtual ::e_status process_message(::message::message * pmessage);
    ///virtual ::e_status process_base_message(::message::message * pmessage);
    virtual ::e_status process_thread_message(::message::message * pmessage);
@@ -318,6 +321,7 @@ public:
    virtual ::e_status on_pre_run_thread();
 
    virtual ::e_status run() override;
+   virtual ::e_status main() override;
 
    virtual void on_pos_run_thread();
    virtual void term_thread();
@@ -327,14 +331,14 @@ public:
    virtual void process_message_filter(i32 code, ::message::message * pmessage);
 
    // virtual void add(::user::primitive * pinteraction);
-   //virtual void remove(::user::primitive * pinteraction);
+   //virtual void erase(::user::primitive * pinteraction);
    //virtual ::count get_ui_count();
    //virtual ::user::primitive * get_ui(index iIndex);
    //virtual void set_timer(::user::primitive * pinteraction, uptr uEvent, ::u32 nEllapse);
    //virtual void unset_timer(::user::primitive * pinteraction, uptr uEvent);
    //virtual void set_auto_delete(bool bAutoDelete = true);
-   virtual ::user::primitive * get_active_ui();
-   virtual ::user::primitive * set_active_ui(::layered * pinteraction);
+   virtual ::user::primitive * get_active_user_primitive();
+   virtual void set_active_user_primitive(::user::primitive * pinteraction);
    //virtual void step_timer();
    //virtual bool on_run_step();
 
@@ -345,10 +349,10 @@ public:
    virtual void dispatch_thread_message(::message::message * pmessage);  // helper
 
 
-   virtual ::e_status     main();
+   
 
 
-   virtual void wait();
+   //virtual void wait();
 
 
    virtual iptr item() const;
@@ -358,9 +362,7 @@ public:
    virtual ::e_status verb();
 
 
-   static void post_quit_to_all_threads();
-   static void post_to_all_threads(const ::id & id, wparam wparam, lparam lparam);
-
+   __pointer(::thread) calc_parent();
 
 
    //virtual bool register_dependent_thread(::thread * pthread);
@@ -374,20 +376,24 @@ public:
    //virtual void close_dependent_threads(const ::duration & dur);
 
 
-   virtual bool do_events();
+   virtual bool do_events() override;
    // virtual bool do_events(const duration& duration);
 
-   virtual bool thread_get_run() const override;
+   virtual bool task_get_run() const override;
    //virtual bool set_run();
-   virtual void finalize() override;
+   virtual ::e_status finalize() override;
    //virtual bool is_set_finish() const;
    //virtual void finish() override;
    virtual void kick_idle() override;
    virtual void post_quit() override;
-   virtual void on_finish() override;
+   virtual ::e_status on_finish() override;
+
+
+   virtual bool post_quit_message(int nExitCode);
+
 
    //virtual ::index task_add(::task * ptask) override;
-   virtual void task_remove(::task * ptask) override;
+   virtual void task_erase(::task * ptask) override;
    //virtual void wait_quit(::duration durationTimeout) override;
 
    virtual bool kick_thread();
@@ -396,8 +402,8 @@ public:
 
    virtual void message_queue_message_handler(::message::message * pmessage);
 
-   //DECL_GEN_SIGNAL(_001OnSendThreadMessage);
-   //DECL_GEN_SIGNAL(_001OnThreadMessage);
+   //DECLARE_MESSAGE_HANDLER(_001OnSendThreadMessage);
+   //DECLARE_MESSAGE_HANDLER(_001OnThreadMessage);
 
 
    virtual void shutdown(bool bPrompt = true);
@@ -415,18 +421,18 @@ public:
    virtual ::e_status on_thread_term();
    //virtual ::e_status     on_thread_end();
    //virtual void thread_delete();
-   operator hthread_t() const;
+   operator htask_t() const;
 
 
-   virtual ::e_status initialize(::layered * pobjectContext) override;
+   virtual ::e_status initialize(::object * pobject) override;
 
 
-   virtual ::e_status do_task() override;
+   //virtual ::e_status run() override;
 
 
    virtual ::e_status osthread_init() override;
    virtual ::e_status __thread_init() override;
-   virtual ::e_status __thread_main() override;
+   //virtual ::e_status __thread_main() override;
    virtual ::e_status __thread_term() override;
    virtual ::e_status osthread_term() override;
 
@@ -437,12 +443,13 @@ public:
    ::u32 nStackSize = 0,
    u32 uiCreateFlags = 0 ARG_SEC_ATTRS_DEF);
 
+   using task::branch;
+   using object::branch;
 
-
-   virtual ::e_status begin(
+   virtual ::e_status branch(
    ::e_priority epriority = ::priority_normal,
    ::u32 nStackSize = 0,
-   u32 uiCreateFlags = 0 ARG_SEC_ATTRS_DEF);
+   u32 uiCreateFlags = 0 ARG_SEC_ATTRS_DEF) override;
 
 
    virtual ::e_status begin_synch(
@@ -460,9 +467,9 @@ public:
 
    virtual void message_handler(::message::message * pmessage);
 
-   virtual ::e_status     do_request(::create * pcreate) override;
+   virtual void do_request(::create * pcreate) override;
 
-   virtual ::e_status     get_result_status();
+   virtual ::e_status get_result_status();
 
    virtual void delete_this() override;
 
@@ -485,60 +492,61 @@ protected:
 };
 
 
-namespace parallelization
-{
+//namespace parallelization
+//{
+//
+//
+//   //CLASS_DECL_APEX void finish();
+//   //CLASS_DECL_APEX bool post_quit_and_wait(const duration & duration);
+//
+//
+//   //CLASS_DECL_APEX void finish(::task * ptask);
+//   //CLASS_DECL_APEX bool post_quit_and_wait(::thread * pthread, const duration & duration);
+//
+//
+//   //template < typename THREAD >
+//   //void finish(__pointer(THREAD) & spthread)
+//   //{
+//
+//   //   if (spthread.is_set())
+//   //   {
+//
+//   //      ::parallelization::finish(spthread.m_p);
+//
+//   //      spthread.release();
+//
+//   //   }
+//
+//   //}
+//
+//
+//   //template < typename THREAD >
+//   //bool post_quit_and_wait(__pointer(THREAD) & spthread, const duration & duration)
+//   //{
+//
+//   //   if (spthread.is_set())
+//   //   {
+//
+//   //      if (!::parallelization::post_quit_and_wait(spthread.m_p, duration))
+//   //      {
+//
+//   //         return false;
+//
+//   //      }
+//
+//   //      spthread.release();
+//
+//   //   }
+//
+//   //   return true;
+//
+//   //}
+//
+//
+//
+//
+//} // namespace parallelization
 
-
-   CLASS_DECL_APEX void finish();
-   CLASS_DECL_APEX bool post_quit_and_wait(const duration & duration);
-
-
-   CLASS_DECL_APEX void finish(::task * ptask);
-   CLASS_DECL_APEX bool post_quit_and_wait(::thread * pthread, const duration & duration);
-
-
-   template < typename THREAD >
-   void finish(__pointer(THREAD) & spthread)
-   {
-
-      if (spthread.is_set())
-      {
-
-         ::parallelization::finish(spthread.m_p);
-
-         spthread.release();
-
-      }
-
-   }
-
-
-   template < typename THREAD >
-   bool post_quit_and_wait(__pointer(THREAD) & spthread, const duration & duration)
-   {
-
-      if (spthread.is_set())
-      {
-
-         if (!::parallelization::post_quit_and_wait(spthread.m_p, duration))
-         {
-
-            return false;
-
-         }
-
-         spthread.release();
-
-      }
-
-      return true;
-
-   }
-
-
-
-
-} // namespace parallelization
 
 
 using id_thread_map = id_map < __pointer(thread) >;
@@ -547,20 +555,20 @@ using id_thread_map = id_map < __pointer(thread) >;
 //CLASS_DECL_APEX void sleep(const duration& duration);
 
 
-CLASS_DECL_APEX bool is_active(::thread * pthread);
+//CLASS_DECL_APEX bool is_active(::thread * pthread);
 
 
 
-CLASS_DECL_APEX bool is_thread_on(ithread_t id);
-CLASS_DECL_APEX void set_thread_on(ithread_t id);
-CLASS_DECL_APEX void set_thread_off(ithread_t id);
+//CLASS_DECL_APEX bool is_thread_on(itask_t id);
+//CLASS_DECL_APEX void set_thread_on(itask_t id);
+//CLASS_DECL_APEX void set_thread_off(itask_t id);
 
 
 
 
 //CLASS_DECL_APEX bool apex_task_sleep(millis millis, synchronization_object* psync = nullptr);
 CLASS_DECL_APEX bool thread_pump_sleep(millis millis, synchronization_object* psync = nullptr);
-CLASS_DECL_APEX bool app_sleep(millis millis);
+CLASS_DECL_APEX bool app_sleep(::apex::application * papplication, millis millis);
 
 
 
@@ -584,7 +592,7 @@ inline ::synchronization_result while_predicateicate_Sleep(int iTime, PRED pred)
 
       }
 
-      if (!::thread_get_run())
+      if (!::task_get_run())
       {
 
          return ::e_synchronization_result_abandoned_base;
@@ -598,7 +606,7 @@ inline ::synchronization_result while_predicateicate_Sleep(int iTime, PRED pred)
 }
 
 
-CLASS_DECL_APEX void defer_create_thread(::layered * pobjectContext);
+CLASS_DECL_APEX void defer_create_thread(::object * pobject);
 
 
 

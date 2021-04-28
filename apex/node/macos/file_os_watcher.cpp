@@ -16,7 +16,7 @@ namespace file
    os_watch::~os_watch()
    {
       
-      removeAll();
+      eraseAll();
 
    }
 
@@ -57,7 +57,7 @@ namespace file
                                        pathsToWatch,
                                        kFSEventStreamEventIdSinceNow, /* Or a previous event ID */
                                        latency,
-                                       kFSEventStreamCreateFlagFileEvents /* Flags explained in context_object */
+                                       kFSEventStreamCreateFlagFileEvents /* Flags explained in object */
                                        );
          
          FSEventStreamScheduleWithRunLoop(m_stream, CFRunLoopGetCurrent(), kCFRunLoopCommonModes);
@@ -177,7 +177,7 @@ namespace file
 
 
 
-   void os_watch::removeAll()
+   void os_watch::eraseAll()
    {
 
       FSEventStreamStop(m_stream);

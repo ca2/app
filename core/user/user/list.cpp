@@ -81,14 +81,14 @@ namespace user
       MESSAGE_LINK(e_message_size, pchannel, this, &list::_001OnSize);
       MESSAGE_LINK(e_message_vscroll, pchannel, this, &list::_001OnVScroll);
       MESSAGE_LINK(e_message_hscroll, pchannel, this, &list::_001OnHScroll);
-      MESSAGE_LINK(e_message_mouse_leave, pchannel, this, &list::_001OnMouseLeave);
+      MESSAGE_LINK(e_message_mouse_leave, pchannel, this, &list::on_message_mouse_leave);
 
       MESSAGE_LINK(e_message_left_button_down, pchannel, this, &list::on_message_left_button_down);
       MESSAGE_LINK(e_message_left_button_up, pchannel, this, &list::on_message_left_button_up);
       MESSAGE_LINK(e_message_left_button_double_click, pchannel, this, &list::_001OnLButtonDblClk);
       MESSAGE_LINK(e_message_right_button_down, pchannel, this, &list::on_message_right_button_down);
 
-      MESSAGE_LINK(e_message_mouse_move, pchannel, this, &list::_001OnMouseMove);
+      MESSAGE_LINK(e_message_mouse_move, pchannel, this, &list::on_message_mouse_move);
 
       MESSAGE_LINK(e_message_key_down, pchannel, this, &list::_001OnKeyDown);
 
@@ -176,7 +176,7 @@ namespace user
 
       }
 
-      synchronization_lock synchronizationlock(m_pmeshdata->mutex());
+      synchronous_lock synchronouslock(m_pmeshdata->mutex());
 
       ::rectangle_i32 rectClient = get_client_rect();
 
@@ -676,13 +676,13 @@ namespace user
       if (pdrawitem->m_bListItemSelected)
       {
 
-         auto psession = Session;
+         auto psession = get_session();
 
          if (pdrawitem->m_plist->m_bMorePlain)
          {
 
          }
-         else if (psession->savings().is_trying_to_save(::e_resource_processing))
+         else if (psession->m_paurasession->savings().is_trying_to_save(::e_resource_processing))
          {
 
             pdrawitem->m_pgraphics->fill_rectangle(pdrawitem->m_rectItem, argb(255, 96, 96, 96));
@@ -911,7 +911,7 @@ namespace user
    void list::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       auto rect1 = get_client_rect();
 
@@ -932,7 +932,7 @@ namespace user
       //if (m_puserstyle == nullptr)
       //{
 
-      //   m_puserstyle = Application.userstyle();
+      //   m_puserstyle = papplication->userstyle();
 
       //}
 
@@ -1045,7 +1045,7 @@ namespace user
 
       {
 
-         synchronization_lock synchronizationlock(mutex());
+         synchronous_lock synchronouslock(mutex());
 
          m_nItemCount = nCount;
 
@@ -1670,7 +1670,7 @@ namespace user
       ASSERT(iColumn >= 0);
       ASSERT(iColumn < m_columna.VisibleGetCount());
 
-      m_columna.remove(iColumn);
+      m_columna.erase(iColumn);
 
    }
 
@@ -3174,7 +3174,7 @@ namespace user
    void list::LayoutHeaderCtrl()
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       if (m_plistheader == nullptr)
       {
@@ -3215,7 +3215,7 @@ namespace user
       if (pkey->previous()) // give chance to child
          return;
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       if (pkey->m_ekey == ::user::e_key_down || pkey->m_ekey == ::user::e_key_up ||
             pkey->m_ekey == ::user::e_key_next || pkey->m_ekey == ::user::e_key_prior)
@@ -3317,7 +3317,7 @@ namespace user
    }
 
 
-   void list::_001OnMouseMove(::message::message * pmessage)
+   void list::on_message_mouse_move(::message::message * pmessage)
    {
 
       __pointer(::message::mouse) pmouse(pmessage);
@@ -3328,7 +3328,7 @@ namespace user
 
       _001ScreenToClient(point);
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       if (m_bDrag)
       {
@@ -3521,9 +3521,9 @@ namespace user
 
       _001ScreenToClient(point);
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
-      auto psession = Session;
+      auto psession = get_session();
 
       m_bLButtonDown = true;
 
@@ -3875,7 +3875,7 @@ namespace user
 
       _001ScreenToClient(point);
 
-      auto psession = Session;
+      auto psession = get_session();
 
       auto puser = psession->user();
 
@@ -3887,7 +3887,7 @@ namespace user
 
       KillTimer(224455);
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
 
       if (m_bDrag)
@@ -3948,7 +3948,7 @@ namespace user
 
                         strSort += "-" + get_display_tag() + ".icon_list_view_sort";
 
-                        synchronizationlock.lock();
+                        synchronouslock.lock();
 
                         string_array stra;
 
@@ -3961,9 +3961,11 @@ namespace user
 
                         }
 
-                        Context.file().put_contents(strSort, stra.implode("\r\n"));
+                        auto pcontext = get_context();
 
-                        synchronizationlock.unlock();
+                        pcontext->m_papexcontext->file().put_contents(strSort, stra.implode("\r\n"));
+
+                        synchronouslock.unlock();
 
                         update_icon_list_view_sort();
 
@@ -4005,7 +4007,7 @@ namespace user
 
                   }
 
-                  synchronizationlock.unlock();
+                  synchronouslock.unlock();
 
                   if(m_iClick == 1)
                   {
@@ -4076,13 +4078,13 @@ namespace user
 
       pmouse->previous();
 
-      auto psession = Session;
+      auto psession = get_session();
 
       auto point = pmouse->m_point;
 
       _001ScreenToClient(point);
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       if (!has_keyboard_focus())
       {
@@ -4375,18 +4377,18 @@ namespace user
 
       }
 
-      /* trans window_id wndidNotify = pwnd->get_owner()->GetSafeoswindow_();
+      /* trans window_id wndidNotify = puserinteraction->get_owner()->GetSafeoswindow_();
       if(wndidNotify == nullptr)
-      wndidNotify = pwnd->get_parent()->GetSafeoswindow_();*/
+      wndidNotify = puserinteraction->get_parent()->GetSafeoswindow_();*/
 
       lresult lresult = 0;
 
       /* trans if(wndidNotify)
       {
       NMLISTVIEW nm;
-      nm.hdr.idFrom = pwnd->GetDlgCtrlId();
+      nm.hdr.idFrom = puserinteraction->GetDlgCtrlId();
       nm.hdr.code =   NM_DBLCLK;
-      nm.hdr.oswindowFrom = pwnd->GetSafeoswindow_();
+      nm.hdr.oswindowFrom = puserinteraction->GetSafeoswindow_();
       lresult = ::SendMessage(
       wndidNotify,
       WM_NOTIFY,
@@ -4787,10 +4789,10 @@ namespace user
    }
 
 
-   void list_column_array::remove_all()
+   void list_column_array::erase_all()
    {
 
-      pointer_array < list_column >::remove_all();
+      pointer_array < list_column >::erase_all();
 
       OnChange();
 
@@ -4854,12 +4856,12 @@ namespace user
    }
 
 
-   void list_column_array::remove(index iColumn)
+   void list_column_array::erase(index iColumn)
    {
       ASSERT(iColumn >= 0);
       ASSERT(iColumn < this->get_size());
 
-      remove_at(iColumn);
+      erase_at(iColumn);
 
       OnChange();
    }
@@ -5273,9 +5275,9 @@ namespace user
 
       {
 
-         synchronization_lock synchronizationlock(mutex());
+         synchronous_lock synchronouslock(mutex());
 
-         m_columna.remove_all();
+         m_columna.erase_all();
 
       }
 
@@ -5552,7 +5554,7 @@ namespace user
    void list::CacheHint()
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       if (m_pcache.is_set())
       {
@@ -6078,7 +6080,7 @@ namespace user
 
       if (m_eview == impact_icon)
       {
-         m_piaFilterIcon->remove_all();
+         m_piaFilterIcon->erase_all();
 
          for (index i = 0; i < iItemCount; i++)
          {
@@ -6087,7 +6089,7 @@ namespace user
       }
       else
       {
-         m_piaFilterMesh->remove_all();
+         m_piaFilterMesh->erase_all();
 
          for (index i = 0; i < iItemCount; i++)
          {
@@ -6136,7 +6138,7 @@ namespace user
 
       if (m_eview == impact_icon)
       {
-         m_piconlayout->m_iaDisplayToStrict.remove_all();
+         m_piconlayout->m_iaDisplayToStrict.erase_all();
 
          for (index i = 0; i < iItemCount; i++)
          {
@@ -6145,7 +6147,7 @@ namespace user
       }
       else
       {
-         m_pmeshlayout->m_iaDisplayToStrict.remove_all();
+         m_pmeshlayout->m_iaDisplayToStrict.erase_all();
 
          for (index i = 0; i < iItemCount; i++)
          {
@@ -6166,13 +6168,13 @@ namespace user
       if (m_eview == impact_icon)
       {
 
-         m_piaFilterIcon->remove_all();
+         m_piaFilterIcon->erase_all();
 
       }
       else
       {
 
-         m_piaFilterMesh->remove_all();
+         m_piaFilterMesh->erase_all();
 
       }
 
@@ -6298,11 +6300,11 @@ namespace user
 
       if (m_eview == impact_icon)
       {
-         m_piaFilterIcon->remove_all();
+         m_piaFilterIcon->erase_all();
       }
       else
       {
-         m_piaFilterMesh->remove_all();
+         m_piaFilterMesh->erase_all();
       }
 
       string_array stra;
@@ -6311,7 +6313,9 @@ namespace user
 
       //m_pregexFilter1->setPositionMoves(1);
 
-      m_pregexFilter1 = System->create_pcre("/.*" + stra.implode(".*") + ".*/i");
+      auto psystem = m_psystem->m_paxissystem;
+
+      m_pregexFilter1 = psystem->create_pcre("/.*" + stra.implode(".*") + ".*/i");
 
       m_bFilter1 = m_pregexFilter1;//m_pregexFilter1->setRE();
 
@@ -6371,7 +6375,7 @@ namespace user
       if (iFound >= 0)
       {
          CSortInfoItem newItem = m_sortinfo.m_itema[iFound];
-         m_sortinfo.m_itema.remove_at(iFound);
+         m_sortinfo.m_itema.erase_at(iFound);
          newItem.m_bAscendent = !newItem.m_bAscendent;
          m_sortinfo.m_itema.insert_at(0, newItem);
       }
@@ -6519,7 +6523,7 @@ namespace user
    void list::on_change_viewport_offset(::draw2d::graphics_pointer & pgraphics)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       auto point = get_viewport_offset();
 
@@ -6580,7 +6584,7 @@ namespace user
 
       CacheHint();
 
-      auto psession = Session;
+      auto psession = get_session();
 
       auto puser = psession->user();
 
@@ -6619,7 +6623,7 @@ namespace user
    //   return m_fontHover;
    //}
 
-   void list::_001OnMouseLeave(::message::message * pmessage)
+   void list::on_message_mouse_leave(::message::message * pmessage)
    {
       m_iDisplayItemHover = -1;
       m_iSubItemHover = -1;
@@ -7059,7 +7063,7 @@ namespace user
       }
       else
       {
-         m_flags.remove(flag_auto_arrange);
+         m_flags.erase(flag_auto_arrange);
       }
       if (bAutoArrange)
       {
@@ -7309,7 +7313,7 @@ namespace user
       else
       {
 
-         synchronization_lock synchronizationlock(get_image_list()->mutex());
+         synchronous_lock synchronouslock(get_image_list()->mutex());
 
          if(get_image_list()->m_pimage->is_null()
                || get_image_list()->m_pimage->area() <= 0)
@@ -7530,7 +7534,11 @@ namespace user
 
                __defer_construct(pimage2);
 
-               if (System->draw2d()->embossed_text_out(
+               auto psystem = m_psystem->m_paurasystem;
+
+               auto pdraw2d = psystem->draw2d();
+
+               if (pdraw2d->embossed_text_out(
                      m_pgraphics,
                      m_rectText,
                      m_strText,
@@ -7821,7 +7829,7 @@ namespace user
 
       }
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       string strSort(m_pmeshdata ? m_pmeshdata->m_strMeshSort.c_str() : "");
 
@@ -7832,7 +7840,9 @@ namespace user
 
          strSort += "-" + get_display_tag() + ".icon_list_view_sort";
 
-         string str = Context.file().as_string(strSort);
+         auto pcontext = get_context();
+
+         string str = pcontext->m_papexcontext->file().as_string(strSort);
          string_array stra;
          stra.add_lines(str);
          for (index a = 0; a < stra.get_size(); a++)

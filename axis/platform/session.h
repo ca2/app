@@ -18,7 +18,7 @@ namespace axis
       virtual ~session();
 
 
-      virtual ::e_status     initialize(::layered * pobjectContext) override;
+      virtual ::e_status     initialize(::object * pobject) override;
 
 
       virtual ::e_status process_init() override;
@@ -38,17 +38,19 @@ namespace axis
 
       virtual void process_term() override;
 
+      virtual void on_instantiate_application(::apex::application* papp) override;
+
       virtual ::user::style* get_user_style() override;
 
       inline ::account::department * account() { return m_paccount; }
 
       virtual void on_user_logon(::account::user* puser);
 
-      inline ::axis::user* user() { return m_puser ? (::axis::user *) m_puser->get_os_data(LAYERED_AXIS) : nullptr; }
+      inline ::axis::user* user();
 
       virtual ::account::user * get_user(::file::path pathUrl = nullptr, bool bFetch = false, bool bInteractive = true);
 
-      virtual void on_remove_user(::account::user * puser);
+      virtual void on_erase_user(::account::user * puser);
 
       virtual bool is_licensed(const char * pszId, bool bInteractive = true) override;
 

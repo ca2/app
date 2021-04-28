@@ -49,7 +49,7 @@ void android_fill_plasma(AndroidBitmapInfo * info, color32_t * pixels, double  t
 
    }
 
-   auto psession = ::aura::get_system()->get_context_session();
+   auto psession = ::aura::get_system()->get_session();
 
    if (psession == nullptr)
    {
@@ -60,7 +60,7 @@ void android_fill_plasma(AndroidBitmapInfo * info, color32_t * pixels, double  t
 
    }
 
-   auto puserinteraction = __user_interaction(psession->m_puiHost);
+   auto puserinteraction = __user_interaction(psession->get_user_interaction_host());
 
    if (puserinteraction == nullptr)
    {
@@ -98,7 +98,7 @@ void android_fill_plasma(AndroidBitmapInfo * info, color32_t * pixels, double  t
 
    }
 
-   synchronization_lock slScreen(pbuffer->get_screen_sync());
+   synchronous_lock slScreen(pbuffer->get_screen_sync());
 
    auto pimage = pbuffer->get_screen_image();
 
@@ -205,13 +205,13 @@ void android_aura_main()
    rectangle.right = premote->getWidth();
    rectangle.bottom = premote->getHeight();
 
-   auto psession = ::aura::get_system()->get_context_session();
+   auto psession = ::aura::get_system()->get_session();
 
    psession->defer_initialize_host_window(rectangle);
 
    SetMainScreenRect(rectangle);
 
-   //auto puserinteraction = __user_interaction(::aura::get_system()->get_context_session()->m_puiHost);
+   //auto puserinteraction = __user_interaction(::aura::get_system()->get_session()->m_puserinteractionHost);
 
    //puserinteraction->place(rectangle);
 
@@ -275,7 +275,7 @@ JNIEnv* get_jni_env()
 void android_exchange()
 {
 
-   synchronization_lock synchronizationlock(osmutex());
+   synchronous_lock synchronouslock(osmutex());
 
    auto plocal = g_poslocal;
 
@@ -460,7 +460,7 @@ void android_exchange()
 void android_edit_on_set_focus(int l, int t, int r, int b, const char * pszText, int iBeg, int iEnd)
 {
 
-   synchronization_lock synchronizationlock(osmutex());
+   synchronous_lock synchronouslock(osmutex());
 
    auto plocal = g_poslocal;
 
@@ -486,7 +486,7 @@ void android_edit_on_set_focus(int l, int t, int r, int b, const char * pszText,
 void android_edit_on_kill_focus()
 {
 
-   synchronization_lock synchronizationlock(osmutex());
+   synchronous_lock synchronouslock(osmutex());
 
    auto plocal = g_poslocal;
 

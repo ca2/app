@@ -103,8 +103,8 @@
 		<Unit filename="helloaxis_main_view.h" />
 		<Unit filename="helloaxis_pane_view.cpp" />
 		<Unit filename="helloaxis_pane_view.h" />
-		<Unit filename="aaa_want_to_remove_helloaxis_view_update_hint.cpp" />
-		<Unit filename="aaa_want_to_remove_helloaxis_view_update_hint.h" />
+		<Unit filename="aaa_want_to_erase_helloaxis_view_update_hint.cpp" />
+		<Unit filename="aaa_want_to_erase_helloaxis_view_update_hint.h" />
 		<Unit filename="helloaxis_render.cpp" />
 		<Unit filename="helloaxis_render.h" />
 		<Unit filename="helloaxis_switcher_view.cpp" />

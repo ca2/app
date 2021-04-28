@@ -2213,7 +2213,7 @@ CLASS_DECL_ACME memory_file_pointer create_memory_file(::Windows::Storage::Strea
 
    auto pfile = create_memory_file();
 
-   while (::thread_get_run())
+   while (::task_get_run())
    {
 
       ::Windows::Storage::Streams::IBuffer^ buffer = ref new ::Windows::Storage::Streams::Buffer(1_mb);

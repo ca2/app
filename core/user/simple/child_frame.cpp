@@ -44,12 +44,12 @@ bool simple_child_frame::pre_create_window(::user::system * pusersystem)
 //   if(pusersystem->m_createstruct.hwndParent == nullptr)
 //   {
 //
-//      auto puiMain1 = Application.m_puiMain1;
+//      auto puserinteractionMain = papplication->m_puserinteractionMain;
 //
-//      if(puiMain1 != nullptr)
+//      if(puserinteractionMain != nullptr)
 //      {
 //
-//         auto pui = __user_interaction(Application.m_puiMain1);
+//         auto pui = __user_interaction(papplication->m_puserinteractionMain);
 //
 //         pusersystem->m_createstruct.hwndParent = __hwnd(pui->get_oswindow());
 //

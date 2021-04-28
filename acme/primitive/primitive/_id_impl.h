@@ -199,24 +199,24 @@ inline id& id::operator = (const ::enum_factory& efactory)
 }
 
 
-inline id& id::operator = (const ::enum_thread_tool& ethreadtool)
+inline id& id::operator = (const ::enum_task_tool& etasktool)
 {
 
-   m_etype = e_type_thread_tool;
+   m_etype = e_type_task_tool;
 
-   m_ethreadtool = ethreadtool;
+   m_etasktool = etasktool;
 
    return *this;
 
 }
 
 
-inline id& id::operator = (const ::enum_clock& eclock)
+inline id& id::operator = (const ::enum_timer& etimer)
 {
 
-   m_etype = e_type_clock;
+   m_etype = e_type_timer;
 
-   m_eclock = eclock;
+   m_etimer = etimer;
 
    return *this;
 

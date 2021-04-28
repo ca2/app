@@ -264,7 +264,7 @@ oswindow oswindow_get(::user::interaction_impl * pimpl)
 
 
 
-//int_bool oswindow_remove(::user::interaction_impl * pinteraction)
+//int_bool oswindow_erase(::user::interaction_impl * pinteraction)
 //{
 //
 //   iptr iFind = oswindow_find(pinteraction);
@@ -272,7 +272,7 @@ oswindow oswindow_get(::user::interaction_impl * pimpl)
 //   if(iFind < 0)
 //      return false;
 //
-//   g_oswindow_dataptra()->remove_at(iFind);
+//   g_oswindow_dataptra()->erase_at(iFind);
 //
 //   return true;
 //
@@ -589,7 +589,7 @@ CLASS_DECL_CORE int_bool show_window(oswindow oswindow, int iShowCmd)
 
 //    }
 
-//    Sess(puiimpl->get_context_application()).get_cursor_position(puiimpl->m_pointCursor);
+//    Sess(puiimpl->get_application()).get_cursor_position(puiimpl->m_pointCursor);
 
 // }
 

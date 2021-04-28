@@ -44,7 +44,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
       public:
          /** socket_handler constructor.
          \param log Optional log class pointer */
-         socket_handler(::layered * pobjectContext, ::apex::log* plogger = nullptr);
+         socket_handler(::object * pobject, ::apex::log* plogger = nullptr);
 
          /** socket_handler threadsafe constructor.
          \param ::mutex Externally declared ::mutex ::payload
@@ -53,7 +53,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
          ~socket_handler();
 
-         /** get ::mutex context_object for threadsafe operations. */
+         /** get ::mutex object for threadsafe operations. */
          ::synchronization_object & GetMutex() const;
 
          /** add socket instance to socket ::map. Removal is always automatic. */
@@ -178,8 +178,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
       private:
          void CheckList(socket_list&,const string &); ///< Used by CheckSanity
-         /** remove socket from socket ::map, used by socket class. */
-         void remove(base_socket *);
+         /** erase socket from socket ::map, used by socket class. */
+         void erase(base_socket *);
          SOCKET m_maxsock; ///< Highest file descriptor + 1 in active sockets list
 //         fd_set m_rfds; ///< file descriptor set monitored for read events
   //       fd_set m_wfds; ///< file descriptor set monitored for write events

@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-MetaControlBox::MetaControlBox(::layered * pobjectContext) :
+MetaControlBox::MetaControlBox(::object * pobject) :
    object(pobject),
    ::user::interaction(pobject),
    ::experience::control_box(pobject)

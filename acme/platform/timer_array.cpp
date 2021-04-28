@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-namespace apex
+namespace acme
 {
 
 
@@ -28,7 +28,7 @@ namespace apex
    bool timer_array::create_timer(uptr uEvent, ::millis millisEllapse, PFN_TIMER pfnTimer, bool bPeriodic, void * pvoidData)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       if (!m_bOk)
       {
@@ -41,7 +41,7 @@ namespace apex
 
       auto ptimer = __new(timer_task);
 
-      ptimer->initialize_timer(m_pobjectContext, this, uEvent, pfnTimer, pvoidData, mutex());
+      ptimer->initialize_timer(this, uEvent, pfnTimer, pvoidData, mutex());
 
       ptimer->m_ptimercallback = this;
 
@@ -97,7 +97,7 @@ namespace apex
    bool timer_array::delete_timer(uptr uEvent)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       auto * ppair = m_map.plookup(uEvent);
 
@@ -110,7 +110,7 @@ namespace apex
 
       auto ptimer = ppair->element2();
 
-      m_map.remove_key(uEvent);
+      m_map.erase_key(uEvent);
 
       ptimer->finalize();
 
@@ -119,10 +119,10 @@ namespace apex
    }
 
 
-   bool timer_array::remove_timer(::timer * ptimer)
+   bool timer_array::erase_timer(::timer * ptimer)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       try
       {
@@ -143,7 +143,7 @@ namespace apex
          if(ptimerMapped == ptimer)
          {
 
-            m_map.remove_key(uEvent);
+            m_map.erase_key(uEvent);
 
          }
 
@@ -207,7 +207,7 @@ namespace apex
    }
 
 
-   void timer_array::finalize()
+   ::e_status timer_array::finalize()
    {
 
       m_bOk = false;
@@ -215,6 +215,8 @@ namespace apex
       delete_all_timers();
 
       ::timer_callback::finalize();
+
+      return ::success;
 
    }
 
@@ -224,7 +226,7 @@ namespace apex
 
       {
 
-         synchronization_lock synchronizationlock(mutex());
+         synchronous_lock synchronouslock(mutex());
 
          __keep(m_bOk, false);
 
@@ -238,7 +240,7 @@ namespace apex
             try
             {
 
-               synchronization_lock synchronizationlock(ptimer->mutex());
+               synchronous_lock synchronouslock(ptimer->mutex());
 
                ptimer->m_eobject -= e_object_success;
 
@@ -261,7 +263,7 @@ namespace apex
 
       {
 
-         synchronization_lock synchronizationlock(mutex());
+         synchronous_lock synchronouslock(mutex());
 
          __keep(m_bOk, false);
 
@@ -288,7 +290,7 @@ namespace apex
    }
 
 
-} // namespace user
+} // namespace acme
 
 
 

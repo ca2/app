@@ -251,3 +251,49 @@ inline void rect_type < BASE_TYPE, POINT_BASE_TYPE, SIZE_BASE_TYPE >::normalize(
    __sort(this->top, this->bottom); 
 
 }
+
+
+namespace geometry
+{
+
+   //////////////////////////////////////////////////////////////////////
+   //
+   // Function Name: deflate
+   //
+   // Purpose:
+   // Change rectangle dimension using its dimensions and the specified
+   // rates. For example, the dLeftRate machine the left position of the
+   // rectangle. If 0.0, it remains the same as the original left.
+   // If 1.0, it turns as the original right. If 0.4, it will be 40%
+   // of the width from left to right.
+   //
+   // Output:
+   // -1 if the creation of the ::user::impact failed.
+   // 0 if the creation of the ::user::impact succeeded.
+   //
+   // Author:
+   // Vanessa Testoni
+   //
+   //
+   //////////////////////////////////////////////////////////////////////
+   template < primitive_rectangle RECTANGLE >
+   inline void deflate(RECTANGLE* prectangle, double dLeftRate, double dRightRate, double dTopRate, double dBottomRate)
+   {
+
+      auto rectangle = *prectangle;
+
+      prectangle->left = range_rate(rectangle.left, rectangle.right, dLeftRate);
+
+      prectangle->right = range_rate(rectangle.right, rectangle.left, dRightRate);
+
+      prectangle->top = range_rate(rectangle.top, rectangle.bottom, dTopRate);
+
+      prectangle->bottom = range_rate(rectangle.bottom, rectangle.top, dBottomRate);
+
+   }
+
+
+} // namespace geometry
+
+
+

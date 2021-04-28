@@ -18,10 +18,10 @@ namespace android
    }
 
 
-   ::e_status file_context::initialize(::layered * pobjectContext)
+   ::e_status file_context::initialize(::object * pobject)
    {
 
-      auto estatus = ::file_context::initialize(pobjectContext);
+      auto estatus = ::file_context::initialize(pobject);
 
       if (!estatus)
       {

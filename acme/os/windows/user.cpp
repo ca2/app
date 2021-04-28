@@ -20,12 +20,12 @@ namespace user
    }
 
 
-   void _os_process_user_theme(string strTheme)
-   {
-
-      UNREFERENCED_PARAMETER(strTheme);
-
-   }
+//   void _os_process_user_theme(string strTheme)
+//   {
+//
+//      UNREFERENCED_PARAMETER(strTheme);
+//
+//   }
 
 
 

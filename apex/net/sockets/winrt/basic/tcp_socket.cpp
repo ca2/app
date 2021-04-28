@@ -25,12 +25,12 @@ namespace sockets
 #ifdef _MSC_VER
 #pragma warning(disable:4355)
 #endif
-   tcp_socket::tcp_socket(base_socket_handler& h) :
-      ::object(h.get_context_application()),
-      base_socket(h),
-      socket(h),
-      stream_socket(h)
-      ,ibuf(TCP_BUFSIZE_READ)
+   tcp_socket::tcp_socket() :
+      ::object(h.get_application()),
+  //    base_socket(h),
+//      socket(h),
+//      stream_socket(h),
+      ibuf(TCP_BUFSIZE_READ)
       ,m_b_input_buffer_disabled(false)
       ,m_bytes_sent(0)
       ,m_bytes_received(0)
@@ -60,12 +60,12 @@ namespace sockets
 #ifdef _MSC_VER
 #pragma warning(disable:4355)
 #endif
-   tcp_socket::tcp_socket(base_socket_handler& h,memsize isize,memsize osize) :
-      ::object(h.get_context_application()),
-      base_socket(h),
-      socket(h),
-      stream_socket(h)
-      ,ibuf(isize)
+   tcp_socket::tcp_socket(memsize isize,memsize osize) :
+      ::object(h.get_application()),
+  //    base_socket(h),
+//      socket(h),
+//      stream_socket(h),
+      ibuf(isize)
       ,m_b_input_buffer_disabled(false)
       ,m_bytes_sent(0)
       ,m_bytes_received(0)
@@ -111,7 +111,7 @@ namespace sockets
 
       }
 
-      m_obuf.remove_all();
+      m_obuf.erase_all();
 
 #ifdef HAVE_OPENSSL
       if (m_ssl)
@@ -124,15 +124,15 @@ namespace sockets
 
    /*   bool tcp_socket::open(ipaddr_t ip,port_t port,bool skip_socks)
       {
-         ipv4_address ad(get_context_application(), ip, port);
-         ipv4_address local(get_object());
+         ipv4_address ad(get_application(), ip, port);
+         ipv4_address local(this);
          return open(ad, local, skip_socks);
       }
 
 
       bool tcp_socket::open(in6_addr ip,port_t port,bool skip_socks)
       {
-         ipv6_address ad(get_context_application(), ip, port);
+         ipv6_address ad(get_application(), ip, port);
          return open(ad, skip_socks);
       }
       */
@@ -203,7 +203,7 @@ namespace sockets
                SetCloseAndDelete();
                return false;
             }*/
-      /*      if (Handler().get_count() >= FD_SETSIZE)
+      /*      if (socket_handler()->get_count() >= FD_SETSIZE)
             {
                FATAL(log_this, "open", 0, "no space left in fd_set");
                SetCloseAndDelete();
@@ -246,9 +246,9 @@ namespace sockets
 
       return true;
       // check for pooling
-      /*if (Handler().PoolEnabled())
+      /*if (socket_handler()->PoolEnabled())
       {
-         base_socket_handler::PoolSocket *pools = Handler().FindConnection(SOCK_STREAM, "tcp", ad);
+         base_socket_handler::PoolSocket *pools = socket_handler()->FindConnection(SOCK_STREAM, "tcp", ad);
          if (pools)
          {
             CopyConnection( pools );
@@ -282,7 +282,7 @@ namespace sockets
             }
             if (!skip_socks && GetSocks4Host() && GetSocks4Port())
             {
-               ipv4_address sa(get_context_application(), GetSocks4Host(), GetSocks4Port());
+               ipv4_address sa(get_application(), GetSocks4Host(), GetSocks4Port());
                {
                   string sockshost;
                   psession->sockets().net().l2ip(GetSocks4Host(), sockshost);
@@ -312,7 +312,7 @@ namespace sockets
                   SetConnecting( true ); // this flag will control fd_set's
                }
                else
-               if (Socks4() && Handler().Socks4TryDirect() ) // retry
+               if (Socks4() && socket_handler()->Socks4TryDirect() ) // retry
                {
                   ::closesocket(s);
                   return open(ad, true);
@@ -353,7 +353,7 @@ namespace sockets
 
       /*if (IsIpv6())
       {
-         if (!Handler().ResolverEnabled() || psession->sockets().net().isipv6(host) )
+         if (!socket_handler()->ResolverEnabled() || psession->sockets().net().isipv6(host) )
          {
             in6_addr a;
             if (!psession->sockets().net().u2ip(host, a))
@@ -361,8 +361,8 @@ namespace sockets
                SetCloseAndDelete();
                return false;
             }
-            ipv6_address ad(get_context_application(), a, port);
-            ipv6_address local(get_object());
+            ipv6_address ad(get_application(), a, port);
+            ipv6_address local(this);
             if(!open(ad, local))
                return false;
             m_strHost = host;
@@ -372,7 +372,7 @@ namespace sockets
          m_strHost = host;
          return true;
       }
-      if (!Handler().ResolverEnabled() || psession->sockets().net().isipv4(host) )
+      if (!socket_handler()->ResolverEnabled() || psession->sockets().net().isipv4(host) )
       {
          ipaddr_t l;
          if (!psession->sockets().net().u2ip(host, l))
@@ -380,8 +380,8 @@ namespace sockets
             SetCloseAndDelete();
             return false;
          }
-         ipv4_address ad(get_context_application(), l, port);
-         ipv4_address local(get_object());
+         ipv4_address ad(get_application(), l, port);
+         ipv4_address local(this);
          m_strHost = host;
          if(!open(ad, local))
             return false;
@@ -402,9 +402,9 @@ namespace sockets
       {
          if(open(addr))
          {
-            if (!Handler().Valid(this))
+            if (!socket_handler()->Valid(this))
             {
-               Handler().add(this);
+               socket_handler()->add(this);
             }
          }
          else
@@ -425,15 +425,15 @@ namespace sockets
       {
          if (id == m_resolver_id)
          {
-            ipv6_address ad(get_context_application(), a, port);
+            ipv6_address ad(get_application(), a, port);
             if (ad.IsValid())
             {
-               ipv6_address local(get_object());
+               ipv6_address local(this);
                if (open(ad, local))
                {
-                  if (!Handler().Valid(this))
+                  if (!socket_handler()->Valid(this))
                   {
-                     Handler().add(this);
+                     socket_handler()->add(this);
                   }
                }
             }
@@ -638,12 +638,12 @@ namespace sockets
          int n = TryWrite(p -> Buf(), p -> Len());
          if (n > 0)
          {
-            memsize left = p -> remove(n);
+            memsize left = p -> erase(n);
             m_output_length -= n;
             if (!left)
             {
                delete p;
-               m_obuf.remove_item(pnode);
+               m_obuf.erase_item(pnode);
                if (!m_obuf.get_size())
                {
                   m_obuf_top = nullptr;
@@ -668,7 +668,7 @@ namespace sockets
          bool br;
          bool bw;
          bool bx;
-         Handler().get(GetSocket(), br, bw, bx);
+         socket_handler()->get(GetSocket(), br, bw, bx);
          if (m_obuf.get_size())
             Set(br, true);
          else
@@ -813,7 +813,7 @@ namespace sockets
          bool br;
          bool bw;
          bool bx;
-         Handler().get(GetSocket(), br, bw, bx);
+         socket_handler()->get(GetSocket(), br, bw, bx);
          if (m_obuf.get_size())
             Set(br, true);
          else
@@ -862,7 +862,7 @@ namespace sockets
    void tcp_socket::OnSocks4ConnectFailed()
    {
       WARN("OnSocks4ConnectFailed",0,"connection to socks4 server failed, trying direct connection");
-      if (!Handler().Socks4TryDirect())
+      if (!socket_handler()->Socks4TryDirect())
       {
          SetConnecting(false);
          SetCloseAndDelete();
@@ -1179,7 +1179,7 @@ namespace sockets
           ::string_map < __pointer(ssl_client_context) > & clientcontextmap = ::apex::get_system()->m_clientcontextmap;
           if(clientcontextmap.plookup(context) == nullptr)
           {
-             m_spsslclientcontext(new ssl_client_context(get_context_application(), pmethod));
+             m_spsslclientcontext(new ssl_client_context(get_application(), pmethod));
              if(context.has_char())
              {
                 clientcontextmap[context] = m_spsslclientcontext;
@@ -1498,7 +1498,7 @@ namespace sockets
       if (Connecting())
       {
          
-         int iError = this->Handler().m_iSelectErrno;
+         int iError = this->socket_handler()->m_iSelectErrno;
 
          if(iError == ETIMEDOUT)
          {

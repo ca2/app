@@ -106,7 +106,7 @@ namespace graphics
    index multiple_buffer::find_best_buffer(const ::size_i32 & size)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       bool bFoundExact = false;
 
@@ -303,7 +303,7 @@ namespace graphics
    bool multiple_buffer::buffer_lock_round_swap_key_buffers()
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       m_iDone = m_iBuffer;
 
@@ -347,7 +347,7 @@ namespace graphics
    bool multiple_buffer::update_window()
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       auto size = m_pimpl->m_puserinteraction->layout().design().size();
 
@@ -360,7 +360,7 @@ namespace graphics
 
       }
 
-      synchronization_lock slBuffer(get_screen_sync());
+      synchronous_lock slBuffer(get_screen_sync());
 
       return update_window(get_screen_image());
 

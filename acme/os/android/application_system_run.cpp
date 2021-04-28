@@ -66,8 +66,7 @@ namespace acme
    {
 
 
-
-      //string strPrgName = psystem->m_strAppId;
+      //string strPrgName = psystem->m_XstrAppId;
 
       //strPrgName.replace("/", ".");
 
@@ -75,11 +74,11 @@ namespace acme
 
       //psystem->m_strProgName = "com." + strPrgName;
 
-      //::set_main_hthread(psystem->m_hthread);
+      //::set_main_hthread(psystem->m_htask);
 
       //::set_main_ithread(psystem->m_uThread);
 
-      //// System->m_strAppId = m_pmaindata->m_strAppId;
+      //// ::acme::get_system()->m_XstrAppId = m_pmaindata->m_XstrAppId;
 
       //if (!psystem->begin_synch())
       //{

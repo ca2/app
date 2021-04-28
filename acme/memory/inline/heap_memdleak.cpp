@@ -85,7 +85,7 @@ void * unaligned_memory_alloc(size_t size)
 
    pblock->m_size = nAllocSize;
 
-   synchronization_lock lock(g_pmutgen);
+   synchronous_lock lock(g_pmutgen);
 
    pblock->m_pprevious = nullptr;
 
@@ -224,7 +224,7 @@ void * memory_realloc_dbg(void * pmemory, size_t size, i32 nBlockUse, const char
 
    memdleak_block * pblock = &((memdleak_block *)pmemory)[-1];
 
-   synchronization_lock lock(g_pmutgen);
+   synchronous_lock lock(g_pmutgen);
    if (s_pmemdleakList == pblock)
    {
       s_pmemdleakList = s_pmemdleakList->m_pnext;
@@ -328,7 +328,7 @@ void * memory_realloc_dbg(void * pmemory, size_t size, i32 nBlockUse, const char
 
    pblock->m_size = nAllocSize;
 
-//   synchronization_lock lock(g_pmutgen);
+//   synchronous_lock lock(g_pmutgen);
 
    pblock->m_pprevious = nullptr;
 
@@ -375,7 +375,7 @@ void memory_free_dbg(void * pmemory, i32 iBlockType)
 
    memdleak_block * pblock = &((memdleak_block *)pmemory)[-1];
 
-   synchronization_lock lock(g_pmutgen);
+   synchronous_lock lock(g_pmutgen);
 
    if (s_pmemdleakList == pblock)
    {
@@ -726,7 +726,7 @@ void memdleak_dump()
    output_debug_string(sz);
    output_debug_string(" memory leaks.");
 
-   //file_put_contents(::dir::system() / "m.html", get_mem_info_report1());
+   //file_put_contents(pacmedir->system() / "m.html", get_mem_info_report1());
 }
 
 #undef print

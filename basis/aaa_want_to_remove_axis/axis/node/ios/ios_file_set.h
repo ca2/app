@@ -17,7 +17,7 @@ namespace ios
       ::file::listing   m_straFile;
       
       
-      file_set(::layered * pobjectContext);
+      file_set(::object * pobject);
       virtual ~file_set();
       
       

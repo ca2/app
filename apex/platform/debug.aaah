@@ -296,18 +296,18 @@ struct MEMORY_BLOCK_HEADER;
 
 //extern CLASS_DECL_APEX ::mutex * g_pmutexMemoryCounters;
 
-//CLASS_DECL_APEX bool memcnts();
+//CLASS_DECL_APEX bool memory_counter_on();
 
-//CLASS_DECL_APEX ::file::path memcnts_base_path();
-
-template < typename T >
-::file::path memcnts_path(T * pthis);
+//CLASS_DECL_APEX ::file::path memory_counter_base_path();
 
 template < typename T >
-void memcnts_inc(T * pthis);
+::file::path memory_counter_path(T * pthis);
 
 template < typename T >
-void memcnts_dec(T * pthis);
+void memory_counter_increment(T * pthis);
+
+template < typename T >
+void memory_counter_decrement(T * pthis);
 
 
 //namespace papaya

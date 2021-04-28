@@ -52,7 +52,7 @@
 
                frame::on_initialize_experience_frame();
 
-               auto psession = Session;
+               auto psession = get_session();
 
                auto pframewindow = m_pframewindow;
 
@@ -233,7 +233,7 @@ SizingNone:;
 
                }
 
-               auto psession = Session;
+               auto psession = get_session();
 
                status < ::color::color > crMoveableBorder;
                status < ::color::color > crMoveableBorderHilight;
@@ -289,8 +289,8 @@ SizingNone:;
 
                   ::rectangle_i32 rectangle;
                   GetBorderRect(rectClient, rectangle, eside);
-                  class imaging & imaging = System->imaging();
-                  imaging.color_blend(pgraphics,
+
+                  pgraphics->color_blend(
                                       rectangle,
                                       crMoveableBorder,
                                       127);
@@ -351,7 +351,7 @@ SizingNone:;
                bool bZoomed = pframewindow->layout().is_zoomed();
 
                //    CVMSApp * pApp = (CVMSApp *) System;
-               //::aura::savings & savings = psession->savings();
+               //::aura::savings & savings = psession->m_paurasession->savings();
 
                //auto rectClient = pframewindow->get_client_rect();
 
@@ -481,7 +481,7 @@ SizingNone:;
             void frame_005::Draw3dRectSide(::draw2d::graphics_pointer & pgraphics,const ::rectangle_i32 & rectParam,enum_border eborder,const ::color::color & colorTopLeft, const ::color::color& colorBottomRight)
             {
 
-               auto psession = Session;
+               auto psession = get_session();
 
                ::rectangle_i32 rectangle(rectParam);
                i32 x = rectangle.left;
@@ -496,7 +496,7 @@ SizingNone:;
 
                   rectDraw = ::rect_dim(x, y, cx, 1);
 
-                  if(psession->savings().is_trying_to_save(::e_resource_processing))
+                  if(psession->m_paurasession->savings().is_trying_to_save(::e_resource_processing))
                   {
 
                      pgraphics->fill_rectangle(rectDraw, colorTopLeft);
@@ -515,7 +515,7 @@ SizingNone:;
 
                   rectDraw = ::rect_dim(x, y + 1, 1, cy - 2);
 
-                  if(psession->savings().is_trying_to_save(::e_resource_processing))
+                  if(psession->m_paurasession->savings().is_trying_to_save(::e_resource_processing))
                   {
 
                      pgraphics->fill_rectangle(rectDraw, colorTopLeft);
@@ -535,7 +535,7 @@ SizingNone:;
 
                   rectDraw = ::rect_dim(x + cx - 1, y + 1, 1, cy - 2);
 
-                  if(psession->savings().is_trying_to_save(::e_resource_processing))
+                  if(psession->m_paurasession->savings().is_trying_to_save(::e_resource_processing))
                   {
 
                      pgraphics->fill_rectangle(rectDraw, colorBottomRight);
@@ -555,7 +555,7 @@ SizingNone:;
 
                   rectDraw = ::rect_dim(x, y + cy - 1, cx, 1);
 
-                  if(psession->savings().is_trying_to_save(::e_resource_processing))
+                  if(psession->m_paurasession->savings().is_trying_to_save(::e_resource_processing))
                   {
 
                      pgraphics->fill_rectangle(rectDraw, colorBottomRight);
@@ -723,7 +723,7 @@ SizingNone:;
 
                ::rectangle_i32 rectangle(rectParam);
 
-               auto psession = Session;
+               auto psession = get_session();
 
                auto pframewindow = m_pframewindow;
 

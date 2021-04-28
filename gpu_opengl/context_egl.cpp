@@ -17,6 +17,13 @@ namespace opengl
 
    context_egl::context_egl()
    {
+      if (glewInit() != GLEW_NO_ERROR)
+      {
+         //cout << "Failed to initialize GLEW... " << endl;
+         //return -1;
+
+      }
+
 
       m_emode = e_mode_egl;
 
@@ -33,7 +40,9 @@ namespace opengl
    ::e_status context_egl::_create_offscreen_buffer(const ::size_i32 & size)
    {
 
-      auto pgpu = System->get_gpu();
+      auto psystem = m_psystem->m_paurasystem;
+
+      auto pgpu = psystem->get_gpu();
 
       __pointer(opengl) popengl = pgpu;
 
@@ -61,7 +70,7 @@ namespace opengl
 
       };
 
-      //synchronization_lock synchronizationlock(x11_mutex());
+      //synchronous_lock synchronouslock(x11_mutex());
 
       //xdisplay display(x11_get_display());
 

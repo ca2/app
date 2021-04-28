@@ -57,7 +57,7 @@ public:
    virtual bool child_running(::matter * pobject) const;
    virtual void child_post_quit(const char * pszTag);
    virtual void child_post_quit_and_wait(const char * pszTag, const duration & duration);
-   virtual bool thread_get_run();
+   virtual bool task_get_run();
 
    virtual void defer_update_object_id();
    virtual ::id calc_default_object_id() const;
@@ -134,9 +134,9 @@ public:
    virtual ::image_pointer load_dib(const ::file::path & pathDib);
 
 
-   virtual void start_clock(e_clock eclock, duration duration);
-   virtual void _task_clock(e_clock eclock, duration duration);
-   virtual void on_clock(e_clock eclock);
+   virtual void start_clock(e_clock etimer, duration duration);
+   virtual void _task_clock(e_clock etimer, duration duration);
+   virtual void on_clock(e_clock etimer);
 
    bool IsSerializable() const;
 

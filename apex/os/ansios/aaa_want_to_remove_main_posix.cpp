@@ -25,11 +25,11 @@ int main_posix(int argc, char* argv[])
 
    }
 
-   Application.m_estatus = ::undefined;
+   get_application()->m_estatus = ::undefined;
 
    (*papexmain)();
 
-   int iStatus = (int)Application.m_estatus;
+   int iStatus = (int)get_application()->m_estatus;
 
    int iError = 0;
 

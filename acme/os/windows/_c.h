@@ -14,12 +14,12 @@
 CLASS_DECL_ACME char get_drive_letter(const char * pDevicePath);
 
 
-CLASS_DECL_ACME void set_main_hthread(hthread_t hthread);
-CLASS_DECL_ACME void set_main_ithread(ithread_t ithread);
+CLASS_DECL_ACME void set_main_hthread(htask_t htask);
+CLASS_DECL_ACME void set_main_ithread(itask_t itask);
 
 
-CLASS_DECL_ACME hthread_t get_main_hthread();
-CLASS_DECL_ACME ithread_t get_main_ithread();
+CLASS_DECL_ACME htask_t get_main_hthread();
+CLASS_DECL_ACME itask_t get_main_ithread();
 
 
 //CLASS_DECL_ACME HMONITOR GetUiMonitorHandle(HWND hwnd);

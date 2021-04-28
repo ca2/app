@@ -39,8 +39,8 @@ namespace windowing
    //CLASS_DECL_ACME oswindow_data * oswindow_get(Window window);
    //CLASS_DECL_ACME oswindow_data * oswindow_defer_get(Display * pdisplay, Window window);
    //CLASS_DECL_ACME ::windowing::window * pwindow_defer_get(Window w);
-   //CLASS_DECL_ACME bool oswindow_remove(Display * pdisplay, Window window);
-   //CLASS_DECL_ACME bool oswindow_remove_message_only_window(::user::interaction_impl * puibaseMessageOnlyWindow);
+   //CLASS_DECL_ACME bool oswindow_erase(Display * pdisplay, Window window);
+   //CLASS_DECL_ACME bool oswindow_erase_message_only_window(::user::interaction_impl * puibaseMessageOnlyWindow);
 
 } // namespace windowing
 
@@ -69,7 +69,7 @@ namespace windowing
 //#include "message_box.h"
 
 
-#include "cursor_set.h"
+#include "cursor_manager.h"
 
 #include "windowing.h"
 

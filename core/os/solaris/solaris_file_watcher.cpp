@@ -70,7 +70,7 @@ namespace file_watcher
       {
          delete ppair->element2();
       }
-      m_watchmap.remove_all();
+      m_watchmap.erase_all();
    }
 
    //--------
@@ -136,14 +136,14 @@ namespace file_watcher
    }
 
    //--------
-   void os_file_watcher::remove_watch(const vsstring & directory)
+   void os_file_watcher::erase_watch(const vsstring & directory)
    {
       WatchMap::pair * ppair = m_watchmap.get_start();
       for(; ppair != nullptr; ppair = m_watchmap.get_next(ppair))
       {
          if(directory == ppair->element2()->m_strDirName)
          {
-            remove_watch(ppair->element1());
+            erase_watch(ppair->element1());
             return;
          }
       }
@@ -151,7 +151,7 @@ namespace file_watcher
    }
 
    //--------
-   void os_file_watcher::remove_watch(id watchid)
+   void os_file_watcher::erase_watch(id watchid)
    {
       WatchMap::pair * ppair = m_watchmap.plookup(watchid);
 
@@ -159,7 +159,7 @@ namespace file_watcher
          return;
 
       watch_struct* watch = ppair->element2();
-      m_watchmap.remove_key(ppair->element1());
+      m_watchmap.erase_key(ppair->element1());
 
       inotify_rm_watch(mFD, watchid);
 

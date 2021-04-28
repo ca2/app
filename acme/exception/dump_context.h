@@ -11,7 +11,7 @@ public:
    virtual ~dump_context();
 
 
-   virtual void finalize() override;
+   virtual ::e_status finalize() override;
 
 
    i32 GetDepth() const;      // 0 => this matter, 1 => children objects

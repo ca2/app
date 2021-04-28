@@ -378,7 +378,9 @@ namespace user
 
          ::draw2d::brush_pointer br(e_create);
 
-         m_dPosition = ::sin((::aura::get_system()->math().GetPi() / 2.0) * dRate);
+         auto pmathematics = ::mathematics::mathematics();
+
+         m_dPosition = ::sin((pmathematics->get_pi() / 2.0) * dRate);
 
          double dRate = m_dPosition;
 

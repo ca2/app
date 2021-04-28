@@ -27,6 +27,10 @@ namespace xml
       document(parse_info * pparseinfo = nullptr, string_to_string * pentitiesHash = nullptr);
       virtual ~document();
 
+
+      virtual ::e_status initialize_matter(::matter* matter);
+      
+
       inline void ensure_root()
       {
 
@@ -74,7 +78,6 @@ virtual ::stream & read(::stream & stream) override;*/
 
 
 
-inline __pointer(::xml::document) create_xml_document() { return ::__create_new < xml::document >(); }
 
 
 

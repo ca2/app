@@ -14,7 +14,7 @@
 namespace aura
 {
 
-//   application::application(::layered * pobjectContext) :
+//   application::application(::object * pobject) :
 //      ::object(pobject)
 //   {
 //
@@ -354,7 +354,7 @@ namespace aura
 //      // versions of ca2 API, this memory was never freed.  In this and future
 //      // versions this memory is automatically freed during application's
 //      // destructor.  If you are freeing the memory yourself, you should
-//      // either remove the code or set the pointers to nullptr after freeing
+//      // either erase the code or set the pointers to nullptr after freeing
 //      // the memory.
 //
 //      // get path of executable
@@ -384,7 +384,7 @@ namespace aura
 //      // get the exe title from the full path name [no extension]
 //      //strExeName = ::aura::get_system()->get_module_title();
 //
-//      m_hthread      =  ::GetCurrentThread();
+//      m_htask      =  ::GetCurrentThread();
 //
 //   }
 
@@ -436,7 +436,7 @@ namespace aura
 //   }
 
 
-//   ithread_t application::get_thread_id()
+//   itask_t application::get_thread_id()
 //   {
 //
 //      return ::pthread_self();
@@ -458,7 +458,7 @@ namespace aura
 //
 //      string strCmdLine          = pdata->m_strCommandLine;
 //
-//      get_context_application()->SetCurrentHandles();
+//      get_application()->SetCurrentHandles();
 //
 //      return true;
 //
@@ -505,11 +505,13 @@ namespace aura
       try
       {
 
-         auto pnode = Node;
+         auto psystem = m_psystem;
 
-         auto papp = this;
+         auto pnode = psystem->node()->m_papexnode;
 
-         ::file::path path = pnode->get_desktop_file_path(papp);
+         auto papplication = get_application();
+
+         ::file::path path = pnode->get_desktop_file_path(papplication);
 
          if(path.has_char() && !file_exists(path))
          {
@@ -528,7 +530,7 @@ namespace aura
       catch(...)
       {
 
-         TRACE("Could not create .desktop shortcut file for the Linux Application for the current user.");
+         TRACE("Could not create .desktop shortcut file for the Linux papplication for the current user.");
 
       }
 

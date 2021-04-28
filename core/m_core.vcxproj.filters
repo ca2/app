@@ -231,7 +231,7 @@
     <ClInclude Include="user\userex\userex_form_frame.h">
       <Filter>Header Files\user\userex</Filter>
     </ClInclude>
-    <ClInclude Include="user\userex\aaa_want_to_remove_userex_form_update_hint.h">
+    <ClInclude Include="user\userex\aaa_want_to_erase_userex_form_update_hint.h">
       <Filter>Header Files\user\userex</Filter>
     </ClInclude>
     <ClInclude Include="user\userex\userex_form_view.h">
@@ -423,7 +423,7 @@
     <ClInclude Include="user\user\user_tab_view.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
-    <ClInclude Include="user\user\aaa_want_to_remove_user_tab_view_update_hint.h">
+    <ClInclude Include="user\user\aaa_want_to_erase_user_tab_view_update_hint.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
     <ClInclude Include="user\user\user_template.h">
@@ -588,7 +588,7 @@
     <ClInclude Include="filesystem\filemanager\filemanager_impact.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
     </ClInclude>
-    <ClInclude Include="filesystem\filemanager\aaa_want_to_remove_filemanager_update_hint.h">
+    <ClInclude Include="filesystem\filemanager\aaa_want_to_erase_filemanager_update_hint.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
     </ClInclude>
     <ClInclude Include="filesystem\filemanager\filemanager_const.h">
@@ -615,7 +615,7 @@
     <ClInclude Include="filesystem\filemanager\filemanager_form_document.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
     </ClInclude>
-    <ClInclude Include="filesystem\filemanager\aaa_want_to_remove_filemanager_form_update_hint.h">
+    <ClInclude Include="filesystem\filemanager\aaa_want_to_erase_filemanager_form_update_hint.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
     </ClInclude>
     <ClInclude Include="filesystem\filemanager\filemanager_form_view.h">
@@ -934,7 +934,7 @@
     <ClCompile Include="user\userex\userex_form_frame.cpp">
       <Filter>Source Files\user\userex</Filter>
     </ClCompile>
-    <ClCompile Include="user\userex\aaa_want_to_remove_userex_form_update_hint.cpp">
+    <ClCompile Include="user\userex\aaa_want_to_erase_userex_form_update_hint.cpp">
       <Filter>Source Files\user\userex</Filter>
     </ClCompile>
     <ClCompile Include="user\userex\userex_form_view.cpp">
@@ -1132,7 +1132,7 @@
     <ClCompile Include="user\user\user_tab_view.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\user\aaa_want_to_remove_user_tab_view_update_hint.cpp">
+    <ClCompile Include="user\user\aaa_want_to_erase_user_tab_view_update_hint.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
     <ClCompile Include="user\user\user_toolbar.cpp">
@@ -1276,7 +1276,7 @@
     <ClCompile Include="filesystem\filemanager\filemanager_impact.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\filemanager\aaa_want_to_remove_filemanager_update_hint.cpp">
+    <ClCompile Include="filesystem\filemanager\aaa_want_to_erase_filemanager_update_hint.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\filemanager\filemanager_context_menu.cpp">
@@ -1303,7 +1303,7 @@
     <ClCompile Include="filesystem\filemanager\filemanager_form_document.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\filemanager\aaa_want_to_remove_filemanager_form_update_hint.cpp">
+    <ClCompile Include="filesystem\filemanager\aaa_want_to_erase_filemanager_form_update_hint.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\filemanager\filemanager_form_view.cpp">
@@ -1366,7 +1366,7 @@
     <ClCompile Include="filesystem\userfs\userfs_document.cpp">
       <Filter>Source Files\filesystem\userfs</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\userfs\aaa_want_to_remove_userfs_update_hint.cpp">
+    <ClCompile Include="filesystem\userfs\aaa_want_to_erase_userfs_update_hint.cpp">
       <Filter>Source Files\filesystem\userfs</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\userfs\userfs_userfs.cpp">

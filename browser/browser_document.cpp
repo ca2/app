@@ -5,7 +5,7 @@ namespace browser
 {
 
 
-   document::document(::layered * pobjectContext) :
+   document::document(::object * pobject) :
       object(pobject),
       ::data::data_container_base(pobject),
       ::user::document(pobject),
@@ -75,7 +75,7 @@ namespace browser
 
          {
 
-            synchronization_lock synchronizationlock(pview->mutex());
+            synchronous_lock synchronouslock(pview->mutex());
 
 /*            pview->m_prender->m_pimageImage = pimage;
 
@@ -87,7 +87,7 @@ namespace browser
 
          {
 
-            synchronization_lock slText(&pview->m_mutexText);
+            synchronous_lock slText(&pview->m_mutexText);
 
             pview->m_strHelloBrowser = "image:" + pview->m_strImage + "," + pview->m_strHelloBrowser;
 
@@ -95,8 +95,8 @@ namespace browser
 
       }
       else if(get_typed_view < ::user::plain_edit_view >() != nullptr
-              && Context.file().exists(varFile)
-              && (str = Context.file().as_string(varFile)).has_char())
+              && pcontext->m_papexcontext->file().exists(varFile)
+              && (str = pcontext->m_papexcontext->file().as_string(varFile)).has_char())
       {
 
          get_typed_view < ::user::plain_edit_view >()->_001SetText(str.Left(84),::e_source_user);

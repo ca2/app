@@ -22,7 +22,7 @@ namespace file
       "tooManyOpenFiles",
       "accessDenied",
       "invalidFile",
-      "removeCurrentDir",
+      "eraseCurrentDir",
       "directoryFull",
       "badSeek",
       "hardIO",
@@ -198,7 +198,7 @@ namespace file
       //
       //               if( OpenedFileInfo.dwPID == 4 )// system process
       //               {
-      //                  stInfo.csProcess = L"System";
+      //                  stInfo.csProcess = L"get_system()";
       //               }
       //               else
       //               {
@@ -436,7 +436,7 @@ namespace file
 //
 //      strFormat.Format("file exception: %hs, file %s, App error information = %s (%ld).\n", psz, (path.is_empty()) ? "Unknown" : path.c_str(), FormatMessageFromSystem(lOsError).c_str(), lOsError);
 //
-//      ::acme::application* papp = ::get_context_application();
+//      ::acme::application* papp = ::get_application();
 //
 //      TRACE(strFormat);
 //

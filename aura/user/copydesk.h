@@ -11,7 +11,7 @@ namespace user
    public:
 
 
-            enum e_op
+      enum e_op
       {
 
          op_copy,
@@ -36,8 +36,8 @@ namespace user
       virtual ~copydesk();
 
 
-      virtual ::e_status initialize(::layered * pobjectContext) override;
-      virtual void finalize() override;
+      virtual ::e_status initialize(::object * pobject) override;
+      virtual ::e_status finalize() override;
 
       /// pass nullptr to ppatha to probe if there is at least one existing
       /// directory or file in str parsed as multiline.

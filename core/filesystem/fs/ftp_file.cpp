@@ -12,7 +12,7 @@ ftpfs_file::ftpfs_file(::ftpfs * pftp, ::ftp::client_socket * pclient)
 
    m_pclient = pclient;
 
-   m_varFile = get_context()->file().time(get_context()->dir().time());
+   m_varFile = m_pclient->m_pcontext->m_papexcontext->file().time(m_pclient->m_pcontext->m_papexcontext->dir().time());
 
 }
 
@@ -64,7 +64,11 @@ retry:
 
    }
 
-   string strRemoteFile = System->url().get_object(m_filepath);
+   auto psystem = m_psystem->m_papexsystem;
+
+   auto purl = psystem->url();
+
+   string strRemoteFile = purl->get_object(m_filepath);
 
    if (!pclient->UploadFile(m_varFile, strRemoteFile))
    {

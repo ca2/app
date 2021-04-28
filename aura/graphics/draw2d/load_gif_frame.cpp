@@ -184,7 +184,7 @@ bool draw2d_gif_draw_frame(::image * pimageCanvas, image_frame_array * pframea, 
 //
 //   //   //   d->create(pframe->m_pimage->get_size());
 //
-//   //   //   Sys(pframe->m_pimage->get_context_application())->draw2d()->imaging()->channel_spread(f->get_graphics(),
+//   //   //   Sys(pframe->m_pimage->get_application())->draw2d()->imaging()->channel_spread(f->get_graphics(),
 //   //   //    nullptr, f->m_size, pimageCanvas.get_graphics(), nullptr, 3, 1);
 //
 //

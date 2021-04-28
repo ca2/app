@@ -17,17 +17,18 @@ inline ::user::interaction_impl * __interaction_impl(::windowing::window * pwind
 }
 
 
-
-
 namespace windowing
 {
 
 
    class CLASS_DECL_AURA windowing :
-      virtual public ::apex::department
+      virtual public ::acme::department
    {
    public:
 
+
+      void *                                    m_pWindowing;
+      void *                                    m_pWindowing2;
 
       ::point_i32                               m_pointCursor;
 
@@ -39,18 +40,18 @@ namespace windowing
 
 
       bool                                      m_bSettingCursorMatter;
-      __pointer(::windowing::cursor_set)   m_pcursorset;
-      __composite(::windowing::keyboard)   m_pkeyboard;
+      __pointer(::windowing::cursor_manager)    m_pcursormanager;
+      __composite(::windowing::keyboard)        m_pkeyboard;
 
 
 
-      __pointer(::windowing::cursor)       m_pcursor;
-      __pointer(::windowing::cursor)       m_pcursorCursor;
+      __pointer(::windowing::cursor)            m_pcursor;
+      __pointer(::windowing::cursor)            m_pcursorCursor;
       enum_cursor                               m_ecursorDefault;
       enum_cursor                               m_ecursor;
 
       bool                                      m_bDrawCursor;
-      __reference(::user::user)            m_puser;
+      __reference(::user::user)                 m_puser;
 
 
       windowing();
@@ -60,6 +61,11 @@ namespace windowing
       ::windowing::keyboard * keyboard();
 
 
+      inline ::aura::application* get_application() const;
+      inline ::aura::session* get_session() const;
+      inline ::aura::system* get_system() const;
+
+
       virtual ::e_status initialize_windowing(::user::user * puser);
 
       virtual void defer_term_ui();
@@ -67,7 +73,9 @@ namespace windowing
 
       virtual void finalize_windowing();
 
-      virtual void finalize();
+      virtual ::e_status finalize() override;
+
+      virtual ::e_status finish() override;
 
 
       virtual ::e_status start();
@@ -108,9 +116,9 @@ namespace windowing
       virtual ::extended::transport < ::windowing::icon > load_icon(const ::payload & payloadFile);
 
 
-      virtual void term1();
+      virtual ::e_status term1();
 
-      virtual void term2();
+      virtual ::e_status term2();
 
       virtual ::windowing::display * display();
 
@@ -154,7 +162,7 @@ namespace windowing
 
       virtual class window * new_window(::user::interaction_impl * pimpl);
 
-      virtual ::e_status remove_window(::windowing::window * pwindow);
+      virtual ::e_status erase_window(::windowing::window * pwindow);
 
       //virtual ::e_status hook(class hook * phook);
 
@@ -186,8 +194,8 @@ namespace windowing
       virtual ::e_status lock_set_foreground_window(bool bLock = true);
 
 
-      virtual ::e_status user_sync(const ::duration & duration, const ::routine & routine);
-      virtual ::e_status user_fork(const ::routine & routine);
+      virtual ::e_status windowing_sync(const ::duration & duration, const ::routine & routine);
+      virtual ::e_status windowing_branch(const ::routine & routine);
 
 
       virtual void _main_loop();
@@ -205,6 +213,31 @@ namespace windowing
 
 
 #endif
+
+
+      //virtual wstring _windows_register_window_class(::object* pobject, ::u32 nClassStyle, hcursor hCursor = 0, HBRUSH hbrBackground = 0, hicon hIcon = 0);
+      //CLASS_DECL_WINDOWING_WIN32 wstring windows_register_window_class(::object * pobject, ::u32 nClassStyle, hcursor hCursor = 0, HBRUSH hbrBackground = 0, hicon hIcon = 0);
+      //CLASS_DECL_WINDOWING_WIN32 bool windows_register_class(WNDCLASSEXW* puserinteractionclass);
+      //
+      virtual wstring _windows_calc_icon_window_class(::user::interaction* pinteraction, u32 dwDefaultStyle, const char* pszMatter);
+      virtual wstring _windows_get_user_interaction_window_class(::user::interaction* pinteraction);
+      //virtual bool _windows_register_with_icon(WNDCLASSEXW* puserinteractionclass, const unichar* pszClassName, ::u32 nIDIcon);
+
+      //virtual void _window_create_caret(HWND hwnd, HBITMAP hbitmap);
+      //virtual void _window_create_solid_caret(HWND hwnd, i32 nWidth, i32 nHeight);
+      //virtual void _window_create_gray_caret(HWND hwnd, i32 nWidth, i32 nHeight);
+
+
+      template < typename OBJECT_POINTER, typename OBJECT_METHOD, typename PAYLOAD_POINTER >
+      ::e_status windowing_sync(const ::duration & duration, OBJECT_POINTER pobject, OBJECT_METHOD object_method, PAYLOAD_POINTER ppayload)
+      {
+
+         return ::material_object::__sync_status_payload(duration, this, &windowing::windowing_branch, pobject, object_method, ppayload);
+
+      }
+
+
+      virtual ::e_status register_extended_event_listener(::matter * pdata, bool bMouse, bool bKeyboard);
 
 
    };

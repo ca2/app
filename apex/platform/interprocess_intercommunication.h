@@ -97,14 +97,19 @@
       // strTask - Task
       interprocess_map                                            m_mapTask;
 
+   protected:
 
-      interprocess_intercommunication(const string & strApp);
+      using object::initialize;
+
+   public:
+
+      interprocess_intercommunication();
       virtual ~interprocess_intercommunication();
 
 
-      virtual ::e_status initialize(::layered * pobjectContext) override;
+      virtual ::e_status initialize_interprocess_communication(::object * pobject, const string & strApp);
 
-      virtual void finalize() override;
+      virtual ::e_status finalize() override;
 
       virtual void defer_add_module(const string & strModule, const ::id & idPid);
 

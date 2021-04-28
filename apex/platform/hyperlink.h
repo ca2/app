@@ -7,7 +7,7 @@
 //public:
 //
 //
-//   hyperlink(::layered * pobjectContext);
+//   hyperlink(::object * pobject);
 //   virtual ~hyperlink();
 //
 //   virtual bool open_link(string strLink, string strProfile = "", string strTarget = "");

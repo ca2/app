@@ -333,7 +333,7 @@ bool image::create_isotropic(double_array & daRate, ::e_priority epriority)
    //for (const double & dRate : daRate)
    //{
 
-   //   pimageLast->m_pnext.alloc(get_object());
+   //   pimageLast->m_pnext.alloc(this);
 
    //   pimageLast = pimageLast->m_pnext;
 
@@ -343,7 +343,7 @@ bool image::create_isotropic(double_array & daRate, ::e_priority epriority)
 
    //}
 
-   //fork_count_end(get_context_application(), imagea.get_count(),
+   //fork_count_end(get_application(), imagea.get_count(),
    //               [&](index i)
    //{
 
@@ -368,7 +368,7 @@ bool image::create_isotropic(double_array & daRate, ::e_priority epriority)
 //
 //      ::image * pimage = this;
 //
-//      get_object()->fork([this, pimage, pathDib]()
+//      this->fork([this, pimage, pathDib]()
 //      {
 //
 //         pimage->save_dib(pathDib);
@@ -1555,13 +1555,15 @@ bool image::fork_blend(const ::point_i32 & pointDstParam, ::image * pimageSrc, c
 
    }
 
-   auto pgroup = ::aura::get_system()->thread_group();
+   __pointer(::aura::system) psystem = m_psystem;
 
-   synchronization_lock slGroup(pgroup->mutex());
+   auto pgroup = psystem->task_group();
 
-   auto ptool = ::aura::get_system()->thread_tool(::e_thread_tool_draw2d);
+   synchronous_lock slGroup(pgroup->mutex());
 
-   synchronization_lock slTool(ptool->mutex());
+   auto ptool = psystem->task_tool(::e_task_tool_draw2d);
+
+   synchronous_lock slTool(ptool->mutex());
 
    if(!pgroup || !ptool)
    {
@@ -1574,20 +1576,20 @@ bool image::fork_blend(const ::point_i32 & pointDstParam, ::image * pimageSrc, c
 
    pgroup->select_tool(ptool);
 
-   pgroup->prepare(::e_thread_op_tool, yEnd);
+   pgroup->prepare(::e_task_op_tool, yEnd);
 
    for(auto & ptoolitem : ptool->m_itema)
    {
 
-      __pointer(::draw2d::thread_tool_item) pitem = ptoolitem;
+      __pointer(::draw2d::task_tool_item) pitem = ptoolitem;
 
-      pitem->m_eop = ::draw2d::thread_tool_item::op_blend;
+      pitem->m_eop = ::draw2d::task_tool_item::op_blend;
 
       pitem->m_w = pimageSrc->width();
 
       pitem->m_h = pimageSrc->height();
 
-      pitem->m_ySkip = (int) (pgroup->thread_count());
+      pitem->m_ySkip = (int) (pgroup->task_count());
 
       pitem->m_y = y;
 
@@ -5239,65 +5241,92 @@ bool image::Rotate034(::image * pimage, double dAngle, double dScale)
    map();
    pimage->map();
 
-   i32 l = maximum(width(), height());
+   auto hdst = height();
+   auto wdst = width();
 
-   i32 jmax = minimum(l, height() / 2);
-   i32 jmin = -jmax;
-   i32 imax = minimum(l, width() / 2);
-   i32 imin = -imax;
+   auto hsrc = pimage->height();
+   auto wsrc = pimage->width();
 
-
-   if ((height() % 2) == 1)
-      jmax++;
-
-   if ((width() % 2) == 1)
-      imax++;
-
-   i32 joff = height() / 2;
-   i32 ioff = width() / 2;
-
-   int stride_unit = m_iScan / sizeof(color32_t);
-   i32 k = 0;
-   double dCos = ::cos(dAngle * pi() / 180.0) * dScale;
-   double dSin = ::sin(dAngle * pi() / 180.0) * dScale;
-   i32 cx1 = width() - 1;
-   i32 cy1 = height() - 1;
-   for (i32 j = jmin; j < jmax; j++)
+   if (hdst != hsrc)
    {
-      for (i32 i = imin; i < imax; i++)
+
+      output_debug_string("different height");
+
+   }
+
+   if (wdst != wsrc)
+   {
+
+      output_debug_string("different width");
+
+   }
+
+   auto hdstmid = hdst / 2.0;
+   auto wdstmid = wdst / 2.0;
+
+   i32 ihdstmid = (::i32) hdstmid;
+
+   auto hsrcmid = hsrc / 2.0;
+   auto wsrcmid = wsrc / 2.0;
+
+   //i32 l = maximum(w, h);
+
+   i32 jdstmin = (::i32) -hdstmid;
+   i32 jdstmax = jdstmin + hdst;
+   i32 idstmin = (::i32)-wdstmid;
+   i32 idstmax = idstmin + wdst;
+
+   i32 k = 0;
+   
+   double dCos = ::cos(dAngle * pi() / 180.0) * dScale;
+   
+   double dSin = ::sin(dAngle * pi() / 180.0) * dScale;
+
+   auto pdataSrc = pimage->get_data();
+
+   auto pdataDst = get_data();
+
+   int strideSrc = pimage->m_iScan / sizeof(color32_t);
+
+   int strideDst = m_iScan / sizeof(color32_t);
+
+   for (i32 jdst = jdstmin; jdst < jdstmax; jdst++)
+   {
+
+      int lineDst = (i32)(jdst + ihdstmid);
+
+      if (lineDst < 0)
       {
-         i32 x, y;
 
-         // A Combination of a 2d Translation/rotation/Scale Matrix
-         //x=abs((i32(dCos * i - dSin * j) + ioff) % width());
-         //y=abs((i32(dSin * i + dCos * j) + joff) % height());
+         output_debug_string("test");
 
-         x = (i32)fabs((dCos * i - dSin * j) + ioff);
-         y = (i32)fabs((dSin * i + dCos * j) + joff);
+      }
 
-         if ((x / width()) % 2 == 0)
+      color32_t * pline = pdataDst + (lineDst * strideDst);
+      
+      for (i32 idst = idstmin; idst < idstmax; idst++)
+      {
+
+         i32 xsrc, ysrc;
+
+         double dj = jdst;
+         double di = idst;
+
+         xsrc = (i32)((dCos * di - dSin * dj) + wsrcmid);
+         ysrc = (i32)((dSin * di + dCos * dj) + hsrcmid);
+
+         color32_t colorSrc = 0xff000000;
+
+         if(xsrc >= 0 && xsrc < wsrc && ysrc >= 0 && ysrc < hsrc)
          {
-            x %= width();
-         }
-         else
-         {
-            x = cx1 - (x % width());
+
+            colorSrc = pdataSrc[ysrc * strideSrc + xsrc];
+
          }
 
-         if ((y / height()) % 2 == 0)
-         {
-            y %= height();
-         }
-         else
-         {
-            y = cy1 - (y % height());
-         }
+         *pline = colorSrc;
 
-
-
-         get_data()[(j + joff)*stride_unit + (i + ioff)] =
-         pimage->get_data()[y * stride_unit + x];
-         k++;
+         pline++;
 
       }
 
@@ -8040,10 +8069,10 @@ bool image::set_mapped()
 }
 
 //
-//   bool image::update_window(::aura::draw_interface * pwnd,::message::message * pmessage,bool bTransferBuffer)
+//   bool image::update_window(::aura::draw_interface * puserinteraction,::message::message * pmessage,bool bTransferBuffer)
 //   {
 //
-//      UNREFERENCED_PARAMETER(pwnd);
+//      UNREFERENCED_PARAMETER(puserinteraction);
 //      UNREFERENCED_PARAMETER(pmessage);
 //
 //      // default implementation does nothing, image_impl should be now updated (before calling update interaction_impl)
@@ -8057,10 +8086,10 @@ bool image::set_mapped()
 //   }
 
 
-//bool image::print_window(::aura::draw_interface * pwnd,::message::message * pmessage)
+//bool image::print_window(::aura::draw_interface * puserinteraction,::message::message * pmessage)
 //{
 
-//   UNREFERENCED_PARAMETER(pwnd);
+//   UNREFERENCED_PARAMETER(puserinteraction);
 //   UNREFERENCED_PARAMETER(pmessage);
 
 //   ::exception::throw_interface_only();
@@ -8123,6 +8152,8 @@ bool image::gradient_fill(color32_t clr1, color32_t clr2, const point_i32 & poin
 
       ::image_pointer pimage;
 
+      auto pmathematics = ::mathematics::mathematics();
+
       if (fabs(dx) > fabs(dy))
       {
 
@@ -8176,7 +8207,7 @@ bool image::gradient_fill(color32_t clr1, color32_t clr2, const point_i32 & poin
 
          pimage->gradient_vertical_fill(clr1, clr2, point1.x, point2.x);
 
-         pimage->rotate(this, ::aura::get_system()->math().GetPi() - angle, 1.0);
+         pimage->rotate(this, pmathematics->get_pi() - angle, 1.0);
 
       }
 
@@ -8643,46 +8674,7 @@ bool image::on_exif_orientation()
 
 
 
-
-
-
-//bool image::load_image(const char * pszMatter, bool bCache, bool bCreateHelperMaps)
-//{
-//
-//   ::file::path path = Context.dir().matter(pszMatter);
-//
-//   return load_image(path, bCache, bCreateHelperMaps);
-//
-//}
-
-
-//bool image::read_from_pdata->m_file(file_pointer spfile)
-//{
-//
-//   if (!::aura::get_system()->imaging().LoadImageFromFile(this, spfile))
-//   {
-//
-//      m_eload = load_fail;
-//
-//      return false;
-//
-//   }
-//
-//   m_eload = load_ok;
-//
-//   return true;
-//
-//}
-
-
-//bool image::save_to_file(::payload varFile, save_image * psaveimage)
-//{
-//
-//   return write_to_file(varFile, psaveimage);
-//
-//}
-
-
+//save_image::save_image(::matter * pmatter)
 save_image::save_image()
 {
 
@@ -8695,58 +8687,62 @@ save_image::save_image()
 }
 
 
-save_image::save_image(const ::payload & varFile, const ::payload & varOptions)
-{
-
-   auto eformat = ::aura::get_system()->draw2d()->text_to_format(varOptions["format"]);
-
-   if (eformat != ::draw2d::format_none)
-   {
-
-      eformat = ::aura::get_system()->draw2d()->file_extension_to_format(varFile.get_file_path());
-
-   }
-
-   if (eformat == ::draw2d::format_none)
-   {
-
-      m_eformat = ::draw2d::format_png;
-
-   }
-
-   if (varOptions["quality"].get_type() == e_type_double
-      || varOptions["quality"].get_type() == e_type_float)
-   {
-
-      m_iQuality = (int) (varOptions["quality"].get_double() * 100.0);
-
-   }
-   else
-   {
-
-      m_iQuality = varOptions["quality"].i32();
-
-   }
-
-   if (m_iQuality == 0)
-   {
-
-      m_iQuality = 100;
-
-   }
-
-   m_iDpi = varOptions["dpi"];
-
-   if (m_iDpi == 0)
-   {
-
-      m_iDpi = 96;
-
-   }
-
-
-}
-
+//save_image::save_image(::matter * pmatter, const ::payload & varFile, const ::payload & varOptions)
+//{
+//
+//   __pointer(::aura::system) psystem = m_psystem;
+//
+//   auto eformat = pdraw2d->text_to_format(varOptions["format"]);
+//
+//   if (eformat != ::draw2d::format_none)
+//   {
+//
+//      __pointer(::aura::system) psystem = m_psystem;
+//
+//      eformat = pdraw2d->file_extension_to_format(varFile.get_file_path());
+//
+//   }
+//
+//   if (eformat == ::draw2d::format_none)
+//   {
+//
+//      m_eformat = ::draw2d::format_png;
+//
+//   }
+//
+//   if (varOptions["quality"].get_type() == e_type_double
+//      || varOptions["quality"].get_type() == e_type_float)
+//   {
+//
+//      m_iQuality = (int) (varOptions["quality"].get_double() * 100.0);
+//
+//   }
+//   else
+//   {
+//
+//      m_iQuality = varOptions["quality"].i32();
+//
+//   }
+//
+//   if (m_iQuality == 0)
+//   {
+//
+//      m_iQuality = 100;
+//
+//   }
+//
+//   m_iDpi = varOptions["dpi"];
+//
+//   if (m_iDpi == 0)
+//   {
+//
+//      m_iDpi = 96;
+//
+//   }
+//
+//
+//}
+//
 
 //bool image::load_matter_icon(string_array & straMatter, string strIcon)
 //{
@@ -8758,7 +8754,7 @@ save_image::save_image(const ::payload & varFile, const ::payload & varOptions)
 //
 //      path = strMatter;
 //
-//      path = Context.dir().matter(path / strIcon);
+//      path = pcontext->m_papexcontext->dir().matter(path / strIcon);
 //
 //      if (load_image(path))
 //      {
@@ -8779,7 +8775,7 @@ save_image::save_image(const ::payload & varFile, const ::payload & varOptions)
 //   bool image::from(class draw2d::graphics * pgraphics, struct FIBITMAP * pfi, bool bUnload)
 //   {
 //
-//      return ::aura::get_system()->imaging().from(m_p, pgraphics, pfi, bUnload);
+//      return psystem->imaging().from(m_p, pgraphics, pfi, bUnload);
 //
 //   }
 //
@@ -9232,7 +9228,7 @@ stream & image::read(::stream & stream)
 ::matter * image::clone() const
 {
 
-   auto pimage = __create<::image>();
+   auto pimage = ((::image *)this)->__create<::image>();
 
    pimage->copy(this);
 

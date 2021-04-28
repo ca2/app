@@ -29,7 +29,7 @@ namespace file
      dynamic_buffer(size_t size): buffer<T>(size) {};
      dynamic_buffer& operator=(const dynamic_buffer &buffer)
      {
-       this->remove_all();
+       this->erase_all();
        if (buffer.get_size() > 0)
        {
          this->SetCapacity(buffer.get_size());

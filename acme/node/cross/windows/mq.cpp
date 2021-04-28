@@ -8,7 +8,7 @@
 //#if defined(LINUX) // || defined(ANDROID)
 //
 //
-//bool apex_defer_process_x_message(hthread_t hthread,MESSAGE * pMsg,oswindow oswindow,bool bPeek);
+//bool apex_defer_process_x_message(htask_t htask,MESSAGE * pMsg,oswindow oswindow,bool bPeek);
 //
 //
 //#endif
@@ -65,7 +65,7 @@
 //
 //   }
 //
-//   synchronization_lock synchronizationlock(mutex());
+//   synchronous_lock synchronouslock(mutex());
 //
 //   m_messagea.add(message);
 //
@@ -87,7 +87,7 @@
 //
 //   }
 //
-//   synchronization_lock synchronizationlock(mutex());
+//   synchronous_lock synchronouslock(mutex());
 //
 //   while (true)
 //   {
@@ -102,7 +102,7 @@
 //
 //            m_bQuit = true;
 //
-//            m_messagea.remove_at(i);
+//            m_messagea.erase_at(i);
 //
 //            continue;
 //
@@ -113,7 +113,7 @@
 //
 //            *pMsg = msg.m_message;
 //
-//            m_messagea.remove_at(i);
+//            m_messagea.erase_at(i);
 //
 //            return true;
 //
@@ -149,11 +149,11 @@
 //
 //      {
 //
-//         synchronizationlock.unlock();
+//         synchronouslock.unlock();
 //
 //         m_eventNewMessage.wait();
 //
-//         synchronizationlock.lock();
+//         synchronouslock.lock();
 //
 //         m_eventNewMessage.ResetEvent();
 //
@@ -174,7 +174,7 @@
 //
 //   }
 //
-//   synchronization_lock synchronizationlock(mutex());
+//   synchronous_lock synchronouslock(mutex());
 //
 //   ::count count = m_messagea.get_count();
 //
@@ -191,7 +191,7 @@
 //         if(wRemoveMsg & PM_REMOVE)
 //         {
 //
-//            m_messagea.remove_at(i);
+//            m_messagea.erase_at(i);
 //
 //         }
 //
@@ -201,11 +201,11 @@
 //
 //   }
 //
-//   synchronizationlock.unlock();
+//   synchronouslock.unlock();
 //
 ////#if defined(LINUX) // || defined(ANDROID)
 ////
-////   if(apex_defer_process_x_message(hthread,pMsg,oswindow,!(wRemoveMsg & PM_REMOVE)))
+////   if(apex_defer_process_x_message(htask,pMsg,oswindow,!(wRemoveMsg & PM_REMOVE)))
 ////   {
 ////
 ////      return true;
@@ -222,15 +222,15 @@
 //::mutex * g_pmutexMq;
 //
 //
-//map < ithread_t, __pointer(message_queue) > * g_pmapMq;
+//map < itask_t, __pointer(message_queue) > * g_pmapMq;
 //
 //
-//message_queue * get_message_queue(ithread_t ithread, bool bCreate)
+//message_queue * get_message_queue(itask_t itask, bool bCreate)
 //{
 //
-//   synchronization_lock synchronizationlock(g_pmutexMq);
+//   synchronous_lock synchronouslock(g_pmutexMq);
 //
-//   auto p = g_pmapMq->plookup(ithread);
+//   auto p = g_pmapMq->plookup(itask);
 //
 //   if(p)
 //   {
@@ -248,21 +248,21 @@
 //
 //   auto pmq = __new(message_queue);
 //
-//   pmq->m_ithread = ithread;
+//   pmq->m_itask = itask;
 //
-//   g_pmapMq->set_at(ithread, pmq);
+//   g_pmapMq->set_at(itask, pmq);
 //
 //   return pmq;
 //
 //}
 //
 //
-//void clear_message_queue(ithread_t idthread)
+//void clear_message_queue(itask_t idthread)
 //{
 //
-//   synchronization_lock synchronizationlock(g_pmutexMq);
+//   synchronous_lock synchronouslock(g_pmutexMq);
 //
-//   g_pmapMq->remove_key(idthread);
+//   g_pmapMq->erase_key(idthread);
 //
 //}
 //
@@ -289,7 +289,7 @@
 //////
 //////   }
 //////
-//////   ithread_t idthread = pinteraction->m_pthreadUserInteraction->get_os_int();
+//////   itask_t idthread = pinteraction->m_pthreadUserInteraction->get_os_int();
 //////
 //////   auto pmq = ::get_message_queue(idthread, message.message != e_message_quit);
 //////
@@ -305,7 +305,7 @@
 ////}
 //
 //
-////CLASS_DECL_APEX int_bool mq_remove_window_from_all_queues(oswindow oswindow)
+////CLASS_DECL_APEX int_bool mq_erase_window_from_all_queues(oswindow oswindow)
 ////{
 ////
 //////   ::user::interaction * pinteraction = oswindow_interaction(oswindow);
@@ -317,14 +317,14 @@
 //////
 //////   }
 //////
-//////   if(pinteraction->get_context_application() == nullptr)
+//////   if(pinteraction->get_application() == nullptr)
 //////   {
 //////
 //////      return false;
 //////
 //////   }
 //////
-//////   ithread_t idthread = pinteraction->get_context_application()->get_os_int();
+//////   itask_t idthread = pinteraction->get_application()->get_os_int();
 //////
 //////   message_queue * pmq = __get_mq(idthread, false);
 //////
@@ -335,9 +335,9 @@
 //////
 //////   }
 //////
-//////   synchronization_lock ml(&pmq->m_mutex);
+//////   synchronous_lock ml(&pmq->m_mutex);
 //////
-//////   pmq->m_messagea.predicate_remove([=](MESSAGE & item)
+//////   pmq->m_messagea.predicate_erase([=](MESSAGE & item)
 //////   {
 //////
 //////      return item.hwnd == oswindow;
@@ -349,7 +349,7 @@
 ////}
 ////
 //
-//CLASS_DECL_ACME void mq_clear(ithread_t idthread)
+//CLASS_DECL_ACME void mq_clear(itask_t idthread)
 //{
 //
 //   auto pmq = ::get_message_queue(idthread, false);
@@ -361,14 +361,14 @@
 //
 //   }
 //
-//   synchronization_lock ml(g_pmutexMq);
+//   synchronous_lock ml(g_pmutexMq);
 //
-//   pmq->m_messagea.remove_all();
+//   pmq->m_messagea.erase_all();
 //
 //}
 //
 //
-//int_bool mq_post_thread_message(ithread_t idthread, const ::id & id, wparam wparam, lparam lparam)
+//int_bool mq_post_thread_message(itask_t idthread, const ::id & id, wparam wparam, lparam lparam)
 //{
 //
 //   if (id.m_etype != ::id::e_type_message)
@@ -450,7 +450,7 @@
 //
 //   g_pmutexMq = new mutex();
 //
-//   g_pmapMq = new map < ithread_t, __pointer(message_queue) >();
+//   g_pmapMq = new map < itask_t, __pointer(message_queue) >();
 //
 //}
 //

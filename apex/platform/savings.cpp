@@ -16,10 +16,10 @@ namespace apex
    }
 
 
-   ::e_status savings::initialize(::layered * pobjectContext)
+   ::e_status savings::initialize(::object * pobject)
    {
 
-      auto estatus = ::object::initialize(pobjectContext);
+      auto estatus = ::object::initialize(pobject);
 
       if (!estatus)
       {
@@ -52,7 +52,7 @@ namespace apex
    void savings::use(enum_resource eresource)
    {
 
-      m_eresourceflagsShouldSave.remove(eresource);
+      m_eresourceflagsShouldSave.erase(eresource);
 
    }
 
@@ -60,7 +60,7 @@ namespace apex
    void savings::may_use(enum_resource eresource)
    {
 
-      m_eresourceflagsShouldSave.remove(eresource);
+      m_eresourceflagsShouldSave.erase(eresource);
 
    }
 
@@ -92,7 +92,7 @@ namespace apex
    void savings::clear_warning(enum_resource eresource)
    {
 
-      m_eresourceflagsWarning.remove(eresource);
+      m_eresourceflagsWarning.erase(eresource);
 
    }
 

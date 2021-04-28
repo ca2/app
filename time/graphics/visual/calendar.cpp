@@ -23,7 +23,7 @@ namespace datetime
       }
 
 
-      ::e_status graphics::initialize(::layered * pobjectContext)
+      ::e_status graphics::initialize(::object * pobject)
       {
 
          return ::success;
@@ -51,7 +51,7 @@ namespace datetime
             //pgraphics->Draw3dRect(rectDay, crBorder, crBorder);
             rectDay.deflate(m_iColWidth / 10,m_iLineHeight / 10);
             string strDay;
-            strDay.Format("%s",GetTinyWeekDay(pgraphics->str_context(),iDay));
+            strDay.Format("%s",GetTinyWeekDay(pgraphics->textcontext(),iDay));
             pgraphics->draw_text(strDay,rectDay,e_align_bottom_right);
          }
          for(iDay = 1; iDay <= 33; iDay++)
@@ -123,7 +123,7 @@ namespace datetime
          pgraphics->set(m_pfontMonth);
          GetRect(rectangle,e_element_month_title);
          string strMonth;
-         strMonth = GetMonth(pgraphics->str_context(),iMonth);
+         strMonth = GetMonth(pgraphics->textcontext(),iMonth);
          pgraphics->draw_text(strMonth,rectangle,e_align_center);
 
          pgraphics->set(m_pfontSpin);
@@ -207,7 +207,7 @@ namespace datetime
          for (int iElement = e_element_none + 1; iElement < e_element_count; iElement++)
          {
 
-            if (hit_test((enum_element)iElement, point_i32))
+            if (hit_test((enum_element)iElement, point))
             {
 
                return (enum_element)iElement;

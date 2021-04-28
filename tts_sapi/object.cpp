@@ -61,14 +61,14 @@ namespace draw2d_gdiplus
    void object::dump(dump_context & dumpcontext) const
    {
 
-      ::context_object::dump(dumpcontext);
+      ::object::dump(dumpcontext);
 
    }
 
 
    void object::assert_valid() const
    {
-      ::context_object::assert_valid();
+      ::object::assert_valid();
       //ASSERT(get_handle() == nullptr ||
       // (afxData.bWin95 || ::GetObjectType(get_handle()) != 0));
    }

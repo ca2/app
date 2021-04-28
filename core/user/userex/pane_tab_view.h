@@ -29,12 +29,21 @@ namespace userex
       virtual ~pane_tab_view();
 
 
+
+
       virtual void install_message_routing(::channel * pchannel) override;
 
 
-      DECL_GEN_SIGNAL(on_message_create);
-      DECL_GEN_SIGNAL(_001OnFileSaveAs);
-      DECL_GEN_SIGNAL(_001OnUpdateFileSaveAs);
+      inline ::core::application* get_application() const { return m_pcontext ? m_pcontext->m_pcoreapplication : nullptr; }
+      inline ::core::session* get_session() const { return m_pcontext ? m_pcontext->m_pcoresession : nullptr; }
+      inline ::core::system* get_system() const { return m_psystem ? m_psystem->m_pcoresystem : nullptr; }
+      inline ::core::user* user() const { return get_session() ? get_session()->user() : nullptr; }
+
+
+
+      DECLARE_MESSAGE_HANDLER(on_message_create);
+      DECLARE_MESSAGE_HANDLER(_001OnFileSaveAs);
+      DECLARE_MESSAGE_HANDLER(_001OnUpdateFileSaveAs);
 
 
       virtual void _001OnRemoveTab(::user::tab_pane * ptab) override;

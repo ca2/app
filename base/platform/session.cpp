@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "base/user/experience/_experience.h"
-#include "apex/platform/static_setup.h"
+#include "acme/platform/static_setup.h"
 
 
 namespace base
@@ -23,10 +23,10 @@ namespace base
    }
 
 
-   ::e_status session::initialize(::layered * pobjectContext)
+   ::e_status session::initialize(::object * pobject)
    {
 
-      auto estatus = ::axis::session::initialize(pobjectContext);
+      auto estatus = ::axis::session::initialize(pobject);
 
       if (!estatus)
       {
@@ -43,7 +43,7 @@ namespace base
 
       m_bShowPlatform                  = false;
 
-      m_pappCurrent                    = nullptr;
+      m_papplicationCurrent                    = nullptr;
 
       m_puiMouseMoveCapture = nullptr;
 
@@ -51,6 +51,16 @@ namespace base
 
    }
 
+
+   void session::on_instantiate_application(::apex::application* papp)
+   {
+
+      ::axis::session::on_instantiate_application(papp);
+
+      papp->m_pbasesession = this;
+      papp->m_pbasesystem = m_pbasesystem;
+
+   }
 
 
    __namespace_session_factory(session);

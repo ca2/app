@@ -13,7 +13,7 @@ namespace sphere
 
       
 
-      main_frame(::layered * pobjectContext);
+      main_frame(::object * pobject);
       virtual ~main_frame();
 
 

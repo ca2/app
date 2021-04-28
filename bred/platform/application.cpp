@@ -8,16 +8,11 @@ namespace bred
    application::application()
    {
 
-      m_paquaapplication = this;
-
    }
 
 
    application::~application()
    {
-
-
-      m_paquaapplication = nullptr;
 
    }
 
@@ -29,10 +24,10 @@ namespace bred
    }
 
 
-   ::e_status application::initialize(::layered * pobjectContext)
+   ::e_status application::initialize(::object * pobject)
    {
 
-      auto estatus = ::apex::application::initialize(pobjectContext);
+      auto estatus = ::apex::application::initialize(pobject);
 
       if (!estatus)
       {

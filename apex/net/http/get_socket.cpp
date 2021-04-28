@@ -7,16 +7,9 @@ namespace http
 {
 
 
-   get_socket::get_socket(::sockets::socket_handler & handler, const string & url) :
-      ::object(&handler),
-      ::sockets::base_socket(handler),
-      ::sockets::socket(handler),
-      ::sockets::stream_socket(handler),
-      ::sockets::tcp_socket(handler),
-      ::sockets::http_socket(handler),
-      ::sockets::http_tunnel(handler),
-      ::sockets::http_client_socket(handler, url),
-      ::sockets::http_get_socket(handler, url)
+   get_socket::get_socket(const string & url) :
+      ::sockets::http_client_socket(url),
+      ::sockets::http_get_socket(url)
    {
 
       m_pcookies = nullptr;
@@ -24,15 +17,9 @@ namespace http
    }
 
       
-   get_socket::get_socket(::sockets::socket_handler & handler, const string & host, port_t port, const string & url) :
-      ::sockets::base_socket(handler),
-      ::sockets::socket(handler),
-      ::sockets::stream_socket(handler),
-      ::sockets::tcp_socket(handler),
-      ::sockets::http_socket(handler),
-      ::sockets::http_tunnel(handler),
-      ::sockets::http_client_socket(handler, url),
-      ::sockets::http_get_socket(handler, host, port, url)
+   get_socket::get_socket(const string & host, port_t port, const string & url) :
+      ::sockets::http_client_socket(url),
+      ::sockets::http_get_socket(host, port, url)
    {
 
       m_pcookies = nullptr;

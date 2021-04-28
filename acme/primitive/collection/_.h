@@ -67,7 +67,7 @@ bool CompareElements(const TYPE * pElement1, const ARG_TYPE pElement2)
 
 
 
-//#include "iterator.h"
+#include "single.h"
 
 #include "pair.h"
 
@@ -178,8 +178,12 @@ public:
 #include "map_association.h"
 
 
+#include "set.h"
+
+
 #include "map.h"
-//#include "event_map.h"
+
+
 #include "attrib_map.h"
 #include "int_map.h"
 #include "string_map.h"
@@ -251,6 +255,15 @@ inline string ___type_str()
 }
 
 #define __type_str(TYPE) ::___type_str < TYPE >()
+
+
+#include "acme/graphics/draw2d/_const.h"
+
+
+#include "acme/graphics/draw2d/opacity.h"
+
+
+#include "acme/graphics/draw2d/color.h"
 
 
 #include "acme/primitive/primitive/payload.h"

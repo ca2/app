@@ -239,7 +239,7 @@
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>_AURA_LIBRARY;USE_OS_IMAGE_LOADER;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-windows/$(PlatformName)/$(Configuration)/include;$(__archive)third-windows/include;$(__archive)third-windows/third/include;$(__archive)third-windows/third/include/include;$(SolutionDir)../../../archive/platform-windows;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source/app;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-windows/$(PlatformName)/$(Configuration)/include;$(__archive)third-windows/include;$(__archive)third-windows/third/include;$(__archive)third-windows/third/include/include;$(SolutionDir)../../../archive/platform-windows;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <StringPooling>false</StringPooling>
       <ExceptionHandling>Async</ExceptionHandling>
@@ -318,7 +318,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>CUBE;_AURA_LIBRARY;USE_OS_IMAGE_LOADER;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-windows/$(PlatformName)/$(Configuration)/include;$(__archive)third-windows/include;$(__archive)third-windows/third/include;$(__archive)third-windows/third/include/include;$(SolutionDir)../../../archive/platform-windows;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source/app;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-windows/$(PlatformName)/$(Configuration)/include;$(__archive)third-windows/include;$(__archive)third-windows/third/include;$(__archive)third-windows/third/include/include;$(SolutionDir)../../../archive/platform-windows;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <StringPooling>false</StringPooling>
       <ExceptionHandling>Async</ExceptionHandling>
@@ -398,7 +398,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>_AURA_LIBRARY;USE_OS_IMAGE_LOADER;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-windows/$(PlatformName)/$(Configuration)/include;$(__archive)third-windows/include;$(__archive)third-windows/third/include;$(__archive)third-windows/third/include/include;$(SolutionDir)../../../archive/platform-windows;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source/app;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-windows/$(PlatformName)/$(Configuration)/include;$(__archive)third-windows/include;$(__archive)third-windows/third/include;$(__archive)third-windows/third/include/include;$(SolutionDir)../../../archive/platform-windows;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Disabled</Optimization>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <StringPooling>false</StringPooling>
@@ -478,7 +478,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>_AURA_LIBRARY;USE_OS_IMAGE_LOADER;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-windows/$(PlatformName)/$(Configuration)/include;$(__archive)third-windows/include;$(__archive)third-windows/third/include;$(__archive)third-windows/third/include/include;$(SolutionDir)../../../archive/platform-windows;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source/app;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-windows/$(PlatformName)/$(Configuration)/include;$(__archive)third-windows/include;$(__archive)third-windows/third/include;$(__archive)third-windows/third/include/include;$(SolutionDir)../../../archive/platform-windows;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>MaxSpeed</Optimization>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -570,7 +570,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>CUBE;_AURA_LIBRARY;USE_OS_IMAGE_LOADER;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-windows/$(PlatformName)/$(Configuration)/include;$(__archive)third-windows/include;$(__archive)third-windows/third/include;$(__archive)third-windows/third/include/include;$(SolutionDir)../../../archive/platform-windows;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source/app;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-windows/$(PlatformName)/$(Configuration)/include;$(__archive)third-windows/include;$(__archive)third-windows/third/include;$(__archive)third-windows/third/include/include;$(SolutionDir)../../../archive/platform-windows;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>MinSpace</Optimization>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -663,7 +663,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>_AURA_LIBRARY;USE_OS_IMAGE_LOADER;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-windows/$(PlatformName)/$(Configuration)/include;$(__archive)third-windows/include;$(__archive)third-windows/third/include;$(__archive)third-windows/third/include/include;$(SolutionDir)../../../archive/platform-windows;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source/app;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-windows/$(PlatformName)/$(Configuration)/include;$(__archive)third-windows/include;$(__archive)third-windows/third/include;$(__archive)third-windows/third/include/include;$(SolutionDir)../../../archive/platform-windows;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <SmallerTypeCheck>false</SmallerTypeCheck>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
@@ -742,7 +742,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>CUBE;_AURA_LIBRARY;USE_OS_IMAGE_LOADER;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-windows/$(PlatformName)/$(Configuration)/include;$(__archive)third-windows/include;$(__archive)third-windows/third/include;$(__archive)third-windows/third/include/include;$(SolutionDir)../../../archive/platform-windows;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source/app;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-windows/$(PlatformName)/$(Configuration)/include;$(__archive)third-windows/include;$(__archive)third-windows/third/include;$(__archive)third-windows/third/include/include;$(SolutionDir)../../../archive/platform-windows;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <SmallerTypeCheck>false</SmallerTypeCheck>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -823,7 +823,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>_AURA_LIBRARY;USE_OS_IMAGE_LOADER;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-windows/$(PlatformName)/$(Configuration)/include;$(__archive)third-windows/include;$(__archive)third-windows/third/include;$(__archive)third-windows/third/include/include;$(SolutionDir)../../../archive/platform-windows;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source/app;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-windows/$(PlatformName)/$(Configuration)/include;$(__archive)third-windows/include;$(__archive)third-windows/third/include;$(__archive)third-windows/third/include/include;$(SolutionDir)../../../archive/platform-windows;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <SmallerTypeCheck>false</SmallerTypeCheck>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -901,7 +901,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>_AURA_LIBRARY;USE_OS_IMAGE_LOADER;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-windows/$(PlatformName)/$(Configuration)/include;$(__archive)third-windows/include;$(__archive)third-windows/third/include;$(__archive)third-windows/third/include/include;$(SolutionDir)../../../archive/platform-windows;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source/app;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-windows/$(PlatformName)/$(Configuration)/include;$(__archive)third-windows/include;$(__archive)third-windows/third/include;$(__archive)third-windows/third/include/include;$(SolutionDir)../../../archive/platform-windows;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <SmallerTypeCheck>false</SmallerTypeCheck>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -988,7 +988,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>CUBE;_AURA_LIBRARY;USE_OS_IMAGE_LOADER;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-windows/$(PlatformName)/$(Configuration)/include;$(__archive)third-windows/include;$(__archive)third-windows/third/include;$(__archive)third-windows/third/include/include;$(SolutionDir)../../../archive/platform-windows;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source/app;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-windows/$(PlatformName)/$(Configuration)/include;$(__archive)third-windows/include;$(__archive)third-windows/third/include;$(__archive)third-windows/third/include/include;$(SolutionDir)../../../archive/platform-windows;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <SmallerTypeCheck>false</SmallerTypeCheck>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
@@ -1920,10 +1920,10 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClCompile Include="xml\_.cpp" />
     <ClCompile Include="_.cpp" />
     <ClCompile Include="__matter_ca2.cpp" />
-    <ClInclude Include="account\aaa_want_to_remove_account_authentication_map.h" />
-    <ClInclude Include="account\aaa_want_to_remove_account_authorization_task.h" />
-    <ClInclude Include="account\aaa_want_to_remove_account_object.h" />
-    <ClInclude Include="account\aaa_want_to_remove_account_user_authentication.h" />
+    <ClInclude Include="account\aaa_want_to_erase_account_authentication_map.h" />
+    <ClInclude Include="account\aaa_want_to_erase_account_authorization_task.h" />
+    <ClInclude Include="account\aaa_want_to_erase_account_object.h" />
+    <ClInclude Include="account\aaa_want_to_erase_account_user_authentication.h" />
     <ClInclude Include="account\authenticator.h" />
     <ClInclude Include="account\const.h" />
     <ClInclude Include="account\contact_list.h" />
@@ -2043,10 +2043,10 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClInclude Include="node\opengl\shader.h" />
     <ClInclude Include="node\opengl\_.h" />
     <ClInclude Include="node\windows\a.h" />
-    <ClInclude Include="node\windows\aaa_want_to_remove_handle.h" />
-    <ClInclude Include="node\windows\aaa_want_to_remove_printer.h" />
-    <ClInclude Include="node\windows\aaa_want_to_remove_RoundWindowApp.h" />
-    <ClInclude Include="node\windows\aaa_want_to_remove_simple_hold_handle.h" />
+    <ClInclude Include="node\windows\aaa_want_to_erase_handle.h" />
+    <ClInclude Include="node\windows\aaa_want_to_erase_printer.h" />
+    <ClInclude Include="node\windows\aaa_want_to_erase_RoundWindowApp.h" />
+    <ClInclude Include="node\windows\aaa_want_to_erase_simple_hold_handle.h" />
     <ClInclude Include="node\windows\buffer.h" />
     <ClInclude Include="node\windows\command.h" />
     <ClInclude Include="node\windows\console.h" />
@@ -2094,7 +2094,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClInclude Include="os\threading.h" />
     <ClInclude Include="os\time.h" />
     <ClInclude Include="os\windowing.h" />
-    <ClInclude Include="os\windows\aaa_want_to_remove_process_env_reader.h" />
+    <ClInclude Include="os\windows\aaa_want_to_erase_process_env_reader.h" />
     <ClInclude Include="os\windows\api.h" />
     <ClInclude Include="os\windows\callstack.h" />
     <ClInclude Include="os\windows\d2d1_1.h" />
@@ -2136,13 +2136,13 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClInclude Include="os\_c.h" />
     <ClInclude Include="os\_impl.h" />
     <ClInclude Include="os\_os.h" />
-    <ClInclude Include="platform\aaa_want_to_remove_application_common.h" />
-    <ClInclude Include="platform\aaa_want_to_remove_common.h" />
-    <ClInclude Include="platform\aaa_want_to_remove_console_window2.h" />
-    <ClInclude Include="platform\aaa_want_to_remove_extras.h" />
-    <ClInclude Include="platform\aaa_want_to_remove_runnable.h" />
-    <ClInclude Include="platform\aaa_want_to_remove_system_common.h" />
-    <ClInclude Include="platform\aaa_want_to_remove_template.h" />
+    <ClInclude Include="platform\aaa_want_to_erase_application_common.h" />
+    <ClInclude Include="platform\aaa_want_to_erase_common.h" />
+    <ClInclude Include="platform\aaa_want_to_erase_console_window2.h" />
+    <ClInclude Include="platform\aaa_want_to_erase_extras.h" />
+    <ClInclude Include="platform\aaa_want_to_erase_runnable.h" />
+    <ClInclude Include="platform\aaa_want_to_erase_system_common.h" />
+    <ClInclude Include="platform\aaa_want_to_erase_template.h" />
     <ClInclude Include="platform\all.h" />
     <ClInclude Include="platform\app.h" />
     <ClInclude Include="platform\application.h" />
@@ -2457,7 +2457,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClInclude Include="filesystem\filehandler\library.h" />
     <ClInclude Include="filesystem\filehandler\menu_library.h" />
     <ClInclude Include="filesystem\filehandler\tree_interface.h" />
-    <ClInclude Include="filesystem\filemanager\aaa_want_to_remove_form_view.h" />
+    <ClInclude Include="filesystem\filemanager\aaa_want_to_erase_form_view.h" />
     <ClInclude Include="filesystem\filemanager\callback.h" />
     <ClInclude Include="filesystem\filemanager\child_frame.h" />
     <ClInclude Include="filesystem\filemanager\component.h" />
@@ -2883,7 +2883,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClCompile Include="user\experience\experience_updown.cpp" />
     <ClCompile Include="user\userpresence\department.cpp" />
     <ClCompile Include="user\userpresence\presence.cpp" />
-    <ClCompile Include="user\user\aaa_want_to_remove_primitive.cpp">
+    <ClCompile Include="user\user\aaa_want_to_erase_primitive.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_basis|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|Win32'">true</ExcludedFromBuild>
@@ -2993,13 +2993,13 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClInclude Include="const\timer.h" />
     <ClInclude Include="const\_const.h" />
     <ClInclude Include="filesystem\filesystem.h" />
-    <ClInclude Include="filesystem\filesystem\aaa_want_to_remove_application_file.h" />
-    <ClInclude Include="filesystem\filesystem\aaa_want_to_remove_application_dir.h" />
-    <ClInclude Include="filesystem\filesystem\aaa_want_to_remove_system_dir.h" />
+    <ClInclude Include="filesystem\filesystem\aaa_want_to_erase_application_file.h" />
+    <ClInclude Include="filesystem\filesystem\aaa_want_to_erase_application_dir.h" />
+    <ClInclude Include="filesystem\filesystem\aaa_want_to_erase_system_dir.h" />
     <ClInclude Include="filesystem\filesystem\file_watcher.h" />
     <ClInclude Include="filesystem\filesystem\listing.h" />
     <ClInclude Include="filesystem\filesystem\path.h" />
-    <ClInclude Include="filesystem\filesystem\aaa_want_to_remove_system_file.h" />
+    <ClInclude Include="filesystem\filesystem\aaa_want_to_erase_system_file.h" />
     <ClInclude Include="filesystem\file\binary_stream.h" />
     <ClInclude Include="filesystem\file\buffer.h" />
     <ClInclude Include="filesystem\file\buffered_file.h" />
@@ -3072,7 +3072,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClInclude Include="filesystem\userfs\userfs.h" />
     <ClInclude Include="filesystem\userfs\_.h" />
     <ClInclude Include="filesystem\userfs\_userfs.h" />
-    <ClInclude Include="graphics\draw2d\aaa_want_to_remove_const.h" />
+    <ClInclude Include="graphics\draw2d\aaa_want_to_erase_const.h" />
     <ClInclude Include="graphics\draw2d\api.h" />
     <ClInclude Include="graphics\draw2d\bitmap.h" />
     <ClInclude Include="graphics\draw2d\brush.h" />
@@ -3096,7 +3096,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClInclude Include="graphics\draw2d\graphics_extension.h" />
     <ClInclude Include="graphics\draw2d\icon.h" />
     <ClInclude Include="graphics\draw2d\igui.h" />
-    <ClInclude Include="graphics\draw2d\aaa_want_to_remove_image.h" />
+    <ClInclude Include="graphics\draw2d\aaa_want_to_erase_image.h" />
     <ClInclude Include="graphics\draw2d\image_array.h" />
     <ClInclude Include="graphics\draw2d\printer.h" />
     <ClInclude Include="graphics\draw2d\_image.h" />
@@ -3289,7 +3289,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClInclude Include="multithreading\thread_os.h" />
     <ClInclude Include="multithreading\thread_parameter.h" />
     <ClInclude Include="multithreading\tools.h" />
-    <ClInclude Include="multithreading\aaa_want_to_remove_waitable.h" />
+    <ClInclude Include="multithreading\aaa_want_to_erase_waitable.h" />
     <ClInclude Include="multithreading\sync_result.h" />
     <ClInclude Include="net\sockets\bsd\smtp\smtpd_socket.h" />
     <ClInclude Include="net\sockets\bsd\smtp\smtp_socket.h" />
@@ -3301,9 +3301,9 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClInclude Include="pcre\pcre_util.h" />
     <ClInclude Include="primitive\api\api.h" />
     <ClInclude Include="primitive\api\api_rotate.h" />
-    <ClInclude Include="primitive\collection\aaa_want_to_remove_collection_point_array.h" />
-    <ClInclude Include="primitive\collection\aaa_want_to_remove_collection_rect_array.h" />
-    <ClInclude Include="primitive\collection\aaa_want_to_remove_collection_size_array.h" />
+    <ClInclude Include="primitive\collection\aaa_want_to_erase_collection_point_array.h" />
+    <ClInclude Include="primitive\collection\aaa_want_to_erase_collection_rect_array.h" />
+    <ClInclude Include="primitive\collection\aaa_want_to_erase_collection_size_array.h" />
     <ClInclude Include="primitive\collection\address_array.h" />
     <ClInclude Include="primitive\collection\array.h" />
     <ClInclude Include="primitive\collection\array_base.h" />
@@ -3342,7 +3342,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClInclude Include="primitive\collection\packset.h" />
     <ClInclude Include="primitive\collection\pair.h" />
     <ClInclude Include="primitive\collection\pointer_array.h" />
-    <ClInclude Include="primitive\collection\aaa_want_to_remove_primitive_array.h" />
+    <ClInclude Include="primitive\collection\aaa_want_to_erase_primitive_array.h" />
     <ClInclude Include="primitive\collection\priority_queue.h" />
     <ClInclude Include="primitive\collection\queue.h" />
     <ClInclude Include="primitive\collection\raw_array_decl.h" />
@@ -3539,12 +3539,12 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClInclude Include="primitive\string\string_file.h" />
     <ClInclude Include="primitive\string\string_inst.h" />
     <ClInclude Include="primitive\string\string_wide_conversion.h" />
-    <ClInclude Include="primitive\string\aaa_want_to_remove_str_ch_class.h" />
-    <ClInclude Include="primitive\string\aaa_want_to_remove_str_str.h" />
-    <ClInclude Include="primitive\string\aaa_want_to_remove_str_str3.h" />
-    <ClInclude Include="primitive\string\aaa_want_to_remove_str_tokenizer.h" />
-    <ClInclude Include="primitive\string\aaa_want_to_remove_str_wstring.h" />
-    <ClInclude Include="primitive\string\aaa_want_to_remove_str_x.h" />
+    <ClInclude Include="primitive\string\aaa_want_to_erase_str_ch_class.h" />
+    <ClInclude Include="primitive\string\aaa_want_to_erase_str_str.h" />
+    <ClInclude Include="primitive\string\aaa_want_to_erase_str_str3.h" />
+    <ClInclude Include="primitive\string\aaa_want_to_erase_str_tokenizer.h" />
+    <ClInclude Include="primitive\string\aaa_want_to_erase_str_wstring.h" />
+    <ClInclude Include="primitive\string\aaa_want_to_erase_str_x.h" />
     <ClInclude Include="primitive\string\_c_impl.h" />
     <ClInclude Include="primitive\string\_c_trait_ansi.h" />
     <ClInclude Include="primitive\string\_c_trait_ansi_impl.h" />
@@ -3652,7 +3652,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClInclude Include="user\simple\_.h" />
     <ClInclude Include="user\simple\_impl.h" />
     <ClInclude Include="user\simple\_simple.h" />
-    <ClInclude Include="user\userex\aaa_want_to_remove_form_update_hint.h" />
+    <ClInclude Include="user\userex\aaa_want_to_erase_form_update_hint.h" />
     <ClInclude Include="user\userex\color_view.h" />
     <ClInclude Include="user\userex\const.h" />
     <ClInclude Include="user\userex\dialog.h" />
@@ -3689,23 +3689,23 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClInclude Include="user\userpresence\presence.h" />
     <ClInclude Include="user\userpresence\_.h" />
     <ClInclude Include="user\user\00.h" />
-    <ClInclude Include="user\user\aaa_want_remove_interaction_base.h" />
-    <ClInclude Include="user\user\aaa_want_remove_interaction_child.h" />
-    <ClInclude Include="user\user\aaa_want_remove_interaction_impl.h" />
-    <ClInclude Include="user\user\aaa_want_remove_interaction_impl_base.h" />
-    <ClInclude Include="user\user\aaa_want_to_remove_button.h" />
-    <ClInclude Include="user\user\aaa_want_to_remove_dock_context.h" />
-    <ClInclude Include="user\user\aaa_want_to_remove_dock_state.h" />
-    <ClInclude Include="user\user\aaa_want_to_remove_elemental.h" />
-    <ClInclude Include="user\user\aaa_want_to_remove_impact_update.h" />
-    <ClInclude Include="user\user\aaa_want_to_remove_interaction.h" />
-    <ClInclude Include="user\user\aaa_want_to_remove_interaction_base.h" />
-    <ClInclude Include="user\user\aaa_want_to_remove_interactive.h" />
-    <ClInclude Include="user\user\aaa_want_to_remove_primitive.h" />
-    <ClInclude Include="user\user\aaa_want_to_remove_server.h" />
-    <ClInclude Include="user\user\aaa_want_to_remove_split_window.h" />
-    <ClInclude Include="user\user\aaa_want_to_remove_template.h" />
-    <ClInclude Include="user\user\aaa_want_to_remove_thread.h" />
+    <ClInclude Include="user\user\aaa_want_erase_interaction_base.h" />
+    <ClInclude Include="user\user\aaa_want_erase_interaction_child.h" />
+    <ClInclude Include="user\user\aaa_want_erase_interaction_impl.h" />
+    <ClInclude Include="user\user\aaa_want_erase_interaction_impl_base.h" />
+    <ClInclude Include="user\user\aaa_want_to_erase_button.h" />
+    <ClInclude Include="user\user\aaa_want_to_erase_dock_context.h" />
+    <ClInclude Include="user\user\aaa_want_to_erase_dock_state.h" />
+    <ClInclude Include="user\user\aaa_want_to_erase_elemental.h" />
+    <ClInclude Include="user\user\aaa_want_to_erase_impact_update.h" />
+    <ClInclude Include="user\user\aaa_want_to_erase_interaction.h" />
+    <ClInclude Include="user\user\aaa_want_to_erase_interaction_base.h" />
+    <ClInclude Include="user\user\aaa_want_to_erase_interactive.h" />
+    <ClInclude Include="user\user\aaa_want_to_erase_primitive.h" />
+    <ClInclude Include="user\user\aaa_want_to_erase_server.h" />
+    <ClInclude Include="user\user\aaa_want_to_erase_split_window.h" />
+    <ClInclude Include="user\user\aaa_want_to_erase_template.h" />
+    <ClInclude Include="user\user\aaa_want_to_erase_thread.h" />
     <ClInclude Include="user\user\box.h" />
     <ClInclude Include="user\user\button.h" />
     <ClInclude Include="user\user\callback.h" />
@@ -3717,7 +3717,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClInclude Include="user\user\command.h" />
     <ClInclude Include="user\user\composition_imm_client.h" />
     <ClInclude Include="user\user\control.h" />
-    <ClInclude Include="user\user\aaa_want_to_remove_controller.h" />
+    <ClInclude Include="user\user\aaa_want_to_erase_controller.h" />
     <ClInclude Include="user\user\control_bar.h" />
     <ClInclude Include="user\user\control_ddx_dbflags.h" />
     <ClInclude Include="user\user\control_property.h" />
@@ -3863,7 +3863,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClInclude Include="user\user\windows_tsf\propldr.h" />
     <ClInclude Include="user\user\windows_tsf\resource.h" />
     <ClInclude Include="user\user\windows_tsf\edit_window.h" />
-    <ClInclude Include="user\user\windows_tsf\aaa_want_to_remove_tsfedit.h" />
+    <ClInclude Include="user\user\windows_tsf\aaa_want_to_erase_tsfedit.h" />
     <ClInclude Include="user\user\windows_tsf\tsfwnd.h" />
     <ClInclude Include="user\user\windows_tsf\winres.h" />
     <ClInclude Include="user\user\window_map.h" />
@@ -3916,7 +3916,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <None Include="primitive\primitive\_factory_impl.h" />
     <None Include="primitive\primitive\papaya.inl" />
     <None Include="primitive\primitive\_impl.h" />
-    <None Include="primitive\string\aaa_want_to_remove_str.inl" />
+    <None Include="primitive\string\aaa_want_to_erase_str.inl" />
     <None Include="primitive\string\x\x_encodings.pl" />
     <None Include="primitive\string\x\x_tables_generator.pl" />
     <None Include="primitive\string\_compare_impl.h" />

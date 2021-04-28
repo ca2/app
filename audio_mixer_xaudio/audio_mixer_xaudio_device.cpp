@@ -15,7 +15,7 @@ namespace multimedia
          //m_mixerdestinationa(pobject)
       {
 
-         //m_mixerdestinationa.set_app(get_object());
+         //m_mixerdestinationa.set_app(this);
 
          m_pmixer = nullptr;
 
@@ -56,7 +56,7 @@ namespace multimedia
             if(::success != mmrct)
             {
 
-               System->message_box(nullptr, e_message_box_ok | e_message_box_icon_exclamation, "mixerClose() failed on hmx=%.04Xh, mmr=%u!", m_hMixer, mmrct);
+               message_box(nullptr, e_message_box_ok | e_message_box_icon_exclamation, "mixerClose() failed on hmx=%.04Xh, mmr=%u!", m_hMixer, mmrct);
 
             }
 
@@ -67,7 +67,7 @@ namespace multimedia
          if(::success != mmrc)
          {
 
-            System->message_box(nullptr, e_message_box_ok | e_message_box_icon_exclamation, "mixerGetDevCaps() failed on uMxId=%u, mmr=%u!", uiMixerId, mmrc);
+            message_box(nullptr, e_message_box_ok | e_message_box_icon_exclamation, "mixerGetDevCaps() failed on uMxId=%u, mmr=%u!", uiMixerId, mmrc);
 
             return mmrc;
 
@@ -78,7 +78,7 @@ namespace multimedia
          if(::success != mmrc)
          {
 
-            System->message_box(nullptr, e_message_box_ok | e_message_box_icon_exclamation, "mixerOpen() failed on uMxId=%u, mmr=%u!", uiMixerId, mmrc);
+            message_box(nullptr, e_message_box_ok | e_message_box_icon_exclamation, "mixerOpen() failed on uMxId=%u, mmr=%u!", uiMixerId, mmrc);
 
             return mmrc;
 
@@ -107,7 +107,7 @@ namespace multimedia
          if(::success != mmrc)
          {
 
-            System->message_box(nullptr, e_message_box_ok | e_message_box_icon_exclamation, "mixerGetDevCaps() failed on uMxId=%u, mmr=%u!", m_uiMixerID, mmrc);
+            message_box(nullptr, e_message_box_ok | e_message_box_icon_exclamation, "mixerGetDevCaps() failed on uMxId=%u, mmr=%u!", m_uiMixerID, mmrc);
 
             return mmrc;
 
@@ -212,7 +212,7 @@ namespace multimedia
       void device::map_controls()
       {
 
-         m_mapIDToControl.remove_all();
+         m_mapIDToControl.erase_all();
 
          for(i32 i = 0; i < m_mixerdestinationa.get_size(); i++)
          {
@@ -240,7 +240,7 @@ namespace multimedia
       void device::map_lines()
       {
 
-         m_mapIDToLine.remove_all();
+         m_mapIDToLine.erase_all();
 
          for(i32 i = 0; i < m_mixerdestinationa.get_size(); i++)
          {
@@ -299,7 +299,7 @@ namespace multimedia
 
       void device::MapDlgCtrlIDToControls()
       {
-         m_mapDlgItemIDToControl.remove_all();
+         m_mapDlgItemIDToControl.erase_all();
 
          ::multimedia::audio_mixer::destination_array & destinationa = m_mixerdestinationa;
          for(i32 i = 0; i < destinationa.get_size(); i++)
@@ -341,13 +341,13 @@ namespace multimedia
 
             mmrc = mmsystem::translate(mixerClose(m_hMixer));
 
-            m_mixerdestinationa.remove_all();
+            m_mixerdestinationa.erase_all();
 
-            m_mapIDToControl.remove_all();
+            m_mapIDToControl.erase_all();
 
-            m_mapDlgItemIDToControl.remove_all();
+            m_mapDlgItemIDToControl.erase_all();
 
-            m_mapIDToLine.remove_all();
+            m_mapIDToLine.erase_all();
 
             m_hMixer = nullptr;
 

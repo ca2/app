@@ -2,30 +2,37 @@
 #include "aura/user/_user.h"
 #include "aura/update.h"
 //#include "simple_view.h"
-#include "apex/platform/static_setup.h"
+#include "acme/platform/static_setup.h"
 #include "acme/const/simple_command.h"
 #include "apex/message/simple_command.h"
+#include "shell.h"
 
 
 ::mutex * g_pmutexUser = nullptr;
 
 
-CLASS_DECL_ACME void initialize_user_mutex();
-CLASS_DECL_ACME void finalize_user_mutex();
+CLASS_DECL_AURA void initialize_user_mutex();
+CLASS_DECL_AURA void finalize_user_mutex();
 
 
 namespace user
 {
 
 
+   void initialize_children_mutex();
+   void finalize_children_mutex();
+
+
    user::user()
    {
 
+      m_paxisuser = nullptr;
+      m_pbaseuser = nullptr;
+      m_pbreduser = nullptr;
       m_pcoreuser = nullptr;
-      //m_pufeschema = nullptr;
-      //m_pufe = nullptr;
-
       ::initialize_user_mutex();
+      initialize_children_mutex();
+
 
    }
 
@@ -33,15 +40,25 @@ namespace user
    user::~user()
    {
 
+      finalize_children_mutex();
       ::finalize_user_mutex();
 
    }
 
 
-   ::e_status user::initialize(::layered * pobjectContext)
+   ::e_status user::initialize(::object * pobject)
    {
 
-      auto estatus = ::apex::department::initialize(pobjectContext);
+      auto estatus = ::acme::department::initialize(pobject);
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      estatus = __construct_new(m_puserstyle);
 
       if (!estatus)
       {
@@ -62,6 +79,28 @@ namespace user
       }
 
       return estatus;
+
+   }
+
+
+   ::user::shell* user::shell()
+   {
+
+      if (!m_pshell)
+      {
+
+         auto estatus = create_user_shell();
+
+         if (!estatus)
+         {
+
+            TRACE("failed to create user shell");
+
+         }
+
+      }
+
+      return m_pshell;
 
    }
 
@@ -150,7 +189,7 @@ namespace user
 
       auto pwindow = pwindowing->get_keyboard_focus(pthread);
 
-      if (::is_null(pwindowing))
+      if (::is_null(pwindow))
       {
 
          return nullptr;
@@ -315,14 +354,14 @@ namespace user
       //create_factory <::user::place_holder >();
       //create_factory <::user::font_combo_box >();
 
-      //if(get_context_application()->is_system())
+      //if(get_application()->is_system())
       //{
 
       //   create_factory <keyboard_layout >();
 
       //}
 
-      if (!::apex::department::init1())
+      if (!::acme::department::init1())
       {
 
          return false;
@@ -337,7 +376,7 @@ namespace user
    ::e_status user::init()
    {
 
-      if (!::apex::department::init())
+      if (!::acme::department::init())
       {
 
          return false;
@@ -363,7 +402,7 @@ namespace user
 
       //xml::document docUser;
 
-      //string strUser = Context.file().as_string(Context.dir().appdata()/"langstyle_settings.xml");
+      //string strUser = pcontext->m_papexcontext->file().as_string(pcontext->m_papexcontext->dir().appdata()/"langstyle_settings.xml");
 
       //string strLangUser;
 
@@ -394,14 +433,16 @@ namespace user
       //if(strStyleUser.has_char())
       //   psession->set_schema(strStyleUser,::e_source_database);
 
-      //string strLicense = Application.get_license_id();
+      //string strLicense = papplication->get_license_id();
 
 
-      //::payload & varTopicQuey = ::aura::get_system()->commnam_varTopicQuery;
+      //::payload & varTopicQuey = psystem->commnam_varTopicQuery;
 
-      bool bHasInstall = ::aura::get_system()->is_true("install");
+      auto psystem = m_psystem->m_paurasystem;
 
-      bool bHasUninstall = ::aura::get_system()->is_true("uninstall");
+      bool bHasInstall = psystem->is_true("install");
+
+      bool bHasUninstall = psystem->is_true("uninstall");
 
       debug_print("user::initialize bHasInstall %c", bHasInstall);
 
@@ -415,7 +456,7 @@ namespace user
    ::e_status user::init2()
    {
 
-      auto estatus = ::apex::department::init2();
+      auto estatus = ::acme::department::init2();
 
       if(!estatus)
       {
@@ -438,7 +479,24 @@ namespace user
    }
 
 
-   void user::term()
+   ::e_status user::finish()
+   {
+
+      auto estatus = ::acme::department::finish();
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return estatus;
+
+   }
+
+
+   ::e_status user::term()
    {
 
 
@@ -472,7 +530,7 @@ namespace user
       try
       {
 
-         ::apex::department::term();
+         ::acme::department::term();
 
       }
       catch(...)
@@ -480,7 +538,43 @@ namespace user
 
       }
 
+      return ::success;
+
    }
+
+
+   ::e_status user::create_user_shell()
+   {
+
+      ::e_status estatus = ::success;
+
+      if (!m_pshell)
+      {
+
+         //estatus = __compose(m_pshell, __new(::windows::shell));
+         estatus = __compose(m_pshell);
+
+         if (!estatus)
+         {
+
+            return estatus;
+
+         }
+
+      }
+
+      if (!m_pshell)
+      {
+
+         return ::error_failed;
+
+      }
+
+      return ::success;
+
+   }
+
+
 
 
    ::user::primitive * user::get_mouse_focus_LButtonDown()
@@ -494,17 +588,17 @@ namespace user
    void user::set_mouse_focus_LButtonDown(::user::primitive * pmousefocus)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       m_pmousefocusLButtonDown = pmousefocus;
 
    }
 
 
-   void user::defer_remove_mouse_focus_LButtonDown(::user::primitive * pmousefocus)
+   void user::defer_erase_mouse_focus_LButtonDown(::user::primitive * pmousefocus)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       if (m_pmousefocusLButtonDown == pmousefocus)
       {
@@ -535,16 +629,18 @@ namespace user
    void user::SendMessageToWindows(const ::id & id,wparam wparam,lparam lparam)
    {
 
-      auto psession = Session;
+      auto psession = get_session();
 
-      for (auto& papp : psession->m_applicationa)
+      for (auto& papplication : psession->m_applicationa)
       {
 
-         synchronization_lock synchronizationlock(&App(papp).m_mutexFrame);
+         __pointer(::aura::application) papplicationAura = papplication;
+
+         synchronous_lock synchronouslock(&papplicationAura->m_mutexFrame);
 
          __pointer(::user::interaction) pinteraction;
 
-         while (App(papp).get_frame(pinteraction))
+         while (papplicationAura->get_frame(pinteraction))
          {
 
             if (pinteraction != nullptr && pinteraction->is_window())
@@ -563,7 +659,7 @@ namespace user
    }
 
 
-//   ::user::front_end_schema * GetUfeSchema(::layered * pobjectContext)
+//   ::user::front_end_schema * GetUfeSchema(::object * pobject)
 //   {
 //
 //      if (papp == nullptr)
@@ -592,7 +688,7 @@ namespace user
 //   }
 //
 //
-//   ::user::front_end * GetUfe(::layered * pobjectContext)
+//   ::user::front_end * GetUfe(::object * pobject)
 //   {
 //
 //      return Sess(papp).user()->GetUfe();
@@ -698,7 +794,7 @@ namespace aura
 
       m_ethreadClose = thread_application;
 
-      //if (get_context_session())
+      //if (get_session())
       //{
 
       //   if (psession->m_pdocmanager)
@@ -713,7 +809,7 @@ namespace aura
       if (eend == ::apex::e_end_app)
       {
 
-         finish(get_context());
+         finish();
 
          return;
 
@@ -725,12 +821,12 @@ namespace aura
          try
          {
 
-            auto psession = Session;
+            auto psession = get_session();
 
             if (psession)
             {
 
-               psession->finish(get_context());
+               psession->finish();
 
             }
 
@@ -744,17 +840,18 @@ namespace aura
 
       }
 
-
       if (eend == ::apex::e_end_system)
       {
 
          try
          {
 
-            if (get_context_system())
+            auto psystem = m_psystem->m_paurasystem;
+
+            if (psystem)
             {
 
-               ::aura::get_system()->finish(get_context());
+               psystem->finish();
 
             }
 
@@ -850,13 +947,13 @@ namespace aura
    }
 
 
-//   void session::on_app_request_bergedge_callback(::layered * pobjectContext)
+//   void session::on_app_request_bergedge_callback(::object * pobject)
 //   {
 //
 //      if (&App(pobject) != nullptr)
 //      {
 //
-//         psession->m_pappCurrent = &App(pobject);
+//         psession->m_papplicationCurrent = &App(pobject);
 //
 //      }
 //
@@ -893,11 +990,11 @@ namespace aura
 //         //}
 //      }
 //
-////      if (psession->m_pappCurrent != nullptr && psession->m_pappCurrent->m_psession->m_paccount->m_puser != nullptr)
+////      if (psession->m_papplicationCurrent != nullptr && psession->m_papplicationCurrent->m_psession->m_paccount->m_puser != nullptr)
 ////      {
 ////         try
 ////         {
-////            get_view()->get_parent_frame()->set_window_text(psession->m_pappCurrent->m_psession->m_paccount->m_puser->m_strLogin);
+////            get_view()->get_parent_frame()->set_window_text(psession->m_papplicationCurrent->m_psession->m_paccount->m_puser->m_strLogin);
 ////         }
 ////         catch (...)
 ////         {
@@ -999,14 +1096,20 @@ namespace aura
    {
 
 
-      ::user::interaction * puiParent = nullptr;
+      __pointer(::user::interaction) puserinteractionParent;
 
       if (pcreate->m_pcommandline->m_varQuery["uicontainer"].cast < ::user::interaction >() != nullptr)
-         puiParent = pcreate->m_pcommandline->m_varQuery["uicontainer"].cast < ::user::interaction >();
-
-      if (puiParent == nullptr && pcreate->m_puserinteractionParent != nullptr)
       {
-         puiParent = dynamic_cast < ::user::interaction * > (pcreate->m_puserinteractionParent);
+
+         puserinteractionParent = pcreate->m_pcommandline->m_varQuery["uicontainer"].cast < ::user::interaction >();
+
+      }
+
+      if (!puserinteractionParent && pcreate->m_puserprimitiveParent)
+      {
+
+         puserinteractionParent = pcreate->m_puserprimitiveParent;
+
       }
 
 //      if (puiParent == nullptr && pcreate != nullptr)
@@ -1034,13 +1137,16 @@ namespace aura
 
       }*/
 
+      __pointer(::aura::application) papplication = get_application();
+
       if (pcreate->m_bClientOnly ||
-            Application.has_property("client_only") ||
+            papplication->has_property("client_only") ||
             pcreate->m_bOuterPopupAlertLike)
       {
-         return puiParent;
-      }
+         
+         return puserinteractionParent;
 
+      }
 
       //bool bCreateBergedge = false;
 
@@ -1056,12 +1162,9 @@ namespace aura
 
       //}
 
+      auto papp = pinteraction->get_application();
 
-
-
-      ::aura::application & app = App(pinteraction->get_context_application());
-
-      string strAppName = app.m_strAppName;
+      string strAppName = papp->m_strAppName;
 
       //if (strAppName != "bergedge")
       //{
@@ -1088,9 +1191,10 @@ namespace aura
 
       //}
 
-      return puiParent;
+      return puserinteractionParent;
 
    }
+
 
 } // namespace aura
 
@@ -1160,7 +1264,7 @@ namespace user
       if (pmouse->m_point == pmouse->m_pointDesired)
       {
 
-         auto psession = Session;
+         auto psession = get_session();
 
          psession->m_pointCursor = pmouse->m_point;
 
@@ -1184,7 +1288,7 @@ namespace user
 
             {
 
-               synchronization_lock synchronizationlock(mutex());
+               synchronous_lock synchronouslock(mutex());
 
                ::papaya::array::copy(uiptraToolWindow, m_uiptraToolWindow);
 
@@ -1227,36 +1331,38 @@ namespace user
 
       ::e_status estatus = ::success;
 
-      estatus = ::__construct(m_pwindowing);
+      estatus = __compose(m_pwindowing);
 
       if (!estatus)
       {
 
 #ifdef LINUX
 
-         auto edesktop = ::aura::get_system()->get_edesktop();
+         auto psystem = m_psystem;
+
+         auto edesktop = psystem->get_edesktop();
 
          if (edesktop & ::user::e_desktop_kde)
          {
 
-            estatus = ::aura::get_system()->do_factory_exchange("windowing", "xcb");
+            estatus = psystem->do_factory_exchange("windowing", "xcb");
 
          }
          else if (edesktop & ::user::e_desktop_gnome)
          {
 
-            estatus = ::aura::get_system()->do_factory_exchange("windowing", "x11");
+            estatus = psystem->do_factory_exchange("windowing", "x11");
 
          }
          else
          {
 
-            estatus = ::aura::get_system()->do_factory_exchange("windowing", "xcb");
+            estatus = psystem->do_factory_exchange("windowing", "xcb");
 
             //if (!estatus)
             {
 
-               estatus = ::aura::get_system()->do_factory_exchange("windowing", "x11");
+               estatus = psystem->do_factory_exchange("windowing", "x11");
 
             }
 
@@ -1264,7 +1370,9 @@ namespace user
 
 #elif defined(WINDOWS_DESKTOP)
 
-         estatus = ::aura::get_system()->do_factory_exchange("windowing", "win32");
+         auto psystem = m_psystem->m_paurasystem;
+
+         estatus = psystem->do_factory_exchange("windowing", "win32");
 
 #endif
 
@@ -1275,7 +1383,7 @@ namespace user
 
          }
 
-         estatus = ::__construct(m_pwindowing);
+         estatus = __compose(m_pwindowing);
 
          if (!estatus)
          {
@@ -1297,7 +1405,9 @@ namespace user
 
       }
 
-      auto pnode = Node;
+      auto psystem = m_psystem->m_paurasystem;
+
+      auto pnode = psystem->node();
 
       pnode->m_pwindowing = m_pwindowing;
 
@@ -1313,18 +1423,18 @@ namespace user
 
       bool bDoneALotOfThings = false;
 
-      synchronization_lock synchronizationlock(&m_mutexRunnable);
+      synchronous_lock synchronouslock(&m_mutexRunnable);
 
-      while (m_listRunnable.has_elements() && ::thread_get_run())
+      while (m_listRunnable.has_elements() && ::task_get_run())
       {
 
          auto prunnable = m_listRunnable.pop_front();
 
-         synchronizationlock.unlock();
+         synchronouslock.unlock();
 
          prunnable->operator()();
 
-         synchronizationlock.lock();
+         synchronouslock.lock();
 
          bDoneALotOfThings = true;
 
@@ -1341,7 +1451,7 @@ namespace user
 } // namespace user
 
 
-CLASS_DECL_ACME ::mutex * user_mutex()
+CLASS_DECL_AURA ::mutex * user_mutex()
 {
 
    return g_pmutexUser;
@@ -1349,7 +1459,7 @@ CLASS_DECL_ACME ::mutex * user_mutex()
 }
 
 
-CLASS_DECL_ACME void initialize_user_mutex()
+CLASS_DECL_AURA void initialize_user_mutex()
 {
 
    if(g_pmutexUser)
@@ -1362,7 +1472,7 @@ CLASS_DECL_ACME void initialize_user_mutex()
 }
 
 
-CLASS_DECL_ACME void finalize_user_mutex()
+CLASS_DECL_AURA void finalize_user_mutex()
 {
 
    if(!g_pmutexUser)

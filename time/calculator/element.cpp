@@ -7,26 +7,35 @@
 namespace datetime
 {
 
+
    element::element()
    {
+      
       m_pparent   = NULL;
       m_pelement1 = NULL;
       m_pelement2 = NULL;
       m_pelement3 = NULL;
+
    }
+
 
    element::~element()
    {
+
    }
 
 
-   ::payload element::get_result(const ::apex::str_context * pcontext, int32_t & iPath, int32_t & iPathCount) const
+   ::datetime::result element::get_result(const ::text::context * pcontext, int32_t & iPath, int32_t & iPathCount) const
    {
 
       if(m_ptoken->m_etoken == e_token_number || m_ptoken->m_etoken == e_token_identifier)
       {
 
-         return ::datetime::time(System->datetime().strtotime(pcontext, m_ptoken->m_str, iPath, iPathCount));
+         auto psystem = m_psystem;
+
+         auto pdatetime = psystem->datetime();
+
+         return ::datetime::time(pdatetime->strtotime(pcontext, m_ptoken->m_str, iPath, iPathCount));
 
       }
       else if(m_ptoken->m_etoken == e_token_addition)
@@ -115,19 +124,27 @@ namespace datetime
    }
    
 
-   string element::get_expression(const ::apex::str_context * pcontext, int32_t & iPath, int32_t & iPathCount) const
+   string element::get_expression(const ::text::context * pcontext, int32_t & iPath, int32_t & iPathCount) const
    {
 
       if(m_ptoken->m_etoken == e_token_number)
       {
 
-         return System->datetime().international().get_gmt_date_time(::datetime::time((System->datetime().strtotime(pcontext,m_ptoken->m_str,iPath,iPathCount))));
+         auto psystem = m_psystem;
+
+         auto pdatetime = psystem->datetime();
+
+         return pdatetime->international().get_gmt_date_time(::datetime::time((pdatetime->strtotime(pcontext,m_ptoken->m_str,iPath,iPathCount))));
 
       }
       else if(m_ptoken->m_etoken == e_token_identifier)
       {
 
-         return System->datetime().international().get_gmt_date_time(::datetime::time((System->datetime().strtotime(pcontext,m_ptoken->m_str,iPath,iPathCount))));
+         auto psystem = m_psystem;
+
+         auto pdatetime = psystem->datetime();
+
+         return pdatetime->international().get_gmt_date_time(::datetime::time((pdatetime->strtotime(pcontext,m_ptoken->m_str,iPath,iPathCount))));
 
       }
       else if(m_ptoken->m_etoken == e_token_addition)

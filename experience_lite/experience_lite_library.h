@@ -14,16 +14,16 @@
 
 
          class CLASS_DECL_APP_EXPERIENCE_LITE library:
-            virtual public ::apex::library
+            virtual public ::acme::library
          {
          public:
 
 
-            library(::layered * pobjectContext);
+            library(::object * pobject);
             virtual ~library();
 
 
-            virtual __pointer(::context_object) alloc(::object * pobject, const char * pszClass, object * p) override;
+            virtual __pointer(::object) alloc(::object * pobject, const char * pszClass, object * p) override;
 
 
          };

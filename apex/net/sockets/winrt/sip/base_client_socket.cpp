@@ -5,12 +5,12 @@ namespace sockets
 {
 
 
-   sip_base_client_socket::sip_base_client_socket(base_socket_handler& h) :
-      ::object(h.get_context_application()),
+   sip_base_client_socket::sip_base_client_socket() :
+      ::object(h.get_application()),
       base_socket(h),
       socket(h),
-      m_request(h.get_context_application()),
-      m_response(h.get_context_application()),
+      m_request(h.get_application()),
+      m_response(h.get_application()),
       m_bFirst(true)
       ,m_bHeader(true)
       ,m_bRequest(false)

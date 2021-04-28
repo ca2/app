@@ -374,7 +374,7 @@ namespace imaging_wic
                      // gif display speed.
                      //
                      // This will defeat the purpose of using zero delay intermediate frames in
-                     // order to preserve compatibility. If this is removed, the zero delay
+                     // order to preserve compatibility. If this is erased, the zero delay
                      // intermediate frames will not be visible.
                      if (pframe->m_tick < 90)
                      {
@@ -800,7 +800,7 @@ namespace imaging_wic
             // gif display speed.
             //
             // This will defeat the purpose of using zero delay intermediate frames in
-            // order to preserve compatibility. If this is removed, the zero delay
+            // order to preserve compatibility. If this is erased, the zero delay
             // intermediate frames will not be visible.
             //if (pframe->m_tick < 90)
             {

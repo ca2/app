@@ -15,87 +15,93 @@
 //extern CLASS_DECL_AURA thread_int_ptr < DWORD_PTR > t_time1;
 
 
-
-
-void _001AddPacks(string_to_string & base64map, string & str)
+namespace aura
 {
 
 
-   auto iPack = base64map.get_count();
-
-   strsize iData = -1;
-
-   while (true)
+   void system::_001AddPacks(string_to_string& base64map, string& str)
    {
 
-      iData = str.find("data:", iData + 1);
+      auto iPack = base64map.get_count();
 
-      if (iData < 0 || !(iData == 0 || !ansi_char_is_alphanumeric(str[iData - 1])))
+      strsize iData = -1;
+
+      while (true)
       {
 
-         break;
+         iData = str.find("data:", iData + 1);
 
-      }
-
-      strsize iMime = str.find(';', iData + 1);
-
-      if (iMime <= iData)
-      {
-
-         continue;
-
-      }
-
-      strsize iEncoding1 = str.find(',', iMime + 1);
-
-      strsize iEncoding2 = str.find(';', iMime + 1);
-
-      strsize iEncoding = minimum_non_negative(iEncoding1, iEncoding2);
-
-      if (iEncoding <= iMime)
-      {
-
-         continue;
-
-      }
-
-      string strEncoding = str.Mid(iMime + 1, iEncoding - iMime - 1);
-
-      if (strEncoding.compare_ci("base64") == 0)
-      {
-
-         ::str::base64 & b64 = ::aura::get_system()->base64();
-
-         index iBase64 = iEncoding + 1;
-
-         for (; iBase64 < str.get_length(); iBase64++)
+         if (iData < 0 || !(iData == 0 || !ansi_char_is_alphanumeric(str[iData - 1])))
          {
 
-            if (!b64.is(str[iBase64]))
-            {
-
-               break;
-
-            }
+            break;
 
          }
 
-         string strBase64 = str.Mid(iEncoding + 1, iBase64 - iEncoding - 1);
+         strsize iMime = str.find(';', iData + 1);
 
-         string strPack = "%pack" + __str(iPack + 1) + "%";
+         if (iMime <= iData)
+         {
 
-         str = str.Left(iEncoding + 1) + strPack + str.Mid(iBase64);
+            continue;
 
-         base64map[strPack] = strBase64;
+         }
 
-         iPack++;
+         strsize iEncoding1 = str.find(',', iMime + 1);
+
+         strsize iEncoding2 = str.find(';', iMime + 1);
+
+         strsize iEncoding = minimum_non_negative(iEncoding1, iEncoding2);
+
+         if (iEncoding <= iMime)
+         {
+
+            continue;
+
+         }
+
+         string strEncoding = str.Mid(iMime + 1, iEncoding - iMime - 1);
+
+         if (strEncoding.compare_ci("base64") == 0)
+         {
+
+            auto psystem = m_psystem;
+
+            auto pbase64 = psystem->base64();
+
+            index iBase64 = iEncoding + 1;
+
+            for (; iBase64 < str.get_length(); iBase64++)
+            {
+
+               if (!pbase64->is(str[iBase64]))
+               {
+
+                  break;
+
+               }
+
+            }
+
+            string strBase64 = str.Mid(iEncoding + 1, iBase64 - iEncoding - 1);
+
+            string strPack = "%pack" + __str(iPack + 1) + "%";
+
+            str = str.Left(iEncoding + 1) + strPack + str.Mid(iBase64);
+
+            base64map[strPack] = strBase64;
+
+            iPack++;
+
+         }
+
 
       }
 
-
    }
 
-}
+
+} // namespace aura
 
 
 namespace user
@@ -129,7 +135,7 @@ namespace user
    }
 
 
-   //plain_edit::plain_edit(::layered * pobjectContext) :
+   //plain_edit::plain_edit(::object * pobject) :
    //   ::object(pobject),
    //   ::user::interaction(pobject),
    //   m_pmemorygraphics(e_create)
@@ -167,10 +173,6 @@ namespace user
       m_bCaretVisible = false;
 
       m_iInputConnectionBatch = 0;
-
-      //is_text_composition_active() = false;
-
-      //m_bImeCancelling = false;
 
       m_bEnterKeyOnPaste = false;
 
@@ -242,9 +244,9 @@ namespace user
       MESSAGE_LINK(e_message_left_button_down, pchannel, this, &plain_edit::on_message_left_button_down);
       MESSAGE_LINK(e_message_left_button_up, pchannel, this, &plain_edit::on_message_left_button_up);
       MESSAGE_LINK(e_message_right_button_down, pchannel, this, &plain_edit::on_message_right_button_down);
-      MESSAGE_LINK(e_message_right_button_up, pchannel, this, &plain_edit::_001OnRButtonUp);
-      MESSAGE_LINK(e_message_mouse_move, pchannel, this, &plain_edit::_001OnMouseMove);
-      MESSAGE_LINK(e_message_mouse_leave, pchannel, this, &plain_edit::_001OnMouseLeave);
+      MESSAGE_LINK(e_message_right_button_up, pchannel, this, &plain_edit::on_message_right_button_up);
+      MESSAGE_LINK(e_message_mouse_move, pchannel, this, &plain_edit::on_message_mouse_move);
+      MESSAGE_LINK(e_message_mouse_leave, pchannel, this, &plain_edit::on_message_mouse_leave);
       MESSAGE_LINK(e_message_key_down, pchannel, this, &plain_edit::_001OnKeyDown);
       MESSAGE_LINK(e_message_key_up, pchannel, this, &plain_edit::_001OnKeyUp);
       MESSAGE_LINK(e_message_uni_char, pchannel, this, &plain_edit::_001OnUniChar);
@@ -849,7 +851,7 @@ namespace user
 
       __pointer(::message::create) pcreate(pmessage);
 
-      auto estatus = initialize_text_composition_client();
+      auto estatus = initialize_text_composition_client(this, this);
 
       if (!estatus)
       {
@@ -860,14 +862,24 @@ namespace user
 
       }
 
-      set_cursor(e_cursor_text_select);
+      auto psession = get_session();
+
+      auto puser = psession->user();
+
+      auto pwindowing = puser->windowing();
+
+      auto pcursor = pwindowing->get_cursor(e_cursor_text_select);
+
+      set_mouse_cursor(pcursor);
 
       pcreate->previous();
 
 #if !defined(APPLE_IOS) && !defined(ANDROID)
 
+      __pointer(::aura::application) papplication = get_application();
+
       //psession->keyboard(); // trigger keyboard creationg
-      Application.defer_create_keyboard();
+      papplication->defer_create_keyboard();
 
 #endif
 
@@ -950,7 +962,7 @@ namespace user
 
       set_keyboard_focus();
 
-      auto psession = Session;
+      auto psession = get_session();
 
       psession->user()->set_mouse_focus_RButtonDown(this);
 
@@ -961,7 +973,7 @@ namespace user
    }
 
 
-   void plain_edit::_001OnRButtonUp(::message::message * pmessage)
+   void plain_edit::on_message_right_button_up(::message::message * pmessage)
    {
 
       __pointer(::message::mouse) pmouse(pmessage);
@@ -972,7 +984,7 @@ namespace user
 
       //{
 
-      //   synchronization_lock synchronizationlock(mutex());
+      //   synchronous_lock synchronouslock(mutex());
 
       //   strsize iSelStart = -1;
 
@@ -1024,7 +1036,7 @@ namespace user
          if (m_bLMouseDown)
          {
 
-            auto psession = Session;
+            auto psession = get_session();
 
             auto puser = psession->user();
 
@@ -1110,7 +1122,7 @@ namespace user
    void plain_edit::_001OnKeyDown(::message::message * pmessage)
    {
 
-      auto psession = Session;
+      auto psession = get_session();
 
       INFO("_001OnKeyDown (1)");
 
@@ -1144,7 +1156,7 @@ namespace user
       if (pkey->m_ekey == ::user::e_key_return)
       {
 
-         auto psession = Session;
+         auto psession = get_session();
 
          if (psession->is_key_pressed(::user::e_key_control) && psession->is_key_pressed(::user::e_key_alt))
          {
@@ -1185,7 +1197,7 @@ namespace user
       else if (pkey->m_ekey == ::user::e_key_tab)
       {
 
-         auto psession = Session;
+         auto psession = get_session();
 
          if (psession->is_key_pressed(::user::e_key_control) && psession->is_key_pressed(::user::e_key_alt))
          {
@@ -1261,7 +1273,7 @@ namespace user
       else if (pkey->m_ekey == ::user::e_key_c)
       {
 
-      auto psession = Session;
+      auto psession = get_session();
 
       if (psession->is_key_pressed(::user::e_key_control))
          {
@@ -1352,7 +1364,7 @@ namespace user
 
       __pointer(::message::key) pkey(pmessage);
 
-      auto psession = Session;
+      auto psession = get_session();
 
       if (pkey->m_ekey == ::user::e_key_return)
       {
@@ -1413,7 +1425,7 @@ namespace user
 
       }
 
-      auto psession = Session;
+      auto psession = get_session();
 
       bool bShift = psession->is_key_pressed(::user::e_key_shift);
 
@@ -1445,7 +1457,7 @@ namespace user
    strsize plain_edit::_001GetTextLength() const
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       auto ptree = m_ptree;
 
@@ -1488,7 +1500,7 @@ namespace user
 
       }
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       filesize iSize = m_ptree->m_peditfile->get_length();
 
@@ -1525,7 +1537,7 @@ namespace user
    void plain_edit::_001GetText(string & str, index iBegParam, index iEndParam) const
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       ::sort::sort_non_negative(iBegParam, iEndParam);
 
@@ -1603,7 +1615,7 @@ namespace user
 
       {
 
-         synchronization_lock synchronizationlock(mutex());
+         synchronous_lock synchronouslock(mutex());
 
          m_ptree->m_peditfile->seek(m_ptree->m_iSelBeg, ::file::seek_begin);
 
@@ -1723,7 +1735,7 @@ namespace user
    void plain_edit::_001SetSel(strsize iBeg, strsize iEnd, const ::action_context & action_context)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       m_ptree->m_iSelBeg = iBeg;
 
@@ -1863,7 +1875,7 @@ namespace user
 
    }
 
-   void plain_edit::_001OnMouseMove(::message::message * pmessage)
+   void plain_edit::on_message_mouse_move(::message::message * pmessage)
    {
 
       pmessage->previous();
@@ -1873,7 +1885,13 @@ namespace user
 
          __pointer(::message::mouse) pmouse(pmessage);
 
-         pmouse->m_ecursor = e_cursor_text_select;
+         auto psession = get_session();
+
+         auto puser = psession->user();
+
+         auto pwindowing = puser->windowing();
+
+         pmouse->m_pcursor = pwindowing->get_cursor(e_cursor_text_select);
 
          if (m_bLMouseDown)
          {
@@ -1888,7 +1906,7 @@ namespace user
                m_pointLastCursor = point;
 
 
-               synchronization_lock synchronizationlock(mutex());
+               synchronous_lock synchronouslock(mutex());
 
                ::rectangle_i32 rectWindow;
 
@@ -1919,7 +1937,7 @@ namespace user
    }
 
 
-   void plain_edit::_001OnMouseLeave(::message::message * pmessage)
+   void plain_edit::on_message_mouse_leave(::message::message * pmessage)
    {
 
       m_itemHover = e_element_none;
@@ -1945,7 +1963,7 @@ namespace user
 
          {
 
-            synchronization_lock synchronizationlock(mutex());
+            synchronous_lock synchronouslock(mutex());
 
             m_bLMouseDown = true;
 
@@ -1998,7 +2016,7 @@ namespace user
 
       __pointer(::message::mouse) pmouse(pmessage);
 
-      auto psession = Session;
+      auto psession = get_session();
 
       auto puser = psession->user();
 
@@ -2047,7 +2065,7 @@ namespace user
    void plain_edit::plain_edit_on_calc_offset(::draw2d::graphics_pointer& pgraphics, index iLineUpdate)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       ::rectangle_i32 rectClient;
 
@@ -2304,7 +2322,7 @@ namespace user
 
          iTab = -1;
 
-         iaTab.remove_all();
+         iaTab.erase_all();
 
          strLineGraphics = strLine;
 
@@ -2415,12 +2433,12 @@ namespace user
    void plain_edit::plain_edit_on_calc_layout(::draw2d::graphics_pointer& pgraphics, index iLineUpdate)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       if (!m_bMultiLine)
       {
 
-         auto psession = Session;
+         auto psession = get_session();
 
          string strTextPrevious;
 
@@ -2467,7 +2485,7 @@ namespace user
          if (strTextPrevious != strText)
          {
 
-            synchronization_lock synchronizationlock(mutex());
+            synchronous_lock synchronouslock(mutex());
 
             m_ptree->m_peditfile->seek(0, ::file::seek_begin);
             m_ptree->m_peditfile->Delete((memsize)m_ptree->m_peditfile->get_length());
@@ -2765,7 +2783,7 @@ namespace user
 
          iTab = -1;
 
-         iaTab.remove_all();
+         iaTab.erase_all();
 
          strLineGraphics = strLine;
 
@@ -2901,7 +2919,7 @@ namespace user
    index plain_edit::plain_edit_sel_to_line(::draw2d::graphics_pointer& pgraphics, strsize iSel)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       strsize i1;
 
@@ -2933,7 +2951,7 @@ namespace user
    index plain_edit::plain_edit_char_to_line(::draw2d::graphics_pointer& pgraphics, strsize iChar)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       for (index iLine = 0; iLine < m_iaLineBeg.get_size(); iLine++)
       {
@@ -3014,7 +3032,7 @@ namespace user
 
       }
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       if (iLine >= m_iaLineLen.get_size())
       {
@@ -3065,7 +3083,7 @@ namespace user
    index plain_edit::plain_edit_sel_to_line_x(::draw2d::graphics_pointer & pgraphics, strsize iSel, i32 & x)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       ::rectangle_i32 rectClient;
 
@@ -3105,7 +3123,7 @@ namespace user
    strsize plain_edit::plain_edit_line_column_to_sel(::draw2d::graphics_pointer& pgraphics, index iLine, index iColumn)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       while (iLine < 0)
       {
@@ -3148,7 +3166,7 @@ namespace user
 
       string strLine;
 
-      stra.remove_all();
+      stra.erase_all();
 
       stra.add_lines(straLines[iLine], false);
 
@@ -3187,7 +3205,7 @@ namespace user
    strsize plain_edit::plain_edit_line_x_to_sel(::draw2d::graphics_pointer& pgraphics, index iLine, i32 x)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       pgraphics.defer_create();
 
@@ -3209,7 +3227,7 @@ namespace user
    index plain_edit::plain_edit_sel_to_column_x(::draw2d::graphics_pointer& pgraphics, strsize iSel, i32 & x)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       ::rectangle_i32 rectClient;
 
@@ -3251,7 +3269,7 @@ namespace user
    index plain_edit::plain_edit_sel_to_column(::draw2d::graphics_pointer& pgraphics, strsize iSel)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       //string_array & straLines = m_plines->lines;
 
@@ -3359,7 +3377,7 @@ namespace user
    strsize plain_edit::plain_edit_line_char_hit_test(::draw2d::graphics_pointer& pgraphics, i32 px, index iLine)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       ::rectangle_i32 rectClient;
 
@@ -3481,7 +3499,7 @@ end:
    void plain_edit::_001GetViewSel(strsize & iSelBeg, strsize & iSelEnd) const
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
 
 
@@ -3535,7 +3553,7 @@ end:
    void plain_edit::_001GetSel(strsize & iBeg, strsize & iEnd) const
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       iBeg = m_ptree->m_iSelBeg;
 
@@ -3549,7 +3567,7 @@ end:
    void plain_edit::FileSave()
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
 
 
@@ -3573,7 +3591,7 @@ end:
    void plain_edit::plain_edit_create_line_index(::draw2d::graphics_pointer& pgraphics)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       memory m;
 
@@ -3597,9 +3615,9 @@ end:
 
       i32 iLineSize = 0;
 
-      m_iaLineLen.remove_all();
+      m_iaLineLen.erase_all();
 
-      m_iaLineEnd.remove_all();
+      m_iaLineEnd.erase_all();
 
       memsize uiPos;
 
@@ -3738,7 +3756,7 @@ end:
    void plain_edit::plain_edit_update_line_index(::draw2d::graphics_pointer& pgraphics, index iLine)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       memory m;
 
@@ -3964,7 +3982,7 @@ finished_update:
    void plain_edit::plain_edit_on_delete(::draw2d::graphics_pointer& pgraphics)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       bool bFullUpdate = false;
 
@@ -4111,7 +4129,7 @@ finished_update:
    bool plain_edit::plain_edit_delete_sel(::draw2d::graphics_pointer& pgraphics, bool & bFullUpdate, index & iLineUpdate)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       strsize i1 = m_ptree->m_iSelBeg;
 
@@ -4212,7 +4230,7 @@ finished_update:
    bool plain_edit::_001ReplaceSel(const char * pszText, bool & bFullUpdate, index & iLineUpdate)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       strsize i1 = m_ptree->m_iSelBeg;
 
@@ -4304,6 +4322,21 @@ finished_update:
    }
 
 
+   string plain_edit::get_ime_composition() const
+   {
+
+      if (!m_pitemComposing)
+      {
+
+         return "";
+
+      }
+
+      return ::string((const ansichar *) m_pitemComposing->get_data(), m_pitemComposing->get_extent());
+
+   }
+
+
    void plain_edit::_001OnChar(::message::message * pmessage)
    {
 
@@ -4328,7 +4361,7 @@ finished_update:
 
          string strChar;
 
-         auto psession = Session;
+         auto psession = get_session();
 
          if (pkey->m_ekey == ::user::e_key_s)
          {
@@ -4385,7 +4418,7 @@ finished_update:
 
          {
 
-            synchronization_lock synchronizationlock(mutex());
+            synchronous_lock synchronouslock(mutex());
 
             bool bControl = psession->is_key_pressed(::user::e_key_control);
             bool bShift = psession->is_key_pressed(::user::e_key_shift);
@@ -4924,7 +4957,7 @@ finished_update:
                   if (pkey->m_ekey == ::user::e_key_return)
                   {
                      // Kill Focus => Kill Key Repeat timer
-                     //::aura::get_system()->message_box("VK_RETURN reached plain_edit");
+                     //message_box("VK_RETURN reached plain_edit");
                   }
 
                   string str;
@@ -5227,13 +5260,17 @@ finished_update:
 
       __release(m_pitemComposing);
 
+      set_need_redraw();
+
+      post_redraw();
+
    }
 
    
    void plain_edit::InputConnectionBeginBatchEdit()
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       MacroBegin();
 
@@ -5245,7 +5282,7 @@ finished_update:
    void plain_edit::InputConnectionEndBatchEdit()
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       MacroEnd();
 
@@ -5471,7 +5508,7 @@ finished_update:
    void plain_edit::_001OnSysChar(::message::message * pmessage)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       __pointer(::message::key) pkey(pmessage);
 
@@ -5663,7 +5700,7 @@ finished_update:
 
       {
 
-         synchronization_lock synchronizationlock(mutex());
+         synchronous_lock synchronouslock(mutex());
 
          //string str;
          //_001GetText(str);
@@ -5736,7 +5773,7 @@ finished_update:
 
       {
 
-         synchronization_lock synchronizationlock(mutex());
+         synchronous_lock synchronouslock(mutex());
 
          //string str;
          //_001GetText(str);
@@ -5802,7 +5839,7 @@ finished_update:
 
    void plain_edit::MacroEnd()
    {
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
       if (m_ptree->m_pgroupcommand == nullptr)
       {
          ASSERT(false);
@@ -5818,7 +5855,7 @@ finished_update:
 
    void plain_edit::MacroRecord(__pointer(plain_text_command) pcommand)
    {
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
       if (m_ptree->m_pgroupcommand != nullptr && m_ptree->m_pgroupcommand != pcommand)
       {
          m_ptree->m_pgroupcommand->m_commanda.add(pcommand);
@@ -5835,7 +5872,7 @@ finished_update:
 
       {
 
-         synchronization_lock synchronizationlock(mutex());
+         synchronous_lock synchronouslock(mutex());
 
          {
             if (!CanUndo())
@@ -5884,7 +5921,7 @@ finished_update:
 
       {
 
-         synchronization_lock synchronizationlock(mutex());
+         synchronous_lock synchronouslock(mutex());
 
          if (m_ptreeitem == nullptr)
          {
@@ -5941,20 +5978,20 @@ finished_update:
 
    bool plain_edit::CanUndo()
    {
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
       return m_ptreeitem != m_ptree->get_base_item();
    }
 
    bool plain_edit::CanRedo()
    {
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
       return m_ptree->m_iBranch < m_ptreeitem->get_expandable_children_count()
              || m_ptreeitem->get_next() != nullptr;
    }
 
    ::count plain_edit::GetRedoBranchCount()
    {
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       return m_ptreeitem->get_expandable_children_count()
              + (m_ptreeitem->get_next() != nullptr ? 1 : 0)
@@ -5970,14 +6007,16 @@ finished_update:
 
       {
 
-         synchronization_lock synchronizationlock(mutex());
+         synchronous_lock synchronouslock(mutex());
 
          if (m_bParseDataPacks)
          {
 
-            m_base64map.remove_all();
+            m_base64map.erase_all();
 
-            _001AddPacks(m_base64map, str);
+            auto psystem = m_psystem->m_paurasystem;
+
+            psystem->_001AddPacks(m_base64map, str);
 
          }
 
@@ -6055,7 +6094,7 @@ finished_update:
 
             plain_edit_get_text(strtext());
 
-            get_context_application()->process_subject(m_ppropertyText->m_id, context);
+            get_application()->process_subject(m_ppropertyText->m_id, context);
 
          }
 
@@ -6104,7 +6143,7 @@ finished_update:
 
       str.replace("\r", "\r\n");
       
-      auto psession = Session;
+      auto psession = get_session();
 
       psession->copydesk().set_plain_text(str);
 
@@ -6124,7 +6163,7 @@ finished_update:
 
       string str;
 
-      auto psession = Session;
+      auto psession = get_session();
 
       if(!psession->copydesk().get_plain_text(str))
       {
@@ -6289,14 +6328,14 @@ finished_update:
    void plain_edit::on_kill_keyboard_focus()
    {
 
-      auto psession = Session;
+      auto psession = get_session();
 
-      if (psession->m_puiHost)
+      if (psession->get_user_interaction_host())
       {
 
-         auto puiHost = __user_interaction(psession->m_puiHost);
+         auto puserinteractionHost = psession->get_user_interaction_host();
 
-         puiHost->edit_on_kill_focus(this);
+         puserinteractionHost->edit_on_kill_focus(this);
 
       }
 
@@ -6333,7 +6372,7 @@ finished_update:
    void plain_edit::set_root(plain_text_tree * pdata, bool bOwnData)
    {
 
-      synchronization_lock lockRoot(mutex());
+      synchronous_lock lockRoot(mutex());
 
       if (m_ptree != nullptr && m_bOwnData)
       {
@@ -6423,7 +6462,7 @@ finished_update:
 
       __pointer(::message::command) pcommand(pmessage);
 
-      auto psession = Session;
+      auto psession = get_session();
 
       pcommand->enable(psession->copydesk().has_plain_text());
 
@@ -6571,7 +6610,7 @@ finished_update:
    string plain_edit::plain_edit_get_line(::draw2d::graphics_pointer& pgraphics, index iLine)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       string strLine;
 
@@ -6645,11 +6684,13 @@ finished_update:
 
       ::output_debug_string("plain_edit::insert_text: \"" + strText.Left(64) + "\" \n");
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       on_before_change_text();
 
-      _001AddPacks(m_base64map, strText);
+      auto psystem = m_psystem->m_paurasystem;
+
+      psystem->_001AddPacks(m_base64map, strText);
 
       bool bFullUpdate = false;
 

@@ -522,7 +522,7 @@ namespace draw2d_direct2d
       bool SelectClipPath(int nMode) override;
 
       // Misc Helper Functions
-      static ::draw2d::brush* GetHalftoneBrush(::layered * pobjectContext);
+      static ::draw2d::brush* GetHalftoneBrush(::object * pobject);
       //void DrawDragRect(const ::rectangle_f64 & rectangle, const ::size_f64 & size,
       //                  const ::rectangle_f64 & rectLast, const ::size_f64 & sizeLast,
       //                  ::draw2d::brush* pBrush = nullptr, ::draw2d::brush* pBrushLast = nullptr) override;
@@ -566,13 +566,13 @@ namespace draw2d_direct2d
 
       using ::draw2d::graphics::draw;
 
-      virtual bool draw(const ::text_out & textout, ::draw2d::pen * ppen);
+      virtual bool draw(const ::write_text::text_out & textout, ::draw2d::pen * ppen);
 
-      virtual bool fill(const ::text_out & textout, ::draw2d::brush * pbrush);
+      virtual bool fill(const ::write_text::text_out & textout, ::draw2d::brush * pbrush);
 
-      virtual bool draw(const ::draw_text & drawtext, ::draw2d::pen* ppen);
+      virtual bool draw(const ::write_text::draw_text & drawtext, ::draw2d::pen* ppen);
 
-      virtual bool fill(const ::draw_text & drawtext, ::draw2d::brush* pbrush);
+      virtual bool fill(const ::write_text::draw_text & drawtext, ::draw2d::brush* pbrush);
 
 
       virtual bool flush() override;

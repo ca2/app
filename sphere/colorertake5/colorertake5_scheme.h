@@ -15,7 +15,7 @@ public:
   /** Full qualified schema name.
   */
   virtual const string getName() const = 0;
-  /** Returns context_object to file_type, this scheme belongs to.
+  /** Returns object to file_type, this scheme belongs to.
   */
   virtual file_type *getFileType() const = 0;
 protected:

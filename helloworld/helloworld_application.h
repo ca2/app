@@ -60,7 +60,7 @@ namespace helloworld
       bool                                   m_bLoadAiFont;
       void *                                 m_faceAi; // FT_Face m_faceAi;
 
-      application(::layered * pobjectContext);
+      application(::object * pobject);
       virtual ~application();
 
       virtual string preferred_experience() override;

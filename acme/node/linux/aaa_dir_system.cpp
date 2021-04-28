@@ -22,10 +22,10 @@ namespace linux
    }
 
 
-   ::e_status dir_system::initialize(::matter * pobjectContext)
+   ::e_status dir_system::initialize(::matter * pobject)
    {
 
-      auto estatus = ::dir_system::initialize(pobjectContext);
+      auto estatus = ::dir_system::initialize(pobject);
 
       if(!estatus)
       {

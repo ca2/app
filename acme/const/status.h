@@ -169,10 +169,12 @@ enum enum_status : ::i64
    error_range,
    error_invalid_type,
    error_unexpected_situation,
+   error_datetime_parser,
 
    error_io = INT_FAILURE_STATUS(STATUS_RANGE_IO),
    error_serial,
    error_serial_io,
+   error_port_not_opened,
 
 
    error_file = INT_FAILURE_STATUS(STATUS_RANGE_FILE),
@@ -181,7 +183,7 @@ enum enum_status : ::i64
    error_too_many_open_files,
    error_file_access_denied,
    error_invalid_file,
-   error_remove_current_dir,
+   error_erase_current_dir,
    error_directory_full,
    error_bad_seek,
    error_hard_io,
@@ -227,6 +229,13 @@ enum enum_status : ::i64
    partial_sorf_of_half_has_failed, // ~ 1/2 success (between 1/3 and 2/3)
    partial_two_thirds_or_more_but_not_all_has_failed, // >= 2/3 success
    success_hresult,
+   success_not_constructed,
+   success_not_allocated,
+   success_not_created,
+   success_not_composed,
+   success_already_added,
+   success_started,
+   success_scheduled,
 
    success_http = INT_SUCCESS_STATUS(STATUS_RANGE_HTTP),
    success_http_redirection,

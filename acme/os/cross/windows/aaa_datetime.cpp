@@ -288,7 +288,7 @@ PLARGE_INTEGER Time)
 
    utc = time( nullptr );
 
-   synchronization_lock ml(g_pmutexTz);
+   synchronous_lock ml(g_pmutexTz);
 //    RtlEnterCriticalSection( &TIME_tz_section );
    if (utc != last_utc)
    {
@@ -338,7 +338,7 @@ NTSTATUS WINAPI RtlLocalTimeToSystemTime( const LARGE_INTEGER *LocalTime,
  * Convert a system time into a local time.
  *
  * PARAMS
- *   SystemTime [I] System time to convert.
+ *   SystemTime [I] ::acme::get_system() time to convert.
  *   LocalTime  [O] Destination for the converted time.
  *
  * RETURNS
@@ -717,7 +717,7 @@ static i32 init_tz_info(RTL_TIME_ZONE_INFORMATION *tzi)
    time_t year_start, year_end, tmp, dlt = 0, iStandard = 0;
    i32 is_dst, current_is_dst;
 
-   synchronization_lock ml(g_pmutexTz);
+   synchronous_lock ml(g_pmutexTz);
 //    RtlEnterCriticalSection( &TIME_tz_section );
 
    year_start = time(nullptr);

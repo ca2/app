@@ -5,7 +5,7 @@ namespace draw2d_xlib
 {
 
 
-   palette::palette(::layered * pobjectContext) :
+   palette::palette(::object * pobject) :
       ::object(pobject)
    {
 

@@ -6,8 +6,7 @@ namespace xml
 {
 
 
-   property_set_exchange::property_set_exchange(::layered * pobjectContext) :
-      ::object(pobjectContext)
+   property_set_exchange::property_set_exchange(::object * pobject)
    {
 
       m_ppropertyset = nullptr;
@@ -33,7 +32,7 @@ namespace xml
 
       }
 
-      var_exchange varexchange(get_context_object());
+      var_exchange varexchange;
 
       for(auto & pproperty : *m_ppropertyset)
       {
@@ -53,7 +52,7 @@ namespace xml
       if(m_ppropertyset == nullptr)
          return;
 
-      var_exchange varexchange(get_context_object());
+      var_exchange varexchange;
 
       for(auto & pproperty : *m_ppropertyset)
       {

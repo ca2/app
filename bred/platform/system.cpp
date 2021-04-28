@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "apex/platform/static_setup.h"
+#include "acme/platform/static_setup.h"
 #include "bred/const/idpool.h"
 
 
@@ -10,8 +10,6 @@ namespace bred
    system::system()
    {
 
-      m_pbredsystem = this;
-
       common_construct();
 
    }
@@ -21,9 +19,6 @@ namespace bred
    {
 
 
-
-      m_pbredsystem = nullptr;
-
    }
 
 
@@ -32,17 +27,17 @@ namespace bred
 
       create_factory < ::bred::application, ::apex::application >();
       create_factory < ::bred::session, ::apex::session >();
-      create_factory < ::bred::idpool, ::apex::idpool >();
+      create_factory < ::bred::idpool, ::acme::idpool >();
       //create_factory < ::core::user, ::user::user >();
-      create_factory < ::bred::idpool, ::apex::idpool >();
+      //create_factory < ::bred::idpool, ::apex::idpool >();
 
    }
 
 
-   ::e_status system::initialize(::layered * pobjectContext)
+   ::e_status system::initialize(::object * pobject)
    {
 
-      auto estatus = ::apex::system::initialize(pobjectContext);
+      auto estatus = ::apex::system::initialize(pobject);
 
       if (!estatus)
       {
@@ -56,6 +51,27 @@ namespace bred
    }
 
 
+
+   void system::on_add_session(::apex::session* papexsession)
+   {
+
+      ::base::system::on_add_session(papexsession);
+
+      if (papexsession->m_iEdge == 0)
+      {
+
+         if (!m_pbredsession)
+         {
+
+            m_pbredsession = papexsession->m_pbredsession;
+
+         }
+
+      }
+
+      papexsession->m_pbredsystem = this;
+
+   }
    //::e_status system::initialize_rich_text()
    //{
 

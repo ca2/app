@@ -2,7 +2,7 @@
 
 
 class CLASS_DECL_AURA image_frame :
-   virtual public context_object
+   virtual public object
 {
 public:
 

@@ -5,7 +5,7 @@ namespace turboc
 {
 
 
-   main_view::main_view(::layered * pobjectContext):
+   main_view::main_view(::object * pobject):
       ::object(pobject),
       ::user::split_layout(pobject),
       ::user::split_view(pobject),
@@ -49,7 +49,7 @@ namespace turboc
       if(get_pane_count() > 0)
          return;
 
-      if(Application.m_bMultiverseChat)
+      if(papplication->m_bMultiverseChat)
       {
 
          SetPaneCount(2);
@@ -62,7 +62,7 @@ namespace turboc
 
       initialize_split_layout();
 
-      if(Application.m_bMultiverseChat)
+      if(papplication->m_bMultiverseChat)
       {
 
          m_ptopview = create_view < top_view >(NULL,::rectangle_i32(),NULL,"turboc_top");
@@ -70,7 +70,7 @@ namespace turboc
          if(m_ptopview == NULL)
          {
 
-            System->message_box(NULL,"Could not create folder edit view");
+            message_box(NULL,"Could not create folder edit view");
 
          }
 
@@ -85,14 +85,14 @@ namespace turboc
       if(m_pview == NULL)
       {
 
-         System->message_box(NULL,"Could not create file list ::aura::impact");
+         message_box(NULL,"Could not create file list ::aura::impact");
 
       }
 
       m_ptopview->m_pview = m_pview;
 
 
-      if(Application.m_bMultiverseChat)
+      if(papplication->m_bMultiverseChat)
       {
          SetPane(1,m_pview,false);
 
@@ -117,10 +117,10 @@ namespace turboc
          if(pevent->m_puie->m_id == "turboc_toggle")
          {
 
-            if(m_pview->m_bLite && !Application.m_bLoadAiFont)
+            if(m_pview->m_bLite && !papplication->m_bLoadAiFont)
             {
 
-               Application.load_ai_font();
+               papplication->load_ai_font();
 
             }
 

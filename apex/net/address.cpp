@@ -231,7 +231,9 @@ namespace net
 
 #ifdef BSD_STYLE_SOCKETS
 
-      u.s.m_port = Sys(pobject).sockets().net().service_port(strService);
+      auto psystem = pobject->get_system();
+
+      u.s.m_port = psystem->m_papexsystem->sockets().net().service_port(strService);
 
 #endif
 
@@ -486,14 +488,12 @@ namespace net
 
 #if defined(BSD_STYLE_SOCKETS)
 
-      auto psockets = &::apex::get_system()->sockets();
+      auto paddressdepartment = ::net::address_department();
 
-      auto pnet = &psockets->net();
-
-      if (pnet->isipv6(strAddress))
+      if (paddressdepartment->isipv6(strAddress))
       {
        
-         if (pnet->convert(u.m_addr6.sin6_addr, strAddress))
+         if (paddressdepartment->convert(u.m_addr6.sin6_addr, strAddress))
          {
 
             u.s.m_family = AF_INET6;
@@ -501,10 +501,10 @@ namespace net
          }
 
       }
-      else if (pnet->isipv4(strAddress))
+      else if (paddressdepartment->isipv4(strAddress))
       {
 
-         if (pnet->convert(u.m_addr.sin_addr, strAddress))
+         if (paddressdepartment->convert(u.m_addr.sin_addr, strAddress))
          {
 
             u.s.m_family = AF_INET;

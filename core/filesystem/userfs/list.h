@@ -86,14 +86,14 @@ namespace userfs
       virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
       virtual bool pre_create_window(::user::system * pusersystem) override;
 
-      DECL_GEN_SIGNAL(_001OnHScroll);
-      DECL_GEN_SIGNAL(_001OnVScroll);
-      DECL_GEN_SIGNAL(_001OnFileRename);
-      DECL_GEN_SIGNAL(_001OnUpdateFileRename);
-      DECL_GEN_SIGNAL(_001OnShowWindow);
-      DECL_GEN_SIGNAL(on_message_create);
-      DECL_GEN_SIGNAL(_001OnLButtonDblClk);
-      DECL_GEN_SIGNAL(_001OnCancelMode);
+      DECLARE_MESSAGE_HANDLER(_001OnHScroll);
+      DECLARE_MESSAGE_HANDLER(_001OnVScroll);
+      DECLARE_MESSAGE_HANDLER(_001OnFileRename);
+      DECLARE_MESSAGE_HANDLER(_001OnUpdateFileRename);
+      DECLARE_MESSAGE_HANDLER(_001OnShowWindow);
+      DECLARE_MESSAGE_HANDLER(on_message_create);
+      DECLARE_MESSAGE_HANDLER(_001OnLButtonDblClk);
+      DECLARE_MESSAGE_HANDLER(_001OnCancelMode);
 
 
       virtual void _001OnTimer(::timer * ptimer) override;

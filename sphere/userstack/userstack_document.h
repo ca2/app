@@ -13,7 +13,7 @@ namespace userstack
 
       
 
-      document(::layered * pobjectContext);
+      document(::object * pobject);
       virtual ~document();
 
 

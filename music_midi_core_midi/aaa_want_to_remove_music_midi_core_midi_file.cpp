@@ -13,7 +13,7 @@ namespace music
       {
          
 
-      file::file(::layered * pobjectContext) :
+      file::file(::object * pobject) :
          object(pobject),
          ::music::midi::file(pobject)
       {
@@ -266,7 +266,7 @@ namespace music
 //         m_ptracks->clear();
 //
 //
-//         m_tempomap.remove_all();
+//         m_tempomap.erase_all();
 //
 //
 //         m_bPendingLyric = false;
@@ -276,14 +276,14 @@ namespace music
 //         {
 //            delete m_mepaOnQuarterNote.element_at(i);
 //         }
-//         m_mepaOnQuarterNote.remove_all();
+//         m_mepaOnQuarterNote.erase_all();
 //
 //
 //         for(i32 i = 0; i < m_mepaImmediate.get_size(); i++)
 //         {
 //            delete m_mepaImmediate.element_at(i);
 //         }
-//         m_mepaImmediate.remove_all();
+//         m_mepaImmediate.erase_all();
 //
 //
 //         m_tkLength              = 0;
@@ -555,7 +555,7 @@ namespace music
 //      void file::TicksToMillisecs(imedia_time_2darray * p2DMillis, imedia_position_2darray *p2DTicks, iptr tkOffset)
 //      {
 //         ASSERT(p2DMillis->get_size() == 0);
-//         p2DMillis->set_app(get_object());
+//         p2DMillis->set_app(this);
 //         p2DMillis->set_size_create(p2DTicks->get_size());
 //         i32 i;
 //         for(i = 0; i < p2DTicks->get_size(); i++)
@@ -571,7 +571,7 @@ namespace music
 //      void file::PositionToTime(imedia_time_2darray  & timea, imedia_position_2darray  & positiona, iptr tkOffset)
 //      {
 //         ASSERT(timea.get_size() == 0);
-//         timea.set_app(get_object());
+//         timea.set_app(this);
 //         timea.set_size_create(positiona.get_size());
 //         i32 i;
 //         for(i = 0; i < positiona.get_size(); i++)
@@ -741,7 +741,7 @@ namespace music
 //         m_cbPendingUserEvent = (u32) m_memstorageF1.get_size();
 //         m_hpbPendingUserEvent = m_memstorageF1.get_data();
 //         ASSERT(m_hpbPendingUserEvent);
-//         GetFlags().remove(::music::midi::InsertSysEx);
+//         GetFlags().erase(::music::midi::InsertSysEx);
 //         m_dwPendingUserEvent = ((MEVT_F_CALLBACK | MEVT_F_LONG |(((u32)MEVT_COMMENT)<<24)) & 0xFF000000L);
 //
 //         smfrc = InsertParmData(tkDelta, lpmh);
@@ -906,7 +906,7 @@ namespace music
 //
 //            m_cbPendingUserEvent = (u32) pEvent->GetParamSize();
 //            m_hpbPendingUserEvent = pEvent->GetParam();
-//            GetFlags().remove(::music::midi::InsertSysEx);
+//            GetFlags().erase(::music::midi::InsertSysEx);
 //
 //            if(pEvent->GetFullType() == sys_ex_end)
 //            {
@@ -1375,7 +1375,7 @@ namespace music
 //         memFile.read(lpdw, dwLength);
 //         while(0 < m_pendingLyricEventArray.get_size())
 //         {
-//         m_pendingLyricEventArray.remove_at(
+//         m_pendingLyricEventArray.erase_at(
 //         m_pendingLyricEventArray.get_size() - 1);
 //         }
 //         lpmh->dwBytesRecorded += 3*sizeof(u32) + dwRounded;
@@ -1536,7 +1536,7 @@ namespace music
 //         {
 //            byte * lpb = (byte *) lpdw;
 //            *lpb++ = sys_ex;
-//            GetFlags().remove(::music::midi::InsertSysEx);
+//            GetFlags().erase(::music::midi::InsertSysEx);
 //            --dwLength;
 //            --m_cbPendingUserEvent;
 //            lpdw = (LPDWORD) lpb;
@@ -1629,8 +1629,8 @@ namespace music
 //         __memset(&m_keyframe.rbProgram, 0x00, sizeof(m_keyframe.rbProgram));
 //
 //         m_ptracks->m_tkPosition = 0;
-//         GetFlags().remove(::music::midi::file::EndOfFile);
-//         m_ptracks->GetFlags().remove(::music::midi::file::EndOfFile);
+//         GetFlags().erase(::music::midi::file::EndOfFile);
+//         m_ptracks->GetFlags().erase(::music::midi::file::EndOfFile);
 //
 //         m_ptracks->seek_begin();
 //         //for (ptrk = m_rTracks, idxTrack = m_dwTracks; idxTrack--; ptrk++)
@@ -1790,8 +1790,8 @@ namespace music
 //
 //
 //         m_ptracks->m_tkPosition = 0;
-//         GetFlags().remove(::music::midi::file::EndOfFile);
-//         m_ptracks->GetFlags().remove(::music::midi::file::EndOfFile);
+//         GetFlags().erase(::music::midi::file::EndOfFile);
+//         m_ptracks->GetFlags().erase(::music::midi::file::EndOfFile);
 //
 //         m_ptracks->seek_begin();
 //
@@ -1843,7 +1843,7 @@ namespace music
 //         u32                        cbLength;
 //         i32                        iTrack;
 //
-//         GetTracks().remove_all();
+//         GetTracks().erase_all();
 //
 //         /* MIDI data image is already in hpbImage (already extracted from
 //         ** RIFF header if necessary).
@@ -1973,7 +1973,7 @@ namespace music
 //         ** (3) Validate all events in all tracks
 //         */
 //         m_ptracks->m_tkPosition = 0;
-//         GetFlags().remove(::music::midi::file::EndOfFile);
+//         GetFlags().erase(::music::midi::file::EndOfFile);
 //         GetFlags().add(::music::midi::DisablePlayLevel1Operations);
 //
 //         m_ptracks->SetAutoAllocation(false);
@@ -1993,7 +1993,7 @@ namespace music
 //            smfrc = CalcTkLength();
 //         }
 //
-//         //GetFlags().remove(DisablePlayLevel1Operations);
+//         //GetFlags().erase(DisablePlayLevel1Operations);
 //
 //         return smfrc;
 //      }
@@ -2015,7 +2015,7 @@ namespace music
 //               ::music::midi::event_v7 * peventImmediate = m_mepaImmediate.element_at(0);
 //               *pevent = *peventImmediate;
 //               delete peventImmediate;
-//               m_mepaImmediate.remove_at(0);
+//               m_mepaImmediate.erase_at(0);
 //               return ::music::midi::Success;
 //            }
 //            if(m_mepaOnQuarterNote.get_size() > 0)
@@ -2039,7 +2039,7 @@ namespace music
 //                  m_ptracks->m_tkPosition  = tkQuarterNote;
 //                  *pevent = *m_mepaOnQuarterNote.element_at(0);
 //                  delete m_mepaOnQuarterNote.element_at(0);
-//                  m_mepaOnQuarterNote.remove_at(0);
+//                  m_mepaOnQuarterNote.erase_at(0);
 //                  return ::music::midi::Success;
 //               }
 //            }
@@ -2188,7 +2188,7 @@ namespace music
 //         //lpch->dwLength = DWORDSWAP(this->get_size());
 //         lpch->dwLength = DWORDSWAP(sizeof(MIDIFILEHDR));
 //
-//         //   m_ptracks->remove_all();
+//         //   m_ptracks->erase_all();
 //         SetOpened();
 //         return ::music::midi::Success;
 //
@@ -2329,8 +2329,8 @@ namespace music
 //         ::music::midi::event_v1 *           peventPrevious;
 //
 //         m_ptracks->m_tkPosition = 0;
-//         GetFlags().remove(::music::midi::file::EndOfFile);
-//         m_ptracks->GetFlags().remove(::music::midi::file::EndOfFile);
+//         GetFlags().erase(::music::midi::file::EndOfFile);
+//         m_ptracks->GetFlags().erase(::music::midi::file::EndOfFile);
 //
 //         m_ptracks->seek_begin();
 //         //for (ptrk = m_rTracks, idxTrack = m_dwTracks; idxTrack--; ptrk++)
@@ -2596,7 +2596,7 @@ namespace music
 //         fileHdr.wDivision = m_pFileHeader->wDivision ;
 //         fileHdr.wTracks = WORDSWAP(1) ;
 //
-//         ::music::midi::track * pTrackUnion = new ::music::midi::track(get_object());
+//         ::music::midi::track * pTrackUnion = new ::music::midi::track(this);
 //         pTrackUnion->Initialize(m_ptracks);
 //         m_ptracks->CompactTracks(*pTrackUnion, true, true);
 //
@@ -2781,7 +2781,7 @@ namespace music
 //                  tkDelta = tkPositionF1 - tkLastPosition;
 //                  StreamEventF1(tkDelta, eventptraPositionCB, lpmh, tkMax, cbPrerollNominalMax);
 //                  tkLastPosition = tkPositionF1;
-//                  eventptraPositionCB.remove_all();
+//                  eventptraPositionCB.erase_all();
 //
 //                  eventptraPositionCB.add(pevent);
 //                  tkPositionF1   = tkPosition;
@@ -2798,7 +2798,7 @@ namespace music
 //                     tkDelta = tkPositionF1 - tkLastPosition;
 //                     StreamEventF1(tkDelta, eventptraPositionCB, lpmh, tkMax, cbPrerollNominalMax);
 //                     tkDelta = tkPosition - tkPositionF1;
-//                     eventptraPositionCB.remove_all();
+//                     eventptraPositionCB.erase_all();
 //                  }
 //                  else
 //                  {
@@ -2892,7 +2892,7 @@ namespace music
 //         event_v5 * peventImmediate = m_mepaImmediate.element_at(0);
 //         pevent = peventImmediate;
 //         delete peventImmediate;
-//         m_mepaImmediate.remove_at(0);
+//         m_mepaImmediate.erase_at(0);
 //         return ::music::midi::Success;
 //         }
 //         if(m_mepaOnQuarterNote.get_size() > 0)
@@ -2916,7 +2916,7 @@ namespace music
 //         m_ptracks->m_tkPosition  = tkQuarterNote;
 //         pevent = m_mepaOnQuarterNote.element_at(0);
 //         delete m_mepaOnQuarterNote.element_at(0);
-//         m_mepaOnQuarterNote.remove_at(0);
+//         m_mepaOnQuarterNote.erase_at(0);
 //         return ::music::midi::Success;
 //         }
 //         }
@@ -3012,8 +3012,8 @@ namespace music
 //         __memset(&m_keyframe.rbProgram, 0x00, sizeof(m_keyframe.rbProgram));
 //
 //         m_ptracks->m_tkPosition = 0;
-//         GetFlags().remove(::music::midi::file::EndOfFile);
-//         m_ptracks->GetFlags().remove(::music::midi::file::EndOfFile);
+//         GetFlags().erase(::music::midi::file::EndOfFile);
+//         m_ptracks->GetFlags().erase(::music::midi::file::EndOfFile);
 //
 //         m_ptracks->WorkSeekBegin();
 //
@@ -3227,7 +3227,7 @@ namespace music
 //      ::e_status     file::WorkSeekBegin()
 //      {
 //         m_ptracks->WorkSeekBegin();
-//         GetFlags().remove(::music::midi::file::EndOfFile);
+//         GetFlags().erase(::music::midi::file::EndOfFile);
 //         m_tkLastDelta = 0;
 //         m_positionLastWorkRender.set_maximum();
 //         return ::music::midi::Success;
@@ -3241,7 +3241,7 @@ namespace music
 //         }
 //         else
 //         {
-//            m_iaMuteTrack.remove(iIndex);
+//            m_iaMuteTrack.erase(iIndex);
 //         }
 //      }
 //
@@ -3371,7 +3371,7 @@ namespace music
 //
 //         while(tracka.GetTrackCount() > 1)
 //         {
-//            tracka.remove_at(1);
+//            tracka.erase_at(1);
 //         }
 //
 //
@@ -3433,7 +3433,7 @@ namespace music
 //         }
 //         else
 //         {
-//            GetFlags().remove(::music::midi::Opened);
+//            GetFlags().erase(::music::midi::Opened);
 //         }
 //      }
 //

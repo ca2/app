@@ -34,14 +34,14 @@ namespace filehandler
       virtual ~handler();
 
 
-      virtual ::e_status initialize(::layered * pobjectContext) override;
+      virtual ::e_status initialize(::object * pobject) override;
 
 
       string get_text(__pointer(::data::tree) ptree);
       index get_image(__pointer(::data::tree) ptree);
 
 
-      void defer_add_library(::apex::library * plibrary);
+      void defer_add_library(::acme::library * plibrary);
       void add_library(::filehandler::library * plibrary);
       void add_menu_library(menu_library * plibrary);
 

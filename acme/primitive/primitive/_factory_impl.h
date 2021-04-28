@@ -174,7 +174,7 @@ inline __pointer(BASE_TYPE) __create()
 
 
 template < typename BASE_TYPE >
-inline __pointer(BASE_TYPE) __create(::layered * pobjectContext)
+inline __pointer(BASE_TYPE) __create(::object * pobject)
 {
 
    auto p = __create < BASE_TYPE >();
@@ -186,7 +186,7 @@ inline __pointer(BASE_TYPE) __create(::layered * pobjectContext)
 
    }
 
-   auto estatus = p->initialize(pobjectContext);
+   auto estatus = p->initialize(pobject);
 
    if (!estatus)
    {
@@ -275,7 +275,7 @@ inline __pointer(TYPE) __create_new(const TYPE & t)
 
 
 template < typename TYPE >
-inline __pointer(TYPE) __create_new(::matter * pobjectContext)
+inline __pointer(TYPE) __create_new(::object * pobject)
 {
 
    auto ptype = __create_new< TYPE > ();
@@ -287,7 +287,7 @@ inline __pointer(TYPE) __create_new(::matter * pobjectContext)
 
    }
 
-   auto estatus = ptype->initialize(pobjectContext);
+   auto estatus = ptype->initialize(pobject);
 
    if (!estatus)
    {

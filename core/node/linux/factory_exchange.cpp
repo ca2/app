@@ -1,9 +1,8 @@
 #include "framework.h"
 #include "base/user/user/_user.h"
 #include "acme/os/console.h"
-#include "shell_linux.h"
 //#include "console_window.h"
-#include "acme/node/posix/pipe.h"
+//#include "acme/node/posix/pipe.h"
 #include "apex/process/process.h"
 //#include "_linux.h"
 //#include "aura/node/_node.h"
@@ -32,7 +31,7 @@ void __node_aura_factory_exchange(::factory_map * pfactorymap)
    //create_factory < ::file::os_watch            , ::file::watch            >();
 
 
-   create_factory < ::linux::shell              , ::user::shell            >();
+   //create_factory < ::linux::shell              , ::user::shell            >();
 
 }
 

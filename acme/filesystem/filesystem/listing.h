@@ -118,7 +118,7 @@ namespace file
       }
 
 
-      void clear_results() { m_straTitle.remove_all(); m_statusresult.clear(); remove_all(); }
+      void clear_results() { m_straTitle.erase_all(); m_statusresult.clear(); erase_all(); }
 
 
       string title(index i);
@@ -167,7 +167,7 @@ namespace file
 
          }
 
-         remove_at(i);
+         erase_at(i);
          insert_at(iIndex,pcsz);
 
          return true;

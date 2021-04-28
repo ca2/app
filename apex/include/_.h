@@ -75,17 +75,6 @@
 #pragma once
 
 
-//#undef Node
-//#undef ::apex::get_system()
-//#undef Sess
-//#undef App
-
-
-//#define ::apex::get_system() (::get_context_system()->m_papexsystem)
-//#define Node (::get_context_system()->node()->m_papexnode)
-//#define Sess(pcontextsession) (pcontextsession)
-#define App(playered) (::get_context_application(playered))
-
 
 
 #define __spin_namespace apex // back bone / four-letter "spin*" namespace name
@@ -99,9 +88,11 @@ namespace apex
    class node;
    class session;
    class application;
+   
+   //class apex;
 
 
-   inline system * get_system() { return (system *) ::acme::get_system()->layer(LAYERED_APEX); }
+   //inline system * get_system() { return (system *) get_system()->layer(LAYERED_APEX); }
 
 
 } // namespace apex
@@ -369,22 +360,22 @@ class machine_event_central;
 #define __exception(TYPE) __base(TYPE, pe, e)
 
 
-#include "apex/primitive/math/_.h"
+//#include "apex/primitive/math/_.h"
 
 
 #include "apex/crypto/_.h"
 
 
 extern "C"
-CLASS_DECL_APEX void register_apex_library(const char * psz, ::apex::library * plibrary);
+CLASS_DECL_APEX void register_library(const char * psz, ::acme::library * plibrary);
 
 
 extern "C"
-CLASS_DECL_APEX void register_get_new_apex_library(const char* psz, PFN_NEW_APEX_LIBRARY pfnNewAuraLibrary);
+CLASS_DECL_APEX void register_get_new_library(const char* psz, PFN_NEW_LIBRARY pfnnewlibrary);
 
 
 #define DECLARE_NEW_APEX_LIBRARY(X) extern "C" \
-::apex::library * X##_new_apex_library()
+::acme::library * X##_new_apex_library()
 
 #define REGISTER_GET_NEW_APEX_LIBRARY(X) register_get_new_apex_library(#X, &X##_get_new_library)
 
@@ -428,10 +419,6 @@ namespace apex
    //class application_message;
 
    class command;
-
-   class str;
-   class str_context;
-
 
 } // namespace apex
 
@@ -592,21 +579,21 @@ namespace xml
 } // namespace xml
 
 
-namespace str
-{
-
-
-   namespace international
-   {
-
-
-      class locale_schema;
-
-
-   } // namespace international
-
-
-} // namespace str
+//namespace str
+//{
+//
+//
+//   namespace international
+//   {
+//
+//
+//      class locale_schema;
+//
+//
+//   } // namespace international
+//
+//
+//} // namespace str
 
 
 
@@ -642,19 +629,19 @@ namespace html
 
 
 //#define SCAST_PTR(TYPE, ptarget, psource) __pointer(TYPE) ptarget(psource);
-#define SCAST_REF(TYPE, rtarget, psource) TYPE & rtarget = *(dynamic_cast < TYPE * > (psource))
+//#define SCAST_REF(TYPE, rtarget, psource) TYPE & rtarget = *(dynamic_cast < TYPE * > (psource))
 
 
-#define Session (Sess(get_context_session()))
+//#define get_session() (Sess(get_session()))
 
-#define Application (App(get_context_object()))
-#define ThisApp (*::application_consumer < application >::get_app())
-#define NamespaceApp(namespace) (*::application_consumer < ::namespace::application >::get_app())
+//#define papplication (App(this))
+//#define ThisApp (*::application_consumer < application >::get_app())
+//#define m_papplication->
 
 
-#undef Ctx
-#define Ctx(pobject) (*(::get_context(pobject)))
-#define Context (Ctx(get_context_object()))
+//#undef Ctx
+//#define Ctx(pobject) (*(::get_context(pobject)))
+//#define Context (Ctx(this))
 
 
 
@@ -666,7 +653,7 @@ namespace html
 
 // __throw( - exception - result exception - if not ok
 #ifndef TINOK
-#define TINOK(e, x) { i32 __result__ = (x); if (__result__ != 0) __throw(e(get_context_application(), __result__)); }
+#define TINOK(e, x) { i32 __result__ = (x); if (__result__ != 0) __throw(e(get_application(), __result__)); }
 #endif
 
 
@@ -696,48 +683,60 @@ typedef void(*PFN_factory_exchange)(::factory_map * pfactorymap);
 
 class object;
 
+namespace apex
+{
 
-class context;
+   class context;
+
+}
 
 
-CLASS_DECL_APEX bool __node_apex_pre_init();
-CLASS_DECL_APEX bool __node_apex_pos_init();
+namespace aura
+{
 
-CLASS_DECL_APEX bool __node_apex_pre_term();
-CLASS_DECL_APEX bool __node_apex_pos_term();
+   class context;
+
+}
+
+
+//CLASS_DECL_APEX bool __node_apex_pre_init();
+//CLASS_DECL_APEX bool __node_apex_pos_init();
+
+//CLASS_DECL_APEX bool __node_apex_pre_term();
+//CLASS_DECL_APEX bool __node_apex_pos_term();
 
 
 //extern "C" CLASS_DECL_APEX PFN_NEW_APEX_LIBRARY get_get_new_apex_library(const char * psz);
 //extern "C" CLASS_DECL_APEX void register_get_new_apex_library(const char* psz, PFN_NEW_APEX_LIBRARY pfnNewAuraLibrary);
 
 
-//CLASS_DECL_APEX ::apex::library & get_library(const char* psz);
-//CLASS_DECL_APEX void register_apex_library(const char* psz, ::apex::library* plibrary);
+//CLASS_DECL_APEX ::acme::library & get_library(const char* psz);
+//CLASS_DECL_APEX void register_apex_library(const char* psz, ::acme::library* plibrary);
 
 //CLASS_DECL_APEX ::context * get_context();
-//CLASS_DECL_APEX ::context * get_context(::layered * pobjectContext);
+//CLASS_DECL_APEX ::context * get_context(::object * pobject);
 //CLASS_DECL_APEX inline ::context * get_context(::context * pcontext);
 
 
-//inline ::object * get_context_object();
+//inline ::object * this;
 
 
 //CLASS_DECL_APEX void set_global_application(::apex::application * papp);
 //CLASS_DECL_APEX ::apex::application * get_global_application();
 
 
-//CLASS_DECL_APEX ::apex::application * get_context_application();
-//CLASS_DECL_APEX ::apex::application * get_context_application(::layered * pobjectContext);
-//CLASS_DECL_APEX inline ::apex::application * get_context_application(::apex::application * papp);
-//CLASS_DECL_APEX inline ::apex::application * get_app() { return get_context_application(); }
+//CLASS_DECL_APEX ::apex::application * get_application();
+//CLASS_DECL_APEX ::apex::application * get_application(::object * pobject);
+//CLASS_DECL_APEX inline ::apex::application * get_application(::apex::application * papp);
+//CLASS_DECL_APEX inline ::apex::application * get_app() { return get_application(); }
 
 
-//CLASS_DECL_APEX ::apex::session * get_context_session();
-//CLASS_DECL_APEX ::apex::session * get_context_session(::layered * pobjectContext);
-//CLASS_DECL_APEX inline ::apex::session * get_context_session(::apex::session * psession);
+//CLASS_DECL_APEX ::apex::session * get_session();
+//CLASS_DECL_APEX ::apex::session * get_session(::object * pobject);
+//CLASS_DECL_APEX inline ::apex::session * get_session(::apex::session * psession);
 
 
-//CLASS_DECL_APEX ::apex::system * get_context_system(::layered * pobjectContext);
+//CLASS_DECL_APEX ::apex::system * ::apex::get_system(::object * pobject);
 
 
 #define BAD_WCHAR ((widechar)(-1))
@@ -824,7 +823,16 @@ namespace http
 
 } // namespace http
 
-class context;
+
+namespace apex
+{
+
+   
+   class context;
+
+
+} // namespace apex
+
 
 namespace draw2d
 {
@@ -852,9 +860,13 @@ namespace core
 } // namespace core
 
 
-#include "apex/primitive/primitive/object.h"
+//#include "apex/primitive/primitive/object.h"
 
-#include "apex/primitive/primitive/object_meta.h"
+#include "apex/primitive/subject/_.h"
+
+//#include "apex/primitive/primitive/object.h"
+
+//#include "acme/primitive/primitive/object_meta.h"
 
 #include "app/acme/platform/trace.h"
 
@@ -868,6 +880,7 @@ namespace core
 
 
 #include "apex/filesystem/filesystem.h"
+
 
 #include "apex/platform/progress.h"
 
@@ -916,6 +929,7 @@ namespace core
 
 
 
+
 #include "apex/message/_message.h"
 
 
@@ -928,7 +942,7 @@ namespace core
 #include "apex/platform/simple_log.h"
 
 
-#include "apex/platform/department.h"
+//#include "apex/platform/department.h"
 
 
 #include "apex/parallelization/threading.h"
@@ -937,15 +951,31 @@ namespace core
 class message_queue;
 
 
+namespace windowing
+{
+
+
+   class cursor;
+
+
+} // namespace windowing
+
+
+#include "apex/user/check.h"
+#include "apex/user/text.h"
+#include "apex/user/primitive.h"
+
+
 #include "apex/parallelization/thread.h"
 #include "apex/parallelization/handler.h"
 //#include "apex/parallelization/service_status.h"
-#include "apex/parallelization/service_base.h"
+#include "apex/parallelization/service.h"
+#include "apex/parallelization/service_handler.h"
 //#include "apex/parallelization/service/plain_service.h"
 //#include "apex/parallelization/service/plain_service.h"
-#include "apex/parallelization/fork.h"
+//#include "apex/parallelization/fork.h"
 #include "apex/parallelization/delay_thread.h"
-#include "apex/parallelization/tools.h"
+//#include "apex/parallelization/tools.h"
 
 
 #include "apex/parallelization/thread_impl.h"
@@ -972,11 +1002,12 @@ namespace user
 
 #include "apex/net/_.h"
 
-#include "apex/platform/launcher.h"
+class launcher;
+//#include "apex/platform/launcher.h"
 
 #include "apex/platform/interprocess_communication.h"
 
-#include "apex/platform/app_launcher.h"
+//#include "apex/platform/app_launcher.h"
 
 
 class zip_context;
@@ -1000,20 +1031,11 @@ namespace file
 
 #include "apex/filesystem/file/set.h"
 
-#include "apex/user/ewindowflag.h"
-
-#include "apex/primitive/primitive/command_line.h"
-
-#include "apex/primitive/primitive/create.h"
-
-
 #include "apex/platform/net.h"
 
+#include "apex/platform/command_line.h"
 
-#include "apex/primitive/datetime/_.h"
-
-
-#include "apex/platform/international_locale_schema.h"
+#include "apex/platform/create.h"
 
 
 namespace zip
@@ -1100,6 +1122,16 @@ namespace apex
 } // namespace apex
 
 
+namespace user
+{
+
+   
+   class menu;
+
+
+} // namespace user
+
+
 #include "apex/filesystem/fs/_fs.h"
 
 #include "apex/_.h"
@@ -1123,16 +1155,16 @@ namespace apex
 #include "apex/parallelization/retry.h"
 
 
-CLASS_DECL_APEX::file::path application_installer_folder(const ::file::path & pathExe, string strAppId, const char * pszPlatform, const char * pszConfiguration, const char * pszLocale, const char * pszSchema);
-CLASS_DECL_APEX bool is_application_installed(const ::file::path & pathExe, string strAppId, string & strBuild, const char * pszPlatform, const char * pszConfiguration, const char * pszLocale, const char * pszSchema);
-CLASS_DECL_APEX bool set_application_installed(const ::file::path & pathExe, string strAppId, const char * pszBuild, const char * pszPlatform, const char * pszConfiguration, const char * pszLocale, const char * pszSchema);
-CLASS_DECL_APEX::file::path get_application_path(string strAppId, const char * pszPlatform, const char * pszConfiguration);
-CLASS_DECL_APEX::file::path get_last_run_application_path_file(string strAppId);
-CLASS_DECL_APEX::file::path get_last_run_application_path(string strAppId);
-CLASS_DECL_APEX bool set_last_run_application_path(string strAppId);
+//CLASS_DECL_APEX::file::path application_installer_folder(const ::file::path & pathExe, string strAppId, const char * pszPlatform, const char * pszConfiguration, const char * pszLocale, const char * pszSchema);
+//CLASS_DECL_APEX bool is_application_installed(const ::file::path & pathExe, string strAppId, string & strBuild, const char * pszPlatform, const char * pszConfiguration, const char * pszLocale, const char * pszSchema);
+//CLASS_DECL_APEX bool set_application_installed(const ::file::path & pathExe, string strAppId, const char * pszBuild, const char * pszPlatform, const char * pszConfiguration, const char * pszLocale, const char * pszSchema);
+//CLASS_DECL_APEX::file::path get_application_path(string strAppId, const char * pszPlatform, const char * pszConfiguration);
+//CLASS_DECL_APEX::file::path get_last_run_application_path_file(string strAppId);
+//CLASS_DECL_APEX::file::path get_last_run_application_path(string strAppId);
+//CLASS_DECL_APEX bool set_last_run_application_path(string strAppId);
 
 
-CLASS_DECL_APEX ::e_status load_factory_library(string strLibrary);
+//CLASS_DECL_APEX ::e_status load_factory_library(string strLibrary);
 
 
 class node_data_exchange;
@@ -1142,7 +1174,7 @@ namespace xml
 {
 
 
-   class department;
+   class xml;
 
 
 } // namespace xml
@@ -1154,7 +1186,7 @@ namespace xml
 #include "apex/process/_.h"
 
 
-#include "apex/primitive/math/department.h"
+//#include "apex/primitive/math/department.h"
 
 
 #include "apex/platform/node.h"
@@ -1210,14 +1242,14 @@ extern "C"
 #include "apex/platform/simple_app.h"
 
 
-namespace math
+namespace mathematics
 {
 
    template < typename T >
    class complex;
 
 
-} // namespace math
+} // namespace mathematics
 
 
 #include "apex/platform/error.h"

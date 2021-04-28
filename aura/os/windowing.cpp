@@ -9,7 +9,7 @@
 #define ALOG_CONTEXT ::trace_object(::trace_category_windowing)
 
 
-CLASS_DECL_ACME message_queue * get_message_queue(ithread_t idthread, bool bCreate);
+CLASS_DECL_ACME message_queue * get_message_queue(itask_t idthread, bool bCreate);
 
 
 //static oswindow g_oswindowSplash = nullptr;
@@ -56,7 +56,7 @@ CLASS_DECL_ACME message_queue * get_message_queue(ithread_t idthread, bool bCrea
 //
 //   ::aura::application * papp = (::aura::application *) pvoidApp;
 //
-//   if(::is_set(papp) && ::is_set(papp->get_context_session()))
+//   if(::is_set(papp) && ::is_set(papp->get_session()))
 //   {
 //
 //      Sess(papp).m_pointCursor = pointCursor;
@@ -110,7 +110,7 @@ CLASS_DECL_ACME message_queue * get_message_queue(ithread_t idthread, bool bCrea
 //
 //   auto & system = ::aura::get_system();
 //
-//   synchronization_lock slSystem(system.mutex());
+//   synchronous_lock slSystem(system.mutex());
 //
 //   auto pmap = system.m_pwindowmap;
 //
@@ -121,7 +121,7 @@ CLASS_DECL_ACME message_queue * get_message_queue(ithread_t idthread, bool bCrea
 //
 //   }
 //
-//   //synchronization_lock slMap(pmap->mutex());
+//   //synchronous_lock slMap(pmap->mutex());
 //
 //   ::user::primitive * pusermessage;
 //
@@ -227,7 +227,7 @@ CLASS_DECL_ACME message_queue * get_message_queue(ithread_t idthread, bool bCrea
 //
 //
 
-//CLASS_DECL_AURA int_bool mq_remove_window_from_all_queues(::windowing::window * pwindow)
+//CLASS_DECL_AURA int_bool mq_erase_window_from_all_queues(::windowing::window * pwindow)
 //{
 //
 //   ::user::interaction * pinteraction = oswindow_interaction(oswindow);
@@ -239,14 +239,14 @@ CLASS_DECL_ACME message_queue * get_message_queue(ithread_t idthread, bool bCrea
 //
 //   }
 //
-//   if(pinteraction->get_context_application() == nullptr)
+//   if(pinteraction->get_application() == nullptr)
 //   {
 //
 //      return false;
 //
 //   }
 //
-//   ithread_t idthread = pinteraction->get_context_application()->get_ithread();
+//   itask_t idthread = pinteraction->get_application()->get_ithread();
 //
 //   message_queue * pmq = get_message_queue(idthread, false);
 //
@@ -257,9 +257,9 @@ CLASS_DECL_ACME message_queue * get_message_queue(ithread_t idthread, bool bCrea
 //
 //   }
 //
-//   synchronization_lock ml(pmq->mutex());
+//   synchronous_lock ml(pmq->mutex());
 //
-//   pmq->m_messagea.predicate_remove([=](MESSAGE & item)
+//   pmq->m_messagea.predicate_erase([=](MESSAGE & item)
 //   {
 //
 //      return item.hwnd == oswindow;

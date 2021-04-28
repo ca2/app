@@ -249,7 +249,7 @@
 //
 // MessageText:
 //
-// The directory Cannot be removed.
+// The directory Cannot be erased.
 //
 #define ERROR_CURRENT_DIRECTORY          16L
 
@@ -1681,7 +1681,7 @@
 //
 // MessageText:
 //
-// This file contains a virus and Cannot be opened. Due to the nature of this virus, the file has been removed from this loCAtion.
+// This file contains a virus and Cannot be opened. Due to the nature of this virus, the file has been erased from this loCAtion.
 //
 #define ERROR_VIRUS_DELETED              226L
 
@@ -3033,7 +3033,7 @@
 //
 // MessageText:
 //
-// A device was removed so enumeration must be restarted.
+// A device was erased so enumeration must be restarted.
 //
 #define ERROR_PNP_RESTART_ENUMERATION    636L
 
@@ -3090,7 +3090,7 @@
 //
 // MessageText:
 //
-// An attempt to remove a processes DebugPort was made, but a port was not already associated with the process.
+// An attempt to erase a processes DebugPort was made, but a port was not already associated with the process.
 //
 #define ERROR_PORT_NOT_SET               642L
 
@@ -4163,7 +4163,7 @@
 //
 // MessageText:
 //
-// An exception occurred in a user mode CALLBACK and the kernel CALLBACK frame should be removed.
+// An exception occurred in a user mode CALLBACK and the kernel CALLBACK frame should be erased.
 //
 #define ERROR_CALLBACK_POP_STACK         768L
 
@@ -4367,7 +4367,7 @@
 //
 // {Delayed Write Failed}
 // Windows was unable to save all the data for the file %hs; the data has been lost.
-// This error may be CAused if the device has been removed or the media is write-protected.
+// This error may be CAused if the device has been erased or the media is write-protected.
 //
 #define ERROR_LOST_WRITEBEHIND_DATA_LOCAL_DISK_ERROR 790L
 
@@ -4557,7 +4557,7 @@
 //
 // MessageText:
 //
-// An attempt was made to context_object a token that does not exist.
+// An attempt was made to object a token that does not exist.
 //
 #define ERROR_NO_TOKEN                   1008L
 
@@ -5541,7 +5541,7 @@
 //
 // MessageText:
 //
-// Unable to remove the file to be replaced.
+// Unable to erase the file to be replaced.
 //
 #define ERROR_UNABLE_TO_REMOVE_REPLACED  1175L
 
@@ -7138,7 +7138,7 @@
 //
 // MessageText:
 //
-// The user Cannot be removed from a group because the group is currently the user's primary group.
+// The user Cannot be erased from a group because the group is currently the user's primary group.
 //
 #define ERROR_MEMBERS_PRIMARY_GROUP      1374L
 
@@ -7255,7 +7255,7 @@
 //
 // MessageText:
 //
-// A member could not be added to or removed from the loCAl group because the member does not exist.
+// A member could not be added to or erased from the loCAl group because the member does not exist.
 //
 #define ERROR_NO_SUCH_MEMBER             1387L
 
@@ -7821,7 +7821,7 @@
 //
 // MessageText:
 //
-// Cannot show or remove the interaction_impl in the way specified.
+// Cannot show or erase the interaction_impl in the way specified.
 //
 #define ERROR_INVALID_SHOWWIN_COMMAND    1449L
 
@@ -8250,7 +8250,7 @@
 //
 // MessageText:
 //
-// The device has been removed.
+// The device has been erased.
 //
 #define ERROR_DEVICE_REMOVED             1617L
 
@@ -8439,7 +8439,7 @@
 //
 // MessageText:
 //
-// Another version of this product is already installed. Installation of this version Cannot continue. To configure or remove the existing version of this product, use Add/Remove Programs on the Control Panel.
+// Another version of this product is already installed. Installation of this version Cannot continue. To configure or erase the existing version of this product, use Add/Remove Programs on the Control Panel.
 //
 #define ERROR_PRODUCT_VERSION            1638L
 
@@ -8457,7 +8457,7 @@
 //
 // MessageText:
 //
-// Only administrators have permission to add, remove, or configure server software during a Terminal services remote session. If you want to install or configure software on the server, contact your network administrator.
+// Only administrators have permission to add, erase, or configure server software during a Terminal services remote session. If you want to install or configure software on the server, contact your network administrator.
 //
 #define ERROR_INSTALL_REMOTE_DISALLOWED  1640L
 
@@ -9284,7 +9284,7 @@
 //
 // MessageText:
 //
-// A null context_object pointer was passed to the stub.
+// A null object pointer was passed to the stub.
 //
 #define RPC_X_NULL_REF_POINTER           1780L
 
@@ -10031,7 +10031,7 @@
 //
 // MessageText:
 //
-// The specified profile matter could not be removed.
+// The specified profile matter could not be erased.
 //
 #define RPC_S_PRF_ELT_NOT_REMOVED        1927L
 
@@ -10049,7 +10049,7 @@
 //
 // MessageText:
 //
-// The group matter could not be removed.
+// The group matter could not be erased.
 //
 #define RPC_S_GRP_ELT_NOT_REMOVED        1929L
 
@@ -11385,7 +11385,7 @@
 //
 // MessageText:
 //
-// The media type Cannot be removed from this library since at least one drive in the library reports it can support this media type.
+// The media type Cannot be erased from this library since at least one drive in the library reports it can support this media type.
 //
 #define ERROR_INDIGENOUS_TYPE            4338L
 
@@ -12124,7 +12124,7 @@
 //
 // MessageText:
 //
-// The cluster network is the only one configured for internal cluster communiCAtion between two or more active cluster nodes. The internal communiCAtion CApability Cannot be removed from the network.
+// The cluster network is the only one configured for internal cluster communiCAtion between two or more active cluster nodes. The internal communiCAtion CApability Cannot be erased from the network.
 //
 #define ERROR_CLUSTER_LAST_INTERNAL_NETWORK 5066L
 
@@ -12133,7 +12133,7 @@
 //
 // MessageText:
 //
-// One or more cluster resources depend on the network to provide service to clients. The client access CApability Cannot be removed from the network.
+// One or more cluster resources depend on the network to provide service to clients. The client access CApability Cannot be erased from the network.
 //
 #define ERROR_CLUSTER_NETWORK_HAS_DEPENDENTS 5067L
 
@@ -15649,7 +15649,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// A context_object to an attribute that is not defined in the schema occurred.
+// A object to an attribute that is not defined in the schema occurred.
 //
 #define ERROR_DS_ATT_NOT_DEF_IN_SCHEMA   8303L
 
@@ -15830,7 +15830,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The attribute Cannot be removed because it is not present on the object.
+// The attribute Cannot be erased because it is not present on the object.
 //
 #define ERROR_DS_CANT_REM_MISSING_ATT    8324L
 
@@ -15839,7 +15839,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The attribute value Cannot be removed because it is not present on the object.
+// The attribute value Cannot be erased because it is not present on the object.
 //
 #define ERROR_DS_CANT_REM_MISSING_ATT_VAL 8325L
 
@@ -15965,7 +15965,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The operation Cannot continue because the object is in the process of being removed.
+// The operation Cannot continue because the object is in the process of being erased.
 //
 #define ERROR_DS_OBJECT_BEING_REMOVED    8339L
 
@@ -16181,7 +16181,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The cross context_object for the specified naming action_context could not be found.
+// The cross object for the specified naming action_context could not be found.
 //
 #define ERROR_DS_NO_CROSSREF_FOR_NC      8363L
 
@@ -16271,7 +16271,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The name context_object is invalid.
+// The name object is invalid.
 //
 #define ERROR_DS_NAME_REFERENCE_INVALID  8373L
 
@@ -16280,7 +16280,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// A cross context_object already exists.
+// A cross object already exists.
 //
 #define ERROR_DS_CROSS_REF_EXISTS        8374L
 
@@ -16289,7 +16289,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// It is not permitted to delete a master cross context_object.
+// It is not permitted to delete a master cross object.
 //
 #define ERROR_DS_CANT_DEL_MASTER_CROSSREF 8375L
 
@@ -16541,7 +16541,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The attribute could not be removed from the CAche.
+// The attribute could not be erased from the CAche.
 //
 #define ERROR_DS_CANT_REMOVE_ATT_CACHE   8403L
 
@@ -16550,7 +16550,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The class could not be removed from the CAche.
+// The class could not be erased from the CAche.
 //
 #define ERROR_DS_CANT_REMOVE_CLASS_CACHE 8404L
 
@@ -16568,7 +16568,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// No superior context_object has been configured for the directory service. The directory service is therefore unable to issue referrals to objects outside this forest.
+// No superior object has been configured for the directory service. The directory service is therefore unable to issue referrals to objects outside this forest.
 //
 #define ERROR_DS_MISSING_SUPREF          8406L
 
@@ -16622,7 +16622,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The specified naming action_context is missing a cross context_object.
+// The specified naming action_context is missing a cross object.
 //
 #define ERROR_DS_NCNAME_MISSING_CR_REF   8412L
 
@@ -16946,7 +16946,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The replication context_object information for the target server already exists.
+// The replication object information for the target server already exists.
 //
 #define ERROR_DS_DRA_REF_ALREADY_EXISTS  8448L
 
@@ -16955,7 +16955,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The replication context_object information for the target server does not exist.
+// The replication object information for the target server does not exist.
 //
 #define ERROR_DS_DRA_REF_NOT_FOUND       8449L
 
@@ -16964,7 +16964,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The naming action_context Cannot be removed because it is replicated to another server.
+// The naming action_context Cannot be erased because it is replicated to another server.
 //
 #define ERROR_DS_DRA_OBJ_IS_REP_SOURCE   8450L
 
@@ -16982,7 +16982,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The naming action_context is in the process of being removed or is not replicated from the specified server.
+// The naming action_context is in the process of being erased or is not replicated from the specified server.
 //
 #define ERROR_DS_DRA_NO_REPLICA          8452L
 
@@ -17333,7 +17333,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// A cross-domain move operation failed such that two versions of the moved object exist - one each in the source and destination domains. The destination object needs to be removed to restore the system to a consistent state.
+// A cross-domain move operation failed such that two versions of the moved object exist - one each in the source and destination domains. The destination object needs to be erased to restore the system to a consistent state.
 //
 #define ERROR_DS_CROSS_DOMAIN_CLEANUP_REQD 8491L
 
@@ -18093,7 +18093,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// Unable to find a valid security descriptor context_object domain for this partition.
+// Unable to find a valid security descriptor object domain for this partition.
 //
 #define ERROR_DS_NO_REF_DOMAIN           8575L
 
@@ -18327,7 +18327,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The remote create cross context_object operation failed on the Domain Naming Master FSMO. The operation's error is in the extended data.
+// The remote create cross object operation failed on the Domain Naming Master FSMO. The operation's error is in the extended data.
 //
 #define ERROR_DS_REMOTE_CROSSREF_OP_FAILED 8601L
 
@@ -18336,7 +18336,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// A cross context_object is in use locally with the same name.
+// A cross object is in use locally with the same name.
 //
 #define ERROR_DS_CROSS_REF_BUSY          8602L
 
@@ -20134,7 +20134,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// Cannot remove a directory that is not empty.
+// Cannot erase a directory that is not empty.
 //
 #define WSAENOTEMPTY                     10066L
 
@@ -20170,7 +20170,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// File handle context_object is no longer available.
+// File handle object is no longer available.
 //
 #define WSAESTALE                        10070L
 
@@ -22170,7 +22170,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The manifest contains a context_object to an invalid URI.
+// The manifest contains a object to an invalid URI.
 //
 #define ERROR_SXS_INVALID_XML_NAMESPACE_URI 14014L
 
@@ -22179,7 +22179,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The appliCAtion manifest contains a context_object to a dependent assembly which is not installed
+// The appliCAtion manifest contains a object to a dependent assembly which is not installed
 //
 #define ERROR_SXS_ROOT_MANIFEST_DEPENDENCY_NOT_INSTALLED 14015L
 
@@ -22188,7 +22188,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The manifest for an assembly used by the appliCAtion has a context_object to a dependent assembly which is not installed
+// The manifest for an assembly used by the appliCAtion has a object to a dependent assembly which is not installed
 //
 #define ERROR_SXS_LEAF_MANIFEST_DEPENDENCY_NOT_INSTALLED 14016L
 
@@ -22836,7 +22836,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// A kernel mode component is releasing a context_object on an activation action_context.
+// A kernel mode component is releasing a object on an activation action_context.
 //
 #define ERROR_SXS_RELEASE_ACTIVATION_CONTEXT 14088L
 
@@ -23320,7 +23320,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The description string for parameter context_object (%1) could not be found.
+// The description string for parameter object (%1) could not be found.
 //
 #define ERROR_EVT_UNRESOLVED_PARAMETER_INSERT 15030L
 
@@ -25601,7 +25601,7 @@ typedef __success(return >= 0) long HRESULT;
 //
 // MessageText:
 //
-// Not all the objects requested could be removed
+// Not all the objects requested could be erased
 //
 #define EVENT_E_NOT_ALL_REMOVED          _HRESULT_TYPEDEF_(0x8004020BL)
 
@@ -27596,7 +27596,7 @@ typedef __success(return >= 0) long HRESULT;
 //
 // MessageText:
 //
-// Invalid forward context_object, or context_object to uncompiled type.
+// Invalid forward object, or object to uncompiled type.
 //
 #define TYPE_E_INVALIDSTATE              _HRESULT_TYPEDEF_(0x80028029L)
 
@@ -29032,7 +29032,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The SID filtering operation removed all SIDs.
+// The SID filtering operation erased all SIDs.
 //
 #define ERROR_ALL_SIDS_FILTERED          _HRESULT_TYPEDEF_(0xC0090002L)
 
@@ -31434,7 +31434,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// A memory context_object CAused a data alignment fault.
+// A memory object CAused a data alignment fault.
 //
 #define CERTSRV_E_ALIGNMENT_FAULT        _HRESULT_TYPEDEF_(0x80094010L)
 
@@ -31821,7 +31821,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// Tried to context_object a part of the file outside the proper range.
+// Tried to object a part of the file outside the proper range.
 //
 #define MSSIPOTF_E_OUTOFMEMRANGE         _HRESULT_TYPEDEF_(0x80097001L)
 
@@ -32660,7 +32660,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The operation Cannot be performed because the device interface has been removed from the system.
+// The operation Cannot be performed because the device interface has been erased from the system.
 //
 #define SPAPI_E_DEVICE_INTERFACE_REMOVED _HRESULT_TYPEDEF_(0x800F021CL)
 
@@ -32687,7 +32687,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The context_object string supplied for this interface device is invalid.
+// The object string supplied for this interface device is invalid.
 //
 #define SPAPI_E_INVALID_REFERENCE_STRING _HRESULT_TYPEDEF_(0x800F021FL)
 
@@ -32858,7 +32858,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The device could not be dynamically removed.
+// The device could not be dynamically erased.
 //
 #define SPAPI_E_CANT_REMOVE_DEVINST      _HRESULT_TYPEDEF_(0x800F0232L)
 
@@ -33617,7 +33617,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// Power has been removed from the smart CArd, so that further communiCAtion is not possible.
+// Power has been erased from the smart CArd, so that further communiCAtion is not possible.
 //
 #define SCARD_W_UNPOWERED_CARD           _HRESULT_TYPEDEF_(0x80100067L)
 
@@ -33635,7 +33635,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The smart CArd has been removed, so that further communiCAtion is not possible.
+// The smart CArd has been erased, so that further communiCAtion is not possible.
 //
 #define SCARD_W_REMOVED_CARD             _HRESULT_TYPEDEF_(0x80100069L)
 
@@ -34714,7 +34714,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The Base AppliCAtion Partition exists in all partition sets and Cannot be removed.
+// The Base AppliCAtion Partition exists in all partition sets and Cannot be erased.
 //
 #define COMADMIN_E_AXISPARTITION_REQUIRED_IN_SET _HRESULT_TYPEDEF_(0x8011081FL)
 
@@ -34857,7 +34857,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The filter must cleanup any operation specific action_context at this time because it is being removed from the system before the operation is completed by the lower drivers.
+// The filter must cleanup any operation specific action_context at this time because it is being erased from the system before the operation is completed by the lower drivers.
 //
 #define ERROR_FLT_POST_OPERATION_CLEANUP _HRESULT_TYPEDEF_(0x801F0009L)
 
@@ -35386,7 +35386,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// An object being referenced has reach the maximum context_object count already and can't be context_object further.
+// An object being referenced has reach the maximum object count already and can't be object further.
 //
 #define ERROR_GRAPHICS_TOO_MANY_REFERENCES _HRESULT_TYPEDEF_(0xC0262103L)
 
@@ -36640,7 +36640,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The operating system asynchronously destroyed this OPM video output because the operating system's state changed. This error typically occurs because the monitor PDO associated with this video output was removed, the monitor PDO associated with this video output was stopped, the video output's session beCAme a non-console session or the video output's desktop beCAme an inactive desktop.
+// The operating system asynchronously destroyed this OPM video output because the operating system's state changed. This error typically occurs because the monitor PDO associated with this video output was erased, the monitor PDO associated with this video output was stopped, the video output's session beCAme a non-console session or the video output's desktop beCAme an inactive desktop.
 //
 #define ERROR_GRAPHICS_OPM_VIDEO_OUTPUT_NO_LONGER_EXISTS _HRESULT_TYPEDEF_(0xC026251AL)
 
@@ -36832,7 +36832,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The operating system asynchronously destroyed the monitor which corresponds to this handle because the operating system's state changed. This error typically occurs because the monitor PDO associated with this handle was removed, the monitor PDO associated with this handle was stopped, or a display mode change occurred. A display mode change occurs when windows sends a e_message_display_change windows message to appliCAtions.
+// The operating system asynchronously destroyed the monitor which corresponds to this handle because the operating system's state changed. This error typically occurs because the monitor PDO associated with this handle was erased, the monitor PDO associated with this handle was stopped, or a display mode change occurred. A display mode change occurs when windows sends a e_message_display_change windows message to appliCAtions.
 //
 #define ERROR_GRAPHICS_MONITOR_NO_LONGER_EXISTS _HRESULT_TYPEDEF_(0xC026258DL)
 
@@ -38997,7 +38997,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// A required TPM measurement is missing. If there is a bootable CD or DVD in your computer, remove it, restart the computer, and turn on BitLocker again. If the problem persists, ensure the master boot record is up to date.
+// A required TPM measurement is missing. If there is a bootable CD or DVD in your computer, erase it, restart the computer, and turn on BitLocker again. If the problem persists, ensure the master boot record is up to date.
 //
 #define FVE_E_NO_BOOTSECTOR_METRIC       _HRESULT_TYPEDEF_(0x80310004L)
 
@@ -39366,7 +39366,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The drive encryption algorithm and key Cannot be set on a previously encrypted drive. To encrypt this drive with BitLocker Drive Encryption, remove the previous encryption and then turn on BitLocker.
+// The drive encryption algorithm and key Cannot be set on a previously encrypted drive. To encrypt this drive with BitLocker Drive Encryption, erase the previous encryption and then turn on BitLocker.
 //
 #define FVE_E_CANNOT_SET_FVEK_ENCRYPTED  _HRESULT_TYPEDEF_(0x8031002DL)
 
@@ -41235,7 +41235,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// At attempt was made to remove a multiCAst address that was never added.
+// At attempt was made to erase a multiCAst address that was never added.
 //
 #define ERROR_NDIS_MULTICAST_NOT_FOUND   _NDIS_ERROR_TYPEDEF_(0x8034000BL)
 
@@ -41325,7 +41325,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The network interface has been removed.
+// The network interface has been erased.
 //
 #define ERROR_NDIS_ADAPTER_REMOVED       _NDIS_ERROR_TYPEDEF_(0x80340018L)
 
@@ -41343,7 +41343,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// An attempt was made to remove a token ring group address that is in use by other components.
+// An attempt was made to erase a token ring group address that is in use by other components.
 //
 #define ERROR_NDIS_GROUP_ADDRESS_IN_USE  _NDIS_ERROR_TYPEDEF_(0x8034001AL)
 
@@ -42308,7 +42308,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The specified disk(s) Cannot be removed since it is the last remaining voter.
+// The specified disk(s) Cannot be erased since it is the last remaining voter.
 //
 #define ERROR_VOLMGR_DISK_LAST_VOTER     _NDIS_ERROR_TYPEDEF_(0xC038000AL)
 
@@ -42749,7 +42749,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The specified plex is the last active plex in the volume. The plex Cannot be removed or else the volume will go offline.
+// The specified plex is the last active plex in the volume. The plex Cannot be erased or else the volume will go offline.
 //
 #define ERROR_VOLMGR_PLEX_LAST_ACTIVE    _NDIS_ERROR_TYPEDEF_(0xC038003BL)
 

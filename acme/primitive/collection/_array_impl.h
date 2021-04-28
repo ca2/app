@@ -112,7 +112,7 @@ inline bool array_base < TYPE, ARG_TYPE, ALLOCATOR > ::bounds(::index i) const
 
 
 template < class TYPE, class ARG_TYPE, class ALLOCATOR >
-inline ::count array_base < TYPE, ARG_TYPE, ALLOCATOR > ::remove_all()
+inline ::count array_base < TYPE, ARG_TYPE, ALLOCATOR > ::erase_all()
 {
    return allocate(0, -1);
 }
@@ -128,15 +128,15 @@ inline ::count array_base < TYPE, ARG_TYPE, ALLOCATOR > ::set_size(::index nNewS
 template < class TYPE, class ARG_TYPE, class ALLOCATOR >
 inline void array_base < TYPE, ARG_TYPE, ALLOCATOR > ::clear()
 {
-   remove_all();
+   erase_all();
 }
 
 
 template < class TYPE, class ARG_TYPE, class ALLOCATOR >
-inline void array_base < TYPE, ARG_TYPE, ALLOCATOR > ::remove_last()
+inline void array_base < TYPE, ARG_TYPE, ALLOCATOR > ::erase_last()
 {
    ASSERT(this->size() > 0);
-   remove_at(get_upper_bound());
+   erase_at(get_upper_bound());
 }
 
 
@@ -359,7 +359,7 @@ inline array < TYPE, ARG_TYPE, ALLOCATOR >  & array < TYPE, ARG_TYPE, ALLOCATOR 
 
 
 template < class TYPE, class ARG_TYPE, class ALLOCATOR >
-array < TYPE, ARG_TYPE, ALLOCATOR > ::array(::matter * pobjectContext, ::count nGrowBy) //:
+array < TYPE, ARG_TYPE, ALLOCATOR > ::array(::matter * pobject, ::count nGrowBy) //:
 {
 
 
@@ -418,7 +418,7 @@ template < class TYPE, class ARG_TYPE, class ALLOCATOR >
 array < TYPE, ARG_TYPE, ALLOCATOR > ::~array()
 {
 
-   this->remove_all(); // on_destruct_element is virtual and won't be available for array_base
+   this->erase_all(); // on_destruct_element is virtual and won't be available for array_base
 
 }
 
@@ -468,7 +468,7 @@ inline ::count array_base < TYPE, ARG_TYPE, ALLOCATOR > ::erase(const TYPE * beg
    auto iEnd = index_of(last);
 
    // iEnd exclusive
-   return remove_at(iStart, iEnd - iStart);
+   return erase_at(iStart, iEnd - iStart);
 
 }
 
@@ -542,7 +542,7 @@ inline TYPE array_base < TYPE, ARG_TYPE, ALLOCATOR >::pop(::index n)
 
    TYPE t = element_at(i);
 
-   this->remove_at(i);
+   this->erase_at(i);
 
    return t;
 
@@ -553,7 +553,7 @@ template < class TYPE, class ARG_TYPE, class ALLOCATOR >
 inline void array_base < TYPE, ARG_TYPE, ALLOCATOR >::pop_back(::index n)
 {
 
-   remove_at(this->get_upper_bound(n));
+   erase_at(this->get_upper_bound(n));
 
 }
 
@@ -582,7 +582,7 @@ inline TYPE array_base < TYPE, ARG_TYPE, ALLOCATOR >::takeAt(::index i)
 
    TYPE t = element_at(i);
 
-   this->remove_at(i);
+   this->erase_at(i);
 
    return t;
 
@@ -595,7 +595,7 @@ inline TYPE array_base < TYPE, ARG_TYPE, ALLOCATOR >::takeFirst(::index i)
 
    TYPE t = element_at(i);
 
-   this->remove_at(i);
+   this->erase_at(i);
 
    return t;
 
@@ -610,7 +610,7 @@ inline TYPE array_base < TYPE, ARG_TYPE, ALLOCATOR >::takeLast(::index n)
 
    TYPE t = element_at(i);
 
-   this->remove_at(i);
+   this->erase_at(i);
 
    return t;
 

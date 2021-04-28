@@ -61,7 +61,7 @@ namespace ios
 
             }
 
-            ::file::listing dira(get_context_application());
+            ::file::listing dira(get_application());
 
             dira.ls_dir(listing.m_pathFinal);
 
@@ -437,7 +437,7 @@ namespace ios
 //   ::file::path dir::install()
 //   {
 //
-//      single_lock synchronizationlock(&m_mutex, true);
+//      single_lock synchronouslock(&m_mutex, true);
 //
 //      return m_strCa2;
 //
@@ -534,10 +534,10 @@ namespace ios
 //   }
 
 
-   ::e_status dir_context::initialize(::layered * pobjectContext)
+   ::e_status dir_context::initialize(::object * pobject)
    {
 
-      auto estatus = ::dir_context::initialize(pobjectContext);
+      auto estatus = ::dir_context::initialize(pobject);
       
       if(!estatus)
       {
@@ -559,7 +559,7 @@ namespace ios
 //      }
 
       
-//      m_strCa2 = ::file::path(getenv("HOME")) / "Library/Application Support";
+//      m_strCa2 = ::file::path(getenv("HOME")) / "Library/papplication Support";
       {
 
          string str;
@@ -623,7 +623,7 @@ namespace ios
       string strPath = appdata() / "configuration/directory.xml";
 
       
-      string strDocument = Context.file().as_string(strPath);
+      string strDocument = pcontext->m_papexcontext->file().as_string(strPath);
 
       if(doc.load(strDocument))
       {

@@ -22,7 +22,7 @@
 //#undef App
 //
 //
-//#define System (::get_context_system()->m_paxissystem)
+//#define System (psystem->m_paxissystem)
 //#define Sess(pcontextsession) (pcontextsession->m_paxissession)
 //#define App(pobject) (*pobject->get_app()->m_paxisapplication)
 
@@ -37,16 +37,14 @@ namespace axis
    class system;
    class session;
    class application;
+   class user;
 
-
-   inline system * get_system() { return ::axis::get_system()->layer(LAYERED_AXIS); }
+   //inline system * get_system() { return ::axis::get_system()->layer(LAYERED_AXIS); }
 
 
 } // namespace axis
 
 
-// C-includes
-#include "axis/os/_c.h"
 
 #include "axis/account/_.h"
 
@@ -124,10 +122,6 @@ namespace axis
 
 
 
-// C++ Includes
-#include "axis/os/_.h"
-#include "axis/node/_.h"
-
 
 
 #include "axis/compress/_.h"
@@ -150,7 +144,5 @@ namespace axis
 
 #include "axis/database/database/_impl.h"
 
-
-#include "axis/os/_impl.h"
 
 

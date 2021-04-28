@@ -64,23 +64,25 @@ namespace user
    }
 
 
-   string os_get_user_theme()
-   {
+   //string os_get_user_theme()
+   //{
 
-      string strTheme;
+   //   string strTheme;
 
-      auto pnode = Node;
+   //   //auto pnode = Node;
 
-      if(pnode)
-      {
+   //   auto pnode = get_system()->node();
 
-         strTheme = pnode->os_get_user_theme();
+   //   if(pnode)
+   //   {
 
-      }
+   //      strTheme = pnode->os_get_user_theme();
 
-      return strTheme;
+   //   }
 
-   }
+   //   return strTheme;
+
+   //}
 
 
 } // namespace user
@@ -90,23 +92,25 @@ namespace os
 {
 
 
-   string get_wallpaper(::index iScreen)
-   {
+   //string get_wallpaper(::index iScreen)
+   //{
 
-      string strWallpaper;
+   //   string strWallpaper;
 
-      auto pnode = Node;
+   //   //auto pnode = Node;
 
-      if(pnode)
-      {
+   //   auto pnode = get_system()->node();
 
-         strWallpaper = pnode->get_wallpaper(iScreen);
+   //   if(pnode)
+   //   {
 
-      }
+   //      strWallpaper = pnode->get_wallpaper(iScreen);
 
-      return strWallpaper;
+   //   }
 
-   }
+   //   return strWallpaper;
+
+   //}
 
 
 } // namespace os

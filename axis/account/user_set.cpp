@@ -5,7 +5,7 @@ namespace account
 {
 
 
-   user_set::user_set(::layered * pobjectContext) //:
+   user_set::user_set(::object * pobject) //:
 //      ::object(pobject)
    {
 

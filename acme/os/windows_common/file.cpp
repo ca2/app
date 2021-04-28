@@ -66,23 +66,6 @@ int_bool windows_create_directory(const char* path, LPSECURITY_ATTRIBUTES lpSecu
 
 
 
-::file::path file::app_module()
-{
-
-   wstring wstrPath(get_buffer, MAX_PATH * 16);
-
-   if (!GetModuleFileNameW(nullptr, wstrPath, (DWORD)wstrPath.get_length()))
-   {
-
-      return "";
-
-   }
-
-   return wstrPath.release_string_buffer();
-
-}
-
-
 //extern "C"
 int_bool file_copy_dup(const char * pszNew, const char * pszSrc, int_bool bOverwrite)
 {

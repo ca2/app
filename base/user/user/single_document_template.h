@@ -18,7 +18,7 @@ namespace user
       virtual ~single_document_template();
 
       virtual void add_document(::user::document * pDoc) override;
-      virtual void remove_document(::user::document * pDoc) override;
+      virtual void erase_document(::user::document * pDoc) override;
       virtual ::count get_document_count() const override;
       virtual ::user::document * get_document(index index = 0) const override;
       virtual void on_request(::create * pcreate) override;

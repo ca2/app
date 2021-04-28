@@ -76,7 +76,7 @@ namespace turboc
       bool                    m_bAlternate;
 
 
-      view(::layered * pobjectContext);
+      view(::object * pobject);
       virtual ~view();
 
       virtual void assert_valid() const;
@@ -105,7 +105,7 @@ namespace turboc
 
       virtual void on_layout(::draw2d::graphics_pointer & pgraphics);
 
-      DECL_GEN_SIGNAL(on_message_create);
+      DECLARE_MESSAGE_HANDLER(on_message_create);
 
       virtual string get_turboc();
 

@@ -1,8 +1,8 @@
 #pragma once
 
 
-//CLASS_DECL_ACME void main_async_runnable(::context_object * pobjectTask);
-//CLASS_DECL_ACME void main_sync_runnable(::context_object * pobjectTask, ::duration durationTimeout = one_minute());
+//CLASS_DECL_ACME void main_async_runnable(::object * pobjectTask);
+//CLASS_DECL_ACME void main_sync_runnable(::object * pobjectTask, ::duration durationTimeout = one_minute());
 
 
 #define new ACME_NEW
@@ -166,5 +166,19 @@ inline auto __runnable_method(TYPE * p, void (TYPE:: * pmethod)())
 
 }
 
+
+
+template < typename PREDICATE, typename PAYLOAD >
+auto __payload_routine(PREDICATE predicate, PAYLOAD & payload)
+{
+
+   return __routine([predicate, &payload]()
+                    {
+
+                       predicate(payload);
+
+                    });
+
+}
 
 

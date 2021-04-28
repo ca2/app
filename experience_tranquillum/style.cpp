@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "base/user/user/tab_pane.h"
 //#include "core/user/userex/_userex.h"
 // pgraphics->GetTextExtent("->:<-"); // oh no!! omg!! The size_i32 is the size_i32 of the alien!!
 #define MAGIC_PALACE_TAB_SPLT "->:<-"
@@ -22,28 +23,28 @@ namespace tranquillum
 
 //      m_fontEdit->create_point_font("MS Sans Serif", 9.0);
 
-      //    m_fontList->create_point_font(os_font_name(e_font_sans_ui), 10, e_font_weight_bold);
+      //    m_fontList->create_point_font(pnode->font_name(e_font_sans_ui), 10, e_font_weight_bold);
 
       //theme_current_control(::user::control_none);
 
       //create_translucency(::user::e_element_none, ::user::e_translucency_none);
 
-      //create_point_font(::user::font_default,os_font_name(e_font_sans_ui), 12.0);
-      //create_point_font(::user::font_button, os_font_name(e_font_sans_ui), 12.0, 800);
-      //create_point_font(::user::font_plain_edit, os_font_name(e_font_sans_ui), 12.0, 800);
-      //create_point_font(::user::font_list_header, os_font_name(e_font_sans_ui), 12.0, 800);
+      //create_point_font(::user::font_default,pnode->font_name(e_font_sans_ui), 12.0);
+      //create_point_font(::user::font_button, pnode->font_name(e_font_sans_ui), 12.0, 800);
+      //create_point_font(::user::font_plain_edit, pnode->font_name(e_font_sans_ui), 12.0, 800);
+      //create_point_font(::user::font_list_header, pnode->font_name(e_font_sans_ui), 12.0, 800);
 
-      //create_point_font(::user::font_tab, os_font_name(e_font_sans_ui), 13.0, 400);
+      //create_point_font(::user::font_tab, pnode->font_name(e_font_sans_ui), 13.0, 400);
       //{
-      //   auto font = create_point_font(::user::font_tab_hover, os_font_name(e_font_sans_ui), 13.0, 400);
+      //   auto font = create_point_font(::user::font_tab_hover, pnode->font_name(e_font_sans_ui), 13.0, 400);
       //   font->m_bUnderline = true;
       //}
-      //create_point_font(::user::font_tab_sel, os_font_name(e_font_sans_ui), 13.0, 800);
+      //create_point_font(::user::font_tab_sel, pnode->font_name(e_font_sans_ui), 13.0, 800);
       //{
-      //   auto font = create_point_font(::user::font_tab_sel_hover, os_font_name(e_font_sans_ui), 13.0, 800);
+      //   auto font = create_point_font(::user::font_tab_sel_hover, pnode->font_name(e_font_sans_ui), 13.0, 800);
       //   font->m_bUnderline = true;
       //}
-      //create_point_font(::user::font_tab_big_bold, os_font_name(e_font_sans_ui), 13.0, 800);
+      //create_point_font(::user::font_tab_big_bold, pnode->font_name(e_font_sans_ui), 13.0, 800);
 
       //create_rect_coord(::user::rect_edit_padding, 0.2, 0.2, 0.2, 0.2);
 
@@ -317,17 +318,21 @@ namespace tranquillum
          i32 iTabHeight = 8;
          i32 cx;
          i32 cy;
-         for (i32 iPane = 0; iPane < ptab->get_data()->m_panea.get_size(); iPane++)
+         for (i32 iPane = 0; iPane < ptab->get_data()->m_tabpanecompositea.get_size(); iPane++)
          {
 
-            ::user::tab_pane & tab_pane = ptab->get_data()->m_panea(iPane);
+            auto & pane = *ptab->get_data()->m_tabpanecompositea[iPane];
 
-            if (!tab_pane.m_bTabPaneVisible)
+            if (!pane.m_bTabPaneVisible)
+            {
+
                continue;
 
-            string str = tab_pane.get_title();
+            }
 
-            tab_pane.do_split_layout(ptab->m_dcextension, pgraphics);
+            string str = pane.get_title();
+
+            pane.do_split_layout(ptab->m_dcextension, pgraphics);
 
             ::size_i32 size;
 
@@ -335,14 +340,14 @@ namespace tranquillum
 
 
 
-            if (tab_pane.m_pimage->is_set())
+            if (pane.m_pimage->is_set())
             {
-               size.cx += tab_pane.m_pimage->width() + 2;
-               size.cy = maximum(size.cy, tab_pane.m_pimage->height());
+               size.cx += pane.m_pimage->width() + 2;
+               size.cy = maximum(size.cy, pane.m_pimage->height());
             }
             cx = size.cx + 2;
 
-            if (!tab_pane.m_bPermanent)
+            if (!pane.m_bPermanent)
             {
                cx += 2 + 16 + 2;
             }
@@ -410,17 +415,21 @@ namespace tranquillum
          int x = rectClient.left;
 
          i32 ixAdd;
-         for (i32 iPane = 0; iPane < ptab->get_data()->m_panea.get_size(); iPane++)
+         for (i32 iPane = 0; iPane < ptab->get_data()->m_tabpanecompositea.get_size(); iPane++)
          {
 
-            ::user::tab_pane & tab_pane = ptab->get_data()->m_panea(iPane);
+            auto & pane = *ptab->get_data()->m_tabpanecompositea[iPane];
 
-            if (!tab_pane.m_bTabPaneVisible)
+            if (!pane.m_bTabPaneVisible)
+            {
+
                return false;
 
-            string str = tab_pane.get_title();
+            }
 
-            tab_pane.do_split_layout(ptab->m_dcextension, pgraphics);
+            string str = pane.get_title();
+
+            pane.do_split_layout(ptab->m_dcextension, pgraphics);
 
             ::size_i32 size;
 
@@ -430,10 +439,10 @@ namespace tranquillum
 
             pgraphics->get_text_metrics(&metric);
 
-            if (tab_pane.m_pimage->is_set())
+            if (pane.m_pimage->is_set())
             {
 
-               size.cy = (::i32) maximum(maximum(size.cy, tab_pane.m_pimage->size().cy), metric.get_line_spacing());
+               size.cy = (::i32) maximum(maximum(size.cy, pane.m_pimage->size().cy), metric.get_line_spacing());
 
             }
 
@@ -444,23 +453,23 @@ namespace tranquillum
                iTabHeight = cy;
             }
 
-            tab_pane.m_point.x = x;
-            tab_pane.m_point.y = rectClient.top;
+            pane.m_point.x = x;
+            pane.m_point.y = rectClient.top;
 
 
-            //            string str = tab_pane.get_title();
+            //            string str = pane.get_title();
 
             //            ::size_i32 size;
 
             ixAdd = 5;
 
-            if (tab_pane.m_pimage->is_set())
+            if (pane.m_pimage->is_set())
             {
                //::image_list::info ii;
-               ixAdd += tab_pane.m_pimage->width() + 2;
+               ixAdd += pane.m_pimage->width() + 2;
             }
 
-            if (!tab_pane.m_bPermanent)
+            if (!pane.m_bPermanent)
             {
                ixAdd += 2 + 16 + 2;
             }
@@ -468,12 +477,12 @@ namespace tranquillum
 
 
 
-            tab_pane.m_size.cx = size.cx + ixAdd
+            pane.m_size.cx = size.cx + ixAdd
                                  + ptab->get_data()->m_rectBorder.left + ptab->get_data()->m_rectBorder.right
                                  + ptab->get_data()->m_rectMargin.left + ptab->get_data()->m_rectMargin.right
                                  + ptab->get_data()->m_rectTextMargin.left + ptab->get_data()->m_rectTextMargin.right;
 
-            x += tab_pane.m_size.cx;
+            x += pane.m_size.cx;
          }
 
          // close tab button
@@ -488,12 +497,12 @@ namespace tranquillum
 
          ptab->get_data()->m_iTabHeight = iTabHeight + 8;
 
-         for (i32 iPane = 0; iPane < ptab->get_data()->m_panea.get_size(); iPane++)
+         for (i32 iPane = 0; iPane < ptab->get_data()->m_tabpanecompositea.get_size(); iPane++)
          {
 
-            ::user::tab_pane & tab_pane = ptab->get_data()->m_panea(iPane);
+            auto & pane = *ptab->get_data()->m_tabpanecompositea[iPane];
 
-            tab_pane.m_size.cy = iTabHeight;
+            pane.m_size.cy = iTabHeight;
 
          }
 
@@ -528,7 +537,7 @@ namespace tranquillum
 
       }
 
-      for (i32 iPane = 0; iPane < ptab->get_data()->m_panea.get_size(); iPane++)
+      for (i32 iPane = 0; iPane < ptab->get_data()->m_tabpanecompositea.get_size(); iPane++)
       {
 
          if (iPane != ptab->_001GetSel())
@@ -620,24 +629,40 @@ namespace tranquillum
 
       ::draw2d::pen_pointer penBorder(e_create);
 
-      for (i32 iPane = 0; iPane < ptab->get_data()->m_panea.get_size(); iPane++)
+      for (i32 iPane = 0; iPane < ptab->get_data()->m_tabpanecompositea.get_size(); iPane++)
       {
 
-         ::user::tab_pane & pane = ptab->get_data()->m_panea(iPane);
+         auto & pane = *ptab->get_data()->m_tabpanecompositea[iPane];
 
          if (!pane.m_bTabPaneVisible)
+         {
+
             continue;
+
+         }
 
          iTab++;
 
          if (!ptab->get_element_rect(iTab, rectangle, ::user::e_element_tab))
+         {
+
             continue;
+
+         }
 
          if (!ptab->get_element_rect(iTab, rectBorder, ::user::e_element_border))
+         {
+
             continue;
 
+         }
+
          if (!ptab->get_element_rect(iTab, rectClient, ::user::e_element_client))
+         {
+
             continue;
+
+         }
 
          if (ptab->get_data()->m_bVertical)
          {
@@ -646,6 +671,7 @@ namespace tranquillum
             {
 
                pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+
                pane.m_pimage->bitmap_blend(pgraphics, rectIcon);
 
             }
@@ -954,7 +980,6 @@ namespace tranquillum
    }
 
 
-
    void style::_001OnTabPaneDrawTitle(::user::tab_pane & pane,::user::tab * ptab,::draw2d::graphics_pointer & pgraphics,const ::rectangle_i32 & rectParam,::draw2d::brush_pointer & brushText)
    {
 
@@ -1168,7 +1193,7 @@ namespace tranquillum
 
    //            if ((ptoolbar->m_dwCtrlStyle & TBSTYLE_FLAT) == TBSTYLE_FLAT)
    //            {
-   //               System->imaging().color_blend(
+   //               psystem->imaging().color_blend(
    //               pgraphics,
    //               rectItem.left,
    //               rectItem.top,
@@ -1234,7 +1259,7 @@ namespace tranquillum
 
    //               ptoolbar->_001GetElementRect(iItem, rectangle, ::user::toolbar::element_image_hover);
 
-   //               System->imaging().color_blend(pgraphics, rectangle.top_left(), rectangle.size(), item.m_pimage->g(), nullptr, 0.80);
+   //               pgraphics->color_blend(rectangle.top_left(), rectangle.size(), item.m_pimage->g(), nullptr, 0.80);
 
    //            }
    //            else if (uImage != 0xffffffffu)
@@ -1279,7 +1304,7 @@ namespace tranquillum
 
    //            ptoolbar->_001GetElementRect(iItem, rectangle, ::user::toolbar::element_image_press);
 
-   //            System->imaging().color_blend(pgraphics, rectangle.top_left(), rectangle.size(), item.m_pimage->g(), nullptr, 1.0);
+   //            pgraphics->color_blend(rectangle.top_left(), rectangle.size(), item.m_pimage->g(), nullptr, 1.0);
 
    //         }
    //         else if (uImage != 0xffffffff)
@@ -1316,7 +1341,7 @@ namespace tranquillum
 
    //            ptoolbar->_001GetElementRect(iItem, rectangle, ::user::toolbar::element_image);
 
-   //            System->imaging().color_blend(pgraphics, rectangle.top_left(), rectangle.size(), item.m_pimage->g(), nullptr, 0.20);
+   //            pgraphics->color_blend(rectangle.top_left(), rectangle.size(), item.m_pimage->g(), nullptr, 0.20);
 
    //         }
    //         else if (uImage != 0xffffffff)
@@ -1474,7 +1499,7 @@ namespace tranquillum
 
    //            if ((ptoolbar->m_dwCtrlStyle & TBSTYLE_FLAT) == TBSTYLE_FLAT)
    //            {
-   //               System->imaging().color_blend(
+   //               psystem->imaging().color_blend(
    //               pgraphics,
    //               rectItem.left,
    //               rectItem.top,
@@ -1538,7 +1563,7 @@ namespace tranquillum
 
    //               ptoolbar->_001GetElementRect(iItem, rectangle, ::user::toolbar::element_image_hover);
 
-   //               System->imaging().color_blend(pgraphics, rectangle.top_left(), rectangle.size(), item.m_pimage->g(), nullptr, 0.80);
+   //               pgraphics->color_blend(rectangle.top_left(), rectangle.size(), item.m_pimage->g(), nullptr, 0.80);
 
    //            }
    //            else if (uImage != 0xffffffffu)
@@ -1583,7 +1608,7 @@ namespace tranquillum
 
    //            ptoolbar->_001GetElementRect(iItem, rectangle, ::user::toolbar::element_image_press);
 
-   //            System->imaging().color_blend(pgraphics, rectangle.top_left(), rectangle.size(), item.m_pimage->g(), nullptr, 1.0);
+   //            pgraphics->color_blend(rectangle.top_left(), rectangle.size(), item.m_pimage->g(), nullptr, 1.0);
 
    //         }
    //         else if (uImage != 0xffffffff)
@@ -1643,7 +1668,7 @@ namespace tranquillum
 
    //            ptoolbar->_001GetElementRect(iItem, rectangle, ::user::toolbar::element_image);
 
-   //            System->imaging().color_blend(pgraphics, rectangle.top_left(), rectangle.size(), item.m_pimage->g(), nullptr, 0.20);
+   //            pgraphics->color_blend(rectangle.top_left(), rectangle.size(), item.m_pimage->g(), nullptr, 0.20);
 
    //         }
    //         else if (uImage != 0xffffffff)

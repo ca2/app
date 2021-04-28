@@ -4,21 +4,21 @@
 #define new ACME_NEW
 
 
-template < typename ELEMENT, const int DEFAULT_HASH_TABLE_SIZE = 17 >
+template < typename PAYLOAD, const int DEFAULT_HASH_TABLE_SIZE = 17 >
 class set_dynamic_hash_table
 {
 public:
 
-   typedef set_element_item < ELEMENT >  SET_ELEMENT_ITEM;
+   typedef map_association < PAYLOAD >  association;
 
-   SET_ELEMENT_ITEM * m_assocHashDefault[DEFAULT_HASH_TABLE_SIZE];
-   SET_ELEMENT_ITEM ** m_ppassocHash;
+   association *           m_associationHashDefault[DEFAULT_HASH_TABLE_SIZE];
+   association **          m_ppassociationHash;
    ::u32              m_nHashTableSize;
 
    set_dynamic_hash_table()
    {
 
-      m_ppassocHash = nullptr;
+      m_ppassociationHash = nullptr;
 
       m_nHashTableSize = DEFAULT_HASH_TABLE_SIZE;
 
@@ -36,34 +36,34 @@ public:
    void InitHashTable(::u32 nHashSize, bool bAllocNow = true)
    {
 
-      if (m_ppassocHash != nullptr && m_ppassocHash != m_assocHashDefault && m_nHashTableSize > DEFAULT_HASH_TABLE_SIZE)
+      if(m_ppassociationHash != nullptr && m_ppassociationHash != m_associationHashDefault && m_nHashTableSize > DEFAULT_HASH_TABLE_SIZE)
       {
 
-         delete[] m_ppassocHash;
+         delete[] m_ppassociationHash;
 
       }
 
-      m_ppassocHash = nullptr;
+      m_ppassociationHash = nullptr;
 
-      if (bAllocNow)
+      if(bAllocNow)
       {
 
          if (nHashSize <= DEFAULT_HASH_TABLE_SIZE)
          {
 
-            m_ppassocHash = m_assocHashDefault;
+            m_ppassociationHash = m_associationHashDefault;
 
          }
          else
          {
 
-            m_ppassocHash = new SET_ELEMENT_ITEM * [nHashSize];
+            m_ppassociationHash = new association *[nHashSize];
 
-            ENSURE(m_ppassocHash != nullptr);
+            ENSURE(m_ppassociationHash != nullptr);
 
          }
 
-         ::zero(m_ppassocHash, sizeof(SET_ELEMENT_ITEM *) * nHashSize);
+         ::zero(m_ppassociationHash, sizeof(association*) * nHashSize);
 
       }
 
@@ -71,17 +71,17 @@ public:
 
    }
 
-   void remove_all()
+   void erase_all()
    {
 
-      if (m_ppassocHash != nullptr && m_ppassocHash != m_assocHashDefault && m_nHashTableSize > DEFAULT_HASH_TABLE_SIZE)
+      if(m_ppassociationHash != nullptr && m_ppassociationHash != m_associationHashDefault && m_nHashTableSize > DEFAULT_HASH_TABLE_SIZE)
       {
 
-         delete[] m_ppassocHash;
+         delete[] m_ppassociationHash;
 
       }
 
-      m_ppassocHash = nullptr;
+      m_ppassociationHash = nullptr;
 
    }
 
@@ -89,20 +89,20 @@ public:
 };
 
 
-template < int m_nHashTableSize, typename ELEMENT >
+template < int m_nHashTableSize, typename PAYLOAD >
 class set_fixed_hash_table
 {
 public:
 
 
-   typedef set_element_item < ELEMENT > SET_ELEMENT_ITEM;
+   typedef map_association < PAYLOAD > association;
 
 
-   SET_ELEMENT_ITEM * m_ppassocHash[m_nHashTableSize];
+   association *           m_ppassociationHash[m_nHashTableSize];
 
    set_fixed_hash_table()
    {
-      zero(m_ppassocHash, sizeof(m_ppassocHash));
+      zero(m_ppassociationHash,sizeof(m_ppassociationHash));
    }
 
 
@@ -110,32 +110,34 @@ public:
    {
       return m_nHashTableSize;
    }
-   void InitHashTable(::u32 hashSize, bool bAllocNow = true) {  }
+   void InitHashTable(::u32 hashSize,bool bAllocNow = true) {  }
 
-   void remove_all()
+   void erase_all()
    {
-      zero(m_ppassocHash, sizeof(m_ppassocHash));
+      zero(m_ppassociationHash,sizeof(m_ppassociationHash));
    }
 
 };
 
 
-template <class ELEMENT, class ARG_ELEMENT = const ELEMENT & >
+
+template < typename KEY, typename ARG_KEY, typename PAYLOAD >
 class set :
-   public ::matter
+   virtual public ::matter
 {
 public:
 
 
-   typedef set_dynamic_hash_table < ELEMENT >      HASH_TABLE;
-   typedef ELEMENT                                 BASE_ELEMENT;
-   typedef ARG_ELEMENT                             BASE_ARG_ELEMENT;
+   typedef set_dynamic_hash_table < PAYLOAD >      HASH_TABLE;
+   typedef KEY                                     BASE_KEY;
+   typedef ARG_KEY                                 BASE_ARG_KEY;
 
 
-   typedef ::set_element_item < ELEMENT >               SET_ELEMENT_ITEM;
+   typedef ::map_association < PAYLOAD >           association;
+   typedef association                             single;
 
 
-   __declare_iterator_struct_ok(set, SET_ELEMENT_ITEM *, m_pelement, ::is_set(this->m_pelement));
+   __declare_iterator_struct_ok(set, association *, m_passociation, ::is_set(this->m_passociation));
 
 
    template < typename ITERATOR > struct make_iterator : ITERATOR
@@ -147,27 +149,27 @@ public:
 
       make_iterator()
       {
-         this->m_pelement = (SET_ELEMENT_ITEM *)nullptr;
-         this->m_pcontainer = (CONTAINER *)nullptr;
-         this->m_passocBeg = (SET_ELEMENT_ITEM *)nullptr;
-         this->m_passocEnd = (SET_ELEMENT_ITEM *) nullptr;
+         this->m_passociation = (association*)nullptr;
+         this->m_pcontainer = (CONTAINER*)nullptr;
+         this->m_passociationBeg = (association*)nullptr;
+         this->m_passociationEnd = (association*) nullptr;
       }
 
-      make_iterator(const SET_ELEMENT_ITEM * pelement, const CONTAINER * pset = nullptr)
+      make_iterator(const association * passociation, const CONTAINER * pset = nullptr)
       {
-         this->m_pelement = (SET_ELEMENT_ITEM *)pelement;
-         this->m_pcontainer = (CONTAINER *)pset;
-         this->m_pelementBeg = (SET_ELEMENT_ITEM *)pelement;
-         this->m_pelementEnd = (SET_ELEMENT_ITEM *) nullptr;
+         this->m_passociation = (association *) passociation;
+         this->m_pcontainer = (CONTAINER *) pset;
+         this->m_passociationBeg = (association *) passociation;
+         this->m_passociationEnd = (association *) nullptr;
       }
 
 
       make_iterator(const make_iterator & iterator)
       {
-         this->m_pelement = iterator.m_pelement;
+         this->m_passociation = iterator.m_passociation;
          this->m_pcontainer = iterator.m_pcontainer;
-         this->m_pelementBeg = (SET_ELEMENT_ITEM *)iterator.m_pelementBeg;
-         this->m_pelementEnd = (SET_ELEMENT_ITEM *)iterator.m_pelementEnd;
+         this->m_passociationBeg = (association *) iterator.m_passociationBeg;
+         this->m_passociationEnd = (association *) iterator.m_passociationEnd;
       }
 
 
@@ -190,7 +192,7 @@ public:
       make_iterator & operator ++ ()
       {
 
-         this->m_pelement = this->m_pelement->m_pnext;
+         this->m_passociation = this->m_passociation->m_pnext;
 
          return *this;
 
@@ -236,9 +238,9 @@ public:
       make_iterator operator ++ (i32)
       {
 
-         make_iterator iterator = this->m_pelement;
+         make_iterator iterator = this->m_passociation;
 
-         this->m_pelement = this->m_pelement->m_pnext;
+         this->m_passociation = this->m_passociation->m_pnext;
 
          return iterator;
 
@@ -255,7 +257,7 @@ public:
 
          }
 
-         if (this->m_pelement == nullptr && it.m_pelement == nullptr && it.m_pcontainer == nullptr)
+         if (this->m_passociation == nullptr && it.m_passociation == nullptr && it.m_pcontainer == nullptr)
          {
 
             return true;
@@ -269,7 +271,7 @@ public:
 
          }
 
-         return this->m_pelement == it.m_pelement;
+         return this->m_passociation == it.m_passociation;
 
       }
 
@@ -291,7 +293,7 @@ public:
 
             this->m_pcontainer = it.m_pcontainer;
 
-            this->m_pelement = it.m_pelement;
+            this->m_passociation = it.m_passociation;
 
          }
 
@@ -302,23 +304,23 @@ public:
    };
 
 
-   __declare_iterator(dereferenced_value_iterator, this->m_pelement);
-   __declare_iterator(value_iterator, &this->m_pelement);
-   __declare_iterator(key_iterator, &this->m_pelement);
-   __declare_iterator(iterator, this->m_pelement);
+   //__declare_iterator(dereferenced_value_iterator, this->m_passociation->key());
+   //__declare_iterator(value_iterator, &this->m_passociation->key());
+   __declare_iterator(key_iterator, &this->m_passociation->key());
+   __declare_iterator(iterator, this->m_passociation);
 
 
-   using deferenced_iterator = dereferenced_value_iterator;
+   //using deferenced_iterator = dereferenced_value_iterator;
 
 
    HASH_TABLE           m_hashtable;
    ::count              m_nCount;
-   SET_ELEMENT_ITEM *        m_pelementHead;
+   association *              m_passociationHead;
 
 
    set();
-   set(SET_ELEMENT_ITEM pairs[], i32 iCount);
-   set(const ::std::initializer_list < ELEMENT > & list);
+   set(association singles[], i32 iCount);
+   set(const ::std::initializer_list < PAYLOAD > & list);
    set(const set & m);
    virtual ~set();
 
@@ -341,20 +343,21 @@ public:
 
 
    //lookup
-   bool contains(ARG_ELEMENT key) const;
-   const SET_ELEMENT_ITEM * pfind(ARG_ELEMENT key) const;
-   SET_ELEMENT_ITEM * pfind(ARG_ELEMENT key);
+   bool lookup(ARG_KEY key, KEY& rValue) const;
+   const association * plookup(ARG_KEY key) const;
+   association * plookup(ARG_KEY key);
 
-   ELEMENT * element_at(ARG_ELEMENT key);
+   
+   KEY * pget(ARG_KEY key);
 
 
-   template < typename TELEMENT >
-   auto pop(const TELEMENT & key)
+   template < typename TKEY >
+   auto pop(const TKEY & key)
    {
 
       auto value = operator[](key);
 
-      remove_key(key);
+      erase_key(key);
 
       return value;
 
@@ -362,23 +365,29 @@ public:
 
    //Operations
    //lookup and add if not there
-   ELEMENT & operator[](ARG_ELEMENT key);
-   const ELEMENT & operator[](ARG_ELEMENT key) const;
+   KEY & operator[](ARG_KEY key);
+   const KEY & operator[](ARG_KEY key) const;
 
-   SET_ELEMENT_ITEM * get_assoc(ARG_ELEMENT key);
-   SET_ELEMENT_ITEM * get_assoc(ARG_ELEMENT key) const
+   association * get_association(ARG_KEY key);
+   association * get_association(ARG_KEY key) const
    {
-      return ((set *)this)->get_assoc(key);
+      return ((set *) this)->get_association(key);
    }
-   SET_ELEMENT_ITEM * find_element(ARG_ELEMENT key) const;
+   association * find_association(ARG_KEY key) const;
 
-   //add a new (key, value) SET_ELEMENT_ITEM
-   SET_ELEMENT_ITEM * add(ARG_ELEMENT key);
+   //add a new (key) association
+   association * set_at(ARG_KEY key);
 
-   bool remove(SET_ELEMENT_ITEM * pelement);
+   //add a new (key, value) association
+   virtual void set_payload(const PAYLOAD& payload)
+   {
+      set_at(payload.key());
+   }
 
-   //removing existing (key, ?) SET_ELEMENT_ITEM
-   inline bool remove(ARG_ELEMENT key) { auto pitem = find_item(key);  return ::is_set(pitem) ? remove(pitem) : false; }
+   bool erase_item(association * passociation);
+
+   //removing existing (key, ?) association
+   inline bool erase_key(ARG_KEY key) { auto pitem = find_item(key);  return ::is_set(pitem) ? erase_item(pitem) : false; }
 
    template < typename ITERATOR >
    inline ITERATOR erase(ITERATOR it) { return ::papaya::iterator::erase(*this, it); }
@@ -386,87 +395,88 @@ public:
    template < typename ITERATOR >
    inline void erase(const ITERATOR & begin, const ITERATOR & last) { ::erase(*this, begin, last); }
 
-   void remove_all();
+   void erase_all();
    void clear();
    void Empty();
 
-   //inline ::range < iterator > elements() { return iterator(nullptr, this); }
-   //inline const_range < const_iterator > elements() const { return const_iterator(nullptr, this); }
-   inline auto values() const { return value_iterator(nullptr, this); }
+   inline auto singles() { return iterator(nullptr, this); }
+   inline auto singles() const { return const_iterator(nullptr, this); }
+//   inline auto values() const { return value_iterator(nullptr, this); }
+   inline auto keys() const { return key_iterator(nullptr, this); }
 
 
 
-   ::count count(const ELEMENT & t) const;
-   bool has(const ELEMENT & t) const;
-   //bool contains(const ELEMENT & t) const;
+   ::count count(const KEY & t) const;
+   bool has(const KEY & t) const;
+   bool contains(const KEY & t) const;
 
-   //iterating all (key, value) pairs
+   //iterating all (key, value) singles
 //   POSITION get_start_position() const;
 
-   const SET_ELEMENT_ITEM * get_start() const;
-   SET_ELEMENT_ITEM * get_start();
+   const association * get_start() const;
+   association * get_start();
 
-   void get_next(SET_ELEMENT_ITEM *& rNextPosition, ELEMENT & rKey, ELEMENT & rValue) const;
+   void get_next(association * & rNextPosition, KEY& rKey, KEY& rValue) const;
 
-   const SET_ELEMENT_ITEM * get_next(const SET_ELEMENT_ITEM * passocRet) const;
-   SET_ELEMENT_ITEM * get_next(const SET_ELEMENT_ITEM * passocRet);
+   const association * get_next(const association *passociationRet) const;
+   association * get_next(const association *passociationRet);
 
    //advanced features for derived classes
    ::u32 GetHashTableSize() const
    {
       return m_hashtable.GetHashTableSize();
    }
-   void InitHashTable(::u32 hashSize, bool bAllocNow = true);
+   void InitHashTable(::u32 hashSize,bool bAllocNow = true);
 
 
-   ELEMENT get(ARG_ELEMENT argkey, ARG_ELEMENT valueDefault);
+   KEY get(ARG_KEY argkey, ARG_KEY valueDefault);
 
 
-   SET_ELEMENT_ITEM * next(SET_ELEMENT_ITEM *& pelement)
+   association * next(association * & passociation)
    {
-      if (pelement == nullptr)
+      if(passociation == nullptr)
       {
-         pelement = get_start();
+         passociation = get_start();
       }
       else
       {
-         pelement = get_next(pelement);
+         passociation = get_next(passociation);
       }
-      return pelement;
+      return passociation;
    }
 
-   const SET_ELEMENT_ITEM * next(const SET_ELEMENT_ITEM *& pelement) const
+   const association * next(const association * & passociation) const
    {
-      if (pelement == nullptr)
+      if(passociation == nullptr)
       {
-         pelement = get_start();
+         passociation = get_start();
       }
       else
       {
-         pelement = get_next(pelement);
+         passociation = get_next(passociation);
       }
-      return pelement;
+      return passociation;
    }
 
 
-   void copy(set & set)
+   void _set(set & set)
    {
-      SET_ELEMENT_ITEM * pelement = nullptr;
-      while (set.next(pelement) != nullptr)
+      association * passociation = nullptr;
+      while(set.next(passociation) != nullptr)
       {
-         set_at(pelement->element1(), pelement->element2());
+         set_payload(*passociation);
       }
    }
 
-   inline SET_ELEMENT_ITEM * find_item(ARG_ELEMENT key) const { return find_element(key); }
+   inline association * find_item(ARG_KEY key) const { return find_association(key); }
 
-   inline iterator find(ARG_ELEMENT key) { return { find_item(key), this }; }
-   const_iterator find(ARG_ELEMENT key) const { return { find_item(key), this }; }
+   inline iterator find(ARG_KEY key) { return { find_item(key), this }; }
+   const_iterator find (ARG_KEY key) const { return { find_item(key), this }; }
 
 
-   SET_ELEMENT_ITEM * new_element(ARG_ELEMENT key);
-   void free_element(SET_ELEMENT_ITEM * pelement);
-   SET_ELEMENT_ITEM * get_element_at(ARG_ELEMENT, ::u32 &, ::u32 &) const;
+   association * new_association(ARG_KEY key);
+   void free_association(association * passociation);
+   association * get_association_at(ARG_KEY, ::u32&, ::u32&) const;
 
 
    virtual void assert_valid() const override;
@@ -475,15 +485,15 @@ public:
 
 
    template < class ARRAY >
-   bool remove_key_array(ARRAY a)
+   bool erase_key_array(ARRAY a)
    {
 
       bool bRemoved = false;
 
-      for (index i = 0; i < a.get_count(); i++)
+      for(index i = 0; i < a.get_count(); i++)
       {
 
-         bRemoved |= remove_key(a[i]);
+         bRemoved |= erase_key(a[i]);
 
       }
 
@@ -492,15 +502,15 @@ public:
    }
 
    template < class ARRAY >
-   ::count remove_assoc_array(ARRAY a)
+   ::count erase_association_array(ARRAY a)
    {
 
       ::count countRemoved = 0;
 
-      for (index i = 0; i < a.get_count(); i++)
+      for(index i = 0; i < a.get_count(); i++)
       {
 
-         if (remove_assoc(a[i]))
+         if(erase_association(a[i]))
          {
 
             countRemoved++;
@@ -517,20 +527,20 @@ public:
 
    ::range < iterator > elements()
    {
-      return range < iterator >(begin(), end());
+      return range < iterator >(begin(),end());
    }
    const_range < const_iterator > elements() const
    {
-      return const_range < const_iterator >(begin(), end());
+      return const_range < const_iterator >(begin(),end());
    }
 
-   ELEMENT & element_at(::index iIndex)
+   PAYLOAD & element_at(::index iIndex)
    {
       return elements().element_at(iIndex);
    }
 
    template < typename PRED >
-   typename set < ELEMENT, ARG_ELEMENT >::SET_ELEMENT_ITEM * predicate_find(PRED pred)
+   typename set < KEY, ARG_KEY, PAYLOAD >::association * predicate_find(PRED pred)
    {
 
       auto point = this->get_start();
@@ -562,28 +572,28 @@ public:
 
       __pointer(TYPE) p;
 
-      for (auto & pvalue : values())
-      {
+     for(auto & pvalue : singles())
+     {
 
          p = pvalue;
 
-         if (p)
+         if(p)
          {
 
-            if (i <= 0)
-            {
+             if(i <= 0)
+             {
 
-               return p;
+                 return p;
 
-            }
+             }
 
-            i--;
+             i--;
 
          }
 
-      }
+     }
 
-      return nullptr;
+     return nullptr;
 
    }
 
@@ -591,42 +601,42 @@ public:
 };
 
 
-template < class ELEMENT, class ARG_ELEMENT >
-inline ::count set < ELEMENT, ARG_ELEMENT >::get_count() const
+template < typename KEY, typename ARG_KEY, typename PAYLOAD >
+inline ::count set < KEY, ARG_KEY, PAYLOAD >::get_count() const
 {
    return m_nCount;
 }
 
-template < class ELEMENT, class ARG_ELEMENT >
-inline ::count set < ELEMENT, ARG_ELEMENT >::get_size() const
+template < typename KEY, typename ARG_KEY, typename PAYLOAD >
+inline ::count set < KEY, ARG_KEY, PAYLOAD >::get_size() const
 {
    return m_nCount;
 }
 
-template < class ELEMENT, class ARG_ELEMENT >
-inline ::count set < ELEMENT, ARG_ELEMENT >::count() const
+template < typename KEY, typename ARG_KEY, typename PAYLOAD >
+inline ::count set < KEY, ARG_KEY, PAYLOAD >::count() const
 {
    return m_nCount;
 }
 
-template < class ELEMENT, class ARG_ELEMENT >
-inline ::count set < ELEMENT, ARG_ELEMENT >::size() const
+template < typename KEY, typename ARG_KEY, typename PAYLOAD >
+inline ::count set < KEY, ARG_KEY, PAYLOAD >::size() const
 {
    return m_nCount;
 }
 
-template < class ELEMENT, class ARG_ELEMENT >
-set< ELEMENT, ARG_ELEMENT > & set < ELEMENT, ARG_ELEMENT >::operator = (const set & m)
+template < typename KEY, typename ARG_KEY, typename PAYLOAD >
+set< KEY, ARG_KEY, PAYLOAD > & set < KEY, ARG_KEY, PAYLOAD >::operator = (const set & m)
 {
-   if (this != &m)
+   if(this != &m)
    {
 
-      remove_all();
+      erase_all();
 
-      for (auto & SET_ELEMENT_ITEM : m)
+      for(auto & association : m)
       {
 
-         set_at(SET_ELEMENT_ITEM.element1(), SET_ELEMENT_ITEM.element2());
+         set_at(association.key());
 
       }
 
@@ -634,56 +644,56 @@ set< ELEMENT, ARG_ELEMENT > & set < ELEMENT, ARG_ELEMENT >::operator = (const se
    return *this;
 }
 
-template < class ELEMENT, class ARG_ELEMENT >
-inline bool set < ELEMENT, ARG_ELEMENT >::is_empty() const
+template < typename KEY, typename ARG_KEY, typename PAYLOAD >
+inline bool set < KEY, ARG_KEY, PAYLOAD >::is_empty() const
 {
    return m_nCount == 0;
 }
 
-template < class ELEMENT, class ARG_ELEMENT >
-inline bool set < ELEMENT, ARG_ELEMENT >::empty() const
+template < typename KEY, typename ARG_KEY, typename PAYLOAD >
+inline bool set < KEY, ARG_KEY, PAYLOAD >::empty() const
 {
    return m_nCount == 0;
 }
 
 
-template < class ELEMENT, class ARG_ELEMENT >
-inline typename set < ELEMENT, ARG_ELEMENT >::SET_ELEMENT_ITEM * set < ELEMENT, ARG_ELEMENT >::add(ARG_ELEMENT element)
+template < typename KEY, typename ARG_KEY, typename PAYLOAD >
+inline typename set < KEY, ARG_KEY, PAYLOAD >::association * set < KEY, ARG_KEY, PAYLOAD >::set_at(ARG_KEY key)
 {
 
-   SET_ELEMENT_ITEM * pelement = get_assoc(element);
+   association * passociation = get_association(key);
 
-   *pelement = element;
+   //passociation->key() = newValue;
 
-   return pelement;
+   return passociation;
 
 }
 
 
-//template < class ELEMENT, class ARG_ELEMENT >
-//inline typename set < ELEMENT, ARG_ELEMENT >::SET_ELEMENT_ITEM * set < ELEMENT, ARG_ELEMENT >::get_start() const
+//template < typename KEY, typename ARG_KEY, typename PAYLOAD >
+//inline typename set < KEY, ARG_KEY, PAYLOAD >::association * set < KEY, ARG_KEY, PAYLOAD >::get_start() const
 //{
 //   return (m_nCount == 0) ? nullptr : BEFORE_START_POSITION;
 //}
 
-template < class ELEMENT, class ARG_ELEMENT >
-const typename set < ELEMENT, ARG_ELEMENT >::SET_ELEMENT_ITEM * set < ELEMENT, ARG_ELEMENT >::get_start() const
+template < typename KEY, typename ARG_KEY, typename PAYLOAD >
+const typename set < KEY, ARG_KEY, PAYLOAD >::association* set < KEY, ARG_KEY, PAYLOAD >::get_start() const
 {
 
-   return this->m_pelementHead;
+   return this->m_passociationHead;
 
 }
 
-template < class ELEMENT, class ARG_ELEMENT >
-typename set < ELEMENT, ARG_ELEMENT >::SET_ELEMENT_ITEM * set < ELEMENT, ARG_ELEMENT >::get_start()
+template < typename KEY, typename ARG_KEY, typename PAYLOAD >
+typename set < KEY, ARG_KEY, PAYLOAD >::association* set < KEY, ARG_KEY, PAYLOAD >::get_start()
 {
 
-   return this->m_pelementHead;
+   return this->m_passociationHead;
 
 }
 
-//template < class ELEMENT, class ARG_ELEMENT >
-//inline ::u32 set < ELEMENT, ARG_ELEMENT >::GetHashTableSize() const
+//template < typename KEY, typename ARG_KEY, typename PAYLOAD >
+//inline ::u32 set < KEY, ARG_KEY, PAYLOAD >::GetHashTableSize() const
 //{
 //
 //   return m_nHashTableSize;
@@ -691,23 +701,23 @@ typename set < ELEMENT, ARG_ELEMENT >::SET_ELEMENT_ITEM * set < ELEMENT, ARG_ELE
 //}
 
 /////////////////////////////////////////////////////////////////////////////
-// set < ELEMENT, ARG_ELEMENT > out-of-line functions
-template < class ELEMENT, class ARG_ELEMENT >
-void set < ELEMENT, ARG_ELEMENT >::construct()
+// set < KEY, ARG_KEY, PAYLOAD > out-of-line functions
+template < typename KEY, typename ARG_KEY, typename PAYLOAD >
+void set < KEY, ARG_KEY, PAYLOAD >::construct()
 {
 
-   //m_ppassocHash     = nullptr;
+   //m_ppassociationHash     = nullptr;
    //m_nHashTableSize  = 17;  // default size_i32
-   m_nCount = 0;
-   //   this->m_passocFree      = nullptr;
-   //   m_pplex           = nullptr;
-      // m_nBlockSize      = nBlockSize;
-   this->m_pelementHead = nullptr;
+   m_nCount          = 0;
+//   this->m_passociationFree      = nullptr;
+//   m_pplex           = nullptr;
+   // m_nBlockSize      = nBlockSize;
+   this->m_passociationHead      = nullptr;
 }
 
 
-template < class ELEMENT, class ARG_ELEMENT >
-set < ELEMENT, ARG_ELEMENT >::set()
+template < typename KEY, typename ARG_KEY, typename PAYLOAD >
+set < KEY, ARG_KEY, PAYLOAD >::set()
 {
 
    construct();
@@ -715,70 +725,77 @@ set < ELEMENT, ARG_ELEMENT >::set()
 }
 
 
-template < class ELEMENT, class ARG_ELEMENT >
-set < ELEMENT, ARG_ELEMENT >::set(const ::std::initializer_list < ELEMENT > & list)
+template < typename KEY, typename ARG_KEY, typename PAYLOAD >
+set < KEY, ARG_KEY, PAYLOAD >::set(const ::std::initializer_list < PAYLOAD > & list)
 {
 
    construct();
 
-   for (auto & pair_item : list)
+   for(auto & pair_item : list)
    {
 
-      set_at(pair_item.m_element1, pair_item.m_element2);
+      set_at(pair_item.key());
 
    }
 
 }
 
-template < class ELEMENT, class ARG_ELEMENT >
-set < ELEMENT, ARG_ELEMENT >::set(SET_ELEMENT_ITEM pairs[], i32 iCount)
+template < typename KEY, typename ARG_KEY, typename PAYLOAD >
+set < KEY, ARG_KEY, PAYLOAD >::set(association singles[], i32 iCount)
 {
    construct();
-   for (i32 i = 0; i < iCount; i++)
+   for(i32 i = 0; i < iCount; i++)
    {
-      set_at(pairs[i].element1(), pairs[i].element2());
+      set_at(singles[i].key());
    }
 }
 
-template < class ELEMENT, class ARG_ELEMENT >
-set < ELEMENT, ARG_ELEMENT >::set(const set & m)
+
+template < typename KEY, typename ARG_KEY, typename PAYLOAD >
+set < KEY, ARG_KEY, PAYLOAD >::set(const set & m)
 {
+   
    construct();
-   forallref(m)
+
+   for(auto & pair : m)
    {
-      set_at(item.element1(), item.element2());
+
+      set_at(pair.key());
+
    }
+
 }
 
-template < class ELEMENT, class ARG_ELEMENT >
-void set < ELEMENT, ARG_ELEMENT >::remove_all()
+
+template < typename KEY, typename ARG_KEY, typename PAYLOAD >
+void set < KEY, ARG_KEY, PAYLOAD >::erase_all()
 {
 
    ASSERT_VALID(this);
 
-   if (this->m_pelementHead != nullptr)
+   if(this->m_passociationHead != nullptr)
    {
       // destroy elements (values and keys)
 
-      SET_ELEMENT_ITEM * pelement;
+      association * passociation;
 
-      SET_ELEMENT_ITEM * passocNext = nullptr;
+      association * passociationNext = nullptr;
 
-      for (pelement = this->m_pelementHead; pelement != nullptr; pelement = passocNext)
+      for (passociation = this->m_passociationHead; passociation != nullptr; passociation = passociationNext)
       {
 
-         passocNext = pelement->m_pnext;
+         passociationNext = passociation->m_pnext;
 
-         delete pelement;
+         delete passociation;
 
       }
 
    }
 
-   m_hashtable.remove_all();
+   m_hashtable.erase_all();
 
    m_nCount = 0;
-   //this->m_passocFree = nullptr;
+   //this->m_passociationFree = nullptr;
 
    //if(m_pplex != nullptr)
    //{
@@ -788,122 +805,122 @@ void set < ELEMENT, ARG_ELEMENT >::remove_all()
 
    //}
 
-   this->m_pelementHead = nullptr;
+   this->m_passociationHead = nullptr;
 
 }
 
 
-template < class ELEMENT, class ARG_ELEMENT >
-inline void set < ELEMENT, ARG_ELEMENT >::clear()
+template < typename KEY, typename ARG_KEY, typename PAYLOAD >
+inline void set < KEY, ARG_KEY, PAYLOAD >::clear()
 {
-   remove_all();
+   erase_all();
 }
 
-template < class ELEMENT, class ARG_ELEMENT >
-inline void set < ELEMENT, ARG_ELEMENT >::Empty()
+template < typename KEY, typename ARG_KEY, typename PAYLOAD >
+inline void set < KEY, ARG_KEY, PAYLOAD >::Empty()
 {
    clear();
 }
 
-template < class ELEMENT, class ARG_ELEMENT >
-set < ELEMENT, ARG_ELEMENT >::~set()
+template < typename KEY, typename ARG_KEY, typename PAYLOAD >
+set < KEY, ARG_KEY, PAYLOAD >::~set()
 {
-   remove_all();
+   erase_all();
    ASSERT(m_nCount == 0);
 }
 
-template < class ELEMENT, class ARG_ELEMENT >
-typename set < ELEMENT, ARG_ELEMENT >::SET_ELEMENT_ITEM *
-set < ELEMENT, ARG_ELEMENT >::new_element(ARG_ELEMENT key)
+template < typename KEY, typename ARG_KEY, typename PAYLOAD >
+typename set < KEY, ARG_KEY, PAYLOAD >::association *
+set < KEY, ARG_KEY, PAYLOAD >::new_association(ARG_KEY key)
 {
 
-   //if(this->m_passocFree == nullptr)
+   //if(this->m_passociationFree == nullptr)
    //{
    //   // add another block
-   //   //plex * newBlock = plex::create(m_pplex, m_nBlockSize, sizeof(set::SET_ELEMENT_ITEM));
+   //   //plex * newBlock = plex::create(m_pplex, m_nBlockSize, sizeof(set::association));
    //   //// chain them into free list
-   //   //set::SET_ELEMENT_ITEM* pelement = (set::SET_ELEMENT_ITEM*) newBlock->data();
+   //   //set::association* passociation = (set::association*) newBlock->data();
    //   //// free in reverse order to make it easier to debug
    //   //index i = m_nBlockSize - 1;
-   //   //for (pelement = &pelement[i]; i >= 0; i--, pelement--)
+   //   //for (passociation = &passociation[i]; i >= 0; i--, passociation--)
    //   //{
-   //   //   pelement->m_pnext = this->m_passocFree;
-   //   //   this->m_passocFree = pelement;
+   //   //   passociation->m_pnext = this->m_passociationFree;
+   //   //   this->m_passociationFree = passociation;
 
    //   //}
-   //   this->m_passocFree = new SET_ELEMENT_ITEM();
+   //   this->m_passociationFree = new association();
 
    //}
 
-   //ENSURE(this->m_passocFree != nullptr);  // we must have something
+   //ENSURE(this->m_passociationFree != nullptr);  // we must have something
 
-   typename set < ELEMENT, ARG_ELEMENT >::SET_ELEMENT_ITEM * pelement =
-      new SET_ELEMENT_ITEM(key);
+   typename set < KEY, ARG_KEY, PAYLOAD >::association * passociation =
+   new association(key);
 
-   //this->m_passocFree  = this->m_passocFree->m_pnext;
+   //this->m_passociationFree  = this->m_passociationFree->m_pnext;
 
-   //zero_pointer(pelement);
+   //zero_pointer(passociation);
 
-   if (this->m_pelementHead != nullptr)
+   if(this->m_passociationHead != nullptr)
    {
 
-      this->m_pelementHead->m_pprev = pelement;
+      this->m_passociationHead->m_pprev   = passociation;
 
    }
 
-   pelement->m_pnext = this->m_pelementHead;
+   passociation->m_pnext            = this->m_passociationHead;
 
-   this->m_pelementHead = pelement;
+   this->m_passociationHead               = passociation;
 
-   this->m_pelementHead->m_pprev = nullptr;
+   this->m_passociationHead->m_pprev      = nullptr;
 
    m_nCount++;
 
    ASSERT(m_nCount > 0);  // make sure we don't overflow
 
-   return pelement;
+   return passociation;
 
 }
 
-template < class ELEMENT, class ARG_ELEMENT >
-void set < ELEMENT, ARG_ELEMENT >::free_element(SET_ELEMENT_ITEM * pelement)
+template < typename KEY, typename ARG_KEY, typename PAYLOAD >
+void set < KEY, ARG_KEY, PAYLOAD >::free_association(association * passociation)
 {
 
-   SET_ELEMENT_ITEM * pnext = pelement->m_pnext;
+   association * pnext = passociation->m_pnext;
 
-   if (pelement->m_pnext != nullptr)
+   if(passociation->m_pnext != nullptr)
    {
 
-      pelement->m_pnext->m_pprev = pelement->m_pprev;
+      passociation->m_pnext->m_pprev = passociation->m_pprev;
 
    }
 
-   if (pelement->m_pprev != nullptr)
+   if(passociation->m_pprev != nullptr)
    {
 
-      pelement->m_pprev->m_pnext = pelement->m_pnext;
+      passociation->m_pprev->m_pnext = passociation->m_pnext;
 
    }
 
-   if (this->m_pelementHead == pelement)
+   if(this->m_passociationHead == passociation)
    {
 
-      this->m_pelementHead = pnext;
+      this->m_passociationHead = pnext;
 
-      if (this->m_pelementHead != nullptr)
+      if(this->m_passociationHead != nullptr)
       {
 
-         this->m_pelementHead->m_pprev = nullptr;
+         this->m_passociationHead->m_pprev = nullptr;
 
       }
 
    }
 
-   delete pelement;
+   delete passociation;
 
-   //pelement->m_pnext = this->m_passocFree;
+   //passociation->m_pnext = this->m_passociationFree;
 
-   //this->m_passocFree = pelement;
+   //this->m_passociationFree = passociation;
 
    m_nCount--;
 
@@ -911,39 +928,31 @@ void set < ELEMENT, ARG_ELEMENT >::free_element(SET_ELEMENT_ITEM * pelement)
 
    // if no more elements, cleanup completely
    if (m_nCount == 0)
-      remove_all();
+      erase_all();
 
 }
 
-template < class ELEMENT, class ARG_ELEMENT >
-typename set < ELEMENT, ARG_ELEMENT >::SET_ELEMENT_ITEM *
-set < ELEMENT, ARG_ELEMENT >::get_element_at(ARG_ELEMENT key, ::u32 & nHashBucket, ::u32 & nHashValue) const
+template < typename KEY, typename ARG_KEY, typename PAYLOAD >
+typename set < KEY, ARG_KEY, PAYLOAD >::association *
+set < KEY, ARG_KEY, PAYLOAD >::get_association_at(ARG_KEY key, ::u32& nHashBucket, ::u32& nHashValue) const
 // find association (or return nullptr)
 {
 
-   nHashValue = u32_hash<ARG_ELEMENT>(key);
+   nHashValue = u32_hash<ARG_KEY>(key);
 
    nHashBucket = nHashValue % m_hashtable.GetHashTableSize();
 
-   if (get_count() <= 0)
-   {
-
+   if(get_count() <= 0)
       return nullptr;
 
-   }
-
    // see if it exists
-   SET_ELEMENT_ITEM * pelement;
+   association * passociation;
 
-   for (pelement = m_hashtable.m_ppassocHash[nHashBucket]; pelement != nullptr; pelement = pelement->m_pnextHash)
+   for(passociation = m_hashtable.m_ppassociationHash[nHashBucket]; passociation != nullptr; passociation = passociation->m_pnextHash)
    {
 
-      if (EqualElements<ARG_ELEMENT>(pelement->element(), key))
-      {
-
-         return pelement;
-
-      }
+      if(EqualElements<ARG_KEY>(passociation->key(), key))
+         return passociation;
 
    }
 
@@ -951,321 +960,312 @@ set < ELEMENT, ARG_ELEMENT >::get_element_at(ARG_ELEMENT key, ::u32 & nHashBucke
 
 }
 
-
-template < class ELEMENT, class ARG_ELEMENT >
-bool set < ELEMENT, ARG_ELEMENT >::contains(ARG_ELEMENT element) const
+template < typename KEY, typename ARG_KEY, typename PAYLOAD >
+bool set < KEY, ARG_KEY, PAYLOAD >::lookup(ARG_KEY key, KEY& rValue) const
 {
+   //ASSERT_VALID(this);
 
    ::u32 nHashBucket, nHashValue;
 
-   SET_ELEMENT_ITEM * pelement = get_element_at(element, nHashBucket, nHashValue);
+   association* passociation = get_association_at(key, nHashBucket, nHashValue);
 
-   if (!pelement)
-   {
+   if (passociation == nullptr)
+      return false;  // not in set
 
-      return false;  
-
-   }
+   rValue = passociation->key();
 
    return true;
 
 }
 
-//template < class ELEMENT, class ARG_ELEMENT >
-//typename set < ELEMENT, ARG_ELEMENT >::iterator set < ELEMENT, ARG_ELEMENT >::find (ARG_ELEMENT key)
+//template < typename KEY, typename ARG_KEY, typename PAYLOAD >
+//typename set < KEY, ARG_KEY, PAYLOAD >::iterator set < KEY, ARG_KEY, PAYLOAD >::find (ARG_KEY key)
 //{
 //   return iterator(plookup(key), this);
 //}
 //
-//template < class ELEMENT, class ARG_ELEMENT >
-//typename set < ELEMENT, ARG_ELEMENT >::const_iterator set < ELEMENT, ARG_ELEMENT >::find (ARG_ELEMENT key) const
+//template < typename KEY, typename ARG_KEY, typename PAYLOAD >
+//typename set < KEY, ARG_KEY, PAYLOAD >::const_iterator set < KEY, ARG_KEY, PAYLOAD >::find (ARG_KEY key) const
 //{
-//   return const_iterator((SET_ELEMENT_ITEM *) plookup(key), (set *) this);
+//   return const_iterator((association *) plookup(key), (set *) this);
 //}
 
 
-template < class ELEMENT, class ARG_ELEMENT >
-const typename set < ELEMENT, ARG_ELEMENT >::SET_ELEMENT_ITEM * set < ELEMENT, ARG_ELEMENT >::pfind(ARG_ELEMENT key) const
+template < typename KEY, typename ARG_KEY, typename PAYLOAD >
+const typename set < KEY, ARG_KEY, PAYLOAD >::association* set < KEY, ARG_KEY, PAYLOAD >::plookup(ARG_KEY key) const
 {
    //ASSERT_VALID(this);
 
    ::u32 nHashBucket, nHashValue;
-   SET_ELEMENT_ITEM * pelement = get_element_at(key, nHashBucket, nHashValue);
-   return pelement;
+   association* passociation = get_association_at(key, nHashBucket, nHashValue);
+   return passociation;
 }
 
-template < class ELEMENT, class ARG_ELEMENT >
-typename set < ELEMENT, ARG_ELEMENT >::SET_ELEMENT_ITEM * set < ELEMENT, ARG_ELEMENT >::pfind(ARG_ELEMENT key)
+template < typename KEY, typename ARG_KEY, typename PAYLOAD >
+typename set < KEY, ARG_KEY, PAYLOAD >::association* set < KEY, ARG_KEY, PAYLOAD >::plookup(ARG_KEY key)
 {
    //ASSERT_VALID(this);
 
    ::u32 nHashBucket, nHashValue;
-   SET_ELEMENT_ITEM * pelement = get_element_at(key, nHashBucket, nHashValue);
-   return pelement;
+   association* passociation = get_association_at(key, nHashBucket, nHashValue);
+   return passociation;
 }
 
-template < class ELEMENT, class ARG_ELEMENT >
-ELEMENT * set < ELEMENT, ARG_ELEMENT >::element_at(ARG_ELEMENT key)
+template < typename KEY, typename ARG_KEY, typename PAYLOAD >
+KEY * set < KEY, ARG_KEY, PAYLOAD >::pget(ARG_KEY key)
 {
-   SET_ELEMENT_ITEM * point = plookup(key);
-   if (point)
-      return &point->element2();
+   association * point = plookup(key);
+   if(point)
+      return &point->key();
    else
       return nullptr;
 }
 
 
-template < class ELEMENT, class ARG_ELEMENT >
-inline typename set < ELEMENT, ARG_ELEMENT >::SET_ELEMENT_ITEM * set < ELEMENT, ARG_ELEMENT >::find_element(ARG_ELEMENT key) const
+template < typename KEY, typename ARG_KEY, typename PAYLOAD >
+inline typename set < KEY, ARG_KEY, PAYLOAD >::association * set < KEY, ARG_KEY, PAYLOAD >::find_association(ARG_KEY key) const
 {
 
    ASSERT_VALID(this);
 
    ::u32 nHashBucket, nHashValue;
 
-   return get_element_at(key, nHashBucket, nHashValue);
+   return get_association_at(key, nHashBucket, nHashValue);
 
 }
 
 
-template < class ELEMENT, class ARG_ELEMENT >
-typename set < ELEMENT, ARG_ELEMENT >::SET_ELEMENT_ITEM * set < ELEMENT, ARG_ELEMENT >::get_assoc(ARG_ELEMENT key)
+template < typename KEY, typename ARG_KEY, typename PAYLOAD >
+typename set < KEY, ARG_KEY, PAYLOAD >::association * set < KEY, ARG_KEY, PAYLOAD >::get_association(ARG_KEY key)
 {
 
    ASSERT_VALID(this);
 
-   ::u32 nHashBucket, nHashValue;
+   ::u32 nHashBucket,nHashValue;
 
-   SET_ELEMENT_ITEM * pelement;
+   association * passociation;
 
-   if ((pelement = get_element_at(key, nHashBucket, nHashValue)) == nullptr)
+   if((passociation = get_association_at(key,nHashBucket,nHashValue)) == nullptr)
    {
 
       // not precise (memleak? a watch dog can restart from the last check point... continuable tasks need...) but self-healing(self-recoverable/not-fatal)...
-      if (void_ptr_is_null(m_hashtable.m_ppassocHash))
+      if(void_ptr_is_null(m_hashtable.m_ppassociationHash))
          InitHashTable(m_hashtable.GetHashTableSize());
 
-      ENSURE(m_hashtable.m_ppassocHash);
+      ENSURE(m_hashtable.m_ppassociationHash);
 
-      pelement = new_element(key);
+      passociation = new_association(key);
 
-      if (m_hashtable.m_ppassocHash[nHashBucket] != nullptr)
+      if(m_hashtable.m_ppassociationHash[nHashBucket] != nullptr)
       {
-         m_hashtable.m_ppassocHash[nHashBucket]->m_ppprevHash = &pelement->m_pnextHash;
+         m_hashtable.m_ppassociationHash[nHashBucket]->m_ppprevHash = &passociation->m_pnextHash;
       }
 
-      pelement->m_pnextHash = m_hashtable.m_ppassocHash[nHashBucket];
+      passociation->m_pnextHash        = m_hashtable.m_ppassociationHash[nHashBucket];
 
-      m_hashtable.m_ppassocHash[nHashBucket] = pelement;
+      m_hashtable.m_ppassociationHash[nHashBucket] = passociation;
 
-      pelement->m_ppprevHash = &m_hashtable.m_ppassocHash[nHashBucket];
+      passociation->m_ppprevHash       = &m_hashtable.m_ppassociationHash[nHashBucket];
 
    }
 
-   return pelement;
+   return passociation;
 
 }
 
 
-template < class ELEMENT, class ARG_ELEMENT >
-ELEMENT & set < ELEMENT, ARG_ELEMENT >::operator[](ARG_ELEMENT key)
+template < typename KEY, typename ARG_KEY, typename PAYLOAD >
+KEY& set < KEY, ARG_KEY, PAYLOAD >::operator[](ARG_KEY key)
 {
 
-   return get_assoc(key)->element2();  // return new matter
+   return get_association(key)->key();  // return new matter
 
 }
 
-template < class ELEMENT, class ARG_ELEMENT >
-const ELEMENT & set < ELEMENT, ARG_ELEMENT >::operator[](ARG_ELEMENT key) const
+template < typename KEY, typename ARG_KEY, typename PAYLOAD >
+const KEY & set < KEY, ARG_KEY, PAYLOAD >::operator[](ARG_KEY key) const
 {
 
-   return get_assoc(key)->element2();  // return new matter
+   return get_association(key)->key();  // return new matter
 
 }
 
 
-template < class ELEMENT, class ARG_ELEMENT >
-inline bool set < ELEMENT, ARG_ELEMENT >::remove(SET_ELEMENT_ITEM * pelement)
-// erase - return true if removed
+template < typename KEY, typename ARG_KEY, typename PAYLOAD >
+inline bool set < KEY, ARG_KEY, PAYLOAD >::erase_item(association * passociation)
+// erase - return true if erased
 {
 
-   if (pelement->m_pnextHash != nullptr)
+   if(passociation->m_pnextHash != nullptr)
    {
 
-      pelement->m_pnextHash->m_ppprevHash = pelement->m_ppprevHash;
+      passociation->m_pnextHash->m_ppprevHash = passociation->m_ppprevHash;
 
    }
 
-   *pelement->m_ppprevHash = pelement->m_pnextHash;
+   *passociation->m_ppprevHash = passociation->m_pnextHash;
 
-   free_element(pelement);
+   free_association(passociation);
 
    return true;
 
 }
 
 
-template < class ELEMENT, class ARG_ELEMENT >
-inline ::count set < ELEMENT, ARG_ELEMENT >::count(const ELEMENT & key) const
+template < typename KEY, typename ARG_KEY, typename PAYLOAD >
+inline ::count set < KEY, ARG_KEY, PAYLOAD >::count(const KEY & key) const
 {
 
    return this->plookup(key) != nullptr ? 1 : 0;
 
 }
 
-template < class ELEMENT, class ARG_ELEMENT >
-bool set < ELEMENT, ARG_ELEMENT >::has(const ELEMENT & key) const
+
+template < typename KEY, typename ARG_KEY, typename PAYLOAD >
+bool set < KEY, ARG_KEY, PAYLOAD >::has(const KEY & key) const
 {
 
    return this->plookup(key) != nullptr ? 1 : 0;
 
 }
 
-//template < class ELEMENT, class ARG_ELEMENT >
-//bool set < ELEMENT, ARG_ELEMENT >::contains(const ELEMENT & key) const
-//{
-//
-//   return this->plookup(key) != nullptr ? 1 : 0;
-//
-//}
 
-
-//template < class ELEMENT, class ARG_ELEMENT >
-//void set < ELEMENT, ARG_ELEMENT >::erase(iterator it)
-//{
-//
-//   remove_key(it->element1());
-//
-//}
-
-
-template < class ELEMENT, class ARG_ELEMENT >
-void set < ELEMENT, ARG_ELEMENT >::get_next(SET_ELEMENT_ITEM *& pelement,
-   ELEMENT & rKey, ELEMENT & rValue) const
+template < typename KEY, typename ARG_KEY, typename PAYLOAD >
+bool set < KEY, ARG_KEY, PAYLOAD >::contains(const KEY & key) const
 {
 
-   rKey = pelement->element1();
-
-   rValue = pelement->element2();
-
-   pelement = pelement->m_pnext;
+   return this->plookup(key) != nullptr ? 1 : 0;
 
 }
 
 
-template < class ELEMENT, class ARG_ELEMENT >
-inline const typename set < ELEMENT, ARG_ELEMENT >::SET_ELEMENT_ITEM *
-set < ELEMENT, ARG_ELEMENT >::get_next(const SET_ELEMENT_ITEM * pelement) const
+template < typename KEY, typename ARG_KEY, typename PAYLOAD >
+void set < KEY, ARG_KEY, PAYLOAD >::get_next(association * & passociation,
+      KEY& rKey, KEY& rValue) const
 {
 
-   return pelement->m_pnext;
+   rKey = passociation->key();
+
+   rValue = passociation->key();
+
+   passociation = passociation->m_pnext;
 
 }
 
-template < class ELEMENT, class ARG_ELEMENT >
-inline typename set < ELEMENT, ARG_ELEMENT >::SET_ELEMENT_ITEM *
-set < ELEMENT, ARG_ELEMENT >::get_next(const SET_ELEMENT_ITEM * pelement)
+
+template < typename KEY, typename ARG_KEY, typename PAYLOAD >
+inline const typename set < KEY, ARG_KEY, PAYLOAD >::association*
+set < KEY, ARG_KEY, PAYLOAD >::get_next(const association * passociation) const
 {
 
-   return pelement->m_pnext;
+   return passociation->m_pnext;
 
 }
 
-template < class ELEMENT, class ARG_ELEMENT >
-ELEMENT set < ELEMENT, ARG_ELEMENT > ::
-get(ARG_ELEMENT argkey, ARG_ELEMENT valueDefault)
+
+template < typename KEY, typename ARG_KEY, typename PAYLOAD >
+inline typename set < KEY, ARG_KEY, PAYLOAD >::association*
+set < KEY, ARG_KEY, PAYLOAD >::get_next(const association * passociation)
 {
-   SET_ELEMENT_ITEM * pelement = plookup(argkey);
-   if (pelement == nullptr)
+
+   return passociation->m_pnext;
+
+}
+
+
+template < typename KEY, typename ARG_KEY, typename PAYLOAD >
+KEY set < KEY, ARG_KEY, PAYLOAD > ::
+get(ARG_KEY argkey, ARG_KEY valueDefault)
+{
+   association * passociation = plookup(argkey);
+   if(passociation == nullptr)
       return valueDefault;
    else
-      return pelement->element2();
+      return passociation->key();
 }
 
 
-
-
-template < class ELEMENT, class ARG_ELEMENT >
-void set < ELEMENT, ARG_ELEMENT >::assert_valid() const
+template < typename KEY, typename ARG_KEY, typename PAYLOAD >
+void set < KEY, ARG_KEY, PAYLOAD >::assert_valid() const
 {
 
    ::matter::assert_valid();
 
    ASSERT(GetHashTableSize() > 0);
 
-   ASSERT(m_nCount == 0 || m_hashtable.m_ppassocHash != nullptr);
+   ASSERT(m_nCount == 0 || m_hashtable.m_ppassociationHash != nullptr);
    // non-empty set should have hash table
 
 }
 
 
-
-template < class ELEMENT, class ARG_ELEMENT >
-void set < ELEMENT, ARG_ELEMENT >::dump(dump_context & dumpcontext) const
-{
-   
-   //::context_object::dump_context(dumpcontext);
-
-}
-
-
-
-template <class ELEMENT, class ARG_ELEMENT >
-void set < ELEMENT, ARG_ELEMENT >::InitHashTable(
-   ::u32 nHashSize, bool bAllocNow)
-{
-
-   ASSERT_VALID(this);
-   ASSERT(m_nCount == 0);
-   ASSERT(nHashSize > 0);
-
-   m_hashtable.InitHashTable(nHashSize, bAllocNow);
-
-}
-
-//#define ptrptr(T1, T2) set < T1 *, T1 *, T2 *, T2 * >
-
-
-
-//template < class ELEMENT, class ARG_ELEMENT >
-//stream & operator << (stream & s, set < ELEMENT, ARG_ELEMENT > & a)
-//{
-//
-//   s.stream_set(a);
-//
-//   return s;
-//
-//}
-
-
-//template < class ELEMENT, class ARG_ELEMENT >
-//stream & operator >> (stream & s,set < ELEMENT, ARG_ELEMENT > & a)
-//{
-//
-//   s.stream_set(a);
-//
-//   return s;
-//
-//}
-
-
-template < class ELEMENT >
-using isoset = set < ELEMENT, ELEMENT >;
-
-using dword_set = isoset < ::u32 >;
-
 using double_set = set < double >;
 
-using uptr_set = set < uptr >;
+using dword_set = set < ::u32 >;
 
-using iptr_set = set < iptr >;
+using uptr_set = set < ::uptr >;
 
-using string_set = set < string >;
+template < typename KEY_TYPE >
+class key
+{
+public:
+
+
+   using KEY = KEY_TYPE;
+   using TYPE = KEY;
+   using ARG_TYPE = typename argument_of < KEY & >::type;
+
+
+   // Contract
+   // KEY & key();
+   // KEY & key();
+   // const KEY & key() const;
+   // const KEY & key() const;
+
+};
+
+
+template < typename PAYLOAD >
+using key_set = set <  typename PAYLOAD::TYPE, typename PAYLOAD::ARG_TYPE, PAYLOAD >;
+
+
+#define __declare_key(xkeytype, xkey) \
+struct xkeytype : public ::key < xkeytype > \
+{ \
+\
+   PAIR_DEFAULT_IMPL(xkeytype, KEY, const KEY &, xkey); \
+   KEY & key() { return xkey; } \
+   const KEY & key() const { return xkey; } \
+}
+
+
+#ifdef CPP17
+#define __declare_key_tuple_size(key) \
+template<> ALIENATED_ANDROID_ANARCHY ::std::tuple_size< key > : ::std::integral_constant<size_t, 1> {} }
+#endif
+
+
+#define __declare_set(xsettype, xkeyvaluetype, xkeytype, xkey, xvaluetype, xvalue) \
+__declare_key_value(xkeyvaluetype, xkeytype, xkey, xvaluetype, xvalue); \
+using xsettype = pair_set < xkeyvaluetype >
+
+
+#ifdef CPP17
+#define __declare_set_key_value(xsettype, xkeyvaluetype, xkeytype, xkey, xvaluetype, xvalue) \
+__declare_set(xkeyvaluetype, xkeytype, xkey, xvaluetype, xvalue); \
+__declare_pair_tuple_size(xsettype)
+#else
+
+#define __declare_set_key_value(xsettype, xkeyvaluetype, xkeytype, xkey, xvaluetype, xvalue) \
+__declare_set(xkeyvaluetype, xkeytype, xkey, xvaluetype, xvalue);
+
+#endif
+
+
+using int_ptr_set = set < iptr >;
 
 using index_set = set < index >;
 
-
-
-
+using string_set = set < string >;
 
 

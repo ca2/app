@@ -191,7 +191,7 @@ i32 daemonize_process(const char * pszCommandLine, i32 * pprocessId)
 //   }
 //
 //    /* Change the current working directory.  This prevents the current
-//       directory from being locked; hence not being able to remove it. */
+//       directory from being locked; hence not being able to erase it. */
 //   if ((chdir("/")) < 0)
 //   {
 //

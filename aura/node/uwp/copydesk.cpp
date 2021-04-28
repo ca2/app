@@ -108,10 +108,10 @@ namespace uwp
 
    }
 
-   ::e_status copydesk::initialize(::layered * pobjectContext)
+   ::e_status copydesk::initialize(::object * pobject)
    {
 
-      auto estatus = ::user::copydesk::initialize(pobjectContext);
+      auto estatus = ::user::copydesk::initialize(pobject);
 
       if(!estatus)
       {
@@ -134,7 +134,7 @@ namespace uwp
    }
 
 
-   void copydesk::finalize()
+   ::e_status copydesk::finalize()
    {
 
       ::user::copydesk::finalize();
@@ -256,7 +256,7 @@ namespace uwp
    bool copydesk::_desk_to_image(::image * pimage)
    {
 
-      return Application.image()._desk_to_image(pimage);
+      return pcontextimage->_desk_to_image(pimage);
 
    }
 
@@ -264,7 +264,7 @@ namespace uwp
    bool copydesk::_image_to_desk(const ::image * pimage)
    {
 
-      return Application.image()._image_to_desk(pimage);
+      return pcontextimage->_image_to_desk(pimage);
 
    }
 

@@ -3,13 +3,6 @@
 #include "core/user/rich_text/_rich_text.h"
 
 
-//#ifdef WINDOWS_DESKTOP
-//#include <Commdlg.h>
-//#endif
-
-
-
-
 namespace user
 {
 
@@ -18,10 +11,8 @@ namespace user
    {
 
       
-      format_tool::format_tool()
+   format_tool::format_tool()
    {
-
-      m_formata.add(__new(::user::rich_text::format(&m_formata)));
 
    }
 
@@ -30,6 +21,31 @@ namespace user
    {
 
    }
+
+
+   e_status format_tool::initialize(::object * pobject)
+   {
+
+      auto estatus = ::user::tool_window::initialize(pobject);
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      auto pformat = __new(::user::rich_text::format);
+
+      estatus = pformat->initialize_user_rich_text_format(&m_formata);
+
+      m_formata.add(pformat);
+
+      return estatus;
+
+   }
+
+
 
 
    ::user::enum_translucency format_tool::get_translucency(::user::style* pstyle) const
@@ -93,27 +109,27 @@ namespace user
 
       m_pbuttonBold->create_control(this, "font_bold");
       m_pbuttonBold->LoadBitmaps("matter://fontformat/bold-text-option12.png");
-      m_pbuttonBold->m_flagNonClient.remove(::user::interaction::non_client_focus_rect);
-      m_pbuttonBold->m_flagNonClient.remove(::user::interaction::non_client_background);
+      m_pbuttonBold->m_flagNonClient.erase(::user::interaction::non_client_focus_rect);
+      m_pbuttonBold->m_flagNonClient.erase(::user::interaction::non_client_background);
 
       m_pbuttonItalic->create_control(this, "font_italic");
       m_pbuttonItalic->LoadBitmaps("matter://fontformat/italicize-text12.png");
-      m_pbuttonItalic->m_flagNonClient.remove(::user::interaction::non_client_focus_rect);
-      m_pbuttonItalic->m_flagNonClient.remove(::user::interaction::non_client_background);
+      m_pbuttonItalic->m_flagNonClient.erase(::user::interaction::non_client_focus_rect);
+      m_pbuttonItalic->m_flagNonClient.erase(::user::interaction::non_client_background);
 
       m_pbuttonUnderline->create_control(this, "font_underline");
       m_pbuttonUnderline->LoadBitmaps("matter://fontformat/underline-text-option12.png");
-      m_pbuttonUnderline->m_flagNonClient.remove(::user::interaction::non_client_focus_rect);
-      m_pbuttonUnderline->m_flagNonClient.remove(::user::interaction::non_client_background);
+      m_pbuttonUnderline->m_flagNonClient.erase(::user::interaction::non_client_focus_rect);
+      m_pbuttonUnderline->m_flagNonClient.erase(::user::interaction::non_client_background);
 
       m_pcomboFamily->create_control(this, "combo_family");
-      //auto pfont = m_pcomboFamily->create_point_font(::user::font_plain_edit, os_font_name(e_font_sans_ui), 9.0);
+      //auto pfont = m_pcomboFamily->create_point_font(::user::font_plain_edit, pnode->font_name(e_font_sans_ui), 9.0);
       //pfont->m_ewritetextrendering = ::write_text::e_rendering_clear_type_grid_fit;
       //m_pcomboFamily->create_color(::user::color_text, argb(255, 80, 80, 80));
       //m_pcomboFamily->create_color(::user::color_background, argb(255, 255, 255, 255));
 
       m_pcomboSize->create_control(this, "combo_size");
-      //pfont = m_pcomboSize->create_point_font(::user::font_plain_edit, os_font_name(e_font_sans_ui), 9.0);
+      //pfont = m_pcomboSize->create_point_font(::user::font_plain_edit, pnode->font_name(e_font_sans_ui), 9.0);
       //pfont->m_ewritetextrendering = ::write_text::e_rendering_clear_type_grid_fit;
       //m_pcomboSize->create_color(::user::color_text, argb(255, 80, 80, 80));
       //m_pcomboSize->create_color(::user::color_background, argb(255, 255, 255, 255));
@@ -152,38 +168,38 @@ namespace user
       m_pbuttonForeground->create_control(this, "font_foreground");
       m_pbuttonForeground->LoadBitmaps("matter://fontformat/font-foreground12.png");
 
-      m_pbuttonForeground->m_flagNonClient.remove(::user::interaction::non_client_focus_rect);
-      m_pbuttonForeground->m_flagNonClient.remove(::user::interaction::non_client_background);
+      m_pbuttonForeground->m_flagNonClient.erase(::user::interaction::non_client_focus_rect);
+      m_pbuttonForeground->m_flagNonClient.erase(::user::interaction::non_client_background);
 
       m_pbuttonBackground->create_control(this, "font_background");
       m_pbuttonBackground->LoadBitmaps("matter://fontformat/text-background12.png");
-      m_pbuttonBackground->m_flagNonClient.remove(::user::interaction::non_client_focus_rect);
-      m_pbuttonBackground->m_flagNonClient.remove(::user::interaction::non_client_background);
+      m_pbuttonBackground->m_flagNonClient.erase(::user::interaction::non_client_focus_rect);
+      m_pbuttonBackground->m_flagNonClient.erase(::user::interaction::non_client_background);
 
       m_pbuttonSubscript->create_control(this, "font_subscript");
       m_pbuttonSubscript->LoadBitmaps("matter://fontformat/x2-symbol-of-a-letter-and-a-number-subscript12.png");
-      m_pbuttonSubscript->m_flagNonClient.remove(::user::interaction::non_client_focus_rect);
-      m_pbuttonSubscript->m_flagNonClient.remove(::user::interaction::non_client_background);
+      m_pbuttonSubscript->m_flagNonClient.erase(::user::interaction::non_client_focus_rect);
+      m_pbuttonSubscript->m_flagNonClient.erase(::user::interaction::non_client_background);
 
       m_pbuttonSuperscript->create_control(this, "font_superscript");
       m_pbuttonSuperscript->LoadBitmaps("matter://fontformat/superscript-text-formatting12.png");
-      m_pbuttonSuperscript->m_flagNonClient.remove(::user::interaction::non_client_focus_rect);
-      m_pbuttonSuperscript->m_flagNonClient.remove(::user::interaction::non_client_background);
+      m_pbuttonSuperscript->m_flagNonClient.erase(::user::interaction::non_client_focus_rect);
+      m_pbuttonSuperscript->m_flagNonClient.erase(::user::interaction::non_client_background);
 
       m_pbuttonAlignLeft->create_control(this, "e_align_left");
       m_pbuttonAlignLeft->LoadBitmaps("matter://fontformat/align-to-left12.png");
-      m_pbuttonAlignLeft->m_flagNonClient.remove(::user::interaction::non_client_focus_rect);
-      m_pbuttonAlignLeft->m_flagNonClient.remove(::user::interaction::non_client_background);
+      m_pbuttonAlignLeft->m_flagNonClient.erase(::user::interaction::non_client_focus_rect);
+      m_pbuttonAlignLeft->m_flagNonClient.erase(::user::interaction::non_client_background);
 
       m_pbuttonAlignCenter->create_control(this, "e_align_center");
       m_pbuttonAlignCenter->LoadBitmaps("matter://fontformat/center-text-alignment12.png");
-      m_pbuttonAlignCenter->m_flagNonClient.remove(::user::interaction::non_client_focus_rect);
-      m_pbuttonAlignCenter->m_flagNonClient.remove(::user::interaction::non_client_background);
+      m_pbuttonAlignCenter->m_flagNonClient.erase(::user::interaction::non_client_focus_rect);
+      m_pbuttonAlignCenter->m_flagNonClient.erase(::user::interaction::non_client_background);
 
       m_pbuttonAlignRight->create_control(this, "e_align_right");
       m_pbuttonAlignRight->LoadBitmaps("matter://fontformat/align-to-right12.png");
-      m_pbuttonAlignRight->m_flagNonClient.remove(::user::interaction::non_client_focus_rect);
-      m_pbuttonAlignRight->m_flagNonClient.remove(::user::interaction::non_client_background);
+      m_pbuttonAlignRight->m_flagNonClient.erase(::user::interaction::non_client_focus_rect);
+      m_pbuttonAlignRight->m_flagNonClient.erase(::user::interaction::non_client_background);
 
       //create_color(::user::color_background, argb(255, 200, 200, 200));
       //create_color(::user::color_button_background, argb(0, 0, 0, 0));
@@ -567,7 +583,7 @@ namespace user
 
       }
 
-      synchronization_lock synchronizationlock(m_formata[0]->mutex());
+      synchronous_lock synchronouslock(m_formata[0]->mutex());
 
       if (bSaveAndValidate)
       {
@@ -711,7 +727,7 @@ namespace user
 //::userex::format_tool * simple_frame_window::format_tool(bool bCreate)
 //{
 //
-//   synchronization_lock synchronizationlock(mutex());
+//   synchronous_lock synchronouslock(mutex());
 //
 //   __pointer(::userex::format_tool) pfontformattool = m_ptoolwindowFont;
 //
@@ -722,7 +738,7 @@ namespace user
 //
 //      m_ptoolwindowFont = pfontformattool;
 //
-//      synchronizationlock.unlock();
+//      synchronouslock.unlock();
 //
 //      //pfontformattool->m_ewindowflag |= e_window_flag_embedded_prodevian;
 //      //pfontformattool->m_ewindowflag |= e_window_flag_satellite_window;

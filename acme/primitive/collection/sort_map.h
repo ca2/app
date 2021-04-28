@@ -95,13 +95,13 @@
 //
 //      }
 //
-//      void remove_all()
+//      void erase_all()
 //      {
 //
 //         if(left != nullptr)
 //         {
 //
-//            left->remove_all();
+//            left->erase_all();
 //
 //            delete left;
 //
@@ -112,7 +112,7 @@
 //         if(right != nullptr)
 //         {
 //
-//            right->remove_all();
+//            right->erase_all();
 //
 //            delete right;
 //
@@ -378,15 +378,15 @@
 //   void set_at(ARG_KEY key, ARG_VALUE newValue);
 //
 //   // removing existing (key, ?) node
-//   ::count remove_key(ARG_KEY key);
+//   ::count erase_key(ARG_KEY key);
 //   void erase(iterator it);
 //   ::count erase(const KEY & key);
 //   void erase ( iterator element1(), iterator last );
-//   void remove_all();
+//   void erase_all();
 //   void clear();
 //
 //
-//   bool remove_node(node * pnode);
+//   bool erase_node(node * pnode);
 //
 //   bool delete_node(node * pnode, node * pnodeParent);
 //
@@ -605,13 +605,13 @@
 //
 //
 //template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class COMPARE, bool m_bMultiKey >
-//void sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE, m_bMultiKey >::remove_all()
+//void sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE, m_bMultiKey >::erase_all()
 //{
 //
 //   if(m_pnode == nullptr)
 //      return;
 //
-//   m_pnode->remove_all();
+//   m_pnode->erase_all();
 //
 //   delete m_pnode;
 //
@@ -623,7 +623,7 @@
 //inline void sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE, m_bMultiKey >::clear()
 //{
 //
-//   remove_all();
+//   erase_all();
 //
 //}
 //
@@ -631,7 +631,7 @@
 //sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE, m_bMultiKey >::~sort_map()
 //{
 //
-//   remove_all();
+//   erase_all();
 //
 //}
 //
@@ -713,7 +713,7 @@
 //}
 //
 //template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class COMPARE, bool m_bMultiKey >
-//::count sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE, m_bMultiKey >::remove_key(ARG_KEY key)
+//::count sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE, m_bMultiKey >::erase_key(ARG_KEY key)
 //{
 //
 //   ::count c = 0;
@@ -726,7 +726,7 @@
 //      if(pnode == nullptr)
 //         break;
 //
-//      remove_node(pnode);
+//      erase_node(pnode);
 //
 //   }
 //
@@ -784,7 +784,7 @@
 //
 //
 //template < class KEY,class ARG_KEY,class VALUE,class ARG_VALUE,class COMPARE,bool m_bMultiKey >
-//bool sort_map < KEY,ARG_KEY,VALUE,ARG_VALUE,COMPARE,m_bMultiKey >::remove_node(node * pnode)
+//bool sort_map < KEY,ARG_KEY,VALUE,ARG_VALUE,COMPARE,m_bMultiKey >::erase_node(node * pnode)
 //{
 //
 //   if(pnode == m_pnode)
@@ -804,7 +804,7 @@
 //      {
 //         node * succ = pnode->right->minimum();
 //         pnode->copy_value(*succ);
-//         return remove_node(succ);
+//         return erase_node(succ);
 //      }
 //      else
 //      {
@@ -1118,7 +1118,7 @@
 //::count sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE, m_bMultiKey >::erase(const KEY & key)
 //{
 //
-//   return remove_key(key) ? 1 : 0;
+//   return erase_key(key) ? 1 : 0;
 //
 //}
 //
@@ -1126,7 +1126,7 @@
 //void sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE, m_bMultiKey >::erase(iterator it)
 //{
 //
-//   remove_key(it->element1());
+//   erase_key(it->element1());
 //
 //}
 //
@@ -1170,7 +1170,7 @@
 //
 //      pnodeNext = next(pnode);
 //
-//      remove_node(pnode);
+//      erase_node(pnode);
 //
 //      if(pnode == last.m_pnode)
 //         break;

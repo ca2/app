@@ -62,7 +62,7 @@ namespace sockets
       public:
 
          
-         pool_socket(base_socket_handler& h, base_socket * src);
+         pool_socket(base_socket * src);
          virtual ~pool_socket();
 
          
@@ -77,10 +77,10 @@ namespace sockets
       __pointer(::apex::log)        m_plogger; ///< Registered log class, or nullptr
 
 
-      base_socket_handler(::layered * pobjectContext, ::apex::log * plogger = nullptr);
+      base_socket_handler(::apex::log * plogger = nullptr);
       virtual ~base_socket_handler();
 
-      ///** get ::mutex context_object for threadsafe operations. */
+      ///** get ::mutex object for threadsafe operations. */
       //virtual clasync & GetMutex() const = 0;
 
       virtual void set_logger(::apex::log * plog);
@@ -94,8 +94,8 @@ namespace sockets
       /** add socket instance to socket ::map. Removal is always automatic. */
       virtual void add(base_socket *) = 0;
    private:
-      /** remove socket from socket ::map, used by socket class. */
-      virtual void remove(base_socket *) = 0;
+      /** erase socket from socket ::map, used by socket class. */
+      virtual void erase(base_socket *) = 0;
    public:
 
       virtual bool contains(base_socket *) = 0;
@@ -168,24 +168,24 @@ namespace sockets
       // -------------------------------------------------------------------------
       /** enable asynchronous DNS.
       \lparam port Listen port of asynchronous dns server */
-      virtual void EnableResolver(port_t = 16667) = 0;
+      //virtual void EnableResolver(port_t = 16667) = 0;
       /** Check resolver status.
       \return true if resolver is enabled */
-      virtual bool ResolverEnabled() = 0;
+      //virtual bool ResolverEnabled() = 0;
       /** Queue a dns request.
       \lparam host Hostname to be resolved
       \lparam port Port number will be echoed in socket::OnResolved callback */
-      virtual int Resolve(base_socket *,const string & host,port_t port) = 0;
-      virtual int Resolve6(base_socket *,const string & host,port_t port) = 0;
+      //virtual int Resolve(base_socket *,const string & host,port_t port) = 0;
+      //virtual int Resolve6(base_socket *,const string & host,port_t port) = 0;
       /** Do a reverse dns lookup. */
-      virtual int Resolve(base_socket *,in_addr a) = 0;
-      virtual int Resolve(base_socket *,in6_addr& a) = 0;
+      //virtual int Resolve(base_socket *,in_addr a) = 0;
+      //virtual int Resolve(base_socket *,in6_addr& a) = 0;
       /** get listen port of asynchronous dns server. */
-      virtual port_t GetResolverPort() = 0;
+      //virtual port_t GetResolverPort() = 0;
       /** Resolver thread ready for queries. */
-      virtual bool ResolverReady() = 0;
+      //virtual bool ResolverReady() = 0;
       /** Returns true if socket waiting for a resolve event. */
-      virtual bool Resolving(base_socket *) = 0;
+      //virtual bool Resolving(base_socket *) = 0;
       /** Fetch unique trigger id. */
       virtual int TriggerID(base_socket *src) = 0;
       /** Subscribe socket to trigger id. */

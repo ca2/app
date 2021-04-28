@@ -30,8 +30,8 @@ namespace user
       MESSAGE_LINK(e_message_create, psender, this, &::user::color_combo_box::on_message_create);
       MESSAGE_LINK(e_message_left_button_down, psender, this, &::user::color_combo_box::on_message_left_button_down);
       MESSAGE_LINK(e_message_left_button_up, psender, this, &::user::color_combo_box::on_message_left_button_up);
-      MESSAGE_LINK(e_message_mouse_move, psender, this, &::user::color_combo_box::_001OnMouseMove);
-      MESSAGE_LINK(e_message_mouse_leave, psender, this, &::user::color_combo_box::_001OnMouseLeave);
+      MESSAGE_LINK(e_message_mouse_move, psender, this, &::user::color_combo_box::on_message_mouse_move);
+      MESSAGE_LINK(e_message_mouse_leave, psender, this, &::user::color_combo_box::on_message_mouse_leave);
       MESSAGE_LINK(e_message_show_window, psender, this, &::user::color_combo_box::_001OnShowWindow);
 
    }
@@ -73,7 +73,7 @@ namespace user
 
       __pointer(::message::mouse) pmouse(pmessage);
 
-      auto psession = Session;
+      auto psession = get_session();
 
       auto puser = psession->user();
 
@@ -101,17 +101,17 @@ namespace user
             if(bNew)
             {
 
-               auto puser = User;
+               auto puser = user();
 
                puser->will_use_view_hint(COLORSEL_IMPACT);
 
-               m_pdocument = puser->m_mapimpactsystem[COLORSEL_IMPACT]->open_document_file(get_context_application(), ::e_type_null, __visible(false));
+               m_pdocument = puser->m_mapimpactsystem[COLORSEL_IMPACT]->open_document_file(get_application(), ::e_type_null, __visible(false));
 
                m_pview = m_pdocument->get_typed_view < ::userex::color_view >();
 
                m_pview->m_bCompact = true;
 
-               auto psession = Session;
+               auto psession = get_session();
 
                psession->set_bound_ui(COLORSEL_IMPACT, this);
 
@@ -186,7 +186,7 @@ namespace user
    }
 
 
-   void color_combo_box::_001OnMouseMove(::message::message * pmessage)
+   void color_combo_box::on_message_mouse_move(::message::message * pmessage)
    {
 
       //__pointer(::message::mouse) pmouse(pmessage);
@@ -207,7 +207,7 @@ namespace user
    }
 
 
-   void color_combo_box::_001OnMouseLeave(::message::message * pmessage)
+   void color_combo_box::on_message_mouse_leave(::message::message * pmessage)
    {
 
       //__pointer(::message::mouse) pmouse(pmessage);

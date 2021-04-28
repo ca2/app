@@ -6,14 +6,9 @@ namespace experience
 {
 
 
-   size_manager::size_manager(::experience::frame_window * pframewindow) :
-      object(pframewindow),
+   size_manager::size_manager() :
       m_sizeMinimumBorder(33, 33)
    {
-
-      ASSERT(pframewindow != nullptr);
-
-      m_pframewindow = pframewindow;
 
       m_ehittestSizing = hittest_none;
 
@@ -26,6 +21,25 @@ namespace experience
 
    size_manager::~size_manager()
    {
+
+   }
+
+
+   ::e_status size_manager::initialize_size_manager(::experience::frame_window* pframewindow)
+   {
+
+      auto estatus = ::object::initialize(pframewindow);
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      m_pframewindow = pframewindow;
+
+      return estatus;
 
    }
 
@@ -105,7 +119,7 @@ namespace experience
 //         //   return true;
 //      }
 
-      auto psession = Session;
+      __pointer(::base::session) psession = get_session();
 
       if(ehittest != hittest_none)
       {
@@ -122,7 +136,15 @@ namespace experience
 
       }
 
-      pmouse->m_ecursor = translate(ehittest);
+      auto puser = psession->user();
+
+      auto pwindowing = puser->windowing();
+
+      auto ecursor = translate(ehittest);
+
+      auto pcursor = pwindowing->get_cursor(ecursor);
+
+      pmouse->m_pcursor = pcursor;
 
       m_ehittestCursor = hittest_none;
 
@@ -148,7 +170,7 @@ namespace experience
    }
 
 
-   bool size_manager::_001OnMouseMove(::message::mouse * pmouse)
+   bool size_manager::on_message_mouse_move(::message::mouse * pmouse)
    {
 
       if (!m_pframewindow->is_sizing_enabled())
@@ -165,7 +187,17 @@ namespace experience
 
          size_window(m_ehittestSizing, m_pframewindow, pmouse->m_point, true);
 
-         pmouse->m_ecursor = translate(m_ehittestSizing);
+         auto psession = get_session()->m_paurasession;
+
+         auto puser = psession->user();
+
+         auto pwindowing = puser->windowing();
+
+         auto ecursor = translate(m_ehittestSizing);
+
+         auto pcursor = pwindowing->get_cursor(e_cursor_default);
+
+         pmouse->m_pcursor = pcursor;
 
          pmouse->m_lresult = 1;
 
@@ -182,11 +214,82 @@ namespace experience
          
          auto ecursor = translate(m_ehittestCursor);
 
-         pmouse->m_ecursor = ecursor;
+         auto psession = get_session()->m_paurasession;
+
+         auto puser = psession->user();
+
+         auto pwindowing = puser->windowing();
+
+         auto pcursor = pwindowing->get_cursor(ecursor);
+
+         pmouse->m_pcursor = pcursor;
 
          pmouse->m_lresult = 1;
 
          pmouse->m_bRet = true;
+
+         return true;
+
+      }
+
+      return false;
+
+   }
+
+
+   bool size_manager::on_message_set_cursor(::message::set_cursor * psetcursor)
+   {
+
+      if (!m_pframewindow->is_sizing_enabled())
+      {
+
+         return false;
+
+      }
+
+      if (m_ehittestSizing != hittest_none)
+      {
+
+         auto psession = get_session()->m_paurasession;
+
+         auto puser = psession->user();
+
+         auto pwindowing = puser->windowing();
+
+         auto ecursor = translate(m_ehittestSizing);
+
+         auto pcursor = pwindowing->get_cursor(ecursor);
+
+         psetcursor->m_pcursor = pcursor;
+
+         psetcursor->m_lresult = 1;
+
+         psetcursor->m_bRet = true;
+
+         return true;
+
+      }
+
+      m_ehittestCursor = _001HitTest(psetcursor->m_point);
+
+      if (m_ehittestCursor != hittest_none)
+      {
+
+         auto ecursor = translate(m_ehittestCursor);
+
+         auto psession = get_session()->m_paurasession;
+
+         auto puser = psession->user();
+
+         auto pwindowing = puser->windowing();
+
+         auto pcursor = pwindowing->get_cursor(ecursor);
+
+         psetcursor->m_pcursor = pcursor;
+
+         psetcursor->m_lresult = 1;
+
+         psetcursor->m_bRet = true;
 
          return true;
 
@@ -237,7 +340,7 @@ namespace experience
 
       m_ehittestSizing = hittest_none;
 
-      auto psession = Session;
+      __pointer(::base::session) psession = get_session();
 
       auto puser = psession->user();
 
@@ -563,7 +666,7 @@ namespace experience
 
       {
 
-         synchronization_lock synchronizationlock(pframewindow->mutex());
+         synchronous_lock synchronouslock(pframewindow->mutex());
 
          pframewindow->place(rectParentClient);
 

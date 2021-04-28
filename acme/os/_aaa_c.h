@@ -42,6 +42,6 @@
 #include "acme/os/ansios/_c.h"
 #include "acme/os/ios/_c.h"
 #else
-#error Not Supported Operational System
+#error Not Supported Operational ::acme::get_system()
 #endif
 

@@ -31,20 +31,20 @@ public:
    __pointer(::windowing::icon)                    m_piconNotify;
    __pointer(::user::notify_icon)                  m_pnotifyicon;
    ::payload                                       m_varFrame;
-   ::thread_pointer                                m_pthreadSaveWindowRect;
+   __composite(::task)                             m_ptaskSaveWindowRect;
 
 
    simple_frame_window();
    virtual ~simple_frame_window();
 
 
-   virtual ::e_status initialize(::layered * pobjectContext) override;
+   virtual ::e_status initialize(::object * pobject) override;
 
 
    virtual ::user::enum_translucency get_translucency(::user::style* pstyle) const override;
 
 
-   virtual void SaveWindowRectThreadProcedure();
+   virtual void SaveWindowRectTaskProcedure();
 
 
    virtual void defer_save_window_placement() override;
@@ -88,7 +88,7 @@ public:
    virtual void show_control_bars(const ::e_display & edisplay = e_display_normal, bool bLeaveFullScreenBarsOnHide = false);
 
    virtual bool _001OnBeforeAppearance() override;
-   virtual bool initialize_frame_window_experience() override;
+   virtual ::e_status initialize_frame_window_experience() override;
 
 
    virtual void _001OnAfterAppearance() override;
@@ -156,31 +156,31 @@ public:
 
    virtual bool _001CanEnterScreenSaver() override;
 
-   DECL_GEN_SIGNAL(on_message_create);
-   DECL_GEN_SIGNAL(_001OnDdeInitiate);
-   DECL_GEN_SIGNAL(_001OnDestroy);
-   DECL_GEN_SIGNAL(_001OnMove);
-   DECL_GEN_SIGNAL(_001OnSize);
-   DECL_GEN_SIGNAL(_001OnClose);
-   DECL_GEN_SIGNAL(_001OnShowWindow);
-   DECL_GEN_SIGNAL(_001OnViewFullScreen);
-   DECL_GEN_SIGNAL(_001OnMouseMove);
-   DECL_GEN_SIGNAL(_001OnUpdateViewFullScreen);
-   DECL_GEN_SIGNAL(_001OnToggleCustomFrame);
-   DECL_GEN_SIGNAL(_001OnUpdateToggleCustomFrame);
-   DECL_GEN_SIGNAL(_001OnToggleTransparentFrame);
-   DECL_GEN_SIGNAL(_001OnUpdateToggleTransparentFrame);
-   DECL_GEN_SIGNAL(_001OnGetMinMaxInfo);
-   DECL_GEN_SIGNAL(_001OnAppExit);
-   DECL_GEN_SIGNAL(_001OnNotifyIconTopic);
-   DECL_GEN_SIGNAL(_001OnMouseActivate);
-   DECL_GEN_SIGNAL(_001OnActivate);
-   DECL_GEN_SIGNAL(_001OnActivateApp);
-   DECL_GEN_SIGNAL(_001OnDisplayChange);
-   DECL_GEN_SIGNAL(_001OnTaskbarCreated);
-   DECL_GEN_SIGNAL(_001OnUpdateNotifyIcon);
-   DECL_GEN_SIGNAL(_001OnKey);
-   DECL_GEN_SIGNAL(_001OnNcHitTest);
+   DECLARE_MESSAGE_HANDLER(on_message_create);
+   DECLARE_MESSAGE_HANDLER(_001OnDdeInitiate);
+   DECLARE_MESSAGE_HANDLER(_001OnDestroy);
+   DECLARE_MESSAGE_HANDLER(_001OnMove);
+   DECLARE_MESSAGE_HANDLER(_001OnSize);
+   DECLARE_MESSAGE_HANDLER(_001OnClose);
+   DECLARE_MESSAGE_HANDLER(_001OnShowWindow);
+   DECLARE_MESSAGE_HANDLER(_001OnViewFullScreen);
+   DECLARE_MESSAGE_HANDLER(on_message_mouse_move);
+   DECLARE_MESSAGE_HANDLER(_001OnUpdateViewFullScreen);
+   DECLARE_MESSAGE_HANDLER(_001OnToggleCustomFrame);
+   DECLARE_MESSAGE_HANDLER(_001OnUpdateToggleCustomFrame);
+   DECLARE_MESSAGE_HANDLER(_001OnToggleTransparentFrame);
+   DECLARE_MESSAGE_HANDLER(_001OnUpdateToggleTransparentFrame);
+   DECLARE_MESSAGE_HANDLER(_001OnGetMinMaxInfo);
+   DECLARE_MESSAGE_HANDLER(_001OnAppExit);
+   DECLARE_MESSAGE_HANDLER(_001OnNotifyIconTopic);
+   DECLARE_MESSAGE_HANDLER(_001OnMouseActivate);
+   DECLARE_MESSAGE_HANDLER(_001OnActivate);
+   DECLARE_MESSAGE_HANDLER(_001OnActivateApp);
+   DECLARE_MESSAGE_HANDLER(_001OnDisplayChange);
+   DECLARE_MESSAGE_HANDLER(_001OnTaskbarCreated);
+   DECLARE_MESSAGE_HANDLER(_001OnUpdateNotifyIcon);
+   DECLARE_MESSAGE_HANDLER(_001OnKey);
+   DECLARE_MESSAGE_HANDLER(_001OnNcHitTest);
 
 
    virtual void _000OnMouseLeave(::message::message* pmessage) override;

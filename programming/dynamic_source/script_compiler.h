@@ -27,14 +27,14 @@ namespace dynamic_source
 
       millis m_millisLastLibraryVersionCheck;
       bool                                      m_bLastLibraryVersionCheck;
-      __pointer(::apex::library)                       m_plibraryLib;
+      __pointer(::acme::library)                       m_plibraryLib;
 
 
       raw_array < __time_t >                    m_ftaLibCreation;
       raw_array < __time_t >                    m_ftaLibAccess;
       raw_array < __time_t >                    m_ftaLibModified;
 
-      library(::layered * pobjectContext);
+      library(::object * pobject);
       virtual ~library();
 
       void load_library();
@@ -97,7 +97,7 @@ namespace dynamic_source
       virtual ~script_compiler();
 
 
-      virtual ::e_status initialize(::layered * pobjectContext) override;
+      virtual ::e_status initialize_dynamic_source_script_compiler(script_manager * pscriptmanager);
       void prepare_compile_and_link_environment();
 
       void run_persistent();

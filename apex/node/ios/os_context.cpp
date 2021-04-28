@@ -397,7 +397,7 @@ namespace ios
        keyPlugin.SetValue("Path", ::apex::get_system()->m_strCa2Module("npca2.dll"));
        keyPlugin.SetValue("ProductName", "ca2 plugin for NPAPI");
        keyPlugin.SetValue("Vendor", "ca2 Desenvolvimento de Software Ltda.");
-       keyPlugin.SetValue("Version", Application.file_as_string(Context.dir().ca2("appdata/x86/ca2_build.txt")));
+       keyPlugin.SetValue("Version", get_application()->file_as_string(pcontext->m_papexcontext->dir().ca2("appdata/x86/ca2_build.txt")));
 
        registry::Key keyApplicationCa2;
 
@@ -615,7 +615,7 @@ namespace ios
 
        SC_HANDLE hdlSCM = OpenSCManager(0, 0, SC_MANAGER_CREATE_SERVICE);
 
-       string strCalling = papp->m_strModulePath + " : app=" + papp->m_strAppId + " service usehostlogin";
+       string strCalling = papp->m_strModulePath + " : app=" + papp->m_XstrAppId + " service usehostlogin";
 
        if(hdlSCM == 0)
        {
@@ -654,7 +654,7 @@ namespace ios
    }
 
 
-   ::e_status os_context::remove_service()
+   ::e_status os_context::erase_service()
    {
 
       return false;
@@ -825,7 +825,7 @@ namespace ios
       {
 
          //string strDir;
-         //strDir = Context.dir().path(getenv("HOME"), "Pictures");
+         //strDir = pcontext->m_papexcontext->dir().path(getenv("HOME"), "Pictures");
          //imagefileset.add_search(strDir);
          string strDir;
          strDir = "/Library/Wallpaper";
@@ -844,7 +844,7 @@ namespace ios
    bool os_context::file_open(::file::path path, string strParams, string strFolder)
    {
 
-      path = Context.defer_process_path(path);
+      path = get_context()->defer_process_path(path);
 
       ns_main_async(^
       {

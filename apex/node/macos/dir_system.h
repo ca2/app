@@ -29,7 +29,7 @@ namespace macos
       dir_system();
 
 
-      virtual ::e_status initialize(::layered * pobjectContext) override;
+      virtual ::e_status initialize(::object * pobject) override;
 
       virtual ::e_status init_system() override;
       

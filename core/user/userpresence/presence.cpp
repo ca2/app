@@ -6,9 +6,10 @@ namespace userpresence
 {
 
 
-   presence::presence(::layered * pobjectContext) :
-      ::object(pobjectContext)
+   presence::presence(::object * pobject)
    {
+
+      initialize(pobject);
 
       m_iShortStatusWayTag = status_online;
 
@@ -61,10 +62,12 @@ namespace userpresence
 
       m_millisLastPulse= ::millis::now();
 
-      //if(System->m_strAppName == "netnode" || System->m_strAppName == "simpledbcfg")
+      //if(psystem->m_strAppName == "netnode" || psystem->m_strAppName == "simpledbcfg")
         // return;
 
-      string strHost = Context.file().as_string(Context.dir().appdata() / "database\\text\\last_good_known_account_com.txt");
+      auto pcontext = m_pcontext;
+
+      string strHost = pcontext->m_papexcontext->file().as_string(pcontext->m_papexcontext->dir().appdata() / "database\\text\\last_good_known_account_com.txt");
       string_array straRequestingServer;
       straRequestingServer.add("api.ca2.cc");
       straRequestingServer.add("eu-api.ca2.cc");
@@ -75,12 +78,17 @@ namespace userpresence
       }
 
       string strUrl = "https://" + strHost + "/i2com/pulse_user_presence";
-      System->url().string_set(strUrl, "short_status", __str(m_iShortStatusWayTag));
-      System->url().string_set(strUrl, "long_status", m_strLongStatus);
+
+      auto psystem = m_psystem;
+
+      auto purl = psystem->url();
+
+      purl->string_set(strUrl, "short_status", __str(m_iShortStatusWayTag));
+      purl->string_set(strUrl, "long_status", m_strLongStatus);
 
       property_set set;
 
-      Context.http().get(strUrl, set);
+      pcontext->m_papexcontext->http().get(strUrl, set);
 
    }
 
@@ -95,7 +103,7 @@ namespace userpresence
           || pmouse->get_message() == e_message_mouse_move)
       {
 
-         auto psession = Session;
+         auto psession = get_session()->m_paxissession;
 
          if (psession->account() != nullptr && psession->account()->get_user() != nullptr)
          {

@@ -12,6 +12,10 @@ namespace windowing
    display::display()
    {
 
+      m_pDisplay = nullptr;
+
+      m_pDisplay = nullptr;
+
       m_bSystemSynchronizedScreen = true;
       m_iMainMonitor = 0;
       m_iMainWorkspace = 0;
@@ -42,10 +46,12 @@ namespace windowing
 
       }
 
-      if (get_context_system() != nullptr)
+      auto psystem = m_psystem->m_paurasystem;
+
+      if (psystem != nullptr)
       {
 
-         m_bSystemSynchronizedScreen = ::aura::get_system()->m_bSystemSynchronizedScreen;
+         m_bSystemSynchronizedScreen = psystem->m_paurasystem->m_bSystemSynchronizedScreen;
 
       }
 
@@ -125,7 +131,7 @@ namespace windowing
 //
 //#ifdef WINDOWS_DESKTOP
 //
-//      m_monitorinfoa.remove_all();
+//      m_monitorinfoa.erase_all();
 //
 //      ::EnumDisplayMonitors(nullptr, nullptr, &display::monitor_enum_proc, (lparam)(dynamic_cast <::aura::session *> (this)));
 //
@@ -185,7 +191,7 @@ namespace windowing
 //
 //#elif defined(LINUX)
 //
-//      synchronization_lock synchronizationlock(mutex());
+//      synchronous_lock synchronouslock(mutex());
 //
 //      return m_rectaMonitor.get_count();
 //
@@ -218,6 +224,8 @@ namespace windowing
          __construct(pmonitor);
 
          pmonitor->m_iIndex = iMonitor;
+
+         pmonitor->m_pdisplay = this;
 
       }
 
@@ -286,6 +294,8 @@ namespace windowing
          __construct(pmonitor);
 
          pmonitor->m_iIndex = iWorkspace;
+
+         pmonitor->m_pdisplay = this;
 
       }
 
@@ -435,7 +445,7 @@ namespace windowing
    monitor * display::get_monitor(index iMonitor)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       if (iMonitor < 0 || iMonitor >= m_monitora.get_count())
       {
@@ -503,7 +513,9 @@ namespace windowing
 
       ::e_display edisplayPrevious = *pedisplay;
 
-      double dMargin = ::aura::get_system()->m_dpi;
+      auto psystem = m_psystem->m_paurasystem;
+
+      double dMargin = psystem->m_paurasystem->m_dpi;
 
       if (ZONEING_COMPARE::is_equal(rectangle.top, rectWorkspace.top, dMargin, !(edisplayPrevious & e_display_top)))
       {
@@ -1385,7 +1397,7 @@ namespace windowing
    string_array display::get_wallpaper()
    {
 
-      auto psession = Session;
+      auto psession = get_session();
 
       ::count iMonitorCount = get_monitor_count();
 
@@ -1434,7 +1446,7 @@ namespace windowing
 
       }
 
-      auto psession = Session;
+      auto psession = get_session();
 
       ::count iMonitorCount = get_monitor_count();
 

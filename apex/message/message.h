@@ -19,7 +19,7 @@ namespace message
 
 
    class CLASS_DECL_APEX message :
-      virtual public context_object
+      virtual public object
    {
    public:
 
@@ -39,7 +39,7 @@ namespace message
       ::action_context              m_actioncontext;
 
 
-      message(const ::id& id = ::id()) : id_matter(id) { common_construct(); }
+      message(const ::id& id = ::id()) : material_object(id) { common_construct(); }
       virtual ~message();
 
 

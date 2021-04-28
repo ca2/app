@@ -20,7 +20,7 @@ void x_display_error_trap_push(SnDisplay * sndisplay, Display * display)
 void x_display_error_trap_pop(SnDisplay * sndisplay, Display * display)
 {
 
-   synchronization_lock synchronizationlock(x11_mutex());
+   synchronous_lock synchronouslock(x11_mutex());
 
    g_iIgnoreXDisplayError--;
 

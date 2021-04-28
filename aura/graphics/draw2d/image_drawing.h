@@ -26,9 +26,9 @@ class CLASS_DECL_AURA image_drawing :
 public:
 
 
-   ::rectangle_f64                    m_rectDst;
-   ::rectangle_f64                    m_rectSrc;
-   image_pointer              m_pimage;
+   ::rectangle_f64                     m_rectDst;
+   ::rectangle_f64                     m_rectSrc;
+   image_pointer                       m_pimage;
 
 
    using image_drawing_options::image_drawing_options;

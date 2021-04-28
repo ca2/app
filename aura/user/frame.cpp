@@ -12,8 +12,6 @@ namespace user
    frame::frame()
    {
 
-      set_layer(LAYERED_USER_FRAME, this);
-      
       m_bSnapToBars = false;
       m_bAddToTitle = false;
       m_bPrefixTitle = false;
@@ -39,6 +37,7 @@ namespace user
 
       connect_command("app_exit", &frame::_001OnAppExit);
 
+      //MESSAGE_LINK(e_message_set_cursor, pchannel, this, &window::_001OnSetCursor);
       MESSAGE_LINK(WM_APPEXIT, pchannel, this, &frame::_001OnAppExit);
 
 //#ifdef WINDOWS_DESKTOP
@@ -55,6 +54,7 @@ namespace user
 
    }
 
+   
 
    void frame::_001OnAppExit(::message::message* pmessage)
    {
@@ -70,7 +70,9 @@ namespace user
 
       }
 
-      Application._001TryCloseApplication();
+      __pointer(::aura::application) papplication = get_application();
+
+      papplication->_001TryCloseApplication();
 
 //      DestroyWindow();
 
@@ -431,7 +433,7 @@ namespace user
       else
       {
 
-         auto psession = Session;
+         auto psession = get_session();
 
          auto puser = psession->m_puser;
 

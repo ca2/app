@@ -5,7 +5,7 @@ namespace install
 {
 
 
-   starter_start::starter_start(::layered * pobjectContext) :
+   starter_start::starter_start(::object * pobject) :
       ::object(pobject)
    {
 
@@ -48,8 +48,8 @@ namespace install
 
 #endif
 
-      if(file_exists(::dir::system() / "config\\plugin\\version.txt"))
-         strVersion = file_as_string(::dir::system() / "config\\plugin\\version.txt");
+      if(file_exists(pacmedir->system() / "config\\plugin\\version.txt"))
+         strVersion = file_as_string(pacmedir->system() / "config\\plugin\\version.txt");
 
       ::set_thread(m_pplugin);
 
@@ -81,7 +81,7 @@ namespace install
 
       string strBuild;
 
-      System->install().set_admin(false);
+      psystem->install().set_admin(false);
 
       while (true)
       {
@@ -93,7 +93,7 @@ namespace install
 
          }
 
-         if (System->install().is_installing_ca2())
+         if (psystem->install().is_installing_ca2())
          {
             
             sleep((5000) * 2);
@@ -102,22 +102,22 @@ namespace install
 
          }
 
-         System->install().update_ca2_installed(true);
+         psystem->install().update_ca2_installed(true);
 
-         if (System->install().is_ca2_installed() && System->install().is_installed(strVersion, strBuild, strType, strId, strLocale, strSchema))
+         if (psystem->install().is_ca2_installed() && psystem->install().is_installed(strVersion, strBuild, strType, strId, strLocale, strSchema))
          {
 
             break;
 
          }
 
-         System->install().synch_install(m_strCommandLine, strBuild);
+         psystem->install().synch_install(m_strCommandLine, strBuild);
 
          prepare_small_bell(true);
 
       }
 
-      if (System->install().is_ca2_installed() && System->install().is_installed(strVersion, strBuild, strType, strId, strLocale, strSchema) && m_pplugin != nullptr)
+      if (psystem->install().is_ca2_installed() && psystem->install().is_installed(strVersion, strBuild, strType, strId, strLocale, strSchema) && m_pplugin != nullptr)
       {
 
          defer_play_small_bell();

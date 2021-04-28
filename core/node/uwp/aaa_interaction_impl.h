@@ -37,7 +37,7 @@ namespace uwp
 
 
       interaction_impl();
-      interaction_impl(::layered * pobjectContext);
+      interaction_impl(::object * pobject);
       virtual ~interaction_impl();
 
 
@@ -88,15 +88,15 @@ namespace uwp
 
       void _002OnDraw(::image * pimage);
 
-      DECL_GEN_SIGNAL(_001OnEraseBkgnd);
-      DECL_GEN_SIGNAL(_001OnMove);
-      DECL_GEN_SIGNAL(_001OnSize);
-      // DECL_GEN_SIGNAL(_001OnShowWindow);
-      DECL_GEN_SIGNAL(_001OnProdevianSynch);
+      DECLARE_MESSAGE_HANDLER(_001OnEraseBkgnd);
+      DECLARE_MESSAGE_HANDLER(_001OnMove);
+      DECLARE_MESSAGE_HANDLER(_001OnSize);
+      // DECLARE_MESSAGE_HANDLER(_001OnShowWindow);
+      DECLARE_MESSAGE_HANDLER(_001OnProdevianSynch);
 
-      DECL_GEN_SIGNAL(_001OnSetFocus);
+      DECLARE_MESSAGE_HANDLER(_001OnSetFocus);
 
-      DECL_GEN_SIGNAL(_001OnKillFocus);
+      DECLARE_MESSAGE_HANDLER(_001OnKillFocus);
 
       
 #if(WINVER >= 0x0500)
@@ -212,12 +212,12 @@ namespace uwp
       //virtual bool _001ScreenToClient(RECT64 * lprect);
       //virtual bool _001ScreenToClient(POINT64 * lppoint);
 
-      //      virtual bool GetWindowPlacement(WINDOWPLACEMENT* lpwndpl);
-      //    virtual bool SetWindowPlacement(const WINDOWPLACEMENT* lpwndpl);
+      //      virtual bool GetWindowPlacement(WINDOWPLACEMENT* lpuserinteractionpl);
+      //    virtual bool SetWindowPlacement(const WINDOWPLACEMENT* lpuserinteractionpl);
 
       // Coordinate Mapping Functions
-      virtual void MapWindowPoints(::user::interaction_impl * pwndTo, POINT32 * lpPoint, ::u32 nCount);
-      virtual void MapWindowPoints(::user::interaction_impl * pwndTo, RECTANGLE_I32 * lpRect);
+      virtual void MapWindowPoints(::user::interaction_impl * puserinteractionTo, POINT32 * lpPoint, ::u32 nCount);
+      virtual void MapWindowPoints(::user::interaction_impl * puserinteractionTo, RECTANGLE_I32 * lpRect);
 
       // Update/Painting Functions
       virtual ::draw2d::graphics * GetDC();
@@ -451,12 +451,12 @@ namespace uwp
       void OnClose();
       void OnContextMenu(::user::interaction_impl * pWnd, point pos);
       //      bool OnCopyData(::user::interaction_impl * pWnd, COPYDATASTRUCT* pCopyDataStruct);
-      DECL_GEN_SIGNAL(on_message_create);
+      DECLARE_MESSAGE_HANDLER(on_message_create);
 
 
       HBRUSH OnCtlColor(::draw2d::graphics_pointer & pgraphics, ::user::interaction_impl * pWnd, ::u32 nCtlColor);
 
-      DECL_GEN_SIGNAL(_001OnDestroy);
+      DECLARE_MESSAGE_HANDLER(_001OnDestroy);
       void OnEnable(bool bEnable);
       void OnEndSession(bool bEnding);
       void OnEnterIdle(::u32 nWhy, ::user::interaction_impl * pWho);
@@ -468,8 +468,8 @@ namespace uwp
       LRESULT OnMenuChar(::u32 nChar, ::u32 nFlags, ::user::menu* pMenu);
       void OnMenuSelect(::u32 nItemID, ::u32 nFlags, HMENU hSysMenu);
       void OnMove(int x, int y);
-      DECL_GEN_SIGNAL(_001OnPaint);
-      DECL_GEN_SIGNAL(_001OnPrint);
+      DECLARE_MESSAGE_HANDLER(_001OnPaint);
+      DECLARE_MESSAGE_HANDLER(_001OnPrint);
       void OnParentNotify(const ::id & id, LPARAM lParam);
       HCURSOR OnQueryDragIcon();
       bool OnQueryEndSession();
@@ -479,8 +479,8 @@ namespace uwp
       void OnShowWindow(bool bShow, ::u32 nStatus);
       void OnSize(::u32 nType, int cx, int cy);
       void OnTCard(::u32 idAction, u32 dwActionData);
-      //      void OnWindowPosChanging(WINDOWPOS* lpwndpos);
-      //    void OnWindowPosChanged(WINDOWPOS* lpwndpos);
+      //      void OnWindowPosChanging(WINDOWPOS* lpuserinteractionpos);
+      //    void OnWindowPosChanged(WINDOWPOS* lpuserinteractionpos);
 
       void OnChangeUIState(::u32 nAction, ::u32 nUIElement);
       void OnUpdateUIState(::u32 nAction, ::u32 nUIElement);
@@ -542,7 +542,7 @@ namespace uwp
       void OnRButtonDblClk(::u32 nFlags, const ::point & point);
       void OnRButtonDown(::u32 nFlags, const ::point & point);
       void OnRButtonUp(::u32 nFlags, const ::point & point);
-      DECL_GEN_SIGNAL(_001OnSetCursor);
+      DECLARE_MESSAGE_HANDLER(_001OnSetCursor);
       void OnTimer(uptr uEvent);
 
       // Initialization message handler member functions
@@ -626,7 +626,7 @@ namespace uwp
       //bool IsTopParentActive();
       void ActivateTopParent();
       virtual void WalkPreTranslateTree(::user::interaction * puiStop, ::message::message * pmessage);
-      virtual bool is_frame_window(); // is_kind_of(System->template type_info < frame_window > ()))
+      virtual bool is_frame_window(); // is_kind_of(psystem->template type_info < frame_window > ()))
       virtual void on_final_release();
       static bool ModifyStyle(oswindow hWnd, u32 dwRemove, u32 dwAdd,
                               ::u32 nFlags);

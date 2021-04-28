@@ -7,7 +7,7 @@ namespace browser
 {
 
 
-   pane_view::pane_view(::layered * pobjectContext) :
+   pane_view::pane_view(::object * pobject) :
       object(pobject),
       ::user::tab_view(pobject),
       ::userex::pane_tab_view(pobject),
@@ -19,7 +19,7 @@ namespace browser
       m_prollfps = nullptr;
       m_pviewdataTopic = nullptr;
 
-      Application.m_ppaneview = this;
+      papplication->m_ppaneview = this;
 
    }
 
@@ -99,7 +99,7 @@ namespace browser
       string strId = get_view_id();
       string_array stra;
       m_prollfps = nullptr;
-      m_checkptraBilbo.remove_all();
+      m_checkptraBilbo.erase_all();
 
       stra.explode("->:<-",strId);
 
@@ -202,7 +202,7 @@ namespace browser
          if (!m_pdocMenu->open_document(path))
          {
 
-            Application.message_box(get_parent_frame(), "Failed to open the menu.", e_message_box_ok);
+            message_box(get_parent_frame(), "Failed to open the menu.", e_message_box_ok);
 
             return;
 
@@ -298,7 +298,7 @@ namespace browser
       case MENU_IMPACT:
       {
 
-         m_pdocMenu = Application.create_child_form(this,pimpactdata->m_pplaceholder);
+         m_pdocMenu = papplication->create_child_form(this,pimpactdata->m_pplaceholder);
 
          ::user::impact * pview = m_pdocMenu->get_view(0);
 
@@ -317,14 +317,14 @@ namespace browser
       case MAIN_IMPACT:
       {
 
-         Application.m_ptemplateHelloBrowserView->create_subdocument(pimpactdata);
+         papplication->m_ptemplateHelloBrowserView->create_subdocument(pimpactdata);
 
       }
       break;
       case MAIN_SWITCHER_IMPACT:
       {
 
-         Application.m_ptemplateHelloBrowserSwitcher->create_subdocument(pimpactdata);
+         papplication->m_ptemplateHelloBrowserSwitcher->create_subdocument(pimpactdata);
 
       }
       break;
@@ -547,13 +547,13 @@ namespace browser
       if (m_pviewLast == nullptr && m_pviewLastBilbo == nullptr)
       {
 
-         str = Context.file().as_string("matter://home.html");
+         str = pcontext->m_papexcontext->file().as_string("matter://home.html");
 
       }
       else
       {
 
-         str = Context.file().as_string("matter://menu.html");
+         str = pcontext->m_papexcontext->file().as_string("matter://menu.html");
 
       }
 
@@ -594,9 +594,9 @@ namespace browser
 
       ::file::path path;
 
-      path = Context.dir().appdata() / "browser_menu.html";
+      path = pcontext->m_papexcontext->dir().appdata() / "browser_menu.html";
 
-      Context.file().put_contents(path, str);
+      pcontext->m_papexcontext->file().put_contents(path, str);
 
       return path;
 

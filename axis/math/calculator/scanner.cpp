@@ -27,8 +27,7 @@ namespace calculator
    }
 
 
-   scanner::scanner(::layered * pobjectContext) :
-      ::object(pobjectContext)
+   scanner::scanner()
    {
 
       input       = nullptr;

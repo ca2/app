@@ -47,7 +47,7 @@ public:
 
   /**
    * Sets root scheme (filetype) of the text to parse.
-   * @param type file_type, which contains context_object to
+   * @param type file_type, which contains object to
    * it's baseScheme. If parameter is nullptr, there will
    * be no any kind of parse over the text.
    */

@@ -1,8 +1,11 @@
 #include "framework.h"
 #include "apex/platform/app_core.h"
+#include "apex/platform/node.h"
+#include "acme/filesystem/filesystem/acme_path.h"
 
 
 extern ::app_core * g_pappcore;
+
 
 application_container::application_container()
 {
@@ -43,15 +46,15 @@ void application_container::app_add(::apex::application * papp)
 }
 
 
-void application_container::app_remove(::apex::application * papp)
+void application_container::app_erase(::apex::application * papp)
 {
 
-   m_applicationa.remove(papp);
+   m_applicationa.erase(papp);
 
    if (m_applicationa.is_empty() && m_bFinalizeIfNoApplication)
    {
 
-      finish(this);
+      finish();
 
    }
 
@@ -119,7 +122,7 @@ void application_container::request_exit()
                if (!pappItem || pappItem->m_bFranceExit)
                {
 
-                  applicationa.remove_at(j);
+                  applicationa.erase_at(j);
 
                }
                else
@@ -156,7 +159,7 @@ application_array & application_container::applicationa()
 application_array application_container::get_applicationa()
 {
 
-   synchronization_lock synchronizationlock(mutex());
+   synchronous_lock synchronouslock(mutex());
 
    return m_applicationa;
 
@@ -173,7 +176,7 @@ application_array application_container::get_applicationa()
 //
 //   }
 //
-//   synchronization_lock synchronizationlock(mutex());
+//   synchronous_lock synchronouslock(mutex());
 //
 //   if (papp == this)
 //   {
@@ -187,15 +190,15 @@ application_array application_container::get_applicationa()
 //}
 //
 //
-//void application_container::app_remove(::apex::application * papp)
+//void application_container::app_erase(::apex::application * papp)
 //{
 //
-//   synchronization_lock synchronizationlock(mutex());
+//   synchronous_lock synchronouslock(mutex());
 //
 //   if (m_applicationa.is_set())
 //   {
 //
-//      m_applicationa.remove(papp);
+//      m_applicationa.erase(papp);
 //
 //   }
 //
@@ -216,7 +219,7 @@ __pointer(::apex::application) application_container::instantiate_application(co
    if (strAppId == "session")
    {
 
-      papp = create_platform(get_context_application()->get_context_session());
+      papp = create_platform(get_application()->get_session());
 
       if (!papp)
       {
@@ -231,27 +234,31 @@ __pointer(::apex::application) application_container::instantiate_application(co
    else
    {
 
-      if (::apex::get_system()->m_papplicationStartup.is_set())
+      __pointer(::apex::system) psystem = get_system();
+
+      if (psystem->m_papplicationStartup.is_set())
       {
 
-         if (::apex::get_system()->m_papplicationStartup->m_strAppId != strAppId)
+         if (psystem->m_papplicationStartup->m_strAppId != strAppId)
          {
 
-            TRACE("Wrong Application Data Type");
+            TRACE("Wrong papplication Data Type");
 
             return nullptr;
 
          }
 
-         papp = ::apex::get_system()->m_papplicationStartup;
+         papp = psystem->m_papplicationStartup;
 
-         __unbind(::apex::get_system(), m_papplicationStartup OBJ_REF_DBG_COMMA_P_NOTE(::apex::get_system(), ""));
+         __refer(psystem->m_papplicationMain, psystem->m_papplicationStartup.get());
+
+         __unbind(psystem, m_papplicationStartup OBJ_REF_DBG_COMMA_P_NOTE(psystem, ""));
 
       }
       else
       {
 
-         papp = ::apex::get_system()->new_application(strAppId);
+         papp = psystem->new_application(strAppId);
 
          estatus = ::g_pappcore->initialize_application(papp, this);
 
@@ -274,6 +281,10 @@ __pointer(::apex::application) application_container::instantiate_application(co
       }
 
    }
+
+   papp->initialize(this);
+
+   on_instantiate_application(papp);
 
    if (pcreate != nullptr)
    {
@@ -330,6 +341,11 @@ __pointer(::apex::application) application_container::create_platform(::apex::se
 
 
 
+void application_container::on_instantiate_application(::apex::application* papp)
+{
+
+
+}
 
 
 __pointer(::apex::application) application_container::assert_running(const char * pszAppId, const string & strLocale, const string & strSchema)
@@ -339,7 +355,7 @@ __pointer(::apex::application) application_container::assert_running(const char 
 
   {
 
-     synchronization_lock synchronizationlock(mutex());
+     synchronous_lock synchronouslock(mutex());
 
      papp = m_applicationa.find_running_defer_try_quit_damaged(pszAppId);
 
@@ -379,7 +395,7 @@ __pointer(::apex::application) application_container::start_application(const ch
       || pcreate->m_pcommandline->m_varQuery.has_property("uninstall"))
    {
 
-      m_applicationa.remove(papp);
+      m_applicationa.erase(papp);
 
       return nullptr;
 
@@ -387,10 +403,12 @@ __pointer(::apex::application) application_container::start_application(const ch
 
    string strBuild;
 
-   ::file::path pathExe = ::file::app_module();
+   ::file::path pathExe = m_psystem->m_pacmepath->app_module();
 
-   if (!is_application_installed(pathExe, strApp, strBuild, ::apex::get_system()->get_system_platform(),
-      ::apex::get_system()->get_system_configuration(), strLocale, strSchema))
+   __pointer(::apex::system) psystem = get_system();
+
+   if (!m_psystem->m_papexsystem->m_papexnode->is_application_installed(pathExe, strApp, strBuild, psystem->get_system_platform(),
+      psystem->get_system_configuration(), strLocale, strSchema))
    {
 
       if (papp->m_bRequiresInstallation)
@@ -413,7 +431,7 @@ __pointer(::apex::application) application_container::start_application(const ch
          else
          {
 
-            message_box("Application \"" + strApp + "\"\nat path \"" + pathExe + "\"\n is not installed.");
+            message_box("papplication \"" + strApp + "\"\nat path \"" + pathExe + "\"\n is not installed.");
 
             return nullptr;
 
@@ -432,7 +450,7 @@ __pointer(::apex::application) application_container::start_application(const ch
 
    m_applicationa.add_unique(papp);
 
-   m_pappCurrent = papp;
+   m_papplicationCurrent = papp;
 
    if (!papp->on_start_application())
    {
@@ -445,11 +463,11 @@ __pointer(::apex::application) application_container::start_application(const ch
    //      if (strApp != "session")
    //      {
 
-   ::apex::get_system()->merge_accumulated_on_open_file(pcreate);
+   psystem->merge_accumulated_on_open_file(pcreate);
 
    papp->do_request(pcreate);
 
-   //         while (thread_get_run())
+   //         while (task_get_run())
    //         {
    //
    //            if (pcreate->m_pcommandline->m_eventReady.wait(millis(84)).signaled())
@@ -464,60 +482,63 @@ __pointer(::apex::application) application_container::start_application(const ch
 }
 
 
-
-
-
 ::apex::application * application_container::application_get(const char * pszAppId, bool bCreate, bool bSynch, ::create * pcreate)
+{
+
+   __pointer(::apex::application) papp;
+
+   if(m_applicationa.lookup(pszAppId,papp))
    {
 
-      __pointer(::apex::application) papp;
+      return papp;
 
-      if(m_applicationa.lookup(pszAppId,papp))
-      {
+   }
 
-         return papp;
+   if (!bCreate)
+   {
 
-      }
+      return nullptr;
 
-      if(!bCreate)
-         return nullptr;
+   }
 
-      papp = nullptr;
+   papp = nullptr;
 
-      try
-      {
+   try
+   {
 
-         papp = create_application(pszAppId, bSynch, pcreate);
+      papp = create_application(pszAppId, bSynch, pcreate);
 
-      }
-      catch (const ::exception::exception & e)
-      {
+   }
+   catch (const ::exception::exception & e)
+   {
 
-         if (handle_exception(e))
-         {
-
-            papp = nullptr;
-
-         }
-
-      }
-      catch(...)
+      if (handle_exception(e))
       {
 
          papp = nullptr;
 
       }
 
-      if (papp == nullptr)
-      {
+   }
+   catch(...)
+   {
 
-         return nullptr;
-
-      }
-
-      app_add(papp);
-
-      return papp;
+      papp = nullptr;
 
    }
+
+   if (papp == nullptr)
+   {
+
+      return nullptr;
+
+   }
+
+   app_add(papp);
+
+   return papp;
+
+}
+
+
 

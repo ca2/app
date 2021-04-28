@@ -3,6 +3,7 @@
 #include "aura/message.h"
 #include "acme/const/simple_command.h"
 #include "apex/message/simple_command.h"
+#include "acme/filesystem/filesystem/acme_dir.h"
 
 
 #ifdef MACOS
@@ -20,8 +21,8 @@ namespace user
    frame_window::frame_window()
    {
 
-      m_flagNonClient.remove(non_client_background);
-      m_flagNonClient.remove(non_client_focus_rect);
+      m_flagNonClient.erase(non_client_background);
+      m_flagNonClient.erase(non_client_focus_rect);
 
       m_pviewMain = nullptr;
       m_bAutoWindowFrame = true;
@@ -474,7 +475,7 @@ namespace user
       if (pkey.is_set())
       {
 
-         auto psession = Session;
+         auto psession = get_session();
 
          if (psession->is_key_pressed(::user::e_key_alt) && psession->is_key_pressed(::user::e_key_control))
          {
@@ -487,7 +488,7 @@ namespace user
                if (pimpl.is_set())
                {
 
-                  //synchronization_lock synchronizationlock(pimpl->m_spgraphics->mutex());
+                  //synchronous_lock synchronouslock(pimpl->m_spgraphics->mutex());
 
                   ::image_pointer pimage1;
 
@@ -501,7 +502,7 @@ namespace user
 
                   ::draw2d::graphics_pointer pgraphics = pimpl->m_pgraphics->on_begin_draw();
 
-                  synchronization_lock synchronizationlock(psync);
+                  synchronous_lock synchronouslock(psync);
 
                   auto rectDst = ::rectangle_f64(rectangle.size());
 
@@ -509,7 +510,11 @@ namespace user
 
                   psession->copydesk().image_to_desk(pimage1);
 
-                  Application.image().save_image(::dir::system() / "control_alt_p.png", pimage1);
+                  auto pcontext = m_pcontext->m_pauracontext;
+
+                  auto pcontextimage = pcontext->context_image();
+
+                  pcontextimage->save_image(m_psystem->m_pacmedir->system() / "control_alt_p.png", pimage1);
 
                   ::image_pointer pimage2;
 
@@ -535,7 +540,7 @@ namespace user
 
                   pimage2->get_graphics()->stretch(::rectangle_i32(pimage2->size()), pimage1->get_graphics(), ::rectangle_i32(rectangle.size()));
 
-                  Application.image().save_image(::dir::system() / "control_alt_p_w300.png", pimage2);
+                  pcontextimage->save_image(m_psystem->m_pacmedir->system() / "control_alt_p_w300.png", pimage2);
 
                   pkey->m_bRet = true;
 
@@ -609,7 +614,7 @@ namespace user
 
       // release capture if this interaction_impl has it
       if (psession->GetCapture() == get_handle())
-         auto psession = Session;
+         auto psession = get_session();
 
          auto puser = psession->user();
 
@@ -711,11 +716,11 @@ namespace user
       //  modeless windows anyway...
       __pointer(::user::interaction) pParent = get_top_level();
 
-      m_uiptraDisable.remove_all();
+      m_uiptraDisable.erase_all();
 
       /*
       // disable all windows connected to this frame (and add them to the list)
-      __pointer(::user::interaction) oswindow = System->get_desktop_window()->GetWindow(GW_CHILD);
+      __pointer(::user::interaction) oswindow = psystem->get_desktop_window()->GetWindow(GW_CHILD);
 
       while (oswindow != nullptr)
       {
@@ -753,7 +758,7 @@ namespace user
 
       }
 
-      m_uiptraDisable.remove_all();
+      m_uiptraDisable.erase_all();
 
 
    }
@@ -825,7 +830,7 @@ namespace user
       //   EndModalState();
 
       //   // cause normal focus logic to kick in
-      //   if (System->get_active_ui() == this)
+      //   if (psystem->get_active_ui() == this)
       //      send_message(e_message_activate, WA_ACTIVE);
       //}
 
@@ -895,7 +900,7 @@ namespace user
       if (pusersystem != nullptr)
       {
 
-         if (pusersystem->m_typeNewView || pusersystem->m_puiNew != nullptr)
+         if (pusersystem->m_typeNewView || pusersystem->m_puserprimitiveNew != nullptr)
          {
 
             if (::user::create_view(pusersystem, this, "pane_first").is_null())
@@ -1451,7 +1456,7 @@ namespace user
       }
 
       // last but not least, pump through cast
-      ::apex::application* papp = get_context_application();
+      ::apex::application* papp = get_application();
 
       if (papp != nullptr)
       {
@@ -1467,7 +1472,9 @@ namespace user
 
       }
 
-      auto puser = User;
+      auto psession = get_session();
+
+      auto puser = psession->user();
 
       if(puser)
       {
@@ -1557,7 +1564,7 @@ namespace user
       //}
 
       //// last but not least, pump through cast
-      //::aura::application* papp = get_context_application();
+      //::aura::application* papp = get_application();
 
       //if (papp != nullptr)
       //{
@@ -1700,7 +1707,7 @@ namespace user
       ////}
 
       ////// last but not least, pump through cast
-      ////::aura::application* papp = get_context_application();
+      ////::aura::application* papp = get_application();
 
       ////if (papp != nullptr)
       ////{
@@ -2323,7 +2330,7 @@ namespace user
          }
       }
 
-      // set title if changed, but don't remove completely
+      // set title if changed, but don't erase completely
       // Note: will be excessive for MDI Frame with maximized child
       set_window_text(WindowText);
    }
@@ -2535,7 +2542,7 @@ namespace user
 //
 //      ::u16 keyState = 0;
 //
-//      auto psession = Session;
+//      auto psession = get_session();
 //
 //      keyState |= psession->is_key_pressed(::user::e_key_control) ? MK_CONTROL : 0;
 //      keyState |= psession->is_key_pressed(::user::e_key_shift) ? MK_SHIFT : 0;
@@ -2783,7 +2790,7 @@ namespace user
 
    void frame_window::RemoveControlBar(::user::control_bar *pBar)
    {
-      m_barptra.remove(pBar);
+      m_barptra.erase(pBar);
 
    }
 
@@ -2928,9 +2935,9 @@ namespace user
    void frame_window::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      auto psession = Session;
+      auto psession = get_session();
 
-      if (m_bWindowFrame && !psession->savings().is_trying_to_save(::e_resource_display_bandwidth))
+      if (m_bWindowFrame && !psession->m_paurasession->savings().is_trying_to_save(::e_resource_display_bandwidth))
       {
 
       }
@@ -3051,7 +3058,7 @@ namespace user
 
       bool bBlurBackground = get_draw_flags(pstyle) & ::user::e_flag_blur_background;
 
-      auto psession = Session;
+      auto psession = get_session();
 
       if (bBlurBackground)
       {
@@ -3063,9 +3070,9 @@ namespace user
          _008CallOnDraw(pgraphics);
 
       }
-      else if (!psession->savings().is_trying_to_save(::e_resource_processing)
-               && !psession->savings().is_trying_to_save(::e_resource_display_bandwidth)
-               && !psession->savings().is_trying_to_save(::e_resource_memory))
+      else if (!psession->m_paurasession->savings().is_trying_to_save(::e_resource_processing)
+               && !psession->m_paurasession->savings().is_trying_to_save(::e_resource_display_bandwidth)
+               && !psession->m_paurasession->savings().is_trying_to_save(::e_resource_memory))
       {
 
 #if TEST

@@ -6,7 +6,7 @@ namespace user
 
 
    class CLASS_DECL_AURA interaction_layout :
-      virtual public ::context_object
+      virtual public ::object
    {
    public:
 
@@ -233,7 +233,7 @@ namespace user
       inline bool has_appearance(eappearance eappearance) const { return design().appearance() & eappearance; }
       inline void set_appearance(eappearance eappearance) { sketch() = eappearance; sketch().set_modified(); }
       inline void add_appearance(eappearance eappearance) { sketch() |= eappearance; sketch().set_modified(); }
-      inline void remove_appearance(eappearance eappearance) { sketch() -= eappearance; sketch().set_modified(); }
+      inline void erase_appearance(eappearance eappearance) { sketch() -= eappearance; sketch().set_modified(); }
       inline void toggle_appearance(eappearance eappearance) { sketch() ^= eappearance; sketch().set_modified(); }
       inline void clear_appearance() { sketch() = e_appearance_none; sketch().set_modified(); }
 
@@ -330,7 +330,7 @@ namespace user
    //inline void visual_state::set_busy()
    //{
 
-   //   synchronization_lock synchronizationlock(m_playout->mutex());
+   //   synchronous_lock synchronouslock(m_playout->mutex());
 
    //   m_bBusy = true;
 
@@ -340,7 +340,7 @@ namespace user
    //inline bool visual_state::set_ready()
    //{
 
-   //   synchronization_lock synchronizationlock(m_playout->mutex());
+   //   synchronous_lock synchronouslock(m_playout->mutex());
 
    //   if (!m_bBusy)
    //   {

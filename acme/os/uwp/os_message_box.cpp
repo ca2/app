@@ -3,7 +3,7 @@
 
 
 //void keep_sealed_object(Object ^ o);
-//void remove_sealed_object(Object ^ o);
+//void erase_sealed_object(Object ^ o);
 //
 //
 //template < typename T, typename PRED >
@@ -79,19 +79,19 @@
 //void keep_sealed_object(Object ^ o)
 //{
 //
-//   synchronization_lock synchronizationlock(&g_mutexSealed);
+//   synchronous_lock synchronouslock(&g_mutexSealed);
 //
 //   g_setSealed.add(o);
 //
 //}
 //
 //
-//void remove_sealed_object(Object ^ o)
+//void erase_sealed_object(Object ^ o)
 //{
 //
-//   synchronization_lock synchronizationlock(&g_mutexSealed);
+//   synchronous_lock synchronouslock(&g_mutexSealed);
 //
-//   g_setSealed.remove(o);
+//   g_setSealed.erase(o);
 //
 //}
 
@@ -373,7 +373,7 @@ void message_box_callback::CommandInvokedHandler(IUICommand^ cmd)
 
    auto pobjectarray = psystem->payload("message_box_array").cast < ::object_array >();
 
-   pobjectarray->remove(m_pmessageboxw);
+   pobjectarray->erase(m_pmessageboxw);
 
 
 }

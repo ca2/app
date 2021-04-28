@@ -2,7 +2,7 @@
 
 
 class CLASS_DECL_ACME task_pool :
-   virtual public ::context_object
+   virtual public ::object
 {
 protected:
 
@@ -23,9 +23,9 @@ public:
    virtual ::task_pointer & defer_start(const ::id& id, const ::routine & routine);
 
 
-   virtual void start_clock(enum_clock eclock, const duration & duration);
-   virtual void _task_clock(enum_clock eclock, const duration & duration);
-   virtual void on_clock(enum_clock eclock);
+   virtual void start_clock(enum_timer etimer, const duration & duration);
+   virtual void _task_clock(enum_timer etimer, const duration & duration);
+   virtual void on_clock(enum_timer etimer);
 
 
 

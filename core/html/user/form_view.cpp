@@ -32,7 +32,7 @@ void html_form_view::install_message_routing(::channel * pchannel)
    //MESSAGE_LINK(e_message_key_up, pchannel, this, &::user::interaction::_001OnKeyUp);
 
    //MESSAGE_LINK(e_message_left_button_down, pchannel, this, &html_form_view::on_message_left_button_down);
-   //MESSAGE_LINK(e_message_mouse_move, pchannel, this, &html_form_view::_001OnMouseMove);
+   //MESSAGE_LINK(e_message_mouse_move, pchannel, this, &html_form_view::on_message_mouse_move);
    //MESSAGE_LINK(e_message_left_button_up, pchannel, this, &html_form_view::on_message_left_button_up);
    //MESSAGE_LINK(e_message_key_down, pchannel, this, &html_form_view::_001OnKeyDown);
    MESSAGE_LINK(e_message_set_focus, pchannel, this, &html_form_view::_001OnSetFocus);

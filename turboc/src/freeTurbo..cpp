@@ -122,7 +122,7 @@ AssociatePixmap (void *object, Pixmap handle)
 //-------------------------------------------------------------------------
 // This is the replacement for "free".  Free the allocated object, as usual,
 // but if there's a Pixmap associated with the object, then free the Pixmap
-// and remove the Pixmap-association entry in the linked list.
+// and erase the Pixmap-association entry in the linked list.
 
 extern void
 freeTurbo (void *object)

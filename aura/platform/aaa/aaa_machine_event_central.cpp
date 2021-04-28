@@ -19,7 +19,7 @@ machine_event_central::~machine_event_central()
 }
 
 
-::e_status machine_event_central::initialize(::layered * pobjectContext)
+::e_status machine_event_central::initialize(::object * pobject)
 {
 
    if (m_bInitialized)
@@ -29,7 +29,7 @@ machine_event_central::~machine_event_central()
 
    }
 
-   auto estatus = ::object::initialize(pobjectContext);
+   auto estatus = ::object::initialize(pobject);
 
    if (!estatus)
    {
@@ -65,11 +65,11 @@ machine_event_central::~machine_event_central()
 
 #if 0
 
-   while(thread_get_run())
+   while(task_get_run())
    {
 
       {
-         synchronization_lock lockMachineEvent(&m_machineevent.m_mutex);
+         synchronous_lock lockMachineEvent(&m_machineevent.m_mutex);
 
          //machine_event_data data;
 
@@ -92,7 +92,7 @@ machine_event_central::~machine_event_central()
 bool machine_event_central::is_close_application()
 {
 
-   synchronization_lock lockMachineEvent(&m_machineevent.m_mutex);
+   synchronous_lock lockMachineEvent(&m_machineevent.m_mutex);
 
    machine_event_data data;
 
@@ -108,7 +108,7 @@ bool machine_event_central::is_close_application()
 //void machine_event_central::command(__pointer(::xml::node) pnode)
 //{
 //
-//   synchronization_lock lockMachineEvent(&m_machineevent.m_mutex);
+//   synchronous_lock lockMachineEvent(&m_machineevent.m_mutex);
 //
 //   machine_event_data data;
 //

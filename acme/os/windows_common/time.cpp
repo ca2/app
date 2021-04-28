@@ -1,7 +1,6 @@
 #include "framework.h"
 #include "acme/operating_system.h"
-
-
+#include <time.h>
 
 
 //CLASS_DECL_ACME void sleep(const ::duration& duration)
@@ -64,6 +63,92 @@ int gettimeofday(struct timeval * tp, void * tz)
    tp->tv_usec = timebuffer.millitm * 1000;
    return 0;
 }
+
+
+::e_status get_system_time(system_time_t* psystemtime)
+{
+
+   ::GetSystemTime((LPSYSTEMTIME)psystemtime);
+
+   return ::success;
+
+}
+
+
+
+
+
+::e_status system_time_to_time(time_t* ptime, const system_time_t* psystemtime, i32 nDST)
+{
+
+   struct tm tm;
+
+   __copy(tm, psystemtime);
+
+   *ptime = _mkgmtime(&tm);
+
+   return ::success;
+
+}
+
+
+::e_status system_time_to_file_time(filetime_t* pfiletime, const system_time_t* psystemtime)
+{
+
+   if (!SystemTimeToFileTime((const SYSTEMTIME*)psystemtime, (FILETIME*)pfiletime))
+   {
+
+      return error_failed;
+
+   }
+
+   return success;
+
+}
+
+
+::e_status time_to_system_time(system_time_t* psystemtime, const time_t* ptime)
+{
+   
+   struct tm tm;
+
+   gmtime_r(ptime, &tm);
+
+   __copy(psystemtime, tm);
+
+   return ::success;
+
+}
+
+
+::e_status time_to_file_time(filetime_t* pfiletime, const time_t* ptime)
+{
+
+   system_time_t systemtime;
+
+   auto estatus = time_to_system_time(&systemtime, ptime);
+
+   if(!estatus)
+   {
+
+      return estatus;
+
+   }
+
+   estatus = system_time_to_file_time(pfiletime, &systemtime);
+
+   if (!estatus)
+   {
+
+      return estatus;
+
+   }
+
+   return estatus;
+
+}
+
+
 
 
 

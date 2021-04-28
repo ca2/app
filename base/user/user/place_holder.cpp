@@ -9,8 +9,8 @@ namespace user
    place_holder::place_holder()
    {
 
-      m_flagNonClient.remove(non_client_background);
-      m_flagNonClient.remove(non_client_focus_rect);
+      m_flagNonClient.erase(non_client_background);
+      m_flagNonClient.erase(non_client_focus_rect);
 
    }
 
@@ -41,16 +41,16 @@ namespace user
    bool place_holder::can_merge(::user::interaction * pinteraction)
    {
 
-      auto puiptraChild = m_puiptraChild;
+      auto puserinteractionpointeraChild = m_puserinteractionpointeraChild;
 
-      if (!puiptraChild)
+      if (!puserinteractionpointeraChild)
       {
 
          return false;
 
       }
 
-      if (puiptraChild->contains_interaction(pinteraction))
+      if (puserinteractionpointeraChild->contains_interaction(pinteraction))
       {
 
          return false;
@@ -58,7 +58,7 @@ namespace user
       }
 
 
-      return puiptraChild->first_interaction()->can_merge(pinteraction);
+      return puserinteractionpointeraChild->first_interaction()->can_merge(pinteraction);
 
    }
 
@@ -66,7 +66,7 @@ namespace user
    bool place_holder::merge(::user::interaction * pinteraction)
    {
 
-      //synchronization_lock synchronizationlock(mutex_children());
+      //synchronous_lock synchronouslock(mutex_children());
 
       if (!can_merge(pinteraction))
       {
@@ -75,9 +75,9 @@ namespace user
 
       }
 
-      auto puiptraChild = m_puiptraChild;
+      auto puserinteractionpointeraChild = m_puserinteractionpointeraChild;
 
-      if (!puiptraChild->first_interaction()->merge(pinteraction))
+      if (!puserinteractionpointeraChild->first_interaction()->merge(pinteraction))
       {
 
          return false;
@@ -92,19 +92,19 @@ namespace user
    bool place_holder::is_place_holding(::user::interaction * pinteraction)
    {
 
-      auto puiptraChild = m_puiptraChild;
-      return puiptraChild->contains_interaction(pinteraction);
+      auto puserinteractionpointeraChild = m_puserinteractionpointeraChild;
+      return puserinteractionpointeraChild->contains_interaction(pinteraction);
 
    }
 
 
-   void place_holder::on_remove_child(::user::interaction * pinteraction)
+   void place_holder::on_erase_child(::user::interaction * pinteraction)
    {
 
       if (get_parent() != nullptr)
       {
 
-         get_parent()->on_remove_place_holder_child(pinteraction);
+         get_parent()->on_erase_place_holder_child(pinteraction);
 
       }
 
@@ -134,26 +134,28 @@ namespace user
 
       }
 
-      auto puiptraChild = m_puiptraChild;
+      __pointer(::base::application) papplication = get_application();
 
-      if (puiptraChild)
+      auto puserinteractionpointeraChild = m_puserinteractionpointeraChild;
+
+      if (puserinteractionpointeraChild)
       {
 
-         if (puiptraChild->contains_interaction(puiChild))
+         if (puserinteractionpointeraChild->contains_interaction(puiChild))
          {
 
             return this;
 
          }
 
-         for (auto & puiChildOld : puiptraChild->interactiona())
+         for (auto & puiChildOld : puserinteractionpointeraChild->interactiona())
          {
 
-            Application.place_hold(puiChildOld);
+            papplication->place_hold(puiChildOld);
 
          }
 
-         m_puiptraChild.release();
+         m_puserinteractionpointeraChild.release();
 
 
       }
@@ -168,7 +170,9 @@ namespace user
    bool place_holder::unplace(::user::interaction * pinteraction)
    {
 
-      return Application.place_hold(pinteraction) != nullptr;
+      __pointer(::base::application) papplication = get_application();
+
+      return papplication->place_hold(pinteraction) != nullptr;
 
    }
 
@@ -176,9 +180,9 @@ namespace user
    void place_holder::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      auto puiptraChild = m_puiptraChild;
+      auto puserinteractionpointeraChild = m_puserinteractionpointeraChild;
 
-      if (!puiptraChild || puiptraChild->has_no_interaction())
+      if (!puserinteractionpointeraChild || puserinteractionpointeraChild->has_no_interaction())
       {
 
          return;
@@ -194,7 +198,7 @@ namespace user
 
       }
 
-      auto puiChild = puiptraChild->first_interaction();
+      auto puiChild = puserinteractionpointeraChild->first_interaction();
 
       puiChild->start_layout();
 
@@ -250,16 +254,16 @@ namespace user
    interaction * place_holder::get_hold()
    {
 
-      auto puiptraChild = m_puiptraChild;
+      auto puserinteractionpointeraChild = m_puserinteractionpointeraChild;
 
-      if (puiptraChild->has_no_interaction())
+      if (!puserinteractionpointeraChild || puserinteractionpointeraChild->has_no_interaction())
       {
 
          return nullptr;
 
       }
 
-      return puiptraChild->first_interaction();
+      return puserinteractionpointeraChild->first_interaction();
 
    }
 
@@ -273,19 +277,19 @@ namespace user
    void place_holder::_001DrawChildren(::draw2d::graphics_pointer & pgraphics)
    {
 
-      auto puiptraChild = m_puiptraChild;
+      auto puserinteractionpointeraChild = m_puserinteractionpointeraChild;
 
-      if(puiptraChild->interaction_count() >= 2)
+      if(puserinteractionpointeraChild->interaction_count() >= 2)
       {
 
          output_debug_string("place_holder with more than one child : what?!?!");
 
       }
 
-      if(puiptraChild->has_interaction())
+      if(puserinteractionpointeraChild->has_interaction())
       {
 
-         puiptraChild->first_interaction()->_000CallOnDraw(pgraphics);
+         puserinteractionpointeraChild->first_interaction()->_000CallOnDraw(pgraphics);
 
       }
 

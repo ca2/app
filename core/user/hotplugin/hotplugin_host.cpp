@@ -291,7 +291,7 @@ namespace hotplugin
 
       throw todo();
 
-      //m_pplugin = new install::plugin(get_object());
+      //m_pplugin = new install::plugin(this);
 
       //m_pplugin->set_host(this);
 
@@ -357,7 +357,7 @@ namespace hotplugin
    i32 host::start_app_install(const char * pszCommandLine)
    {
 
-      return start_app_install(pszCommandLine, get_context_application(), this);
+      return start_app_install(pszCommandLine, get_application(), this);
 
    }
 
@@ -477,7 +477,7 @@ namespace hotplugin
 
       }
 
-      synchronization_lock ml(m_pmutexBitmap);
+      synchronous_lock ml(m_pmutexBitmap);
 
       m_sizeBitmap = abs(rectangle.size());
 
@@ -517,7 +517,7 @@ namespace hotplugin
       if(!m_memorymapBitmap.is_mapped())
          return;
 
-      synchronization_lock ml(m_pmutexBitmap);
+      synchronous_lock ml(m_pmutexBitmap);
 
       m_sizeBitmap = abs(rectangle.size());
 
@@ -560,7 +560,7 @@ namespace hotplugin
       if(!m_memorymapBitmap.is_mapped())
          return;
 
-      synchronization_lock ml(m_pmutexBitmap);
+      synchronous_lock ml(m_pmutexBitmap);
 
       m_pimage = create_image(m_sizeBitmap);
 

@@ -124,7 +124,7 @@ namespace file
    class os_watch;
 
    class CLASS_DECL_APEX watch :
-      virtual public context_object
+      virtual public object
    {
    public:
 
@@ -148,7 +148,7 @@ namespace file
 
 
       virtual void add_listener(listener * plistener);
-      virtual void remove_listener(listener * plistener);
+      virtual void erase_listener(listener * plistener);
 
       virtual void handle_action(action * psubject);
 
@@ -170,7 +170,7 @@ namespace file
 
       watch_id             m_idLast;
 
-      __pointer(::thread)    m_pthread;
+      ::task_pointer       m_ptask;
 
       bool                 m_bCreateWatchThread;
       
@@ -191,13 +191,13 @@ namespace file
 
       virtual watch_id add_watch(const ::file::path & pathFolder, listener * plistener, bool bRecursive);
 
-      virtual void remove_watch(const ::file::path & pathFolder);
+      virtual void erase_watch(const ::file::path & pathFolder);
 
-      virtual void remove_watch(watch_id watch_id);
+      virtual void erase_watch(watch_id watch_id);
 
       virtual ::e_status run() override;
 
-      virtual ::e_status step();
+      virtual ::e_status step() override;
 
 
    };//end file_watcher

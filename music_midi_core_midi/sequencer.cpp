@@ -42,7 +42,7 @@ namespace music
          ::music::midi::sequencer(psequence, strDevice)
          {
            
-            __pointer(::music::midi::core_midi::midi) pmidi = Multimedia.midi();
+            __pointer(::music::midi::core_midi::midi) pmidi = pmultimedia->midi();
             
 //            __pointer(::music::midi::core_midi::midi) pmidiCoreMidi = pmidi->m_pmidiCoreMidi;
             

@@ -7,7 +7,7 @@ namespace sockets
    class Ajp13Socket : public AjpBaseSocket
    {
    public:
-      Ajp13Socket(base_socket_handler& h);
+      Ajp13Socket();
 
       void OnHeader( short id, short len );
       void OnPacket( const char *buf, memsize sz );

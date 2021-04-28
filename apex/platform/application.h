@@ -7,7 +7,7 @@ namespace apex
 
    class CLASS_DECL_APEX application :
       virtual public ::apex_main_struct,
-      virtual public ::apex::context_thread,
+      virtual public ::apex::context,
       // apex commented
       //virtual public ::user::callback,
       virtual public int_scalar_source,
@@ -22,6 +22,13 @@ namespace apex
    {
    public:
 
+      //::aqua::application* m_paquaapplication;
+      //::aura::application* m_pauraapplication;
+      //::axis::application* m_paxixapplication;
+      //::base::application* m_pbaseapplication;
+      //::bred::application* m_pbredapplication;
+      //::core::application* m_pcoreapplication;
+
 
       void* m_pnativeapp;
 
@@ -34,7 +41,7 @@ namespace apex
 
       __reference(::apex::application)                m_pappParent;
       string                                          m_strAppName;
-      string                                          m_strAppTitle;
+      ::text::text                                    m_textAppTitle;
       string                                          m_strAppId;
       string                                          m_strBaseSupportId;
       string                                          m_strRoot;
@@ -80,7 +87,7 @@ namespace apex
 
       bool                                            m_bInterprocessIntercommunication;
       __composite(interprocess_intercommunication)    m_pinterprocessintercommunication;
-      __composite(service_base)                       m_pservice;
+      //__composite(service)                            m_pservice;
 
       // apex commented
       //::mutex                                         m_mutexFrame;
@@ -157,21 +164,27 @@ namespace apex
       string_array                                    m_straAppInterest;
       //string_map < oswindow, oswindow >               m_mapAppInterest;
 
-      ::duration                                      m_durationGcomBackgroundUpdate;
+      //
+
+      __composite(::service_handler) m_pservicehanlder;
 
 
       application(const char * pszAppId = nullptr);
       virtual ~application();
 
 
-      virtual ::e_status initialize(::layered * pobjectContext) override;
+      virtual ::e_status initialize(::object * pobject) override;
 
 
       virtual void assert_valid() const override;
       virtual void dump(dump_context & dumpcontext) const override;
 
 
-      virtual string __get_text(string str) override;
+      virtual string __get_text(string str);
+
+
+      virtual void process_command_line(command_line* pcommandline);
+
 
       //virtual ::user::style* get_user_style() const;
       //virtual bool app_data_get(const ::id & id, stream & os) override;
@@ -198,9 +211,14 @@ namespace apex
 
       virtual bool is_system() const override;
       virtual bool is_session() const override;
-      virtual bool is_serviceable() const;
-      virtual bool is_user_service() const;
 
+
+
+      virtual bool is_service() const;
+      virtual bool is_user_service() const;
+      virtual service* new_service();
+
+      virtual void on_service_request(::create* pcreate);
 
 
       //virtual ::simpledb::server * simpledb();
@@ -227,7 +245,7 @@ namespace apex
 
 
       virtual ::e_status     run() override;
-      virtual ::e_status     main() override;
+      //virtual ::e_status     main() override;
       virtual ::e_status     on_run();
 
       virtual ::e_status application_pre_run();
@@ -253,18 +271,21 @@ namespace apex
       virtual bool do_uninstall();
 
 
-      virtual bool on_install();
-      virtual bool on_uninstall();
+      virtual ::e_status on_install();
+      virtual ::e_status on_uninstall();
+
+      virtual ::e_status enable_service();
+      virtual ::e_status disable_service();
 
 
 
-
-
-      virtual bool update_appmatter(::sockets::socket_handler & handler, __pointer(::sockets::http_session) & psession, const ::file::path & pszRoot, const string & pszRelative);
-      virtual bool update_appmatter(::sockets::socket_handler & handler, __pointer(::sockets::http_session) & psession, const ::file::path & pszRoot, const string & pszRelative, const string & strLocale, const string & strStyle);
+      virtual bool update_appmatter(__pointer(::sockets::http_session) & psession, const ::file::path & pszRoot, const string & pszRelative);
+      virtual bool update_appmatter(__pointer(::sockets::http_session) & psession, const ::file::path & pszRoot, const string & pszRelative, const string & strLocale, const string & strStyle);
 
 
       //virtual void SetCurrentHandles() override;
+
+      virtual ::e_status france_exit();
 
 
       virtual ::e_status process_exception(const ::exception::exception & e) override;
@@ -312,6 +333,8 @@ namespace apex
 
       virtual bool _001CanCloseApplication();
 
+      virtual void _001CloseApplication();
+
 
       virtual string get_license_id();
 
@@ -338,7 +361,7 @@ namespace apex
       // apex commented
       //virtual ::draw2d::icon * get_icon(object * pobject, bool bBigIcon) const;
 
-      virtual void on_service_request(::create * pcreate);
+
 
       virtual string get_mutex_name_gen();
 
@@ -387,7 +410,7 @@ namespace apex
       //virtual string get_locale_schema_dir();
 
 
-      //virtual ::e_status initialize(::layered * pobjectContext) override;
+      //virtual ::e_status initialize(::object * pobject) override;
 
 
       application_menu & applicationmenu();
@@ -429,7 +452,7 @@ namespace apex
       virtual ::file::path local_application_home_path();
 
 
-      virtual void finalize() override;
+      virtual ::e_status finalize() override;
 
 
       //virtual void release_parents() override;
@@ -459,7 +482,7 @@ namespace apex
       //virtual void record(::create * pcommand);
 
       //virtual void on_event(::u64 u, ::object * pobject) override;
-      //virtual __pointer(::thread_toolset) create_thread_toolset(::enum_thread_tool etool);
+      //virtual __pointer(::thread_toolset) create_thread_toolset(::enum_task_tool etool);
 
 
       //// ca2verses
@@ -473,7 +496,7 @@ namespace apex
       //virtual ::e_status ui_message_box_timeout(::user::primitive * puiOwner, const char * pszMessage, const char* pszTitle = nullptr, const ::duration& durationTimeOut = duration::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
 
 
-      //using ::apex::context_thread::message_box;
+      //using ::apex::context::message_box;
       //virtual ::e_status message_box(::user::primitive * puiOwner, const char * pszMessage, const char* pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
       //virtual ::e_status message_box_timeout(::user::primitive * puiOwner, const char * pszMessage, const char* pszTitle = nullptr, const ::duration& durationTimeOut = duration::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
 
@@ -505,7 +528,7 @@ namespace apex
       //virtual ::file::path full_process_path(::file::path path);
 
       //virtual void DoWaitCursor(i32 nCode); // 0 => restore, 1=> begin, -1=> end
-      virtual void show_wait_cursor(bool bShow = true);
+      //virtual void show_wait_cursor(bool bShow = true);
 
 
 
@@ -603,7 +626,7 @@ namespace apex
       //virtual void SetCurrentHandles();
 
       //virtual void set_env_var(const string & payload,const string & value);
-      //virtual ithread_t get_thread_id();
+      //virtual itask_t get_thread_id();
 
 
       virtual bool _001OnDDECommand(const char * pcsz);
@@ -612,23 +635,12 @@ namespace apex
       virtual void _001OnFileNew(::message::message * pmessage);
 
 
-      virtual string multimedia_audio_get_default_library_name();
-      virtual string multimedia_audio_mixer_get_default_library_name();
-      virtual string veriwell_multimedia_music_midi_get_default_library_name();
 
       virtual ::e_status get_temp_file_name_template(string & str,const char * lpszName,const char * pszExtension,const char * pszTemplate);
 
       virtual ::e_status get_temp_file_name(string & str,const char * lpszName,const char * pszExtension);
 
-      service_base * get_service();
-      virtual service_base * allocate_new_service();
-      virtual ::e_status init_service();
-
-      virtual ::e_status os_create_service();
-      virtual ::e_status os_remove_service();
-
-      virtual ::e_status os_start_service();
-      virtual ::e_status os_stop_service();
+      inline ::service_handler* service_handler() const { return m_pservicehanlder; }
 
       //virtual void on_service_request(::create * pcreate);
 
@@ -691,8 +703,8 @@ namespace apex
 
       //virtual bool assert_user_logged_in();
 
-      virtual ::e_status     do_request(::create * pcreate) override;
-      virtual ::e_status     call_request(::create * pcreate) override;
+      virtual void do_request(::create * pcreate) override;
+      virtual void call_request(::create * pcreate) override;
 
 
       //virtual void process_message(::user::message * base) override;
@@ -722,8 +734,8 @@ namespace apex
 
 
 
-      virtual void fill_locale_schema(::str::international::locale_schema & localeschema);
-      virtual void fill_locale_schema(::str::international::locale_schema & localeschema,const string & pszLocale,const string & pszSchema);
+      virtual void fill_locale_schema(::text::international::locale_schema & localeschema);
+      virtual void fill_locale_schema(::text::international::locale_schema & localeschema,const string & pszLocale,const string & pszSchema);
 
       virtual bool platform_open_by_file_extension(index iEdge, const char * pszPathName, ::create * pcreate = nullptr);
       virtual bool platform_open_by_file_extension(index iEdge,::create * pcc);
@@ -736,13 +748,13 @@ namespace apex
       virtual bool is_application() const override;
 
 
-      DECL_GEN_SIGNAL(_001OnAppExit);
+      DECLARE_MESSAGE_HANDLER(_001OnAppExit);
       virtual bool _001OnAgreeExit();
       virtual void _001OnFranceExit();
       virtual void _001FranceExit();
 
 
-      virtual string lstr(const ::id & id, string strDefault = "") override;
+      //virtual string lstr(const ::id & id, string strDefault = "") override;
 
 
 
@@ -805,8 +817,8 @@ namespace apex
 
 
       //virtual bool get_frame(__pointer(::user::interaction) & pinteraction);
-      //virtual void add_frame(::user::interaction * pwnd);
-      //virtual void remove_frame(::user::interaction * pwnd);
+      //virtual void add_frame(::user::interaction * puserinteraction);
+      //virtual void erase_frame(::user::interaction * puserinteraction);
 
       virtual bool send_message_to_windows(const ::id & id, wparam wparam, lparam lparam); // with tbs in <3
 
@@ -867,7 +879,7 @@ namespace apex
       virtual void HideApplication();
 
 
-      //virtual ::e_status initialize(::layered * pobjectContext) override;
+      //virtual ::e_status initialize(::object * pobject) override;
 
       //virtual ::e_status process_init() override;
 
@@ -886,7 +898,7 @@ namespace apex
 
       //virtual ::e_status     main() override;
 
-      //virtual ::apex::application * get_context_application() const override;
+      //virtual ::apex::application * get_application() const override;
 
 
       virtual u32 guess_code_page(const string& str);
@@ -929,8 +941,8 @@ namespace apex
       virtual bool on_run_install();
       virtual bool on_run_uninstall();
 
-      DECL_GEN_SIGNAL(on_application_signal);
-      DECL_GEN_SIGNAL(_001OnSwitchContextTheme);
+      DECLARE_MESSAGE_HANDLER(on_application_signal);
+      DECLARE_MESSAGE_HANDLER(_001OnSwitchContextTheme);
 
 
       // open named file, trying to match a regsitered
@@ -1101,7 +1113,7 @@ namespace apex
 //#endif
 
       void OnAppExit();
-      // ::apex::get_system() Policy Settings
+      // psystem Policy Settings
       virtual bool LoadSysPolicies(); // Override to load policies other than the system policies that apex API loads.
       bool GetSysPolicyValue(u32 dwPolicyID, bool* pbValue); // returns the policy's setting in the out parameter
       bool _LoadSysPolicies() noexcept; // Implementation helper
@@ -1146,7 +1158,7 @@ namespace apex
 
       //user virtual ::user::document* _001OpenDocumentFile(::payload varFile);
       //virtual bool on_open_document_file(::payload varFile) override;
-      //DECL_GEN_SIGNAL(_001OnFileNew) override;
+      //DECLARE_MESSAGE_HANDLER(_001OnFileNew) override;
 
 
       //virtual string get_version();
@@ -1156,7 +1168,7 @@ namespace apex
 
       //virtual ::e_status     run() override;
 
-      //::apex::application * get_context_system();
+      //::apex::application * psystem;
 
       //virtual bool set_keyboard_layout(const char* pszPath, const ::action_context& action_context) override;
 
@@ -1186,7 +1198,7 @@ namespace apex
       virtual void set_title(const char* pszTitle);
 
 
-      //virtual bool _001CloseApplicationByUser(__pointer(::user::interaction) pwndExcept);
+      //virtual bool _001CloseApplicationByUser(__pointer(::user::interaction) puserinteractionExcept);
 
 
 //#ifdef WINDOWS_DESKTOP
@@ -1231,7 +1243,7 @@ namespace apex
 
 
       //////////////////////////////////////////////////////////////////////////////////////////////////
-      // ::apex::get_system()/::apex::get_system()
+      // psystem/psystem
       //
       //::user::document * place_hold(::user::interaction * pinteraction)  override;
 
@@ -1246,13 +1258,13 @@ namespace apex
 
 
       //////////////////////////////////////////////////////////////////////////////////////////////////
-      // Session/Session
+      // get_session()/get_session()
       //
       //         virtual __pointer(::bergedge::view) get_view();
       //       virtual __pointer(::bergedge::document) get_document();
 
 
-      //virtual ::e_status add_library(::apex::library * plibrary);
+      //virtual ::e_status add_library(::acme::library * plibrary);
 
       //virtual ::e_status initialize_userex();
       virtual ::e_status userfs_init1();
@@ -1278,7 +1290,7 @@ namespace apex
 
       //virtual void on_request(::create * pcreate);
 
-      //__pointer(::apex::application) get_context_system();
+      //__pointer(::apex::application) psystem;
 
       //virtual __pointer(::apex::application) assert_running(const char * pszAppdId);
 
@@ -1303,6 +1315,8 @@ namespace apex
 
       }
 
+      //virtual application_sleep(millis millis)
+
 
       virtual void data_on_after_change(::database::client* pclient, const ::database::key& id, const ::payload & payload, ::subject::subject * psubject) override;
 
@@ -1311,7 +1325,7 @@ namespace apex
 
 
 
-      //virtual i32 GetVisibleTopLevelFrameCountExcept(::user::interaction * pwndExcept);
+      //virtual i32 GetVisibleTopLevelFrameCountExcept(::user::interaction * puserinteractionExcept);
       //virtual i32 GetVisibleFrameCount();
 
       //virtual void on_create_keyboard() override;
@@ -1334,7 +1348,7 @@ namespace apex
       //      virtual void set_cred(string strToken, const char * pszUsername, const char * pszPassword) override;
       //      virtual void set_cred_ok(string strToken, bool bOk) override;
 
-      //user virtual void remove_document_template(::user::impact_system* pimpactsystem);
+      //user virtual void erase_document_template(::user::impact_system* pimpactsystem);
 
       //virtual bool _001OnAgreeExit() override;
       //virtual void _001OnFranceExit() override;
@@ -1353,7 +1367,7 @@ namespace apex
       //virtual ~application();
 
 
-      //virtual ::e_status     initialize(::layered * pobjectContext) override;
+      //virtual ::e_status     initialize(::object * pobject) override;
 
 
       //virtual void install_message_routing(::channel * pchannel) override;
@@ -1398,7 +1412,7 @@ namespace apex
       //using ::user::form_callback::on_control_event;
 
 
-      //virtual void remove_document_template(::user::impact_system* pimpactsystem);
+      //virtual void erase_document_template(::user::impact_system* pimpactsystem);
 
       //virtual void term_application() override;
 
@@ -1420,7 +1434,7 @@ namespace apex
 
 
       // programming
-      //DECL_GEN_SIGNAL(on_application_signal);
+      //DECLARE_MESSAGE_HANDLER(on_application_signal);
       //void on_request(::create* pcreate);
       string get_visual_studio_build();
 

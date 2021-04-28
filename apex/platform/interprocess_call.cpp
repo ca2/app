@@ -2,13 +2,15 @@
 
 
 interprocess_call::interprocess_call(interprocess_intercommunication* pipi, const string& strApp, const string& strObject, const string& strMember) :
-   ::object(pipi),
+   //::object(pipi),
    m_pinterprocessintercommunication(pipi),
    m_strApp(strApp),
    m_strObject(strObject),
    m_strMember(strMember),
    m_bAutoLaunch(false)
 {
+
+   initialize(pipi);
 
    m_duration = one_minute();
 
@@ -64,7 +66,7 @@ bool interprocess_call::is_auto_launch() const
 void interprocess_call::exclude_this_app()
 {
 
-   m_iaExclude.add(Context.os().get_pid());
+   m_iaExclude.add(m_pcontext->m_papexcontext->os().get_pid());
 
 }
 
@@ -72,10 +74,12 @@ void interprocess_call::exclude_this_app()
 void interprocess_call::post(const ::id& idPid)
 {
 
-   fork([this, idPid]()
+   __pointer(interprocess_call) pcall = this;
+
+   fork([pcall, idPid]()
       {
 
-         auto& pobjectTask = m_mapTask[idPid];
+         auto& pobjectTask = pcall->m_mapTask[idPid];
 
          if (pobjectTask)
          {
@@ -84,9 +88,9 @@ void interprocess_call::post(const ::id& idPid)
 
          }
 
-         pobjectTask = m_pinterprocessintercommunication->create_task(this, idPid);
+         pobjectTask = pcall->m_pinterprocessintercommunication->create_task(pcall, idPid);
 
-         pobjectTask->do_task(m_strObject, m_strMember, m_varaArgs);
+         pobjectTask->do_task(pcall->m_strObject, pcall->m_strMember, pcall->m_varaArgs);
 
       });
 
@@ -115,9 +119,9 @@ __pointer(synchronization_array) interprocess_call::synca()
 
    auto psynca = synca();
 
-   synchronization_lock synchronizationlock(psynca);
+   synchronous_lock synchronouslock(psynca);
 
-   return synchronizationlock.wait(m_duration);
+   return synchronouslock.wait(m_duration);
 
 }
 

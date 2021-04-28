@@ -2,7 +2,7 @@
 
 
 class CLASS_DECL_AXIS openweather_city :
-   virtual public context_object
+   virtual public object
 {
 public:
 

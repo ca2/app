@@ -74,7 +74,7 @@ namespace uwp
 
       dpi_os_initialize();
 
-      //m_pimage->alloc(get_context_application()->create_new, this);
+      //m_pimage->alloc(get_application()->create_new, this);
       //m_pimage = create_image({1000,  1000});
 
 
@@ -244,7 +244,7 @@ namespace uwp
       {
          OnChangeDpi(dpi);
 
-         //         System->m_psystem->m_possystemwindow->m_bWindowSizeChange = true;
+         //         ::acme::get_system()->m_psystem->m_possystemwindow->m_bWindowSizeChange = true;
 
       }));
 
@@ -261,7 +261,7 @@ namespace uwp
 
          m_dpi = dpi;
 
-         System->m_dpi = dpi;
+         ::acme::get_system()->m_dpi = dpi;
 
          m_size.cx = (::i32)m_window->Bounds.Width;
 
@@ -341,7 +341,7 @@ namespace uwp
 
       m_pimpl->m_puserinteraction->set_window_position(e_zorder_top, 0, 0, m_size.cx, m_size.cy, SWP_SHOWWINDOW);
 
-      if (System->has_property("client_only"))
+      if (::acme::get_system()->has_property("client_only"))
       {
 
          ::user::interaction_pointer_array children = m_pimpl->m_puserinteraction->m_uiptraChild;
@@ -418,7 +418,7 @@ namespace uwp
 
          if(hr == DXGI_ERROR_DEVICE_REMOVED)
          {
-            // If the device was removed for any reason, a new device and swapchain will need to be created.
+            // If the device was erased for any reason, a new device and swapchain will need to be created.
             HandleDeviceLost();
 
             // Everything is set up now. Do not continue execution of this method.
@@ -639,7 +639,7 @@ namespace uwp
 
                      // Discard the contents of the render target.
                      // This is a valid operation only when the existing contents will be entirely
-                     // overwritten. If dirty or scroll rects are used, this call should be removed.
+                     // overwritten. If dirty or scroll rects are used, this call should be erased.
                      m_d3dContext->DiscardView(m_d3dRenderTargetView.Get());
 
                   }
@@ -654,11 +654,11 @@ namespace uwp
 
                }
 
-               g_pimagea->remove_all();
+               g_pimagea->erase_all();
 
             }
 
-            // If the device was removed either by a disconnect or a driver upgrade, we
+            // If the device was erased either by a disconnect or a driver upgrade, we
             // must recreate all device resources.
             if (hr == DXGI_ERROR_DEVICE_REMOVED)
             {
@@ -704,7 +704,7 @@ namespace uwp
    {
       ::draw2d::lock draw2dlock;
       // The D3D Device is no longer valid if the default adapter changes or if
-      // the device has been removed.
+      // the device has been erased.
 
       // First, get the information for the adapter related to the current device.
 
@@ -724,7 +724,7 @@ namespace uwp
       ::uwp::throw_if_failed(dxgiFactory->EnumAdapters1(0,&currentAdapter));
       ::uwp::throw_if_failed(currentAdapter->GetDesc(&currentDesc));
 
-      // If the adapter LUIDs don't match, or if the device reports that it has been removed,
+      // If the adapter LUIDs don't match, or if the device reports that it has been erased,
       // a new D3D device must be created.
 
       if((deviceDesc.AdapterLuid.LowPart != currentDesc.AdapterLuid.LowPart) ||
@@ -772,7 +772,7 @@ namespace uwp
 
    //   dc->attach((ID2D1DeviceContext *) m_pd2d1devicecontext.Get());
 
-   //   auto pimpl = m_psystem->get_context_session()->m_puiHost->m_pimpl;
+   //   auto pimpl = m_psystem->get_session()->m_puserinteractionHost->m_pimpl;
 
    //   //throw_todo();
 
@@ -805,7 +805,7 @@ namespace uwp
    //   ////dc->from(m_pimage->get_size(), m_pimage->g());
    //   ////dc->from(m_pimage->get_size(), m_pimage->g());
 
-   //   ////synchronizationlock.lock();
+   //   ////synchronouslock.lock();
 
    //   //dc->detach();
 

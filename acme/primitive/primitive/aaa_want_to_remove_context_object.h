@@ -1,7 +1,7 @@
 #pragma once
 
 
-inline ::matter * trace_object(::matter * pobjectContext) { return pobjectContext; }
+inline ::matter * trace_object(::matter * pobject) { return pobject; }
 
 
 using eobject = cflag < ::e_object >;
@@ -14,19 +14,19 @@ struct CLASS_DECL_ACME matter :
 
    mutable __pointer(synchronization_object)                mutex();
    ::sticker *                            m_psticker;
-   ::matter *                             get_object(); // Context Object
-   ::acme::application *                  get_context_application(); // Context Application
+   ::matter *                             this; // Context Object
+   ::acme::application *                  get_application(); // Context papplication
    ::eobject                              m_eobject;
    //::id                                   m_id;
    __pointer(__pointer_array(::matter))     m_preferencea;
 
 
-   matter() : get_object()(nullptr), get_context_application()(nullptr), m_psticker(nullptr) { }
-   matter(::matter * pobjectContext);
+   matter() : this(nullptr), get_application()(nullptr), m_psticker(nullptr) { }
+   matter(::matter * pobject);
    virtual ~matter() { }
 
 
-   virtual ::e_status     initialize(::matter * pobjectContext) override;
+   virtual ::e_status     initialize(::matter * pobject) override;
    virtual ::e_status     finalize() override;
 
 
@@ -36,27 +36,27 @@ struct CLASS_DECL_ACME matter :
    inline const char * topic_text() { return ::is_null(m_psticker) ? nullptr : m_psticker->m_pszTopicText; }
    inline void raw_set_topic_text(const char * psz) { m_psticker->raw_set_topic_text(psz); }
 
-   ::acme::application * get_context_application() const { return get_context_application(); }
+   ::acme::application * get_application() const { return get_application(); }
 
-   ::matter * get_context_object() const { return get_object(); }
+   ::matter * this const { return this; }
 
-   inline void set_context_object(::matter * pobjectContext)
+   inline void set_object(::matter * pobject)
    {
 
-      get_object() = pobjectContext;
+      this = pobject;
 
-      get_context_application() = ::get_context_application(pobjectContext);
+      get_application() = ::get_application(pobject);
 
    }
 
 
-   inline void defer_set_context_object(::matter * pobjectContext)
+   inline void defer_set_object(::matter * pobject)
    {
 
-      if (::is_null(get_object()) && ::is_set(pobjectContext))
+      if (::is_null(this) && ::is_set(pobject))
       {
 
-         set_context_object(pobjectContext);
+         set_object(pobject);
 
       }
 
@@ -142,7 +142,7 @@ struct CLASS_DECL_ACME matter :
 
    //virtual stream & call_read(const ::stream & stream) { return read((::stream &)(stream)); }
 
-   //virtual void finalize();
+   //virtual ::e_status finalize();
 
    //virtual void call();
 
@@ -188,12 +188,12 @@ struct CLASS_DECL_ACME matter :
    }
 
    // very close to the operating system
-   hthread_t __create_thread(
+   htask_t __create_thread(
       ::e_priority epriority = ::priority_normal,
       ::u32 nStackSize = 0,
       u32 uiCreateFlags = 0,
       LPSECURITY_ATTRIBUTES psa = nullptr,
-      ithread_t * puiId = nullptr);
+      itask_t * puiId = nullptr);
 
 
    virtual string to_string() const;

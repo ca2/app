@@ -8,7 +8,7 @@ namespace aura
    game::game()
    {
 
-      m_thisaGame[0] = this;
+      //m_thisaGame[0] = this;
 
    }
 
@@ -33,7 +33,7 @@ namespace aura
    
       string strFileName = string(psz) + string(".wav");
 
-      string strFilePath = Context.dir().matter(strFileName);
+      string strFilePath = m_pcontext->m_papexcontext->dir().matter(strFileName);
 
       return strFilePath;
 

@@ -116,6 +116,6 @@ public:
 
 int oswindow_find(UIWindow * window);
 oswindow_data * oswindow_get(UIWindow * window);
-bool oswindow_remove(UIWindow * window);
+bool oswindow_erase(UIWindow * window);
 
 

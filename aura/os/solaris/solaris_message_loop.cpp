@@ -34,7 +34,7 @@ int_bool sys_message_queue::GetMessage(MESSAGE * pmsg)
       else
       {
          *pmsg = *m_msgptra[0];
-         m_msgptra.remove_at(0);
+         m_msgptra.erase_at(0);
          if(pmsg->message == 0xffff)
          {
             return false;

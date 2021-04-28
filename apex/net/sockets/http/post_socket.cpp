@@ -7,15 +7,15 @@ namespace sockets
 {
 
 
-   http_post_socket::http_post_socket(base_socket_handler& h) :
-      ::object(&h),
-      base_socket(h),
-      socket(h),
-      stream_socket(h),
-      tcp_socket(h),
-      http_socket(h),
-      http_tunnel(h),
-      http_client_socket(h)
+   http_post_socket::http_post_socket() //:
+      //::object(&h),
+      //base_socket(h),
+      //socket(h),
+      //stream_socket(h),
+      //tcp_socket(h),
+      //http_socket(h),
+      //http_tunnel(h),
+      //http_client_socket(h)
    {
 
       m_emethod = http_method_post;
@@ -23,40 +23,20 @@ namespace sockets
    }
 
 
-   http_post_socket::http_post_socket(base_socket_handler& h,const string & url_in) :
-      ::object(&h),
-      base_socket(h),
-      socket(h),
-      stream_socket(h),
-      tcp_socket(h),
-      http_socket(h),
-      http_tunnel(h),
-      http_client_socket(h, url_in)
+   http_post_socket::http_post_socket(const string & url_in) :
+      //::object(&h),
+      //base_socket(h),
+      //socket(h),
+      //stream_socket(h),
+      //tcp_socket(h),
+      //http_socket(h),
+      //http_tunnel(h),
+      //http_client_socket(h, url_in)
+      http_client_socket(url_in)
    {
 
       m_emethod = http_method_post;
 
-      single_lock lock(&::apex::get_system()->sockets().m_mutexHttpPostBoundary, true);
-
-      m_boundary = "----";
-
-      for (int i = 0; i < 12; i++)
-      {
-
-         char c = ::apex::get_system()->sockets().m_countHttpPostBoundary++ % 128;
-
-         while (!ansi_char_is_alphanumeric((unsigned char)c))
-         {
-
-            c = ::apex::get_system()->sockets().m_countHttpPostBoundary++ % 128;
-
-         }
-
-         m_boundary += c;
-
-      }
-
-      m_boundary += "__" + __str(::apex::get_system()->sockets().m_countHttpPostBoundary++);
 
    }
 
@@ -80,19 +60,21 @@ namespace sockets
 
    void http_post_socket::AddFile(const string & name,const string & filename,const string & type)
    {
-      if (get_context()->file().exists(filename))
+
+      if (m_pcontext->m_papexcontext->file().exists(filename))
       {
+
          if (m_pmultipart == nullptr)
          {
 
-            m_pmultipart = __new(multipart(get_context_object()));
+            m_pmultipart = __new(multipart(this));
 
          }
-         m_pmultipart->m_map[name].m_spfile = get_context()->file().get_file(filename, ::file::e_open_binary | ::file::e_open_read | ::file::e_open_share_deny_none);
+         m_pmultipart->m_map[name].m_spfile = m_pcontext->m_papexcontext->file().get_file(filename, ::file::e_open_binary | ::file::e_open_read | ::file::e_open_share_deny_none);
          //m_mapFiles[name]              = filename;
          m_pmultipart->m_map[name].m_uiContentLength = m_pmultipart->m_map[name].m_spfile->get_size();
          m_pmultipart->m_map[name].m_strContentType = type;
-         //m_mapContentLength[filename]  = get_context()->file().length(filename);
+         //m_mapContentLength[filename]  = m_pcontext->m_papexcontext->file().length(filename);
          //m_mapContentType[filename]    = type;
          //m_bMultipart                  = true;
 

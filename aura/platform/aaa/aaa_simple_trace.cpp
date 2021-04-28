@@ -9,8 +9,8 @@
 #include "trace_category.h"
 
 
-CLASS_DECL_AURA void __simple_tracea(::matter * pobjectContext, enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz);
-CLASS_DECL_AURA void __simple_tracev(::matter * pobjectContext, enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, va_list args);
+CLASS_DECL_AURA void __simple_tracea(::matter * pobject, enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz);
+CLASS_DECL_AURA void __simple_tracev(::matter * pobject, enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, va_list args);
 
 
 //CLASS_DECL_AURA void FUNCTION_DEBUGBOX(const char * pszMessage, const char * pszTitle, const ::e_message_box & emessagebox, ::callback callback)
@@ -117,13 +117,13 @@ CLASS_DECL_AURA::mutex * g_pmutexMemoryCounters = nullptr;
 
 int g_iMemoryCountersStartable = 0;
 
-CLASS_DECL_AURA bool memcnts()
+CLASS_DECL_AURA bool memory_counter_on()
 {
 
    if (g_iMemoryCountersStartable && g_iMemoryCounters < 0)
    {
 
-      g_iMemoryCounters = file_exists(::dir::config() / "system/memory_counters.txt") ? 1 : 0;
+      g_iMemoryCounters = file_exists(pacmedir->config() / "system/memory_counters.txt") ? 1 : 0;
 
       if (g_iMemoryCounters)
       {
@@ -142,7 +142,7 @@ CLASS_DECL_AURA bool memcnts()
 ::file::path * g_pMemoryCounters = nullptr;
 
 
-CLASS_DECL_AURA::file::path memcnts_base_path()
+CLASS_DECL_AURA::file::path memory_counter_base_path()
 {
 
    if (g_iMemoryCountersStartable && g_pMemoryCounters == nullptr)
@@ -152,13 +152,13 @@ CLASS_DECL_AURA::file::path memcnts_base_path()
 
 #if defined(_UWP)
 
-      string strBasePath = ::dir::system() / "memory_counters";
+      string strBasePath = pacmedir->system() / "memory_counters";
 
 #else
 
       ::file::path strModule = module_path_from_pid(getpid());
 
-      string strBasePath = ::dir::system() / "memory_counters" / strModule.title() / __str(getpid());
+      string strBasePath = pacmedir->system() / "memory_counters" / strModule.title() / __str(getpid());
 
 #endif
 
@@ -192,10 +192,10 @@ simple_trace::~simple_trace()
 }
 
 
-void simple_trace::__tracea(::matter * pobjectContext, enum_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz)
+void simple_trace::__tracea(::matter * pobject, enum_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz)
 {
 
-   __simple_tracea(pobjectContext, elevel, pszFunction, pszFile, iLine, psz);
+   __simple_tracea(pobject, elevel, pszFunction, pszFile, iLine, psz);
    //printf("%d %c %s %d %s", (i32)ecategory, e_trace_level_char(elevel), pszFunction, iLine, psz);
 
 }

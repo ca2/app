@@ -26,8 +26,8 @@ namespace filemanager
       virtual void install_message_routing(::channel * pchannel);
 
 
-      DECL_GEN_SIGNAL(_001OnSetText);
-      DECL_GEN_SIGNAL(on_message_create);
+      DECLARE_MESSAGE_HANDLER(_001OnSetText);
+      DECLARE_MESSAGE_HANDLER(on_message_create);
 
    };
 

@@ -23,13 +23,13 @@ protected:
    static __pointer(update_task) & task(::i64 iUpdate);
 
    virtual void add(::matter * pmatter);
-   virtual void remove(::matter * pmatter);
+   virtual void erase(::matter * pmatter);
 
    static void _add(::i64 iUpdate, ::matter* pmatter);
 
-   static void _remove(::i64 iUpdate, ::matter* pmatter);
+   static void _erase(::i64 iUpdate, ::matter* pmatter);
 
-   static void _remove(::matter* pmatter);
+   static void _erase(::matter* pmatter);
 
 public:
 
@@ -59,7 +59,7 @@ public:
 
    static void post_destroy_all();
 
-   inline bool is_ending() { synchronization_lock synchronizationlock(mutex()); return m_elementa.is_empty();};
+   inline bool is_ending() { synchronous_lock synchronouslock(mutex()); return m_elementa.is_empty();};
    inline int poll_millis() { return os_get_system_update_poll_time(m_iUpdate);};
 
    static inline bool should_poll(int iMillis)

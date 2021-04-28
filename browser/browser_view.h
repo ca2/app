@@ -82,7 +82,7 @@
 //
 //private:
 //
-//   // Include the default context_object counting implementation.
+//   // Include the default object counting implementation.
 //   IMPLEMENT_REFCOUNTING(ClientHandler);
 //   // Include the default locking implementation.
 //   IMPLEMENT_LOCKING(ClientHandler);
@@ -203,7 +203,7 @@ namespace browser
 //      CefRefPtr <ClientHandler>       m_pclienthandler;
       CefRefPtr<CefBrowser>   m_pbrowser;
 
-      view(::layered * pobjectContext);
+      view(::object * pobject);
       virtual ~view();
 
       virtual void assert_valid() const;
@@ -258,10 +258,10 @@ namespace browser
 
       virtual void on_layout(::draw2d::graphics_pointer & pgraphics);
 
-      DECL_GEN_SIGNAL(on_message_create);
-      DECL_GEN_SIGNAL(_001OnDestroy);
-      DECL_GEN_SIGNAL(on_message_left_button_down);
-      DECL_GEN_SIGNAL(_001OnMouse);
+      DECLARE_MESSAGE_HANDLER(on_message_create);
+      DECLARE_MESSAGE_HANDLER(_001OnDestroy);
+      DECLARE_MESSAGE_HANDLER(on_message_left_button_down);
+      DECLARE_MESSAGE_HANDLER(_001OnMouse);
 
       virtual string get_browser();
 

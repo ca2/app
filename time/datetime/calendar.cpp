@@ -28,7 +28,7 @@ namespace datetime
       }
 
 
-      ::e_status calendar::initialize(::layered * pobjectContext)
+      ::e_status calendar::initialize(::object * pobject)
       {
 
          return ::success;
@@ -117,7 +117,7 @@ namespace datetime
       }
 
 
-      void calendar::GetDateTime(const ::apex::str_context* pcontext, string& strDateTime)
+      void calendar::GetDateTime(const ::text::context* pcontext, string& strDateTime)
       {
 
          ::datetime::time time = ::datetime::time::get_current_time();
@@ -138,26 +138,38 @@ namespace datetime
       }
 
 
-      string calendar::GetWeekDay(const ::apex::str_context* pcontext, int32_t iWeekDay) // 1 - domingo
+      string calendar::GetWeekDay(const ::text::context* pcontext, int32_t iWeekDay) // 1 - domingo
       {
 
-         return System->datetime().get_week_day_str(pcontext, iWeekDay);
+         auto psystem = m_psystem;
+
+         auto pdatetime = psystem->datetime();
+
+         return pdatetime->get_week_day_str(pcontext, iWeekDay);
 
       }
 
 
-      string calendar::GetTinyWeekDay(const ::apex::str_context* pcontext, int32_t iWeekDay) // 1 - domingo
+      string calendar::GetTinyWeekDay(const ::text::context* pcontext, int32_t iWeekDay) // 1 - domingo
       {
 
-         return System->datetime().get_tiny_week_day_str(pcontext, iWeekDay);
+         auto psystem = m_psystem;
+
+         auto pdatetime = psystem->datetime();
+
+         return pdatetime->get_tiny_week_day_str(pcontext, iWeekDay);
 
       }
 
 
-      string calendar::GetMonth(const ::apex::str_context* pcontext, int32_t iMonth)
+      string calendar::GetMonth(const ::text::context* pcontext, int32_t iMonth)
       {
 
-         return System->datetime().get_month_str(pcontext, iMonth);
+         auto psystem = m_psystem;
+
+         auto pdatetime = psystem->datetime();
+
+         return pdatetime->get_month_str(pcontext, iMonth);
 
       }
 
@@ -225,7 +237,7 @@ namespace datetime
          for (int iElement = e_element_none + 1; iElement < e_element_count; iElement++)
          {
 
-            if (hit_test((enum_element)iElement, point_i32))
+            if (hit_test((enum_element)iElement, point))
             {
 
                return (enum_element)iElement;

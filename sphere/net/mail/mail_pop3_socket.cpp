@@ -10,7 +10,7 @@ namespace mail
 
 
    pop3_socket::pop3_socket(::sockets::socket_handler & h) :
-      object(h.get_context_application()),
+      object(h.get_application()),
       base_socket(h),
       socket(h),
       stream_socket(h),
@@ -62,14 +62,14 @@ namespace mail
             m_estate = state_auth_2;
             EnableSSL();
             OnSSLConnect();
-            //Handler().Select(240, 0);
+            //socket_handler()->Select(240, 0);
             /*         if(GetOutputLength())
                         OnWrite();
                      if(IsReconnect())
                         OnReconnect();
                      else
                         OnConnect();
-                     Handler().AddList(GetSocket(), LIST_CALLONCONNECT, false);*/
+                     socket_handler()->AddList(GetSocket(), LIST_CALLONCONNECT, false);*/
             string str = "USER " + m_ppop3->get_user() + "\r\n";
             write((const char *) str);
          }
@@ -172,7 +172,7 @@ namespace mail
             m_estate = state_receive_top_headers;
             m_ppop3->m_iHeaderLine = 0;
             m_strKey = "";
-            m_ppop3->m_setHeaders.remove_all();
+            m_ppop3->m_setHeaders.erase_all();
          }
          break;
       case state_retr_start:
@@ -182,7 +182,7 @@ namespace mail
             m_estate = state_retr_headers;
             m_ppop3->m_iHeaderLine = 0;
             m_strKey = "";
-            m_ppop3->m_setHeaders.remove_all();
+            m_ppop3->m_setHeaders.erase_all();
          }
          break;
       case state_retr_only_headers_start:
@@ -192,7 +192,7 @@ namespace mail
             m_estate = state_retr_only_headers;
             m_ppop3->m_iHeaderLine = 0;
             m_strKey = "";
-            m_ppop3->m_setHeaders.remove_all();
+            m_ppop3->m_setHeaders.erase_all();
          }
          break;
       case state_listmessages_start:
@@ -405,8 +405,8 @@ namespace mail
       write((const char *) strSend);
       m_ppop3->m_strHeaders.Empty();
       m_ppop3->m_strBody.Empty();
-      m_ppop3->m_straId.remove_at(0);
-      m_ppop3->m_straIndex.remove_at(0);
+      m_ppop3->m_straId.erase_at(0);
+      m_ppop3->m_straIndex.erase_at(0);
       return true;
    }
 

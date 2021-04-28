@@ -54,7 +54,7 @@ critical_section * get_pid_cs()
 chldstatus get_chldstatus(int iPid)
 {
 
-   critical_section_lock synchronizationlock(get_pid_cs());
+   critical_section_lock synchronouslock(get_pid_cs());
 
    return g_ppid->operator[](iPid);
 
@@ -95,7 +95,7 @@ void ansios_sigchld_handler(int sig)
 
       {
 
-         critical_section_lock synchronizationlock(get_pid_cs());
+         critical_section_lock synchronouslock(get_pid_cs());
 
          auto ppair = g_ppid->plookup(iPid);
 
@@ -257,7 +257,7 @@ namespace apple
 
       {
 
-         critical_section_lock synchronizationlock(get_pid_cs());
+         critical_section_lock synchronouslock(get_pid_cs());
 
          status = posix_spawn(&m_iPid,argv[0],&actions,&attr,(char * const *)argv.get_data(),e);
 
@@ -404,14 +404,14 @@ namespace apple
 
       ::file::path path = str;
 
-      if(Context.file().exists(path.folder() / "libapex.dylib"))
+      if(pcontext->m_papexcontext->file().exists(path.folder() / "libapex.dylib"))
       {
 
          ::file::path folderNew = path.folder();
 
          folderNew -= 3;
 
-         if(Context.file().exists(folderNew / "libapex.dylib"))
+         if(pcontext->m_papexcontext->file().exists(folderNew / "libapex.dylib"))
          {
 
             strFallback = folderNew;
@@ -464,7 +464,7 @@ namespace apple
 
       setenv("DYLD_FALLBACK_LIBRARY_PATH", strFallback, true);
 
-      // Create authorization context_object
+      // Create authorization object
       OSStatus status;
 
       AuthorizationRef authorizationRef;
@@ -635,8 +635,8 @@ auto tickStart = ::millis::now();
 
       /*
 
-      straParam.remove_all();
-      argv.remove_all();
+      straParam.erase_all();
+      argv.erase_all();
       straParam.explode_command_line(pszCmdLineParam, &argv);
 
       tool = (char * )argv[0];
@@ -830,7 +830,7 @@ auto tickStart = ::millis::now();
 
       {
 
-         critical_section_lock synchronizationlock(get_pid_cs());
+         critical_section_lock synchronouslock(get_pid_cs());
 
          status = posix_spawn(&m_iPid,argv[0],&actions,&attr,(char * const *)argv.get_data(),environ);
 

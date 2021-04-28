@@ -27,6 +27,12 @@ namespace filemanager
       document();
       virtual ~document();
 
+
+      inline ::core::application* get_application() const { return m_pcontext ? m_pcontext->m_pcoreapplication : nullptr; }
+      inline ::core::session* get_session() const { return m_pcontext ? m_pcontext->m_pcoresession : nullptr; }
+      inline ::core::system* get_system() const { return m_psystem ? m_psystem->m_pcoresystem : nullptr; }
+      inline ::core::user* user() const { return get_session() ? get_session()->user() : nullptr; }
+
       //virtual i64 add_ref(OBJ_REF_DBG_PARAMS) override
       //{
       //   return ::object::add_ref(OBJ_REF_DBG_ARGS);
@@ -47,26 +53,26 @@ namespace filemanager
 
       virtual document * get_main_document();
 
-      DECL_GEN_SIGNAL(_001OnLevelUp);
-      DECL_GEN_SIGNAL(_001OnUpdateLevelUp);
-      DECL_GEN_SIGNAL(_001OnAddLocation);
-      DECL_GEN_SIGNAL(_001OnUpdateAddLocation);
-      DECL_GEN_SIGNAL(_001OnReplaceText);
-      DECL_GEN_SIGNAL(_001OnUpdateReplaceText);
-      DECL_GEN_SIGNAL(_001OnEditPaste);
-      DECL_GEN_SIGNAL(_001OnUpdateEditPaste);
-      DECL_GEN_SIGNAL(_001OnFileSaveAs);
-      DECL_GEN_SIGNAL(_001OnUpdateFileSaveAs);
-      DECL_GEN_SIGNAL(_001OnFileImport);
-      DECL_GEN_SIGNAL(_001OnUpdateFileImport);
-      DECL_GEN_SIGNAL(_001OnFileExport);
-      DECL_GEN_SIGNAL(_001OnUpdateFileExport);
-      DECL_GEN_SIGNAL(_001OnNewManager);
-      DECL_GEN_SIGNAL(_001OnUpdateNewManager);
-      DECL_GEN_SIGNAL(_001OnDelManager);
-      DECL_GEN_SIGNAL(_001OnUpdateDelManager);
-      DECL_GEN_SIGNAL(_001OnNewFolder);
-      DECL_GEN_SIGNAL(_001OnUpdateNewFolder);
+      DECLARE_MESSAGE_HANDLER(_001OnLevelUp);
+      DECLARE_MESSAGE_HANDLER(_001OnUpdateLevelUp);
+      DECLARE_MESSAGE_HANDLER(_001OnAddLocation);
+      DECLARE_MESSAGE_HANDLER(_001OnUpdateAddLocation);
+      DECLARE_MESSAGE_HANDLER(_001OnReplaceText);
+      DECLARE_MESSAGE_HANDLER(_001OnUpdateReplaceText);
+      DECLARE_MESSAGE_HANDLER(_001OnEditPaste);
+      DECLARE_MESSAGE_HANDLER(_001OnUpdateEditPaste);
+      DECLARE_MESSAGE_HANDLER(_001OnFileSaveAs);
+      DECLARE_MESSAGE_HANDLER(_001OnUpdateFileSaveAs);
+      DECLARE_MESSAGE_HANDLER(_001OnFileImport);
+      DECLARE_MESSAGE_HANDLER(_001OnUpdateFileImport);
+      DECLARE_MESSAGE_HANDLER(_001OnFileExport);
+      DECLARE_MESSAGE_HANDLER(_001OnUpdateFileExport);
+      DECLARE_MESSAGE_HANDLER(_001OnNewManager);
+      DECLARE_MESSAGE_HANDLER(_001OnUpdateNewManager);
+      DECLARE_MESSAGE_HANDLER(_001OnDelManager);
+      DECLARE_MESSAGE_HANDLER(_001OnUpdateDelManager);
+      DECLARE_MESSAGE_HANDLER(_001OnNewFolder);
+      DECLARE_MESSAGE_HANDLER(_001OnUpdateNewFolder);
 
       virtual void defer_check_manager_id(string strNewManagerId = "");
       virtual void on_request(::create * pcreate) override;
@@ -161,13 +167,13 @@ namespace filemanager
 
    CLASS_DECL_CORE int get_manager_id_len();
 
-   CLASS_DECL_CORE string create_manager_id(::layered * pobjectContext);
+   CLASS_DECL_CORE string create_manager_id(::object * pobject);
 
    CLASS_DECL_CORE bool is_valid_manager_id(const char *);
 
    CLASS_DECL_CORE bool is_valid_filemanager_project_entry(const char *);
 
-   CLASS_DECL_CORE ::file::path filemanager_project_entry(string & strManagerId, const char * psz, ::context * pcontext);
+   CLASS_DECL_CORE ::file::path filemanager_project_entry(string & strManagerId, const char * psz, ::aura::context * pcontext);
 
 
 } // namespace filemanager

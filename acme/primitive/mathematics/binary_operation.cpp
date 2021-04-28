@@ -2,7 +2,7 @@
 #include "binary_operation.h"
 
 
-namespace math
+namespace mathematics
 {
 
 
@@ -80,4 +80,4 @@ namespace math
       }
    }
 
-} // namespace math
+} // namespace mathematics

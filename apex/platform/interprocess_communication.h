@@ -81,7 +81,7 @@ namespace interprocess_communication
 #if defined(_UWP)
       virtual bool open(const char * pszChannel);
 #else
-      virtual bool open(const char * pszChannel, launcher * plauncher = nullptr);
+      virtual bool open(const char * pszChannel, ::launcher * plauncher = nullptr);
 #endif
       virtual bool close();
 
@@ -126,7 +126,7 @@ namespace interprocess_communication
 
       bool                    m_bRunning;
       bool                    m_bRun;
-      ::thread *              m_pthread;
+      __pointer(::task)  m_pthread;
 
 #endif
 

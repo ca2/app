@@ -11,7 +11,7 @@ namespace android
    public:
 
 
-      crypto(::layered * pobjectContext);
+      crypto(::object * pobject);
       virtual ~crypto();
 
 

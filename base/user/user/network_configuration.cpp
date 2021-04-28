@@ -17,7 +17,7 @@ namespace user
 
    bool network_configuration::initialize(__pointer(::user::interaction) puiParent)
    {
-      /*m_pdocument = Application.create_form(this, puiParent);
+      /*m_pdocument = papplication->create_form(this, puiParent);
       if(m_pdocument != nullptr)
       {
          m_pview = m_pdocument->get_typed_view < ::user::form > ();
@@ -43,12 +43,12 @@ namespace user
    void network_configuration::on_show()
    {
       /*
-      if(!m_pdocument->on_open_document(Context.dir().matter("system/network/configuration/proxy.xhtml")))
+      if(!m_pdocument->on_open_document(pcontext->m_papexcontext->dir().matter("system/network/configuration/proxy.xhtml")))
       {
          return;
       }
-      xml::node node(get_object());
-      if(node.load(System->file_as_string(System, Context.dir().appdata("proxy.xml"))))
+      xml::node node(this);
+      if(node.load(psystem->file_as_string(System, pcontext->m_papexcontext->dir().appdata("proxy.xml"))))
       {
          string strProxy = node.attr("server");
          i32 iProxyPort = node.attr("port");

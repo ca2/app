@@ -25,10 +25,10 @@ namespace user
    }
 
 
-   ::e_status box::initialize(::layered * pobjectContext)
+   ::e_status box::initialize(::object * pobject)
    {
 
-      auto estatus = interaction::initialize(pobjectContext);
+      auto estatus = interaction::initialize(pobject);
 
       if (!estatus)
       {
@@ -207,7 +207,7 @@ namespace user
 
          window_rect windowrect;
 
-         if (!Application.data_get(key, windowrect))
+         if (!papplication->data_get(key, windowrect))
          {
 
             return false;
@@ -328,7 +328,7 @@ namespace user
       if (m_windowrectStore.m_edisplay == e_display_undefined)
       {
 
-         Application.data_get(key, m_windowrectStore);
+         papplication->data_get(key, m_windowrectStore);
 
       }
 
@@ -390,7 +390,7 @@ namespace user
 
       }
 
-      if (!Application.data_set(key, windowrect))
+      if (!papplication->data_set(key, windowrect))
       {
 
          return false;
@@ -423,7 +423,7 @@ namespace user
    string box::calc_display()
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       string strDisplay;
 
@@ -444,7 +444,7 @@ namespace user
    bool box::does_display_match()
    {
 
-      single_lock synchronizationlock(mutex(), true);
+      single_lock synchronouslock(mutex(), true);
 
       if (m_strDisplay.is_empty())
          return false;
@@ -457,7 +457,7 @@ namespace user
    void box::defer_update_display()
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       m_strDisplay = calc_display();
 

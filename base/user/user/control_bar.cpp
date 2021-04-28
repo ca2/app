@@ -48,7 +48,7 @@ namespace user
 //#endif
       MESSAGE_LINK(e_message_size_parent, pchannel, this, &control_bar::_001OnSizeParent);
       MESSAGE_LINK(e_message_window_position_changing, pchannel, this, &control_bar::_001OnWindowPosChanging);
-      MESSAGE_LINK(e_message_mouse_move, pchannel, this, &control_bar::_001OnMouseMove);
+      MESSAGE_LINK(e_message_mouse_move, pchannel, this, &control_bar::on_message_mouse_move);
       MESSAGE_LINK(e_message_left_button_down, pchannel, this, &control_bar::on_message_left_button_down);
       MESSAGE_LINK(e_message_left_button_up, pchannel, this, &control_bar::on_message_left_button_up);
       MESSAGE_LINK(e_message_left_button_double_click, pchannel, this, &control_bar::_001OnLButtonDblClk);
@@ -241,7 +241,7 @@ namespace user
       UNREFERENCED_PARAMETER(ptimer);
 //      ::u32 uEvent = ptimer->m_uEvent;
 #ifdef WINDOWS_DESKTOP
-      auto psession = Session;
+      auto psession = get_session();
 
       if (psession->is_key_pressed(::user::e_key_lbutton))
          return;
@@ -465,12 +465,10 @@ namespace user
    }
 
 
-
-
-   bool control_bar::DestroyWindow()
+   bool control_bar::start_destroying_window()
    {
 
-      return ::user::interaction::DestroyWindow();
+      return ::user::interaction::start_destroying_window();
 
    }
 
@@ -620,7 +618,7 @@ namespace user
       pmouse->previous();
    }
 
-   void control_bar::_001OnMouseMove(::message::message * pmessage)
+   void control_bar::on_message_mouse_move(::message::message * pmessage)
    {
       __pointer(::message::mouse) pmouse(pmessage);
       if(m_bDockTrack)
@@ -670,7 +668,7 @@ namespace user
    {
 
       // // update the indicators before becoming visible
-      // ::user::message base(get_object());
+      // ::user::message base(this);
       // LRESULT lresult;
       // base.set(this, WM_IDLEUPDATECMDUI, true, (LPARAM) 0, lresult);
       // _001OnIdleUpdateCmdUI(&base);

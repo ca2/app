@@ -2,28 +2,28 @@
 
 
 typedef __pointer_array(::matter) object_array;
-typedef map < ithread_t, __pointer(task) > task_map;
-typedef map < task *, ithread_t > task_id_map;
+typedef map < itask_t, __pointer(task) > task_map;
+typedef map < task *, itask_t > task_id_map;
 
 
 class CLASS_DECL_ACME task :
-   virtual public context_object
+   virtual public object
 {
 
 public:
 
 
-   int                                 m_bitAvoidProcFork : 1;
+   int                                 m_bAvoidProcedureFork : 1;
    int                                 m_bitIsRunning : 1;
-   int                                 m_bitIsPred : 1; // Is helper thread (as opposite to a "main" thread)
+   int                                 m_bIsPredicate : 1; // Is helper thread (as opposite to a "main" thread)
    int                                 m_bitCoInitialize : 1;
 
 
-   hthread_t                           m_hthread;
-   ithread_t                           m_ithread;
+   htask_t                           m_htask;
+   itask_t                           m_itask;
    string                              m_strTaskName;
    string                              m_strTaskTag;
-   __pointer(::context_object)    m_pobjectParent;
+   __pointer(::object)    m_pobjectParent;
 
    __pointer(::matter)            m_pmatter;
    __pointer(manual_reset_event)       m_pevSleep;
@@ -58,7 +58,7 @@ public:
 #endif
 
    virtual void add_notify(::matter* pmatter);
-   virtual void remove_notify(::matter* pmatter);
+   virtual void erase_notify(::matter* pmatter);
 
 
    virtual ::e_status task_caller_on_init();
@@ -111,14 +111,14 @@ public:
 
 
    virtual bool is_thread() const override;
-   virtual bool thread_get_run() const;
+   virtual bool task_get_run() const;
 
    virtual bool task_active() const;
    virtual bool is_running() const;
 
    //virtual bool set_thread_name(const char* pszThreadName);
 
-   virtual bool is_predicate() const { return !m_pobjectContext || m_pobjectContext.get() == this; }
+   virtual bool is_predicate() const { return !m_pobject || m_pobject.get() == this; }
 
    //virtual void set_thread_run(bool bRun = true);
 

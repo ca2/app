@@ -7,7 +7,7 @@ namespace prompt
 {
 
 
-   view::view(::layered * pobjectContext) :
+   view::view(::object * pobject) :
       ::object(pobject),
       ::user::interaction(pobject)
    {
@@ -40,7 +40,7 @@ namespace prompt
 
       MESSAGE_LINK(e_message_left_button_down, pchannel, this, &view::on_message_left_button_down);
       MESSAGE_LINK(e_message_left_button_up, pchannel, this, &view::on_message_left_button_up);
-      MESSAGE_LINK(e_message_right_button_up, pchannel, this, &view::_001OnRButtonUp);
+      MESSAGE_LINK(e_message_right_button_up, pchannel, this, &view::on_message_right_button_up);
 //
 
       MESSAGE_LINK(MessageOp, pchannel, this, &view::_001OnOp);
@@ -182,7 +182,7 @@ namespace prompt
    {
       if(iTab == 1)
       {
-         Application.message_box(nullptr, "Playlist");
+         message_box(nullptr, "Playlist");
       }
    }
 
@@ -222,7 +222,7 @@ namespace prompt
 
    }
 
-   void view::_001OnRButtonUp(::message::message * pmessage)
+   void view::on_message_right_button_up(::message::message * pmessage)
    {
       //__pointer(::message::mouse) pmouse(pmessage);
       UNREFERENCED_PARAMETER(pmessage);

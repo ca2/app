@@ -25,12 +25,12 @@ file_size_table::get_fs_size & file_size_table::get_fs_size::operator = (const g
 }
 
 
-file_size_table::file_size_table(::layered * pobjectContext) :
+file_size_table::file_size_table(::object * pobject) :
    ::object(pobject)
 {
    m_hmap = nullptr;
    m_item.m_pitemParent = nullptr;
-   m_pwndServer = nullptr;
+   m_puserinteractionServer = nullptr;
    m_oswindowServer = nullptr;
 
    /*   SECURITY_ATTRIBUTES MutexAttributes;
@@ -230,7 +230,7 @@ void file_size_table::item::update_size_recursive(::object * pobject, index & iI
 
 
 
-DBFileSystemSizeSet::DBFileSystemSizeSet(::layered * pobjectContext) :
+DBFileSystemSizeSet::DBFileSystemSizeSet(::object * pobject) :
    ::object(pobject), m_table(pobject)
 {
    m_iMaxIteration = 230;
@@ -244,10 +244,10 @@ DBFileSystemSizeSet::~DBFileSystemSizeSet()
 bool DBFileSystemSizeSet::get_cache_fs_size(i64 & i64Size, const char * pszPath, bool & bPending)
 {
    return false;
-   single_lock synchronizationlock(m_table.mutex(), false);
+   single_lock synchronouslock(m_table.mutex(), false);
    // Wait for ::mutex. Once it is obtained, no other client may
    // communicate with the server
-   if(!synchronizationlock.lock(duration::zero()))
+   if(!synchronouslock.lock(duration::zero()))
       return false;
    if(!m_table.check_map())
       return false;
@@ -288,8 +288,8 @@ bool DBFileSystemSizeSet::get_cache_fs_size(i64 & i64Size, const char * pszPath,
 bool DBFileSystemSizeSet::get_fs_size(i64 & i64Size, const char * pszPath, bool & bPending)
 {
    index iIteration = 0;
-   single_lock synchronizationlock(m_table.mutex(), false);
-   if(!synchronizationlock.lock(duration::zero()))
+   single_lock synchronouslock(m_table.mutex(), false);
+   if(!synchronouslock.lock(duration::zero()))
       return false;
    if(!get_fs_size(i64Size, pszPath, bPending, iIteration))
       return false;
@@ -299,16 +299,16 @@ bool DBFileSystemSizeSet::get_fs_size(i64 & i64Size, const char * pszPath, bool 
 
 bool DBFileSystemSizeSet::get_fs_size(i64 & i64Size, const char * pszPath, bool & bPending, index & iIteration)
 {
-   single_lock synchronizationlock(m_table.mutex(), false);
-   if(!synchronizationlock.lock(duration::zero()))
+   single_lock synchronouslock(m_table.mutex(), false);
+   if(!synchronouslock.lock(duration::zero()))
       return false;
    if(iIteration >= m_iMaxIteration)
    {
       bPending = true;
       return true;
    }
-   string strTitle = Context.file().name_(pszPath);
-   file_size_table::item * pitem = m_table.m_item.FindItem(get_context_application(), pszPath, iIteration);
+   string strTitle = pcontext->m_papexcontext->file().name_(pszPath);
+   file_size_table::item * pitem = m_table.m_item.FindItem(get_application(), pszPath, iIteration);
    if(pitem != nullptr)
    {
       bPending = pitem->m_bPending;
@@ -322,13 +322,13 @@ bool DBFileSystemSizeSet::get_fs_size(i64 & i64Size, const char * pszPath, bool 
    {
       return false;
    }
-   pitem->update_size_recursive(get_context_application(), iIteration);
+   pitem->update_size_recursive(get_application(), iIteration);
    bPending = pitem->m_bPending;
    i64Size = pitem->m_iSize;
    return true;
 }
 
-FileSystemSizeWnd::FileSystemSizeWnd(::layered * pobjectContext) :
+FileSystemSizeWnd::FileSystemSizeWnd(::object * pobject) :
    ::object(pobject),
    ::user::interaction_impl *(pobject)
 {
@@ -349,7 +349,7 @@ bool FileSystemSizeWnd::CreateClient()
    m_bServer = false;
    return m_p->create_message_queue("::draw2d::account::FileSystemSizeWnd::Client");
    /*  __pointer(::user::interaction) puiMessage = nullptr;
-      puiMessage = System->ui_from_handle(HWND_MESSAGE);
+      puiMessage = psystem->ui_from_handle(HWND_MESSAGE);
       return m_p->create(nullptr, "::draw2d::account::FileSystemSizeWnd::Client", 0, rectangle_i32(0, 0, 0, 0), puiMessage, id()) != false;*/
 
 //#else
@@ -366,7 +366,7 @@ bool FileSystemSizeWnd::CreateServer()
 #ifdef WINDOWS
 
    m_bServer = true;
-   if(!m_p->create_window("Local\\::draw2d::account::FileSystemSizeWnd::Server",0,::rectangle_i32(),System->ui_from_handle(HWND_MESSAGE),id()))
+   if(!m_p->create_window("Local\\::draw2d::account::FileSystemSizeWnd::Server",0,::rectangle_i32(),psystem->ui_from_handle(HWND_MESSAGE),id()))
       return false;
    m_p->SetTimer(100, 100, nullptr);
    return true;
@@ -384,7 +384,7 @@ bool FileSystemSizeWnd::get_fs_size(i64 & i64Size, const char * pszPath, bool & 
 
 #ifdef WINDOWS_DESKTOP
 
-   db_server * pcentral = dynamic_cast < db_server * > (System->m_simpledb.db());
+   db_server * pcentral = dynamic_cast < db_server * > (psystem->m_simpledb.db());
    oswindow oswindow = pcentral->m_pfilesystemsizeset->m_table.m_oswindowServer;
    if(oswindow == nullptr || ! ::IsWindow(oswindow))
    {
@@ -399,7 +399,7 @@ bool FileSystemSizeWnd::get_fs_size(i64 & i64Size, const char * pszPath, bool & 
    size.m_bRet = false;
 
 
-   ::file::byte_stream_memory_file file(get_object());
+   ::file::byte_stream_memory_file file(this);
    size.write(file);
 
    COPYDATASTRUCT data;
@@ -440,12 +440,12 @@ void FileSystemSizeWnd::_001OnCopyData(::message::message * pmessage)
    if(pstruct->dwData == 0)
    {
       //file_size_table::get_fs_size * prec  = (file_size_table::get_fs_size *) pstruct->lpData;
-      db_server * pcentral = System->m_simpledb.db();
+      db_server * pcentral = psystem->m_simpledb.db();
       file_size_table::get_fs_size size;
-      ::file::byte_stream_memory_file file(get_context_application(), pstruct->lpData, pstruct->cbData);
+      ::file::byte_stream_memory_file file(get_application(), pstruct->lpData, pstruct->cbData);
       size.read(file);
 
-      single_lock synchronizationlock(m_criticalsection, true);
+      single_lock synchronouslock(m_criticalsection, true);
       size.m_oswindow = (oswindow) pusermessage->m_wparam;
       size.m_bRet =  pcentral->m_pfilesystemsizeset->get_fs_size(
                      size.m_iSize,
@@ -457,7 +457,7 @@ void FileSystemSizeWnd::_001OnCopyData(::message::message * pmessage)
    else if(pstruct->dwData == 1)
    {
       file_size_table::get_fs_size size;
-      ::file::byte_stream_memory_file file(get_context_application(), pstruct->lpData, pstruct->cbData);
+      ::file::byte_stream_memory_file file(get_application(), pstruct->lpData, pstruct->cbData);
       size.read(file);
       m_bRet = true;
       m_map.set_at(size.m_strPath, size);
@@ -488,18 +488,18 @@ void FileSystemSizeWnd::_001OnTimer(::timer * ptimer)
          data.dwData = 1;
 
 
-         ::file::byte_stream_memory_file file(get_object());
+         ::file::byte_stream_memory_file file(this);
 
          while(m_sizea.get_size() > 0)
          {
-            single_lock synchronizationlock(m_criticalsection, true);
+            single_lock synchronouslock(m_criticalsection, true);
             file_size_table::get_fs_size & size = m_sizea[0];
             file.m_spmemorybuffer->Truncate(0);
             size.write(file);
             data.cbData = (u32) file.get_length();
             data.lpData = file.get_data();
             ::SendMessage(size.m_oswindow, WM_COPYDATA, (WPARAM) m_p->get_os_data(), (LPARAM) &data);
-            m_sizea.remove_at(0);
+            m_sizea.erase_at(0);
          }
       }
    }
@@ -513,7 +513,7 @@ void FileSystemSizeWnd::_001OnTimer(::timer * ptimer)
 
 }
 
-FileSystemSizeServerThread::FileSystemSizeServerThread(::layered * pobjectContext) :
+FileSystemSizeServerThread::FileSystemSizeServerThread(::object * pobject) :
    ::object(pobject),
    thread(pobject)
 {
@@ -521,8 +521,8 @@ FileSystemSizeServerThread::FileSystemSizeServerThread(::layered * pobjectContex
 
 bool FileSystemSizeServerThread::init_instance()
 {
-   db_server * pcentral = System->m_simpledb.db();
-   pcentral->m_pfilesystemsizeset->m_table.m_pwndServer->CreateServer();
+   db_server * pcentral = psystem->m_simpledb.db();
+   pcentral->m_pfilesystemsizeset->m_table.m_puserinteractionServer->CreateServer();
    return true;
 }
 
@@ -531,13 +531,13 @@ void FileSystemSizeWnd::ClientStartServer()
 
 #ifdef WINDOWS_DESKTOP
 
-   db_server * pcentral = System->m_simpledb.db();
+   db_server * pcentral = psystem->m_simpledb.db();
 
    if(m_millisLastStartTime.elapsed() > 2000)
    {
       m_millisLastStartTime= ::millis::now();
 
-      simple_shell_launcher launcher(nullptr, nullptr, Context.dir().path(System->get_module_folder(), "winservice_filesystemsizeapp"), nullptr, nullptr, SW_HIDE);
+      simple_shell_launcher launcher(nullptr, nullptr, pcontext->m_papexcontext->dir().path(psystem->get_module_folder(), "winservice_filesystemsizeapp"), nullptr, nullptr, SW_HIDE);
 
       launcher.execute();
 

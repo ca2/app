@@ -27,6 +27,12 @@ namespace user
       virtual ~form_control();
 
 
+
+      inline ::base::application* get_application() const;
+      inline ::base::session* get_session() const;
+      inline ::base::system* get_system() const { return ::is_set(m_psystem) ? dynamic_cast <::base::system*> (m_psystem) : nullptr; }
+      inline ::base::user* user() const { return get_session() ? get_session()->user() : nullptr; }
+
       //ref_array < CTransparentStatic > m_staticpa;
 
 
@@ -59,8 +65,8 @@ namespace user
       bool _001Validate(::user::interaction * pinteraction,::payload & payload);
       bool _001SaveEdit(::user::interaction * pinteraction);
       virtual void on_command(::message::command * pcommand) override;
-      DECL_GEN_SIGNAL(_001OnNotify);
-      DECL_GEN_SIGNAL(_001OnMessageNotify);
+      DECLARE_MESSAGE_HANDLER(_001OnNotify);
+      DECLARE_MESSAGE_HANDLER(_001OnMessageNotify);
       virtual void _001GetSelection(::database::key & key,::database::selection & selection);
       void Update(bool bSave);
       bool _001SetData(id uId,bool bData);
@@ -71,8 +77,8 @@ namespace user
 
       virtual void WfiOnClose() override;
 
-      DECL_GEN_SIGNAL(_000OnPosCreate);
-      DECL_GEN_SIGNAL(on_message_create);
+      DECLARE_MESSAGE_HANDLER(_000OnPosCreate);
+      DECLARE_MESSAGE_HANDLER(on_message_create);
 
       virtual void install_message_routing(::channel * pchannel) override;
       virtual void _001InitializeFormPreData();
@@ -87,7 +93,7 @@ namespace user
       virtual void _001UpdateDbFlags(::user::interaction * pinteraction);
       virtual void _001UpdateDbFlagsCheckBox(::user::interaction * pinteraction);
 
-      DECL_GEN_SIGNAL(_001OnAppLanguage);
+      DECLARE_MESSAGE_HANDLER(_001OnAppLanguage);
 
       bool OnCommand(wparam wparam,lparam lparam);
 
@@ -115,21 +121,21 @@ namespace user
       virtual bool _001OnControlKillFocus(::user::interaction * pinteraction);
 
 
-      //        ::user::form_window(::layered * pobjectContext);
+      //        ::user::form_window(::object * pobject);
       //    virtual ~::user::form_window();
 
       //virtual void install_message_routing(::channel * pchannel);
 
-      //      DECL_GEN_SIGNAL(on_message_create);
+      //      DECLARE_MESSAGE_HANDLER(on_message_create);
 
 
-      //      ::user::form_window(::layered * pobjectContext);
+      //      ::user::form_window(::object * pobject);
 
       //virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
       //      virtual void on_control_event(::user::control_event * pevent);
-      //      DECL_GEN_SIGNAL(on_message_create);
+      //      DECLARE_MESSAGE_HANDLER(on_message_create);
       virtual void _001OnTimer(::timer * ptimer) override;
-      DECL_GEN_SIGNAL(_001OnUser123);
+      DECLARE_MESSAGE_HANDLER(_001OnUser123);
       //      virtual void install_message_routing(::channel * pchannel);
 
 

@@ -1598,6 +1598,7 @@ const widechar * lpName,
 
 #endif  // (WINVER >= 0x0600)
 
+#ifdef WIN32_GET_TIME_FORMAT_ETC
 // For Windows Vista and above GetTimeFormatEx is preferred
 //xxx linux WINAXISAPI
 i32
@@ -2602,7 +2603,7 @@ i32     cchLocaleName
 
 
 #endif // NONLS
-
+#endif // WIN32_GET_TIME_FORMAT_ETC
 
 #ifdef __cplusplus
 }

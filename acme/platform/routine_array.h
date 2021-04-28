@@ -27,7 +27,7 @@
 //         threadptra.add(fork([=]()
 //         {
 //
-//            (get_object()->*proutine)();
+//            (this->*proutine)();
 //
 //         }));
 //
@@ -49,7 +49,7 @@
 //         try
 //         {
 //
-//            if(!::thread_get_run())
+//            if(!::task_get_run())
 //            {
 //
 //               break;
@@ -65,7 +65,7 @@
 //         try
 //         {
 //
-//            (get_object()->*proutine)();
+//            (this->*proutine)();
 //
 //         }
 //         catch(...)
@@ -91,7 +91,7 @@
 //         try
 //         {
 //
-//            if(!::thread_get_run())
+//            if(!::task_get_run())
 //            {
 //
 //               break;
@@ -115,7 +115,7 @@
 //         try
 //         {
 //
-//            (get_object()->*proutine)();
+//            (this->*proutine)();
 //
 //         }
 //         catch(const ::exception::exception & e)

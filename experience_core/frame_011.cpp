@@ -210,7 +210,7 @@ SizingNone:;
 
                }
 
-               auto psession = Session;
+               auto psession = get_session();
 
                status < ::color::color > crMoveableBorder;
                status < ::color::color > crMoveableBorderHilight;
@@ -236,16 +236,23 @@ SizingNone:;
                }
 
                enum_dock edock = m_pframewindow->dock_manager()->get_dock_mask();
+
                ::rectangle_i32 rectA(rectClient);
 
                if(m_pframewindow->m_estyle == ::user::StyleTranslucidWarmGray
                      || m_pframewindow->m_estyle == ::user::StyleTranslucidLightBlue
                      || m_pframewindow->m_estyle == ::user::StyleTranslucidLightGreen)
                {
+
                   ::rectangle_i32 rectangle;
+
                   GetBorderRect(rectClient,rectangle,eside);
-                  class imaging & imaging = System->imaging();
-                  imaging.color_blend(pgraphics,
+
+                  auto psystem = m_psystem->m_paurasystem;
+
+
+
+                  pgraphics->color_blend(
                                       rectangle,
                                       crMoveableBorder,
                                       127);
@@ -266,7 +273,7 @@ SizingNone:;
 
                   //::rectangle_i32 rectangle;
                   //GetBorderRect(rectClient,rectangle,eside);
-                  //class imaging & imaging = System->imaging();
+                  //class imaging & imaging = psystem->imaging();
                   //imaging.color_blend(pgraphics,
                   //   rectangle,
                   //   crMoveableBorder,
@@ -276,8 +283,8 @@ SizingNone:;
                {
                   ::rectangle_i32 rectangle;
                   GetBorderRect(rectClient,rectangle,eside);
-                  class imaging & imaging = System->imaging();
-                  imaging.color_blend(pgraphics,
+
+                  pgraphics->color_blend(
                                       rectangle,
                                       crMoveableBorder,
                                       127);
@@ -328,7 +335,7 @@ SizingNone:;
                bool bZoomed = pframewindow->layout().is_zoomed() != 0;
 
                //    CVMSApp * pApp = (CVMSApp *) System;
-               //::aura::savings & savings = psession->savings();
+               //::aura::savings & savings = psession->m_paurasession->savings();
 
                //auto rectClient = pframewindow->get_client_rect();
 
@@ -595,7 +602,7 @@ SizingNone:;
             void frame_011::DrawRectGrip(::draw2d::graphics_pointer & pgraphics,const ::rectangle_i32 & rectParam)
             {
 
-               auto psession = Session;
+               auto psession = get_session();
 
                ::rectangle_i32 rectangle(rectParam);
 

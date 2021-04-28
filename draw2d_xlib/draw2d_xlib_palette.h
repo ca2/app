@@ -10,7 +10,7 @@ namespace draw2d_xlib
    {
    public:
 
-      palette(::layered * pobjectContext);
+      palette(::object * pobject);
       virtual ~palette();
 
 

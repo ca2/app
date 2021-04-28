@@ -10,7 +10,7 @@ namespace hellobase
 
 
 
-   view::view(::layered * pobjectContext):
+   view::view(::object * pobject):
       object(pobject),
       impact_base(pobject),
       m_pimageColor,
@@ -22,10 +22,10 @@ namespace hellobase
       prop(FONTSEL_IMPACT) = true;
 
 
-      m_flagNonClient.remove(non_client_background);
-      m_flagNonClient.remove(non_client_focus_rect);
+      m_flagNonClient.erase(non_client_background);
+      m_flagNonClient.erase(non_client_focus_rect);
 
-      m_strNewFont = os_font_name(e_font_sans);
+      m_strNewFont = pnode->font_name(e_font_sans);
 
       m_eeffect                  = effect_none;
 
@@ -41,7 +41,7 @@ namespace hellobase
       m_prender                  = nullptr;
 
 
-      m_prender = new render(get_object());
+      m_prender = new render(this);
 
       m_prender->m_pview = this;
 
@@ -103,7 +103,7 @@ namespace hellobase
 
 
 
-      if(Application.m_etype == application::type_normal)
+      if(papplication->m_etype == application::type_normal)
       {
 
          m_prender->begin();
@@ -122,11 +122,11 @@ namespace hellobase
    void view::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       {
 
-         synchronization_lock slText(&m_mutexText);
+         synchronous_lock slText(&m_mutexText);
 
          if(m_strNewHelloBase.is_empty())
          {
@@ -239,7 +239,7 @@ namespace hellobase
    string view::get_processed_hellobase()
    {
 
-      synchronization_lock slText(&m_mutexText);
+      synchronous_lock slText(&m_mutexText);
 
       string str = get_hellobase();
 
@@ -263,7 +263,7 @@ namespace hellobase
             m_strImage = strImage;
 
 
-            ::fork(get_context_application(),[=]()
+            ::fork(get_application(),[=]()
             {
 
 
@@ -287,7 +287,7 @@ namespace hellobase
                //
                //   varFile["url"] = strImage;
                //
-               //   varFile["http_set"]["raw_http"] = System->url().get_server(m_strImage).find_wci("ca2") < 0;
+               //   varFile["http_set"]["raw_http"] = purl->get_server(m_strImage).find_wci("ca2") < 0;
                //
                //   ::image_pointer pimage;
                //
@@ -340,7 +340,7 @@ namespace hellobase
    string view::get_hellobase()
    {
 
-      synchronization_lock synchronizationlock(&m_mutexText);
+      synchronous_lock synchronouslock(&m_mutexText);
 
       if(m_strHelloBase != m_strNewHelloBase)
       {
@@ -357,11 +357,11 @@ namespace hellobase
 
             if(m_dFps != 0.0)
             {
-               return "Rolling " + Application.m_strAlternateHelloBase;
+               return "Rolling " + papplication->m_strAlternateHelloBase;
             }
             else
             {
-               return Application.m_strAlternateHelloBase;
+               return papplication->m_strAlternateHelloBase;
             }
 
 
@@ -371,11 +371,11 @@ namespace hellobase
 
             if(m_dFps != 0.0)
             {
-               return "Rolling " + Application.m_strHelloBase;
+               return "Rolling " + papplication->m_strHelloBase;
             }
             else
             {
-               return Application.m_strHelloBase;
+               return papplication->m_strHelloBase;
             }
 
 
@@ -398,14 +398,14 @@ namespace hellobase
       if (m_prender != nullptr)
       {
 
-         synchronization_lock synchronizationlock(&m_mutexText);
+         synchronous_lock synchronouslock(&m_mutexText);
 
          if (get_processed_hellobase() != m_prender->m_strHelloBase)
          {
 
             m_prender->m_strHelloBase = get_processed_hellobase().c_str(); // rationale : string allocation fork *for parallelization*
 
-            synchronizationlock.unlock();
+            synchronouslock.unlock();
 
             set_need_layout();
 

@@ -71,9 +71,9 @@ public:
       BASE_ARRAY::clear();
    }
 
-   void remove_all()
+   void erase_all()
    {
-      BASE_ARRAY::remove_all();
+      BASE_ARRAY::erase_all();
    }
 
 };

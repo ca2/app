@@ -54,11 +54,11 @@ namespace linux
       virtual bool open_in_ie(const char * pcsz);
 
 
-      virtual bool create_service(::layered * pobjectContext);
-      virtual bool remove_service(::layered * pobjectContext);
+      virtual bool create_service(::object * pobject);
+      virtual bool erase_service(::object * pobject);
 
-      virtual bool start_service(::layered * pobjectContext);
-      virtual bool stop_service(::layered * pobjectContext);
+      virtual bool start_service(::object * pobject);
+      virtual bool stop_service(::object * pobject);
 
       void raise_exception( ::u32 dwExceptionCode, ::u32 dwExceptionFlags);
 

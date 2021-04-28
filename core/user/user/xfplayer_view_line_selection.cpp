@@ -138,7 +138,7 @@ void XfplayerViewLineSelection::relay_event(xfplayer_view_line & viewline, ::mes
 
                   string str;
 
-                  auto psession = Session;
+                  __pointer(::core::session) psession = get_session();
 
                   auto puser = psession->user();
 
@@ -159,7 +159,7 @@ void XfplayerViewLineSelection::relay_event(xfplayer_view_line & viewline, ::mes
          else if(message == e_message_mouse_move)
          {
 
-            auto psession = Session;
+            __pointer(::core::session) psession = get_session();
 
             auto puser = psession->user();
 
@@ -180,7 +180,7 @@ void XfplayerViewLineSelection::relay_event(xfplayer_view_line & viewline, ::mes
       if(uEvent == ::e_timer_hover)
       {
 
-         auto psession = Session;
+         __pointer(::core::session) psession = get_session();
 
          auto puser = psession->user();
 
@@ -192,8 +192,8 @@ void XfplayerViewLineSelection::relay_event(xfplayer_view_line & viewline, ::mes
 
          if(!viewline.is_hover())
          {
-            __pointer(::user::interaction) pwnd = viewline.get_interaction();
-            pwnd->KillTimer(::e_timer_hover);
+            __pointer(::user::interaction) puserinteraction = viewline.get_interaction();
+            puserinteraction->KillTimer(::e_timer_hover);
          }
       }
    }
@@ -445,7 +445,7 @@ bool    bMerge)
          return;
       }
    }
-   m_itema.remove_all();
+   m_itema.erase_all();
    m_itema.add(
    XfplayerViewLineSelectionItem(
    iLineStart,
@@ -681,7 +681,7 @@ bool XfplayerViewLineSelection::OnTimer(xfplayer_view_line & viewline, ::u32 use
       if(viewline.is_hover())
       {
          
-         auto psession = Session;
+         __pointer(::core::session) psession = get_session();
 
          auto puser = psession->user();
 

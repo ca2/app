@@ -74,12 +74,12 @@ namespace user
    }
 
 
-   void multiple_document_template::remove_document(::user::document * pdocument)
+   void multiple_document_template::erase_document(::user::document * pdocument)
    {
 
-      impact_system::remove_document(pdocument);
+      impact_system::erase_document(pdocument);
 
-      m_docptra.remove(pdocument);
+      m_docptra.erase(pdocument);
 
    }
 
@@ -120,10 +120,10 @@ namespace user
 
          string strId;
 
-         if (pcreate->m_puiAlloc != nullptr)
+         if (pcreate->m_puserprimitiveAlloc)
          {
 
-            strId = ::type(pcreate->m_puiAlloc).name();
+            strId = ::type(pcreate->m_puserprimitiveAlloc).name();
 
          }
 
@@ -134,7 +134,7 @@ namespace user
 
          }
 
-         remove_document(pdocument);
+         erase_document(pdocument);
 
          return;
 
@@ -155,7 +155,7 @@ namespace user
          {
             // ::account::user has be alerted to what failed in on_new_document
             TRACE(trace_category_appmsg, e_trace_level_warning, "::user::document::on_new_document returned false.\n");
-            pFrame->DestroyWindow();
+            pFrame->destroy_window();
             return;
 
          }
@@ -227,7 +227,9 @@ namespace user
       else
       {
 
-         strDocName = App(pdocument).load_string("untitled");
+         auto papplication = pdocument->get_application();
+
+         strDocName = papplication->load_string("untitled");
 
       }
 

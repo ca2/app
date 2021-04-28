@@ -5,7 +5,7 @@ namespace exception
 {
 
 
-   class CLASS_DECL_ACME exception
+   class CLASS_DECL_ACME exception 
    {
    public:
 
@@ -22,11 +22,11 @@ namespace exception
 
       // A exception class is meant to be a small utility/tool class.
       // m_bLog -> too much managing (micro-managing and also big-managing)
-      // from utility/tool small class of the Logging System->
+      // from utility/tool small class of the Logging get_system()->
       // General-ever Log can be done by final handlers at Main Loop and crash handlers
       // Log can be supressed or translated at optional middle-stack handlers.
       // bool        m_bLog;
-
+      string                  m_strLink;
       string                  m_strFile;
       int                     m_iLine;
       int                     m_iErrNo;
@@ -139,8 +139,6 @@ inline __pointer(EXCEPTION) __move_throw_exception(EXCEPTION * pexceptionNew)
 //};
 //
 
-
-using exception_array = ::array < ::exception::exception >;
 
 
 #ifdef WINDOWS

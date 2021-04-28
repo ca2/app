@@ -6,7 +6,8 @@ namespace draw2d
 
 
    class CLASS_DECL_AURA object :
-      virtual public ::context_object
+      virtual public ::material_object,
+      virtual public ::osdata_array
    {
    public:
 
@@ -23,6 +24,11 @@ namespace draw2d
 
       virtual void assert_valid() const;
       virtual void dump(dump_context & dumpcontext) const;
+
+      
+      //inline ::aura::application* get_application();
+      //inline ::aura::session* get_session();
+      inline ::aura::system* get_system();
 
 
       inline bool is_set() const { return m_osdata[0] != nullptr; }

@@ -6,7 +6,7 @@ namespace user
 
 
    class CLASS_DECL_APEX text :
-      virtual public context_object
+      virtual public object
    {
    public:
 
@@ -47,10 +47,18 @@ namespace user
       virtual void MacroEnd();
 
 
+      virtual void insert_text(string str, bool bForceNewStep, const ::action_context& context);
+
+
       inline string strtext() const { return m_ppropertyText->m_str; }
       inline string & strtext() { return m_ppropertyText->m_str; }
       inline string as_string() const { return m_ppropertyText->get_string(); }
 
+      
+      virtual bool edit_undo();
+
+
+      virtual void get_text_composition_area(::rectangle_i32& rectangle);
 
 
    };

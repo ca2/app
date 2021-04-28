@@ -17,9 +17,9 @@ namespace colorertake5
    Outliner::~Outliner()
    {
 
-      baseEditor->removeRegionHandler(this);
+      baseEditor->eraseRegionHandler(this);
 
-      baseEditor->removeEditorListener(this);
+      baseEditor->eraseEditorListener(this);
 
       for(i32 idx = 0; idx < outline.get_size(); idx++)
          delete outline.element_at(idx);
@@ -43,7 +43,7 @@ namespace colorertake5
    {
 
       while(treeStack.get_size() > 0 && newLevel < treeStack.last())
-         treeStack.remove_last();
+         treeStack.erase_last();
 
       if (treeStack.get_size() == 0 || newLevel > treeStack.last())
       {

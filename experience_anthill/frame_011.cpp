@@ -214,7 +214,7 @@ SizingNone:;
 
                }
 
-               auto psession = Session;
+               auto psession = get_session();
 
                ::color::color    colorMoveableBorder;
                ::color::color    colorMoveableBorderHilight;
@@ -229,7 +229,7 @@ SizingNone:;
                else
                {
 
-                  auto psession = Session;
+                  auto psession = get_session();
 
                   auto pstyle = pframewindow->get_style(pgraphics);
 
@@ -252,8 +252,8 @@ SizingNone:;
                {
                   ::rectangle_i32 rectangle;
                   GetBorderRect(rectClient, rectangle, eside);
-                  class imaging & imaging = System->imaging();
-                  imaging.color_blend(pgraphics,
+
+                  pgraphics->color_blend(
                                       rectangle,
                                       colorMoveableBorder,
                                       127);
@@ -274,7 +274,7 @@ SizingNone:;
 
                   //::rectangle_i32 rectangle;
                   //GetBorderRect(rectClient,rectangle,eside);
-                  //class imaging & imaging = System->imaging();
+                  //class imaging & imaging = psystem->imaging();
                   //imaging.color_blend(pgraphics,
                   //   rectangle,
                   //   crMoveableBorder,
@@ -284,8 +284,8 @@ SizingNone:;
                {
                   ::rectangle_i32 rectangle;
                   GetBorderRect(rectClient, rectangle, eside);
-                  class imaging & imaging = System->imaging();
-                  imaging.color_blend(pgraphics,
+
+                  pgraphics->color_blend(
                                       rectangle,
                                       colorMoveableBorder,
                                       127);
@@ -459,7 +459,7 @@ SizingNone:;
             }
 
 
-            void frame_011::on_style_change()
+            void frame_011::_on_style_change(::draw2d::graphics_pointer& pgraphics)
             {
 
                on_style_change_001_and_002(pgraphics);
@@ -603,7 +603,7 @@ SizingNone:;
             void frame_011::DrawRectGrip(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectParam)
             {
 
-               auto psession = Session;
+               auto psession = get_session();
 
                ::rectangle_i32 rectangle(rectParam);
 

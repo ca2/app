@@ -186,11 +186,11 @@
 //   void set_at(ARG_KEY key, ARG_VALUE newValue);
 //
 //   // removing existing (key, ?) pair
-//   bool remove_key(ARG_KEY key);
+//   bool erase_key(ARG_KEY key);
 //   void erase(iterator it);
 //   ::count erase(const KEY & key);
 //   void erase ( iterator first, iterator last );
-//   void remove_all();
+//   void erase_all();
 //   void clear();
 //
 //
@@ -348,7 +348,7 @@
 //
 //
 //template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class COMPARE >
-//void fifo_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE >::remove_all()
+//void fifo_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE >::erase_all()
 //{
 //
 //   ASSERT_VALID(this);
@@ -360,7 +360,7 @@
 //
 //   }
 //
-//   m_ptra.remove_all();
+//   m_ptra.erase_all();
 //
 //}
 //
@@ -368,7 +368,7 @@
 //inline void fifo_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE >::clear()
 //{
 //
-//   remove_all();
+//   erase_all();
 //
 //}
 //
@@ -376,7 +376,7 @@
 //fifo_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE >::~fifo_map()
 //{
 //
-//   remove_all();
+//   erase_all();
 //
 //}
 //
@@ -463,8 +463,8 @@
 //}
 //
 //template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class COMPARE >
-//bool fifo_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE >::remove_key(ARG_KEY key)
-//// remove key - return true if removed
+//bool fifo_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE >::erase_key(ARG_KEY key)
+//// erase key - return true if erased
 //{
 //
 //   ASSERT_VALID(this);
@@ -476,7 +476,7 @@
 //
 //   delete m_ptra[i];
 //
-//   m_ptra.remove_at(i);
+//   m_ptra.erase_at(i);
 //
 //   return true;
 //
@@ -576,7 +576,7 @@
 //::count fifo_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE >::erase(const KEY & key)
 //{
 //
-//   return remove_key(key) ? 1 : 0;
+//   return erase_key(key) ? 1 : 0;
 //
 //}
 //
@@ -584,7 +584,7 @@
 //void fifo_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE >::erase(iterator it)
 //{
 //
-//   remove_key(it->element1());
+//   erase_key(it->element1());
 //
 //}
 //

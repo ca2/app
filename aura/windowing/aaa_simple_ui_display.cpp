@@ -162,7 +162,7 @@ namespace windowing
 //      }
 //      else auto pnode = ::aura::get_system()->node();
 
-               if (pnode->is_app_dark_mode())
+               if (m_pnode->is_app_dark_mode())
 //      {
 //
 //         XftColorAllocName(pdisplay, m_pvisual, m_colormap, "#555555", &m_colorBack);
@@ -485,7 +485,7 @@ namespace windowing
 
 //      {
 //
-//         synchronization_lock synchronizationlock(x11_mutex());
+//         synchronous_lock synchronouslock(x11_mutex());
 //
 //         Display *pdisplay = x11_get_display();
 //
@@ -869,7 +869,7 @@ namespace windowing
 
       //unhook();
 
-      //::update_task::remove(id_dark_mode, this);
+      //::update_task::erase(id_dark_mode, this);
 
    }
 

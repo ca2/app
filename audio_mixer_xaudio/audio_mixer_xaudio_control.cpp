@@ -22,8 +22,8 @@ namespace multimedia
 
 
       control::control(control & control) :
-         matter(control.get_context_application()),
-         ::multimedia::audio_mixer::control(control.get_context_application())
+         matter(control.get_application()),
+         ::multimedia::audio_mixer::control(control.get_application())
       {
 
          operator =(control);
@@ -258,11 +258,11 @@ namespace multimedia
          string str;
          if(m_pmixersource == m_pmixersource->get_destination())
          {
-            str = System->load_string("mix::mute_all");
+            str = psystem->load_string("mix::mute_all");
          }
          else
          {
-            str = System->load_string("mix::mute");
+            str = psystem->load_string("mix::mute");
          }
          for(i32 iItem = 0; iItem < iItemCount; iItem++)
          {
@@ -384,7 +384,7 @@ namespace multimedia
 
          if (::success != mmrc)
          {
-            //        System->message_box(nullptr, e_message_box_ok | e_message_box_icon_exclamation,
+            //        message_box(nullptr, e_message_box_ok | e_message_box_icon_exclamation,
             //                "mixerGetControlDetails(ctrlid=%.08lXh) failed on hmx=%.04Xh, mmr=%u!",
             //              m_mixercontrol.dwControlID, m_pmixersource->get_device()->m_hMixer, mmrc);
             return;
@@ -573,7 +573,7 @@ namespace multimedia
       }
       else
       {
-      //                                System->message_box(nullptr, e_message_box_ok | e_message_box_icon_exclamation,
+      //                                message_box(nullptr, e_message_box_ok | e_message_box_icon_exclamation,
       //                                        "mixerGetControlDetails(ctrlid=%.08lXh) failed on hmx=%.04Xh, mmr=%u!",
       //                                      m_mixercontrol.dwControlID, m_pmixersource->get_device()->m_hMixer, mmrc);
       }
@@ -597,7 +597,7 @@ namespace multimedia
       }
       else
       {
-      //                                System->message_box(nullptr, e_message_box_ok | e_message_box_icon_exclamation,
+      //                                message_box(nullptr, e_message_box_ok | e_message_box_icon_exclamation,
       ///                                        "mixerGetControlDetails(ctrlid=%.08lXh) failed on hmx=%.04Xh, mmr=%u!",
       //                                     m_mixercontrol.dwControlID, m_pmixersource->get_device()->m_hMixer, mmrc);
       }
@@ -753,7 +753,7 @@ namespace multimedia
                            }
                            else
                            {
-                              //                                System->message_box(nullptr, e_message_box_ok | e_message_box_icon_exclamation,
+                              //                                message_box(nullptr, e_message_box_ok | e_message_box_icon_exclamation,
                               //                                        "mixerGetControlDetails(ctrlid=%.08lXh) failed on hmx=%.04Xh, mmr=%u!",
                               //                                      m_mixercontrol.dwControlID, m_pmixersource->get_device()->m_hMixer, mmrc);
                            }
@@ -776,7 +776,7 @@ namespace multimedia
                            }
                            else
                            {
-                              System->message_box(nullptr, e_message_box_ok | e_message_box_icon_exclamation,
+                              message_box(nullptr, e_message_box_ok | e_message_box_icon_exclamation,
                                                         "mixerGetControlDetails(ctrlid=%.08lXh) failed on hmx=%.04Xh, mmr=%u!",
                                                         m_mixercontrol.dwControlID, device->m_hMixer, mmrc);
                            }
@@ -797,11 +797,11 @@ namespace multimedia
          ::u16 wNotifyCode = HIWORD(wParam);
          ::u16 wID = LOWORD(wParam);
 
-         ::multimedia::audio_mixer::user::control * pwnd = GetControlByDlgCtrlID((u32)wID);
+         ::multimedia::audio_mixer::user::control * puserinteraction = GetControlByDlgCtrlID((u32)wID);
 
          ::multimedia::audio_mixer::user::toggle_control * pmutecontrol =
          dynamic_cast < ::multimedia::audio_mixer::user::toggle_control  * >
-         (pwnd);
+         (puserinteraction);
 
          if(pmutecontrol != nullptr)
          {
@@ -843,7 +843,7 @@ namespace multimedia
                      }
                      else
                      {
-                        System->message_box(nullptr, e_message_box_ok | e_message_box_icon_exclamation,
+                        message_box(nullptr, e_message_box_ok | e_message_box_icon_exclamation,
                                                   "mixerGetControlDetails(ctrlid=%.08lXh) failed on hmx=%.04Xh, mmr=%u!",
                                                   m_mixercontrol.dwControlID, device->m_hMixer, mmrc);
                      }

@@ -151,7 +151,7 @@ namespace crypto
    bool crypto::encrypt(memory& storageEncrypt, const memory& storageDecrypt, const memory& memKeyData)
    {
 
-      memory memSha1(get_context_object());
+      memory memSha1(this);
 
       nessie(memSha1, memKeyData);
 
@@ -899,7 +899,7 @@ namespace crypto
 
       }
 
-      if (!Context.file().put_contents(varFile, memoryEncrypt))
+      if (!pcontext->m_papexcontext->file().put_contents(varFile, memoryEncrypt))
       {
 
          return false;
@@ -916,13 +916,13 @@ namespace crypto
 
       memory memoryEncrypt;
 
-      if (!Context.file().exists(varFile))
+      if (!pcontext->m_papexcontext->file().exists(varFile))
       {
          str.Empty();
          return success_not_found;
       }
 
-      if (!Context.file().as_memory(varFile, memoryEncrypt))
+      if (!pcontext->m_papexcontext->file().as_memory(varFile, memoryEncrypt))
       {
          return error_file;
       }
@@ -1051,7 +1051,7 @@ namespace crypto
    ::file::path crypto::get_crypt_key_file_path()
    {
 
-      return ::dir::system() / "user" / "databin.bin";
+      return pacmedir->system() / "user" / "databin.bin";
 
    }
 
@@ -1061,7 +1061,7 @@ namespace crypto
 
       string strPath = get_crypt_key_file_path();
 
-      string str = Context.file().as_string(strPath);
+      string str = pcontext->m_papexcontext->file().as_string(strPath);
 
       if (str.has_char())
       {
@@ -1074,7 +1074,7 @@ namespace crypto
 
       generate_random_alphanumeric(str.get_string_buffer(iLength), iLength);
 
-      Context.file().put_contents(strPath, str);
+      pcontext->m_papexcontext->file().put_contents(strPath, str);
 
       return str;
 
@@ -1196,7 +1196,7 @@ namespace crypto
    //
    //#else
    //
-   //      single_lock synchronizationlock(mutex(), true);
+   //      single_lock synchronouslock(mutex(), true);
    //
    //      i32 iRsaSize = 8192;
    //
@@ -1354,7 +1354,7 @@ namespace crypto
    //
    //#else
    //
-   //      single_lock synchronizationlock(mutex(), true);
+   //      single_lock synchronouslock(mutex(), true);
    //
    //      i32 iRsaSize = 8192;
    //
@@ -1537,7 +1537,7 @@ namespace crypto
 
       X509* signer = nullptr;
       {
-         string strSigner = Context.file().as_string(strSignerPath);
+         string strSigner = pcontext->m_papexcontext->file().as_string(strSignerPath);
          BIO* pbio = BIO_new_mem_buf((void*)(const char *)strSigner, (i32)strSigner.get_length());
          //signer = PEM_read_bio_X509_AUX(pbio, nullptr, 0, nullptr);
          signer = PEM_read_bio_X509(pbio, nullptr, 0, nullptr);
@@ -1546,7 +1546,7 @@ namespace crypto
 
       EVP_PKEY* pkey;
       {
-         string strKey = Context.file().as_string(strKeyPath);
+         string strKey = pcontext->m_papexcontext->file().as_string(strKeyPath);
          BIO* pbio = BIO_new_mem_buf((void*)(const char *)strKey, (i32)strKey.get_length());
          pkey = PEM_read_bio_PrivateKey(pbio, nullptr, nullptr, nullptr);
          BIO_free(pbio);
@@ -1555,7 +1555,7 @@ namespace crypto
 
       stack_st_X509* pstack509 = nullptr;
       {
-         string strOthers = Context.file().as_string(strOthersPath);
+         string strOthers = pcontext->m_papexcontext->file().as_string(strOthersPath);
          address_array < X509* > xptra;
          strsize iStart = 0;
          strsize iFind;
@@ -1607,7 +1607,7 @@ namespace crypto
       char* pchData = nullptr;
       long count = BIO_get_mem_data(output, &pchData);
 
-      Context.file().put_contents(strDir / "META-INF/zigbert.rsa", pchData, count);
+      pcontext->m_papexcontext->file().put_contents(strDir / "META-INF/zigbert.rsa", pchData, count);
 
       BIO_free(output);
       PKCS7_free(pkcs7);

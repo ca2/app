@@ -94,13 +94,13 @@ namespace calculator
 
          {
 
-            synchronization_lock synchronizationlock(m_pcallback == nullptr ? nullptr : m_pcallback->mutex());
+            synchronous_lock synchronouslock(m_pcallback == nullptr ? nullptr : m_pcallback->mutex());
 
             string strExp;
 
             _001GetText(strExp);
 
-            parser parser(get_context_object());
+            auto pparser = __create_new< parser >();
 
             error e;
 
@@ -214,7 +214,7 @@ namespace calculator
             try
             {
 
-               pelement = parser.parse(strExp);
+               pelement = pparser->parse(strExp);
                //__throw(::exception::exception("now a simple exception here"));
 
             }
@@ -353,7 +353,7 @@ namespace calculator
             }
             else
             {
-               m_errora.remove_all();
+               m_errora.erase_all();
             }
 
 

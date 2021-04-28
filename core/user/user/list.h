@@ -51,6 +51,12 @@ namespace user
       virtual ~list();
 
 
+      inline ::core::application* get_application() const { return m_pcontext ? m_pcontext->m_pcoreapplication : nullptr; }
+      inline ::core::session* get_session() const { return m_pcontext ? m_pcontext->m_pcoresession : nullptr; }
+      inline ::core::system* get_system() const { return m_psystem ? m_psystem->m_pcoresystem : nullptr; }
+      inline ::core::user* user() const { return get_session() ? get_session()->user() : nullptr; }
+
+
 
       virtual i32 _001CalcItemWidth(::draw2d::graphics_pointer & pgraphics, index iItem, index iSubItem) override;
       virtual i32 _001CalcItemWidth(::draw2d::graphics_pointer & pgraphics, ::write_text::font * pfont, index iItem, index iSubItem);
@@ -273,20 +279,20 @@ namespace user
 
       virtual void on_create_draw_item() override;
 
-      DECL_GEN_SIGNAL(_001OnSize);
-      DECL_GEN_SIGNAL(_001OnMouseLeave);
-      DECL_GEN_SIGNAL(_001OnMouseMove);
-      DECL_GEN_SIGNAL(on_message_left_button_down);
-      DECL_GEN_SIGNAL(on_message_left_button_up);
-      DECL_GEN_SIGNAL(_001OnLButtonDblClk);
-      DECL_GEN_SIGNAL(on_message_right_button_down);
-      DECL_GEN_SIGNAL(_001OnKeyDown);
-      DECL_GEN_SIGNAL(on_message_create);
+      DECLARE_MESSAGE_HANDLER(_001OnSize);
+      DECLARE_MESSAGE_HANDLER(on_message_mouse_leave);
+      DECLARE_MESSAGE_HANDLER(on_message_mouse_move);
+      DECLARE_MESSAGE_HANDLER(on_message_left_button_down);
+      DECLARE_MESSAGE_HANDLER(on_message_left_button_up);
+      DECLARE_MESSAGE_HANDLER(_001OnLButtonDblClk);
+      DECLARE_MESSAGE_HANDLER(on_message_right_button_down);
+      DECLARE_MESSAGE_HANDLER(_001OnKeyDown);
+      DECLARE_MESSAGE_HANDLER(on_message_create);
       virtual void _001OnTimer(::timer * ptimer) override;
 
-      DECL_GEN_SIGNAL(_001OnUpdateListViewAutoArrange);
+      DECLARE_MESSAGE_HANDLER(_001OnUpdateListViewAutoArrange);
 
-      DECL_GEN_SIGNAL(_001OnListViewAutoArrange);
+      DECLARE_MESSAGE_HANDLER(_001OnListViewAutoArrange);
 
 
       virtual bool on_click(const ::user::item & item) override;
@@ -363,8 +369,8 @@ namespace user
 
       virtual bool keyboard_focus_is_focusable() const override;
 
-      DECL_GEN_SIGNAL(_001OnVScroll);
-      DECL_GEN_SIGNAL(_001OnHScroll);
+      DECLARE_MESSAGE_HANDLER(_001OnVScroll);
+      DECLARE_MESSAGE_HANDLER(_001OnHScroll);
 
       virtual void _thread_data_update_visible_subitem() override;
 

@@ -49,7 +49,7 @@ typedef iptr strsize;
 #include "acme/primitive/primitive/estatus.h"
 #include "acme/primitive/primitive/eobject.h"
 #include "acme/primitive/primitive/matter.h"
-#include "acme/primitive/primitive/layered.h"
+//#include "acme/primitive/primitive/layered.h"
 
 
 

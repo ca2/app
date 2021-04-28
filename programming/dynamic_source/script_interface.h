@@ -42,10 +42,10 @@ namespace dynamic_source
 
       virtual const char* debug_note() const override;
 
-      virtual ::e_status initialize(::layered * pobjectContext) override;
+      virtual ::e_status initialize(::object * pobject) override;
       virtual ::e_status init1();
 
-      virtual void finalize() override;
+      virtual ::e_status finalize() override;
 
 
       virtual ::e_status     run() override;

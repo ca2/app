@@ -14,12 +14,12 @@ namespace account
    public:
 
 
-      __composite(::simple_ui::label)        m_plabelUser;
-      __composite(::simple_ui::edit_box)     m_peditUser;
-      __composite(::simple_ui::label)        m_plabelPassword;
-      __composite(::simple_ui::password)     m_ppassword;
-      __composite(::simple_ui::tap)          m_ptap;
-      __composite(::simple_ui::tap)          m_ptapClose;
+      __composite(::user::still)             m_pstillUser;
+      __composite(::user::plain_edit)        m_peditUser;
+      __composite(::user::still)             m_pstillPassword;
+      __composite(::user::plain_edit)        m_peditPassword;
+      __composite(::user::button)            m_pbutton;
+      __composite(::user::button)            m_pbuttonClose;
 
 
       string                        m_strUsername;
@@ -45,7 +45,7 @@ namespace account
       virtual ~login();
 
 
-      virtual ::e_status initialize(::layered * pobjectContext) override;
+      virtual ::e_status initialize(::object * pobject) override;
 
       virtual void install_message_routing(::channel * pchannel) override;
 
@@ -59,7 +59,7 @@ namespace account
 
       virtual void on_layout(::draw2d::graphics_pointer & pgraphics) override;
 
-      DECL_GEN_SIGNAL(on_message_create);
+      DECLARE_MESSAGE_HANDLER(on_message_create);
 
       virtual void _000OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 

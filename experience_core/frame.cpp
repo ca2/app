@@ -61,7 +61,9 @@ namespace experience
 
                auto pframewindow = m_pframewindow;
 
-               auto imaging = System->imaging();
+               auto psystem = m_psystem->m_paurasystem;
+
+               auto imaging = psystem->imaging();
 
                ::rectangle_i32 rectClient(rectParam);
 
@@ -123,7 +125,7 @@ namespace experience
             void frame::ColorGlass(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle, const ::color::color & cr, byte bAlpha)
             {
 
-               System->imaging().color_blend(pgraphics, rectangle, cr, bAlpha);
+               pgraphics->color_blend(rectangle, cr, bAlpha);
 
             }
 
@@ -573,7 +575,7 @@ namespace experience
 
                }
 
-               auto psession = Session;
+               auto psession = get_session();
 
                pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 

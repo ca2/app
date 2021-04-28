@@ -52,7 +52,7 @@ namespace multimedia
 
 #ifdef APPLE_IOS
 
-      m_lpfnNewDecoder = Audio.get_multimedia_decoder_factory(pszTitle);
+      m_lpfnNewDecoder = paudio->get_multimedia_decoder_factory(pszTitle);
 
       if (m_lpfnNewDecoder == nullptr)
       {
@@ -65,7 +65,9 @@ namespace multimedia
 
       //m_plibrary.create(this);
 
-      m_plibrary = ::aqua::get_system()->get_library(pszTitle);
+      __pointer(::aqua::system) psystem = get_system();
+
+      m_plibrary = psystem->get_library(pszTitle);
 
       if (m_plibrary.is_null())
       {

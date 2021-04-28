@@ -511,9 +511,9 @@ public:
 
    // Delete 'nCount' characters, starting at index 'iIndex'
    strsize Delete(strsize iIndex, strsize nCount = 1);
-   strsize remove(strsize iIndex, strsize nCount = 1);
+   strsize erase(strsize iIndex, strsize nCount = 1);
 
-   string_base& erase(strsize start = 0, strsize count = -1);
+   //string_base& erase(strsize start = 0, strsize count = -1);
 
 
    template < typename PRED >
@@ -593,8 +593,8 @@ public:
    string_base& replace(strsize iStart, strsize nCount, const CHAR_TYPE* psz);
    string_base& replace(strsize iStart, strsize nCount, const CHAR_TYPE* psz, strsize nLen);
 
-   // remove all occurrences of character 'chRemove'
-   strsize remove(CHAR_TYPE chRemove);
+   // erase all occurrences of character 'chRemove'
+   strsize erase(CHAR_TYPE chRemove);
 
    template < pointer_castable < TYPE_CHAR > PCHAR >
    string_base Tokenize(PCHAR pszTokens, strsize& iStart) const;
@@ -783,66 +783,66 @@ public:
 
    // trimming
 
-   // remove all trailing whitespace
+   // erase all trailing whitespace
    string_base& trim_right();
 
-   // remove all leading whitespace
+   // erase all leading whitespace
    string_base& trim_left();
 
-   // remove all leading and trailing whitespace
+   // erase all leading and trailing whitespace
    string_base& trim();
 
-   // remove all leading and trailing occurrences of character 'chTarget'
+   // erase all leading and trailing occurrences of character 'chTarget'
    string_base& trim(CHAR_TYPE chTarget);
 
-   // remove all leading and trailing occurrences of any of the characters in the string_base 'pszTargets'
+   // erase all leading and trailing occurrences of any of the characters in the string_base 'pszTargets'
    template < pointer_castable < TYPE_CHAR > PCHAR >
    string_base & trim(PCHAR pcharTargets);
 
    // trimming anything (either side)
 
-   // remove all trailing occurrences of character 'chTarget'
+   // erase all trailing occurrences of character 'chTarget'
    string_base& trim_right(CHAR_TYPE chTarget);
 
-   // remove all trailing occurrences of any of the characters in string_base 'pszTargets'
+   // erase all trailing occurrences of any of the characters in string_base 'pszTargets'
    template < pointer_castable < TYPE_CHAR > PCHAR >
    string_base & trim_right(PCHAR pcharTargets);
 
-   // remove all leading occurrences of character 'chTarget'
+   // erase all leading occurrences of character 'chTarget'
    string_base& trim_left(CHAR_TYPE chTarget);
 
-   // remove all leading occurrences of any of the characters in string_base 'pszTargets'
+   // erase all leading occurrences of any of the characters in string_base 'pszTargets'
    template < pointer_castable < TYPE_CHAR > PCHAR >
    string_base& trim_left(PCHAR pchTargets);
 
 
-   // remove all trailing whitespace
+   // erase all trailing whitespace
    string_base right_trimmed() const;
 
-   // remove all leading whitespace
+   // erase all leading whitespace
    string_base left_trimmed() const;
 
-   // remove all leading and trailing whitespace
+   // erase all leading and trailing whitespace
    string_base trimmed() const;
 
-   // remove all leading and trailing occurrences of character 'chTarget'
+   // erase all leading and trailing occurrences of character 'chTarget'
    string_base trimmed(CHAR_TYPE chTarget) const;
 
-   // remove all leading and trailing occurrences of any of the characters in the string_base 'pszTargets'
+   // erase all leading and trailing occurrences of any of the characters in the string_base 'pszTargets'
    string_base trimmed(const CHAR_TYPE* pszTargets) const;
 
    // trimming anything (either side)
 
-   // remove all trailing occurrences of character 'chTarget'
+   // erase all trailing occurrences of character 'chTarget'
    string_base right_trimmed(CHAR_TYPE chTarget) const;
 
-   // remove all trailing occurrences of any of the characters in string_base 'pszTargets'
+   // erase all trailing occurrences of any of the characters in string_base 'pszTargets'
    string_base right_trimmed(const CHAR_TYPE* pszTargets) const;
 
-   // remove all leading occurrences of character 'chTarget'
+   // erase all leading occurrences of character 'chTarget'
    string_base left_trimmed(CHAR_TYPE chTarget) const;
 
-   // remove all leading occurrences of any of the characters in string_base 'pszTargets'
+   // erase all leading occurrences of any of the characters in string_base 'pszTargets'
    string_base left_trimmed(const CHAR_TYPE* pszTargets) const;
 
 

@@ -15,10 +15,10 @@ namespace base
    }
 
 
-   ::e_status     application::initialize(::layered * pobjectContext)
+   ::e_status     application::initialize(::object * pobject)
    {
 
-      auto estatus = ::axis::application::initialize(pobjectContext);
+      auto estatus = ::axis::application::initialize(pobject);
 
       if (!estatus)
       {
@@ -27,7 +27,7 @@ namespace base
 
       }
 
-      estatus = ::user::document_manager_container::initialize(pobjectContext);
+      estatus = ::user::document_manager_container::initialize(pobject);
 
       if (!estatus)
       {
@@ -105,10 +105,12 @@ namespace base
    void application::close(::apex::enum_end eend)
    {
 
-      if (Session->m_puser)
+      auto psession = get_session();
+
+      if (psession->m_puser)
       {
 
-         auto puser = User;
+         auto puser = psession->user();
 
          auto pdocumentmanager = puser->document_manager();
 
@@ -148,6 +150,37 @@ namespace base
 
    }
 
+   
+   void application::on_file_manager_open(::filemanager::data* pdata, const ::file::item_array& itema, const ::action_context& action_context)
+   {
+
+      auto pcreate = __create_new<create>();
+
+      if (itema.get_size() == 1)
+      {
+
+         pcreate->m_varFile = itema[0]->get_final_path();
+
+      }
+      else
+      {
+
+         string_array stra;
+
+         for (auto& pitem : itema)
+         {
+
+            stra.add(pitem->get_final_path());
+
+         }
+
+         pcreate->m_varFile = stra;
+
+      }
+
+      do_request(pcreate);
+
+   }
 
 } // namespace base
 

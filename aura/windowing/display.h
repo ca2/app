@@ -9,10 +9,13 @@ namespace windowing
    // X11 contribution : a display may contain more than one monitor
 
    class CLASS_DECL_AURA display :
-      virtual public ::layered
+      virtual public ::object
    {
    public:
 
+
+      void *                        m_pDisplay;
+      void *                        m_pDisplay2;
 
       __pointer_array(monitor)      m_monitora;
 

@@ -17,7 +17,7 @@ namespace papaya
          if (&m != &attribmap)
          {
 
-            m.remove_all();
+            m.erase_all();
 
             const typename MAP::pair * ppair = attribmap.get_start();
 

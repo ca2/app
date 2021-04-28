@@ -59,10 +59,10 @@ namespace macos
    }
 
 
-   ::e_status file_context::initialize(::layered * pobjectContext)
+   ::e_status file_context::initialize(::object * pobject)
    {
       
-      auto estatus = ::file_context::initialize(pobjectContext);
+      auto estatus = ::file_context::initialize(pobject);
       
       if(!estatus)
       {
@@ -96,10 +96,10 @@ namespace macos
 //
 //      string strUserFolderShift;
 //
-//      if(Application.has_property("user_folder_relative_path"))
+//      if(get_application()->has_property("user_folder_relative_path"))
 //      {
 //
-//         strUserFolderShift = strRelative / Application.command_value("user_folder_relative_path").get_string();
+//         strUserFolderShift = strRelative / get_application()->command_value("user_folder_relative_path").get_string();
 //
 //      }
 //      else

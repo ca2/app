@@ -36,7 +36,7 @@ static void wl_registry_handle_global(void* data, struct wl_registry* registry, 
 		display->seat = wl_registry_bind(registry, id, &wl_seat_interface, 1);
 }
 
-static void wl_registry_handle_global_remove(void* data, struct wl_registry* registry, u32 name)
+static void wl_registry_handle_global_erase(void* data, struct wl_registry* registry, u32 name)
 {
 
 }
@@ -44,7 +44,7 @@ static void wl_registry_handle_global_remove(void* data, struct wl_registry* reg
 static const struct wl_registry_listener wl_registry_listener =
 {
 	wl_registry_handle_global,
-	wl_registry_handle_global_remove
+	wl_registry_handle_global_erase
 };
 
 

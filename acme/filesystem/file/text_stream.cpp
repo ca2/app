@@ -15,15 +15,16 @@ bool text_stream::is_stream_null()
 }
 
 
-void text_stream::finalize()
+::e_status text_stream::finalize()
 {
 
    m_p.release();
 
-   stream::finalize();
+   auto estatus = stream::finalize();
+
+   return estatus;
 
 }
-
 
 
 void text_stream::to_string(const class string_exchange & str) const

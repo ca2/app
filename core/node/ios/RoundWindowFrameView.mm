@@ -554,7 +554,7 @@
 }
 
 
-- (void)removeGestureRecognizer:(UIGestureRecognizer *)gestureRecognizer
+- (void)eraseGestureRecognizer:(UIGestureRecognizer *)gestureRecognizer
 {
    // Check the new gesture recognizer is the same kind as the one we want to implement
    // Read above note
@@ -562,11 +562,11 @@
    //      UITapGestureRecognizer *tgr = (UITapGestureRecognizer *)gestureRecognizer;
    //      if ([tgr numberOfTapsRequired] == 1 &&
    //          [tgr numberOfTouchesRequired] == 1) {
-   //         // If found then remove self from its targets/actions
-   //         [tgr removeTarget:self action:@selector(_handleOneFingerTap:)];
+   //         // If found then erase self from its targets/actions
+   //         [tgr eraseTarget:self action:@selector(_handleOneFingerTap:)];
    //      }
    //   }
-   [super removeGestureRecognizer:gestureRecognizer];
+   [super eraseGestureRecognizer:gestureRecognizer];
    
 }
 

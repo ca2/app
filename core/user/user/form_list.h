@@ -16,6 +16,12 @@ namespace user
       virtual ~form_list();
 
 
+      inline ::core::application* get_application() const { return m_pcontext ? m_pcontext->m_pcoreapplication : nullptr; }
+      inline ::core::session* get_session() const { return m_pcontext ? m_pcontext->m_pcoresession : nullptr; }
+      inline ::core::system* get_system() const { return m_psystem ? m_psystem->m_pcoresystem : nullptr; }
+      inline ::core::user* user() const { return get_session() ? get_session()->user() : nullptr; }
+
+
       virtual void _001DrawSubItem(draw_list_item * pdrawitem) override;
 
       using ::user::list::_001HitTest_;
@@ -54,12 +60,12 @@ namespace user
       using list::_001GetSelection;
       virtual void _001GetSelection(::database::key & key,::database::selection & selection) override;
 
-      DECL_GEN_SIGNAL(_001OnNotify);
-      DECL_GEN_SIGNAL(_001OnMessageNotify);
+      DECLARE_MESSAGE_HANDLER(_001OnNotify);
+      DECLARE_MESSAGE_HANDLER(_001OnMessageNotify);
 
-      DECL_GEN_SIGNAL(_001OnVScroll);
-      DECL_GEN_SIGNAL(_001OnHScroll);
-      DECL_GEN_SIGNAL(_001OnKeyDown);
+      DECLARE_MESSAGE_HANDLER(_001OnVScroll);
+      DECLARE_MESSAGE_HANDLER(_001OnHScroll);
+      DECLARE_MESSAGE_HANDLER(_001OnKeyDown);
 
       virtual bool _001OnUpdateItemCount(u32 dwFlags = 0) override;
 

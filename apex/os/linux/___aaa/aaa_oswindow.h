@@ -18,7 +18,7 @@ typedef u32 ::u32;
 #endif
 
 
-struct hthread;
+struct htask;
 
 namespace ca2
 {
@@ -68,11 +68,11 @@ class oswindow_data;
 //CLASS_DECL_APEX oswindow_data * oswindow_get(Window window);
 //CLASS_DECL_APEX oswindow_data * oswindow_defer_get(Display * pdisplay, Window window);
 //CLASS_DECL_APEX oswindow oswindow_defer_get(Window w);
-//CLASS_DECL_APEX bool oswindow_remove(Display * pdisplay, Window window);
-//CLASS_DECL_APEX bool oswindow_remove_message_only_window(::user::interaction_impl * puibaseMessageOnlyWindow);
+//CLASS_DECL_APEX bool oswindow_erase(Display * pdisplay, Window window);
+//CLASS_DECL_APEX bool oswindow_erase_message_only_window(::user::interaction_impl * puibaseMessageOnlyWindow);
 
 
-struct hthread;
+struct htask;
 
 namespace ca2
 {
@@ -128,7 +128,7 @@ public:
    bool                                   m_bMessageOnlyWindow;
    __pointer(::user::interaction_impl)    m_pimpl;
    __pointer(message_queue)                          m_pmq;
-   hthread_t                                m_hthread;
+   htask_t                                m_htask;
    Colormap                               m_colormap;
    millis                                   m_millisLastMouseMove;
    Window                                 m_parent;
@@ -269,7 +269,7 @@ public:
 
    bool is_destroying();
 
-   bool bamf_set_icon();
+   bool bamf_set_icon(oswindow oswindow, ::apex::application * papplication);
 
    bool set_icon(::image * pimage);
 
@@ -285,11 +285,11 @@ public:
    virtual ~oswindow_dataptra()
    {
 
-      remove_all();
+      erase_all();
 
    }
 
-   void remove_all()
+   void erase_all()
    {
 
       for(auto point : *this)
@@ -299,7 +299,7 @@ public:
 
       }
 
-      address_array < oswindow_data * >::remove_all();
+      address_array < oswindow_data * >::erase_all();
    }
 
 };

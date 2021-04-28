@@ -112,7 +112,7 @@ namespace ftp
 
 
 
-      client_socket(::sockets::base_socket_handler & handler,
+      client_socket(
                     unsigned int uiTimeout = 10, unsigned int uiBufferSize = 2048,
                     unsigned int uiResponseWait = 0, const string& strRemoteDirectorySeparator = "/");
       virtual ~client_socket();
@@ -169,8 +169,8 @@ namespace ftp
       int ChangeToParentDirectory();
       int ChangeWorkingDirectory(const string& strDirectory);
 
-      int Passive(WINULONG& ulIpAddress, WINUSHORT& ushPort);
-      int DataPort(const string& strHostIP, WINUSHORT ushPort);
+      int Passive(::u32& ulIpAddress, ::u16& ushPort);
+      int DataPort(const string& strHostIP, ::u16 ushPort);
       int _abort();
       int system();
       int Noop();
@@ -210,11 +210,11 @@ namespace ftp
       bool GetSingleResponseLine(string& strResponse);
       void OnLine(const string & strLine) override;
 
-      bool OpenControlChannel(const string& strServerHost, WINUSHORT ushServerPort = DEFAULT_FTP_PORT);
+      bool OpenControlChannel(const string& strServerHost, ::u16 ushServerPort = DEFAULT_FTP_PORT);
       void CloseControlChannel();
 
       void ReportError(const string& strErrorMsg, const string& strFile, ::u32 dwLineNr);
-      bool GetIpAddressFromResponse(const string& strResponse, WINULONG& ulIpAddress, WINUSHORT& ushPort);
+      bool GetIpAddressFromResponse(const string& strResponse, ::u32& ulIpAddress, ::u16& ushPort);
 
    };
 

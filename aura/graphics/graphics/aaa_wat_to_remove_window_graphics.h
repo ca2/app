@@ -17,7 +17,7 @@ namespace graphics
 
 
 
-      buffer(::layered * pobjectContext);
+      buffer(::object * pobject);
       virtual ~buffer();
 
 

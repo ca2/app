@@ -19,6 +19,10 @@ namespace windowing
    windowing::windowing()
    {
 
+      m_pWindowing = nullptr;
+
+      m_pWindowing2 = nullptr;
+
       m_bSettingCursorMatter = false;
 
    }
@@ -33,9 +37,18 @@ namespace windowing
    ::e_status windowing::initialize_windowing(::user::user * puser)
    {
 
-      auto estatus = initialize(puser);
+      //auto estatus = initialize(puser);
 
-      if (!estatus)
+      //if (!estatus)
+      //{
+
+      //   return estatus;
+
+      //}
+
+      auto estatus = __refer(m_puser, puser);
+
+      if(!estatus)
       {
 
          return estatus;
@@ -63,22 +76,41 @@ namespace windowing
    void windowing::finalize_windowing()
    {
 
-      if (m_pcursorset)
+      if (m_pcursormanager)
       {
 
-         m_pcursorset->finalize();
+         m_pcursormanager->finalize();
 
       }
 
    }
 
 
-   void windowing::finalize()
+   ::e_status windowing::finalize()
    {
 
-      m_pcursorset.release();
+      m_pcursormanager.release();
 
-      ::apex::department::finalize();
+      auto estatus = ::acme::department::finalize();
+
+      return estatus;
+
+   }
+
+
+   ::e_status windowing::finish()
+   {
+
+      auto estatus = ::acme::department::finish();
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return estatus;
 
    }
 
@@ -108,12 +140,12 @@ namespace windowing
    __pointer(cursor) windowing::get_cursor(enum_cursor ecursor)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
-      if (m_pcursorset.is_null())
+      if (m_pcursormanager.is_null())
       {
 
-         auto estatus = __construct_new(m_pcursorset);
+         auto estatus = __construct_new(m_pcursormanager);
 
          if (!estatus)
          {
@@ -122,11 +154,11 @@ namespace windowing
 
          }
 
-         m_pcursorset->set_cursor_set_system_default();
+         m_pcursormanager->set_cursor_set_system_default();
 
       }
 
-      return m_pcursorset->get_cursor(ecursor);
+      return m_pcursormanager->get_cursor(ecursor);
 
    }
 
@@ -134,7 +166,7 @@ namespace windowing
    ::e_status windowing::set_cursor_set_from_matter(const ::file::path & pathDir)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       if (m_bSettingCursorMatter)
       {
@@ -145,9 +177,9 @@ namespace windowing
 
       __keep(m_bSettingCursorMatter);
 
-      synchronizationlock.unlock();
+      synchronouslock.unlock();
 
-      auto estatus = __construct(m_pcursorset);
+      auto estatus = __construct(m_pcursormanager);
 
       if (!estatus)
       {
@@ -156,7 +188,7 @@ namespace windowing
 
       }
 
-      estatus = m_pcursorset->set_cursor_set_from_matter(pathDir);
+      estatus = m_pcursormanager->set_cursor_set_from_matter(pathDir);
 
       if (!estatus)
       {
@@ -416,10 +448,10 @@ namespace windowing
    }
 
    
-   void windowing::term1()
+   ::e_status windowing::term1()
    {
 
-
+      return ::success;
 
    }
 
@@ -432,10 +464,10 @@ namespace windowing
    }
 
 
-   void windowing::term2()
+   ::e_status windowing::term2()
    {
 
-
+      return ::success;
 
    }
    //bool windowing::set_window_icon(window *pwindow, const ::file::path &path)
@@ -484,10 +516,10 @@ namespace windowing
    }
 
 
-   ::e_status windowing::remove_window(::windowing::window * pwindow)
+   ::e_status windowing::erase_window(::windowing::window * pwindow)
    {
 
-      //if (!m_windowmap.remove_key(pwindow->get_os_data()))
+      //if (!m_windowmap.erase_key(pwindow->get_os_data()))
       //{
 
         // return ::error_failed;
@@ -584,7 +616,7 @@ namespace windowing
 
       }
 
-      ////pcursor->m_pimage = Application.image().load_image(path, bFromCache, bSync);
+      ////pcursor->m_pimage = pcontextimage->load_image(path, bFromCache, bSync);
 
       return true;
 
@@ -594,6 +626,11 @@ namespace windowing
    void windowing::set(::message::key * pkey, oswindow oswindow, ::windowing::window * pwindow, const ::id & id, wparam wparam, ::lparam lparam)
    {
 
+      auto pwindowing = pwindow->windowing();
+
+      auto pkeyboard = pwindowing->keyboard();
+
+      pkeyboard->translate_os_key_message(pkey);
 
    }
 
@@ -620,24 +657,27 @@ namespace windowing
    }
 
 
-   ::e_status windowing::user_sync(const ::duration & durationTimeout, const ::routine & routine)
+   ::e_status windowing::windowing_sync(const ::duration & duration, const ::routine & routine)
    {
 
-      auto proutine = __sync_routine(routine);
+      auto estatus = __sync_routine(duration, this, &windowing::windowing_branch, routine);
 
-      user_fork(proutine);
+      if(!estatus)
+      {
 
-      proutine->sync_wait(durationTimeout);
+         return estatus;
 
-      return ::success;
+      }
+
+      return estatus;
 
    }
 
 
-   ::e_status windowing::user_fork(const ::routine & routine)
+   ::e_status windowing::windowing_branch(const ::routine & routine)
    {
 
-      //__throw(error_interface_only);
+      __throw(error_interface_only);
 
       return error_interface_only;
 
@@ -659,7 +699,7 @@ namespace windowing
       if (!m_pkeyboard)
       {
 
-         auto estatus = __compose_new(m_pkeyboard);
+         auto estatus = __compose(m_pkeyboard);
 
          if (!m_pkeyboard)
          {
@@ -681,7 +721,7 @@ namespace windowing
          //
          //#endif
 
-                  //Application.on_create_keyboard();
+                  //papplication->on_create_keyboard();
 
          initialize_keyboard(m_pkeyboard);
 
@@ -704,6 +744,23 @@ namespace windowing
    }
 
 
+   wstring windowing::_windows_calc_icon_window_class(::user::interaction* pinteraction, u32 dwDefaultStyle, const char* pszMatter)
+   {
+   
+      return "windows_interaction_impl";
+
+   }
+
+   
+   wstring windowing::_windows_get_user_interaction_window_class(::user::interaction* pinteraction)
+   {
+   
+      return "windows_interaction_impl";
+
+   }
+
+
+
 #ifdef LINUX
 
 
@@ -715,6 +772,17 @@ namespace windowing
 
 
 #endif
+
+
+   ::e_status windowing::register_extended_event_listener(::matter * pdata, bool bMouse, bool bKeyboard)
+   {
+
+      __throw(error_interface_only);
+
+      return error_interface_only;
+
+   }
+
 
 
 

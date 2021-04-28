@@ -23,8 +23,10 @@ namespace usernet
 
    bool network_configuration::initialize(__pointer(::user::interaction) puiParent)
    {
-      
-      auto puser = User;
+
+      __pointer(::core::session) psession = get_session();
+
+      auto puser = psession->user();
 
       m_pdocument = puser->create_form(this, this, puiParent);
 
@@ -47,7 +49,9 @@ namespace usernet
    bool network_configuration::initialize_child(__pointer(::user::interaction) puiParent)
    {
 
-      auto puser = User;
+      __pointer(::core::session) psession = get_session();
+
+      auto puser = psession->user();
 
       puser->create_child_form(this, this, puiParent);
 
@@ -66,16 +70,20 @@ namespace usernet
 
    }
 
+
    void network_configuration::on_show()
    {
-      if(!m_pdocument->on_open_document(Context.dir().matter("system/network/configuration/proxy.xhtml")))
+
+      auto pcontext = get_context();
+
+      if(!m_pdocument->on_open_document(pcontext->m_papexcontext->dir().matter("system/network/configuration/proxy.xhtml")))
       {
          return;
       }
 
       xml::document doc;
 
-      if(doc.load(Context.file().as_string(Context.dir().appdata()/"proxy.xml")))
+      if(doc.load(pcontext->m_papexcontext->file().as_string(pcontext->m_papexcontext->dir().appdata()/"proxy.xml")))
       {
          
          string strProxy(doc.root()->attribute("server"));
@@ -94,12 +102,15 @@ namespace usernet
 
    }
 
+
    void network_configuration::on_control_event(::user::control_event * pevent)
    {
 
+      auto pcontext = get_context();
 
       if(pevent->m_eevent == ::user::e_event_button_clicked)
       {
+
          if(pevent->m_puie->m_id == "submit")
          {
 
@@ -112,7 +123,7 @@ namespace usernet
             if(strServer.get_length() == 0)
             {
 
-               Context.file().del(Context.dir().appdata()/ "proxy.xml");
+               pcontext->m_papexcontext->file().del(pcontext->m_papexcontext->dir().appdata()/ "proxy.xml");
 
             }
             else
@@ -132,7 +143,7 @@ namespace usernet
 
                doc.root()->set_attribute("port", strPort);
 
-               Context.file().put_contents(Context.dir().appdata()/"proxy.xml", doc.get_xml());
+               pcontext->m_papexcontext->file().put_contents(pcontext->m_papexcontext->dir().appdata()/"proxy.xml", doc.get_xml());
 
             }
 

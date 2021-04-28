@@ -56,7 +56,7 @@ namespace user
       if (m_pimpactsystem != nullptr)
       {
 
-         m_pimpactsystem->remove_document(this);
+         m_pimpactsystem->erase_document(this);
 
       }
 
@@ -97,7 +97,7 @@ namespace user
    ::user::interaction_array document::get_top_level_windows()
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       ::user::interaction_array uia;
 
@@ -113,7 +113,7 @@ namespace user
    }
 
    
-   ::e_status document::set_finish_composites(::context_object * pcontextobjectFinish)
+   ::e_status document::finish_composites()
    {
 
       bool bStillFinishing = false;
@@ -123,7 +123,7 @@ namespace user
       for (auto & pui : uia.interactiona())
       {
 
-         auto estatus = pui->finish(pcontextobjectFinish);
+         auto estatus = pui->set_finish();
 
          if (estatus == ::error_pending)
          {
@@ -134,7 +134,7 @@ namespace user
 
       }
 
-      auto estatus = ::user::controller::set_finish_composites(pcontextobjectFinish);
+      auto estatus = ::user::controller::finish_composites();
 
       if (estatus == ::error_pending)
       {
@@ -297,7 +297,7 @@ namespace user
    //   }
 
    //   // last but not least, pump through cast
-   //   ::aura::application* papp = get_context_application();
+   //   ::aura::application* papp = get_application();
 
    //   if (papp != nullptr)
    //   {
@@ -348,7 +348,7 @@ namespace user
 
       call_routine(CREATE_ROUTINE);
 
-      //::database::client::initialize_data_client(Application.dataserver());
+      //::database::client::initialize_data_client(papplication->dataserver());
 
    }
 
@@ -382,7 +382,9 @@ namespace user
    void document::update_title()
    {
 
-      string str = Application.m_strAppName;
+      auto papplication = get_application();
+
+      string str = papplication->m_strAppName;
 
       str += " : ";
 
@@ -425,7 +427,7 @@ namespace user
    void document::disconnect_views()
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       for (index index = 0; index < m_viewa.get_count(); index++)
       {
@@ -440,7 +442,7 @@ namespace user
 
       }
 
-      m_viewa.remove_all();
+      m_viewa.erase_all();
 
    }
 
@@ -463,7 +465,7 @@ namespace user
 
          m_path.Empty();
 
-         m_datamap.remove_all();
+         m_datamap.erase_all();
 
       }
 
@@ -473,7 +475,7 @@ namespace user
    __pointer(::user::impact) document::get_view(index index) const
    {
 
-      synchronization_lock synchronizationlock(((document *)this)->mutex());
+      synchronous_lock synchronouslock(((document *)this)->mutex());
 
       if (index < 0 || index >= m_viewa.get_count())
       {
@@ -525,7 +527,7 @@ namespace user
    __pointer(::user::impact) document::get_typed_view(::type info, index indexFind)
    {
 
-      single_lock synchronizationlock(mutex(), true);
+      single_lock synchronouslock(mutex(), true);
 
       ::count countView = get_view_count();
 
@@ -565,7 +567,7 @@ namespace user
 
    __pointer(::user::impact) document::get_typed_view_with_id(::type info, id id)
    {
-      single_lock synchronizationlock(mutex(), true);
+      single_lock synchronouslock(mutex(), true);
       ::count countView = get_view_count();
       ::count countFind = 0;
       __pointer(::user::impact) pview;
@@ -681,7 +683,13 @@ namespace user
       }
       else if (varFile.cast < ::file::file>() != nullptr)
       {
-         strPathName = System->datetime().international().get_gmt_date_time() + "." + get_document_template()->find_string("default_extension");
+
+         auto psystem = m_psystem->m_pbasesystem;
+
+         auto pdatetime = psystem->datetime();
+
+         strPathName = pdatetime->international().get_gmt_date_time() + "." + get_document_template()->find_string("default_extension");
+
       }
       else
       {
@@ -709,9 +717,12 @@ namespace user
 
       // store the path fully qualified
       ::file::path strFullPath;
-      //      System->file_system().FullPath(strFullPath, strPathName);
+      //      psystem->file_system().FullPath(strFullPath, strPathName);
       strFullPath = strPathName;
-      m_path = Context.defer_process_path(m_path);
+
+      auto pcontext = get_context();
+
+      m_path = pcontext->m_papexcontext->defer_process_path(m_path);
       //m_filepathEx = strFullPath;
       //!m_strPathName.is_empty());       // must be set to something
       m_bEmbedded = false;
@@ -723,7 +734,7 @@ namespace user
       //::str::international::Utf8ToAcp(strPathName, m_wstrPathName);
       // add it to the file MRU list
       /* xxx if (bAddToMRU)
-      guserbase::get(get_object())->AddToRecentFileList(pszPathName);*/
+      guserbase::get(this)->AddToRecentFileList(pszPathName);*/
 
 
       /*   ASSERT_VALID(this);
@@ -737,7 +748,7 @@ namespace user
       ASSERT_VALID(this);
 
       // set the document_interface title based on path name
-      string strTitle = Context.file().title_(m_strPathName);
+      string strTitle = pcontext->m_papexcontext->file().title_(m_strPathName);
       set_title(strTitle);
 
 
@@ -901,7 +912,9 @@ namespace user
 
       __keep(m_pcreate, pcreate);
 
-      if (!open_document(pcreate->m_pcommandline->m_varFile))
+      ::payload varFile = pcreate->get_file();
+
+      if (!open_document(varFile))
       {
 
          return false;
@@ -916,7 +929,9 @@ namespace user
    bool document::on_open_document(const ::payload & varFile)
    {
 
-      auto preader = Context.file().get_reader(varFile, ::file::e_open_read | ::file::e_open_share_deny_write | ::file::e_open_binary);
+      auto pcontext = get_context();
+
+      auto preader = pcontext->m_papexcontext->file().get_reader(varFile, ::file::e_open_read | ::file::e_open_share_deny_write | ::file::e_open_binary);
 
       if (!preader)
       {
@@ -967,7 +982,9 @@ namespace user
    bool document::on_save_document(const ::payload & varFile)
    {
 
-      auto pwriter = Context.file().get_writer(varFile, ::file::e_open_defer_create_directory | ::file::e_open_create | ::file::e_open_read | ::file::e_open_write | ::file::e_open_share_exclusive);
+      auto pcontext = get_context();
+
+      auto pwriter = pcontext->m_papexcontext->file().get_writer(varFile, ::file::e_open_defer_create_directory | ::file::e_open_create | ::file::e_open_read | ::file::e_open_write | ::file::e_open_share_exclusive);
 
       if(!pwriter)
       {
@@ -1030,7 +1047,7 @@ namespace user
 
       {
 
-         synchronization_lock synchronizationlock(mutex());
+         synchronous_lock synchronouslock(mutex());
 
          for (auto & pview : m_viewa.ptra())
          {
@@ -1055,15 +1072,15 @@ namespace user
 
          pre_close_frame(pframe);
 
-         pframe->finish(get_context());
+         pframe->finish();
 
       }
 
       {
 
-         synchronization_lock synchronizationlock(mutex());
+         synchronous_lock synchronouslock(mutex());
 
-         m_viewa.remove_all();
+         m_viewa.erase_all();
 
       }
 
@@ -1077,11 +1094,11 @@ namespace user
 
       __pointer(::object) pthis = this;
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       auto viewptra = m_viewa;
 
-      synchronizationlock.unlock();
+      synchronouslock.unlock();
 
       for(auto & pview : viewptra.ptra())
       {
@@ -1131,7 +1148,7 @@ namespace user
          if (m_pimpactsystem != nullptr)
          {
 
-            m_pimpactsystem->remove_document(this);
+            m_pimpactsystem->erase_document(this);
 
          }
 
@@ -1249,7 +1266,7 @@ namespace user
          //   ::aura::FormatString1(prompt, nIDP, strTitle);*/
          //}
 
-         //System->message_box(prompt, e_message_box_icon_exclamation, nHelpContext);
+         //message_box(prompt, e_message_box_icon_exclamation, nHelpContext);
          message_box(strPrompt, nullptr, e_message_box_icon_exclamation);
 
       }
@@ -1266,7 +1283,7 @@ namespace user
    //  (at least one of our views must be in this frame)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       ASSERT_VALID(pframeParam);
 
@@ -1297,7 +1314,7 @@ namespace user
 
       }
 
-      synchronizationlock.unlock();
+      synchronouslock.unlock();
 
       // otherwise only one frame that we know about
       return save_modified();
@@ -1326,7 +1343,9 @@ namespace user
          if (strName.is_empty())
          {
 
-            strName = Application.load_string("Untitled");
+            auto papplication = get_application();
+
+            strName = papplication->load_string("Untitled");
 
          }
 
@@ -1360,7 +1379,7 @@ namespace user
 
       }
 
-      //switch (Application.message_box(nullptr, prompt, MB_YESNOCANCEL))
+      //switch (message_box(nullptr, prompt, MB_YESNOCANCEL))
       //{
       //case e_dialog_result_cancel:
       //{
@@ -1467,15 +1486,18 @@ namespace user
             }
          }
 
-         //if (!Application.do_prompt_file_name(newName, __str("Save ") + newName, 0 /*OFN_HIDEREADONLY | OFN_PATHMUSTEXIST */, false, ptemplate, this))
+         //if (!papplication->do_prompt_file_name(newName, __str("Save ") + newName, 0 /*OFN_HIDEREADONLY | OFN_PATHMUSTEXIST */, false, ptemplate, this))
            // return false;       // don't even attempt to save
 
       }
 
-      wait_cursor wait(get_context_object());
+      wait_cursor wait(this);
+
+      auto pcontext = get_context();
 
       if (!on_save_document(newName))
       {
+
          if (varFile.is_empty())
          {
 
@@ -1484,7 +1506,7 @@ namespace user
             try
             {
 
-               Context.file().del(newName);
+               pcontext->m_papexcontext->file().del(newName);
 
             }
             catch(const ::exception::exception &)
@@ -1509,7 +1531,9 @@ namespace user
    bool document::do_file_save()
    {
 
-      if (is_new_document() || Context.file().is_read_only(m_path))
+      auto pcontext = get_context();
+
+      if (is_new_document() || pcontext->m_papexcontext->file().is_read_only(m_path))
       {
 
          // we do not have read-write access or the file does not (now) exist
@@ -1679,7 +1703,7 @@ namespace user
    ::e_status document::add_view(::user::impact * pview)
    {
 
-      single_lock synchronizationlock(mutex(), true);
+      single_lock synchronouslock(mutex(), true);
 
       ASSERT_VALID(pview);
 
@@ -1706,10 +1730,10 @@ namespace user
    }
 
 
-   ::e_status document::remove_view(::user::impact * pview)
+   ::e_status document::erase_view(::user::impact * pview)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       ASSERT_VALID(pview);
 
@@ -1720,7 +1744,7 @@ namespace user
 
       }
 
-      if (m_viewa.remove(pview) < 0)
+      if (m_viewa.erase(pview) < 0)
       {
 
          return ::error_not_found;
@@ -1762,7 +1786,7 @@ namespace user
    //   string strUrl(varFile);
    //   if(::str::begins_eat(strUrl,"ext://"))
    //   {
-   //      Application.open_link(strUrl,"", pszTargetFrameName);
+   //      papplication->open_link(strUrl,"", pszTargetFrameName);
 
    //      /*         ::aura::shell_launcher launcher(nullptr, "open", strUrl, "", "", SW_SHOWNORMAL);
    //      launcher.execute();*/
@@ -1772,7 +1796,7 @@ namespace user
    //   }
    //   if(::str::begins_eat(strUrl,"hist://"))
    //   {
-   //      System->hist_hist(strUrl);
+   //      psystem->hist_hist(strUrl);
    //      *pbCancel = true;
    //      return;
    //   }

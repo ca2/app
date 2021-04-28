@@ -110,7 +110,7 @@ oswindow_data::oswindow_data()
 
    m_hcursorLast           = 0;
 
-   m_hthread               = 0;
+   m_htask               = 0;
 
    m_window                = None;
 
@@ -424,9 +424,9 @@ oswindow_data * oswindow_get(Window window)
 bool oswindow_data::bamf_set_icon()
 {
 
-   ::linux::desktop_file file;
+   auto pdesktopfile = __create_new < ::linux::desktop_file >();
 
-   file.bamf_set_icon(this);
+   pfile->bamf_set_icon(papplication);
 
    return true;
 
@@ -507,7 +507,7 @@ bool oswindow_data::set_icon(::image * pimage)
 
    d1->g()->stretch(d1->rectangle(), pimage->g(), pimage->rectangle());
 
-   memory m(m_pimpl->m_puserinteraction->get_context_application());
+   memory m(m_pimpl->m_puserinteraction->get_application());
 
    int length = 2 + d1->area();
 
@@ -582,7 +582,7 @@ bool oswindow_data::set_icon(::image * pimage)
 
    d2->get_graphics()->StretchBlt(0, 0, d2.width(), d2.height(), point_i32->get_graphics(), 0, 0, point.width(), point.height());
 
-   memory m(w->m_pimpl->m_puserinteraction->get_context_application());
+   memory m(w->m_pimpl->m_puserinteraction->get_application());
 
    int length = 2 + d1->area() + 2 + d2->area();
 
@@ -695,7 +695,7 @@ void oswindow_data::post_nc_destroy()
    if(!::is_null(this))
    {
 
-      oswindow_remove(display(), window());
+      oswindow_erase(display(), window());
 
    }
 
@@ -716,7 +716,7 @@ void oswindow_data::set_user_interaction(::user::interaction_impl * pimpl)
 
    m_pimpl = pimpl;
 
-   m_hthread = pimpl->get_context_application()->get_os_handle();
+   m_htask = pimpl->get_application()->get_os_handle();
 
    m_pmq = pimpl->m_puserinteraction->m_pthreadUserInteraction->get_message_queue();
 
@@ -1061,7 +1061,7 @@ void oswindow_data::exit_full_screen()
 void oswindow_data::exit_zoomed()
 {
 
-   synchronization_lock synchronizationlock(x11_mutex());
+   synchronous_lock synchronouslock(x11_mutex());
 
    xdisplay d(display());
 
@@ -1317,7 +1317,7 @@ bool oswindow_data::set_window_position(class ::zorder zorder, i32 x, i32 y, i32
 bool oswindow_data::_set_window_pos(class ::zorder zorder, i32 x, i32 y, i32 cx, i32 cy, ::u32 nFlags)
 {
 
-   synchronization_lock synchronizationlock(x11_mutex());
+   synchronous_lock synchronouslock(x11_mutex());
 
    windowing_output_debug_string("\n::oswindow_data::set_window_position 1");
 

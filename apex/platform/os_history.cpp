@@ -1,8 +1,8 @@
 #include "framework.h"
 
 
-os_history::os_history(::layered * pbojectContext) :
-   ::object(pbojectContext)//,
+os_history::os_history(::object * pobject) //:
+//   ::object(pbojectContext)//,
    //::apex::history(pobject)
 {
 }

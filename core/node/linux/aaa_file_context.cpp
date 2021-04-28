@@ -26,10 +26,10 @@ namespace linux
    }
 
 
-   ::e_status file_context::initialize(::layered * pobjectContext)
+   ::e_status file_context::initialize(::object * pobject)
    {
 
-      auto estatus = ::object::initialize(pobjectContext);
+      auto estatus = ::object::initialize(pobject);
 
       if(!estatus)
       {
@@ -117,7 +117,7 @@ namespace linux
 
       ::file::path pathJson;
 
-      pathJson = ::dir::home() / ".dropbox/info.json";
+      pathJson = pacmedir->home() / ".dropbox/info.json";
 
       return pathJson;
 

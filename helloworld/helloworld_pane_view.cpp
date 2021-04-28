@@ -5,7 +5,7 @@
 namespace helloworld
 {
 
-   pane_view::pane_view(::layered * pobjectContext) :
+   pane_view::pane_view(::object * pobject) :
       object(pobject),
       ::user::tab(pobject),
 
@@ -97,7 +97,7 @@ namespace helloworld
       string strId = get_view_id();
       string_array stra;
       m_prollfps = nullptr;
-      m_checkptraBilbo.remove_all();
+      m_checkptraBilbo.erase_all();
 
       stra.explode("->:<-",strId);
 
@@ -235,7 +235,7 @@ namespace helloworld
       case impact_menu:
       {
 
-         m_pdocMenu = Application.create_child_form(this,pimpactdata->m_pplaceholder);
+         m_pdocMenu = papplication->create_child_form(this,pimpactdata->m_pplaceholder);
 
          ::user::impact * pview = m_pdocMenu->get_view(0);
 
@@ -250,7 +250,7 @@ namespace helloworld
 //         m_prollspf = pview->get_child_by_id("roll_spf");
          //try
          //{
-         //   pform->get_child_by_id("clockverse_auto")->_001SetCheck(Application.should_auto_launch_clockverse_on_hover(),::e_source_initialize);
+         //   pform->get_child_by_id("clockverse_auto")->_001SetCheck(papplication->should_auto_launch_clockverse_on_hover(),::e_source_initialize);
          //}
          //catch(...)
          //{
@@ -258,7 +258,7 @@ namespace helloworld
 
          //try
          //{
-         //   pform->get_child_by_id("flag")->_001SetCheck(Application.should_bind_flag_country_ca2_domain_image_on_hover(),::e_source_initialize);
+         //   pform->get_child_by_id("flag")->_001SetCheck(papplication->should_bind_flag_country_ca2_domain_image_on_hover(),::e_source_initialize);
          //}
          //catch(...)
          //{
@@ -266,7 +266,7 @@ namespace helloworld
 
          //try
          //{
-         //   pform->get_child_by_id("flag_auto")->_001SetCheck(Application.should_auto_launch_flag_on_hover(),::e_source_initialize);
+         //   pform->get_child_by_id("flag_auto")->_001SetCheck(papplication->should_auto_launch_flag_on_hover(),::e_source_initialize);
          //}
          //catch(...)
          //{
@@ -279,14 +279,14 @@ namespace helloworld
       case PaneViewHelloWorld:
       {
 
-         Application.m_ptemplateHelloWorldView->create_subdocument(pimpactdata);
+         papplication->m_ptemplateHelloWorldView->create_subdocument(pimpactdata);
 
       }
       break;
       case PaneViewHelloWorldSwitcher:
       {
 
-         Application.m_ptemplateHelloWorldSwitcher->create_subdocument(pimpactdata);
+         papplication->m_ptemplateHelloWorldSwitcher->create_subdocument(pimpactdata);
 
       }
       break;
@@ -413,22 +413,22 @@ namespace helloworld
 
          //if(pevent->m_puie->m_id == "clockverse")
          //   {
-         //      Application.set_binding_clockverse_country_time_zone_set_on_hover(pevent->m_puie->_001GetCheck() == ::check_checked);
+         //      papplication->set_binding_clockverse_country_time_zone_set_on_hover(pevent->m_puie->_001GetCheck() == ::check_checked);
          //      return true;
          //   }
          //   else if(pevent->m_puie->m_id == "clockverse_auto")
          //   {
-         //      Application.set_auto_launch_clockverse_on_hover(pevent->m_puie->_001GetCheck() == ::check_checked);
+         //      papplication->set_auto_launch_clockverse_on_hover(pevent->m_puie->_001GetCheck() == ::check_checked);
          //      return true;
          //   }
          //   else if(pevent->m_puie->m_id == "flag")
          //   {
-         //      Application.set_binding_flag_country_ca2_domain_image_on_hover(pevent->m_puie->_001GetCheck() == ::check_checked);
+         //      papplication->set_binding_flag_country_ca2_domain_image_on_hover(pevent->m_puie->_001GetCheck() == ::check_checked);
          //      return true;
          //   }
          //   else if(pevent->m_puie->m_id == "flag_auto")
          //   {
-         //      Application.set_auto_launch_flag_on_hover(pevent->m_puie->_001GetCheck() == ::check_checked);
+         //      papplication->set_auto_launch_flag_on_hover(pevent->m_puie->_001GetCheck() == ::check_checked);
          //      return true;
          //   }
          //}
@@ -448,13 +448,13 @@ namespace helloworld
       if (m_pviewLast == nullptr && m_pviewLastBilbo == nullptr)
       {
 
-         str = Context.file().as_string("matter://home.html");
+         str = pcontext->m_papexcontext->file().as_string("matter://home.html");
 
       }
       else
       {
 
-         str = Context.file().as_string("matter://menu.html");
+         str = pcontext->m_papexcontext->file().as_string("matter://menu.html");
 
       }
 
@@ -495,9 +495,9 @@ namespace helloworld
 
       ::file::path path;
 
-      path = Context.dir().appdata() / "helloworld_menu.html";
+      path = pcontext->m_papexcontext->dir().appdata() / "helloworld_menu.html";
 
-      Context.file().put_contents(path, str);
+      pcontext->m_papexcontext->file().put_contents(path, str);
 
       return path;
 

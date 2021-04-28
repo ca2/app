@@ -6,11 +6,12 @@ namespace apex
 
 
    assert_running_task::assert_running_task(::application_container * pcontainer,const string & strAppId, const string & strLocale, const string & strSchema):
-      ::object(pcontainer),
       m_pcontainer(pcontainer),
       m_strLocale(strLocale),
       m_strSchema(strSchema)
    {
+
+      initialize(pcontainer);
 
       m_strAppId = strAppId;
 
@@ -28,7 +29,7 @@ namespace apex
    ::e_status     assert_running_task::run()
    {
 
-      while(thread_get_run())
+      while(task_get_run())
       {
 
          try
@@ -40,7 +41,7 @@ namespace apex
          catch(::exit_exception &)
          {
 
-            ::parallelization::finish(::apex::get_system());
+            //e.finish(psystem);
 
          }
          catch(::exception::exception &)

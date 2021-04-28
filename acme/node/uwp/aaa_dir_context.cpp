@@ -19,10 +19,10 @@ namespace uwp
    }
 
 
-   ::e_status dir_context::initialize(::matter* pobjectContext)
+   ::e_status dir_context::initialize(::matter* pobject)
    {
 
-      auto estatus = ::dir_context::initialize(pobjectContext);
+      auto estatus = ::dir_context::initialize(pobject);
 
       if (!estatus)
       {
@@ -31,9 +31,9 @@ namespace uwp
 
       }
 
-      __refer(m_pdirsystem, System->m_pdirsystem);
+      __refer(m_pdirsystem, ::acme::get_system()->m_pdirsystem);
 
-      __refer(m_pfilesystem, System->m_pfilesystem);
+      __refer(m_pfilesystem, ::acme::get_system()->m_pfilesystem);
 
       return estatus;
 
@@ -65,9 +65,13 @@ namespace uwp
       //#endif
 
 
-      auto pdocument = create_xml_document();
+      auto pdocument =       auto psystem = m_psystem->m_paurasystem;
 
-      pdocument->load(Context.file().as_string(appdata() / "configuration\\directory.xml"));
+      auto pxml = psystem->xml();
+
+      auto pdocument= pxml->create_document();
+
+      pdocument->load(m_pcontext->m_papexcontext->file().as_string(appdata() / "configuration\\directory.xml"));
 
       if (pdocument->root() && pdocument->root()->get_name() == "directory_configuration")
       {
@@ -103,7 +107,7 @@ namespace uwp
 
       mk(m_pdirsystem->m_strTimeFolder / "time");
 
-      m_pdirsystem->m_pathHome = ::dir::ca2roaming() / "home";
+      m_pdirsystem->m_pathHome = pacmedir->roaming() / "home";
 
       //nodeos_set_home(m_pdirsystem->m_pathHome);
 
@@ -378,7 +382,7 @@ namespace uwp
 
    ::file::path dir_context::warehouse()
    {
-      return Context.dir().ca2module();
+      return m_pcontext->m_papexcontext->dir().ca2module();
    }
 
    ::file::path dir_context::time()
@@ -486,7 +490,7 @@ namespace uwp
                try
                {
 
-                  Context.file().del(str);
+                  m_pcontext->m_papexcontext->file().del(str);
 
                }
                catch (...)
@@ -501,7 +505,7 @@ namespace uwp
                try
                {
 
-                  Context.file().del(str);
+                  m_pcontext->m_papexcontext->file().del(str);
 
                }
                catch (...)

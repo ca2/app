@@ -160,7 +160,7 @@
 //      virtual ~application();
 //
 //
-//      virtual ::e_status initialize(::layered * pobjectContext) override;
+//      virtual ::e_status initialize(::object * pobject) override;
 //
 //
 //      virtual void assert_valid() const override;
@@ -375,7 +375,7 @@
 //      //virtual string get_locale_schema_dir();
 //
 //
-//      //virtual ::e_status initialize(::layered * pobjectContext) override;
+//      //virtual ::e_status initialize(::object * pobject) override;
 //
 //
 //      application_menu & applicationmenu();
@@ -417,7 +417,7 @@
 //      virtual ::file::path local_application_home_path();
 //
 //
-//      virtual void finalize() override;
+//      virtual ::e_status finalize() override;
 //
 //
 //      //virtual void release_parents() override;
@@ -447,7 +447,7 @@
 //      //virtual void record(::create * pcommand);
 //
 //      //virtual void on_event(::u64 u, ::object * pobject) override;
-//      //virtual __pointer(::thread_toolset) create_thread_toolset(::enum_thread_tool etool);
+//      //virtual __pointer(::thread_toolset) create_thread_toolset(::enum_task_tool etool);
 //
 //
 //      //// ca2verses
@@ -595,7 +595,7 @@
 //      //virtual void SetCurrentHandles();
 //
 //      //virtual void set_env_var(const string & payload,const string & value);
-//      //virtual ithread_t get_thread_id();
+//      //virtual itask_t get_thread_id();
 //
 //
 //      virtual bool _001OnDDECommand(const char * pcsz);
@@ -617,7 +617,7 @@
 //      virtual bool init_service();
 //
 //      virtual bool os_create_service();
-//      virtual bool os_remove_service();
+//      virtual bool os_erase_service();
 //
 //      virtual bool os_start_service();
 //      virtual bool os_stop_service();
@@ -714,8 +714,8 @@
 //
 //
 //
-//      virtual void fill_locale_schema(::str::international::locale_schema & localeschema);
-//      virtual void fill_locale_schema(::str::international::locale_schema & localeschema,const string & pszLocale,const string & pszSchema);
+//      virtual void fill_locale_schema(::text::international::locale_schema & localeschema);
+//      virtual void fill_locale_schema(::text::international::locale_schema & localeschema,const string & pszLocale,const string & pszSchema);
 //
 //      virtual bool platform_open_by_file_extension(index iEdge, const char * pszPathName, ::create * pcreate = nullptr);
 //      virtual bool platform_open_by_file_extension(index iEdge,::create * pcc);
@@ -728,7 +728,7 @@
 //      virtual bool is_application() const override;
 //
 //
-//      DECL_GEN_SIGNAL(_001OnAppExit);
+//      DECLARE_MESSAGE_HANDLER(_001OnAppExit);
 //      virtual bool _001OnAgreeExit();
 //      virtual void _001OnFranceExit();
 //      virtual void _001FranceExit();
@@ -797,8 +797,8 @@
 //
 //
 //      virtual bool get_frame(__pointer(::user::interaction) & pinteraction);
-//      virtual void add_frame(::user::interaction * pwnd);
-//      virtual void remove_frame(::user::interaction * pwnd);
+//      virtual void add_frame(::user::interaction * puserinteraction);
+//      virtual void erase_frame(::user::interaction * puserinteraction);
 //
 //      virtual bool send_message_to_windows(const ::id & id, wparam wparam, lparam lparam); // with tbs in <3
 //
@@ -856,7 +856,7 @@
 //      virtual void HideApplication();
 //
 //      
-//      //virtual ::e_status initialize(::layered * pobjectContext) override;
+//      //virtual ::e_status initialize(::object * pobject) override;
 //
 //      //virtual ::e_status process_init() override;
 //
@@ -875,7 +875,7 @@
 //
 //      //virtual ::e_status     main() override;
 //
-//      //virtual ::aura::application * get_context_application() const override;
+//      //virtual ::aura::application * get_application() const override;
 //
 //      //virtual bool is_system() const override;
 //      //virtual bool is_session() const override;
@@ -922,8 +922,8 @@
 //      virtual bool on_run_install();
 //      virtual bool on_run_uninstall();
 //
-//      DECL_GEN_SIGNAL(on_application_signal);
-//      DECL_GEN_SIGNAL(_001OnSwitchContextTheme);
+//      DECLARE_MESSAGE_HANDLER(on_application_signal);
+//      DECLARE_MESSAGE_HANDLER(_001OnSwitchContextTheme);
 //
 //
 //      // open named file, trying to match a regsitered
@@ -1138,7 +1138,7 @@
 //
 //      virtual ::user::document* _001OpenDocumentFile(::payload varFile);
 //      //virtual bool on_open_document_file(::payload varFile) override;
-//      //DECL_GEN_SIGNAL(_001OnFileNew) override;
+//      //DECLARE_MESSAGE_HANDLER(_001OnFileNew) override;
 //
 //
 //      //virtual string get_version();
@@ -1178,7 +1178,7 @@
 //      virtual void set_title(const char* pszTitle);
 //
 //
-//      virtual bool _001CloseApplicationByUser(__pointer(::user::interaction) pwndExcept);
+//      virtual bool _001CloseApplicationByUser(__pointer(::user::interaction) puserinteractionExcept);
 //
 //
 //#ifdef WINDOWS_DESKTOP
@@ -1244,7 +1244,7 @@
 //      //       virtual __pointer(::bergedge::document) get_document();
 //
 //
-//      //virtual ::e_status add_library(::apex::library * plibrary);
+//      //virtual ::e_status add_library(::acme::library * plibrary);
 //
 //      virtual ::e_status initialize_userex();
 //      virtual ::e_status userfs_init1();
@@ -1303,7 +1303,7 @@
 //
 //
 //
-//      virtual i32 GetVisibleTopLevelFrameCountExcept(__pointer(::user::interaction) pwndExcept);
+//      virtual i32 GetVisibleTopLevelFrameCountExcept(__pointer(::user::interaction) puserinteractionExcept);
 //      virtual i32 GetVisibleFrameCount();
 //
 //      //virtual void on_create_keyboard() override;
@@ -1326,7 +1326,7 @@
 //      //      virtual void set_cred(string strToken, const char * pszUsername, const char * pszPassword) override;
 //      //      virtual void set_cred_ok(string strToken, bool bOk) override;
 //
-//      virtual void remove_document_template(::user::impact_system* pimpactsystem);
+//      virtual void erase_document_template(::user::impact_system* pimpactsystem);
 //
 //      //virtual bool _001OnAgreeExit() override;
 //      //virtual void _001OnFranceExit() override;
@@ -1347,7 +1347,7 @@
 //      //virtual ~application();
 //
 //
-//      //virtual ::e_status     initialize(::layered * pobjectContext) override;
+//      //virtual ::e_status     initialize(::object * pobject) override;
 //
 //
 //      //virtual void install_message_routing(::channel * pchannel) override;
@@ -1388,7 +1388,7 @@
 //      using ::user::form_callback::on_control_event;
 //
 //
-//      //virtual void remove_document_template(::user::impact_system* pimpactsystem);
+//      //virtual void erase_document_template(::user::impact_system* pimpactsystem);
 //
 //      //virtual void term_application() override;
 //
@@ -1410,7 +1410,7 @@
 //
 //
 //      // programming
-//      //DECL_GEN_SIGNAL(on_application_signal);
+//      //DECLARE_MESSAGE_HANDLER(on_application_signal);
 //      //void on_request(::create* pcreate);
 //      string get_visual_studio_build();
 //

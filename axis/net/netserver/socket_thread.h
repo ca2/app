@@ -51,7 +51,11 @@ namespace netserver
       virtual ::sockets::listen_socket_base * new_listen_socket() override
       {
 
-         return new ::sockets::listen_socket < SOCKET >(*m_psockethandler);
+         auto psocket = new ::sockets::listen_socket < SOCKET >;
+
+         //psocket->m_psockethandler = m_psockethandler;
+
+         return psocket;
 
       }
 

@@ -71,14 +71,14 @@ namespace user
 
       //virtual void on_hit_test(::user::item & item) override;
 
-      DECL_GEN_SIGNAL(_001OnKeyDown);
-      //DECL_GEN_SIGNAL(on_message_left_button_down);
-      //DECL_GEN_SIGNAL(on_message_left_button_up);
-      //DECL_GEN_SIGNAL(_001OnMButtonDown);
-      //DECL_GEN_SIGNAL(_001OnMButtonUp);
-      //DECL_GEN_SIGNAL(_001OnMouseMove);
-      //DECL_GEN_SIGNAL(_001OnMouseLeave);
-      DECL_GEN_SIGNAL(on_message_create);
+      DECLARE_MESSAGE_HANDLER(_001OnKeyDown);
+      //DECLARE_MESSAGE_HANDLER(on_message_left_button_down);
+      //DECLARE_MESSAGE_HANDLER(on_message_left_button_up);
+      //DECLARE_MESSAGE_HANDLER(on_message_middle_button_down);
+      //DECLARE_MESSAGE_HANDLER(on_message_middle_button_up);
+      //DECLARE_MESSAGE_HANDLER(on_message_mouse_move);
+      //DECLARE_MESSAGE_HANDLER(on_message_mouse_leave);
+      DECLARE_MESSAGE_HANDLER(on_message_create);
 
 
       virtual ::size_f64 _001CalculateFittingSize(::draw2d::graphics_pointer & pgraphics) override;

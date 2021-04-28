@@ -6,8 +6,7 @@ namespace filemanager
 
 
    class CLASS_DECL_CORE folder_list :
-      virtual public ::user::show < ::user::list >,
-      virtual public ::filemanager::impact
+      virtual public ::filemanager_show < ::user::show < ::user::list > >
    {
    public:
 
@@ -63,8 +62,8 @@ namespace filemanager
 
 
 
-      DECL_GEN_SIGNAL(_001OnLButtonDblClk);
-      DECL_GEN_SIGNAL(_001OnCancelMode);
+      DECLARE_MESSAGE_HANDLER(_001OnLButtonDblClk);
+      DECLARE_MESSAGE_HANDLER(_001OnCancelMode);
 
 
       virtual void assert_valid() const override;

@@ -34,7 +34,7 @@ namespace html
             if(m_pedit->is_window())
             {
 
-               m_pedit->DestroyWindow();
+               m_pedit->destroy_window();
 
             }
 

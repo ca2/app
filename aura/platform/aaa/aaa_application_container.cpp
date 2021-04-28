@@ -40,10 +40,10 @@ void application_container::app_add(::aura::application * papp)
 }
 
 
-void application_container::app_remove(::aura::application * papp)
+void application_container::app_erase(::aura::application * papp)
 {
 
-   m_applicationa.remove(papp);
+   m_applicationa.erase(papp);
 
    if (m_applicationa.isEmpty() && m_bFinalizeIfNoApplication)
    {
@@ -117,7 +117,7 @@ void application_container::request_exit()
                if (!pappItem || pappItem->m_bFranceExit)
                {
 
-                  applicationa.remove_at(j);
+                  applicationa.erase_at(j);
 
                }
                else
@@ -154,7 +154,7 @@ application_array & application_container::applicationa()
 application_array application_container::get_applicationa()
 {
 
-   synchronization_lock synchronizationlock(mutex());
+   synchronous_lock synchronouslock(mutex());
 
    return m_applicationa;
 
@@ -171,7 +171,7 @@ application_array application_container::get_applicationa()
 //
 //   }
 //
-//   synchronization_lock synchronizationlock(mutex());
+//   synchronous_lock synchronouslock(mutex());
 //
 //   if (papp == this)
 //   {
@@ -185,15 +185,15 @@ application_array application_container::get_applicationa()
 //}
 //
 //
-//void application_container::app_remove(::aura::application * papp)
+//void application_container::app_erase(::aura::application * papp)
 //{
 //
-//   synchronization_lock synchronizationlock(mutex());
+//   synchronous_lock synchronouslock(mutex());
 //
 //   if (m_applicationa.is_set())
 //   {
 //
-//      m_applicationa.remove(papp);
+//      m_applicationa.erase(papp);
 //
 //   }
 //
@@ -212,7 +212,7 @@ __pointer(::aura::application) application_container::instantiate_application(co
    if (strAppId == "session")
    {
 
-      papp = create_platform(get_context_application()->get_context_session());
+      papp = create_platform(get_application()->get_session());
 
       if (!papp)
       {
@@ -233,7 +233,7 @@ __pointer(::aura::application) application_container::instantiate_application(co
          if (::aura::get_system()->m_papplicationStartup->m_strAppId != strAppId)
          {
 
-            TRACE("Wrong Application Data Type");
+            TRACE("Wrong papplication Data Type");
 
             return nullptr;
 
@@ -335,7 +335,7 @@ __pointer(::aura::application) application_container::assert_running(const char 
 
   {
 
-     synchronization_lock synchronizationlock(mutex());
+     synchronous_lock synchronouslock(mutex());
 
      papp = m_applicationa.find_running_defer_try_quit_damaged(pszAppId);
 
@@ -375,7 +375,7 @@ __pointer(::aura::application) application_container::start_application(const ch
       || pcreate->m_pcommandline->m_varQuery.has_property("uninstall"))
    {
 
-      m_applicationa.remove(papp);
+      m_applicationa.erase(papp);
 
       return nullptr;
 
@@ -383,7 +383,7 @@ __pointer(::aura::application) application_container::start_application(const ch
 
    string strBuild;
 
-   ::file::path pathExe = ::file::app_module();
+   ::file::path pathExe = m_psystem->m_pacmepath->app_module();
 
    if (!is_application_installed(pathExe, strApp, strBuild, ::aura::get_system()->get_system_platform(),
       ::aura::get_system()->get_system_configuration(), strLocale, strSchema))
@@ -409,7 +409,7 @@ __pointer(::aura::application) application_container::start_application(const ch
          else
          {
 
-            message_box("Application \"" + strApp + "\"\nat path \"" + pathExe + "\"\n is not installed.");
+            message_box("papplication \"" + strApp + "\"\nat path \"" + pathExe + "\"\n is not installed.");
 
             return nullptr;
 
@@ -428,7 +428,7 @@ __pointer(::aura::application) application_container::start_application(const ch
 
    m_applicationa.add_unique(papp);
 
-   m_pappCurrent = papp;
+   m_papplicationCurrent = papp;
 
    if (!papp->on_start_application())
    {
@@ -445,7 +445,7 @@ __pointer(::aura::application) application_container::start_application(const ch
 
    papp->do_request(pcreate);
 
-   //         while (thread_get_run())
+   //         while (task_get_run())
    //         {
    //
    //            if (pcreate->m_pcommandline->m_eventReady.wait(millis(84)).signaled())

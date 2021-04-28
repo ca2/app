@@ -4,14 +4,14 @@
 #endif
 #include "core/id.h"
 #include "core/html/html/_html.h"
+#include "core/user/user/_user.h"
 
 
 namespace html
 {
 
 
-   style::style(::layered * pobjectContext) :
-      ::object(pobjectContext)
+   style::style()
    {
 
       m_edisplay = display_inline;
@@ -125,7 +125,9 @@ namespace html
       if(pstyle != nullptr)
          i = pstyle->m_propertyset.find_index(idName);
 
-      auto puser = User;
+      __pointer(::core::session) psession = get_session();
+
+      auto puser = psession->user();
 
       if(m_propertyset.has_property(puser->m_phtml->concat(idName, __id(html_css_suffix_left))))
          pstyleLeft = this;
@@ -298,7 +300,9 @@ namespace html
       if(pstyle != nullptr)
          i = pstyle->m_propertyset.find_index(idName);
 
-      auto puser = User;
+      __pointer(::core::session) psession = get_session();
+
+      auto puser = psession->user();
 
       if (m_propertyset.has_property(puser->m_phtml->concat(idName, __id(html_css_suffix_width)))
             && parse_border_width(m_propertyset[puser->m_phtml->concat(idName, __id(html_css_suffix_width))], fW))
@@ -468,7 +472,9 @@ namespace html
       if(pstyle != nullptr)
          i = pstyle->m_propertyset.find_index(idName);
 
-      auto puser = User;
+      __pointer(::core::session) psession = get_session();
+
+      auto puser = psession->user();
 
       if (m_propertyset.has_property(puser->m_phtml->concat(idName, __id(html_css_suffix_color)))
             && parse_border_color(m_propertyset[puser->m_phtml->concat(idName, __id(html_css_suffix_color))], crW))
@@ -639,7 +645,8 @@ namespace html
          style * pstyle = pdata->m_pcoredata->m_stylesheeta.rfind(etag, strClass, strSubClass, idName);
          if(pstyle == nullptr)
          {
-            if(pelement->m_pparent != nullptr
+            if(::is_set(pelement->m_pparent)
+               && ::is_set(pelement->m_pparent->m_pstyle)
                   && ansi_compare_ci(idName, "padding") != 0
                   && ansi_compare_ci(idName, "margin") != 0
                   && ansi_compare_ci(idName, "border") != 0)
@@ -650,10 +657,15 @@ namespace html
                }
             }
             if(etag == tag_h1)
+
+
+
             {
                if(ansi_compare_ci("font-family", idName) == 0)
                {
-                  str = os_font_name(e_font_serif);
+                  auto psystem = m_psystem->m_paurasystem;
+                  auto pnode = psystem->node();
+                  str = pnode->font_name(e_font_serif);
                   return true;
                }
                else if(ansi_compare_ci("font-size_i32", idName) == 0)
@@ -675,7 +687,10 @@ namespace html
             {
                if(ansi_compare_ci("font-family", idName) == 0)
                {
-                  str = os_font_name(e_font_serif);
+                  auto psystem = m_psystem->m_paurasystem;
+                  auto pnode = psystem->node();
+
+                  str = pnode->font_name(e_font_serif);
                   return true;
                }
                else if(ansi_compare_ci("font-size_i32", idName) == 0)
@@ -697,7 +712,10 @@ namespace html
             {
                if(ansi_compare_ci("font-family", idName) == 0)
                {
-                  str = os_font_name(e_font_serif);
+                  auto psystem = m_psystem->m_paurasystem;
+                  auto pnode = psystem->node();
+
+                  str = pnode->font_name(e_font_serif);
                   return true;
                }
                else if(ansi_compare_ci("font-size_i32", idName) == 0)
@@ -719,7 +737,10 @@ namespace html
             {
                if(ansi_compare_ci("font-family", idName) == 0)
                {
-                  str = os_font_name(e_font_serif);
+                  auto psystem = m_psystem->m_paurasystem;
+                  auto pnode = psystem->node();
+
+                  str = pnode->font_name(e_font_serif);
                   return true;
                }
                else if(ansi_compare_ci("font-size_i32", idName) == 0)
@@ -1225,21 +1246,21 @@ namespace html
    }
 
 
-   void style::initialize(e_tag etag)
+   void style::initialize_style(e_tag etag)
    {
+
+      __pointer(::core::session) psession = get_session();
+
+      auto puser = psession->user();
 
       if (m_propertyset.has_property(__id(html_display)))
       {
-
-         auto puser = User;
 
          m_edisplay = puser->m_phtml->display_name_to_id(m_propertyset[__id(html_display)], etag);
 
       }
       else
       {
-
-         auto puser = User;
 
          m_edisplay = puser->m_phtml->tag_to_display(etag);
 

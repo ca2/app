@@ -91,10 +91,10 @@ simple_frame_window::~simple_frame_window()
 }
 
 
-::e_status simple_frame_window::initialize(::layered * pobjectContext)
+::e_status simple_frame_window::initialize(::object * pobject)
 {
 
-   auto estatus = ::experience::frame_window::initialize(pobjectContext);
+   auto estatus = ::experience::frame_window::initialize(pobject);
 
    if (!estatus)
    {
@@ -143,7 +143,7 @@ void simple_frame_window::install_message_routing(::channel * pchannel)
 
 #endif
 
-   MESSAGE_LINK(e_message_mouse_move, pchannel, this, &simple_frame_window::_001OnMouseMove);
+   MESSAGE_LINK(e_message_mouse_move, pchannel, this, &simple_frame_window::on_message_mouse_move);
    MESSAGE_LINK(e_message_display_change, pchannel, this, &simple_frame_window::_001OnDisplayChange);
    MESSAGE_LINK(e_message_show_window, pchannel, this, &simple_frame_window::_001OnShowWindow);
    MESSAGE_LINK(e_message_mouse_activate, pchannel, this, &simple_frame_window::_001OnMouseActivate);
@@ -176,13 +176,16 @@ void simple_frame_window::install_message_routing(::channel * pchannel)
 
 #ifdef WINDOWS_DESKTOP
 
-   MESSAGE_LINK(System->m_emessageWindowsTaskbarCreatedMessage, pchannel, this, &simple_frame_window::_001OnTaskbarCreated);
+   auto psystem = m_psystem->m_pbasesystem;
+
+   MESSAGE_LINK(psystem->m_emessageWindowsTaskbarCreatedMessage, pchannel, this, &simple_frame_window::_001OnTaskbarCreated);
 
 #endif
 
 }
 
-void simple_frame_window::SaveWindowRectThreadProcedure()
+
+void simple_frame_window::SaveWindowRectTaskProcedure()
 {
 
    ::output_debug_string("_task_save_window_rect start\n");
@@ -193,7 +196,7 @@ void simple_frame_window::SaveWindowRectThreadProcedure()
       while (true)
       {
 
-         bool bThreadRun = ::thread_get_run();
+         bool bThreadRun = ::task_get_run();
 
          if (!bThreadRun)
          {
@@ -281,7 +284,7 @@ void simple_frame_window::SaveWindowRectThreadProcedure()
 void simple_frame_window::defer_save_window_placement()
 {
 
-   synchronization_lock synchronizationlock(mutex());
+   synchronous_lock synchronouslock(mutex());
 
    if (!should_save_window_rect())
    {
@@ -294,7 +297,7 @@ void simple_frame_window::defer_save_window_placement()
 
    m_millisLastSaveWindowRectRequest.Now();
 
-   __defer_fork(SaveWindowRect);
+   __defer_branch(SaveWindowRect);
 
 }
 
@@ -312,7 +315,9 @@ bool simple_frame_window::WindowDataLoadWindowRect(bool bForceRestore, bool bIni
 
          bool bWfiDown = true;
 
-         Application.data_get("wfi_down", bWfiDown);
+         auto papplication = get_application();
+
+         papplication->data_get("wfi_down", bWfiDown);
 
          if (bWfiDown)
          {
@@ -374,7 +379,9 @@ bool simple_frame_window::WindowDataSaveWindowRect()
 
       bDown = m_eupdown != updown_up;
 
-      Application.data_set("wfi_down", bDown);
+      auto papplication = get_application();
+
+      papplication->data_set("wfi_down", bDown);
 
    }
 
@@ -422,7 +429,7 @@ bool simple_frame_window::_001OnBeforeAppearance()
 void simple_frame_window::_thread_save_window_placement()
 {
 
-   while (::thread_get_run())
+   while (::task_get_run())
    {
 
       if (!task_sleep(300_ms))
@@ -513,7 +520,7 @@ void simple_frame_window::_001OnDestroy(::message::message * pmessage)
 
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       try
       {
@@ -541,7 +548,9 @@ void simple_frame_window::_001OnDestroy(::message::message * pmessage)
 ::experience::frame * simple_frame_window::experience_get_frame()
 {
 
-   auto puser = User;
+   auto psession = get_session();
+
+   auto puser = psession->user();
 
    if(!puser || puser->experience() == nullptr)
    {
@@ -550,10 +559,12 @@ void simple_frame_window::_001OnDestroy(::message::message * pmessage)
 
    }
 
-   if(Application.m_puiMain1 != nullptr)
+   auto papplication = get_application();
+
+   if(papplication->m_puserinteractionMain != nullptr)
    {
 
-      __pointer(::simple_frame_window) pframe = Application.m_puiMain1;
+      __pointer(::simple_frame_window) pframe = papplication->m_puserinteractionMain.get();
 
       if(pframe.is_set())
       {
@@ -619,7 +630,7 @@ void simple_frame_window::_001OnDestroy(::message::message * pmessage)
 //}
 
 
-bool simple_frame_window::initialize_frame_window_experience()
+::e_status simple_frame_window::initialize_frame_window_experience()
 {
 
    if (m_pframe.is_set())
@@ -644,7 +655,7 @@ bool simple_frame_window::initialize_frame_window_experience()
    catch (...)
    {
 
-      return false;
+      return error_failed;
 
    }
 
@@ -697,19 +708,19 @@ void simple_frame_window::on_message_create(::message::message * pmessage)
 
    __pointer(::message::create) pcreate(pmessage);
 
-   ::create * pcreateContext = (::create *) pcreate->get_create();
+   auto pcreateContext = (::create *) pcreate->get_create();
 
    if (::is_set(pcreateContext))
    {
 
-      auto pusersystem = pcreateContext->m_pusersystem;
+      __pointer(::user::system) pusersystem = pcreateContext->m_pmatterUserPayload;
 
-      if (::is_set(pusersystem))
+      if (pusersystem)
       {
 
-         m_bAutoWindowFrame = __user_system(pusersystem)->m_bAutoWindowFrame;
+         m_bAutoWindowFrame = pusersystem->m_bAutoWindowFrame;
 
-         m_bWindowFrame = __user_system(pusersystem)->m_bWindowFrame;
+         m_bWindowFrame = pusersystem->m_bWindowFrame;
 
       }
 
@@ -731,10 +742,12 @@ void simple_frame_window::on_message_create(::message::message * pmessage)
 
    }
 
+   auto papplication = get_application();
+
    if (m_bAutoWindowFrame)
    {
 
-      if(Application.is_true("client_only"))
+      if(papplication->is_true("client_only"))
       {
 
          m_bWindowFrame = false;
@@ -767,10 +780,12 @@ void simple_frame_window::on_message_create(::message::message * pmessage)
 
          ::file::path pathFrameJson = "matter://" + m_pdocumenttemplate->m_strMatter + "/frame.json";
 
+         auto pcontext = get_context();
+
          if (m_pdocumenttemplate->m_strMatter.has_char())
          {
 
-            m_varFrame = Context.file().as_json(pathFrameJson);
+            m_varFrame = pcontext->m_papexcontext->file().as_json(pathFrameJson);
 
          }
 
@@ -822,7 +837,7 @@ void simple_frame_window::on_message_create(::message::message * pmessage)
       if (m_ebuttonaHide.contains(::experience::e_button_transparent_frame))
       {
 
-         layout().remove_appearance(e_appearance_transparent_frame);
+         layout().erase_appearance(e_appearance_transparent_frame);
 
       }
 
@@ -847,7 +862,7 @@ void simple_frame_window::on_message_create(::message::message * pmessage)
    if (get_parent() == nullptr && m_strFrameTitle.is_empty())
    {
 
-      m_strFrameTitle = Application.get_app_user_friendly_task_bar_name();
+      m_strFrameTitle = papplication->get_app_user_friendly_task_bar_name();
 
    }
 
@@ -862,16 +877,16 @@ void simple_frame_window::on_message_create(::message::message * pmessage)
 
    }
 
-   string strAppTitle = Application.m_strAppTitle;
+   auto textAppTitle = papplication->m_textAppTitle;
 
-   if (strAppTitle.is_empty())
+   if (textAppTitle.get_text().is_empty())
    {
 
       string_array stra;
 
-      stra.explode("/", Application.m_strAppId);
+      stra.explode("/", papplication->m_strAppId);
 
-      strAppTitle = stra.slice(1).implode(" ");
+      string strAppTitle = stra.slice(1).implode(" ");
 
       strAppTitle.replace("_", " ");
 
@@ -889,13 +904,13 @@ void simple_frame_window::on_message_create(::message::message * pmessage)
 
          index iNotifyIconItem = 0;
 
-         notify_icon_insert_item(iNotifyIconItem, strAppTitle, "notify_icon_topic");
+         notify_icon_insert_item(iNotifyIconItem, textAppTitle.get_text(), "notify_icon_topic");
 
-         auto c = Application.applicationmenu().get_count();
+         auto c = papplication->applicationmenu().get_count();
 
          for (auto i = 0; i < c; i++)
          {
-            auto& item = Application.applicationmenu()[i];
+            auto& item = papplication->applicationmenu()[i];
 
             notify_icon_insert_item(iNotifyIconItem, item.m_strName, item.m_strId);
 
@@ -1097,7 +1112,7 @@ bool simple_frame_window::pre_create_window(::user::system * pusersystem)
    if(pcreateContext && would_display_notify_icon())
    {
 
-      auto pusersystem = pcreateContext->get_user_create();
+      __pointer(::user::system) pusersystem = pcreateContext->m_pmatterUserPayload;
 
       __pointer(::user::document) pdocument = pusersystem->m_pdocumentCurrent;
 
@@ -1133,7 +1148,9 @@ void simple_frame_window::on_layout(::draw2d::graphics_pointer & pgraphics)
 
    }
 
-   if (Application.is_true("client_only") && get_parent() == nullptr)
+   auto papplication = get_application();
+
+   if (papplication->is_true("client_only") && get_parent() == nullptr)
    {
 
       auto rectangle = get_host_window()->get_client_rect();
@@ -1332,7 +1349,7 @@ void simple_frame_window::_001OnViewFullScreen(::message::message * pmessage)
 }
 
 
-void simple_frame_window::_001OnMouseMove(::message::message * pmessage)
+void simple_frame_window::on_message_mouse_move(::message::message * pmessage)
 {
 
    UNREFERENCED_PARAMETER(pmessage);
@@ -1545,7 +1562,9 @@ void simple_frame_window::_001OnAppExit(::message::message * pmessage)
 
    }
 
-   Application.request({::command_france_exit});
+   auto papplication = get_application();
+
+   papplication->france_exit();
 
    if (pmessage != nullptr)
    {
@@ -1568,10 +1587,12 @@ void simple_frame_window::_001OnClose(::message::message * pmessage)
 
       bool bShow = false;
 
+      auto papplication = get_application();
+
       if (::str::ends_eat_ci(strView, "::frame"))
       {
 
-         Application.data_set("frame::" + strView + ".visible", bShow);
+         papplication->data_set("frame::" + strView + ".visible", bShow);
 
       }
 
@@ -1621,9 +1642,11 @@ void simple_frame_window::_001OnClose(::message::message * pmessage)
 #ifdef LINUX
       //if(is_window_visible())
 
-      auto pnode = Node;
+      auto psystem = m_psystem->m_papexsystem;
 
-      auto edesktop = System->get_edesktop();
+      auto pnode = psystem->node();
+
+      auto edesktop = psystem->get_edesktop();
 
       if(edesktop == ::user::e_desktop_unity_gnome
             || edesktop == ::user::e_desktop_ubuntu_gnome)
@@ -1708,7 +1731,9 @@ void simple_frame_window::_001OnClose(::message::message * pmessage)
 
       }
 
-      //::aura::application * papp = &Application;
+      auto papplication = get_application();
+
+      //::aura::application * papp = &papplication;
 
       if (get_parent() != nullptr)
       {
@@ -1719,10 +1744,10 @@ void simple_frame_window::_001OnClose(::message::message * pmessage)
       //else if (papp->is_system() || papp->is_session())
       //{
 
-      //   // TODO: instead of closing all applications in process System->m_apptra, should close application that make part of
+      //   // TODO: instead of closing all applications in process psystem->m_apptra, should close application that make part of
       //   // cube, bergedge, session or system.
 
-      //   auto applicationa = System->get_applicationa();
+      //   auto applicationa = psystem->get_applicationa();
 
       //   for (auto & papp : applicationa)
       //   {
@@ -1737,7 +1762,7 @@ void simple_frame_window::_001OnClose(::message::message * pmessage)
       //   }
 
       //}
-      else if(Application.on_close_frame_window(this))
+      else if(papplication->on_close_frame_window(this))
       {
 
          return;
@@ -1876,10 +1901,13 @@ bool simple_frame_window::LoadFrame(const char * pszMatter, u32 dwDefaultStyle, 
 
    m_strMatterHelp = pszMatter;    // ID for help context (+HID_BASE_RESOURCE)
 
+   auto papplication = get_application();
+
+
    if (puiParent == nullptr)
    {
 
-      puiParent = Application.get_request_parent_ui(this, pusersystem);
+      puiParent = papplication->get_request_parent_ui(this, pusersystem);
 
    }
 
@@ -2132,9 +2160,10 @@ void simple_frame_window::on_frame_position()
 void simple_frame_window::InitialFramePosition(bool bForceRestore)
 {
 
+   auto papplication = get_application();
+
    try
    {
-
       if(m_bFrameMoveEnable)
       {
 
@@ -2146,19 +2175,19 @@ void simple_frame_window::InitialFramePosition(bool bForceRestore)
             display(e_display_full_screen);
 
          }
-         else if (Application.has_property("full_screen"))
+         else if (papplication->has_property("full_screen"))
          {
 
             display(e_display_full_screen);
 
          }
-         else if(Application.has_property("wfi_maximize") && is_top_level_window())
+         else if(papplication->has_property("wfi_maximize") && is_top_level_window())
          {
 
             display(e_display_zoomed);
 
          }
-         //else if(Application.has_property("client_only"))
+         //else if(papplication->has_property("client_only"))
          //{
 
          //   if(is_frame_experience_enabled())
@@ -2190,7 +2219,7 @@ void simple_frame_window::InitialFramePosition(bool bForceRestore)
 
       m_bInitialFramePosition = true;
 
-      get_context_application()->on_initial_frame_position(this);
+      get_application()->on_initial_frame_position(this);
 
       //on_frame_position();
 
@@ -2246,10 +2275,10 @@ void simple_frame_window::on_after_graphical_update()
 void simple_frame_window::_001OnDeferPaintLayeredWindowBackground(::draw2d::graphics_pointer & pgraphics)
 {
 
-   auto psession = Session;
+   auto psession = get_session();
 
-   if(get_context_application() == nullptr
-         || get_context_application()->get_context_session() == nullptr
+   if(get_application() == nullptr
+         || get_application()->get_session() == nullptr
          || psession->m_psavings == nullptr)
    {
 
@@ -2257,8 +2286,8 @@ void simple_frame_window::_001OnDeferPaintLayeredWindowBackground(::draw2d::grap
 
    }
 
-   if (psession->savings().is_trying_to_save(::e_resource_processing)
-         || psession->savings().is_trying_to_save(::e_resource_translucent_background))
+   if (psession->m_paurasession->savings().is_trying_to_save(::e_resource_processing)
+         || psession->m_paurasession->savings().is_trying_to_save(::e_resource_translucent_background))
    {
 
       ::rectangle_i32 rectClient;
@@ -2292,7 +2321,7 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics_pointer & pgraphicsParam
 
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       if (m_pimpl->m_puserinteraction == nullptr)
       {
@@ -2486,7 +2515,9 @@ void simple_frame_window::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 
       //printf("simplefrmwnd : " + string(type_name()) + " : blur_background");
 
-      class imaging & imaging = System->imaging();
+      auto psystem = m_psystem->m_pbasesystem;
+
+      class imaging & imaging = psystem->imaging();
 
       ::rectangle_i32 rectClient;
 
@@ -2494,19 +2525,19 @@ void simple_frame_window::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 
       //rectClient.offset(rectClient.top_left());
 
-      auto psession = Session;
+      auto psession = get_session();
 
-      if(psession->savings().is_trying_to_save(::e_resource_translucent_background))
+      if(psession->m_paurasession->savings().is_trying_to_save(::e_resource_translucent_background))
       {
 
          //pgraphics->fill_rectangle(rectClient, rgb(150, 220, 140));
 
       }
-      else if(psession->savings().is_trying_to_save(::e_resource_processing)
-              || psession->savings().is_trying_to_save(::e_resource_blur_background))
+      else if(psession->m_paurasession->savings().is_trying_to_save(::e_resource_processing)
+              || psession->m_paurasession->savings().is_trying_to_save(::e_resource_blur_background))
       {
 
-         imaging.color_blend(pgraphics,rectClient,rgb(150,180,140),150);
+         pgraphics->color_blend(rectClient,rgb(150,180,140),150);
 
       }
       else
@@ -2647,7 +2678,9 @@ bool simple_frame_window::get_client_rect(RECTANGLE_I32 * prectangle)
 bool simple_frame_window::is_application_main_window()
 {
 
-   return Application.m_puiMain1 == this;
+   auto papplication = get_application();
+
+   return papplication->m_puserinteractionMain == this;
 
 }
 
@@ -2698,7 +2731,9 @@ bool simple_frame_window::LoadToolBar(::type type, id idToolBar, const char * ps
 
    }
 
-   string strMatter = Context.dir().matter(pszToolBar);
+   auto pcontext = get_context();
+
+   string strMatter = pcontext->m_papexcontext->dir().matter(pszToolBar);
 
    if (ptoolbar->payload("matter_annotation") == strMatter)
    {
@@ -2707,7 +2742,7 @@ bool simple_frame_window::LoadToolBar(::type type, id idToolBar, const char * ps
 
    }
 
-   string strXml = Context.file().as_string(strMatter);
+   string strXml = pcontext->m_papexcontext->file().as_string(strMatter);
 
    if(!ptoolbar->LoadXmlToolBar(strXml))
    {
@@ -2748,6 +2783,8 @@ void simple_frame_window::defer_create_notification_icon()
 
    }
 
+   auto papplication = get_application();
+
    if (m_piconNotify.is_null())
    {
 
@@ -2756,7 +2793,7 @@ void simple_frame_window::defer_create_notification_icon()
       if(estatus)
       {
 
-         const char * pszAppName = Application.m_strAppName;
+         const char * pszAppName = papplication->m_strAppName;
 
          m_piconNotify->load_app_tray_icon(pszAppName);
 
@@ -2908,7 +2945,7 @@ void simple_frame_window::route_command_message(::message::command * pcommand)
 //
 //   ::DragFinish(hDropInfo);
 //
-//   auto puser = User;
+//   auto puser = user();
 //
 //   puser->on_frame_window_drop_files(this, patha);
 //
@@ -2924,7 +2961,7 @@ void simple_frame_window::route_command_message(::message::command * pcommand)
 //
 //   }
 //
-//   Application.close(::apex::e_end_system);
+//   papplication->close(::apex::e_end_system);
 //
 //}
 //
@@ -2953,13 +2990,13 @@ void simple_frame_window::route_command_message(::message::command * pcommand)
 //
 //#ifdef WINDOWS_DESKTOP
 //
-//   ::aura::application* pApp = &Application;
+//   ::aura::application* pApp = &papplication;
 //   if (pApp != nullptr &&
 //         LOWORD(lParam) != 0 && HIWORD(lParam) != 0 &&
 //         (ATOM)LOWORD(lParam) == pApp->m_atomApp &&
 //         (ATOM)HIWORD(lParam) == pApp->m_atomSystemTopic)
 //   {
-//      // make duplicates of the incoming atoms (really adding a context_object)
+//      // make duplicates of the incoming atoms (really adding a object)
 //      wchar_t szAtomName[_MAX_PATH];
 //      GlobalGetAtomNameW(pApp->m_atomApp, szAtomName, _MAX_PATH - 1);
 //      GlobalAddAtomW(szAtomName);
@@ -3028,7 +3065,7 @@ void simple_frame_window::route_command_message(::message::command * pcommand)
 //   // execute the command
 //   //LPWSTR pszCommand = strCommand.alloc(strCommand.get_length());
 //
-//   //if (!System->OnDDECommand(pszCommand))
+//   //if (!psystem->OnDDECommand(pszCommand))
 //
 //   //   TRACE(trace_category_appmsg, e_trace_level_warning, "Error: failed to execute DDE command '%s'.\n", pszCommand);
 //
@@ -3093,7 +3130,7 @@ void simple_frame_window::route_command_message(::message::command * pcommand)
 //   // then update the state of all floating windows owned by the parent
 //#ifdef WINDOWS_DESKTOP
 //
-//   __pointer(::user::interaction) oswindowDesktop = Application.get_desktop_window();
+//   __pointer(::user::interaction) oswindowDesktop = papplication->get_desktop_window();
 //
 //   if (oswindowDesktop.is_null())
 //      return;
@@ -3123,10 +3160,12 @@ void simple_frame_window::_001OnQueryEndSession(::message::message * pmessage)
 
    __pointer(::user::message) pusermessage(pmessage);
 
-   if (::is_set(Application) && Application.m_puiMain1 == this)
+   auto papplication = get_application();
+
+   if (::is_set(papplication) && papplication->m_puserinteractionMain == this)
    {
 
-      pusermessage->m_lresult = Application.save_all_modified();
+      pusermessage->m_lresult = papplication->save_all_modified();
 
       pusermessage->m_bRet = true;
 
@@ -3207,8 +3246,8 @@ string simple_frame_window::get_window_default_matter()
 //         ::aura::application* pApp = System;
 //         if (pApp != nullptr && pApp->m_puiMain == pframe)
 //         {
-//            edisplay = System->m_edisplay; // use the parameter from WinMain
-//            System->m_edisplay = e_display_undefined; // set to default after first time
+//            edisplay = psystem->m_edisplay; // use the parameter from WinMain
+//            psystem->m_edisplay = e_display_undefined; // set to default after first time
 //         }
 //         bool bFullScreen;
 //         data_get("FullScreen", bFullScreen);
@@ -3255,17 +3294,17 @@ void simple_frame_window::draw_frame_and_control_box_over(::draw2d::graphics_poi
 
    }
 
-   auto puiptraChild = m_puiptraChild;
+   auto puserinteractionpointeraChild = m_puserinteractionpointeraChild;
 
    //{
 
-   //   synchronization_lock synchronizationlock(mutex());
+   //   synchronous_lock synchronouslock(mutex());
 
    //   uia = m_uiptraChild;
 
    //}
 
-   if(puiptraChild)
+   if(puserinteractionpointeraChild)
    {
 
       ::draw2d::savedc k(pgraphics);
@@ -3276,7 +3315,7 @@ void simple_frame_window::draw_frame_and_control_box_over(::draw2d::graphics_poi
          try
          {
 
-            for (auto & pinteraction : puiptraChild->interactiona())
+            for (auto & pinteraction : puserinteractionpointeraChild->interactiona())
             {
 
                auto pcontrolbox = pinteraction->cast < ::experience::control_box >();
@@ -3372,10 +3411,10 @@ void simple_frame_window::draw_frame_and_control_box_over(::draw2d::graphics_poi
       try
       {
 
-         if (puiptraChild)
+         if (puserinteractionpointeraChild)
          {
 
-            for (auto & pinteraction : puiptraChild->interactiona())
+            for (auto & pinteraction : puserinteractionpointeraChild->interactiona())
             {
 
                if (base_class < ::experience::control_box > ::bases(pinteraction))
@@ -3476,9 +3515,9 @@ void simple_frame_window::draw_frame_and_control_box_over(::draw2d::graphics_poi
 void simple_frame_window::draw_frame(::draw2d::graphics_pointer & pgraphics)
 {
 
-   auto psession = Session;
+   auto psession = get_session();
 
-   if (m_bWindowFrame && !psession->savings().is_trying_to_save(::e_resource_display_bandwidth))
+   if (m_bWindowFrame && !psession->m_paurasession->savings().is_trying_to_save(::e_resource_display_bandwidth))
    {
 
       ::experience::frame_window::_001OnDraw(pgraphics);
@@ -3546,8 +3585,8 @@ void simple_frame_window::draw_frame(::draw2d::graphics_pointer & pgraphics)
 //{
 //   if (bFullScreen)
 //   {
-//      __pointer(::user::interaction) pwndParentFrame = get_parent_frame();
-//      if (pwndParentFrame == nullptr)
+//      __pointer(::user::interaction) puserinteractionParentFrame = get_parent_frame();
+//      if (puserinteractionParentFrame == nullptr)
 //      {
 //         if (!layout().is_full_screen())
 //         {
@@ -3559,7 +3598,7 @@ void simple_frame_window::draw_frame(::draw2d::graphics_pointer & pgraphics)
 //            return false;
 //         }
 //      }
-//      simple_frame_window * pframe = dynamic_cast <simple_frame_window *> (pwndParentFrame.m_p);
+//      simple_frame_window * pframe = dynamic_cast <simple_frame_window *> (puserinteractionParentFrame.m_p);
 //      if (pframe == nullptr)
 //      {
 //         if (!layout().is_full_screen())
@@ -3593,12 +3632,12 @@ void simple_frame_window::draw_frame(::draw2d::graphics_pointer & pgraphics)
 //         display(e_display_normal);
 //         return true;
 //      }
-//      __pointer(::user::interaction) pwndParentFrame = get_parent_frame();
-//      if (pwndParentFrame == nullptr)
+//      __pointer(::user::interaction) puserinteractionParentFrame = get_parent_frame();
+//      if (puserinteractionParentFrame == nullptr)
 //      {
 //         return false;
 //      }
-//      simple_frame_window * pframe = dynamic_cast <simple_frame_window *> (pwndParentFrame.m_p);
+//      simple_frame_window * pframe = dynamic_cast <simple_frame_window *> (puserinteractionParentFrame.m_p);
 //      if (pframe == nullptr)
 //      {
 //         return false;
@@ -3615,12 +3654,12 @@ void simple_frame_window::draw_frame(::draw2d::graphics_pointer & pgraphics)
 //
 //   auto pstyle = get_style(pgraphics);
 //
-//   auto psession = Session;
+//   auto psession = get_session();
 //
 //   if (m_bLayered && get_translucency(pstyle) != ::user::e_translucency_none)
 //   {
-//      return !psession->savings().is_trying_to_save(::e_resource_processing)
-//             && !psession->savings().is_trying_to_save(::e_resource_display_bandwidth);
+//      return !psession->m_paurasession->savings().is_trying_to_save(::e_resource_processing)
+//             && !psession->m_paurasession->savings().is_trying_to_save(::e_resource_display_bandwidth);
 //   }
 //   else
 //   {
@@ -3758,9 +3797,11 @@ bool simple_frame_window::on_create_bars()
 
       ::file::path pathToolbar = m_pdocumenttemplate->m_strMatter / strToolbar;
 
-      ::file::path path = Context.dir().matter(pathToolbar);
+      auto pcontext = get_context();
 
-      if (Context.file().exists(path))
+      ::file::path path = pcontext->m_papexcontext->dir().matter(pathToolbar);
+
+      if (pcontext->m_papexcontext->file().exists(path))
       {
 
          LoadToolBar(pathToolbar, pathToolbar);
@@ -3823,9 +3864,9 @@ void simple_frame_window::_001OnTimer(::timer * ptimer)
 void simple_frame_window::OnNotifyIconContextMenu(::u32 uNotifyIcon)
 {
 
-   auto psession = Session;
+   auto psession = get_session();
 
-   auto puser = Usr(psession);
+   auto puser = psession->user();
 
    auto pwindowing = puser->windowing();
 
@@ -4006,10 +4047,12 @@ void simple_frame_window::on_select_user_style()
 
       if (strSchema.has_char() || is_top_level_window())
       {
-         
-         auto puser = User;
 
-         auto pstyle = puser->get_user_style(strSchema, get_context_application());
+         auto psession = get_session();
+         
+         auto puser = psession->user();
+
+         auto pstyle = puser->get_user_style(strSchema, get_application());
 
          __refer(m_puserstyle, pstyle);
 
@@ -4051,7 +4094,7 @@ void simple_frame_window::notification_area_action(const char * pszId)
 string simple_frame_window::notification_area_get_xml_menu()
 {
 
-   auto pdocument = __new(::xml::document);
+   auto pdocument = __create_new<::xml::document>();
 
    pdocument->create_root("menu");
 

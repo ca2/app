@@ -32,7 +32,7 @@ namespace sockets
 
 
 
-   Ajp13Socket::Ajp13Socket(base_socket_handler& h) :
+   Ajp13Socket::Ajp13Socket() :
       socket(h),
       base_socket(h),
       stream_socket(h),
@@ -130,7 +130,7 @@ namespace sockets
       //string method_str = __str( method );
       //string method_str(method);
       string method_str((char)method);
-      System->sockets().m_pajpaxissocketinit->Method.lookup(method, method_str);
+      psystem->sockets().m_pajpaxissocketinit->Method.lookup(method, method_str);
       m_request.attr("http_method") = method_str;
       m_request.attr("http_protocol") = protocol;
       m_request.attr("request_uri") = req_uri;
@@ -150,7 +150,7 @@ namespace sockets
          case 0xa0:
          {
             u16 x = (u16)get_integer(buf, ptr);
-            if (!System->sockets().m_pajpaxissocketinit->header.lookup(x, key))
+            if (!psystem->sockets().m_pajpaxissocketinit->header.lookup(x, key))
             {
                TRACE("Unknown header key value: %x\n", x);
                SetCloseAndDelete();
@@ -183,7 +183,7 @@ namespace sockets
             break;
          default:
          {
-            if(!System->sockets().m_pajpaxissocketinit->Attribute.lookup(code, key))
+            if(!psystem->sockets().m_pajpaxissocketinit->Attribute.lookup(code, key))
             {
                TRACE("Unknown attribute key: 0x%02x\n", buf[ptr]);
                SetCloseAndDelete();
@@ -277,7 +277,7 @@ namespace sockets
             string strNameLower(name);
             strNameLower.make_lower();
             i32 iValue;
-            if(System->sockets().m_pajpaxissocketinit->ResponseHeader.lookup(strNameLower, iValue))
+            if(psystem->sockets().m_pajpaxissocketinit->ResponseHeader.lookup(strNameLower, iValue))
             {
                put_integer(msg, ptr, (i16) iValue);
             }
@@ -292,8 +292,8 @@ namespace sockets
                {
                   for (list<string>::iterator it = vec.begin(); it != vec.end(); it++)
                   {
-                     Utility::ncmap<i32>::const_iterator it2 = dynamic_cast < application_interface * >(::get_context_application())->m_pajpaxissocketinit->ResponseHeader.find( __id(set_cookie) );
-                     if (it2 != dynamic_cast < application_interface * >(::get_context_application())->m_pajpaxissocketinit->ResponseHeader.end())
+                     Utility::ncmap<i32>::const_iterator it2 = dynamic_cast < application_interface * >(::get_application())->m_pajpaxissocketinit->ResponseHeader.find( __id(set_cookie) );
+                     if (it2 != dynamic_cast < application_interface * >(::get_application())->m_pajpaxissocketinit->ResponseHeader.end())
                      {
                         put_integer(msg, ptr, it2 -> element2());
                      }

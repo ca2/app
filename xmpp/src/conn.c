@@ -195,7 +195,7 @@ int xmpp_conn_release(xmpp_conn_t * const conn)
     else {
 	ctx = conn->ctx;
 
-	/* remove connection from context's connlist */
+	/* erase connection from context's connlist */
 	if (ctx->connlist->conn == conn) {
 	    item = ctx->connlist;
 	    ctx->connlist = item->next;
@@ -514,7 +514,7 @@ int xmpp_connect_component(xmpp_conn_t * const conn, const char * const server,
  */
 void conn_disconnect_clean(xmpp_conn_t * const conn)
 {
-    /* remove the timed handler */
+    /* erase the timed handler */
     xmpp_timed_handler_delete(conn, _disconnect_cleanup);
 
     conn_disconnect(conn);

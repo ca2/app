@@ -7,7 +7,7 @@ namespace filemanager
 
    class CLASS_DECL_CORE tree :
       virtual public ::userfs::tree,
-      virtual public ::filemanager::impact
+      virtual public ::filemanager_impact
    {
    public:
 
@@ -50,6 +50,13 @@ namespace filemanager
       virtual ~tree();
 
 
+      inline ::core::application* get_application() const { return m_pcontext ? m_pcontext->m_pcoreapplication : nullptr; }
+      inline ::core::session* get_session() const { return m_pcontext ? m_pcontext->m_pcoresession : nullptr; }
+      inline ::core::system* get_system() const { return m_psystem ? m_psystem->m_pcoresystem : nullptr; }
+      inline ::core::user* user() const { return get_session() ? get_session()->user() : nullptr; }
+
+
+
       virtual ::e_status initialize_filemanager_tree(document * pdocument);
 
 
@@ -82,7 +89,7 @@ namespace filemanager
 
       void TakeAnimationSnapshot();
       virtual void StartAnimation();
-      DECL_GEN_SIGNAL(_001OnMainPostMessage);
+      DECLARE_MESSAGE_HANDLER(_001OnMainPostMessage);
       void GetSelectedFilePath(string_array & stra);
       virtual bool _001IsTranslucent() override;
 
@@ -99,9 +106,9 @@ namespace filemanager
       virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
 
 
-      DECL_GEN_SIGNAL(_001OnContextMenu);
-      DECL_GEN_SIGNAL(on_message_create);
-      DECL_GEN_SIGNAL(_001OnShellCommand);
+      DECLARE_MESSAGE_HANDLER(_001OnContextMenu);
+      DECLARE_MESSAGE_HANDLER(on_message_create);
+      DECLARE_MESSAGE_HANDLER(_001OnShellCommand);
 
 
       virtual void on_merge_user_tree(::user::tree * pusertree) override;

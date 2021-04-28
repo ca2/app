@@ -33,8 +33,11 @@ namespace hi5
          bool                                      m_bLicense;
          bool                                      m_bInteractive;
 
-         authorization(::object * pobject,const char * pszAuthorizationUrl, const char * pszForm, bool bAuth = false, bool bInteractive = true);
+         authorization();
          virtual ~authorization();
+
+
+         virtual ::e_status initialize_twitter_authorization(::object* pobject, const char* pszAuthorizationUrl, const char* pszForm, bool bAuth, bool bInteractive);
 
          void ensure_main_document();
          void display_main_frame();

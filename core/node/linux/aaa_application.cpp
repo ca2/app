@@ -14,7 +14,7 @@
 namespace aura
 {
 
-//   application::application(::layered * pobjectContext) :
+//   application::application(::object * pobject) :
 //      ::object(pobject)
 //   {
 //
@@ -351,7 +351,7 @@ namespace aura
 //      // versions of ca2 API, this memory was never freed.  In this and future
 //      // versions this memory is automatically freed during application's
 //      // destructor.  If you are freeing the memory yourself, you should
-//      // either remove the code or set the pointers to nullptr after freeing
+//      // either erase the code or set the pointers to nullptr after freeing
 //      // the memory.
 //
 //      // get path of executable
@@ -377,11 +377,11 @@ namespace aura
 //      */
 //
 //      //string strExeName;
-//      //string strTitle = System->load_string("System->title");
+//      //string strTitle = psystem->load_string("psystem->title");
 //      // get the exe title from the full path name [no extension]
-//      //strExeName = System->get_module_title();
+//      //strExeName = psystem->get_module_title();
 //
-//      m_hthread      =  ::GetCurrentThread();
+//      m_htask      =  ::GetCurrentThread();
 //
 //   }
 
@@ -433,7 +433,7 @@ namespace aura
 //   }
 
 
-//   ithread_t application::get_thread_id()
+//   itask_t application::get_thread_id()
 //   {
 //
 //      return ::pthread_self();
@@ -455,7 +455,7 @@ namespace aura
 //
 //      string strCmdLine          = pdata->m_strCommandLine;
 //
-//      get_context_application()->SetCurrentHandles();
+//      get_application()->SetCurrentHandles();
 //
 //      return true;
 //
@@ -512,7 +512,7 @@ namespace aura
       catch(...)
       {
 
-         TRACE("Could not create .desktop shortcut file for the Linux Application for the current user.");
+         TRACE("Could not create .desktop shortcut file for the Linux papplication for the current user.");
 
       }
 

@@ -19,7 +19,7 @@ namespace linux
       virtual ~file_context();
 
 
-      virtual ::e_status initialize(::matter * pobjectContext) override;
+      virtual ::e_status initialize(::matter * pobject) override;
 
 
       virtual ::e_status init_system() override;

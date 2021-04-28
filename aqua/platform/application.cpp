@@ -8,7 +8,8 @@ namespace aqua
    application::application()
    {
 
-      set_layer(LAYERED_AQUA, this);
+      m_paquaapplication = this;
+      ///set_layer(LAYERED_AQUA, this);
 
    }
 
@@ -26,10 +27,10 @@ namespace aqua
    }
 
 
-   ::e_status application::initialize(::layered * pobjectContext)
+   ::e_status application::initialize(::object * pobject)
    {
 
-      auto estatus = ::apex::application::initialize(pobjectContext);
+      auto estatus = ::apex::application::initialize(pobject);
 
       if (!estatus)
       {
@@ -46,16 +47,32 @@ namespace aqua
    void application::_001OnFranceExit()
    {
 
-      if (::aqua::get_system()->m_pmultimedia)
+      if (get_system()->m_pmultimedia)
       {
 
-         ::aqua::get_system()->m_pmultimedia->_001OnFranceExit();
+         get_system()->m_pmultimedia->_001OnFranceExit();
 
       }
 
       ::apex::application::_001OnFranceExit();
 
    }
+
+
+   void application::game_on_create()
+   {
+
+
+
+   }
+
+   //LPWAVEOUT application::waveout_open(int iChannel, LPAUDIOFORMAT pformat, LPWAVEOUT_CALLBACK pcallback)
+   //{
+
+   //   get_system()-
+
+   //}
+
 
 
 } // namespace aqua

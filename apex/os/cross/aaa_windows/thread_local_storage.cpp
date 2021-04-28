@@ -12,7 +12,7 @@ u32_array* g_puaThreadLocalDataFreeIndexes = nullptr;
 
 //::mutex* g_pmutexThreadLocalData = nullptr;
 
-//map < ithread_t, ithread_t, thread_local_data >* g_pmapThreadLocalData = nullptr;
+//map < itask_t, itask_t, thread_local_data >* g_pmapThreadLocalData = nullptr;
 
 //thread_local thread_local_data t_threadlocaldata;
 
@@ -22,7 +22,7 @@ void __node_init_cross_windows_threading()
 
    //g_pmutexThreadLocalData = new mutex();
 
-   //g_pmapThreadLocalData = new map < ithread_t, ithread_t, thread_local_data >();
+   //g_pmapThreadLocalData = new map < itask_t, itask_t, thread_local_data >();
 
    //g_puaThreadLocalDataFreeIndexes = new u32_array();
 
@@ -42,7 +42,7 @@ void __node_term_cross_windows_threading()
 
 //thread_local thread_local_data t_threadlocaldata;
 //// *___ :  lock g_pmutexThreadLocalData to use it
-//inline thread_local_data* ___get_thread_local_data(ithread_t idthread)
+//inline thread_local_data* ___get_thread_local_data(itask_t idthread)
 //{
 //
 //   return &t_threadlocaldata;
@@ -88,7 +88,7 @@ void __node_term_cross_windows_threading()
 //thread_data_index thread_data_allocate()
 //{
 //
-//   synchronization_lock lock(g_pmutexThreadLocalData);
+//   synchronous_lock lock(g_pmutexThreadLocalData);
 //
 //   if (g_puaThreadLocalDataFreeIndexes->get_count() > 0)
 //   {
@@ -112,7 +112,7 @@ void __node_term_cross_windows_threading()
 //
 //   }
 //
-//   synchronization_lock lock(g_pmutexThreadLocalData);
+//   synchronous_lock lock(g_pmutexThreadLocalData);
 //
 //   try
 //   {
@@ -171,7 +171,7 @@ void __node_term_cross_windows_threading()
 //}
 //
 //
-//void* __thread_get_data(ithread_t idthread, thread_data_index dwIndex)
+//void* __thread_get_data(itask_t idthread, thread_data_index dwIndex)
 //{
 //
 //   if (dwIndex >= nextTlsIndex)
@@ -184,7 +184,7 @@ void __node_term_cross_windows_threading()
 //   try
 //   {
 //
-//      synchronization_lock lock(g_pmutexThreadLocalData);
+//      synchronous_lock lock(g_pmutexThreadLocalData);
 //
 //      auto pthreadlocaldata = ___get_thread_local_data(idthread);
 //
@@ -229,7 +229,7 @@ void __node_term_cross_windows_threading()
 //
 //
 //
-//int_bool __thread_set_data(ithread_t idthread, thread_data_index dwIndex, void* pvalue)
+//int_bool __thread_set_data(itask_t idthread, thread_data_index dwIndex, void* pvalue)
 //{
 //
 //   if (dwIndex >= nextTlsIndex)
@@ -239,7 +239,7 @@ void __node_term_cross_windows_threading()
 //
 //   }
 //
-//   synchronization_lock lock(g_pmutexThreadLocalData);
+//   synchronous_lock lock(g_pmutexThreadLocalData);
 //
 //   auto pthreadlocaldata = ___get_thread_local_data(idthread);
 //
@@ -267,9 +267,9 @@ void __node_term_cross_windows_threading()
 ////   if (pthreadlocaldata)
 //   {
 //
-//      synchronization_lock ml(g_pmutexThreadLocalData);
+//      synchronous_lock ml(g_pmutexThreadLocalData);
 //
-//      g_pmapThreadLocalData->remove_key(get_current_ithread());
+//      g_pmapThreadLocalData->erase_key(get_current_ithread());
 //
 //   }
 //
@@ -279,7 +279,7 @@ void __node_term_cross_windows_threading()
 // void* thread_get_data(thread_data_index dwIndex)
 // {
 
-//    synchronization_lock ml(g_pmutexThreadLocalData);
+//    synchronous_lock ml(g_pmutexThreadLocalData);
 
 //    thread_local_data* pthreadlocaldata = ___get_current_thread_local_data();
 

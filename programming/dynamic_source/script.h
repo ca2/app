@@ -48,7 +48,7 @@ namespace dynamic_source
    public:
 
 
-      __pointer(::apex::library)       m_plibrary;
+      __pointer(::acme::library)       m_plibrary;
 
 
       filetime_set                     m_ft;
@@ -91,7 +91,7 @@ namespace dynamic_source
       string get_stage_path();
 
 
-      //virtual ::aura::application * get_context_application() const override;
+      //virtual ::aura::application * get_application() const override;
 
       __pointer(script_instance) create_instance() override;
 

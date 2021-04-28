@@ -33,10 +33,10 @@ namespace userpresence
    }
 
 
-   ::e_status department::initialize(::layered * pobjectContext)
+   ::e_status department::initialize(::object * pobject)
    {
 
-      auto estatus = ::apex::department::initialize(pobjectContext);
+      auto estatus = ::acme::department::initialize(pobject);
 
       if (!estatus)
       {
@@ -45,7 +45,7 @@ namespace userpresence
 
       }
 
-      if(!System->is_true("do_not_initialize_user_presence"))
+      if(!m_psystem->is_true("do_not_initialize_user_presence"))
       {
          // xxx
          // defer_initialize_user_presence();
@@ -57,10 +57,12 @@ namespace userpresence
    }
 
 
-   void department::finalize()
+   ::e_status department::finalize()
    {
 
       defer_finalize_user_presence();
+
+      return ::success;
 
    }
 
@@ -85,14 +87,16 @@ namespace userpresence
 
       }
 
-      if(Application.is_true("install") || Application.is_true("uninstall"))
+      auto papplication = get_application();
+
+      if(papplication->is_true("install") || papplication->is_true("uninstall"))
       {
 
          return true;
 
       }
 
-      if(Application.payload("app") == "simpledbcfg" || Application.payload("app") == "app-core/netnodelite")
+      if(papplication->payload("app") == "simpledbcfg" || papplication->payload("app") == "app-core/netnodelite")
       {
 
          return true;
@@ -130,7 +134,7 @@ namespace userpresence
    void department::_001OnTimer(::timer * ptimer)
    {
 
-      auto psession = Session;
+      auto psession = get_session()->m_pbasesession;
 
       if(psession->account()->get_user() != nullptr)
       {

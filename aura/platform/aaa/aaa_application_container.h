@@ -13,7 +13,7 @@ public:
    bool                          m_bFinalizeIfNoApplicationSetting;
    bool                          m_bFinalizeIfNoApplication;
 
-   ::aura::application *         m_pappCurrent;
+   ::aura::application *         m_papplicationCurrent;
 
 
 
@@ -37,7 +37,7 @@ public:
    application_array get_applicationa();
 
    virtual void app_add(::aura::application * papp);
-   virtual void app_remove(::aura::application * papp);
+   virtual void app_erase(::aura::application * papp);
 
 
    __pointer(::aura::application) assert_running(const char * pszAppId, const string & strLocale, const string & strSchema);

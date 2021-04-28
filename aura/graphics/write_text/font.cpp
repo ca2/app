@@ -63,7 +63,7 @@ namespace write_text
    font::font()
    {
 
-      m_strFontFamilyName = os_font_name(e_font_serif);
+      //m_strFontFamilyName;
       m_dFontSize = 17.0;
       m_dFontWidth = 1.0;
       m_eunitFontSize = ::draw2d::unit_point;
@@ -104,29 +104,7 @@ namespace write_text
    bool font::create_pixel_font(const char * pszFacename, double dSize, i32 iWeight, bool bItalic, bool bUnderline, bool bStrikeOut, double dWidth)
    {
 
-#ifdef WINDOWS
-
-      if (ansi_compare_ci(pszFacename, os_font_name(e_font_sans)) == 0)
-
-      {
-
-         m_strFontFamilyName = os_font_name(e_font_sans);
-
-      }
-      else
-      {
-
-         m_strFontFamilyName = pszFacename;
-
-
-      }
-
-#else
-
       m_strFontFamilyName = pszFacename;
-
-
-#endif
 
       m_dFontSize = dSize;
       m_dFontWidth = 1.0;
@@ -440,7 +418,7 @@ namespace write_text
    //void font::clear()
    //{
 
-   //   m_glyphset.remove_all();
+   //   m_glyphset.erase_all();
 
    //}
 
@@ -457,7 +435,7 @@ namespace write_text
 //   {
 //
 //
-//      ::aura::get_system()->draw2d().api().embossed_text_out(pgraphics, rect, dRateX, dHeight, str);
+//      psystem->draw2d().api().embossed_text_out(pgraphics, rect, dRateX, dHeight, str);
 //
 //      return;
 //
@@ -512,7 +490,7 @@ namespace write_text
 
 //   {
 //
-//      ::aura::get_system()->draw2d().api().embossed_text_out(pgraphics, rect, dRateX, dHeight, str, piCharsPositions, iCharsPositions, iOffset);
+//      psystem->draw2d().api().embossed_text_out(pgraphics, rect, dRateX, dHeight, str, piCharsPositions, iCharsPositions, iOffset);
 
 //
 //      return;
@@ -623,8 +601,8 @@ namespace write_text
 //   bool font::AddGlyph(::u32 user)
 //   {
 //
-//      //   single_lock synchronizationlock(&m_mutex);
-//      //   synchronizationlock.lock(U32_INFINITE_TIMEOUT);
+//      //   single_lock synchronouslock(&m_mutex);
+//      //   synchronouslock.lock(U32_INFINITE_TIMEOUT);
 //
 //      return TRUE;
 //

@@ -20,10 +20,10 @@ namespace database
    }
 
 
-   ::e_status server::initialize(::layered * pobjectContext)
+   ::e_status server::initialize(::object * pobject)
    {
 
-      auto estatus = ::object::initialize(pobjectContext);
+      auto estatus = ::object::initialize(pobject);
 
       if (!estatus)
       {
@@ -32,7 +32,7 @@ namespace database
 
       }
 
-      if (get_context()->is_system() || get_context()->is_session())
+      if (m_pcontext->m_papexcontext->is_system() || m_pcontext->m_papexcontext->is_session())
       {
 
          m_bRemote = false;

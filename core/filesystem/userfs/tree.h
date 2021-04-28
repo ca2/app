@@ -26,6 +26,13 @@ namespace userfs
       virtual ~tree();
 
 
+
+      inline ::core::application* get_application() const { return m_pcontext ? m_pcontext->m_pcoreapplication : nullptr; }
+      inline ::core::session* get_session() const { return m_pcontext ? m_pcontext->m_pcoresession : nullptr; }
+      inline ::core::system* get_system() const { return m_psystem ? m_psystem->m_pcoresystem : nullptr; }
+      inline ::core::user* user() const { return get_session() ? get_session()->user() : nullptr; }
+
+
 #ifdef DEBUG
       virtual i64 add_ref(OBJ_REF_DBG_PARAMS) override;
       virtual i64 dec_ref(OBJ_REF_DBG_PARAMS) override;
@@ -85,10 +92,10 @@ namespace userfs
 
       virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
 
-      DECL_GEN_SIGNAL(_001OnLButtonDblClk);
-      DECL_GEN_SIGNAL(_001OnContextMenu);
-      DECL_GEN_SIGNAL(on_message_create);
-      DECL_GEN_SIGNAL(_001OnShellCommand);
+      DECLARE_MESSAGE_HANDLER(_001OnLButtonDblClk);
+      DECLARE_MESSAGE_HANDLER(_001OnContextMenu);
+      DECLARE_MESSAGE_HANDLER(on_message_create);
+      DECLARE_MESSAGE_HANDLER(_001OnShellCommand);
 
 
 

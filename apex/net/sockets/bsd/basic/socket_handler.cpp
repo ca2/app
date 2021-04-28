@@ -24,9 +24,10 @@ namespace sockets
 
 
 
-   socket_handler::socket_handler(::layered * pobject, ::apex::log *plogger) :
-      ::object(pobject),
-      base_socket_handler(pobject, plogger),
+   //socket_handler::socket_handler(::object * pobject, ::apex::log *plogger) :
+   socket_handler::socket_handler(::apex::log* plogger) :
+      //::object(pobject),
+      base_socket_handler(plogger),
       m_b_use_mutex(false)
       , m_maxsock(0)
       , m_iPreviousError(-1)
@@ -34,7 +35,7 @@ namespace sockets
       , m_tlast(0)
       , m_socks4_port(0)
       , m_bTryDirect(false)
-      , m_resolv_id(0)
+      //, m_resolv_id(0)
       , m_b_enable_pool(false)
       , m_next_trigger_id(0)
       , m_slave(false)
@@ -65,12 +66,12 @@ namespace sockets
    void socket_handler::cleanup_handler()
    {
 
-      if (m_resolver.is_set())
-      {
-
-         resolver()->Quit();
-
-      }
+//      if (m_resolver.is_set())
+//      {
+//
+//         resolver()->Quit();
+//
+//      }
 
       {
 
@@ -108,9 +109,9 @@ namespace sockets
 
       }
 
-      m_sockets.remove_all();
+      m_sockets.erase_all();
 
-      m_resolver.release();
+      //m_resolver.release();
 
       if (m_b_use_mutex)
       {
@@ -130,12 +131,12 @@ namespace sockets
    //}
 
 
-   resolv_server * socket_handler::resolver()
-   {
-
-      return m_resolver.cast < resolv_server >();
-
-   }
+//   resolv_server * socket_handler::resolver()
+//   {
+//
+//      return m_resolver.cast < resolv_server >();
+//
+//   }
 
 
    void socket_handler::SetSlave(bool x)
@@ -159,6 +160,15 @@ namespace sockets
 
       socket * psocket = dynamic_cast < socket * > (pbasesocket);
 
+      if (psocket->m_psockethandler.is_set())
+      {
+
+         WARN(psocket, "add", -1, "socket is already being handled by another handler");
+
+         return;
+
+      }
+
       if (psocket->GetSocket() == INVALID_SOCKET)
       {
 
@@ -176,6 +186,7 @@ namespace sockets
       }
 
       socket_pointer plookup;
+
       if (m_add.lookup(psocket->GetSocket(), plookup))
       {
 
@@ -183,9 +194,19 @@ namespace sockets
 
          //m_delete.add_tail(psocket);
          return;
+
       }
 
       m_add[psocket->GetSocket()] = psocket;
+
+      if(psocket->m_timeTimeoutLimit > 0)
+      {
+
+         AddList(psocket->GetSocket(), LIST_TIMEOUT, true);
+
+      }
+
+      psocket->m_psockethandler = this;
 
       psocket->m_estatus = ::success;
 
@@ -438,7 +459,7 @@ start_processing_adding:
 
             FATAL(psocket, "add", (i32)psocket->GetSocket(), "Attempt to add socket already in controlled queue");
 
-            m_add.remove_key(socket);
+            m_add.erase_key(socket);
 
             goto start_processing_adding;
 
@@ -490,7 +511,7 @@ start_processing_adding:
 
          m_sockets[socket] = psocket;
 
-         m_add.remove_key(socket);
+         m_add.erase_key(socket);
 
          goto start_processing_adding;
 
@@ -620,7 +641,7 @@ end_processing_adding:
 
                   psocket->SetCloseAndDelete();
 
-                  m_sockets.remove_key(i);
+                  m_sockets.erase_key(i);
 
                }
 
@@ -668,7 +689,7 @@ end_processing_adding:
                      if (n == -1)
                      {
 
-                        // %! bad fd, remove
+                        // %! bad fd, erase
 
                         ERR(it->m_psocket, "Select", (i32)it->m_socket, "Bad fd in fd_set (2)"); // , LOG_LEVEL_ERROR);
 
@@ -883,7 +904,7 @@ end_processing_adding:
             if (bRemove)
             {
 
-               m_fds_detach.remove(socket);
+               m_fds_detach.erase(socket);
 
             }
 
@@ -902,7 +923,7 @@ end_processing_adding:
 
                      set(socket, false, false, false);
 
-                     // After DetachSocket(), all calls to Handler() will return a context_object
+                     // After DetachSocket(), all calls to socket_handler() will return a object
                      // to the new slave socket_handler running in the new thread.
                      try
                      {
@@ -915,13 +936,13 @@ end_processing_adding:
 
                      }
 
-                     // Adding the file descriptor to m_fds_erase will now also remove the
+                     // Adding the file descriptor to m_fds_erase will now also erase the
                      // socket from the detach queue - tnx knightmad
                      m_fds_erase.add_tail(socket);
 
-                     m_fds.remove(socket);
+                     m_fds.erase(socket);
 
-                     m_sockets.remove_key(socket);
+                     m_sockets.erase_key(socket);
 
                      bRemove = true;
 
@@ -1017,7 +1038,7 @@ end_processing_adding:
 
                      //TRACE("close() before retry client connect\n");
 
-                     psocket->close(); // removes from m_fds_retry
+                     psocket->close(); // erases from m_fds_retry
 
                      ::net::address ad = psocket->GetClientRemoteAddress();
 
@@ -1166,17 +1187,21 @@ end_processing_adding:
                      if (psocket->Retain() && !psocket->Lost())
                      {
 
-                        synchronization_lock synchronizationlock(&::apex::get_system()->sockets().m_mutexPool);
+                        __pointer(::apex::system) psystem = get_system();
 
-                        __pointer(pool_socket) ppoolsocket = __new(pool_socket(*this, psocket));
+                        synchronous_lock synchronouslock(&psystem->sockets().m_mutexPool);
+
+                        __pointer(pool_socket) ppoolsocket = __new(pool_socket(psocket));
+
+                        ppoolsocket->m_psockethandler = this;
 
                         ppoolsocket->SetDeleteByHandler();
 
-                        ::apex::get_system()->sockets().m_pool.set_at(ppoolsocket->m_socket, ppoolsocket);
+                        psystem->sockets().m_pool.set_at(ppoolsocket->m_socket, ppoolsocket);
 
-                        ppoolsocket->SetCloseAndDelete(false); // added - remove from m_fds_close
+                        ppoolsocket->SetCloseAndDelete(false); // added - erase from m_fds_close
 
-                        //point_i32 -> SetCloseAndDelete(false); // added - remove from m_fds_close
+                        //point_i32 -> SetCloseAndDelete(false); // added - erase from m_fds_close
 
                      }
                      else if (psocket.cast < http_session >() != nullptr && !psocket->Lost())
@@ -1223,13 +1248,13 @@ end_processing_adding:
       while (m_fds_erase.get_size())
       {
 
-         SOCKET socket = m_fds_erase.pop_head();
+         SOCKET socket = m_fds_erase.pick_head();
 
-         m_fds_detach.remove(socket);
+         m_fds_detach.erase(socket);
 
-         m_fds.remove(socket);
+         m_fds.erase(socket);
 
-         m_fds_close.remove(socket);
+         m_fds_close.erase(socket);
 
          socket_pointer psocket;
 
@@ -1239,20 +1264,20 @@ end_processing_adding:
             if (psocket.cast < pool_socket >() == nullptr)
             {
 
-               m_sockets.remove_key(socket);
+               m_sockets.erase_key(socket);
 
             }
             else
             {
 
-               m_delete.remove(psocket);
+               m_delete.erase(psocket);
 
             }
 
             if (m_add[socket].cast < pool_socket >() == nullptr)
             {
 
-               m_add.remove_key(socket);
+               m_add.erase_key(socket);
 
             }
 
@@ -1270,11 +1295,11 @@ end_processing_adding:
 
       }
 
-      // remove add's that fizzed
+      // erase add's that fizzed
       while (m_delete.get_size() > 0)
       {
 
-         __pointer(socket) psocket = m_delete.pop_head();
+         __pointer(socket) psocket = m_delete.pick_head();
 
          psocket->OnDelete();
 
@@ -1316,9 +1341,9 @@ end_processing_adding:
 
                      }
 
-                     m_trigger_src.remove_key(p->m_socket);
+                     m_trigger_src.erase_key(p->m_socket);
 
-                     m_trigger_dst.remove_key(p->m_socket);
+                     m_trigger_dst.erase_key(p->m_socket);
 
                      again = true;
 
@@ -1340,12 +1365,12 @@ end_processing_adding:
    }
 
 
-   bool socket_handler::Resolving(base_socket * p0)
-   {
-
-      return m_resolve_q.plookup(p0) != nullptr;
-
-   }
+//   bool socket_handler::Resolving(base_socket * p0)
+//   {
+//
+//      return m_resolve_q.plookup(p0) != nullptr;
+//
+//   }
 
 
    bool socket_handler::Valid(base_socket * pIsValid)
@@ -1405,7 +1430,11 @@ end_processing_adding:
 
    void socket_handler::SetSocks4Host(const string & host)
    {
-      ::apex::get_system()->sockets().net().convert(m_socks4_host, host);
+
+      auto paddressdepartment = ::net::address_department();
+
+      paddressdepartment->convert(m_socks4_host, host);
+
    }
 
 
@@ -1421,157 +1450,173 @@ end_processing_adding:
    }
 
 
-   i32 socket_handler::Resolve(base_socket * pbasesocket, const string & host, port_t port)
-   {
-      
-      // check cache
-      
-      __pointer(resolv_socket) presolvsocket = __new(resolv_socket(*this, pbasesocket, host, port));
-
-      presolvsocket->SetId(++m_resolv_id);
-
-      presolvsocket->SetDeleteByHandler();
-
-      in_addr addrLocal;
-
-      ::apex::get_system()->sockets().net().convert(addrLocal, "127.0.0.1");
-
-      if (!presolvsocket->open(::net::address(addrLocal, m_resolver_port)))
-      {
-
-         FATAL(presolvsocket, "Resolve", -1, "Can't connect to local resolve server");
-
-      }
-
-      add(presolvsocket);
-
-      m_resolve_q[pbasesocket] = true;
-      
-      TRACE(" *** Resolve '%s:%d' id#%d  m_resolve_q size_i32: %d  base_socket: %p\n", host.c_str(), port, presolvsocket->GetId(), m_resolve_q.get_size(), pbasesocket);
-
-      return presolvsocket->GetId();
-
-   }
-
-
-   i32 socket_handler::Resolve6(base_socket * pbasesocket, const string & host, port_t port)
-   {
-      
-      // check cache
-
-      __pointer(resolv_socket) resolv = __new(resolv_socket(*this, pbasesocket, host, port, true));
-
-      resolv->SetId(++m_resolv_id);
-
-      resolv->SetDeleteByHandler();
-
-      in_addr addrLocal;
-
-      ::apex::get_system()->sockets().net().convert(addrLocal, "127.0.0.1");
-
-      if (!resolv->open(::net::address(addrLocal, m_resolver_port)))
-      {
-
-         FATAL(resolv, "Resolve", -1, "Can't connect to local resolve server");
-
-      }
-
-      add(resolv);
-
-      m_resolve_q[pbasesocket] = true;
-
-      return resolv->GetId();
-
-   }
-
-
-   i32 socket_handler::Resolve(base_socket * pbasesocket, in_addr a)
-   {
-
-      // check cache
-
-      __pointer(resolv_socket) resolv = __new(resolv_socket(*this, pbasesocket, a));
-
-      resolv->SetId(++m_resolv_id);
-
-      resolv->SetDeleteByHandler();
-
-      in_addr addrLocal;
-
-      ::apex::get_system()->sockets().net().convert(addrLocal, "127.0.0.1");
-
-      if (!resolv->open(::net::address(addrLocal, m_resolver_port)))
-      {
-
-         FATAL(resolv, "Resolve", -1, "Can't connect to local resolve server");
-
-      }
-
-      add(resolv);
-
-      m_resolve_q[pbasesocket] = true;
-
-      return resolv->GetId();
-
-   }
-
-
-   i32 socket_handler::Resolve(base_socket * pbasesocket, in6_addr& a)
-   {
-      
-      // check cache
-
-      __pointer(resolv_socket) resolv = __new(resolv_socket(*this, pbasesocket, a));
-
-      resolv->SetId(++m_resolv_id);
-
-      resolv->SetDeleteByHandler();
-
-      in_addr addrLocal;
-
-      ::apex::get_system()->sockets().net().convert(addrLocal, "127.0.0.1");
-
-      if (!resolv->open(::net::address(addrLocal, m_resolver_port)))
-      {
-
-         FATAL(resolv, "Resolve", -1, "Can't connect to local resolve server");
-
-      }
-      
-      add(resolv);
-
-      m_resolve_q[pbasesocket] = true;
-
-      return resolv->GetId();
-
-   }
-
-
-   void socket_handler::EnableResolver(port_t port)
-   {
-
-      if (!m_resolver)
-      {
-
-         m_resolver_port = port;
-
-         auto presolvserver = __new(resolv_server());
-
-         m_resolver = presolvserver;
-
-         presolvserver->initialize_resolv_server(this, port);
-
-      }
-
-   }
-
-
-   bool socket_handler::ResolverReady()
-   {
-
-      return m_resolver ? resolver()->Ready() : false;
-
-   }
+//   i32 socket_handler::Resolve(base_socket * pbasesocket, const string & host, port_t port)
+//   {
+//
+//      // check cache
+//
+//      __pointer(resolv_socket) presolvsocket = __new(resolv_socket(pbasesocket, host, port));
+//
+//      presolvsocket->m_psockethandler = this;
+//
+//      presolvsocket->SetId(++m_resolv_id);
+//
+//      presolvsocket->SetDeleteByHandler();
+//
+//      in_addr addrLocal;
+//
+//      auto paddressdepartment = ::net::address_department();
+//
+//      paddressdepartment->convert(addrLocal, "127.0.0.1");
+//
+//      if (!presolvsocket->open(::net::address(addrLocal, m_resolver_port)))
+//      {
+//
+//         FATAL(presolvsocket, "Resolve", -1, "Can't connect to local resolve server");
+//
+//      }
+//
+//      add(presolvsocket);
+//
+//      m_resolve_q[pbasesocket] = true;
+//
+//      TRACE(" *** Resolve '%s:%d' id#%d  m_resolve_q size_i32: %d  base_socket: %p\n", host.c_str(), port, presolvsocket->GetId(), m_resolve_q.get_size(), pbasesocket);
+//
+//      return presolvsocket->GetId();
+//
+//   }
+
+
+//   i32 socket_handler::Resolve6(base_socket * pbasesocket, const string & host, port_t port)
+//   {
+//
+//      // check cache
+//
+//      __pointer(resolv_socket) resolv = __new(resolv_socket(pbasesocket, host, port, true));
+//
+//      resolv->m_psockethandler = this;
+//
+//      resolv->SetId(++m_resolv_id);
+//
+//      resolv->SetDeleteByHandler();
+//
+//      in_addr addrLocal;
+//
+//      auto paddressdepartment = ::net::address_department();
+//
+//      paddressdepartment->convert(addrLocal, "127.0.0.1");
+//
+//      if (!resolv->open(::net::address(addrLocal, m_resolver_port)))
+//      {
+//
+//         FATAL(resolv, "Resolve", -1, "Can't connect to local resolve server");
+//
+//      }
+//
+//      add(resolv);
+//
+//      m_resolve_q[pbasesocket] = true;
+//
+//      return resolv->GetId();
+//
+//   }
+
+
+//   i32 socket_handler::Resolve(base_socket * pbasesocket, in_addr a)
+//   {
+//
+//      // check cache
+//
+//      __pointer(resolv_socket) resolv = __new(resolv_socket(pbasesocket, a));
+//
+//      resolv->m_psockethandler = this;
+//
+//      resolv->SetId(++m_resolv_id);
+//
+//      resolv->SetDeleteByHandler();
+//
+//      in_addr addrLocal;
+//
+//      auto paddressdepartment = ::net::address_department();
+//
+//      paddressdepartment->convert(addrLocal, "127.0.0.1");
+//
+//      if (!resolv->open(::net::address(addrLocal, m_resolver_port)))
+//      {
+//
+//         FATAL(resolv, "Resolve", -1, "Can't connect to local resolve server");
+//
+//      }
+//
+//      add(resolv);
+//
+//      m_resolve_q[pbasesocket] = true;
+//
+//      return resolv->GetId();
+//
+//   }
+
+
+//   i32 socket_handler::Resolve(base_socket * pbasesocket, in6_addr& a)
+//   {
+//
+//      // check cache
+//
+//      __pointer(resolv_socket) resolv = __new(resolv_socket(pbasesocket, a));
+//
+//      resolv->m_psockethandler = this;
+//
+//      resolv->SetId(++m_resolv_id);
+//
+//      resolv->SetDeleteByHandler();
+//
+//      in_addr addrLocal;
+//
+//      auto paddressdepartment = ::net::address_department();
+//
+//      paddressdepartment->convert(addrLocal, "127.0.0.1");
+//
+//      if (!resolv->open(::net::address(addrLocal, m_resolver_port)))
+//      {
+//
+//         FATAL(resolv, "Resolve", -1, "Can't connect to local resolve server");
+//
+//      }
+//
+//      add(resolv);
+//
+//      m_resolve_q[pbasesocket] = true;
+//
+//      return resolv->GetId();
+//
+//   }
+
+
+//   void socket_handler::EnableResolver(port_t port)
+//   {
+//
+//      if (!m_resolver)
+//      {
+//
+//         m_resolver_port = port;
+//
+//         auto presolvserver = __new(resolv_server());
+//
+//         m_resolver = presolvserver;
+//
+//         presolvserver->initialize_resolv_server(this, port);
+//
+//      }
+//
+//   }
+
+
+//   bool socket_handler::ResolverReady()
+//   {
+//
+//      return m_resolver ? resolver()->Ready() : false;
+//
+//   }
 
 
    void socket_handler::SetSocks4TryDirect(bool x)
@@ -1614,28 +1659,30 @@ end_processing_adding:
    }
 
 
-   bool socket_handler::ResolverEnabled()
-   {
+//   bool socket_handler::ResolverEnabled()
+//   {
+//
+//      return m_resolver ? true : false;
+//
+//   }
 
-      return m_resolver ? true : false;
 
-   }
-
-
-   port_t socket_handler::GetResolverPort()
-   {
-
-      return m_resolver_port;
-
-   }
+//   port_t socket_handler::GetResolverPort()
+//   {
+//
+//      return m_resolver_port;
+//
+//   }
 
 
    __pointer(base_socket_handler::pool_socket) socket_handler::FindConnection(i32 type, const string & protocol, const ::net::address & ad)
    {
 
-      synchronization_lock synchronizationlock(&::apex::get_system()->sockets().m_mutexPool);
+      __pointer(::apex::system) psystem = get_system();
 
-      auto p = ::apex::get_system()->sockets().m_pool.begin();
+      synchronous_lock synchronouslock(&psystem->sockets().m_mutexPool);
+
+      auto p = psystem->sockets().m_pool.begin();
 
       for(; p; p++)
       {
@@ -1651,7 +1698,7 @@ end_processing_adding:
                   psocket->GetClientRemoteAddress() == ad)
             {
 
-               ::apex::get_system()->sockets().m_pool.remove_key(p->m_socket);
+               psystem->sockets().m_pool.erase_key(p->m_socket);
 
                psocket->SetRetain(); // avoid close in socket destructor
 
@@ -1682,15 +1729,15 @@ end_processing_adding:
    }
 
 
-   void socket_handler::remove(base_socket * psocketRemove)
+   void socket_handler::erase(base_socket * psocketRemove)
    {
 
-      if (m_resolve_q.has(psocketRemove))
-      {
-
-         m_resolve_q.remove_key(psocketRemove);
-
-      }
+//      if (m_resolve_q.has(psocketRemove))
+//      {
+//
+//         m_resolve_q.erase_key(psocketRemove);
+//
+//      }
 
       if (psocketRemove->ErasedByHandler())
       {
@@ -1699,28 +1746,28 @@ end_processing_adding:
 
       }
 
-      if(::remove_value(m_sockets, psocketRemove))
+      if(::erase_value(m_sockets, psocketRemove))
       {
 
-         WARN(psocketRemove, "remove", -1, "socket destructor called while still in use");
+         WARN(psocketRemove, "erase", -1, "socket destructor called while still in use");
 
          return;
 
       }
 
-      if (::remove_value(m_add, psocketRemove))
+      if (::erase_value(m_add, psocketRemove))
       {
 
-         WARN(psocketRemove, "remove", -2, "socket destructor called while still in use");
+         WARN(psocketRemove, "erase", -2, "socket destructor called while still in use");
 
          return;
 
       }
 
-      if (::remove_value(m_delete, psocketRemove))
+      if (::erase_value(m_delete, psocketRemove))
       {
 
-         WARN(psocketRemove, "remove", -3, "socket destructor called while still in use");
+         WARN(psocketRemove, "erase", -3, "socket destructor called while still in use");
 
          return;
 
@@ -1797,7 +1844,7 @@ end_processing_adding:
                      (which_one == LIST_TIMEOUT) ? "time_out" :
                      (which_one == LIST_RETRY) ? "Retry" :
                      (which_one == LIST_CLOSE) ? "close" : "<undef>",
-                     add ? "add" : "remove");*/
+                     add ? "add" : "erase");*/
       }
       if (add)
       {
@@ -1809,8 +1856,8 @@ end_processing_adding:
          }
          return;
       }
-      // remove
-      ref.remove(s);
+      // erase
+      ref.erase(s);
       //TRACE("/AddList\n");
    }
 
@@ -1850,7 +1897,7 @@ end_processing_adding:
       {
          if (m_trigger_dst[id].plookup(psocketDst) != nullptr)
          {
-            m_trigger_dst[id].remove_key(psocketDst);
+            m_trigger_dst[id].erase_key(psocketDst);
             return true;
          }
 
@@ -1888,8 +1935,8 @@ end_processing_adding:
          if (bErase)
          {
 
-            m_trigger_src.remove_key(id);
-            m_trigger_dst.remove_key(id);
+            m_trigger_src.erase_key(id);
+            m_trigger_dst.erase_key(id);
 
          }
 

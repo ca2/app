@@ -89,7 +89,7 @@ BOOL ca2rdp_end_paint(rdpContext* context)
 
 
    /*#ifdef WINDOWS
-      ::draw2d::graphics_pointer g(((ca2rdpContext*)context)->get_context_application()->create_new, this);
+      ::draw2d::graphics_pointer g(((ca2rdpContext*)context)->get_application()->create_new, this);
       g->CreateCompatibleDC(nullptr);
       g->Attach(gdi->primary->hdc->alpha);
       ca2rdpi->primary->get_graphics()->BitBlt(ca2rdpi->update_rect.left,ca2rdpi->update_rect.top,
@@ -203,10 +203,10 @@ BOOL ca2rdp_post_connect(freerdp* instance)
    ::draw2d::image_create(context->m_pappRdp, ca2rdpi->surface);
    ::draw2d::image_create(ca2rdpi->surface, instance->settings->DesktopWidth,instance->settings->DesktopHeight);
 
-//   App(context->get_context_application()).alloc(ca2rdpi->primary);
+//   App(context->get_application()).alloc(ca2rdpi->primary);
    // ca2rdpi->primary->create(instance->settings->DesktopWidth,instance->settings->DesktopHeight);
 
-   //App(context->get_context_application()).alloc(ca2rdpi->surface);
+   //App(context->get_application()).alloc(ca2rdpi->surface);
    //ca2rdpi->surface->create(instance->settings->DesktopWidth,instance->settings->DesktopHeight);
 
 
@@ -523,41 +523,41 @@ int main(int argc, char* argv[])
 
 ::draw2d::graphics * ca2rdp_ctx_get_graphics(ca2rdp_context * pcontext)
 {
-   if(pcontext->ca2rdpi == nullptr)
+   if(pcontext->m_papexcontext->ca2rdpi == nullptr)
       return nullptr;
-   return ::draw2d::image_get_graphics(pcontext->ca2rdpi->surface);
+   return ::draw2d::image_get_graphics(pcontext->m_papexcontext->ca2rdpi->surface);
 
 }
 
 color32_t * ca2rdp_ctx_get_primary(ca2rdp_context * pcontext)
 {
 //#ifdef _WIN32
-//   if(pcontext->primary == nullptr)
+//   if(pcontext->m_papexcontext->primary == nullptr)
 //      return nullptr;
-//   return (color32_t *) pcontext->primary->pdata;
+//   return (color32_t *) pcontext->m_papexcontext->primary->pdata;
 //#else
-   if(pcontext->gdi == nullptr)
+   if(pcontext->m_papexcontext->gdi == nullptr)
       return nullptr;
-   /*   if(pcontext->gdi->drawing == nullptr)
+   /*   if(pcontext->m_papexcontext->gdi->drawing == nullptr)
          return nullptr;
-      if(pcontext->gdi->drawing->bitmap == nullptr)
+      if(pcontext->m_papexcontext->gdi->drawing->bitmap == nullptr)
          return nullptr;
-      return (color32_t *)pcontext->gdi->drawing->bitmap->p*/
-   return (color32_t *)pcontext->gdi->primary_buffer;
+      return (color32_t *)pcontext->m_papexcontext->gdi->drawing->bitmap->p*/
+   return (color32_t *)pcontext->m_papexcontext->gdi->primary_buffer;
    ;
 //#endif
 }
 
 int ca2rdp_ctx_get_bitmap_size(ca2rdp_context * pcontext)
 {
-   if(pcontext->gdi == nullptr)
+   if(pcontext->m_papexcontext->gdi == nullptr)
       return 0;
-   /*   if(pcontext->gdi->drawing == nullptr)
+   /*   if(pcontext->m_papexcontext->gdi->drawing == nullptr)
    return nullptr;
-   if(pcontext->gdi->drawing->bitmap == nullptr)
+   if(pcontext->m_papexcontext->gdi->drawing->bitmap == nullptr)
    return nullptr;
-   return (color32_t *)pcontext->gdi->drawing->bitmap->p*/
-   return pcontext->gdi->bitmap_size;
+   return (color32_t *)pcontext->m_papexcontext->gdi->drawing->bitmap->p*/
+   return pcontext->m_papexcontext->gdi->bitmap_size;
    ;
 }
 

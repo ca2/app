@@ -26,7 +26,7 @@ namespace simpledb
       bool save(const ::database::key & key, block block);
 
 
-      bool remove(const ::database::key & key);
+      bool erase(const ::database::key & key);
 
       virtual class server * server();
 

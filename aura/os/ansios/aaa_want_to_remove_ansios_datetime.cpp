@@ -17,7 +17,7 @@ struct tm *gmtime_r(const time_t *timep,struct tm *result)
 #else
 
    static ::mutex m;
-   synchronization_lock synchronizationlock(&m);
+   synchronous_lock synchronouslock(&m);
    struct tm *tmp;
    tmp = gmtime(timep);
    *result = *tmp;

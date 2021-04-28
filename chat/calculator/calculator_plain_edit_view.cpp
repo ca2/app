@@ -5,7 +5,7 @@ namespace calculator
 {
 
 
-   plain_edit_view::plain_edit_view(::layered * pobjectContext):
+   plain_edit_view::plain_edit_view(::object * pobject):
       object(pobject),
       ::user::interaction(pobject),
       ::user::plain_edit(pobject)
@@ -32,14 +32,14 @@ namespace calculator
 
          {
 
-            synchronization_lock synchronizationlock(m_pcallback == nullptr ? nullptr : m_pcallback->get_mutex());
+            synchronous_lock synchronouslock(m_pcallback == nullptr ? nullptr : m_pcallback->get_mutex());
 
             string strExp;
 
             _001GetText(strExp);
 
 
-            parser parser(get_object());
+            parser parser(this);
 
             error e;
 
@@ -278,7 +278,7 @@ namespace calculator
             }
             else
             {
-               m_errora.remove_all();
+               m_errora.erase_all();
             }
 
 

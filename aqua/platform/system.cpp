@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "apex/platform/static_setup.h"
+#include "acme/platform/static_setup.h"
 //#if !BROAD_PRECOMPILED_HEADER
 //#include "core/user/user/_user.h"
 //#endif
@@ -19,7 +19,8 @@ namespace aqua
    system::system()
    {
 
-      set_layer(LAYERED_AQUA, this);
+      m_paquasystem = this;
+      //set_layer(LAYERED_AQUA, this);
 
       common_construct();
 
@@ -38,16 +39,16 @@ namespace aqua
 
       create_factory < ::aqua::application, ::apex::application >();
       create_factory < ::aqua::session, ::apex::session >();
-      create_factory < ::aqua::idpool, ::apex::idpool >();
+      create_factory < ::aqua::idpool, ::acme::idpool >();
       create_factory < ::aqua::multimedia >();
 
    }
 
 
-   ::e_status system::initialize(::layered * pobjectContext)
+   ::e_status system::initialize(::object * pobject)
    {
 
-      auto estatus = ::apex::system::initialize(pobjectContext);
+      auto estatus = ::apex::system::initialize(pobject);
 
       if (!estatus)
       {
@@ -60,6 +61,27 @@ namespace aqua
 
    }
 
+
+   void system::on_add_session(::apex::session* papexsession)
+   {
+
+      ::apex::system::on_add_session(papexsession);
+
+      if (papexsession->m_iEdge == 0)
+      {
+
+         if (!m_paquasession)
+         {
+
+            m_paquasession = papexsession->m_paquasession;
+
+         }
+
+      }
+
+      papexsession->m_paquasystem = this;
+
+   }
 
    //::e_status system::initialize_rich_text()
    //{
@@ -75,13 +97,13 @@ namespace aqua
 
    //}
 
-   ::e_status system::defer_xml()
+   ::xml::xml * system::_xml()
    {
 
       if (m_pxml)
       {
 
-         return ::success;
+         return m_pxml;
 
       }
 
@@ -90,7 +112,7 @@ namespace aqua
       if (!estatus)
       {
 
-         return estatus;
+         return m_pxml;
 
       }
 
@@ -99,7 +121,7 @@ namespace aqua
       if (!estatus)
       {
 
-         return estatus;
+         return m_pxml;
 
       }
 
@@ -108,11 +130,11 @@ namespace aqua
       if (!estatus)
       {
 
-         return estatus;
+         return m_pxml;
 
       }
 
-      return estatus;
+      return m_pxml;
 
    }
 
@@ -179,6 +201,13 @@ namespace aqua
    void system::defer_multimedia()
    {
 
+      if (m_pmultimedia)
+      {
+
+         return;
+
+      }
+
       string strName;
 
       auto pszName = ::multimedia_get_library_name();
@@ -218,17 +247,26 @@ namespace aqua
    }
 
 
-   ::aqua::audio* system::defer_get_audio()
+   ::e_status system::defer_audio()
    {
 
       if (!m_paudio)
       {
 
-         create_audio();
+         auto estatus = create_audio();
+
+         if (!estatus)
+         {
+
+            return estatus;
+
+         }
+
+         return estatus;
 
       }
 
-      return m_paudio;
+      return ::success_none;
 
    }
 

@@ -15,11 +15,13 @@
 task::task()
 {
 
-   m_bitCoInitialize = false;
-   m_bitIsRunning = false;
-   m_bitIsPred = true;
-   m_hthread = null_hthread;
-   m_ithread = 0;
+   //m_pthread = nullptr;
+   m_bMessageThread = false;
+   m_bCoInitialize = false;
+   m_bIsRunning = false;
+   m_bIsPredicate = true;
+   m_htask = null_hthread;
+   m_itask = 0;
 
 }
 
@@ -64,7 +66,7 @@ const char * task::get_task_tag()
 }
 
 
-//::context_object * task::calc_parent_thread()
+//::object * task::calc_parent_thread()
 //{
 //
 //   return ::get_task();
@@ -84,7 +86,7 @@ bool task::set_thread_name(const char* pszThreadName)
 
    }
 
-   if (!::set_thread_name(m_hthread, pszThreadName))
+   if (!::set_thread_name(m_htask, pszThreadName))
    {
 
       return false;
@@ -96,7 +98,7 @@ bool task::set_thread_name(const char* pszThreadName)
 }
 
 
-bool task::thread_get_run() const
+bool task::task_get_run() const
 {
 
    return !m_bSetFinish;
@@ -107,7 +109,7 @@ bool task::thread_get_run() const
 bool task::task_active() const
 {
 
-   return m_hthread != (hthread_t) 0;
+   return m_htask != (htask_t) 0;
 
 }
 
@@ -115,15 +117,46 @@ bool task::task_active() const
 bool task::is_running() const
 {
 
-   return m_bitIsRunning;
+   return m_bIsRunning;
 
 }
 
 
-::object * task::thread_parent()
+::e_status task::main()
 {
 
-   return __object(m_pobjectParent);
+   if (m_pmatter != this)
+   {
+
+      return m_pmatter->run();
+
+   }
+
+   auto estatus = run();
+
+   return estatus;
+
+}
+
+
+::e_status task::stop_task()
+{
+
+   auto estatus = finish();
+
+   // but it should wait for thread to finish...
+
+   __throw(todo);
+
+   return estatus;
+
+}
+
+
+::property_object * task::thread_parent()
+{
+
+   return m_pobjectParent;
 
 }
 
@@ -152,7 +185,7 @@ void* task::s_os_task(void* p)
 
       pthread->release(OBJ_REF_DBG_P_FUNCTION_LINE(pthread));
 
-      pthread->do_task();
+      pthread->main();
 
 #if OBJ_REF_DBG
 
@@ -178,29 +211,59 @@ void* task::s_os_task(void* p)
 }
 
 
-void task::add_notify(::matter* pmatter)
+bool task::is_task_registered() const
 {
+   
+   auto psystem = m_psystem;
 
-   synchronization_lock synchronizationlock(mutex());
-
-   notify_array().add_item(pmatter OBJ_REF_DBG_COMMA_THIS_FUNCTION_LINE);
+   return psystem->get_task_id(this) != 0;
 
 }
 
 
-void task::remove_notify(::matter* pmatter)
+void task::register_task()
 {
 
-   synchronization_lock synchronizationlock(mutex());
+   auto psystem = m_psystem;
 
-   if (m_pnotifya)
-   {
-
-      m_pnotifya->remove_item(pmatter OBJ_REF_DBG_COMMA_THIS);
-
-   }
+   psystem->set_task(m_itask, this);
 
 }
+
+
+void task::unregister_task()
+{
+
+   auto psystem = m_psystem;
+
+   psystem->unset_task(m_itask, this);
+
+}
+
+
+//void task::add_notify(::matter* pmatter)
+//{
+//
+//   synchronous_lock synchronouslock(mutex());
+//
+//   notify_array().add_item(pmatter OBJ_REF_DBG_COMMA_THIS_FUNCTION_LINE);
+//
+//}
+//
+//
+//void task::erase_notify(::matter* pmatter)
+//{
+//
+//   synchronous_lock synchronouslock(mutex());
+//
+//   if (m_pnotifya)
+//   {
+//
+//      m_pnotifya->erase_item(pmatter OBJ_REF_DBG_COMMA_THIS);
+//
+//   }
+//
+//}
 
 
 bool task::on_get_thread_name(string & strThreadName)
@@ -278,25 +341,25 @@ void task::term_task()
 
    }
 
-   synchronization_lock synchronizationlock(mutex());
+   synchronous_lock synchronouslock(mutex());
 
    //if (m_pnotifya)
    //{
 
    //   auto notifya = *m_pnotifya;
 
-   //   synchronizationlock.unlock();
+   //   synchronouslock.unlock();
 
    //   for (auto & pmatter : notifya)
    //   {
 
-   //      pmatter->task_remove(this);
+   //      pmatter->task_erase(this);
 
    //      pmatter->task_on_term(this);
 
    //   }
 
-   //   synchronizationlock.lock();
+   //   synchronouslock.lock();
 
    //}
 
@@ -305,7 +368,7 @@ void task::term_task()
 
    //   m_pthreadParent->task_on_term(this);
 
-   //   m_pthreadParent->task_remove(this);
+   //   m_pthreadParent->task_erase(this);
 
    //   //m_pthreadParent->kick_idle();
 
@@ -314,82 +377,106 @@ void task::term_task()
 }
 
 
-::e_status task::do_task()
+//::e_status task::do_task()
+//{
+//
+//   init_task();
+//
+//   auto estatus = on_task();
+//
+//   term_task();
+//
+//   return estatus;
+//
+//}
+//
+//
+//::e_status task::on_task()
+//{
+//
+//   //::e_status estatus = ::success;
+//
+//   //while (!m_bSetFinish)
+//   //{
+//
+//   //   ::matter* pmatter;
+//
+//   //   {
+//
+//   //      synchronous_lock synchronouslock(mutex());
+//
+//   //      pmatter = m_pmatter.m_p;
+//
+//   //      m_bitIsRunning = pmatter != nullptr;
+//
+//   //      if (!m_bitIsRunning)
+//   //      {
+//
+//   //         break;
+//
+//   //      }
+//
+//   //      m_id = pmatter->type_name();
+//
+//   //      set_thread_name(m_id);
+//
+//   //      m_pmatter.m_p = nullptr;
+//
+//   //   }
+//
+//   //   pmatter->on_task();
+//
+//   //}
+//
+//   //return estatus;
+//
+//}
+
+
+bool task::do_events()
 {
 
-   init_task();
-
-   auto estatus = on_task();
-
-   term_task();
-
-   return estatus;
+   return true;
 
 }
 
 
-::e_status task::on_task()
+bool task::defer_pump_message()
 {
 
-   ::e_status estatus = ::success;
-
-   while (!m_bSetFinish)
-   {
-
-      ::matter* pmatter;
-
-      {
-
-         synchronization_lock synchronizationlock(mutex());
-
-         pmatter = m_pmatter.m_p;
-
-         m_bitIsRunning = pmatter != nullptr;
-
-         if (!m_bitIsRunning)
-         {
-
-            break;
-
-         }
-
-         m_id = pmatter->type_name();
-
-         set_thread_name(m_id);
-
-         m_pmatter.m_p = nullptr;
-
-      }
-
-      pmatter->on_task();
-
-   }
-
-   return estatus;
+   return false;
 
 }
 
 
-::e_status task::start(
-   ::matter* pmatter,
+bool task::has_message() const
+{
+
+   return false;
+
+}
+
+
+//::e_status task::branch(
+//   ::matter* pmatter,
+//   ::e_priority epriority,
+//   u32 nStackSize,
+//   u32 uCreateFlags ARG_SEC_ATTRS)
+//{
+//
+//   m_pmatter = pmatter;
+//
+//   m_id = pmatter->type_name();
+//
+//   return branch(epriority, nStackSize, uCreateFlags ADD_PARAM_SEC_ATTRS);
+//
+//}
+
+
+::e_status task::branch(
    ::e_priority epriority,
    u32 nStackSize,
-   u32 uCreateFlags)
-{
-
-   m_pmatter = pmatter;
-
-   m_id = pmatter->type_name();
-
-   return begin_task(epriority, nStackSize, uCreateFlags);
-
-}
-
-
-::e_status task::begin_task(
-   ::e_priority epriority,
-   u32 nStackSize,
-   u32 uCreateFlags)
+   u32 uCreateFlags ARG_SEC_ATTRS)
 {
 
    if (m_id.is_empty())
@@ -416,6 +503,13 @@ void task::term_task()
       __throw(error_invalid_argument);
 
       return ::error_failed;
+
+   }
+
+   if (::is_null(m_pmatter))
+   {
+
+      m_pmatter = this;
 
    }
 
@@ -471,8 +565,6 @@ void task::term_task()
 
 #endif
 
-
-
    auto estatus = task_caller_on_init();
 
    if (!estatus)
@@ -482,7 +574,7 @@ void task::term_task()
 
    }
 
-   //if (m_pobjectParent && m_bitIsPred)
+   //if (m_pobjectParent && m_bIsPredicate)
    //{
 
    //   //auto pthreadParent = calc_parent_thread();
@@ -502,15 +594,15 @@ void task::term_task()
    // __task_procedure() should release this (pmatter)
    add_ref(OBJ_REF_DBG_THIS_FUNCTION_LINE);
 
-   m_bitIsRunning = true;
+   m_bIsRunning = true;
 
 #ifdef WINDOWS
 
    DWORD dwThread = 0;
 
-   m_hthread = ::CreateThread(nullptr, nStackSize, (LPTHREAD_START_ROUTINE) &::task::s_os_task, (LPVOID)(task*)this, uCreateFlags, &dwThread);
+   m_htask = ::CreateThread(PARAM_SEC_ATTRS, nStackSize, (LPTHREAD_START_ROUTINE) &::task::s_os_task, (LPVOID)(task*)this, uCreateFlags, &dwThread);
 
-   m_ithread = dwThread;
+   m_itask = dwThread;
 
 #else
 
@@ -528,17 +620,17 @@ void task::term_task()
    pthread_attr_setdetachstate(&taskAttr, PTHREAD_CREATE_DETACHED); // Set task to detached state. No need for pthread_join
 
    pthread_create(
-      (pthread_t *) &m_hthread,
+      (pthread_t *) &m_htask,
       &taskAttr,
       &task::s_os_task,
       this);
 
 #endif
 
-   if (!m_hthread)
+   if (!m_htask)
    {
 
-      m_bitIsRunning = false;
+      m_bIsRunning = false;
 
       return ::error_failed;
 
@@ -549,16 +641,16 @@ void task::term_task()
 }
 
 
-::task_pointer task::launch(::matter * pmatter, ::e_priority epriority, ::u32 nStackSize, u32 uCreateFlags)
-{
-
-   auto ptask = __new(task);
-
-   ptask->start(pmatter, epriority, nStackSize, uCreateFlags);
-
-   return ptask;
-
-}
+//::e_status task::branch(::matter * pmatter, ::e_priority epriority, ::u32 nStackSize, u32 uCreateFlags ARG_SEC_ATTRS)
+//{
+//
+//   auto ptask = __new(task);
+//
+//   ptask->branch(pmatter, epriority, nStackSize, uCreateFlags ADD_PARAM_SEC_ATTRS);
+//
+//   return ptask;
+//
+//}
 
 
 
@@ -568,7 +660,7 @@ void task::term_task()
 //bool task::set_task_name(const char* pszThreadName)
 //{
 //
-//   if (!::set_task_name(m_hthread, pszThreadName))
+//   if (!::set_task_name(m_htask, pszThreadName))
 //   {
 //
 //      return false;
@@ -603,7 +695,7 @@ void task::kick_idle()
 CLASS_DECL_ACME bool __task_sleep(task* task)
 {
 
-   while (task->thread_get_run())
+   while (task->task_get_run())
    {
 
       sleep(100_ms);
@@ -621,7 +713,7 @@ CLASS_DECL_ACME bool __task_sleep(task* pthread, millis millis)
    if (millis.m_i < 1000)
    {
 
-      if (!pthread->thread_get_run())
+      if (!pthread->task_get_run())
       {
 
          return false;
@@ -630,7 +722,7 @@ CLASS_DECL_ACME bool __task_sleep(task* pthread, millis millis)
 
       sleep(millis);
 
-      return pthread->thread_get_run();
+      return pthread->task_get_run();
 
    }
 
@@ -645,7 +737,7 @@ CLASS_DECL_ACME bool __task_sleep(task* pthread, millis millis)
 
       {
 
-         synchronization_lock synchronizationlock(pthread->mutex());
+         synchronous_lock synchronouslock(pthread->mutex());
 
          if (pthread->m_pevSleep.is_null())
          {
@@ -660,7 +752,7 @@ CLASS_DECL_ACME bool __task_sleep(task* pthread, millis millis)
 
       }
 
-      if (!pthread->thread_get_run())
+      if (!pthread->task_get_run())
       {
 
          return false;
@@ -672,7 +764,7 @@ CLASS_DECL_ACME bool __task_sleep(task* pthread, millis millis)
 
       pthread->m_pevSleep->wait(millis);
 
-      if (!pthread->thread_get_run())
+      if (!pthread->task_get_run())
       {
 
          return false;
@@ -689,7 +781,7 @@ CLASS_DECL_ACME bool __task_sleep(task* pthread, millis millis)
 
    }
 
-   return pthread->thread_get_run();
+   return pthread->task_get_run();
 
 }
 
@@ -700,7 +792,7 @@ CLASS_DECL_ACME bool __task_sleep(::task* pthread, synchronization_object* psync
    try
    {
 
-      while (pthread->thread_get_run())
+      while (pthread->task_get_run())
       {
 
          if (psync->wait(100).succeeded())
@@ -718,7 +810,7 @@ CLASS_DECL_ACME bool __task_sleep(::task* pthread, synchronization_object* psync
 
    }
 
-   return pthread->thread_get_run();
+   return pthread->task_get_run();
 
 }
 
@@ -729,7 +821,7 @@ CLASS_DECL_ACME bool __task_sleep(task* pthread, millis millis, synchronization_
    if (millis.m_i < 1000)
    {
 
-      if (!pthread->thread_get_run())
+      if (!pthread->task_get_run())
       {
 
          return false;
@@ -738,7 +830,7 @@ CLASS_DECL_ACME bool __task_sleep(task* pthread, millis millis, synchronization_
 
       psync->wait(millis);
 
-      return pthread->thread_get_run();
+      return pthread->task_get_run();
 
    }
 
@@ -753,7 +845,7 @@ CLASS_DECL_ACME bool __task_sleep(task* pthread, millis millis, synchronization_
 
          pthread->m_pevSleep->wait(100);
 
-         if (!pthread->thread_get_run())
+         if (!pthread->task_get_run())
          {
 
             return false;
@@ -770,7 +862,7 @@ CLASS_DECL_ACME bool __task_sleep(task* pthread, millis millis, synchronization_
 
    }
 
-   return pthread->thread_get_run();
+   return pthread->task_get_run();
 
 }
 

@@ -158,7 +158,7 @@ namespace graphics
    void console::SetWindowSize(int iHeight, int iWidth)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       m_sizeWindow.cx = iWidth;
 
@@ -209,7 +209,7 @@ namespace graphics
    {
 
       m_edoscolor = color;
-      //synchronization_lock synchronizationlock(&m_mutex);
+      //synchronous_lock synchronouslock(&m_mutex);
 
       //m_pimage->g()->FillSolidRect(0,iLineStart * m_sizeTile.cy,m_pimage->width(),m_pimage->height() - iLineStart * m_sizeTile.cy,console_dos_color(color));
 
@@ -219,7 +219,7 @@ namespace graphics
 
    void console::write(const char * psz)
    {
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
       string str;
       //int i2 = 2;
       while (*psz)
@@ -264,7 +264,7 @@ namespace graphics
    void console::update_image()
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       if (m_pimage.nok())
       {
@@ -309,7 +309,7 @@ namespace graphics
       if (pen2.is_null())
       {
 
-         pen2.create(m_pobjectContext);
+         pen2.create(this);
 
          pen2->create_solid(2.0, console_dos_color(edoscolor));
 
@@ -328,7 +328,7 @@ namespace graphics
       if (pen1.is_null())
       {
 
-         pen1.create(m_pobjectContext);
+         pen1.create(this);
 
          pen1->create_solid(1.0, console_dos_color(edoscolor));
 

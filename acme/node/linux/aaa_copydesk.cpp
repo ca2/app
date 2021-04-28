@@ -470,10 +470,10 @@ namespace linux
    }
 
 
-   ::e_status copydesk::initialize(::matter * pobjectContext)
+   ::e_status copydesk::initialize(::matter * pobject)
    {
 
-      auto estatus = ::user::copydesk::initialize(pobjectContext);
+      auto estatus = ::user::copydesk::initialize(pobject);
 
       if(!estatus)
       {
@@ -487,7 +487,7 @@ namespace linux
    }
 
 
-   void copydesk::finalize()
+   ::e_status copydesk::finalize()
    {
 
       ::user::copydesk::finalize();
@@ -531,7 +531,7 @@ namespace linux
    bool copydesk::_get_plain_text(string & str)
    {
 
-      __pointer(clipboard_data) pdata = __new(clipboard_data(get_context_application(), clipboard_get_plain_text));
+      __pointer(clipboard_data) pdata = __new(clipboard_data(get_application(), clipboard_get_plain_text));
 
       pdata->add_ref(OBJ_REF_DBG_P_NOTE(this, "copydesk::_get_plain_text"));
 
@@ -581,7 +581,7 @@ namespace linux
    bool copydesk::_has_filea()
    {
 
-      __pointer(clipboard_data) pdata = __new(clipboard_data(get_context_application(), clipboard_get_file_target_count));
+      __pointer(clipboard_data) pdata = __new(clipboard_data(get_application(), clipboard_get_file_target_count));
 
       pdata->add_ref(OBJ_REF_DBG_P_NOTE(this, "copydesk::_has_filea"));
 
@@ -606,7 +606,7 @@ namespace linux
    bool copydesk::_get_filea(::file::patha & patha, e_op & eop)
    {
 
-      __pointer(clipboard_data) pdata = __new(clipboard_data(get_context_application(), clipboard_get_patha));
+      __pointer(clipboard_data) pdata = __new(clipboard_data(get_application(), clipboard_get_patha));
 
       pdata->add_ref(OBJ_REF_DBG_P_NOTE(this, "copydesk::_get_filea"));
 
@@ -635,7 +635,7 @@ namespace linux
    bool copydesk::_set_filea(const ::file::patha & patha, e_op eop)
    {
 
-      __pointer(clipboard_data) pdata = __new(clipboard_data(get_context_application(), clipboard_set_patha));
+      __pointer(clipboard_data) pdata = __new(clipboard_data(get_application(), clipboard_set_patha));
 
       pdata->add_ref(OBJ_REF_DBG_P_NOTE(this, "copydesk::_set_filea"));
 
@@ -666,7 +666,7 @@ namespace linux
    bool copydesk::_desk_to_image(::image * pimage)
    {
 
-      __pointer(clipboard_data) pdata = __new(clipboard_data(get_context_application(), clipboard_get_image));
+      __pointer(clipboard_data) pdata = __new(clipboard_data(get_application(), clipboard_get_image));
 
       pdata->add_ref(OBJ_REF_DBG_P_NOTE(this, "copydesk::_desk_to_image"));
 

@@ -1,13 +1,13 @@
 #include "framework.h"
+#include "acme/filesystem/filesystem/acme_dir.h"
+#include "acme/const/timer.h"
 
 
 namespace account
 {
 
 
-   user_array::user_array(department * pdepartment) :
-      ::object(pdepartment),
-      m_pdepartment(pdepartment)
+   user_array::user_array()
    {
 
       defer_create_mutex();
@@ -22,6 +22,24 @@ namespace account
 
    }
 
+
+   ::e_status user_array::initialize_user_array(department* pdepartment)
+   {
+
+      auto estatus = ::object::initialize(pdepartment);
+
+      if(!estatus)
+      {
+
+         return estatus;
+      
+      }
+
+      m_paccount = pdepartment;
+
+      return estatus;
+
+   }
 
    void user_array::cleanup_networking()
    {
@@ -42,9 +60,13 @@ namespace account
 
       __pointer(user) puser;
 
+      auto psystem = m_psystem;
+
+      auto purl = psystem->url();
+
       {
 
-         string strHost = System->url().get_server(pathUrl);
+         string strHost = purl->get_server(pathUrl);
 
          auto estatus = __construct(puser);
 
@@ -55,7 +77,7 @@ namespace account
 
          }
 
-         synchronization_lock synchronizationlock(mutex());
+         synchronous_lock synchronouslock(mutex());
 
          m_map[strHost] = puser;
 
@@ -83,10 +105,12 @@ namespace account
 
       }
 
+      auto pcontext = get_context();
+
       try
       {
 
-         Context.file().del(::dir::appdata()/"license_auth/00001.data");
+         pcontext->m_papexcontext->file().del(m_psystem->m_pacmedir->appdata()/"license_auth/00001.data");
 
       }
       catch(...)
@@ -97,7 +121,7 @@ namespace account
       try
       {
 
-         Context.file().del(::dir::appdata()/"license_auth/00002.data");
+         pcontext->m_papexcontext->file().del(m_psystem->m_pacmedir->appdata()/"license_auth/00002.data");
 
       }
       catch(...)
@@ -157,11 +181,13 @@ namespace account
    void user_array::cleanup_users()
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       auto map = m_map;
 
-      synchronizationlock.unlock();
+      synchronouslock.unlock();
+
+      __pointer(::axis::session) psession = get_session();
 
       for(auto & pair : map)
       {
@@ -169,15 +195,13 @@ namespace account
          if(!pair.element2()->is_authenticated())
          {
 
-            auto psession = Session;
+            psession->on_erase_user(pair.element2());
 
-            psession->on_remove_user(pair.element2());
+            synchronouslock.lock();
 
-            synchronizationlock.lock();
+            m_map.erase_key(pair.element1());
 
-            m_map.remove_key(pair.element1());
-
-            synchronizationlock.unlock();
+            synchronouslock.unlock();
 
          }
 
@@ -190,27 +214,31 @@ namespace account
    user * user_array::get_user(::file::path pathUrl, bool bFetch, bool bInteractive)
    {
 
+      __pointer(axis::session) psession = get_session();
+
       if(pathUrl.is_empty())
       {
-
-         auto psession = Session;
 
          pathUrl = psession->account()->get_default_url();
 
       }
 
-      string strHost = System->url().get_server(pathUrl);
+      auto psystem = m_psystem;
+
+      auto purl = psystem->url();
+
+      string strHost = purl->get_server(pathUrl);
 
       {
 
-         synchronization_lock synchronizationlock(mutex());
+         synchronous_lock synchronouslock(mutex());
 
          auto & puser = m_map[strHost];
 
          if (bFetch && (puser.is_null() || !puser->is_authenticated()))
          {
 
-            synchronizationlock.unlock();
+            synchronouslock.unlock();
 
             _get_user(pathUrl, bInteractive);
 
@@ -226,7 +254,9 @@ namespace account
    bool user_array::is_authenticated(::file::path pathUrl, bool bInteractive)
    {
 
-      auto puser = Application.get_user(pathUrl, true, bInteractive);
+      __pointer(::axis::application) papplication = get_application();
+
+      auto puser = papplication->get_user(pathUrl, true, bInteractive);
 
       if(::is_null(puser))
       {
@@ -240,22 +270,22 @@ namespace account
    }
 
 
-   void user_array::on_clock(enum_clock eclock)
+   void user_array::on_clock(enum_timer etimer)
    {
 
-      if(eclock == e_clock_slow)
+      if(etimer == e_timer_slow)
       {
 
-         synchronization_lock synchronizationlock(mutex());
+         synchronous_lock synchronouslock(mutex());
 
          auto map = m_map;
 
-         synchronizationlock.unlock();
+         synchronouslock.unlock();
 
          for(auto & pair : map)
          {
 
-            pair.element2()->on_clock(eclock);
+            pair.element2()->on_clock(etimer);
 
          }
 

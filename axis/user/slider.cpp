@@ -27,7 +27,7 @@ namespace user
 //      //MESSAGE_LINK(e_message_timer,pchannel,this,&slider::_001OnTimer);
       MESSAGE_LINK(e_message_left_button_down,pchannel,this,&slider::on_message_left_button_down);
       MESSAGE_LINK(e_message_left_button_up,pchannel,this,&slider::on_message_left_button_up);
-      MESSAGE_LINK(e_message_mouse_move,pchannel,this,&slider::_001OnMouseMove);
+      MESSAGE_LINK(e_message_mouse_move,pchannel,this,&slider::on_message_mouse_move);
    }
 
    void slider::on_message_create(::message::message * pmessage)
@@ -92,7 +92,7 @@ namespace user
       if(m_bSlide)
       {
 
-         auto psession = Session;
+         auto psession = get_session();
 
          auto puser = psession->user();
 
@@ -115,7 +115,7 @@ namespace user
    }
 
 
-   void slider::_001OnMouseMove(::message::message * pmessage)
+   void slider::on_message_mouse_move(::message::message * pmessage)
    {
 
       __pointer(::message::mouse) pmouse(pmessage);
@@ -142,7 +142,7 @@ namespace user
 
       double dScalar = m_pscalar->get_rate();
 
-      auto psession = Session;
+      auto psession = get_session();
 
       auto puser = psession->user();
 
@@ -215,11 +215,9 @@ namespace user
 
       get_client_rect(rectClient);
 
-      class imaging & imaging = System->imaging();
-
       byte bAlpha1 = (byte) (128.0* get_alpha());
 
-      imaging.color_blend(pgraphics, rectClient, rgb(250,255,255), bAlpha1);
+      pgraphics->color_blend(rectClient, rgb(250,255,255), bAlpha1);
 
       ::rectangle_i32 rectangle;
 

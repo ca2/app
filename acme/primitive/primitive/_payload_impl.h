@@ -68,7 +68,7 @@ inline ::count payload::get_count() const
       return ::is_null(m_pia) ? 0 : m_pia->get_count();
    case e_type_stra:
       return ::is_null(m_pstra) ? 0 : m_pstra->get_count();
-   case type_vara:
+   case e_type_vara:
       return ::is_null(m_pvara) ? 0 : m_pvara->get_count();
    case e_type_propset:
       return ::is_null(m_pset) ? 0 : m_pset->get_count();
@@ -121,12 +121,12 @@ inline bool payload::is_array() const
 
    if (m_etype == e_type_stra
       || m_etype == e_type_inta
-      || m_etype == type_vara
+      || m_etype == e_type_vara
       || m_etype == e_type_propset)
    {
       return true;
    }
-   else if (m_etype == type_prop)
+   else if (m_etype == e_type_prop)
    {
       return prop().is_array();
    }
@@ -207,7 +207,7 @@ inline ::payload payload::operator - (const PAYLOAD & payload2) const
       else
       {
          payload = *this;
-         payload.inta().remove(payload2.i32());
+         payload.inta().erase(payload2.i32());
       }
    }
    else if (m_etype == ::e_type_stra)
@@ -223,19 +223,19 @@ inline ::payload payload::operator - (const PAYLOAD & payload2) const
       else
       {
          payload = *this;
-         payload.stra().remove(payload2.get_string());
+         payload.stra().erase(payload2.get_string());
       }
    }
-   else if (m_etype == ::type_vara)
+   else if (m_etype == ::e_type_vara)
    {
-      if (payload2.m_etype == ::type_vara)
+      if (payload2.m_etype == ::e_type_vara)
       {
          payload = vara() - payload2.vara();
       }
       else
       {
          payload = *this;
-         payload.vara().remove(payload2);
+         payload.vara().erase(payload2);
       }
    }
    else if (is_double() || payload2.is_double())
@@ -315,13 +315,13 @@ inline ::payload payload::operator + (const PAYLOAD & payload2) const
       }
 
    }
-   else if (m_etype == ::type_vara || payload2.m_etype == ::type_vara)
+   else if (m_etype == ::e_type_vara || payload2.m_etype == ::e_type_vara)
    {
 
-      if (payload2.m_etype == ::type_vara)
+      if (payload2.m_etype == ::e_type_vara)
       {
 
-         if (payload2.m_etype == ::type_vara)
+         if (payload2.m_etype == ::e_type_vara)
          {
 
             payload = vara() + payload2.vara();
@@ -408,19 +408,19 @@ inline ::payload payload::operator / (const PAYLOAD & payload2) const
       else
       {
          payload = *this;
-         payload.stra().remove(payload2.get_string());
+         payload.stra().erase(payload2.get_string());
       }
    }
-   else if (m_etype == ::type_vara)
+   else if (m_etype == ::e_type_vara)
    {
-      if (payload2.m_etype == ::type_vara)
+      if (payload2.m_etype == ::e_type_vara)
       {
          //payload = vara() / payload2.vara();
       }
       else
       {
          payload = *this;
-         payload.vara().remove(payload2);
+         payload.vara().erase(payload2);
       }
    }
    else if (is_double() || payload2.is_double())
@@ -462,7 +462,7 @@ inline ::payload payload:: operator * (const PAYLOAD & payload2) const
       ::papaya::array::intersection(payload.stra(), stra(), payload2.stra());
 
    }
-   else if (m_etype == ::type_vara || payload2.m_etype == ::type_vara)
+   else if (m_etype == ::e_type_vara || payload2.m_etype == ::e_type_vara)
    {
 
       ::papaya::array::intersection(payload.vara(), vara(), payload2.vara());

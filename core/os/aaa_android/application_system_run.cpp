@@ -68,11 +68,11 @@ string ca2_command_line()
 //
 //   psystem->m_strProgName = "com." + strPrgName;
 //
-//   ::set_main_hthread(psystem->m_hthread);
+//   ::set_main_hthread(psystem->m_htask);
 //
 //   ::set_main_ithread(psystem->m_uThread);
 //
-//   // System->m_strAppId = m_pmaindata->m_strAppId;
+//   // psystem->m_strAppId = m_pmaindata->m_strAppId;
 //
 //   if (!psystem->begin_synch())
 //   {
@@ -100,18 +100,18 @@ string ca2_command_line()
 //
 //   //   initialize.m_rect.bottom = pdataexchange->m_iScreenHeight;
 //
-//   //   psystem->get_context_session()->defer_initialize_host_window(&initialize.m_rect);
+//   //   psystem->get_session()->defer_initialize_host_window(&initialize.m_rect);
 //
 //   //   //::user::system createstruct;
 //
-//   //   //if (!psystem->get_context_session()->m_puiHost->create_window_ex(createstruct))
+//   //   //if (!psystem->get_session()->m_puserinteractionHost->create_window_ex(createstruct))
 //   //   //{
 //
 //   //   //    return ::error_failed;
 //
 //   //   //}
 //
-//   //   //__pointer(::user::interaction_impl) pimpl = psystem->get_context_session()->m_puiHost->m_pimpl;
+//   //   //__pointer(::user::interaction_impl) pimpl = psystem->get_session()->m_puserinteractionHost->m_pimpl;
 //
 //   //   //if (pimpl)
 //   //   //{

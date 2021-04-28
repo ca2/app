@@ -288,12 +288,12 @@
 //   return true;
 //
 //}
-#undef Application
+#undef papplication
 
 void os_post_quit()
 {
 
-   ::Windows::UI::Xaml::Application::Current->Exit();
+   ::Windows::UI::Xaml::papplication::Current->Exit();
 
 }
 

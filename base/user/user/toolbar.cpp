@@ -250,7 +250,7 @@ namespace user
 //               replaceBitmap.nButtons = bitmap.bmWidth / m_sizeImage.cx;
 //               bResult = default_window_procedure(TB_REPLACEBITMAP, 0, (LPARAM)&replaceBitmap) != false;
 //            }
-//            // remove old bitmap, if present
+//            // erase old bitmap, if present
 //            if (bResult)
 //            {
 //               ::DeleteObject((HGDIOBJ*)&m_hbmImageWell);
@@ -1741,13 +1741,13 @@ return { 0,0 };
 
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
-      m_itema.remove_all();
+      m_itema.erase_all();
 
-      xml::document doc;
+      auto pxmldocument = __create_new < xml::document >();
 
-      if (!doc.load(pszXml))
+      if (!pxmldocument->load(pszXml))
 
       {
 
@@ -1755,16 +1755,16 @@ return { 0,0 };
 
       }
 
-      xml::node::array childs;
-
-      childs = doc.root()->children();
+      auto & children = pxmldocument->root()->children();
 
       __pointer(::user::toolbar_item) item;
 
-      for(index i = 0; i < childs.get_size(); i++)
+      auto papplication = get_application();
+
+      for(index i = 0; i < children.get_size(); i++)
       {
 
-         __pointer(::xml::node) pchild = childs[i];
+         auto pchild = children.element_at(i)->get_xml_node();
 
          if(pchild->get_name() == "button")
          {
@@ -1780,7 +1780,11 @@ return { 0,0 };
             if(pchild->attribute("image").get_string().has_char())
             {
 
-               item->m_pimage = Application.image().load_image(pchild->attribute("image"), false);
+               auto pcontext = m_pcontext->m_pauracontext;
+
+               auto pcontextimage = pcontext->context_image();
+
+               item->m_pimage = pcontextimage->load_image(pchild->attribute("image"), false);
 
             }
 

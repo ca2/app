@@ -6,7 +6,7 @@ namespace apex
 
 
    template < class APP >
-   __transport(::apex::application) single_application_library < APP > ::new_application(const char * pszAppId)
+   __transport(::matter) single_application_library < APP > ::new_application(const char * pszAppId)
    {
 
       if(!contains_app(pszAppId))
@@ -36,7 +36,7 @@ namespace apex
 
       }
 
-//      auto estatus = papp->initialize(pobjectContext);
+//      auto estatus = papp->initialize(pobject);
 //
 //      if (!estatus)
 //      {
@@ -80,7 +80,7 @@ namespace apex
 //void channel::add_route (const ::id & id, RECEIVER * preceiverDerived, MESSAGE_PRED message_predicate)
 //{
 //
-//  get_typed_route < typename ::remove_reference < decltype(*preceiverDerived) >::TYPE, ::message::message >(id, preceiverDerived) = message_predicate;
+//  get_typed_route < typename ::erase_reference < decltype(*preceiverDerived) >::TYPE, ::message::message >(id, preceiverDerived) = message_predicate;
 //
 //}
 
@@ -107,7 +107,7 @@ bool channel::add_handler(const ::id & id, RECEIVER* preceiver, void (RECEIVER::
 //
 //   }
 //
-//  synchronization_lock synchronizationlock(channel_mutex());
+//  synchronous_lock synchronouslock(channel_mutex());
 //
 //  ::object* pobjectReceiver = dynamic_cast <::object*> (preceiverDerived);
 //
@@ -197,7 +197,7 @@ bool channel::add_handler(const ::id & id, RECEIVER* preceiver, void (RECEIVER::
 //::message::typed_route < MESSAGE > & channel::get_typed_route (const ::id & id, RECEIVER * preceiverDerived)
 //{
 //
-//  synchronization_lock synchronizationlock(s_pmutexChannel);
+//  synchronous_lock synchronouslock(s_pmutexChannel);
 //
 //  ::object * pobjectReceiver = dynamic_cast < ::object * > (preceiverDerived);
 //
@@ -270,7 +270,7 @@ bool channel::add_handler(const ::id & id, RECEIVER* preceiver, void (RECEIVER::
 //CLASS_DECL_APEX inline ::object * get_app_object()
 //{
 //
-//   return ::get_context_application();
+//   return ::get_application();
 //
 //}
 
@@ -283,7 +283,7 @@ bool channel::add_handler(const ::id & id, RECEIVER* preceiver, void (RECEIVER::
 //}
 
 
-//CLASS_DECL_APEX inline ::apex::application * get_context_application(::apex::application * papp)
+//CLASS_DECL_APEX inline ::apex::application * get_application(::apex::application * papp)
 //{
 //
 //  return papp;
@@ -291,7 +291,7 @@ bool channel::add_handler(const ::id & id, RECEIVER* preceiver, void (RECEIVER::
 //}
 
 
-//CLASS_DECL_APEX inline ::apex::session * get_context_session(::apex::session * psession)
+//CLASS_DECL_APEX inline ::apex::session * get_session(::apex::session * psession)
 //{
 //
 //  return psession;
@@ -299,12 +299,12 @@ bool channel::add_handler(const ::id & id, RECEIVER* preceiver, void (RECEIVER::
 //}
 
 
-CLASS_DECL_APEX inline ::apex::system * get_context_system(::apex::system * psystem)
-{
-
-  return psystem;
-
-}
+//CLASS_DECL_APEX inline ::apex::system * ::apex::get_system(::apex::system * psystem)
+//{
+//
+//  return psystem;
+//
+//}
 //
 //template < typename TYPE >
 //::stream & read_container_as_parent(::stream & stream, __pointer_array(TYPE) & a)
@@ -552,19 +552,19 @@ CLASS_DECL_APEX inline ::apex::system * get_context_system(::apex::system * psys
 //
 //
 //   //template < typename VIEW >
-//   //__pointer(::user::document) session::create_form(__pointer(::user::interaction) pwndParent, ::payload payload, ::payload varArgs)
+//   //__pointer(::user::document) session::create_form(__pointer(::user::interaction) puserinteractionParent, ::payload payload, ::payload varArgs)
 //   //{
 //
-//   //   return create_form(__type(VIEW), pwndParent, payload);
+//   //   return create_form(__type(VIEW), puserinteractionParent, payload);
 //
 //   //}
 //
 //
 //   //template < typename VIEW >
-//   //__pointer(::user::document) session::create_child_form(__pointer(::user::interaction) pwndParent, ::payload payload)
+//   //__pointer(::user::document) session::create_child_form(__pointer(::user::interaction) puserinteractionParent, ::payload payload)
 //   //{
 //
-//   //   return create_child_form(__type(VIEW), pwndParent, payload);
+//   //   return create_child_form(__type(VIEW), puserinteractionParent, payload);
 //
 //   //}
 //
@@ -575,36 +575,36 @@ CLASS_DECL_APEX inline ::apex::system * get_context_system(::apex::system * psys
 #if !defined(DEBUG)
 
 
-inline void object::set_context(::context* pcontext)
-{
-
-   m_pcontextContext = pcontext;
-
-}
-
-
-inline void object::set_context_thread(::thread* pthread)
-{
-
-   m_pthreadContext = pthread;
-
-}
+//inline void object::set_context(::context* pcontext)
+//{
+//
+//   m_pcontext = pcontext;
+//
+//}
 
 
-inline void object::set_context_app(::apex::application* pappContext)
-{
+//inline void object::set_context_thread(::thread* pthread)
+//{
+//
+//   m_pthread = pthread;
+//
+//}
 
-   m_pappContext = pappContext;
 
-}
+//inline void object::set_context_app(::apex::application* pappContext)
+//{
+//
+//   m_papplication = pappContext;
+//
+//}
 
 
-inline void object::set_context_session(::apex::session* psessionContext)
-{
-
-   m_psessionContext = psessionContext;
-
-}
+//inline void object::set_context_session(::apex::session* psessionContext)
+//{
+//
+//   m_psession = psessionContext;
+//
+//}
 
 
 //inline void object::set_context_system(::apex::system* psystemContext)
@@ -619,11 +619,11 @@ inline void object::set_context_session(::apex::session* psessionContext)
 
 
 
-inline ::object * get_context_object()
-{
-   
-   return ::get_context();
-   
-}
+//inline ::object * this
+//{
+//   
+//   return get_context();
+//   
+//}
 
 

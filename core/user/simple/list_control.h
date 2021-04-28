@@ -15,9 +15,9 @@ public:
    virtual bool pre_create_window(::user::system * pusersystem);
    virtual void pre_subclass_window();
 
-   bool remove_item(i32 iItem);
-   bool remove_item(::user::range & range);
-   bool remove_item(::user::item_range & range);
+   bool erase_item(i32 iItem);
+   bool erase_item(::user::range & range);
+   bool erase_item(::user::item_range & range);
    void get_data(string_array & stra);
    void set_data(string_array & stra);
    virtual ~simple_list_control();

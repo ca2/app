@@ -11,33 +11,20 @@ namespace simpledb
    ::e_status thread::run()
    {
 
-      single_lock synchronizationlock(mutex());
+      single_lock synchronouslock(mutex());
+
+      __pointer(::axis::application) papplication = get_application();
+
+      __pointer(::axis::session) psession = papplication->get_session();
 
       try
       {
 
-         while (thread_get_run())
+         while (task_get_run())
          {
 
             try
             {
-
-
-               if (get_context_application() == nullptr)
-               {
-
-                  break;
-
-               }
-
-               if (get_context_application()->get_context_session() == nullptr)
-               {
-
-                  break;
-
-               }
-
-               auto psession = Session;
 
                if (psession->m_paccount == nullptr)
                {
@@ -46,7 +33,7 @@ namespace simpledb
 
                }
 
-               if (Application.interactive_get_user() == nullptr)
+               if (papplication->interactive_get_user() == nullptr)
                {
 
                   sleep(5000_ms);
@@ -63,12 +50,12 @@ namespace simpledb
 
             }
 
-            synchronizationlock.lock();
+            synchronouslock.lock();
 
             if (m_itema.is_empty())
             {
 
-               synchronizationlock.unlock();
+               synchronouslock.unlock();
 
                sleep(300_ms);
 
@@ -84,7 +71,7 @@ namespace simpledb
                if (m_itema[i]->m_strKey == m_itema[0]->m_strKey)
                {
 
-                  m_itema.remove_at(0);
+                  m_itema.erase_at(0);
 
                   bFound = true;
 
@@ -97,7 +84,7 @@ namespace simpledb
             if (bFound)
             {
 
-               synchronizationlock.unlock();
+               synchronouslock.unlock();
 
                continue;
 
@@ -105,9 +92,9 @@ namespace simpledb
 
             auto pitem = m_itema[0];
 
-            m_itema.remove_at(0);
+            m_itema.erase_at(0);
 
-            synchronizationlock.unlock();
+            synchronouslock.unlock();
 
             try
             {
@@ -122,17 +109,21 @@ namespace simpledb
 
                strUrl = "https://ca2.cc/api/account/str_set_save?key=";
 
-               strUrl += System->url().url_encode(strKey);
+               auto psystem = m_psystem->m_papexsystem;
+
+               auto purl = psystem->url();
+
+               strUrl += purl->url_encode(strKey);
 
                strUrl += "&value=";
 
-               strUrl += System->url().url_encode(strBase64);
+               strUrl += purl->url_encode(strBase64);
 
                {
 
-                  synchronization_lock slDatabase(mutex());
+                  synchronous_lock slDatabase(mutex());
 
-                  get_context()->http().get(strUrl, set);
+                  m_pcontext->m_papexcontext->http().get(strUrl, set);
 
                }
 
@@ -141,7 +132,7 @@ namespace simpledb
 
                   sleep(500_ms);
 
-                  System->m_pdirsystem->m_strApiCc = "";
+                  psystem->m_pdirsystem->m_strApiCc = "";
 
                }
 
@@ -174,7 +165,7 @@ namespace simpledb
    void thread::queue(const char * pszKey, block block)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       auto pitem = __new(queue_item);
 

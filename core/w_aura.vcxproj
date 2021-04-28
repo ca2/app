@@ -27,10 +27,10 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="account\aaa_want_to_remove_account_authentication_map.h" />
-    <ClInclude Include="account\aaa_want_to_remove_account_authorization_task.h" />
-    <ClInclude Include="account\aaa_want_to_remove_account_object.h" />
-    <ClInclude Include="account\aaa_want_to_remove_account_user_authentication.h" />
+    <ClInclude Include="account\aaa_want_to_erase_account_authentication_map.h" />
+    <ClInclude Include="account\aaa_want_to_erase_account_authorization_task.h" />
+    <ClInclude Include="account\aaa_want_to_erase_account_object.h" />
+    <ClInclude Include="account\aaa_want_to_erase_account_user_authentication.h" />
     <ClInclude Include="account\authenticator.h" />
     <ClInclude Include="account\const.h" />
     <ClInclude Include="account\contact_list.h" />
@@ -104,7 +104,7 @@
     <ClInclude Include="database\database\_.h" />
     <ClInclude Include="database\database\_impl.h" />
     <ClInclude Include="database\_.h" />
-    <ClInclude Include="exception\aaa_want_to_remove_exception_verisimple.h" />
+    <ClInclude Include="exception\aaa_want_to_erase_exception_verisimple.h" />
     <ClInclude Include="exception\assert.h" />
     <ClInclude Include="exception\base.h" />
     <ClInclude Include="exception\callstack.h" />
@@ -166,7 +166,7 @@
     <ClInclude Include="filesystem\filehandler\_.h" />
     <ClInclude Include="filesystem\filehandler\_data.h" />
     <ClInclude Include="filesystem\filehandler\_filehandler.h" />
-    <ClInclude Include="filesystem\filemanager\aaa_want_to_remove_form_view.h" />
+    <ClInclude Include="filesystem\filemanager\aaa_want_to_erase_form_view.h" />
     <ClInclude Include="filesystem\filemanager\callback.h" />
     <ClInclude Include="filesystem\filemanager\child_frame.h" />
     <ClInclude Include="filesystem\filemanager\component.h" />
@@ -296,9 +296,9 @@
     <ClInclude Include="filesystem\userfs\_userfs.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="framework_c.h" />
-    <ClInclude Include="graphics\draw2d\aaa_want_to_remove_const.h" />
-    <ClInclude Include="graphics\draw2d\aaa_want_to_remove_font_effects.h" />
-    <ClInclude Include="graphics\draw2d\aaa_want_to_remove_image.h" />
+    <ClInclude Include="graphics\draw2d\aaa_want_to_erase_const.h" />
+    <ClInclude Include="graphics\draw2d\aaa_want_to_erase_font_effects.h" />
+    <ClInclude Include="graphics\draw2d\aaa_want_to_erase_image.h" />
     <ClInclude Include="graphics\draw2d\api.h" />
     <ClInclude Include="graphics\draw2d\bitmap.h" />
     <ClInclude Include="graphics\draw2d\brush.h" />
@@ -369,7 +369,7 @@
     <ClInclude Include="graphics\graphics\window.h" />
     <ClInclude Include="graphics\graphics\window_buffer.h" />
     <ClInclude Include="graphics\graphics\window_dc.h" />
-    <ClInclude Include="graphics\graphics\aaa_wat_to_remove_window_graphics.h" />
+    <ClInclude Include="graphics\graphics\aaa_wat_to_erase_window_graphics.h" />
     <ClInclude Include="html\graphics\attribute.h" />
     <ClInclude Include="html\graphics\base.h" />
     <ClInclude Include="html\graphics\border.h" />
@@ -572,7 +572,7 @@
     <ClInclude Include="net\sockets\bsd\basic\sockets_tcp_socket.h" />
     <ClInclude Include="net\sockets\bsd\basic\sockets_tls_socket.h" />
     <ClInclude Include="net\sockets\bsd\basic\sockets_udp_socket.h" />
-    <ClInclude Include="node\uwp\aaa_want_to_remove_folder_watch.h" />
+    <ClInclude Include="node\uwp\aaa_want_to_erase_folder_watch.h" />
     <ClInclude Include="node\uwp\application.h" />
     <ClInclude Include="node\uwp\buffer.h" />
     <ClInclude Include="node\uwp\command.h" />
@@ -629,7 +629,7 @@
     <ClInclude Include="os\text.h" />
     <ClInclude Include="os\threading.h" />
     <ClInclude Include="os\time.h" />
-    <ClInclude Include="os\uwp\aaa_want_to_remove_window_impl.h" />
+    <ClInclude Include="os\uwp\aaa_want_to_erase_window_impl.h" />
     <ClInclude Include="os\uwp\base_file.h" />
     <ClInclude Include="os\uwp\exception_engine.h" />
     <ClInclude Include="os\uwp\file_winrt.h" />
@@ -647,9 +647,9 @@
     <ClInclude Include="os\uwp\_uwp.h" />
     <ClInclude Include="os\uwp\_winrt.h" />
     <ClInclude Include="os\windowing.h" />
-    <ClInclude Include="os\windows_common\aaa_want_to_remove_windows_common_c.h" />
-    <ClInclude Include="os\windows_common\aaa_want_to_remove_windows_common_error.h" />
-    <ClInclude Include="os\windows_common\aaa_want_to_remove_windows_common_file.h" />
+    <ClInclude Include="os\windows_common\aaa_want_to_erase_windows_common_c.h" />
+    <ClInclude Include="os\windows_common\aaa_want_to_erase_windows_common_error.h" />
+    <ClInclude Include="os\windows_common\aaa_want_to_erase_windows_common_file.h" />
     <ClInclude Include="os\windows_common\bstring.h" />
     <ClInclude Include="os\windows_common\comptr.h" />
     <ClInclude Include="os\windows_common\cotaskptr.h" />
@@ -670,13 +670,13 @@
     <ClInclude Include="os\_c.h" />
     <ClInclude Include="os\_impl.h" />
     <ClInclude Include="os\_os.h" />
-    <ClInclude Include="platform\aaa_want_to_remove_application_common.h" />
-    <ClInclude Include="platform\aaa_want_to_remove_common.h" />
-    <ClInclude Include="platform\aaa_want_to_remove_console_window2.h" />
-    <ClInclude Include="platform\aaa_want_to_remove_extras.h" />
-    <ClInclude Include="platform\aaa_want_to_remove_runnable.h" />
-    <ClInclude Include="platform\aaa_want_to_remove_system_common.h" />
-    <ClInclude Include="platform\aaa_want_to_remove_template.h" />
+    <ClInclude Include="platform\aaa_want_to_erase_application_common.h" />
+    <ClInclude Include="platform\aaa_want_to_erase_common.h" />
+    <ClInclude Include="platform\aaa_want_to_erase_console_window2.h" />
+    <ClInclude Include="platform\aaa_want_to_erase_extras.h" />
+    <ClInclude Include="platform\aaa_want_to_erase_runnable.h" />
+    <ClInclude Include="platform\aaa_want_to_erase_system_common.h" />
+    <ClInclude Include="platform\aaa_want_to_erase_template.h" />
     <ClInclude Include="platform\all.h" />
     <ClInclude Include="platform\app.h" />
     <ClInclude Include="platform\application.h" />
@@ -966,15 +966,15 @@
     <ClInclude Include="primitive\math\math_scalar.h" />
     <ClInclude Include="primitive\math\math_scalar_enum.h" />
     <ClInclude Include="primitive\math\math_static_numeric_info.h" />
-    <ClInclude Include="primitive\primitive\aaa_want_to_remove_app_object.h" />
-    <ClInclude Include="primitive\primitive\aaa_want_to_remove_array.h" />
-    <ClInclude Include="primitive\primitive\aaa_want_to_remove_context_object.h" />
-    <ClInclude Include="primitive\primitive\aaa_want_to_remove_object.h" />
-    <ClInclude Include="primitive\primitive\aaa_want_to_remove_pointer1.h" />
-    <ClInclude Include="primitive\primitive\aaa_want_to_remove_relation_set.h" />
-    <ClInclude Include="primitive\primitive\aaa_want_to_remove_stick.h" />
-    <ClInclude Include="primitive\primitive\aaa_want_to_remove_topic_text_string.h" />
-    <ClInclude Include="primitive\primitive\aaa_want_to_remove_transport_object.h" />
+    <ClInclude Include="primitive\primitive\aaa_want_to_erase_app_object.h" />
+    <ClInclude Include="primitive\primitive\aaa_want_to_erase_array.h" />
+    <ClInclude Include="primitive\primitive\aaa_want_to_erase_context_object.h" />
+    <ClInclude Include="primitive\primitive\aaa_want_to_erase_object.h" />
+    <ClInclude Include="primitive\primitive\aaa_want_to_erase_pointer1.h" />
+    <ClInclude Include="primitive\primitive\aaa_want_to_erase_relation_set.h" />
+    <ClInclude Include="primitive\primitive\aaa_want_to_erase_stick.h" />
+    <ClInclude Include="primitive\primitive\aaa_want_to_erase_topic_text_string.h" />
+    <ClInclude Include="primitive\primitive\aaa_want_to_erase_transport_object.h" />
     <ClInclude Include="primitive\primitive\action_context.h" />
     <ClInclude Include="primitive\primitive\application_bias.h" />
     <ClInclude Include="primitive\primitive\atomic.h" />
@@ -1053,14 +1053,14 @@
     <ClInclude Include="primitive\primitive\_papaya.h" />
     <ClInclude Include="primitive\primitive\_papaya_impl.h" />
     <ClInclude Include="primitive\primitive\_property_set_composite_impl.h" />
-    <ClInclude Include="primitive\string\aaa_want_to_remove_001.h" />
-    <ClInclude Include="primitive\string\aaa_want_to_remove_char_traits.h" />
-    <ClInclude Include="primitive\string\aaa_want_to_remove_str_ch_class.h" />
-    <ClInclude Include="primitive\string\aaa_want_to_remove_str_str.h" />
-    <ClInclude Include="primitive\string\aaa_want_to_remove_str_str3.h" />
-    <ClInclude Include="primitive\string\aaa_want_to_remove_str_tokenizer.h" />
-    <ClInclude Include="primitive\string\aaa_want_to_remove_str_wstring.h" />
-    <ClInclude Include="primitive\string\aaa_want_to_remove_str_x.h" />
+    <ClInclude Include="primitive\string\aaa_want_to_erase_001.h" />
+    <ClInclude Include="primitive\string\aaa_want_to_erase_char_traits.h" />
+    <ClInclude Include="primitive\string\aaa_want_to_erase_str_ch_class.h" />
+    <ClInclude Include="primitive\string\aaa_want_to_erase_str_str.h" />
+    <ClInclude Include="primitive\string\aaa_want_to_erase_str_str3.h" />
+    <ClInclude Include="primitive\string\aaa_want_to_erase_str_tokenizer.h" />
+    <ClInclude Include="primitive\string\aaa_want_to_erase_str_wstring.h" />
+    <ClInclude Include="primitive\string\aaa_want_to_erase_str_x.h" />
     <ClInclude Include="primitive\string\base64.h" />
     <ClInclude Include="primitive\string\bstring.h" />
     <ClInclude Include="primitive\string\ch.h" />
@@ -1246,7 +1246,7 @@
     <ClInclude Include="user\simple\_impl.h" />
     <ClInclude Include="user\simple\_simple.h" />
     <ClInclude Include="user\simple\_tree.h" />
-    <ClInclude Include="user\userex\aaa_want_to_remove_form_update_hint.h" />
+    <ClInclude Include="user\userex\aaa_want_to_erase_form_update_hint.h" />
     <ClInclude Include="user\userex\color_view.h" />
     <ClInclude Include="user\userex\const.h" />
     <ClInclude Include="user\userex\dialog.h" />
@@ -1286,24 +1286,24 @@
     <ClInclude Include="user\userpresence\presence.h" />
     <ClInclude Include="user\userpresence\_.h" />
     <ClInclude Include="user\user\00.h" />
-    <ClInclude Include="user\user\aaa_want_remove_interaction_base.h" />
-    <ClInclude Include="user\user\aaa_want_remove_interaction_child.h" />
-    <ClInclude Include="user\user\aaa_want_remove_interaction_impl.h" />
-    <ClInclude Include="user\user\aaa_want_remove_interaction_impl_base.h" />
-    <ClInclude Include="user\user\aaa_want_to_remove_button.h" />
-    <ClInclude Include="user\user\aaa_want_to_remove_controller.h" />
-    <ClInclude Include="user\user\aaa_want_to_remove_dock_context.h" />
-    <ClInclude Include="user\user\aaa_want_to_remove_dock_state.h" />
-    <ClInclude Include="user\user\aaa_want_to_remove_elemental.h" />
-    <ClInclude Include="user\user\aaa_want_to_remove_impact_update.h" />
-    <ClInclude Include="user\user\aaa_want_to_remove_interaction.h" />
-    <ClInclude Include="user\user\aaa_want_to_remove_interaction_base.h" />
-    <ClInclude Include="user\user\aaa_want_to_remove_interactive.h" />
-    <ClInclude Include="user\user\aaa_want_to_remove_primitive.h" />
-    <ClInclude Include="user\user\aaa_want_to_remove_server.h" />
-    <ClInclude Include="user\user\aaa_want_to_remove_split_window.h" />
-    <ClInclude Include="user\user\aaa_want_to_remove_template.h" />
-    <ClInclude Include="user\user\aaa_want_to_remove_thread.h" />
+    <ClInclude Include="user\user\aaa_want_erase_interaction_base.h" />
+    <ClInclude Include="user\user\aaa_want_erase_interaction_child.h" />
+    <ClInclude Include="user\user\aaa_want_erase_interaction_impl.h" />
+    <ClInclude Include="user\user\aaa_want_erase_interaction_impl_base.h" />
+    <ClInclude Include="user\user\aaa_want_to_erase_button.h" />
+    <ClInclude Include="user\user\aaa_want_to_erase_controller.h" />
+    <ClInclude Include="user\user\aaa_want_to_erase_dock_context.h" />
+    <ClInclude Include="user\user\aaa_want_to_erase_dock_state.h" />
+    <ClInclude Include="user\user\aaa_want_to_erase_elemental.h" />
+    <ClInclude Include="user\user\aaa_want_to_erase_impact_update.h" />
+    <ClInclude Include="user\user\aaa_want_to_erase_interaction.h" />
+    <ClInclude Include="user\user\aaa_want_to_erase_interaction_base.h" />
+    <ClInclude Include="user\user\aaa_want_to_erase_interactive.h" />
+    <ClInclude Include="user\user\aaa_want_to_erase_primitive.h" />
+    <ClInclude Include="user\user\aaa_want_to_erase_server.h" />
+    <ClInclude Include="user\user\aaa_want_to_erase_split_window.h" />
+    <ClInclude Include="user\user\aaa_want_to_erase_template.h" />
+    <ClInclude Include="user\user\aaa_want_to_erase_thread.h" />
     <ClInclude Include="user\user\box.h" />
     <ClInclude Include="user\user\button.h" />
     <ClInclude Include="user\user\callback.h" />
@@ -1503,14 +1503,14 @@
   <ItemGroup>
     <None Include="graphics\draw2d\draw2d.inl" />
     <None Include="graphics\draw2d\visual.inl" />
-    <None Include="inline\aaa_want_to_remove_app_prelude.inl" />
+    <None Include="inline\aaa_want_to_erase_app_prelude.inl" />
     <None Include="platform\aura1.inl" />
     <None Include="platform\aura2.inl" />
     <None Include="platform\gudo_application2.inl" />
     <None Include="primitive\geometry2d\_rect_impl.h" />
     <None Include="primitive\geometry2d\_size_impl.h" />
     <None Include="primitive\geometry2d\_impl.h" />
-    <None Include="primitive\string\aaa_want_to_remove_str.inl" />
+    <None Include="primitive\string\aaa_want_to_erase_str.inl" />
     <None Include="primitive\string\str.inl" />
     <None Include="primitive\string\str_c.inl" />
   </ItemGroup>
@@ -2076,7 +2076,7 @@
     <ClCompile Include="os\uwp\time.cpp" />
     <ClCompile Include="os\uwp\user.cpp" />
     <ClCompile Include="os\uwp\windowing.cpp" />
-    <ClCompile Include="os\uwp\aaa_want_to_remove_main_uwp.cpp">
+    <ClCompile Include="os\uwp\aaa_want_to_erase_main_uwp.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
@@ -2739,7 +2739,7 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <CompileAsWinRT>true</CompileAsWinRT>
       <PreprocessorDefinitions>_AURA_LIBRARY;USE_OS_IMAGE_LOADER;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-uwp/include;$(__archive)third-uwp/third/include/include;$(__archive)third-uwp/third/include;$(SolutionDir)../../platform-uwp;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-uwp/include;$(__archive)third-uwp/third/include/include;$(__archive)third-uwp/third/include;$(SolutionDir)../../platform-uwp;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
@@ -2772,7 +2772,7 @@
     <ClCompile>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <CompileAsWinRT>true</CompileAsWinRT>
-      <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-uwp/include;$(__archive)third-uwp/third/include/include;$(__archive)third-uwp/third/include;$(SolutionDir)../../platform-uwp;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-uwp/include;$(__archive)third-uwp/third/include/include;$(__archive)third-uwp/third/include;$(SolutionDir)../../platform-uwp;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
       <AdditionalOptions>/bigobj </AdditionalOptions>
@@ -2800,7 +2800,7 @@
       <CompileAsWinRT>true</CompileAsWinRT>
       <PreprocessorDefinitions>_AURA_LIBRARY;USE_OS_IMAGE_LOADER;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <CompileAsManaged>false</CompileAsManaged>
-      <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-uwp/include;$(__archive)third-uwp/third/include/include;$(__archive)third-uwp/third/include;$(SolutionDir)../../platform-uwp;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-uwp/include;$(__archive)third-uwp/third/include/include;$(__archive)third-uwp/third/include;$(SolutionDir)../../platform-uwp;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
       <AdditionalOptions>/bigobj </AdditionalOptions>
@@ -2825,7 +2825,7 @@
     <ClCompile>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <CompileAsWinRT>true</CompileAsWinRT>
-      <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-uwp/include;$(__archive)third-uwp/third/include/include;$(__archive)third-uwp/third/include;$(SolutionDir)../../platform-uwp;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-uwp/include;$(__archive)third-uwp/third/include/include;$(__archive)third-uwp/third/include;$(SolutionDir)../../platform-uwp;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
       <AdditionalOptions>/bigobj </AdditionalOptions>
@@ -2853,7 +2853,7 @@
       <CompileAsWinRT>true</CompileAsWinRT>
       <PreprocessorDefinitions>_AURA_LIBRARY;USE_OS_IMAGE_LOADER;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <CompileAsManaged>false</CompileAsManaged>
-      <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-uwp/include;$(__archive)third-uwp/third/include/include;$(__archive)third-uwp/third/include;$(SolutionDir)../../platform-uwp;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-uwp/include;$(__archive)third-uwp/third/include/include;$(__archive)third-uwp/third/include;$(SolutionDir)../../platform-uwp;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
       <AdditionalOptions>/bigobj </AdditionalOptions>
@@ -2879,7 +2879,7 @@
     <ClCompile>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <CompileAsWinRT>true</CompileAsWinRT>
-      <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-uwp/include;$(__archive)third-uwp/third/include/include;$(__archive)third-uwp/third/include;$(SolutionDir)../../platform-uwp;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-uwp/include;$(__archive)third-uwp/third/include/include;$(__archive)third-uwp/third/include;$(SolutionDir)../../platform-uwp;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
       <AdditionalOptions>/bigobj </AdditionalOptions>

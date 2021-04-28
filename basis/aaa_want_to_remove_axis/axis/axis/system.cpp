@@ -21,10 +21,10 @@ namespace axis
    }
 
 
-   ::e_status     system::initialize_system(::layered * pobjectContext, app_core * pappcore)
+   ::e_status     system::initialize_system(::object * pobject, app_core * pappcore)
    {
 
-      auto estatus = ::aura::system::initialize_system(pobjectContext, pappcore);
+      auto estatus = ::aura::system::initialize_system(pobject, pappcore);
 
       if (!estatus)
       {
@@ -33,7 +33,7 @@ namespace axis
 
       }
 
-      //estatus = ::axis::application::initialize(pobjectContext);
+      //estatus = ::axis::application::initialize(pobject);
 
       //if (!estatus)
       //{
@@ -46,9 +46,9 @@ namespace axis
       //create_factory < ::file::axis::system_dir, ::file::system_dir >();
       //create_factory < ::file::axis::system_file, ::file::system_file >();
 
-      //::aura::application * papp = ::get_context_application(pobject);
+      //::aura::application * papp = ::get_application(pobject);
 
-      //m_strAppId = "axis_system";
+      //m_XstrAppId = "axis_system";
       //m_strAppName = "axis_system";
       //m_strBaseSupportId = "axis_system";
       //m_strInstallToken = "axis_system";
@@ -124,7 +124,7 @@ namespace axis
 
       }
 
-      //m_psystem->m_phtml->construct(get_context_application());
+      //m_psystem->m_phtml->construct(get_application());
 
    //}
 
@@ -143,7 +143,7 @@ namespace axis
       //if(!::axis::application::init1())
       //   return false;
 
-      Sess(get_context_application()).m_puserstrcontext->defer_ok(m_puserstr);
+      Sess(get_application()).m_ptextcontext->defer_ok(m_puserstr);
 
       return true;
 

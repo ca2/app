@@ -60,9 +60,15 @@ namespace filemanager
       if(_001HitTest_(pmouse->m_point, iItem))
       {
 
-         filemanager_document()->on_file_manager_open_folder(__new(::file::item(
-               Context.defer_process_path(m_foldera.GetFolder((::index)iItem).m_strFolderPath),
-               m_foldera.GetFolder((::index) iItem).m_strFolderPath)), ::e_source_user);
+         ::file::path filepathFinal = m_foldera.GetFolder((::index)iItem).m_strFolderPath;
+
+         auto pcontext = get_context();
+
+         ::file::path filepathUser = pcontext->m_papexcontext->defer_process_path(filepathFinal);
+
+         auto pfileitem = __new(::file::item(filepathUser, filepathFinal));
+
+         filemanager_document()->on_file_manager_open_folder(pfileitem, ::e_source_user);
 
       }
 
@@ -125,7 +131,9 @@ namespace filemanager
 
       ::file::listing patha;
 
-      Application.dir().ls(patha, strParent);
+      auto pcontext = m_pcontext;
+
+      pcontext->m_papexcontext->dir().ls(patha, strParent);
 
       for (i32 i = 0; i < patha.get_count(); i++)
       {
@@ -176,7 +184,7 @@ namespace filemanager
             {
                delete p->m_element1;
             }
-            m_iconmap.remove_all();
+            m_iconmap.erase_all();
             //         i32 iIcon;
             //         i32 iImage;
             //         IExtractIcon * piextracticon;
@@ -226,7 +234,7 @@ namespace filemanager
                else if(hr == S_FALSE)
                {
                HICON hicon = ExtractIcon(
-               System->m_hInstance,
+               psystem->m_hInstance,
                szPath,
                iIcon);*/
                /*HINSTANCE hinstance = (HINSTANCE) ::LoadLibrary(
@@ -277,7 +285,7 @@ namespace filemanager
 //      //{
 //      //Folder & folder = this->element_at(i);
 //      //}
-//      remove_all();
+//      erase_all();
 //
 //
 //   }
@@ -287,7 +295,7 @@ namespace filemanager
    void folder_list::FolderArray::clear()
    {
 
-      remove_all();
+      erase_all();
 
    }
 
@@ -385,7 +393,7 @@ namespace filemanager
    void folder_list::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
    {
 
-      ::filemanager::impact::on_subject(psubject, pcontext);
+      ::filemanager_impact::on_subject(psubject, pcontext);
 
       if (psubject->id() == INITIALIZE_ID)
       {

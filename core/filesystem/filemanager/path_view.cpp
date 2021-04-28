@@ -17,7 +17,7 @@ namespace filemanager
    void path_view::install_message_routing(::channel * pchannel)
    {
 
-      ::filemanager::impact::install_message_routing(pchannel);
+      ::filemanager_impact::install_message_routing(pchannel);
       ::user::plain_edit::install_message_routing(pchannel);
 
    }
@@ -103,6 +103,8 @@ namespace filemanager
       else
       {
 
+         auto pcontext = get_context();
+
          ::file::path pathAddress = str;
 
          while (true)
@@ -110,7 +112,7 @@ namespace filemanager
 
             bool bIsDir = false;
 
-            ::file::path path = Context.defer_process_path(pathAddress | ::file::e_flag_resolve_alias);
+            ::file::path path = pcontext->m_papexcontext->defer_process_path(pathAddress | ::file::e_flag_resolve_alias);
 
             bIsDir = filemanager_document()->fs_data()->is_dir(path);
 
@@ -175,7 +177,7 @@ namespace filemanager
    void path_view::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
    {
 
-      ::filemanager::impact::on_subject(psubject, pcontext);
+      ::filemanager_impact::on_subject(psubject, pcontext);
 
       if (psubject->id() == INITIALIZE_ID)
       {

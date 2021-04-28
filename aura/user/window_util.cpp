@@ -70,7 +70,7 @@ namespace user
    bool interaction_ptra::get_child(__pointer(::user::interaction) & pinteraction)
    {
 
-      //synchronization_lock synchronizationlock(mutex());
+      //synchronous_lock synchronouslock(mutex());
 
       if (get_count() <= 0)
       {
@@ -126,7 +126,7 @@ namespace user
    bool interaction_ptra::rget_child(__pointer(::user::interaction) & pinteraction)
    {
 
-      //synchronization_lock synchronizationlock(mutex());
+      //synchronous_lock synchronouslock(mutex());
 
       if (get_count() <= 0)
       {
@@ -179,40 +179,23 @@ namespace user
 
    }
 
-
-
-
-
-
-
-   primitive_ptra & primitive_ptra::operator=(const primitive_ptra & a)
+   
+   primitive_pointer_array::primitive_pointer_array()
    {
 
-      remove_all();
-
-      for (index i = 0; i < a.get_count(); i++)
-      {
-
-         add(a.element_at(i));
-
-      }
-
-      return *this;
 
    }
 
 
-
-
-   ::user::primitive * primitive_ptra::find_first_typed(const ::type & type)
+   ::user::primitive * primitive_pointer_array::find_first_typed(const ::type & type)
    {
 
-      for (i32 i = 0; i < this->get_size(); i++)
+      for (i32 i = 0; i < primitive_count(); i++)
       {
 
-         ::user::primitive * pprimitive = this->element_at(i);
+         auto pprimitive = primitive_at(i);
 
-         if (type == pprimitive)
+         if (type == typeid(*pprimitive))
          {
 
             return pprimitive;
@@ -226,17 +209,21 @@ namespace user
    }
 
 
-   ::user::primitive * primitive_ptra::find_first(oswindow oswindow)
+   ::user::primitive * primitive_pointer_array::find_first(oswindow oswindow)
    {
 
-      for (i32 i = 0; i < this->get_size(); i++)
+      for (i32 i = 0; i < primitive_count(); i++)
       {
 
-         if (this->element_at(i)->get_safe_oswindow() == oswindow)
+         __pointer(::user::interaction) puserinteraction = primitive_at(i);
+
+         if (puserinteraction && puserinteraction->get_safe_oswindow() == oswindow)
          {
 
-            return this->element_at(i);
+            return primitive_at(i);
+
          }
+
       }
 
       return nullptr;
@@ -244,13 +231,10 @@ namespace user
    }
 
 
-
-   bool primitive_ptra::get_child(__pointer(::user::primitive) & pprimitive)
+   bool primitive_pointer_array::get_child(__pointer(::user::primitive) & pprimitive)
    {
 
-      //synchronization_lock synchronizationlock(mutex());
-
-      if (get_count() <= 0)
+      if (has_no_primitive())
       {
 
          return false;
@@ -260,7 +244,7 @@ namespace user
       if (pprimitive == nullptr)
       {
 
-         pprimitive = element_at(0);
+         pprimitive = primitive_at(0);
 
          return true;
 
@@ -268,18 +252,18 @@ namespace user
       else
       {
 
-         for (index i = get_upper_bound(); i >= 0; i--)
+         for (index i = primitive_last_index(); i >= 0; i--)
          {
 
-            if (element_at(i) == pprimitive)
+            if (primitive_at(i) == pprimitive)
             {
 
                i++;
 
-               if (i < get_count())
+               if (i < primitive_count())
                {
 
-                  pprimitive = element_at(i);
+                  pprimitive = primitive_at(i);
 
                   return true;
 
@@ -301,12 +285,11 @@ namespace user
 
    }
 
-   bool primitive_ptra::rget_child(__pointer(::user::primitive) & pprimitive)
+
+   bool primitive_pointer_array::rget_child(__pointer(::user::primitive) & pprimitive)
    {
 
-      //synchronization_lock synchronizationlock(mutex());
-
-      if (get_count() <= 0)
+      if (has_no_primitive())
       {
 
          return false;
@@ -316,7 +299,7 @@ namespace user
       if (pprimitive == nullptr)
       {
 
-         pprimitive = last();
+         pprimitive = last_primitive();
 
          return true;
 
@@ -324,10 +307,10 @@ namespace user
       else
       {
 
-         for (index i = 0; i < get_size(); i++)
+         for (index i = 0; i < primitive_count(); i++)
          {
 
-            if (element_at(i) == pprimitive)
+            if (primitive_at(i) == pprimitive)
             {
 
                i--;
@@ -335,7 +318,7 @@ namespace user
                if (i >= 0)
                {
 
-                  pprimitive = element_at(i);
+                  pprimitive = primitive_at(i);
 
                   return true;
 
@@ -358,34 +341,10 @@ namespace user
    }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
    interaction_array::interaction_array()
    {
 
    }
-
-
-   //interaction_pointer_array::interaction_pointer_array(::layered * pobjectContext) :
-   //   ::object(pobject)
-   //{
-
-   //}
 
 
    interaction_array::interaction_array(const address_array < ::user::interaction * > & ptra)
@@ -408,28 +367,6 @@ namespace user
       }
 
    }
-
-
-   //__pointer(::user::interaction) interaction_pointer_array::find_first_typed(::type info)
-   //{
-
-   //   for (i32 i = 0; i < this->get_size(); i++)
-   //   {
-
-   //      ::user::interaction * pinteraction = this->element_at(i);
-
-   //      if (typeid(*pinteraction).name() == info->name())
-   //      {
-
-   //         return this->element_at(i);
-
-   //      }
-
-   //   }
-
-   //   return nullptr;
-
-   //}
 
 
    __pointer(::user::interaction) interaction_array::find_first(oswindow oswindow)

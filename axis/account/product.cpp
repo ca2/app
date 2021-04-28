@@ -13,8 +13,7 @@ namespace account
 {
 
 
-   product::product(::layered * pcontextobject) :
-      ::object(pcontextobject)
+   product::product()
    {
 
       m_estatus = error_none;
@@ -55,7 +54,9 @@ namespace account
    void product::_do_license(string strAppId, bool bInteractive)
    {
 
-      auto puser = Application.get_user("api.ca2.cc", true, bInteractive);
+      __pointer(::axis::application) papplication = get_application();
+
+      auto puser = papplication->get_user("api.ca2.cc", true, bInteractive);
 
       if(::is_null(puser) || !puser->is_authenticated())
       {
@@ -88,9 +89,9 @@ namespace account
 //
 //      property_set set;
 //
-//      set["post"]["entered_license"] = m_strAppId;
+//      set["post"]["entered_license"] = m_XstrAppId;
 //
-//      ::payload strAuth = Context.http().get(strAuthUrl, set);
+//      ::payload strAuth = pcontext->m_papexcontext->http().get(strAuthUrl, set);
 //
 //      xml::document doc;
 //
@@ -111,7 +112,7 @@ namespace account
 //
 //         if(strId.has_char()
 //               && strId == "licensed"
-//               && m_strAppId == strAppId
+//               && m_XstrAppId == strAppId
 //               && strResponseSessId == strRequestSessId)
 //         {
 //
@@ -145,7 +146,7 @@ namespace account
 //
 //#endif // WINDOWS
 //
-//         Application.message_box(nullptr, "No license for using application/feature \"" + string(m_strAppId) + "\" by user \"" + puser->m_strLogin + "\".\n\nPlease, subscribe to it at the software gateway <a>\"" + m_strGateway + "\"</a>", nullptr, e_message_box_icon_exclamation);
+//         message_box(nullptr, "No license for using application/feature \"" + string(m_XstrAppId) + "\" by user \"" + puser->m_strLogin + "\".\n\nPlease, subscribe to it at the software gateway <a>\"" + m_strGateway + "\"</a>", nullptr, e_message_box_icon_exclamation);
 //
 //         return;
 //

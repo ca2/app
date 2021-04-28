@@ -87,7 +87,7 @@ namespace simple_shader
 
       //   pgraphics->selectFont(font);
 
-      //   strTitle = Application.get_main_title();
+      //   strTitle = papplication->get_main_title();
 
       //   size = pgraphics->GetTextExtent(strTitle);
 
@@ -115,7 +115,7 @@ namespace simple_shader
       //      
       //}
 
-      //auto& echeckSimple = Application.m_echeckSimple;
+      //auto& echeckSimple = papplication->m_echeckSimple;
 
       //if (__bool(echeckSimple))
       //{
@@ -139,7 +139,7 @@ namespace simple_shader
       //else
       //{
 
-      //   if (__bool(Application.m_echeckSimple))
+      //   if (__bool(papplication->m_echeckSimple))
       //   {
 
       //      brush->create_solid(argb(255, 255, 255, 200));
@@ -179,7 +179,7 @@ namespace simple_shader
       //else if (m_iDrawing == 3)
       //{
 
-      //   if (__bool(Application.m_echeckSimple))
+      //   if (__bool(papplication->m_echeckSimple))
       //   {
 
       //      brush->create_solid(m_hlsText);
@@ -207,7 +207,7 @@ namespace simple_shader
       //else
       //{
 
-      //   if (__bool(Application.m_echeckSimple))
+      //   if (__bool(papplication->m_echeckSimple))
       //   {
 
       //      brush->create_solid(m_hlsText);

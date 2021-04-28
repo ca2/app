@@ -96,8 +96,8 @@ void scCharToInt(CScriptVar *ca, void *) {
 void scStringIndexOf(CScriptVar *ca, void *) {
     string str = ca->getParameter("this")->getString();
     string search = ca->getParameter("search")->getString();
-    strsize point = str.find(search);
-    i32 val = (i32) ((point_i32 < 0) ? -1 : point_i32);
+    strsize iPosition = str.find(search);
+    i32 val = (i32) ((iPosition < 0) ? -1 : iPosition);
     ca->getReturnVar()->setInt(val);
 }
 
@@ -132,18 +132,18 @@ void scStringToUpperCase(CScriptVar *ca,void *) {
 
 void scStringCharAt(CScriptVar *ca, void *) {
     string str = ca->getParameter("this")->getString();
-    i32 point = ca->getParameter("pos")->getInt();
-    if (point_i32>=0 && point<(i32)str.length())
-      ca->getReturnVar()->setString(str.substr(point, 1));
+    i32 iPosition = ca->getParameter("pos")->getInt();
+    if (iPosition >=0 && iPosition <(i32)str.length())
+      ca->getReturnVar()->setString(str.substr(iPosition, 1));
     else
       ca->getReturnVar()->setString("");
 }
 
 void scStringCharCodeAt(CScriptVar *ca, void *) {
     string str = ca->getParameter("this")->getString();
-    i32 point = ca->getParameter("pos")->getInt();
-    if (point_i32>=0 && point<(i32)str.length())
-      ca->getReturnVar()->setInt(str[point_i32]);
+    i32 iPosition = ca->getParameter("pos")->getInt();
+    if (iPosition >=0 && iPosition <(i32)str.length())
+      ca->getReturnVar()->setInt(str[iPosition]);
     else
       ca->getReturnVar()->setInt(0);
 }
@@ -224,13 +224,13 @@ void scArrayContains(CScriptVar *ca, void *data) {
 
 void scArrayRemove(CScriptVar *ca, void *data) {
   CScriptVar *obj = ca->getParameter("obj");
-  int_array removedIndices;
+  int_array erasedIndices;
   CScriptVarLink *v;
-  // remove
+  // erase
   v = ca->getParameter("this")->firstChild;
   while (v) {
       if (v->payload->equals(obj)) {
-        removedIndices.push_back(v->getIntName());
+        erasedIndices.push_back(v->getIntName());
       }
       v = v->nextSibling;
   }
@@ -239,8 +239,8 @@ void scArrayRemove(CScriptVar *ca, void *data) {
   while (v) {
       i32 n = v->getIntName();
       i32 newn = n;
-      for (strsize i=0;i<removedIndices.get_size();i++)
-        if (n>=removedIndices[i])
+      for (strsize i=0;i<erasedIndices.get_size();i++)
+        if (n>=erasedIndices[i])
           newn--;
       if (newn!=n)
         v->setIntName(newn);
@@ -285,7 +285,7 @@ void registerFunctions(tinyjs *tinyJS) {
     tinyJS->addNative("function JSON.stringify(obj, replacer)", scJSONStringify, 0); // convert to JSON. replacer is ignored at the moment
     // JSON.parse is left out as you can (unsafely!) use eval instead
     tinyJS->addNative("function Array.contains(obj)", scArrayContains, 0);
-    tinyJS->addNative("function Array.remove(obj)", scArrayRemove, 0);
+    tinyJS->addNative("function Array.erase(obj)", scArrayRemove, 0);
     tinyJS->addNative("function Array.join(separator)", scArrayJoin, 0);
 }
 

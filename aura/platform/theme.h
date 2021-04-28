@@ -5,7 +5,7 @@ namespace aura
 {
 
    class CLASS_DECL_AURA theme_listener :
-      virtual public context_object
+      virtual public object
    {
    public:
 
@@ -60,7 +60,7 @@ namespace aura
       virtual ~theme();
 
 
-      virtual ::e_status initialize(::layered * pobjectContext) override;
+      virtual ::e_status initialize(::object * pobject) override;
 
 
       virtual ::e_status initialize_contextualized_theme();

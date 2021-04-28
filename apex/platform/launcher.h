@@ -1,7 +1,8 @@
 #pragma once
 
 
-class CLASS_DECL_APEX launcher
+class CLASS_DECL_APEX launcher :
+   virtual public ::object
 {
 public:
 
@@ -19,7 +20,7 @@ public:
 
    virtual string get_params() { return ""; }
 
-   virtual bool start();
+   virtual ::e_status start();
 
 };
 

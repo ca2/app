@@ -14,13 +14,20 @@ namespace core
       session();
       virtual ~session();
 
+
+      inline ::core::system* get_system() const;
+      inline ::core::user* user() const;
+
+
       void common_construct();
 
 
-      virtual ::e_status initialize(::layered * pobjectContext) override;
+      virtual ::e_status initialize(::object * pobject) override;
 
 
-      inline ::core::user* user() { return m_puser ? m_puser->m_pcoreuser : nullptr; }
+      inline ::core::user* user();
+
+      virtual void on_instantiate_application(::apex::application* papp) override;
 
 
    };

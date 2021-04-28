@@ -11,8 +11,8 @@ simple_scroll_bar::simple_scroll_bar() :
 {
 
    //m_brushNull->CreateStockObject(NULL_BRUSH);
-   m_flagNonClient.remove(non_client_background);
-   // m_flagNonClient.remove(non_client_focus_rect);
+   m_flagNonClient.erase(non_client_background);
+   // m_flagNonClient.erase(non_client_focus_rect);
    m_bTracking          = false;
    m_scrollinfo.nMin    = 0;
    m_scrollinfo.nMax    = 100;
@@ -43,7 +43,7 @@ void simple_scroll_bar::install_message_routing(::channel * pchannel)
    MESSAGE_LINK(e_message_create, pchannel, this, &simple_scroll_bar::on_message_create);
    MESSAGE_LINK(e_message_destroy, pchannel, this, &simple_scroll_bar::_001OnDestroy);
    MESSAGE_LINK(e_message_show_window, pchannel, this, &simple_scroll_bar::_001OnShowWindow);
-   MESSAGE_LINK(e_message_mouse_move, pchannel, this, &simple_scroll_bar::_001OnMouseMove);
+   MESSAGE_LINK(e_message_mouse_move, pchannel, this, &simple_scroll_bar::on_message_mouse_move);
    MESSAGE_LINK(e_message_left_button_down, pchannel, this, &simple_scroll_bar::on_message_left_button_down);
    MESSAGE_LINK(e_message_left_button_up, pchannel, this, &simple_scroll_bar::on_message_left_button_up);
    MESSAGE_LINK(e_message_hscroll, pchannel, this, &simple_scroll_bar::_001OnHScroll);
@@ -81,7 +81,7 @@ void simple_scroll_bar::install_message_routing(::channel * pchannel)
 //}
 
 
-void simple_scroll_bar::_001OnMouseMove(::message::message * pmessage)
+void simple_scroll_bar::on_message_mouse_move(::message::message * pmessage)
 {
 
    __pointer(::message::mouse) pmouse(pmessage);
@@ -110,7 +110,15 @@ void simple_scroll_bar::_001OnMouseMove(::message::message * pmessage)
 
       //pmouse->m_bRet = true;
 
-      pmouse->m_ecursor = e_cursor_arrow;
+      auto psession = get_session()->m_paurasession;
+
+      auto puser = psession->user();
+
+      auto pwindowing = puser->windowing();
+
+      auto pcursor = pwindowing->get_cursor(e_cursor_arrow);
+
+      pmouse->m_pcursor = pcursor;
 
    }
    else
@@ -121,7 +129,15 @@ void simple_scroll_bar::_001OnMouseMove(::message::message * pmessage)
       if(eelement.is_set())
       {
 
-         pmouse->m_ecursor = e_cursor_arrow;
+         auto psession = get_session();
+
+         auto puser = psession->user();
+
+         auto pwindowing = puser->windowing();
+
+         auto pcursor = pwindowing->get_cursor(e_cursor_arrow);
+
+         pmouse->m_pcursor = pcursor;
 
       }
 
@@ -220,7 +236,7 @@ void simple_scroll_bar::on_message_left_button_up(::message::message * pmessage)
 
    KillTimer(((uptr)this)+1);
 
-   auto psession = Session;
+   auto psession = get_session();
 
    auto puser = psession->user();
 
@@ -749,7 +765,7 @@ void simple_scroll_bar::_001OnTimer(::timer * ptimer)
 
    ::user::scroll_bar::_001OnTimer(ptimer);
 
-   auto psession = Session;
+   auto psession = get_session();
 
    auto puser = psession->user();
 
@@ -1003,7 +1019,7 @@ void simple_scroll_bar::on_message_create(::message::message * pmessage)
    //if (m_puserstyle == nullptr)
    //{
 
-   //   m_puserstyle = Application.userstyle();
+   //   m_puserstyle = papplication->userstyle();
 
    //}
 
@@ -1332,9 +1348,9 @@ void simple_scroll_bar::_001OnVerisimpleDraw(::draw2d::graphics_pointer & pgraph
 
       pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-      auto psession = Session;
+      auto psession = get_session();
 
-      if (psession->savings().is_trying_to_save(::e_resource_processing))
+      if (psession->m_paurasession->savings().is_trying_to_save(::e_resource_processing))
       {
 
          pgraphics->fill_rectangle(rectClient, rgb(255, 255, 255));

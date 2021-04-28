@@ -11,7 +11,7 @@
 namespace apex
 {
 
-//   application::application(::layered * pobjectContext) :
+//   application::application(::object * pobject) :
 //      ::object(pobject)
 //   {
 //
@@ -304,10 +304,10 @@ namespace apex
          return ::win::graphics::from_handle((HDC) pdata);
       }*/
 
-   void application::show_wait_cursor(bool bShow)
-   {
-
-   }
+//   void application::show_wait_cursor(bool bShow)
+//   {
+//
+//   }
 
 //   ::user::primitive * application::window_from_os_data(void * pdata)
 //   {
@@ -348,7 +348,7 @@ namespace apex
 //      // versions of ca2 API, this memory was never freed.  In this and future
 //      // versions this memory is automatically freed during application's
 //      // destructor.  If you are freeing the memory yourself, you should
-//      // either remove the code or set the pointers to nullptr after freeing
+//      // either erase the code or set the pointers to nullptr after freeing
 //      // the memory.
 //
 //      // get path of executable
@@ -378,7 +378,7 @@ namespace apex
 //      // get the exe title from the full path name [no extension]
 //      //strExeName = ::apex::get_system()->get_module_title();
 //
-//      m_hthread      =  ::GetCurrentThread();
+//      m_htask      =  ::GetCurrentThread();
 //
 //   }
 
@@ -424,7 +424,7 @@ namespace apex
    }
 
 
-   ithread_t application::get_thread_id()
+   itask_t application::get_thread_id()
    {
 
       return ::pthread_self();
@@ -446,7 +446,7 @@ namespace apex
 //
 //      string strCmdLine          = pdata->m_strCommandLine;
 //
-//      get_context_application()->SetCurrentHandles();
+//      get_application()->SetCurrentHandles();
 //
 //      return true;
 //
@@ -503,7 +503,7 @@ namespace apex
       catch(...)
       {
 
-         TRACE("Could not create .desktop shortcut file for the Linux Application for the current user.");
+         TRACE("Could not create .desktop shortcut file for the Linux papplication for the current user.");
 
       }
 

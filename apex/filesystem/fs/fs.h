@@ -6,7 +6,7 @@ namespace fs
 
 
    class CLASS_DECL_APEX fs :
-      virtual public ::apex::department
+      virtual public ::acme::department
    {
    public:
 
@@ -15,7 +15,7 @@ namespace fs
       virtual ~fs();
 
 
-      virtual ::e_status initialize(::layered * pobjectContext) override;
+      virtual ::e_status initialize(::object * pobject) override;
 
 
    };

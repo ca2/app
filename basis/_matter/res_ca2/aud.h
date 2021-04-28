@@ -1,7 +1,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 //
 // File Name: vmsaudio.h
-// Long Name: Veriwell Musical Audio Application Programming Interface
+// Long Name: Veriwell Musical Audio papplication Programming Interface
 //
 // Author: Camilo Sasuke Tsumanuma
 //

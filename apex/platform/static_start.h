@@ -61,7 +61,7 @@ namespace apex
 
    CLASS_DECL_APEX void ref();
 
-   class apex
+   class static_start
    {
    public:
 
@@ -69,10 +69,10 @@ namespace apex
       bool m_bRef;
 
 
-      apex();
-      ~apex();
+      static_start();
+      ~static_start();
 
-      static apex g_apex;
+      static static_start g_staticstart;
       
       void this_ref();
 
@@ -101,7 +101,7 @@ namespace apex
 
 //extern ::apex::apex __apex;
 
-//::get_context_system()
+//::psystem
 
 //__apex.g_psystem
 

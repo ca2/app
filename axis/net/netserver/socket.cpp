@@ -10,20 +10,14 @@ namespace netserver
    static ::count s_countNetnodeSocket = 0;
 
 
-   socket::socket(::sockets::base_socket_handler & h) :
-      ::object(&h),
-      base_socket(h),
-      ::sockets::socket(h),
-      stream_socket(h),
-      tcp_socket(h),
-      http_base_socket(h),
-      http_socket(h),
-      httpd_socket(h)
+   socket::socket()
    {
-      m_bSetCookie = true;
-      s_countNetnodeSocket++;
-   }
 
+      m_bSetCookie = true;
+
+      s_countNetnodeSocket++;
+
+   }
 
 
    socket::~socket()
@@ -129,18 +123,22 @@ namespace netserver
       
       if (key == __id(location) && straValue.get_count() >= 1)
       {
-         
+
+         auto psystem = m_psystem;
+
+         auto purl = psystem->url();
+
          for (int i = 0; i < straValue.get_size(); i++)
          {
 
             url_domain domain;
 
-            domain.create(System->url().get_server(straValue[i]));
+            domain.create(purl->get_server(straValue[i]));
 
             if (domain.m_strName == "ca2.cc")
             {
 
-               //straValue[i] = "https://" + Application.m_strFontopusServer + System->url().get_object(straValue[i]);
+               //straValue[i] = "https://" + papplication->m_strFontopusServer + purl->get_object(straValue[i]);
 
             }
 

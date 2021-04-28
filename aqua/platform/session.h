@@ -17,8 +17,9 @@ namespace aqua
       void common_construct();
 
 
-      virtual ::e_status initialize(::layered * pobjectContext) override;
+      virtual ::e_status initialize(::object * pobject) override;
 
+      virtual void on_instantiate_application(::apex::application* papp) override;
 
    };
 

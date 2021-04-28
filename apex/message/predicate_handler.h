@@ -1,8 +1,8 @@
 #pragma once
 
 
-//CLASS_DECL_ACME void main_async_runnable(::context_object * pobjectTask);
-//CLASS_DECL_ACME void main_sync_runnable(::context_object * pobjectTask, ::duration durationTimeout = one_minute());
+//CLASS_DECL_ACME void main_async_runnable(::object * pobjectTask);
+//CLASS_DECL_ACME void main_sync_runnable(::object * pobjectTask, ::duration durationTimeout = one_minute());
 
 
 #define new ACME_NEW

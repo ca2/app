@@ -25,9 +25,8 @@ namespace experience
 
       ::logic::bit                                 m_bitMinimizeToTray;
       bool                                         m_bFullScreenOnMaximize;
-
-
-      ::u32                                         m_uiSWPFlags;
+      
+      ::u32                                        m_uiSWPFlags;
 
       __composite(class move_manager)              m_pmovemanager;
       __composite(class size_manager)              m_psizemanager;
@@ -56,9 +55,9 @@ namespace experience
       virtual ~frame_window();
 
 
-      virtual ::experience::experience* get_new_experience(const char* pszExperienceLibrary);
-      virtual ::experience::experience* get_experience(const char* pszExperienceLibrary);
-      virtual ::experience::frame* get_frame_experience(const char* pszExperienceLibrary, const char* pszFrame, const char* pszStyle = nullptr);
+      virtual __pointer(::experience::experience) create_experience(const char* pszExperienceLibrary);
+      virtual __pointer(::experience::experience) get_experience(const char* pszExperienceLibrary);
+      virtual __pointer(::experience::frame) get_frame_experience(const char* pszExperienceLibrary, const char* pszFrame, const char* pszStyle = nullptr);
 
 
 
@@ -80,7 +79,7 @@ namespace experience
 
       virtual void toggle_restore();
 
-      virtual bool initialize_frame_window_experience();
+      virtual ::e_status initialize_frame_window_experience();
 
       virtual void on_command_message(::message::command* pcommand) override;
       virtual void route_command_message(::message::command* pcommand) override;
@@ -136,17 +135,18 @@ namespace experience
       virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
       
 
-      DECL_GEN_SIGNAL(on_message_left_button_down);
-      DECL_GEN_SIGNAL(_001OnMouseMove);
-      DECL_GEN_SIGNAL(on_message_left_button_up);
-      DECL_GEN_SIGNAL(_001OnNcLButtonDown);
-      DECL_GEN_SIGNAL(_001OnNcMouseMove);
-      DECL_GEN_SIGNAL(_001OnNcLButtonUp);
-      DECL_GEN_SIGNAL(_001OnNcHitTest);
-      DECL_GEN_SIGNAL(_001OnActivate);
-      //DECL_GEN_SIGNAL(_001OnCommand);
-      DECL_GEN_SIGNAL(_001OnSysCommand);
-      DECL_GEN_SIGNAL(_001OnSize);
+      DECLARE_MESSAGE_HANDLER(on_message_left_button_down);
+      DECLARE_MESSAGE_HANDLER(on_message_mouse_move);
+      DECLARE_MESSAGE_HANDLER(on_message_left_button_up);
+      DECLARE_MESSAGE_HANDLER(on_message_set_cursor);
+      DECLARE_MESSAGE_HANDLER(_001OnNcLButtonDown);
+      DECLARE_MESSAGE_HANDLER(_001OnNcMouseMove);
+      DECLARE_MESSAGE_HANDLER(_001OnNcLButtonUp);
+      DECLARE_MESSAGE_HANDLER(_001OnNcHitTest);
+      DECLARE_MESSAGE_HANDLER(_001OnActivate);
+      //DECLARE_MESSAGE_HANDLER(_001OnCommand);
+      DECLARE_MESSAGE_HANDLER(_001OnSysCommand);
+      DECLARE_MESSAGE_HANDLER(_001OnSize);
 
       virtual bool _001CanEnterScreenSaver() override;
 
@@ -163,7 +163,7 @@ namespace experience
 
       void on_layout(::draw2d::graphics_pointer & pgraphics) override;
       void on_reposition() override;
-      void ChildWnd(::user::interaction * pframewindow, ::user::interaction * pwndParent);
+      void ChildWnd(::user::interaction * pframewindow, ::user::interaction * puserinteractionParent);
       void FrameWnd(::user::interaction * pframewindow);
       bool Start();
 

@@ -81,7 +81,7 @@ namespace linux
 //      if(iNew == INVALID_FILE)
 //         return nullptr;
 //
-//      auto pFile  = __new(file(get_context_application(), iNew));
+//      auto pFile  = __new(file(get_application(), iNew));
 //      pFile->m_iFile = (::u32)iNew;
 //      ASSERT(pFile->m_iFile != INVALID_FILE);
 //      return pFile;
@@ -194,7 +194,7 @@ namespace linux
 
          ::e_status estatus = ::errno_to_status(iError);
 
-         //return //::fesp(get_context_application(), file_exception::os_error_to_exception(dwLastError), dwLastError, m_path);
+         //return //::fesp(get_application(), file_exception::os_error_to_exception(dwLastError), dwLastError, m_path);
 
          return estatus;
 
@@ -543,7 +543,7 @@ namespace linux
 //      case ERROR_INVALID_DRIVE:
 //         return ::file::exception::badPath;
 //      case ERROR_CURRENT_DIRECTORY:
-//         return ::file::exception::removeCurrentDir;
+//         return ::file::exception::eraseCurrentDir;
 //      case ERROR_NOT_SAME_DEVICE:
 //         return ::file::exception::badPath;
 //      case ERROR_NO_MORE_FILES:
@@ -651,7 +651,7 @@ namespace linux
 //      case ERROR_DIR_NOT_ROOT:
 //         return ::file::exception::badPath;
 //      case ERROR_DIR_NOT_EMPTY:
-//         return ::file::exception::removeCurrentDir;
+//         return ::file::exception::eraseCurrentDir;
 //      case ERROR_LABEL_TOO_LONG:
 //         return ::file::exception::badPath;
 //      case ERROR_BAD_PATHNAME:

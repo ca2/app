@@ -286,7 +286,7 @@ NSRange RangeIntersection(NSRange first, NSRange second);
 {
    // If not in editing mode, we don't show the caret.
     if (!self.editing) {
-//        [self.caretView removeFromSuperview];
+//        [self.caretView eraseFromSuperview];
         return;
     }
 
@@ -304,7 +304,7 @@ NSRange RangeIntersection(NSRange first, NSRange second);
     }
     else {
       // If there is an actual selection, don't draw the insertion caret.
-//        [self.caretView removeFromSuperview];
+//        [self.caretView eraseFromSuperview];
 //        [self setNeedsDisplay];
     }
 

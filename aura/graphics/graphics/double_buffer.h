@@ -31,11 +31,11 @@ namespace graphics
 
       virtual bool buffer_lock_round_swap_key_buffers() override;
 
-      // synchronization_lock buffer synchronization_object first...
+      // synchronous_lock buffer synchronization_object first...
       virtual synchronization_object * get_buffer_sync() override;
       virtual ::image_pointer & get_buffer_image() override;
 
-      // synchronization_lock screen synchronization_object first...
+      // synchronous_lock screen synchronization_object first...
       virtual synchronization_object * get_screen_sync() override;
       virtual ::image_pointer & get_screen_image() override;
 

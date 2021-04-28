@@ -28,19 +28,19 @@ namespace user
 
 
    template < class VIEW >
-   inline __pointer(VIEW) impact::create_view(::user::document* pdocument, ::user::interaction* pwndParent, const ::id & id, ::user::interaction* pviewLast, ::user::impact_data* pimpactdata)
+   inline __pointer(VIEW) impact::create_view(::user::document* pdocument, ::user::interaction* puserinteractionParent, const ::id & id, ::user::interaction* pviewLast, ::user::impact_data* pimpactdata)
    {
 
-      return create_view(__type(VIEW), pdocument, pwndParent, id, pviewLast, pimpactdata);
+      return create_view(__type(VIEW), pdocument, puserinteractionParent, id, pviewLast, pimpactdata);
 
    }
 
 
    template < class VIEW >
-   inline __pointer(VIEW) impact::create_view(::user::interaction* pwndParent, const ::id & id, ::user::interaction* pviewLast, ::user::impact_data* pimpactdata)
+   inline __pointer(VIEW) impact::create_view(::user::interaction* puserinteractionParent, const ::id & id, ::user::interaction* pviewLast, ::user::impact_data* pimpactdata)
    {
 
-      return create_view < VIEW >(get_document(), pwndParent, id, pviewLast, pimpactdata);
+      return create_view < VIEW >(get_document(), puserinteractionParent, id, pviewLast, pimpactdata);
 
    }
 
@@ -87,7 +87,32 @@ namespace user
    }
 
 
-} //   namespace aura
+   inline ::base::session* menu_interaction::get_session() const
+   {
+
+      return m_pcontext ? m_pcontext->m_pbasesession : nullptr;
+
+   }
+
+
+   inline ::base::application* form_control::get_application() const
+   {
+      
+      return m_pcontext ? m_pcontext->m_pbaseapplication : nullptr;
+   
+   }
+
+
+   inline ::base::session* form_control::get_session() const
+   { 
+      
+      return m_pcontext ? m_pcontext->m_pbasesession : nullptr; 
+   
+   }
+
+
+} // namespace user
+
 
 
 

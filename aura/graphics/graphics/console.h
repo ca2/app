@@ -6,6 +6,7 @@ namespace graphics
 
 
    class CLASS_DECL_AURA console :
+      virtual public ::object,
       virtual public ::console::console,
       virtual public ::file::text_file
    {

@@ -22,7 +22,7 @@ namespace write_text
    class font_department * write_text::fonts()
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       if (m_pfontdepartment == nullptr)
       {
@@ -44,8 +44,10 @@ namespace write_text
          //   return nullptr;
 
          //}
+
+         __pointer(::aura::system) psystem = m_psystem;
          
-         ::aura::get_system()->process_subject(id_font_enumeration);
+         psystem->process_subject(id_font_enumeration);
 
       }
 
@@ -54,7 +56,7 @@ namespace write_text
    }
 
 
-   void write_text::term()
+   ::e_status write_text::term()
    {
 
       try
@@ -71,23 +73,23 @@ namespace write_text
       catch (...)
       {
 
-
       }
 
+      auto estatus = ::acme::department::term();
 
-      ::apex::department::term();
-
-
+      return success;
 
    }
 
 
-   void write_text::finalize()
+   ::e_status write_text::finalize()
    {
 
       m_pfontdepartment.release();
 
-      ::apex::department::finalize();
+      auto estatus = ::acme::department::finalize();
+
+      return estatus;
 
    }
 

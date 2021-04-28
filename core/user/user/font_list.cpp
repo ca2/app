@@ -44,7 +44,7 @@ namespace user
 
       MESSAGE_LINK(e_message_create, pchannel, this, &font_list::on_message_create);
       MESSAGE_LINK(e_message_left_button_down, pchannel, this, &font_list::on_message_left_button_down);
-      MESSAGE_LINK(e_message_mouse_move, pchannel, this, &font_list::_001OnMouseMove);
+      MESSAGE_LINK(e_message_mouse_move, pchannel, this, &font_list::on_message_mouse_move);
       MESSAGE_LINK(e_message_close, pchannel, this, &font_list::_001OnClose);
       MESSAGE_LINK(e_message_show_window, pchannel, this, &font_list::_001OnShowWindow);
 
@@ -71,7 +71,7 @@ namespace user
    void font_list::set_font_list_type(::write_text::font_list::enum_type etype)
    {
 
-      auto psession = Session;
+      auto psession = get_session();
 
       if (etype == ::write_text::font_list::type_single_column)
       {
@@ -143,7 +143,7 @@ namespace user
 
       auto item = hit_test(pmouse);
 
-      auto psession = Session;
+      auto psession = get_session();
 
       psession->user()->set_mouse_focus_LButtonDown(this);
 
@@ -186,7 +186,7 @@ namespace user
    }
 
 
-   void font_list::_001OnMouseMove(::message::message * pmessage)
+   void font_list::on_message_mouse_move(::message::message * pmessage)
    {
 
       __pointer(::message::mouse) pmouse(pmessage);
@@ -283,7 +283,7 @@ namespace user
 
       }
 
-      synchronization_lock synchronizationlock(m_pfontlist->mutex());
+      synchronous_lock synchronouslock(m_pfontlist->mutex());
 
       //m_pgraphics = pgraphics;
 
@@ -389,7 +389,7 @@ namespace user
 
       }
 
-      synchronization_lock synchronizationlock(m_pfontlist->mutex());
+      synchronous_lock synchronouslock(m_pfontlist->mutex());
 
       auto pstyle = get_style(pgraphics);
 
@@ -425,7 +425,7 @@ namespace user
 
       }
 
-      synchronization_lock synchronizationlock(m_pfontlist->mutex());
+      synchronous_lock synchronouslock(m_pfontlist->mutex());
 
       return m_pfontlist->m_plistdata->element_at(item)->m_strFont;
 
@@ -444,7 +444,7 @@ namespace user
 
       }
 
-      synchronization_lock synchronizationlock(m_pfontlist->mutex());
+      synchronous_lock synchronouslock(m_pfontlist->mutex());
 
       return m_pfontlist->m_plistdata->element_at(item)->m_strFont;
 
@@ -454,7 +454,7 @@ namespace user
    item font_list::current_item()
    {
 
-      synchronization_lock synchronizationlock(m_pfontlist->mutex());
+      synchronous_lock synchronouslock(m_pfontlist->mutex());
 
       if (m_pfontlist->m_iSel < 0)
       {
@@ -478,7 +478,7 @@ namespace user
    item font_list::hover_item()
    {
 
-      synchronization_lock synchronizationlock(m_pfontlist->mutex());
+      synchronous_lock synchronouslock(m_pfontlist->mutex());
 
       if (m_pfontlist->m_iHover < 0)
       {
@@ -565,7 +565,9 @@ namespace user
 
             m_bFirstShown = true;
 
-            System->set_modified(id_font_enumeration);
+            auto psystem = m_psystem->m_paurasystem;
+
+            psystem->set_modified(id_font_enumeration);
 
             //fork([this]()
   //             {

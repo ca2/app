@@ -8,7 +8,7 @@ i32 g_idbchange;
 #define new ACME_NEW
 
 
-db_server::db_server(::layered * pobjectContext) :
+db_server::db_server(::object * pobject) :
    ::object(pobject),
    server(pobject)
 {
@@ -79,23 +79,23 @@ bool db_server::initialize_user(::simpledb::database * pmysqldbUser, const char 
 bool db_server::initialize()
 {
 
-   if(System->m_varTopicQuery["app"] == "app-core/netnodelite"
-         || System->m_varTopicQuery["app"] == "app-core/netnode_dynamic_web_server"
-         || System->m_varTopicQuery["app"] == "app-core/netnode_dynamic_web_server_cfg"
-         || System->m_varTopicQuery["app"] == "app-core/netnodecfg"
-         || System->m_varTopicQuery["app"] == "app-core/mydns"
-         || System->m_varTopicQuery["app"] == "app-gtech/sensible_netnode"
-         || System->m_varTopicQuery["app"] == "app-gtech/sensible_service"
-         || System->has_property("no_remote_simpledb"))
+   if(psystem->m_varTopicQuery["app"] == "app-core/netnodelite"
+         || psystem->m_varTopicQuery["app"] == "app-core/netnode_dynamic_web_server"
+         || psystem->m_varTopicQuery["app"] == "app-core/netnode_dynamic_web_server_cfg"
+         || psystem->m_varTopicQuery["app"] == "app-core/netnodecfg"
+         || psystem->m_varTopicQuery["app"] == "app-core/mydns"
+         || psystem->m_varTopicQuery["app"] == "app-gtech/sensible_netnode"
+         || psystem->m_varTopicQuery["app"] == "app-gtech/sensible_service"
+         || psystem->has_property("no_remote_simpledb"))
    {
 
       m_bRemote = false;
 
    }
 
-   m_pdb          = __new(::sqlite::database(get_object()));
+   m_pdb          = __new(::sqlite::database(this));
 
-   __pointer(::handler) phandler = System->handler();
+   __pointer(::handler) phandler = psystem->handler();
 
    __pointer(command_line) pcommandline = phandler->m_spcommandline;
 
@@ -104,7 +104,7 @@ bool db_server::initialize()
    if(pcommandline.is_null())
    {
 
-      strAppName = System->m_strAppId;
+      strAppName = psystem->m_strAppId;
 
    }
    else
@@ -116,28 +116,28 @@ bool db_server::initialize()
 
    ::file::path str;
 
-   //str = ::dir::system() / "database.sqlite";
+   //str = pacmedir->system() / "database.sqlite";
 
-   if (Application.is_system())
+   if (papplication->is_system())
    {
 
-      str = Context.dir().appdata() / "system.sqlite";
+      str = pcontext->m_papexcontext->dir().appdata() / "system.sqlite";
 
    }
-   else if (Application.is_session())
+   else if (papplication->is_session())
    {
 
-      str = Context.dir().appdata() / "session.sqlite";
+      str = pcontext->m_papexcontext->dir().appdata() / "session.sqlite";
 
    }
    else
    {
 
-      str = Context.dir().appdata() / "app.sqlite";
+      str = pcontext->m_papexcontext->dir().appdata() / "app.sqlite";
 
    }
 
-   if(!Context.dir().mk(str.folder()))
+   if(!pcontext->m_papexcontext->dir().mk(str.folder()))
    {
 
       return false;
@@ -158,7 +158,7 @@ bool db_server::initialize()
 
    i32 iBufferSize = 128 * 1024;
 
-   __pointer(::handler) commandthread = System->handler();
+   __pointer(::handler) commandthread = psystem->handler();
 
    if(commandthread->has_property("filesizebuffer"))
    {
@@ -289,7 +289,7 @@ bool db_server::data_server_load(::database::client * pclient, ::database::key k
 bool db_server::data_server_save(::database::client * pclient, ::database::key key, memory & memory, ::update * pupdate)
 {
 
-   synchronization_lock synchronizationlock(mutex());
+   synchronous_lock synchronouslock(mutex());
 
    UNREFERENCED_PARAMETER(pobject);
 
@@ -355,7 +355,7 @@ bool db_server::save(const ::database::key & key, const char * pcsz)
 
 {
 
-   synchronization_lock synchronizationlock(mutex());
+   synchronous_lock synchronouslock(mutex());
 
    if(get_db_str_set() == nullptr)
    {
@@ -373,7 +373,7 @@ bool db_server::save(const ::database::key & key, const char * pcsz)
 bool db_server::save(const ::database::key & key, memory & mem)
 {
 
-   synchronization_lock synchronizationlock(mutex());
+   synchronous_lock synchronouslock(mutex());
 
    string str;
 

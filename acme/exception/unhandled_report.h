@@ -30,7 +30,7 @@ struct unhandled_report
 {
    stream & m_os;
 
-   unhandled_report(stream & System = std::cout) : m_os(System) {}
+   unhandled_report(stream & get_system() = std::cout) : m_os(get_system()) {}
    unhandled_report(const unhandled_report& point) : m_os(point.m_os) {}
    unhandled_report& operator = (const unhandled_report&) { return *this; }
    

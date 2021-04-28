@@ -42,7 +42,7 @@ public:
 
 
    virtual bool is_valid() const override;
-   memsize remove_begin(void * pdata, memsize uiCount);
+   memsize erase_begin(void * pdata, memsize uiCount);
 
 
    void load_string(string & str);
@@ -193,6 +193,7 @@ class CLASS_DECL_ACME memory_stream :
    public binary_stream
 {
 public:
+
 
    memory_stream() : binary_stream(__new(::memory_file)) {}
    memory_stream(::memory_base & memory) : binary_stream(__new(::memory_file(memory))) {}

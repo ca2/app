@@ -103,10 +103,10 @@ namespace dynamic_source
    }
 
 
-   ::e_status script_manager::initialize(::layered * pobjectContext)
+   ::e_status script_manager::initialize(::object * pobject)
    {
 
-      auto estatus = ::user::message_queue_listener::initialize(pobjectContext);
+      auto estatus = ::user::message_window_listener::initialize(pobject);
 
       if (!estatus)
       {
@@ -155,7 +155,9 @@ namespace dynamic_source
 
          m_pcache->m_pmanager = this;
 
-         estatus = __construct_new(m_pcompiler);
+         m_pcompiler = __new(script_compiler);
+
+         estatus = m_pcompiler->initialize_dynamic_source_script_compiler(this);
 
          if (!estatus)
          {
@@ -179,19 +181,25 @@ namespace dynamic_source
 
 #ifdef WINDOWS
 
+      auto pcontext = get_context();
+
       {
 
-         auto pwatcher = __new(clear_include_matches_file_watcher(get_context_object()));
+         auto pwatcher = __new(clear_include_matches_file_watcher(this));
 
          pwatcher->m_pmanager = this;
 
-         Context.dir().watcher().add_watch(m_strNetseedDsCa2Path, pwatcher, true);
+         auto pcontext = get_context();
+
+         pcontext->m_papexcontext->dir().watcher().add_watch(m_strNetseedDsCa2Path, pwatcher, true);
 
       }
 
       ::file::listing listing;
 
-      Application.dir().ls_dir(listing, m_strNetnodePath);
+      auto papplication = get_application();
+
+      pcontext->m_papexcontext->dir().ls_dir(listing, m_strNetnodePath);
 
       forallref(listing)
       {
@@ -199,11 +207,11 @@ namespace dynamic_source
          if(::str::begins_ci(item.title(),"net-"))
          {
 
-            auto pwatcher = __new(clear_include_matches_file_watcher(get_context_object()));
+            auto pwatcher = __new(clear_include_matches_file_watcher(this));
 
             pwatcher->m_pmanager = this;
 
-            Context.dir().watcher().add_watch(item, pwatcher, true);
+            pcontext->m_papexcontext->dir().watcher().add_watch(item, pwatcher, true);
 
          }
 
@@ -294,19 +302,19 @@ namespace dynamic_source
 
       pinstance->call_routine(CREATE_ROUTINE);
 
-      auto pthread = pdssocket->get_context_thread();
+      auto pthread = pdssocket->get_thread();
 
       if (::is_set(pthread))
       {
 
          pthread->m_pobjectScript = pinstance;
 
-         if (::is_set(pinstance))
-         {
+         //if (::is_set(pinstance))
+         //{
 
-            pinstance->set_context_thread(pthread OBJ_REF_DBG_COMMA_P_FUNCTION_LINE(pinstance));
+         //   pinstance->set_context_thread(pthread OBJ_REF_DBG_COMMA_P_FUNCTION_LINE(pinstance));
 
-         }
+         //}
 
       }
 
@@ -353,10 +361,10 @@ namespace dynamic_source
             {
 
             }
-            catch (::exception_pointer e)
+            catch (const ::exception::exception & e)
             {
 
-               string str = e->get_message();
+               string str = e.get_message();
 
                pinstance->dprint("str");
 
@@ -658,15 +666,18 @@ namespace dynamic_source
       //SetDllDirectory(buf);
       GetDllDirectory(dwSize + 1024, buf);
       TRACE(buf);
-      delete buf;*/
+      del*/
+
+      auto pcontext = get_context();
+
 
       ::file::path str;
-      str = Context.dir().module();
+      str = pcontext->m_papexcontext->dir().module();
       str.go_up(2);
       str = str/ "stage\\basis";
       str = ";" + str;
       ::file::path str2;
-      str2 = Context.dir().module();
+      str2 = pcontext->m_papexcontext->dir().module();
       str2.go_up(2);
       str2 = str2/ "netnode\\library\\include";
       str2 = ";" + str2;
@@ -764,12 +775,12 @@ namespace dynamic_source
 
       try
       {
-         single_lock synchronizationlock(&m_mutexIncludeMatches, true);
+         single_lock synchronouslock(&m_mutexIncludeMatches, true);
 
          try
          {
 
-            m_mapIncludeMatchesFileExists.remove_key(path);
+            m_mapIncludeMatchesFileExists.erase_key(path);
 
          }
          catch (...)
@@ -780,7 +791,7 @@ namespace dynamic_source
          try
          {
 
-            m_mapIncludeMatchesIsDir.remove_key(path);
+            m_mapIncludeMatchesIsDir.erase_key(path);
 
          }
          catch (...)
@@ -797,9 +808,9 @@ namespace dynamic_source
       try
       {
 
-         single_lock synchronizationlock(&m_mutexIncludeExpandMd5, true);
+         single_lock synchronouslock(&m_mutexIncludeExpandMd5, true);
 
-         m_mapIncludeExpandMd5.remove_key(path);
+         m_mapIncludeExpandMd5.erase_key(path);
 
       }
       catch (...)
@@ -815,12 +826,12 @@ namespace dynamic_source
 
       try
       {
-         single_lock synchronizationlock(&m_mutexIncludeMatches, true);
+         single_lock synchronouslock(&m_mutexIncludeMatches, true);
 
          try
          {
 
-            m_mapIncludeMatchesFileExists.remove_all();
+            m_mapIncludeMatchesFileExists.erase_all();
 
          }
          catch(...)
@@ -831,7 +842,7 @@ namespace dynamic_source
          try
          {
 
-            m_mapIncludeMatchesIsDir.remove_all();
+            m_mapIncludeMatchesIsDir.erase_all();
 
          }
          catch(...)
@@ -848,9 +859,9 @@ namespace dynamic_source
       try
       {
 
-         single_lock synchronizationlock(&m_mutexIncludeExpandMd5, true);
+         single_lock synchronouslock(&m_mutexIncludeExpandMd5, true);
 
-         m_mapIncludeExpandMd5.remove_all();
+         m_mapIncludeExpandMd5.erase_all();
 
       }
       catch(...)
@@ -863,16 +874,23 @@ namespace dynamic_source
 
    bool script_manager::include_matches_file_exists(const string & strPath)
    {
-      single_lock synchronizationlock(&m_mutexIncludeMatches, true);
+
+      auto pcontext = get_context();
+      single_lock synchronouslock(&m_mutexIncludeMatches, true);
       string_map < bool >::pair * ppair = m_mapIncludeMatchesFileExists.plookup(strPath);
-      if(ppair != nullptr)
-         return ppair->element2();
-      else
+      if (ppair != nullptr)
       {
-         bool bFileExists = Context.file().exists(strPath);
-         m_mapIncludeMatchesFileExists.set_at(strPath, bFileExists);
-         return bFileExists;
+
+         return ppair->element2();
+
       }
+
+      bool bFileExists = pcontext->m_papexcontext->file().exists(strPath);
+      
+      m_mapIncludeMatchesFileExists.set_at(strPath, bFileExists);
+
+      return bFileExists;
+
    }
 
 
@@ -880,22 +898,25 @@ namespace dynamic_source
 
    void script_manager::set_include_matches_file_exists(const string & strPath, bool bFileExists)
    {
-      single_lock synchronizationlock(&m_mutexIncludeMatches, true);
+      single_lock synchronouslock(&m_mutexIncludeMatches, true);
       m_mapIncludeMatchesFileExists.set_at(strPath, bFileExists);
    }
 
    bool script_manager::include_matches_is_dir(const string & strPath)
    {
-      single_lock synchronizationlock(&m_mutexIncludeMatches, true);
+      single_lock synchronouslock(&m_mutexIncludeMatches, true);
       string_map < bool >::pair * ppair = m_mapIncludeMatchesIsDir.plookup(strPath);
-      if(ppair != nullptr)
-         return ppair->element2();
-      else
+
+      auto pcontext = get_context();
+
+      if (ppair != nullptr)
       {
-         bool bIsDir = Context.dir().is(strPath);
+         return ppair->element2();
+      }
+
+      bool bIsDir = pcontext->m_papexcontext->dir().is(strPath);
          m_mapIncludeMatchesIsDir.set_at(strPath, bIsDir);
          return bIsDir;
-      }
    }
 
    bool script_manager::include_has_script(const string & strPath)
@@ -904,40 +925,46 @@ namespace dynamic_source
       if(strPath.is_empty())
          return false;
 
-      single_lock synchronizationlock(&m_mutexIncludeHasScript, true);
+      single_lock synchronouslock(&m_mutexIncludeHasScript, true);
       string_map < bool >::pair * ppair = m_mapIncludeHasScript.plookup(strPath);
-      if(ppair != nullptr)
-         return ppair->element2();
-      else
+      if (ppair != nullptr)
       {
+
+         return ppair->element2();
+
+      }
+      
+      auto pcontext = get_context();
 
          // roughly detect this way: by finding the <?
 
-         bool bHasScript = Context.file().as_string(strPath).find("<?") >= 0;
+         bool bHasScript = pcontext->m_papexcontext->file().as_string(strPath).find("<?") >= 0;
 
          m_mapIncludeHasScript.set_at(strPath, bHasScript);
 
          return bHasScript;
 
-      }
+      
    }
+
 
    string script_manager::include_expand_md5(const string & strPath)
    {
-      single_lock synchronizationlock(&m_mutexIncludeExpandMd5, true);
+      single_lock synchronouslock(&m_mutexIncludeExpandMd5, true);
       return m_mapIncludeExpandMd5[strPath];
    }
 
    void script_manager::set_include_expand_md5(const string & strPath, const string & strMd5)
    {
-      single_lock synchronizationlock(&m_mutexIncludeExpandMd5, true);
+      single_lock synchronouslock(&m_mutexIncludeExpandMd5, true);
       m_mapIncludeExpandMd5[strPath] = strMd5;
    }
 
 
-   script_manager::clear_include_matches_file_watcher::clear_include_matches_file_watcher(::layered * pobjectContext) :
-      ::object(pobjectContext)
+   script_manager::clear_include_matches_file_watcher::clear_include_matches_file_watcher(::object * pobject)
    {
+
+      initialize(pobject);
 
    }
 
@@ -987,7 +1014,7 @@ namespace dynamic_source
       try
       {
 
-         synchronization_lock synchronizationlock(&m_pmanager->m_mutexShouldBuild);
+         synchronous_lock synchronouslock(&m_pmanager->m_mutexShouldBuild);
 
          m_pmanager->m_mapShouldBuild[path] = true;
 
@@ -1049,7 +1076,7 @@ namespace dynamic_source
    __pointer(::dynamic_source::session) script_manager::get_session(const char * pszId)
    {
 
-      single_lock synchronizationlock(&m_mutexSession, true);
+      single_lock synchronouslock(&m_mutexSession, true);
 
       auto ppair = m_mapSession.plookup(pszId);
 
@@ -1068,15 +1095,18 @@ namespace dynamic_source
          ppair->element2().m_p->~session();
 
 #undef new
-         ::new(ppair->element2().m_p) ::dynamic_source::session(pszId, this);
+         ::new(ppair->element2().m_p) ::dynamic_source::session();
 #define new ACME_NEW
 
+         ppair->element2()->initialize_dynamic_source_session(pszId, this);
 
          return ppair->element2();
 
       }
 
-      __pointer(::dynamic_source::session) psession = __new(::dynamic_source::session(pszId, this));
+      auto psession = __new(::dynamic_source::session);
+
+      psession->initialize_dynamic_source_session(pszId, this);
 
       psession->m_timeExpiry = ::datetime::time::get_current_time() + minutes(9);
 
@@ -1090,7 +1120,7 @@ namespace dynamic_source
    void script_manager::defer_clean_session()
    {
       
-      single_lock synchronizationlock(&m_mutexSession, true);
+      single_lock synchronouslock(&m_mutexSession, true);
       
       ::datetime::time time;
       
@@ -1108,7 +1138,7 @@ namespace dynamic_source
          if(passoc->element2().is_null())
          {
 
-            m_mapSession.remove_item(passoc);
+            m_mapSession.erase_item(passoc);
 
          }
          else if(passoc->element2()->get_ref_count() <= 1)
@@ -1117,7 +1147,7 @@ namespace dynamic_source
             if(passoc->element2()->m_timeExpiry < time)
             {
 
-               m_mapSession.remove_item(passoc);
+               m_mapSession.erase_item(passoc);
 
             }
 
@@ -1149,9 +1179,11 @@ namespace dynamic_source
 
       }*/
 
-      single_lock synchronizationlock(&m_mutexRsa, true);
+      single_lock synchronouslock(&m_mutexRsa, true);
 
-      return  System->crypto().generate_rsa_key();
+      auto psystem = m_psystem->m_paurasystem;
+
+      return  psystem->crypto().generate_rsa_key();
 
    }
 
@@ -1175,16 +1207,18 @@ namespace dynamic_source
    void script_manager::calc_rsa_key()
    {
 
-      __pointer(::crypto::rsa) prsa = System->crypto().generate_rsa_key();
+      auto psystem = m_psystem->m_paurasystem;
 
-      single_lock synchronizationlock(&m_mutexRsa, true);
+      __pointer(::crypto::rsa) prsa = psystem->crypto().generate_rsa_key();
+
+      single_lock synchronouslock(&m_mutexRsa, true);
 
       m_rsaptra.add(prsa);
 
       if(m_rsaptra.get_size() > 23)
       {
 
-         m_rsaptra.remove_at(0);
+         m_rsaptra.erase_at(0);
 
       }
 
@@ -1234,7 +1268,7 @@ namespace dynamic_source
    bool script_manager::has_link_out_link(const char * pszServer, ::sockets::link_in_socket * pinsocket, ::sockets::httpd_socket * phttpdsocket)
    {
 
-      single_lock synchronizationlock(&m_mutexOutLink, true);
+      single_lock synchronouslock(&m_mutexOutLink, true);
 
       auto ppair = m_mapOutLink.plookup(pszServer);
 
@@ -1269,7 +1303,7 @@ namespace dynamic_source
 
          }
 
-         m_mapOutLink.remove_key(pszServer);
+         m_mapOutLink.erase_key(pszServer);
 
       }
 
@@ -1305,7 +1339,7 @@ namespace dynamic_source
 
       ::sockets::link_in_socket * pinsocket = ppair->element2();
 
-      m_mapInLink.remove_key(poutsocket);
+      m_mapInLink.erase_key(poutsocket);
 
       return pinsocket;
 
@@ -1315,7 +1349,7 @@ namespace dynamic_source
    bool script_manager::is_online(const char * pszServer)
    {
 
-      single_lock synchronizationlock(&m_mutexTunnel, true);
+      single_lock synchronouslock(&m_mutexTunnel, true);
 
       string_map < tunnel_map_item >::pair * ppair = m_mapTunnel.plookup(pszServer);
 
@@ -1337,11 +1371,15 @@ namespace dynamic_source
    ::sockets::link_out_socket * script_manager::create_link_out(const char * pszServer, ::sockets::httpd_socket * phttpdsocket)
    {
 
-      ::sockets::link_out_socket * psocket = new sockets::link_out_socket(phttpdsocket->Handler());
+      ::sockets::link_out_socket * psocket = new sockets::link_out_socket();
+
+      //psocket->m_phandler = phttpdsocket->m_phandler;
+
+      psocket->m_psockethandler = phttpdsocket->m_psockethandler;
 
       {
 
-         single_lock synchronizationlock(&m_mutexTunnel, true);
+         single_lock synchronouslock(&m_mutexTunnel, true);
 
          tunnel_map_item item;
 
@@ -1354,7 +1392,7 @@ namespace dynamic_source
 
       {
 
-         single_lock synchronizationlock(&m_mutexOutLink, true);
+         single_lock synchronouslock(&m_mutexOutLink, true);
          m_mapOutLink.set_at(pszServer, psocket);
 
       }
@@ -1366,16 +1404,16 @@ namespace dynamic_source
    size_i32 script_manager::get_image_size(const ::file::path & strFile)
    {
 
-      single_lock synchronizationlock(&m_mutexImageSize, false);
+      single_lock synchronouslock(&m_mutexImageSize, false);
 
-      synchronizationlock.lock();
+      synchronouslock.lock();
 
       ::size_i32 size;
 
       if(m_mapImageSize.lookup(strFile, size))
          return size;
 
-      synchronizationlock.unlock();
+      synchronouslock.unlock();
 
       size.cx = 49;
 
@@ -1384,17 +1422,18 @@ namespace dynamic_source
       if(extract_image_size(strFile, &size))
       {
 
-         synchronizationlock.lock();
+         synchronouslock.lock();
 
          m_mapImageSize.set_at(strFile, size);
 
-         synchronizationlock.unlock();
+         synchronouslock.unlock();
 
       }
 
       return size;
 
    }
+
 
    bool script_manager::extract_image_size(const ::file::path & strFile,::size_i32 * psize)
    {
@@ -1404,7 +1443,9 @@ namespace dynamic_source
       try
       {
 
-         f = Context.file().get_file(strFile, ::file::e_open_binary | ::file::e_open_read | ::file::e_open_share_deny_write);
+         auto pcontext = get_context();
+
+         f = pcontext->m_papexcontext->file().get_file(strFile, ::file::e_open_binary | ::file::e_open_read | ::file::e_open_share_deny_write);
 
       }
       catch(...)
@@ -1565,13 +1606,15 @@ namespace dynamic_source
 
       strScript = strName.title();
 
+      auto pcontext = get_context();
+
 #ifdef WINDOWS
 
-      return Context.dir().install()/m_pcompiler->m_strDynamicSourceStage /m_pcompiler->m_strStagePlatform /m_pcompiler->m_strDynamicSourceConfiguration/"dynamic_source" /strTransformName.folder()/strScript + strModifier + ".dll";
+      return pcontext->m_papexcontext->dir().install()/m_pcompiler->m_strDynamicSourceStage /m_pcompiler->m_strStagePlatform /m_pcompiler->m_strDynamicSourceConfiguration/"dynamic_source" /strTransformName.folder()/strScript + strModifier + ".dll";
 
 #else
 
-      return Context.dir().install() / m_pcompiler->m_strDynamicSourceStage / m_pcompiler->m_strStagePlatform / m_pcompiler->m_strDynamicSourceConfiguration / "dynamic_source" / strTransformName.folder() / strScript + strModifier + ".so";
+      return pcontext->m_papexcontext->dir().install() / m_pcompiler->m_strDynamicSourceStage / m_pcompiler->m_strStagePlatform / m_pcompiler->m_strDynamicSourceConfiguration / "dynamic_source" / strTransformName.folder() / strScript + strModifier + ".so";
 
 #endif
 
@@ -1581,7 +1624,7 @@ namespace dynamic_source
    bool script_manager::should_build(const ::file::path & strScriptPath)
    {
 
-      single_lock synchronizationlock(&m_mutexShouldBuild, true);
+      single_lock synchronouslock(&m_mutexShouldBuild, true);
 
       bool bShouldBuild = false;
 

@@ -163,7 +163,7 @@ namespace draw2d_gdiplus
    void graphics::assert_valid() const
    {
 
-      context_object::assert_valid();
+      object::assert_valid();
 
    }
 
@@ -171,7 +171,7 @@ namespace draw2d_gdiplus
    void graphics::dump(dump_context & dumpcontext) const
    {
       
-      context_object::dump(dumpcontext);
+      object::dump(dumpcontext);
 
       dumpcontext << "m_pgraphics = " << (iptr) m_pgraphics;
       dumpcontext << "\nm_bPrinting = " << m_bPrinting;
@@ -729,8 +729,8 @@ namespace draw2d_gdiplus
    //   double centerx    = (x2 + x1) / 2.0;
    //   double centery    = (y2 + y1) / 2.0;
 
-   //   double start      = atan2(y3 - centery,x3 - centerx) * 180.0 / System->math().GetPi();
-   //   double end        = atan2(y4 - centery,x4 - centerx) * 180.0 / System->math().GetPi();
+   //   double start      = atan2(y3 - centery,x3 - centerx) * 180.0 / pmathematics->get_pi();
+   //   double end        = atan2(y4 - centery,x4 - centerx) * 180.0 / pmathematics->get_pi();
    //   double sweep      = fabs(end - start);
 
    //   /*if(GetArcDirection() == AD_COUNTERCLOCKWISE)
@@ -750,8 +750,8 @@ namespace draw2d_gdiplus
       double centerx    = (x2 + x1) / 2.0;
       double centery    = (y2 + y1) / 2.0;
 
-      double start      = atan2(y3 - centery,x3 - centerx) * 180.0 / System->math().GetPi();
-      double end        = atan2(y4 - centery,x4 - centerx) * 180.0 / System->math().GetPi();
+      double start      = atan2(y3 - centery,x3 - centerx) * 180.0 / pmathematics->get_pi();
+      double end        = atan2(y4 - centery,x4 - centerx) * 180.0 / pmathematics->get_pi();
       double sweep      = fabs(end - start);
 
       /*if(GetArcDirection() == AD_COUNTERCLOCKWISE)
@@ -1400,7 +1400,7 @@ namespace draw2d_gdiplus
 //         //   if (m_ealphamode == ::draw2d::alpha_mode_blend)
 //         //   {
 //
-//         //      //single_lock synchronizationlock(::get_thread_toolset(::thread::tool_draw2d)->mutex());
+//         //      //single_lock synchronouslock(::get_thread_toolset(::thread::tool_draw2d)->mutex());
 //
 //         //      if (nHeight >= get_processor_count() * 4 && (nWidth * nHeight) >= (get_processor_count() * 64)
 //         //            &&   m_pimage->fork_blend(point_i32(x + GetViewportOrg().x, y + GetViewportOrg().y), pgraphicsSrc->m_pimage,
@@ -3165,7 +3165,7 @@ namespace draw2d_gdiplus
 
       }
 
-      synchronization_lock slSource(pgraphicsSrc->mutex());
+      synchronous_lock slSource(pgraphicsSrc->mutex());
 
       //bool bThreadToolsForIncreasedFps = ::get_task()->m_bThreadToolsForIncreasedFps;
 
@@ -3416,7 +3416,7 @@ namespace draw2d_gdiplus
    /////////////////////////////////////////////////////////////////////////////
    // special graphics drawing primitives/helpers
 
-   ::draw2d::brush* graphics::GetHalftoneBrush(::layered * pobjectContext)
+   ::draw2d::brush* graphics::GetHalftoneBrush(::object * pobject)
    {
       /*      ::aura::LockGlobals(CRIT_HALFTONEBRUSH);
             if (gen_HalftoneBrush == nullptr)
@@ -3471,7 +3471,7 @@ namespace draw2d_gdiplus
    //         ::draw2d::brush* pBrushOld = nullptr;
    //         if (pBrush == nullptr)
    //         {
-   //            pBrush = graphics::GetHalftoneBrush(get_context_application());
+   //            pBrush = graphics::GetHalftoneBrush(get_application());
    //         }
 
    //         ENSURE(pBrush);
@@ -5241,7 +5241,7 @@ namespace draw2d_gdiplus
 //            {
 //               // got the stock object back, so must be selecting a font
 //               __throw(error_not_implemented);
-////                  set(::draw2d_gdiplus::font::from_handle(pgraphics->get_context_application(), (HFONT)hObject));
+////                  set(::draw2d_gdiplus::font::from_handle(pgraphics->get_application(), (HFONT)hObject));
 //               break;  // don't play the default record
 //            }
 //            else
@@ -5255,7 +5255,7 @@ namespace draw2d_gdiplus
 //         else if (nObjType == OBJ_FONT)
 //         {
 //            // play back as graphics::set(::write_text::font*)
-////               set(::draw2d_gdiplus::font::from_handle(pgraphics->get_context_application(), (HFONT)hObject));
+////               set(::draw2d_gdiplus::font::from_handle(pgraphics->get_application(), (HFONT)hObject));
 //            __throw(error_not_implemented);
 //            break;  // don't play the default record
 //         }
@@ -5339,7 +5339,7 @@ namespace draw2d_gdiplus
 
       }
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       if (m_pfont.is_null())
       {
@@ -5450,7 +5450,7 @@ namespace draw2d_gdiplus
 
    //::count graphics::GetEachCharTextExtent(array < ::size_f64 > & sizea, const string & str)
    //{
-   //   sizea.remove_all();
+   //   sizea.erase_all();
    //   strsize_array iaLen;
    //   strsize iRange = 0;
    //   strsize i = 0;
@@ -5504,9 +5504,9 @@ namespace draw2d_gdiplus
 
       }
       
-      daLeft.remove_all();
+      daLeft.erase_all();
 
-      daRight.remove_all();
+      daRight.erase_all();
 
       wstring wstrBefore(str.Left(iStartParam));
 
@@ -6434,7 +6434,7 @@ namespace draw2d_gdiplus
 
       }
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       if(m_ppen.cast < ::draw2d_gdiplus::pen >()->m_egdiplusalign != Gdiplus::PenAlignment::PenAlignmentCenter)
       {
@@ -6460,7 +6460,7 @@ namespace draw2d_gdiplus
 
    //{
 
-   //   synchronization_lock synchronizationlock(mutex());
+   //   synchronous_lock synchronouslock(mutex());
 
    //   if(m_ppen.cast < ::draw2d_gdiplus::pen >()->m_egdiplusalign != Gdiplus::PenAlignment::PenAlignmentCenter)
    //   {
@@ -6511,7 +6511,7 @@ namespace draw2d_gdiplus
 
       }
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       auto ppen = ppenParam->get_os_data < Gdiplus::Pen * >(this);
 
@@ -6531,7 +6531,7 @@ namespace draw2d_gdiplus
    //bool graphics::draw_line(double x1, double y1, double x2, double y2, ::draw2d::pen * ppenParam)
    //{
 
-   //   synchronization_lock synchronizationlock(mutex());
+   //   synchronous_lock synchronouslock(mutex());
 
    //   auto ppen = (Gdiplus::Pen *) ppenParam->get_os_data(this);
 
@@ -6951,7 +6951,7 @@ namespace draw2d_gdiplus
    Gdiplus::Pen * graphics::m_ppen->get_os_data < Pen * >(this)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       if(m_ppen.is_null())
       {
@@ -7060,7 +7060,7 @@ namespace draw2d_gdiplus
    bool graphics::flush()
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       m_pgraphics->Flush();
 
@@ -7072,7 +7072,7 @@ namespace draw2d_gdiplus
    bool graphics::sync_flush()
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       m_pgraphics->Flush(Gdiplus::FlushIntentionSync);
 
@@ -7126,7 +7126,7 @@ namespace draw2d_gdiplus
       if (m_pimageAlphaBlend->is_set())
       {
 
-         single_lock synchronizationlock(mutex());
+         single_lock synchronouslock(mutex());
 
          if (block.is_empty())
          {

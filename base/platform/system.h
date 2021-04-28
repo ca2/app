@@ -46,7 +46,7 @@ namespace base
 //      thread_map                                         m_threadmap;
 //      thread_id_map                                      m_threadidmap;
 //      ::mutex                                            m_mutexThreadOn;
-//      map < ithread_t, ithread_t >                        m_mapThreadOn;
+//      map < itask_t, itask_t >                        m_mapThreadOn;
 //
 //      ::mutex                                            m_mutexUserChildren;
 //      __composite(class imaging)                         m_pimaging;
@@ -68,9 +68,9 @@ namespace base
 //      __composite(::gpu::approach)                       m_pgpu;
 //
 //      ::mutex                                            m_mutexLibrary;
-//      string_map < __pointer(::apex::library) >          m_mapLibrary;
+//      string_map < __pointer(::acme::library) >          m_mapLibrary;
 //      string_map < PFN_NEW_BASE_LIBRARY >                m_mapNewAuraLibrary;
-//      string_map < __pointer(::apex::library) >          m_mapLibCall;
+//      string_map < __pointer(::acme::library) >          m_mapLibCall;
 //
 //
 //
@@ -171,8 +171,8 @@ namespace base
 //      critical_section                                   m_csEnumText;
 //      string_map < i64_map < string > >                  m_mapEnumToText;
 //      string_map < string_map < i64 > >                  m_mapTextToEnum;
-//      thread_group_map                                   m_threadgroupmap;
-//      thread_tool_map                                    m_threadtoolmap;
+//      task_group_map                                   m_taskgroupmap;
+//      task_tool_map                                    m_tasktoolmap;
 //
 //
 //      //stridsp(type)                                      m_typemap;
@@ -185,7 +185,7 @@ namespace base
 //      //double_array                                       m_daLon;
 //      //double_array                                       m_daLat;
 //
-//      //string_map < __pointer(::apex::library) >          m_mapLibrary;
+//      //string_map < __pointer(::acme::library) >          m_mapLibrary;
 //
 //      //string_map < __pointer(openweather_city) >                   m_mapCity;
 //
@@ -236,9 +236,9 @@ namespace base
 //      //bool                                         m_bProcessInitialize;
 //      //bool                                         m_bProcessInitializeResult;
 //
-//      strid_map < ::apex::library* >              m_idmapCreateViewLibrary;
+//      strid_map < ::acme::library* >              m_idmapCreateViewLibrary;
 //
-//      __pointer_array(::apex::library)                         m_libraryspa;
+//      __pointer_array(::acme::library)                         m_libraryspa;
 //
 //#ifdef _UWP
 //
@@ -254,7 +254,9 @@ namespace base
 //
       void common_construct();
 //
-      virtual ::e_status initialize(::layered * pobjectContext) override;
+      virtual ::e_status initialize(::object * pobject) override;
+
+      virtual void on_add_session(::apex::session * papexsession) override;
 //
 //      virtual ::e_status init();
 //      //virtual ::e_status init_instance() override;
@@ -269,18 +271,18 @@ namespace base
 //
 //      //::url::department                           & url()     { return m_urldepartment; }
 //
-//      ::thread * get_task(ithread_t ithread);
-//      ithread_t get_thread_id(::thread * pthread);
-//      void set_thread(ithread_t ithread, ::thread * pthread);
-//      void unset_thread(ithread_t ithread, ::thread * pthread);
+//      ::thread * get_task(itask_t itask);
+//      itask_t get_thread_id(::thread * pthread);
+//      void set_thread(itask_t itask, ::thread * pthread);
+//      void unset_thread(itask_t itask, ::thread * pthread);
 //
 //      inline ::gpu::approach* get_gpu() { if (!m_pgpu) create_gpu(); return m_pgpu.get(); };
 //      inline ::gpu::approach* gpu() { return m_pgpu.get(); };
 //      virtual ::e_status create_gpu();
 //
-//      ::thread_group * thread_group(::e_priority epriority = ::priority_none);
+//      ::task_group * task_group(::e_priority epriority = ::priority_none);
 //
-//      ::thread_tool * thread_tool(::enum_thread_tool etool);
+//      ::task_tool * task_tool(::enum_task_tool etool);
 //
 //
 //      //virtual string install_get_platform() override;
@@ -365,7 +367,7 @@ namespace base
 //
 //
 //
-//      //virtual string dir_appmatter_locator(::layered * pobjectContext);
+//      //virtual string dir_appmatter_locator(::object * pobject);
 //
 //
 //      virtual void hist_hist(const char * psz);
@@ -384,10 +386,10 @@ namespace base
 //      virtual string get_locale_schema_dir() override;
 //
 //
-//      //virtual ::e_status     initialize_system(::layered * pobjectContext, app_core * pappcore);
+//      //virtual ::e_status     initialize_system(::object * pobject, app_core * pappcore);
 //
 //
-//      //__pointer(::thread_tools) create_thread_tools(::enum_thread_tool etool);
+//      //__pointer(::thread_tools) create_thread_tools(::enum_task_tool etool);
 //      //thread_tools * tools(::e_priority epriority);
 //      //thread_toolset * toolset(e_tool etool);
 //
@@ -514,7 +516,7 @@ namespace base
 //      //   if(idType.is_empty())
 //      //      return nullptr;
 //
-//      //   synchronization_lock synchronizationlock(&m_mutexFactory);
+//      //   synchronous_lock synchronouslock(&m_mutexFactory);
 //
 //      //   return m_typemap[idType].m_p;
 //
@@ -528,24 +530,24 @@ namespace base
 //
 //      virtual ::e_status initialize_sockets();
 //
-//      ::image_pointer get_cache_image(::layered * pobjectContext, const ::payload & varFile);
-//      ::image_pointer matter_cache_image(::layered * pobjectContext, const ::string & strMatter);
+//      ::image_pointer get_cache_image(::object * pobject, const ::payload & varFile);
+//      ::image_pointer matter_cache_image(::object * pobject, const ::string & strMatter);
 //
-//      ::image_pointer get_image(::layered * pobjectContext, const ::payload & varFile, bool bCache = true, bool bSync = false);
-//      ::image_pointer matter_image(::layered * pobjectContext, const string & strMatter, bool bCache = true, bool bSync = false);
+//      ::image_pointer get_image(::object * pobject, const ::payload & varFile, bool bCache = true, bool bSync = false);
+//      ::image_pointer matter_image(::object * pobject, const string & strMatter, bool bCache = true, bool bSync = false);
 //
 //      virtual bool on_get_thread_name(string& strThreadName) override;
 //
-//      virtual ::apex::library * on_get_library(const char * pszLibrary);
+//      virtual ::acme::library * on_get_library(const char * pszLibrary);
 //
-//      virtual ::apex::library * get_library(const char * pszLibrary, bool bOpenCa2 = false);
+//      virtual ::acme::library * get_library(const char * pszLibrary, bool bOpenCa2 = false);
 //
 //
 //      virtual ::u32 os_post_to_all_threads(const ::id & id,wparam wparam = 0,lparam lparam = 0);
 //
 //
 //      virtual void session_add(index iEdge, ::aura::session * psession);
-//      virtual void session_remove(index iEdge);
+//      virtual void session_erase(index iEdge);
 //
 //
 //
@@ -684,7 +686,7 @@ namespace base
 //
 //      virtual void on_end_find_applications_to_cache(stream & os);
 //
-//      virtual void on_map_application_library(::apex::library & library);
+//      virtual void on_map_application_library(::acme::library & library);
 //
 //      //virtual void defer_check_exit();
 //
@@ -769,7 +771,7 @@ namespace base
 //
 //
 //
-//      virtual void __tracea(::matter * pcontextobject, enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz) override;
+//      virtual void __tracea(::matter * pobject, enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz) override;
 //
 //
 //      virtual string get_user_language();
@@ -787,7 +789,7 @@ namespace base
 //
 //
 //
-//      //virtual ::e_status  initialize_system(::object* pobjectContext, app_core* pappcore) override;
+//      //virtual ::e_status  initialize_system(::object* pobject, app_core* pappcore) override;
 //
 //      virtual void discard_to_factory(__pointer(object) pca);
 //
@@ -825,13 +827,13 @@ namespace base
 //      //virtual bool base_support() override;
 //
 //
-//      DECL_GEN_SIGNAL(on_application_signal);
+//      DECLARE_MESSAGE_HANDLER(on_application_signal);
 //
 //
 //      ::e_status set_history(::aura::history* phistory);
 //
 //
-//      //__pointer(::apex::library) on_get_library(const char* pszLibrary) override;
+//      //__pointer(::acme::library) on_get_library(const char* pszLibrary) override;
 //
 //
 //      //virtual ::aura::session *  get_platform(index iEdge,application_bias * pbiasCreation = nullptr);
@@ -899,7 +901,7 @@ namespace base
 //
 //      virtual string get_host_location_url();
 //
-//      virtual ::e_status add_view_library(::apex::library* plibrary);
+//      virtual ::e_status add_view_library(::acme::library* plibrary);
 //
 //      //virtual void get_cursor_position(POINT_I32 * ppoint);
 //
@@ -936,7 +938,7 @@ namespace base
 //
 //      //virtual void on_end_find_applications_to_cache(stream& os) override;
 //
-//      //virtual void on_map_application_library(::apex::library& library) override;
+//      //virtual void on_map_application_library(::acme::library& library) override;
 //
 //      //virtual void on_graphics_ready() override;
 //
@@ -946,7 +948,7 @@ namespace base
 //      //virtual ~system();
 //
 //
-//      ///virtual ::e_status initialize_system(::object* pobjectContext, app_core* pappcore) override;
+//      ///virtual ::e_status initialize_system(::object* pobject, app_core* pappcore) override;
 //
 //
 //      //virtual ::e_status process_init() override;
@@ -983,7 +985,7 @@ namespace base
 //
 //      //virtual bool initialize_native_window1() override;
 //
-//      //virtual ::apex::library* load_library(const char* pszLibrary);
+//      //virtual ::acme::library* load_library(const char* pszLibrary);
 
    };
 
@@ -1010,7 +1012,7 @@ namespace base
 //
 //   auto psystem = ::get_context_system();
 //
-//   critical_section_lock synchronizationlock(&psystem->m_csEnumText);
+//   critical_section_lock synchronouslock(&psystem->m_csEnumText);
 //
 //   psystem->m_mapEnumToText[typeid(e).name()][(i64)e] = psz;
 //
@@ -1025,7 +1027,7 @@ namespace base
 //
 //   auto psystem = ::get_context_system();
 //
-//   critical_section_lock synchronizationlock(&psystem->m_csEnumText);
+//   critical_section_lock synchronouslock(&psystem->m_csEnumText);
 //
 //   return psystem->m_mapEnumToText[typeid(e).name()][(i64)e];
 //
@@ -1038,7 +1040,7 @@ namespace base
 //
 //   auto psystem = ::get_context_system();
 //
-//   critical_section_lock synchronizationlock(&psystem->m_csEnumText);
+//   critical_section_lock synchronouslock(&psystem->m_csEnumText);
 //
 //   i64 iValue;
 //
@@ -1085,10 +1087,10 @@ namespace base
 //
 ////
 ////
-////inline ::traits & traits(::context_object * p)
+////inline ::traits & traits(::object * p)
 ////{
 ////
-////   auto traits = System->m_traits[p];
+////   auto traits = psystem->m_traits[p];
 ////
 ////   if (traits.m_pobjectTrait != p)
 ////   {

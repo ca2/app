@@ -1,4 +1,4 @@
-//        acme / camilo made by thomas
+﻿//        acme / camilo made by thomas
 // 
 //   
 //    
@@ -72,10 +72,10 @@
 //#undef Sys
 
 
-//#define System (::get_context_system())
+//#define get_system() (::get_context_system())
 
 
-#define Node (::get_context_system()->node())
+//#define Node (psystem->node())
 
 
 #include "acme/primitive/primitive/estatus.h"
@@ -84,7 +84,9 @@
 #include <tuple>
 
 
+class object;
 class thread;
+//class object;
 
 
 CLASS_DECL_ACME void acme_ref();
@@ -124,16 +126,158 @@ namespace acme
    class system;
 
 
-   CLASS_DECL_ACME system * get_system();
+   class node;
+
+
+   namespace posix
+   {
+
+      class node;
+
+   };
 
 
 } // namespace acme
 
 
-class layered;
+namespace apex
+{
 
 
-CLASS_DECL_ACME ::acme::system *get_context_system();
+   class system;
+
+
+   class node;
+
+
+   namespace posix
+   {
+
+      class node;
+
+   };
+
+
+} // namespace apex
+
+
+namespace aura
+{
+
+
+   class system;
+
+
+   class node;
+
+
+   namespace posix
+   {
+
+      class node;
+
+   };
+
+
+} // namespace aura
+
+
+namespace PLATFORM_NAMESPACE
+{
+
+
+   namespace acme
+   {
+
+      class node;
+
+   } // namespace acme
+
+
+   namespace apex
+   {
+
+      class node;
+
+   } // namespace acme
+
+
+   namespace aura
+   {
+
+      class node;
+
+   } // namespace acme
+
+
+} // namespace PLATFORM_NAMESPACE
+
+
+
+namespace windowing_x11
+{
+
+
+   class node;
+
+
+} // namespace windowing_x11
+
+
+namespace windowing_xcb
+{
+
+
+   class node;
+
+
+} // namespace windowing_xcb
+
+
+namespace node_gnome
+{
+
+
+   class node;
+
+
+} // namespace node_gnome
+
+
+namespace node_kde
+{
+
+
+   class node;
+
+
+} // namespace node_kde
+
+
+namespace desktop_environment_gnome
+{
+
+
+   class node;
+
+
+} // namespace desktop_environment_gnome
+
+
+namespace desktop_environment_kde
+{
+
+
+   class node;
+
+
+} // namespace desktop_environment_kde
+
+
+//class layered;
+
+
+//CLASS_DECL_ACME ::acme::system *get_context_system();
 
 
 #define ___STR(s) #s
@@ -242,6 +386,25 @@ struct INT_STRING
 };
 
 
+#ifdef WINDOWS 
+#define ARG_SEC_ATTRS_DEF , void * psaAttributes = nullptr
+#define ARG_SEC_ATTRS , void * psaAttributes
+#define PARAM_SEC_ATTRS (LPSECURITY_ATTRIBUTES) psaAttributes
+#define PASS_SEC_ATTRS psaAttributes
+#define INSERT_PARAM_SEC_ATTRS(ATTRS) , ATTRS
+#define ADD_PARAM_SEC_ATTRS , PARAM_SEC_ATTRS
+#define ADD_PASS_SEC_ATTRS , PASS_SEC_ATTRS
+#else
+#define ARG_SEC_ATTRS_DEF 
+#define ARG_SEC_ATTRS
+#define PARAM_SEC_ATTRS
+#define INSERT_PARAM_SEC_ATTRS(ATTRS) 
+#define ADD_PARAM_SEC_ATTRS
+#define ADD_PASS_SEC_ATTRS
+#endif
+
+
+
 template < typename CONCRETE >
 class concrete :
    public CONCRETE
@@ -254,6 +417,24 @@ public:
 
 };
 
+
+
+
+template<class T>
+class ___pointer;
+
+
+template<class T>
+class pointer_array;
+
+
+//#define __composite(TYPE) ::reference < TYPE >
+
+#define __pointer(TYPE) ::___pointer < TYPE >
+#define __pointer_array(TYPE) ::pointer_array < TYPE >
+#define __address_array(TYPE) ::comparable_array < TYPE * >
+
+class matter;
 
 template < typename T >
 concept a_pointer = std::is_pointer < T >::value;
@@ -279,12 +460,19 @@ concept primitive_floating = std::is_floating_point < T >::value;
 template < typename FROM, typename TO_POINTER >
 concept pointer_castable =
 ::std::is_convertible < FROM, TO_POINTER * >::value ||
-::std::is_convertible < FROM, const TO_POINTER * >::value;
+::std::is_convertible < FROM, const TO_POINTER * >::value ||
+::std::is_convertible < FROM, __pointer(TO_POINTER) >::value;
 
 template < typename DERIVED, typename BASE >
 concept is_derived_from =
 ::std::is_base_of < BASE, DERIVED >::value;
 
+template < typename FROM >
+concept matter_pointer_castable = pointer_castable < FROM, ::matter >;
+
+
+template < typename FROM >
+concept non_matter_pointer_castable = !pointer_castable < FROM, ::matter >;
 
 template < bool, typename T1, typename T2 >
 struct boolean_type_selection { using type = T1; };
@@ -320,7 +508,7 @@ using array_reference = TYPE ( & ) [ SIZE ];
 
 
 template < typename TYPE, std::size_t SIZE >
-inline std::size_t item_count(const array_reference < TYPE, SIZE > &) { return SIZE; }
+inline std::size_t item_count(array_reference < TYPE, SIZE > &) { return SIZE; }
 
 
 template < typename T >
@@ -384,13 +572,31 @@ namespace acme
 {
 
 
-   class acme;
+   class static_start;
 
 
    extern CLASS_DECL_ACME bool g_bAcme;
 
 
 } // namespace acme
+
+
+class acme_dir;
+
+
+class acme_path;
+
+
+namespace PLATFORM_NAMESPACE
+{
+
+
+   class acme_dir;
+
+   class acme_path;
+
+
+} // namespace PLATFORM_NAMESPACE
 
 
 CLASS_DECL_ACME int __assert_failed_line(const char *pszFileName, int iLineNumber);
@@ -827,24 +1033,24 @@ CLASS_DECL_ACME extern u32 g_tickStartTime;
 
 
 
-CLASS_DECL_ACME::matter * general_trace_object();
+CLASS_DECL_ACME const ::matter * general_trace_object();
 
 CLASS_DECL_ACME int_bool c_enable_trace_category(e_trace_category ecategory, int_bool iEnable);
 
-inline ::matter * context_trace_object() { return general_trace_object(); }
+inline const ::matter * context_trace_object() { return general_trace_object(); }
 
 
-CLASS_DECL_ACME void __tracea(::matter * pobject, enum_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz);
-CLASS_DECL_ACME void __tracef(::matter * pobject, enum_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz, ...);
-CLASS_DECL_ACME void __tracev(::matter * pobject, enum_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz, va_list vargs);
+//CLASS_DECL_ACME void __tracea(const ::matter * pobject, enum_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz);
+//CLASS_DECL_ACME void __tracef(const ::matter * pobject, enum_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz, ...);
+//CLASS_DECL_ACME void __tracev(const ::matter * pobject, enum_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz, va_list vargs);
 
 
 #define __alog(...) __tracef(__VA_ARGS__)
 
-#define INFO(...) __alog(trace_object(ALOG_CONTEXT), e_trace_level_information, ALOG_FUNCTION, ALOG_FILE, ALOG_LINE, __VA_ARGS__)
-#define WARN(...) __alog(trace_object(ALOG_CONTEXT), e_trace_level_warning, ALOG_FUNCTION, ALOG_FILE, ALOG_LINE, __VA_ARGS__)
-#define ERR(...) __alog(trace_object(ALOG_CONTEXT), e_trace_level_error, ALOG_FUNCTION, ALOG_FILE, ALOG_LINE, __VA_ARGS__)
-#define FATAL(...) __alog(trace_object(ALOG_CONTEXT), e_trace_level_fatal, ALOG_FUNCTION, ALOG_FILE, ALOG_LINE, __VA_ARGS__)
+#define INFO(...) trace_object(ALOG_CONTEXT)->__alog(e_trace_level_information, ALOG_FUNCTION, ALOG_FILE, ALOG_LINE, __VA_ARGS__)
+#define WARN(...) trace_object(ALOG_CONTEXT)->__alog(e_trace_level_warning, ALOG_FUNCTION, ALOG_FILE, ALOG_LINE, __VA_ARGS__)
+#define ERR(...) trace_object(ALOG_CONTEXT)->__alog(e_trace_level_error, ALOG_FUNCTION, ALOG_FILE, ALOG_LINE, __VA_ARGS__)
+#define FATAL(...) trace_object(ALOG_CONTEXT)->__alog(e_trace_level_fatal, ALOG_FUNCTION, ALOG_FILE, ALOG_LINE, __VA_ARGS__)
 
 #define TRACE(...) INFO(__VA_ARGS__)
 
@@ -852,11 +1058,11 @@ CLASS_DECL_ACME void __tracev(::matter * pobject, enum_trace_level elevel, const
 
 CLASS_DECL_ACME const char *trace_category_name(e_trace_category ecategory);
 
-CLASS_DECL_ACME ::matter *trace_object(e_trace_category ecategory);
+CLASS_DECL_ACME const ::matter *trace_object(e_trace_category ecategory);
 
-CLASS_DECL_ACME const char *topic_text(::matter *pcontextobject);
+CLASS_DECL_ACME const char *topic_text(::matter *pobject);
 
-CLASS_DECL_ACME e_trace_category object_trace_category(::matter *pcontextobject);
+CLASS_DECL_ACME e_trace_category object_trace_category(::matter *pobject);
 
 
 //
@@ -951,6 +1157,9 @@ namespace axis
    class system;
 
 
+   class user;
+
+
 } // namespace axis
 
 
@@ -1032,32 +1241,32 @@ enum enum_id : ::u64;
 enum enum_check : ::i32;
 
 template<typename TYPE>
-struct remove_const_struct
-{ // remove top-level const qualifier
+struct erase_const_struct
+{ // erase top-level const qualifier
    using NON_CONST_TYPE = TYPE;
 };
 
 template<typename TYPE>
-struct remove_const_struct<TYPE &>
+struct erase_const_struct<TYPE &>
 {
    using NON_CONST_TYPE = TYPE &;
 };
 
 
 template<typename TYPE>
-struct remove_const_struct<const TYPE>
+struct erase_const_struct<const TYPE>
 {
    using NON_CONST_TYPE = TYPE;
 };
 
 template<typename TYPE>
-struct remove_const_struct<const TYPE &>
+struct erase_const_struct<const TYPE &>
 {
    using NON_CONST_TYPE = TYPE &;
 };
 
 template<class TYPE>
-using non_const = typename remove_const_struct<TYPE>::NON_CONST_TYPE;
+using non_const = typename erase_const_struct<TYPE>::NON_CONST_TYPE;
 
 struct true_type
 {
@@ -1436,19 +1645,19 @@ namespace install
 
 
 template<class T>
-struct remove_reference
+struct erase_reference
 {
    typedef T TYPE;
 };
 
 template<class T>
-struct remove_reference<T &>
+struct erase_reference<T &>
 {
    typedef T TYPE;
 };
 
 template<class T>
-struct remove_reference<T &&>
+struct erase_reference<T &&>
 {
    typedef T TYPE;
 };
@@ -1456,30 +1665,16 @@ struct remove_reference<T &&>
 
 template<class T>
 inline
-typename remove_reference<T>::TYPE &&move(T &&t)
+typename erase_reference<T>::TYPE &&move(T &&t)
 {
 
-   return (static_cast<typename remove_reference<T>::TYPE &&>(t));
+   return (static_cast<typename erase_reference<T>::TYPE &&>(t));
 
 }
 
 
 class task;
 
-
-template<class T>
-class ___pointer;
-
-
-template<class T>
-class pointer_array;
-
-
-//#define __composite(TYPE) ::reference < TYPE >
-
-#define __pointer(TYPE) ::___pointer < TYPE >
-#define __pointer_array(TYPE) ::pointer_array < TYPE >
-#define __address_array(TYPE) ::comparable_array < TYPE * >
 
 
 namespace subject
@@ -1850,6 +2045,13 @@ public:
 };
 
 
+template < typename T, typename ARG_T = typename argument_of < T >::type >
+class single;
+
+
+template < class KEY, class ARG_KEY = typename argument_of < KEY >::type, class PAYLOAD = single < KEY, ARG_KEY > >
+class set;
+
 
 template < typename T1, typename T2, typename ARG_T1 = typename argument_of < T1 >::type, typename ARG_T2 = typename argument_of < T2 >::type >
 class pair;
@@ -1881,13 +2083,8 @@ namespace acme
    class command;
 
 
-   class str;
-
-
-   class str_context;
-
-
 } // namespace acme
+
 
 namespace gpu
 {
@@ -2134,7 +2331,7 @@ namespace acme
       //   Details
 
       // BRT 2015-02-18 19:08
-      // catch all (...) here in acme::del ... but should remove try catch from all underlying calls (frees, memory_frees, memory_dbg_frees).
+      // catch all (...) here in acme::del ... but should erase try catch from all underlying calls (frees, memory_frees, memory_dbg_frees).
 
       try
       {
@@ -2177,7 +2374,7 @@ namespace acme
       //   Details
 
       // BRT 2015-02-18 19:08
-      // catch all (...) here in acme::del ... but should remove try catch from all underlying calls (frees, memory_frees, memory_dbg_frees).
+      // catch all (...) here in acme::del ... but should erase try catch from all underlying calls (frees, memory_frees, memory_dbg_frees).
 
       try
       {
@@ -2216,7 +2413,7 @@ namespace acme
       //   Details
 
       // BRT 2016-11-23 19:08
-      // catch all (...) here in acme::del ... but should remove try catch from all underlying calls (frees, memory_frees, memory_dbg_frees).
+      // catch all (...) here in acme::del ... but should erase try catch from all underlying calls (frees, memory_frees, memory_dbg_frees).
 
       try
       {
@@ -2257,7 +2454,7 @@ namespace acme
       //   Details
 
       // BRT 2016-11-23 19:08
-      // catch all (...) here in acme::del ... but should remove try catch from all underlying calls (frees, memory_frees, memory_dbg_frees).
+      // catch all (...) here in acme::del ... but should erase try catch from all underlying calls (frees, memory_frees, memory_dbg_frees).
 
       try
       {
@@ -2380,21 +2577,6 @@ enum e_extract
 };
 
 
-namespace str
-{
-
-
-   namespace international
-   {
-
-
-      class locale_schema;
-
-
-   } // namespace international
-
-
-} // namespace str
 
 
 class event;
@@ -2419,7 +2601,7 @@ namespace html
 
 // __throw( - exception - result exception - if not ok
 #ifndef TINOK
-#define TINOK(e, x) { i32 __result__ = (x); if (__result__ != 0) __throw(e(get_context_application(), __result__)); }
+#define TINOK(e, x) { i32 __result__ = (x); if (__result__ != 0) __throw(e(get_application(), __result__)); }
 #endif
 
 
@@ -2510,6 +2692,34 @@ class type;
 
 #include "acme/primitive/string/_.h"
 
+namespace text
+{
+ 
+   class text;
+   class data;
+   class translator;
+
+
+   class table;
+   class context;
+
+
+   namespace international
+   {
+
+      class locale_schema;
+
+   }
+
+
+} // namespace text
+
+
+//#include "acme/primitive/text/data.h"
+
+
+#include "acme/primitive/text/text.h"
+
 
 #include "acme/platform/definition.h"
 
@@ -2524,8 +2734,6 @@ class type;
 
 #define __m_own(owner, member_reference, ...) (owner)->__compose(member_reference, __VA_ARGS__ )
 #define __own(owner, member, ...) __m_own(owner, (owner)->member, __VA_ARGS__ )
-#define __m_bind(referer, member_reference, ...) (referer)->__refer(member_reference, __VA_ARGS__ )
-#define __bind(referer, referee, ...) __m_bind(referer, (referer)->referee, __VA_ARGS__)
 #define __unbind(holder, ...) (holder)->__release((holder)-> __VA_ARGS__ )
 
 
@@ -2654,6 +2862,9 @@ inline bool is_set(const TYPE & t)
 }
 
 
+//#include "acme/user/primitive.h"
+
+
 #include "acme/primitive/primitive/pointer.h"
 #include "acme/primitive/primitive/pointer2.h"
 
@@ -2728,6 +2939,7 @@ using wparam = c_number<iptr>;
 
 
 #include "acme/primitive/datetime/_datetime.h"
+
 
 #include "acme/platform/common.h"
 
@@ -2811,6 +3023,11 @@ class memory_base;
 #include "acme/exception/status.h"
 
 
+CLASS_DECL_ACME ::e_status _003CountStatus(::count countSuccess, ::count countFailed);
+
+
+
+
 class thread;
 
 
@@ -2858,12 +3075,14 @@ namespace factory
 } // namespace factory
 
 
+#include "acme/parallelization/synchronization_result.h"
+
+
 #include "acme/primitive/primitive/matter.h"
-#include "acme/primitive/primitive/id_matter.h"
+#include "acme/primitive/primitive/material_object.h"
 
 
-
-
+#include "acme/const/idpool.h"
 
 
 #include "acme/primitive/geometry2d/_.h"
@@ -2981,7 +3200,7 @@ using element_address_array = ::address_array<matter *>;
 
 class sticker;
 
-inline ::matter *trace_object(::matter *pobjectContext) { return pobjectContext; }
+inline const ::matter *trace_object(const ::matter *pobject) { return pobject; }
 
 template<typename POINTER_TYPE>
 class ptr_array;
@@ -3055,8 +3274,47 @@ namespace core
 
 class task;
 
+template < class TYPE, class ARG_TYPE = const TYPE & >
+class list;
+
+
+template < typename TYPE, typename ARG_TYPE = typename argument_of < TYPE >::type, typename PAIR = pair < ::id, TYPE, typename argument_of < ::id >::type, ARG_TYPE > >
+using id_map = ::map < id, TYPE, typename argument_of < ::id >::type, ARG_TYPE, PAIR >;
+
+using routine_array = ::array < routine >;
+using routine_list = ::list < routine >;
+
+//using process_array = ::array < process >;
+
+template<typename PRED>
+void add_routine(routine_array& array, PRED pred);
+
+
+//template<typename PRED>
+//void add_process(process_array &array, PRED pred);
+
+
+//} // namespace subject
+
+
+using exception_array = ::array < ::exception::exception >;
+
+
+#include "acme/primitive/primitive/linked_property.h"
+
+
+
+#include "acme/exception/extended_status.h"
+
+
+
+#include "acme/primitive/primitive/property_object.h"
+
 
 #include "acme/exception/_.h"
+
+
+#include "acme/exception/extended_transport.h"
 
 
 #include "acme/user/conversation.h"
@@ -3068,26 +3326,8 @@ CLASS_DECL_ACME __pointer(::extended::future < ::conversation >) show_error_mess
 
 
 
-   using routine_array = ::array < routine >;
-
-   //using process_array = ::array < process >;
-
-   template<typename PRED>
-   void add_routine(routine_array &array, PRED pred);
 
 
-   //template<typename PRED>
-   //void add_process(process_array &array, PRED pred);
-
-
-//} // namespace subject
-
-
-#include "acme/primitive/primitive/linked_property.h"
-
-
-#include "acme/primitive/primitive/context_object.h"
-#include "acme/primitive/primitive/layered.h"
 
 
 #include "acme/primitive/comparison/var_strict.h"
@@ -3105,7 +3345,72 @@ CLASS_DECL_ACME __pointer(::extended::future < ::conversation >) show_error_mess
 #include "acme/platform/predicate_process.h"
 
 
+#include "acme/parallelization/_preamble.h"
+
+
+#include "acme/parallelization/critical_section.h"
+
+
+#include "acme/primitive/primitive/factory.h"
+
+
 CLASS_DECL_ACME void add_release_on_end(::matter * pmatter);
+
+
+#include "acme/primitive/primitive/object.h"
+
+
+namespace draw2d
+{
+
+
+   class graphics;
+
+   using graphics_pointer = __pointer(graphics);
+
+
+} // namespace draw2d
+
+
+#define OPTIONAL_BASE_BODY                                                          \
+public:                                                                             \
+   virtual ::e_status on_initialize_object() override { return ::success; }         \
+   virtual void assert_valid() const override {}                                    \
+   virtual void dump(dump_context&) const override {}                               \
+   virtual void on_subject(::subject::subject*, ::subject::context*) override {}    \
+
+
+#define OPTIONAL_INTERACTION_BODY                                                   \
+   OPTIONAL_BASE_BODY                                                               \
+   virtual void install_message_routing(::channel*) override {}                     \
+   virtual void on_layout(::draw2d::graphics_pointer&) {}                           
+
+
+class optional_base1 : virtual public ::object { OPTIONAL_BASE_BODY };
+class optional_base2 : virtual public ::object { OPTIONAL_BASE_BODY };
+class optional_base3 : virtual public ::object { OPTIONAL_BASE_BODY };
+class optional_base4 : virtual public ::object { OPTIONAL_BASE_BODY };
+
+class optional_interaction1 : virtual public ::object { OPTIONAL_INTERACTION_BODY };
+class optional_interaction2 : virtual public ::object { OPTIONAL_INTERACTION_BODY };
+class optional_interaction3 : virtual public ::object { OPTIONAL_INTERACTION_BODY };
+class optional_interaction4 : virtual public ::object { OPTIONAL_INTERACTION_BODY };
+
+
+class context_image;
+
+
+#include "acme/parallelization/_.h"
+
+
+#include "acme/primitive/data/_.h"
+
+
+#include "acme/primitive/text/_.h"
+
+
+#include "acme/platform/context.h"
+
 
 #include "acme/parallelization/pool.h"
 
@@ -3116,6 +3421,8 @@ CLASS_DECL_ACME void add_release_on_end(::matter * pmatter);
 
 class message_box;
 
+#include "acme/memory/counter.h"
+
 #include "acme/platform/debug.h"
 
 #include "acme/platform/class.h"
@@ -3124,7 +3431,7 @@ class message_box;
 
 #include "acme/primitive/primitive/request_interface.h"
 
-#include "acme/parallelization/synchronization_result.h"
+
 
 //#include "acme/parallelization/synchronization_object.h"
 
@@ -3191,6 +3498,8 @@ inline bool is_font_sel(::id id) { return is_impact_group(id.i64(), FONTSEL_IMPA
 #include "acme/primitive/collection/composite_array.h"
 
 
+
+
 namespace acme
 {
 
@@ -3216,7 +3525,13 @@ template<class POINTER_TYPE>
 inline auto &__typed(__composite(POINTER_TYPE) *pp) { return *pp->operator POINTER_TYPE *(); }
 
 
+
+
+
 #include "acme/platform/display.h"
+
+
+
 
 
 #include "acme/filesystem/file/file.h"
@@ -3307,28 +3622,12 @@ inline void dump_elements(dump_context &dumpcontext, const TYPE *pElements, ::co
 #include "acme/platform/enum.h"
 
 
-#ifdef PARALLELIZATION_PTHREAD
-
-#define CRITICAL_SECTION_FUNCTION_RETURN int
-
-CRITICAL_SECTION_FUNCTION_RETURN pthread_recursive_mutex_init(pthread_mutex_t * pmutex);
-
-#else
-
-#define CRITICAL_SECTION_FUNCTION_RETURN void
-
-#endif
-
-
-#include "acme/parallelization/critical_section.h"
-
-
-#include "acme/primitive/primitive/factory.h"
 
 
 
 
-#include "acme/parallelization/_.h"
+
+
 
 
 //namespace acme
@@ -3459,9 +3758,6 @@ CLASS_DECL_ACME string get_system_error_message(u32 dwError);
 #include "acme/platform/restore.h"
 
 
-//#include "acme/primitive/data/_.h"
-
-
 #include "acme/primitive/mathematics/objects.h"
 
 
@@ -3471,10 +3767,6 @@ CLASS_DECL_ACME string get_system_error_message(u32 dwError);
 #include "acme/primitive/collection/file_path_map.h"
 
 #include "acme/primitive/primitive/edit.h"
-//#include "acme/platform/department.h"
-//#include "acme/platform/department_container.h"
-
-//#include "acme/parallelization/threading.h"
 
 class mq_base;
 
@@ -3552,7 +3844,8 @@ class mq_base;
 
 
 #include "acme/primitive/mathematics/random_number_generator.h"
-//#include "acme/primitive/math/department.h"
+
+
 #include "acme/primitive/geometry2d/geometry.h"
 
 
@@ -3617,10 +3910,19 @@ namespace file
 #include "acme/filesystem/file/buffered_file.h"
 
 
+#include "acme/platform/department.h"
+
+
+#include "acme/net/_.h"
+
+
+#include "acme/primitive/text/context.h"
+
+
 #include "acme/primitive/datetime/_.h"
 
 
-//#include "acme/primitive/string/international_locale_schema.h"
+#include "acme/primitive/text/international_locale_schema.h"
 
 
 //#include "acme/platform/cregexp.h"
@@ -3723,7 +4025,7 @@ namespace xml
 {
 
 
-   class department;
+   class xml;
 
 
 } // namespace xml
@@ -3763,7 +4065,7 @@ i32 CLASS_DECL_ACME WideCharToMultiByte2(::u32 CodePage, ::u32 dwFlags, const wi
 //#include "acme/platform/message_queue.h"
 
 
-#include "acme/platform/international.h"
+#include "acme/primitive/text/international.h"
 
 
 //#include "acme/platform/static_start.h"
@@ -3793,6 +4095,9 @@ CLASS_DECL_ACME string get_system_error_message(u32 dwError);
 #include "acme/platform/simple_app.h"
 
 
+#include "acme/primitive/primitive/osdata_array.h"
+
+
 //typedef void CALL_UPDATE(const ::id & id, const ::payload & payload);
 //using PFN_CALL_UPDATE = CALL_UPDATE *;
 
@@ -3815,14 +4120,14 @@ CLASS_DECL_ACME string get_system_error_message(u32 dwError);
 //#include "app/acme/node/node.h"
 
 
-namespace math
+namespace mathematics
 {
 
    template<typename T>
    class complex;
 
 
-} // namespace math
+} // namespace mathematics
 
 namespace _std
 {
@@ -4042,6 +4347,8 @@ CLASS_DECL_ACME string get_last_error_string();
 #include "acme/primitive/primitive/_.h"
 
 
+#include "acme/primitive/mathematics/mathematics.h"
+
 
 //#include "acme/scripting/javascript/javascript.h"
 
@@ -4076,7 +4383,28 @@ namespace draw2d
 #include "acme/user/_.h"
 
 
+#include "acme/user/ewindowflag.h"
+
+
 #include "acme/platform/node.h"
+
+
+#include "acme/platform/predicate_holder.h"
+
+
+#include "acme/parallelization/fork.h"
+
+
+#include "acme/parallelization/tools.h"
+
+
+#include "acme/platform/acme_main_data.h"
+
+
+#include "acme/platform/library.h"
+
+
+#include "acme/parallelization/cleanup_task.h"
 
 
 #include "acme/platform/system.h"
@@ -4116,9 +4444,11 @@ namespace draw2d
 #include "acme/primitive/collection/_raw_array_impl.h"
 #include "acme/primitive/collection/_sort_array_impl.h"
 #include "acme/primitive/collection/_papaya_array_impl.h"
+#include "acme/primitive/collection/_tiny_array_impl.h"
 
 #include "acme/primitive/collection/_list_impl.h"
 #include "acme/primitive/collection/_map_impl.h"
+#include "acme/primitive/collection/_set_impl.h"
 
 #include "acme/primitive/collection/_sort_map_impl.h"
 
@@ -4222,7 +4552,7 @@ namespace draw2d
 //#include "acme/os/_impl.h"
 
 
-#include "acme/primitive/subject/_impl.h"
+//#include "acme/primitive/subject/_impl.h"
 
 
 #include "acme/primitive/primitive/_id_impl.h"
@@ -4231,8 +4561,9 @@ namespace draw2d
 #include "acme/primitive/primitive/_payload_impl.h"
 
 
-#include "acme/primitive/primitive/_context_object_impl.h"
+#include "acme/primitive/primitive/_property_object_impl.h"
 
 
 #include "acme/memory/_impl.h"
+
 

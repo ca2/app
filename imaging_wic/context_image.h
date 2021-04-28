@@ -18,8 +18,8 @@ namespace imaging_wic
 
 
          ::payload                        m_varFile;
-         ::image_pointer            m_pimage;
-         __pointer(context_image)   m_pcontextimage;
+         ::image_pointer                  m_pimage;
+         __pointer(context_image)         m_pcontextimage;
 
 
          load_image(context_image* pcontextimage);
@@ -42,7 +42,7 @@ namespace imaging_wic
       virtual ~context_image();
 
 
-      virtual ::e_status initialize(::layered * pobjectContext) override;
+      virtual ::e_status initialize(::object * pobject) override;
 
 
       //virtual ::e_status _load_image(::context_image * pcontextimage, ::image * pimageParam, const ::payload & varFile, bool bSync, bool bCreateHelperMaps) override;
@@ -68,6 +68,9 @@ namespace imaging_wic
       virtual bool _desk_has_image();
       virtual bool _image_to_desk(const ::image* pimage);
 #endif
+
+
+      virtual bool _save_image(::file::file* pfile, const ::image* pimage, const ::save_image* psaveimage);
 
 
    };

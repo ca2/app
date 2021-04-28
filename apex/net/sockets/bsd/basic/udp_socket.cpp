@@ -7,11 +7,12 @@ namespace sockets
 {
 
 
-   udp_socket::udp_socket(base_socket_handler& h, i32 ibufsz, bool ipv6, i32 retries) :
-      ::object(&h)
-      ,base_socket(h)
-      ,socket(h)
-      , m_ibuf(new char[ibufsz])
+   udp_socket::udp_socket(i32 ibufsz, bool ipv6, i32 retries) :
+      //::object(&h)
+      //,
+      //base_socket(h)
+      //,socket(h)
+      m_ibuf(new char[ibufsz])
       , m_ibufsz(ibufsz)
       , m_bind_ok(false)
       , m_port(0)
@@ -344,7 +345,7 @@ namespace sockets
       msg.msg_controllen = sizeof(cmsg_un.data);
       msg.msg_flags = 0;
 
-      // Original version - for context_object only
+      // Original version - for object only
       //i32 n = recvfrom(GetSocket(), m_ibuf, m_ibufsz, 0, (struct sockaddr *)&sa, &sa_len);
 
       i32 n = recvmsg(GetSocket(), &msg, MSG_DONTWAIT);
@@ -383,8 +384,10 @@ namespace sockets
          {
             
             micro_duration microduration;
+
+            __pointer(::apex::system) psystem = get_system();
             
-            ::apex::get_system()->get_time(&microduration);
+            psystem->get_time(&microduration);
 
             struct timeval timeval;
 
@@ -463,8 +466,10 @@ namespace sockets
       {
          
          micro_duration microduration;
+
+         __pointer(::apex::system) psystem = get_system();
          
-         ::apex::get_system()->get_time(&microduration);
+         psystem->get_time(&microduration);
 
          timeval timeval;
 
@@ -632,7 +637,10 @@ namespace sockets
       {
          struct ipv6_mreq x;
          struct in6_addr addr;
-         if (::apex::get_system()->sockets().net().convert( addr, group ))
+
+         auto paddressdepartment = ::net::address_department();
+
+         if (paddressdepartment->convert( addr, group ))
          {
             x.ipv6mr_multiaddr = addr;
             x.ipv6mr_interface = if_index;
@@ -647,10 +655,17 @@ namespace sockets
       }
       struct ip_mreq x; // ip_mreqn
       in_addr addr;
-      if (::apex::get_system()->sockets().net().convert(addr,  group ))
+
+      auto paddressdepartment = ::net::address_department();
+
+      if (paddressdepartment->convert(addr,  group ))
       {
          ::memcpy_dup(&x.imr_multiaddr.s_addr, &addr, sizeof(addr));
-         ::apex::get_system()->sockets().net().convert(addr,  local_if);
+
+         __pointer(::apex::system) psystem = get_system();
+
+         paddressdepartment->convert(addr,  local_if);
+
          ::memcpy_dup(&x.imr_interface.s_addr, &addr, sizeof(addr));
          //      x.imr_ifindex = if_index;
          if (setsockopt(GetSocket(), SOL_IP, IP_ADD_MEMBERSHIP, (char *)&x, sizeof(struct ip_mreq)) == -1)
@@ -673,7 +688,10 @@ namespace sockets
       {
          struct ipv6_mreq x;
          struct in6_addr addr;
-         if (::apex::get_system()->sockets().net().convert(addr, group))
+
+         auto paddressdepartment = ::net::address_department();
+
+         if (paddressdepartment->convert(addr, group))
          {
             x.ipv6mr_multiaddr = addr;
             x.ipv6mr_interface = if_index;
@@ -688,10 +706,14 @@ namespace sockets
       }
       struct ip_mreq x; // ip_mreqn
       in_addr addr;
-      if (::apex::get_system()->sockets().net().convert(addr, group))
+
+      auto paddressdepartment = ::net::address_department();
+
+      if (paddressdepartment->convert(addr, group))
       {
          ::memcpy_dup(&x.imr_multiaddr.s_addr, &addr, sizeof(addr));
-         ::apex::get_system()->sockets().net().convert(addr, local_if);
+
+         paddressdepartment->convert(addr, local_if);
          ::memcpy_dup(&x.imr_interface.s_addr, &addr, sizeof(addr));
          //      x.imr_ifindex = if_index;
          if (setsockopt(GetSocket(), SOL_IP, IP_DROP_MEMBERSHIP, (char *)&x, sizeof(struct ip_mreq)) == -1)

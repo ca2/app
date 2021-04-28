@@ -80,7 +80,7 @@ namespace draw2d_cairo
    void object::dump(dump_context & dumpcontext) const
    {
 
-      ::context_object::dump(dumpcontext);
+      ::draw2d::object::dump(dumpcontext);
 
       dumpcontext << "get_handle() = " << 0;
       dumpcontext << "\n";
@@ -91,7 +91,7 @@ namespace draw2d_cairo
    void object::assert_valid() const
    {
 
-      ::context_object::assert_valid();
+      ::draw2d::object::assert_valid();
 
    }
 

@@ -53,10 +53,13 @@ namespace draw2d
    }
 
 
-   ::apex::str_context * graphics::str_context()
+   ::text::context * graphics::textcontext()
    {
-      return m_pstrcontext;
+      
+      return m_ptextcontext;
+
    }
+
 
    ::aura::draw_context * graphics::draw_context()
    {
@@ -1517,7 +1520,7 @@ namespace draw2d
 
       ASSERT(m_pimageAlphaBlend->is_ok());
 
-      single_lock synchronizationlock(mutex());
+      single_lock synchronouslock(mutex());
 
       // "Reference" implementation for TextOutAlphaBlend
 
@@ -2197,7 +2200,30 @@ namespace draw2d
    }
 
    
-   bool graphics::color_blend(const ::rectangle_f64& rectangle, const ::color::color& color, const ::opacity& opacity)
+   bool graphics::color_blend_3dRect(const rectangle_i32& rectParam, const ::color::color& colorTopLeft, const ::opacity& opacityTopLeft, const ::color::color & colorBottomRight, const ::opacity& opacityBottomRight)
+   {
+
+      ::rectangle_i32 rectangle(rectParam);
+
+      i32 x = rectangle.left;
+      i32 y = rectangle.top;
+      i32 cx = rectangle.width();
+      i32 cy = rectangle.height();
+
+      auto estatus1 = fill_rectangle({ point_i32(x, y), size_i32(cx - 1, 1) }, colorTopLeft + opacityTopLeft);
+
+      auto estatus2 = fill_rectangle({ point_i32(x, y), size_i32(1, cy - 1) }, colorTopLeft + opacityTopLeft);
+
+      auto estatus3 = fill_rectangle({ point_i32(x + cx - 1, y + 1), size_i32(1, cy - 1) }, colorBottomRight + opacityBottomRight);
+
+      auto estatus4 = fill_rectangle({ point_i32(x + 1, y + cy - 1), size_i32(cx - 1, 1) }, colorBottomRight + opacityBottomRight);
+
+      return estatus1 && estatus2 && estatus3 && estatus4 ;
+
+   }
+
+
+   bool graphics::color_blend(const ::rectangle_i32 & rectangle, const ::color::color& color, const ::opacity& opacity)
    {
 
       set_alpha_mode(alpha_mode_blend);
@@ -3183,9 +3209,9 @@ namespace draw2d
    ::count graphics::get_character_extent(double_array & daLeft, double_array & daRight, const string & str, strsize iStart, strsize iCount)
    {
 
-      daLeft.remove_all();
+      daLeft.erase_all();
 
-      daRight.remove_all();
+      daRight.erase_all();
 
       if (str.length() <= 0)
       {
@@ -4853,7 +4879,7 @@ namespace draw2d
    ::file::path graphics::get_font_path(const string & strName, int iWeight, bool bItalic)
    {
 
-      critical_section_lock synchronizationlock(::aura::g_pcsFont);
+      critical_section_lock synchronouslock(::aura::g_pcsFont);
 
       string strFontName(strName);
 

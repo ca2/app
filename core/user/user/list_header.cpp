@@ -13,8 +13,8 @@ namespace user
       m_bHover = false;
       m_iImageSpacing = 4;
       //m_ecolorBackground = color_list_header_background;
-      m_flagNonClient.remove(::user::interaction::non_client_background);
-      m_flagNonClient.remove(::user::interaction::non_client_focus_rect);
+      m_flagNonClient.erase(::user::interaction::non_client_background);
+      m_flagNonClient.erase(::user::interaction::non_client_focus_rect);
    }
 
    list_header::~list_header()
@@ -64,7 +64,9 @@ namespace user
 
       string str;
 
-      str = Application.load_string(plist->_001GetColumnTextId(ItemToColumnKey(iColumn)));
+      auto papplication = get_application();
+
+      str = papplication->load_string(plist->_001GetColumnTextId(ItemToColumnKey(iColumn)));
       //m_font->create_point_font("Verdana", 10.0);
 
       if (str.has_char())
@@ -381,7 +383,9 @@ namespace user
 
          }
 
-         if (!Application.data_set(datakey, iaWidth))
+         auto papplication = get_application();
+
+         if (!papplication->data_set(datakey, iaWidth))
          {
 
             return false;
@@ -392,7 +396,9 @@ namespace user
       else
       {
 
-         if (Application.data_get(datakey, iaWidth))
+         auto papplication = get_application();
+
+         if (papplication->data_get(datakey, iaWidth))
          {
 
             ::count c = minimum(iaWidth.get_count(), m_plistctrlinterface->_001GetColumnCount());
@@ -419,7 +425,7 @@ namespace user
       MESSAGE_LINK(e_message_left_button_down, pchannel, this, &list_header::on_message_left_button_down);
       MESSAGE_LINK(e_message_left_button_up, pchannel, this, &list_header::on_message_left_button_up);
       MESSAGE_LINK(e_message_left_button_double_click, pchannel, this, &list_header::_001OnLButtonDblClk);
-      MESSAGE_LINK(e_message_mouse_move, pchannel, this, &list_header::_001OnMouseMove);
+      MESSAGE_LINK(e_message_mouse_move, pchannel, this, &list_header::on_message_mouse_move);
    }
 
    void list_header::on_message_left_button_down(::message::message * pmessage)
@@ -491,7 +497,7 @@ namespace user
 
 
 
-   void list_header::_001OnMouseMove(::message::message * pmessage)
+   void list_header::on_message_mouse_move(::message::message * pmessage)
    {
       __pointer(::message::mouse) pmouse(pmessage);
       auto pointCursor = pmouse->m_point;
@@ -500,7 +506,7 @@ namespace user
       enum_element eelement;
       index iItem;
 
-      auto psession = Session;
+      auto psession = get_session();
 
       if(hit_test(pointCursor, eelement, iItem))
       {
@@ -520,7 +526,7 @@ namespace user
 
             m_bTrack = false;
 
-            auto psession = Session;
+            auto psession = get_session();
 
             auto puser = psession->user();
 
@@ -549,17 +555,29 @@ namespace user
          }
       }
 
+      auto puser = psession->user();
+
+      auto pwindowing = puser->windowing();
+
+      ::windowing::cursor* pcursor = nullptr;
 
       if(m_bHover && m_eelementHover == ElementDivider)
       {
-         pmouse->m_ecursor = e_cursor_size_horizontal;
+         
+         pcursor = pwindowing->get_cursor(e_cursor_size_horizontal);
+
       }
       else
       {
-         pmouse->m_ecursor = e_cursor_arrow;
+
+         pcursor = pwindowing->get_cursor(e_cursor_arrow);
+
       }
 
+      pmouse->m_pcursor = pcursor;
+
       pmouse->m_bRet = false;
+
    }
 
 

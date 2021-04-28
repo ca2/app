@@ -50,7 +50,7 @@ namespace sockets
 
       };
 
-      AjpBaseSocket(base_socket_handler& h);
+      AjpBaseSocket();
 
       virtual void OnRawData(char *buf, memsize sz) override;
 

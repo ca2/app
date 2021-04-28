@@ -783,7 +783,7 @@ namespace draw2d
    bool path::add_text_out(const ::point_f64 & point, const string & strText,::write_text::font_pointer pfont)
    {
 
-      auto ptextout = __new(text_out_shape);
+      auto ptextout = __new(::write_text::text_out_shape);
 
       auto& textout = ptextout->m_shape;
 
@@ -801,9 +801,9 @@ namespace draw2d
    bool path::add_draw_text(const string& strText, const ::rectangle_f64& rectangle, const ::e_align & ealign, const ::e_draw_text & edrawtext , ::write_text::font_pointer pfont)
    {
 
-      auto pdrawtext = __new(draw_text_shape);
+      auto pdrawtext = __new(::write_text::draw_text_shape);
 
-      ::draw_text & drawtext = pdrawtext->m_shape;
+      auto & drawtext = pdrawtext->m_shape;
 
 
       drawtext.m_strText            = strText;
@@ -1466,9 +1466,9 @@ namespace draw2d
       case e_shape_polygond:
          return _set(pgraphics, pshape->shape < ::polygon_f64>());
       case e_shape_draw_text:
-         return _set(pgraphics, pshape->shape < ::draw_text>());
+         return _set(pgraphics, pshape->shape < ::write_text::draw_text>());
       case e_shape_text_out:
-         return _set(pgraphics, pshape->shape < ::text_out>());
+         return _set(pgraphics, pshape->shape < ::write_text::text_out>());
       default:
          throw "unexpected simple os graphics matter type";
       }
@@ -1576,7 +1576,7 @@ namespace draw2d
    }
 
 
-   bool path::_set(::draw2d::graphics* pgraphics, const ::text_out & textout)
+   bool path::_set(::draw2d::graphics* pgraphics, const ::write_text::text_out & textout)
    {
 
       __throw(error_interface_only);
@@ -1586,7 +1586,7 @@ namespace draw2d
    }
 
 
-   bool path::_set(::draw2d::graphics* pgraphics, const ::draw_text& drawtext)
+   bool path::_set(::draw2d::graphics* pgraphics, const ::write_text::draw_text& drawtext)
    {
 
       __throw(error_interface_only);

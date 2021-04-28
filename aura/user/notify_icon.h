@@ -23,7 +23,7 @@ namespace user
 #ifdef WINDOWS_DESKTOP
       virtual public ::user::interaction
 #else
-      virtual public ::layered
+      virtual public ::object
 #endif
       , virtual public user_notify_icon_bridge
    {
@@ -55,11 +55,11 @@ namespace user
       virtual ~notify_icon();
 
 
-      void AddHiddenWindow(__pointer(::user::interaction) pwnd);
+      void AddHiddenWindow(__pointer(::user::interaction) puserinteraction);
 
       //#ifdef WINDOWS_DESKTOP
 
-      //virtual void remove_all_routes() override;
+      //virtual void erase_all_routes() override;
 
       //virtual bool DestroyWindow() override;
 
@@ -80,8 +80,8 @@ namespace user
 
       virtual bool create_notify_icon(::u32 id, notify_icon_listener * plistener, ::windowing::icon * picon);
 
-      //DECL_GEN_SIGNAL(_001OnNotifyIconMessage);
-      //DECL_GEN_SIGNAL(_001OnDestroy);
+      //DECLARE_MESSAGE_HANDLER(_001OnNotifyIconMessage);
+      //DECLARE_MESSAGE_HANDLER(_001OnDestroy);
 
       //void install_message_routing(::channel * pchannel) override;
 

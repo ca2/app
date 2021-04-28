@@ -79,7 +79,7 @@ public:
    bool isHexColorValue() const;
 
    /**
-    * Determines if the attribute value contains a color context_object
+    * Determines if the attribute value contains a color object
     * @return true, if attribute value is color value, false otherwise.
     * @since 1.0
     * @author Gurmeet S. Kochar
@@ -290,7 +290,7 @@ public:
             {
                if ((pItem = new LiteHTMLElemAttr(rSource[iElem])) == nullptr)
                {
-                  removeAll();
+                  eraseAll();
                   __throw(error_no_memory);
                   return;
                }
@@ -304,7 +304,7 @@ public:
    }
 
    virtual ~LiteHTMLAttributes()
-   { removeAll(); }
+   { eraseAll(); }
 
 // Initialization
 public:
@@ -474,14 +474,14 @@ public:
    /**
     * Removes an LiteHTMLElemAttr item from the collection
     *
-    * @lparam lpszName - attribute to remove
+    * @lparam lpszName - attribute to erase
 
     *
     * @return true if successful, false otherwise
     * @since 1.0
     * @author Gurmeet S. Kochar
     */
-   bool removeAttribute(i32 nIndex)
+   bool eraseAttribute(i32 nIndex)
    {
       if (!(nIndex >= 0 && nIndex < getCount()))
          return (false);
@@ -497,7 +497,7 @@ public:
     * @since 1.0
     * @author Gurmeet S. Kochar
     */
-   bool removeAll()
+   bool eraseAll()
    {
       LiteHTMLElemAttr   *pItem = nullptr;
       for (i32 iElem = 0; iElem < getCount(); iElem++)

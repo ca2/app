@@ -41,13 +41,13 @@ namespace fs
 
       //string strUrl;
 
-      //strUrl = "http://fs.veriwell.net/fs/ls?path=" + ::apex::get_system()->url().url_encode(pszPath);
+      //strUrl = "http://fs.veriwell.net/fs/ls?path=" + purl->url_encode(pszPath);
 
       //string strSource;
 
       //property_set set;
 
-      //strSource = get_context()->http().get(strUrl, set);
+      //strSource = m_pcontext->m_papexcontext->http().get(strUrl, set);
 
       //if(strSource.is_empty())
       //   return false;
@@ -77,7 +77,7 @@ namespace fs
 
       path.m_iDir = 1;
 
-      listing.m_straTitle.add("Remote File ::apex::get_system()");
+      listing.m_straTitle.add("Remote File psystem");
 
       return listing;
 
@@ -114,14 +114,14 @@ namespace fs
 
       //string strUrl;
 
-      //strUrl = "http://fs.veriwell.net/fs/ls?path=" + ::apex::get_system()->url().url_encode(::apex::get_system()->url().get_script(listing.m_pathUser))
-      //         + "&server=" + ::apex::get_system()->url().url_encode(::apex::get_system()->url().get_server(listing.m_pathUser));
+      //strUrl = "http://fs.veriwell.net/fs/ls?path=" + purl->url_encode(purl->get_script(listing.m_pathUser))
+      //         + "&server=" + purl->url_encode(purl->get_server(listing.m_pathUser));
 
       //string strSource;
 
       //property_set set;
 
-      //strSource = get_context()->http().get(strUrl, set);
+      //strSource = m_pcontext->m_papexcontext->http().get(strUrl, set);
 
       //if(strSource.is_empty())
       //   return listing = ::error_failed;
@@ -145,7 +145,7 @@ namespace fs
 
       //      m_mapdirTimeout[listing.m_pathUser]= ::millis::now() + (15 * 1000);
 
-      //      m_mapfileTimeout.remove_key(listing.m_pathUser);
+      //      m_mapfileTimeout.erase_key(listing.m_pathUser);
 
       //      auto & path = listing.add_child_get(pchild->attribute("name"));
 
@@ -169,7 +169,7 @@ namespace fs
 
       //      m_mapfileTimeout[listing.m_pathUser]= ::millis::now() + (15 * 1000);
 
-      //      m_mapdirTimeout.remove_key(listing.m_pathUser);
+      //      m_mapdirTimeout.erase_key(listing.m_pathUser);
 
       //      auto & path = listing.add_child_get(pchild->attribute("name"));
 
@@ -198,8 +198,12 @@ namespace fs
          return 1;
       }
 
-      if(::apex::get_system()->url().get_script(path).is_empty() ||
-         ::apex::get_system()->url().get_script(path) == "/")
+      auto psystem = m_psystem;
+
+      auto purl = psystem->url();
+
+      if(purl->get_script(path).is_empty() ||
+         purl->get_script(path) == "/")
       {
          return 1;
       }
@@ -211,12 +215,12 @@ namespace fs
       if(m_mapfileLast.lookup(path, millisLast))
       {
 
-         if(millisLast.elapsed() > ::get_context_system()->m_millisFileListingCache)
+         if(millisLast.elapsed() > psystem->m_millisFileListingCache)
          {
             
             ::file::listing l;
 
-            get_context()->dir().ls(l, path);
+            m_pcontext->m_papexcontext->dir().ls(l, path);
             
          }
          else
@@ -231,12 +235,12 @@ namespace fs
       if(m_mapdirLast.lookup(path, millisLast))
       {
          
-         if(millisLast.elapsed() > ::get_context_system()->m_millisFileListingCache)
+         if(millisLast.elapsed() > psystem->m_millisFileListingCache)
          {
             
             ::file::listing l;
 
-            get_context()->dir().ls(l, path);
+            m_pcontext->m_papexcontext->dir().ls(l, path);
          }
          else
          {
@@ -246,7 +250,7 @@ namespace fs
 
       if(m_mapfileLast.lookup(path, millisLast))
       {
-         if(millisLast.elapsed() > ::get_context_system()->m_millisFileListingCache)
+         if(millisLast.elapsed() > psystem->m_millisFileListingCache)
          {
             return 0;
          }
@@ -264,11 +268,11 @@ namespace fs
 
       /*string strUrl;
 
-      strUrl = "http://fs.veriwell.net/fs/ls?path=" + ::apex::get_system()->url().url_encode(pszPath);
+      strUrl = "http://fs.veriwell.net/fs/ls?path=" + purl->url_encode(pszPath);
 
       string strSource;
 
-      strSource = get_context()->http().get(strUrl);
+      strSource = m_pcontext->m_papexcontext->http().get(strUrl);
 
       if(strSource.is_empty())
       return false;
@@ -340,7 +344,7 @@ namespace fs
 
       if(!m_bInitialized)
       {
-         //get_context()->http().get("http://file.ca2.cc/");
+         //m_pcontext->m_papexcontext->http().get("http://file.ca2.cc/");
          m_bInitialized = true;
       }
 

@@ -69,10 +69,10 @@ namespace filemanager
    }
 
 
-   ::e_status data::initialize_filemanager_data(::layered * pobjectContext)
+   ::e_status data::initialize_filemanager_data(::object * pobject)
    {
 
-      auto estatus = ::data::data::initialize(pobjectContext);
+      auto estatus = ::data::data::initialize(pobject);
 
       if (!estatus)
       {
@@ -131,10 +131,12 @@ namespace filemanager
    bool data::open(::apex::application * pappOnBehalfOf, ::file::path path, const ::action_context & context)
    {
 
+      __pointer(::core::application) papplicationOnBehalfOf = pappOnBehalfOf;
+
       if (::is_null(m_pdocument))
       {
 
-         ::user::interaction * puiParent = m_puserinteractionParent;
+         __pointer(::user::interaction) puiParent = m_puserinteractionParent;
 
          bool bMakeVisible = m_bMakeVisible;
 
@@ -152,31 +154,31 @@ namespace filemanager
             if (::is_set(m_pcreate))
             {
 
-               puiParent = dynamic_cast <::user::interaction*> (m_pcreate->m_puserinteractionParent);
+               puiParent = m_pcreate->m_puserprimitiveParent;
 
             }
 
          }
 
-         if(::is_null(pappOnBehalfOf))
+         if(::is_null(papplicationOnBehalfOf))
          {
 
             if (::is_set(puiParent))
             {
 
-               pappOnBehalfOf = puiParent->get_context_application();
+               pappOnBehalfOf = puiParent->get_application();
 
             }
-            else if (::is_set(m_pcreate) && ::is_set(m_pcreate->create_get_application(get_context_application())))
+            else if (::is_set(m_pcreate) && ::is_set(m_pcreate->create_get_application(get_application())))
             {
 
-               pappOnBehalfOf = m_pcreate->create_get_application(get_context_application());
+               papplicationOnBehalfOf = m_pcreate->create_get_application(get_application());
 
             }
-            else if (::is_set(m_pdocumentTopic) && ::is_set(m_pdocumentTopic->get_context_application()))
+            else if (::is_set(m_pdocumentTopic) && ::is_set(m_pdocumentTopic->get_application()))
             {
 
-               pappOnBehalfOf = m_pdocumentTopic->get_context_application();
+               papplicationOnBehalfOf = m_pdocumentTopic->get_application();
 
             }
 
@@ -185,10 +187,10 @@ namespace filemanager
          if (::is_null(puiParent))
          {
 
-            if (::is_set(App(pappOnBehalfOf).m_puiMainContainer))
+            if (::is_set(papplicationOnBehalfOf->m_puiMainContainer))
             {
 
-               puiParent = App(pappOnBehalfOf).m_puiMainContainer;
+               puiParent = papplicationOnBehalfOf->m_puiMainContainer;
 
             }
 
@@ -260,12 +262,16 @@ namespace filemanager
 //   }
 
 
-   string data::get_last_browse_path(::object * pobjectContext, const char * pszDefault)
+   string data::get_last_browse_path(::object * pobject, const char * pszDefault)
    {
 
       string strPath;
 
-      if (App(pobjectContext).data_get({true, "last_browse_folder"}, strPath))
+      __pointer(::core::application) papplication = pobject->get_application();
+
+      auto pcontext = m_pcontext;
+
+      if (papplication->data_get({true, "last_browse_folder"}, strPath))
       {
 
          if (strPath == "machinefs://")
@@ -277,7 +283,7 @@ namespace filemanager
 
             strId = "last_browse_folder." + __str(idMachine);
 
-            if (!App(pobjectContext).data_get({ true, strId }, strPath))
+            if (!papplication->data_get({ true, strId }, strPath))
             {
 
                strPath.empty();
@@ -286,9 +292,9 @@ namespace filemanager
 
          }
 
-         //Context.dir().mk(strPath);
+         //pcontext->m_papexcontext->dir().mk(strPath);
 
-         if (App(pobjectContext).dir().is(strPath))
+         if (pcontext->m_papexcontext->dir().is(strPath))
          {
 
             return strPath;
@@ -306,7 +312,7 @@ namespace filemanager
       else
       {
 
-         strPath = App(pobjectContext).dir().desktop();
+         strPath = pcontext->m_papexcontext->dir().desktop();
 
       }
 
@@ -337,22 +343,24 @@ namespace filemanager
    }
 
 
-   ::e_status data::set_last_browse_path(::object * pobjectContext, const ::file::path& path)
+   ::e_status data::set_last_browse_path(::object * pobject, const ::file::path& path)
    {
 
       string strPath(path);
+
+      __pointer(::core::application) papplication = pobject->get_application();
 
       if (::str::begins(path, astr.UifsProtocol)
          || ::str::begins(path, astr.FsProtocol))
       {
 
-         App(pobjectContext).data_set({ true, "last_browse_folder" }, strPath);
+         papplication->data_set({ true, "last_browse_folder" }, strPath);
 
       }
       else
       {
 
-         App(pobjectContext).data_set({ true, "last_browse_folder" }, "machinefs://");
+         papplication->data_set({ true, "last_browse_folder" }, "machinefs://");
 
          auto idMachine = get_local_machine_id();
 
@@ -360,7 +368,7 @@ namespace filemanager
 
          strId = "last_browse_folder." + __str(idMachine);
 
-         App(pobjectContext).data_set({ true, strId }, strPath);
+         papplication->data_set({ true, strId }, strPath);
 
       }
 

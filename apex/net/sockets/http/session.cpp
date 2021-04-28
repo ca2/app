@@ -13,8 +13,8 @@ namespace sockets
 {
 
 
-   http_session::http_session(::sockets::base_socket_handler & handler,const string & protocol,const string & host) :
-      ::object(&handler),
+   http_session::http_session(const string & protocol,const string & host) //:
+     /* ::object(&handler),
       base_socket(handler),
       socket(handler),
       stream_socket(handler),
@@ -24,7 +24,7 @@ namespace sockets
       http_client_socket(handler),
       http_get_socket(handler),
       http_post_socket(handler),
-      http_put_socket(handler)
+      http_put_socket(handler)*/
    {
 
       m_bEnablePool = false;

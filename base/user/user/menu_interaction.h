@@ -14,8 +14,15 @@ namespace user
       __pointer(menu_item)        m_pmenuitem;
 
 
-      menu_interaction(menu_item * pitem);
+      menu_interaction();
       virtual ~menu_interaction();
+
+      
+      virtual ::e_status initialize_menu_interaction(menu_item* pmenuitem);
+
+
+      inline ::base::session* get_session() const;
+
 
       virtual void install_message_routing(::channel * pchannel) override;
 
@@ -29,8 +36,8 @@ namespace user
 
       virtual void _001OnDrawDefault(::draw2d::graphics_pointer & pgraphics);
 
-      DECL_GEN_SIGNAL(on_message_create);
-      DECL_GEN_SIGNAL(_001OnMouseMove);
+      DECLARE_MESSAGE_HANDLER(on_message_create);
+      DECLARE_MESSAGE_HANDLER(on_message_mouse_move);
 
 
       virtual void on_calc_size(calc_size * psize) override;

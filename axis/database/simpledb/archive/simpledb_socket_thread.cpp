@@ -8,7 +8,7 @@ namespace simpledb
 {
 
 
-   socket_thread::socket_thread(::layered * pobjectContext) :
+   socket_thread::socket_thread(::object * pobject) :
       ::object(pobject),
       thread(pobject),
       ::sockets::socket_handler(pobject)
@@ -39,7 +39,7 @@ namespace simpledb
    bool socket_thread::init_thread()
    {
 
-      //Application.::simpledb::application::m_pmanager->LoadEnv();
+      //papplication->::simpledb::application::m_pmanager->LoadEnv();
 
 
       /*   STARTUPINFO startupinfo;
@@ -115,14 +115,14 @@ namespace simpledb
                      string strMessage;
                      strMessage.Format("could not bind to address %s %d", m_strIp, m_iPort);
                      TRACE(strMessage);
-                     //System->message_box(nullptr, strMessage);
+                     //message_box(nullptr, strMessage);
                      return;
                   }
                   ::sockets::socket_handler::add(&ll);
                   while (true)
                   {
                      select(8,0);
-                     if(!m_pservice-thread_get_run())
+                     if(!m_pservice-task_get_run())
                         break;
                   }
                   if(!m_pservice->get_run_service())

@@ -35,11 +35,13 @@ namespace user
          mutable ::e_align              m_ealign;
 
 
-         format(__pointer_array(format) * pcontainer);
+         format();
+         format(__pointer_array(format)* pcontainer);
          format(const format & format);
          virtual ~format();
 
 
+         virtual ::e_status initialize_user_rich_text_format(__pointer_array(format)* pcontainer);
          //virtual ::stream & write(::stream & stream) const override;
          //virtual ::stream & read(::stream & stream) override;
 

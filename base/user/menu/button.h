@@ -12,8 +12,12 @@ namespace user
    public:
 
 
-      menu_button(menu_item * pitem);
+      menu_button();
       virtual ~menu_button();
+
+
+      virtual ::e_status initialize_menu_interaction(menu_item* pitem) override;
+
 
       virtual void install_message_routing(::channel * pchannel) override;
 
@@ -29,8 +33,8 @@ namespace user
 
       virtual void _001OnDrawDefault(::draw2d::graphics_pointer & pgraphics) override;
 
-      DECL_GEN_SIGNAL(on_message_create);
-      DECL_GEN_SIGNAL(_001OnMouseMove);
+      DECLARE_MESSAGE_HANDLER(on_message_create);
+      DECLARE_MESSAGE_HANDLER(on_message_mouse_move);
 
       virtual void on_calc_size(calc_size * psize) override;
 

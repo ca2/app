@@ -87,17 +87,17 @@ namespace user
 
       void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
-      DECL_GEN_SIGNAL(on_message_left_button_down);
-      DECL_GEN_SIGNAL(on_message_create);
-      DECL_GEN_SIGNAL(_001OnDestroy);
-      DECL_GEN_SIGNAL(_001OnNcActivate);
-      DECL_GEN_SIGNAL(_001OnNcCalcSize);
-      DECL_GEN_SIGNAL(_001OnEnable);
-      DECL_GEN_SIGNAL(_001OnShowWindow);
-      DECL_GEN_SIGNAL(_001OnClose);
-      DECL_GEN_SIGNAL(_001OnMouseActivate);
-      DECL_GEN_SIGNAL(_001OnActivate);
-      DECL_GEN_SIGNAL(_001OnNcCreate);
+      DECLARE_MESSAGE_HANDLER(on_message_left_button_down);
+      DECLARE_MESSAGE_HANDLER(on_message_create);
+      DECLARE_MESSAGE_HANDLER(_001OnDestroy);
+      DECLARE_MESSAGE_HANDLER(_001OnNcActivate);
+      DECLARE_MESSAGE_HANDLER(_001OnNcCalcSize);
+      DECLARE_MESSAGE_HANDLER(_001OnEnable);
+      DECLARE_MESSAGE_HANDLER(_001OnShowWindow);
+      DECLARE_MESSAGE_HANDLER(_001OnClose);
+      DECLARE_MESSAGE_HANDLER(_001OnMouseActivate);
+      DECLARE_MESSAGE_HANDLER(_001OnActivate);
+      DECLARE_MESSAGE_HANDLER(_001OnNcCreate);
 
 
       virtual void on_control_event(::user::control_event * pevent) override;

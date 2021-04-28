@@ -6,8 +6,8 @@ namespace userpresence
 
 
    class CLASS_DECL_CORE department :
-      virtual public ::apex::department,
-      virtual public ::apex::timer_array
+      virtual public ::acme::department,
+      virtual public ::acme::timer_array
    {
    public:
 
@@ -21,8 +21,8 @@ namespace userpresence
       virtual ~department();
 
 
-      virtual ::e_status initialize(::layered * pobjectContext) override;
-      virtual void finalize() override;
+      virtual ::e_status initialize(::object * pobject) override;
+      virtual ::e_status finalize() override;
 
 
       virtual bool defer_initialize_user_presence();

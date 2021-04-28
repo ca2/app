@@ -18,10 +18,10 @@ namespace linux
    }
 
 
-   ::e_status file_system::initialize(::layered * pobjectContext)
+   ::e_status file_system::initialize(::object * pobject)
    {
 
-      auto estatus = ::file_system::initialize(pobjectContext);
+      auto estatus = ::file_system::initialize(pobject);
 
       if(!estatus)
       {
@@ -62,7 +62,7 @@ namespace linux
 
       }
 
-      ::file::path pathAppModule = ::file::app_module();
+      ::file::path pathAppModule = m_psystem->m_pacmepath->app_module();
 
       m_pathModule = pathAppModule;
 

@@ -6,9 +6,9 @@ namespace sockets
 {
 
 
-   sync_socket_handler::sync_socket_handler(::layered * pobjectContext, ::apex::log * plog) :
-      ::object(pobjectContext),
-      m_handler(pobjectContext, plog)
+   sync_socket_handler::sync_socket_handler(::object * pobject, ::apex::log * plog) :
+      ::object(pobject),
+      m_handler(pobject, plog)
    {
 
       m_psocket            = nullptr;
@@ -58,7 +58,7 @@ namespace sockets
       {
          m_handler.select(8, 0);
       }
-      return m_file.remove_begin(pdata, len);
+      return m_file.erase_begin(pdata, len);
    }
 
    string sync_socket_handler::read_string()

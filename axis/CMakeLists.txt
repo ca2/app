@@ -2,19 +2,6 @@ cmake_minimum_required(VERSION 3.17)
 project(axis CXX)
 
 
-add_compile_options("$<$<CONFIG:DEBUG>:-DDEBUG>")
-
-
-if(LINUX)
-elseif(WIN32)
-elseif(UWP)
-endif()
-
-
-set(LIBRARY_OUTPUT_PATH ${CMAKE_CURRENT_SOURCE_DIR}/../../../time-${PLATFORM_NAME}/cmake)
-set(EXECUTABLE_OUTPUT_PATH ${CMAKE_CURRENT_SOURCE_DIR}/../../../time-${PLATFORM_NAME}/cmake)
-
-
 list(APPEND axis_source
         account/_.h
         account/_account.h
@@ -85,6 +72,10 @@ list(APPEND axis_source
         database/database/const.h
         database/database/database.cpp
         database/database/database.h
+        database/database/database_composite.cpp
+        database/database/database_composite.h
+        database/database/database_impl.cpp
+        database/database/database_impl.h
         database/database/dataset.cpp
         database/database/dataset.h
         database/database/definition.cpp
@@ -92,6 +83,8 @@ list(APPEND axis_source
         database/database/field_definition.cpp
         database/database/field_definition.h
         database/database/template.h
+        database/database/transaction.cpp
+        database/database/transaction.h
         database/simpledb/_.h
         database/simpledb/_simpledb.h
         database/simpledb/file_set.cpp
@@ -226,29 +219,6 @@ list(APPEND axis_source
         net/_net.h
         net/email_department.cpp
         net/email_department.h
-        #node/dummy/frame_window.cpp
-        node/_.h
-        node/_node.h
-        #node/node_serial.cpp
-        node/serial.h
-        #os/ansios/_.h
-        #os/ansios/_ansios.h
-        #os/ansios/_c.h
-        #os/ansios/ansios_file.h
-        #os/ansios/callstack.h
-        #os/ansios/datetime_c.h
-        #os/ansios/exception_engine.h
-        #os/ansios/file.h
-        #os/ansios/file_c.h
-        #os/ansios/file_raw.h
-        #os/ansios/multithreading.h
-        os/cairo/_.h
-        os/cairo/_impl.h
-        os/_.h
-        os/_application.h
-        os/_c.h
-        os/_impl.h
-        os/_os.h
         pcre/_.h
         pcre/_pcre.h
         pcre/code.cpp
@@ -681,12 +651,6 @@ if(LINUX OR APPLE OR SOLARIS)
 
 endif()
 
-
-if (MSVC)
-    set(LIBCXX_TARGETING_MSVC ON)
-else()
-    set(LIBCXX_TARGETING_MSVC OFF)
-endif()
 
 
 add_library(axis SHARED ${axis_source})

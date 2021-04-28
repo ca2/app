@@ -22,7 +22,7 @@ namespace tsf
 
       m_cCompositions++;
 
-      //increment the context_object count
+      //increment the object count
       pComposition->AddRef();
 
       //find an empty slot to put the composition pointer in

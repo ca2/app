@@ -26,7 +26,7 @@ namespace dynamic_source
 
 
    class CLASS_DECL_APP_PROGRAMMING script_manager :
-      virtual public ::user::message_queue_listener
+      virtual public ::user::message_window_listener
    {
    public:
 
@@ -39,7 +39,7 @@ namespace dynamic_source
 
          __pointer(script_manager)   m_pmanager;
 
-         clear_include_matches_file_watcher(::layered * pobjectContext);
+         clear_include_matches_file_watcher(::object * pobject);
 
          virtual void handle_file_action(::file::action * paction) override;
 
@@ -93,7 +93,7 @@ namespace dynamic_source
       string_map < bool >                                   m_mapShouldBuild;
       ::mutex                                               m_mutexIncludeExpandMd5;
       string_to_string                                      m_mapIncludeExpandMd5;
-      __composite(::user::message_queue)                    m_pmessagequeue;
+      __composite(::user::message_window)                   m_pmessagequeue;
 
       i32                                                   m_iTunnelPluginCount;
       ::mutex                                               m_mutexOutLink;
@@ -160,7 +160,7 @@ namespace dynamic_source
       virtual ~script_manager();
 
       
-      virtual ::e_status initialize(::layered * pobjectContext) override;
+      virtual ::e_status initialize(::object * pobject) override;
 
 
       virtual ::e_status init1();

@@ -9,7 +9,7 @@ namespace aura
 //   __pointer(::extended::future < ::conversation >) system::message_box(const char * pszMessage, const char * pszTitle, const ::e_message_box & emessagebox)
 //   {
 //
-//      auto psession = Session;
+//      auto psession = get_session();
 //
 //      auto puser = psession->m_puser;
 //
@@ -35,7 +35,7 @@ namespace aura
    //::e_status system::message_box_timeout(const char * pszMessage, const char * pszTitle, const ::duration & durationTimeout, const ::e_message_box & emessagebox, const future & process)
    //{
 
-   //   auto psession = Session;
+   //   auto psession = get_session();
 
    //   auto puser = psession->m_puser;
 
@@ -51,37 +51,37 @@ namespace aura
    //}
 
 
-   ::e_status system::start()
-   {
+   //::e_status system::system_start()
+   //{
 
-      auto estatus = create_os_node();
+   //   auto estatus = ::aqua::system::system_start();
 
-      if (!estatus)
-      {
+   //   if (!estatus)
+   //   {
 
-         return estatus;
+   //      return estatus;
 
-      }
+   //   }
 
-      if (m_pnode)
-      {
+   //   //estatus = create_os_node();
 
-         return m_pnode->start();
+   //   //if (!estatus)
+   //   //{
 
-      }
+   //   //   return estatus;
 
-      estatus = ::aqua::system::start();
+   //   //}
 
-      if (!estatus)
-      {
+   //   //if (m_pnode)
+   //   //{
 
-         return estatus;
+   //   //   return m_pnode->start();
 
-      }
+   //   //}
 
-      return ::success;
+   //   return ::success;
 
-   }
+   //}
 
 
 } // namespace aura

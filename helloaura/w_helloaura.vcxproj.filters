@@ -24,7 +24,7 @@
     <ClInclude Include="helloaura_pane_view.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="aaa_want_to_remove_helloaura_view_update_hint.h">
+    <ClInclude Include="aaa_want_to_erase_helloaura_view_update_hint.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="helloaura_switcher_view.h">
@@ -74,7 +74,7 @@
     <ClCompile Include="helloaura_pane_view.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="aaa_want_to_remove_helloaura_view_update_hint.cpp">
+    <ClCompile Include="aaa_want_to_erase_helloaura_view_update_hint.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="helloaura_switcher_view.cpp">

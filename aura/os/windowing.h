@@ -16,7 +16,7 @@
 //CLASS_DECL_AURA int_bool is_window(::windowing::window * pwindow);
 //CLASS_DECL_AURA oswindow get_keyboard_focus();
 //CLASS_DECL_AURA oswindow set_keyboard_focus(::windowing::window * pwindow);
-//CLASS_DECL_AURA bool remove_focus(::windowing::window * pwindow);
+//CLASS_DECL_AURA bool erase_focus(::windowing::window * pwindow);
 //CLASS_DECL_AURA bool clear_focus();
 //CLASS_DECL_AURA oswindow get_active_window();
 //CLASS_DECL_AURA oswindow set_active_window(::windowing::window * pwindow);

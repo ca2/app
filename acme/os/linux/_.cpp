@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "acme/id.h"
 //extern thread_pointer < os_thread > t_posthread;
-//extern thread_pointer < hthread > t_hthread;
+//extern thread_pointer < htask > t_hthread;
 
 
 namespace audio
@@ -30,7 +30,7 @@ CLASS_DECL_ACME bool __node_acme_pre_init()
 CLASS_DECL_ACME bool __node_acme_pos_init()
 {
 
-//   t_hthread = new hthread();
+//   t_hthread = new htask();
 //
 //    //t_hthread-
 //
@@ -41,7 +41,7 @@ CLASS_DECL_ACME bool __node_acme_pos_init()
 }
 
 
-//void __clear_mq(const char * pszDebug, ithread_t id, bool bClose);
+//void __clear_mq(const char * pszDebug, itask_t id, bool bClose);
 //void __clear_mq(const char * pszDebug, bool bClose);
 
 
@@ -66,12 +66,12 @@ CLASS_DECL_ACME bool __node_acme_pos_term()
 }
 
 
-::file::path dir::sys_temp()
-{
-
-   return ::file::path(getenv("HOME")) / ".config/ca2/time";
-
-}
+//::file::path dir::sys_temp()
+//{
+//
+//   return ::file::path(getenv("HOME")) / ".config/ca2/time";
+//
+//}
 
 
 // http://stackoverflow.com/questions/150355/programmatically-find-the-number-of-cores-on-a-machine

@@ -60,7 +60,7 @@
 
                m_brushGrip->create_solid(argb(0xff, 0x60, 0x65, 0x55));
 
-               auto psession = Session;
+               auto psession = get_session();
 
                auto pframewindow = m_pframewindow;
 
@@ -241,7 +241,7 @@ SizingNone:;
 
                }
 
-               auto psession = Session;
+               auto psession = get_session();
 
                status < ::color::color > crMoveableBorder;
                status < ::color::color > crMoveableBorderHilight;
@@ -256,7 +256,7 @@ SizingNone:;
                else
                {
 
-                  auto psession = Session;
+                  auto psession = get_session();
 
                   auto pstyle = pframewindow->get_style(pgraphics);
 
@@ -302,7 +302,7 @@ SizingNone:;
                   ::rectangle_i32 rectangle;
                   GetBorderRect(rectClient, rectangle, eside);
 
-                  //class imaging & imaging = System->imaging();
+                  //class imaging & imaging = psystem->imaging();
                   //imaging.color_blend(
                      
                      pgraphics->color_blend(
@@ -503,7 +503,7 @@ SizingNone:;
             void frame_005::Draw3dRectSide(::draw2d::graphics_pointer & pgraphics,const rectangle_i32 & rectParam,enum_border eborder,color32_t crTopLeft,color32_t crBottomRight)
             {
 
-               auto psession = Session;
+               auto psession = get_session();
 
 
 
@@ -520,7 +520,7 @@ SizingNone:;
 
                   rectDraw = ::rect_dim(x, y, cx, 1);
 
-                  if(psession->savings().is_trying_to_save(::e_resource_processing))
+                  if(psession->m_paurasession->savings().is_trying_to_save(::e_resource_processing))
                   {
 
                      pgraphics->fill_rectangle(rectDraw, crTopLeft);
@@ -539,7 +539,7 @@ SizingNone:;
 
                   rectDraw = ::rect_dim(x, y + 1, 1, cy - 2);
 
-                  if(psession->savings().is_trying_to_save(::e_resource_processing))
+                  if(psession->m_paurasession->savings().is_trying_to_save(::e_resource_processing))
                   {
 
                      pgraphics->fill_rectangle(rectDraw, crTopLeft);
@@ -559,7 +559,7 @@ SizingNone:;
 
                   rectDraw = ::rect_dim(x + cx - 1, y + 1, 1, cy - 2);
 
-                  if(psession->savings().is_trying_to_save(e_resource_processing))
+                  if(psession->m_paurasession->savings().is_trying_to_save(e_resource_processing))
                   {
 
                      pgraphics->fill_rectangle(rectDraw, crBottomRight);
@@ -579,7 +579,7 @@ SizingNone:;
 
                   rectDraw = ::rect_dim(x, y + cy - 1, cx, 1);
 
-                  if(psession->savings().is_trying_to_save(e_resource_processing))
+                  if(psession->m_paurasession->savings().is_trying_to_save(e_resource_processing))
                   {
 
                      pgraphics->fill_rectangle(rectDraw, crBottomRight);
@@ -750,7 +750,7 @@ SizingNone:;
             void frame_005::DrawRectGrip(::draw2d::graphics_pointer & pgraphics,const rectangle_i32 & rectParam)
             {
 
-               auto psession = Session;
+               auto psession = get_session();
 
                auto pframewindow = m_pframewindow;
 

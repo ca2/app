@@ -105,7 +105,7 @@ oswindow_data & oswindow_data::operator = (const oswindow_data & oswindow)
 }
 
 
-//bool oswindow_remove(nswindow window)
+//bool oswindow_erase(nswindow window)
 //{
 //
 //   iptr iFind = oswindow_find(window);
@@ -113,7 +113,7 @@ oswindow_data & oswindow_data::operator = (const oswindow_data & oswindow)
 //   if(iFind < 0)
 //      return false;
 //
-//   g_poswindowdataptra->remove_at(iFind);
+//   g_poswindowdataptra->erase_at(iFind);
 //
 //   return true;
 //

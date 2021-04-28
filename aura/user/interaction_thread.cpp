@@ -218,7 +218,7 @@ namespace user
 
 #endif
 
-      set_topic_text("window_thread_" + ::str::demangle(m_pimpl->m_puserinteraction->type_name()) + "> ");
+      //set_topic_text("window_thread_" + ::str::demangle(m_pimpl->m_puserinteraction->type_name()) + "> ");
 
       ::set_thread_name(::str::demangle(m_pimpl->m_puserinteraction->type_name()));
 
@@ -248,14 +248,14 @@ namespace user
 
       //      set_thread_name("test");
 
-            //windows_desktop1_main(::aura::get_system()->m_hinstance, SW_SHOWNORMAL);
+            //windows_desktop1_main(psystem->m_hinstance, SW_SHOWNORMAL);
 
       //  });
 
       //if (m_bCreateNativeWindowOnInteractionThread)
       //{
 
-      auto psession = Session;
+      __pointer(::aura::session) psession = get_session();
 
       auto puser = psession->user();
 
@@ -298,7 +298,7 @@ namespace user
 
       //m_himc = ImmGetContext(m_pimpl->get_handle());
 
-      __bind(this, m_pprodevian, m_pimpl->m_pprodevian);
+      __refer(m_pprodevian, m_pimpl->m_pprodevian);
 
       m_oswindow = m_pimpl->m_pwindow->get_oswindow();
 
@@ -316,16 +316,16 @@ namespace user
 
       {
 
-         synchronization_lock synchronizationlock(mutex());
+         synchronous_lock synchronouslock(mutex());
 
          if (m_messagebasea.has_elements())
          {
 
             auto pusermessage = m_messagebasea.first_pointer();
 
-            m_messagebasea.remove_at(0);
+            m_messagebasea.erase_at(0);
 
-            synchronizationlock.unlock();
+            synchronouslock.unlock();
 
             m_pimpl->m_puserinteraction->message_handler(pusermessage);
 
@@ -405,7 +405,7 @@ namespace user
                && ::thread::finish_bit())
             {
 
-               m_pimpl->m_puserinteraction->DestroyWindow();
+               m_pimpl->m_puserinteraction->start_destroying_window();
 
             }
 
@@ -459,8 +459,8 @@ namespace user
 
          }
 
-         //// get_context_application() may be it self, it is ok...
-         //if (Application.final_handle_exception(e))
+         //// get_application() may be it self, it is ok...
+         //if (papplication->final_handle_exception(e))
          //{
 
          //   return true;
@@ -734,53 +734,70 @@ namespace user
    }
 
 
-   ::e_status thread::set_finish_composites(::context_object * pcontextobjectFinish)
+   ::e_status thread::finish_composites()
    {
 
-      auto estatus = channel::set_finish_composites(pcontextobjectFinish);
+      auto estatus = ::channel::finish_composites();
 
-      if (estatus == error_pending)
-      {
-
-         return estatus;
-
-      }
-
-      if (m_pimpl)
-      {
-
-         auto puserinteraction = m_pimpl->m_puserinteraction;
-
-         if (puserinteraction)
-         {
-
-            if (!m_pimpl->m_bDestroying)
-            {
-
-               puserinteraction->DestroyWindow();
-
-            }
-
-         }
-
-         return error_pending;
-
-      }
-
-      if (task_active())
-      {
-
-         set_finish_bit();
-
-         post_quit();
-
-         return error_pending;
-
-      }
-
-      return ::success;
+      return estatus;
 
    }
+
+
+   void thread::enumerate_composite(matter_array& a)
+   {
+
+
+   }
+
+
+   //::e_status thread::set_finish_composites(::property_object * pcontextobjectFinish)
+   //{
+
+   //   auto estatus = channel::set_finish_composites(pcontextobjectFinish);
+
+   //   if (estatus == error_pending)
+   //   {
+
+   //      return estatus;
+
+   //   }
+
+   //   if (m_pimpl)
+   //   {
+
+   //      auto puserinteraction = m_pimpl->m_puserinteraction;
+
+   //      if (puserinteraction)
+   //      {
+
+   //         if (!m_pimpl->m_bDestroying)
+   //         {
+
+   //            puserinteraction->DestroyWindow();
+
+   //         }
+
+   //      }
+
+   //      return error_pending;
+
+   //   }
+
+   //   if (task_active())
+   //   {
+
+   //      set_finish_bit();
+
+   //      post_quit();
+
+   //      return error_pending;
+
+   //   }
+
+   //   return ::success;
+
+   //}
 
 
    ::e_status thread::run()
@@ -806,80 +823,88 @@ namespace user
 
       //   }
       //}
-            int_bool    fResult = true;
+      int_bool    fResult = true;
 
-            //while (fResult)
-            //{
-            //   MSG     msg;
-            //   BOOL    fEaten;
+      //while (fResult)
+      //{
+      //   MSG     msg;
+      //   BOOL    fEaten;
 
-               /*
-               Get the next message in the queue. fResult receives false if e_message_quit is encountered
-               */
-//            }
+         /*
+         Get the next message in the queue. fResult receives false if e_message_quit is encountered
+         */
+         //            }
 
-      //}
+               //}
 
-            //if (FAILED(pMsgPump->GetMessage(&msg, NULL, 0, 0, &fResult)))
-            //{
-            //   fResult = false;
-            //}
-            //else if (e_message_key_down == msg.message)
-            //{
-            //   // does an ime want it?
-            //   if (pKeyMgr->TestKeyDown(msg.wParam, msg.lParam, &fEaten) == S_OK && fEaten &&
-            //      pKeyMgr->KeyDown(msg.wParam, msg.lParam, &fEaten) == S_OK && fEaten)
-            //   {
-            //      continue;
-            //   }
-            //}
-            //else if (e_message_key_up == msg.message)
-            //{
-            //   // does an ime want it?
-            //   if (pKeyMgr->TestKeyUp(msg.wParam, msg.lParam, &fEaten) == S_OK && fEaten &&
-            //      pKeyMgr->KeyUp(msg.wParam, msg.lParam, &fEaten) == S_OK && fEaten)
-            //   {
-            //      continue;
-            //   }
-            //}
+                     //if (FAILED(pMsgPump->GetMessage(&msg, NULL, 0, 0, &fResult)))
+                     //{
+                     //   fResult = false;
+                     //}
+                     //else if (e_message_key_down == msg.message)
+                     //{
+                     //   // does an ime want it?
+                     //   if (pKeyMgr->TestKeyDown(msg.wParam, msg.lParam, &fEaten) == S_OK && fEaten &&
+                     //      pKeyMgr->KeyDown(msg.wParam, msg.lParam, &fEaten) == S_OK && fEaten)
+                     //   {
+                     //      continue;
+                     //   }
+                     //}
+                     //else if (e_message_key_up == msg.message)
+                     //{
+                     //   // does an ime want it?
+                     //   if (pKeyMgr->TestKeyUp(msg.wParam, msg.lParam, &fEaten) == S_OK && fEaten &&
+                     //      pKeyMgr->KeyUp(msg.wParam, msg.lParam, &fEaten) == S_OK && fEaten)
+                     //   {
+                     //      continue;
+                     //   }
+                     //}
 
-            //if (fResult)
-            //{
-            //   TranslateMessage(&msg);
-            //   DispatchMessage(&msg);
-            //}
+                     //if (fResult)
+                     //{
+                     //   TranslateMessage(&msg);
+                     //   DispatchMessage(&msg);
+                     //}
 
-            //if (e_message_quit == msg.message)
-            //{
-            //   nReturn = (int)msg.wParam;
-            //}
+                     //if (e_message_quit == msg.message)
+                     //{
+                     //   nReturn = (int)msg.wParam;
+                     //}
 
-      while (thread_get_run())
+      if (m_bMessageThread)
       {
 
-         if (!pump_message())
+         while (task_get_run())
          {
 
-            if (m_strDebugType.contains("filemanager"))
+            if (!pump_message())
             {
 
-               //INFO("filemanager");
+               if (m_strDebugType.contains("filemanager"))
+               {
+
+                  //INFO("filemanager");
+
+               }
+
+               if (m_strDebugType.contains("main_frame"))
+               {
+
+                  output_debug_string("!xxm_bSimpleMessageLoop !xxpump_message xxthread::run from main_frame");
+
+               }
+
+               break;
+
+
 
             }
 
-            if (m_strDebugType.contains("main_frame"))
-            {
-
-               output_debug_string("!xxm_bSimpleMessageLoop !xxpump_message xxthread::run from main_frame");
-
-            }
-
-            break;
 
          }
 
-
       }
+
       //m_pMsgPump->Release();
 
       //   m_pKeyMgr->Release();
@@ -980,7 +1005,7 @@ namespace user
 //#endif
 
 
-   bool thread::thread_get_run() const
+   bool thread::task_get_run() const
    {
 
       if (m_pimpl)
@@ -990,7 +1015,7 @@ namespace user
 
       }
 
-      return ::thread::thread_get_run();
+      return ::thread::task_get_run();
 
    }
 
@@ -1005,18 +1030,18 @@ namespace user
    }
 
 
-   ::e_status thread::finish(::context_object * pcontextobjectFinish)
+   ::e_status thread::finish()
    {
 
-      return ::thread::finish(pcontextobjectFinish);
+      return ::thread::finish();
 
    }
 
 
-   void thread::finalize()
+   ::e_status thread::finalize()
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       if (m_pimpl)
       {
@@ -1030,7 +1055,7 @@ namespace user
          else if (m_pimpl->m_puserinteraction)
          {
 
-            m_pimpl->m_puserinteraction->DestroyWindow();
+            m_pimpl->m_puserinteraction->start_destroying_window();
 
          }
 
@@ -1051,6 +1076,8 @@ namespace user
 
       }
 
+      return ::success;
+
    }
 
 
@@ -1062,7 +1089,7 @@ namespace user
          INFO("notify_icon");
       }
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       m_pimpl.release();
 

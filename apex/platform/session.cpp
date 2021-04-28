@@ -2,8 +2,7 @@
 #include "apex/operating_system.h"
 #include "acme/id.h"
 #include "apex/platform/app_core.h"
-#include "apex/platform/static_setup.h"
-
+#include "acme/platform/static_setup.h"
 
 
 #if defined(APPLE_IOS) || defined(_UWP) || defined(ANDROID)
@@ -53,16 +52,27 @@ namespace apex
    session::session()
    {
 
+      m_papexsession = this;
+      ::object::m_pcontext = this;
+      m_pcontext = this;
+
+      m_paquasession = nullptr;
+      m_paurasession = nullptr;
+      m_paxissession = nullptr;
+      m_pbasesession = nullptr;
+      m_pbredsession = nullptr;
+      m_pcoresession = nullptr;
+      //m_psession = this;
       m_bSimpleMessageLoop = false;
       m_bMessageThread = true;
       m_iEdge = -1;
 
-      set_layer(LAYERED_APEX, this);
+      //set_layer(LAYERED_APEX, this);
 
       //create_factory < ::user::user >();
       create_factory < ::apex::session, ::apex::session >();
 
-      //m_strAppId                    = "core_session";
+      //m_XstrAppId                    = "core_session";
       //m_strAppName                  = "core_session";
       //m_strBaseSupportId            = "core_session";
       //m_strInstallToken             = "core_session";
@@ -87,10 +97,10 @@ namespace apex
    }
 
 
-   ::e_status session::initialize(::layered * pobjectContext)
+   ::e_status session::initialize(::object * pobject)
    {
 
-      auto estatus = ::thread::initialize(pobjectContext);
+      auto estatus = ::thread::initialize(pobject);
 
       if (!estatus)
       {
@@ -105,20 +115,20 @@ namespace apex
 
       m_bSystemSynchronizedCursor      = true;
 
-      set_context_session(this);
+      //set_context_session(this);
 
-      set_context_object(this);
+      m_pcontext = this;
 
-      set_context(this);
+      __pointer(::apex::system) psystem = get_system();
 
-      if (get_context_system() != nullptr)
+      if (psystem != nullptr)
       {
 
-         m_bSystemSynchronizedCursor   = ::apex::get_system()->m_bSystemSynchronizedCursor;
+         m_bSystemSynchronizedCursor   = psystem->m_bSystemSynchronizedCursor;
 
       }
 
-      m_pappCurrent                    = nullptr;
+      //m_papplicationCurrent                    = nullptr;
 
       m_bZipIsDir2                     = true;
 
@@ -126,7 +136,7 @@ namespace apex
 
       m_bShowPlatform                  = false;
 
-      m_pappCurrent                    = nullptr;
+      m_papplicationCurrent                    = nullptr;
 
       return ::success;
 
@@ -301,7 +311,9 @@ namespace apex
    ::color::color session::get_default_color(u64 u)
    {
 
-      auto pnode = ::apex::get_system()->node();
+      __pointer(::apex::system) psystem = get_system();
+
+      auto pnode = psystem->node();
 
       if (!pnode)
       {
@@ -403,27 +415,27 @@ namespace apex
 
       INFO("apex::session::process_init");
 
-      auto estatus = ::context::initialize_context();
+      //auto estatus = ::apex::context::initialize_context();
+
+      //if (!estatus)
+      //{
+
+         //return estatus;
+
+      //}
+
+      auto estatus = __compose_new(m_ptextcontext);
 
       if (!estatus)
       {
+
+         INFO("acme::str_context Failed to Allocate!!");
 
          return estatus;
 
       }
 
-      estatus = __compose_new(m_puserstrcontext);
-
-      if (!estatus)
-      {
-
-         INFO("apex::str_context Failed to Allocate!!");
-
-         return estatus;
-
-      }
-
-      INFO("apex::str_context Succeeded to Allocate!!");
+      INFO("acme::str_context Succeeded to Allocate!!");
 
       INFO("apex::session::process_init success");
 
@@ -550,7 +562,9 @@ namespace apex
    void session::process_term()
    {
 
-      ::apex::get_system()->session_remove(m_iEdge);
+      __pointer(::apex::system) psystem = get_system();
+
+      psystem->session_erase(m_iEdge);
 
    }
 
@@ -586,14 +600,16 @@ namespace apex
    bool session::on_get_thread_name(string& strThreadName)
    {
 
-      if (::apex::get_system()->is_console_app())
+      __pointer(::apex::system) psystem = get_system();
+
+      if (psystem->is_console_app())
       {
 
          return false;
 
       }
 
-      return ::apex::context_thread::on_get_thread_name(strThreadName);
+      return ::apex::context::on_get_thread_name(strThreadName);
 
    }
 
@@ -611,10 +627,12 @@ namespace apex
       //
       //}
 
+      __pointer(::apex::system) psystem = get_system();
+
       if (pcreate->m_ecommand == command_protocol)
       {
 
-         m_pappCurrent->do_request(pcreate);
+         m_papplicationCurrent->do_request(pcreate);
 
          return;
 
@@ -624,7 +642,9 @@ namespace apex
 
       INFO("::apex::session::on_request(__pointer(::create)) %s ", __c_str(THIS_FRIENDLY_NAME()));
 
-      if (pcreate->m_strAppId.has_char())
+      string strAppId = pcreate->m_strAppId;
+
+      if (strAppId.has_char())
       {
 
          INFO("m_strAppId = " + pcreate->m_strAppId);
@@ -634,7 +654,7 @@ namespace apex
          if (!papp)
          {
 
-            finish(get_context());
+            finish();
 
          }
 
@@ -667,17 +687,25 @@ namespace apex
       //}
 
       bool bCreate = true;
+
       if (pcreate->m_pcommandline->m_strApp.is_empty())
       {
-         if (!pcreate->m_pcommandline->m_varFile.is_empty())
+
+         if (pcreate->has_file())
          {
+            
             if (!open_by_file_extension(pcreate))
             {
-               if (m_pappCurrent != nullptr)
+               
+               if (m_papplicationCurrent != nullptr)
                {
-                  App(m_pappCurrent).request({pcreate});
+                  
+                  m_papplicationCurrent->request(pcreate);
+
                }
+
             }
+
          }
          else if (m_bShowPlatform)
          {
@@ -747,11 +775,11 @@ namespace apex
             if (papp == nullptr)
             {
 
-               if(::apex::get_system()->has_property("install")
-                     || ::apex::get_system()->has_property("uninstall"))
+               if(psystem->has_property("install")
+                     || psystem->has_property("uninstall"))
                {
 
-                  ::parallelization::finish(::apex::get_system());
+                  psystem->finish();
 
                }
                else
@@ -759,12 +787,12 @@ namespace apex
 
                   message_box("Could not create requested application: \"" + strApp + "\"");
 
-                  ::count c = ::apex::get_system()->payload("app").array_get_count();
+                  ::count c = psystem->payload("app").array_get_count();
 
-                  if (c == 1 && ::apex::get_system()->payload("app").at(0) == strApp)
+                  if (c == 1 && psystem->payload("app").at(0) == strApp)
                   {
 
-                     ::parallelization::finish(::apex::get_system());
+                     psystem->finish();
 
                   }
 
@@ -786,13 +814,13 @@ namespace apex
 
                }
 
-               //if (::apex::get_system()->is_true("install"))
+               //if (psystem->is_true("install"))
                if (is_true("install"))
                {
 
                   papp->do_install();
 
-                  ::apex::get_system()->finalize();
+                  psystem->finalize();
 
                }
                else
@@ -801,15 +829,15 @@ namespace apex
                   if (!papp->is_system() && !papp->is_session())
                   {
 
-                     ::apex::get_system()->merge_accumulated_on_open_file(pcreate);
+                     psystem->merge_accumulated_on_open_file(pcreate);
 
                   }
 
-                  papp->request({pcreate});
+                  papp->request(pcreate);
 
                }
 
-               m_pappCurrent = papp;
+               m_papplicationCurrent = papp;
 
             }
 
@@ -837,11 +865,11 @@ namespace apex
 
       pcreateNew->m_pcommandline->m_varFile = pszPathName;
 
-      pcreateNew->m_puserinteractionParent = pcreate->m_puserinteractionParent;
+      pcreateNew->m_puserprimitiveParent = pcreate->m_puserprimitiveParent;
 
       return open_by_file_extension(pcreateNew);
 
-      //return Application.platform_open_by_file_extension(m_iEdge, pszPathName, pcreate);
+      //return get_application()->platform_open_by_file_extension(m_iEdge, pszPathName, pcreate);
 
    }
 
@@ -849,7 +877,7 @@ namespace apex
    bool session::open_by_file_extension(::create * pcreate)
    {
 
-      //return Application.platform_open_by_file_extension(m_iEdge, pcc);
+      //return get_application()->platform_open_by_file_extension(m_iEdge, pcc);
 
       string strId;
 
@@ -871,14 +899,18 @@ namespace apex
 
       }
 
-      string strProtocol = ::apex::get_system()->url().get_protocol(strPathName);
+      auto psystem = m_psystem;
+
+      auto purl = psystem->url();
+
+      string strProtocol = purl->get_protocol(strPathName);
 
       if (strProtocol == "app")
       {
 
-         strId = ::apex::get_system()->url().get_server(strPathName);
+         strId = purl->get_server(strPathName);
 
-         string str = ::apex::get_system()->url().get_object(strPathName);
+         string str = purl->get_object(strPathName);
 
          ::str::begins_eat(str, "/");
 
@@ -894,7 +926,7 @@ namespace apex
 
          __throw(todo, "filehandler");
 
-         //::apex::get_system()->filehandler().get_extension_app(straApp, strExtension);
+         //psystem->filehandler().get_extension_app(straApp, strExtension);
 
          //if (straApp.get_count() == 1)
          //{
@@ -927,79 +959,90 @@ namespace apex
    }
 
 
-   ::apex::application * session::application_get(const char * pszAppId, bool bCreate, bool bSynch, ::create * pcreate)
+   void session::on_instantiate_application(::apex::application* papp)
    {
 
-      __pointer(::apex::application) papp;
-
-      if (m_applicationa.lookup(pszAppId, papp))
-      {
-
-         return papp;
-
-      }
-      else
-      {
-
-         if (!bCreate)
-         {
-
-            return nullptr;
-
-         }
-
-         papp = nullptr;
-
-         try
-         {
-
-            papp = create_application(pszAppId, bSynch, pcreate);
-
-         }
-         catch (const ::exception::exception & e)
-         {
-
-            // apex::session, axis::session and ::base::session, could get more specialized handling in apex::application (apex::system)
-            // Thank you Mummi (em Santos, cuidando do Lucinho e ajudando um monte a Carô e o Lúcio e Eu 2019-01-15) !! Thank you God!! <3tbs
-
-            handle_exception(e);
-
-            //if (!Sys(this).on_run_exception(esp))
-            //{
-
-            //   if (!App(this).on_run_exception(esp))
-            //   {
-
-            //      papp = nullptr;
-
-            //   }
-
-            //}
-
-            //papp = nullptr;
-
-         }
-         catch (...)
-         {
-
-            //papp = nullptr;
-
-         }
-
-         if (!papp)
-         {
-
-            return nullptr;
-
-         }
-
-         app_add(papp);
-
-         return papp;
-
-      }
+      papp->m_papexsession = this;
+      papp->m_papexsystem = m_papexsystem;
+      papp->m_pacmenode = m_pacmenode;
+      papp->m_papexnode = m_papexnode;
 
    }
+
+
+   //::apex::application * session::application_get(const char * pszAppId, bool bCreate, bool bSynch, ::create * pcreate)
+   //{
+
+   //   __pointer(::apex::application) papp;
+
+   //   if (m_applicationa.lookup(pszAppId, papp))
+   //   {
+
+   //      return papp;
+
+   //   }
+   //   else
+   //   {
+
+   //      if (!bCreate)
+   //      {
+
+   //         return nullptr;
+
+   //      }
+
+   //      papp = nullptr;
+
+   //      try
+   //      {
+
+   //         papp = create_application(pszAppId, bSynch, pcreate);
+
+   //      }
+   //      catch (const ::exception::exception & e)
+   //      {
+
+   //         // apex::session, axis::session and ::base::session, could get more specialized handling in apex::application (apex::system)
+   //         // Thank you Mummi (em Santos, cuidando do Lucinho e ajudando um monte a Carô e o Lúcio e Eu 2019-01-15) !! Thank you God!! <3tbs
+
+   //         handle_exception(e);
+
+   //         //if (!get_system()->on_run_exception(esp))
+   //         //{
+
+   //         //   if (!App(this).on_run_exception(esp))
+   //         //   {
+
+   //         //      papp = nullptr;
+
+   //         //   }
+
+   //         //}
+
+   //         //papp = nullptr;
+
+   //      }
+   //      catch (...)
+   //      {
+
+   //         //papp = nullptr;
+
+   //      }
+
+   //      if (!papp)
+   //      {
+
+   //         return nullptr;
+
+   //      }
+
+   //      app_add(papp);
+
+   //      return papp;
+
+   //   }
+
+   //}
 
 
 
@@ -1023,61 +1066,7 @@ namespace apex
 
       return false;
 
-      //if(m_paccount.is_null())
-      //{
-
-      //   return false;
-
-      //}
-
-      //return m_paccount->is_licensed(pszAppId, bInteractive);
-
    }
-
-
-   //::account::user * session::get_user(::file::path pathUrl, bool bFetch, bool bInteractive)
-   //{
-
-   //   if(m_paccount.is_null())
-   //   {
-
-   //      return nullptr;
-
-   //   }
-
-   //   return m_paccount->get_user(pathUrl, bFetch, bInteractive);
-
-   //}
-
-
-//   ::account::user * session::interactive_get_user(::file::path pathUrl)
-//   {
-//
-//      if(m_paccount.is_null())
-//      {
-//
-//         return nullptr;
-//
-//      }
-//
-//      return m_paccount->interactive_get_user();
-//
-//   }
-//
-//
-//   ::account::user * session::noninteractive_get_user(::file::path pathUrl)
-//   {
-//
-//      if(m_paccount.is_null())
-//      {
-//
-//         return nullptr;
-//
-//      }
-//
-//      return m_paccount->noninteractive_get_user(pathUrl);
-//
-//   }
 
 
    bool session::get_auth(const string & pszForm, string & strUsername, string & strPassword)
@@ -1090,666 +1079,6 @@ namespace apex
       //return account()->get_auth(pszForm, strUsername, strPassword);
 
    }
-
-
-   //void session::defer_initialize_user_presence()
-   //{
-
-
-   //}
-
-   //void session::translate_os_key_message(::user::key * pkey)
-   //{
-
-   //}
-
-
-   //bool session::set_cursor(::user::interaction * pinteraction, ::draw2d::cursor * pcursor)
-   //{
-
-   //   m_ecursor = cursor_draw2d;
-
-   //   m_pcursor = pcursor;
-
-   //   if (pcursor != nullptr)
-   //   {
-
-   //      if (!pcursor->set_current(pinteraction, this))
-   //      {
-
-   //         return false;
-
-   //      }
-
-   //   }
-   //   else
-   //   {
-
-   //      if (!::draw2d::cursor::reset(pinteraction, this))
-   //      {
-
-   //         return false;
-
-   //      }
-
-   //   }
-
-   //   return true;
-
-   //}
-
-
-   //bool session::set_cursor(::user::interaction * pinteraction, enum_cursor ecursor)
-   //{
-
-   //   m_ecursor = ecursor;
-
-   //   ::draw2d::cursor * pcursor = get_cursor();
-
-   //   if (pcursor != nullptr)
-   //   {
-
-   //      if (!pcursor->set_current(pinteraction, this))
-   //      {
-
-   //         return false;
-
-   //      }
-
-   //   }
-   //   else
-   //   {
-
-   //      if (!::draw2d::cursor::reset(pinteraction, this))
-   //      {
-
-   //         return false;
-
-   //      }
-
-   //   }
-
-   //   return true;
-
-   //}
-
-
-   //bool session::set_default_cursor(::user::interaction * pinteraction, enum_cursor ecursor)
-   //{
-
-   //   if (ecursor == e_cursor_default)
-   //   {
-
-   //      m_ecursorDefault = cursor_arrow;
-
-   //   }
-   //   else
-   //   {
-
-   //      m_ecursorDefault = ecursor;
-
-   //   }
-
-   //   return true;
-
-   //}
-
-
-   //bool session::on_create_frame_window()
-   //{
-
-   //   defer_create_session_frame_window();
-
-   //   return true;
-
-   //}
-
-
-//  void session::get_cursor_position(POINT_I32 * ppoint)
-//  {
-//
-//
-////   __throw(todo("aura"));
-////     if (m_bSystemSynchronizedCursor)
-////     {
-////
-////        POINT_I32 point_i32;
-////
-////        ::GetCursorPos(&point);
-////
-////        m_pointCursor = point;
-////
-////     }
-//
-//     if (ppoint != nullptr)
-//     {
-//
-//        *ppoint = m_pointCursor;
-//
-//     }
-//
-//  }
-
-//
-//   oswindow session::get_capture()
-//   {
-//
-//      return ::get_capture();
-//
-//   }
-//
-//
-//   void session::set_cursor_pos(const ::point_i32 & point)
-//   {
-//
-//#ifdef WINDOWS_DESKTOP
-//
-//      ::SetCursorPos(point.x, point.y);
-//
-//#endif
-//
-//   }
-//
-//
-//   bool session::ReleaseCapture()
-//   {
-//
-//      // ::windowing::window * pwindowCapture = ::get_capture();
-//
-//      // if (oswindowCapture == nullptr)
-//      // {
-//
-//      //    return false;
-//
-//      // }
-//
-//      ::release_capture();
-//
-//      m_puiCapture = nullptr;
-//
-//      return true;
-//
-//
-//   }
-//
-
-   //__pointer(::user::interaction) session::GetCapture()
-   //{
-
-   //   ::windowing::window * pwindowCapture = ::get_capture();
-
-   //   if (oswindowCapture == nullptr)
-   //   {
-
-   //      return nullptr;
-
-   //   }
-
-   //   __pointer(::user::interaction) pinteraction = ::apex::get_system()->ui_from_handle(oswindowCapture);
-
-   //   if (pinteraction.is_null())
-   //   {
-
-   //      return nullptr;
-
-   //   }
-
-   //   return pinteraction->GetCapture();
-
-   //}
-
-
-   //::user::copydesk& session::copydesk()
-   //{
-
-   //   if (!m_pcopydesk)
-   //   {
-
-   //      __compose(m_pcopydesk);
-
-   //   }
-
-   //   return *m_pcopydesk;
-
-   //}
-
-
-
-
-
-   //index session::initial_frame_position(RECTANGLE_I32 * prectangle, const rectangle_i32 & rectParam, bool bMove, ::user::interaction * pinteraction)
-   //{
-
-   //   ::rectangle_i32 rectRestore(rectParam);
-
-   //   ::rectangle_i32 rectMonitor;
-
-   //   index iMatchingMonitor = get_best_monitor(rectMonitor, rectParam);
-
-   //   ::size_i32 sizeMin;
-
-   //   if (pinteraction != nullptr)
-   //   {
-
-   //      sizeMin  = pinteraction->get_window_minimum_size();
-
-   //   }
-   //   else
-   //   {
-
-   //      sizeMin = get_window_minimum_size();
-
-   //   }
-
-   //   ::rectangle_i32 rectIntersect;
-
-   //   if (bMove)
-   //   {
-
-   //      rectangle_i32_array rectaMonitor;
-
-   //      rectangle_i32_array rectaIntersect;
-
-   //      get_monitor(rectaMonitor, rectaIntersect, rectParam);
-
-   //      rectaIntersect.get_box(rectIntersect);
-
-   //   }
-   //   else
-   //   {
-
-   //      rectIntersect.intersect(rectMonitor, &rectParam);
-
-   //   }
-
-   //   auto sizeMax = rectMonitor.size() * 0.9;
-
-   //   if (rectIntersect.width() < sizeMin.cx || rectIntersect.height() < sizeMin.cy
-   //      || rectIntersect.width() > sizeMax.cx || rectIntersect.height() > sizeMax.cy )
-   //   {
-
-   //      if (rectMonitor.width() / 7 + maximum(sizeMin.cx, rectMonitor.width() * 2 / 5) > rectMonitor.width()
-   //            || rectMonitor.height() / 7 + maximum(sizeMin.cy, rectMonitor.height() * 2 / 5) > rectMonitor.width())
-   //      {
-
-   //         rectRestore = rectMonitor;
-
-   //      }
-   //      else
-   //      {
-
-   //         rectRestore.left = rectMonitor.left + rectMonitor.width() / 7;
-
-   //         rectRestore.top = rectMonitor.top + rectMonitor.height() / 7;
-
-   //         rectRestore.right = rectRestore.left + maximum(sizeMin.cx, rectMonitor.width() * 2 / 5);
-
-   //         rectRestore.bottom = rectRestore.top + maximum(sizeMin.cy, rectMonitor.height() * 2 / 5);
-
-   //         if (rectRestore.right > rectMonitor.right - rectMonitor.width() / 7)
-   //         {
-
-   //            rectRestore.offset(rectMonitor.right - rectMonitor.width() / 7 - rectRestore.right, 0);
-
-   //         }
-
-   //         if (rectRestore.bottom > rectMonitor.bottom - rectMonitor.height() / 7)
-   //         {
-
-   //            rectRestore.offset(0, rectMonitor.bottom - rectMonitor.height() / 7 - rectRestore.bottom);
-
-   //         }
-
-   //      }
-
-   //      *prectangle = rectRestore;
-
-   //      return iMatchingMonitor;
-
-   //   }
-   //   else
-   //   {
-
-   //      if (!bMove)
-   //      {
-
-   //         *prectangle = rectIntersect;
-
-   //      }
-
-   //      return -1;
-
-   //   }
-
-   //}
-
-
-   //index session::get_window_restore_1(RECTANGLE_I32 * prectangle, const rectangle_i32 & rectParam, ::user::interaction * pinteraction, edisplay edisplayRestore)
-   //{
-
-   //   ::rectangle_i32 rectRestore(rectParam);
-
-   //   ::rectangle_i32 rectWorkspace;
-
-   //   ::size_i32 sizeMin;
-
-   //   index iMatchingWorkspace;
-
-   //   ::size_i32 sizeBroad;
-
-   //   ::size_i32 sizeCompact;
-
-   //   if (pinteraction != nullptr)
-   //   {
-
-   //      sizeMin = pinteraction->get_window_minimum_size();
-
-   //      iMatchingWorkspace = pinteraction->calculate_broad_and_compact_restore(rectWorkspace, sizeMin, rectParam);
-
-   //      sizeBroad = pinteraction->m_sizeRestoreBroad;
-
-   //      sizeCompact = pinteraction->m_sizeRestoreCompact;
-
-   //   }
-   //   else
-   //   {
-
-   //      sizeMin = get_window_minimum_size();
-
-   //      iMatchingWorkspace = get_best_workspace(&rectWorkspace, rectParam);
-
-   //      sizeBroad = sizeMin.maximum(rectWorkspace.size() * 4 / 5);
-
-   //      sizeCompact = sizeMin.maximum(rectWorkspace.size() * 2 / 5);
-
-   //   }
-
-   //   auto rectIntersect = rectWorkspace & rectParam;
-
-   //   auto rectTolerance(rectWorkspace);
-
-   //   auto sizeMax = rectWorkspace.size() * 0.8;
-
-   //   bool b1 = !rectTolerance.contains(rectRestore);
-   //   bool b2 = rectIntersect.width() < sizeMin.cx || rectIntersect.height() < sizeMin.cy;
-   //   bool b3 = rectIntersect.width() > sizeMax.cx || rectIntersect.height() > sizeMax.cy;
-   //   bool b4 = (edisplayRestore == e_display_compact && rectRestore.size() != sizeCompact);
-   //   bool b5 = (edisplayRestore == e_display_broad && rectRestore.size() != sizeBroad);
-   //   bool b6 = (rectRestore.size() == sizeCompact || rectRestore.size() == sizeBroad);
-   //   bool b66 = !(edisplayRestore == e_display_compact || edisplayRestore == e_display_broad);
-
-   //   bool bNotHappyWithTheSizeAndOrPosition = b1 || b2 || b3 || b4 || b5 || (b6 && b66);
-
-   //   if (bNotHappyWithTheSizeAndOrPosition)
-   //   {
-
-   //      if (edisplayRestore == e_display_broad || sizeCompact == rectRestore.size())
-   //      {
-
-   //         rectRestore.set_size(sizeBroad);
-
-   //      }
-   //      else
-   //      {
-
-   //         rectRestore.set_size(sizeCompact);
-
-   //      }
-
-   //      ::rectangle_i32 rectWorkspaceBitSmaller(rectWorkspace);
-
-   //      rectWorkspaceBitSmaller.deflate(5);
-
-   //      if (!rectWorkspaceBitSmaller.contains(rectRestore))
-   //      {
-
-   //         rectRestore.move_to(rectWorkspace.origin() + rectWorkspace.size() / 10);
-
-   //      }
-
-   //      *prectangle = rectRestore;
-
-   //      return iMatchingWorkspace;
-
-   //   }
-   //   else
-   //   {
-
-   //      return -1;
-
-   //   }
-
-   //}
-
-
-   //index session::get_window_restore_2(RECTANGLE_I32* prectangle, const rectangle_i32& rectParam, ::user::interaction* pinteraction, edisplay edisplayRestore)
-   //{
-
-   //   ::rectangle_i32 rectangle(rectParam);
-
-   //   index iBestWorkspace = get_window_restore_1(prectangle, rectangle, pinteraction, edisplayRestore);
-
-   //   bool bChangedSize = ::size_i32(prectangle) != rectParam.size();
-
-   //   if (iBestWorkspace < 0 && !bChangedSize)
-   //   {
-
-   //      return -1;
-
-   //   }
-
-   //   ::rectangle_i32 rectWorkspace;
-
-   //   ::rectangle_i32 rectStart(prectangle);
-
-   //   ::point_i32 pointLineStart(::top_left(prectangle));
-
-   //   get_workspace_rectangle(iBestWorkspace, rectWorkspace);
-
-   //   if (rectStart > pinteraction->m_sizeRestoreCompact)
-   //   {
-
-   //      pointLineStart = rectWorkspace.origin();
-
-   //      pointLineStart.offset(49, 49);
-
-   //      rectangle.move_to(pointLineStart);
-
-   //   }
-
-   //   if(::is_window(pinteraction->get_handle()))
-   //   {
-
-   //      do
-   //      {
-
-   //         if (!point_is_window_origin(::top_left(prectangle), pinteraction->get_handle(), 49))
-   //         {
-
-   //            return iBestWorkspace;
-
-   //         }
-
-   //         rectangle = *prectangle;
-
-   //         if (rectangle_i32 > pinteraction->m_sizeRestoreCompact)
-   //         {
-
-   //            rectangle.offset(49, 0);
-
-   //            if (!rectWorkspace.contains(rectangle))
-   //            {
-
-   //               pointLineStart.offset(0, 49);
-
-   //               rectangle.move_to(pointLineStart);
-
-   //               if (!rectWorkspace.contains(rectangle))
-   //               {
-
-   //                  break;
-
-   //               }
-
-   //            }
-
-   //         }
-   //         else
-   //         {
-
-   //            rectangle.offset(49, 49);
-
-   //         }
-
-   //         *prectangle = rectangle;
-
-   //      }
-   //      while (rectWorkspace.contains(rectangle));
-
-   //   }
-
-   //   if (rectangle.size() >= pinteraction->m_sizeRestoreCompact)
-   //   {
-
-   //      pointLineStart = rectWorkspace.origin();
-
-   //      pointLineStart.offset(49, 49);
-
-   //      rectangle.move_to(pointLineStart);
-
-   //      *prectangle = rectangle;
-
-   //      return iBestWorkspace;
-
-   //   }
-
-   //   rectangle = rectStart;
-
-   //   rectangle.set_size(pinteraction->m_sizeRestoreCompact);
-
-   //   if(::is_window(pinteraction->get_handle()))
-   //   {
-
-   //      do
-   //      {
-
-   //         if (!point_is_window_origin(::top_left(prectangle), pinteraction->get_handle(), 49))
-   //         {
-
-   //            return iBestWorkspace;
-
-   //         }
-
-   //         rectangle = *prectangle;
-
-   //         rectangle.offset(49, 49);
-
-   //         *prectangle = rectangle;
-
-   //      } while (rectWorkspace.contains(rectangle));
-
-   //   }
-
-   //   pointLineStart = rectWorkspace.origin();
-
-   //   pointLineStart.offset(49, 49);
-
-   //   rectangle.move_to(pointLineStart);
-
-   //   if(::is_window(pinteraction->get_handle()))
-   //   {
-
-   //      do
-   //      {
-
-   //         if (!point_is_window_origin(::top_left(prectangle), pinteraction->get_handle(), 49))
-   //         {
-
-   //            return iBestWorkspace;
-
-   //         }
-
-   //         rectangle = *prectangle;
-
-   //         rectangle.offset(49, 0);
-
-   //         if (!rectWorkspace.contains(rectangle))
-   //         {
-
-   //            pointLineStart.offset(0, 49);
-
-   //            rectangle.move_to(pointLineStart);
-
-   //            if (!rectWorkspace.contains(rectangle))
-   //            {
-
-   //               break;
-
-   //            }
-
-   //         }
-
-   //         *prectangle = rectangle;
-
-   //      } while (rectWorkspace.contains(rectangle));
-
-   //   }
-
-   //   pointLineStart = rectWorkspace.origin();
-
-   //   pointLineStart.offset(49, 49);
-
-   //   rectangle.move_to(pointLineStart);
-
-   //   *prectangle = rectangle;
-
-   //   return iBestWorkspace;
-
-   //}
-
-
-   //index session::get_good_move(RECTANGLE_I32 * prectangle, const rectangle_i32 & rectParam, ::user::interaction * pinteraction)
-   //{
-
-   //   index iMatchingMonitor = initial_frame_position(prectangle, rectParam, true, pinteraction);
-
-   //   if (__memcmp(prectangle, &rectParam, sizeof(const rectangle_i32 &)))
-   //   {
-
-   //      return iMatchingMonitor;
-
-   //   }
-   //   else
-   //   {
-
-   //      return -1;
-
-   //   }
-
-   //}
-
-
-   //index session::get_ui_workspace(::user::interaction * pinteraction)
-   //{
-
-   //   if (m_bSystemSynchronizedScreen)
-   //   {
-
-   //      return ::apex::get_system()->get_ui_workspace(pinteraction);
-
-   //   }
-   //   else
-   //   {
-
-   //      ::rectangle_i32 rectangle;
-
-   //      pinteraction->get_window_rect(rectangle);
-
-   //      return get_best_workspace(nullptr, rectangle);
-
-   //   }
-
-   //}
 
 
    bool session::is_key_pressed(::user::enum_key ekey)
@@ -1845,7 +1174,16 @@ ret:
    ::e_status session::init1()
    {
 
-      auto estatus = __compose_new(m_pfs);
+      auto estatus = initialize_context();
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      estatus = __compose_new(m_pfs);
 
       if (!estatus)
       {
@@ -1859,7 +1197,7 @@ ret:
       }
 
       // __throw(todo("interaction"));
-      //if (::apex::get_system()->m_bUser)
+      //if (psystem->m_bUser)
       //{
 
       //   bool bCreateSessionWindow = defer_create_session_frame_window();
@@ -1988,7 +1326,9 @@ ret:
 
       INFO("apex::session::init2 .1");
 
-      if (::apex::get_system()->m_bUser)
+      __pointer(::apex::system) psystem = get_system();
+
+      if (psystem->m_bUser)
       {
 
          //if (!m_paccount)
@@ -2069,7 +1409,6 @@ ret:
 
       }
 
-
       return estatus;
 
    }
@@ -2129,10 +1468,10 @@ ret:
    void session::pre_translate_message(::message::message * pmessage)
    {
 
-      if (::is_set(m_pappCurrent))
+      if (::is_set(m_papplicationCurrent))
       {
 
-         m_pappCurrent->pre_translate_message(pmessage);
+         m_papplicationCurrent->pre_translate_message(pmessage);
 
       }
 
@@ -2169,10 +1508,10 @@ namespace apex
 
 
 
-   //::e_status session::initialize(::layered * pobjectContext)
+   //::e_status session::initialize(::object * pobject)
    //{
 
-   //   auto estatus = ::apex::session::initialize(pobjectContext);
+   //   auto estatus = ::apex::session::initialize(pobject);
 
    //   if (!estatus)
    //   {
@@ -2220,42 +1559,42 @@ namespace apex
    }
 
 
-   ::e_status     session::do_request(::create* pcreate)
+   void session::do_request(::create* pcreate)
    {
 
-      return ::thread::do_request(pcreate);
+      request(pcreate);
 
    }
 
 
 
 
-   void session::request_topic_file(::payload& varQuery)
-   {
+   //void session::request_topic_file(::payload& varQuery)
+   //{
 
-      auto psession = Session;
+   //   auto psession = get_session();
 
-      request_file(psession->m_varTopicFile, varQuery);
+   //   request_file(psession->m_varTopicFile, varQuery);
 
-   }
+   //}
 
 
-   void session::request_topic_file()
-   {
+   //void session::request_topic_file()
+   //{
 
-      auto psession = Session;
+   //   auto psession = get_session();
 
-      request_file(psession->m_varTopicFile);
+   //   request_file(psession->m_varTopicFile);
 
-   }
+   //}
 
 
    __pointer(::apex::application) session::get_current_application()
    {
 
-      auto psession = Session;
+      auto psession = get_session();
 
-      return psession->m_pappCurrent;
+      return psession->m_papplicationCurrent;
 
    }
 
@@ -2263,7 +1602,7 @@ namespace apex
    {
 
 
-      return get_context()->os().is_remote_session();
+      return m_pcontext->m_papexcontext->os().is_remote_session();
 
 
    }
@@ -2342,21 +1681,21 @@ namespace apex
    }
 
 
-   void session::check_topic_file_change()
-   {
+   //void session::check_topic_file_change()
+   //{
 
-      auto psession = Session;
+   //   auto psession = get_session();
 
-      if (psession->m_varCurrentViewFile != psession->m_varTopicFile && !psession->m_varTopicFile.is_empty())
-      {
+   //   if (psession->m_varCurrentViewFile != psession->m_varTopicFile && !psession->m_varTopicFile.is_empty())
+   //   {
 
-         psession->m_varCurrentViewFile = psession->m_varTopicFile;
+   //      psession->m_varCurrentViewFile = psession->m_varTopicFile;
 
-         request_topic_file();
+   //      request_topic_file();
 
-      }
+   //   }
 
-   }
+   //}
 
 
    //::user::place_holder_ptra session::get_place_holder(__pointer(::user::frame_window) pmainframe, ::create * pcreate)
@@ -2367,7 +1706,7 @@ namespace apex
    //   ::user::place_holder_ptra holderptra;
 
 
-   //   ::apex::application & app = App(pmainframe->get_context_application());
+   //   ::apex::application & app = App(pmainframe->get_application());
 
    //   string strAppName = app.m_strAppName;
 
@@ -2437,7 +1776,7 @@ namespace apex
 
 
 
-   __pointer(::apex::session) session::get_context_session()
+   __pointer(::apex::session) session::get_session()
    {
 
       return this;
@@ -2515,7 +1854,7 @@ namespace apex
    //::draw2d::cursor* session::get_default_cursor()
    //{
 
-   //   return ::apex::get_system()->draw2d()->get_cursor(m_ecursorDefault);
+   //   return pdraw2d->get_cursor(m_ecursorDefault);
 
    //}
 
@@ -2534,10 +1873,10 @@ namespace apex
 
    //   ::apex::session * psession = nullptr;
 
-   //   if(::apex::get_system()->m_pbergedgemap == nullptr)
+   //   if(psystem->m_pbergedgemap == nullptr)
    //      return nullptr;
 
-   //   if(!::apex::get_system()->m_pbergedgemap->lookup(0,psession))
+   //   if(!psystem->m_pbergedgemap->lookup(0,psession))
    //   {
    //      return nullptr;
    //   }
@@ -2714,7 +2053,7 @@ namespace apex
       //   if (::str::begins_eat_ci(str, "file://"))
       //   {
 
-      //      str = ::apex::get_system()->url().url_decode(str);
+      //      str = purl->url_decode(str);
 
       //   }
 
@@ -2727,10 +2066,18 @@ namespace apex
    }
 
 
-   ::user::interaction * session::get_host_window()
+   ::user::primitive* session::get_user_interaction_host()
    {
-      
-      return __user_interaction(m_puiHost); 
+
+      return m_puserprimitiveHost;
+
+   }
+
+
+   ::user::primitive * session::get_host_primitive()
+   {
+
+      return m_puserprimitiveHost;
    
    }
 
@@ -2821,12 +2168,14 @@ namespace apex
 
 
 
-   void session::finalize()
+   ::e_status session::finalize()
    {
 
-      ::application_container::m_applicationa.remove_all();
+      ::application_container::m_applicationa.erase_all();
 
-      ::apex::context_thread::finalize();
+      ::apex::context::finalize();
+
+      return success;
 
    }
 

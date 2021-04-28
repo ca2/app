@@ -6,20 +6,17 @@ namespace filemanager
 
 
    class CLASS_DECL_CORE file_list :
-      virtual public ::userfs::list,
-      virtual public ::filemanager::impact
+      virtual public ::filemanager_show < ::userfs::list >
    {
    public:
 
 
-      
-
-      context_menu                     m_contextmenu;
-      string_array                          m_straOpenWith;
-      bool                             m_bFileSize;
-      bool                             m_bShow;
-      index                            m_iSizeSubItem;
-      millis m_millisLastFileSizeGet;
+      context_menu                        m_contextmenu;
+      string_array                        m_straOpenWith;
+      bool                                m_bFileSize;
+      bool                                m_bShow;
+      index                               m_iSizeSubItem;
+      millis                              m_millisLastFileSizeGet;
 
 
       //map < icon_key,const icon_key &,icon,icon & > m_iconmap;
@@ -58,13 +55,13 @@ namespace filemanager
       virtual void on_command_probe(::message::command * pcommand) override;
       virtual void on_command(::message::command * pcommand) override;
 
-      DECL_GEN_SIGNAL(_001OnUpdateOpenWith);
-      DECL_GEN_SIGNAL(_001OnEditCopy);
-      DECL_GEN_SIGNAL(_001OnUpdateEditCopy);
-      DECL_GEN_SIGNAL(_001OnShowWindow);
+      DECLARE_MESSAGE_HANDLER(_001OnUpdateOpenWith);
+      DECLARE_MESSAGE_HANDLER(_001OnEditCopy);
+      DECLARE_MESSAGE_HANDLER(_001OnUpdateEditCopy);
+      DECLARE_MESSAGE_HANDLER(_001OnShowWindow);
 
-      DECL_GEN_SIGNAL(_001OnSetFocus);
-      DECL_GEN_SIGNAL(_001OnKillFocus);
+      DECLARE_MESSAGE_HANDLER(_001OnSetFocus);
+      DECLARE_MESSAGE_HANDLER(_001OnKillFocus);
 
 
 
@@ -73,23 +70,23 @@ namespace filemanager
 
 
 
-      DECL_GEN_SIGNAL(on_message_left_button_up);
-      DECL_GEN_SIGNAL(_001OnContextMenu);
+      DECLARE_MESSAGE_HANDLER(on_message_left_button_up);
+      DECLARE_MESSAGE_HANDLER(_001OnContextMenu);
 
-      DECL_GEN_SIGNAL(_001OnShellCommand);
-      DECL_GEN_SIGNAL(_001OnFileManagerItemCommand);
-      DECL_GEN_SIGNAL(_001OnFileManagerItemUpdate);
+      DECLARE_MESSAGE_HANDLER(_001OnShellCommand);
+      DECLARE_MESSAGE_HANDLER(_001OnFileManagerItemCommand);
+      DECLARE_MESSAGE_HANDLER(_001OnFileManagerItemUpdate);
 
-      DECL_GEN_SIGNAL(_001OnFileRename);
-      DECL_GEN_SIGNAL(_001OnUpdateFileRename);
+      DECLARE_MESSAGE_HANDLER(_001OnFileRename);
+      DECLARE_MESSAGE_HANDLER(_001OnUpdateFileRename);
 
-      DECL_GEN_SIGNAL(_001OnTrashThatIsNotTrash);
-      DECL_GEN_SIGNAL(_001OnUpdateTrashThatIsNotTrash);
+      DECLARE_MESSAGE_HANDLER(_001OnTrashThatIsNotTrash);
+      DECLARE_MESSAGE_HANDLER(_001OnUpdateTrashThatIsNotTrash);
 
-      //DECL_GEN_SIGNAL(_001OnSpafy);
-      //DECL_GEN_SIGNAL(_001OnUpdateSpafy);
-      //DECL_GEN_SIGNAL(_001OnSpafy2);
-      //DECL_GEN_SIGNAL(_001OnUpdateSpafy2);
+      //DECLARE_MESSAGE_HANDLER(_001OnSpafy);
+      //DECLARE_MESSAGE_HANDLER(_001OnUpdateSpafy);
+      //DECLARE_MESSAGE_HANDLER(_001OnSpafy2);
+      //DECLARE_MESSAGE_HANDLER(_001OnUpdateSpafy2);
 
 
       virtual void _001OnTimer(::timer * ptimer) override;
@@ -124,7 +121,7 @@ namespace filemanager
       //void TakeAnimationSnapshot();
       virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
       ::file::item & GetFileManagerItem();
-      //DECL_GEN_SIGNAL(_001OnMainPostMessage);
+      //DECLARE_MESSAGE_HANDLER(_001OnMainPostMessage);
       void _017UpdateList(const ::action_context & action_context);
 
 
@@ -141,8 +138,8 @@ namespace filemanager
       void _017UpdateZipList(const char * pcsz, const ::action_context & action_context);
 
 
-      DECL_GEN_SIGNAL(_001OnHScroll);
-      DECL_GEN_SIGNAL(_001OnVScroll);
+      DECLARE_MESSAGE_HANDLER(_001OnHScroll);
+      DECLARE_MESSAGE_HANDLER(_001OnVScroll);
 
 
       virtual void _001InitializeFormPreData() override;

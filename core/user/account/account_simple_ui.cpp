@@ -7,7 +7,7 @@ namespace account
 {
 
 
-   simple_ui::simple_ui()
+   main_window::main_window()
    {
 
 #ifdef _UWP
@@ -29,13 +29,13 @@ namespace account
    }
 
 
-   simple_ui::~simple_ui()
+   main_window::~main_window()
    {
 
    }
 
 
-   ::e_status simple_ui::initialize_simple_ui(::account::credentials * pcredentials)
+   ::e_status main_window::initialize_simple_ui(::account::credentials * pcredentials)
    {
 
       auto estatus = initialize(pcredentials);
@@ -70,21 +70,21 @@ namespace account
 
 
 
-   void simple_ui::install_message_routing(::channel * pchannel)
+   void main_window::install_message_routing(::channel * pchannel)
    {
 
-      ::simple_ui::top::install_message_routing(pchannel);
+      ::user::main_window::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create,pchannel,this,&simple_ui::on_message_create);
-      MESSAGE_LINK(e_message_char,pchannel,this,&simple_ui::_001OnChar);
-//      MESSAGE_LINK(e_message_left_button_down,pchannel,this,&simple_ui::on_message_left_button_down);
-//      MESSAGE_LINK(e_message_left_button_up,pchannel,this,&simple_ui::on_message_left_button_up);
-//      MESSAGE_LINK(e_message_mouse_move,pchannel,this,&simple_ui::_001OnMouseMove);
+      MESSAGE_LINK(e_message_create,pchannel,this,&main_window::on_message_create);
+      MESSAGE_LINK(e_message_char,pchannel,this,&main_window::_001OnChar);
+//      MESSAGE_LINK(e_message_left_button_down,pchannel,this,&main_window::on_message_left_button_down);
+//      MESSAGE_LINK(e_message_left_button_up,pchannel,this,&main_window::on_message_left_button_up);
+//      MESSAGE_LINK(e_message_mouse_move,pchannel,this,&main_window::on_message_mouse_move);
 
    }
 
 
-   void simple_ui::on_message_create(::message::message * pmessage)
+   void main_window::on_message_create(::message::message * pmessage)
    {
 
       __pointer(::message::create) pcreate(pmessage);
@@ -113,18 +113,18 @@ namespace account
 
       string strOpen;
 
-      strUser = lstr("account::login::email","e-mail");
+      //strUser = lstr("account::login::email","e-mail");
 
-      strPass = lstr("account::login::password","password");
+      //strPass = lstr("account::login::password","password");
 
-      strOpen = lstr("account::login::open","open");
+      //strOpen = lstr("account::login::open","open");
 
       m_plogin->defer_translate(strUser,strPass,strOpen);
 
    }
 
 
-   void simple_ui::_001OnChar(::message::message * pmessage)
+   void main_window::_001OnChar(::message::message * pmessage)
    {
 
       __pointer(::message::key) pkey(pmessage);
@@ -149,7 +149,7 @@ namespace account
    }
 
 
-   void simple_ui::_001OnTimer(::timer * ptimer)
+   void main_window::_001OnTimer(::timer * ptimer)
    {
 
       ::user::interaction::_001OnTimer(ptimer);
@@ -180,12 +180,12 @@ namespace account
    }
 
 
-   string simple_ui::do_account(const ::rectangle_i32 & rectParam)
+   string main_window::do_account(const ::rectangle_i32 & rectParam)
    {
 
       m_pcredentials->m_iPasswordOriginalLength = -1;
 
-      auto psession = Session;
+      auto psession = get_session();
 
       ::user::interaction * puiParent = psession->payload("plugin_parent").cast < ::user::interaction >();
 
@@ -253,9 +253,11 @@ namespace account
       if((rectFontopus.width() < 300 || rectFontopus.height() < 300) && puiParent != nullptr)
       {
 
-         ::hyperlink hyperlink;
+         auto phyperlink = __create_new < ::hyperlink >();
 
-         hyperlink.open_link("ca2account:this", "", "");
+         phyperlink->m_strLink = "ca2account:this";
+
+         phyperlink->run();
 
          return "";
 
@@ -297,7 +299,7 @@ namespace account
    }
 
 
-   string simple_ui::get_cred(const ::rectangle_i32 & rectangle,string & strUsername,string & strPassword,string strToken,string strTitle)
+   string main_window::get_cred(const ::rectangle_i32 & rectangle,string & strUsername,string & strPassword,string strToken,string strTitle)
    {
 
       if(strTitle == "ca2")
@@ -324,7 +326,7 @@ namespace account
 
          m_plogin->m_peditUser->_001GetText(strUsername);
 
-         m_plogin->m_ppassword->_001GetText(strPassword);
+         m_plogin->m_peditPassword->_001GetText(strPassword);
 
          return "ok";
 
@@ -345,7 +347,7 @@ namespace account
    }
 
 
-   void simple_ui::on_layout(::draw2d::graphics_pointer & pgraphics)
+   void main_window::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
       /*
@@ -457,90 +459,94 @@ namespace account
    }
 
 
-   void simple_ui::on_message_left_button_down(::message::message * pmessage)
+   void main_window::on_message_left_button_down(::message::message * pmessage)
    {
 
       __pointer(::message::mouse) pmouse(pmessage);
 
       if (pmessage->previous())
-         return;
-
-      get_wnd()->show_keyboard(false);
-
-      m_bLButtonDown = true;
-      m_bDrag = false;
-
-      m_pointLButtonDown = pmouse->m_point;
-
-      auto pointOffset = m_pointLButtonDown;
-
-      _001ScreenToClient(pointOffset);
-
-      m_sizeLButtonDownOffset = pointOffset;
-
-      set_mouse_capture();
-
-      pmouse->m_bRet = true;
-
-   }
-
-
-   void simple_ui::on_message_left_button_up(::message::message * pmessage)
-   {
-
-      m_bLButtonDown = false;
-
-      __pointer(::message::mouse) pmouse(pmessage);
-
-      if (pmouse->previous())
       {
 
          return;
 
       }
 
-      auto psession = Session;
+      //get_wnd()->show_keyboard(false);
 
-      auto puser = psession->user();
+      //m_bLButtonDown = true;
+      //m_bDrag = false;
 
-      auto pwindowing = puser->windowing();
+      //m_pointLButtonDown = pmouse->m_point;
 
-      pwindowing->release_mouse_capture();
+      //auto pointOffset = m_pointLButtonDown;
 
-      m_bDrag = false;
+      //_001ScreenToClient(pointOffset);
 
-      pmessage->m_bRet = true;
+      //m_sizeLButtonDownOffset = pointOffset;
+
+      //set_mouse_capture();
+
+      //pmouse->m_bRet = true;
 
    }
 
 
-   void simple_ui::_001OnMouseMove(::message::message * pmessage)
+   void main_window::on_message_left_button_up(::message::message * pmessage)
+   {
+
+      //m_bLButtonDown = false;
+
+      //__pointer(::message::mouse) pmouse(pmessage);
+
+      //if (pmouse->previous())
+      //{
+
+      //   return;
+
+      //}
+
+      //auto psession = get_session();
+
+      //auto puser = psession->user();
+
+      //auto pwindowing = puser->windowing();
+
+      //pwindowing->release_mouse_capture();
+
+      //m_bDrag = false;
+
+      //pmessage->m_bRet = true;
+
+   }
+
+
+   void main_window::on_message_mouse_move(::message::message * pmessage)
    {
 
       __pointer(::message::mouse) pmouse(pmessage);
 
-      if (m_bLButtonDown)
-      {
+      //if (m_bLButtonDown)
+      //{
 
-         if (!m_bDrag)
-         {
+      //   if (!m_bDrag)
+      //   {
 
-            m_bDrag = true;
+      //      m_bDrag = true;
 
-            auto pointNow = pmouse->m_point;
+      //      auto pointNow = pmouse->m_point;
 
-            auto point = pointNow - m_sizeLButtonDownOffset;
+      //      auto point = pointNow - m_sizeLButtonDownOffset;
 
-            move_to(point);
+      //      move_to(point);
 
-            m_bDrag = false;
+      //      m_bDrag = false;
 
-         }
+      //   }
 
-         pmessage->m_bRet = true;
+      //   pmessage->m_bRet = true;
 
-      }
-      else
+      //}
+      //else
       {
          if(pmessage->previous())
             return;
@@ -558,7 +564,7 @@ namespace account
 
 
 
-   void simple_ui::_000OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void main_window::_000OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
       //pgraphics->FillSolidRect(0, 0, 100, 100, argb(255, 255, 0, 0));
@@ -570,7 +576,7 @@ namespace account
    }
 
 
-   void simple_ui::_001DrawChildren(::draw2d::graphics_pointer & pgraphics)
+   void main_window::_001DrawChildren(::draw2d::graphics_pointer & pgraphics)
    {
 
       ::user::interaction::_001DrawChildren(pgraphics);
@@ -578,7 +584,7 @@ namespace account
    }
 
 
-   bool simple_ui::has_pending_graphical_update()
+   bool main_window::has_pending_graphical_update()
    {
 
       return is_window_visible();

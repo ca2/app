@@ -16,14 +16,14 @@ namespace html
 
       string                              m_strOptions;
       string                              m_strStyle;
-      __pointer(::apex::str_context)      m_pstrcontext;
+      __pointer(::text::context)      m_ptextcontext;
 
 
       file();
       virtual ~file();
 
 
-      virtual const ::apex::str_context * str_context();
+      virtual const ::text::context * textcontext();
 
       virtual void print(const string & str);
 

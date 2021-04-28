@@ -10,7 +10,7 @@ namespace apex
 {
 
 
-   //application::application(::layered * pobjectContext) :
+   //application::application(::object * pobject) :
    //   ::object(pobject)
    //{
 
@@ -39,14 +39,14 @@ namespace apex
    //   return m_pimpl->_001OpenDocumentFile(varFile);
    //}
 
-   ::e_status application::_001InitializeShellOpen()
-   {
-      //ASSERT(m_atomApp == nullptr && m_atomSystemTopic == nullptr); // do once
-      /*
-            m_atomApp            = ::GlobalAddAtomW(::str::international::utf8_to_unicode(m_strAppName));
-            m_atomSystemTopic    = ::GlobalAddAtomW(L"system");*/
-      return ::success;
-   }
+//   ::e_status application::_001InitializeShellOpen()
+//   {
+//      //ASSERT(m_atomApp == nullptr && m_atomSystemTopic == nullptr); // do once
+//      /*
+//            m_atomApp            = ::GlobalAddAtomW(::str::international::utf8_to_unicode(m_strAppName));
+//            m_atomSystemTopic    = ::GlobalAddAtomW(L"system");*/
+//      return ::success;
+//   }
 
    //bool application::_001OnDDECommand(const char * pcsz)
    //{
@@ -330,10 +330,10 @@ namespace apex
 
 
 
-   void application::show_wait_cursor(bool bShow)
-   {
-
-   }
+//   void application::show_wait_cursor(bool bShow)
+//   {
+//
+//   }
 
 
    string application::veriwell_multimedia_music_midi_get_default_library_name()

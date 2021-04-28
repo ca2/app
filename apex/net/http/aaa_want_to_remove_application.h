@@ -14,14 +14,14 @@ namespace http
       ::property_set       m_setHttp;
 
 
-      application(::layered * pobjectContext);
+      application(::object * pobject);
       virtual ~application();
 
       void http_application_destruct();
 
       property_set & process_set(property_set & set, const char * pszUrl);
 
-      DECL_GEN_SIGNAL(get);
+      DECLARE_MESSAGE_HANDLER(get);
 
       virtual bool get(::sockets::socket_handler & handler, __pointer(::sockets::http_client_socket) & psocket, const char * pszUrl, property_set & set);
 

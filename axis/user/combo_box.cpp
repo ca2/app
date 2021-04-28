@@ -37,7 +37,7 @@ namespace user
          if(m_plist->is_window())
          {
 
-            m_plist->DestroyWindow();
+            m_plist->destroy_window();
 
          }
 
@@ -62,8 +62,8 @@ namespace user
 
       }
 
-      MESSAGE_LINK(e_message_mouse_move, pchannel, this, &combo_box::_001OnMouseMove);
-      MESSAGE_LINK(e_message_mouse_leave, pchannel, this, &combo_box::_001OnMouseLeave);
+      MESSAGE_LINK(e_message_mouse_move, pchannel, this, &combo_box::on_message_mouse_move);
+      MESSAGE_LINK(e_message_mouse_leave, pchannel, this, &combo_box::on_message_mouse_leave);
       MESSAGE_LINK(e_message_left_button_down, pchannel, this, &combo_box::on_message_left_button_down);
       MESSAGE_LINK(e_message_left_button_up, pchannel, this, &combo_box::on_message_left_button_up);
       MESSAGE_LINK(e_message_left_button_double_click, pchannel, this, &combo_box::_001OnLButtonDblClk);
@@ -585,7 +585,7 @@ namespace user
    }
 
 
-   void combo_box::_001OnMouseMove(::message::message * pmessage)
+   void combo_box::on_message_mouse_move(::message::message * pmessage)
    {
 
       __pointer(::message::mouse) pmouse(pmessage);
@@ -598,7 +598,15 @@ namespace user
          if (!m_bEdit || m_itemHover == e_element_drop_down)
          {
 
-            pmouse->m_ecursor = e_cursor_arrow;
+            auto psession = get_session();
+
+            auto puser = psession->user();
+
+            auto pwindowing = puser->windowing();
+
+            auto pcursor = pwindowing->get_cursor(e_cursor_arrow);
+
+            pmouse->m_pcursor = pcursor;
 
             pmouse->m_bRet = true;
 
@@ -609,7 +617,7 @@ namespace user
    }
 
 
-   void combo_box::_001OnMouseLeave(::message::message * pmessage)
+   void combo_box::on_message_mouse_leave(::message::message * pmessage)
    {
 
       UNREFERENCED_PARAMETER(pmessage);
@@ -765,7 +773,7 @@ namespace user
 
          defer_create_combo_list();
 
-         auto psession = Session;
+         auto psession = get_session();
 
          psession->on_show_user_input_popup(m_plist);
 
@@ -1178,11 +1186,11 @@ namespace user
    void combo_box::ResetContent()
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
-      m_straList.remove_all();
+      m_straList.erase_all();
 
-      m_straValue.remove_all();
+      m_straValue.erase_all();
 
       m_itemCurrent = -1;
       m_itemHover = -1;
@@ -1539,7 +1547,7 @@ namespace user
 
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       ASSERT(m_edatamode == data_mode_opaque);
 

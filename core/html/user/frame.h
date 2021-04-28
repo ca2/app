@@ -7,7 +7,7 @@
 //{
 //   
 //public: // create from serialization only
-//   html_frame(::layered * pobjectContext);
+//   html_frame(::object * pobject);
 //   // // DECLARE_DYNCREATE(html_frame)
 //
 //// Attributes
@@ -50,6 +50,6 @@
 //protected:
 //
 //
-//   DECL_GEN_SIGNAL(on_message_create);
+//   DECLARE_MESSAGE_HANDLER(on_message_create);
 //};
 //

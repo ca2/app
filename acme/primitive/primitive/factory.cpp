@@ -67,18 +67,18 @@ namespace factory
    void factory_close()
    {
 
-      critical_section_lock synchronizationlock(g_pcsFactory);
+      critical_section_lock synchronouslock(g_pcsFactory);
 
-      g_pfactorymap->remove_all();
+      g_pfactorymap->erase_all();
 
-      g_pfactorya->remove_all();
+      g_pfactorya->erase_all();
 
    }
 
    void factory_term()
    {
 
-      critical_section_lock synchronizationlock(g_pcsFactory);
+      critical_section_lock synchronouslock(g_pcsFactory);
 
       ::acme::del(g_pfactorya);
 
@@ -174,7 +174,7 @@ CLASS_DECL_ACME bool safe_free_memory(void * ptype)
 //
 //   strLibrary = stra.implode("_");
 //
-//   auto plibrary = System->get_library(strLibrary);
+//   auto plibrary = get_system()->get_library(strLibrary);
 //
 //   plibrary->create_factory();
 //

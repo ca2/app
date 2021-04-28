@@ -33,7 +33,6 @@ namespace ftp
    }
 
    file_status::file_status(const file_status& src) :
-      ::object(src.get_context_object()),
       m_strName(src.m_strName),
       m_strPath(src.m_strPath),
       m_bCwdEnabled(src.m_bCwdEnabled),
@@ -50,6 +49,8 @@ namespace ftp
       m_strID(src.m_strID),
       m_strModificationTime(src.m_strModificationTime)
    {
+
+      initialize((::object *) &src);
    }
 
    file_status::~file_status()
@@ -57,10 +58,10 @@ namespace ftp
    }
 
    
-   ::e_status file_status::initialize(::layered * pobjectContext)
+   ::e_status file_status::initialize(::object * pobject)
    {
 
-      auto estatus = ::object::initialize(pobjectContext);
+      auto estatus = ::object::initialize(pobject);
 
       if (!estatus)
       {
@@ -117,28 +118,34 @@ namespace ftp
          m_strID == rhs.m_strID;
    }
 
+   
    bool file_status::operator!=(const file_status& rhs) const
    {
+      
       return !operator==(rhs);
+
    }
+
 
    void file_status::reset()
    {
-      m_strName.erase();
-      m_strPath.erase();
+
+      m_strName.Empty();
+      m_strPath.Empty();
       m_bCwdEnabled = false;
       m_bRetrEnabled = false;
       m_esize = size_unknown;
       m_filesize = -1;
       m_etimeModification = time_unknown;
       m_timeModification = 0;
-      m_strAttributes.erase();
-      m_strUID.erase();
-      m_strGID.erase();
-      m_strLink.erase();
+      m_strAttributes.Empty();
+      m_strUID.Empty();
+      m_strGID.Empty();
+      m_strLink.Empty();
       m_eid = id_unknown;
-      m_strID.erase();
-      m_strModificationTime.erase();
+      m_strID.Empty();
+      m_strModificationTime.Empty();
+
    }
 
 

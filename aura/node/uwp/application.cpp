@@ -10,7 +10,7 @@ namespace aura
 {
 
 
-   //application::application(::layered * pobjectContext) :
+   //application::application(::object * pobject) :
    //   ::object(pobject)
    //{
 

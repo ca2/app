@@ -82,7 +82,7 @@ void __node_term_thread()
 bool __os_init_thread()
 {
 
-   //__thread_set_data((ithread_t) idthread, ::parallelization::slot_message_queue, 0);
+   //__thread_set_data((itask_t) idthread, ::parallelization::slot_message_queue, 0);
 
    return true;
 
@@ -165,10 +165,10 @@ CLASS_DECL_CORE i64 get_nanos()
 }
 
 
-CLASS_DECL_CORE void main_sync_runnable(::context_object * pobjectRunnable, ::duration durationTimeout)
+CLASS_DECL_CORE void main_sync_runnable(::object * pobjectRunnable, ::duration durationTimeout)
 {
 
-   __pointer(context_object) prunnable = pobjectRunnable;
+   __pointer(object) prunnable = pobjectRunnable;
 
    auto pevent = __new(manual_reset_event);
 
@@ -195,10 +195,10 @@ CLASS_DECL_CORE void main_sync_runnable(::context_object * pobjectRunnable, ::du
 }
 
 
-CLASS_DECL_CORE void main_async_runnable(::context_object * prunnableParam)
+CLASS_DECL_CORE void main_async_runnable(::object * prunnableParam)
 {
 
-   __pointer(context_object) prunnable = prunnableParam;
+   __pointer(object) prunnable = prunnableParam;
 
    gdk_fork([prunnable]()
    {

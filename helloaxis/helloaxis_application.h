@@ -13,7 +13,7 @@ namespace helloaxis
    public:
 
 
-      application(::layered * pobjectContext);
+      application(::object * pobject);
       virtual ~application();
 
       virtual ::e_status init_instance() override;

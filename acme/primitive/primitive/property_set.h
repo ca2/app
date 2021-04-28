@@ -26,8 +26,8 @@ public:
    virtual ~property_set();
 
 
-   ::count remove_by_name(const id & idName);
-   ::count remove_by_name(string_array & straName);
+   ::count erase_by_name(const id & idName);
+   ::count erase_by_name(string_array & straName);
 
    virtual ::matter * source_channel();
 
@@ -89,17 +89,17 @@ public:
    bool str_contains(const property_set & set) const;
    bool contains(const property_set & set) const;
 
-   bool remove_first_value_ci(const ::payload & payload);
-   bool remove_first_value_ci(const char * psz);
+   bool erase_first_value_ci(const ::payload & payload);
+   bool erase_first_value_ci(const char * psz);
 
-   bool remove_first_value(const ::payload & payload);
-   bool remove_first_value(const char * psz);
+   bool erase_first_value(const ::payload & payload);
+   bool erase_first_value(const char * psz);
 
-   ::count remove_value_ci(const  ::payload & payload, ::count countMin = 0, ::count countMax = -1);
-   ::count remove_value_ci(const char * psz, ::count countMin = 0, ::count countMax = -1);
+   ::count erase_value_ci(const  ::payload & payload, ::count countMin = 0, ::count countMax = -1);
+   ::count erase_value_ci(const char * psz, ::count countMin = 0, ::count countMax = -1);
 
-   ::count remove_value(const ::payload & payload, ::count countMin = 0, ::count countMax = -1);
-   ::count remove_value(const char * psz, ::count countMin = 0, ::count countMax = -1);
+   ::count erase_value(const ::payload & payload, ::count countMin = 0, ::count countMax = -1);
+   ::count erase_value(const char * psz, ::count countMin = 0, ::count countMax = -1);
 
    bool has_property(id idName) const;
 
@@ -188,7 +188,7 @@ public:
          else
          {
 
-            remove_by_name(id);
+            erase_by_name(id);
 
          }
 

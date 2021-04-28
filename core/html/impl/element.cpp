@@ -191,7 +191,15 @@ namespace html
          if (has_link())
          {
 
-            pmouse->m_ecursor = e_cursor_hand;
+            auto psession = get_session()->m_paurasession;
+
+            auto puser = psession->user();
+
+            auto pwindowing = puser->windowing();
+
+            auto pcursor = pwindowing->get_cursor(e_cursor_hand);
+
+            pmouse->m_pcursor = pcursor;
 
          }
 
@@ -763,7 +771,7 @@ namespace html
             //   if (m_pelemental->get_color(cr, ::user::color_background, pdata->m_pcoredata->m_pform))
             //   {
 
-            //      App(pdata->get_context_application()).imaging().color_blend(pgraphics, rectangle, cr, maximum(0, minimum(255, (byte)(d * 255))));
+            //      App(pdata->get_application()).imaging().color_blend(pgraphics, rectangle, cr, maximum(0, minimum(255, (byte)(d * 255))));
 
             //   }
 

@@ -10,7 +10,7 @@ namespace account
    dialog::dialog()
    {
 
-      m_etheme = ::user::e_theme_lite;
+      //m_etheme = ::user::e_theme_lite;
 
       m_bLButtonDown = false;
 
@@ -71,7 +71,7 @@ namespace account
       MESSAGE_LINK(e_message_char,pchannel,this,&dialog::_001OnChar);
       MESSAGE_LINK(e_message_left_button_down,pchannel,this,&dialog::on_message_left_button_down);
       MESSAGE_LINK(e_message_left_button_up,pchannel,this,&dialog::on_message_left_button_up);
-      MESSAGE_LINK(e_message_mouse_move,pchannel,this,&dialog::_001OnMouseMove);
+      MESSAGE_LINK(e_message_mouse_move,pchannel,this,&dialog::on_message_mouse_move);
       MESSAGE_LINK(e_message_show_window, pchannel, this, &dialog::_001OnShowWindow);
 
    }
@@ -106,11 +106,11 @@ namespace account
 
       string strOpen;
 
-      strUser = lstr("account::login::email","e-mail");
+      //strUser = lstr("account::login::email","e-mail");
 
-      strPass = lstr("account::login::password","password");
+      //strPass = lstr("account::login::password","password");
 
-      strOpen = lstr("account::login::open","open");
+      //strOpen = lstr("account::login::open","open");
 
       m_plogin->defer_translate(strUser,strPass,strOpen);
 
@@ -166,7 +166,7 @@ namespace account
 
                {
 
-                  synchronization_lock slInteractive(m_pcredentials->mutex());
+                  synchronous_lock slInteractive(m_pcredentials->mutex());
 
                   pcredentials = __new(::account::credentials(*m_pcredentials));
 
@@ -227,7 +227,7 @@ namespace account
 
       m_pcredentials->m_estatus = error_credentials;
 
-      auto psession = Session;
+      __pointer(::core::session) psession = get_session();
 
       ::user::interaction * puiParent = psession->cast < ::user::interaction > ("plugin_parent");
 
@@ -302,14 +302,16 @@ namespace account
       if((rectFontopus.width() < 300 || rectFontopus.height() < 300) && puiParent != nullptr)
       {
 
-         __pointer(::apex::application) papp = puiParent->get_context_application();
+         __pointer(::apex::application) papp = puiParent->get_application();
 
          if(papp != nullptr)
          {
 
-            ::hyperlink hyperlink;
+            auto phyperlink = __create_new < ::hyperlink >();
 
-            hyperlink.open_link("ca2account:this", "", "");
+            phyperlink->m_strLink = "ca2account:this";
+
+            phyperlink->run();
 
             sleep(5000_ms);
 
@@ -317,9 +319,11 @@ namespace account
          else
          {
 
-            ::hyperlink hyperlink;
+            auto phyperlink = __create_new < ::hyperlink >();
 
-            hyperlink.open_link("ca2account:this", "", "");
+            phyperlink->m_strLink = "ca2account:this";
+
+            phyperlink->run();
 
          }
 
@@ -329,14 +333,14 @@ namespace account
 
 #if !MOBILE_PLATFORM
 
-      single_lock synchronizationlock(&psession->account()->m_semaphoreDialog);
+      single_lock synchronouslock(&psession->account()->m_semaphoreDialog);
 
       bool bWasWaiting = false;
 
-      while (!synchronizationlock.wait(one_second()).signaled())
+      while (!synchronouslock.wait(one_second()).signaled())
       {
 
-         if (!::thread_get_run())
+         if (!::task_get_run())
          {
 
             return;
@@ -387,7 +391,7 @@ namespace account
 
          string strPass;
 
-         m_plogin->m_ppassword->_001GetText(strPass);
+         m_plogin->m_peditPassword->_001GetText(strPass);
 
          m_pcredentials->m_puser->m_strLogin = strUser;
 
@@ -432,6 +436,9 @@ namespace account
 
       auto pcredentials = m_pcredentials;
 
+      __pointer(::core::session) psession = get_session();
+
+      __pointer(::core::application) papplication = get_application();
 
       if(pcredentials->m_strTitle == "ca2")
       {
@@ -453,7 +460,11 @@ namespace account
          if (stra.get_size() >= 2)
          {
 
-            m_plogin->m_pimage = Application.image().load_matter_image(stra[0]);
+            auto pcontext = m_pcontext->m_pauracontext;
+
+            auto pcontextimage = pcontext->context_image();
+
+            m_plogin->m_pimage = pcontextimage->load_matter_image(stra[0]);
 
             m_plogin->m_strCred = stra.implode("|", 1);
 
@@ -533,7 +544,7 @@ namespace account
 
       __pointer(::message::mouse) pmouse(pmessage);
 
-      auto psession = Session;
+      auto psession = get_session();
 
       auto puser = psession->user();
 
@@ -555,7 +566,7 @@ namespace account
    }
 
 
-   void dialog::_001OnMouseMove(::message::message * pmessage)
+   void dialog::on_message_mouse_move(::message::message * pmessage)
    {
 
       __pointer(::message::mouse) pmouse(pmessage);
@@ -607,7 +618,7 @@ namespace account
 
       __pointer(::message::show_window) pshowwindow(pmessage);
 
-      auto psession = Session;
+      auto psession = get_session();
 
       auto puser = psession->user();
 

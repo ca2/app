@@ -14,7 +14,10 @@ namespace html
       pointer_array < style > m_stylea;
       
 
-      style_sheet(::layered * pobjectContext);
+      style_sheet();
+
+
+      virtual ::e_status initialize(::object * pobject) override;
 
 
       void parse(html_data * pdocument, const char * psz);

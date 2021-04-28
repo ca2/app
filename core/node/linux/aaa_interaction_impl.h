@@ -34,7 +34,7 @@ namespace linux
 
 
       interaction_impl();
-      interaction_impl(::layered * pobjectContext);
+      interaction_impl(::object * pobject);
       virtual ~interaction_impl();
 
 
@@ -68,11 +68,11 @@ namespace linux
 
       virtual void on_control_event(::user::control_event * pevent) override;
 
-      DECL_GEN_SIGNAL(_001OnEraseBkgnd);
-      DECL_GEN_SIGNAL(_001OnMove);
-      DECL_GEN_SIGNAL(_001OnSize);
-      DECL_GEN_SIGNAL(_001OnShowWindow);
-      //DECL_GEN_SIGNAL(_001OnProdevianSynch);
+      DECLARE_MESSAGE_HANDLER(_001OnEraseBkgnd);
+      DECLARE_MESSAGE_HANDLER(_001OnMove);
+      DECLARE_MESSAGE_HANDLER(_001OnSize);
+      DECLARE_MESSAGE_HANDLER(_001OnShowWindow);
+      //DECLARE_MESSAGE_HANDLER(_001OnProdevianSynch);
 
 
       virtual void node_show_change_visibility();
@@ -250,16 +250,16 @@ namespace linux
 
 #ifdef WINDOWS_DESKTOP
 
-      virtual bool GetWindowPlacement(WINDOWPLACEMENT* pwndpl);
+      virtual bool GetWindowPlacement(WINDOWPLACEMENT* puserinteractionpl);
 
-      virtual bool SetWindowPlacement(const WINDOWPLACEMENT* pwndpl);
+      virtual bool SetWindowPlacement(const WINDOWPLACEMENT* puserinteractionpl);
 
 #endif
 
       // Coordinate Mapping Fufnctions
-//      virtual void MapWindowPoints(::user::interaction * pwndTo, POINT32 * pPoint, ::u32 nCount);
+//      virtual void MapWindowPoints(::user::interaction * puserinteractionTo, POINT32 * pPoint, ::u32 nCount);
 //
-//      virtual void MapWindowPoints(::user::interaction * pwndTo, RECT32 * prect);
+//      virtual void MapWindowPoints(::user::interaction * puserinteractionTo, RECT32 * prect);
 
 
       // Update/Painting Functions
@@ -468,11 +468,11 @@ namespace linux
       virtual bool prodevian_update_screen() override;
 
 
-      DECL_GEN_SIGNAL(on_message_create);
-      DECL_GEN_SIGNAL(_001OnDestroy);
-      DECL_GEN_SIGNAL(_001OnPaint);
-      DECL_GEN_SIGNAL(_001OnPrint);
-      DECL_GEN_SIGNAL(_001OnSetCursor);
+      DECLARE_MESSAGE_HANDLER(on_message_create);
+      DECLARE_MESSAGE_HANDLER(_001OnDestroy);
+      DECLARE_MESSAGE_HANDLER(_001OnPaint);
+      DECLARE_MESSAGE_HANDLER(_001OnPrint);
+      DECLARE_MESSAGE_HANDLER(_001OnSetCursor);
 
 
 

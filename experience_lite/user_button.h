@@ -16,7 +16,7 @@ namespace user
       ::draw2d::brush_pointer                  m_brush;
 
 
-      button(::layered * pobjectContext);
+      button(::object * pobject);
       virtual ~button();
 
 
@@ -29,7 +29,7 @@ namespace user
 
       virtual void _001OnClip(::draw2d::graphics_pointer & pgraphics) override;
 
-      DECL_GEN_SIGNAL(_001OnShowWindow);
+      DECLARE_MESSAGE_HANDLER(_001OnShowWindow);
       virtual void on_layout(::draw2d::graphics_pointer & pgraphics) override;
 
 

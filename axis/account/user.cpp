@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "acme/const/timer.h"
 
 
 string chunk_split(const string & body,i32 chunklen,const string & end)
@@ -50,10 +51,10 @@ namespace account
    }
 
 
-   ::e_status user::initialize(::layered * pobjectContext)
+   ::e_status user::initialize(::object * pobject)
    {
 
-      auto estatus = ::object::initialize(pobjectContext);
+      auto estatus = ::object::initialize(pobject);
 
       if (!estatus)
       {
@@ -62,7 +63,7 @@ namespace account
 
       }
 
-      //if (get_context_session())
+      //if (get_session())
       //{
 
       //   psession->defer_initialize_user_presence();
@@ -93,7 +94,7 @@ namespace account
 //      {
 //         strText = "https://ca2.cc/";
 //      }
-//      strText = System->url().get_server(strText);
+//      strText = purl->get_server(strText);
 //      if(strText.is_empty())
 //         strText = pszText;
 //      string strSessId;
@@ -117,7 +118,7 @@ namespace account
 //            return strSessId;
 //
 //      }
-//      class validate authuser(get_context_application(), "system\\user\\authenticate.xhtml", true, bInteractive);
+//      class validate authuser(get_application(), "system\\user\\authenticate.xhtml", true, bInteractive);
 //      __pointer(user) puser = authuser.get_user(pszText);
 //      if(puser == nullptr)
 //         strSessId = "not_auth";
@@ -144,7 +145,7 @@ namespace account
 //      {
 //         strText = "https://ca2.cc/";
 //      }
-//      strText = System->url().get_server(strText);
+//      strText = purl->get_server(strText);
 //      m_sessionidmap[strText] = pszSessid;
 //   }
 
@@ -231,7 +232,7 @@ namespace account
 
          iRetry--;
 
-         if(iRetry <= 0 || !::thread_get_run())
+         if(iRetry <= 0 || !::task_get_run())
          {
 
             return;
@@ -249,7 +250,7 @@ namespace account
 
       }
 
-      auto psession = Session;
+      __pointer(::axis::session) psession = get_session();
 
       psession->account()->on_user_logon(this);
 
@@ -261,13 +262,13 @@ namespace account
    ::e_status  user::do_logon(::file::path pathUrl, bool bInteractive)
    {
 
-      auto psession = Session;
-
       m_timeAuthenticationRequest = ::datetime::time::get_current_time();
 
       m_bDeferRegistration = bInteractive;
 
       __pointer(credentials) pcredentials = __new(credentials);
+
+      __pointer(::axis::session) psession = get_session();
 
       pcredentials->initialize_account_credentials(this, psession->account()->storage());
 
@@ -295,7 +296,7 @@ namespace account
 
       //m_pcredentials->m_strToken = m_strRequestingHost;
 
-      //      m_eresult = Application.interactive_credentials(thisget_app(), m_pathUrl, nullptr, strUsername, strPassword, m_strRequestingHost, "ca2", m_bInteractive);
+      //      m_eresult = papplication->interactive_credentials(thisget_app(), m_pathUrl, nullptr, strUsername, strPassword, m_strRequestingHost, "ca2", m_bInteractive);
 
       m_estatusAuthentication = pcredentials->get_credentials();
 
@@ -336,9 +337,9 @@ namespace account
       //else
       //{
 
-      // ::account::set_cred(get_context_application(), "ca2", "", "");
+      // ::account::set_cred(get_application(), "ca2", "", "");
 
-      //::account::set_cred_ok(get_context_application(), "ca2", false);
+      //::account::set_cred_ok(get_application(), "ca2", false);
 
       //}
 
@@ -397,7 +398,7 @@ namespace account
    bool user::is_authenticated()
    {
 
-      on_clock(e_clock_slow);
+      on_clock(e_timer_slow);
 
       if(m_estatusAuthentication != ::success_authenticated)
       {
@@ -429,10 +430,10 @@ namespace account
    }
 
 
-   void user::on_clock(enum_clock eclock)
+   void user::on_clock(enum_timer etimer)
    {
 
-      if(eclock == e_clock_slow)
+      if(etimer == e_timer_slow)
       {
 
          if(m_estatusAuthentication == ::success_authenticated)
@@ -444,7 +445,7 @@ namespace account
 
             auto authenticationElapsed = minimum(authenticationRequestElapsed, authenticationDoneElapsed);
 
-            auto psession = Session;
+            __pointer(::axis::session) psession = get_session();
 
             auto authenticationTimeout = psession->account()->get_session_timeout();
 

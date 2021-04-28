@@ -28,7 +28,7 @@
 //      stores those C++ objects that have been explicitly created by
 //      the developer.  The C++ constructor for the wrapper class will
 //      insert the mapping into the permanent dictionary and the C++
-//      destructor will remove it and possibly free up the associated
+//      destructor will erase it and possibly free up the associated
 //      Windows matter.
 //  When a handle passes through a C++ interface that doesn't exist in
 //      the permanent dictionary, we allocate a temporary wrapping matter
@@ -176,7 +176,7 @@ public:
    void delete_temp();
 
    void set_permanent(HANDLE h, CT * permOb);
-   void remove_handle(HANDLE h);
+   void erase_handle(HANDLE h);
 
    CT * lookup_permanent(HANDLE h);
    CT * lookup_temporary(HANDLE h);
@@ -235,7 +235,7 @@ template < class HT, class CT >
 CT* handle_map < HT, CT >::from_handle(HANDLE h, CT * (*pfnAllocator) (__pointer(::acme::application), HANDLE), __pointer(::acme::application) papp)
 {
 
-   single_lock synchronizationlock(&m_mutex, true);
+   single_lock synchronouslock(&m_mutex, true);
 
    ASSERT(HT::s_iHandleCount == 1 || HT::s_iHandleCount == 2);
 
@@ -321,7 +321,7 @@ template < class HT, class CT >
 void handle_map < HT, CT >::set_permanent(HANDLE h, CT * permOb)
 {
 
-   single_lock synchronizationlock(&m_mutex, true);
+   single_lock synchronouslock(&m_mutex, true);
 
    //bool bEnable = __enable_memory_tracking(false);
    m_permanentMap[(LPVOID)h] = permOb;
@@ -332,10 +332,10 @@ void handle_map < HT, CT >::set_permanent(HANDLE h, CT * permOb)
 
 #ifdef __DEBUG
 template < class HT, class CT >
-void handle_map < HT, CT > ::remove_handle(HANDLE h)
+void handle_map < HT, CT > ::erase_handle(HANDLE h)
 {
 
-   single_lock synchronizationlock(&m_mutex, true);
+   single_lock synchronouslock(&m_mutex, true);
 
    // make sure the handle entry is consistent before deleting
    CT* pTemp = lookup_temporary(h);
@@ -356,9 +356,9 @@ void handle_map < HT, CT > ::remove_handle(HANDLE h)
       ASSERT(ph[0] == h);
       // permanent matter may have secondary handles that are different
    }
-   // remove only from permanent map -- temporary objects are removed
+   // erase only from permanent map -- temporary objects are erased
    //  at idle in CHandleMap::delete_temp, always!
-   m_permanentMap.remove_key((LPVOID)h);
+   m_permanentMap.erase_key((LPVOID)h);
 }
 #endif //__DEBUG
 
@@ -366,7 +366,7 @@ template < class HT, class CT >
 void handle_map < HT, CT >::delete_temp()
 {
 
-   single_lock synchronizationlock(&m_mutex, true);
+   single_lock synchronouslock(&m_mutex, true);
 
    if (::is_null(this))
       return;
@@ -390,11 +390,11 @@ void handle_map < HT, CT >::delete_temp()
       }
 
       ASSERT(m_pfnDestructObject != nullptr);
-      //pTemp->get_context_application() = nullptr;
+      //pTemp->get_application() = nullptr;
       (*m_pfnDestructObject)(pTemp);   // destruct the matter
    }
 
-   m_temporaryMap.remove_all();       // free up dictionary links etc
+   m_temporaryMap.erase_all();       // free up dictionary links etc
    m_alloc.FreeAll();   // free all the memory used for these temp objects
 }
 
@@ -406,11 +406,11 @@ inline void handle_map < HT, CT >::set_permanent(HANDLE h, CT * permOb)
    { m_permanentMap[(HANDLE)h] = permOb; }
 
 template < class HT, class CT >
-inline void handle_map < HT, CT >::remove_handle(HANDLE h)
+inline void handle_map < HT, CT >::erase_handle(HANDLE h)
 {
-   // remove only from permanent map -- temporary objects are removed
+   // erase only from permanent map -- temporary objects are erased
    //  at idle in CHandleMap::delete_temp, always!
-   m_permanentMap.remove_key((HANDLE)h);
+   m_permanentMap.erase_key((HANDLE)h);
 }
 #endif //__DEBUG
 
@@ -418,7 +418,7 @@ template < class HT, class CT >
 inline CT* handle_map <HT, CT>::lookup_permanent(HANDLE h)
 {
 
-   single_lock synchronizationlock(&m_mutex, true);
+   single_lock synchronouslock(&m_mutex, true);
 
    CT * pt = m_permanentMap.get(h, (CT*) nullptr);
    if(pt != nullptr && pt->get_os_data() == (void *) h)
@@ -432,7 +432,7 @@ template < class HT, class CT >
 inline CT* handle_map <HT, CT>::lookup_temporary(HANDLE h)
 {
 
-   single_lock synchronizationlock(&m_mutex, true);
+   single_lock synchronouslock(&m_mutex, true);
 
    CT * pt = m_temporaryMap.get(h, (CT*) nullptr);
    if(pt != nullptr && pt->get_os_data() == (void *) h)

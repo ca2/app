@@ -89,7 +89,8 @@ class image_array;
 
 
 
-class CLASS_DECL_AURA save_image
+class CLASS_DECL_AURA save_image :
+   virtual public ::matter
 {
 public:
 
@@ -100,7 +101,6 @@ public:
 
 
    save_image();
-   save_image(const ::payload & varFile, const ::payload & varOptions);
 
 
 };
@@ -242,7 +242,7 @@ namespace draw2d
 
 #include "buffered_graphics.h"
 
-#include "thread_tool.h"
+#include "task_tool.h"
 
 //#include "aura/platform/printer.h"
 

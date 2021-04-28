@@ -126,7 +126,7 @@ namespace aura
    void interprocess_communication::call::exclude_this_app()
    {
 
-      m_iaExclude.add(Context.os().get_pid());
+      m_iaExclude.add(pcontext->m_papexcontext->os().get_pid());
 
    }
 
@@ -177,9 +177,9 @@ namespace aura
 
       auto psynca = synca();
 
-      synchronization_lock synchronizationlock(psynca);
+      synchronous_lock synchronouslock(psynca);
 
-      return synchronizationlock.wait(m_duration);
+      return synchronouslock.wait(m_duration);
 
    }
 
@@ -249,10 +249,10 @@ namespace aura
    }
 
 
-   ::e_status interprocess_communication::initialize(::layered * pobjectContext)
+   ::e_status interprocess_communication::initialize(::object * pobject)
    {
 
-      auto estatus = ::object::initialize(pobjectContext);
+      auto estatus = ::object::initialize(pobject);
 
       if (!estatus)
       {
@@ -274,9 +274,9 @@ namespace aura
 
       }
 
-      int iPid = Context.os().get_pid();
+      int iPid = pcontext->m_papexcontext->os().get_pid();
 
-      //defer_add_module(Context.file().module(), iPid);
+      //defer_add_module(pcontext->m_papexcontext->file().module(), iPid);
 
 //      ::file::path path;
 //
@@ -306,7 +306,7 @@ namespace aura
    }
 
 
-   void interprocess_communication::finalize()
+   ::e_status interprocess_communication::finalize()
    {
 
       ::object::finalize();
@@ -320,7 +320,7 @@ namespace aura
    bool interprocess_communication::start(const string & strApp)
    {
 
-      synchronization_lock sl1(mutex());
+      synchronous_lock sl1(mutex());
 
       auto & pmutex = m_mapAppMutex[strApp];
 
@@ -333,7 +333,7 @@ namespace aura
 
       sl1.unlock();
 
-      synchronization_lock synchronizationlock(pmutex);
+      synchronous_lock synchronouslock(pmutex);
 
       auto idaPid = get_pid(strApp);
 
@@ -361,7 +361,7 @@ namespace aura
 
             int iSubStep;
 
-            while(iStep < 8 && ::thread_get_run())
+            while(iStep < 8 && ::task_get_run())
             {
 
                iStep++;
@@ -375,7 +375,7 @@ namespace aura
 
                }
 
-               for(iSubStep = 0; (iSubStep < (iStep + 1) * 10) && ::thread_get_run(); iSubStep++)
+               for(iSubStep = 0; (iSubStep < (iStep + 1) * 10) && ::task_get_run(); iSubStep++)
                {
 
                   sleep(100_ms);
@@ -489,7 +489,7 @@ started:
 
 #ifdef LINUX
 
-      strKey = ::dir::system() / "interprocess_communication" / strApp / __str(idPid);
+      strKey = pacmedir->system() / "interprocess_communication" / strApp / __str(idPid);
 
 #elif defined(__APPLE__)
 
@@ -511,7 +511,7 @@ started:
 
 #else
 
-      strKey = ::dir::system() / "interprocess_communication" / strApp / __str(idPid);
+      strKey = pacmedir->system() / "interprocess_communication" / strApp / __str(idPid);
 
 
 #endif
@@ -671,7 +671,7 @@ started:
 
       auto pobjectTask = __new(class task(pcall, idPid, atomic_increment(&m_iTaskSeed)));
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       m_mapTask[pobjectTask->m_iTask] = pobjectTask;
 
@@ -685,7 +685,7 @@ started:
    __pointer(class interprocess_communication::task) interprocess_communication::get_task(i64 iTask)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       return m_mapTask[iTask];
 
@@ -729,7 +729,7 @@ started:
          else if(strMember == "on_additional_local_instance")
          {
 
-            payload["continue"] = Application.on_additional_local_instance(payload["handled"], vara[0], vara[1], vara[2]);
+            payload["continue"] = papplication->on_additional_local_instance(payload["handled"], vara[0], vara[1], vara[2]);
 
          }
          else if (strMember == "on_new_instance")
@@ -749,7 +749,7 @@ started:
 
       defer_add_module(strModule, idPid);
 
-      Application.on_new_instance(strModule, idPid);
+      papplication->on_new_instance(strModule, idPid);
 
    }
 
@@ -777,7 +777,7 @@ started:
 
       ::file::path pathModule;
 
-      pathModule = ::dir::system() / "interprocess_communication";
+      pathModule = pacmedir->system() / "interprocess_communication";
 
       pathModule /= strApp + ".module_list";
 
@@ -790,7 +790,7 @@ repeat:
       if (stra.get_count() > 32)
       {
 
-         stra.remove_at(0, 16);
+         stra.erase_at(0, 16);
 
       }
 
@@ -865,9 +865,9 @@ repeat:
 
       ::file::path pathModule;
 
-      m_straModule.remove_all();
+      m_straModule.erase_all();
 
-      pathModule = ::dir::system() / "interprocess_communication";
+      pathModule = pacmedir->system() / "interprocess_communication";
 
       pathModule /= m_strApp + ".module_list";
 
@@ -929,7 +929,7 @@ repeat:
          else
          {
 
-            m_straModule.remove_at(i);
+            m_straModule.erase_at(i);
 
          }
 
@@ -946,7 +946,7 @@ repeat:
 
       m_straModule = straUnique;
 
-      ::file::path pathThisModule = Context.file().module();
+      ::file::path pathThisModule = pcontext->m_papexcontext->file().module();
 
       string strItem;
 
@@ -967,7 +967,7 @@ repeat:
 
       strModuleList = m_straModule.implode("\n");
 
-      Context.file().put_contents(pathModule,strModuleList);
+      pcontext->m_papexcontext->file().put_contents(pathModule,strModuleList);
 
 #endif
 

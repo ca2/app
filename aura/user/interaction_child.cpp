@@ -20,7 +20,7 @@ namespace user
    }
 
 
-   //interaction_child::interaction_child(::layered * pobjectContext) :
+   //interaction_child::interaction_child(::object * pobject) :
    //   ::object(pobject)
    //{
 
@@ -57,7 +57,7 @@ namespace user
          INFO("");
          INFO("");
 
-         DestroyWindow();
+         start_destroying_window();
 
       }
 
@@ -223,7 +223,7 @@ namespace user
 ////      pusersystem->m_createstruct.lpszName = wstrWindowName;
 ////
 ////#ifndef _UWP
-////      pusersystem->m_createstruct.hInstance = ::aura::get_system()->m_hinstance;
+////      pusersystem->m_createstruct.hInstance = psystem->m_hinstance;
 ////#endif
 ////
 ////#else
@@ -391,7 +391,7 @@ namespace user
    //}
 
 
-   bool interaction_child::DestroyWindow()
+   bool interaction_child::start_destroying_window()
    {
 
       if (!m_bCreate)
@@ -401,7 +401,7 @@ namespace user
 
       }
 
-      bool bOk = ::user::primitive_impl::DestroyWindow();
+      bool bOk = ::user::primitive_impl::start_destroying_window();
 
       return bOk;
 
@@ -665,12 +665,12 @@ namespace user
 
          m_puserinteraction->get_window_rect(rectWindow, ::user::e_layout_design);
 
-         auto pwnd = get_wnd();
+         auto puserinteraction = get_wnd();
 
-         if (::is_set(pwnd))
+         if (::is_set(puserinteraction))
          {
 
-            pwnd->viewport_screen_to_client(rectWindow);
+            puserinteraction->viewport_screen_to_client(rectWindow);
 
             pgraphics->SetViewportOrg(rectWindow.top_left());
 

@@ -76,7 +76,7 @@ namespace draw2d_direct2d
    void graphics::assert_valid() const
    {
 
-      context_object::assert_valid();
+      object::assert_valid();
 
    }
 
@@ -84,7 +84,7 @@ namespace draw2d_direct2d
    void graphics::dump(dump_context & dumpcontext) const
    {
 
-      context_object::dump(dumpcontext);
+      object::dump(dumpcontext);
 
       dumpcontext << "get_handle1() = " << (::iptr) get_handle1();
       dumpcontext << "\nm_hAttribDC = " << (::iptr) get_handle2();
@@ -130,15 +130,15 @@ namespace draw2d_direct2d
 
       }
 
-      /*System->draw2d()->direct2d() = __new(::draw2d_direct2d::plugin);
+      /*pdraw2d->direct2d() = __new(::draw2d_direct2d::plugin);
 
-      System->draw2d()->direct2d()->initialize();*/
+      pdraw2d->direct2d()->initialize();*/
 
       HRESULT hr;
 
       Microsoft::WRL::ComPtr<ID2D1DeviceContext> pdevicecontextTemplate;
 
-      if (FAILED(hr = System->draw2d()->direct2d()->m_pd2device->CreateDeviceContext(
+      if (FAILED(hr = pdraw2d->direct2d()->m_pd2device->CreateDeviceContext(
                       D2D1_DEVICE_CONTEXT_OPTIONS_NONE,
                       //D2D1_DEVICE_CONTEXT_OPTIONS_ENABLE_MULTITHREADED_OPTIMIZATIONS,
                       &pdevicecontextTemplate)))
@@ -3007,7 +3007,7 @@ namespace draw2d_direct2d
    ::image_pointer pimage;
    if(imageWork == nullptr)
    {
-   pimage = create_image(get_object());
+   pimage = create_image(this);
    imageWork = pimage;
    }
    if(imageWork == nullptr)
@@ -3023,7 +3023,7 @@ namespace draw2d_direct2d
    ::image_pointer pimage2;
    if(imageWork2 == nullptr)
    {
-   pimage2 = create_image(get_object());
+   pimage2 = create_image(this);
    imageWork2 = pimage2;
    }
 
@@ -3031,7 +3031,7 @@ namespace draw2d_direct2d
    ::image_pointer pimage4;
    if(imageWork4 == nullptr)
    {
-   image4 = create_image(get_object());
+   image4 = create_image(this);
    imageWork4 = image4;
    }
    if(imageWork4 == nullptr)
@@ -3051,7 +3051,7 @@ namespace draw2d_direct2d
    keep < image > keep(&m_pimageAlphaBlend, nullptr, m_pimageAlphaBlend, true);
 
 
-   return Application.m_visual.imaging().true_blend(this, pointDest, ::size_f64, imageWork.get_graphics(), pointSrc);
+   return papplication->m_visual.imaging().true_blend(this, pointDest, ::size_f64, imageWork.get_graphics(), pointSrc);
 
 
    }
@@ -3289,7 +3289,7 @@ namespace draw2d_direct2d
    /////////////////////////////////////////////////////////////////////////////
    // special graphics drawing primitives/helpers
 
-   ::draw2d::brush* graphics::GetHalftoneBrush(::layered * pobjectContext)
+   ::draw2d::brush* graphics::GetHalftoneBrush(::object * pobject)
    {
       /*
       ::aura::LockGlobals(CRIT_HALFTONEBRUSH);
@@ -3338,7 +3338,7 @@ namespace draw2d_direct2d
    //   ::draw2d::brush* pBrushOld = nullptr;
    //   if (pBrush == nullptr)
    //   {
-   //   pBrush = graphics::GetHalftoneBrush(get_object());
+   //   pBrush = graphics::GetHalftoneBrush(this);
    //   }
 
    //   ENSURE(pBrush);
@@ -3525,11 +3525,11 @@ namespace draw2d_direct2d
 
          }
 
-         state->m_maRegion.remove_all();
+         state->m_maRegion.erase_all();
 
-         state->m_sparegionClip.remove_all();
+         state->m_sparegionClip.erase_all();
 
-         m_statea.remove_at(iState);
+         m_statea.erase_at(iState);
 
       }
 
@@ -3755,9 +3755,9 @@ namespace draw2d_direct2d
 
          }
 
-         state->m_maRegion.remove_all();
+         state->m_maRegion.erase_all();
 
-         state->m_sparegionClip.remove_all();
+         state->m_sparegionClip.erase_all();
 
       }
 
@@ -3770,9 +3770,9 @@ namespace draw2d_direct2d
 
       }
 
-      state->m_maRegion.remove_all();
+      state->m_maRegion.erase_all();
 
-      state->m_sparegionClip.remove_all();
+      state->m_sparegionClip.erase_all();
 
       return ::success;
 
@@ -4434,7 +4434,7 @@ namespace draw2d_direct2d
             {
                // got the stock object back, so must be selecting a font
                __throw(error_not_implemented);
-               //                  (dynamic_cast<::draw2d_direct2d::graphics * >(pgraphics))->SelectObject(::draw2d_direct2d::font::from_handle_dup(pgraphics->get_context_application(), (HFONT)hObject));
+               //                  (dynamic_cast<::draw2d_direct2d::graphics * >(pgraphics))->SelectObject(::draw2d_direct2d::font::from_handle_dup(pgraphics->get_application(), (HFONT)hObject));
                break;  // don't play the default record
             }
             else
@@ -4448,7 +4448,7 @@ namespace draw2d_direct2d
          else if (nObjType == OBJ_FONT)
          {
             // play back as graphics::SelectObject(::write_text::font*)
-            //               (dynamic_cast<::draw2d_direct2d::graphics * >(pgraphics))->SelectObject(::draw2d_direct2d::font::from_handle_dup(pgraphics->get_context_application(), (HFONT)hObject));
+            //               (dynamic_cast<::draw2d_direct2d::graphics * >(pgraphics))->SelectObject(::draw2d_direct2d::font::from_handle_dup(pgraphics->get_application(), (HFONT)hObject));
             __throw(error_not_implemented);
             break;  // don't play the default record
          }
@@ -4792,7 +4792,7 @@ namespace draw2d_direct2d
 
       ::u32 uLength = (::u32)text.m_wstr.get_length();
 
-      hr = System->draw2d()->direct2d()->dwrite_factory()->CreateTextLayout(
+      hr = pdraw2d->direct2d()->dwrite_factory()->CreateTextLayout(
            text.m_wstr,                // The string to be laid out and formatted.
            uLength,   // The length of the string.
            pfont,    // The text format to apply to the string (contains font information, etc).
@@ -5594,7 +5594,7 @@ namespace draw2d_direct2d
 
       IDWriteTextFormat * pformat = textout.m_pfont->get_os_data < IDWriteTextFormat * > (this);
 
-      IDWriteFactory * pfactory = System->draw2d()->direct2d()->dwrite_factory();
+      IDWriteFactory * pfactory = pdraw2d->direct2d()->dwrite_factory();
 
       IDWriteTextLayout * playout = nullptr;
 
@@ -5634,7 +5634,7 @@ namespace draw2d_direct2d
 
       IDWriteTextFormat * pformat = textout.m_pfont->get_os_data < IDWriteTextFormat * >(this);
 
-      IDWriteFactory * pfactory = System->draw2d()->direct2d()->dwrite_factory();
+      IDWriteFactory * pfactory = pdraw2d->direct2d()->dwrite_factory();
 
       IDWriteTextLayout * playout = nullptr;
 
@@ -5681,7 +5681,7 @@ namespace draw2d_direct2d
 
       IDWriteTextFormat* pformat = drawtext.m_pfont->get_os_data < IDWriteTextFormat* >(this);
 
-      IDWriteFactory* pfactory = System->draw2d()->direct2d()->dwrite_factory();
+      IDWriteFactory* pfactory = pdraw2d->direct2d()->dwrite_factory();
 
       IDWriteTextLayout* playout = nullptr;
 
@@ -5721,7 +5721,7 @@ namespace draw2d_direct2d
 
       IDWriteTextFormat* pformat = drawtext.m_pfont->get_os_data < IDWriteTextFormat* >(this);
 
-      IDWriteFactory* pfactory = System->draw2d()->direct2d()->dwrite_factory();
+      IDWriteFactory* pfactory = pdraw2d->direct2d()->dwrite_factory();
 
       IDWriteTextLayout* playout = nullptr;
 
@@ -5791,7 +5791,7 @@ namespace draw2d_direct2d
    //void graphics::set_direct2d_plugin(::draw2d_direct2d::plugin * pplugin)
    //{
 
-   //   System->draw2d()->direct2d() = pplugin;
+   //   pdraw2d->direct2d() = pplugin;
 
    //}
 

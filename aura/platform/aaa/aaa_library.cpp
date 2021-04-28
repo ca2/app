@@ -2,7 +2,7 @@
 #include "aura/platform/static_setup.h"
 
 
-//extern string_map < __pointer(::apex::library) > * g_pmapLibrary;
+//extern string_map < __pointer(::acme::library) > * g_pmapLibrary;
 
 //extern ::mutex * ::aura::get_system()->m_mutexLibrary;
 
@@ -17,10 +17,10 @@ namespace aura
    const char * psz_empty_app_id = "";
 
 
-   ::e_status     library::initialize(::layered * pobjectContext)
+   ::e_status     library::initialize(::object * pobject)
    {
 
-      auto estatus = ::object::initialize(pobjectContext);
+      auto estatus = ::object::initialize(pobject);
 
       m_plibrary = nullptr;
 
@@ -31,10 +31,10 @@ namespace aura
    }
 
 
-   ::e_status library::initialize_aura_library(::layered * pobjectContext,int iDesambig,const char * pszRoot, const char * pszName, const char * pszFolder)
+   ::e_status library::initialize_aura_library(::object * pobject,int iDesambig,const char * pszRoot, const char * pszName, const char * pszFolder)
    {
 
-      auto estatus = initialize(pobjectContext);
+      auto estatus = initialize(pobject);
 
       if (!estatus)
       {
@@ -111,7 +111,7 @@ namespace aura
    bool library::open(const char * pszPath,bool bAutoClose,bool bCa2Path)
    {
 
-      synchronization_lock synchronizationlock(::aura::get_system()->m_mutexLibrary);
+      synchronous_lock synchronouslock(::aura::get_system()->m_mutexLibrary);
 
       m_strMessage.Empty();
 
@@ -152,7 +152,7 @@ namespace aura
          if(m_plibrary == nullptr)
          {
 
-            ERR("apex::library::open");
+            ERR("acme::library::open");
 
             return false;
 
@@ -164,13 +164,13 @@ namespace aura
       catch(...)
       {
 
-         ERR("apex::library::open Failed to open library %s with errors %s", (bCa2Path ? " (ca2 path)" : ""), m_strMessage.c_str());
+         ERR("acme::library::open Failed to open library %s with errors %s", (bCa2Path ? " (ca2 path)" : ""), m_strMessage.c_str());
 
          return false;
 
       }
 
-      INFO("apex::library::open success");
+      INFO("acme::library::open success");
 
       if (m_strCa2Name.has_char())
       {
@@ -187,7 +187,7 @@ namespace aura
    bool library::open_ca2_library(string strTitle)
    {
 
-      synchronization_lock synchronizationlock(::aura::get_system()->m_mutexLibrary);
+      synchronous_lock synchronouslock(::aura::get_system()->m_mutexLibrary);
 
       if (m_pca2library.is_set())
       {
@@ -314,11 +314,11 @@ namespace aura
 
       }
 
-      m_pca2library->initialize_aura_library(get_context_object(), 0, m_strRoot, m_strName, m_strFolder);
+      m_pca2library->initialize_aura_library(this, 0, m_strRoot, m_strName, m_strFolder);
 
       m_pca2library->initialize_factory();
 
-      m_pca2library->set_context_object(get_context_object());
+      m_pca2library->set_object(this);
 
       if (m_pca2library->m_strCa2Name.is_empty())
       {
@@ -358,7 +358,7 @@ namespace aura
    string library::get_library_name()
    {
 
-      synchronization_lock synchronizationlock(::aura::get_system()->m_mutexLibrary);
+      synchronous_lock synchronouslock(::aura::get_system()->m_mutexLibrary);
 
       if(m_pca2library)
       {
@@ -403,7 +403,7 @@ namespace aura
    bool library::close()
    {
 
-      synchronization_lock synchronizationlock(::aura::get_system()->m_mutexLibrary);
+      synchronous_lock synchronouslock(::aura::get_system()->m_mutexLibrary);
 
       try
       {
@@ -453,7 +453,7 @@ namespace aura
    string library::get_app_id(const char * pszAppName)
    {
 
-      synchronization_lock synchronizationlock(::aura::get_system()->m_mutexLibrary);
+      synchronous_lock synchronouslock(::aura::get_system()->m_mutexLibrary);
 
       if(!contains_app(pszAppName))
          return "";
@@ -507,7 +507,7 @@ namespace aura
    string library::get_app_name(const char * pszAppId)
    {
 
-      synchronization_lock synchronizationlock(::aura::get_system()->m_mutexLibrary);
+      synchronous_lock synchronouslock(::aura::get_system()->m_mutexLibrary);
 
       string strAppName(pszAppId);
 
@@ -567,7 +567,7 @@ namespace aura
    __transport(::aura::application) library::get_new_application(::object * pobject, const char * pszAppId)
    {
 
-      synchronization_lock synchronizationlock(::aura::get_system()->m_mutexLibrary);
+      synchronous_lock synchronouslock(::aura::get_system()->m_mutexLibrary);
 
       try
       {
@@ -677,7 +677,7 @@ namespace aura
    void library::get_app_list(string_array & stra)
    {
 
-      synchronization_lock synchronizationlock(::aura::get_system()->m_mutexLibrary);
+      synchronous_lock synchronouslock(::aura::get_system()->m_mutexLibrary);
 
       if(get_ca2_library() != nullptr)
       {
@@ -728,7 +728,7 @@ namespace aura
    }
 
 
-   ::matter* library::new_object(::object* pobjectContext, const char* pszClassId)
+   ::matter* library::new_object(::object* pobject, const char* pszClassId)
    {
 
       return nullptr;
@@ -736,15 +736,15 @@ namespace aura
    }
 
 
-   __pointer(::matter) library::create_object(::layered * pobjectContext, const char * pszClass)
+   __pointer(::matter) library::create_object(::object * pobject, const char * pszClass)
    {
 
-      synchronization_lock synchronizationlock(::aura::get_system()->m_mutexLibrary);
+      synchronous_lock synchronouslock(::aura::get_system()->m_mutexLibrary);
 
       if (factory_has_object_class(pszClass))
       {
 
-         return factory_create(pobjectContext, pszClass);
+         return factory_create(pobject, pszClass);
 
       }
       
@@ -753,13 +753,13 @@ namespace aura
       if(get_ca2_library() != nullptr)
       {
 
-         p = get_ca2_library()->new_object(pobjectContext, pszClass);
+         p = get_ca2_library()->new_object(pobject, pszClass);
 
       }
       else
       {
          
-         p = new_object(pobjectContext, pszClass);
+         p = new_object(pobject, pszClass);
 
       }
 
@@ -772,7 +772,7 @@ namespace aura
 
       }
 
-      pobject->initialize(pobjectContext);
+      pobject->initialize(pobject);
 
       return pobject;
 
@@ -782,7 +782,7 @@ namespace aura
    bool library::has_object_class(const char * pszClassId)
    {
 
-      synchronization_lock synchronizationlock(::aura::get_system()->m_mutexLibrary);
+      synchronous_lock synchronouslock(::aura::get_system()->m_mutexLibrary);
 
       if (factory_has_object_class(pszClassId))
       {
@@ -806,7 +806,7 @@ namespace aura
    bool library::contains_app(const char * pszAppId)
    {
 
-      synchronization_lock synchronizationlock(::aura::get_system()->m_mutexLibrary);
+      synchronous_lock synchronouslock(::aura::get_system()->m_mutexLibrary);
 
       string_array stra;
 
@@ -820,7 +820,7 @@ namespace aura
    string library::get_root()
    {
 
-      synchronization_lock synchronizationlock(::aura::get_system()->m_mutexLibrary);
+      synchronous_lock synchronouslock(::aura::get_system()->m_mutexLibrary);
 
       if(m_pca2library)
       {
@@ -837,7 +837,7 @@ namespace aura
    void library::get_create_view_id_list(::array < id > & ida)
    {
 
-      synchronization_lock synchronizationlock(::aura::get_system()->m_mutexLibrary);
+      synchronous_lock synchronouslock(::aura::get_system()->m_mutexLibrary);
 
       UNREFERENCED_PARAMETER(ida);
 
@@ -847,7 +847,7 @@ namespace aura
    bool library::is_opened()
    {
 
-      synchronization_lock synchronizationlock(::aura::get_system()->m_mutexLibrary);
+      synchronous_lock synchronouslock(::aura::get_system()->m_mutexLibrary);
 
       return m_plibrary != nullptr;
 
@@ -865,14 +865,14 @@ namespace aura
    void * library::raw_get(const char * pszEntryName)
    {
 
-      synchronization_lock synchronizationlock(::aura::get_system()->m_mutexLibrary);
+      synchronous_lock synchronouslock(::aura::get_system()->m_mutexLibrary);
 
       return __node_library_raw_get(m_plibrary,pszEntryName);
 
    }
 
    
-   ::matter* library::factory_new(::object* pobjectContext, const char* lpszClass)
+   ::matter* library::factory_new(::object* pobject, const char* lpszClass)
    {
 
       return nullptr;
@@ -880,7 +880,7 @@ namespace aura
    }
 
 
-   __pointer(::matter) library::factory_create(::layered * pobjectContext, const char * lpszClass)
+   __pointer(::matter) library::factory_create(::object * pobject, const char * lpszClass)
    {
 
       library_object_allocator_base * pallocator = find_allocator(lpszClass);
@@ -892,7 +892,7 @@ namespace aura
 
       }
 
-      auto p = pallocator->new_object(pobjectContext);
+      auto p = pallocator->new_object(pobject);
 
       auto pobject = ::move(p);
 
@@ -965,10 +965,10 @@ namespace aura
 } // namespace aura
 
 
-//string_map < __pointer(::apex::library) > * g_pmapLibCall = nullptr;
+//string_map < __pointer(::acme::library) > * g_pmapLibCall = nullptr;
 
 
-::apex::library * lib(const char * psz)
+::acme::library * lib(const char * psz)
 {
 
    //if (::aura::get_system()->m_mapLibCall == nullptr)
@@ -978,12 +978,12 @@ namespace aura
 
    //}
 
-   __pointer(::apex::library) & plibrary = ::aura::get_system()->m_mapLibCall[psz];
+   __pointer(::acme::library) & plibrary = ::aura::get_system()->m_mapLibCall[psz];
 
    if(!plibrary)
    {
       
-      plibrary = __new(::apex::library);
+      plibrary = __new(::acme::library);
 
       plibrary->initialize(::get_task());
 

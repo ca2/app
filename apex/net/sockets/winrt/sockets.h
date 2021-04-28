@@ -6,7 +6,7 @@ namespace sockets
 
 
    class CLASS_DECL_APEX sockets :
-      virtual public ::apex::department
+      virtual public ::acme::department
    {
    public:
 
@@ -40,8 +40,8 @@ namespace sockets
       class ::sockets::net& net();
 
 
-      virtual ::e_status initialize(::layered* pobjectContext) override;
-      virtual void finalize() override;
+      virtual ::e_status initialize(::object * pobject) override;
+      virtual ::e_status finalize() override;
 
 //      virtual void http_config_proxy(const char * pszUrl, http_tunnel * psocket);
 

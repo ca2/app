@@ -49,7 +49,7 @@ namespace netserver
    ::netserver::socket_handler * socket_thread_base::new_socket_handler()
    {
 
-      return new netserver::socket_handler(get_context_object());
+      return new netserver::socket_handler;
 
    }
 
@@ -78,7 +78,7 @@ namespace netserver
 
       }
 
-      while (thread_get_run())
+      while (task_get_run())
       {
 
          try
@@ -96,7 +96,7 @@ namespace netserver
 
             initialize_listen_socket();
 
-            while (::thread_get_run())
+            while (::task_get_run())
             {
 
                int iError = m_plistensocket->Bind(m_strIp, (port_t)m_iPort);
@@ -118,7 +118,7 @@ namespace netserver
 
                m_psockethandler->add(m_plistensocket);
 
-               while (m_psockethandler->get_count() > 0 && thread_get_run())
+               while (m_psockethandler->get_count() > 0 && task_get_run())
                {
 
                   m_psockethandler->select(1, 0);

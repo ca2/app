@@ -31,7 +31,7 @@ CLASS_DECL_APEX void __simple_tracea(matter* pobject, enum_trace_level elevel, c
 //CLASS_DECL_APEX void __tracea(::matter * pobject, enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz)
 //{
 //
-//   if (::is_null(::get_context_system()))
+//   if (::is_null(::psystem))
 //   {
 //
 //      __simple_tracea(pobject, elevel, pszFunction, pszFile, iLine, psz);
@@ -40,7 +40,7 @@ CLASS_DECL_APEX void __simple_tracea(matter* pobject, enum_trace_level elevel, c
 //
 //   }
 //
-//   ::apex::get_system()->__tracea(pobject, elevel, pszFunction, pszFile, iLine, psz);
+//   psystem->__tracea(pobject, elevel, pszFunction, pszFile, iLine, psz);
 //
 //}
 //
@@ -70,7 +70,7 @@ CLASS_DECL_APEX void __simple_tracea(matter* pobject, enum_trace_level elevel, c
 //CLASS_DECL_APEX void __tracev(::matter* pobject, enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, va_list args)
 //{
 //
-//   if (::is_null(::get_context_system()))
+//   if (::is_null(::psystem))
 //   {
 //
 //      __simple_tracev(pobject, elevel, pszFunction, pszFile, iLine, pszFormat, args);
@@ -79,7 +79,7 @@ CLASS_DECL_APEX void __simple_tracea(matter* pobject, enum_trace_level elevel, c
 //
 //   }
 //
-//   ::apex::get_system()->__tracev(pobject, elevel, pszFunction, pszFile, iLine, pszFormat, args);
+//   psystem->__tracev(pobject, elevel, pszFunction, pszFile, iLine, pszFormat, args);
 //
 //}
 //

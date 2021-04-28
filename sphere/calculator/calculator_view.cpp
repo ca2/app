@@ -5,7 +5,7 @@ namespace calculator
 {
 
 
-   view::view(::layered * pobjectContext) :
+   view::view(::object * pobject) :
       ::object(pobject),
       ::user::interaction(pobject)
    {
@@ -141,7 +141,7 @@ namespace calculator
       if(iTab == 1)
       {
 
-         System->message_box(nullptr, "Playlist");
+         message_box(nullptr, "Playlist");
 
       }
 

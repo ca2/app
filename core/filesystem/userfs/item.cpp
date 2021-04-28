@@ -118,14 +118,16 @@ namespace userfs
 
       }
 
-      auto puser = User;
+      auto psession = m_ptree->get_session();
+
+      auto puser = psession->user();
 
       return puser->shell()->get_file_image(m_filepathFinal, efileattribute, eicon);
 
    }
 
 
-   ::image_list * item::data_item_get_image_list(object * pobject) const
+   ::image_list * item::data_item_get_image_list(::object * pobject) const
    {
 
       return m_ptree->m_pimagelist;

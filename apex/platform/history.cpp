@@ -13,7 +13,7 @@ namespace apex
    }
 
 
-   //history::history(::layered * pobjectContext) :
+   //history::history(::object * pobject) :
    //   ::object(pobject)
    //{
 

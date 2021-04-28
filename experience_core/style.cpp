@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "base/user/simple/scroll_bar.h"
+#include "base/user/user/tab_pane.h"
 
 
 // pgraphics->GetTextExtent("->:<-"); // oh no!! omg!! The size_i32 is the size_i32 of the alien!!
@@ -65,12 +66,12 @@ namespace experience
 
          int iTabHeight = 0;
 
-         for(i32 iPane = 0; iPane < ptab->get_data()->m_panea.get_size(); iPane++)
+         for(i32 iPane = 0; iPane < ptab->get_data()->m_tabpanecompositea.get_size(); iPane++)
          {
+            
+            auto ppane = ptab->get_data()->m_tabpanecompositea[iPane].get();
 
-            ::user::tab_pane & pane = ptab->get_data()->m_panea(iPane);
-
-            if(!pane.m_bTabPaneVisible)
+            if(!ppane->m_bTabPaneVisible)
                continue;
 
             iTab++;
@@ -108,13 +109,13 @@ namespace experience
 
                   pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-                  pane.m_pimage->bitmap_blend(pgraphics,rectIcon);
+                  ppane->m_pimage->bitmap_blend(pgraphics,rectIcon);
 
                }
 
                ::draw2d::path_pointer path(e_create);
 
-               if(ptab->get_data()->m_idaSel.contains(pane.m_id))
+               if(ptab->get_data()->m_idaSel.contains(ppane->m_id))
                {
 
                   path->add_line(rectBorder.right,rectBorder.bottom,rectBorder.left + 1,rectBorder.bottom);
@@ -127,9 +128,9 @@ namespace experience
 
                   path->close_figure();
 
-                  pane.m_brushFillSel->CreateLinearGradientBrush(rectBorder.top_left(),rectBorder.bottom_left(),argb(230,235,235,230),argb(250,255,255,250));
+                  ppane->m_brushFillSel->CreateLinearGradientBrush(rectBorder.top_left(),rectBorder.bottom_left(),argb(230,235,235,230),argb(250,255,255,250));
 
-                  pgraphics->set(pane.m_brushFillSel);
+                  pgraphics->set(ppane->m_brushFillSel);
 
                   pgraphics->fill_path(path);
 
@@ -173,9 +174,9 @@ namespace experience
                      && !ptab->m_itemHover.in_range(::user::e_element_split, 100))
                   {
 
-                     pane.m_brushFillHover->CreateLinearGradientBrush(rectBorder.top_left(),rectBorder.bottom_left(),argb(230,215,215,210),argb(250,235,235,230));
+                     ppane->m_brushFillHover->CreateLinearGradientBrush(rectBorder.top_left(),rectBorder.bottom_left(),argb(230,215,215,210),argb(250,235,235,230));
 
-                     pgraphics->set(pane.m_brushFillHover);
+                     pgraphics->set(ppane->m_brushFillHover);
 
                      pgraphics->fill_path(path);
 
@@ -193,9 +194,9 @@ namespace experience
                   else
                   {
 
-                     pane.m_brushFill->CreateLinearGradientBrush(rectBorder.top_left(),rectBorder.bottom_left(),argb(230,175,175,170),argb(250,195,195,190));
+                     ppane->m_brushFill->CreateLinearGradientBrush(rectBorder.top_left(),rectBorder.bottom_left(),argb(230,175,175,170),argb(250,195,195,190));
 
-                     pgraphics->set(pane.m_brushFill);
+                     pgraphics->set(ppane->m_brushFill);
 
                      pgraphics->fill_path(path);
 
@@ -222,13 +223,13 @@ namespace experience
 
                   pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-                  pane.m_pimage->bitmap_blend(pgraphics,rectIcon);
+                  ppane->m_pimage->bitmap_blend(pgraphics,rectIcon);
 
                }
 
                ::draw2d::path_pointer path(e_create);
 
-               if(ptab->get_data()->m_idaSel.contains(pane.m_id))
+               if(ptab->get_data()->m_idaSel.contains(ppane->m_id))
                {
 
                   if (iPane != iCurrentTab)
@@ -250,9 +251,9 @@ namespace experience
 
                   //path->end_figure(false);
 
-                  pane.m_brushFillSel->CreateLinearGradientBrush(rectBorder.top_left(),rectBorder.bottom_left(),argb(230,235,235,230),argb(250,255,255,250));
+                  ppane->m_brushFillSel->CreateLinearGradientBrush(rectBorder.top_left(),rectBorder.bottom_left(),argb(230,235,235,230),argb(250,255,255,250));
 
-                  pgraphics->set(pane.m_brushFillSel);
+                  pgraphics->set(ppane->m_brushFillSel);
 
                   pgraphics->fill_path(path);
 
@@ -300,9 +301,9 @@ namespace experience
                      && !ptab->m_itemHover.in_range(::user::e_element_split, 100))
                   {
 
-                     pane.m_brushFillHover->CreateLinearGradientBrush(rectBorder.top_left(),rectBorder.bottom_left(),argb(230,215,215,210),argb(250,235,235,230));
+                     ppane->m_brushFillHover->CreateLinearGradientBrush(rectBorder.top_left(),rectBorder.bottom_left(),argb(230,215,215,210),argb(250,235,235,230));
 
-                     pgraphics->set(pane.m_brushFillHover);
+                     pgraphics->set(ppane->m_brushFillHover);
 
                      pgraphics->fill_path(path);
 
@@ -355,7 +356,7 @@ namespace experience
             if(bTextRect)
             {
 
-               _001OnTabPaneDrawTitle(pane,ptab,pgraphics,rectText,brushText);
+               _001OnTabPaneDrawTitle(*ppane,ptab,pgraphics,rectText,brushText);
 
             }
 
@@ -565,17 +566,17 @@ namespace experience
             i32 iTabHeight = 8;
             i32 cx;
             i32 cy;
-            for(i32 iPane = 0; iPane < ptab->get_data()->m_panea.get_size(); iPane++)
+            for(i32 iPane = 0; iPane < ptab->get_data()->m_tabpanecompositea.get_size(); iPane++)
             {
 
-               ::user::tab_pane & tab_pane = ptab->get_data()->m_panea(iPane);
+               auto ppane = ptab->get_data()->m_tabpanecompositea[iPane].get();
 
-               if(!tab_pane.m_bTabPaneVisible)
+               if(!ppane->m_bTabPaneVisible)
                   continue;
 
-               string str = tab_pane.get_title();
+               string str = ppane->get_title();
 
-               tab_pane.do_split_layout(ptab->m_dcextension, pgraphics);
+               ppane->do_split_layout(ptab->m_dcextension, pgraphics);
 
                ::size_i32 size;
 
@@ -583,14 +584,14 @@ namespace experience
 
 
 
-               if(tab_pane.m_pimage->is_set())
+               if(ppane->m_pimage->is_set())
                {
-                  size.cx += tab_pane.m_pimage->width() + 2;
-                  size.cy = maximum(size.cy,tab_pane.m_pimage->height());
+                  size.cx += ppane->m_pimage->width() + 2;
+                  size.cy = maximum(size.cy,ppane->m_pimage->height());
                }
                cx = size.cx + 2;
 
-               if(!tab_pane.m_bPermanent)
+               if(!ppane->m_bPermanent)
                {
                   cx += 2 + 16 + 2;
                }
@@ -660,26 +661,30 @@ namespace experience
             int x = rectClient.left;
 
             i32 ixAdd;
-            for(i32 iPane = 0; iPane < ptab->get_data()->m_panea.get_size(); iPane++)
+            for(i32 iPane = 0; iPane < ptab->get_data()->m_tabpanecompositea.get_size(); iPane++)
             {
 
-               ::user::tab_pane & tab_pane = ptab->get_data()->m_panea(iPane);
+               auto ppane = ptab->get_data()->m_tabpanecompositea[iPane].get();
 
-               if(!tab_pane.m_bTabPaneVisible)
+               if (!ppane->m_bTabPaneVisible)
+               {
+
                   return false;
 
-               string str = tab_pane.get_title();
+               }
 
-               tab_pane.do_split_layout(ptab->m_dcextension, pgraphics);
+               string str = ppane->get_title();
+
+               ppane->do_split_layout(ptab->m_dcextension, pgraphics);
 
                size_i32 size;
 
                ptab->m_dcextension.GetTextExtent(pgraphics, str, size);
 
-               if(::is_ok(tab_pane.m_pimage))
+               if(::is_ok(ppane->m_pimage))
                {
 
-                  size.cy = maximum(size.cy,tab_pane.m_pimage->size().cy);
+                  size.cy = maximum(size.cy,ppane->m_pimage->size().cy);
 
                }
 
@@ -690,23 +695,23 @@ namespace experience
                   iTabHeight = cy;
                }
 
-               tab_pane.m_point.x = x;
-               tab_pane.m_point.y = rectClient.top;
+               ppane->m_point.x = x;
+               ppane->m_point.y = rectClient.top;
 
 
-               //            string str = tab_pane.get_title();
+               //            string str = ppane->get_title();
 
                //            size_i32 size;
 
                ixAdd = 5;
 
-               if(::is_ok(tab_pane.m_pimage))
+               if(::is_ok(ppane->m_pimage))
                {
                   //::image_list::info ii;
-                  ixAdd += tab_pane.m_pimage->width() + 2;
+                  ixAdd += ppane->m_pimage->width() + 2;
                }
 
-               if(!tab_pane.m_bPermanent)
+               if(!ppane->m_bPermanent)
                {
                   ixAdd += 2 + 16 + 2;
                }
@@ -714,12 +719,12 @@ namespace experience
 
 
 
-               tab_pane.m_size.cx = size.cx + ixAdd
+               ppane->m_size.cx = size.cx + ixAdd
                                     + ptab->get_data()->m_rectBorder.left + ptab->get_data()->m_rectBorder.right
                                     + ptab->get_data()->m_rectMargin.left + ptab->get_data()->m_rectMargin.right
                                     + ptab->get_data()->m_rectTextMargin.left + ptab->get_data()->m_rectTextMargin.right;
 
-               x += tab_pane.m_size.cx;
+               x += ppane->m_size.cx;
             }
 
             // close tab button
@@ -734,12 +739,12 @@ namespace experience
 
             ptab->get_data()->m_iTabHeight = iTabHeight;
 
-            for(i32 iPane = 0; iPane < ptab->get_data()->m_panea.get_size(); iPane++)
+            for(i32 iPane = 0; iPane < ptab->get_data()->m_tabpanecompositea.get_size(); iPane++)
             {
 
-               ::user::tab_pane & tab_pane = ptab->get_data()->m_panea(iPane);
+               auto ppane = ptab->get_data()->m_tabpanecompositea[iPane].get();
 
-               tab_pane.m_size.cy = iTabHeight;
+               ppane->m_size.cy = iTabHeight;
 
             }
 
@@ -773,7 +778,7 @@ namespace experience
             //TRACE0("rectTabClient");
          }
 
-         for(i32 iPane = 0; iPane < ptab->get_data()->m_panea.get_size(); iPane++)
+         for(i32 iPane = 0; iPane < ptab->get_data()->m_tabpanecompositea.get_size(); iPane++)
          {
 
             if(iPane != ptab->_001GetSel())
@@ -794,7 +799,7 @@ namespace experience
          if(ptab->get_data()->m_bVertical)
          {
 
-            ptab->m_iTabSize = (int) (ptab->get_data()->m_panea.get_count() * ptab->get_data()->m_iTabHeight);
+            ptab->m_iTabSize = (int) (ptab->get_data()->m_tabpanecompositea.get_count() * ptab->get_data()->m_iTabHeight);
 
             ptab->m_iTabScrollMax = ptab->m_iTabSize - rcClient.height();
 
@@ -802,8 +807,8 @@ namespace experience
          else
          {
 
-            ptab->m_iTabSize = ptab->get_data()->m_panea.last()->m_point.x +
-            ptab->get_data()->m_panea.last()->m_size.cx;
+            ptab->m_iTabSize = ptab->get_data()->m_tabpanecompositea.last()->m_point.x +
+            ptab->get_data()->m_tabpanecompositea.last()->m_size.cx;
 
             ptab->m_iTabScrollMax = ptab->m_iTabSize - rcClient.width();
 
@@ -838,9 +843,7 @@ namespace experience
                if (eelement == ::user::e_element_background)
                {
 
-                  auto pnode = System->node();
-
-                  if (pnode->is_app_dark_mode())
+                  if (m_pnode->is_app_dark_mode())
                   {
 
                      return ::color::color(80, 80, 80, 127);
@@ -865,9 +868,7 @@ namespace experience
                   if (eelement == ::user::e_element_background)
                   {
 
-                     auto pnode = System->node();
-
-                     if (pnode->is_app_dark_mode())
+                        if (m_pnode->is_app_dark_mode())
                      {
 
                         return ::color::color(255, 255, 255, 127);
@@ -884,9 +885,7 @@ namespace experience
                   else if (eelement == ::user::e_element_text)
                   {
 
-                     auto pnode = System->node();
-
-                     if (pnode->is_app_dark_mode())
+                        if (m_pnode->is_app_dark_mode())
                      {
 
                         return ::color::color(80, 80, 80, 255);
@@ -908,9 +907,7 @@ namespace experience
                   if (eelement == ::user::e_element_background)
                   {
 
-                     auto pnode = System->node();
-
-                     if (pnode->is_app_dark_mode())
+                        if (m_pnode->is_app_dark_mode())
                      {
 
                         return ::color::color(80, 80, 80, 127);
@@ -927,9 +924,7 @@ namespace experience
                   else if (eelement == ::user::e_element_text)
                   {
 
-                     auto pnode = System->node();
-
-                     if (pnode->is_app_dark_mode())
+                        if (m_pnode->is_app_dark_mode())
                      {
 
                         return ::color::color(255, 255, 255, 255);
@@ -954,9 +949,7 @@ namespace experience
                if (eelement == ::user::e_element_background)
                {
 
-                  auto pnode = System->node();
-
-                  if (pnode->is_app_dark_mode())
+                  if (m_pnode->is_app_dark_mode())
                   {
 
                      return ::color::color(80, 80, 80, 127);
@@ -989,9 +982,7 @@ namespace experience
                else if (eelement == ::user::e_element_item_text)
                {
 
-                  auto pnode = System->node();
-
-                  if (pnode->is_app_dark_mode())
+                  if (m_pnode->is_app_dark_mode())
                   {
 
                      return __acolor(255, 230, 230, 230);
@@ -1022,9 +1013,7 @@ namespace experience
                   else
                   {
 
-                     auto pnode = System->node();
-
-                     if (pnode->is_app_dark_mode())
+                        if (m_pnode->is_app_dark_mode())
                      {
 
                         return __acolor(255, 230, 230, 230);
@@ -1057,9 +1046,7 @@ namespace experience
             //if (estate & ::user::e_state_hover)
             {
 
-               auto pnode = System->node();
-
-               if (pnode->is_app_dark_mode())
+                              if (m_pnode->is_app_dark_mode())
                {
 
                   return __acolor(255, 255, 255, 255);
@@ -1081,9 +1068,7 @@ namespace experience
             if (estate & ::user::e_state_hover)
             {
 
-               auto pnode = System->node();
-
-               if (pnode->is_app_dark_mode())
+                              if (m_pnode->is_app_dark_mode())
                {
 
                   return __acolor(255, 255, 255, 255);
@@ -1100,9 +1085,7 @@ namespace experience
             else if (estate & ::user::e_state_selected)
             {
 
-               auto pnode = System->node();
-
-               if (pnode->is_app_dark_mode())
+                              if (m_pnode->is_app_dark_mode())
                {
 
                   return __acolor(255, 255, 255, 255);
@@ -1119,9 +1102,7 @@ namespace experience
             else
             {
 
-               auto pnode = System->node();
-
-               if (pnode->is_app_dark_mode())
+                              if (m_pnode->is_app_dark_mode())
                {
 
                   return __acolor(255, 210, 210, 200);
@@ -1155,9 +1136,7 @@ namespace experience
             if (estate & ::user::e_state_new_input)
             {
 
-               auto pnode = System->node();
-
-               if (pnode->is_app_dark_mode())
+               if (m_pnode->is_app_dark_mode())
                {
 
                   return __acolor(255, 130, 130, 130);
@@ -1174,9 +1153,7 @@ namespace experience
             else
             {
 
-               auto pnode = System->node();
-
-               if (pnode->is_app_dark_mode())
+               if (m_pnode->is_app_dark_mode())
                {
 
                   return __acolor(255, 230, 230, 230);
@@ -1198,9 +1175,7 @@ namespace experience
             if (estate & ::user::e_state_new_input)
             {
 
-               auto pnode = System->node();
-
-               if (pnode->is_app_dark_mode())
+               if (m_pnode->is_app_dark_mode())
                {
 
                   return __acolor(255, 130, 130, 130);
@@ -1217,9 +1192,7 @@ namespace experience
             else
             {
 
-               auto pnode = System->node();
-
-               if (pnode->is_app_dark_mode())
+               if (m_pnode->is_app_dark_mode())
                {
 
                   return __acolor(255, 230, 230, 230);
@@ -1238,9 +1211,7 @@ namespace experience
         else if (eelement == ::user::e_element_background)
         {
 
-               auto pnode = System->node();
-
-               if (pnode->is_app_dark_mode())
+               if (m_pnode->is_app_dark_mode())
                {
 
                   return __acolor(127, 80, 80, 80);
@@ -1257,9 +1228,7 @@ namespace experience
             else
             {
 
-               auto pnode = System->node();
-
-               if (pnode->is_app_dark_mode())
+               if (m_pnode->is_app_dark_mode())
                {
 
                   return __acolor(255, 230, 230, 230);
@@ -1291,9 +1260,9 @@ namespace experience
 
             pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-            auto psession = Session;
+            auto psession = get_session();
 
-            if (psession->savings().is_trying_to_save(::e_resource_processing))
+            if (psession->m_paurasession->savings().is_trying_to_save(::e_resource_processing))
             {
 
                colorBackground.alpha = 255;
@@ -1374,7 +1343,7 @@ namespace experience
 
             pbar->_001ClientToScreen(point1);
 
-            auto psession = Session;
+            auto psession = get_session();
 
             auto puser = psession->user();
 

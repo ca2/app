@@ -6,13 +6,13 @@ namespace draw2d
 
 
    class CLASS_DECL_AURA draw2d  :
-      virtual public ::apex::department
+      virtual public ::acme::department
    {
    public:
 
 
       static double g_dEmboss;
-
+      void* m_pimpl;
 
       i32_map < __pointer(memory) > m_alpha_spread__24CC_filterMap;
       i32_map < __pointer(memory) > m_alpha_spread__32CC_filterMap;
@@ -33,16 +33,20 @@ namespace draw2d
       virtual ~draw2d();
 
 
-      virtual ::e_status initialize(::layered * pobjectContext) override;
+      virtual ::e_status initialize(::object * pobject) override;
 
       virtual ::e_status process_init() override;
 
       virtual ::e_status init() override;
       virtual ::e_status init1() override;
 
-      virtual void term() override;
+      virtual ::e_status term() override;
 
-      virtual void finalize() override;
+      virtual ::e_status finalize() override;
+
+
+      __pointer(save_image) new_save_image(const ::payload& varFile, const ::payload& varOptions);
+
 
 
       virtual class api & api();
@@ -61,7 +65,9 @@ namespace draw2d
       virtual ::e_status initialize_write_text();
       virtual ::e_status write_text_factory_exchange(::factory_map * pfactorymap);
 
-      virtual void term_instance() override;
+
+      virtual ::e_status term_instance() override;
+
 
       virtual string write_text_get_default_library_name();
 

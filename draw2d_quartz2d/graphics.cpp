@@ -1261,7 +1261,7 @@ namespace draw2d_quartz2d
    bool graphics::BitBltRaw(i32 x, i32 y, i32 nWidth, i32 nHeight, ::draw2d::graphics * pgraphicsSrc, i32 xSrc, i32 ySrc, ::u32 dwRop)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       try
       {
@@ -1273,7 +1273,7 @@ namespace draw2d_quartz2d
 
          }
 
-         synchronization_lock slSrc(pgraphicsSrc->mutex());
+         synchronous_lock slSrc(pgraphicsSrc->mutex());
 
          if(pgraphicsSrc->get_os_data() == nullptr)
          {
@@ -1719,7 +1719,7 @@ namespace draw2d_quartz2d
 //               pimage2->from(point_i32((i64) maximum(0, m_pointAlphaBlend.x - x), (i64) maximum(0, m_pointAlphaBlend.y - y)),
 //                          m_pimageAlphaBlend->get_graphics(), point_i32((i64) maximum(0, x - m_pointAlphaBlend.x), (i64) maximum(0, y - m_pointAlphaBlend.y)), rectText.size());
 //               pimage1->channel_multiply(::color::e_channel_alpha, pimage2);
-//               /* p::image_pointer pimage3(get_object());
+//               /* p::image_pointer pimage3(this);
 //                pimage1->mult_alpha(image3);*/
 //
 //               keep < image > keep(&m_pimageAlphaBlend, nullptr, m_pimageAlphaBlend, true);
@@ -2817,7 +2817,7 @@ namespace draw2d_quartz2d
     ::image_pointer pimage;
     if(imageWork == nullptr)
     {
-    pimage = create_image(get_object());
+    pimage = create_image(this);
     imageWork = pimage;
     }
     if(imageWork == nullptr)
@@ -2833,7 +2833,7 @@ namespace draw2d_quartz2d
     ::image_pointer pimage2;
     if(imageWork2 == nullptr)
     {
-    pimage2 = create_image(get_object());
+    pimage2 = create_image(this);
     imageWork2 = pimage2;
     }
 
@@ -2841,7 +2841,7 @@ namespace draw2d_quartz2d
     ::image_pointer pimage4;
     if(imageWork4 == nullptr)
     {
-    image4 = create_image(get_object());
+    image4 = create_image(this);
     imageWork4 = image4;
     }
     if(imageWork4 == nullptr)
@@ -2861,7 +2861,7 @@ namespace draw2d_quartz2d
     keeper < image > keep(&m_pimageAlphaBlend, nullptr, m_pimageAlphaBlend, true);
 
 
-    return System->imaging().true_blend(this, pointDest, size, imageWork.get_graphics(), pointSrc);
+    return psystem->imaging().true_blend(this, pointDest, size, imageWork.get_graphics(), pointSrc);
 
 
     }
@@ -3042,7 +3042,7 @@ namespace draw2d_quartz2d
 //       ::draw2d::brush* pBrushOld = nullptr;
 //       if (pBrush == nullptr)
 //       {
-//       pBrush = graphics::GetHalftoneBrush(get_object());
+//       pBrush = graphics::GetHalftoneBrush(this);
 //       }
 //
 //       ENSURE(pBrush);
@@ -3361,7 +3361,7 @@ namespace draw2d_quartz2d
 //   ::draw2d::palette* graphics::SelectPalette(::draw2d::palette* pPalette, bool bForceBackground)
 //   {
 //      return nullptr;
-//      //      return dynamic_cast < ::draw2d::palette * > (::win::object::from_handle(get_context_application(), ::SelectPalette(get_handle1(), (HPALETTE)pPalette->get_os_data(), bForceBackground)));
+//      //      return dynamic_cast < ::draw2d::palette * > (::win::object::from_handle(get_application(), ::SelectPalette(get_handle1(), (HPALETTE)pPalette->get_os_data(), bForceBackground)));
 //   }
 //
 //   color32_t graphics::SetBkColor(color32_t crColor)
@@ -3550,7 +3550,7 @@ namespace draw2d_quartz2d
    point_i32 graphics::GetViewportOrg()
    {
 
-//      synchronization_lock synchronizationlock(mutex());
+//      synchronous_lock synchronouslock(mutex());
 
 //      CGAffineTransform affine = CGContextGetCTM(m_pdc);
 
@@ -3564,7 +3564,7 @@ namespace draw2d_quartz2d
    bool graphics::_get(::draw2d::matrix & matrix)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       CGAffineTransform affine = CGContextGetCTM(m_pdc);
 
@@ -3578,7 +3578,7 @@ namespace draw2d_quartz2d
    bool graphics::_set(const ::draw2d::matrix & matrix)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       CGAffineTransform affine = CGContextGetCTM(m_pdc);
 
@@ -4447,7 +4447,7 @@ namespace draw2d_quartz2d
    bool graphics::GetTextExtent(size_f64 & size, const char * lpszString, strsize nCount, i32 iIndex)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       CGFloat ascent, descent, leading, width;
 
@@ -4539,7 +4539,7 @@ namespace draw2d_quartz2d
 
             m_pfont.create();
 
-            m_pfont->create_pixel_font(os_font_name(e_font_sans), 16.0);
+            m_pfont->create_pixel_font(pnode->font_name(e_font_sans), 16.0);
 
          }
          
@@ -5457,7 +5457,7 @@ namespace draw2d_quartz2d
 
       string str(ptextout->m_strText);
 
-      synchronization_lock ml(mutex());
+      synchronous_lock ml(mutex());
 
       double dx;
 
@@ -5503,7 +5503,7 @@ namespace draw2d_quartz2d
 
       string str(ptextout->m_strText);
 
-      synchronization_lock ml(mutex());
+      synchronous_lock ml(mutex());
 
       double dx;
 
@@ -5549,7 +5549,7 @@ namespace draw2d_quartz2d
 
       string str(pdrawtext->m_strText);
 
-      synchronization_lock ml(mutex());
+      synchronous_lock ml(mutex());
 
       double dx;
 
@@ -5595,7 +5595,7 @@ namespace draw2d_quartz2d
 
       string str(pdrawtext->m_strText);
 
-      synchronization_lock ml(mutex());
+      synchronous_lock ml(mutex());
 
       double dx;
 
@@ -5691,7 +5691,7 @@ namespace draw2d_quartz2d
 
       string str(strParam);
 
-      synchronization_lock ml(mutex());
+      synchronous_lock ml(mutex());
 
       //double dx;
 
@@ -5912,7 +5912,7 @@ namespace draw2d_quartz2d
    bool graphics::internal_show_text(::write_text::font_pointer spfont,::draw2d::brush_pointer spbrush,::draw2d::pen_pointer sppen, double x, double y, double wAlign, const ::e_align & ealign, const ::e_draw_text & edrawtext, const string & str, CGTextDrawingMode emode, bool bDraw, CGFloat * pascent, CGFloat * pdescent, CGFloat * pleading, CGFloat * pwidth)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       //CGContextRef pgraphics = m_pdc;
 
@@ -6279,7 +6279,7 @@ namespace draw2d_quartz2d
    void graphics::internal_draw_text(CGTextDrawingMode emode, double x, double y, CTLineRef line, ::draw2d::brush * pbrush)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
       
       CGContextRef pgraphics = m_pdc;
 

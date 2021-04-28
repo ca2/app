@@ -269,14 +269,14 @@ bool synchronization_object::is_locked() const
    // CRITICAL SECTIONS does *NOT* support is locked and timed locks
    ASSERT(dynamic_cast <critical_section *> (const_cast <synchronization_object *> (this)) == nullptr);
 
-   single_lock synchronizationlock(const_cast <synchronization_object *> (this));
+   single_lock synchronouslock(const_cast <synchronization_object *> (this));
 
-   bool bWasLocked = !synchronizationlock.lock(duration::zero());
+   bool bWasLocked = !synchronouslock.lock(duration::zero());
 
    if (!bWasLocked)
    {
 
-      synchronizationlock.unlock();
+      synchronouslock.unlock();
 
    }
 

@@ -15,35 +15,50 @@ namespace net
    bool email_department::utf8_mail(class ::net::email * pemail)
    {
 
-      ::sockets::socket_handler handler(get_context_object());
+      auto phandler = __create_new < ::sockets::socket_handler >();
 
-      ::sockets::smtp_socket socket(handler);
+      auto psocket = __create_new < ::sockets::smtp_socket >();
 
-      if(!socket.open((const string &) get_context()->file().as_string("C:\\sensitive\\sensitive\\seed\\default_sendmail_host.txt"), (port_t) 25))
+      string strHost = m_pcontext->m_papexcontext->file().as_string("/sensitive/sensitive/seed/default_sendmail_host.txt");
+
+      if (!psocket->open(strHost, (port_t)25))
+      {
+
          return false;
 
-      socket.m_estate = ::sockets::smtp_socket::e_state_initial;
+      }
 
-      socket.m_pemail = pemail;
+      psocket->m_estate = ::sockets::smtp_socket::e_state_initial;
+
+      psocket->m_pemail = pemail;
 
       auto tickStart = ::millis::now();
 
-      handler.add(&socket);
+      phandler->add(psocket);
 
       while (true)
       {
 
-         handler.select(8,0);
+         phandler->select(8,0);
 
-         if(tickStart.elapsed() > 15_s)
+         if (tickStart.elapsed() > 15_s)
+         {
+
             break;
 
-         if(socket.m_estate == ::sockets::smtp_socket::state_end)
+         }
+
+         if (psocket->m_estate == ::sockets::smtp_socket::state_end)
+         {
+
             break;
+
+         }
 
       }
 
-      return socket.m_estate == ::sockets::smtp_socket::state_sent || socket.m_estate == ::sockets::smtp_socket::state_quit || socket.m_estate == ::sockets::smtp_socket::state_end;
+      return psocket->m_estate == ::sockets::smtp_socket::state_sent || psocket->m_estate == ::sockets::smtp_socket::state_quit || psocket->m_estate == ::sockets::smtp_socket::state_end;
+
    }
 
 
@@ -126,7 +141,11 @@ namespace net
 
       }
 
-      if (!System->url().is_valid_public_domain(strDomain))
+      auto psystem = m_psystem;
+
+      auto purl = psystem->url();
+
+      if (!purl->is_valid_public_domain(strDomain))
       {
 
          return false;

@@ -14,7 +14,7 @@ namespace sockets
       /*m_psocket = new
       m_psocket->m_strTo = pszTo;
       m_psocket->m_strFrom = pszFrom;
-      socket_handler handler(get_object());
+      socket_handler handler(this);
       handler.add(&socket);
       while(handler.get_count() > 0)
       {

@@ -13,7 +13,7 @@ namespace music
       {
 
 
-         buffer::buffer(::layered * pobjectContext) :
+         buffer::buffer(::object * pobject) :
             ::object(pobject),
             memory_container (pobject),
             ::music::midi::file::buffer(pobject)
@@ -281,7 +281,7 @@ smf_Open_File_Cleanup:
             m_ptracks->clear();
 
 
-            m_tempomap.remove_all();
+            m_tempomap.erase_all();
 
 
             m_bPendingLyric = false;
@@ -291,14 +291,14 @@ smf_Open_File_Cleanup:
             {
                delete m_mepaOnQuarterNote.element_at(i);
             }
-            m_mepaOnQuarterNote.remove_all();
+            m_mepaOnQuarterNote.erase_all();
 
 
             for(i32 i = 0; i < m_mepaImmediate.get_size(); i++)
             {
                delete m_mepaImmediate.element_at(i);
             }
-            m_mepaImmediate.remove_all();
+            m_mepaImmediate.erase_all();
 
 
             m_tkLength              = 0;
@@ -570,7 +570,7 @@ smf_Open_File_Cleanup:
          void buffer::TicksToMillisecs(imedia_time_2darray * p2DMillis, imedia_position_2darray *p2DTicks, iptr tkOffset)
          {
             ASSERT(p2DMillis->get_size() == 0);
-            p2DMillis->set_app(get_object());
+            p2DMillis->set_app(this);
             p2DMillis->set_size_create(p2DTicks->get_size());
             i32 i;
             for(i = 0; i < p2DTicks->get_size(); i++)
@@ -586,7 +586,7 @@ smf_Open_File_Cleanup:
          void buffer::PositionToTime(imedia_time_2darray  & timea, imedia_position_2darray  & positiona, iptr tkOffset)
          {
             ASSERT(timea.get_size() == 0);
-            timea.set_app(get_object());
+            timea.set_app(this);
             timea.set_size_create(positiona.get_size());
             i32 i;
             for(i = 0; i < positiona.get_size(); i++)
@@ -756,7 +756,7 @@ smf_Open_File_Cleanup:
             m_cbPendingUserEvent = (u32) m_memstorageF1.get_size();
             m_hpbPendingUserEvent = m_memstorageF1.get_data();
             ASSERT(m_hpbPendingUserEvent);
-            GetFlags().remove(file::InsertSysEx);
+            GetFlags().erase(file::InsertSysEx);
             m_dwPendingUserEvent = ((MEVT_F_CALLBACK | MEVT_F_LONG |(((u32)MEVT_COMMENT)<<24)) & 0xFF000000L);
 
             smfrc = InsertParmData(tkDelta, lpmh);
@@ -925,7 +925,7 @@ smf_Open_File_Cleanup:
 
                m_cbPendingUserEvent = (u32) pEvent->GetParamSize();
                m_hpbPendingUserEvent = pEvent->GetParam();
-               GetFlags().remove(file::InsertSysEx);
+               GetFlags().erase(file::InsertSysEx);
 
                if(pEvent->GetFullType() == sys_ex_end)
                {
@@ -1397,7 +1397,7 @@ smf_Open_File_Cleanup:
             memFile.read(lpdw, dwLength);
             while(0 < m_pendingLyricEventArray.get_size())
             {
-            m_pendingLyricEventArray.remove_at(
+            m_pendingLyricEventArray.erase_at(
             m_pendingLyricEventArray.get_size() - 1);
             }
             lpmh->dwBytesRecorded += 3*sizeof(u32) + dwRounded;
@@ -1559,7 +1559,7 @@ smf_Open_File_Cleanup:
             {
                byte * lpb = (byte *) lpdw;
                *lpb++ = sys_ex;
-               GetFlags().remove(file::InsertSysEx);
+               GetFlags().erase(file::InsertSysEx);
                --dwLength;
                --m_cbPendingUserEvent;
                lpdw = (LPDWORD) lpb;
@@ -1652,8 +1652,8 @@ smf_Open_File_Cleanup:
             __memset(&m_keyframe.rbProgram, 0x00, sizeof(m_keyframe.rbProgram));
 
             m_ptracks->m_tkPosition = 0;
-            GetFlags().remove(file::EndOfFile);
-            m_ptracks->GetFlags().remove(file::EndOfFile);
+            GetFlags().erase(file::EndOfFile);
+            m_ptracks->GetFlags().erase(file::EndOfFile);
 
             m_ptracks->seek_begin();
             //for (ptrk = m_rTracks, idxTrack = m_dwTracks; idxTrack--; ptrk++)
@@ -1813,8 +1813,8 @@ smf_Open_File_Cleanup:
 
 
             m_ptracks->m_tkPosition = 0;
-            GetFlags().remove(file::EndOfFile);
-            m_ptracks->GetFlags().remove(file::EndOfFile);
+            GetFlags().erase(file::EndOfFile);
+            m_ptracks->GetFlags().erase(file::EndOfFile);
 
             m_ptracks->seek_begin();
 
@@ -1846,7 +1846,7 @@ smf_Open_File_Cleanup:
                   ::music::midi::event * peventImmediate = m_mepaImmediate.element_at(0);
                   *pevent = *peventImmediate;
                   delete peventImmediate;
-                  m_mepaImmediate.remove_at(0);
+                  m_mepaImmediate.erase_at(0);
                   return ::success;
                }
                if(m_mepaOnQuarterNote.get_size() > 0)
@@ -1870,7 +1870,7 @@ smf_Open_File_Cleanup:
                      m_ptracks->m_tkPosition  = tkQuarterNote;
                      *pevent = *m_mepaOnQuarterNote.element_at(0);
                      delete m_mepaOnQuarterNote.element_at(0);
-                     m_mepaOnQuarterNote.remove_at(0);
+                     m_mepaOnQuarterNote.erase_at(0);
                      return ::success;
                   }
                }
@@ -2011,7 +2011,7 @@ smf_Open_File_Cleanup:
             //lpch->dwLength = DWORDSWAP(this->get_size());
             lpch->dwLength = DWORDSWAP(sizeof(MIDIFILEHDR));
 
-            //   m_ptracks->remove_all();
+            //   m_ptracks->erase_all();
             SetOpened();
             return ::success;
 
@@ -2152,8 +2152,8 @@ smf_Open_File_Cleanup:
             ::music::midi::event *           peventPrevious;
 
             m_ptracks->m_tkPosition = 0;
-            GetFlags().remove(file::EndOfFile);
-            m_ptracks->GetFlags().remove(file::EndOfFile);
+            GetFlags().erase(file::EndOfFile);
+            m_ptracks->GetFlags().erase(file::EndOfFile);
 
             m_ptracks->seek_begin();
             //for (ptrk = m_rTracks, idxTrack = m_dwTracks; idxTrack--; ptrk++)
@@ -2419,7 +2419,7 @@ smf_Open_File_Cleanup:
             fileHdr.wDivision = m_pFileHeader->wDivision ;
             fileHdr.wTracks = WORDSWAP(1) ;
 
-            ::music::midi::track * pTrackUnion = new ::music::midi::track(get_object());
+            ::music::midi::track * pTrackUnion = new ::music::midi::track(this);
             pTrackUnion->Initialize(m_ptracks);
             m_ptracks->CompactTracks(*pTrackUnion, true, true);
 
@@ -2606,7 +2606,7 @@ smf_Open_File_Cleanup:
                      tkDelta = tkPositionF1 - tkLastPosition;
                      StreamEventF1(tkDelta, eventptraPositionCB, lpmh, tkMax, cbPrerollNominalMax);
                      tkLastPosition = tkPositionF1;
-                     eventptraPositionCB.remove_all();
+                     eventptraPositionCB.erase_all();
 
                      eventptraPositionCB.add(pevent);
                      tkPositionF1   = tkPosition;
@@ -2623,7 +2623,7 @@ smf_Open_File_Cleanup:
                         tkDelta = tkPositionF1 - tkLastPosition;
                         StreamEventF1(tkDelta, eventptraPositionCB, lpmh, tkMax, cbPrerollNominalMax);
                         tkDelta = tkPosition - tkPositionF1;
-                        eventptraPositionCB.remove_all();
+                        eventptraPositionCB.erase_all();
                      }
                      else
                      {
@@ -2717,7 +2717,7 @@ smf_Open_File_Cleanup:
             event * peventImmediate = m_mepaImmediate.element_at(0);
             pevent = peventImmediate;
             delete peventImmediate;
-            m_mepaImmediate.remove_at(0);
+            m_mepaImmediate.erase_at(0);
             return ::success;
             }
             if(m_mepaOnQuarterNote.get_size() > 0)
@@ -2741,7 +2741,7 @@ smf_Open_File_Cleanup:
             m_ptracks->m_tkPosition  = tkQuarterNote;
             pevent = m_mepaOnQuarterNote.element_at(0);
             delete m_mepaOnQuarterNote.element_at(0);
-            m_mepaOnQuarterNote.remove_at(0);
+            m_mepaOnQuarterNote.erase_at(0);
             return ::success;
             }
             }
@@ -2837,8 +2837,8 @@ smf_Open_File_Cleanup:
             __memset(&m_keyframe.rbProgram, 0x00, sizeof(m_keyframe.rbProgram));
 
             m_ptracks->m_tkPosition = 0;
-            GetFlags().remove(file::EndOfFile);
-            m_ptracks->GetFlags().remove(file::EndOfFile);
+            GetFlags().erase(file::EndOfFile);
+            m_ptracks->GetFlags().erase(file::EndOfFile);
 
             m_ptracks->WorkSeekBegin();
 
@@ -3050,7 +3050,7 @@ smf_Open_File_Cleanup:
          ::e_status     buffer::WorkSeekBegin()
          {
             m_ptracks->WorkSeekBegin();
-            GetFlags().remove(file::EndOfFile);
+            GetFlags().erase(file::EndOfFile);
             m_tkLastDelta = 0;
             m_positionLastWorkRender.set_maximum();
             return ::success;
@@ -3064,7 +3064,7 @@ smf_Open_File_Cleanup:
             }
             else
             {
-               m_iaMuteTrack.remove(iIndex);
+               m_iaMuteTrack.erase(iIndex);
             }
          }
 
@@ -3194,7 +3194,7 @@ smf_Open_File_Cleanup:
 
             while(tracka.GetTrackCount() > 1)
             {
-               tracka.remove_at(1);
+               tracka.erase_at(1);
             }
 
 
@@ -3258,7 +3258,7 @@ smf_Open_File_Cleanup:
             }
             else
             {
-               GetFlags().remove(file::Opened);
+               GetFlags().erase(file::Opened);
             }
          }
 

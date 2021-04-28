@@ -14,7 +14,7 @@ namespace simpledb
 
       server *       m_pserver;
 
-      session(::layered * pobjectContext);
+      session(::object * pobject);
       virtual ~session_parent;
 
 

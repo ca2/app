@@ -10,7 +10,7 @@ namespace prompt
 {
 
 
-   primary_view::primary_view(::layered * pobjectContext) :
+   primary_view::primary_view(::object * pobject) :
       ::object(pobject),
       ::user::plain_edit(pobject)
    {
@@ -64,7 +64,7 @@ namespace prompt
                try
                {
 
-                  ::calculator::parser parser(get_object());
+                  ::calculator::parser parser(this);
 
                   ::calculator::matter * pmatter = parser.parse(strLine);
 
@@ -104,7 +104,7 @@ namespace prompt
                      if(cregexp_util::match(stra, strLine, "(.+)\\s*segundos", true, 2) == 1)
                      {
 
-                        calculator::parser parser(get_object());
+                        calculator::parser parser(this);
 
                         calculator::matter * pmatter = parser.parse(stra[1]);
 
@@ -140,7 +140,7 @@ namespace prompt
                      else if(cregexp_util::match(stra, strLine, "(.+)\\s*dias", true, 2) == 1)
                      {
 
-                        calculator::parser parser(get_object());
+                        calculator::parser parser(this);
 
                         calculator::matter * pmatter = parser.parse(stra[1]);
 
@@ -170,7 +170,7 @@ namespace prompt
 
                         m_iCompromised = m_ptree->m_iSelBeg = m_ptree->m_iSelEnd = strNewText.get_length();
 
-                        Application.send_simple_command("winactionareaview::show_calendar(\""+ __str((i32) pmatter->get_value().mod()) +"\")", (void *) get_wnd()->get_os_data());
+                        papplication->send_simple_command("winactionareaview::show_calendar(\""+ __str((i32) pmatter->get_value().mod()) +"\")", (void *) get_wnd()->get_os_data());
 
                         bOk = true;
 

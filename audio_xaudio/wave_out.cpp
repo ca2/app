@@ -104,7 +104,12 @@ namespace multimedia
          m_pwaveformat->m_waveformat.nBlockAlign = m_pwaveformat->m_waveformat.wBitsPerSample  * uiChannelCount / 8;
          m_pwaveformat->m_waveformat.nAvgBytesPerSec = m_pwaveformat->m_waveformat.nSamplesPerSec * m_pwaveformat->m_waveformat.nBlockAlign;
          //m_pwaveformat->cbSize = 0;
-         __pointer(::wave::wave) audiowave = Au(get_context()).audiowave();
+
+         auto psystem = m_psystem->m_paquasystem;
+
+         auto paudio = psystem->audio()->m_paudio;
+
+         __pointer(::wave::wave) audiowave = paudio->audiowave();
 
          //if(FAILED(hr = m_pxaudio->CreateSourceVoice(&m_psourcevoice,wave_format(),XAUDIO2_VOICE_NOSRC | XAUDIO2_VOICE_NOPITCH,1.0f,this)))
          if(FAILED(hr = m_pxaudio->CreateSourceVoice(&m_psourcevoice,wave_format(),0,1.0f,this)))
@@ -220,7 +225,7 @@ namespace multimedia
 
          }
 
-         //m_bufferptra.remove_all();
+         //m_bufferptra.erase_all();
 
          m_psourcevoice = nullptr;
 
@@ -277,7 +282,7 @@ namespace multimedia
       void out::out_filled(index iBuffer)
       {
 
-         synchronization_lock synchronizationlock(mutex());
+         synchronous_lock synchronouslock(mutex());
 
          if(out_get_state() != e_state_playing)
          {
@@ -407,7 +412,7 @@ namespace multimedia
       ::e_status     out::out_start(const imedia_time & position)
       {
 
-         synchronization_lock synchronizationlock(mutex());
+         synchronous_lock synchronouslock(mutex());
 
          //if(m_estate == e_state_playing)
          //   return ::success;
@@ -673,7 +678,7 @@ namespace multimedia
       {
       }
       //out::run_step_thread::run_step_thread(out * pout):
-      //   ::thread(pout->get_context_application())
+      //   ::thread(pout->get_application())
       //{
       //}
 

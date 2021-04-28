@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace apex
+namespace acme
 {
 
 
@@ -28,10 +28,10 @@ namespace apex
 
       virtual bool set_timer(uptr uEvent, ::millis millisEllapse, PFN_TIMER pfnTimer = nullptr, bool bPeriodic = true, void * pvoidData = nullptr);
 
-      virtual bool remove_timer(::timer * ptimer) override;
+      virtual bool erase_timer(::timer * ptimer) override;
 
 
-      virtual void finalize() override;
+      virtual ::e_status finalize() override;
       virtual void delete_all_timers();
 
       virtual bool on_timer(::timer * ptimer) override;
@@ -43,7 +43,7 @@ namespace apex
    };
 
 
-} // namespace apex
+} // namespace acme
 
 
 

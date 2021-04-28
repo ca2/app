@@ -11,7 +11,7 @@ namespace account
    public:
 
 
-      user_set(::layered * pobjectContext);
+      user_set(::object * pobject);
       virtual ~user_set();
 
 

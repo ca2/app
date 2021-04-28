@@ -6,16 +6,16 @@ namespace apex
 
 
 
-   ::e_status application::_001InitializeShellOpen()
-   {
-      // xxx       ASSERT(m_atomApp == nullptr && m_atomSystemTopic == nullptr); // do once
-
-      // xxx       m_atomApp            = ::GlobalAddAtomW(::str::international::utf8_to_unicode(m_strAppName));
-      // xxx       m_atomSystemTopic    = ::GlobalAddAtomW(L"system");
-
-      return ::success;
-
-   }
+//   ::e_status application::_001InitializeShellOpen()
+//   {
+//      // xxx       ASSERT(m_atomApp == nullptr && m_atomSystemTopic == nullptr); // do once
+//
+//      // xxx       m_atomApp            = ::GlobalAddAtomW(::str::international::utf8_to_unicode(m_strAppName));
+//      // xxx       m_atomSystemTopic    = ::GlobalAddAtomW(L"system");
+//
+//      return ::success;
+//
+//   }
 
 
    void application::get_time(struct timeval * ptimeval)
@@ -92,11 +92,11 @@ namespace apex
    //}
 
 
-   void application::show_wait_cursor(bool bShow)
-   {
-
-
-   }
+//   void application::show_wait_cursor(bool bShow)
+//   {
+//
+//
+//   }
 
 
    //void application::get_time(struct timeval *p)
@@ -115,7 +115,7 @@ namespace apex
    //}
 
 
-   //ithread_t application::get_thread_id()
+   //itask_t application::get_thread_id()
    //{
 
    //   return ::pthread_self();

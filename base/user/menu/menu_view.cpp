@@ -18,9 +18,9 @@ namespace user
 
       payload(FONTSEL_IMPACT) = true;
 
-      m_flagNonClient.remove(non_client_background);
+      m_flagNonClient.erase(non_client_background);
 
-      m_flagNonClient.remove(non_client_focus_rect);
+      m_flagNonClient.erase(non_client_focus_rect);
 
       m_brBkHoverSel->create_solid(argb(255, 230, 230, 230));
 
@@ -165,24 +165,33 @@ namespace user
 
       }
 
-
-      set_topic_text("menu_view> ");
+      //set_topic_text("menu_view> ");
 
       string strId = get_document()->m_pimpactsystem->m_strMatter;
 
       string strText;
 
-      Application.data_get(m_id + ".cur_text", strText);
+      auto papplication = get_application();
 
-      m_pimageLogo = Application.image().load_image("matter://main/logo.png", false);
+      papplication->data_get(m_id + ".cur_text", strText);
+
+      auto pcontext = m_pcontext->m_pauracontext;
+
+      auto pcontextimage = pcontext->context_image();
+
+      m_pimageLogo = pcontextimage->load_image("matter://main/logo.png", false);
 
       m_fontTitle.create(this);
 
-      m_fontTitle->create_point_font(os_font_name(e_font_sans_ui), 14, 800);
+      auto psystem = m_psystem->m_pbasesystem;
+
+      auto pnode = psystem->node();
+
+      m_fontTitle->create_point_font(pnode->font_name(e_font_sans_ui), 14, 800);
 
       m_font.create(this);
 
-      m_font->create_point_font(os_font_name(e_font_sans_ui), 14, 400);
+      m_font->create_point_font(pnode->font_name(e_font_sans_ui), 14, 400);
 
       if (GetTypedParent<::user::split_view>() != nullptr)
       {
@@ -217,7 +226,7 @@ namespace user
 
          auto peditview = _001TypedWindow < ::user::plain_edit_view >();
 
-         if (peditview != nullptr && psubject->m_puserinteraction == peditview)
+         if (peditview != nullptr && psubject->m_puserprimitive == peditview)
          {
 
             string strText;
@@ -632,7 +641,9 @@ namespace user
    bool menu_view::load_xml(::payload varFile)
    {
 
-      string str = Context.file().as_string(varFile);
+      auto pcontext = get_context();
+
+      string str = pcontext->m_papexcontext->file().as_string(varFile);
 
       if (!m_pxmldoc->load(str))
       {
@@ -641,7 +652,6 @@ namespace user
 
       }
 
-
       int iPos = 0;
 
       ::rectangle_i32 rectangle;
@@ -649,6 +659,8 @@ namespace user
       int iMenu;
 
       int iCommand;
+
+      auto papplication = get_application();
 
       xml::node * pnodeMain = m_pxmldoc->get_child_at("menubar", 0, 1);
 
@@ -659,7 +671,7 @@ namespace user
 
       }
 
-      m_iaPopup.remove_all();
+      m_iaPopup.erase_all();
 
       for (iMenu = 0; iMenu < pnodeMain->get_children_count("menubar"); iMenu++)
       {
@@ -675,7 +687,11 @@ namespace user
 
             get_item_rect(iPos, rectangle);
 
-            ::image_pointer pimage1 = Application.image().load_image(pnode->child_at(iCommand)->attribute("image"), false);
+            auto pcontext = m_pcontext->m_pauracontext;
+
+            auto pcontextimage = pcontext->context_image();
+
+            ::image_pointer pimage1 = pcontextimage->load_image(pnode->child_at(iCommand)->attribute("image"), false);
 
             if (pimage1)
             {

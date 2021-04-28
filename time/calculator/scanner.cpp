@@ -37,7 +37,7 @@ namespace datetime
          return true;
    }
 
-   string check_unit(const ::apex::str_context * pcontext, const char * input, const char * & scanner)
+   string check_unit(const ::text::context * pcontext, const char * input, const char * & scanner)
    {
       static id idCalendarDays("calendar:days");
       scanner = input;
@@ -487,7 +487,7 @@ namespace datetime
       }
    }
 
-   string check_offset(const ::apex::str_context * pcontext, const char * input, const char * & scanner)
+   string check_offset(const ::text::context * pcontext, const char * input, const char * & scanner)
    {
       if(check_end_expression(input, scanner))
          return "";
@@ -515,7 +515,7 @@ namespace datetime
       return string(start, scanner - start);
    }
 
-   string consume_date_expression(const ::apex::str_context * pcontext, const char * & input)
+   string consume_date_expression(const ::text::context * pcontext, const char * & input)
    {
       const char * scanner;
       if(check_end_expression(input, scanner))
@@ -603,15 +603,34 @@ namespace datetime
       }
    }
 
-   scanner::scanner(const ::apex::str_context * pcontext)
+   scanner::scanner()
    {
-      m_pstrcontext     = pcontext;
       m_ptoken          = NULL;
       input             = NULL;
    }
 
    scanner::~scanner()
    {
+   }
+
+
+
+   ::e_status scanner::initialize_datetime_scanner(::text::context* ptextcontext)
+   {
+
+      auto estatus = ::object::initialize(ptextcontext);
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      m_ptextcontext = ptextcontext;
+
+      return estatus;
+
    }
 
 
@@ -695,7 +714,7 @@ namespace datetime
       }
       else
       {
-         token->m_str = consume_date_expression(m_pstrcontext, input);
+         token->m_str = consume_date_expression(m_ptextcontext, input);
          while(::str::ch::is_space_char(input))
             input = ::str::utf8_inc(input);
          if(*input == '(')

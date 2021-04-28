@@ -31,8 +31,8 @@ CLASS_DECL_ACME index array_translate_a(index_biunique & ia, index aNew, index a
       return bParam;
    }
 
-   ia.m_ba.remove_key(bParam);
-   ia.m_ab.remove_key(aOld);
+   ia.m_ba.erase_key(bParam);
+   ia.m_ab.erase_key(aOld);
    ia.m_iMaxA = ia.calc_max_a();
    ia.m_iMaxB = ia.calc_max_b();
    //if (aNew > aOld)
@@ -45,8 +45,8 @@ CLASS_DECL_ACME index array_translate_a(index_biunique & ia, index aNew, index a
    //      {
    //         break;
    //      }
-   //      m_ba.remove_key(b);
-   //      m_ab.remove_key(a + 1);
+   //      m_ba.erase_key(b);
+   //      m_ab.erase_key(a + 1);
    //      m_ba.set_at(b, a);
    //      m_ab.set_at(a, b);
    //      m_iMaxA = calc_max_a();
@@ -79,8 +79,8 @@ CLASS_DECL_ACME index array_translate_a(index_biunique & ia, index aNew, index a
          b = ia.get_b(a);
          if (b != ia.m_iEmptyB)
          {
-            ia.m_ba.remove_key(b);
-            ia.m_ab.remove_key(a);
+            ia.m_ba.erase_key(b);
+            ia.m_ab.erase_key(a);
             ia.m_ba.set_at(b, a + 1);
             ia.m_ab.set_at(a + 1, b);
          }
@@ -122,8 +122,8 @@ CLASS_DECL_ACME index_array array_translate_a_array(index_biunique & ia, index_a
       if (iaNew[i] < 0 || iaOld[i] < 0 || iaNew[i] == iaOld[i])
       {
 
-         iaNew.remove_at(i);
-         iaOld.remove_at(i);
+         iaNew.erase_at(i);
+         iaOld.erase_at(i);
 
 
 
@@ -136,8 +136,8 @@ CLASS_DECL_ACME index_array array_translate_a_array(index_biunique & ia, index_a
          if (b == ia.m_iEmptyB)
          {
 
-            iaNew.remove_at(i);
-            iaOld.remove_at(i);
+            iaNew.erase_at(i);
+            iaOld.erase_at(i);
 
          }
          else
@@ -165,9 +165,9 @@ CLASS_DECL_ACME index_array array_translate_a_array(index_biunique & ia, index_a
    for (index i = 0; i < c; i++)
    {
 
-      ia.m_ba.remove_key(iaB[i]);
+      ia.m_ba.erase_key(iaB[i]);
 
-      ia.m_ab.remove_key(iaOld[i]);
+      ia.m_ab.erase_key(iaOld[i]);
 
    }
 
@@ -229,9 +229,9 @@ CLASS_DECL_ACME index_array array_translate_a_array(index_biunique & ia, index_a
             else if (b != ia.m_iEmptyB)
             {
 
-               ia.m_ba.remove_key(b);
+               ia.m_ba.erase_key(b);
 
-               ia.m_ab.remove_key(a);
+               ia.m_ab.erase_key(a);
 
                ia.m_ba.set_at(b, a + iOffset);
 

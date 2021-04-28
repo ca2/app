@@ -9,9 +9,10 @@ namespace experience
    {
 
 
-      button::button() :
-         m_spregion(e_create)
+      button::button()
       {
+
+         m_pregion.create();
 
       }
 
@@ -193,44 +194,10 @@ namespace experience
 
          auto rectClient = get_client_rect();
 
-         m_spregion->create_oval(rectClient);
+         m_pregion->create_oval(rectClient);
 
       }
 
-
-      void button::on_hit_test(::user::item & item)
-      {
-
-         synchronization_lock synchronizationlock(mutex());
-
-
-
-         if (m_spregion.is_null() || !m_spregion->contains(item.m_pointHitTest))
-         {
-
-            if(m_ebutton == e_button_dock || m_bMouseHoverOnCapture)
-            {
-
-               if(has_mouse_capture())
-               {
-
-                  item = ::user::e_element_non_client;
-
-                  return;
-
-               }
-
-            }
-
-            item = ::user::e_element_none;
-
-            return;
-
-         }
-
-         item = ::user::e_element_client;
-
-      }
 
 
       bool button::keyboard_focus_is_focusable() const

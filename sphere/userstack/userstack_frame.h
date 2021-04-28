@@ -28,11 +28,11 @@ namespace userstack
       __pointer(pane_view)                m_ppaneview;
 
 
-      frame(::layered * pobjectContext);
+      frame(::object * pobject);
       virtual void install_message_routing(::channel * pchannel);
 
-      DECL_GEN_SIGNAL(_001OnApp1);
-      DECL_GEN_SIGNAL(_001OnMouseLeave);
+      DECLARE_MESSAGE_HANDLER(_001OnApp1);
+      DECLARE_MESSAGE_HANDLER(on_message_mouse_leave);
       virtual void _000OnMouse(::message::mouse * pmouse);
 
       void OnHoverAction();
@@ -49,9 +49,9 @@ namespace userstack
 
       virtual void pre_translate_message(::message::message * pmessage);
 
-      DECL_GEN_SIGNAL(on_message_create);
+      DECLARE_MESSAGE_HANDLER(on_message_create);
       void _001OnTimer(::timer * ptimer);
-      DECL_GEN_SIGNAL(_001OnApp2000);
+      DECLARE_MESSAGE_HANDLER(_001OnApp2000);
 
 
       virtual void message_handler(::user::message * pusermessage);

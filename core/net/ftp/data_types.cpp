@@ -134,7 +134,7 @@ namespace ftp
       m_puser->m_strLogin = ANONYMOUS_USER;
    }
 
-   logon::logon(const string& strHostname, WINUSHORT ushHostport, const string& strUsername,
+   logon::logon(const string& strHostname, ::u16 ushHostport, const string& strUsername,
                 const string& strPassword, const string& strAccount) :
       //storage_client(Sess(pobject).account()->storage()),
       //::account::credentials(__new(::account::user(this)), Sess(pobject).account()->storage()),
@@ -148,9 +148,9 @@ namespace ftp
       m_strPassword = strPassword;
    }
 
-   logon::logon( const string& strHostname, WINUSHORT ushHostport, const string& strUsername, const string& strPassword,
+   logon::logon( const string& strHostname, ::u16 ushHostport, const string& strUsername, const string& strPassword,
                 const string& strAccount, const string& strFwHostname, const string& strFwUsername,
-                const string& strFwPassword, WINUSHORT ushFwPort, const firewall_type& crFwType) :
+                const string& strFwPassword, ::u16 ushFwPort, const firewall_type& crFwType) :
       //storage_client(Sess(pobject).account()->storage()),
       //::account::credentials(__new(::account::user(this)), Sess(pobject).account()->storage()),
       m_strHostname(strHostname),
@@ -167,7 +167,7 @@ namespace ftp
 
    }
 
-   void logon::SetHost(const string& strHostname, WINUSHORT ushHostport, const string& strUsername,
+   void logon::SetHost(const string& strHostname, ::u16 ushHostport, const string& strUsername,
                        const string& strPassword, const string& strAccount)
    {
       m_strHostname = strHostname;
@@ -178,7 +178,7 @@ namespace ftp
    }
 
    void logon::SetFirewall(const string& strFwHostname, const string& strFwUsername, const string& strFwPassword,
-                           WINUSHORT ushFwPort, const firewall_type& crFwType)
+                           ::u16 ushFwPort, const firewall_type& crFwType)
    {
       m_strFwHostname = strFwHostname;
       m_strFwUsername = strFwUsername;

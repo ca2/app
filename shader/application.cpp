@@ -36,7 +36,7 @@ namespace app_shader
 
       set_local_data();
 
-      create_factory <::app_shader::window >();
+      create_factory <::app_shader::main_window >();
 
       if (!::aura::application::init_instance())
       {
@@ -61,27 +61,27 @@ namespace app_shader
    void application::on_request(::create * pcreate)
    {
 
-      __compose(m_pwindow, __create_new < window >());
+      __compose(m_pmainwindow, __create_new < ::app_shader::main_window > ());
 
       rectangle_i32 rectWindow;
 
-      m_pwindow->_001InitialFramePosition(rectWindow, { 0.05, 0.05, 0.4, 0.4 });
+      m_pmainwindow->_001InitialFramePosition(rectWindow, { 0.05, 0.05, 0.4, 0.4 });
 
       //auto pusersystem = __new(::user::system(0, nullptr, "app_app", WS_VISIBLE, rectWindow));
 
-      //m_pwindow->create_window_ex(pusersystem);
+      //m_pmainwindow->create_window_ex(pusersystem);
 
-      m_pwindow->create_host();
+      m_pmainwindow->create_host();
 
-      m_pwindow->display(e_display_normal);
+      m_pmainwindow->display(e_display_normal);
 
-      m_pwindow->place(rectWindow);
+      m_pmainwindow->place(rectWindow);
 
-      m_pwindow->set_need_layout();
+      m_pmainwindow->set_need_layout();
 
-      m_pwindow->set_need_redraw();
+      m_pmainwindow->set_need_redraw();
 
-      m_pwindow->post_redraw();
+      m_pmainwindow->post_redraw();
 
    }
 

@@ -9,7 +9,7 @@ namespace user
    toolbar_control::~toolbar_control()
    {
       
-      DestroyWindow();
+      destroy_window();
       
    }
 

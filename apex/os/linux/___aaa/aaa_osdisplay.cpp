@@ -126,7 +126,7 @@ osdisplay_data * osdisplay_get(Display * pdisplay)
 
 
 
-bool osdisplay_remove(Display * pdisplay)
+bool osdisplay_erase(Display * pdisplay)
 {
 
    single_lock slOsWindow(::osdisplay_data::s_pmutex, true);
@@ -140,7 +140,7 @@ bool osdisplay_remove(Display * pdisplay)
 
    XCloseDisplay(pdata->m_pdisplay);
 
-   ::osdisplay_data::s_pdataptra->remove_at(iFind);
+   ::osdisplay_data::s_pdataptra->erase_at(iFind);
 
    return true;
 
@@ -264,7 +264,7 @@ void enum_display_monitors(::apex::system * psystem)
    main_async([psystem]
    {
 
-      synchronization_lock synchronizationlock(x11_mutex());
+      synchronous_lock synchronouslock(x11_mutex());
 
       xdisplay d(x11_get_display());
 
@@ -277,7 +277,7 @@ void enum_display_monitors(::apex::system * psystem)
 
       }
 
-      synchronization_lock slSystem(psystem->mutex());
+      synchronous_lock slSystem(psystem->mutex());
 
       ::count iMonitorCount = gdk_display_get_n_monitors(pdisplay);
 

@@ -70,8 +70,8 @@ namespace macos
    }
 
 
-   interaction_impl::interaction_impl(::layered * pobjectContext) :
-      ::object(pobjectContext)
+   interaction_impl::interaction_impl(::object * pobject) :
+      ::object(pobject)
    {
 
       m_bEnabled = true;
@@ -235,7 +235,7 @@ namespace macos
 
       }
 
-      //single_lock synchronizationlock(afxMutexHwnd(), true);
+      //single_lock synchronouslock(afxMutexHwnd(), true);
       //hwnd_map * pMap = afxMapHWND(true); // create ::collection::map if not exist
       //ASSERT(pMap != nullptr);
 
@@ -256,10 +256,10 @@ namespace macos
       oswindow hWnd = (oswindow)get_handle();
       if (hWnd != nullptr)
       {
-         //         single_lock synchronizationlock(afxMutexHwnd(), true);
+         //         single_lock synchronouslock(afxMutexHwnd(), true);
          //  ;;       hwnd_map * pMap = afxMapHWND(); // don't create if not exist
          //     if (pMap != nullptr)
-         //      pMap->remove_handle(get_handle());
+         //      pMap->erase_handle(get_handle());
          //         set_handle(nullptr);
          m_oswindow = nullptr;
       }
@@ -738,7 +738,7 @@ namespace macos
        ASSERT(::is_window(get_handle()));
 
        // should also be in the permanent or temporary handle ::collection::map
-       single_lock synchronizationlock(afxMutexHwnd(), true);
+       single_lock synchronouslock(afxMutexHwnd(), true);
        hwnd_map * pMap = afxMapHWND();
        if(pMap == nullptr) // inside thread not having windows
        return; // let go
@@ -871,140 +871,6 @@ namespace macos
       str = m_strWindowText;
 
    }
-
-
-   /*
-    i32 interaction_impl::GetDlgItemText(i32 nID, string & rString) const
-    {
-    ASSERT(::is_window(get_handle()));
-    rString = "";    // is_empty without deallocating
-
-    oswindow hWnd = ::GetDlgItem(get_handle(), nID);
-    if (hWnd != nullptr)
-    {
-    i32 nLen = ::GetWindowTextLength(hWnd);
-    ::GetWindowText(hWnd, rString.get_string_buffer(nLen), nLen+1);
-    rString.ReleaseBuffer();
-    }
-
-    return (i32)rString.get_length();
-    }
-    */
-
-//   bool interaction_impl::GetWindowPlacement(WINDOWPLACEMENT* lpwndpl)
-//   {
-//      /*    ASSERT(::is_window(get_handle()));
-//       lpwndpl->length = sizeof(WINDOWPLACEMENT);
-//       return ::GetWindowPlacement(get_handle(), lpwndpl) != false;*/
-//      return false;
-//   }
-//
-//   bool interaction_impl::SetWindowPlacement(const WINDOWPLACEMENT* lpwndpl)
-//   {
-//      /*      ASSERT(::is_window(get_handle()));
-//       ((WINDOWPLACEMENT*)lpwndpl)->length = sizeof(WINDOWPLACEMENT);
-//       return ::SetWindowPlacement(get_handle(), lpwndpl) != false;*/
-//      return false;
-//   }
-
-   /////////////////////////////////////////////////////////////////////////////
-   // user::interaction will delegate owner draw messages to self drawing controls
-
-   // Drawing: for all 4 control types
-   // /*   void interaction_impl::OnDrawItem(i32 /*nIDCtl*/, LPDRAWITEMSTRUCT lpDrawItemStruct)
-   // {
-
-   // reflect notification to child user::interaction control
-   //  if (ReflectLastMsg(lpDrawItemStruct->hwndItem))
-   //   return;     // eat it
-
-   // not handled - do default
-   //      Default();
-   // }
-
-   // Drawing: for all 4 control types
-   //   i32 interaction_impl::OnCompareItem(i32 /*nIDCtl*/, LPCOMPAREITEMSTRUCT lpCompareItemStruct)
-   // {
-   //  // reflect notification to child user::interaction control
-   //LRESULT lResult;
-   //      if (ReflectLastMsg(lpCompareItemStruct->hwndItem, &lResult))
-   //       return (i32)lResult;        // eat it
-
-   // not handled - do default
-   //  return (i32)Default();
-   //   }
-
-   // void interaction_impl::OnDeleteItem(i32 /*nIDCtl*/, LPDELETEITEMSTRUCT lpDeleteItemStruct)
-   //{
-   // reflect notification to child user::interaction control
-   // if (ReflectLastMsg(lpDeleteItemStruct->hwndItem))
-   //  return;     // eat it
-   // not handled - do default
-   //      Default();
-   // }
-
-//   bool interaction_impl::_EnableToolTips(bool bEnable, ::u32 nFlag)
-//   {
-//      UNREFERENCED_PARAMETER(bEnable);
-//      UNREFERENCED_PARAMETER(nFlag);
-//      return false;
-//   }
-//
-//
-//   LRESULT interaction_impl::OnNTCtlColor(wparam wparam, lparam lparam)
-//   {
-//      return 0;
-//   }
-//
-//
-//   void interaction_impl::PrepareForHelp()
-//   {
-//      /*if (IsFrameWnd())
-//       {
-//       // frame_window windows should be allowed to exit help mode first
-//       frame_window* pFrameWnd = dynamic_cast < frame_window * >(this);
-//       pFrameWnd->ExitHelpMode();
-//       }
-//
-//       // cancel any tracking modes
-//       send_message(WM_CANCELMODE);
-//       send_message_to_descendants(WM_CANCELMODE, 0, 0, true, true);
-//
-//       // need to use top level parent (for the case where get_handle() is in DLL)
-//       ::user::interaction * pWnd = EnsureTopLevelParent();
-//       MAC_WINDOW(pWnd)->send_message(WM_CANCELMODE);
-//       MAC_WINDOW(pWnd)->send_message_to_descendants(WM_CANCELMODE, 0, 0, true, true);
-//
-//       // attempt to cancel capture
-//       oswindow hWndCapture = ::GetCapture();
-//       if (hWndCapture != nullptr)
-//       ::SendMessage(hWndCapture, WM_CANCELMODE, 0, 0);*/
-//   }
-
-
-   /*void interaction_impl::WinHelpInternal(dword_ptr dwData, ::u32 nCmd)
-    {
-    UNREFERENCED_PARAMETER(dwData);
-    UNREFERENCED_PARAMETER(nCmd);
-    __throw(error_not_implemented);
-
-    application* pApp = ::aura::get_system();
-    ASSERT_VALID(pApp);
-    if (pApp->m_eHelpType == afxHTMLHelp)
-    {
-    // translate from WinHelp commands and data to to HtmlHelp
-    ASSERT((nCmd == HELP_CONTEXT) || (nCmd == HELP_CONTENTS) || (nCmd == HELP_FINDER));
-    if (nCmd == HELP_CONTEXT)
-    nCmd = HH_HELP_CONTEXT;
-    else if (nCmd == HELP_CONTENTS)
-    nCmd = HH_DISPLAY_TOC;
-    else if (nCmd == HELP_FINDER)
-    nCmd = HH_HELP_FINDER;
-    HtmlHelp(dwData, nCmd);
-    }
-    else
-    WinHelp(dwData, nCmd);*/
-   //}
 
 
 
@@ -1167,11 +1033,11 @@ namespace macos
 
       if (pusermessage->m_id == e_message_timer)
       {
-         //         get_context_application()->get_context_application()->step_timer();
+         //         get_application()->get_application()->step_timer();
       }
       else if (pusermessage->m_id == e_message_left_button_down)
       {
-         //  g_pwndLastLButtonDown = this;
+         //  g_puserinteractionLastLButtonDown = this;
       }
       else if (pusermessage->m_id == e_message_size)
       {
@@ -1182,7 +1048,7 @@ namespace macos
        if(pusermessage->m_wparam == BERGEDGE_GETAPP)
        {
        ::application ** ppapp= (::application **) pusermessage->m_lparam;
-       *ppapp = get_context_application();
+       *ppapp = get_application();
        pusermessage->m_bRet = true;
        return;
        }
@@ -1224,7 +1090,7 @@ namespace macos
          psession->on_ui_mouse_message(pmouse);
 
 
-         if (get_context_session() != nullptr)
+         if (get_session() != nullptr)
          {
 
             psession->m_pointCursor = pmouse->m_point;
@@ -1452,7 +1318,7 @@ namespace macos
 //      string strCaption;
 //
 //      if (lpszCaption == nullptr)
-//         lpszCaption = Application.m_strAppName;
+//         lpszCaption = papplication->m_strAppName;
 //      else
 //         lpszCaption = strCaption;
 //
@@ -1625,7 +1491,7 @@ namespace macos
 //   bool PASCAL interaction_impl::ReflectLastMsg(oswindow hWndChild, LRESULT* pResult)
 //   {
 //      // get the ::collection::map, and if no ::collection::map, then this message does not need reflection
-//      /*      single_lock synchronizationlock(afxMutexHwnd(), true);
+//      /*      single_lock synchronouslock(afxMutexHwnd(), true);
 //       hwnd_map * pMap = afxMapHWND();
 //       if (pMap == nullptr)
 //       return false;
@@ -1859,7 +1725,7 @@ namespace macos
 //
 //      bool bUpdateScreen = false;
 //
-//      while (::thread_get_run())
+//      while (::task_get_run())
 //      {
 //
 //         try
@@ -2116,7 +1982,7 @@ namespace macos
    void interaction_impl::_001OnProdevianSynch(::message::message * pmessage)
    {
       UNREFERENCED_PARAMETER(pmessage);
-      //      ::aura::get_system()->get_event(get_context_application()->get_context_application())->SetEvent();
+      //      ::aura::get_system()->get_event(get_application()->get_application())->SetEvent();
       //    ::aura::get_system()->get_event(::aura::get_system()->get_twf())->wait(millis(8400));
    }
 
@@ -2138,7 +2004,7 @@ namespace macos
       //      if(pusermessage->m_wparam == nullptr)
       //         return;
       //
-      //      ::draw2d::graphics_pointer graphics(get_object());
+      //      ::draw2d::graphics_pointer graphics(this);
       //      WIN_DC(graphics.m_p)->Attach((HDC) pusermessage->m_wparam);
       //      ::rectangle_i32 rectx;
       //      ::draw2d::bitmap * pbitmap = &pgraphics->GetCurrentBitmap();
@@ -2154,7 +2020,7 @@ namespace macos
       //         ::rectangle_i32 rectWindow;
       //         get_window_rect(rectWindow);
       //
-      //         ::image_pointer pimage(get_object());
+      //         ::image_pointer pimage(this);
       //         if(!pimage = create_image(rectWindow.bottom_right()))
       //            return;
       //
@@ -2335,7 +2201,7 @@ namespace macos
    {
       UNREFERENCED_PARAMETER(pTarget);
       UNREFERENCED_PARAMETER(bDisableIfNoHndler);
-      ::message::command state(get_context_object());
+      ::message::command state(this);
       user::interaction wndTemp;       // very temporary user::interaction just for CmdUI update
 
       // walk all the kids - assume the IDs are for buttons
@@ -2811,7 +2677,7 @@ namespace macos
 //   }
 
 
-//   void interaction_impl::MapWindowPoints(::user::interaction * pwndTo, POINT_I32 * lpPoint, ::u32 nCount)
+//   void interaction_impl::MapWindowPoints(::user::interaction * puserinteractionTo, POINT_I32 * lpPoint, ::u32 nCount)
 //   {
 //
 //      __throw(error_not_implemented);
@@ -2819,7 +2685,7 @@ namespace macos
 //   }
 //
 //
-//   void interaction_impl::MapWindowPoints(::user::interaction * pwndTo, RECTANGLE_I32 * lpRect)
+//   void interaction_impl::MapWindowPoints(::user::interaction * puserinteractionTo, RECTANGLE_I32 * lpRect)
 //   {
 //
 //      __throw(error_not_implemented);
@@ -4344,9 +4210,9 @@ namespace macos
 
       g->set_alpha_mode(::draw2d::alpha_mode_set);
 
-      synchronization_lock slGraphics(pbuffer->mutex());
+      synchronous_lock slGraphics(pbuffer->mutex());
       
-      synchronization_lock sl1(pbuffer->get_screen_sync());
+      synchronous_lock sl1(pbuffer->get_screen_sync());
 
       ::image_pointer & imageBuffer2 = pbuffer->get_screen_image();
 
@@ -4963,7 +4829,7 @@ namespace macos
 ////
 ////      {
 ////
-////         synchronization_lock synchronizationlock(m_puserinteraction->mutex());
+////         synchronous_lock synchronouslock(m_puserinteraction->mutex());
 ////
 ////         if (pt != m_puserinteraction->m_rectParentClient.top_left())
 ////         {

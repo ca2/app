@@ -7,6 +7,7 @@ namespace aura
 
    class CLASS_DECL_AURA application :
       virtual public ::aqua::application,
+      virtual public ::aura::context,
       virtual public ::user::callback,
       virtual public ::filemanager::callback
    {
@@ -19,7 +20,7 @@ namespace aura
       ::aura::application *                           m_pappParent;
       //string                                          m_strAppName;
       //string                                          m_strAppTitle;
-      //string                                          m_strAppId;
+      //string                                          m_XstrAppId;
       //string                                          m_strBaseSupportId;
       //string                                          m_strRoot;
       //string                                          m_strDomain;
@@ -40,7 +41,7 @@ namespace aura
       //__pointer(::apex::application_menu)             m_papplicationmenu;
 
       //__composite(::game::game)                       m_pgame;
-
+      __reference(::user::interaction)                m_puserinteractionMain;
 
       __composite(shell_open)                         m_pshellopen;
 
@@ -68,7 +69,7 @@ namespace aura
 
       //bool                                            m_bIpi;
       //__pointer(::interprocess_intercommunication)    m_pinterprocessintercommunication;
-      __pointer(service_base)                         m_pservice;
+      //__pointer(service_base)                         m_pservice;
 
       ::mutex                                         m_mutexFrame;
       __composite(::user::interaction_array)            m_puiptraFrame;
@@ -94,7 +95,7 @@ namespace aura
 
       //id_map < __pointer(::channel) >                 m_mapNotify;
 
-      __composite(context_image)                        m_pcontextimage;
+      //__composite(context_image)                        m_pcontextimage;
 
       //bool                                            m_bInitializeDataCentral;
 
@@ -150,16 +151,19 @@ namespace aura
       virtual ~application();
 
 
-      virtual ::e_status initialize(::layered * pobjectContext) override;
+      virtual ::e_status initialize(::object * pobject) override;
 
 
       virtual void assert_valid() const override;
       virtual void dump(dump_context & dumpcontext) const override;
 
 
+      virtual void enumerate_composite(matter_array& a);
+
       inline ::aura::game* game() { return m_pgame->m_pauragame; }
 
 
+      virtual void _001CloseApplication() override;
 
 
       //virtual ::user::style* get_user_style() const;
@@ -192,10 +196,14 @@ namespace aura
 
       //virtual ::simpledb::server * simpledb();
       virtual ::database::server * dataserver() override;
-      inline ::context_image& image() { return *m_pcontextimage; }
+      //inline ::context_image& image() { return *m_pcontextimage; }
 
 
       virtual ::e_status verb() override;
+
+
+      inline ::aura::session* get_session() { return m_pcontext && m_pcontext->m_papexsession ? m_pcontext->m_papexsession->m_paurasession : nullptr; }
+      inline ::aura::system* get_system();
 
 
       virtual bool Ex2OnAppInstall() override;
@@ -241,15 +249,15 @@ namespace aura
       virtual bool do_uninstall() override;
 
 
-      virtual bool on_install() override;
-      virtual bool on_uninstall() override;
+      virtual ::e_status on_install() override;
+      virtual ::e_status on_uninstall() override;
 
 
 
 
 
-      virtual bool update_appmatter(::sockets::socket_handler & handler, __pointer(::sockets::http_session) & psession, const ::file::path & pszRoot, const string & pszRelative) override;
-      virtual bool update_appmatter(::sockets::socket_handler & handler, __pointer(::sockets::http_session) & psession, const ::file::path & pszRoot, const string & pszRelative, const string & strLocale, const string & strStyle) override;
+      virtual bool update_appmatter(__pointer(::sockets::http_session) & psession, const ::file::path & pszRoot, const string & pszRelative) override;
+      virtual bool update_appmatter(__pointer(::sockets::http_session) & psession, const ::file::path & pszRoot, const string & pszRelative, const string & strLocale, const string & strStyle) override;
 
 
       //virtual void SetCurrentHandles() override;
@@ -319,9 +327,9 @@ namespace aura
       virtual ::draw2d::printer * get_printer(const char * pszDeviceName);
 
 
-      virtual ::draw2d::icon * set_icon(object * pobject, ::draw2d::icon * picon, bool bBigIcon);
+      virtual ::draw2d::icon * set_icon(::object * pobject, ::draw2d::icon * picon, bool bBigIcon);
 
-      virtual ::draw2d::icon * get_icon(object * pobject, bool bBigIcon) const;
+      virtual ::draw2d::icon * get_icon(::object * pobject, bool bBigIcon) const;
 
       //virtual void on_service_request(::create * pcreate) override;
 
@@ -371,7 +379,7 @@ namespace aura
       //virtual string get_locale_schema_dir();
 
 
-      //virtual ::e_status initialize(::layered * pobjectContext) override;
+      //virtual ::e_status initialize(::object * pobject) override;
 
 
       //::apex::application_menu & applicationmenu();
@@ -413,7 +421,7 @@ namespace aura
       //virtual ::file::path local_application_home_path() override;
 
 
-      virtual void finalize() override;
+      virtual ::e_status finalize() override;
 
 
       //virtual void release_parents() override;
@@ -431,7 +439,7 @@ namespace aura
       //virtual bool exclusive_fails(string str, LPSECURITY_ATTRIBUTES psa) override;
 
 
-      virtual bool start_application(bool bSynch, ::create * pcreate) override;
+      //virtual bool start_application(bool bSynch, ::create * pcreate) override;
 
 
 
@@ -443,7 +451,7 @@ namespace aura
       //virtual void record(::create * pcommand);
 
       //virtual void on_event(::u64 u, ::object * pobject) override;
-      //virtual __pointer(::thread_toolset) create_thread_toolset(::enum_thread_tool etool);
+      //virtual __pointer(::thread_toolset) create_thread_toolset(::enum_task_tool etool);
 
 
       //// ca2verses
@@ -591,7 +599,7 @@ namespace aura
       //virtual void SetCurrentHandles();
 
       //virtual void set_env_var(const string & payload,const string & value);
-      //virtual ithread_t get_thread_id();
+      //virtual itask_t get_thread_id();
 
 
       //virtual bool _001OnDDECommand(const char * pcsz) override;
@@ -613,7 +621,7 @@ namespace aura
       //virtual bool init_service() override;
 
       //virtual bool os_create_service() override;
-      //virtual bool os_remove_service() override;
+      //virtual bool os_erase_service() override;
 
       //virtual bool os_start_service() override;
       //virtual bool os_stop_service() override;
@@ -680,7 +688,7 @@ namespace aura
       //virtual bool assert_user_logged_in();
 
       //virtual ::e_status     do_request(::create * pcreate) override;
-      virtual ::e_status     call_request(::create * pcreate) override;
+      virtual void call_request(::create * pcreate) override;
 
 
       //virtual void process_message(::user::message * base) override;
@@ -710,8 +718,8 @@ namespace aura
 
 
 
-      //virtual void fill_locale_schema(::str::international::locale_schema & localeschema) override;
-      //virtual void fill_locale_schema(::str::international::locale_schema & localeschema,const string & pszLocale,const string & pszSchema) override;
+      //virtual void fill_locale_schema(::text::international::locale_schema & localeschema) override;
+      //virtual void fill_locale_schema(::text::international::locale_schema & localeschema,const string & pszLocale,const string & pszSchema) override;
 
       //virtual bool platform_open_by_file_extension(index iEdge, const char * pszPathName, ::create * pcreate = nullptr) override;
       //virtual bool platform_open_by_file_extension(index iEdge,::create * pcc) override;
@@ -724,7 +732,7 @@ namespace aura
       //virtual bool is_application() const override;
 
 
-      //DECL_GEN_SIGNAL(_001OnAppExit);
+      //DECLARE_MESSAGE_HANDLER(_001OnAppExit);
       //virtual bool _001OnAgreeExit() override;
       //virtual void _001OnFranceExit() override;
       //virtual void _001FranceExit() override;
@@ -792,8 +800,8 @@ namespace aura
       virtual __pointer(::user::message) get_user_message(MESSAGE * pmsg);
 
       virtual bool get_frame(__pointer(::user::interaction) & pinteraction);
-      virtual void add_frame(::user::interaction * pwnd);
-      virtual void remove_frame(::user::interaction * pwnd);
+      virtual void add_frame(::user::interaction * puserinteraction);
+      virtual void erase_frame(::user::interaction * puserinteraction);
 
       virtual bool send_message_to_windows(const ::id & id, wparam wparam, lparam lparam) override; // with tbs in <3
 
@@ -849,7 +857,7 @@ namespace aura
       virtual void HideApplication() override;
 
 
-      //virtual ::e_status initialize(::layered * pobjectContext) override;
+      //virtual ::e_status initialize(::object * pobject) override;
 
       //virtual ::e_status process_init() override;
 
@@ -868,7 +876,7 @@ namespace aura
 
       //virtual ::e_status     main() override;
 
-      //virtual ::aura::application * get_context_application() const override;
+      //virtual ::aura::application * get_application() const override;
 
       //virtual bool is_system() const override;
       //virtual bool is_session() const override;
@@ -915,8 +923,8 @@ namespace aura
       virtual bool on_run_install() override;
       virtual bool on_run_uninstall() override;
 
-      DECL_GEN_SIGNAL(on_application_signal);
-      DECL_GEN_SIGNAL(_001OnSwitchContextTheme);
+      DECLARE_MESSAGE_HANDLER(on_application_signal);
+      DECLARE_MESSAGE_HANDLER(_001OnSwitchContextTheme);
 
 
       // open named file, trying to match a regsitered
@@ -1133,7 +1141,7 @@ namespace aura
 
       //user virtual ::user::document* _001OpenDocumentFile(::payload varFile);
       //virtual bool on_open_document_file(::payload varFile) override;
-      //DECL_GEN_SIGNAL(_001OnFileNew) override;
+      //DECLARE_MESSAGE_HANDLER(_001OnFileNew) override;
 
 
       //virtual string get_version();
@@ -1173,7 +1181,7 @@ namespace aura
       virtual void set_title(const char* pszTitle) override;
 
 
-      virtual bool _001CloseApplicationByUser(__pointer(::user::interaction) pwndExcept);
+      virtual bool _001CloseApplicationByUser(__pointer(::user::interaction) puserinteractionExcept);
 
 
 //#ifdef WINDOWS_DESKTOP
@@ -1185,6 +1193,9 @@ namespace aura
       void update_app_interest();
       void ensure_app_interest();
 
+
+      virtual bool is_system() const override;
+      virtual bool is_session() const override;
 
       //virtual oswindow get_ca2_app_wnd(const char* psz) override;
 
@@ -1239,7 +1250,7 @@ namespace aura
       //       virtual __pointer(::bergedge::document) get_document();
 
 
-      //virtual ::e_status add_library(::apex::library * plibrary);
+      //virtual ::e_status add_library(::acme::library * plibrary);
 
       //virtual ::e_status initialize_userex();
       //virtual ::e_status userfs_init1();
@@ -1298,7 +1309,7 @@ namespace aura
 
 
 
-      virtual i32 GetVisibleTopLevelFrameCountExcept(__pointer(::user::interaction) pwndExcept);
+      virtual i32 GetVisibleTopLevelFrameCountExcept(__pointer(::user::interaction) puserinteractionExcept);
       virtual i32 GetVisibleFrameCount();
 
       //virtual void on_create_keyboard() override;
@@ -1321,7 +1332,7 @@ namespace aura
       //      virtual void set_cred(string strToken, const char * pszUsername, const char * pszPassword) override;
       //      virtual void set_cred_ok(string strToken, bool bOk) override;
 
-      //user virtual void remove_document_template(::user::impact_system* pimpactsystem);
+      //user virtual void erase_document_template(::user::impact_system* pimpactsystem);
 
       //virtual bool _001OnAgreeExit() override;
       //virtual void _001OnFranceExit() override;
@@ -1344,7 +1355,7 @@ namespace aura
       //virtual ~application();
 
 
-      //virtual ::e_status     initialize(::layered * pobjectContext) override;
+      //virtual ::e_status     initialize(::object * pobject) override;
 
 
       //virtual void install_message_routing(::channel * pchannel) override;
@@ -1385,7 +1396,7 @@ namespace aura
       //using ::user::form_callback::on_control_event;
 
 
-      //virtual void remove_document_template(::user::impact_system* pimpactsystem);
+      //virtual void erase_document_template(::user::impact_system* pimpactsystem);
 
       //virtual void term_application() override;
 
@@ -1407,7 +1418,7 @@ namespace aura
 
 
       // programming
-      //DECL_GEN_SIGNAL(on_application_signal);
+      //DECLARE_MESSAGE_HANDLER(on_application_signal);
       //void on_request(::create* pcreate);
       string get_visual_studio_build();
 

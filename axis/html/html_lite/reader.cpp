@@ -106,10 +106,10 @@ lite_html_reader::EventMaskEnum lite_html_reader::setEventMask(u32 dwNewEventMas
 }
 
 
-lite_html_reader::EventMaskEnum lite_html_reader::setEventMask(u32 addFlags, u32 removeFlags)
+lite_html_reader::EventMaskEnum lite_html_reader::setEventMask(u32 addFlags, u32 eraseFlags)
 {
    u32   dwOldMask = (u32)m_eventMask;
-   u32   dwNewMask = (dwOldMask | addFlags) & ~removeFlags;
+   u32   dwNewMask = (dwOldMask | addFlags) & ~eraseFlags;
    m_eventMask = (EventMaskEnum)dwNewMask;
    return ((EventMaskEnum)dwOldMask);
 }
@@ -240,7 +240,7 @@ strsize lite_html_reader::parseDocument()
          break;
       }
 
-      // entity context_object beginning delimeter?
+      // entity object beginning delimeter?
       case '&':
       {
          UngetChar();
@@ -248,7 +248,7 @@ strsize lite_html_reader::parseDocument()
          lTemp = 0;
          string strChar;
          if (m_bResolveEntities)
-            lTemp = System->m_phtml->resolve_entity(&m_strBuffer[m_dwBufPos], strChar);
+            lTemp = m_phtml->resolve_entity(&m_strBuffer[m_dwBufPos], strChar);
 
          if (lTemp)
          {
@@ -323,291 +323,7 @@ strsize lite_html_reader::read_form_document(const string & str)
 
 }
 
-#ifdef WINDOWS_DESKTOP
-/**
-* lite_html_reader::read
-* This method is similar to the read(const char *) method,
-* except that, it accepts a file HANDLE instead of
-* an in-memory string buffer containing HTML text.
-*
-* @lparam hFile - file handle
-*
-* @return number of TCHARs successfully parsed
-* @since 1.0
-* @author Gurmeet S. Kochar
-*/
-//strsize lite_html_reader::read_html_file(HANDLE hFile)
-//{
-//   ASSERT(hFile != INVALID_HANDLE_VALUE);
-//   ASSERT(::GetFileType(hFile) == FILE_TYPE_DISK);
-//
-//   HANDLE   hFileMap = nullptr;
-//   const char *   psz = nullptr;
 
-//   strsize   nRetVal = -1;
-//
-//   // determine file size_i32
-//   strsize dwBufLen = ::GetFileSize(hFile, nullptr);
-//   if (dwBufLen == INVALID_FILE_SIZE)
-//   {
-//      TRACE("(Error) lite_html_reader::read:"
-//            " GetFileSize() failed;"
-//            " get_last_error() returns 0x%08x.\n", ::get_last_error());
-//      goto LError;
-//   }
-//
-//#ifdef WINDOWS_DESKTOP
-//   // create a file-mapping object for the file
-//   hFileMap = ::CreateFileMapping(hFile, nullptr, PAGE_READONLY, 0L, 0L, nullptr);
-//#else
-//   hFileMap = ::CreateFileMappingFromApp(hFile, nullptr, PAGE_READONLY, dwBufLen, nullptr);
-//#endif
-//   if (hFileMap == nullptr)
-//   {
-//      TRACE
-//      ("(Error) lite_html_reader::read:"
-//       " CreateFileMapping() failed;"
-//       " get_last_error() returns 0x%08x.\n", ::get_last_error());
-//      goto LError;
-//   }
-//
-//#ifdef WINDOWS_DESKTOP
-//   // map the entire file into the address-space of the application
-//   psz = (const char *)::MapViewOfFile(hFileMap, FILE_MAP_READ, 0L, 0L, 0L);
-
-//#else
-//   psz = (const char *) ::MapViewOfFileFromApp(hFileMap, FILE_MAP_READ, 0, 0);
-
-//#endif
-//   if (psz == nullptr)
-
-//   {
-//      TRACE
-//      ("(Error) lite_html_reader::read:"
-//       " MapViewOfFile() failed;"
-//       " get_last_error() returns 0x%08x.\n", ::get_last_error());
-//      goto LError;
-//   }
-//
-//   m_strBuffer = string(psz, dwBufLen);
-
-//   nRetVal = parseDocument();
-//   goto LCleanExit;
-//
-//LError:
-//   nRetVal = 0U;
-//
-//LCleanExit:
-//   if (psz != nullptr)
-
-//      VERIFY(::UnmapViewOfFile(psz));
-
-//   if (hFileMap)
-//      VERIFY(::CloseHandle(hFileMap));
-//   return (nRetVal);
-//}
-
-
-#elif defined(_UWP)
-/**
-* lite_html_reader::read
-* This method is similar to the read(const char *) method,
-* except that, it accepts a file HANDLE instead of
-* an in-memory string buffer containing HTML text.
-*
-* @lparam hFile - file handle
-*
-* @return number of TCHARs successfully parsed
-* @since 1.0
-* @author Gurmeet S. Kochar
-*/
-strsize lite_html_reader::read_html_file(HANDLE hFile)
-{
-   ASSERT(hFile != INVALID_HANDLE_VALUE);
-   //ASSERT(::GetFileType(hFile) == FILE_TYPE_DISK);
-
-   HANDLE         hFileMap    = nullptr;
-   const char *   psz        = nullptr;
-
-   strsize      nRetVal     = 0;
-
-   // determine file size_i32
-   strsize dwBufLen = ::GetFileSize(hFile, nullptr);
-   if (dwBufLen == INVALID_FILE_SIZE)
-   {
-      TRACE("(Error) lite_html_reader::read:"
-            " GetFileSize() failed;"
-            " get_last_error() returns 0x%08x.\n", ::GetLastError());
-      goto LError;
-   }
-
-   // create a file-mapping object for the file
-#ifdef _UWP
-   hFileMap = CreateFileMappingFromApp(
-              hFile,
-              nullptr,
-              PAGE_READWRITE,
-              dwBufLen,
-              nullptr);
-
-#else
-   hFileMap = ::CreateFileMapping(hFile, nullptr, PAGE_READONLY, 0L, 0L, nullptr);
-#endif
-   if (hFileMap == nullptr)
-   {
-      TRACE("(Error) lite_html_reader::read:"
-            " CreateFileMapping() failed;"
-            " get_last_error() returns 0x%08x.\n", ::GetLastError());
-      goto LError;
-   }
-
-#ifdef _UWP
-   psz = (const char *) MapViewOfFileFromApp(
-
-          hFileMap,
-          FILE_MAP_READ | FILE_MAP_WRITE,
-          0,
-          0);
-#else
-   // map the entire file into the address-space of the application
-   psz = (const char *)::MapViewOfFile(hFileMap, FILE_MAP_READ, 0L, 0L, 0L);
-
-#endif
-   if (psz == nullptr)
-
-   {
-      TRACE("(Error) lite_html_reader::read:"
-            " MapViewOfFile() failed;"
-            " get_last_error() returns 0x%08x.\n", ::GetLastError());
-      goto LError;
-   }
-
-   m_strBuffer = string(psz, dwBufLen);
-
-   nRetVal = parseDocument();
-   goto LCleanExit;
-
-LError:
-   nRetVal = 0U;
-
-LCleanExit:
-   if (psz != nullptr)
-
-      VERIFY(::UnmapViewOfFile(psz));
-
-   if (hFileMap)
-      VERIFY(::CloseHandle(hFileMap));
-   return (nRetVal);
-}
-
-
-#else
-
-/**
-* lite_html_reader::read
-* This method is similar to the read(const char *) method,
-* except that, it accepts a file HANDLE instead of
-* an in-memory string buffer containing HTML text.
-*
-* @lparam fd - file descriptor
-*
-* @return number of TCHARs successfully parsed
-* @since 1.0
-* @author Gurmeet S. Kochar
-*/
-strsize lite_html_reader::read_html_file(i32 fd)
-{
-//   ASSERT(hFile != INVALID_HANDLE_VALUE);
-//   ASSERT(::GetFileType(hFile) == FILE_TYPE_DISK);
-
-   char *   psz;
-
-   strsize   nRetVal;
-
-   strsize dwBufLen = 0;
-
-   try
-   {
-
-      // determine file size_i32
-      auto iFileSize = ::get_file_size(fd);
-
-      if (iFileSize < 0)
-      {
-         TRACE("(Error) lite_html_reader::read: GetFileSize() failed; get_last_error() returns 0x%08x.\n", ::get_last_status());
-         return 0;
-      }
-
-   }
-   catch(...)
-   {
-      return 0;
-   }
-
-   psz = (char *) mmap(nullptr, dwBufLen, PROT_READ, MAP_PRIVATE, fd, 0);
-
-
-   if(psz == MAP_FAILED)
-
-   {
-      TRACE("(Error) lite_html_reader::read:"
-            " CreateFileMapping() failed;"
-            " get_last_error() returns 0x%08x.\n", ::get_last_status());
-      goto map_error;
-   }
-
-   m_strBuffer = string(psz, dwBufLen);
-
-
-   try
-   {
-      nRetVal = parseDocument();
-   }
-   catch(...)
-   {
-      nRetVal = 0;
-   }
-
-   munmap((void *) psz, dwBufLen);
-
-
-   return nRetVal;
-
-map_error:
-
-   psz = m_strBuffer.get_string_buffer(dwBufLen);
-
-
-   i64 iRead;
-
-   strsize iPos = 0;
-
-   while(iPos < dwBufLen && (iRead = ::read(fd, &psz[iPos], dwBufLen - iPos)) > 0)
-
-   {
-
-      iPos += iRead;
-
-   }
-
-   if(iPos < dwBufLen)
-      return 0;
-
-
-   try
-   {
-      nRetVal = parseDocument();
-   }
-   catch(...)
-   {
-      nRetVal = 0;
-   }
-
-   return nRetVal;
-
-}
-
-#endif
 
 char lite_html_reader::UngetChar()
 {

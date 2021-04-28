@@ -441,7 +441,9 @@ namespace draw2d
 
          pimage->get_graphics()->OffsetViewportOrg(-rectCache.left + rectangle.left, -rectCache.top + rectangle.top);
 
-         ::aura::get_system()->imaging().channel_spread_set_color(pimageBlur->g(), nullptr, size, pimage->g(), nullptr, ::color::e_channel_alpha, iEffectiveSpreadRadius, argb(255, 255, 255, 255));
+         __pointer(::aura::system) psystem = m_psystem;
+
+         psystem->imaging().channel_spread_set_color(pimageBlur->g(), nullptr, size, pimage->g(), nullptr, ::color::e_channel_alpha, iEffectiveSpreadRadius, argb(255, 255, 255, 255));
 
          for (iptr i = 0; i < iBlur; i++)
          {
@@ -468,6 +470,29 @@ namespace draw2d
 
       return true;
 
+   }
+
+   //::aura::application* object::get_application() 
+   //{
+   //   
+   //   return m_papplication ? m_papplication.cast < ::aura::application >() : nullptr; 
+   //
+   //}
+
+
+   //::aura::session* object::get_session()
+   //{
+   //   
+   //   return m_psession ? m_psession.cast < ::aura::session >() : nullptr; 
+   //
+   //}
+
+   
+   ::aura::system* object::get_system()
+   {
+      
+      return ::is_null(m_psystem) ? dynamic_cast <::aura::system*> (m_psystem) : nullptr; 
+   
    }
 
 

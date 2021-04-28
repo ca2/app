@@ -55,7 +55,7 @@ public:
    millis                             m_millisAfterApplicationFirstRequest;
    //::apex::system *                    m_psystem;
    //__pointer(apex_main_data)        m_pmaindata;
-   __pointer(::apex::library)       m_plibrary;
+   __pointer(::acme::library)       m_plibrary;
    ::e_status                        m_estatusa[APP_CORE_MAXIMUM_STATUS_COUNT];
    int                              m_iStatusCount;
    int                              m_iTotalStatusCount;
@@ -95,10 +95,10 @@ public:
    __transport(::apex::application) new_application(const char* pszAppId);
 
 
-//   __transport(::apex::application) get_new_application(::object* pobjectContext);
-//   __transport(::apex::application) get_new_application(::object* pobjectContext, const char* pszAppId);
+//   __transport(::apex::application) get_new_application(::object* pobject);
+//   __transport(::apex::application) get_new_application(::object* pobject, const char* pszAppId);
 
-   virtual ::e_status initialize_application(::apex::application * papplication, ::object* pobjectContext);
+   virtual ::e_status initialize_application(::apex::application * papplication, ::object* pobject);
 
 };
 

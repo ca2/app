@@ -47,7 +47,7 @@ namespace user
       while(*pinteraction != 0xffffffff)
       {
          tbb.idCommand = *pinteraction;
-         uia.remove_all();
+         uia.erase_all();
          m_rel.GetFromA(*pinteraction, uia);
          if(uia.get_size() > 0)
          {

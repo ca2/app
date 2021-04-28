@@ -36,11 +36,11 @@
 //      ::user::box::install_message_routing(pchannel);
 //
 //      MESSAGE_LINK(e_message_create, pchannel, this, &::user::interaction::on_message_create);
-//      //      MESSAGE_LINK(e_message_mouse_move, pchannel, this, &::user::interaction::_001OnMouseMove);
+//      //      MESSAGE_LINK(e_message_mouse_move, pchannel, this, &::user::interaction::on_message_mouse_move);
 //      //
 //      //#ifdef WINDOWS
 //      //
-//      //      MESSAGE_LINK(e_message_mouse_leave, pchannel, this, &::user::interaction::_001OnMouseLeave);
+//      //      MESSAGE_LINK(e_message_mouse_leave, pchannel, this, &::user::interaction::on_message_mouse_leave);
 //      //
 //      //#else
 //      //
@@ -114,15 +114,15 @@
 //   }
 //
 //
-//   bool control::_003CallCustomWindowProc(__pointer(::user::interaction) pwnd, const ::id & id, wparam wparam, lparam lparam, LRESULT& lresult)
+//   bool control::_003CallCustomWindowProc(__pointer(::user::interaction) puserinteraction, const ::id & id, wparam wparam, lparam lparam, LRESULT& lresult)
 //
 //   {
 //
-//      m_pwndCustomWindowProc = pwnd;
+//      m_puserinteractionCustomWindowProc = puserinteraction;
 //
 //      __keep(m_bCustomWindowProc);
 //
-//      ::user::message base(pwnd, message, wparam, lparam);
+//      ::user::message base(puserinteraction, message, wparam, lparam);
 //
 //      _003CustomWindowProc(&base);
 //
@@ -188,7 +188,7 @@
 //   }
 //
 //
-//   bool control::get_data(__pointer(::user::interaction)pwnd, ::payload& payload)
+//   bool control::get_data(__pointer(::user::interaction)puserinteraction, ::payload& payload)
 //   {
 //
 //      string str;
@@ -196,7 +196,7 @@
 //      if (control_descriptor().get_control_type() == e_control_type_edit)
 //      {
 //
-//         __pointer(::user::text) pedit = pwnd.m_p;
+//         __pointer(::user::text) pedit = puserinteraction.m_p;
 //
 //         if (pedit == nullptr)
 //            return false;
@@ -515,13 +515,13 @@
 //
 //      m_bEnableChanged = true;
 //
-//      __pointer(::user::interaction) pwnd = m_puiOther;
+//      __pointer(::user::interaction) puserinteraction = m_puiOther;
 //
-//      ASSERT(pwnd != nullptr);
+//      ASSERT(puserinteraction != nullptr);
 //
-//      ASSERT_KINDOF(::user::interaction, pwnd);
+//      ASSERT_KINDOF(::user::interaction, puserinteraction);
 //
-//      __pointer(::user::interaction) pinteraction = pwnd->get_child_by_id(m_idControl);
+//      __pointer(::user::interaction) pinteraction = puserinteraction->get_child_by_id(m_idControl);
 //
 //      __pointer(control) pcontrolex = (pinteraction.m_p);
 //
@@ -531,7 +531,7 @@
 //         if (bOn)
 //         {
 //
-//            if (pwnd->is_window_enabled() && !pcontrolex->IsControlCommandEnabled())
+//            if (puserinteraction->is_window_enabled() && !pcontrolex->IsControlCommandEnabled())
 //            {
 //
 //               pcontrolex->EnableControlCommand(true);
@@ -591,7 +591,7 @@
 //   void control_cmd_ui::SetCheck(i32 nCheck)
 //   {
 //      ASSERT(nCheck >= 0 && nCheck <= 2); // 0=>off, 1=>on, 2=>indeterminate
-//      /*__pointer(::user::interaction) pwnd = (__pointer(::user::interaction))m_pOther;
+//      /*__pointer(::user::interaction) puserinteraction = (__pointer(::user::interaction))m_pOther;
 //      ASSERT(pToolBar != nullptr);
 //      ASSERT_KINDOF(simple_toolbar, pToolBar);
 //      ASSERT(m_nIndex < m_nIndexMax);
@@ -654,31 +654,31 @@
 ////
 ////      state.m_puiOther = pview;
 ////
-////      __pointer(::user::interaction) pwndIterator = pview->GetTopWindow();
+////      __pointer(::user::interaction) puserinteractionIterator = pview->GetTopWindow();
 ////
-////      __pointer(::user::interaction) pwnd;
+////      __pointer(::user::interaction) puserinteraction;
 ////
 ////      __pointer(control) pcontrolex;
 ////
-////      for (; pwndIterator != nullptr; pwndIterator = pwndIterator->get_next_window())
+////      for (; puserinteractionIterator != nullptr; puserinteractionIterator = puserinteractionIterator->get_next_window())
 ////      {
 ////
-////         pwnd = pwndIterator->get_top_level();
+////         puserinteraction = puserinteractionIterator->get_top_level();
 ////
 ////         pcontrolex = nullptr;
 ////
-////         if (pwnd != nullptr)
+////         if (puserinteraction != nullptr)
 ////         {
 ////            //#ifdef WINDOWS_DESKTOP
-////            //            pwnd->send_message(control::g_uiMessage, control::MessageParamGetBaseControlExPtr, (LPARAM) &pcontrolex);
+////            //            puserinteraction->send_message(control::g_uiMessage, control::MessageParamGetBaseControlExPtr, (LPARAM) &pcontrolex);
 ////            //#else
-////            __throw(todo(pwnd->get_context_application()));
+////            __throw(todo(puserinteraction->get_application()));
 ////            //#endif
 ////         }
 ////         if (pcontrolex != nullptr)
 ////         {
 ////
-////            id idControl = pwnd->GetDlgCtrlId();
+////            id idControl = puserinteraction->GetDlgCtrlId();
 ////
 ////            // xxx         state.m_nIndex = uId;
 ////            state.m_iCount = -1;
@@ -686,7 +686,7 @@
 ////            state.m_bContinueRouting = false;
 ////
 ////            // ignore separators
-////            if ((pwnd->GetStyle() & WS_VISIBLE))
+////            if ((puserinteraction->GetStyle() & WS_VISIBLE))
 ////            {
 ////               // allow reflections
 ////               if (pview->on_command_probe(&state))
@@ -752,7 +752,7 @@
 //   //{
 //   //   UNREFERENCED_PARAMETER(nFlags);
 //   //   UNREFERENCED_PARAMETER(point);
-//   //   __pointer(::user::interaction) pwnd = ControlExGetWnd();
+//   //   __pointer(::user::interaction) puserinteraction = ControlExGetWnd();
 //
 //   //   ::point_i32 pointCursor;
 //   //   psession->get_cursor_position(&pointCursor);
@@ -764,14 +764,14 @@
 //   //   if (iHover != -1)
 //   //   {
 //
-//   //      if (m_iHover != iHover || psession->GetCapture() != pwnd)
+//   //      if (m_iHover != iHover || psession->GetCapture() != puserinteraction)
 //   //      {
 //
 //   //         m_iHover = iHover;
 //
-//   //         pwnd->SetCapture();
+//   //         puserinteraction->SetCapture();
 //
-//   //         pwnd->set_need_redraw();
+//   //         puserinteraction->set_need_redraw();
 //
 //   //      }
 //
@@ -784,7 +784,7 @@
 //
 //   //         m_iHover = -1;
 //
-//auto psession = Session;
+//auto psession = get_session();
 //
 //auto puser = psession->user();
 //
@@ -792,7 +792,7 @@
 //
 //pwindowing->release_capture();
 //
-//   //         pwnd->set_need_redraw();
+//   //         puserinteraction->set_need_redraw();
 //
 //   //      }
 //
@@ -801,7 +801,7 @@
 //   //}
 //
 //
-//   //void control::_001OnMouseMove(::message::message * pmessage)
+//   //void control::on_message_mouse_move(::message::message * pmessage)
 //   //{
 //   //
 //   //   if (is_window_enabled())
@@ -834,7 +834,7 @@
 //   //}
 //
 //
-//   //void control::_001OnMouseLeave(::message::message * pmessage)
+//   //void control::on_message_mouse_leave(::message::message * pmessage)
 //   //{
 //
 //   //   if (m_eelementHover)

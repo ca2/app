@@ -39,7 +39,7 @@ namespace ios
 //      for (index i = 0; i < iThreadCount; i++)
 //      {
 //
-//         m_threadaGetImage.add(::fork(get_context_application(),
+//         m_threadaGetImage.add(::fork(get_application(),
 //                                      [&]()
 //         {
 //
@@ -87,7 +87,7 @@ namespace ios
       if (::str::begins_ci(imagekey.m_strPath, "uifs:"))
       {
 
-         ::file::path path = Context.dir().matter("cloud.ico");
+         ::file::path path = pcontext->m_papexcontext->dir().matter("cloud.ico");
 
 //            for (auto iSize : m_iaSize)
 //            {
@@ -99,7 +99,7 @@ namespace ios
 //
 //            }
 
-         single_lock synchronizationlock(mutex(), true);
+         single_lock synchronouslock(mutex(), true);
 
          m_imagemap.set_at(imagekey, iImage);
 
@@ -109,7 +109,7 @@ namespace ios
       else if (::str::begins_ci(imagekey.m_strPath, "fs:"))
       {
 
-         ::file::path path = Context.dir().matter("remote.ico");
+         ::file::path path = pcontext->m_papexcontext->dir().matter("remote.ico");
 
 //            for (auto iSize : m_iaSize)
 //            {
@@ -121,7 +121,7 @@ namespace ios
 //
 //            }
 
-         single_lock synchronizationlock(mutex(), true);
+         single_lock synchronouslock(mutex(), true);
 
          m_imagemap.set_at(imagekey, iImage);
 
@@ -131,7 +131,7 @@ namespace ios
       else if (::str::begins_ci(imagekey.m_strPath, "ftp:"))
       {
 
-         ::file::path path = Context.dir().matter("ftp.ico");
+         ::file::path path = pcontext->m_papexcontext->dir().matter("ftp.ico");
 
 //            for (auto iSize : m_iaSize)
 //            {
@@ -143,7 +143,7 @@ namespace ios
 //
 //            }
 
-         single_lock synchronizationlock(mutex(), true);
+         single_lock synchronouslock(mutex(), true);
 
          m_imagemap.set_at(imagekey, iImage);
 
@@ -153,20 +153,20 @@ namespace ios
 
       if (::str::ends_ci(imagekey.m_strPath, ".acme"))
       {
-         string str = Context.file().as_string(imagekey.m_strPath);
+         string str = pcontext->m_papexcontext->file().as_string(imagekey.m_strPath);
          if (::str::begins_eat_ci(str, "ca2prompt\r\n"))
          {
             str.trim();
-            /*HICON hicon16 = (HICON) ::LoadImage(nullptr, Context.dir().matter(str + "/mainframe/icon.ico"), IMAGE_ICON, 16, 16, LR_LOADFROMFILE);
-            HICON hicon48 = (HICON) ::LoadImage(nullptr, Context.dir().matter(str + "/mainframe/icon.ico"), IMAGE_ICON, 48, 48, LR_LOADFROMFILE);
-            synchronization_lock sl1(m_pil48Hover->mutex());
-            synchronization_lock sl2(m_pil48->mutex());
+            /*HICON hicon16 = (HICON) ::LoadImage(nullptr, pcontext->m_papexcontext->dir().matter(str + "/mainframe/icon.ico"), IMAGE_ICON, 16, 16, LR_LOADFROMFILE);
+            HICON hicon48 = (HICON) ::LoadImage(nullptr, pcontext->m_papexcontext->dir().matter(str + "/mainframe/icon.ico"), IMAGE_ICON, 48, 48, LR_LOADFROMFILE);
+            synchronous_lock sl1(m_pil48Hover->mutex());
+            synchronous_lock sl2(m_pil48->mutex());
             iImage = m_pil16->add_icon_os_data(hicon16);
             m_pil48Hover->add_icon_os_data(hicon48);
 
             if (crBk == 0)
             {
-               System->imaging().Createcolor_blend_ImageList(
+               ::acme::get_system()->imaging().Createcolor_blend_ImageList(
                   m_pil48,
                   m_pil48Hover,
                   rgb(255, 255, 240),
@@ -237,9 +237,9 @@ namespace ios
 
          {
             
-            synchronization_lock sl1(m_pilHover[16]->mutex());
+            synchronous_lock sl1(m_pilHover[16]->mutex());
             
-            synchronization_lock sl2(m_pil[16]->mutex());
+            synchronous_lock sl2(m_pil[16]->mutex());
             
             if (ios_get_file_image(pimage16, strPath))
             {
@@ -264,9 +264,9 @@ namespace ios
 
          }
 
-         synchronization_lock sl1(m_pilHover[48]->mutex());
+         synchronous_lock sl1(m_pilHover[48]->mutex());
 
-         synchronization_lock sl2(m_pil[48]->mutex());
+         synchronous_lock sl2(m_pil[48]->mutex());
 
          iImage = m_pil[48]->add_image(pimage48, 0, 0);
 
@@ -275,7 +275,7 @@ namespace ios
          if (crBk == 0)
          {
 
-            System->imaging().color_blend(
+            ::acme::get_system()->imaging().color_blend(
             m_pil[48],
             m_pilHover[48],
             rgb(255, 255, 240),
@@ -453,8 +453,8 @@ namespace ios
 ////
 ////                     string strParams;
 ////
-////                     //if(Context.file().resolve_link(strTarget, strFilePath, System->ui_from_handle))
-////                     if (Context.file().resolve_link(strTarget, strFolder, strParams, strFilePath, nullptr))
+////                     //if(pcontext->m_papexcontext->file().resolve_link(strTarget, strFilePath, ::acme::get_system()->ui_from_handle))
+////                     if (pcontext->m_papexcontext->file().resolve_link(strTarget, strFolder, strParams, strFilePath, nullptr))
 ////                     {
 ////
 ////                        if (m_straThemeableIconName.get_count() > 0)
@@ -587,7 +587,7 @@ namespace ios
 ////
 ////            string strParams;
 ////
-////            if (Context.file().resolve_link(strTarget, strFolder, strParams, strFilePath, nullptr))
+////            if (pcontext->m_papexcontext->file().resolve_link(strTarget, strFolder, strParams, strFilePath, nullptr))
 ////            {
 ////
 ////               wstring wstr = ::str::international::utf8_to_unicode(strTarget);
@@ -601,12 +601,12 @@ namespace ios
 ////
 ////         }
 ////
-////         synchronization_lock synchronizationlock(mutex());
+////         synchronous_lock synchronouslock(mutex());
 ////
 ////         if (!m_pimagemap->lookup(imagekey, iImage))
 ////         {
 ////
-////            synchronizationlock.unlock();
+////            synchronouslock.unlock();
 ////
 ////            if (imagekey.m_iIcon == 0x80000000)
 ////            {
@@ -631,7 +631,7 @@ namespace ios
 ////
 ////                     {
 ////
-////                        synchronization_lock synchronizationlock(mutex());
+////                        synchronous_lock synchronouslock(mutex());
 ////
 ////                        if (m_pimagemap->lookup(imagekey, iImage))
 ////                           return iImage;
@@ -642,7 +642,7 @@ namespace ios
 ////
 ////                     string strIcon;
 ////
-////                     strIcon = ::dir::config() / "ios/app_theme" / m_strShellThemePrefix + strExtension + ".ico";
+////                     strIcon = pacmedir->config() / "ios/app_theme" / m_strShellThemePrefix + strExtension + ".ico";
 ////
 ////                     for (auto iSize : m_iaSize)
 ////                     {
@@ -653,7 +653,7 @@ namespace ios
 ////
 ////                     }
 ////
-////                     synchronization_lock synchronizationlock(mutex());
+////                     synchronous_lock synchronouslock(mutex());
 ////
 ////                     m_pimagemap->set_at(imagekey, iImage);
 ////
@@ -709,7 +709,7 @@ namespace ios
 ////                           ::DestroyIcon(shfi48.hIcon);
 ////                        }
 ////                        //                        iImage = add_icon_set(pfork, nullptr, &shfi48, crBk);
-////                        synchronization_lock synchronizationlock(mutex());
+////                        synchronous_lock synchronouslock(mutex());
 ////
 ////                        m_pimagemap->set_at(imagekey, iImage);
 ////
@@ -772,7 +772,7 @@ namespace ios
 ////                        ::DestroyIcon(shfi48.hIcon);
 ////                     }                     //iImage = add_icon_set(pfork, nullptr, &shfi48, crBk);
 ////
-////                     synchronization_lock synchronizationlock(mutex());
+////                     synchronous_lock synchronouslock(mutex());
 ////
 ////                     m_pimagemap->set_at(imagekey, iImage);
 ////
@@ -853,7 +853,7 @@ namespace ios
 ////                     if (!b48 && shfi48.hIcon != nullptr)
 ////                     {
 ////                        ::DestroyIcon(shfi48.hIcon);
-////                     }                     synchronization_lock synchronizationlock(mutex());
+////                     }                     synchronous_lock synchronouslock(mutex());
 ////
 ////                     m_pimagemap->set_at(imagekey, iImage);
 ////
@@ -867,7 +867,7 @@ namespace ios
 ////         }
 ////         else
 ////         {
-////            synchronization_lock synchronizationlock(mutex());
+////            synchronous_lock synchronouslock(mutex());
 ////
 ////
 ////         }
@@ -894,7 +894,7 @@ namespace ios
 ////
 ////         {
 ////
-////            synchronization_lock synchronizationlock(mutex());
+////            synchronous_lock synchronouslock(mutex());
 ////
 ////            if (m_pimagemap->lookup(imagekey, iImage))
 ////            {
@@ -969,7 +969,7 @@ namespace ios
 ////         if (!b48 && shfi48.hIcon != nullptr)
 ////         {
 ////            ::DestroyIcon(shfi48.hIcon);
-////         }         synchronization_lock synchronizationlock(mutex());
+////         }         synchronous_lock synchronouslock(mutex());
 //
 //      m_pimagemap->set_at(imagekey, iImage);
 //
@@ -993,7 +993,7 @@ namespace ios
    //   HICON * phicon48)
    //{
 
-   //   single_lock synchronizationlock(mutex(), true);
+   //   single_lock synchronouslock(mutex(), true);
 
    //   if (lpsf == nullptr)
    //      return false;
@@ -1087,7 +1087,7 @@ namespace ios
    //         }
    //      }
    //   }
-   //   if (Context.dir().is(::str::international::unicode_to_utf8(szFilePath)))
+   //   if (pcontext->m_papexcontext->dir().is(::str::international::unicode_to_utf8(szFilePath)))
    //   {
    //      if (imagekey.m_iIcon == 0x80000000)
    //      {
@@ -1256,7 +1256,7 @@ namespace ios
 //      bool ios::get_icon( oswindow oswindow, const char * psz, const unichar * lpcszExtra, e_icon eicon, HICON * phicon16, HICON * phicon48)
 //      {
 //
-//         single_lock synchronizationlock(mutex(), true);
+//         single_lock synchronouslock(mutex(), true);
 //
 //         per_fork fork;
 //         LPITEMIDLIST lpiidlAbsolute;
@@ -1270,7 +1270,7 @@ namespace ios
 //      bool ios::get_icon(per_fork * pfork, oswindow oswindow, LPITEMIDLIST lpiidlAbsolute, const unichar * lpcszExtra, e_icon eicon, HICON * phicon16, HICON * phicon48)
 //      {
 //
-//         single_lock synchronizationlock(mutex(), true);
+//         single_lock synchronouslock(mutex(), true);
 //
 //         wstring wstr;
 //
@@ -1339,7 +1339,7 @@ namespace ios
 
    //   return 0;
 
-   //   while (this->thread_get_run())
+   //   while (this->task_get_run())
    //   {
 
    //      if (!do_call())
@@ -1358,7 +1358,7 @@ namespace ios
 
    //            {
 
-   //               synchronization_lock synchronizationlock(mutex());
+   //               synchronous_lock synchronouslock(mutex());
 
    //               for (auto & folder : m_mapFolder)
    //               {
@@ -1366,7 +1366,7 @@ namespace ios
    //                  if (folder.element2().m_millisStart.elapsed() > 30000)
    //                  {
 
-   //                     m_mapFolder.remove_key(folder.element1());
+   //                     m_mapFolder.erase_key(folder.element1());
 
    //                     goto restart;
 
@@ -1380,7 +1380,7 @@ namespace ios
 
    //         //int i = 20;
 
-   //         //while (thread_get_run() && i >= 0)
+   //         //while (task_get_run() && i >= 0)
    //         //{
 
    //         //   sleep(500_ms);
@@ -1435,7 +1435,7 @@ namespace ios
 //      if (::str::begins_ci(imagekey.m_strPath, "uifs:"))
 //      {
 //
-//         ::file::path path = Context.dir().matter("cloud.ico");
+//         ::file::path path = pcontext->m_papexcontext->dir().matter("cloud.ico");
 //
 ////            for (auto iSize : m_iaSize)
 ////            {
@@ -1447,7 +1447,7 @@ namespace ios
 ////
 ////            }
 //
-//         single_lock synchronizationlock(mutex(), true);
+//         single_lock synchronouslock(mutex(), true);
 //
 //         m_pimagemap->set_at(imagekey, iImage);
 //
@@ -1457,7 +1457,7 @@ namespace ios
 //      else if (::str::begins_ci(imagekey.m_strPath, "fs:"))
 //      {
 //
-//         ::file::path path = Context.dir().matter("remote.ico");
+//         ::file::path path = pcontext->m_papexcontext->dir().matter("remote.ico");
 //
 ////            for (auto iSize : m_iaSize)
 ////            {
@@ -1469,7 +1469,7 @@ namespace ios
 ////
 ////            }
 //
-//         single_lock synchronizationlock(mutex(), true);
+//         single_lock synchronouslock(mutex(), true);
 //
 //         m_pimagemap->set_at(imagekey, iImage);
 //
@@ -1479,7 +1479,7 @@ namespace ios
 //      else if (::str::begins_ci(imagekey.m_strPath, "ftp:"))
 //      {
 //
-//         ::file::path path = Context.dir().matter("ftp.ico");
+//         ::file::path path = pcontext->m_papexcontext->dir().matter("ftp.ico");
 //
 ////            for (auto iSize : m_iaSize)
 ////            {
@@ -1491,7 +1491,7 @@ namespace ios
 ////
 ////            }
 //
-//         single_lock synchronizationlock(mutex(), true);
+//         single_lock synchronouslock(mutex(), true);
 //
 //         m_pimagemap->set_at(imagekey, iImage);
 //
@@ -1505,20 +1505,20 @@ namespace ios
 //
 //      if (::str::ends_ci(imagekey.m_strPath, ".acme"))
 //      {
-//         string str = Context.file().as_string(imagekey.m_strPath);
+//         string str = pcontext->m_papexcontext->file().as_string(imagekey.m_strPath);
 //         if (::str::begins_eat_ci(str, "ca2prompt\r\n"))
 //         {
 //            str.trim();
-//            HICON hicon16 = (HICON) ::LoadImage(nullptr, Context.dir().matter(str + "/mainframe/icon.ico"), IMAGE_ICON, 16, 16, LR_LOADFROMFILE);
-//            HICON hicon48 = (HICON) ::LoadImage(nullptr, Context.dir().matter(str + "/mainframe/icon.ico"), IMAGE_ICON, 48, 48, LR_LOADFROMFILE);
-//            synchronization_lock sl1(m_pil48Hover->mutex());
-//            synchronization_lock sl2(m_pil48->mutex());
+//            HICON hicon16 = (HICON) ::LoadImage(nullptr, pcontext->m_papexcontext->dir().matter(str + "/mainframe/icon.ico"), IMAGE_ICON, 16, 16, LR_LOADFROMFILE);
+//            HICON hicon48 = (HICON) ::LoadImage(nullptr, pcontext->m_papexcontext->dir().matter(str + "/mainframe/icon.ico"), IMAGE_ICON, 48, 48, LR_LOADFROMFILE);
+//            synchronous_lock sl1(m_pil48Hover->mutex());
+//            synchronous_lock sl2(m_pil48->mutex());
 //            iImage = m_pil16->add_icon_os_data(hicon16);
 //            m_pil48Hover->add_icon_os_data(hicon48);
 //
 //            if (crBk == 0)
 //            {
-//               System->imaging().Createcolor_blend_ImageList(
+//               ::acme::get_system()->imaging().Createcolor_blend_ImageList(
 //                  m_pil48,
 //                  m_pil48Hover,
 //                  rgb(255, 255, 240),
@@ -1591,8 +1591,8 @@ namespace ios
 //         pimage->Fill(0);
 //
 //         {
-//            synchronization_lock sl1(m_pilHover[16]->mutex());
-//            synchronization_lock sl2(m_pil[16]->mutex());
+//            synchronous_lock sl1(m_pilHover[16]->mutex());
+//            synchronous_lock sl2(m_pil[16]->mutex());
 //            if (ios_get_file_image(image16, strPath))
 //            {
 //               iImage = m_pil[16]->add_image(image16, 0, 0);
@@ -1615,9 +1615,9 @@ namespace ios
 //
 //         }
 //
-//         synchronization_lock sl1(m_pilHover[48]->mutex());
+//         synchronous_lock sl1(m_pilHover[48]->mutex());
 //
-//         synchronization_lock sl2(m_pil[48]->mutex());
+//         synchronous_lock sl2(m_pil[48]->mutex());
 //
 //         iImage = m_pil[48]->add_image(image48, 0, 0);
 //
@@ -1626,7 +1626,7 @@ namespace ios
 //         if (crBk == 0)
 //         {
 //
-//            System->imaging().Createcolor_blend_ImageList(
+//            ::acme::get_system()->imaging().Createcolor_blend_ImageList(
 //            m_pil[48],
 //            m_pilHover[48],
 //            rgb(255, 255, 240),
@@ -1690,15 +1690,15 @@ namespace ios
 //
 //      per_fork fork;
 //
-//      synchronization_lock synchronizationlock(&m_mutexQueue);
+//      synchronous_lock synchronouslock(&m_mutexQueue);
 //
-//      while (thread_get_run())
+//      while (task_get_run())
 //      {
 //
 //         if(m_keyptra.is_empty())
 //         {
 //
-//            synchronizationlock.unlock();
+//            synchronouslock.unlock();
 //
 //            sleep(100_ms);
 //
@@ -1708,15 +1708,15 @@ namespace ios
 //
 //            image_key * pkey = m_keyptra.first();
 //
-//            m_keyptra.remove_at(0);
+//            m_keyptra.erase_at(0);
 //
-//            synchronizationlock.unlock();
+//            synchronouslock.unlock();
 //
 //            int iImage = get_image(&fork, pkey->m_oswindow, *pkey, nullptr, pkey->m_cr);
 //
 //            {
 //
-//               synchronization_lock s(mutex());
+//               synchronous_lock s(mutex());
 //
 //               m_pimagemap->set_at(*pkey, iImage);
 //
@@ -1726,7 +1726,7 @@ namespace ios
 //
 //         }
 //
-//         synchronizationlock.lock();
+//         synchronouslock.lock();
 //
 //      }
 //
@@ -1765,7 +1765,7 @@ namespace ios
 //
 //         {
 //
-//            synchronization_lock synchronizationlock(mutex());
+//            synchronous_lock synchronouslock(mutex());
 //
 //            if (m_pimagemap->lookup(imagekey, iImage))
 //            {
@@ -1780,7 +1780,7 @@ namespace ios
 //
 //         {
 //
-//            synchronization_lock synchronizationlock(&m_mutexQueue);
+//            synchronous_lock synchronouslock(&m_mutexQueue);
 //
 //            m_keyptra.add(pstore);
 //
@@ -1790,7 +1790,7 @@ namespace ios
 //
 //         iImage = get_foo_image(nullptr, oswindow, imagekey, imagekey.m_cr);
 //
-//         synchronization_lock synchronizationlock(mutex());
+//         synchronous_lock synchronouslock(mutex());
 //
 //         m_pimagemap->set_at(imagekey, iImage);
 //
@@ -1831,7 +1831,7 @@ namespace ios
 //
 //         {
 //
-//            synchronization_lock synchronizationlock(mutex());
+//            synchronous_lock synchronouslock(mutex());
 //
 //            if (m_pimagemap->lookup(imagekey, iImage))
 //            {
@@ -1846,7 +1846,7 @@ namespace ios
 //
 //         iImage = get_image(&f, oswindow, imagekey, nullptr, crBk);
 //
-//         synchronization_lock synchronizationlock(mutex());
+//         synchronous_lock synchronouslock(mutex());
 //
 //         m_pimagemap->set_at(imagekey, iImage);
 //
@@ -1864,7 +1864,7 @@ namespace ios
 //      {
 //
 //         return m_pilHover[iSize]->predicate_add_image([&](auto pimage)
-//         { System->imaging().Createcolor_blend_image(pimage, rgb(255, 255, 240), 64); }
+//         { ::acme::get_system()->imaging().Createcolor_blend_image(pimage, rgb(255, 255, 240), 64); }
 //         , m_pil[iSize], iImage);
 //
 //      }
@@ -1918,7 +1918,7 @@ namespace ios
 
       {
 
-         synchronization_lock synchronizationlock(&m_mutexQueue);
+         synchronous_lock synchronouslock(&m_mutexQueue);
 
          m_keyptra.add(pstore);
 
@@ -1930,7 +1930,7 @@ namespace ios
 
       iImage = get_foo_image(i2, i2.m_cr);
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       m_imagemap.set_at(imagekey, iImage);
 
@@ -1947,15 +1947,15 @@ namespace ios
       fork([&]()
       {
 
-         synchronization_lock synchronizationlock(&m_mutexQueue);
+         synchronous_lock synchronouslock(&m_mutexQueue);
 
-         while (thread_get_run())
+         while (task_get_run())
          {
 
             if(m_keyptra.is_empty())
             {
 
-               synchronizationlock.unlock();
+               synchronouslock.unlock();
 
                sleep(100_ms);
 
@@ -1965,15 +1965,15 @@ namespace ios
 
                image_key * pkey = m_keyptra.first();
 
-               m_keyptra.remove_at(0);
+               m_keyptra.erase_at(0);
 
-               synchronizationlock.unlock();
+               synchronouslock.unlock();
 
                int iImage = get_image(*pkey, nullptr, pkey->m_cr);
 
                {
 
-                  synchronization_lock s(mutex());
+                  synchronous_lock s(mutex());
 
                   m_imagemap.set_at(*pkey, iImage);
 
@@ -1983,7 +1983,7 @@ namespace ios
 
             }
 
-            synchronizationlock.lock();
+            synchronouslock.lock();
 
          }
 

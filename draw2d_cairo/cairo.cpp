@@ -36,35 +36,35 @@ void init_cairo_mutex()
 
    s_pmutex = new ::mutex();
 
-   ::acme::g_paAura->add(s_pmutex);
+   ::acme::add_matter(s_pmutex);
 
 #ifdef LINUX
 
    g_pmutexFc = new ::mutex();
 
-   ::acme::g_paAura->add(g_pmutexFc);
+   ::acme::add_matter(g_pmutexFc);
 
    g_pmapFontPath = new string_to_string();
 
-   ::acme::g_paAura->add(g_pmapFontPath);
+   ::acme::add_matter(g_pmapFontPath);
 
 #endif
 
    g_pmapFontFace = new string_map < i32_map < FT_Face> > ();
 
-   ::acme::g_paAura->add(g_pmapFontFace);
+   ::acme::add_matter(g_pmapFontFace);
 
    g_pmapCairoFontFace = new string_map < cairo_font_face_t * > ();
 
-   ::acme::g_paAura->add(g_pmapCairoFontFace);
+   ::acme::add_matter(g_pmapCairoFontFace);
 
    g_pmapFontError = new string_to_int ();
 
-   ::acme::g_paAura->add(g_pmapFontError);
+   ::acme::add_matter(g_pmapFontError);
 
    g_pmapFontError2 = new string_to_int ();
 
-   ::acme::g_paAura->add(g_pmapFontError2);
+   ::acme::add_matter(g_pmapFontError2);
 
 }
 

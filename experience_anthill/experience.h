@@ -20,7 +20,7 @@ namespace experience
             virtual ~experience();
 
 
-            virtual ::e_status initialize(::layered * pobjectContext) override;
+            virtual ::e_status initialize(::object * pobject) override;
 
 
             virtual void update() override;

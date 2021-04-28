@@ -37,7 +37,7 @@ public:
    virtual ~pointer_array()
    {
 
-      this->remove_all();
+      this->erase_all();
 
    }
 
@@ -61,17 +61,17 @@ public:
 
 
    template < typename OBJECT >
-   __pointer(T) & add_new(OBJECT * pobjectContext)
+   __pointer(T) & add_new(OBJECT * pobject)
    {
 
       __pointer(T) & p = comparable_array < ___pointer < T >, const T* >::add_new();
 
       p.create();
 
-      if (::is_set(pobjectContext))
+      if (::is_set(pobject))
       {
 
-         p->initialize(pobjectContext);
+         p->initialize(pobject);
 
       }
 
@@ -181,6 +181,20 @@ public:
 
    }
 
+   ::index add_non_null(T* p)
+   {
+
+      if (::is_null(p))
+      {
+
+         return -1;
+
+      }
+
+      return this->add_item(p);
+
+   }
+
 
    bool add_unique(T * p OBJ_REF_DBG_COMMA_PARAMS)
    {
@@ -270,7 +284,9 @@ public:
       for(::index i = iStart; i <= inCountLastOut; i++)
       {
 
-         if (this->operator[]((iptr_cast) i).m_p == p)
+         auto& pointer = this->operator[]((iptr_cast)i);
+
+         if (pointer && pointer.m_p == p)
          {
 
             return i;
@@ -280,6 +296,44 @@ public:
       }
 
       return -1;
+
+   }
+
+
+   ::e_status call_member(enum_id eid, ::index iStart, ::count inCountLastOut)
+   {
+
+      this->prepare_first_in_count_last_out(iStart, inCountLastOut);
+
+      ::count cFailed = 0;
+
+      ::count cSucceeded = 0;
+
+      for (index i = iStart; i <= inCountLastOut; i++)
+      {
+
+         auto p = this->element_at(i);
+
+         auto estatus = p->call_member(eid);
+
+         if(!estatus)
+         {
+
+            cFailed++;
+
+         }
+         else
+         {
+
+            cSucceeded++;
+
+         }
+
+      }
+
+      auto estatus = _003CountStatus(cSucceeded, cFailed);
+
+      return estatus;
 
    }
 
@@ -318,22 +372,22 @@ public:
    pointer_array & operator -= (DERIVED * p)
    {
 
-      this->remove(dynamic_cast < T * > (p));
+      this->erase(dynamic_cast < T * > (p));
 
       return *this;
 
    }
 
    
-   ::count remove(T* p OBJ_REF_DBG_COMMA_PARAMS)
+   ::count erase(T* p OBJ_REF_DBG_COMMA_PARAMS)
    {
 
-      return this->remove_item(p OBJ_REF_DBG_COMMA_ARGS);
+      return this->erase_item(p OBJ_REF_DBG_COMMA_ARGS);
 
    }
 
 
-   ::count remove_item(T * p OBJ_REF_DBG_COMMA_PARAMS)
+   ::count erase_item(T * p OBJ_REF_DBG_COMMA_PARAMS)
    {
 
       ::count ca = 0;
@@ -345,7 +399,7 @@ public:
 
          ca++;
 
-         this->remove_at(iFind);
+         this->erase_at(iFind);
 
       }
 
@@ -359,7 +413,7 @@ public:
 
 
    template < typename TYPE >
-   ::count remove_type(TYPE *)
+   ::count erase_type(TYPE *)
    {
 
       ::count c = 0;
@@ -370,7 +424,7 @@ public:
          if (typeid(*this->element_at(i).m_p) == typeid(TYPE))
          {
 
-            this->remove_at(i);
+            this->erase_at(i);
 
             c++;
 
@@ -385,7 +439,7 @@ public:
 
 
    template < typename PRED >
-   __pointer(T) predicate_remove_first(PRED pred, ::index iStart = 0)
+   __pointer(T) predicate_erase_first(PRED pred, ::index iStart = 0)
    {
 
       for (::index i = iStart; i < this->get_count(); i++)
@@ -396,7 +450,7 @@ public:
 
             __pointer(T) sp = this->m_pData[i];
 
-            this->remove_at(i);
+            this->erase_at(i);
 
             return sp;
 
@@ -410,7 +464,7 @@ public:
 
 
    template < typename PRED >
-   __pointer(T) predicate_remove_all_get_first(PRED pred, ::index iStart = 0, ::index iEnd = -1)
+   __pointer(T) predicate_erase_all_get_first(PRED pred, ::index iStart = 0, ::index iEnd = -1)
    {
 
       __pointer(T) sp;
@@ -443,7 +497,7 @@ public:
 
             }
 
-            this->remove_at(i);
+            this->erase_at(i);
 
          }
          else
@@ -696,7 +750,7 @@ public:
       if(pa == dynamic_cast < ARRAY * > (this))
          return *this;
 
-      this->remove_all();
+      this->erase_all();
 
       this->append(pa);
 
@@ -711,7 +765,7 @@ public:
       if(pa == dynamic_cast < ARRAY * > (this))
          return *this;
 
-      this->remove_all();
+      this->erase_all();
 
       this->append(pa);
 
@@ -720,7 +774,7 @@ public:
    }
 
 
-   ::count remove_all(OBJ_REF_DBG_PARAMS)
+   ::count erase_all(OBJ_REF_DBG_PARAMS)
    {
 
       for (::index i = 0; i < this->get_size(); i++)
@@ -752,7 +806,7 @@ public:
 
       }
 
-      return comparable_array < ___pointer < T >, const T* >::remove_all();
+      return comparable_array < ___pointer < T >, const T* >::erase_all();
 
    }
 
@@ -767,7 +821,7 @@ public:
 
       }
 
-      this->remove_all();
+      this->erase_all();
 
       this->append(a);
 
@@ -781,7 +835,7 @@ public:
       if(&a == this)
          return *this;
 
-      this->remove_all();
+      this->erase_all();
 
       this->append(a);
 
@@ -796,7 +850,7 @@ public:
       if(pptra == dynamic_cast < ARRAY * > (this))
          return *this;
 
-      this->remove_all();
+      this->erase_all();
 
       this->append(pptra);
 
@@ -822,6 +876,29 @@ public:
       comparable_array < ___pointer < T >, const T* >::operator = (::move(a));
 
       return *this;
+
+   }
+
+   ::e_status finalize_all()
+   {
+
+      ::e_status estatus = ::success;
+
+      for (auto& p : *this)
+      {
+
+         auto estatusItem = p->finalize();
+
+         if (!estatusItem)
+         {
+
+            estatus = estatusItem;
+
+         }
+
+      }
+
+      return estatus;
 
    }
 
@@ -1017,7 +1094,7 @@ public:
 //   virtual ~smart_pointer_array2()
 //   {
 //
-//      this->remove_all();
+//      this->erase_all();
 //
 //   }
 //
@@ -1059,9 +1136,9 @@ public:
 //   }
 //
 //
-//   smart_pointer_array2(::matter * pobjectContext):
-//      ::matter(pobjectContext),
-//      comparable_array < pointer < T > >(pobjectContext)
+//   smart_pointer_array2(::matter * pobject):
+//      ::matter(pobject),
+//      comparable_array < pointer < T > >(pobject)
 //   {
 //   }
 //
@@ -1239,13 +1316,13 @@ public:
 //   smart_pointer_array2 & operator -= (DERIVED * p)
 //   {
 //
-//      this->remove(dynamic_cast < T * > (p));
+//      this->erase(dynamic_cast < T * > (p));
 //
 //      return *this;
 //
 //   }
 //
-//   ::count remove(T * p)
+//   ::count erase(T * p)
 //   {
 //
 //      ::count ca = 0;
@@ -1257,7 +1334,7 @@ public:
 //
 //         ca++;
 //
-//         this->remove_at(iFind);
+//         this->erase_at(iFind);
 //
 //      }
 //
@@ -1267,7 +1344,7 @@ public:
 //
 //
 //   template < typename TYPE >
-//   ::count remove_type(TYPE *)
+//   ::count erase_type(TYPE *)
 //   {
 //
 //      ::count c = 0;
@@ -1278,7 +1355,7 @@ public:
 //         if(typeid(*this->element_at(i).m_p) == typeid(TYPE))
 //         {
 //
-//            this->remove_at(i);
+//            this->erase_at(i);
 //
 //            c++;
 //
@@ -1549,7 +1626,7 @@ public:
 //      if(pa == dynamic_cast < ARRAY * > (this))
 //         return *this;
 //
-//      this->remove_all();
+//      this->erase_all();
 //
 //      this->append(pa);
 //
@@ -1564,7 +1641,7 @@ public:
 //      if(pa == dynamic_cast < ARRAY * > (this))
 //         return *this;
 //
-//      this->remove_all();
+//      this->erase_all();
 //
 //      this->append(pa);
 //
@@ -1579,7 +1656,7 @@ public:
 //      if(&a == dynamic_cast < ARRAY * > (this))
 //         return *this;
 //
-//      this->remove_all();
+//      this->erase_all();
 //
 //      this->append(a);
 //
@@ -1593,7 +1670,7 @@ public:
 //      if(&a == this)
 //         return *this;
 //
-//      this->remove_all();
+//      this->erase_all();
 //
 //      this->append(a);
 //
@@ -1608,7 +1685,7 @@ public:
 //      if(pptra == dynamic_cast < ARRAY * > (this))
 //         return *this;
 //
-//      this->remove_all();
+//      this->erase_all();
 //
 //      this->append(pptra);
 //

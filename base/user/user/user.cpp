@@ -3,7 +3,8 @@
 #include "base/user/menu/_menu.h"
 #include "aura/update.h"
 #include "simple_view.h"
-#include "apex/platform/static_setup.h"
+#include "acme/platform/static_setup.h"
+#include "acme/filesystem/filesystem/acme_dir.h"
 
 
 namespace base
@@ -14,10 +15,6 @@ namespace base
    {
 
       m_pbaseuser = this;
-      m_pcoreuser = nullptr;
-      //m_pufeschema = nullptr;
-      //m_pufe = nullptr;
-
 
    }
 
@@ -28,10 +25,10 @@ namespace base
    }
 
 
-   ::e_status user::initialize(::layered * pobjectContext)
+   ::e_status user::initialize(::object * pobject)
    {
 
-      auto estatus = ::axis::user::initialize(pobjectContext);
+      auto estatus = ::axis::user::initialize(pobject);
 
       if (!estatus)
       {
@@ -40,7 +37,7 @@ namespace base
 
       }
 
-      estatus = ::user::document_manager_container::initialize(pobjectContext);
+      estatus = ::user::document_manager_container::initialize(pobject);
 
       if (!estatus)
       {
@@ -68,7 +65,7 @@ namespace base
       create_factory <::user::place_holder >();
       //create_factory <::user::font_combo_box >();
 
-      ////if(get_context_application()->is_system())
+      ////if(get_application()->is_system())
       //{
 
       //   create_factory <keyboard_layout >();
@@ -146,7 +143,7 @@ namespace base
 
       //xml::document docUser;
 
-      //string strUser = Context.file().as_string(Context.dir().appdata()/"langstyle_settings.xml");
+      //string strUser = pcontext->m_papexcontext->file().as_string(pcontext->m_papexcontext->dir().appdata()/"langstyle_settings.xml");
 
       //string strLangUser;
 
@@ -177,14 +174,16 @@ namespace base
       //if(strStyleUser.has_char())
       //   psession->set_schema(strStyleUser,::e_source_database);
 
-      //string strLicense = Application.get_license_id();
+      //string strLicense = papplication->get_license_id();
 
 
-      //::payload & varTopicQuey = System->commnam_varTopicQuery;
+      //::payload & varTopicQuey = psystem->commnam_varTopicQuery;
 
-      bool bHasInstall = System->is_true("install");
+      auto psystem = m_psystem->m_pbasesystem;
 
-      bool bHasUninstall = System->is_true("uninstall");
+      bool bHasInstall = psystem->is_true("install");
+
+      bool bHasUninstall = psystem->is_true("uninstall");
 
       debug_print("user::initialize bHasInstall %c", bHasInstall);
 
@@ -198,7 +197,7 @@ namespace base
    ::e_status user::init2()
    {
 
-      if (!::apex::department::init2())
+      if (!::acme::department::init2())
       {
 
          return false;
@@ -210,7 +209,7 @@ namespace base
    }
 
 
-   void user::term()
+   ::e_status user::term()
    {
 
 
@@ -223,7 +222,7 @@ namespace base
       try
       {
 
-         ::apex::department::term();
+         ::acme::department::term();
 
       }
       catch(...)
@@ -243,10 +242,12 @@ namespace base
 
       }
 
+      return ::success;
+
    }
 
 
-   void user::finalize()
+   ::e_status user::finalize()
    {
 
       for (auto& style : m_mapUserStyle.values())
@@ -256,9 +257,11 @@ namespace base
 
       }
 
-      m_mapUserStyle.remove_all();
+      m_mapUserStyle.erase_all();
 
-      ::axis::user::finalize();
+      auto estatus = ::axis::user::finalize();
+
+      return estatus;
 
    }
 
@@ -298,18 +301,20 @@ namespace base
    void user::SendMessageToWindows(const ::id & id,wparam wparam,lparam lparam)
    {
 
-      auto psession = Session;
+      auto papplicationBase = get_application();
 
-      for (auto& papp : psession->m_applicationa)
+      auto psession = get_session();
+
+      for (auto& papplicationApex : psession->m_applicationa)
       {
 
-         auto & app = App(papp);
+         __pointer(::base::application) papplicationItem = papplicationApex;
 
-         synchronization_lock synchronizationlock(&app.m_mutexFrame);
+         synchronous_lock synchronouslock(&papplicationItem->m_mutexFrame);
 
          __pointer(::user::interaction) pinteraction;
 
-         while (app.get_frame(pinteraction))
+         while (papplicationItem->get_frame(pinteraction))
          {
 
             if (pinteraction != nullptr && pinteraction->is_window())
@@ -328,7 +333,7 @@ namespace base
    }
 
 
-//   ::user::front_end_schema * GetUfeSchema(::layered * pobjectContext)
+//   ::user::front_end_schema * GetUfeSchema(::object * pobject)
 //   {
 //
 //      if (papp == nullptr)
@@ -357,7 +362,7 @@ namespace base
 //   }
 //
 //
-//   ::user::front_end * GetUfe(::layered * pobjectContext)
+//   ::user::front_end * GetUfe(::object * pobject)
 //   {
 //
 //      return Sess(papp).user()->GetUfe();
@@ -389,25 +394,27 @@ namespace base
    }
 
 
-   __pointer(::user::menu_interaction) user::create_menu_button(::user::style* pstyle, ::user::menu_item* pitem)
+   __pointer(::user::menu_interaction) user::create_menu_button(::user::style* pstyle, ::user::menu_item* pmenuitem)
    {
 
-      auto pinteraction = __new(::user::menu_button(pitem));
+      auto pmenubutton = __new(::user::menu_button);
 
-      if (pitem->m_pimage->is_set())
+      pmenubutton->initialize_menu_interaction(pmenuitem);
+
+      if (pmenuitem->m_pimage->is_set())
       {
 
-         pinteraction->set_button_style(::user::button::style_image_and_text);
+         pmenubutton->set_button_style(::user::button::style_image_and_text);
 
-         enum_image eimage = (enum_image)pitem->m_pmenu->payload("image_transform").i32();
+         auto eimage = (enum_image)pmenuitem->m_pmenu->payload("image_transform").i32();
 
-         ::image_pointer pimage = pitem->m_pimage + eimage;
+         ::image_pointer pimage = pmenuitem->m_pimage + eimage;
 
-         pinteraction->LoadBitmaps(pimage);
+         pmenubutton->LoadBitmaps(pimage);
 
       }
 
-      return pinteraction;
+      return pmenubutton;
 
    }
 
@@ -499,7 +506,7 @@ namespace base
 
    //   m_ethreadClose = thread_application;
 
-   //   if (get_context_session())
+   //   if (get_session())
    //   {
 
    //      if (psession->m_pdocmanager)
@@ -526,7 +533,7 @@ namespace base
    //      try
    //      {
 
-   //         if (get_context_session())
+   //         if (get_session())
    //         {
 
    //            psession->finish();
@@ -553,7 +560,7 @@ namespace base
    //         if (get_context_system())
    //         {
 
-   //            System->finish();
+   //            psystem->finish();
 
    //         }
 
@@ -649,13 +656,13 @@ namespace base
    //}
 
 
-//   void session::on_app_request_bergedge_callback(::layered * pobjectContext)
+//   void session::on_app_request_bergedge_callback(::object * pobject)
 //   {
 //
 //      if (&App(pobject) != nullptr)
 //      {
 //
-//         psession->m_pappCurrent = &App(pobject);
+//         psession->m_papplicationCurrent = &App(pobject);
 //
 //      }
 //
@@ -692,11 +699,11 @@ namespace base
 //         //}
 //      }
 //
-////      if (psession->m_pappCurrent != nullptr && psession->m_pappCurrent->m_psession->m_paccount->m_puser != nullptr)
+////      if (psession->m_papplicationCurrent != nullptr && psession->m_papplicationCurrent->m_psession->m_paccount->m_puser != nullptr)
 ////      {
 ////         try
 ////         {
-////            get_view()->get_parent_frame()->set_window_text(psession->m_pappCurrent->m_psession->m_paccount->m_puser->m_strLogin);
+////            get_view()->get_parent_frame()->set_window_text(psession->m_papplicationCurrent->m_psession->m_paccount->m_puser->m_strLogin);
 ////         }
 ////         catch (...)
 ////         {
@@ -834,7 +841,7 @@ namespace base
 //      }*/
 //
 //      if (pcreate->m_bClientOnly ||
-//            Application.has_property("client_only") ||
+//            papplication->has_property("client_only") ||
 //            pcreate->m_bOuterPopupAlertLike)
 //      {
 //         return puiParent;
@@ -858,7 +865,7 @@ namespace base
 //
 //
 //
-//      ::aura::application & app = App(pinteraction->get_context_application());
+//      ::aura::application & app = App(pinteraction->get_application());
 //
 //      string strAppName = app.m_strAppName;
 //
@@ -947,7 +954,7 @@ namespace base
 
       ::point_i32 point;
 
-      auto psession = Session;
+      auto psession = get_session();
 
       auto puser = psession->user();
 
@@ -963,7 +970,7 @@ namespace base
    __pointer(::user::menu) user::track_popup_xml_menu_text(::user::interaction* pinteraction, string strXml, i32 iFlags)
    {
 
-      auto psession = Session;
+      auto psession = get_session();
 
       auto puser = psession->user();
 
@@ -979,7 +986,7 @@ namespace base
    __pointer(::user::menu) user::track_popup_xml_matter_menu(::user::interaction* pinteraction, const char * pszMatter, i32 iFlags)
    {
 
-      auto psession = Session;
+      auto psession = get_session();
 
       auto puser = psession->user();
 
@@ -1058,7 +1065,7 @@ namespace base
    __pointer(::user::menu) user::track_popup_xml_menu(::user::interaction* pinteraction, const ::payload & varXml, i32 iFlags, const ::point_i32 & point, const ::size_i32 & sizeMinimum)
    {
 
-      __pointer(::user::menu) pmenu = __create <  ::user::menu  > ();
+      __pointer(::user::menu) pmenu = pinteraction->__create <  ::user::menu  > ();
 
       pmenu->m_sizeMinimum = sizeMinimum;
 
@@ -1140,7 +1147,9 @@ namespace base
    __pointer(::user::menu) user::track_popup_xml_menu_file(::user::interaction * pinteraction, ::payload varXmlFile, i32 iFlags, const ::point_i32 & point, const ::size_i32 & sizeMinimum)
    {
 
-      string strXml = Context.file().as_string(varXmlFile);
+      auto pcontext = get_context();
+
+      string strXml = pcontext->m_papexcontext->file().as_string(varXmlFile);
 
       return track_popup_xml_menu(pinteraction, strXml, iFlags, point, sizeMinimum);
 
@@ -1176,7 +1185,7 @@ namespace base
    ::type user::user_default_controltype_to_typeinfo(::user::enum_control_type econtroltype)
    {
 
-      auto psession = Sess(get_context_session());
+      auto psession = get_session();
 
       return psession->user()->controltype_to_typeinfo(econtroltype);
 
@@ -1211,7 +1220,7 @@ namespace base
       if (papp == nullptr)
       {
 
-         papp = get_context_application();
+         papp = get_application();
 
       }
 
@@ -1230,9 +1239,13 @@ namespace base
 
       }
 
+      __pointer(::base::application) papplication = papp;
+
+      auto pcontext = papplication->get_context();
+
       {
 
-         string strId(App(papp).preferred_experience());
+         string strId(papplication->preferred_experience());
 
          if (strId.has_char())
          {
@@ -1267,7 +1280,7 @@ namespace base
 
       {
 
-         string strWndFrm = Ctx(papp).file().as_string(::dir::config() / App(papp).m_strAppName / "experience.txt");
+         string strWndFrm = pcontext->m_papexcontext->file().as_string(m_psystem->m_pacmedir->config() / papplication->m_strAppName / "experience.txt");
 
          if (strWndFrm.has_char())
          {
@@ -1280,7 +1293,7 @@ namespace base
 
       {
 
-         string strWndFrm = Ctx(papp).file().as_string(::dir::config() / ::file::path(App(papp).m_strAppName).folder() / "experience.txt");
+         string strWndFrm = pcontext->m_papexcontext->file().as_string(m_psystem->m_pacmedir->config() / ::file::path(papplication->m_strAppName).folder() / "experience.txt");
 
          if (strWndFrm.has_char())
          {
@@ -1293,7 +1306,7 @@ namespace base
 
       {
 
-         string strWndFrm = Ctx(papp).file().as_string(::dir::config() / ::file::path(App(papp).m_strAppName).name() / "experience.txt");
+         string strWndFrm = pcontext->m_papexcontext->file().as_string(m_psystem->m_pacmedir->config() / ::file::path(papplication->m_strAppName).name() / "experience.txt");
 
          if (strWndFrm.has_char())
          {
@@ -1306,7 +1319,7 @@ namespace base
 
       {
 
-         string strWndFrm = Ctx(papp).file().as_string(::dir::config() / "system/experience.txt");
+         string strWndFrm = pcontext->m_papexcontext->file().as_string(m_psystem->m_pacmedir->config() / "system/experience.txt");
 
          if (strWndFrm.has_char())
          {
@@ -1341,9 +1354,17 @@ namespace base
 
          }
 
-         auto plibrary = System->get_library(strLibrary, true);
+         auto psystem = m_psystem->m_pbasesystem;
 
-         if (::is_null(plibrary))
+         string strComponent = "experience";
+
+         string strImplementation = strLibrary;
+
+         strImplementation.begins_eat_ci("experience_");
+
+         auto plibrary = psystem->do_containerized_factory_exchange("experience", strImplementation);
+
+         if (!plibrary)
          {
 
             ERR("Failed to Load %s", strLibrary.c_str());
@@ -1352,7 +1373,7 @@ namespace base
 
          }
 
-         pstyle = plibrary->create_object("user_theme");
+         pstyle = plibrary->m_pfactorymap->new_object < ::user::style >();
 
          if (!pstyle)
          {
@@ -1365,9 +1386,9 @@ namespace base
 
          pstyle->initialize(papp);
 
-         //synchronization_lock synchronizationlock(System->m_mutexLibrary);
+         //synchronous_lock synchronouslock(psystem->m_mutexLibrary);
 
-         //System->m_mapLibrary[strLibrary] = plibrary;
+         //psystem->m_mapLibrary[strLibrary] = plibrary;
 
          pstyle->m_plibrary = plibrary;
 
@@ -1382,7 +1403,7 @@ namespace base
 
          message_box("Failed to find/open 'experience' library.\n\nSome reasons:\n   - No 'experience' library present;\n   - Failure to open any suitable 'experience' library.",nullptr, e_message_box_ok);
 
-         __throw(exit_exception(get_context_system()));
+         __throw(exit_exception(get_system()));
 
       }
 
@@ -1440,7 +1461,7 @@ namespace base
 //string __get_text(string str)
 //{
 //
-//   ::aura::application* papp = ::get_context_application();
+//   ::aura::application* papp = ::get_application();
 //
 //   if (papp == nullptr)
 //   {

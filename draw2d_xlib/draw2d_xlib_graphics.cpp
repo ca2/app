@@ -10,7 +10,7 @@ namespace draw2d_xlib
 {
 
 
-   graphics::graphics(::layered * pobjectContext) :
+   graphics::graphics(::object * pobject) :
       ::object(pobject),
       ::draw2d::graphics(pobject)
       //,     m_ui(pobject)
@@ -28,7 +28,7 @@ namespace draw2d_xlib
       m_ewritetextrendering  = ::write_text::e_rendering_anti_alias_grid_fit;
 
       m_pfont.create(this);
-      m_pfont->m_strFontFamilyName = os_font_name(e_font_sans);
+      m_pfont->m_strFontFamilyName = pnode->font_name(e_font_sans);
       m_pfont->m_dFontSize = 12.0;
 
 
@@ -74,7 +74,7 @@ namespace draw2d_xlib
    graphics::~graphics()
    {
 
-//      synchronization_lock ml(&xlib_mutex());
+//      synchronous_lock ml(&xlib_mutex());
 
       /*      HDC hdc = Detach();
 
@@ -139,7 +139,7 @@ namespace draw2d_xlib
    bool graphics::CreateCompatibleDC(::image * pimage)
    {
 
-      //synchronization_lock ml(&xlib_mutex());
+      //synchronous_lock ml(&xlib_mutex());
 
       if(m_pdc != nullptr)
       {
@@ -304,7 +304,7 @@ namespace draw2d_xlib
                return nullptr;
             if(pbitmap == nullptr)
                return nullptr;
-            return dynamic_cast < ::draw2d::bitmap* > (SelectGdiObject(get_context_application(), get_handle1(), pbitmap->get_os_data()));*/
+            return dynamic_cast < ::draw2d::bitmap* > (SelectGdiObject(get_application(), get_handle1(), pbitmap->get_os_data()));*/
       if(m_pdc != nullptr)
       {
 
@@ -343,7 +343,7 @@ namespace draw2d_xlib
       /*      ASSERT(get_handle1() != nullptr);
          if(pObject == nullptr)
             return nullptr;
-         return SelectGdiObject(get_context_application(), get_handle1(), pObject->get_os_data()); */
+         return SelectGdiObject(get_application(), get_handle1(), pObject->get_os_data()); */
       return nullptr;
    }
 
@@ -358,7 +358,7 @@ namespace draw2d_xlib
             HBITMAP hbitmap = (HBITMAP) hObject;
 
             if(m_pbitmap.is_null())
-               m_pbitmap.create(get_object());
+               m_pbitmap.create(this);
 
             if(m_pbitmap.is_null())
                return nullptr;
@@ -1370,7 +1370,7 @@ namespace draw2d_xlib
    bool graphics::BitBlt(i32 x, i32 y, i32 nWidth, i32 nHeight, ::draw2d::graphics * pgraphicsSrc, i32 xSrc, i32 ySrc)
    {
 
-      //synchronization_lock ml(&xlib_mutex());
+      //synchronous_lock ml(&xlib_mutex());
 
       if(m_pimageAlphaBlend->is_set())
       {
@@ -1394,7 +1394,7 @@ namespace draw2d_xlib
          ::image_pointer pimage;
          if(imageWork == nullptr)
          {
-            pimage = create_image(get_object());
+            pimage = create_image(this);
             imageWork = pimage;
          }
          if(imageWork == nullptr)
@@ -1415,7 +1415,7 @@ namespace draw2d_xlib
          ::image_pointer pimage2;
          if(imageWork2 == nullptr)
          {
-            pimage2 = create_image(get_object());
+            pimage2 = create_image(this);
             imageWork2 = pimage2;
          }
 
@@ -1423,7 +1423,7 @@ namespace draw2d_xlib
          ::image_pointer pimage4;
          if(imageWork4 == nullptr)
          {
-            image4 = create_image(get_object());
+            image4 = create_image(this);
             imageWork4 = image4;
          }
          if(imageWork4 == nullptr)
@@ -1463,7 +1463,7 @@ namespace draw2d_xlib
 
          return bOk;
 
-         //return System->imaging().true_blend(this, ptDest, size, imageWork.get_graphics(), ::point_i32());
+         //return psystem->imaging().true_blend(this, ptDest, size, imageWork.get_graphics(), ::point_i32());
          */
 
       }
@@ -1514,7 +1514,7 @@ namespace draw2d_xlib
 
       return false;
 
-      /*      synchronization_lock ml(&xlib_mutex());
+      /*      synchronous_lock ml(&xlib_mutex());
 
             if(pgraphicsSrc == nullptr)
                return false;
@@ -1670,7 +1670,7 @@ namespace draw2d_xlib
                      ::rectangle_i32 rectText(::point_i32(x, y), GetTextExtent(str));
                      if(rectIntersect.intersect(rectIntersect, rectText))
                      {
-                        /* p::image_pointer pimage0(get_object());
+                        /* p::image_pointer pimage0(this);
                         image0 = create_image(rectText.size());
                         image0.Fill(0, 0, 0, 0);
                         image0.get_graphics()->SetTextColor(argb(255, 255, 255, 255));
@@ -1678,7 +1678,7 @@ namespace draw2d_xlib
                         image0.get_graphics()->SetBkMode(TRANSPARENT);
                         image0.get_graphics()->text_out(0, 0, str);
                         image0.ToAlpha(0);*/
-         /* p::image_pointer pimage1(get_object());
+         /* p::image_pointer pimage1(this);
                       pimage1 = create_image(rectText.size());
                       pimage1->Fill(0, 0, 0, 0);
          //               pimage1->get_graphics()->set_color(m_colorColor);
@@ -1686,7 +1686,7 @@ namespace draw2d_xlib
                       pimage1->get_graphics()->SetBkMode(TRANSPARENT);
                       pimage1->get_graphics()->text_out(0, 0, str);
                       //pimage1->channel_from(::color::e_channel_alpha, image0);
-                      ::image_pointer pimage2(get_object());
+                      ::image_pointer pimage2(this);
                       pimage2 = create_image(rectText.size());
                       pimage2->Fill(255, 0, 0, 0);
                       pimage2->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_set);
@@ -1695,12 +1695,12 @@ namespace draw2d_xlib
                          size_i32(maximum(0, m_pimageAlphaBlend->width()-maximum(0, x - m_pointAlphaBlend.x)),
                                maximum(0, m_pimageAlphaBlend->height()-maximum(0, y - m_pointAlphaBlend.y))));
                       pimage1->channel_multiply(::color::e_channel_alpha, pimage2);
-                      /* p::image_pointer pimage3(get_object());
+                      /* p::image_pointer pimage3(this);
                       pimage1->mult_alpha(image3);*/
 
          /*           keeper < image > keep(&m_pimageAlphaBlend, nullptr, m_pimageAlphaBlend, true);
 
-                    return System->imaging().true_blend(this, ::point_i32(x, y), rectText.size(), pimage1->get_graphics(), ::point_i32());
+                    return psystem->imaging().true_blend(this, ::point_i32(x, y), rectText.size(), pimage1->get_graphics(), ::point_i32());
 
                     /*BLENDFUNCTION bf;
                     bf.BlendOp     = AC_SRC_OVER;
@@ -1750,7 +1750,7 @@ namespace draw2d_xlib
                pimage2->from(point_i32((i64) maximum(0, m_pointAlphaBlend.x - x), (i64) maximum(0, m_pointAlphaBlend.y - y)),
                            m_pimageAlphaBlend->get_graphics(), point_i32((i64) maximum(0, x - m_pointAlphaBlend.x), (i64) maximum(0, y - m_pointAlphaBlend.y)), rectText.size());
                pimage1->channel_multiply(::color::e_channel_alpha, pimage2->m_p);
-               /* p::image_pointer pimage3(get_object());
+               /* p::image_pointer pimage3(this);
                pimage1->mult_alpha(image3);*/
 
                keep < image > keep(&m_pimageAlphaBlend, nullptr, m_pimageAlphaBlend, true);
@@ -1936,7 +1936,7 @@ namespace draw2d_xlib
       lpMetrics->tmDescent = sz2.cy - sz1.cy;
 
 
-      //retry_single_lock slGdiplus(System->s_mutexGdiplus, millis(1), millis(1));
+      //retry_single_lock slGdiplus(psystem->s_mutexGdiplus, millis(1), millis(1));
 
       /*((::draw2d_xlib::graphics *) this)->set(m_pfont);
 
@@ -2715,7 +2715,7 @@ namespace draw2d_xlib
 
       return this->BitBlt(xDst, yDst, nDstWidth, nDstHeight, pgraphicsSrc, xSrc, ySrc);
 
-      //synchronization_lock ml(&xlib_mutex());
+      //synchronous_lock ml(&xlib_mutex());
 
       if(m_pimageAlphaBlend->is_set())
       {
@@ -2741,7 +2741,7 @@ namespace draw2d_xlib
                   ::image_pointer pimage;
                   if(imageWork == nullptr)
                   {
-                     pimage = create_image(get_object());
+                     pimage = create_image(this);
                      imageWork = pimage;
                   }
                   if(imageWork == nullptr)
@@ -2757,7 +2757,7 @@ namespace draw2d_xlib
                   ::image_pointer pimage2;
                   if(imageWork2 == nullptr)
                   {
-                     pimage2 = create_image(get_object());
+                     pimage2 = create_image(this);
                      imageWork2 = pimage2;
                   }
 
@@ -2765,7 +2765,7 @@ namespace draw2d_xlib
                   ::image_pointer pimage4;
                   if(imageWork4 == nullptr)
                   {
-                     image4 = create_image(get_object());
+                     image4 = create_image(this);
                      imageWork4 = image4;
                   }
                   if(imageWork4 == nullptr)
@@ -2785,7 +2785,7 @@ namespace draw2d_xlib
                   keeper < image > keep(&m_pimageAlphaBlend, nullptr, m_pimageAlphaBlend, true);
 
 
-                  return System->imaging().true_blend(this, ptDest, size, imageWork.get_graphics(), pointSrc);
+                  return psystem->imaging().true_blend(this, ptDest, size, imageWork.get_graphics(), pointSrc);
 
          */
       }
@@ -2874,7 +2874,7 @@ namespace draw2d_xlib
          ::image_pointer pimage;
          if(imageWork == nullptr)
          {
-            pimage = create_image(get_object());
+            pimage = create_image(this);
             imageWork = pimage;
          }
          if(imageWork == nullptr)
@@ -2890,7 +2890,7 @@ namespace draw2d_xlib
          ::image_pointer pimage2;
          if(imageWork2 == nullptr)
          {
-            pimage2 = create_image(get_object());
+            pimage2 = create_image(this);
             imageWork2 = pimage2;
          }
 
@@ -2898,7 +2898,7 @@ namespace draw2d_xlib
          ::image_pointer pimage4;
          if(imageWork4 == nullptr)
          {
-            image4 = create_image(get_object());
+            image4 = create_image(this);
             imageWork4 = image4;
          }
          if(imageWork4 == nullptr)
@@ -2918,7 +2918,7 @@ namespace draw2d_xlib
          keeper < image > keep(&m_pimageAlphaBlend, nullptr, m_pimageAlphaBlend, true);
 
 
-         return System->imaging().true_blend(this, ptDest, size, imageWork.get_graphics(), pointSrc);
+         return psystem->imaging().true_blend(this, ptDest, size, imageWork.get_graphics(), pointSrc);
 
 
       }
@@ -3164,7 +3164,7 @@ namespace draw2d_xlib
    /////////////////////////////////////////////////////////////////////////////
    // special graphics drawing primitives/helpers
 
-   ::draw2d::brush* PASCAL graphics::GetHalftoneBrush(::layered * pobjectContext)
+   ::draw2d::brush* PASCAL graphics::GetHalftoneBrush(::object * pobject)
    {
       /*      ::aura::LockGlobals(CRIT_HALFTONEBRUSH);
             if (gen_HalftoneBrush == nullptr)
@@ -3211,7 +3211,7 @@ namespace draw2d_xlib
             ::draw2d::brush* pBrushOld = nullptr;
             if (pBrush == nullptr)
             {
-               pBrush = graphics::GetHalftoneBrush(get_object());
+               pBrush = graphics::GetHalftoneBrush(this);
             }
 
             ENSURE(pBrush);
@@ -3390,7 +3390,7 @@ namespace draw2d_xlib
    bool graphics::DeleteDC()
    {
 
-      //synchronization_lock ml(&xlib_mutex());
+      //synchronous_lock ml(&xlib_mutex());
 
       m_pbitmap.release();
 
@@ -3513,7 +3513,7 @@ namespace draw2d_xlib
                hOldObj = ::SelectObject(get_handle1(), hObject);
             if(get_handle2() != nullptr)
                hOldObj = ::SelectObject(get_handle2(), hObject);
-            return ::win::object::from_handle(get_context_application(), hOldObj);*/
+            return ::win::object::from_handle(get_application(), hOldObj);*/
 
       return nullptr;
    }
@@ -3527,7 +3527,7 @@ namespace draw2d_xlib
          hOldObj = ::SelectObject(get_handle1(), pPen->get_os_data());
       if(get_handle2() != nullptr)
          hOldObj = ::SelectObject(get_handle2(), pPen->get_os_data());
-      return dynamic_cast < pen * > (::win::object::from_handle(get_context_application(), hOldObj));*/
+      return dynamic_cast < pen * > (::win::object::from_handle(get_application(), hOldObj));*/
       m_ppen = ppen;
       return m_ppen;
    }
@@ -3541,7 +3541,7 @@ namespace draw2d_xlib
                hOldObj = ::SelectObject(get_handle1(), pBrush->get_os_data());
             if(get_handle2() != nullptr)
                hOldObj = ::SelectObject(get_handle2(), pBrush->get_os_data());
-            return dynamic_cast < ::draw2d::brush * > (::win::object::from_handle(get_context_application(), hOldObj));*/
+            return dynamic_cast < ::draw2d::brush * > (::win::object::from_handle(get_application(), hOldObj));*/
       m_pbrush = pbrush;
       return m_pbrush;
 
@@ -3556,7 +3556,7 @@ namespace draw2d_xlib
                hOldObj = ::SelectObject(get_handle1(), pFont->get_os_data());
             if(get_handle2() != nullptr)
                hOldObj = ::SelectObject(get_handle2(), pFont->get_os_data());
-            return dynamic_cast < ::write_text::font * > (::win::object::from_handle(get_context_application(), hOldObj));*/
+            return dynamic_cast < ::write_text::font * > (::win::object::from_handle(get_application(), hOldObj));*/
 
       /*ASSERT(pFont != nullptr);
 
@@ -3593,7 +3593,7 @@ namespace draw2d_xlib
    ::draw2d::palette* graphics::SelectPalette(::draw2d::palette* pPalette, bool bForceBackground)
    {
       return nullptr;
-//      return dynamic_cast < ::draw2d::palette * > (::win::object::from_handle(get_context_application(), ::SelectPalette(get_handle1(), (HPALETTE)pPalette->get_os_data(), bForceBackground)));
+//      return dynamic_cast < ::draw2d::palette * > (::win::object::from_handle(get_application(), ::SelectPalette(get_handle1(), (HPALETTE)pPalette->get_os_data(), bForceBackground)));
    }
 
 
@@ -3875,7 +3875,7 @@ namespace draw2d_xlib
    i32 graphics::SelectClipRgn(::draw2d::region * pregion)
    {
 
-      /*synchronization_lock ml(&xlib_mutex());
+      /*synchronous_lock ml(&xlib_mutex());
       if(pregion == nullptr)
       {
 
@@ -4418,7 +4418,7 @@ namespace draw2d_xlib
                   {
                      // got the stock object back, so must be selecting a font
                      __throw(error_not_implemented);
-   //                  (dynamic_cast<::win::graphics * >(pgraphics))->SelectObject(::win::font::from_handle(pgraphics->get_context_application(), (HFONT)hObject));
+   //                  (dynamic_cast<::win::graphics * >(pgraphics))->SelectObject(::win::font::from_handle(pgraphics->get_application(), (HFONT)hObject));
                      break;  // don't play the default record
                   }
                   else
@@ -4432,7 +4432,7 @@ namespace draw2d_xlib
                else if (nObjType == OBJ_FONT)
                {
                   // play back as graphics::SelectObject(::write_text::font*)
-   //               (dynamic_cast<::win::graphics * >(pgraphics))->SelectObject(::win::font::from_handle(pgraphics->get_context_application(), (HFONT)hObject));
+   //               (dynamic_cast<::win::graphics * >(pgraphics))->SelectObject(::win::font::from_handle(pgraphics->get_application(), (HFONT)hObject));
                   __throw(error_not_implemented);
                   break;  // don't play the default record
                }
@@ -4525,7 +4525,7 @@ namespace draw2d_xlib
    i32 graphics::draw_text(const string & str, RECTANGLE_I32 * prectangle, const ::e_align & ealign, const ::e_draw_text & edrawtext)
    {
 
-      //synchronization_lock ml(&xlib_mutex());
+      //synchronous_lock ml(&xlib_mutex());
 
       if(m_pfont.is_null())
          return 0;
@@ -4661,7 +4661,7 @@ namespace draw2d_xlib
    size_i32 graphics::GetTextExtent(const char * lpszString, strsize nCount, i32 iIndex) const
    {
 
-      synchronization_lock ml(&xlib_mutex());
+      synchronous_lock ml(&xlib_mutex());
 
       //int direction = 0, fontAscent = 0, fontDescent = 0;
 
@@ -4755,7 +4755,7 @@ namespace draw2d_xlib
    bool graphics::GetTextExtent(size_f64 & size, const char * lpszString, strsize nCount, i32 iIndex) const
    {
 
-      synchronization_lock ml(&xlib_mutex());
+      synchronous_lock ml(&xlib_mutex());
 
       ::size_i32  sz = GetTextExtent(lpszString, nCount, iIndex);
 
@@ -4930,7 +4930,7 @@ namespace draw2d_xlib
       if(cx <= 0 || cy <= 0)
          return;
 
-      synchronization_lock ml(&xlib_mutex());
+      synchronous_lock ml(&xlib_mutex());
 
       set_os_color(clr);
 
@@ -4942,7 +4942,7 @@ namespace draw2d_xlib
    bool graphics::text_out(i32 x, i32 y, const char * lpszString, i32 nCount)
    {
 
-      synchronization_lock ml(&xlib_mutex());
+      synchronous_lock ml(&xlib_mutex());
 
       if(m_pfont.is_null())
          return false;
@@ -5022,7 +5022,7 @@ namespace draw2d_xlib
    bool graphics::LineTo(double x, double y)
    {
 
-      synchronization_lock ml(&xlib_mutex());
+      synchronous_lock ml(&xlib_mutex());
 
       set(m_ppen);
 
@@ -5044,7 +5044,7 @@ namespace draw2d_xlib
    void graphics::set_alpha_mode(::draw2d::enum_alpha_mode ealphamode)
    {
 
-      synchronization_lock ml(&xlib_mutex());
+      synchronous_lock ml(&xlib_mutex());
 
       try
       {
@@ -5128,7 +5128,7 @@ namespace draw2d_xlib
       {
          if(m_pfont.is_null())
          {
-            m_pfont.create(get_object());
+            m_pfont.create(this);
             m_pfont->operator=(m_fontxyz);
          }
          else if(!m_pfont->m_bUpdated)
@@ -5143,7 +5143,7 @@ namespace draw2d_xlib
       {
          if(m_pbrush.is_null())
          {
-            m_pbrush.create(get_object());
+            m_pbrush.create(this);
             m_pbrush->operator=(m_brushxyz);
          }
          else if(!m_pbrush->m_bUpdated)
@@ -5158,7 +5158,7 @@ namespace draw2d_xlib
       {
          if(m_ppen.is_null())
          {
-            m_ppen.create(get_object());
+            m_ppen.create(this);
             m_ppen->operator=(m_penxyz);
          }
          else if(!m_ppen->m_bUpdated)
@@ -5403,7 +5403,7 @@ namespace draw2d_xlib
       char * szmf;
 
       pfont->m_pft = XftFontOpen (m_pdc->m_pdisplay, m_pdc->m_iScreen,
-                                  XFT_FAMILY, XftTypeString, os_font_name(e_font_sans),
+                                  XFT_FAMILY, XftTypeString, pnode->font_name(e_font_sans),
                                   pfont->m_eunitFontSize == ::draw2d::unit_point ? XFT_SIZE : XFT_PIXEL_SIZE, XftTypeDouble, pfont->m_dFontSize,
                                   nullptr);
 

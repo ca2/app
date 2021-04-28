@@ -13,7 +13,7 @@
 namespace apex
 {
 
-//   application::application(::layered * pobjectContext) :
+//   application::application(::object * pobject) :
 //      ::object(pobject)
 //   {
 //
@@ -47,16 +47,16 @@ namespace apex
 //   }
 //
 
-   ::e_status application::_001InitializeShellOpen()
-   {
-// xxx       ASSERT(m_atomApp == nullptr && m_atomSystemTopic == nullptr); // do once
-
-// xxx       m_atomApp            = ::GlobalAddAtomW(::str::international::utf8_to_unicode(m_strAppName));
-// xxx       m_atomSystemTopic    = ::GlobalAddAtomW(L"system");
-
-      return ::success;
-
-   }
+//   ::e_status application::_001InitializeShellOpen()
+//   {
+//// xxx       ASSERT(m_atomApp == nullptr && m_atomSystemTopic == nullptr); // do once
+//
+//// xxx       m_atomApp            = ::GlobalAddAtomW(::str::international::utf8_to_unicode(m_strAppName));
+//// xxx       m_atomSystemTopic    = ::GlobalAddAtomW(L"system");
+//
+//      return ::success;
+//
+//   }
 
 //   bool application::_001OnDDECommand(const char * pcsz)
 
@@ -71,101 +71,101 @@ namespace apex
 //      return nullptr;
 //   }
 
-   string application::get_version()
-   {
-      return "";
-
-      __throw(todo);
-
-      /*      char pszModuleFilePath[MAX_PATH + 1];
-
-            GetModuleFileName(nullptr, pszModuleFilePath, MAX_PATH + 1);
-
-
-            ::u32 dw;
-
-            ::u32 dwResSize = GetFileVersionInfoSize(
-               pszModuleFilePath,
-
-               &dw);
-
-
-            if(dwResSize > 0)
-            {
-               LPVOID pdata = new byte[dwResSize];
-
-               if(GetFileVersionInfo(
-                  pszModuleFilePath,
-
-                  0,
-                  dwResSize,
-                  pdata))
-
-               {
-                  ::u32 cbTranslate;
-                  struct LANGANDCODEPAGE {
-                     ::u16 wLanguage;
-                     ::u16 wCodePage;
-                  } *pTranslate;
-
-
-                  // read the list of languages and code pages.
-
-                  VerQueryValue(pdata,
-
-                     TEXT("\\VarFileInfo\\Translation"),
-                     (LPVOID*)&pTranslate,
-
-                     &cbTranslate);
-
-                  string strKey;
-                  //for( i=0; i < (cbTranslate/sizeof(struct LANGANDCODEPAGE)); i++ )
-                  for(i32 i=0; i < 1; i++ )
-                  {
-                     char * psz;
-
-                     ::u32 uSize;
-
-                     strKey.Format(
-                        TEXT("\\StringFileInfo\\%04x%04x\\FileDescription"),
-                        pTranslate[i].wLanguage,
-
-                        pTranslate[i].wCodePage);
-
-
-
-
-
-                     strKey.Format(
-                        TEXT("\\StringFileInfo\\%04x%04x\\FileVersion"),
-                        pTranslate[i].wLanguage,
-
-                        pTranslate[i].wCodePage);
-
-
-                     // Retrieve file description for language and code page "i".
-                     VerQueryValue(pdata,
-
-                        (char *) (const char *) strKey,
-                        (LPVOID *)&psz,
-
-                        &uiSize);
-
-
-                     string strVersion(psz, uiSize);
-
-
-                     return strVersion;
-                  }
-               }
-               delete [] (byte *) pdata;
-
-            }
-      */
-
-      return "";
-
-   }
+//   string application::get_version()
+//   {
+//      return "";
+//
+//      __throw(todo);
+//
+//      /*      char pszModuleFilePath[MAX_PATH + 1];
+//
+//            GetModuleFileName(nullptr, pszModuleFilePath, MAX_PATH + 1);
+//
+//
+//            ::u32 dw;
+//
+//            ::u32 dwResSize = GetFileVersionInfoSize(
+//               pszModuleFilePath,
+//
+//               &dw);
+//
+//
+//            if(dwResSize > 0)
+//            {
+//               LPVOID pdata = new byte[dwResSize];
+//
+//               if(GetFileVersionInfo(
+//                  pszModuleFilePath,
+//
+//                  0,
+//                  dwResSize,
+//                  pdata))
+//
+//               {
+//                  ::u32 cbTranslate;
+//                  struct LANGANDCODEPAGE {
+//                     ::u16 wLanguage;
+//                     ::u16 wCodePage;
+//                  } *pTranslate;
+//
+//
+//                  // read the list of languages and code pages.
+//
+//                  VerQueryValue(pdata,
+//
+//                     TEXT("\\VarFileInfo\\Translation"),
+//                     (LPVOID*)&pTranslate,
+//
+//                     &cbTranslate);
+//
+//                  string strKey;
+//                  //for( i=0; i < (cbTranslate/sizeof(struct LANGANDCODEPAGE)); i++ )
+//                  for(i32 i=0; i < 1; i++ )
+//                  {
+//                     char * psz;
+//
+//                     ::u32 uSize;
+//
+//                     strKey.Format(
+//                        TEXT("\\StringFileInfo\\%04x%04x\\FileDescription"),
+//                        pTranslate[i].wLanguage,
+//
+//                        pTranslate[i].wCodePage);
+//
+//
+//
+//
+//
+//                     strKey.Format(
+//                        TEXT("\\StringFileInfo\\%04x%04x\\FileVersion"),
+//                        pTranslate[i].wLanguage,
+//
+//                        pTranslate[i].wCodePage);
+//
+//
+//                     // Retrieve file description for language and code page "i".
+//                     VerQueryValue(pdata,
+//
+//                        (char *) (const char *) strKey,
+//                        (LPVOID *)&psz,
+//
+//                        &uiSize);
+//
+//
+//                     string strVersion(psz, uiSize);
+//
+//
+//                     return strVersion;
+//                  }
+//               }
+//               delete [] (byte *) pdata;
+//
+//            }
+//      */
+//
+//      return "";
+//
+//   }
 
 
 
@@ -309,10 +309,10 @@ namespace apex
          return ::win::graphics::from_handle((HDC) pdata);
       }*/
 
-   void application::show_wait_cursor(bool bShow)
-   {
-
-   }
+//   void application::show_wait_cursor(bool bShow)
+//   {
+//
+//   }
 
 //   ::user::primitive * application::window_from_os_data(void * pdata)
 //   {
@@ -353,7 +353,7 @@ namespace apex
 //      // versions of ca2 API, this memory was never freed.  In this and future
 //      // versions this memory is automatically freed during application's
 //      // destructor.  If you are freeing the memory yourself, you should
-//      // either remove the code or set the pointers to nullptr after freeing
+//      // either erase the code or set the pointers to nullptr after freeing
 //      // the memory.
 //
 //      // get path of executable
@@ -383,7 +383,7 @@ namespace apex
 //      // get the exe title from the full path name [no extension]
 //      //strExeName = ::apex::get_system()->get_module_title();
 //
-//      m_hthread      =  ::GetCurrentThread();
+//      m_htask      =  ::GetCurrentThread();
 //
 //   }
 
@@ -421,7 +421,7 @@ namespace apex
 //   }
 
 
-//   ithread_t application::get_thread_id()
+//   itask_t application::get_thread_id()
 //   {
 //
 //      return ::pthread_self();
@@ -443,7 +443,7 @@ namespace apex
 //
 //      string strCmdLine          = pdata->m_strCommandLine;
 //
-//      get_context_application()->SetCurrentHandles();
+//      get_application()->SetCurrentHandles();
 //
 //      return true;
 //
@@ -458,28 +458,6 @@ namespace apex
 //   }
 
 
-   string application::multimedia_audio_get_default_library_name()
-   {
-
-      return "audio_alsa";
-
-   }
-
-
-   string application::multimedia_audio_mixer_get_default_library_name()
-   {
-
-      return "audio_mixer_alsa";
-
-   }
-
-
-   string application::veriwell_multimedia_music_midi_get_default_library_name()
-   {
-
-      return "music_midi_alsa";
-
-   }
 
 
    bool application::os_on_start_application()
@@ -500,7 +478,7 @@ namespace apex
 //      catch(...)
 //      {
 //
-//         TRACE("Could not create .desktop shortcut file for the Linux Application for the current user.");
+//         TRACE("Could not create .desktop shortcut file for the Linux papplication for the current user.");
 //
 //      }
 //

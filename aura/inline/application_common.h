@@ -1,7 +1,7 @@
 #include "acme/_start.h"
 #include "aura/_.h"
 #include "apex/platform/app_core.h"
-#include "apex/platform/static_setup.h"
+#include "acme/platform/static_setup.h"
 #include "aura/_defer.h"
 
 
@@ -68,6 +68,8 @@ void application_common(::apex::system * psystem)
 {
 
 #ifdef MAIN_STRING
+
+   __pointer(::aura::system) psystem = m_psystem;
 
    psystem->m_pszMain = MAIN_STRING;
 
@@ -177,7 +179,7 @@ class static_application_factory :
 public:
 
 
-   virtual ::apex::application* new_application() override
+   virtual ::matter* new_application_as_matter() override
    {
       auto papplication = new APPLICATION;
 #ifdef NO_IMAGING
@@ -211,6 +213,7 @@ public:
 #endif
 
 
+CLASS_DECL_ACME void set_main_thread();
 
 
 #ifdef _APP_ID

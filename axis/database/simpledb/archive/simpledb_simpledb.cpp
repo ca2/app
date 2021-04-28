@@ -5,9 +5,9 @@ namespace simpledb
 {
 
 
-   simpledb::simpledb(::layered * pobjectContext) :
+   simpledb::simpledb(::object * pobject) :
       ::object(pobject),
-      ::apex::department(pobject)
+      ::acme::department(pobject)
    {
 
       m_pserver         = nullptr;
@@ -27,7 +27,7 @@ namespace simpledb
    bool simpledb::InitializeDataCentral()
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       if (m_bInitialized)
       {
@@ -43,7 +43,7 @@ namespace simpledb
 
       }
 
-      if(get_context_application()->is_system())
+      if(get_application()->is_system())
       {
 //#ifndef _UWP
 //         /* initialize client library */
@@ -55,14 +55,14 @@ namespace simpledb
 //#endif
       }
 
-      m_pserver = __new(db_server(get_context_application()));
+      m_pserver = __new(db_server(get_application()));
 
 
       m_pserver->add_client(this);
 
       if (!m_pserver->initialize())
       {
-         Application.message_box(nullptr, "Could not initialize simpledb.", e_message_box_ok);
+         message_box(nullptr, "Could not initialize simpledb.", e_message_box_ok);
          return false;
       }
 
@@ -83,7 +83,7 @@ namespace simpledb
 
       }
 
-      get_context_application()->m_psession->on_set_locale(lpcsz, context);
+      get_application()->m_psession->on_set_locale(lpcsz, context);
 
    }
 
@@ -98,7 +98,7 @@ namespace simpledb
 
       }
 
-      get_context_application()->m_psession->on_set_schema(lpcsz,context);
+      get_application()->m_psession->on_set_schema(lpcsz,context);
 
    }
 
@@ -106,7 +106,7 @@ namespace simpledb
    bool simpledb::FinalizeDataCentral()
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       if (!m_bInitialized)
       {
@@ -144,16 +144,16 @@ namespace simpledb
    bool simpledb::init2()
    {
 
-      if(get_context_application()->m_varTopicQuery["locale"].get_count() > 0)
+      if(get_application()->m_varTopicQuery["locale"].get_count() > 0)
       {
-         string str = get_context_application()->m_varTopicQuery["locale"].stra()[0];
-         get_context_application()->m_psession->set_locale(str,::e_source_database);
+         string str = get_application()->m_varTopicQuery["locale"].stra()[0];
+         get_application()->m_psession->set_locale(str,::e_source_database);
       }
 
-      if(get_context_application()->m_varTopicQuery["schema"].get_count() > 0)
+      if(get_application()->m_varTopicQuery["schema"].get_count() > 0)
       {
-         string str = get_context_application()->m_varTopicQuery["schema"].stra()[0];
-         get_context_application()->m_psession->set_schema(str,::e_source_database);
+         string str = get_application()->m_varTopicQuery["schema"].stra()[0];
+         get_application()->m_psession->set_schema(str,::e_source_database);
       }
 
 //      if(&AppUser(this) == nullptr)
@@ -161,7 +161,7 @@ namespace simpledb
 
       if(!InitializeDataCentral())
       {
-         Application.message_box(nullptr, "Could not initialize data central");
+         message_box(nullptr, "Could not initialize data central");
          return false;
       }
 

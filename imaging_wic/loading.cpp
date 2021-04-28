@@ -83,7 +83,7 @@ namespace imaging_wic
 
             }
 
-            get_context()->file().as_memory(payload, *pmemory);
+            m_pcontext->m_papexcontext->file().as_memory(payload, *pmemory);
 
             const char* psz = (const char*)pmemory->get_data();
 
@@ -105,7 +105,11 @@ namespace imaging_wic
 
             }
 
-            auto estatus = Application.image().load_svg(pimage, pmemory);
+            auto pcontext = m_pcontext->m_pauracontext;
+
+            auto pcontextimage = pcontext->context_image();
+
+            auto estatus = pcontextimage->load_svg(pimage, pmemory);
 
             if (::succeeded(estatus))
             {
@@ -527,7 +531,7 @@ namespace imaging_wic
 
 
 
-   bool node_save_image(::file::file * pfile, const ::image * pimage, const ::save_image * psaveimage)
+   bool context_image::_save_image(::file::file * pfile, const ::image * pimage, const ::save_image * psaveimage)
    {
 
 #ifdef _UWP
@@ -542,7 +546,7 @@ namespace imaging_wic
 
 #else
 
-      comptr < IStream > pstream = LIBCALL(shlwapi, SHCreateMemStream)(nullptr, NULL);
+      comptr < IStream > pstream = SHCreateMemStream(nullptr, NULL);
 
 #endif
 

@@ -14,7 +14,7 @@
 //
 //}
 
-void __assert_valid_object(const ::context_object * pOb, const char * pszFileName, i32 nLine)
+void __assert_valid_object(const ::object * pOb, const char * pszFileName, i32 nLine)
 
 {
 

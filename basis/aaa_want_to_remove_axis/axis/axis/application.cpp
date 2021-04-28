@@ -13,10 +13,10 @@ namespace axis
    }
 
 
-   ::e_status application::initialize(::layered * pobjectContext)
+   ::e_status application::initialize(::object * pobject)
    {
 
-      auto estatus = aura::application::initialize(pobjectContext);
+      auto estatus = aura::application::initialize(pobject);
 
       if (!estatus)
       {
@@ -37,7 +37,7 @@ namespace axis
       //if (m_psystem != nullptr)
       //{
 
-      //   m_bInitializeDataCentral = System->m_bInitializeDataCentral;
+      //   m_bInitializeDataCentral = psystem->m_bInitializeDataCentral;
 
       //}
 
@@ -89,7 +89,7 @@ namespace axis
    string application::load_string(const ::id & id)
    {
 
-      synchronization_lock synchronizationlock(&m_mutexStr);
+      synchronous_lock synchronouslock(&m_mutexStr);
 
       string str;
 
@@ -194,7 +194,7 @@ namespace axis
 
       }
 
-      synchronization_lock synchronizationlock(&m_mutexStr);
+      synchronous_lock synchronouslock(&m_mutexStr);
 
       __pointer(string_to_string) pmap;
 
@@ -647,19 +647,19 @@ resume_on_exception:
          if (is_system())
          {
 
-            pathDatabase = Context.dir().appdata() / "system.sqlite";
+            pathDatabase = pcontext->m_papexcontext->dir().appdata() / "system.sqlite";
 
          }
          else if (is_session())
          {
 
-            pathDatabase = Context.dir().appdata() / "session.sqlite";
+            pathDatabase = pcontext->m_papexcontext->dir().appdata() / "session.sqlite";
 
          }
          else
          {
 
-            pathDatabase = Context.dir().appdata() / "app.sqlite";
+            pathDatabase = pcontext->m_papexcontext->dir().appdata() / "app.sqlite";
 
          }
 
@@ -854,7 +854,7 @@ m_millisHeartBeat.Now();
       //      && m_varTopicQuery["app"] != "app-gtech/alarm"
       //      && m_varTopicQuery["app"] != "app-gtech/sensible_service")
       //{
-      //   Context.http().defer_auto_initialize_proxy_configuration();
+      //   pcontext->m_papexcontext->http().defer_auto_initialize_proxy_configuration();
       //}
 m_millisHeartBeat.Now();
 
@@ -987,7 +987,7 @@ m_millisHeartBeat.Now();
    bool application::update_appmatter(::sockets::socket_handler & handler, __pointer(::sockets::http_session) & psession,const ::file::path & pszRoot,const string & pszRelative)
    {
 
-      auto plocaleschema = __create_new < ::str::international::locale_schema >();
+      auto plocaleschema = __create_new < ::text::international::locale_schema >();
 
       //psession->fill_locale_schema(localeschema);
 
@@ -1013,7 +1013,7 @@ m_millisHeartBeat.Now();
 
          update_appmatter(handler, psession,pszRoot,pszRelative,strLocale,strSchema);
 
-         System->install_progress_add_up();
+         psystem->install_progress_add_up();
 
       }
 
@@ -1029,7 +1029,7 @@ m_millisHeartBeat.Now();
       string strSchema;
       TRACE("update_appmatter(root=%s, relative=%s, locale=%s, style=%s)",pszRoot.c_str(),pszRelative.c_str(),pszLocale.c_str(),pszStyle.c_str());
       ::file::path strRelative = ::file::path(pszRoot) / "appmatter" / pszRelative  / get_locale_schema_dir(pszLocale,pszStyle) + ".zip";
-      ::file::path strFile = Context.dir().install() / strRelative;
+      ::file::path strFile = pcontext->m_papexcontext->dir().install() / strRelative;
       ::file::path strUrl(::file::path_url);
 
       if(framework_is_basis())
@@ -1041,7 +1041,7 @@ m_millisHeartBeat.Now();
          strUrl = "http://stage-server.ca2.cc/api/spaignition/download?authnone&configuration=stage&stage=";
       }
 
-      strUrl += System->url().url_encode(strRelative);
+      strUrl += purl->url_encode(strRelative);
 
       if(psession == nullptr)
       {
@@ -1051,7 +1051,7 @@ m_millisHeartBeat.Now();
 
             property_set setEmpty;
 
-            if (Context.http().open(handler, psession, System->url().get_server(strUrl), System->url().get_protocol(strUrl), setEmpty, nullptr))
+            if (pcontext->m_papexcontext->http().open(handler, psession, purl->get_server(strUrl), purl->get_protocol(strUrl), setEmpty, nullptr))
             {
 
                break;
@@ -1068,7 +1068,7 @@ m_millisHeartBeat.Now();
 
       set["get_memory"] = "";
 
-      if (!Context.http().request(handler, psession, strUrl, set))
+      if (!pcontext->m_papexcontext->http().request(handler, psession, strUrl, set))
       {
 
          return false;
@@ -1080,7 +1080,7 @@ m_millisHeartBeat.Now();
       if(set["get_memory"].cast < memory >() != nullptr && set["get_memory"].cast < memory >()->get_size() > 0)
       {
 
-         zip_context zip(get_context_object());
+         zip_context zip(this);
 
          string strDir = strFile;
 
@@ -1101,7 +1101,7 @@ m_millisHeartBeat.Now();
 
          }
 
-         //System->compress().extract_all(strFile, this);
+         //psystem->compress().extract_all(strFile, this);
 
       }
 
@@ -1120,23 +1120,23 @@ m_millisHeartBeat.Now();
 
       string strRequestUrl;
 
-      if(file_as_string(::dir::system() / "config\\system\\ignition_server.txt").has_char())
+      if(file_as_string(pacmedir->system() / "config\\system\\ignition_server.txt").has_char())
       {
 
-         strRequestUrl = "https://" + file_as_string(::dir::system() / "config\\system\\ignition_server.txt") + "/api/spaignition";
+         strRequestUrl = "https://" + file_as_string(pacmedir->system() / "config\\system\\ignition_server.txt") + "/api/spaignition";
 
          pszRequestUrl = strRequestUrl;
 
       }
 
-      if (get_context_session() == nullptr)
+      if (get_session() == nullptr)
       {
 
          return false;
 
       }
 
-      if (get_context_session()->account() == nullptr)
+      if (get_session()->account() == nullptr)
       {
 
          return false;
@@ -1164,11 +1164,11 @@ m_millisHeartBeat.Now();
 
       varFile["disable_ca2_sessid"] = true;
 
-      string strMatter = Context.dir().matter(::file::path(pszMatter) / pszMatter2);
+      string strMatter = pcontext->m_papexcontext->dir().matter(::file::path(pszMatter) / pszMatter2);
 
       varFile["url"] = strMatter;
 
-      return Context.file().as_string(varFile);
+      return pcontext->m_papexcontext->file().as_string(varFile);
 
    }
 
@@ -1496,7 +1496,7 @@ m_millisHeartBeat.Now();
       else
       {
 
-         return hotplugin_host_host_starter_start_sync(pszCommandLine,get_context_application(),nullptr);
+         return hotplugin_host_host_starter_start_sync(pszCommandLine,get_application(),nullptr);
 
       }
 
@@ -1576,7 +1576,7 @@ m_millisHeartBeat.Now();
    //::html::html * application::create_html()
    //{
 
-   //   return new ::html::html(get_context_application());
+   //   return new ::html::html(get_application());
 
    //}
 
@@ -1623,7 +1623,7 @@ m_millisHeartBeat.Now();
    //bool application::compress_ungz(const ::stream & os, const ::stream & is)
    //{
 
-   //   return System->compress().ungz(this, os, is);
+   //   return psystem->compress().ungz(this, os, is);
 
 
    //}
@@ -1632,7 +1632,7 @@ m_millisHeartBeat.Now();
    //bool application::compress_ungz(memory_base & mem)
    //{
 
-   //   return System->compress().ungz(this, mem);
+   //   return psystem->compress().ungz(this, mem);
 
    //}
 
@@ -1641,7 +1641,7 @@ m_millisHeartBeat.Now();
 
    //{
 
-   //   return System->compress().gz(this, os, is, iLevel);
+   //   return psystem->compress().gz(this, os, is, iLevel);
 
 
    //}
@@ -1650,7 +1650,7 @@ m_millisHeartBeat.Now();
    //bool application::compress_gz(const ::stream & os, const ::stream & is, int iLevel)
    //{
 
-   //   return System->compress().gz(this, os, is, iLevel);
+   //   return psystem->compress().gz(this, os, is, iLevel);
 
    //}
 

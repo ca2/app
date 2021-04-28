@@ -64,7 +64,7 @@ namespace aura
    ::e_status system::os_application_system_run()
    {
 
-      if (!m_hthread)
+      if (!m_htask)
       {
 
          auto estatus = begin_synch();

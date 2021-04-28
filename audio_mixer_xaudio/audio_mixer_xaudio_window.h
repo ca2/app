@@ -28,8 +28,8 @@ namespace multimedia
          void install_message_routing(::channel * pchannel);
 
 
-         DECL_GEN_SIGNAL(_001OnMixerControlChange)
-            DECL_GEN_SIGNAL(_001OnMixerLineChange)
+         DECLARE_MESSAGE_HANDLER(_001OnMixerControlChange)
+            DECLARE_MESSAGE_HANDLER(_001OnMixerLineChange)
 
 
       };

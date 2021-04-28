@@ -193,7 +193,7 @@ namespace user
    void horizontal_scroll_base::on_change_viewport_offset(::draw2d::graphics_pointer & pgraphics)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       if (m_pscrollbarHorizontal.is_set())
       {
@@ -517,7 +517,7 @@ namespace user
    void vertical_scroll_base::on_change_viewport_offset(::draw2d::graphics_pointer & pgraphics)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       if (m_pscrollbarVertical.is_set())
       {

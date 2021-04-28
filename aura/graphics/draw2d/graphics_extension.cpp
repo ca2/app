@@ -58,7 +58,7 @@ namespace draw2d
    void graphics_extension::GetTextExtent(::draw2d::graphics_pointer& pgraphics, const char * psz, size_i32 & size)
    {
 
-      //synchronization_lock ml(&user_mutex());
+      //synchronous_lock ml(&user_mutex());
 
       /*string str(pwsz);
 

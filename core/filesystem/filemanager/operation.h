@@ -48,14 +48,14 @@ namespace filemanager
 
       void expand(::file::listing & straExpanded,::file::patha & straExpand);
 
-      virtual bool start();
+      virtual ::e_status start();
       virtual ::e_status step() override;
       //   virtual bool mark();
       virtual bool end();
       virtual bool make_duplicate_name(::file::path & str,const ::file::path & psz);
 
 
-      virtual bool initialize();
+      virtual ::e_status initialize(::object * pobject);
       virtual bool open_src_dst(const ::file::path & pszSrc,::file::path & strDst,const ::file::path & pszDir);
 
       virtual void set_operation(e_operation eoperation);

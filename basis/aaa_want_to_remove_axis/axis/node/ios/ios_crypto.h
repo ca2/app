@@ -11,7 +11,7 @@ namespace ios
    public:
 
 
-      crypto(::layered * pobjectContext);
+      crypto(::object * pobject);
       virtual ~crypto();
 
 

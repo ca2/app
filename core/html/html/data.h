@@ -46,7 +46,7 @@ public:
    void layout(::html_form * pform);
    void implement_and_layout(::html_form * pform);
 
-   DECL_GEN_SIGNAL(_001OnKeyDown);
+   DECLARE_MESSAGE_HANDLER(_001OnKeyDown);
 
    image_pointer get_image(const char * pszUrl);
    //void load_image_asynch(::html::image::image * pimage);

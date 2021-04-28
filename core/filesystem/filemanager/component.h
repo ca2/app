@@ -26,10 +26,14 @@ namespace filemanager
       virtual ~component();
 
 
+
+      inline ::core::session* get_session() const;
+      inline ::core::user* user() const;
+
       //virtual i64 add_ref(OBJ_REF_DBG_PARAMS) override
       //{
 
-      //   return ::apex::department::add_ref(OBJ_REF_DBG_ARGS);
+      //   return ::acme::department::add_ref(OBJ_REF_DBG_ARGS);
 
       //}
 
@@ -37,12 +41,12 @@ namespace filemanager
       /*     virtual i64 dec_ref(OBJ_REF_DBG_PARAMS) override
            {
 
-              return ::apex::department::dec_ref(OBJ_REF_DBG_ARGS);
+              return ::acme::department::dec_ref(OBJ_REF_DBG_ARGS);
 
            }*/
 
 
-      virtual ::e_status initialize_filemanager_component(::layered * pobjectContext);
+      virtual ::e_status initialize_filemanager_component(::object * pobject);
 
       virtual void filemanager_finalize();
 
@@ -72,9 +76,9 @@ namespace filemanager
 
       document * add_filemanager(const ::file::path & pathFolder, ::create * pcreate = nullptr, ::fs::data * pfsdata = nullptr, callback * pcallback = nullptr);
 
-      bool remove_filemanager(::payload varFile);
+      bool erase_filemanager(::payload varFile);
 
-      bool remove_filemanager(document * pdocument);
+      bool erase_filemanager(document * pdocument);
 
 
       /// id = FILEMANAGER_IMPACT - behaviour

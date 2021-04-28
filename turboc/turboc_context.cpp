@@ -6,7 +6,7 @@ namespace turboc
 {
 
 
-   context::context(::layered * pobjectContext):
+   context::context(::object * pobject):
       ::object(pobject),
 
       m_pimagea(pobject)

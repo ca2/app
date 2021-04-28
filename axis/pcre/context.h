@@ -21,7 +21,7 @@ public:
 
 protected:
 
-   pcre_context(::layered * pobjectContext);
+   pcre_context(::object * pobject);
 
 };
 

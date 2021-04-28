@@ -19,10 +19,9 @@ namespace sockets
 #endif
 
       /** "Default" constructor */
-      socket(base_socket_handler & h);
+      socket();
 
       virtual ~socket();
-
 
 
 

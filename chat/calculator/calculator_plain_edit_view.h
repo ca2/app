@@ -33,7 +33,7 @@ namespace calculator
       string                     m_strFormat;
 
 
-      plain_edit_view(::layered * pobjectContext);
+      plain_edit_view(::object * pobject);
       virtual ~plain_edit_view();
 
       virtual void _001OnAfterChangeText(const ::action_context & action_context);

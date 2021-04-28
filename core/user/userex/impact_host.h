@@ -57,6 +57,12 @@ namespace userex
       virtual ~impact_host();
 
 
+      inline ::core::application* get_application() const { return m_pcontext ? m_pcontext->m_pcoreapplication : nullptr; }
+      inline ::core::session* get_session() const { return m_pcontext ? m_pcontext->m_pcoresession : nullptr; }
+      inline ::core::system* get_system() const { return m_psystem ? m_psystem->m_pcoresystem : nullptr; }
+      inline ::core::user* user() const { return get_session() ? get_session()->user() : nullptr; }
+
+
       virtual void install_message_routing(::channel * pchannel) override;
 
       virtual void assert_valid() const override;
@@ -93,7 +99,7 @@ namespace userex
       virtual void on_layout(::draw2d::graphics_pointer & pgraphics) override;
 
 
-      DECL_GEN_SIGNAL(on_message_create);
+      DECLARE_MESSAGE_HANDLER(on_message_create);
 
       virtual void on_command(::message::command * pcommand) override;
       virtual void on_simple_command(::message::simple_command * psimplecommand) override;

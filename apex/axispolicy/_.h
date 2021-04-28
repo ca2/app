@@ -72,13 +72,13 @@ typedef __pointer(::user::interaction_impl) window_pointer;
 #define APP_TYPE ::axis::application
 
 #undef Sys
-#define Sys(pobject) (*(::get_context_system(pobject))->cast < SYSTEM_TYPE >())
+#define Sys(pobject) (*(::::apex::get_system(pobject))->cast < SYSTEM_TYPE >())
 
 #undef Sess
-#define Sess(pobject) (*(::get_context_session(pobject))->cast < SESSION_TYPE >())
+#define Sess(pobject) (*(::get_session(pobject))->cast < SESSION_TYPE >())
 
 #undef App
-#define App(pobject) (*(::get_context_application(pobject))->cast < APP_TYPE >())
+#define App(pobject) (*(::get_application(pobject))->cast < APP_TYPE >())
 
 
 

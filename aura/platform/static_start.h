@@ -41,7 +41,7 @@ namespace aura
 
    extern ::mutex * g_pmutexChildren;
    //extern ::mutex * g_pmutexThreadWaitClose;
-   //extern string_map < __pointer(::apex::library) >* g_pmapLibrary;
+   //extern string_map < __pointer(::acme::library) >* g_pmapLibrary;
    //extern string_map < PFN_NEW_AURA_LIBRARY >* g_pmapNewAuraLibrary;
 
 
@@ -60,7 +60,7 @@ namespace aura
 //#endif
 
 
-   //extern ::mutex * ::aura::get_system()->g_mutexLibrary;
+   //extern ::mutex * psystem->g_mutexLibrary;
 
    //extern __LPFN_MAIN_DEFERRED_RUN g_main_deferred_run;
 
@@ -119,7 +119,7 @@ namespace aura
 //
 //#endif
 
-   //extern map < ithread_t, ithread_t, ithread_t, ithread_t > * g_pmapThreadOn;
+   //extern map < itask_t, itask_t, itask_t, itask_t > * g_pmapThreadOn;
 
 //#ifdef WINDOWS
 //

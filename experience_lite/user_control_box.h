@@ -7,7 +7,7 @@ class CLASS_DECL_APP_EXPERIENCE_LITE MetaControlBox :
 public:
 
 
-   MetaControlBox(::layered * pobjectContext);
+   MetaControlBox(::object * pobject);
    virtual ~MetaControlBox();
 
 
@@ -17,9 +17,9 @@ public:
    virtual void install_message_routing(::channel * pchannel) override;
 
 
-   DECL_GEN_SIGNAL(_001OnShowWindow);
-   DECL_GEN_SIGNAL(on_message_left_button_down);
-   DECL_GEN_SIGNAL(on_message_left_button_up);
+   DECLARE_MESSAGE_HANDLER(_001OnShowWindow);
+   DECLARE_MESSAGE_HANDLER(on_message_left_button_down);
+   DECLARE_MESSAGE_HANDLER(on_message_left_button_up);
    void _001OnTimer(::timer * ptimer) override;
 
 

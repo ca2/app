@@ -9,11 +9,14 @@ public:
 
    ::u32       m_dwSleep;
 
-   delay_thread(::object * pobject, ::u32 dwSleep = 1000) :
-      ::object(pobject)
+   //delay_thread(::object * pobject, ::u32 dwSleep = 1000) //:
+   delay_thread(::u32 dwSleep = 1000) //:
+      //::object(pobject)
    {
 
       m_dwSleep = dwSleep;
+      //initialize(pobject);
+
 
    }
 
@@ -70,8 +73,7 @@ public:
    
    predicate_delay_thread(::object * pobject, PRED pred, ::u32 dwSleep = 1000) :
       m_predicate(pred),
-      ::object(pobject),
-      delay_thread(pobject, dwSleep)
+      delay_thread(dwSleep)
    {
       
    }

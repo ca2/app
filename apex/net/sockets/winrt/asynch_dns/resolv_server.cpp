@@ -6,8 +6,8 @@ namespace sockets
 {
 
 
-   resolv_server::resolv_server(::layered * pobjectContext, port_t port) :
-      ::object(pobjectContext),
+   resolv_server::resolv_server(::object * pobject, port_t port) :
+      ::object(pobject),
       m_quit(false),
       m_port(port),
       m_ready(false)
@@ -38,7 +38,7 @@ namespace sockets
       h.add(&l);
 
       m_ready = true;
-      while (!m_quit && thread_get_run())
+      while (!m_quit && task_get_run())
       {
          h.select(0, 500000);
       }

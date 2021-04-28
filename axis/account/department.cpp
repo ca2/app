@@ -7,6 +7,8 @@
 #include "framework.h"
 #include "system_storage.h"
 #include "network_authenticator.h"
+#include "acme/filesystem/filesystem/acme_dir.h"
+#include "acme/const/timer.h"
 
 
 namespace account
@@ -21,11 +23,6 @@ namespace account
 
       defer_create_mutex();
 
-      m_pstorage = __new(system_storage(this));
-      m_pauthenticator = __new(network_authenticator(this));
-      m_pusera = __new(user_array(this));
-      m_pproducta = __new(product_array(this));
-
    }
 
 
@@ -33,6 +30,8 @@ namespace account
    {
 
    }
+
+
 
 
 //   credentials * department::create_credentials()
@@ -46,7 +45,7 @@ namespace account
    ::file::path department::system_storage_default_path_prefix()
    {
 
-      return ::dir::system() / "credential_storage";
+      return m_psystem->m_pacmedir->system() / "credential_storage";
 
    }
 
@@ -114,10 +113,15 @@ namespace account
 
    }
 
+   
    bool department::url_requires_auth(::file::path pathUrl)
    {
 
-      if (System->url().get_server(pathUrl).lowered() == "server.ca2.cc")
+      auto psystem = m_psystem;
+
+      auto purl = psystem->url();
+
+      if (purl->get_server(pathUrl).lowered() == "server.ca2.cc")
       {
 
          return false;
@@ -145,14 +149,14 @@ namespace account
 
       }
 
-      if(::str::find_ci("/matter/",System->url().get_script(pathUrl)) >= 0)
+      if(::str::find_ci("/matter/",purl->get_script(pathUrl)) >= 0)
       {
 
          return false;
 
       }
 
-      string strServer = System->url().get_server(pathUrl);
+      string strServer = purl->get_server(pathUrl);
 
       url_domain domain;
 
@@ -197,7 +201,7 @@ namespace account
 //   string department::get_account_server(::file::path pathUrl, i32 iRetry)
 //   {
 //
-//      string strRequestingServer = System->url().get_server(pathUrl);
+//      string strRequestingServer = purl->get_server(pathUrl);
 //
 //      ::u32 dwGetFontopusBeg= ::millis::now();
 //
@@ -212,7 +216,7 @@ namespace account
 //         strGetFontopus = "https://ca2.cc/get_account_login";
 //      }
 //
-//      //      ::aura::application * papp = get_context_application();
+//      //      ::aura::application * papp = get_application();
 //
 //      url_domain domainFontopus;
 //
@@ -235,10 +239,10 @@ namespace account
 //   }
 
 
-   ::e_status department::initialize(::layered * pobjectContext)
+   ::e_status department::initialize(::object * pobject)
    {
 
-      auto estatus = ::apex::department::initialize(pobjectContext);
+      auto estatus = ::acme::department::initialize(pobject);
 
       if (!estatus)
       {
@@ -248,6 +252,45 @@ namespace account
       }
 
       estatus = __construct_new(m_ptaskpool);
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      auto pstorage = __new(system_storage);
+
+      m_pstorage = pstorage;
+
+      estatus = pstorage->initialize_system_storage(this);
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      m_pauthenticator = __create_new< network_authenticator >();
+
+      auto pusera = __new(user_array);
+      
+      m_pusera = pusera;
+
+      estatus = pusera->initialize_user_array(this);
+
+      if(!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      m_pproducta = __new(product_array);
+
+      estatus = m_pproducta->initialize_product_array(this);
 
       if (!estatus)
       {
@@ -272,7 +315,7 @@ namespace account
    void department::not_auth(::file::path pathUrl)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       auto puser = get_user(pathUrl);
 
@@ -306,9 +349,9 @@ namespace account
 
       }
 
-      m_ptaskpool->start_clock(e_clock_slow, one_minute());
+      m_ptaskpool->set_timer(e_timer_slow, one_minute());
 
-      auto psession = Session;
+      __pointer(::axis::session) psession = get_session();
 
       psession->on_user_logon(puser);
 
@@ -333,13 +376,13 @@ namespace account
    }
 
 
-   void department::on_clock(enum_clock eclock)
+   void department::on_clock(enum_timer etimer)
    {
 
-      if(eclock == e_clock_slow)
+      if(etimer == e_timer_slow)
       {
 
-         m_pusera->on_clock(eclock);
+         m_pusera->on_clock(etimer);
 
       }
 

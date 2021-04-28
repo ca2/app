@@ -50,7 +50,7 @@
     <ClCompile Include="frame_Minimal001.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="library.cpp">
+    <ClCompile Include="factory_exchange.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="style.cpp">
@@ -94,7 +94,7 @@
     <ClInclude Include="frame_Minimal001.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="library.h">
+    <ClInclude Include="aaa_library.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="_.h">
@@ -108,5 +108,10 @@
     <ResourceCompile Include="..\..\..\archive\platform-windows\version.rc">
       <Filter>Resource Files</Filter>
     </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="experience_tranquillum.def">
+      <Filter>Source Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

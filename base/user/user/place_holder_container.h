@@ -25,7 +25,7 @@ namespace user
 
       virtual ::user::place_holder * get_new_place_holder(const ::rectangle_i32 & rectCreate);
 
-      virtual bool remove_place_holder(::user::place_holder * pholder);
+      virtual bool erase_place_holder(::user::place_holder * pholder);
 
 
       virtual ::user::place_holder * place_hold(::user::interaction * pinteraction,const ::rectangle_i32 & rectCreate);

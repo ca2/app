@@ -48,8 +48,8 @@ namespace hotplugin
 
       m_etheme = ::user::e_theme_lite;
 
-      //get_context_application() = this;
-      //get_context_application()->m_psession = this;
+      //get_application() = this;
+      //get_application()->m_psession = this;
       //::aura::application::m_psession = this;
 
    }
@@ -104,7 +104,7 @@ namespace hotplugin
    }
 
 
-   void plugin::finalize()
+   ::e_status plugin::finalize()
    {
 
       ::user::interaction::finalize();
@@ -795,7 +795,7 @@ namespace hotplugin
 
          uptr size = m_sizeBitmapData.cx * m_sizeBitmapData.cy * sizeof(color32_t);
 
-         ::file::path pathName = Context.dir().appdata() / "time" / "aura/app_app_nest-" + m_strBitmapChannel;
+         ::file::path pathName = pcontext->m_papexcontext->dir().appdata() / "time" / "aura/app_app_nest-" + m_strBitmapChannel;
 
          if(!m_memorymapBitmap.open(pathName,true,true,bCreate, size))
          {

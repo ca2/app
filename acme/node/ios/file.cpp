@@ -76,7 +76,7 @@ namespace ios
 //      if(iNew == -1)
 //         return nullptr;
 //
-//      file* pFile = new file(get_context_application(), iNew);
+//      file* pFile = new file(get_application(), iNew);
 //      pFile->m_iFile = (::u32)iNew;
 //      ASSERT(pFile->m_iFile != (::u32)hFileNull);
 ////      pFile->m_bCloseOnDelete = m_bCloseOnDelete;
@@ -105,7 +105,7 @@ namespace ios
       if ((eopen & ::file::e_open_defer_create_directory) && (eopen & ::file::e_open_write))
       {
 
-         if(!Context.dir().mk(path.folder()))
+         if(!pcontext->m_papexcontext->dir().mk(path.folder()))
          {
 
             return { __new(::file::exception(::error_file_not_found, -1, -1, path, eopenParam)) };
@@ -196,7 +196,7 @@ namespace ios
          {
             /*         if (pException != nullptr)
              {
-             pException->create(get_object());
+             pException->create(this);
              ::file::exception * pfe = dynamic_cast < ::file::exception * > (pException->m_p);
              if(pfe != nullptr)
              {
@@ -219,7 +219,7 @@ namespace ios
 
          /*try
           {
-          get_context_application()->m_psystem->m_spfilesystem.m_p->FullPath(m_wstrFileName, m_wstrFileName);
+          get_application()->m_psystem->m_spfilesystem.m_p->FullPath(m_wstrFileName, m_wstrFileName);
           }
           catch(...)
           {
@@ -234,7 +234,7 @@ namespace ios
          {
             /*if (pException != nullptr)
              {
-             pException->create(get_object());
+             pException->create(this);
              ::file::exception * pfe = dynamic_cast < ::file::exception * > (pException->m_p);
              if(pfe != nullptr)
              {

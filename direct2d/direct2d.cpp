@@ -83,7 +83,7 @@ namespace direct2d
    }
 
 
-   //::e_status component::initialize(::layered * pobjectContext)
+   //::e_status component::initialize(::object * pobject)
    //{
 
    //
@@ -193,7 +193,7 @@ typedef FN_DXGIGetDebugInterface * PFN_DXGIGetDebugInterface;
 
 
 
-   ::e_status component::initialize(::layered * pbojectContext)
+   ::e_status component::initialize(::object * pobject)
    {
 
       // This flag adds support for surfaces with a different color channel ordering

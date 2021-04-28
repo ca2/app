@@ -6,7 +6,11 @@ enum enum_timer : ::i64
 
    e_timer_none,
 
+   e_timer_slow, // indicative usage: few minutes
+   e_timer_fast, // indicative usage: few seconds or big second fraction
+
    e_timer_drag_start = 10000,
+
    e_timer_command_probe,
    e_timer_menu,
    e_timer_overflow_scrolling,
@@ -50,6 +54,7 @@ enum enum_timer : ::i64
    
    e_timer_reload,
    e_timer_hover_select,
+
 
 
 };

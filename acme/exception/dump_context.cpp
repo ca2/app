@@ -89,10 +89,12 @@ dump_context::~dump_context()
 }
 
 
-void dump_context::finalize()
+::e_status dump_context::finalize()
 {
 
-   text_stream::finalize();
+   auto estatus = text_stream::finalize();
+
+   return estatus;
 
 }
 

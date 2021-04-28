@@ -144,10 +144,10 @@ bool synchronization_array::add(const synchronization_array& synca)
 }
 
 
-void synchronization_array::remove(class synchronization_object * psync)
+void synchronization_array::erase(class synchronization_object * psync)
 {
 
-   m_synchronizationa.remove(psync);
+   m_synchronizationa.erase(psync);
 
 #ifdef WINDOWS
 
@@ -156,7 +156,7 @@ void synchronization_array::remove(class synchronization_object * psync)
    if (hsync != nullptr)
    {
 
-      m_hsyncaCache.remove(hsync);
+      m_hsyncaCache.erase(hsync);
 
    }
 
@@ -165,19 +165,19 @@ void synchronization_array::remove(class synchronization_object * psync)
 }
 
 
-void synchronization_array::remove(index index)
+void synchronization_array::erase(index index)
 {
 
    if (index >= m_synchronizationa.size())
    {
 
-      __throw(error_range, "synchronization_array::remove: index out of bounds");
+      __throw(error_range, "synchronization_array::erase: index out of bounds");
 
    }
 
    synchronization_object* psync = m_synchronizationa[index];
 
-   remove(psync);
+   erase(psync);
 
 }
 

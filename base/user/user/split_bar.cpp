@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "base/user/user/_user.h"
+#include "split_pane.h"
 
 
 namespace user
@@ -30,7 +31,7 @@ namespace user
 //
 //      m_pparent = pparent;
 ////      i32 nClassStyle = 0;
-////      const char * pClassName = System->RegisterWndClass(
+////      const char * pClassName = psystem->RegisterWndClass(
 //
 //      //nClassStyle,
 //      //0,
@@ -41,7 +42,7 @@ namespace user
 //      if(!::user::interaction::create_child(pparent))
 //      {
 //
-//         System->message_box("Could not create Split Bar");
+//         message_box("Could not create Split Bar");
 //
 //         return false;
 //
@@ -94,7 +95,7 @@ namespace user
       //MESSAGE_LINK(e_message_size, pchannel, this, &split_bar::_001OnSize);
       MESSAGE_LINK(e_message_left_button_down, pchannel, this, &split_bar::on_message_left_button_down);
       MESSAGE_LINK(e_message_left_button_up, pchannel, this, &split_bar::on_message_left_button_up);
-      MESSAGE_LINK(e_message_mouse_move, pchannel, this, &split_bar::_001OnMouseMove);
+      MESSAGE_LINK(e_message_mouse_move, pchannel, this, &split_bar::on_message_mouse_move);
 
    }
 
@@ -104,12 +105,12 @@ namespace user
 
       __pointer(::message::mouse) pmouse(pmessage);
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       m_pparent->m_iIndex = m_iIndex;
 
       if(m_iIndex >= 0 && m_iIndex < m_pparent->m_splitbara.get_count()
-            && !m_pparent->m_panea[m_iIndex]->m_bFixedSize)
+            && !m_pparent->m_splitpanecompositea[m_iIndex]->m_bFixedSize)
       {
 
          m_pparent->m_iState = split_layout::stateDragging;
@@ -130,14 +131,14 @@ namespace user
 
       __pointer(::message::mouse) pmouse(pmessage);
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       if(m_pparent->m_iIndex == m_iIndex)
       {
 
          m_pparent->m_iState = split_layout::stateInitial;
 
-         auto psession = Session;
+         auto psession = get_session();
 
          auto puser = psession->user();
 
@@ -154,30 +155,40 @@ namespace user
    }
 
 
-   void split_bar::_001OnMouseMove(::message::message * pmessage)
+   void split_bar::on_message_mouse_move(::message::message * pmessage)
    {
 
       __pointer(::message::mouse) pmouse(pmessage);
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       auto point = pmouse->m_point;
 
       m_pparent->_001ScreenToClient(&point);
 
-      if(m_iIndex >= 0 && m_iIndex < m_pparent->m_splitbara.get_count() && !m_pparent->m_panea[m_iIndex]->m_bFixedSize)
+      if(m_iIndex >= 0 && m_iIndex < m_pparent->m_splitbara.get_count() && !m_pparent->m_splitpanecompositea[m_iIndex]->m_bFixedSize)
       {
+
+         auto psession = get_session();
+
+         auto puser = psession->user();
+
+         auto pwindowing = puser->windowing();
 
          if(m_pparent->GetSplitOrientation() == e_orientation_horizontal)
          {
 
-            pmouse->m_ecursor = e_cursor_size_vertical;
+            auto pcursor = pwindowing->get_cursor(e_cursor_size_vertical);
+
+            pmouse->m_pcursor = pcursor;
 
          }
          else
          {
 
-            pmouse->m_ecursor = e_cursor_size_horizontal;
+            auto pcursor = pwindowing->get_cursor(e_cursor_size_horizontal);
+
+            pmouse->m_pcursor = pcursor;
 
          }
 

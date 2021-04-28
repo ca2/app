@@ -20,10 +20,10 @@ namespace userfs
    }
 
 
-   ::e_status document::initialize(::layered * pobjectContext)
+   ::e_status document::initialize(::object * pobject)
    {
 
-      auto estatus = ::user::document::initialize(pobjectContext);
+      auto estatus = ::user::document::initialize(pobject);
 
       if (!estatus)
       {
@@ -46,10 +46,10 @@ namespace userfs
    }
 
 
-   //::aura::application * document::get_context_application() const
+   //::aura::application * document::get_application() const
    //{
 
-   //   return dynamic_cast < ::base::session * >(get_context_application()->m_psession)->m_pappCurrent;
+   //   return dynamic_cast < ::base::session * >(get_application()->m_psession)->m_papplicationCurrent;
 
    //}
 
@@ -75,7 +75,7 @@ namespace userfs
 
       {
 
-         synchronization_lock synchronizationlock(fs_data()->mutex());
+         synchronous_lock synchronouslock(fs_data()->mutex());
 
          m_pathFolder = pitem->m_filepathUser;
 
@@ -90,7 +90,7 @@ namespace userfs
 
          {
 
-            synchronization_lock synchronizationlock(fs_data()->mutex());
+            synchronous_lock synchronouslock(fs_data()->mutex());
 
             m_listingRoot = listing;
 
@@ -99,6 +99,10 @@ namespace userfs
       }
 
       ::file::listing listingUser;
+
+      auto papplication = get_application();
+
+      auto pcontext = m_pcontext;
 
       if(strlen(pitem->m_filepathUser) == 0)
       {
@@ -117,7 +121,7 @@ namespace userfs
       else
       {
 
-         Application.dir().ls(listingUser, pitem->m_filepathFinal);
+         pcontext->m_papexcontext->dir().ls(listingUser, pitem->m_filepathFinal);
 
          listingUser.m_pathUser = pitem->m_filepathUser;
 
@@ -185,7 +189,7 @@ namespace userfs
 
          }
 
-         ::file::path pathFinal  = Context.defer_process_path(pathSemiFinal | ::file::e_flag_resolve_alias);
+         ::file::path pathFinal  = pcontext->m_papexcontext->defer_process_path(pathSemiFinal | ::file::e_flag_resolve_alias);
 
          pathFinal.m_iDir = pathItem.m_iDir;
 
@@ -218,7 +222,7 @@ namespace userfs
          if (pathFinal.m_iDir < 0)
          {
 
-            pathFinal.m_iDir = Context.dir().is(pathFinal | ::file::e_flag_resolve_alias) ? 1 : 0;
+            pathFinal.m_iDir = pcontext->m_papexcontext->dir().is(pathFinal | ::file::e_flag_resolve_alias) ? 1 : 0;
 
          }
 
@@ -240,7 +244,7 @@ namespace userfs
 
       {
 
-         synchronization_lock synchronizationlock(fs_data()->mutex());
+         synchronous_lock synchronouslock(fs_data()->mutex());
 
          m_listingUser2 = listingUser;
 

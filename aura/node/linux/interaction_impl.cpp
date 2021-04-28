@@ -39,19 +39,18 @@ namespace linux
    }
 
 
-   interaction_impl::interaction_impl(::layered * pobjectContext) :
-      ::object(pobjectContext)
-   {
-
-      linux_interaction_impl_common_construct();
-
-   }
+//   interaction_impl::interaction_impl()
+//   {
+//
+//      linux_interaction_impl_common_construct();
+//
+//   }
 
 
    void interaction_impl::linux_interaction_impl_common_construct()
    {
 
-      set_os_data(nullptr);
+      //set_os_data(nullptr);
 
       m_bExposing    = false;
       m_bEnabled     = true;
@@ -144,7 +143,7 @@ namespace linux
 
       }
 
-      set_os_data(hWndNew);
+      //set_os_data(hWndNew);
 
       return true;
 
@@ -154,16 +153,22 @@ namespace linux
    oswindow interaction_impl::Detach()
    {
 
-      oswindow hwnd = (oswindow) get_os_data();
+//      oswindow hwnd = (oswindow) get_os_data();
+//
+//      if (hwnd != nullptr)
+//      {
+//
+//         set_os_data(nullptr);
+//
+//      }
 
-      if (hwnd != nullptr)
-      {
+      //return hwnd;
 
-         set_os_data(nullptr);
+      auto oswindow = get_oswindow();
 
-      }
+      m_pwindow->set_oswindow(nullptr);
 
-      return hwnd;
+      return oswindow;
 
    }
 
@@ -227,16 +232,16 @@ namespace linux
 
          m_puserinteraction->m_bMessageWindow = false;
 
-         auto psession = Session;
+         auto psession = get_session();
 
          auto puser = psession->user();
 
          auto pwindowing = puser->windowing();
 
-         pwindowing->user_sync(15_s, __routine([&]()
+         pwindowing->windowing_sync(15_s, __routine([&]()
          {
 
-            auto psession = Session;
+            auto psession = get_session();
 
             auto puser = psession->user();
 
@@ -328,7 +333,7 @@ namespace linux
          if(m_bMoveEvent || m_bSizeEvent)
          {
 
-            defer_fork("delayed_placement", __routine([this]()
+            defer_branch("delayed_placement", __routine([this]()
             {
 
                _thread_delayed_placement();
@@ -357,7 +362,7 @@ namespace linux
 
       }
 
-      if(!thread_get_run())
+      if(!task_get_run())
       {
 
          return;
@@ -572,39 +577,39 @@ namespace linux
    void interaction_impl::_001OnDestroy(::message::message * pmessage)
    {
 
-      UNREFERENCED_PARAMETER(pmessage);
-
-      {
-
-         single_lock synchronizationlock(get_context_application() == nullptr ? nullptr : get_context_application()->mutex(), true);
-
-         ::thread* pthread = ::get_thread();
-
-         if (pthread != nullptr)
-         {
-
-            if (pthread->get_active_ui() == m_puserinteraction)
-            {
-
-               pthread->set_active_ui(nullptr);
-
-            }
-
-         }
-
-      }
+//      UNREFERENCED_PARAMETER(pmessage);
+//
+//      {
+//
+//         single_lock synchronouslock(get_application() == nullptr ? nullptr : get_application()->mutex(), true);
+//
+//         auto ptask = ::get_task();
+//
+//         if (::is_null(ptask))
+//         {
+//
+//            if (pthread->get_active_ui() == m_puserinteraction)
+//            {
+//
+//               pthread->set_active_ui(nullptr);
+//
+//            }
+//
+//         }
+//
+//      }
 
 //      ::parallelization::post_quit_and_wait(m_pthreadProDevian, seconds(10));
 
 //      if (m_puserinteraction->m_pthread != nullptr)
 //      {
 //
-//         synchronization_lock synchronizationlock(m_puserinteraction->m_pthread->mutex());
+//         synchronous_lock synchronouslock(m_puserinteraction->m_pthread->mutex());
 //
 //         if(m_puserinteraction->m_pthread->m_puiptra != nullptr)
 //         {
 //
-//            m_puserinteraction->m_pthread->m_puiptra->remove(m_puserinteraction);
+//            m_puserinteraction->m_pthread->m_puiptra->erase(m_puserinteraction);
 //
 //         }
 //
@@ -618,7 +623,7 @@ namespace linux
    void interaction_impl::PostNcDestroy()
    {
 
-      clear_os_data();
+      //clear_os_data();
 
       if (m_pwindow)
       {
@@ -638,7 +643,7 @@ namespace linux
       if (get_os_data() != nullptr)
       {
 
-         DestroyWindow();
+         start_destroying_window();
 
       }
       else
@@ -718,7 +723,7 @@ namespace linux
    }
 
 
-   bool interaction_impl::DestroyWindow()
+   bool interaction_impl::start_destroying_window()
    {
 
       if(!m_pwindow)
@@ -739,7 +744,7 @@ namespace linux
 //
 //         auto pwindowing = ::aura::get_system()->windowing();
 //
-//         pwindowing->remove_window(this);
+//         pwindowing->erase_window(this);
 //
 //         return true;
 //
@@ -762,23 +767,31 @@ namespace linux
 
    }
 
+
    /////////////////////////////////////////////////////////////////////////////
    // Default interaction_impl implementation
 
 
    void interaction_impl::default_window_procedure(::message::message * pmessage)
-
    {
+
       /*  if (m_pfnSuper != nullptr)
            return ::callWindowProc(m_pfnSuper, get_handle(), nMsg, wparam, lparam);
 
-
         WNDPROC pfnWndProc;
         if ((pfnWndProc = *GetSuperWndProcaddr()) == nullptr)
+        {
+
            return ::default_window_procedure(get_handle(), nMsg, wparam, lparam);
 
+         }
         else
-           return ::callWindowProc(pfnWndProc, get_handle(), nMsg, wparam, lparam);*/
+        {
+
+           return ::callWindowProc(pfnWndProc, get_handle(), nMsg, wparam, lparam);
+
+           }
+           */
 
 
 //      return 0;
@@ -827,24 +840,24 @@ namespace linux
       }
    */
 
-//   bool interaction_impl::GetWindowPlacement(WINDOWPLACEMENT* pwndpl)
+//   bool interaction_impl::GetWindowPlacement(WINDOWPLACEMENT* puserinteractionpl)
 //
 //   {
 //      /*    ASSERT(::is_window((oswindow) get_handle()));
-//          pwndpl->length = sizeof(WINDOWPLACEMENT);
+//          puserinteractionpl->length = sizeof(WINDOWPLACEMENT);
 //
-//          return ::GetWindowPlacement(get_handle(), pwndpl) != false;*/
+//          return ::GetWindowPlacement(get_handle(), puserinteractionpl) != false;*/
 //
 //      return false;
 //   }
 //
-//   bool interaction_impl::SetWindowPlacement(const WINDOWPLACEMENT* pwndpl)
+//   bool interaction_impl::SetWindowPlacement(const WINDOWPLACEMENT* puserinteractionpl)
 //
 //   {
 //      /*      ASSERT(::is_window((oswindow) get_handle()));
-//            ((WINDOWPLACEMENT*)pwndpl)->length = sizeof(WINDOWPLACEMENT);
+//            ((WINDOWPLACEMENT*)puserinteractionpl)->length = sizeof(WINDOWPLACEMENT);
 //
-//            return ::SetWindowPlacement(get_handle(), pwndpl) != false;*/
+//            return ::SetWindowPlacement(get_handle(), puserinteractionpl) != false;*/
 //
 //      return false;
 //   }
@@ -920,12 +933,12 @@ namespace linux
    }
 
 
-   void interaction_impl::on_control_event(::user::control_event * pevent)
-   {
-
-      UNREFERENCED_PARAMETER(pevent);
-
-   }
+//   void interaction_impl::on_control_event(::user::control_event * pevent)
+//   {
+//
+//      UNREFERENCED_PARAMETER(pevent);
+//
+//   }
 
 
 //   void interaction_impl::_002OnDraw(::image * pimage)
@@ -1046,7 +1059,7 @@ namespace linux
       if(pmessage->m_id == e_message_key_down || pmessage->m_id == e_message_key_up || pmessage->m_id == e_message_char)
       {
 
-         auto psession = Session;
+         auto psession = get_session();
 
          auto puser = psession->user();
 
@@ -1120,7 +1133,7 @@ namespace linux
 
          __pointer(::message::mouse) pmouse = pmessage;
 
-         auto psession = Session;
+         auto psession = get_session();
 
          if(psession != nullptr)
          {
@@ -1131,14 +1144,16 @@ namespace linux
 
          }
 
-         if(m_puserinteraction != nullptr && m_puserinteraction->get_context_session()  != nullptr && m_puserinteraction->get_context_session() != get_context_session())
-         {
-
-            auto psession = Sess(m_puserinteraction->get_context_session());
-
-            psession->m_pointCursor = pmouse->m_point;
-
-         }
+//         if(m_puserinteraction != nullptr && m_puserinteraction->get_session()  != nullptr && m_puserinteraction->get_session() != get_session())
+//         {
+//
+//            auto psystem = m_psystem;
+//
+//            auto psession = psystem->node();
+//
+//            psession->m_pointCursor = pmouse->m_point;
+//
+//         }
 
          if(m_bTranslateMouseMessageCursor && !pmouse->m_bTranslated)
          {
@@ -1218,12 +1233,23 @@ namespace linux
 
          if(pmessage->m_id == e_message_mouse_move)
          {
+
             // We are at the message handler routine.
             // mouse messages originated from message handler and that are mouse move events should end up with the correct cursor.
             // So the routine starts by setting to the default cursor,
             // what forces, at the end of message processing, setting the bergedge cursor to the default cursor, if no other
             // handler has set it to another one.
-            pmouse->m_ecursor = e_cursor_default;
+            __pointer(::message::mouse) pmouse(pmessage);
+
+            auto psession = get_session();
+
+            auto puser = psession->user();
+
+            auto pwindowing = puser->windowing();
+
+            auto pcursor = pwindowing->get_cursor(e_cursor_arrow);
+
+            pmouse->m_pcursor = pcursor;
 
             m_puserinteraction->m_pimpl2->_on_mouse_move_step(pmouse->m_point);
 
@@ -1323,12 +1349,12 @@ namespace linux
             m_puserinteraction->on_control_event((::user::control_event *) pmessage->m_lparam.m_lparam);
 
          }
-         else
-         {
-
-            on_control_event((::user::control_event *) pmessage->m_lparam.m_lparam);
-
-         }
+//         else
+//         {
+//
+//            on_control_event((::user::control_event *) pmessage->m_lparam.m_lparam);
+//
+//         }
 
          return;
 
@@ -1516,7 +1542,7 @@ namespace linux
 //      if (pszcaption == nullptr)
 //      {
 //
-//         strCaption = get_context_application()->m_strAppName;
+//         strCaption = get_application()->m_strAppName;
 //
 //      }
 //      else
@@ -1753,7 +1779,7 @@ namespace linux
 //   bool PASCAL interaction_impl::ReflectLastMsg(oswindow hWndChild, LRESULT* pResult)
 //   {
 //      // get the ::collection::map, and if no ::collection::map, then this message does not need reflection
-//      /*      single_lock synchronizationlock(afxMutexHwnd(), true);
+//      /*      single_lock synchronouslock(afxMutexHwnd(), true);
 //            hwnd_map * pMap = afxMapHWND();
 //            if (pMap == nullptr)
 //               return false;
@@ -1972,7 +1998,7 @@ namespace linux
 ////
 ////            ::u32 tickStart;
 ////
-////            while (::thread_get_run())
+////            while (::task_get_run())
 ////            {
 ////
 //// auto tickStart = ::millis::now();
@@ -2235,7 +2261,7 @@ namespace linux
 
       }
 
-      auto psession = Session;
+      auto psession = get_session();
 
       auto puser = psession->user();
 
@@ -2244,7 +2270,7 @@ namespace linux
       if(pwindowing)
       {
 
-         pwindowing->user_fork(__routine([this]()
+         pwindowing->windowing_branch(__routine([this]()
                           {
 
                              m_pwindow->exit_iconify();
@@ -2266,7 +2292,7 @@ namespace linux
 
       }
 
-      auto psession = Session;
+      auto psession = get_session();
 
       auto puser = psession->user();
 
@@ -2275,7 +2301,7 @@ namespace linux
       if(pwindowing)
       {
 
-         pwindowing->user_fork(__routine([this]()
+         pwindowing->windowing_branch(__routine([this]()
          {
 
             m_pwindow->exit_full_screen();
@@ -2297,7 +2323,7 @@ namespace linux
 
       }
 
-      auto psession = Session;
+      auto psession = get_session();
 
       auto puser = psession->user();
 
@@ -2306,7 +2332,7 @@ namespace linux
       if(pwindowing)
       {
 
-         pwindowing->user_fork(__routine([this]()
+         pwindowing->windowing_branch(__routine([this]()
          {
 
             m_pwindow->exit_zoomed();
@@ -2648,27 +2674,27 @@ namespace linux
 //   }
 //
 //
-//   void interaction_impl::MapWindowPoints(::user::interaction * pwndTo, POINT_I32 * pPoint, ::u32 nCount)
+//   void interaction_impl::MapWindowPoints(::user::interaction * puserinteractionTo, POINT_I32 * pPoint, ::u32 nCount)
 //
 //   {
 //
 //      __throw(error_not_implemented);
 //
 ////      ASSERT(::is_window((oswindow) get_handle()));
-////      ::MapWindowPoints(get_handle(), (oswindow) pwndTo->get_handle(), pPoint, nCount);
+////      ::MapWindowPoints(get_handle(), (oswindow) puserinteractionTo->get_handle(), pPoint, nCount);
 //
 //
 //   }
 //
 //
-//   void interaction_impl::MapWindowPoints(::user::interaction * pwndTo, RECTANGLE_I32 * prectangle)
+//   void interaction_impl::MapWindowPoints(::user::interaction * puserinteractionTo, RECTANGLE_I32 * prectangle)
 //
 //   {
 //
 //      __throw(error_not_implemented);
 //
 ////      ASSERT(::is_window((oswindow) get_handle()));
-////      ::MapWindowPoints(get_handle(), (oswindow) pwndTo->get_handle(), (POINT_I32 *)prectangle, 2);
+////      ::MapWindowPoints(get_handle(), (oswindow) puserinteractionTo->get_handle(), (POINT_I32 *)prectangle, 2);
 //
 //
 //   }
@@ -2917,7 +2943,7 @@ namespace linux
 //
 //      __throw(error_not_implemented);
 //      //ASSERT(::is_window((oswindow) get_handle()));
-//      //::draw2d::graphics_pointer g(get_object());
+//      //::draw2d::graphics_pointer g(this);
 //      //g->attach(::GetDCEx(get_handle(), (HRGN)prgnClip->get_handle(), flags));
 //      //return g.detach();
 //
@@ -3008,7 +3034,7 @@ namespace linux
 ////        UNREFERENCED_PARAMETER(pfnTimer);
 //
 ////
-////        m_puserinteraction->get_context_application()->set_timer(m_puserinteraction, uEvent, nElapse);
+////        m_puserinteraction->get_application()->set_timer(m_puserinteraction, uEvent, nElapse);
 ////
 ////        return uEvent;
 //
@@ -3025,7 +3051,7 @@ namespace linux
 //
 //      return ::user::interaction_impl::KillTimer(uEvent);
 //
-////       m_puserinteraction->get_context_application()->unset_timer(m_puserinteraction, uEvent);
+////       m_puserinteraction->get_application()->unset_timer(m_puserinteraction, uEvent);
 //
 //      //     return true;
 //
@@ -3675,7 +3701,7 @@ namespace linux
 
 //      __pointer(::user::message) pmessage(pmessage);
 //
-//      auto psession = Session;
+//      auto psession = get_session();
 //
 //      if(psession->get_cursor() != nullptr
 //            && psession->get_cursor()->m_ecursor != cursor_system)
@@ -4062,7 +4088,7 @@ namespace linux
       //if(eactivation &)
 //      {
 //
-//         wm_add_remove_state(m_oswindow, net_wm_state_hidden, false);
+//         wm_add_erase_state(m_oswindow, net_wm_state_hidden, false);
 //
 //      }
 //
@@ -4190,7 +4216,7 @@ namespace linux
          //x11_async_runnable(__routine([&]()
          //{
 
-            //synchronization_lock synchronizationlock(x11_mutex());
+            //synchronous_lock synchronouslock(x11_mutex());
 
             _001UpdateScreen();
 
@@ -4206,7 +4232,7 @@ namespace linux
    void interaction_impl::non_top_most_upper_window_rects(::rectangle_i32_array& recta)
    {
 
-//      auto psession = Session;
+//      auto psession = get_session();
 //
 //      auto puser = psession->user();
 //

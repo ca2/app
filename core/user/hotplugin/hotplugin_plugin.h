@@ -44,7 +44,7 @@ namespace hotplugin
       string                        m_strStatus;
       string                        m_strStatus2;
 
-      ithread_t                      m_nCa2StarterStartThreadID;
+      itask_t                      m_nCa2StarterStartThreadID;
       bool                          m_bReload;
       bool                          m_bInstalling;
       const char *                  m_pszReloadCommandLine;
@@ -186,7 +186,7 @@ namespace hotplugin
 
       //virtual ::form_property_set * get_form_property_set() override;
 
-      virtual void finalize() override;
+      virtual ::e_status finalize() override;
       //virtual void install_message_routing(::channel * pchannel) override;
       //virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
 

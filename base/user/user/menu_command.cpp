@@ -7,8 +7,7 @@ namespace user
 {
 
 
-   menu_command::menu_command(::layered * pobjectContext) :
-      ::message::command(pobjectContext)
+   menu_command::menu_command()
    {
 
    }

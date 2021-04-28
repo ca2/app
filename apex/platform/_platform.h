@@ -167,14 +167,14 @@ namespace dynamic_source
 //#define SESSION_TYPE ::base::session
 //#define APP_TYPE ::base::application
 
-#undef Sys
-#define Sys(pobject) (*(::get_context_system(pobject))->cast < SYSTEM_TYPE >())
-
-#undef Sess
-#define Sess(pcontextsession) (pcontextsession->cast < SESSION_TYPE >())
-
-#undef App
-#define App(pobject) (*(::get_context_application(pobject))->cast < APP_TYPE >())
+//#undef Sys
+//#define Sys(pobject) (*(::::apex::get_system(pobject))->cast < SYSTEM_TYPE >())
+//
+//#undef Sess
+//#define Sess(pcontextsession) (pcontextsession->cast < SESSION_TYPE >())
+//
+//#undef App
+//#define App(pobject) (*(::get_application(pobject))->cast < APP_TYPE >())
 
 
 
@@ -383,7 +383,7 @@ namespace apex
 #endif
 
 
-#include "str_context.h"
+//#include "str_context.h"
 
 
 

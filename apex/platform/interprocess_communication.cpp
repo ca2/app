@@ -113,7 +113,7 @@ namespace interprocess_communication
    string app_install(string strPlatform)
    {
 
-      return "::ca2::account::ca2_spaboot_install_" + strPlatform + "::7807e510-5579-11dd-ae16-0800200c7784";
+      return "::ca2::account::ca2_installer_install_" + strPlatform + "::7807e510-5579-11dd-ae16-0800200c7784";
 
    }
 
@@ -242,11 +242,11 @@ namespace interprocess_communication
 
              //}
 
-             //auto pappcore = ::apex::get_system()->m_pappcore;
+             //auto pappcore = psystem->m_pappcore;
 
              //auto pmaindata = pappcore->m_pmaindata;
 
-         //HINSTANCE hinstance = (HINSTANCE)::apex::get_system()->m_hinstance;
+         //HINSTANCE hinstance = (HINSTANCE)psystem->m_hinstance;
 
          //ATOM atom = rx_register_class(hinstance);
 
@@ -333,7 +333,7 @@ namespace interprocess_communication
          else
          {
 
-            get_context_application()->fork([this,prx,strMessage]()
+            get_application()->fork([this,prx,strMessage]()
                {
 
                   if (m_preceiver != nullptr)

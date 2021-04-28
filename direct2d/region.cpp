@@ -299,7 +299,7 @@ namespace draw2d_direct2d
       for(int i = 0; i < m_nCount; i++)
       {
          int jCount = m_lppolycounts[i];
-         pa.remove_all();
+         pa.erase_all();
          for(int j = 0; j < jCount; j++)
          {
             pa.add(point_f64(m_lppoints[n].x, m_lppoints[n].y));

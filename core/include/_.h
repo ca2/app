@@ -17,14 +17,6 @@
 #pragma once
 
 
-//#undef System
-//#undef Sess
-//#undef App
-//
-//
-//#define System (::get_context_system()->m_pcoresystem)
-//#define Sess(pcontextsession) (pcontextsession->m_pcoresession)
-//#define App(pobject) (*pobject->get_app()->m_pcoreapplication)
 
 
 namespace base
@@ -35,9 +27,6 @@ namespace base
    class session;
    class application;
    class user;
-
-
-   inline system * get_system() { return ::core::get_system()->layer(LAYERED_CORE); }
 
 
 } // namespace base
@@ -106,7 +95,7 @@ CLASS_DECL_CORE bool __node_core_pos_term();
 
 
 //CLASS_DECL_CORE ::core::user * get_context_user();
-//CLASS_DECL_CORE inline ::core::user * get_context_user(::layered * pobjectContext);
+//CLASS_DECL_CORE inline ::core::user * get_context_user(::object * pobject);
 //CLASS_DECL_CORE inline ::core::user * get_context_user(::aura::application * papp);
 //
 //
@@ -119,6 +108,8 @@ CLASS_DECL_CORE bool __node_core_pos_term();
 
 //#include "aura/common.h"
 
+
+#include "core/platform/core.h"
 
 #if defined(LINUX)
 
@@ -200,6 +191,13 @@ namespace fs
 
 class ifs;
 
+namespace ftp
+{
+
+   class file_status;
+
+} // namespace ftp
+
 //#include "axis/programming/javascript/javascript.h"
 
 #if !defined(_UWP)
@@ -229,6 +227,8 @@ class ifs;
 #include "core/platform/session.h"
 
 #include "core/platform/system.h"
+
+
 
 //#include "core/multimedia/audio/speaker.h"
 
@@ -268,4 +268,7 @@ class ifs;
 #include "core/os/_impl.h"
 
 
+#include "core/platform/_impl.h"
 
+
+#include "core/filesystem/filemanager/_impl.h"

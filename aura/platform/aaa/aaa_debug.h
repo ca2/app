@@ -279,7 +279,7 @@
 //
 //
 //extern critical_section * g_pcsTrace;
-//extern context_object * g_pobjecTracer;
+//extern object * g_pobjecTracer;
 //
 //CLASS_DECL_AURA void os_trace(enum_trace_level elevel, const char * pszTag, const char * pszMessage);
 //CLASS_DECL_AURA void trace(enum_trace_level elevel, const char * pszTag, const char * psz, const char * pszFile = nullptr, int iLine = -1);
@@ -317,18 +317,18 @@
 //
 //extern CLASS_DECL_AURA ::mutex * g_pmutexMemoryCounters;
 //
-//CLASS_DECL_AURA bool memcnts();
+//CLASS_DECL_AURA bool memory_counter_on();
 //
-//CLASS_DECL_AURA ::file::path memcnts_base_path();
-//
-//template < typename T >
-//::file::path memcnts_path(T * pthis);
+//CLASS_DECL_AURA ::file::path memory_counter_base_path();
 //
 //template < typename T >
-//void memcnts_inc(T * pthis);
+//::file::path memory_counter_path(T * pthis);
 //
 //template < typename T >
-//void memcnts_dec(T * pthis);
+//void memory_counter_increment(T * pthis);
+//
+//template < typename T >
+//void memory_counter_decrement(T * pthis);
 //
 //
 //namespace papaya

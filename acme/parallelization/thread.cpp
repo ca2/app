@@ -4,7 +4,7 @@
 CLASS_DECL_ACME bool __simple_task_sleep()
 {
 
-   while (thread_get_run())
+   while (task_get_run())
    {
 
       sleep(300_ms);
@@ -24,7 +24,7 @@ CLASS_DECL_ACME bool __simple_task_sleep(millis millis)
    while (i > 300)
    {
 
-      if (!thread_get_run())
+      if (!task_get_run())
       {
 
          return false;
@@ -37,7 +37,7 @@ CLASS_DECL_ACME bool __simple_task_sleep(millis millis)
 
    }
 
-   if (!thread_get_run())
+   if (!task_get_run())
    {
 
       return false;
@@ -46,7 +46,7 @@ CLASS_DECL_ACME bool __simple_task_sleep(millis millis)
 
    sleep((::millis) i);
 
-   return ::thread_get_run();
+   return ::task_get_run();
 
 }
 
@@ -54,7 +54,7 @@ CLASS_DECL_ACME bool __simple_task_sleep(millis millis)
 CLASS_DECL_ACME bool __simple_task_sleep(synchronization_object* psync)
 {
 
-   while (thread_get_run())
+   while (task_get_run())
    {
 
       if (psync->wait(300_ms).succeeded())
@@ -79,7 +79,7 @@ CLASS_DECL_ACME bool __simple_task_sleep(millis millis, synchronization_object* 
    while (i > 300)
    {
 
-      if (!thread_get_run())
+      if (!task_get_run())
       {
 
          return false;
@@ -97,7 +97,7 @@ CLASS_DECL_ACME bool __simple_task_sleep(millis millis, synchronization_object* 
 
    }
 
-   if (!thread_get_run())
+   if (!task_get_run())
    {
 
       return false;
@@ -111,7 +111,7 @@ CLASS_DECL_ACME bool __simple_task_sleep(millis millis, synchronization_object* 
 
    }
 
-   return ::thread_get_run();
+   return ::task_get_run();
 
 }
 
@@ -173,3 +173,25 @@ CLASS_DECL_ACME bool acme_task_sleep(millis millis, synchronization_object* psyn
 //
 //}
 //
+
+
+__thread bool t_bMainThread = false;
+
+
+CLASS_DECL_ACME void set_main_thread()
+{
+
+   t_bMainThread = true;
+
+}
+
+
+CLASS_DECL_ACME bool is_main_thread()
+{
+
+   return t_bMainThread;
+
+}
+
+
+

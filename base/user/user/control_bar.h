@@ -252,7 +252,7 @@ namespace user
 
 
       virtual bool IsDockBar();
-      virtual bool DestroyWindow() override;
+      virtual bool start_destroying_window() override;
       virtual void OnBarStyleChange(u32 dwOldStyle, u32 dwNewStyle);
 
 
@@ -276,21 +276,21 @@ namespace user
       void SetBarInfo(BaseControlBarInfo* pInfo, __pointer(::user::frame_window) pFrameWnd);
 
       void _001OnTimer(::timer * ptimer) override;
-      DECL_GEN_SIGNAL(on_message_create);
-      DECL_GEN_SIGNAL(_001OnDestroy);
-      DECL_GEN_SIGNAL(_001OnCtlColor);
-      DECL_GEN_SIGNAL(_001OnWindowPosChanging);
-      DECL_GEN_SIGNAL(_001OnSizeParent);
-      DECL_GEN_SIGNAL(_001OnHelpHitTest);
-      DECL_GEN_SIGNAL(on_message_left_button_down);
-      DECL_GEN_SIGNAL(_001OnLButtonDblClk);
-      DECL_GEN_SIGNAL(_001OnMouseActivate);
-      DECL_GEN_SIGNAL(_001OnMouseMove);
-      DECL_GEN_SIGNAL(on_message_left_button_up);
-      //DECL_GEN_SIGNAL(_001OnShowWindow);
-      //DECL_GEN_SIGNAL(_001OnCancelMode);
+      DECLARE_MESSAGE_HANDLER(on_message_create);
+      DECLARE_MESSAGE_HANDLER(_001OnDestroy);
+      DECLARE_MESSAGE_HANDLER(_001OnCtlColor);
+      DECLARE_MESSAGE_HANDLER(_001OnWindowPosChanging);
+      DECLARE_MESSAGE_HANDLER(_001OnSizeParent);
+      DECLARE_MESSAGE_HANDLER(_001OnHelpHitTest);
+      DECLARE_MESSAGE_HANDLER(on_message_left_button_down);
+      DECLARE_MESSAGE_HANDLER(_001OnLButtonDblClk);
+      DECLARE_MESSAGE_HANDLER(_001OnMouseActivate);
+      DECLARE_MESSAGE_HANDLER(on_message_mouse_move);
+      DECLARE_MESSAGE_HANDLER(on_message_left_button_up);
+      //DECLARE_MESSAGE_HANDLER(_001OnShowWindow);
+      //DECLARE_MESSAGE_HANDLER(_001OnCancelMode);
 
-      //   DECL_GEN_SIGNAL(_001OnPaint);
+      //   DECLARE_MESSAGE_HANDLER(_001OnPaint);
       //   virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics);
 
       virtual void install_message_routing(::channel * pchannel) override;

@@ -25,7 +25,7 @@
 //{
 //
 
-//thread::thread(::layered * pobjectContext):
+//thread::thread(::object * pobject):
 //   ::object(pobject),
 //   ::thread_impl(pobject)
 //{

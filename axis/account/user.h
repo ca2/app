@@ -49,7 +49,7 @@ namespace account
       virtual ~user();
       
 
-      virtual ::e_status initialize(::layered * pobjectContext) override;
+      virtual ::e_status initialize(::object * pobject) override;
 
 
       virtual void logon_local(string strAccount);
@@ -64,7 +64,7 @@ namespace account
       
       virtual bool is_authenticated();
       
-      void on_clock(enum_clock eclock);
+      void on_clock(enum_timer etimer);
       
    };
    

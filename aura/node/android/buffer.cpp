@@ -30,7 +30,7 @@ namespace android
 
       //destroy_buffer();
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       int w;
 

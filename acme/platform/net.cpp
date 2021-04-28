@@ -451,9 +451,9 @@ void openURL(const string &url_str)
 //
 //   credentials.m_bInteractive = bInteractive;
 //
-//   //strUsername = file_as_string(::dir::system() / "config\\user.txt");
+//   //strUsername = file_as_string(pacmedir->system() / "config\\user.txt");
 //
-//   //strPassword = file_as_string(::dir::system() / "config\\pass.txt");
+//   //strPassword = file_as_string(pacmedir->system() / "config\\pass.txt");
 //
 //   //if(strUsername.has_char() && strPassword.has_char())
 //   //{
@@ -980,7 +980,7 @@ void openURL(const string& url_str)
 //#define strdup _strdup
 //#endif
 //
-//CLASS_DECL_APEX int_bool freerdp_get_credentials(void * instance, char** username,char** password,char** domain, const char * pszServerName, int bInteractive)
+//CLASS_DECL_ACME int_bool freerdp_get_credentials(void * instance, char** username,char** password,char** domain, const char * pszServerName, int bInteractive)
 //{
 //
 //   ::apex::application * papp = (::apex::application *) instance;
@@ -1011,9 +1011,9 @@ void openURL(const string& url_str)
 //
 //   credentials.m_bInteractive = bInteractive;
 //
-//   //strUsername = file_as_string(::dir::system() / "config\\user.txt");
+//   //strUsername = file_as_string(pacmedir->system() / "config\\user.txt");
 //
-//   //strPassword = file_as_string(::dir::system() / "config\\pass.txt");
+//   //strPassword = file_as_string(pacmedir->system() / "config\\pass.txt");
 //
 //   //if(strUsername.has_char() && strPassword.has_char())
 //   //{

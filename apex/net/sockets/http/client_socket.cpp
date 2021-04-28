@@ -152,14 +152,14 @@ namespace sockets
 {
 
 
-   http_client_socket::http_client_socket(base_socket_handler& h) :
-      ::object(&h),
-      base_socket(h),
-      socket(h),
-      stream_socket(h),
-      tcp_socket(h),
-      http_socket(h),
-      http_tunnel(h),
+   http_client_socket::http_client_socket() :
+      //::object(&h),
+      //base_socket(h),
+      //socket(h),
+      //stream_socket(h),
+      //tcp_socket(h),
+      //http_socket(h),
+      //http_tunnel(h),
       m_content_length((memsize)-1),
       m_content_ptr(0),
       m_b_complete(false),
@@ -172,23 +172,23 @@ namespace sockets
       m_pfile           = nullptr;
       m_iFinalSize      = -1;
 
-      memcnts_inc(this);
+      memory_counter_increment(this);
 
    }
 
 
-   http_client_socket::http_client_socket(base_socket_handler & h, const string & strUrlParam) :
-      ::object(&h),
-      base_socket(h),
-      socket(h),
-      stream_socket(h),
-      tcp_socket(h),
-      http_socket(h),
-      http_tunnel(h),
-      m_content_length((memsize)-1),
-      m_content_ptr(0),
-      m_b_complete(false),
-      m_b_close_when_complete(false)
+   http_client_socket::http_client_socket(const string & strUrlParam) //:
+      //::object(&h),
+      //base_socket(h),
+      //socket(h),
+      //stream_socket(h),
+      //tcp_socket(h),
+      //http_socket(h),
+      //http_tunnel(h),
+      //m_content_length((memsize)-1),
+      //m_content_ptr(0),
+      //m_b_complete(false),
+      //m_b_close_when_complete(false)
    {
 
       string strRequestUri;
@@ -206,7 +206,11 @@ namespace sockets
       if (m_host.is_empty())
       {
 
-         m_strInitSSLClientContext = ::apex::get_system()->url().get_server(strRequestUri);
+         auto psystem = m_psystem;
+
+         auto purl = psystem->url();
+
+         m_strInitSSLClientContext = purl->get_server(strRequestUri);
 
       }
       else
@@ -223,7 +227,7 @@ namespace sockets
       m_pfile                                   = nullptr;
       m_iFinalSize                              = -1;
 
-      memcnts_inc(this);
+      memory_counter_increment(this);
 
    }
 
@@ -231,7 +235,7 @@ namespace sockets
    http_client_socket::~http_client_socket()
    {
 
-      memcnts_dec(this);
+      memory_counter_decrement(this);
 
    }
 
@@ -569,13 +573,24 @@ namespace sockets
       return m_content_type;
    }
 
+
    void http_client_socket::Url(const string & url_in, string & host, port_t & port)
    {
+
       string url;
+
       url_this(url_in, m_protocol, m_host, m_port, url, m_url_filename);
+
       m_request.attr("url") = url;
-      host = ::apex::get_system()->url().get_server(url);
-      port = (port_t) ::apex::get_system()->url().get_port(url);
+
+      auto psystem = m_psystem;
+
+      auto purl = psystem->url();
+
+      host = purl->get_server(url);
+
+      port = (port_t) purl->get_port(url);
+
    }
 
 
@@ -736,10 +751,10 @@ namespace sockets
 
       string strAddUp;
 
-      if (Application.m_strHttpUserAgentToken.has_char() && Application.m_strHttpUserAgentVersion.has_char())
+      if (get_application()->m_strHttpUserAgentToken.has_char() && get_application()->m_strHttpUserAgentVersion.has_char())
       {
 
-         strAddUp = Application.m_strHttpUserAgentToken + "/" + Application.m_strHttpUserAgentVersion;
+         strAddUp = get_application()->m_strHttpUserAgentToken + "/" + get_application()->m_strHttpUserAgentVersion;
 
       }
       else
@@ -768,10 +783,10 @@ namespace sockets
 //
 //      string strOpSys = op_sys();
 //
-//      if (Application.m_strAppName.has_char())
+//      if (get_application()->m_strAppName.has_char())
 //      {
 //
-//         str += Application.m_strAppName;
+//         str += get_application()->m_strAppName;
 //
 //         str += " (";
 //
@@ -819,8 +834,9 @@ namespace sockets
 namespace http
 {
 
-   session::session(::layered * pobjectContext) :
-      m_handler(pobjectContext)
+   session::session()
+      //::object * pobject) :
+      //m_handler(pobject)
    {
 
       //m_handler.EnablePool();

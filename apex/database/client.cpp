@@ -31,7 +31,7 @@ namespace database
 
       auto idProcedure = translate_property_id(id);
 
-      ::add_routine(Application.m_routinemap[idProcedure], [this, id]()
+      ::add_routine(get_application()->m_routinemap[idProcedure], [this, id]()
          {
 
             auto pproperty = fetch_property(id);
@@ -64,16 +64,16 @@ namespace database
       if (m_pdataserver != nullptr)
       {
 
-         synchronization_lock synchronizationlock(m_pdataserver->mutex());
+         synchronous_lock synchronouslock(m_pdataserver->mutex());
 
-         m_pdataserver->m_clienta.remove_client(this);
+         m_pdataserver->m_clienta.erase_client(this);
 
       }
 
       if(pserver != nullptr)
       {
 
-         synchronization_lock synchronizationlock(pserver->mutex());
+         synchronous_lock synchronouslock(pserver->mutex());
 
          pserver->m_clienta.add_client(this);
 
@@ -92,12 +92,12 @@ namespace database
       if(m_pdataserver != nullptr)
       {
 
-         synchronization_lock synchronizationlock(m_pdataserver->mutex());
+         synchronous_lock synchronouslock(m_pdataserver->mutex());
 
          try
          {
 
-            m_pdataserver->m_clienta.remove_client(this);
+            m_pdataserver->m_clienta.erase_client(this);
 
          }
          catch(...)
@@ -210,7 +210,7 @@ namespace database
 
             }
 
-            is.set_context_object(this);
+            is.initialize(this);
 
             is >> payload;
 
@@ -302,10 +302,10 @@ namespace database
    }
 
 
-   void client_array::remove_client(client *pclient)
+   void client_array::erase_client(client *pclient)
    {
 
-      remove(pclient);
+      erase(pclient);
 
    }
 
@@ -343,7 +343,7 @@ namespace database
    key client::calc_parent_data_key()
    {
 
-      return Application.calc_data_key();
+      return get_application()->calc_data_key();
 
    }
 

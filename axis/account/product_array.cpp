@@ -5,9 +5,7 @@ namespace account
 {
 
 
-   product_array::product_array(department * pdepartment) :
-      ::object(pdepartment),
-      m_pdepartment(pdepartment)
+   product_array::product_array()
    {
 
       defer_create_mutex();
@@ -18,6 +16,23 @@ namespace account
 
    product_array::~product_array()
    {
+
+   }
+
+
+   ::e_status product_array::initialize_product_array(department* pdepartment)
+   {
+
+      auto estatus = ::object::initialize(pdepartment);
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return estatus;
 
    }
 
@@ -89,9 +104,9 @@ namespace account
 
       {
 
-         synchronization_lock synchronizationlock(mutex());
+         synchronous_lock synchronouslock(mutex());
 
-         m_map[strAppId] = __new(::account::product(get_context_object()));
+         m_map[strAppId] = __new(::account::product);
 
          pproduct = get_product(strAppId);
 
@@ -145,7 +160,7 @@ namespace account
 
       ::count count = m_map.get_count();
 
-      m_map.remove_all();
+      m_map.erase_all();
 
       return count;
 
@@ -155,7 +170,7 @@ namespace account
    bool product_array::clear_cache(string strAppId)
    {
 
-      return m_map.remove_key(strAppId) != false;
+      return m_map.erase_key(strAppId) != false;
 
    }
 

@@ -19,10 +19,10 @@ namespace user
    }
 
 
-   //bool step_slider::create_window(::user::interaction * pwndParent, id id)
+   //bool step_slider::create_window(::user::interaction * puserinteractionParent, id id)
    //{
 
-   //   return ::user::interaction::create_window(nullptr, nullptr, WS_CHILD, pwndParent, id) != false;
+   //   return ::user::interaction::create_window(nullptr, nullptr, WS_CHILD, puserinteractionParent, id) != false;
 
    //}
 
@@ -34,7 +34,7 @@ namespace user
 //      //MESSAGE_LINK(e_message_timer, pchannel, this, &step_slider::_001OnTimer);
       MESSAGE_LINK(e_message_left_button_down, pchannel, this, &step_slider::on_message_left_button_down);
       MESSAGE_LINK(e_message_left_button_up, pchannel, this, &step_slider::on_message_left_button_up);
-      MESSAGE_LINK(e_message_mouse_move, pchannel, this, &step_slider::_001OnMouseMove);
+      MESSAGE_LINK(e_message_mouse_move, pchannel, this, &step_slider::on_message_mouse_move);
    }
 
    void step_slider::on_message_create(::message::message * pmessage)
@@ -85,7 +85,7 @@ namespace user
    }
 
 
-   void step_slider::_001OnMouseMove(::message::message * pmessage)
+   void step_slider::on_message_mouse_move(::message::message * pmessage)
    {
       UNREFERENCED_PARAMETER(pmessage);
 //      __pointer(::message::mouse) pmouse(pmessage);
@@ -105,15 +105,10 @@ namespace user
 
       ::rectangle_i32 rectClient;
       get_client_rect(rectClient);
-      class imaging & imaging = System->imaging();
 
       byte bAlpha = (byte) (128.0 * get_alpha());
 
-      imaging.color_blend(
-         pgraphics,
-         rectClient,
-         rgb(150, 200, 255),
-         bAlpha);
+      pgraphics->color_blend(rectClient, rgb(150, 200, 255), bAlpha);
 
       i64 iMin = m_scalar.minimum();
       i64 iMax = m_scalar.maximum();
@@ -127,16 +122,13 @@ namespace user
          {
             if(m_itemHover.item_index() == i)
             {
-               imaging.color_blend(
-                  pgraphics,
-                  rectangle,
-                  rgb(255, 255, 240),
-                  bAlpha);
+
+               pgraphics->color_blend(rectangle, rgb(255, 255, 240), bAlpha);
+
             }
             else
             {
-               imaging.color_blend(
-                  pgraphics,
+               pgraphics->color_blend(
                   rectangle,
                   rgb(255, 255, 150),
                   bAlpha);
@@ -146,16 +138,14 @@ namespace user
          {
             if(m_itemHover.item_index() == i)
             {
-               imaging.color_blend(
-                  pgraphics,
+               pgraphics->color_blend(
                   rectangle,
                   rgb(255, 180, 180),
                   bAlpha);
             }
             else
             {
-               imaging.color_blend(
-                  pgraphics,
+               pgraphics->color_blend(
                   rectangle,
                   rgb(100, 100, 255),
                   bAlpha);
@@ -234,7 +224,7 @@ namespace user
    void step_slider::update_hover()
    {
 
-      auto psession = Session;
+      auto psession = get_session();
 
       auto puser = psession->user();
 

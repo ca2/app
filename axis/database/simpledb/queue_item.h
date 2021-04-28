@@ -6,7 +6,7 @@ namespace simpledb
 
 
    class CLASS_DECL_AXIS queue_item :
-      virtual public context_object
+      virtual public object
    {
    public:
 

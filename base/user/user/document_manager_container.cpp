@@ -29,10 +29,10 @@ namespace user
    }
 
 
-   ::e_status document_manager_container::initialize(::layered * pobjectContext)
+   ::e_status document_manager_container::initialize(::object * pobject)
    {
 
-      auto estatus = ::object::initialize(pobjectContext);
+      auto estatus = ::object::initialize(pobject);
 
       if (!estatus)
       {

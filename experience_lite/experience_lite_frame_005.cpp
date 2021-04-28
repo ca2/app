@@ -28,7 +28,7 @@
          {
 
 
-            frame_005::frame_005(::layered * pobjectContext) :
+            frame_005::frame_005(::object * pobject) :
                object(pobject),
                frame(pobject),
                m_brushGrip(e_create),
@@ -223,7 +223,7 @@ SizingNone:;
                else
                {
 
-                  auto psession = Session;
+                  auto psession = get_session();
 
                   auto pstyle = pframewindow->get_style(pgraphics);
 
@@ -266,8 +266,8 @@ SizingNone:;
 
                   ::rectangle_i32 rectangle;
                   GetBorderRect(lpcrectClient, rectangle, eside);
-                  class imaging & imaging = System->imaging();
-                  imaging.color_blend(pgraphics,
+
+                  pgraphics->color_blend(
                                       rectangle,
                                       crMoveableBorder,
                                       127);

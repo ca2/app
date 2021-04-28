@@ -11,9 +11,6 @@
     <Filter Include="Source Files\user">
       <UniqueIdentifier>{8832ff75-5113-4095-b832-a6e62e777cfd}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\primitive\math">
-      <UniqueIdentifier>{9c4ef044-8d24-4b30-ac71-c8174d893338}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\filesystem">
       <UniqueIdentifier>{22c285dd-ad96-4ecc-8b5f-c3b809e98645}</UniqueIdentifier>
     </Filter>
@@ -54,15 +51,6 @@
     <Filter Include="Header Files\primitive">
       <UniqueIdentifier>{e747dff7-0cdb-45ea-9b6c-6ba1abfa384b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\primitive\datetime">
-      <UniqueIdentifier>{0510e3ff-0079-4cb1-b9e8-2cca759dcb0a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\primitive\math">
-      <UniqueIdentifier>{8af08836-1f48-488b-bc62-eed638f784e8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\primitive\data">
-      <UniqueIdentifier>{a96fca9e-248b-448a-b0bd-dee53b174b85}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\user">
       <UniqueIdentifier>{dc109c06-f55b-48ea-ac46-06302b3262f3}</UniqueIdentifier>
     </Filter>
@@ -101,12 +89,6 @@
     </Filter>
     <Filter Include="Header Files\database">
       <UniqueIdentifier>{b8156dfb-d7e5-4c12-8785-572fedf363f7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\primitive\primitive">
-      <UniqueIdentifier>{990aa0c9-9c49-4194-b768-950c9ed0578b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\primitive\primitive">
-      <UniqueIdentifier>{496e12fd-b503-469b-9638-72d65cb0209a}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\inline">
       <UniqueIdentifier>{ca5a634b-db67-405b-b94e-e17dbe4fdeeb}</UniqueIdentifier>
@@ -177,9 +159,6 @@
     <Filter Include="Source Files\node">
       <UniqueIdentifier>{a6d92c38-1c42-49f8-b15a-2a56e421e205}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\node\windows">
-      <UniqueIdentifier>{39efcfa2-db07-4180-9fa3-9c343b0286e0}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\node\windows_common">
       <UniqueIdentifier>{effb1ba7-4829-40c5-8b89-1530557ff297}</UniqueIdentifier>
     </Filter>
@@ -203,9 +182,6 @@
     </Filter>
     <Filter Include="Header Files\inline\console">
       <UniqueIdentifier>{b02501a0-3913-4e17-bb27-ebe27d6ed3d6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\os\win32">
-      <UniqueIdentifier>{d8dbbc50-3b90-4e0c-996b-250151eee886}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\compress">
       <UniqueIdentifier>{1851dfe9-1a38-4dbf-87df-d815c0ddf7ad}</UniqueIdentifier>
@@ -231,15 +207,6 @@
     <Filter Include="Source Files\os\windows_common">
       <UniqueIdentifier>{b94bd312-2829-4680-a780-b95f8c3c91dc}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\primitive\datetime">
-      <UniqueIdentifier>{a12979c6-0db1-42af-9d48-5cdbe8314e55}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\os\win32">
-      <UniqueIdentifier>{ae970709-95ea-4288-8ced-51a8571e701c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\primitive\data">
-      <UniqueIdentifier>{835c7b7e-b728-418f-b4e6-dbd3ecab7f7e}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\crypto">
       <UniqueIdentifier>{2c023ae4-19da-43f2-98ec-7bd160bb2def}</UniqueIdentifier>
     </Filter>
@@ -261,6 +228,15 @@
     <Filter Include="Header Files\node\ansios">
       <UniqueIdentifier>{45cc027c-f817-429c-88fd-79641200900b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\primitive\subject">
+      <UniqueIdentifier>{1a2d4232-9fa8-4440-ab96-12e082c99368}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\primitive\subject">
+      <UniqueIdentifier>{1afcffb1-fdf1-4bfd-944d-9e578472682c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\inline\implement">
+      <UniqueIdentifier>{78f8d54c-d7ac-45af-8d44-3331413b29d7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="filesystem\filesystem.h">
@@ -271,15 +247,6 @@
     </ClInclude>
     <ClInclude Include="net\sockets\bsd\webserver\httpd_socket.h">
       <Filter>Header Files\net\sockets\bsd\webserver</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\command_line.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\create.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\math\department.h">
-      <Filter>Header Files\primitive\math</Filter>
     </ClInclude>
     <ClInclude Include="filesystem\filesystem\listing.h">
       <Filter>Header Files\filesystem\filesystem</Filter>
@@ -326,18 +293,6 @@
     <ClInclude Include="filesystem\file\_.h">
       <Filter>Header Files\filesystem\file</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\datetime\_c.h">
-      <Filter>Header Files\primitive\datetime</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\datetime\department.h">
-      <Filter>Header Files\primitive\datetime</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\datetime\_.h">
-      <Filter>Header Files\primitive\datetime</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\_.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
     <ClInclude Include="net\_.h">
       <Filter>Header Files\net</Filter>
     </ClInclude>
@@ -368,15 +323,6 @@
     <ClInclude Include="net\port_forward.h">
       <Filter>Header Files\net</Filter>
     </ClInclude>
-    <ClInclude Include="net\url.h">
-      <Filter>Header Files\net</Filter>
-    </ClInclude>
-    <ClInclude Include="net\url_department.h">
-      <Filter>Header Files\net</Filter>
-    </ClInclude>
-    <ClInclude Include="net\url_domain.h">
-      <Filter>Header Files\net</Filter>
-    </ClInclude>
     <ClInclude Include="net\sockets\_.h">
       <Filter>Header Files\net\sockets</Filter>
     </ClInclude>
@@ -404,12 +350,6 @@
     <ClInclude Include="net\sockets\websocket_client.h">
       <Filter>Header Files\net\sockets</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\primitive\_defer.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\object_meta.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
     <ClInclude Include="filesystem\file\_papaya.h">
       <Filter>Header Files\filesystem\file</Filter>
     </ClInclude>
@@ -424,9 +364,6 @@
     </ClInclude>
     <ClInclude Include="filesystem\file\___serialization_draft.h">
       <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\action_context.h">
-      <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
     <ClInclude Include="net\http\_.h">
       <Filter>Header Files\net\http</Filter>
@@ -641,9 +578,6 @@
     <ClInclude Include="inline\_draw2d_impl.h">
       <Filter>Header Files\inline</Filter>
     </ClInclude>
-    <ClInclude Include="const\_const.h">
-      <Filter>Header Files\const</Filter>
-    </ClInclude>
     <ClInclude Include="const\id.h">
       <Filter>Header Files\const</Filter>
     </ClInclude>
@@ -809,9 +743,6 @@
     <ClInclude Include="platform\assert_running_task.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
-    <ClInclude Include="platform\department.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
     <ClInclude Include="platform\session.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
@@ -860,9 +791,6 @@
     <ClInclude Include="platform\async.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
-    <ClInclude Include="platform\apex_apex.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
     <ClInclude Include="platform\apex_regex.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
@@ -906,9 +834,6 @@
       <Filter>Header Files\platform</Filter>
     </ClInclude>
     <ClInclude Include="platform\less.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\library.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
     <ClInclude Include="platform\library_object_allocator.h">
@@ -1043,9 +968,6 @@
     <ClInclude Include="platform\obj_typ_ctr.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\primitive\object.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
     <ClInclude Include="filesystem\filesystem\file_watcher.h">
       <Filter>Header Files\filesystem\filesystem</Filter>
     </ClInclude>
@@ -1078,9 +1000,6 @@
     </ClInclude>
     <ClInclude Include="node\windows\_node_windows_private.h">
       <Filter>Header Files\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\data\_.h">
-      <Filter>Header Files\primitive\data</Filter>
     </ClInclude>
     <ClInclude Include="console_slim.h">
       <Filter>Header Files</Filter>
@@ -1117,9 +1036,6 @@
     </ClInclude>
     <ClInclude Include="database\stringhelper.h">
       <Filter>Header Files\database</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\math\_.h">
-      <Filter>Header Files\primitive\math</Filter>
     </ClInclude>
     <ClInclude Include="os\thread.h">
       <Filter>Header Files\os</Filter>
@@ -1247,18 +1163,6 @@
     <ClInclude Include="os\windows\windowing.h">
       <Filter>Header Files\os\windows</Filter>
     </ClInclude>
-    <ClInclude Include="os\win32\_.h">
-      <Filter>Header Files\os\win32</Filter>
-    </ClInclude>
-    <ClInclude Include="os\win32\dialog.h">
-      <Filter>Header Files\os\win32</Filter>
-    </ClInclude>
-    <ClInclude Include="os\win32\font.h">
-      <Filter>Header Files\os\win32</Filter>
-    </ClInclude>
-    <ClInclude Include="os\win32\window.h">
-      <Filter>Header Files\os\win32</Filter>
-    </ClInclude>
     <ClInclude Include="platform\aaa_drawable.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
@@ -1279,39 +1183,6 @@
     </ClInclude>
     <ClInclude Include="message\application.h">
       <Filter>Header Files\message</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\data\_data.h">
-      <Filter>Header Files\primitive\data</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\data\_impl.h">
-      <Filter>Header Files\primitive\data</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\data\_tree.h">
-      <Filter>Header Files\primitive\data</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\data\container.h">
-      <Filter>Header Files\primitive\data</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\data\data.h">
-      <Filter>Header Files\primitive\data</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\data\item.h">
-      <Filter>Header Files\primitive\data</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\data\listener.h">
-      <Filter>Header Files\primitive\data</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\data\node.h">
-      <Filter>Header Files\primitive\data</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\data\simple_item.h">
-      <Filter>Header Files\primitive\data</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\data\tree.h">
-      <Filter>Header Files\primitive\data</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\data\tree_item.h">
-      <Filter>Header Files\primitive\data</Filter>
     </ClInclude>
     <ClInclude Include="const\charset.h">
       <Filter>Header Files\const</Filter>
@@ -1418,9 +1289,6 @@
     <ClInclude Include="parallelization\retry_single_lock.h">
       <Filter>Header Files\parallelization</Filter>
     </ClInclude>
-    <ClInclude Include="parallelization\service_base.h">
-      <Filter>Header Files\parallelization</Filter>
-    </ClInclude>
     <ClInclude Include="parallelization\service_status.h">
       <Filter>Header Files\parallelization</Filter>
     </ClInclude>
@@ -1487,22 +1355,61 @@
     <ClInclude Include="message\handler_item.h">
       <Filter>Header Files\message</Filter>
     </ClInclude>
+    <ClInclude Include="primitive\subject\subject.h">
+      <Filter>Header Files\primitive\subject</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\subject\promise1.h">
+      <Filter>Header Files\primitive\subject</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\subject\promise.h">
+      <Filter>Header Files\primitive\subject</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\subject\manager.h">
+      <Filter>Header Files\primitive\subject</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\subject\context.h">
+      <Filter>Header Files\primitive\subject</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\subject\aaa_handler.h">
+      <Filter>Header Files\primitive\subject</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\subject\_impl.h">
+      <Filter>Header Files\primitive\subject</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\subject\_.h">
+      <Filter>Header Files\primitive\subject</Filter>
+    </ClInclude>
+    <ClInclude Include="net\address_department.h">
+      <Filter>Header Files\net</Filter>
+    </ClInclude>
+    <ClInclude Include="user\primitive.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="parallelization\service.h">
+      <Filter>Header Files\parallelization</Filter>
+    </ClInclude>
+    <ClInclude Include="parallelization\service_handler.h">
+      <Filter>Header Files\parallelization</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\library.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="inline\implement\windows.h">
+      <Filter>Header Files\inline\implement</Filter>
+    </ClInclude>
+    <ClInclude Include="inline\implement\ansi.h">
+      <Filter>Header Files\inline\implement</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\command_line.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\create.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="primitive\primitive\command_line.cpp">
-      <Filter>Source Files\primitive\primitive</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\primitive\create.cpp">
-      <Filter>Source Files\primitive\primitive</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\math\department.cpp">
-      <Filter>Source Files\primitive\math</Filter>
-    </ClCompile>
     <ClCompile Include="filesystem\file\set.cpp">
       <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\primitive\_.cpp">
-      <Filter>Source Files\primitive\primitive</Filter>
     </ClCompile>
     <ClCompile Include="net\http\_.cpp">
       <Filter>Source Files\net\http</Filter>
@@ -1660,18 +1567,6 @@
     <ClCompile Include="net\sockets.cpp">
       <Filter>Source Files\net</Filter>
     </ClCompile>
-    <ClCompile Include="net\url.cpp">
-      <Filter>Source Files\net</Filter>
-    </ClCompile>
-    <ClCompile Include="net\url_department.cpp">
-      <Filter>Source Files\net</Filter>
-    </ClCompile>
-    <ClCompile Include="net\url_domain.cpp">
-      <Filter>Source Files\net</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\primitive\object_meta.cpp">
-      <Filter>Source Files\primitive\primitive</Filter>
-    </ClCompile>
     <ClCompile Include="const\idpool.cpp">
       <Filter>Source Files\const</Filter>
     </ClCompile>
@@ -1729,9 +1624,6 @@
     <ClCompile Include="os\windows\dpi.cpp">
       <Filter>Source Files\os\windows</Filter>
     </ClCompile>
-    <ClCompile Include="os\windows\library.cpp">
-      <Filter>Source Files\os\windows</Filter>
-    </ClCompile>
     <ClCompile Include="os\windows\main.cpp">
       <Filter>Source Files\os\windows</Filter>
     </ClCompile>
@@ -1776,42 +1668,6 @@
     </ClCompile>
     <ClCompile Include="include\_.cpp">
       <Filter>Source Files\include</Filter>
-    </ClCompile>
-    <ClCompile Include="node\windows\application.cpp">
-      <Filter>Source Files\node\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="node\windows\crypto.cpp">
-      <Filter>Source Files\node\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="node\windows\dir_context.cpp">
-      <Filter>Source Files\node\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="node\windows\factory_exchange.cpp">
-      <Filter>Source Files\node\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="node\windows\file_context.cpp">
-      <Filter>Source Files\node\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="node\windows\file_system.cpp">
-      <Filter>Source Files\node\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="node\windows\ip_enum.cpp">
-      <Filter>Source Files\node\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="node\windows\os_context.cpp">
-      <Filter>Source Files\node\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="node\windows\process.cpp">
-      <Filter>Source Files\node\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="node\windows\thread.cpp">
-      <Filter>Source Files\node\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="node\windows\timer.cpp">
-      <Filter>Source Files\node\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="node\windows\trace.cpp">
-      <Filter>Source Files\node\windows</Filter>
     </ClCompile>
     <ClCompile Include="node\windows_common\application.cpp">
       <Filter>Source Files\node\windows_common</Filter>
@@ -1876,12 +1732,6 @@
     <ClCompile Include="platform\context.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
-    <ClCompile Include="platform\department.cpp">
-      <Filter>Source Files\platform</Filter>
-    </ClCompile>
-    <ClCompile Include="platform\library.cpp">
-      <Filter>Source Files\platform</Filter>
-    </ClCompile>
     <ClCompile Include="platform\log.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
@@ -1909,12 +1759,6 @@
     <ClCompile Include="platform\simple_log.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
-    <ClCompile Include="platform\static_setup.cpp">
-      <Filter>Source Files\platform</Filter>
-    </ClCompile>
-    <ClCompile Include="platform\str_context.cpp">
-      <Filter>Source Files\platform</Filter>
-    </ClCompile>
     <ClCompile Include="os\ansios\exception_engine.cpp">
       <Filter>Source Files\os\ansios</Filter>
     </ClCompile>
@@ -1924,23 +1768,11 @@
     <ClCompile Include="platform\context_thread.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
-    <ClCompile Include="node\windows\file_os_watcher.cpp">
-      <Filter>Source Files\node\windows</Filter>
-    </ClCompile>
     <ClCompile Include="filesystem\filesystem\file_watcher.cpp">
       <Filter>Source Files\filesystem\filesystem</Filter>
     </ClCompile>
     <ClCompile Include="platform\os_context.cpp">
       <Filter>Source Files\platform</Filter>
-    </ClCompile>
-    <ClCompile Include="os\win32\dialog.cpp">
-      <Filter>Source Files\os\win32</Filter>
-    </ClCompile>
-    <ClCompile Include="os\win32\font.cpp">
-      <Filter>Source Files\os\win32</Filter>
-    </ClCompile>
-    <ClCompile Include="os\win32\window.cpp">
-      <Filter>Source Files\os\win32</Filter>
     </ClCompile>
     <ClCompile Include="platform\progress.cpp">
       <Filter>Source Files\platform</Filter>
@@ -1993,15 +1825,6 @@
     <ClCompile Include="user\text.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\primitive\object.cpp">
-      <Filter>Source Files\primitive\primitive</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\datetime\department.cpp">
-      <Filter>Source Files\primitive\datetime</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\datetime\datetime.cpp">
-      <Filter>Source Files\primitive\datetime</Filter>
-    </ClCompile>
     <ClCompile Include="os\windows\windowing.cpp">
       <Filter>Source Files\os\windows</Filter>
     </ClCompile>
@@ -2035,41 +1858,11 @@
     <ClCompile Include="compress\context.cpp">
       <Filter>Source Files\compress</Filter>
     </ClCompile>
-    <ClCompile Include="node\windows\dir_system.cpp">
-      <Filter>Source Files\node\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="platform\international_locale_schema.cpp">
-      <Filter>Source Files\platform</Filter>
-    </ClCompile>
     <ClCompile Include="platform\history.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
     <ClCompile Include="message\application.cpp">
       <Filter>Source Files\message</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\data\container.cpp">
-      <Filter>Source Files\primitive\data</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\data\data.cpp">
-      <Filter>Source Files\primitive\data</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\data\item.cpp">
-      <Filter>Source Files\primitive\data</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\data\listener.cpp">
-      <Filter>Source Files\primitive\data</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\data\node.cpp">
-      <Filter>Source Files\primitive\data</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\data\simple_item.cpp">
-      <Filter>Source Files\primitive\data</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\data\tree.cpp">
-      <Filter>Source Files\primitive\data</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\data\tree_item.cpp">
-      <Filter>Source Files\primitive\data</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\file\edit_file.cpp">
       <Filter>Source Files\filesystem\file</Filter>
@@ -2146,22 +1939,13 @@
     <ClCompile Include="parallelization\handler.cpp">
       <Filter>Source Files\parallelization</Filter>
     </ClCompile>
-    <ClCompile Include="parallelization\service_base.cpp">
-      <Filter>Source Files\parallelization</Filter>
-    </ClCompile>
     <ClCompile Include="parallelization\thread.cpp">
       <Filter>Source Files\parallelization</Filter>
     </ClCompile>
     <ClCompile Include="parallelization\thread_os.cpp">
       <Filter>Source Files\parallelization</Filter>
     </ClCompile>
-    <ClCompile Include="parallelization\thread_pool.cpp">
-      <Filter>Source Files\parallelization</Filter>
-    </ClCompile>
     <ClCompile Include="parallelization\threading.cpp">
-      <Filter>Source Files\parallelization</Filter>
-    </ClCompile>
-    <ClCompile Include="parallelization\tools.cpp">
       <Filter>Source Files\parallelization</Filter>
     </ClCompile>
     <ClCompile Include="os\windows\application_system_run.cpp">
@@ -2173,40 +1957,58 @@
     <ClCompile Include="platform\node.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
-    <ClCompile Include="node\windows\interprocess_communication.cpp">
-      <Filter>Source Files\node\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="node\windows\service.cpp">
-      <Filter>Source Files\node\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="node\windows\shell_launcher.cpp">
-      <Filter>Source Files\node\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="node\windows\launcher.cpp">
-      <Filter>Source Files\node\windows</Filter>
-    </ClCompile>
     <ClCompile Include="message\command.cpp">
       <Filter>Source Files\message</Filter>
     </ClCompile>
     <ClCompile Include="message\handler.cpp">
       <Filter>Source Files\message</Filter>
     </ClCompile>
+    <ClCompile Include="primitive\subject\context.cpp">
+      <Filter>Source Files\primitive\subject</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\subject\manager.cpp">
+      <Filter>Source Files\primitive\subject</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\subject\process.cpp">
+      <Filter>Source Files\primitive\subject</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\subject\promise.cpp">
+      <Filter>Source Files\primitive\subject</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\subject\routine.cpp">
+      <Filter>Source Files\primitive\subject</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\subject\subject.cpp">
+      <Filter>Source Files\primitive\subject</Filter>
+    </ClCompile>
+    <ClCompile Include="user\primitive.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="net\address_department.cpp">
+      <Filter>Source Files\net</Filter>
+    </ClCompile>
+    <ClCompile Include="parallelization\service.cpp">
+      <Filter>Source Files\parallelization</Filter>
+    </ClCompile>
+    <ClCompile Include="parallelization\service_handler.cpp">
+      <Filter>Source Files\parallelization</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\launcher.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\create.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\command_line.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="primitive\primitive\_impl.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </None>
-    <None Include="primitive\datetime\_impl.h">
-      <Filter>Header Files\primitive\datetime</Filter>
-    </None>
     <None Include="filesystem\file\_serializable_impl.h">
       <Filter>Header Files\filesystem\file</Filter>
     </None>
     <None Include="filesystem\_impl.h">
       <Filter>Header Files\filesystem</Filter>
-    </None>
-    <None Include="primitive\math\_impl.h">
-      <Filter>Header Files\primitive\math</Filter>
     </None>
     <None Include="apex.def">
       <Filter>Source Files</Filter>

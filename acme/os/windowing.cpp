@@ -53,7 +53,7 @@ void windowing_output_debug_string(const char * pszDebugString)
 //
 //   ::acme::application * papp = (::acme::application *) pvoidApp;
 //
-//   if(::is_set(papp) && ::is_set(papp->get_context_session()))
+//   if(::is_set(papp) && ::is_set(papp->get_session()))
 //   {
 //
 //      Sess(papp).m_pointCursor = pointCursor;

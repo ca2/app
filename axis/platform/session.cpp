@@ -2,7 +2,7 @@
 #include "axis/user/_user.h"
 #include "acme/const/id.h"
 #include "apex/platform/app_core.h"
-#include "apex/platform/static_setup.h"
+#include "acme/platform/static_setup.h"
 
 
 CLASS_DECL_AXIS ::user::interaction * create_system_message_window(::object* pobject);
@@ -41,8 +41,8 @@ void defer_term_ui();
 
 //bool is_verbose();
 
-//extern string_map < __pointer(::apex::library) >* g_pmapLibrary;
-//extern ::mutex * System->m_mutexLibrary;
+//extern string_map < __pointer(::acme::library) >* g_pmapLibrary;
+//extern ::mutex * psystem->m_mutexLibrary;
 //extern string_map < PFN_NEW_AURA_LIBRARY >* g_pmapNewAuraLibrary;
 
 int_bool point_is_window_origin(POINT_I32 ptHitTest, oswindow oswindowExclude, int iMargin);
@@ -75,15 +75,13 @@ namespace axis
 
       output_debug_string("axis::session::~session()");
 
-      m_paxissession = nullptr;
-
    }
 
 
-   ::e_status session::initialize(::layered * pobjectContext)
+   ::e_status session::initialize(::object * pobject)
    {
 
-      auto estatus = ::thread::initialize(pobjectContext);
+      auto estatus = ::thread::initialize(pobject);
 
       if (!estatus)
       {
@@ -100,18 +98,16 @@ namespace axis
 
       m_pimplPendingFocus2             = nullptr;
 
-      set_context_session(this);
+      auto psystem = m_psystem->m_paurasystem;
 
-      if (get_context_system() != nullptr)
+      if (psystem != nullptr)
       {
-
-         auto psystem = System;
 
          m_bSystemSynchronizedCursor   = psystem->m_bSystemSynchronizedCursor;
 
       }
 
-      m_pappCurrent                    = nullptr;
+      m_papplicationCurrent                    = nullptr;
 
       m_puiLastLButtonDown             = nullptr;
 
@@ -125,10 +121,10 @@ namespace axis
 
       m_bShowPlatform                  = false;
 
-      m_pappCurrent                    = nullptr;
+      m_papplicationCurrent                    = nullptr;
 
 
-      //m_strAppId = "base_session";
+      //m_XstrAppId = "base_session";
 //m_strAppName = "base_session";
 //m_strBaseSupportId = "base_session";
 //m_strInstallToken = "base_session";
@@ -225,7 +221,7 @@ namespace axis
 
    //         handle_exception(pe);
 
-   //         //if (!Sys(this).on_run_exception(esp))
+   //         //if (!get_system()->on_run_exception(esp))
    //         //{
 
    //         //   if (!App(this).on_run_exception(esp))
@@ -263,7 +259,7 @@ namespace axis
    //}
 
 
-//   __pointer(::aura::application) session::get_new_application(::layered * pobjectContext, const char * pszAppId)
+//   __pointer(::aura::application) session::get_new_application(::object * pobject, const char * pszAppId)
 //   {
 //
 //      string strAppId(pszAppId);
@@ -273,10 +269,10 @@ namespace axis
 //      if (!papp)
 //      {
 //
-//         if (System->m_pappcore != nullptr && System->m_pmaindata && System->m_pfnNewAuraApplication != nullptr)
+//         if (psystem->m_pappcore != nullptr && psystem->m_pmaindata && psystem->m_pfnNewAuraApplication != nullptr)
 //         {
 //
-//            papp = System->m_pfnNewAuraApplication();
+//            papp = psystem->m_pfnNewAuraApplication();
 //
 //            if (papp.is_null())
 //            {
@@ -285,7 +281,7 @@ namespace axis
 //
 //            }
 //
-//            auto estatus = papp->initialize(pobjectContext);
+//            auto estatus = papp->initialize(pobject);
 //
 //            if (!estatus)
 //            {
@@ -300,17 +296,17 @@ namespace axis
 //
 //
 //         }
-//         synchronization_lock synchronizationlock(System->m_mutexLibrary);
+//         synchronous_lock synchronouslock(psystem->m_mutexLibrary);
 //
-//         __pointer(::apex::library) & plibrary = System->m_mapLibrary[pszAppId];
+//         __pointer(::acme::library) & plibrary = psystem->m_mapLibrary[pszAppId];
 //
 //         if (!plibrary)
 //         {
 //
-//            if (System->m_pappcore != nullptr && System->m_pfnNewAuraLibrary != nullptr)
+//            if (psystem->m_pappcore != nullptr && psystem->m_pfnNewAuraLibrary != nullptr)
 //            {
 //
-//               plibrary = __move_transfer(System->m_pfnNewAuraLibrary());
+//               plibrary = __move_transfer(psystem->m_pfnNewAuraLibrary());
 //
 //            }
 //            else
@@ -351,15 +347,15 @@ namespace axis
 //                  if (plibrary)
 //                  {
 //
-//                     plibrary->initialize_aura_library(pobjectContext, 0, nullptr);
+//                     plibrary->initialize_aura_library(pobject, 0, nullptr);
 //
 //                  }
 //                  else
 //                  {
 //
-//                     plibrary = __new(::apex::library);
+//                     plibrary = __new(::acme::library);
 //
-//                     plibrary->initialize_aura_library(pobjectContext, 0, nullptr);
+//                     plibrary->initialize_aura_library(pobject, 0, nullptr);
 //
 //                     //g_pmapLibrary[string(pszAppId)] = plibrary;
 //
@@ -381,7 +377,7 @@ namespace axis
 //
 //#ifndef _UWP
 //
-//                        os_message_box(nullptr, "Application \"" + strAppId + "\" cannot be created.\n\nThe library \"" + strLibrary + "\" could not be loaded. " + plibrary->m_strMessage, "ca2", MB_ICONERROR);
+//                        os_message_box(nullptr, "papplication \"" + strAppId + "\" cannot be created.\n\nThe library \"" + strLibrary + "\" could not be loaded. " + plibrary->m_strMessage, "ca2", MB_ICONERROR);
 //
 //#endif
 //
@@ -445,7 +441,7 @@ namespace axis
 //
 //         {
 //
-//            ::apex::library & library = *plibrary;
+//            ::acme::library & library = *plibrary;
 //
 //
 //            papp = library.get_new_application(this, strAppId);
@@ -506,8 +502,8 @@ namespace axis
 //      if (!papp->is_serviceable() || papp->is_user_service())
 //      {
 //
-//         System->m_spmutexUserAppData = __new(::mutex(e_create_new, false, "Local\\ca2.UserAppData"));
-//         System->m_spmutexSystemAppData = __new(::mutex(e_create_new, false, "Local\\ca2.SystemAppData"));
+//         psystem->m_spmutexUserAppData = __new(::mutex(e_create_new, false, "Local\\ca2.UserAppData"));
+//         psystem->m_spmutexSystemAppData = __new(::mutex(e_create_new, false, "Local\\ca2.SystemAppData"));
 //
 //      }
 //
@@ -524,7 +520,7 @@ namespace axis
 //
 //      }
 //
-//      papp->m_strAppId = pszAppId;
+//      papp->m_XstrAppId = pszAppId;
 //
 //      set_context_app(papp);
 //
@@ -639,7 +635,7 @@ namespace axis
    //}
 
 
-   void session::on_remove_user(::account::user * puser)
+   void session::on_erase_user(::account::user * puser)
    {
 
    }
@@ -757,10 +753,10 @@ namespace axis
 
 
 
-   //::e_status session::initialize(::layered * pobjectContext)
+   //::e_status session::initialize(::object * pobject)
    //{
 
-   //   auto estatus = ::aura::session::initialize(pobjectContext);
+   //   auto estatus = ::aura::session::initialize(pobject);
 
    //   if (!estatus)
    //   {
@@ -978,10 +974,10 @@ namespace axis
    //   if (is_remote_session())
    //   {
 
-   //      //psession->savings().save(::e_resource_display_bandwidth);
-   //      //psession->savings().save(::e_resource_blur_background);
-   //      //psession->savings().save(::e_resource_blurred_text_embossing);
-   //      //psession->savings().save(::e_resource_translucent_background);
+   //      //psession->m_paurasession->savings().save(::e_resource_display_bandwidth);
+   //      //psession->m_paurasession->savings().save(::e_resource_blur_background);
+   //      //psession->m_paurasession->savings().save(::e_resource_blurred_text_embossing);
+   //      //psession->m_paurasession->savings().save(::e_resource_translucent_background);
 
    //   }
 
@@ -1201,6 +1197,17 @@ namespace axis
    }
 
 
+   void session::on_instantiate_application(::apex::application* papp)
+   {
+
+      ::aura::session::on_instantiate_application(papp);
+
+      papp->m_paxissession = this;
+      papp->m_paxissystem = m_paxissystem;
+
+   }
+
+
    ::user::style * session::get_user_style()
    {
 
@@ -1231,7 +1238,7 @@ namespace axis
       //if(puser->m_strPathPrefix.is_empty())
       //{
 
-      //   puser->m_strPathPrefix = Context.dir().default_os_user_path_prefix();
+      //   puser->m_strPathPrefix = pcontext->m_papexcontext->dir().default_os_user_path_prefix();
 
       //}
 
@@ -1244,9 +1251,11 @@ namespace axis
 //
 //      }
 
-      puser->m_pathFolder = Context.dir().appdata() / "profile" / puser->m_strLogin;
+      auto pcontext = get_context();
 
-      Context.dir().mk(puser->m_pathFolder);
+      puser->m_pathFolder = pcontext->m_papexcontext->dir().appdata() / "profile" / puser->m_strLogin;
+
+      pcontext->m_papexcontext->dir().mk(puser->m_pathFolder);
 
       for (auto& papp : m_applicationa)
       {

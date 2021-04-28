@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "core/user/userex/_userex.h"
 #include "core/user/account/_account.h"
-#include "apex/platform/static_setup.h"
+#include "acme/platform/static_setup.h"
 #include "aura/update.h"
 #include "aqua/xml.h"
 #include "aura/user/shell.h"
@@ -79,7 +79,6 @@ namespace core
    {
 
       m_pcoreuser = this;
-
       m_ptemplateForm = nullptr;
       m_ptemplateChildForm = nullptr;
       m_ptemplatePlaceHolder = nullptr;
@@ -94,10 +93,10 @@ namespace core
    }
 
 
-   ::e_status user::initialize(::layered * pobjectContext)
+   ::e_status user::initialize(::object * pobject)
    {
 
-      auto estatus = ::base::user::initialize(pobjectContext);
+      auto estatus = ::base::user::initialize(pobject);
 
       if (!estatus)
       {
@@ -166,29 +165,6 @@ namespace core
 
    }
 
-   ::user::shell* user::shell()
-   {
-
-      if (!m_pshell)
-      {
-
-         auto estatus = create_user_shell();
-
-         if (!estatus)
-         {
-
-            TRACE("failed to create user shell");
-
-         }
-
-      }
-
-      return m_pshell;
-
-   }
-
-
-
 
    ::e_status user::init()
    {
@@ -234,7 +210,6 @@ namespace core
       create_factory < ::account::view >();
 
       create_factory < form_document >();
-      create_factory < ::userex::split_view::Pane  >();
       create_factory < simple_child_frame  >();
       create_factory < ::userex::split_view  >();
 
@@ -259,16 +234,14 @@ namespace core
       create_factory <menu_frame >();
       create_factory <menu_view >();
 
-
-
-      auto psystem = System;
+      auto psystem = m_psystem->m_paurasystem;
 
       auto typeinfo = psystem->get_simple_frame_window_type_info();
 
       auto ptemplate = __new(::user::multiple_document_template(
          "system/form",
          __type(form_document),
-         System->get_simple_frame_window_type_info(),
+         psystem->get_simple_frame_window_type_info(),
          __type(::user::form_view)));
 
       ptemplate->initialize(this);
@@ -278,12 +251,10 @@ namespace core
 
       add_document_template(ptemplate);
 
-      auto puser = User;
-
       ptemplate = __new(::user::multiple_document_template(
          "system/form",
          __type(form_document),
-         puser->get_simple_child_frame_type_info(),
+         get_simple_child_frame_type_info(),
          __type(::user::form_view)));
 
       ptemplate->initialize(this);
@@ -295,7 +266,7 @@ namespace core
       ptemplate = __new(::user::multiple_document_template(
             "system/form",
             __type(::user::document),
-         System->get_simple_frame_window_type_info(),
+         psystem->get_simple_frame_window_type_info(),
          __type(::user::place_holder)));
 
       ptemplate->initialize(this);
@@ -328,9 +299,13 @@ namespace core
 
       TRACE("::user::application::initialize");
 
-      auto pdocumentUser = create_xml_document();
+      auto pxml = psystem->xml();
 
-      string strUser = Context.file().as_string(Context.dir().appdata() / "langstyle_settings.xml");
+      auto pdocumentUser = pxml->create_document();
+
+      auto pcontext = get_context();
+
+      string strUser = pcontext->m_papexcontext->file().as_string(pcontext->m_papexcontext->dir().appdata() / "langstyle_settings.xml");
 
       string strLangUser;
 
@@ -355,31 +330,33 @@ namespace core
 
       }
 
-      if (strLangUser.has_char())
-      {
+      //auto papplication = get_se();
 
-         Application.set_locale(strLangUser, ::e_source_database);
+      //if (strLangUser.has_char())
+      //{
 
-      }
+      //   psession->set_locale(strLangUser, ::e_source_database);
 
-      if (strStyleUser.has_char())
-      {
+      //}
 
-         Application.set_schema(strStyleUser, ::e_source_database);
+      //if (strStyleUser.has_char())
+      //{
 
-      }
+      //   psession->set_schema(strStyleUser, ::e_source_database);
 
-      //string strLicense = Application.get_license_id();
+      //}
+
+      //string strLicense = papplication->get_license_id();
 
 
-      //::payload & varTopicQuey = System->m_varTopicQuery;
+      //::payload & varTopicQuey = psystem->m_varTopicQuery;
 
-//      bool bHasInstall = System->has_property("install");
+//      bool bHasInstall = psystem->has_property("install");
 //
-//      bool bHasUninstall = System->has_property("uninstall");
+//      bool bHasUninstall = psystem->has_property("uninstall");
 //
 //      if (!(bHasInstall || bHasUninstall)
-//            && Application.m_bLicense
+//            && papplication->m_bLicense
 //            && strLicense.has_char())
 //      {
 //
@@ -398,7 +375,7 @@ namespace core
 //         if (!psession->is_licensed(strLicense))
 //         {
 //
-//            //psession->licensing().m_mapInfo.remove_key(strLicense);
+//            //psession->licensing().m_mapInfo.erase_key(strLicense);
 //
 //            if (iRetry > 0)
 //            {
@@ -413,7 +390,7 @@ namespace core
 //
 //      }
 
-      //set_data_server(Application.dataserver());
+      //set_data_server(papplication->dataserver());
 
 
       create_factory <::userex::pane_tab_view >();
@@ -441,7 +418,7 @@ namespace core
    ::e_status user::init2()
    {
 
-      if (!::apex::department::init2())
+      if (!::acme::department::init2())
       {
 
          return false;
@@ -453,7 +430,7 @@ namespace core
    }
 
 
-   void user::finalize()
+   ::e_status user::finalize()
    {
 
       try
@@ -470,7 +447,7 @@ namespace core
       try
       {
 
-         ::apex::department::term();
+         ::acme::department::term();
 
       }
       catch (...)
@@ -478,40 +455,10 @@ namespace core
 
       }
 
-
-   }
-
-
-   ::e_status user::create_user_shell()
-   {
-
-      ::e_status estatus = ::success;
-
-      if (!m_pshell)
-      {
-
-         //estatus = __compose(m_pshell, __new(::windows::shell));
-         estatus = __compose(m_pshell);
-
-         if (!estatus)
-         {
-
-            return estatus;
-
-         }
-
-      }
-
-      if (!m_pshell)
-      {
-
-         return ::error_failed;
-
-      }
-
       return ::success;
 
    }
+
 
    ::type user::controltype_to_typeinfo(::user::enum_control_type econtroltype)
    {
@@ -520,15 +467,19 @@ namespace core
 
    }
 
-   void user::term()
+
+
+   ::e_status user::term()
    {
+
+      return ::success;
 
    }
 
 
 
 
-   __pointer(::form_document) user::create_form(::object * pobject, ::type type, __pointer(::user::interaction) pwndParent, ::payload payload, ::payload varArgs)
+   __pointer(::form_document) user::create_form(::object * pobject, ::type type, __pointer(::user::interaction) puserinteractionParent, ::payload payload, ::payload varArgs)
    {
 
       if (!type)
@@ -551,19 +502,17 @@ namespace core
 
          m_mapTemplate[type] = psystem;
 
-         auto puser = User;
-
-         puser->document_manager()->add_document_template(psystem);
+         document_manager()->add_document_template(psystem);
 
       }
 
       if (pobject == nullptr)
       {
 
-         if (pwndParent.is_set())
+         if (puserinteractionParent.is_set())
          {
 
-            pobject = pwndParent;
+            pobject = puserinteractionParent;
 
          }
          else
@@ -579,7 +528,7 @@ namespace core
 
       pcreate->m_bMakeVisible = true;
 
-      pcreate->m_puserinteractionParent = pwndParent;
+      pcreate->m_puserprimitiveParent = puserinteractionParent;
 
       pcreate->m_varArgs = varArgs;
 
@@ -610,10 +559,10 @@ namespace core
    }
 
 
-   __pointer(::extended::future < ::conversation >) user::dialog_box(::layered * pobjectContext, const char * pszMatter, property_set & propertyset)
+   __pointer(::extended::future < ::conversation >) user::dialog_box(::object * pobject, const char * pszMatter, property_set & propertyset)
    {
 
-      auto pbox = __object(pobjectContext)->__create_new < class ::userex::message_box >();
+      auto pbox = pobject->__create_new < class ::userex::message_box >();
 
       //auto pfuture = pbox->::extended::asynchronous< ::future<::conversation > >::future();
 
@@ -633,17 +582,17 @@ namespace core
 
       }
 
-      process_subject(pbox->m_idResponse);
+      //process_subject(pbox->m_idResponse);
 
       return pfuture;
 
    }
 
 
-   __pointer(::extended::future < ::conversation >) user::ui_message_box(::layered* pobjectContext, ::user::primitive * puiOwner, const char * pszMessage, const char * pszTitle, const ::e_message_box & emessagebox)
+   __pointer(::extended::future < ::conversation >) user::ui_message_box(::object * pobject, ::user::primitive * puiOwner, const char * pszMessage, const char * pszTitle, const ::e_message_box & emessagebox)
    {
 
-      auto pbox = __object(pobjectContext)->__create_new < ::userex::message_box >();
+      auto pbox = pobject->__create_new < ::userex::message_box >();
 
       auto pfuture = pbox->::extended::asynchronous< ::conversation >::future();
 
@@ -653,18 +602,20 @@ namespace core
 
       //pbox->add_process(DIALOG_RESULT_PROCESS, process);
 
-      auto psession = Session;
+      auto psession = get_session();
+
+      auto papplication = pobject->get_application();
 
       if (::is_set(puiOwner))
       {
 
-         propertyset["application_name"] = App(__object(pobjectContext)).m_strAppName;
+         propertyset["application_name"] = papplication->m_strAppName;
 
       }
-      else if (::is_set(psession->m_pappCurrent))
+      else if (::is_set(psession->m_papplicationCurrent))
       {
 
-         string strAppName = psession->m_pappCurrent->m_strAppName;
+         string strAppName = psession->m_papplicationCurrent->m_strAppName;
 
          propertyset["application_name"] = strAppName;
 
@@ -703,7 +654,7 @@ namespace core
 
             //strMessage.replace("<br>","\r\n");
 
-            //return ::message_box(pwndOwner->get_safe_handle(),strMessage,Application.m_strAppName,fuStyle, functionargResult);
+            //return ::message_box(puserinteractionOwner->get_safe_handle(),strMessage,papplication->m_strAppName,fuStyle, functionargResult);
 
             pfuture->set_status(::error_failed);
 
@@ -722,7 +673,7 @@ namespace core
 
          //strMessage.replace("<br>","\r\n");
 
-         //return ::message_box(pwndOwner == nullptr ? nullptr : pwndOwner->get_handle(),strMessage,Application.m_strAppName,fuStyle, functionargResult);
+         //return ::message_box(puserinteractionOwner == nullptr ? nullptr : puserinteractionOwner->get_handle(),strMessage,papplication->m_strAppName,fuStyle, functionargResult);
 
       }
 
@@ -771,12 +722,12 @@ namespace core
    }
 
 
-   __pointer(::extended::future < ::conversation >) user::ui_message_box_timeout(::layered * pobjectContext, ::user::primitive * puiOwner, const char* pszMessage, const char* pszTitle, const ::duration & durationTimeout, const ::e_message_box & emessagebox)
+   __pointer(::extended::future < ::conversation >) user::ui_message_box_timeout(::object * pobject, ::user::primitive * puiOwner, const char* pszMessage, const char* pszTitle, const ::duration & durationTimeout, const ::e_message_box & emessagebox)
    {
 
       UNREFERENCED_PARAMETER(puiOwner);
 
-      auto pbox = __object(pobjectContext)->__create_new < ::userex::message_box >();
+      auto pbox = pobject->__create_new < ::userex::message_box >();
 
       auto pfuture = pbox->::extended::asynchronous< ::conversation >::future();
 
@@ -784,7 +735,9 @@ namespace core
 
       //pbox->add_process(DIALOG_RESULT_PROCESS, process);
 
-      string strTitle = App(__object(pobjectContext)).get_title();
+      auto papplication = pobject->get_application();
+
+      string strTitle = papplication->get_title();
 
       pbox->payload("application_name") = strTitle;
 
@@ -899,7 +852,7 @@ namespace core
    bool user::get_fs_size(i64 & i64Size, const char * pszPath, bool & bPending)
    {
 
-      //db_server * pcentral = dynamic_cast <db_server *> (System->m_psimpledb->db());
+      //db_server * pcentral = dynamic_cast <db_server *> (psystem->m_psimpledb->db());
 
       //if (pcentral == nullptr)
       //{
@@ -923,9 +876,9 @@ namespace core
       if (pchange->m_datakey == "ca2.savings")
       {
 
-         auto psession = Session;
+         auto psession = get_session();
 
-         CHANGE_EVENT_DATA_GET(pchange, (::i32 &) psession->savings().m_eresourceflagsShouldSave.m_eenum);
+         CHANGE_EVENT_DATA_GET(pchange, (::i32 &) psession->m_paurasession->savings().m_eresourceflagsShouldSave.m_eenum);
 
       }
 
@@ -971,11 +924,9 @@ namespace core
 
 #else
 
-      auto puser = User;
+      will_use_view_hint(COLORSEL_IMPACT);
 
-      puser->will_use_view_hint(COLORSEL_IMPACT);
-
-      auto pdocument = m_mapimpactsystem[COLORSEL_IMPACT]->open_document_file(puiOwner->get_context_application(), ::e_type_null, __visible(true));
+      auto pdocument = m_mapimpactsystem[COLORSEL_IMPACT]->open_document_file(puiOwner->get_application(), ::e_type_null, __visible(true));
 
       __pointer(::userex::color_view) pview = pdocument->get_typed_view < ::userex::color_view >();
 
@@ -1007,28 +958,32 @@ namespace core
 
    void user::_001OnFileNew()
    {
+      
+      auto papplication = get_application();
+      
+      ASSERT(papplication->document_manager() != nullptr);
 
-      ASSERT(Application.document_manager() != nullptr);
-
-      if (Application.document_manager() == nullptr)
+      if (papplication->document_manager() == nullptr)
       {
 
          return;
 
       }
 
-      Application.document_manager()->_001OnFileNew();
+      papplication->document_manager()->_001OnFileNew();
 
    }
 
 
-   void user::term_instance()
+   ::e_status user::term_instance()
    {
 
+      return ::success;
+
    }
 
 
-   __pointer(::form_document) user::create_form(::object * pobject, __pointer(::user::form) pview, ::user::form_callback * pcallback, __pointer(::user::interaction) pwndParent, ::payload payload, ::payload varArgs)
+   __pointer(::form_document) user::create_form(::object * pobject, __pointer(::user::form) pview, ::user::form_callback * pcallback, __pointer(::user::interaction) puserinteractionParent, ::payload payload, ::payload varArgs)
    {
 
       if (m_ptemplateForm == nullptr)
@@ -1042,9 +997,9 @@ namespace core
 
       pcreate->m_bMakeVisible = false;
 
-      pcreate->m_puserinteractionParent = pwndParent;
+      pcreate->m_puserprimitiveParent = puserinteractionParent;
 
-      pcreate->m_puiAlloc = pview;
+      pcreate->m_puserprimitiveAlloc = pview;
 
       pcreate->m_varArgs = varArgs;
 
@@ -1091,32 +1046,32 @@ namespace core
    }
 
 
-   __pointer(::form_document) user::create_form(::object * pobject, ::user::form_callback * pcallback, __pointer(::user::interaction) pwndParent, ::payload payload, ::payload varArgs)
+   __pointer(::form_document) user::create_form(::object * pobject, ::user::form_callback * pcallback, __pointer(::user::interaction) puserinteractionParent, ::payload payload, ::payload varArgs)
    {
 
       auto ptemplateForm = m_ptemplateForm;
 
-      //::aura::application * papp = ::get_context_application(pobject);
+      //::aura::application * papp = ::get_application(pobject);
 
       //if (papp == nullptr)
       //{
 
-      //   if (pwndParent.is_set())
+      //   if (puserinteractionParent.is_set())
       //   {
 
-      //      papp = pwndParent->get_context_application();
+      //      papp = puserinteractionParent->get_application();
 
       //   }
       //   else if (pcallback != nullptr)
       //   {
 
-      //      papp = pcallback->get_context_application();
+      //      papp = pcallback->get_application();
 
       //   }
       //   else
       //   {
 
-      //      papp = get_context_application();
+      //      papp = get_application();
 
       //   }
 
@@ -1126,7 +1081,7 @@ namespace core
 
       pcreate->m_bMakeVisible = false;
 
-      pcreate->m_puserinteractionParent = pwndParent;
+      pcreate->m_puserprimitiveParent = puserinteractionParent;
 
       pcreate->m_varArgs = varArgs;
 
@@ -1175,7 +1130,7 @@ namespace core
    }
 
 
-   __pointer(::form_document) user::create_child_form(::object * pobject, __pointer(::user::form) pview, ::user::form_callback * pcallback, __pointer(::user::interaction) pwndParent, ::payload payload, ::payload varArgs)
+   __pointer(::form_document) user::create_child_form(::object * pobject, __pointer(::user::form) pview, ::user::form_callback * pcallback, __pointer(::user::interaction) puserinteractionParent, ::payload payload, ::payload varArgs)
    {
 
       if (m_ptemplateChildForm == nullptr)
@@ -1185,27 +1140,27 @@ namespace core
 
       }
 
-      ::apex::application * papp = ::get_context_application(pobject);
+      auto papplication = pobject->get_application();
 
-      if (papp == nullptr)
+      if (papplication == nullptr)
       {
 
-         if (pwndParent.is_set())
+         if (puserinteractionParent.is_set())
          {
 
-            papp = pwndParent->get_context_application();
+            papplication = puserinteractionParent->get_application();
 
          }
          else if (pcallback != nullptr)
          {
 
-            papp = pcallback->get_context_application();
+            papplication = pcallback->get_application();
 
          }
          else
          {
 
-            papp = get_context_application();
+            papplication = get_application();
 
          }
 
@@ -1215,9 +1170,9 @@ namespace core
 
       pcreate->m_bMakeVisible = false;
 
-      pcreate->m_puserinteractionParent = pwndParent;
+      pcreate->m_puserprimitiveParent = puserinteractionParent;
 
-      pcreate->m_puiAlloc = pview;
+      pcreate->m_puserprimitiveAlloc = pview;
 
       pcreate->m_varArgs = varArgs;
 
@@ -1266,30 +1221,30 @@ namespace core
    }
 
 
-   __pointer(::form_document) user::create_child_form(::object * pobject, ::user::form_callback * pcallback, __pointer(::user::interaction) pwndParent, ::payload payload, ::payload varArgs)
+   __pointer(::form_document) user::create_child_form(::object * pobject, ::user::form_callback * pcallback, __pointer(::user::interaction) puserinteractionParent, ::payload payload, ::payload varArgs)
    {
 
-      ::apex::application * papp = ::get_context_application(pobject);
+      auto papplication = pobject->get_application();
 
-      if (papp == nullptr)
+      if (papplication == nullptr)
       {
 
-         if (pwndParent.is_set())
+         if (puserinteractionParent.is_set())
          {
 
-            papp = pwndParent->get_context_application();
+            papplication = puserinteractionParent->get_application();
 
          }
          else if (pcallback != nullptr)
          {
 
-            papp = pcallback->get_context_application();
+            papplication = pcallback->get_application();
 
          }
          else
          {
 
-            papp = get_context_application();
+            papplication = get_application();
 
          }
 
@@ -1299,7 +1254,7 @@ namespace core
 
       pcreate->m_bMakeVisible = true;
 
-      pcreate->m_puserinteractionParent = pwndParent;
+      pcreate->m_puserprimitiveParent = puserinteractionParent;
 
       pcreate->m_varArgs = varArgs;
 
@@ -1348,7 +1303,7 @@ namespace core
       return file_extension_dup(strFilePath).contains_ci("htm");
    }
 
-   __pointer(::form_document) user::create_child_form(::object * pobject, ::type type, __pointer(::user::interaction) pwndParent, ::payload payload, ::payload varArgs)
+   __pointer(::form_document) user::create_child_form(::object * pobject, ::type type, __pointer(::user::interaction) puserinteractionParent, ::payload payload, ::payload varArgs)
    {
 
       if (!type)
@@ -1391,10 +1346,10 @@ namespace core
       if (pobject == nullptr)
       {
 
-         if (pwndParent.is_set())
+         if (puserinteractionParent.is_set())
          {
 
-            pobject = pwndParent;
+            pobject = puserinteractionParent;
 
          }
          else
@@ -1410,7 +1365,7 @@ namespace core
 
       pcreate->m_bMakeVisible = false;
 
-      pcreate->m_puserinteractionParent = pwndParent;
+      pcreate->m_puserprimitiveParent = puserinteractionParent;
 
       pcreate->m_varArgs = varArgs;
 
@@ -1471,26 +1426,26 @@ namespace core
    }
 
 
-   __pointer(::user::list_header) user::default_create_list_header(::layered * pobjectContext)
+   __pointer(::user::list_header) user::default_create_list_header(::object * pobject)
    {
 
-      return __object(pobjectContext)->__id_create < ::user::list_header > (default_type_list_header());
+      return pobject->__id_create < ::user::list_header > (default_type_list_header());
 
    }
 
 
-   __pointer(::user::mesh_data) user::default_create_mesh_data(::layered * pobjectContext)
+   __pointer(::user::mesh_data) user::default_create_mesh_data(::object * pobject)
    {
 
-      return __object(pobjectContext)->__id_create < ::user::mesh_data > (default_type_list_data());
+      return pobject->__id_create < ::user::mesh_data > (default_type_list_data());
 
    }
 
 
-   __pointer(::user::list_data) user::default_create_list_data(::layered * pobjectContext)
+   __pointer(::user::list_data) user::default_create_list_data(::object * pobject)
    {
 
-      return __object(pobjectContext)->__id_create <::user::list_data >(default_type_list_data());
+      return pobject->__id_create <::user::list_data >(default_type_list_data());
 
    }
 
@@ -1610,64 +1565,64 @@ namespace core
 #elif defined(LINUX)
 
 
-   bool user::impl_set_os_desktop_theme(string strTheme)
-   {
-
-      auto pnode = Node;
-
-      return pnode->os_set_user_theme(strTheme);
-
-   }
-
-
-   string user::impl_get_os_desktop_theme()
-   {
-
-      return ::user::os_get_user_theme();
-
-   }
+//   bool user::impl_set_os_desktop_theme(string strTheme)
+//   {
+//
+//      auto pnode = Node;
+//
+//      return pnode->os_set_user_theme(strTheme);
+//
+//   }
 
 
-   bool user::impl_set_wallpaper(index iScreen, string strLocalImagePath)
-   {
-
-      // wall-changer sourceforge.net contribution
-
-      auto pnode = Node;
-
-      if(::is_null(pnode))
-      {
-
-         return false;
-
-      }
-
-      return pnode->set_wallpaper(iScreen, strLocalImagePath);
-
-   }
+//   string user::impl_get_os_desktop_theme()
+//   {
+//
+//      return ::user::os_get_user_theme();
+//
+//   }
 
 
-   string user::impl_get_wallpaper(index iScreen)
-   {
+//   bool user::impl_set_wallpaper(index iScreen, string strLocalImagePath)
+//   {
+//
+//      // wall-changer sourceforge.net contribution
+//
+//      auto pnode = Node;
+//
+//      if(::is_null(pnode))
+//      {
+//
+//         return false;
+//
+//      }
+//
+//      return pnode->set_wallpaper(iScreen, strLocalImagePath);
+//
+//   }
 
-      return ::os::get_wallpaper(iScreen);
 
-   }
-
-
-   void user::enable_wallpaper_change_notification()
-   {
-
-      auto pnode = Node;
-
-      if(pnode)
-      {
-
-         pnode->enable_wallpaper_change_notification();
-
-      }
-
-   }
+//   string user::impl_get_wallpaper(index iScreen)
+//   {
+//
+//      return ::os::get_wallpaper(iScreen);
+//
+//   }
+//
+//
+//   void user::enable_wallpaper_change_notification()
+//   {
+//
+//      auto pnode = Node;
+//
+//      if(pnode)
+//      {
+//
+//         pnode->enable_wallpaper_change_notification();
+//
+//      }
+//
+//   }
 
 
 #elif defined(APPLE_IOS)
@@ -1711,7 +1666,7 @@ namespace core
    bool user::impl_set_wallpaper(index iScreen, string strLocalImagePath)
    {
 
-      return System->android_set_user_wallpaper(strLocalImagePath);
+      return psystem->android_set_user_wallpaper(strLocalImagePath);
 
    }
 
@@ -1720,7 +1675,7 @@ namespace core
 
       string strLocalImagePath;
 
-      System->android_get_user_wallpaper(strLocalImagePath);
+      psystem->android_get_user_wallpaper(strLocalImagePath);
 
       return strLocalImagePath;
 
@@ -1887,20 +1842,20 @@ namespace core
    //}
 
 
-   //i32 application::sync_message_box_timeout(::user::primitive * pwndOwner, ::payload payload, ::duration durationTimeOut, ::u32 fuStyle)
+   //i32 application::sync_message_box_timeout(::user::primitive * puserinteractionOwner, ::payload payload, ::duration durationTimeOut, ::u32 fuStyle)
    //{
 
    //   if (psession->user() == nullptr)
    //   {
 
-   //      return ::base::application::sync_message_box_timeout(pwndOwner, payload, durationTimeOut, fuStyle);
+   //      return ::base::application::sync_message_box_timeout(puserinteractionOwner, payload, durationTimeOut, fuStyle);
 
    //   }
 
    //   try
    //   {
 
-   //      return puser->message_box_timeout(pwndOwner, payload, durationTimeOut, fuStyle, this);
+   //      return puser->message_box_timeout(puserinteractionOwner, payload, durationTimeOut, fuStyle, this);
 
    //   }
    //   catch (...)
@@ -1908,7 +1863,7 @@ namespace core
 
    //   }
 
-   //   return ::base::application::sync_message_box_timeout(pwndOwner, payload, durationTimeOut, fuStyle);
+   //   return ::base::application::sync_message_box_timeout(puserinteractionOwner, payload, durationTimeOut, fuStyle);
 
    //}
 
@@ -1962,7 +1917,7 @@ namespace core
 
       UNREFERENCED_PARAMETER(pdata);
 
-      //m_pdocs->m_ptemplate_html->open_document_file(get_context_application(), itema[0]->get_user_path());
+      //m_pdocs->m_ptemplate_html->open_document_file(get_application(), itema[0]->get_user_path());
 
    }
 
@@ -2019,14 +1974,12 @@ namespace core
 
          }
 
-         auto puser = User;
-
-         m_mapimpactsystem[FILEMANAGER_IMPACT] = puser->filemanager(idView)->m_pdocumenttemplate;
+         m_mapimpactsystem[FILEMANAGER_IMPACT] = filemanager(idView)->m_pdocumenttemplate;
 
          //create_factory <::user::color_view >();
 
          //user()->m_mapimpactsystem[COLORSEL_IMPACT] = __new(::user::multiple_document_template(
-         //   get_context_application(),
+         //   get_application(),
          //   "main",
          //   __type(::user::document),
          //   __type(::prodevian_translucent_simple_frame_window),
@@ -2053,7 +2006,7 @@ namespace core
                                __type(::simple_frame_window),
                                __type(::userex::color_view)));
 
-         auto psession = Session;
+         auto psession = get_session();
 
          psession->add_document_template(ptemplate);
 
@@ -2082,19 +2035,21 @@ namespace core
                                __type(::simple_frame_window),
                                __type(::userex::font_view)));
 
-         auto psession = Session;
+         auto psession = get_session();
 
          psession->add_document_template(ptemplate);
 
          m_mapimpactsystem[FONTSEL_IMPACT] = ptemplate;
 
-         System->draw2d()->write_text()->fonts();
+         auto psystem = m_psystem->m_paurasystem;
 
+         auto pdraw2d = psystem->draw2d();
 
+         pdraw2d->write_text()->fonts();
 
          //fork([&]()
          //{
-         //         System->draw2d()->fonts().m_pfontenumeration->check_need_update();
+         //         pdraw2d->fonts().m_pfontenumeration->check_need_update();
 
 
          //});
@@ -2134,18 +2089,18 @@ namespace user
    __pointer(::user::mesh_data) mesh::create_mesh_data()
    {
 
-      auto puser = User;
+      auto puser = user();
 
-      return puser->default_create_mesh_data(get_context_object());
+      return puser->default_create_mesh_data(this);
 
    }
 
    __pointer(::user::list_header) list::create_list_header()
    {
 
-      auto puser = User;
+      auto puser = user();
 
-      return puser->default_create_list_header(get_context_object());
+      return puser->default_create_list_header(this);
 
    }
 
@@ -2153,9 +2108,9 @@ namespace user
    __pointer(::user::mesh_data) list::create_mesh_data()
    {
 
-      auto puser = User;
+      auto puser = user();
 
-      return puser->default_create_list_data(get_context_object());
+      return puser->default_create_list_data(this);
 
    }
 

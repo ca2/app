@@ -5,7 +5,7 @@ namespace ios
 {
 
 
-   copydesk::copydesk(::layered * pobjectContext) :
+   copydesk::copydesk(::object * pobject) :
       ::object(pobject),
       ::user::copydesk(pobject)
    {
@@ -117,7 +117,7 @@ namespace ios
       if(!::user::copydesk::initialize())
          return false;
 
-      //    if(!m_p->CreateEx(0, System->RegisterWndClass(0), nullptr, 0, rect(0, 0, 0, 0), nullptr, id()))
+      //    if(!m_p->CreateEx(0, psystem->RegisterWndClass(0), nullptr, 0, rect(0, 0, 0, 0), nullptr, id()))
       //     return false;
 
 //      if(!m_p->CreateEx(0, nullptr, nullptr, 0, rect(0, 0, 0, 0), nullptr, id()))
@@ -234,18 +234,18 @@ namespace ios
             HBITMAP hbitmap = (HBITMAP) ::GetClipboardData(CF_BITMAP);
             try
             {
-               ::draw2d::bitmap_pointer bitmap(get_object());
+               ::draw2d::bitmap_pointer bitmap(this);
                bitmap->Attach(hbitmap);
                //HDC hdc = ::CreateCompatibleDC(nullptr);
-               //::draw2d::graphics_pointer g(get_object());
+               //::draw2d::graphics_pointer g(this);
                //g->Attach(hdc);
-               //::draw2d::graphics_pointer & pgraphics = Application.graphics_from_os_data(hdc);
+               //::draw2d::graphics_pointer & pgraphics = papplication->graphics_from_os_data(hdc);
                //g->SelectObject(hbitmap);
              //  BITMAP bm;
                //::GetObjectA(hbitmap, sizeof(bm), &bm);
 /*               //if(!pimage = create_image({bm.bmWidth,  bm.bmHeight)})
                  // return false;
-               ::draw2d::graphics_pointer g(get_object());
+               ::draw2d::graphics_pointer g(this);
                g->SelectObject(bitmap);
                size sz = bitmap->GetBitmapDimension();
 /*               if(pimage = create_image(sz))

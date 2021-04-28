@@ -303,8 +303,8 @@ typedef bool (*NPConstructFunctionPtr)(NPObject *npobj,
 
 /*
     NPObjects returned by create, retain, invoke, and getProperty pass
-    a context_object count to the caller.  That is, the callee adds a
-    context_object count which passes to the caller.  It is the caller's
+    a object count to the caller.  That is, the callee adds a
+    object count which passes to the caller.  It is the caller's
     responsibility to release the returned object.
 
     NPInvokeFunctionPtr function may return 0 to indicate a void
@@ -336,7 +336,7 @@ struct NPClass
     NPHasPropertyFunctionPtr hasProperty;
     NPGetPropertyFunctionPtr getProperty;
     NPSetPropertyFunctionPtr setProperty;
-    NPRemovePropertyFunctionPtr removeProperty;
+    NPRemovePropertyFunctionPtr eraseProperty;
     NPEnumerationFunctionPtr enumerate;
     NPConstructFunctionPtr construct;
 };
@@ -369,12 +369,12 @@ struct NPObject {
 NPObject *NPN_CreateObject(NPP npp, NPClass *aClass);
 
 /*
-    Increment the NPObject's context_object count.
+    Increment the NPObject's object count.
 */
 NPObject *NPN_RetainObject(NPObject *npobj);
 
 /*
-    Decremented the NPObject's context_object count.  If the context_object
+    Decremented the NPObject's object count.  If the object
     count goes to zero, the class's destroy function is invoke if
     specified, otherwise the object is freed directly.
 */

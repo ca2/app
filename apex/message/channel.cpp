@@ -16,7 +16,7 @@ channel::channel()
 channel::~channel()
 {
 
-   remove_all_routes();
+   erase_all_routes();
 
 }
 
@@ -31,10 +31,10 @@ void channel::install_message_routing(::channel* pchannel)
 
 
 
-void channel::remove_receiver(::object * preceiver)
+void channel::erase_receiver(::object * preceiver)
 {
 
-   synchronization_lock synchronizationlock(channel_mutex());
+   synchronous_lock synchronouslock(channel_mutex());
 
    for (auto & pair : m_handlermap)
    {
@@ -46,7 +46,7 @@ void channel::remove_receiver(::object * preceiver)
 
       }
 
-      pair.element2().predicate_remove([=](auto & item)
+      pair.element2().predicate_erase([=](auto & item)
       {
 
          return item.m_preceiver == preceiver;
@@ -62,7 +62,7 @@ void channel::remove_receiver(::object * preceiver)
 void channel::transfer_receiver(::message::handler_map & handlermap, ::object * preceiver)
 {
 
-   synchronization_lock synchronizationlock(channel_mutex());
+   synchronous_lock synchronouslock(channel_mutex());
 
    for (auto & pair : m_handlermap)
    {
@@ -88,7 +88,7 @@ void channel::transfer_receiver(::message::handler_map & handlermap, ::object * 
 
       });
 
-      pair.element2().predicate_remove([&](auto & item)
+      pair.element2().predicate_erase([&](auto & item)
       {
 
          return item.m_preceiver == preceiver;
@@ -103,7 +103,7 @@ void channel::transfer_receiver(::message::handler_map & handlermap, ::object * 
 void channel::route_message(::message::message * pmessage)
 {
 
-   if (::is_null(pmessage)) { ASSERT(false); return; } { synchronization_lock synchronizationlock(channel_mutex()); pmessage->m_phandlera = m_handlermap.pget(pmessage->m_id); } if(pmessage->m_phandlera == nullptr) return;
+   if (::is_null(pmessage)) { ASSERT(false); return; } { synchronous_lock synchronouslock(channel_mutex()); pmessage->m_phandlera = m_handlermap.pget(pmessage->m_id); } if(pmessage->m_phandlera == nullptr) return;
 
    for(pmessage->m_pchannel = this, pmessage->m_iRouteIndex = pmessage->m_phandlera->get_upper_bound(); pmessage->m_iRouteIndex >= 0; pmessage->m_iRouteIndex--)
    {
@@ -175,7 +175,7 @@ __pointer(::message::message) channel::get_message(const ::id & id, wparam wpara
 //#ifdef LINUX
 //
 //
-//__pointer(::user::message) channel::get_message_base(void * pevent,::user::interaction * pwnd)
+//__pointer(::user::message) channel::get_message_base(void * pevent,::user::interaction * puserinteraction)
 //{
 //
 //   __throw(todo);
@@ -190,13 +190,13 @@ __pointer(::message::message) channel::get_message(const ::id & id, wparam wpara
 
 
 
-void channel::remove_all_routes()
+void channel::erase_all_routes()
 {
 
    try
    {
 
-      synchronization_lock synchronizationlock(channel_mutex());
+      synchronous_lock synchronouslock(channel_mutex());
 
       if(m_bNewChannel)
       {
@@ -207,7 +207,7 @@ void channel::remove_all_routes()
 
       }
 
-      m_handlermap.remove_all();
+      m_handlermap.erase_all();
 
 //         for (auto & id_route_array : m_idroute)
 //         {
@@ -225,9 +225,9 @@ void channel::remove_all_routes()
 //               try
 //               {
 //
-//                  synchronization_lock synchronizationlock(route->m_preceiver->m_pmutexChannel);
+//                  synchronous_lock synchronouslock(route->m_preceiver->m_pmutexChannel);
 //
-//                  route->m_preceiver->m_sendera.remove(this);
+//                  route->m_preceiver->m_sendera.erase(this);
 //
 //               }
 //               catch (...)
@@ -237,7 +237,7 @@ void channel::remove_all_routes()
 //
 //            });
 //
-//            id_route_array.element2()->remove_all();
+//            id_route_array.element2()->erase_all();
 //
 //         }
 //
@@ -259,7 +259,7 @@ void channel::channel_common_construct()
 }
 
 
-void channel::finalize()
+::e_status channel::finalize()
 {
 
    if (m_pchannel && m_pchannel != this)
@@ -271,24 +271,26 @@ void channel::finalize()
 
    m_pchannel.release();
 
-   m_idaHandledCommands.remove_all();
+   m_idaHandledCommands.erase_all();
 
-   m_handlermap.remove_all();
+   m_handlermap.erase_all();
 
-   m_handlermapNew.remove_all();
+   m_handlermapNew.erase_all();
 
    for (auto& procedurea : m_routinemap.values())
    {
 
       procedurea.finalize();
 
-      procedurea.remove_all();
+      procedurea.erase_all();
 
    }
 
-   m_routinemap.remove_all();
+   m_routinemap.erase_all();
 
    ::object::finalize();
+
+   return ::success;
 
 }
 
@@ -329,7 +331,7 @@ void channel::_001SendCommand(::message::command * pcommand)
 
    {
 
-      __restore(pcommand->m_id.m_etype);
+      __scoped_restore(pcommand->m_id.m_etype);
 
       pcommand->m_id.set_compounded_type(::id::e_type_command);
 
@@ -347,7 +349,7 @@ void channel::_001SendCommandProbe(::message::command * pcommand)
 
    {
 
-      __restore(pcommand->m_id.m_etype);
+      __scoped_restore(pcommand->m_id.m_etype);
 
       pcommand->m_id.set_compounded_type(::id::e_type_command_probe);
 
@@ -418,7 +420,7 @@ void channel::on_command(::message::command * pcommand)
 
    {
 
-      __restore(pcommand->m_id.m_etype);
+      __scoped_restore(pcommand->m_id.m_etype);
 
       pcommand->m_id.set_compounded_type(::id::e_type_command);
 
@@ -432,9 +434,9 @@ void channel::on_command(::message::command * pcommand)
 bool channel::has_command_handler(::message::command * pcommand)
 {
 
-   synchronization_lock synchronizationlock(channel_mutex());
+   synchronous_lock synchronouslock(channel_mutex());
 
-   __restore(pcommand->m_id.m_etype);
+   __scoped_restore(pcommand->m_id.m_etype);
 
    pcommand->m_id.set_compounded_type(::id::e_type_command);
 
@@ -478,7 +480,7 @@ void channel::on_command_probe(::message::command * pcommand)
 
    {
 
-      __restore(pcommand->m_id.m_etype);
+      __scoped_restore(pcommand->m_id.m_etype);
 
       pcommand->m_id.set_compounded_type(::id::e_type_command_probe);
 

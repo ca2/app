@@ -3495,7 +3495,7 @@ add_executable(app
         apex/os/linux/graphics.h
         apex/os/linux/graphics2.h
         apex/os/linux/language.cpp
-        apex/os/linux/launcher.cpp
+   ../../archive/platform-linux/apex_linux/launcher.cpp
         apex/os/linux/library.cpp
         apex/os/linux/linux.inl
         apex/os/linux/linux_linux.h
@@ -4351,7 +4351,7 @@ add_executable(app
         aura/graphics/draw2d/region.h
         aura/graphics/draw2d/text_box.cpp
         aura/graphics/draw2d/text_box.h
-        aura/graphics/draw2d/thread_tool.cpp
+   aura/graphics/draw2d/task_tool.cpp
         aura/graphics/draw2d/thread_tool.h
         aura/graphics/draw2d/ttf_util.cpp
         aura/graphics/draw2d/ttf_util.h

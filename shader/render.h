@@ -6,7 +6,7 @@ namespace app_shader
 
 
    class CLASS_DECL_APP_SHADER render :
-      virtual public __application_consumer
+      virtual public application_consumer < application >
    {
    public:
 
@@ -31,7 +31,7 @@ namespace app_shader
       virtual ~render();
 
 
-      virtual ::e_status initialize(::layered * pobjectContext) override;
+      virtual ::e_status initialize(::object * pobject) override;
 
 #ifdef DEBUG
       virtual int64_t add_ref(OBJ_REF_DBG_PARAMS) override;

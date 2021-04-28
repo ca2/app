@@ -1,31 +1,26 @@
 #pragma once
 
 
-typedef ::multimedia::decoder * CDECL NEW_MULTIMEDIA_DECODER();
-
-
-typedef NEW_MULTIMEDIA_DECODER * LPFN_NEW_MULTIMEDIA_DECODER;
-
-
 namespace aqua
 {
 
 
    class CLASS_DECL_AQUA audio :
-      virtual public ::apex::department
+      virtual public ::acme::department
    {
    public:
 
 
-      bool           m_bLocalFileSystemSynch;
-      ::duration     m_durationPreBuffer;
+      ::audio::audio *     m_paudio;
+      bool                 m_bLocalFileSystemSynch;
+      ::duration           m_durationPreBuffer;
 
 
       audio();
       virtual ~audio();
 
 
-      virtual void play_audio(const ::payload & varFile, bool bSynch = false);
+      virtual void play_audio(::file::file * pfile, bool bSynch = false);
 
 
       virtual __pointer(::tts::speaker) create_tts_speaker();
@@ -45,37 +40,37 @@ namespace aqua
       virtual LPWAVEOUT waveout_open(int iChannel, LPAUDIOFORMAT pformat, LPWAVEOUT_CALLBACK pcallback);
 
 
+      virtual ::e_status defer_initialize_audio_playback(::wave::e_purpose epurpose = ::wave::purpose_playground);
+
 
    };
 
 
 } // namespace aqua
 
-extern "C"
-typedef ::aqua::audio * GET_NEW_AUDIO();
+//extern "C"
+//typedef ::aqua::audio * GET_NEW_AUDIO();
 
-typedef GET_NEW_AUDIO * PFUNCTION_GET_NEW_AUDIO;
+//typedef GET_NEW_AUDIO * PFUNCTION_GET_NEW_AUDIO;
 
-CLASS_DECL_AQUA void set_get_new_audio(PFUNCTION_GET_NEW_AUDIO pfunction);
+//CLASS_DECL_AQUA void set_get_new_audio(PFUNCTION_GET_NEW_AUDIO pfunction);
 
-extern "C"
-CLASS_DECL_AQUA ::aqua::audio * get_get_new_audio();
-
-
-CLASS_DECL_AQUA ::aqua::audio * get_context_audio(::layered * pobjectContext);
+//extern "C"
+//CLASS_DECL_AQUA ::aqua::audio * get_get_new_audio();
 
 
-CLASS_DECL_AQUA bool has_audio();
+///CLASS_DECL_AQUA ::aqua::audio * get_context_audio(::object * pobject);
 
 
-namespace audio
-{
 
-
-   CLASS_DECL_AQUA string get_default_library_name();
-
-
-} // namespace audio
-
+//namespace audio
+//{
+//
+//
+//   CLASS_DECL_AQUA string get_default_library_name();
+//
+//
+//} // namespace audio
+//
 
 

@@ -51,9 +51,9 @@
                    Added === check
    Version 0.15 :  Fix for possible memory leaks
    Version 0.16 :  Removal of un-needed findRecursive calls
-                   symbol_axis removed and replaced with 'scopes' stack
-                   Added context_object counting a proper tree structure
-                       (Allowing pass by context_object)
+                   symbol_axis erased and replaced with 'scopes' stack
+                   Added object counting a proper tree structure
+                       (Allowing pass by object)
                    Allowed JSON output to output IDs, not strings
                    Added get/set for array indices
                    Changed Callbacks to include user data pointer
@@ -264,11 +264,11 @@ bool isIDString(const char *s)
 void replace(string &str, char textFrom, const char *textTo)
 {
    strsize sLen = strlen(textTo);
-   strsize point = str.find(textFrom);
-   while (point_i32 >= 0)
+   strsize iPosition = str.find(textFrom);
+   while (iPosition >= 0)
    {
-      str = str.substr(0, point_i32) + textTo + str.substr(point_i32+1);
-      point = str.find(textFrom, point_i32+sLen);
+      str = str.substr(0, iPosition) + textTo + str.substr(iPosition +1);
+      iPosition = str.find(textFrom, iPosition +sLen);
    }
 }
 
@@ -898,7 +898,7 @@ CScriptVar::~CScriptVar(void)
 #if DEBUG_MEMORY
    mark_deallocated(this);
 #endif
-   removeAllChildren();
+   eraseAllChildren();
 }
 
 void CScriptVar::init()
@@ -982,16 +982,16 @@ CScriptVarLink *CScriptVar::findChildOrCreate(const string &childName, i32 varFl
 CScriptVarLink *CScriptVar::findChildOrCreateByPath(const string &path)
 {
 
-   strsize point = path.find('.');
+   strsize iPosition = path.find('.');
 
-   if (point_i32 < 0)
+   if (iPosition < 0)
    {
 
       return findChildOrCreate(path);
 
    }
 
-   return findChildOrCreate(path.substr(0,point_i32), SCRIPTVAR_OBJECT)->payload->findChildOrCreateByPath(path.substr(point_i32+1));
+   return findChildOrCreate(path.substr(0, iPosition), SCRIPTVAR_OBJECT)->payload->findChildOrCreateByPath(path.substr(iPosition +1));
 
 }
 
@@ -1073,7 +1073,7 @@ CScriptVarLink *CScriptVar::addChildNoDup(const string &childName, CScriptVar *c
 }
 
 
-void CScriptVar::removeChild(CScriptVar *child)
+void CScriptVar::eraseChild(CScriptVar *child)
 {
 
    CScriptVarLink *link = firstChild;
@@ -1094,12 +1094,12 @@ void CScriptVar::removeChild(CScriptVar *child)
 
    ASSERT(link);
 
-   removeLink(link);
+   eraseLink(link);
 
 }
 
 
-void CScriptVar::removeLink(CScriptVarLink *link)
+void CScriptVar::eraseLink(CScriptVarLink *link)
 {
    if (!link) return;
    if (link->nextSibling)
@@ -1113,7 +1113,7 @@ void CScriptVar::removeLink(CScriptVarLink *link)
    delete link;
 }
 
-void CScriptVar::removeAllChildren()
+void CScriptVar::eraseAllChildren()
 {
    CScriptVarLink *ca = firstChild;
    while (ca)
@@ -1144,7 +1144,7 @@ void CScriptVar::setArrayIndex(i32 idx, CScriptVar *value)
    if (link)
    {
       if (value->isUndefined())
-         removeLink(link);
+         eraseLink(link);
       else
          link->replaceWith(value);
    }
@@ -1262,7 +1262,7 @@ void CScriptVar::setUndefined()
    data = TINYJS_BLANK_DATA;
    intData = 0;
    doubleData = 0;
-   removeAllChildren();
+   eraseAllChildren();
 }
 
 void CScriptVar::setArray()
@@ -1272,7 +1272,7 @@ void CScriptVar::setArray()
    data = TINYJS_BLANK_DATA;
    intData = 0;
    doubleData = 0;
-   removeAllChildren();
+   eraseAllChildren();
 }
 
 bool CScriptVar::equals(CScriptVar *v)
@@ -1407,8 +1407,8 @@ void CScriptVar::copyValue(CScriptVar *val)
    if (val)
    {
       copySimpleData(val);
-      // remove all current children
-      removeAllChildren();
+      // erase all current children
+      eraseAllChildren();
       // copy children of 'val'
       CScriptVarLink *child = val->firstChild;
       while (child)
@@ -1815,7 +1815,7 @@ CScriptVarLink *tinyjs::functionCall(bool &execute, CScriptVarLink *function, CS
             }
             else
             {
-               // pass by context_object
+               // pass by object
                functionRoot->addChild(v->name, value->payload);
             }
          }
@@ -1846,7 +1846,7 @@ CScriptVarLink *tinyjs::functionCall(bool &execute, CScriptVarLink *function, CS
           * have messed up and left us with the wrong ScriptLex, so
           * we want to be careful here... */
 
-         ::exception_pointer exception;
+         ::exception::exception exception;
 
          CScriptLex *oldLex = l;
          CScriptLex *newLex = new CScriptLex(function->payload->getString());
@@ -1857,23 +1857,28 @@ CScriptVarLink *tinyjs::functionCall(bool &execute, CScriptVarLink *function, CS
             // because return will probably have called this, and set execute to false
             execute = true;
          }
-         catch (CScriptException *e)
+         catch (CScriptException & e)
          {
             exception = e;
          }
          delete newLex;
          l = oldLex;
 
-         if (exception)
+         if (!exception.m_estatus)
+         {
+
             throw exception;
+
+         }
+
       }
 #ifdef TINYJS_callstack
       if (!callstack.is_empty()) callstack.pop();
 #endif
       scopes.pop_back();
-      /* get the real return payload before we remove it from our function */
+      /* get the real return payload before we erase it from our function */
       returnVar = new CScriptVarLink(returnVarLink->payload);
-      functionRoot->removeLink(returnVarLink);
+      functionRoot->eraseLink(returnVarLink);
       delete functionRoot;
       if (returnVar)
          return returnVar;

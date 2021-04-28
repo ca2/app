@@ -250,7 +250,7 @@ bool html_document::on_open_document(const ::payload & varFile)
 
    //data_set({ "LastOpenedFile", true }, get_file_path());
 
-   //Application.data_set({"LastOpenedFile", true}, get_file_path());
+   //papplication->data_set({"LastOpenedFile", true}, get_file_path());
 
    return true;
 
@@ -262,7 +262,7 @@ void html_document::soft_reload()
 
    auto psync = get_html_data()->mutex();
 
-   synchronization_lock lock(psync);
+   synchronous_lock lock(psync);
 
    string str = get_html_data()->m_pcoredata->m_strSource;
 
@@ -337,12 +337,14 @@ void html_document::on_command_probe(::message::command * pcommand)
 void html_document::on_command(::message::command * pcommand)
 {
 
+   auto papplication = get_application();
+
    if(pcommand->m_id == "viewindefaultbrowser")
    {
 
       property_set propertyset;
 
-      Application.dialog_box("html_reader\\going_to_open_in_default_browser.xml", propertyset);
+      papplication->dialog_box("html_reader\\going_to_open_in_default_browser.xml", propertyset);
 
 #ifndef _UWP
 

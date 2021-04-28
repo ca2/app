@@ -89,13 +89,13 @@
 //
 //template < class T >
 //template < typename T2, typename OBJECT >
-//inline __pointer(T) & pointer < T >::defer_create_new(OBJECT * pobjectContext)
+//inline __pointer(T) & pointer < T >::defer_create_new(OBJECT * pobject)
 //{
 //
 //   if (is_null())
 //   {
 //
-//      create_new < T2 >(pobjectContext);
+//      create_new < T2 >(pobject);
 //
 //   }
 //
@@ -106,7 +106,7 @@
 //
 //template < class T >
 //template < typename T2, typename OBJECT >
-//inline __pointer(T) & pointer < T >::create_new(OBJECT * pobjectContext)
+//inline __pointer(T) & pointer < T >::create_new(OBJECT * pobject)
 //{
 //
 //   auto p = __new(T2);
@@ -114,7 +114,7 @@
 //   if (p)
 //   {
 //
-//      p->initialize(pobjectContext);
+//      p->initialize(pobject);
 //
 //   }
 //

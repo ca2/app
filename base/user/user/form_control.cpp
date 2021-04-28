@@ -736,7 +736,7 @@ namespace user
    //void form_control::_001RemoveControls()
    //{
 
-   //   m_controldescriptorset.remove_all();
+   //   m_controldescriptorset.erase_all();
 
    //}
 
@@ -813,6 +813,8 @@ namespace user
    void form_control::_001UpdateFunctionStatic()
    {
 
+      auto papplication = get_application();
+
       for(auto pinteraction : proper_children())
       {
 
@@ -821,7 +823,7 @@ namespace user
 
             string str;
 
-            str = Application.load_string(pinteraction->m_id);
+            str = papplication->load_string(pinteraction->m_id);
 
             pinteraction->set_window_text(str);
 
@@ -831,7 +833,7 @@ namespace user
 
             string str;
 
-            str = Application.load_string(pinteraction->m_uiText);
+            str = papplication->load_string(pinteraction->m_uiText);
 
             pinteraction->set_window_text(str);
 
@@ -931,8 +933,8 @@ namespace user
       {
       if(!pinteraction->GetComboBox()->m_datakeyFill.IsNull())
       {
-      pinteraction->GetComboBox()->m_wstra.remove_all();
-      pinteraction->GetComboBox()->m_dwaData.remove_all();
+      pinteraction->GetComboBox()->m_wstra.erase_all();
+      pinteraction->GetComboBox()->m_dwaData.erase_all();
       ::payload payload;
       payload.m_etype = ::e_type_element;
       payload.m_pca2 = pinteraction->GetComboBox();
@@ -1243,7 +1245,7 @@ namespace user
             else
             {
 
-               ia.remove(pinteraction->m_iDataValue);
+               ia.erase(pinteraction->m_iDataValue);
 
             }
 
@@ -1449,7 +1451,9 @@ namespace user
 
          ev.m_etimer = ptimer->m_etimer;
 
-         Application.on_control_event(&ev);
+         auto papplication = get_application();
+
+         papplication->on_control_event(&ev);
 
          if(ev.m_bRet)
          {
@@ -1500,7 +1504,7 @@ namespace user
    //::type form_control::controltype_to_typeinfo(::user::enum_control_type econtroltype)
    //{
 
-   //   return Application.user_default_controltype_to_typeinfo(econtroltype);
+   //   return papplication->user_default_controltype_to_typeinfo(econtroltype);
 
    //}
 

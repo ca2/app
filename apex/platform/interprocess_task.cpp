@@ -2,12 +2,14 @@
 
 
 interprocess_task::interprocess_task(interprocess_call* pcall, const ::id& idPid, i64 iTask) :
-   ::object(pcall),
+   //::object(pcall),
    m_pcall(pcall),
    m_idPid(idPid),
    m_pevReady(__new(manual_reset_event)),
    m_iTask(iTask)
 {
+   
+   initialize(pcall);
 
 }
 

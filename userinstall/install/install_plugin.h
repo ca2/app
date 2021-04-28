@@ -4,7 +4,7 @@
 #if defined()
 
 
-i32 spaboot_start(const char * pszVersion, const char * pszId);
+i32 installer_start(const char * pszVersion, const char * pszId);
 
 
 namespace install
@@ -34,7 +34,7 @@ namespace install
 
          plugin * m_pplugin;
 
-         thread_start_ca2(::layered * pobjectContext);
+         thread_start_ca2(::object * pobject);
 
          //virtual bool on_run_step();
 
@@ -73,7 +73,7 @@ namespace install
       //bool                 m_bHasCredEval;
 
 
-      plugin(::layered * pobjectContext);
+      plugin(::object * pobject);
       virtual ~plugin();
 
 
@@ -97,7 +97,7 @@ namespace install
 
       virtual void on_login_result(const ::e_status & estatus, const char * pszResponse);
 
-      DECL_GEN_SIGNAL(on_message_left_button_up);
+      DECLARE_MESSAGE_HANDLER(on_message_left_button_up);
       
       virtual void message_handler(::user::message * pusermessage) override;
 

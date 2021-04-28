@@ -195,10 +195,10 @@ namespace uwp
    }
 
 
-   ::e_status copydesk::initialize(::layered * pobjectContext)
+   ::e_status copydesk::initialize(::object * pobject)
    {
 
-      auto estatus = ::user::copydesk::initialize(pobjectContext);
+      auto estatus = ::user::copydesk::initialize(pobject);
 
       if(!estatus)
       {
@@ -212,7 +212,7 @@ namespace uwp
    }
 
 
-   void copydesk::finalize()
+   ::e_status copydesk::finalize()
    {
 
       ::user::copydesk::finalize();

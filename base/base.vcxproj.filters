@@ -80,9 +80,6 @@
     <ClInclude Include="user\user\control_descriptor_set.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
-    <ClInclude Include="user\user\form.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
     <ClInclude Include="user\user\form_data.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
@@ -518,6 +515,9 @@
     <ClInclude Include="const\idpool.h">
       <Filter>Header Files\const</Filter>
     </ClInclude>
+    <ClInclude Include="user\user\split_pane.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="user\user\form_data.cpp">
@@ -764,6 +764,9 @@
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
     <ClCompile Include="user\user\tab_pane_array.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\split_pane.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
   </ItemGroup>

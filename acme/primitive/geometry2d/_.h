@@ -1157,6 +1157,16 @@ inline bool is_equal(const RECTANGLE_F64* prect1, const RECTANGLE_F64* prect2) {
 inline RECTANGLE_F64* inflate(RECTANGLE_F64* prectangle, double x, double y) { return ::rect_inflate_point(prectangle, x, y); }
 inline RECTANGLE_F64* deflate(RECTANGLE_F64* prectangle, double x, double y) { return ::rect_deflate_point(prectangle, x, y); }
 inline RECTANGLE_F64* offset(RECTANGLE_F64* prectangle, double x, double y) { return ::offset_rect(prectangle, x, y); }
+
+namespace geometry
+{
+
+   template < primitive_rectangle RECTANGLE >
+   inline void deflate(RECTANGLE* prectangle, double dLeftRate, double dRightRate, double dTopRate, double dBottomRate);
+
+} // namespace geometry
+
+
 inline bool intersect(RECTANGLE_F64* prectangle, const RECTANGLE_F64* prect1, const RECTANGLE_F64* prect2) { return ::intersect_rect(prectangle, prect1, prect2); }
 inline bool unite(RECTANGLE_F64 * prectangle, const RECTANGLE_F64 * prect1, const RECTANGLE_F64 * prect2) { return ::union_rect(prectangle, prect1, prect2); }
 inline double width(const RECTANGLE_F64 * prectangle) { return ::rect_width(prectangle); }

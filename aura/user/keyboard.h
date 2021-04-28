@@ -26,7 +26,7 @@ namespace user
 
       //virtual class keyboard_layout & on_layout();
 
-      virtual ::e_status initialize(::layered * pobjectContext) override;
+      virtual ::e_status initialize(::object * pobject) override;
 
       //bool load_layout(const char * pszPath, const ::action_context & action_context);
 
@@ -44,7 +44,7 @@ namespace user
 
       //bool initialize(::user::keyboard_layout_id * playoutid, const char * pszPath);
 
-      void translate_os_key_message(key * pkey);
+      virtual void translate_os_key_message(key * pkey);
 
       virtual bool load_os_layout(const ::file::path & pszPath);
 

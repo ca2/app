@@ -41,12 +41,18 @@ namespace user
       virtual void assert_valid() const override;
 
 
+      inline ::base::application* get_application() const { return m_pcontext ? m_pcontext->m_pbaseapplication : nullptr; }
+      inline ::base::session* get_session() const { return m_pcontext ? m_pcontext->m_pbasesession : nullptr; }
+      inline ::base::system* get_system() const { return m_psystem ? m_psystem->m_pbasesystem : nullptr; }
+      inline ::base::user* user() const { return get_session() ? get_session()->user() : nullptr; }
+
+
       virtual ::user::interaction* impact_at(::index iImpact) const override;
       virtual ::count impact_count() const override;
 
       ::user::interaction_array get_top_level_windows();
 
-      virtual ::e_status set_finish_composites(::context_object * pcontextobjectFinish) override;
+      virtual ::e_status finish_composites() override;
 
       virtual bool contains(::user::interaction* pinteraction) const;
 
@@ -81,7 +87,7 @@ namespace user
 
       // Operations
       ::e_status add_view(::user::impact * pview);
-      ::e_status remove_view(::user::impact * pview);
+      ::e_status erase_view(::user::impact * pview);
       virtual ::count get_view_count() const;
       virtual __pointer(::user::impact) get_view(index index = 0) const;
 
@@ -90,7 +96,7 @@ namespace user
       template < class T >
       ::count get_typed_view_count() const
       {
-         synchronization_lock synchronizationlock(((document *)this)->mutex());
+         synchronous_lock synchronouslock(((document *)this)->mutex());
          ::count count = 0;
          for (index index = 0; index < m_viewa.get_count(); index++)
          {
@@ -109,7 +115,7 @@ namespace user
       __pointer(T) get_typed_view(index indexFind = 0) const
       {
 
-         synchronization_lock synchronizationlock(((document *)this)->mutex());
+         synchronous_lock synchronouslock(((document *)this)->mutex());
 
          if (indexFind < 0 || indexFind >= m_viewa.get_count())
          {
@@ -161,7 +167,7 @@ namespace user
       __pointer(T) get_typed_view_with_id(id id) const
       {
 
-         synchronization_lock synchronizationlock(((document *)this)->mutex());
+         synchronous_lock synchronouslock(((document *)this)->mutex());
 
          ::count count = 0;
 
@@ -259,7 +265,7 @@ namespace user
 
       // Overridables
       // Special notifications
-      virtual void on_changed_view_list(); // after add or remove ::user::impact
+      virtual void on_changed_view_list(); // after add or erase ::user::impact
       virtual void delete_contents(); // delete doc items etc
 
       virtual bool new_document();

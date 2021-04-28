@@ -237,7 +237,7 @@
     <ClInclude Include="mediaalbum\mediaalbum_tree.h">
       <Filter>Header Files\mediaalbum</Filter>
     </ClInclude>
-    <ClInclude Include="mediaalbum\aaa_want_to_remove_mediaalbum_view_update_hint.h">
+    <ClInclude Include="mediaalbum\aaa_want_to_erase_mediaalbum_view_update_hint.h">
       <Filter>Header Files\mediaalbum</Filter>
     </ClInclude>
     <ClInclude Include="mediafun\mediafun.h">
@@ -276,7 +276,7 @@
     <ClInclude Include="medialibrary\medialibrary_pane_view.h">
       <Filter>Header Files\medialibrary</Filter>
     </ClInclude>
-    <ClInclude Include="medialibrary\aaa_want_to_remove_medialibrary_view_update_hint.h">
+    <ClInclude Include="medialibrary\aaa_want_to_erase_medialibrary_view_update_hint.h">
       <Filter>Header Files\medialibrary</Filter>
     </ClInclude>
     <ClInclude Include="mediaplay\mediaplay.h">
@@ -300,7 +300,7 @@
     <ClInclude Include="mediaplay\mediaplay_view_interface.h">
       <Filter>Header Files\mediaplay</Filter>
     </ClInclude>
-    <ClInclude Include="mediaplay\aaa_want_to_remove_mediaplay_view_update_hint.h">
+    <ClInclude Include="mediaplay\aaa_want_to_erase_mediaplay_view_update_hint.h">
       <Filter>Header Files\mediaplay</Filter>
     </ClInclude>
     <ClInclude Include="multimedia\multimedia.h">
@@ -483,7 +483,7 @@
     <ClInclude Include="music_user\music_user_musical_player.h">
       <Filter>Header Files\music_user</Filter>
     </ClInclude>
-    <ClInclude Include="music_user\aaa_want_to_remove_music_user_musical_player_central_container.h">
+    <ClInclude Include="music_user\aaa_want_to_erase_music_user_musical_player_central_container.h">
       <Filter>Header Files\music_user</Filter>
     </ClInclude>
     <ClInclude Include="music_user\music_user_player_document_container.h">
@@ -519,7 +519,7 @@
     <ClInclude Include="music_user\music_user_midi_track_selection_view.h">
       <Filter>Header Files\music_user\midi\track_selection</Filter>
     </ClInclude>
-    <ClInclude Include="music_user\aaa_want_to_remove_music_user_midi_track_selection_view_update_hint.h">
+    <ClInclude Include="music_user\aaa_want_to_erase_music_user_midi_track_selection_view_update_hint.h">
       <Filter>Header Files\music_user\midi\track_selection</Filter>
     </ClInclude>
     <ClInclude Include="video\video.h">
@@ -641,7 +641,7 @@
     <ClCompile Include="mediaalbum\mediaalbum_tree.cpp">
       <Filter>Source Files\mediaalbum</Filter>
     </ClCompile>
-    <ClCompile Include="mediaalbum\aaa_want_to_remove_mediaalbum_view_update_hint.cpp">
+    <ClCompile Include="mediaalbum\aaa_want_to_erase_mediaalbum_view_update_hint.cpp">
       <Filter>Source Files\mediaalbum</Filter>
     </ClCompile>
     <ClCompile Include="mediafun\mediafun_list_view.cpp">
@@ -671,7 +671,7 @@
     <ClCompile Include="medialibrary\medialibrary_pane_view.cpp">
       <Filter>Source Files\medialibrary</Filter>
     </ClCompile>
-    <ClCompile Include="medialibrary\aaa_want_to_remove_medialibrary_view_update_hint.cpp">
+    <ClCompile Include="medialibrary\aaa_want_to_erase_medialibrary_view_update_hint.cpp">
       <Filter>Source Files\medialibrary</Filter>
     </ClCompile>
     <ClCompile Include="mediaplay\mediaplay_data.cpp">
@@ -692,7 +692,7 @@
     <ClCompile Include="mediaplay\mediaplay_view_interface.cpp">
       <Filter>Source Files\mediaplay</Filter>
     </ClCompile>
-    <ClCompile Include="mediaplay\aaa_want_to_remove_mediaplay_view_update_hint.cpp">
+    <ClCompile Include="mediaplay\aaa_want_to_erase_mediaplay_view_update_hint.cpp">
       <Filter>Source Files\mediaplay</Filter>
     </ClCompile>
     <ClCompile Include="multimedia\multimedia_application.cpp">
@@ -851,7 +851,7 @@
     <ClCompile Include="music_user\music_user_midi_track_selection_view.cpp">
       <Filter>Source Files\music_user\midi\track_selection</Filter>
     </ClCompile>
-    <ClCompile Include="music_user\aaa_want_to_remove_music_user_midi_track_selection_view_update_hint.cpp">
+    <ClCompile Include="music_user\aaa_want_to_erase_music_user_midi_track_selection_view_update_hint.cpp">
       <Filter>Source Files\music_user\midi\track_selection</Filter>
     </ClCompile>
     <ClCompile Include="video\video_player.cpp">

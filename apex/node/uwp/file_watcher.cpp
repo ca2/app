@@ -226,7 +226,7 @@ namespace file
       //{
       //   DestroyWatch(ppair->element2().w);
       //}
-      //m_watchmap.remove_all();
+      //m_watchmap.erase_all();
 
    }
 
@@ -234,7 +234,7 @@ namespace file
    bool os_watch::open(const ::file::path& pathFolderParam, bool bRecursive)
    {
 
-      ::file::path pathFolder = Context.defer_process_path(pathFolderParam);
+      ::file::path pathFolder = get_context()->defer_process_path(pathFolderParam);
 
       if (!watch::open(pathFolderParam, bRecursive))
       {
@@ -263,11 +263,11 @@ namespace file
    //watch_id os_watcher::add_watch(const ::file::path& pathFolderParam, listener* plistenerParam, bool bRecursive)
    //{
 
-   //   synchronization_lock synchronizationlock(mutex());
+   //   synchronous_lock synchronouslock(mutex());
 
    //   id watchid = ++m_idLast;
 
-   //   ::file::path pathFolder = Context.defer_process_path(pathFolderParam);
+   //   ::file::path pathFolder = get_context()->defer_process_path(pathFolderParam);
 
    //   //watch_struct ^ pwatch = watch_struct::create_watch(m_str(directory), FILE_NOTIFY_CHANGE_CREATION | FILE_NOTIFY_CHANGE_SIZE | FILE_NOTIFY_CHANGE_FILE_NAME);
    //   watch_ref ^ watchref = watch_ref::create_watch(pathFolder, bRecursive);
@@ -302,7 +302,7 @@ namespace file
    //}
 
 
-   //void os_file_watcher::remove_watch(const string & directory)
+   //void os_file_watcher::erase_watch(const string & directory)
    //{
 
    //   watch_map::pair * ppair = m_watchmap.get_start();
@@ -315,7 +315,7 @@ namespace file
    //      if(strDir == ppair->element2()->m_strFolder)
    //      {
 
-   //         remove_watch(ppair->element1());
+   //         erase_watch(ppair->element1());
 
    //         return;
 
@@ -326,7 +326,7 @@ namespace file
    //}
 
 
-   //void os_file_watcher::remove_watch(id watchid)
+   //void os_file_watcher::erase_watch(id watchid)
    //{
 
    //   watch_map::pair * ppair = m_watchmap.plookup(watchid);
@@ -334,7 +334,7 @@ namespace file
    //   if(ppair == nullptr)
    //      return;
 
-   //   m_watchmap.remove_key(ppair->element1());
+   //   m_watchmap.erase_key(ppair->element1());
 
    //}
 

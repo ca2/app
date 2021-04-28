@@ -88,7 +88,7 @@ namespace experience
 
          m_bDrag = false;
 
-         auto psession = Session;
+         auto psession = get_session();
 
          auto puser = psession->user();
 
@@ -103,7 +103,7 @@ namespace experience
    }
 
 
-   void control_box::_001OnMouseMove(::message::message * pmessage)
+   void control_box::on_message_mouse_move(::message::message * pmessage)
    {
 
       __pointer(::message::mouse) pmouse(pmessage);
@@ -232,7 +232,7 @@ namespace experience
 
          ::point_i32 pointCursor;
 
-         auto psession = Session;
+         auto psession = get_session();
 
          auto puser = psession->user();
 
@@ -390,7 +390,7 @@ namespace experience
 
       MESSAGE_LINK(e_message_show_window, pframewindow, this, &control_box::_001OnShowWindow);
       MESSAGE_LINK(e_message_create, pframewindow, this, &control_box::on_message_create);
-      MESSAGE_LINK(e_message_mouse_move, pframewindow, this, &control_box::_001OnMouseMove);
+      MESSAGE_LINK(e_message_mouse_move, pframewindow, this, &control_box::on_message_mouse_move);
       MESSAGE_LINK(e_message_left_button_down, pframewindow, this, &control_box::on_message_left_button_down);
       MESSAGE_LINK(e_message_left_button_up, pframewindow, this, &control_box::on_message_left_button_up);
       MESSAGE_LINK(e_message_move, pframewindow, this, &control_box::_001OnMove);
@@ -652,7 +652,9 @@ namespace experience
 
       auto & pbutton = pitem->m_pbutton;
 
-      pbutton = m_pframewindow->m_pframe->m_pexperience->m_plibrary->create_object("button");
+      auto plibrary = m_pframewindow->m_pframe->m_pexperience->m_plibrary;
+
+      plibrary->__defer_construct(pbutton);
 
       pbutton->initialize(this);
 
@@ -662,12 +664,12 @@ namespace experience
 
       pbutton->m_ebutton = ebutton;
 
-      if(ebutton == e_button_dock)
-      {
+      // if(ebutton == e_button_dock)
+      // {
 
-         pbutton->m_bSimpleUIDefaultMouseHandlingLeftButtonDownCapture = true;
+      //    pbutton->m_bSimpleUIDefaultMouseHandlingMouseCaptureOnLeftButtonDown = true;
 
-      }
+      // }
 
       if (!pbutton->is_window() && !pbutton->create_child(this))
       {

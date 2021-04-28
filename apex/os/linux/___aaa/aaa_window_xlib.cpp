@@ -39,7 +39,7 @@ namespace xlib
 
       }
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       xdisplay d(m_oswindow->display());
 
@@ -52,10 +52,10 @@ namespace xlib
    }
 
 
-   void buffer::finalize()
+   ::e_status buffer::finalize()
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       xdisplay d(m_oswindow->display());
 
@@ -75,7 +75,7 @@ namespace xlib
    bool buffer::create_os_buffer(const ::size & size, int iStrideParam)
    {
 
-//      synchronization_lock synchronizationlock(mutex());
+//      synchronous_lock synchronouslock(mutex());
 //
 //      destroy_os_buffer();
 //
@@ -119,7 +119,7 @@ namespace xlib
    void buffer::destroy_os_buffer()
    {
 
-//      synchronization_lock synchronizationlock(mutex());
+//      synchronous_lock synchronouslock(mutex());
 //
 //      xdisplay d(m_oswindow->display());
 //
@@ -164,7 +164,7 @@ namespace xlib
 //   bool buffer::create_os_buffer(::image * pimage)
 //   {
 //
-//      //synchronization_lock synchronizationlock(mutex());
+//      //synchronous_lock synchronouslock(mutex());
 //
 ////      if(!pimage)
 ////      {
@@ -269,7 +269,7 @@ namespace xlib
 
       }
 
-      synchronization_lock slGraphics(mutex());
+      synchronous_lock slGraphics(mutex());
 
       if(m_gc == nullptr)
       {
@@ -280,7 +280,7 @@ namespace xlib
 
       auto psync = get_screen_sync();
 
-      synchronization_lock synchronizationlock(psync);
+      synchronous_lock synchronouslock(psync);
 
       auto & pimage = get_screen_image();
 

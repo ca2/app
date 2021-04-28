@@ -65,9 +65,9 @@ namespace user
       MESSAGE_LINK(e_message_left_button_down, pchannel, this, &combo_list::on_message_left_button_down);
       MESSAGE_LINK(e_message_non_client_left_button_down, pchannel, this, &combo_list::on_message_left_button_down);
       MESSAGE_LINK(e_message_left_button_up, pchannel, this, &combo_list::on_message_left_button_up);
-      MESSAGE_LINK(e_message_middle_button_down, pchannel, this, &combo_list::_001OnMButtonDown);
+      MESSAGE_LINK(e_message_middle_button_down, pchannel, this, &combo_list::on_message_middle_button_down);
       MESSAGE_LINK(e_message_right_button_down, pchannel, this, &combo_list::on_message_right_button_down);
-      MESSAGE_LINK(e_message_mouse_move, pchannel, this, &combo_list::_001OnMouseMove);
+      MESSAGE_LINK(e_message_mouse_move, pchannel, this, &combo_list::on_message_mouse_move);
       MESSAGE_LINK(e_message_show_window, pchannel, this, &combo_list::_001OnShowWindow);
 
    }
@@ -291,7 +291,7 @@ namespace user
    void combo_list::query_full_size(::draw2d::graphics_pointer& pgraphics, LPSIZE32 psize)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       pgraphics->set_font(this, ::user::e_element_none);
 
@@ -800,7 +800,7 @@ namespace user
    }
 
 
-   void combo_list::_001OnMButtonDown(::message::message * pmessage)
+   void combo_list::on_message_middle_button_down(::message::message * pmessage)
    {
 
       __pointer(::message::mouse) pmouse(pmessage);
@@ -854,7 +854,7 @@ namespace user
    }
 
 
-   void combo_list::_001OnMouseMove(::message::message * pmessage)
+   void combo_list::on_message_mouse_move(::message::message * pmessage)
    {
 
       UNREFERENCED_PARAMETER(pmessage);
@@ -1094,7 +1094,7 @@ namespace user
 
          {
 
-            synchronization_lock synchronizationlock(psession->mutex());
+            synchronous_lock synchronouslock(psession->mutex());
 
             auto & preference = psession->m_uiptraToolWindow.add_new();
 
@@ -1110,7 +1110,7 @@ namespace user
 
          {
 
-            synchronization_lock synchronizationlock(psession->mutex());
+            synchronous_lock synchronouslock(psession->mutex());
 
             ::index iFind = psession->m_uiptraToolWindow.predicate_find_first([this](auto& p) {return p.get() == this; });
 
@@ -1119,7 +1119,7 @@ namespace user
 
                psession->__release(psession->m_uiptraToolWindow[iFind]);
 
-               psession->m_uiptraToolWindow.remove_at(iFind);
+               psession->m_uiptraToolWindow.erase_at(iFind);
 
             }
 

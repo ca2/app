@@ -96,19 +96,19 @@ protected:
    bool LoadMenuBar(::u32 nIDResource);
    void SetMenuID(::u32 nIDResource);
 
-   //DECL_GEN_SIGNAL(_001OnMouseMove);
-   //DECL_GEN_SIGNAL(_001OnNcMouseMove);
-   DECL_GEN_SIGNAL(on_message_create);
-   DECL_GEN_SIGNAL(_001OnKeyDown);
-   DECL_GEN_SIGNAL(_001OnDestroy);
-   DECL_GEN_SIGNAL(_001OnMenuChar);
-   //DECL_GEN_SIGNAL(on_message_left_button_down);
-   //DECL_GEN_SIGNAL(_001OnAppLanguage);
+   //DECLARE_MESSAGE_HANDLER(on_message_mouse_move);
+   //DECLARE_MESSAGE_HANDLER(_001OnNcMouseMove);
+   DECLARE_MESSAGE_HANDLER(on_message_create);
+   DECLARE_MESSAGE_HANDLER(_001OnKeyDown);
+   DECLARE_MESSAGE_HANDLER(_001OnDestroy);
+   DECLARE_MESSAGE_HANDLER(_001OnMenuChar);
+   //DECLARE_MESSAGE_HANDLER(on_message_left_button_down);
+   //DECLARE_MESSAGE_HANDLER(_001OnAppLanguage);
    void _001OnTimer(::timer * ptimer) override;
 
    //virtual index OnMessage(MPARAM mparam, NPARAM nparam, OPARAM oparam);
 
-   //DECL_GEN_SIGNAL(_001OnAppLanguage);
+   //DECLARE_MESSAGE_HANDLER(_001OnAppLanguage);
 
    virtual void install_message_routing(::channel * pchannel) override;
 

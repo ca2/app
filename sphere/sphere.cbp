@@ -237,7 +237,7 @@
 		<Unit filename="command/command_form_callback.h" />
 		<Unit filename="command/command_frame.h" />
 		<Unit filename="command/command_pane_view.h" />
-		<Unit filename="command/aaa_want_to_remove_command_view_update_hint.h" />
+		<Unit filename="command/aaa_want_to_erase_command_view_update_hint.h" />
 		<Unit filename="command/command_primary_view.h" />
 		<Unit filename="command/command_view.h" />
 		<Unit filename="console/console.h" />
@@ -260,8 +260,8 @@
 		<Unit filename="filehandler/filehandler_frame.h" />
 		<Unit filename="filehandler/filehandler_pane_view.cpp" />
 		<Unit filename="filehandler/filehandler_pane_view.h" />
-		<Unit filename="filehandler/aaa_want_to_remove_filehandler_view_update_hint.cpp" />
-		<Unit filename="filehandler/aaa_want_to_remove_filehandler_view_update_hint.h" />
+		<Unit filename="filehandler/aaa_want_to_erase_filehandler_view_update_hint.cpp" />
+		<Unit filename="filehandler/aaa_want_to_erase_filehandler_view_update_hint.h" />
 		<Unit filename="filehandler/filehandler_view.cpp" />
 		<Unit filename="filehandler/filehandler_view.h" />
 		<Unit filename="framework.h">
@@ -308,8 +308,8 @@
 		<Unit filename="prompt/prompt_frame.h" />
 		<Unit filename="prompt/prompt_pane_view.cpp" />
 		<Unit filename="prompt/prompt_pane_view.h" />
-		<Unit filename="prompt/aaa_want_to_remove_prompt_view_update_hint.cpp" />
-		<Unit filename="prompt/aaa_want_to_remove_prompt_view_update_hint.h" />
+		<Unit filename="prompt/aaa_want_to_erase_prompt_view_update_hint.cpp" />
+		<Unit filename="prompt/aaa_want_to_erase_prompt_view_update_hint.h" />
 		<Unit filename="prompt/prompt_primary_view.cpp" />
 		<Unit filename="prompt/prompt_primary_view.h" />
 		<Unit filename="prompt/prompt_view.cpp" />
@@ -333,8 +333,8 @@
 		<Unit filename="userstack/userstack_frame.h" />
 		<Unit filename="userstack/userstack_pane_view.cpp" />
 		<Unit filename="userstack/userstack_pane_view.h" />
-		<Unit filename="userstack/aaa_want_to_remove_userstack_view_update_hint.cpp" />
-		<Unit filename="userstack/aaa_want_to_remove_userstack_view_update_hint.h" />
+		<Unit filename="userstack/aaa_want_to_erase_userstack_view_update_hint.cpp" />
+		<Unit filename="userstack/aaa_want_to_erase_userstack_view_update_hint.h" />
 		<Unit filename="userstack/userstack_view.cpp" />
 		<Unit filename="userstack/userstack_view.h" />
 		<Extensions>

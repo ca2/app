@@ -2,7 +2,7 @@
 
 
 
-//probe_::message::command::probe_::message::command(::layered * pobjectContext):
+//probe_::message::command::probe_::message::command(::object * pobject):
 //::message::command(pobject)
 //{
 //

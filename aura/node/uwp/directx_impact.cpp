@@ -87,7 +87,7 @@ namespace uwp
       // The system raises this event to request the current selection.
       m_editcontext->SelectionRequested += ref new TypedEventHandler < CoreTextEditContext^, CoreTextSelectionRequestedEventArgs^>(this, &impact::EditContext_SelectionRequested);
 
-      // The system raises this event when it wants the edit control to remove focus.
+      // The system raises this event when it wants the edit control to erase focus.
       m_editcontext->FocusRemoved += ref new TypedEventHandler < CoreTextEditContext^, Object^>(this, &impact::EditContext_FocusRemoved);
 
       // The system raises this event to update text in the edit control.
@@ -391,14 +391,14 @@ namespace uwp
 
             spbase = pkey;
 
-            auto psession = Session;
+            auto psession = get_session();
 
             bool bTextFocus = host()->get_user_interaction() != nullptr;
 
             bool bSpecialKey = false;
 
             pkey->m_id = e_message_key_down;
-            pkey->m_playeredUserPrimitive = psession->m_puiHost;
+            pkey->m_playeredUserPrimitive = psession->get_user_interaction_host();
             pkey->m_nChar = 0;
             pkey->m_ekey = ::user::e_key_refer_to_text_member;
             pkey->m_wparam = pkey->m_nChar;
@@ -406,9 +406,9 @@ namespace uwp
             pkey->m_lparam = pkey->m_nFlags << 16;
             pkey->m_strText = m_strNewText;
 
-            auto puiHost = __user_interaction(m_psystem->get_context_session()->m_puiHost);
+            auto puserinteractionHost = __user_interaction(m_psystem->get_session()->m_puserinteractionHost);
 
-            puiHost->m_pimpl->queue_message_handler(spbase);
+            puserinteractionHost->m_pimpl->queue_message_handler(spbase);
 
          }
 
@@ -570,13 +570,13 @@ namespace uwp
 
          ::output_debug_string("Deactivated");
 
-         //auto puiHost = Sess(m_psystem).host();
+         //auto puserinteractionHost = Sess(m_psystem).host();
 
-         //puiHost->set_need_layout();
+         //puserinteractionHost->set_need_layout();
 
-         //puiHost->set_need_redraw();
+         //puserinteractionHost->set_need_redraw();
 
-         //puiHost->post_redraw();
+         //puserinteractionHost->post_redraw();
 
       }
 

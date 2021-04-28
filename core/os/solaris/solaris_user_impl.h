@@ -6,7 +6,7 @@
 
 
 
-struct hthread;
+struct htask;
 
 namespace ca2
 {
@@ -57,7 +57,7 @@ public:
    int m_iScreen;
    bool m_bMessageOnlyWindow;
    ::user::interaction * m_puserinteraction;
-   hthread_t m_hthread;
+   htask_t m_htask;
    int_to_int * m_plongmap;
    bool m_bDestroying;
    Colormap m_colormap;
@@ -183,8 +183,8 @@ CLASS_DECL_CORE oswindow_data * oswindow_get_message_only_window(::user::interac
 //CLASS_DECL_CORE oswindow_data * oswindow_get(Display * pdisplay, Window window, Visual * pvisual = nullptr);
 CLASS_DECL_CORE oswindow_data * oswindow_get(Window window);
 CLASS_DECL_CORE oswindow oswindow_defer_get(Window w);
-CLASS_DECL_CORE bool oswindow_remove(Display * pdisplay, Window window);
-CLASS_DECL_CORE bool oswindow_remove_message_only_window(::user::interaction_impl * puibaseMessageOnlyWindow);
+CLASS_DECL_CORE bool oswindow_erase(Display * pdisplay, Window window);
+CLASS_DECL_CORE bool oswindow_erase_message_only_window(::user::interaction_impl * puibaseMessageOnlyWindow);
 
 
 

@@ -1,9 +1,11 @@
 #include "framework.h"
 #include "apex/const/method.h"
+#include "apex/platform/launcher.h"
+#include "apex/platform/app_launcher.h"
+#include "acme/filesystem/filesystem/acme_dir.h"
 
 
-interprocess_intercommunication::interprocess_intercommunication(const string & strApp) :
-   m_strApp(strApp)
+interprocess_intercommunication::interprocess_intercommunication() 
 {
 
    m_iTaskSeed = 0;
@@ -12,15 +14,6 @@ interprocess_intercommunication::interprocess_intercommunication(const string & 
 
    defer_create_mutex();
 
-#ifdef _UWP
-
-   m_idApp = strApp;
-
-#else
-
-   m_idApp = (::i64) ::get_current_process_id();
-
-#endif
 
 }
 
@@ -32,10 +25,10 @@ interprocess_intercommunication::~interprocess_intercommunication()
 }
 
 
-::e_status interprocess_intercommunication::initialize(::layered * pobjectContext)
+::e_status interprocess_intercommunication::initialize_interprocess_communication(::object * pobject, const ::string & strApp)
 {
 
-   auto estatus = ::object::initialize(pobjectContext);
+   auto estatus = ::object::initialize(pobject);
 
    if (!estatus)
    {
@@ -43,6 +36,18 @@ interprocess_intercommunication::~interprocess_intercommunication()
       return estatus;
 
    }
+
+   m_strApp = strApp;
+
+#ifdef _UWP
+
+   m_idApp = strApp;
+
+#else
+
+   m_idApp = (::i64) ::get_current_process_id();
+
+#endif
 
    run_property("on_create");
 
@@ -57,9 +62,9 @@ interprocess_intercommunication::~interprocess_intercommunication()
 
    }
 
-   int iPid = Context.os().get_pid();
+   int iPid = m_pcontext->m_papexcontext->os().get_pid();
 
-   //defer_add_module(Context.file().module(), iPid);
+   //defer_add_module(m_pcontext->m_papexcontext->file().module(), iPid);
 
 //      ::file::path path;
 //
@@ -87,7 +92,7 @@ interprocess_intercommunication::~interprocess_intercommunication()
 }
 
 
-void interprocess_intercommunication::finalize()
+::e_status interprocess_intercommunication::finalize()
 {
 
    ::object::finalize();
@@ -99,6 +104,8 @@ void interprocess_intercommunication::finalize()
 
    }
 
+   return ::success;
+
 }
 
 
@@ -106,7 +113,7 @@ void interprocess_intercommunication::finalize()
 bool interprocess_intercommunication::start(const string & strApp)
 {
 
-   synchronization_lock sl1(mutex());
+   synchronous_lock sl1(mutex());
 
    auto & pmutex = m_mapAppMutex[strApp];
 
@@ -119,7 +126,7 @@ bool interprocess_intercommunication::start(const string & strApp)
 
    sl1.unlock();
 
-   synchronization_lock synchronizationlock(pmutex);
+   synchronous_lock synchronouslock(pmutex);
 
    auto idaPid = get_pid(strApp);
 
@@ -137,7 +144,9 @@ bool interprocess_intercommunication::start(const string & strApp)
 
    }
 
-   ::apex::app_launcher launcher(process_platform_dir_name2(), strApp);
+   auto plauncher = __new(::apex::app_launcher);
+   
+   plauncher->initialize_app_launcher(this, process_platform_dir_name2(), strApp);
 
    id idPid = -1;
 
@@ -148,16 +157,16 @@ bool interprocess_intercommunication::start(const string & strApp)
       if(ida.is_empty())
       {
 
-         launcher.start();
+         branch(plauncher);
 
          int iStep = 0;
 
          int iSubStep;
 
-         while(iStep < 8 && ::thread_get_run())
+         while(iStep < 8 && ::task_get_run())
          {
 
-            for(iSubStep = 0; (iSubStep < (iStep + 1) * 10) && ::thread_get_run(); iSubStep++)
+            for(iSubStep = 0; (iSubStep < (iStep + 1) * 10) && ::task_get_run(); iSubStep++)
             {
 
                sleep(100_ms);
@@ -283,7 +292,7 @@ string interprocess_intercommunication::key(const string &strApp, const ::id & i
 
 #ifdef LINUX
 
-   strKey = ::dir::system() / "interprocess_intercommunication" / strApp / __str(idPid);
+   strKey = m_psystem->m_pacmedir->system() / "interprocess_intercommunication" / strApp / __str(idPid);
 
 #elif defined(__APPLE__)
 
@@ -305,7 +314,7 @@ string interprocess_intercommunication::key(const string &strApp, const ::id & i
 
 #else
 
-   strKey = ::dir::system() / "interprocess_intercommunication" / strApp / __str(idPid);
+   strKey = m_psystem->m_pacmedir->system() / "interprocess_intercommunication" / strApp / __str(idPid);
 
 
 #endif
@@ -465,7 +474,7 @@ __pointer(interprocess_task) interprocess_intercommunication::create_task(interp
 
    auto pobjectTask = __new(interprocess_task(pcall, idPid, atomic_increment(&m_iTaskSeed)));
 
-   synchronization_lock synchronizationlock(mutex());
+   synchronous_lock synchronouslock(mutex());
 
    m_mapTask[pobjectTask->m_iTask] = pobjectTask;
 
@@ -479,7 +488,7 @@ __pointer(interprocess_task) interprocess_intercommunication::create_task(interp
 __pointer(interprocess_task) interprocess_intercommunication::get_task(i64 iTask)
 {
 
-   synchronization_lock synchronizationlock(mutex());
+   synchronous_lock synchronouslock(mutex());
 
    return m_mapTask[iTask];
 
@@ -531,7 +540,7 @@ void interprocess_intercommunication::on_interprocess_call(::payload & payload, 
 
          strCommandLine = vara[2];
 
-         payload["continue"] = Application.on_additional_local_instance(payload["handled"], strModule, vara[1], strCommandLine);
+         payload["continue"] = get_application()->on_additional_local_instance(payload["handled"], strModule, vara[1], strCommandLine);
 
       }
       else if (strMember == "on_new_instance")
@@ -551,7 +560,7 @@ void interprocess_intercommunication::on_new_instance(const string & strModule, 
 
    defer_add_module(strModule, idPid);
 
-   Application.on_new_instance(strModule, idPid);
+   get_application()->on_new_instance(strModule, idPid);
 
 }
 
@@ -579,7 +588,7 @@ id_array interprocess_intercommunication::get_pid(const string & strApp)
 
    ::file::path pathModule;
 
-   pathModule = ::dir::system() / "interprocess_intercommunication";
+   pathModule = m_psystem->m_pacmedir->system() / "interprocess_intercommunication";
 
    pathModule /= strApp + ".module_list";
 
@@ -592,7 +601,7 @@ repeat:
    if (stra.get_count() > 32)
    {
 
-      stra.remove_at(0, 16);
+      stra.erase_at(0, 16);
 
    }
 
@@ -667,9 +676,9 @@ void interprocess_intercommunication::defer_add_module(const string & strModule,
 
    ::file::path pathModule;
 
-   m_straModule.remove_all();
+   m_straModule.erase_all();
 
-   pathModule = ::dir::system() / "interprocess_intercommunication";
+   pathModule = m_psystem->m_pacmedir->system() / "interprocess_intercommunication";
 
    pathModule /= m_strApp + ".module_list";
 
@@ -731,7 +740,7 @@ void interprocess_intercommunication::defer_add_module(const string & strModule,
       else
       {
 
-         m_straModule.remove_at(i);
+         m_straModule.erase_at(i);
 
       }
 
@@ -748,7 +757,7 @@ void interprocess_intercommunication::defer_add_module(const string & strModule,
 
    m_straModule = straUnique;
 
-   ::file::path pathThisModule = Context.file().module();
+   ::file::path pathThisModule = m_pcontext->m_papexcontext->file().module();
 
    string strItem;
 
@@ -769,7 +778,7 @@ void interprocess_intercommunication::defer_add_module(const string & strModule,
 
    strModuleList = m_straModule.implode("\n");
 
-   Context.file().put_contents(pathModule,strModuleList);
+   m_pcontext->m_papexcontext->file().put_contents(pathModule,strModuleList);
 
 #endif
 

@@ -23,7 +23,7 @@
 //
 //
 //// class CLASS_DECL_APEX parents :
-////    virtual public ::context_object
+////    virtual public ::object
 //// {
 //// public:
 //
@@ -38,7 +38,7 @@
 //
 //
 //// class CLASS_DECL_APEX children :
-////    virtual public ::context_object
+////    virtual public ::object
 //// {
 //// public:
 //
@@ -51,7 +51,7 @@
 ////    ~children();
 //
 //
-////    // after posting quit to a child, the PARENT shouldn't context_object it
+////    // after posting quit to a child, the PARENT shouldn't object it
 ////    virtual void finish(::object * pobjectParent);
 //
 ////    virtual ::count wait_quit(::object * pobjectParent, const duration & duration);
@@ -59,7 +59,7 @@
 //
 //
 ////    virtual __pointer(::object) running(const char * pszTag) const;
-////    virtual bool running(::layered * pobjectContext) const;
+////    virtual bool running(::object * pobject) const;
 //
 //
 ////    friend class object;

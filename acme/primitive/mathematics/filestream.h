@@ -26,7 +26,7 @@ void serialize_read(stream & istream, map < t1, t2, t3, t4 > & m)
       istream >> iCount;
       t1 key;
       t3 value;
-      m.remove_all();
+      m.erase_all();
       for (i32 i = 0; i < iCount; i++)
       {
          istream >> key;
@@ -36,7 +36,7 @@ void serialize_read(stream & istream, map < t1, t2, t3, t4 > & m)
    }
    catch (const char * psz)
    {
-      m.remove_all();
+      m.erase_all();
       __throw(psz);
    }
 }
@@ -92,8 +92,8 @@ stream & operator >> (stream & istream, biunique< T, T_to_T > & b)
    }
    catch (const char * psz)
    {
-      m_ab.remove_all();
-      m_ba.remove_all();
+      m_ab.erase_all();
+      m_ba.erase_all();
       m_bBiunivoca = true;
       m_iEmptyA = -1;
       m_iEmptyB = -1;

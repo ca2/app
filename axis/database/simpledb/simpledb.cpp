@@ -50,10 +50,10 @@ namespace simpledb
 
 
    //// true if deleted
-   bool simpledb::remove(const ::database::key & key)
+   bool simpledb::erase(const ::database::key & key)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       class server * pserver = server();
 
@@ -77,7 +77,7 @@ namespace simpledb
 
       strKey.replace("\\", "/");
 
-      return pstorage->remove_key(strKey);
+      return pstorage->erase_key(strKey);
 
    }
 
@@ -85,7 +85,7 @@ namespace simpledb
    bool simpledb::load(const ::database::key & key, get_memory getmemory)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       class server * pserver = server();
 
@@ -106,7 +106,7 @@ namespace simpledb
          try
          {
 
-            return pdatabase->memory_query_item(getmemory, "SELECT `value` FROM fun_user_str_set WHERE user = '" + pserver->m_strUser + "' AND `key` = '" + pdatabase->escape(strKey) + "'");
+            return pdatabase->query_blob(getmemory, "SELECT `value` FROM fun_user_str_set WHERE user = '" + pserver->m_strUser + "' AND `key` = '" + pdatabase->escape(strKey) + "'");
 
          }
          catch (...)
@@ -150,7 +150,7 @@ namespace simpledb
 
          class synchronization_object * pmutex = pdatabase->mutex();
 
-         synchronization_lock slDatabase(pmutex);
+         synchronous_lock slDatabase(pmutex);
 
       retry_statement:
 
@@ -274,11 +274,13 @@ namespace simpledb
 
          // Remote
 
-         synchronizationlock.unlock();
+         synchronouslock.unlock();
 
-         Application.assert_user_logged_in();
+         __pointer(::axis::application) papplication = get_application();
 
-         synchronizationlock.lock();
+         papplication->assert_user_logged_in();
+
+         synchronouslock.lock();
 
          auto ppair = pstorage->m_map.plookup(strKey);
 
@@ -289,7 +291,7 @@ namespace simpledb
 
          }
 
-         synchronizationlock.unlock();
+         synchronouslock.unlock();
 
          string strValue;
 
@@ -303,9 +305,13 @@ namespace simpledb
 
             strUrl = "https://ca2.cc" + strApi + "?key=";
 
-            strUrl += System->url().url_encode(strKey);
+            auto psystem = m_psystem;
 
-            strValue = get_context()->http().get(strUrl, set);
+            auto purl = psystem->url();
+
+            strUrl += purl->url_encode(strKey);
+
+            strValue = m_pcontext->m_papexcontext->http().get(strUrl, set);
 
             if (strValue.is_empty() || ::failed(set["get_status"]))
             {
@@ -325,7 +331,11 @@ namespace simpledb
 
             string strListingTime = strFirstLine;
 
-            ::datetime::time timeListing(System->datetime().from_gmt(strListingTime));
+            auto pdatetime = psystem->datetime();
+
+            auto ptextcontext = get_session()->text_context();
+
+            ::datetime::time timeListing(pdatetime->from_gmt(ptextcontext, strListingTime));
 
             if (timeListing.abs_diff(::datetime::now) > 5_s)
             {
@@ -342,7 +352,7 @@ namespace simpledb
 
                stritem.m_block.from_base64(strValue, strValue.get_length());
 
-               synchronizationlock.lock();
+               synchronouslock.lock();
 
                pstorage->m_map[strKey] = stritem;
 
@@ -373,7 +383,7 @@ namespace simpledb
    bool simpledb::save(const ::database::key & key, block block)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       class server * pserver = server();
 
@@ -432,7 +442,7 @@ namespace simpledb
 
          {
 
-            synchronization_lock synchronizationlock(mutex());
+            synchronous_lock synchronouslock(mutex());
 
             pitem = pstorage->m_map.plookup(strKey);
 
@@ -443,7 +453,7 @@ namespace simpledb
          if (pitem != nullptr)
          {
 
-            synchronization_lock synchronizationlock(mutex());
+            synchronous_lock synchronouslock(mutex());
 
             if (pitem->element2().m_block == block)
             {
@@ -465,7 +475,7 @@ namespace simpledb
 
             __refer(pstorage->m_pthreadlocal->m_pstorage, pstorage);
 
-            pstorage->m_pthreadlocal->begin();
+            pstorage->m_pthreadlocal->branch();
 
          }
 
@@ -477,7 +487,7 @@ namespace simpledb
 
          stritem.m_block = block;
 
-         synchronization_lock synchronizationlock(mutex());
+         synchronous_lock synchronouslock(mutex());
 
          pstorage->m_map.set_at(strKey, stritem);
 
@@ -494,7 +504,7 @@ namespace simpledb
 
             pstorage->m_pthread->m_pstorage = pstorage;
 
-            pstorage->m_pthread->begin();
+            pstorage->m_pthread->branch();
 
          }
 
@@ -506,7 +516,7 @@ namespace simpledb
 
          stritem.m_block = block;
 
-         synchronization_lock synchronizationlock(mutex());
+         synchronous_lock synchronouslock(mutex());
 
          pstorage->m_map.set_at(strKey, stritem);
 

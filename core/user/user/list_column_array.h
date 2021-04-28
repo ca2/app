@@ -29,7 +29,7 @@ public:
 
    void OnChange();
 
-   void remove(index iColumn);
+   void erase(index iColumn);
 
 
    //::count NonVisibleGetCount();
@@ -52,7 +52,7 @@ public:
    ::count get_count();
 
 
-   void remove_all();
+   void erase_all();
 
    void DISaveOrder();
 

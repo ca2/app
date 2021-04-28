@@ -366,27 +366,27 @@ namespace windows
 
 
 #ifdef AMD64
-      m_stackframe.AddrPC.Offset = pcontext->Rip;
+      m_stackframe.AddrPC.Offset = pcontext->m_papexcontext->Rip;
       m_stackframe.AddrPC.Mode = AddrModeFlat;
-      m_stackframe.AddrStack.Offset = pcontext->Rsp;
+      m_stackframe.AddrStack.Offset = pcontext->m_papexcontext->Rsp;
       m_stackframe.AddrStack.Mode = AddrModeFlat;
-      m_stackframe.AddrFrame.Offset = pcontext->Rsp;
+      m_stackframe.AddrFrame.Offset = pcontext->m_papexcontext->Rsp;
       m_stackframe.AddrFrame.Mode = AddrModeFlat;
 #elif defined(X86)
-      m_stackframe.AddrPC.Offset = pcontext->Eip;
+      m_stackframe.AddrPC.Offset = pcontext->m_papexcontext->Eip;
       m_stackframe.AddrPC.Mode = AddrModeFlat;
-      m_stackframe.AddrStack.Offset = pcontext->Esp;
+      m_stackframe.AddrStack.Offset = pcontext->m_papexcontext->Esp;
       m_stackframe.AddrStack.Mode = AddrModeFlat;
-      m_stackframe.AddrFrame.Offset = pcontext->Ebp;
+      m_stackframe.AddrFrame.Offset = pcontext->m_papexcontext->Ebp;
       m_stackframe.AddrFrame.Mode = AddrModeFlat;
 #else
-      m_stackframe.AddrPC.offset = (u32)pcontext->Fir;
+      m_stackframe.AddrPC.offset = (u32)pcontext->m_papexcontext->Fir;
       m_stackframe.AddrPC.Mode = AddrModeFlat;
-      m_stackframe.AddrReturn.offset = (u32)pcontext->IntRa;
+      m_stackframe.AddrReturn.offset = (u32)pcontext->m_papexcontext->IntRa;
       m_stackframe.AddrReturn.Mode = AddrModeFlat;
-      m_stackframe.AddrStack.offset = (u32)pcontext->IntSp;
+      m_stackframe.AddrStack.offset = (u32)pcontext->m_papexcontext->IntSp;
       m_stackframe.AddrStack.Mode = AddrModeFlat;
-      m_stackframe.AddrFrame.offset = (u32)pcontext->IntFp;
+      m_stackframe.AddrFrame.offset = (u32)pcontext->m_papexcontext->IntFp;
       m_stackframe.AddrFrame.Mode = AddrModeFlat;
 #endif
 
@@ -450,7 +450,7 @@ namespace windows
          bool r = StackWalk64(
             dwType,   // __in      u32 MachineType,
             hprocess,        // __in      HANDLE hProcess,
-            get_current_hthread(),         // __in      hthread_t hthread,
+            get_current_hthread(),         // __in      htask_t htask,
             &m_stackframe,                       // __inout   LP STACKFRAME64 StackFrame,
             &m_context,                  // __inout   PVOID ContextRecord,
             My_ReadProcessMemory,                     // __in_opt  PREAD_PROCESS_MEMORY_ROUTINE64 ReadMemoryRoutine,
@@ -463,7 +463,7 @@ namespace windows
          bool r = StackWalk(
             dwType,   // __in      u32 MachineType,
             hprocess,        // __in      HANDLE hProcess,
-            get_current_hthread(),         // __in      hthread_t hthread,
+            get_current_hthread(),         // __in      htask_t htask,
             &m_stackframe,                       // __inout   LP STACKFRAME64 StackFrame,
             &m_context,                  // __inout   PVOID ContextRecord,
             My_ReadProcessMemory32,                     // __in_opt  PREAD_PROCESS_MEMORY_ROUTINE64 ReadMemoryRoutine,
@@ -1102,7 +1102,7 @@ namespace windows
 
 #else
 
-            pcontext->signal = GetThreadContext(pcontext->thread, pcontext) ? 1 : -1;
+            pcontext->m_papexcontext->signal = GetThreadContext(pcontext->m_papexcontext->thread, pcontext) ? 1 : -1;
 
 #endif
 
@@ -1622,7 +1622,7 @@ namespace  windows
 
       const char * psz;
 
-      //synchronization_lock synchronizationlock(::callstack().mutex());
+      //synchronous_lock synchronouslock(::callstack().mutex());
 
    #if defined(LINUX)
 

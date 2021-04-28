@@ -5,7 +5,7 @@ namespace helloaxis
 {
 
 
-   application::application(::layered * pobjectContext) :
+   application::application(::object * pobject) :
       ::object(this),
       ::thread(this),
       ::aura::application(pobject),
@@ -109,7 +109,7 @@ namespace helloaxis
 
       ::helloaura::main_window(m_prender);
 
-      System->set_finish();
+      psystem->set_finish();
 
    }
 
@@ -129,7 +129,7 @@ namespace helloaxis
 
 
 extern "C"
-::apex::library * app_helloaxis_get_new_library(::layered * pobjectContext)
+::acme::library * app_helloaxis_get_new_library(::object * pobject)
 {
 
    return new ::apex::single_application_library < ::helloaxis::application > (pobject, "app/helloaxis");

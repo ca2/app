@@ -109,7 +109,7 @@ void simple_list_data::set_data(::user::mesh * pmesh,string_array &stra)
 }
 
 
-bool simple_list_data::remove_item(index iItem)
+bool simple_list_data::erase_item(index iItem)
 {
 
    if(iItem < 0)
@@ -118,7 +118,7 @@ bool simple_list_data::remove_item(index iItem)
       return false;
    for(i32 iSubItem = 0; iSubItem < m_array.get_size(); iSubItem++)
    {
-      m_array[iSubItem]->remove_at(iItem);
+      m_array[iSubItem]->erase_at(iItem);
    }
    return true;
 }

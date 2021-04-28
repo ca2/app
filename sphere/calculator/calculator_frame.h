@@ -17,7 +17,7 @@ namespace calculator
       bool                       m_bTimerOn;
 
 
-      frame(::layered * pobjectContext);
+      frame(::object * pobject);
       virtual ~frame();
 
       virtual bool pre_create_window(::user::system * pusersystem);
@@ -30,7 +30,7 @@ namespace calculator
       virtual void dump(dump_context & dumpcontext) const;
    
 
-      DECL_GEN_SIGNAL(on_message_create);
+      DECLARE_MESSAGE_HANDLER(on_message_create);
       void OnTimer(::u32 uEvent);
 
    };

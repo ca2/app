@@ -26,7 +26,7 @@
          {
 
 
-            frame_001::frame_001(::layered * pobjectContext) :
+            frame_001::frame_001(::object * pobject) :
                object(pobject),
                frame(pobject)
             {
@@ -212,7 +212,7 @@ SizingNone:;
                }
                else
                {
-                  auto psession = Session;
+                  auto psession = get_session();
 
                   auto pstyle = pframewindow->get_style(pgraphics);
 
@@ -237,9 +237,9 @@ SizingNone:;
 
                   GetBorderRect(lpcrectClient, rectangle, eside);
 
-                  class imaging & imaging = System->imaging();
 
-                  imaging.color_blend(pgraphics, rectangle, crMoveableBorder, 127);
+
+                  pgraphics->color_blend( rectangle, crMoveableBorder, 127);
 
                }
                /*else if(m_estyle == StyleLightBlue)
@@ -249,9 +249,9 @@ SizingNone:;
 
                   GetBorderRect(lpcrectClient, rectangle, eside);
 
-                  class imaging & imaging = System->imaging();
 
-                  imaging.color_blend(pgraphics, rectangle, crMoveableBorder, 127);
+
+                  pgraphics->color_blend( rectangle, crMoveableBorder, 127);
 
 
 
@@ -277,9 +277,9 @@ SizingNone:;
 
                   GetBorderRect(rectClient, rectangle, eside);
 
-                  class imaging & imaging = System->imaging();
 
-                  imaging.color_blend(pgraphics, rectangle, crMoveableBorder, 127);
+
+                  pgraphics->color_blend( rectangle, crMoveableBorder, 127);
 
                }
 

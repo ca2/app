@@ -6,6 +6,7 @@
 #include "acme/primitive/primitive/malloc.h"
 #include "acme/astr.h"
 #include "acme/platform/simple_trace.h"
+#include "static_start_internal.h"
 
 
 #ifdef WINDOWS
@@ -20,6 +21,19 @@ LARGE_INTEGER g_largeintegerFrequency;
 #include "acme/os/windows/callstack.h"
 
 #endif
+
+
+namespace mathematics
+{
+
+
+   void initialize_mathematics();
+
+   void finalize_mathematics();
+
+
+} // namespace mathematics
+
 
 ::array < ::routine > * g_proutineaOsTerm;
 
@@ -154,7 +168,7 @@ namespace acme
 #endif
 
 
-   //::mutex * System->g_mutexLibrary;
+   //::mutex * get_system()->g_mutexLibrary;
 
    //__LPFN_MAIN_DEFERRED_RUN g_main_deferred_run;
 
@@ -221,7 +235,7 @@ namespace acme
 
 #endif
 
-   //map < ithread_t, ithread_t, ithread_t, ithread_t > * g_pmapThreadOn;
+   //map < itask_t, itask_t, itask_t, itask_t > * g_pmapThreadOn;
 
 
 
@@ -290,7 +304,7 @@ namespace acme
 
 
 
-   void acme::construct()
+   void static_start::construct()
    {
 
       __seed_srand();
@@ -391,7 +405,7 @@ namespace acme
 
 #endif
 
-      //map < ithread_t, ithread_t, ithread_t, ithread_t > * g_pmapThreadOn;
+      //map < itask_t, itask_t, itask_t, itask_t > * g_pmapThreadOn;
 
 #ifdef WINDOWS
 
@@ -465,7 +479,7 @@ namespace acme
    }
 
 
-   acme::acme()
+   static_start::static_start()
    {
 
       static natural_meta_data < string_meta_data < ansichar > > s_ansistringNil;
@@ -561,6 +575,8 @@ namespace acme
 
 #endif
 
+      ::mathematics::initialize_mathematics();
+
       ::id_space::s_pidspace = new id_space();
 
 //      ::acme::idpool::init();
@@ -612,7 +628,7 @@ namespace acme
 
       //g_pmutexThreadOn = new ::mutex();
 
-      //g_pmapThreadOn = new ::map < ithread_t, ithread_t, ithread_t, ithread_t >;
+      //g_pmapThreadOn = new ::map < itask_t, itask_t, itask_t, itask_t >;
 
       g_pmutexSystemHeap = new critical_section();
 
@@ -642,7 +658,7 @@ namespace acme
 
       //g_pmapRTL = nullptr;
 
-      //System->g_mutexLibrary = new ::mutex;
+      //get_system()->g_mutexLibrary = new ::mutex;
 
       //g_pmapLibrary = new string_map < __pointer(::acme::library) >();
 
@@ -720,7 +736,7 @@ namespace acme
    }
 
 
-   acme::~acme()
+   static_start::~static_start()
    {
 
       ::user::os_term_theme_colors();
@@ -750,7 +766,7 @@ namespace acme
       //    try
       //    {
 
-      //       g_pmapAura->remove_all();
+      //       g_pmapAura->erase_all();
 
       //    }
       //    catch(...)
@@ -763,9 +779,9 @@ namespace acme
       //try
       //{
 
-      //   synchronization_lock synchronizationlock(System->g_mutexLibrary);
+      //   synchronous_lock synchronouslock(get_system()->g_mutexLibrary);
 
-      //   g_pmapLibCall->remove_all();
+      //   g_pmapLibCall->erase_all();
 
 
       //}
@@ -777,9 +793,9 @@ namespace acme
       //try
       //{
 
-      //   synchronization_lock synchronizationlock(System->g_mutexLibrary);
+      //   synchronous_lock synchronouslock(get_system()->g_mutexLibrary);
 
-      //   System->g_mapLibrary.remove_all();
+      //   get_system()->g_mapLibrary.erase_all();
 
       //}
       //catch (...)
@@ -793,7 +809,7 @@ namespace acme
          try
          {
 
-            g_pmapRTL->remove_all();
+            g_pmapRTL->erase_all();
 
          }
          catch(...)
@@ -809,7 +825,7 @@ namespace acme
       //   try
       //   {
 
-      //      g_pmapRTL->remove_all();
+      //      g_pmapRTL->erase_all();
 
       //   }
       //   catch(...)
@@ -904,7 +920,7 @@ namespace acme
 
       //del(g_pmapNewAuraLibrary);
 
-      //del(System->g_mutexLibrary);
+      //del(get_system()->g_mutexLibrary);
 
       //trace_category_static_term();
 
@@ -963,6 +979,8 @@ namespace acme
       finalize_global_message_queue();
 
       ::acme::del(::id_space::s_pidspace);
+
+      ::mathematics::finalize_mathematics();
 
 #if !defined(__MCRTDBG) && !MEMDLEAK
 
@@ -1027,7 +1045,7 @@ namespace acme
    }
 
 
-   void acme::this_ref()
+   void static_start::this_ref()
    {
 
       m_bRef = true;
@@ -1049,7 +1067,7 @@ namespace acme
 
 
 
-   ::e_status acme::init()
+   ::e_status static_start::init()
    {
 
       //::acme::static_start::init();
@@ -1088,7 +1106,7 @@ namespace acme
    }
 
 
-   ::e_status acme::term()
+   ::e_status static_start::term()
    {
 
       //::parallelization::wait_threads(1_min);
@@ -1132,6 +1150,51 @@ namespace acme
 
 
 //} // namespace static_start
+
+   critical_section * get_global_critical_section()
+   {
+
+      return g_pcsGlobal;
+
+   }
+
+
+   bool should_output_debug_string()
+   {
+
+      return g_bOutputDebugString;
+
+   }
+
+
+   bool add_matter(::matter * pmatter)
+   {
+
+      g_paAura->add(pmatter);
+
+      return true;
+
+   }
+
+#ifdef WINDOWS
+
+   _locale_t get_c_locale()
+   {
+
+      return g_localeC;
+
+   }
+
+#else
+
+   locale_t get_c_locale()
+   {
+
+      return g_localeC;
+
+   }
+
+#endif
 
 
 } // namespace acme
@@ -1349,7 +1412,7 @@ locale_t get_c_locale()
 void acme_ref()
 {
 
-   ::acme::acme::g_acme.this_ref();
+   ::acme::static_start::g_staticstart.this_ref();
 
 }
 
@@ -1421,6 +1484,9 @@ void add_release_on_end(::matter * pmatter)
    ::acme::g_pelementaddraReleaseOnEnd->add(pmatter);
 
 }
+
+
+
 
 
 

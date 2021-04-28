@@ -31,10 +31,10 @@ namespace ios
    }
 
 
-   ::e_status file_system::initialize(::layered * pobjectContext)
+   ::e_status file_system::initialize(::object * pobject)
    {
    
-      auto estatus = ::file_system::initialize(pobjectContext);
+      auto estatus = ::file_system::initialize(pobject);
       
       if(!estatus)
       {

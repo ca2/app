@@ -5,8 +5,8 @@ namespace prompt
 {
 
 
-   department::department(::layered * pobjectContext) :
-      ::apex::department(pobject)
+   department::department(::object * pobject) :
+      ::acme::department(pobject)
    {
 
    }
@@ -37,7 +37,7 @@ namespace prompt
       create_factory <prompt::pane_view >();
       create_factory <prompt::primary_view >();
 
-      if (!::apex::department::init_instance())
+      if (!::acme::department::init_instance())
       {
 
          return false;
@@ -56,10 +56,10 @@ namespace prompt
          __type(prompt::document),
          __type(prompt::frame),
          __type(prompt::pane_view));
-         Application.add_document_template(pDocTemplate);
+         papplication->add_document_template(pDocTemplate);
          m_ptemplateCommandMain = pDocTemplate;
 
-         m_ptemplateCommandMain->open_new_document(get_context_application());
+         m_ptemplateCommandMain->open_new_document(get_application());
 
       }
 
@@ -79,7 +79,7 @@ namespace prompt
    //void department::route_command_message(::message::command * pcommand)
    //{
 
-   //   ::apex::department::route_command_message(pcommand);
+   //   ::acme::department::route_command_message(pcommand);
 
    //}
 
@@ -89,7 +89,7 @@ namespace prompt
       UNREFERENCED_PARAMETER(pdata);
       if(itema.get_size() > 0)
       {
-         Context.os().file_open(this, itema[0]->m_filepathFinal, "", itema[0]->m_filepathFinal.folder());
+         pcontext->m_papexcontext->os().file_open(this, itema[0]->m_filepathFinal, "", itema[0]->m_filepathFinal.folder());
 //#ifdef WINDOWS_DESKTOP
 //
 //         ::ShellExecuteW(

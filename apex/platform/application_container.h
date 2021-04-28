@@ -8,12 +8,12 @@ class CLASS_DECL_APEX application_container :
 public:
 
 
-   application_array             m_applicationa;
+   application_array                m_applicationa;
 
-   bool                          m_bFinalizeIfNoApplicationSetting;
-   bool                          m_bFinalizeIfNoApplication;
+   bool                             m_bFinalizeIfNoApplicationSetting;
+   bool                             m_bFinalizeIfNoApplication;
 
-   ::apex::application *         m_pappCurrent;
+   __pointer(::apex::application)   m_papplicationCurrent;
 
 
 
@@ -37,10 +37,13 @@ public:
    application_array get_applicationa();
 
    virtual void app_add(::apex::application * papp);
-   virtual void app_remove(::apex::application * papp);
+   virtual void app_erase(::apex::application * papp);
 
 
    __pointer(::apex::application) assert_running(const char * pszAppId, const string & strLocale, const string & strSchema);
+
+
+   virtual void on_instantiate_application(::apex::application* papp);
 
 
 };

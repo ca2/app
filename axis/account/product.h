@@ -25,7 +25,7 @@ namespace account
       string               m_strGateway;
       
       
-      product(::layered * pobjectContext);
+      product();
       virtual ~product();
       
       

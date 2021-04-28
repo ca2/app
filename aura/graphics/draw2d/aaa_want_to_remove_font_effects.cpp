@@ -6,7 +6,7 @@ namespace draw2d
 {
 
 
-   font::font(::layered * pobjectContext) :
+   font::font(::object * pobject) :
       ::write_text::font(pobject),
       m_pfont(e_create)
    {
@@ -26,7 +26,7 @@ namespace draw2d
    void font::clear()
    {
 
-      m_glyphset.remove_all();
+      m_glyphset.erase_all();
 
    }
 
@@ -209,8 +209,8 @@ namespace draw2d
    bool font::AddGlyph(::u32 user)
    {
 
-      //   single_lock synchronizationlock(&m_mutex);
-      //   synchronizationlock.lock(U32_INFINITE_TIMEOUT);
+      //   single_lock synchronouslock(&m_mutex);
+      //   synchronouslock.lock(U32_INFINITE_TIMEOUT);
 
       return true;
 

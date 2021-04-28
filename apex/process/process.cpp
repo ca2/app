@@ -42,7 +42,7 @@ namespace process
    bool process::write(const char * psz)
    {
 
-      return m_pipe.m_sppipeIn->write(psz);
+      return m_pipe.m_ppipeIn->write(psz);
 
    }
 
@@ -51,7 +51,7 @@ namespace process
 
       UNREFERENCED_PARAMETER(bUntilExit);
 
-      return m_pipe.m_sppipeOut->read();
+      return m_pipe.m_ppipeOut->read();
 
    }
 

@@ -34,7 +34,7 @@
 //
 //
 //      virtual void fill_fields() override;
-//      //virtual bool remove_row();
+//      //virtual bool erase_row();
 //
 //
 //      virtual void open() override;

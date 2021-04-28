@@ -5,7 +5,7 @@ namespace ios
 {
    
    
-   file_set::file_set(::layered * pobjectContext) :
+   file_set::file_set(::object * pobject) :
    ::object(pobject),
    ::file::set(pobject),
    m_straFile(pobject)
@@ -69,7 +69,7 @@ namespace ios
    void file_set::clear_search()
    {
       
-      m_straSearch.remove_all();
+      m_straSearch.erase_all();
       
    }
    
@@ -77,7 +77,7 @@ namespace ios
    void file_set::clear_filter()
    {
       
-      m_straFilter.remove_all();
+      m_straFilter.erase_all();
       
    }
    
@@ -85,7 +85,7 @@ namespace ios
    void file_set::clear_file()
    {
       
-      m_straFile.remove_all();
+      m_straFile.erase_all();
       
    }
    

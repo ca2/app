@@ -10,7 +10,7 @@ namespace apex
 {
 
 
-//   application::application(::layered * pobjectContext) :
+//   application::application(::object * pobject) :
 //      ::object(pobject)
 //   {
 ////      m_pthreadimpl.create(this);
@@ -179,7 +179,7 @@ namespace apex
 //      // versions of ca2 API, this memory was never freed.  In this and future
 //      // versions this memory is automatically freed during application's
 //      // destructor.  If you are freeing the memory yourself, you should
-//      // either remove the code or set the pointers to nullptr after freeing
+//      // either erase the code or set the pointers to nullptr after freeing
 //      // the memory.
 //
 //      // get path of executable
@@ -244,7 +244,7 @@ namespace apex
 //   }
 //
 //
-//   ithread_t application::get_thread_id()
+//   itask_t application::get_thread_id()
 //   {
 //
 //      return ::GetCurrentThreadId();
@@ -300,25 +300,25 @@ namespace apex
    }
 
 
-   void application::show_wait_cursor(bool bShow)
-   {
-
-      UNREFERENCED_PARAMETER(bShow);
-
-   }
+//   void application::show_wait_cursor(bool bShow)
+//   {
+//
+//      UNREFERENCED_PARAMETER(bShow);
+//
+//   }
 
 
    bool application::os_on_start_application()
    {
 
-      ::file::path path = Context.file().module();
+      ::file::path path = pcontext->m_papexcontext->file().module();
 
       path -= 3;
       
       if(::dir::is(path))
       {
 
-         ::file::path path2 = ::dir::localconfig() / "monitor-0/desk/2desk" / path.name();
+         ::file::path path2 = pacmedir->localconfig() / "monitor-0/desk/2desk" / path.name();
          
          if(::file_exists(path2))
          {

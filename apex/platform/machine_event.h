@@ -1,12 +1,12 @@
 #pragma once
 
 
-class CLASS_DECL_APEX machine_event
+class CLASS_DECL_APEX machine_event :
+   virtual public ::matter
 {
 public:
 
 
-   ::mutex      m_mutex;
    bool              m_bInitialized;
 
 
@@ -14,7 +14,7 @@ public:
    virtual ~machine_event();
 
 
-   bool initialize();
+   virtual ::e_status initialize(::object * pobject) override;
 
    bool read(machine_event_data * pdata);
    bool write(machine_event_data * pdata);

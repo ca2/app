@@ -1,31 +1,6 @@
 #pragma once
 
 
-#include "common.h"
-
-
-#ifndef WINDOWS
-
-
-#define MAXIMUM_WAIT_OBJECTS 64
-
-
-#endif
-
-
-#ifdef APPLEOS
-#include <semaphore.h>
-#endif
-
-
-#define MAXIMUM_SYNCHRONIZING_OBJECTS 64
-
-using hsync = void *;
-
-#define INVALID_HSYNC_VALUE ((hsync)nullptr)
-
-
-
 CLASS_DECL_ACME ::u64 translate_processor_affinity(int iOrder);
 
 
@@ -46,6 +21,9 @@ CLASS_DECL_ACME ::u64 translate_processor_affinity(int iOrder);
 //
 //
 //property_set & thread_property_set();
+
+
+CLASS_DECL_ACME bool is_main_thread();
 
 
 #if defined(ANDROID)
@@ -70,7 +48,7 @@ CLASS_DECL_ACME ::u64 translate_processor_affinity(int iOrder);
 #undef MUTEX_NAMED_POSIX
 #undef MUTEX_NAMED_FD
 #define MUTEX_NAMED_FD // File Descriptor "Semaphore"
-//#define MUTEX_NAMED_VSEM // System V Semaphore
+//#define MUTEX_NAMED_VSEM // get_system() V Semaphore
 #undef MUTEX_NAMED_VSEM
 
 #endif
@@ -110,7 +88,7 @@ CLASS_DECL_ACME ::e_status __call(const ::routine & routine);
 //            if (pobject && pobject->is_thread())
 //            {
 //
-//               if (pobject->thread_get_run())
+//               if (pobject->task_get_run())
 //               {
 //
 //                  if (pobject->get_tag().compare(pszTag) == 0)
@@ -139,15 +117,15 @@ CLASS_DECL_ACME ::e_status __call(const ::routine & routine);
 
 
 CLASS_DECL_ACME bool set_thread_name(const char * psz);
-CLASS_DECL_ACME bool set_thread_name(hthread_t hthread, const char* pszName);
+CLASS_DECL_ACME bool set_thread_name(htask_t htask, const char* pszName);
 
 
 typedef ::e_status     (*__THREADPROC)(void *);
 
 
 
-class tool_thread;
-class thread_tool;
+class tool_task;
+class task_tool;
 class thread_tools;
 //class thread_toolset;
 //class predicate_set;
@@ -188,7 +166,7 @@ namespace parallelization
 
 
 class sync_interface;
-class synchronization_lock;
+class synchronous_lock;
 
 
 //class CLASS_DECL_ACME thread_ptra :
@@ -204,7 +182,7 @@ class synchronization_lock;
 //
 //   virtual ::count get_count_except_current_thread();
 //   virtual void finish();
-//   virtual void wait(const duration & duration, ::synchronization_lock & synchronizationlock);
+//   virtual void wait(const duration & duration, ::synchronous_lock & synchronouslock);
 //
 //   thread_ptra & operator = (const thread_ptra & ptra) { __pointer_array(thread)::operator =(ptra); return *this; }
 //   thread_ptra & operator = (thread_ptra && ptra) { __pointer_array(thread)::operator =(::move(ptra)); return *this; }
@@ -228,7 +206,7 @@ class synchronization_lock;
 #include "single_lock.h"
 //#include "retry_single_lock.h"
 #include "initial_single_lock.h"
-#include "synchronization_lock.h"
+#include "synchronous_lock.h"
 #include "multiple_lock.h"
 //#include "retry_multi_lock.h"
 
@@ -306,19 +284,19 @@ CLASS_DECL_ACME int_bool post_message(::windowing::window * pwindow, const ::id 
 class thread;
 
 
-namespace parallelization
-{
+//namespace parallelization
+//{
 
 
-   CLASS_DECL_ACME bool task_registered(::task * ptask);
-   CLASS_DECL_ACME bool task_id_registered(ithread_t id);
+   //CLASS_DECL_ACME bool task_registered(::task * ptask);
+   //CLASS_DECL_ACME bool task_id_registered(itask_t id);
 
-   CLASS_DECL_ACME void task_register(ithread_t itask, ::task * ptask);
+   //CLASS_DECL_ACME void task_register(itask_t itask, ::task * ptask);
 
-   CLASS_DECL_ACME void task_unregister(ithread_t itask, ::task * ptask);
+   //CLASS_DECL_ACME void task_unregister(itask_t itask, ::task * ptask);
 
 
-} // namespace parallelization
+//} // namespace parallelization
 
 
 //
@@ -333,8 +311,8 @@ namespace parallelization
 //#define Thread
 
 CLASS_DECL_ACME::task* get_task();
-CLASS_DECL_ACME ::thread* get_thread();
-//CLASS_DECL_ACME ::thread* get_task(ithread_t idthread);
+//CLASS_DECL_ACME ::thread* get_thread();
+//CLASS_DECL_ACME ::thread* get_task(itask_t idthread);
 CLASS_DECL_ACME void set_task(task * ptask OBJ_REF_DBG_COMMA_PARAMS);
 CLASS_DECL_ACME void thread_release(OBJ_REF_DBG_PARAMS);
 
@@ -357,7 +335,7 @@ CLASS_DECL_ACME bool task_sleep(millis millis = U32_INFINITE_TIMEOUT, ::synchron
 #endif
 
 
-string get_thread_name(hthread_t hthread);
+string get_thread_name(htask_t htask);
 
 #include "acme/primitive/collection/runnable_array.h"
 
@@ -372,7 +350,7 @@ string get_thread_name(::thread* pthread);
 
 CLASS_DECL_ACME void thread_name_abbreviate(string & strName, int len);
 
-CLASS_DECL_ACME bool set_thread_name(hthread_t hthread, const char * psz);
+CLASS_DECL_ACME bool set_thread_name(htask_t htask, const char * psz);
 CLASS_DECL_ACME bool set_thread_name(const char * psz);
 
 //#include "update_task_item_array.h"
@@ -397,6 +375,9 @@ CLASS_DECL_ACME bool task_sleep(millis millis, synchronization_object* psync);
 
 
 #include "synchronized_process.h"
+
+
+#include "acme/primitive/promise/signalization.h"
 
 
 #include "acme/platform/synchronized_predicate_routine.h"

@@ -85,7 +85,7 @@ inline void copy_color_matrix(A & a, const B & b)
       for (index j = 0; j < 5; j++)
       {
 
-         a[i][j] = (typename remove_reference<decltype(a[0][0])>::TYPE) b[i][j];
+         a[i][j] = (typename erase_reference<decltype(a[0][0])>::TYPE) b[i][j];
 
       }
 

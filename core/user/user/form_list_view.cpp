@@ -45,7 +45,7 @@ namespace user
             if(!psubject->payload(id_form).is_empty())
             {
 
-               string strMatter = Context.dir().matter(psubject->payload(id_form));
+               string strMatter = m_pcontext->m_papexcontext->dir().matter(psubject->payload(id_form));
 
                if(get_document()->on_open_document(strMatter))
                {
@@ -78,10 +78,10 @@ namespace user
    }
 
 
-   ::e_status form_list_view::initialize(::layered * pobjectContext)
+   ::e_status form_list_view::initialize(::object * pobject)
    {
 
-      auto estatus = ::user::form_list::initialize(pobjectContext);
+      auto estatus = ::user::form_list::initialize(pobject);
 
       if (!estatus)
       {
@@ -90,7 +90,7 @@ namespace user
 
       }
 
-      estatus = ::user::form_view::initialize(pobjectContext);
+      estatus = ::user::form_view::initialize(pobject);
 
       if (!estatus)
       {
@@ -99,7 +99,7 @@ namespace user
 
       }
 
-      estatus = ::user::list_view::initialize(pobjectContext);
+      estatus = ::user::list_view::initialize(pobject);
 
       if (!estatus)
       {
@@ -231,12 +231,12 @@ namespace user
             if(get_wnd()->m_pimpl2)
             {
 
-               __pointer(::user::interaction) puiFocus = get_wnd()->m_pimpl2->m_pprimitiveFocus;
+               __pointer(::user::interaction) puiFocus = get_wnd()->m_pimpl2->m_puserinteractionFocus1;
 
                if (puiFocus.is_null() || !is_ascendant_of(puiFocus, true))
                {
 
-                  get_wnd()->m_pimpl2->m_pprimitiveFocus = this;
+                  get_wnd()->m_pimpl2->m_puserinteractionFocus1 = this;
 
                }
 

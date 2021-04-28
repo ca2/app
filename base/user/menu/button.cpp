@@ -6,9 +6,7 @@ namespace user
 {
 
 
-   menu_button::menu_button(menu_item * pitem):
-      object(pitem->get_context_application()),
-      ::user::menu_interaction(pitem)
+   menu_button::menu_button()
    {
 
       m_econtroltype = e_control_type_menu_button;
@@ -17,7 +15,7 @@ namespace user
       //m_erectPadding = rect_menu_item_padding;
       //m_eintTextAlign = int_menu_item_draw_text_flags;
 
-      m_flagNonClient.remove(::user::interaction::non_client_focus_rect);
+      m_flagNonClient.erase(::user::interaction::non_client_focus_rect);
 
 
    }
@@ -25,6 +23,25 @@ namespace user
 
    menu_button::~menu_button()
    {
+
+   }
+
+
+   ::e_status menu_button::initialize_menu_interaction(menu_item* pitem)
+   {
+
+      auto estatus = button::initialize(pitem);
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      m_pmenuitem = pitem;
+
+      return estatus;
 
    }
 
@@ -188,6 +205,7 @@ namespace user
 
    }
 
+
    void menu_button::_001DrawCheck(::draw2d::graphics_pointer & pgraphics)
    {
 
@@ -196,26 +214,19 @@ namespace user
       if(m_pmenuitem != nullptr)
       {
 
-         auto psession = Sess(get_context_session());
+         auto psession = get_session();
 
-         auto paurauser = psession->user();
+         auto puser = psession->user();
 
-         if (paurauser)
+         if (puser)
          {
 
-            auto puser = paurauser->m_pbaseuser;
+            auto pmenu = puser->menu();
 
-            if (puser)
+            if (pmenu)
             {
 
-               auto pmenu = puser->menu();
-
-               if (pmenu)
-               {
-
-                  uImage = pmenu->command_image(m_pmenuitem->m_id);
-
-               }
+               uImage = pmenu->command_image(m_pmenuitem->m_id);
 
             }
 
@@ -226,15 +237,15 @@ namespace user
       if(uImage != 0xffffffffu)
       {
 
-
-
          ::rectangle_i32 rectImage = m_rectCheckBox;
          ::rectangle_i32 rectImageBorder = rectImage;
          rectImageBorder.inflate(2, 2);
          ::image_list::info ii;
          __pointer(image_list) pimagelist;
 
-         auto puser = User;
+         auto psession = get_session();
+
+         auto puser = psession->user();
 
          if (puser)
          {
@@ -276,7 +287,7 @@ namespace user
 
                pgraphics->fill_rectangle(rectImageBorder, rgb(127, 127, 127));
 
-               auto psession = Session;
+               auto psession = get_session();
 
                auto pstyle = get_style(pgraphics);
 
@@ -320,7 +331,7 @@ namespace user
    }
 
 
-   void menu_button::_001OnMouseMove(::message::message * pmessage)
+   void menu_button::on_message_mouse_move(::message::message * pmessage)
    {
 
       __pointer(::message::mouse) pmouse(pmessage);

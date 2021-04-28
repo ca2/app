@@ -157,7 +157,7 @@ namespace user
          //if (strFileParam.compare_ci(::dir::bookmark()) == 0)
          //{
 
-         //   strIconLocation = Context.dir().matter("aura.ico");
+         //   strIconLocation = pcontext->m_papexcontext->dir().matter("aura.ico");
 
          //   output_debug_string("aura.ico");
 
@@ -344,13 +344,13 @@ namespace user
 
          if (((FAILED(hrIconLocation) && FAILED(hrGetLocation))
                || imagekey.m_iIcon == 0x80000000
-               || !Context.file().exists(strIconLocation))
+               || !pcontext->m_papexcontext->file().exists(strIconLocation))
                && ::str::ends_ci(strFileParam, ".lnk"))
          {
 
-            Context.file().resolve_link(pathTarget, strFileParam);
+            pcontext->m_papexcontext->file().resolve_link(pathTarget, strFileParam);
 
-            if (!Context.file().exists(pathTarget) && !Context.dir().is(pathTarget))
+            if (!pcontext->m_papexcontext->file().exists(pathTarget) && !pcontext->m_papexcontext->dir().is(pathTarget))
             {
 
                if (pathTarget.ends_ci(".exe"))
@@ -417,9 +417,9 @@ namespace user
 
                string strIcon;
 
-               strIcon = ::dir::config() / "shell/app_theme" / imagekey.m_strShellThemePrefix + strExtension + ".ico";
+               strIcon = pacmedir->config() / "shell/app_theme" / imagekey.m_strShellThemePrefix + strExtension + ".ico";
 
-               if (Context.file().exists(strIcon))
+               if (pcontext->m_papexcontext->file().exists(strIcon))
                {
 
                   if (reserve_image(imagekeyTheme, iImage))
@@ -454,11 +454,11 @@ namespace user
 
                HRESULT hrExtract = E_FAIL;
 
-               synchronization_lock synchronizationlock(mutex());
+               synchronous_lock synchronouslock(mutex());
 
                auto iaSize = m_iaSize;
 
-               synchronizationlock.unlock();
+               synchronouslock.unlock();
 
                for (auto iSize : iaSize)
                {
@@ -783,7 +783,7 @@ namespace user
 
       //   }
 
-      //   piidla.remove_all();
+      //   piidla.erase_all();
 
 
       //}
@@ -850,7 +850,7 @@ namespace user
             if (reserve_image(imagekey, iImage))
             {
 
-               ::file::path path = Context.dir().matter("cloud.ico");
+               ::file::path path = pcontext->m_papexcontext->dir().matter("cloud.ico");
 
                add_icon_path(path, crBk, iImage);
 
@@ -865,7 +865,7 @@ namespace user
             if (reserve_image(imagekey, iImage))
             {
 
-               ::file::path path = Context.dir().matter("remote.ico");
+               ::file::path path = pcontext->m_papexcontext->dir().matter("remote.ico");
 
                add_icon_path(path, crBk, iImage);
 
@@ -880,7 +880,7 @@ namespace user
             if (reserve_image(imagekey, iImage))
             {
 
-               ::file::path path = Context.dir().matter("ftp.ico");
+               ::file::path path = pcontext->m_papexcontext->dir().matter("ftp.ico");
 
                add_icon_path(path, crBk, iImage);
 
@@ -893,7 +893,7 @@ namespace user
          if (::str::ends_ci(imagekey.m_strPath, ".aura"))
          {
 
-            string str = Context.file().as_string(imagekey.m_strPath);
+            string str = pcontext->m_papexcontext->file().as_string(imagekey.m_strPath);
 
             if (::str::begins_eat_ci(str, "ca2prompt\r\n"))
             {
@@ -1048,7 +1048,7 @@ namespace user
       //}
 
 
-      ::e_status windows::initialize(::layered * pobjectContext)
+      ::e_status windows::initialize(::object * pobject)
       {
 
          if (m_bInitialized)
@@ -1058,7 +1058,7 @@ namespace user
 
          }
 
-         auto estatus = shell::initialize(pobjectContext);
+         auto estatus = shell::initialize(pobject);
 
          if (!estatus)
          {
@@ -1078,11 +1078,11 @@ namespace user
       int windows::add_icon_set(SHFILEINFOW * pinfo16, SHFILEINFOW * pinfo48, color32_t crBk, bool & bUsed16, bool & bUsed48, int iImage)
       {
 
-         synchronization_lock synchronizationlock(mutex());
+         synchronous_lock synchronouslock(mutex());
 
          auto iaSize = m_iaSize;
 
-         synchronizationlock.unlock();
+         synchronouslock.unlock();
 
          for (auto iSize : iaSize)
          {
@@ -1099,13 +1099,13 @@ namespace user
       int windows::add_icon_path(::file::path path, color32_t crBk, int iImage)
       {
 
-         synchronization_lock synchronizationlock(mutex());
+         synchronous_lock synchronouslock(mutex());
 
          auto iaSize = m_iaSize;
 
-         synchronizationlock.unlock();
+         synchronouslock.unlock();
 
-         path = Context.defer_process_path(path);
+         path = pcontext->m_papexcontext->defer_process_path(path);
 
          for (auto iSize : m_iaSize)
          {
@@ -1135,9 +1135,9 @@ namespace user
       int windows::add_icon(int iSize, HICON hicon, color32_t crBk, int iImage)
       {
 
-         synchronization_lock synchronizationlock(m_pil[iSize]->mutex());
+         synchronous_lock synchronouslock(m_pil[iSize]->mutex());
 
-         synchronization_lock slHover(m_pilHover[iSize]->mutex());
+         synchronous_lock slHover(m_pilHover[iSize]->mutex());
 
          iImage = m_pil[iSize]->add_icon_os_data(hicon, iImage);
 
@@ -1266,7 +1266,7 @@ namespace user
       int shell::add_hover_image(int iSize, int iImage, color32_t crBk)
       {
 
-         synchronization_lock synchronizationlock(m_pilHover[iSize]->mutex());
+         synchronous_lock synchronouslock(m_pilHover[iSize]->mutex());
 
          if (crBk == 0)
          {
@@ -1274,7 +1274,7 @@ namespace user
             return m_pilHover[iSize]->predicate_add_image([&](auto pimage)
             {
 
-               System->imaging().color_blend(pimage, rgb(255, 255, 240), 64);
+               psystem->imaging().color_blend(pimage, rgb(255, 255, 240), 64);
 
             }
             , m_pil[iSize], iImage, iImage);
@@ -1357,11 +1357,11 @@ namespace user
          if (reserve_image(imagekeyIco, iImage))
          {
 
-            synchronization_lock synchronizationlock(mutex());
+            synchronous_lock synchronouslock(mutex());
 
             auto iaSize = m_iaSize;
 
-            synchronizationlock.unlock();
+            synchronouslock.unlock();
 
             for (auto iSize : iaSize)
             {

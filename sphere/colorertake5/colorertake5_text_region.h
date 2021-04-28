@@ -32,7 +32,7 @@ public:
 
   /**
    * copy constructor.
-   * Clones all values including region context_object
+   * Clones all values including region object
    */
   TextRegion(const TextRegion &rd){
      RegionDefine::operator=(rd);
@@ -70,7 +70,7 @@ public:
 
   /**
    * Direct assign of all passed @ca rd values.
-   * Do not assign region context_object.
+   * Do not assign region object.
    */
   void setValues(const RegionDefine *_rd){
     if (_rd == nullptr) return;

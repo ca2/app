@@ -9,12 +9,12 @@ namespace calculator
 
 
    class CLASS_DECL_CA2_MATH calculator :
-      virtual public ::apex::department
+      virtual public ::acme::department
    {
    public:
 
 
-      calculator(::layered * pobjectContext);
+      calculator(::object * pobject);
       virtual ~calculator();
 
 

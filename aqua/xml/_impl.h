@@ -11,9 +11,9 @@
 //   bool system::output(::object * pobject,const char * pszOutput,T * p,bool (T::*lpfnOuput)(stream &,const char *),const char * lpszSource)
 //   {
 //
-//      Context.dir().mk(Context.dir().name(pszOutput),papp);
+//      pcontext->m_papexcontext->dir().mk(pcontext->m_papexcontext->dir().name(pszOutput),papp);
 //
-//      file_pointer fileOut = papp->get_context_session()->file_get_file(pszOutput,::file::e_open_create | ::file::e_open_binary | ::file::e_open_write);
+//      file_pointer fileOut = papp->get_session()->file_get_file(pszOutput,::file::e_open_create | ::file::e_open_binary | ::file::e_open_write);
 //
 //      if(fileOut.is_null())
 //         return false;
@@ -29,14 +29,14 @@
 //   bool system::output(::object * pobject,const char * pszOutput,T * p,bool (T::*lpfnOuput)(stream &,stream &),const char * lpszInput)
 //   {
 //
-//      Context.dir().mk(Context.dir().name(pszOutput),papp);
+//      pcontext->m_papexcontext->dir().mk(pcontext->m_papexcontext->dir().name(pszOutput),papp);
 //
-//      file_pointer fileOut = papp->get_context_session()->file_get_file(pszOutput,::file::e_open_create | ::file::e_open_binary | ::file::e_open_write);
+//      file_pointer fileOut = papp->get_session()->file_get_file(pszOutput,::file::e_open_create | ::file::e_open_binary | ::file::e_open_write);
 //
 //      if(fileOut.is_null())
 //         return false;
 //
-//      file_pointer fileIn = papp->get_context_session()->file_get_file(lpszInput,::file::e_open_binary | ::file::e_open_read);
+//      file_pointer fileIn = papp->get_session()->file_get_file(lpszInput,::file::e_open_binary | ::file::e_open_read);
 //
 //      if(fileIn.is_null())
 //         return false;
@@ -98,7 +98,7 @@ namespace xml
 //      this->set_size_create(this, iSize);
 //      for(i32 i = 0; i < this->get_size(); i++)
 //      {
-//         attr_array attra(this->get_context_application());
+//         attr_array attra(this->get_application());
 //         attra.set_at("array_index",i);
 //         xmlif.import_node(xmlif.get_node_name(m_iNodeNameIndex),attra,this->operator()(i));
 //      }
@@ -112,7 +112,7 @@ template < typename POINT_TYPE >
 inline ::xml::input_tree & operator >> (::xml::input_tree & xmlif, point_array_base < POINT_TYPE > & pointa)
 {
 
-   pointa.remove_all();
+   pointa.erase_all();
 
    string strPoints;
 

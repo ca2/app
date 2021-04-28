@@ -11,7 +11,7 @@ namespace account
 {
    
 
-//   storage::storage(::layered * pobjectContext) :
+//   storage::storage(::object * pobject) :
 //      ::object(pobject)
 //   {
 //      
@@ -29,9 +29,9 @@ namespace account
 //      
 //      ASSERT(m_strToken.has_char());
 //      
-//      string strName = System->url().os_fsname(strToken);
+//      string strName = purl->os_fsname(strToken);
 //      
-//      return ::dir::system() / "credential_storage" / strName;
+//      return pacmedir->system() / "credential_storage" / strName;
 //      
 //   }
 //   
@@ -39,7 +39,7 @@ namespace account
 //   bool storage::get(string strKey, string strToken, string & strValue)
 //   {
 //      
-//      return System->crypto().file_get(pathPrefix + strKey, strValue, strToken, get_context_application());
+//      return psystem->crypto().file_get(pathPrefix + strKey, strValue, strToken, get_application());
 //      
 //   }
 //   
@@ -47,7 +47,7 @@ namespace account
 //   bool storage::set(string strKey, string strToken, string strValue)
 //   {
 //      
-//      return System->crypto().file_set(pathPrefix + strKey, strValue, strToken, get_context_application());
+//      return psystem->crypto().file_set(pathPrefix + strKey, strValue, strToken, get_application());
 //      
 //   }
 

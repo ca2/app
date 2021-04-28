@@ -381,7 +381,7 @@ void set_global_trace_level(enum_trace_level etracelevel)
 }
 
 
-CLASS_DECL_AURA void __simple_tracea(::matter * pobjectContext, enum_trace_level elevel, const char * pszFunction, const char *pszFileName, i32 iLine, const char * psz)
+CLASS_DECL_AURA void __simple_tracea(::matter * pobject, enum_trace_level elevel, const char * pszFunction, const char *pszFileName, i32 iLine, const char * psz)
 {
 
    if (elevel < get_global_trace_level())
@@ -393,7 +393,7 @@ CLASS_DECL_AURA void __simple_tracea(::matter * pobjectContext, enum_trace_level
 
    string strMessage;
 
-   auto pszTopicText = topic_text(pobjectContext);
+   auto pszTopicText = topic_text(pobject);
 
    if (::is_set(pszTopicText) && *pszTopicText != '\0')
    {
@@ -454,7 +454,7 @@ CLASS_DECL_AURA void __simple_tracea(::matter * pobjectContext, enum_trace_level
 }
 
 
-CLASS_DECL_AURA void __simple_tracev(::matter * pobjectContext, enum_trace_level elevel, const char * pszFunction, const char *pszFileName, i32 iLine, const char * pszFormat, va_list args)
+CLASS_DECL_AURA void __simple_tracev(::matter * pobject, enum_trace_level elevel, const char * pszFunction, const char *pszFileName, i32 iLine, const char * pszFormat, va_list args)
 {
 
    //if (s_pstringmanager == nullptr)
@@ -470,7 +470,7 @@ CLASS_DECL_AURA void __simple_tracev(::matter * pobjectContext, enum_trace_level
 
    strMessage.FormatV(pszFormat, args);
 
-   __simple_tracea(pobjectContext, elevel, pszFunction, pszFileName, iLine, strMessage);
+   __simple_tracea(pobject, elevel, pszFunction, pszFileName, iLine, strMessage);
 
 }
 

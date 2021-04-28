@@ -149,7 +149,8 @@ namespace message
       ::user::primitive * m_pscrollbar;
 
 
-      scroll() { }
+      scroll();
+      virtual ~scroll();
 
       using ::user::message::set;
 
@@ -215,7 +216,7 @@ namespace message
    public:
 
 
-      mouse_activate() {}
+      mouse_activate();
 
       ::user::interaction * get_desktop_window();
 
@@ -231,7 +232,7 @@ namespace message
    public:
 
 
-      context_menu() { }
+      context_menu();
 
       point_i32 GetPoint();
 
@@ -239,17 +240,20 @@ namespace message
    };
 
 
-   class CLASS_DECL_AURA set_cursor : public ::user::message
+   class CLASS_DECL_AURA set_cursor :
+      public ::user::message,
+      public ::user::mouse
    {
    public:
 
 
-      ::user::primitive * m_pWnd;
-      ::u32                    m_nHitTest;
-      ::u32                    m_message;
+      ::user::primitive *        m_pWnd;
+      ::u32                      m_nHitTest;
+      ::u32                      m_message;
 
 
-      set_cursor() { }
+      set_cursor();
+      ~set_cursor();
 
 
    };
@@ -401,7 +405,22 @@ namespace message
    //};
 
 
-   class CLASS_DECL_AURA ctl_color : public ::user::message
+   class CLASS_DECL_AURA object : public ::user::message
+   {
+   public:
+
+      __pointer(::matter)     m_pmatter;
+
+      object();
+       virtual ~object();
+
+
+      virtual void set(oswindow oswindow, ::windowing::window * pwindow, const ::id & id, wparam wparam, ::lparam lparam) override;
+
+
+   };
+
+      class CLASS_DECL_AURA ctl_color : public ::user::message
    {
    public:
 

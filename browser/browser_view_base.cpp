@@ -7,7 +7,7 @@ namespace browser
 {
 
 
-   impact_base::impact_base(::layered * pobjectContext):
+   impact_base::impact_base(::object * pobject):
       object(pobject),
 
       m_fontDrawStatus(e_create)
@@ -23,7 +23,7 @@ namespace browser
 
       m_dFps                     = 0.0;
 
-      m_ppcre = System->create_pcre("\\:\\-\\)");
+      m_ppcre = psystem->create_pcre("\\:\\-\\)");
 
    }
 
@@ -77,10 +77,10 @@ auto m_millisRoll = ::millis::now();
    void impact_base::on_message_left_button_down(::message::message * pmessage)
    {
 
-      if(Application.m_ppaneview != nullptr)
+      if(papplication->m_ppaneview != nullptr)
       {
 
-         Application.m_ppaneview->m_pviewLast = this;
+         papplication->m_ppaneview->m_pviewLast = this;
 
       }
 
@@ -183,7 +183,7 @@ auto m_millisRoll = ::millis::now();
 
             if (m_tickaFrame[i].elapsed() > 1000)
             {
-               m_dwaFrame.remove_at(i);
+               m_dwaFrame.erase_at(i);
             }
             else
             {
@@ -232,7 +232,7 @@ auto m_millisRoll = ::millis::now();
 
       //d->get_graphics()->BitBlt(rectClient, pimage->g());
 
-      //d.save_to_file(::dir::system() / "obs.png");
+      //d.save_to_file(pacmedir->system() / "obs.png");
 
 
       //pdcParam->set_font(m_fontDrawStatus);

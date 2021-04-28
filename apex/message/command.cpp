@@ -5,14 +5,14 @@ namespace message
 {
 
 
-   command::command(::layered * pobjectContext)
+   command::command(::object * pobject)
    {
 
       common_construct();
-      if (::is_set(pobjectContext))
+      if (::is_set(pobject))
       {
 
-         initialize(pobjectContext);
+         initialize(pobject);
 
       }
 
@@ -20,7 +20,7 @@ namespace message
 
 
    command::command(const ::id & id) :
-      id_matter(id)
+      material_object(id)
    {
 
       common_construct();
@@ -41,9 +41,9 @@ namespace message
       m_echeck = ::check_undefined;
       m_bRadio = false;
       m_bRadioChanged = false;
-      m_pmenu = nullptr;
-      m_pmenuChild = nullptr;
-      m_pmenuParent = nullptr;
+      //m_pmenu = nullptr;
+      //m_pmenuChild = nullptr;
+      //m_pmenuParent = nullptr;
       m_puiOther = nullptr;
       m_bEnableChanged = false;
       m_bHasCommandHandler = false;
@@ -90,7 +90,7 @@ namespace message
    //}
 
 
-   //command::command(::layered * pobjectContext) :
+   //command::command(::object * pobject) :
    //   ::object(pobject)
    //{
 
@@ -158,12 +158,12 @@ namespace message
    void command::enable(bool bOn, const ::action_context & context)
    {
 
-      if (m_pmenu != nullptr)
-      {
+      //if (m_pmenu != nullptr)
+      //{
 
-         ENSURE(m_iIndex < m_iCount);
+      //   ENSURE(m_iIndex < m_iCount);
 
-      }
+      //}
 
       if (m_puiOther != nullptr)
       {
@@ -189,12 +189,12 @@ namespace message
    void command::_001SetCheck(::enum_check echeck, const ::action_context & context)
    {
 
-      if (m_pmenu != nullptr)
-      {
+      //if (m_pmenu != nullptr)
+      //{
 
-         ENSURE(m_iIndex < m_iCount);
+      //   ENSURE(m_iIndex < m_iCount);
 
-      }
+      //}
 
       if (m_puiOther != nullptr)
       {
@@ -226,12 +226,12 @@ namespace message
    void command::SetText(const char * pszText, const ::action_context & context)
    {
 
-      if (m_pmenu != nullptr)
-      {
+      //if (m_pmenu != nullptr)
+      //{
 
-         ENSURE(m_iIndex < m_iCount);
+      //   ENSURE(m_iIndex < m_iCount);
 
-      }
+      //}
 
       if (m_puiOther != nullptr)
       {

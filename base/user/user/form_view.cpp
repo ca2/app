@@ -73,7 +73,9 @@ namespace user
    ::e_status form_view::open_document(const ::payload & varFile)
    {
 
-      System->defer_create_html();
+      auto psystem = m_psystem->m_pbasesystem;
+
+      psystem->defer_create_html();
 
       __pointer(::user::form) pformOld;
 
@@ -88,7 +90,7 @@ namespace user
 
       ::file::path pathHtml;
 
-      bool bHtml = System->m_phtml->defer_get_html(strHtml, pathHtml, this, varFile);
+      bool bHtml = psystem->m_phtml->defer_get_html(strHtml, pathHtml, this, varFile);
 
       bool bOk = true;
 
@@ -97,7 +99,7 @@ namespace user
 
          bOk = false;
 
-         auto psession = Session;
+         auto psession = get_session();
 
          m_pform = create_view(psession->user()->get_html_view_type());
 
@@ -128,7 +130,7 @@ namespace user
             else
             {
 
-               m_pform->DestroyWindow();
+               m_pform->start_destroying_window();
 
                m_pform.release();
 
@@ -152,11 +154,11 @@ namespace user
          if (pview)
          {
 
-            get_document()->remove_view(pview);
+            get_document()->erase_view(pview);
 
          }
 
-         pformOld->DestroyWindow();
+         pformOld->destroy_window();
 
          pformOld.release();
 
@@ -181,7 +183,7 @@ namespace user
    ::e_status form_view::open_html(const string & str)
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       auto pformOld = m_pform;
 

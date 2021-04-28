@@ -4,7 +4,7 @@
 //#include "math_value.h"
 
 
-namespace math
+namespace mathematics
 {
 
 
@@ -41,7 +41,7 @@ namespace math
    };
 
 
-} // namespace math
+} // namespace mathematics
 
 
 

@@ -22,10 +22,10 @@ namespace simpledb
    }
 
 
-   ::e_status server::initialize_simpledb_server(::layered * pobjectContext, const char * pszDatabase)
+   ::e_status server::initialize_simpledb_server(::object * pobject, const char * pszDatabase)
    {
 
-      auto estatus = ::database::server::initialize(pobjectContext);
+      auto estatus = ::database::server::initialize(pobject);
 
       if (!estatus)
       {
@@ -34,7 +34,7 @@ namespace simpledb
 
       }
 
-      m_bRemote = !get_context()->is_local_data();
+      m_bRemote = !m_pcontext->m_papexcontext->is_local_data();
 
       if (m_pdatabaseLocal.is_set())
       {
@@ -45,14 +45,14 @@ namespace simpledb
 
       ::file::path pathDatabase(pszDatabase);
 
-      if (!get_context()->dir().mk(pathDatabase.folder()))
+      if (!m_pcontext->m_papexcontext->dir().mk(pathDatabase.folder()))
       {
 
          return false;
 
       }
 
-      auto pdatabase = __new(::sqlite::database());
+      auto pdatabase = (*m_psystem->m_pfactorymapsquare)["simpledb"]->new_object<::database::database>();
 
       if (pdatabase.is_null())
       {
@@ -61,16 +61,16 @@ namespace simpledb
 
       }
 
-      synchronization_lock synchronizationlock(pdatabase->mutex());
+      synchronous_lock synchronouslock(pdatabase->mutex());
 
-      estatus = pdatabase->connect(pszDatabase);
+      //estatus = pdatabase->set_finish(this);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
       m_pdatabaseLocal = pdatabase;
 
@@ -180,7 +180,7 @@ namespace simpledb
       try
       {
 
-         synchronization_lock synchronizationlock(pdatabase->mutex());
+         synchronous_lock synchronouslock(pdatabase->mutex());
 
          ::payload item = pdatabase->query_item("select COUNT(*) from sqlite_master where type like 'table' and name like '" + strTable + "'");
 
@@ -204,7 +204,7 @@ namespace simpledb
    }
 
 
-   void server::finalize()
+   ::e_status server::finalize()
    {
 
       m_bWorking = false;
@@ -218,7 +218,9 @@ namespace simpledb
 
       m_pdatabaseLocal.release();
 
-      ::database::server::finalize();
+      auto estatus = ::database::server::finalize();
+
+      return estatus;
 
    }
 

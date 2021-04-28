@@ -44,10 +44,10 @@ namespace sockets
       port_t                     m_socks4_port; ///< Socks4 server port number
       string                     m_socks4_userid; ///< Socks4 userid
       bool                       m_bTryDirect; ///< Try direct connection if socks4 server fails
-      i32                        m_resolv_id; ///< Resolver id counter
-      __pointer(::thread)         m_resolver; ///< Resolver thread pointer
-      port_t                     m_resolver_port; ///< Resolver listen port
-      socket_flag_map            m_resolve_q; ///< resolve queue
+      //i32                        m_resolv_id; ///< Resolver id counter
+      //__pointer(::thread)        m_resolver; ///< Resolver thread pointer
+      //port_t                     m_resolver_port; ///< Resolver listen port
+      //socket_flag_map            m_resolve_q; ///< resolve queue
       bool                       m_b_enable_pool; ///< Connection pool enabled if true
       i32                        m_next_trigger_id; ///< Unique trigger id counter
       socket_map                 m_trigger_src; ///< mapping trigger id to source base_socket
@@ -55,7 +55,7 @@ namespace sockets
       bool                       m_slave; ///< Indicates that this is a base_socket_handler run in socket_thread
 
 
-      socket_handler(::layered * pobjectContext, ::apex::log * plogger = nullptr);
+      socket_handler(::apex::log * plogger = nullptr);
       virtual ~socket_handler();
 
 
@@ -66,7 +66,7 @@ namespace sockets
 //      synchronization_object & GetMutex() const override;
 
 
-      resolv_server * resolver();
+      //resolv_server * resolver();
 
       /** add base_socket instance to base_socket map. Removal is always automatic. */
       virtual void add(base_socket *) override;
@@ -137,24 +137,24 @@ namespace sockets
       // DNS resolve server
       /** enable asynchronous DNS.
       \lparam port Listen port of asynchronous dns server */
-      void EnableResolver(port_t port = 16667) override;
+      //void EnableResolver(port_t port = 16667) override;
       /** Check resolver status.
       \return true if resolver is enabled */
-      bool ResolverEnabled() override;
+      //bool ResolverEnabled() override;
       /** Queue a dns request.
       \lparam host Hostname to be resolved
       \lparam port Port number will be echoed in base_socket::OnResolved callback */
-      i32 Resolve(base_socket *,const string & host,port_t port) override;
-      i32 Resolve6(base_socket *,const string & host,port_t port) override;
+      //i32 Resolve(base_socket *,const string & host,port_t port) override;
+      //i32 Resolve6(base_socket *,const string & host,port_t port) override;
       /** Do a reverse dns lookup. */
-      i32 Resolve(base_socket *,in_addr a) override;
-      i32 Resolve(base_socket *,in6_addr& a) override;
+      //i32 Resolve(base_socket *,in_addr a) override;
+      //i32 Resolve(base_socket *,in6_addr& a) override;
       /** get listen port of asynchronous dns server. */
-      port_t GetResolverPort() override;
+      //port_t GetResolverPort() override;
       /** Resolver thread ready for queries. */
-      bool ResolverReady() override;
+      //bool ResolverReady() override;
       /** Returns true if the base_socket is waiting for a resolve event. */
-      bool Resolving(base_socket *) override;
+      //bool Resolving(base_socket *) override;
 
       /** Fetch unique trigger id. */
       i32 TriggerID(base_socket *src) override;
@@ -179,8 +179,8 @@ namespace sockets
 
 
       void CheckList(socket_list&,const string &); ///< Used by CheckSanity
-      /** remove base_socket from base_socket map, used by base_socket class. */
-      void remove(base_socket *) override;
+      /** erase base_socket from base_socket map, used by base_socket class. */
+      void erase(base_socket *) override;
    };
 
 

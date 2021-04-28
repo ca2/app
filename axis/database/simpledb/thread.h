@@ -20,8 +20,7 @@ namespace simpledb
       pointer_array < queue_item >              m_itema;
 
 
-      thread() :
-         m_handler(this)
+      thread()
       {
 
       }

@@ -356,7 +356,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //char * __cdecl char_traits::string_uppercase(char * psz,strsize size) noexcept
 //{
 //
-//   ::acme::strupr_s(psz, size);
+//   ::text::tableupr_s(psz, size);
 //
 //   return psz;
 //
@@ -365,7 +365,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //char * __cdecl char_traits::string_lowercase(char * psz, strsize size) noexcept
 //{
 //
-//   ::acme::strlwr_s(psz, size);
+//   ::text::tablelwr_s(psz, size);
 //
 //   return psz;
 //
@@ -1801,7 +1801,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //   }
 //}
 //
-//strsize string::remove(char chRemove)
+//strsize string::erase(char chRemove)
 //{
 //   strsize nLength = get_length();
 //   char * pszBuffer = GetBuffer(nLength);
@@ -2480,7 +2480,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //
 //// trimming
 //
-//// remove all trailing whitespace
+//// erase all trailing whitespace
 //string& string::trim_right()
 //{
 //
@@ -2518,7 +2518,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //
 //}
 //
-//// remove all leading whitespace
+//// erase all leading whitespace
 //string& string::trim_left()
 //{
 //   // find first non-space character
@@ -2571,19 +2571,19 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //   return *this;
 //}
 //
-//// remove all leading and trailing whitespace
+//// erase all leading and trailing whitespace
 //string& string::trim()
 //{
 //   return(trim_right().trim_left());
 //}
 //
-//// remove all leading and trailing occurrences of character 'chTarget'
+//// erase all leading and trailing occurrences of character 'chTarget'
 //string& string::trim(char chTarget)
 //{
 //   return(trim_right(chTarget).trim_left(chTarget));
 //}
 //
-//// remove all leading and trailing occurrences of any of the characters in the string 'pszTargets'
+//// erase all leading and trailing occurrences of any of the characters in the string 'pszTargets'
 //string& string::trim(const char * pszTargets)
 //{
 //   return(trim_right(pszTargets).trim_left(pszTargets));
@@ -2591,7 +2591,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //
 //// trimming anything (either side)
 //
-//// remove all trailing occurrences of character 'chTarget'
+//// erase all trailing occurrences of character 'chTarget'
 //string& string::trim_right(char chTarget)
 //{
 //   // find beginning of trailing matches
@@ -2626,7 +2626,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //   return *this;
 //}
 //
-//// remove all trailing occurrences of any of the characters in string 'pszTargets'
+//// erase all trailing occurrences of any of the characters in string 'pszTargets'
 //string& string::trim_right(const char * pszTargets)
 //{
 //   // if we're not trimming anything, we're not doing any work
@@ -2668,7 +2668,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //   return *this;
 //}
 //
-//// remove all leading occurrences of character 'chTarget'
+//// erase all leading occurrences of character 'chTarget'
 //string& string::trim_left(char chTarget)
 //{
 //   // find first non-matching character
@@ -2694,7 +2694,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //   return *this;
 //}
 //
-//// remove all leading occurrences of any of the characters in string 'pszTargets'
+//// erase all leading occurrences of any of the characters in string 'pszTargets'
 //string& string::trim_left(const char * pszTargets)
 //{
 //   // if we're not trimming anything, we're not doing any work
@@ -2725,7 +2725,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //}
 //
 //
-//// remove all trailing whitespace
+//// erase all trailing whitespace
 //string string::right_trimmed() const
 //{
 //
@@ -2738,7 +2738,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //}
 //
 //
-//// remove all leading whitespace
+//// erase all leading whitespace
 //string string::left_trimmed() const
 //{
 //
@@ -2751,7 +2751,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //}
 //
 //
-//// remove all leading and trailing whitespace
+//// erase all leading and trailing whitespace
 //string string::trimmed() const
 //{
 //
@@ -2764,7 +2764,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //}
 //
 //
-//// remove all leading and trailing occurrences of character 'chTarget'
+//// erase all leading and trailing occurrences of character 'chTarget'
 //string string::trimmed(char chTarget) const
 //{
 //
@@ -2777,7 +2777,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //}
 //
 //
-//// remove all leading and trailing occurrences of any of the characters in the string 'pszTargets'
+//// erase all leading and trailing occurrences of any of the characters in the string 'pszTargets'
 //string string::trimmed(const char * pszTargets) const
 //{
 //
@@ -2792,7 +2792,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //
 //// trimming anything (either side)
 //
-//// remove all trailing occurrences of character 'chTarget'
+//// erase all trailing occurrences of character 'chTarget'
 //string string::right_trimmed(char chTarget) const
 //{
 //
@@ -2805,7 +2805,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //}
 //
 //
-//// remove all trailing occurrences of any of the characters in string 'pszTargets'
+//// erase all trailing occurrences of any of the characters in string 'pszTargets'
 //string string::right_trimmed(const char * pszTargets) const
 //{
 //
@@ -2818,7 +2818,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //}
 //
 //
-//// remove all leading occurrences of character 'chTarget'
+//// erase all leading occurrences of character 'chTarget'
 //string string::left_trimmed(char chTarget) const
 //{
 //
@@ -2831,7 +2831,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //}
 //
 //
-//// remove all leading occurrences of any of the characters in string 'pszTargets'
+//// erase all leading occurrences of any of the characters in string 'pszTargets'
 //string string::left_trimmed(const char * pszTargets) const
 //{
 //

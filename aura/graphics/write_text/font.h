@@ -167,7 +167,7 @@ namespace write_text
    typedef ___pointer < font > font_pointer;
 
    class CLASS_DECL_AURA font_enum_item :
-      virtual public context_object
+      virtual public object
    {
    public:
 

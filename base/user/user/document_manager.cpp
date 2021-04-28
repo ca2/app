@@ -68,7 +68,7 @@ namespace user
 
       string strPathName, strTemp;
 
-      __get_module_short_file_name(System->m_hInstance, strPathName);
+      __get_module_short_file_name(psystem->m_hInstance, strPathName);
 
       POSITION pos = m_templateptra.get_head_position();
       for (i32 nTemplateIndex = 1; pos != nullptr; nTemplateIndex++)
@@ -158,7 +158,7 @@ namespace user
 
       string strPathName, strTemp;
 
-      __get_module_short_file_name(System->m_hInstance, strPathName);
+      __get_module_short_file_name(psystem->m_hInstance, strPathName);
 
       POSITION pos = m_templateptra.get_head_position();
       for (i32 nTemplateIndex = 1; pos != nullptr; nTemplateIndex++)
@@ -173,7 +173,7 @@ namespace user
       if (bCompat)
       {
       string strIconIndex;
-      HICON hIcon = ::ExtractIcon(System->m_hInstance, strPathName, nTemplateIndex);
+      HICON hIcon = ::ExtractIcon(psystem->m_hInstance, strPathName, nTemplateIndex);
       if (hIcon != nullptr)
       {
       strIconIndex.Format(gen_IconIndexFmt, nTemplateIndex);
@@ -375,6 +375,8 @@ namespace user
       
       if(m_templateptra.add_unique(ptemplate))
       {
+         
+         ptemplate->initialize(this);
 
          ptemplate->load_template();
 
@@ -385,12 +387,12 @@ namespace user
    }
 
 
-   void document_manager::remove_document_template(::user::impact_system * ptemplate)
+   void document_manager::erase_document_template(::user::impact_system * ptemplate)
    {
 
       ptemplate->close_all_documents(false);
 
-      ::count c = m_templateptra.remove(ptemplate);
+      ::count c = m_templateptra.erase(ptemplate);
 
       if (c <= 0)
       {
@@ -474,7 +476,7 @@ namespace user
       if (bEndApp)
       {
 
-         m_templateptra.remove_all();
+         m_templateptra.erase_all();
 
       }
 
@@ -486,7 +488,7 @@ namespace user
 
       throw_todo();
 
-      //return System->do_prompt_file_name(varFile, nIDSTitle, lFlags, bOpenFileDialog, ptemplate, pdocument);
+      //return psystem->do_prompt_file_name(varFile, nIDSTitle, lFlags, bOpenFileDialog, ptemplate, pdocument);
 
       return false;
 
@@ -517,7 +519,7 @@ namespace user
       // open format is "[open("%s")]" - no whitespace allowed, one per line
       // print format is "[print("%s")]" - no whitespace allowed, one per line
       // print to format is "[printto("%s","%s","%s","%s")]" - no whitespace allowed, one per line
-      command & cmdInfo = System->handler();
+      command & cmdInfo = psystem->handler();
       command.m_nShellCommand = command_line::FileDDE;
 
       if (strCommand.Left(7) == _T("[open(\""))
@@ -549,13 +551,13 @@ namespace user
       bool bRetVal = true;
 
       // // If we were started up for DDE retrieve the Show state
-      //   System->command_line() = cmdInfo;
+      //   psystem->command_line() = cmdInfo;
 
       if (cmdInfo.m_nShellCommand == command_line::FileOpen)
       {
       // show the application window
-      __pointer(::user::interaction) pMainWnd = System->m_puiMain;
-      edisplay edisplay = System->m_nCmdShow;
+      __pointer(::user::interaction) pMainWnd = psystem->m_puiMain;
+      edisplay edisplay = psystem->m_nCmdShow;
       if (nCmdShow == -1 || nCmdShow == SW_SHOWNORMAL)
       {
        trans         if (pMainWnd->is_iconic())
@@ -568,11 +570,11 @@ namespace user
       pMainWnd->SetForegroundWindow();
 
       // then open the document
-      System->open_document_file(get_context_application(), cmdInfo.m_varFile);
+      psystem->open_document_file(get_application(), cmdInfo.m_varFile);
 
 
       // next time, show the window as default
-      System->m_nCmdShow = -1;
+      psystem->m_nCmdShow = -1;
       goto RestoreAndReturn;
       }
 
@@ -646,10 +648,10 @@ namespace user
       i32 nOldCount; nOldCount = get_document_count();
 
       // open the document, then print it.
-      pDoc = System->open_document_file(get_context_application(), cmdInfo.m_varFile);
-      //System->m_pCmdInfo = &cmdInfo;
-      System->m_puiMain->SendMessage(e_message_command, ID_FILE_PRINT_DIRECT);
-      //System->m_pCmdInfo = nullptr;
+      pDoc = psystem->open_document_file(get_application(), cmdInfo.m_varFile);
+      //psystem->m_pCmdInfo = &cmdInfo;
+      psystem->m_puiMain->SendMessage(e_message_command, ID_FILE_PRINT_DIRECT);
+      //psystem->m_pCmdInfo = nullptr;
 
       // close the document if it wasn't open previously (based on doc count)
       if (get_document_count() > nOldCount)
@@ -657,7 +659,7 @@ namespace user
 
 
       RestoreAndReturn:
-      //System->m_pCmdInfo = pOldInfo;
+      //psystem->m_pCmdInfo = pOldInfo;
       return bRetVal;*/
       return true;
    }
@@ -670,8 +672,8 @@ namespace user
    if (m_templateptra.is_empty())
    {
    TRACE(trace_category_appmsg, 0, "Error: no document templates registered with application.\n");
-   // linux System->message_box(__IDP_FAILED_TO_CREATE_DOC);
-   System->message_box(nullptr, "Failed to create document");
+   // linux message_box(__IDP_FAILED_TO_CREATE_DOC);
+   message_box(nullptr, "Failed to create document");
    return;
    }
 
@@ -686,7 +688,7 @@ namespace user
    ASSERT(ptemplate != nullptr);
    ASSERT_KINDOF(impact_system, ptemplate);
 
-   ptemplate->open_document_file(get_context_application(), nullptr, true, System->m_puiInitialPlaceHolderContainer);
+   ptemplate->open_document_file(get_application(), nullptr, true, psystem->m_puiInitialPlaceHolderContainer);
    // if returns nullptr, the ::account::user has already been alerted*/
    //   return true;
    //}
@@ -702,7 +704,7 @@ namespace user
       if (!do_prompt_file_name(pcreate->m_pcommandline->m_varFile, "" /*__IDS_OPENFILE */, 0 /*OFN_HIDEREADONLY | OFN_FILEMUSTEXIST*/, true, nullptr, nullptr))
          return; // open cancelled
 
-      auto psession = Session;
+      auto psession = get_session();
 
       psession->do_request(pcreate);
       // if returns nullptr, the ::account::user has already been alerted
@@ -791,7 +793,7 @@ namespace user
       //}
 
       /*   char szLinkName[_MAX_PATH];
-      if (::aura::ResolveShortcut(System->m_puiMain, szPath, szLinkName, _MAX_PATH))
+      if (::aura::ResolveShortcut(psystem->m_puiMain, szPath, szLinkName, _MAX_PATH))
       ::aura::tcscpy_s(szPath, _countof(szPath), szLinkName);
       */
 
@@ -843,9 +845,7 @@ namespace user
       if (pBestTemplate == nullptr)
       {
 
-         // linux System->message_box(__IDP_FAILED_TO_OPEN_DOC);
-
-         System->message_box("Failed to open document");
+         message_box("Failed to open document");
 
          return;
 
@@ -911,13 +911,13 @@ namespace user
 //{
 //
 //
-//   //void application::remove_document_template(::user::impact_system * pimpactsystem)
+//   //void application::erase_document_template(::user::impact_system * pimpactsystem)
 //   //{
 //
 //   //   if (m_pdocmanager == nullptr)
 //   //      return;
 //
-//   //   document_manager()->remove_document_template(pimpactsystem);
+//   //   document_manager()->erase_document_template(pimpactsystem);
 //
 //   //}
 //
@@ -926,14 +926,14 @@ namespace user
 //
 //   //{
 //
-//   //   ASSERT(Application.m_pdocmanager != nullptr);
+//   //   ASSERT(papplication->m_pdocmanager != nullptr);
 //
 //   //   __pointer(::create) cc(e_create);
 //
 //   //   cc->m_pcommandline->m_varFile = pszFileName;
 //
 //
-//   //   Application.document_manager()->request(cc);
+//   //   papplication->document_manager()->request(cc);
 //
 //   //   return ::user::__document(cc);
 //

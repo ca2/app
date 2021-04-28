@@ -64,7 +64,7 @@ public:
    }
    virtual ~text_stream();
 
-   virtual void finalize() override;
+   virtual ::e_status finalize() override;
 
    virtual void to_string(const string_exchange & str) const override;
 

@@ -332,7 +332,7 @@ void * fixed_alloc_array::_realloc(void * pOld, size_t nOldAllocSize, size_t nNe
 
 fixed_alloc * fixed_alloc_array::find(size_t nAllocSize)
 {
-   //synchronization_lock lock(&m_mutex, true);
+   //synchronous_lock lock(&m_mutex, true);
    size_t nFoundSize = UINT_MAX;
    i32 iFound = -1;
    for(i32 i = 0; i < this->get_count(); i++)

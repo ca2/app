@@ -78,7 +78,7 @@ namespace experience
 
          __pointer(::message::key) pkey(pmessage);
 
-         auto psession = Session;
+         auto psession = get_session();
 
          if (pkey->userinteraction() == this)
          {
@@ -145,7 +145,7 @@ namespace experience
                else if (pkey->m_ekey == ::user::e_key_alt || pkey->m_ekey == ::user::e_key_lalt || pkey->m_ekey == ::user::e_key_ralt)
                {
 
-                  auto psession = Session;
+                  auto psession = get_session();
 
                   if (layout().is_full_screen() && psession->is_key_pressed(::user::e_key_control) && !m_bFullScreenAlt && !m_bFullScreenCtrl)
                   {
@@ -214,30 +214,36 @@ namespace experience
    }
 
 
-   ::experience::experience* frame_window::get_new_experience(const char* pszExperienceLibrary)
+   __pointer(::experience::experience) frame_window::create_experience(const char* pszExperienceLibrary)
    {
 
-      auto puser = User;
+      auto psession = get_session();
 
-      return puser->experience()->get_new_experience2(this, pszExperienceLibrary);
+      auto puser = psession->user();
+
+      return puser->experience()->create_experience2(this, pszExperienceLibrary);
 
    }
 
 
-   ::experience::experience* frame_window::get_experience(const char* pszExperienceLibrary)
+   __pointer(::experience::experience) frame_window::get_experience(const char* pszExperienceLibrary)
    {
 
-      auto puser = User;
+      auto psession = get_session();
+
+      auto puser = psession->user();
 
       return puser->experience()->get_experience2(this, pszExperienceLibrary);
 
    }
 
 
-   ::experience::frame* frame_window::get_frame_experience(const char* pszExperienceLibrary, const char* pszFrame, const char* pszStyle)
+   __pointer(::experience::frame) frame_window::get_frame_experience(const char* pszExperienceLibrary, const char* pszFrame, const char* pszStyle)
    {
 
-      auto puser = User;
+      auto psession = get_session();
+
+      auto puser = psession->user();
 
       auto pframe = puser->experience()->experience_get_frame2(this, pszExperienceLibrary, pszFrame);
 
@@ -569,34 +575,50 @@ namespace experience
    }
 
 
-   bool frame_window::initialize_frame_window_experience()
+   ::e_status frame_window::initialize_frame_window_experience()
    {
+
+      ::e_status estatusDockManager = error_failed;
+
+      ::e_status estatusMoveManager = error_failed;
+
+      ::e_status estatusSizeManager = error_failed;
+
+      ::e_status estatusMenuManager = error_failed;
 
       if (m_pdockmanager == nullptr)
       {
 
-         __compose(m_pdockmanager, __new(class dock_manager(this)));
+         __compose(m_pdockmanager, __new(class dock_manager));
+
+         estatusDockManager = m_pdockmanager->initialize_dock_manager(this);
 
       }
 
       if (m_pmovemanager == nullptr)
       {
 
-         __compose(m_pmovemanager,__new(class move_manager(this)));
+         __compose(m_pmovemanager,__new(class move_manager));
+
+         estatusMoveManager = m_pmovemanager->initialize_move_manager(this);
 
       }
 
       if (m_psizemanager == nullptr)
       {
 
-         __compose(m_psizemanager, __new(class size_manager(this)));
+         __compose(m_psizemanager, __new(class size_manager));
+
+         estatusSizeManager = m_psizemanager->initialize_size_manager(this);
 
       }
 
       if (m_pmenumanager == nullptr)
       {
 
-         __compose(m_pmenumanager, __new(class menu_manager(this)));
+         __compose(m_pmenumanager, __new(class menu_manager));
+
+         estatusMenuManager = m_pmenumanager->initialize_menu_manager(this);
 
       }
 
@@ -606,31 +628,51 @@ namespace experience
 
 //      m_pmovemanager->SetSWPFlags(SWP_SHOWWINDOW);
 
-      if (!m_pmovemanager->set_frame_window(this))
+      if (estatusMoveManager)
       {
 
-         return false;
+         if (!m_pmovemanager->set_frame_window(this))
+         {
+
+            estatusMoveManager = error_failed;
+
+         }
 
       }
 
-      if (!m_pdockmanager->set_frame_window(this))
+      if (estatusDockManager)
       {
 
-      return false;
+         if (!m_pdockmanager->set_frame_window(this))
+         {
+
+            estatusDockManager = error_failed;
+
+         }
 
       }
 
-      if (!m_psizemanager->set_frame_window(this))
+      if (estatusSizeManager)
       {
 
-      return false;
+         if (!m_psizemanager->set_frame_window(this))
+         {
+
+            estatusSizeManager = error_failed;
+
+         }
 
       }
 
-      if (!m_pmenumanager->set_frame_window(this))
+      if (estatusMenuManager)
       {
 
-      return false;
+         if (!m_pmenumanager->set_frame_window(this))
+         {
+
+            estatusMenuManager = error_failed;
+
+         }
 
       }
 
@@ -639,7 +681,7 @@ namespace experience
 
          m_pframe->on_initialize_appearance();
 
-         return true;
+         return ::success;
 
       }
       catch (...)
@@ -648,7 +690,7 @@ namespace experience
       }
 
 
-      return true;
+      return error_failed;
 
    }
 
@@ -1046,11 +1088,11 @@ namespace experience
    }
 
 
-   void frame_window::ChildWnd(::user::interaction * pframewindow, ::user::interaction * pwndParent)
+   void frame_window::ChildWnd(::user::interaction * pframewindow, ::user::interaction * puserinteractionParent)
    {
 
       UNREFERENCED_PARAMETER(pframewindow);
-      UNREFERENCED_PARAMETER(pwndParent);
+      UNREFERENCED_PARAMETER(puserinteractionParent);
 
    }
 
@@ -1101,7 +1143,16 @@ namespace experience
       if(m_psizemanager == nullptr)
       {
 
-         __compose(m_psizemanager, __new(class size_manager(this)));
+         __compose(m_psizemanager, __new(class size_manager));
+
+         auto estatus = m_psizemanager->initialize_size_manager(this);
+
+         if (!estatus)
+         {
+
+            __release(m_psizemanager);
+
+         }
 
       }
 
@@ -1211,7 +1262,7 @@ namespace experience
 
       MESSAGE_LINK(e_message_left_button_down,pchannel,this,&frame_window::on_message_left_button_down);
       MESSAGE_LINK(e_message_left_button_up,pchannel,this,&frame_window::on_message_left_button_up);
-      MESSAGE_LINK(e_message_mouse_move,pchannel,this,&frame_window::_001OnMouseMove);
+      MESSAGE_LINK(e_message_mouse_move,pchannel,this,&frame_window::on_message_mouse_move);
       MESSAGE_LINK(e_message_non_client_left_button_down,pchannel,this,&frame_window::_001OnNcLButtonDown);
       MESSAGE_LINK(e_message_non_client_left_button_up,pchannel,this,&frame_window::_001OnNcLButtonUp);
       MESSAGE_LINK(e_message_non_client_mouse_move,pchannel,this,&frame_window::_001OnNcMouseMove);
@@ -1283,7 +1334,7 @@ namespace experience
    }
 
 
-   void frame_window::_001OnMouseMove(::message::message * pmessage)
+   void frame_window::on_message_mouse_move(::message::message * pmessage)
    {
 
       __pointer(::message::mouse) pmouse(pmessage);
@@ -1315,7 +1366,7 @@ namespace experience
 
             //INFO("e_message_mouse_move for experience::frame");
 
-            if (m_pframe->_001OnMouseMove(pmouse))
+            if (m_pframe->on_message_mouse_move(pmouse))
             {
 
                pmouse->m_bRet = true;
@@ -1358,6 +1409,59 @@ namespace experience
       {
 
          pmouse->m_lresult = 1;
+
+      }
+
+   }
+
+
+   void frame_window::on_message_set_cursor(::message::message* pmessage)
+   {
+
+      __pointer(::message::set_cursor) psetcursor(pmessage);
+
+      if (!is_frame_experience_enabled())
+      {
+
+         return;
+
+      }
+
+      if (::is_set(m_pframe))
+      {
+
+         if (layout().m_eflag & ::user::interaction_layout::flag_apply_visual)
+         {
+
+            INFO("e_message_mouse_move during window move ignored!!");
+
+         }
+         else if (psetcursor->m_eflagMessage & ::message::flag_synthesized)
+         {
+
+            INFO("synthesized e_message_mouse_move ignored!!");
+
+         }
+         else
+         {
+
+            //INFO("e_message_mouse_move for experience::frame");
+
+            if (m_pframe->on_message_set_cursor(psetcursor))
+            {
+
+               psetcursor->m_bRet = true;
+
+            }
+
+         }
+
+      }
+
+      if (psetcursor->m_bRet)
+      {
+
+         psetcursor->m_lresult = 1;
 
       }
 
@@ -1747,7 +1851,7 @@ namespace experience
          if (bCursorPosition)
          {
 
-            auto psession = Session;
+            auto psession = get_session();
 
             auto puser = psession->user();
 
@@ -1757,7 +1861,9 @@ namespace experience
 
          }
 
-         double dMargin = System->m_dpi * 0.75 * (1.0 - sqrt((double) rectangle.area() / (double) rectWorkspace.area()));
+         auto psystem = m_psystem->m_pbasesystem;
+
+         double dMargin = psystem->m_dpi * 0.75 * (1.0 - sqrt((double) rectangle.area() / (double) rectWorkspace.area()));
 
          if (ZONEING_COMPARE::is_equal(rectangle.top, rectWorkspace.top, dMargin, !(edisplayPrevious & e_display_top)))
          {

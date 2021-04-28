@@ -118,8 +118,7 @@ namespace sockets
 
 #endif
 
-   SSLInitializer::SSLInitializer(::layered * pobjectContext) :
-      ::object(pobjectContext)
+   SSLInitializer::SSLInitializer()
    {
 
 //#if defined(_UWP)
@@ -204,7 +203,7 @@ namespace sockets
       //ERR_free_strings();
       //EVP_cleanup();
 
-//      ERR_remove_state(0);
+//      ERR_erase_state(0);
 
 
 
@@ -264,7 +263,7 @@ namespace sockets
       if (m_rand_file.get_length())
       {
 
-         get_context()->file().del(m_rand_file);
+         m_pcontext->m_papexcontext->file().del(m_rand_file);
 
       }
 
@@ -283,7 +282,7 @@ extern "C" void SSLInitializer_SSL_locking_function(i32 mode, i32 n, const char 
 
    UNREFERENCED_PARAMETER(line);
 
-   synchronization_lock synchronizationlock(::sockets::g_pmutexMap);
+   synchronous_lock synchronouslock(::sockets::g_pmutexMap);
 
    ::mutex * pmutex = nullptr;
 
@@ -308,7 +307,7 @@ extern "C" void SSLInitializer_SSL_locking_function(i32 mode, i32 n, const char 
 
    }
 
-   synchronizationlock.unlock();
+   synchronouslock.unlock();
 
    if (mode & CRYPTO_LOCK)
    {
@@ -363,15 +362,22 @@ SSLInitializer_rand_seed(const void * buf, i32 num)
 #endif
 }
 
+
 extern "C" i32 SSLInitializer_rand_bytes(uchar * buf, i32 num)
 {
-   ::apex::get_system()->math().gen_rand(buf, num);
+
+   generate_random_bytes(buf, num);
+   
    return 1;
+
 }
+
 
 extern "C" void SSLInitializer_rand_cleanup()
 {
+
 }
+
 
 extern "C"
 #if defined(_UWP)
@@ -390,16 +396,24 @@ SSLInitializer_rand_add(const void * buf, int num, double entropy)
 #endif
 }
 
+
 extern "C" i32 SSLInitializer_rand_pseudorand(uchar * buf, i32 num)
 {
-   ::apex::get_system()->math().gen_rand(buf, num);
+   
+   generate_random_bytes(buf, num);
+
    return num;
+
 }
+
 
 extern "C" i32 SSLInitializer_rand_status()
 {
+
    return 1024;
+
 }
+
 
 #endif
 

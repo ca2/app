@@ -76,11 +76,11 @@ namespace aura
    //}
 
 
-   void application::show_wait_cursor(bool bShow)
-   {
-
-
-   }
+//   void application::show_wait_cursor(bool bShow)
+//   {
+//
+//
+//   }
 
 
    //void application::get_time(struct timeval *p)
@@ -99,7 +99,7 @@ namespace aura
    //}
 
 
-   //ithread_t application::get_thread_id()
+   //itask_t application::get_thread_id()
    //{
 
    //   return ::pthread_self();

@@ -22,7 +22,7 @@ void ns_main_async(dispatch_block_t block);
 //int oswindow_find(NSWindow * window)
 //{
 //
-//   synchronization_lock synchronizationlock(g_pmutexOsWindowData);
+//   synchronous_lock synchronouslock(g_pmutexOsWindowData);
 //
 //   for(int i = 0; i < g_poswindowdataptra->get_count(); i++)
 //   {
@@ -39,7 +39,7 @@ void ns_main_async(dispatch_block_t block);
 //oswindow_data * oswindow_get(nswindow window)
 //{
 //
-//   synchronization_lock synchronizationlock(g_pmutexOsWindowData);
+//   synchronous_lock synchronouslock(g_pmutexOsWindowData);
 //
 //   iptr iFind = oswindow_find(window);
 //
@@ -116,10 +116,10 @@ void ns_main_async(dispatch_block_t block);
 //}
 //
 //
-//bool oswindow_remove(nswindow window)
+//bool oswindow_erase(nswindow window)
 //{
 //
-//   synchronization_lock synchronizationlock(g_pmutexOsWindowData);
+//   synchronous_lock synchronouslock(g_pmutexOsWindowData);
 //
 //   iptr iFind = oswindow_find(window);
 //
@@ -130,7 +130,7 @@ void ns_main_async(dispatch_block_t block);
 //
 //   }
 //
-//   g_poswindowdataptra->remove_at(iFind);
+//   g_poswindowdataptra->erase_at(iFind);
 //
 //   return true;
 //
@@ -419,14 +419,14 @@ void ns_main_async(dispatch_block_t block);
 //int_bool session_accepts_first_responder()
 //{
 //
-//   return System->get_context_session()->m_bAcceptsFirstResponder ? 1 : 0;
+//   return ::acme::get_system()->get_session()->m_bAcceptsFirstResponder ? 1 : 0;
 //
 //}
 //
 //void deactivate_window(oswindow window)
 //{
 //
-//   synchronization_lock synchronizationlock(g_pmutexOsWindowData);
+//   synchronous_lock synchronouslock(g_pmutexOsWindowData);
 //
 //   if(g_oswindowActive != window)
 //   {
@@ -446,7 +446,7 @@ void ns_main_async(dispatch_block_t block);
 //oswindow set_active_window(oswindow window)
 //{
 //
-//   synchronization_lock synchronizationlock(g_pmutexOsWindowData);
+//   synchronous_lock synchronouslock(g_pmutexOsWindowData);
 //
 //   oswindow windowOld(g_oswindowActive);
 //

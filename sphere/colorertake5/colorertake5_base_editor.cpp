@@ -11,7 +11,7 @@ namespace colorertake5
 
 
 
-   base_editor::base_editor(::layered * pobjectContext) :
+   base_editor::base_editor(::object * pobject) :
       object(pobject)
    {
       textParser = nullptr;
@@ -50,7 +50,7 @@ namespace colorertake5
    void base_editor::initialize(line_source *lineSource)
    {
 
-      ParserFactory *parserFactory = &Application.parser_factory();
+      ParserFactory *parserFactory = &papplication->parser_factory();
 
       if (parserFactory == nullptr || lineSource == nullptr)
       {
@@ -208,9 +208,9 @@ namespace colorertake5
       regionHandlers.add(rh);
    }
 
-   void base_editor::removeRegionHandler(RegionHandler *rh)
+   void base_editor::eraseRegionHandler(RegionHandler *rh)
    {
-      regionHandlers.remove(rh);
+      regionHandlers.erase(rh);
    }
 
    void base_editor::addEditorListener(EditorListener *el)
@@ -218,9 +218,9 @@ namespace colorertake5
       editorListeners.add(el);
    }
 
-   void base_editor::removeEditorListener(EditorListener *el)
+   void base_editor::eraseEditorListener(EditorListener *el)
    {
-      editorListeners.remove(el);
+      editorListeners.erase(el);
    }
 
 

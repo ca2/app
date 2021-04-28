@@ -58,7 +58,21 @@ namespace message
    }
 
 
-   bool message::previous() { if (--m_iRouteIndex < 0) return false; m_phandlera->m_pData[m_iRouteIndex].m_handler(this); return m_bRet; }
+   bool message::previous() 
+   { 
+
+      if (--m_iRouteIndex < 0)
+      {
+
+         return false;
+
+      }
+         
+      m_phandlera->m_pData[m_iRouteIndex].m_handler(this);
+
+      return m_bRet; 
+   
+   }
 
 
    void message::set_lresult(lresult lresult)

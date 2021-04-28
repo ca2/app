@@ -46,7 +46,7 @@ CLASS_DECL_APEX memory_file_pointer create_memory_file(::Windows::Storage::Strea
 
    auto pthread = ::get_task();
 
-   while (pthread && pthread->thread_get_run())
+   while (pthread && pthread->task_get_run())
    {
 
       ::Windows::Storage::Streams::IBuffer^ buffer = ref new ::Windows::Storage::Streams::Buffer(1_mb);

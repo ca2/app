@@ -17,27 +17,29 @@ namespace geometry
    }
 
 
-   ::e_status geometry::initialize(::layered * pobjectContext)
-   {
+   //::e_status geometry::initialize(::object * pobject)
+   //{
 
-      auto estatus = ::matter::initialize(pobjectContext);
+   //   auto estatus = ::matter::initialize(pobject);
 
-      if (!estatus)
-      {
+   //   if (!estatus)
+   //   {
 
-         return estatus;
+   //      return estatus;
 
-      }
+   //   }
 
-      return estatus;
+   //   return estatus;
 
-   }
+   //}
 
 
-   void geometry::finalize()
+   ::e_status geometry::finalize()
    {
 
       ::matter::finalize();
+
+      return ::success;
 
    }
 
@@ -125,40 +127,40 @@ namespace geometry
    //}
 
 
-   //////////////////////////////////////////////////////////////////////
-   //
-   // Function Name: deflate
-   //
-   // Purpose:
-   // Change rectangle dimension using its dimensions and the specified
-   // rates. For example, the dLeftRate machine the left position of the
-   // rectangle. If 0.0, it remains the same as the original left.
-   // If 1.0, it turns as the original right. If 0.4, it will be 40%
-   // of the width from left to right.
-   //
-   // Output:
-   // -1 if the creation of the ::user::impact failed.
-   // 0 if the creation of the ::user::impact succeeded.
-   //
-   // Author:
-   // Vanessa Testoni
-   //
-   //////////////////////////////////////////////////////////////////////
-   void geometry::deflate(RECTANGLE_I32 * prectangle, double dLeftRate, double dRightRate, double dTopRate, double dBottomRate)
+   ////////////////////////////////////////////////////////////////////////
+   ////
+   //// Function Name: deflate
+   ////
+   //// Purpose:
+   //// Change rectangle dimension using its dimensions and the specified
+   //// rates. For example, the dLeftRate machine the left position of the
+   //// rectangle. If 0.0, it remains the same as the original left.
+   //// If 1.0, it turns as the original right. If 0.4, it will be 40%
+   //// of the width from left to right.
+   ////
+   //// Output:
+   //// -1 if the creation of the ::user::impact failed.
+   //// 0 if the creation of the ::user::impact succeeded.
+   ////
+   //// Author:
+   //// Vanessa Testoni
+   ////
+   ////////////////////////////////////////////////////////////////////////
+   //void geometry::deflate(RECTANGLE_I32 * prectangle, double dLeftRate, double dRightRate, double dTopRate, double dBottomRate)
 
-   {
-      ::rectangle_i32 rectangle(prectangle);
+   //{
+   //   ::rectangle_i32 rectangle(prectangle);
 
-      prectangle->left = range_rate(rectangle.left, rectangle.right, dLeftRate);
+   //   prectangle->left = range_rate(rectangle.left, rectangle.right, dLeftRate);
 
-      prectangle->right = range_rate(rectangle.right, rectangle.left, dRightRate);
+   //   prectangle->right = range_rate(rectangle.right, rectangle.left, dRightRate);
 
-      prectangle->top = range_rate(rectangle.top, rectangle.bottom, dTopRate);
+   //   prectangle->top = range_rate(rectangle.top, rectangle.bottom, dTopRate);
 
-      prectangle->bottom = range_rate(rectangle.bottom, rectangle.top, dBottomRate);
+   //   prectangle->bottom = range_rate(rectangle.bottom, rectangle.top, dBottomRate);
 
 
-   }
+   //}
 
 
    void rotation::rotate(POINT_I32 * ppoint, i32 iCount)

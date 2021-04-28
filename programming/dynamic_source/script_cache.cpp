@@ -20,10 +20,10 @@ namespace dynamic_source
    }
 
 
-   ::e_status script_cache::initialize(::layered * pobjectContext)
+   ::e_status script_cache::initialize_script_cache(script_manager* pscriptmanager)
    {
 
-      auto estatus = ::object::initialize(pobjectContext);
+      auto estatus = ::object::initialize(pscriptmanager);
 
       if (!estatus)
       {
@@ -32,7 +32,7 @@ namespace dynamic_source
 
       }
 
-      m_pmanager = pobjectContext;
+      m_pmanager = pscriptmanager;
 
       return estatus;
 
@@ -64,9 +64,9 @@ namespace dynamic_source
 
 #endif
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
-      auto passoc = m_map.get_assoc(strName);
+      auto passoc = m_map.get_association(strName);
 
       if (::is_set(passoc)
          && passoc->element2().is_set()
@@ -91,9 +91,9 @@ namespace dynamic_source
       strName.replace("/", "\\");
 #endif
 
-      single_lock synchronizationlock(mutex(), true);
+      single_lock synchronouslock(mutex(), true);
 
-      auto ppair = m_map.get_assoc(strName);
+      auto ppair = m_map.get_association(strName);
 
       if(ppair != nullptr)
       {
@@ -120,11 +120,11 @@ namespace dynamic_source
       if(::str::begins(lpcszName, "netnode://"))
       {
          
-         single_lock synchronizationlock(mutex(), true);
+         single_lock synchronouslock(mutex(), true);
 
          pscript  = get(lpcszName);
 
-         synchronizationlock.unlock();
+         synchronouslock.unlock();
 
          return pscript->create_instance();
 
@@ -154,7 +154,7 @@ namespace dynamic_source
 
       }
 
-      synchronization_lock slScript(pscript->mutex());
+      synchronous_lock slScript(pscript->mutex());
 
       if(!pscript->m_bNew && pscript->ShouldBuild())
       {
@@ -171,7 +171,7 @@ namespace dynamic_source
    //void script_cache::cache(script * pscript)
    //{
 
-   //   single_lock synchronizationlock(mutex(), true);
+   //   single_lock synchronouslock(mutex(), true);
 
    //   m_map.set_at(pscript->m_strName, pscript);
 
@@ -181,9 +181,9 @@ namespace dynamic_source
    void script_cache::uncache(script * pscript)
    {
 
-      single_lock synchronizationlock(mutex(), true);
+      single_lock synchronouslock(mutex(), true);
 
-      m_map.remove_key(pscript->m_strName);
+      m_map.erase_key(pscript->m_strName);
 
    }
 
@@ -191,7 +191,7 @@ namespace dynamic_source
    void script_cache::set_all_out_of_date()
    {
       return;
-//   single_lock synchronizationlock(mutex(), true);
+//   single_lock synchronouslock(mutex(), true);
 //   __pointer(script) pscript;
 //   string strName;
 //   POSITION pos = m_map.get_start_position();
@@ -221,7 +221,7 @@ namespace dynamic_source
 
       ::file::path pathChanged = str;
 
-      single_lock synchronizationlock(mutex(), true);
+      single_lock synchronouslock(mutex(), true);
 
       for (auto & pair : m_map)
       {

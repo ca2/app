@@ -14,10 +14,10 @@ file_system::~file_system()
 }
 
 
-::e_status file_system::initialize(::layered * pobjectContext)
+::e_status file_system::initialize(::object * pobject)
 {
    
-   auto estatus = ::object::initialize(pobjectContext);
+   auto estatus = ::object::initialize(pobject);
    
    if(!estatus)
    {

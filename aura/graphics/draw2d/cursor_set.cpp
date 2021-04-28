@@ -18,7 +18,7 @@
 //   }
 //
 //
-//   void cursor_set::finalize()
+//   ::e_status cursor_set::finalize()
 //   {
 //
 //      for (auto& pcursor : m_cursormap.values())
@@ -28,7 +28,7 @@
 //
 //      }
 //
-//      m_cursormap.remove_all();
+//      m_cursormap.erase_all();
 //
 //      ::matter::finalize();
 //
@@ -113,7 +113,7 @@
 //   __pointer(cursor) cursor_set::get_cursor(enum_cursor ecursor)
 //   {
 //
-//      synchronization_lock synchronizationlock(mutex());
+//      synchronous_lock synchronouslock(mutex());
 //
 //      auto & pcursor = m_cursormap[ecursor];
 //
@@ -142,7 +142,7 @@
 //
 //      //{
 //
-//      //   synchronization_lock synchronizationlock(mutex());
+//      //   synchronous_lock synchronouslock(mutex());
 //
 //      //   pcursor = get_cursor(ecursor);
 //
@@ -150,7 +150,7 @@
 //
 //      //auto path = pathParam;
 //
-//      //if (::aura::get_system()->m_bImaging)
+//      //if (psystem->m_bImaging)
 //      //{
 //
 //      ////fork([this, pcursor, path, bFromCache]()
@@ -158,7 +158,7 @@
 //
 //      //   pcursor->initialize_system_default();
 //
-//      //   if (Session->user()->windowing()->load_cursor(pcursor, path, true, bFromCache))
+//      //   if (psession->user()->windowing()->load_cursor(pcursor, path, true, bFromCache))
 //      //   {
 //
 //      //      //return pcursor;
@@ -189,7 +189,7 @@
 //   void cursor_set::load_hotspot(const ::file::path& pathDir)
 //   {
 //
-//      parse_hotspot_text(Context.file().as_string(pathDir / "hotspot.txt"));
+//      parse_hotspot_text(pcontext->m_papexcontext->file().as_string(pathDir / "hotspot.txt"));
 //
 //   }
 //
@@ -244,7 +244,7 @@
 //
 //      // "arrow.png" is a troll/bait for getting the right path of the cursor file, then the directory where found
 //
-//      ::file::path pathArrow = Context.dir().matter(pathMatter / "arrow.png");
+//      ::file::path pathArrow = pcontext->m_papexcontext->dir().matter(pathMatter / "arrow.png");
 //
 //      ::file::path pathFolder = pathArrow.folder();
 //
@@ -455,7 +455,7 @@
 //   __pointer(cursor) cursor_set::set_system_default_cursor(enum_cursor ecursor)
 //   {
 //
-//      synchronization_lock synchronizationlock(mutex());
+//      synchronous_lock synchronouslock(mutex());
 //
 //      cursor* pcursor = get_cursor(ecursor);
 //

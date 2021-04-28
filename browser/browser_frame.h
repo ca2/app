@@ -11,7 +11,7 @@ namespace browser
    public:
 
 
-      frame(::layered * pobjectContext);
+      frame(::object * pobject);
       virtual ~frame();
 
 

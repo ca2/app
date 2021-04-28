@@ -72,7 +72,7 @@ namespace user
 
             auto pthread = ::get_task();
 
-            while (pthread->thread_get_run())
+            while (pthread->task_get_run())
             {
 
                m_evExpand.wait();
@@ -84,7 +84,7 @@ namespace user
 
                   _001ExpandItem(pitem, ::e_source_user, !(pitem->m_dwState & ::data::tree_item_state_expanded));
 
-                  m_treeitemaExpand.remove_all();
+                  m_treeitemaExpand.erase_all();
 
                }
 
@@ -101,7 +101,7 @@ namespace user
 
             auto pthread = ::get_task();
 
-            while (pthread->thread_get_run())
+            while (pthread->task_get_run())
             {
 
                m_evOpen.wait();
@@ -210,7 +210,7 @@ namespace user
          //pgraphics->fill_rectangle(rectClient, m_colorTreeBackground);
 
 
-         auto psession = Session;
+         auto psession = get_session();
 
          auto puser = psession->user();
 
@@ -287,7 +287,7 @@ namespace user
 
          auto pitem = m_pitemFirstVisible;
 
-         synchronization_lock synchronizationlock(!pitem ? nullptr : pitem->m_ptree->mutex());
+         synchronous_lock synchronouslock(!pitem ? nullptr : pitem->m_ptree->mutex());
 
          index iItem = m_iFirstVisibleItemProperIndex;
 
@@ -422,7 +422,7 @@ namespace user
 
       //TRACE("(1)TreeItemElapsed %d", millis.elapsed());
 
-      //      ::aura::savings & savings = psession->savings();
+      //      ::aura::savings & savings = psession->m_paurasession->savings();
 
       if (bHover) // selected
       {
@@ -436,7 +436,7 @@ namespace user
       if(bSelected) // selected
       {
 
-         //if(psession->savings().is_trying_to_save(::e_resource_processing))
+         //if(psession->m_paurasession->savings().is_trying_to_save(::e_resource_processing))
          //{
 
             data.m_pdc->fill_rectangle(data.m_rectangle, argb(127, 96,96,96));
@@ -461,7 +461,7 @@ namespace user
 
          //   }
 
-         //   class imaging & imaging = System->imaging();
+         //   class imaging & imaging = psystem->imaging();
 
          //   color32_t crTranslucid = rgb(0, 0, 0);
 
@@ -555,7 +555,7 @@ namespace user
 
 
 
-   void tree::_001OnMouseMove(::message::message * pmessage)
+   void tree::on_message_mouse_move(::message::message * pmessage)
    {
 
       __pointer(::message::mouse) pmouse(pmessage);
@@ -574,7 +574,7 @@ namespace user
    }
 
 
-   void tree::_001OnMouseLeave(::message::message * pmessage)
+   void tree::on_message_mouse_leave(::message::message * pmessage)
    {
       m_itemHover = nullptr;
       set_need_redraw();
@@ -671,7 +671,7 @@ namespace user
          if (eelement == e_tree_element_expand_box)
          {
 
-            synchronization_lock synchronizationlock(mutex());
+            synchronous_lock synchronouslock(mutex());
 
             m_treeitemaExpand.add_unique(pitem);
 
@@ -681,7 +681,7 @@ namespace user
          else if (eelement == e_tree_element_image || eelement == e_tree_element_text)
          {
 
-            synchronization_lock synchronizationlock(mutex());
+            synchronous_lock synchronouslock(mutex());
 
             m_treeitemaOpen.add_unique(pitem);
 
@@ -739,7 +739,7 @@ namespace user
    }
 
 
-   void tree::_001OnRButtonUp(::message::message * pmessage)
+   void tree::on_message_right_button_up(::message::message * pmessage)
    {
 
       __pointer(::message::mouse) pmouse(pmessage);
@@ -802,7 +802,7 @@ namespace user
 
       }
 
-      synchronization_lock synchronizationlock(m_ptree ? m_ptree->mutex() : nullptr);
+      synchronous_lock synchronouslock(m_ptree ? m_ptree->mutex() : nullptr);
 
       __pointer(::data::tree_item) pitem = get_proper_item(iItem);
 
@@ -846,10 +846,10 @@ namespace user
       MESSAGE_LINK(e_message_left_button_double_click, pchannel, this, &tree::_001OnLButtonDblClk);
       MESSAGE_LINK(e_message_left_button_up, pchannel, this, &tree::on_message_left_button_up);
       MESSAGE_LINK(e_message_left_button_down, pchannel, this, &tree::on_message_left_button_down);
-      MESSAGE_LINK(e_message_right_button_up, pchannel, this, &tree::_001OnRButtonUp);
+      MESSAGE_LINK(e_message_right_button_up, pchannel, this, &tree::on_message_right_button_up);
       MESSAGE_LINK(e_message_right_button_down, pchannel, this, &tree::on_message_right_button_down);
-      MESSAGE_LINK(e_message_mouse_move, pchannel, this, &tree::_001OnMouseMove);
-      MESSAGE_LINK(e_message_mouse_leave, pchannel, this, &tree::_001OnMouseLeave);
+      MESSAGE_LINK(e_message_mouse_move, pchannel, this, &tree::on_message_mouse_move);
+      MESSAGE_LINK(e_message_mouse_leave, pchannel, this, &tree::on_message_mouse_leave);
       MESSAGE_LINK(e_message_hscroll, pchannel, this, &tree::_001OnHScroll);
       MESSAGE_LINK(e_message_vscroll, pchannel, this, &tree::_001OnVScroll);
       MESSAGE_LINK(e_message_change_experience, pchannel, this, &tree::_001OnChangeExperience);
@@ -1165,7 +1165,7 @@ namespace user
 
       m_pitemFirstVisible = CalcFirstVisibleItem(m_iFirstVisibleItemProperIndex);
 
-      auto psession = Session;
+      auto psession = get_session();
 
       auto puser = psession->user();
 
@@ -1208,7 +1208,7 @@ namespace user
       //if (m_puserstyle == nullptr)
       //{
 
-      //   m_puserstyle = Application.userstyle();
+      //   m_puserstyle = papplication->userstyle();
 
       //}
 
@@ -1270,7 +1270,7 @@ namespace user
    void tree::update_tree_hover()
    {
 
-      auto psession = Session;
+      auto psession = get_session();
 
       auto puser = psession->user();
 
@@ -1403,7 +1403,7 @@ namespace user
    __pointer(::data::tree_item) tree::CalcFirstVisibleItem(index & iProperIndex)
    {
 
-      synchronization_lock synchronizationlock(m_ptree ? m_ptree->mutex() : nullptr);
+      synchronous_lock synchronouslock(m_ptree ? m_ptree->mutex() : nullptr);
 
       index nOffset;
 
@@ -1503,7 +1503,7 @@ namespace user
       //::write_text::font_pointer font(e_create);
 
 
-      //font->operator=(*System->draw2d()->fonts().GetListCtrlFont());
+      //font->operator=(*pdraw2d->fonts().GetListCtrlFont());
       //font->set_bold();
       //g->set_font(font);
 
@@ -1782,7 +1782,7 @@ namespace user
 
       bool bContains = m_pitemptraSelected->contains(pitem);
 
-      m_pitemptraSelected->remove_all();
+      m_pitemptraSelected->erase_all();
 
       m_pitemptraSelected->add(pitem);
 
@@ -1791,7 +1791,7 @@ namespace user
    }
 
 
-   bool tree::selection_remove(::data::item * pitemdata, index i)
+   bool tree::selection_erase(::data::item * pitemdata, index i)
    {
 
       auto pitem = find(pitemdata, &i);
@@ -1803,12 +1803,12 @@ namespace user
 
       }
 
-      return selection_remove(pitem);
+      return selection_erase(pitem);
 
    }
 
 
-   ::count tree::selection_remove(::data::tree_item_ptr_array & itemptra)
+   ::count tree::selection_erase(::data::tree_item_ptr_array & itemptra)
    {
 
       ::count count = 0;
@@ -1816,7 +1816,7 @@ namespace user
       for (i32 i = 0; i < itemptra.get_count(); i++)
       {
 
-         if (m_pitemptraSelected->remove(itemptra[i]))
+         if (m_pitemptraSelected->erase(itemptra[i]))
          {
 
             count++;
@@ -1830,10 +1830,10 @@ namespace user
    }
 
 
-   bool tree::selection_remove(::data::tree_item * pitem)
+   bool tree::selection_erase(::data::tree_item * pitem)
    {
 
-      return m_pitemptraSelected->remove(pitem) >= 0;
+      return m_pitemptraSelected->erase(pitem) >= 0;
 
    }
 
@@ -1841,7 +1841,7 @@ namespace user
    ::count tree::clear_selection()
    {
 
-      return m_pitemptraSelected->remove_all();
+      return m_pitemptraSelected->erase_all();
 
    }
 
@@ -2101,7 +2101,7 @@ namespace user
    index tree::get_proper_item_count()
    {
 
-      synchronization_lock synchronizationlock(mutex());
+      synchronous_lock synchronouslock(mutex());
 
       if (!m_ptree)
       {

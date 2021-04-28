@@ -31,6 +31,12 @@ namespace user
 
 
 
+      inline ::base::application* get_application() const { return m_pcontext ? m_pcontext->m_pbaseapplication : nullptr; }
+      inline ::base::session* get_session() const { return m_pcontext ? m_pcontext->m_pbasesession : nullptr; }
+      inline ::base::system* get_system() const { return m_psystem ? m_psystem->m_pbasesystem : nullptr; }
+      inline ::base::user* user() const { return get_session() ? get_session()->user() : nullptr; }
+
+
       virtual ::e_status set_notify_user_interaction(::user::interaction* puserinteractionNotify);
 
 
@@ -75,15 +81,15 @@ namespace user
       virtual void set_impact_title(const string & strImpactTitle);
       virtual string get_impact_title() const;
 
-      __pointer(::user::interaction) create_view(const ::type & type, ::user::document * pdocument = nullptr, ::user::interaction * pwndParent = nullptr, const ::id & id = ::id(), ::user::interaction * pviewLast = nullptr, ::user::impact_data * pdata = nullptr);
+      __pointer(::user::interaction) create_view(const ::type & type, ::user::document * pdocument = nullptr, ::user::interaction * puserinteractionParent = nullptr, const ::id & id = ::id(), ::user::interaction * pviewLast = nullptr, ::user::impact_data * pdata = nullptr);
 
       virtual ::e_status initialize_view(::user::document * pdocument);
 
       template < class VIEW >
-      __pointer(VIEW) create_view(::user::document * pdocument = nullptr, ::user::interaction * pwndParent = nullptr, const ::id & id = ::id(),::user::interaction * pviewLast = nullptr, ::user::impact_data * pimpactdata = nullptr);
+      __pointer(VIEW) create_view(::user::document * pdocument = nullptr, ::user::interaction * puserinteractionParent = nullptr, const ::id & id = ::id(),::user::interaction * pviewLast = nullptr, ::user::impact_data * pimpactdata = nullptr);
 
       template < class VIEW >
-      __pointer(VIEW) create_view(::user::interaction * pwndParent, const ::id & id = ::id(),::user::interaction * pviewLast = nullptr, ::user::impact_data * pimpactdata = nullptr);
+      __pointer(VIEW) create_view(::user::interaction * puserinteractionParent, const ::id & id = ::id(),::user::interaction * pviewLast = nullptr, ::user::impact_data * pimpactdata = nullptr);
 
       template < class VIEW >
       __pointer(VIEW) create_view(::user::impact_data * pimpactdata, ::user::interaction * pviewLast = nullptr);
@@ -104,25 +110,25 @@ namespace user
       virtual void PostNcDestroy() override;
 
 
-      DECL_GEN_SIGNAL(on_message_create);
-      DECL_GEN_SIGNAL(_001OnDestroy);
-      //DECL_GEN_SIGNAL(_001OnView);
-      DECL_GEN_SIGNAL(on_message_left_button_down);
-      DECL_GEN_SIGNAL(on_message_left_button_up);
-      DECL_GEN_SIGNAL(_001OnMouseMove);
+      DECLARE_MESSAGE_HANDLER(on_message_create);
+      DECLARE_MESSAGE_HANDLER(_001OnDestroy);
+      //DECLARE_MESSAGE_HANDLER(_001OnView);
+      DECLARE_MESSAGE_HANDLER(on_message_left_button_down);
+      DECLARE_MESSAGE_HANDLER(on_message_left_button_up);
+      DECLARE_MESSAGE_HANDLER(on_message_mouse_move);
 
-      DECL_GEN_SIGNAL(_001OnMouseActivate);
-      DECL_GEN_SIGNAL(_001OnUpdateSplitCmd);
-      DECL_GEN_SIGNAL(_001OnSplitCmd);
-      DECL_GEN_SIGNAL(_001OnUpdateNextPaneMenu);
-      DECL_GEN_SIGNAL(_001OnNextPaneCmd);
+      DECLARE_MESSAGE_HANDLER(_001OnMouseActivate);
+      DECLARE_MESSAGE_HANDLER(_001OnUpdateSplitCmd);
+      DECLARE_MESSAGE_HANDLER(_001OnSplitCmd);
+      DECLARE_MESSAGE_HANDLER(_001OnUpdateNextPaneMenu);
+      DECLARE_MESSAGE_HANDLER(_001OnNextPaneCmd);
 
-      DECL_GEN_SIGNAL(_001OnFilePrint);
-      DECL_GEN_SIGNAL(_001OnFilePrintPreview);
+      DECLARE_MESSAGE_HANDLER(_001OnFilePrint);
+      DECLARE_MESSAGE_HANDLER(_001OnFilePrintPreview);
 
 
-      DECL_GEN_SIGNAL(on_message_right_button_down);
-      DECL_GEN_SIGNAL(_001OnMButtonDown);
+      DECLARE_MESSAGE_HANDLER(on_message_right_button_down);
+      DECLARE_MESSAGE_HANDLER(on_message_middle_button_down);
 
 
       void OnUpdateSplitCmd(::message::command* pCmdUI);
@@ -228,10 +234,16 @@ namespace user
       }
 
 
-      virtual ::e_status initialize(::layered * pobjectContext) override
+      inline ::base::application* get_application() const { return m_pcontext ? m_pcontext->m_pbaseapplication : nullptr; }
+      inline ::base::session* get_session() const { return m_pcontext ? m_pcontext->m_pbasesession : nullptr; }
+      inline ::base::system* get_system() const { return m_psystem ? m_psystem->m_pbasesystem : nullptr; }
+      inline ::base::user* user() const { return get_session() ? get_session()->user() : nullptr; }
+
+
+      virtual ::e_status initialize(::object * pobject) override
       {
 
-         auto estatus = ::user::impact::initialize(pobjectContext);
+         auto estatus = ::user::impact::initialize(pobject);
 
          if (!estatus)
          {
@@ -240,7 +252,7 @@ namespace user
 
          }
 
-         estatus = VIEW::initialize(pobjectContext);
+         estatus = VIEW::initialize(pobject);
 
          if (!estatus)
          {
@@ -383,8 +395,8 @@ namespace user
    };
 
 
-   CLASS_DECL_BASE __pointer(::user::interaction) create_view(const ::type & type, ::user::document * pdocument, ::user::interaction * pwndParent, const ::id & id, ::user::interaction * pviewLast = nullptr);
-   CLASS_DECL_BASE __pointer(::user::interaction) create_view(::user::system * pusersystem, ::user::interaction * pwndParent, const ::id & id);
+   CLASS_DECL_BASE __pointer(::user::interaction) create_view(const ::type & type, ::user::document * pdocument, ::user::interaction * puserinteractionParent, const ::id & id, ::user::interaction * pviewLast = nullptr);
+   CLASS_DECL_BASE __pointer(::user::interaction) create_view(::user::system * pusersystem, ::user::interaction * puserinteractionParent, const ::id & id);
    CLASS_DECL_BASE ::user::document * get_document(::user::interaction * pinteraction);
 
 

@@ -143,12 +143,14 @@ namespace user
    }
 
 
-   void primitive_impl::finalize()
+   ::e_status primitive_impl::finalize()
    {
 
       ::user::primitive::finalize();
 
-      m_puserinteraction.release();
+      auto estatus = m_puserinteraction.release();
+
+      return estatus;
 
    }
 
@@ -229,7 +231,7 @@ namespace user
          else
          {
 
-            pinteraction->send_message((enum_message) e_message_size_parent, 0, (lparam)& sizeparentparams);
+            pinteraction->send_message(e_message_size_parent, 0, (lparam)& sizeparentparams);
 
          }
 
@@ -317,16 +319,16 @@ namespace user
 
    //   }
 
-   //   auto pwnd = m_puserinteraction->get_wnd();
+   //   auto puserinteraction = m_puserinteraction->get_wnd();
 
-   //   if (!pwnd)
+   //   if (!puserinteraction)
    //   {
 
    //       return ::error_failed;
 
    //   }
 
-   //   return pwnd->post_routine(routine, epriority);
+   //   return puserinteraction->post_routine(routine, epriority);
 
    //}
 
@@ -558,7 +560,7 @@ namespace user
 //////
 //////      }
 //////
-//////      synchronization_lock synchronizationlock(&((primitive_impl *)this)->m_mutexLongPtr);
+//////      synchronous_lock synchronouslock(&((primitive_impl *)this)->m_mutexLongPtr);
 //////
 //////      return (LONG_PTR)m_longptr[nIndex];
 ////
@@ -583,7 +585,7 @@ namespace user
 ////
 ////      }
 ////
-////      synchronization_lock synchronizationlock(&m_mutexLongPtr);
+////      synchronous_lock synchronouslock(&m_mutexLongPtr);
 ////
 ////      m_longptr[nIndex] = lValue;
 ////
@@ -1228,19 +1230,19 @@ namespace user
 
 //         m_puserinteraction->transfer_receiver(m_idroute, this);
 //
-         auto pwnd = m_puserinteraction->get_wnd();
+         auto puserinteraction = m_puserinteraction->get_wnd();
 
-         if (::is_set(pwnd))
+         if (::is_set(puserinteraction))
          {
 
-            auto pimpl2 = pwnd->m_pimpl2;
+            auto pimpl2 = puserinteraction->m_pimpl2;
 
             if (pimpl2)
             {
 
-               synchronization_lock synchronizationlock(pimpl2->mutex());
+               synchronous_lock synchronouslock(pimpl2->mutex());
 
-               pimpl2->m_uiptraMouseHover.remove(m_puserinteraction);
+               pimpl2->m_uiptraMouseHover.erase(m_puserinteraction);
 
             }
 
@@ -1252,7 +1254,7 @@ namespace user
 
       m_puserinteraction = nullptr;
 
-      bool bOk = DestroyWindow();
+      bool bOk = start_destroying_window();
 
       //TRACE("destroy_impl_only DestroyWindow %d", bOk != false);
 
@@ -1261,7 +1263,7 @@ namespace user
    }
 
 
-   bool primitive_impl::DestroyWindow()
+   bool primitive_impl::start_destroying_window()
    {
 
       if (!m_bUserPrimitiveOk)
@@ -1311,21 +1313,33 @@ namespace user
    }
 
 
-   void primitive_impl::mouse_hover_add(::user::interaction * pinterface)
+   bool primitive_impl::mouse_hover_add(::user::interaction * pinterface)
    {
 
       ::user::interaction * pinteraction = get_host_window();
 
-      if (pinteraction != nullptr)
+      if (!pinteraction)
       {
 
-         pinteraction->mouse_hover_add(pinterface);
+         return false;
 
       }
 
+      auto bOk = pinteraction->mouse_hover_add(pinterface);
+
+      if (!bOk)
+      {
+
+         return false;
+
+      }
+
+      return true;
+
    }
 
-   bool primitive_impl::mouse_hover_remove(::user::interaction * pinterface)
+
+   bool primitive_impl::mouse_hover_erase(::user::interaction * pinterface)
    {
 
       ::user::interaction * pinteraction = get_host_window();
@@ -1333,7 +1347,7 @@ namespace user
       if (pinteraction != nullptr)
       {
 
-         return pinteraction->mouse_hover_remove(pinterface);
+         return pinteraction->mouse_hover_erase(pinterface);
 
       }
 
@@ -1365,7 +1379,7 @@ namespace user
    }
 
 
-   ::e_status primitive_impl::remove_keyboard_focus(::user::primitive * pprimitive)
+   ::e_status primitive_impl::erase_keyboard_focus(::user::primitive * pprimitive)
    {
 
       UNREFERENCED_PARAMETER(pprimitive);
@@ -1391,7 +1405,7 @@ namespace user
    }
 
 
-   ::e_status primitive_impl::impl_remove_keyboard_focus(::user::primitive * pprimitive)
+   ::e_status primitive_impl::impl_erase_keyboard_focus(::user::primitive * pprimitive)
    {
 
       return ::error_failed;
@@ -1417,7 +1431,7 @@ namespace user
 
       }
 
-      m_puserinteraction->post_routine(__routine(call_message_handler_task(m_puserinteraction, id, wparam, lparam)));
+      m_puserinteraction->post_routine(__new(call_message_handler_task(m_puserinteraction, id, wparam, lparam)));
 
       return true;
 
@@ -1431,12 +1445,12 @@ namespace user
 
       {
 
-         synchronization_lock synchronizationlock(mutex());
+         synchronous_lock synchronouslock(mutex());
 
          try
          {
 
-            remove_all_routes();
+            erase_all_routes();
 
          }
          catch (...)
@@ -1520,7 +1534,7 @@ namespace user
    void primitive_impl::_001OnDestroy(::message::message * pmessage)
    {
 
-      //synchronization_lock synchronizationlock(mutex());
+      //synchronous_lock synchronouslock(mutex());
 
       //try
       //{
@@ -1599,13 +1613,13 @@ namespace user
    }
 
 
-   void primitive_impl::redraw_add(::context_object * point_i32)
+   void primitive_impl::redraw_add(::object * point_i32)
    {
 
    }
 
 
-   void primitive_impl::redraw_remove(::context_object * point_i32)
+   void primitive_impl::redraw_erase(::object * point_i32)
    {
 
    }
@@ -1774,6 +1788,85 @@ namespace user
 
    }
 
+
+   i32 primitive_impl::GetUpdateRgn(class draw2d::region *,bool)
+   {
+
+      return 0;
+
+   }
+
+
+   void primitive_impl::Invalidate(bool)
+   {
+
+
+   }
+
+
+   void primitive_impl::InvalidateRect(class rect_type<struct RECTANGLE_I32,struct POINT_I32,struct SIZE_I32> const &,bool)
+   {
+
+
+   }
+
+
+   void primitive_impl::InvalidateRgn(class draw2d::region *,bool)
+   {
+
+
+   }
+
+
+   void primitive_impl::ValidateRect(class rect_type<struct RECTANGLE_I32,struct POINT_I32,struct SIZE_I32> const &)
+   {
+
+
+   }
+
+
+   void primitive_impl::ValidateRgn(class draw2d::region *)
+   {
+
+
+   }
+
+
+   void primitive_impl::ShowOwnedPopups(bool)
+   {
+
+
+   }
+
+
+   ::graphics::graphics * primitive_impl::get_window_graphics(void)
+   {
+
+      return nullptr;
+
+   }
+
+
+   bool primitive_impl::is_composite()
+   {
+
+      return false;
+
+   }
+
+   
+   void primitive_impl::_task_transparent_mouse_event()
+   {
+
+   }
+
+
+   bool primitive_impl::IsTopParentActive()
+   {
+
+      return false;
+
+   }
 
 } // namespace user
 

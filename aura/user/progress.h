@@ -17,7 +17,7 @@ namespace user
 
 
 
-      progress(::layered * pobjectContext);
+      progress();
       virtual ~progress();
 
 

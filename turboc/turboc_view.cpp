@@ -12,7 +12,7 @@ namespace turboc
 {
 
 
-   view::view(::layered * pobjectContext):
+   view::view(::object * pobject):
       ::object(pobject),
       m_pimage1,
       m_pimage2,
@@ -106,21 +106,21 @@ namespace turboc
       if(pcreate->m_bRet)
          return;
 
-      if(Application.m_etype == application::type_normal)
+      if(papplication->m_etype == application::type_normal)
       {
 
          if(!m_bLite)
          {
 
-            Application.load_ai_font();
+            papplication->load_ai_font();
 
          }
 
-         __begin_thread(get_context_application(),&thread_proc_render,this,::priority_normal,0,0,NULL);
+         __begin_thread(get_application(),&thread_proc_render,this,::priority_normal,0,0,NULL);
 
       }
 
-      Application.start_main();
+      papplication->start_main();
 
 
    }
@@ -185,10 +185,10 @@ namespace turboc
 
       GetClientRect(rectClient);
 
-/*      pgraphics->BitBlt(rectClient,Application.m_pcontext->m_pimage->g());
+/*      pgraphics->BitBlt(rectClient,papplication->m_pcontext->m_pimage->g());
 
 
-      if(Application.m_etype == application::type_mili)
+      if(papplication->m_etype == application::type_mili)
       {
 
          string strHelloMultiverse = get_processed_turboc();
@@ -201,7 +201,7 @@ namespace turboc
 
 
 
-            m_font->create_pixel_font(os_font_name(e_font_sans),fHeight,e_font_weight_bold);
+            m_font->create_pixel_font(pnode->font_name(e_font_sans),fHeight,e_font_weight_bold);
 
             pgraphics->set_font(m_font);
 
@@ -211,7 +211,7 @@ namespace turboc
 
             double ratey = fHeight * 0.84 / size.cy;
 
-            m_font->create_pixel_font(os_font_name(e_font_sans),minimum(m_cy * ratey,m_cx * size.cy * ratey / size.cx),e_font_weight_bold);
+            m_font->create_pixel_font(pnode->font_name(e_font_sans),minimum(m_cy * ratey,m_cx * size.cy * ratey / size.cx),e_font_weight_bold);
 
             //m_dMinRadius = maximum(1.0,m_font->m_dFontSize / 23.0);
 
@@ -271,7 +271,7 @@ namespace turboc
       if(m_bFast || !m_bFirstDone || m_millisLastFast.elapsed() < m_millisFastAnime)
       {
 
-         synchronization_lock slDraw(&m_mutexDraw);
+         synchronous_lock slDraw(&m_mutexDraw);
 
          if(m_bFast || m_pimageFast->is_null())
          {
@@ -314,9 +314,9 @@ namespace turboc
 
       ::image_pointer pimageFast = m_pimageFast;
 
-      synchronization_lock synchronizationlock(&m_mutexDraw);
+      synchronous_lock synchronouslock(&m_mutexDraw);
 
-      synchronization_lock slSwap(&m_mutexSwap);
+      synchronous_lock slSwap(&m_mutexSwap);
 
       if(m_bDib1)
       {
@@ -351,9 +351,9 @@ namespace turboc
 
          //pgraphics->FillSolidRect(rectClient,0);
 
-/*         System->draw2d()->imaging().bitmap_blend(pgraphics,::point_i32(),pimage->get_size(),pimage->g(),::point_i32(),uchAlpha);
+/*         pdraw2d->imaging().bitmap_blend(pgraphics,::point_i32(),pimage->get_size(),pimage->g(),::point_i32(),uchAlpha);
 
-         System->draw2d()->imaging().bitmap_blend(pgraphics,::point_i32(),imageFast.m_size,imageFast.get_graphics(),::point_i32(),255 - uchAlpha);
+         pdraw2d->imaging().bitmap_blend(pgraphics,::point_i32(),imageFast.m_size,imageFast.get_graphics(),::point_i32(),255 - uchAlpha);
 
       }
       else
@@ -363,7 +363,7 @@ namespace turboc
 
       }
 
-      //System->draw2d()->imaging().bitmap_blend(pgraphics,::point_i32(),imageFast.m_size,imageFast.get_graphics(),::point_i32(),255);
+      //pdraw2d->imaging().bitmap_blend(pgraphics,::point_i32(),imageFast.m_size,imageFast.get_graphics(),::point_i32(),255);
 
 
       //pgraphics->FillSolidRect(100,100,100,100,argb(128,0,128,0));
@@ -406,7 +406,7 @@ namespace turboc
       if(m_cx <= 0 || m_cy <= 0)
          return;
 
-      synchronization_lock slDraw(&m_mutexDraw);
+      synchronous_lock slDraw(&m_mutexDraw);
 
       ::size_i32 sizeNew = ::size_i32(m_cx,m_cy) + ::size_i32(100,100);
 
@@ -425,7 +425,7 @@ namespace turboc
 
       float fHeight = 100.0;
 
-      m_font->create_pixel_font(os_font_name(e_font_sans),fHeight,e_font_weight_bold);
+      m_font->create_pixel_font(pnode->font_name(e_font_sans),fHeight,e_font_weight_bold);
 
       pgraphics->set_font(m_font);
 
@@ -435,7 +435,7 @@ namespace turboc
 
       double ratey = fHeight * 0.84 / size.cy;
 
-      m_font->create_pixel_font(os_font_name(e_font_sans),minimum(m_cy * ratey,m_cx * size.cy * ratey / size.cx),e_font_weight_bold);
+      m_font->create_pixel_font(pnode->font_name(e_font_sans),minimum(m_cy * ratey,m_cx * size.cy * ratey / size.cx),e_font_weight_bold);
 
       m_dMinRadius = maximum(1.0,m_font->m_dFontSize / 23.0);
 
@@ -483,7 +483,7 @@ namespace turboc
 
       {
 
-         synchronization_lock synchronizationlock(&m_mutexWork);
+         synchronous_lock synchronouslock(&m_mutexWork);
 
 /*         ::image_pointer pimage = m_pimageWork;
 
@@ -504,10 +504,10 @@ namespace turboc
       if(m_bNewLayout)
       {
 
-         synchronization_lock sl1(m_spmutex);
-         synchronization_lock sl2(&m_mutexWork);
-         synchronization_lock sl3(&m_mutexDraw);
-         synchronization_lock sl4(&m_mutexSwap);
+         synchronous_lock sl1(m_spmutex);
+         synchronous_lock sl2(&m_mutexWork);
+         synchronous_lock sl3(&m_mutexDraw);
+         synchronous_lock sl4(&m_mutexSwap);
 
 /*         bool bNewSize = m_pimage->width() < sizeNew.cx || m_pimage->m_size.cy < sizeNew.cy;
 
@@ -583,7 +583,7 @@ namespace turboc
       if(m_bFirstDone)
       {
 
-         synchronization_lock slUser(m_spmutex);
+         synchronous_lock slUser(m_spmutex);
 
          turboc_draw();
 
@@ -667,7 +667,7 @@ namespace turboc
 
       //_001OnPostProcess(m_pimageWork);
 
-      synchronization_lock slDraw(&m_mutexDraw);
+      synchronous_lock slDraw(&m_mutexDraw);
 
       if(m_bDib1)
       {
@@ -682,7 +682,7 @@ namespace turboc
 
       }
 
-      synchronization_lock slSwap(&m_mutexSwap);
+      synchronous_lock slSwap(&m_mutexSwap);
 
       if(m_bDib1)
       {
@@ -709,7 +709,7 @@ namespace turboc
 
          __pointer(view) pview = pviewParam;
 
-         while(::thread_get_run() && pview->IsWindow())
+         while(::task_get_run() && pview->IsWindow())
          {
 
             try
@@ -830,7 +830,7 @@ namespace turboc
    string view::get_turboc()
    {
 
-      synchronization_lock synchronizationlock(&m_mutexText);
+      synchronous_lock synchronouslock(&m_mutexText);
 
       if(m_strHelloMultiverse != m_strNewHelloMultiverse)
       {
@@ -845,13 +845,13 @@ namespace turboc
          if(m_bAlternate)
          {
 
-            return Application.m_strAlternateTurboC;
+            return papplication->m_strAlternateTurboC;
 
          }
          else
          {
 
-            return Application.m_strTurboC;
+            return papplication->m_strTurboC;
 
          }
 

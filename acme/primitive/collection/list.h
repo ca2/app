@@ -1,7 +1,7 @@
 #pragma once
 
 
-template < class TYPE, class ARG_TYPE = const TYPE & >
+template < class TYPE, class ARG_TYPE >
 class list :
    public ::matter
 {
@@ -290,7 +290,7 @@ public:
 
    inline node * get_start() const { return get_head(); }
 
-   void remove_item(node * pnode);
+   void erase_item(node * pnode);
 
    node * detach(node * pnode);
 
@@ -312,6 +312,7 @@ public:
    ::count size() const;
    bool is_empty(::count countMinimum = 1) const;
    bool has_elements(::count countMinimum = 1) const;
+   bool has_element() const;
    bool empty(::count countMinimum = 1) const;
 
    // peek at head or tail
@@ -321,12 +322,12 @@ public:
    const TYPE& tail() const;
 
    // Operations
-   // get head or tail (and remove it) - don't call on is_empty list !
-   void remove_head();
-   void remove_tail();
+   // get head or tail (and erase it) - don't call on is_empty list !
+   void erase_head();
+   void erase_tail();
 
-   TYPE pop_head();
-   TYPE pop_tail();
+   TYPE pick_head();
+   TYPE pick_tail();
 
    // add before head or after tail
    node * add_head(ARG_TYPE newElement);
@@ -340,8 +341,8 @@ public:
    void copy_tail(const list < TYPE, ARG_TYPE > & l);
    void copy(const list < TYPE, ARG_TYPE > & l);
 
-   // remove all elements
-   void remove_all();
+   // erase all elements
+   void erase_all();
    void clear();
 
    TYPE & front();
@@ -357,7 +358,7 @@ public:
    //const TYPE& get_previous(node *& rPosition) const; // return *position--
 
 
-   void remove_at(index i);
+   void erase_at(index i);
 
 
 
@@ -530,6 +531,14 @@ inline ::count list<TYPE, ARG_TYPE>::get_count() const
 
 }
 
+template<class TYPE, class ARG_TYPE>
+inline bool list<TYPE, ARG_TYPE>::has_element() const
+{
+
+   return get_count() > 0;
+
+}
+
 
 template<class TYPE, class ARG_TYPE>
 inline ::count list<TYPE, ARG_TYPE>::get_size() const
@@ -641,7 +650,7 @@ list<TYPE, ARG_TYPE>::list(class list && l)
 }
 
 template<class TYPE, class ARG_TYPE>
-void list<TYPE, ARG_TYPE>::remove_all()
+void list<TYPE, ARG_TYPE>::erase_all()
 {
 
    ASSERT_VALID(this);
@@ -681,14 +690,14 @@ template<class TYPE, class ARG_TYPE>
 void list<TYPE, ARG_TYPE>::clear()
 {
 
-   remove_all();
+   erase_all();
 
 }
 
 template<class TYPE, class ARG_TYPE>
 list<TYPE, ARG_TYPE>::~list()
 {
-   remove_all();
+   erase_all();
    ASSERT(this->m_count == 0);
 }
 
@@ -750,7 +759,7 @@ void list<TYPE, ARG_TYPE>::copy(const list < TYPE, ARG_TYPE >  & l)
    if (this == &l)
       return;
 
-   remove_all();
+   erase_all();
 
    node * pnode = l.m_ptail;
 
@@ -763,11 +772,10 @@ void list<TYPE, ARG_TYPE>::copy(const list < TYPE, ARG_TYPE >  & l)
 }
 
 template<class TYPE, class ARG_TYPE>
-TYPE list<TYPE, ARG_TYPE>::pop_head()
+TYPE list<TYPE, ARG_TYPE>::pick_head()
 {
    ASSERT_VALID(this);
    ASSERT(this->m_phead != nullptr);  // don't call on is_empty list !!!
-   ASSERT(__is_valid_address(this->m_phead, sizeof(node)));
 
    node* pnodeOld = this->m_phead;
    TYPE returnValue = pnodeOld->m_value;
@@ -785,11 +793,10 @@ TYPE list<TYPE, ARG_TYPE>::pop_head()
 }
 
 template<class TYPE, class ARG_TYPE>
-TYPE list<TYPE, ARG_TYPE>::pop_tail()
+TYPE list<TYPE, ARG_TYPE>::pick_tail()
 {
    ASSERT_VALID(this);
    ASSERT(this->m_ptail != nullptr);  // don't call on is_empty list !!!
-   ASSERT(__is_valid_address(this->m_ptail, sizeof(node)));
 
    node* pnodeOld = this->m_ptail;
    TYPE returnValue = pnodeOld->m_value;
@@ -805,11 +812,10 @@ TYPE list<TYPE, ARG_TYPE>::pop_tail()
 }
 
 template<class TYPE, class ARG_TYPE>
-void list<TYPE, ARG_TYPE>::remove_head()
+void list<TYPE, ARG_TYPE>::erase_head()
 {
    ASSERT_VALID(this);
    ASSERT(this->m_phead != nullptr);  // don't call on is_empty list !!!
-   ASSERT(__is_valid_address(this->m_phead, sizeof(node)));
 
    node* pnodeOld = this->m_phead;
 
@@ -825,11 +831,10 @@ void list<TYPE, ARG_TYPE>::remove_head()
 }
 
 template<class TYPE, class ARG_TYPE>
-void list<TYPE, ARG_TYPE>::remove_tail()
+void list<TYPE, ARG_TYPE>::erase_tail()
 {
    ASSERT_VALID(this);
    ASSERT(this->m_ptail != nullptr);  // don't call on is_empty list !!!
-   ASSERT(__is_valid_address(this->m_ptail, sizeof(node)));
 
    node* pnodeOld = this->m_ptail;
 
@@ -1460,7 +1465,7 @@ void list<TYPE, ARG_TYPE>::__swap(node * position1, node * position2)
 
 
 template<class TYPE, class ARG_TYPE>
-void list<TYPE, ARG_TYPE>::remove_at(index i)
+void list<TYPE, ARG_TYPE>::erase_at(index i)
 {
 
    this->erase(this->index_iterator(i));
@@ -1468,14 +1473,13 @@ void list<TYPE, ARG_TYPE>::remove_at(index i)
 }
 
 template<class TYPE, class ARG_TYPE>
-void list<TYPE, ARG_TYPE>::remove_item(node * pnode)
+void list<TYPE, ARG_TYPE>::erase_item(node * pnode)
 {
 
    ASSERT_VALID(this);
 
    node * pnodeOld = detach(pnode);
 
-   ASSERT(__is_valid_address(pnodeOld, sizeof(node)));
 
    delete pnodeOld;
 
@@ -1499,7 +1503,6 @@ typename list < TYPE, ARG_TYPE >::node * list<TYPE, ARG_TYPE>::detach(node * pno
 
    if (pnode->m_pprevious != nullptr)
    {
-      ASSERT(__is_valid_address(pnode->m_pprevious, sizeof(node)));
       pnode->m_pprevious->m_pnext = pnode->m_pnext;
    }
 
@@ -1510,7 +1513,6 @@ typename list < TYPE, ARG_TYPE >::node * list<TYPE, ARG_TYPE>::detach(node * pno
 
    if (pnode->m_pnext != nullptr)
    {
-      ASSERT(__is_valid_address(pnode->m_pnext, sizeof(node)));
       pnode->m_pnext->m_pprevious = pnode->m_pprevious;
    }
 
@@ -1544,7 +1546,6 @@ template < class TYPE, class ARG_TYPE >
       }
       else
       {
-         ASSERT(__is_valid_address(pnodeLast->m_pnext, sizeof(node)));
          pnodeLast->m_pnext->m_pprevious = pnodeLast->m_pprevious;
       }
 
@@ -1560,7 +1561,6 @@ template < class TYPE, class ARG_TYPE >
    }
    else
    {
-      ASSERT(__is_valid_address(pnodeFirst->m_pprevious, sizeof(node)));
       pnodeFirst->m_pprevious->m_pnext = pnodeFirst->m_pnext;
    }
 
@@ -1657,8 +1657,6 @@ typename list<TYPE, ARG_TYPE>::iterator list<TYPE, ARG_TYPE>::index_iterator(ind
    while (index > 0)
    {
 
-      ASSERT(__is_valid_address(pnode, sizeof(decltype(*pnode))));
-
       pnode = pnode->m_pnext;
 
       index--;
@@ -1690,8 +1688,6 @@ index list<TYPE, ARG_TYPE>::iterator_index(iterator it)
 
       }
 
-      ASSERT(__is_valid_address(pnode, sizeof(decltype(*pnode))));
-
       pnode = pnode->m_pnext;
 
       i++;
@@ -1720,8 +1716,6 @@ inline typename list < TYPE, ARG_TYPE >::iterator list < TYPE, ARG_TYPE >::rever
 
    while (index > 0)
    {
-
-      ASSERT(__is_valid_address(pnode, sizeof(decltype(*pnode))));
 
       pnode = pnode->m_pprevious;
 
@@ -1753,8 +1747,8 @@ void list<TYPE, ARG_TYPE>::assert_valid() const
    {
 
       // non-is_empty list
-      ASSERT(__is_valid_address(this->m_phead, sizeof(node)));
-      ASSERT(__is_valid_address(this->m_ptail, sizeof(node)));
+      ASSERT(::is_set(this->m_phead));
+      ASSERT(::is_set(this->m_ptail));
 
    }
 

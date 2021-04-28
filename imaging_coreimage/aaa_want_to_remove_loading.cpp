@@ -160,7 +160,7 @@ namespace coreimage_imaging
    {
    ::exception::throw_not_implemented();
 
-   ::memory_file file(get_object());
+   ::memory_file file(this);
 
    ::aura::Resource resource;
 
@@ -252,7 +252,7 @@ namespace coreimage_imaging
 
       }
 
-      pcontext->file().as_memory(varFile, *pmemory);
+      pcontext->m_papexcontext->file().as_memory(varFile, *pmemory);
 
       const char * psz = (const char *)pmemory->get_data();
 
@@ -277,7 +277,7 @@ namespace coreimage_imaging
 
       }
 
-      auto estatus = System->imaging().load_svg(pimage, pmemory);
+      auto estatus = psystem->imaging().load_svg(pimage, pmemory);
 
       if (::succeeded(estatus))
       {

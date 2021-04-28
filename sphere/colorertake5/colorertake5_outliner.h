@@ -29,7 +29,7 @@ namespace colorertake5
       ~Outliner();
 
       /**
-       * Returns context_object to item with specified ordinal
+       * Returns object to item with specified ordinal
        * index in list of currently generated outline items.
        * Note, that the returned pointer is vaild only between
        * subsequent parser invocations.

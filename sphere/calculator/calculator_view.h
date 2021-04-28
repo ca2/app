@@ -11,7 +11,7 @@ namespace calculator
       virtual public ::user::impact
    {
    public:
-      view(::layered * pobjectContext);
+      view(::object * pobject);
       virtual ~view();
 
 
@@ -30,15 +30,15 @@ namespace calculator
 
       ::user::document * get_document();
 
-      DECL_GEN_SIGNAL(_001OnDestroy);
-      DECL_GEN_SIGNAL(_001OnSize);
-      DECL_GEN_SIGNAL(_001OnPaint);
-      DECL_GEN_SIGNAL(on_message_create);
-      DECL_GEN_SIGNAL(_001OnContextMenu);
-      DECL_GEN_SIGNAL(_001OnSetCursor);
-      DECL_GEN_SIGNAL(_001OnUpdateViewEncoding);
-      DECL_GEN_SIGNAL(_001OnViewEncoding);
-      DECL_GEN_SIGNAL(_001OnWavePlayerEvent);
+      DECLARE_MESSAGE_HANDLER(_001OnDestroy);
+      DECLARE_MESSAGE_HANDLER(_001OnSize);
+      DECLARE_MESSAGE_HANDLER(_001OnPaint);
+      DECLARE_MESSAGE_HANDLER(on_message_create);
+      DECLARE_MESSAGE_HANDLER(_001OnContextMenu);
+      DECLARE_MESSAGE_HANDLER(_001OnSetCursor);
+      DECLARE_MESSAGE_HANDLER(_001OnUpdateViewEncoding);
+      DECLARE_MESSAGE_HANDLER(_001OnViewEncoding);
+      DECLARE_MESSAGE_HANDLER(_001OnWavePlayerEvent);
 
       virtual void _001OnTabClick(i32 iTab);
 

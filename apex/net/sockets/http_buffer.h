@@ -20,7 +20,7 @@ namespace sockets
 
 
 
-      DECL_GEN_SIGNAL(on_http_request_response);
+      DECLARE_MESSAGE_HANDLER(on_http_request_response);
 
 
    };

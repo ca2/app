@@ -6,22 +6,22 @@ namespace apex
 {
 
 
-   ::e_status system::start()
-   {
+   //::e_status system::start()
+   //{
 
-      auto estatus = ::acme::system::start();
+   //   auto estatus = ::acme::system::start();
 
-      if (!estatus)
-      {
+   //   if (!estatus)
+   //   {
 
-         return estatus;
+   //      return estatus;
 
-      }
+   //   }
 
-      return ::success;
+   //   return ::success;
 
 
-   }
+   //}
 
 
 } // namespace apex

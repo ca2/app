@@ -37,7 +37,7 @@ u32 __start_system_with_file(const char ** pszaFile, int iCount)
 
    string strExtra;
 
-   //if(::get_context_system() != nullptr)
+   //if(::::apex::get_system() != nullptr)
    {
 
       if(pszaFile != nullptr)
@@ -49,9 +49,9 @@ u32 __start_system_with_file(const char ** pszaFile, int iCount)
       else
       {
 
-         ::create * pcreate = new ::create(::get_context_system());
+         ::create * pcreate = new ::create(::::apex::get_system());
 
-         pcreate->m_pcommandline = new command_line(::get_context_system(), ::apex::get_system()->get_command_line());
+         pcreate->m_pcommandline = new command_line(::::apex::get_system(), ::apex::get_system()->get_command_line());
 
          ::apex::get_system()->request({ pcreate });
 

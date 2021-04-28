@@ -59,7 +59,7 @@ namespace datetime
 {
 //
 //
-//   value span_strtotime(::matter * pobject, const ::acme::str_context * pcontext, const char * pszSpanExpression)
+//   value span_strtotime(::matter * pobject, const ::text::context * pcontext, const char * pszSpanExpression)
 //   {
 //
 //      static id idCalendarDay("calendar:day");
@@ -97,31 +97,31 @@ namespace datetime
 //               value span;
 //               span.m_bSpan = true;
 //               if(strText1 == "day" || strText1 == "days" || strText1 == "dia" || strText1 == "dias"
-//                     || (pcontext != nullptr && pcontext->matches(idCalendarDay,strText1))
-//                     || (pcontext != nullptr && pcontext->matches(idCalendarDays,strText1)))
+//                     || (pcontext != nullptr && pcontext->m_papexcontext->matches(idCalendarDay,strText1))
+//                     || (pcontext != nullptr && pcontext->m_papexcontext->matches(idCalendarDays,strText1)))
 //               {
 //                  span.m_iDay = atoi(strNumber);
 //               }
 //               else if(strText1 == "week" || strText1 == "weeks"
-//                       || (pcontext != nullptr && pcontext->matches(idCalendarWeek,strText1))
-//                       || (pcontext != nullptr && pcontext->matches(idCalendarWeeks,strText1)))
+//                       || (pcontext != nullptr && pcontext->m_papexcontext->matches(idCalendarWeek,strText1))
+//                       || (pcontext != nullptr && pcontext->m_papexcontext->matches(idCalendarWeeks,strText1)))
 //               {
 //                  span.m_iDay = atoi(strNumber) * 7;
 //               }
 //               else if(strText1 == "hour" || strText1 == "hours" || strText1 == "hora" || strText1 == "horas"
-//                       || (pcontext != nullptr && pcontext->matches(idCalendarHour,strText1))
-//                       || (pcontext != nullptr && pcontext->matches(idCalendarHour,strText1)))
+//                       || (pcontext != nullptr && pcontext->m_papexcontext->matches(idCalendarHour,strText1))
+//                       || (pcontext != nullptr && pcontext->m_papexcontext->matches(idCalendarHour,strText1)))
 //               {
 //                  span.m_iHour = atoi(strNumber);
 //               }
 //               else if(strText1 == "year" || strText1 == "years"
-//                       || (pcontext != nullptr && pcontext->matches(idCalendarYear,strText1))
-//                       || (pcontext != nullptr && pcontext->matches(idCalendarYears,strText1)))
+//                       || (pcontext != nullptr && pcontext->m_papexcontext->matches(idCalendarYear,strText1))
+//                       || (pcontext != nullptr && pcontext->m_papexcontext->matches(idCalendarYears,strText1)))
 //               {
 //                  span.m_iYear = atoi(strNumber);
 //               }
 //               else if(strText1 == "now"
-//                       || (pcontext != nullptr && pcontext->matches(idCalendarNow,strText1)))
+//                       || (pcontext != nullptr && pcontext->m_papexcontext->matches(idCalendarNow,strText1)))
 //               {
 //                  __throw(::exception::exception("now cannot be span"));
 //               }
@@ -267,7 +267,7 @@ namespace datetime
 //   }
 //
 //
-//   value strtotime(::matter * pobject, const ::acme::str_context * pcontext,const char * psz,i32 & iPath,i32 & iPathCount,bool bUTC)
+//   value strtotime(::matter * pobject, const ::text::context * pcontext,const char * psz,i32 & iPath,i32 & iPathCount,bool bUTC)
 //   {
 //      ::datetime::time time;
 //      string str(psz);
@@ -365,7 +365,7 @@ namespace datetime
 //      }
 //      if(!bBaseTime && (
 //            ::str::begins_eat(str,"today") ||
-//            (pcontext != nullptr && pcontext->begins_eat(str,"calendar:today"))))
+//            (pcontext != nullptr && pcontext->m_papexcontext->begins_eat(str,"calendar:today"))))
 //      {
 //         time = ::datetime::time::get_current_time();
 //         time = ::datetime::time(time.GetYear(),time.GetMonth(),time.GetDay(),0,0,0);
@@ -373,7 +373,7 @@ namespace datetime
 //      }
 //      if(!bBaseTime && (
 //            ::str::begins_eat(str,"tomorrow") ||
-//            (pcontext != nullptr && pcontext->begins_eat(str,"calendar:tomorrow"))))
+//            (pcontext != nullptr && pcontext->m_papexcontext->begins_eat(str,"calendar:tomorrow"))))
 //      {
 //         time = ::datetime::time::get_current_time();
 //         time = ::datetime::time(time.GetYear(),time.GetMonth(),time.GetDay(),0,0,0);
@@ -382,7 +382,7 @@ namespace datetime
 //      }
 //      if(!bBaseTime && (
 //            ::str::begins_eat(str,"yesterday") ||
-//            (pcontext != nullptr && pcontext->begins_eat(str,"calendar:yesterday"))))
+//            (pcontext != nullptr && pcontext->m_papexcontext->begins_eat(str,"calendar:yesterday"))))
 //      {
 //         time = ::datetime::time::get_current_time();
 //         time = ::datetime::time(time.GetYear(),time.GetMonth(),time.GetDay(),0,0,0);
@@ -391,7 +391,7 @@ namespace datetime
 //      }
 //      if(!bBaseTime && (
 //            ::str::begins_eat(str,"now") ||
-//            (pcontext != nullptr && pcontext->begins_eat(str,"calendar:now"))))
+//            (pcontext != nullptr && pcontext->m_papexcontext->begins_eat(str,"calendar:now"))))
 //      {
 //         
 //         time = ::datetime::time::get_current_time();
@@ -402,7 +402,7 @@ namespace datetime
 //
 //      string_array stra;
 //
-//      auto pcre1 = System->create_regular_expression("pcre", "^\\s*((\\d+)\\s*/\\s*(\\d+))((\\d|$)?!)");
+//      auto pcre1 = get_system()->create_regular_expression("pcre", "^\\s*((\\d+)\\s*/\\s*(\\d+))((\\d|$)?!)");
 //
 //      if(!bBaseTime && pcre1->matches(stra, str) >= 5)
 //      {
@@ -470,7 +470,7 @@ namespace datetime
 //   }
 //
 //
-//   string to_string(::matter * pobject, const ::acme::str_context * pcontext,const ::datetime::result & value)
+//   string to_string(::matter * pobject, const ::text::context * pcontext,const ::datetime::result & value)
 //   {
 //      string str;
 //      if(value.m_bSpan)

@@ -38,13 +38,13 @@ Contact : nish@voidnish.com
 //#endif
 //   }
 //
-//   void notification_area::Initialize(::layered * pobjectContext)
+//   void notification_area::Initialize(::object * pobject)
 //   {
 //
 //#ifdef WINDOWS_DESKTOP
 //
 //      //LOGFONTW lf = {0};
-//      //wcscpy(lf.lfFaceName, wstring(os_font_name(e_font_sans)));
+//      //wcscpy(lf.lfFaceName, wstring(pnode->font_name(e_font_sans)));
 //
 //      //lf.lfHeight = 16;
 //      //m_hfontRegular = CreateFontIndirectW(&lf);
@@ -68,9 +68,9 @@ Contact : nish@voidnish.com
 //   {
 //#ifdef WINDOWS_DESKTOP
 //      UNREFERENCED_PARAMETER(defindex);
-//      m_infoa.remove_all();
+//      m_infoa.erase_all();
 //
-//      m_pil16->remove_all();
+//      m_pil16->erase_all();
 //
 //      if(m_oswindowTray == nullptr)
 //      {

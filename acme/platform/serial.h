@@ -49,9 +49,6 @@ namespace serial
 {
 
 
-   class serial_impl;
-
-
    /*!
     * Enumeration defines the possible ebytesizes for the serial port.
     */
@@ -147,6 +144,7 @@ namespace serial
            m_millisWriteTimeoutConstant(millisWriteTimeoutConstant),
            m_uWriteTimeoutMultiplier(uWriteTimeoutMultiplier)
       {}
+      timeout(std::nullptr_t) : timeout() { }
    };
 
    /*!
@@ -188,17 +186,20 @@ namespace serial
        * \__throw( serial::io_exception
        * \__throw( invalid_argument
        */
-      serial (
-              const string &port = "",
-              u32 baudrate = 9600,
-              timeout timeout = timeout(),
-              enum_byte_size ebytesize = e_byte_size_eight,
-              enum_parity eparity = e_parity_none,
-              enum_stop_bit estopbit = e_stop_bit_one,
-              enum_flow_control eflowcontrol = e_flow_control_none);
+      serial ();
 
       /*! Destructor */
       virtual ~serial ();
+
+
+      virtual ::e_status initialize_serial(
+         const string &port = "",
+         u32 baudrate = 9600,
+         timeout timeout = nullptr,
+         enum_byte_size ebytesize = e_byte_size_eight,
+         enum_parity eparity = e_parity_none,
+         enum_stop_bit estopbit = e_stop_bit_one,
+         enum_flow_control eflowcontrol = e_flow_control_none);
 
       /*!
        * Opens the serial port as long as the port is set and the port isn't
@@ -213,36 +214,41 @@ namespace serial
        * \__throw( serial::serial_exception
        * \__throw( serial::io_exception
        */
-      void
+      virtual void
       open ();
 
       /*! Gets the open status of the serial port.
        *
        * \return Returns true if the port is open, false otherwise.
        */
-      bool
+      virtual bool
       isOpen () const;
 
       /*! Closes the serial port. */
-      void
+      virtual void
       close ();
 
+      virtual void readLock();
+      virtual void readUnlock();
+      virtual void writeLock();
+      virtual void writeUnlock();
+
       /*! Return the number of characters in the buffer. */
-      size_t
+      virtual size_t
       available ();
 
       /*! Block until there is serial data to read or read_timeout_constant
        * number of milliseconds have elapsed. The return value is true when
        * the function exits with the port in a readable state, false otherwise
        * (due to timeout or select interruption). */
-      bool
+      virtual bool
       waitReadable ();
 
       /*! Block for a period of time corresponding to the transmission time of
        * count characters at present serial settings. This may be used in con-
        * junction with waitReadable to read larger blocks of data from the
        * port. */
-      void
+      virtual void
       waitByteTimes (size_t count);
 
       /*! Read a given amount of bytes from the serial port into a given buffer.
@@ -273,7 +279,7 @@ namespace serial
        * \__throw( serial::port_not_opened_exception
        * \__throw( serial::serial_exception
        */
-      size_t
+      virtual size_t
       read (u8 *buffer, size_t size);
 
       /*! Read a given amount of bytes from the serial port into a give buffer.
@@ -287,7 +293,7 @@ namespace serial
        * \__throw( serial::port_not_opened_exception
        * \__throw( serial::serial_exception
        */
-      size_t
+      virtual size_t
       read (memory &buffer, size_t size = 1);
 
       /*! Read a given amount of bytes from the serial port into a give buffer.
@@ -301,7 +307,7 @@ namespace serial
        * \__throw( serial::port_not_opened_exception
        * \__throw( serial::serial_exception
        */
-      size_t
+      virtual size_t
       read (string &buffer, size_t size = 1);
 
       /*! Read a given amount of bytes from the serial port and return a string
@@ -314,7 +320,7 @@ namespace serial
        * \__throw( serial::port_not_opened_exception
        * \__throw( serial::serial_exception
        */
-      string
+      virtual string
       read (size_t size = 1);
 
       /*! Reads in a line or until a given delimiter has been processed.
@@ -345,7 +351,7 @@ namespace serial
        * \__throw( serial::port_not_opened_exception
        * \__throw( serial::serial_exception
        */
-      string
+      virtual string
       readline (size_t size = 65536, string eol = "\n");
 
       /*! Reads in multiple lines until the serial port times out.
@@ -362,7 +368,7 @@ namespace serial
        * \__throw( serial::port_not_opened_exception
        * \__throw( serial::serial_exception
        */
-      string_array
+      virtual string_array
       readlines (size_t size = 65536, string eol = "\n");
 
       /*! Write a string to the serial port.
@@ -380,7 +386,7 @@ namespace serial
        * \__throw( serial::serial_exception
        * \__throw( serial::io_exception
        */
-      size_t
+      virtual size_t
       write (const u8 *data, size_t size);
 
       /*! Write a string to the serial port.
@@ -395,7 +401,7 @@ namespace serial
        * \__throw( serial::serial_exception
        * \__throw( serial::io_exception
        */
-      size_t
+      virtual size_t
       write (const memory &data);
 
       /*! Write a string to the serial port.
@@ -410,7 +416,7 @@ namespace serial
        * \__throw( serial::serial_exception
        * \__throw( serial::io_exception
        */
-      size_t
+      virtual size_t
       write (const string &data);
 
       /*! Sets the serial port identifier.
@@ -421,8 +427,10 @@ namespace serial
        *
        * \__throw( invalid_argument
        */
-      void
-      setPort (const string &port);
+      virtual void setPort (const string &port);
+
+
+      virtual void _setPort(const string& port);
 
       /*! Gets the serial port identifier.
        *
@@ -430,7 +438,7 @@ namespace serial
        *
        * \__throw( invalid_argument
        */
-      string
+      virtual string
       getPort () const;
 
       /*! Sets the timeout for reads and writes using the timeout struct.
@@ -469,19 +477,16 @@ namespace serial
        *
        * \see serial::timeout
        */
-      void
-      setTimeout (timeout &timeout);
-
+      virtual void set_timeout (const timeout &timeout);
       /*! Sets the timeout for reads and writes. */
-      void
-      setTimeout (u32 inter_byte_timeout, u32 read_timeout_constant,
+      virtual void set_timeout(u32 inter_byte_timeout, u32 read_timeout_constant,
                   u32 read_timeout_multiplier, u32 write_timeout_constant,
                   u32 write_timeout_multiplier)
       {
          timeout timeout(inter_byte_timeout, read_timeout_constant,
                          read_timeout_multiplier, write_timeout_constant,
                          write_timeout_multiplier);
-         return setTimeout(timeout);
+         return set_timeout(timeout);
       }
 
       /*! Gets the timeout for reads in seconds.
@@ -491,8 +496,7 @@ namespace serial
        *
        * \see serial::setTimeout
        */
-      timeout
-      getTimeout () const;
+      virtual timeout getTimeout () const;
 
       /*! Sets the baudrate for the serial port.
        *
@@ -506,7 +510,7 @@ namespace serial
        *
        * \__throw( invalid_argument
        */
-      void
+      virtual void
       setBaudrate (u32 baudrate);
 
       /*! Gets the baudrate for the serial port.
@@ -517,7 +521,7 @@ namespace serial
        *
        * \__throw( invalid_argument
        */
-      u32
+      virtual u32
       getBaudrate () const;
 
       /*! Sets the ebytesize for the serial port.
@@ -528,7 +532,7 @@ namespace serial
        *
        * \__throw( invalid_argument
        */
-      void
+      virtual void
       setBytesize (enum_byte_size ebytesize);
 
       /*! Gets the ebytesize for the serial port.
@@ -537,7 +541,7 @@ namespace serial
        *
        * \__throw( invalid_argument
        */
-      enum_byte_size
+      virtual enum_byte_size
       getBytesize () const;
 
       /*! Sets the eparity for the serial port.
@@ -547,7 +551,7 @@ namespace serial
        *
        * \__throw( invalid_argument
        */
-      void
+      virtual void
       setParity (enum_parity eparity);
 
       /*! Gets the eparity for the serial port.
@@ -556,7 +560,7 @@ namespace serial
        *
        * \__throw( invalid_argument
        */
-      enum_parity
+      virtual enum_parity
       getParity () const;
 
       /*! Sets the estopbit for the serial port.
@@ -566,7 +570,7 @@ namespace serial
        *
        * \__throw( invalid_argument
        */
-      void
+      virtual void
       setStopbits (enum_stop_bit estopbit);
 
       /*! Gets the estopbit for the serial port.
@@ -575,7 +579,7 @@ namespace serial
        *
        * \__throw( invalid_argument
        */
-      enum_stop_bit
+      virtual enum_stop_bit
       getStopbits () const;
 
       /*! Sets the flow control for the serial port.
@@ -586,7 +590,7 @@ namespace serial
        *
        * \__throw( invalid_argument
        */
-      void
+      virtual void
       setFlowcontrol (enum_flow_control eflowcontrol);
 
       /*! Gets the flow control for the serial port.
@@ -595,35 +599,35 @@ namespace serial
        *
        * \__throw( invalid_argument
        */
-      enum_flow_control
+      virtual enum_flow_control
       getFlowcontrol () const;
 
       /*! Flush the input and output buffers */
-      void
+      virtual void
       flush ();
 
       /*! Flush only the input buffer */
-      void
+      virtual void
       flushInput ();
 
       /*! Flush only the output buffer */
-      void
+      virtual void
       flushOutput ();
 
       /*! Sends the RS-232 break signal.  See tcsendbreak(3). */
-      void
+      virtual void
       sendBreak (int duration);
 
       /*! Set the break condition to a given level.  Defaults to true. */
-      void
+      virtual void
       setBreak (bool level = true);
 
       /*! Set the RTS handshaking line to the given level.  Defaults to true. */
-      void
+      virtual void
       setRTS (bool level = true);
 
       /*! Set the DTR handshaking line to the given level.  Defaults to true. */
-      void
+      virtual void
       setDTR (bool level = true);
 
       /*!
@@ -640,39 +644,38 @@ namespace serial
        *
        * \__throw( serial_exception
        */
-      bool
+      virtual bool
       waitForChange ();
 
       /*! Returns the current status of the CTS line. */
-      bool
+      virtual bool
       getCTS ();
 
       /*! Returns the current status of the DSR line. */
-      bool
+      virtual bool
       getDSR ();
 
       /*! Returns the current status of the RI line. */
-      bool
+      virtual bool
       getRI ();
 
       /*! Returns the current status of the CD line. */
-      bool
-      getCD ();
-
-   private:
-      // Disable copy constructors
-      serial(const serial&);
-      serial& operator=(const serial&);
-
-      // Pimpl idiom, d_pointer
-      __pointer(serial_impl) m_pimpl;
+      virtual bool getCD ();
 
       // Read common function
-      size_t
-      read_ (u8 *buffer, size_t size);
+      virtual size_t _read(u8 *buffer, size_t size);
+      
       // Write common function
-      size_t
-      write_ (const u8 *data, size_t length);
+      virtual size_t _write(const u8 *data, size_t length);
+
+
+      virtual void _flush();
+
+
+      virtual void _flushOutput();
+
+      virtual void _flushInput();
+
 
    };
 
@@ -802,6 +805,61 @@ namespace serial
     * \return vector of serial::port_info.
     */
    CLASS_DECL_ACME array<port_info>  list_ports();
+
+
+
+   class scoped_read_lock
+   {
+   public:
+
+
+      serial * m_pserial;
+
+
+      scoped_read_lock(serial * pserial) : 
+         m_pserial(pserial)
+      {
+
+         m_pserial->readLock();
+
+      }
+
+
+      ~scoped_read_lock()
+      {
+
+         m_pserial->readUnlock();
+
+      }
+
+   };
+
+
+   class scoped_write_lock
+   {
+   public:
+
+      serial* m_pserial;
+
+
+      scoped_write_lock(serial * pserial) :
+         m_pserial(pserial)
+      {
+         
+         m_pserial->writeLock();
+
+      }
+
+
+      ~scoped_write_lock()
+      {
+
+         m_pserial->writeUnlock();
+
+      }
+
+   };
+
 
 } // namespace serial
 

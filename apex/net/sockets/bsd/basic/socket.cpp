@@ -22,9 +22,9 @@ namespace sockets
 {
 
 
-   socket::socket(base_socket_handler& h) :
-      ::context_object(h),
-      base_socket(h)
+   socket::socket() //:
+      //::object(h),
+      //base_socket(h)
    {
 
       m_iBindPort    = -1;
@@ -37,9 +37,9 @@ namespace sockets
    socket::~socket()
    {
 
-      //if(&Handler() != nullptr)
+      //if(&socket_handler() != nullptr)
       //{
-      //   Handler().remove(this);
+      //   socket_handler()->erase(this);
       //}
 
       if (m_socket != INVALID_SOCKET            && !m_bRetain         )
@@ -48,6 +48,15 @@ namespace sockets
       }
 
    }
+
+
+   //::e_status socket::initialize_socket(base_socket_handler* phandler)
+   //{
+
+
+
+
+   //}
 
 
    i32 socket::close_socket(SOCKET s)
@@ -64,7 +73,7 @@ namespace sockets
       if (m_socket == INVALID_SOCKET) // this could happen
       {
 
-         if(!is_null(Handler()))
+         if(!is_null(socket_handler()))
          {
 
             WARN("socket::close", 0, "file descriptor invalid");
@@ -80,7 +89,7 @@ namespace sockets
       if ((n = close_socket(m_socket)) == -1)
       {
 
-         if(!is_null(Handler()))
+         if(!is_null(socket_handler()))
          {
 
             // failed...
@@ -90,15 +99,15 @@ namespace sockets
 
       }
 
-      if(!is_null(Handler()))
+      if(!is_null(socket_handler()))
       {
 
-         Handler().set(m_socket, false, false, false); // remove from fd_set's
-         Handler().AddList(m_socket, LIST_CALLONCONNECT, false);
-         Handler().AddList(m_socket, LIST_DETACH, false);
-         Handler().AddList(m_socket, LIST_TIMEOUT, false);
-         Handler().AddList(m_socket, LIST_RETRY, false);
-         Handler().AddList(m_socket, LIST_CLOSE, false);
+         socket_handler()->set(m_socket, false, false, false); // erase from fd_set's
+         socket_handler()->AddList(m_socket, LIST_CALLONCONNECT, false);
+         socket_handler()->AddList(m_socket, LIST_DETACH, false);
+         socket_handler()->AddList(m_socket, LIST_TIMEOUT, false);
+         socket_handler()->AddList(m_socket, LIST_RETRY, false);
+         socket_handler()->AddList(m_socket, LIST_CLOSE, false);
 
       }
 
@@ -191,7 +200,7 @@ namespace sockets
 
    void socket::set(bool bRead, bool bWrite, bool bException)
    {
-      Handler().set(m_socket, bRead, bWrite, bException);
+      socket_handler()->set(m_socket, bRead, bWrite, bException);
    }
 
 

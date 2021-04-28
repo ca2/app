@@ -56,13 +56,13 @@ namespace user
 
       virtual bool on_click(const ::user::item & item) override;
 
-      DECL_GEN_SIGNAL(on_message_create);
-      //DECL_GEN_SIGNAL(on_message_left_button_down);
-      //DECL_GEN_SIGNAL(on_message_left_button_up);
-      //DECL_GEN_SIGNAL(_001OnMouseMove);
-      //DECL_GEN_SIGNAL(_001OnMouseLeave);
-      DECL_GEN_SIGNAL(_001OnKeyDown);
-      DECL_GEN_SIGNAL(_001OnKeyUp);
+      DECLARE_MESSAGE_HANDLER(on_message_create);
+      //DECLARE_MESSAGE_HANDLER(on_message_left_button_down);
+      //DECLARE_MESSAGE_HANDLER(on_message_left_button_up);
+      //DECLARE_MESSAGE_HANDLER(on_message_mouse_move);
+      //DECLARE_MESSAGE_HANDLER(on_message_mouse_leave);
+      DECLARE_MESSAGE_HANDLER(_001OnKeyDown);
+      DECLARE_MESSAGE_HANDLER(_001OnKeyUp);
       virtual void _001OnTimer(::timer * ptimer) override;
 
    };

@@ -37,9 +37,18 @@ namespace windowing
    ::e_status windowing::initialize_windowing(::user::user * puser)
    {
 
-      auto estatus = initialize(puser);
+      //auto estatus = initialize(puser);
 
-      if (!estatus)
+      //if (!estatus)
+      //{
+
+      //   return estatus;
+
+      //}
+
+      auto estatus = __refer(m_puser, puser);
+
+      if(!estatus)
       {
 
          return estatus;
@@ -763,6 +772,17 @@ namespace windowing
 
 
 #endif
+
+
+   ::e_status windowing::register_extended_event_listener(::matter * pdata, bool bMouse, bool bKeyboard)
+   {
+
+      __throw(error_interface_only);
+
+      return error_interface_only;
+
+   }
+
 
 
 

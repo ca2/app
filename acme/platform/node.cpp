@@ -18,6 +18,23 @@ namespace acme
       m_pauranode = nullptr;
       m_edesktop = ::user::e_desktop_none;
 
+      m_pAcmePosix = nullptr;
+      m_pApexPosix = nullptr;
+      m_pAuraPosix = nullptr;
+
+      m_pAcmePlatform = nullptr;
+      m_pApexPlatform = nullptr;
+      m_pAuraPlatform = nullptr;
+
+      m_pNodeX11 = nullptr;
+      m_pNodeXcb = nullptr;
+
+      m_pNodeGnome = nullptr;
+      m_pNodeKDE = nullptr;
+
+      m_pNodeDesktopEnvironmentGnome = nullptr;
+      m_pNodeDesktopEnvironmentKDE = nullptr;
+
    }
 
 
@@ -477,13 +494,17 @@ namespace acme
    }
 
 
-   void node::node_branch(const ::routine & routine)
+   ::e_status node::node_branch(const ::routine & routine)
    {
+
+      __throw(error_interface_only);
+
+      return error_interface_only;
 
    }
 
 
-   void node::node_sync(const ::duration & durationTimeout, const ::routine & routine)
+   ::e_status node::node_sync(const ::duration & durationTimeout, const ::routine & routine)
    {
 
       auto psignalization = __new(::promise::signalization);

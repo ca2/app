@@ -143,6 +143,15 @@ namespace acme
 
       const char * pszDesktop = getenv("XDG_CURRENT_DESKTOP");
 
+      string strDesktop(pszDesktop);
+
+      if(strDesktop.compare_ci("kde") == 0)
+      {
+
+         return ::user::e_desktop_kde;
+
+      }
+
       utsname name;
 
       memset(&name, 0, sizeof(utsname));

@@ -40,7 +40,7 @@ namespace opengl
 
       auto pgpu = psystem->get_gpu();
 
-      __pointer(opengl) popengl = pgpu;
+      __pointer(::opengl::opengl) popengl = pgpu;
 
       if (::is_null(popengl))
       {
@@ -231,22 +231,16 @@ namespace opengl
 
       synchronous_lock synchronouslock(user_mutex());
 
-      auto psession = get_session()->m_paurasession;
+      auto pnode = (::aura::posix::node *) m_psystem->node()->m_pAuraNode;
 
-      auto puser = psession->user();
+      auto pdisplay = (Display *) pnode->_get_Display();
 
-      auto pwindowing = puser->windowing();
+      ::windowing_x11::display_lock display(pdisplay);
 
-      auto pdisplay = pwindowing->display();
-
-      auto pdisplayx11 = (::windowing_x11::display *) pdisplay->m_pDisplay;
-
-      ::windowing_x11::display_lock display(pdisplayx11);
-
-      int screen = DefaultScreen(pdisplayx11->Display());
+      int screen = DefaultScreen(pdisplay);
 
       // Create P-Buffer
-      auto pbuffer = glXCreatePbuffer(pdisplayx11->Display(), m_pconfig[0], bufferAttribList);
+      auto pbuffer = glXCreatePbuffer(pdisplay, m_pconfig[0], bufferAttribList);
 
       if (pbuffer == None)
       {
@@ -259,7 +253,7 @@ namespace opengl
 
       m_pbuffer = pbuffer;
 
-      glXDestroyPbuffer(pdisplayx11->Display(), pbufferOld);
+      glXDestroyPbuffer(pdisplay, pbufferOld);
 
       make_current();
 

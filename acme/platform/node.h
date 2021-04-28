@@ -23,6 +23,22 @@ namespace acme
 
       ::apex::node *          m_papexnode;
       ::aura::node *          m_pauranode;
+
+      void *                  m_pAcmePosix;
+      void *                  m_pApexPosix;
+      void *                  m_pAuraPosix;
+
+      void *                  m_pAcmePlatform;
+      void *                  m_pApexPlatform;
+      void *                  m_pAuraPlatform;
+
+      void *                  m_pNodeX11;
+      void *                  m_pNodeXcb;
+      void *                  m_pNodeGnome;
+      void *                  m_pNodeKDE;
+      void *                  m_pNodeDesktopEnvironmentGnome;
+      void *                  m_pNodeDesktopEnvironmentKDE;
+
       ::user::enum_desktop    m_edesktop;
 
       ::logic::bit            m_bLastDarkModeApp;
@@ -162,17 +178,26 @@ namespace acme
 
       }
 
-      virtual void node_branch(const ::routine & routine);
+      virtual ::e_status node_branch(const ::routine & routine);
 
       template < typename PRED >
-      void node_sync(const ::duration & durationTimeout, PRED pred)
+      ::e_status node_sync(const ::duration & durationTimeout, PRED pred)
       {
 
-         node_sync(durationTimeout, __routine(pred));
+         auto estatus = node_sync(durationTimeout, __routine(pred));
+
+         if(!estatus)
+         {
+
+            return estatus;
+
+         }
+
+         return estatus;
 
       }
 
-      virtual void node_sync(const ::duration & durationTimeout, const ::routine & routine);
+      virtual ::e_status node_sync(const ::duration & durationTimeout, const ::routine & routine);
 
 //      template < typename PRED >
 //      void user_fork(PRED pred)

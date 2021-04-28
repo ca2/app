@@ -1161,16 +1161,16 @@ namespace user
 
       synchronous_lock synchronouslock(m_puserthread->mutex());
 
-      if(m_ptraProdevian.add_unique(pobject))
+      if(!m_ptraProdevian.add_unique(pobject))
       {
 
-         m_puserinteraction->post_message(e_message_redraw, 1);
-
-         return true;
+         return false;
 
       }
 
-      return false;
+      m_puserinteraction->post_message(e_message_redraw, 1);
+
+      return true;
 
    }
 

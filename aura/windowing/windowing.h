@@ -237,6 +237,9 @@ namespace windowing
       }
 
 
+      virtual ::e_status register_extended_event_listener(::matter * pdata, bool bMouse, bool bKeyboard);
+
+
    };
 
 

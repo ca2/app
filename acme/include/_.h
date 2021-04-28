@@ -129,7 +129,149 @@ namespace acme
    class node;
 
 
+   namespace posix
+   {
+
+      class node;
+
+   };
+
+
 } // namespace acme
+
+
+namespace apex
+{
+
+
+   class system;
+
+
+   class node;
+
+
+   namespace posix
+   {
+
+      class node;
+
+   };
+
+
+} // namespace apex
+
+
+namespace aura
+{
+
+
+   class system;
+
+
+   class node;
+
+
+   namespace posix
+   {
+
+      class node;
+
+   };
+
+
+} // namespace aura
+
+
+namespace PLATFORM_NAMESPACE
+{
+
+
+   namespace acme
+   {
+
+      class node;
+
+   } // namespace acme
+
+
+   namespace apex
+   {
+
+      class node;
+
+   } // namespace acme
+
+
+   namespace aura
+   {
+
+      class node;
+
+   } // namespace acme
+
+
+} // namespace PLATFORM_NAMESPACE
+
+
+
+namespace windowing_x11
+{
+
+
+   class node;
+
+
+} // namespace windowing_x11
+
+
+namespace windowing_xcb
+{
+
+
+   class node;
+
+
+} // namespace windowing_xcb
+
+
+namespace node_gnome
+{
+
+
+   class node;
+
+
+} // namespace node_gnome
+
+
+namespace node_kde
+{
+
+
+   class node;
+
+
+} // namespace node_kde
+
+
+namespace desktop_environment_gnome
+{
+
+
+   class node;
+
+
+} // namespace desktop_environment_gnome
+
+
+namespace desktop_environment_kde
+{
+
+
+   class node;
+
+
+} // namespace desktop_environment_kde
 
 
 //class layered;

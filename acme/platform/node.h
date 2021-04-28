@@ -21,23 +21,23 @@ namespace acme
    public:
 
 
-      ::apex::node *          m_papexnode;
-      ::aura::node *          m_pauranode;
+      ::apex::node *                         m_papexnode;
+      ::aura::node *                         m_pauranode;
 
-      void *                  m_pAcmePosix;
-      void *                  m_pApexPosix;
-      void *                  m_pAuraPosix;
+      ::acme::posix::node *                  m_pAcmePosix;
+      ::apex::posix::node *                  m_pApexPosix;
+      ::aura::posix::node *                  m_pAuraPosix;
 
-      void *                  m_pAcmePlatform;
-      void *                  m_pApexPlatform;
-      void *                  m_pAuraPlatform;
+      ::PLATFORM_NAMESPACE::acme::node *     m_pAcmePlatform;
+      ::PLATFORM_NAMESPACE::apex::node *     m_pApexPlatform;
+      ::PLATFORM_NAMESPACE::aura::node *     m_pAuraPlatform;
 
-      void *                  m_pNodeX11;
-      void *                  m_pNodeXcb;
-      void *                  m_pNodeGnome;
-      void *                  m_pNodeKDE;
-      void *                  m_pNodeDesktopEnvironmentGnome;
-      void *                  m_pNodeDesktopEnvironmentKDE;
+      ::windowing_x11::node *                m_pNodeX11;
+      ::windowing_xcb::node *                m_pNodeXcb;
+      ::node_gnome::node *                   m_pNodeGnome;
+      ::node_kde::node *                     m_pNodeKDE;
+      ::desktop_environment_gnome::node *    m_pNodeDesktopEnvironmentGnome;
+      ::desktop_environment_kde::node *      m_pNodeDesktopEnvironmentKDE;
 
       ::user::enum_desktop    m_edesktop;
 

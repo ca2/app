@@ -60,6 +60,14 @@ list(APPEND library_references
         )
 
 
+if(LINUX)
+
+    list(APPEND library_references
+       aura_posix
+       )
+
+endif()
+
 add_library(gpu_opengl SHARED ${gpu_opengl_source})
 
 target_precompile_headers(gpu_opengl PRIVATE framework.h)

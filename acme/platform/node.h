@@ -257,6 +257,16 @@ namespace acme
       virtual string file_memory_map_path_from_name(const string& strName);
 
 
+#ifdef WINDOWS_DESKTOP
+      
+
+      virtual string _get_standard_exception_name(u32 uiCode);
+      virtual string _get_standard_exception_description(u32 uiCode);
+
+
+#endif
+
+
    };
 
 

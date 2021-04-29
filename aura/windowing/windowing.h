@@ -3,6 +3,7 @@
 // hi5 contribution...
 #pragma once
 
+
 inline ::user::interaction_impl * __interaction_impl(::windowing::window * pwindow)
 {
 
@@ -132,41 +133,27 @@ namespace windowing
 
       virtual bool message_loop_step();
 
-      //virtual ::mutex * mutex();
 
-      //virtual ::e_status defer_initialize_x11();
       virtual void handle_just_hooks();
       virtual void defer_handle_just_hooks();
-      //virtual int message_box(const string & str, const string & strTitle, const ::e_message_box & emessagebox);
       virtual bool __hook_process_event(class display * pdisplay, void * pevent, void * cookie);
+
 
 
       virtual __pointer(::windowing::cursor) load_default_cursor(enum_cursor ecursor);
 
 
-      //virtual bool set_cursor(::user::interaction * pinteraction, ::draw2d::cursor * pcursor);
-      //virtual bool set_cursor(::user::interaction * pinteraction, enum_cursor ecursor);
-      //virtual bool set_default_cursor(::user::interaction * pinteraction, enum_cursor ecursor);
+
       virtual ::windowing::cursor * get_cursor();
       virtual ::windowing::cursor * get_default_cursor();
 
-      //virtual int_bool window_set_mouse_cursor(window * pwindow, ::draw2d::cursor * pcursor);
 
-      //virtual bool set_window_icon(window * pwindow, const ::file::path & path);
-
-      //virtual __pointer(::future < enum_dialog_result >) message_box(const char* pszMessage, const char* pszTitle, const ::e_message_box & emessagebox);
-
-      //virtual enum_dialog_result message_box_timeout(const char* pszMessage, const char* pszTitle, const ::duration & duration, const ::e_message_box & emessagebox);
 
       virtual class window * new_message_window(::user::interaction_impl * pimpl);
 
       virtual class window * new_window(::user::interaction_impl * pimpl);
 
       virtual ::e_status erase_window(::windowing::window * pwindow);
-
-      //virtual ::e_status hook(class hook * phook);
-
-      //virtual ::e_status unhook(class hook * phook);
 
       bool route_message(::user::message * pusermessage);
 
@@ -215,17 +202,8 @@ namespace windowing
 #endif
 
 
-      //virtual wstring _windows_register_window_class(::object* pobject, ::u32 nClassStyle, hcursor hCursor = 0, HBRUSH hbrBackground = 0, hicon hIcon = 0);
-      //CLASS_DECL_WINDOWING_WIN32 wstring windows_register_window_class(::object * pobject, ::u32 nClassStyle, hcursor hCursor = 0, HBRUSH hbrBackground = 0, hicon hIcon = 0);
-      //CLASS_DECL_WINDOWING_WIN32 bool windows_register_class(WNDCLASSEXW* puserinteractionclass);
-      //
       virtual wstring _windows_calc_icon_window_class(::user::interaction* pinteraction, u32 dwDefaultStyle, const char* pszMatter);
       virtual wstring _windows_get_user_interaction_window_class(::user::interaction* pinteraction);
-      //virtual bool _windows_register_with_icon(WNDCLASSEXW* puserinteractionclass, const unichar* pszClassName, ::u32 nIDIcon);
-
-      //virtual void _window_create_caret(HWND hwnd, HBITMAP hbitmap);
-      //virtual void _window_create_solid_caret(HWND hwnd, i32 nWidth, i32 nHeight);
-      //virtual void _window_create_gray_caret(HWND hwnd, i32 nWidth, i32 nHeight);
 
 
       template < typename OBJECT_POINTER, typename OBJECT_METHOD, typename PAYLOAD_POINTER >
@@ -238,6 +216,17 @@ namespace windowing
 
 
       virtual ::e_status register_extended_event_listener(::matter * pdata, bool bMouse, bool bKeyboard);
+
+
+#ifdef WINDOWS_DESKTOP
+
+
+      virtual bool _visible_top_level_contains_name(string str) = 0;
+      virtual bool _top_level_contains_name(string str) = 0;
+      virtual string _get_window_text_timeout(oswindow oswindow, const ::duration& duration = 1_s) = 0;
+
+
+#endif
 
 
    };

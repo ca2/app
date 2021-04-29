@@ -1255,82 +1255,82 @@ namespace apex
 #endif
 
    }
-#ifdef WINDOWS_DESKTOP
+// #ifdef WINDOWS_DESKTOP
 
 
-   class open_browser_enum
-   {
-   public:
+//    class open_browser_enum
+//    {
+//    public:
 
-      string                           m_strWindowEnd;
-      string                           m_strTopic;
-      string                           m_strCounterTopic;
-      oswindow                         m_hwnd;
-      comparable_array < oswindow >    m_hwndaTopic;
-      comparable_array < oswindow >    m_hwndaCounterTopic;
+//       string                           m_strWindowEnd;
+//       string                           m_strTopic;
+//       string                           m_strCounterTopic;
+//       oswindow                         m_hwnd;
+//       comparable_array < oswindow >    m_hwndaTopic;
+//       comparable_array < oswindow >    m_hwndaCounterTopic;
 
-   };
-
-
-   int_bool CALLBACK enum_proc(oswindow oswindow, lparam lparam)
-   {
-
-      open_browser_enum * penum = (open_browser_enum *)lparam.m_lparam;
-
-      string str = ::str::get_window_text_timeout(oswindow, 1000);
-
-      if (::str::ends_ci(str, penum->m_strWindowEnd))
-      {
-
-         penum->m_hwnd = oswindow;
-
-         return false;
-
-      }
-
-      return true;
-
-   }
+//    };
 
 
-   int_bool CALLBACK enum_proc_ff_topic(oswindow oswindow, lparam lparam)
-   {
+//    int_bool CALLBACK enum_proc(oswindow oswindow, lparam lparam)
+//    {
 
-      open_browser_enum * penum = (open_browser_enum *)lparam.m_lparam;
+//       open_browser_enum * penum = (open_browser_enum *)lparam.m_lparam;
 
-      string str = ::str::get_window_text_timeout(oswindow);
+//       string str = ::str::get_window_text_timeout(oswindow, 1000);
 
-      if (::str::ends_ci(str, penum->m_strTopic))
-      {
+//       if (::str::ends_ci(str, penum->m_strWindowEnd))
+//       {
 
-         penum->m_hwndaTopic.add(oswindow);
+//          penum->m_hwnd = oswindow;
 
-      }
+//          return false;
 
-      return true;
+//       }
 
-   }
+//       return true;
+
+//    }
 
 
-   int_bool CALLBACK enum_proc_ff_counter_topic(oswindow oswindow, lparam lparam)
-   {
+//    int_bool CALLBACK enum_proc_ff_topic(oswindow oswindow, lparam lparam)
+//    {
 
-      open_browser_enum * penum = (open_browser_enum *)lparam.m_lparam;
+//       open_browser_enum * penum = (open_browser_enum *)lparam.m_lparam;
 
-      string str = ::str::get_window_text_timeout(oswindow, 1000);
+//       string str = ::str::get_window_text_timeout(oswindow);
 
-      if (::str::ends_ci(str, penum->m_strCounterTopic))
-      {
+//       if (::str::ends_ci(str, penum->m_strTopic))
+//       {
 
-         penum->m_hwndaCounterTopic.add(oswindow);
+//          penum->m_hwndaTopic.add(oswindow);
 
-      }
+//       }
 
-      return true;
+//       return true;
 
-   }
+//    }
 
-#endif
+
+//    int_bool CALLBACK enum_proc_ff_counter_topic(oswindow oswindow, lparam lparam)
+//    {
+
+//       open_browser_enum * penum = (open_browser_enum *)lparam.m_lparam;
+
+//       string str = ::str::get_window_text_timeout(oswindow, 1000);
+
+//       if (::str::ends_ci(str, penum->m_strCounterTopic))
+//       {
+
+//          penum->m_hwndaCounterTopic.add(oswindow);
+
+//       }
+
+//       return true;
+
+//    }
+
+// #endif
 
 
 
@@ -2445,7 +2445,7 @@ namespace apex
 
       __copy(message, msg);
 
-      __pointer(::apex::system) psystem = get_system();
+      auto psystem = m_psystem->m_papexsystem;
 
       if (!is_system() && is_true("SessionSynchronizedInput"))
       {
@@ -2567,8 +2567,6 @@ namespace apex
       }
 
       m_millisHeartBeat.Now();
-
-      auto psystem = m_psystem->m_papexsystem;
 
       try
       {
@@ -5227,7 +5225,7 @@ retry_license:
       wstring desc = L"spafile";          // file type description
       wstring content_type = L"application/x-spa";
 
-      wstring app(m_psystem->m_pacmedir->stage(m_XstrAppId, process_platform_dir_name(), process_configuration_dir_name()));
+      wstring app(m_psystem->m_pacmedir->stage(m_strAppId, process_platform_dir_name(), process_configuration_dir_name()));
 
       wstring icon(app);
 
@@ -5274,7 +5272,7 @@ retry_license:
       RegSetValueExW(hkey, L"", 0, REG_SZ, (byte*)icon.c_str(), ::u32 (icon.length() * sizeof(wchar_t)));
       RegCloseKey(hkey);
 
-      wstring wstr(m_psystem->m_pacmedir->stage(m_XstrAppId, process_platform_dir_name(), process_configuration_dir_name()) / "spa_register.txt");
+      wstring wstr(m_psystem->m_pacmedir->stage(m_strAppId, process_platform_dir_name(), process_configuration_dir_name()) / "spa_register.txt");
 
       int iRetry = 9;
 

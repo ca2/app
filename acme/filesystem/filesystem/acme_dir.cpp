@@ -363,6 +363,17 @@ string acme_dir::system_short_name()
 }
 
 
+#else
+
+
+::file::path acme_dir::home()
+{
+
+   return "";
+
+}
+
+
 #endif
 
 

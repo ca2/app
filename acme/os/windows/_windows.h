@@ -30,12 +30,12 @@ inline void copy(MSG * pmsg, const MESSAGE * pmessage)
 
 }
 
-namespace str
-{
+// namespace str
+// {
 
-   string CLASS_DECL_ACME get_window_text_timeout(oswindow oswindow, millis tickTimeout = 1000);
+//    string CLASS_DECL_ACME get_window_text_timeout(oswindow oswindow, millis tickTimeout = 1000);
 
-} // namespace str
+// } // namespace str
 
 
 CLASS_DECL_ACME void TRACELASTERROR();

@@ -39,7 +39,7 @@ namespace acme
 
 #endif
 
-      m_edesktop = ::user::e_desktop_none;
+      //m_edesktop = ::user::e_desktop_none;
 
       os_construct();
 
@@ -253,20 +253,6 @@ namespace acme
 
    }
 
-
-   ::user::enum_desktop system::get_edesktop()
-   {
-
-      if (m_edesktop == ::user::e_desktop_none)
-      {
-
-         m_edesktop = calc_edesktop();
-
-      }
-
-      return m_edesktop;
-
-   }
 
 
 
@@ -1014,26 +1000,31 @@ namespace acme
 
 
 
-//   ::apex::application* system::get_main_application()
-//   {
-//
-//      return nullptr;
-//
-//   }
-//
-//
-//   void system::system_construct(int argc, char** argv, char** envp)
-//   {
-//
-//
-//   }
-//
-//   void system::system_construct(int argc, wchar_t** argv, wchar_t** envp)
-//   {
-//
-//
-//   }
-//
+   //::apex::application* system::get_main_application()
+   //{
+
+   //   __throw(error_interface_only);
+
+   //   return nullptr;
+
+   //}
+
+
+   //void system::system_construct(int argc, char** argv, char** envp)
+   //{
+
+   //   __throw(error_interface_only);
+
+   //}
+
+
+   //void system::system_construct(int argc, wchar_t** argv, wchar_t** envp)
+   //{
+
+   //   __throw(error_interface_only);
+
+   //}
+
 //
 //   ::e_status system::inline_init()
 //   {
@@ -1052,12 +1043,12 @@ namespace acme
 //   }
 //
 //
-//   ::e_status system::inline_term()
-//   {
-//
-//      return ::success;
-//
-//   }
+   ::e_status system::inline_term()
+   {
+
+      return ::success;
+
+   }
 
 
 //   ::e_status system::on_start_system()
@@ -1068,19 +1059,73 @@ namespace acme
 //   }
 //
 //
-//   ::e_status system::on_end()
-//   {
-//
-//      return ::success;
-//
-//   }
-//
-//
-//   void system::os_construct()
-//   {
-//
-//
-//   }
+   ::e_status system::on_end()
+   {
+
+      return ::success;
+
+   }
+
+   ::e_status system::end()
+   {
+
+      auto estatus = on_end();
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      estatus = inline_term();
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return estatus;
+
+   }
+
+
+   ::apex::application* system::get_main_application()
+   {
+
+
+      __throw(error_interface_only);
+
+
+      return nullptr;
+
+   }
+
+
+   void system::system_construct(int argc, char** argv, char** envp)
+   {
+
+      __throw(error_interface_only);
+
+   }
+
+
+   void system::system_construct(int argc, wchar_t** argv, wchar_t** envp)
+   {
+
+      __throw(error_interface_only);
+
+   }
+
+
+
+   void system::os_construct()
+   {
+
+
+   }
 
 
 } // namespace acme

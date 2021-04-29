@@ -67,8 +67,8 @@ CLASS_DECL_ACME enum_platform_level get_platform_level()
 
 }
 
+//void __node_acme_factory_exchange(::factory_map * pfactorymap);
 
-void __node_acme_factory_exchange(::factory_map * pfactorymap);
 
 
 CLASS_DECL_ACME void __seed_srand();
@@ -1099,7 +1099,7 @@ namespace acme
 
       create_factory < ::stdio_file >();
 
-      __node_acme_factory_exchange(::factory::get_factory_map());
+      //__node_acme_factory_exchange(::factory::get_factory_map());
 
       return true;
 

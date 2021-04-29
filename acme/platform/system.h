@@ -31,10 +31,6 @@ namespace acme
 
       string_map < __pointer(::factory_map) > *          m_pfactorymapsquare;
 
-#ifdef LINUX
-      enum_linux_distribution                            m_elinuxdistribution;
-#endif
-      ::user::enum_desktop                               m_edesktop;
 
       ::mutex                                            m_mutexTask;
       task_map                                           m_taskmap;
@@ -126,15 +122,15 @@ namespace acme
 
       //virtual enum_linux_distribution get_linux_distribution() const;
 
-      virtual enum_operating_system get_operating_system() const;
+      //virtual enum_operating_system get_operating_system() const;
 
-      virtual ::user::enum_desktop get_edesktop();
+      //virtual ::user::enum_desktop get_edesktop();
 
-      virtual ::user::enum_desktop calc_edesktop();
+      //virtual ::user::enum_desktop calc_edesktop();
 
-#ifdef LINUX
-      inline enum_linux_distribution get_linux_distribution() const {return m_elinuxdistribution;}
-#endif
+//#ifdef LINUX
+  //    inline enum_linux_distribution get_linux_distribution() const {return m_elinuxdistribution;}
+//#endif
 
       //virtual void defer_calc_os_dark_mode();
 
@@ -144,7 +140,9 @@ namespace acme
 
       void process_exit_status(::object* pobject, const ::e_status& estatus);
 
+      
       virtual ::apex::application* get_main_application();
+
 
       virtual void system_construct(int argc, char** argv, char** envp);
       virtual void system_construct(int argc, wchar_t** argv, wchar_t** envp);

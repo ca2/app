@@ -2735,7 +2735,7 @@
     <ClInclude Include="exception\standard.h">
       <Filter>Header Files\exception</Filter>
     </ClInclude>
-    <ClInclude Include="exception\standard_translator.h">
+    <ClInclude Include="exception\exception_translator.h">
       <Filter>Header Files\exception</Filter>
     </ClInclude>
     <ClInclude Include="exception\status.h">
@@ -3921,6 +3921,9 @@
     </ClCompile>
     <ClCompile Include="primitive\promise\signalization.cpp">
       <Filter>Source Files\primitive\promise</Filter>
+    </ClCompile>
+    <ClCompile Include="exception_translator.cpp">
+      <Filter>Source Files\exception</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

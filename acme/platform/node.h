@@ -39,7 +39,7 @@ namespace acme
       ::desktop_environment_gnome::node *    m_pNodeDesktopEnvironmentGnome;
       ::desktop_environment_kde::node *      m_pNodeDesktopEnvironmentKDE;
 
-      ::user::enum_desktop    m_edesktop;
+      //::user::enum_desktop    m_edesktop;
 
       ::logic::bit            m_bLastDarkModeApp;
 
@@ -49,6 +49,11 @@ namespace acme
       double                  m_dSystemLuminance;
       int                     m_iWeatherDarkness;
       ::file::path            m_pathModule;
+
+#ifdef LINUX
+      enum_linux_distribution                            m_elinuxdistribution;
+#endif
+      ::user::enum_desktop                               m_edesktop;
 
 
       node();
@@ -256,15 +261,20 @@ namespace acme
 
       virtual string file_memory_map_path_from_name(const string& strName);
 
+      virtual enum_operating_system get_operating_system() const;
 
-#ifdef WINDOWS_DESKTOP
-      
+      virtual ::user::enum_desktop get_edesktop();
 
-      virtual string _get_standard_exception_name(u32 uiCode);
-      virtual string _get_standard_exception_description(u32 uiCode);
+      virtual void update_edesktop();
 
+#ifdef LINUX
+
+      inline enum_linux_distribution get_linux_distribution() const {return m_elinuxdistribution;}
 
 #endif
+
+
+
 
 
    };

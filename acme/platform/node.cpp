@@ -90,6 +90,39 @@ namespace acme
 
    }
 
+   
+   enum_operating_system node::get_operating_system() const
+   {
+
+      __throw(error_interface_only);
+
+      return e_operating_system_unknown;
+
+   }
+
+
+   ::user::enum_desktop node::get_edesktop()
+   {
+
+      if (m_edesktop == ::user::e_desktop_none)
+      {
+
+         update_edesktop();
+
+      }
+
+      return m_edesktop;
+
+   }
+
+
+   void node::update_edesktop()
+   {
+
+      // Implement m_edesktop update
+
+   }
+   
 
    void node::initialize_memory_counter()
    {
@@ -871,6 +904,8 @@ namespace acme
       return "music_midi_alsa";
 
    }
+
+
 
 
 } // namespace acme

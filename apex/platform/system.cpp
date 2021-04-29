@@ -2521,14 +2521,14 @@ namespace apex
 
       }
 
-      estatus = m_pnode->initialize(this);
-
-      if(!estatus)
-      {
-
-         return estatus;
-
-      }
+//      estatus = m_pnode->initialize(this);
+//
+//      if(!estatus)
+//      {
+//
+//         return estatus;
+//
+//      }
 
       return estatus;
 

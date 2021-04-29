@@ -56,8 +56,6 @@ namespace exception
       //void filter( _EXCEPTION_POINTERS * point_i32);
 #endif
 
-      static string name(u32 uiCode);
-      static string description(u32 uiCode);
 
 
       bool attach();

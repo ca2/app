@@ -104,7 +104,70 @@ CLASS_DECL_APEX i32 __cdecl _memory_type(const void* p);
 //// }
 
 
-//bool __node_apex_pre_init()
+
+
+bool __node_apex_pre_term()
+{
+
+
+
+   return true;
+
+}
+
+bool __node_apex_pos_term()
+{
+
+
+   // #ifndef USE_OS_IMAGE_LOADER
+
+   //    try
+   //    {
+
+   //       FreeImage_DeInitialise();
+
+   //    }
+   //    catch (...)
+   //    {
+
+   //    }
+
+   // #endif // USE_OS_IMAGE_LOADER
+
+
+   //if (g_pgdiplusStartupOutput != nullptr)
+   //{
+
+   //   g_pgdiplusStartupOutput->NotificationUnhook(g_gdiplusHookToken);
+
+
+   //   ::Gdiplus::GdiplusShutdown(g_gdiplusToken);
+
+
+   //   ::acme::del(g_pgdiplusStartupInput);
+   //   ::acme::del(g_pgdiplusStartupOutput);
+   //}
+
+   if (is_verbose())
+   {
+
+      output_debug_string(L"apex terminating!\n");
+
+   }
+
+   //::CoUninitialize();
+
+
+   WSACleanup();
+
+
+   return true;
+
+}
+
+
+//int WinRegGetValueW(HKEY hkey, const widechar * pSubKey, const widechar * lpValue, ::u32 dwFlags, LPDWORD pdwType, PVOID pvData, LPDWORD pcbData)
+//
 //{
 //
 //

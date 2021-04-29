@@ -14,15 +14,18 @@ namespace windowing
    public:
 
 
-      enum_cursor                   m_ecursor;
-      ::size_i32                    m_szHotspotOffset;
-      __pointer(::draw2d::cursor)   m_pcursor;
+      enum_cursor                         m_ecursor;
+      ::size_i32                          m_szHotspotOffset;
+      __pointer(::draw2d::cursor)         m_pcursor;
+      bool                                m_bLoadSystemDefaultCursorHint;
 
 
       cursor();
       virtual ~cursor();
 
-      virtual ::e_status initialize_system_default();
+
+      virtual ::e_status load_system_default_cursor_hint();
+
 
       virtual ::e_status create_from_image(const ::image * pimage, ::i32 xHotspot, ::i16 yHotspot);
 

@@ -132,9 +132,21 @@ namespace acme
    namespace posix
    {
 
+
       class node;
 
-   };
+
+   } // namespace posix
+
+
+   namespace PLATFORM_NAMESPACE
+   {
+
+
+      class node;
+
+
+   } // namespace PLATFORM_NAMESPACE
 
 
 } // namespace acme
@@ -158,6 +170,16 @@ namespace apex
    };
 
 
+   namespace PLATFORM_NAMESPACE
+   {
+
+
+      class node;
+
+
+   } // namespace PLATFORM_NAMESPACE
+
+
 } // namespace apex
 
 
@@ -179,39 +201,17 @@ namespace aura
    };
 
 
+   namespace PLATFORM_NAMESPACE
+   {
+
+
+      class node;
+
+
+   } // namespace PLATFORM_NAMESPACE
+
+
 } // namespace aura
-
-
-namespace PLATFORM_NAMESPACE
-{
-
-
-   namespace acme
-   {
-
-      class node;
-
-   } // namespace acme
-
-
-   namespace apex
-   {
-
-      class node;
-
-   } // namespace acme
-
-
-   namespace aura
-   {
-
-      class node;
-
-   } // namespace acme
-
-
-} // namespace PLATFORM_NAMESPACE
-
 
 
 namespace windowing_x11
@@ -272,12 +272,6 @@ namespace desktop_environment_kde
 
 
 } // namespace desktop_environment_kde
-
-
-//class layered;
-
-
-//CLASS_DECL_ACME ::acme::system *get_context_system();
 
 
 #define ___STR(s) #s

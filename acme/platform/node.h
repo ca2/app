@@ -28,9 +28,9 @@ namespace acme
       ::apex::posix::node *                  m_pApexPosix;
       ::aura::posix::node *                  m_pAuraPosix;
 
-      ::PLATFORM_NAMESPACE::acme::node *     m_pAcmePlatform;
-      ::PLATFORM_NAMESPACE::apex::node *     m_pApexPlatform;
-      ::PLATFORM_NAMESPACE::aura::node *     m_pAuraPlatform;
+      ::acme::PLATFORM_NAMESPACE::node *     m_pAcmePlatform;
+      ::apex::PLATFORM_NAMESPACE::node *     m_pApexPlatform;
+      ::aura::PLATFORM_NAMESPACE::node *     m_pAuraPlatform;
 
       ::windowing_x11::node *                m_pNodeX11;
       ::windowing_xcb::node *                m_pNodeXcb;

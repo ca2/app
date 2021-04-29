@@ -170,38 +170,18 @@ namespace windowing
       if (psystem->m_bImaging)
       {
 
-         //fork([this, pcursor, path, bFromCache]()
+         auto psession = get_session();
+
+         auto puser = psession->user();
+
+         auto pwindowing = puser->windowing();
+
+         if (!pwindowing->load_cursor(pcursor, path, true, bFromCache))
          {
 
-            pcursor->initialize_system_default();
+            pcursor->load_system_default_cursor_hint();
 
-            auto psession = get_session();
-
-            auto puser = psession->user();
-
-            auto pwindowing = puser->windowing();
-
-            if (pwindowing->load_cursor(pcursor, path, true, bFromCache))
-            {
-
-               //return pcursor;
-
-            }
-            else
-            {
-
-
-               {
-
-                  //return pcursor;
-
-               }
-
-               //return nullptr;
-
-            }
-
-         }//);
+         }
 
       }
 
@@ -616,7 +596,7 @@ namespace windowing
 
       cursor * pcursor = get_cursor(ecursor);
 
-      if (pcursor->initialize_system_default())
+      if (pcursor->load_system_default_cursor_hint())
       {
 
          return pcursor;

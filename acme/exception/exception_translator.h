@@ -39,6 +39,10 @@ namespace exception
    class CLASS_DECL_ACME translator :
       virtual public matter
    {
+   protected:
+
+      bool    m_bSet;
+
    public:
 
 #ifdef EXCEPTION_TRANSLATOR_USE_SIGNAL
@@ -51,24 +55,26 @@ namespace exception
       virtual ~translator();
 
 #ifdef WINDOWS
-      void filter(u32 uiCode, _EXCEPTION_POINTERS * point_i32);
-      static void __cdecl filter2(u32 uiCode, _EXCEPTION_POINTERS * point_i32);
+      virtual void filter(u32 uiCode, _EXCEPTION_POINTERS * point_i32);
+      //static void __cdecl filter2(u32 uiCode, _EXCEPTION_POINTERS * point_i32);
       //void filter( _EXCEPTION_POINTERS * point_i32);
 #endif
 
 
 
-      bool attach();
-      bool detach();
+      virtual bool attach();
+      virtual bool detach();
 
 
+#ifdef WINDOWS_DESKTOP
 
-   private:
-      bool                      m_bSet;
-      //LPTOP_LEVEL_EXCEPTION_FILTER m_pfn;
-#ifdef WINDOWS
-      _se_translator_function   m_pfn;
+
+      virtual string _get_standard_exception_name(u32 uiCode);
+      virtual string _get_standard_exception_description(u32 uiCode);
+
+
 #endif
+
    };
 
 

@@ -16,11 +16,11 @@ LARGE_INTEGER g_largeintegerFrequency;
 
 #endif
 
-#ifdef WINDOWS_DESKTOP
-
-#include "acme/os/windows/callstack.h"
-
-#endif
+//#ifdef WINDOWS_DESKTOP
+//
+//#include "acme/os/windows/callstack.h"
+//
+//#endif
 
 
 namespace mathematics
@@ -561,11 +561,6 @@ namespace acme
 
       ::initialize_future_critical_section();
 
-#ifdef WINDOWS
-
-      ::windows::callstack::s_pcriticalsection = new critical_section();
-
-#endif
 
       //::update::g_pcs = new critical_section();
 
@@ -994,12 +989,6 @@ namespace acme
 
       delete_all_release_on_end();
 
-#ifdef WINDOWS
-
-      ::acme::del(::windows::callstack::s_pcriticalsection);
-
-#endif
-
       ::initialize_future_critical_section();
 
       ::acme::del(g_pcsGlobal);
@@ -1054,10 +1043,10 @@ namespace acme
    }
 
 
-   //::acme::system * acme_create_system(app_core * pappcore)
+   //class ::system * acme_create_system(app_core * pappcore)
    //{
 
-   //   auto psystem = new ::acme::system();
+   //   auto psystem = new class ::system();
 
    //   psystem->initialize(nullptr);
 

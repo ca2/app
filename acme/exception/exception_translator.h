@@ -29,7 +29,7 @@
 #endif
 
 
-extern CLASS_DECL_ACME bool g_bExiting;
+//extern CLASS_DECL_ACME bool g_bExiting;
 
 
 namespace exception

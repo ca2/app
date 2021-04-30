@@ -137,6 +137,7 @@ namespace user
    void message_box::common_construct()
    {
 
+      m_bFirstLayoutDone = false;
       m_iMarginTop = 20;
       m_iMarginLeft = 20;
       m_iMarginRight = 20;
@@ -272,11 +273,18 @@ namespace user
 
          place(r);
 
-         //set_need_layout();
+         if (!m_bFirstLayoutDone)
+         {
 
-         //set_need_redraw();
+            m_bFirstLayoutDone = true;
 
-         //post_redraw();
+            set_need_layout();
+
+            set_need_redraw();
+
+            post_redraw();
+
+         }
 
       }
 

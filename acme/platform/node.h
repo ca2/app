@@ -274,6 +274,11 @@ namespace acme
 #endif
 
 
+#ifdef WINDOWS_DESKTOP
+
+      virtual platform_char** _get_envp(wcsdup_array& a);
+
+#endif
 
 
 

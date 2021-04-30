@@ -1046,3 +1046,36 @@ namespace windowing
 
 
 
+
+
+CLASS_DECL_AURA ::user::interaction* __user_interaction(::windowing::window* pwindow)
+{
+
+   if (::is_null(pwindow))
+   {
+
+      return nullptr;
+
+   }
+
+   auto pimpl = pwindow->m_pimpl;
+
+   if (::is_null(pimpl))
+   {
+
+      return nullptr;
+
+   }
+
+   auto puserinteraction = pimpl->m_puserinteraction;
+
+   if (::is_null(puserinteraction))
+   {
+
+      return nullptr;
+
+   }
+
+   return puserinteraction;
+
+}

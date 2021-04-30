@@ -13,11 +13,11 @@ public:
 
    ~wcsdup_array();
 
-#ifdef WINDOWS
-
-   platform_char** windows_get_envp();
-
-#endif
+//#ifdef WINDOWS
+//
+//   platform_char** windows_get_envp();
+//
+//#endif
 
 };
 

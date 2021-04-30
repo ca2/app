@@ -1,10 +1,10 @@
 #pragma once
 
 
-namespace acme
-{
-
-
+//namespace acme
+//{
+//
+//
    class CLASS_DECL_ACME system :
       virtual public ::acme::context,
       virtual public ::acme_main_data,
@@ -411,4 +411,4 @@ namespace acme
    };
 
 
-} // namespace acme
+//} // namespace acme

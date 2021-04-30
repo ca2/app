@@ -29,4 +29,13 @@ public:
    }
 
 
+   ::e_status system_construct(int argc, char** argv, char** envp);
+  
+
+   ::e_status system_construct(int argc, wchar_t** argv, wchar_t** envp);
+
+
+   ::e_status system_construct(const char * pszCommandLine);
+
+
 };

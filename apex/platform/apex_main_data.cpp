@@ -40,34 +40,24 @@ apex_main_data::~apex_main_data()
 ::e_status apex_main_data::system_construct(int argc, char** argv, char ** envp)
 {
 
-   m_argc = argc;
+   auto estatus = acme_main_data::system_construct(argc, argv, envp);
 
-   m_argv = argv;
+   if (!estatus)
+   {
 
-   m_envp = envp;
+      return estatus;
+
+   }
 
    m_iPathInstallFolderExeArg = -1;
-
-
-//#
-//
-//   g_poslocal = nullptr;
-//
-   m_wargv = nullptr;
-
-   m_wenvp = nullptr;
 
 #ifdef WINDOWS_DESKTOP
 
    m_hinstance = ::GetModuleHandle(nullptr);
 
-   //windows_register_class((HINSTANCE) m_hinstance);
-
    m_hPrevInstance = nullptr;
 
    m_nCmdShow = SW_SHOWDEFAULT;
-
-   //m_edisplay = windows_show_window_to_edisplay(SW_SHOWDEFAULT, m_eactivation);
 
 #elif defined(LINUX)
 
@@ -75,7 +65,7 @@ apex_main_data::~apex_main_data()
 
 #endif
 
-   auto estatus = on_system_construct();
+   estatus = on_system_construct();
 
    if(!estatus)
    {
@@ -92,29 +82,22 @@ apex_main_data::~apex_main_data()
 ::e_status apex_main_data::system_construct(int argc, wchar_t** argv, wchar_t ** envp)
 {
 
-   m_argc = argc;
+   auto estatus = acme_main_data::system_construct(argc, argv, envp);
 
-   m_argv = nullptr;
+   if (!estatus)
+   {
 
-   m_envp = nullptr;
+      return estatus;
+
+   }
 
    m_iPathInstallFolderExeArg = -1;
-
-   //m_poslocal = nullptr;
-
-   m_wargv = argv;
-
-   m_wenvp = envp;
 
 #ifdef WINDOWS_DESKTOP
 
    m_hinstance = ::GetModuleHandle(nullptr);
 
-   //windows_register_class((HINSTANCE) m_hinstance);
-
    m_hPrevInstance = nullptr;
-
-   //m_edisplay = windows_show_window_to_edisplay(SW_SHOWDEFAULT, m_eactivation);
 
    m_nCmdShow = SW_SHOWDEFAULT;
 
@@ -124,7 +107,7 @@ apex_main_data::~apex_main_data()
 
 #endif
 
-   auto estatus = on_system_construct();
+   estatus = on_system_construct();
 
    if(!estatus)
    {
@@ -152,33 +135,24 @@ e_status apex_main_data::on_system_construct()
 ::e_status apex_main_data::system_construct(hinstance hinstanceThis, hinstance hPrevInstance, char * pCmdLine, i32 nCmdShow)
 {
 
+   auto estatus = acme_main_data::system_construct(pCmdLine);
+
+   if (!estatus)
+   {
+
+      return estatus;
+
+   }
+
    m_hinstance = hinstanceThis;
-
-   //windows_register_class((HINSTANCE) m_hinstance);
-
-   //MyRegisterClass((HINSTANCE) m_hinstance);
 
    m_hPrevInstance = hPrevInstance;
 
-   m_strCommandLine = pCmdLine;
-
-   //m_edisplay = windows_show_window_to_edisplay(nCmdShow, m_eactivation);
-
    m_nCmdShow = nCmdShow;
-
-   m_argc = __argc;
-
-   m_argv = __argv;
-
-   m_wargv = __wargv;
-
-   m_envp = *__p__environ();
-
-   m_wenvp = *__p__wenviron();
 
    //__zero(m_mainrunnera);
 
-   auto estatus = on_system_construct();
+   estatus = on_system_construct();
 
    if (!estatus)
    {

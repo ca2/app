@@ -18,7 +18,7 @@ int g_iMouseHoverCount = 0;
 
 #ifdef WINDOWS_DESKTOP
 #include "aura/os/windows/windowing.h"
-#include "aura/node/windows/system_interaction.h"
+//#include "aura/node/windows/system_interaction.h"
 #define MESSAGE_WINDOW_PARENT HWND_MESSAGE
 #elif defined(_UWP)
 

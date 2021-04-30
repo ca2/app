@@ -341,6 +341,13 @@ namespace app_shader
 #endif
       }
 
+      ::rectangle_i32 rectangle(m_pcontext->m_pbuffer->m_pimage->rectangle());
+
+      rectangle.left = rectangle.right - 48;
+      rectangle.top = rectangle.bottom - 48;
+
+      pgraphics->fill_rectangle(rectangle, argb(128, 128, 128, 128));
+
       //_001OnDraw1Through3(pgraphics);
 
    }

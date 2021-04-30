@@ -3,7 +3,7 @@
 
 #ifdef WINDOWS_DESKTOP
 
-#include "windows/_windows.h"
+//#include "windows/_windows.h"
 
 #elif defined(_UWP)
 
@@ -29,7 +29,7 @@
 #endif
 
 
-CLASS_DECL_AURA void __node_aura_factory_exchange(::factory_map * pfactorymap);
+//CLASS_DECL_AURA void __node_aura_factory_exchange(::factory_map * pfactorymap);
 
 
 

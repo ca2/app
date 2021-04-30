@@ -66,7 +66,7 @@ public:
 
    ::interlocked_count                 m_countReference;
    ::eobject                           m_eobject;
-   ::acme::system *                    m_psystem;
+   class system *                      m_psystem;
 
 
 //#if OBJ_REF_DBG
@@ -131,7 +131,7 @@ public:
 
    //::e_status branch();
 
-   inline ::acme::system* get_system() const { return (::acme::system *) m_psystem; }
+   inline class ::system* get_system() const { return (class ::system *) m_psystem; }
 
    inline ::apex::application* get_application() { return _get_application(); }
 

@@ -1124,19 +1124,6 @@
     <ClCompile Include="message\command.cpp" />
     <ClCompile Include="message\timer.cpp" />
     <ClCompile Include="message\user.cpp" />
-    <ClCompile Include="node\windows\shell_open.cpp" />
-    <ClCompile Include="node\windows\system.cpp" />
-    <ClCompile Include="node\windows\user_frame.cpp" />
-    <ClCompile Include="node\windows\windows_desktop.cpp" />
-    <ClCompile Include="node\windows\application.cpp" />
-    <ClCompile Include="node\windows\factory_exchange.cpp" />
-    <ClCompile Include="node\windows\graphics_buffer.cpp" />
-    <ClCompile Include="node\windows\interaction_impl.cpp" />
-    <ClCompile Include="node\windows\interaction_impl_message_bypass.cpp" />
-    <ClCompile Include="node\windows\system_interaction.cpp" />
-    <ClCompile Include="node\windows\timer.cpp" />
-    <ClCompile Include="node\windows\trace.cpp" />
-    <ClCompile Include="node\windows_common\application.cpp" />
     <ClCompile Include="os\android\graphics.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_basis|Win32'">true</ExcludedFromBuild>
@@ -1426,18 +1413,6 @@
     <ClInclude Include="node\opengl\opengl.h" />
     <ClInclude Include="node\opengl\program.h" />
     <ClInclude Include="node\opengl\shader.h" />
-    <ClInclude Include="node\windows\buffer.h" />
-    <ClInclude Include="node\windows\factory_exchange.h" />
-    <ClInclude Include="node\windows\interaction_impl.h" />
-    <ClInclude Include="node\windows\interprocess_communication.h" />
-    <ClInclude Include="node\windows\shell_open.h" />
-    <ClInclude Include="node\windows\system_interaction.h" />
-    <ClInclude Include="node\windows\user.h" />
-    <ClInclude Include="node\windows\windowing.h" />
-    <ClInclude Include="node\windows\_.h" />
-    <ClInclude Include="node\windows\_node_windows.h" />
-    <ClInclude Include="node\windows\_node_windows_private.h" />
-    <ClInclude Include="node\windows\_windows.h" />
     <ClInclude Include="operating_system.h" />
     <ClInclude Include="os\os.h" />
     <ClInclude Include="os\windowing.h" />

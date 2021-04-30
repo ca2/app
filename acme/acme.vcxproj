@@ -1491,7 +1491,6 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClCompile Include="os\windows\ansi_file.cpp" />
     <ClCompile Include="os\windows\api.cpp" />
     <ClCompile Include="os\windows\application.cpp" />
-    <ClCompile Include="os\windows\callstack.cpp" />
     <ClCompile Include="os\windows\console.cpp" />
     <ClCompile Include="os\windows\debug.cpp" />
     <ClCompile Include="os\windows\dir.cpp" />
@@ -1555,6 +1554,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClCompile Include="parallelization\tools.cpp" />
     <ClCompile Include="parallelization\waitable.cpp" />
     <ClCompile Include="parallelization\_.cpp" />
+    <ClCompile Include="platform\acme_main_data.cpp" />
     <ClCompile Include="platform\assert.cpp" />
     <ClCompile Include="platform\aura_str_pool.cpp" />
     <ClCompile Include="platform\build_debug.cpp" />
@@ -1818,7 +1818,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClInclude Include="os\windowing.h" />
     <ClInclude Include="os\windows\aaa_want_to_remove_process_env_reader.h" />
     <ClInclude Include="os\windows\api.h" />
-    <ClInclude Include="os\windows\callstack.h" />
+    <ClInclude Include="os\windows\aaa_callstack.h" />
     <ClInclude Include="os\windows\d2d1_1.h" />
     <ClInclude Include="os\windows\dir.h" />
     <ClInclude Include="os\windows\environment_variable.h" />

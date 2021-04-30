@@ -7,7 +7,7 @@ namespace apex
 
    class CLASS_DECL_APEX system:
       virtual public ::app_core,
-      virtual public ::acme::system,
+      virtual public ::system,
       virtual public ::apex::context
 #ifndef WINDOWS
       ,virtual public ::exception::translator
@@ -224,7 +224,9 @@ namespace apex
 
       void common_construct();
 
+
       virtual ::e_status initialize(::object * pobject) override;
+
 
       virtual void system_construct(int argc, char** argv, char** envp) override;
       virtual void system_construct(int argc, wchar_t** argv, wchar_t** envp) override;

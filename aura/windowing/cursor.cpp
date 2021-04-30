@@ -10,6 +10,8 @@ namespace windowing
    cursor::cursor()
    {
 
+      load_system_default_cursor_hint();
+
    }
 
 

@@ -5,16 +5,16 @@
 #include "acme/filesystem/filesystem/acme_path.h"
 
 
-::acme::system * g_psystem = nullptr;
+class ::system * g_psystem = nullptr;
 
 extern const char* g_pszTopLevelDomainList[];
 
 enum_dialog_result message_box_for_console(const char * psz, const char * pszTitle, const ::e_message_box & emessagebox);
 
-
-namespace acme
-{
-
+//
+//namespace acme
+//{
+//
 
    system::system()
    {
@@ -394,7 +394,7 @@ namespace acme
    }
 
 
-   CLASS_DECL_ACME system * get_system()
+   CLASS_DECL_ACME class system * get_system()
    {
 
       return ::g_psystem;
@@ -608,7 +608,7 @@ namespace acme
 
       // Ex. "draw2d" (Component) and implementation: either "draw2dcairo", "cairo", "draw2d_cairo"
 
-      __pointer(::acme::system) psystem = get_system();
+      __pointer(class ::system) psystem = get_system();
 
       synchronous_lock synchronouslock(&psystem->m_mutexLibrary);
 
@@ -716,7 +716,7 @@ namespace acme
 
       ::str::begins_eat_ci(strImplementation, strComponent);
 
-      __pointer(::acme::system) psystem = get_system();
+      __pointer(class ::system) psystem = get_system();
 
       synchronous_lock synchronouslock(&psystem->m_mutexContainerizedLibrary);
 
@@ -1115,7 +1115,7 @@ namespace acme
    void system::system_construct(int argc, wchar_t** argv, wchar_t** envp)
    {
 
-      __throw(error_interface_only);
+      //__throw(error_interface_only);
 
    }
 
@@ -1127,10 +1127,10 @@ namespace acme
 
    }
 
-
-} // namespace acme
-
-
+//
+//} // namespace acme
+//
+//
 
 
 
@@ -1143,7 +1143,7 @@ string __get_text(const string& str)
 }
 
 
-CLASS_DECL_ACME::acme::system* get_context_system()
+CLASS_DECL_ACME class ::system* get_context_system()
 {
 
    return g_psystem;
@@ -1151,10 +1151,12 @@ CLASS_DECL_ACME::acme::system* get_context_system()
 }
 
 
-CLASS_DECL_ACME void acme_system_init()
+CLASS_DECL_ACME class ::system * acme_system_init()
 {
 
-   g_psystem = new acme::system();
+   g_psystem = new class system();
+
+   return g_psystem;
 
 }
 

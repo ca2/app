@@ -23,7 +23,7 @@ int GetMainScreenRect(RECTANGLE_I32 * lprect);
 const char * get_main_app_id();
 #endif
 
-void __node_aura_factory_exchange(::factory_map * pfactorymap);
+//void __node_aura_factory_exchange(::factory_map * pfactorymap);
 
 #ifdef CUBE
 extern "C"
@@ -204,7 +204,7 @@ namespace aura
 
       }
  
-      __node_aura_factory_exchange(::factory::get_factory_map());
+      //__node_aura_factory_exchange(::factory::get_factory_map());
 
       m_bGudoNetCache = true;
 

@@ -29,7 +29,7 @@
 #endif
 
 
-CLASS_DECL_CORE void __node_aura_factory_exchange(::factory_map * pfactorymap);
+//CLASS_DECL_CORE void __node_aura_factory_exchange(::factory_map * pfactorymap);
 
 
 

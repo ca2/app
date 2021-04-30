@@ -1027,7 +1027,7 @@ namespace apex
       create_factory<command_line>();
       create_factory<http::context>();
 
-      auto estatus = ::acme::system::process_init();
+      auto estatus = ::system::process_init();
 
       if (!estatus)
       {
@@ -1075,7 +1075,7 @@ namespace apex
    ::e_status system::init1()
    {
 
-      auto estatus = ::acme::system::init1();
+      auto estatus = ::system::init1();
 
       if (!estatus)
       {
@@ -2088,7 +2088,7 @@ namespace apex
    ::e_status system::inline_init()
    {
 
-      auto estatus = ::acme::system::inline_init();
+      auto estatus = ::system::inline_init();
 
       if (!estatus)
       {
@@ -2168,7 +2168,7 @@ namespace apex
    ::e_status system::init_system()
    {
 
-      auto estatus = ::acme::system::init_system();
+      auto estatus = ::system::init_system();
 
       if(!estatus)
       {
@@ -2502,7 +2502,7 @@ namespace apex
 //
 
 
-      ::acme::system::TermSystem();
+       ::system::TermSystem();
 
    }
 
@@ -2512,7 +2512,7 @@ namespace apex
 
       ::e_status estatus = ::success;
 
-      estatus = ::acme::system::create_os_node();
+      estatus = ::system::create_os_node();
 
       if(!estatus)
       {
@@ -4932,7 +4932,7 @@ namespace apex
 //   ::e_status system::defer_initialize_x11()
 //   {
 //
-//      return ::acme::system::defer_initialize_x11();
+//      return class ::system::defer_initialize_x11();
 //
 //   }
 
@@ -5334,7 +5334,7 @@ namespace apex
 //
 //      }
 //
-//      //auto estatus = ::acme::system::main();
+//      //auto estatus = class ::system::main();
 
       auto estatus = ::thread::main();
 
@@ -5460,7 +5460,7 @@ namespace apex
    void system::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
    {
 
-      acme::system::on_subject(psubject, pcontext);
+      ::system::on_subject(psubject, pcontext);
 
       //::update updateSetting(pupdate);
 
@@ -5547,7 +5547,7 @@ namespace apex
       else
       {
       
-         ::acme::system::process_exit_status(pobject, estatus);
+         ::system::process_exit_status(pobject, estatus);
       
       }
 
@@ -5790,7 +5790,7 @@ namespace apex
    __pointer(::extended::future < ::conversation >) system::_message_box(::object * pobject, const char* pszText, const char* pszTitle, const ::e_message_box & emessagebox)
    {
 
-      return ::acme::system::_message_box(pobject, pszText, pszTitle, emessagebox);
+      return ::system::_message_box(pobject, pszText, pszTitle, emessagebox);
 
    }
 
@@ -5800,7 +5800,7 @@ namespace apex
    ::e_status system::get_public_internet_domain_extension_list(string_array& stra)
    {
 
-      auto estatus = acme::system::get_public_internet_domain_extension_list(stra);
+      auto estatus = ::system::get_public_internet_domain_extension_list(stra);
       
       return estatus;
 
@@ -5810,7 +5810,7 @@ namespace apex
    ::e_status system::system_main()
    {
 
-      auto estatus = ::acme::system::system_main();
+      auto estatus = ::system::system_main();
 
       if (!estatus)
       {

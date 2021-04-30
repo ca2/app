@@ -28,7 +28,11 @@ namespace draw2d
       virtual ~cursor();
 
 
-      virtual bool initialize_system_default();
+      //virtual bool initialize_system_default();
+
+      
+      
+
 
       virtual ::e_status finalize() override;
 

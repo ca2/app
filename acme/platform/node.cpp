@@ -206,6 +206,18 @@ namespace acme
    }
 
 
+#ifdef WINDOWS_DESKTOP
+
+   platform_char** node::_get_envp(wcsdup_array& a)
+   {
+
+      return nullptr;
+
+   }
+
+#endif
+
+
    ::file::path node::module_path_source()
    {
 

@@ -992,7 +992,7 @@
     <ClInclude Include="os\windows\aaa_want_to_remove_process_env_reader.h">
       <Filter>Header Files\os\windows</Filter>
     </ClInclude>
-    <ClInclude Include="os\windows\callstack.h">
+    <ClInclude Include="os\windows\aaa_callstack.h">
       <Filter>Header Files\os\windows</Filter>
     </ClInclude>
     <ClInclude Include="os\windows\d2d1_1.h">
@@ -3121,9 +3121,6 @@
     <ClCompile Include="os\windows\application.cpp">
       <Filter>Source Files\os\windows</Filter>
     </ClCompile>
-    <ClCompile Include="os\windows\callstack.cpp">
-      <Filter>Source Files\os\windows</Filter>
-    </ClCompile>
     <ClCompile Include="os\windows\debug.cpp">
       <Filter>Source Files\os\windows</Filter>
     </ClCompile>
@@ -3924,6 +3921,9 @@
     </ClCompile>
     <ClCompile Include="exception_translator.cpp">
       <Filter>Source Files\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\acme_main_data.cpp">
+      <Filter>Source Files\platform</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

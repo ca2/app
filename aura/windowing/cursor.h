@@ -26,7 +26,6 @@ namespace windowing
 
       virtual ::e_status load_system_default_cursor_hint();
 
-
       virtual ::e_status create_from_image(const ::image * pimage, ::i32 xHotspot, ::i16 yHotspot);
 
       virtual ::e_status load_default_cursor(enum_cursor ecursor);

@@ -17,7 +17,7 @@ namespace core
    inline ::core::system* session::get_system() const
    {
 
-      return ::is_set(m_psystem) ? dynamic_cast <::core::system*> ((::acme::system *)m_psystem) : nullptr;
+      return ::is_set(m_psystem) ? dynamic_cast <::core::system*> ((class ::system *)m_psystem) : nullptr;
 
    }
 

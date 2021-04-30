@@ -119,7 +119,7 @@ namespace acme
    bool library::open(const char * pszPath,bool bAutoClose,bool bCa2Path)
    {
 
-      __pointer(::acme::system) psystem = get_system();
+      __pointer(class ::system) psystem = get_system();
 
       synchronous_lock synchronouslock(&psystem->m_mutexLibrary);
 
@@ -197,7 +197,7 @@ namespace acme
    bool library::open_library(string strTitle)
    {
 
-      __pointer(::acme::system) psystem = get_system();
+      __pointer(class ::system) psystem = get_system();
 
       synchronous_lock synchronouslock(&psystem->m_mutexLibrary);
 
@@ -370,7 +370,7 @@ namespace acme
    string library::get_library_name()
    {
 
-      __pointer(::acme::system) psystem = get_system();
+      __pointer(class ::system) psystem = get_system();
 
       synchronous_lock synchronouslock(&psystem->m_mutexLibrary);
 
@@ -417,7 +417,7 @@ namespace acme
    bool library::close()
    {
 
-      __pointer(::acme::system) psystem = get_system();
+      __pointer(class ::system) psystem = get_system();
 
       synchronous_lock synchronouslock(&psystem->m_mutexLibrary);
 
@@ -469,7 +469,7 @@ namespace acme
    string library::get_app_id(const char * pszAppName)
    {
 
-      __pointer(::acme::system) psystem = get_system();
+      __pointer(class ::system) psystem = get_system();
 
       synchronous_lock synchronouslock(&psystem->m_mutexLibrary);
 
@@ -529,7 +529,7 @@ namespace acme
    string library::get_app_name(const char * pszAppId)
    {
 
-      __pointer(::acme::system) psystem = get_system();
+      __pointer(class ::system) psystem = get_system();
 
       synchronous_lock synchronouslock(&psystem->m_mutexLibrary);
 
@@ -591,7 +591,7 @@ namespace acme
    __transport(::matter) library::new_application(const char * pszAppId)
    {
 
-      __pointer(::acme::system) psystem = get_system();
+      __pointer(class ::system) psystem = get_system();
 
       synchronous_lock synchronouslock(&psystem->m_mutexLibrary);
 
@@ -700,7 +700,7 @@ namespace acme
    void library::get_app_list(string_array & stra)
    {
 
-      __pointer(::acme::system) psystem = get_system();
+      __pointer(class ::system) psystem = get_system();
 
       synchronous_lock synchronouslock(&psystem->m_mutexLibrary);
 
@@ -771,7 +771,7 @@ namespace acme
    __pointer(::matter) library::create_object(const char * pszClass)
    {
 
-      __pointer(::acme::system) psystem = get_system();
+      __pointer(class ::system) psystem = get_system();
 
       synchronous_lock synchronouslock(&psystem->m_mutexLibrary);
 
@@ -807,7 +807,7 @@ namespace acme
    bool library::has_object_class(const char * pszClassId)
    {
 
-      __pointer(::acme::system) psystem = get_system();
+      __pointer(class ::system) psystem = get_system();
 
       synchronous_lock synchronouslock(&psystem->m_mutexLibrary);
 
@@ -826,7 +826,7 @@ namespace acme
    bool library::contains_app(const char * pszAppId)
    {
 
-      __pointer(::acme::system) psystem = get_system();
+      __pointer(class ::system) psystem = get_system();
 
       synchronous_lock synchronouslock(&psystem->m_mutexLibrary);
 
@@ -842,7 +842,7 @@ namespace acme
    string library::get_root()
    {
 
-      __pointer(::acme::system) psystem = get_system();
+      __pointer(class ::system) psystem = get_system();
 
       synchronous_lock synchronouslock(&psystem->m_mutexLibrary);
 
@@ -861,7 +861,7 @@ namespace acme
    void library::get_create_view_id_list(::array < ::id > & ida)
    {
 
-      __pointer(::acme::system) psystem = get_system();
+      __pointer(class ::system) psystem = get_system();
 
       synchronous_lock synchronouslock(&psystem->m_mutexLibrary);
 
@@ -873,7 +873,7 @@ namespace acme
    bool library::is_opened()
    {
 
-      __pointer(::acme::system) psystem = get_system();
+      __pointer(class ::system) psystem = get_system();
 
       synchronous_lock synchronouslock(&psystem->m_mutexLibrary);
 
@@ -893,7 +893,7 @@ namespace acme
    void * library::raw_get(const char * pszEntryName)
    {
 
-      __pointer(::acme::system) psystem = get_system();
+      __pointer(class ::system) psystem = get_system();
 
       synchronous_lock synchronouslock(&psystem->m_mutexLibrary);
 

@@ -5,7 +5,7 @@
 #endif
 
 //void stage();
-void acme_system_init();
+class ::system * acme_system_init();
 void acme_system_term();
 
 
@@ -18,21 +18,65 @@ int main(int argc, platform_char ** argv, platform_char ** envp)
 #endif
 {
 
-   process_set_args(argc, argv);
+//   process_set_args(argc, argv);
+//
+//   auto psystem = acme_system_init();
+//
+//   {
+//
+//#ifdef WINDOWS
+//
+//      wcsdup_array wcsdupa;
+//
+//      auto envp = psystem->node()->_get_envp(wcsdupa);
+//
+//#endif
 
-   acme_system_init();
+   ::e_status estatus = ::success;
 
+   //process_set_args(argc, argv);
+
+   auto psystem = acme_system_init();
+
+   if (!psystem)
    {
 
+      return -1;
+
+   }
+
+   //psystem->m_bConsole = false;
+
+   //application_common(psystem);
+
+   //string strCommandLine(pCmdLine);
+
+   {
 #ifdef WINDOWS
 
-      wcsdup_array wcsdupa;
+      //wcsdup_array wcsdupa;
 
-      auto envp = wcsdupa.windows_get_envp();
+      //auto envp = psystem->node()->_get_envp(wcsdupa);
+
+      platform_char** envp = nullptr;
 
 #endif
 
-      implement(argc, argv, envp);
+      psystem->system_construct(argc, argv, envp);
+
+   //psystem->set_current_handles();
+
+   estatus = psystem->init_system();
+
+   if (!estatus)
+   {
+
+      return estatus;
+
+   }
+
+
+      implement(psystem);
 
    }
 

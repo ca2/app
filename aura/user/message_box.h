@@ -14,6 +14,9 @@ namespace user
    public:
 
 
+      bool                             m_bFirstLayoutDone;
+
+
       //__pointer(::future < enum_dialog_result >) m_pprocess;
       bool                             m_bOsUserThemeColorModified;
       bool                             m_bInvalidated;

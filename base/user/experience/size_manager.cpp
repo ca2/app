@@ -195,7 +195,7 @@ namespace experience
 
          auto ecursor = translate(m_ehittestSizing);
 
-         auto pcursor = pwindowing->get_cursor(e_cursor_default);
+         auto pcursor = pwindowing->get_cursor(ecursor);
 
          pmouse->m_pcursor = pcursor;
 

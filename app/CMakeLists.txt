@@ -37,16 +37,11 @@ endif()
 
 add_dependencies(app_app ${app_common_dependencies})
 add_dependencies(app_app apex_linux)
-
-target_link_directories(app_app PRIVATE ${LIBRARY_OUTPUT_PATH})
-target_link_directories(app_app PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/storage-${PLATFORM_NAME}/library/x64/basis)
-target_link_directories(app_app PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/storage-${PLATFORM_NAME}/third/library/x64/basis)
+add_dependencies(app_app ${default_node})
 
 
-target_include_directories(app_app PRIVATE .)
 target_include_directories(app_app PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../..)
 target_include_directories(app_app PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/..)
-target_include_directories(app_app PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/third-${PLATFORM_NAME}/third/include/include)
 target_include_directories(app_app PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 
 

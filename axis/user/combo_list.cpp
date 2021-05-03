@@ -408,7 +408,8 @@ namespace user
 
       auto rectComboClient = m_pcombo->get_client_rect();
 
-      psize->cx = maximum(psize->cx, rectComboClient.width());
+      //psize->cx = maximum(psize->cx, rectComboClient.width());
+      //psize->cx = maximum(psize->cx, rectComboClient.width());
 
    }
 

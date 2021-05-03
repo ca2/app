@@ -18,6 +18,18 @@ namespace acme
       virtual public object
       //, virtual public layered < node >
    {
+   protected:
+
+
+#ifdef LINUX
+
+
+      enum_linux_distribution                            m_elinuxdistribution;
+
+
+#endif
+
+
    public:
 
 
@@ -50,9 +62,6 @@ namespace acme
       int                     m_iWeatherDarkness;
       ::file::path            m_pathModule;
 
-#ifdef LINUX
-      enum_linux_distribution                            m_elinuxdistribution;
-#endif
       ::user::enum_desktop                               m_edesktop;
 
 
@@ -265,11 +274,13 @@ namespace acme
 
       virtual ::user::enum_desktop get_edesktop();
 
-      virtual void update_edesktop();
+      virtual ::user::enum_desktop calculate_edesktop();
 
 #ifdef LINUX
 
-      inline enum_linux_distribution get_linux_distribution() const {return m_elinuxdistribution;}
+      inline enum_linux_distribution get_linux_distribution() const;
+
+      virtual ::e_status calculate_linux_distribution();
 
 #endif
 

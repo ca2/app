@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "acme/os/_const_console.h"
 #include "acme/os/console.h"
 #include "console.h"
 

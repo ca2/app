@@ -100,7 +100,8 @@ namespace acme
    extern ::mutex * g_pmutexCred;
 
 
-   extern class ::exception_engine * g_pexceptionengine;
+   extern class ::exception::engine * g_pengine;
+
 
    extern ::mutex * g_pmutexMessageDispatch;
 

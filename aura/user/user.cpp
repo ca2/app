@@ -1336,63 +1336,70 @@ namespace user
       if (!estatus)
       {
 
-#ifdef LINUX
-
-         auto psystem = m_psystem;
-
-         auto edesktop = psystem->get_edesktop();
-
-         if (edesktop & ::user::e_desktop_kde)
-         {
-
-            estatus = psystem->do_factory_exchange("windowing", "xcb");
-
-         }
-         else if (edesktop & ::user::e_desktop_gnome)
-         {
-
-            estatus = psystem->do_factory_exchange("windowing", "x11");
-
-         }
-         else
-         {
-
-            estatus = psystem->do_factory_exchange("windowing", "xcb");
-
-            //if (!estatus)
-            {
-
-               estatus = psystem->do_factory_exchange("windowing", "x11");
-
-            }
-
-         }
-
-#elif defined(WINDOWS_DESKTOP)
-
-         auto psystem = m_psystem->m_paurasystem;
-
-         estatus = psystem->do_factory_exchange("windowing", "win32");
-
-#endif
-
-         if (!estatus)
-         {
-
-            return estatus;
-
-         }
-
-         estatus = __compose(m_pwindowing);
-
-         if (!estatus)
-         {
-
-            return estatus;
-
-         }
+         return estatus;
 
       }
+
+//      if (!estatus)
+//      {
+//
+//#ifdef LINUX
+//
+//         auto psystem = m_psystem;
+//
+//         auto edesktop = psystem->get_edesktop();
+//
+//         if (edesktop & ::user::e_desktop_kde)
+//         {
+//
+//            estatus = psystem->do_factory_exchange("windowing", "xcb");
+//
+//         }
+//         else if (edesktop & ::user::e_desktop_gnome)
+//         {
+//
+//            estatus = psystem->do_factory_exchange("windowing", "x11");
+//
+//         }
+//         else
+//         {
+//
+//            estatus = psystem->do_factory_exchange("windowing", "xcb");
+//
+//            //if (!estatus)
+//            {
+//
+//               estatus = psystem->do_factory_exchange("windowing", "x11");
+//
+//            }
+//
+//         }
+//
+//#elif defined(WINDOWS_DESKTOP)
+//
+//         auto psystem = m_psystem->m_paurasystem;
+//
+//         estatus = psystem->do_factory_exchange("windowing", "win32");
+//
+//#endif
+//
+//         if (!estatus)
+//         {
+//
+//            return estatus;
+//
+//         }
+//
+//         estatus = __compose(m_pwindowing);
+//
+//         if (!estatus)
+//         {
+//
+//            return estatus;
+//
+//         }
+//
+//      }
 
       estatus = m_pwindowing->initialize_windowing(this);
 
@@ -1414,8 +1421,6 @@ namespace user
       return estatus;
 
    }
-
-
 
 
    bool user::runnable_step()

@@ -74,6 +74,24 @@ namespace simpledb
 
       m_pdatabaseLocal = pdatabase;
 
+      estatus = pdatabase->initialize(this);
+
+      if (!estatus)
+      {
+
+         return ::error_failed;
+
+      }
+
+      estatus = pdatabase->connect(pszDatabase);
+
+      if (!estatus)
+      {
+
+         return ::error_failed;
+
+      }
+
       estatus = __compose_new(m_psimpledb);
 
       if (!estatus)

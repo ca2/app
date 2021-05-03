@@ -35,6 +35,12 @@ namespace acme
       m_pNodeDesktopEnvironmentGnome = nullptr;
       m_pNodeDesktopEnvironmentKDE = nullptr;
 
+#ifdef LINUX
+
+      m_elinuxdistribution = e_linux_distribution_not_initialized;
+
+#endif
+
    }
 
 
@@ -107,7 +113,7 @@ namespace acme
       if (m_edesktop == ::user::e_desktop_none)
       {
 
-         update_edesktop();
+         calculate_edesktop();
 
       }
 
@@ -116,10 +122,12 @@ namespace acme
    }
 
 
-   void node::update_edesktop()
+   ::user::enum_desktop node::calculate_edesktop()
    {
 
       // Implement m_edesktop update
+
+      return ::user::e_desktop_none;
 
    }
    
@@ -155,6 +163,35 @@ namespace acme
       return ::success;
 
    }
+
+
+#ifdef LINUX
+
+
+   ::enum_linux_distribution node::get_linux_distribution() const
+   {
+
+      if(m_elinuxdistribution == e_linux_distribution_not_initialized)
+      {
+
+         ((node *)this)->calculate_linux_distribution();
+
+      }
+
+      return m_elinuxdistribution;
+
+   }
+
+
+   ::e_status node::calculate_linux_distribution()
+   {
+
+      return ::success;
+
+   }
+
+
+#endif
 
 
    //::file::path node::roaming()

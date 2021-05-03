@@ -403,7 +403,7 @@ i32 image_list::add_file(::payload varFile, int iItem)
 
          auto pimage = pcontextimage->load_image(varFile, true);
 
-         if (!pimage)
+         if (!::is_ok(pimage))
          {
 
             return;

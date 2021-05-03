@@ -44,7 +44,7 @@ CLASS_DECL_AURA MESSAGE * __get_current_message();
 
 
 
-#include "interaction_impl.h"
+//#include "interaction_impl.h"
 
 
 CLASS_DECL_AURA void AfxProcessWndProcException(::exception::exception*, ::message::message * pmessage);

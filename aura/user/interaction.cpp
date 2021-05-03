@@ -13,7 +13,7 @@
 //#include "acme/os/cross/windows/_windows.h"
 
 int g_iMouseHoverCount = 0;
-
+int g_i134 = 0;
 #define TEST_PRINT_BUFFER
 
 #ifdef WINDOWS_DESKTOP
@@ -9440,6 +9440,7 @@ namespace user
    }
 
 
+
    bool interaction::set_mouse_capture()
    {
 
@@ -9491,6 +9492,8 @@ namespace user
       }
 
       pimpl->m_puserinteractionCapture = this;
+
+      g_i134++;
 
       return true;
 
@@ -14804,7 +14807,7 @@ restart:
 
             //}
 
-            pmouse->m_bRet = m_itemLButtonDown.m_eelement != e_element_client;
+            pmouse->m_bRet = m_itemLButtonDown.m_eelement != e_element_none;
 
             if (pmouse->m_bRet)
             {

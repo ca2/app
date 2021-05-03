@@ -131,6 +131,13 @@ namespace windowing
 
    }
 
+   ::color::color window::screen_pixel(int x, int y) const
+{
+
+   return m_pimpl->screen_pixel(x, y);
+
+}
+
 
    ::windowing::display * window::display()
    {

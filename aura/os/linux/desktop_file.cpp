@@ -169,13 +169,9 @@ namespace linux
 
       auto papplication = get_application();
 
-      string strPrgName = papplication->m_strAppId;
+      string strPrgName = papplication->get_wm_class();
 
-      strPrgName.replace("/", ".");
-
-      strPrgName.replace("_", "-");
-
-      path /= ("com." + strPrgName + ".desktop");
+      path /= (strPrgName + ".desktop");
 
       return path;
 
@@ -205,11 +201,7 @@ namespace linux
 
       auto papplication = get_application();
 
-      string strPrgName = papplication->m_strAppId;
-
-      strPrgName.replace("/", ".");
-
-      strPrgName.replace("_", "-");
+      string strWMClass = papplication->get_wm_class();
 
       straLine.add("[Desktop Entry]");
       straLine.add("Version=1.0");
@@ -222,7 +214,6 @@ namespace linux
       straLine.add("Terminal=false");
       straLine.add("X-MultipleArgs=false");
       straLine.add("Categories=Network;");
-      //straLine.add("StartupNotify=true");
       straLine.add("MimeType=");
 
    }
@@ -250,13 +241,7 @@ namespace linux
 
       string_array straCategories = proper_category(papplication->get_categories());
 
-      string strPrgName = papplication->m_strAppId;
-
-      strPrgName.replace("/", ".");
-
-      strPrgName.replace("_", "-");
-
-//      ::file::path pathLaunch;
+      string strWMClass = papplication->get_wm_class();
 
       ::file::path pathUserBin;
 
@@ -372,7 +357,7 @@ namespace linux
       }
 
 
-      straLine._007SetLine("[Desktop Entry]", "StartupWMClass",  strPrgName);
+      straLine._007SetLine("[Desktop Entry]", "StartupWMClass", strWMClass);
 
       // straLine._007SetLine("[Desktop Entry]", "Actions", "transparent-frame;");
 

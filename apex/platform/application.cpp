@@ -2568,6 +2568,8 @@ namespace apex
 
       m_millisHeartBeat.Now();
 
+      auto psystem = m_psystem;
+
       try
       {
 
@@ -11102,6 +11104,25 @@ retry_license:
 
    }
 
+
+#ifdef LINUX
+
+
+   string application::get_wm_class() const
+   {
+
+      string strWMClass = m_strAppId;
+
+      strWMClass.replace("/", ".");
+
+      strWMClass.replace("_", "-");
+
+      return strWMClass;
+
+   }
+
+
+#endif
 
 
 } // namespace apex

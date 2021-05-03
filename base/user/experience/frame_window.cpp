@@ -1808,6 +1808,13 @@ namespace experience
 
          index iBestWorkspace = get_best_workspace(&rectWorkspace, rectangle);
 
+         if(rectangle.is_empty())
+         {
+
+            return iBestWorkspace;
+
+         }
+
          auto sizeMinimum = get_window_minimum_size();
 
          if (rectangle.height() < sizeMinimum.cy)

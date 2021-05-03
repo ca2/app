@@ -1,45 +1,49 @@
 #include "framework.h"
 
 
-class ::exception_engine * g_pexceptionengine = nullptr;
+namespace exception
+{
+
+
+   class engine * g_pengine = nullptr;
+
+
+   CLASS_DECL_ACME class ::exception::engine & engine()
+   {
+
+      return *g_pengine;
+
+   }
+
+
+} // namespace exception
 
 
 namespace exception
 {
 
-   CLASS_DECL_ACME class ::exception_engine & engine()
-   {
 
-      return *g_pexceptionengine;
-
-   }
-
-} // namespace exception
-
-
-//namespace exception
-//{
-
-
-
-   exception_engine::exception_engine()
+   engine::engine()
    {
 
    }
 
 
-   exception_engine::~exception_engine()
+   engine::~engine()
    {
 
 
    }
 
 
-   void exception_engine::reset()
+   void engine::reset()
    {
 
 
    }
 
 
-//}
+} // namespace excpetion
+
+
+

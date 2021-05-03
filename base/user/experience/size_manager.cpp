@@ -132,7 +132,7 @@ namespace experience
       else
       {
 
-         psession->user()->windowing()->release_mouse_capture();
+         //psession->user()->windowing()->release_mouse_capture();
 
       }
 

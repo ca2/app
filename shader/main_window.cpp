@@ -17,7 +17,7 @@ namespace app_shader
 
       m_iShader = 0;
 
-      payload(FONTSEL_IMPACT) = true;
+      //payload(FONTSEL_IMPACT) = true;
 
       m_flagNonClient.erase(non_client_background);
 
@@ -25,7 +25,7 @@ namespace app_shader
 
       m_colorBackground = 0;
 
-      //m_bSimpleUIDefaultMouseHandling = true;
+      m_bSimpleUIDefaultMouseHandling = true;
 
    }
 

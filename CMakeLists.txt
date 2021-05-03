@@ -677,7 +677,7 @@ add_executable(app
         acme/exception/exception.cpp
         acme/exception/exception.h
         acme/exception/exception2.h
-        acme/exception/exception_engine.cpp
+   acme/exception/engine.cpp
         acme/exception/exit.cpp
         acme/exception/exit.h
         acme/exception/hresult.cpp
@@ -1417,7 +1417,7 @@ add_executable(app
         acme/os/ios/debug.cpp
         acme/os/ios/error.cpp
         acme/os/ios/exception_engine.cpp
-        acme/os/ios/exception_engine.h
+   acme/os/ios/engine.h
         acme/os/ios/file.cpp
         acme/os/ios/fontopus.cpp
         acme/os/ios/gen_1.h

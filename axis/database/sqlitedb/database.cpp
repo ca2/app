@@ -275,7 +275,24 @@ namespace sqlite
       u64 uConnectionFlags)
    {
 
-      return error_failed;
+      m_strHost = host;
+      m_strPort = port;
+      m_strName = name;
+      m_strUser = user;
+      m_strPass = pass;
+      m_strSckt = sckt;
+      m_uConnectionFlags = uConnectionFlags;
+
+      auto estatus = _connect();
+
+      if(!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return estatus;
 
    }
 

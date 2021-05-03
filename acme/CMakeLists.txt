@@ -30,7 +30,7 @@ list(APPEND acme_source
    exception/dump_floating_point.cpp
    exception/dump_output.cpp
    exception/exception.cpp
-   exception/exception_engine.cpp
+   exception/engine.cpp
    #exception/exit.cpp
    exception/extended_status.cpp
    exception/extended_status.h
@@ -167,6 +167,8 @@ list(APPEND acme_source
    parallelization/thread_os.cpp
    parallelization/waitable.cpp
    platform/_.cpp
+   platform/acme_main_data.cpp
+   platform/acme_main_data.h
    platform/assert.cpp
    platform/aura_str_pool.cpp
    platform/build_debug.cpp
@@ -494,7 +496,7 @@ list(APPEND acme_source
    exception/call_stack.h
    exception/callstack.h
    exception/cancel.h
-        #exception/debug_stream.h
+   #exception/debug_stream.h
    exception/dump_context.h
    exception/engine.h
    exception/exception.h
@@ -502,39 +504,40 @@ list(APPEND acme_source
    exception/exit.cpp
    exception/exit.h
    exception/hresult.h
-        #exception/installing.h
-        #exception/interface_only.h
-        #exception/invalid_argument.h
-        #exception/invalid_character.h
-        #exception/invalid_handle.h
-        #exception/invalid_index.h
-        #exception/invalid_type.h
-        #exception/io.h
-        #exception/memory.h
-        #exception/misc.h
-        #exception/not_implemented.h
-        #exception/not_installed.h
-        #exception/not_licensed.h
-        #exception/not_supported.h
-        #exception/operation_canceled.h
-        #exception/os.h
-        #exception/overflow.h
-        #exception/parsing.h
-        #exception/range.h
-        #exception/resource.h
-        #exception/result.h
-        #exception/runtime.h
-        #exception/simple.h
+   #exception/installing.h
+   #exception/interface_only.h
+   #exception/invalid_argument.h
+   #exception/invalid_character.h
+   #exception/invalid_handle.h
+   #exception/invalid_index.h
+   #exception/invalid_type.h
+   #exception/io.h
+   #exception/memory.h
+   #exception/misc.h
+   #exception/not_implemented.h
+   #exception/not_installed.h
+   #exception/not_licensed.h
+   #exception/not_supported.h
+   #exception/operation_canceled.h
+   #exception/os.h
+   #exception/overflow.h
+   #exception/parsing.h
+   #exception/range.h
+   #exception/resource.h
+   #exception/result.h
+   #exception/runtime.h
+   #exception/simple.h
    exception/standard.h
-   exception/standard_translator.h
-        #exception/system.h
-        #exception/temporary.h
+   #exception/system.h
+   #exception/temporary.h
    exception/throw.h
-        #exception/todo.h
+   #exception/todo.h
+   #exception/translator.cpp
+   exception/translator.h
    exception/trap.h
-        #exception/unhandled_report.h
-        #exception/user.h
-        #exception/void_implementation.h
+   #exception/unhandled_report.h
+   #exception/user.h
+   #exception/void_implementation.h
    filesystem/_impl.h
    filesystem/file/_.h
    filesystem/file/___serialization_draft.h
@@ -711,7 +714,7 @@ list(APPEND acme_source
    os/ios/_mm.h
    os/ios/base_internal.h
    os/ios/cross_win_gdi.h
-   os/ios/exception_engine.h
+   os/ios/engine.h
    os/ios/gen_1.h
    os/ios/implementation.h
    os/ios/internal.h
@@ -769,7 +772,7 @@ list(APPEND acme_source
    os/windows/_windows.h
    os/windows/_windows_impl.h
    os/windows/api.h
-   os/windows/callstack.h
+   #os/windows/callstack.h
    os/windows/d2d1_1.h
    os/windows/dir.h
    os/windows/environment_variable.h
@@ -1332,7 +1335,7 @@ if (WIN32)
       os/windows/api.cpp
       os/windows/application.cpp
       os/windows/application_system_run.cpp
-      os/windows/callstack.cpp
+      #os/windows/callstack.cpp
       os/windows/debug.cpp
       os/windows/dir.cpp
       os/windows/environment_variable.cpp
@@ -1459,12 +1462,12 @@ endif ()
 
 if (LINUX)
    list(APPEND acme_source
-      node/linux/console.cpp
+      #node/linux/console.cpp
       node/linux/dumpinit.cpp
       node/linux/error.cpp
       node/linux/exception.cpp
       node/linux/factory_exchange.cpp
-      node/linux/file.cpp
+      #node/linux/file.cpp
       node/linux/linux.cpp
       #node/linux/node.cpp
       #node/linux/node.h
@@ -1472,7 +1475,7 @@ if (LINUX)
       #        node/linux/shell.cpp
       #        node/linux/shell_linux.cpp
       node/linux/system.cpp
-      node/linux/stdio_file.cpp
+      #node/linux/stdio_file.cpp
       node/linux/thread.cpp
       node/linux/trace.cpp
       node/linux/util.cpp
@@ -1504,12 +1507,12 @@ if (LINUX)
 
    list(APPEND acme_source
       node/linux/application.h
-      node/linux/console.h
+      #node/linux/console.h
       node/linux/factory_exchange.h
-      node/linux/file.h
+      #node/linux/file.h
       node/linux/internal.h
       node/linux/root_tools.h
-      node/linux/stdio_file.h
+      #node/linux/stdio_file.h
       node/linux/thread.h
       node/linux/_.h
       node/linux/_linux.h
@@ -1799,7 +1802,7 @@ endif ()
 
 
 
-add_library(acme SHARED ${acme_source} )
+add_library(acme SHARED ${acme_source} os/_const_console.h)
 
 
 target_precompile_headers(acme PRIVATE framework.h)

@@ -826,7 +826,16 @@ namespace user
    }
 
 
-   //bool interaction_impl::native_create_window()
+   ::color::color interaction_impl::screen_pixel(int x, int y) const
+   {
+
+      auto origin = m_puserinteraction->layout().window().origin();
+
+      return m_pgraphics->get_screen_image()->pixel(x-origin.x, y- origin.y);
+
+   }
+
+//bool interaction_impl::native_create_window()
    //{
 
    //   return false;
@@ -5284,30 +5293,45 @@ namespace user
 //
 //      }
 
-      if (m_puserinteraction->layout().sketch().origin() != pmove->m_point)
+         //m_pwindow->m_point = pmove->m_point;
+
+         m_puserinteraction->layout().window().origin() = pmove->m_point;
+
+         m_puserinteraction->layout().window().screen_origin() = pmove->m_point;
+
+         if ((m_puserinteraction->layout().sketch().origin()
+         != m_puserinteraction->layout().window().origin())
+         ||
+            (m_puserinteraction->layout().sketch().screen_origin()
+             != m_puserinteraction->layout().window().screen_origin()))
       {
 
-         if (m_puserinteraction->layout().is_moving())
-         {
+         m_puserinteraction->layout().sketch().origin() = m_puserinteraction->layout().window().origin();
+         m_puserinteraction->layout().design().origin() = m_puserinteraction->layout().window().origin();
+         m_puserinteraction->layout().sketch().screen_origin() = m_puserinteraction->layout().window().screen_origin();
+         m_puserinteraction->layout().design().screen_origin() = m_puserinteraction->layout().window().screen_origin();
 
-            INFO("\nWindow is Moving :: _001OnMove");
+         //if (m_puserinteraction->layout().is_moving())
+         //{
 
-         }
+           // INFO("\nWindow is Moving :: _001OnMove");
 
-         m_puserinteraction->layout().sketch().origin() = pmove->m_point;
+         //}
 
-         if (m_puserinteraction->layout().sketch().display() != e_display_normal)
-         {
+         //m_puserinteraction->layout().sketch().origin() = pmove->m_point;
 
-            m_puserinteraction->display(e_display_normal);
+         //if (m_puserinteraction->layout().sketch().display() != e_display_normal)
+         //{
 
-         }
+           // m_puserinteraction->display(e_display_normal);
 
-         m_puserinteraction->set_reposition();
+         //}
 
-         m_puserinteraction->set_need_redraw();
+         //m_puserinteraction->set_reposition();
 
-         m_puserinteraction->post_redraw();
+         //m_puserinteraction->set_need_redraw();
+
+         //m_puserinteraction->post_redraw();
 
       }
 
@@ -5357,23 +5381,58 @@ namespace user
 //
 //      }
 
-      if (m_puserinteraction->layout().sketch().size() != psize->m_size)
+//      if (m_puserinteraction->layout().sketch().size() != psize->m_size)
+//      {
+//
+//         m_puserinteraction->layout().sketch() = psize->m_size;
+//
+//         if (m_puserinteraction->layout().sketch().display() != e_display_normal)
+//         {
+//
+//            m_puserinteraction->display(e_display_normal);
+//
+//         }
+//
+//         m_puserinteraction->set_need_layout();
+//
+//         m_puserinteraction->set_need_redraw();
+//
+//         m_puserinteraction->post_redraw();
+//
+//      }
+
+      //m_pwindow->m_size = psize->m_size;
+
+      m_puserinteraction->layout().window().size() = psize->m_size;
+
+      if ((m_puserinteraction->layout().sketch().size()
+           != m_puserinteraction->layout().window().size()))
       {
 
-         m_puserinteraction->layout().sketch() = psize->m_size;
+         m_puserinteraction->layout().sketch().size() = m_puserinteraction->layout().window().size();
+         m_puserinteraction->layout().design().size() = m_puserinteraction->layout().window().size();
 
-         if (m_puserinteraction->layout().sketch().display() != e_display_normal)
-         {
+         //if (m_puserinteraction->layout().is_moving())
+         //{
 
-            m_puserinteraction->display(e_display_normal);
+         // INFO("\nWindow is Moving :: _001OnMove");
 
-         }
+         //}
 
-         m_puserinteraction->set_need_layout();
+         //m_puserinteraction->layout().sketch().origin() = pmove->m_point;
 
-         m_puserinteraction->set_need_redraw();
+         //if (m_puserinteraction->layout().sketch().display() != e_display_normal)
+         //{
 
-         m_puserinteraction->post_redraw();
+         // m_puserinteraction->display(e_display_normal);
+
+         //}
+
+         //m_puserinteraction->set_reposition();
+
+         //m_puserinteraction->set_need_redraw();
+
+         //m_puserinteraction->post_redraw();
 
       }
 

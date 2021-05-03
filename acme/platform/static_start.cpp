@@ -211,7 +211,8 @@ namespace acme
    //::mutex * g_pmutexCred;
 
 
-   class ::exception_engine* g_pexceptionengine;
+   class ::exception::engine* g_pengine;
+
 
    ::mutex * g_pmutexMessageDispatch;
 
@@ -378,7 +379,7 @@ namespace acme
 
       //g_pmutexCred = nullptr;
 
-      g_pexceptionengine = nullptr;
+      g_pengine = nullptr;
       g_pmutexMessageDispatch = nullptr;
 
       g_paAura = nullptr;
@@ -551,7 +552,7 @@ namespace acme
 
       //xxdebug_box("acme.dll base_static_start (0)", "box", e_message_box_ok);
 
-      g_pexceptionengine = new ::PLATFORM_NAMESPACE::exception_engine();
+      g_pengine = new ::PLATFORM_NAMESPACE::exception::engine();
 
       g_pmutexGlobals = new ::mutex();
 

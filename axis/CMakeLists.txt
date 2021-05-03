@@ -700,8 +700,3 @@ target_include_directories(axis PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../arc
 
 
 target_compile_definitions(axis PRIVATE _AXIS_LIBRARY)
-target_compile_definitions(axis PRIVATE UNICODE)
-target_compile_definitions(axis PRIVATE _UNICODE)
-
-
-

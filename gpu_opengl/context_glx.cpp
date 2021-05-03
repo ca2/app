@@ -2,6 +2,7 @@
 #include "_.h"
 #include "context_glx.h"
 #include "platform-posix/aura_posix/_.h"
+#include "platform-posix/aura_posix/_aura_posix.h"
 #include "platform-posix/aura_posix/display_lock.h"
 
 

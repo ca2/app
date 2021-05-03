@@ -735,6 +735,7 @@ enum enum_operating_system
 enum enum_linux_distribution
 {
 
+   e_linux_distribution_not_initialized = -2,
    e_linux_distribution_unknown = -1,
    e_linux_distribution_default = 0,
    e_linux_distribution_ubuntu,

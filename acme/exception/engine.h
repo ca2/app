@@ -30,29 +30,38 @@
 class os_engine;
 
 
-class CLASS_DECL_ACME exception_engine :
-   virtual public matter
+namespace exception
 {
-public:
 
 
-   critical_section     m_criticalsection;
+   class CLASS_DECL_ACME engine :
+      virtual public matter
+   {
+   public:
 
 
-   exception_engine();
-   virtual ~exception_engine();
+      critical_section m_criticalsection;
 
 
-   static const char * default_format() { return "%f(%l) : %s\n"; }
+      engine();
+
+      virtual ~engine();
 
 
-   virtual void reset();
+      static const char * default_format()
+      { return "%f(%l) : %s\n"; }
 
 
-};
+      virtual void reset();
 
 
-CLASS_DECL_ACME ::exception_engine & engine();
+   };
+
+
+} // namespace exception
+
+
+CLASS_DECL_ACME ::exception::engine & engine();
 
 
 

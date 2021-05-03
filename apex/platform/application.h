@@ -1445,6 +1445,12 @@ namespace apex
 
       virtual string as_string(const ::payload & payload);
 
+#ifdef LINUX
+
+      virtual string get_wm_class() const;
+
+#endif
+
 
    };
 

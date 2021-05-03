@@ -589,43 +589,43 @@ namespace aura
    ::e_status system::node_factory_exchange()
    {
 
-      ::e_status estatus = error_failed;
+      auto estatus = do_factory_exchange("node", PLATFORM_NAME);
 
-#ifdef LINUX
-
-      auto edesktop = get_edesktop();
-
-      if (edesktop & ::user::e_desktop_kde)
-      {
-
-         estatus = do_factory_exchange("desktop_environment", "kde");
-
-      }
-      else if (edesktop & ::user::e_desktop_gnome)
-      {
-
-         estatus = do_factory_exchange("desktop_environment", "gnome");
-
-      }
-      else
-      {
-
-         estatus = do_factory_exchange("desktop_environment", "gnome");
-
-         if (!estatus)
-         {
-
-            estatus = do_factory_exchange("desktop_environment", "kde");
-
-         }
-
-      }
-
-#else
-
-      estatus = do_factory_exchange("aura", "windows");
-
-#endif
+//#ifdef LINUX
+//
+//      auto edesktop = get_edesktop();
+//
+//      if (edesktop & ::user::e_desktop_kde)
+//      {
+//
+//         estatus = do_factory_exchange("desktop_environment", "kde");
+//
+//      }
+//      else if (edesktop & ::user::e_desktop_gnome)
+//      {
+//
+//         estatus = do_factory_exchange("desktop_environment", "gnome");
+//
+//      }
+//      else
+//      {
+//
+//         estatus = do_factory_exchange("desktop_environment", "gnome");
+//
+//         if (!estatus)
+//         {
+//
+//            estatus = do_factory_exchange("desktop_environment", "kde");
+//
+//         }
+//
+//      }
+//
+//#else
+//
+//      estatus = do_factory_exchange("aura", "windows");
+//
+//#endif
 
       if (!estatus)
       {

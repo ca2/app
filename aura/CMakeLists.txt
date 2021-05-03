@@ -685,14 +685,14 @@ if (LINUX)
       node/linux/_linux.h
       node/linux/application.cpp
       node/linux/application.h
-      node/linux/console.cpp
-      node/linux/console.h
+      #node/linux/console.cpp
+      #node/linux/console.h
       #node/linux/copydesk.cpp
       #node/linux/copydesk.h
       node/linux/factory_exchange.cpp
       node/linux/factory_exchange.h
-      node/linux/interaction_impl.cpp
-      node/linux/interaction_impl.h
+      #node/linux/interaction_impl.cpp
+      #node/linux/interaction_impl.h
       node/linux/system.cpp
       #os/gdk/aura_gdk.cpp
       #os/gdk/aura_gdk.h

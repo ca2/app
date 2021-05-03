@@ -2,20 +2,29 @@
 #define original_linux linux
 #define linux original_linux
 
+
 namespace linux
 {
 
 
-   class CLASS_DECL_ACME exception_engine :
-      public ::exception_engine
+   namespace exception
    {
-   public:
 
 
-      exception_engine();
-      virtual ~exception_engine();
+      class CLASS_DECL_ACME engine :
+         public ::exception::engine
+      {
+      public:
 
-   };
+
+         engine();
+         virtual ~engine();
+
+
+      };
+
+
+   } // namespace exception
 
 
 } // namespace linux

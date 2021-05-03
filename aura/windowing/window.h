@@ -26,7 +26,8 @@ namespace windowing
       __pointer(::message_queue)                m_pmessagequeue;
       millis                                    m_millisLastMouseMove;
       __pointer(::windowing::window)            m_pwindowParent;
-      ::rectangle_i32                           m_rectangle;
+      ::point_i32                               m_point;
+      ::size_i32                                m_size;
       __pointer(::windowing::windowing)         m_pwindowing;
 
 
@@ -62,6 +63,7 @@ namespace windowing
       virtual bool has_mouse_capture() const;
       virtual bool has_keyboard_focus() const;
 
+      virtual ::color::color screen_pixel(int x, int y) const;
 
       virtual ::windowing::display * display();
 

@@ -1646,7 +1646,7 @@ void simple_frame_window::_001OnClose(::message::message * pmessage)
 
       auto pnode = psystem->node();
 
-      auto edesktop = psystem->get_edesktop();
+      auto edesktop = pnode->get_edesktop();
 
       if(edesktop == ::user::e_desktop_unity_gnome
             || edesktop == ::user::e_desktop_ubuntu_gnome)
@@ -2776,6 +2776,9 @@ void simple_frame_window::defer_create_notification_icon()
 
    }
 
+   windowing()->windowing_branch(__routine([this]
+                                          {
+
    if (m_pnotifyicon)
    {
 
@@ -2785,7 +2788,7 @@ void simple_frame_window::defer_create_notification_icon()
 
    auto papplication = get_application();
 
-   if (m_piconNotify.is_null())
+   if (!m_piconNotify)
    {
 
       auto estatus = __construct(m_piconNotify);
@@ -2813,6 +2816,8 @@ void simple_frame_window::defer_create_notification_icon()
    }
 
    m_bitMinimizeToTray.defer(e_bit_true);
+
+                                          }));
 
 }
 

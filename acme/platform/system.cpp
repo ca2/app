@@ -32,12 +32,12 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
       m_pacmesystem = this;
       ::object::m_pcontext = this;
 
-
-#ifdef LINUX
-
-      m_elinuxdistribution = e_linux_distribution_unknown;
-
-#endif
+      ::factory::get_factory_map()->initialize(this);
+//#ifdef LINUX
+//
+//      m_elinuxdistribution = e_linux_distribution_unknown;
+//
+//#endif
 
       //m_edesktop = ::user::e_desktop_none;
 
@@ -1107,7 +1107,7 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
    void system::system_construct(int argc, char** argv, char** envp)
    {
 
-      __throw(error_interface_only);
+      acme_main_data::system_construct(argc, argv, envp);
 
    }
 
@@ -1115,7 +1115,7 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
    void system::system_construct(int argc, wchar_t** argv, wchar_t** envp)
    {
 
-      //__throw(error_interface_only);
+      acme_main_data::system_construct(argc, argv, envp);
 
    }
 

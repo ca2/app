@@ -20,7 +20,8 @@ public:
 
 
    nanos & operator = (const nanos & nanos) { m_i = nanos.m_i; return *this; }
-
+   nanos & operator -= (const duration & duration) { m_i = m_i - ((::nanos)(duration)).m_i; return *this; }
+   nanos & operator += (const duration & duration) { m_i = m_i + ((::nanos)(duration)).m_i; return *this; }
 
    void sleep() const;
 

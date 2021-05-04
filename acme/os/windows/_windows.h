@@ -226,7 +226,6 @@ CLASS_DECL_ACME BSTR SetSysString(BSTR * pbstr, const string & str);
 CLASS_DECL_ACME int_bool read_resource_as_file(const char * pszFile, HINSTANCE hinst, ::u32 nID, LPCTSTR pcszType);
 
 
-
 #include "acme/os/windows/exception_engine.h"
 
 

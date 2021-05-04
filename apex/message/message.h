@@ -37,6 +37,7 @@ namespace message
       unsigned int                  m_uiMessageFlags;
       ::e_status                    m_estatus;
       ::action_context              m_actioncontext;
+      ::point_i32                   m_pointMessage;
 
 
       message(const ::id& id = ::id()) : material_object(id) { common_construct(); }
@@ -69,7 +70,7 @@ namespace message
       bool previous(); // returns bRet
 
       virtual void set_lresult(lresult lresult);
-      virtual void set(oswindow oswindow, ::windowing::window * pwindow, const ::id & id, wparam wparam, ::lparam lparam);
+      virtual void set(oswindow oswindow, ::windowing::window * pwindow, const ::id & id, wparam wparam, ::lparam lparam, const ::point_i32 & point);
 
 
       ::u32 GetNotifyCode() const { return __hiword(m_wparam.m_number); }

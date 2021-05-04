@@ -113,6 +113,18 @@ namespace experience
 
       ASSERT(pmouse->m_id == e_message_mouse_move || pmouse->m_id == e_message_non_client_mouse_move);
 
+      auto psession = get_session()->m_paurasession;
+
+      auto puser = psession->user();
+
+      auto pwindowing = puser->windowing();
+
+      auto pcursor = pwindowing->get_cursor(e_cursor_arrow);
+
+      pmouse->m_pcursor = pcursor;
+
+      m_pframewindow->set_mouse_cursor(pcursor);
+
       if (!window_is_moving())
       {
 

@@ -1001,7 +1001,7 @@ namespace user
    }
 
 
-   lresult primitive_impl::message_call(const ::id & id, wparam wparam, lparam lparam)
+   lresult primitive_impl::message_call(const ::id & id, wparam wparam, lparam lparam, const ::point_i32& point)
    {
 
       ___pointer < ::message::message > pmessage;
@@ -1009,13 +1009,13 @@ namespace user
       if (m_puserinteraction)
       {
 
-         pmessage = m_puserinteraction->get_message(id, wparam, lparam);
+         pmessage = m_puserinteraction->get_message(id, wparam, lparam, point);
 
       }
       else
       {
 
-         pmessage = get_message(id, wparam, lparam);
+         pmessage = get_message(id, wparam, lparam, point);
 
       }
 
@@ -1242,7 +1242,7 @@ namespace user
 
                synchronous_lock synchronouslock(pimpl2->mutex());
 
-               pimpl2->m_uiptraMouseHover.erase(m_puserinteraction);
+               pimpl2->m_userinteractionaMouseHover.erase(m_puserinteraction);
 
             }
 

@@ -125,14 +125,15 @@ __pointer(::message::message) channel::get_message(MESSAGE * pmessage)
       nullptr,
       pmessage->m_id, 
       pmessage->wParam, 
-      pmessage->lParam);
+      pmessage->lParam,
+      pmessage->pt);
 
    return pmessagemessage;
 
 }
 
 
-__pointer(::message::message) channel::get_message(const ::id & id, wparam wparam, lparam lparam)
+__pointer(::message::message) channel::get_message(const ::id & id, wparam wparam, lparam lparam, const ::point_i32 & point)
 {
 
    auto pmessagemessage = __new(::message::message);
@@ -142,7 +143,8 @@ __pointer(::message::message) channel::get_message(const ::id & id, wparam wpara
       nullptr,
       id,
       wparam,
-      lparam);
+      lparam,
+      point);
 
    return pmessagemessage;
 

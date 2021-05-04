@@ -2568,8 +2568,6 @@ namespace apex
 
       m_millisHeartBeat.Now();
 
-      auto psystem = m_psystem;
-
       try
       {
 

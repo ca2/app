@@ -71,7 +71,7 @@ namespace user
 #if defined(WINDOWS_DESKTOP) && !defined(ENABLE_TEXT_SERVICES_FRAMEWORK)
       //HIMC                                    m_himc;
 #endif
-
+      ::PLATFORM_NAMESPACE::interaction_impl *  m_pImpl2;
       ::rectangle_i32                           m_rectWindowScreen;
       ::rectangle_i32                           m_rectClientScreen;
       int                                       m_iState1;
@@ -82,12 +82,14 @@ namespace user
       millis                                    m_millisLastExposureAddUp;
       __composite(prodevian)                    m_pprodevian;
       __composite(::user::thread)               m_puserthread;
-      simple_object_ptra                        m_ptraProdevian;
+      __pointer_array(::matter)                 m_matteraProdevian;
       bool                                      m_bTransparentMouseEvents;
       bool                                      m_bOfflineRender;
 //      bool                                      m_bFocus;
+      __pointer(::windowing::windowing)         m_pwindowing;
       bool                                      m_bCursorRedraw;
-      double                                    m_dConfigFps;
+      double                                    m_dProdevianFps;
+      double                                    m_dNominalFps;
       double                                    m_dOutputFps;
       bool                                      m_bLockWindowUpdate;
       point_i32                                 m_pointCursor;
@@ -119,7 +121,7 @@ namespace user
       __pointer(::mutex)                        m_pmutexDraw;
       __pointer(::mutex)                        m_pmutexRedraw;
 
-      ::user::interaction_ptra                  m_uiptraMouseHover;
+      ::user::interaction_ptra                  m_userinteractionaMouseHover;
 
       ::u32                                     m_uiMessage;
       wparam                                    m_wparam;
@@ -145,8 +147,11 @@ namespace user
       virtual void assert_valid() const override;
       virtual void dump(dump_context & dumpcontext) const override;
 
-      virtual void set_config_fps(double dConfigFps);
-      virtual double get_config_fps();
+      virtual void set_prodevian_fps(double dProdevianFps);
+      virtual void set_nominal_fps(double dNominalFps);
+      virtual void set_fps(double dFps);
+      virtual double get_prodevian_fps();
+      virtual double get_nominal_fps();
       virtual double get_output_fps();
 
       void user_common_construct();
@@ -231,9 +236,9 @@ namespace user
       //virtual void mouse_hover_step(const __status < ::point_i32 > & statusPointCursor);
 
 
-      virtual bool add_prodevian(::object * pobject) override;
-      virtual bool erase_prodevian(::object * pobject) override;
-      inline bool has_prodevian() const noexcept { return m_ptraProdevian.has_element(); }
+      virtual bool add_prodevian(::matter * pmatter) override;
+      virtual bool erase_prodevian(::matter * pmatter) override;
+      inline bool has_prodevian() const noexcept { return m_matteraProdevian.has_element(); }
 
       virtual void prodevian_stop() override;
 
@@ -337,7 +342,7 @@ namespace user
 
 #endif   // WINVER >= 0x0500
 
-      virtual lresult send_message(const ::id & id, wparam wParam = 0, lparam lParam = 0) override;
+      virtual lresult send_message(const ::id& id, wparam wParam = 0, lparam lParam = 0, const ::point_i32 & point = nullptr) override;
 
 
 //#ifdef LINUX

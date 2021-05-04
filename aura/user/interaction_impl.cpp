@@ -59,6 +59,8 @@ namespace user
    void interaction_impl::user_common_construct()
    {
 
+      m_pImpl2 = nullptr;
+
       m_pinteractionimpl = this;
 
       m_iState1 = 0;
@@ -95,7 +97,7 @@ namespace user
 
 #else
 
-      set_config_fps(60.0);
+      set_fps(60.0);
 
 #endif
 
@@ -1165,12 +1167,12 @@ namespace user
    //}
 
 
-   bool interaction_impl::add_prodevian(::object * pobject)
+   bool interaction_impl::add_prodevian(::matter * pmatter)
    {
 
       synchronous_lock synchronouslock(m_puserthread->mutex());
 
-      if(!m_ptraProdevian.add_unique(pobject))
+      if(!m_matteraProdevian.add_unique(pmatter))
       {
 
          return false;
@@ -1184,7 +1186,7 @@ namespace user
    }
 
 
-   bool interaction_impl::erase_prodevian(::object * pobject)
+   bool interaction_impl::erase_prodevian(::matter * pmatter)
    {
 
       if (!m_puserthread)
@@ -1196,7 +1198,7 @@ namespace user
 
       synchronous_lock synchronouslock(m_puserthread->mutex());
 
-      bool bRemove = m_ptraProdevian.erase(pobject) > 0;
+      bool bRemove = m_matteraProdevian.erase(pmatter) > 0;
 
       if (bRemove)
       {
@@ -1233,9 +1235,9 @@ namespace user
 
          synchronous_lock synchronouslock(mutex());
 
-         bWasEmpty = m_uiptraMouseHover.is_empty();
+         bWasEmpty = m_userinteractionaMouseHover.is_empty();
 
-         m_uiptraMouseHover.add_unique(pinterface);
+         m_userinteractionaMouseHover.add_unique(pinterface);
 
       }
 
@@ -1270,10 +1272,10 @@ namespace user
    void interaction_impl::_on_mouse_move_step(const ::point_i32 & pointCursor)
    {
 
-      for(::index i = 0; i < m_uiptraMouseHover.get_count(); )
+      for(::index i = 0; i < m_userinteractionaMouseHover.get_count(); )
       {
 
-         auto pinteraction = m_uiptraMouseHover[i];
+         auto pinteraction = m_userinteractionaMouseHover[i];
 
          if(pinteraction == m_puserinteractionCapture)
          {
@@ -1290,9 +1292,9 @@ namespace user
          else
          {
 
-            m_uiptraMouseHover.erase_at(i);
+            m_userinteractionaMouseHover.erase_at(i);
 
-            pinteraction->send_message(e_message_mouse_leave);
+            pinteraction->post_message(e_message_mouse_leave);
 
          }
 
@@ -1369,7 +1371,7 @@ namespace user
 
       synchronous_lock synchronouslock(mutex());
 
-      return m_uiptraMouseHover.erase(pinterface) > 0;
+      return m_userinteractionaMouseHover.erase(pinterface) > 0;
 
    }
 
@@ -1464,7 +1466,7 @@ namespace user
 
          synchronous_lock synchronouslock(mutex());
 
-         m_uiptraMouseHover.erase_all();
+         m_userinteractionaMouseHover.erase_all();
 
       }
 
@@ -2473,10 +2475,10 @@ namespace user
    }
 
 
-   lresult interaction_impl::send_message(const ::id & id, wparam wparam, lparam lparam)
+   lresult interaction_impl::send_message(const ::id & id, wparam wparam, lparam lparam, const ::point_i32& point)
    {
 
-      auto pmessage = m_puserinteraction->get_message(id, wparam, lparam);
+      auto pmessage = m_puserinteraction->get_message(id, wparam, lparam, point);
 
       if(m_puserinteraction->layout().is_moving())
       {
@@ -3290,7 +3292,7 @@ namespace user
    void interaction_impl::user_interaction_on_hide()
    {
 
-      decltype(m_uiptraMouseHover) uiptra;
+      decltype(m_userinteractionaMouseHover) userinteractiona;
 
       {
 
@@ -3298,13 +3300,13 @@ namespace user
 
          synchronous_lock synchronouslock(mutex());
 
-         uiptra = m_uiptraMouseHover;
+         userinteractiona = m_userinteractionaMouseHover;
 
-         m_uiptraMouseHover.erase_all();
+         m_userinteractionaMouseHover.erase_all();
 
       }
 
-      for(auto & pinteraction : uiptra)
+      for(auto & pinteraction : userinteractiona)
       {
 
          pinteraction->post_message(e_message_mouse_leave);
@@ -3401,13 +3403,21 @@ namespace user
    void interaction_impl::on_message_create(::message::message * pmessage)
    {
 
+      auto psession = get_session();
+
+      auto puser = psession->user();
+
+      m_pwindowing = puser->windowing();
+
       if (m_puserinteraction->m_ewindowflag & e_window_flag_graphical)
       {
 
          if (::is_set(m_pprodevian))
          {
 
-            m_pprodevian->set_config_fps(get_config_fps());
+            m_pprodevian->set_prodevian_fps(get_prodevian_fps());
+
+            m_pprodevian->set_nominal_fps(get_nominal_fps());
 
             pmessage->previous();
 
@@ -3490,19 +3500,19 @@ namespace user
 
          {
 
-            decltype(m_uiptraMouseHover) uiptra;
+            decltype(m_userinteractionaMouseHover) userinteractiona;
 
             {
 
                synchronous_lock synchronouslock(mutex());
 
-               uiptra = m_uiptraMouseHover;
+               userinteractiona = m_userinteractionaMouseHover;
 
-               m_uiptraMouseHover.erase_all();
+               m_userinteractionaMouseHover.erase_all();
 
             }
 
-            for (auto & pinteraction : uiptra)
+            for (auto & pinteraction : userinteractiona)
             {
 
                try
@@ -3515,7 +3525,6 @@ namespace user
                {
 
                }
-
 
             }
 
@@ -3816,10 +3825,10 @@ namespace user
 //}
 
 
-   void interaction_impl::set_config_fps(double dConfigFps)
+   void interaction_impl::set_prodevian_fps(double dProdevianFps)
    {
 
-      m_dConfigFps = dConfigFps;
+      m_dProdevianFps = dProdevianFps;
 
       if (::is_set(m_pprodevian))
       {
@@ -3827,7 +3836,7 @@ namespace user
          if (::is_set(m_puserinteraction) && m_puserinteraction->is_graphical())
          {
 
-            m_pprodevian->set_config_fps(dConfigFps);
+            m_pprodevian->set_prodevian_fps(m_dProdevianFps);
 
          }
 
@@ -3836,10 +3845,10 @@ namespace user
    }
 
 
-   double interaction_impl::get_config_fps()
+   double interaction_impl::get_prodevian_fps()
    {
 
-      return m_dConfigFps;
+      return m_dProdevianFps;
 
    }
 

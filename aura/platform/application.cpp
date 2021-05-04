@@ -4022,7 +4022,7 @@ retry_license:
       if (pinteraction != nullptr)
       {
 
-         return pinteraction->get_message(pmsg->m_id, pmsg->wParam, pmsg->lParam);
+         return pinteraction->get_message(pmsg->m_id, pmsg->wParam, pmsg->lParam, pmsg->pt);
 
       }
 
@@ -4035,7 +4035,7 @@ retry_license:
 
       }
 
-      pusermessage->set(pmsg->oswindow, pwindow, pmsg->m_id, pmsg->wParam, pmsg->lParam);
+      pusermessage->set(pmsg->oswindow, pwindow, pmsg->m_id, pmsg->wParam, pmsg->lParam, pmsg->pt);
 
       return pusermessage;
 

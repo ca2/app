@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "aura/user/_user.h"
 
 
 namespace draw2d_direct2d

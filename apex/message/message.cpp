@@ -83,7 +83,7 @@ namespace message
    }
 
 
-   void message::set(oswindow oswindow, ::windowing::window * playeredUserPrimitive, const ::id & id, wparam wparam, ::lparam lparam)
+   void message::set(oswindow oswindow, ::windowing::window * playeredUserPrimitive, const ::id & id, wparam wparam, ::lparam lparam, const ::point_i32 & point)
    {
       
       //initialize(playeredUserPrimitive);

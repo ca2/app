@@ -732,7 +732,7 @@ namespace user
    //}
 
 
-   bool primitive::add_prodevian(::object * pobject)
+   bool primitive::add_prodevian(::matter * pmatter)
    {
 
       return false;
@@ -740,7 +740,7 @@ namespace user
    }
 
 
-   bool primitive::erase_prodevian(::object * pobject)
+   bool primitive::erase_prodevian(::matter * pmatter)
    {
 
       return false;
@@ -1053,15 +1053,15 @@ namespace user
    }
 
 
-   lresult primitive::send_message(const ::id & id,wparam wparam,lparam lparam)
+   lresult primitive::send_message(const ::id & id,wparam wparam,lparam lparam, const ::point_i32& point)
    {
 
-      return message_call(id, wparam, lparam);
+      return message_call(id, wparam, lparam, point);
 
    }
 
 
-   lresult primitive::message_call(const ::id & id, wparam wparam, lparam lparam)
+   lresult primitive::message_call(const ::id & id, wparam wparam, lparam lparam, const ::point_i32& point)
    {
 
       return 0;
@@ -3757,10 +3757,10 @@ namespace user
 //   }
 
 
-   bool primitive::call_message_handler(const ::id & id, wparam wparam, lparam lparam, lresult * plresult)
+   bool primitive::call_message_handler(const ::id & id, wparam wparam, lparam lparam, const ::point_i32 & point, lresult * plresult)
    {
 
-      auto pmessage = get_message(id, wparam, lparam);
+      auto pmessage = get_message(id, wparam, lparam, point);
 
       try
       {

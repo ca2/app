@@ -1286,7 +1286,7 @@ void thread::kick_idle()
          else
          {
 
-            ::PostThreadMessage(m_itask, WM_KICKIDLE, 0, 0);
+            ::PostThreadMessage((DWORD) m_itask, WM_KICKIDLE, 0, 0);
 
          }
 #endif

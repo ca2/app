@@ -1258,7 +1258,7 @@ namespace user
    }
 
 
-   bool user::on_ui_mouse_message(::message::mouse * pmouse)
+   bool user::on_ui_mouse_message(::message::mouse_base * pmouse)
    {
 
       if (pmouse->m_point == pmouse->m_pointDesired)

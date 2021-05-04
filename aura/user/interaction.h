@@ -549,7 +549,7 @@ namespace user
       }
 
       
-      __pointer(::message::message) get_message(const ::id & id, wparam wparam, lparam lparam) override;
+      __pointer(::message::message) get_message(const ::id & id, wparam wparam, lparam lparam, const ::point_i32 & point) override;
 
 
       inline ::user::style * get_style(::user::style * pstyle) const
@@ -707,8 +707,8 @@ namespace user
       inline bool set_prodevian() { return add_prodevian(this); }
       inline bool clear_prodevian() { return erase_prodevian(this); }
 
-      virtual bool add_prodevian(::object* pobject) override;
-      virtual bool erase_prodevian(::object* pobject) override;
+      virtual bool add_prodevian(::matter * pmatter) override;
+      virtual bool erase_prodevian(::matter * pmatter) override;
       inline bool has_prodevian() const noexcept;
 
 
@@ -1090,9 +1090,9 @@ namespace user
       using ::user::primitive::send;
       virtual lresult send(::message::message* pmessage) override;
       virtual bool post(::message::message* pmessage) override;
-      virtual lresult send_message(const ::id & id, wparam wparam = 0, lparam lparam = 0) override;
+      virtual lresult send_message(const ::id & id, wparam wparam = 0, lparam lparam = 0, const ::point_i32& point = nullptr) override;
 
-      virtual lresult message_call(const ::id & id, wparam wparam = 0, lparam lparam = 0) override;
+      virtual lresult message_call(const ::id & id, wparam wparam = 0, lparam lparam = 0, const ::point_i32& point = nullptr) override;
       virtual lresult message_call(::message::message * pmessage) override;
 
 

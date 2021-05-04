@@ -2269,7 +2269,7 @@ namespace user
 
             synchronous_lock synchronouslock(pimpl->mutex());
 
-            pimpl->m_uiptraMouseHover.erase(this);
+            pimpl->m_userinteractionaMouseHover.erase(this);
 
          }
 
@@ -3803,7 +3803,7 @@ namespace user
    }
 
 
-   bool interaction::add_prodevian(::object * pobject)
+   bool interaction::add_prodevian(::matter * pmatter)
    {
 
       if (get_host_window() == nullptr)
@@ -3813,12 +3813,12 @@ namespace user
 
       }
 
-      return get_host_window()->m_pimpl->add_prodevian(pobject);
+      return get_host_window()->m_pimpl->add_prodevian(pmatter);
 
    }
 
 
-   bool interaction::erase_prodevian(::object * pobject)
+   bool interaction::erase_prodevian(::matter * pmatter)
    {
 
       if (get_wnd() == nullptr || get_wnd()->m_pimpl == nullptr)
@@ -3828,12 +3828,12 @@ namespace user
 
       }
 
-      return get_wnd()->m_pimpl->erase_prodevian(pobject);
+      return get_wnd()->m_pimpl->erase_prodevian(pmatter);
 
    }
 
 
-   __pointer(::message::message) interaction::get_message(const ::id & id, wparam wparam, lparam lparam)
+   __pointer(::message::message) interaction::get_message(const ::id & id, wparam wparam, lparam lparam, const ::point_i32& point)
    {
    
       __pointer(::message::message) pmessage;
@@ -3988,7 +3988,7 @@ namespace user
 
       }
    
-      pmessage->set(get_oswindow(), get_window(), id, wparam, lparam);
+      pmessage->set(get_oswindow(), get_window(), id, wparam, lparam, point);
    
       return pmessage;
    
@@ -4205,6 +4205,17 @@ namespace user
       psystem->delivery_for(id_os_dark_mode, this);
 
       on_create_user_interaction();
+
+      auto pcursor = get_mouse_cursor();
+
+      if (::is_null(pcursor))
+      {
+
+         pcursor = windowing()->get_cursor(::e_cursor_arrow);
+
+         set_mouse_cursor(pcursor);
+
+      }
 
       run_property("on_create");
 
@@ -5052,7 +5063,7 @@ namespace user
    }
 
 
-   lresult interaction::send_message(const ::id & id, wparam wparam, lparam lparam)
+   lresult interaction::send_message(const ::id & id, wparam wparam, lparam lparam, const ::point_i32& point)
    {
 
       if (m_pimpl == nullptr)
@@ -5067,7 +5078,7 @@ namespace user
    }
 
 
-   lresult interaction::message_call(const ::id & id, wparam wparam, lparam lparam)
+   lresult interaction::message_call(const ::id & id, wparam wparam, lparam lparam, const ::point_i32& point)
    {
 
       if (m_pimpl == nullptr)
@@ -10504,25 +10515,25 @@ namespace user
    ::e_status interaction::set_mouse_cursor(::windowing::cursor * pcursor)
    {
 
-      if (!m_pimpl)
-      {
+      //if (!m_pimpl)
+      //{
 
-         return false;
+      //   return false;
 
-      }
+      //}
 
-      auto estatus = m_pimpl->set_mouse_cursor(pcursor);
+      //auto estatus = m_pimpl->set_mouse_cursor(pcursor);
 
-      if(!estatus)
-      {
+      //if(!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
       m_pcursor = pcursor;
 
-      return estatus;
+      return ::success;
 
    }
 
@@ -10596,6 +10607,8 @@ namespace user
          {
 
             psetcursor->m_pcursor = pcursor;
+
+            psetcursor->m_bRet = true;
 
          }
 
@@ -14803,11 +14816,14 @@ restart:
             //if(m_bSimpleUIDefaultMouseHandlingMouseCaptureOnLeftButtonDown)
             //{
 
-               set_mouse_capture();
+               //set_mouse_capture();
 
             //}
 
-            pmouse->m_bRet = m_itemLButtonDown.m_eelement != e_element_none;
+            track_mouse_leave();
+
+            pmouse->m_bRet = m_itemLButtonDown.m_eelement != e_element_none
+               && m_itemLButtonDown.m_eelement != e_element_client;
 
             if (pmouse->m_bRet)
             {
@@ -15097,9 +15113,14 @@ restart:
       if (m_bSimpleUIDefaultMouseHandling)
       {
 
-         track_mouse_leave();
-
          update_hover(pmouse->m_point, false);
+
+         if (m_itemHover)
+         {
+
+            track_mouse_leave();
+
+         }
 
       }
 

@@ -191,7 +191,7 @@ namespace user
       //virtual ::user::frame * EnsureParentFrame() override;
 
 
-      virtual lresult message_call(const ::id & id, wparam wparam, lparam lparam) override;
+      virtual lresult message_call(const ::id & id, wparam wparam, lparam lparam, const ::point_i32& point = nullptr) override;
       virtual lresult message_call(::message::message * pmessage) override;
 
 

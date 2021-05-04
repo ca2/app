@@ -197,6 +197,8 @@ namespace experience
 
          auto pcursor = pwindowing->get_cursor(ecursor);
 
+         m_pframewindow->set_mouse_cursor(pcursor);
+
          pmouse->m_pcursor = pcursor;
 
          pmouse->m_lresult = 1;
@@ -223,6 +225,8 @@ namespace experience
          auto pcursor = pwindowing->get_cursor(ecursor);
 
          pmouse->m_pcursor = pcursor;
+
+         m_pframewindow->set_mouse_cursor(pcursor);
 
          pmouse->m_lresult = 1;
 

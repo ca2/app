@@ -1891,7 +1891,11 @@ namespace user
 
          auto pwindowing = puser->windowing();
 
-         pmouse->m_pcursor = pwindowing->get_cursor(e_cursor_text_select);
+         auto pcursor = pwindowing->get_cursor(e_cursor_text_select);
+
+         pmouse->m_pcursor = pcursor;
+
+         set_mouse_cursor(pcursor);
 
          if (m_bLMouseDown)
          {

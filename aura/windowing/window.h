@@ -127,7 +127,7 @@ namespace windowing
 
 
 
-      virtual void message_handler(::message::message * pusermessage);
+      virtual void message_handler(::message::message* pusermessage);
 
 
       virtual void route_command_message(::message::command * pcommand);

@@ -127,8 +127,8 @@ namespace user
       virtual enum_control_type get_control_type() const;
 
 
-      virtual bool add_prodevian(::object * pobject);
-      virtual bool erase_prodevian(::object * pobject);
+      virtual bool add_prodevian(::matter * pmatter);
+      virtual bool erase_prodevian(::matter * pmatter);
 
       virtual bool display(::e_display edisplay = e_display_default, ::e_activation eactivation = e_activation_default);
 
@@ -320,9 +320,9 @@ namespace user
       virtual lresult send(::message::message * pmessage);
       virtual bool post(::message::message * pmessage);
 
-      virtual lresult send_message(const ::id & id, wparam wparam = 0, lparam lparam = 0);
+      virtual lresult send_message(const ::id & id, wparam wparam = 0, lparam lparam = 0, const ::point_i32& point = nullptr);
 
-      virtual lresult message_call(const ::id & id, wparam wparam = 0, lparam lparam = 0);
+      virtual lresult message_call(const ::id & id, wparam wparam = 0, lparam lparam = 0, const ::point_i32& point = nullptr);
       virtual lresult message_call(::message::message * pmessage);
 
 
@@ -472,7 +472,7 @@ namespace user
       //virtual void default_window_procedure(::message::message * pmessage);
 
 
-      virtual bool call_message_handler(const ::id & id, wparam wparam = 0, lparam lparam = 0, lresult * presult = nullptr);
+      virtual bool call_message_handler(const ::id & id, wparam wparam = 0, lparam lparam = 0, const ::point_i32 & point = nullptr,lresult * presult = nullptr);
 
 
       virtual void GuieProc(::message::message * pmessage);

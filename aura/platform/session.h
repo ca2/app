@@ -229,7 +229,7 @@ namespace aura
       //virtual ::draw2d::cursor * get_cursor();
       //virtual ::draw2d::cursor * get_default_cursor();
 
-      virtual bool on_ui_mouse_message(::message::mouse * pmouse);
+      virtual bool on_ui_mouse_message(::message::mouse_base * pmouse);
 
       //virtual ::user::primitive * GetActiveWindow();
       //virtual ::user::primitive * GetFocus();

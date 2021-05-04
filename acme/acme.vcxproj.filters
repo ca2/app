@@ -3130,9 +3130,6 @@
     <ClCompile Include="os\windows\environment_variable.cpp">
       <Filter>Source Files\os\windows</Filter>
     </ClCompile>
-    <ClCompile Include="os\windows\exception_engine.cpp">
-      <Filter>Source Files\os\windows</Filter>
-    </ClCompile>
     <ClCompile Include="os\windows\internal.cpp">
       <Filter>Source Files\os\windows</Filter>
     </ClCompile>
@@ -3272,9 +3269,6 @@
       <Filter>Source Files\exception</Filter>
     </ClCompile>
     <ClCompile Include="exception\exception.cpp">
-      <Filter>Source Files\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="exception\exception_engine.cpp">
       <Filter>Source Files\exception</Filter>
     </ClCompile>
     <ClCompile Include="exception\throw.cpp">
@@ -3688,9 +3682,6 @@
     <ClCompile Include="node\cross\windows\os_usleep.cpp">
       <Filter>Source Files\os\windows_common</Filter>
     </ClCompile>
-    <ClCompile Include="os\windows\console.cpp">
-      <Filter>Source Files\os\windows</Filter>
-    </ClCompile>
     <ClCompile Include="parallelization\condition_variable.cpp">
       <Filter>Source Files\parallelization</Filter>
     </ClCompile>
@@ -3924,6 +3915,12 @@
     </ClCompile>
     <ClCompile Include="platform\acme_main_data.cpp">
       <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="os\windows\exception_engine.cpp">
+      <Filter>Source Files\os\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="exception\engine.cpp">
+      <Filter>Source Files\exception</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

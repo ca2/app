@@ -65,6 +65,16 @@ namespace uwp
 #endif
 
 
+namespace PLATFORM_NAMESPACE
+{
+
+
+   class interaction_impl;
+
+
+} // namespace PLATFORM_NAMESPACE
+
+
 #include "aura/graphics/draw2d/_.h"
 
 

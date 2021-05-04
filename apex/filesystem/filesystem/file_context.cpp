@@ -7,8 +7,6 @@
 
 
 
-void set_bypass_cache_if_empty(::payload & varFile);
-bool get_bypass_cache_if_empty(const ::payload & varFile);
 
 
 #ifdef WINDOWS_DESKTOP

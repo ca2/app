@@ -1272,7 +1272,7 @@ namespace aura
    }
 
 
-   bool session::on_ui_mouse_message(::message::mouse* pmouse)
+   bool session::on_ui_mouse_message(::message::mouse_base * pmouse)
    {
 
       auto puser = user();

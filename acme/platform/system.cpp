@@ -102,6 +102,7 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
 
    }
 
+   
    ::e_status system::create_os_node()
    {
 

@@ -529,7 +529,7 @@ bool prodevian::prodevian_iteration()
 
    }
 
-   i64 i1 = get_nanos();
+   i64 i1 = get_nanos().m_i;
 
    bRedraw = m_message.wParam & 1;
 
@@ -697,7 +697,7 @@ bool prodevian::prodevian_iteration()
 
          }
 
-         auto nanosEndWait = (i64)get_nanos();
+         auto nanosEndWait = (i64)get_nanos().m_i;
 
          if (nanosEndWait - nanosStartWait > 100'000'000)
          {
@@ -816,19 +816,19 @@ bool prodevian::prodevian_iteration()
       // ENDIF WINDOWS
    }
 
-   u64 uNow = get_nanos();
+   auto nanosNow = get_nanos();
 
-   for (index i = 0; i < m_iaFrame.get_size();)
+   for (index i = 0; i < m_nanosaFrame.get_size();)
    {
 
-      u64 uFrame = m_iaFrame[i];
+      auto nanosFrame = m_nanosaFrame[i];
 
-      u64 uDiff = uNow - uFrame;
+      auto nanosDiff = nanosNow - nanosFrame;
 
-      if (uDiff > 1'000'000'000LL)
+      if (nanosDiff.m_i > 1'000'000'000LL)
       {
 
-         m_iaFrame.erase_at(i);
+         m_nanosaFrame.erase_at(i);
 
       }
       else
@@ -847,7 +847,7 @@ bool prodevian::prodevian_iteration()
 
    }
 
-   m_pimpl->m_dOutputFps = (double)(m_iaFrame.get_size());
+   m_pimpl->m_dOutputFps = (double)(m_nanosaFrame.get_size());
 
    return true;
 
@@ -930,7 +930,7 @@ bool prodevian::prodevian_iteration()
 
          bUpdateWindow = false;
 
-         i64 i1 = get_nanos();
+         i64 i1 = get_nanos().m_i;
 
       //   bool bTransparentDraw;
 
@@ -1102,7 +1102,7 @@ bool prodevian::prodevian_iteration()
 
             m_millisOutOfDrawing = m_millisBeforeDrawing - m_millisAfterDrawing;
 
-            i64 i2 = get_nanos();
+            i64 i2 = get_nanos().m_i;
 
             m_pimpl->_001UpdateBuffer();
 
@@ -1203,7 +1203,7 @@ bool prodevian::prodevian_iteration()
 
          m_nanosLastFrame = get_nanos();
 
-         m_iaFrame.add(m_nanosLastFrame);
+         m_nanosaFrame.add(m_nanosLastFrame);
 
          m_millisAfterUpdateScreen.Now();
 

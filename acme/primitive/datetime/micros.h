@@ -43,3 +43,26 @@ inline secs::secs(const micros & micros) { m_i = micros.m_i / 1'000'000; }
 inline micros operator "" _us(unsigned long long int u) { return (::i64) u; }
 
 
+
+template < primitive_number NUMBER >
+inline micros operator *(const ::micros& micros, const NUMBER& number)
+{
+
+   return (::i64)(micros.m_i * number);
+
+}
+
+
+template < primitive_number NUMBER >
+inline micros operator /(const ::micros& micros, const NUMBER& number)
+{
+
+   return (::i64)(micros.m_i / number);
+
+}
+
+
+
+inline ::micros first_micro();
+inline ::micros get_micros();
+

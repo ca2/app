@@ -31,5 +31,30 @@ inline secs operator "" _s(unsigned long long int u) { return (::i64) u; }
 
 
 
+template < primitive_number NUMBER >
+inline secs operator *(const ::secs& secs, const NUMBER& number)
+{
+
+   return (::i64)(secs.m_i * number);
+
+}
+
+
+template < primitive_number NUMBER >
+inline secs operator /(const ::secs& secs, const NUMBER& number)
+{
+
+   return (::i64)(secs.m_i / number);
+
+}
+
+
+
+
+inline ::secs first_sec();
+inline ::secs get_secs();
+
+
+
 
 

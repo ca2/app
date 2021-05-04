@@ -451,6 +451,10 @@ concept primitive_natural = (std::is_integral < T >::value || std::is_enum < T >
 template < typename T >
 concept primitive_floating = std::is_floating_point < T >::value;
 
+template < typename T >
+concept primitive_number = std::is_integral < T >::value || std::is_enum < T >::value || std::is_floating_point < T >::value;
+
+
 template < typename FROM, typename TO_POINTER >
 concept pointer_castable =
 ::std::is_convertible < FROM, TO_POINTER * >::value ||

@@ -240,7 +240,7 @@ namespace acme
 
 
 
-   i64 g_iFirstNano;
+   ::nanos g_nanosFirst;
 
    //plex_heap_alloc_array * g_pplexheapallocarray;
 
@@ -414,7 +414,7 @@ namespace acme
 
 #endif
 
-      g_iFirstNano = 0;
+      g_nanosFirst = 0;
 
       //plex_heap_alloc_array * g_pplexheapallocarray = nullptr;
 
@@ -548,7 +548,7 @@ namespace acme
 
 #endif
 
-      g_iFirstNano = get_nanos();
+      g_nanosFirst = get_nanos();
 
       //xxdebug_box("acme.dll base_static_start (0)", "box", e_message_box_ok);
 

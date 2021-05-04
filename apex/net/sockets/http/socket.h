@@ -37,7 +37,7 @@ namespace sockets
       int                  m_chunk_state;
       string               m_chunk_line;
 
-      i64              m_iFirstTime;
+      ::micros              m_microsFirstTime;
 
       bool                 m_bOnlyHeaders;
       bool                 m_bNoClose;

@@ -21,7 +21,7 @@ namespace acme
       CLASS_DECL_ACME i64 micros()
       {
 
-         return ::get_nanos() / 1000;
+         return ::get_nanos().m_i / 1000;
 
       }
 CLASS_DECL_ACME int profile_sleep()

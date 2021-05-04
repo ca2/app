@@ -158,7 +158,7 @@ extern LARGE_INTEGER g_largeintegerFrequency;
 //LARGE_INTEGER g_largeintegerFrequency;
 
 //extern "C"
-CLASS_DECL_ACME i64 get_nanos()
+CLASS_DECL_ACME ::nanos get_nanos()
 {
 
    LARGE_INTEGER largeinteger = {};

@@ -166,7 +166,7 @@ namespace aura
       // almost always forgotten, assumed, as exception, responsability of application to add first ref on constructor.
       //::add_ref(this);
 
-      srand((u32) ::get_nanos());
+      //srand((u32) ::get_nanos());
 
       m_bService = false;
 

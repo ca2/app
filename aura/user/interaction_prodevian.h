@@ -32,7 +32,7 @@ namespace user
       ::nanos                                   m_nanosNextFrame;
       ::nanos                                   m_nanosNextScreenUpdate;
       //::count                                   m_cLost;
-      u64_array                                 m_iaFrame;
+      ::array < ::nanos >                       m_nanosaFrame;
 
       millis                                    m_millisBeforeUpdateScreen;
       millis                                    m_millisAfterUpdateScreen;

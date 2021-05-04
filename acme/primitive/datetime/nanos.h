@@ -55,12 +55,28 @@ inline nanos operator +(const ::nanos& nanos1, const ::nanos& nanos2)
 
 }
 
-template < primitive_integral INTEGRAL >
-inline nanos operator /(const ::nanos& nanos, const INTEGRAL & integral)
+
+template < primitive_number NUMBER >
+inline nanos operator *(const ::nanos& nanos, const NUMBER& number)
 {
 
-   return nanos.m_i / integral;
+   return (::i64)(nanos.m_i * number);
 
 }
 
+
+template < primitive_number NUMBER >
+inline nanos operator /(const ::nanos& nanos, const NUMBER& number)
+{
+
+   return (::i64)(nanos.m_i / number);
+
+}
+
+
+
+
+
+CLASS_DECL_ACME::nanos first_nano();
+CLASS_DECL_ACME::nanos get_nanos();
 

@@ -94,7 +94,7 @@ namespace user
 
       m_bOverdraw = false;
 
-      m_bTrackMouseLeave = false;
+      //m_bTrackMouseLeave = false;
 
       m_bSimpleUIDefaultMouseHandling = false;
 
@@ -9561,12 +9561,14 @@ namespace user
    void interaction::track_mouse_hover()
    {
 
-      if (m_bTrackMouseLeave)
-      {
+      //      synchronous_lock synchronouslock(mutex());
 
-         return;
+      //if (m_bTrackMouseLeave)
+      //{
 
-      }
+      //   return;
+
+      //}
 
       ::user::interaction * pinteraction = get_top_level();
 
@@ -9586,7 +9588,7 @@ namespace user
 
       pinteraction->get_wnd()->mouse_hover_add(this);
 
-      m_bTrackMouseLeave = true;
+      //m_bTrackMouseLeave = true;
 
    }
 
@@ -15277,8 +15279,6 @@ restart:
       m_itemHover = ::user::e_element_none;
 
       m_itemHoverMouse = ::user::e_element_none;
-
-      m_bTrackMouseLeave = false;
 
       if (itemOldHover.is_set() || itemOldHoverMouse.is_set())
       {

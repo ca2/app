@@ -138,7 +138,7 @@ namespace user
       bool              m_bVisible : 1;
 
       bool              m_bMouseHoverOnCapture : 1;
-      bool              m_bTrackMouseLeave : 1;
+      //bool              m_bTrackMouseLeave : 1;
       bool              m_bMouseHover : 1;
       bool              m_bSimpleUIDefaultMouseHandling : 1;
       //bool              m_bSimpleUIDefaultMouseHandlingMouseCaptureOnLeftButtonDown : 1;

@@ -1292,7 +1292,11 @@ namespace user
          else
          {
 
+            
+
             m_userinteractionaMouseHover.erase_at(i);
+
+            ///pinteraction->m_bTrackMouseLeave = false;
 
             pinteraction->post_message(e_message_mouse_leave);
 

@@ -77,8 +77,8 @@ inline nanos operator -(const ::nanos& nanos, const ::millis & millis)
 
 
 
-inline ::micros first_micro() { return first_nano() / 1'000; }
-inline ::micros get_micros() { return get_nanos() / 1'000; }
+inline ::micros first_micro() { return first_nano(); }
+inline ::micros get_micros() { return get_nanos(); }
 
 
 
@@ -89,15 +89,15 @@ inline millis millis::now() { return get_millis(); }
 
 
 
-inline ::millis first_milli() { return first_nano() / 1'000'000; }
-inline ::millis get_millis() { return get_nanos() / 1'000'000; }
+inline ::millis first_milli() { return first_nano(); }
+inline ::millis get_millis() { return get_nanos(); }
 
 
 
 
 
-inline ::secs first_sec() { return get_nanos() / 1'000'000'000; }
-inline ::secs get_secs() { return get_nanos() / 1'000'000'000; }
+inline ::secs first_sec() { return get_nanos(); }
+inline ::secs get_secs() { return get_nanos(); }
 
 namespace papaya
 {

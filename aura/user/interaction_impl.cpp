@@ -1269,7 +1269,7 @@ namespace user
    }
    
    
-   void interaction_impl::_on_mouse_move_step(const ::point_i32 & pointCursor)
+   void interaction_impl::_on_mouse_move_step(const ::point_i32 & pointCursor, bool bMouseLeave)
    {
 
       for(::index i = 0; i < m_userinteractionaMouseHover.get_count(); )
@@ -1283,7 +1283,7 @@ namespace user
             i++;
 
          }
-         else if(pinteraction->_001IsPointInsideInline(pointCursor))
+         else if(!bMouseLeave && pinteraction->_001IsPointInsideInline(pointCursor))
          {
 
             i++;

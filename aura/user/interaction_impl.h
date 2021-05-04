@@ -231,7 +231,7 @@ namespace user
       virtual void track_mouse_hover();
       virtual void track_mouse_leave();
 
-      virtual void _on_mouse_move_step(const ::point_i32 & pointCursor);
+      virtual void _on_mouse_move_step(const ::point_i32 & pointCursor, bool bMouseLeave = false);
 
       //virtual void mouse_hover_step(const __status < ::point_i32 > & statusPointCursor);
 

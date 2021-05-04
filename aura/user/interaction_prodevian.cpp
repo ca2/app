@@ -608,7 +608,7 @@ bool prodevian::prodevian_iteration()
       // - It has prodevian mode (FPS drawing);
       // - Or it is going to wait because a frame was already drawn an instant ago due on-request-drawing (cool down).
 
-      i64 nanosFrame = bHasProdevian ? m_nanosPostRedrawProdevian : m_nanosPostRedrawNominal ;
+      auto nanosFrame = bHasProdevian ? m_nanosPostRedrawProdevian : m_nanosPostRedrawNominal ;
 
       //i64 i2 = get_nanos();
 
@@ -641,11 +641,11 @@ bool prodevian::prodevian_iteration()
 
       {
 
-         auto nanosStartWait = (i64)get_nanos();
+         auto nanosStartWait = get_nanos();
 
-         i64 nanosToWaitForNextFrame = (i64)m_nanosNextScreenUpdate - (i64)get_nanos();
+         auto nanosToWaitForNextFrame = m_nanosNextScreenUpdate - get_nanos();
 
-         i32 msToWaitForNextFrame = (::i32)(nanosToWaitForNextFrame / 1'000'000);
+         auto msToWaitForNextFrame = nanosToWaitForNextFrame / 1'000'000;
 
          if (nanosToWaitForNextFrame > 1'000'000'000)
          {
@@ -665,26 +665,31 @@ bool prodevian::prodevian_iteration()
 
             //printf("msToWaitForNextFrame >= 2\n");
 
-            if (msToWaitForNextFrame >= 50)
+            if (msToWaitForNextFrame < nanosFrame)
             {
 
-               //printf("msToWaitForNextFrame >= 50ms (%dms)\n", (::i32) (msToWaitForNextFrame - 1));
+               if (msToWaitForNextFrame >= 50)
+               {
 
-               ::millis millis;
+                  //printf("msToWaitForNextFrame >= 50ms (%dms)\n", (::i32) (msToWaitForNextFrame - 1));
 
-               millis.Now();
+                  ::millis millis;
 
-               m_synchronizationa.wait(::millis(msToWaitForNextFrame - 1));
+                  millis.Now();
 
-               //printf("Actually waited %dms\n", (::i32) millis.elapsed().m_i);
+                  m_synchronizationa.wait(msToWaitForNextFrame - 1_ms);
 
-            }
-            else
-            {
+                  //printf("Actually waited %dms\n", (::i32) millis.elapsed().m_i);
 
-               //printf("msToWaitForNextFrame < 50\n");
+               }
+               else
+               {
 
-               m_evUpdateScreen.wait(millis(msToWaitForNextFrame));
+                  //printf("msToWaitForNextFrame < 50\n");
+
+                  m_evUpdateScreen.wait(msToWaitForNextFrame);
+
+               }
 
             }
 

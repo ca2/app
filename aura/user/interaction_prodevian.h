@@ -21,16 +21,16 @@ namespace user
       __composite(::user::thread)               m_puserthread;
       nano_timer                                m_nanotimer;
 
-      i64                                       m_nanosNow;
+      ::nanos                                   m_nanosNow;
 
-      i64                                       m_nanosPostRedrawProdevian;
-      i64                                       m_nanosPostRedrawNominal;
+      ::nanos                                   m_nanosPostRedrawProdevian;
+      ::nanos                                   m_nanosPostRedrawNominal;
 
       //i64                                       m_iFrameId;
-      i64                                       m_nanosLastFrame;
+      ::nanos                                   m_nanosLastFrame;
       //i64                                       m_iLastFrameId;
-      i64                                       m_nanosNextFrame;
-      i64                                       m_nanosNextScreenUpdate;
+      ::nanos                                   m_nanosNextFrame;
+      ::nanos                                   m_nanosNextScreenUpdate;
       //::count                                   m_cLost;
       u64_array                                 m_iaFrame;
 

@@ -1,6 +1,8 @@
 #pragma once
 
 
+inline millis operator -(const ::millis& millis1, const ::millis& millis2);
+
 enum enum_now
 {
 
@@ -72,7 +74,7 @@ public:
    inline ::millis remaining(const millis & millisTimeout)
    {
 
-      ::millis millisNow = now();
+      auto millisNow = now();
 
       auto millisRemaining = millisTimeout - millisNow + *this;
 
@@ -177,7 +179,7 @@ public:
    //inline bool operator <= (const ::millis & millis) const { return m_i <= millis.m_i; }
    //inline bool operator > (const ::millis & millis) const { return m_i > millis.m_i; }
    //inline bool operator >= (const ::millis & millis) const { return m_i >= millis.m_i; }
-   inline millis operator - (const ::millis & millis) const { return m_i - millis.m_i; }
+   //inline millis operator - (const ::millis & millis) const { return m_i - millis.m_i; }
    inline millis operator + (const ::millis & millis) const { return m_i + millis.m_i; }
    inline millis& operator -= (const ::millis & millis) { m_i -= millis.m_i; return *this; }
    inline millis& operator += (const ::millis & millis) { m_i += millis.m_i; return *this; }
@@ -199,7 +201,6 @@ public:
    inline millis& operator *= (double d) { m_i = (::i64)(m_i * d); return *this; }
 
    inline ::i64 operator / (const millis& millis) const { return m_i / millis.m_i; }
-   inline millis operator / (::i64 i) const { return m_i / i; }
    inline millis& operator /= (::i64 i)  { m_i /= i; return *this; }
    inline millis& operator %= (const millis & millis) { m_i %= millis.m_i; return *this; }
 
@@ -315,6 +316,25 @@ inline secs::secs(const millis & millis) { m_i = millis.m_i / 1'000; }
 
 
 inline millis operator "" _ms(unsigned long long int u) { return (::i64) u; }
+
+
+inline millis operator -(const ::millis& millis1, const ::millis& millis2)
+{
+
+   return millis1.m_i - millis2.m_i;
+
+}
+
+
+template < primitive_integral INTEGRAL >
+inline millis operator /(const ::millis& millis, const INTEGRAL& integral)
+{
+
+   return millis.m_i / integral;
+
+}
+
+
 
 
 

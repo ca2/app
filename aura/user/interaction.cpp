@@ -9570,23 +9570,16 @@ namespace user
 
       //}
 
-      ::user::interaction * pinteraction = get_top_level();
+      auto pwnd = get_wnd();
 
-      if (pinteraction == nullptr)
+      if (::is_null(pwnd))
       {
 
          return;
 
       }
 
-      if (pinteraction->get_wnd() == nullptr)
-      {
-
-         return;
-
-      }
-
-      pinteraction->get_wnd()->mouse_hover_add(this);
+      pwnd->mouse_hover_add(this);
 
       //m_bTrackMouseLeave = true;
 

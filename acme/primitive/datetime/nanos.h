@@ -39,4 +39,20 @@ inline secs::secs(const nanos & nanos) { m_i = nanos.m_i / 1'000'000'000; }
 inline nanos operator "" _ns(unsigned long long int u) { return (::i64) u; }
 
 
+inline nanos operator -(const ::nanos& nanos1, const ::nanos& nanos2) 
+{
+
+   return nanos1.m_i - nanos2.m_i;
+
+}
+
+
+template < primitive_integral INTEGRAL >
+inline nanos operator /(const ::nanos& nanos, const INTEGRAL & integral)
+{
+
+   return nanos.m_i / integral;
+
+}
+
 

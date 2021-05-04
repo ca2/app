@@ -560,7 +560,7 @@ namespace user
 
       __pointer(::message::mouse) pmouse(pmessage);
 
-      if (!m_bTrackMouseLeave)
+      //if (!m_bTrackMouseLeave)
       {
 
          track_mouse_leave();

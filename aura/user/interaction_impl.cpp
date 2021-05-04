@@ -3845,10 +3845,60 @@ namespace user
    }
 
 
+   void interaction_impl::set_nominal_fps(double dNominalFps)
+   {
+
+      m_dNominalFps = dNominalFps;
+
+      if (::is_set(m_pprodevian))
+      {
+
+         if (::is_set(m_puserinteraction) && m_puserinteraction->is_graphical())
+         {
+
+            m_pprodevian->set_nominal_fps(m_dNominalFps);
+
+         }
+
+      }
+
+   }
+
+
+   void interaction_impl::set_fps(double dFps)
+   {
+
+      m_dNominalFps = dFps;
+
+      m_dProdevianFps = dFps;
+
+      if (::is_set(m_pprodevian))
+      {
+
+         if (::is_set(m_puserinteraction) && m_puserinteraction->is_graphical())
+         {
+
+            m_pprodevian->set_fps(dFps);
+
+         }
+
+      }
+
+   }
+
+
    double interaction_impl::get_prodevian_fps()
    {
 
       return m_dProdevianFps;
+
+   }
+
+
+   double interaction_impl::get_nominal_fps()
+   {
+
+      return m_dNominalFps;
 
    }
 

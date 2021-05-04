@@ -47,6 +47,13 @@ inline nanos operator -(const ::nanos& nanos1, const ::nanos& nanos2)
 }
 
 
+inline nanos operator +(const ::nanos& nanos1, const ::nanos& nanos2)
+{
+
+   return nanos1.m_i + nanos2.m_i;
+
+}
+
 template < primitive_integral INTEGRAL >
 inline nanos operator /(const ::nanos& nanos, const INTEGRAL & integral)
 {

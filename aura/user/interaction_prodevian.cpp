@@ -617,7 +617,7 @@ bool prodevian::prodevian_iteration()
 
       //m_nanosNextFrame = m_iFrameId * nanosFrame;
 
-      m_nanosNextFrame = m_nanosNow * nanosFrame;
+      m_nanosNextFrame = m_nanosNow + nanosFrame;
 
       //m_cLost = (::count) (m_iFrameId - m_iLastFrameId - 1);
 

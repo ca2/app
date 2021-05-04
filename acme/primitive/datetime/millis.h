@@ -2,6 +2,7 @@
 
 
 inline millis operator -(const ::millis& millis1, const ::millis& millis2);
+inline millis operator +(const ::millis& millis1, const ::millis& millis2);
 
 enum enum_now
 {
@@ -180,7 +181,7 @@ public:
    //inline bool operator > (const ::millis & millis) const { return m_i > millis.m_i; }
    //inline bool operator >= (const ::millis & millis) const { return m_i >= millis.m_i; }
    //inline millis operator - (const ::millis & millis) const { return m_i - millis.m_i; }
-   inline millis operator + (const ::millis & millis) const { return m_i + millis.m_i; }
+   //inline millis operator + (const ::millis & millis) const { return m_i + millis.m_i; }
    inline millis& operator -= (const ::millis & millis) { m_i -= millis.m_i; return *this; }
    inline millis& operator += (const ::millis & millis) { m_i += millis.m_i; return *this; }
 
@@ -322,6 +323,14 @@ inline millis operator -(const ::millis& millis1, const ::millis& millis2)
 {
 
    return millis1.m_i - millis2.m_i;
+
+}
+
+
+inline millis operator +(const ::millis& millis1, const ::millis& millis2)
+{
+
+   return millis1.m_i + millis2.m_i;
 
 }
 

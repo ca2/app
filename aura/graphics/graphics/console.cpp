@@ -113,7 +113,7 @@ namespace graphics
       case e_dos_color_foreground_yellow:
          return argb(255, 255, 255, 0);
       case e_dos_color_background_black:
-         return argb(255, 255, 255, 0);
+         return argb(255, 0, 0, 0);
       }
 
       return 0;

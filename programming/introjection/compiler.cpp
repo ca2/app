@@ -1,6 +1,7 @@
 #include "framework.h"
 #ifdef WINDOWS_DESKTOP
-#include "acme/node/windows/registry.h"
+#include "acme_windows/_.h"
+#include "acme_windows/_acme_windows.h"
 #endif
 #include "acme/filesystem/filesystem/acme_dir.h"
 

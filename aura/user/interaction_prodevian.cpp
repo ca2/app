@@ -645,8 +645,6 @@ bool prodevian::prodevian_iteration()
 
          auto nanosToWaitForNextFrame = m_nanosNextScreenUpdate - get_nanos();
 
-         auto msToWaitForNextFrame = nanosToWaitForNextFrame / 1'000'000;
-
          if (nanosToWaitForNextFrame > 1'000'000'000)
          {
 
@@ -656,7 +654,7 @@ bool prodevian::prodevian_iteration()
 
          }
 
-         if (msToWaitForNextFrame >= 2)
+         if (nanosToWaitForNextFrame >= 2_ms)
          {
 
             ::millis tickWait;
@@ -665,10 +663,10 @@ bool prodevian::prodevian_iteration()
 
             //printf("msToWaitForNextFrame >= 2\n");
 
-            if (msToWaitForNextFrame < nanosFrame)
+            if (nanosToWaitForNextFrame < nanosFrame)
             {
 
-               if (msToWaitForNextFrame >= 50)
+               if (nanosToWaitForNextFrame >= 50_ms)
                {
 
                   //printf("msToWaitForNextFrame >= 50ms (%dms)\n", (::i32) (msToWaitForNextFrame - 1));
@@ -677,7 +675,7 @@ bool prodevian::prodevian_iteration()
 
                   millis.Now();
 
-                  m_synchronizationa.wait(msToWaitForNextFrame - 1_ms);
+                  m_synchronizationa.wait(nanosToWaitForNextFrame - 1_ms);
 
                   //printf("Actually waited %dms\n", (::i32) millis.elapsed().m_i);
 
@@ -687,7 +685,7 @@ bool prodevian::prodevian_iteration()
 
                   //printf("msToWaitForNextFrame < 50\n");
 
-                  m_evUpdateScreen.wait(msToWaitForNextFrame);
+                  m_evUpdateScreen.wait(nanosToWaitForNextFrame);
 
                }
 

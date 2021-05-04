@@ -38,3 +38,10 @@ extern "C" CLASS_DECL_ACME int c_localtime_offset();
 
 
 
+inline nanos operator -(const ::nanos& nanos, const ::millis & millis);
+
+
+
+
+
+

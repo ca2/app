@@ -68,3 +68,15 @@ inline duration& duration::operator = (const ::duration & duration)
 
 
 
+inline nanos operator -(const ::nanos& nanos, const ::millis & millis)
+{
+
+   return nanos.m_i - millis.m_i * 1'000'000;
+
+}
+
+
+
+
+
+

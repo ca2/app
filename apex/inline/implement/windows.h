@@ -81,6 +81,8 @@ int main(int argc, platform_char** argv)
 
    }
 
+   psystem->end();
+
 //   {
 //
 //#ifdef WINDOWS

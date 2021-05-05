@@ -10,25 +10,3 @@
 
 
 
-//#include <mach/clock.h>
-//#include <mach/mach.h>
-#include <mach/mach_time.h>
-
-//extern clock_serv_t g_cclock;
-//extern double g_machtime_conversion_factor;
-
-void ns_Sleep(unsigned int uiMillis);
-
-
-//CLASS_DECL_APEX i64 get_nanos()
-//{
-//   
-//   return ::apex::mach_absolute_time() * ::apex::g_machtime_conversion_factor;
-//   
-//   //   mach_timespec_t mts;
-//   //
-//   //   clock_get_time(g_cclock, &mts);
-//   //
-//   //   return ((u64) mts.tv_sec * (u64)1000 * (u64)1000 * (u64)1000 )+ ((u64) mts.tv_nsec);
-//   
-//}

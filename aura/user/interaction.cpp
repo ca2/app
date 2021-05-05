@@ -14817,8 +14817,35 @@ restart:
 
             track_mouse_leave();
 
-            pmouse->m_bRet = m_itemLButtonDown.m_eelement != e_element_none
-               && m_itemLButtonDown.m_eelement != e_element_client;
+            // For Windows: ... (please fill in...)
+            // For Linux: ...
+            // - control box button scenario:
+            //   user presses down the button,
+            //   m_itemLButtonDown turns e_element_client.
+            //   m_itemLButtonDown isn't e_element_none
+            //   but it is e_element_client,
+            //   so it sets m_bRet to false
+            //   further processing continues,
+            //   main frame handling (move_manager)
+            //   starts (and in this case, captures the mouse) (BAD)
+            //   Later l_button_up in this case will route
+            //   to main frame (that captured the mouse for
+            //   move_manager)
+//            pmouse->m_bRet = m_itemLButtonDown.m_eelement != e_element_none
+  //             && m_itemLButtonDown.m_eelement != e_element_client;
+
+            // For Windows: ... (please fill in...)
+            // For Linux: ...
+            // - control box button scenario:
+            //   user presses down the button,
+            //   m_itemLButtonDown turns e_element_client.
+            //   m_itemLButtonDown isn't e_element_none,
+            //   so it sets m_bRet to true
+            //   further processing is quit,
+            //   main frame handling (move_manager) is skipped. (OK)
+            //   Later l_button_up can trigger button on click using
+            //   interaction SimpleUIMouseHandling
+            pmouse->m_bRet = m_itemLButtonDown.m_eelement != e_element_none;
 
             if (pmouse->m_bRet)
             {

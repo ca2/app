@@ -378,12 +378,12 @@ bool prodevian::prodevian_iteration()
 
          //synchronous_lock synchronouslock(m_pimpl->mutex());
 
-         if (bHasProdevian)
-         {
+         // if (bHasProdevian)
+         // {
 
-            output_debug_string("has_prodevian");
+         //    output_debug_string("has_prodevian");
           
-         }
+         // }
 
       }
 

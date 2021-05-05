@@ -211,6 +211,13 @@ namespace graphics
 
          auto pimageScreen = get_screen_image();
 
+         if(::is_null(pimageScreen))
+         {
+
+            return false;
+
+         }
+
          pimageScreen->map();
 
          auto pdata = pimageScreen->get_data();

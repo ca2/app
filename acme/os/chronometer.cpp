@@ -26,8 +26,8 @@ namespace acme
    {
 
       m_bStopped = false;
-      m_beg = 0;
-      m_end = 0;
+      m_nanosBeg = 0;
+      m_nanosEnd = 0;
 
    }
 
@@ -51,7 +51,7 @@ namespace acme
       
       m_bStopped = false; // reset stop flag
 
-      m_beg = get_nanos();
+      m_nanosBeg = get_nanos();
 
    }
 
@@ -66,7 +66,7 @@ namespace acme
       
       m_bStopped = true; // set chronometer stopped flag
 
-      m_end = get_nanos();
+      m_nanosEnd = get_nanos();
 
    }
 
@@ -80,9 +80,13 @@ namespace acme
    {
 
       if (!m_bStopped)
-         m_end = get_nanos();
+      {
 
-      return (m_end - m_beg) / 1000.0;
+         m_nanosEnd = get_nanos();
+
+      }
+
+      return (m_nanosEnd.m_i - m_nanosBeg.m_i) / 1000.0;
 
    }
 
@@ -93,7 +97,16 @@ namespace acme
    ///////////////////////////////////////////////////////////////////////////////
    double chronometer::getElapsedTimeInMilliSec()
    {
-      return this->getElapsedTimeInMicroSec() * 0.001;
+
+      if (!m_bStopped)
+      {
+
+         m_nanosEnd = get_nanos();
+
+      }
+
+      return (m_nanosEnd.m_i - m_nanosBeg.m_i) / 1'000'000.0;
+
    }
 
 
@@ -103,7 +116,16 @@ namespace acme
    ///////////////////////////////////////////////////////////////////////////////
    double chronometer::getElapsedTimeInSec()
    {
-      return this->getElapsedTimeInMicroSec() * 0.000001;
+
+      if (!m_bStopped)
+      {
+
+         m_nanosEnd = get_nanos();
+
+      }
+
+      return (m_nanosEnd.m_i - m_nanosBeg.m_i) / 1'000'000'000.0;
+
    }
 
 
@@ -114,7 +136,7 @@ namespace acme
    double chronometer::getTimeInMicroSec()
    {
 
-      return get_nanos() / 1000.0;
+      return get_nanos().m_i / 1000.0;
 
    }
 
@@ -125,7 +147,9 @@ namespace acme
    ///////////////////////////////////////////////////////////////////////////////
    double chronometer::getTimeInMilliSec()
    {
-      return this->getTimeInMicroSec() * 0.001;
+
+      return get_nanos().m_i / 1'000'000.0;
+
    }
 
 
@@ -135,7 +159,9 @@ namespace acme
    ///////////////////////////////////////////////////////////////////////////////
    double chronometer::getTimeInSec()
    {
-      return this->getTimeInMicroSec() * 0.000001;
+
+      return get_nanos().m_i / 1'000'000'000.0;
+
    }
 
 
@@ -145,7 +171,9 @@ namespace acme
    ///////////////////////////////////////////////////////////////////////////////
    double chronometer::getElapsedTime()
    {
+
       return this->getElapsedTimeInSec();
+
    }
 
 

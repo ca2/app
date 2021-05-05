@@ -23,7 +23,7 @@ nano_timer::nano_timer()
 }
 
 
-void nano_timer::wait(u64 uWait)
+void nano_timer::wait(const ::nanos & nanosWait)
 {
 
 #ifdef WINDOWS
@@ -51,9 +51,9 @@ void nano_timer::wait(u64 uWait)
 
       //struct timespec rem;
 
-      req.tv_sec = uWait / 1'000'000'000ULL;
+      req.tv_sec = nanosWait.m_i / 1'000'000'000ULL;
 
-      req.tv_nsec = uWait % 1'000'000'000ULL;
+      req.tv_nsec = nanosWait.m_i % 1'000'000'000ULL;
 
       //rem.tv_sec = 0;
 

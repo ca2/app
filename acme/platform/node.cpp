@@ -589,29 +589,49 @@ namespace acme
    ::e_status node::node_sync(const ::duration & durationTimeout, const ::routine & routine)
    {
 
-      auto psignalization = __new(::promise::signalization);
-
-      auto proutine = __routine([this, routine, psignalization]()
-                                {
-
-                                   routine();
-
-                                   psignalization->m_evReady.SetEvent();
-
-                                   //::release((::matter * &)psignalization.m_p);
-
-                                });
-
-      node_branch(proutine);
-
-      if (psignalization->m_evReady.wait().failed())
+      if(is_main_thread())
       {
 
-         return error_timeout;
+         auto estatus = routine();
+
+         if(!estatus)
+         {
+
+            return estatus;
+
+         }
+
+         return estatus;
 
       }
+      else
+      {
 
-      return ::success;
+         auto psignalization = __new(::promise::signalization);
+
+         auto proutine = __routine([this, routine, psignalization]()
+                                   {
+
+                                      routine();
+
+                                      psignalization->m_evReady.SetEvent();
+
+                                      //::release((::matter * &)psignalization.m_p);
+
+                                   });
+
+         node_branch(proutine);
+
+         if (psignalization->m_evReady.wait().failed())
+         {
+
+            return error_timeout;
+
+         }
+
+         return ::success;
+
+      }
 
    }
 

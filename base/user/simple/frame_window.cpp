@@ -2777,47 +2777,47 @@ void simple_frame_window::defer_create_notification_icon()
    }
 
    windowing()->windowing_branch(__routine([this]
-                                          {
-
-   if (m_pnotifyicon)
    {
 
-      m_pnotifyicon->destroy_notify_icon();
-
-   }
-
-   auto papplication = get_application();
-
-   if (!m_piconNotify)
-   {
-
-      auto estatus = __construct(m_piconNotify);
-
-      if(estatus)
+      if (m_pnotifyicon)
       {
 
-         const char * pszAppName = papplication->m_strAppName;
-
-         m_piconNotify->load_app_tray_icon(pszAppName);
+         m_pnotifyicon->destroy_notify_icon();
 
       }
 
-   }
+      auto papplication = get_application();
 
-   __construct(m_pnotifyicon);
+      if (!m_piconNotify)
+      {
 
-   if (!m_pnotifyicon->create_notify_icon(1, this, m_piconNotify))
-   {
+         auto estatus = __construct(m_piconNotify);
 
-      m_pnotifyicon.release();
+         if(estatus)
+         {
 
-      return;
+            const char * pszAppName = papplication->m_strAppName;
 
-   }
+            m_piconNotify->load_app_tray_icon(pszAppName);
 
-   m_bitMinimizeToTray.defer(e_bit_true);
+         }
 
-                                          }));
+      }
+
+      __construct(m_pnotifyicon);
+
+      if (!m_pnotifyicon->create_notify_icon(1, this, m_piconNotify))
+      {
+
+         m_pnotifyicon.release();
+
+         return;
+
+      }
+
+      m_bitMinimizeToTray.defer(e_bit_true);
+
+   }));
 
 }
 

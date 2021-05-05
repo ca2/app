@@ -14796,10 +14796,31 @@ restart:
 
       }
 
-      if (m_bSimpleUIDefaultMouseHandling)
+      hit_test(m_itemLButtonDown, pmouse);
+
+      if(m_itemLButtonDown && m_itemLButtonDown == e_element_client && m_pdragmove)
       {
 
-         hit_test(m_itemLButtonDown, pmouse);
+         get_wnd()->show_keyboard(false);
+
+         m_pdragmove->m_bLButtonDown = true;
+
+         m_pdragmove->m_bDrag = false;
+
+         m_pdragmove->m_pointLButtonDown = pmouse->m_point;
+
+         m_pdragmove->m_sizeLButtonDownOffset = m_pdragmove->m_pointLButtonDown - layout().origin();
+
+         set_mouse_capture();
+
+         pmouse->m_bRet = true;
+
+         return;
+
+      }
+
+      if (m_bSimpleUIDefaultMouseHandling)
+      {
 
          if (m_itemLButtonDown.is_set())
          {
@@ -14884,26 +14905,6 @@ restart:
 
       }
 
-      if (m_pdragmove)
-      {
-
-         get_wnd()->show_keyboard(false);
-
-         m_pdragmove->m_bLButtonDown = true;
-
-         m_pdragmove->m_bDrag = false;
-
-         m_pdragmove->m_pointLButtonDown = pmouse->m_point;
-
-         m_pdragmove->m_sizeLButtonDownOffset = m_pdragmove->m_pointLButtonDown - layout().origin();
-
-         set_mouse_capture();
-
-         pmouse->m_bRet = true;
-
-         return;
-
-      }
 
    }
 

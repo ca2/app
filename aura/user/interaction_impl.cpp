@@ -3796,6 +3796,13 @@ namespace user
 
             //TRACE("PrintBuffer (%d, %d)",  r.right, r.bottom);
 
+            if(!m_pgraphics)
+            {
+
+               return;
+
+            }
+
             m_pgraphics->m_bNewBuffer = true;
 
          }

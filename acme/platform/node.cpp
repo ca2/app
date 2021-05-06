@@ -31,9 +31,11 @@ namespace acme
 
       m_pNodeGnome = nullptr;
       m_pNodeKDE = nullptr;
+      m_pNodeXfce = nullptr;
 
       m_pNodeDesktopEnvironmentGnome = nullptr;
       m_pNodeDesktopEnvironmentKDE = nullptr;
+      m_pNodeDesktopEnvironmentXfce = nullptr;
 
 #ifdef LINUX
 

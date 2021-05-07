@@ -631,6 +631,13 @@ if(LINUX OR APPLE OR SOLARIS)
 endif()
 
 
+list(APPEND library_references
+   acme
+   apex
+   aqua
+   aura)
+
+
 add_library(axis SHARED ${axis_source})
 
 
@@ -646,14 +653,15 @@ if (MSVC)
     target_link_options(axis PRIVATE "/IMPLIB:${LIBRARY_OUTPUT_PATH}/axis.lib")
     target_link_options(axis PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/axis.def")
     #target_link_libraries(axis PRIVATE acme apex aqua aura pcre bzip2 ws2_32 kernel32 user32 gdi32 winspool comdlg32 advapi32 shell32 ole32 oleaut32 uuid odbc32 odbccp32)
-    target_link_libraries(axis PRIVATE acme apex aqua aura bzip2 ws2_32 kernel32 user32 gdi32 winspool comdlg32 advapi32 shell32 ole32 oleaut32 uuid odbc32 odbccp32)
+    #target_link_libraries(axis PRIVATE acme apex aqua aura bzip2 ws2_32 kernel32 user32 gdi32 winspool comdlg32 advapi32 shell32 ole32 oleaut32 uuid odbc32 odbccp32)
+    target_link_libraries(axis PRIVATE ${library_references})
 elseif(LINUX)
     target_compile_options(axis PRIVATE -fpermissive)
     target_link_options(axis PRIVATE -Wl,-rpath=\$ORIGIN)
     #target_link_libraries(axis PRIVATE dl pthread X11 Xrandr Xrender Xinerama Xi ncurses)z
-    target_link_libraries(axis PRIVATE ${PKGCONFIG_LIBRARIES})
+    target_link_libraries(axis PRIVATE bz2 ${PKGCONFIG_LIBRARIES} ${library_references})
     #target_link_libraries(axis PRIVATE acme apex aqua aura pcre2-8 bz2)
-    target_link_libraries(axis PRIVATE acme apex aqua aura bz2)
+    #target_link_libraries(axis PRIVATE acme apex aqua aura bz2)
     target_link_options(axis PRIVATE -Wl,-z,defs)
 endif()
 
@@ -662,3 +670,6 @@ target_include_directories(axis PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 
 
 target_compile_definitions(axis PRIVATE _AXIS_LIBRARY)
+
+
+

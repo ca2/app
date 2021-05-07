@@ -162,7 +162,7 @@ namespace user
 
       virtual void default_message_handler(::message::message * pusermessage) override;
 
-      virtual bool pre_message_handler(::message::message* pmessage);
+      virtual bool pre_message_handler(::message::key * & puserkey, bool & bKeyMessage, ::message::message* pmessage);
 
       virtual void on_tsf_activate(bool bActivate);
 

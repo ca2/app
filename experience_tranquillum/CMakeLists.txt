@@ -2,19 +2,6 @@ cmake_minimum_required(VERSION 3.17)
 project(experience_tranquillum CXX)
 
 
-add_compile_options("$<$<CONFIG:DEBUG>:-DDEBUG>")
-
-
-if(LINUX)
-elseif(WIN32)
-elseif(UWP)
-endif()
-
-
-set(LIBRARY_OUTPUT_PATH ${CMAKE_CURRENT_SOURCE_DIR}/../../../time-${PLATFORM_NAME}/cmake)
-set(EXECUTABLE_OUTPUT_PATH ${CMAKE_CURRENT_SOURCE_DIR}/../../../time-${PLATFORM_NAME}/cmake)
-
-
 list(APPEND experience_tranquillum_source
         #_.cpp
         _.h
@@ -48,15 +35,13 @@ list(APPEND experience_tranquillum_source
         style.h)
 
 
-
-
-
-
-if (MSVC)
-    set(LIBCXX_TARGETING_MSVC ON)
-else()
-    set(LIBCXX_TARGETING_MSVC OFF)
-endif()
+list(APPEND library_references
+   acme
+   apex
+   aqua
+   aura
+   axis
+   base)
 
 
 add_library(experience_tranquillum SHARED ${experience_tranquillum_source})
@@ -69,45 +54,27 @@ set_target_properties(experience_tranquillum PROPERTIES LINKER_LANGUAGE CXX)
 
 
 if (MSVC)
+
     target_compile_options(experience_tranquillum PRIVATE "/MD$<$<CONFIG:Debug>:d>")
     target_link_options(experience_tranquillum PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
     target_link_options(experience_tranquillum PRIVATE "/IMPLIB:${LIBRARY_OUTPUT_PATH}/experience_tranquillum.lib")
     target_link_options(experience_tranquillum PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/experience_tranquillum.def")
-    target_link_libraries(experience_tranquillum PRIVATE acme apex aqua aura axis base)
+    target_link_libraries(experience_tranquillum PRIVATE ${library_references})
+
 elseif(LINUX)
+
     target_compile_options(experience_tranquillum PRIVATE -fpermissive)
     target_link_options(experience_tranquillum PRIVATE -Wl,-rpath=\$ORIGIN)
-    target_link_libraries(experience_tranquillum PRIVATE dl pthread X11 Xrandr Xrender Xinerama Xi ncurses)
-    target_link_libraries(experience_tranquillum PRIVATE ${PKGCONFIG_LIBRARIES})
-    target_link_libraries(experience_tranquillum PRIVATE acme apex aqua aura axis base)
+    target_link_libraries(experience_tranquillum PRIVATE ${PKGCONFIG_LIBRARIES} ${library_references})
     target_link_options(experience_tranquillum PRIVATE -Wl,-z,defs)
+
 endif()
 
 
-target_link_directories(experience_tranquillum PRIVATE ${LIBRARY_OUTPUT_PATH})
-target_link_directories(experience_tranquillum PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/storage-${PLATFORM_NAME}/library/x64/basis)
-target_link_directories(experience_tranquillum PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/storage-${PLATFORM_NAME}/third/library/x64/basis)
-
-
-target_include_directories(experience_tranquillum PRIVATE .)
 target_include_directories(experience_tranquillum PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
-target_include_directories(experience_tranquillum PRIVATE $ENV{HOME}/__config)
-target_include_directories(experience_tranquillum PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../source)
-target_include_directories(experience_tranquillum PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive)
-target_include_directories(experience_tranquillum PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../source)
-target_include_directories(experience_tranquillum PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../source/app)
-target_include_directories(experience_tranquillum PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../source/app/_include)
-target_include_directories(experience_tranquillum PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../source/include)
-target_include_directories(experience_tranquillum PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/platform-${PLATFORM_NAME})
-target_include_directories(experience_tranquillum PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/platform-${PLATFORM_NAME}/_include)
-target_include_directories(experience_tranquillum PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/third-${PLATFORM_NAME}/include)
-target_include_directories(experience_tranquillum PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/third-${PLATFORM_NAME}/third/include)
-target_include_directories(experience_tranquillum PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/third-${PLATFORM_NAME}/third/include/include)
 
 
 target_compile_definitions(experience_tranquillum PRIVATE _APP_EXPERIENCE_TRANQUILLUM_LIBRARY)
-target_compile_definitions(experience_tranquillum PRIVATE UNICODE)
-target_compile_definitions(experience_tranquillum PRIVATE _UNICODE)
 
 
 

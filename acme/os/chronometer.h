@@ -25,8 +25,8 @@ namespace acme
 
 
       bool        m_bStopped; /// stop flag
-      u64         m_beg; // nanos
-      u64         m_end; // nanos
+      ::nanos     m_nanosBeg;
+      ::nanos     m_nanosEnd;
 
 
       chronometer();                                    // default constructor

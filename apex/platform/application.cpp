@@ -2571,6 +2571,8 @@ namespace apex
       try
       {
 
+         auto psystem = m_psystem;
+
          //if (!is_system() && !is_session())
          {
 

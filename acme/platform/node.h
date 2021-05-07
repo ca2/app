@@ -48,8 +48,10 @@ namespace acme
       ::windowing_xcb::node *                m_pNodeXcb;
       ::node_gnome::node *                   m_pNodeGnome;
       ::node_kde::node *                     m_pNodeKDE;
+      ::node_xfce::node *                    m_pNodeXfce;
       ::desktop_environment_gnome::node *    m_pNodeDesktopEnvironmentGnome;
       ::desktop_environment_kde::node *      m_pNodeDesktopEnvironmentKDE;
+      ::desktop_environment_xfce::node *     m_pNodeDesktopEnvironmentXfce;
 
       //::user::enum_desktop    m_edesktop;
 
@@ -297,6 +299,7 @@ namespace acme
 
 
 } // namespace linux
+
 
 
 

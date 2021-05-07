@@ -254,6 +254,16 @@ namespace node_kde
 } // namespace node_kde
 
 
+namespace node_xfce
+{
+
+
+   class node;
+
+
+} // namespace node_xfce
+
+
 namespace desktop_environment_gnome
 {
 
@@ -272,6 +282,16 @@ namespace desktop_environment_kde
 
 
 } // namespace desktop_environment_kde
+
+
+namespace desktop_environment_xfce
+{
+
+
+   class node;
+
+
+} // namespace desktop_environment_xfce
 
 
 #define ___STR(s) #s

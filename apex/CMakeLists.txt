@@ -344,8 +344,6 @@ list(APPEND apex_source
    os/apex.h
    os/argcargv.cpp
    os/binreloc.h
-   os/chronometer.cpp
-   os/chronometer.h
    os/cross.h
    os/debug.cpp
    os/file.h
@@ -486,15 +484,6 @@ list(APPEND apex_source
    platform/system.h
    platform/text.cpp
    platform/thread_set.h
-   primitive/datetime/_.h
-   primitive/datetime/_c.h
-   primitive/datetime/_impl.h
-   #primitive/datetime/datetime.cpp
-   #primitive/primitive/_.cpp
-   primitive/primitive/_.h
-   primitive/primitive/_defer.h
-   primitive/primitive/_impl.h
-   primitive/primitive/action_context.h
    primitive/subject/context.cpp
    primitive/subject/context.h
    primitive/subject/manager.cpp

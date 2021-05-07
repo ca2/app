@@ -80,6 +80,25 @@ enum enum_message : ::i64
    e_message_mouse_wheel = 522,
    e_message_capture_changed = 533,
 
+   
+   e_message_ime_input_language           = 0x0051,
+
+
+   e_message_ime_start_composition        = 0x010D,
+   e_message_ime_end_composition          = 0x010E,
+   e_message_ime_composition              = 0x010F,
+
+
+   e_message_ime_set_context              = 0x0281,
+   e_message_ime_notify                   = 0x0282,
+   e_message_ime_composition_full         = 0x0284,
+   e_message_ime_select                   = 0x0285,
+   e_message_ime_char                     = 0x0286,
+
+
+   e_message_ime_key_down                 = 0x0290,
+   e_message_ime_key_up                   = 0x0291,
+
 
    e_message_mouse_leave    =               0x02A3,
 

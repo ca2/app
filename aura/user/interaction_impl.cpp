@@ -1446,8 +1446,8 @@ namespace user
          message == e_message_sys_key_down ||
          message == e_message_sys_key_up ||
          message == e_message_sys_char ||
-         message == WM_IME_KEYDOWN ||
-         message == WM_IME_KEYUP ||
+         message == e_message_ime_key_down ||
+         message == e_message_ime_key_up ||
          message == WM_IME_CHAR ||
          message == WM_IME_SELECT ||
          message == WM_IME_SETCONTEXT ||

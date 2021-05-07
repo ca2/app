@@ -270,7 +270,7 @@ typedef struct
 
 #if((_WIN32_WINNT >= 0x0400) || (WINVER >= 0x0500))
 #define WM_MOUSEHOVER                   0x02A1
-#define e_message_mouse_leave                   0x02A3
+#define WM_MOUSELEAVE                   0x02A3
 #endif
 #if(WINVER >= 0x0500)
 #define WM_NCMOUSEHOVER                 0x02A0

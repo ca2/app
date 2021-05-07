@@ -7,7 +7,6 @@
 #define TOY_FONT_SELECTION 0
 
 
-
 #if defined(LINUX)
 
 #define USE_PANGO
@@ -18,9 +17,10 @@
 #include "acme/os/ansios/_pthread.h"
 
 
+// dnf install cairo-devel pango
 #include "cairo/cairo-features.h"
-#include "cairo/cairo.h"
-#include "cairo/cairo-ft.h"
+#include <cairo/cairo.h>
+#include <cairo/cairo-ft.h>
 #ifdef WINDOWS_DESKTOP
 #include "cairo/cairo-win32.h"
 #endif
@@ -36,6 +36,10 @@ void destroy_cairo_mutex();
 #else
 #define CLASS_DECL_DRAW2D_CAIRO  CLASS_DECL_IMPORT
 #endif
+
+
+void copy(RECTANGLE_I32 * prectTarget, const cairo_rectangle_int_t * prectSource);
+void copy(cairo_rectangle_int_t * prectTarget, const RECTANGLE_I32 * prectSource);
 
 
 namespace draw2d_cairo
@@ -110,6 +114,8 @@ inline void copy(cairo_matrix_t* pcairomatrix,  const ::draw2d::matrix* pmatrix)
 
 #include "draw2d.h"
 
+
+#include "_impl.h"
 
 
 

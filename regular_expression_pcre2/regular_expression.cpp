@@ -8,8 +8,8 @@ namespace regular_expression_pcre2
    regular_expression::regular_expression(pcre_context_impl* pcreContext)
    {
 
-      m_pcreContext = pcreContext;
-      m_pc = nullptr;
+      //m_pcreContext = pcreContext;
+      m_pcode = nullptr;
 
    }
 
@@ -17,20 +17,22 @@ namespace regular_expression_pcre2
    regular_expression::~regular_expression()
    {
 
-      if (m_pc != nullptr)
+      if (m_pcode != nullptr)
       {
 
-         pcre2_code_free(m_pc);
+         pcre2_code_free(m_pcode);
 
-         m_pc = nullptr;
+         m_pcode = nullptr;
 
       }
 
    }
 
 
-   bool regular_expression::compile(const string& str)
+   ::e_status regular_expression::create(const string& str)
    {
+
+      m_str = str;
 
       int e;
 
@@ -38,92 +40,58 @@ namespace regular_expression_pcre2
 
       auto pcontext = (context *) m_pcontext->m_pContext;
 
-      m_pc = pcre2_compile((PCRE2_SPTR)(const char*)str, str.get_length(), 0, &e, &eo, pcontext->m_pcompilecontext);
+      m_pcode = pcre2_compile((PCRE2_SPTR)(const char*)m_str, m_str.get_length(), 0, &e, &eo, pcontext->m_pcompilecontext);
 
-      if (m_pc == nullptr)
+      if (m_pcode == nullptr)
       {
 
-         return false;
+         return error_failed;
 
       }
 
-      return true;
+      ::u32 uRangeCount = 0;
 
-   }
-   
+      auto iResult = pcre2_pattern_info(m_pcode, PCRE2_INFO_CAPTURECOUNT, &uRangeCount);
+//    may return:
+//    PCRE2_ERROR_NULL           the argument code is NULL
+//    PCRE2_ERROR_BADMAGIC       the "magic number" was not found
+//    PCRE2_ERROR_BADOPTION      the value of what is invalid
+//    PCRE2_ERROR_BADMODE        the pattern was compiled in the wrong mode
+//    PCRE2_ERROR_UNSET          the requested information is not set
 
-   bool regular_expression::matches(const string& str)
-   {
+      if(iResult == 0)
+      {
 
-      int c = pcre2_match(m_pc, (PCRE2_SPTR)(const char*)str, str.get_length(), 0, 0, m_pcreContext->m_pimpl->m_pmd, nullptr);
+         m_iRangeCount = uRangeCount;
 
-      return c > 0;
+      }
 
-   }
-
-
-   bool regular_expression::matches(const char* psz, strsize len)
-   {
-
-      int c = pcre2_match(m_pc, (PCRE2_SPTR)psz, len, 0, 0, m_pcreContext->m_pimpl->m_pmd, nullptr);
-
-      return c > 0;
+      return ::success;
 
    }
 
 
-   ::count regular_expression::match_count(const string& str)
+
+   __pointer(::regular_expression::topic) regular_expression::create_topic(const string& str)
    {
 
-      return match_count(str.c_str(), str.length());
+      auto ptopic = __new(class topic);
 
-   }
+      ptopic->m_pregularexpression = this;
 
-   
-   ::count regular_expression::match_count(const char* psz, strsize len)
-   {
+      auto estatus = ptopic->create(str);
 
-      int c = pcre2_match(m_pc, (PCRE2_SPTR)psz, len, 0, 0, m_pcreContext->m_pimpl->m_pmd, nullptr);
-
-      return c;
-
-   }
-
-
-   __pointer(::str::range_array) regular_expression::matches_ranges(const string& str)
-   {
-
-      return matches_ranges(str.c_str(), str.get_length());
-
-   }
-
-
-   __pointer(::str::range_array) regular_expression::matches_ranges(const char* psz, strsize len)
-   {
-
-      auto c = match_count(psz, len);
-
-      if (c <= 0)
+      if(!estatus)
       {
 
          return nullptr;
 
       }
 
-      PCRE2_SIZE* ovector = pcre2_get_ovector_pointer(m_pcreContext->m_pimpl->m_pmd);
-
-      auto prangeaMatches = __new(::str::range_array);
-
-      for (strsize i = 0; i < c; i++)
-      {
-
-         prangeaMatches->add(::str::range(ovector[2 * i], ovector[2 * i + 1]));
-
-      }
-
-      return prangeaMatches;
+      return ptopic;
 
    }
+
 
 
    bool regular_expression::replace(string& str, const string& strPrefix, string& strRet)
@@ -137,11 +105,16 @@ namespace regular_expression_pcre2
       {
 
          err = pcre2_substitute(
-            m_pc,
+            m_pcode,
             (PCRE2_SPTR8)str.c_str(),
             str.get_length(),
             0,
-            PCRE2_SUBSTITUTE_GLOBAL, m_pcreContext->m_pimpl->m_pmd, nullptr, (PCRE2_SPTR8)strPrefix.c_str(), strPrefix.get_length(), (PCRE2_UCHAR8*)strRet.get_string_buffer(s), &s);
+            PCRE2_SUBSTITUTE_GLOBAL,
+            /*m_pcreContext->m_pimpl->m_pmd*/
+            nullptr,
+            nullptr,
+            (PCRE2_SPTR8)strPrefix.c_str(), strPrefix.get_length(),
+            (PCRE2_UCHAR8*)strRet.get_string_buffer(s), &s);
 
          strRet.release_string_buffer(s);
 
@@ -165,6 +138,7 @@ namespace regular_expression_pcre2
       return true;
 
    }
+
 
 
 } // namespace regular_expression_pcre2

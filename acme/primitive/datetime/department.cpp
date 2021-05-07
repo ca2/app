@@ -1445,11 +1445,13 @@ namespace datetime
 
       auto pcre1 = psystem->create_regular_expression("pcre", "^\\s*((\\d+)\\s*/\\s*(\\d+))((\\d|$)?!)");
 
-      if (!bBaseTime && pcre1->matches(stra, str) >= 5)
+      auto ptopic = pcre1->create_topic(str);
+
+      if (!bBaseTime && ptopic->get_count() >= 5)
       {
          time = ::datetime::time::get_current_time();
-         i32 i1 = atoi(stra[2]);
-         i32 i2 = atoi(stra[3]);
+         i32 i1 = atoi(ptopic->get_match(2));
+         i32 i2 = atoi(ptopic->get_match(3));
          i32 iCount = 0;
          bool bFirst = false;
          if (i1 != i2

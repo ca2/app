@@ -2,10 +2,8 @@
 #include "_.h"
 #include <stdio.h>
 
-#include "sqlite3.h"
 
-
-extern "C" i32 axis_sqlite_callback(void * res_ptr,i32 ncol, char** reslt,char** cols);
+extern "C" i32 database_sqlite3_sqlite_callback(void * res_ptr,i32 ncol, char** reslt,char** cols);
 
 
 namespace sqlite
@@ -14,6 +12,10 @@ namespace sqlite
 
    database::database()
    {
+
+
+      m_pstmtSelect = nullptr;
+      m_pstmtReplace = nullptr;
 
       m_bActive = false;
       m_bTransactionActive = false;      // for transaction
@@ -66,54 +68,76 @@ namespace sqlite
    }
 
 
-   ::e_status     database::set_error_code(i32 iErrorCode)
+   ::e_status database::set_error_code(i32 iErrorCode)
    {
 
       switch (iErrorCode)
       {
-      case SQLITE_OK: m_strError ="Successful result";
-         break;
-      case SQLITE_ERROR: m_strError = "SQL m_strError or missing database";
-         break;
-      case SQLITE_INTERNAL: m_strError = "An internal logic m_strError in SQLite";
-         break;
-      case SQLITE_PERM: m_strError ="Access permission denied";
-         break;
-      case SQLITE_ABORT: m_strError = "Callback routine requested an abort";
-         break;
-      case SQLITE_BUSY: m_strError = "The database file is locked";
-         break;
-      case SQLITE_LOCKED: m_strError = "A table in the database is locked";
-         break;
-      case SQLITE_NOMEM: m_strError = "A malloc() failed";
-         break;
-      case SQLITE_READONLY: m_strError = "Attempt to write a readonly database";
-         break;
-      case SQLITE_INTERRUPT: m_strError = "Operation terminated by sqlite_interrupt()";
-         break;
-      case  SQLITE_IOERR: m_strError = "Some kind of disk I/O m_strError occurred";
-         break;
-      case  SQLITE_CORRUPT: m_strError = "The database disk image is malformed";
-         break;
-      case SQLITE_NOTFOUND: m_strError = "(Internal Only) Table or record not found";
-         break;
-      case SQLITE_FULL: m_strError = "Insertion failed because database is full";
-         break;
-      case SQLITE_CANTOPEN: m_strError = "Unable to open the database file";
-         break;
-      case SQLITE_PROTOCOL: m_strError = "database lock protocol m_strError";
-         break;
-      case SQLITE_EMPTY:  m_strError = "(Internal Only) database table is is_empty";
-         break;
-      case SQLITE_SCHEMA: m_strError = "The database schema changed";
-         break;
-      case SQLITE_TOOBIG: m_strError = "Too much data for one row of a table";
-         break;
-      case SQLITE_CONSTRAINT: m_strError = "Abort due to contraint violation";
-         break;
-      case SQLITE_MISMATCH:  m_strError = "Data type mismatch";
-         break;
-      default : m_strError = "Undefined SQLite m_strError";
+         case SQLITE_OK:
+            m_strError = "Successful result";
+            break;
+         case SQLITE_ERROR:
+            m_strError = "SQL m_strError or missing database";
+            break;
+         case SQLITE_INTERNAL:
+            m_strError = "An internal logic m_strError in SQLite";
+            break;
+         case SQLITE_PERM:
+            m_strError = "Access permission denied";
+            break;
+         case SQLITE_ABORT:
+            m_strError = "Callback routine requested an abort";
+            break;
+         case SQLITE_BUSY:
+            m_strError = "The database file is locked";
+            break;
+         case SQLITE_LOCKED:
+            m_strError = "A table in the database is locked";
+            break;
+         case SQLITE_NOMEM:
+            m_strError = "A malloc() failed";
+            break;
+         case SQLITE_READONLY:
+            m_strError = "Attempt to write a readonly database";
+            break;
+         case SQLITE_INTERRUPT:
+            m_strError = "Operation terminated by sqlite_interrupt()";
+            break;
+         case SQLITE_IOERR:
+            m_strError = "Some kind of disk I/O m_strError occurred";
+            break;
+         case SQLITE_CORRUPT:
+            m_strError = "The database disk image is malformed";
+            break;
+         case SQLITE_NOTFOUND:
+            m_strError = "(Internal Only) Table or record not found";
+            break;
+         case SQLITE_FULL:
+            m_strError = "Insertion failed because database is full";
+            break;
+         case SQLITE_CANTOPEN:
+            m_strError = "Unable to open the database file";
+            break;
+         case SQLITE_PROTOCOL:
+            m_strError = "database lock protocol m_strError";
+            break;
+         case SQLITE_EMPTY:
+            m_strError = "(Internal Only) database table is is_empty";
+            break;
+         case SQLITE_SCHEMA:
+            m_strError = "The database schema changed";
+            break;
+         case SQLITE_TOOBIG:
+            m_strError = "Too much data for one row of a table";
+            break;
+         case SQLITE_CONSTRAINT:
+            m_strError = "Abort due to contraint violation";
+            break;
+         case SQLITE_MISMATCH:
+            m_strError = "Data type mismatch";
+            break;
+         default :
+            m_strError = "Undefined SQLite m_strError";
       }
 
       return ::success;
@@ -126,7 +150,7 @@ namespace sqlite
 
       char * errmsg = nullptr;
 
-      i32 iResult = sqlite3_exec((sqlite3 *)get_handle(), pszQuery, nullptr, nullptr, &errmsg);
+      i32 iResult = sqlite3_exec((sqlite3 *) get_handle(), pszQuery, nullptr, nullptr, &errmsg);
 
       set_error_code(iResult);
 
@@ -153,7 +177,8 @@ namespace sqlite
    }
 
 
-   __pointer(::database::result_set) database::query_result(const char * pszQuery, ::count iRowCount, ::count iColumnCount)
+   __pointer(::database::result_set) database::query_result(const char * pszQuery, ::count iRowCount,
+                                                            ::count iColumnCount)
    {
 
       if (is_null(m_psqlite))
@@ -175,7 +200,7 @@ namespace sqlite
 
       char * errmsg = nullptr;
 
-      m_iLastError = sqlite3_exec((sqlite3 *)get_handle(), pszQuery, &axis_sqlite_callback, presultset.m_p, &errmsg);
+      m_iLastError = sqlite3_exec((sqlite3 *) get_handle(), pszQuery, &database_sqlite3_sqlite_callback, presultset.m_p, &errmsg);
 
       set_error_code(m_iLastError);
 
@@ -190,13 +215,12 @@ namespace sqlite
 
       }
 
-      if(m_iLastError == SQLITE_OK)
+      if (m_iLastError == SQLITE_OK)
       {
 
          return presultset;
 
-      }
-      else
+      } else
       {
 
          TRACE("sqlite::database::_sqlite_query_result: Error %s", m_strLastError.c_str());
@@ -207,12 +231,12 @@ namespace sqlite
 
    }
 
-   
-   __pointer(::database::result_set) database::query(const char* pszQuery, ::count iRowCount, ::count iColumnCount)
-   { 
-      
-      return query_result(pszQuery, iRowCount, iColumnCount); 
-   
+
+   __pointer(::database::result_set) database::query(const char * pszQuery, ::count iRowCount, ::count iColumnCount)
+   {
+
+      return query_result(pszQuery, iRowCount, iColumnCount);
+
    }
 
 
@@ -240,7 +264,7 @@ namespace sqlite
    }
 
 
-   ___pointer<class var_array> database::query_row(const char* psz)
+   ___pointer<class var_array> database::query_row(const char * psz)
    {
 
       return nullptr;
@@ -248,9 +272,7 @@ namespace sqlite
    }
 
 
-
-
-   ::payload database::query_item(const char* psz)
+   ::payload database::query_item(const char * psz)
    {
 
       return ::payload();
@@ -258,20 +280,20 @@ namespace sqlite
    }
 
 
-   __pointer(var_array) database::query_items(const char* psz)
+   __pointer(var_array) database::query_items(const char * psz)
    {
 
       return nullptr;
 
    }
 
-   ::e_status     database::connect(
-      const char* name,
-      const char* host,
-      const char* port,
-      const char* user,
-      const char* pass,
-      const char* sckt,
+   ::e_status database::connect(
+      const char * name,
+      const char * host,
+      const char * port,
+      const char * user,
+      const char * pass,
+      const char * sckt,
       u64 uConnectionFlags)
    {
 
@@ -285,7 +307,7 @@ namespace sqlite
 
       auto estatus = _connect();
 
-      if(!estatus)
+      if (!estatus)
       {
 
          return estatus;
@@ -297,8 +319,7 @@ namespace sqlite
    }
 
 
-
-   __pointer(__pointer_array(var_array)) database::query_rows(const char* psz)
+   __pointer(__pointer_array(var_array)) database::query_rows(const char * psz)
    {
 
       return nullptr;
@@ -306,7 +327,7 @@ namespace sqlite
    }
 
 
-   bool database::memory_query_item(get_memory getmemory, const char* psz)
+   bool database::memory_query_item(get_memory getmemory, const char * psz)
    {
 
       return ::payload();
@@ -338,25 +359,26 @@ namespace sqlite
    }
 
 
-   ::e_status     database::_connect()
+   ::e_status database::_connect()
    {
 
       synchronous_lock synchronouslock(mutex());
 
       disconnect();
 
-      if(sqlite3_open(m_strName, (sqlite3 * *) &m_psqlite) == SQLITE_OK)
+      if (sqlite3_open(m_strName, (sqlite3 * *) & m_psqlite) == SQLITE_OK)
       {
          //cout << "Connected!\n";
-         char* err = nullptr;
+         char * err = nullptr;
 
-         i32 iResult = sqlite3_exec((sqlite3 *)get_handle(), "PRAGMA empty_result_callbacks=ON", nullptr, nullptr, &err);
+         i32 iResult = sqlite3_exec((sqlite3 *) get_handle(), "PRAGMA empty_result_callbacks=ON", nullptr, nullptr,
+                                    &err);
 
          set_error_code(iResult);
 
-         if(iResult != SQLITE_OK)
+         if (iResult != SQLITE_OK)
          {
-            TRACE("Error: %s",err);
+            TRACE("Error: %s", err);
             __throw(::database::exception(get_error_message()));
          }
 //         if (setErr(sqlite3_exec((sqlite3 *)get_handle(), "PRAGMA cache_size=-20000", nullptr, nullptr, &err)) != SQLITE_OK)
@@ -397,10 +419,28 @@ namespace sqlite
 
       synchronous_lock synchronouslock(mutex());
 
+      if (m_pstmtSelect != nullptr)
+      {
+
+         sqlite3_finalize(m_pstmtSelect);
+
+         m_pstmtSelect = nullptr;
+
+      }
+
+      if (m_pstmtReplace != nullptr)
+      {
+
+         sqlite3_finalize(m_pstmtReplace);
+
+         m_pstmtReplace = nullptr;
+
+      }
+
       if (m_psqlite != nullptr)
       {
 
-         sqlite3_close((sqlite3 *)m_psqlite);
+         sqlite3_close((sqlite3 *) m_psqlite);
 
          m_psqlite = nullptr;
 
@@ -418,14 +458,14 @@ namespace sqlite
    }
 
 
-   ::e_status     database::create()
+   ::e_status database::create()
    {
 
       return _connect();
 
    }
 
-   string database::add_error_message(const string& str)
+   string database::add_error_message(const string & str)
    {
 
       m_strError += str;
@@ -433,7 +473,6 @@ namespace sqlite
       return m_strError;
 
    }
-
 
 
    ::e_status database::drop()
@@ -458,7 +497,7 @@ namespace sqlite
          pcontext->m_papexcontext->file().del(m_strName);
 
       }
-      catch(...)
+      catch (...)
       {
 
          return error_failed;
@@ -540,7 +579,7 @@ namespace sqlite
 
       if (isActive())
       {
-         sqlite3_exec((sqlite3 *) m_psqlite,"begin",nullptr,nullptr,nullptr);
+         sqlite3_exec((sqlite3 *) m_psqlite, "begin", nullptr, nullptr, nullptr);
          m_bTransactionActive = true;
       }
 
@@ -553,7 +592,7 @@ namespace sqlite
 
       if (isActive())
       {
-         sqlite3_exec((sqlite3 *) m_psqlite,"commit",nullptr,nullptr,nullptr);
+         sqlite3_exec((sqlite3 *) m_psqlite, "commit", nullptr, nullptr, nullptr);
          m_bTransactionActive = false;
       }
 
@@ -566,7 +605,7 @@ namespace sqlite
 
       if (isActive())
       {
-         sqlite3_exec((sqlite3 *) m_psqlite,"rollback",nullptr,nullptr,nullptr);
+         sqlite3_exec((sqlite3 *) m_psqlite, "rollback", nullptr, nullptr, nullptr);
          m_bTransactionActive = false;
       }
 
@@ -639,15 +678,205 @@ namespace sqlite
 
    //}
 
+   ::e_status database::set_id_blob(string strKey, ::block block)
+   {
+
+      try
+      {
+
+         string strKey(strKey);
+
+         string strBase64(block.to_base64());
+
+         property_set set;
+
+         string strSql;
+
+         string str;
+
+         synchronous_lock slDatabase(mutex());
+
+         {
+
+            if (m_pstmtReplace == nullptr)
+            {
+
+               i32 iResult = sqlite3_prepare_v2(
+                  (sqlite3 *) get_handle(),
+                  "REPLACE INTO blobtable (id, value) values (:id, :value);",
+                  -1,
+                  &m_pstmtReplace, nullptr);
+
+               string strError = sqlite3_errmsg((sqlite3 *) get_handle());
+
+               set_error_code(iResult);
+
+               if (iResult != SQLITE_OK)
+               {
+
+                  m_pstmtReplace = nullptr;
+
+                  return ::error_failed;
+
+               }
+
+               m_iReplaceId = sqlite3_bind_parameter_index(m_pstmtReplace, ":id");
+
+               m_iReplaceValue = sqlite3_bind_parameter_index(m_pstmtReplace, ":value");
+
+            }
+            else
+            {
+
+               sqlite3_reset(m_pstmtReplace);
+
+            }
+
+            strsize iLength = strKey.get_length();
+
+            int res = sqlite3_bind_text(m_pstmtReplace, m_iReplaceId, strKey, (int) iLength,
+                                        SQLITE_TRANSIENT);
+
+            if (res != SQLITE_OK)
+            {
+
+               TRACE("failure to bind text");
+
+               return error_failed;
+
+            }
+
+            res = sqlite3_bind_blob(m_pstmtReplace, m_iReplaceValue, block.get_data(), (int) block.get_size(), SQLITE_TRANSIENT);
+
+            if (res != SQLITE_OK)
+            {
+
+               TRACE("failure to bind blob");
+
+               return ::error_failed;
+
+            }
+
+            res = sqlite3_step(m_pstmtReplace);
+
+         }
+
+      }
+      catch (...)
+      {
+
+         return ::error_failed;
+
+      }
+
+      return ::success;
+
+   }
+
+
+   ::e_status database::get_id_blob(string strKey, get_memory getmemory)
+   {
+      
+      if (m_pstmtSelect == nullptr)
+      {
+
+         i32 iResult = sqlite3_prepare_v2(
+            (sqlite3 *) get_handle(),
+            "select `value` FROM `blobtable` WHERE `id` = :id;",
+            -1,
+            &m_pstmtSelect, nullptr);
+
+         string strError = sqlite3_errmsg((sqlite3 *) get_handle());
+
+         set_error_code(iResult);
+
+         if (iResult != SQLITE_OK)
+         {
+
+            m_pstmtSelect = nullptr;
+
+            return error_failed;
+
+         }
+
+         m_iSelectId = sqlite3_bind_parameter_index(m_pstmtSelect, ":id");
+
+      }
+      else
+      {
+
+         try
+         {
+
+            sqlite3_reset(m_pstmtSelect);
+
+         }
+         catch (...)
+         {
+
+            m_pstmtSelect = nullptr;
+
+            return false;
+
+         }
+
+      }
+
+      int iLength = (int) strKey.get_length();
+
+      int res = sqlite3_bind_text(m_pstmtSelect, m_iSelectId, strKey, (int) iLength, SQLITE_TRANSIENT);
+
+      if (res != SQLITE_OK)
+      {
+
+         return false;
+
+      }
+
+      res = sqlite3_step(m_pstmtSelect);
+
+      if (res != SQLITE_ROW)
+      {
+
+         //string strSql = "select `value` FROM stringtable WHERE `id` = '" + escape(strKey) + "'";
+
+         //::payload payload = query_item(strSql);
+
+         //if (!(bool)payload)
+         //{
+
+         //   return false;
+
+         //}
+
+         //return payload.get_string();
+
+         return error_failed;
+
+      }
+
+      const char * psz = (const char *) sqlite3_column_blob(m_pstmtSelect, 0);
+
+      strsize iLen = sqlite3_column_bytes(m_pstmtSelect, 0);
+
+      if (!getmemory.get(psz, iLen))
+      {
+
+         return error_failed;
+
+      }
+
+      return success;
+
+   }
+
 
 } // namespace sqlite
 
 
 
-
-
 extern "C"
-i32 axis_sqlite_callback(void * res_ptr,i32 ncol, char** reslt,char** cols)
+i32 database_sqlite3_sqlite_callback(void * res_ptr,i32 ncol, char** reslt,char** cols)
 {
 
    database::result_set * presultset = (database::result_set*)res_ptr;//dynamic_cast<result_set*>(res_ptr);

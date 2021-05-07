@@ -1,7 +1,5 @@
 #include "framework.h"
 #include "_simpledb.h"
-#include "axis/database/sqlitedb/_.h"
-#include <sqlite3.h>
 #include "storage.h"
 
 
@@ -98,6 +96,14 @@ namespace simpledb
 
             synchronouslock.unlock();
 
+            auto pstorage = m_pstorage;
+
+            auto pserver = m_pstorage->m_pserver;
+
+            auto pdatabase = pserver->get_local_database();
+
+            auto estatus = pdatabase->set_id_blob(pitem->m_strKey, pitem->m_block);
+
             try
             {
 
@@ -111,7 +117,7 @@ namespace simpledb
 
                auto pserver = m_pstorage->m_pserver;
 
-               __pointer(::sqlite::database) pdatabase = pserver->get_local_database();
+               auto pdatabase = pserver->get_local_database();
 
                if (!pdatabase)
                {
@@ -126,70 +132,72 @@ namespace simpledb
 
                synchronous_lock slDatabase(pdatabase->mutex());
 
-               {
+               pdatabase->set_id_blob(pitem->m_strKey, pitem->m_block);
 
-                  if (pstorage->m_pstmtReplace == nullptr)
-                  {
-
-                     i32 iResult = sqlite3_prepare_v2(
-                        (sqlite3 *)pdatabase->get_handle(),
-                        "REPLACE INTO blobtable (id, value) values (:id, :value);",
-                        -1,
-                        &pstorage->m_pstmtReplace, nullptr);
-
-                     string strError = sqlite3_errmsg((sqlite3 *)pdatabase->get_handle());
-
-                     pdatabase->set_error_code(iResult);
-
-                     if (iResult != SQLITE_OK)
-                     {
-
-                        pstorage->m_pstmtReplace = nullptr;
-
-                        continue;
-
-                     }
-
-                     pstorage->m_iReplaceId = sqlite3_bind_parameter_index(pstorage->m_pstmtReplace, ":id");
-
-                     pstorage->m_iReplaceValue = sqlite3_bind_parameter_index(pstorage->m_pstmtReplace, ":value");
-
-                  }
-                  else
-                  {
-
-                     sqlite3_reset(pstorage->m_pstmtReplace);
-
-                  }
-
-                  strsize iLength = strKey.get_length();
-
-                  int res = sqlite3_bind_text(pstorage->m_pstmtReplace, pstorage->m_iReplaceId, strKey, (int)iLength, SQLITE_TRANSIENT);
-
-                  if (res != SQLITE_OK)
-                  {
-
-                     TRACE("failure to bind text");
-
-                     continue;
-
-                  }
-
-                  res = sqlite3_bind_blob(pstorage->m_pstmtReplace, pstorage->m_iReplaceValue, pitem->m_block.get_data(), (int)pitem->m_block.get_size(), SQLITE_TRANSIENT);
-
-                  if (res != SQLITE_OK)
-                  {
-
-                     TRACE("failure to bind blob");
-
-                     continue;
-
-                  }
-
-
-                  res = sqlite3_step(pstorage->m_pstmtReplace);
-
-               }
+//               {
+//
+//                  if (pstorage->m_pstmtReplace == nullptr)
+//                  {
+//
+//                     i32 iResult = sqlite3_prepare_v2(
+//                        (sqlite3 *)pdatabase->get_handle(),
+//                        "REPLACE INTO blobtable (id, value) values (:id, :value);",
+//                        -1,
+//                        &pstorage->m_pstmtReplace, nullptr);
+//
+//                     string strError = sqlite3_errmsg((sqlite3 *)pdatabase->get_handle());
+//
+//                     pdatabase->set_error_code(iResult);
+//
+//                     if (iResult != SQLITE_OK)
+//                     {
+//
+//                        pstorage->m_pstmtReplace = nullptr;
+//
+//                        continue;
+//
+//                     }
+//
+//                     pstorage->m_iReplaceId = sqlite3_bind_parameter_index(pstorage->m_pstmtReplace, ":id");
+//
+//                     pstorage->m_iReplaceValue = sqlite3_bind_parameter_index(pstorage->m_pstmtReplace, ":value");
+//
+//                  }
+//                  else
+//                  {
+//
+//                     sqlite3_reset(pstorage->m_pstmtReplace);
+//
+//                  }
+//
+//                  strsize iLength = strKey.get_length();
+//
+//                  int res = sqlite3_bind_text(pstorage->m_pstmtReplace, pstorage->m_iReplaceId, strKey, (int)iLength, SQLITE_TRANSIENT);
+//
+//                  if (res != SQLITE_OK)
+//                  {
+//
+//                     TRACE("failure to bind text");
+//
+//                     continue;
+//
+//                  }
+//
+//                  res = sqlite3_bind_blob(pstorage->m_pstmtReplace, pstorage->m_iReplaceValue, pitem->m_block.get_data(), (int)pitem->m_block.get_size(), SQLITE_TRANSIENT);
+//
+//                  if (res != SQLITE_OK)
+//                  {
+//
+//                     TRACE("failure to bind blob");
+//
+//                     continue;
+//
+//                  }
+//
+//
+//                  res = sqlite3_step(pstorage->m_pstmtReplace);
+//
+//               }
 
             }
             catch (...)

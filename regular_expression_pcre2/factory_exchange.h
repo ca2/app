@@ -4,7 +4,7 @@
 //namespace draw2d_direct2d
 //{
 //
-//   class CLASS_DECL_DRAW2D_DIRECT2D factory_exchange :
+//   class CLASS_DECL_REGULAR_EXPRESSION_PCRE2 factory_exchange :
 //      virtual public ::object
 //   {
 //   public:

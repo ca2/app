@@ -3997,7 +3997,7 @@ void set_osremote(os_remote * posremote);
 
 #endif
 
-#include "acme/platform/regex.h"
+//#include "acme/platform/regex.h"
 
 #include "acme/process/_.h"
 
@@ -4426,6 +4426,9 @@ class wcsdup_array;
 
 
 #include "acme/parallelization/cleanup_task.h"
+
+
+#include "acme/regular_expression/_regular_expression.h"
 
 
 #include "acme/platform/system.h"

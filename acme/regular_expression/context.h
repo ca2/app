@@ -1,15 +1,34 @@
 //
 // Recreated by camilo on 5/6/21 22:51 <3ThomasBS_!!
 //
-
-#ifndef BASIS_CONTEXT_H
-#define BASIS_CONTEXT_H
+#pragma once
 
 
-class context
+namespace regular_expression
 {
 
-};
+
+   class CLASS_DECL_ACME context :
+      virtual public ::acme::department
+   {
+   public:
 
 
-#endif //BASIS_CONTEXT_H
+      void *         m_pContext;
+
+
+      context();
+      virtual ~context();
+
+
+      virtual ::regular_expression_pointer compile(const string & str);
+
+
+
+   };
+
+
+} // namespace regular_expression
+
+
+

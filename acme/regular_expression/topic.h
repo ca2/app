@@ -25,28 +25,32 @@ namespace regular_expression
       virtual ~topic();
 
 
-      ::count get_count() const;
-
-      string get_match(::index iMatch) const;
+      virtual ::e_status create(const string & strExpression);
 
 
-      virtual bool matches(const char * psz, strsize len) = 0;
+      virtual ::count get_count() const;
 
-      virtual ::count match_count(const string & str) = 0;
 
-      virtual ::count match_count(const char * psz, strsize len) = 0;
+      virtual string get_match(::index iMatch) const;
 
-      virtual __pointer(::str::range_array)
 
-      matches_ranges(const string & str) = 0;
+      //virtual bool matches(const char * psz, strsize len) = 0;
 
-      virtual __pointer(::str::range_array)
+      //virtual ::count match_count(const string & str) = 0;
 
-      matches_ranges(const char * psz, strsize len) = 0;
+      //virtual ::count match_count(const char * psz, strsize len) = 0;
 
-      virtual bool replace(string & str, const string & strPrefix, string & strRet) = 0;
+      //virtual __pointer(::str::range_array)
 
-      virtual ::count matches(string_array & stra, const string & str);
+      //matches_ranges(const string & str) = 0;
+
+      //virtual __pointer(::str::range_array)
+
+      //matches_ranges(const char * psz, strsize len) = 0;
+
+      //virtual bool replace(string & strFind, const string & strReplace, string & strResult);
+
+      //virtual ::count matches(string_array & stra, const string & str);
 
 
    };

@@ -4,7 +4,7 @@
 #ifdef LINUX
 
 #undef _WINDOWS_
-
+// dnf install freeimage-devel
 #include <FreeImage.h>
 
 #else

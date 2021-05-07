@@ -1,6 +1,5 @@
 #include "framework.h"
 #include "_simpledb.h"
-#include <sqlite3.h>
 #include "storage.h"
 
 
@@ -11,9 +10,9 @@ namespace simpledb
    storage::storage()
    {
 
-      m_pstmtSelect = nullptr;
+      //m_pstmtSelect = nullptr;
 
-      m_pstmtReplace = nullptr;
+      //m_pstmtReplace = nullptr;
 
       m_iSelectId = -1;
 
@@ -29,26 +28,6 @@ namespace simpledb
    storage::~storage()
    {
 
-      synchronous_lock synchronouslock(m_pserver.is_set() && m_pserver->m_pdatabaseLocal.is_set() ?
-         m_pserver->m_pdatabaseLocal->mutex() : nullptr);
-
-      if (m_pstmtSelect != nullptr)
-      {
-
-         sqlite3_finalize(m_pstmtSelect);
-
-         m_pstmtSelect = nullptr;
-
-      }
-
-      if (m_pstmtReplace != nullptr)
-      {
-
-         sqlite3_finalize(m_pstmtReplace);
-
-         m_pstmtReplace = nullptr;
-
-      }
 
    }
 

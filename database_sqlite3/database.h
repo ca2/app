@@ -5,13 +5,20 @@ namespace sqlite
 {
 
 
-   class CLASS_DECL_AXIS database :
+   class CLASS_DECL_DATABASE_SQLITE3 database :
       public ::database::database_impl
    {
    public:
 
 
-      void *      m_psqlite;
+      void *                                             m_psqlite;
+
+      sqlite3_stmt *                                     m_pstmtSelect;
+      int                                                m_iSelectId;
+
+      sqlite3_stmt *                                     m_pstmtReplace;
+      int                                                m_iReplaceId;
+      int                                                m_iReplaceValue;
 
 
       database();
@@ -100,8 +107,15 @@ namespace sqlite
       virtual void trace_error1(const char* pszPrefix = nullptr);
 */
 
+      virtual ::e_status set_id_blob(string strKey, ::block block) override;
+      virtual ::e_status get_id_blob(string strKey, ::get_memory getmemory) override;
+
+
 
    };
 
+
 } // namespace sqlite
+
+
 

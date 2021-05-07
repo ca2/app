@@ -47,7 +47,8 @@
 #define GL_GLEXT_PROTOTYPES 1
 
 
-// Ubuntu : libglew-dev
+// apt install libglew-dev
+// dnf install glew-devel
 #include <GL/glew.h> // added for GL_VERTEX_SHADER
 //#define GL_GLEXT_PROTOTYPES 1
 //#include <GLES/gl.h>
@@ -62,7 +63,8 @@
 //#include <GL/gl.h>
 
 
-// Ubuntu :    libosmesa6-dev
+// apt install libosmesa6-dev
+// dnf install mesa-libOSMesa-devel
 #define GLAPI extern
 #include <GL/osmesa.h>
 //#include <GL/glx.h>

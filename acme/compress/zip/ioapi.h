@@ -10,6 +10,7 @@
 #define _ZLIBIOAPI_H
 
 
+// dnf install zlib-devel
 #include "zlib.h"
 
 

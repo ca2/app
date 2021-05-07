@@ -466,7 +466,9 @@ namespace user
 
    void interaction_impl::pre_subclass_window()
    {
+
       ::exception::throw_interface_only();
+
    }
 
 
@@ -1448,7 +1450,7 @@ namespace user
          message == e_message_sys_char ||
          message == e_message_ime_key_down ||
          message == e_message_ime_key_up ||
-         message == WM_IME_CHAR ||
+         message == e_message_ime_char ||
          message == WM_IME_SELECT ||
          message == WM_IME_SETCONTEXT ||
          message == WM_IME_STARTCOMPOSITION ||

@@ -2,7 +2,6 @@ cmake_minimum_required(VERSION 3.17)
 project(acme CXX)
 
 
-
 list(APPEND acme_source
    compress/zip/api.cpp
    compress/zip/file.cpp
@@ -200,7 +199,7 @@ list(APPEND acme_source
    platform/obj_typ_ctr.cpp
    platform/printf.cpp
    platform/profiler.cpp
-   platform/regex.cpp
+   #platform/regex.cpp
    platform/serial.cpp
    platform/simple_trace.cpp
    platform/sprintf.cpp
@@ -417,6 +416,13 @@ list(APPEND acme_source
    primitive/text/text.h
    primitive/text/translator.cpp
    primitive/text/translator.h
+   regular_expression/_regular_expression.h
+   regular_expression/context.cpp
+   regular_expression/context.h
+   regular_expression/regular_expression.cpp
+   regular_expression/regular_expression.h
+   regular_expression/topic.cpp
+   regular_expression/topic.h
    user/ewindowflag.h
    user/os_colors.cpp
    user/os_theme_colors.h
@@ -491,8 +497,8 @@ list(APPEND acme_source
    exception/_c.h
    exception/_const.h
    exception/_dump_context.h
-    #exception/assert.h
-        #exception/base.h
+   #exception/assert.h
+   #exception/base.h
    exception/call_stack.h
    exception/callstack.h
    exception/cancel.h
@@ -888,7 +894,7 @@ list(APPEND acme_source
    platform/logic.h
    platform/lparam.h
    platform/main.h
-        #platform/message_box.h
+   #platform/message_box.h
    platform/muldiv32.h
    platform/muldiv64.h
    platform/nano_timer.h
@@ -899,10 +905,10 @@ list(APPEND acme_source
    platform/obj_typ_ctr.h
    platform/printf.h
    platform/profiler.h
-   platform/regex.h
+   #platform/regex.h
    platform/restore.h
    platform/serial.h
-        #platform/serial_impl.h
+   #platform/serial_impl.h
    platform/simple_app.h
    platform/simple_trace.cpp
    platform/simple_trace.h
@@ -1163,20 +1169,20 @@ list(APPEND acme_source
    primitive/primitive/var2.h
    primitive/primitive/virtual_memory.h
    primitive/primitive/work.h
-        #primitive/promise/context.h
-        #primitive/promise/handler1.h
-        #primitive/promise/manager.h
-        #primitive/promise/promise.h
-        #primitive/promise/promise1.h
-        #primitive/promise/routine.h
-        #primitive/promise/routine_array.h
-        #primitive/promise/subject.h
-        #primitive/promise_predicate/predicate_function_pointer.h
-        #primitive/promise_predicate/predicate_process.h
-        #primitive/promise_predicate/predicate_function.cpp
-        #primitive/promise_predicate/predicate_holder.cpp
-        #primitive/promise_predicate/predicate_holder.h
-        #primitive/promise_predicate/synchronized_predicate_routine.h
+   #primitive/promise/context.h
+   #primitive/promise/handler1.h
+   #primitive/promise/manager.h
+   #primitive/promise/promise.h
+   #primitive/promise/promise1.h
+   #primitive/promise/routine.h
+   #primitive/promise/routine_array.h
+   #primitive/promise/subject.h
+   #primitive/promise_predicate/predicate_function_pointer.h
+   #primitive/promise_predicate/predicate_process.h
+   #primitive/promise_predicate/predicate_function.cpp
+   #primitive/promise_predicate/predicate_holder.cpp
+   #primitive/promise_predicate/predicate_holder.h
+   #primitive/promise_predicate/synchronized_predicate_routine.h
    primitive/string/_.h
    primitive/string/___ch_impl.h
    primitive/string/__c_ansi.h
@@ -1459,7 +1465,6 @@ if (WIN32 OR UWP)
 endif ()
 
 
-
 if (LINUX)
    list(APPEND acme_source
       #node/linux/console.cpp
@@ -1472,8 +1477,8 @@ if (LINUX)
       #node/linux/node.cpp
       #node/linux/node.h
       node/linux/root_tools.cpp
-      #        node/linux/shell.cpp
-      #        node/linux/shell_linux.cpp
+      #node/linux/shell.cpp
+      #node/linux/shell_linux.cpp
       node/linux/system.cpp
       #node/linux/stdio_file.cpp
       node/linux/thread.cpp
@@ -1534,6 +1539,7 @@ if (LINUX)
       )
 endif ()
 
+
 if (MACOS)
    list(APPEND acme_source
       os/cross/uwp/cross_metrowin_user.cpp
@@ -1572,6 +1578,7 @@ if (MACOS)
       os/macos/win_base.cpp
       os/macos/windowing.cpp
       os/macos/winpr_keycode.cpp)
+
 
    list(APPEND acme_source
       node/macos/application.h
@@ -1659,6 +1666,7 @@ if (IOS)
       os/ios/windowing.cpp
       )
 
+
    list(APPEND acme_source
       node/ios/factory_exchange.h
       node/ios/file.h
@@ -1676,10 +1684,13 @@ if (IOS)
       node/ios/_mm.h
       )
 
+
 endif ()
 
 
 if (APPLE)
+
+
    list(APPEND acme_source
       timer.mm
       exception/mm.mm
@@ -1705,6 +1716,8 @@ endif ()
 
 
 if (ANDROID)
+
+
    list(APPEND acme_source
       os/cross/uwp/cross_metrowin_user.cpp
       os/cross/uwp/metrowin_user.cpp
@@ -1743,10 +1756,14 @@ if (ANDROID)
       os/android/process_pid.cpp
       os/android/win_base.cpp
       )
+
+
 endif ()
 
 
 if (SOLARIS)
+
+
    list(APPEND acme_source
       os/solaris/solaris.cpp
       os/solaris/solaris_cairo_keep.cpp
@@ -1770,10 +1787,14 @@ if (SOLARIS)
       os/solaris/solaris_win_base.cpp
       os/solaris/solaris_window.cpp
       os/solaris/solaris_window_xlib.cpp)
+
+
 endif ()
 
 
 if (LINUX OR APPLE OR SOLARIS)
+
+
    list(APPEND acme_source
       #node/node_serial.cpp
       os/posix/base_file.cpp
@@ -1785,24 +1806,28 @@ if (LINUX OR APPLE OR SOLARIS)
       os/posix/timer.cpp
       os/winpr_keycode.cpp
       os/winpr_scancode.cpp
-
       )
 
    list(APPEND acme_source
       node/posix/_posix.h
       )
+
+
 endif ()
 
 
 if (LINUX)
+
+
    list(APPEND acme_source
       os/ansios/binreloc.cpp
            )
+
+
 endif ()
 
 
-
-add_library(acme SHARED ${acme_source} os/_const_console.h)
+add_library(acme SHARED ${acme_source})
 
 
 target_precompile_headers(acme PRIVATE framework.h)
@@ -1812,19 +1837,27 @@ set_target_properties(acme PROPERTIES LINKER_LANGUAGE CXX)
 
 
 if (MSVC)
+
+
    target_compile_options(acme PRIVATE "/MD$<$<CONFIG:Debug>:d>")
    target_link_options(acme PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
    target_link_options(acme PRIVATE "/IMPLIB:${LIBRARY_OUTPUT_PATH}/acme.lib")
    target_link_options(acme PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/acme.def")
    target_link_libraries(acme PRIVATE zlib dbghelp imagehlp dwmapi Setupapi Windowscodecs Winmm ws2_32 Crypt32 Normaliz version Secur32 gdiplus Shlwapi Imm32.lib)
+
+
 elseif (LINUX)
+
+
    pkg_check_modules(PKGCONFIG freetype2)
    target_compile_options(acme PRIVATE -fpermissive)
    target_compile_options(acme PRIVATE ${PKGCONFIG_CFLAGS})
    target_link_options(acme PRIVATE -Wl,-rpath=\$ORIGIN)
-   target_link_libraries(acme PRIVATE z dl idn pthread ncurses ${PKGCONFIG_LIBRARIES})
+   target_link_libraries(acme PRIVATE z dl idn pthread ${PKGCONFIG_LIBRARIES})
    target_link_options(acme PRIVATE -Wl,-z,defs)
    message("PKGCONFIG_LIBRARIES is " ${PKGCONFIG_LIBRARIES})
+
+
 endif ()
 
 
@@ -1833,16 +1866,12 @@ target_link_directories(acme PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archiv
 target_link_directories(acme PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/storage-${PLATFORM_NAME}/third/library/x64/basis)
 
 
-target_include_directories(acme PRIVATE .)
-target_include_directories(acme PRIVATE $ENV{HOME}/__config)
 target_include_directories(acme PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../..)
 target_include_directories(acme PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/..)
 target_include_directories(acme PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 
 
 target_compile_definitions(acme PRIVATE _ACME_LIBRARY)
-target_compile_definitions(acme PRIVATE UNICODE)
-target_compile_definitions(acme PRIVATE _UNICODE)
 
 
 file(GLOB third_binaries

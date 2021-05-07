@@ -162,6 +162,8 @@ namespace user
 
       virtual void default_message_handler(::message::message * pusermessage) override;
 
+      virtual bool pre_message_handler(::message::message* pmessage);
+
       virtual void on_tsf_activate(bool bActivate);
 
       virtual ::mutex * draw_mutex();
@@ -782,7 +784,8 @@ namespace user
       guie_message_wnd(::property_object * pobject);
 
 
-      virtual void message_handler(::message::message * pusermessage);
+      virtual void message_handler(::message::message * pmessage);
+
 
    }; // guie_message_wnd
 

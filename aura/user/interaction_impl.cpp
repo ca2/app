@@ -4033,8 +4033,98 @@ namespace user
 
    }
 
+   
+   bool interaction_impl::message_handler(::message::message * pmessage)
+   {
 
+      ::u32 message = pmessage->m_id.umessage();
 
+      ::message::key* pkey = nullptr;
+
+      bool bKeyMessage = message == e_message_key_down ||
+         message == e_message_key_up ||
+         message == e_message_char ||
+         message == e_message_sys_key_down ||
+         message == e_message_sys_key_up ||
+         message == e_message_sys_char ||
+         message == WM_IME_KEYDOWN ||
+         message == WM_IME_KEYUP ||
+         message == WM_IME_CHAR ||
+         message == WM_IME_SELECT ||
+         message == WM_IME_SETCONTEXT ||
+         message == WM_IME_STARTCOMPOSITION ||
+         message == WM_IME_COMPOSITION ||
+         message == WM_IME_COMPOSITIONFULL ||
+         message == WM_IME_NOTIFY ||
+         message == WM_IME_ENDCOMPOSITION ||
+         message == WM_INPUTLANGCHANGE;
+
+      if (bKeyMessage)
+      {
+
+         pkey = dynamic_cast <::message::key*> (pmessage);
+
+         if (pkey)
+         {
+
+            m_pwindowing->set(pkey, pkey->m_oswindow, pkey->m_pwindow, pkey->m_id, pkey->m_wparam, pkey->m_lparam);
+
+         }
+
+         if (message == e_message_key_down || message == e_message_sys_key_down)
+         {
+
+            auto psession = get_session();
+
+            try
+            {
+
+               psession->set_key_pressed(pkey->m_ekey, true);
+
+            }
+            catch (...)
+            {
+
+            }
+
+         }
+         else if (message == e_message_key_up || message == e_message_sys_key_up)
+         {
+
+            auto psession = get_session();
+
+            try
+            {
+
+               psession->set_key_pressed(pkey->m_ekey, false);
+
+            }
+            catch (...)
+            {
+
+            }
+
+         }
+
+      }
+
+      if (::is_set(m_puserinteraction))
+      {
+
+         m_puserinteraction->pre_translate_message(pmessage);
+
+      }
+
+      if (pmessage->m_bRet)
+      {
+
+         return true;
+
+      }
+
+      return false;
+
+   }
 
    guie_message_wnd::guie_message_wnd(::property_object * pobject)
    {

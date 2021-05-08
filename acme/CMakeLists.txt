@@ -131,6 +131,7 @@ list(APPEND acme_source
    os/ansios/process.cpp
    os/ansios/user.cpp
    os/ansios/win.cpp
+   os/_const_console.h
    os/_.cpp
    os/argcargv.cpp
    os/chronometer.cpp
@@ -1318,18 +1319,18 @@ endif ()
 if (WIN32)
 
    list(APPEND acme_source
-      node/windows/console.cpp
-      node/windows/factory_exchange.cpp
-      node/windows/file.cpp
-      node/windows/file_find.cpp
-      node/windows/pipe.cpp
-      node/windows/registry.cpp
-      node/windows/serial.cpp
-      node/windows/timer.cpp
-      node/windows/trace.cpp
-      node/windows/uac_tools.cpp
-      node/windows/windows.cpp
-      node/windows/windows_desktop.cpp
+#      node/windows/console.cpp
+#      node/windows/factory_exchange.cpp
+#      node/windows/file.cpp
+#      node/windows/file_find.cpp
+#      node/windows/pipe.cpp
+#      node/windows/registry.cpp
+#      node/windows/serial.cpp
+#      node/windows/timer.cpp
+#      node/windows/trace.cpp
+#      node/windows/uac_tools.cpp
+#      node/windows/windows.cpp
+#      node/windows/windows_desktop.cpp
       os/windows/_.cpp
       os/windows/ansi_file.cpp
       os/windows/api.cpp
@@ -1802,7 +1803,7 @@ endif ()
 
 
 
-add_library(acme SHARED ${acme_source} os/_const_console.h)
+add_library(acme SHARED ${acme_source})
 
 
 target_precompile_headers(acme PRIVATE framework.h)
@@ -1850,7 +1851,9 @@ file(GLOB third_binaries
    )
 
 
-file(COPY ${third_binaries} DESTINATION ${EXECUTABLE_OUTPUT_PATH})
+add_custom_command(TARGET acme POST_BUILD
+   COMMAND ${CMAKE_COMMAND} -E copy_directory
+   ${third_binaries} ${EXECUTABLE_OUTPUT_PATH})
 
 
 file(GLOB storage_binaries
@@ -1858,7 +1861,9 @@ file(GLOB storage_binaries
    )
 
 
-file(COPY ${storage_binaries} DESTINATION ${EXECUTABLE_OUTPUT_PATH})
+add_custom_command(TARGET acme POST_BUILD
+   COMMAND ${CMAKE_COMMAND} -E copy_directory
+   ${storage_binaries} ${EXECUTABLE_OUTPUT_PATH})
 
 
 

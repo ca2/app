@@ -13885,7 +13885,7 @@ restart:
    bool interaction::enable_transparent_mouse_events(bool bEnable)
    {
 
-#ifdef WINDOWS
+//#ifdef WINDOWS
 
       ::user::interaction * puiTop = get_wnd();
 
@@ -13916,7 +13916,7 @@ restart:
 
       }
 
-#endif
+//#endif
 
       return true;
 

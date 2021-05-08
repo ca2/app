@@ -16,7 +16,7 @@ namespace regular_expression_pcre2
       //pcre_context_impl *        m_pcreContext;
 
 
-      regular_expression(pcre_context_impl * pcreContext);
+      regular_expression();
       virtual ~regular_expression();
 
 

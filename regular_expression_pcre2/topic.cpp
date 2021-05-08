@@ -81,6 +81,38 @@ namespace regular_expression_pcre2
    }
 
 
+   void topic::_get_range_array()
+   {
+
+      if(m_cMatchCount <= 0)
+      {
+
+         return;
+
+      }
+
+      if(m_cMatchCount == m_rangea.get_count())
+      {
+
+         return;
+
+      }
+
+      PCRE2_SIZE * ovector = pcre2_get_ovector_pointer(m_pmatchdata);
+
+      m_rangea.set_size(m_cMatchCount);
+
+      for (strsize i = 0; i < m_cMatchCount; i++)
+      {
+
+         m_rangea.add(::str::range(ovector[2 * i], ovector[2 * i + 1]));
+
+      }
+
+
+   }
+
+
 //   bool topic::matches(const string& str)
 //   {
 //

@@ -20,7 +20,7 @@ namespace regular_expression_pcre2
 {
 
 
-   class pcre_context_impl;
+   class context;
 
 
 } // namespace regular_expression_pcre2

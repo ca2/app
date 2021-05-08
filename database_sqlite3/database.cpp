@@ -684,8 +684,6 @@ namespace sqlite
       try
       {
 
-         string strKey(strKey);
-
          string strBase64(block.to_base64());
 
          property_set set;

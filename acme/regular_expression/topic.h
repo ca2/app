@@ -34,6 +34,12 @@ namespace regular_expression
       virtual string get_match(::index iMatch) const;
 
 
+      virtual ::str::range_array & get_range_array();
+
+
+      virtual void _get_range_array();
+
+
       //virtual bool matches(const char * psz, strsize len) = 0;
 
       //virtual ::count match_count(const string & str) = 0;

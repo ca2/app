@@ -916,7 +916,7 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
 
       }
 
-      return nullptr;
+      return pcontext;
 
    }
 
@@ -924,7 +924,7 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
    ::regular_expression_pointer system::create_pcre(const string& str)
    {
 
-      return create_regular_expression("pcre", str);
+      return create_regular_expression("pcre2", str);
 
    }
 
@@ -932,7 +932,7 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
    __pointer(::regular_expression::context) system::get_pcre_context()
    {
 
-      return get_regular_expression_context("pcre");
+      return get_regular_expression_context("pcre2");
 
    }
 

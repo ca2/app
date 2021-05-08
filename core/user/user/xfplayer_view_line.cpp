@@ -1575,9 +1575,11 @@ void xfplayer_view_line::PrepareURLLinks()
 
    auto pregex = psystem->create_pcre("/^|\\s|([;\"()]+))(((((http|https)://))|(www\\.))[0-9a-zA-Z./\\-_?=]+)(([;\"()]+)|\\s|$/");
 
-   auto prangea = pregex->matches_ranges(m_str);
+   auto ptopic = pregex->create_topic(m_str);
 
-   for(auto & range : *prangea)
+   auto & rangea = ptopic->get_range_array();
+
+   for(auto & range : rangea)
    {
 
       m_straLink.add(m_str.Mid(range.begin(), range.count()));

@@ -5,8 +5,10 @@ namespace regular_expression_pcre2
 {
 
 
-   regular_expression::regular_expression(pcre_context_impl* pcreContext)
+   regular_expression::regular_expression()
    {
+
+      m_pRegularExpression = this;
 
       //m_pcreContext = pcreContext;
       m_pcode = nullptr;

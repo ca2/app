@@ -42,6 +42,23 @@ namespace regular_expression
    }
 
 
+   ::str::range_array & topic::get_range_array()
+   {
+
+      _get_range_array();
+
+      return m_rangea;
+
+   }
+
+
+   void topic::_get_range_array()
+   {
+
+
+   }
+
+
    ::e_status topic::create(const string & str)
    {
 

@@ -106,6 +106,10 @@ namespace database
 
       virtual ::payload get_insert_id() = 0;
 
+      virtual ::e_status set_id_blob(string strKey, ::block block);
+      virtual ::e_status get_id_blob(string strKey, ::get_memory getmemory);
+
+
 
    };
 

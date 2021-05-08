@@ -1,7 +1,5 @@
 #include "framework.h"
 #include "_simpledb.h"
-#include "axis/database/sqlitedb/_.h"
-#include <sqlite3.h>
 #include "storage.h"
 
 
@@ -146,7 +144,7 @@ namespace simpledb
 
          int iTryStatement = 0;
 
-         __pointer(::sqlite::database) pdatabase = pserver->get_local_database();
+         auto pdatabase = pserver->get_local_database();
 
          class synchronization_object * pmutex = pdatabase->mutex();
 
@@ -155,104 +153,7 @@ namespace simpledb
       retry_statement:
 
          // LOCAL (sqlite)
-
-         if (pstorage->m_pstmtSelect == nullptr)
-         {
-
-            i32 iResult = sqlite3_prepare_v2(
-               (sqlite3 *)pdatabase->get_handle(),
-               "select `value` FROM `blobtable` WHERE `id` = :id;",
-               -1,
-               &pstorage->m_pstmtSelect, nullptr);
-
-            string strError = sqlite3_errmsg((sqlite3 *)pdatabase->get_handle());
-
-            pdatabase->set_error_code(iResult);
-
-            if (iResult != SQLITE_OK)
-            {
-
-               pstorage->m_pstmtSelect = nullptr;
-
-               return false;
-
-            }
-
-            pstorage->m_iSelectId = sqlite3_bind_parameter_index(pstorage->m_pstmtSelect, ":id");
-
-         }
-         else
-         {
-
-            try
-            {
-
-               sqlite3_reset(pstorage->m_pstmtSelect);
-
-            }
-            catch (...)
-            {
-
-               pstorage->m_pstmtSelect = nullptr;
-
-               if (iTryStatement >= 3)
-               {
-
-                  return false;
-
-               }
-
-               iTryStatement++;
-
-               goto retry_statement;
-
-            }
-
-         }
-
-         int iLength = (int)strKey.get_length();
-
-         int res = sqlite3_bind_text(pstorage->m_pstmtSelect, pstorage->m_iSelectId, strKey, (int)iLength, SQLITE_TRANSIENT);
-
-         if (res != SQLITE_OK)
-         {
-
-            return false;
-
-         }
-
-         res = sqlite3_step(pstorage->m_pstmtSelect);
-
-         if (res != SQLITE_ROW)
-         {
-
-            //string strSql = "select `value` FROM stringtable WHERE `id` = '" + pdatabase->escape(strKey) + "'";
-
-            //::payload payload = pdatabase->query_item(strSql);
-
-            //if (!(bool)payload)
-            //{
-
-            //   return false;
-
-            //}
-
-            //return payload.get_string();
-
-            return false;
-
-         }
-
-         const char * psz = (const char *)sqlite3_column_blob(pstorage->m_pstmtSelect, 0);
-
-         strsize iLen = sqlite3_column_bytes(pstorage->m_pstmtSelect, 0);
-
-         if (!getmemory.get(psz, iLen))
-         {
-
-            return false;
-
-         }
+         auto estatus = pdatabase->get_id_blob(strKey, getmemory);
 
          {
 
@@ -260,7 +161,7 @@ namespace simpledb
 
             stritem.m_tick.Now();
 
-            stritem.m_block.assign(psz, iLen);
+            stritem.m_block.assign(getmemory.get_data(), getmemory.get_size());
 
             pstorage->m_map[strKey] = stritem;
 

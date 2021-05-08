@@ -30,6 +30,7 @@
       __composite(::apex::system)                        m_psystemParent;
 
       string_map < __pointer(::factory_map) > *          m_pfactorymapsquare;
+      __pointer(string_map < __pointer(::regular_expression::context) >)          m_pmapRegularExpressionContext;
 
 
       ::mutex                                            m_mutexTask;
@@ -401,9 +402,13 @@
 
       virtual void check_exit();
 
-      virtual __pointer(regex) create_regular_expression(const char* pszStyle, const string& str);
-      virtual __pointer(regex_context) create_regular_expression_context(const char* pszStyle, int iCount);
+      virtual ::regular_expression_pointer create_regular_expression(const char* pszStyle, const string& str);
+      //virtual __pointer(::regular_expression::context) create_regular_expression_context(const char* pszStyle, int iCount);
+      virtual __pointer(::regular_expression::context) get_regular_expression_context(const char* pszStyle);
 
+      virtual ::regular_expression_pointer create_pcre(const string& str);
+      virtual __pointer(::regular_expression::context) get_pcre_context();
+      //virtual int system::pcre_add_tokens(string_array& stra, const string& strTopic, const string& strRegexp, int nCount)
 
       virtual ::e_status get_public_internet_domain_extension_list(string_array& stra);
 

@@ -6,7 +6,7 @@
 
 #if defined(HAVE_OPENSSL)
 
-
+// dnf install openssl-devel
 #include <openssl/rsa.h>
 #include <openssl/md5.h>
 #include <openssl/rsa.h>

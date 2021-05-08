@@ -103,10 +103,6 @@ list(APPEND axis_source
         database/simpledb/thread_localdatabase.cpp
         database/simpledb/thread_localdatabase.h
         database/simpledb/veiev_post.h
-        database/sqlitedb/_.h
-        database/sqlitedb/database.cpp
-        database/sqlitedb/database.h
-        database/sqlitedb/dataset.h
         database/_.h
         geoip/_.h
         geoip/city.cpp
@@ -219,21 +215,6 @@ list(APPEND axis_source
         net/_net.h
         net/email_department.cpp
         net/email_department.h
-        pcre/_.h
-        pcre/_pcre.h
-        pcre/code.cpp
-        pcre/code.h
-        pcre/code_impl.cpp
-        pcre/code_impl.h
-        pcre/context.cpp
-        pcre/context.h
-        pcre/context_impl.cpp
-        pcre/context_impl.h
-        pcre/regex.cpp
-        pcre/regex.h
-        pcre/system.cpp
-        pcre/util_impl.cpp
-        pcre/util_impl.h
         platform/_.cpp
         platform/_features.h
         platform/_generic_object_constructor_impl.h
@@ -637,20 +618,24 @@ endif()
 
 
 if(LINUX)
-    list(APPEND axis_source
 
-        )
-    endif()
+    list(APPEND axis_source)
+
+endif()
 
 
 if(LINUX OR APPLE OR SOLARIS)
 
-    list(APPEND axis_source
-
-            )
+    list(APPEND axis_source)
 
 endif()
 
+
+list(APPEND library_references
+   acme
+   apex
+   aqua
+   aura)
 
 
 add_library(axis SHARED ${axis_source})
@@ -667,36 +652,24 @@ if (MSVC)
     target_link_options(axis PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
     target_link_options(axis PRIVATE "/IMPLIB:${LIBRARY_OUTPUT_PATH}/axis.lib")
     target_link_options(axis PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/axis.def")
-    target_link_libraries(axis PRIVATE acme apex aqua aura pcre sqlite bzip2 ws2_32 kernel32 user32 gdi32 winspool comdlg32 advapi32 shell32 ole32 oleaut32 uuid odbc32 odbccp32)
+    #target_link_libraries(axis PRIVATE acme apex aqua aura pcre bzip2 ws2_32 kernel32 user32 gdi32 winspool comdlg32 advapi32 shell32 ole32 oleaut32 uuid odbc32 odbccp32)
+    #target_link_libraries(axis PRIVATE acme apex aqua aura bzip2 ws2_32 kernel32 user32 gdi32 winspool comdlg32 advapi32 shell32 ole32 oleaut32 uuid odbc32 odbccp32)
+    target_link_libraries(axis PRIVATE ${library_references})
 elseif(LINUX)
     target_compile_options(axis PRIVATE -fpermissive)
     target_link_options(axis PRIVATE -Wl,-rpath=\$ORIGIN)
     #target_link_libraries(axis PRIVATE dl pthread X11 Xrandr Xrender Xinerama Xi ncurses)z
-    target_link_libraries(axis PRIVATE ${PKGCONFIG_LIBRARIES})
-    target_link_libraries(axis PRIVATE acme apex aqua aura pcre2-8 sqlite3 bz2)
+    target_link_libraries(axis PRIVATE bz2 ${PKGCONFIG_LIBRARIES} ${library_references})
+    #target_link_libraries(axis PRIVATE acme apex aqua aura pcre2-8 bz2)
+    #target_link_libraries(axis PRIVATE acme apex aqua aura bz2)
     target_link_options(axis PRIVATE -Wl,-z,defs)
 endif()
 
 
-target_link_directories(axis PRIVATE ${LIBRARY_OUTPUT_PATH})
-target_link_directories(axis PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/storage-${PLATFORM_NAME}/library/x64/basis)
-target_link_directories(axis PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/storage-${PLATFORM_NAME}/third/library/x64/basis)
-
-
-target_include_directories(axis PRIVATE .)
 target_include_directories(axis PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
-target_include_directories(axis PRIVATE $ENV{HOME}/__config)
-target_include_directories(axis PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../source)
-target_include_directories(axis PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive)
-target_include_directories(axis PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../source)
-target_include_directories(axis PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../source/app)
-target_include_directories(axis PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../source/app/_include)
-target_include_directories(axis PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../source/include)
-target_include_directories(axis PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/platform-${PLATFORM_NAME})
-target_include_directories(axis PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/platform-${PLATFORM_NAME}/_include)
-target_include_directories(axis PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/third-${PLATFORM_NAME}/include)
-target_include_directories(axis PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/third-${PLATFORM_NAME}/third/include)
-target_include_directories(axis PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/third-${PLATFORM_NAME}/third/include/include)
 
 
 target_compile_definitions(axis PRIVATE _AXIS_LIBRARY)
+
+
+

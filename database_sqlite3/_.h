@@ -1,0 +1,15 @@
+#pragma once
+
+
+#include "axis/_.h"
+
+
+#ifdef _DATABASE_SQLITE3_LIBRARY
+#define CLASS_DECL_DATABASE_SQLITE3 CLASS_DECL_EXPORT
+#else
+#define CLASS_DEsCL_DATABASE_SQLITE3 CLASS_DECL_IMPORT
+#endif
+
+
+
+

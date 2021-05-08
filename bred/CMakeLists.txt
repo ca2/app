@@ -2,19 +2,6 @@ cmake_minimum_required(VERSION 3.17)
 project(bred CXX)
 
 
-add_compile_options("$<$<CONFIG:DEBUG>:-DDEBUG>")
-
-
-if(LINUX)
-elseif(WIN32)
-elseif(UWP)
-endif()
-
-
-set(LIBRARY_OUTPUT_PATH ${CMAKE_CURRENT_SOURCE_DIR}/../../../time-${PLATFORM_NAME}/cmake)
-set(EXECUTABLE_OUTPUT_PATH ${CMAKE_CURRENT_SOURCE_DIR}/../../../time-${PLATFORM_NAME}/cmake)
-
-
 list(APPEND bred_source
         const/idpool.cpp
         const/idpool.h
@@ -49,13 +36,13 @@ list(APPEND bred_source
         library.h)
 
 
-
-
-if (MSVC)
-    set(LIBCXX_TARGETING_MSVC ON)
-else()
-    set(LIBCXX_TARGETING_MSVC OFF)
-endif()
+list(APPEND library_references
+   acme
+   apex
+   aqua
+   aura
+   axis
+   base)
 
 
 add_library(bred SHARED ${bred_source})
@@ -72,13 +59,11 @@ if (MSVC)
     target_link_options(bred PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
     target_link_options(bred PRIVATE "/IMPLIB:${LIBRARY_OUTPUT_PATH}/bred.lib")
     target_link_options(bred PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/bred.def")
-    target_link_libraries(bred PRIVATE acme apex aqua aura axis base)
+    target_link_libraries(bred PRIVATE ${library_references})
 elseif(LINUX)
     target_compile_options(bred PRIVATE -fpermissive)
     target_link_options(bred PRIVATE -Wl,-rpath=\$ORIGIN)
-    target_link_libraries(bred PRIVATE dl pthread X11 Xrandr Xrender Xinerama Xi ncurses)
-    target_link_libraries(bred PRIVATE ${PKGCONFIG_LIBRARIES})
-    target_link_libraries(bred PRIVATE acme apex aqua aura axis base)
+    target_link_libraries(bred PRIVATE ${PKGCONFIG_LIBRARIES} ${library_references})
     target_link_options(bred PRIVATE -Wl,-z,defs)
 endif()
 

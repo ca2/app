@@ -867,20 +867,84 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
    }
 
 
-   __pointer(regex) system::create_regular_expression(const char* pszStyle, const string& str)
+   ::regular_expression_pointer system::create_regular_expression(const char* pszStyle, const string& str)
    {
 
-      return nullptr;
+      auto pcontext = get_regular_expression_context(pszStyle);
+
+      if(!pcontext)
+      {
+
+         return nullptr;
+
+      }
+
+      auto pregularexpression = pcontext->compile(str);
+
+      if(!pregularexpression)
+      {
+
+         return nullptr;
+
+      }
+
+      return pregularexpression;
 
    }
 
 
-   __pointer(regex_context) system::create_regular_expression_context(const char* pszStyle, int iCount)
+   __pointer(::regular_expression::context) system::get_regular_expression_context(const char* pszStyle)
    {
 
-      return nullptr;
+      __defer_construct_new(m_pmapRegularExpressionContext);
+
+      auto & pcontext = (*m_pmapRegularExpressionContext)[pszStyle];
+
+      if(!pcontext)
+      {
+
+         auto ptransport = do_containerized_factory_exchange("regular_expression", pszStyle);
+
+         if(!ptransport)
+         {
+
+            return nullptr;
+
+         }
+
+         ptransport->__construct(pcontext);
+
+      }
+
+      return pcontext;
 
    }
+
+
+   ::regular_expression_pointer system::create_pcre(const string& str)
+   {
+
+      return create_regular_expression("pcre2", str);
+
+   }
+
+
+   __pointer(::regular_expression::context) system::get_pcre_context()
+   {
+
+      return get_regular_expression_context("pcre2");
+
+   }
+
+
+//   int system::pcre_add_tokens(string_array& stra, const string& strTopic, const string& strRegexp, int nCount)
+//   {
+//
+//      throw_todo();
+//
+//      return -1;
+//
+//   }
 
    
    ::e_status system::get_public_internet_domain_extension_list(string_array& stra)

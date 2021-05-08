@@ -81,7 +81,7 @@ enum enum_message : ::i64
    e_message_capture_changed = 533,
 
    
-   e_message_ime_input_language           = 0x0051,
+   e_message_input_language               = 0x0051,
 
 
    e_message_ime_start_composition        = 0x010D,

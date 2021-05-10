@@ -114,8 +114,6 @@ namespace apex
 
       id_map < __composite(::channel) >               m_mapNotify;
 
-      bool                                            m_bInitializeDataCentral;
-
       string                                          m_strLicense;
 
       i32                                             m_iWaitCursorCount;         // for wait cursor (>0 => waiting)

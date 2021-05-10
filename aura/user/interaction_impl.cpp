@@ -835,15 +835,14 @@ namespace user
 
       auto origin = m_puserinteraction->layout().window().origin();
 
-      return m_pgraphics->get_screen_image()->pixel(x-origin.x, y- origin.y);
+      return m_pgraphics->get_screen_image()->pixel(x - origin.x, y - origin.y);
 
    }
 
-//bool interaction_impl::native_create_window()
+
+   //bool interaction_impl::native_create_window()
    //{
-
    //   return false;
-
    //}
 
 
@@ -884,7 +883,6 @@ namespace user
 //      return native_create_window();
 //
 //   }
-
 
 
    void interaction_impl::prio_install_message_routing(::channel * pchannel)
@@ -5524,12 +5522,12 @@ namespace user
 
       __pointer(::message::move) pmove(pmessage);
 
-      if(m_puserinteraction->m_ewindowflag & e_window_flag_postpone_visual_update)
-      {
-
-         return;
-
-      }
+//      if(m_puserinteraction->m_ewindowflag & e_window_flag_postpone_visual_update)
+//      {
+//
+//         return;
+//
+//      }
 
 //      bool bLayered = m_puserinteraction->GetExStyle() & WS_EX_LAYERED;
 //

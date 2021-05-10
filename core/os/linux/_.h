@@ -37,11 +37,11 @@ off_t tell64(int fd);
 int_bool gdk_launch_uri(const char * pszUri, char * pszError = NULL, int iBufferSize = 0);
 
 
-typedef struct _cairo_rectangle_int cairo_rectangle_int_t;
-typedef cairo_rectangle_int_t         GdkRectangle;
-
-void copy(RECTANGLE_I32 * prectTarget, const GdkRectangle * prectSource);
-void copy(GdkRectangle * prectTarget, const RECTANGLE_I32 * prectSource);
+//typedef struct _cairo_rectangle_int cairo_rectangle_int_t;
+//typedef cairo_rectangle_int_t         GdkRectangle;
+//
+//void copy(RECTANGLE_I32 * prectTarget, const GdkRectangle * prectSource);
+//void copy(GdkRectangle * prectTarget, const RECTANGLE_I32 * prectSource);
 
 
 namespace os

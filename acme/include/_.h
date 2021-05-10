@@ -234,6 +234,16 @@ namespace windowing_xcb
 } // namespace windowing_xcb
 
 
+namespace node_gtk
+{
+
+
+   class node;
+
+
+} // namespace node_gtk
+
+
 namespace node_gnome
 {
 

@@ -3837,16 +3837,16 @@ namespace user
          if (pgraphics == nullptr || pgraphics->get_os_data() == nullptr)
          {
 
-#define SEVERITY_HIGH 5
+//#define SEVERITY_HIGH 5
 
-            int iSeverity = SEVERITY_HIGH;
+            //int iSeverity = SEVERITY_HIGH;
 
-            for(index i = 0; i < iSeverity * 20; i++)
-            {
+            //for(index i = 0; i < iSeverity * 20; i++)
+            //{
 
-               output_debug_string("m_pgraphics->on_begin_draw FAILED (1)");
+            output_debug_string("m_pgraphics->on_begin_draw FAILED (1)\n");
 
-            }
+            //}
 
             return;
 

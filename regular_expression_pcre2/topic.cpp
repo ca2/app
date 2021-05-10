@@ -54,6 +54,8 @@ namespace regular_expression_pcre2
 
       }
 
+      m_cMatchCount = pcre2_get_ovector_count(m_pmatchdata);
+
       return ::success;
 
    }
@@ -62,9 +64,7 @@ namespace regular_expression_pcre2
    ::count topic::get_count() const
    {
 
-      auto c = pcre2_get_ovector_count(m_pmatchdata);
-
-      return c;
+      return m_cMatchCount;
 
    }
 
@@ -105,7 +105,7 @@ namespace regular_expression_pcre2
       for (strsize i = 0; i < m_cMatchCount; i++)
       {
 
-         m_rangea.add(::str::range(ovector[2 * i], ovector[2 * i + 1]));
+         m_rangea[i] = ::str::range(ovector[2 * i], ovector[2 * i + 1]);
 
       }
 

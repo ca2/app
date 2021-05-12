@@ -5,7 +5,6 @@
 using hsync_array = ::address_array < hsync >;
 #endif
 
-#define MAXIMUM_SYNCHRONIZING_OBJECTS 64
 
 class CLASS_DECL_ACME synchronization_array :
    public matter

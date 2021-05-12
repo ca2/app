@@ -8,7 +8,7 @@
 #elif defined(ANDROID)
 #include "idn/idna.h"
 #elif defined(__APPLE__)
-#include <idn/idna.h>
+#include "idn/idna.h"
 #elif defined(LINUX)
 // apt install libidn11-dev
 // dnf install libidn-devel

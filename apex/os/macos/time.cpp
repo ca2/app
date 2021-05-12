@@ -1,8 +1,11 @@
 #include "framework.h"
 
-CLASS_DECL_APEX void sleep(unsigned int dwMillis)
-{
-
-   usleep(dwMillis * 1000);
-
-}
+//
+//CLASS_DECL_APEX bool sleep(unsigned int dwMillis)
+//{
+//
+//   usleep(dwMillis * 1000);
+//   
+//   return false;
+//
+//}

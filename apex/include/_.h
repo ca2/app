@@ -355,11 +355,6 @@ inline const ansichar* __c_str(const string& str);
 class machine_event_central;
 
 
-#define __base(TYPE, ptarget, psource) for(__pointer(TYPE) ptarget = psource; ptarget.is_set(); ptarget.release())
-#define __base_reference(TYPE, ptarget, source) for(__pointer(TYPE) ptarget = &source; ptarget.is_set(); ptarget.release())
-#define __exception(TYPE) __base(TYPE, pe, e)
-
-
 //#include "apex/primitive/math/_.h"
 
 

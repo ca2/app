@@ -705,7 +705,7 @@ namespace user
 
       virtual void edit_on_text(string str);
       virtual void edit_on_sel(strsize iBeg, strsize iEnd);
-      virtual void insert_text(string str, bool bForceNewStep, const ::action_context & context);
+      virtual void insert_text(string str, bool bForceNewStep, const ::action_context & context) override;
 
 
       virtual void on_text_composition(string str);

@@ -1,10 +1,10 @@
 #include "framework.h"
 
 
-object_meta::~object_meta()
-{
-
-}
+//object_meta::~object_meta()
+//{
+//
+//}
 
 
 //void object_meta::finalize(::object * pReferer)

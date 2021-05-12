@@ -3,9 +3,7 @@
 #include <string.h>
 
 
-::u32
-WINAPI
-GetTempPathA(
+::u32 GetTempPathA(
 ::u32 nBufferLength,
 char * pBuffer
 

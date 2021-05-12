@@ -6,8 +6,8 @@
 //
 
 #include "framework.h"
-#include "apex/os/_.h"
-#include "apex/os/_os.h"
+////#include "apex/os/_.h"
+//#include "apex/os/_os.h"
 #include "_.h"
 
 
@@ -32,38 +32,38 @@ u32 __start_system_with_file(const char * pszFileName)
 
 }
 
-u32 __start_system_with_file(const char ** pszaFile, int iCount)
-{
-
-   string strExtra;
-
-   //if(::::apex::get_system() != nullptr)
-   {
-
-      if(pszaFile != nullptr)
-      {
-
-         apple_accumulate_on_open_file(pszaFile, iCount, strExtra);
-
-      }
-      else
-      {
-
-         ::create * pcreate = new ::create(::::apex::get_system());
-
-         pcreate->m_pcommandline = new command_line(::::apex::get_system(), ::apex::get_system()->get_command_line());
-
-         ::apex::get_system()->request({ pcreate });
-
-      }
-
-      return 0;
-
-   }
-
-
-
-}
+//u32 __start_system_with_file(const char ** pszaFile, int iCount)
+//{
+//
+//   string strExtra;
+//
+//   //if(::::apex::get_system() != nullptr)
+//   {
+//
+//      if(pszaFile != nullptr)
+//      {
+//
+//         apple_accumulate_on_open_file(pszaFile, iCount, strExtra);
+//
+//      }
+//      else
+//      {
+//
+//         ::create * pcreate = new ::create(::::apex::get_system());
+//
+//         pcreate->m_pcommandline = new command_line(::::apex::get_system(), ::apex::get_system()->get_command_line());
+//
+//         ::apex::get_system()->request({ pcreate });
+//
+//      }
+//
+//      return 0;
+//
+//   }
+//
+//
+//
+//}
 
 
 

@@ -56,6 +56,9 @@ inline nanos operator +(const ::nanos& nanos1, const ::nanos& nanos2)
 }
 
 
+#ifdef CPP20
+
+
 template < primitive_number NUMBER >
 inline nanos operator *(const ::nanos& nanos, const NUMBER& number)
 {
@@ -74,7 +77,7 @@ inline nanos operator /(const ::nanos& nanos, const NUMBER& number)
 }
 
 
-
+#endif
 
 
 CLASS_DECL_ACME::nanos first_nano();

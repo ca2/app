@@ -514,7 +514,7 @@ typedef i32 errno_t;
 #define HIBYTE(w)           ((byte)((((DWORD_PTR)(w)) >> 8) & 0xff))*/
 
 #define MAKEWPARAM(l, h)      ((WPARAM)(::u32)MAKELONG(l, h))
-#define MAKELPARAM(l, h)      ((LPARAM)(::u32)MAKELONG(l, h))
+//#define MAKELPARAM(l, h)      ((LPARAM)(::u32)MAKELONG(l, h))
 #define MAKELRESULT(l, h)     ((LRESULT)(::u32)MAKELONG(l, h))
 
 

@@ -29,17 +29,79 @@ public:
    { }
 
    explicit duration(long double dSeconds);
+    
+    
+#ifdef CPP20
+    
 
-   template < primitive_integral INTEGRAL >
-   duration(INTEGRAL iSeconds) :
-      m_secs(iSeconds), m_nanos(0)
-   { }
+    template < primitive_integral INTEGRAL >
+    duration(INTEGRAL iSeconds) :
+        m_secs(iSeconds), m_nanos(0)
+    {
+            
+        
+    }
 
-   template < primitive_integral INTEGRAL1, primitive_integral INTEGRAL2 >
-   duration(INTEGRAL1 iSeconds, INTEGRAL2 iNanoseconds) : 
-      m_secs(iSeconds), m_nanos(iNanoseconds) 
-   { }
+    
+    template < primitive_integral INTEGRAL1, primitive_integral INTEGRAL2 >
+    duration(INTEGRAL1 iSeconds, INTEGRAL2 iNanoseconds) :
+        m_secs(iSeconds), m_nanos(iNanoseconds)
+    {
+          
+          
+    }
 
+    
+    template < primitive_floating FLOATING >
+    duration(FLOATING fSeconds)
+    {
+           
+        fset(fSeconds);
+           
+    }
+    
+
+   template < primitive_floating FLOATING1, primitive_floating FLOATING2 >
+    duration(FLOATING1 fSeconds, FLOATING2 fNanoseconds)
+   {
+        
+       fset(fSeconds, fNanoseconds);
+        
+   }
+
+    
+#else
+    
+
+    duration(::i64 iSeconds) :
+       m_secs(iSeconds), m_nanos(0)
+    { }
+
+
+    duration(::i64 iSeconds, ::i64 iNanoseconds) :
+       m_secs(iSeconds), m_nanos(iNanoseconds)
+    { }
+
+    
+    duration(double dSeconds)
+    {
+        
+        fset(dSeconds);
+        
+    }
+
+
+    duration(double dSeconds, double dNanoseconds)
+    {
+           
+        fset(dSeconds, dNanoseconds);
+           
+    }
+
+    
+#endif
+
+    
    duration(enum_normalize, i64 iSeconds, i64 iNanoseconds);
    duration(const class ::nanos & nanos);
    duration(const class ::micros & micros);
@@ -298,7 +360,7 @@ bool duration::is_null() const
 inline duration duration::infinite()
 {
 
-   return {MAXI64,0};
+   return {(::i64)MAXI64,(::i64)0};
 
 }
 
@@ -306,7 +368,7 @@ inline duration duration::infinite()
 inline duration duration::pos_infinity()
 {
 
-   return {MAXI64, 0};
+   return {(::i64)MAXI64, (::i64)0};
 
 }
 
@@ -314,7 +376,7 @@ inline duration duration::pos_infinity()
 inline duration duration::zero()
 {
 
-   return {0, 0};
+   return {(::i64)0,(::i64) 0};
 
 }
 
@@ -327,13 +389,25 @@ public:
 
    inline nanosecond() : duration() {}
 
+    
+#ifdef CPP20
    
+    
    template < primitive_integral INTEGRAL >
    inline nanosecond(INTEGRAL iNanoseconds);
 
    template < primitive_floating FLOATING >
    inline nanosecond(FLOATING fNanoseconds);
+    
+#else
+    
+    
+   inline nanosecond(::i64 iNanoseconds);
 
+   inline nanosecond(double fNanoseconds);
+
+    
+#endif
 
    nanosecond(const class ::nanos & nanos) : duration(nanos) {}
    nanosecond(const class ::micros & micros) : duration(micros) {}
@@ -356,6 +430,7 @@ public:
 
    inline microsecond() : duration() {}
 
+#ifdef CPP20
    
    template < primitive_integral INTEGRAL >
    inline microsecond(INTEGRAL iMicroseconds);
@@ -364,6 +439,15 @@ public:
    template < primitive_floating FLOATING >
    inline microsecond(FLOATING fMicroseconds);
 
+#else
+    
+    inline microsecond(::i64 iMicroseconds);
+
+
+    inline microsecond(double fMicroseconds);
+
+    
+#endif
 
    microsecond(const class ::nanos & nanos) : duration(nanos) {}
    microsecond(const class ::micros & micros) : duration(micros) {}
@@ -386,6 +470,9 @@ public:
 
    inline millisecond() : duration() {}
 
+#ifdef CPP20
+   
+    
    template < primitive_integral INTEGRAL >
    inline millisecond(INTEGRAL iMillisecond);
 
@@ -393,6 +480,17 @@ public:
    template < primitive_floating FLOATING >
    inline millisecond(FLOATING fMillisecond);
 
+#else
+    
+   inline millisecond(::i64 iMillisecond);
+
+
+   inline millisecond(double fMillisecond);
+
+    
+#endif
+    
+    
    millisecond(const class ::nanos & nanos) : duration(nanos) {}
    millisecond(const class ::micros & micros) : duration(micros) {}
    millisecond(const class ::millis & millis) : duration(millis) {}
@@ -468,12 +566,26 @@ public:
 
    inline seconds() : duration() {}
 
+
+#ifdef CPP20
+   
+    
    template < primitive_integral INTEGRAL >
    inline seconds(INTEGRAL iSeconds) : duration(iSeconds) { }
 
    template < primitive_floating FLOATING >
    inline seconds(FLOATING fSeconds) : duration(fSeconds) { }
+    
+    
+#else
+    
+    inline seconds(::i64 iSeconds) : duration(iSeconds) { }
 
+    inline seconds(double fSeconds) : duration(fSeconds) { }
+    
+#endif
+    
+    
    seconds(const class ::nanos & nanos) : duration(nanos) {}
    seconds(const class ::micros & micros) : duration(micros) {}
    seconds(const class ::millis & millis) : duration(millis) {}
@@ -486,7 +598,7 @@ public:
 
 
 //inline seconds operator "" _s(unsigned long long int u) { return (::u64) u; }
-inline seconds operator "" _s(long double d) { return d; }
+inline seconds operator "" _s(long double d) { return (double) d; }
 
 
 class CLASS_DECL_ACME one_second :
@@ -495,7 +607,7 @@ class CLASS_DECL_ACME one_second :
 public:
 
 
-   one_second() : duration(1) {}
+   one_second() : duration((::i64)1) {}
 
 
 };
@@ -509,8 +621,17 @@ public:
 
    inline minutes() : duration() {}
    
+   
+#ifdef CPP20
+   
    template < primitive_integral INTEGRAL >
-   inline minutes(INTEGRAL u) : duration(u) {}
+   inline minutes(INTEGRAL i) : duration(i) {}
+   
+#else
+   
+   inline minutes(::i64 i) : duration(i) {}
+
+#endif
 
    minutes(const class ::nanos & nanos) : duration(nanos) {}
    minutes(const class ::micros & micros) : duration(micros) {}
@@ -530,7 +651,7 @@ class CLASS_DECL_ACME one_minute :
 public:
 
 
-   one_minute() : duration(60) {}
+   one_minute() : duration((::i64)60) {}
 
 
 };
@@ -545,6 +666,9 @@ public:
    inline hours() : duration() {}
 
 
+#ifdef CPP20
+   
+
    template < primitive_integral INTEGRAL1 >
    inline hours(INTEGRAL1 iHours);
 
@@ -557,6 +681,21 @@ public:
    template < primitive_floating FLOATING >
    inline hours(FLOATING fHours);
 
+   
+#else
+   
+   
+   inline hours(::i64 iHours);
+
+   inline hours(::i64 iHours, ::i64 iMinutes);
+
+   inline hours(::i64 iHours, ::i64 iMinutes, ::i64 iSeconds);
+
+   inline hours(double dHours);
+
+   
+#endif
+   
 
    hours(const class ::nanos & nanos) : duration(nanos) {}
    hours(const class ::micros & micros) : duration(micros) {}
@@ -568,8 +707,8 @@ public:
 };
 
 
-inline hours operator "" _hours(unsigned long long int u) { return (::u64) u; }
-inline hours operator "" _hour(unsigned long long int u) { return (::u64) u; }
+inline hours operator "" _hours(unsigned long long int u) { return (::i64) u; }
+inline hours operator "" _hour(unsigned long long int u) { return (::i64) u; }
 
 class CLASS_DECL_ACME one_hour :
    public hours
@@ -577,7 +716,7 @@ class CLASS_DECL_ACME one_hour :
 public:
 
 
-   one_hour(int iMinutes = 0, int iSeconds = 0) : hours(1, iMinutes, iSeconds) {}
+   one_hour(int iMinutes = 0, int iSeconds = 0) : hours((::i64)1, (::i64) iMinutes, (::i64)iSeconds) {}
 
 
 };
@@ -592,13 +731,28 @@ public:
 
    inline days() : duration(){}
 
+#ifdef CPP20
+   
    template < primitive_integral INTEGRAL >
    inline days(INTEGRAL iDays);
 
 
    template < primitive_floating FLOATING >
    inline days(FLOATING fDays);
+   
+   
+#else
+   
+   
+   inline days(::i64 iDays);
 
+
+   inline days(double dDays);
+   
+
+#endif
+   
+   
    days(const class ::nanos & nanos) : duration(nanos) {}
    days(const class ::micros & micros) : duration(micros) {}
    days(const class ::millis & millis) : duration(millis) {}
@@ -606,12 +760,14 @@ public:
    days(const class ::duration & duration) : ::duration(duration) {}
 
 
-
 };
 
 
-inline days operator "" _days(unsigned long long int u) { return (::u64) u; }
-inline days operator "" _day(unsigned long long int u) { return (::u64) u; }
+inline days operator "" _days(unsigned long long int u) { return (::i64) u; }
+inline days operator "" _day(unsigned long long int u) { return (::i64) u; }
+
+
+#ifdef CPP20
 
 
 template < primitive_integral INTEGRAL >
@@ -676,6 +832,70 @@ inline days::days(FLOATING d) :
 {
 
 }
+
+
+#else
+
+
+
+
+inline nanosecond::nanosecond(::i64 i) :
+   duration(i / (1'000'000'000), (i % (1'000'000'000)))
+{
+
+}
+
+
+inline microsecond::microsecond(::i64 i) :
+   duration(i / (1'000'000), (i % (1'000'000)) * 1'000)
+{
+
+}
+
+
+inline hours::hours(::i64 iHours) :
+   duration(iHours * 3600)
+{
+
+}
+
+
+inline hours::hours(::i64 iHours, ::i64 iMinutes) :
+   duration(iHours * 3600 + iMinutes * 60)
+{
+
+}
+
+
+inline hours::hours(::i64 iHours, ::i64 iMinutes, ::i64 iSeconds) :
+   duration(iHours * 3600 + iMinutes * 60 + iSeconds)
+{
+
+}
+
+
+inline hours::hours(double d) :
+   duration(d * 3600.0)
+{
+
+}
+
+
+inline days::days(::i64 i) :
+   duration(i * 86400)
+{
+
+}
+
+
+inline days::days(double d) :
+   duration(d * 86400.0)
+{
+
+}
+
+
+#endif
 
 
 inline time_t duration::GetTimeSpan() const
@@ -779,16 +999,7 @@ inline bool operator >= (const duration & duration1, const ::duration & duration
 //inline millis& millis::operator += (const ::duration& duration) { m_i += duration.millis().m_i; return *this; }
 
 
-inline duration __random(const duration & d1, const duration & d2)
-{
-
-   auto iSeconds = __random(d1.m_secs.m_i, d2.m_secs.m_i);
-
-   return duration(iSeconds, __random(
-         (iSeconds > d1.m_secs.m_i) ? 0 : d1.m_nanos.m_i,
-         (iSeconds < d2.m_secs.m_i) ? 999'999'999 : d2.m_nanos.m_i));
-
-}
+CLASS_DECL_ACME duration __random(const duration & d1, const duration & d2);
 
 
 inline secs::secs(const duration & duration) { m_i = duration.m_secs.m_i; }
@@ -803,6 +1014,8 @@ inline u32 __os(const ::duration & duration) { return duration.u32_millis(); }
 
 #endif
 
+
+#ifdef CPP20
 
 
 template < primitive_floating FLOATING >
@@ -827,4 +1040,33 @@ inline millisecond::millisecond(FLOATING fMilliseconds) :
 {
 
 }
+
+
+#else
+
+
+inline nanosecond::nanosecond(double dNanos) :
+   duration((i64)(dNanos / (1'000'000'000.0)), (i64)fmod(dNanos, 1'000'000'000.0))
+{
+
+}
+
+
+inline microsecond::microsecond(double dMicroseconds) :
+   duration((i64)(dMicroseconds / 1'000'000.0), (i64)fmod(dMicroseconds * 1'000.0, 1'000'000'000.0))
+{
+
+}
+
+
+inline millisecond::millisecond(double dMilliseconds) :
+   duration((i64)(dMilliseconds / 1'000.0), (i64)fmod(dMilliseconds * 1'000'000.0, 1'000'000'000.0))
+{
+
+}
+
+
+#endif
+
+
 

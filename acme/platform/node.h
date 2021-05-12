@@ -87,6 +87,10 @@ namespace acme
 
 
       virtual ::e_status initialize(::object * pobject) override;
+      
+      virtual ::e_status _launch_macos_app(const char * pszAppFolder);
+  
+      virtual ::e_status _launch_macos_app_args(const char * pszAppFolder, const char * pszArgs);
 
       virtual ::e_status on_initialize_object() override;
 

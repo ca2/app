@@ -54,7 +54,7 @@ void apex_application_main(int argc, char *argv[], const char * pszCommandLine);
 
 
 
-int is_window(oswindow window);
+//int is_window(oswindow window);
 
 //void ns_main_sync(dispatch_block_t block, unsigned int uiMillis = -1);
 //void ns_main_async(dispatch_block_t block);

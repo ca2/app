@@ -36,8 +36,14 @@ public:
    millis() { m_i = 0; }
    millis(enum enum_now);
    millis(enum enum_no_initialize) {}
+    
+#ifdef CPP20
    template < primitive_integral INTEGRAL >
    millis(INTEGRAL i) { m_i = i; }
+#else
+   millis(::i64 i) { m_i = i; }
+#endif
+    
    millis(const secs & secs) { m_i = secs.m_i * 1'000; }
    millis(const millis & millis) { m_i = millis.m_i; }
    millis(const micros & micros);
@@ -286,8 +292,11 @@ inline millis __tick(double d) { return (::i64) d; }
 inline millis operator "" _tick(unsigned long long int u) { return u; }
 
 
+#ifdef CPP20
+
 typedef CLASS_DECL_ACME numeric_array < millis > tick_array;
 
+#endif
 
 inline secs::secs(const millis & millis) { m_i = millis.m_i / 1'000; }
 
@@ -311,6 +320,9 @@ inline millis operator +(const ::millis& millis1, const ::millis& millis2)
 }
 
 
+#ifdef CPP20
+
+
 template < primitive_number NUMBER >
 inline millis operator *(const ::millis& millis, const NUMBER& number)
 {
@@ -329,6 +341,7 @@ inline millis operator /(const ::millis& millis, const NUMBER& number)
 }
 
 
+#endif
 
 
 inline ::millis first_milli();

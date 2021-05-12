@@ -138,18 +138,6 @@ namespace datetime
 
 
 
-   inline string time::Format(const string & strFormat)
-   {
-      string str;
-      Format(str, strFormat);
-      return str;
-   }
-   inline string time::FormatGmt(const string & strFormat)
-   {
-      string str;
-      FormatGmt(str, strFormat);
-      return str;
-   }
 
    inline bool time::operator==(time time) const noexcept
    {
@@ -224,13 +212,6 @@ inline time::time(time_t time)  noexcept :
 
 
 } // namespace datetime
-
-
-#ifdef __DEBUG
-CLASS_DECL_ACME dump_context & operator <<(dump_context & dumpcontext, ::datetime::time time);
-CLASS_DECL_ACME dump_context & operator <<(dump_context & dumpcontext, ::datetime::time_span time);
-#endif
-
 
 
 

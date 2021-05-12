@@ -43,8 +43,10 @@ namespace apex
 
 #else
 
-
       defer_create_mutex();
+      
+#endif
+      
 
    }
 
@@ -174,8 +176,6 @@ namespace apex
 
 #endif
 
-#endif
-
 
       if (file_is_true_dup(m_psystem->m_pacmedir->system() / "log.txt"))
       {
@@ -199,6 +199,7 @@ namespace apex
 
 #endif
 
+
       else
       {
 
@@ -207,6 +208,7 @@ namespace apex
          //m_bLog = is_debugger_attached() != false;
 
       }
+      
 
       synchronouslock.unlock();
 

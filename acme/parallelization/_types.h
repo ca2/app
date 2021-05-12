@@ -1,6 +1,12 @@
 #pragma once
 
 
+class thread;
+
+
+class task_pool;
+
+
 using htask_t = void *;
 
 

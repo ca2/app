@@ -7317,10 +7317,7 @@ retry_license:
    //}
 
 
-
-
-
-   i32 application::hotplugin_host_starter_start_sync(const char * pszCommandLine, ::apex::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin)
+   ::e_status application::hotplugin_host_starter_start_sync(const char * pszCommandLine, ::apex::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin)
    {
 
       {
@@ -7365,7 +7362,8 @@ retry_license:
 
    }
 
-   i32 application::hotplugin_host_host_starter_start_sync(const char * pszCommandLine, ::apex::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin)
+
+   ::e_status application::hotplugin_host_host_starter_start_sync(const char * pszCommandLine, ::apex::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin)
    {
 
       return -1;
@@ -7819,7 +7817,7 @@ retry_license:
          if (pmessage->m_lparam == 0)
             //linux nIDP = __IDP_COMMAND_FAILURE; // command (not from a control)
             nIDP = "Command Failure";
-         pmessage->m_lresult = (LRESULT)true;        // pretend the command was handled
+         pmessage->m_lresult = true;        // pretend the command was handled
       }
 
       if (e.estatus() == error_no_memory)

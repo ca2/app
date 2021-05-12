@@ -9,7 +9,7 @@
 #include "acme/primitive/primitive/factory.h"
 #include "acme/primitive/primitive/id.h"
 #include "acme/primitive/primitive/id_space.h"
-#include "acme/primitive/primitive/interlocked_long.h"
+#include "acme/primitive/primitive/interlocked.h"
 #include "acme/primitive/primitive/interlocked_long_pulse.h"
 //#include "acme/primitive/primitive/job.h"
 #include "acme/primitive/primitive/memory_container.h"

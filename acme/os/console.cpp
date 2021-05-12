@@ -6,7 +6,7 @@
 #ifdef WINDOWS
 #include <conio.h>
 #endif
-#ifdef LINUX
+#if defined(LINUX) || defined(MACOS)
 int getche();
 #endif
 

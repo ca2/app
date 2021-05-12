@@ -1,6 +1,7 @@
 #pragma once
 
-#include "platform/zconf.h"
+
+#include "operating_system/zconf.h"
 
 
 

@@ -116,6 +116,8 @@ namespace user
 #elif defined(MACOS)
 
       string strLang = m_strLanguageCode;
+      
+      auto psystem = m_psystem->m_papexsystem;
 
       ::file::path pathCa2 = psystem->m_pdirsystem->m_pathCa2;
 

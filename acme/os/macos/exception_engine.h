@@ -5,17 +5,24 @@ namespace macos
 {
 
 
-   class CLASS_DECL_ACME exception_engine :
-      virtual public ::exception_engine
+   namespace exception
    {
-   public:
+
+   
+      class CLASS_DECL_ACME engine :
+         virtual public ::exception::engine
+      {
+      public:
 
 
-      exception_engine();
-      virtual ~exception_engine();
+         engine();
+         virtual ~engine();
 
 
-   };
+      };
+   
+   
+   } // namespace exception
 
 
 } // namespace macos

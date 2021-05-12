@@ -1,4 +1,4 @@
-﻿//        acme / camilo made by thomas
+//        acme / camilo made by thomas
 // 
 //   
 //    
@@ -106,7 +106,7 @@ CLASS_DECL_ACME void acme_ref();
 //typedef __MAIN_DEFERRED_RUN *__LPFN_MAIN_DEFERRED_RUN;
 //extern CLASS_DECL_ACME __LPFN_MAIN_DEFERRED_RUN __main_deferred_run;
 
-
+#define CPP20
 
 #ifdef __DEBUG
 
@@ -374,14 +374,14 @@ namespace opengl
 
 } // namespace opengl
 
-
-enum enum_normalize
-{
-
-   e_normalize
-
-};
-
+//
+//enum enum_normalize
+//{
+//
+//   e_normalize
+//
+//};
+//
 
 namespace message
 {
@@ -392,13 +392,13 @@ namespace message
 
 } // namespace message
 
-
-enum enum_null
-{
-
-   e_null
-
-};
+//
+//enum enum_null
+//{
+//
+//   e_null
+//
+//};
 
 
 struct INT_STRING
@@ -837,9 +837,9 @@ CLASS_DECL_ACME enum_platform_level get_platform_level();
 #define FLOATABS(f) (((f) >= 0.f) ? (f) : (-f))
 #define DOUBLEABS(d) (((d) >= 0.0) ? (d) : (-d))
 
-
-#define MIN(a, b) (((a) < (b)) ? (a) : (b))
-#define MAX(a, b) (((b) < (a)) ? (a) : (b))
+//#ifndef
+//#define MIN(a, b) (((a) < (b)) ? (a) : (b))
+//#define MAX(a, b) (((b) < (a)) ? (a) : (b))
 
 
 #ifdef __cplusplus
@@ -854,19 +854,21 @@ CLASS_DECL_ACME enum_platform_level get_platform_level();
 #define SORT_LIM(x, minmax, maxmin) ((minmax) < (maxmin) ? LIM(x,minmax,maxmin) : LIM(x,maxmin,minmax))
 #define CLIP_USHRT(x) LIM(x,0,USHRT_MAX)
 
+enum enum_optional
+{
+
+   e_optional,
+
+};
 
 #ifdef WINDOWS
 #include <intsafe.h>
 #else
 
-#ifndef LODWORD
-#define LODWORD(l)                                    ((::u32)(((::u64)(l)) & 0xffffffff))
-#endif
-#ifndef HIDWORD
-#define HIDWORD(l)                                    ((::u32)((((::u64)(l)) >> 32) & 0xffffffff))
-#endif
+#include "acme/os/cross/windows/_include.h"
 
 #endif
+
 
 
 #define __u16(a, b)                                   ((::u16)(((::u8)(((::uptr)(a)) & 0xff)) | ((::u16)((::u8)(((::uptr)(b)) & 0xff))) << 8))
@@ -920,21 +922,6 @@ using filetime_t = ::u64;
 # define O_BINARY 0
 #endif
 
-
-enum enum_optional
-{
-
-   e_optional,
-
-};
-
-
-enum enum_no_initialize
-{
-
-   e_no_initialize,
-
-};
 
 
 CLASS_DECL_ACME i32 ansi_open(const char *psz, i32 i);
@@ -1475,9 +1462,9 @@ inline u32 u32_hash(ARG_KEY key) { return (u32) (uptr_hash<ARG_KEY>(key)); }
 //#endif
 
 
-#define __base(TYPE, ptarget, psource) for(__pointer(TYPE) ptarget = psource; ptarget.is_set(); ptarget.release())
-#define __base_reference(TYPE, ptarget, source) for(__pointer(TYPE) ptarget = &source; ptarget.is_set(); ptarget.release())
-#define __exception(TYPE) __base(TYPE, pe, e)
+// #define __base(TYPE, ptarget, psource) for(__pointer(TYPE) ptarget = psource; ptarget.is_set(); ptarget.release())
+// #define __base_reference(TYPE, ptarget, source) for(__pointer(TYPE) ptarget = &source; ptarget.is_set(); ptarget.release())
+// #define __exception(TYPE) __base(TYPE, pe, e)
 
 
 #undef _
@@ -2775,7 +2762,8 @@ namespace text
 class thread_parameter;
 
 
-#include "acme/primitive/primitive/interlocked_long.h"
+#include "acme/primitive/primitive/interlocked.h"
+#include "acme/primitive/primitive/interlocked_count.h"
 #include "acme/primitive/primitive/interlocked_long_pulse.h"
 #include "acme/primitive/primitive/type.h"
 #include "acme/primitive/primitive/id.h"
@@ -2966,7 +2954,7 @@ using wparam = c_number<iptr>;
 #include "acme/primitive/mathematics/math_clip.h"
 
 
-#include "acme/primitive/datetime/_datetime.h"
+#include "acme/primitive/datetime/_.h"
 
 
 #include "acme/platform/common.h"
@@ -3104,7 +3092,8 @@ namespace factory
 
 
 #include "acme/parallelization/synchronization_result.h"
-
+#include "acme/primitive/primitive/atomic.h"
+#include "acme/primitive/primitive/interlocked_count.h"
 
 #include "acme/primitive/primitive/matter.h"
 #include "acme/primitive/primitive/material_object.h"
@@ -3798,16 +3787,7 @@ CLASS_DECL_ACME string get_system_error_message(u32 dwError);
 
 class mq_base;
 
-//#include "acme/platform/live_signal.h"
-//#include "acme/parallelization/predicate_holder.h"
-//#include "acme/primitive/primitive/command.h"
-//#include "acme/parallelization/handler.h"
-//#include "acme/parallelization/service_base.h"
-//#include "acme/parallelization/service/plain_service.h"
-//#include "acme/parallelization/service/plain_service.h"
-//#include "acme/parallelization/fork.h"
-//#include "acme/parallelization/delay_thread.h"
-//#include "acme/parallelization/tools.h"
+
 
 #include "acme/platform/timer_callback.h"
 #include "acme/platform/timer_item.h"
@@ -3818,9 +3798,6 @@ class mq_base;
 #include "acme/platform/timer_event.h"
 
 #include "acme/parallelization/thread_impl.h"
-//#include "acme/parallelization/simple_thread.h"
-//#include "acme/parallelization/go_thread.h"
-//#include "acme/parallelization/signal_thread.h"
 #include "acme/platform/routine_array.h"
 
 
@@ -3939,6 +3916,9 @@ namespace file
 
 
 #include "acme/platform/department.h"
+
+
+#include "acme/primitive/datetime/_datetime.h"
 
 
 #include "acme/net/_.h"

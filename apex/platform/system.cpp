@@ -4514,6 +4514,10 @@ namespace apex
          auto argv = sa.c_ansi_get();
 
          argv.add(nullptr);
+         
+         auto psystem = m_psystem;
+         
+         auto purl = psystem->url();
 
          string strApp = purl->url_decode(path);
 

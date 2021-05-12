@@ -11,8 +11,6 @@ namespace file
 {
 
 
-
-
    ::file::path module()
    {
 

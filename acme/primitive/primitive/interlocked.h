@@ -42,23 +42,6 @@ public:
 };
 
 
-using interlocked_i32 = ::interlocked < ::i32 >;
-
-
-#if defined(WINDOWS) && OSBIT == 32
-
-using interlocked_count = ::interlocked < ::i32 >;
-
-#else
-
-using interlocked_count = ::interlocked < ::i64 >;
-
-#endif
-
-
-
-
-
 template < typename INTERLOCKED_LONG >
 inline interlocked < INTERLOCKED_LONG > & interlocked < INTERLOCKED_LONG >::operator++()
 {

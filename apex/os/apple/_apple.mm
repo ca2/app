@@ -207,21 +207,21 @@ NSString * __ns_get_text(const char * psz)
 }
 
 
-bool ns_set_thread_name(const char * pszThreadName)
-{
-   
-   NSString * strThreadName = [[NSString alloc] initWithUTF8String:pszThreadName];
-                     
-   [[NSThread currentThread] setName : strThreadName];
-   
-   return true;
-                     
-}
-
-
-char * ns_get_thread_name()
-{
-   
-   return ns_string([[NSThread currentThread] name]);
-   
-}
+//bool ns_set_task_name(const char * pszThreadName)
+//{
+//
+//   NSString * strThreadName = [[NSString alloc] initWithUTF8String:pszThreadName];
+//
+//   [[NSThread currentThread] setName : strThreadName];
+//
+//   return true;
+//
+//}
+//
+//
+//char * ns_get_thread_name()
+//{
+//
+//   return ns_string([[NSThread currentThread] name]);
+//
+//}

@@ -507,7 +507,7 @@ int get_current_process_affinity_order()
 }
 
 
-bool set_thread_name(const char * psz)
+bool task_set_name(const char * psz)
 {
 
    string strName(psz);
@@ -522,7 +522,7 @@ bool set_thread_name(const char * psz)
 
 }
 
-string thread_get_name()
+string task_get_name()
 {
 
    return thread_property("name").to_string();

@@ -53,14 +53,6 @@ namespace acme
    }
 
 
-   string node::audio_get_default_library_name()
-   {
-
-      return "";
-
-   }
-
-
    ::e_status node::initialize(::object * pobject)
    {
 
@@ -78,6 +70,35 @@ namespace acme
       return estatus;
 
    }
+
+
+   string node::audio_get_default_library_name()
+   {
+
+      return "";
+
+   }
+
+
+   ::e_status node::_launch_macos_app(const char * pszAppFolder)
+   {
+      
+      __throw(error_interface_only);
+      
+      return ::error_interface_only;
+      
+   }
+
+
+   ::e_status node::_launch_macos_app_args(const char * pszAppFolder, const char * pszArgs)
+   {
+      
+      __throw(error_interface_only);
+   
+      return error_interface_only;
+      
+   }
+
 
 
    ::e_status node::on_initialize_object()

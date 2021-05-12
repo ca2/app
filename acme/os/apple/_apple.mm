@@ -220,22 +220,34 @@ NSString * __ns_get_text(const char * psz)
    
 }
 
-
-bool ns_set_thread_name(const char * pszThreadName)
-{
-   
-   NSString * strThreadName = [[NSString alloc] initWithUTF8String:pszThreadName];
-                     
-   [[NSThread currentThread] setName : strThreadName];
-   
-   return true;
-                     
-}
-
-
-char * ns_get_thread_name()
-{
-   
-   return ns_string([[NSThread currentThread] name]);
-   
-}
+//
+//
+//bool set_task_name(const char * pszTaskName)
+//{
+//
+//   NSString * strTaskName = [[NSString alloc] initWithUTF8String:pszTaskName];
+//
+//   [[NSThread currentThread] setName : strTaskName];
+//
+//   return true;
+//
+//}
+//
+//bool set_task_name(void * p, const char * pszTaskName)
+//{
+//
+//   NSString * strTaskName = [[NSString alloc] initWithUTF8String:pszTaskName];
+//
+//   [[NSThread currentThread] setName : strTaskName];
+//
+//   return true;
+//                     
+//}
+//
+//
+//char * ns_get_task_name()
+//{
+//
+//   return ns_string([[NSThread currentThread] name]);
+//
+//}

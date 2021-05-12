@@ -15,7 +15,7 @@
 #include <mach/mach_time.h>
 
 //extern clock_serv_t g_cclock;
-extern double g_machtime_conversion_factor;
+double g_machtime_conversion_factor;
 
 void ns_Sleep(unsigned int uiMillis);
 

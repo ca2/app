@@ -178,7 +178,7 @@ namespace user
 
       string strType = ::str::demangle(m_puserinteraction->type_name());
 
-      ::set_thread_name("prodevian," + strType);
+      ::task_set_name("prodevian," + strType);
 
       if (strType.contains_ci("combo_list"))
       {

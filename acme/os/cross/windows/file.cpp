@@ -3,6 +3,8 @@
 #include "acme/os/console.h"
 #ifdef LINUX
 #include "acme/os/ansios/binreloc.h"
+#endif
+#if defined(LINUX) || defined(MACOS)
 #include <sys/stat.h>
 #endif
 

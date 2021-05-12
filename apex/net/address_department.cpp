@@ -900,7 +900,7 @@ namespace net
          m_pthreadReverse = psystem->fork([this]()
             {
 
-               ::set_thread_name("reverse___dns");
+               ::task_set_name("reverse___dns");
 
                single_lock synchronouslock(mutex());
 

@@ -816,7 +816,7 @@ FILETIME __FILETIME(const ::datetime::time & time)
 
 
 
-#define INTEL 1
+//#define INTEL 1
 
 //
 //time_t __time(const filetime & filetime)

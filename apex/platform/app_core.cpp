@@ -1395,18 +1395,7 @@ typedef size_t FN_GET_STRING(char * psz, size_t s);
 typedef FN_GET_STRING * PFN_GET_STRING;
 
 
-#ifdef __APPLE__
 
-
-string apple_get_bundle_identifier()
-{
-
-   return ::str::from_strdup(ns_get_bundle_identifier());
-
-}
-
-
-#endif
 
 
 //string transform_to_c_arg(const char * psz)

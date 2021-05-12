@@ -124,8 +124,8 @@ CLASS_DECL_ACME ::e_status __call(const ::routine & routine);
 
 
 
-CLASS_DECL_ACME bool set_thread_name(const char * psz);
-CLASS_DECL_ACME bool set_thread_name(htask_t htask, const char* pszName);
+CLASS_DECL_ACME bool task_set_name(const char * psz);
+CLASS_DECL_ACME bool task_set_name(htask_t htask, const char* pszName);
 
 
 typedef ::e_status     (*__THREADPROC)(void *);
@@ -167,7 +167,7 @@ namespace parallelization
 
    //}
 
-   CLASS_DECL_ACME string thread_get_name();
+   CLASS_DECL_ACME string task_get_name();
 
 
 } // namespace parallelization
@@ -343,7 +343,7 @@ CLASS_DECL_ACME bool task_sleep(millis millis = U32_INFINITE_TIMEOUT, ::synchron
 #endif
 
 
-string get_thread_name(htask_t htask);
+string get_task_name(htask_t htask);
 
 #include "acme/primitive/collection/runnable_array.h"
 
@@ -354,12 +354,12 @@ typedef string GET_THREAD_NAME(::thread* pthread);
 using LPFN_GET_THREAD_NAME = GET_THREAD_NAME*;
 
 CLASS_DECL_ACME void set_get_thread_name(LPFN_GET_THREAD_NAME);
-string get_thread_name(const ::task* ptask);
+string get_task_name(const ::task* ptask);
 
 CLASS_DECL_ACME void thread_name_abbreviate(string & strName, int len);
 
-CLASS_DECL_ACME bool set_thread_name(htask_t htask, const char * psz);
-CLASS_DECL_ACME bool set_thread_name(const char * psz);
+CLASS_DECL_ACME bool task_set_name(htask_t htask, const char * psz);
+CLASS_DECL_ACME bool task_set_name(const char * psz);
 
 //#include "update_task_item_array.h"
 

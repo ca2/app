@@ -261,11 +261,11 @@
     <Filter Include="Header Files\primitive\promise">
       <UniqueIdentifier>{ca282869-7285-4060-9314-2dcb61f30654}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\regular_expression">
-      <UniqueIdentifier>{674edbba-6720-47b5-b529-369555275bf5}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\regular_expression">
-      <UniqueIdentifier>{6dcfa291-9c92-46d1-bc4d-ddd124339ec8}</UniqueIdentifier>
+      <UniqueIdentifier>{d2590128-15d9-4d60-b3a8-e8589178bd73}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\regular_expression">
+      <UniqueIdentifier>{664d3dae-7929-49cb-a819-65ee6518069e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -3143,9 +3143,6 @@
       <Filter>Source Files\os\windows</Filter>
     </ClCompile>
     <ClCompile Include="os\windows\language.cpp">
-      <Filter>Source Files\os\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="os\windows\list_serial_ports.cpp">
       <Filter>Source Files\os\windows</Filter>
     </ClCompile>
     <ClCompile Include="os\windows\lock.cpp">

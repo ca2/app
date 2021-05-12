@@ -1501,7 +1501,6 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClCompile Include="os\windows\itemidlist.cpp" />
     <ClCompile Include="os\windows\language.cpp" />
     <ClCompile Include="os\windows\library.cpp" />
-    <ClCompile Include="os\windows\list_serial_ports.cpp" />
     <ClCompile Include="os\windows\lock.cpp" />
     <ClCompile Include="os\windows\main.cpp" />
     <ClCompile Include="os\windows\message_loop.cpp" />

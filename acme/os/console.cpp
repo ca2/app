@@ -344,7 +344,7 @@ repeat:
 
 
 
-#ifdef LINUX
+#if defined(HAVE_TERMIOS_H) && HAVE_TERMIOS_Hc
 
 #include <unistd.h>
 #include <termios.h>
@@ -391,7 +391,7 @@ int getche()
 }
 
 
-#endif
+#endif // defined(HAVE_TERMIOS_H) && HAVE_TERMIOS_Hc
 
 
 

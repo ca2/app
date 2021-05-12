@@ -12,10 +12,10 @@ CLASS_DECL_AURA int_bool __thread_set_data(itask_t thread,u32 dwIndex,void * lpT
 #endif
 
 
-void __node_init_cross_windows_threading();
+// void __node_init_cross_windows_threading();
 
 
-void __node_term_cross_windows_threading();
+// void __node_term_cross_windows_threading();
 
 
 

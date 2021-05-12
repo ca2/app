@@ -261,6 +261,12 @@
     <Filter Include="Header Files\primitive\promise">
       <UniqueIdentifier>{ca282869-7285-4060-9314-2dcb61f30654}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\regular_expression">
+      <UniqueIdentifier>{674edbba-6720-47b5-b529-369555275bf5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\regular_expression">
+      <UniqueIdentifier>{6dcfa291-9c92-46d1-bc4d-ddd124339ec8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="filesystem\filesystem.h">
@@ -1121,9 +1127,6 @@
     <ClInclude Include="platform\aura_aura.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
-    <ClInclude Include="platform\aura_regex.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
     <ClInclude Include="platform\auto.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
@@ -1224,15 +1227,6 @@
       <Filter>Header Files\platform</Filter>
     </ClInclude>
     <ClInclude Include="platform\process_data.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\progress.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\progress_interface.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\regex.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
     <ClInclude Include="platform\restore.h">
@@ -2762,6 +2756,18 @@
     <ClInclude Include="primitive\promise\signalization.h">
       <Filter>Header Files\primitive\promise</Filter>
     </ClInclude>
+    <ClInclude Include="regular_expression\_regular_expression.h">
+      <Filter>Header Files\regular_expression</Filter>
+    </ClInclude>
+    <ClInclude Include="regular_expression\context.h">
+      <Filter>Header Files\regular_expression</Filter>
+    </ClInclude>
+    <ClInclude Include="regular_expression\regular_expression.h">
+      <Filter>Header Files\regular_expression</Filter>
+    </ClInclude>
+    <ClInclude Include="regular_expression\topic.h">
+      <Filter>Header Files\regular_expression</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="primitive\primitive\application_bias.cpp">
@@ -3367,9 +3373,6 @@
     <ClCompile Include="platform\profiler.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
-    <ClCompile Include="platform\regex.cpp">
-      <Filter>Source Files\platform</Filter>
-    </ClCompile>
     <ClCompile Include="platform\trace_category.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
@@ -3921,6 +3924,15 @@
     </ClCompile>
     <ClCompile Include="exception\engine.cpp">
       <Filter>Source Files\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="regular_expression\context.cpp">
+      <Filter>Source Files\regular_expression</Filter>
+    </ClCompile>
+    <ClCompile Include="regular_expression\regular_expression.cpp">
+      <Filter>Source Files\regular_expression</Filter>
+    </ClCompile>
+    <ClCompile Include="regular_expression\topic.cpp">
+      <Filter>Source Files\regular_expression</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

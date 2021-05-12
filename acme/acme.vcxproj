@@ -1583,7 +1583,6 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClCompile Include="platform\predicate_holder.cpp" />
     <ClCompile Include="platform\printf.cpp" />
     <ClCompile Include="platform\profiler.cpp" />
-    <ClCompile Include="platform\regex.cpp" />
     <ClCompile Include="platform\routine_array.cpp" />
     <ClCompile Include="platform\serial.cpp" />
     <ClCompile Include="platform\simple_trace.cpp" />
@@ -1658,6 +1657,9 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClCompile Include="process\exit_status.cpp" />
     <ClCompile Include="process\main.cpp" />
     <ClCompile Include="process\pipe.cpp" />
+    <ClCompile Include="regular_expression\context.cpp" />
+    <ClCompile Include="regular_expression\regular_expression.cpp" />
+    <ClCompile Include="regular_expression\topic.cpp" />
     <ClCompile Include="user\os_colors.cpp" />
     <ClCompile Include="user\os_theme_colors.cpp" />
     <ClCompile Include="_.cpp" />
@@ -1914,7 +1916,6 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClInclude Include="platform\acme_main_data.h" />
     <ClInclude Include="platform\all.h" />
     <ClInclude Include="platform\aura_aura.h" />
-    <ClInclude Include="platform\aura_regex.h" />
     <ClInclude Include="platform\acme_str_pool.h" />
     <ClInclude Include="platform\auto.h" />
     <ClInclude Include="platform\auto_pointer.h" />
@@ -1967,9 +1968,6 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClInclude Include="platform\printf.h" />
     <ClInclude Include="platform\process_data.h" />
     <ClInclude Include="platform\profiler.h" />
-    <ClInclude Include="platform\progress.h" />
-    <ClInclude Include="platform\progress_interface.h" />
-    <ClInclude Include="platform\regex.h" />
     <ClInclude Include="platform\restore.h" />
     <ClInclude Include="platform\routine.h" />
     <ClInclude Include="platform\routine_array.h" />
@@ -2208,6 +2206,10 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClInclude Include="process\exit_status.h" />
     <ClInclude Include="process\pipe.h" />
     <ClInclude Include="process\_.h" />
+    <ClInclude Include="regular_expression\context.h" />
+    <ClInclude Include="regular_expression\regular_expression.h" />
+    <ClInclude Include="regular_expression\topic.h" />
+    <ClInclude Include="regular_expression\_regular_expression.h" />
     <ClInclude Include="text.h" />
     <ClInclude Include="update.h" />
     <ClInclude Include="user\conversation.h" />

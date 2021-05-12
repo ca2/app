@@ -1,6 +1,6 @@
 //
 //  macos_window.h
-//  apex
+//  acme
 //
 //  Created by Camilo Sasuke Tsumanuma on 2013-09-17.
 //
@@ -50,7 +50,7 @@ int GetWorkspaceCount();
 //#define HWND_MESSAGE ((::oswindow_data *) (iptr) 1)
 
 
-int_bool destroy_window(oswindow w);
+//int_bool destroy_window(oswindow w);
 
 
 //oswindow get_capture();
@@ -64,12 +64,12 @@ int_bool destroy_window(oswindow w);
 
 //void GetMainScreenRect(RECTANGLE_I32 * prectangle);
 
-
-int_bool SetForegroundWindow(oswindow window);
-int_bool BringWindowToTop(oswindow window);
-
-void ns_redraw_window(oswindow window);
-
+//
+//int_bool SetForegroundWindow(oswindow window);
+//int_bool BringWindowToTop(oswindow window);
+//
+//void ns_redraw_window(oswindow window);
+//
 
 
 //void copy(CGRect & rectangle, const RECTANGLE_I32 * prectangle);

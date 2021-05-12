@@ -6,6 +6,7 @@
 
 #if defined(HAVE_OPENSSL)
 
+// apt install libssl-dev
 // dnf install openssl-devel
 #include <openssl/rsa.h>
 #include <openssl/md5.h>

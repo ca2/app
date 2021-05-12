@@ -866,7 +866,7 @@ list(APPEND acme_source
    platform/acme_str_pool.h
    platform/all.h
    platform/aura_aura.h
-   platform/aura_regex.h
+   #platform/aura_regex.h
    platform/auto.h
    platform/auto_pointer.h
    platform/class.h

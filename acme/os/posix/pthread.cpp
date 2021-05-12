@@ -256,24 +256,24 @@ CLASS_DECL_ACME itask_t get_current_ithread()
 }
 
 
-void __node_init_cross_windows_threading();
+//void __node_init_cross_windows_threading();
 
 
 void __node_init_multithreading()
 {
 
-   __node_init_cross_windows_threading();
+   //__node_init_cross_windows_threading();
 
 }
 
 
-void __node_term_cross_windows_threading();
+//void __node_term_cross_windows_threading();
 
 
 void __node_term_multithreading()
 {
 
-   __node_term_cross_windows_threading();
+   //__node_term_cross_windows_threading();
 
 }
 

@@ -1875,24 +1875,13 @@ target_include_directories(acme PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 target_compile_definitions(acme PRIVATE _ACME_LIBRARY)
 
 
-file(GLOB third_binaries
-   "${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/storage-${PLATFORM_NAME}/third/binary/x64/basis/*"
-   )
+set(third_binaries "${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/storage-${PLATFORM_NAME}/third/binary/x64/basis/")
 
+add_custom_command(TARGET acme POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy_directory ${third_binaries} ${EXECUTABLE_OUTPUT_PATH})
 
-add_custom_command(TARGET acme POST_BUILD
-   COMMAND ${CMAKE_COMMAND} -E copy_directory
-   ${third_binaries} ${EXECUTABLE_OUTPUT_PATH})
+set(storage_binaries "${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/storage-${PLATFORM_NAME}/binary/x64/basis/")
 
-
-file(GLOB storage_binaries
-   "${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/storage-${PLATFORM_NAME}/binary/x64/basis/*"
-   )
-
-
-add_custom_command(TARGET acme POST_BUILD
-   COMMAND ${CMAKE_COMMAND} -E copy_directory
-   ${storage_binaries} ${EXECUTABLE_OUTPUT_PATH})
+add_custom_command(TARGET acme POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy_directory ${storage_binaries} ${EXECUTABLE_OUTPUT_PATH})
 
 
 

@@ -20,7 +20,6 @@ namespace app_shader
       virtual ~main_window();
 
 
-
       virtual void install_message_routing(::channel * psender) override;
 
       virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
@@ -39,8 +38,7 @@ namespace app_shader
 
       virtual ::user::enum_translucency get_translucency(::user::style* pstyle) const override;
 
-
-      void update_shader();
+      virtual void update_shader(int iShader);
 
       virtual bool on_click(const ::user::item& item) override;
 

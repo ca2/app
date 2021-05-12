@@ -5268,6 +5268,9 @@ bool payload::is_numeric() const
       return false;
 //   case e_type_process:
 //      return false;
+      case e_type_hls:
+      case e_type_color:
+         return true;
    default:
       __throw(error_not_implemented);
 

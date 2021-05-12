@@ -835,15 +835,14 @@ namespace user
 
       auto origin = m_puserinteraction->layout().window().origin();
 
-      return m_pgraphics->get_screen_image()->pixel(x-origin.x, y- origin.y);
+      return m_pgraphics->get_screen_image()->pixel(x - origin.x, y - origin.y);
 
    }
 
-//bool interaction_impl::native_create_window()
+
+   //bool interaction_impl::native_create_window()
    //{
-
    //   return false;
-
    //}
 
 
@@ -884,7 +883,6 @@ namespace user
 //      return native_create_window();
 //
 //   }
-
 
 
    void interaction_impl::prio_install_message_routing(::channel * pchannel)
@@ -3839,16 +3837,16 @@ namespace user
          if (pgraphics == nullptr || pgraphics->get_os_data() == nullptr)
          {
 
-#define SEVERITY_HIGH 5
+//#define SEVERITY_HIGH 5
 
-            int iSeverity = SEVERITY_HIGH;
+            //int iSeverity = SEVERITY_HIGH;
 
-            for(index i = 0; i < iSeverity * 20; i++)
-            {
+            //for(index i = 0; i < iSeverity * 20; i++)
+            //{
 
-               output_debug_string("m_pgraphics->on_begin_draw FAILED (1)");
+            output_debug_string("m_pgraphics->on_begin_draw FAILED (1)\n");
 
-            }
+            //}
 
             return;
 
@@ -5524,12 +5522,12 @@ namespace user
 
       __pointer(::message::move) pmove(pmessage);
 
-      if(m_puserinteraction->m_ewindowflag & e_window_flag_postpone_visual_update)
-      {
-
-         return;
-
-      }
+//      if(m_puserinteraction->m_ewindowflag & e_window_flag_postpone_visual_update)
+//      {
+//
+//         return;
+//
+//      }
 
 //      bool bLayered = m_puserinteraction->GetExStyle() & WS_EX_LAYERED;
 //

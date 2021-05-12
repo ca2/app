@@ -46,6 +46,7 @@ namespace acme
 
       ::windowing_x11::node *                m_pNodeX11;
       ::windowing_xcb::node *                m_pNodeXcb;
+      ::node_gtk::node *                     m_pNodeGtk;
       ::node_gnome::node *                   m_pNodeGnome;
       ::node_kde::node *                     m_pNodeKDE;
       ::node_xfce::node *                    m_pNodeXfce;

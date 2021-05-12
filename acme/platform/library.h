@@ -182,7 +182,12 @@ namespace acme
 
 
 
-
+// [HERE] 
+//  __node_library should be here at acme
+// 
+//  -- e.g. cannot lie inside a plugin, 
+// because it is used to load a plugin
+//
 CLASS_DECL_ACME void * __node_library_open(const char * pszPath, string & strMessage);
 CLASS_DECL_ACME void * __node_library_touch(const char * pszPath, string & strMessage);
 CLASS_DECL_ACME void * __node_library_open_ca2(const char * pszPath, string & strMessage);

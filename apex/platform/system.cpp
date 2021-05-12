@@ -5682,6 +5682,8 @@ string get_bundle_app_library_name();
 
       strLibrary.replace(".", "_");
 
+
+
       auto plibrary = __node_library_open(strLibrary, strMessage);
 
       if (!plibrary)

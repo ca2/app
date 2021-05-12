@@ -5,6 +5,8 @@
 
 #undef _WINDOWS_
 // dnf install freeimage-devel
+// zypper install freeimage-devel
+// pacman -S freeimage
 #include <FreeImage.h>
 
 #else

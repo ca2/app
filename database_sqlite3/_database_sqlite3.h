@@ -5,6 +5,7 @@
 
 
 // dnf install sqlite-devel
+// zypper install sqlite3-devel
 #include <sqlite3.h>
 
 

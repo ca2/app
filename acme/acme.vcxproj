@@ -1915,7 +1915,6 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClInclude Include="platform\acme_main_data.h" />
     <ClInclude Include="platform\all.h" />
     <ClInclude Include="platform\aura_aura.h" />
-    <ClInclude Include="platform\aura_regex.h" />
     <ClInclude Include="platform\acme_str_pool.h" />
     <ClInclude Include="platform\auto.h" />
     <ClInclude Include="platform\auto_pointer.h" />

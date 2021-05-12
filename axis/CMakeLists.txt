@@ -658,10 +658,7 @@ if (MSVC)
 elseif(LINUX)
     target_compile_options(axis PRIVATE -fpermissive)
     target_link_options(axis PRIVATE -Wl,-rpath=\$ORIGIN)
-    #target_link_libraries(axis PRIVATE dl pthread X11 Xrandr Xrender Xinerama Xi ncurses)z
     target_link_libraries(axis PRIVATE bz2 ${PKGCONFIG_LIBRARIES} ${library_references})
-    #target_link_libraries(axis PRIVATE acme apex aqua aura pcre2-8 bz2)
-    #target_link_libraries(axis PRIVATE acme apex aqua aura bz2)
     target_link_options(axis PRIVATE -Wl,-z,defs)
 endif()
 

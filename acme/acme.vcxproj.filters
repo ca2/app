@@ -1127,9 +1127,6 @@
     <ClInclude Include="platform\aura_aura.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
-    <ClInclude Include="platform\aura_regex.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
     <ClInclude Include="platform\auto.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>

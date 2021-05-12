@@ -132,8 +132,6 @@ namespace app_shader
 
             m_strFragment = m_pcontext->load_fragment(path, m_eshadersource);
 
-            m_bUpdateShader = true;
-
             break;
 
          }
@@ -160,6 +158,8 @@ namespace app_shader
       {
 
          m_bUpdateShader = false;
+
+         defer_load_fragment(m_strShaderPrefix);
 
          _update_shader();
 
@@ -248,15 +248,6 @@ namespace app_shader
    {
       
       ::gpu::context_lock lock(m_pcontext);
-
-      if (m_strShaderPrefix.has_char())
-      {
-
-         defer_load_fragment(m_strShaderPrefix);
-
-         m_strShaderPrefix.Empty();
-
-      }
 
       defer_update_shader();
 

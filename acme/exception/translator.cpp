@@ -11,11 +11,11 @@ namespace exception
 
       m_bSet = false;
 
-#ifdef EXCEPTION_TRANSLATOR_USE_SIGNAL
-
-      m_psig = new sig_companion;
-
-#endif
+//#ifdef EXCEPTION_TRANSLATOR_USE_SIGNAL
+//
+//      m_psig = new sig_companion;
+//
+//#endif
 
    }
 
@@ -25,12 +25,12 @@ namespace exception
 
 #ifdef EXCEPTION_TRANSLATOR_USE_SIGNAL
 
-      if (m_psig != nullptr)
-      {
-
-         delete (sig_companion*)m_psig;
-
-      }
+//      if (m_psig != nullptr)
+//      {
+//
+//         delete (sig_companion*)m_psig;
+//
+//      }
 
 #endif
 
@@ -99,11 +99,11 @@ namespace exception
 //#endif
 
    
-   void translator::filter(u32 uiCode, _EXCEPTION_POINTERS* point_i32)
-   {
-
-
-   }
+//   void translator::filter(u32 uiCode, _EXCEPTION_POINTERS* point_i32)
+//   {
+//
+//
+//   }
 
 
    bool translator::attach()

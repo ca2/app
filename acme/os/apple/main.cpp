@@ -136,3 +136,14 @@ string ca2_command_line2()
 
 }
 
+
+//
+//char * ns_get_bundle_identifier();
+//
+//
+//string apple_get_bundle_identifier()
+//{
+//
+//   return ::str::from_strdup(ns_get_bundle_identifier());
+//
+//}

@@ -137,17 +137,21 @@ namespace apex
       path -= 3;
 
       string strParams = get_params();
+      
+      auto psystem = m_psystem;
+      
+      auto pnode = psystem->node();
 
       if(strParams.is_empty())
       {
 
-         launch_macos_app(path);
+         pnode->_launch_macos_app(path);
 
       }
       else
       {
 
-         launch_macos_app_args(path, strParams);
+         pnode->_launch_macos_app_args(path, strParams);
 
       }
 

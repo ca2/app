@@ -186,3 +186,16 @@ void duration::sleep() const
 
 
 
+
+
+
+CLASS_DECL_ACME duration __random(const duration & d1, const duration & d2)
+{
+
+   auto iSeconds = __random(d1.m_secs.m_i, d2.m_secs.m_i);
+
+   return duration(iSeconds, __random(
+                                      (::i64)(((::i64)iSeconds > d1.m_secs.m_i) ? 0 : d1.m_nanos.m_i),
+                                      (::i64)(((::i64)iSeconds < d2.m_secs.m_i) ? 999'999'999 : d2.m_nanos.m_i)));
+
+}

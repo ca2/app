@@ -510,7 +510,6 @@ list(APPEND apex_source
    user/language.h
    user/language_map.cpp
    user/language_map.h
-   user/menu_shared_commnand.cpp
    user/notify_icon_bridge.h
    user/primitive.cpp
    user/primitive.h

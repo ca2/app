@@ -35,7 +35,7 @@ CLASS_DECL_ACME void sleep(const millis & millis)
 CLASS_DECL_ACME void sleep(const micros & micros)
 {
 
-   ::usleep(micros.m_i);
+   ::usleep((unsigned int)micros.m_i);
 
 }
 

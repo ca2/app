@@ -38,14 +38,14 @@ public:
 
 
    virtual string get_tag() const;
-   virtual string thread_get_name() const;
+   virtual string task_get_name() const;
 
 
    virtual ::task * get_task() override;
    virtual const char * get_task_tag() override;
 
 
-   virtual bool set_thread_name(const char* pszName);
+   virtual bool task_set_name(const char* pszName);
 
 
 #ifdef WINDOWS
@@ -116,7 +116,7 @@ public:
    virtual bool task_active() const;
    virtual bool is_running() const;
 
-   //virtual bool set_thread_name(const char* pszThreadName);
+   //virtual bool task_set_name(const char* pszThreadName);
 
    virtual bool is_predicate() const { return !m_pobject || m_pobject.get() == this; }
 

@@ -16,6 +16,15 @@ enum enum_synchronization_result : ::index
 };
 
 
+#ifndef WINDOWS
+
+
+#define MAXIMUM_SYNCHRONIZING_OBJECTS 64
+
+
+#endif
+
+
 class CLASS_DECL_ACME synchronization_result
 {
 public:

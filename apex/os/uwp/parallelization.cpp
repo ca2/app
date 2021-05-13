@@ -116,20 +116,20 @@ bool on_term_thread()
 }
 
 
-void __node_init_multithreading()
-{
+// void __node_init_multithreading()
+// {
 
-   __node_init_cross_windows_threading();
+//    __node_init_cross_windows_threading();
 
-}
+// }
 
 
-void __node_term_multithreading()
-{
+// void __node_term_multithreading()
+// {
 
-   __node_term_cross_windows_threading();
+//    __node_term_cross_windows_threading();
 
-}
+// }
 
 //thread_int_ptr < HRESULT > thread_set("hresult_co_initialize");
 
@@ -261,14 +261,14 @@ htask_t get_main_hthread()
 
 
 
-void __node_init_cross_windows_threading()
-{
+// void __node_init_cross_windows_threading()
+// {
 
-}
+// }
 
 
-void __node_term_cross_windows_threading()
-{
+// void __node_term_cross_windows_threading()
+// {
 
-}
+// }
 

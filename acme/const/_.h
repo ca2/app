@@ -7,4 +7,26 @@
 #include "code_page.h"
 
 
+enum enum_no_initialize
+{
+
+   e_no_initialize,
+
+};
+
+
+enum enum_normalize
+{
+
+   e_normalize
+
+};
+
+
+enum enum_null
+{
+
+   e_null
+
+};
 

@@ -816,7 +816,7 @@ i32 net::in6_addr_compare(in6_addr a,in6_addr b)
 //      m_pthreadReverse = psystem->fork([this]()
 //         {
 //
-//            ::set_thread_name("reverse_dns");
+//            ::task_set_name("reverse_dns");
 //
 //            single_lock synchronouslock(mutex());
 //

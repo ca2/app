@@ -269,6 +269,19 @@ zonetime::zonetime(time_t zonetime, int iZoneOffset) noexcept :
 
    }
 
+
+   string zonetime::FormatZone(const string & strFormat)
+   {
+   
+      string str;
+   
+      FormatZone(str, strFormat);
+   
+      return str;
+
+   }
+
+
 } // namespace datetime
 
 
@@ -299,29 +312,3 @@ dump_context & operator <<(dump_context & dumpcontext, ::datetime::zonetime zone
 }
 
 #endif
-//
-//stream & operator << (stream & os, ::datetime::zonetime zonetime)
-//{
-//
-//   os.write((i64)zonetime.m_time);
-//   os.write((i32)zonetime.m_iZoneOffset);
-//
-//   return os;
-//
-//}
-//
-//stream & operator >> (stream & is, ::datetime::zonetime& rtime)
-//{
-//
-//   is.read((i64 &)rtime.m_time);
-//   is.read((i32 &)rtime.m_iZoneOffset);
-//
-//   return is;
-//
-//}
-
-
-
-
-
-

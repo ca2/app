@@ -2,7 +2,7 @@
 #include "acme/os/ansios/_pthread.h"
 
 
-bool set_thread_name(htask_t htask, const char * psz)
+bool task_set_name(htask_t htask, const char * psz)
 {
 
    string strName(psz);
@@ -14,24 +14,24 @@ bool set_thread_name(htask_t htask, const char * psz)
 }
 
 
-bool set_thread_name(const char * psz)
+bool task_set_name(const char * psz)
 {
 
-   return set_thread_name((htask_t) pthread_self(), psz);
+   return task_set_name((htask_t) pthread_self(), psz);
 
 }
 
 
-void __node_init_cross_windows_threading()
-{
+// void __node_init_cross_windows_threading()
+// {
 
-}
+// }
 
 
-void __node_term_cross_windows_threading()
-{
+// void __node_term_cross_windows_threading()
+// {
 
-}
+// }
 
 
 int SetThreadAffinityMask(htask_t h, unsigned int dwThreadAffinityMask)

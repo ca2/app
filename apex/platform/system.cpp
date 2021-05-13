@@ -739,7 +739,7 @@ namespace apex
    //}
 
 
-   bool system::on_get_thread_name(string& strThreadName)
+   bool system::on_get_task_name(string& strTaskName)
    {
 
       if (is_console_app())
@@ -749,7 +749,7 @@ namespace apex
 
       }
 
-      return ::apex::context::on_get_thread_name(strThreadName);
+      return ::apex::context::on_get_task_name(strTaskName);
 
    }
 
@@ -4514,6 +4514,10 @@ namespace apex
          auto argv = sa.c_ansi_get();
 
          argv.add(nullptr);
+         
+         auto psystem = m_psystem;
+         
+         auto purl = psystem->url();
 
          string strApp = purl->url_decode(path);
 

@@ -43,6 +43,8 @@ inline secs::secs(const micros & micros) { m_i = micros.m_i / 1'000'000; }
 inline micros operator "" _us(unsigned long long int u) { return (::i64) u; }
 
 
+#ifdef CPP20
+
 
 template < primitive_number NUMBER >
 inline micros operator *(const ::micros& micros, const NUMBER& number)
@@ -61,6 +63,8 @@ inline micros operator /(const ::micros& micros, const NUMBER& number)
 
 }
 
+
+#endif
 
 
 inline ::micros first_micro();

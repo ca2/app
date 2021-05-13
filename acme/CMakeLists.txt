@@ -338,7 +338,8 @@ list(APPEND acme_source
    primitive/primitive/material_object.cpp
    primitive/primitive/material_object.h
    primitive/primitive/id_space.cpp
-   primitive/primitive/interlocked_long.cpp
+   primitive/primitive/interlocked.h
+   primitive/primitive/interlocked_count.h
    primitive/primitive/interlocked_long_pulse.cpp
    primitive/primitive/object.cpp
    primitive/primitive/object.h
@@ -866,7 +867,7 @@ list(APPEND acme_source
    platform/acme_str_pool.h
    platform/all.h
    platform/aura_aura.h
-   platform/aura_regex.h
+   #platform/aura_regex.h
    platform/auto.h
    platform/auto_pointer.h
    platform/class.h
@@ -1131,7 +1132,6 @@ list(APPEND acme_source
    primitive/primitive/id.h
    primitive/primitive/id_array.h
    primitive/primitive/id_space.h
-   primitive/primitive/interlocked_long.h
    primitive/primitive/interlocked_long_pulse.h
    primitive/primitive/layered.h
    primitive/primitive/logic.h

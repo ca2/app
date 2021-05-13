@@ -8,9 +8,9 @@
 #pragma once
 
 
-CLASS_DECL_ACME ::u32 WINAPI ResumeThread(htask_t htask);
-CLASS_DECL_ACME int_bool WINAPI SetThreadPriority(htask_t htask, i32 nPriority);
-CLASS_DECL_ACME i32 WINAPI GetThreadPriority(htask_t htask);
+CLASS_DECL_ACME ::u32 ResumeThread(htask_t htask);
+CLASS_DECL_ACME int_bool SetThreadPriority(htask_t htask, i32 nPriority);
+CLASS_DECL_ACME i32 GetThreadPriority(htask_t htask);
 
 
 

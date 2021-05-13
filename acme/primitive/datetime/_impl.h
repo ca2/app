@@ -75,7 +75,12 @@ inline nanos operator -(const ::nanos& nanos, const ::millis & millis)
 
 }
 
+inline duration operator -(const ::duration & duration, const ::millis & millis)
+{
 
+   return duration - (const ::duration &) millis;
+
+}
 
 inline ::micros first_micro() { return first_nano(); }
 inline ::micros get_micros() { return get_nanos(); }

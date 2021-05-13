@@ -213,7 +213,7 @@ CLASS_DECL_CORE void main_async_runnable(::object * prunnableParam)
 
 
 
-bool set_thread_name(const char * psz)
+bool task_set_name(const char * psz)
 {
 
    string strName(psz);

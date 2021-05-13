@@ -435,113 +435,113 @@ namespace dir
 //    return true;
 
 // }
-
-
-   string ca2_module_dup()
-   {
-
-      static string * s_pstrCalc = nullptr;
-
-      if(s_pstrCalc != nullptr)
-      {
-
-         return *s_pstrCalc;
-
-      }
-
-      string str;
-
-   #ifdef WINDOWS_DESKTOP
-
-      wstring wstrModuleFilePath(get_buffer, MAX_PATH * 8);
-
-      GetModuleFileNameW(::GetModuleHandleA("acme.dll"), wstrModuleFilePath, MAX_PATH + 1);
-
-      str = (const unichar *) wstrModuleFilePath;
-
-   #elif defined(LINUX)
-
-      void * handle = dlopen("libacme.so", RTLD_NOW);
-
-      if(handle == nullptr)
-         return "";
-
-      link_map * plm;
-
-      dlinfo(handle, RTLD_DI_LINKMAP, &plm);
-
-      string strCa2ModuleFolder = plm->l_name;
-
-      dlclose(handle);
-
-      str = strCa2ModuleFolder;
-
-   #elif defined(_UWP)
-
-      str = "";
-
-   #elif defined(__APPLE__)
-
-      {
-
-         str = get_exe_path();
-
-         if(str.has_char())
-         {
-
-            goto found;
-
-         }
-
-         str = ::dir::pathfind(::file::path(str).folder(), "libacme.dylib", "rfs"); // readable - normal file - non zero size_f64
-
-         if(str.has_char())
-         {
-
-            goto found;
-
-         }
-
-         str = ::dir::pathfind(getenv("DYLD_LIBRARY_PATH"), "libacme.dylib", "rfs"); // readable - normal file - non zero size_f64
-
-         if(str.has_char())
-         {
-
-            goto found;
-
-         }
-
-         str = get_exe_path();
-
-         if(str.has_char())
-         {
-
-            goto found;
-
-         }
-
-         str = ::dir::pathfind(getenv("DYLD_FALLBACK_LIBRARY_PATH"), "libacme.dylib", "rfs"); // readable - normal file - non zero size_f64
-
-         if(str.has_char())
-         {
-
-            goto found;
-
-         }
-
-      }
-
-   found:
-      ;
-
-   #endif
-
-      s_pstrCalc = new string(str);
-
-      return *s_pstrCalc;
-
-
-   }
+//
+//
+//   string ca2_module_dup()
+//   {
+//
+//      static string * s_pstrCalc = nullptr;
+//
+//      if(s_pstrCalc != nullptr)
+//      {
+//
+//         return *s_pstrCalc;
+//
+//      }
+//
+//      string str;
+//
+//   #ifdef WINDOWS_DESKTOP
+//
+//      wstring wstrModuleFilePath(get_buffer, MAX_PATH * 8);
+//
+//      GetModuleFileNameW(::GetModuleHandleA("acme.dll"), wstrModuleFilePath, MAX_PATH + 1);
+//
+//      str = (const unichar *) wstrModuleFilePath;
+//
+//   #elif defined(LINUX)
+//
+//      void * handle = dlopen("libacme.so", RTLD_NOW);
+//
+//      if(handle == nullptr)
+//         return "";
+//
+//      link_map * plm;
+//
+//      dlinfo(handle, RTLD_DI_LINKMAP, &plm);
+//
+//      string strCa2ModuleFolder = plm->l_name;
+//
+//      dlclose(handle);
+//
+//      str = strCa2ModuleFolder;
+//
+//   #elif defined(_UWP)
+//
+//      str = "";
+//
+//   #elif defined(__APPLE__)
+//
+//      {
+//
+//         str = get_exe_path();
+//
+//         if(str.has_char())
+//         {
+//
+//            goto found;
+//
+//         }
+//
+//         str = ::dir::pathfind(::file::path(str).folder(), "libacme.dylib", "rfs"); // readable - normal file - non zero size_f64
+//
+//         if(str.has_char())
+//         {
+//
+//            goto found;
+//
+//         }
+//
+//         str = ::dir::pathfind(getenv("DYLD_LIBRARY_PATH"), "libacme.dylib", "rfs"); // readable - normal file - non zero size_f64
+//
+//         if(str.has_char())
+//         {
+//
+//            goto found;
+//
+//         }
+//
+//         str = get_exe_path();
+//
+//         if(str.has_char())
+//         {
+//
+//            goto found;
+//
+//         }
+//
+//         str = ::dir::pathfind(getenv("DYLD_FALLBACK_LIBRARY_PATH"), "libacme.dylib", "rfs"); // readable - normal file - non zero size_f64
+//
+//         if(str.has_char())
+//         {
+//
+//            goto found;
+//
+//         }
+//
+//      }
+//
+//   found:
+//      ;
+//
+//   #endif
+//
+//      s_pstrCalc = new string(str);
+//
+//      return *s_pstrCalc;
+//
+//
+//   }
 
 
 

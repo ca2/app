@@ -78,15 +78,18 @@ namespace acme
 //
 //#endif
 
-
-
+      virtual ::e_status initialize(::object * pobject) override;
+      
+      
       virtual string audio_get_default_library_name();
       virtual string multimedia_audio_get_default_library_name();
       virtual string multimedia_audio_mixer_get_default_library_name();
       virtual string veriwell_multimedia_music_midi_get_default_library_name();
 
 
-      virtual ::e_status initialize(::object * pobject) override;
+      virtual ::e_status _launch_macos_app(const char * pszAppFolder);
+  
+      virtual ::e_status _launch_macos_app_args(const char * pszAppFolder, const char * pszArgs);
 
       virtual ::e_status on_initialize_object() override;
 

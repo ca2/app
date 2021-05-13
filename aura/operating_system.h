@@ -2,7 +2,7 @@
 #pragma once
 
 
-#include "platform/operating_system.h"
+#include "operating_system/operating_system.h"
 
 
 #include "aura/os/_c2.h"

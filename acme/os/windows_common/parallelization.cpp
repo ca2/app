@@ -10,7 +10,7 @@ typedef HRESULT WINAPI FN_GetThreadDescription(HANDLE htask, PWSTR* ppszThreadDe
 
 
 
-string get_thread_name(htask_t htask)
+string get_task_name(htask_t htask)
 {
 
    HRESULT hr;
@@ -58,7 +58,7 @@ string get_thread_name(htask_t htask)
 
    }
 
-   return ::get_thread_name(ptask);
+   return ::get_task_name(ptask);
 
 }
 
@@ -66,7 +66,7 @@ string get_thread_name(htask_t htask)
 typedef HRESULT WINAPI FN_SetThreadDescription(_In_ htask_t htask, _In_ PCWSTR pThreadDescription);
 
 
-CLASS_DECL_ACME bool set_thread_name(htask_t htask, const char* pszName)
+CLASS_DECL_ACME bool task_set_name(htask_t htask, const char* pszName)
 {
 
    bool bOk1 = false;
@@ -272,10 +272,10 @@ CLASS_DECL_ACME int get_processor_count()
 }
 
 
-bool set_thread_name(const char * pszThreadName)
+bool task_set_name(const char * pszThreadName)
 {
 
-   return set_thread_name((htask_t) ::GetCurrentThread(), pszThreadName);
+   return task_set_name((htask_t) ::GetCurrentThread(), pszThreadName);
 
 }
 
@@ -314,10 +314,10 @@ int_bool SetThreadName(::u32 dwThreadID, const char* threadName)
 }
 
 
-CLASS_DECL_ACME string thread_get_name()
+CLASS_DECL_ACME string task_get_name()
 {
 
-   return get_thread_name((htask_t)::GetCurrentThread());
+   return get_task_name((htask_t)::GetCurrentThread());
 
 }
 

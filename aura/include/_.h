@@ -818,12 +818,7 @@ CLASS_DECL_AURA void aura_ref();
 //inline u32 u32_hash(ARG_KEY key) { return (u32)(uptr_hash<ARG_KEY>(key)); }
 //
 ////#endif
-//
-//
-//#define __base(TYPE, ptarget, psource) for(__pointer(TYPE) ptarget = psource; ptarget.is_set(); ptarget.release())
-//#define __base_reference(TYPE, ptarget, source) for(__pointer(TYPE) ptarget = &source; ptarget.is_set(); ptarget.release())
-//#define __exception(TYPE) __base(TYPE, pe, e)
-//
+
 //
 //#undef _
 //

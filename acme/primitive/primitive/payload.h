@@ -23,7 +23,7 @@ ENUM enum_default()
 
 
 template < typename PAYLOAD_TYPE >
-concept payload_class = (::std::derived_from < PAYLOAD_TYPE, ::payload > || ::std::same_as < PAYLOAD_TYPE, ::payload >);
+concept payload_class = (is_derived_from < PAYLOAD_TYPE, ::payload > || ::std::same_as < PAYLOAD_TYPE, ::payload >);
 
 
 class CLASS_DECL_ACME payload :

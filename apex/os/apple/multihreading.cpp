@@ -70,24 +70,24 @@ namespace parallelization
 
 
 
-
-bool ns_set_thread_name(const char * psz);
-
-
-char * ns_get_thread_name();
-
-
-bool set_thread_name(const char * psz)
-{
-   
-   return ns_set_thread_name(psz);
-
-}
-
-string thread_get_name()
-{
-   
-   return ::str::from_strdup(ns_get_thread_name());
-   
-}
+//
+//bool ns_set_thread_name(const char * psz);
+//
+//
+//char * ns_get_thread_name();
+//
+//
+//bool task_set_name(const char * psz)
+//{
+//   
+//   return ns_set_thread_name(psz);
+//
+//}
+//
+//string task_get_name()
+//{
+//   
+//   return ::str::from_strdup(ns_get_thread_name());
+//   
+//}
 

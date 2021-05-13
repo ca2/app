@@ -211,110 +211,110 @@ string ca2_command_line()
    return ::str::from_strdup(mm_ca2_command_line());
 
 }
-
-
-void window_copy(CGRect * prectTarget, const ::rectangle_i32 * prectSource)
-{
-
-   CGRect rectWorkspace = mm_get_workspace_rect();
-
-   prectTarget->origin.x       = prectSource->left;
-   prectTarget->origin.y       = rectWorkspace.size.height - prectSource->bottom;
-   prectTarget->size.width     = prectSource->right - prectSource->left;
-   prectTarget->size.height    = prectSource->bottom - prectSource->top;
-
-}
-
-
-void window_copy(RECTANGLE_I32 * prectTarget, const CGRect * prectSource)
-{
-
-   CGRect rectWorkspace = mm_get_workspace_rect();
-
-   prectTarget->left        = prectSource->origin.x;
-   prectTarget->bottom      = rectWorkspace.size.height - prectSource->origin.y;
-   prectTarget->right       = prectTarget->left + prectSource->size.width;
-   prectTarget->top         = prectTarget->bottom - prectSource->size.height;
-
-}
-
-void copy(CGPoint * ppointTarget, const POINT_I32 * ppointSource)
-{
-
-   ppointTarget->x      = ppointSource->x;
-   ppointTarget->y      = ppointSource->y;
-
-}
-
-
-void copy(POINT_I32 * ppointTarget, const CGPoint * ppointSource)
-{
-
-   ppointTarget->x      = ppointSource->x;
-   ppointTarget->y      = ppointSource->y;
-
-}
-
-void copy(CGPoint * ppointTarget, const POINT_F64 * ppointSource)
-{
-
-   ppointTarget->x      = ppointSource->x;
-   ppointTarget->y      = ppointSource->y;
-
-}
-
-
-void copy(POINT_F64 * ppointTarget, const CGPoint * ppointSource)
-{
-
-   ppointTarget->x      = ppointSource->x;
-   ppointTarget->y      = ppointSource->y;
-
-}
-
-void copy(CGRect * prectTarget, const RECTANGLE_I32 * prectSource)
-{
-
-   prectTarget->origin.x      = prectSource->left;
-   prectTarget->origin.y      = prectSource->top;
-   prectTarget->size.width    = width(prectSource);
-   prectTarget->size.height   = height(prectSource);
-
-}
-
-
-void copy(RECTANGLE_I32 * prectTarget, const CGRect * prectSource)
-{
-   
-   prectTarget->left          = prectSource->origin.x;
-   prectTarget->top           = prectSource->origin.y;
-   prectTarget->right         = prectSource->origin.x + prectSource->size.width;
-   prectTarget->bottom        = prectSource->origin.y + prectSource->size.height;
-   
-}
-
-
-void copy(CGRect * prectTarget, const RECTANGLE_F64 * prectSource)
-{
-   
-   prectTarget->origin.x      = prectSource->left;
-   prectTarget->origin.y      = prectSource->top;
-   prectTarget->size.width    = width(prectSource);
-   prectTarget->size.height   = height(prectSource);
-   
-}
-
-
-void copy(RECTANGLE_F64 * prectTarget, const CGRect * prectSource)
-{
-   
-   prectTarget->left          = prectSource->origin.x;
-   prectTarget->top           = prectSource->origin.y;
-   prectTarget->right         = prectSource->origin.x + prectSource->size.width;
-   prectTarget->bottom        = prectSource->origin.y + prectSource->size.height;
-   
-}
-
+//
+//
+//void window_copy(CGRect * prectTarget, const ::rectangle_i32 * prectSource)
+//{
+//
+//   CGRect rectWorkspace = mm_get_workspace_rect();
+//
+//   prectTarget->origin.x       = prectSource->left;
+//   prectTarget->origin.y       = rectWorkspace.size.height - prectSource->bottom;
+//   prectTarget->size.width     = prectSource->right - prectSource->left;
+//   prectTarget->size.height    = prectSource->bottom - prectSource->top;
+//
+//}
+//
+//
+//void window_copy(RECTANGLE_I32 * prectTarget, const CGRect * prectSource)
+//{
+//
+//   CGRect rectWorkspace = mm_get_workspace_rect();
+//
+//   prectTarget->left        = prectSource->origin.x;
+//   prectTarget->bottom      = rectWorkspace.size.height - prectSource->origin.y;
+//   prectTarget->right       = prectTarget->left + prectSource->size.width;
+//   prectTarget->top         = prectTarget->bottom - prectSource->size.height;
+//
+//}
+//
+//void copy(CGPoint * ppointTarget, const POINT_I32 * ppointSource)
+//{
+//
+//   ppointTarget->x      = ppointSource->x;
+//   ppointTarget->y      = ppointSource->y;
+//
+//}
+//
+//
+//void copy(POINT_I32 * ppointTarget, const CGPoint * ppointSource)
+//{
+//
+//   ppointTarget->x      = ppointSource->x;
+//   ppointTarget->y      = ppointSource->y;
+//
+//}
+//
+//void copy(CGPoint * ppointTarget, const POINT_F64 * ppointSource)
+//{
+//
+//   ppointTarget->x      = ppointSource->x;
+//   ppointTarget->y      = ppointSource->y;
+//
+//}
+//
+//
+//void copy(POINT_F64 * ppointTarget, const CGPoint * ppointSource)
+//{
+//
+//   ppointTarget->x      = ppointSource->x;
+//   ppointTarget->y      = ppointSource->y;
+//
+//}
+//
+//void copy(CGRect * prectTarget, const RECTANGLE_I32 * prectSource)
+//{
+//
+//   prectTarget->origin.x      = prectSource->left;
+//   prectTarget->origin.y      = prectSource->top;
+//   prectTarget->size.width    = width(prectSource);
+//   prectTarget->size.height   = height(prectSource);
+//
+//}
+//
+//
+//void copy(RECTANGLE_I32 * prectTarget, const CGRect * prectSource)
+//{
+//   
+//   prectTarget->left          = prectSource->origin.x;
+//   prectTarget->top           = prectSource->origin.y;
+//   prectTarget->right         = prectSource->origin.x + prectSource->size.width;
+//   prectTarget->bottom        = prectSource->origin.y + prectSource->size.height;
+//   
+//}
+//
+//
+//void copy(CGRect * prectTarget, const RECTANGLE_F64 * prectSource)
+//{
+//   
+//   prectTarget->origin.x      = prectSource->left;
+//   prectTarget->origin.y      = prectSource->top;
+//   prectTarget->size.width    = width(prectSource);
+//   prectTarget->size.height   = height(prectSource);
+//   
+//}
+//
+//
+//void copy(RECTANGLE_F64 * prectTarget, const CGRect * prectSource)
+//{
+//   
+//   prectTarget->left          = prectSource->origin.x;
+//   prectTarget->top           = prectSource->origin.y;
+//   prectTarget->right         = prectSource->origin.x + prectSource->size.width;
+//   prectTarget->bottom        = prectSource->origin.y + prectSource->size.height;
+//   
+//}
+//
 
 
 bool __node_further_file_is_equal(file::path const & path1, file::path const & path2)
@@ -393,4 +393,19 @@ string executable_get_app_id()
 }
 
 
+char * ns_get_bundle_identifier();
+
+
+#ifdef __APPLE__
+
+
+string apple_get_bundle_identifier()
+{
+
+   return ::str::from_strdup(ns_get_bundle_identifier());
+
+}
+
+
+#endif
 

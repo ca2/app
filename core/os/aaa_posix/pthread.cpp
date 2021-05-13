@@ -597,7 +597,7 @@ void thread_get_os_priority(i32 * piPolicy, sched_param * pparam, ::e_priority e
 
 #if !defined(__APPLE__) && !defined(ANDROID)
 
-string thread_get_name()
+string task_get_name()
 {
 
    char szThreadName[32];

@@ -566,7 +566,7 @@ namespace apex
       virtual ::e_status initialize_sockets();
 
 
-      virtual bool on_get_thread_name(string& strThreadName) override;
+      virtual bool on_get_task_name(string& strTaskName) override;
 
       virtual ::acme::library * get_library(const char * pszLibrary, bool bOpenCa2 = false);
 

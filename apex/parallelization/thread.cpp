@@ -695,7 +695,7 @@ bool thread::thread_step()
 
       m_id = m_pmatter->type_name();
 
-      set_thread_name(m_id);
+      task_set_name(m_id);
 
       return m_pmatter->run();
 

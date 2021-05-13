@@ -624,7 +624,7 @@ void thread_get_os_priority(i32 * piPolicy, sched_param * pparam, ::e_priority e
 
 #if !defined(__APPLE__) && !defined(ANDROID)
 
-string thread_get_name()
+string task_get_name()
 {
 
    char szThreadName[32];
@@ -649,7 +649,7 @@ string thread_get_name()
 
 
 
-string thread_get_name()
+string task_get_name()
 {
    /* Try obtaining the thread name.
     * If this fails, we'll return a pointer to an empty string. */

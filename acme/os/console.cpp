@@ -6,7 +6,7 @@
 #ifdef WINDOWS
 #include <conio.h>
 #endif
-#if defined(LINUX) || defined(MACOS)
+#if defined(HAVE_TERMIOS_H) && HAVE_TERMIOS_H
 int getche();
 #endif
 
@@ -344,7 +344,7 @@ repeat:
 
 
 
-#if defined(HAVE_TERMIOS_H) && HAVE_TERMIOS_Hc
+#if defined(HAVE_TERMIOS_H) && HAVE_TERMIOS_H
 
 #include <unistd.h>
 #include <termios.h>

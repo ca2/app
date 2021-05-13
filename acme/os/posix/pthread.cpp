@@ -620,35 +620,94 @@ void thread_get_os_priority(i32 * piPolicy, sched_param * pparam, ::e_priority e
 }
 
 
-#if !defined(__APPLE__) && !defined(ANDROID)
+#if !defined(ANDROID)
 
 
-namespace parallelization
+//namespace parallelization
+//{
+
+
+
+string task_get_name(htask_t htask)
 {
 
+   char szThreadName[32];
 
-   string thread_get_name()
+   int error = pthread_getname_np((pthread_t) htask, szThreadName, sizeof(szThreadName));
+
+   if (error)
    {
 
-      char szThreadName[32];
-
-      auto pthread = pthread_self();
-
-      int error = pthread_getname_np(pthread, szThreadName, sizeof(szThreadName));
-
-      if (error)
-      {
-
-         return "";
-
-      }
-
-      return szThreadName;
+      return "";
 
    }
 
+   return szThreadName;
 
-} // namespace parallelization
+}
+
+
+string task_get_name()
+{
+
+   char szThreadName[32];
+
+   auto htask = pthread_self();
+
+   auto task_get_name(htask);
+   
+}
+
+using htask_t = void *;
+
+using htask_t = void *;
+
+//extern "C"
+//int   imp_stubs_pthread_setname_np(pthread_t,const char*);
+
+//
+//::e_status task_set_name(htask_t htask, const char * pszTaskName)
+//{
+//
+//   int error = imp_stubs_pthread_setname_np((pthread_t)htask, pszTaskName);
+//
+//   if (error)
+//   {
+//
+//      return error_failed;
+//
+//   }
+//
+//   return ::success;
+//
+//}
+//
+
+::e_status task_set_name(const char * pszTaskName)
+{
+
+   //auto pthread = pthread_self();
+
+   //auto estatus = task_set_name(pthread, pszThreadName);
+   
+      int error = pthread_setname_np(pszTaskName);
+   
+      if (error)
+      {
+   
+         return error_failed;
+   
+      }
+   
+      return ::success;
+
+   
+}
+
+
+//
+//
+//} // namespace parallelization
 
 
 #elif defined(ANDROID)
@@ -656,7 +715,7 @@ namespace parallelization
 
 
 
-string thread_get_name()
+string task_get_name()
 {
    /* Try obtaining the thread name.
     * If this fails, we'll return a pointer to an empty string. */
@@ -671,4 +730,19 @@ string thread_get_name()
 #endif
 
 
+
+CLASS_DECL_ACME int ithread_equals(itask_t a, itask_t b)
+{
+   
+   return pthread_equal((pthread_t) a, (pthread_t) b);
+   
+}
+
+
+CLASS_DECL_ACME int hthread_equals(itask_t a, itask_t b)
+{
+   
+   return pthread_equal((pthread_t) a, (pthread_t) b);
+   
+}
 

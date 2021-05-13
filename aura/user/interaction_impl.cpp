@@ -23,7 +23,7 @@ point_i32 g_pointLastBottomRight;
 
 
 #define REDRAW_HINTING
-//CLASS_DECL_AURA bool set_thread_name(const char *psz);
+//CLASS_DECL_AURA bool task_set_name(const char *psz);
 
 #define IMAGE_OK(pimpl) (::is_set(pimpl) && pimpl->area() > 0)
 //void windowing_output_debug_string(const char * pszDebugString);

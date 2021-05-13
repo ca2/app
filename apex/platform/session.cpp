@@ -597,7 +597,7 @@ namespace apex
 //   }
 
 
-   bool session::on_get_thread_name(string& strThreadName)
+   bool session::on_get_task_name(string& strTaskName)
    {
 
       __pointer(::apex::system) psystem = get_system();
@@ -609,7 +609,7 @@ namespace apex
 
       }
 
-      return ::apex::context::on_get_thread_name(strThreadName);
+      return ::apex::context::on_get_task_name(strTaskName);
 
    }
 

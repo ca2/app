@@ -2,7 +2,7 @@
 #include "acme/os/ansios/_pthread.h"
 
 
-bool set_thread_name(htask_t htask, const char * psz)
+bool task_set_name(htask_t htask, const char * psz)
 {
 
    string strName(psz);
@@ -14,10 +14,10 @@ bool set_thread_name(htask_t htask, const char * psz)
 }
 
 
-bool set_thread_name(const char * psz)
+bool task_set_name(const char * psz)
 {
 
-   return set_thread_name((htask_t) pthread_self(), psz);
+   return task_set_name((htask_t) pthread_self(), psz);
 
 }
 

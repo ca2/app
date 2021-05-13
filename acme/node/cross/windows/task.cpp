@@ -33,7 +33,7 @@ string task::get_tag() const
 
 
 
-string task::thread_get_name() const
+string task::task_get_name() const
 {
 
    return m_strTaskName;
@@ -65,7 +65,7 @@ const char * task::get_task_tag()
 //}
 
 
-bool task::set_thread_name(const char* pszThreadName)
+bool task::task_set_name(const char* pszThreadName)
 {
 
    m_strTaskName = pszThreadName;
@@ -77,7 +77,7 @@ bool task::set_thread_name(const char* pszThreadName)
 
    }
 
-   if (!::set_thread_name(m_htask, pszThreadName))
+   if (!::task_set_name(m_htask, pszThreadName))
    {
 
       return false;
@@ -202,7 +202,7 @@ bool task::on_get_thread_name(string & strThreadName)
    if (m_strTaskTag.has_char())
    {
 
-      //::set_thread_name(m_strTaskTag);
+      //::task_set_name(m_strTaskTag);
 
       strThreadName = m_strTaskTag;
 
@@ -210,7 +210,7 @@ bool task::on_get_thread_name(string & strThreadName)
    else
    {
 
-      //::set_thread_name(type_name());
+      //::task_set_name(type_name());
 
       strThreadName = type_name();
 
@@ -237,7 +237,7 @@ void task::init_task()
    if (on_get_thread_name(strThreadName))
    {
 
-      set_thread_name(strThreadName);
+      task_set_name(strThreadName);
 
    }
 
@@ -348,7 +348,7 @@ void task::term_task()
 
          m_id = pmatter->type_name();
 
-         set_thread_name(m_id);
+         task_set_name(m_id);
 
          m_pmatter.m_p = nullptr;
 
@@ -500,10 +500,10 @@ void task::term_task()
 
 
 //
-//bool task::set_task_name(const char* pszThreadName)
+//bool task::task_set_name(const char* pszThreadName)
 //{
 //
-//   if (!::set_task_name(m_htask, pszThreadName))
+//   if (!::task_set_name(m_htask, pszThreadName))
 //   {
 //
 //      return false;

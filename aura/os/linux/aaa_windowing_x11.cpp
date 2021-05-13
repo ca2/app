@@ -2905,7 +2905,7 @@ bool g_bFinishX11Thread = false;
 //
 //   }
 //
-//   ::set_thread_name("x11_thread");
+//   ::task_set_name("x11_thread");
 //
 ////   g_pdisplayX11 = pdisplay;
 //

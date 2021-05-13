@@ -96,7 +96,7 @@ handler_manager::~handler_manager()
       m_pthread = fork([this]()
       {
 
-         ::get_task()->set_thread_name(m_strThreadName);
+         ::get_task()->task_set_name(m_strThreadName);
 
          loop();
 

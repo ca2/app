@@ -294,6 +294,27 @@ namespace acme
 
 #endif
 
+      virtual bool process_modules(string_array& stra, u32 processID);
+
+      virtual bool load_modules_diff(string_array& straOld, string_array& straNew, const char* pszExceptDir);
+
+      virtual id_array module_path_get_pid(const char* pszModulePath, bool bModuleNameIsPropertyFormatted);
+      
+      virtual string module_path_from_pid(u32 pid);
+
+      virtual bool is_shared_library_busy(u32 processid, const string_array& stra);
+
+      virtual bool is_shared_library_busy(const string_array& stra);
+      
+      virtual bool process_contains_module(string& strImage, ::u32 processID, const char* pszLibrary);
+
+      virtual void shared_library_process(dword_array& dwa, string_array& straProcesses, const char* pszLibrary);
+
+      virtual int_bool is_process_running(::u32 pid);
+      
+      virtual string get_environment_variable(const char* pszEnvironmentVariable);
+      
+      virtual string expand_env(string str);
 
 
    };

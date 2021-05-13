@@ -312,7 +312,7 @@ inline ::millis duration::millis() const
 inline ::u32 duration::u32_millis() const
 {
 
-   return is_infinite() ? UINT_MAX : (::u32) MIN((::i64) UINT_MAX, millis().m_i);
+   return is_infinite() ? UINT_MAX : (::u32) minimum((::i64) UINT_MAX, millis().m_i);
 
 }
 

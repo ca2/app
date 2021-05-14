@@ -254,10 +254,6 @@ bool root_execute_sync(const char * pszFile, const char * pszParams, ::duration 
 }
 
 
-
-#include "framework.h"
-
-
 ::e_status call_async(const char * pszPath, const char * pszParam, const char * pszDir, ::e_display edisplay, bool bPrivileged, unsigned int *puiPid)
 {
 

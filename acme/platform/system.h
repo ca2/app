@@ -32,6 +32,9 @@
       string_map < __pointer(::factory_map) > *          m_pfactorymapsquare;
       __pointer(string_map < __pointer(::regular_expression::context) >)          m_pmapRegularExpressionContext;
 
+#ifdef MACOS
+      void *                                             m_pmmos;
+#endif
 
       ::mutex                                            m_mutexTask;
       task_map                                           m_taskmap;
@@ -197,6 +200,8 @@
 
       //using ::subject::manager::on_subject;
       //virtual void on_subject(::subject::subject * psubject) override;
+      
+      virtual ::millis get_update_poll_time(const ::id & id);
 
       virtual ::acme::library* on_get_library(const char* pszLibrary);
 

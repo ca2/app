@@ -5,7 +5,7 @@ namespace promise
 {
 
 
-   CLASS_DECL_ACME int os_get_system_update_poll_time(const ::id &id);
+   //CLASS_DECL_ACME int os_get_system_update_poll_time(const ::id &id);
 
 
    using matter_context = map<__pointer(::matter), __pointer(::subject::context)>;
@@ -68,7 +68,7 @@ namespace promise
 
       }
 
-      inline int poll_millis() { return os_get_system_update_poll_time(m_id); };
+      inline int poll_millis() { return m_psystem->get_update_poll_time(m_id); };
 
       static inline bool should_poll(int iMillis)
       {

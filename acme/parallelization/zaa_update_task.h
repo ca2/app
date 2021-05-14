@@ -5,7 +5,7 @@ typedef ::i64 UPDATE_SERIAL();
 using PFN_UPDATE_SERIAL = UPDATE_SERIAL *;
 
 
-CLASS_DECL_ACME int os_get_system_update_poll_time(const :: id & id);
+//CLASS_DECL_ACME int os_get_system_update_poll_time(const :: id & id);
 
 
 struct CLASS_DECL_ACME update_task :
@@ -60,7 +60,7 @@ public:
    static void post_destroy_all();
 
    inline bool is_ending() { synchronous_lock synchronouslock(mutex()); return m_elementa.is_empty();};
-   inline int poll_millis() { return os_get_system_update_poll_time(m_iUpdate);};
+   inline int poll_millis() { return m_psystem->get_update_poll_time(m_iUpdate);};
 
    static inline bool should_poll(int iMillis)
    {

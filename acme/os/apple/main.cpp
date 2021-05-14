@@ -66,76 +66,76 @@
 //}
 
 
-
-string ca2_command_line();
-
-
-
-string apple_get_bundle_identifier();
-
-string get_bundle_app_id()
-{
-   
-   string str = apple_get_bundle_identifier();
-
-   if(!::str::begins_eat_ci(str, "com."))
-   {
-
-      ::str::begins_eat_ci(str, "com.");
-
-   }
-
-   string_array stra;
-
-   stra.explode(".", str);
-
-   if(stra.get_size() >= 2)
-   {
-
-      stra[1].replace('-', '_');
-
-   }
-
-   string strAppId;
-   
-   strAppId = stra.implode("/");
-
-   return strAppId;
-   
-}
-
-
-string get_bundle_app_library_name()
-{
-   
-   string strLibraryName = get_bundle_app_id();
-   
-   strLibraryName.replace("/", "_");
-   
-   strLibraryName.replace("-", "_");
-   
-   return strLibraryName;
-   
-}
-
-
-string ca2_command_line2()
-{
-
-   string strAppId = get_bundle_app_id();
-
-#ifdef APPLE_IOS
-
-   return "app : app=" + strAppId + " client_only";
-
-#else
-
-   return "app : app=" + strAppId;
-
-#endif
-
-}
-
+//
+//string ca2_command_line();
+//
+//
+//
+//string apple_get_bundle_identifier();
+//
+//string get_bundle_app_id()
+//{
+//   
+//   string str = apple_get_bundle_identifier();
+//
+//   if(!::str::begins_eat_ci(str, "com."))
+//   {
+//
+//      ::str::begins_eat_ci(str, "com.");
+//
+//   }
+//
+//   string_array stra;
+//
+//   stra.explode(".", str);
+//
+//   if(stra.get_size() >= 2)
+//   {
+//
+//      stra[1].replace('-', '_');
+//
+//   }
+//
+//   string strAppId;
+//   
+//   strAppId = stra.implode("/");
+//
+//   return strAppId;
+//   
+//}
+//
+//
+//string get_bundle_app_library_name()
+//{
+//   
+//   string strLibraryName = get_bundle_app_id();
+//   
+//   strLibraryName.replace("/", "_");
+//   
+//   strLibraryName.replace("-", "_");
+//   
+//   return strLibraryName;
+//   
+//}
+//
+//
+//string ca2_command_line2()
+//{
+//
+//   string strAppId = get_bundle_app_id();
+//
+//#ifdef APPLE_IOS
+//
+//   return "app : app=" + strAppId + " client_only";
+//
+//#else
+//
+//   return "app : app=" + strAppId;
+//
+//#endif
+//
+//}
+//
 
 //
 //char * ns_get_bundle_identifier();

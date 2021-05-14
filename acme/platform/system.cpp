@@ -776,6 +776,14 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
 
    }
 
+
+   ::millis system::get_update_poll_time(const ::id & id)
+   {
+      
+      return 0;
+      
+   }
+
    
    ::acme::library * system::on_get_library(const char * pszLibrary)
    {
@@ -1234,3 +1242,11 @@ CLASS_DECL_ACME void acme_system_term()
 }
 
 
+void int_system_call_update(void * pSystem, int iUpdate, int iParam)
+{
+   
+   auto psystem = (class ::system *) pSystem;
+   
+   psystem->
+   
+}

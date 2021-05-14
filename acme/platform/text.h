@@ -7,9 +7,9 @@
 //
 
 
-CLASS_DECL_ACME int __c_get_text_length(const char * psz);
+int __c_get_text_length(const char * psz);
 
-CLASS_DECL_ACME void __c_get_text(char * pszText, int iLen, const char * psz);
+void __c_get_text(char * pszText, int iLen, const char * psz);
 
 
 

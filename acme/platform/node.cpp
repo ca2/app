@@ -998,6 +998,16 @@ namespace acme
    }
 
 
+#ifdef MACOS
+      
+   void node::ns_launch_app(const char * psz, const char ** argv, int iFlags)
+   {
+      
+      
+   }
+      
+#endif
+
 
    bool node::process_modules(string_array& stra, u32 processID)
    {
@@ -1019,16 +1029,59 @@ namespace acme
    }
 
 
+   id_array node::get_pids()
+   {
+      
+      __throw(error_interface_only);
+   
+      return id_array();
+      
+   }
+
+
    id_array node::module_path_get_pid(const char* pszModulePath, bool bModuleNameIsPropertyFormatted)
    {
+      
+      id_array iaPid;
 
-      return id_array();
+      id_array pids = get_pids();
+
+      string strPath;
+
+      for(auto & iCurrentPid : pids)
+      {
+
+         strPath = module_path_from_pid(iCurrentPid.i32());
+
+         if(strPath.compare_ci(pszModulePath) == 0 )
+         {
+
+            iaPid.add(iCurrentPid);
+
+         }
+
+      }
+
+      return iaPid;
+
 
    }
 
 
    string node::module_path_from_pid(u32 pid)
    {
+      
+      __throw(error_interface_only);
+
+      return "";
+
+   }
+
+
+   string node::command_line_from_pid(u32 pid)
+   {
+      
+      __throw(error_interface_only);
 
       return "";
 

@@ -26,8 +26,6 @@ namespace windows
 #include "exception.h"
 
 
-
-
 typedef ::multimedia::decoder* CDECL NEW_MULTIMEDIA_DECODER();
 
 

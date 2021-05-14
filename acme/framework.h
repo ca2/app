@@ -6,13 +6,13 @@
 #include "_start.h"
 
 
-#ifdef __cplusplus
-
-#ifdef __OBJC__
-
-#include "acme/include/objcpp.h"
-
-#else
+//#ifdef __cplusplus
+//
+//#ifdef __OBJC__
+//
+//#include "acme/include/objcpp.h"
+//
+//#else
 
 
 #include "acme/_.h"
@@ -33,23 +33,23 @@
 //#include "acme/crypto/crypto_openssl.h"
 #include "acme/_defer.h"
 
-
-
-#endif
-
-#else
-
-#ifdef __OBJC__
-
-#include "acme/include/objc.h"
-
-#else
-
-//#include "acme/_.h"
-
-#endif
-
-#endif
+//
+//
+//#endif
+//
+//#else
+//
+//#ifdef __OBJC__
+//
+//#include "acme/include/objc.h"
+//
+//#else
+//
+////#include "acme/_.h"
+//
+//#endif
+//
+//#endif
 
 
 

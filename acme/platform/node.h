@@ -296,14 +296,25 @@ namespace acme
       virtual platform_char** _get_envp(wcsdup_array& a);
 
 #endif
+      
+      
+#ifdef MACOS
+      
+      virtual void ns_launch_app(const char * psz, const char ** argv, int iFlags);
+      
+#endif
 
       virtual bool process_modules(string_array& stra, u32 processID);
 
       virtual bool load_modules_diff(string_array& straOld, string_array& straNew, const char* pszExceptDir);
 
+      virtual id_array get_pids();
+      
       virtual id_array module_path_get_pid(const char* pszModulePath, bool bModuleNameIsPropertyFormatted);
       
       virtual string module_path_from_pid(u32 pid);
+      
+      virtual string command_line_from_pid(u32 pid);
 
       virtual bool is_shared_library_busy(u32 processid, const string_array& stra);
 

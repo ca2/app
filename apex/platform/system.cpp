@@ -5372,6 +5372,14 @@ namespace apex
    }
 
 
+   void system::int_system_update(int iUpdate, int iPayload)
+   {
+
+      process_subject(iUpdate, iPayload);
+
+   }
+
+
    void system::on_subject(::subject::subject * psubject)
    {
 
@@ -5832,8 +5840,6 @@ namespace apex
    }
 
 
-
-
 } // namespace apex
 
 
@@ -5873,3 +5879,11 @@ namespace apex
 //
 
 
+void int_system_update(void* pSystem, int iUpdate, int iPayload)
+{
+
+   auto psystem = (class ::system *) pSystem;
+
+   psystem->int_system_update(iUpdate, iPayload);
+
+}

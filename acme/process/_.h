@@ -22,8 +22,8 @@ CLASS_DECL_ACME i32 get_current_process_maximum_affinity();
 CLASS_DECL_ACME i32 get_current_process_affinity_order();
 
 
-CLASS_DECL_ACME string expand_env(string str);
-CLASS_DECL_ACME string get_environment_variable(const char * pszEnvironmentVariable);
+//CLASS_DECL_ACME string expand_env(string str);
+//CLASS_DECL_ACME string get_environment_variable(const char * pszEnvironmentVariable);
 //CLASS_DECL_ACME string ca2_command_line();
 
 
@@ -50,10 +50,10 @@ CLASS_DECL_ACME int_bool is_process_running(::u32 pid);
 
 #if !defined(_UWP)
 
-//
+
 //CLASS_DECL_ACME string module_path_from_pid(unsigned int pid);
 //CLASS_DECL_ACME ::id_array module_path_get_pid(const char * pszModuleName, bool bModuleNameIsPropertyFormatted = true);
-//
+
 
 #ifndef WINDOWS
 
@@ -72,7 +72,7 @@ CLASS_DECL_ACME int_bool is_process_running(::u32 pid);
 #endif
 
 
-//
+
 //CLASS_DECL_ACME bool is_shared_library_busy(u32 processid, const string_array & stra);
 //CLASS_DECL_ACME bool is_shared_library_busy(const string_array & stra);
 

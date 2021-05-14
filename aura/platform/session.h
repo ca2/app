@@ -97,7 +97,7 @@ namespace aura
 
       //virtual void  get_cursor_position(POINT_I32 * ppoint);
 
-      virtual bool on_get_thread_name(string& strThreadName) override;
+      bool on_get_task_name(string& strThreadName) override;
 
 
       virtual void on_request(::create * pcreate) override;

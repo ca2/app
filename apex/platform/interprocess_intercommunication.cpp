@@ -611,6 +611,10 @@ repeat:
 
    int_array iaPid2;
 
+   auto psystem = m_psystem;
+
+   auto pnode = psystem->node();
+
    for (auto & str : stra)
    {
 
@@ -626,7 +630,7 @@ repeat:
 
             stra2.add_unique_ci(a[0]);
 
-            string strPath = module_path_from_pid(ansi_to_i32(a[1]));
+            string strPath = pnode->module_path_from_pid(ansi_to_i32(a[1]));
 
             if (strPath.has_char())
             {

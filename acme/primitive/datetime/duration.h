@@ -127,6 +127,12 @@ public:
    void set(long double d, enum_unit eunit);
 
 
+   inline double nanoseconds() const;
+   inline double microseconds() const;
+   inline double milliseconds() const;
+   inline double seconds() const;
+
+
    inline ::nanos nanos() const;
    inline ::micros micros() const;
    inline ::millis millis() const;
@@ -329,6 +335,22 @@ inline nanos duration::nanos() const
 {
 
    return m_nanos.m_i + m_secs.m_i * 1'000'000'000;
+
+}
+
+
+inline double duration::microseconds() const
+{
+
+   return m_secs.m_i * 1'000'000.0 + m_nanos.m_i / 1'000.0;
+
+}
+
+
+inline double duration::nanoseconds() const
+{
+
+   return (double)m_nanos.m_i + m_secs.m_i * 1'000'000'000.0;
 
 }
 
@@ -910,6 +932,14 @@ inline ::secs duration::secs() const
 {
 
    return m_secs.m_i;
+
+}
+
+
+inline double duration::seconds() const
+{
+
+   return (double) m_secs.m_i + m_nanos.m_i / 1'000'000'000.0;
 
 }
 

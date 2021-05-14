@@ -1118,7 +1118,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClCompile Include="exception\exception.cpp" />
     <ClCompile Include="exception\exit.cpp" />
     <ClCompile Include="exception\throw.cpp" />
-    <ClCompile Include="exception_translator.cpp" />
+    <ClCompile Include="exception\translator.cpp" />
     <ClCompile Include="filesystem\filesystem\acme_dir.cpp" />
     <ClCompile Include="filesystem\filesystem\acme_path.cpp" />
     <ClCompile Include="filesystem\filesystem\path.cpp" />

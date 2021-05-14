@@ -3910,9 +3910,6 @@
     <ClCompile Include="primitive\promise\signalization.cpp">
       <Filter>Source Files\primitive\promise</Filter>
     </ClCompile>
-    <ClCompile Include="exception_translator.cpp">
-      <Filter>Source Files\exception</Filter>
-    </ClCompile>
     <ClCompile Include="platform\acme_main_data.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
@@ -3930,6 +3927,9 @@
     </ClCompile>
     <ClCompile Include="regular_expression\topic.cpp">
       <Filter>Source Files\regular_expression</Filter>
+    </ClCompile>
+    <ClCompile Include="exception\translator.cpp">
+      <Filter>Source Files\exception</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

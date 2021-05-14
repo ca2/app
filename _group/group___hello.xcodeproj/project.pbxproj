@@ -10,8 +10,6 @@
 		9A06D7171FA2A7A5007FEB1B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A06D70F1FA2A7A5007FEB1B /* Images.xcassets */; };
 		9A06D71B1FA2A7A5007FEB1B /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A06D7131FA2A7A5007FEB1B /* main.cpp */; };
 		9A2E621F252584EA0001CC7E /* libaqua.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9A2E6219252584B70001CC7E /* libaqua.dylib */; };
-		9A63CF3B25296BC600AE9064 /* libcrypto.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9A63CF3925296BC600AE9064 /* libcrypto.dylib */; };
-		9A63CF3C25296BC600AE9064 /* libssl.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9A63CF3A25296BC600AE9064 /* libssl.dylib */; };
 		9AD19B062512D98E00B4C44A /* libacme.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9AD19B022512D98A00B4C44A /* libacme.dylib */; };
 		9AD19B072512D99000B4C44A /* libapex.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9AD19B052512D98A00B4C44A /* libapex.dylib */; };
 		9AD19B0A2512D99800B4C44A /* libidn.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9AD19B032512D98A00B4C44A /* libidn.dylib */; };
@@ -178,17 +176,6 @@
 				9AD19B0A2512D99800B4C44A /* libidn.dylib in CopyFiles */,
 				9AD19B062512D98E00B4C44A /* libacme.dylib in CopyFiles */,
 				9AD19B072512D99000B4C44A /* libapex.dylib in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		9A63CF3525296B6D00AE9064 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "$(WorkspaceDir)/time/$(PLATFORM_MODIFIER)";
-			dstSubfolderSpec = 0;
-			files = (
-				9A63CF3B25296BC600AE9064 /* libcrypto.dylib in CopyFiles */,
-				9A63CF3C25296BC600AE9064 /* libssl.dylib in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -361,7 +348,6 @@
 				070B8EE61B6E53F900D26137 /* Sources */,
 				070B8EE81B6E53F900D26137 /* Resources */,
 				9A258EB024DA974F0013F50E /* CopyFiles */,
-				9A63CF3525296B6D00AE9064 /* CopyFiles */,
 			);
 			buildRules = (
 			);

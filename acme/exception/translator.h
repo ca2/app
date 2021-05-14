@@ -45,20 +45,20 @@ namespace exception
 
    public:
 
-#ifdef EXCEPTION_TRANSLATOR_USE_SIGNAL
-
-      void *      m_psig;
-
-#endif
+//#ifdef EXCEPTION_TRANSLATOR_USE_SIGNAL
+//
+//      void *      m_psig;
+//
+//#endif
 
       translator();
       virtual ~translator();
 
-#ifdef WINDOWS
-      virtual void filter(u32 uiCode, _EXCEPTION_POINTERS * point_i32);
-      //static void __cdecl filter2(u32 uiCode, _EXCEPTION_POINTERS * point_i32);
-      //void filter( _EXCEPTION_POINTERS * point_i32);
-#endif
+//#ifdef WINDOWS
+//      virtual void filter(u32 uiCode, _EXCEPTION_POINTERS * point_i32);
+//      //static void __cdecl filter2(u32 uiCode, _EXCEPTION_POINTERS * point_i32);
+//      //void filter( _EXCEPTION_POINTERS * point_i32);
+//#endif
 
 
 

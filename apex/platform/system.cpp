@@ -70,7 +70,7 @@ CLASS_DECL_APEX void __simple_tracea(::matter * pobject, enum_trace_level elevel
 #endif
 
 
-void os_post_quit();
+//void os_post_quit();
 
 
 #ifdef UNIT_TEST
@@ -889,17 +889,17 @@ namespace apex
 
       //}
 
-#ifdef LINUX
-
-      //auto pnode = Node;
-
-      //pnode->post_quit();
-
-#elif defined(__APPLE__)
-
-      os_post_quit();
-
-#endif
+//#ifdef LINUX
+//
+//      //auto pnode = Node;
+//
+//      //pnode->post_quit();
+//
+//#elif defined(__APPLE__)
+//
+//      //os_post_quit();
+//
+//#endif
 
 #ifndef WINDOWS
 

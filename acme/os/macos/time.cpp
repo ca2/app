@@ -36,9 +36,9 @@ void ns_Sleep(unsigned int uiMillis);
 //}
 
 
-CLASS_DECL_ACME void sleep(const ::millis & millis)
-{
-
-   usleep((unsigned int) millis.m_i * 1000);
-
-}
+//CLASS_DECL_ACME void sleep(const ::millis & millis)
+//{
+//
+//   usleep((unsigned int) millis.m_i * 1000);
+//
+//}

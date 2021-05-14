@@ -1559,15 +1559,15 @@ namespace apex
 
       }
 
-      {
-
-         string strCurrentWorkingDirectory;
-
-         strCurrentWorkingDirectory = get_current_directory_name();
-
-         ::output_debug_string("\nCurrent Working Directory : " + strCurrentWorkingDirectory);
-
-      }
+//      {
+//
+//         string strCurrentWorkingDirectory;
+//
+//         strCurrentWorkingDirectory = get_current_directory_name();
+//
+//         ::output_debug_string("\nCurrent Working Directory : " + strCurrentWorkingDirectory);
+//
+//      }
 
       if (!m_ptrace->process_init())
       {
@@ -4524,7 +4524,9 @@ namespace apex
          // 0x00010000 NSWorkspaceLaunchAsync
          // 0x00080000 NSWorkspaceLaunchNewInstance
 
-         ns_launch_app(strApp, argv.get_data(), 0x00010000 | 0x00080000);
+         auto pnode = psystem->node();
+         
+         pnode->ns_launch_app(strApp, argv.get_data(), 0x00010000 | 0x00080000);
 
 #elif defined(LINUX)
 
@@ -5787,8 +5789,8 @@ string get_bundle_app_library_name();
 }
 
 
-
-void apex_application_main(int argc, char* argv[], const char* pszCommandLine);
+//
+//void apex_application_main(int argc, char* argv[], const char* pszCommandLine);
 
 namespace apex
 {
@@ -5796,7 +5798,7 @@ namespace apex
    void system::application_main(int argc, char* argv[], const char* pszCommandLine)
    {
 
-      apex_application_main(argc, argv, pszCommandLine);
+      //apex_application_main(argc, argv, pszCommandLine);
 
    }
 

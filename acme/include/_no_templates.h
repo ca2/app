@@ -60,7 +60,7 @@ namespace apex
 } // namespace apex
 
 
-//#define CLASS_DECL_ACME
+#define CLASS_DECL_ACME
 
 #include "acme/const/_.h"
 #include "acme/parallelization/_types.h"
@@ -71,7 +71,7 @@ namespace apex
 
 
 #include "acme/include/_c.h"
-#include "acme/os/apple/_c_mm.h"
+//#include "acme/os/apple/_c_mm.h"
 
 
 #include "acme/platform/obj_ref_dbg.h"

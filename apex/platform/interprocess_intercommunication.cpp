@@ -572,9 +572,11 @@ id_array interprocess_intercommunication::get_pid(const string & strApp)
 
 #if defined(LINUX) || defined(MACOS)
 
+   auto psystem = m_psystem;
+   
+   auto pnode = psystem->node();
 
-   idaPid = app_get_pid(strApp);
-
+   idaPid = pnode->module_path_get_pid(strApp, false);
 
 #else
 
@@ -675,6 +677,10 @@ repeat:
 
 void interprocess_intercommunication::defer_add_module(const string & strModule, const ::id & idPid)
 {
+   
+   auto psystem = m_psystem;
+   
+   auto pnode = psystem->node();
 
 #ifndef _UWP
 
@@ -685,11 +691,7 @@ void interprocess_intercommunication::defer_add_module(const string & strModule,
    pathModule = m_psystem->m_pacmedir->system() / "interprocess_intercommunication";
 
    pathModule /= m_strApp + ".module_list";
-
-   auto psystem = m_psystem;
-
-   auto pnode = psystem->node();
-
+   
    ::file::path pathPid = pnode->module_path_from_pid((::u32)idPid.i64());
 
    string strModuleList = file_as_string(pathModule);

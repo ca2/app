@@ -24,10 +24,18 @@ CLASS_DECL_ACME void sleep(const ::secs & secs)
 }
 
 
+CLASS_DECL_ACME void millis_sleep(::u64 uMillis)
+{
+
+   ::usleep((useconds_t) uMillis * 1'000);
+
+}
+
+
 CLASS_DECL_ACME void sleep(const millis & millis)
 {
 
-   ::usleep((useconds_t) millis.m_i * 1'000);
+   millis_sleep(millis.m_i);
 
 }
 

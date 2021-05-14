@@ -854,9 +854,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(WorkspaceDir)/archive",
-					"$(WorkspaceDir)/archive/platform-$(PLATFORM_MODIFIER)/storage-$(PLATFORM_MODIFIER)/library/$(CONFIGURATION)",
-					"$(WorkspaceDir)/archive",
-					"$(WorkspaceDir)/archive/platform-$(PLATFORM_MODIFIER)/storage-$(PLATFORM_MODIFIER)/third/library/$(CONFIGURATION)",
+					"$(WorkspaceDir)/archive/storage-$(PLATFORM_MODIFIER)/library/$(CONFIGURATION)",
 					"$(WorkspaceDir)/time/$(PLATFORM_MODIFIER)",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
@@ -870,45 +868,20 @@
 				SKIP_INSTALL = YES;
 				STRINGS_FILE_OUTPUT_ENCODING = "UTF-8";
 				STRIP_INSTALLED_PRODUCT = NO;
-				SYSTEM_HEADER_SEARCH_PATHS = (
-					"$(WorkspaceDir)/archive",
-					"$(WorkspaceDir)/archive/platform-$(PLATFORM_MODIFIER)/third-$(PLATFORM_MODIFIER)/include",
-					"$(WorkspaceDir)/source/third/include",
-					"$(WorkspaceDir)/archive",
-					"$(WorkspaceDir)/archive/third-$(PLATFORM_MODIFIER)/third/include/include",
-					"$(WorkspaceDir)/archive",
-					"$(WorkspaceDir)/archive/third-$(PLATFORM_MODIFIER)/third/include",
-					"$(WorkspaceDir)/source/app",
-					"$(WorkspaceDir)/archive",
-					"$(WorkspaceDir)/archive/platform-$(PLATFORM_MODIFIER)",
-					"$(WorkspaceDir)/archive",
-					"$(WorkspaceDir)/archive/platform-$(PLATFORM_MODIFIER)/_include",
-					"$(WorkspaceDir)/archive",
-					"$(WorkspaceDir)/archive/platform-$(PLATFORM_MODIFIER)/third-$(PLATFORM_MODIFIER)/third/include/",
-				);
 				USER_HEADER_SEARCH_PATHS = (
+					.,
 					"$(WorkspaceDir)/source",
 					"$(WorkspaceDir)/source/include",
-					"$(WorkspaceDir)/platform-$(PLATFORM_MODIFIER)",
-					"$(WorkspaceDir)/platform-$(PLATFORM_MODIFIER)/_include",
 					"$(WorkspaceDir)/source/app",
+					"$(WorkspaceDir)/source/app/_include",
 					"$(WorkspaceDir)/archive",
 					"$(WorkspaceDir)/archive/platform-$(PLATFORM_MODIFIER)",
-					"$(WorkspaceDir)/archive",
 					"$(WorkspaceDir)/archive/platform-$(PLATFORM_MODIFIER)/_include",
 					"$(WorkspaceDir)/source/third/include",
-					"$(WorkspaceDir)/archive",
 					"$(WorkspaceDir)/archive/third-$(PLATFORM_MODIFIER)/third/include/include",
-					"$(WorkspaceDir)/archive",
 					"$(WorkspaceDir)/archive/third-$(PLATFORM_MODIFIER)/third/include",
-					"$(WorkspaceDir)/source/app",
-					"$(WorkspaceDir)/archive",
-					"$(WorkspaceDir)/archive/platform-$(PLATFORM_MODIFIER)",
-					"$(WorkspaceDir)/archive",
-					"$(WorkspaceDir)/archive/platform-$(PLATFORM_MODIFIER)",
-					.,
 					"$(PROJECT_DIR)",
-					"$(HOME)/__archive/sensitive/sensitive/include",
+					"$(HOME)/sensitive/sensitive/include",
 				);
 				USE_HEADERMAP = NO;
 				WARNING_CFLAGS = "";
@@ -1002,45 +975,20 @@
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				STRINGS_FILE_OUTPUT_ENCODING = "UTF-8";
-				SYSTEM_HEADER_SEARCH_PATHS = (
-					"$(WorkspaceDir)/archive",
-					"$(WorkspaceDir)/archive/platform-$(PLATFORM_MODIFIER)/third-$(PLATFORM_MODIFIER)/include",
-					"$(WorkspaceDir)/source/third/include",
-					"$(WorkspaceDir)/archive",
-					"$(WorkspaceDir)/archive/third-$(PLATFORM_MODIFIER)/third/include/include",
-					"$(WorkspaceDir)/archive",
-					"$(WorkspaceDir)/archive/third-$(PLATFORM_MODIFIER)/third/include",
-					"$(WorkspaceDir)/source/app",
-					"$(WorkspaceDir)/archive",
-					"$(WorkspaceDir)/archive/platform-$(PLATFORM_MODIFIER)",
-					"$(WorkspaceDir)/archive",
-					"$(WorkspaceDir)/archive/platform-$(PLATFORM_MODIFIER)/_include",
-					"$(WorkspaceDir)/archive",
-					"$(WorkspaceDir)/archive/platform-$(PLATFORM_MODIFIER)/third-$(PLATFORM_MODIFIER)/third/include/",
-				);
 				USER_HEADER_SEARCH_PATHS = (
+					.,
 					"$(WorkspaceDir)/source",
 					"$(WorkspaceDir)/source/include",
-					"$(WorkspaceDir)/platform-$(PLATFORM_MODIFIER)",
-					"$(WorkspaceDir)/platform-$(PLATFORM_MODIFIER)/_include",
 					"$(WorkspaceDir)/source/app",
+					"$(WorkspaceDir)/source/app/_include",
 					"$(WorkspaceDir)/archive",
 					"$(WorkspaceDir)/archive/platform-$(PLATFORM_MODIFIER)",
-					"$(WorkspaceDir)/archive",
 					"$(WorkspaceDir)/archive/platform-$(PLATFORM_MODIFIER)/_include",
 					"$(WorkspaceDir)/source/third/include",
-					"$(WorkspaceDir)/archive",
 					"$(WorkspaceDir)/archive/third-$(PLATFORM_MODIFIER)/third/include/include",
-					"$(WorkspaceDir)/archive",
 					"$(WorkspaceDir)/archive/third-$(PLATFORM_MODIFIER)/third/include",
-					"$(WorkspaceDir)/source/app",
-					"$(WorkspaceDir)/archive",
-					"$(WorkspaceDir)/archive/platform-$(PLATFORM_MODIFIER)",
-					"$(WorkspaceDir)/archive",
-					"$(WorkspaceDir)/archive/platform-$(PLATFORM_MODIFIER)",
-					.,
 					"$(PROJECT_DIR)",
-					"$(HOME)/__archive/sensitive/sensitive/include",
+					"$(HOME)/sensitive/sensitive/include",
 				);
 				USE_HEADERMAP = NO;
 				VALIDATE_PRODUCT = YES;

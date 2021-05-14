@@ -231,7 +231,7 @@ void update::_add(::i64 iUpdate, ::matter * pmatter)
 
       ptask->m_iUpdate = iUpdate;
 
-      ptask->m_iMillisSleep = os_get_system_update_poll_time(iUpdate);
+      ptask->m_iMillisSleep = psystem->get_update_poll_time(iUpdate);
 
    }
 

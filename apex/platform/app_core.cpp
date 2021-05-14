@@ -100,7 +100,7 @@ char * ns_get_bundle_identifier();
 string apple_get_bundle_identifier();
 
 
-string ca2_command_line2();
+//string ca2_command_line2();
 
 
 #endif
@@ -321,13 +321,13 @@ CLASS_DECL_APEX void set_debug_pointer(void * p);
 
    stra3 = get_c_args_from_string(ca2_command_line((hinstance) m_hinstance));
 
-#elif defined(__APPLE__)
-
-   stra3 =  get_c_args_for_c(ca2_command_line2());
-
-#else
-
-   stra3 = get_c_args_from_c(ca2_command_line());
+//#elif defined(__APPLE__)
+//
+//   stra3 =  get_c_args_for_c(ca2_command_line2());
+//
+//#else
+//
+//   stra3 = get_c_args_from_c(ca2_command_line());
 
 #endif
 

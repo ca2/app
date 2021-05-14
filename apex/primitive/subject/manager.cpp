@@ -10,17 +10,16 @@ namespace subject
    bool manager::s_bDestroyAll = false;
 
 
-   //manager::manager()
-   //{
+   manager::manager()
+   {
 
-   //}
-
-
-   //manager::~manager()
-   //{
+   }
 
 
-   //}
+   manager::~manager()
+   {
+
+   }
 
 
    ::subject::subject * manager::subject(const ::id & id)

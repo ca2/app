@@ -995,7 +995,7 @@ namespace user
 
                      __pointer(::user::menu_item) pitem = pevent->m_puie->m_pmenuitem;
 
-                     if (pitem->is_set())
+                     if (pitem)
                      {
 
                         if (pitem->m_bPopup)

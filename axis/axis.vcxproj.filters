@@ -127,12 +127,6 @@
     <Filter Include="Source Files\graphics\render">
       <UniqueIdentifier>{61eb10b5-b625-4953-aeb5-ca7c37ae009a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\pcre">
-      <UniqueIdentifier>{17dc4182-3fe0-4adc-841b-88c83cfa6238}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\pcre">
-      <UniqueIdentifier>{fff3a34c-a1cd-4230-ae14-0b593f81ad95}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\const">
       <UniqueIdentifier>{a750a202-9e18-49c5-9e98-56d9beca276b}</UniqueIdentifier>
     </Filter>
@@ -148,9 +142,6 @@
     <Filter Include="Source Files\database\simpledb">
       <UniqueIdentifier>{a96c4b7f-dbc7-4998-ba8c-5ee5dfc0a417}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\database\sqlite">
-      <UniqueIdentifier>{7e5a04f6-a138-48f6-9c45-ef68c0579270}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\database">
       <UniqueIdentifier>{b59bccc2-6240-4cea-a5c0-5b674fc90ce1}</UniqueIdentifier>
     </Filter>
@@ -159,9 +150,6 @@
     </Filter>
     <Filter Include="Header Files\database\simpledb">
       <UniqueIdentifier>{682298d7-70fd-4566-a676-6fb0038558dd}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\database\sqlite">
-      <UniqueIdentifier>{65f5d1d1-91d8-4a76-95c6-2ca429bf492d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -308,15 +296,6 @@
     </ClInclude>
     <ClInclude Include="database\_.h">
       <Filter>Header Files\database</Filter>
-    </ClInclude>
-    <ClInclude Include="database\sqlitedb\_.h">
-      <Filter>Header Files\database\sqlite</Filter>
-    </ClInclude>
-    <ClInclude Include="database\sqlitedb\database.h">
-      <Filter>Header Files\database\sqlite</Filter>
-    </ClInclude>
-    <ClInclude Include="database\sqlitedb\dataset.h">
-      <Filter>Header Files\database\sqlite</Filter>
     </ClInclude>
     <ClInclude Include="database\simpledb\_.h">
       <Filter>Header Files\database\simpledb</Filter>
@@ -543,30 +522,6 @@
     <ClInclude Include="user\simple_ui_draw.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
-    <ClInclude Include="pcre\code.h">
-      <Filter>Header Files\pcre</Filter>
-    </ClInclude>
-    <ClInclude Include="pcre\code_impl.h">
-      <Filter>Header Files\pcre</Filter>
-    </ClInclude>
-    <ClInclude Include="pcre\context_impl.h">
-      <Filter>Header Files\pcre</Filter>
-    </ClInclude>
-    <ClInclude Include="pcre\context.h">
-      <Filter>Header Files\pcre</Filter>
-    </ClInclude>
-    <ClInclude Include="pcre\regex.h">
-      <Filter>Header Files\pcre</Filter>
-    </ClInclude>
-    <ClInclude Include="pcre\util_impl.h">
-      <Filter>Header Files\pcre</Filter>
-    </ClInclude>
-    <ClInclude Include="pcre\_.h">
-      <Filter>Header Files\pcre</Filter>
-    </ClInclude>
-    <ClInclude Include="pcre\_pcre.h">
-      <Filter>Header Files\pcre</Filter>
-    </ClInclude>
     <ClInclude Include="compress\_.h">
       <Filter>Header Files\compress</Filter>
     </ClInclude>
@@ -679,9 +634,6 @@
     </ClCompile>
     <ClCompile Include="geoip\update.cpp">
       <Filter>Source Files\geoip</Filter>
-    </ClCompile>
-    <ClCompile Include="database\sqlitedb\database.cpp">
-      <Filter>Source Files\database\sqlite</Filter>
     </ClCompile>
     <ClCompile Include="database\simpledb\file_set.cpp">
       <Filter>Source Files\database\simpledb</Filter>
@@ -802,27 +754,6 @@
     </ClCompile>
     <ClCompile Include="user\simple_ui_draw.cpp">
       <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="pcre\code.cpp">
-      <Filter>Source Files\pcre</Filter>
-    </ClCompile>
-    <ClCompile Include="pcre\code_impl.cpp">
-      <Filter>Source Files\pcre</Filter>
-    </ClCompile>
-    <ClCompile Include="pcre\context.cpp">
-      <Filter>Source Files\pcre</Filter>
-    </ClCompile>
-    <ClCompile Include="pcre\context_impl.cpp">
-      <Filter>Source Files\pcre</Filter>
-    </ClCompile>
-    <ClCompile Include="pcre\regex.cpp">
-      <Filter>Source Files\pcre</Filter>
-    </ClCompile>
-    <ClCompile Include="pcre\system.cpp">
-      <Filter>Source Files\pcre</Filter>
-    </ClCompile>
-    <ClCompile Include="pcre\util_impl.cpp">
-      <Filter>Source Files\pcre</Filter>
     </ClCompile>
     <ClCompile Include="compress\bz.cpp">
       <Filter>Source Files\compress</Filter>

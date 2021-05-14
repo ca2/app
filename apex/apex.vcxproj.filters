@@ -1801,12 +1801,6 @@
     <ClCompile Include="process\department.cpp">
       <Filter>Source Files\process</Filter>
     </ClCompile>
-    <ClCompile Include="user\menu_shared.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\menu_shared_commnand.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
     <ClCompile Include="os\windows\menu.cpp">
       <Filter>Source Files\os\windows</Filter>
     </ClCompile>

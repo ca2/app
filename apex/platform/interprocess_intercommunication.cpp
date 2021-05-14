@@ -609,6 +609,10 @@ repeat:
 
    int_array iaPid2;
 
+   auto psystem = m_psystem;
+
+   auto pnode = psystem->node();
+
    for (auto & str : stra)
    {
 
@@ -624,7 +628,7 @@ repeat:
 
             stra2.add_unique_ci(a[0]);
 
-            string strPath = module_path_from_pid(ansi_to_i32(a[1]));
+            string strPath = pnode->module_path_from_pid(ansi_to_i32(a[1]));
 
             if (strPath.has_char())
             {
@@ -682,7 +686,11 @@ void interprocess_intercommunication::defer_add_module(const string & strModule,
 
    pathModule /= m_strApp + ".module_list";
 
-   ::file::path pathPid = module_path_from_pid((::u32)idPid.i64());
+   auto psystem = m_psystem;
+
+   auto pnode = psystem->node();
+
+   ::file::path pathPid = pnode->module_path_from_pid((::u32)idPid.i64());
 
    string strModuleList = file_as_string(pathModule);
 
@@ -713,7 +721,7 @@ void interprocess_intercommunication::defer_add_module(const string & strModule,
 
             stra2.add_unique_ci(a[0]);
 
-            string strPath = module_path_from_pid(ansi_to_i32(a[1]));
+            string strPath = pnode->module_path_from_pid(ansi_to_i32(a[1]));
 
             if (strPath.has_char())
             {

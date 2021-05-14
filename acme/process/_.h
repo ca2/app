@@ -22,9 +22,9 @@ CLASS_DECL_ACME i32 get_current_process_maximum_affinity();
 CLASS_DECL_ACME i32 get_current_process_affinity_order();
 
 
-CLASS_DECL_ACME string expand_env(string str);
-CLASS_DECL_ACME string get_environment_variable(const char * pszEnvironmentVariable);
-CLASS_DECL_ACME string ca2_command_line();
+//CLASS_DECL_ACME string expand_env(string str);
+//CLASS_DECL_ACME string get_environment_variable(const char * pszEnvironmentVariable);
+//CLASS_DECL_ACME string ca2_command_line();
 
 
 CLASS_DECL_ACME string consume_param(const char * pszCommandLine, const char ** pszEndPtr);
@@ -51,14 +51,14 @@ CLASS_DECL_ACME int_bool is_process_running(::u32 pid);
 #if !defined(_UWP)
 
 
-CLASS_DECL_ACME string module_path_from_pid(unsigned int pid);
-CLASS_DECL_ACME ::id_array module_path_get_pid(const char * pszModuleName, bool bModuleNameIsPropertyFormatted = true);
+//CLASS_DECL_ACME string module_path_from_pid(unsigned int pid);
+//CLASS_DECL_ACME ::id_array module_path_get_pid(const char * pszModuleName, bool bModuleNameIsPropertyFormatted = true);
 
 
 #ifndef WINDOWS
 
-CLASS_DECL_ACME string_array cmdline_from_pid(unsigned int pid);
-CLASS_DECL_ACME id_array app_get_pid(const char * pszModuleName);
+//CLASS_DECL_ACME string_array cmdline_from_pid(unsigned int pid);
+//CLASS_DECL_ACME id_array app_get_pid(const char * pszModuleName);
 
 
 #endif
@@ -67,14 +67,14 @@ CLASS_DECL_ACME id_array app_get_pid(const char * pszModuleName);
 #endif
 
 #ifndef _UWP
-CLASS_DECL_ACME bool process_contains_module(string & strImage, ::u32 processID, const char * pszLibrary);
-CLASS_DECL_ACME void shared_library_process(dword_array & dwa, string_array & straProcesses, const char * pszLibrary);
+//CLASS_DECL_ACME bool process_contains_module(string & strImage, ::u32 processID, const char * pszLibrary);
+//CLASS_DECL_ACME void shared_library_process(dword_array & dwa, string_array & straProcesses, const char * pszLibrary);
 #endif
 
 
 
-CLASS_DECL_ACME bool is_shared_library_busy(u32 processid, const string_array & stra);
-CLASS_DECL_ACME bool is_shared_library_busy(const string_array & stra);
+//CLASS_DECL_ACME bool is_shared_library_busy(u32 processid, const string_array & stra);
+//CLASS_DECL_ACME bool is_shared_library_busy(const string_array & stra);
 
 
 CLASS_DECL_ACME bool launch_application(::matter * pobject, const string & strAppId, const string & strParams, int iBitCount);

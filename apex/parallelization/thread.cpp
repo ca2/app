@@ -4599,7 +4599,8 @@ thread_ptra::~thread_ptra()
 
 }
 
-CLASS_DECL_APEX bool thread_pump_sleep(millis millis, synchronization_object * psync)
+
+bool thread::pump_sleep(const millis & millis, synchronization_object * psync)
 {
 
    auto iTenths = millis / 100_ms;
@@ -4614,10 +4615,10 @@ CLASS_DECL_APEX bool thread_pump_sleep(millis millis, synchronization_object * p
       try
       {
 
-         while (::get_task() != nullptr && ::get_task()->has_message())
+         while (has_message())
          {
 
-            while (::get_task()->defer_pump_message());
+            while (defer_pump_message());
 
             cMessage++;
 

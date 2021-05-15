@@ -1248,11 +1248,11 @@ CLASS_DECL_ACME void acme_system_term()
 }
 
 
-void int_system_call_update(void * pSystem, int iUpdate, int iParam)
+void int_system_update(void * pSystem, int iUpdate, int iParam)
 {
    
    auto psystem = (class ::system *) pSystem;
    
-   psystem->
+   psystem->int_system_update(iUpdate, iParam);
    
 }

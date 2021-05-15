@@ -27,15 +27,20 @@ namespace file
    class watcher;
    class listener;
 
+
    using watch_id = i64;
 
+
    typedef ::array < watch_id > file_watch_array;
+
 
    /// Actions to listen for. Rename will send two events, one for
    /// the deletion of the old file, and one for the creation of the
    /// new file.
    enum e_action
    {
+      
+      
       action_none = 0,
       /// Sent when a file is created or renamed
       action_add = 1,
@@ -43,8 +48,10 @@ namespace file
       action_delete = 2,
       /// Sent when a file is modified
       action_modify = 4
+      
 
    };
+
 
    // by CAMILO <3tbs
    class CLASS_DECL_APEX action
@@ -62,11 +69,6 @@ namespace file
    };
 
 
-
-
-
-
-
    /// Basic interface for listening for file events.
    /// @class file_watch_listener
    class CLASS_DECL_APEX listener :
@@ -81,6 +83,7 @@ namespace file
       listener();
       virtual ~listener();
 
+      
       /// Handles the action file action
       /// @lparam watchwatch_id The watch watch_id for the directory
       /// @lparam dir The directory
@@ -100,6 +103,7 @@ namespace file
 
 
       PRED m_predicate;
+      
 
       predicate_listener(PRED pred) :
          m_predicate(pred)
@@ -121,7 +125,9 @@ namespace file
 
    };
 
+
    class os_watch;
+
 
    class CLASS_DECL_APEX watch :
       virtual public object
@@ -157,12 +163,17 @@ namespace file
 
    };
 
+   
+   class os_watcher;
+   
 
    class CLASS_DECL_APEX watcher :
-      virtual public object
+      virtual public ::thread
    {
    public:
 
+      
+      void *               m_pThis;
 
       typedef ::map < watch_id, __pointer(watch) > watch_map;
 
@@ -170,13 +181,8 @@ namespace file
 
       watch_id             m_idLast;
 
-      ::task_pointer       m_ptask;
-
       bool                 m_bCreateWatchThread;
       
-      void * m_pthis;
-
-
       watcher();
       virtual ~watcher();
 

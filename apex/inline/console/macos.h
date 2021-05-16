@@ -89,24 +89,24 @@ public:
    }
 
 
-   console(int argc, char ** argv)
+   console(int argc, char ** argv, char ** envp)
    {
 
       common_construct();
       
-      m_psystem->system_construct(argc, argv);
+      m_psystem->system_construct(argc, argv, envp);
 
       init();
 
    }
 
 
-   console(int argc, wchar_t ** argv)
+   console(int argc, wchar_t ** argv, wchar_t ** envp)
    {
 
       common_construct();
 
-      m_psystem->system_construct(argc, argv);
+      m_psystem->system_construct(argc, argv, envp);
 
       init();
 
@@ -124,7 +124,7 @@ public:
    int result()
    {
 
-      m_estatus = get_application()->m_estatus;
+      m_estatus = m_psystem->m_papplicationMain->m_estatus;
 
       ::i32 iErrorStatus = m_estatus.error_status();
 

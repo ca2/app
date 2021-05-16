@@ -9,10 +9,15 @@
 /* Begin PBXBuildFile section */
 		9A06D7171FA2A7A5007FEB1B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A06D70F1FA2A7A5007FEB1B /* Images.xcassets */; };
 		9A06D71B1FA2A7A5007FEB1B /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A06D7131FA2A7A5007FEB1B /* main.cpp */; };
-		9A2E621F252584EA0001CC7E /* libaqua.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9A2E6219252584B70001CC7E /* libaqua.dylib */; };
-		9AD19B062512D98E00B4C44A /* libacme.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9AD19B022512D98A00B4C44A /* libacme.dylib */; };
-		9AD19B072512D99000B4C44A /* libapex.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9AD19B052512D98A00B4C44A /* libapex.dylib */; };
-		9AD19B0A2512D99800B4C44A /* libidn.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9AD19B032512D98A00B4C44A /* libidn.dylib */; };
+		9A7862B726503CD30034A0E1 /* libacme.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9A68A3E22511428E008DABD2 /* libacme.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		9A7862B826503CD30034A0E1 /* libacme_posix.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9A0C1655264A288800B5CC33 /* libacme_posix.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		9A7862B926503CD30034A0E1 /* libacme_apple.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9A15A5BE264B54730080670E /* libacme_apple.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		9A7862BA26503CD30034A0E1 /* libacme_macos.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9A0C1676264A295200B5CC33 /* libacme_macos.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		9A7862BB26503D100034A0E1 /* libapex.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9A68A3F02511429F008DABD2 /* libapex.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		9A7862BC26503D100034A0E1 /* libapex_posix.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9A0C16AC264A2B5F00B5CC33 /* libapex_posix.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		9A7862BD26503D100034A0E1 /* libapex_apple.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9A15A5C6264B54860080670E /* libapex_apple.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		9A7862BE26503D100034A0E1 /* libapex_macos.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9A0C16A6264A2B3000B5CC33 /* libapex_macos.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		9A7862C0265045310034A0E1 /* libidn.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9AD199B6251279FD00B4C44A /* libidn.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -172,17 +177,22 @@
 			dstPath = "$(WorkspaceDir)/time/$(PLATFORM_MODIFIER)";
 			dstSubfolderSpec = 0;
 			files = (
-				9A2E621F252584EA0001CC7E /* libaqua.dylib in CopyFiles */,
-				9AD19B0A2512D99800B4C44A /* libidn.dylib in CopyFiles */,
-				9AD19B062512D98E00B4C44A /* libacme.dylib in CopyFiles */,
-				9AD19B072512D99000B4C44A /* libapex.dylib in CopyFiles */,
+				9A7862C0265045310034A0E1 /* libidn.dylib in CopyFiles */,
+				9A7862BB26503D100034A0E1 /* libapex.dylib in CopyFiles */,
+				9A7862BC26503D100034A0E1 /* libapex_posix.dylib in CopyFiles */,
+				9A7862BD26503D100034A0E1 /* libapex_apple.dylib in CopyFiles */,
+				9A7862BE26503D100034A0E1 /* libapex_macos.dylib in CopyFiles */,
+				9A7862B726503CD30034A0E1 /* libacme.dylib in CopyFiles */,
+				9A7862B826503CD30034A0E1 /* libacme_posix.dylib in CopyFiles */,
+				9A7862B926503CD30034A0E1 /* libacme_apple.dylib in CopyFiles */,
+				9A7862BA26503CD30034A0E1 /* libacme_macos.dylib in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		070B8EEA1B6E53F900D26137 /* group_aura.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = group_aura.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		070B8EEA1B6E53F900D26137 /* group___hello.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "group___hello.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A06D70F1FA2A7A5007FEB1B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		9A06D7121FA2A7A5007FEB1B /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9A06D7131FA2A7A5007FEB1B /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
@@ -229,7 +239,7 @@
 		070B8EEB1B6E53F900D26137 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				070B8EEA1B6E53F900D26137 /* group_aura.app */,
+				070B8EEA1B6E53F900D26137 /* group___hello.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -341,9 +351,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		070B8EE91B6E53F900D26137 /* group_aura */ = {
+		070B8EE91B6E53F900D26137 /* group___hello */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 070B8F071B6E53FA00D26137 /* Build configuration list for PBXNativeTarget "group_aura" */;
+			buildConfigurationList = 070B8F071B6E53FA00D26137 /* Build configuration list for PBXNativeTarget "group___hello" */;
 			buildPhases = (
 				070B8EE61B6E53F900D26137 /* Sources */,
 				070B8EE81B6E53F900D26137 /* Resources */,
@@ -361,9 +371,9 @@
 				9A7F301D2512DA8200530DA0 /* PBXTargetDependency */,
 				9A2E7B58251146B200EB1CEE /* PBXTargetDependency */,
 			);
-			name = group_aura;
+			name = "group___hello";
 			productName = "Hello Multiverse!!";
-			productReference = 070B8EEA1B6E53F900D26137 /* group_aura.app */;
+			productReference = 070B8EEA1B6E53F900D26137 /* group___hello.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -437,7 +447,7 @@
 			);
 			projectRoot = "";
 			targets = (
-				070B8EE91B6E53F900D26137 /* group_aura */,
+				070B8EE91B6E53F900D26137 /* group___hello */,
 			);
 		};
 /* End PBXProject section */
@@ -753,7 +763,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/macos/Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PLATFORM_MODIFIER = macos;
-				PRODUCT_BUNDLE_IDENTIFIER = "cc.ca2.app.group-aura";
+				PRODUCT_BUNDLE_IDENTIFIER = "cc.ca2.app.group-hello";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Debug;
@@ -771,7 +781,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/macos/Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PLATFORM_MODIFIER = macos;
-				PRODUCT_BUNDLE_IDENTIFIER = "cc.ca2.app.group-aura";
+				PRODUCT_BUNDLE_IDENTIFIER = "cc.ca2.app.group-hello";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Release;
@@ -788,7 +798,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		070B8F071B6E53FA00D26137 /* Build configuration list for PBXNativeTarget "group_aura" */ = {
+		070B8F071B6E53FA00D26137 /* Build configuration list for PBXNativeTarget "group___hello" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				070B8F081B6E53FA00D26137 /* Debug */,

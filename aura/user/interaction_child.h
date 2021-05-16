@@ -75,7 +75,7 @@ namespace user
       //virtual bool create_interaction(::user::interaction * pinteraction, ::u32 uExStyle, u32 uStyle, const ::rectangle_i32 & rectangle, ::user::primitive * puiParent, ::create * pcreate = nullptr) override;
 
       
-      virtual bool create_child(::user::interaction * pinteraction, ::user::primitive * pprimitiveParent);
+      bool create_child(::user::interaction * pinteraction, ::user::primitive * pprimitiveParent) override;
 
 
       //virtual bool create_window_ex(::user::interaction * pinteraction, __pointer(::user::system) pcs, ::user::primitive * puiParent, id id) override;

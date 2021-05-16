@@ -9,7 +9,6 @@
 #include "framework.h"
 #include "main.h"
 #include "aura/os/_.h"
-#include "aura/os/_os.h"
 #include "aura/update.h"
 //char * ns_realpath(const char * pszPath);
 char * mm_ca2_command_line();
@@ -130,78 +129,78 @@ i32 defer_run_system(char ** pszaFileName, int iFileCount)
 //}
 
 
-void apple_on_new_file()
-{
+//void apple_on_new_file()
+//{
+//
+//   ::aura::get_system()->on_open_file(::e_type_empty, "");
+//
+//}
+//
+//// iMillisDelay default 500ms good
+//void apple_accumulate_on_open_file(const char ** psza, int iCount, const char * pszExtra)
+//{
+//
+//   string_array stra;
+//
+//   stra.c_add((char **) psza, iCount, false);
+//
+//   for(index i = 0; i < stra.get_count(); i++)
+//   {
+//
+//      if(::str::begins_eat_ci(stra[i], "file://"))
+//      {
+//
+//         if(!::str::begins(stra[i], "/"))
+//         {
+//
+//            stra[i] = "/" + stra[i];
+//
+//         }
+//
+//         stra[i] = ::aura::get_system()->url().url_decode(stra[i]);
+//
+//      }
+//
+//   }
+//
+//   ::aura::get_system()->defer_accumulate_on_open_file(stra, pszExtra);
+//
+//}
 
-   ::aura::get_system()->on_open_file(::e_type_empty, "");
 
-}
-
-// iMillisDelay default 500ms good
-void apple_accumulate_on_open_file(const char ** psza, int iCount, const char * pszExtra)
-{
-
-   string_array stra;
-
-   stra.c_add((char **) psza, iCount, false);
-
-   for(index i = 0; i < stra.get_count(); i++)
-   {
-
-      if(::str::begins_eat_ci(stra[i], "file://"))
-      {
-
-         if(!::str::begins(stra[i], "/"))
-         {
-
-            stra[i] = "/" + stra[i];
-
-         }
-
-         stra[i] = ::aura::get_system()->url().url_decode(stra[i]);
-
-      }
-
-   }
-
-   ::aura::get_system()->defer_accumulate_on_open_file(stra, pszExtra);
-
-}
-
-
-
-void apple_on_open_file(const char ** psza, int iCount, const char * pszExtra)
-{
-
-   if(iCount <= 0)
-   {
-
-      apple_on_new_file();
-
-   }
-   else if(iCount == 1)
-   {
-
-      ::aura::get_system()->on_open_file(psza[0], pszExtra);
-
-      ::free((void *) psza[0]);
-
-      ::free(psza);
-
-   }
-   else
-   {
-
-      string_array stra;
-
-      stra.c_add((char **) psza, iCount, false);
-
-      ::aura::get_system()->on_open_file(stra, pszExtra);
-
-   }
-
-}
-
+//
+//void apple_on_open_file(const char ** psza, int iCount, const char * pszExtra)
+//{
+//
+//   if(iCount <= 0)
+//   {
+//
+//      apple_on_new_file();
+//
+//   }
+//   else if(iCount == 1)
+//   {
+//
+//      ::aura::get_system()->on_open_file(psza[0], pszExtra);
+//
+//      ::free((void *) psza[0]);
+//
+//      ::free(psza);
+//
+//   }
+//   else
+//   {
+//
+//      string_array stra;
+//
+//      stra.c_add((char **) psza, iCount, false);
+//
+//      ::aura::get_system()->on_open_file(stra, pszExtra);
+//
+//   }
+//
+//}
+//
 
 
 

@@ -28,7 +28,7 @@ namespace xml
       virtual ~document();
 
 
-      virtual ::e_status initialize_matter(::matter* matter);
+      ::e_status initialize_matter(::matter* matter) override;
       
 
       inline void ensure_root()

@@ -381,7 +381,7 @@ namespace user
       inline ::aura::session * get_session() const;
       inline ::aura::system * get_system() const;
 
-      virtual bool _001CanEnterScreenSaver();
+      bool _001CanEnterScreenSaver() override;
 
       virtual bool _001Maximize();
 
@@ -599,7 +599,7 @@ namespace user
       virtual ::user::form * get_form();
       virtual ::user::form * get_parent_form();
 
-      virtual ::user::interaction * get_user_interaction();
+      ::user::interaction * get_user_interaction() override;
 
       virtual matter* get_taskpool_container() override;
 
@@ -1080,7 +1080,7 @@ namespace user
       virtual void ShowOwnedPopups(bool bShow = true);
 
 
-      virtual bool is_composite();
+      bool is_composite() override;
 
       //virtual u32 GetStyle() const override;
       //virtual u32 GetExStyle() const override;
@@ -1121,13 +1121,13 @@ namespace user
 
       virtual void _001PrintBuffer(::draw2d::graphics_pointer & pgraphics);
       virtual void _001Print(::draw2d::graphics_pointer & pgraphics) ;
-      virtual void _000CallOnDraw(::draw2d::graphics_pointer & pgraphics) ;
-      virtual void _000OnDraw(::draw2d::graphics_pointer & pgraphics) ;
+      void _000CallOnDraw(::draw2d::graphics_pointer & pgraphics) override;
+      void _000OnDraw(::draw2d::graphics_pointer & pgraphics) override;
       virtual void _001DrawThis(::draw2d::graphics_pointer & pgraphics) ;
       virtual void _001DrawChildren(::draw2d::graphics_pointer & pgraphics) ;
       virtual void _001OnNcDraw(::draw2d::graphics_pointer & pgraphics);
       virtual void _001CallOnDraw(::draw2d::graphics_pointer & pgraphics);
-      virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) ;
+      void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
       virtual void _008CallOnDraw(::draw2d::graphics_pointer & pgraphics);
       virtual void _008OnDraw(::draw2d::graphics_pointer & pgraphics) ;
       virtual void _001OnClip(::draw2d::graphics_pointer & pgraphics);
@@ -1151,26 +1151,26 @@ namespace user
       virtual bool set_mouse_capture();
 
       virtual bool has_keyboard_focus() const;
-      virtual ::e_status set_keyboard_focus();
+      ::e_status set_keyboard_focus() override;
 
       virtual ::e_status set_foreground_window();
       virtual ::e_status set_active_window();
 
       virtual bool is_window_enabled() const;
       inline bool is_this_window_enabled() const { return m_ewindowflag.is(e_window_flag_enable); }
-      virtual bool enable_window(bool bEnable = true);
+      bool enable_window(bool bEnable = true) override;
 
       virtual void on_calc_size(calc_size* pcalcsize);
 
       virtual void walk_pre_translate_tree(::message::message* pmessage, ::user::interaction* puiStop = nullptr);
 
 
-      virtual bool edit_undo();
+      bool edit_undo() override;
 
       virtual void edit_on_text(string str) override;
       virtual void edit_on_sel(strsize iBeg, strsize iEnd) override;
 
-      virtual void get_text_composition_area(::rectangle_i32 & r);
+      void get_text_composition_area(::rectangle_i32 & r) override;
       virtual void on_text_composition(string str) override;
       virtual void on_text_composition_done() override;
 
@@ -1178,7 +1178,7 @@ namespace user
 
       virtual int on_text_composition_message(int iMessage);
 
-      virtual void insert_text(string str, bool bForceNewStep, const ::action_context & context);
+      void insert_text(string str, bool bForceNewStep, const ::action_context & context) override;
 
       virtual void set_window_text(const char* pszString) override;
 
@@ -1345,7 +1345,7 @@ namespace user
       virtual bool is_host_top_level() const;
       virtual bool is_os_host() const;
 
-      virtual ::user::primitive* get_parent_primitive() const;
+      ::user::primitive* get_parent_primitive() const override;
 
       virtual ::user::interaction* get_parent() const override;
       virtual ::user::interaction* get_top_level() const override;

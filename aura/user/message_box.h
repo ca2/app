@@ -84,12 +84,12 @@ namespace user
       virtual ~message_box();
 
 
-      virtual void install_message_routing(::channel * pchannel);
+      void install_message_routing(::channel * pchannel) override;
 
 
-      virtual i64 add_ref(OBJ_REF_DBG_PARAMS);
-      virtual i64 dec_ref(OBJ_REF_DBG_PARAMS);
-      virtual i64 release(OBJ_REF_DBG_PARAMS);
+      i64 add_ref(OBJ_REF_DBG_PARAMS) override;
+      i64 dec_ref(OBJ_REF_DBG_PARAMS) override;
+      i64 release(OBJ_REF_DBG_PARAMS) override;
 
 
       void common_construct();

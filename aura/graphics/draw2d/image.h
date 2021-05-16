@@ -60,7 +60,7 @@ public:
 
    inline ::size_i32 get_size() const;
 
-   virtual ::size_i32 get_image_drawer_size() const;
+   ::size_i32 get_image_drawer_size() const override;
 
 
    inline ::image * get_image(const concrete < ::size_i32 > &) { return this; }
@@ -367,11 +367,11 @@ public:
 
 
 
-   virtual ::stream & write(::stream & stream) const;
-   virtual ::stream & read(::stream & stream);
+   ::stream & write(::stream & stream) const override;
+   ::stream & read(::stream & stream) override;
 
    
-   virtual ::matter * clone() const;
+   ::matter * clone() const override;
 
 
    inline int line(int line);

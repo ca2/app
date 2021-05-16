@@ -855,7 +855,7 @@ namespace serial
 //break; // Timeout occured on reading 1 byte
 //}
 //if (string(reinterpret_cast
-//<const char *>
+// <const char *>
 //(buffer_
 //+ read_so_far - eol_len), eol_len) == eol)
 //{
@@ -867,7 +867,7 @@ namespace serial
 //}
 //}
 //buffer.append(reinterpret_cast
-//<const char *> (buffer_), read_so_far
+// <const char *> (buffer_), read_so_far
 //);
 //return
 //read_so_far;

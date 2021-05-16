@@ -517,7 +517,7 @@ namespace aura
       //virtual bool Ex2OnAppInstall();
       //virtual bool Ex2OnAppUninstall();
 
-      virtual bool on_application_menu_action(const char * pszCommand);
+      bool on_application_menu_action(const char * pszCommand) override;
       //virtual void _001CloseApplication();
 
       //virtual string get_license_id();

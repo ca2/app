@@ -475,7 +475,7 @@ namespace user
 
       virtual void _001OnNcDraw(::draw2d::graphics_pointer & pgraphics) override;
 
-      virtual string get_ime_composition() const;
+      string get_ime_composition() const override;
 
 
    };

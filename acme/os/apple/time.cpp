@@ -15,15 +15,18 @@
 #include <mach/mach_time.h>
 
 //extern clock_serv_t g_cclock;
-double g_machtime_conversion_factor;
 
+namespace acme
+{
+extern double g_machtime_conversion_factor;
+} // namespace acme
 void ns_Sleep(unsigned int uiMillis);
 
 
 CLASS_DECL_ACME ::nanos get_nanos()
 {
    
-   return mach_absolute_time() * g_machtime_conversion_factor;
+   return mach_absolute_time() * ::acme::g_machtime_conversion_factor;
    
    //   mach_timespec_t mts;
    //

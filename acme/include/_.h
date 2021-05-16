@@ -3754,6 +3754,7 @@ inline void dump_elements(dump_context &dumpcontext, const TYPE *pElements, ::co
 
 
 CLASS_DECL_ACME string get_system_error_message(u32 dwError);
+CLASS_DECL_ACME string get_status_message(::e_status estatus);
 
 
 #include "acme/platform/flags.h"
@@ -4097,7 +4098,7 @@ i32 _c_unlock(void **pdata);
 
 CLASS_DECL_ACME string _ca_get_file_name(const char *psz, bool bCreate = false, i32 *pfd = nullptr);
 
-CLASS_DECL_ACME string get_system_error_message(u32 dwError);
+//CLASS_DECL_ACME string get_system_error_message(u32 dwError);
 
 
 #include "acme/platform/simple_app.h"

@@ -698,21 +698,21 @@ list(APPEND acme_source
    os/ansios/pmutex_lock.h
    os/ansios/pthread.cpp
    os/ansios/semun.h
-   os/apple/DDInvocationGrabber.h
-   os/apple/NSObject+DDExtensions.h
-   os/apple/NSString+SymlinksAndAliases.h
-   os/apple/UncaughtExceptionHandler.h
-   os/apple/_.h
-   os/apple/_apple.h
-   os/apple/_c_mm.h
-   os/apple/_mm.h
-   os/apple/_mm_common.h
-   os/apple/debug.h
-   os/apple/graphics.h
-   os/apple/main.h
-   os/apple/ns_exception.h
-   os/apple/time.h
-   os/chronometer.h
+   #os/apple/DDInvocationGrabber.h
+   #os/apple/NSObject+DDExtensions.h
+   #os/apple/NSString+SymlinksAndAliases.h
+   #os/apple/UncaughtExceptionHandler.h
+   #os/apple/_.h
+   #os/apple/_apple.h
+   #os/apple/_c_mm.h
+   #os/apple/_mm.h
+   #os/apple/_mm_common.h
+   #os/apple/debug.h
+   #os/apple/graphics.h
+   #os/apple/main.h
+   #os/apple/ns_exception.h
+   #os/apple/time.h
+   #os/chronometer.h
    os/file.h
    os/graphics.h
    os/ios/_.h

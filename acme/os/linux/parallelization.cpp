@@ -14,12 +14,12 @@ bool task_set_name(htask_t htask, const char * psz)
 }
 
 
-bool task_set_name(const char * psz)
-{
-
-   return task_set_name((htask_t) pthread_self(), psz);
-
-}
+//::e_status task_set_name(const char * psz)
+//{
+//
+//   return task_set_name((htask_t) pthread_self(), psz);
+//
+//}
 
 
 // void __node_init_cross_windows_threading()

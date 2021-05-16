@@ -2320,7 +2320,7 @@ template<typename T>
 inline int type_is_null(const T *p)
 {
 
-   return (((uptr) (void *) p) < MAX(4096, sizeof(T)));
+   return (((uptr) (void *) p) < maximum(4096, sizeof(T)));
 
 }
 

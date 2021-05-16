@@ -1152,6 +1152,16 @@ namespace acme
    }
 
 
+   array <::serial::port_info> node::list_serial_ports()
+   {
+
+      __throw(error_interface_only);
+
+      return ::array <::serial::port_info>();
+
+   }
+
+
 } // namespace acme
 
 

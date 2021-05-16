@@ -331,6 +331,9 @@ namespace acme
       virtual string expand_env(string str);
 
 
+      virtual array <::serial::port_info> list_serial_ports();
+
+
    };
 
 

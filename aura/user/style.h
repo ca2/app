@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 namespace user
@@ -63,7 +63,7 @@ namespace user
       inline auto node() const { return m_pnode; }
 
 
-      virtual ::e_status initialize(::object * pobject);
+      ::e_status initialize(::object * pobject) override;
 
 
       void default_style_construct();

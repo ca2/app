@@ -3169,7 +3169,7 @@ bool thread::send_message(const ::id & id, wparam wparam, lparam lparam, ::durat
 ::e_status thread::__thread_init()
 {
 
-   m_result = on_thread_init();
+   m_estatus = on_thread_init();
 
    if (m_pevent)
    {
@@ -3177,6 +3177,8 @@ bool thread::send_message(const ::id & id, wparam wparam, lparam lparam, ::durat
       m_pevent->set_event();
 
    }
+   
+   m_result = m_estatus;
 
    return m_estatus;
 
@@ -3190,12 +3192,14 @@ bool thread::send_message(const ::id & id, wparam wparam, lparam lparam, ::durat
 
    install_message_routing(this);
 
-   bool bError = false;
+   ::e_status estatus = ::success;
 
    try
    {
 
-      if(!init_thread())
+      estatus = init_thread();
+      
+      if(!estatus)
       {
 
          if (m_pevStarted)
@@ -3205,7 +3209,7 @@ bool thread::send_message(const ::id & id, wparam wparam, lparam lparam, ::durat
 
          }
 
-         bError = true;
+         return estatus;
 
       }
 
@@ -3215,58 +3219,46 @@ bool thread::send_message(const ::id & id, wparam wparam, lparam lparam, ::durat
 
       handle_exception(e);
 
-      bError = true;
+      return e.m_estatus;
 
    }
    catch(...)
    {
 
-      bError = true;
-
-   }
-
-   if (bError)
-   {
-
-      goto error;
+      return error_exception;
 
    }
 
    try
    {
 
-      if (!on_pre_run_thread())
+      estatus = on_pre_run_thread();
+      
+      if(!estatus)
       {
 
-         bError = true;
+         return estatus;
 
       }
+
+   }
+   catch (const ::exception::exception & e)
+   {
+
+      handle_exception(e);
+
+      return e.m_estatus;
 
    }
    catch (...)
    {
 
-      bError = true;
+      return error_exception;
 
    }
 
-
-
-error:;
-
-   if(bError)
-   {
-
-      return false;
-
-   }
-   else
-   {
-
-      return true;
-
-   }
-
+   return estatus;
+   
 }
 
 

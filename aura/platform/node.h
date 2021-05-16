@@ -45,7 +45,7 @@ namespace aura
 
 //#endif
 
-      virtual void set_application_menu(::apex::application_menu * pmenu, ::apex::application * papplication);
+      void set_application_menu(::apex::application_menu * pmenu, ::apex::application * papplication) override;
 
 //      virtual void * node_wrap_window(void * pdisplay, i64 window);
 

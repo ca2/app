@@ -38,7 +38,7 @@ typedef iptr strsize;
 
 
 #include "apex/include/_c.h"
-#include "apex/os/apple/_c_mm.h"
+//#include "apex/os/apple/_c_mm.h"
 
 
 #include "acme/platform/obj_ref_dbg.h"

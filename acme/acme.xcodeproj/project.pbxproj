@@ -1219,6 +1219,7 @@
 		9A78635E264B947B003DF8A0 /* url.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A78634F264B947B003DF8A0 /* url.h */; };
 		9A78635F264B947B003DF8A0 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A786350264B947B003DF8A0 /* _.h */; };
 		9A786360264B947B003DF8A0 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A786350264B947B003DF8A0 /* _.h */; };
+		9A78641226508CCF0034A0E1 /* libidn.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A787D0A264C07B7003DF8A0 /* libidn.dylib */; };
 		9A787B50264BADDC003DF8A0 /* time.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A787B4D264BADDB003DF8A0 /* time.cpp */; };
 		9A787B51264BADDC003DF8A0 /* time.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A787B4D264BADDB003DF8A0 /* time.cpp */; };
 		9A787B52264BADDC003DF8A0 /* dir.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A787B4E264BADDB003DF8A0 /* dir.cpp */; };
@@ -1417,7 +1418,6 @@
 		9A787CFF264C0740003DF8A0 /* regular_expression.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A787CF2264C0740003DF8A0 /* regular_expression.h */; };
 		9A787D00264C0740003DF8A0 /* topic.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A787CF3264C0740003DF8A0 /* topic.h */; };
 		9A787D01264C0740003DF8A0 /* topic.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A787CF3264C0740003DF8A0 /* topic.h */; };
-		9A787D03264C07AC003DF8A0 /* libidn.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A787D02264C07AC003DF8A0 /* libidn.dylib */; };
 		9A787D10264C23FA003DF8A0 /* _pthread.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A787D0F264C23FA003DF8A0 /* _pthread.h */; };
 		9A787D11264C23FA003DF8A0 /* _pthread.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A787D0F264C23FA003DF8A0 /* _pthread.h */; };
 		9A787D13264C242C003DF8A0 /* parallelization2.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A787D12264C242C003DF8A0 /* parallelization2.h */; };
@@ -3616,11 +3616,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A787D03264C07AC003DF8A0 /* libidn.dylib in Frameworks */,
+				9AD199732511BA2400B4C44A /* libz.tbd in Frameworks */,
+				9AD199782511BA4D00B4C44A /* libiconv.tbd in Frameworks */,
+				9A78641226508CCF0034A0E1 /* libidn.dylib in Frameworks */,
 				9AD1997D2511BAA000B4C44A /* Cocoa.framework in Frameworks */,
 				9AD1997A2511BA7700B4C44A /* IOKit.framework in Frameworks */,
-				9AD199782511BA4D00B4C44A /* libiconv.tbd in Frameworks */,
-				9AD199732511BA2400B4C44A /* libz.tbd in Frameworks */,
 				9AD199712511BA1400B4C44A /* CoreText.framework in Frameworks */,
 				9AD1996F2511BA0300B4C44A /* CoreGraphics.framework in Frameworks */,
 			);
@@ -5345,12 +5345,12 @@
 		9AD1996A2511B9C600B4C44A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9AD199722511BA2400B4C44A /* libz.tbd */,
+				9AD199772511BA4D00B4C44A /* libiconv.tbd */,
 				9A787D02264C07AC003DF8A0 /* libidn.dylib */,
 				9AD1997C2511BAA000B4C44A /* Cocoa.framework */,
 				9AD199792511BA7700B4C44A /* IOKit.framework */,
-				9AD199772511BA4D00B4C44A /* libiconv.tbd */,
 				9AD199752511BA3F00B4C44A /* Foundation.framework */,
-				9AD199722511BA2400B4C44A /* libz.tbd */,
 				9AD199702511BA1400B4C44A /* CoreText.framework */,
 				9AD1996D2511B9F600B4C44A /* CoreFoundation.framework */,
 				9AD1996B2511B9C700B4C44A /* CoreGraphics.framework */,
@@ -7837,11 +7837,9 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = NO;
-				CODE_SIGN_IDENTITY = "";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEPLOYMENT_POSTPROCESSING = YES;
-				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				EXECUTABLE_EXTENSION = dylib;
@@ -7948,7 +7946,6 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = NO;
-				CODE_SIGN_IDENTITY = "";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEPLOYMENT_POSTPROCESSING = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -8018,8 +8015,6 @@
 		9A68A41E25114352008DABD2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = L8N5V6TZE5;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				EXECUTABLE_PREFIX = lib;
@@ -8027,7 +8022,6 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
-				ObjectiveC = "";
 				PLATFORM_MODIFIER = macos;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
@@ -8038,8 +8032,6 @@
 		9A68A41F25114352008DABD2 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = L8N5V6TZE5;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				EXECUTABLE_PREFIX = lib;
@@ -8047,7 +8039,6 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
-				ObjectiveC = "";
 				PLATFORM_MODIFIER = macos;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;

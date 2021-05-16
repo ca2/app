@@ -272,3 +272,40 @@ CLASS_DECL_ACME void __tracea(::matter * pmatter, enum_trace_level elevel, const
 
 }
 
+
+string get_status_message(::e_status estatus)
+{
+   
+   if(estatus == ::success)
+   {
+      
+      return "success";
+      
+   }
+   else if(estatus == ::error_failed)
+   {
+    
+      return "error_failed";
+      
+   }
+   else
+   {
+      
+      string str;
+      
+      if(estatus > 0)
+      {
+    
+         str.Format("success status (%" PRId64 ")", (::i64) estatus.m_estatus);
+      
+      }
+      else
+      {
+         
+         str.Format("failure status (%" PRId64 ")", (::i64) estatus.m_estatus);
+         
+      }
+      
+   }
+   
+}

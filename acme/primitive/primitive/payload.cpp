@@ -1067,6 +1067,8 @@ void payload::add_ref()
       case e_type_path:
          m_ppath->add_ref();
          break;
+      default:
+         break;
 
    };
 
@@ -5663,8 +5665,12 @@ bool payload::is_false() const
    case e_type_enum_status:
    case e_type_enum_check:
       return !m_i64;
+   case e_type_color:
+      return !m_color.u32;
+   case e_type_hls:
+      return m_hls.m_dL == 0.0;
    case e_type_last_element:
-         return false;
+      return false;
 
    }
 
@@ -5804,6 +5810,10 @@ bool payload::is_set_false() const
    case e_type_enum_status:
    case e_type_enum_check:
       return !m_i64;
+   case e_type_color:
+      return !m_color.u32;
+   case e_type_hls:
+      return m_hls.m_dL == 0.0;
    case e_type_last_element:
          return false;
 

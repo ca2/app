@@ -117,15 +117,15 @@ namespace windowing
       virtual ::extended::transport < ::windowing::icon > load_icon(const ::payload & payloadFile);
 
 
-      virtual ::e_status term1();
+      ::e_status term1() override;
 
-      virtual ::e_status term2();
+      ::e_status term2() override;
 
       virtual ::windowing::display * display();
 
       virtual size_i32 get_window_minimum_size();
 
-      virtual void kick_idle();
+      void kick_idle() override;
 
       virtual void __wait_timer_or_event(class display * pdisplay);
 

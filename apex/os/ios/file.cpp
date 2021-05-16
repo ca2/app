@@ -8,8 +8,6 @@
 
 #include "framework.h"
 
-char * ns_get_executable_path();
-
 CLASS_DECL_APEX void dll_processes(u32_array & dwa, string_array & straProcesses, const char * pszDll)
 {
    

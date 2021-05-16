@@ -969,7 +969,7 @@ namespace acme
 
       auto path = pathFolder / (strName + ".filememorymap");
 
-      return path;
+      return ::move(path);
 
    }
 

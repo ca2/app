@@ -5,6 +5,9 @@
 bool ns_open_file(const char * );
 
 
+void ns_main_async(dispatch_block_t block);
+
+
 namespace ios
 {
 

@@ -286,7 +286,7 @@ namespace draw2d
 
       virtual ::size_f64 get_size() const;
 
-      virtual ::size_i32 get_image_drawer_size() const;
+      ::size_i32 get_image_drawer_size() const override;
 
 
 

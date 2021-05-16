@@ -108,6 +108,14 @@ CLASS_DECL_ACME string_array get_c_args_from_string(const char* psz);
 CLASS_DECL_ACME string_array get_c_args_from_c(const char* psz);
 CLASS_DECL_ACME string_array get_c_args_for_c(const char* psz);
 CLASS_DECL_ACME string_array get_c_args(int argc, char** argv);
+
+// it was extracted from macOS code base
+// it is prepared for a command line supplied by macOS*1?
+// (*1.macOS:
+//          proc_pidinfo((pid_t) uiPid, PROC_PIDTASKALLINFO, SHOW_ZOMBIES, &info, sizeof(struct proc_taskallinfo));
+// return info.pbsd.pbi_comm;
+// )
+CLASS_DECL_ACME string_array command_arguments_from_command_line(const ::string & strCommandLine);
 //#ifdef WINDOWS_DESKTOP
 //CLASS_DECL_ACME string ca2_command_line(hinstance hinstance);
 //#else

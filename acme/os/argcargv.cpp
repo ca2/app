@@ -235,3 +235,166 @@ string_array get_c_args_from_string(const char * psz)
 
 }
 
+
+
+
+
+
+// it was extracted from macOS code base
+// it is prepared for a command line supplied by macOS*1?
+// (*1.macOS:
+//          proc_pidinfo((pid_t) uiPid, PROC_PIDTASKALLINFO, SHOW_ZOMBIES, &info, sizeof(struct proc_taskallinfo));
+// return info.pbsd.pbi_comm;
+// )
+string_array command_arguments_from_command_line(const ::string & strCommandLine)
+{
+
+   string_array stra;
+
+   string strArg;
+
+   const char * psz = strCommandLine;
+
+   string strChar;
+
+   while(*psz != '\0')
+   {
+
+      strChar = ::str::get_utf8_char(psz);
+
+      if(strChar.is_empty())
+      {
+
+         break;
+
+      }
+
+      psz += strChar.get_length();
+
+      if(strChar == "\"")
+      {
+
+         while(*psz != '\0')
+         {
+
+            strChar = ::str::get_utf8_char(psz);
+
+            if(strChar.is_empty())
+            {
+
+               goto end;
+
+            }
+            else if(strChar == "\"")
+            {
+
+               break;
+
+            }
+
+            psz += strChar.get_length();
+
+
+            if(strChar == "\\")
+            {
+
+               strChar = ::str::get_utf8_char(psz);
+
+               if(strChar.is_empty())
+               {
+
+                  goto end;
+
+               }
+
+               psz += strChar.get_length();
+
+               if(strChar == "n")
+               {
+
+                  strArg += "\n";
+
+               }
+               else
+               {
+
+                  strArg += strChar;
+
+               }
+
+            }
+            else
+            {
+
+               strArg += strChar;
+
+            }
+
+         }
+
+         stra.add(strArg);
+
+         strArg.Empty();
+
+      }
+      else if(strChar == " ")
+      {
+
+         stra.add(strArg);
+
+         strArg.Empty();
+
+      }
+      else if(strChar == "\\")
+      {
+
+         strChar = ::str::get_utf8_char(psz);
+
+         if(strChar.is_empty())
+         {
+
+            goto end;
+
+         }
+
+         psz += strChar.get_length();
+
+         if(strChar == "n")
+         {
+
+            strArg += "\n";
+
+         }
+         else
+         {
+
+            strArg += strChar;
+
+         }
+
+      }
+      else
+      {
+
+         strArg += strChar;
+
+      }
+
+
+   }
+
+end:
+
+   if(strArg.has_char())
+   {
+
+      stra.add(strArg);
+
+   }
+
+   return stra;
+
+}
+
+
+

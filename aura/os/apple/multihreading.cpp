@@ -74,33 +74,33 @@ namespace parallelization
 bool ns_set_thread_name(const char * psz);
 
 
-char * ns_get_thread_name();
-
-
-bool task_set_name(const char * psz)
-{
-   
-   return ns_set_thread_name(psz);
-
-}
-
-string task_get_name()
-{
-   
-   return ::str::from_strdup(ns_get_thread_name());
-   
-}
-
-
-
-CLASS_DECL_AURA void main_branch(::matter* pobjectTask, e_priority epriority)
-{
-
-   ns_main_sync(^()
-   {
-
-      pobjectTask->call();
-
-   });
-
-}
+//char * ns_get_thread_name();
+//
+//
+//bool task_set_name(const char * psz)
+//{
+//   
+//   return ns_set_thread_name(psz);
+//
+//}
+//
+//string task_get_name()
+//{
+//   
+//   return ::str::from_strdup(ns_get_thread_name());
+//   
+//}
+//
+//
+//
+//CLASS_DECL_AURA void main_branch(::matter* pobjectTask, e_priority epriority)
+//{
+//
+//   ns_main_sync(^()
+//   {
+//
+//      pobjectTask->call();
+//
+//   });
+//
+//}

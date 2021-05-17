@@ -4855,8 +4855,6 @@
 		9A68A86025114430008DABD2 /* macos */ = {
 			isa = PBXGroup;
 			children = (
-				9A787C8B264BE479003DF8A0 /* exception_engine.cpp */,
-				9A787C8A264BE478003DF8A0 /* exception_engine.h */,
 				9AAE6E86251920AD00F10692 /* _.cpp */,
 				9A68A89525114430008DABD2 /* _.h */,
 				9A68A87725114430008DABD2 /* _c.h */,
@@ -4871,6 +4869,8 @@
 				9A68A87225114430008DABD2 /* cross_win_gdi.h */,
 				9A68A86125114430008DABD2 /* cross_win.cpp */,
 				9A68A88725114430008DABD2 /* debug.cpp */,
+				9A787C8B264BE479003DF8A0 /* exception_engine.cpp */,
+				9A787C8A264BE478003DF8A0 /* exception_engine.h */,
 				9A68A88225114430008DABD2 /* file.cpp */,
 				9A68A87525114430008DABD2 /* file.h */,
 				9A68A86725114430008DABD2 /* internal.h */,
@@ -4880,11 +4880,11 @@
 				9A68A86225114430008DABD2 /* main.h */,
 				9A68A86925114430008DABD2 /* os.cpp */,
 				9A68A87425114430008DABD2 /* os.h */,
+				9A787E3B264DCADF003DF8A0 /* parallelization.cpp */,
 				9A68A89625114430008DABD2 /* process_c.h */,
+				9A787E40264DD0CE003DF8A0 /* process.cpp */,
 				9A68A89425114430008DABD2 /* time.cpp */,
 				9A68A86625114430008DABD2 /* win_base.cpp */,
-				9A787E3B264DCADF003DF8A0 /* parallelization.cpp */,
-				9A787E40264DD0CE003DF8A0 /* process.cpp */,
 			);
 			path = macos;
 			sourceTree = "<group>";

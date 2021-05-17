@@ -764,7 +764,7 @@ namespace user
       if(pinteraction->create_child(pinteractionParent))
       {
 
-         return pinteraction;
+         return ::move(pinteraction);
 
       }
 

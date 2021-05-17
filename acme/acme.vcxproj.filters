@@ -1010,9 +1010,6 @@
     <ClInclude Include="os\windows\environment_variable.h">
       <Filter>Header Files\os\windows</Filter>
     </ClInclude>
-    <ClInclude Include="os\windows\exception_engine.h">
-      <Filter>Header Files\os\windows</Filter>
-    </ClInclude>
     <ClInclude Include="os\windows\extract_icon.h">
       <Filter>Header Files\os\windows</Filter>
     </ClInclude>
@@ -2729,9 +2726,6 @@
     <ClInclude Include="exception\standard.h">
       <Filter>Header Files\exception</Filter>
     </ClInclude>
-    <ClInclude Include="exception\exception_translator.h">
-      <Filter>Header Files\exception</Filter>
-    </ClInclude>
     <ClInclude Include="exception\status.h">
       <Filter>Header Files\exception</Filter>
     </ClInclude>
@@ -2767,6 +2761,9 @@
     </ClInclude>
     <ClInclude Include="regular_expression\topic.h">
       <Filter>Header Files\regular_expression</Filter>
+    </ClInclude>
+    <ClInclude Include="os\windows\exception_engine.h">
+      <Filter>Header Files\os\windows</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -3913,9 +3910,6 @@
     <ClCompile Include="platform\acme_main_data.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
-    <ClCompile Include="os\windows\exception_engine.cpp">
-      <Filter>Source Files\os\windows</Filter>
-    </ClCompile>
     <ClCompile Include="exception\engine.cpp">
       <Filter>Source Files\exception</Filter>
     </ClCompile>
@@ -3933,6 +3927,9 @@
     </ClCompile>
     <ClCompile Include="os\argcargv.cpp">
       <Filter>Source Files\os</Filter>
+    </ClCompile>
+    <ClCompile Include="os\windows\exception_engine.cpp">
+      <Filter>Source Files\os\windows</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

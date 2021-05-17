@@ -1489,13 +1489,13 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClCompile Include="os\parallelization.cpp" />
     <ClCompile Include="os\time.cpp" />
     <ClCompile Include="os\windowing.cpp" />
-    <ClCompile Include="os\windows\exception_engine.cpp" />
     <ClCompile Include="os\windows\ansi_file.cpp" />
     <ClCompile Include="os\windows\api.cpp" />
     <ClCompile Include="os\windows\application.cpp" />
     <ClCompile Include="os\windows\debug.cpp" />
     <ClCompile Include="os\windows\dir.cpp" />
     <ClCompile Include="os\windows\environment_variable.cpp" />
+    <ClCompile Include="os\windows\exception_engine.cpp" />
     <ClCompile Include="os\windows\extract_icon.cpp" />
     <ClCompile Include="os\windows\file.cpp" />
     <ClCompile Include="os\windows\internal.cpp" />
@@ -1744,7 +1744,6 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClInclude Include="exception\exit.h" />
     <ClInclude Include="exception\result.h" />
     <ClInclude Include="exception\standard.h" />
-    <ClInclude Include="exception\exception_translator.h" />
     <ClInclude Include="exception\status.h" />
     <ClInclude Include="exception\throw.h" />
     <ClInclude Include="exception\trap.h" />

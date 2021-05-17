@@ -3931,6 +3931,9 @@
     <ClCompile Include="exception\translator.cpp">
       <Filter>Source Files\exception</Filter>
     </ClCompile>
+    <ClCompile Include="os\argcargv.cpp">
+      <Filter>Source Files\os</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="primitive\string\aaa_want_to_remove_str.inl">

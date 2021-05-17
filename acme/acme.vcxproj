@@ -1301,6 +1301,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     </ClCompile>
     <ClCompile Include="os\ansios\user.cpp" />
     <ClCompile Include="os\ansios\win.cpp" />
+    <ClCompile Include="os\argcargv.cpp" />
     <ClCompile Include="os\console.cpp" />
     <ClCompile Include="os\cross\windows\aaa_thread_local_storage.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|Win32'">true</ExcludedFromBuild>

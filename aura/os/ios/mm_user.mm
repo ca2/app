@@ -98,15 +98,15 @@ void mm_init_workspace_rect()
    g_rectWorkspace = [[UIScreen mainScreen] bounds];
    
 }
-
-
-CGRect mm_get_workspace_rect()
-{
-   
-   return g_rectWorkspace;
-   
-}
-
+//
+//
+//CGRect mm_get_workspace_rect()
+//{
+//   
+//   return g_rectWorkspace;
+//   
+//}
+//
 
 
 int_bool get_uiwindow_rect(oswindow oswindow, LPRECT lprect)

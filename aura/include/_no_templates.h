@@ -45,7 +45,7 @@ typedef iptr strsize;
 
 //#include "aura/platform/obj_ref_dbg.h"
 //#include "aura/platform/obj_typ_ctr.h"
-#include "aura/const/_const.h"
+//#include "aura/const/_const.h"
 //#include "aura/platform/obj_ref_dbg.h"
 //#include "acme/primitive/primitive/uid.h"
 //#include "acme/primitive/primitive/estatus.h"

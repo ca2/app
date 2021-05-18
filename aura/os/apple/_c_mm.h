@@ -16,8 +16,8 @@
 char * ns_string(NSString * str);
 
 #endif
-
-CGRect mm_get_workspace_rect();
+//
+//CGRect mm_get_workspace_rect();
 
 
 void copy(CGRect * prectTarget, const RECTANGLE_I32 * prectSource);

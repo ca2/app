@@ -206,13 +206,13 @@ bool mm2_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const cha
 
 
 
-
-bool mm1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const char * psz)
-{
-   
-   return mm2_get_file_image(pcr, cx, cy, iScan, psz);
-}
-
+//
+//bool mm1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const char * psz)
+//{
+//   
+//   return mm2_get_file_image(pcr, cx, cy, iScan, psz);
+//}
+//
 
 
 

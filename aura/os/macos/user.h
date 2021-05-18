@@ -9,7 +9,7 @@
 
 #ifdef __OBJC__
 
-#include "mm_oswindow.h"
+//#include "mm_oswindow.h"
 
 #else
 
@@ -20,7 +20,7 @@
 #include "windowing.h"
 
 
-#include "window_impl.h"
+//#include "window_impl.h"
 
 
 i32 axis_main_command_line(const char * pszParams, int argc, char *argv[]);

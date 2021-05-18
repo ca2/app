@@ -1,15 +1,15 @@
 #include "framework.h"
 #include "internal.h"
-#include "oswindow_data.h"
+//#include "oswindow_data.h"
 
 
 #include <Carbon/Carbon.h>
 #include <CoreFoundation/CoreFoundation.h>
-
-
-bool mm1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const char * psz);
-
-bool macos1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const char * psz);
+//
+//
+//bool mm1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const char * psz);
+//
+//bool macos1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const char * psz);
 
 //device_context::device_context()
 //:
@@ -136,11 +136,11 @@ bool macos1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const 
 //   hdc->m_cgcolorrefText = cg_create_color(crText);
 //   return true;
 //}
-
-HBRUSH CreateSolidBrush(color32_t cr)
-{
-   return nullptr;
-}
+//
+//HBRUSH CreateSolidBrush(color32_t cr)
+//{
+//   return nullptr;
+//}
 
 
 
@@ -349,11 +349,11 @@ HBRUSH CreateSolidBrush(color32_t cr)
 //   CGContextFillRect(hdc->m_cgcontext, rectangle);
 //   cg_release_color(color);
 //}
-
-HFONT CreatePointFontIndirect_dup(const LOGFONT* pLogFont, HDC hdcParam);
-
-HFONT CreatePointBoldFont_dup(int nPointSize, const char * pszFaceName, int BOLD, HDC hdc);
-
+//
+//HFONT CreatePointFontIndirect_dup(const LOGFONT* pLogFont, HDC hdcParam);
+//
+//HFONT CreatePointBoldFont_dup(int nPointSize, const char * pszFaceName, int BOLD, HDC hdc);
+//
 
 //HFONT CreatePointFont_dup(int nPointSize, const char * pszFaceName, HDC hdc)
 //
@@ -1106,11 +1106,11 @@ bool mm1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const cha
 //    CGContextFillRect(hdc->m_cgcontext, rectangle);
 //    cg_release_color(color);
 // }
-
-HFONT CreatePointFontIndirect_dup(const LOGFONT* pLogFont, HDC hdcParam);
-
-HFONT CreatePointBoldFont_dup(int nPointSize, const char * pszFaceName, int BOLD, HDC hdc);
-
+//
+//HFONT CreatePointFontIndirect_dup(const LOGFONT* pLogFont, HDC hdcParam);
+//
+//HFONT CreatePointBoldFont_dup(int nPointSize, const char * pszFaceName, int BOLD, HDC hdc);
+//
 
 //HFONT CreatePointFont_dup(int nPointSize, const char * pszFaceName, HDC hdc)
 
@@ -1139,47 +1139,47 @@ HFONT CreatePointBoldFont_dup(int nPointSize, const char * pszFaceName, int BOLD
 //
 //}
 
-
-
-bool macos1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const char * psz)
-{
-
-   static ::mutex * pmutex = nullptr;
-
-   if(pmutex == nullptr)
-   {
-
-      pmutex = new ::mutex();
-
-   }
-
-   synchronous_lock synchronouslock(pmutex);
-
-
-   return mm1_get_file_image(pcr, cx, cy, iScan, psz);
-
-
-}
-
-
-
-
-bool macos_get_file_image(::image * pimage, const char * psz)
-{
-
-   pimage->map();
-
-   if(!macos1_get_file_image(pimage->get_data(), pimage->width(), pimage->height(), pimage->scan_size(), psz))
-   {
-
-      return false;
-
-   }
-
-   return true;
-
-}
-
+//
+//
+//bool macos1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const char * psz)
+//{
+//
+//   static ::mutex * pmutex = nullptr;
+//
+//   if(pmutex == nullptr)
+//   {
+//
+//      pmutex = new ::mutex();
+//
+//   }
+//
+//   synchronous_lock synchronouslock(pmutex);
+//
+//
+//   return mm1_get_file_image(pcr, cx, cy, iScan, psz);
+//
+//
+//}
+//
+//
+//
+//
+//bool macos_get_file_image(::image * pimage, const char * psz)
+//{
+//
+//   pimage->map();
+//
+//   if(!macos1_get_file_image(pimage->get_data(), pimage->width(), pimage->height(), pimage->scan_size(), psz))
+//   {
+//
+//      return false;
+//
+//   }
+//
+//   return true;
+//
+//}
+//
 
 
 
@@ -1202,47 +1202,47 @@ void os_term_imaging()
 }
 
 
-
-int_bool get_window_rect(oswindow hwnd, RECTANGLE_I32 * prectangle)
-
-{
-   /* XWindowAttributes attrs;
-    Fill attribute structure with information about root window */
-   /*   if(XGetWindowAttributes(XOpenDisplay(nullptr), hwnd, &attrs) == 0)
-    {
-    return false;
-    }
-    prectangle->left      = attrs.x;
-    
-    prectangle->top       = attrs.y;
-    
-    prectangle->right     = prectangle->left    + attrs.width;
-    
-    prectangle->bottom    = prectangle->top     + attrs.height;*/
-   
-   
-   //if(!hwnd->m_bNsWindowRect)
-   {
-      
-      get_nswindow_rect(hwnd, &hwnd->m_rectNsWindow);
-      
-      // hwnd->m_bNsWindowRect = true;
-      
-   }
-   
-   *prectangle = hwnd->m_rectNsWindow;
-   
-   
-   
-   //::copy(prectangle, hwnd->m_pimpl->m_rectParentClient);
-   
-   
-   return true;
-   
-   
-   
-}
-
+//
+//int_bool get_window_rect(oswindow hwnd, RECTANGLE_I32 * prectangle)
+//
+//{
+//   /* XWindowAttributes attrs;
+//    Fill attribute structure with information about root window */
+//   /*   if(XGetWindowAttributes(XOpenDisplay(nullptr), hwnd, &attrs) == 0)
+//    {
+//    return false;
+//    }
+//    prectangle->left      = attrs.x;
+//
+//    prectangle->top       = attrs.y;
+//
+//    prectangle->right     = prectangle->left    + attrs.width;
+//
+//    prectangle->bottom    = prectangle->top     + attrs.height;*/
+//
+//
+//   //if(!hwnd->m_bNsWindowRect)
+//   {
+//
+//      get_nswindow_rect(hwnd, &hwnd->m_rectNsWindow);
+//
+//      // hwnd->m_bNsWindowRect = true;
+//
+//   }
+//
+//   *prectangle = hwnd->m_rectNsWindow;
+//
+//
+//
+//   //::copy(prectangle, hwnd->m_pimpl->m_rectParentClient);
+//
+//
+//   return true;
+//
+//
+//
+//}
+//
 
 
 
@@ -1346,41 +1346,41 @@ void * cg_image_get_image_data(int & width, int & height, int & iScan, CGImageRe
 //
 //
 
+//
+//namespace draw2d
+//{
+//
+//
+//   void draw2d::enum_draw2d_fonts(::write_text::font_enum_item_array& itema)
+//   {
+//
+//
+//   }
+//
+//
+//} // namespace draw2d
 
-namespace draw2d
-{
-
-
-   void draw2d::enum_draw2d_fonts(::write_text::font_enum_item_array& itema)
-   {
-
-
-   }
-
-
-} // namespace draw2d
-
-void * nscursor_system(e_cursor ecursor);
-int os_window_set_mouse_cursor(void *, void * p);
+//void * nscursor_system(e_cursor ecursor);
+//int os_window_set_mouse_cursor(void *, void * p);
 
 namespace aura
 {
 
 
-   HCURSOR application::load_default_cursor(e_cursor ecursor)
-   {
-      
-      return nscursor_system(ecursor);
-      
-   }
-
-   
-   int_bool application::window_set_mouse_cursor(oswindow window, HCURSOR hcursor)
-   {
-
-      return os_window_set_mouse_cursor(window, hcursor);
-
-   }
+//   HCURSOR application::load_default_cursor(e_cursor ecursor)
+//   {
+//      
+//      return nscursor_system(ecursor);
+//
+//   }
+//
+//
+//   int_bool application::window_set_mouse_cursor(oswindow window, HCURSOR hcursor)
+//   {
+//
+//      return os_window_set_mouse_cursor(window, hcursor);
+//
+//   }
 
 
 } // namespace aura

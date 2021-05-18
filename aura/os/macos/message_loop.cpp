@@ -6,12 +6,12 @@
 //
 #include "framework.h"
 #include "acme/parallelization/message_queue.h"
-
-
-int_bool post_message(oswindow oswindow, const ::id & id, wparam wparam, lparam lparam)
-{
-
-   return message_queue_post(oswindow, message, wparam, lparam);
-
-}
-
+//
+//
+//int_bool post_message(oswindow oswindow, const ::id & id, wparam wparam, lparam lparam)
+//{
+//
+//   return message_queue_post(oswindow, id, wparam, lparam);
+//
+//}
+//

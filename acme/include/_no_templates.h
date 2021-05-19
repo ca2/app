@@ -14,6 +14,10 @@
 #include "__/__inttypes.h"
 #include "_aura_type.h"
 
+#ifndef CLASS_DECL_ACME
+#define CLASS_DECL_ACME
+#endif // CLASS_DECL_ACME
+
 
 #include "operating_system/system.h"
 #include "operating_system/types.h"

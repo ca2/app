@@ -510,8 +510,7 @@ public:
    void reserve(strsize res_arg = 0);
 
    // Delete 'nCount' characters, starting at index 'iIndex'
-   strsize Delete(strsize iIndex, strsize nCount = 1);
-   strsize erase(strsize iIndex, strsize nCount = 1);
+   string_base & erase(strsize iIndex = 0, strsize nCount = -1);
 
    //string_base& erase(strsize start = 0, strsize count = -1);
 
@@ -594,7 +593,7 @@ public:
    string_base& replace(strsize iStart, strsize nCount, const CHAR_TYPE* psz, strsize nLen);
 
    // erase all occurrences of character 'chRemove'
-   strsize erase(CHAR_TYPE chRemove);
+   strsize erase_character(CHAR_TYPE chRemove);
 
    template < pointer_castable < TYPE_CHAR > PCHAR >
    string_base Tokenize(PCHAR pszTokens, strsize& iStart) const;

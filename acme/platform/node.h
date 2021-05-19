@@ -324,7 +324,7 @@ namespace acme
 
       virtual void shared_library_process(dword_array& dwa, string_array& straProcesses, const char* pszLibrary);
 
-      virtual int_bool is_process_running(::u32 pid);
+      virtual bool is_process_running(::u32 pid);
       
       virtual string get_environment_variable(const char* pszEnvironmentVariable);
       

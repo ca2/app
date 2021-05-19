@@ -8,30 +8,30 @@
 #include "framework.h"
 
 
-namespace user
-{
+// namespace user
+// {
 
 
-   bool is_dark_mode();
+//    bool is_dark_mode();
 
 
-//   bool is_app_dark_mode()
-//   {
-//   
-//      return is_dark_mode();
-//   
-//   }
-//
-//
-//   bool is_system_dark_mode()
-//   {
-//
-//      return is_dark_mode();
-//
-//   }
+// //   bool is_app_dark_mode()
+// //   {
+// //   
+// //      return is_dark_mode();
+// //   
+// //   }
+// //
+// //
+// //   bool is_system_dark_mode()
+// //   {
+// //
+// //      return is_dark_mode();
+// //
+// //   }
 
 
-} // namespace user
+// } // namespace user
 
 
 

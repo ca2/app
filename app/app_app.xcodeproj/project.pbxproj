@@ -199,6 +199,69 @@
 			remoteGlobalIDString = 9A2818FD25242488009FA9CB;
 			remoteInfo = aqua;
 		};
+		9AC2CF402653DA0100CC8096 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A7ECB662651A60A00D5BA45 /* apex_macos.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9A0C1694264A2AA700B5CC33;
+			remoteInfo = apex_macos;
+		};
+		9AC2CF5C2653DA4800CC8096 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9AC2CF542653DA4800CC8096 /* aura_macos.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A1CFD778154F5EAA007447E2;
+			remoteInfo = acme_macos;
+		};
+		9AC2CF5E2653DA4800CC8096 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9AC2CF542653DA4800CC8096 /* aura_macos.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 07B657B8190F3CBF002DAADE;
+			remoteInfo = ios_music_midi_core_audio;
+		};
+		9AC2CF602653DA4800CC8096 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9AC2CF542653DA4800CC8096 /* aura_macos.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 07B657C7190F3CBF002DAADE;
+			remoteInfo = music_midi_core_audio_iosTests;
+		};
+		9AC2CF9D2653DA7700CC8096 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9AC2CF992653DA7700CC8096 /* aura_apple.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9A15A5AC264B54430080670E;
+			remoteInfo = aura_apple;
+		};
+		9AC2CFA62653DA8D00CC8096 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9AC2CF9F2653DA8D00CC8096 /* aura_posix.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A1CFD778154F5EAA007447E2;
+			remoteInfo = acme_posix;
+		};
+		9AC2CFA82653DA8D00CC8096 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9AC2CF9F2653DA8D00CC8096 /* aura_posix.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 07B657B8190F3CBF002DAADE;
+			remoteInfo = ios_acme_posix;
+		};
+		9AC2CFAA2653DA8D00CC8096 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9AC2CF9F2653DA8D00CC8096 /* aura_posix.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 07B657C7190F3CBF002DAADE;
+			remoteInfo = music_midi_core_audio_iosTests;
+		};
+		9AC2D05B2653EE0B00CC8096 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A7ECB2D2651A5DE00D5BA45 /* draw2d_quartz2d.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = A1CFD777154F5EAA007447E2;
+			remoteInfo = draw2d_quartz2d;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -246,6 +309,9 @@
 		9A8FCA812651A7DC00C0D8A1 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		9A8FCA822651A7DC00C0D8A1 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		9A8FCA832651A7DC00C0D8A1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9AC2CF542653DA4800CC8096 /* aura_macos.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = aura_macos.xcodeproj; path = "../../../archive/platform-macos/aura_macos/aura_macos.xcodeproj"; sourceTree = "<group>"; };
+		9AC2CF992653DA7700CC8096 /* aura_apple.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = aura_apple.xcodeproj; path = "../../../archive/platform-apple/aura_apple/aura_apple.xcodeproj"; sourceTree = "<group>"; };
+		9AC2CF9F2653DA8D00CC8096 /* aura_posix.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = aura_posix.xcodeproj; path = "../../../archive/platform-posix/aura_posix/aura_posix.xcodeproj"; sourceTree = "<group>"; };
 		9AE5CC8E22CBECAE00EDEAD1 /* en.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; path = en.lproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -282,6 +348,9 @@
 				9A7ECB0F2651A5B900D5BA45 /* app_app_app.xcodeproj */,
 				9A7ECB602651A60A00D5BA45 /* aqua.xcodeproj */,
 				9A8FC8F02651A6AD00C0D8A1 /* aura.xcodeproj */,
+				9AC2CF9F2653DA8D00CC8096 /* aura_posix.xcodeproj */,
+				9AC2CF992653DA7700CC8096 /* aura_apple.xcodeproj */,
+				9AC2CF542653DA4800CC8096 /* aura_macos.xcodeproj */,
 				9A7ECB2D2651A5DE00D5BA45 /* draw2d_quartz2d.xcodeproj */,
 				9A7ECB722651A60B00D5BA45 /* idn.xcodeproj */,
 				9A8FCA7E2651A7DC00C0D8A1 /* macos */,
@@ -430,6 +499,34 @@
 			path = macos;
 			sourceTree = "<group>";
 		};
+		9AC2CF552653DA4800CC8096 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9AC2CF5D2653DA4800CC8096 /* libacme_macos.dylib */,
+				9AC2CF5F2653DA4800CC8096 /* libios_music_midi_core_audio.a */,
+				9AC2CF612653DA4800CC8096 /* music_midi_core_audio_iosTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9AC2CF9A2653DA7700CC8096 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9AC2CF9E2653DA7700CC8096 /* libaura_apple.dylib */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9AC2CFA02653DA8D00CC8096 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9AC2CFA72653DA8D00CC8096 /* libacme_posix.dylib */,
+				9AC2CFA92653DA8D00CC8096 /* libios_acme_posix.a */,
+				9AC2CFAB2653DA8D00CC8096 /* music_midi_core_audio_iosTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		9ADF1D2922C16DBB00456537 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -460,6 +557,8 @@
 			buildRules = (
 			);
 			dependencies = (
+				9AC2D05C2653EE0B00CC8096 /* PBXTargetDependency */,
+				9AC2CF412653DA0100CC8096 /* PBXTargetDependency */,
 				9A8FCD5D2651AB4000C0D8A1 /* PBXTargetDependency */,
 				9A8FCD5F2651AB4000C0D8A1 /* PBXTargetDependency */,
 				9A8FCD612651AB4000C0D8A1 /* PBXTargetDependency */,
@@ -563,6 +662,18 @@
 				{
 					ProductGroup = 9A8FC8F12651A6AD00C0D8A1 /* Products */;
 					ProjectRef = 9A8FC8F02651A6AD00C0D8A1 /* aura.xcodeproj */;
+				},
+				{
+					ProductGroup = 9AC2CF9A2653DA7700CC8096 /* Products */;
+					ProjectRef = 9AC2CF992653DA7700CC8096 /* aura_apple.xcodeproj */;
+				},
+				{
+					ProductGroup = 9AC2CF552653DA4800CC8096 /* Products */;
+					ProjectRef = 9AC2CF542653DA4800CC8096 /* aura_macos.xcodeproj */;
+				},
+				{
+					ProductGroup = 9AC2CFA02653DA8D00CC8096 /* Products */;
+					ProjectRef = 9AC2CF9F2653DA8D00CC8096 /* aura_posix.xcodeproj */;
 				},
 				{
 					ProductGroup = 9A7ECB2E2651A5DE00D5BA45 /* Products */;
@@ -722,6 +833,55 @@
 			remoteRef = 9A8FC9062651A6AE00C0D8A1 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		9AC2CF5D2653DA4800CC8096 /* libacme_macos.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libacme_macos.dylib;
+			remoteRef = 9AC2CF5C2653DA4800CC8096 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9AC2CF5F2653DA4800CC8096 /* libios_music_midi_core_audio.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libios_music_midi_core_audio.a;
+			remoteRef = 9AC2CF5E2653DA4800CC8096 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9AC2CF612653DA4800CC8096 /* music_midi_core_audio_iosTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = music_midi_core_audio_iosTests.xctest;
+			remoteRef = 9AC2CF602653DA4800CC8096 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9AC2CF9E2653DA7700CC8096 /* libaura_apple.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libaura_apple.dylib;
+			remoteRef = 9AC2CF9D2653DA7700CC8096 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9AC2CFA72653DA8D00CC8096 /* libacme_posix.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libacme_posix.dylib;
+			remoteRef = 9AC2CFA62653DA8D00CC8096 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9AC2CFA92653DA8D00CC8096 /* libios_acme_posix.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libios_acme_posix.a;
+			remoteRef = 9AC2CFA82653DA8D00CC8096 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9AC2CFAB2653DA8D00CC8096 /* music_midi_core_audio_iosTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = music_midi_core_audio_iosTests.xctest;
+			remoteRef = 9AC2CFAA2653DA8D00CC8096 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
@@ -784,6 +944,16 @@
 			isa = PBXTargetDependency;
 			name = aqua;
 			targetProxy = 9A8FCD622651AB4000C0D8A1 /* PBXContainerItemProxy */;
+		};
+		9AC2CF412653DA0100CC8096 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = apex_macos;
+			targetProxy = 9AC2CF402653DA0100CC8096 /* PBXContainerItemProxy */;
+		};
+		9AC2D05C2653EE0B00CC8096 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = draw2d_quartz2d;
+			targetProxy = 9AC2D05B2653EE0B00CC8096 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

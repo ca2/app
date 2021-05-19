@@ -19,123 +19,123 @@ namespace user
       switch(vkcode)
       {
             case kVK_ANSI_0:
-               return key_0;
+               return ::user::e_key_0;
             case kVK_ANSI_1:
-               return key_1;
+               return ::user::e_key_1;
             case kVK_ANSI_2:
-               return key_2;
+               return ::user::e_key_2;
             case kVK_ANSI_3:
-               return key_3;
+               return ::user::e_key_3;
             case kVK_ANSI_4:
-               return key_4;
+               return ::user::e_key_4;
             case kVK_ANSI_5:
-               return key_5;
+               return ::user::e_key_5;
             case kVK_ANSI_6:
-               return key_6;
+               return ::user::e_key_6;
             case kVK_ANSI_7:
-               return key_7;
+               return ::user::e_key_7;
             case kVK_ANSI_8:
-               return key_8;
+               return ::user::e_key_8;
             case kVK_ANSI_9:
-               return key_9;
+               return ::user::e_key_9;
             case kVK_ANSI_A:
-               return key_a;
+               return ::user::e_key_a;
             case kVK_ANSI_B:
-               return key_b;
+               return ::user::e_key_b;
             case kVK_ANSI_C:
-               return key_c;
+               return ::user::e_key_c;
             case kVK_ANSI_D:
-               return key_d;
+               return ::user::e_key_d;
             case kVK_ANSI_E:
-               return key_e;
+               return ::user::e_key_e;
             case kVK_ANSI_F:
-               return key_f;
+               return ::user::e_key_f;
             case kVK_ANSI_G:
-               return key_g;
+               return ::user::e_key_g;
             case kVK_ANSI_H:
-               return key_h;
+               return ::user::e_key_h;
             case kVK_ANSI_I:
-               return key_i;
+               return ::user::e_key_i;
             case kVK_ANSI_J:
-               return key_j;
+               return ::user::e_key_j;
             case kVK_ANSI_K:
-               return key_k;
+               return ::user::e_key_k;
             case kVK_ANSI_L:
-               return key_l;
+               return ::user::e_key_l;
             case kVK_ANSI_M:
-               return key_m;
+               return ::user::e_key_m;
             case kVK_ANSI_N:
-               return key_n;
+               return ::user::e_key_n;
             case kVK_ANSI_O:
-               return key_o;
+               return ::user::e_key_o;
             case kVK_ANSI_P:
-               return key_p;
+               return ::user::e_key_p;
             case kVK_ANSI_Q:
-               return key_q;
+               return ::user::e_key_q;
             case kVK_ANSI_R:
-               return key_r;
+               return ::user::e_key_r;
             case kVK_ANSI_S:
-               return key_s;
+               return ::user::e_key_s;
             case kVK_ANSI_T:
-               return key_t;
+               return ::user::e_key_t;
             case kVK_ANSI_U:
-               return key_u;
+               return ::user::e_key_u;
             case kVK_ANSI_V:
-               return key_v;
+               return ::user::e_key_v;
             case kVK_ANSI_W:
-               return key_w;
+               return ::user::e_key_w;
             case kVK_ANSI_X:
-               return key_x;
+               return ::user::e_key_x;
             case kVK_ANSI_Y:
-               return key_y;
+               return ::user::e_key_y;
             case kVK_ANSI_Z:
-               return key_z;
+               return ::user::e_key_z;
 
       case kVK_Delete:
-         return key_back;
+         return ::user::e_key_back;
       case kVK_Shift:
-         return key_lshift;
+         return ::user::e_key_lshift;
       case kVK_RightShift:
-         return key_rshift;
+         return ::user::e_key_rshift;
       case kVK_Control:
-         return key_lcontrol;
+         return ::user::e_key_lcontrol;
       case kVK_RightControl:
-         return key_rcontrol;
+         return ::user::e_key_rcontrol;
       case kVK_Option:
-         return key_lalt;
+         return ::user::e_key_lalt;
       case kVK_RightOption:
-         return key_ralt;
+         return ::user::e_key_ralt;
       case kVK_ForwardDelete:
-         return key_delete;
+         return ::user::e_key_delete;
       case kVK_Return:
-         return key_return;
+         return ::user::e_key_return;
       case kVK_Tab:
-         return key_tab;
+         return ::user::e_key_tab;
       case kVK_LeftArrow:
-         return key_left;
+         return ::user::e_key_left;
       case kVK_RightArrow:
-         return key_right;
+         return ::user::e_key_right;
       case kVK_UpArrow:
-         return key_up;
+         return ::user::e_key_up;
       case kVK_DownArrow:
-         return key_down;
+         return ::user::e_key_down;
       case kVK_PageUp:
-         return key_prior;
+         return ::user::e_key_prior;
       case kVK_PageDown:
-         return key_next;
+         return ::user::e_key_next;
       case kVK_Home:
-         return key_home;
+         return ::user::e_key_home;
       case kVK_End:
-         return key_end;
+         return ::user::e_key_end;
       case kVK_Command:
-         return key_lcommand;
+         return ::user::e_key_lcommand;
       case kVK_RightCommand:
-         return key_rcommand;
+         return ::user::e_key_rcommand;
 
 
       }
 
-      return key_none;
+      return ::user::e_key_none;
 
    }
 

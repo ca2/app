@@ -876,7 +876,7 @@ bool string_base < TYPE_CHAR >::contains_wci(const string_base < TYPE_CHAR >& st
 
 
 template < typename TYPE_CHAR >
-strsize string_base < TYPE_CHAR >::Delete(strsize iIndex, strsize nCount)
+string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::erase(strsize iIndex, strsize nCount)
 {
 
    strsize nLength = get_length();
@@ -905,7 +905,7 @@ strsize string_base < TYPE_CHAR >::Delete(strsize iIndex, strsize nCount)
    if (nCount < 0)
    {
 
-      return get_length();
+      return *this;
 
    }
 
@@ -931,7 +931,7 @@ strsize string_base < TYPE_CHAR >::Delete(strsize iIndex, strsize nCount)
 
    }
 
-   return get_length();
+   return *this;
 
 }
 
@@ -1379,7 +1379,7 @@ string_base < TYPE_CHAR >& string_base < TYPE_CHAR >::replace(strsize iStart, st
 
 
 template < typename TYPE_CHAR >
-strsize string_base < TYPE_CHAR >::erase(CHAR_TYPE chRemove)
+strsize string_base < TYPE_CHAR >::erase_character(CHAR_TYPE chRemove)
 {
 
    strsize nLength = get_length();
@@ -4626,13 +4626,13 @@ inline string_base < TYPE_CHAR >  string_base < TYPE_CHAR > ::unichar_mid(strsiz
 }
 
 
-template < typename TYPE_CHAR >
-inline strsize string_base < TYPE_CHAR > ::erase(strsize iIndex, strsize nCount)
-{
-
-   return Delete(iIndex, nCount);
-
-}
+//template < typename TYPE_CHAR >
+//inline strsize string_base < TYPE_CHAR > ::erase(strsize iIndex, strsize nCount)
+//{
+//
+//   return Delete(iIndex, nCount);
+//
+//}
 
 
 template < typename TYPE_CHAR >

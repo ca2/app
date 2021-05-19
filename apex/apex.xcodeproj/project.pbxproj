@@ -653,6 +653,14 @@
 		9AC2CB4726533B3800CC8096 /* primitive.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AC2CB4226533B3800CC8096 /* primitive.cpp */; };
 		9AC2CB4826533B3800CC8096 /* notify_icon_bridge.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC2CB4326533B3800CC8096 /* notify_icon_bridge.h */; };
 		9AC2CB4926533B3800CC8096 /* notify_icon_bridge.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC2CB4326533B3800CC8096 /* notify_icon_bridge.h */; };
+		9AC2D1F72654452600CC8096 /* menu_shared_command.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC2D1F52654452500CC8096 /* menu_shared_command.h */; };
+		9AC2D1F82654452600CC8096 /* menu_shared_command.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC2D1F52654452500CC8096 /* menu_shared_command.h */; };
+		9AC2D1F92654452600CC8096 /* menu_shared.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC2D1F62654452600CC8096 /* menu_shared.h */; };
+		9AC2D1FA2654452600CC8096 /* menu_shared.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC2D1F62654452600CC8096 /* menu_shared.h */; };
+		9AC2D1FD2654454E00CC8096 /* menu_shared_commnand.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AC2D1FB2654454E00CC8096 /* menu_shared_commnand.cpp */; };
+		9AC2D1FE2654454E00CC8096 /* menu_shared_commnand.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AC2D1FB2654454E00CC8096 /* menu_shared_commnand.cpp */; };
+		9AC2D1FF2654454E00CC8096 /* menu_shared.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AC2D1FC2654454E00CC8096 /* menu_shared.cpp */; };
+		9AC2D2002654454E00CC8096 /* menu_shared.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AC2D1FC2654454E00CC8096 /* menu_shared.cpp */; };
 		9ACC5D99251A9698008528B1 /* application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A68BA2D2511444C008DABD2 /* application.cpp */; };
 		9ACC5D9A251A9698008528B1 /* dir_context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A68BA372511444C008DABD2 /* dir_context.cpp */; };
 		9ACC5D9B251A9698008528B1 /* dir_system.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A68BA012511444C008DABD2 /* dir_system.cpp */; };
@@ -1934,6 +1942,10 @@
 		9AC2CB4026533B3800CC8096 /* primitive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = primitive.h; sourceTree = "<group>"; };
 		9AC2CB4226533B3800CC8096 /* primitive.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = primitive.cpp; sourceTree = "<group>"; };
 		9AC2CB4326533B3800CC8096 /* notify_icon_bridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = notify_icon_bridge.h; sourceTree = "<group>"; };
+		9AC2D1F52654452500CC8096 /* menu_shared_command.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = menu_shared_command.h; sourceTree = "<group>"; };
+		9AC2D1F62654452600CC8096 /* menu_shared.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = menu_shared.h; sourceTree = "<group>"; };
+		9AC2D1FB2654454E00CC8096 /* menu_shared_commnand.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = menu_shared_commnand.cpp; sourceTree = "<group>"; };
+		9AC2D1FC2654454E00CC8096 /* menu_shared.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = menu_shared.cpp; sourceTree = "<group>"; };
 		9AD199972512650A00B4C44A /* windows_thread.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = windows_thread.h; sourceTree = "<group>"; };
 		9AD1999A25126DAC00B4C44A /* context.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = context.cpp; sourceTree = "<group>"; };
 		9AD1999B25126DAC00B4C44A /* context.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = context.h; sourceTree = "<group>"; };
@@ -2531,6 +2543,10 @@
 				9A68B6B42511444B008DABD2 /* language_map.h */,
 				9A68B6BA2511444B008DABD2 /* language.cpp */,
 				9A68B6B82511444B008DABD2 /* language.h */,
+				9AC2D1F52654452500CC8096 /* menu_shared_command.h */,
+				9AC2D1FB2654454E00CC8096 /* menu_shared_commnand.cpp */,
+				9AC2D1FC2654454E00CC8096 /* menu_shared.cpp */,
+				9AC2D1F62654452600CC8096 /* menu_shared.h */,
 				9AC2CB4326533B3800CC8096 /* notify_icon_bridge.h */,
 				9AC2CB4226533B3800CC8096 /* primitive.cpp */,
 				9AC2CB4026533B3800CC8096 /* primitive.h */,
@@ -3222,6 +3238,7 @@
 				9A68BE0E2511444F008DABD2 /* application_common.h in Headers */,
 				9A68BE042511444F008DABD2 /* console_common.h in Headers */,
 				9A68BF1425114450008DABD2 /* apex.h in Headers */,
+				9AC2D1F72654452600CC8096 /* menu_shared_command.h in Headers */,
 				9A78633A264B937F003DF8A0 /* _impl.h in Headers */,
 				9A68BBAA2511444E008DABD2 /* socket_id_list.h in Headers */,
 				9A68BB872511444E008DABD2 /* client_context_map.h in Headers */,
@@ -3465,6 +3482,7 @@
 				9A68BED82511444F008DABD2 /* _c.h in Headers */,
 				9A68BF9F25114450008DABD2 /* graphics.h in Headers */,
 				9A68C08625114450008DABD2 /* implementation.h in Headers */,
+				9AC2D1F92654452600CC8096 /* menu_shared.h in Headers */,
 				9A787D71264C960F003DF8A0 /* _impl.h in Headers */,
 				9A68C07A25114450008DABD2 /* RoundCaretView.h in Headers */,
 				9A68BE0C2511444F008DABD2 /* android.h in Headers */,
@@ -3696,6 +3714,7 @@
 				9AD693AF251A754800C0EBD7 /* international.h in Headers */,
 				9AD693B0251A754800C0EBD7 /* _.h in Headers */,
 				9AD693B1251A754800C0EBD7 /* _impl.h in Headers */,
+				9AC2D1F82654452600CC8096 /* menu_shared_command.h in Headers */,
 				9AD693B2251A754800C0EBD7 /* _c.h in Headers */,
 				9AD693B4251A754800C0EBD7 /* data.h in Headers */,
 				9AD693B5251A754800C0EBD7 /* launcher.h in Headers */,
@@ -3733,6 +3752,7 @@
 				9AD693DD251A754800C0EBD7 /* library_object_allocator.h in Headers */,
 				9AD693DF251A754800C0EBD7 /* ios.h in Headers */,
 				9AD693E0251A754800C0EBD7 /* status.h in Headers */,
+				9AC2D1FA2654452600CC8096 /* menu_shared.h in Headers */,
 				9AD693E1251A754800C0EBD7 /* os_history.h in Headers */,
 				9AD693E2251A754800C0EBD7 /* _macos.h in Headers */,
 				9AD693E3251A754800C0EBD7 /* transfer_socket.h in Headers */,
@@ -4156,6 +4176,7 @@
 				9A787DF0264CA9F2003DF8A0 /* command.cpp in Sources */,
 				9AC2CB4626533B3800CC8096 /* primitive.cpp in Sources */,
 				9A68BCDF2511444E008DABD2 /* net.cpp in Sources */,
+				9AC2D1FF2654454E00CC8096 /* menu_shared.cpp in Sources */,
 				9A68BB912511444E008DABD2 /* sync_socket_handler.cpp in Sources */,
 				9A68BBC02511444E008DABD2 /* put_socket.cpp in Sources */,
 				9A68BD122511444E008DABD2 /* simple_log.cpp in Sources */,
@@ -4177,6 +4198,7 @@
 				9A4E5D742519423600CC6817 /* application_system_run.cpp in Sources */,
 				9A68BD7A2511444F008DABD2 /* receiver.cpp in Sources */,
 				9A68BB4F2511444D008DABD2 /* key.cpp in Sources */,
+				9AC2D1FD2654454E00CC8096 /* menu_shared_commnand.cpp in Sources */,
 				9A68BE3B2511444F008DABD2 /* graphics.cpp in Sources */,
 				9A68BB9F2511444E008DABD2 /* stream_socket.cpp in Sources */,
 				9A68BE522511444F008DABD2 /* thread.cpp in Sources */,
@@ -4210,6 +4232,7 @@
 				9AD69498251A754800C0EBD7 /* simple_app.cpp in Sources */,
 				9AD69499251A754800C0EBD7 /* event_change.cpp in Sources */,
 				9AD6949A251A754800C0EBD7 /* multihreading.cpp in Sources */,
+				9AC2D2002654454E00CC8096 /* menu_shared.cpp in Sources */,
 				9AD6949B251A754800C0EBD7 /* os.cpp in Sources */,
 				9AD6949D251A754800C0EBD7 /* context.cpp in Sources */,
 				9AD6949E251A754800C0EBD7 /* application.cpp in Sources */,
@@ -4370,6 +4393,7 @@
 				9AD6956E251A754800C0EBD7 /* os_history.cpp in Sources */,
 				9AD6956F251A754800C0EBD7 /* email_address.cpp in Sources */,
 				9AD69571251A754800C0EBD7 /* framework.cpp in Sources */,
+				9AC2D1FE2654454E00CC8096 /* menu_shared_commnand.cpp in Sources */,
 				9AD69573251A754800C0EBD7 /* form.cpp in Sources */,
 				9AD69574251A754800C0EBD7 /* _strconv.cpp in Sources */,
 				9AD69575251A754800C0EBD7 /* file_watcher.cpp in Sources */,
@@ -4478,7 +4502,6 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEPLOYMENT_POSTPROCESSING = YES;
-				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				EXECUTABLE_EXTENSION = dylib;

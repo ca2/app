@@ -27,7 +27,7 @@
 
 #ifdef MACOS
 
-#include "acme/os/macos/_mm.h"
+#include "_no_templates.h"
 
 #else
 

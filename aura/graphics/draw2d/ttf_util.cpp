@@ -123,7 +123,9 @@ string ttf_util::GetFontNameFromFile(::file::path lpszFilePath)
          {
             ttRecord.uStringLength = SWAPWORD(ttRecord.uStringLength);
             ttRecord.uStringOffset = SWAPWORD(ttRecord.uStringOffset);
-            int nPos = f->get_position();
+            
+            auto nPos = f->get_position();
+            
             f->seek(tblDir.uOffset + ttRecord.uStringOffset + ttNTHeader.uStorageOffset, ::file::seek_begin);
 
             //bug fix: see the post by SimonSays to read more about it

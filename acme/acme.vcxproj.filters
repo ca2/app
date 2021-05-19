@@ -2765,6 +2765,9 @@
     <ClInclude Include="os\windows\exception_engine.h">
       <Filter>Header Files\os\windows</Filter>
     </ClInclude>
+    <ClInclude Include="const\activate.h">
+      <Filter>Header Files\const</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="primitive\primitive\application_bias.cpp">

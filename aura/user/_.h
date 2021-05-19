@@ -112,6 +112,8 @@ CLASS_DECL_AURA ::user::primitive* __user_primitive(::windowing::window * pwindo
 
 #include "key.h"
 
+#include "acme/const/activate.h"
+
 #include "aura/message/user.h"
 
 

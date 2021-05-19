@@ -1,5 +1,7 @@
 #include "framework.h"
 #include "menu_item.h"
+#include "aura/user/menu_command.h"
+#include "apex/user/menu_shared.h"
 #include "menu_command.h"
 #include "menu.h"
 

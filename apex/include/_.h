@@ -3,7 +3,7 @@
 //   
 //    
 //        ------------------ - --/ ------------------------ - ----/ -------------------------------------- - --
-//        DOMAS_16-09-0.1989 > ThomasBS_ / ------ - ---/ aura.dll Release(Win32) / aura.lib Static Release(Win32)   oe      helloaura.exe     Static     Release(Win32)   ----   -    -- <3Thomas Boregaard SoerensenCamilo SasukeThomas Boregaard Soerensen!!
+//        DOMAS_16-1109-0.1989 > ThomasBS_ / ------ - ---/ aura.dll Release(Win32) / aura.lib Static Release(Win32)   oe      helloaura.exe     Static     Release(Win32)   ----   -    -- <3Thomas Boregaard SoerensenCamilo SasukeThomas Boregaard Soerensen!!
 //        2020 - 08 - 18 01:38 / 17, 180kb---- - ---/ 189, 893kb-------- - ---/ 12, 187kb------------------ - --
 //        2020 - 08 - 20 07:41 / 13, 915kb / 137, 668kb / 9, 715kb------------------ - --
 //        rebuild mark / ---------------- - ------------------------- - -------------------------------- - --
@@ -1134,6 +1134,8 @@ namespace user
 #include "apex/user/text.h"
 
 #include "apex/user/check.h"
+
+#include "apex/user/menu_shared_command.h"
 
 #include "apex/message/command.h"
 

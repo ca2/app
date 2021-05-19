@@ -25,7 +25,7 @@ namespace message
    public:
 
 
-      __pointer(::channel)                         m_pcommandtargetSource;
+      __pointer(::channel)                        m_pcommandtargetSource;
       id                                           m_idControl;     // menu item or other index
       index                                        m_iIndex;
       ::count                                      m_iCount;        // last + 1 for iterating m_iIndex

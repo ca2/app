@@ -18,6 +18,8 @@ namespace datetime
 } // namespace datetime
 
 
+CLASS_DECL_ACME ::i64 get_nanos();
+
 #include "secs.h"
 #include "millis.h"
 #include "micros.h"
@@ -25,6 +27,9 @@ namespace datetime
 
 
 #include "duration.h"
+
+
+#include "micro_duration.h"
 
 
 #include "time_span.h"

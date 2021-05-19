@@ -1,5 +1,5 @@
-LIBRARY "draw2d_direct2d"
+LIBRARY "regular_expression_pcre2"
 
 EXPORTS
-draw2d_direct2d_factory_exchange
+regular_expression_pcre2_factory_exchange
 

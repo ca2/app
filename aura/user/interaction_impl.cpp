@@ -539,6 +539,24 @@ namespace user
    ::e_status interaction_impl::native_create_host()
    {
 
+      auto estatus = __construct(m_pwindow);
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      estatus = m_pwindow->create_window(this);
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
       return true;
 
    }

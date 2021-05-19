@@ -31,6 +31,15 @@ namespace regular_expression
 
    }
 
+   
+   bool topic::has_match() const
+   {
+
+      return get_count() > 0;
+
+   }
+
+
 
    string topic::get_match(::index iMatch) const
    {

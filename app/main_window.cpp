@@ -57,7 +57,7 @@ namespace app_app
 
       papplication->m_bInterprocessIntercommunication = false;
 
-      ::user::interaction * p = this;
+      //::user::interaction * p = this;
 
    }
 

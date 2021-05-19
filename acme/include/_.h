@@ -3605,6 +3605,11 @@ inline void dump_elements(dump_context &dumpcontext, const TYPE *pElements, ::co
 //#include "acme/primitive/collection/base_enum.h"
 
 #include "acme/const/source.h"
+
+
+DECLARE_ENUMERATION(e_source, enum_source);
+
+
 #include "acme/const/context.h"
 #include "acme/primitive/primitive/action_context.h"
 

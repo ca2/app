@@ -68,6 +68,9 @@ namespace apex
 
       virtual bool set_last_run_application_path(string strAppId);
 
+      virtual void os_menu_item_enable(void * pitem, bool bEnable);
+      virtual void os_menu_item_check(void * pitem, bool bCheck);
+
 
    };
 

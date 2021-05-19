@@ -90,7 +90,10 @@ void * menu_shared::find_item(const char * pszParent, const char * pszId)
 void menu_shared::on_idle_update()
 {
 
-
+   auto psystem = m_psystem->m_papexsystem;
+   
+   auto pnode = psystem->m_papexnode;
+   
    for(int i = 0; i < m_iCount; i++)
    {
 
@@ -117,8 +120,10 @@ void menu_shared::on_idle_update()
                m_statusa[i] &= ~status_set_checked;
 
             }
+            
+            pnode->os_menu_item_check(pitem, bCheck);
 
-            os_menu_item_check(pitem, bCheck);
+            //os_menu_item_check(pitem, bCheck);
 
          }
 
@@ -140,8 +145,10 @@ void menu_shared::on_idle_update()
                m_statusa[i] &= ~status_set_disabled;
 
             }
+            
+            pnode->os_menu_item_enable(pitem, !bDisabled);
 
-            os_menu_item_enable(pitem, !bDisabled);
+            //os_menu_item_enable(pitem, !bDisabled);
 
          }
 

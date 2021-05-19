@@ -222,13 +222,20 @@ namespace file
 //               return estatus;
 //
 //            }
+// 
+//             
 //
-            auto estatus = begin_thread();
 
-            if (!estatus)
+            if (m_htask == nullptr)
             {
+               auto estatus = begin_thread();
 
-               return estatus;
+               if (!estatus)
+               {
+
+                  return estatus;
+
+               }
 
             }
 

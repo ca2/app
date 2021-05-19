@@ -1443,11 +1443,11 @@ namespace datetime
 
       auto pdatetime = m_psystem->datetime();
 
-      auto pcre1 = psystem->create_regular_expression("pcre", "^\\s*((\\d+)\\s*/\\s*(\\d+))((\\d|$)?!)");
+      auto pcre1 = psystem->create_pcre("^\\s*((\\d+)\\s*/\\s*(\\d+))((\\d|$)?!)");
 
       auto ptopic = pcre1->create_topic(str);
 
-      if (!bBaseTime && ptopic->get_count() >= 5)
+      if (!bBaseTime && ptopic && ptopic->get_count() >= 5)
       {
          time = ::datetime::time::get_current_time();
          i32 i1 = atoi(ptopic->get_match(2));

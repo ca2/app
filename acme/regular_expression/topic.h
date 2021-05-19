@@ -30,6 +30,9 @@ namespace regular_expression
 
       virtual ::count get_count() const;
 
+      
+      virtual bool has_match() const;
+
 
       virtual string get_match(::index iMatch) const;
 

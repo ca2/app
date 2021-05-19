@@ -73,15 +73,15 @@ namespace mathematics
 
       }
 
-      auto i0 = get_nanos().m_i;
+      auto i0 = get_nanos();
 
       sleep(millis(bLevel));
 
-      auto i1 = get_nanos().m_i;
+      auto i1 = get_nanos();
 
       i64 i2 = time(nullptr);
 
-      i64 i3 = get_nanos().m_i % 0xffffffff;
+      i64 i3 = get_nanos() % 0xffffffff;
 
       i64 i4 = abs(i0 + i1 + i2 + i3);
 

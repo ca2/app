@@ -413,32 +413,32 @@ namespace dynamic_source
       //   pdssocket->write("</html>");
       //}
 
-      auto pinst2 = pinstance.m_p;
+      //auto pinst2 = pinstance.m_p;
 
-      pinst2->finalize();
+      //pinst2->finalize();
 
-      if (pinst2->m_countReference > 2)
-      {
+      //if (pinst2->m_countReference > 2)
+      //{
 
-         pinstance.m_p = nullptr;
+      //   pinstance.m_p = nullptr;
 
 
 
-         try
-         {
-            pinst2->release();
-         }
-         catch (const ::exception::exception&)
-         {
-            TRACE("Error: exception at script_manager::handle destroy pinstance");
-         }
-         catch (...)
-         {
-            TRACE("Error: Exception at script_manager::handle destroy pinstance");
-         }
-         __check_pending_releases(pinst2);
+      //   try
+      //   {
+      //      pinst2->release();
+      //   }
+      //   catch (const ::exception::exception&)
+      //   {
+      //      TRACE("Error: exception at script_manager::handle destroy pinstance");
+      //   }
+      //   catch (...)
+      //   {
+      //      TRACE("Error: Exception at script_manager::handle destroy pinstance");
+      //   }
+      //   __check_pending_releases(pinst2);
 
-      }
+      //}
 
 
       try
@@ -623,33 +623,33 @@ namespace dynamic_source
 
       }
 
-      auto pinst2 = pinstance.m_p;
+      //auto pinst2 = pinstance.m_p;
 
-      if (pinst2->m_countReference > 1)
-      {
+      //if (pinst2->m_countReference > 1)
+      //{
 
-         pinstance.m_p = nullptr;
+      //   pinstance.m_p = nullptr;
 
-         //pinst2->release();
+      //   //pinst2->release();
 
-         __check_pending_releases(pinst2);
+      //   __check_pending_releases(pinst2);
 
-      }
+      //}
 
-      auto pimpl2 = pimpl.m_p;
+ /*     auto pimpl2 = pimpl.m_p;
 
-      pimpl->finalize();
+      pimpl->finalize();*/
 
-      if (pimpl2->m_countReference > 1)
-      {
+      //if (pimpl2->m_countReference > 1)
+      //{
 
-         pimpl.m_p = nullptr;
+      //   pimpl.m_p = nullptr;
 
-         //pimpl2->release();
+      //   //pimpl2->release();
 
-         __check_pending_releases(pimpl2);
+      //   __check_pending_releases(pimpl2);
 
-      }
+      //}
 
       return payload;
 

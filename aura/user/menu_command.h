@@ -4,8 +4,12 @@
 namespace user
 {
 
+   
+   class menu_item_ptra;
+   class menu_item;
 
-   class CLASS_DECL_BASE menu_command :
+
+   class CLASS_DECL_AURA menu_command :
       virtual public ::message::command,
       virtual public ::user::check,
       virtual public ::user::text

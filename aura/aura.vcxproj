@@ -1175,6 +1175,7 @@
     <ClCompile Include="user\control_descriptor.cpp" />
     <ClCompile Include="user\control_event.cpp" />
     <ClCompile Include="user\copydesk.cpp" />
+    <ClCompile Include="user\menu_command.cpp" />
     <ClCompile Include="user\message.cpp" />
     <ClCompile Include="user\message_box.cpp" />
     <ClCompile Include="user\message_window.cpp" />
@@ -1474,6 +1475,7 @@
     <ClInclude Include="user\control_event.h" />
     <ClInclude Include="user\copydesk.h" />
     <ClInclude Include="user\aaa_create.h" />
+    <ClInclude Include="user\menu_command.h" />
     <ClInclude Include="user\message.h" />
     <ClInclude Include="user\message_box.h" />
     <ClInclude Include="user\message_window.h" />

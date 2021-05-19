@@ -705,7 +705,7 @@ namespace user
 
       __pointer(::message::mouse_activate) pactivate(pmessage);
 
-      pactivate->m_lresult = MA_NOACTIVATE;
+      pactivate->m_lresult = e_mouse_activate_no_activate;
 
       pactivate->m_bRet = true;
 

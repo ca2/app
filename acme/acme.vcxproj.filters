@@ -2768,6 +2768,9 @@
     <ClInclude Include="const\activate.h">
       <Filter>Header Files\const</Filter>
     </ClInclude>
+    <ClInclude Include="const\button_state.h">
+      <Filter>Header Files\const</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="primitive\primitive\application_bias.cpp">

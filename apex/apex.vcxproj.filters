@@ -1322,6 +1322,12 @@
     <ClInclude Include="platform\create.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
+    <ClInclude Include="user\menu_shared.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\menu_shared_command.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="filesystem\file\set.cpp">
@@ -1908,6 +1914,12 @@
     </ClCompile>
     <ClCompile Include="platform\command_line.cpp">
       <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="user\menu_shared.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\menu_shared_commnand.cpp">
+      <Filter>Source Files\user</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

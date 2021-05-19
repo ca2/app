@@ -3,13 +3,13 @@
 #include <stdio.h>
 
 
-
 namespace acme
 {
 
 
    namespace profiler
    {
+
 
       void initialize()
       {
@@ -21,14 +21,13 @@ namespace acme
       CLASS_DECL_ACME i64 micros()
       {
 
-         return ::get_nanos() / 1000;;;;;ç;
+         return ::get_nanos() / 1000;
 
       }
 
 
-
-         CLASS_DECL_ACME int profile_sleep()
-         {
+      CLASS_DECL_ACME int profile_sleep()
+      {
 
          #ifdef __DEBUG
 
@@ -42,7 +41,6 @@ namespace acme
 
          #endif // !__DEBUG
 
-
       }
 
 
@@ -50,7 +48,6 @@ namespace acme
 
 
 } // namespace acme
-
 
 
 

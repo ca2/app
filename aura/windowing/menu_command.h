@@ -13,7 +13,7 @@ namespace windowing
 
 
    class CLASS_DECL_AURA menu_command :
-      public ::user::command        // class private to this file !
+      public ::user::menu_command        // class private to this file !
    {
    public: // re-implementations only
 

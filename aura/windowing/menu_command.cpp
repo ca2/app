@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "menu_item.h"
+#include "aura/user/menu_command.h"
 #include "menu_command.h"
 #include "menu.h"
 

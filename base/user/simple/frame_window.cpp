@@ -1374,7 +1374,7 @@ void simple_frame_window::_001OnMouseActivate(::message::message * pmessage)
 
    __pointer(::message::mouse_activate) pmouseactivate(pmessage);
 
-   pmouseactivate->m_lresult = MA_ACTIVATE;
+   pmouseactivate->m_lresult = e_mouse_activate;
 
    pmouseactivate->m_bRet = true;
 

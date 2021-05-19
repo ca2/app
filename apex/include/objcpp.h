@@ -30,7 +30,7 @@
 
 #ifdef MACOS
 
-#include "apex/os/macos/_mm.h"
+#include "_no_templates.h"
 
 #else
 

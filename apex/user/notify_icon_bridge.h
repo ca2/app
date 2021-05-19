@@ -4,7 +4,8 @@
 #pragma once
 
 
-struct user_notify_icon_bridge
+struct user_notify_icon_bridge :
+   virtual public ::matter
 {
 public:
 

@@ -24,6 +24,8 @@ public:
    nanos & operator += (const duration & duration) { m_i = m_i + ((::nanos)(duration)).m_i; return *this; }
 
    void sleep() const;
+   
+   void Now() { m_i = ::get_nanos(); }
 
 
 };
@@ -80,6 +82,6 @@ inline nanos operator /(const ::nanos& nanos, const NUMBER& number)
 #endif
 
 
-CLASS_DECL_ACME::nanos first_nano();
-CLASS_DECL_ACME::nanos get_nanos();
+CLASS_DECL_ACME ::i64 first_nano();
+CLASS_DECL_ACME ::i64 get_nanos();
 

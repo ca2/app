@@ -1681,6 +1681,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClInclude Include="compress\_.h" />
     <ClInclude Include="compress\gz.h" />
     <ClInclude Include="console.h" />
+    <ClInclude Include="const\activate.h" />
     <ClInclude Include="const\code_page.h" />
     <ClInclude Include="const\future.h" />
     <ClInclude Include="const\charset.h" />

@@ -521,7 +521,7 @@ typedef struct _AppIndicator AppIndicator;
 
 
 
-
+#include "acme/const/activate.h"
 #include "aura/message/user.h"
 #include "aura/message/timer.h"
 

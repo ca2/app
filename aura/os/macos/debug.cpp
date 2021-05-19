@@ -64,7 +64,6 @@ int __node_is_debugger_attached()
 
 
 ::u32
-WINAPI
 FormatMessage(
 ::u32 dwFlags,
 const void * pSource,
@@ -107,8 +106,7 @@ void output_debug_string(const char * pszOutputString)
 
 
 
-VOID
-WINAPI
+void
 output_debug_string(
 const widechar * pOutputString
 

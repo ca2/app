@@ -6821,28 +6821,28 @@ void imaging::AlphaTextOut(::draw2d::graphics *pgraphics,i32 left,i32 top,const 
 //
 //
 //#endif
-
-#if !defined(WINDOWS_DESKTOP) && !defined(LINUX)
-
-
-hcursor context_image::CreateAlphaCursor(::windowing::window * pwindow, const image * pimage, int xHotSpot, int yHotSpot)
-{
-
-   return 0;
-
-}
-
-
-//hcursor context_image::load_default_cursor(enum_cursor ecursor)
+//
+//#if !defined(WINDOWS_DESKTOP) && !defined(LINUX)
+//
+//
+//hcursor context_image::CreateAlphaCursor(::windowing::window * pwindow, const image * pimage, int xHotSpot, int yHotSpot)
 //{
 //
-//   return NULL;
+//   return 0;
 //
 //}
 //
 //
-
-#endif
+////hcursor context_image::load_default_cursor(enum_cursor ecursor)
+////{
+////
+////   return NULL;
+////
+////}
+////
+////
+//
+//#endif
 
 void context_image::set_cursor_image(const image * pimage, int xHotSpot, int yHotSpot)
 {

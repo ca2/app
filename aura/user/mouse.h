@@ -39,6 +39,21 @@ namespace user
       bool is_x1_button_pressed() const { return m_nFlags & 32; }
       bool is_x2_button_pressed() const { return m_nFlags & 64; }
 
+      void set_left_button_pressed() { m_nFlags |= 1; }
+      void set_right_button_pressed() { m_nFlags |= 2; }
+      void set_shift_pressed() { m_nFlags |= 4; }
+      void set_control_pressed() { m_nFlags |= 8; }
+      void set_middle_button_pressed() { m_nFlags |= 16; }
+      void set_x1_button_pressed() { m_nFlags |= 32; }
+      void set_x2_button_pressed() { m_nFlags |= 64; }
+
+      void clear_left_button_pressed() { m_nFlags &= ~1; }
+      void clear_right_button_pressed() { m_nFlags &= ~2; }
+      void clear_shift_pressed() { m_nFlags &= ~4; }
+      void clear_control_pressed() { m_nFlags &= ~8; }
+      void clear_middle_button_pressed() { m_nFlags &= ~16; }
+      void clear_x1_button_pressed() { m_nFlags &= ~32; }
+      void clear_x2_button_pressed() { m_nFlags &= ~64; }
 
    };
 

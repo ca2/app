@@ -1126,7 +1126,7 @@ namespace acme
    }
 
 
-   int_bool node::is_process_running(::u32 pid)
+   bool node::is_process_running(::u32 pid)
    {
 
       __throw(error_interface_only);

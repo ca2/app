@@ -42,13 +42,13 @@ void mm_init_workspace_rect()
    
 }
 
-
-CGRect mm_get_workspace_rect()
-{
-   
-   return g_rectWorkspace;
-   
-}
+//
+//CGRect mm_get_workspace_rect()
+//{
+//   
+//   return g_rectWorkspace;
+//   
+//}
 
 
 int GetMainScreenRect(RECT * prect)

@@ -50,7 +50,7 @@ namespace draw2d
 
    //   rectangle_f64 r;
 
-   //   if (!get_bounding_rect(&r))
+   //   if (!get_bounding_rectangle(&r))
    //   {
 
    //      return false;
@@ -83,7 +83,7 @@ namespace draw2d
    //}
 
 
-   //bool path::matter::get_bounding_rect(RECTANGLE_F64* prectangle) const
+   //bool path::matter::get_bounding_rectangle(RECTANGLE_F64* prectangle) const
    //{
 
    //   ::null_rect(prectangle);
@@ -93,7 +93,7 @@ namespace draw2d
    //}
 
 
-   //bool path::matter::get_bounding_rect(RECTANGLE_I32* prectangle) const
+   //bool path::matter::get_bounding_rectangle(RECTANGLE_I32* prectangle) const
    //{
 
    //   ::null_rect(prectangle);
@@ -110,7 +110,7 @@ namespace draw2d
 
    //   ::rectangle_f64 r;
 
-   //   if (!get_bounding_rect(r))
+   //   if (!get_bounding_rectangle(r))
    //   {
 
    //      return false;
@@ -122,7 +122,7 @@ namespace draw2d
    //}
 
 
-   //bool path::arc::get_bounding_rect(RECTANGLE_F64* prectd) const
+   //bool path::arc::get_bounding_rectangle(RECTANGLE_F64* prectd) const
    //{
 
    //   // BUG SS (STILL SIMPLE) m_dRotationAngle ignored
@@ -148,7 +148,7 @@ namespace draw2d
    //}
 
 
-   //bool path::rectangle_i32::get_bounding_rect(RECTANGLE_F64* prectangle) const
+   //bool path::rectangle_i32::get_bounding_rectangle(RECTANGLE_F64* prectangle) const
    //{
 
    //   __copy(prectangle, m_rectangle);
@@ -166,10 +166,10 @@ namespace draw2d
    //}
 
 
-   //bool path::lines::get_bounding_rect(RECTANGLE_F64* prectangle) const
+   //bool path::lines::get_bounding_rectangle(RECTANGLE_F64* prectangle) const
    //{
 
-   //   m_pointa.get_bounding_rect(prectangle);
+   //   m_pointa.get_bounding_rectangle(prectangle);
 
    //   return true;
 
@@ -185,10 +185,10 @@ namespace draw2d
 
 
 
-   //bool path::polygon_i32::get_bounding_rect(RECTANGLE_F64* prectangle) const
+   //bool path::polygon_i32::get_bounding_rectangle(RECTANGLE_F64* prectangle) const
    //{
 
-   //   m_pointa.get_bounding_rect(prectangle);
+   //   m_pointa.get_bounding_rectangle(prectangle);
 
    //   return true;
 
@@ -203,7 +203,7 @@ namespace draw2d
    //}
 
 
-   //bool path::line::get_bounding_rect(RECTANGLE_F64* prectangle) const
+   //bool path::line::get_bounding_rectangle(RECTANGLE_F64* prectangle) const
    //{
 
    //   prectangle->left = minimum(m_pointBeg.x, m_pointEnd.x);
@@ -223,7 +223,7 @@ namespace draw2d
    ////}
 
 
-   //bool path::text_out::get_bounding_rect(RECTANGLE_F64* prectangle) const
+   //bool path::text_out::get_bounding_rectangle(RECTANGLE_F64* prectangle) const
    //{
 
    //   //__copy(prectangle, m_rectangle);
@@ -241,7 +241,7 @@ namespace draw2d
    //}
 
 
-   //bool path::draw_text::get_bounding_rect(RECTANGLE_F64* prectangle) const
+   //bool path::draw_text::get_bounding_rectangle(RECTANGLE_F64* prectangle) const
    //{
 
    //   __copy(prectangle, m_rectangle);
@@ -347,7 +347,7 @@ namespace draw2d
    }
 
 
-   bool path::get_bounding_rect(::rectangle_f64 * prectangle) const
+   bool path::get_bounding_rectangle(::rectangle_f64 * prectangle) const
    {
 
       rectangle_f64 r;
@@ -380,7 +380,7 @@ namespace draw2d
    }
 
 
-   //bool path::get_bounding_rect(RECTANGLE_I32* prectangle) const
+   //bool path::get_bounding_rectangle(RECTANGLE_I32* prectangle) const
    //{
 
    //   ::rectangle_i32 r;
@@ -824,9 +824,9 @@ namespace draw2d
    bool path::add_line(const point_f64 & p1, const point_f64 & p2)
    {
 
-      auto pline = __new(lined_shape);
+      auto pline = __new(line_shape);
 
-      ::lined& line = pline->m_shape;
+      ::line & line = pline->m_shape;
 
       line.m_p1 = p1;
 
@@ -846,9 +846,9 @@ namespace draw2d
    bool path::add_line(const point_f64 & point)
    {
 
-      auto pline = __new(lined_shape);
+      auto pline = __new(line_shape);
 
-      ::lined& line = pline->m_shape;
+      ::line & line = pline->m_shape;
 
       line.m_p1 = m_pointEnd;
 
@@ -887,7 +887,7 @@ namespace draw2d
    bool path::add_polygon(const ::point_f64 * ppoint, ::count nCount)
    {
 
-      auto ppolygon = __new(polygond_shape);
+      auto ppolygon = __new(polygon_shape);
 
       ppolygon->m_shape.set_size(nCount);
 
@@ -920,7 +920,7 @@ namespace draw2d
    bool path::add_lines(const ::point_f64 * ppoint, ::count nCount)
    {
 
-      auto plines = __new(linesd_shape);
+      auto plines = __new(lines_shape);
 
       plines->m_shape.set_size(nCount);
 
@@ -1451,19 +1451,13 @@ namespace draw2d
          return _set(pgraphics, pshape->shape < ::arc>());
       //case e_shape_line:
       //   return  _set(pgraphics, pshape->shape < ::line>());
-      case e_shape_lined:
-         return  _set(pgraphics, pshape->shape < ::lined>());
-      //case e_shape_lines:
-      //   return _set(pgraphics, pshape->shape < ::lines>());
-      case e_shape_linesd:
-         return _set(pgraphics, pshape->shape < ::linesd>());
-      //case e_shape_rect:
-      //   return _set(pgraphics, pshape->shape < ::rectangle_i32>());
-      case e_shape_rectd:
+      case e_shape_line:
+         return  _set(pgraphics, pshape->shape < ::line>());
+      case e_shape_lines:
+         return _set(pgraphics, pshape->shape < ::lines>());
+      case e_shape_rectangle:
          return _set(pgraphics, pshape->shape < ::rectangle_f64>());
-      //case e_shape_polygon:
-      //   return _set(pgraphics, pshape->shape < ::polygon_i32>());
-      case e_shape_polygond:
+      case e_shape_polygon:
          return _set(pgraphics, pshape->shape < ::polygon_f64>());
       case e_shape_draw_text:
          return _set(pgraphics, pshape->shape < ::write_text::draw_text>());
@@ -1506,7 +1500,7 @@ namespace draw2d
    //}
 
 
-   bool path::_set(::draw2d::graphics* pgraphics, const::lined& line)
+   bool path::_set(::draw2d::graphics* pgraphics, const ::line & line)
    {
 
       __throw(error_interface_only);
@@ -1526,7 +1520,7 @@ namespace draw2d
    //}
 
 
-   bool path::_set(::draw2d::graphics* pgraphics, const::linesd& lines)
+   bool path::_set(::draw2d::graphics* pgraphics, const::lines & lines)
    {
 
       __throw(error_interface_only);

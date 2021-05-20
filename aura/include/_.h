@@ -2544,7 +2544,7 @@ CLASS_DECL_AURA bool __node_aura_pos_term();
 //
 //
 //
-//template < typename BASE_TYPE, typename POINT_BASE_TYPE, typename RECT_BASE_TYPE >
+//template < typename BASE_TYPE, typename POINT_BASE_TYPE, typename RECTANGLE_BASE_TYPE >
 //class size_type;
 //
 //using size = size_type < SIZE_I32, POINT_I32, RECTANGLE_I32 >;

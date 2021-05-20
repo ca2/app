@@ -1,7 +1,7 @@
 #pragma once
 
 
-template < typename BASE_TYPE, typename POINT_BASE_TYPE, typename RECT_BASE_TYPE >
+template < typename BASE_TYPE, typename POINT_BASE_TYPE, typename RECTANGLE_BASE_TYPE >
 class size_type :
    public BASE_TYPE
 {
@@ -10,8 +10,8 @@ public:
 
    using SIZE_BASE_TYPE = BASE_TYPE;
    using UNIT_TYPE = decltype(SIZE_BASE_TYPE::cx);
-   using POINT_TYPE = point_type < POINT_BASE_TYPE, SIZE_BASE_TYPE, RECT_BASE_TYPE >;
-   using RECT_TYPE = rect_type < RECT_BASE_TYPE, POINT_BASE_TYPE, SIZE_BASE_TYPE >;
+   using POINT_TYPE = point_type < POINT_BASE_TYPE, SIZE_BASE_TYPE, RECTANGLE_BASE_TYPE >;
+   using RECTANGLE_TYPE = rectangle_type < RECTANGLE_BASE_TYPE, POINT_BASE_TYPE, SIZE_BASE_TYPE >;
 
 
    size_type() noexcept { this->cx = 0; this->cy = 0; }
@@ -54,8 +54,8 @@ public:
    template < primitive_point POINT >
    POINT_TYPE operator-(const POINT & point1) const noexcept { POINT_TYPE point(this->cx, this->cy); ::offset_point(&point, -point1.x, -point1.y); return point;   }
 
-   RECT_TYPE operator+(const RECT_TYPE& rect1) const noexcept { RECT_TYPE rectangle(rect1); ::offset_rect(&rectangle, this->cx, this->cy); return rectangle; }
-   RECT_TYPE operator-(const RECT_TYPE& rect1) const noexcept { RECT_TYPE rectangle(rect1); ::offset_rect(&rectangle, -this->cx, -this->cy); return rectangle; }
+   RECTANGLE_TYPE operator+(const RECTANGLE_TYPE& rect1) const noexcept { RECTANGLE_TYPE rectangle(rect1); ::offset_rect(&rectangle, this->cx, this->cy); return rectangle; }
+   RECTANGLE_TYPE operator-(const RECTANGLE_TYPE& rect1) const noexcept { RECTANGLE_TYPE rectangle(rect1); ::offset_rect(&rectangle, -this->cx, -this->cy); return rectangle; }
 
    UNIT_TYPE area() const noexcept { return ::rect_area(this->cx, this->cy); }
    inline bool is_empty() const noexcept { return this->cx <= 0 || this->cy <= 0; }
@@ -158,28 +158,28 @@ public:
    inline bool operator == (const size_type & size) const noexcept { return this->cx == size.cx && this->cy == size.cy; }
    inline bool operator != (const size_type & size) const noexcept { return !operator ==(size); }
 
-   inline bool operator == (const RECT_TYPE & rectangle) const noexcept { return this->cx == rectangle.width() && this->cy == rectangle.height(); }
-   inline bool operator != (const RECT_TYPE & rectangle) const noexcept { return !operator ==(rectangle); }
+   inline bool operator == (const RECTANGLE_TYPE & rectangle) const noexcept { return this->cx == rectangle.width() && this->cy == rectangle.height(); }
+   inline bool operator != (const RECTANGLE_TYPE & rectangle) const noexcept { return !operator ==(rectangle); }
 
    inline bool operator > (const size_type & size) const noexcept { return this->cx > size.cx && this->cy > size.cy; }
    inline bool operator >= (const size_type & size) const noexcept { return this->cx >= size.cx && this->cy >= size.cy; }
    inline bool operator < (const size_type & size) const noexcept { return this->cx < size.cx && this->cy < size.cy; }
    inline bool operator <= (const size_type & size) const noexcept { return this->cx <= size.cx && this->cy <= size.cy; }
 
-   inline bool operator > (const RECT_TYPE & rectangle) const noexcept { return this->operator > (rectangle.size()); }
-   inline bool operator >= (const RECT_TYPE & rectangle) const noexcept { return this->operator >= (rectangle.size()); }
-   inline bool operator < (const RECT_TYPE & rectangle) const noexcept { return this->operator < (rectangle.size()); }
-   inline bool operator <= (const RECT_TYPE & rectangle) const noexcept { return this->operator <= (rectangle.size()); }
+   inline bool operator > (const RECTANGLE_TYPE & rectangle) const noexcept { return this->operator > (rectangle.size()); }
+   inline bool operator >= (const RECTANGLE_TYPE & rectangle) const noexcept { return this->operator >= (rectangle.size()); }
+   inline bool operator < (const RECTANGLE_TYPE & rectangle) const noexcept { return this->operator < (rectangle.size()); }
+   inline bool operator <= (const RECTANGLE_TYPE & rectangle) const noexcept { return this->operator <= (rectangle.size()); }
 
    inline bool any_gt (const size_type & size) const noexcept { return this->cx > size.cx || this->cy > size.cy; }
    inline bool any_ge (const size_type & size) const noexcept { return this->cx >= size.cx || this->cy >= size.cy; }
    inline bool any_lt (const size_type & size) const noexcept { return this->cx < size.cx || this->cy < size.cy; }
    inline bool any_le (const size_type & size) const noexcept { return this->cx <= size.cx || this->cy <= size.cy; }
 
-   inline bool any_gt (const RECT_TYPE & rectangle) const noexcept { return this->any_gt(rectangle.size()); }
-   inline bool any_ge (const RECT_TYPE & rectangle) const noexcept { return this->any_ge(rectangle.size()); }
-   inline bool any_lt (const RECT_TYPE & rectangle) const noexcept { return this->any_lt(rectangle.size()); }
-   inline bool any_le (const RECT_TYPE & rectangle) const noexcept { return this->any_le(rectangle.size()); }
+   inline bool any_gt (const RECTANGLE_TYPE & rectangle) const noexcept { return this->any_gt(rectangle.size()); }
+   inline bool any_ge (const RECTANGLE_TYPE & rectangle) const noexcept { return this->any_ge(rectangle.size()); }
+   inline bool any_lt (const RECTANGLE_TYPE & rectangle) const noexcept { return this->any_lt(rectangle.size()); }
+   inline bool any_le (const RECTANGLE_TYPE & rectangle) const noexcept { return this->any_le(rectangle.size()); }
 
 };
 

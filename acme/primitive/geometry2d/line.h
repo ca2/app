@@ -10,8 +10,8 @@ public:
    using POINT_BASE_TYPE = typename POINT_TYPE::POINT_BASE_TYPE;
    using UNIT_TYPE = typename POINT_TYPE::UNIT_TYPE;
    using SIZE_TYPE = typename POINT_TYPE::SIZE_TYPE;
-   using RECT_TYPE = typename POINT_TYPE::RECT_TYPE;
-   using RECT_BASE_TYPE = typename RECT_TYPE::RECT_BASE_TYPE;
+   using RECTANGLE_TYPE = typename POINT_TYPE::RECTANGLE_TYPE;
+   using RECTANGLE_BASE_TYPE = typename RECTANGLE_TYPE::RECTANGLE_BASE_TYPE;
 
 
    POINT_TYPE  m_p1;
@@ -24,9 +24,10 @@ public:
 };
 
 
-using line = line_base < ::point_i32 >;
-using line64 = line_base < ::point_i64 >;
-using linef = line_base < ::point_f32 >;
-using lined = line_base < ::point_f64 >;
+using line_i32 = line_base < ::point_i32 >;
+using line_i64 = line_base < ::point_i64 >;
+using line_f32 = line_base < ::point_f32 >;
+using line_f64 = line_base < ::point_f64 >;
+
 
 

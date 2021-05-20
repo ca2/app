@@ -136,6 +136,10 @@ namespace user
       bool                                      m_bPendingRedraw;
       millis                                    m_millisLastRedraw;
       ::user::interaction_array                 m_userinteractionaHideOnConfigurationChange;
+      
+      ::nanos                                   m_nanosDeviceDrawBeg;
+      ::nanos                                   m_nanosDeviceDrawEnd;
+      millis                                    m_millisLastDeviceDraw;
 
 
       interaction_impl();
@@ -788,6 +792,34 @@ namespace user
 
 
    }; // guie_message_wnd
+
+
+   class device_draw_life_time
+   {
+   public:
+
+
+      ::user::interaction_impl * m_pimpl;
+
+      
+      device_draw_life_time(::user::interaction_impl * pimpl) :
+         m_pimpl(pimpl)
+      {
+
+         m_pimpl->m_nanosDeviceDrawBeg.Now();
+
+      }
+
+      
+      ~device_draw_life_time()
+      {
+
+         m_pimpl->m_nanosDeviceDrawEnd.Now();
+
+      }
+
+      
+   };
 
 
 } // namespace user

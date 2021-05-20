@@ -3799,11 +3799,11 @@ namespace draw2d_direct2d
                case e_shape_rectd:
                   intersect_clip(shapea[i]->shape < ::rectangle_f64>());
                   break;
-               //case e_shape_oval:
-               //   intersect_clip(shapea[i]->shape < ::oval>());
+               //case e_shape_ellipse:
+               //   intersect_clip(shapea[i]->shape < ::ellipse>());
                //   break;
                case e_shape_ovald:
-                  intersect_clip(shapea[i]->shape < ::ovald>());
+                  intersect_clip(shapea[i]->shape < ::ellipse>());
                   break;
                //case e_shape_polygon:
                //   intersect_clip(shapea[i]->shape < ::polygon_i32>());
@@ -3898,7 +3898,7 @@ namespace draw2d_direct2d
 
 
 
-   //::e_status graphics::intersect_clip(const ::oval& oval)
+   //::e_status graphics::intersect_clip(const ::ellipse& ellipse)
    //{
 
    //   ::draw2d::lock draw2dlock;
@@ -3907,7 +3907,7 @@ namespace draw2d_direct2d
 
    //      ::draw2d::region_pointer pregion(e_create);
 
-   //      pregion->create_oval(oval);
+   //      pregion->create_oval(ellipse);
 
    //      D2D1::Matrix3x2F m = {};
 
@@ -3929,7 +3929,7 @@ namespace draw2d_direct2d
    //}
 
 
-   ::e_status graphics::intersect_clip(const ::ovald& oval)
+   ::e_status graphics::intersect_clip(const ::ellipse& ellipse)
    {
 
       ::draw2d::lock draw2dlock;
@@ -3938,7 +3938,7 @@ namespace draw2d_direct2d
 
          ::draw2d::region_pointer pregion(e_create);
 
-         pregion->create_oval(oval);
+         pregion->create_oval(ellipse);
 
          D2D1::Matrix3x2F m = {};
 

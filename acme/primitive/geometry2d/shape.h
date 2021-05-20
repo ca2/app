@@ -18,16 +18,11 @@ enum enum_shape
    e_shape_close_figure,
    e_shape_end_figure,
    e_shape_arc,
-   //e_shape_line,
-   e_shape_lined,
-   //e_shape_lines,
-   e_shape_linesd,
-   //e_shape_rect,
-   e_shape_rectd,
-   //e_shape_oval,
-   e_shape_ovald,
-   //e_shape_polygon,
-   e_shape_polygond,
+   e_shape_line,
+   e_shape_lines,
+   e_shape_rectangle,
+   e_shape_ellipse,
+   e_shape_polygon,
    e_shape_text_out,
    e_shape_draw_text,
 
@@ -41,6 +36,7 @@ protected:
 
 
    enum_shape     m_eshape;
+   
 
    ___shape(enum_shape eshape) : m_eshape(eshape) { }
 
@@ -64,9 +60,9 @@ public:
 
    virtual bool expand_bounding_rect(RECTANGLE_I32* prectangle) const;
 
-   virtual bool get_bounding_rect(RECTANGLE_F64* prectangle) const;
+   virtual bool get_bounding_rectangle(RECTANGLE_F64* prectangle) const;
 
-   virtual bool get_bounding_rect(RECTANGLE_I32* prectangle) const;
+   virtual bool get_bounding_rectangle(RECTANGLE_I32* prectangle) const;
 
    virtual bool contains(const ::point_f64& point) const;
 
@@ -147,10 +143,10 @@ public:
    virtual bool expand_bounding_rect(RECTANGLE_I32* prectangle) const;
 
 
-   virtual bool get_bounding_rect(RECTANGLE_F64* prectangle) const;
+   virtual bool get_bounding_rectangle(RECTANGLE_F64* prectangle) const;
 
 
-   virtual bool get_bounding_rect(RECTANGLE_I32* prectangle) const;
+   virtual bool get_bounding_rectangle(RECTANGLE_I32* prectangle) const;
 
 
    virtual bool contains(const ::POINT_I32 & point) const;
@@ -162,13 +158,19 @@ public:
 };
 
 
+using line = ::line_f64;
+using rectangle = ::rectangle_f64;
+using ellipse = ::ellipse_f64;
+//using lines = ::lines_f64;
+//using polygon = ::polygon_f64;
+
+
 using arc_shape = _shape < ::arc, e_shape_arc>;
-//using line_shape = _shape < ::line, e_shape_line >;
-using lined_shape = _shape < ::lined, e_shape_lined >;
-//using rect_shape = _shape < ::rectangle, e_shape_rect >;
-using rectd_shape = _shape < ::rectangle_f64, e_shape_rectd >;
-//using oval_shape = _shape < ::oval, e_shape_oval >;
-using ovald_shape = _shape < ::ovald, e_shape_ovald >;
+using line_shape = _shape < ::line, e_shape_line >;
+using rectangle_shape = _shape < ::rectangle, e_shape_rectangle >;
+using ellipse_shape = _shape < ::ellipse, e_shape_ellipse >;
+//using lines_shape = _shape < ::lines, e_shape_lines >;
+//using polygon_shape = _shape < ::polygon, e_shape_polygon >;
 
 
 template < typename GEOMETRY >
@@ -189,10 +191,10 @@ inline ___shape* __new_shape(const enum_shape& eshape);
 
 
 template < >
-inline ___shape* __new_shape(const ::lined& line)
+inline ___shape* __new_shape(const ::line & line)
 {
 
-   return new lined_shape(line);
+   return new line_shape(line);
 
 }
 
@@ -201,8 +203,6 @@ inline ___shape* __new_shape(const ::lined& line)
 //inline ___shape* __new_shape(const ::lines& lines);
 
 
-template < >
-inline ___shape* __new_shape(const ::linesd& lines);
 
 
 //template < >
@@ -214,10 +214,10 @@ inline ___shape* __new_shape(const ::linesd& lines);
 //}
 
 template < >
-inline ___shape* __new_shape(const ::rectangle_f64& rectangle)
+inline ___shape* __new_shape(const ::rectangle & rectangle)
 {
 
-   return new rectd_shape(rectangle);
+   return new rectangle_shape(rectangle);
 
 }
 

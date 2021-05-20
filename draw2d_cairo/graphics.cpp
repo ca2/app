@@ -352,16 +352,16 @@ bool graphics::CreateCompatibleDC(::draw2d::graphics * pgraphics)
 }
 
 
-::e_status graphics::_add_shape(const ::ovald & oval)
+::e_status graphics::_add_shape(const ::ellipse & ellipse)
 {
 
    cairo_keep keep(m_pdc);
 
    cairo_new_sub_path(m_pdc);
 
-   cairo_translate(m_pdc, (oval.left + oval.right) / 2.0 + m_pointAddShapeTranslate.x, (oval.top + oval.bottom) / 2.0 + m_pointAddShapeTranslate.y);
+   cairo_translate(m_pdc, (ellipse.left + ellipse.right) / 2.0 + m_pointAddShapeTranslate.x, (ellipse.top + ellipse.bottom) / 2.0 + m_pointAddShapeTranslate.y);
 
-   cairo_scale(m_pdc, (oval.right - oval.left) / 2.0, (oval.bottom - oval.top) / 2.0);
+   cairo_scale(m_pdc, (ellipse.right - ellipse.left) / 2.0, (ellipse.bottom - ellipse.top) / 2.0);
 
    cairo_arc(m_pdc, 0.0, 0.0, 1.0, 0.0, 2.0 * 3.1415);
 
@@ -4300,7 +4300,7 @@ bool graphics::TextOutRaw(double x, double y, const block & block)
 
 #else
 
-    ::rectangle_i32 rectangle = ::rect_dim(
+    ::rectangle_i32 rectangle = ::rectangle_dimension(
                       ::i32(x),
                       ::i32(y),
                       65535,

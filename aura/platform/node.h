@@ -44,6 +44,8 @@ namespace aura
     //  virtual void appindicator_destroy(::linux::appindicator * pappindicator);
 
 //#endif
+      
+      virtual void defer_dock_application(bool bDock);
 
       void set_application_menu(::apex::application_menu * pmenu, ::apex::application * papplication) override;
 

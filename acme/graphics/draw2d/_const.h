@@ -112,7 +112,7 @@ namespace draw2d
 
       e_region_none,
       e_region_rect,
-      e_region_oval,
+      e_region_ellipse,
       e_region_polygon,
       e_region_poly_polygon,
       e_region_round_rect,

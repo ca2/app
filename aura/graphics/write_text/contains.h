@@ -8,7 +8,7 @@ inline bool shape_contains(const ::write_text::text_out * ptextout, const POINT_
 
    ::RECTANGLE_I32 rectBounding;
 
-   if (!::get_bounding_rect(&rectBounding, ptextout))
+   if (!::get_bounding_rectangle(&rectBounding, ptextout))
    {
 
       return false;
@@ -27,7 +27,7 @@ inline bool shape_contains(const ::write_text::text_out* ptextout, const POINT_F
 
    ::RECTANGLE_F64 rectBounding;
 
-   if (!::get_bounding_rect(&rectBounding, ptextout))
+   if (!::get_bounding_rectangle(&rectBounding, ptextout))
    {
 
       return false;
@@ -46,7 +46,7 @@ inline bool shape_contains(const ::write_text::draw_text * ptextout, const POINT
 
    ::RECTANGLE_I32 rectBounding;
 
-   if (!::get_bounding_rect(&rectBounding, ptextout))
+   if (!::get_bounding_rectangle(&rectBounding, ptextout))
    {
 
       return false;
@@ -65,7 +65,7 @@ inline bool shape_contains(const ::write_text::draw_text* ptextout, const POINT_
 
    ::RECTANGLE_F64 rectBounding;
 
-   if (!::get_bounding_rect(&rectBounding, ptextout))
+   if (!::get_bounding_rectangle(&rectBounding, ptextout))
    {
 
       return false;

@@ -213,8 +213,8 @@ namespace draw2d_cairo
       virtual ::e_status _intersect_clip() override;
       //virtual ::e_status _add_shape(const ::rectangle_f64 & rectangle_f64) override;
       virtual ::e_status _add_shape(const ::rectangle_f64 & rectangle_f64) override;
-      //virtual ::e_status _add_shape(const ::oval & oval) override;
-      virtual ::e_status _add_shape(const ::ovald & oval) override;
+      //virtual ::e_status _add_shape(const ::ellipse & ellipse) override;
+      virtual ::e_status _add_shape(const ::ellipse & ellipse) override;
       //virtual ::e_status _add_shape(const ::polygon_i32 & polygon_i32) override;
       virtual ::e_status _add_shape(const ::polygon_f64 & polygon_i32) override;
 

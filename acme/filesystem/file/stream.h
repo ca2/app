@@ -835,8 +835,8 @@ namespace std
 //
 //inline stream & operator << (stream & s, double d) { s.write(d); return s; }
 //
-//template < typename BASE_TYPE, typename SIZE_BASE_TYPE, typename RECT_BASE_TYPE >
-//inline stream & operator << (stream & s, const point_type < BASE_TYPE, SIZE_BASE_TYPE, RECT_BASE_TYPE > & point)
+//template < typename BASE_TYPE, typename SIZE_BASE_TYPE, typename RECTANGLE_BASE_TYPE >
+//inline stream & operator << (stream & s, const point_type < BASE_TYPE, SIZE_BASE_TYPE, RECTANGLE_BASE_TYPE > & point)
 //{
 //   s << point.x;
 //   s << point.y;
@@ -935,8 +935,8 @@ namespace std
 //
 //
 //
-//template < typename BASE_TYPE, typename SIZE_BASE_TYPE, typename RECT_BASE_TYPE >
-//inline stream & operator >> (stream & s, point_type < BASE_TYPE, SIZE_BASE_TYPE, RECT_BASE_TYPE > & point)
+//template < typename BASE_TYPE, typename SIZE_BASE_TYPE, typename RECTANGLE_BASE_TYPE >
+//inline stream & operator >> (stream & s, point_type < BASE_TYPE, SIZE_BASE_TYPE, RECTANGLE_BASE_TYPE > & point)
 //{
 //   s >> point.x;
 //   s >> point.y;

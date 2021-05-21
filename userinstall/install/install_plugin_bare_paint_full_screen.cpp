@@ -53,7 +53,7 @@ namespace hotplugin
          ::rectangle_i32 rectangle;
          get_progress_color(uchR, uchG, uchB, dRate, 0);
          br->create_solid(argb(255, uchR, uchG, uchB));
-         r = rect_dim(rectangle.left, rectangle.top, cx, cy);
+         r = rectangle_dimension(rectangle.left, rectangle.top, cx, cy);
          pgraphics->FillRect(r, br);
 
       }

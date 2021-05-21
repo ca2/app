@@ -187,7 +187,7 @@ namespace draw2d_direct2d
       }
       case ::draw2d::e_region_rect:
          return get_rect(pgraphics);
-      case ::draw2d::e_region_oval:
+      case ::draw2d::e_region_ellipse:
          return get_oval(pgraphics);
       case ::draw2d::e_region_polygon:
          return get_polygon(pgraphics);

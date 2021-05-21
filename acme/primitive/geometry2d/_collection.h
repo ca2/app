@@ -52,44 +52,28 @@ inline uptr uptr_hash(const ::rectangle_i32& rectangle)
 }
 
 
-//using lines_shape = _shape < ::lines, e_shape_lines >;
-using linesd_shape = _shape < ::linesd, e_shape_linesd >;
-//using polygon_shape = _shape < ::polygon_i32, e_shape_polygon >;
-using polygond_shape = _shape < ::polygon_f64, e_shape_polygond >;
+using lines = lines_f64;
+using polygon = polygon_f64;
 
 
-//template < >
-//inline ___shape* __new_shape(const ::lines& lines)
-//{
-//
-//   return new lines_shape(lines);
-//
-//}
+using lines_shape = _shape < ::lines, e_shape_lines >;
+using polygon_shape = _shape < ::polygon, e_shape_polygon >;
 
 
 template < >
-inline ___shape* __new_shape(const ::linesd& lines)
+inline ___shape* __new_shape(const ::lines & lines)
 {
 
-   return new linesd_shape(lines);
+   return new lines_shape(lines);
 
 }
 
 
-//template < >
-//inline ___shape* __new_shape(const ::polygon_i32& polygon_i32)
-//{
-//
-//   return new polygon_shape(polygon_i32);
-//
-//}
-
-
 template < >
-inline ___shape* __new_shape(const ::polygon_f64& polygon_i32)
+inline ___shape* __new_shape(const ::polygon & polygon)
 {
 
-   return new polygond_shape(polygon_i32);
+   return new polygon_shape(polygon);
 
 }
 

@@ -3014,7 +3014,7 @@ namespace papaya
 class memory_base;
 
 
-//template<typename BASE_TYPE, typename POINT_BASE_TYPE, typename RECT_BASE_TYPE>
+//template<typename BASE_TYPE, typename POINT_BASE_TYPE, typename RECTANGLE_BASE_TYPE>
 //class size_type;
 
 

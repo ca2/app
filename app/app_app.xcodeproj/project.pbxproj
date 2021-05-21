@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9A5D737A265555AF00D5C39E /* libdraw2d_quartz2d.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9AC2D06626540D5300CC8096 /* libdraw2d_quartz2d.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9A8FCD9A2651C10200C0D8A1 /* libacme.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A7ECB4B2651A60900D5BA45 /* libacme.dylib */; };
 		9A8FCD9B2651C10200C0D8A1 /* libacme.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A7ECB4B2651A60900D5BA45 /* libacme.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9A8FCD9D2651C10200C0D8A1 /* libacme_apple.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A7ECB532651A60900D5BA45 /* libacme_apple.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
@@ -33,26 +34,19 @@
 			remoteGlobalIDString = 070B8EE91B6E53F900D26137;
 			remoteInfo = "Hello Multiverse!!";
 		};
-		9A694C8426548A97005D1D62 /* PBXContainerItemProxy */ = {
+		9A5D7360265554D600D5C39E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 9A694C6926548A97005D1D62 /* windowing_macos.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = A1CFD778154F5EAA007447E2;
-			remoteInfo = acme_macos;
+			containerPortal = 9AC2D05E26540D5200CC8096 /* draw2d_quartz2d.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = A1CFD777154F5EAA007447E2;
+			remoteInfo = draw2d_quartz2d;
 		};
-		9A694C8626548A97005D1D62 /* PBXContainerItemProxy */ = {
+		9A5D7378265554D600D5C39E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9A694C6926548A97005D1D62 /* windowing_macos.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 07B657B8190F3CBF002DAADE;
-			remoteInfo = ios_music_midi_core_audio;
-		};
-		9A694C8826548A97005D1D62 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9A694C6926548A97005D1D62 /* windowing_macos.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 07B657C7190F3CBF002DAADE;
-			remoteInfo = music_midi_core_audio_iosTests;
+			remoteGlobalIDString = 9A440A1526548BE4000C490B;
+			remoteInfo = windowing_macos;
 		};
 		9A7ECB132651A5B900D5BA45 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -308,6 +302,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				9A5D737A265555AF00D5C39E /* libdraw2d_quartz2d.dylib in Embed Libraries */,
 				9A8FCDA12651C10200C0D8A1 /* libacme_posix.dylib in Embed Libraries */,
 				9A8FCD9B2651C10200C0D8A1 /* libacme.dylib in Embed Libraries */,
 				9A8FCD9D2651C10200C0D8A1 /* libacme_apple.dylib in Embed Libraries */,
@@ -423,9 +418,7 @@
 		9A694C6A26548A97005D1D62 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9A694C8526548A97005D1D62 /* libacme_macos.dylib */,
-				9A694C8726548A97005D1D62 /* libios_music_midi_core_audio.a */,
-				9A694C8926548A97005D1D62 /* music_midi_core_audio_iosTests.xctest */,
+				9A5D7379265554D600D5C39E /* libwindowing_macos.dylib */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -619,6 +612,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				9A5D7361265554D600D5C39E /* PBXTargetDependency */,
 				9AC2D1B026542ED300CC8096 /* PBXTargetDependency */,
 				9AC2D1092654139300CC8096 /* PBXTargetDependency */,
 				9AC2CF412653DA0100CC8096 /* PBXTargetDependency */,
@@ -764,25 +758,11 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		9A694C8526548A97005D1D62 /* libacme_macos.dylib */ = {
+		9A5D7379265554D600D5C39E /* libwindowing_macos.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
-			path = libacme_macos.dylib;
-			remoteRef = 9A694C8426548A97005D1D62 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		9A694C8726548A97005D1D62 /* libios_music_midi_core_audio.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libios_music_midi_core_audio.a;
-			remoteRef = 9A694C8626548A97005D1D62 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		9A694C8926548A97005D1D62 /* music_midi_core_audio_iosTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = music_midi_core_audio_iosTests.xctest;
-			remoteRef = 9A694C8826548A97005D1D62 /* PBXContainerItemProxy */;
+			path = libwindowing_macos.dylib;
+			remoteRef = 9A5D7378265554D600D5C39E /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		9A7ECB142651A5B900D5BA45 /* libapp_app.dylib */ = {
@@ -1024,6 +1004,11 @@
 			isa = PBXTargetDependency;
 			target = 070B8EE91B6E53F900D26137 /* app_app */;
 			targetProxy = 070B8EFE1B6E53FA00D26137 /* PBXContainerItemProxy */;
+		};
+		9A5D7361265554D600D5C39E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = draw2d_quartz2d;
+			targetProxy = 9A5D7360265554D600D5C39E /* PBXContainerItemProxy */;
 		};
 		9A8FCD5D2651AB4000C0D8A1 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;

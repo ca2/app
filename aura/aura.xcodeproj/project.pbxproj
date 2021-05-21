@@ -474,6 +474,8 @@
 		9A41734E20004E7A0056265A /* x509.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A4172FE20004E7A0056265A /* x509.h */; };
 		9A41734F20004E7A0056265A /* x509_vfy.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A4172FF20004E7A0056265A /* x509_vfy.h */; };
 		9A41735020004E7A0056265A /* x509v3.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A41730020004E7A0056265A /* x509v3.h */; };
+		9A440A792654F781000C490B /* menu_command.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A440A772654F780000C490B /* menu_command.h */; };
+		9A440A7A2654F781000C490B /* menu_command.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A440A782654F780000C490B /* menu_command.cpp */; };
 		9A449B0C247739410002A827 /* MessageBoxA_W.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9A247DC72452C47F00F23D28 /* MessageBoxA_W.mm */; };
 		9A449B0D247739410002A827 /* mm_cross_gdi.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9A247DA82452C47F00F23D28 /* mm_cross_gdi.mm */; };
 		9A449B0E247739410002A827 /* mm_graphics.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9A8748F52476F334000353C2 /* mm_graphics.mm */; };
@@ -1243,6 +1245,8 @@
 		9A41730520004E7A0056265A /* libcrypto.pc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = libcrypto.pc; sourceTree = "<group>"; };
 		9A41730620004E7A0056265A /* libssl.pc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = libssl.pc; sourceTree = "<group>"; };
 		9A41730720004E7A0056265A /* openssl.pc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = openssl.pc; sourceTree = "<group>"; };
+		9A440A772654F780000C490B /* menu_command.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = menu_command.h; sourceTree = "<group>"; };
+		9A440A782654F780000C490B /* menu_command.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = menu_command.cpp; sourceTree = "<group>"; };
 		9A4E5CA12519319500CC6817 /* form.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = form.h; sourceTree = "<group>"; };
 		9A4E5CA22519319500CC6817 /* form.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = form.cpp; sourceTree = "<group>"; };
 		9A4E5CA32519319500CC6817 /* form_callback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = form_callback.h; sourceTree = "<group>"; };
@@ -2447,6 +2451,8 @@
 				9AD1168124F5146D00177261 /* keyboard.h */,
 				9AD116B224F5147400177261 /* main_window.cpp */,
 				9AD1167624F5146B00177261 /* main_window.h */,
+				9A440A782654F780000C490B /* menu_command.cpp */,
+				9A440A772654F780000C490B /* menu_command.h */,
 				9AC2CE542653416400CC8096 /* message_box.cpp */,
 				9AC2CE482653416200CC8096 /* message_box.h */,
 				9AC2CE4F2653416300CC8096 /* message_window_listener.h */,
@@ -2937,6 +2943,7 @@
 				9AC2CEE32653455600CC8096 /* button.h in Headers */,
 				9A2487232452C49200F23D28 /* _m.h in Headers */,
 				9AC2CEEA2653455600CC8096 /* exception.h in Headers */,
+				9A440A792654F781000C490B /* menu_command.h in Headers */,
 				9AC2CEDC2653455600CC8096 /* cursor.h in Headers */,
 				9AC2CEA02653452D00CC8096 /* task_tool.h in Headers */,
 				9A2483A92452C48800F23D28 /* implementation.h in Headers */,
@@ -3360,6 +3367,7 @@
 				9AD1173A24F5147900177261 /* window_map.cpp in Sources */,
 				9AD1170724F5147800177261 /* plain_edit.cpp in Sources */,
 				9AC2CE592653416400CC8096 /* call_message_handler_task.cpp in Sources */,
+				9A440A7A2654F781000C490B /* menu_command.cpp in Sources */,
 				9A24831A2452C48700F23D28 /* debug.cpp in Sources */,
 				9A3764BC2409BF0C002D15D3 /* imaging.cpp in Sources */,
 				9AC2CCC626533BB700CC8096 /* node.cpp in Sources */,

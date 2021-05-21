@@ -89,7 +89,11 @@ namespace process
 
 #ifndef _UWP
 
-      auto estatus = call_async(strBin,pszEnd,pszDir,edisplay, false);
+      auto psystem = m_psystem;
+
+      auto pnode = psystem->node();
+
+      auto estatus = pnode->call_async(strBin,pszEnd,pszDir,edisplay, false);
 
       return ::succeeded(estatus);
 

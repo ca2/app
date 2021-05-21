@@ -4546,7 +4546,11 @@ namespace apex
 
          output_debug_string(strParam);
 
-         call_async(shell, strParam, pathDir, e_display_default, false);
+         auto psystem = m_psystem;
+
+         auto pnode = psystem->node();
+
+         pnode->call_async(shell, strParam, pathDir, e_display_default, false);
 
 #endif
 
@@ -4589,7 +4593,11 @@ namespace apex
 
       ::property_set set;
 
-      call_sync(pathFirefox, strParam, pathDir, e_display_default, 3_min, set);
+      auto psystem = m_psystem;
+
+      auto pnode = psystem->node();
+
+      pnode->call_sync(pathFirefox, strParam, pathDir, e_display_default, 3_min, set);
 
 #endif
 
@@ -4654,9 +4662,13 @@ namespace apex
       if (!bFound)
       {
 
-         call_async(strBrowserPath, strParam, strBrowserDir, e_display_normal, false);
+         auto psystem = m_psystem;
 
-         call_async(strBrowserHelperPath, "/SetAsDefaultAppUser", strBrowserHelperDir, e_display_none, false);
+         auto pnode = psystem->node();
+
+         pnode->call_async(strBrowserPath, strParam, strBrowserDir, e_display_normal, false);
+
+         pnode->call_async(strBrowserHelperPath, "/SetAsDefaultAppUser", strBrowserHelperDir, e_display_none, false);
 
       }
 

@@ -393,8 +393,8 @@ namespace draw2d
       virtual ::e_status add_shapes(const shape_array & shapea);
       virtual ::e_status reset_clip();
       virtual ::e_status intersect_clip(const ::rectangle_f64& rectangle_f64);
-      virtual ::e_status intersect_clip(const ::ovald& oval);
-      virtual ::e_status intersect_clip(const ::polygon_f64& polygon_i32);
+      virtual ::e_status intersect_clip(const ::ellipse& ellipse);
+      virtual ::e_status intersect_clip(const ::polygon& polygon_i32);
 
       // Maybe used by some 2d Graphics backends as group of helper
       // methods working together for some purpose
@@ -403,9 +403,9 @@ namespace draw2d
       // "inline" paths.
       virtual ::e_status _intersect_clip();
       virtual ::e_status _add_shape(___shape* pshape);
-      virtual ::e_status _add_shape(const ::rectangle_f64 & rectangle);
-      virtual ::e_status _add_shape(const ::ovald & oval);
-      virtual ::e_status _add_shape(const ::polygon_f64 & polygon_i32);
+      virtual ::e_status _add_shape(const ::rectangle & rectangle);
+      virtual ::e_status _add_shape(const ::ellipse & ellipse);
+      virtual ::e_status _add_shape(const ::polygon & polygon);
 
       
 
@@ -969,7 +969,7 @@ namespace draw2d
       virtual bool widen_path();
       virtual float GetMiterLimit();
       virtual bool SetMiterLimit(float fMiterLimit);
-      virtual i32 GetPath(::point_f64 * ppoint, byte * pTypes, count nCount);
+//      virtual i32 GetPath(::point_f64 * ppoint, byte * pTypes, count nCount);
 
       virtual bool SelectClipPath(i32 nMode);
 

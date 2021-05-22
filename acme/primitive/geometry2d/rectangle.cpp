@@ -436,37 +436,37 @@
 //}
 //
 //
-//void rectangle_f64::_001Constraint(const rectangle_f64 & rectangle, RECTANGLE_F64 * prectBounding)
+//void rectangle_f64::_001Constraint(const rectangle_f64 & rectangle, RECTANGLE_F64 * prectangleBounding)
 //
 //{
 //
-//   _001ConstraintX(rectangle, prectBounding);
+//   _001ConstraintX(rectangle, prectangleBounding);
 //
 //
-//   _001ConstraintY(rectangle, prectBounding);
+//   _001ConstraintY(rectangle, prectangleBounding);
 //
 //
 //}
 //
 //
-//void rectangle_f64::_001ConstraintX(const rectangle_f64 & rectangle, RECTANGLE_F64 * prectBounding)
+//void rectangle_f64::_001ConstraintX(const rectangle_f64 & rectangle, RECTANGLE_F64 * prectangleBounding)
 //
 //{
 //
-//   if (prectBounding->right > rectangle.right)
+//   if (prectangleBounding->right > rectangle.right)
 //
 //   {
 //
-//      offset_x(::offset_x(prectBounding, rectangle.right - prectBounding->right));
+//      offset_x(::offset_x(prectangleBounding, rectangle.right - prectangleBounding->right));
 //
 //
 //   }
 //
-//   if (prectBounding->left < rectangle.left)
+//   if (prectangleBounding->left < rectangle.left)
 //
 //   {
 //
-//      offset_x(::offset_x(prectBounding, rectangle.left - prectBounding->left));
+//      offset_x(::offset_x(prectangleBounding, rectangle.left - prectangleBounding->left));
 //
 //
 //   }
@@ -475,24 +475,24 @@
 //}
 //
 //
-//void rectangle_f64::_001ConstraintY(const rectangle_f64 & rectangle, RECTANGLE_F64 * prectBounding)
+//void rectangle_f64::_001ConstraintY(const rectangle_f64 & rectangle, RECTANGLE_F64 * prectangleBounding)
 //
 //{
 //
-//   if (prectBounding->bottom > rectangle.bottom)
+//   if (prectangleBounding->bottom > rectangle.bottom)
 //
 //   {
 //
-//      offset_y(::offset_y(prectBounding, rectangle.bottom - prectBounding->bottom));
+//      offset_y(::offset_y(prectangleBounding, rectangle.bottom - prectangleBounding->bottom));
 //
 //
 //   }
 //
-//   if (prectBounding->top < rectangle.top)
+//   if (prectangleBounding->top < rectangle.top)
 //
 //   {
 //
-//      offset_y(::offset_y(prectBounding, rectangle.top - prectBounding->top));
+//      offset_y(::offset_y(prectangleBounding, rectangle.top - prectangleBounding->top));
 //
 //
 //   }

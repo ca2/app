@@ -118,9 +118,9 @@ namespace draw2d
 
       
       inline bool create_rect_coord(i32 x1, i32 y1, i32 x2, i32 y2) { return create_rect(::rectangle_i32(x1, y1, x2, y2)); }
-      inline bool create_rect_dim(i32 x, i32 y, i32 cx, i32 cy) { return create_rect(rect_dim(x, y, cx, cy)); }
+      inline bool create_rect_dim(i32 x, i32 y, i32 cx, i32 cy) { return create_rect(rectangle_dimension(x, y, cx, cy)); }
       inline bool create_oval_coord(i32 x1, i32 y1, i32 x2, i32 y2) { return create_oval(::rectangle_i32(x1, y1, x2, y2)); }
-      inline bool create_oval_dim(i32 x, i32 y, i32 cx, i32 cy) { return create_oval(rect_dim(x, y, cx, cy)); }
+      inline bool create_oval_dim(i32 x, i32 y, i32 cx, i32 cy) { return create_oval(rectangle_dimension(x, y, cx, cy)); }
 
 
    };

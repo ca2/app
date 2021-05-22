@@ -9,7 +9,7 @@ inline bool shape_contains(const ::arc* parc, const POINT & point)
 
    ::rectangle_i32 rectangle;
 
-   if (!get_bounding_rect(rectangle, parc))
+   if (!get_bounding_rectangle(rectangle, parc))
    {
 
       return false;
@@ -22,7 +22,7 @@ inline bool shape_contains(const ::arc* parc, const POINT & point)
 
 
 template < primitive_point POINT >
-inline bool shape_contains(const lined* pline, const POINT & point)
+inline bool shape_contains(const line* pline, const POINT & point)
 {
 
    return false;

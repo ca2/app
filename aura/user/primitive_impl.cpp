@@ -1804,7 +1804,7 @@ namespace user
    }
 
 
-   void primitive_impl::InvalidateRect(class rect_type<struct RECTANGLE_I32,struct POINT_I32,struct SIZE_I32> const &,bool)
+   void primitive_impl::InvalidateRect(class rectangle_type<struct RECTANGLE_I32,struct POINT_I32,struct SIZE_I32> const &,bool)
    {
 
 
@@ -1818,7 +1818,7 @@ namespace user
    }
 
 
-   void primitive_impl::ValidateRect(class rect_type<struct RECTANGLE_I32,struct POINT_I32,struct SIZE_I32> const &)
+   void primitive_impl::ValidateRect(class rectangle_type<struct RECTANGLE_I32,struct POINT_I32,struct SIZE_I32> const &)
    {
 
 

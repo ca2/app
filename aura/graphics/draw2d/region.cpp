@@ -83,7 +83,7 @@ namespace draw2d
 
       }
 
-      m_eregion = e_region_oval;
+      m_eregion = e_region_ellipse;
 
       m_x1 = rectangle.left;
 
@@ -282,7 +282,7 @@ namespace draw2d
       case e_region_none:
          return *this;
       case e_region_rect:
-      case e_region_oval:
+      case e_region_ellipse:
          m_x1 = regionSrc.m_x1;
          m_y1 = regionSrc.m_y1;
          m_x2 = regionSrc.m_x2;
@@ -361,7 +361,7 @@ namespace draw2d
          m_x3 += point.x;
          m_y3 += point.y;
       case e_region_rect:
-      case e_region_oval:
+      case e_region_ellipse:
          m_x1 += point.x;
          m_y1 += point.y;
          m_x2 += point.x;
@@ -493,7 +493,7 @@ namespace draw2d
       case e_region_rect:
          return max_bounding_box_rect(prectangle);
 
-      case e_region_oval:
+      case e_region_ellipse:
          return max_bounding_box_oval(prectangle);
 
       case e_region_polygon:
@@ -614,7 +614,7 @@ namespace draw2d
       case e_region_rect:
          return internal_rectangle_contains(point);
 
-      case e_region_oval:
+      case e_region_ellipse:
          return internal_oval_contains(point);
 
       case e_region_polygon:

@@ -7,7 +7,7 @@
 //#define new ACME_NEW
 
 
-template < typename BASE_TYPE, typename SIZE_BASE_TYPE, typename RECT_BASE_TYPE >
+template < typename BASE_TYPE, typename SIZE_BASE_TYPE, typename RECTANGLE_BASE_TYPE >
 class point_type :
    public BASE_TYPE
 {
@@ -16,8 +16,8 @@ public:
 
    using POINT_BASE_TYPE = BASE_TYPE;
    using UNIT_TYPE = decltype(POINT_BASE_TYPE::x);
-   using SIZE_TYPE = size_type < SIZE_BASE_TYPE, POINT_BASE_TYPE, RECT_BASE_TYPE >;
-   using RECT_TYPE = rect_type < RECT_BASE_TYPE, POINT_BASE_TYPE, SIZE_BASE_TYPE >;
+   using SIZE_TYPE = size_type < SIZE_BASE_TYPE, POINT_BASE_TYPE, RECTANGLE_BASE_TYPE >;
+   using RECTANGLE_TYPE = rectangle_type < RECTANGLE_BASE_TYPE, POINT_BASE_TYPE, SIZE_BASE_TYPE >;
    using POINT_ARRAY_TYPE = point_array_base < point_type >;
 
 
@@ -42,10 +42,10 @@ public:
    point_type(const SIZE * psize) noexcept { ::copy(this, psize); }
 
 #ifdef WINDOWS
-   //rect_type(const Gdiplus::Rect& t) noexcept : { ::copy(this, &t); }
-   //rect_type(const Gdiplus::RectF& t) noexcept : { ::copy(this, &t); }
-   //rect_type(const Gdiplus::Rect* p) noexcept : { ::copy(this, p); }
-   //rect_type(const Gdiplus::RectF* p) noexcept : { ::copy(this, p); }
+   //rectangle_type(const Gdiplus::Rect& t) noexcept : { ::copy(this, &t); }
+   //rectangle_type(const Gdiplus::RectF& t) noexcept : { ::copy(this, &t); }
+   //rectangle_type(const Gdiplus::Rect* p) noexcept : { ::copy(this, p); }
+   //rectangle_type(const Gdiplus::RectF* p) noexcept : { ::copy(this, p); }
 #endif
 #ifdef APPLEOS
    point_type(const CGPoint & point) noexcept : point_type(point.x, point.y){}
@@ -127,10 +127,10 @@ public:
    //inline point_type operator+(const point_type& point) const noexcept { return point_type(this->x + point.x, this->y + point.y); }
    //inline SIZE_TYPE operator-(const point_type& point) const noexcept { return SIZE_TYPE(this->x - point.x, this->y - point.y); }
 
-   inline RECT_TYPE operator+(const RECT_TYPE & rectangle) const noexcept { return RECT_TYPE(rectangle) + *this; }
-   inline RECT_TYPE operator-(const RECT_TYPE & rectangle) const noexcept { return RECT_TYPE(rectangle) - *this; }
+   inline RECTANGLE_TYPE operator+(const RECTANGLE_TYPE & rectangle) const noexcept { return RECTANGLE_TYPE(rectangle) + *this; }
+   inline RECTANGLE_TYPE operator-(const RECTANGLE_TYPE & rectangle) const noexcept { return RECTANGLE_TYPE(rectangle) - *this; }
 
-   void x_constraint(const RECT_TYPE& rectangle) noexcept
+   void x_constraint(const RECTANGLE_TYPE& rectangle) noexcept
    {
 
       if (this->x < rectangle.left)
@@ -148,7 +148,7 @@ public:
 
    }
 
-   void y_constraint(const RECT_TYPE& rectangle) noexcept
+   void y_constraint(const RECTANGLE_TYPE& rectangle) noexcept
    {
 
       if (this->y < rectangle.top)
@@ -166,7 +166,7 @@ public:
 
    }
 
-   void constraint(const RECT_TYPE & rectangle) noexcept
+   void constraint(const RECTANGLE_TYPE & rectangle) noexcept
    {
 
       x_constraint(rectangle);

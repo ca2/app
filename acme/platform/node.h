@@ -72,6 +72,10 @@ namespace acme
       virtual ~node();
 
 
+      virtual ::e_status call_async(const char * pszPath, const char * pszParam, const char * pszDir, ::e_display edisplay, bool bPrivileged, unsigned int * puiPid = nullptr);
+      virtual ::e_status call_sync(const char * pszPath, const char * pszParam, const char * pszDir, ::e_display edisplay, const ::duration & durationTimeout, ::property_set & set);
+
+
 //#ifdef LINUX
 //
 //      virtual enum_linux_distribution get_linux_distribution() const;

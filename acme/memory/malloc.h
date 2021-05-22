@@ -51,6 +51,9 @@ namespace acme
 
       operator POINTER() { return (POINTER) m_p; }
 
+      bool is_null() const {return ::is_null(m_p);}
+      bool is_set() const {return ::is_set(m_p);}
+
 
       POINTER alloc(size_t size)
       {

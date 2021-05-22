@@ -322,7 +322,7 @@ namespace user
 
       ::rectangle_i32 rectL(1, 1, h-2, h-2);
 
-      auto rectR = rect_dim(h-2, 1, h-2, h-2);
+      auto rectR = rectangle_dimension(h-2, 1, h-2, h-2);
 
       ppath->add_arc(rectL, -90_degree, -180_degree);
 

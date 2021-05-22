@@ -628,7 +628,7 @@ namespace user
 
       }
 
-      //m_puserinteraction->place(rect_dim(
+      //m_puserinteraction->place(rectangle_dimension(
       //                      pusersystem->m_createstruct.x,
       //                      pusersystem->m_createstruct.y,
       //                      pusersystem->m_createstruct.cx,

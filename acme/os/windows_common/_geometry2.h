@@ -2,10 +2,10 @@
 
 
 #ifdef WINDOWS
-rect_type(const D2D1_RECT_F & t) noexcept { ::copy(this, &t); }
-//rect_type(const Gdiplus::RectF& t) noexcept : { ::copy(this, &t); }
-//rect_type(const Gdiplus::Rect* p) noexcept : { ::copy(this, p); }
-//rect_type(const Gdiplus::RectF* p) noexcept : { ::copy(this, p); }
+rectangle_type(const D2D1_RECT_F & t) noexcept { ::copy(this, &t); }
+//rectangle_type(const Gdiplus::RectF& t) noexcept : { ::copy(this, &t); }
+//rectangle_type(const Gdiplus::Rect* p) noexcept : { ::copy(this, p); }
+//rectangle_type(const Gdiplus::RectF* p) noexcept : { ::copy(this, p); }
 #endif
 
 

@@ -4547,11 +4547,11 @@ namespace draw2d_gdiplus
                case e_shape_rectd:
                   intersect_clip(shapea[i]->shape < ::rectangle_f64>());
                   break;
-               //case e_shape_oval:
-               //   intersect_clip(shapea[i]->shape < ::oval>());
+               //case e_shape_ellipse:
+               //   intersect_clip(shapea[i]->shape < ::ellipse>());
                //   break;
                case e_shape_ovald:
-                  intersect_clip(shapea[i]->shape < ::ovald>());
+                  intersect_clip(shapea[i]->shape < ::ellipse>());
                   break;
                //case e_shape_polygon:
                //   intersect_clip(shapea[i]->shape < ::polygon_i32>());
@@ -4621,14 +4621,14 @@ namespace draw2d_gdiplus
    }
 
 
-   ::e_status graphics::intersect_clip(const ::oval& oval)
+   ::e_status graphics::intersect_clip(const ::ellipse& ellipse)
    {
 
       auto ppath = __auto(new Gdiplus::GraphicsPath());
 
       Gdiplus::RectF r;
 
-      __copy(r, oval);
+      __copy(r, ellipse);
 
       r.X += (Gdiplus::REAL)m_pointAddShapeTranslate.x;
 
@@ -4643,14 +4643,14 @@ namespace draw2d_gdiplus
    }
 
 
-   ::e_status graphics::intersect_clip(const ::ovald& oval)
+   ::e_status graphics::intersect_clip(const ::ellipse& ellipse)
    {
 
       auto ppath = __auto(new Gdiplus::GraphicsPath());
 
       Gdiplus::RectF r;
 
-      __copy(r, oval);
+      __copy(r, ellipse);
 
       r.X += (Gdiplus::REAL)m_pointAddShapeTranslate.x;
 

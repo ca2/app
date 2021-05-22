@@ -351,6 +351,8 @@ list(APPEND aura_source
    user/keyboard.h
    user/main_window.cpp
    user/main_window.h
+   user/menu_command.cpp
+   user/menu_command.h
    user/message.cpp
    user/message.h
    user/message_box.cpp

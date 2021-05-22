@@ -84,12 +84,12 @@ inline auto get_normal_dimension(enum_orientation eorientation, X x, Y y)
 }
 
 
-//template < typename BASE_TYPE, typename POINT_BASE_TYPE, typename RECT_BASE_TYPE >
-//inline size_type < BASE_TYPE, POINT_BASE_TYPE, RECT_BASE_TYPE >::size_type(const POINT_TYPE & point) noexcept : size_type((size_type&)point_i32) {}
+//template < typename BASE_TYPE, typename POINT_BASE_TYPE, typename RECTANGLE_BASE_TYPE >
+//inline size_type < BASE_TYPE, POINT_BASE_TYPE, RECTANGLE_BASE_TYPE >::size_type(const POINT_TYPE & point) noexcept : size_type((size_type&)point_i32) {}
 //
 //
-//template < typename BASE_TYPE, typename POINT_BASE_TYPE, typename RECT_BASE_TYPE >
-//inline size_type < BASE_TYPE, POINT_BASE_TYPE, RECT_BASE_TYPE >::size_type(const RECT_TYPE & rectangle) noexcept : size_type(rectangle.width(), rectangle.height()) {}
+//template < typename BASE_TYPE, typename POINT_BASE_TYPE, typename RECTANGLE_BASE_TYPE >
+//inline size_type < BASE_TYPE, POINT_BASE_TYPE, RECTANGLE_BASE_TYPE >::size_type(const RECTANGLE_TYPE & rectangle) noexcept : size_type(rectangle.width(), rectangle.height()) {}
 
 
 template < typename UNIT_TYPE >
@@ -205,7 +205,7 @@ bool _shape < SHAPE, ESHAPE >::expand_bounding_rect(RECTANGLE_F64* prectangle) c
 
          ::RECTANGLE_F64 r;
 
-         if (!this->get_bounding_rect(&r))
+         if (!this->get_bounding_rectangle(&r))
          {
 
             return false;
@@ -225,7 +225,7 @@ bool _shape < SHAPE, ESHAPE >::expand_bounding_rect(RECTANGLE_I32* prectangle) c
 
       ::RECTANGLE_I32 r;
 
-      if (!this->get_bounding_rect(&r))
+      if (!this->get_bounding_rectangle(&r))
       {
 
          return false;
@@ -243,7 +243,7 @@ bool _shape < SHAPE, ESHAPE >::expand_bounding_rect(RECTANGLE_I32* prectangle) c
 
 
 template < typename BASE_TYPE, typename POINT_BASE_TYPE, typename SIZE_BASE_TYPE >
-inline void rect_type < BASE_TYPE, POINT_BASE_TYPE, SIZE_BASE_TYPE >::normalize() noexcept
+inline void rectangle_type < BASE_TYPE, POINT_BASE_TYPE, SIZE_BASE_TYPE >::normalize() noexcept
 {
    
    __sort(this->left, this->right); 

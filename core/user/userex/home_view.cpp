@@ -96,7 +96,7 @@ namespace userex
 
       //m_pimageBeam->g()->set(pen);
 
-      //m_pimageBeam->g()->DrawEllipse(rect_dim(0, 0, 32, 32));
+      //m_pimageBeam->g()->DrawEllipse(rectangle_dimension(0, 0, 32, 32));
 
 
 

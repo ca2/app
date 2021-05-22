@@ -2636,7 +2636,7 @@ namespace user
 
                _001HostToClient(rectClient);
 
-               m_pshapeaClip->add_item(__new(rectd_shape(::rectangle_f64(rectClient))));
+               m_pshapeaClip->add_item(__new(rectangle_shape(::rectangle_f64(rectClient))));
 
                m_pshapeaClip->add_item(__new(intersect_clip_shape()));
 
@@ -8802,7 +8802,7 @@ namespace user
 
       order(e_zorder_top);
 
-      layout().sketch() = ::rect_dim(x, y, cx, cy);
+      layout().sketch() = ::rectangle_dimension(x, y, cx, cy);
 
       display(e_display_normal);
 
@@ -9615,7 +9615,7 @@ namespace user
       else
       {
 
-         //place(rect_dim(10, 10, 800, 300));
+         //place(rectangle_dimension(10, 10, 800, 300));
 
          ::rectangle_i32 rectPlace(rectRequest);
 
@@ -11954,7 +11954,7 @@ restart:
    void interaction::set_dim(i32 x, i32 y, i32 cx, i32 cy)
    {
 
-      place(::rect_dim(x, y, cx, cy));
+      place(::rectangle_dimension(x, y, cx, cy));
 
    }
 

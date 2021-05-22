@@ -37,7 +37,7 @@ namespace draw2d_cairo
 
          return true;
 
-      case ::draw2d::e_region_oval:
+      case ::draw2d::e_region_ellipse:
 
          return true;
 
@@ -154,7 +154,7 @@ namespace draw2d_cairo
 
          break;
 
-      case ::draw2d::e_region_oval:
+      case ::draw2d::e_region_ellipse:
 
          mask_oval(pgraphics);
 
@@ -415,7 +415,7 @@ namespace draw2d_cairo
 
          break;
 
-      case ::draw2d::e_region_oval:
+      case ::draw2d::e_region_ellipse:
 
          clip_oval(pgraphics);
 

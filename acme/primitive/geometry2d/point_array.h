@@ -17,8 +17,8 @@ public:
    using POINT_BASE_TYPE = typename POINT_TYPE::POINT_BASE_TYPE;
    using UNIT_TYPE = typename POINT_TYPE::UNIT_TYPE;
    using SIZE_TYPE = typename POINT_TYPE::SIZE_TYPE;
-   using RECT_TYPE = typename POINT_TYPE::RECT_TYPE;
-   using RECT_BASE_TYPE = typename RECT_TYPE::RECT_BASE_TYPE;
+   using RECTANGLE_TYPE = typename POINT_TYPE::RECTANGLE_TYPE;
+   using RECTANGLE_BASE_TYPE = typename RECTANGLE_TYPE::RECTANGLE_BASE_TYPE;
 
 
    inline point_array_base() : comparable_array < POINT_TYPE >() {}
@@ -38,7 +38,7 @@ public:
 
    void rotate(double dAngle, POINT_TYPE pointCenter);
 
-   void get_bounding_rect(RECT_BASE_TYPE * prectangle) const;
+   void get_bounding_rectangle(RECTANGLE_BASE_TYPE * prectangle) const;
 
    bool polygon_contains(const POINT_TYPE & point) const;
 
@@ -137,8 +137,8 @@ void point_array_base < POINT_TYPE >::rotate(double dAngle)
 
 
 
-template < typename RECT_BASE_TYPE, typename POINT_BASE_TYPE >
-void get_bounding_rect(RECT_BASE_TYPE * lprect, const POINT_BASE_TYPE * lppoint, ::count count)
+template < typename RECTANGLE_BASE_TYPE, typename POINT_BASE_TYPE >
+void get_bounding_rectangle(RECTANGLE_BASE_TYPE * lprect, const POINT_BASE_TYPE * lppoint, ::count count)
 {
 
    if (count <= 0)
@@ -175,10 +175,10 @@ void get_bounding_rect(RECT_BASE_TYPE * lprect, const POINT_BASE_TYPE * lppoint,
 
 
 template < typename POINT_TYPE >
-void point_array_base < POINT_TYPE >::get_bounding_rect(RECT_BASE_TYPE * prectangle) const
+void point_array_base < POINT_TYPE >::get_bounding_rectangle(RECTANGLE_BASE_TYPE * prectangle) const
 {
 
-   ::get_bounding_rect(prectangle, this->get_data(), this->get_count());
+   ::get_bounding_rectangle(prectangle, this->get_data(), this->get_count());
 
 }
 

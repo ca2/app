@@ -794,12 +794,16 @@
 //}
 //
 //
-//::u32 get_current_process_id()
-//{
-//
-//    return getpid();
-//
-//}
+
+
+::u32 get_current_process_id()
+{
+
+   return getpid();
+
+}
+
+
 //
 //
 //

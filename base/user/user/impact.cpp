@@ -1092,8 +1092,8 @@ namespace user
       pmessage->previous();
       //i32 nResult = pmouseactivate->get_lresult();
 
-      if (pmouseactivate->get_message() == MA_NOACTIVATE
-            || pmouseactivate->get_message() == MA_NOACTIVATEANDEAT)
+      if (pmouseactivate->get_message() == e_mouse_activate
+            || pmouseactivate->get_message() == e_mouse_activate_no_activate_and_eat)
       {
 
          pmouseactivate->m_lresult = pmouseactivate->get_message(); // frame does not want to activate

@@ -1148,10 +1148,6 @@ namespace draw2d
    }
 
 
-
-
-
-
    //bool graphics::draw(const ::point_f64 & point, cursor * pcursor)
    //{
    //

@@ -4,6 +4,7 @@
 #include "aqua/xml.h"
 #include "acme/const/timer.h"
 #include "aura/astr.h"
+#include "aura/user/menu_command.h"
 
 
 namespace user
@@ -1299,7 +1300,7 @@ namespace user
 
       __pointer(::message::mouse_activate) pmouseactivate(pmessage);
 
-      pmouseactivate->m_lresult = MA_NOACTIVATE;
+      pmouseactivate->m_lresult = e_mouse_activate_no_activate;
 
       pmouseactivate->m_bRet = true;
 

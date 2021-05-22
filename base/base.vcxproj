@@ -1253,7 +1253,6 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClCompile Include="user\user\style.cpp" />
     <ClCompile Include="user\user\control_descriptor_set.cpp" />
     <ClCompile Include="user\user\menu.cpp" />
-    <ClCompile Include="user\user\menu_command.cpp" />
     <ClCompile Include="user\user\validate.cpp" />
     <ClInclude Include="inline\_acid_app_impl.h" />
     <ClInclude Include="inline\application.h" />

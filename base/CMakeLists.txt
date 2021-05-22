@@ -151,8 +151,8 @@ list(APPEND base_source
         user/user/margin.h
         user/user/menu.cpp
         user/user/menu.h
-        user/user/menu_command.cpp
-        user/user/menu_command.h
+        #user/user/menu_command.cpp
+        #user/user/menu_command.h
         user/user/menu_interaction.cpp
         user/user/menu_interaction.h
         user/user/menu_item.cpp

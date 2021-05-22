@@ -7348,7 +7348,11 @@ retry_license:
 
          ::property_set set;
 
-         return ::call_sync(m_psystem->m_pacmepath->app_app(process_platform_dir_name2(), process_configuration_dir_name()), pszCommandLine, m_psystem->m_pacmepath->app_app(process_platform_dir_name2(), process_configuration_dir_name()), e_display_normal, 2_min, set);
+         auto psystem = m_psystem;
+
+         auto pnode = psystem->node();
+
+         return pnode->call_sync(m_psystem->m_pacmepath->app_app(process_platform_dir_name2(), process_configuration_dir_name()), pszCommandLine, m_psystem->m_pacmepath->app_app(process_platform_dir_name2(), process_configuration_dir_name()), e_display_normal, 2_min, set);
 
 #endif
 

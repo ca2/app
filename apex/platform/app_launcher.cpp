@@ -170,7 +170,11 @@ namespace apex
 
       string strParams = get_params();
 
-      if (::succeeded(call_async(strPath, strParams, strDir, e_display_none, false)))
+      auto psystem = m_psystem;
+
+      auto pnode = psystem->node();
+
+      if (::succeeded(pnode->call_async(strPath, strParams, strDir, e_display_none, false)))
       {
 
          return true;

@@ -15,7 +15,7 @@ int main(int argc, char * argv[], char * envp[])
 
    psystem->set_main_struct(*psystem->m_papplicationStartup);
 
-   ::e_status estatus = ::success;
+//   ::e_status estatus = ::success;
 
 //   if(psystem->m_bUser || psystem->m_bUser.undefined())
 //   {
@@ -37,7 +37,26 @@ int main(int argc, char * argv[], char * envp[])
 
    psystem->system_construct(argc, argv, envp);
 
-   estatus = psystem->system_main();
+//   auto estatus = psystem->system_main();
+//
+//   ::i32 iErrorStatus = estatus.error_status();
+//
+//   return iErrorStatus;
+
+   auto estatus = psystem->init_system();
+
+   if(!estatus)
+   {
+
+      return estatus.error_status();
+
+   }
+
+   auto pnode = psystem->node();
+
+   estatus = pnode->main();
+
+   auto estatusEnd = psystem->end();
 
    ::i32 iErrorStatus = estatus.error_status();
 

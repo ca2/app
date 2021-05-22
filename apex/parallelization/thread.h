@@ -290,7 +290,7 @@ public:
 
    virtual bool has_step() const;
    virtual bool has_raw_message() const;
-   virtual bool has_message() const override;
+   bool has_message() const override;
 
    // running and idle processing
    virtual void pre_translate_message(::message::message * pmessage);
@@ -304,7 +304,7 @@ public:
    using channel::get_message;
    virtual bool get_message();     // low level message pump
    virtual bool raw_pump_message();     // low level message pump
-   virtual bool defer_pump_message() override;     // deferred message pump
+   bool defer_pump_message() override;     // deferred message pump
    virtual ::e_status process_message(::message::message * pmessage);
    ///virtual ::e_status process_base_message(::message::message * pmessage);
    virtual ::e_status process_thread_message(::message::message * pmessage);
@@ -375,8 +375,9 @@ public:
    //virtual void unregister_from_required_threads();
    //virtual void close_dependent_threads(const ::duration & dur);
 
+   virtual bool pump_sleep(const millis & millis, synchronization_object * psync);
 
-   virtual bool do_events() override;
+   bool do_events() override;
    // virtual bool do_events(const duration& duration);
 
    virtual bool task_get_run() const override;
@@ -443,7 +444,8 @@ public:
    ::u32 nStackSize = 0,
    u32 uiCreateFlags = 0 ARG_SEC_ATTRS_DEF);
 
-
+   using task::branch;
+   using object::branch;
 
    virtual ::e_status branch(
    ::e_priority epriority = ::priority_normal,

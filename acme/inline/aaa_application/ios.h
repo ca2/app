@@ -25,7 +25,7 @@ int main(int argc, char * argv[])
 
 //      {
 
-         auto psystem = __new(::acme::system());
+         auto psystem = __new(class ::system());
          
          psystem->application_initialize();
 

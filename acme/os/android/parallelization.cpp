@@ -2,7 +2,7 @@
 #include "framework.h"
 
 
-bool set_thread_name(long l, const char * psz)
+bool task_set_name(long l, const char * psz)
 {
 
    string strName(psz);
@@ -16,15 +16,15 @@ bool set_thread_name(long l, const char * psz)
 }
 
 
-bool set_thread_name(const char * psz)
+bool task_set_name(const char * psz)
 {
 
-   return set_thread_name(pthread_self(), psz);
+   return task_set_name(pthread_self(), psz);
 
 }
 
 
-//string thread_get_name()
+//string task_get_name()
 //{
 //
 //   //return task_value("name").to_string();

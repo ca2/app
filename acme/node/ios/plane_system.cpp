@@ -126,7 +126,7 @@
 //void plane_system::plane_system_begin()
 //{
 //
-////   m_psystem->m_strAppId = m_pmaindata->m_pmaindata->m_strAppId;
+////   m_psystem->m_XstrAppId = m_pmaindata->m_pmaindata->m_XstrAppId;
 ////
 ////   m_psystem->startup_command(m_pmaindata->m_pmaindata);
 ////

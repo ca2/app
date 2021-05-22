@@ -10,6 +10,7 @@ class synchronization_object;
 class __id;
 class string_exchange;
 
+inline bool is_set_ptr(const void * p){return (iptr)p > 65536;}
 
 //inline ::object* __object(::p* playered);
 
@@ -34,7 +35,7 @@ public:
    union
    {
 
-      ::u64       m_uObject;
+      ::u32       m_uObject;
 
       struct
       {
@@ -49,9 +50,25 @@ public:
 
    };
 
+
+   union
+   {
+
+      ::u32       m_uError;
+
+      struct
+      {
+
+         bool        m_bTimeout : 1;
+
+      };
+
+   };
+
+   
    ::interlocked_count                 m_countReference;
    ::eobject                           m_eobject;
-   ::acme::system *                    m_psystem;
+   class system *                      m_psystem;
 
 
 //#if OBJ_REF_DBG
@@ -72,10 +89,10 @@ public:
    inline matter(const matter& matter) : m_pmutex(nullptr), m_pobjrefdbg(nullptr), m_countReference(0), m_eobject(matter.m_eobject), m_uObject(0), m_psystem(nullptr) { if (matter.m_pmutex) defer_create_mutex(); add_ref(OBJ_REF_DBG_THIS OBJ_REF_DBG_COMMA_NOTE("Initial Reference (3)")); }
    inline matter(matter&& matter) : m_pmutex(matter.m_pmutex), m_pobjrefdbg(matter.m_pobjrefdbg), m_countReference(matter.m_countReference), m_eobject(matter.m_eobject), m_uObject(0), m_psystem(nullptr) { matter.m_pmutex = nullptr; matter.m_pobjrefdbg = nullptr; }
 #else
-   inline matter() : m_pmutex(nullptr), m_countReference(1), m_uObject(0), m_psystem(nullptr) { }
-   inline matter(const eobject& eobject) : m_pmutex(nullptr), m_countReference(1), m_eobject(eobject), m_uObject(0), m_psystem(nullptr) { }
-   inline matter(const matter& matter) : m_pmutex(nullptr), m_countReference(1), m_eobject(matter.m_eobject), m_uObject(0), m_psystem(nullptr) { if (matter.m_pmutex) defer_create_mutex(); }
-   inline matter(matter&& matter) : m_pmutex(matter.m_pmutex), m_countReference(matter.m_countReference), m_eobject(matter.m_eobject), m_uObject(0), m_psystem(nullptr) { matter.m_pmutex = nullptr; }
+   inline matter() : m_pmutex(nullptr), m_countReference(1), m_uObject(0), m_uError(0), m_psystem(nullptr) { }
+   inline matter(const eobject& eobject) : m_pmutex(nullptr), m_countReference(1), m_uError(0), m_eobject(eobject), m_uObject(0), m_psystem(nullptr) { }
+   inline matter(const matter& matter) : m_pmutex(nullptr), m_countReference(1), m_uError(0), m_eobject(matter.m_eobject), m_uObject(0), m_psystem(nullptr) { if (matter.m_pmutex) defer_create_mutex(); }
+   inline matter(matter&& matter) : m_pmutex(matter.m_pmutex), m_countReference(matter.m_countReference), m_uError(0), m_eobject(matter.m_eobject), m_uObject(0), m_psystem(nullptr) { matter.m_pmutex = nullptr; }
 #endif
 
    virtual ~matter();
@@ -101,21 +118,22 @@ public:
 
    virtual ::e_status on_initialize_object();
 
+   inline bool has_error() const {return m_uError != 0;}
 
-   inline bool is_set() const { return ::is_set(this); }
+   //inline bool is_set() const { return ::is_set(this); }
 
 
    inline bool is_shared() const { return m_countReference > 1; }
 
 
    // synchronization_object/::mutex
-   inline synchronization_object* mutex() const { return is_set() ? ((::matter*)this)->m_pmutex : nullptr; }
+   inline synchronization_object* mutex() const { return !::is_set_ptr(this) ? ((::matter*)this)->m_pmutex : nullptr; }
    void set_mutex(synchronization_object* psync);
    void defer_create_mutex();
 
    //::e_status branch();
 
-   inline ::acme::system* get_system() const { return (::acme::system *) m_psystem; }
+   inline class ::system* get_system() const { return (class ::system *) m_psystem; }
 
    inline ::apex::application* get_application() { return _get_application(); }
 
@@ -288,8 +306,8 @@ public:
 
    virtual const char * topic_text() const;
 
-   virtual void sync_wait();
-   virtual void sync_wait(const ::duration & duration);
+   virtual ::synchronization_result sync_wait();
+   virtual ::synchronization_result sync_wait(const ::duration & duration);
 
 
    virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext);

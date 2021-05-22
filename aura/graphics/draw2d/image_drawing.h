@@ -201,7 +201,7 @@ public:
 
       auto concreteSize = pimagesource->size();
 
-      auto sizeDst = ::size_i32(rectSrc);
+      //auto sizeDst = ::size_i32(rectSrc);
 
       m_pimage = pimagesource->get_image(concreteSize);
 

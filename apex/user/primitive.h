@@ -127,8 +127,8 @@ namespace user
       virtual enum_control_type get_control_type() const;
 
 
-      virtual bool add_prodevian(::object * pobject);
-      virtual bool erase_prodevian(::object * pobject);
+      virtual bool add_prodevian(::matter * pmatter);
+      virtual bool erase_prodevian(::matter * pmatter);
 
       virtual bool display(::e_display edisplay = e_display_default, ::e_activation eactivation = e_activation_default);
 
@@ -160,9 +160,11 @@ namespace user
 
       virtual double _001GetTopLeftWeightedOccludedOpaqueRate();
 
-      virtual enum_cursor get_cursor();
+      virtual ::windowing::cursor * get_mouse_cursor();
 
-      virtual ::e_status set_cursor(enum_cursor ecursor);
+      //virtual ::e_status set_cursor(enum_cursor ecursor);
+
+      virtual ::e_status set_mouse_cursor(::windowing::cursor * pcursor);
 
       //virtual ::point_i32 get_cursor_position() const;
 
@@ -312,21 +314,15 @@ namespace user
       virtual bool GetUpdateRect(RECTANGLE_I32 * prectangle,bool bErase = false);
 
 
-
-      //virtual u32 GetStyle() const;
-      //virtual u32 GetExStyle() const;
+      virtual ::e_status interaction_branch(const ::routine & routine);
 
 
-      virtual ::e_status main_async(const ::routine & routine, e_priority epriority = priority_normal);
-
-
-      //using ::channel::send;
       virtual lresult send(::message::message * pmessage);
       virtual bool post(::message::message * pmessage);
 
-      virtual lresult send_message(const ::id & id, wparam wparam = 0, lparam lparam = 0);
+      virtual lresult send_message(const ::id & id, wparam wparam = 0, lparam lparam = 0, const ::point_i32& point = nullptr);
 
-      virtual lresult message_call(const ::id & id, wparam wparam = 0, lparam lparam = 0);
+      virtual lresult message_call(const ::id & id, wparam wparam = 0, lparam lparam = 0, const ::point_i32& point = nullptr);
       virtual lresult message_call(::message::message * pmessage);
 
 
@@ -476,7 +472,7 @@ namespace user
       //virtual void default_window_procedure(::message::message * pmessage);
 
 
-      virtual bool call_message_handler(const ::id & id, wparam wparam = 0, lparam lparam = 0, lresult * presult = nullptr);
+      virtual bool call_message_handler(const ::id & id, wparam wparam = 0, lparam lparam = 0, const ::point_i32 & point = nullptr,lresult * presult = nullptr);
 
 
       virtual void GuieProc(::message::message * pmessage);
@@ -582,12 +578,6 @@ namespace user
 
       virtual void keep_alive(::object * pliveobject = nullptr);
 
-
-
-
-      //virtual void _user_message_handler(::message::message * pmessage);
-
-      //virtual PFN_DISPATCH_MESSAGE_HANDLER _calc_user_message_handler();
 
       virtual bool has_pending_graphical_update();
       virtual void on_after_graphical_update();
@@ -715,7 +705,7 @@ namespace user
 
       virtual void edit_on_text(string str);
       virtual void edit_on_sel(strsize iBeg, strsize iEnd);
-      virtual void insert_text(string str, bool bForceNewStep, const ::action_context & context);
+      virtual void insert_text(string str, bool bForceNewStep, const ::action_context & context) override;
 
 
       virtual void on_text_composition(string str);

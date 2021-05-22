@@ -20,9 +20,12 @@ public:
 
 
    nanos & operator = (const nanos & nanos) { m_i = nanos.m_i; return *this; }
-
+   nanos & operator -= (const duration & duration) { m_i = m_i - ((::nanos)(duration)).m_i; return *this; }
+   nanos & operator += (const duration & duration) { m_i = m_i + ((::nanos)(duration)).m_i; return *this; }
 
    void sleep() const;
+   
+   void Now() { m_i = ::get_nanos(); }
 
 
 };
@@ -39,4 +42,46 @@ inline secs::secs(const nanos & nanos) { m_i = nanos.m_i / 1'000'000'000; }
 inline nanos operator "" _ns(unsigned long long int u) { return (::i64) u; }
 
 
+inline nanos operator -(const ::nanos& nanos1, const ::nanos& nanos2) 
+{
+
+   return nanos1.m_i - nanos2.m_i;
+
+}
+
+
+inline nanos operator +(const ::nanos& nanos1, const ::nanos& nanos2)
+{
+
+   return nanos1.m_i + nanos2.m_i;
+
+}
+
+
+#ifdef CPP20
+
+
+template < primitive_number NUMBER >
+inline nanos operator *(const ::nanos& nanos, const NUMBER& number)
+{
+
+   return (::i64)(nanos.m_i * number);
+
+}
+
+
+template < primitive_number NUMBER >
+inline nanos operator /(const ::nanos& nanos, const NUMBER& number)
+{
+
+   return (::i64)(nanos.m_i / number);
+
+}
+
+
+#endif
+
+
+CLASS_DECL_ACME ::i64 first_nano();
+CLASS_DECL_ACME ::i64 get_nanos();
 

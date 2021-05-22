@@ -66,6 +66,11 @@ namespace aura
 //
 //#endif
 
+   void node::defer_dock_application(bool bDock)
+   {
+      
+   }
+
 
    void node::set_application_menu(::apex::application_menu * pmenu, ::apex::application * papplication)
    {

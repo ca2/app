@@ -1575,9 +1575,11 @@ void xfplayer_view_line::PrepareURLLinks()
 
    auto pregex = psystem->create_pcre("/^|\\s|([;\"()]+))(((((http|https)://))|(www\\.))[0-9a-zA-Z./\\-_?=]+)(([;\"()]+)|\\s|$/");
 
-   auto prangea = pregex->matches_ranges(m_str);
+   auto ptopic = pregex->create_topic(m_str);
 
-   for(auto & range : *prangea)
+   auto & rangea = ptopic->get_range_array();
+
+   for(auto & range : rangea)
    {
 
       m_straLink.add(m_str.Mid(range.begin(), range.count()));
@@ -1722,10 +1724,22 @@ void xfplayer_view_line::OnMouseMove(::message::message * pmessage)
    strsize iChar;
    if (CalcChar(pmouse->m_point, iChar))
    {
+
       if (CharHasLink(iChar))
       {
-         pmouse->m_ecursor = e_cursor_hand;
+
+         auto psession = get_session()->m_paurasession;
+
+         auto puser = psession->user();
+
+         auto pwindowing = puser->windowing();
+
+         auto pcursor = pwindowing->get_cursor(e_cursor_hand);
+
+         pmouse->m_pcursor = pcursor;
+
       }
+
    }
    /*
    lyric_view_line_selection & selection = GetSelection();

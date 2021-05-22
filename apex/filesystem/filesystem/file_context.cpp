@@ -5,6 +5,10 @@
 #include "acme/filesystem/filesystem/acme_dir.h"
 
 
+
+
+
+
 #ifdef WINDOWS_DESKTOP
 
 #include "apex/platform/app_core.h"
@@ -67,6 +71,13 @@ file_context::~file_context()
 
 bool file_context::exists(const ::file::path &pathParam)
 {
+
+   if (::is_null(m_pcontext))
+   {
+
+      return false;
+
+   }
 
    ::file::path path = m_pcontext->m_papexcontext->defer_process_matter_path(pathParam);
 
@@ -2462,7 +2473,11 @@ file_result file_context::http_get_file(const ::payload &varFile, const ::file::
 
          auto pfile = file_get_file(pathCache, eopenFlags);
 
-         if (pfile)
+         bool bBypassCacheIfEmpty = get_bypass_cache_if_empty(varFile);
+
+         bool bBypassCache = !bBypassCacheIfEmpty || pfile->is_empty();
+
+         if (pfile && !bBypassCache)
          {
 
             return pfile;
@@ -3459,4 +3474,51 @@ bool file_context::touch(const ::file::path &path)
 
 
 }
+
+
+
+
+void set_bypass_cache_if_empty(::payload & varFile)
+{
+
+   auto etype = varFile.m_etype;
+
+   if(etype != e_type_element)
+   {
+
+      if(etype != e_type_propset)
+      {
+
+         ::file::path path = varFile.get_file_path();
+
+         varFile["url"] = path;
+
+      }
+
+      varFile["bypass_cache_if_empty"] = true;
+
+   }
+
+}
+
+
+bool get_bypass_cache_if_empty(const ::payload & varFile)
+{
+
+   if(varFile.m_etype == e_type_propset)
+   {
+
+      if(varFile.is_true("bypass_cache_if_empty"))
+      {
+
+         return true;
+
+      }
+
+   }
+
+   return true;
+
+}
+
 

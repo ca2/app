@@ -408,7 +408,8 @@ namespace user
 
       auto rectComboClient = m_pcombo->get_client_rect();
 
-      psize->cx = maximum(psize->cx, rectComboClient.width());
+      //psize->cx = maximum(psize->cx, rectComboClient.width());
+      //psize->cx = maximum(psize->cx, rectComboClient.width());
 
    }
 
@@ -704,7 +705,7 @@ namespace user
 
       __pointer(::message::mouse_activate) pactivate(pmessage);
 
-      pactivate->m_lresult = MA_NOACTIVATE;
+      pactivate->m_lresult = e_mouse_activate_no_activate;
 
       pactivate->m_bRet = true;
 

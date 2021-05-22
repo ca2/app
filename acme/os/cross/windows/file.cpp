@@ -1,50 +1,53 @@
 #include "framework.h"
+#include "acme/os/_const_console.h"
 #include "acme/os/console.h"
 #ifdef LINUX
 #include "acme/os/ansios/binreloc.h"
+#endif
+#if defined(LINUX) || defined(MACOS)
 #include <sys/stat.h>
 #endif
 
-
-namespace file
-{
-
-
-
-
-   ::file::path module()
-   {
-
-      char * pszModuleFilePath = nullptr;
-
-#if defined(__APPLE__)
-
-      pszModuleFilePath = ns_get_executable_path();
-
-#else
-
-      pszModuleFilePath = br_find_exe("app");
-
-#endif
-
-      if (pszModuleFilePath == nullptr)
-      {
-
-         return "";
-
-      }
-
-      string strModuleFileName(pszModuleFilePath);
-
-      free(pszModuleFilePath);
-
-      return strModuleFileName;
-
-   }
-
-
-
-}
+//
+//namespace file
+//{
+//
+//
+//
+//
+//   ::file::path module()
+//   {
+//
+//      char * pszModuleFilePath = nullptr;
+//
+//#if defined(__APPLE__)
+//
+//      pszModuleFilePath = ns_get_executable_path();
+//
+//#else
+//
+//      pszModuleFilePath = br_find_exe("app");
+//
+//#endif
+//
+//      if (pszModuleFilePath == nullptr)
+//      {
+//
+//         return "";
+//
+//      }
+//
+//      string strModuleFileName(pszModuleFilePath);
+//
+//      free(pszModuleFilePath);
+//
+//      return strModuleFileName;
+//
+//   }
+//
+//
+//
+//}
 
 
 

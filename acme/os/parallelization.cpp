@@ -96,7 +96,7 @@ void set_get_thread_name(LPFN_GET_THREAD_NAME pfnGetThreadName)
 }
 
 
-string get_thread_name(::thread* pthread)
+string get_task_name(::thread* pthread)
 {
 
    if (!g_pfnGetThreadName)

@@ -34,33 +34,8 @@ namespace experience
 
       }
 
-
-      //MESSAGE_LINK(e_message_left_button_down, pchannel, this, &button::on_message_left_button_down);
-
    }
 
-
-//   void button::on_message_left_button_down(::message::message* pmessage)
-//   {
-//
-//      __pointer(::message::mouse) pmouse(pmessage);
-//
-////      if (m_ebutton == e_button_dock)
-////      {
-////
-////         auto item = hit_test(pmouse);
-////
-////         if (item.is_set())
-////         {
-////
-////            m_pcontrolbox->m_pframewindow->experience_on_start_dock(pmouse);
-////
-////         }
-////
-////      }
-//
-//   }
-//
 
    void button::UpdateWndRgn()
    {
@@ -159,6 +134,49 @@ namespace experience
       }
 
    }
+
+
+   void button::on_hit_test(::user::item & item)
+   {
+
+      synchronous_lock synchronouslock(mutex());
+
+      if (m_pregion.is_null() || !m_pregion->contains(item.m_pointHitTest))
+      {
+
+         if(m_bMouseHoverOnCapture)
+         {
+
+            if(has_mouse_capture())
+            {
+
+               item = ::user::e_element_non_client;
+
+               return;
+
+            }
+
+         }
+         else if(m_ebutton == e_button_dock)
+         {
+
+            if(m_pcontrolbox->m_pframewindow->dock_manager()->window_is_docking())
+            {
+
+               item = ::user::e_element_non_client;
+
+               return;
+
+            }
+
+         }
+
+      }
+
+      ::user::button::on_hit_test(item);
+
+   }
+
 
 
    bool button::keyboard_focus_is_focusable() const

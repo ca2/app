@@ -66,8 +66,7 @@ namespace acme
    {
 
 
-
-      //string strPrgName = psystem->m_strAppId;
+      //string strPrgName = psystem->m_XstrAppId;
 
       //strPrgName.replace("/", ".");
 
@@ -79,12 +78,12 @@ namespace acme
 
       //::set_main_ithread(psystem->m_uThread);
 
-      //// ::acme::get_system()->m_strAppId = m_pmaindata->m_strAppId;
+      //// ::acme::get_system()->m_XstrAppId = m_pmaindata->m_XstrAppId;
 
       //if (!psystem->begin_synch())
       //{
 
-      //   output_debug_string("Failed to begin_synch the system (::acme::system or ::acme::system derived)");
+      //   output_debug_string("Failed to begin_synch the system (class ::system or class ::system derived)");
 
       //   return ::error_failed;
 

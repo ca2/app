@@ -59,7 +59,7 @@ public:
    virtual void route_message(::message::message * pmessage);
 
    virtual __pointer(::message::message) get_message(MESSAGE * pmessage);
-   virtual __pointer(::message::message) get_message(const ::id & id, wparam wparam, lparam lparam);
+   virtual __pointer(::message::message) get_message(const ::id & id, wparam wparam, lparam lparam, const ::point_i32& point);
 
    ///virtual __pointer(::user::message) get_message_base(::windowing::window * pwindow, const ::id & id, wparam wparam, lparam lparam);
 

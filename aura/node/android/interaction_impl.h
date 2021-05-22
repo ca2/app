@@ -215,11 +215,6 @@ namespace android
 
 
 
-      // capture and focus apply to all windows
-      //static ::user::interaction * s_GetCapture();
-      //virtual ::user::interaction * SetCapture(::user::interaction * pinterface = nullptr);
-      //virtual ::user::interaction * ReleaseCapture();
-      //virtual ::user::interaction * GetCapture();
       virtual bool SetFocus() override;
 
       virtual bool has_focus() override;

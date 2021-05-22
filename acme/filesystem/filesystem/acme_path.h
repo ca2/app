@@ -10,6 +10,8 @@ public:
 
    ::PLATFORM_NAMESPACE::acme_path* m_pplatformpath;
 
+   ::file::path      m_pathModule;
+
 
    virtual ::file::path app(string strPlatform, string strConfiguration);
 

@@ -6,13 +6,13 @@
 
 #if !defined(_UWP)
 
-CLASS_DECL_ACME ::e_status call_async(const char * pszPath, const char * pszParam, const char * pszDir, ::e_display edisplay, bool bPrivileged, unsigned int * puiPid = nullptr);
+//CLASS_DECL_ACME ::e_status call_async(const char * pszPath, const char * pszParam, const char * pszDir, ::e_display edisplay, bool bPrivileged, unsigned int * puiPid = nullptr);
 
-typedef i32 CALLSYNCONRETRY(i32 iTry,uptr dwParam);
+//typedef i32 CALLSYNCONRETRY(i32 iTry,uptr dwParam);
 
-typedef CALLSYNCONRETRY * PFNCALLSYNCONRETRY;
+//typedef CALLSYNCONRETRY * PFNCALLSYNCONRETRY;
 
-CLASS_DECL_ACME ::e_status call_sync(const char * pszPath, const char * pszParam, const char * pszDir, ::e_display edisplay, const ::duration & durationTimeout, ::property_set & set);
+//CLASS_DECL_ACME ::e_status call_sync(const char * pszPath, const char * pszParam, const char * pszDir, ::e_display edisplay, const ::duration & durationTimeout, ::property_set & set);
 
 #endif
 
@@ -22,9 +22,9 @@ CLASS_DECL_ACME i32 get_current_process_maximum_affinity();
 CLASS_DECL_ACME i32 get_current_process_affinity_order();
 
 
-CLASS_DECL_ACME string expand_env(string str);
-CLASS_DECL_ACME string get_environment_variable(const char * pszEnvironmentVariable);
-CLASS_DECL_ACME string ca2_command_line();
+//CLASS_DECL_ACME string expand_env(string str);
+//CLASS_DECL_ACME string get_environment_variable(const char * pszEnvironmentVariable);
+//CLASS_DECL_ACME string ca2_command_line();
 
 
 CLASS_DECL_ACME string consume_param(const char * pszCommandLine, const char ** pszEndPtr);
@@ -34,7 +34,7 @@ CLASS_DECL_ACME bool get_command_line_param(string & strValue, const char * pszC
 CLASS_DECL_ACME string get_command_line_param(const char * pszCommandLine,const char * pszParam);
 
 
-CLASS_DECL_ACME bool launch_command(const char * const pszCommand);
+CLASS_DECL_ACME bool launch_command(class ::system * psystem, const char * const pszCommand);
 
 
 CLASS_DECL_ACME string process_configuration_dir_name();
@@ -44,21 +44,21 @@ CLASS_DECL_ACME string process_platform_dir_name();
 CLASS_DECL_ACME string process_platform_dir_name2();
 CLASS_DECL_ACME string process_version_dir_name();
 
-CLASS_DECL_ACME int_bool is_process_running(::u32 pid);
+//CLASS_DECL_ACME int_bool is_process_running(::u32 pid);
 
 //CLASS_DECL_ACME ::file::path core_app_path(string strApp);
 
 #if !defined(_UWP)
 
 
-CLASS_DECL_ACME string module_path_from_pid(unsigned int pid);
-CLASS_DECL_ACME ::id_array module_path_get_pid(const char * pszModuleName, bool bModuleNameIsPropertyFormatted = true);
+//CLASS_DECL_ACME string module_path_from_pid(unsigned int pid);
+//CLASS_DECL_ACME ::id_array module_path_get_pid(const char * pszModuleName, bool bModuleNameIsPropertyFormatted = true);
 
 
 #ifndef WINDOWS
 
-CLASS_DECL_ACME string_array cmdline_from_pid(unsigned int pid);
-CLASS_DECL_ACME id_array app_get_pid(const char * pszModuleName);
+//CLASS_DECL_ACME string_array cmdline_from_pid(unsigned int pid);
+//CLASS_DECL_ACME id_array app_get_pid(const char * pszModuleName);
 
 
 #endif
@@ -67,14 +67,14 @@ CLASS_DECL_ACME id_array app_get_pid(const char * pszModuleName);
 #endif
 
 #ifndef _UWP
-CLASS_DECL_ACME bool process_contains_module(string & strImage, ::u32 processID, const char * pszLibrary);
-CLASS_DECL_ACME void shared_library_process(dword_array & dwa, string_array & straProcesses, const char * pszLibrary);
+//CLASS_DECL_ACME bool process_contains_module(string & strImage, ::u32 processID, const char * pszLibrary);
+//CLASS_DECL_ACME void shared_library_process(dword_array & dwa, string_array & straProcesses, const char * pszLibrary);
 #endif
 
 
 
-CLASS_DECL_ACME bool is_shared_library_busy(u32 processid, const string_array & stra);
-CLASS_DECL_ACME bool is_shared_library_busy(const string_array & stra);
+//CLASS_DECL_ACME bool is_shared_library_busy(u32 processid, const string_array & stra);
+//CLASS_DECL_ACME bool is_shared_library_busy(const string_array & stra);
 
 
 CLASS_DECL_ACME bool launch_application(::matter * pobject, const string & strAppId, const string & strParams, int iBitCount);
@@ -108,6 +108,14 @@ CLASS_DECL_ACME string_array get_c_args_from_string(const char* psz);
 CLASS_DECL_ACME string_array get_c_args_from_c(const char* psz);
 CLASS_DECL_ACME string_array get_c_args_for_c(const char* psz);
 CLASS_DECL_ACME string_array get_c_args(int argc, char** argv);
+
+// it was extracted from macOS code base
+// it is prepared for a command line supplied by macOS*1?
+// (*1.macOS:
+//          proc_pidinfo((pid_t) uiPid, PROC_PIDTASKALLINFO, SHOW_ZOMBIES, &info, sizeof(struct proc_taskallinfo));
+// return info.pbsd.pbi_comm;
+// )
+CLASS_DECL_ACME string_array command_arguments_from_command_line(const ::string & strCommandLine);
 //#ifdef WINDOWS_DESKTOP
 //CLASS_DECL_ACME string ca2_command_line(hinstance hinstance);
 //#else

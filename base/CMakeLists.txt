@@ -151,8 +151,8 @@ list(APPEND base_source
         user/user/margin.h
         user/user/menu.cpp
         user/user/menu.h
-        user/user/menu_command.cpp
-        user/user/menu_command.h
+        #user/user/menu_command.cpp
+        #user/user/menu_command.h
         user/user/menu_interaction.cpp
         user/user/menu_interaction.h
         user/user/menu_item.cpp
@@ -289,8 +289,6 @@ if (MSVC)
 elseif(LINUX)
     target_compile_options(base PRIVATE -fpermissive)
     target_link_options(base PRIVATE -Wl,-rpath=\$ORIGIN)
-    #target_link_libraries(base PRIVATE dl pthread X11 Xrandr Xrender Xinerama Xi ncurses)
-    #target_link_libraries(base PRIVATE dl pthread X11 Xrandr Xrender Xinerama Xi ncurses)
     target_link_libraries(base PRIVATE ${PKGCONFIG_LIBRARIES})
     target_link_libraries(base PRIVATE acme apex aqua aura axis)
     target_link_options(base PRIVATE -Wl,-z,defs)

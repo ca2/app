@@ -590,24 +590,16 @@ namespace datetime
 } // namespace datetime
 
 
-
-
-
-
-i64 g_iFirstNano;
+::i64 g_iNanosFirst;
 
 
 //extern "C"
-CLASS_DECL_ACME i64 first_nano()
+CLASS_DECL_ACME ::i64 first_nano()
 {
 
-   return g_iFirstNano;
+   return g_iNanosFirst;
 
 }
-
-
-
-
 
 
 //extern "C"

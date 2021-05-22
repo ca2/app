@@ -1,4 +1,4 @@
-﻿//        acme / camilo made by thomas
+//        acme / camilo made by thomas
 // 
 //   
 //    
@@ -106,7 +106,7 @@ CLASS_DECL_ACME void acme_ref();
 //typedef __MAIN_DEFERRED_RUN *__LPFN_MAIN_DEFERRED_RUN;
 //extern CLASS_DECL_ACME __LPFN_MAIN_DEFERRED_RUN __main_deferred_run;
 
-
+#define CPP20
 
 #ifdef __DEBUG
 
@@ -119,7 +119,40 @@ CLASS_DECL_ACME void acme_ref();
 #endif
 
 
+class system;
+
+
 namespace acme
+{
+
+
+   class node;
+
+
+   namespace posix
+   {
+
+
+      class node;
+
+
+   } // namespace posix
+
+
+   namespace PLATFORM_NAMESPACE
+   {
+
+
+      class node;
+
+
+   } // namespace PLATFORM_NAMESPACE
+
+
+} // namespace acme
+
+
+namespace apex
 {
 
 
@@ -129,13 +162,146 @@ namespace acme
    class node;
 
 
-} // namespace acme
+   namespace posix
+   {
+
+      class node;
+
+   };
 
 
-//class layered;
+   namespace PLATFORM_NAMESPACE
+   {
 
 
-//CLASS_DECL_ACME ::acme::system *get_context_system();
+      class node;
+
+
+   } // namespace PLATFORM_NAMESPACE
+
+
+} // namespace apex
+
+
+namespace aura
+{
+
+
+   class system;
+
+
+   class node;
+
+
+   namespace posix
+   {
+
+      class node;
+
+   };
+
+
+   namespace PLATFORM_NAMESPACE
+   {
+
+
+      class node;
+
+
+   } // namespace PLATFORM_NAMESPACE
+
+
+} // namespace aura
+
+
+namespace windowing_x11
+{
+
+
+   class node;
+
+
+} // namespace windowing_x11
+
+
+namespace windowing_xcb
+{
+
+
+   class node;
+
+
+} // namespace windowing_xcb
+
+
+namespace node_gtk
+{
+
+
+   class node;
+
+
+} // namespace node_gtk
+
+
+namespace node_gnome
+{
+
+
+   class node;
+
+
+} // namespace node_gnome
+
+
+namespace node_kde
+{
+
+
+   class node;
+
+
+} // namespace node_kde
+
+
+namespace node_xfce
+{
+
+
+   class node;
+
+
+} // namespace node_xfce
+
+
+namespace desktop_environment_gnome
+{
+
+
+   class node;
+
+
+} // namespace desktop_environment_gnome
+
+
+namespace desktop_environment_kde
+{
+
+
+   class node;
+
+
+} // namespace desktop_environment_kde
+
+
+namespace desktop_environment_xfce
+{
+
+
+   class node;
+
+
+} // namespace desktop_environment_xfce
 
 
 #define ___STR(s) #s
@@ -208,14 +374,14 @@ namespace opengl
 
 } // namespace opengl
 
-
-enum enum_normalize
-{
-
-   e_normalize
-
-};
-
+//
+//enum enum_normalize
+//{
+//
+//   e_normalize
+//
+//};
+//
 
 namespace message
 {
@@ -226,13 +392,13 @@ namespace message
 
 } // namespace message
 
-
-enum enum_null
-{
-
-   e_null
-
-};
+//
+//enum enum_null
+//{
+//
+//   e_null
+//
+//};
 
 
 struct INT_STRING
@@ -257,7 +423,8 @@ struct INT_STRING
 #define ARG_SEC_ATTRS
 #define PARAM_SEC_ATTRS
 #define INSERT_PARAM_SEC_ATTRS(ATTRS) 
-#define ADD_PARAM_SEC_ATTRS 
+#define ADD_PARAM_SEC_ATTRS
+#define ADD_PASS_SEC_ATTRS
 #endif
 
 
@@ -313,6 +480,10 @@ concept primitive_natural = (std::is_integral < T >::value || std::is_enum < T >
 
 template < typename T >
 concept primitive_floating = std::is_floating_point < T >::value;
+
+template < typename T >
+concept primitive_number = std::is_integral < T >::value || std::is_enum < T >::value || std::is_floating_point < T >::value;
+
 
 template < typename FROM, typename TO_POINTER >
 concept pointer_castable =
@@ -666,9 +837,9 @@ CLASS_DECL_ACME enum_platform_level get_platform_level();
 #define FLOATABS(f) (((f) >= 0.f) ? (f) : (-f))
 #define DOUBLEABS(d) (((d) >= 0.0) ? (d) : (-d))
 
-
-#define MIN(a, b) (((a) < (b)) ? (a) : (b))
-#define MAX(a, b) (((b) < (a)) ? (a) : (b))
+//#ifndef
+//#define MIN(a, b) (((a) < (b)) ? (a) : (b))
+//#define MAX(a, b) (((b) < (a)) ? (a) : (b))
 
 
 #ifdef __cplusplus
@@ -683,19 +854,21 @@ CLASS_DECL_ACME enum_platform_level get_platform_level();
 #define SORT_LIM(x, minmax, maxmin) ((minmax) < (maxmin) ? LIM(x,minmax,maxmin) : LIM(x,maxmin,minmax))
 #define CLIP_USHRT(x) LIM(x,0,USHRT_MAX)
 
+enum enum_optional
+{
+
+   e_optional,
+
+};
 
 #ifdef WINDOWS
 #include <intsafe.h>
 #else
 
-#ifndef LODWORD
-#define LODWORD(l)                                    ((::u32)(((::u64)(l)) & 0xffffffff))
-#endif
-#ifndef HIDWORD
-#define HIDWORD(l)                                    ((::u32)((((::u64)(l)) >> 32) & 0xffffffff))
-#endif
+#include "acme/os/cross/windows/_include.h"
 
 #endif
+
 
 
 #define __u16(a, b)                                   ((::u16)(((::u8)(((::uptr)(a)) & 0xff)) | ((::u16)((::u8)(((::uptr)(b)) & 0xff))) << 8))
@@ -749,21 +922,6 @@ using filetime_t = ::u64;
 # define O_BINARY 0
 #endif
 
-
-enum enum_optional
-{
-
-   e_optional,
-
-};
-
-
-enum enum_no_initialize
-{
-
-   e_no_initialize,
-
-};
 
 
 CLASS_DECL_ACME i32 ansi_open(const char *psz, i32 i);
@@ -1304,9 +1462,9 @@ inline u32 u32_hash(ARG_KEY key) { return (u32) (uptr_hash<ARG_KEY>(key)); }
 //#endif
 
 
-#define __base(TYPE, ptarget, psource) for(__pointer(TYPE) ptarget = psource; ptarget.is_set(); ptarget.release())
-#define __base_reference(TYPE, ptarget, source) for(__pointer(TYPE) ptarget = &source; ptarget.is_set(); ptarget.release())
-#define __exception(TYPE) __base(TYPE, pe, e)
+// #define __base(TYPE, ptarget, psource) for(__pointer(TYPE) ptarget = psource; ptarget.is_set(); ptarget.release())
+// #define __base_reference(TYPE, ptarget, source) for(__pointer(TYPE) ptarget = &source; ptarget.is_set(); ptarget.release())
+// #define __exception(TYPE) __base(TYPE, pe, e)
 
 
 #undef _
@@ -1346,12 +1504,12 @@ class create;
 class synchronization_object;
 
 
-//CLASS_DECL_ACME i32 acme_run_system(::acme::system* psystem);
+//CLASS_DECL_ACME i32 acme_run_system(class ::system* psystem);
 
 
-//CLASS_DECL_ACME ::e_status acme_run_system_init(::acme::system * psystem);
-//CLASS_DECL_ACME ::e_status acme_run_system_proc(::acme::system * psystem);
-//CLASS_DECL_ACME ::e_status acme_run_system_term(::acme::system * psystem);
+//CLASS_DECL_ACME ::e_status acme_run_system_init(class ::system * psystem);
+//CLASS_DECL_ACME ::e_status acme_run_system_proc(class ::system * psystem);
+//CLASS_DECL_ACME ::e_status acme_run_system_term(class ::system * psystem);
 
 
 template<typename VAR>
@@ -2162,7 +2320,7 @@ template<typename T>
 inline int type_is_null(const T *p)
 {
 
-   return (((uptr) (void *) p) < MAX(4096, sizeof(T)));
+   return (((uptr) (void *) p) < maximum(4096, sizeof(T)));
 
 }
 
@@ -2604,7 +2762,8 @@ namespace text
 class thread_parameter;
 
 
-#include "acme/primitive/primitive/interlocked_long.h"
+#include "acme/primitive/primitive/interlocked.h"
+#include "acme/primitive/primitive/interlocked_count.h"
 #include "acme/primitive/primitive/interlocked_long_pulse.h"
 #include "acme/primitive/primitive/type.h"
 #include "acme/primitive/primitive/id.h"
@@ -2795,7 +2954,7 @@ using wparam = c_number<iptr>;
 #include "acme/primitive/mathematics/math_clip.h"
 
 
-#include "acme/primitive/datetime/_datetime.h"
+#include "acme/primitive/datetime/_.h"
 
 
 #include "acme/platform/common.h"
@@ -2855,7 +3014,7 @@ namespace papaya
 class memory_base;
 
 
-//template<typename BASE_TYPE, typename POINT_BASE_TYPE, typename RECT_BASE_TYPE>
+//template<typename BASE_TYPE, typename POINT_BASE_TYPE, typename RECTANGLE_BASE_TYPE>
 //class size_type;
 
 
@@ -2931,6 +3090,10 @@ namespace factory
 
 } // namespace factory
 
+
+#include "acme/parallelization/synchronization_result.h"
+#include "acme/primitive/primitive/atomic.h"
+#include "acme/primitive/primitive/interlocked_count.h"
 
 #include "acme/primitive/primitive/matter.h"
 #include "acme/primitive/primitive/material_object.h"
@@ -3128,10 +3291,15 @@ namespace core
 
 class task;
 
+template < class TYPE, class ARG_TYPE = const TYPE & >
+class list;
+
+
 template < typename TYPE, typename ARG_TYPE = typename argument_of < TYPE >::type, typename PAIR = pair < ::id, TYPE, typename argument_of < ::id >::type, ARG_TYPE > >
 using id_map = ::map < id, TYPE, typename argument_of < ::id >::type, ARG_TYPE, PAIR >;
 
 using routine_array = ::array < routine >;
+using routine_list = ::list < routine >;
 
 //using process_array = ::array < process >;
 
@@ -3437,6 +3605,11 @@ inline void dump_elements(dump_context &dumpcontext, const TYPE *pElements, ::co
 //#include "acme/primitive/collection/base_enum.h"
 
 #include "acme/const/source.h"
+
+
+DECLARE_ENUMERATION(e_source, enum_source);
+
+
 #include "acme/const/context.h"
 #include "acme/primitive/primitive/action_context.h"
 
@@ -3586,6 +3759,7 @@ inline void dump_elements(dump_context &dumpcontext, const TYPE *pElements, ::co
 
 
 CLASS_DECL_ACME string get_system_error_message(u32 dwError);
+CLASS_DECL_ACME string get_status_message(::e_status estatus);
 
 
 #include "acme/platform/flags.h"
@@ -3619,16 +3793,7 @@ CLASS_DECL_ACME string get_system_error_message(u32 dwError);
 
 class mq_base;
 
-//#include "acme/platform/live_signal.h"
-//#include "acme/parallelization/predicate_holder.h"
-//#include "acme/primitive/primitive/command.h"
-//#include "acme/parallelization/handler.h"
-//#include "acme/parallelization/service_base.h"
-//#include "acme/parallelization/service/plain_service.h"
-//#include "acme/parallelization/service/plain_service.h"
-//#include "acme/parallelization/fork.h"
-//#include "acme/parallelization/delay_thread.h"
-//#include "acme/parallelization/tools.h"
+
 
 #include "acme/platform/timer_callback.h"
 #include "acme/platform/timer_item.h"
@@ -3639,9 +3804,6 @@ class mq_base;
 #include "acme/platform/timer_event.h"
 
 #include "acme/parallelization/thread_impl.h"
-//#include "acme/parallelization/simple_thread.h"
-//#include "acme/parallelization/go_thread.h"
-//#include "acme/parallelization/signal_thread.h"
 #include "acme/platform/routine_array.h"
 
 
@@ -3762,6 +3924,9 @@ namespace file
 #include "acme/platform/department.h"
 
 
+#include "acme/primitive/datetime/_datetime.h"
+
+
 #include "acme/net/_.h"
 
 
@@ -3828,7 +3993,7 @@ void set_osremote(os_remote * posremote);
 
 #endif
 
-#include "acme/platform/regex.h"
+//#include "acme/platform/regex.h"
 
 #include "acme/process/_.h"
 
@@ -3938,7 +4103,7 @@ i32 _c_unlock(void **pdata);
 
 CLASS_DECL_ACME string _ca_get_file_name(const char *psz, bool bCreate = false, i32 *pfd = nullptr);
 
-CLASS_DECL_ACME string get_system_error_message(u32 dwError);
+//CLASS_DECL_ACME string get_system_error_message(u32 dwError);
 
 
 #include "acme/platform/simple_app.h"
@@ -4226,6 +4391,9 @@ namespace draw2d
 } // namespace draw2d
 
 
+class wcsdup_array;
+
+
 #include "acme/graphics/draw2d/_.h"
 
 
@@ -4254,6 +4422,9 @@ namespace draw2d
 
 
 #include "acme/parallelization/cleanup_task.h"
+
+
+#include "acme/regular_expression/_regular_expression.h"
 
 
 #include "acme/platform/system.h"

@@ -1,0 +1,5 @@
+LIBRARY "database_sqlite3"
+
+EXPORTS
+database_sqlite3_factory_exchange
+

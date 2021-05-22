@@ -269,7 +269,7 @@ public:
 
    bool is_destroying();
 
-   bool bamf_set_icon();
+   bool bamf_set_icon(oswindow oswindow, ::apex::application * papplication);
 
    bool set_icon(::image * pimage);
 

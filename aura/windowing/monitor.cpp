@@ -44,7 +44,7 @@ namespace windowing
    }
 
 
-   bool monitor::get_monitor_rectangle(::RECTANGLE_I32 * prectangle)
+   ::e_status monitor::get_monitor_rectangle(::RECTANGLE_I32 * prectangle)
    {
 
       __copy(prectangle, m_rectangle);
@@ -54,7 +54,7 @@ namespace windowing
    }
 
 
-   bool monitor::get_workspace_rectangle(::RECTANGLE_I32 * prectangle)
+   ::e_status monitor::get_workspace_rectangle(::RECTANGLE_I32 * prectangle)
    {
 
       __copy(prectangle, m_rectangleWorkspace);

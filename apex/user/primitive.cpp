@@ -732,7 +732,7 @@ namespace user
    //}
 
 
-   bool primitive::add_prodevian(::object * pobject)
+   bool primitive::add_prodevian(::matter * pmatter)
    {
 
       return false;
@@ -740,7 +740,7 @@ namespace user
    }
 
 
-   bool primitive::erase_prodevian(::object * pobject)
+   bool primitive::erase_prodevian(::matter * pmatter)
    {
 
       return false;
@@ -1020,8 +1020,7 @@ namespace user
    }
 
 
-
-   ::e_status primitive::main_async(const ::routine & routine, e_priority epriority)
+   ::e_status primitive::interaction_branch(const ::routine & routine)
    {
 
       __throw(error_interface_only);
@@ -1054,15 +1053,15 @@ namespace user
    }
 
 
-   lresult primitive::send_message(const ::id & id,wparam wparam,lparam lparam)
+   lresult primitive::send_message(const ::id & id,wparam wparam,lparam lparam, const ::point_i32& point)
    {
 
-      return message_call(id, wparam, lparam);
+      return message_call(id, wparam, lparam, point);
 
    }
 
 
-   lresult primitive::message_call(const ::id & id, wparam wparam, lparam lparam)
+   lresult primitive::message_call(const ::id & id, wparam wparam, lparam lparam, const ::point_i32& point)
    {
 
       return 0;
@@ -2681,22 +2680,18 @@ namespace user
    }
 
 
-   enum_cursor primitive::get_cursor()
+   ::windowing::cursor * primitive::get_mouse_cursor()
    {
 
       ::exception::throw_interface_only();
 
-      return e_cursor_none;
+      return nullptr;
 
    }
 
 
-   ::e_status primitive::set_cursor(enum_cursor ecursor)
+   ::e_status primitive::set_mouse_cursor(::windowing::cursor * pcursor)
    {
-
-      ///::exception::throw_interface_only();
-
-      ///return false;
 
       return success_none;
 
@@ -3762,10 +3757,10 @@ namespace user
 //   }
 
 
-   bool primitive::call_message_handler(const ::id & id, wparam wparam, lparam lparam, lresult * plresult)
+   bool primitive::call_message_handler(const ::id & id, wparam wparam, lparam lparam, const ::point_i32 & point, lresult * plresult)
    {
 
-      auto pmessage = get_message(id, wparam, lparam);
+      auto pmessage = get_message(id, wparam, lparam, point);
 
       try
       {

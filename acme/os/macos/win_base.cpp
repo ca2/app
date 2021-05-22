@@ -4,7 +4,7 @@
 
 
 ::u32
-WINAPI
+//WINAPI
 GetTempPathA(
 ::u32 nBufferLength,
 char * pBuffer

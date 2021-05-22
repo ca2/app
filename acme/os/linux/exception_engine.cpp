@@ -6,16 +6,23 @@ namespace linux
 {
 
 
-   exception_engine::exception_engine()
+   namespace exception
    {
 
-   }
+
+      engine::engine()
+      {
+
+      }
 
 
-   exception_engine::~exception_engine()
-   {
+      engine::~engine()
+      {
 
-   }
+      }
+
+
+   } // namespace exception
 
 
 } // namespace linux

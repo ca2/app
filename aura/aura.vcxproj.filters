@@ -81,24 +81,6 @@
     <Filter Include="Source Files\include">
       <UniqueIdentifier>{8099a888-7e34-4494-9367-f8f06df947d2}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\node">
-      <UniqueIdentifier>{8d083486-dfc2-424c-afff-3af7c44fc9da}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\node\windows">
-      <UniqueIdentifier>{9cf34409-2b05-4959-b93c-8605c3551661}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\node\windows_common">
-      <UniqueIdentifier>{c2d7f5a1-76e1-4a24-8d82-47142e6e7821}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\node">
-      <UniqueIdentifier>{a6d92c38-1c42-49f8-b15a-2a56e421e205}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\node\windows">
-      <UniqueIdentifier>{39efcfa2-db07-4180-9fa3-9c343b0286e0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\node\windows_common">
-      <UniqueIdentifier>{effb1ba7-4829-40c5-8b89-1530557ff297}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\platform">
       <UniqueIdentifier>{0700aa41-3b42-4581-ab4a-a8dc6683d8a6}</UniqueIdentifier>
     </Filter>
@@ -434,27 +416,6 @@
     <ClInclude Include="memory\memory_allocator.h">
       <Filter>Header Files\memory</Filter>
     </ClInclude>
-    <ClInclude Include="node\windows\_.h">
-      <Filter>Header Files\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="node\windows\_node_windows.h">
-      <Filter>Header Files\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="node\windows\_windows.h">
-      <Filter>Header Files\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="node\windows\buffer.h">
-      <Filter>Header Files\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="node\windows\factory_exchange.h">
-      <Filter>Header Files\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="node\windows\interaction_impl.h">
-      <Filter>Header Files\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="node\windows\user.h">
-      <Filter>Header Files\node\windows</Filter>
-    </ClInclude>
     <ClInclude Include="platform\application.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
@@ -574,9 +535,6 @@
     </ClInclude>
     <ClInclude Include="gpu\gpu\shader.h">
       <Filter>Header Files\gpu\gpu</Filter>
-    </ClInclude>
-    <ClInclude Include="node\windows\_node_windows_private.h">
-      <Filter>Header Files\node\windows</Filter>
     </ClInclude>
     <ClInclude Include="game\_.h">
       <Filter>Header Files\game</Filter>
@@ -860,9 +818,6 @@
     <ClInclude Include="message\user.h">
       <Filter>Header Files\message</Filter>
     </ClInclude>
-    <ClInclude Include="node\windows\shell_open.h">
-      <Filter>Header Files\node\windows</Filter>
-    </ClInclude>
     <ClInclude Include="platform\shell_open.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
@@ -887,17 +842,11 @@
     <ClInclude Include="graphics\draw2d\color_filter.h">
       <Filter>Header Files\graphics\draw2d</Filter>
     </ClInclude>
-    <ClInclude Include="node\windows\system_interaction.h">
-      <Filter>Header Files\node\windows</Filter>
-    </ClInclude>
     <ClInclude Include="user\aaa_create.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
     <ClInclude Include="user\system.h">
       <Filter>Header Files\user</Filter>
-    </ClInclude>
-    <ClInclude Include="node\windows\windowing.h">
-      <Filter>Header Files\node\windows</Filter>
     </ClInclude>
     <ClInclude Include="windowing\_.h">
       <Filter>Header Files\windowing</Filter>
@@ -940,9 +889,6 @@
     </ClInclude>
     <ClInclude Include="windowing\monitor.h">
       <Filter>Header Files\windowing</Filter>
-    </ClInclude>
-    <ClInclude Include="node\windows\interprocess_communication.h">
-      <Filter>Header Files\node\windows</Filter>
     </ClInclude>
     <ClInclude Include="os\windows\_windows.h">
       <Filter>Header Files\os\windows</Filter>
@@ -1072,6 +1018,9 @@
     </ClInclude>
     <ClInclude Include="platform\context.h">
       <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="user\menu_command.h">
+      <Filter>Header Files\user</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1237,30 +1186,6 @@
     <ClCompile Include="include\_.cpp">
       <Filter>Source Files\include</Filter>
     </ClCompile>
-    <ClCompile Include="node\windows\application.cpp">
-      <Filter>Source Files\node\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="node\windows\factory_exchange.cpp">
-      <Filter>Source Files\node\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="node\windows\graphics_buffer.cpp">
-      <Filter>Source Files\node\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="node\windows\interaction_impl.cpp">
-      <Filter>Source Files\node\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="node\windows\interaction_impl_message_bypass.cpp">
-      <Filter>Source Files\node\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="node\windows\timer.cpp">
-      <Filter>Source Files\node\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="node\windows\trace.cpp">
-      <Filter>Source Files\node\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="node\windows_common\application.cpp">
-      <Filter>Source Files\node\windows_common</Filter>
-    </ClCompile>
     <ClCompile Include="platform\application.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
@@ -1278,9 +1203,6 @@
     </ClCompile>
     <ClCompile Include="_.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="node\windows\windows_desktop.cpp">
-      <Filter>Source Files\node\windows</Filter>
     </ClCompile>
     <ClCompile Include="__matter_ca2.cpp">
       <Filter>Source Files</Filter>
@@ -1486,9 +1408,6 @@
     <ClCompile Include="platform\aura_mq.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
-    <ClCompile Include="node\windows\shell_open.cpp">
-      <Filter>Source Files\node\windows</Filter>
-    </ClCompile>
     <ClCompile Include="platform\shell_open.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
@@ -1498,17 +1417,8 @@
     <ClCompile Include="os\windows\monitor.cpp">
       <Filter>Source Files\os\windows</Filter>
     </ClCompile>
-    <ClCompile Include="node\windows\user_frame.cpp">
-      <Filter>Source Files\node\windows</Filter>
-    </ClCompile>
     <ClCompile Include="os\android\graphics.cpp">
       <Filter>Source Files\os\android</Filter>
-    </ClCompile>
-    <ClCompile Include="node\windows\system.cpp">
-      <Filter>Source Files\node\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="node\windows\system.cpp">
-      <Filter>Source Files\node\windows</Filter>
     </ClCompile>
     <ClCompile Include="user\call_message_handler_task.cpp">
       <Filter>Source Files\user</Filter>
@@ -1527,9 +1437,6 @@
     </ClCompile>
     <ClCompile Include="graphics\draw2d\image_drawing.cpp">
       <Filter>Source Files\graphics\draw2d</Filter>
-    </ClCompile>
-    <ClCompile Include="node\windows\system_interaction.cpp">
-      <Filter>Source Files\node\windows</Filter>
     </ClCompile>
     <ClCompile Include="user\system.cpp">
       <Filter>Source Files\user</Filter>
@@ -1641,6 +1548,9 @@
     </ClCompile>
     <ClCompile Include="graphics\draw2d\task_tool.cpp">
       <Filter>Source Files\graphics\draw2d</Filter>
+    </ClCompile>
+    <ClCompile Include="user\menu_command.cpp">
+      <Filter>Source Files\user</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

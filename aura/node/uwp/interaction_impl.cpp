@@ -829,28 +829,9 @@ namespace uwp
 
    void interaction_impl::PrepareForHelp()
    {
-      if(is_frame_window())
-      {
-         // frame_window windows should be allowed to exit help mode first
-         __pointer(::user::frame) pFrameWnd = m_puserinteraction;
-         pFrameWnd->ExitHelpMode();
-      }
 
-      // cancel any tracking modes
-      send_message(WM_CANCELMODE);
-      send_message_to_descendants(WM_CANCELMODE,0,0,true,true);
-
-      // need to use top level parent (for the case where get_handle() is in DLL)
-      ::user::interaction * pWnd = get_top_level();
-      pWnd->send_message(WM_CANCELMODE);
-      pWnd->send_message_to_descendants(WM_CANCELMODE,0,0,true,true);
-
-      __throw(todo);
-      // attempt to cancel capture
-      //oswindow hWndCapture = ::GetCapture();
-      //if (hWndCapture != nullptr)
-      //   ::SendMessage(hWndCapture, WM_CANCELMODE, 0, 0);
    }
+   
 
 #ifdef WINDOWS_DESKTOP
    void interaction_impl::WinHelpInternal(dword_ptr dwData, ::u32 nCmd)

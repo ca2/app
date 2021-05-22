@@ -2,7 +2,7 @@
 // recreated by Camilo 2021-01-28 22:35 <3TBS, Mummi and bilbo!!
 // hi5 contribution...
 #include "framework.h"
-#include "aura/node/windows/system_interaction.h"
+//#include "aura/node/windows/system_interaction.h"
 #include "_windowing.h"
 
 #if !BROAD_PRECOMPILED_HEADER
@@ -37,9 +37,18 @@ namespace windowing
    ::e_status windowing::initialize_windowing(::user::user * puser)
    {
 
-      auto estatus = initialize(puser);
+      //auto estatus = initialize(puser);
 
-      if (!estatus)
+      //if (!estatus)
+      //{
+
+      //   return estatus;
+
+      //}
+
+      auto estatus = __refer(m_puser, puser);
+
+      if(!estatus)
       {
 
          return estatus;
@@ -145,7 +154,7 @@ namespace windowing
 
          }
 
-         m_pcursormanager->set_cursor_set_system_default();
+         //m_pcursormanager->set_cursor_set_system_default();
 
       }
 
@@ -648,21 +657,24 @@ namespace windowing
    }
 
 
-   ::e_status windowing::user_sync(const ::duration & durationTimeout, const ::routine & routine)
+   ::e_status windowing::windowing_sync(const ::duration & duration, const ::routine & routine)
    {
 
-      auto proutine = __sync_routine(routine);
+      auto estatus = __sync_routine(duration, this, &windowing::windowing_branch, routine);
 
-      user_branch(proutine);
+      if(!estatus)
+      {
 
-      proutine->sync_wait(durationTimeout);
+         return estatus;
 
-      return ::success;
+      }
+
+      return estatus;
 
    }
 
 
-   ::e_status windowing::user_branch(const ::routine & routine)
+   ::e_status windowing::windowing_branch(const ::routine & routine)
    {
 
       __throw(error_interface_only);
@@ -760,6 +772,17 @@ namespace windowing
 
 
 #endif
+
+
+   ::e_status windowing::register_extended_event_listener(::matter * pdata, bool bMouse, bool bKeyboard)
+   {
+
+      __throw(error_interface_only);
+
+      return error_interface_only;
+
+   }
+
 
 
 

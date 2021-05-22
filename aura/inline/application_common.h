@@ -213,6 +213,7 @@ public:
 #endif
 
 
+CLASS_DECL_ACME void set_main_thread();
 
 
 #ifdef _APP_ID

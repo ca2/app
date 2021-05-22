@@ -18,20 +18,37 @@ namespace acme
       m_pauranode = nullptr;
       m_edesktop = ::user::e_desktop_none;
 
+      m_pAcmePosix = nullptr;
+      m_pApexPosix = nullptr;
+      m_pAuraPosix = nullptr;
+
+      m_pAcmePlatform = nullptr;
+      m_pApexPlatform = nullptr;
+      m_pAuraPlatform = nullptr;
+
+      m_pNodeX11 = nullptr;
+      m_pNodeXcb = nullptr;
+
+      m_pNodeGnome = nullptr;
+      m_pNodeKDE = nullptr;
+      m_pNodeXfce = nullptr;
+
+      m_pNodeDesktopEnvironmentGnome = nullptr;
+      m_pNodeDesktopEnvironmentKDE = nullptr;
+      m_pNodeDesktopEnvironmentXfce = nullptr;
+
+#ifdef LINUX
+
+      m_elinuxdistribution = e_linux_distribution_not_initialized;
+
+#endif
+
    }
 
 
    node::~node()
    {
 
-
-   }
-
-
-   string node::audio_get_default_library_name()
-   {
-
-      return "";
 
    }
 
@@ -55,6 +72,35 @@ namespace acme
    }
 
 
+   string node::audio_get_default_library_name()
+   {
+
+      return "";
+
+   }
+
+
+   ::e_status node::_launch_macos_app(const char * pszAppFolder)
+   {
+      
+      __throw(error_interface_only);
+      
+      return ::error_interface_only;
+      
+   }
+
+
+   ::e_status node::_launch_macos_app_args(const char * pszAppFolder, const char * pszArgs)
+   {
+      
+      __throw(error_interface_only);
+   
+      return error_interface_only;
+      
+   }
+
+
+
    ::e_status node::on_initialize_object()
    {
 
@@ -73,6 +119,41 @@ namespace acme
 
    }
 
+   
+   enum_operating_system node::get_operating_system() const
+   {
+
+      __throw(error_interface_only);
+
+      return e_operating_system_unknown;
+
+   }
+
+
+   ::user::enum_desktop node::get_edesktop()
+   {
+
+      if (m_edesktop == ::user::e_desktop_none)
+      {
+
+         calculate_edesktop();
+
+      }
+
+      return m_edesktop;
+
+   }
+
+
+   ::user::enum_desktop node::calculate_edesktop()
+   {
+
+      // Implement m_edesktop update
+
+      return ::user::e_desktop_none;
+
+   }
+   
 
    void node::initialize_memory_counter()
    {
@@ -105,6 +186,35 @@ namespace acme
       return ::success;
 
    }
+
+
+#ifdef LINUX
+
+
+   ::enum_linux_distribution node::get_linux_distribution() const
+   {
+
+      if(m_elinuxdistribution == e_linux_distribution_not_initialized)
+      {
+
+         ((node *)this)->calculate_linux_distribution();
+
+      }
+
+      return m_elinuxdistribution;
+
+   }
+
+
+   ::e_status node::calculate_linux_distribution()
+   {
+
+      return ::success;
+
+   }
+
+
+#endif
 
 
    //::file::path node::roaming()
@@ -146,6 +256,52 @@ namespace acme
 
 
    }
+
+
+   ::file::path node::_module_path()
+   {
+
+      return "";
+
+   }
+
+
+#ifdef WINDOWS_DESKTOP
+
+   platform_char** node::_get_envp(wcsdup_array& a)
+   {
+
+      return nullptr;
+
+   }
+
+#endif
+
+
+   ::file::path node::module_path_source()
+   {
+
+      if(m_pathModule.has_char())
+      {
+
+         return m_pathModule;
+
+      }
+
+      m_pathModule = _module_path();
+
+      return m_pathModule;
+
+   }
+
+
+   ::e_status node::register_extended_event_listener(::matter * pdata, bool bMouse, bool bKeyboard)
+   {
+
+      return ::success;
+
+   }
+
 
    ::e_status node::datetime_to_filetime(::filetime_t* pfiletime, const ::datetime::time& time)
    {
@@ -443,20 +599,62 @@ namespace acme
    }
 
 
-   void node::node_branch(const ::routine & routine)
+   ::e_status node::node_branch(const ::routine & routine)
    {
+
+      __throw(error_interface_only);
+
+      return error_interface_only;
 
    }
 
 
-   void node::node_sync(const ::duration & durationTimeout, const ::routine & routine)
+   ::e_status node::node_sync(const ::duration & durationTimeout, const ::routine & routine)
    {
 
-      auto proutine = __sync_routine(routine);
+      if(is_main_thread())
+      {
 
-      node_fork(proutine);
+         auto estatus = routine();
 
-      proutine->sync_wait(durationTimeout);
+         if(!estatus)
+         {
+
+            return estatus;
+
+         }
+
+         return estatus;
+
+      }
+      else
+      {
+
+         auto psignalization = __new(::promise::signalization);
+
+         auto proutine = __routine([this, routine, psignalization]()
+                                   {
+
+                                      routine();
+
+                                      psignalization->m_evReady.SetEvent();
+
+                                      //::release((::matter * &)psignalization.m_p);
+
+                                   });
+
+         node_branch(proutine);
+
+         if (psignalization->m_evReady.wait().failed())
+         {
+
+            return error_timeout;
+
+         }
+
+         return ::success;
+
+      }
 
    }
 
@@ -771,7 +969,7 @@ namespace acme
 
       auto path = pathFolder / (strName + ".filememorymap");
 
-      return path;
+      return ::move(path);
 
    }
 
@@ -796,6 +994,190 @@ namespace acme
    {
 
       return "music_midi_alsa";
+
+   }
+
+
+#ifdef MACOS
+      
+   void node::ns_launch_app(const char * psz, const char ** argv, int iFlags)
+   {
+      
+      
+   }
+      
+#endif
+
+
+   bool node::process_modules(string_array& stra, u32 processID)
+   {
+
+      __throw(error_interface_only);
+
+      return false;
+
+   }
+
+
+   bool node::load_modules_diff(string_array& straOld, string_array& straNew, const char* pszExceptDir)
+   {
+
+      __throw(error_interface_only);
+
+      return false;
+
+   }
+
+
+   id_array node::get_pids()
+   {
+      
+      __throw(error_interface_only);
+   
+      return id_array();
+      
+   }
+
+
+   id_array node::module_path_get_pid(const char* pszModulePath, bool bModuleNameIsPropertyFormatted)
+   {
+      
+      id_array iaPid;
+
+      id_array pids = get_pids();
+
+      string strPath;
+
+      for(auto & iCurrentPid : pids)
+      {
+
+         strPath = module_path_from_pid(iCurrentPid.i32());
+
+         if(strPath.compare_ci(pszModulePath) == 0 )
+         {
+
+            iaPid.add(iCurrentPid);
+
+         }
+
+      }
+
+      return iaPid;
+
+
+   }
+
+
+   string node::module_path_from_pid(u32 pid)
+   {
+      
+      __throw(error_interface_only);
+
+      return "";
+
+   }
+
+
+   string node::command_line_from_pid(u32 pid)
+   {
+      
+      __throw(error_interface_only);
+
+      return "";
+
+   }
+
+
+   bool node::is_shared_library_busy(u32 processid, const string_array& stra)
+   {
+
+      __throw(error_interface_only);
+
+      return false;
+
+   }
+
+
+   bool node::is_shared_library_busy(const string_array& stra)
+   {
+
+      __throw(error_interface_only);
+
+      return false;
+
+   }
+
+
+   bool node::process_contains_module(string& strImage, ::u32 processID, const char* pszLibrary)
+   {
+
+      __throw(error_interface_only);
+
+      return false;
+
+   }
+
+
+   void node::shared_library_process(dword_array& dwa, string_array& straProcesses, const char* pszLibrary)
+   {
+
+      __throw(error_interface_only);
+
+   }
+
+
+   bool node::is_process_running(::u32 pid)
+   {
+
+      __throw(error_interface_only);
+
+      return false;
+
+   }
+
+
+   string node::get_environment_variable(const char* pszEnvironmentVariable)
+   {
+
+      return "";
+
+   }
+
+
+   string node::expand_env(string str)
+   {
+
+      return "";
+
+   }
+
+
+   array <::serial::port_info> node::list_serial_ports()
+   {
+
+      __throw(error_interface_only);
+
+      return ::array <::serial::port_info>();
+
+   }
+
+
+   ::e_status node::call_async(const char * pszPath, const char * pszParam, const char * pszDir, ::e_display edisplay, bool bPrivileged, unsigned int * puiPid)
+   {
+
+      __throw(error_interface_only);
+
+      return error_interface_only;
+
+   }
+
+
+   ::e_status node::call_sync(const char * pszPath, const char * pszParam, const char * pszDir, ::e_display edisplay, const ::duration & durationTimeout, ::property_set & set)
+   {
+
+      __throw(error_interface_only);
+
+      return error_interface_only;
 
    }
 

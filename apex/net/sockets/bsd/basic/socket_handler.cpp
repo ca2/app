@@ -35,7 +35,7 @@ namespace sockets
       , m_tlast(0)
       , m_socks4_port(0)
       , m_bTryDirect(false)
-      , m_resolv_id(0)
+      //, m_resolv_id(0)
       , m_b_enable_pool(false)
       , m_next_trigger_id(0)
       , m_slave(false)
@@ -66,12 +66,12 @@ namespace sockets
    void socket_handler::cleanup_handler()
    {
 
-      if (m_resolver.is_set())
-      {
-
-         resolver()->Quit();
-
-      }
+//      if (m_resolver.is_set())
+//      {
+//
+//         resolver()->Quit();
+//
+//      }
 
       {
 
@@ -111,7 +111,7 @@ namespace sockets
 
       m_sockets.erase_all();
 
-      m_resolver.release();
+      //m_resolver.release();
 
       if (m_b_use_mutex)
       {
@@ -131,12 +131,12 @@ namespace sockets
    //}
 
 
-   resolv_server * socket_handler::resolver()
-   {
-
-      return m_resolver.cast < resolv_server >();
-
-   }
+//   resolv_server * socket_handler::resolver()
+//   {
+//
+//      return m_resolver.cast < resolv_server >();
+//
+//   }
 
 
    void socket_handler::SetSlave(bool x)
@@ -198,6 +198,13 @@ namespace sockets
       }
 
       m_add[psocket->GetSocket()] = psocket;
+
+      if(psocket->m_timeTimeoutLimit > 0)
+      {
+
+         AddList(psocket->GetSocket(), LIST_TIMEOUT, true);
+
+      }
 
       psocket->m_psockethandler = this;
 
@@ -1241,7 +1248,7 @@ end_processing_adding:
       while (m_fds_erase.get_size())
       {
 
-         SOCKET socket = m_fds_erase.pop_head();
+         SOCKET socket = m_fds_erase.pick_head();
 
          m_fds_detach.erase(socket);
 
@@ -1292,7 +1299,7 @@ end_processing_adding:
       while (m_delete.get_size() > 0)
       {
 
-         __pointer(socket) psocket = m_delete.pop_head();
+         __pointer(socket) psocket = m_delete.pick_head();
 
          psocket->OnDelete();
 
@@ -1358,12 +1365,12 @@ end_processing_adding:
    }
 
 
-   bool socket_handler::Resolving(base_socket * p0)
-   {
-
-      return m_resolve_q.plookup(p0) != nullptr;
-
-   }
+//   bool socket_handler::Resolving(base_socket * p0)
+//   {
+//
+//      return m_resolve_q.plookup(p0) != nullptr;
+//
+//   }
 
 
    bool socket_handler::Valid(base_socket * pIsValid)
@@ -1443,173 +1450,173 @@ end_processing_adding:
    }
 
 
-   i32 socket_handler::Resolve(base_socket * pbasesocket, const string & host, port_t port)
-   {
-      
-      // check cache
-      
-      __pointer(resolv_socket) presolvsocket = __new(resolv_socket(pbasesocket, host, port));
-
-      presolvsocket->m_psockethandler = this;
-
-      presolvsocket->SetId(++m_resolv_id);
-
-      presolvsocket->SetDeleteByHandler();
-
-      in_addr addrLocal;
-
-      auto paddressdepartment = ::net::address_department();
-
-      paddressdepartment->convert(addrLocal, "127.0.0.1");
-
-      if (!presolvsocket->open(::net::address(addrLocal, m_resolver_port)))
-      {
-
-         FATAL(presolvsocket, "Resolve", -1, "Can't connect to local resolve server");
-
-      }
-
-      add(presolvsocket);
-
-      m_resolve_q[pbasesocket] = true;
-      
-      TRACE(" *** Resolve '%s:%d' id#%d  m_resolve_q size_i32: %d  base_socket: %p\n", host.c_str(), port, presolvsocket->GetId(), m_resolve_q.get_size(), pbasesocket);
-
-      return presolvsocket->GetId();
-
-   }
-
-
-   i32 socket_handler::Resolve6(base_socket * pbasesocket, const string & host, port_t port)
-   {
-      
-      // check cache
-
-      __pointer(resolv_socket) resolv = __new(resolv_socket(pbasesocket, host, port, true));
-
-      resolv->m_psockethandler = this;
-
-      resolv->SetId(++m_resolv_id);
-
-      resolv->SetDeleteByHandler();
-
-      in_addr addrLocal;
-
-      auto paddressdepartment = ::net::address_department();
-
-      paddressdepartment->convert(addrLocal, "127.0.0.1");
-
-      if (!resolv->open(::net::address(addrLocal, m_resolver_port)))
-      {
-
-         FATAL(resolv, "Resolve", -1, "Can't connect to local resolve server");
-
-      }
-
-      add(resolv);
-
-      m_resolve_q[pbasesocket] = true;
-
-      return resolv->GetId();
-
-   }
-
-
-   i32 socket_handler::Resolve(base_socket * pbasesocket, in_addr a)
-   {
-
-      // check cache
-
-      __pointer(resolv_socket) resolv = __new(resolv_socket(pbasesocket, a));
-
-      resolv->m_psockethandler = this;
-
-      resolv->SetId(++m_resolv_id);
-
-      resolv->SetDeleteByHandler();
-
-      in_addr addrLocal;
-
-      auto paddressdepartment = ::net::address_department();
-
-      paddressdepartment->convert(addrLocal, "127.0.0.1");
-
-      if (!resolv->open(::net::address(addrLocal, m_resolver_port)))
-      {
-
-         FATAL(resolv, "Resolve", -1, "Can't connect to local resolve server");
-
-      }
-
-      add(resolv);
-
-      m_resolve_q[pbasesocket] = true;
-
-      return resolv->GetId();
-
-   }
-
-
-   i32 socket_handler::Resolve(base_socket * pbasesocket, in6_addr& a)
-   {
-      
-      // check cache
-
-      __pointer(resolv_socket) resolv = __new(resolv_socket(pbasesocket, a));
-
-      resolv->m_psockethandler = this;
-
-      resolv->SetId(++m_resolv_id);
-
-      resolv->SetDeleteByHandler();
-
-      in_addr addrLocal;
-
-      auto paddressdepartment = ::net::address_department();
-
-      paddressdepartment->convert(addrLocal, "127.0.0.1");
-
-      if (!resolv->open(::net::address(addrLocal, m_resolver_port)))
-      {
-
-         FATAL(resolv, "Resolve", -1, "Can't connect to local resolve server");
-
-      }
-      
-      add(resolv);
-
-      m_resolve_q[pbasesocket] = true;
-
-      return resolv->GetId();
-
-   }
-
-
-   void socket_handler::EnableResolver(port_t port)
-   {
-
-      if (!m_resolver)
-      {
-
-         m_resolver_port = port;
-
-         auto presolvserver = __new(resolv_server());
-
-         m_resolver = presolvserver;
-
-         presolvserver->initialize_resolv_server(this, port);
-
-      }
-
-   }
-
-
-   bool socket_handler::ResolverReady()
-   {
-
-      return m_resolver ? resolver()->Ready() : false;
-
-   }
+//   i32 socket_handler::Resolve(base_socket * pbasesocket, const string & host, port_t port)
+//   {
+//
+//      // check cache
+//
+//      __pointer(resolv_socket) presolvsocket = __new(resolv_socket(pbasesocket, host, port));
+//
+//      presolvsocket->m_psockethandler = this;
+//
+//      presolvsocket->SetId(++m_resolv_id);
+//
+//      presolvsocket->SetDeleteByHandler();
+//
+//      in_addr addrLocal;
+//
+//      auto paddressdepartment = ::net::address_department();
+//
+//      paddressdepartment->convert(addrLocal, "127.0.0.1");
+//
+//      if (!presolvsocket->open(::net::address(addrLocal, m_resolver_port)))
+//      {
+//
+//         FATAL(presolvsocket, "Resolve", -1, "Can't connect to local resolve server");
+//
+//      }
+//
+//      add(presolvsocket);
+//
+//      m_resolve_q[pbasesocket] = true;
+//
+//      TRACE(" *** Resolve '%s:%d' id#%d  m_resolve_q size_i32: %d  base_socket: %p\n", host.c_str(), port, presolvsocket->GetId(), m_resolve_q.get_size(), pbasesocket);
+//
+//      return presolvsocket->GetId();
+//
+//   }
+
+
+//   i32 socket_handler::Resolve6(base_socket * pbasesocket, const string & host, port_t port)
+//   {
+//
+//      // check cache
+//
+//      __pointer(resolv_socket) resolv = __new(resolv_socket(pbasesocket, host, port, true));
+//
+//      resolv->m_psockethandler = this;
+//
+//      resolv->SetId(++m_resolv_id);
+//
+//      resolv->SetDeleteByHandler();
+//
+//      in_addr addrLocal;
+//
+//      auto paddressdepartment = ::net::address_department();
+//
+//      paddressdepartment->convert(addrLocal, "127.0.0.1");
+//
+//      if (!resolv->open(::net::address(addrLocal, m_resolver_port)))
+//      {
+//
+//         FATAL(resolv, "Resolve", -1, "Can't connect to local resolve server");
+//
+//      }
+//
+//      add(resolv);
+//
+//      m_resolve_q[pbasesocket] = true;
+//
+//      return resolv->GetId();
+//
+//   }
+
+
+//   i32 socket_handler::Resolve(base_socket * pbasesocket, in_addr a)
+//   {
+//
+//      // check cache
+//
+//      __pointer(resolv_socket) resolv = __new(resolv_socket(pbasesocket, a));
+//
+//      resolv->m_psockethandler = this;
+//
+//      resolv->SetId(++m_resolv_id);
+//
+//      resolv->SetDeleteByHandler();
+//
+//      in_addr addrLocal;
+//
+//      auto paddressdepartment = ::net::address_department();
+//
+//      paddressdepartment->convert(addrLocal, "127.0.0.1");
+//
+//      if (!resolv->open(::net::address(addrLocal, m_resolver_port)))
+//      {
+//
+//         FATAL(resolv, "Resolve", -1, "Can't connect to local resolve server");
+//
+//      }
+//
+//      add(resolv);
+//
+//      m_resolve_q[pbasesocket] = true;
+//
+//      return resolv->GetId();
+//
+//   }
+
+
+//   i32 socket_handler::Resolve(base_socket * pbasesocket, in6_addr& a)
+//   {
+//
+//      // check cache
+//
+//      __pointer(resolv_socket) resolv = __new(resolv_socket(pbasesocket, a));
+//
+//      resolv->m_psockethandler = this;
+//
+//      resolv->SetId(++m_resolv_id);
+//
+//      resolv->SetDeleteByHandler();
+//
+//      in_addr addrLocal;
+//
+//      auto paddressdepartment = ::net::address_department();
+//
+//      paddressdepartment->convert(addrLocal, "127.0.0.1");
+//
+//      if (!resolv->open(::net::address(addrLocal, m_resolver_port)))
+//      {
+//
+//         FATAL(resolv, "Resolve", -1, "Can't connect to local resolve server");
+//
+//      }
+//
+//      add(resolv);
+//
+//      m_resolve_q[pbasesocket] = true;
+//
+//      return resolv->GetId();
+//
+//   }
+
+
+//   void socket_handler::EnableResolver(port_t port)
+//   {
+//
+//      if (!m_resolver)
+//      {
+//
+//         m_resolver_port = port;
+//
+//         auto presolvserver = __new(resolv_server());
+//
+//         m_resolver = presolvserver;
+//
+//         presolvserver->initialize_resolv_server(this, port);
+//
+//      }
+//
+//   }
+
+
+//   bool socket_handler::ResolverReady()
+//   {
+//
+//      return m_resolver ? resolver()->Ready() : false;
+//
+//   }
 
 
    void socket_handler::SetSocks4TryDirect(bool x)
@@ -1652,20 +1659,20 @@ end_processing_adding:
    }
 
 
-   bool socket_handler::ResolverEnabled()
-   {
+//   bool socket_handler::ResolverEnabled()
+//   {
+//
+//      return m_resolver ? true : false;
+//
+//   }
 
-      return m_resolver ? true : false;
 
-   }
-
-
-   port_t socket_handler::GetResolverPort()
-   {
-
-      return m_resolver_port;
-
-   }
+//   port_t socket_handler::GetResolverPort()
+//   {
+//
+//      return m_resolver_port;
+//
+//   }
 
 
    __pointer(base_socket_handler::pool_socket) socket_handler::FindConnection(i32 type, const string & protocol, const ::net::address & ad)
@@ -1725,12 +1732,12 @@ end_processing_adding:
    void socket_handler::erase(base_socket * psocketRemove)
    {
 
-      if (m_resolve_q.has(psocketRemove))
-      {
-
-         m_resolve_q.erase_key(psocketRemove);
-
-      }
+//      if (m_resolve_q.has(psocketRemove))
+//      {
+//
+//         m_resolve_q.erase_key(psocketRemove);
+//
+//      }
 
       if (psocketRemove->ErasedByHandler())
       {

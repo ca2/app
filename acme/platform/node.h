@@ -18,12 +18,43 @@ namespace acme
       virtual public object
       //, virtual public layered < node >
    {
+   protected:
+
+
+#ifdef LINUX
+
+
+      enum_linux_distribution                            m_elinuxdistribution;
+
+
+#endif
+
+
    public:
 
 
-      ::apex::node *          m_papexnode;
-      ::aura::node *          m_pauranode;
-      ::user::enum_desktop    m_edesktop;
+      ::apex::node *                         m_papexnode;
+      ::aura::node *                         m_pauranode;
+
+      ::acme::posix::node *                  m_pAcmePosix;
+      ::apex::posix::node *                  m_pApexPosix;
+      ::aura::posix::node *                  m_pAuraPosix;
+
+      ::acme::PLATFORM_NAMESPACE::node *     m_pAcmePlatform;
+      ::apex::PLATFORM_NAMESPACE::node *     m_pApexPlatform;
+      ::aura::PLATFORM_NAMESPACE::node *     m_pAuraPlatform;
+
+      ::windowing_x11::node *                m_pNodeX11;
+      ::windowing_xcb::node *                m_pNodeXcb;
+      ::node_gtk::node *                     m_pNodeGtk;
+      ::node_gnome::node *                   m_pNodeGnome;
+      ::node_kde::node *                     m_pNodeKDE;
+      ::node_xfce::node *                    m_pNodeXfce;
+      ::desktop_environment_gnome::node *    m_pNodeDesktopEnvironmentGnome;
+      ::desktop_environment_kde::node *      m_pNodeDesktopEnvironmentKDE;
+      ::desktop_environment_xfce::node *     m_pNodeDesktopEnvironmentXfce;
+
+      //::user::enum_desktop    m_edesktop;
 
       ::logic::bit            m_bLastDarkModeApp;
 
@@ -32,10 +63,17 @@ namespace acme
       ::color::color          m_colorSystemAppBackground;
       double                  m_dSystemLuminance;
       int                     m_iWeatherDarkness;
+      ::file::path            m_pathModule;
+
+      ::user::enum_desktop                               m_edesktop;
 
 
       node();
       virtual ~node();
+
+
+      virtual ::e_status call_async(const char * pszPath, const char * pszParam, const char * pszDir, ::e_display edisplay, bool bPrivileged, unsigned int * puiPid = nullptr);
+      virtual ::e_status call_sync(const char * pszPath, const char * pszParam, const char * pszDir, ::e_display edisplay, const ::duration & durationTimeout, ::property_set & set);
 
 
 //#ifdef LINUX
@@ -44,14 +82,18 @@ namespace acme
 //
 //#endif
 
-
+      virtual ::e_status initialize(::object * pobject) override;
+      
+      
       virtual string audio_get_default_library_name();
       virtual string multimedia_audio_get_default_library_name();
       virtual string multimedia_audio_mixer_get_default_library_name();
       virtual string veriwell_multimedia_music_midi_get_default_library_name();
 
 
-      virtual ::e_status initialize(::object * pobject) override;
+      virtual ::e_status _launch_macos_app(const char * pszAppFolder);
+  
+      virtual ::e_status _launch_macos_app_args(const char * pszAppFolder, const char * pszArgs);
 
       virtual ::e_status on_initialize_object() override;
 
@@ -72,6 +114,16 @@ namespace acme
 #endif
 
 
+      virtual ::file::path module_path_source();
+      //virtual ::file::path module_path_seed();
+      //virtual ::file::path module_path_origin();
+      //::file::path update_module_path();
+
+
+      virtual ::e_status register_extended_event_listener(::matter * pdata, bool bMouse, bool bKeyboard);
+
+
+      virtual ::file::path _module_path();
 
 
       //virtual bool memory_counter_on();
@@ -150,17 +202,26 @@ namespace acme
 
       }
 
-      virtual void node_branch(const ::routine & routine);
+      virtual ::e_status node_branch(const ::routine & routine);
 
       template < typename PRED >
-      void node_sync(const ::duration & durationTimeout, PRED pred)
+      ::e_status node_sync(const ::duration & durationTimeout, PRED pred)
       {
 
-         node_sync(durationTimeout, __routine(pred));
+         auto estatus = node_sync(durationTimeout, __routine(pred));
+
+         if(!estatus)
+         {
+
+            return estatus;
+
+         }
+
+         return estatus;
 
       }
 
-      virtual void node_sync(const ::duration & durationTimeout, const ::routine & routine);
+      virtual ::e_status node_sync(const ::duration & durationTimeout, const ::routine & routine);
 
 //      template < typename PRED >
 //      void user_fork(PRED pred)
@@ -219,11 +280,69 @@ namespace acme
 
       virtual string file_memory_map_path_from_name(const string& strName);
 
+      virtual enum_operating_system get_operating_system() const;
+
+      virtual ::user::enum_desktop get_edesktop();
+
+      virtual ::user::enum_desktop calculate_edesktop();
+
+#ifdef LINUX
+
+      inline enum_linux_distribution get_linux_distribution() const;
+
+      virtual ::e_status calculate_linux_distribution();
+
+#endif
+
+
+#ifdef WINDOWS_DESKTOP
+
+      virtual platform_char** _get_envp(wcsdup_array& a);
+
+#endif
+      
+      
+#ifdef MACOS
+      
+      virtual void ns_launch_app(const char * psz, const char ** argv, int iFlags);
+      
+#endif
+
+      virtual bool process_modules(string_array& stra, u32 processID);
+
+      virtual bool load_modules_diff(string_array& straOld, string_array& straNew, const char* pszExceptDir);
+
+      virtual id_array get_pids();
+      
+      virtual id_array module_path_get_pid(const char* pszModulePath, bool bModuleNameIsPropertyFormatted);
+      
+      virtual string module_path_from_pid(u32 pid);
+      
+      virtual string command_line_from_pid(u32 pid);
+
+      virtual bool is_shared_library_busy(u32 processid, const string_array& stra);
+
+      virtual bool is_shared_library_busy(const string_array& stra);
+      
+      virtual bool process_contains_module(string& strImage, ::u32 processID, const char* pszLibrary);
+
+      virtual void shared_library_process(dword_array& dwa, string_array& straProcesses, const char* pszLibrary);
+
+      virtual bool is_process_running(::u32 pid);
+      
+      virtual string get_environment_variable(const char* pszEnvironmentVariable);
+      
+      virtual string expand_env(string str);
+
+
+      virtual array <::serial::port_info> list_serial_ports();
+
 
    };
 
 
 } // namespace linux
+
 
 
 

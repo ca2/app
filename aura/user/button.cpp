@@ -51,7 +51,7 @@ namespace user
 
       m_bMouseHoverOnCapture = true;
 
-      m_bSimpleUIDefaultMouseHandlingLeftButtonDownCapture = true;
+      //m_bSimpleUIDefaultMouseHandlingMouseCaptureOnLeftButtonDown = true;
 
       //m_erectMargin = rect_button_margin;
       //m_erectBorder = rect_button_border;

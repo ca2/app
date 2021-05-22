@@ -2,33 +2,6 @@
 
 
 
-//::u32 get_nanos()
-//{
-//   timeval ts;
-//   gettimeofday(&ts,0);
-//   return (ts.tv_sec * 1000 * 1000 * 1 + (ts.tv_usec / 1000)) % 0xffffffffu;
-//
-//}
-//
-//thread_int_ptr < ::u32 > t_dwLastError;
-
-
-//CLASS_DECL_ACME ::u32 get_last_error()
-//{
-//
-//   millis t_tickLastError;
-//
-//}
-//
-//
-//CLASS_DECL_ACME void set_last_error(::u32 dw)
-//{
-//
-//   t_dwLastError = dw;
-//
-//}
-
-
 CLASS_DECL_ACME bool _istlead(i32 ch)
 {
 

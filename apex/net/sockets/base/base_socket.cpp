@@ -308,7 +308,14 @@ namespace sockets
    {
       if (x ^ m_bClose)
       {
-         socket_handler()->AddList(m_socket, LIST_CLOSE, x);
+
+         if(socket_handler())
+         {
+
+            socket_handler()->AddList(m_socket, LIST_CLOSE, x);
+
+         }
+
          m_bClose = x;
          if (x)
          {
@@ -1126,63 +1133,63 @@ namespace sockets
 
       }
 
-      m_psocket->finalize();
+      //m_psocket->finalize();
 
-      m_phandler->finalize();
+      //m_phandler->finalize();
 
       return ::success;
 
    }
 
 
-   int base_socket::Resolve(const string & host,port_t port)
-   {
-      
-      return socket_handler()->Resolve(this, host, port);
-
-   }
-
-
-   int base_socket::Resolve6(const string & host,port_t port)
-   {
-      
-      return socket_handler()->Resolve6(this, host, port);
-
-   }
+//   int base_socket::Resolve(const string & host,port_t port)
+//   {
+//
+//      return socket_handler()->Resolve(this, host, port);
+//
+//   }
 
 
-   int base_socket::Resolve(in_addr a)
-   {
-      
-      return socket_handler()->Resolve(this, a);
-
-   }
-
-
-   int base_socket::Resolve(in6_addr& a)
-   {
-      
-      return socket_handler()->Resolve(this, a);
-
-   }
+//   int base_socket::Resolve6(const string & host,port_t port)
+//   {
+//
+//      return socket_handler()->Resolve6(this, host, port);
+//
+//   }
 
 
-   void base_socket::OnResolved(int, const ::net::address & address)
-   {
-
-   }
-
-
-   void base_socket::OnReverseResolved(int,const string &)
-   {
-
-   }
+//   int base_socket::Resolve(in_addr a)
+//   {
+//
+//      return socket_handler()->Resolve(this, a);
+//
+//   }
 
 
-   void base_socket::OnResolveFailed(int)
-   {
+//   int base_socket::Resolve(in6_addr& a)
+//   {
+//
+//      return socket_handler()->Resolve(this, a);
+//
+//   }
 
-   }
+
+//   void base_socket::OnResolved(int, const ::net::address & address)
+//   {
+//
+//   }
+
+
+//   void base_socket::OnReverseResolved(int,const string &)
+//   {
+//
+//   }
+
+
+//   void base_socket::OnResolveFailed(int)
+//   {
+//
+//   }
 
 
    bool base_socket::SetIpOptions(const void *point, socklen_t len)
@@ -2496,8 +2503,6 @@ namespace sockets
          return;
 
       }
-      
-      socket_handler()->AddList(m_socket, LIST_TIMEOUT, true);
       
       m_timeTimeoutStart = time(nullptr);
 

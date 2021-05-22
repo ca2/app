@@ -124,35 +124,35 @@ typedef u32 ::u32ptr_t;
 #endif
  */
 
-#ifndef _PTRDIFF_T_DEFINED
-#ifdef OS64BIT
-typedef ::i64 ptrdiff_t;
-#else
-typedef i32 ptrdiff_t;
-#endif
-#define _PTRDIFF_T_DEFINED
-#endif
+//#ifndef _PTRDIFF_T_DEFINED
+//#ifdef OS64BIT
+//typedef i64 ptrdiff_t;
+//#else
+//typedef i32 ptrdiff_t;
+//#endif
+//#define _PTRDIFF_T_DEFINED
+//#endif
 
-/*
-#ifndef _SIZE_T_DEFINED
-#ifdef OS64BIT
-typedef ::u64 size_t;
-#else
-typedef u32 size_t;
-#endif
-#define _SIZE_T_DEFINED
-#endif
- */
+
+//#ifndef _SIZE_T_DEFINED
+//#ifdef OS64BIT
+//typedef ::u64 size_t;
+//#else
+//typedef u32 size_t;
+//#endif
+//#define _SIZE_T_DEFINED
+//#endif
+
 
 #ifndef _TIME32_T_DEFINED
 typedef __msvcrt_long __time32_t;
 #define _TIME32_T_DEFINED
 #endif
 
-#if !defined(_TIME64_T_DEFINED) && !defined(ANDROID)
-typedef ::i64 DECLSPEC_ALIGN(8) time_t;
-#define _TIME64_T_DEFINED
-#endif
+//#if !defined(_TIME64_T_DEFINED) && !defined(ANDROID)
+//typedef ::i64 DECLSPEC_ALIGN(8) time_t;
+//#define _TIME64_T_DEFINED
+//#endif
 
 #ifdef _USE_32BIT_TIME_T
 # ifdef OS64BIT

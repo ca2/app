@@ -3,8 +3,8 @@
 
 #ifdef WINDOWS_DESKTOP
 
-#include "windows_common/_windows_common.h"
-#include "windows/_windows.h"
+//#include "windows_common/_windows_common.h"
+//#include "windows/_windows.h"
 
 #elif defined(_UWP)
 
@@ -12,7 +12,7 @@
 
 #elif defined(MACOS)
 
-#include "macos/_macos.h"
+//aaa_#include "macos/_macos.h"
 
 #elif defined(APPLE_IOS)
 
@@ -30,7 +30,7 @@
 #endif
 
 
-CLASS_DECL_ACME void __node_aura_factory_exchange(::factory_map * pfactorymap);
+//CLASS_DECL_ACME void __node_aura_factory_exchange(::factory_map * pfactorymap);
 
 
 

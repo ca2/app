@@ -95,7 +95,7 @@ namespace xml
       
       auto pxmldocument = __create_new < ::xml::document >(); 
 
-      return pxmldocument;
+      return ::move(pxmldocument);
 
    }
 

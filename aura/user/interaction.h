@@ -138,10 +138,10 @@ namespace user
       bool              m_bVisible : 1;
 
       bool              m_bMouseHoverOnCapture : 1;
-      bool              m_bTrackMouseLeave : 1;
+      //bool              m_bTrackMouseLeave : 1;
       bool              m_bMouseHover : 1;
       bool              m_bSimpleUIDefaultMouseHandling : 1;
-      bool              m_bSimpleUIDefaultMouseHandlingLeftButtonDownCapture : 1;
+      //bool              m_bSimpleUIDefaultMouseHandlingMouseCaptureOnLeftButtonDown : 1;
 
 
             //bool              m_bIsWindow : 1;
@@ -309,7 +309,7 @@ namespace user
       string                                       m_strName;
       u64                                          m_uiUserInteractionFlags;
       bool                                         m_bCursorInside;
-      enum_cursor                                  m_ecursor;
+      __pointer(::windowing::cursor)               m_pcursor;
       bool                                         m_bRectOk;
       bool                                         m_bParentScroll;
       string                                       m_strWindowText;
@@ -381,7 +381,7 @@ namespace user
       inline ::aura::session * get_session() const;
       inline ::aura::system * get_system() const;
 
-      virtual bool _001CanEnterScreenSaver();
+      bool _001CanEnterScreenSaver() override;
 
       virtual bool _001Maximize();
 
@@ -459,9 +459,9 @@ namespace user
 
       //virtual void enumerate_composite(matter_array& a) override;
 
-      virtual ::e_status main_sync(const ::routine & routine, const ::duration & duration = one_minute(), e_priority epriority = priority_normal);
+      virtual ::e_status interaction_sync(const ::duration & duration, const ::routine & routine);
 
-      virtual ::e_status main_async(const ::routine & routine, e_priority epriority = priority_normal) override;
+      virtual ::e_status interaction_branch(const ::routine & routine) override;
 
 
       inline void auto_prodevian_on_show() { m_ewindowflag |= e_window_flag_auto_prodevian_on_show; }
@@ -549,7 +549,7 @@ namespace user
       }
 
       
-      __pointer(::message::message) get_message(const ::id & id, wparam wparam, lparam lparam) override;
+      __pointer(::message::message) get_message(const ::id & id, wparam wparam, lparam lparam, const ::point_i32 & point) override;
 
 
       inline ::user::style * get_style(::user::style * pstyle) const
@@ -599,7 +599,7 @@ namespace user
       virtual ::user::form * get_form();
       virtual ::user::form * get_parent_form();
 
-      virtual ::user::interaction * get_user_interaction();
+      ::user::interaction * get_user_interaction() override;
 
       virtual matter* get_taskpool_container() override;
 
@@ -707,8 +707,8 @@ namespace user
       inline bool set_prodevian() { return add_prodevian(this); }
       inline bool clear_prodevian() { return erase_prodevian(this); }
 
-      virtual bool add_prodevian(::object* pobject) override;
-      virtual bool erase_prodevian(::object* pobject) override;
+      virtual bool add_prodevian(::matter * pmatter) override;
+      virtual bool erase_prodevian(::matter * pmatter) override;
       inline bool has_prodevian() const noexcept;
 
 
@@ -743,13 +743,13 @@ namespace user
 
 
       
-      virtual enum_cursor get_cursor() override;
+      virtual ::windowing::cursor * get_mouse_cursor() override;
 
 
-      virtual ::e_status set_cursor(enum_cursor ecursor) override;
+      //virtual ::e_status set_cursor(enum_cursor ecursor) override;
 
 
-      virtual ::e_status set_cursor(::windowing::cursor * pcursor);
+      virtual ::e_status set_mouse_cursor(::windowing::cursor * pcursor) override;
 
 
       //virtual ::point_i32 get_cursor_position() const override;
@@ -1080,7 +1080,7 @@ namespace user
       virtual void ShowOwnedPopups(bool bShow = true);
 
 
-      virtual bool is_composite();
+      bool is_composite() override;
 
       //virtual u32 GetStyle() const override;
       //virtual u32 GetExStyle() const override;
@@ -1090,9 +1090,9 @@ namespace user
       using ::user::primitive::send;
       virtual lresult send(::message::message* pmessage) override;
       virtual bool post(::message::message* pmessage) override;
-      virtual lresult send_message(const ::id & id, wparam wparam = 0, lparam lparam = 0) override;
+      virtual lresult send_message(const ::id & id, wparam wparam = 0, lparam lparam = 0, const ::point_i32& point = nullptr) override;
 
-      virtual lresult message_call(const ::id & id, wparam wparam = 0, lparam lparam = 0) override;
+      virtual lresult message_call(const ::id & id, wparam wparam = 0, lparam lparam = 0, const ::point_i32& point = nullptr) override;
       virtual lresult message_call(::message::message * pmessage) override;
 
 
@@ -1121,13 +1121,13 @@ namespace user
 
       virtual void _001PrintBuffer(::draw2d::graphics_pointer & pgraphics);
       virtual void _001Print(::draw2d::graphics_pointer & pgraphics) ;
-      virtual void _000CallOnDraw(::draw2d::graphics_pointer & pgraphics) ;
-      virtual void _000OnDraw(::draw2d::graphics_pointer & pgraphics) ;
+      void _000CallOnDraw(::draw2d::graphics_pointer & pgraphics) override;
+      void _000OnDraw(::draw2d::graphics_pointer & pgraphics) override;
       virtual void _001DrawThis(::draw2d::graphics_pointer & pgraphics) ;
       virtual void _001DrawChildren(::draw2d::graphics_pointer & pgraphics) ;
       virtual void _001OnNcDraw(::draw2d::graphics_pointer & pgraphics);
       virtual void _001CallOnDraw(::draw2d::graphics_pointer & pgraphics);
-      virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) ;
+      void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
       virtual void _008CallOnDraw(::draw2d::graphics_pointer & pgraphics);
       virtual void _008OnDraw(::draw2d::graphics_pointer & pgraphics) ;
       virtual void _001OnClip(::draw2d::graphics_pointer & pgraphics);
@@ -1151,26 +1151,26 @@ namespace user
       virtual bool set_mouse_capture();
 
       virtual bool has_keyboard_focus() const;
-      virtual ::e_status set_keyboard_focus();
+      ::e_status set_keyboard_focus() override;
 
       virtual ::e_status set_foreground_window();
       virtual ::e_status set_active_window();
 
       virtual bool is_window_enabled() const;
       inline bool is_this_window_enabled() const { return m_ewindowflag.is(e_window_flag_enable); }
-      virtual bool enable_window(bool bEnable = true);
+      bool enable_window(bool bEnable = true) override;
 
       virtual void on_calc_size(calc_size* pcalcsize);
 
       virtual void walk_pre_translate_tree(::message::message* pmessage, ::user::interaction* puiStop = nullptr);
 
 
-      virtual bool edit_undo();
+      bool edit_undo() override;
 
       virtual void edit_on_text(string str) override;
       virtual void edit_on_sel(strsize iBeg, strsize iEnd) override;
 
-      virtual void get_text_composition_area(::rectangle_i32 & r);
+      void get_text_composition_area(::rectangle_i32 & r) override;
       virtual void on_text_composition(string str) override;
       virtual void on_text_composition_done() override;
 
@@ -1178,7 +1178,7 @@ namespace user
 
       virtual int on_text_composition_message(int iMessage);
 
-      virtual void insert_text(string str, bool bForceNewStep, const ::action_context & context);
+      void insert_text(string str, bool bForceNewStep, const ::action_context & context) override;
 
       virtual void set_window_text(const char* pszString) override;
 
@@ -1265,6 +1265,7 @@ namespace user
       DECLARE_MESSAGE_HANDLER(_001OnShowWindow);
       DECLARE_MESSAGE_HANDLER(on_message_mouse_move);
       DECLARE_MESSAGE_HANDLER(_001OnMouseEnter);
+      DECLARE_MESSAGE_HANDLER(_001OnSetCursor);
       DECLARE_MESSAGE_HANDLER(on_message_mouse_leave);
       DECLARE_MESSAGE_HANDLER(_001OnKeyDown);
       DECLARE_MESSAGE_HANDLER(_001OnKeyUp);
@@ -1344,7 +1345,7 @@ namespace user
       virtual bool is_host_top_level() const;
       virtual bool is_os_host() const;
 
-      virtual ::user::primitive* get_parent_primitive() const;
+      ::user::primitive* get_parent_primitive() const override;
 
       virtual ::user::interaction* get_parent() const override;
       virtual ::user::interaction* get_top_level() const override;

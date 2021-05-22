@@ -258,8 +258,8 @@ namespace draw2d_direct2d
       virtual ::e_status reset_clip();
       virtual ::e_status intersect_clip(const ::rectangle_f64& rectangle);
       //virtual ::e_status intersect_clip(const ::rectangle_f64& rectangle);
-      //virtual ::e_status intersect_clip(const ::oval& oval);
-      virtual ::e_status intersect_clip(const ::ovald& oval);
+      //virtual ::e_status intersect_clip(const ::ellipse& ellipse);
+      virtual ::e_status intersect_clip(const ::ellipse& ellipse);
       //virtual ::e_status intersect_clip(const ::polygon_i32& polygon_i32);
       virtual ::e_status intersect_clip(const ::polygon_f64& polygon_i32);
 

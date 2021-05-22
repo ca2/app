@@ -42,15 +42,15 @@ namespace user
 
       enum enum_element
       {
+
          e_element_item,
          element_image,
          e_element_text,
          element_sub_item,
          element_group_image,
          element_group_item_text,
+
       };
-
-
 
 
       class CLASS_DECL_CORE mesh_layout:
@@ -116,8 +116,8 @@ namespace user
 
       };
 
-      //size_i32                             m_sizeTotal;
-      ::size_i32                           m_sizePage;
+      //size_i32                       m_sizeTotal;
+      ::size_i32                       m_sizePage;
       ::user::list *                   m_plist; // should be set to this ::user::list if this is a list
 
       int                              m_iDefaultColumnWidth;
@@ -137,7 +137,7 @@ namespace user
       bool                             m_bMultiSelect;
 
       bool                             m_bDrag;
-      index                    m_iItemLButtonDown;
+      index                            m_iItemLButtonDown;
 
       // Sort
       bool                             m_bSort;
@@ -149,41 +149,41 @@ namespace user
 
       draw2d::graphics_extension       m_dcextension;
 
-      index                    m_iClick;
+      index                            m_iClick;
       bool                             m_bLButtonDown;
-      point_i32                            m_pointLButtonDown1;
-      point_i32                            m_pointLButtonDown2;
-      millis                             m_millisLButtonDownStart1;
-      millis                             m_millisLButtonDownStart2;
-      index                    m_iDisplayItemLButtonDown1;
-      index                    m_iDisplayItemLButtonDown2;
+      point_i32                        m_pointLButtonDown1;
+      point_i32                        m_pointLButtonDown2;
+      millis                           m_millisLButtonDownStart1;
+      millis                           m_millisLButtonDownStart2;
+      index                            m_iDisplayItemLButtonDown1;
+      index                            m_iDisplayItemLButtonDown2;
 
-      index                    m_iDisplayItemFocus;
+      index                            m_iDisplayItemFocus;
 
       bool                             m_bLockViewUpdate;
       i32                              m_iItemWidth;
 
-      index                    m_iDisplayItemHover;
-      index                    m_iSubItemHover;
+      index                            m_iDisplayItemHover;
+      index                            m_iSubItemHover;
 
-      index                    m_iLastItemSel;
-      index                    m_iLastSubItemSel;
-      index                    m_iItemEnter;
-      index                    m_iSubItemEnter;
-      index                    m_iMouseFlagEnter;
-      index                    m_iItemSel;
-      index                    m_iSubItemSel;
+      index                            m_iLastItemSel;
+      index                            m_iLastSubItemSel;
+      index                            m_iItemEnter;
+      index                            m_iSubItemEnter;
+      index                            m_iMouseFlagEnter;
+      index                            m_iItemSel;
+      index                            m_iSubItemSel;
 
       range                            m_rangeSelection;
       range                            m_rangeHighlight;
 
-      index                    m_iShiftFirstSelection;
+      index                            m_iShiftFirstSelection;
       uptr                             m_uiLButtonDownFlags;
       uptr                             m_uiLButtonUpFlags;
-      point_i32                            m_pointLButtonUp;
-      ::u32                             m_uiRButtonUpFlags;
-      point_i32                            m_pointRButtonUp;
-      __pointer(regex)                 m_pregexFilter1;
+      point_i32                        m_pointLButtonUp;
+      ::u32                            m_uiRButtonUpFlags;
+      point_i32                        m_pointRButtonUp;
+      ::regular_expression_pointer     m_pregexFilter1;
       i32                              m_iFilter1Step;
       bool                             m_bFilter1;
 

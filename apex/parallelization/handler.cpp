@@ -28,32 +28,35 @@ handler_manager::~handler_manager()
    if (bSync)
    {
 
-      return synchronization_object(routine);
+      return handler_sync(routine);
 
    }
    else
    {
 
-      return async(routine);
+      return handler_branch(routine);
 
    }
 
 }
 
 
-::e_status handler_manager::synchronization_object(const ::routine & routine)
+::e_status handler_manager::handler_sync(const ::routine & routine)
 {
 
    if (m_bUseDedicatedThread)
    {
 
-      auto proutine = ___sync_routine(routine);
+      auto estatus = __sync_routine(1_min, this, &handler_manager::handler_branch, routine);
 
-      async(proutine);
+      if(!estatus)
+      {
 
-      proutine->wait(one_minute());
+         return estatus;
 
-      return ::success;
+      }
+
+      return estatus;
 
    }
    else
@@ -66,14 +69,6 @@ handler_manager::~handler_manager()
 }
 
 
-//::e_status handler_manager::set_finish_composites(::property_object * pcontextobjectFinish)
-//{
-//
-//   return ::object::set_finish_composites(pcontextobjectFinish);
-//
-//}
-
-
 ::e_status handler_manager::finish_composites()
 {
 
@@ -82,7 +77,7 @@ handler_manager::~handler_manager()
 }
 
 
-::e_status handler_manager::async(const ::routine & routine)
+::e_status handler_manager::handler_branch(const ::routine & routine)
 {
 
    {
@@ -101,7 +96,7 @@ handler_manager::~handler_manager()
       m_pthread = fork([this]()
       {
 
-         ::get_task()->set_thread_name(m_strThreadName);
+         ::get_task()->task_set_name(m_strThreadName);
 
          loop();
 

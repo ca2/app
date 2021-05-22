@@ -45,13 +45,13 @@ CLASS_DECL_ACME bool __node_acme_pos_init()
 //void __clear_mq(const char * pszDebug, bool bClose);
 
 
-CLASS_DECL_ACME void __node_term_cross_windows_threading();
+//CLASS_DECL_ACME void __node_term_cross_windows_threading();
 
 
 CLASS_DECL_ACME bool __node_acme_pre_term()
 {
 
-   __node_term_cross_windows_threading();
+   //__node_term_cross_windows_threading();
 
    return true;
 

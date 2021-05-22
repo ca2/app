@@ -43,9 +43,9 @@ namespace hotplugin
 
       ::rectangle_i32 rectBar(left, top, right, bottom);
 
-      int w = 284;
+      int w =300;
 
-      int v = (int) (::get_millis() * 484 / 1000);
+      int v = (int) (::get_millis().m_i / 2);
 
       int x = v % rectBar.width();
 

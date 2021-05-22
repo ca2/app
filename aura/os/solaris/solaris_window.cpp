@@ -927,10 +927,6 @@ i32 WINAPI MessageBoxA(oswindow hWnd, const char * lpText, const char * lpCaptio
 static oswindow g_oswindowCapture;
 
 
-oswindow GetCapture()
-{
-   return g_oswindowCapture;
-}
 
 oswindow SetCapture(oswindow window)
 {

@@ -23,20 +23,20 @@ namespace multimedia
       virtual ~decoder();
 
 
-      virtual ::e_status multimedia_open(::file::file * varFile);
-      virtual bool multimedia_close();
+      virtual ::e_status      multimedia_open(::file::file * varFile);
+      virtual ::e_status      multimedia_close();
 
-      virtual ::e_status impl_multimedia_open(::file::file * varFile);
-      virtual bool impl_multimedia_close();
-
-
-      virtual string             multimedia_get_origin_path();
-      virtual void               multimedia_set_origin_path(const string & strOriginPath);
+      virtual ::e_status      impl_multimedia_open(::file::file * varFile);
+      virtual ::e_status      impl_multimedia_close();
 
 
-      virtual bool multimedia_get_attribute(::e_id attribute, ::payload & payload);
+      virtual string          multimedia_get_origin_path();
+      virtual void            multimedia_set_origin_path(const string & strOriginPath);
 
-      void FillTitleInfo(string_array & wstraFormat, string2a & wstr2aTitle);
+
+      virtual bool            multimedia_get_attribute(::e_id attribute, ::payload & payload);
+
+      virtual void            FillTitleInfo(string_array & wstraFormat, string2a & wstr2aTitle);
 
 
    };

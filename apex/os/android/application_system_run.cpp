@@ -65,7 +65,7 @@ namespace apex
    ::e_status system::os_application_system_run()
    {
 
-      //string strPrgName = m_strAppId;
+      //string strPrgName = m_XstrAppId;
 
       //strPrgName.replace("/", ".");
 
@@ -77,7 +77,7 @@ namespace apex
 
       //::set_main_ithread(m_uthread);
 
-      //// ::apex::get_system()->m_strAppId = m_pmaindata->m_strAppId;
+      //// ::apex::get_system()->m_XstrAppId = m_pmaindata->m_XstrAppId;
 
       //if (!begin_synch())
       //{

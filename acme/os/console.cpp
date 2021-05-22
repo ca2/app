@@ -1,11 +1,12 @@
 #include "framework.h"
+#include "acme/os/_const_console.h"
 #include "acme/os/console.h"
 #include "acme/primitive/collection/strdup_array.h"
 #include <stdio.h>
 #ifdef WINDOWS
 #include <conio.h>
 #endif
-#ifdef LINUX
+#if defined(HAVE_TERMIOS_H) && HAVE_TERMIOS_H
 int getche();
 #endif
 
@@ -170,15 +171,28 @@ int safe_get_char(FILE * pfile, const ::duration & duration)
 
    ::millis millisStart;
 
-   do
+   while(true)
    {
 
       millisStart.Now();
-
+      
       iSafeChar = getc(pfile);
-
+      
+      if(!ansi_char_is_space(iSafeChar) && millisStart.elapsed() > duration)
+      {
+         
+         break;
+         
+      }
+      
+      if(iSafeChar == -1)
+      {
+       
+         clearerr(pfile);
+         
+      }
+      
    }
-   while(ansi_char_is_space(iSafeChar) || millisStart.elapsed() < duration);
 
    return iSafeChar;
 
@@ -343,7 +357,7 @@ repeat:
 
 
 
-#ifdef LINUX
+#if defined(HAVE_TERMIOS_H) && HAVE_TERMIOS_H
 
 #include <unistd.h>
 #include <termios.h>
@@ -355,7 +369,7 @@ int getche()
 
    struct termios termiosOld = {0};
 
-   if (tcgetattr(0, &termiosOld) < 0)
+   if (tcgetattr(STDIN_FILENO, &termiosOld) < 0)
    {
 
       return -1;
@@ -376,7 +390,7 @@ int getche()
 
    char ch = -1;
 
-   int iChar = read(0, &ch, 1);
+   auto iRead = read(0, &ch, 1);
 
    if (tcsetattr(0, TCSADRAIN, &termiosOld) < 0)
    {
@@ -390,7 +404,7 @@ int getche()
 }
 
 
-#endif
+#endif // defined(HAVE_TERMIOS_H) && HAVE_TERMIOS_Hc
 
 
 

@@ -170,41 +170,6 @@ int get_current_process_affinity_order()
 //#endif
 
 
-#include <sys/time.h>
-
-
-
-CLASS_DECL_AURA i64 get_nanos()
-{
-
-
-#ifdef RASPBIAN
-
-   struct timeval tv;
-
-   if(gettimeofday(&tv, nullptr) != 0)
-   {
-
-      return 0;
-
-   }
-
-   return tv.tv_sec * 1000 * 1000 * 1000 + tv.tv_usec * 1000;
-
-#else
-   struct timespec ts;
-   if (clock_gettime(CLOCK_REALTIME, &ts) != 0)
-   {
-      //error
-      return 0;
-   }
-
-   return ts.tv_sec * 1000 * 1000 * 1000 + ts.tv_nsec;
-#endif
-
-}
-
-
 CLASS_DECL_AURA void main_sync_runnable(::object * pobjectRunnable, ::duration durationTimeout)
 {
 
@@ -261,7 +226,7 @@ CLASS_DECL_AURA void main_async_runnable(::object * prunnableParam)
 
 
 
-bool set_thread_name(const char * psz)
+bool task_set_name(const char * psz)
 {
 
    string strName(psz);

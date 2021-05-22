@@ -1038,6 +1038,43 @@ class ::payload & payload::operator = (const property * pproperty)
 
 }
 
+void payload::add_ref()
+{
+
+   switch(m_etype)
+   {
+      case e_type_element:
+         m_p->add_ref();
+         break;
+      case e_type_stra:
+         m_pstra->add_ref();
+         break;
+      case e_type_inta:
+         m_pia->add_ref();
+         break;
+      case e_type_vara:
+         m_pvara->add_ref();
+         break;
+      case e_type_propset:
+         m_pset->add_ref();
+         break;
+      case e_type_i64a:
+         m_p->add_ref();
+         break;
+      case e_type_memory:
+         m_pmemory->add_ref();
+         break;
+      case e_type_path:
+         m_ppath->add_ref();
+         break;
+      default:
+         break;
+
+   };
+
+
+}
+
 
 class ::payload & payload::operator = (const class ::payload & payload)
 {
@@ -1082,6 +1119,7 @@ class ::payload & payload::operator = (const class ::payload & payload)
       {
 
          m_p = payload.m_p; // raw copy, doesn't care for the right member
+         add_ref();
 
       }
       else
@@ -2856,9 +2894,7 @@ i64_array & payload::int64a()
    else if(::is_null(m_pi64a))
    {
 
-      m_pi64a = __new(i64_array());
-
-      add_ref(m_pi64a);
+      m_pi64a = new i64_array();
 
    }
 
@@ -5159,7 +5195,9 @@ void payload::parse_json(const char *& pszJson, const char * pszEnd)
 bool payload::is_numeric() const
 {
 
-   switch(get_type())
+   auto etype = get_type();
+
+   switch(etype)
    {
    case e_type_parareturn:
    case e_type_new:
@@ -5232,6 +5270,9 @@ bool payload::is_numeric() const
       return false;
 //   case e_type_process:
 //      return false;
+      case e_type_hls:
+      case e_type_color:
+         return true;
    default:
       __throw(error_not_implemented);
 
@@ -5624,8 +5665,12 @@ bool payload::is_false() const
    case e_type_enum_status:
    case e_type_enum_check:
       return !m_i64;
+   case e_type_color:
+      return !m_color.u32;
+   case e_type_hls:
+      return m_hls.m_dL == 0.0;
    case e_type_last_element:
-         return false;
+      return false;
 
    }
 
@@ -5765,6 +5810,10 @@ bool payload::is_set_false() const
    case e_type_enum_status:
    case e_type_enum_check:
       return !m_i64;
+   case e_type_color:
+      return !m_color.u32;
+   case e_type_hls:
+      return m_hls.m_dL == 0.0;
    case e_type_last_element:
          return false;
 

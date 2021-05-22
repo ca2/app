@@ -13,9 +13,9 @@
 
 #include "acme/version/version.h"
 #include "acme/platform/_features.h"
-#include "platform/platform_setup.h"
+#include "operating_system/platform_setup.h"
 #include "setup/debug.h"
-#include "platform/_.h"
+#include "operating_system/_.h"
 #include "include/_setup.h"
 
 

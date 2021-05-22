@@ -13,7 +13,7 @@ void micros::sleep() const
 void micros::Now()
 {
 
-   m_i = ::get_micros();
+   m_i = ::get_micros().m_i;
 
 }
 

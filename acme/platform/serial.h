@@ -479,8 +479,7 @@ namespace serial
        */
       virtual void set_timeout (const timeout &timeout);
       /*! Sets the timeout for reads and writes. */
-      virtual void
-         set_timeout(u32 inter_byte_timeout, u32 read_timeout_constant,
+      virtual void set_timeout(u32 inter_byte_timeout, u32 read_timeout_constant,
                   u32 read_timeout_multiplier, u32 write_timeout_constant,
                   u32 write_timeout_multiplier)
       {

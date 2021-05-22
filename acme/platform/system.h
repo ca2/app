@@ -1,10 +1,10 @@
 #pragma once
 
 
-namespace acme
-{
-
-
+//namespace acme
+//{
+//
+//
    class CLASS_DECL_ACME system :
       virtual public ::acme::context,
       virtual public ::acme_main_data,
@@ -30,11 +30,11 @@ namespace acme
       __composite(::apex::system)                        m_psystemParent;
 
       string_map < __pointer(::factory_map) > *          m_pfactorymapsquare;
+      __pointer(string_map < __pointer(::regular_expression::context) >)          m_pmapRegularExpressionContext;
 
-#ifdef LINUX
-      enum_linux_distribution                            m_elinuxdistribution;
+#ifdef MACOS
+      void *                                             m_pmmos;
 #endif
-      ::user::enum_desktop                               m_edesktop;
 
       ::mutex                                            m_mutexTask;
       task_map                                           m_taskmap;
@@ -126,15 +126,15 @@ namespace acme
 
       //virtual enum_linux_distribution get_linux_distribution() const;
 
-      virtual enum_operating_system get_operating_system() const;
+      //virtual enum_operating_system get_operating_system() const;
 
-      virtual ::user::enum_desktop get_edesktop();
+      //virtual ::user::enum_desktop get_edesktop();
 
-      virtual ::user::enum_desktop calc_edesktop();
+      //virtual ::user::enum_desktop calc_edesktop();
 
-#ifdef LINUX
-      inline enum_linux_distribution get_linux_distribution() const {return m_elinuxdistribution;}
-#endif
+//#ifdef LINUX
+  //    inline enum_linux_distribution get_linux_distribution() const {return m_elinuxdistribution;}
+//#endif
 
       //virtual void defer_calc_os_dark_mode();
 
@@ -144,7 +144,9 @@ namespace acme
 
       void process_exit_status(::object* pobject, const ::e_status& estatus);
 
+      
       virtual ::apex::application* get_main_application();
+
 
       virtual void system_construct(int argc, char** argv, char** envp);
       virtual void system_construct(int argc, wchar_t** argv, wchar_t** envp);
@@ -198,6 +200,8 @@ namespace acme
 
       //using ::subject::manager::on_subject;
       //virtual void on_subject(::subject::subject * psubject) override;
+      
+      virtual ::millis get_update_poll_time(const ::id & id);
 
       virtual ::acme::library* on_get_library(const char* pszLibrary);
 
@@ -216,9 +220,9 @@ namespace acme
       virtual ::e_status open_url(string strUrl, string strProfile, string strTarget);
 
 
-      virtual ::e_status main_user_async(const ::routine & routine, ::e_priority epriority = priority_normal);
+      //virtual ::e_status main_user_async(const ::routine & routine, ::e_priority epriority = priority_normal);
 
-      virtual ::e_status main_user_sync(const ::routine & routine, const ::duration & duration = one_minute(), e_priority epriority = priority_normal);
+      //virtual ::e_status main_user_sync(const ::routine & routine, const ::duration & duration = one_minute(), e_priority epriority = priority_normal);
 
 
       ::task * get_task(itask_t itask);
@@ -403,14 +407,19 @@ namespace acme
 
       virtual void check_exit();
 
-      virtual __pointer(regex) create_regular_expression(const char* pszStyle, const string& str);
-      virtual __pointer(regex_context) create_regular_expression_context(const char* pszStyle, int iCount);
+      virtual ::regular_expression_pointer create_regular_expression(const char* pszStyle, const string& str);
+      //virtual __pointer(::regular_expression::context) create_regular_expression_context(const char* pszStyle, int iCount);
+      virtual __pointer(::regular_expression::context) get_regular_expression_context(const char* pszStyle);
 
+      virtual ::regular_expression_pointer create_pcre(const string& str);
+      virtual __pointer(::regular_expression::context) get_pcre_context();
+      //virtual int system::pcre_add_tokens(string_array& stra, const string& strTopic, const string& strRegexp, int nCount)
 
       virtual ::e_status get_public_internet_domain_extension_list(string_array& stra);
 
+      virtual void int_system_update(int iUpdate, int iPayload);
       
    };
 
 
-} // namespace acme
+//} // namespace acme

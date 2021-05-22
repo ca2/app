@@ -1014,52 +1014,7 @@ namespace ios
 
    void interaction_impl::PrepareForHelp()
    {
-      /*if (IsFrameWnd())
-       {
-       // frame_window windows should be allowed to exit help mode first
-       frame_window* pFrameWnd = dynamic_cast < frame_window * >(this);
-       pFrameWnd->ExitHelpMode();
-       }
-
-       // cancel any tracking modes
-       send_message(WM_CANCELMODE);
-       send_message_to_descendants(WM_CANCELMODE, 0, 0, true, true);
-
-       // need to use top level parent (for the case where get_handle() is in DLL)
-       ::user::interaction * pWnd = EnsureTopLevelParent();
-       IOS_WINDOW(pWnd)->send_message(WM_CANCELMODE);
-       IOS_WINDOW(pWnd)->send_message_to_descendants(WM_CANCELMODE, 0, 0, true, true);
-
-       // attempt to cancel capture
-       oswindow hWndCapture = ::GetCapture();
-       if (hWndCapture != nullptr)
-       ::SendMessage(hWndCapture, WM_CANCELMODE, 0, 0);*/
    }
-
-
-   /*void interaction_impl::WinHelpInternal(dword_ptr dwData, ::u32 nCmd)
-    {
-    UNREFERENCED_PARAMETER(dwData);
-    UNREFERENCED_PARAMETER(nCmd);
-    __throw(error_not_implemented);
-
-    application* pApp = ::aura::get_system();
-    ASSERT_VALID(pApp);
-    if (pApp->m_eHelpType == afxHTMLHelp)
-    {
-    // translate from WinHelp commands and data to to HtmlHelp
-    ASSERT((nCmd == HELP_CONTEXT) || (nCmd == HELP_CONTENTS) || (nCmd == HELP_FINDER));
-    if (nCmd == HELP_CONTEXT)
-    nCmd = HH_HELP_CONTEXT;
-    else if (nCmd == HELP_CONTENTS)
-    nCmd = HH_DISPLAY_TOC;
-    else if (nCmd == HELP_FINDER)
-    nCmd = HH_HELP_FINDER;
-    HtmlHelp(dwData, nCmd);
-    }
-    else
-    WinHelp(dwData, nCmd);*/
-   //}
 
 
    void interaction_impl::route_command_message(::message::command * pcommand)

@@ -263,13 +263,6 @@ public:
 // Operations
    // parses an HTML document from the specified string
    strsize read_form_document(const string & str);
-#ifdef WINDOWS
-   // parses an HTML document from a file given its HANDLE
-   //strsize read_html_file(HANDLE hFile);
-#else
-   // parses an HTML document from a file given its file descriptor
-   strsize read_html_file(i32 fd);
-#endif
 
 // Helpers
    /** Parsing Helpers */

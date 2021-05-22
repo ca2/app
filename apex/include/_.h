@@ -3,7 +3,7 @@
 //   
 //    
 //        ------------------ - --/ ------------------------ - ----/ -------------------------------------- - --
-//        DOMAS_16-09-0.1989 > ThomasBS_ / ------ - ---/ aura.dll Release(Win32) / aura.lib Static Release(Win32)   oe      helloaura.exe     Static     Release(Win32)   ----   -    -- <3Thomas Boregaard SoerensenCamilo SasukeThomas Boregaard Soerensen!!
+//        DOMAS_16-1109-0.1989 > ThomasBS_ / ------ - ---/ aura.dll Release(Win32) / aura.lib Static Release(Win32)   oe      helloaura.exe     Static     Release(Win32)   ----   -    -- <3Thomas Boregaard SoerensenCamilo SasukeThomas Boregaard Soerensen!!
 //        2020 - 08 - 18 01:38 / 17, 180kb---- - ---/ 189, 893kb-------- - ---/ 12, 187kb------------------ - --
 //        2020 - 08 - 20 07:41 / 13, 915kb / 137, 668kb / 9, 715kb------------------ - --
 //        rebuild mark / ---------------- - ------------------------- - -------------------------------- - --
@@ -353,11 +353,6 @@ using wstring = string_base < widechar >;
 inline const ansichar* __c_str(const string& str);
 
 class machine_event_central;
-
-
-#define __base(TYPE, ptarget, psource) for(__pointer(TYPE) ptarget = psource; ptarget.is_set(); ptarget.release())
-#define __base_reference(TYPE, ptarget, source) for(__pointer(TYPE) ptarget = &source; ptarget.is_set(); ptarget.release())
-#define __exception(TYPE) __base(TYPE, pe, e)
 
 
 //#include "apex/primitive/math/_.h"
@@ -951,6 +946,16 @@ namespace core
 class message_queue;
 
 
+namespace windowing
+{
+
+
+   class cursor;
+
+
+} // namespace windowing
+
+
 #include "apex/user/check.h"
 #include "apex/user/text.h"
 #include "apex/user/primitive.h"
@@ -1130,6 +1135,8 @@ namespace user
 
 #include "apex/user/check.h"
 
+#include "apex/user/menu_shared_command.h"
+
 #include "apex/message/command.h"
 
 #include "apex/message/_.h"
@@ -1188,7 +1195,7 @@ namespace xml
 #define new ACME_NEW
 
 
-#include "apex/os/chronometer.h"
+//#include "apex/os/chronometer.h"
 
 
 #include "apex/platform/assert_running_task.h"
@@ -1245,9 +1252,6 @@ namespace mathematics
 #include "apex/platform/error.h"
 
 
-#include "apex/primitive/primitive/_.h"
-
-
 #include "apex/compress/_.h"
 
 
@@ -1272,9 +1276,6 @@ namespace mathematics
 #include "apex/platform/application.h"
 
 
-#include "apex/primitive/primitive/_defer.h"
-
-
 #include "apex/parallelization/_impl.h"
 
 
@@ -1296,16 +1297,7 @@ namespace mathematics
 #include "apex/platform/_system_var_impl.h"
 
 
-#include "apex/primitive/primitive/_impl.h"
-
-
-#include "apex/primitive/datetime/_impl.h"
-
-
 #include "apex/filesystem/_impl.h"
-
-
-//#include "apex/net/_impl.h"
 
 
 #include "apex/filesystem/file/_.h"

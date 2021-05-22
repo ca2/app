@@ -16,11 +16,11 @@ LARGE_INTEGER g_largeintegerFrequency;
 
 #endif
 
-#ifdef WINDOWS_DESKTOP
-
-#include "acme/os/windows/callstack.h"
-
-#endif
+//#ifdef WINDOWS_DESKTOP
+//
+//#include "acme/os/windows/callstack.h"
+//
+//#endif
 
 
 namespace mathematics
@@ -67,8 +67,8 @@ CLASS_DECL_ACME enum_platform_level get_platform_level()
 
 }
 
+//void __node_acme_factory_exchange(::factory_map * pfactorymap);
 
-void __node_acme_factory_exchange(::factory_map * pfactorymap);
 
 
 CLASS_DECL_ACME void __seed_srand();
@@ -211,7 +211,8 @@ namespace acme
    //::mutex * g_pmutexCred;
 
 
-   class ::exception_engine* g_pexceptionengine;
+   class ::exception::engine* g_pengine;
+
 
    ::mutex * g_pmutexMessageDispatch;
 
@@ -239,7 +240,7 @@ namespace acme
 
 
 
-   i64 g_iFirstNano;
+   ::nanos g_nanosFirst;
 
    //plex_heap_alloc_array * g_pplexheapallocarray;
 
@@ -378,7 +379,7 @@ namespace acme
 
       //g_pmutexCred = nullptr;
 
-      g_pexceptionengine = nullptr;
+      g_pengine = nullptr;
       g_pmutexMessageDispatch = nullptr;
 
       g_paAura = nullptr;
@@ -413,7 +414,7 @@ namespace acme
 
 #endif
 
-      g_iFirstNano = 0;
+      g_nanosFirst = 0;
 
       //plex_heap_alloc_array * g_pplexheapallocarray = nullptr;
 
@@ -547,11 +548,11 @@ namespace acme
 
 #endif
 
-      g_iFirstNano = get_nanos();
+      g_nanosFirst = get_nanos();
 
       //xxdebug_box("acme.dll base_static_start (0)", "box", e_message_box_ok);
 
-      g_pexceptionengine = new ::PLATFORM_NAMESPACE::exception_engine();
+      g_pengine = new ::PLATFORM_NAMESPACE::exception::engine();
 
       g_pmutexGlobals = new ::mutex();
 
@@ -561,11 +562,6 @@ namespace acme
 
       ::initialize_future_critical_section();
 
-#ifdef WINDOWS
-
-      ::windows::callstack::s_pcriticalsection = new critical_section();
-
-#endif
 
       //::update::g_pcs = new critical_section();
 
@@ -994,12 +990,6 @@ namespace acme
 
       delete_all_release_on_end();
 
-#ifdef WINDOWS
-
-      ::acme::del(::windows::callstack::s_pcriticalsection);
-
-#endif
-
       ::initialize_future_critical_section();
 
       ::acme::del(g_pcsGlobal);
@@ -1054,10 +1044,10 @@ namespace acme
    }
 
 
-   //::acme::system * acme_create_system(app_core * pappcore)
+   //class ::system * acme_create_system(app_core * pappcore)
    //{
 
-   //   auto psystem = new ::acme::system();
+   //   auto psystem = new class ::system();
 
    //   psystem->initialize(nullptr);
 
@@ -1099,7 +1089,7 @@ namespace acme
 
       create_factory < ::stdio_file >();
 
-      __node_acme_factory_exchange(::factory::get_factory_map());
+      //__node_acme_factory_exchange(::factory::get_factory_map());
 
       return true;
 

@@ -241,40 +241,5 @@ void os_post_quit()
 
 }
 
-::e_status     run_runnable(::matter * pobjectTask);
 
 
-gboolean gdk_callback_run_runnable(gpointer pdata)
-{
-
-   run_runnable((matter *) pdata);
-
-   return false;
-
-}
-
-
-void gdk_branch(matter * prunnable, e_priority epriority)
-{
-
-   prunnable->add_ref(OBJ_REF_DBG_P_NOTE(nullptr, "gdk_branch"));
-
-   auto idle_source = g_idle_source_new();
-
-   g_source_set_priority(idle_source, G_PRIORITY_DEFAULT);
-
-   g_source_set_callback(idle_source, &gdk_callback_run_runnable, prunnable, nullptr);
-
-   g_source_attach(idle_source, g_main_context_default());
-
-}
-
-
-CLASS_DECL_CORE void main_branch(::matter * prunnable, e_priority epriority)
-{
-
-   prunnable->add_ref(OBJ_REF_DBG_P_NOTE(nullptr, "main_branch"));
-
-   gdk_branch(prunnable, epriority);
-
-}

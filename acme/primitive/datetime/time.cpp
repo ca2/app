@@ -816,7 +816,7 @@ FILETIME __FILETIME(const ::datetime::time & time)
 
 
 
-#define INTEL 1
+//#define INTEL 1
 
 //
 //time_t __time(const filetime & filetime)
@@ -837,6 +837,29 @@ FILETIME __FILETIME(const ::datetime::time & time)
 //
 //}
 
+
+
+namespace datetime
+{
+
+
+   string time::Format(const string & strFormat)
+   {
+      string str;
+      Format(str, strFormat);
+      return str;
+   }
+
+
+   string time::FormatGmt(const string & strFormat)
+   {
+      string str;
+      FormatGmt(str, strFormat);
+      return str;
+   }
+
+
+} // namespace datetime
 
 
 

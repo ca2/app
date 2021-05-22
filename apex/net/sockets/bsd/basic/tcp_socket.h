@@ -224,7 +224,7 @@ namespace sockets
 #endif
 
       /** Callback executed when resolver thread has finished a resolve request. */
-      void OnResolved(i32 id, const ::net::address & addr) override;
+      //void OnResolved(i32 id, const ::net::address & addr) override;
       /** Callback for 'New' ssl support - replaces SSLSocket. Internal use. */
       void OnSSLConnect() override;
       /** Callback for 'New' ssl support - replaces SSLSocket. Internal use. */

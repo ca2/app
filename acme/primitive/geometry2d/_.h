@@ -1,6 +1,58 @@
 #pragma once
 
 
+template < typename POINT >
+concept primitive_point = requires(POINT point)
+{
+   point.x;
+   point.y;
+};
+
+
+template < typename POINT >
+concept XY_point = requires(POINT point)
+{
+   point.X;
+   point.Y;
+};
+
+
+template < typename SIZE >
+concept primitive_size = requires(SIZE size)
+{
+   size.cx;
+   size.cy;
+};
+
+
+template < typename SIZE >
+concept Dim_size = requires(SIZE size)
+{
+   size.Width;
+   size.Height;
+};
+
+
+template < typename RECTANGLE >
+concept primitive_rectangle = requires(RECTANGLE rectangle)
+{
+   rectangle.left;
+   rectangle.top;
+   rectangle.right;
+   rectangle.bottom;
+};
+
+
+template < typename RECTANGLE >
+concept XYDim_rectangle = requires(RECTANGLE rectangle)
+{
+   rectangle.X;
+   rectangle.Y;
+   rectangle.Width;
+   rectangle.Height;
+};
+
+
 #include "_struct.h"
 
 
@@ -60,26 +112,26 @@ void __swap(A& a, B& b)
 }
 
 
-template < typename RECT_TYPE, typename X >
-inline X x_offset_rect(RECT_TYPE * prectangle, X x)
+template < typename RECTANGLE_TYPE, typename X >
+inline X x_offset_rect(RECTANGLE_TYPE * prectangle, X x)
 {
 
-   prectangle->left = (decltype(RECT_TYPE::left)) (prectangle->left + x);
+   prectangle->left = (decltype(RECTANGLE_TYPE::left)) (prectangle->left + x);
 
-   prectangle->right = (decltype(RECT_TYPE::right)) (prectangle->right + x);
+   prectangle->right = (decltype(RECTANGLE_TYPE::right)) (prectangle->right + x);
 
    return x;
 
 }
 
 
-template < typename RECT_TYPE, typename Y >
-inline Y y_offset_rect(RECT_TYPE * prectangle, Y y)
+template < typename RECTANGLE_TYPE, typename Y >
+inline Y y_offset_rect(RECTANGLE_TYPE * prectangle, Y y)
 {
 
-   prectangle->top = (decltype(RECT_TYPE::top)) (prectangle->top + y);
+   prectangle->top = (decltype(RECTANGLE_TYPE::top)) (prectangle->top + y);
 
-   prectangle->bottom = (decltype(RECT_TYPE::bottom)) (prectangle->bottom + y);
+   prectangle->bottom = (decltype(RECTANGLE_TYPE::bottom)) (prectangle->bottom + y);
 
    return y;
 
@@ -87,34 +139,34 @@ inline Y y_offset_rect(RECT_TYPE * prectangle, Y y)
 
 
 
-template < typename RECT_TYPE, typename X >
-inline X x_subtract_rect(RECT_TYPE* prectangle, X x)
+template < typename RECTANGLE_TYPE, typename X >
+inline X x_subtract_rect(RECTANGLE_TYPE* prectangle, X x)
 {
 
-   prectangle->left = (decltype(RECT_TYPE::left))(prectangle->left - x);
+   prectangle->left = (decltype(RECTANGLE_TYPE::left))(prectangle->left - x);
 
-   prectangle->right = (decltype(RECT_TYPE::right))(prectangle->right - x);
+   prectangle->right = (decltype(RECTANGLE_TYPE::right))(prectangle->right - x);
 
    return x;
 
 }
 
 
-template < typename RECT_TYPE, typename Y >
-inline Y y_subtract_rect(RECT_TYPE * prectangle, Y y)
+template < typename RECTANGLE_TYPE, typename Y >
+inline Y y_subtract_rect(RECTANGLE_TYPE * prectangle, Y y)
 {
 
-   prectangle->top = (decltype(RECT_TYPE::top))(prectangle->top - y);
+   prectangle->top = (decltype(RECTANGLE_TYPE::top))(prectangle->top - y);
 
-   prectangle->bottom = (decltype(RECT_TYPE::bottom))(prectangle->bottom - y);
+   prectangle->bottom = (decltype(RECTANGLE_TYPE::bottom))(prectangle->bottom - y);
 
    return y;
 
 }
 
 
-template < typename RECT_TYPE, typename X, typename Y >
-inline RECT_TYPE * offset_rect(RECT_TYPE * prectangle, X x, Y y)
+template < typename RECTANGLE_TYPE, typename X, typename Y >
+inline RECTANGLE_TYPE * offset_rect(RECTANGLE_TYPE * prectangle, X x, Y y)
 {
 
    x_offset_rect(prectangle, x);
@@ -126,8 +178,8 @@ inline RECT_TYPE * offset_rect(RECT_TYPE * prectangle, X x, Y y)
 }
 
 
-template < typename RECT_TYPE, typename X, typename Y >
-inline RECT_TYPE* subtract_rect(RECT_TYPE* prectangle, X x, Y y)
+template < typename RECTANGLE_TYPE, typename X, typename Y >
+inline RECTANGLE_TYPE* subtract_rect(RECTANGLE_TYPE* prectangle, X x, Y y)
 {
 
    x_subtract_rect(prectangle, x);
@@ -138,8 +190,8 @@ inline RECT_TYPE* subtract_rect(RECT_TYPE* prectangle, X x, Y y)
 
 }
 
-template < typename RECT_TYPE, typename POINT_TYPE >
-inline RECT_TYPE * offset_rect(RECT_TYPE * prectangle, const POINT_TYPE & point)
+template < typename RECTANGLE_TYPE, typename POINT_TYPE >
+inline RECTANGLE_TYPE * offset_rect(RECTANGLE_TYPE * prectangle, const POINT_TYPE & point)
 {
 
    return offset_rect(prectangle, point.x, point.y);
@@ -148,16 +200,16 @@ inline RECT_TYPE * offset_rect(RECT_TYPE * prectangle, const POINT_TYPE & point)
 
 
 
-template < typename RECT_TYPE, typename POINT_TYPE >
-inline RECT_TYPE* subtract_rect(RECT_TYPE* prectangle, const POINT_TYPE& point)
+template < typename RECTANGLE_TYPE, typename POINT_TYPE >
+inline RECTANGLE_TYPE* subtract_rect(RECTANGLE_TYPE* prectangle, const POINT_TYPE& point)
 {
 
    return subtract_rect(prectangle, point.x, point.y);
 
 }
 
-template < typename RECT_TYPE, typename POINT_TYPE >
-inline RECT_TYPE* rect_sub(RECT_TYPE* prectangle, const POINT_TYPE& point) { return subtract_rect(prectangle, point); }
+template < typename RECTANGLE_TYPE, typename POINT_TYPE >
+inline RECTANGLE_TYPE* rect_sub(RECTANGLE_TYPE* prectangle, const POINT_TYPE& point) { return subtract_rect(prectangle, point); }
 
 
 
@@ -232,13 +284,13 @@ inline POINT_TYPE * subtract_point(POINT_TYPE * ppoint, const POINT_TYPE2 & poin
 
 
 
-template < typename RECT_TYPE, typename POINT_TYPE >
-inline RECT_TYPE* rect_add(RECT_TYPE* prectangle, const POINT_TYPE& point) { return offset_rect(prectangle, point); }
+template < typename RECTANGLE_TYPE, typename POINT_TYPE >
+inline RECTANGLE_TYPE* rect_add(RECTANGLE_TYPE* prectangle, const POINT_TYPE& point) { return offset_rect(prectangle, point); }
 
 
 
-template < typename RECT_TYPE, typename RECT_TYPE1, typename RECT_TYPE2 >
-bool x_intersect_rect(RECT_TYPE* prectangle, const RECT_TYPE1 * prect1, const RECT_TYPE2 * prect2)
+template < typename RECTANGLE_TYPE, typename RECT_TYPE1, typename RECT_TYPE2 >
+bool x_intersect_rect(RECTANGLE_TYPE* prectangle, const RECT_TYPE1 * prect1, const RECT_TYPE2 * prect2)
 {
 
    auto left   = maximum(prect1->left, prect2->left);
@@ -268,8 +320,8 @@ bool x_intersect_rect(RECT_TYPE* prectangle, const RECT_TYPE1 * prect1, const RE
 }
 
 
-template < typename RECT_TYPE, typename RECT_TYPE1, typename RECT_TYPE2 >
-bool y_intersect_rect(RECT_TYPE* prectangle, const RECT_TYPE1* prect1, const RECT_TYPE2* prect2)
+template < typename RECTANGLE_TYPE, typename RECT_TYPE1, typename RECT_TYPE2 >
+bool y_intersect_rect(RECTANGLE_TYPE* prectangle, const RECT_TYPE1* prect1, const RECT_TYPE2* prect2)
 {
 
    auto top     = maximum(prect1->top,prect2->top);
@@ -298,8 +350,8 @@ bool y_intersect_rect(RECT_TYPE* prectangle, const RECT_TYPE1* prect1, const REC
 
 }
 
-template < typename RECT_TYPE, typename RECT_TYPE1, typename RECT_TYPE2 >
-bool intersect_rect(RECT_TYPE* prectangle, const RECT_TYPE1* prect1, const RECT_TYPE2* prect2)
+template < typename RECTANGLE_TYPE, typename RECT_TYPE1, typename RECT_TYPE2 >
+bool intersect_rect(RECTANGLE_TYPE* prectangle, const RECT_TYPE1* prect1, const RECT_TYPE2* prect2)
 {
 
    if (x_intersect_rect(prectangle, prect1, prect2) && y_intersect_rect(prectangle, prect1, prect2))
@@ -321,8 +373,8 @@ bool intersect_rect(RECT_TYPE* prectangle, const RECT_TYPE1* prect1, const RECT_
 }
 
 
-template < typename RECT_TYPE, typename RECT_TYPE1, typename RECT_TYPE2 >
-bool x_null_intersect_rect(RECT_TYPE* prectangle, const RECT_TYPE1* prect1, const RECT_TYPE2* prect2)
+template < typename RECTANGLE_TYPE, typename RECT_TYPE1, typename RECT_TYPE2 >
+bool x_null_intersect_rect(RECTANGLE_TYPE* prectangle, const RECT_TYPE1* prect1, const RECT_TYPE2* prect2)
 {
 
    auto left = maximum(prect1->left, prect2->left);
@@ -352,8 +404,8 @@ bool x_null_intersect_rect(RECT_TYPE* prectangle, const RECT_TYPE1* prect1, cons
 }
 
 
-template < typename RECT_TYPE, typename RECT_TYPE1, typename RECT_TYPE2 >
-bool y_null_intersect_rect(RECT_TYPE* prectangle, const RECT_TYPE1* prect1, const RECT_TYPE2* prect2)
+template < typename RECTANGLE_TYPE, typename RECT_TYPE1, typename RECT_TYPE2 >
+bool y_null_intersect_rect(RECTANGLE_TYPE* prectangle, const RECT_TYPE1* prect1, const RECT_TYPE2* prect2)
 {
 
    auto top = maximum(prect1->top, prect2->top);
@@ -383,8 +435,8 @@ bool y_null_intersect_rect(RECT_TYPE* prectangle, const RECT_TYPE1* prect1, cons
 }
 
 
-template < typename RECT_TYPE, typename RECT_TYPE1, typename RECT_TYPE2 >
-bool null_intersect_rect(RECT_TYPE* prectangle, const RECT_TYPE1* prect1, const RECT_TYPE2* prect2)
+template < typename RECTANGLE_TYPE, typename RECT_TYPE1, typename RECT_TYPE2 >
+bool null_intersect_rect(RECTANGLE_TYPE* prectangle, const RECT_TYPE1* prect1, const RECT_TYPE2* prect2)
 {
 
    if(x_null_intersect_rect(prectangle, prect1, prect2) && y_null_intersect_rect(prectangle, prect1, prect2))
@@ -406,8 +458,8 @@ bool null_intersect_rect(RECT_TYPE* prectangle, const RECT_TYPE1* prect1, const 
 }
 
 
-template < typename RECT_TYPE, typename RECT_TYPE1, typename RECT_TYPE2 >
-bool x_left_null_intersect_rect(RECT_TYPE* prectangle, const RECT_TYPE1* prect1, const RECT_TYPE2* prect2)
+template < typename RECTANGLE_TYPE, typename RECT_TYPE1, typename RECT_TYPE2 >
+bool x_left_null_intersect_rect(RECTANGLE_TYPE* prectangle, const RECT_TYPE1* prect1, const RECT_TYPE2* prect2)
 {
 
    prectangle->left    = maximum(prect1->left,prect2->left);
@@ -419,8 +471,8 @@ bool x_left_null_intersect_rect(RECT_TYPE* prectangle, const RECT_TYPE1* prect1,
 }
 
 
-template < typename RECT_TYPE, typename RECT_TYPE1, typename RECT_TYPE2 >
-bool y_top_null_intersect_rect(RECT_TYPE* prectangle, const RECT_TYPE1* prect1, const RECT_TYPE2* prect2)
+template < typename RECTANGLE_TYPE, typename RECT_TYPE1, typename RECT_TYPE2 >
+bool y_top_null_intersect_rect(RECTANGLE_TYPE* prectangle, const RECT_TYPE1* prect1, const RECT_TYPE2* prect2)
 {
 
    prectangle->top     = maximum(prect1->top, prect2->top);
@@ -432,8 +484,8 @@ bool y_top_null_intersect_rect(RECT_TYPE* prectangle, const RECT_TYPE1* prect1, 
 }
 
 
-template < typename RECT_TYPE, typename RECT_TYPE1, typename RECT_TYPE2 >
-bool top_left_null_intersect_rect(RECT_TYPE* prectangle, const RECT_TYPE1* prect1, const RECT_TYPE2* prect2)
+template < typename RECTANGLE_TYPE, typename RECT_TYPE1, typename RECT_TYPE2 >
+bool top_left_null_intersect_rect(RECTANGLE_TYPE* prectangle, const RECT_TYPE1* prect1, const RECT_TYPE2* prect2)
 {
 
    if(x_left_null_intersect_rect(prectangle,prect1,prect2) && y_top_null_intersect_rect(prectangle,prect1,prect2))
@@ -454,8 +506,8 @@ bool top_left_null_intersect_rect(RECT_TYPE* prectangle, const RECT_TYPE1* prect
 }
 
 
-template < typename RECT_TYPE, typename RECT_TYPE1, typename RECT_TYPE2 >
-RECT_TYPE * union_rect(RECT_TYPE * prectangle, const RECT_TYPE1* prect1, const RECT_TYPE2* prect2)
+template < typename RECTANGLE_TYPE, typename RECT_TYPE1, typename RECT_TYPE2 >
+RECTANGLE_TYPE * union_rect(RECTANGLE_TYPE * prectangle, const RECT_TYPE1* prect1, const RECT_TYPE2* prect2)
 {
 
    if (is_rect_empty(prect1))
@@ -484,10 +536,10 @@ RECT_TYPE * union_rect(RECT_TYPE * prectangle, const RECT_TYPE1* prect1, const R
    else
    {
 
-      prectangle->left = (decltype(RECT_TYPE::left))minimum(prect1->left, prect2->left);
-      prectangle->top = (decltype(RECT_TYPE::top))minimum(prect1->top, prect2->top);
-      prectangle->right = (decltype(RECT_TYPE::right))maximum(prect1->right, prect2->right);
-      prectangle->bottom = (decltype(RECT_TYPE::bottom))maximum(prect1->bottom, prect2->bottom);
+      prectangle->left = (decltype(RECTANGLE_TYPE::left))minimum(prect1->left, prect2->left);
+      prectangle->top = (decltype(RECTANGLE_TYPE::top))minimum(prect1->top, prect2->top);
+      prectangle->right = (decltype(RECTANGLE_TYPE::right))maximum(prect1->right, prect2->right);
+      prectangle->bottom = (decltype(RECTANGLE_TYPE::bottom))maximum(prect1->bottom, prect2->bottom);
 
    }
 
@@ -495,8 +547,8 @@ RECT_TYPE * union_rect(RECT_TYPE * prectangle, const RECT_TYPE1* prect1, const R
 
 }
 
-template < typename RECT_TYPE, typename RECT_TYPE1, typename RECT_TYPE2 >
-RECT_TYPE* subtract_rect(RECT_TYPE* prectangle, const RECT_TYPE1* prect1, const RECT_TYPE2* prect2)
+template < typename RECTANGLE_TYPE, typename RECT_TYPE1, typename RECT_TYPE2 >
+RECTANGLE_TYPE* subtract_rect(RECTANGLE_TYPE* prectangle, const RECT_TYPE1* prect1, const RECT_TYPE2* prect2)
 {
 
 
@@ -635,8 +687,8 @@ auto get_normal_dimension(enum_orientation eorientation, X x, Y y);
 
 
 
-template < typename RECT_TYPE >
-bool rect_equals(const RECT_TYPE* prect1, const RECT_TYPE* prect2)
+template < typename RECTANGLE_TYPE >
+bool rect_equals(const RECTANGLE_TYPE* prect1, const RECTANGLE_TYPE* prect2)
 {
 
    return prect1->left == prect2->left && prect1->top == prect2->top
@@ -662,14 +714,14 @@ bool size_equals(const SIZE_TYPE* psize1, const SIZE_TYPE* psize2)
 
 }
 
-template < typename RECT_TYPE, typename L, typename T, typename R, typename B >
-RECT_TYPE * set_rect(RECT_TYPE* prectangle, L l, T t, R r, B b)
+template < typename RECTANGLE_TYPE, typename L, typename T, typename R, typename B >
+RECTANGLE_TYPE * set_rect(RECTANGLE_TYPE* prectangle, L l, T t, R r, B b)
 {
 
-   prectangle->left = (decltype(RECT_TYPE::left))l;
-   prectangle->top = (decltype(RECT_TYPE::top))t;
-   prectangle->right = (decltype(RECT_TYPE::right))r;
-   prectangle->bottom = (decltype(RECT_TYPE::bottom))b;
+   prectangle->left = (decltype(RECTANGLE_TYPE::left))l;
+   prectangle->top = (decltype(RECTANGLE_TYPE::top))t;
+   prectangle->right = (decltype(RECTANGLE_TYPE::right))r;
+   prectangle->bottom = (decltype(RECTANGLE_TYPE::bottom))b;
 
    return prectangle;
 
@@ -679,14 +731,14 @@ RECT_TYPE * set_rect(RECT_TYPE* prectangle, L l, T t, R r, B b)
 
 
 
-template < typename RECT_TYPE, typename L, typename T, typename W, typename H >
-RECT_TYPE * set_rect_dim(RECT_TYPE* prectangle, L l, T t, W w, H h)
+template < typename RECTANGLE_TYPE, typename L, typename T, typename W, typename H >
+RECTANGLE_TYPE * set_rect_dim(RECTANGLE_TYPE* prectangle, L l, T t, W w, H h)
 {
 
-   prectangle->left = (decltype(RECT_TYPE::left))l;
-   prectangle->top = (decltype(RECT_TYPE::top))t;
-   prectangle->right = (decltype(RECT_TYPE::right))(l+w);
-   prectangle->bottom = (decltype(RECT_TYPE::bottom))(t+h);
+   prectangle->left = (decltype(RECTANGLE_TYPE::left))l;
+   prectangle->top = (decltype(RECTANGLE_TYPE::top))t;
+   prectangle->right = (decltype(RECTANGLE_TYPE::right))(l+w);
+   prectangle->bottom = (decltype(RECTANGLE_TYPE::bottom))(t+h);
 
    return prectangle;
 
@@ -729,8 +781,8 @@ RECTANGLE * set_rect_point_size(RECTANGLE * prectangle, const POINT & point, con
 }
 
 
-template < typename RECT_TYPE >
-RECT_TYPE * null_rect(RECT_TYPE* prectangle)
+template < typename RECTANGLE_TYPE >
+RECTANGLE_TYPE * null_rect(RECTANGLE_TYPE* prectangle)
 {
 
    return ::set_rect(prectangle, 0, 0, 0, 0);
@@ -738,33 +790,33 @@ RECT_TYPE * null_rect(RECT_TYPE* prectangle)
 }
 
 
-template < typename RECT_TYPE >
-constexpr auto rect_width(RECT_TYPE* prectangle) { return prectangle->right - prectangle->left; }
+template < typename RECTANGLE_TYPE >
+constexpr auto rect_width(RECTANGLE_TYPE* prectangle) { return prectangle->right - prectangle->left; }
 
 
-template < typename RECT_TYPE >
-constexpr auto rect_height(RECT_TYPE* prectangle) { return prectangle->bottom - prectangle->top; }
+template < typename RECTANGLE_TYPE >
+constexpr auto rect_height(RECTANGLE_TYPE* prectangle) { return prectangle->bottom - prectangle->top; }
 
 
 template < typename W, typename H >
 constexpr H rect_area(W w, H h) { return (w <= (W) 0 || h <= (H) 0) ? 0 : (H) (w * h); }
 
 
-template < typename RECT_TYPE >
-constexpr auto rect_area(RECT_TYPE* prectangle) { return rect_area(rect_width(prectangle), rect_height(prectangle)); }
+template < typename RECTANGLE_TYPE >
+constexpr auto rect_area(RECTANGLE_TYPE* prectangle) { return rect_area(rect_width(prectangle), rect_height(prectangle)); }
 
 
-template < typename RECT_TYPE >
-constexpr auto is_rect_empty(RECT_TYPE * prectangle) { return ::is_null(prectangle) || prectangle->right <= prectangle->left || prectangle->bottom <= prectangle->top; }
+template < typename RECTANGLE_TYPE >
+constexpr auto is_rect_empty(RECTANGLE_TYPE * prectangle) { return ::is_null(prectangle) || prectangle->right <= prectangle->left || prectangle->bottom <= prectangle->top; }
 
-template < typename RECT_TYPE >
-bool is_rect_null(const RECT_TYPE* prectangle)
+template < typename RECTANGLE_TYPE >
+bool is_rect_null(const RECTANGLE_TYPE* prectangle)
 {
 
-   return prectangle->left == (decltype(RECT_TYPE::left))0
-      && prectangle->top == (decltype(RECT_TYPE::top))0
-      && prectangle->right == (decltype(RECT_TYPE::right))0
-      && prectangle->bottom == (decltype(RECT_TYPE::bottom))0;
+   return prectangle->left == (decltype(RECTANGLE_TYPE::left))0
+      && prectangle->top == (decltype(RECTANGLE_TYPE::top))0
+      && prectangle->right == (decltype(RECTANGLE_TYPE::right))0
+      && prectangle->bottom == (decltype(RECTANGLE_TYPE::bottom))0;
 
 }
 
@@ -817,22 +869,22 @@ inline bool rectangle_contains(const RECTANGLE * prectangle, X x, Y y)
 }
 
 
-template < typename RECT_TYPE, typename L, typename T, typename R, typename B >
-inline RECT_TYPE* rect_inflate(RECT_TYPE* prectangle, L l, T t, R r, B b)
+template < typename RECTANGLE_TYPE, typename L, typename T, typename R, typename B >
+inline RECTANGLE_TYPE* rect_inflate(RECTANGLE_TYPE* prectangle, L l, T t, R r, B b)
 {
 
-   prectangle->left = (decltype(RECT_TYPE::left))(prectangle->left - l);
-   prectangle->top = (decltype(RECT_TYPE::top))(prectangle->top - t);
-   prectangle->right = (decltype(RECT_TYPE::right))(prectangle->right + r);
-   prectangle->bottom = (decltype(RECT_TYPE::bottom))(prectangle->bottom + b);
+   prectangle->left = (decltype(RECTANGLE_TYPE::left))(prectangle->left - l);
+   prectangle->top = (decltype(RECTANGLE_TYPE::top))(prectangle->top - t);
+   prectangle->right = (decltype(RECTANGLE_TYPE::right))(prectangle->right + r);
+   prectangle->bottom = (decltype(RECTANGLE_TYPE::bottom))(prectangle->bottom + b);
 
    return prectangle;
 
 }
 
 
-template < typename RECT_TYPE, typename RECT_TYPE2 >
-inline RECT_TYPE* rect_inflate(RECT_TYPE* prectangle, const RECT_TYPE2* prect2)
+template < typename RECTANGLE_TYPE, typename RECT_TYPE2 >
+inline RECTANGLE_TYPE* rect_inflate(RECTANGLE_TYPE* prectangle, const RECT_TYPE2* prect2)
 {
 
    return rect_inflate(prectangle, prect2->left, prect2->top, prect2->right, prect2->bottom);
@@ -840,8 +892,8 @@ inline RECT_TYPE* rect_inflate(RECT_TYPE* prectangle, const RECT_TYPE2* prect2)
 }
 
 
-template < typename RECT_TYPE, typename RECT_TYPE2 >
-inline RECT_TYPE* rect_multiply_inline(RECT_TYPE* prectangle, const RECT_TYPE2* prect2)
+template < typename RECTANGLE_TYPE, typename RECT_TYPE2 >
+inline RECTANGLE_TYPE* rect_multiply_inline(RECTANGLE_TYPE* prectangle, const RECT_TYPE2* prect2)
 {
 
    prectangle->left *= prect2->left;
@@ -853,22 +905,22 @@ inline RECT_TYPE* rect_multiply_inline(RECT_TYPE* prectangle, const RECT_TYPE2* 
 
 }
 
-template < typename RECT_TYPE, typename L, typename T, typename R, typename B >
-inline RECT_TYPE* rect_deflate(RECT_TYPE* prectangle, L l, T t, R r, B b)
+template < typename RECTANGLE_TYPE, typename L, typename T, typename R, typename B >
+inline RECTANGLE_TYPE* rect_deflate(RECTANGLE_TYPE* prectangle, L l, T t, R r, B b)
 {
 
-   prectangle->left = (decltype(RECT_TYPE::left))(prectangle->left + l);
-   prectangle->top = (decltype(RECT_TYPE::top))(prectangle->top + t);
-   prectangle->right = (decltype(RECT_TYPE::right))(prectangle->right - r);
-   prectangle->bottom = (decltype(RECT_TYPE::bottom))(prectangle->bottom - b);
+   prectangle->left = (decltype(RECTANGLE_TYPE::left))(prectangle->left + l);
+   prectangle->top = (decltype(RECTANGLE_TYPE::top))(prectangle->top + t);
+   prectangle->right = (decltype(RECTANGLE_TYPE::right))(prectangle->right - r);
+   prectangle->bottom = (decltype(RECTANGLE_TYPE::bottom))(prectangle->bottom - b);
 
    return prectangle;
 
 }
 
 
-template < typename RECT_TYPE, typename RECT_TYPE2 >
-inline RECT_TYPE* rect_deflate(RECT_TYPE* prectangle, const RECT_TYPE2* prect2)
+template < typename RECTANGLE_TYPE, typename RECT_TYPE2 >
+inline RECTANGLE_TYPE* rect_deflate(RECTANGLE_TYPE* prectangle, const RECT_TYPE2* prect2)
 {
 
    return rect_deflate(prectangle, prect2->left, prect2->top, prect2->right, prect2->bottom);
@@ -876,16 +928,16 @@ inline RECT_TYPE* rect_deflate(RECT_TYPE* prectangle, const RECT_TYPE2* prect2)
 }
 
 
-template < typename RECT_TYPE, typename X, typename Y >
-inline RECT_TYPE* rect_inflate_point(RECT_TYPE* prectangle, X x, Y y)
+template < typename RECTANGLE_TYPE, typename X, typename Y >
+inline RECTANGLE_TYPE* rect_inflate_point(RECTANGLE_TYPE* prectangle, X x, Y y)
 {
 
    return rect_inflate(prectangle, x, y, x, y);
 
 }
 
-template < typename RECT_TYPE, typename X, typename Y >
-inline RECT_TYPE* rect_deflate_point(RECT_TYPE* prectangle, X x, Y y)
+template < typename RECTANGLE_TYPE, typename X, typename Y >
+inline RECTANGLE_TYPE* rect_deflate_point(RECTANGLE_TYPE* prectangle, X x, Y y)
 {
 
    return rect_deflate(prectangle, x, y, x, y);
@@ -893,8 +945,8 @@ inline RECT_TYPE* rect_deflate_point(RECT_TYPE* prectangle, X x, Y y)
 }
 
 
-template < typename RECT_TYPE, typename UNIT >
-inline RECT_TYPE* rect_inflate_unit(RECT_TYPE* prectangle, UNIT u)
+template < typename RECTANGLE_TYPE, typename UNIT >
+inline RECTANGLE_TYPE* rect_inflate_unit(RECTANGLE_TYPE* prectangle, UNIT u)
 {
 
    return rect_inflate_point(prectangle, u, u);
@@ -902,8 +954,8 @@ inline RECT_TYPE* rect_inflate_unit(RECT_TYPE* prectangle, UNIT u)
 }
 
 
-template < typename RECT_TYPE, typename UNIT >
-inline RECT_TYPE* rect_deflate_unit(RECT_TYPE* prectangle, UNIT u)
+template < typename RECTANGLE_TYPE, typename UNIT >
+inline RECTANGLE_TYPE* rect_deflate_unit(RECTANGLE_TYPE* prectangle, UNIT u)
 {
 
    return rect_deflate_point(prectangle, u, u);
@@ -911,8 +963,8 @@ inline RECT_TYPE* rect_deflate_unit(RECT_TYPE* prectangle, UNIT u)
 }
 
 
-template < typename RECT_TYPE >
-inline RECT_TYPE* swap_rect_left_right(RECT_TYPE* prectangle) { __swap(prectangle->left, prectangle->right); return prectangle; }
+template < typename RECTANGLE_TYPE >
+inline RECTANGLE_TYPE* swap_rect_left_right(RECTANGLE_TYPE* prectangle) { __swap(prectangle->left, prectangle->right); return prectangle; }
 
 
 
@@ -945,14 +997,14 @@ inline bool polygon_contains_point(const POINT1 * ppPolygon, i32 iCount, const P
 
 
 
-template < typename SIZE_BASE_TYPE, typename POINT_BASE_TYPE, typename RECT_BASE_TYPE >
+template < typename SIZE_BASE_TYPE, typename POINT_BASE_TYPE, typename RECTANGLE_BASE_TYPE >
 class size_type;
 
-template < typename POINT_BASE_TYPE, typename SIZE_BASE_TYPE, typename RECT_BASE_TYPE >
+template < typename POINT_BASE_TYPE, typename SIZE_BASE_TYPE, typename RECTANGLE_BASE_TYPE >
 class point_type;
 
-template < typename RECT_BASE_TYPE, typename POINT_TYPE, typename SIZE_TYPE >
-class rect_type;
+template < typename RECTANGLE_BASE_TYPE, typename POINT_TYPE, typename SIZE_TYPE >
+class rectangle_type;
 
 template < typename POINT_TYPE >
 class point_array_base;
@@ -1034,10 +1086,10 @@ using size_f32 = size_type < SIZE_F32, POINT_F32, RECTANGLE_F32 >;
 using size_f64 = size_type < SIZE_F64, POINT_F64, RECTANGLE_F64 >;
 
 
-using rectangle_i32 = rect_type < RECTANGLE_I32, POINT_I32, SIZE_I32 >;
-using rectangle_i64 = rect_type < RECTANGLE_I64, POINT_I64, SIZE_I64 >;
-using rectangle_f32 = rect_type < RECTANGLE_F32, POINT_F32, SIZE_F32 >;
-using rectangle_f64 = rect_type < RECTANGLE_F64, POINT_F64, SIZE_F64 >;
+using rectangle_i32 = rectangle_type < RECTANGLE_I32, POINT_I32, SIZE_I32 >;
+using rectangle_i64 = rectangle_type < RECTANGLE_I64, POINT_I64, SIZE_I64 >;
+using rectangle_f32 = rectangle_type < RECTANGLE_F32, POINT_F32, SIZE_F32 >;
+using rectangle_f64 = rectangle_type < RECTANGLE_F64, POINT_F64, SIZE_F64 >;
 
 
 using point_i32_array = point_array_base < point_i32 >;
@@ -1219,7 +1271,7 @@ inline RECTANGLE_F64& operator += (RECTANGLE_F64& rectangle, const ::point_f64& 
 CLASS_DECL_ACME double d_distance(const point_i32 & point1, const point_i32 & point2);
 
 
-inline CLASS_DECL_ACME rectangle_i32 rect_dim(::i32 x, ::i32 y, ::i32 cx, ::i32 cy)
+inline CLASS_DECL_ACME rectangle_i32 rectangle_dimension(::i32 x, ::i32 y, ::i32 cx, ::i32 cy)
 {
 
    return rectangle_i32(x, y, x + cx, y + cy);
@@ -1379,7 +1431,7 @@ inline void collapse_rect(RECT1 * prectangle, const RECT2 & r)
 
 #include "lines.h"
 
-#include "oval.h"
+#include "ellipse.h"
 
 #include "shape.h"
 

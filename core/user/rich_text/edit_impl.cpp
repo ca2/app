@@ -117,7 +117,7 @@ namespace user
          //MESSAGE_LINK(e_message_kill_focus, pchannel, this, &edit_impl::_001OnKillFocus);
 
 
-         text_composition_composite::install_message_routing(pchannel);
+         text_composition_composite::initialize_text_composition_client(pchannel, this);
 
 //#ifdef WINDOWS_DESKTOP
 //
@@ -456,7 +456,15 @@ namespace user
          if (m_itemHover.is_set())
          {
 
-            pmouse->m_ecursor = e_cursor_text_select;
+            auto psession = get_session();
+
+            auto puser = psession->user();
+
+            auto pwindowing = puser->windowing();
+
+            auto pcursor = pwindowing->get_cursor(e_cursor_text_select);
+
+            pmouse->m_pcursor = pcursor;
 
             pmouse->m_bRet = true;
 
@@ -487,7 +495,15 @@ namespace user
          if (!m_bClickThrough)
          {
 
-            pmouse->m_ecursor = e_cursor_text_select;
+            auto psession = get_session();
+
+            auto puser = psession->user();
+
+            auto pwindowing = puser->windowing();
+
+            auto pcursor = pwindowing->get_cursor(e_cursor_text_select);
+
+            pmouse->m_pcursor = pcursor;
 
             pmouse->m_bRet = true;
 

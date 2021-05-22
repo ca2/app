@@ -7,7 +7,7 @@ namespace apex
 
    class CLASS_DECL_APEX system:
       virtual public ::app_core,
-      virtual public ::acme::system,
+      virtual public class ::system,
       virtual public ::apex::context
 #ifndef WINDOWS
       ,virtual public ::exception::translator
@@ -569,7 +569,7 @@ namespace apex
       virtual ::e_status initialize_sockets();
 
 
-      virtual bool on_get_thread_name(string& strThreadName) override;
+      virtual bool on_get_task_name(string& strTaskName) override;
 
       virtual ::acme::library * on_get_library(const char * pszLibrary);
 

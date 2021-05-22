@@ -191,7 +191,7 @@ namespace user
       //virtual ::user::frame * EnsureParentFrame() override;
 
 
-      virtual lresult message_call(const ::id & id, wparam wparam, lparam lparam) override;
+      virtual lresult message_call(const ::id & id, wparam wparam, lparam lparam, const ::point_i32& point = nullptr) override;
       virtual lresult message_call(::message::message * pmessage) override;
 
 
@@ -243,7 +243,7 @@ namespace user
       virtual void register_drop_target();
 
 
-      virtual ::user::primitive * get_keyboard_focus();
+      ::user::primitive * get_keyboard_focus() override;
       virtual ::e_status set_keyboard_focus(::user::primitive * pprimitive);
       virtual ::e_status erase_keyboard_focus(::user::primitive * pprimitive);
       virtual ::e_status clear_keyboard_focus() override;

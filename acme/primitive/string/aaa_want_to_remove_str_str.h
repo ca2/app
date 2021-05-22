@@ -312,7 +312,7 @@ namespace str
    CLASS_DECL_ACME string          ansi_upper(const char * psz);
 
 
-   string CLASS_DECL_ACME get_window_text_timeout(::windowing::window * pwindow, millis tickTimeout = 1000);
+//   string CLASS_DECL_ACME get_window_text_timeout(::windowing::window * pwindow, millis tickTimeout = 1000);
 
    string CLASS_DECL_ACME get_word(
    const char * psz,

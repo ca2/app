@@ -1,4 +1,0 @@
-LIBRARY  "audio_xaudio"
-
-EXPORTS
-factory_exchange

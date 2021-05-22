@@ -162,7 +162,7 @@ i32 WINAPI _tWinMain(HINSTANCE hinstance, HINSTANCE hPrevInstance, char * pCmdLi
 //
 //#ifdef APPID
 //
-//         pmaindata->m_strAppId = APPID;
+//         pmaindata->m_XstrAppId = APPID;
 //
 //#endif
 //

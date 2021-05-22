@@ -193,7 +193,7 @@ namespace user
       for (i32 i = 0; i < primitive_count(); i++)
       {
 
-         auto pprimitive = primitive_at(i);
+         auto pprimitive = primitive_at(i).m_p;
 
          if (type == typeid(*pprimitive))
          {

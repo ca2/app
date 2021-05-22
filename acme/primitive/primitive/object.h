@@ -48,7 +48,7 @@ public:
    //__pointer(::thread)                                m_pthread;
    //__pointer(::apex::application)                     m_papplication;
    //__pointer(::apex::session)                         m_psession;
-   //__pointer(::acme::system)                          m_psystem;
+   //__pointer(class ::system)                          m_psystem;
    __pointer(::acme::context)                           m_pcontext;
 
 
@@ -88,7 +88,7 @@ public:
 #endif
 
 
-   //inline ::acme::system* get_system() const;
+   //inline class ::system* get_system() const;
 
    //inline matter_array * _composite_array() { return m_pcompositea; }
    //inline matter_array * _reference_array() { return m_preferencea; }
@@ -544,12 +544,13 @@ public:
       ::u32 nStackSize = 0,
       ::u32 dwCreateFlags = 0 ARG_SEC_ATTRS_DEF);
 
+
    template < typename PRED >
    inline ::task_pointer predicate_run(bool bSync, PRED pred);
 
    //using property_object::branch;
 
-   ::task_pointer branch(
+   __transport(::task) branch(
       ::e_priority epriority = ::priority_normal,
       ::u32 nStackSize = 0,
       u32 dwCreateFlags = 0 ARG_SEC_ATTRS_DEF);

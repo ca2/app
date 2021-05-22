@@ -48,7 +48,7 @@ namespace axis
 
       //::aura::application * papp = ::get_application(pobject);
 
-      //m_strAppId = "axis_system";
+      //m_XstrAppId = "axis_system";
       //m_strAppName = "axis_system";
       //m_strBaseSupportId = "axis_system";
       //m_strInstallToken = "axis_system";

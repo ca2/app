@@ -3,6 +3,8 @@
 int main(int argc, char * argv[], char * envp[])
 {
 
+   set_main_thread();
+
    string strAppId = executable_get_app_id();
 
    auto psystem = platform_create_system(strAppId);

@@ -21,18 +21,18 @@ namespace user
       __composite(::user::thread)               m_puserthread;
       nano_timer                                m_nanotimer;
 
-      i64                                       m_nanosNow;
+      ::nanos                                   m_nanosNow;
 
-      i64                                       m_nanosFrame;
-      i64                                       m_nanosPostRedraw;
+      ::nanos                                   m_nanosPostRedrawProdevian;
+      ::nanos                                   m_nanosPostRedrawNominal;
 
-      i64                                       m_iFrameId;
-      i64                                       m_nanosLastFrame;
-      i64                                       m_iLastFrameId;
-      i64                                       m_nanosNextFrame;
-      i64                                       m_nanosNextScreenUpdate;
-      ::count                                   m_cLost;
-      u64_array                                 m_iaFrame;
+      //i64                                       m_iFrameId;
+      ::nanos                                   m_nanosLastFrame;
+      //i64                                       m_iLastFrameId;
+      ::nanos                                   m_nanosNextFrame;
+      ::nanos                                   m_nanosNextScreenUpdate;
+      //::count                                   m_cLost;
+      ::array < ::nanos >                       m_nanosaFrame;
 
       millis                                    m_millisBeforeUpdateScreen;
       millis                                    m_millisAfterUpdateScreen;
@@ -92,7 +92,13 @@ namespace user
 
       void defer_prodevian_step();
 
-      void set_config_fps(double dConfig);
+      // Fps for when prodevian is active or there is any active prodevian object
+      void set_prodevian_fps(double dProdevianFps);
+
+      // Fps for when prodevian is not active and there is no active prodevian object
+      void set_nominal_fps(double dNominalFps);
+
+      void set_fps(double dFps);
 
       //virtual bool pump_message() override;
 

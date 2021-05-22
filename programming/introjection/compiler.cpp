@@ -1,6 +1,7 @@
 #include "framework.h"
 #ifdef WINDOWS_DESKTOP
-#include "acme/node/windows/registry.h"
+#include "acme_windows/_.h"
+#include "acme_windows/_acme_windows.h"
 #endif
 #include "acme/filesystem/filesystem/acme_dir.h"
 
@@ -417,7 +418,11 @@ namespace introjection
       strItem = pcontext->m_papexcontext->dir().install() / m_strDynamicSourceStage / m_strStagePlatform / "introjection\\library";
       str = str + strItem + ";";
 
-      str += get_environment_variable("PATH");
+      //auto psystem = m_psystem;
+
+      auto pnode = psystem->node();
+
+      str += pnode->get_environment_variable("PATH");
 
       bool bResult = false;
 #ifdef WINDOWS_DESKTOP

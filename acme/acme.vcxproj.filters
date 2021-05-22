@@ -117,17 +117,11 @@
     <Filter Include="Header Files\node">
       <UniqueIdentifier>{8d083486-dfc2-424c-afff-3af7c44fc9da}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\node\windows">
-      <UniqueIdentifier>{9cf34409-2b05-4959-b93c-8605c3551661}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\node\windows_common">
       <UniqueIdentifier>{c2d7f5a1-76e1-4a24-8d82-47142e6e7821}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\node">
       <UniqueIdentifier>{a6d92c38-1c42-49f8-b15a-2a56e421e205}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\node\windows">
-      <UniqueIdentifier>{39efcfa2-db07-4180-9fa3-9c343b0286e0}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\compress">
       <UniqueIdentifier>{6c63ec8b-0cad-40df-9485-b9a8fd37179b}</UniqueIdentifier>
@@ -260,6 +254,18 @@
     </Filter>
     <Filter Include="Header Files\exception">
       <UniqueIdentifier>{f5755d06-f5af-4ec2-bd4e-63cecdfc66a5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\primitive\promise">
+      <UniqueIdentifier>{fc3edfe5-7239-41ce-bf2f-27609e6afdcf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\primitive\promise">
+      <UniqueIdentifier>{ca282869-7285-4060-9314-2dcb61f30654}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\regular_expression">
+      <UniqueIdentifier>{d2590128-15d9-4d60-b3a8-e8589178bd73}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\regular_expression">
+      <UniqueIdentifier>{664d3dae-7929-49cb-a819-65ee6518069e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -992,7 +998,7 @@
     <ClInclude Include="os\windows\aaa_want_to_remove_process_env_reader.h">
       <Filter>Header Files\os\windows</Filter>
     </ClInclude>
-    <ClInclude Include="os\windows\callstack.h">
+    <ClInclude Include="os\windows\aaa_callstack.h">
       <Filter>Header Files\os\windows</Filter>
     </ClInclude>
     <ClInclude Include="os\windows\d2d1_1.h">
@@ -1002,9 +1008,6 @@
       <Filter>Header Files\os\windows</Filter>
     </ClInclude>
     <ClInclude Include="os\windows\environment_variable.h">
-      <Filter>Header Files\os\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="os\windows\exception_engine.h">
       <Filter>Header Files\os\windows</Filter>
     </ClInclude>
     <ClInclude Include="os\windows\extract_icon.h">
@@ -1045,45 +1048,6 @@
     </ClInclude>
     <ClInclude Include="os\windows\windowing.h">
       <Filter>Header Files\os\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="node\windows\_.h">
-      <Filter>Header Files\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="node\windows\_node_windows.h">
-      <Filter>Header Files\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="node\windows\_windows.h">
-      <Filter>Header Files\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="node\windows\a.h">
-      <Filter>Header Files\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="node\windows\console.h">
-      <Filter>Header Files\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="node\windows\exception.h">
-      <Filter>Header Files\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="node\windows\factory_exchange.h">
-      <Filter>Header Files\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="node\windows\file.h">
-      <Filter>Header Files\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="node\windows\file_find.h">
-      <Filter>Header Files\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="node\windows\pipe.h">
-      <Filter>Header Files\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="node\windows\registry.h">
-      <Filter>Header Files\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="node\windows\uac_tools.h">
-      <Filter>Header Files\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="node\windows\user.h">
-      <Filter>Header Files\node\windows</Filter>
     </ClInclude>
     <ClInclude Include="os\chronometer.h">
       <Filter>Header Files\os</Filter>
@@ -1158,9 +1122,6 @@
       <Filter>Header Files\platform</Filter>
     </ClInclude>
     <ClInclude Include="platform\aura_aura.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\aura_regex.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
     <ClInclude Include="platform\auto.h">
@@ -1265,15 +1226,6 @@
     <ClInclude Include="platform\process_data.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
-    <ClInclude Include="platform\progress.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\progress_interface.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\regex.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
     <ClInclude Include="platform\restore.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
@@ -1367,9 +1319,6 @@
     <ClInclude Include="callback.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="node\windows\_node_windows_private.h">
-      <Filter>Header Files\node\windows</Filter>
-    </ClInclude>
     <ClInclude Include="console.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -1459,9 +1408,6 @@
     </ClInclude>
     <ClInclude Include="platform\_global.h">
       <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="node\windows\aaa_stdio_file.h">
-      <Filter>Header Files\node\windows</Filter>
     </ClInclude>
     <ClInclude Include="platform\profiler.h">
       <Filter>Header Files\platform</Filter>
@@ -1820,35 +1766,14 @@
     <ClInclude Include="os\windows\_graphics2d.h">
       <Filter>Header Files\os\windows</Filter>
     </ClInclude>
-    <ClInclude Include="node\windows\standard_exception.h">
-      <Filter>Header Files\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="node\windows\path.h">
-      <Filter>Header Files\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="node\windows\critical_section.h">
-      <Filter>Header Files\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="node\windows\sync_options.h">
-      <Filter>Header Files\node\windows</Filter>
-    </ClInclude>
     <ClInclude Include="node\windows_common\condition.h">
       <Filter>Header Files\node\windows_common</Filter>
     </ClInclude>
     <ClInclude Include="node\windows_common\critical_section.h">
       <Filter>Header Files\node\windows_common</Filter>
     </ClInclude>
-    <ClInclude Include="node\windows\file_change_event.h">
-      <Filter>Header Files\node\windows</Filter>
-    </ClInclude>
     <ClInclude Include="primitive\primitive\bits.h">
       <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="os\windows\nano_timer.h">
-      <Filter>Header Files\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="os\windows\shared_memory.h">
-      <Filter>Header Files\node\windows</Filter>
     </ClInclude>
     <ClInclude Include="primitive\datetime\_datetime.h">
       <Filter>Header Files\primitive\datetime</Filter>
@@ -1898,20 +1823,11 @@
     <ClInclude Include="os\windows\itemidlist.h">
       <Filter>Header Files\os\windows</Filter>
     </ClInclude>
-    <ClInclude Include="node\windows\event.h">
-      <Filter>Header Files\node\windows</Filter>
-    </ClInclude>
     <ClInclude Include="node\windows\mutex.h">
       <Filter>Header Files\os\windows</Filter>
     </ClInclude>
     <ClInclude Include="parallelization\condition_variable.h">
       <Filter>Header Files\parallelization</Filter>
-    </ClInclude>
-    <ClInclude Include="node\windows\shared_memory.h">
-      <Filter>Header Files\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="node\windows\file_memory_map.h">
-      <Filter>Header Files\node\windows</Filter>
     </ClInclude>
     <ClInclude Include="primitive\datetime\micro_duration.h">
       <Filter>Header Files\primitive\datetime</Filter>
@@ -2810,9 +2726,6 @@
     <ClInclude Include="exception\standard.h">
       <Filter>Header Files\exception</Filter>
     </ClInclude>
-    <ClInclude Include="exception\standard_translator.h">
-      <Filter>Header Files\exception</Filter>
-    </ClInclude>
     <ClInclude Include="exception\status.h">
       <Filter>Header Files\exception</Filter>
     </ClInclude>
@@ -2833,6 +2746,30 @@
     </ClInclude>
     <ClInclude Include="platform\static_start_internal.h">
       <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\promise\signalization.h">
+      <Filter>Header Files\primitive\promise</Filter>
+    </ClInclude>
+    <ClInclude Include="regular_expression\_regular_expression.h">
+      <Filter>Header Files\regular_expression</Filter>
+    </ClInclude>
+    <ClInclude Include="regular_expression\context.h">
+      <Filter>Header Files\regular_expression</Filter>
+    </ClInclude>
+    <ClInclude Include="regular_expression\regular_expression.h">
+      <Filter>Header Files\regular_expression</Filter>
+    </ClInclude>
+    <ClInclude Include="regular_expression\topic.h">
+      <Filter>Header Files\regular_expression</Filter>
+    </ClInclude>
+    <ClInclude Include="os\windows\exception_engine.h">
+      <Filter>Header Files\os\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="const\activate.h">
+      <Filter>Header Files\const</Filter>
+    </ClInclude>
+    <ClInclude Include="const\button_state.h">
+      <Filter>Header Files\const</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -3193,9 +3130,6 @@
     <ClCompile Include="os\windows\application.cpp">
       <Filter>Source Files\os\windows</Filter>
     </ClCompile>
-    <ClCompile Include="os\windows\callstack.cpp">
-      <Filter>Source Files\os\windows</Filter>
-    </ClCompile>
     <ClCompile Include="os\windows\debug.cpp">
       <Filter>Source Files\os\windows</Filter>
     </ClCompile>
@@ -3205,9 +3139,6 @@
     <ClCompile Include="os\windows\environment_variable.cpp">
       <Filter>Source Files\os\windows</Filter>
     </ClCompile>
-    <ClCompile Include="os\windows\exception_engine.cpp">
-      <Filter>Source Files\os\windows</Filter>
-    </ClCompile>
     <ClCompile Include="os\windows\internal.cpp">
       <Filter>Source Files\os\windows</Filter>
     </ClCompile>
@@ -3215,9 +3146,6 @@
       <Filter>Source Files\os\windows</Filter>
     </ClCompile>
     <ClCompile Include="os\windows\language.cpp">
-      <Filter>Source Files\os\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="os\windows\list_serial_ports.cpp">
       <Filter>Source Files\os\windows</Filter>
     </ClCompile>
     <ClCompile Include="os\windows\lock.cpp">
@@ -3349,38 +3277,11 @@
     <ClCompile Include="exception\exception.cpp">
       <Filter>Source Files\exception</Filter>
     </ClCompile>
-    <ClCompile Include="exception\exception_engine.cpp">
-      <Filter>Source Files\exception</Filter>
-    </ClCompile>
     <ClCompile Include="exception\throw.cpp">
       <Filter>Source Files\exception</Filter>
     </ClCompile>
     <ClCompile Include="include\_.cpp">
       <Filter>Source Files\include</Filter>
-    </ClCompile>
-    <ClCompile Include="node\windows\factory_exchange.cpp">
-      <Filter>Source Files\node\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="node\windows\file.cpp">
-      <Filter>Source Files\node\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="node\windows\file_find.cpp">
-      <Filter>Source Files\node\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="node\windows\pipe.cpp">
-      <Filter>Source Files\node\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="node\windows\registry.cpp">
-      <Filter>Source Files\node\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="node\windows\trace.cpp">
-      <Filter>Source Files\node\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="node\windows\uac_tools.cpp">
-      <Filter>Source Files\node\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="node\windows\windows.cpp">
-      <Filter>Source Files\node\windows</Filter>
     </ClCompile>
     <ClCompile Include="compress\zip\api.cpp">
       <Filter>Source Files\compress\zip</Filter>
@@ -3472,9 +3373,6 @@
     <ClCompile Include="platform\profiler.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
-    <ClCompile Include="platform\regex.cpp">
-      <Filter>Source Files\platform</Filter>
-    </ClCompile>
     <ClCompile Include="platform\trace_category.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
@@ -3516,9 +3414,6 @@
     </ClCompile>
     <ClCompile Include="os\windows\api.cpp">
       <Filter>Source Files\os\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="node\windows\windows_desktop.cpp">
-      <Filter>Source Files\node\windows</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\filesystem\path.cpp">
       <Filter>Source Files\filesystem\filesystem</Filter>
@@ -3562,17 +3457,11 @@
     <ClCompile Include="platform\text.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
-    <ClCompile Include="node\windows\console.cpp">
-      <Filter>Source Files\node\windows</Filter>
-    </ClCompile>
     <ClCompile Include="os\windows\extract_icon.cpp">
       <Filter>Source Files\os\windows</Filter>
     </ClCompile>
     <ClCompile Include="const\idpool.cpp">
       <Filter>Source Files\const</Filter>
-    </ClCompile>
-    <ClCompile Include="node\windows\timer.cpp">
-      <Filter>Source Files\node\windows</Filter>
     </ClCompile>
     <ClCompile Include="graphics\draw2d\colorref_array.cpp">
       <Filter>Source Files\graphics\draw2d</Filter>
@@ -3709,9 +3598,6 @@
     <ClCompile Include="memory\plex_heap.cpp">
       <Filter>Source Files\memory</Filter>
     </ClCompile>
-    <ClCompile Include="node\windows\system.cpp">
-      <Filter>Source Files\node\windows</Filter>
-    </ClCompile>
     <ClCompile Include="graphics\draw2d\os_font_name.cpp">
       <Filter>Source Files\graphics\draw2d</Filter>
     </ClCompile>
@@ -3741,9 +3627,6 @@
     </ClCompile>
     <ClCompile Include="os\windows\_ansi.cpp">
       <Filter>Source Files\os\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="node\windows\standard_exception.cpp">
-      <Filter>Source Files\node\windows</Filter>
     </ClCompile>
     <ClCompile Include="os\windows_common\file.cpp">
       <Filter>Source Files\os\windows_common</Filter>
@@ -3802,20 +3685,8 @@
     <ClCompile Include="node\cross\windows\os_usleep.cpp">
       <Filter>Source Files\os\windows_common</Filter>
     </ClCompile>
-    <ClCompile Include="os\windows\console.cpp">
-      <Filter>Source Files\os\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="node\windows\mutex.cpp">
-      <Filter>Source Files\node\windows</Filter>
-    </ClCompile>
     <ClCompile Include="parallelization\condition_variable.cpp">
       <Filter>Source Files\parallelization</Filter>
-    </ClCompile>
-    <ClCompile Include="node\windows\shared_memory.cpp">
-      <Filter>Source Files\node\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="node\windows\file_memory_map.cpp">
-      <Filter>Source Files\node\windows</Filter>
     </ClCompile>
     <ClCompile Include="primitive\primitive\material_object.cpp">
       <Filter>Source Files\primitive\primitive</Filter>
@@ -3985,9 +3856,6 @@
     <ClCompile Include="primitive\collection\strdup_array.cpp">
       <Filter>Source Files\primitive\collection</Filter>
     </ClCompile>
-    <ClCompile Include="node\windows\strdup_array.cpp">
-      <Filter>Source Files\node\windows</Filter>
-    </ClCompile>
     <ClCompile Include="platform\department.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
@@ -4041,6 +3909,33 @@
     </ClCompile>
     <ClCompile Include="exception\extended_status.cpp">
       <Filter>Source Files\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\promise\signalization.cpp">
+      <Filter>Source Files\primitive\promise</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\acme_main_data.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="exception\engine.cpp">
+      <Filter>Source Files\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="regular_expression\context.cpp">
+      <Filter>Source Files\regular_expression</Filter>
+    </ClCompile>
+    <ClCompile Include="regular_expression\regular_expression.cpp">
+      <Filter>Source Files\regular_expression</Filter>
+    </ClCompile>
+    <ClCompile Include="regular_expression\topic.cpp">
+      <Filter>Source Files\regular_expression</Filter>
+    </ClCompile>
+    <ClCompile Include="exception\translator.cpp">
+      <Filter>Source Files\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="os\argcargv.cpp">
+      <Filter>Source Files\os</Filter>
+    </ClCompile>
+    <ClCompile Include="os\windows\exception_engine.cpp">
+      <Filter>Source Files\os\windows</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

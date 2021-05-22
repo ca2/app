@@ -37,36 +37,6 @@
 
 #elif defined(WINDOWS)
 
-#include <eh.h>
-
-
-#if OSBIT == 64
-
-#define DEFAULT_SE_EXCEPTION_CALLSTACK_SKIP 3000
-
-#else
-
-#define DEFAULT_SE_EXCEPTION_CALLSTACK_SKIP 0
-
-#endif
-
-
-#define DECLARE_SE_EXCEPTION_CLASS(name) class CLASS_DECL_ACME name : public standard_exception \
-   { \
-   \
-      friend class translator; \
-   \
-   public: \
-   \
-         name (EXCEPTION_POINTERS * ppointers) : \
-            standard_exception(ppointers) \
-      { \
-        \
-      } \
-      \
-      \
-   };
-
 #elif defined(APPLEOS)
 
 

@@ -29,10 +29,12 @@ namespace windowing
    }
 
 
-   void icon::set_tray_icon_name(const ::string & strTrayIconName)
+   ::e_status icon::set_tray_icon_name(const ::string & strTrayIconName)
    {
 
       m_strTrayIconName = strTrayIconName;
+
+      return ::success;
 
    }
 

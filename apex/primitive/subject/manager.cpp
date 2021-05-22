@@ -10,17 +10,16 @@ namespace subject
    bool manager::s_bDestroyAll = false;
 
 
-   //manager::manager()
-   //{
+   manager::manager()
+   {
 
-   //}
-
-
-   //manager::~manager()
-   //{
+   }
 
 
-   //}
+   manager::~manager()
+   {
+
+   }
 
 
    ::subject::subject * manager::subject(const ::id & id)
@@ -41,6 +40,8 @@ namespace subject
       {
 
          psubject = __new(::subject::subject(this, id));
+
+         psubject->initialize(this);
 
          synchronouslock.unlock();
 
@@ -70,13 +71,13 @@ namespace subject
 
       psubject->defer_create_mutex();
 
-      psubject->m_millisSleep = os_get_system_update_poll_time(id);
+      auto psystem = m_psystem->m_papexsystem;
+
+      psubject->m_millisSleep = psystem->get_update_poll_time(id);
 
       process(psubject);
 
       //auto pnode = Node;
-
-      auto psystem = m_psystem->m_papexsystem;
 
       auto pnode = psystem->node();
 

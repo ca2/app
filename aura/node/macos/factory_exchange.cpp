@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "_.h"
-#include "copydesk.h"
+//#include "copydesk.h"
 //#include "file_os_watcher.h"
 //#include "aura/node/posix/pipe.h"
 //#include "aura/node/apple/process.h"
@@ -42,9 +42,9 @@ void __node_aura_factory_exchange(::factory_map * pfactorymap)
 //   create_factory < ::macos::dir_context        , ::dir_context      > ();
 //   create_factory < ::macos::file_context       , ::file_context     > ();
 
-   create_factory < ::macos::interaction_impl   , ::user::interaction_impl > ();
+   //create_factory < ::macos::interaction_impl   , ::user::interaction_impl > ();
    
-   create_factory < ::macos::copydesk           , ::user::copydesk > ();
+   //create_factory < ::macos::copydesk           , ::user::copydesk > ();
 
 //   create_factory < ::file::os_watcher          , ::file::watcher    > ();
 //   create_factory < ::file::os_watch            , ::file::watch      > ();

@@ -228,7 +228,7 @@ namespace sockets
 
 #endif
 
-         m_iFirstTime = get_nanos() / 1000;
+         m_microsFirstTime = get_micros();
 
          ::str::parse pa(line);
 

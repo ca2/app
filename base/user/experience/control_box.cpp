@@ -664,12 +664,12 @@ namespace experience
 
       pbutton->m_ebutton = ebutton;
 
-      if(ebutton == e_button_dock)
-      {
+      // if(ebutton == e_button_dock)
+      // {
 
-         pbutton->m_bSimpleUIDefaultMouseHandlingLeftButtonDownCapture = true;
+      //    pbutton->m_bSimpleUIDefaultMouseHandlingMouseCaptureOnLeftButtonDown = true;
 
-      }
+      // }
 
       if (!pbutton->is_window() && !pbutton->create_child(this))
       {

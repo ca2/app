@@ -95,11 +95,21 @@ void html_view::_001OnContextMenu(::message::message * pmessage)
 void html_view::_001OnSetCursor(::message::message * pmessage)
 {
 
-   __pointer(::message::mouse) pmouse(pmessage);
+   __pointer(::message::set_cursor) psetcursor(pmessage);
 
-   pmouse->m_ecursor = e_cursor_arrow;
+   auto psession = get_session();
 
-   pmessage->previous();
+   auto puser = psession->user();
+
+   auto pwindowing = puser->windowing();
+
+   auto pcursor = pwindowing->get_cursor(e_cursor_arrow);
+
+   psetcursor->m_pcursor = pcursor;
+
+   pmessage->m_lresult = 1;
+
+   pmessage->m_bRet = true;
 
 }
 

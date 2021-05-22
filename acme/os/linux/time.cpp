@@ -3,7 +3,7 @@
 #include <time.h>
 
 
-CLASS_DECL_ACME i64 get_nanos()
+CLASS_DECL_ACME ::i64 get_nanos()
 {
 
 
@@ -28,7 +28,7 @@ CLASS_DECL_ACME i64 get_nanos()
       return 0;
    }
 
-   return ts.tv_sec * 1000 * 1000 * 1000 + ts.tv_nsec;
+   return ts.tv_sec * 1'000'000'000 + ts.tv_nsec;
 #endif
 
 }

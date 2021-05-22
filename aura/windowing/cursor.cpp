@@ -1,7 +1,6 @@
 // created by Camilo <3CamiloSasukeThomasBorregaardSoerensen  - Honoring Thomas Borregaard S�rensen MY ONLY LORD
 // recreated by Camilo 2021-02-01 20:19
 #include "framework.h"
-#include "_windowing.h"
 
 
 namespace windowing
@@ -10,6 +9,8 @@ namespace windowing
 
    cursor::cursor()
    {
+
+      load_system_default_cursor_hint();
 
    }
 
@@ -21,8 +22,10 @@ namespace windowing
    }
 
 
-   ::e_status cursor::initialize_system_default()
+   ::e_status cursor::load_system_default_cursor_hint()
    {
+
+      m_bLoadSystemDefaultCursorHint = true;
 
       return ::success;
 
@@ -107,9 +110,7 @@ namespace windowing
    //}
 
 
-
 } // namespace windowing
-
 
 
 

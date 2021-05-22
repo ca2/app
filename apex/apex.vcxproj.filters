@@ -147,21 +147,6 @@
     <Filter Include="Source Files\process">
       <UniqueIdentifier>{256720b0-24fa-42db-8d3e-f10366e15770}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\node">
-      <UniqueIdentifier>{8d083486-dfc2-424c-afff-3af7c44fc9da}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\node\windows">
-      <UniqueIdentifier>{9cf34409-2b05-4959-b93c-8605c3551661}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\node\windows_common">
-      <UniqueIdentifier>{c2d7f5a1-76e1-4a24-8d82-47142e6e7821}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\node">
-      <UniqueIdentifier>{a6d92c38-1c42-49f8-b15a-2a56e421e205}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\node\windows_common">
-      <UniqueIdentifier>{effb1ba7-4829-40c5-8b89-1530557ff297}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\crypto">
       <UniqueIdentifier>{44dfb090-5638-4f6d-b068-483ce83356e0}</UniqueIdentifier>
     </Filter>
@@ -224,9 +209,6 @@
     </Filter>
     <Filter Include="Source Files\parallelization">
       <UniqueIdentifier>{f5fb0b8d-82f2-4a87-b245-1747ef8e70a3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\node\ansios">
-      <UniqueIdentifier>{45cc027c-f817-429c-88fd-79641200900b}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\primitive\subject">
       <UniqueIdentifier>{1a2d4232-9fa8-4440-ab96-12e082c99368}</UniqueIdentifier>
@@ -623,51 +605,6 @@
     <ClInclude Include="version\version.h">
       <Filter>Header Files\version</Filter>
     </ClInclude>
-    <ClInclude Include="node\windows\_.h">
-      <Filter>Header Files\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="node\windows\_node_windows.h">
-      <Filter>Header Files\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="node\windows\_windows.h">
-      <Filter>Header Files\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="node\windows\a.h">
-      <Filter>Header Files\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="node\windows\crypto.h">
-      <Filter>Header Files\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="node\windows\dir_context.h">
-      <Filter>Header Files\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="node\windows\dir_system.h">
-      <Filter>Header Files\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="node\windows\factory_exchange.h">
-      <Filter>Header Files\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="node\windows\file_context.h">
-      <Filter>Header Files\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="node\windows\file_system.h">
-      <Filter>Header Files\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="node\windows\folder_watch.h">
-      <Filter>Header Files\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="node\windows\ip_enum.h">
-      <Filter>Header Files\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="node\windows\os_context.h">
-      <Filter>Header Files\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="node\windows\process.h">
-      <Filter>Header Files\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="node\windows\thread.h">
-      <Filter>Header Files\node\windows</Filter>
-    </ClInclude>
     <ClInclude Include="os\chronometer.h">
       <Filter>Header Files\os</Filter>
     </ClInclude>
@@ -956,9 +893,6 @@
     <ClInclude Include="filesystem\file\_data.h">
       <Filter>Header Files\filesystem\file</Filter>
     </ClInclude>
-    <ClInclude Include="node\windows\file_os_watcher.h">
-      <Filter>Header Files\node\windows</Filter>
-    </ClInclude>
     <ClInclude Include="platform\_generic_object_constructor_impl.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -997,9 +931,6 @@
     </ClInclude>
     <ClInclude Include="astr.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="node\windows\_node_windows_private.h">
-      <Filter>Header Files\node\windows</Filter>
     </ClInclude>
     <ClInclude Include="console_slim.h">
       <Filter>Header Files</Filter>
@@ -1319,12 +1250,6 @@
     <ClInclude Include="os\_2.h">
       <Filter>Header Files\os</Filter>
     </ClInclude>
-    <ClInclude Include="node\windows\shell_launcher.h">
-      <Filter>Header Files\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="node\ansios\shell_launcher.h">
-      <Filter>Header Files\node\ansios</Filter>
-    </ClInclude>
     <ClInclude Include="operating_system.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -1333,15 +1258,6 @@
     </ClInclude>
     <ClInclude Include="os\_c2.h">
       <Filter>Header Files\os</Filter>
-    </ClInclude>
-    <ClInclude Include="node\windows\interprocess_communication.h">
-      <Filter>Header Files\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="node\windows\service.h">
-      <Filter>Header Files\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="node\windows\service_pool.h">
-      <Filter>Header Files\node\windows</Filter>
     </ClInclude>
     <ClInclude Include="message\command.h">
       <Filter>Header Files\message</Filter>
@@ -1405,6 +1321,12 @@
     </ClInclude>
     <ClInclude Include="platform\create.h">
       <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="user\menu_shared.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\menu_shared_command.h">
+      <Filter>Header Files\user</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1669,9 +1591,6 @@
     <ClCompile Include="include\_.cpp">
       <Filter>Source Files\include</Filter>
     </ClCompile>
-    <ClCompile Include="node\windows_common\application.cpp">
-      <Filter>Source Files\node\windows_common</Filter>
-    </ClCompile>
     <ClCompile Include="compress\zip\context.cpp">
       <Filter>Source Files\compress\zip</Filter>
     </ClCompile>
@@ -1888,12 +1807,6 @@
     <ClCompile Include="process\department.cpp">
       <Filter>Source Files\process</Filter>
     </ClCompile>
-    <ClCompile Include="user\menu_shared.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\menu_shared_commnand.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
     <ClCompile Include="os\windows\menu.cpp">
       <Filter>Source Files\os\windows</Filter>
     </ClCompile>
@@ -2001,6 +1914,12 @@
     </ClCompile>
     <ClCompile Include="platform\command_line.cpp">
       <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="user\menu_shared.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\menu_shared_commnand.cpp">
+      <Filter>Source Files\user</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

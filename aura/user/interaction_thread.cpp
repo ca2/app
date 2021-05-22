@@ -220,7 +220,7 @@ namespace user
 
       //set_topic_text("window_thread_" + ::str::demangle(m_pimpl->m_puserinteraction->type_name()) + "> ");
 
-      ::set_thread_name(::str::demangle(m_pimpl->m_puserinteraction->type_name()));
+      ::task_set_name(::str::demangle(m_pimpl->m_puserinteraction->type_name()));
 
 #ifdef WINDOWS_DESKTOP
 
@@ -246,7 +246,7 @@ namespace user
       //fork([this]()
       //   {
 
-      //      set_thread_name("test");
+      //      task_set_name("test");
 
             //windows_desktop1_main(psystem->m_hinstance, SW_SHOWNORMAL);
 
@@ -562,7 +562,7 @@ namespace user
 
                         }
 
-                        auto pmessage = puserinteraction->get_message(msg.m_id, msg.wParam, msg.lParam);
+                        auto pmessage = puserinteraction->get_message(msg.m_id, msg.wParam, msg.lParam, msg.pt);
 
                         if (pmessage)
                         {

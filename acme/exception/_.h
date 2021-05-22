@@ -19,7 +19,7 @@ CLASS_DECL_ACME string estatus_to_string(::e_status estatus);
 //#include "memory.h"
 //#include "invalid_argument.h"
 
-#include "standard_translator.h"
+#include "translator.h"
 #include "standard.h"
 
 

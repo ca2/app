@@ -2,6 +2,7 @@
 #include "aura/user/_user.h"
 #include "aura/windowing/menu_item.h"
 #include "aura/windowing/menu.h"
+#include "aura/user/menu_command.h"
 #include "aura/windowing/menu_command.h"
 
 
@@ -37,6 +38,7 @@ namespace user
 
       connect_command("app_exit", &frame::_001OnAppExit);
 
+      //MESSAGE_LINK(e_message_set_cursor, pchannel, this, &window::_001OnSetCursor);
       MESSAGE_LINK(WM_APPEXIT, pchannel, this, &frame::_001OnAppExit);
 
 //#ifdef WINDOWS_DESKTOP
@@ -53,6 +55,7 @@ namespace user
 
    }
 
+   
 
    void frame::_001OnAppExit(::message::message* pmessage)
    {

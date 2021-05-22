@@ -386,13 +386,13 @@ typedef struct tagLOGBRUSH
    ulong_ptr   lbHatch;
 } LOGBRUSH,*PLOGBRUSH,*NPLOGBRUSH,*LPLOGBRUSH;
 
-typedef struct tagLOGBRUSH32
-{
-   ::u32        lbStyle;
-   color32_t    lbColor;
-   WINULONG       lbHatch;
-} LOGBRUSH32,*PLOGBRUSH32,*NPLOGBRUSH32,*LPLOGBRUSH32;
-
+//typedef struct tagLOGBRUSH32
+//{
+//   ::u32        lbStyle;
+//   color32_t    lbColor;
+//   WINULONG       lbHatch;
+//} LOGBRUSH32,*PLOGBRUSH32,*NPLOGBRUSH32,*LPLOGBRUSH32;
+//
 
 typedef LOGBRUSH            PATTERN;
 typedef PATTERN             *PPATTERN;

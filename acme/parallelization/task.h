@@ -18,6 +18,7 @@ public:
    bool                                            m_bIsPredicate : 1; // Is helper thread (as opposite to a "main" thread)
    bool                                            m_bCoInitialize : 1;
    bool                                            m_bMessageThread : 1;
+   bool                                            m_bTaskToolsForIncreasedFps : 1;
 
 
    ::u64                                           m_uThreadAffinityMask;
@@ -49,7 +50,7 @@ public:
 
 
    virtual string get_tag() const override;
-   virtual string thread_get_name() const;
+   virtual string task_get_name() const;
 
 
    virtual ::task * get_task() override;
@@ -58,7 +59,7 @@ public:
 
    //virtual object * calc_parent_thread();
 
-   virtual bool set_thread_name(const char* pszName);
+   virtual bool task_set_name(const char* pszName);
 
 #ifdef WINDOWS
 
@@ -80,7 +81,7 @@ public:
 
    virtual ::e_status task_caller_on_init();
 
-   virtual bool on_get_thread_name(string & strThreadName);
+   virtual bool on_get_task_name(string & strThreadName);
 
 
    virtual void init_task();
@@ -134,7 +135,9 @@ public:
    virtual ::e_status main();
 
 
-   //virtual bool set_thread_name(const char* pszThreadName);
+   virtual ::e_status stop_task();
+
+   //virtual bool task_set_name(const char* pszThreadName);
 
    //virtual bool is_predicate() const { return !m_pobject || m_pobject.get() == this; }
 

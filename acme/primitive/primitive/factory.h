@@ -120,10 +120,10 @@ namespace factory
    };
 
 
-
    using factory_map_base = id_map < __pointer(factory_interface) >;
 
-}
+
+} // namespace factory
 
 
 class CLASS_DECL_ACME factory_map :
@@ -151,18 +151,15 @@ namespace factory
 {
 
 
-
    CLASS_DECL_ACME critical_section * get_factory_critical_section();
-
-
 
 
    using factory_array = __pointer_array(factory_interface);
 
 
    CLASS_DECL_ACME factory_array * get_factory_array();
-   CLASS_DECL_ACME factory_map * get_factory_map();
 
+   CLASS_DECL_ACME factory_map * get_factory_map();
 
    CLASS_DECL_ACME void factory_init();
 
@@ -205,5 +202,6 @@ inline __pointer(::factory::factory_base < BASE_TYPE >) create_factory();
 
 template < typename TYPE, typename BASE_TYPE = TYPE >
 inline __pointer(::factory::factory_base < BASE_TYPE >) create_reusable_factory();
+
 
 

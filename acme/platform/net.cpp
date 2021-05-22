@@ -371,7 +371,7 @@ void openURL(const string &url_str)
 {
    CFURLRef url = CFURLCreateWithBytes(
                   nullptr,                        // allocator
-                  (::u328*)url_str.c_str(),     // URLBytes
+                  (const ::u8*)url_str.c_str(),     // URLBytes
                   url_str.length(),            // length
                   kCFStringEncodingASCII,      // encoding
                   nullptr                         // baseURL

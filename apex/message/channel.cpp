@@ -125,14 +125,15 @@ __pointer(::message::message) channel::get_message(MESSAGE * pmessage)
       nullptr,
       pmessage->m_id, 
       pmessage->wParam, 
-      pmessage->lParam);
+      pmessage->lParam,
+      pmessage->pt);
 
    return pmessagemessage;
 
 }
 
 
-__pointer(::message::message) channel::get_message(const ::id & id, wparam wparam, lparam lparam)
+__pointer(::message::message) channel::get_message(const ::id & id, wparam wparam, lparam lparam, const ::point_i32 & point)
 {
 
    auto pmessagemessage = __new(::message::message);
@@ -142,7 +143,8 @@ __pointer(::message::message) channel::get_message(const ::id & id, wparam wpara
       nullptr,
       id,
       wparam,
-      lparam);
+      lparam,
+      point);
 
    return pmessagemessage;
 
@@ -331,7 +333,7 @@ void channel::_001SendCommand(::message::command * pcommand)
 
    {
 
-      __restore(pcommand->m_id.m_etype);
+      __scoped_restore(pcommand->m_id.m_etype);
 
       pcommand->m_id.set_compounded_type(::id::e_type_command);
 
@@ -349,7 +351,7 @@ void channel::_001SendCommandProbe(::message::command * pcommand)
 
    {
 
-      __restore(pcommand->m_id.m_etype);
+      __scoped_restore(pcommand->m_id.m_etype);
 
       pcommand->m_id.set_compounded_type(::id::e_type_command_probe);
 
@@ -420,7 +422,7 @@ void channel::on_command(::message::command * pcommand)
 
    {
 
-      __restore(pcommand->m_id.m_etype);
+      __scoped_restore(pcommand->m_id.m_etype);
 
       pcommand->m_id.set_compounded_type(::id::e_type_command);
 
@@ -436,7 +438,7 @@ bool channel::has_command_handler(::message::command * pcommand)
 
    synchronous_lock synchronouslock(channel_mutex());
 
-   __restore(pcommand->m_id.m_etype);
+   __scoped_restore(pcommand->m_id.m_etype);
 
    pcommand->m_id.set_compounded_type(::id::e_type_command);
 
@@ -480,7 +482,7 @@ void channel::on_command_probe(::message::command * pcommand)
 
    {
 
-      __restore(pcommand->m_id.m_etype);
+      __scoped_restore(pcommand->m_id.m_etype);
 
       pcommand->m_id.set_compounded_type(::id::e_type_command_probe);
 

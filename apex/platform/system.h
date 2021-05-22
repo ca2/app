@@ -7,7 +7,7 @@ namespace apex
 
    class CLASS_DECL_APEX system:
       virtual public ::app_core,
-      virtual public ::acme::system,
+      virtual public ::system,
       virtual public ::apex::context
 #ifndef WINDOWS
       ,virtual public ::exception::translator
@@ -224,7 +224,9 @@ namespace apex
 
       void common_construct();
 
+
       virtual ::e_status initialize(::object * pobject) override;
+
 
       virtual void system_construct(int argc, char** argv, char** envp) override;
       virtual void system_construct(int argc, wchar_t** argv, wchar_t** envp) override;
@@ -564,7 +566,7 @@ namespace apex
       virtual ::e_status initialize_sockets();
 
 
-      virtual bool on_get_thread_name(string& strThreadName) override;
+      virtual bool on_get_task_name(string& strTaskName) override;
 
       virtual ::acme::library * get_library(const char * pszLibrary, bool bOpenCa2 = false);
 
@@ -984,8 +986,11 @@ namespace apex
       //virtual ::user::interaction_impl * impl_from_handle(void * pdata) override;
       //virtual ::user::interaction * ui_from_handle(void * pdata) override;
 
-      virtual void on_subject(::subject::subject * psubject) override;
-      virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
+      void int_system_update(int iUpdate, int iPayload) override;
+
+
+      void on_subject(::subject::subject * psubject) override;
+      void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
 
       // virtual void on_command_create(::create* pcreate);
 

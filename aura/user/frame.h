@@ -133,11 +133,11 @@ namespace user
       virtual void on_user_style_change();
 
 
-      virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext);
+      void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
 
 
       virtual void display_previous_restore();
-      virtual void display_system_minimize();
+      void display_system_minimize() override;
 
 
       virtual bool on_create_bars();
@@ -163,6 +163,7 @@ namespace user
       virtual ::size_i32 get_window_minimum_size() override;
 
       DECLARE_MESSAGE_HANDLER(_001OnAppExit);
+      //DECLARE_MESSAGE_HANDLER(_001OnSetCursor);
 
 #ifdef WINDOWS_DESKTOP
       DECLARE_MESSAGE_HANDLER(_001OnSysCommand);

@@ -184,7 +184,7 @@ namespace linux
 //
 //      path /= ".local/share/applications";
 //
-//      string strPrgName = get_application()->m_strAppId;
+//      string strPrgName = get_application()->m_XstrAppId;
 //
 //      strPrgName.replace("/", ".");
 //

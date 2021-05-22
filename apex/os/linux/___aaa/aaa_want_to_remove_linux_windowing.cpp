@@ -2431,7 +2431,7 @@ void x11_thread(osdisplay_data * pdisplaydata)
 
    }
 
-   ::set_thread_name("x11_thread");
+   ::task_set_name("x11_thread");
 
    fd_set fdset;
 

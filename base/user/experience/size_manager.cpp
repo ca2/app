@@ -132,11 +132,19 @@ namespace experience
       else
       {
 
-         psession->user()->windowing()->release_mouse_capture();
+         //psession->user()->windowing()->release_mouse_capture();
 
       }
 
-      pmouse->m_ecursor = translate(ehittest);
+      auto puser = psession->user();
+
+      auto pwindowing = puser->windowing();
+
+      auto ecursor = translate(ehittest);
+
+      auto pcursor = pwindowing->get_cursor(ecursor);
+
+      pmouse->m_pcursor = pcursor;
 
       m_ehittestCursor = hittest_none;
 
@@ -179,7 +187,19 @@ namespace experience
 
          size_window(m_ehittestSizing, m_pframewindow, pmouse->m_point, true);
 
-         pmouse->m_ecursor = translate(m_ehittestSizing);
+         auto psession = get_session()->m_paurasession;
+
+         auto puser = psession->user();
+
+         auto pwindowing = puser->windowing();
+
+         auto ecursor = translate(m_ehittestSizing);
+
+         auto pcursor = pwindowing->get_cursor(ecursor);
+
+         m_pframewindow->set_mouse_cursor(pcursor);
+
+         pmouse->m_pcursor = pcursor;
 
          pmouse->m_lresult = 1;
 
@@ -196,7 +216,17 @@ namespace experience
          
          auto ecursor = translate(m_ehittestCursor);
 
-         pmouse->m_ecursor = ecursor;
+         auto psession = get_session()->m_paurasession;
+
+         auto puser = psession->user();
+
+         auto pwindowing = puser->windowing();
+
+         auto pcursor = pwindowing->get_cursor(ecursor);
+
+         pmouse->m_pcursor = pcursor;
+
+         m_pframewindow->set_mouse_cursor(pcursor);
 
          pmouse->m_lresult = 1;
 
@@ -224,7 +254,17 @@ namespace experience
       if (m_ehittestSizing != hittest_none)
       {
 
-         psetcursor->m_ecursor = translate(m_ehittestSizing);
+         auto psession = get_session()->m_paurasession;
+
+         auto puser = psession->user();
+
+         auto pwindowing = puser->windowing();
+
+         auto ecursor = translate(m_ehittestSizing);
+
+         auto pcursor = pwindowing->get_cursor(ecursor);
+
+         psetcursor->m_pcursor = pcursor;
 
          psetcursor->m_lresult = 1;
 
@@ -241,7 +281,15 @@ namespace experience
 
          auto ecursor = translate(m_ehittestCursor);
 
-         psetcursor->m_ecursor = ecursor;
+         auto psession = get_session()->m_paurasession;
+
+         auto puser = psession->user();
+
+         auto pwindowing = puser->windowing();
+
+         auto pcursor = pwindowing->get_cursor(ecursor);
+
+         psetcursor->m_pcursor = pcursor;
 
          psetcursor->m_lresult = 1;
 

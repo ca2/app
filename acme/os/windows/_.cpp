@@ -23,8 +23,8 @@ void __term_windowing();
 CLASS_DECL_ACME bool is_verbose();
 
 
-//::acme::system * app_common_prelude(int & iError, ::create * & pmaininitdata, app_core & appcore,  HINSTANCE hinstance = nullptr, HINSTANCE hinstancePrev = nullptr, const char * pszCmdLine = nullptr, int nShowCmd = e_display_normal);
-//int app_common_term(int iError, ::acme::system * psystem, app_core & appcore);
+//class ::system * app_common_prelude(int & iError, ::create * & pmaininitdata, app_core & appcore,  HINSTANCE hinstance = nullptr, HINSTANCE hinstancePrev = nullptr, const char * pszCmdLine = nullptr, int nShowCmd = e_display_normal);
+//int app_common_term(int iError, class ::system * psystem, app_core & appcore);
 
 
 
@@ -810,31 +810,31 @@ CLASS_DECL_ACME hinstance get_module_handle(const platform_char * psz)
 
 }
 
-CLASS_DECL_ACME ::millis os_get_system_update_poll_time(const ::id & id)
-{
+// CLASS_DECL_ACME ::millis os_get_system_update_poll_time(const ::id & id)
+// {
 
-   if (id == id_os_dark_mode)
-   {
+//    if (id == id_os_dark_mode)
+//    {
 
-      return 0;
+//       return 0;
 
-   }
-   else if (id == id_os_font_change)
-   {
+//    }
+//    else if (id == id_os_font_change)
+//    {
 
-      return 0;
+//       return 0;
 
-   }
-   else if (id == id_font_enumeration)
-   {
+//    }
+//    else if (id == id_font_enumeration)
+//    {
 
-      return 0;
+//       return 0;
 
-   }
+//    }
 
-   return 0;
+//    return 0;
 
-}
+//}
 
 namespace windows
 {

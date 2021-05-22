@@ -133,7 +133,7 @@ inline ::rectangle_i32 image::rectangle(const ::point_i32& point) const
 inline color32_t image::pixel(int x, int y) const
 {
 
-   if (::is_null(this))
+   if (::is_null(this) || x < 0 || y < 0 || x>= m_size.cx || y >= m_size.cy)
    {
 
       return 0;

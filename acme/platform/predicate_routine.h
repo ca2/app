@@ -168,3 +168,17 @@ inline auto __runnable_method(TYPE * p, void (TYPE:: * pmethod)())
 
 
 
+template < typename PREDICATE, typename PAYLOAD >
+auto __payload_routine(PREDICATE predicate, PAYLOAD & payload)
+{
+
+   return __routine([predicate, &payload]()
+                    {
+
+                       predicate(payload);
+
+                    });
+
+}
+
+

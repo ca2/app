@@ -1255,82 +1255,82 @@ namespace apex
 #endif
 
    }
-#ifdef WINDOWS_DESKTOP
+// #ifdef WINDOWS_DESKTOP
 
 
-   class open_browser_enum
-   {
-   public:
+//    class open_browser_enum
+//    {
+//    public:
 
-      string                           m_strWindowEnd;
-      string                           m_strTopic;
-      string                           m_strCounterTopic;
-      oswindow                         m_hwnd;
-      comparable_array < oswindow >    m_hwndaTopic;
-      comparable_array < oswindow >    m_hwndaCounterTopic;
+//       string                           m_strWindowEnd;
+//       string                           m_strTopic;
+//       string                           m_strCounterTopic;
+//       oswindow                         m_hwnd;
+//       comparable_array < oswindow >    m_hwndaTopic;
+//       comparable_array < oswindow >    m_hwndaCounterTopic;
 
-   };
-
-
-   int_bool CALLBACK enum_proc(oswindow oswindow, lparam lparam)
-   {
-
-      open_browser_enum * penum = (open_browser_enum *)lparam.m_lparam;
-
-      string str = ::str::get_window_text_timeout(oswindow, 1000);
-
-      if (::str::ends_ci(str, penum->m_strWindowEnd))
-      {
-
-         penum->m_hwnd = oswindow;
-
-         return false;
-
-      }
-
-      return true;
-
-   }
+//    };
 
 
-   int_bool CALLBACK enum_proc_ff_topic(oswindow oswindow, lparam lparam)
-   {
+//    int_bool CALLBACK enum_proc(oswindow oswindow, lparam lparam)
+//    {
 
-      open_browser_enum * penum = (open_browser_enum *)lparam.m_lparam;
+//       open_browser_enum * penum = (open_browser_enum *)lparam.m_lparam;
 
-      string str = ::str::get_window_text_timeout(oswindow);
+//       string str = ::str::get_window_text_timeout(oswindow, 1000);
 
-      if (::str::ends_ci(str, penum->m_strTopic))
-      {
+//       if (::str::ends_ci(str, penum->m_strWindowEnd))
+//       {
 
-         penum->m_hwndaTopic.add(oswindow);
+//          penum->m_hwnd = oswindow;
 
-      }
+//          return false;
 
-      return true;
+//       }
 
-   }
+//       return true;
+
+//    }
 
 
-   int_bool CALLBACK enum_proc_ff_counter_topic(oswindow oswindow, lparam lparam)
-   {
+//    int_bool CALLBACK enum_proc_ff_topic(oswindow oswindow, lparam lparam)
+//    {
 
-      open_browser_enum * penum = (open_browser_enum *)lparam.m_lparam;
+//       open_browser_enum * penum = (open_browser_enum *)lparam.m_lparam;
 
-      string str = ::str::get_window_text_timeout(oswindow, 1000);
+//       string str = ::str::get_window_text_timeout(oswindow);
 
-      if (::str::ends_ci(str, penum->m_strCounterTopic))
-      {
+//       if (::str::ends_ci(str, penum->m_strTopic))
+//       {
 
-         penum->m_hwndaCounterTopic.add(oswindow);
+//          penum->m_hwndaTopic.add(oswindow);
 
-      }
+//       }
 
-      return true;
+//       return true;
 
-   }
+//    }
 
-#endif
+
+//    int_bool CALLBACK enum_proc_ff_counter_topic(oswindow oswindow, lparam lparam)
+//    {
+
+//       open_browser_enum * penum = (open_browser_enum *)lparam.m_lparam;
+
+//       string str = ::str::get_window_text_timeout(oswindow, 1000);
+
+//       if (::str::ends_ci(str, penum->m_strCounterTopic))
+//       {
+
+//          penum->m_hwndaCounterTopic.add(oswindow);
+
+//       }
+
+//       return true;
+
+//    }
+
+// #endif
 
 
 
@@ -1534,7 +1534,11 @@ namespace apex
    ::e_status application::france_exit()
    {
 
-      return finish();
+      _001TryCloseApplication();
+
+      //return finish();
+
+      return ::success;
 
    }
 
@@ -2441,7 +2445,7 @@ namespace apex
 
       __copy(message, msg);
 
-      __pointer(::apex::system) psystem = get_system();
+      auto psystem = m_psystem->m_papexsystem;
 
       if (!is_system() && is_true("SessionSynchronizedInput"))
       {
@@ -2530,7 +2534,9 @@ namespace apex
 
       //auto psystem = m_psystem->m_papexsystem;
 
-      psystem->install_progress_add_up();
+//      auto psystem = m_psystem;
+//
+//      psystem->install_progress_add_up();
 
       m_millisHeartBeat.Now();
 
@@ -2564,6 +2570,8 @@ namespace apex
 
       try
       {
+
+         auto psystem = m_psystem;
 
          //if (!is_system() && !is_session())
          {
@@ -7309,10 +7317,7 @@ retry_license:
    //}
 
 
-
-
-
-   i32 application::hotplugin_host_starter_start_sync(const char * pszCommandLine, ::apex::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin)
+   ::e_status application::hotplugin_host_starter_start_sync(const char * pszCommandLine, ::apex::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin)
    {
 
       {
@@ -7343,7 +7348,11 @@ retry_license:
 
          ::property_set set;
 
-         return ::call_sync(m_psystem->m_pacmepath->app_app(process_platform_dir_name2(), process_configuration_dir_name()), pszCommandLine, m_psystem->m_pacmepath->app_app(process_platform_dir_name2(), process_configuration_dir_name()), e_display_normal, 2_min, set);
+         auto psystem = m_psystem;
+
+         auto pnode = psystem->node();
+
+         return pnode->call_sync(m_psystem->m_pacmepath->app_app(process_platform_dir_name2(), process_configuration_dir_name()), pszCommandLine, m_psystem->m_pacmepath->app_app(process_platform_dir_name2(), process_configuration_dir_name()), e_display_normal, 2_min, set);
 
 #endif
 
@@ -7357,7 +7366,8 @@ retry_license:
 
    }
 
-   i32 application::hotplugin_host_host_starter_start_sync(const char * pszCommandLine, ::apex::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin)
+
+   ::e_status application::hotplugin_host_host_starter_start_sync(const char * pszCommandLine, ::apex::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin)
    {
 
       return -1;
@@ -7811,7 +7821,7 @@ retry_license:
          if (pmessage->m_lparam == 0)
             //linux nIDP = __IDP_COMMAND_FAILURE; // command (not from a control)
             nIDP = "Command Failure";
-         pmessage->m_lresult = (LRESULT)true;        // pretend the command was handled
+         pmessage->m_lresult = true;        // pretend the command was handled
       }
 
       if (e.estatus() == error_no_memory)
@@ -11096,6 +11106,25 @@ retry_license:
 
    }
 
+
+#ifdef LINUX
+
+
+   string application::get_wm_class() const
+   {
+
+      string strWMClass = m_strAppId;
+
+      strWMClass.replace("/", ".");
+
+      strWMClass.replace("_", "-");
+
+      return strWMClass;
+
+   }
+
+
+#endif
 
 
 } // namespace apex

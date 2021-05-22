@@ -18,6 +18,7 @@ namespace app_shader
       m_strBaseSupportId = "app/shader";
 
       m_bLicense = false;
+
       m_bImaging = false;
 
       m_bWriteText = false;

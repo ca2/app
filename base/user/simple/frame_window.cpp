@@ -1374,7 +1374,7 @@ void simple_frame_window::_001OnMouseActivate(::message::message * pmessage)
 
    __pointer(::message::mouse_activate) pmouseactivate(pmessage);
 
-   pmouseactivate->m_lresult = MA_ACTIVATE;
+   pmouseactivate->m_lresult = e_mouse_activate;
 
    pmouseactivate->m_bRet = true;
 
@@ -1646,7 +1646,7 @@ void simple_frame_window::_001OnClose(::message::message * pmessage)
 
       auto pnode = psystem->node();
 
-      auto edesktop = psystem->get_edesktop();
+      auto edesktop = pnode->get_edesktop();
 
       if(edesktop == ::user::e_desktop_unity_gnome
             || edesktop == ::user::e_desktop_ubuntu_gnome)
@@ -2776,43 +2776,48 @@ void simple_frame_window::defer_create_notification_icon()
 
    }
 
-   if (m_pnotifyicon)
+   windowing()->windowing_branch(__routine([this]
    {
 
-      m_pnotifyicon->destroy_notify_icon();
-
-   }
-
-   auto papplication = get_application();
-
-   if (m_piconNotify.is_null())
-   {
-
-      auto estatus = __construct(m_piconNotify);
-
-      if(estatus)
+      if (m_pnotifyicon)
       {
 
-         const char * pszAppName = papplication->m_strAppName;
-
-         m_piconNotify->load_app_tray_icon(pszAppName);
+         m_pnotifyicon->destroy_notify_icon();
 
       }
 
-   }
+      auto papplication = get_application();
 
-   __construct(m_pnotifyicon);
+      if (!m_piconNotify)
+      {
 
-   if (!m_pnotifyicon->create_notify_icon(1, this, m_piconNotify))
-   {
+         auto estatus = __construct(m_piconNotify);
 
-      m_pnotifyicon.release();
+         if(estatus)
+         {
 
-      return;
+            const char * pszAppName = papplication->m_strAppName;
 
-   }
+            m_piconNotify->load_app_tray_icon(pszAppName);
 
-   m_bitMinimizeToTray.defer(e_bit_true);
+         }
+
+      }
+
+      __construct(m_pnotifyicon);
+
+      if (!m_pnotifyicon->create_notify_icon(1, this, m_piconNotify))
+      {
+
+         m_pnotifyicon.release();
+
+         return;
+
+      }
+
+      m_bitMinimizeToTray.defer(e_bit_true);
+
+   }));
 
 }
 

@@ -510,6 +510,22 @@ namespace database
    //}
 
 
+   ::e_status database::set_id_blob(string strKey, ::block block)
+   {
+
+      return ::error_failed;
+
+   }
+
+
+   ::e_status database::get_id_blob(string strKey, ::get_memory getmemory)
+   {
+
+      return ::error_failed;
+
+   }
+
+
 } // namespace database
 
 

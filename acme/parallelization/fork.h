@@ -251,7 +251,7 @@ template < typename PRED >
 //
 //   }
 //
-//   ppredtask->set_task_name(strTag);
+//   ppredtask->task_set_name(strTag);
 //
 //   ppredtask->begin(epriority);
 //

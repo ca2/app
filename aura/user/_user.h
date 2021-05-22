@@ -40,6 +40,7 @@ namespace message
 
    class key;
    class drag_and_drop;
+   class mouse_base;
 
 
 } // namespace message

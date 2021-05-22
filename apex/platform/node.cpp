@@ -213,6 +213,22 @@ namespace apex
 
    }
 
+   
+   void node::os_menu_item_enable(void * pitem, bool bEnable)
+   {
+
+      __throw(error_interface_only);
+      
+   }
+
+
+   void node::os_menu_item_check(void * pitem, bool bCheck)
+   {
+   
+      __throw(error_interface_only);
+      
+   }
+
 
 } // namespace apex
 

@@ -7,7 +7,6 @@
 #include "acme/primitive/text/_.h"
 
 
-
 object::~object()
 {
 
@@ -818,7 +817,7 @@ void object::on_request(::create * pcreate)
 
    //   }
 
-   //   estatus = pcreate->initialize_create(get_application()->m_strAppId, ::e_type_empty, true);
+   //   estatus = pcreate->initialize_create(get_application()->m_XstrAppId, ::e_type_empty, true);
 
    //   if (!estatus)
    //   {
@@ -1710,7 +1709,6 @@ bool object::__is_child_task(::task* ptask) const
 //#endif
 
 
-
 void object::branch(const ::routine_array& routinea)
 {
 
@@ -1754,7 +1752,6 @@ void object::branch_each(const ::routine_array& routinea)
    }
 
 }
-
 
 
 ::task_pointer object::defer_branch(const ::id& id, const ::routine & routine, e_priority epriority)
@@ -1818,6 +1815,15 @@ __transport(task) object::branch(matter * pmatter, ::e_priority epriority, ::u32
 
 }
 
+
+__transport(task) object::branch(::e_priority epriority, ::u32 nStackSize, ::u32 dwCreateFlags ARG_SEC_ATTRS)
+{
+
+   auto ptask = branch(this, epriority, nStackSize, dwCreateFlags ADD_PASS_SEC_ATTRS);
+
+   return ptask;
+
+}
 
 
 ::e_status object::handle_exception(const ::exception::exception& e)

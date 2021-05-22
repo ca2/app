@@ -7,31 +7,6 @@
 //
 //}
 
-enum enum_activate
-{
-
-   e_activate_inactive = 0,
-   e_activate_active = 1,
-   e_activate_click_active = 2,
-
-};
-
-#define MA_ACTIVATE         1
-#define MA_ACTIVATEANDEAT   2
-#define MA_NOACTIVATE       3
-#define MA_NOACTIVATEANDEAT 4
-
-enum enum_mouse_activate
-{
-
-   e_mouse_activate_not_set = 0,
-   e_mouse_activate = 1,
-   e_mouse_activate_and_eat = 2,
-   e_mouse_activate_no_activate = 3,
-   e_mouse_activate_no_activate_and_eat = 4,
-
-};
-
 
 #define MESSAGE_OLE_DRAGENTER WM_APP + 324
 #define MESSAGE_OLE_DRAGOVER WM_APP + 325
@@ -56,7 +31,7 @@ namespace message
       create() { }
 
 
-      virtual void set(oswindow oswindow, ::windowing::window * pwindow, const ::id & id, wparam wparam, ::lparam lparam) override;
+      virtual void set(oswindow oswindow, ::windowing::window * pwindow, const ::id & id, wparam wparam, ::lparam lparam, const ::point_i32 & point) override;
 
       virtual void error(const char * pcszErrorMessage);
 
@@ -86,7 +61,7 @@ namespace message
 
       using ::user::message::set;
 
-      virtual void set(oswindow oswindow, ::windowing::window * pwindow, const ::id & id, wparam wparam, ::lparam lparam) override;
+      virtual void set(oswindow oswindow, ::windowing::window * pwindow, const ::id & id, wparam wparam, ::lparam lparam, const ::point_i32& point) override;
 
       inline bool is_active() const
       {
@@ -116,7 +91,7 @@ namespace message
 
       using ::user::message::set;
 
-      virtual void set(oswindow oswindow, ::windowing::window * pwindow, const ::id & id, wparam wparam, ::lparam lparam) override;
+      virtual void set(oswindow oswindow, ::windowing::window * pwindow, const ::id & id, wparam wparam, ::lparam lparam, const ::point_i32& point) override;
 
 
    };
@@ -134,7 +109,7 @@ namespace message
 
       using ::user::message::set;
 
-      virtual void set(oswindow oswindow, ::windowing::window * pwindow, const ::id & id, wparam wparam, ::lparam lparam) override;
+      virtual void set(oswindow oswindow, ::windowing::window * pwindow, const ::id & id, wparam wparam, ::lparam lparam, const ::point_i32& point) override;
 
    };
 
@@ -154,29 +129,31 @@ namespace message
 
       using ::user::message::set;
 
-      virtual void set(oswindow oswindow, ::windowing::window * pwindow, const ::id & id, wparam wparam, ::lparam lparam) override;
+      virtual void set(oswindow oswindow, ::windowing::window * pwindow, const ::id & id, wparam wparam, ::lparam lparam, const ::point_i32& point) override;
 
+
+   };
+
+   
+   class CLASS_DECL_AURA mouse_base :
+      virtual public ::user::message,
+      virtual public ::user::mouse
+   {
 
    };
 
 
    class CLASS_DECL_AURA mouse :
-      public ::user::message,
-      public ::user::mouse
+      virtual public mouse_base
    {
    public:
-
-
 
       mouse();
       virtual ~mouse();
 
       using ::user::message::set;
 
-      virtual void set(oswindow oswindow, ::windowing::window * pwindow, const ::id & id, wparam wparam, ::lparam lparam) override;
-
-
-
+      virtual void set(oswindow oswindow, ::windowing::window * pwindow, const ::id & id, wparam wparam, ::lparam lparam, const ::point_i32& point) override;
 
       static mouse * cast(::message::message * pmessage)
       {
@@ -189,6 +166,7 @@ namespace message
       }
 
    };
+
 
    class CLASS_DECL_AURA mouse_wheel :
       public mouse
@@ -206,9 +184,31 @@ namespace message
 
       using ::user::message::set;
 
-      virtual void set(oswindow oswindow, ::windowing::window * pwindow, const ::id & id, wparam wparam, ::lparam lparam) override;
+      virtual void set(oswindow oswindow, ::windowing::window * pwindow, const ::id & id, wparam wparam, ::lparam lparam, const ::point_i32& point) override;
 
    };
+
+
+   class CLASS_DECL_AURA set_cursor :
+      virtual public mouse_base
+   {
+   public:
+
+
+      ::user::primitive *        m_pWnd;
+      ::u32                      m_nHitTest;
+      ::u32                      m_message;
+
+
+      set_cursor();
+      virtual ~set_cursor();
+
+
+      virtual void set(oswindow oswindow, ::windowing::window* pwindow, const ::id& id, wparam wparam, ::lparam lparam, const ::point_i32& point) override;
+
+
+   };
+
 
 
    class CLASS_DECL_AURA mouse_activate : public ::user::message
@@ -240,24 +240,6 @@ namespace message
    };
 
 
-   class CLASS_DECL_AURA set_cursor :
-      public ::user::message,
-      public ::user::mouse
-   {
-   public:
-
-
-      ::user::primitive * m_pWnd;
-      ::u32                    m_nHitTest;
-      ::u32                    m_message;
-
-
-      set_cursor();
-      ~set_cursor();
-
-
-   };
-
 
    class CLASS_DECL_AURA show_window : public ::user::message
    {
@@ -272,7 +254,7 @@ namespace message
 
       using ::user::message::set;
 
-      virtual void set(oswindow oswindow, ::windowing::window * pwindow, const ::id & id, wparam wparam, ::lparam lparam) override;
+      virtual void set(oswindow oswindow, ::windowing::window * pwindow, const ::id & id, wparam wparam, ::lparam lparam, const ::point_i32& point) override;
 
 
    };
@@ -289,7 +271,7 @@ namespace message
 
       using ::user::message::set;
 
-      virtual void set(oswindow oswindow, ::windowing::window * pwindow, const ::id & id, wparam wparam, ::lparam lparam) override;
+      virtual void set(oswindow oswindow, ::windowing::window * pwindow, const ::id & id, wparam wparam, ::lparam lparam, const ::point_i32& point) override;
 
 
    };
@@ -336,7 +318,7 @@ namespace message
 
       nc_hit_test() { }
 
-      virtual void set(oswindow oswindow, ::windowing::window * pwindow, const ::id & id, wparam wparam, ::lparam lparam) override;
+      virtual void set(oswindow oswindow, ::windowing::window * pwindow, const ::id & id, wparam wparam, ::lparam lparam, const ::point_i32& point) override;
 
       void set_hit_test(enum_hit_test ehittest) { m_lresult = ehittest; }
 
@@ -353,7 +335,7 @@ namespace message
 
       using ::user::message::set;
 
-      virtual void set(oswindow oswindow, ::windowing::window * pwindow, const ::id & id, wparam wparam, ::lparam lparam) override;
+      virtual void set(oswindow oswindow, ::windowing::window * pwindow, const ::id & id, wparam wparam, ::lparam lparam, const ::point_i32& point) override;
 
    };
 
@@ -369,7 +351,7 @@ namespace message
       nc_activate();
 
       using ::user::message::set;
-      virtual void set(oswindow oswindow, ::windowing::window * pwindow, const ::id & id, wparam wparam, ::lparam lparam) override;
+      virtual void set(oswindow oswindow, ::windowing::window * pwindow, const ::id & id, wparam wparam, ::lparam lparam, const ::point_i32 & point) override;
 
    };
 
@@ -415,7 +397,7 @@ namespace message
        virtual ~object();
 
 
-      virtual void set(oswindow oswindow, ::windowing::window * pwindow, const ::id & id, wparam wparam, ::lparam lparam) override;
+      virtual void set(oswindow oswindow, ::windowing::window * pwindow, const ::id & id, wparam wparam, ::lparam lparam, const ::point_i32 & point) override;
 
 
    };
@@ -444,7 +426,7 @@ namespace message
 
       using ::user::message::set;
 
-      virtual void set(oswindow oswindow, ::windowing::window * pwindow, const ::id & id, wparam wparam, ::lparam lparam) override;
+      virtual void set(oswindow oswindow, ::windowing::window * pwindow, const ::id & id, wparam wparam, ::lparam lparam, const ::point_i32 & point) override;
 
 
    };
@@ -464,7 +446,7 @@ namespace message
 
       using ::user::message::set;
 
-      virtual void set(oswindow oswindow, ::windowing::window * pwindow, const ::id & id, wparam wparam, ::lparam lparam) override;
+      virtual void set(oswindow oswindow, ::windowing::window * pwindow, const ::id & id, wparam wparam, ::lparam lparam, const ::point_i32 & point) override;
 
 
    };
@@ -498,7 +480,7 @@ namespace message
 
       using ::user::message::set;
 
-      virtual void set(oswindow oswindow, ::windowing::window * pwindow, const ::id & id, wparam wparam, ::lparam lparam) override;
+      virtual void set(oswindow oswindow, ::windowing::window * pwindow, const ::id & id, wparam wparam, ::lparam lparam, const ::point_i32 & point) override;
 
 
    };
@@ -529,7 +511,7 @@ namespace message
 
          m_lresult = 0;
 
-         set(oswindow, pwindow, id, 0, 0);
+         set(oswindow, pwindow, id, 0, 0, nullptr);
 
       }
       //

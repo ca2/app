@@ -20,7 +20,7 @@ namespace aura
       ::aura::application *                           m_pappParent;
       //string                                          m_strAppName;
       //string                                          m_strAppTitle;
-      //string                                          m_strAppId;
+      //string                                          m_XstrAppId;
       //string                                          m_strBaseSupportId;
       //string                                          m_strRoot;
       //string                                          m_strDomain;
@@ -517,7 +517,7 @@ namespace aura
       //virtual bool Ex2OnAppInstall();
       //virtual bool Ex2OnAppUninstall();
 
-      virtual bool on_application_menu_action(const char * pszCommand);
+      bool on_application_menu_action(const char * pszCommand) override;
       //virtual void _001CloseApplication();
 
       //virtual string get_license_id();

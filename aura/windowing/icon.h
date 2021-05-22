@@ -25,7 +25,7 @@ namespace windowing
       virtual string get_tray_icon_name() const;
 
 
-      virtual void set_tray_icon_name(const string & strTrayIconName);
+      virtual ::e_status set_tray_icon_name(const string & strTrayIconName);
 
 
       virtual void get_sizes(array < concrete < ::size_i32 > > & a);

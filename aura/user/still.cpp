@@ -22,14 +22,6 @@ namespace user
    still::~still()
    {
 
-      //if (m_pmenuitemThis.is_set())
-      //{
-
-      //   m_pmenuitemThis->m_puserinteraction = nullptr;
-      //   m_pmenuitemThis->m_pmenu = nullptr;
-
-      //}
-
    }
 
 
@@ -39,22 +31,10 @@ namespace user
       ::user::interaction::install_message_routing(pchannel);
 
       MESSAGE_LINK(e_message_create, pchannel, this, &still::on_message_create);
-      //MESSAGE_LINK(e_message_left_button_down, pchannel, this, &still::on_message_left_button_down);
-      //MESSAGE_LINK(e_message_left_button_up, pchannel, this, &still::on_message_left_button_up);
-      //MESSAGE_LINK(e_message_middle_button_down, pchannel, this, &still::on_message_middle_button_down);
-      //MESSAGE_LINK(e_message_middle_button_up, pchannel, this, &still::on_message_middle_button_up);
-      //MESSAGE_LINK(e_message_mouse_move, pchannel, this, &still::on_message_mouse_move);
-      //MESSAGE_LINK(e_message_mouse_leave, pchannel, this, &still::on_message_mouse_leave);
       MESSAGE_LINK(e_message_key_down, pchannel, this, &still::_001OnKeyDown);
 
    }
 
-
-   //::enum_state still::get_user_state()
-   //{
-
-
-   //}
 
    void still::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
@@ -85,31 +65,6 @@ namespace user
          auto color = get_color(pstyle, ::user::e_element_text, estate);
 
          pgraphics->set_text_color(color);
-
-         //if (!is_window_enabled())
-         //{
-
-         //   pgraphics->fill_rectangle(rectClient, argb(255, 192, 192, 192));
-
-         //   pgraphics->set_text_color(argb(255, 160, 160, 160));
-
-         //}
-         //else if (should_hover() && (m_itemHover.is_set() || psession->m_puiLastLButtonDown == this))
-         //{
-
-         //   pgraphics->fill_rectangle(rectClient, argb(255, 200, 200, 230));
-
-         //   pgraphics->set_text_color(argb(255, 80, 80, 180));
-
-         //}
-         //else
-         //{
-
-         //   pgraphics->fill_rectangle(rectClient, argb(255, 255, 255, 255));
-
-         //   pgraphics->set_text_color(argb(255, 0, 0, 0));
-
-         //}
 
          auto rectPadding = get_padding(pstyle);
 

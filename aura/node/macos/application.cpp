@@ -37,13 +37,13 @@ namespace aura
 //      return nullptr;
 //   }
 
-   void application::_001EnableShellOpen()
-   {
-      // xxx       ASSERT(m_atomApp == nullptr && m_atomSystemTopic == nullptr); // do once
-
-      // xxx       m_atomApp            = ::GlobalAddAtomW(::str::international::utf8_to_unicode(m_strAppName));
-      // xxx       m_atomSystemTopic    = ::GlobalAddAtomW(L"system");
-   }
+//   void application::_001EnableShellOpen()
+//   {
+//      // xxx       ASSERT(m_atomApp == nullptr && m_atomSystemTopic == nullptr); // do once
+//
+//      // xxx       m_atomApp            = ::GlobalAddAtomW(::str::international::utf8_to_unicode(m_strAppName));
+//      // xxx       m_atomSystemTopic    = ::GlobalAddAtomW(L"system");
+//   }
 
 //   bool application::_001OnDDECommand(const char * pcsz)
 //   {
@@ -60,13 +60,12 @@ namespace aura
 //   }
 
 
-   string application::get_version()
-   {
-
-      return "";
-
-
-   }
+//   string application::get_version()
+//   {
+//
+//      return "";
+//
+//   }
 
 //   void application::TermThread(HINSTANCE hInstTerm)
 //   {
@@ -279,72 +278,72 @@ namespace aura
 //
 //   }
 
-   string application::multimedia_audio_get_default_library_name()
-   {
+//   string application::multimedia_audio_get_default_library_name()
+//   {
+//
+//      return "audio_core_audio";
+//
+//   }
+//
+//   string application::multimedia_audio_mixer_get_default_library_name()
+//   {
+//
+//      return "audio_mixer_core_audio";
+//
+//   }
+//   string application::veriwell_multimedia_music_midi_get_default_library_name()
+//   {
+//
+//      return "music_midi_core_midi";
+//
+//   }
+//
+//
+//   void application::show_wait_cursor(bool bShow)
+//   {
+//
+//      UNREFERENCED_PARAMETER(bShow);
+//
+//   }
+//
 
-      return "audio_core_audio";
-
-   }
-
-   string application::multimedia_audio_mixer_get_default_library_name()
-   {
-
-      return "audio_mixer_core_audio";
-
-   }
-   string application::veriwell_multimedia_music_midi_get_default_library_name()
-   {
-
-      return "music_midi_core_midi";
-
-   }
-
-
-   void application::show_wait_cursor(bool bShow)
-   {
-
-      UNREFERENCED_PARAMETER(bShow);
-
-   }
-
-
-   bool application::os_on_start_application()
-   {
-
-      ::file::path path = pcontext->m_papexcontext->file().module();
-
-      path -= 3;
-      
-      if(::dir::is(path))
-      {
-
-         ::file::path path2 = pacmedir->localconfig() / "monitor-0/desk/2desk" / path.name();
-         
-         if(::file_exists(path2))
-         {
-
-            ::unlink(path2);
-            
-         }
-         
-         auto pathFolder2 = path2.folder();
-         
-         ::dir::mk(pathFolder2);
-         
-         bool bFilePathIsLink = file_path_is_link(path2);
-         
-         if(!bFilePathIsLink && ::dir::is(pathFolder2))
-         {
-
-            ::system("ln -s \"" + path + "\"" + " \"" + path2 + "\"");
-            
-         }
-         
-      }
-
-      return true;
-
-   }
+//   bool application::os_on_start_application()
+//   {
+//
+//      ::file::path path = pcontext->m_papexcontext->file().module();
+//
+//      path -= 3;
+//      
+//      if(::dir::is(path))
+//      {
+//
+//         ::file::path path2 = pacmedir->localconfig() / "monitor-0/desk/2desk" / path.name();
+//         
+//         if(::file_exists(path2))
+//         {
+//
+//            ::unlink(path2);
+//            
+//         }
+//         
+//         auto pathFolder2 = path2.folder();
+//         
+//         ::dir::mk(pathFolder2);
+//         
+//         bool bFilePathIsLink = file_path_is_link(path2);
+//         
+//         if(!bFilePathIsLink && ::dir::is(pathFolder2))
+//         {
+//
+//            ::system("ln -s \"" + path + "\"" + " \"" + path2 + "\"");
+//            
+//         }
+//         
+//      }
+//
+//      return true;
+//
+//   }
 
 
 //   bool application::os_on_start_application()
@@ -361,9 +360,9 @@ namespace aura
 
 
 
-
-
-bool on_application_menu_action(const char * pszCommand)
-{
-   ::aura::get_system()->on_application_menu_action(pszCommand);
-}
+//
+//
+//bool on_application_menu_action(const char * pszCommand)
+//{
+//   ::aura::get_system()->on_application_menu_action(pszCommand);
+//}

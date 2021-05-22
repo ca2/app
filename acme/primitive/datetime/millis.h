@@ -1,6 +1,9 @@
 #pragma once
 
 
+inline millis operator -(const ::millis& millis1, const ::millis& millis2);
+inline millis operator +(const ::millis& millis1, const ::millis& millis2);
+
 enum enum_now
 {
 
@@ -31,10 +34,16 @@ public:
 
 
    millis() { m_i = 0; }
-   millis(enum enum_now) { m_i = get_millis(); }
+   millis(enum enum_now);
    millis(enum enum_no_initialize) {}
+    
+#ifdef CPP20
    template < primitive_integral INTEGRAL >
    millis(INTEGRAL i) { m_i = i; }
+#else
+   millis(::i64 i) { m_i = i; }
+#endif
+    
    millis(const secs & secs) { m_i = secs.m_i * 1'000; }
    millis(const millis & millis) { m_i = millis.m_i; }
    millis(const micros & micros);
@@ -43,7 +52,7 @@ public:
 
    millis & operator = (const millis & millis) { m_i = millis.m_i; return *this; }
 
-   inline static millis now() { return get_millis(); }
+   inline static millis now();
 
    inline static millis infinite() { return {-1}; }
 
@@ -51,28 +60,12 @@ public:
 
    inline bool is_infinity() const { return m_i < 0; }
 
-   inline bool timeout(const millis & tickTimeout)
-   {
-
-      auto millisNow = get_millis();
-
-      if(millisNow - m_i < tickTimeout.m_i)
-      {
-
-         return false;
-
-      }
-
-      m_i = millisNow;
-
-      return true;
-
-   }
+   inline bool timeout(const millis& tickTimeout);
 
    inline ::millis remaining(const millis & millisTimeout)
    {
 
-      ::millis millisNow = now();
+      auto millisNow = now();
 
       auto millisRemaining = millisTimeout - millisNow + *this;
 
@@ -177,8 +170,8 @@ public:
    //inline bool operator <= (const ::millis & millis) const { return m_i <= millis.m_i; }
    //inline bool operator > (const ::millis & millis) const { return m_i > millis.m_i; }
    //inline bool operator >= (const ::millis & millis) const { return m_i >= millis.m_i; }
-   inline millis operator - (const ::millis & millis) const { return m_i - millis.m_i; }
-   inline millis operator + (const ::millis & millis) const { return m_i + millis.m_i; }
+   //inline millis operator - (const ::millis & millis) const { return m_i - millis.m_i; }
+   //inline millis operator + (const ::millis & millis) const { return m_i + millis.m_i; }
    inline millis& operator -= (const ::millis & millis) { m_i -= millis.m_i; return *this; }
    inline millis& operator += (const ::millis & millis) { m_i += millis.m_i; return *this; }
 
@@ -195,11 +188,9 @@ public:
    //inline millis& operator += (i64 i) { m_i += i; return *this; }
 
 
-   inline millis operator * (double d) const { return (::i64)(m_i * d); }
    inline millis& operator *= (double d) { m_i = (::i64)(m_i * d); return *this; }
 
    inline ::i64 operator / (const millis& millis) const { return m_i / millis.m_i; }
-   inline millis operator / (::i64 i) const { return m_i / i; }
    inline millis& operator /= (::i64 i)  { m_i /= i; return *this; }
    inline millis& operator %= (const millis & millis) { m_i %= millis.m_i; return *this; }
 
@@ -236,16 +227,9 @@ namespace papaya
          return 0;
 
       }
-
-
       template <  >
-      inline millis default_value < millis > ()
-      {
+      inline millis default_value < millis >();
 
-         // estimate a delay of half of maximum millis positive value
-         return ::get_millis() - (MAXI64 >> 1);
-
-      }
 
 
    } // namespace chill
@@ -308,13 +292,60 @@ inline millis __tick(double d) { return (::i64) d; }
 inline millis operator "" _tick(unsigned long long int u) { return u; }
 
 
+#ifdef CPP20
+
 typedef CLASS_DECL_ACME numeric_array < millis > tick_array;
 
+#endif
 
 inline secs::secs(const millis & millis) { m_i = millis.m_i / 1'000; }
 
 
 inline millis operator "" _ms(unsigned long long int u) { return (::i64) u; }
+
+
+inline millis operator -(const ::millis& millis1, const ::millis& millis2)
+{
+
+   return millis1.m_i - millis2.m_i;
+
+}
+
+
+inline millis operator +(const ::millis& millis1, const ::millis& millis2)
+{
+
+   return millis1.m_i + millis2.m_i;
+
+}
+
+
+#ifdef CPP20
+
+
+template < primitive_number NUMBER >
+inline millis operator *(const ::millis& millis, const NUMBER& number)
+{
+
+   return (::i64)(millis.m_i * number);
+
+}
+
+
+template < primitive_number NUMBER >
+inline millis operator /(const ::millis& millis, const NUMBER& number)
+{
+
+   return (::i64) (millis.m_i / number);
+
+}
+
+
+#endif
+
+
+inline ::millis first_milli();
+inline ::millis get_millis();
 
 
 

@@ -1,8 +1,6 @@
 #include "framework.h"
 #include "aura/operating_system.h"
 #include "_simpledb.h"
-#include "axis/database/sqlitedb/_.h"
-#include <sqlite3.h>
 #include "storage.h"
 
 
@@ -52,16 +50,25 @@ namespace simpledb
 
       }
 
-      auto pdatabase = (*m_psystem->m_pfactorymapsquare)["simpledb"]->new_object<::database::database>();
+      auto ptransport = m_psystem->do_containerized_factory_exchange("database", "sqlite3");
 
-      if (pdatabase.is_null())
+      if(!ptransport)
       {
 
          return false;
 
       }
 
-      synchronous_lock synchronouslock(pdatabase->mutex());
+      estatus = ptransport->__construct(m_pdatabaseLocal);
+
+      if (!estatus)
+      {
+
+         return false;
+
+      }
+
+      synchronous_lock synchronouslock(m_pdatabaseLocal->mutex());
 
       //estatus = pdatabase->set_finish(this);
 
@@ -72,7 +79,25 @@ namespace simpledb
 
       //}
 
-      m_pdatabaseLocal = pdatabase;
+      //m_pdatabaseLocal = pdatabase;
+
+      estatus = m_pdatabaseLocal->initialize(this);
+
+      if (!estatus)
+      {
+
+         return ::error_failed;
+
+      }
+
+      estatus = m_pdatabaseLocal->connect(pszDatabase);
+
+      if (!estatus)
+      {
+
+         return ::error_failed;
+
+      }
 
       estatus = __compose_new(m_psimpledb);
 

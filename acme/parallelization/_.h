@@ -23,6 +23,9 @@ CLASS_DECL_ACME ::u64 translate_processor_affinity(int iOrder);
 //property_set & thread_property_set();
 
 
+CLASS_DECL_ACME bool is_main_thread();
+
+
 #if defined(ANDROID)
 
 
@@ -113,8 +116,13 @@ CLASS_DECL_ACME ::e_status __call(const ::routine & routine);
 
 
 
-CLASS_DECL_ACME bool set_thread_name(const char * psz);
-CLASS_DECL_ACME bool set_thread_name(htask_t htask, const char* pszName);
+CLASS_DECL_ACME ::e_status task_set_name(const char * psz);
+//CLASS_DECL_ACME ::e_status task_set_name(htask_t htask, const char* pszName);
+
+
+CLASS_DECL_ACME string task_get_name();
+CLASS_DECL_ACME string task_get_name(htask_t htask);
+
 
 
 typedef ::e_status     (*__THREADPROC)(void *);
@@ -155,8 +163,6 @@ namespace parallelization
    //   return priority_normal;
 
    //}
-
-   CLASS_DECL_ACME string thread_get_name();
 
 
 } // namespace parallelization
@@ -332,7 +338,7 @@ CLASS_DECL_ACME bool task_sleep(millis millis = U32_INFINITE_TIMEOUT, ::synchron
 #endif
 
 
-string get_thread_name(htask_t htask);
+string get_task_name(htask_t htask);
 
 #include "acme/primitive/collection/runnable_array.h"
 
@@ -343,12 +349,12 @@ typedef string GET_THREAD_NAME(::thread* pthread);
 using LPFN_GET_THREAD_NAME = GET_THREAD_NAME*;
 
 CLASS_DECL_ACME void set_get_thread_name(LPFN_GET_THREAD_NAME);
-string get_thread_name(::thread* pthread);
+string get_task_name(::thread* pthread);
 
 CLASS_DECL_ACME void thread_name_abbreviate(string & strName, int len);
 
-CLASS_DECL_ACME bool set_thread_name(htask_t htask, const char * psz);
-CLASS_DECL_ACME bool set_thread_name(const char * psz);
+//CLASS_DECL_ACME bool task_set_name(htask_t htask, const char * psz);
+//CLASS_DECL_ACME bool task_set_name(const char * psz);
 
 //#include "update_task_item_array.h"
 
@@ -372,6 +378,9 @@ CLASS_DECL_ACME bool task_sleep(millis millis, synchronization_object* psync);
 
 
 #include "synchronized_process.h"
+
+
+#include "acme/primitive/promise/signalization.h"
 
 
 #include "acme/platform/synchronized_predicate_routine.h"

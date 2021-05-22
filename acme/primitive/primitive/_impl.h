@@ -3938,10 +3938,10 @@ inline ::task_pointer object::predicate_run(bool bSync, PRED pred)
 }
 
 
-//inline ::acme::system* object::get_system() const
+//inline class ::system* object::get_system() const
 //{
 //
-//   return m_psystem ? dynamic_cast <::apex::system*>((::acme::system*)m_psystem) : nullptr;
+//   return m_psystem ? dynamic_cast <::apex::system*>((class ::system*)m_psystem) : nullptr;
 //
 //}
 
@@ -3999,4 +3999,151 @@ inline void property_object::add_routine(const ::id& id, const ::routine& routin
 }
 
 
+template < typename BRANCHING_OBJECT, typename BRANCHING_METHOD, typename OBJECT_POINTER, typename OBJECT_METHOD, typename PAYLOAD_REFERENCE >
+auto material_object::__sync_status_payload(const ::duration & duration, BRANCHING_OBJECT pbranching, BRANCHING_METHOD branching_method, OBJECT_POINTER pobject, OBJECT_METHOD method, PAYLOAD_REFERENCE & payload)
+{
 
+   auto psynchronization = __new(::promise::synchronization);
+
+   auto proutine = __routine([pobject, method, &payload, psynchronization]()
+                             {
+
+                                auto statuspayload = (pobject->*method)();
+
+                                synchronous_lock synchronizationlock(psynchronization->mutex());
+
+                                psynchronization->m_evGoingToWrite.SetEvent();
+
+                                psynchronization->m_evResponse.wait();
+
+                                if(!psynchronization->m_bTimeout)
+                                {
+
+                                   payload = statuspayload;
+
+                                   psynchronization->m_estatus = statuspayload;
+
+                                }
+
+                                psynchronization->m_evReady.SetEvent();
+
+                                ::release((::matter * &)psynchronization.m_p);
+
+                             });
+
+   (pbranching->*branching_method)(proutine);
+
+   if (psynchronization->m_evGoingToWrite.wait(duration).failed())
+   {
+
+      psynchronization->m_bTimeout = true;
+
+      psynchronization->m_evResponse.SetEvent();
+
+      return error_timeout;
+
+   }
+
+   psynchronization->m_evResponse.SetEvent();
+
+   psynchronization->m_evReady.wait();
+
+   if(!psynchronization->m_estatus)
+   {
+
+      return psynchronization->m_estatus;
+
+   }
+
+   return psynchronization->m_estatus;
+
+}
+
+
+//template < typename BRANCHING_OBJECT, typename BRANCHING_METHOD, typename OBJECT_POINTER, typename OBJECT_METHOD, typename MEMBER_POINTER >
+//::e_status material_object::__sync_member(const ::duration & duration, BRANCHING_OBJECT pbranching, BRANCHING_METHOD branching_method, OBJECT_POINTER pobject, OBJECT_METHOD method, MEMBER_POINTER ppayload)
+//{
+//
+//   auto proutine = __routine([pobject, method, &ppayload]()
+//                             {
+//
+//                                auto statuspayload = (pobject->*method)();
+//
+//                                if(statuspayload)
+//                                {
+//
+//                                   *ppayload = statuspayload;
+//
+//                                }
+//
+//                             });
+//
+//   auto estatus = __sync_routine(duration, pbranching, branching_method, proutine);
+//
+//   if(!estatus)
+//   {
+//
+//      return estatus;
+//
+//   }
+//
+//   return estatus;
+//
+//}
+//
+//
+//template < typename BRANCHING_OBJECT, typename BRANCHING_METHOD, typename OBJECT_POINTER, typename OBJECT_METHOD >
+//::e_status material_object::__sync_member(const ::duration & duration, BRANCHING_OBJECT pbranching, BRANCHING_METHOD branching_method, OBJECT_POINTER pobject, OBJECT_METHOD method)
+//{
+//
+//   auto proutine = __routine([pobject, method]()
+//                             {
+//
+//                                (pobject->*method)();
+//
+//                             });
+//
+//   auto estatus = __sync_routine(duration, pbranching, branching_method, proutine);
+//
+//   if(!estatus)
+//   {
+//
+//      return estatus;
+//
+//   }
+//
+//   return estatus;
+//
+//}
+
+
+
+template < typename BRANCHING_OBJECT, typename BRANCHING_METHOD >
+::e_status material_object::__sync_routine(const ::duration & duration, BRANCHING_OBJECT pbranching, BRANCHING_METHOD branching_method, ::routine routine)
+{
+
+   auto psignalization = __new(::promise::signalization);
+
+   auto proutine = __routine([routine, psignalization]()
+                             {
+
+                                routine();
+
+                                psignalization->m_evReady.SetEvent();
+
+                                //::release((::matter * &)psignalization.m_p);
+
+                             });
+
+   (pbranching->*branching_method)(proutine);
+
+   if (psignalization->m_evReady.wait(duration).failed())
+   {
+
+      return error_timeout;
+
+   }
+
+   return ::success;
+
+}

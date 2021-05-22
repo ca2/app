@@ -12,10 +12,10 @@ CLASS_DECL_ACME int_bool __thread_set_data(itask_t thread,u32 dwIndex,void * lpT
 #endif
 
 
-CLASS_DECL_ACME void __node_init_cross_windows_threading();
+// CLASS_DECL_ACME void __node_init_cross_windows_threading();
 
 
-CLASS_DECL_ACME void __node_term_cross_windows_threading();
+// CLASS_DECL_ACME void __node_term_cross_windows_threading();
 
 
 

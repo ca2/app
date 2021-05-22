@@ -130,7 +130,7 @@ namespace user
 
       m_pimpl = pimpl;
 
-      set_config_fps(20);
+      set_fps(20);
 
       string strType;
 
@@ -178,7 +178,7 @@ namespace user
 
       string strType = ::str::demangle(m_puserinteraction->type_name());
 
-      ::set_thread_name("prodevian," + strType);
+      ::task_set_name("prodevian," + strType);
 
       if (strType.contains_ci("combo_list"))
       {
@@ -255,9 +255,9 @@ bool prodevian::prodevian_reset(::user::interaction * pinteraction)
 
    m_nanosNow = get_nanos();
 
-   m_iFrameId = m_nanosNow / m_nanosFrame;
+   //m_iFrameId = m_nanosNow / m_nanosFrame;
 
-   m_iLastFrameId = m_iFrameId;
+   //m_iLastFrameId = m_iFrameId;
 
    return true;
 
@@ -378,6 +378,13 @@ bool prodevian::prodevian_iteration()
 
          //synchronous_lock synchronouslock(m_pimpl->mutex());
 
+         // if (bHasProdevian)
+         // {
+
+         //    output_debug_string("has_prodevian");
+          
+         // }
+
       }
 
    }
@@ -460,7 +467,7 @@ bool prodevian::prodevian_iteration()
          bRedraw = true;
 
       }
-      else
+      else if(!bHasProdevian)
       {
 
          while (peek_message(&m_message, NULL, 0, 0, PM_REMOVE))
@@ -576,25 +583,45 @@ bool prodevian::prodevian_iteration()
 
    bool bWait = ((m_bUpdateWindow || m_bUpdateScreen) && !bStartWindowVisual) || bRedraw;
 
-   if (bHasProdevian || (bWait && ((m_nanosNow - m_nanosLastFrame) < m_nanosPostRedraw / 2)))
+   if (bWait)
+   {
+
+      if (bHasProdevian)
+      {
+
+         bWait = (m_nanosNow - m_nanosLastFrame) < m_nanosPostRedrawProdevian / 2;
+
+      }
+      else
+      {
+
+         bWait = (m_nanosNow - m_nanosLastFrame) < m_nanosPostRedrawNominal / 2;
+
+      }
+
+   }
+
+   if (bWait)
    {
 
       // Either:
       // - It has prodevian mode (FPS drawing);
       // - Or it is going to wait because a frame was already drawn an instant ago due on-request-drawing (cool down).
 
-      i64 nanosFrame = bRedraw ? m_nanosPostRedraw : m_nanosFrame;
+      auto nanosFrame = bHasProdevian ? m_nanosPostRedrawProdevian : m_nanosPostRedrawNominal ;
 
-      i64 i2 = get_nanos();
+      //i64 i2 = get_nanos();
 
       // calculates the next/new frame id
-      m_iFrameId = (m_nanosNow + nanosFrame - 1) / (nanosFrame);
+      //m_iFrameId = (m_nanosNow + nanosFrame - 1) / (nanosFrame);
 
-      m_nanosNextFrame = m_iFrameId * nanosFrame;
+      //m_nanosNextFrame = m_iFrameId * nanosFrame;
 
-      m_cLost = (::count) (m_iFrameId - m_iLastFrameId - 1);
+      m_nanosNextFrame = m_nanosNow + nanosFrame;
 
-      m_iLastFrameId = m_iFrameId;
+      //m_cLost = (::count) (m_iFrameId - m_iLastFrameId - 1);
+
+      //m_iLastFrameId = m_iFrameId;
 
       m_nanosNextScreenUpdate = m_nanosNextFrame;
 
@@ -608,17 +635,15 @@ bool prodevian::prodevian_iteration()
 
          m_nanosNextScreenUpdate += nanosFrame;
 
-         m_iLastFrameId++;
+         //m_iLastFrameId++;
 
       }
 
       {
 
-         auto nanosStartWait = (i64)get_nanos();
+         auto nanosStartWait = get_nanos();
 
-         i64 nanosToWaitForNextFrame = (i64)m_nanosNextScreenUpdate - (i64)get_nanos();
-
-         i32 msToWaitForNextFrame = (::i32)(nanosToWaitForNextFrame / 1'000'000);
+         auto nanosToWaitForNextFrame = m_nanosNextScreenUpdate - (::nanos) get_nanos();
 
          if (nanosToWaitForNextFrame > 1'000'000'000)
          {
@@ -629,7 +654,7 @@ bool prodevian::prodevian_iteration()
 
          }
 
-         if (msToWaitForNextFrame >= 2)
+         if (nanosToWaitForNextFrame >= 2_ms)
          {
 
             ::millis tickWait;
@@ -638,26 +663,31 @@ bool prodevian::prodevian_iteration()
 
             //printf("msToWaitForNextFrame >= 2\n");
 
-            if (msToWaitForNextFrame >= 50)
+            if (nanosToWaitForNextFrame < nanosFrame)
             {
 
-               //printf("msToWaitForNextFrame >= 50ms (%dms)\n", (::i32) (msToWaitForNextFrame - 1));
+               if (nanosToWaitForNextFrame >= 50_ms)
+               {
 
-               ::millis millis;
+                  //printf("msToWaitForNextFrame >= 50ms (%dms)\n", (::i32) (msToWaitForNextFrame - 1));
 
-               millis.Now();
+                  ::millis millis;
 
-               m_synchronizationa.wait(::millis(msToWaitForNextFrame - 1));
+                  millis.Now();
 
-               //printf("Actually waited %dms\n", (::i32) millis.elapsed().m_i);
+                  m_synchronizationa.wait(nanosToWaitForNextFrame - 1_ms);
 
-            }
-            else
-            {
+                  //printf("Actually waited %dms\n", (::i32) millis.elapsed().m_i);
 
-               //printf("msToWaitForNextFrame < 50\n");
+               }
+               else
+               {
 
-               m_evUpdateScreen.wait(millis(msToWaitForNextFrame));
+                  //printf("msToWaitForNextFrame < 50\n");
+
+                  m_evUpdateScreen.wait(nanosToWaitForNextFrame);
+
+               }
 
             }
 
@@ -667,7 +697,7 @@ bool prodevian::prodevian_iteration()
 
          }
 
-         auto nanosEndWait = (i64)get_nanos();
+         auto nanosEndWait = get_nanos();
 
          if (nanosEndWait - nanosStartWait > 100'000'000)
          {
@@ -786,19 +816,19 @@ bool prodevian::prodevian_iteration()
       // ENDIF WINDOWS
    }
 
-   u64 uNow = get_nanos();
+   auto nanosNow = get_nanos();
 
-   for (index i = 0; i < m_iaFrame.get_size();)
+   for (index i = 0; i < m_nanosaFrame.get_size();)
    {
 
-      u64 uFrame = m_iaFrame[i];
+      auto nanosFrame = m_nanosaFrame[i];
 
-      u64 uDiff = uNow - uFrame;
+      auto nanosDiff = nanosNow - nanosFrame;
 
-      if (uDiff > 1'000'000'000LL)
+      if (nanosDiff.m_i > 1'000'000'000LL)
       {
 
-         m_iaFrame.erase_at(i);
+         m_nanosaFrame.erase_at(i);
 
       }
       else
@@ -817,7 +847,7 @@ bool prodevian::prodevian_iteration()
 
    }
 
-   m_pimpl->m_dOutputFps = (double)(m_iaFrame.get_size());
+   m_pimpl->m_dOutputFps = (double)(m_nanosaFrame.get_size());
 
    return true;
 
@@ -1173,7 +1203,7 @@ bool prodevian::prodevian_iteration()
 
          m_nanosLastFrame = get_nanos();
 
-         m_iaFrame.add(m_nanosLastFrame);
+         m_nanosaFrame.add(m_nanosLastFrame);
 
          m_millisAfterUpdateScreen.Now();
 
@@ -1215,7 +1245,7 @@ bool prodevian::prodevian_iteration()
    void prodevian::defer_prodevian_step()
    {
 
-      if ((get_nanos() - m_nanosLastFrame) > (m_nanosFrame * 3 / 4))
+      if ((get_nanos() - m_nanosLastFrame) > (m_nanosPostRedrawNominal * 3 / 4))
       {
 
          post_message(e_message_redraw);
@@ -1226,14 +1256,28 @@ bool prodevian::prodevian_iteration()
 
 
 
-   void prodevian::set_config_fps(double dConfigFps)
+   void prodevian::set_prodevian_fps(double dProdevianFps)
    {
 
-      m_nanosPostRedraw = (u64)(1'000'000'000.0 / 60.0);
+      m_nanosPostRedrawProdevian = (u64)(1'000'000'000.0 / dProdevianFps);
 
-      m_nanosFrame = (u64)(1'000'000'000.0 / m_pimpl->m_dConfigFps);
+   }
 
-      m_nanosPostRedraw = minimum(m_nanosPostRedraw, m_nanosFrame);
+
+   void prodevian::set_nominal_fps(double dNominalFps)
+   {
+
+      m_nanosPostRedrawNominal = (u64)(1'000'000'000.0 / dNominalFps);
+
+   }
+
+
+   void prodevian::set_fps(double dFps)
+   {
+
+      set_prodevian_fps(dFps);
+
+      set_nominal_fps(dFps);
 
    }
 

@@ -132,8 +132,6 @@ namespace app_shader
 
             m_strFragment = m_pcontext->load_fragment(path, m_eshadersource);
 
-            m_bUpdateShader = true;
-
             break;
 
          }
@@ -160,6 +158,8 @@ namespace app_shader
       {
 
          m_bUpdateShader = false;
+
+         defer_load_fragment(m_strShaderPrefix);
 
          _update_shader();
 
@@ -249,15 +249,6 @@ namespace app_shader
       
       ::gpu::context_lock lock(m_pcontext);
 
-      if (m_strShaderPrefix.has_char())
-      {
-
-         defer_load_fragment(m_strShaderPrefix);
-
-         m_strShaderPrefix.Empty();
-
-      }
-
       defer_update_shader();
 
       if (m_pcontext &&
@@ -340,6 +331,13 @@ namespace app_shader
          pgraphics->set(matrixOriginal);
 #endif
       }
+
+      ::rectangle_i32 rectangle(m_pcontext->m_pbuffer->m_pimage->rectangle());
+
+      rectangle.left = rectangle.right - 48;
+      rectangle.top = rectangle.bottom - 48;
+
+      pgraphics->fill_rectangle(rectangle, argb(128, 128, 128, 128));
 
       //_001OnDraw1Through3(pgraphics);
 

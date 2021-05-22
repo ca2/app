@@ -1,7 +1,7 @@
 #pragma once
 
 
-template < class TYPE, class ARG_TYPE = const TYPE & >
+template < class TYPE, class ARG_TYPE >
 class list :
    public ::matter
 {
@@ -312,6 +312,7 @@ public:
    ::count size() const;
    bool is_empty(::count countMinimum = 1) const;
    bool has_elements(::count countMinimum = 1) const;
+   bool has_element() const;
    bool empty(::count countMinimum = 1) const;
 
    // peek at head or tail
@@ -325,8 +326,8 @@ public:
    void erase_head();
    void erase_tail();
 
-   TYPE pop_head();
-   TYPE pop_tail();
+   TYPE pick_head();
+   TYPE pick_tail();
 
    // add before head or after tail
    node * add_head(ARG_TYPE newElement);
@@ -527,6 +528,14 @@ inline ::count list<TYPE, ARG_TYPE>::get_count() const
 {
 
    return this->m_count;
+
+}
+
+template<class TYPE, class ARG_TYPE>
+inline bool list<TYPE, ARG_TYPE>::has_element() const
+{
+
+   return get_count() > 0;
 
 }
 
@@ -763,11 +772,10 @@ void list<TYPE, ARG_TYPE>::copy(const list < TYPE, ARG_TYPE >  & l)
 }
 
 template<class TYPE, class ARG_TYPE>
-TYPE list<TYPE, ARG_TYPE>::pop_head()
+TYPE list<TYPE, ARG_TYPE>::pick_head()
 {
    ASSERT_VALID(this);
    ASSERT(this->m_phead != nullptr);  // don't call on is_empty list !!!
-   ASSERT(__is_valid_address(this->m_phead, sizeof(node)));
 
    node* pnodeOld = this->m_phead;
    TYPE returnValue = pnodeOld->m_value;
@@ -785,11 +793,10 @@ TYPE list<TYPE, ARG_TYPE>::pop_head()
 }
 
 template<class TYPE, class ARG_TYPE>
-TYPE list<TYPE, ARG_TYPE>::pop_tail()
+TYPE list<TYPE, ARG_TYPE>::pick_tail()
 {
    ASSERT_VALID(this);
    ASSERT(this->m_ptail != nullptr);  // don't call on is_empty list !!!
-   ASSERT(__is_valid_address(this->m_ptail, sizeof(node)));
 
    node* pnodeOld = this->m_ptail;
    TYPE returnValue = pnodeOld->m_value;
@@ -809,7 +816,6 @@ void list<TYPE, ARG_TYPE>::erase_head()
 {
    ASSERT_VALID(this);
    ASSERT(this->m_phead != nullptr);  // don't call on is_empty list !!!
-   ASSERT(__is_valid_address(this->m_phead, sizeof(node)));
 
    node* pnodeOld = this->m_phead;
 
@@ -829,7 +835,6 @@ void list<TYPE, ARG_TYPE>::erase_tail()
 {
    ASSERT_VALID(this);
    ASSERT(this->m_ptail != nullptr);  // don't call on is_empty list !!!
-   ASSERT(__is_valid_address(this->m_ptail, sizeof(node)));
 
    node* pnodeOld = this->m_ptail;
 
@@ -1475,7 +1480,6 @@ void list<TYPE, ARG_TYPE>::erase_item(node * pnode)
 
    node * pnodeOld = detach(pnode);
 
-   ASSERT(__is_valid_address(pnodeOld, sizeof(node)));
 
    delete pnodeOld;
 
@@ -1499,7 +1503,6 @@ typename list < TYPE, ARG_TYPE >::node * list<TYPE, ARG_TYPE>::detach(node * pno
 
    if (pnode->m_pprevious != nullptr)
    {
-      ASSERT(__is_valid_address(pnode->m_pprevious, sizeof(node)));
       pnode->m_pprevious->m_pnext = pnode->m_pnext;
    }
 
@@ -1510,7 +1513,6 @@ typename list < TYPE, ARG_TYPE >::node * list<TYPE, ARG_TYPE>::detach(node * pno
 
    if (pnode->m_pnext != nullptr)
    {
-      ASSERT(__is_valid_address(pnode->m_pnext, sizeof(node)));
       pnode->m_pnext->m_pprevious = pnode->m_pprevious;
    }
 
@@ -1544,7 +1546,6 @@ template < class TYPE, class ARG_TYPE >
       }
       else
       {
-         ASSERT(__is_valid_address(pnodeLast->m_pnext, sizeof(node)));
          pnodeLast->m_pnext->m_pprevious = pnodeLast->m_pprevious;
       }
 
@@ -1560,7 +1561,6 @@ template < class TYPE, class ARG_TYPE >
    }
    else
    {
-      ASSERT(__is_valid_address(pnodeFirst->m_pprevious, sizeof(node)));
       pnodeFirst->m_pprevious->m_pnext = pnodeFirst->m_pnext;
    }
 
@@ -1657,8 +1657,6 @@ typename list<TYPE, ARG_TYPE>::iterator list<TYPE, ARG_TYPE>::index_iterator(ind
    while (index > 0)
    {
 
-      ASSERT(__is_valid_address(pnode, sizeof(decltype(*pnode))));
-
       pnode = pnode->m_pnext;
 
       index--;
@@ -1690,8 +1688,6 @@ index list<TYPE, ARG_TYPE>::iterator_index(iterator it)
 
       }
 
-      ASSERT(__is_valid_address(pnode, sizeof(decltype(*pnode))));
-
       pnode = pnode->m_pnext;
 
       i++;
@@ -1720,8 +1716,6 @@ inline typename list < TYPE, ARG_TYPE >::iterator list < TYPE, ARG_TYPE >::rever
 
    while (index > 0)
    {
-
-      ASSERT(__is_valid_address(pnode, sizeof(decltype(*pnode))));
 
       pnode = pnode->m_pprevious;
 
@@ -1753,8 +1747,8 @@ void list<TYPE, ARG_TYPE>::assert_valid() const
    {
 
       // non-is_empty list
-      ASSERT(__is_valid_address(this->m_phead, sizeof(node)));
-      ASSERT(__is_valid_address(this->m_ptail, sizeof(node)));
+      ASSERT(::is_set(this->m_phead));
+      ASSERT(::is_set(this->m_ptail));
 
    }
 

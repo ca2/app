@@ -114,8 +114,6 @@ namespace apex
 
       id_map < __composite(::channel) >               m_mapNotify;
 
-      bool                                            m_bInitializeDataCentral;
-
       string                                          m_strLicense;
 
       i32                                             m_iWaitCursorCount;         // for wait cursor (>0 => waiting)
@@ -368,8 +366,8 @@ namespace apex
       //virtual ::user::interaction * user_interaction_from_oswindow(::windowing::window * pwindow);
 
 
-      virtual i32 hotplugin_host_starter_start_sync(const char * pszCommandLine, ::apex::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin = nullptr);
-      virtual i32 hotplugin_host_host_starter_start_sync(const char * pszCommandLine, ::apex::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin = nullptr);
+      virtual ::e_status hotplugin_host_starter_start_sync(const char * pszCommandLine, ::apex::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin = nullptr);
+      virtual ::e_status hotplugin_host_host_starter_start_sync(const char * pszCommandLine, ::apex::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin = nullptr);
 
       //virtual void on_update_view(::user::impact * pview, ::user::impact * pviewSender, LPARAM lHint, object * pHint);
 
@@ -1445,6 +1443,12 @@ namespace apex
 
       virtual string as_string(const ::payload & payload);
 
+#ifdef LINUX
+
+      virtual string get_wm_class() const;
+
+#endif
+
 
    };
 
@@ -1456,14 +1460,14 @@ namespace apex
 
 
 
-
-CLASS_DECL_APEX ::u32 c_cdecl application_thread_procedure(void * pvoid);
-
-typedef __pointer(::apex::application) (*LPFN_instantiate_application)(__pointer(::apex::application) pappParent, const char* pszId);
-
-extern CLASS_DECL_APEX LPFN_instantiate_application g_lpfn_instantiate_application;
-
-
+//
+//CLASS_DECL_APEX ::u32 c_cdecl application_thread_procedure(void * pvoid);
+//
+//typedef __pointer(::apex::application) (*LPFN_instantiate_application)(__pointer(::apex::application) pappParent, const char* pszId);
+//
+//extern CLASS_DECL_APEX LPFN_instantiate_application g_lpfn_instantiate_application;
+//
+//
 
 
 

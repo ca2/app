@@ -6,7 +6,7 @@
 //
 
 
-#include "platform/config.h"
+#include "operating_system/config.h"
 
 
 #include "__/__bit.h"
@@ -14,8 +14,8 @@
 #include "__/__inttypes.h"
 #include "_aura_type.h"
 
-#include "platform/system.h"
-#include "platform/types.h"
+#include "operating_system/system.h"
+#include "operating_system/types.h"
 #include "acme/primitive/geometry2d/_struct.h"
 #include "_aura_memory.h"
 
@@ -45,7 +45,7 @@ typedef iptr strsize;
 
 //#include "aura/platform/obj_ref_dbg.h"
 //#include "aura/platform/obj_typ_ctr.h"
-#include "aura/const/_const.h"
+//#include "aura/const/_const.h"
 //#include "aura/platform/obj_ref_dbg.h"
 //#include "acme/primitive/primitive/uid.h"
 //#include "acme/primitive/primitive/estatus.h"

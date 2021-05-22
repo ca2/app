@@ -71,7 +71,7 @@ namespace user
 #if defined(WINDOWS_DESKTOP) && !defined(ENABLE_TEXT_SERVICES_FRAMEWORK)
       //HIMC                                    m_himc;
 #endif
-
+      ::PLATFORM_NAMESPACE::interaction_impl *  m_pImpl2;
       ::rectangle_i32                           m_rectWindowScreen;
       ::rectangle_i32                           m_rectClientScreen;
       int                                       m_iState1;
@@ -82,12 +82,14 @@ namespace user
       millis                                    m_millisLastExposureAddUp;
       __composite(prodevian)                    m_pprodevian;
       __composite(::user::thread)               m_puserthread;
-      simple_object_ptra                        m_ptraProdevian;
+      __pointer_array(::matter)                 m_matteraProdevian;
       bool                                      m_bTransparentMouseEvents;
       bool                                      m_bOfflineRender;
 //      bool                                      m_bFocus;
+      __pointer(::windowing::windowing)         m_pwindowing;
       bool                                      m_bCursorRedraw;
-      double                                    m_dConfigFps;
+      double                                    m_dProdevianFps;
+      double                                    m_dNominalFps;
       double                                    m_dOutputFps;
       bool                                      m_bLockWindowUpdate;
       point_i32                                 m_pointCursor;
@@ -119,7 +121,7 @@ namespace user
       __pointer(::mutex)                        m_pmutexDraw;
       __pointer(::mutex)                        m_pmutexRedraw;
 
-      ::user::interaction_ptra                  m_uiptraMouseHover;
+      ::user::interaction_ptra                  m_userinteractionaMouseHover;
 
       ::u32                                     m_uiMessage;
       wparam                                    m_wparam;
@@ -134,6 +136,10 @@ namespace user
       bool                                      m_bPendingRedraw;
       millis                                    m_millisLastRedraw;
       ::user::interaction_array                 m_userinteractionaHideOnConfigurationChange;
+      
+      ::nanos                                   m_nanosDeviceDrawBeg;
+      ::nanos                                   m_nanosDeviceDrawEnd;
+      millis                                    m_millisLastDeviceDraw;
 
 
       interaction_impl();
@@ -145,8 +151,11 @@ namespace user
       virtual void assert_valid() const override;
       virtual void dump(dump_context & dumpcontext) const override;
 
-      virtual void set_config_fps(double dConfigFps);
-      virtual double get_config_fps();
+      virtual void set_prodevian_fps(double dProdevianFps);
+      virtual void set_nominal_fps(double dNominalFps);
+      virtual void set_fps(double dFps);
+      virtual double get_prodevian_fps();
+      virtual double get_nominal_fps();
       virtual double get_output_fps();
 
       void user_common_construct();
@@ -156,6 +165,8 @@ namespace user
       virtual void install_message_routing(::channel * pchannel) override;
 
       virtual void default_message_handler(::message::message * pusermessage) override;
+
+      virtual bool pre_message_handler(::message::key * & puserkey, bool & bKeyMessage, ::message::message* pmessage);
 
       virtual void on_tsf_activate(bool bActivate);
 
@@ -168,10 +179,13 @@ namespace user
       virtual ::e_status update_graphics_resources();
 
 
-      virtual bool create_host(::user::interaction * pinteraction);
+      virtual ::e_status set_tool_window(bool bSet) override;
 
 
-      virtual ::e_status main_async(const ::routine & routine, e_priority epriority = priority_normal) override;
+      bool create_host(::user::interaction * pinteraction) override;
+
+      virtual ::color::color screen_pixel(int x, int y) const;
+      virtual ::e_status interaction_branch(const ::routine & routine) override;
 
       // call these from window
       //virtual ::e_status set_keyboard_focus();
@@ -217,20 +231,20 @@ namespace user
       virtual bool mouse_hover_erase(::user::interaction * pinterface) override;
 
 
-      virtual void _task_transparent_mouse_event();
+      void _task_transparent_mouse_event() override;
 
 
-      virtual void track_mouse_hover();
-      virtual void track_mouse_leave();
+      virtual void track_mouse_hover() override;
+      virtual void track_mouse_leave() override;
 
-      virtual void _on_mouse_move_step(const ::point_i32 & pointCursor);
+      virtual void _on_mouse_move_step(const ::point_i32 & pointCursor, bool bMouseLeave = false);
 
       //virtual void mouse_hover_step(const __status < ::point_i32 > & statusPointCursor);
 
 
-      virtual bool add_prodevian(::object * pobject) override;
-      virtual bool erase_prodevian(::object * pobject) override;
-      inline bool has_prodevian() const noexcept { return m_ptraProdevian.has_element(); }
+      virtual bool add_prodevian(::matter * pmatter) override;
+      virtual bool erase_prodevian(::matter * pmatter) override;
+      inline bool has_prodevian() const noexcept { return m_matteraProdevian.has_element(); }
 
       virtual void prodevian_stop() override;
 
@@ -334,7 +348,7 @@ namespace user
 
 #endif   // WINVER >= 0x0500
 
-      virtual lresult send_message(const ::id & id, wparam wParam = 0, lparam lParam = 0) override;
+      virtual lresult send_message(const ::id& id, wparam wParam = 0, lparam lParam = 0, const ::point_i32 & point = nullptr) override;
 
 
 //#ifdef LINUX
@@ -360,8 +374,8 @@ namespace user
 
       virtual strsize get_window_text(char * pszStringBuf,i32 nMaxCount);
 
-      virtual void get_window_text(string & rString);
-      virtual strsize get_window_text_length();
+      void get_window_text(string & rString) override;
+      strsize get_window_text_length() override;
 
 
       // Window size_i32 and position Functions
@@ -395,17 +409,17 @@ namespace user
       virtual void SetRedraw(bool bRedraw = true) override;
       virtual bool GetUpdateRect(RECTANGLE_I32 * prectangle,bool bErase = false) override;
 
-      virtual i32 GetUpdateRgn(::draw2d::region* pRgn,bool bErase = false);
+      i32 GetUpdateRgn(::draw2d::region* pRgn,bool bErase = false) override;
       virtual void Invalidate(bool bErase = true) override;
-      virtual void InvalidateRect(const ::rectangle_i32 & rectangle,bool bErase = true);
+      void InvalidateRect(const ::rectangle_i32 & rectangle,bool bErase = true) override;
 
-      virtual void InvalidateRgn(::draw2d::region* pRgn,bool bErase = true);
-      virtual void ValidateRect(const ::rectangle_i32 & rectangle);
+      void InvalidateRgn(::draw2d::region* pRgn,bool bErase = true) override;
+      void ValidateRect(const ::rectangle_i32 & rectangle) override;
 
-      virtual void ValidateRgn(::draw2d::region* pRgn);
+      void ValidateRgn(::draw2d::region* pRgn) override;
       //virtual bool display(::e_display edisplay) override;
       //virtual bool _is_window_visible() override;
-      virtual void ShowOwnedPopups(bool bShow = true);
+      void ShowOwnedPopups(bool bShow = true) override;
 
       //virtual __pointer(::draw2d::graphics) GetDCEx(::draw2d::region* prgnClip,u32 flags);
       virtual bool LockWindowUpdate();
@@ -439,9 +453,9 @@ namespace user
 
       //virtual ::point_i32 get_cursor_position() const override;
 
-      virtual ::e_status set_cursor(::windowing::cursor * pcursor);
+      virtual ::e_status set_mouse_cursor(::windowing::cursor * pcursor) override;
 
-      virtual ::e_status set_cursor(enum_cursor ecursor) override;
+      //virtual ::e_status set_cursor(enum_cursor ecursor) override;
 
       virtual bool DrawCaption(::draw2d::graphics_pointer & pgraphics,const rectangle_i32 & prc,::u32 uFlags);
 
@@ -620,8 +634,8 @@ namespace user
 
 
       virtual bool HandleFloatingSysCommand(::u32 nID,lparam lParam);
-      virtual bool IsTopParentActive();
-      virtual void ActivateTopParent() override;
+      bool IsTopParentActive() override;
+      void ActivateTopParent() override;
       virtual void on_final_release();
 
 
@@ -674,10 +688,10 @@ namespace user
       
       virtual oswindow get_oswindow() const;
 
-      virtual ::graphics::graphics * get_window_graphics();
+      ::graphics::graphics * get_window_graphics() override;
 
       
-      virtual bool is_composite();
+      bool is_composite() override;
 
 
       virtual ::e_status set_finish(::object * pobject);
@@ -774,9 +788,38 @@ namespace user
       guie_message_wnd(::property_object * pobject);
 
 
-      virtual void message_handler(::message::message * pusermessage);
+      virtual void message_handler(::message::message * pmessage);
+
 
    }; // guie_message_wnd
+
+
+   class device_draw_life_time
+   {
+   public:
+
+
+      ::user::interaction_impl * m_pimpl;
+
+      
+      device_draw_life_time(::user::interaction_impl * pimpl) :
+         m_pimpl(pimpl)
+      {
+
+         m_pimpl->m_nanosDeviceDrawBeg.Now();
+
+      }
+
+      
+      ~device_draw_life_time()
+      {
+
+         m_pimpl->m_nanosDeviceDrawEnd.Now();
+
+      }
+
+      
+   };
 
 
 } // namespace user

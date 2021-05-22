@@ -129,7 +129,7 @@ namespace parallelization
    //}
 
 
-   void post_quit_to_all_threads(::acme::system * psystem)
+   void post_quit_to_all_threads(class ::system * psystem)
    {
 
       //__pointer(::apex::system) psystem = get_system();

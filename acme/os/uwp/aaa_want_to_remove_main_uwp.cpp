@@ -17,7 +17,7 @@ CLASS_DECL_ACME i32 main_uwp(Array < String^ >^ stra, const string & strCommandL
    //mainstruct.m_bUserEx = true;
    //mainstruct.m_bShowApplicationInformation = false;
 
-   auto psystem = __new(::acme::system());
+   auto psystem = __new(class ::system());
 
    psystem->construct_system(stra);
 

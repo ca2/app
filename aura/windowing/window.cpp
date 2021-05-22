@@ -131,6 +131,13 @@ namespace windowing
 
    }
 
+   ::color::color window::screen_pixel(int x, int y) const
+{
+
+   return m_pimpl->screen_pixel(x, y);
+
+}
+
 
    ::windowing::display * window::display()
    {
@@ -713,7 +720,7 @@ namespace windowing
    }
 
 
-   ::e_status window::set_cursor(::windowing::cursor * pcursor)
+   ::e_status window::set_mouse_cursor(::windowing::cursor * pcursor)
    {
 
       __throw(error_interface_only);
@@ -1046,3 +1053,36 @@ namespace windowing
 
 
 
+
+
+CLASS_DECL_AURA ::user::interaction* __user_interaction(::windowing::window* pwindow)
+{
+
+   if (::is_null(pwindow))
+   {
+
+      return nullptr;
+
+   }
+
+   auto pimpl = pwindow->m_pimpl;
+
+   if (::is_null(pimpl))
+   {
+
+      return nullptr;
+
+   }
+
+   auto puserinteraction = pimpl->m_puserinteraction;
+
+   if (::is_null(puserinteraction))
+   {
+
+      return nullptr;
+
+   }
+
+   return puserinteraction;
+
+}

@@ -941,6 +941,76 @@ namespace user
 
       }
 
+      if (eelement == ::user::e_element_background)
+      {
+
+         color32_t crBk;
+
+         __pointer(::aura::system) psystem = get_system();
+
+         if (m_pnode && m_pnode->is_app_dark_mode())
+         {
+
+            crBk = argb(255, 0x40, 0x40, 0x40);
+
+         }
+         else
+         {
+
+            crBk = argb(255, 255, 255, 255);
+
+         }
+
+         return crBk;
+
+      }
+      else if (eelement == ::user::e_element_face)
+      {
+
+         color32_t crBk;
+
+         __pointer(::aura::system) psystem = get_system();
+
+         if (m_pnode && m_pnode->is_app_dark_mode())
+         {
+
+            crBk = argb(255, 127, 127, 127);
+
+         }
+         else
+         {
+
+            crBk = argb(255, 192, 192, 192);
+
+         }
+
+         return crBk;
+
+      }
+      else if (eelement == ::user::e_element_text)
+      {
+
+         color32_t crText;
+
+         __pointer(::aura::system) psystem = get_system();
+
+         if (m_pnode && m_pnode->is_app_dark_mode())
+         {
+
+            crText = argb(255, 255, 255, 255);
+
+         }
+         else
+         {
+
+            crText = argb(255, 49, 50, 42);
+
+         }
+
+         return crText;
+
+      }
+
       return ::color::color();
 
    }

@@ -68,6 +68,7 @@ void matter::dump(dump_context & dumpcontext) const
 }
 
 
+
 ::e_status matter::initialize(::object * pobject)
 {
 
@@ -709,16 +710,18 @@ const char * matter::topic_text() const
 }
 
 
-void matter::sync_wait()
+::synchronization_result matter::sync_wait()
 {
 
+   return e_synchronization_result_error;
 
 }
 
 
-void matter::sync_wait(const ::duration & duration)
+::synchronization_result matter::sync_wait(const ::duration & duration)
 {
 
+   return e_synchronization_result_error;
 
 }
 

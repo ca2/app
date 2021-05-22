@@ -17,7 +17,7 @@ typedef void * aura_system_ptr;
 #else
 
 typedef void * ui_window_ptr;
-typedef ::acme::system * aura_system_ptr;
+typedef class ::system * aura_system_ptr;
 
 #endif
 

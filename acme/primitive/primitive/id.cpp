@@ -63,7 +63,7 @@ id & id::operator = (const string & str)
 
 //id & id::operator = (const string_interface & str)
 //{
-//   operator = (::acme::system::id(string(str)));
+//   operator = (class ::system::id(string(str)));
 //   return *this;
 //}
 

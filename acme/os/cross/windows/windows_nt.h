@@ -651,6 +651,9 @@ typedef struct _MEMORY_BASIC_INFORMATION
 
 #define UNICODE_STRING_MAX_CHARS 32767
 
+
+#ifdef ADVANCED_WINDOWS_NT
+
 #define FIELD_OFFSET(type, field) \
   ((::i32)(INT_PTR)&(((type *)0)->field))
 
@@ -1940,6 +1943,7 @@ NTSYSAPI void WINAPI RtlCaptureContext(CONTEXT*);
 #define PRODUCT_WEB_SERVER                              0x00000011
 #define PRODUCT_WEB_SERVER_CORE                         0x0000001D
 
+#endif //  ADVANCED_WINDOWS_NT
 
 /*
  * Language IDs
@@ -2431,6 +2435,8 @@ typedef struct _EXCEPTION_RECORD
  * The exception pointers structure passed to exception filters
  * in except() and the UnhandledExceptionFilter().
  */
+#ifdef ADVANCED_WINDOWS_NT
+
 
 typedef struct _EXCEPTION_POINTERS
 {
@@ -4702,6 +4708,8 @@ typedef struct _QUOTA_LIMITS_EX {
 #define SECTION_MAP_EXECUTE_EXPLICIT 0x0020
 #define SECTION_ALL_ACCESS         (STANDARD_RIGHTS_REQUIRED|0x01f)
 
+#endif // ADVANCED_WINDOWS_NT
+
 #define FILE_READ_DATA            0x0001    /* file & pipe */
 #define FILE_LIST_DIRECTORY       0x0001    /* directory */
 #define FILE_WRITE_DATA           0x0002    /* file & pipe */
@@ -4785,6 +4793,9 @@ typedef struct _QUOTA_LIMITS_EX {
 #define FILE_SUPPORTS_ENCRYPTION        0x00020000
 #define FILE_NAMED_STREAMS              0x00040000
 #define FILE_READ_ONLY_VOLUME           0x00080000
+
+
+#ifdef ADVANCED_WINDOWS_NT
 
 /* File alignments (NT) */
 #define	FILE_BYTE_ALIGNMENT		0x00000000
@@ -5659,6 +5670,10 @@ typedef struct _SYSTEM_LOGICAL_PROCESSOR_INFORMATION_EX
 } SYSTEM_LOGICAL_PROCESSOR_INFORMATION_EX, *PSYSTEM_LOGICAL_PROCESSOR_INFORMATION_EX;
 
 NTSYSAPI WINBOOLEAN NTAPI RtlGetProductInfo(::u32,::u32,::u32,::u32,PDWORD);
+
+
+#endif // ADVANCED_WINDOWS_NT
+
 
 #ifdef __cplusplus
 }

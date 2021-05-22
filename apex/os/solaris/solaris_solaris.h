@@ -53,40 +53,7 @@
 // based on Windows implementation and also a good limit for iterations with nanosleep and multiple locks in objects up to MAXIMUM_WAIT_OBJECTS in a single call
 #define MAXIMUM_WAIT_OBJECTS      64
 
-//union semun {
-//    i32 val;
-//    struct semid_ds * buf;
-//    USHORT * array;
-//
-//};
-
-
-
-//CLASS_DECL_APEX ::u32 get_last_error();
-//CLASS_DECL_APEX void set_last_error(::u32 dw);
-
-
 CLASS_DECL_APEX bool _istlead(i32 ch);
-
-
-oswindow GetCapture();
-oswindow SetCapture(oswindow window);
-int_bool ReleaseCapture();
-oswindow SetFocus(oswindow window);
-oswindow GetFocus();
-oswindow GetWindow(oswindow window, int iParentHood);
-oswindow GetActiveWindow();
-oswindow SetActiveWindow(oswindow window);
-int_bool DestroyWindow(oswindow window);
-oswindow get_desktop_window();
-
-
-
-
-
-bool c_xstart();
-
-extern oswindow g_oswindowDesktop;
 
 
 #endif // BASE_SOLARIS_SOLARIS_H

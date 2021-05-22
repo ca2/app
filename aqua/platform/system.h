@@ -37,7 +37,7 @@ namespace aqua
 
       //virtual ::e_status initialize_rich_text();
 
-      virtual ::xml::xml* _xml();
+      ::xml::xml* _xml() override;
 
 
       virtual ::e_status create_audio();

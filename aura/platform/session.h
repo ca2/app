@@ -97,7 +97,7 @@ namespace aura
 
       //virtual void  get_cursor_position(POINT_I32 * ppoint);
 
-      virtual bool on_get_thread_name(string& strThreadName) override;
+      bool on_get_task_name(string& strThreadName) override;
 
 
       virtual void on_request(::create * pcreate) override;
@@ -136,7 +136,7 @@ namespace aura
       virtual ::user::style* get_user_style();
 
 
-      virtual bool simple_ui_draw_focus_rect(::user::interaction * pinteraction, ::draw2d::graphics_pointer& pgraphics);
+      bool simple_ui_draw_focus_rect(::user::interaction * pinteraction, ::draw2d::graphics_pointer& pgraphics) override;
 
 
       virtual void locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const string & strLocale, const string & strSchema) override;
@@ -229,7 +229,7 @@ namespace aura
       //virtual ::draw2d::cursor * get_cursor();
       //virtual ::draw2d::cursor * get_default_cursor();
 
-      virtual bool on_ui_mouse_message(::message::mouse * pmouse);
+      virtual bool on_ui_mouse_message(::message::mouse_base * pmouse);
 
       //virtual ::user::primitive * GetActiveWindow();
       //virtual ::user::primitive * GetFocus();

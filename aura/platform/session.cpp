@@ -87,7 +87,7 @@ namespace aura
       create_factory < ::user::user >();
       create_factory < ::aura::session, ::aura::session >();
 
-      //m_strAppId                    = "core_session";
+      //m_XstrAppId                    = "core_session";
       //m_strAppName                  = "core_session";
       //m_strBaseSupportId            = "core_session";
       //m_strInstallToken             = "core_session";
@@ -257,7 +257,7 @@ namespace aura
 
 
 
-   bool session::on_get_thread_name(string& strThreadName)
+   bool session::on_get_task_name(string& strThreadName)
    {
 
       __pointer(::aura::system) psystem = get_system();
@@ -269,7 +269,7 @@ namespace aura
 
       }
 
-      return ::apex::session::on_get_thread_name(strThreadName);
+      return ::apex::session::on_get_task_name(strThreadName);
 
    }
 
@@ -1272,7 +1272,7 @@ namespace aura
    }
 
 
-   bool session::on_ui_mouse_message(::message::mouse* pmouse)
+   bool session::on_ui_mouse_message(::message::mouse_base * pmouse)
    {
 
       auto puser = user();

@@ -7,7 +7,7 @@
 // public:
 
 
-//    string      m_strAppId;
+//    string      m_XstrAppId;
 //    string      m_strPlatform;
 //    string      m_strConfiguration;
 //    string      m_strLocale;

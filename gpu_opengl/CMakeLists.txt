@@ -60,6 +60,14 @@ list(APPEND library_references
         )
 
 
+if(LINUX)
+
+    list(APPEND library_references
+       aura_posix
+       )
+
+endif()
+
 add_library(gpu_opengl SHARED ${gpu_opengl_source})
 
 target_precompile_headers(gpu_opengl PRIVATE framework.h)
@@ -74,7 +82,7 @@ if (MSVC)
     target_link_libraries(gpu_opengl PRIVATE glu32 glew32 opengl32)
     target_link_libraries(gpu_opengl PRIVATE ${library_references})
 elseif(LINUX)
-    pkg_check_modules(PKGCONFIG glib-2.0)
+    #pkg_check_modules(PKGCONFIG glib-2.0)
     target_compile_options(gpu_opengl PRIVATE -fpermissive)
     target_compile_options(gpu_opengl PRIVATE ${PKGCONFIG_CFLAGS})
     target_link_options(gpu_opengl PRIVATE -Wl,-rpath=\$ORIGIN)
@@ -82,7 +90,7 @@ elseif(LINUX)
     target_link_libraries(gpu_opengl PRIVATE ${PKGCONFIG_LIBRARIES})
     target_link_libraries(gpu_opengl PRIVATE acme apex aqua aura)
     target_link_libraries(gpu_opengl PRIVATE ${library_references})
-    target_link_libraries(gpu_opengl PRIVATE windowing_x11)
+    target_link_libraries(gpu_opengl PRIVATE ${default_windowing})
     target_link_options(gpu_opengl PRIVATE -Wl,-z,defs)
     ##message("PKGCONFIG_LIBRARIES is " ${PKGCONFIG_LIBRARIES})
 endif()

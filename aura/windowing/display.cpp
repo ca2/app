@@ -225,6 +225,8 @@ namespace windowing
 
          pmonitor->m_iIndex = iMonitor;
 
+         pmonitor->m_pdisplay = this;
+
       }
 
       auto bOk = pmonitor->get_monitor_rectangle(prectangle);
@@ -292,6 +294,8 @@ namespace windowing
          __construct(pmonitor);
 
          pmonitor->m_iIndex = iWorkspace;
+
+         pmonitor->m_pdisplay = this;
 
       }
 

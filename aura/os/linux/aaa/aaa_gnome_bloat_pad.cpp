@@ -37,7 +37,7 @@ gboolean linux_start_system(gpointer data)
 
    ::aura::system * psystem = (::aura::system *) data;
 
-   //psystem->m_strAppId = psystem->m_pmaindata->m_strAppId;
+   //psystem->m_XstrAppId = psystem->m_pmaindata->m_XstrAppId;
 
    //psystem->startup_command(psystem->m_pmaindata);
 
@@ -100,7 +100,7 @@ void apex_application_startup (GApplication *application)
 
    ::apex::system * psystem = (::apex::system *) ::get_context_system();
 
-   //psystem->m_strAppId = psystem->m_pmaindata->m_strAppId;
+   //psystem->m_XstrAppId = psystem->m_pmaindata->m_XstrAppId;
 
    //psystem->startup_command(psystem->m_pmaindata);
 

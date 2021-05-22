@@ -598,7 +598,15 @@ namespace user
          if (!m_bEdit || m_itemHover == e_element_drop_down)
          {
 
-            pmouse->m_ecursor = e_cursor_arrow;
+            auto psession = get_session();
+
+            auto puser = psession->user();
+
+            auto pwindowing = puser->windowing();
+
+            auto pcursor = pwindowing->get_cursor(e_cursor_arrow);
+
+            pmouse->m_pcursor = pcursor;
 
             pmouse->m_bRet = true;
 

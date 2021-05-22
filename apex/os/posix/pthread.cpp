@@ -277,20 +277,20 @@ CLASS_DECL_APEX itask_t get_current_ithread()
 }
 
 
-void __node_init_multithreading()
-{
+// void __node_init_multithreading()
+// {
 
-   //__node_init_cross_windows_threading();
+//    //__node_init_cross_windows_threading();
 
-}
+// }
 
 
-void __node_term_multithreading()
-{
+// void __node_term_multithreading()
+// {
 
-   //__node_term_cross_windows_threading();
+//    //__node_term_cross_windows_threading();
 
-}
+// }
 
 
 #if defined(LINUX) // || defined(ANDROID)
@@ -336,7 +336,7 @@ void * os_thread_thread_proc(void * pparameter);
 
 
 
-int_bool WINAPI SetThreadPriority(htask_t htask, i32 nCa2Priority)
+int_bool SetThreadPriority(htask_t htask, i32 nCa2Priority)
 {
 
    i32 iPolicy;
@@ -360,10 +360,7 @@ i32 get_os_thread_priority(::e_priority epriority)
 }
 
 
-
-
-
-i32 WINAPI GetThreadPriority(htask_t  htask)
+i32 GetThreadPriority(htask_t  htask)
 {
 
    int iOsPolicy = SCHED_OTHER;
@@ -372,13 +369,11 @@ i32 WINAPI GetThreadPriority(htask_t  htask)
 
    schedparam.sched_priority = 0;
 
-   pthread_getschedparam((itask_t)htask, &iOsPolicy, &schedparam);
+   pthread_getschedparam((pthread_t)htask, &iOsPolicy, &schedparam);
 
    return thread_get_scheduling_priority(iOsPolicy, &schedparam);
 
 }
-
-
 
 
 static htask_t g_hMainThread = (htask_t) nullptr;
@@ -629,7 +624,7 @@ void thread_get_os_priority(i32 * piPolicy, sched_param * pparam, ::e_priority e
 
 #if !defined(__APPLE__) && !defined(ANDROID)
 
-string thread_get_name()
+string task_get_name()
 {
 
    char szThreadName[32];
@@ -654,7 +649,7 @@ string thread_get_name()
 
 
 
-string thread_get_name()
+string task_get_name()
 {
    /* Try obtaining the thread name.
     * If this fails, we'll return a pointer to an empty string. */

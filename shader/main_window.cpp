@@ -17,15 +17,13 @@ namespace app_shader
 
       m_iShader = 0;
 
-      payload(FONTSEL_IMPACT) = true;
-
       m_flagNonClient.erase(non_client_background);
 
       m_flagNonClient.erase(non_client_focus_rect);
 
       m_colorBackground = 0;
 
-      //m_bSimpleUIDefaultMouseHandling = true;
+      m_bSimpleUIDefaultMouseHandling = true;
 
    }
 
@@ -77,7 +75,7 @@ namespace app_shader
 
       get_top_level()->set_prodevian();
 
-      update_shader();
+      update_shader(0);
 
    }
 
@@ -132,44 +130,49 @@ namespace app_shader
 
       auto rectClient = layout().get_client_rect();
 
-      if (m_bSaveFrame)
+      auto & prender = m_rendera.element_at_grow(m_iShader);
+
+      if(::is_set(prender))
       {
 
-         auto pimage = create_image(rectClient);
+         prender->_001OnDraw(pgraphics);
 
-         m_bSaveFrame = false;
+         if (m_bSaveFrame)
+         {
 
-         ::draw2d::graphics_pointer pgraphics = pimage->get_graphics();
+            m_bSaveFrame = false;
 
-         m_rendera[m_iShader]->_001OnDraw(pgraphics);
+            auto pimage = create_image(rectClient);
 
-         fork([this, pimage]()
-            {
+            ::draw2d::graphics_pointer pgraphics = pimage->get_graphics();
 
-               auto psaveimage = __new(save_image());
+            prender->_001OnDraw(pgraphics);
 
-               psaveimage->m_eformat = ::draw2d::format_png;
+            fork([this, pimage]()
+                 {
 
-               auto psystem = m_psystem->m_paurasystem;
+                    auto psaveimage = __new(save_image());
 
-               auto pdatetime = psystem->m_pdatetime;
+                    psaveimage->m_eformat = ::draw2d::format_png;
 
-               string strDate = pdatetime->international().get_gmt_date_time(INTERNATIONAL_DATE_TIME_FORMAT_FOR_FILE);
+                    auto psystem = m_psystem->m_paurasystem;
 
-               auto papplication = get_application();
+                    auto pdatetime = psystem->m_pdatetime;
 
-               auto pcontext = m_pcontext;
+                    string strDate = pdatetime->international().get_gmt_date_time(INTERNATIONAL_DATE_TIME_FORMAT_FOR_FILE);
 
-               auto pcontextimage = pcontext->context_image();
+                    auto papplication = get_application();
 
-               pcontextimage->save_image("image://app_simple_shader-" + strDate + ".png", pimage, psaveimage);
+                    auto pcontext = m_pcontext;
 
-            });
+                    auto pcontextimage = pcontext->context_image();
 
+                    pcontextimage->save_image("image://app_simple_shader-" + strDate + ".png", pimage, psaveimage);
 
+                 });
+
+         }
       }
-
-      m_rendera[m_iShader]->_001OnDraw(pgraphics);
 
       ::user::interaction::_001OnDraw(pgraphics);
 
@@ -188,9 +191,16 @@ namespace app_shader
 
       }
 
-      m_rendera[m_iShader]->m_rectangle = rectClient;
+      auto & prender = m_rendera.element_at_grow(m_iShader);
 
-      m_rendera[m_iShader]->on_layout(pgraphics);
+      if(::is_set(prender))
+      {
+
+         prender->m_rectangle = rectClient;
+
+         prender->on_layout(pgraphics);
+
+      }
 
       ::user::main_window::on_layout(pgraphics);
 
@@ -207,66 +217,71 @@ namespace app_shader
 
       }
 
-      m_iShader++;
+      int iNewShader = m_iShader + 1;
 
-      if (m_iShader > 14)
+      if (iNewShader > 14)
       {
 
-         m_iShader = 1;
+         iNewShader = 0;
 
       }
 
-      update_shader();
+      update_shader(iNewShader);
+
+      m_iShader = iNewShader;
 
       return true;
 
    }
 
 
-   void main_window::update_shader()
+   void main_window::update_shader(int iShader)
    {
-
-      synchronous_lock synchronouslock(mutex());
 
       start_layout();
 
-      if (m_rendera.get_count() <= m_iShader)
-      {
+      auto prender = __create_new < render >();
 
-         m_rendera.set_size(m_iShader + 1);
-
-      }
-
-      auto estatus = __construct_new(m_rendera[m_iShader]);
-
-      if (!estatus)
+      if (!prender)
       {
 
          return;
 
       }
 
-      //m_rendera[m_iShader]->initialize_application_consumer();
-
-      m_rendera[m_iShader]->m_pinteraction = this;
+      prender->m_pinteraction = this;
 
       string strText;
 
-      m_rendera[m_iShader]->m_strShaderPrefix.Format("%d", m_iShader + 1);
+      if(iShader == 0)
+      {
 
-      m_rendera[m_iShader]->update_shader();
+         prender->m_strShaderPrefix = "default";
 
-      //string str;
+      }
+      else
+      {
 
-      //str.Format("%d", m_iShader + 1);
+         prender->m_strShaderPrefix.Format("%d", iShader);
 
-      //m_rendera[m_iShader]->defer_load_fragment(str);
+      }
+
+      prender->update_shader();
+
+      {
+
+         synchronous_lock synchronouslock(mutex());
+
+         m_rendera.set_at_grow(iShader, prender);
+
+      }
 
       set_layout_ready();
 
       set_need_layout();
 
    }
+
 
    void main_window::_001DrawItem(::draw2d::graphics_pointer& pgraphics, ::user::item* pitem)
    {

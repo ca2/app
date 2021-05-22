@@ -10,10 +10,10 @@
 #include <D2d1.h>
 #endif
 
-rect_type(const Gdiplus::Rect & t) noexcept { __copy(this, &t); }
-rect_type(const Gdiplus::RectF & t) noexcept { __copy(this, &t); }
-rect_type(const Gdiplus::Rect * p) noexcept { __copy(this, p); }
-rect_type(const Gdiplus::RectF * p) noexcept { __copy(this, p); }
+rectangle_type(const Gdiplus::Rect & t) noexcept { __copy(this, &t); }
+rectangle_type(const Gdiplus::RectF & t) noexcept { __copy(this, &t); }
+rectangle_type(const Gdiplus::Rect * p) noexcept { __copy(this, p); }
+rectangle_type(const Gdiplus::RectF * p) noexcept { __copy(this, p); }
 
 
 inline auto left(const Gdiplus::Rect * prectangle) { return prectangle->X; }

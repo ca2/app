@@ -83,7 +83,7 @@ namespace experience
 
 #ifdef WINDOWS_DESKTOP
 
-#include "aura/node/windows/user.h"
+//#include "aura/node/windows/user.h"
 
 #elif defined(MACOS)
 
@@ -521,7 +521,7 @@ typedef struct _AppIndicator AppIndicator;
 
 
 
-
+#include "acme/const/activate.h"
 #include "aura/message/user.h"
 #include "aura/message/timer.h"
 

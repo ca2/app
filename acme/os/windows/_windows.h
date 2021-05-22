@@ -30,12 +30,12 @@ inline void copy(MSG * pmsg, const MESSAGE * pmessage)
 
 }
 
-namespace str
-{
+// namespace str
+// {
 
-   string CLASS_DECL_ACME get_window_text_timeout(oswindow oswindow, millis tickTimeout = 1000);
+//    string CLASS_DECL_ACME get_window_text_timeout(oswindow oswindow, millis tickTimeout = 1000);
 
-} // namespace str
+// } // namespace str
 
 
 CLASS_DECL_ACME void TRACELASTERROR();
@@ -224,7 +224,6 @@ CLASS_DECL_ACME BSTR SetSysString(BSTR * pbstr, const string & str);
 
 
 CLASS_DECL_ACME int_bool read_resource_as_file(const char * pszFile, HINSTANCE hinst, ::u32 nID, LPCTSTR pcszType);
-
 
 
 #include "acme/os/windows/exception_engine.h"

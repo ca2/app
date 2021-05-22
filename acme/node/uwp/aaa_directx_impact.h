@@ -32,7 +32,7 @@ namespace uwp
       bool        m_bTextCompositionActive;
       widestring  m_strText;
       widestring  m_strNewText;
-      ::acme::system* m_psystem;
+      class ::system* m_psystem;
 
       Agile < Windows::UI::Core::CoreWindow > m_window;
 

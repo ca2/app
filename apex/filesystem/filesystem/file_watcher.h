@@ -37,17 +37,17 @@ namespace file
    /// Actions to listen for. Rename will send two events, one for
    /// the deletion of the old file, and one for the creation of the
    /// new file.
-   enum e_action
+   enum enum_action
    {
       
       
-      action_none = 0,
+      e_action_none = 0,
       /// Sent when a file is created or renamed
-      action_add = 1,
+      e_action_add = 1,
       /// Sent when a file is deleted or renamed
-      action_delete = 2,
+      e_action_delete = 2,
       /// Sent when a file is modified
-      action_modify = 4
+      e_action_modify = 4
       
 
    };
@@ -59,11 +59,11 @@ namespace file
    public:
 
 
-      watch *              m_pwatch;
-      watch_id             m_id;
-      ::file::path         m_pathFolder;
-      ::file::path         m_pathFile;
-      enumeration < e_action >   m_eaction;
+      watch *                          m_pwatch;
+      watch_id                         m_id;
+      ::file::path                     m_pathFolder;
+      ::file::path                     m_pathFile;
+      enumeration < enum_action >      m_eaction;
 
 
    };

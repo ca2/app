@@ -562,7 +562,6 @@ namespace acme
 
       ::initialize_future_critical_section();
 
-
       //::update::g_pcs = new critical_section();
 
 #ifndef __MCRTDBG
@@ -990,7 +989,7 @@ namespace acme
 
       delete_all_release_on_end();
 
-      ::initialize_future_critical_section();
+      ::finalize_future_critical_section();
 
       ::acme::del(g_pcsGlobal);
 

@@ -5708,30 +5708,30 @@ string get_bundle_app_library_name();
 
       strLibrary.replace(".", "_");
 
-
-
       auto plibrary = __node_library_open(strLibrary, strMessage);
 
       if (!plibrary)
       {
 
-         {
+//         {
+//
+//            auto pfuture = __sync_future();
+//
+//            //message_box(strMessage, "Could not open required library. Want to give an yes/no answer insted of pression cancel?", e_message_box_icon_exclamation | e_message_box_yes_no_cancel, pfuture);
+//
+//            pfuture->wait(10_s);
+//
+//            int iDialogResult = pfuture->m_var;
+//
+//            ::output_debug_string("result " + __str(iDialogResult));
+//
+//         }
 
-            auto pfuture = __sync_future();
+         //__throw(error_failed, strMessage + "\n\nCould not open required library.");
 
-            //message_box(strMessage, "Could not open required library. Want to give an yes/no answer insted of pression cancel?", e_message_box_icon_exclamation | e_message_box_yes_no_cancel, pfuture);
+         ::output_debug_string("Dynamic library for app_id \"" + strAppId + "\" wasn't loaded.");
 
-            pfuture->wait(10_s);
-
-            int iDialogResult = pfuture->m_var;
-
-            ::output_debug_string("result " + __str(iDialogResult));
-
-         }
-
-         __throw(error_failed, strMessage + "\n\nCould not open required library.");
-
-         return nullptr;
+         //return nullptr;
 
       }
 

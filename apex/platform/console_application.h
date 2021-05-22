@@ -2,7 +2,7 @@
 
 
 class CLASS_DECL_APEX console_application :
-   virtual public ::apex::application
+   virtual public ::application
 {
 public:
 

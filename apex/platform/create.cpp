@@ -123,7 +123,7 @@ void create::create_common_construct(const ::payload & varOptions, ::user::primi
 }
 
 
-::apex::application* create::create_get_application(::apex::application* pappFallback)
+::application* create::create_get_application(::application* pappFallback)
 {
 
    auto pobject = this;

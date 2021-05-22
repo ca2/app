@@ -31,7 +31,7 @@ namespace core
 
       m_pcoresystem = this;
 
-      create_factory < ::core::application, ::apex::application >();
+      create_factory < ::core::application, ::application >();
       create_factory < ::core::session, ::apex::session >();
       create_factory < ::core::idpool, ::acme::idpool >();
       create_factory < ::core::user, ::user::user >();

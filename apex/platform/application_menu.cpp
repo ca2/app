@@ -7,11 +7,11 @@
 
 #include "framework.h"
 
-
-namespace apex
-{
-   
-   
+//
+//namespace apex
+//{
+//
+//
    application_menu_item::application_menu_item()
    {
       
@@ -33,8 +33,8 @@ namespace apex
       
    }
 
-   
-} // namespace apex
-
-
-
+//   
+//} // namespace apex
+//
+//
+//

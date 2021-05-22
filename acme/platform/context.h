@@ -13,7 +13,7 @@ namespace acme
 
       ::apex::context *                               m_papexcontext;
       ::aura::context *                               m_pauracontext;
-      ::apex::application *                           m_papexapplication;
+      ::application *                           m_papexapplication;
       ::aqua::application *                           m_paquaapplication;
       ::aura::application *                           m_pauraapplication;
       ::axis::application *                           m_paxisapplication;

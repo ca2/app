@@ -2157,7 +2157,7 @@ bool file_context::get_last_write_time(filetime_t *pfiletime, const string &strF
 
 //   i64 iTry = 0;
 
-//   ::apex::application * papp = ::get_application(pobject);
+//   ::application * papp = ::get_application(pobject);
 
 //   while (true)
 //   {
@@ -2716,7 +2716,7 @@ file_result file_context::get_file(const ::payload &varFile, const ::file::e_ope
          //else if (::str::begins_eat_ci(path, "matter://"))
          //{
 
-         //   __pointer(::apex::application) pappLookup;
+         //   __pointer(::application) pappLookup;
 
          //   string strApp = purl->get_server("matter://" + strPath);
 

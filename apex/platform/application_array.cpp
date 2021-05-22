@@ -16,7 +16,7 @@ application_array::application_array()
 
 
 application_array::application_array(const application_array & array):
-   __pointer_array(::apex::application)(array)
+   __pointer_array(::application)(array)
 {
 
 }
@@ -25,7 +25,7 @@ application_array::application_array(const application_array & array):
 application_array & application_array::operator = (const application_array & array)
 {
 
-   __pointer_array(::apex::application)::operator = (array);
+   __pointer_array(::application)::operator = (array);
 
    return *this;
 
@@ -33,7 +33,7 @@ application_array & application_array::operator = (const application_array & arr
 
 
 application_array::application_array(application_array && array):
-   __pointer_array(::apex::application)(array)
+   __pointer_array(::application)(array)
 {
 
 }
@@ -42,7 +42,7 @@ application_array::application_array(application_array && array):
 application_array & application_array::operator = (application_array && array)
 {
 
-   __pointer_array(::apex::application)::operator = (array);
+   __pointer_array(::application)::operator = (array);
 
    return *this;
 
@@ -67,7 +67,7 @@ application_array::~application_array()
 }
 
 
-::apex::application * application_array::find_by_app_name(string strAppName)
+::application * application_array::find_by_app_name(string strAppName)
 {
 
    //synchronous_lock synchronouslock(mutex());
@@ -109,10 +109,10 @@ restart:
 }
 
 
-::apex::application * application_array::find_running_defer_try_quit_damaged(string strAppName)
+::application * application_array::find_running_defer_try_quit_damaged(string strAppName)
 {
 
-   __pointer(::apex::application) papp = find_by_app_name(strAppName);
+   __pointer(::application) papp = find_by_app_name(strAppName);
 
    if (papp.is_null())
    {
@@ -155,7 +155,7 @@ restart:
 }
 
 
-bool application_array::lookup(string strAppName, __pointer(::apex::application) & papp)
+bool application_array::lookup(string strAppName, __pointer(::application) & papp)
 {
 
    papp = find_running_defer_try_quit_damaged(strAppName);

@@ -115,7 +115,7 @@ namespace linux
 ////      ::e_status PASCAL ErrnoToException(i32 nErrno);
 //      void throw_os_error(::i32 lOsError, const char * pszFileName = nullptr);
 
-//      //void PASCAL ThrowErrno(__pointer(::apex::application) papp, i32 nErrno, const char * pszFileName = nullptr);
+//      //void PASCAL ThrowErrno(__pointer(::application) papp, i32 nErrno, const char * pszFileName = nullptr);
 
 //
 //

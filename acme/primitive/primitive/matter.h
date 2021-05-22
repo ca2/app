@@ -135,9 +135,9 @@ public:
 
    inline class ::system* get_system() const { return (class ::system *) m_psystem; }
 
-   inline ::apex::application* get_application() { return _get_application(); }
+   inline class ::application* get_application() { return _get_application(); }
 
-   virtual ::apex::application* _get_application();
+   virtual class ::application* _get_application();
 
    virtual bool is_thread() const;
    virtual ::thread * get_thread();

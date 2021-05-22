@@ -99,8 +99,8 @@ namespace base
 
 
       virtual void defer_instantiate_user_style(const char* pszUiInteractionLibrary = nullptr);
-      ::user::style_pointer instantiate_user_style(const char* pszExperienceLibrary, ::apex::application* papp = nullptr);
-      ::user::style_pointer get_user_style(const char* pszExperienceLibrary, ::apex::application* papp = nullptr);
+      ::user::style_pointer instantiate_user_style(const char* pszExperienceLibrary, ::application* papp = nullptr);
+      ::user::style_pointer get_user_style(const char* pszExperienceLibrary, ::application* papp = nullptr);
 
 
       //virtual ::type get_pane_tab_view_type_info();

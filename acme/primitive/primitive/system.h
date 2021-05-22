@@ -16,7 +16,7 @@ namespace apex
    public:
 
 
-      __reference(::apex::application)                   m_papplicationStartup;
+      __reference(::application)                   m_papplicationStartup;
 
       __composite(::apex::system)                        m_psystemParent;
 
@@ -241,7 +241,7 @@ namespace apex
       virtual ::e_status  initialize(::object * pobject) override;
 
 
-      virtual ::apex::application* get_main_application() override;
+      virtual ::application* get_main_application() override;
 
 
       virtual ::e_status init();
@@ -787,8 +787,8 @@ namespace apex
 
 
       virtual string get_user_language();
-      virtual bool set_user_language(::apex::application * papp, index iSel);
-      virtual bool set_user_language(::apex::application * papp, string strLang);
+      virtual bool set_user_language(::application * papp, index iSel);
+      virtual bool set_user_language(::application * papp, string strLang);
 
       void chromium(string strUrl, string strBrowser, string strId, ::file::path path, string strProfile, string strParam);
 

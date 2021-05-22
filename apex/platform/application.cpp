@@ -113,10 +113,10 @@ CLASS_DECL_APEX int ui_open_url(const char * psz);
 
 //extern void * g_pf1;
 
-
-namespace apex
-{
-
+//
+//namespace apex
+//{
+//
 
    application::application(const char * pszAppId) :
       m_strAppId(::is_set(pszAppId) ? pszAppId : "")
@@ -805,7 +805,7 @@ namespace apex
       if (is_service())
       {
 
-         ::apex::application::on_service_request(pcreate);
+         ::application::on_service_request(pcreate);
 
       }
       else
@@ -1989,7 +1989,7 @@ namespace apex
          try
          {
 
-            __raw_compose(m_pinterprocessintercommunication, create_interprocess_intercommunication() OBJ_REF_DBG_COMMA_THIS_NOTE("::apex::application::init_instance"));
+            __raw_compose(m_pinterprocessintercommunication, create_interprocess_intercommunication() OBJ_REF_DBG_COMMA_THIS_NOTE("::application::init_instance"));
 
          }
          catch (...)
@@ -3331,7 +3331,7 @@ retry_license:
 
       //}
 
-      //if (!::apex::application::process_init())
+      //if (!::application::process_init())
       //{
 
       //   FATAL("axis::application::process_init .1");
@@ -3551,7 +3551,7 @@ retry_license:
 
       __pointer(::apex::system) psystem = get_system();
 
-      estatus = __own(this, m_puserlanguagemap, __new(::user::language_map) OBJ_REF_DBG_COMMA_THIS_NOTE("::apex::application::init1") );
+      estatus = __own(this, m_puserlanguagemap, __new(::user::language_map) OBJ_REF_DBG_COMMA_THIS_NOTE("::application::init1") );
 
       if (!estatus)
       {
@@ -3963,7 +3963,7 @@ retry_license:
 
          auto pexclusiveNew = __new(::acme::exclusive(strId ADD_PARAM_SEC_ATTRS));
 
-         __m_own(this, pexclusive, pexclusiveNew OBJ_REF_DBG_COMMA_THIS_NOTE("::apex::application::get_exclusive") );
+         __m_own(this, pexclusive, pexclusiveNew OBJ_REF_DBG_COMMA_THIS_NOTE("::application::get_exclusive") );
 
       }
 
@@ -4943,7 +4943,7 @@ retry_license:
 
 
 
-   //i32 application::hotplugin_host_starter_start_sync(const char * pszCommandLine, ::apex::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin)
+   //i32 application::hotplugin_host_starter_start_sync(const char * pszCommandLine, ::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin)
    //{
 
    //   return -1;
@@ -6236,7 +6236,7 @@ retry_license:
    //void application::SetCurrentHandles()
    //{
 
-   //   ::apex::application::SetCurrentHandles();
+   //   ::application::SetCurrentHandles();
 
    //}
 
@@ -6294,7 +6294,7 @@ retry_license:
    //::e_status     application::main()
    //{
 
-   //   return ::apex::application::main();
+   //   return ::application::main();
 
    //}
 
@@ -6403,7 +6403,7 @@ retry_license:
    //::e_status application::init_application()
    //{
 
-   //   return ::apex::application::init_application();
+   //   return ::application::init_application();
 
    //}
 
@@ -6411,7 +6411,7 @@ retry_license:
    //::e_status application::application_pre_run()
    //{
 
-   //   return ::apex::application::application_pre_run();
+   //   return ::application::application_pre_run();
 
    //}
 
@@ -6429,7 +6429,7 @@ retry_license:
    //{
 
 
-   //   if (!::apex::application::do_install())
+   //   if (!::application::do_install())
    //   {
 
    //      return false;
@@ -6484,7 +6484,7 @@ retry_license:
    //::e_status application::os_native_bergedge_start()
    //{
 
-   //   if (!::apex::application::os_native_bergedge_start())
+   //   if (!::application::os_native_bergedge_start())
    //   {
 
    //      return false;
@@ -6507,15 +6507,15 @@ retry_license:
    //::e_status     application::run()
    //{
 
-   //   return ::apex::application::run();
+   //   return ::application::run();
 
    //}
 
 
-   //__pointer(::apex::application) application::assert_running(const char * pszAppId)
+   //__pointer(::application) application::assert_running(const char * pszAppId)
    //{
 
-   //   __pointer(::apex::application) papp;
+   //   __pointer(::application) papp;
 
    //   papp = psession->m_applicationa.find_running_defer_try_quit_damaged(pszAppId);
 
@@ -6560,7 +6560,7 @@ retry_license:
 
    //   }
 
-   //   if (!::apex::application::process_init())
+   //   if (!::application::process_init())
    //   {
 
    //      FATAL("axis::application::process_init .1");
@@ -6595,7 +6595,7 @@ retry_license:
 
    //   //m_bAxisInitializeInstanceResult = false;
 
-   //   if (!::apex::application::init_instance())
+   //   if (!::application::init_instance())
    //   {
 
    //      FATAL("axis::application::init_instance .2");
@@ -6682,7 +6682,7 @@ retry_license:
 
    //   m_millisHeartBeat.Now();
 
-   //   if (!::apex::application::init1())
+   //   if (!::application::init1())
    //   {
 
    //      return false;
@@ -6708,7 +6708,7 @@ retry_license:
    //::e_status application::init2()
    //{
 
-   //   if (!::apex::application::init2())
+   //   if (!::application::init2())
    //      return false;
 
    //   return true;
@@ -6719,7 +6719,7 @@ retry_license:
    //::e_status application::init3()
    //{
 
-   //   if (!::apex::application::init3())
+   //   if (!::application::init3())
    //   {
 
    //      return false;
@@ -7279,7 +7279,7 @@ retry_license:
    //void application::on_service_request(::create * pcreate)
    //{
 
-   //   ::apex::application::on_service_request(pcreate);
+   //   ::application::on_service_request(pcreate);
 
    //}
 
@@ -7317,7 +7317,7 @@ retry_license:
    //}
 
 
-   ::e_status application::hotplugin_host_starter_start_sync(const char * pszCommandLine, ::apex::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin)
+   ::e_status application::hotplugin_host_starter_start_sync(const char * pszCommandLine, ::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin)
    {
 
       {
@@ -7367,7 +7367,7 @@ retry_license:
    }
 
 
-   ::e_status application::hotplugin_host_host_starter_start_sync(const char * pszCommandLine, ::apex::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin)
+   ::e_status application::hotplugin_host_host_starter_start_sync(const char * pszCommandLine, ::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin)
    {
 
       return -1;
@@ -7617,7 +7617,7 @@ retry_license:
    //::e_status application::initialize(::object * pobject)
    //{
 
-   //   auto estatus = ::apex::application::initialize(pobject);
+   //   auto estatus = ::application::initialize(pobject);
 
    //   if (!estatus)
    //   {
@@ -7633,7 +7633,7 @@ retry_license:
 
 
 
-   //::apex::application * application::get_application() const
+   //::application * application::get_application() const
    //{
 
    //   return (application *) this;
@@ -7781,7 +7781,7 @@ retry_license:
   /* ::e_status     application::run()
    {
 
-      return ::apex::application::run();
+      return ::application::run();
 
    }*/
 
@@ -8462,7 +8462,7 @@ retry_license:
    //bool application::process_exception(const ::exception::exception & e)
    //{
 
-   //   return ::apex::application::on_run_exception(pexception))
+   //   return ::application::on_run_exception(pexception))
    //   {
 
    //      return false;
@@ -9346,7 +9346,7 @@ retry_license:
    //   try
    //   {
 
-   //      ::apex::application::term();
+   //      ::application::term();
 
    //   }
    //   catch (...)
@@ -9493,7 +9493,7 @@ retry_license:
 //   void application::dump(dump_context& dumpcontext) const
 //   {
 //
-//      ::apex::application::dump(dumpcontext);
+//      ::application::dump(dumpcontext);
 //
 //      dumpcontext << "\nm_bHelpMode = " << m_bHelpMode;
 //      dumpcontext << "\nm_pszHelpFilePath = " << m_strHelpFilePath;
@@ -9702,7 +9702,7 @@ retry_license:
    //bool application::on_install()
    //{
 
-   //   if (!::apex::application::on_install())
+   //   if (!::application::on_install())
    //   {
 
    //      return false;
@@ -9756,7 +9756,7 @@ retry_license:
    //bool application::on_uninstall()
    //{
 
-   //   bool bOk = ::apex::application::on_uninstall();
+   //   bool bOk = ::application::on_uninstall();
 
    //   string strId = m_strId;
 
@@ -10023,7 +10023,7 @@ retry_license:
 
 
 
-   //::apex::application * application::psystem
+   //::application * application::psystem
    //{
 
    //   return ::object::psystem;
@@ -10048,11 +10048,11 @@ retry_license:
 
 
    /*
-   __pointer(::apex::application) application::assert_running(const char * pszAppId)
+   __pointer(::application) application::assert_running(const char * pszAppId)
    {
 
 
-   __pointer(::apex::application) papp = nullptr;
+   __pointer(::application) papp = nullptr;
 
 
    try
@@ -10163,7 +10163,7 @@ retry_license:
    }
 
 
-   __pointer(::apex::application) application::create_platform(::apex::session* psession)
+   __pointer(::application) application::create_platform(::apex::session* psession)
    {
 
       return __new(::apex::session);
@@ -10197,7 +10197,7 @@ retry_license:
    //void application::_001OnFranceExit()
    //{
 
-   //   ::apex::application::_001OnFranceExit();
+   //   ::application::_001OnFranceExit();
 
    //}
 
@@ -10318,7 +10318,7 @@ retry_license:
 
    //   }
 
-   //   return ::apex::application::control_type_from_id(id, econtroltype);
+   //   return ::application::control_type_from_id(id, econtroltype);
 
    //}
 
@@ -10404,7 +10404,7 @@ retry_license:
    //::e_status application::initialize(::object * pobject)
    //{
 
-   //   auto estatus = ::apex::application::initialize(pobject);
+   //   auto estatus = ::application::initialize(pobject);
 
    //   if (!estatus)
    //   {
@@ -10428,7 +10428,7 @@ retry_license:
       //void application::task(::machine * pchange)
       //{
 
-      //   ::apex::application::task(ptask);
+      //   ::application::task(ptask);
 
       //   if (ptask->m_bRet)
       //   {
@@ -10452,7 +10452,7 @@ retry_license:
    //::e_status application::process_init()
    //{
 
-   //   if (::apex::application::process_init())
+   //   if (::application::process_init())
    //   {
 
    //      return true;
@@ -10467,7 +10467,7 @@ retry_license:
    //::e_status application::init_instance()
    //{
 
-   //   if (!::apex::application::init_instance())
+   //   if (!::application::init_instance())
    //   {
 
    //      return false;
@@ -10723,7 +10723,7 @@ retry_license:
    //void application::SetCurrentHandles()
    //{
 
-   //   ::apex::application::SetCurrentHandles();
+   //   ::application::SetCurrentHandles();
 
    //}
 
@@ -10867,7 +10867,7 @@ retry_license:
    //__pointer(::user::document) application::defer_create_view(string strView, ::user::interaction* puiParent, ewindowflag ewindowflag, const ::id& id)
    //{
 
-   //   auto pcontroller = ::apex::application::defer_create_view(strView, puiParent, ewindowflag, id);
+   //   auto pcontroller = ::application::defer_create_view(strView, puiParent, ewindowflag, id);
 
    //   if (pcontroller)
    //   {
@@ -11127,4 +11127,24 @@ retry_license:
 #endif
 
 
-} // namespace apex
+//} // namespace apex
+
+
+void application_on_menu_action(void * pApplication, const char * pszCommand)
+{
+   
+   auto papplication = (class ::application *) pApplication;
+   
+   papplication->on_application_menu_action(pszCommand);
+   
+}
+
+
+void * application_system(void * pApplication)
+{
+   
+   auto papplication = (class ::application *) pApplication;
+   
+   return papplication->m_psystem;
+   
+}

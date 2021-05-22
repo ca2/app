@@ -52,7 +52,7 @@ namespace base
    }
 
 
-   void session::on_instantiate_application(::apex::application* papp)
+   void session::on_instantiate_application(::application* papp)
    {
 
       ::axis::session::on_instantiate_application(papp);

@@ -120,7 +120,7 @@ namespace http
       virtual pac * get_pac(const char * pszUrl);
       virtual proxy * get_proxy(const char * pszUrl);
 
-      virtual void on_auth(property_set & set, ::apex::application * papp, string & strUrl, string & strSessId, __pointer(::account::user) & puser);
+      virtual void on_auth(property_set & set, ::application * papp, string & strUrl, string & strSessId, __pointer(::account::user) & puser);
 
 
    };

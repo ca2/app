@@ -1456,7 +1456,7 @@ namespace user
       }
 
       // last but not least, pump through cast
-      ::apex::application* papp = get_application();
+      ::application* papp = get_application();
 
       if (papp != nullptr)
       {

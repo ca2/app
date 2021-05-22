@@ -245,7 +245,7 @@ namespace apex
 //      //m_pimpl->m_bRun = false;
 //      //LNX_THREAD(m_pimpl->::thread_pointer::m_p)->m_bRun = false;
 //
-//      //i32 iRet = ::apex::application::term_instance();
+//      //i32 iRet = ::application::term_instance();
 //
 //      //::ca2::pointer<::ca2::application>::destroy();
 //

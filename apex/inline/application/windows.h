@@ -35,18 +35,29 @@ i32 WINAPI _tWinMain(HINSTANCE hinstance, HINSTANCE hPrevInstance, TCHAR * pCmdL
 
    psystem->set_current_handles();
 
-   auto estatus = psystem->system_main();
+//   auto estatus = psystem->system_main();
+//
+//   if (!estatus)
+//   {
+//    
+//      ::i32 iErrorStatus = estatus.error_status();
+//
+//      return iErrorStatus;
+//
+//   }
 
-   if (!estatus)
+   auto estatus = psystem->init_system();
+   
+   if(!estatus)
    {
-    
-      ::i32 iErrorStatus = estatus.error_status();
-
-      return iErrorStatus;
-
+      
+      return estatus.error_status();
+      
    }
 
-   estatus = psystem->main();
+   auto pnode = psystem->node();
+
+   estatus = pnode->main();
 
    auto estatusEnd = psystem->end();
 

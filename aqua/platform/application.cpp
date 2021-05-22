@@ -30,7 +30,7 @@ namespace aqua
    ::e_status application::initialize(::object * pobject)
    {
 
-      auto estatus = ::apex::application::initialize(pobject);
+      auto estatus = ::application::initialize(pobject);
 
       if (!estatus)
       {
@@ -54,7 +54,7 @@ namespace aqua
 
       }
 
-      ::apex::application::_001OnFranceExit();
+      ::application::_001OnFranceExit();
 
    }
 

@@ -529,9 +529,6 @@
     <ClCompile Include="user\user\menu.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\user\menu_command.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
     <ClCompile Include="user\user\menu_interaction.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>

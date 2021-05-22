@@ -6,7 +6,7 @@ namespace aqua
 
 
    class CLASS_DECL_AQUA application :
-      virtual public ::apex::application
+      virtual public ::application
    {
    public:
 

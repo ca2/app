@@ -32,7 +32,7 @@
 
 //
 //   class CLASS_DECL_APEX application :
-//      virtual public ::apex::application
+//      virtual public ::application
 //   {
 //   public:
 //

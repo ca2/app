@@ -16,6 +16,9 @@
 #include "acme/filesystem/filesystem/acme_dir.h"
 
 
+#define DUMP_COMMAND_LINE_AND_ENVIRONMENT_VARIABLES_TO_FILE TRUE
+
+
 //extern ::apex::system* g_papexsystem;
 
 //CLASS_DECL_APEX void apex_generate_random_bytes(void* p, memsize s);
@@ -50,7 +53,6 @@ CLASS_DECL_APEX const char * multimedia_get_library_name()
 extern "C"
 ::acme::library * experience_get_new_library();
 #endif
-
 
 
 #ifdef LINUX
@@ -144,7 +146,7 @@ namespace apex
    {
 
       create_factory < ::apex::session >();
-      create_factory < ::apex::application >();
+      create_factory < ::application >();
       //create_factory < ::imaging >();
 
       m_bSimpleMessageLoop = false;
@@ -414,7 +416,7 @@ namespace apex
 
 
 
-      //estatus = ::apex::application::initialize(pobject);
+      //estatus = ::application::initialize(pobject);
 
      //if (!estatus)
      //{
@@ -438,7 +440,7 @@ namespace apex
 
 
 
-            //estatus = ::apex::application::initialize(pobject);
+            //estatus = ::application::initialize(pobject);
 
             //if (!estatus)
             //{
@@ -469,7 +471,7 @@ namespace apex
       //      m_window                                  = nullptr;
       //#endif
 
-            //::apex::application * papp = ::get_application(pobject);
+            //::application * papp = ::get_application(pobject);
 
             //if(papp == nullptr)
             //{
@@ -1304,7 +1306,7 @@ namespace apex
       //create_factory < ::mutex >();
       //create_factory < event >();
 
-      //if (!::apex::application::process_init())
+      //if (!::application::process_init())
       //{
 
       //   return false;
@@ -1467,97 +1469,13 @@ namespace apex
       //   return estatus;
 
       //}
+      
+#ifdef DUMP_COMMAND_LINE_AND_ENVIRONMENT_VARIABLES_TO_FILE
+      
+      dump_command_line_and_environment_variables_to_file();
+      
+#endif
 
-      auto psystem = m_psystem;
-
-      auto pdatetime = psystem->datetime();
-
-      string strLogTime = pdatetime->international().get_gmt_date_time_for_file_with_no_spaces();
-
-      strLogTime.replace("-", "/");
-
-      strLogTime.replace("_", "/");
-
-      {
-
-         string_array straCmds;
-
-         for (int i = 0; i < m_argc; i++)
-         {
-
-            if (m_argv && m_argv[i])
-            {
-
-               char* thisCmd = m_argv[i];
-
-               straCmds.add(thisCmd);
-
-            }
-            else if (m_wargv && m_wargv[i])
-            {
-
-               wchar_t* thisCmd = m_wargv[i];
-
-               straCmds.add(thisCmd);
-
-            }
-
-         }
-
-         string strCmd = straCmds.implode("\n");
-
-         string strAppId = m_strAppId;
-
-         string strCmdLineDumpFileName = strAppId / strLogTime + "-command_line.txt";
-
-         ::file::path pathCmdLineDumpFile = m_psystem->m_pacmedir->home() / "application" / strCmdLineDumpFileName;
-
-         file_put_contents(pathCmdLineDumpFile, strCmd);
-
-      }
-
-      {
-
-         string_array straEnv;
-
-         if (m_wenvp)
-         {
-
-            for (auto wenv = m_wenvp; *wenv != 0; wenv++)
-            {
-
-               auto thisEnv = *wenv;
-
-               straEnv.add(thisEnv);
-
-            }
-
-         }
-         else if (m_envp)
-         {
-
-            for (auto env = m_envp; *env != 0; env++)
-            {
-
-               auto thisEnv = *env;
-
-               straEnv.add(thisEnv);
-
-            }
-
-         }
-
-         string strEnv = straEnv.implode("\n");
-
-         string strAppId = m_strAppId;
-
-         string strEnvDumpFileName = strAppId / strLogTime + "-environment_variables.txt";
-
-         ::file::path pathEnvDumpFile = m_psystem->m_pacmedir->home() / "application" / strEnvDumpFileName;
-
-         file_put_contents(pathEnvDumpFile, strEnv);
-
-      }
 
 //      {
 //
@@ -1741,6 +1659,103 @@ namespace apex
    }
 
 
+   void system::dump_command_line_and_environment_variables_to_file()
+   {
+      
+      auto psystem = m_psystem;
+
+      auto pdatetime = psystem->datetime();
+
+      string strLogTime = pdatetime->international().get_gmt_date_time_for_file_with_no_spaces();
+
+      strLogTime.replace("-", "/");
+
+      strLogTime.replace("_", "/");
+
+      {
+
+         string_array straCmds;
+
+         for (int i = 0; i < m_argc; i++)
+         {
+
+            if (m_argv && m_argv[i])
+            {
+
+               char* thisCmd = m_argv[i];
+
+               straCmds.add(thisCmd);
+
+            }
+            else if (m_wargv && m_wargv[i])
+            {
+
+               wchar_t* thisCmd = m_wargv[i];
+
+               straCmds.add(thisCmd);
+
+            }
+
+         }
+
+         string strCmd = straCmds.implode("\n");
+
+         string strAppId = m_strAppId;
+
+         string strCmdLineDumpFileName = strAppId / strLogTime + "-command_line.txt";
+
+         ::file::path pathCmdLineDumpFile = m_psystem->m_pacmedir->home() / "application" / strCmdLineDumpFileName;
+
+         file_put_contents(pathCmdLineDumpFile, strCmd);
+
+      }
+
+      {
+
+         string_array straEnv;
+
+         if (m_wenvp)
+         {
+
+            for (auto wenv = m_wenvp; *wenv != 0; wenv++)
+            {
+
+               auto thisEnv = *wenv;
+
+               straEnv.add(thisEnv);
+
+            }
+
+         }
+         else if (m_envp)
+         {
+
+            for (auto env = m_envp; *env != 0; env++)
+            {
+
+               auto thisEnv = *env;
+
+               straEnv.add(thisEnv);
+
+            }
+
+         }
+
+         string strEnv = straEnv.implode("\n");
+
+         string strAppId = m_strAppId;
+
+         string strEnvDumpFileName = strAppId / strLogTime + "-environment_variables.txt";
+
+         ::file::path pathEnvDumpFile = m_psystem->m_pacmedir->home() / "application" / strEnvDumpFileName;
+
+         file_put_contents(pathEnvDumpFile, strEnv);
+
+      }
+      
+   }
+
+
    ::e_status system::init2()
    {
 
@@ -1796,7 +1811,7 @@ namespace apex
       psession->m_ptextcontext->defer_ok(m_ptexttable);
 
 
-      //if(!::apex::application::init2())
+      //if(!::application::init2())
       //   return false;
 
       //auto estatus = ::apex::system::init2();
@@ -2157,7 +2172,7 @@ namespace apex
    }
 
 
-   ::apex::application* system::get_main_application()
+   ::application* system::get_main_application()
    {
 
       return m_papplicationMain;
@@ -2540,7 +2555,7 @@ namespace apex
    void system::process_term()
    {
 
-      //::apex::application::process_term();
+      //::application::process_term();
 
 
 
@@ -2878,7 +2893,7 @@ namespace apex
 
 //      for(i32 i = 0; i < appptra().get_size(); i++)
       //    {
-      //     ::apex::application * papp = appptra()(i);
+      //     ::application * papp = appptra()(i);
       //   papp->load_string_table();
       //}
 
@@ -2895,7 +2910,7 @@ namespace apex
 
 //      for(i32 i = 0; i < appptra().get_size(); i++)
 //     {
-      //       ::apex::application * papp = appptra()(i);
+      //       ::application * papp = appptra()(i);
       //       papp->set_locale(pszLocale,context);
       //    }
 
@@ -2912,7 +2927,7 @@ namespace apex
 
 //      for(i32 i = 0; i < appptra().get_size(); i++)
       //    {
-      //       ::apex::application * papp = appptra()(i);
+      //       ::application * papp = appptra()(i);
       //       papp->set_schema(pszStyle,context);
       //    }
 
@@ -3631,7 +3646,7 @@ namespace apex
 
       auto appptra = psession->get_applicationa();
 
-      ::apex::application * papp = nullptr;
+      ::application * papp = nullptr;
 
       appptra.predicate_erase([](auto & papp)
       {
@@ -3737,7 +3752,7 @@ namespace apex
 
       //auto applicationa = psession->get_applicationa();
 
-      //::apex::application * papp = nullptr;
+      //::application * papp = nullptr;
 
       //if(applicationa.get_size() > 0)
       //{
@@ -4021,7 +4036,7 @@ namespace apex
    }
 
 
-   bool system::set_user_language(::apex::application * papp, index iSel)
+   bool system::set_user_language(::application * papp, index iSel)
    {
 
       __pointer(::apex::system) psystem = get_system();
@@ -4054,7 +4069,7 @@ namespace apex
    }
 
 
-   bool system::set_user_language(::apex::application * papp, string strLang)
+   bool system::set_user_language(::application * papp, string strLang)
    {
 
       __pointer(::apex::system) psystem = get_system();
@@ -5200,7 +5215,7 @@ namespace apex
 
    //   //   xxdebug_box("system::on_install","system::on_install",0);
 
-   //   //   if (!::apex::application::on_install())
+   //   //   if (!::application::on_install())
    //   //   {
 
    //   //      return false;
@@ -5343,17 +5358,6 @@ namespace apex
    ::e_status system::main()
    {
 
-//      auto estatus = init_system();
-//
-//      if (!estatus)
-//      {
-//
-//         return estatus;
-//
-//      }
-//
-//      //auto estatus = class ::system::main();
-
       auto estatus = ::thread::main();
 
       if (!estatus)
@@ -5384,7 +5388,7 @@ namespace apex
    }
 
 
-   void system::int_system_update(int iUpdate, int iPayload)
+   void system::system_int_update(int iUpdate, int iPayload)
    {
 
       process_subject(iUpdate, iPayload);
@@ -5891,11 +5895,11 @@ namespace apex
 //
 
 
-void int_system_update(void* pSystem, int iUpdate, int iPayload)
+void system_int_update(void* pSystem, int iUpdate, int iPayload)
 {
 
    auto psystem = (class ::system *) pSystem;
 
-   psystem->int_system_update(iUpdate, iPayload);
+   psystem->system_int_update(iUpdate, iPayload);
 
 }

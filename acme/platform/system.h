@@ -24,8 +24,8 @@
       //::core::system *              m_pcoresystem;
 
 
-      __reference(::apex::application)                   m_papplicationStartup;
-      __reference(::apex::application)                   m_papplicationMain;
+      __reference(::application)                   m_papplicationStartup;
+      __reference(::application)                   m_papplicationMain;
 
       __composite(::apex::system)                        m_psystemParent;
 
@@ -145,7 +145,7 @@
       void process_exit_status(::object* pobject, const ::e_status& estatus);
 
       
-      virtual ::apex::application* get_main_application();
+      virtual ::application* get_main_application();
 
 
       virtual void system_construct(int argc, char** argv, char** envp);
@@ -417,7 +417,12 @@
 
       virtual ::e_status get_public_internet_domain_extension_list(string_array& stra);
 
-      virtual void int_system_update(int iUpdate, int iPayload);
+      virtual void system_int_update(int iUpdate, int iPayload);
+      
+      
+      virtual ::e_status open_untitled_file();
+      virtual ::e_status open_file(const char * pszFile);
+      
       
    };
 

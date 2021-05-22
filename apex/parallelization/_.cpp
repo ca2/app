@@ -370,10 +370,10 @@ namespace parallelization
 //}
 
 //
-//::apex::application * g_papp;
+//::application * g_papp;
 //
 //
-//void set_global_application(::apex::application* papp)
+//void set_global_application(::application* papp)
 //{
 //
 //    g_papp = papp;
@@ -381,7 +381,7 @@ namespace parallelization
 //}
 //
 //
-//::apex::application * get_global_application()
+//::application * get_global_application()
 //{
 //
 //   return g_papp;
@@ -389,7 +389,7 @@ namespace parallelization
 //}
 
 
-//::apex::application * get_application()
+//::application * get_application()
 //{
 //
 //   task* ptask = get_task();

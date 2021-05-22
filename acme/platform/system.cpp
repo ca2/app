@@ -553,6 +553,28 @@ task_tool * system::task_tool(::enum_task_tool etool)
 }
 
 
+::e_status system::open_untitled_file()
+{
+   
+   __throw(error_interface_only);
+   
+   return error_interface_only;
+   
+}
+
+
+::e_status system::open_file(const char * pszFile)
+{
+   
+   UNREFERENCED_PARAMETER(pszFile);
+   
+   __throw(error_interface_only);
+   
+   return error_interface_only;
+   
+}
+
+
 ::e_status system::init_system()
 {
 
@@ -1073,7 +1095,7 @@ void system::process_exit_status(::object* pobject, const ::e_status& estatus)
 
 
 
-//::apex::application* system::get_main_application()
+//::application* system::get_main_application()
 //{
 
 //   __throw(error_interface_only);
@@ -1098,6 +1120,7 @@ void system::process_exit_status(::object* pobject, const ::e_status& estatus)
 
 //}
 
+
 //
 //   ::e_status system::inline_init()
 //   {
@@ -1116,6 +1139,8 @@ void system::process_exit_status(::object* pobject, const ::e_status& estatus)
 //   }
 //
 //
+
+
 ::e_status system::inline_term()
 {
 
@@ -1124,6 +1149,8 @@ void system::process_exit_status(::object* pobject, const ::e_status& estatus)
 }
 
 
+//
+//
 //   ::e_status system::on_start_system()
 //   {
 //
@@ -1132,12 +1159,15 @@ void system::process_exit_status(::object* pobject, const ::e_status& estatus)
 //   }
 //
 //
+
+
 ::e_status system::on_end()
 {
 
    return ::success;
 
 }
+
 
 ::e_status system::end()
 {
@@ -1165,12 +1195,10 @@ void system::process_exit_status(::object* pobject, const ::e_status& estatus)
 }
 
 
-::apex::application* system::get_main_application()
+::application* system::get_main_application()
 {
 
-
    __throw(error_interface_only);
-
 
    return nullptr;
 
@@ -1193,7 +1221,6 @@ void system::system_construct(int argc, wchar_t** argv, wchar_t** envp)
 }
 
 
-
 void system::os_construct()
 {
 
@@ -1201,17 +1228,11 @@ void system::os_construct()
 }
 
 
-void system::int_system_update(int iUpdate, int iPayload)
+void system::system_int_update(int iUpdate, int iPayload)
 {
 
 
 }
-
-
-
-
-
-
 
 
 string __get_text(const string& str)
@@ -1248,11 +1269,44 @@ CLASS_DECL_ACME void acme_system_term()
 }
 
 
-void int_system_update(void * pSystem, int iUpdate, int iParam)
+void system_int_update(void * pSystem, int iUpdate, int iParam)
 {
    
    auto psystem = (class ::system *) pSystem;
    
-   psystem->int_system_update(iUpdate, iParam);
+   psystem->system_int_update(iUpdate, iParam);
    
 }
+
+
+void system_on_start_system(void * pSystem)
+{
+   
+   auto psystem = (class ::system *) pSystem;
+   
+   psystem->on_start_system();
+   
+}
+
+
+void system_on_open_file(void * pSystem, const char * pszFile)
+{
+   
+   auto psystem = (class ::system *) pSystem;
+   
+   psystem->open_file(pszFile);
+   
+}
+
+
+void system_on_open_untitled_file(void * pSystem)
+{
+   
+   auto psystem = (class ::system *) pSystem;
+   
+   psystem->open_untitled_file();
+   
+}
+
+
+

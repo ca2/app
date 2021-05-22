@@ -23,7 +23,7 @@ namespace PLATFORM_NAMESPACE
 
 #ifdef CUBE
 extern "C"
-::apex::application * cube_get_app();
+::application * cube_get_app();
 #endif
 
 void defer_term_ui();
@@ -770,7 +770,7 @@ namespace apex
 
             }
 
-            ::apex::application * papp = application_get(strApp, true, true, pcreate);
+            ::application * papp = application_get(strApp, true, true, pcreate);
 
             if (papp == nullptr)
             {
@@ -943,7 +943,7 @@ namespace apex
 
       }
 
-      ::apex::application* papp = application_get(strId, true, true, pcreate);
+      ::application* papp = application_get(strId, true, true, pcreate);
 
       if (papp == nullptr)
       {
@@ -959,7 +959,7 @@ namespace apex
    }
 
 
-   void session::on_instantiate_application(::apex::application* papp)
+   void session::on_instantiate_application(::application* papp)
    {
 
       papp->m_papexsession = this;
@@ -970,10 +970,10 @@ namespace apex
    }
 
 
-   //::apex::application * session::application_get(const char * pszAppId, bool bCreate, bool bSynch, ::create * pcreate)
+   //::application * session::application_get(const char * pszAppId, bool bCreate, bool bSynch, ::create * pcreate)
    //{
 
-   //   __pointer(::apex::application) papp;
+   //   __pointer(::application) papp;
 
    //   if (m_applicationa.lookup(pszAppId, papp))
    //   {
@@ -1589,7 +1589,7 @@ namespace apex
    //}
 
 
-   __pointer(::apex::application) session::get_current_application()
+   __pointer(::application) session::get_current_application()
    {
 
       auto psession = get_session();
@@ -1706,7 +1706,7 @@ namespace apex
    //   ::user::place_holder_ptra holderptra;
 
 
-   //   ::apex::application & app = App(pmainframe->get_application());
+   //   ::application & app = App(pmainframe->get_application());
 
    //   string strAppName = app.m_strAppName;
 
@@ -1745,7 +1745,7 @@ namespace apex
    void session::set_app_title(const char* pszAppId, const char* pszTitle)
    {
 
-      __pointer(::apex::application) papp;
+      __pointer(::application) papp;
 
       if (m_applicationa.lookup(pszAppId, papp) && papp)
       {
@@ -1826,7 +1826,7 @@ namespace apex
       //::e_status session::os_native_bergedge_start()
       //{
 
-      //   if (!::apex::application::os_native_bergedge_start())
+      //   if (!::application::os_native_bergedge_start())
       //   {
 
       //      return false;
@@ -1842,7 +1842,7 @@ namespace apex
       //{
 
 
-      //   return ::apex::application::allocate_new_service();
+      //   return ::application::allocate_new_service();
 
 
       //}

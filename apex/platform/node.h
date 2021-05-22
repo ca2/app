@@ -23,11 +23,15 @@ namespace apex
 
 
       virtual ::e_status on_initialize_object() override;
+      
+      
+      virtual ::e_status main();
+      
 
-      virtual void set_application_menu(::apex::application_menu * pmenu, ::apex::application * papplication);
+      virtual void set_application_menu(application_menu * pmenu, ::application * papplication);
 
 
-      virtual ::file::path get_desktop_file_path(::apex::application * papplication) const;
+      virtual ::file::path get_desktop_file_path(::application * papplication) const;
 
 
       virtual void defer_notify_startup_complete();

@@ -47,7 +47,7 @@ namespace uwp
       directx_base();
 
 
-      ::apex::application * get_application() const
+      ::application * get_application() const
       {
 
          return get_application();

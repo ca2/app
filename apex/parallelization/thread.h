@@ -569,7 +569,7 @@ using id_thread_map = id_map < __pointer(thread) >;
 
 //CLASS_DECL_APEX bool apex_task_sleep(millis millis, synchronization_object* psync = nullptr);
 CLASS_DECL_APEX bool thread_pump_sleep(millis millis, synchronization_object* psync = nullptr);
-CLASS_DECL_APEX bool app_sleep(::apex::application * papplication, millis millis);
+CLASS_DECL_APEX bool app_sleep(::application * papplication, millis millis);
 
 
 

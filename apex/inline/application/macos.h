@@ -24,18 +24,29 @@ int main(int argc, char * argv[], char ** envp)
 
    psystem->set_current_handles();
 
-   auto estatus = psystem->system_main();
-
-   if (!estatus)
+//   auto estatus = psystem->system_main();
+//
+//   if (!estatus)
+//   {
+//
+//      ::i32 iErrorStatus = estatus.error_status();
+//
+//      return iErrorStatus;
+//
+//   }
+   
+   auto estatus = psystem->init_system();
+   
+   if(!estatus)
    {
-    
-      ::i32 iErrorStatus = estatus.error_status();
-
-      return iErrorStatus;
-
+      
+      return estatus.error_status();
+      
    }
+   
+   auto pnode = psystem->node();
 
-   estatus = psystem->main();
+   estatus = pnode->main();
 
    auto estatusEnd = psystem->end();
    

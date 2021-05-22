@@ -19,7 +19,7 @@ public:
 
 
    //__pointer(::thread)                                m_pthread;
-   //__pointer(::apex::application)                     m_papplication;
+   //__pointer(::application)                     m_papplication;
    //__pointer(::apex::session)                         m_psession;
    //__pointer(class ::system)                          m_psystem;
    __pointer(::context)                               m_pcontext;
@@ -72,12 +72,12 @@ public:
    //inline ::object* this const { return this; }
    //virtual ::e_status set_object(::object* pobject OBJ_REF_DBG_COMMA_PARAMS) override;
 
-   inline ::apex::application* application() { return m_papplication; }
+   inline ::application* application() { return m_papplication; }
 
 
-   inline ::apex::application* get_application() { return _get_application(); }
+   inline ::application* get_application() { return _get_application(); }
 
-   virtual ::apex::application* _get_application() override;
+   virtual ::application* _get_application() override;
 
    template < typename BASE_TYPE >
    __pointer(BASE_TYPE) file_as(const ::payload & varFile);
@@ -128,7 +128,7 @@ public:
 
    inline ::thread * get_thread() const { return m_pthread; }
 
-   inline ::apex::application * get_application() const { return m_papplication; }
+   inline ::application * get_application() const { return m_papplication; }
 
    inline ::apex::session * get_session() const { return m_psession; }
 
@@ -136,21 +136,21 @@ public:
 
    //::object * get_context_user() const { return m_puserContext; }
 
-   //inline ::apex::application * application() const { return m_papplication; }
+   //inline ::application * application() const { return m_papplication; }
 
    virtual string get_text(const ::payload & payload, const ::id& id) override;
 
 //#ifdef DEBUG
 //   virtual void set_context(::context* pcontext OBJ_REF_DBG_COMMA_PARAMS);
 //   virtual void set_context_thread(::thread* pthread OBJ_REF_DBG_COMMA_PARAMS);
-//   virtual void set_context_app(::apex::application* pappContext OBJ_REF_DBG_COMMA_PARAMS);
+//   virtual void set_context_app(::application* pappContext OBJ_REF_DBG_COMMA_PARAMS);
 //   virtual void set_context_session(::apex::session* psessionContext OBJ_REF_DBG_COMMA_PARAMS);
 //   //virtual void set_context_system(::apex::system* psystemContext OBJ_REF_DBG_COMMA_PARAMS);
 //   //virtual void set_context_user(::object * puserContext);
 //#else
 //   inline void set_context(::context* pcontext);
 //   inline void set_context_thread(::thread* pthread);
-//   inline void set_context_app(::apex::application* pappContext);
+//   inline void set_context_app(::application* pappContext);
 //   inline void set_context_session(::apex::session* psessionContext);
 //   //inline void set_context_system(::apex::system* psystemContext);
 //   //inline void set_context_user(::object * puserContext);
@@ -389,11 +389,11 @@ public:
    virtual ::e_status call_request(::create * pcreate);
 
    //// former user::server
-   //virtual ::user::document* open_new_document(::apex::application* pappOnBehalfOf);
+   //virtual ::user::document* open_new_document(::application* pappOnBehalfOf);
    virtual void on_request(::create* pcreate);
-   //virtual ::user::document* open_document_file(::apex::application* pappOnBehalfOf);
-   //virtual ::user::document* open_document_file(::apex::application* pappOnBehalfOf, const ::payload& varFile, const ::payload & varOptions, ::user::interaction* puiParent = nullptr, ewindowflag eflag = e_window_flag_none, ::id id = ::id());
-   //virtual ::user::document* open_document_file(::apex::application* pappOnBehalfOf, const ::payload& varFile);
+   //virtual ::user::document* open_document_file(::application* pappOnBehalfOf);
+   //virtual ::user::document* open_document_file(::application* pappOnBehalfOf, const ::payload& varFile, const ::payload & varOptions, ::user::interaction* puiParent = nullptr, ewindowflag eflag = e_window_flag_none, ::id id = ::id());
+   //virtual ::user::document* open_document_file(::application* pappOnBehalfOf, const ::payload& varFile);
    //virtual ::user::document* create_subdocument(::user::impact_data* pimpactdata);
 
 
@@ -659,7 +659,7 @@ public:
    //inline ::object* this const { return this; }
    //virtual ::e_status set_object(::object* pobject OBJ_REF_DBG_COMMA_PARAMS) override;
 
-   //inline ::apex::application* application() { return m_papplication; }
+   //inline ::application* application() { return m_papplication; }
 
    //template < typename TYPE, typename TYPE2 >
    //void __bind(reference < TYPE >& r, TYPE2& t)
@@ -721,7 +721,7 @@ public:
 
    inline ::thread* get_thread() const { return m_pthread; }
 
-   inline ::apex::application* get_application() const { return m_papplication; }
+   inline ::application* get_application() const { return m_papplication; }
 
    inline ::apex::session* get_session() const { return m_psession; }
 
@@ -729,21 +729,21 @@ public:
 
    //::object * get_context_user() const { return m_puserContext; }
 
-   //inline ::apex::application * application() const { return m_papplication; }
+   //inline ::application * application() const { return m_papplication; }
 
    virtual string get_text(const ::payload& payload, const ::id& id) override;
 
 #ifdef DEBUG
    virtual void set_context(::context* pcontext OBJ_REF_DBG_COMMA_PARAMS);
    virtual void set_context_thread(::thread* pthread OBJ_REF_DBG_COMMA_PARAMS);
-   virtual void set_context_app(::apex::application* pappContext OBJ_REF_DBG_COMMA_PARAMS);
+   virtual void set_context_app(::application* pappContext OBJ_REF_DBG_COMMA_PARAMS);
    virtual void set_context_session(::apex::session* psessionContext OBJ_REF_DBG_COMMA_PARAMS);
    //virtual void set_context_system(::apex::system* psystemContext OBJ_REF_DBG_COMMA_PARAMS);
    //virtual void set_context_user(::object * puserContext);
 #else
    inline void set_context(::context* pcontext);
    inline void set_context_thread(::thread* pthread);
-   inline void set_context_app(::apex::application* pappContext);
+   inline void set_context_app(::application* pappContext);
    inline void set_context_session(::apex::session* psessionContext);
    //inline void set_context_system(::apex::system* psystemContext);
    //inline void set_context_user(::object * puserContext);
@@ -981,11 +981,11 @@ public:
    virtual ::e_status call_request(::create* pcreate);
 
    //// former user::server
-   //virtual ::user::document* open_new_document(::apex::application* pappOnBehalfOf);
+   //virtual ::user::document* open_new_document(::application* pappOnBehalfOf);
    virtual void on_request(::create* pcreate);
-   //virtual ::user::document* open_document_file(::apex::application* pappOnBehalfOf);
-   //virtual ::user::document* open_document_file(::apex::application* pappOnBehalfOf, const ::payload& varFile, const ::payload & varOptions, ::user::interaction* puiParent = nullptr, ewindowflag eflag = e_window_flag_none, ::id id = ::id());
-   //virtual ::user::document* open_document_file(::apex::application* pappOnBehalfOf, const ::payload& varFile);
+   //virtual ::user::document* open_document_file(::application* pappOnBehalfOf);
+   //virtual ::user::document* open_document_file(::application* pappOnBehalfOf, const ::payload& varFile, const ::payload & varOptions, ::user::interaction* puiParent = nullptr, ewindowflag eflag = e_window_flag_none, ::id id = ::id());
+   //virtual ::user::document* open_document_file(::application* pappOnBehalfOf, const ::payload& varFile);
    //virtual ::user::document* create_subdocument(::user::impact_data* pimpactdata);
 
 

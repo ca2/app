@@ -255,9 +255,9 @@
 // // }
 
 
-namespace apex
-{
-
+//namespace apex
+//{
+//
 
    bool application::os_on_start_application()
    {
@@ -304,7 +304,7 @@ namespace apex
    }
 
 
-} // namespace apex
-
+//} // namespace apex
+//
 
 

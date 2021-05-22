@@ -49,7 +49,7 @@ public:
    void create_common_construct(const ::payload & varOptions, ::user::primitive * puiParent);
 
 
-   ::apex::application* create_get_application(::apex::application* pappFallback = nullptr);
+   ::application* create_get_application(::application* pappFallback = nullptr);
 
    ::e_status finish_initialization();
 

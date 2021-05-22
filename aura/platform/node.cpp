@@ -72,7 +72,7 @@ namespace aura
    }
 
 
-   void node::set_application_menu(::apex::application_menu * pmenu, ::apex::application * papplication)
+   void node::set_application_menu(::application_menu * pmenu, ::application * papplication)
    {
 
    }

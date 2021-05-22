@@ -2,7 +2,7 @@
 
 
 class CLASS_DECL_APEX application_array:
-   virtual public __pointer_array(::apex::application)
+   virtual public __pointer_array(::application)
 {
 public:
 
@@ -17,11 +17,11 @@ public:
    application_array & operator = (const application_array & a);
    application_array & operator = (application_array && a);
 
-   ::apex::application * find_by_app_name(string strAppName);
+   ::application * find_by_app_name(string strAppName);
 
-   ::apex::application * find_running_defer_try_quit_damaged(string strAppName);
+   ::application * find_running_defer_try_quit_damaged(string strAppName);
 
-   bool lookup(string strAppName, __pointer(::apex::application) & papp);
+   bool lookup(string strAppName, __pointer(::application) & papp);
 
 
 };

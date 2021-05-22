@@ -394,7 +394,7 @@ bool matter::thread_is_running() const
 }
 
 
-::apex::application* matter::_get_application()
+::application* matter::_get_application()
 {
 
    return nullptr;

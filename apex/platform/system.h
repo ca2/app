@@ -248,7 +248,7 @@ namespace apex
 #endif
 
 
-      virtual ::apex::application* get_main_application() override;
+      virtual ::application* get_main_application() override;
 
 
       virtual ::e_status init();
@@ -780,8 +780,8 @@ namespace apex
 
 
       virtual string get_user_language();
-      virtual bool set_user_language(::apex::application * papp, index iSel);
-      virtual bool set_user_language(::apex::application * papp, string strLang);
+      virtual bool set_user_language(::application * papp, index iSel);
+      virtual bool set_user_language(::application * papp, string strLang);
 
       void chromium(string strUrl, string strBrowser, string strId, ::file::path path, string strProfile, string strParam);
 
@@ -985,8 +985,10 @@ namespace apex
 
       //virtual ::user::interaction_impl * impl_from_handle(void * pdata) override;
       //virtual ::user::interaction * ui_from_handle(void * pdata) override;
+      
+      void dump_command_line_and_environment_variables_to_file();
 
-      void int_system_update(int iUpdate, int iPayload) override;
+      void system_int_update(int iUpdate, int iPayload) override;
 
 
       void on_subject(::subject::subject * psubject) override;

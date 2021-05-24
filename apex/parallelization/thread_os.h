@@ -107,7 +107,7 @@ namespace parallelization
 //
 //   //CLASS_DECL_APEX bool is_child(::task * ptask);
 //
-//   //CLASS_DECL_APEX void post_quit_to_all_threads(class ::system * psystem);
+//   //CLASS_DECL_APEX void post_quit_to_all_threads(::acme::system * psystem);
 //
 //   //CLASS_DECL_APEX void post_to_all_threads(const ::id & id, wparam wparam, lparam lparam);
 //

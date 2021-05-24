@@ -34,7 +34,7 @@ namespace uwp
 
       ::mutex                                     m_mutex;
 
-      //class ::system *                          m_psystem;
+      //::acme::system *                          m_psystem;
 
       //::acme::application *                     m_papp;
 
@@ -51,7 +51,7 @@ namespace uwp
       Windows::Foundation::Rect                 m_rectInputSelectionRect;
 
 
-      directx_framework_view(class ::system * psystem,String ^ strId);
+      directx_framework_view(::acme::system * psystem,String ^ strId);
 
 
       void install_directx_application_message_routing();
@@ -60,7 +60,7 @@ namespace uwp
 
       
 
-      class ::system * get_context_system() const;
+      ::acme::system * get_context_system() const;
 
    public:
 
@@ -141,11 +141,11 @@ namespace uwp
    {
    internal:
 
-      class ::system * m_psystem;
+      ::acme::system * m_psystem;
 
       string m_strId;
 
-      directx_application_source(class ::system * paxissystem,const string & strId);
+      directx_application_source(::acme::system * paxissystem,const string & strId);
 
    public:
 
@@ -154,7 +154,7 @@ namespace uwp
    };
 
 
-   CLASS_DECL_ACME directx_application_source ^ new_directx_application_source(class ::system * psystem, const string & str);
+   CLASS_DECL_ACME directx_application_source ^ new_directx_application_source(::acme::system * psystem, const string & str);
 
 
 } // namespace uwp

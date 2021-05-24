@@ -441,19 +441,23 @@ namespace dynamic_source
       //strB = m_pcontext->m_papexcontext->dir().install() / m_strDynamicSourceStage / "front\\dynamic_source\\BuildBat" / strTransformName.name() / strTransformName + ".bat";
       strO = ::file::path(m_strTime) / "intermediate" / m_strPlatform / m_pmanager->m_strNamespace + "_dynamic_source_script" / strTransformName / strTransformName.name() + ".o";
 #else
+
       //strB = m_strDynamicSourceStageFolder / "front\\dynamic_source\\BuildBat" / strTransformName.name() / strTransformName + ".bat";
+
       strP = m_strDynamicSourceStageFolder / m_strStagePlatform / "dynamic_source" / strTransformName.sibling(strScript.name()) + ".pdb";
+
       strL = m_strDynamicSourceStageFolder / m_strStagePlatform / "dynamic_source" / strTransformName.sibling(strScript.name()) + ".lib";
+
       strE = m_strDynamicSourceStageFolder / m_strStagePlatform / "dynamic_source" / strTransformName.sibling(strScript.name()) + ".exp";
 
-
       ::file::path strDynamicSourceScriptFolder = m_strTime / "intermediate" / m_strPlatform / m_strDynamicSourceConfiguration / m_pmanager->m_strRepos / m_pmanager->m_strNamespace + "_dynamic_source_script";
+
       //strDVI = strDynamicSourceScriptFolder / strTransformName / m_strSdk1 + ".idb";
 
-
-
       //::file::path pathSourceDVP = strDynamicSourceScriptFolder / strTransformName / m_strSdk1 + ".pdb";
+      
       ::file::path pathSourceNetnodeDSS = "C:\\netnode\\time-" PLATFORM_NAME "\\intermediate\\x64\\basis\\app-core\\netnode_dynamic_source_script";
+
       ::file::path pathSourceDVP = pathSourceNetnodeDSS / m_strSdk1 + ".pdb";
 
       //::file::path pathCompiler;
@@ -482,13 +486,11 @@ namespace dynamic_source
 
          m_pcontext->m_papexcontext->file().copy(pathDVP, pathSourceDVP);
 
-
       }
+
       string strDVP_B = strDVP;
+
       strDVP_B.replace("\\", "/");
-
-
-
 
       //strDPC = strDynamicSourceScriptFolder / strTransformName / m_pmanager->m_strNamespace + "_dynamic_source_script.pch";
       //strDO1 = strDynamicSourceScriptFolder / strTransformName / "framework.obj";
@@ -954,11 +956,17 @@ namespace dynamic_source
 
          string strTargetPath = pscript->m_strScriptPath;
 #ifdef LINUX
+         
          ::str::ends_eat_ci(strTargetPath,".so");
+
 #else
+         
          ::str::ends_eat_ci(strTargetPath,".dll");
+
 #endif
+         
          str.replace("%TARGET_PATH%",strTargetPath);
+
          string strHmhLctvWildPdbPath;
 
          string strSymbolName;
@@ -1022,8 +1030,6 @@ namespace dynamic_source
 
          strLog += process->read();
 
-
-
          if(!bTimeout && strLog.has_char())
          {
 
@@ -1032,8 +1038,6 @@ namespace dynamic_source
             //sleep(2000_ms);
 
 #endif
-
-
 
             str = strLog;
 
@@ -1057,7 +1061,7 @@ namespace dynamic_source
 
             }
 
-            pscript->m_fileError.to_string(pscript->m_strError);
+            pscript->m_pfileError->to_string(pscript->m_strError);
 
             pscript->m_strError.trim();
 
@@ -2977,11 +2981,11 @@ ch_else:
             try
             {
 
-               pdsscript->m_fileError.seek_to_begin();
+               pdsscript->m_pfileError->seek_to_begin();
 
                string strScriptError;
 
-               pdsscript->m_fileError.to_string(strScriptError);
+               pdsscript->m_pfileError->to_string(strScriptError);
 
                m_pmanager->m_strPersistentError += strScriptError;
 

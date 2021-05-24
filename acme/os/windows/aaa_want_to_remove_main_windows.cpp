@@ -84,7 +84,7 @@
 //      mainstruct.m_bUserEx = true;
 //      mainstruct.m_bShowApplicationInformation = false;
 //
-//      auto psystem = __new(class ::system());
+//      auto psystem = __new(::acme::system());
 //
 //      psystem->system_construct(&mainstruct, hinstance, hPrevInstance, pCmdLine, nCmdShow);
 //

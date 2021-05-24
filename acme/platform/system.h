@@ -1,10 +1,10 @@
 #pragma once
 
 
-//namespace acme
-//{
-//
-//
+namespace acme
+{
+
+
    class CLASS_DECL_ACME system :
       virtual public ::acme::context,
       virtual public ::acme_main_data,
@@ -24,16 +24,16 @@
       //::core::system *              m_pcoresystem;
 
 
-      __reference(::application)                   m_papplicationStartup;
-      __reference(::application)                   m_papplicationMain;
+      __reference(::apex::application)                   m_papplicationStartup;
+      __reference(::apex::application)                   m_papplicationMain;
 
       __composite(::apex::system)                        m_psystemParent;
 
-      string_map < __pointer(::factory_map) > *          m_pfactorymapsquare;
+      string_map < __pointer(::factory_map) >* m_pfactorymapsquare;
       __pointer(string_map < __pointer(::regular_expression::context) >)          m_pmapRegularExpressionContext;
 
 #ifdef MACOS
-      void *                                             m_pmmos;
+      void* m_pmmos;
 #endif
 
       ::mutex                                            m_mutexTask;
@@ -58,7 +58,7 @@
       string                                             m_strOsUserTheme;
       //__pointer(::acme::node)                         m_pnode;
 
-      
+
       ::millis                                           m_millisFileListingCache;
       critical_section                                   m_csEnumText;
       string_map < i64_map < string > >                  m_mapEnumToText;
@@ -92,25 +92,25 @@
       void os_construct();
 
 
-      inline ::acme::node              *  node() { return m_pnode; }
+      inline ::acme::node* node() { return m_pnode; }
 
-      inline class ::str::base64       *  base64() { return m_pbase64; };
+      inline class ::str::base64* base64() { return m_pbase64; };
 
-      inline ::xml::xml                *  xml() { return m_pxml.get() ? m_pxml.get() : _xml(); }
+      inline ::xml::xml* xml() { return m_pxml.get() ? m_pxml.get() : _xml(); }
 
-      inline acme_dir                  *  acmedir() const { return m_pacmedir; }
+      inline acme_dir* acmedir() const { return m_pacmedir; }
 
-      inline acme_path                 *  acmepath() const { return m_pacmepath; }
+      inline acme_path* acmepath() const { return m_pacmepath; }
 
       virtual ::xml::xml* _xml();
 
-      inline geometry::geometry * geometry() { return m_pgeometry; }
+      inline geometry::geometry* geometry() { return m_pgeometry; }
 
       inline ::datetime::department* datetime() { return m_pdatetime; }
 
       inline ::text::table* texttable() { return m_ptexttable; }
 
-      inline ::url::department * url() { return m_purldepartment; }
+      inline ::url::department* url() { return m_purldepartment; }
 
       virtual ::e_status defer_audio();
 
@@ -144,8 +144,8 @@
 
       void process_exit_status(::object* pobject, const ::e_status& estatus);
 
-      
-      virtual ::application* get_main_application();
+
+      virtual ::apex::application* get_main_application();
 
 
       virtual void system_construct(int argc, char** argv, char** envp);
@@ -200,8 +200,8 @@
 
       //using ::subject::manager::on_subject;
       //virtual void on_subject(::subject::subject * psubject) override;
-      
-      virtual ::millis get_update_poll_time(const ::id & id);
+
+      virtual ::millis get_update_poll_time(const ::id& id);
 
       virtual ::acme::library* on_get_library(const char* pszLibrary);
 
@@ -225,24 +225,24 @@
       //virtual ::e_status main_user_sync(const ::routine & routine, const ::duration & duration = one_minute(), e_priority epriority = priority_normal);
 
 
-      ::task * get_task(itask_t itask);
-      itask_t get_task_id(const ::task * ptask);
-      void set_task(itask_t itask, ::task * ptask);
-      void unset_task(itask_t itask, ::task * ptask);
+      ::task* get_task(itask_t itask);
+      itask_t get_task_id(const ::task* ptask);
+      void set_task(itask_t itask, ::task* ptask);
+      void unset_task(itask_t itask, ::task* ptask);
 
 
 
 
-      virtual string __get_text(const string & str);
+      virtual string __get_text(const string& str);
 
 #ifdef LINUX
 
-//!!!      virtual ::e_status defer_initialize_x11();
+      //!!!      virtual ::e_status defer_initialize_x11();
 
 #endif
 
 
-      virtual __pointer(::extended::future < ::conversation >) _message_box(::object* pobject, const char* pszText, const char* pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok);
+      virtual __pointer(::extended::future < ::conversation >) _message_box(::object* pobject, const char* pszText, const char* pszTitle = nullptr, const ::e_message_box& emessagebox = e_message_box_ok);
 
 
 
@@ -383,18 +383,18 @@
       }
 
 
-      ::task_group * task_group(::e_priority epriority = ::priority_none);
+      ::task_group* task_group(::e_priority epriority = ::priority_none);
 
-      ::task_tool * task_tool(::enum_task_tool etool);
+      ::task_tool* task_tool(::enum_task_tool etool);
 
       virtual bool is_task_on(itask_t id);
-      
-      virtual bool is_active(::task * ptask);
+
+      virtual bool is_active(::task* ptask);
 
       virtual void set_task_on(itask_t id);
 
       virtual void set_task_off(itask_t id);
-     
+
 
 
       static inline ::id id(const ::std::type_info& info);
@@ -417,14 +417,11 @@
 
       virtual ::e_status get_public_internet_domain_extension_list(string_array& stra);
 
-      virtual void system_int_update(int iUpdate, int iPayload);
-      
-      
-      virtual ::e_status open_untitled_file();
-      virtual ::e_status open_file(const char * pszFile);
-      
-      
+      virtual void int_system_update(int iUpdate, int iPayload);
+
    };
 
 
-//} // namespace acme
+} // namespace acme
+
+

@@ -3938,10 +3938,10 @@ inline ::task_pointer object::predicate_run(bool bSync, PRED pred)
 }
 
 
-//inline class ::system* object::get_system() const
+//inline ::acme::system* object::get_system() const
 //{
 //
-//   return m_psystem ? dynamic_cast <::apex::system*>((class ::system*)m_psystem) : nullptr;
+//   return m_psystem ? dynamic_cast <::apex::system*>((::acme::system*)m_psystem) : nullptr;
 //
 //}
 

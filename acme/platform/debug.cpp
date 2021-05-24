@@ -288,24 +288,24 @@ string get_status_message(::e_status estatus)
       return "error_failed";
       
    }
-
+      
    string str;
-
+      
    if(estatus > 0)
    {
-
+    
       str.Format("success status (%" PRId64 ")", (::i64) estatus.m_estatus);
-
+      
    }
    else
    {
-
+         
       str.Format("failure status (%" PRId64 ")", (::i64) estatus.m_estatus);
-
+         
    }
 
    return str;
-
+  
 }
 
 

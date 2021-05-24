@@ -2896,9 +2896,6 @@
     <ClCompile Include="primitive\geometry2d\size.cpp">
       <Filter>Source Files\primitive\geometry2d</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\geometry2d\rect.cpp">
-      <Filter>Source Files\primitive\geometry2d</Filter>
-    </ClCompile>
     <ClCompile Include="primitive\geometry2d\point.cpp">
       <Filter>Source Files\primitive\geometry2d</Filter>
     </ClCompile>
@@ -3936,6 +3933,9 @@
     </ClCompile>
     <ClCompile Include="os\windows\exception_engine.cpp">
       <Filter>Source Files\os\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\geometry2d\rectangle.cpp">
+      <Filter>Source Files\primitive\geometry2d</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

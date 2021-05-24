@@ -5105,20 +5105,20 @@ bool graphics::_set(___shape * pshape)
       return _set(pshape->shape < ::arc > ());
    //case ::e_shape_line:
    //   return _set(pshape->shape < ::line > ());
-   case ::e_shape_lined:
-      return _set(pshape->shape < ::lined > ());
+   case ::e_shape_line:
+      return _set(pshape->shape < ::line > ());
    //case ::e_shape_lines:
    //   return _set(pshape->shape < ::lines > ());
-   case ::e_shape_linesd:
-      return _set(pshape->shape < ::linesd > ());
+   case ::e_shape_lines:
+      return _set(pshape->shape < ::lines > ());
    //case ::e_shape_rect:
    //   return _set(pshape->shape < ::rectangle_i32 > ());
-   case ::e_shape_rectd:
-      return _set(pshape->shape < ::rectangle_f64 > ());
+   case ::e_shape_rectangle:
+      return _set(pshape->shape < ::rectangle > ());
    //case ::e_shape_polygon:
    //   return _set(pshape->shape < ::polygon_i32 > ());
-   case ::e_shape_polygond:
-      return _set(pshape->shape < ::polygon_f64 > ());
+   case ::e_shape_polygon:
+      return _set(pshape->shape < ::polygon > ());
    case ::e_shape_text_out:
       return _set(pshape->shape < ::write_text::text_out > ());
    case ::e_shape_draw_text:
@@ -5259,7 +5259,7 @@ bool graphics::_set(const ::arc & arc)
 //}
 
 
-bool graphics::_set(const ::lined & line)
+bool graphics::_set(const ::line & line)
 {
 
     synchronous_lock ml(cairo_mutex());
@@ -5430,7 +5430,7 @@ bool graphics::_set(const ::point_f64_array & pointa)
 //}
 
 
-bool graphics::_set(const linesd & lines)
+bool graphics::_set(const lines & lines)
 {
 
    if(lines.get_count() <= 1)

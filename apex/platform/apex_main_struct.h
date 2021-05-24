@@ -1,12 +1,14 @@
 #pragma once
 
 
+class application;
+
+
 namespace apex
 {
 
 
    class library;
-   class application;
 
 
 } // namespace apex

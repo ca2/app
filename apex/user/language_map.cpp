@@ -182,7 +182,7 @@ namespace user
    }*/
 
 
-   bool language_map::set_default_language(::apex::application * papp)
+   bool language_map::set_default_language(::application * papp)
    {
 
       if (m_pintstring != NULL)
@@ -208,7 +208,7 @@ namespace user
    }
 
 
-   bool language_map::set_language(::apex::application * papp, string strLang)
+   bool language_map::set_language(::application * papp, string strLang)
    {
 
       if (strLang.is_empty())

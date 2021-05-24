@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "core/filesystem/filemanager/_filemanager.h"
 #include "aura/update.h"
+#include "aura/user/menu_command.h"
 
 
 namespace filemanager

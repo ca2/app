@@ -1193,7 +1193,7 @@ namespace base
    }
 
 
-   ::user::style_pointer user::get_user_style(const char* pszExperienceLibrary, ::apex::application* papp)
+   ::user::style_pointer user::get_user_style(const char* pszExperienceLibrary, ::application* papp)
    {
 
       auto& pstyle = m_mapUserStyle[pszExperienceLibrary];
@@ -1212,7 +1212,7 @@ namespace base
    }
 
 
-   ::user::style_pointer user::instantiate_user_style(const char* pszExperienceLibrary, ::apex::application* papp)
+   ::user::style_pointer user::instantiate_user_style(const char* pszExperienceLibrary, ::application* papp)
    {
 
       INFO("aura::session::instantiate_user_theme");

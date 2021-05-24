@@ -986,6 +986,9 @@ CLASS_DECL_ACME ::e_priority get_os_class_scheduling_priority(i32 iCa2Priority);
 //#include "acme/multimedia/_c.h"
 
 
+#include "acme/os/argcargv.h"
+
+
 class matter;
 
 
@@ -1092,6 +1095,9 @@ CLASS_DECL_ACME e_trace_category object_trace_category(::matter *pobject);
 //
 
 
+class application;
+
+
 namespace apex
 {
 
@@ -1100,9 +1106,6 @@ namespace apex
 
 
    class idpool;
-
-
-   class application;
 
 
    class session;

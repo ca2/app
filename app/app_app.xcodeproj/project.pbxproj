@@ -300,7 +300,7 @@
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
-			dstSubfolderSpec = 10;
+			dstSubfolderSpec = 6;
 			files = (
 				9A5D737A265555AF00D5C39E /* libdraw2d_quartz2d.dylib in Embed Libraries */,
 				9A8FCDA12651C10200C0D8A1 /* libacme_posix.dylib in Embed Libraries */,

@@ -294,7 +294,7 @@ list(APPEND acme_source
    primitive/geometry2d/_.cpp
    primitive/geometry2d/geometry.cpp
    primitive/geometry2d/point.cpp
-   primitive/geometry2d/rect.cpp
+   primitive/geometry2d/rectangle.cpp
    primitive/geometry2d/shape.cpp
    primitive/geometry2d/size.cpp
    primitive/geometry2d/types.cpp
@@ -1059,7 +1059,7 @@ list(APPEND acme_source
    primitive/geometry2d/geometry.h
    primitive/geometry2d/line.h
    primitive/geometry2d/lines.h
-   primitive/geometry2d/oval.h
+   primitive/geometry2d/ellipse.h
    primitive/geometry2d/point.h
    primitive/geometry2d/point_array.h
    primitive/geometry2d/polygon.h

@@ -17,6 +17,7 @@
 #include "acme/os/ansios/_pthread.h"
 
 
+// apt install libcairo2-dev
 // dnf install cairo-devel pango
 #include "cairo/cairo-features.h"
 #include <cairo/cairo.h>

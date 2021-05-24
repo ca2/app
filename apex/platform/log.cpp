@@ -230,7 +230,7 @@ namespace apex
    }
 
 
-//   extern __pointer(::apex::application) g_papp;
+//   extern __pointer(::application) g_papp;
 
    CLASS_DECL_APEX i32 SimpleDebugReport(i32 iReportType, const char * pszFileName,i32 iLine,const char *,const char * pszFormat, va_list list)
    {

@@ -54,14 +54,7 @@ namespace message
 } // namespace message
 
 
-namespace apex
-{
-
-
-    class application;
-
-
-} // namespace apex
+class application;
 
 
 #include "acme/const/_.h"
@@ -83,6 +76,7 @@ namespace apex
 #include "acme/primitive/primitive/uid.h"
 #include "acme/primitive/primitive/estatus.h"
 #include "acme/primitive/primitive/eobject.h"
+#include "acme/os/argcargv.h"
 #include "acme/primitive/mathematics/index.h"
 #include "acme/primitive/primitive/interlocked.h"
 #include "acme/parallelization/synchronization_result.h"

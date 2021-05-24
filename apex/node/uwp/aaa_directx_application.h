@@ -36,7 +36,7 @@ namespace uwp
 
       //::apex::system *                          m_psystem;
 
-      //::apex::application *                     m_papp;
+      //::application *                     m_papp;
 
       __pointer(directx_interaction)            m_pdxi;
 

@@ -22,7 +22,7 @@ application_container::~application_container()
 }
 
 
-void application_container::app_add(::apex::application * papp)
+void application_container::app_add(::application * papp)
 {
 
    if (!::is_set(papp))
@@ -46,7 +46,7 @@ void application_container::app_add(::apex::application * papp)
 }
 
 
-void application_container::app_erase(::apex::application * papp)
+void application_container::app_erase(::application * papp)
 {
 
    m_applicationa.erase(papp);
@@ -166,7 +166,7 @@ application_array application_container::get_applicationa()
 }
 
 
-//void application_container::app_add(::apex::application * papp)
+//void application_container::app_add(::application * papp)
 //{
 //
 //   if (::is_null(papp))
@@ -190,7 +190,7 @@ application_array application_container::get_applicationa()
 //}
 //
 //
-//void application_container::app_erase(::apex::application * papp)
+//void application_container::app_erase(::application * papp)
 //{
 //
 //   synchronous_lock synchronouslock(mutex());
@@ -205,14 +205,14 @@ application_array application_container::get_applicationa()
 //}
 
 
-__pointer(::apex::application) application_container::instantiate_application(const char * pszAppId, ::create * pcreate)
+__pointer(::application) application_container::instantiate_application(const char * pszAppId, ::create * pcreate)
 {
 
    INFO("apex::application::instantiate_application");
 
    ::e_status estatus = ::success;
 
-   __pointer(::apex::application) papp;
+   __pointer(::application) papp;
 
    string strAppId(pszAppId);
 
@@ -306,10 +306,10 @@ __pointer(::apex::application) application_container::instantiate_application(co
 }
 
 
-__pointer(::apex::application) application_container::create_application(const char * pszAppId, bool bSynch, ::create * pcreate)
+__pointer(::application) application_container::create_application(const char * pszAppId, bool bSynch, ::create * pcreate)
 {
 
-   __pointer(::apex::application) papp = instantiate_application(pszAppId, pcreate);
+   __pointer(::application) papp = instantiate_application(pszAppId, pcreate);
 
    if (!papp)
    {
@@ -330,7 +330,7 @@ __pointer(::apex::application) application_container::create_application(const c
 }
 
 
-__pointer(::apex::application) application_container::create_platform(::apex::session * psession)
+__pointer(::application) application_container::create_platform(::apex::session * psession)
 {
 
    return nullptr;
@@ -341,17 +341,17 @@ __pointer(::apex::application) application_container::create_platform(::apex::se
 
 
 
-void application_container::on_instantiate_application(::apex::application* papp)
+void application_container::on_instantiate_application(::application* papp)
 {
 
 
 }
 
 
-__pointer(::apex::application) application_container::assert_running(const char * pszAppId, const string & strLocale, const string & strSchema)
+__pointer(::application) application_container::assert_running(const char * pszAppId, const string & strLocale, const string & strSchema)
 {
 
-  __pointer(::apex::application) papp;
+  __pointer(::application) papp;
 
   {
 
@@ -377,7 +377,7 @@ __pointer(::apex::application) application_container::assert_running(const char 
 
 
 
-__pointer(::apex::application) application_container::start_application(const char * pszAppId, ::create * pcreate, const string & strLocale, const string & strSchema)
+__pointer(::application) application_container::start_application(const char * pszAppId, ::create * pcreate, const string & strLocale, const string & strSchema)
 {
 
    string strApp(pszAppId);
@@ -482,10 +482,10 @@ __pointer(::apex::application) application_container::start_application(const ch
 }
 
 
-::apex::application * application_container::application_get(const char * pszAppId, bool bCreate, bool bSynch, ::create * pcreate)
+::application * application_container::application_get(const char * pszAppId, bool bCreate, bool bSynch, ::create * pcreate)
 {
 
-   __pointer(::apex::application) papp;
+   __pointer(::application) papp;
 
    if(m_applicationa.lookup(pszAppId,papp))
    {

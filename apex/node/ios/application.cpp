@@ -123,7 +123,7 @@ namespace apex
 //      set_os_data(nullptr);
 //
 //
-//      //i32 iRet = ::apex::application::term_instance();
+//      //i32 iRet = ::application::term_instance();
 //
 //
 //      int iRet = 0;

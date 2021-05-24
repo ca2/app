@@ -80,6 +80,9 @@
 #define __spin_namespace apex // back bone / four-letter "spin*" namespace name
 
 
+class application;
+
+
 namespace apex
 {
 
@@ -87,7 +90,6 @@ namespace apex
    class system;
    class node;
    class session;
-   class application;
    
    //class apex;
 
@@ -303,6 +305,7 @@ namespace bred
 
 } // namespace bred
 
+
 namespace core
 {
 
@@ -409,11 +412,8 @@ namespace apex
 {
 
 
-   class application;
-   class system;
-   //class application_message;
+class command;
 
-   class command;
 
 } // namespace apex
 
@@ -517,37 +517,6 @@ namespace apex
 } // namespace apex
 
 CLASS_DECL_APEX bool enable_trace_category(e_trace_category ecategory, bool bEnable = true);
-
-// only usable from axis and axis dependants
-namespace apex
-{
-
-   class application;
-   class session;
-   class system;
-
-}
-
-
-// only usable from base and base dependants
-namespace base
-{
-
-   class application;
-   class session;
-   class system;
-
-}
-
-// only usable from apex and apex dependants
-namespace apex
-{
-
-   class application;
-   class session;
-   class system;
-
-}
 
 
 class app_core;
@@ -716,14 +685,14 @@ namespace aura
 //inline ::object * this;
 
 
-//CLASS_DECL_APEX void set_global_application(::apex::application * papp);
-//CLASS_DECL_APEX ::apex::application * get_global_application();
+//CLASS_DECL_APEX void set_global_application(::application * papp);
+//CLASS_DECL_APEX ::application * get_global_application();
 
 
-//CLASS_DECL_APEX ::apex::application * get_application();
-//CLASS_DECL_APEX ::apex::application * get_application(::object * pobject);
-//CLASS_DECL_APEX inline ::apex::application * get_application(::apex::application * papp);
-//CLASS_DECL_APEX inline ::apex::application * get_app() { return get_application(); }
+//CLASS_DECL_APEX ::application * get_application();
+//CLASS_DECL_APEX ::application * get_application(::object * pobject);
+//CLASS_DECL_APEX inline ::application * get_application(::application * papp);
+//CLASS_DECL_APEX inline ::application * get_app() { return get_application(); }
 
 
 //CLASS_DECL_APEX ::apex::session * get_session();

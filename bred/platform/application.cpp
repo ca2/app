@@ -27,7 +27,7 @@ namespace bred
    ::e_status application::initialize(::object * pobject)
    {
 
-      auto estatus = ::apex::application::initialize(pobject);
+      auto estatus = ::application::initialize(pobject);
 
       if (!estatus)
       {

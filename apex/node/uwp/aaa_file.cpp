@@ -772,7 +772,7 @@ namespace uwp
    /////////////////////////////////////////////////////////////////////////////
    // WinFileException helpers
 
-   //void CLASS_DECL_APEX throw_exception(__pointer(::apex::application) papp, int cause, ::i32 lOsError, const char * lpszFileName /* == nullptr */)
+   //void CLASS_DECL_APEX throw_exception(__pointer(::application) papp, int cause, ::i32 lOsError, const char * lpszFileName /* == nullptr */)
    //{
 
    //   __throw(::file::exception(WinFileException::OsErrorToException(lOsError),lOsError,lpszFileName));

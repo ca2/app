@@ -82,7 +82,7 @@ namespace aura
 
 
    application::application(const char * pszAppId) :
-      ::apex::application(pszAppId)//,
+      ::application(pszAppId)//,
       //m_semCompiler(64, 64)
    {
 
@@ -187,7 +187,7 @@ namespace aura
    ::e_status application::initialize(::object * pobject)
    {
 
-      auto estatus = ::apex::application::initialize(pobject);
+      auto estatus = ::application::initialize(pobject);
 
       if (!estatus)
       {
@@ -264,7 +264,7 @@ namespace aura
    /*void application::application_menu_update()
    {
 
-      ::apex::application::application_menu_update();
+      ::application::application_menu_update();
 
    }
 */
@@ -272,7 +272,7 @@ namespace aura
    ::e_status application::finalize()
    {
 
-      auto estatus = ::apex::application::finalize();
+      auto estatus = ::application::finalize();
 
       return estatus;
 
@@ -336,7 +336,7 @@ namespace aura
    void application::assert_valid() const
    {
 
-      ::apex::application::assert_valid();
+      ::application::assert_valid();
 
    }
 
@@ -344,7 +344,7 @@ namespace aura
    void application::dump(dump_context & dumpcontext) const
    {
 
-      ::apex::application::dump(dumpcontext);
+      ::application::dump(dumpcontext);
 
       dumpcontext << "\nm_bHelpMode = " << m_strAppName;
 
@@ -356,7 +356,7 @@ namespace aura
    void application::install_message_routing(::channel * pchannel)
    {
 
-      ::apex::application::install_message_routing(pchannel);
+      ::application::install_message_routing(pchannel);
 
       //connect_command("app_exit", &application::_001OnAppExit);
       connect_command("switch_context_theme", &application::_001OnSwitchContextTheme);
@@ -1499,7 +1499,7 @@ namespace aura
    void application::on_pos_run_thread()
    {
 
-      ::apex::application::on_pos_run_thread();
+      ::application::on_pos_run_thread();
 
    }
 
@@ -1533,7 +1533,7 @@ namespace aura
    ::e_status application::init_instance()
    {
 
-      auto estatus = ::apex::application::init_instance();
+      auto estatus = ::application::init_instance();
 
       if (!estatus)
       {
@@ -1766,7 +1766,7 @@ retry_license:
       if (is_service())
       {
 
-         ::apex::application::on_install();
+         ::application::on_install();
 
          //if (!init_service())
          //{
@@ -1807,7 +1807,7 @@ retry_license:
 
       if (is_service())
       {
-         ::apex::application::on_uninstall();
+         ::application::on_uninstall();
 
          //if (!os_erase_service())
          //{
@@ -1826,7 +1826,7 @@ retry_license:
    ::e_status application::process_init()
    {
 
-      auto estatus = ::apex::application::process_init();
+      auto estatus = ::application::process_init();
 
       if (!estatus)
       {
@@ -1861,7 +1861,7 @@ retry_license:
 //   ::e_status application::init_application()
 //   {
 //
-//      auto estatus = ::apex::application::init_application();
+//      auto estatus = ::application::init_application();
 //
 //      if (!estatus)
 //      {
@@ -1983,7 +1983,7 @@ retry_license:
    ::e_status application::init1()
    {
 
-      ::e_status estatus = ::apex::application::init1();
+      ::e_status estatus = ::application::init1();
 
       if (!estatus)
       {
@@ -3806,7 +3806,7 @@ retry_license:
             if (m_puiptraFrame->has_no_interaction())
             {
 
-               apex::application::_001CloseApplication();
+               ::application::_001CloseApplication();
 
             }
 
@@ -4955,7 +4955,7 @@ retry_license:
    ::e_status application::init()
    {
 
-      auto estatus = ::apex::application::init();
+      auto estatus = ::application::init();
 
       if(!estatus)
       {
@@ -8320,7 +8320,7 @@ namespace aura
    //}
 
 
-   __pointer(::apex::application) application::create_platform(::apex::session* psession)
+   __pointer(::application) application::create_platform(::apex::session* psession)
    {
 
       return __new(::aura::session);
@@ -8450,7 +8450,7 @@ namespace aura
       if (!m_ptheme)
       {
 
-         return ::apex::application::get_theme();
+         return ::application::get_theme();
 
       }
 
@@ -9107,7 +9107,7 @@ namespace aura
       else
       {
 
-         ::apex::application::_001CloseApplication();
+         ::application::_001CloseApplication();
 
       }
 

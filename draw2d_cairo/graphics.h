@@ -527,12 +527,12 @@ namespace draw2d_cairo
       bool _set(___shape * pshape);
       bool _set(const enum_shape & eshape);
       bool _set(const ::arc & arc);
-      bool _set(const ::lined & line);
-      bool _set(const ::linesd & lines);
-      bool _set(const ::rectangle_f64 & rectangle_f64);
-      bool _set(const ::polygon_f64 & polygon_f64);
+      bool _set(const ::line & line);
+      bool _set(const ::lines & lines);
+      bool _set(const ::rectangle & rectangle);
+      bool _set(const ::polygon & polygon);
       bool _set(const ::write_text::text_out & textout);
-      bool _set(const ::write_text::draw_text & textout);
+      bool _set(const ::write_text::draw_text & drawtext);
       bool fill_and_draw(::draw2d::brush * pbrush, ::draw2d::pen * ppen);
       bool fill(::draw2d::brush * pbrush, double xOrg  = 0.0, double yOrg = 0.0);
       bool _fill1(::draw2d::brush* pbrush, double xOrg = 0.0, double yOrg = 0.0);

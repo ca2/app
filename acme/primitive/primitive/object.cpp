@@ -783,7 +783,7 @@ void object::call_request(::create* pcreate)
 }
 
 
-//::user::document* object::open_new_document(::apex::application* pappOnBehalfOf)
+//::user::document* object::open_new_document(::application* pappOnBehalfOf)
 //{
 //
 //   return open_document_file(pappOnBehalfOf, __visible(true));
@@ -2612,7 +2612,7 @@ __pointer(::extended::future < ::conversation >) object::message_box(const char*
 //}
 //
 //
-//void object::set_context_app(::apex::application* pappContext OBJ_REF_DBG_COMMA_PARAMS_DEF)
+//void object::set_context_app(::application* pappContext OBJ_REF_DBG_COMMA_PARAMS_DEF)
 //{
 //
 //   m_papplication.reset(pappContext OBJ_REF_DBG_COMMA_ARGS);
@@ -2733,7 +2733,7 @@ matter* object::get_taskpool_container()
 //}
 //
 //
-//::apex::application* object::_get_application()
+//::application* object::_get_application()
 //{
 //
 //   return m_papplication;
@@ -2741,7 +2741,7 @@ matter* object::get_taskpool_container()
 //}
 
 
-//inline ::apex::application* object::application() { return m_papplication; }
+//inline ::application* object::application() { return m_papplication; }
 
 
 //template < typename BASE_TYPE >
@@ -2979,7 +2979,7 @@ matter* object::get_taskpool_container()
 
 //inline ::thread* object::get_thread() const { return m_pthread; }
 
-//inline ::apex::application* object::get_application() const { return m_papplication; }
+//inline ::application* object::get_application() const { return m_papplication; }
 
 //inline ::apex::session* object::get_session() const { return m_psession; }
 
@@ -2987,7 +2987,7 @@ matter* object::get_taskpool_container()
 
 //::object * get_context_user() const { return m_puserContext; }
 
-//inline ::apex::application * application() const { return m_papplication; }
+//inline ::application * application() const { return m_papplication; }
 
 //string object::get_text(const ::payload& payload, const ::id& id)
 //{
@@ -2999,14 +2999,14 @@ matter* object::get_taskpool_container()
 //#ifdef DEBUG
 //    void set_context(::context* pcontext OBJ_REF_DBG_COMMA_PARAMS);
 //    void set_context_thread(::thread* pthread OBJ_REF_DBG_COMMA_PARAMS);
-//    void set_context_app(::apex::application* pappContext OBJ_REF_DBG_COMMA_PARAMS);
+//    void set_context_app(::application* pappContext OBJ_REF_DBG_COMMA_PARAMS);
 //    void set_context_session(::apex::session* psessionContext OBJ_REF_DBG_COMMA_PARAMS);
 //   // void set_context_system(::apex::system* psystemContext OBJ_REF_DBG_COMMA_PARAMS);
 //   // void set_context_user(::object * puserContext);
 //#else
 //   inline void set_context(::context* pcontext);
 //   inline void set_context_thread(::thread* pthread);
-//   inline void set_context_app(::apex::application* pappContext);
+//   inline void set_context_app(::application* pappContext);
 //   inline void set_context_session(::apex::session* psessionContext);
 //   //inline void set_context_system(::apex::system* psystemContext);
 //   //inline void set_context_user(::object * puserContext);
@@ -3470,16 +3470,16 @@ matter* object::get_taskpool_container()
 //}
 
 //// former user::server
-// ::user::document* open_new_document(::apex::application* pappOnBehalfOf);
+// ::user::document* open_new_document(::application* pappOnBehalfOf);
 //void object::on_request(::create* pcreate)
 //{
 //
 //
 //}
 
-// ::user::document* open_document_file(::apex::application* pappOnBehalfOf);
-// ::user::document* open_document_file(::apex::application* pappOnBehalfOf, const ::payload& varFile, const ::payload & varOptions, ::user::interaction* puiParent = nullptr, ewindowflag eflag = e_window_flag_none, ::id id = ::id());
-// ::user::document* open_document_file(::apex::application* pappOnBehalfOf, const ::payload& varFile);
+// ::user::document* open_document_file(::application* pappOnBehalfOf);
+// ::user::document* open_document_file(::application* pappOnBehalfOf, const ::payload& varFile, const ::payload & varOptions, ::user::interaction* puiParent = nullptr, ewindowflag eflag = e_window_flag_none, ::id id = ::id());
+// ::user::document* open_document_file(::application* pappOnBehalfOf, const ::payload& varFile);
 // ::user::document* create_subdocument(::user::impact_data* pimpactdata);
 
 //

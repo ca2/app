@@ -69,7 +69,7 @@ class static_application_factory :
 public:
 
 
-   virtual ::apex::application* new_application() override
+   virtual ::application* new_application() override
    {
       auto papplication = new APPLICATION;
 #ifdef NO_IMAGING

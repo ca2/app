@@ -2481,7 +2481,7 @@ inline uptr uptr_hash < block >(block b)
 }
 
 
-inline ::apex::application* object::get_application() const 
+inline ::application* object::get_application() const 
 { 
    
    return m_pcontext && m_pcontext->m_papexapplication ? m_pcontext->m_papexapplication : (m_psystem ? m_psystem->m_papplicationMain.get() : nullptr);
@@ -3907,7 +3907,7 @@ inline ::e_status object::defer_branch(::task_pointer& pthread, const ::routine&
 }
 
 
-//inline ::apex::application* object::application()
+//inline ::application* object::application()
 //{ 
 //   
 //   return m_papplication->layer(LAYERED_APEX); 

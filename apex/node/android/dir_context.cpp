@@ -1265,7 +1265,7 @@ namespace android
    //}
 
 
-   //::file::path dir_context::default_userfolder(::apex::application *  papp, const string & lpcszPrefix, const string & lpcszLogin)
+   //::file::path dir_context::default_userfolder(::application *  papp, const string & lpcszPrefix, const string & lpcszLogin)
    //{
 
    //   return userfolder();

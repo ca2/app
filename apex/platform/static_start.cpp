@@ -287,7 +287,7 @@ namespace apex
 
       //g_pmapRTL = nullptr;
 
-      //::map < void *, void *,::apex::application *, ::apex::application * > * g_pmapAura;
+      //::map < void *, void *,::application *, ::application * > * g_pmapAura;
 
       //string_map < __pointer(::acme::library) > * g_pmapLibCall;
 
@@ -508,7 +508,7 @@ namespace apex
 
       g_paAura = new array < matter * >;
 
-      //g_pmapAura =new ::map < void *,void *,::apex::application *,::apex::application * >;
+      //g_pmapAura =new ::map < void *,void *,::application *,::application * >;
 
       g_pmutexUiDestroyed = new ::mutex();
 

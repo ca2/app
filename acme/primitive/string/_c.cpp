@@ -1018,9 +1018,7 @@ const char* wildcard_next_stop(const char* pszCriteria)
             if (pszStop == nullptr)
             {
 
-               return true;
-
-               //pszStop = pszFind + ansi_length(pszFind);
+               pszStop = pszFind + ansi_length(pszFind);
 
             }
 

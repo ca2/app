@@ -31,7 +31,7 @@ namespace hotplugin
 
       ::rectangle_i32                        m_rectangle;
       ::rectangle_i32                        m_rectClient;
-      ::rectangle_i32                        m_rectWindow;
+      ::rectangle_i32                        m_rectangleWindow;
 
       bool                          m_bHostStarterStart;
 

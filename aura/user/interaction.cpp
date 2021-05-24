@@ -2605,7 +2605,7 @@ namespace user
          if (pdrawcontext != nullptr)
          {
 
-            rectClient = pdrawcontext->m_rectWindow;
+            rectClient = pdrawcontext->m_rectangleWindow;
 
             _001ScreenToClient(rectClient, e_layout_design);
 
@@ -12441,8 +12441,8 @@ restart:
    //   m_stateProcess2.reset();
    //   m_state2.reset();
    //   m_stateWindow3.reset();
-   //   m_windowrect.reset();
-   //   m_windowrectStore.reset();
+   //   m_windowrectangle.reset();
+   //   m_windowrectangleStore.reset();
 
    //}
 

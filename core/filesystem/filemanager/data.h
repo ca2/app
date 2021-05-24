@@ -68,7 +68,7 @@ namespace filemanager
       ::database::key                     m_dataidStatic;
 
 
-      file_list_callback *                m_pfilelistcallback;
+      __pointer(file_list_callback)       m_pfilelistcallback;
 
       string                              m_strLevelUp;
       i32                                 m_iIconSize;

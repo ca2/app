@@ -45,7 +45,7 @@ namespace os
 
       bool                       m_bRunLoop;
 
-      ::rectangle_i32                     m_rectWindow;
+      ::rectangle_i32                     m_rectangleWindow;
 
       bool                       m_bNoDecorations;
 

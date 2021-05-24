@@ -148,8 +148,8 @@ namespace os
       m_size.cx = width(lpcrect);
       m_size.cy = height(lpcrect);
 
-      m_rectWindow = *lpcrect;
-      m_rectWindow.deflate(1, 1); // make intentionally different from actual rectangle_i32 to trigger simple_ui on_move and on_size events
+      m_rectangleWindow = *lpcrect;
+      m_rectangleWindow.deflate(1, 1); // make intentionally different from actual rectangle_i32 to trigger simple_ui on_move and on_size events
 
       m_window = oswindow_get(display, window, vis, m_iDepth, m_iScreen, attr.colormap);
 
@@ -574,13 +574,13 @@ namespace os
    void simple_ui::get_window_rect(RECTANGLE_I32 * prectangle)
    {
 
-      *prectangle = m_rectWindow;
+      *prectangle = m_rectangleWindow;
 
    }
    void simple_ui::get_client_rect(RECTANGLE_I32 * prectangle)
    {
 
-      *prectangle = m_rectWindow;
+      *prectangle = m_rectangleWindow;
 
       prectangle->right -= prectangle->left;
       prectangle->bottom -= prectangle->top;
@@ -597,21 +597,21 @@ namespace os
 
       ::get_window_rect(m_window, rectWindow);
 
-      if(rectWindow.size() != m_rectWindow.size())
+      if(rectWindow.size() != m_rectangleWindow.size())
       {
 
          on_size(rectWindow.width(), rectWindow.height());
 
       }
 
-      if(rectWindow.top_left() != m_rectWindow.top_left())
+      if(rectWindow.top_left() != m_rectangleWindow.top_left())
       {
 
          on_move(rectWindow.left, rectWindow.top);
 
       }
 
-      m_rectWindow = rectWindow;
+      m_rectangleWindow = rectWindow;
 
 
 /*      if (m_pimage->is_set() && m_pimage->g() != nullptr)

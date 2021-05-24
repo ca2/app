@@ -1183,7 +1183,9 @@ namespace dynamic_source
 
       auto psystem = m_psystem->m_paurasystem;
 
-      return  psystem->crypto().generate_rsa_key();
+      auto pcrypto = psystem->crypto();
+
+      return pcrypto->generate_rsa_key();
 
    }
 
@@ -1209,7 +1211,9 @@ namespace dynamic_source
 
       auto psystem = m_psystem->m_paurasystem;
 
-      __pointer(::crypto::rsa) prsa = psystem->crypto().generate_rsa_key();
+      auto pcrypto = psystem->crypto();
+
+      auto prsa = pcrypto->generate_rsa_key();
 
       single_lock synchronouslock(&m_mutexRsa, true);
 

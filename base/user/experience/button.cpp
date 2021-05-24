@@ -76,7 +76,7 @@ namespace experience
          if (pdrawcontext != nullptr)
          {
 
-            rectClient = pdrawcontext->m_rectWindow;
+            rectClient = pdrawcontext->m_rectangleWindow;
 
             _001ScreenToClient(rectClient);
 

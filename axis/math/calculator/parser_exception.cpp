@@ -30,7 +30,7 @@ CLASS_DECL_AXIS bool throw_numeric_parser_exception(const string & strMessage)
    if(get_avoid_numeric_parser_exception())
       return false;
 
-   __throw(numeric_parser_exception(strMessage));
+   __throw(error_parsing, strMessage);
 
    return true;
 

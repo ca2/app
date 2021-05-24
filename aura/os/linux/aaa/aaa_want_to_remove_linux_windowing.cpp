@@ -2617,7 +2617,7 @@ bool x11_process_message(Display * pdisplay)
                   pinteraction->fork([=]()
                   {
 
-                     if(pinteraction->m_windowrect.m_edisplayPrevious == ::e_display_iconic)
+                     if(pinteraction->m_windowrectangle.m_edisplayPrevious == ::e_display_iconic)
                      {
 
                         pinteraction->_001OnDeiconify(::e_display_normal);
@@ -2626,7 +2626,7 @@ bool x11_process_message(Display * pdisplay)
                      else
                      {
 
-                        pinteraction->_001OnDeiconify(pinteraction->m_windowrect.m_edisplayPrevious);
+                        pinteraction->_001OnDeiconify(pinteraction->m_windowrectangle.m_edisplayPrevious);
 
                      }
 
@@ -2690,7 +2690,7 @@ bool x11_process_message(Display * pdisplay)
             if(pinteraction->layout().design().display() == ::e_display_iconic && !msg.hwnd->is_iconic())
             {
 
-               ::enum_display edisplayPrevious = pinteraction->m_windowrect.m_edisplayPrevious;
+               ::enum_display edisplayPrevious = pinteraction->m_windowrectangle.m_edisplayPrevious;
 
                pinteraction->layout().sketch().m_edisplay3 = edisplayPrevious;
 
@@ -2700,7 +2700,7 @@ bool x11_process_message(Display * pdisplay)
 
                pinteraction->window_state3().m_edisplay3 = edisplayPrevious;
 
-               pinteraction->m_windowrect.m_edisplay = edisplayPrevious;
+               pinteraction->m_windowrectangle.m_edisplay = edisplayPrevious;
 
             }
 

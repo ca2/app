@@ -5723,23 +5723,25 @@ string get_bundle_app_library_name();
       if (!plibrary)
       {
 
-         {
+         //{
 
-            auto pfuture = __sync_future();
+         //   //auto pfuture = __sync_future();
 
-            //message_box(strMessage, "Could not open required library. Want to give an yes/no answer insted of pression cancel?", e_message_box_icon_exclamation | e_message_box_yes_no_cancel, pfuture);
+         //   //message_box(strMessage, "Could not open required library. Want to give an yes/no answer insted of pression cancel?", e_message_box_icon_exclamation | e_message_box_yes_no_cancel, pfuture);
 
-            pfuture->wait(10_s);
+         //   //pfuture->wait(10_s);
 
-            int iDialogResult = pfuture->m_var;
+         //   int iDialogResult = pfuture->m_var;
 
-            ::output_debug_string("result " + __str(iDialogResult));
+         //   ::output_debug_string("result " + __str(iDialogResult));
 
-         }
+         //}
 
-         __throw(error_failed, strMessage + "\n\nCould not open required library.");
+         //__throw(error_failed, strMessage + "\n\nCould not open required library.");
 
-         return nullptr;
+         ::output_debug_string("The application library for appid \"" + strAppId + "\" wasn't loaded.");
+
+         //return nullptr;
 
       }
 

@@ -14,7 +14,7 @@ namespace user
 
       m_databasekey.m_bLocalData = true;
 
-      m_windowrectStore.m_edisplay = ::e_display_undefined;
+      m_windowrectangleStore.m_edisplay = ::e_display_undefined;
 
    }
 
@@ -205,7 +205,7 @@ namespace user
       try
       {
 
-         window_rect windowrect;
+         window_rectangle windowrectangle;
 
          if (!papplication->data_get(key, windowrect))
          {
@@ -216,9 +216,9 @@ namespace user
 
          m_ewindowflag |= e_window_flag_loading_window_rect;
 
-         m_windowrectStore = windowrect;
+         m_windowrectangleStore = windowrect;
 
-         m_windowrect = m_windowrectStore;
+         m_windowrectangle = m_windowrectangleStore;
 
          enum_display edisplay = windowrect.m_edisplay;
 
@@ -258,7 +258,7 @@ namespace user
 
             }
 
-            place(windowrect.m_rectWindow);
+            place(windowrect.m_rectangleWindow);
 
             layout().sketch().m_edisplay3 = edisplay;
 
@@ -275,7 +275,7 @@ namespace user
 
             }
 
-            place(windowrect.m_rectSnapped);
+            place(windowrect.m_rectangleSnapped);
 
             layout().sketch().m_edisplay3 = edisplay;
 
@@ -285,7 +285,7 @@ namespace user
          else
          {
 
-            good_restore(nullptr, windowrect.m_rectRestored, true, e_activation_default, e_zorder_top, windowrect.m_edisplay);
+            good_restore(nullptr, windowrect.m_rectangleRestored, true, e_activation_default, e_zorder_top, windowrect.m_edisplay);
 
          }
 
@@ -325,22 +325,22 @@ namespace user
 
       }
 
-      if (m_windowrectStore.m_edisplay == e_display_undefined)
+      if (m_windowrectangleStore.m_edisplay == e_display_undefined)
       {
 
-         papplication->data_get(key, m_windowrectStore);
+         papplication->data_get(key, m_windowrectangleStore);
 
       }
 
-      auto windowrect = m_windowrectStore;
+      auto windowrect = m_windowrectangleStore;
 
-      bool bGot = m_windowrectStore.m_edisplay != e_display_undefined;
+      bool bGot = m_windowrectangleStore.m_edisplay != e_display_undefined;
 
       windowrect.m_edisplay = layout().sketch().display();
 
       windowrect.m_eappearance = layout().sketch().appearance();
 
-      get_window_rect(windowrect.m_rectWindow);
+      get_window_rect(windowrect.m_rectangleWindow);
 
       auto edisplay = windowrect.m_edisplay;
 
@@ -354,16 +354,16 @@ namespace user
       else if (bGot && is_docking_appearance(windowrect.m_edisplay))
       {
 
-         windowrect.m_rectSnapped = windowrect.m_rectWindow;
+         windowrect.m_rectangleSnapped = windowrect.m_rectangleWindow;
 
       }
-      else if (windowrect.m_rectWindow.size() == m_sizeRestoreCompact)
+      else if (windowrect.m_rectangleWindow.size() == m_sizeRestoreCompact)
       {
 
          windowrect.m_edisplay = e_display_compact;
 
       }
-      else if (windowrect.m_rectWindow.size() == m_sizeRestoreBroad)
+      else if (windowrect.m_rectangleWindow.size() == m_sizeRestoreBroad)
       {
 
          windowrect.m_edisplay = e_display_broad;
@@ -372,19 +372,19 @@ namespace user
       else
       {
 
-         windowrect.m_rectRestored = windowrect.m_rectWindow;
+         windowrect.m_rectangleRestored = windowrect.m_rectangleWindow;
 
       }
 
-      if (windowrect.m_rectRestored.width() < get_window_minimum_size().cx
-         || windowrect.m_rectRestored.height() < get_window_minimum_size().cy)
+      if (windowrect.m_rectangleRestored.width() < get_window_minimum_size().cx
+         || windowrect.m_rectangleRestored.height() < get_window_minimum_size().cy)
       {
 
-         if (windowrect.m_rectWindow.width() > get_window_minimum_size().cx
-            && windowrect.m_rectWindow.height() > get_window_minimum_size().cy)
+         if (windowrect.m_rectangleWindow.width() > get_window_minimum_size().cx
+            && windowrect.m_rectangleWindow.height() > get_window_minimum_size().cy)
          {
 
-            windowrect.m_rectRestored = windowrect.m_rectWindow;
+            windowrect.m_rectangleRestored = windowrect.m_rectangleWindow;
 
          }
 
@@ -397,7 +397,7 @@ namespace user
 
       }
 
-      m_windowrectStore = windowrect;
+      m_windowrectangleStore = windowrect;
 
       return true;
 

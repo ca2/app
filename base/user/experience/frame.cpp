@@ -749,7 +749,7 @@ namespace experience
 
       }
 
-      m_rectWindow = rectClient;
+      m_rectangleWindow = rectClient;
 
       ::rectangle_i32 rectIcon;
 
@@ -1093,7 +1093,7 @@ namespace experience
 
          //auto sizeMinimum = m_pframewindow->get_window_minimum_size();
 
-         //auto sizeMove = m_pframewindow->m_windowrect.m_rectRestored.size().maximum(sizeMinimum);
+         //auto sizeMove = m_pframewindow->m_windowrectangle.m_rectangleRestored.size().maximum(sizeMinimum);
 
          //rectRequest.set(pointMove, sizeMove);
 
@@ -1123,7 +1123,7 @@ namespace experience
       auto iWorkspace = m_pframewindow->get_best_zoneing(edisplay, &rectangle, rectRequest, bPreserveSize);
 
       if(edisplay != m_pframewindow->layout().sketch().display() ||
-         (::is_docking_appearance(edisplay) && iWorkspace != m_pframewindow->m_windowrect.m_iWorkspace))
+         (::is_docking_appearance(edisplay) && iWorkspace != m_pframewindow->m_windowrectangle.m_iWorkspace))
       {
 
          if (m_pframewindow->layout().m_millisLastSketchToDesign.elapsed() < 800_tick)
@@ -1178,11 +1178,11 @@ namespace experience
          if (is_docking_appearance(edisplay))
          {
 
-            m_pframewindow->m_windowrect.m_rectSnapped = rectangle;
+            m_pframewindow->m_windowrectangle.m_rectangleSnapped = rectangle;
 
          }
 
-         m_pframewindow->m_windowrect.m_iWorkspace = iWorkspace;
+         m_pframewindow->m_windowrectangle.m_iWorkspace = iWorkspace;
 
          m_pframewindow->layout().sketch() = edisplay;
 
@@ -1193,9 +1193,9 @@ namespace experience
          if (m_pframewindow->size_manager()->window_is_sizing())
          {
 
-            m_pframewindow->m_windowrect.m_rectRestored = rectangle;
+            m_pframewindow->m_windowrectangle.m_rectangleRestored = rectangle;
 
-            m_pframewindow->m_windowrect.m_rectSnapped = rectangle;
+            m_pframewindow->m_windowrectangle.m_rectangleSnapped = rectangle;
 
             m_pframewindow->layout().sketch() = rectangle;
 
@@ -1203,7 +1203,7 @@ namespace experience
          else if (m_pframewindow->move_manager()->window_is_moving())
          {
 
-            m_pframewindow->m_windowrect.m_rectSnapped = rectangle;
+            m_pframewindow->m_windowrectangle.m_rectangleSnapped = rectangle;
 
             m_pframewindow->layout().sketch() = rectangle;
 

@@ -1217,7 +1217,7 @@ void simple_scroll_bar::_001OnClip(::draw2d::graphics_pointer & pgraphics)
 
       //   ::rectangle_i32 rectClient;
 
-      //   rectClient = pdrawcontext->m_rectWindow;
+      //   rectClient = pdrawcontext->m_rectangleWindow;
 
       //   _001ScreenToClient(rectClient);
 

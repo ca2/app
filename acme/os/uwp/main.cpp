@@ -28,7 +28,7 @@ CLASS_DECL_ACME void __cdecl _null_se_translator(unsigned int uiCode, EXCEPTION_
 //  Can be replaced as long as '::ca2::WinInit' is called first
 
 
-//int CLASS_DECL_ACME win_main(class ::system * psystem, ::Array < ::String ^ > ^ args)
+//int CLASS_DECL_ACME win_main(::acme::system * psystem, ::Array < ::String ^ > ^ args)
 //{
 //
 //   if (!main_initialize())
@@ -141,7 +141,7 @@ CLASS_DECL_ACME void __cdecl _null_se_translator(unsigned int uiCode, EXCEPTION_
 //
 //      _set_purecall_handler(_ca2_purecall);
 //
-//      class ::system * psystem = new class ::system();
+//      ::acme::system * psystem = new ::acme::system();
 //
 //
 //      //sleep(30 * 1000);

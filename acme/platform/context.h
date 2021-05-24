@@ -27,7 +27,7 @@ namespace acme
       ::base::session *                               m_pbasesession;
       ::bred::session *                               m_pbredsession;
       ::core::session *                               m_pcoresession;
-      class ::system *                                m_pacmesystem;
+      ::acme::system *                                m_pacmesystem;
       ::apex::system *                                m_papexsystem;
       ::aqua::system *                                m_paquasystem;
       ::aura::system *                                m_paurasystem;

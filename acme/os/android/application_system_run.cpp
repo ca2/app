@@ -83,7 +83,7 @@ namespace acme
       //if (!psystem->begin_synch())
       //{
 
-      //   output_debug_string("Failed to begin_synch the system (class ::system or class ::system derived)");
+      //   output_debug_string("Failed to begin_synch the system (::acme::system or ::acme::system derived)");
 
       //   return ::error_failed;
 

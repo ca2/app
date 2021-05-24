@@ -21,7 +21,7 @@ public:
    //__pointer(::thread)                                m_pthread;
    //__pointer(::apex::application)                     m_papplication;
    //__pointer(::apex::session)                         m_psession;
-   //__pointer(class ::system)                          m_psystem;
+   //__pointer(::acme::system)                          m_psystem;
    __pointer(::context)                               m_pcontext;
 
 

@@ -34,7 +34,7 @@ CLASS_DECL_ACME bool get_command_line_param(string & strValue, const char * pszC
 CLASS_DECL_ACME string get_command_line_param(const char * pszCommandLine,const char * pszParam);
 
 
-CLASS_DECL_ACME bool launch_command(class ::system * psystem, const char * const pszCommand);
+CLASS_DECL_ACME bool launch_command(::acme::system * psystem, const char * const pszCommand);
 
 
 CLASS_DECL_ACME string process_configuration_dir_name();

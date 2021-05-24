@@ -20,7 +20,7 @@ namespace dynamic_source
 
       __pointer(script_manager)                 m_pmanager;
       string                                    m_strName;
-      memory_file                               m_fileError;
+      memory_file_pointer                       m_pfileError;
       ::text_stream                             m_streamError;
       string                                    m_strError;
       bool                                      m_bNew;

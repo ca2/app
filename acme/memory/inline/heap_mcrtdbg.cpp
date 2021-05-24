@@ -970,9 +970,9 @@ memsize memory_size_dbg(void * p, i32 iBlockType)
 void destroy_id_space() // let it go with the ({"eco}system") processs
 {
 
-   delete class ::system::s_pidspace;
+   delete ::acme::system::s_pidspace;
 
-   class ::system::s_pidspace = nullptr;
+   ::acme::system::s_pidspace = nullptr;
 
 }
 */

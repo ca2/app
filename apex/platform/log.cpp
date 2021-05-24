@@ -4,7 +4,7 @@
 #include "acme/filesystem/filesystem/acme_dir.h"
 
 
-CLASS_DECL_APEX string task_get_name();
+//CLASS_DECL_APEX string task_get_name();
 
 #include <stdio.h>
 // #include <stdarg.h>

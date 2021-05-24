@@ -1619,6 +1619,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClCompile Include="primitive\datetime\microsecond_sleep.cpp" />
     <ClCompile Include="primitive\datetime\result.cpp" />
     <ClCompile Include="primitive\datetime\secs.cpp" />
+    <ClCompile Include="primitive\geometry2d\rectangle.cpp" />
     <ClCompile Include="primitive\geometry2d\shape.cpp" />
     <ClCompile Include="primitive\mathematics\binary_operation.cpp" />
     <ClCompile Include="primitive\mathematics\cvt.cpp" />
@@ -2269,7 +2270,6 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClCompile Include="primitive\datetime\_c.cpp" />
     <ClCompile Include="primitive\geometry2d\geometry.cpp" />
     <ClCompile Include="primitive\geometry2d\point.cpp" />
-    <ClCompile Include="primitive\geometry2d\rect.cpp" />
     <ClCompile Include="primitive\geometry2d\size.cpp" />
     <ClCompile Include="primitive\geometry2d\types.cpp" />
     <ClCompile Include="primitive\geometry2d\_.cpp" />

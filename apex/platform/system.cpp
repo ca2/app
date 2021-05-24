@@ -1027,7 +1027,7 @@ namespace apex
       create_factory<command_line>();
       create_factory<http::context>();
 
-      auto estatus = ::system::process_init();
+      auto estatus = ::acme::system::process_init();
 
       if (!estatus)
       {
@@ -4493,7 +4493,11 @@ namespace apex
 
             strParam += " " + file_as_string(m_psystem->m_pacmedir->localconfig() / "app-core/commander/chrome.txt");
 
-            call_async(path, strParam, pathDir, e_display_default, false);
+            auto psystem = m_psystem;
+
+            auto pnode = psystem->node();
+
+            pnode->call_async(path, strParam, pathDir, e_display_default, false);
 
          }
 
@@ -4950,7 +4954,7 @@ namespace apex
 //   ::e_status system::defer_initialize_x11()
 //   {
 //
-//      return class ::system::defer_initialize_x11();
+//      return ::acme::system::defer_initialize_x11();
 //
 //   }
 
@@ -5352,7 +5356,7 @@ namespace apex
 //
 //      }
 //
-//      //auto estatus = class ::system::main();
+//      //auto estatus = ::acme::system::main();
 
       auto estatus = ::thread::main();
 
@@ -5894,7 +5898,7 @@ namespace apex
 void int_system_update(void* pSystem, int iUpdate, int iPayload)
 {
 
-   auto psystem = (class ::system *) pSystem;
+   auto psystem = (::acme::system *) pSystem;
 
    psystem->int_system_update(iUpdate, iPayload);
 

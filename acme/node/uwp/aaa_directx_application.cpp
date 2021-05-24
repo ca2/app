@@ -30,7 +30,7 @@ namespace uwp
 {
 
 
-   directx_framework_view::directx_framework_view(class ::system * psystem, ::String ^ strId)
+   directx_framework_view::directx_framework_view(::acme::system * psystem, ::String ^ strId)
    {
 
       draw2d_direct2d::direct2d_initialize();
@@ -687,7 +687,7 @@ namespace uwp
    }
 
 
-   directx_application_source::directx_application_source(class ::system * paxissystem, const string & strId)
+   directx_application_source::directx_application_source(::acme::system * paxissystem, const string & strId)
    {
 
       m_psystem     = paxissystem;
@@ -705,7 +705,7 @@ namespace uwp
    }
 
 
-   directx_application_source ^ new_directx_application_source(class ::system * paurasystem, const string & strId)
+   directx_application_source ^ new_directx_application_source(::acme::system * paurasystem, const string & strId)
    {
 
       string str = strId;

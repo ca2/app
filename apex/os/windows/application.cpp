@@ -12,8 +12,8 @@
 ////   ::u16 w16Task, ::u32 tickTimeout);
 //
 ////#endif
-//int SendCtrlShiftQToChrome(HWND chrome, int iSleep, ::application * papp);
-////int SendURLToChrome(HWND chrome, string strUrl, ::application * papp);
+//int SendCtrlShiftQToChrome(HWND chrome, int iSleep, ::apex::application * papp);
+////int SendURLToChrome(HWND chrome, string strUrl, ::apex::application * papp);
 //class block_input :
 //   virtual public object
 //{
@@ -83,7 +83,7 @@
 //
 //}
 //
-//int SendCtrlShiftQToChrome(oswindow w, int iSleep, ::application * papp)
+//int SendCtrlShiftQToChrome(oswindow w, int iSleep, ::apex::application * papp)
 //{
 //   /*HWND h = ::GetWindow(chrome, GW_CHILD);
 //   SendMessage(chrome, 0x0272, 0, 0);
@@ -877,7 +877,7 @@
 ////}
 ////
 ////
-////int SendURLToChrome(HWND chrome, string strUrl, ::application * papp)
+////int SendURLToChrome(HWND chrome, string strUrl, ::apex::application * papp)
 ////{
 ////
 ////   App(pbapp).message_box_timeout(nullptr, "Sending URL to browser...", seconds(3), MB_ICONASTERISK);

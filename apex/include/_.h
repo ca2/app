@@ -80,9 +80,6 @@
 #define __spin_namespace apex // back bone / four-letter "spin*" namespace name
 
 
-class application;
-
-
 namespace apex
 {
 
@@ -91,6 +88,10 @@ namespace apex
    class node;
    class session;
    
+
+   class application;
+
+
    //class apex;
 
 
@@ -685,14 +686,14 @@ namespace aura
 //inline ::object * this;
 
 
-//CLASS_DECL_APEX void set_global_application(::application * papp);
-//CLASS_DECL_APEX ::application * get_global_application();
+//CLASS_DECL_APEX void set_global_application(::apex::application * papp);
+//CLASS_DECL_APEX ::apex::application * get_global_application();
 
 
-//CLASS_DECL_APEX ::application * get_application();
-//CLASS_DECL_APEX ::application * get_application(::object * pobject);
-//CLASS_DECL_APEX inline ::application * get_application(::application * papp);
-//CLASS_DECL_APEX inline ::application * get_app() { return get_application(); }
+//CLASS_DECL_APEX ::apex::application * get_application();
+//CLASS_DECL_APEX ::apex::application * get_application(::object * pobject);
+//CLASS_DECL_APEX inline ::apex::application * get_application(::apex::application * papp);
+//CLASS_DECL_APEX inline ::apex::application * get_app() { return get_application(); }
 
 
 //CLASS_DECL_APEX ::apex::session * get_session();

@@ -761,7 +761,7 @@ void object::defer_update_object_id()
 }
 
 
-//::user::document* object::open_new_document(::application* pappOnBehalfOf)
+//::user::document* object::open_new_document(::apex::application* pappOnBehalfOf)
 //{
 //
 //   return open_document_file(pappOnBehalfOf, __visible(true));
@@ -2372,7 +2372,7 @@ void object::set_context_thread(::thread* pthread OBJ_REF_DBG_COMMA_PARAMS_DEF)
 }
 
 
-void object::set_context_app(::application* pappContext OBJ_REF_DBG_COMMA_PARAMS_DEF)
+void object::set_context_app(::apex::application* pappContext OBJ_REF_DBG_COMMA_PARAMS_DEF)
 {
 
    m_papplication.reset(pappContext OBJ_REF_DBG_COMMA_ARGS);

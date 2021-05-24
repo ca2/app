@@ -1201,7 +1201,7 @@ namespace acme
    }
 
 
-   void system::int_system_update(int iUpdate, int iPayload)
+   void system::system_int_update(int iUpdate, int iPayload)
    {
 
 
@@ -1250,6 +1250,6 @@ void int_system_update(void * pSystem, int iUpdate, int iParam)
    
    auto psystem = (::acme::system *) pSystem;
    
-   psystem->int_system_update(iUpdate, iParam);
+   psystem->system_int_update(iUpdate, iParam);
    
 }

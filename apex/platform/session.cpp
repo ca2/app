@@ -23,7 +23,7 @@ namespace PLATFORM_NAMESPACE
 
 #ifdef CUBE
 extern "C"
-::application * cube_get_app();
+::apex::application * cube_get_app();
 #endif
 
 void defer_term_ui();
@@ -770,7 +770,7 @@ namespace apex
 
             }
 
-            ::application * papp = application_get(strApp, true, true, pcreate);
+            ::apex::application * papp = application_get(strApp, true, true, pcreate);
 
             if (papp == nullptr)
             {
@@ -943,7 +943,7 @@ namespace apex
 
       }
 
-      ::application* papp = application_get(strId, true, true, pcreate);
+      ::apex::application* papp = application_get(strId, true, true, pcreate);
 
       if (papp == nullptr)
       {
@@ -959,7 +959,7 @@ namespace apex
    }
 
 
-   void session::on_instantiate_application(::application* papp)
+   void session::on_instantiate_application(::apex::application* papp)
    {
 
       papp->m_papexsession = this;
@@ -973,7 +973,7 @@ namespace apex
    //::application * session::application_get(const char * pszAppId, bool bCreate, bool bSynch, ::create * pcreate)
    //{
 
-   //   __pointer(::application) papp;
+   //   __pointer(::apex::application) papp;
 
    //   if (m_applicationa.lookup(pszAppId, papp))
    //   {
@@ -1589,7 +1589,7 @@ namespace apex
    //}
 
 
-   __pointer(::application) session::get_current_application()
+   __pointer(::apex::application) session::get_current_application()
    {
 
       auto psession = get_session();
@@ -1706,7 +1706,7 @@ namespace apex
    //   ::user::place_holder_ptra holderptra;
 
 
-   //   ::application & app = App(pmainframe->get_application());
+   //   ::apex::application & app = App(pmainframe->get_application());
 
    //   string strAppName = app.m_strAppName;
 
@@ -1745,7 +1745,7 @@ namespace apex
    void session::set_app_title(const char* pszAppId, const char* pszTitle)
    {
 
-      __pointer(::application) papp;
+      __pointer(::apex::application) papp;
 
       if (m_applicationa.lookup(pszAppId, papp) && papp)
       {
@@ -1842,7 +1842,7 @@ namespace apex
       //{
 
 
-      //   return ::application::allocate_new_service();
+      //   return ::apex::application::allocate_new_service();
 
 
       //}

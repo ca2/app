@@ -205,7 +205,7 @@ CLASS_DECL_ACME int get_acme_init()
 
 
 //extern "C"
-//CLASS_DECL_ACMEclass ::system * acme_create_acme_system()
+//CLASS_DECL_ACMEclass ::acme::system * acme_create_acme_system()
 //{
 //
 //   return new ::acme::system();

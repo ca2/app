@@ -136,7 +136,7 @@ namespace user
 
       }
 
-      ::application * papp = pcreate->create_get_application(get_application());
+      ::apex::application * papp = pcreate->create_get_application(get_application());
 
       __pointer(::user::document) pdocument;
 
@@ -212,7 +212,7 @@ namespace user
 
       }
 
-      ::application * papp = pcreate->create_get_application(get_application());
+      ::apex::application * papp = pcreate->create_get_application(get_application());
 
       __pointer(::user::frame_window) pframe;
 

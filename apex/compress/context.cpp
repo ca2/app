@@ -213,7 +213,7 @@ bool compress_context::uncompress(memory& memoryOut, const ::memory& memoryIn)
 //}
 
 
-::count compress_context::extract_all(const ::file::path & pszFile, ::application * pobject)
+::count compress_context::extract_all(const ::file::path & pszFile, ::apex::application * pobject)
 {
 
    string strDir = pszFile;
@@ -225,7 +225,7 @@ bool compress_context::uncompress(memory& memoryOut, const ::memory& memoryIn)
 }
 
 
-::count compress_context::extract_all(const ::file::path & pszDir, const ::file::path & pszFile, ::application * pobject)
+::count compress_context::extract_all(const ::file::path & pszDir, const ::file::path & pszFile, ::apex::application * pobject)
 {
    
    ::file::patha patha;
@@ -240,7 +240,7 @@ bool compress_context::uncompress(memory& memoryOut, const ::memory& memoryIn)
 }
 
 
-bool compress_context::zip(const ::file::path & pszZip, const ::file::path & psz, ::application * pobject)
+bool compress_context::zip(const ::file::path & pszZip, const ::file::path & psz, ::apex::application * pobject)
 {
 
    INFO("compress_context::zip");
@@ -283,7 +283,7 @@ bool compress_context::zip(const ::file::path & pszZip, const ::file::path & psz
 }
 
 
-bool compress_context::zip(const ::file::path & psz, ::application * pobject)
+bool compress_context::zip(const ::file::path & psz, ::apex::application * pobject)
 {
 
    __throw(todo);

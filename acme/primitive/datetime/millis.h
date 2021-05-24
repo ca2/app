@@ -344,8 +344,12 @@ inline millis operator /(const ::millis& millis, const NUMBER& number)
 #endif
 
 
-inline ::millis first_milli();
-inline ::millis get_millis();
+inline ::i64 _first_milli();
+inline ::i64 _get_millis();
+
+
+inline ::millis first_milli() { return _first_milli(); }
+inline ::millis get_millis() { return _get_millis(); }
 
 
 

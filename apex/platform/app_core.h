@@ -91,14 +91,14 @@ public:
 
    void system_end();
 
-   __transport(::application) new_application();
-   __transport(::application) new_application(const char* pszAppId);
+   __transport(::apex::application) new_application();
+   __transport(::apex::application) new_application(const char* pszAppId);
 
 
-//   __transport(::application) get_new_application(::object* pobject);
-//   __transport(::application) get_new_application(::object* pobject, const char* pszAppId);
+//   __transport(::apex::application) get_new_application(::object* pobject);
+//   __transport(::apex::application) get_new_application(::object* pobject, const char* pszAppId);
 
-   virtual ::e_status initialize_application(::application * papplication, ::object* pobject);
+   virtual ::e_status initialize_application(::apex::application * papplication, ::object* pobject);
 
 };
 

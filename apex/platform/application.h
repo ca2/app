@@ -1,8 +1,8 @@
 #pragma once
 
 
-//namespace apex
-//{
+namespace apex
+{
 
 
    class CLASS_DECL_APEX application :
@@ -36,10 +36,10 @@
 
 
       // 2020-01-25: removing from ::apex::system, placing here (at ::context)
-      // 2020-07-23: now at ::application
+      // 2020-07-23: now at ::apex::application
       __composite(::user::language_map)               m_puserlanguagemap;
 
-      __reference(::application)                m_pappParent;
+      __reference(::apex::application)                m_pappParent;
       string                                          m_strAppName;
       ::text::text                                    m_textAppTitle;
       string                                          m_strAppId;
@@ -289,7 +289,7 @@
       virtual ::e_status process_exception(const ::exception::exception & e) override;
 
 
-      //virtual __pointer(::application) assert_running(const char * pszAppId) override;
+      //virtual __pointer(::apex::application) assert_running(const char * pszAppId) override;
 
       virtual bool is_running();
 
@@ -366,8 +366,8 @@
       //virtual ::user::interaction * user_interaction_from_oswindow(::windowing::window * pwindow);
 
 
-      virtual ::e_status hotplugin_host_starter_start_sync(const char * pszCommandLine, ::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin = nullptr);
-      virtual ::e_status hotplugin_host_host_starter_start_sync(const char * pszCommandLine, ::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin = nullptr);
+      virtual ::e_status hotplugin_host_starter_start_sync(const char * pszCommandLine, ::apex::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin = nullptr);
+      virtual ::e_status hotplugin_host_host_starter_start_sync(const char * pszCommandLine, ::apex::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin = nullptr);
 
       //virtual void on_update_view(::user::impact * pview, ::user::impact * pviewSender, LPARAM lHint, object * pHint);
 
@@ -896,7 +896,7 @@
 
       //virtual ::e_status     main() override;
 
-      //virtual ::application * get_application() const override;
+      //virtual ::apex::application * get_application() const override;
 
 
       virtual u32 guess_code_page(const string& str);
@@ -1234,7 +1234,7 @@
 
 
 
-      virtual __pointer(::application) create_platform(::apex::session* psession) override;
+      virtual __pointer(::apex::application) create_platform(::apex::session* psession) override;
 
 
 
@@ -1288,9 +1288,9 @@
 
       //virtual void on_request(::create * pcreate);
 
-      //__pointer(::application) psystem;
+      //__pointer(::apex::application) psystem;
 
-      //virtual __pointer(::application) assert_running(const char * pszAppdId);
+      //virtual __pointer(::apex::application) assert_running(const char * pszAppdId);
 
 
 
@@ -1399,14 +1399,14 @@
 //      virtual ::e_status process_message();     // route message
 //#endif
 
-      //i32 hotplugin_host_host_starter_start_sync(const char* pszCommandLine, ::application* papp, ::hotplugin::host* phost, ::hotplugin::plugin* pplugin) override;
+      //i32 hotplugin_host_host_starter_start_sync(const char* pszCommandLine, ::apex::application* papp, ::hotplugin::host* phost, ::hotplugin::plugin* pplugin) override;
 
 
       //virtual ::form_property_set * get_form_property_set() override;
 
 
 
-      //using ::application::on_control_event;
+      //using ::apex::application::on_control_event;
       //using ::user::form_callback::on_control_event;
 
 
@@ -1451,10 +1451,10 @@
 
 
    };
-//
-//
-//} // namespace apex
-//
+
+
+} // namespace apex
+
 
 
 
@@ -1463,7 +1463,7 @@
 //
 //CLASS_DECL_APEX ::u32 c_cdecl application_thread_procedure(void * pvoid);
 //
-//typedef __pointer(::application) (*LPFN_instantiate_application)(__pointer(::application) pappParent, const char* pszId);
+//typedef __pointer(::apex::application) (*LPFN_instantiate_application)(__pointer(::apex::application) pappParent, const char* pszId);
 //
 //extern CLASS_DECL_APEX LPFN_instantiate_application g_lpfn_instantiate_application;
 //

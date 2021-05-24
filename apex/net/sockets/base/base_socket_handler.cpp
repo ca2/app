@@ -43,7 +43,7 @@ namespace sockets
      /* if (plogger == nullptr)
       {
 
-         ::application* papp = ::get_application(pobject);
+         ::apex::application* papp = ::get_application(pobject);
 
          if (psystem != nullptr)
          {

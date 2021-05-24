@@ -172,12 +172,12 @@ namespace apex
 
 
       virtual string matter_locator(string strApp);
-      virtual string matter_locator(::application* papp);
+      virtual string matter_locator(::apex::application* papp);
 
       virtual void on_update_matter_locator();
 
       virtual void add_matter_locator(string strApp);
-      virtual void add_matter_locator(::application* papp);
+      virtual void add_matter_locator(::apex::application* papp);
 
 
       virtual ::e_status _load_from_file(::matter* pobject, const ::payload& varFile, const ::payload& varOptions);

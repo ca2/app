@@ -34,7 +34,7 @@ service* service_handler::get_service()
 
       }
 
-      __pointer(::application) papplication = get_application();
+      __pointer(::apex::application) papplication = get_application();
 
       auto pservice = papplication->new_service();
 

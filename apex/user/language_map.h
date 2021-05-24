@@ -31,8 +31,8 @@ namespace user
       virtual string load_podata(string strLang, bool bOnlyHeader = false);
 
       virtual string get_language();
-      virtual bool set_language(::application * papp, string strLang);
-      virtual bool set_default_language(::application * papp);
+      virtual bool set_language(::apex::application * papp, string strLang);
+      virtual bool set_default_language(::apex::application * papp);
 
       //virtual bool set_language_sel(index iSel);
 

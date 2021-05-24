@@ -1075,7 +1075,7 @@ namespace apex
    ::e_status system::init1()
    {
 
-      auto estatus = ::system::init1();
+      auto estatus = ::acme::system::init1();
 
       if (!estatus)
       {
@@ -2088,7 +2088,7 @@ namespace apex
    ::e_status system::inline_init()
    {
 
-      auto estatus = ::system::inline_init();
+      auto estatus = ::acme::system::inline_init();
 
       if (!estatus)
       {
@@ -2168,7 +2168,7 @@ namespace apex
    ::e_status system::init_system()
    {
 
-      auto estatus = ::system::init_system();
+      auto estatus = ::acme::system::init_system();
 
       if(!estatus)
       {
@@ -2502,7 +2502,7 @@ namespace apex
 //
 
 
-       ::system::TermSystem();
+       ::acme::system::TermSystem();
 
    }
 
@@ -2512,7 +2512,7 @@ namespace apex
 
       ::e_status estatus = ::success;
 
-      estatus = ::system::create_os_node();
+      estatus = ::acme::system::create_os_node();
 
       if(!estatus)
       {
@@ -3569,10 +3569,10 @@ namespace apex
 
 #endif
 
-   class ::crypto::crypto & system::crypto()
+   ::crypto::crypto * system::crypto()
    {
 
-      return *m_pcrypto;
+      return m_pcrypto;
 
    }
 
@@ -3968,13 +3968,13 @@ namespace apex
 
             ::file::path pathScript = m_psystem->m_pacmedir->tool() / "papaya/script/xcode_set_active_scheme.scpt";
 
-            ::system("osascript \""+pathScript + "\" \"" + strScheme + "\"");
+            ::acme::system("osascript \""+pathScript + "\" \"" + strScheme + "\"");
 
          }
          else if(strBase == "archive")
          {
 
-            ::system("xcodebuild -scheme \"" + strScheme + "\" archive");
+            ::acme::system("xcodebuild -scheme \"" + strScheme + "\" archive");
 
          }
 
@@ -4244,7 +4244,7 @@ namespace apex
 
          //#elif defined(LINUX)
          //
-         //      ::system("xdg-open \"" + strUrl + "\"");
+         //      ::acme::system("xdg-open \"" + strUrl + "\"");
          //
          //      return true;
          //
@@ -4291,7 +4291,7 @@ namespace apex
 
 #elif defined(MACOS)
 
-         ::system("open -a /Applications/Safari.app \"" + strUrl + "\"");
+         ::acme::system("open -a /Applications/Safari.app \"" + strUrl + "\"");
 
 #elif defined(APPLE_IOS)
 
@@ -4378,7 +4378,7 @@ namespace apex
          else
          {
 
-            ::system("xdg-open " + strUrl);
+            ::acme::system("xdg-open " + strUrl);
 
          }
 
@@ -4813,7 +4813,11 @@ namespace apex
    string system::crypto_md5_text(const string & str)
    {
 
-      return crypto().md5(str);
+      auto psystem = m_psystem->m_papexsystem;
+
+      auto pcrypto = psystem->crypto();
+
+      return pcrypto->md5(str);
 
    }
 
@@ -5388,7 +5392,7 @@ namespace apex
    }
 
 
-   void system::int_system_update(int iUpdate, int iPayload)
+   void system::system_int_update(int iUpdate, int iPayload)
    {
 
       process_subject(iUpdate, iPayload);
@@ -5490,7 +5494,7 @@ namespace apex
    void system::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
    {
 
-      ::system::on_subject(psubject, pcontext);
+      ::acme::system::on_subject(psubject, pcontext);
 
       //::update updateSetting(pupdate);
 
@@ -5577,7 +5581,7 @@ namespace apex
       else
       {
       
-         ::system::process_exit_status(pobject, estatus);
+         ::acme::system::process_exit_status(pobject, estatus);
       
       }
 
@@ -5822,7 +5826,7 @@ namespace apex
    __pointer(::extended::future < ::conversation >) system::_message_box(::object * pobject, const char* pszText, const char* pszTitle, const ::e_message_box & emessagebox)
    {
 
-      return ::system::_message_box(pobject, pszText, pszTitle, emessagebox);
+      return ::acme::system::_message_box(pobject, pszText, pszTitle, emessagebox);
 
    }
 
@@ -5832,7 +5836,7 @@ namespace apex
    ::e_status system::get_public_internet_domain_extension_list(string_array& stra)
    {
 
-      auto estatus = ::system::get_public_internet_domain_extension_list(stra);
+      auto estatus = ::acme::system::get_public_internet_domain_extension_list(stra);
       
       return estatus;
 
@@ -5842,7 +5846,7 @@ namespace apex
    ::e_status system::system_main()
    {
 
-      auto estatus = ::system::system_main();
+      auto estatus = ::acme::system::system_main();
 
       if (!estatus)
       {
@@ -5900,6 +5904,6 @@ void int_system_update(void* pSystem, int iUpdate, int iPayload)
 
    auto psystem = (::acme::system *) pSystem;
 
-   psystem->int_system_update(iUpdate, iPayload);
+   psystem->system_int_update(iUpdate, iPayload);
 
 }

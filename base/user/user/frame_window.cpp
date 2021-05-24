@@ -1453,10 +1453,12 @@ namespace user
 
          }
 
+         puiParent = puiParent->get_parent();
+
       }
 
       // last but not least, pump through cast
-      ::application* papp = get_application();
+      ::apex::application* papp = get_application();
 
       if (papp != nullptr)
       {

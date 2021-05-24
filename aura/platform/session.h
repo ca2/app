@@ -400,7 +400,7 @@ namespace aura
       virtual bool get_double(const ::user::interaction* pinteraction, double & i, ::user::enum_double eint, ::user::enum_state estate = ::user::e_state_none) const override;
 
 
-      virtual void on_instantiate_application(::application* papp) override;
+      virtual void on_instantiate_application(::apex::application* papp) override;
 
 
    };

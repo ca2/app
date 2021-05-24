@@ -93,7 +93,7 @@ namespace filemanager
       virtual ::e_status initialize_filemanager_data(::object * pobject);
 
       
-      bool open(::application * pappOnBehalfOf = nullptr, ::file::path path = "", const ::action_context & action_context = ::e_source_system);
+      bool open(::apex::application * pappOnBehalfOf = nullptr, ::file::path path = "", const ::action_context & action_context = ::e_source_system);
       
       
       //::filemanager::document * open(::file::path path = "");

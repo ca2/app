@@ -417,7 +417,8 @@ namespace acme
 
       virtual ::e_status get_public_internet_domain_extension_list(string_array& stra);
 
-      virtual void int_system_update(int iUpdate, int iPayload);
+      virtual void system_int_update(int iUpdate, int iPayload);
+
 
    };
 

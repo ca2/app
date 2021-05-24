@@ -367,7 +367,7 @@ namespace aura
 
       }
 
-      ::application* papp = application_get(strId, true, true, pcreate);
+      ::apex::application* papp = application_get(strId, true, true, pcreate);
 
       if (papp == nullptr)
       {
@@ -2348,7 +2348,7 @@ namespace aura
    void session::set_app_title(const char* pszAppId, const char* pszTitle)
    {
 
-      __pointer(::application) papp;
+      __pointer(::apex::application) papp;
 
       if (m_applicationa.lookup(pszAppId, papp) && papp)
       {
@@ -2519,7 +2519,7 @@ namespace aura
    }
 
 
-   void session::on_instantiate_application(::application* papp)
+   void session::on_instantiate_application(::apex::application* papp)
    {
 
       ::aqua::session::on_instantiate_application(papp);

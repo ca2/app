@@ -182,13 +182,13 @@ namespace apex
    }
 
 
-   void node::set_application_menu(::application_menu * pmenu, ::application * papplication)
+   void node::set_application_menu(::application_menu * pmenu, ::apex::application * papplication)
    {
 
    }
 
 
-   ::file::path node::get_desktop_file_path(::application * papplication) const
+   ::file::path node::get_desktop_file_path(::apex::application * papplication) const
    {
 
       return "";

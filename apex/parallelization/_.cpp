@@ -373,7 +373,7 @@ namespace parallelization
 //::application * g_papp;
 //
 //
-//void set_global_application(::application* papp)
+//void set_global_application(::apex::application* papp)
 //{
 //
 //    g_papp = papp;

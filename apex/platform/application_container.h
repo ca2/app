@@ -13,7 +13,7 @@ public:
    bool                             m_bFinalizeIfNoApplicationSetting;
    bool                             m_bFinalizeIfNoApplication;
 
-   __pointer(::application)   m_papplicationCurrent;
+   __pointer(::apex::application)   m_papplicationCurrent;
 
 
 
@@ -22,13 +22,13 @@ public:
    virtual ~application_container();
 
 
-   virtual ::application * application_get(const char * pszAppId, bool bCreate = true, bool bSynch = true, ::create * pcreate = nullptr);
+   virtual ::apex::application * application_get(const char * pszAppId, bool bCreate = true, bool bSynch = true, ::create * pcreate = nullptr);
 
 
-   virtual __pointer(::application) instantiate_application(const char * pszAppId, ::create * pcreate);
-   virtual __pointer(::application) create_application(const char * pszAppId, bool bSynch, ::create * pcreate);
-   virtual __pointer(::application) create_platform(::apex::session * psession);
-   virtual __pointer(::application) start_application(const char * pszAppId, ::create * pcreate, const string & strLocale, const string & strSchema);
+   virtual __pointer(::apex::application) instantiate_application(const char * pszAppId, ::create * pcreate);
+   virtual __pointer(::apex::application) create_application(const char * pszAppId, bool bSynch, ::create * pcreate);
+   virtual __pointer(::apex::application) create_platform(::apex::session * psession);
+   virtual __pointer(::apex::application) start_application(const char * pszAppId, ::create * pcreate, const string & strLocale, const string & strSchema);
 
    virtual void request_exit();
 
@@ -36,14 +36,14 @@ public:
 
    application_array get_applicationa();
 
-   virtual void app_add(::application * papp);
-   virtual void app_erase(::application * papp);
+   virtual void app_add(::apex::application * papp);
+   virtual void app_erase(::apex::application * papp);
 
 
-   __pointer(::application) assert_running(const char * pszAppId, const string & strLocale, const string & strSchema);
+   __pointer(::apex::application) assert_running(const char * pszAppId, const string & strLocale, const string & strSchema);
 
 
-   virtual void on_instantiate_application(::application* papp);
+   virtual void on_instantiate_application(::apex::application* papp);
 
 
 };

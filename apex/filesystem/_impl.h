@@ -583,7 +583,7 @@ bool file_context::output(::file::file * pfileOut, T * p, bool (T:: * pfnOuput)(
 
 
 // template < class ARRAY >
-// bool file_put_array(const char * path, ARRAY & a, ::application * papp)
+// bool file_put_array(const char * path, ARRAY & a, ::apex::application * papp)
 // {
 
 
@@ -640,7 +640,7 @@ bool file_context::output(::file::file * pfileOut, T * p, bool (T:: * pfnOuput)(
 
 
 // template < class ARRAY >
-// bool file_as_array(ARRAY & a, const char * path, ::application * papp)
+// bool file_as_array(ARRAY & a, const char * path, ::apex::application * papp)
 // {
 
 //   try

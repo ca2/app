@@ -273,7 +273,7 @@ namespace ios
    }
 
 
-   //   bool dir::rm(::application *   papp, const ::file::path & psz, bool bRecursive)
+   //   bool dir::rm(::apex::application *   papp, const ::file::path & psz, bool bRecursive)
    //   {
    //      if(bRecursive)
    //      {

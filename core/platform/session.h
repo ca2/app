@@ -27,7 +27,7 @@ namespace core
 
       inline ::core::user* user();
 
-      virtual void on_instantiate_application(::application* papp) override;
+      virtual void on_instantiate_application(::apex::application* papp) override;
 
 
    };

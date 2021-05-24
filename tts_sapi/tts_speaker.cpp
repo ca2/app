@@ -6,7 +6,7 @@
 #pragma comment(lib, "Shlwapi")
 
 inline bool SpGetDefaultTokenFromCategoryIdAndLang(
-   ::application * papp,
+   ::apex::application * papp,
    const WCHAR * pszCategoryId,
    ISpObjectToken ** ppToken,
    const char * pszLang,
@@ -147,7 +147,7 @@ inline HRESULT SpGetDefaultTokenFromCategoryId(
 }
 
 inline bool SpGetDefaultTokenFromCategoryIdAndLang(
-   ::application * papp,
+   ::apex::application * papp,
    const WCHAR * pszCategoryId,
    ISpObjectToken ** ppToken,
    const char * pszLang,

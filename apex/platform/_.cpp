@@ -340,10 +340,10 @@ CLASS_DECL_APEX int get_apex_init()
 
 
 
-// ::map < void*, void*, ::application*, ::application* >* g_pmapApex = nullptr;
+// ::map < void*, void*, ::apex::application*, ::apex::application* >* g_pmapApex = nullptr;
 
 
-// void set_apex(void* p, ::application* papp)
+// void set_apex(void* p, ::apex::application* papp)
 // {
 
 //    g_pmapApex->set_at(p, papp);
@@ -351,7 +351,7 @@ CLASS_DECL_APEX int get_apex_init()
 // }
 
 
-// ::application* get_apex(void* p)
+// ::apex::application* get_apex(void* p)
 // {
 
 //    return g_pmapApex->operator [](p);
@@ -555,7 +555,7 @@ CLASS_DECL_APEX int get_apex_init()
 //}
 
 
-//CLASS_DECL_APEX ::application * get_application(::object * pobject)
+//CLASS_DECL_APEX ::apex::application * get_application(::object * pobject)
 //{
 //
 //  if (pobject == nullptr)
@@ -574,7 +574,7 @@ CLASS_DECL_APEX int get_apex_init()
 //
 //  }
 //
-//  ::application * papplication = pobject->get_application();
+//  ::apex::application * papplication = pobject->get_application();
 //
 //  if (papplication != nullptr)
 //  {

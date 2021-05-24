@@ -273,7 +273,7 @@ namespace apex
 
       virtual bool get_auth(const string & pszForm, string & strUsername, string & strPassword);
 
-      virtual void on_instantiate_application(::application* papp) override;
+      virtual void on_instantiate_application(::apex::application* papp) override;
 
       //::application * application_get(const char * pszAppId, bool bCreate, bool bSynch, ::create * pcreate) override;
 
@@ -339,8 +339,8 @@ namespace apex
 
 
       //virtual void defer_instantiate_user_theme(const char * pszUiInteractionLibrary = nullptr);
-      //__pointer(::user::theme) instantiate_user_theme(const char * pszExperienceLibrary, ::application * papp = nullptr);
-      //__pointer(::user::theme) get_user_theme(const char * pszExperienceLibrary, ::application * papp = nullptr);
+      //__pointer(::user::theme) instantiate_user_theme(const char * pszExperienceLibrary, ::apex::application * papp = nullptr);
+      //__pointer(::user::theme) get_user_theme(const char * pszExperienceLibrary, ::apex::application * papp = nullptr);
 
 
       //virtual void _001OnDefaultTabPaneDrawTitle(::user::tab_pane & pane, ::user::tab * ptab, ::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle, ::draw2d::brush_pointer & brushText);
@@ -463,7 +463,7 @@ namespace apex
 
       virtual ::e_status defer_initialize_host_window(const RECTANGLE_I32 * lpcrect = nullptr);
 
-      __pointer(::application) get_current_application();
+      __pointer(::apex::application) get_current_application();
 
       virtual void set_app_title(const char* pszAppId, const char* pszTitle);
 

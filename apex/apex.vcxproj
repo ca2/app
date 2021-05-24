@@ -1109,6 +1109,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClCompile Include="crypto\openssl\crypto.cpp" />
     <ClCompile Include="crypto\openssl\_.cpp" />
     <ClCompile Include="crypto\rsa.cpp" />
+    <ClCompile Include="crypto_initializer.cpp" />
     <ClCompile Include="database\client.cpp" />
     <ClCompile Include="database\event_change.cpp" />
     <ClCompile Include="database\id.cpp" />
@@ -1149,6 +1150,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClCompile Include="message\sender.cpp" />
     <ClCompile Include="message\simple_command.cpp" />
     <ClCompile Include="message\_.cpp" />
+    <ClInclude Include="crypto_initializer.h" />
     <ClInclude Include="inline\implement\ansi.h" />
     <ClInclude Include="inline\implement\windows.h" />
     <ClInclude Include="net\address_department.h" />

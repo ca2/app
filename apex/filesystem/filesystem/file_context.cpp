@@ -2051,7 +2051,9 @@ string file_context::get_hash(const ::payload &varFile, enum_hash ehash)
 
    __pointer(::apex::system) psystem = get_system();
 
-   auto phasher = psystem->crypto().create_hasher(ehash);
+   auto pcrypto = psystem->crypto();
+
+   auto phasher = pcrypto->create_hasher(ehash);
 
    memsize iRead;
 
@@ -2157,7 +2159,7 @@ bool file_context::get_last_write_time(filetime_t *pfiletime, const string &strF
 
 //   i64 iTry = 0;
 
-//   ::application * papp = ::get_application(pobject);
+//   ::apex::application * papp = ::get_application(pobject);
 
 //   while (true)
 //   {
@@ -2716,7 +2718,7 @@ file_result file_context::get_file(const ::payload &varFile, const ::file::e_ope
          //else if (::str::begins_eat_ci(path, "matter://"))
          //{
 
-         //   __pointer(::application) pappLookup;
+         //   __pointer(::apex::application) pappLookup;
 
          //   string strApp = purl->get_server("matter://" + strPath);
 

@@ -1095,9 +1095,6 @@ CLASS_DECL_ACME e_trace_category object_trace_category(::matter *pobject);
 //
 
 
-class application;
-
-
 namespace apex
 {
 
@@ -1108,13 +1105,16 @@ namespace apex
    class idpool;
 
 
+   class system;
+
+
    class session;
 
 
    class node;
 
 
-   class system;
+   class application;
 
 
 } // namespace apex
@@ -1123,6 +1123,7 @@ namespace apex
 namespace aqua
 {
 
+
    class system;
 
 
@@ -1130,6 +1131,7 @@ namespace aqua
 
 
    class application;
+
 
 } // namespace aqua
 

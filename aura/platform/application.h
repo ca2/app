@@ -1222,7 +1222,7 @@ namespace aura
 
 
 
-      virtual __pointer(::application) create_platform(::apex::session* psession) override;
+      virtual __pointer(::apex::application) create_platform(::apex::session* psession) override;
 
 
 

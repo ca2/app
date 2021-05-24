@@ -248,7 +248,7 @@ namespace apex
 #endif
 
 
-      virtual ::application* get_main_application() override;
+      virtual ::apex::application* get_main_application() override;
 
 
       virtual ::e_status init();
@@ -661,7 +661,8 @@ namespace apex
       //   return *m_sphttpsystem;
       //}
 
-      class ::crypto::crypto                       & crypto();
+
+      class ::crypto::crypto * crypto();
 
 
       virtual ::file::path local_get_matter_cache_path();
@@ -780,8 +781,8 @@ namespace apex
 
 
       virtual string get_user_language();
-      virtual bool set_user_language(::application * papp, index iSel);
-      virtual bool set_user_language(::application * papp, string strLang);
+      virtual bool set_user_language(::apex::application * papp, index iSel);
+      virtual bool set_user_language(::apex::application * papp, string strLang);
 
       void chromium(string strUrl, string strBrowser, string strId, ::file::path path, string strProfile, string strParam);
 

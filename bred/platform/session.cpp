@@ -42,7 +42,7 @@ namespace bred
    }
 
 
-   void session::on_instantiate_application(::application* papp)
+   void session::on_instantiate_application(::apex::application* papp)
    {
 
       ::base::session::on_instantiate_application(papp);

@@ -1534,9 +1534,9 @@ namespace filemanager
 
       auto eaction = paction->m_eaction;
 
-      if (eaction == ::file::action_delete
-            || eaction == ::file::action_add
-            || eaction == ::file::action_modify)
+      if (eaction == ::file::e_action_delete
+            || eaction == ::file::e_action_add
+            || eaction == ::file::e_action_modify)
       {
 
          OnFileManagerBrowse(::e_source_sync);

@@ -19,7 +19,7 @@
 //   };
 //
 //   class CLASS_DECL_APEX application :
-//   virtual public ::application
+//   virtual public ::apex::application
 //   {
 //   public:
 //

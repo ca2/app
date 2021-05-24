@@ -10,7 +10,7 @@ class synchronization_object;
 class __id;
 class string_exchange;
 
-inline bool is_set_ptr(const void * p){return (iptr)p > 65536;}
+inline bool is_set_ptr(const void * p){return (uptr)p > 65536;}
 
 //inline ::object* __object(::p* playered);
 
@@ -127,7 +127,7 @@ public:
 
 
    // synchronization_object/::mutex
-   inline synchronization_object* mutex() const { return !::is_set_ptr(this) ? ((::matter*)this)->m_pmutex : nullptr; }
+   inline synchronization_object* mutex() const { return ::is_set_ptr(this) ? ((::matter*)this)->m_pmutex : nullptr; }
    void set_mutex(synchronization_object* psync);
    void defer_create_mutex();
 
@@ -135,9 +135,9 @@ public:
 
    inline ::acme::system* get_system() const { return (::acme::system *) m_psystem; }
 
-   inline class ::application* get_application() { return _get_application(); }
+   inline ::apex::application* get_application() { return _get_application(); }
 
-   virtual class ::application* _get_application();
+   virtual ::apex::application* _get_application();
 
    virtual bool is_thread() const;
    virtual ::thread * get_thread();

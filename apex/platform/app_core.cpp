@@ -1699,7 +1699,7 @@ bool app_core::has_apex_application_factory() const
 #endif
 
 
-__transport(::application) app_core::new_application()
+__transport(::apex::application) app_core::new_application()
 {
 
    if (!m_pfnnewmatterApplication)
@@ -1709,7 +1709,7 @@ __transport(::application) app_core::new_application()
 
    }
 
-   __pointer(::application) papp;
+   __pointer(::apex::application) papp;
 
    papp = m_pfnnewmatterApplication();
 
@@ -1725,10 +1725,10 @@ __transport(::application) app_core::new_application()
 }
 
 
-__transport(::application) app_core::new_application(const char* pszAppId)
+__transport(::apex::application) app_core::new_application(const char* pszAppId)
 {
 
-   __pointer(::application) papp;
+   __pointer(::apex::application) papp;
 
    string strAppId = pszAppId;
 
@@ -1739,7 +1739,7 @@ __transport(::application) app_core::new_application(const char* pszAppId)
 
       auto pmatterApp = psetup->create_new_application();
 
-      __pointer(::application) papexApplication = pmatterApp;
+      __pointer(::apex::application) papexApplication = pmatterApp;
 
       papp.reset(papexApplication OBJ_REF_DBG_COMMA_THIS_FUNCTION_LINE);
 
@@ -1758,7 +1758,7 @@ __transport(::application) app_core::new_application(const char* pszAppId)
       if (strAppId.is_empty())
       {
 
-         papp = __create < ::application >();
+         papp = __create < ::apex::application >();
 
       }
       else
@@ -1922,7 +1922,7 @@ __transport(::application) app_core::new_application(const char* pszAppId)
 }
 
 
-::e_status app_core::initialize_application(::application *papplication, ::object * pobject)
+::e_status app_core::initialize_application(::apex::application *papplication, ::object * pobject)
 {
 
    auto estatus = papplication->initialize(pobject);

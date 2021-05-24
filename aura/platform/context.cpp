@@ -901,7 +901,7 @@ namespace aura
 //   }
 //
 //
-//   string context::matter_locator(::application* papp)
+//   string context::matter_locator(::apex::application* papp)
 //   {
 //
 //      return ::file::path(papp->m_strRoot) / "_matter" / papp->m_strDomain;
@@ -926,7 +926,7 @@ namespace aura
 //
 //
 //
-//   void context::add_matter_locator(::application* papp)
+//   void context::add_matter_locator(::apex::application* papp)
 //   {
 //
 //      synchronous_lock synchronouslock(mutex());

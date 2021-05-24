@@ -9,10 +9,9 @@
 #include "framework.h"
 #include "main.h"
 #include "aura/os/_.h"
-#include "aura/os/_os.h"
 #include "aura/update.h"
 //char * ns_realpath(const char * pszPath);
-char * mm_ca2_command_line();
+//char * mm_ca2_command_line();
 
 
 // ThomasBS-LiveEdu.TV(LiveCoding.TV)
@@ -102,21 +101,21 @@ i32 defer_run_system()
 
 }
 
-
-i32 defer_run_system(const char * pszFileName)
-{
-
-   return __start_system_with_file(pszFileName);
-
-}
-
-
-i32 defer_run_system(char ** pszaFileName, int iFileCount)
-{
-
-   return __start_system_with_file((const char **) pszaFileName, iFileCount);
-
-}
+//
+//i32 defer_run_system(const char * pszFileName)
+//{
+//
+//   return __start_system_with_file(pszFileName);
+//
+//}
+//
+//
+//i32 defer_run_system(char ** pszaFileName, int iFileCount)
+//{
+//
+//   return __start_system_with_file((const char **) pszaFileName, iFileCount);
+//
+//}
 
 
 
@@ -130,113 +129,113 @@ i32 defer_run_system(char ** pszaFileName, int iFileCount)
 //}
 
 
-void apple_on_new_file()
-{
-
-   ::aura::get_system()->on_open_file(::e_type_empty, "");
-
-}
-
-// iMillisDelay default 500ms good
-void apple_accumulate_on_open_file(const char ** psza, int iCount, const char * pszExtra)
-{
-
-   string_array stra;
-
-   stra.c_add((char **) psza, iCount, false);
-
-   for(index i = 0; i < stra.get_count(); i++)
-   {
-
-      if(::str::begins_eat_ci(stra[i], "file://"))
-      {
-
-         if(!::str::begins(stra[i], "/"))
-         {
-
-            stra[i] = "/" + stra[i];
-
-         }
-
-         stra[i] = ::aura::get_system()->url().url_decode(stra[i]);
-
-      }
-
-   }
-
-   ::aura::get_system()->defer_accumulate_on_open_file(stra, pszExtra);
-
-}
-
-
-
-void apple_on_open_file(const char ** psza, int iCount, const char * pszExtra)
-{
-
-   if(iCount <= 0)
-   {
-
-      apple_on_new_file();
-
-   }
-   else if(iCount == 1)
-   {
-
-      ::aura::get_system()->on_open_file(psza[0], pszExtra);
-
-      ::free((void *) psza[0]);
-
-      ::free(psza);
-
-   }
-   else
-   {
-
-      string_array stra;
-
-      stra.c_add((char **) psza, iCount, false);
-
-      ::aura::get_system()->on_open_file(stra, pszExtra);
-
-   }
-
-}
+//void apple_on_new_file()
+//{
+//
+//   ::aura::get_system()->on_open_file(::e_type_empty, "");
+//
+//}
+//
+//// iMillisDelay default 500ms good
+//void apple_accumulate_on_open_file(const char ** psza, int iCount, const char * pszExtra)
+//{
+//
+//   string_array stra;
+//
+//   stra.c_add((char **) psza, iCount, false);
+//
+//   for(index i = 0; i < stra.get_count(); i++)
+//   {
+//
+//      if(::str::begins_eat_ci(stra[i], "file://"))
+//      {
+//
+//         if(!::str::begins(stra[i], "/"))
+//         {
+//
+//            stra[i] = "/" + stra[i];
+//
+//         }
+//
+//         stra[i] = ::aura::get_system()->url().url_decode(stra[i]);
+//
+//      }
+//
+//   }
+//
+//   ::aura::get_system()->defer_accumulate_on_open_file(stra, pszExtra);
+//
+//}
 
 
+//
+//void apple_on_open_file(const char ** psza, int iCount, const char * pszExtra)
+//{
+//
+//   if(iCount <= 0)
+//   {
+//
+//      apple_on_new_file();
+//
+//   }
+//   else if(iCount == 1)
+//   {
+//
+//      ::aura::get_system()->on_open_file(psza[0], pszExtra);
+//
+//      ::free((void *) psza[0]);
+//
+//      ::free(psza);
+//
+//   }
+//   else
+//   {
+//
+//      string_array stra;
+//
+//      stra.c_add((char **) psza, iCount, false);
+//
+//      ::aura::get_system()->on_open_file(stra, pszExtra);
+//
+//   }
+//
+//}
+//
 
 
-string ca2_command_line()
-{
-
-   return ::str::from_strdup(mm_ca2_command_line());
-
-}
-
-
-void window_copy(CGRect * prectTarget, const ::rectangle_i32 * prectSource)
-{
-
-   CGRect rectWorkspace = mm_get_workspace_rect();
-
-   prectTarget->origin.x       = prectSource->left;
-   prectTarget->origin.y       = rectWorkspace.size.height - prectSource->bottom;
-   prectTarget->size.width     = prectSource->right - prectSource->left;
-   prectTarget->size.height    = prectSource->bottom - prectSource->top;
-
-}
+//
+//string ca2_command_line()
+//{
+//
+//   return ::str::from_strdup(mm_ca2_command_line());
+//
+//}
 
 
-void window_copy(RECTANGLE_I32 * prectTarget, const CGRect * prectSource)
-{
+//void window_copy(CGRect * prectTarget, const ::rectangle_i32 * prectSource)
+//{
+//
+//   CGRect rectWorkspace = mm_get_workspace_rect();
+//
+//   prectTarget->origin.x       = prectSource->left;
+//   prectTarget->origin.y       = rectWorkspace.size.height - prectSource->bottom;
+//   prectTarget->size.width     = prectSource->right - prectSource->left;
+//   prectTarget->size.height    = prectSource->bottom - prectSource->top;
+//
+//}
 
-   CGRect rectWorkspace = mm_get_workspace_rect();
-
-   prectTarget->left        = prectSource->origin.x;
-   prectTarget->bottom      = rectWorkspace.size.height - prectSource->origin.y;
-   prectTarget->right       = prectTarget->left + prectSource->size.width;
-   prectTarget->top         = prectTarget->bottom - prectSource->size.height;
-
-}
+//
+//void window_copy(RECTANGLE_I32 * prectTarget, const CGRect * prectSource)
+//{
+//
+//   CGRect rectWorkspace = mm_get_workspace_rect();
+//
+//   prectTarget->left        = prectSource->origin.x;
+//   prectTarget->bottom      = rectWorkspace.size.height - prectSource->origin.y;
+//   prectTarget->right       = prectTarget->left + prectSource->size.width;
+//   prectTarget->top         = prectTarget->bottom - prectSource->size.height;
+//
+//}
 
 void copy(CGPoint * ppointTarget, const POINT_I32 * ppointSource)
 {
@@ -357,29 +356,29 @@ i64 oswindow_id(oswindow w)
 
 int is_window(oswindow window)
 {
-   return (window == nullptr) ? false : (window->get_user_interaction() != nullptr);
+   return (window == nullptr) ? false : (window->m_pimpl!= nullptr);
 }
 
 
 
-
-int show_window(oswindow oswindow, int iShow)
-{
-   
-   if(::is_null(oswindow))
-   {
-    
-      return false;
-      
-   }
- 
-   if(::is_null(oswindow->m_pimpl))
-   {
-      
-      return false;
-      
-   }
-   
-   return oswindow->m_pimpl->ShowWindow(iShow);
-   
-}
+//
+//int show_window(oswindow oswindow, int iShow)
+//{
+//   
+//   if(::is_null(oswindow))
+//   {
+//    
+//      return false;
+//      
+//   }
+// 
+//   if(::is_null(oswindow->m_pimpl))
+//   {
+//      
+//      return false;
+//      
+//   }
+//   
+//   return oswindow->m_pimpl->ShowWindow(iShow);
+//   
+//}

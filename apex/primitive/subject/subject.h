@@ -81,7 +81,7 @@ namespace subject
 
       }
 
-      inline ::millis poll_time() { return os_get_system_update_poll_time(m_id); };
+      inline ::millis poll_time() { return m_psystem->get_update_poll_time(m_id); };
 
       static inline bool should_poll(::millis millis)
       {

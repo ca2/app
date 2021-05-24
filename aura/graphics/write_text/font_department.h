@@ -58,8 +58,8 @@ public:
    virtual ~font_department();
 
 
-   virtual ::e_status initialize(::object * pobject);
-   virtual ::e_status finalize();
+   ::e_status initialize(::object * pobject) override;
+   ::e_status finalize() override;
 
 
    virtual bool is_initialized();

@@ -6,7 +6,7 @@
 //
 
 #include "framework.h"
-#include "acme/platform/static_start.h"
+#include "acme/platform/static_setup.h"
 
 
 
@@ -15,15 +15,18 @@
 #include <mach/mach_time.h>
 
 //extern clock_serv_t g_cclock;
-//extern double g_machtime_conversion_factor;
 
+namespace acme
+{
+extern double g_machtime_conversion_factor;
+} // namespace acme
 void ns_Sleep(unsigned int uiMillis);
 
 
-CLASS_DECL_ACME i64 get_nanos()
+CLASS_DECL_ACME ::i64 get_nanos()
 {
    
-   return ::acme::mach_absolute_time() * ::acme::g_machtime_conversion_factor;
+   return mach_absolute_time() * ::acme::g_machtime_conversion_factor;
    
    //   mach_timespec_t mts;
    //

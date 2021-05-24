@@ -48,28 +48,28 @@ CLASS_DECL_APEX bool _istlead(i32 ch)
 
 
 
+//
+//char * mm_browse_folder(const char * pszStartDir, bool bCanCreateDirectories);
+//
+//
+//string apple_browse_folder(const char * pszStartDir, bool bCanCreateDirectories)
+//{
+//
+//   return ::str::from_strdup(mm_browse_folder(pszStartDir, bCanCreateDirectories));
+//
+//}
+//
+//
 
-char * mm_browse_folder(const char * pszStartDir, bool bCanCreateDirectories);
-
-
-string apple_browse_folder(const char * pszStartDir, bool bCanCreateDirectories)
-{
-
-   return ::str::from_strdup(mm_browse_folder(pszStartDir, bCanCreateDirectories));
-
-}
-
-
-
-char** mm_browse_file_open(const char ** pszStartDir, bool bMulti);
-
-
-
-string_array apple_browse_file_open(const char ** pszStartDir, bool bMulti)
-{
-
-
-
-   return ::stra::from_strdup(mm_browse_file_open(pszStartDir, bMulti));
-
-}
+//char** mm_browse_file_open(const char ** pszStartDir, bool bMulti);
+//
+//
+//
+//string_array apple_browse_file_open(const char ** pszStartDir, bool bMulti)
+//{
+//
+//
+//
+//   return ::stra::from_strdup(mm_browse_file_open(pszStartDir, bMulti));
+//
+//}

@@ -247,6 +247,8 @@ namespace user
 //      }
 
       string strFile;
+      
+      auto pcontext = m_pcontext;
 
       strFile = pcontext->m_papexcontext->defer_process_matter_path("matter://main/menubar-icon-22.png");
 
@@ -546,6 +548,13 @@ namespace user
 
    }
 
+
+void notify_icon::notify_icon_init(const char * pszId)
+{
+
+   //m_plistener->notify_icon_init(pszId);
+
+}
 
 //#endif
 

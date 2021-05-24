@@ -1322,6 +1322,15 @@
     <ClInclude Include="platform\create.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
+    <ClInclude Include="user\menu_shared.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\menu_shared_command.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="crypto_initializer.h">
+      <Filter>Header Files\crypto</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="filesystem\file\set.cpp">
@@ -1801,12 +1810,6 @@
     <ClCompile Include="process\department.cpp">
       <Filter>Source Files\process</Filter>
     </ClCompile>
-    <ClCompile Include="user\menu_shared.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\menu_shared_commnand.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
     <ClCompile Include="os\windows\menu.cpp">
       <Filter>Source Files\os\windows</Filter>
     </ClCompile>
@@ -1914,6 +1917,15 @@
     </ClCompile>
     <ClCompile Include="platform\command_line.cpp">
       <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="user\menu_shared.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\menu_shared_commnand.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="crypto_initializer.cpp">
+      <Filter>Source Files\crypto</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

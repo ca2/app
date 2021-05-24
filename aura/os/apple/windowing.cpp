@@ -9,20 +9,20 @@
 #include "windowing.h"
 
 
-iptr get_window_long_ptr(oswindow_data * oswindow, int iIndex)
-{
-
-   return oswindow->get_window_long_ptr(iIndex);
-
-}
-
-
-iptr set_window_long_ptr(oswindow_data * oswindow, int iIndex, iptr i)
-{
-
-   return oswindow->set_window_long_ptr(iIndex, i);
-   
-}
-
+//iptr get_window_long_ptr(oswindow_data * oswindow, int iIndex)
+//{
+//
+//   return oswindow->get_window_long_ptr(iIndex);
+//
+//}
+//
+//
+//iptr set_window_long_ptr(oswindow_data * oswindow, int iIndex, iptr i)
+//{
+//
+//   return oswindow->set_window_long_ptr(iIndex, i);
+//   
+//}
+//
 
 

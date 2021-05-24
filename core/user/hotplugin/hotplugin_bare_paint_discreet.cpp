@@ -293,21 +293,21 @@ namespace hotplugin
       {
          get_progress_color(uchR, uchG, uchB, dRate, 0);
          br->create_solid(argb(bA, uchR, uchG, uchB));
-         rect2 = rect_dim(rectParam.left + cx / iRate, rectParam.top + (cy - iBarHeight) / 2, iProgressCount, 5);
+         rect2 = rectangle_dimension(rectParam.left + cx / iRate, rectParam.top + (cy - iBarHeight) / 2, iProgressCount, 5);
 
          pgraphics->fill_rectangle(rect2, br);
       }
       {
          get_progress_color(uchR, uchG, uchB, dRate, 1);
          br->create_solid(argb(bA, uchR, uchG, uchB));
-         rect2 = rect_dim(rectParam.left + cx / iRate, rectParam.top + (cy - iBarHeight) / 2 + 5, iProgressCount, 5);
+         rect2 = rectangle_dimension(rectParam.left + cx / iRate, rectParam.top + (cy - iBarHeight) / 2 + 5, iProgressCount, 5);
 
          pgraphics->fill_rectangle(rect2, br);
       }
       {
          get_progress_color(uchR, uchG, uchB, dRate, 2);
          br->create_solid(argb(bA, uchR, uchG, uchB));
-         rect2 = rect_dim(rectParam.left + cx / iRate, rectParam.top + (cy - iBarHeight) / 2 + 10, iProgressCount, 13);
+         rect2 = rectangle_dimension(rectParam.left + cx / iRate, rectParam.top + (cy - iBarHeight) / 2 + 10, iProgressCount, 13);
 
          pgraphics->fill_rectangle(rect2, br);
       }

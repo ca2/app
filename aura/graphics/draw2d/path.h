@@ -44,9 +44,9 @@ namespace draw2d
 
       //   virtual bool expand_bounding_rect(RECTANGLE_I32* prectd) const;
 
-      //   virtual bool get_bounding_rect(RECTANGLE_F64* prectd) const;
+      //   virtual bool get_bounding_rectangle(RECTANGLE_F64* prectd) const;
 
-      //   virtual bool get_bounding_rect(RECTANGLE_I32* prectd) const;
+      //   virtual bool get_bounding_rectangle(RECTANGLE_I32* prectd) const;
 
       //   virtual bool contains(const ::point_f64& point) const;
 
@@ -79,7 +79,7 @@ namespace draw2d
 
       //   arc() { m_etype = type_arc; }
 
-      //   virtual bool get_bounding_rect(RECTANGLE_F64* prectd) const override;
+      //   virtual bool get_bounding_rectangle(RECTANGLE_F64* prectd) const override;
 
       //   virtual bool contains(const ::point_f64& point) const override;
 
@@ -96,7 +96,7 @@ namespace draw2d
 
       //   rectangle_i32() { m_etype = type_rect; }
 
-      //   virtual bool get_bounding_rect(RECTANGLE_F64* prectd) const override;
+      //   virtual bool get_bounding_rectangle(RECTANGLE_F64* prectd) const override;
 
       //   virtual bool contains(const ::point_f64& point) const override;
 
@@ -116,7 +116,7 @@ namespace draw2d
 
       //   line() { m_etype = type_line; }
 
-      //   virtual bool get_bounding_rect(RECTANGLE_F64* prectd) const override;
+      //   virtual bool get_bounding_rectangle(RECTANGLE_F64* prectd) const override;
 
 
       //};
@@ -132,7 +132,7 @@ namespace draw2d
 
       //   lines() { m_etype = type_lines; }
 
-      //   virtual bool get_bounding_rect(RECTANGLE_F64* prectd) const override;
+      //   virtual bool get_bounding_rectangle(RECTANGLE_F64* prectd) const override;
 
       //   virtual bool contains(const ::point_f64& point) const override;
 
@@ -151,7 +151,7 @@ namespace draw2d
 
       //   polygon_i32() { m_etype = type_polygon; }
 
-      //   virtual bool get_bounding_rect(RECTANGLE_F64* prectd) const override;
+      //   virtual bool get_bounding_rectangle(RECTANGLE_F64* prectd) const override;
 
       //   virtual bool contains(const ::point_f64 & point) const override;
 
@@ -179,7 +179,7 @@ namespace draw2d
 
       //   text_out() { m_etype = type_text_out; }
 
-      //   virtual bool get_bounding_rect(RECTANGLE_F64* prectd) const override;
+      //   virtual bool get_bounding_rectangle(RECTANGLE_F64* prectd) const override;
 
       //   virtual bool contains(const ::point_f64& point) const override;
 
@@ -196,7 +196,7 @@ namespace draw2d
 
       //   draw_text() { m_etype = type_draw_text; }
 
-      //   virtual bool get_bounding_rect(RECTANGLE_F64* prectd) const override;
+      //   virtual bool get_bounding_rectangle(RECTANGLE_F64* prectd) const override;
 
       //   virtual bool contains(const ::point_f64& point) const override;
 
@@ -277,8 +277,8 @@ namespace draw2d
       virtual void * detach();
 
 
-      virtual bool get_bounding_rect(::rectangle_f64 * prectangle) const;
-      //virtual bool get_bounding_rect(RECTANGLE_I32 * prectangle) const;
+      virtual bool get_bounding_rectangle(::rectangle_f64 * prectangle) const;
+      //virtual bool get_bounding_rectangle(RECTANGLE_I32 * prectangle) const;
 
 
 
@@ -319,27 +319,27 @@ namespace draw2d
 
       virtual bool _set(::draw2d::graphics * pgraphics, const enum_shape & eshape);
 
-      virtual bool _set(::draw2d::graphics * pgraphics, const ::arc & parc);
+      virtual bool _set(::draw2d::graphics * pgraphics, const ::arc & arc);
 
       //virtual bool _set(::draw2d::graphics * pgraphics, const ::line & pline);
 
-      virtual bool _set(::draw2d::graphics * pgraphics, const ::lined & pline);
+      virtual bool _set(::draw2d::graphics * pgraphics, const ::line & line);
 
       //virtual bool _set(::draw2d::graphics * pgraphics, const ::lines & pline);
 
-      virtual bool _set(::draw2d::graphics * pgraphics, const ::linesd & pline);
+      virtual bool _set(::draw2d::graphics * pgraphics, const ::lines & lines);
 
       //virtual bool _set(::draw2d::graphics * pgraphics, const ::rectangle_f64 & prectangle);
 
-      virtual bool _set(::draw2d::graphics * pgraphics, const ::rectangle_f64 & prectangle);
+      virtual bool _set(::draw2d::graphics * pgraphics, const ::rectangle & rectangle);
 
       //virtual bool _set(::draw2d::graphics * pgraphics, const ::polygon_i32 & ppolygon);
 
-      virtual bool _set(::draw2d::graphics * pgraphics, const ::polygon_f64 & ppolygond);
+      virtual bool _set(::draw2d::graphics * pgraphics, const ::polygon & polygon);
 
-      virtual bool _set(::draw2d::graphics * pgraphics, const ::write_text::text_out & ptextout);
+      virtual bool _set(::draw2d::graphics * pgraphics, const ::write_text::text_out & textout);
 
-      virtual bool _set(::draw2d::graphics * pgraphics, const ::write_text::draw_text & pdrawtext);
+      virtual bool _set(::draw2d::graphics * pgraphics, const ::write_text::draw_text & drawtext);
 
 
    };

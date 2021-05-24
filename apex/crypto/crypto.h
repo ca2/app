@@ -8,6 +8,9 @@ namespace crypto
    class rsa;
 
 
+   class initializer;
+
+
    class CLASS_DECL_APEX crypto :
       virtual public ::object
    {
@@ -16,10 +19,14 @@ namespace crypto
 
       // salt here may be dangerous for the universe
 
+      __composite(::crypto::initializer)    m_pinitializer;
+
 
       crypto();
       virtual ~crypto();
 
+      
+      virtual void defer_initialize();
 
 
       virtual __pointer(hasher) create_hasher(enum_hash ehash);
@@ -67,8 +74,8 @@ namespace crypto
       virtual void hmac(void * result,const memory & memMessage,const memory & key);
       virtual void hmac(void * result,const string & memMessage,const string & key);
 
-      virtual bool file_set(::payload varFile,const char * pszData,const char * pszSalt,::apex::application * papp);
-      virtual ::e_status     file_get(::payload varFile,string & str,const char * pszSalt,::apex::application * papp);
+      virtual bool file_set(::payload varFile,const char * pszData,const char * pszSalt, ::apex::application * papp);
+      virtual ::e_status     file_get(::payload varFile,string & str,const char * pszSalt, ::apex::application * papp);
 
       // get a new salt - 8 hexadecimal characters long
       // current PHP installations should not exceed 8 characters

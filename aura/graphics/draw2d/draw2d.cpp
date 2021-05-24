@@ -1475,8 +1475,10 @@ breakFilter2:
       return "linux";
 
 #else
+      
+      return "write_text";
 
-      return PLATFORM_COMMON_STRING;
+      //return PLATFORM_COMMON_STRING;
 
 #endif
 

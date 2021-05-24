@@ -4,7 +4,7 @@
 #include "acme/filesystem/filesystem/acme_dir.h"
 
 
-CLASS_DECL_APEX string thread_get_name();
+//CLASS_DECL_APEX string task_get_name();
 
 #include <stdio.h>
 // #include <stdarg.h>
@@ -43,8 +43,10 @@ namespace apex
 
 #else
 
-
       defer_create_mutex();
+      
+#endif
+      
 
    }
 
@@ -174,8 +176,6 @@ namespace apex
 
 #endif
 
-#endif
-
 
       if (file_is_true_dup(m_psystem->m_pacmedir->system() / "log.txt"))
       {
@@ -199,6 +199,7 @@ namespace apex
 
 #endif
 
+
       else
       {
 
@@ -207,6 +208,7 @@ namespace apex
          //m_bLog = is_debugger_attached() != false;
 
       }
+      
 
       synchronouslock.unlock();
 
@@ -257,7 +259,7 @@ namespace apex
             /*if(message_box(nullptr, str, strCaption, e_message_box_icon_information | MB_OKCANCEL | MB_DEFBUTTON1) == e_dialog_result_cancel)
             {
                string strCmdLine = "\"C:\\Program Files (x86)\\Microsoft Visual Studio 11.0\\Common7\\IDE\\devenv.exe\" /edit \""+string(pszFileName)+ "\" /command \"edit.goto "+__str(iLine)+"\"";
-               ::system(strCmdLine);
+               ::acme::system(strCmdLine);
                exit(0);
             }
             */
@@ -435,7 +437,7 @@ namespace apex
 //      if (m_bLogThreadName)
 //      {
 //
-//         strMiddle += "{" + ::thread_get_name() + "} ";
+//         strMiddle += "{" + ::task_get_name() + "} ";
 //
 //      }
 //

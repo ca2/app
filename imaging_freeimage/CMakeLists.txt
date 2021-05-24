@@ -2,19 +2,6 @@ cmake_minimum_required(VERSION 3.17)
 project(imaging_freeimage CXX)
 
 
-add_compile_options("$<$<CONFIG:DEBUG>:-DDEBUG>")
-
-
-if(LINUX)
-elseif(WIN32)
-elseif(UWP)
-endif()
-
-
-set(LIBRARY_OUTPUT_PATH ${CMAKE_CURRENT_SOURCE_DIR}/../../../time-${PLATFORM_NAME}/cmake)
-set(EXECUTABLE_OUTPUT_PATH ${CMAKE_CURRENT_SOURCE_DIR}/../../../time-${PLATFORM_NAME}/cmake)
-
-
 list(APPEND imaging_freeimage_source
         _.cpp
         _.h
@@ -51,9 +38,9 @@ if (MSVC)
 elseif(LINUX)
     target_compile_options(imaging_freeimage PRIVATE -fpermissive)
     target_link_options(imaging_freeimage PRIVATE -Wl,-rpath=\$ORIGIN)
-    target_link_libraries(imaging_freeimage PRIVATE dl pthread X11 Xrandr Xrender Xinerama Xi ncurses freeimage)
+    target_link_libraries(imaging_freeimage PRIVATE freeimage)
     target_link_libraries(imaging_freeimage PRIVATE ${PKGCONFIG_LIBRARIES})
-    target_link_libraries(imaging_freeimage PRIVATE acme apex aqua aura pcre2-8 sqlite3 bz2)
+    target_link_libraries(imaging_freeimage PRIVATE acme apex aqua aura)
     target_link_options(imaging_freeimage PRIVATE -Wl,-z,defs)
 endif()
 

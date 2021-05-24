@@ -24,6 +24,8 @@ namespace axis
 
       __composite(::html::html)                         m_phtml;
 
+      __pointer(::factory_map)                           m_pfactorymapRegularExpressionPcre;
+
 
       system();
       virtual ~system();
@@ -73,13 +75,8 @@ namespace axis
       __pointer(::account::user_set)               userset();
 
 
-      virtual __pointer(regex) create_regular_expression(const char* pszStyle, const string& str) override;
-      virtual __pointer(regex_context) create_regular_expression_context(const char* pszStyle, int iCount) override;
-
-      virtual __pointer(regex) create_pcre(const string& str);
-      virtual __pointer(regex_context) create_pcre_context(int iCount);
-      virtual int pcre_add_tokens(string_array& stra, const string& strTopic, const string& strRegexp, int nCount);
-
+      //virtual __pointer(regex) create_regular_expression(const char* pszStyle, const string& str) override;
+      //virtual __pointer(regex_context) create_regular_expression_context(const char* pszStyle, int iCount) override;
 
 
       //virtual ::e_status thread_loop() override;

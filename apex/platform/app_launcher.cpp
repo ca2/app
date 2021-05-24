@@ -137,17 +137,21 @@ namespace apex
       path -= 3;
 
       string strParams = get_params();
+      
+      auto psystem = m_psystem;
+      
+      auto pnode = psystem->node();
 
       if(strParams.is_empty())
       {
 
-         launch_macos_app(path);
+         pnode->_launch_macos_app(path);
 
       }
       else
       {
 
-         launch_macos_app_args(path, strParams);
+         pnode->_launch_macos_app_args(path, strParams);
 
       }
 
@@ -166,7 +170,11 @@ namespace apex
 
       string strParams = get_params();
 
-      if (::succeeded(call_async(strPath, strParams, strDir, e_display_none, false)))
+      auto psystem = m_psystem;
+
+      auto pnode = psystem->node();
+
+      if (::succeeded(pnode->call_async(strPath, strParams, strDir, e_display_none, false)))
       {
 
          return true;

@@ -11,14 +11,14 @@ public:
    using POINT_BASE_TYPE = typename POINT_TYPE::POINT_BASE_TYPE;
    using UNIT_TYPE = typename POINT_TYPE::UNIT_TYPE;
    using SIZE_TYPE = typename POINT_TYPE::SIZE_TYPE;
-   using RECT_TYPE = typename POINT_TYPE::RECT_TYPE;
-   using RECT_BASE_TYPE = typename RECT_TYPE::RECT_BASE_TYPE;
+   using RECTANGLE_TYPE = typename POINT_TYPE::RECTANGLE_TYPE;
+   using RECTANGLE_BASE_TYPE = typename RECTANGLE_TYPE::RECTANGLE_BASE_TYPE;
 
 
    bool                 m_bDirty;
 
    bool                 m_bDirtyBoundingRect;
-   RECT_TYPE            m_rectBounding;
+   RECTANGLE_TYPE            m_rectBounding;
 
 
    polygon_base();
@@ -26,7 +26,7 @@ public:
    polygon_base(polygon_base&& polygon_i32);
    ~polygon_base();
 
-   void set_rect(const RECT_TYPE & rectangle);
+   void set_rect(const RECTANGLE_TYPE & rectangle);
 
 
    void check_dirty()
@@ -41,7 +41,7 @@ public:
 
    }
 
-   const RECT_TYPE & bounding_rect() const;
+   const RECTANGLE_TYPE & bounding_rect() const;
 
    bool overlaps(const polygon_base & polygon_i32) const;
 
@@ -340,7 +340,7 @@ polygon_base < POINT_TYPE >::~polygon_base()
 
 
 template < typename POINT_TYPE >
-void polygon_base < POINT_TYPE >::set_rect(const RECT_TYPE & rectangle)
+void polygon_base < POINT_TYPE >::set_rect(const RECTANGLE_TYPE & rectangle)
 {
 
    m_rectBounding = rectangle;
@@ -359,7 +359,7 @@ void polygon_base < POINT_TYPE >::set_rect(const RECT_TYPE & rectangle)
 
 
 template < typename POINT_TYPE >
-const typename polygon_base < POINT_TYPE >::RECT_TYPE & polygon_base < POINT_TYPE >::bounding_rect() const
+const typename polygon_base < POINT_TYPE >::RECTANGLE_TYPE & polygon_base < POINT_TYPE >::bounding_rect() const
 {
 
    ((polygon_base *)this)->check_dirty();

@@ -6,7 +6,7 @@
 
 CLASS_DECL_APEX bool node_save_image(Windows::Storage::Streams::IRandomAccessStream^ stream, ::image* pimage, ::save_image* psaveimage);
 
-bool node_save_image(::image * pimage, Windows::Storage::Streams::IRandomAccessStream ^stream, ::apex::application * papp);
+bool node_save_image(::image * pimage, Windows::Storage::Streams::IRandomAccessStream ^stream, ::application * papp);
 
 
 CLASS_DECL_APEX bool node_save_image(Windows::Storage::Streams::IRandomAccessStream ^ randomAccessStream, const ::image * pimage, ::save_image * psaveimage);

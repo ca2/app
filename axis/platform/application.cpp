@@ -1228,14 +1228,22 @@ namespace axis
 
             m_result.add(estatus);
 
-            return false;
+            if(m_bDataCentralRequired)
+            {
+
+               return estatus;
+
+            }
+
+         }
+         else
+         {
+
+            set_data_server(m_psimpledb);
 
          }
 
-         set_data_server(m_psimpledb);
-
       }
-
 
       return ::success;
 

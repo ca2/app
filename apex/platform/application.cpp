@@ -208,7 +208,7 @@ namespace apex
       // almost always forgotten, assumed, as exception, responsability of application to add first ref on constructor.
       //::add_ref(this);
 
-      srand((u32) ::get_nanos().m_i);
+      srand((u32) ::_get_nanos());
 
       m_bService = false;
 
@@ -1989,7 +1989,7 @@ namespace apex
          try
          {
 
-            __raw_compose(m_pinterprocessintercommunication, create_interprocess_intercommunication() OBJ_REF_DBG_COMMA_THIS_NOTE("::apex::application::init_instance"));
+            __raw_compose(m_pinterprocessintercommunication, create_interprocess_intercommunication() OBJ_REF_DBG_COMMA_THIS_NOTE("::application::init_instance"));
 
          }
          catch (...)
@@ -3331,7 +3331,7 @@ retry_license:
 
       //}
 
-      //if (!::apex::application::process_init())
+      //if (!::application::process_init())
       //{
 
       //   FATAL("axis::application::process_init .1");
@@ -3551,7 +3551,7 @@ retry_license:
 
       __pointer(::apex::system) psystem = get_system();
 
-      estatus = __own(this, m_puserlanguagemap, __new(::user::language_map) OBJ_REF_DBG_COMMA_THIS_NOTE("::apex::application::init1") );
+      estatus = __own(this, m_puserlanguagemap, __new(::user::language_map) OBJ_REF_DBG_COMMA_THIS_NOTE("::application::init1") );
 
       if (!estatus)
       {
@@ -3963,7 +3963,7 @@ retry_license:
 
          auto pexclusiveNew = __new(::acme::exclusive(strId ADD_PARAM_SEC_ATTRS));
 
-         __m_own(this, pexclusive, pexclusiveNew OBJ_REF_DBG_COMMA_THIS_NOTE("::apex::application::get_exclusive") );
+         __m_own(this, pexclusive, pexclusiveNew OBJ_REF_DBG_COMMA_THIS_NOTE("::application::get_exclusive") );
 
       }
 
@@ -6429,7 +6429,7 @@ retry_license:
    //{
 
 
-   //   if (!::apex::application::do_install())
+   //   if (!::application::do_install())
    //   {
 
    //      return false;
@@ -6484,7 +6484,7 @@ retry_license:
    //::e_status application::os_native_bergedge_start()
    //{
 
-   //   if (!::apex::application::os_native_bergedge_start())
+   //   if (!::application::os_native_bergedge_start())
    //   {
 
    //      return false;
@@ -6560,7 +6560,7 @@ retry_license:
 
    //   }
 
-   //   if (!::apex::application::process_init())
+   //   if (!::application::process_init())
    //   {
 
    //      FATAL("axis::application::process_init .1");
@@ -6595,7 +6595,7 @@ retry_license:
 
    //   //m_bAxisInitializeInstanceResult = false;
 
-   //   if (!::apex::application::init_instance())
+   //   if (!::application::init_instance())
    //   {
 
    //      FATAL("axis::application::init_instance .2");
@@ -6682,7 +6682,7 @@ retry_license:
 
    //   m_millisHeartBeat.Now();
 
-   //   if (!::apex::application::init1())
+   //   if (!::application::init1())
    //   {
 
    //      return false;
@@ -6708,7 +6708,7 @@ retry_license:
    //::e_status application::init2()
    //{
 
-   //   if (!::apex::application::init2())
+   //   if (!::application::init2())
    //      return false;
 
    //   return true;
@@ -6719,7 +6719,7 @@ retry_license:
    //::e_status application::init3()
    //{
 
-   //   if (!::apex::application::init3())
+   //   if (!::application::init3())
    //   {
 
    //      return false;
@@ -7317,10 +7317,7 @@ retry_license:
    //}
 
 
-
-
-
-   i32 application::hotplugin_host_starter_start_sync(const char * pszCommandLine, ::apex::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin)
+   ::e_status application::hotplugin_host_starter_start_sync(const char * pszCommandLine, ::apex::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin)
    {
 
       {
@@ -7351,7 +7348,11 @@ retry_license:
 
          ::property_set set;
 
-         return ::call_sync(m_psystem->m_pacmepath->app_app(process_platform_dir_name2(), process_configuration_dir_name()), pszCommandLine, m_psystem->m_pacmepath->app_app(process_platform_dir_name2(), process_configuration_dir_name()), e_display_normal, 2_min, set);
+         auto psystem = m_psystem;
+
+         auto pnode = psystem->node();
+
+         return pnode->call_sync(m_psystem->m_pacmepath->app_app(process_platform_dir_name2(), process_configuration_dir_name()), pszCommandLine, m_psystem->m_pacmepath->app_app(process_platform_dir_name2(), process_configuration_dir_name()), e_display_normal, 2_min, set);
 
 #endif
 
@@ -7365,7 +7366,8 @@ retry_license:
 
    }
 
-   i32 application::hotplugin_host_host_starter_start_sync(const char * pszCommandLine, ::apex::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin)
+
+   ::e_status application::hotplugin_host_host_starter_start_sync(const char * pszCommandLine, ::apex::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin)
    {
 
       return -1;
@@ -7631,7 +7633,7 @@ retry_license:
 
 
 
-   //::apex::application * application::get_application() const
+   //::application * application::get_application() const
    //{
 
    //   return (application *) this;
@@ -7819,7 +7821,7 @@ retry_license:
          if (pmessage->m_lparam == 0)
             //linux nIDP = __IDP_COMMAND_FAILURE; // command (not from a control)
             nIDP = "Command Failure";
-         pmessage->m_lresult = (LRESULT)true;        // pretend the command was handled
+         pmessage->m_lresult = true;        // pretend the command was handled
       }
 
       if (e.estatus() == error_no_memory)
@@ -9700,7 +9702,7 @@ retry_license:
    //bool application::on_install()
    //{
 
-   //   if (!::apex::application::on_install())
+   //   if (!::application::on_install())
    //   {
 
    //      return false;
@@ -10021,7 +10023,7 @@ retry_license:
 
 
 
-   //::apex::application * application::psystem
+   //::application * application::psystem
    //{
 
    //   return ::object::psystem;
@@ -10465,7 +10467,7 @@ retry_license:
    //::e_status application::init_instance()
    //{
 
-   //   if (!::apex::application::init_instance())
+   //   if (!::application::init_instance())
    //   {
 
    //      return false;
@@ -11126,3 +11128,23 @@ retry_license:
 
 
 } // namespace apex
+
+
+void application_on_menu_action(void * pApplication, const char * pszCommand)
+{
+   
+   auto papplication = (::apex::application *) pApplication;
+   
+   papplication->on_application_menu_action(pszCommand);
+   
+}
+
+
+void * application_system(void * pApplication)
+{
+   
+   auto papplication = (::apex::application *) pApplication;
+   
+   return papplication->m_psystem;
+   
+}

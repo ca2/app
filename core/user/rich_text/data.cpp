@@ -1790,7 +1790,7 @@ namespace user
 
                __pointer(box) pbox = find_box(*plinea, m_iSelEnd);
 
-               if (pbox->is_set())
+               if (pbox)
                {
 
                   double r;

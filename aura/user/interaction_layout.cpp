@@ -329,9 +329,9 @@ namespace user
 //
 //         auto edisplayCurrent = m_stateRequest2.m_edisplay3;
 //
-//         auto edisplayStored = m_windowrect.m_edisplay;
+//         auto edisplayStored = m_windowrectangle.m_edisplay;
 //
-//         auto edisplayPrevious = m_windowrect.m_edisplayPrevious;
+//         auto edisplayPrevious = m_windowrectangle.m_edisplayPrevious;
 //
 //         if (edisplayCurrent == e_display_undefined)
 //         {

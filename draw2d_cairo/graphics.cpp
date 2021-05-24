@@ -352,16 +352,16 @@ bool graphics::CreateCompatibleDC(::draw2d::graphics * pgraphics)
 }
 
 
-::e_status graphics::_add_shape(const ::ovald & oval)
+::e_status graphics::_add_shape(const ::ellipse & ellipse)
 {
 
    cairo_keep keep(m_pdc);
 
    cairo_new_sub_path(m_pdc);
 
-   cairo_translate(m_pdc, (oval.left + oval.right) / 2.0 + m_pointAddShapeTranslate.x, (oval.top + oval.bottom) / 2.0 + m_pointAddShapeTranslate.y);
+   cairo_translate(m_pdc, (ellipse.left + ellipse.right) / 2.0 + m_pointAddShapeTranslate.x, (ellipse.top + ellipse.bottom) / 2.0 + m_pointAddShapeTranslate.y);
 
-   cairo_scale(m_pdc, (oval.right - oval.left) / 2.0, (oval.bottom - oval.top) / 2.0);
+   cairo_scale(m_pdc, (ellipse.right - ellipse.left) / 2.0, (ellipse.bottom - ellipse.top) / 2.0);
 
    cairo_arc(m_pdc, 0.0, 0.0, 1.0, 0.0, 2.0 * 3.1415);
 
@@ -4300,7 +4300,7 @@ bool graphics::TextOutRaw(double x, double y, const block & block)
 
 #else
 
-    ::rectangle_i32 rectangle = ::rect_dim(
+    ::rectangle_i32 rectangle = ::rectangle_dimension(
                       ::i32(x),
                       ::i32(y),
                       65535,
@@ -5105,20 +5105,20 @@ bool graphics::_set(___shape * pshape)
       return _set(pshape->shape < ::arc > ());
    //case ::e_shape_line:
    //   return _set(pshape->shape < ::line > ());
-   case ::e_shape_lined:
-      return _set(pshape->shape < ::lined > ());
+   case ::e_shape_line:
+      return _set(pshape->shape < ::line > ());
    //case ::e_shape_lines:
    //   return _set(pshape->shape < ::lines > ());
-   case ::e_shape_linesd:
-      return _set(pshape->shape < ::linesd > ());
+   case ::e_shape_lines:
+      return _set(pshape->shape < ::lines > ());
    //case ::e_shape_rect:
    //   return _set(pshape->shape < ::rectangle_i32 > ());
-   case ::e_shape_rectd:
-      return _set(pshape->shape < ::rectangle_f64 > ());
+   case ::e_shape_rectangle:
+      return _set(pshape->shape < ::rectangle > ());
    //case ::e_shape_polygon:
    //   return _set(pshape->shape < ::polygon_i32 > ());
-   case ::e_shape_polygond:
-      return _set(pshape->shape < ::polygon_f64 > ());
+   case ::e_shape_polygon:
+      return _set(pshape->shape < ::polygon > ());
    case ::e_shape_text_out:
       return _set(pshape->shape < ::write_text::text_out > ());
    case ::e_shape_draw_text:
@@ -5259,7 +5259,7 @@ bool graphics::_set(const ::arc & arc)
 //}
 
 
-bool graphics::_set(const ::lined & line)
+bool graphics::_set(const ::line & line)
 {
 
     synchronous_lock ml(cairo_mutex());
@@ -5430,7 +5430,7 @@ bool graphics::_set(const ::point_f64_array & pointa)
 //}
 
 
-bool graphics::_set(const linesd & lines)
+bool graphics::_set(const lines & lines)
 {
 
    if(lines.get_count() <= 1)

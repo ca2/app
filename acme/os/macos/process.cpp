@@ -1,7 +1,12 @@
+//
+//  process.cpp
+//  acme
+//
+//  Created by Camilo Sasuke on 2021-05-13 18:25 BRT <3ThomasBorregaardSørensen_!!
+//  Copyright © 2021 Camilo Sasuke Tsumanuma. All rights reserved.
+//
 #include "framework.h"
-#include "acme/os/_.h"
-#include "acme/os/_os.h"
-
+#include "acme/filesystem/filesystem/acme_dir.h"
 
 #include <stdio.h>
 #include <signal.h>
@@ -10,7 +15,8 @@
 #include <spawn.h>
 #include <mach-o/dyld.h>
 
-::file::path macos_app_path(string strApp)
+
+::file::path macos_app_path(::acme_dir * pacmedir, string strApp)
 {
 
    ::file::path path = pacmedir->home() / "Library/papplication Support/ca2/mypath" / (strApp + ".txt");
@@ -84,7 +90,7 @@ i32 create_process(const char * pszCommandLine, i32 * pprocessId)
 int create_process2(const char * _cmd_line, int * pprocessId)
 {
    char *   exec_path_name;
-   char *	cmd_line;
+   char *   cmd_line;
 
    cmd_line = (char *) memory_alloc(strlen(_cmd_line ) + 1 );
 
@@ -96,9 +102,9 @@ int create_process2(const char * _cmd_line, int * pprocessId)
    if((*pprocessId = fork()) == 0)
    {
       // child
-      const char		*pArg, *pPtr;
-      const char		*argv[1024 + 1];
-      int		 argc;
+      const char      *pArg, *pPtr;
+      const char      *argv[1024 + 1];
+      int       argc;
       exec_path_name = cmd_line;
       if( ( pArg = ansi_find_char_reverse( exec_path_name, '/' ) ) != nullptr )
          pArg++;
@@ -137,7 +143,7 @@ int create_process2(const char * _cmd_line, int * pprocessId)
 }
 
 
-CLASS_DECL_ACME int call_async(
+CLASS_DECL_ACME ::e_status call_async(
 const char * pszPath,
 const char * pszParam,
 const char * pszDir,
@@ -182,7 +188,7 @@ unsigned int * puiPid)
 }
 
 
-CLASS_DECL_ACME u32 call_sync(const char * pszPath, const char * pszParam, const char * pszDir, ::e_display edisplay, const ::duration & durationTimeout, ::property_set & set)
+CLASS_DECL_ACME ::e_status call_sync(const char * pszPath, const char * pszParam, const char * pszDir, ::e_display edisplay, const ::duration & durationTimeout, ::property_set & set)
 {
 
    string strCmdLine;
@@ -324,71 +330,11 @@ CLASS_DECL_ACME ::file::path core_app_path(string strApp)
 }
 
 
-bool launch_command(const char * const pszCommand)
+::u32 get_current_process_id()
 {
-   
-   if (!pszCommand)
-   {
-      
-      return false;
-      
-   }
-   
-   string strParams;
-   
-   string strCommand(pszCommand);
-   
-   strCommand.replace("\"", "\\\"");
-   
-   strParams.Format("-c \"screen -d -m %s\"", strCommand.c_str());
-   
-   if (call_async("/bin/bash", strParams, pacmedir->home(), e_display_none, false) != 0)
-   {
-      
-      return false;
-      
-   }
-   
-   return true;
-   
-}
 
+    return getpid();
 
-bool launch_macos_app(const char * pszAppFolder)
-{
-   
-   if (!pszAppFolder)
-   {
-      
-      return false;
-      
-   }
-   
-   string strCommand;
-   
-   strCommand.Format("open \"%s\"", pszAppFolder);
-   
-   return ::launch_command(strCommand);
-   
-}
-
-
-bool launch_macos_app_args(const char * pszAppFolder, const char * pszArgs)
-{
-   
-   if (!pszAppFolder)
-   {
-      
-      return false;
-      
-   }
-   
-   string strCommand;
-   
-   strCommand.Format("open \"%s\" --args %s", pszAppFolder, pszArgs);
-   
-   return ::launch_command(strCommand);
-   
 }
 
 

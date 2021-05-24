@@ -12,10 +12,6 @@ elseif (UWP)
 endif ()
 
 
-set(LIBRARY_OUTPUT_PATH ${CMAKE_CURRENT_SOURCE_DIR}/../../../time-${PLATFORM_NAME}/cmake)
-set(EXECUTABLE_OUTPUT_PATH ${CMAKE_CURRENT_SOURCE_DIR}/../../../time-${PLATFORM_NAME}/cmake)
-
-
 list(APPEND aura_source
    asset/cube_new.inl
    asset/new.inl
@@ -355,6 +351,8 @@ list(APPEND aura_source
    user/keyboard.h
    user/main_window.cpp
    user/main_window.h
+   user/menu_command.cpp
+   user/menu_command.h
    user/message.cpp
    user/message.h
    user/message_box.cpp
@@ -1170,7 +1168,7 @@ elseif (LINUX)
    target_compile_options(aura PRIVATE -fpermissive)
    target_compile_options(aura PRIVATE ${PKGCONFIG_CFLAGS})
    target_link_options(aura PRIVATE -Wl,-rpath=\$ORIGIN)
-   target_link_libraries(aura PRIVATE dl pthread ncurses)
+   target_link_libraries(aura PRIVATE dl pthread)
    target_link_libraries(aura PRIVATE ${PKGCONFIG_LIBRARIES})
    target_link_libraries(aura PRIVATE acme apex aqua)
    target_link_options(aura PRIVATE -Wl,-z,defs)
@@ -1179,30 +1177,10 @@ elseif (LINUX)
 endif ()
 
 
-target_link_directories(aura PRIVATE ${LIBRARY_OUTPUT_PATH})
-target_link_directories(aura PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/storage-${PLATFORM_NAME}/library/x64/basis)
-target_link_directories(aura PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/storage-${PLATFORM_NAME}/third/library/x64/basis)
-
-
-target_include_directories(aura PRIVATE .)
 target_include_directories(aura PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
-target_include_directories(aura PRIVATE $ENV{HOME}/__config)
-target_include_directories(aura PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../source)
-target_include_directories(aura PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive)
-target_include_directories(aura PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../source)
-target_include_directories(aura PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../source/app)
-target_include_directories(aura PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../source/app/_include)
-target_include_directories(aura PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../source/include)
-target_include_directories(aura PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/platform-${PLATFORM_NAME})
-target_include_directories(aura PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/platform-${PLATFORM_NAME}/_include)
-target_include_directories(aura PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/third-${PLATFORM_NAME}/include)
-target_include_directories(aura PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/third-${PLATFORM_NAME}/third/include)
-target_include_directories(aura PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/third-${PLATFORM_NAME}/third/include/include)
 
 
 target_compile_definitions(aura PRIVATE _AURA_LIBRARY)
-target_compile_definitions(aura PRIVATE UNICODE)
-target_compile_definitions(aura PRIVATE _UNICODE)
 
 
 

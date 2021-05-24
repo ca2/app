@@ -46,10 +46,13 @@ namespace acme
 
       ::windowing_x11::node *                m_pNodeX11;
       ::windowing_xcb::node *                m_pNodeXcb;
+      ::node_gtk::node *                     m_pNodeGtk;
       ::node_gnome::node *                   m_pNodeGnome;
       ::node_kde::node *                     m_pNodeKDE;
+      ::node_xfce::node *                    m_pNodeXfce;
       ::desktop_environment_gnome::node *    m_pNodeDesktopEnvironmentGnome;
       ::desktop_environment_kde::node *      m_pNodeDesktopEnvironmentKDE;
+      ::desktop_environment_xfce::node *     m_pNodeDesktopEnvironmentXfce;
 
       //::user::enum_desktop    m_edesktop;
 
@@ -69,21 +72,28 @@ namespace acme
       virtual ~node();
 
 
+      virtual ::e_status call_async(const char * pszPath, const char * pszParam, const char * pszDir, ::e_display edisplay, bool bPrivileged, unsigned int * puiPid = nullptr);
+      virtual ::e_status call_sync(const char * pszPath, const char * pszParam, const char * pszDir, ::e_display edisplay, const ::duration & durationTimeout, ::property_set & set);
+
+
 //#ifdef LINUX
 //
 //      virtual enum_linux_distribution get_linux_distribution() const;
 //
 //#endif
 
-
-
+      virtual ::e_status initialize(::object * pobject) override;
+      
+      
       virtual string audio_get_default_library_name();
       virtual string multimedia_audio_get_default_library_name();
       virtual string multimedia_audio_mixer_get_default_library_name();
       virtual string veriwell_multimedia_music_midi_get_default_library_name();
 
 
-      virtual ::e_status initialize(::object * pobject) override;
+      virtual ::e_status _launch_macos_app(const char * pszAppFolder);
+  
+      virtual ::e_status _launch_macos_app_args(const char * pszAppFolder, const char * pszArgs);
 
       virtual ::e_status on_initialize_object() override;
 
@@ -290,13 +300,49 @@ namespace acme
       virtual platform_char** _get_envp(wcsdup_array& a);
 
 #endif
+      
+      
+#ifdef MACOS
+      
+      virtual void ns_launch_app(const char * psz, const char ** argv, int iFlags);
+      
+#endif
 
+      virtual bool process_modules(string_array& stra, u32 processID);
+
+      virtual bool load_modules_diff(string_array& straOld, string_array& straNew, const char* pszExceptDir);
+
+      virtual id_array get_pids();
+      
+      virtual id_array module_path_get_pid(const char* pszModulePath, bool bModuleNameIsPropertyFormatted);
+      
+      virtual string module_path_from_pid(u32 pid);
+      
+      virtual string command_line_from_pid(u32 pid);
+
+      virtual bool is_shared_library_busy(u32 processid, const string_array& stra);
+
+      virtual bool is_shared_library_busy(const string_array& stra);
+      
+      virtual bool process_contains_module(string& strImage, ::u32 processID, const char* pszLibrary);
+
+      virtual void shared_library_process(dword_array& dwa, string_array& straProcesses, const char* pszLibrary);
+
+      virtual bool is_process_running(::u32 pid);
+      
+      virtual string get_environment_variable(const char* pszEnvironmentVariable);
+      
+      virtual string expand_env(string str);
+
+
+      virtual array <::serial::port_info> list_serial_ports();
 
 
    };
 
 
 } // namespace linux
+
 
 
 

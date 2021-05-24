@@ -89,9 +89,13 @@ namespace process
 
 #ifndef _UWP
 
-      i32 iOk = call_async(strBin,pszEnd,pszDir,edisplay, false);
+      auto psystem = m_psystem;
 
-      return iOk != 0;
+      auto pnode = psystem->node();
+
+      auto estatus = pnode->call_async(strBin,pszEnd,pszDir,edisplay, false);
+
+      return ::succeeded(estatus);
 
 #else
 

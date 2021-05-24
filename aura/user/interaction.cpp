@@ -2605,7 +2605,7 @@ namespace user
          if (pdrawcontext != nullptr)
          {
 
-            rectClient = pdrawcontext->m_rectWindow;
+            rectClient = pdrawcontext->m_rectangleWindow;
 
             _001ScreenToClient(rectClient, e_layout_design);
 
@@ -2636,7 +2636,7 @@ namespace user
 
                _001HostToClient(rectClient);
 
-               m_pshapeaClip->add_item(__new(rectd_shape(::rectangle_f64(rectClient))));
+               m_pshapeaClip->add_item(__new(rectangle_shape(::rectangle_f64(rectClient))));
 
                m_pshapeaClip->add_item(__new(intersect_clip_shape()));
 
@@ -8802,7 +8802,7 @@ namespace user
 
       order(e_zorder_top);
 
-      layout().sketch() = ::rect_dim(x, y, cx, cy);
+      layout().sketch() = ::rectangle_dimension(x, y, cx, cy);
 
       display(e_display_normal);
 
@@ -9615,7 +9615,7 @@ namespace user
       else
       {
 
-         //place(rect_dim(10, 10, 800, 300));
+         //place(rectangle_dimension(10, 10, 800, 300));
 
          ::rectangle_i32 rectPlace(rectRequest);
 
@@ -11954,7 +11954,7 @@ restart:
    void interaction::set_dim(i32 x, i32 y, i32 cx, i32 cy)
    {
 
-      place(::rect_dim(x, y, cx, cy));
+      place(::rectangle_dimension(x, y, cx, cy));
 
    }
 
@@ -12441,8 +12441,8 @@ restart:
    //   m_stateProcess2.reset();
    //   m_state2.reset();
    //   m_stateWindow3.reset();
-   //   m_windowrect.reset();
-   //   m_windowrectStore.reset();
+   //   m_windowrectangle.reset();
+   //   m_windowrectangleStore.reset();
 
    //}
 
@@ -13885,7 +13885,7 @@ restart:
    bool interaction::enable_transparent_mouse_events(bool bEnable)
    {
 
-#ifdef WINDOWS
+//#ifdef WINDOWS
 
       ::user::interaction * puiTop = get_wnd();
 
@@ -13916,7 +13916,7 @@ restart:
 
       }
 
-#endif
+//#endif
 
       return true;
 
@@ -14796,10 +14796,31 @@ restart:
 
       }
 
-      if (m_bSimpleUIDefaultMouseHandling)
+      hit_test(m_itemLButtonDown, pmouse);
+
+      if(m_itemLButtonDown && m_itemLButtonDown == e_element_client && m_pdragmove)
       {
 
-         hit_test(m_itemLButtonDown, pmouse);
+         get_wnd()->show_keyboard(false);
+
+         m_pdragmove->m_bLButtonDown = true;
+
+         m_pdragmove->m_bDrag = false;
+
+         m_pdragmove->m_pointLButtonDown = pmouse->m_point;
+
+         m_pdragmove->m_sizeLButtonDownOffset = m_pdragmove->m_pointLButtonDown - layout().origin();
+
+         set_mouse_capture();
+
+         pmouse->m_bRet = true;
+
+         return;
+
+      }
+
+      if (m_bSimpleUIDefaultMouseHandling)
+      {
 
          if (m_itemLButtonDown.is_set())
          {
@@ -14884,26 +14905,6 @@ restart:
 
       }
 
-      if (m_pdragmove)
-      {
-
-         get_wnd()->show_keyboard(false);
-
-         m_pdragmove->m_bLButtonDown = true;
-
-         m_pdragmove->m_bDrag = false;
-
-         m_pdragmove->m_pointLButtonDown = pmouse->m_point;
-
-         m_pdragmove->m_sizeLButtonDownOffset = m_pdragmove->m_pointLButtonDown - layout().origin();
-
-         set_mouse_capture();
-
-         pmouse->m_bRet = true;
-
-         return;
-
-      }
 
    }
 

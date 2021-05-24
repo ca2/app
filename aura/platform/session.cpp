@@ -257,7 +257,7 @@ namespace aura
 
 
 
-   bool session::on_get_thread_name(string& strThreadName)
+   bool session::on_get_task_name(string& strThreadName)
    {
 
       __pointer(::aura::system) psystem = get_system();
@@ -269,7 +269,7 @@ namespace aura
 
       }
 
-      return ::apex::session::on_get_thread_name(strThreadName);
+      return ::apex::session::on_get_task_name(strThreadName);
 
    }
 

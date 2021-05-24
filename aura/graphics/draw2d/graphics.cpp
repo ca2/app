@@ -1148,10 +1148,6 @@ namespace draw2d
    }
 
 
-
-
-
-
    //bool graphics::draw(const ::point_f64 & point, cursor * pcursor)
    //{
    //
@@ -2015,16 +2011,16 @@ namespace draw2d
    }
 
 
-   i32 graphics::GetPath(::point_f64 * ppoints, byte * pTypes, count nCount)
-   {
-
-      UNREFERENCED_PARAMETER(ppoints);
-      UNREFERENCED_PARAMETER(pTypes);
-      UNREFERENCED_PARAMETER(nCount);
-
-      return false;
-
-   }
+//   i32 graphics::GetPath(::point_f64 * ppoints, byte * pTypes, count nCount)
+//   {
+//
+//      UNREFERENCED_PARAMETER(ppoints);
+//      UNREFERENCED_PARAMETER(pTypes);
+//      UNREFERENCED_PARAMETER(nCount);
+//
+//      return false;
+//
+//   }
 
 
    bool graphics::SetMiterLimit(float fMiterLimit)
@@ -2903,18 +2899,14 @@ namespace draw2d
          return ::success_none;
       case e_shape_intersect_clip:
          return _intersect_clip();
-      //case e_shape_rect:
-        // return _add_shape(pshape->shape < ::rectangle_f64 >());
-      case e_shape_rectd:
-         return _add_shape(pshape->shape < ::rectangle_f64 >());
-      //case e_shape_oval:
-        // return _add_shape(pshape->shape < ::oval >());
-      case e_shape_ovald:
-         return _add_shape(pshape->shape < ::ovald >());
-      //case e_shape_polygon:
-        // return _add_shape(pshape->shape < ::polygon_i32 >());
-      case e_shape_polygond:
-         return _add_shape(pshape->shape < ::polygon_f64 >());
+      case e_shape_rectangle:
+         return _add_shape(pshape->shape < ::rectangle >());
+      case e_shape_ellipse:
+         return _add_shape(pshape->shape < ::ellipse >());
+//      case e_shape_lines:
+//         return _add_shape(pshape->shape < ::lines >());
+      case e_shape_polygon:
+         return _add_shape(pshape->shape < ::polygon >());
       default:
          break;
             
@@ -2955,7 +2947,7 @@ namespace draw2d
    //}
 
 
-   //::e_status graphics::_add_shape(const ::oval & oval)
+   //::e_status graphics::_add_shape(const ::ellipse & ellipse)
    //{
    //
    //   __throw(error_interface_only);
@@ -2965,7 +2957,7 @@ namespace draw2d
    //}
 
 
-   ::e_status graphics::_add_shape(const ::ovald & oval)
+   ::e_status graphics::_add_shape(const ::ellipse & ellipse)
    {
    
       __throw(error_interface_only);
@@ -3047,10 +3039,10 @@ namespace draw2d
    //}
 
 
-   //::e_status graphics::intersect_clip(const ::oval & oval)
+   //::e_status graphics::intersect_clip(const ::ellipse & ellipse)
    //{
    //
-   //   auto estatus = _add_shape(oval);
+   //   auto estatus = _add_shape(ellipse);
    //   
    //   if(!estatus)
    //   {
@@ -3073,10 +3065,10 @@ namespace draw2d
    //}
 
 
-   ::e_status graphics::intersect_clip(const ::ovald & oval)
+   ::e_status graphics::intersect_clip(const ::ellipse & ellipse)
    {
    
-      auto estatus = _add_shape(oval);
+      auto estatus = _add_shape(ellipse);
       
       if(!estatus)
       {

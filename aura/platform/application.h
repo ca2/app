@@ -38,7 +38,7 @@ namespace aura
 
       //bool                                            m_bReadStringTable;
 
-      //__pointer(::apex::application_menu)             m_papplicationmenu;
+      //__pointer(::application_menu)             m_papplicationmenu;
 
       //__composite(::game::game)                       m_pgame;
       __reference(::user::interaction)                m_puserinteractionMain;
@@ -382,7 +382,7 @@ namespace aura
       //virtual ::e_status initialize(::object * pobject) override;
 
 
-      //::apex::application_menu & applicationmenu();
+      //::application_menu & applicationmenu();
 
 
       //virtual ::file::path appconfig_folder() override;
@@ -517,7 +517,7 @@ namespace aura
       //virtual bool Ex2OnAppInstall();
       //virtual bool Ex2OnAppUninstall();
 
-      virtual bool on_application_menu_action(const char * pszCommand);
+      bool on_application_menu_action(const char * pszCommand) override;
       //virtual void _001CloseApplication();
 
       //virtual string get_license_id();

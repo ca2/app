@@ -40,14 +40,8 @@ namespace datetime
       string FormatZone(string & str, const string & strFormat) const;
       string FormatZone(const string & strFormat);
 
+      
    };
-
-   inline string zonetime::FormatZone(const string & strFormat)
-   {
-      string str;
-      FormatZone(str, strFormat);
-      return str;
-   }
 
 
 } // namespace datetime

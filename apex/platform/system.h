@@ -7,7 +7,7 @@ namespace apex
 
    class CLASS_DECL_APEX system:
       virtual public ::app_core,
-      virtual public ::system,
+      virtual public ::acme::system,
       virtual public ::apex::context
 #ifndef WINDOWS
       ,virtual public ::exception::translator
@@ -566,7 +566,7 @@ namespace apex
       virtual ::e_status initialize_sockets();
 
 
-      virtual bool on_get_thread_name(string& strThreadName) override;
+      virtual bool on_get_task_name(string& strTaskName) override;
 
       virtual ::acme::library * get_library(const char * pszLibrary, bool bOpenCa2 = false);
 
@@ -661,7 +661,8 @@ namespace apex
       //   return *m_sphttpsystem;
       //}
 
-      class ::crypto::crypto                       & crypto();
+
+      class ::crypto::crypto * crypto();
 
 
       virtual ::file::path local_get_matter_cache_path();
@@ -985,9 +986,14 @@ namespace apex
 
       //virtual ::user::interaction_impl * impl_from_handle(void * pdata) override;
       //virtual ::user::interaction * ui_from_handle(void * pdata) override;
+      
+      void dump_command_line_and_environment_variables_to_file();
 
-      virtual void on_subject(::subject::subject * psubject) override;
-      virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
+      void system_int_update(int iUpdate, int iPayload) override;
+
+
+      void on_subject(::subject::subject * psubject) override;
+      void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
 
       // virtual void on_command_create(::create* pcreate);
 

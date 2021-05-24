@@ -523,7 +523,7 @@ namespace http
    }
 
 
-   void system::on_auth(property_set & set, ::apex::application * papp, string & strUrl, string & strSessId, __pointer(::account::user) & puser)
+   void system::on_auth(property_set & set, ::application * papp, string & strUrl, string & strSessId, __pointer(::account::user) & puser)
    {
 
       if(::is_null(papp))
@@ -587,7 +587,7 @@ namespace http
 
       string strProtocol = pszProtocol;
 
-      __pointer(::apex::application) papp = set["app"].cast < ::apex::application >();
+      __pointer(::apex::application) papp = set["app"].cast < ::application >();
 
       i32 iPort;
 
@@ -777,7 +777,7 @@ retry:
 
          auto tickTimeProfile1 = ::millis::now();
 
-         ::apex::application * papp = handler.get_application();
+         ::application * papp = handler.get_application();
 
          string strRequest = ::apex::get_system()->url().get_object(pszRequest);
 
@@ -1265,7 +1265,7 @@ retry:
 
       string strObject = ::apex::get_system()->url().get_object(pszUrl);
 
-      __pointer(::apex::application) papp = set["app"].cast < ::apex::application >();
+      __pointer(::apex::application) papp = set["app"].cast < ::application >();
 
       __pointer(::apex::application) pappAgent = papp;
 
@@ -2017,7 +2017,7 @@ retry_session:
    bool system::download(sockets::socket_handler & handler, __pointer(::sockets::http_session) & psession,const char * pszRequest,::payload varFile,property_set & set)
    {
 
-      file_pointer spfile = set.cast < ::apex::application >("app",get_application())->get_session()->file().get_file(varFile,
+      file_pointer spfile = set.cast < ::application >("app",get_application())->get_session()->file().get_file(varFile,
                        ::file::e_open_binary | ::file::e_open_create | ::file::e_open_read_write | ::file::e_open_defer_create_directory);
 
       set["file"] = spfile;
@@ -2042,7 +2042,7 @@ retry_session:
 
       {
 
-         auto rfile = set.cast < ::apex::application >("app", get_application())->get_session()->file().get_file(varFile,
+         auto rfile = set.cast < ::application >("app", get_application())->get_session()->file().get_file(varFile,
                           ::file::e_open_binary | ::file::e_open_create | ::file::e_open_read_write | ::file::e_open_defer_create_directory);
 
          if(!rfile)

@@ -1067,6 +1067,8 @@ void payload::add_ref()
       case e_type_path:
          m_ppath->add_ref();
          break;
+      default:
+         break;
 
    };
 
@@ -5268,6 +5270,9 @@ bool payload::is_numeric() const
       return false;
 //   case e_type_process:
 //      return false;
+      case e_type_hls:
+      case e_type_color:
+         return true;
    default:
       __throw(error_not_implemented);
 
@@ -5660,8 +5665,12 @@ bool payload::is_false() const
    case e_type_enum_status:
    case e_type_enum_check:
       return !m_i64;
+   case e_type_color:
+      return !m_color.u32;
+   case e_type_hls:
+      return m_hls.m_dL == 0.0;
    case e_type_last_element:
-         return false;
+      return false;
 
    }
 
@@ -5801,6 +5810,10 @@ bool payload::is_set_false() const
    case e_type_enum_status:
    case e_type_enum_check:
       return !m_i64;
+   case e_type_color:
+      return !m_color.u32;
+   case e_type_hls:
+      return m_hls.m_dL == 0.0;
    case e_type_last_element:
          return false;
 
@@ -5897,8 +5910,8 @@ namespace user
       bool                       m_bZoomed = false;
       bool                       m_bFullScreen = false;
       bool                       m_bIconic = false;
-      rectangle_i32                       m_rectRestored = nullptr;
-      rectangle_i32                       m_rectWindow = nullptr;
+      rectangle_i32                       m_rectangleRestored = nullptr;
+      rectangle_i32                       m_rectangleWindow = nullptr;
       int                        m_iControlBoxRightToLeft = 0;
       edisplay                   m_edisplay = e_display_default;
       edisplay                   m_edisplayPrevious = e_display_none;

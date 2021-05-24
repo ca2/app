@@ -590,7 +590,7 @@ namespace hotplugin
    //bool host::get_window_rect(RECTANGLE_I64 * prectangle)
    //{
 
-   //   ::copy(prectangle, m_rectWindow);
+   //   ::copy(prectangle, m_rectangleWindow);
 
    //   return true;
 

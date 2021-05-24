@@ -14,7 +14,7 @@ bool ___shape::expand_bounding_rect(RECTANGLE_F64* prectangle) const
 
    rectangle_f64 r;
 
-   if (!get_bounding_rect(&r))
+   if (!get_bounding_rectangle(&r))
    {
 
       return false;
@@ -47,7 +47,7 @@ bool ___shape::expand_bounding_rect(RECTANGLE_I32* prectangle) const
 }
 
 
-bool ___shape::get_bounding_rect(RECTANGLE_F64* prectangle) const
+bool ___shape::get_bounding_rectangle(RECTANGLE_F64* prectangle) const
 {
 
    ::null_rect(prectangle);
@@ -57,7 +57,7 @@ bool ___shape::get_bounding_rect(RECTANGLE_F64* prectangle) const
 }
 
 
-bool ___shape::get_bounding_rect(RECTANGLE_I32* prectangle) const
+bool ___shape::get_bounding_rectangle(RECTANGLE_I32* prectangle) const
 {
 
    ::null_rect(prectangle);
@@ -74,7 +74,7 @@ bool ___shape::contains(const ::point_f64& point) const
 
    ::rectangle_f64 r;
 
-   if (!get_bounding_rect(r))
+   if (!get_bounding_rectangle(r))
    {
 
       return false;

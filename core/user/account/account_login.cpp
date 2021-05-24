@@ -286,10 +286,10 @@ namespace account
          double r = (double)(64) / (double)m_pimage->height();
 
          pgraphics->stretch(
-         ::rect_dim((int)(49 * rx), (int)(49 * ry) + 2 - 11,
+         ::rectangle_dimension((int)(49 * rx), (int)(49 * ry) + 2 - 11,
          i32 (m_pimage->width() * r), i32 (m_pimage->height() * r)),
          m_pimage->g(),
-         ::rect_dim(0, 0, m_pimage->width(), m_pimage->height()));
+         ::rectangle_dimension(0, 0, m_pimage->width(), m_pimage->height()));
 
       }
       else if (m_bCred && m_strCred.has_char())
@@ -368,7 +368,7 @@ namespace account
 
             auto psystem = m_psystem->m_paurasystem;
 
-            strText = psystem->crypto().nessie(strText);
+            strText = psystem->crypto()->nessie(strText);
 
             m_peditPassword->_001SetText(strText,::e_source_database);
 

@@ -7,8 +7,8 @@
 #pragma once
 
 
-namespace apex
-{
+//namespace apex
+//{
 
 
    class CLASS_DECL_APEX  application_menu_item
@@ -33,8 +33,8 @@ namespace apex
       
    };
 
-
-} // namespace apex
+//
+//} // namespace apex
 
 
 

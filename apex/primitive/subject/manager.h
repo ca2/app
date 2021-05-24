@@ -21,8 +21,8 @@ namespace subject
       static bool                                           s_bDestroyAll;
 
 
-      manager() { }
-      virtual ~manager() {}
+      manager();
+      virtual ~manager();
 
 #ifdef DEBUG
 

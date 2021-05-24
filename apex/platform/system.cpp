@@ -70,7 +70,7 @@ CLASS_DECL_APEX void __simple_tracea(::matter * pobject, enum_trace_level elevel
 #endif
 
 
-void os_post_quit();
+//void os_post_quit();
 
 
 #ifdef UNIT_TEST
@@ -739,7 +739,7 @@ namespace apex
    //}
 
 
-   bool system::on_get_thread_name(string& strThreadName)
+   bool system::on_get_task_name(string& strTaskName)
    {
 
       if (is_console_app())
@@ -749,7 +749,7 @@ namespace apex
 
       }
 
-      return ::apex::context::on_get_thread_name(strThreadName);
+      return ::apex::context::on_get_task_name(strTaskName);
 
    }
 
@@ -889,17 +889,17 @@ namespace apex
 
       //}
 
-#ifdef LINUX
-
-      //auto pnode = Node;
-
-      //pnode->post_quit();
-
-#elif defined(__APPLE__)
-
-      os_post_quit();
-
-#endif
+//#ifdef LINUX
+//
+//      //auto pnode = Node;
+//
+//      //pnode->post_quit();
+//
+//#elif defined(__APPLE__)
+//
+//      //os_post_quit();
+//
+//#endif
 
 #ifndef WINDOWS
 
@@ -1027,7 +1027,7 @@ namespace apex
       create_factory<command_line>();
       create_factory<http::context>();
 
-      auto estatus = ::system::process_init();
+      auto estatus = ::acme::system::process_init();
 
       if (!estatus)
       {
@@ -1075,7 +1075,7 @@ namespace apex
    ::e_status system::init1()
    {
 
-      auto estatus = ::system::init1();
+      auto estatus = ::acme::system::init1();
 
       if (!estatus)
       {
@@ -1559,15 +1559,15 @@ namespace apex
 
       }
 
-      {
-
-         string strCurrentWorkingDirectory;
-
-         strCurrentWorkingDirectory = get_current_directory_name();
-
-         ::output_debug_string("\nCurrent Working Directory : " + strCurrentWorkingDirectory);
-
-      }
+//      {
+//
+//         string strCurrentWorkingDirectory;
+//
+//         strCurrentWorkingDirectory = get_current_directory_name();
+//
+//         ::output_debug_string("\nCurrent Working Directory : " + strCurrentWorkingDirectory);
+//
+//      }
 
       if (!m_ptrace->process_init())
       {
@@ -2088,7 +2088,7 @@ namespace apex
    ::e_status system::inline_init()
    {
 
-      auto estatus = ::system::inline_init();
+      auto estatus = ::acme::system::inline_init();
 
       if (!estatus)
       {
@@ -2168,7 +2168,7 @@ namespace apex
    ::e_status system::init_system()
    {
 
-      auto estatus = ::system::init_system();
+      auto estatus = ::acme::system::init_system();
 
       if(!estatus)
       {
@@ -2502,7 +2502,7 @@ namespace apex
 //
 
 
-       ::system::TermSystem();
+       ::acme::system::TermSystem();
 
    }
 
@@ -2512,7 +2512,7 @@ namespace apex
 
       ::e_status estatus = ::success;
 
-      estatus = ::system::create_os_node();
+      estatus = ::acme::system::create_os_node();
 
       if(!estatus)
       {
@@ -3569,10 +3569,10 @@ namespace apex
 
 #endif
 
-   class ::crypto::crypto & system::crypto()
+   ::crypto::crypto * system::crypto()
    {
 
-      return *m_pcrypto;
+      return m_pcrypto;
 
    }
 
@@ -3968,13 +3968,13 @@ namespace apex
 
             ::file::path pathScript = m_psystem->m_pacmedir->tool() / "papaya/script/xcode_set_active_scheme.scpt";
 
-            ::system("osascript \""+pathScript + "\" \"" + strScheme + "\"");
+            ::acme::system("osascript \""+pathScript + "\" \"" + strScheme + "\"");
 
          }
          else if(strBase == "archive")
          {
 
-            ::system("xcodebuild -scheme \"" + strScheme + "\" archive");
+            ::acme::system("xcodebuild -scheme \"" + strScheme + "\" archive");
 
          }
 
@@ -4244,7 +4244,7 @@ namespace apex
 
          //#elif defined(LINUX)
          //
-         //      ::system("xdg-open \"" + strUrl + "\"");
+         //      ::acme::system("xdg-open \"" + strUrl + "\"");
          //
          //      return true;
          //
@@ -4291,7 +4291,7 @@ namespace apex
 
 #elif defined(MACOS)
 
-         ::system("open -a /Applications/Safari.app \"" + strUrl + "\"");
+         ::acme::system("open -a /Applications/Safari.app \"" + strUrl + "\"");
 
 #elif defined(APPLE_IOS)
 
@@ -4378,7 +4378,7 @@ namespace apex
          else
          {
 
-            ::system("xdg-open " + strUrl);
+            ::acme::system("xdg-open " + strUrl);
 
          }
 
@@ -4493,7 +4493,11 @@ namespace apex
 
             strParam += " " + file_as_string(m_psystem->m_pacmedir->localconfig() / "app-core/commander/chrome.txt");
 
-            call_async(path, strParam, pathDir, e_display_default, false);
+            auto psystem = m_psystem;
+
+            auto pnode = psystem->node();
+
+            pnode->call_async(path, strParam, pathDir, e_display_default, false);
 
          }
 
@@ -4514,13 +4518,19 @@ namespace apex
          auto argv = sa.c_ansi_get();
 
          argv.add(nullptr);
+         
+         auto psystem = m_psystem;
+         
+         auto purl = psystem->url();
 
          string strApp = purl->url_decode(path);
 
          // 0x00010000 NSWorkspaceLaunchAsync
          // 0x00080000 NSWorkspaceLaunchNewInstance
 
-         ns_launch_app(strApp, argv.get_data(), 0x00010000 | 0x00080000);
+         auto pnode = psystem->node();
+         
+         pnode->ns_launch_app(strApp, argv.get_data(), 0x00010000 | 0x00080000);
 
 #elif defined(LINUX)
 
@@ -4540,7 +4550,11 @@ namespace apex
 
          output_debug_string(strParam);
 
-         call_async(shell, strParam, pathDir, e_display_default, false);
+         auto psystem = m_psystem;
+
+         auto pnode = psystem->node();
+
+         pnode->call_async(shell, strParam, pathDir, e_display_default, false);
 
 #endif
 
@@ -4583,7 +4597,11 @@ namespace apex
 
       ::property_set set;
 
-      call_sync(pathFirefox, strParam, pathDir, e_display_default, 3_min, set);
+      auto psystem = m_psystem;
+
+      auto pnode = psystem->node();
+
+      pnode->call_sync(pathFirefox, strParam, pathDir, e_display_default, 3_min, set);
 
 #endif
 
@@ -4648,9 +4666,13 @@ namespace apex
       if (!bFound)
       {
 
-         call_async(strBrowserPath, strParam, strBrowserDir, e_display_normal, false);
+         auto psystem = m_psystem;
 
-         call_async(strBrowserHelperPath, "/SetAsDefaultAppUser", strBrowserHelperDir, e_display_none, false);
+         auto pnode = psystem->node();
+
+         pnode->call_async(strBrowserPath, strParam, strBrowserDir, e_display_normal, false);
+
+         pnode->call_async(strBrowserHelperPath, "/SetAsDefaultAppUser", strBrowserHelperDir, e_display_none, false);
 
       }
 
@@ -4791,7 +4813,11 @@ namespace apex
    string system::crypto_md5_text(const string & str)
    {
 
-      return crypto().md5(str);
+      auto psystem = m_psystem->m_papexsystem;
+
+      auto pcrypto = psystem->crypto();
+
+      return pcrypto->md5(str);
 
    }
 
@@ -4932,7 +4958,7 @@ namespace apex
 //   ::e_status system::defer_initialize_x11()
 //   {
 //
-//      return class ::system::defer_initialize_x11();
+//      return ::acme::system::defer_initialize_x11();
 //
 //   }
 
@@ -5334,7 +5360,7 @@ namespace apex
 //
 //      }
 //
-//      //auto estatus = class ::system::main();
+//      //auto estatus = ::acme::system::main();
 
       auto estatus = ::thread::main();
 
@@ -5362,6 +5388,14 @@ namespace apex
    {
 
       hist().hist(psz);
+
+   }
+
+
+   void system::system_int_update(int iUpdate, int iPayload)
+   {
+
+      process_subject(iUpdate, iPayload);
 
    }
 
@@ -5460,7 +5494,7 @@ namespace apex
    void system::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
    {
 
-      ::system::on_subject(psubject, pcontext);
+      ::acme::system::on_subject(psubject, pcontext);
 
       //::update updateSetting(pupdate);
 
@@ -5547,7 +5581,7 @@ namespace apex
       else
       {
       
-         ::system::process_exit_status(pobject, estatus);
+         ::acme::system::process_exit_status(pobject, estatus);
       
       }
 
@@ -5682,28 +5716,32 @@ string get_bundle_app_library_name();
 
       strLibrary.replace(".", "_");
 
+
+
       auto plibrary = __node_library_open(strLibrary, strMessage);
 
       if (!plibrary)
       {
 
-         {
+         //{
 
-            auto pfuture = __sync_future();
+         //   //auto pfuture = __sync_future();
 
-            //message_box(strMessage, "Could not open required library. Want to give an yes/no answer insted of pression cancel?", e_message_box_icon_exclamation | e_message_box_yes_no_cancel, pfuture);
+         //   //message_box(strMessage, "Could not open required library. Want to give an yes/no answer insted of pression cancel?", e_message_box_icon_exclamation | e_message_box_yes_no_cancel, pfuture);
 
-            pfuture->wait(10_s);
+         //   //pfuture->wait(10_s);
 
-            int iDialogResult = pfuture->m_var;
+         //   int iDialogResult = pfuture->m_var;
 
-            ::output_debug_string("result " + __str(iDialogResult));
+         //   ::output_debug_string("result " + __str(iDialogResult));
 
-         }
+         //}
 
-         __throw(error_failed, strMessage + "\n\nCould not open required library.");
+         //__throw(error_failed, strMessage + "\n\nCould not open required library.");
 
-         return nullptr;
+         ::output_debug_string("The application library for appid \"" + strAppId + "\" wasn't loaded.");
+
+         //return nullptr;
 
       }
 
@@ -5773,8 +5811,8 @@ string get_bundle_app_library_name();
 }
 
 
-
-void apex_application_main(int argc, char* argv[], const char* pszCommandLine);
+//
+//void apex_application_main(int argc, char* argv[], const char* pszCommandLine);
 
 namespace apex
 {
@@ -5782,7 +5820,7 @@ namespace apex
    void system::application_main(int argc, char* argv[], const char* pszCommandLine)
    {
 
-      apex_application_main(argc, argv, pszCommandLine);
+      //apex_application_main(argc, argv, pszCommandLine);
 
    }
 
@@ -5790,7 +5828,7 @@ namespace apex
    __pointer(::extended::future < ::conversation >) system::_message_box(::object * pobject, const char* pszText, const char* pszTitle, const ::e_message_box & emessagebox)
    {
 
-      return ::system::_message_box(pobject, pszText, pszTitle, emessagebox);
+      return ::acme::system::_message_box(pobject, pszText, pszTitle, emessagebox);
 
    }
 
@@ -5800,7 +5838,7 @@ namespace apex
    ::e_status system::get_public_internet_domain_extension_list(string_array& stra)
    {
 
-      auto estatus = ::system::get_public_internet_domain_extension_list(stra);
+      auto estatus = ::acme::system::get_public_internet_domain_extension_list(stra);
       
       return estatus;
 
@@ -5810,7 +5848,7 @@ namespace apex
    ::e_status system::system_main()
    {
 
-      auto estatus = ::system::system_main();
+      auto estatus = ::acme::system::system_main();
 
       if (!estatus)
       {
@@ -5822,8 +5860,6 @@ namespace apex
       return estatus;
 
    }
-
-
 
 
 } // namespace apex
@@ -5865,3 +5901,11 @@ namespace apex
 //
 
 
+void int_system_update(void* pSystem, int iUpdate, int iPayload)
+{
+
+   auto psystem = (::acme::system *) pSystem;
+
+   psystem->system_int_update(iUpdate, iPayload);
+
+}

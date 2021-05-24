@@ -133,11 +133,11 @@ namespace user
       virtual void on_user_style_change();
 
 
-      virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext);
+      void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
 
 
       virtual void display_previous_restore();
-      virtual void display_system_minimize();
+      void display_system_minimize() override;
 
 
       virtual bool on_create_bars();

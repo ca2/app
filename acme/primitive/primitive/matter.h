@@ -10,6 +10,7 @@ class synchronization_object;
 class __id;
 class string_exchange;
 
+inline bool is_set_ptr(const void * p){return (uptr)p > 65536;}
 
 //inline ::object* __object(::p* playered);
 
@@ -64,9 +65,10 @@ public:
 
    };
 
+   
    ::interlocked_count                 m_countReference;
    ::eobject                           m_eobject;
-   class system *                      m_psystem;
+   ::acme::system *                    m_psystem;
 
 
 //#if OBJ_REF_DBG
@@ -118,20 +120,20 @@ public:
 
    inline bool has_error() const {return m_uError != 0;}
 
-   inline bool is_set() const { return ::is_set(this); }
+   //inline bool is_set() const { return ::is_set(this); }
 
 
    inline bool is_shared() const { return m_countReference > 1; }
 
 
    // synchronization_object/::mutex
-   inline synchronization_object* mutex() const { return is_set() ? ((::matter*)this)->m_pmutex : nullptr; }
+   inline synchronization_object* mutex() const { return ::is_set_ptr(this) ? ((::matter*)this)->m_pmutex : nullptr; }
    void set_mutex(synchronization_object* psync);
    void defer_create_mutex();
 
    //::e_status branch();
 
-   inline class ::system* get_system() const { return (class ::system *) m_psystem; }
+   inline ::acme::system* get_system() const { return (::acme::system *) m_psystem; }
 
    inline ::apex::application* get_application() { return _get_application(); }
 

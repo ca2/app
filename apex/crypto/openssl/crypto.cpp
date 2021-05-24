@@ -728,7 +728,7 @@ namespace crypto
    u32 crypto::crc32(u32 dwPrevious, const char* psz)
    {
 
-      return ::crc32(dwPrevious, (const Bytef*)psz, (::u32)strlen(psz));
+      return (::u32)::crc32(dwPrevious, (const Bytef*)psz, (::u32)strlen(psz));
 
    }
 

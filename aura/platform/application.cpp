@@ -3806,7 +3806,7 @@ retry_license:
             if (m_puiptraFrame->has_no_interaction())
             {
 
-               apex::application::_001CloseApplication();
+               ::apex::application::_001CloseApplication();
 
             }
 

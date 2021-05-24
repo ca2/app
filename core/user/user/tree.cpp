@@ -68,7 +68,7 @@ namespace user
       fork([this]()
          {
 
-            set_thread_name(string(type_name()) + "::Expand");
+            task_set_name(string(type_name()) + "::Expand");
 
             auto pthread = ::get_task();
 
@@ -97,7 +97,7 @@ namespace user
       fork([this]()
          {
 
-            set_thread_name(string(type_name()) + "::Open");
+            task_set_name(string(type_name()) + "::Open");
 
             auto pthread = ::get_task();
 

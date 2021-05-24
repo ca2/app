@@ -14,8 +14,9 @@
 #include "__/__inttypes.h"
 #include "_aura_type.h"
 
-#include "platform/system.h"
-#include "platform/types.h"
+
+#include "operating_system/system.h"
+#include "operating_system/types.h"
 #include "acme/primitive/geometry2d/_struct.h"
 #include "_aura_memory.h"
 
@@ -37,20 +38,18 @@ typedef iptr strsize;
 
 
 #include "apex/include/_c.h"
-#include "apex/os/apple/_c_mm.h"
 
 
-#include "apex/platform/obj_ref_dbg.h"
-#include "apex/platform/obj_typ_ctr.h"
-#include "acme/const/_const.h"
-#include "apex/platform/obj_ref_dbg.h"
-#include "acme/primitive/primitive/uid.h"
-#include "acme/primitive/primitive/estatus.h"
-#include "acme/primitive/primitive/eobject.h"
-#include "acme/primitive/primitive/matter.h"
+#include "acme/const/source.h"
 
 
+#include "acme/const/check.h"
 
+
+#include "apex/user/menu_shared_command.h"
+
+
+#include "apex/user/menu_shared.h"
 
 
 

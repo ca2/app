@@ -25,8 +25,6 @@ namespace simpledb
       int                                                m_iReplaceValue;
       __pointer(class thread)                            m_pthread;
       __pointer(class thread_localdatabase)              m_pthreadlocal;
-      sqlite3_stmt *                                     m_pstmtSelect;
-      sqlite3_stmt *                                     m_pstmtReplace;
 
 
       storage();

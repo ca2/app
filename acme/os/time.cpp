@@ -24,7 +24,7 @@ CLASS_DECL_ACME void __seed_srand()
 CLASS_DECL_ACME void sleep(const duration & duration)
 {
 
-   if(duration.secs().m_i >= 20)
+   if(duration.secs() >= 20)
    {
 
       sleep(duration.secs());

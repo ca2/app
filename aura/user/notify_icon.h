@@ -25,7 +25,6 @@ namespace user
 #else
       virtual public ::object
 #endif
-      , virtual public user_notify_icon_bridge
    {
    public:
 
@@ -38,6 +37,7 @@ namespace user
       };
 
 
+      __pointer(user_notify_icon_bridge)   m_pbridge;
       ::u32                                  m_uiId;
       bool                                   m_bCreated;
       string                                 m_strId;
@@ -96,15 +96,15 @@ namespace user
 //      virtual void notify_icon_play(const char * action) override;
 //#endif
 //#ifndef WINDOWS_DESKTOP
-      virtual int _get_notification_area_action_count() override;
-      virtual const char * _get_notification_area_action_name(int iIndex) override;
-      virtual const char * _get_notification_area_action_id(int iIndex) override;
-      virtual const char * _get_notification_area_action_label(int iIndex) override;
-      virtual const char * _get_notification_area_action_accelerator(int iIndex) override;
-      virtual const char * _get_notification_area_action_description(int iIndex) override;
-      virtual void call_notification_area_action(const char * pszId) override;
+      virtual int _get_notification_area_action_count() ;
+      virtual const char * _get_notification_area_action_name(int iIndex) ;
+      virtual const char * _get_notification_area_action_id(int iIndex) ;
+      virtual const char * _get_notification_area_action_label(int iIndex) ;
+      virtual const char * _get_notification_area_action_accelerator(int iIndex) ;
+      virtual const char * _get_notification_area_action_description(int iIndex) ;
+      virtual void call_notification_area_action(const char * pszId) ;
 //#endif
-
+      virtual void notify_icon_init(const char * pszFile);
 
 //#endif
 
@@ -113,5 +113,6 @@ namespace user
 
 
 } // namespace user
+
 
 

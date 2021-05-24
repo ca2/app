@@ -2196,9 +2196,9 @@ break_click:;
 
             pdrawitem->m_rectClient = pdrawitem->m_rectSubItem;
 
-            pdrawitem->m_rectWindow = pdrawitem->m_rectClient;
+            pdrawitem->m_rectangleWindow = pdrawitem->m_rectClient;
 
-            _001ClientToScreen(pdrawitem->m_rectWindow);
+            _001ClientToScreen(pdrawitem->m_rectangleWindow);
 
             //::rectangle_i32 rectWindow;
 

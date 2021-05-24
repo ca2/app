@@ -27,7 +27,7 @@
 
 #ifdef MACOS
 
-#include "aura/os/macos/_mm.h"
+#include "_no_templates.h"
 
 #else
 

@@ -71,7 +71,7 @@ public:
    //inline ::object* this const { return this; }
    //virtual ::e_status set_object(::object* pobject OBJ_REF_DBG_COMMA_PARAMS) override;
 
-   //inline ::apex::application* application() { return m_papplication; }
+   //inline ::application* application() { return m_papplication; }
 
    //template < typename TYPE, typename TYPE2 >
    //void __bind(reference < TYPE >& r, TYPE2& t)
@@ -133,7 +133,7 @@ public:
 
    inline ::thread* get_thread() const { return m_pthread; }
 
-   inline ::apex::application* get_application() const { return m_papplication; }
+   inline ::application* get_application() const { return m_papplication; }
 
    inline ::apex::session* get_session() const { return m_psession; }
 
@@ -141,7 +141,7 @@ public:
 
    //::object * get_context_user() const { return m_puserContext; }
 
-   //inline ::apex::application * application() const { return m_papplication; }
+   //inline ::application * application() const { return m_papplication; }
 
    virtual string get_text(const ::payload& payload, const ::id& id) override;
 

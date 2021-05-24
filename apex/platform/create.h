@@ -57,7 +57,7 @@ public:
    virtual void set_description(string strDescription);
 
    virtual index get_edge();
-   //virtual ::application_bias * get_application_bias();
+   //virtual ::apex::application_bias * get_application_bias();
 
    virtual bool has_file() const;
    virtual ::payload get_file() const;

@@ -23,8 +23,12 @@ namespace apex
 
 
       virtual ::e_status on_initialize_object() override;
+      
+      
+      virtual ::e_status main();
+      
 
-      virtual void set_application_menu(::apex::application_menu * pmenu, ::apex::application * papplication);
+      virtual void set_application_menu(application_menu * pmenu, ::apex::application * papplication);
 
 
       virtual ::file::path get_desktop_file_path(::apex::application * papplication) const;
@@ -67,6 +71,9 @@ namespace apex
       virtual bool set_application_installed(const ::file::path& pathExe, string strAppId, const char* pszBuild, const char* pszPlatform, const char* pszConfiguration, const char* pszLocale, const char* pszSchema);
 
       virtual bool set_last_run_application_path(string strAppId);
+
+      virtual void os_menu_item_enable(void * pitem, bool bEnable);
+      virtual void os_menu_item_check(void * pitem, bool bCheck);
 
 
    };

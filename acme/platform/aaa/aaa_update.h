@@ -1,7 +1,7 @@
 #pragma once
 
 
-CLASS_DECL_ACME int os_get_system_update_poll_time(::i64 iUpdate);
+//CLASS_DECL_ACME int os_get_system_update_poll_time(::i64 iUpdate);
 
 using update_map = map < __pointer(matter), __pointer(::update_item) > ;
 

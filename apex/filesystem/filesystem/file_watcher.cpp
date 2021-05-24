@@ -171,9 +171,9 @@ namespace file
    watcher::watcher()
    {
 
+      m_pThis = nullptr;
       m_idLast = 0;
       m_bCreateWatchThread = true;
-
 
    }
 
@@ -214,7 +214,7 @@ namespace file
          if (m_bCreateWatchThread)
          {
 
-//            auto estatus = __construct_new(m_ptask);
+//            auto estatus = __construct_new(m_pthread);
 //
 //            if (!estatus)
 //            {
@@ -222,8 +222,22 @@ namespace file
 //               return estatus;
 //
 //            }
+// 
+//             
+//
 
-            m_ptask = m_pcontext->branch(this);
+            if (m_htask == nullptr)
+            {
+               auto estatus = begin_thread();
+
+               if (!estatus)
+               {
+
+                  return estatus;
+
+               }
+
+            }
 
          }
 
@@ -277,12 +291,10 @@ namespace file
 
 
 
-   ::e_status     watcher::run()
+   ::e_status watcher::run()
    {
       
-      m_ptask = ::get_task();
-
-      while (::task_get_run())
+      while (task_get_run())
       {
 
          if (!step())
@@ -292,12 +304,10 @@ namespace file
 
          }
 
-         while (m_ptask->defer_pump_message());
+         while (defer_pump_message());
 
       }
       
-      m_ptask.release();
-
       return ::success;
 
    }

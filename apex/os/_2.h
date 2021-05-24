@@ -68,7 +68,84 @@ inline bool predicate_Sleep(int iTime, PRED pred);
 //} // namespace str
 
 
-CLASS_DECL_APEX void defer_dock_application(int_bool bDock);
+//
+//
+////__pointer(pcre_context) pcre_context::create_context(int iSizeData)
+////{
+////
+////   return __new(pcre_context_impl( iSizeData));
+////
+////}
+//////
+////
+////__pointer(regex) pcre_regex::compile(::object* pobject, const string& str)
+////{
+////
+////   __pointer(pcre_context_impl) pcreContextImpl = pcre_context::create_context(pobject, 0);
+////
+////   auto putil = __new(pcre_util_impl(pcreContextImpl));
+////
+////   putil->compile(str);
+////
+////   return putil;
+////
+////}
+////
+////
+////__pointer(pcre_code) pcre_code::compile(pcre_context* m_pcreContext, const string& str)
+////{
+////
+////   __pointer(pcre_context_impl) pimpl = m_pcreContext;
+////
+////   auto pcode = __new(pcre_code_impl(pimpl));
+////
+////   pcode->compile(str);
+////
+////   return pcode;
+////
+////}
+////
+////
+////namespace axis
+////{
+////
+////
+////   __pointer(regex) system::create_pcre(const string& str)
+////   {
+////
+////      return pcre_regex::compile(this, str);
+////
+////   }
+////
+////   __pointer(regex_context) system::create_pcre_context(int iCount)
+////   {
+////
+////      return pcre_context::create_context(this, iCount);
+////   }
+////
+////
+////   int system::pcre_add_tokens(string_array& stra, const string& strTopic, const string& strRegexp, int nCount)
+////   {
+////
+////      throw_todo();
+////
+////      return -1;
+////
+////   }
+////
+////
+////} // namespace axis
+////
+////
+////
+////namespace axis
+////{
+////
+////
+////}
+////
+////
+////CLASS_DECL_APEX void defer_dock_application(int_bool bDock);
 
 
 //CLASS_DECL_APEX string get_current_login_name();

@@ -3,7 +3,7 @@
 //   
 //    
 //        ------------------ - --/ ------------------------ - ----/ -------------------------------------- - --
-//        DOMAS_16-09-0.1989 > ThomasBS_ / ------ - ---/ aura.dll Release(Win32) / aura.lib Static Release(Win32)   oe      helloaura.exe     Static     Release(Win32)   ----   -    -- <3Thomas Boregaard SoerensenCamilo SasukeThomas Boregaard Soerensen!!
+//        DOMAS_16-1109-0.1989 > ThomasBS_ / ------ - ---/ aura.dll Release(Win32) / aura.lib Static Release(Win32)   oe      helloaura.exe     Static     Release(Win32)   ----   -    -- <3Thomas Boregaard SoerensenCamilo SasukeThomas Boregaard Soerensen!!
 //        2020 - 08 - 18 01:38 / 17, 180kb---- - ---/ 189, 893kb-------- - ---/ 12, 187kb------------------ - --
 //        2020 - 08 - 20 07:41 / 13, 915kb / 137, 668kb / 9, 715kb------------------ - --
 //        rebuild mark / ---------------- - ------------------------- - -------------------------------- - --
@@ -87,8 +87,11 @@ namespace apex
    class system;
    class node;
    class session;
-   class application;
    
+
+   class application;
+
+
    //class apex;
 
 
@@ -303,6 +306,7 @@ namespace bred
 
 } // namespace bred
 
+
 namespace core
 {
 
@@ -353,11 +357,6 @@ using wstring = string_base < widechar >;
 inline const ansichar* __c_str(const string& str);
 
 class machine_event_central;
-
-
-#define __base(TYPE, ptarget, psource) for(__pointer(TYPE) ptarget = psource; ptarget.is_set(); ptarget.release())
-#define __base_reference(TYPE, ptarget, source) for(__pointer(TYPE) ptarget = &source; ptarget.is_set(); ptarget.release())
-#define __exception(TYPE) __base(TYPE, pe, e)
 
 
 //#include "apex/primitive/math/_.h"
@@ -414,11 +413,8 @@ namespace apex
 {
 
 
-   class application;
-   class system;
-   //class application_message;
+class command;
 
-   class command;
 
 } // namespace apex
 
@@ -522,37 +518,6 @@ namespace apex
 } // namespace apex
 
 CLASS_DECL_APEX bool enable_trace_category(e_trace_category ecategory, bool bEnable = true);
-
-// only usable from axis and axis dependants
-namespace apex
-{
-
-   class application;
-   class session;
-   class system;
-
-}
-
-
-// only usable from base and base dependants
-namespace base
-{
-
-   class application;
-   class session;
-   class system;
-
-}
-
-// only usable from apex and apex dependants
-namespace apex
-{
-
-   class application;
-   class session;
-   class system;
-
-}
 
 
 class app_core;
@@ -1139,6 +1104,8 @@ namespace user
 #include "apex/user/text.h"
 
 #include "apex/user/check.h"
+
+#include "apex/user/menu_shared_command.h"
 
 #include "apex/message/command.h"
 

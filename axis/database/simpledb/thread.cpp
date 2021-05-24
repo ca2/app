@@ -1,6 +1,5 @@
 #include "framework.h"
 #include "_simpledb.h"
-#include <sqlite3.h>
 #include "storage.h"
 
 

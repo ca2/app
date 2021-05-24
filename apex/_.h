@@ -172,10 +172,12 @@ namespace apex
 
    //class patch;
    class history;
-   class application;
    class session;
    class system;
    class user;
+
+
+   class application;
 
 
 } // namespace apex

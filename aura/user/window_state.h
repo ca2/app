@@ -248,21 +248,21 @@ namespace user
    };
 
 
-   __memory(window_rect)
+   __memory(window_rectangle)
    {
 
       edisplay                   m_edisplayPrevious = e_display_none;
       edisplay                   m_edisplay = e_display_none;
       eappearance                m_eappearance = e_appearance_none;
-      rectangle_i32                       m_rectSnapped = nullptr;
-      rectangle_i32                       m_rectRestored = nullptr;
-      rectangle_i32                       m_rectWindow = nullptr;
+      rectangle_i32              m_rectangleSnapped = nullptr;
+      rectangle_i32              m_rectangleRestored = nullptr;
+      rectangle_i32              m_rectangleWindow = nullptr;
       int                        m_iControlBoxRightToLeft = 0;
       index                      m_iWorkspace = 0;
 
-      using memory_template < window_rect >::operator=;
-      bool operator == (const window_rect & rectangle) const {return !memcmp(this, &rectangle, sizeof(window_rect)); }
-      bool operator != (const window_rect & rectangle) const {return !operator==(rectangle); }
+      using memory_template < window_rectangle >::operator=;
+      bool operator == (const window_rectangle & rectangle) const {return !memcmp(this, &rectangle, sizeof(window_rectangle)); }
+      bool operator != (const window_rectangle & rectangle) const {return !operator==(rectangle); }
 
    };
 

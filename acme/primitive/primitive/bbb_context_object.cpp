@@ -87,7 +87,7 @@ void object::process_exit_status(const ::e_status& estatus)
 }
 
 
-   //inline ::apex::application* object::application() { return m_papplication; }
+   //inline ::application* object::application() { return m_papplication; }
 
 
    //template < typename BASE_TYPE >
@@ -300,7 +300,7 @@ void object::process_exit_status(const ::e_status& estatus)
 
    //inline ::thread* object::get_thread() const { return m_pthread; }
 
-   //inline ::apex::application* object::get_application() const { return m_papplication; }
+   //inline ::application* object::get_application() const { return m_papplication; }
 
    //inline ::apex::session* object::get_session() const { return m_psession; }
 
@@ -308,7 +308,7 @@ void object::process_exit_status(const ::e_status& estatus)
 
    //::object * get_context_user() const { return m_puserContext; }
 
-   //inline ::apex::application * application() const { return m_papplication; }
+   //inline ::application * application() const { return m_papplication; }
 
     string object::get_text(const ::payload& payload, const ::id& id)
     {

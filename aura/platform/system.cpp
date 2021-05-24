@@ -3967,13 +3967,13 @@ namespace aura
 //
 //            ::file::path pathScript = m_psystem->m_pacmedir->tool() / "papaya/script/xcode_set_active_scheme.scpt";
 //
-//            ::system("osascript \""+pathScript + "\" \"" + strScheme + "\"");
+//            ::acme::system("osascript \""+pathScript + "\" \"" + strScheme + "\"");
 //
 //         }
 //         else if(strBase == "archive")
 //         {
 //
-//            ::system("xcodebuild -scheme \"" + strScheme + "\" archive");
+//            ::acme::system("xcodebuild -scheme \"" + strScheme + "\" archive");
 //
 //         }
 //
@@ -4206,7 +4206,7 @@ namespace aura
 //
 //         //#elif defined(LINUX)
 //         //
-//         //      ::system("xdg-open \"" + strUrl + "\"");
+//         //      ::acme::system("xdg-open \"" + strUrl + "\"");
 //         //
 //         //      return true;
 //         //
@@ -4253,7 +4253,7 @@ namespace aura
 //
 //#elif defined(MACOS)
 //
-//         ::system("open -a /Applications/Safari.app \"" + strUrl + "\"");
+//         ::acme::system("open -a /Applications/Safari.app \"" + strUrl + "\"");
 //
 //#elif defined(APPLE_IOS)
 //
@@ -4340,7 +4340,7 @@ namespace aura
 //         else
 //         {
 //
-//            ::system("xdg-open " + strUrl);
+//            ::acme::system("xdg-open " + strUrl);
 //
 //         }
 //
@@ -5055,7 +5055,7 @@ namespace aura
    string system::crypto_md5_text(const string & str)
    {
 
-      return crypto().md5(str);
+      return crypto()->md5(str);
 
    }
 

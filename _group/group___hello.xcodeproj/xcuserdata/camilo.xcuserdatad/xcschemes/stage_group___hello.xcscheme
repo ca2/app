@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1160"
+   LastUpgradeVersion = "1250"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -38,8 +38,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "070B8EE91B6E53F900D26137"
-            BuildableName = "group_aura.app"
-            BlueprintName = "group_aura"
+            BuildableName = "group___hello.app"
+            BlueprintName = "group___hello"
             ReferencedContainer = "container:group___hello.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -54,8 +54,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "070B8EE91B6E53F900D26137"
-            BuildableName = "group_aura.app"
-            BlueprintName = "group_aura"
+            BuildableName = "group___hello.app"
+            BlueprintName = "group___hello"
             ReferencedContainer = "container:group___hello.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

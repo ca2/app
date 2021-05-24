@@ -18,23 +18,25 @@ namespace core
 
             auto ppanetabview = pdocument->get_view()->GetTypedParent < ::userex::pane_tab_view >();
 
-            if(ppanetabview->is_set())
-
-
-            ppanetabview = pdocument->get_view()->GetTypedParent < ::userex::pane_tab_view >();
-
-            ppanetabview->FileManagerSaveAs(pdocument);
-
-            if (ppanetabview->get_parent_frame()->RunModalLoop() != "yes")
+            if (ppanetabview)
             {
 
-               return false;
+               ppanetabview = pdocument->get_view()->GetTypedParent < ::userex::pane_tab_view >();
+
+               ppanetabview->FileManagerSaveAs(pdocument);
+
+               if (ppanetabview->get_parent_frame()->RunModalLoop() != "yes")
+               {
+
+                  return false;
+
+               }
+
+               varFile = ppanetabview->filemanager_document()->m_strTopic;
+
+               return true;
 
             }
-
-            varFile = ppanetabview->filemanager_document()->m_strTopic;
-
-            return true;
 
          }
 

@@ -42,7 +42,7 @@ string task::get_tag() const
 
 
 
-string task::thread_get_name() const
+string task::task_get_name() const
 {
 
    return m_strTaskName;
@@ -74,10 +74,21 @@ const char * task::get_task_tag()
 //}
 
 
-bool task::set_thread_name(const char* pszThreadName)
+bool task::task_set_name(const char* pszTaskName)
 {
+   
+   if(::get_current_ithread() == m_itask)
+   {
+      if (!::task_set_name(pszTaskName))
+      {
+         
+         return false;
+         
+      }
+   }
 
-   m_strTaskName = pszThreadName;
+
+   m_strTaskName = pszTaskName;
 
    if (m_strTaskTag.is_empty() && m_strTaskName.has_char())
    {
@@ -85,14 +96,13 @@ bool task::set_thread_name(const char* pszThreadName)
       m_strTaskTag = m_strTaskName;
 
    }
-
-   if (!::set_thread_name(m_htask, pszThreadName))
-   {
-
-      return false;
-
-   }
-
+//   if (!::task_set_name(m_htask, pszTaskName))
+//   {
+//
+//      return false;
+//
+//   }
+//
    return true;
 
 }
@@ -266,23 +276,23 @@ void task::unregister_task()
 //}
 
 
-bool task::on_get_thread_name(string & strThreadName)
+bool task::on_get_task_name(string & strTaskName)
 {
 
    if (m_strTaskTag.has_char())
    {
 
-      //::set_thread_name(m_strTaskTag);
+      //::task_set_name(m_strTaskTag);
 
-      strThreadName = m_strTaskTag;
+      strTaskName = m_strTaskTag;
 
    }
    else
    {
 
-      //::set_thread_name(type_name());
+      //::task_set_name(type_name());
 
-      strThreadName = type_name();
+      strTaskName = type_name();
 
    }
 
@@ -302,12 +312,12 @@ bool task::on_get_thread_name(string & strThreadName)
 void task::init_task()
 {
 
-   string strThreadName;
+   string strTaskName;
 
-   if (on_get_thread_name(strThreadName))
+   if (on_get_task_name(strTaskName))
    {
 
-      set_thread_name(strThreadName);
+      task_set_name(strTaskName);
 
    }
 
@@ -418,7 +428,7 @@ void task::term_task()
 //
 //   //      m_id = pmatter->type_name();
 //
-//   //      set_thread_name(m_id);
+//   //      task_set_name(m_id);
 //
 //   //      m_pmatter.m_p = nullptr;
 //
@@ -435,6 +445,8 @@ void task::term_task()
 
 bool task::do_events()
 {
+   
+   __throw(error_interface_only, "tasks don't have message queue, threads do");
 
    return true;
 
@@ -444,6 +456,8 @@ bool task::do_events()
 bool task::defer_pump_message()
 {
 
+   __throw(error_interface_only, "tasks don't have message queue, threads do");
+
    return false;
 
 }
@@ -451,6 +465,8 @@ bool task::defer_pump_message()
 
 bool task::has_message() const
 {
+
+   __throw(error_interface_only, "tasks don't have message queue, threads do");
 
    return false;
 
@@ -657,10 +673,10 @@ bool task::has_message() const
 
 
 //
-//bool task::set_task_name(const char* pszThreadName)
+//bool task::task_set_name(const char* pszThreadName)
 //{
 //
-//   if (!::set_task_name(m_htask, pszThreadName))
+//   if (!::task_set_name(m_htask, pszThreadName))
 //   {
 //
 //      return false;

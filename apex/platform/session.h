@@ -183,7 +183,7 @@ namespace apex
 
       //virtual void  get_cursor_position(POINT_I32 * ppoint);
 
-      virtual bool on_get_thread_name(string& strThreadName) override;
+      virtual bool on_get_task_name(string& strThreadName) override;
 
 
       virtual void on_request(::create * pcreate) override;
@@ -275,7 +275,7 @@ namespace apex
 
       virtual void on_instantiate_application(::apex::application* papp) override;
 
-      //::apex::application * application_get(const char * pszAppId, bool bCreate, bool bSynch, ::create * pcreate) override;
+      //::application * application_get(const char * pszAppId, bool bCreate, bool bSynch, ::create * pcreate) override;
 
       virtual bool is_key_pressed(::user::enum_key ekey);
 

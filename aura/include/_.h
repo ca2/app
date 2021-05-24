@@ -818,12 +818,7 @@ CLASS_DECL_AURA void aura_ref();
 //inline u32 u32_hash(ARG_KEY key) { return (u32)(uptr_hash<ARG_KEY>(key)); }
 //
 ////#endif
-//
-//
-//#define __base(TYPE, ptarget, psource) for(__pointer(TYPE) ptarget = psource; ptarget.is_set(); ptarget.release())
-//#define __base_reference(TYPE, ptarget, source) for(__pointer(TYPE) ptarget = &source; ptarget.is_set(); ptarget.release())
-//#define __exception(TYPE) __base(TYPE, pe, e)
-//
+
 //
 //#undef _
 //
@@ -2549,7 +2544,7 @@ CLASS_DECL_AURA bool __node_aura_pos_term();
 //
 //
 //
-//template < typename BASE_TYPE, typename POINT_BASE_TYPE, typename RECT_BASE_TYPE >
+//template < typename BASE_TYPE, typename POINT_BASE_TYPE, typename RECTANGLE_BASE_TYPE >
 //class size_type;
 //
 //using size = size_type < SIZE_I32, POINT_I32, RECTANGLE_I32 >;

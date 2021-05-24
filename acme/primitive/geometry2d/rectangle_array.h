@@ -1,36 +1,36 @@
 #pragma once
 
 
-template < typename RECT_TYPE >
+template < typename RECTANGLE_TYPE >
 class rectangle_array_base :
-   public array < RECT_TYPE >
+   public array < RECTANGLE_TYPE >
 {
 public:
 
 
-   using RECT_BASE_TYPE = typename RECT_TYPE::RECT_BASE_TYPE;
-   using UNIT_TYPE = typename RECT_TYPE::UNIT_TYPE;
-   using POINT_TYPE = typename RECT_TYPE::POINT_TYPE;
-   using SIZE_TYPE = typename RECT_TYPE::SIZE_TYPE;
+   using RECTANGLE_BASE_TYPE = typename RECTANGLE_TYPE::RECTANGLE_BASE_TYPE;
+   using UNIT_TYPE = typename RECTANGLE_TYPE::UNIT_TYPE;
+   using POINT_TYPE = typename RECTANGLE_TYPE::POINT_TYPE;
+   using SIZE_TYPE = typename RECTANGLE_TYPE::SIZE_TYPE;
 
 
    virtual ~rectangle_array_base();
 
-   using array < RECT_TYPE >::add;
-   void add(const RECT_TYPE & rectangle);
+   using array < RECTANGLE_TYPE >::add;
+   void add(const RECTANGLE_TYPE & rectangle);
    void add(UNIT_TYPE left, UNIT_TYPE top, UNIT_TYPE right, UNIT_TYPE bottom);
    void add(const POINT_TYPE & point, const SIZE_TYPE & size);
    void add(const SIZE_TYPE & size);
-   void intersect(const RECT_TYPE & rectangle);
+   void intersect(const RECTANGLE_TYPE & rectangle);
 
    void add_dim(UNIT_TYPE x, UNIT_TYPE y, UNIT_TYPE cx, UNIT_TYPE cy);
 
-   index max_normal_intersect_area(const RECT_TYPE & rectangle, const RECT_TYPE & rectModel);
+   index max_normal_intersect_area(const RECTANGLE_TYPE & rectangle, const RECTANGLE_TYPE & rectModel);
 
 
-   void get_box(RECT_BASE_TYPE * prectangle);
+   void get_box(RECTANGLE_BASE_TYPE * prectangle);
 
-   RECT_TYPE union_rect();
+   RECTANGLE_TYPE union_rect();
 
    void offset(UNIT_TYPE cx, UNIT_TYPE cy);
    void offset(POINT_TYPE point);
@@ -53,8 +53,8 @@ public:
 
 };
 
-template < typename RECT_TYPE >
-inline void rectangle_array_base < RECT_TYPE >::offset(POINT_TYPE point)
+template < typename RECTANGLE_TYPE >
+inline void rectangle_array_base < RECTANGLE_TYPE >::offset(POINT_TYPE point)
 {
    offset(point.x, point.y);
 }
@@ -62,20 +62,20 @@ inline void rectangle_array_base < RECT_TYPE >::offset(POINT_TYPE point)
 
 
 
-template < typename RECT_TYPE >
-rectangle_array_base < RECT_TYPE >::~rectangle_array_base()
+template < typename RECTANGLE_TYPE >
+rectangle_array_base < RECTANGLE_TYPE >::~rectangle_array_base()
 {
 
 }
 
-template < typename RECT_TYPE >
-void rectangle_array_base < RECT_TYPE >::offset(UNIT_TYPE cx, UNIT_TYPE cy)
+template < typename RECTANGLE_TYPE >
+void rectangle_array_base < RECTANGLE_TYPE >::offset(UNIT_TYPE cx, UNIT_TYPE cy)
 {
 
    for (i32 i = 0; i < this->get_size(); i++)
    {
 
-      RECT_TYPE & rectangle = this->element_at(i);
+      RECTANGLE_TYPE & rectangle = this->element_at(i);
 
       rectangle.left += cx;
       rectangle.top += cy;
@@ -87,11 +87,11 @@ void rectangle_array_base < RECT_TYPE >::offset(UNIT_TYPE cx, UNIT_TYPE cy)
 }
 
 
-template < typename RECT_TYPE >
-RECT_TYPE rectangle_array_base < RECT_TYPE >::union_rect()
+template < typename RECTANGLE_TYPE >
+RECTANGLE_TYPE rectangle_array_base < RECTANGLE_TYPE >::union_rect()
 {
 
-   RECT_TYPE rectUnion(0, 0, 0, 0);
+   RECTANGLE_TYPE rectUnion(0, 0, 0, 0);
 
    for (i32 i = 0; i < this->get_size(); i++)
    {
@@ -103,8 +103,8 @@ RECT_TYPE rectangle_array_base < RECT_TYPE >::union_rect()
 }
 
 
-template < typename RECT_TYPE >
-void rectangle_array_base < RECT_TYPE >::get_box(RECT_BASE_TYPE * prectangle)
+template < typename RECTANGLE_TYPE >
+void rectangle_array_base < RECTANGLE_TYPE >::get_box(RECTANGLE_BASE_TYPE * prectangle)
 
 {
 
@@ -114,8 +114,8 @@ void rectangle_array_base < RECT_TYPE >::get_box(RECT_BASE_TYPE * prectangle)
 }
 
 
-template < typename RECT_TYPE >
-void rectangle_array_base < RECT_TYPE >::intersect(const RECT_TYPE & rectangle)
+template < typename RECTANGLE_TYPE >
+void rectangle_array_base < RECTANGLE_TYPE >::intersect(const RECTANGLE_TYPE & rectangle)
 {
 
    for (index i = 0; i < this->get_size();)
@@ -133,47 +133,47 @@ void rectangle_array_base < RECT_TYPE >::intersect(const RECT_TYPE & rectangle)
 
 }
 
-template < typename RECT_TYPE >
-void rectangle_array_base < RECT_TYPE >::add(const RECT_TYPE & rectangle)
+template < typename RECTANGLE_TYPE >
+void rectangle_array_base < RECTANGLE_TYPE >::add(const RECTANGLE_TYPE & rectangle)
 {
-   array < RECT_TYPE >::add(rectangle);
+   array < RECTANGLE_TYPE >::add(rectangle);
 }
 
 
-template < typename RECT_TYPE >
-void rectangle_array_base < RECT_TYPE >::add(UNIT_TYPE left, UNIT_TYPE top, UNIT_TYPE right, UNIT_TYPE bottom)
+template < typename RECTANGLE_TYPE >
+void rectangle_array_base < RECTANGLE_TYPE >::add(UNIT_TYPE left, UNIT_TYPE top, UNIT_TYPE right, UNIT_TYPE bottom)
 {
-   add(RECT_TYPE(left, top, right, bottom));
+   add(RECTANGLE_TYPE(left, top, right, bottom));
 }
 
 
-template < typename RECT_TYPE >
-void rectangle_array_base < RECT_TYPE >::add_dim(UNIT_TYPE x, UNIT_TYPE y, UNIT_TYPE cx, UNIT_TYPE cy)
+template < typename RECTANGLE_TYPE >
+void rectangle_array_base < RECTANGLE_TYPE >::add_dim(UNIT_TYPE x, UNIT_TYPE y, UNIT_TYPE cx, UNIT_TYPE cy)
 {
-   add(rect_dim(x, y, cx, cy));
+   add(rectangle_dimension(x, y, cx, cy));
 }
 
 
-template < typename RECT_TYPE >
-void rectangle_array_base < RECT_TYPE >::add(const POINT_TYPE & point, const SIZE_TYPE & size)
+template < typename RECTANGLE_TYPE >
+void rectangle_array_base < RECTANGLE_TYPE >::add(const POINT_TYPE & point, const SIZE_TYPE & size)
 {
-   add(RECT_TYPE(point, size));
+   add(RECTANGLE_TYPE(point, size));
 }
 
 
-template < typename RECT_TYPE >
-void rectangle_array_base < RECT_TYPE >::add(const SIZE_TYPE & size)
+template < typename RECTANGLE_TYPE >
+void rectangle_array_base < RECTANGLE_TYPE >::add(const SIZE_TYPE & size)
 {
-   this->add(RECT_TYPE(size));
+   this->add(RECTANGLE_TYPE(size));
 }
 
 
-template < typename RECT_TYPE >
-index rectangle_array_base < RECT_TYPE >::max_normal_intersect_area(const RECT_TYPE & rectParam, const RECT_TYPE & rectModel)
+template < typename RECTANGLE_TYPE >
+index rectangle_array_base < RECTANGLE_TYPE >::max_normal_intersect_area(const RECTANGLE_TYPE & rectParam, const RECTANGLE_TYPE & rectModel)
 {
 
    index iFound = -1;
-   RECT_TYPE rectangle;
+   RECTANGLE_TYPE rectangle;
    auto iModelArea = rectModel.width() * rectModel.height();
    decltype(iModelArea) iArea;
    decltype(iModelArea) iAreaMax = 0;

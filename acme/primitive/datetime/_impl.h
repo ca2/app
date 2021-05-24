@@ -65,9 +65,6 @@ inline duration& duration::operator = (const ::duration & duration)
 }
 
 
-
-
-
 inline nanos operator -(const ::nanos& nanos, const ::millis & millis)
 {
 
@@ -76,31 +73,33 @@ inline nanos operator -(const ::nanos& nanos, const ::millis & millis)
 }
 
 
+inline duration operator -(const ::duration & duration, const ::millis & millis)
+{
 
-inline ::micros first_micro() { return first_nano(); }
-inline ::micros get_micros() { return get_nanos(); }
+   return duration - (const ::duration &) millis;
+
+}
 
 
+inline ::i64 _first_sec() { return _get_millis() / 1'000; }
+inline ::i64 _get_secs() { return _get_millis() / 1'000; }
 
 
-inline millis::millis(enum enum_now) { m_i = get_millis().m_i; }
+inline ::i64 _first_millis() { return _get_micros() / 1'000; }
+inline ::i64 _get_millis() { return _get_micros() / 1'000; }
 
+
+inline ::i64 _first_micros() { return _get_nanos() / 1'000; }
+inline ::i64 _get_micros() { return _get_nanos() / 1'000; }
+
+
+inline millis::millis(enum enum_now) { m_i = _get_millis(); }
 inline millis millis::now() { return get_millis(); }
 
 
-
-inline ::millis first_milli() { return first_nano(); }
-inline ::millis get_millis() { return get_nanos(); }
-
-
-
-
-
-inline ::secs first_sec() { return get_nanos(); }
-inline ::secs get_secs() { return get_nanos(); }
-
 namespace papaya
 {
+
 
    namespace chill
    {
@@ -114,6 +113,7 @@ namespace papaya
          return ::get_millis() - (MAXI64 >> 1);
 
       }
+
 
    } // namespace chill
 
@@ -138,8 +138,6 @@ inline bool millis::timeout(const millis& tickTimeout)
    return true;
 
 }
-
-
 
 
 

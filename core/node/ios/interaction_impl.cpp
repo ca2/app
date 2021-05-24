@@ -1163,7 +1163,7 @@ namespace ios
        {
        if(pusermessage->m_wparam == BERGEDGE_GETAPP)
        {
-       ::application ** ppapp= (::application **) pusermessage->m_lparam;
+       ::application ** ppapp= (::apex::application **) pusermessage->m_lparam;
        *ppapp = get_application();
        pusermessage->m_bRet = true;
        return;

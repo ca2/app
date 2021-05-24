@@ -2733,7 +2733,7 @@ matter* object::get_taskpool_container()
 //}
 //
 //
-//::apex::application* object::_get_application()
+//::application* object::_get_application()
 //{
 //
 //   return m_papplication;

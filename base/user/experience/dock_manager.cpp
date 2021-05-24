@@ -194,7 +194,7 @@ namespace experience
 
             edisplayDock = ::e_display_full_top;
 
-            rectDock = rect_dim(rectWork.left, rectWork.top, rectWork.width(), rectWork.height() / 2);
+            rectDock = rectangle_dimension(rectWork.left, rectWork.top, rectWork.width(), rectWork.height() / 2);
 
          }
          else if (pointCursor.y > rectCenter.bottom)
@@ -202,7 +202,7 @@ namespace experience
 
             edisplayDock = ::e_display_full_bottom;
 
-            rectDock = rect_dim(rectWork.left, rectWork.top + rectWork.height() / 2, rectWork.width(), rectWork.height() / 2);
+            rectDock = rectangle_dimension(rectWork.left, rectWork.top + rectWork.height() / 2, rectWork.width(), rectWork.height() / 2);
 
          }
 
@@ -215,7 +215,7 @@ namespace experience
 
             edisplayDock = ::e_display_full_left;
 
-            rectDock = rect_dim(rectWork.left, rectWork.top, rectWork.width() / 2, rectWork.height());
+            rectDock = rectangle_dimension(rectWork.left, rectWork.top, rectWork.width() / 2, rectWork.height());
 
          }
          else if (pointCursor.x > rectCenter.right)
@@ -223,7 +223,7 @@ namespace experience
 
             edisplayDock = ::e_display_full_right;
 
-            rectDock = rect_dim(rectWork.left + rectWork.width() / 2, rectWork.top, rectWork.width() / 2, rectWork.height());
+            rectDock = rectangle_dimension(rectWork.left + rectWork.width() / 2, rectWork.top, rectWork.width() / 2, rectWork.height());
 
          }
 
@@ -236,7 +236,7 @@ namespace experience
 
             edisplayDock = ::e_display_top_left;
 
-            rectDock = rect_dim(rectWork.left, rectWork.top, rectWork.width() / 2, rectWork.height() / 2);
+            rectDock = rectangle_dimension(rectWork.left, rectWork.top, rectWork.width() / 2, rectWork.height() / 2);
 
          }
          else if (pointCursor.y > rectCenter.bottom)
@@ -244,7 +244,7 @@ namespace experience
 
             edisplayDock = ::e_display_bottom_left;
 
-            rectDock = rect_dim(rectWork.left, rectWork.top + rectWork.height() / 2, rectWork.width() / 2, rectWork.height() / 2);
+            rectDock = rectangle_dimension(rectWork.left, rectWork.top + rectWork.height() / 2, rectWork.width() / 2, rectWork.height() / 2);
 
          }
 
@@ -257,7 +257,7 @@ namespace experience
 
             edisplayDock = ::e_display_top_right;
 
-            rectDock = rect_dim(rectWork.left + rectWork.width() / 2, rectWork.top, rectWork.width() / 2, rectWork.height() / 2);
+            rectDock = rectangle_dimension(rectWork.left + rectWork.width() / 2, rectWork.top, rectWork.width() / 2, rectWork.height() / 2);
 
          }
          else if (pointCursor.y > rectCenter.bottom)
@@ -265,7 +265,7 @@ namespace experience
 
             edisplayDock = ::e_display_bottom_right;
 
-            rectDock = rect_dim(rectWork.left + rectWork.width() / 2, rectWork.top + rectWork.height() / 2, rectWork.width() / 2, rectWork.height() / 2);
+            rectDock = rectangle_dimension(rectWork.left + rectWork.width() / 2, rectWork.top + rectWork.height() / 2, rectWork.width() / 2, rectWork.height() / 2);
 
          }
 
@@ -279,7 +279,7 @@ namespace experience
          if (edisplayOld != e_display_normal)
          {
 
-            m_pframewindow->set_size(m_pframewindow->m_windowrect.m_rectRestored.size());
+            m_pframewindow->set_size(m_pframewindow->m_windowrectangle.m_rectangleRestored.size());
 
             bChange = true;
 
@@ -287,7 +287,7 @@ namespace experience
          else
          {
 
-            ::rectangle_i32 rectNew(pointMove, m_pframewindow->m_windowrect.m_rectRestored.size());
+            ::rectangle_i32 rectNew(pointMove, m_pframewindow->m_windowrectangle.m_rectangleRestored.size());
 
             rectNew._001Constraint(rectWork);
 

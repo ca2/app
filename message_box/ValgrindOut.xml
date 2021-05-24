@@ -9832,7 +9832,7 @@
     <frame>
       <ip>0x5D2424E</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>user::interaction_child::create_window(user::interaction*, char const*, char const*, unsigned int, rect_type&lt;tagRECT, tagPOINT, tagSIZE&gt; const&amp;, user::interaction*, id, create*)</fn>
+      <fn>user::interaction_child::create_window(user::interaction*, char const*, char const*, unsigned int, rectangle_type&lt;tagRECT, tagPOINT, tagSIZE&gt; const&amp;, user::interaction*, id, create*)</fn>
       <dir>/xcore/app/aura/user/user</dir>
       <file>interaction_child.cpp</file>
       <line>202</line>
@@ -76515,7 +76515,7 @@
     <frame>
       <ip>0x5A4B520</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>draw2d::graphics::_DrawText(char const*, long, rect_type&lt;tagRECT, tagPOINT, tagSIZE&gt; const&amp;, unsigned int, draw2d::font*)</fn>
+      <fn>draw2d::graphics::_DrawText(char const*, long, rectangle_type&lt;tagRECT, tagPOINT, tagSIZE&gt; const&amp;, unsigned int, draw2d::font*)</fn>
       <dir>/xcore/app/aura/graphics/draw2d</dir>
       <file>draw2d_graphics.cpp</file>
       <line>5017</line>
@@ -86574,7 +86574,7 @@
     <frame>
       <ip>0x5A4B520</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>draw2d::graphics::_DrawText(char const*, long, rect_type&lt;tagRECT, tagPOINT, tagSIZE&gt; const&amp;, unsigned int, draw2d::font*)</fn>
+      <fn>draw2d::graphics::_DrawText(char const*, long, rectangle_type&lt;tagRECT, tagPOINT, tagSIZE&gt; const&amp;, unsigned int, draw2d::font*)</fn>
       <dir>/xcore/app/aura/graphics/draw2d</dir>
       <file>draw2d_graphics.cpp</file>
       <line>5017</line>
@@ -86582,7 +86582,7 @@
     <frame>
       <ip>0x5A4B410</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>draw2d::graphics::_DrawText(string const&amp;, rect_type&lt;tagRECT, tagPOINT, tagSIZE&gt; const&amp;, unsigned int, draw2d::font*)</fn>
+      <fn>draw2d::graphics::_DrawText(string const&amp;, rectangle_type&lt;tagRECT, tagPOINT, tagSIZE&gt; const&amp;, unsigned int, draw2d::font*)</fn>
       <dir>/xcore/app/aura/graphics/draw2d</dir>
       <file>draw2d_graphics.cpp</file>
       <line>4996</line>
@@ -102399,7 +102399,7 @@
     <frame>
       <ip>0x5A4B520</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>draw2d::graphics::_DrawText(char const*, long, rect_type&lt;tagRECT, tagPOINT, tagSIZE&gt; const&amp;, unsigned int, draw2d::font*)</fn>
+      <fn>draw2d::graphics::_DrawText(char const*, long, rectangle_type&lt;tagRECT, tagPOINT, tagSIZE&gt; const&amp;, unsigned int, draw2d::font*)</fn>
       <dir>/xcore/app/aura/graphics/draw2d</dir>
       <file>draw2d_graphics.cpp</file>
       <line>5017</line>
@@ -102407,7 +102407,7 @@
     <frame>
       <ip>0x5A4B410</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>draw2d::graphics::_DrawText(string const&amp;, rect_type&lt;tagRECT, tagPOINT, tagSIZE&gt; const&amp;, unsigned int, draw2d::font*)</fn>
+      <fn>draw2d::graphics::_DrawText(string const&amp;, rectangle_type&lt;tagRECT, tagPOINT, tagSIZE&gt; const&amp;, unsigned int, draw2d::font*)</fn>
       <dir>/xcore/app/aura/graphics/draw2d</dir>
       <file>draw2d_graphics.cpp</file>
       <line>4996</line>
@@ -103708,7 +103708,7 @@
     <frame>
       <ip>0x19C15C15</ip>
       <obj>/xcore/time/x64/basis/libdraw2d_cairo.so</obj>
-      <fn>draw2d_cairo::graphics::internal_draw_text_pango(char const*, long, rect_type&lt;RECTD, POINTD, SIZED&gt; const&amp;, unsigned int, void (*)(_cairo*, _PangoLayout*))</fn>
+      <fn>draw2d_cairo::graphics::internal_draw_text_pango(char const*, long, rectangle_type&lt;RECTD, POINTD, SIZED&gt; const&amp;, unsigned int, void (*)(_cairo*, _PangoLayout*))</fn>
       <dir>/xcore/app/draw2d_cairo</dir>
       <file>draw2d_cairo_graphics.cpp</file>
       <line>3773</line>
@@ -105743,7 +105743,7 @@
     <frame>
       <ip>0x5D7A3FC</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>user::place_holder_container::get_new_place_holder(rect_type&lt;tagRECT, tagPOINT, tagSIZE&gt; const&amp;)</fn>
+      <fn>user::place_holder_container::get_new_place_holder(rectangle_type&lt;tagRECT, tagPOINT, tagSIZE&gt; const&amp;)</fn>
       <dir>/xcore/app/aura/user/user</dir>
       <file>user_place_holder_container.cpp</file>
       <line>39</line>
@@ -106047,7 +106047,7 @@
     <frame>
       <ip>0x5A4B520</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>draw2d::graphics::_DrawText(char const*, long, rect_type&lt;tagRECT, tagPOINT, tagSIZE&gt; const&amp;, unsigned int, draw2d::font*)</fn>
+      <fn>draw2d::graphics::_DrawText(char const*, long, rectangle_type&lt;tagRECT, tagPOINT, tagSIZE&gt; const&amp;, unsigned int, draw2d::font*)</fn>
       <dir>/xcore/app/aura/graphics/draw2d</dir>
       <file>draw2d_graphics.cpp</file>
       <line>5017</line>
@@ -106055,7 +106055,7 @@
     <frame>
       <ip>0x5A4B410</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>draw2d::graphics::_DrawText(string const&amp;, rect_type&lt;tagRECT, tagPOINT, tagSIZE&gt; const&amp;, unsigned int, draw2d::font*)</fn>
+      <fn>draw2d::graphics::_DrawText(string const&amp;, rectangle_type&lt;tagRECT, tagPOINT, tagSIZE&gt; const&amp;, unsigned int, draw2d::font*)</fn>
       <dir>/xcore/app/aura/graphics/draw2d</dir>
       <file>draw2d_graphics.cpp</file>
       <line>4996</line>
@@ -106358,7 +106358,7 @@
     <frame>
       <ip>0x5A4B520</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>draw2d::graphics::_DrawText(char const*, long, rect_type&lt;tagRECT, tagPOINT, tagSIZE&gt; const&amp;, unsigned int, draw2d::font*)</fn>
+      <fn>draw2d::graphics::_DrawText(char const*, long, rectangle_type&lt;tagRECT, tagPOINT, tagSIZE&gt; const&amp;, unsigned int, draw2d::font*)</fn>
       <dir>/xcore/app/aura/graphics/draw2d</dir>
       <file>draw2d_graphics.cpp</file>
       <line>5017</line>
@@ -106492,7 +106492,7 @@
     <frame>
       <ip>0x5A4B520</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>draw2d::graphics::_DrawText(char const*, long, rect_type&lt;tagRECT, tagPOINT, tagSIZE&gt; const&amp;, unsigned int, draw2d::font*)</fn>
+      <fn>draw2d::graphics::_DrawText(char const*, long, rectangle_type&lt;tagRECT, tagPOINT, tagSIZE&gt; const&amp;, unsigned int, draw2d::font*)</fn>
       <dir>/xcore/app/aura/graphics/draw2d</dir>
       <file>draw2d_graphics.cpp</file>
       <line>5017</line>
@@ -106500,7 +106500,7 @@
     <frame>
       <ip>0x5A4B410</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>draw2d::graphics::_DrawText(string const&amp;, rect_type&lt;tagRECT, tagPOINT, tagSIZE&gt; const&amp;, unsigned int, draw2d::font*)</fn>
+      <fn>draw2d::graphics::_DrawText(string const&amp;, rectangle_type&lt;tagRECT, tagPOINT, tagSIZE&gt; const&amp;, unsigned int, draw2d::font*)</fn>
       <dir>/xcore/app/aura/graphics/draw2d</dir>
       <file>draw2d_graphics.cpp</file>
       <line>4996</line>
@@ -106508,7 +106508,7 @@
     <frame>
       <ip>0x2637FAC6</ip>
       <obj>/xcore/time/x64/basis/libexperience_lite.so</obj>
-      <fn>experience::aura::theme::_001OnTabPaneDrawTitle(user::tab_pane&amp;, user::tab*, draw2d::graphics*, rect_type&lt;tagRECT, tagPOINT, tagSIZE&gt; const&amp;, pointer&lt;draw2d::brush&gt;&amp;)</fn>
+      <fn>experience::aura::theme::_001OnTabPaneDrawTitle(user::tab_pane&amp;, user::tab*, draw2d::graphics*, rectangle_type&lt;tagRECT, tagPOINT, tagSIZE&gt; const&amp;, pointer&lt;draw2d::brush&gt;&amp;)</fn>
       <dir>/xcore/app/experience_lite</dir>
       <file>experience_lite_theme.cpp</file>
       <line>392</line>
@@ -106580,7 +106580,7 @@
     <frame>
       <ip>0x5A4B520</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>draw2d::graphics::_DrawText(char const*, long, rect_type&lt;tagRECT, tagPOINT, tagSIZE&gt; const&amp;, unsigned int, draw2d::font*)</fn>
+      <fn>draw2d::graphics::_DrawText(char const*, long, rectangle_type&lt;tagRECT, tagPOINT, tagSIZE&gt; const&amp;, unsigned int, draw2d::font*)</fn>
       <dir>/xcore/app/aura/graphics/draw2d</dir>
       <file>draw2d_graphics.cpp</file>
       <line>5017</line>
@@ -106588,7 +106588,7 @@
     <frame>
       <ip>0x5A4B410</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>draw2d::graphics::_DrawText(string const&amp;, rect_type&lt;tagRECT, tagPOINT, tagSIZE&gt; const&amp;, unsigned int, draw2d::font*)</fn>
+      <fn>draw2d::graphics::_DrawText(string const&amp;, rectangle_type&lt;tagRECT, tagPOINT, tagSIZE&gt; const&amp;, unsigned int, draw2d::font*)</fn>
       <dir>/xcore/app/aura/graphics/draw2d</dir>
       <file>draw2d_graphics.cpp</file>
       <line>4996</line>
@@ -106596,7 +106596,7 @@
     <frame>
       <ip>0x2637FAC6</ip>
       <obj>/xcore/time/x64/basis/libexperience_lite.so</obj>
-      <fn>experience::aura::theme::_001OnTabPaneDrawTitle(user::tab_pane&amp;, user::tab*, draw2d::graphics*, rect_type&lt;tagRECT, tagPOINT, tagSIZE&gt; const&amp;, pointer&lt;draw2d::brush&gt;&amp;)</fn>
+      <fn>experience::aura::theme::_001OnTabPaneDrawTitle(user::tab_pane&amp;, user::tab*, draw2d::graphics*, rectangle_type&lt;tagRECT, tagPOINT, tagSIZE&gt; const&amp;, pointer&lt;draw2d::brush&gt;&amp;)</fn>
       <dir>/xcore/app/experience_lite</dir>
       <file>experience_lite_theme.cpp</file>
       <line>392</line>
@@ -106651,7 +106651,7 @@
     <frame>
       <ip>0x5A4B520</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>draw2d::graphics::_DrawText(char const*, long, rect_type&lt;tagRECT, tagPOINT, tagSIZE&gt; const&amp;, unsigned int, draw2d::font*)</fn>
+      <fn>draw2d::graphics::_DrawText(char const*, long, rectangle_type&lt;tagRECT, tagPOINT, tagSIZE&gt; const&amp;, unsigned int, draw2d::font*)</fn>
       <dir>/xcore/app/aura/graphics/draw2d</dir>
       <file>draw2d_graphics.cpp</file>
       <line>5017</line>
@@ -106659,7 +106659,7 @@
     <frame>
       <ip>0x5A4B410</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>draw2d::graphics::_DrawText(string const&amp;, rect_type&lt;tagRECT, tagPOINT, tagSIZE&gt; const&amp;, unsigned int, draw2d::font*)</fn>
+      <fn>draw2d::graphics::_DrawText(string const&amp;, rectangle_type&lt;tagRECT, tagPOINT, tagSIZE&gt; const&amp;, unsigned int, draw2d::font*)</fn>
       <dir>/xcore/app/aura/graphics/draw2d</dir>
       <file>draw2d_graphics.cpp</file>
       <line>4996</line>
@@ -106667,7 +106667,7 @@
     <frame>
       <ip>0x2637FAC6</ip>
       <obj>/xcore/time/x64/basis/libexperience_lite.so</obj>
-      <fn>experience::aura::theme::_001OnTabPaneDrawTitle(user::tab_pane&amp;, user::tab*, draw2d::graphics*, rect_type&lt;tagRECT, tagPOINT, tagSIZE&gt; const&amp;, pointer&lt;draw2d::brush&gt;&amp;)</fn>
+      <fn>experience::aura::theme::_001OnTabPaneDrawTitle(user::tab_pane&amp;, user::tab*, draw2d::graphics*, rectangle_type&lt;tagRECT, tagPOINT, tagSIZE&gt; const&amp;, pointer&lt;draw2d::brush&gt;&amp;)</fn>
       <dir>/xcore/app/experience_lite</dir>
       <file>experience_lite_theme.cpp</file>
       <line>392</line>
@@ -107067,7 +107067,7 @@
     <frame>
       <ip>0x5A4B520</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>draw2d::graphics::_DrawText(char const*, long, rect_type&lt;tagRECT, tagPOINT, tagSIZE&gt; const&amp;, unsigned int, draw2d::font*)</fn>
+      <fn>draw2d::graphics::_DrawText(char const*, long, rectangle_type&lt;tagRECT, tagPOINT, tagSIZE&gt; const&amp;, unsigned int, draw2d::font*)</fn>
       <dir>/xcore/app/aura/graphics/draw2d</dir>
       <file>draw2d_graphics.cpp</file>
       <line>5017</line>

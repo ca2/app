@@ -13,8 +13,8 @@ namespace user
 
       string                        m_strDisplay;
       ::database::key               m_databasekey;
-      struct window_rect            m_windowrect;
-      struct window_rect            m_windowrectStore;
+      struct window_rectangle       m_windowrectangle;
+      struct window_rectangle       m_windowrectangleStore;
 
 
 

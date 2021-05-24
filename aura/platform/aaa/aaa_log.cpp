@@ -4,7 +4,7 @@
 
 
 CLASS_DECL_AURA enum_trace_level get_global_trace_level();
-CLASS_DECL_AURA string thread_get_name();
+CLASS_DECL_AURA string task_get_name();
 
 
 #include <stdio.h>
@@ -423,7 +423,7 @@ namespace aura
       if (m_bLogThreadName)
       {
 
-         strMiddle += "{" + ::thread_get_name() + "} ";
+         strMiddle += "{" + ::task_get_name() + "} ";
 
       }
 

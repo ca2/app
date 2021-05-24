@@ -68,7 +68,7 @@ namespace experience
 
 #include "place_holder.h"
 #include "place_holder_container.h"
-#include "menu_command.h"
+//#include "menu_command.h"
 #include "menu_interaction.h"
 #include "menu_item.h"
 #include "menu.h"
@@ -521,7 +521,7 @@ typedef struct _AppIndicator AppIndicator;
 
 
 
-
+#include "acme/const/activate.h"
 #include "aura/message/user.h"
 #include "aura/message/timer.h"
 

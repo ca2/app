@@ -42,7 +42,7 @@ void TRACELASTSTATUS()
 
    }
 
-   string strStatusMessage = ::get_system_error_message(estatus);
+   string strStatusMessage = ::get_status_message(estatus);
 
    TRACE("Status Message :\n%s\n", strStatusMessage.c_str());
 

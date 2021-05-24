@@ -5,7 +5,7 @@
 #include "acme/platform/profiler.h"
 #include "acme/platform/static_setup.h"
 #include "axis/const/idpool.h"
-#include "axis/database/sqlitedb/database.h"
+//#include "axis/database/sqlitedb/database.h"
 
 
 void __node_axis_factory_exchange(::factory_map * pfactorymap);
@@ -206,7 +206,7 @@ namespace axis
 
          }
 
-         pfactorySimpledb->create_factory<::sqlite::database, ::database::database>();
+
 
       }
 
@@ -216,7 +216,11 @@ namespace axis
 
    }
 
-
+//
+//
+//
+//} // namespace axis
+//
 
    ::e_status system::init()
    {
@@ -464,38 +468,38 @@ namespace axis
    }
 
 
-   __pointer(regex) system::create_regular_expression(const char* pszStyle, const string& str)
-   {
-
-      string strStyle(pszStyle);
-
-      if (strStyle.compare_ci("pcre") == 0)
-      {
-
-         return create_pcre(str);
-
-      }
-
-      return nullptr;
-
-   }
-
-
-   __pointer(regex_context) system::create_regular_expression_context(const char* pszStyle, int iCount)
-   {
-
-      string strStyle(pszStyle);
-
-      if (strStyle.compare_ci("pcre") == 0)
-      {
-
-         return create_pcre_context(iCount);
-
-      }
-
-      return nullptr;
-
-   }
+//   __pointer(regex) system::create_regular_expression(const char* pszStyle, const string& str)
+//   {
+//
+//      string strStyle(pszStyle);
+//
+//      if (strStyle.compare_ci("pcre") == 0)
+//      {
+//
+//         return create_pcre(str);
+//
+//      }
+//
+//      return nullptr;
+//
+//   }
+//
+//
+//   __pointer(regex_context) system::create_regular_expression_context(const char* pszStyle, int iCount)
+//   {
+//
+//      string strStyle(pszStyle);
+//
+//      if (strStyle.compare_ci("pcre") == 0)
+//      {
+//
+//         return create_pcre_context(iCount);
+//
+//      }
+//
+//      return nullptr;
+//
+//   }
 
 
 

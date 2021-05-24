@@ -133,7 +133,7 @@ namespace apex
    // ::e_status system::system_main()
    // {
 
-   //    auto estatus = class ::system::system_main();
+   //    auto estatus = ::acme::system::system_main();
 
    //    if(!estatus)
    //    {

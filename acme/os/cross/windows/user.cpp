@@ -246,7 +246,7 @@ string iconv_charset_from_windows_code_page(::u32 CodePage)
 
 
 i32
-WINAPI
+//WINAPI
 MultiByteToWideChar2(
 ::u32     CodePage,
 ::u32    dwFlags,
@@ -377,7 +377,7 @@ i32      cchWideChar)
 
 
 i32
-WINAPI
+//WINAPI
 MultiByteToWideChar2(
 ::u32     CodePage,
 ::u32    dwFlags,
@@ -508,7 +508,7 @@ i32      cchWideChar)
 
 
 
-i32 WINAPI WideCharToMultiByte2(
+i32  WideCharToMultiByte2(
 ::u32     CodePage,
 ::u32    dwFlags,
 const widechar *  pWideCharStr,

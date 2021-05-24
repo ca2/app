@@ -18,28 +18,28 @@
 //thread_local thread_local_data t_threadlocaldata;
 
 
-CLASS_DECL_ACME void __node_init_cross_windows_threading()
-{
+// CLASS_DECL_ACME void __node_init_cross_windows_threading()
+// {
 
-   //g_pmutexThreadLocalData = new mutex();
+//    //g_pmutexThreadLocalData = new mutex();
 
-   //g_pmapThreadLocalData = new map < itask_t, itask_t, thread_local_data >();
+//    //g_pmapThreadLocalData = new map < itask_t, itask_t, thread_local_data >();
 
-   //g_puaThreadLocalDataFreeIndexes = new u32_array();
+//    //g_puaThreadLocalDataFreeIndexes = new u32_array();
 
-}
+// }
 
 
-CLASS_DECL_ACME void __node_term_cross_windows_threading()
-{
+// CLASS_DECL_ACME void __node_term_cross_windows_threading()
+// {
 
-   //::acme::del(g_puaThreadLocalDataFreeIndexes);
+//    //::acme::del(g_puaThreadLocalDataFreeIndexes);
 
-   //::acme::del(g_pmapThreadLocalData);
+//    //::acme::del(g_pmapThreadLocalData);
 
-   //::acme::del(g_pmutexThreadLocalData);
+//    //::acme::del(g_pmutexThreadLocalData);
 
-}
+// }
 
 //thread_local thread_local_data t_threadlocaldata;
 //// *___ :  lock g_pmutexThreadLocalData to use it

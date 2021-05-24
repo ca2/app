@@ -17,7 +17,7 @@ void __cdecl _null_se_translator(u32 uiCode, EXCEPTION_POINTERS * ppointers);
 
 
 
-//i32 CLASS_DECL_ACME __android_main(class ::system * psystem, i32 argc, char * argv[])
+//i32 CLASS_DECL_ACME __android_main(::acme::system * psystem, i32 argc, char * argv[])
 //{
 //
 //   if(!defer_au_init())
@@ -77,7 +77,7 @@ void __cdecl _null_se_translator(u32 uiCode, EXCEPTION_POINTERS * ppointers);
 //}
 //
 //
-//i32 CLASS_DECL_ACME ca2_main(class ::system * psystem, HINSTANCE hInstance, HINSTANCE hPrevInstance, const char * lpCmdLine, i32 nCmdShow)
+//i32 CLASS_DECL_ACME ca2_main(::acme::system * psystem, HINSTANCE hInstance, HINSTANCE hPrevInstance, const char * lpCmdLine, i32 nCmdShow)
 //{
 //   try
 //   {

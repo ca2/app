@@ -43,6 +43,25 @@ namespace apex
    }
 
 
+   ::e_status node::main()
+   {
+   
+      auto psystem = m_psystem;
+      
+      auto estatus = psystem->main();
+      
+      if(!estatus)
+      {
+       
+         return estatus;
+         
+      }
+      
+      return estatus;
+      
+   }
+
+
    ::e_status
    node::shell_create_link(::file::path pathObj, ::file::path pathLnk, string strDesc, ::file::path pathIco,
                            int iIcon)
@@ -163,7 +182,7 @@ namespace apex
    }
 
 
-   void node::set_application_menu(::apex::application_menu * pmenu, ::apex::application * papplication)
+   void node::set_application_menu(::application_menu * pmenu, ::apex::application * papplication)
    {
 
    }
@@ -211,6 +230,22 @@ namespace apex
 
       psystem->deliver(id_os_dark_mode);
 
+   }
+
+   
+   void node::os_menu_item_enable(void * pitem, bool bEnable)
+   {
+
+      __throw(error_interface_only);
+      
+   }
+
+
+   void node::os_menu_item_check(void * pitem, bool bCheck)
+   {
+   
+      __throw(error_interface_only);
+      
    }
 
 

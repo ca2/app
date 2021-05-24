@@ -206,7 +206,10 @@ namespace user
 
       try
       {
-         return;
+         
+         //return;
+         
+         
          ::rectangle_i32 rectClip;
 
          ::aura::draw_context * pdrawcontext = pgraphics->::aura::simple_chain < ::aura::draw_context >::get_last();
@@ -218,7 +221,7 @@ namespace user
          if (pdrawcontext != nullptr)
          {
 
-            rectClient = pdrawcontext->m_rectWindow;
+            rectClient = pdrawcontext->m_rectangleWindow;
 
             _001ScreenToClient(rectClient, e_layout_design);
 

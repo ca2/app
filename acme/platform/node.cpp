@@ -31,9 +31,11 @@ namespace acme
 
       m_pNodeGnome = nullptr;
       m_pNodeKDE = nullptr;
+      m_pNodeXfce = nullptr;
 
       m_pNodeDesktopEnvironmentGnome = nullptr;
       m_pNodeDesktopEnvironmentKDE = nullptr;
+      m_pNodeDesktopEnvironmentXfce = nullptr;
 
 #ifdef LINUX
 
@@ -47,14 +49,6 @@ namespace acme
    node::~node()
    {
 
-
-   }
-
-
-   string node::audio_get_default_library_name()
-   {
-
-      return "";
 
    }
 
@@ -76,6 +70,35 @@ namespace acme
       return estatus;
 
    }
+
+
+   string node::audio_get_default_library_name()
+   {
+
+      return "";
+
+   }
+
+
+   ::e_status node::_launch_macos_app(const char * pszAppFolder)
+   {
+      
+      __throw(error_interface_only);
+      
+      return ::error_interface_only;
+      
+   }
+
+
+   ::e_status node::_launch_macos_app_args(const char * pszAppFolder, const char * pszArgs)
+   {
+      
+      __throw(error_interface_only);
+   
+      return error_interface_only;
+      
+   }
+
 
 
    ::e_status node::on_initialize_object()
@@ -946,7 +969,7 @@ namespace acme
 
       auto path = pathFolder / (strName + ".filememorymap");
 
-      return path;
+      return ::move(path);
 
    }
 
@@ -975,6 +998,188 @@ namespace acme
    }
 
 
+#ifdef MACOS
+      
+   void node::ns_launch_app(const char * psz, const char ** argv, int iFlags)
+   {
+      
+      
+   }
+      
+#endif
+
+
+   bool node::process_modules(string_array& stra, u32 processID)
+   {
+
+      __throw(error_interface_only);
+
+      return false;
+
+   }
+
+
+   bool node::load_modules_diff(string_array& straOld, string_array& straNew, const char* pszExceptDir)
+   {
+
+      __throw(error_interface_only);
+
+      return false;
+
+   }
+
+
+   id_array node::get_pids()
+   {
+      
+      __throw(error_interface_only);
+   
+      return id_array();
+      
+   }
+
+
+   id_array node::module_path_get_pid(const char* pszModulePath, bool bModuleNameIsPropertyFormatted)
+   {
+      
+      id_array iaPid;
+
+      id_array pids = get_pids();
+
+      string strPath;
+
+      for(auto & iCurrentPid : pids)
+      {
+
+         strPath = module_path_from_pid(iCurrentPid.i32());
+
+         if(strPath.compare_ci(pszModulePath) == 0 )
+         {
+
+            iaPid.add(iCurrentPid);
+
+         }
+
+      }
+
+      return iaPid;
+
+
+   }
+
+
+   string node::module_path_from_pid(u32 pid)
+   {
+      
+      __throw(error_interface_only);
+
+      return "";
+
+   }
+
+
+   string node::command_line_from_pid(u32 pid)
+   {
+      
+      __throw(error_interface_only);
+
+      return "";
+
+   }
+
+
+   bool node::is_shared_library_busy(u32 processid, const string_array& stra)
+   {
+
+      __throw(error_interface_only);
+
+      return false;
+
+   }
+
+
+   bool node::is_shared_library_busy(const string_array& stra)
+   {
+
+      __throw(error_interface_only);
+
+      return false;
+
+   }
+
+
+   bool node::process_contains_module(string& strImage, ::u32 processID, const char* pszLibrary)
+   {
+
+      __throw(error_interface_only);
+
+      return false;
+
+   }
+
+
+   void node::shared_library_process(dword_array& dwa, string_array& straProcesses, const char* pszLibrary)
+   {
+
+      __throw(error_interface_only);
+
+   }
+
+
+   bool node::is_process_running(::u32 pid)
+   {
+
+      __throw(error_interface_only);
+
+      return false;
+
+   }
+
+
+   string node::get_environment_variable(const char* pszEnvironmentVariable)
+   {
+
+      return "";
+
+   }
+
+
+   string node::expand_env(string str)
+   {
+
+      return "";
+
+   }
+
+
+   array <::serial::port_info> node::list_serial_ports()
+   {
+
+      __throw(error_interface_only);
+
+      return ::array <::serial::port_info>();
+
+   }
+
+
+   ::e_status node::call_async(const char * pszPath, const char * pszParam, const char * pszDir, ::e_display edisplay, bool bPrivileged, unsigned int * puiPid)
+   {
+
+      __throw(error_interface_only);
+
+      return error_interface_only;
+
+   }
+
+
+   ::e_status node::call_sync(const char * pszPath, const char * pszParam, const char * pszDir, ::e_display edisplay, const ::duration & durationTimeout, ::property_set & set)
+   {
+
+      __throw(error_interface_only);
+
+      return error_interface_only;
+
+   }
 
 
 } // namespace acme

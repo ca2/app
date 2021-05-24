@@ -47,6 +47,8 @@
 extern "C" {
 #endif
 
+
+// apt install zlib1g-dev
 #ifndef _ZLIB_H
 #include "zlib.h"
 #endif

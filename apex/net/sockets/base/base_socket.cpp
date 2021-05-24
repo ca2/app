@@ -1133,9 +1133,9 @@ namespace sockets
 
       }
 
-      m_psocket->finalize();
+      //m_psocket->finalize();
 
-      m_phandler->finalize();
+      //m_phandler->finalize();
 
       return ::success;
 

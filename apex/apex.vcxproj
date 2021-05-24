@@ -47,7 +47,6 @@
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>app</RootNamespace>
     <ProjectName>apex</ProjectName>
-    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|Win32'" Label="Configuration">
@@ -1110,6 +1109,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClCompile Include="crypto\openssl\crypto.cpp" />
     <ClCompile Include="crypto\openssl\_.cpp" />
     <ClCompile Include="crypto\rsa.cpp" />
+    <ClCompile Include="crypto_initializer.cpp" />
     <ClCompile Include="database\client.cpp" />
     <ClCompile Include="database\event_change.cpp" />
     <ClCompile Include="database\id.cpp" />
@@ -1150,6 +1150,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClCompile Include="message\sender.cpp" />
     <ClCompile Include="message\simple_command.cpp" />
     <ClCompile Include="message\_.cpp" />
+    <ClInclude Include="crypto_initializer.h" />
     <ClInclude Include="inline\implement\ansi.h" />
     <ClInclude Include="inline\implement\windows.h" />
     <ClInclude Include="net\address_department.h" />
@@ -1473,6 +1474,8 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClInclude Include="user\language.h" />
     <ClInclude Include="user\language_map.h" />
     <ClInclude Include="user\aaa_range.h" />
+    <ClInclude Include="user\menu_shared.h" />
+    <ClInclude Include="user\menu_shared_command.h" />
     <ClInclude Include="user\primitive.h" />
     <ClInclude Include="user\text.h" />
     <ClInclude Include="user\_.h" />

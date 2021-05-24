@@ -23,7 +23,7 @@ point_i32 g_pointLastBottomRight;
 
 
 #define REDRAW_HINTING
-//CLASS_DECL_AURA bool set_thread_name(const char *psz);
+//CLASS_DECL_AURA bool task_set_name(const char *psz);
 
 #define IMAGE_OK(pimpl) (::is_set(pimpl) && pimpl->area() > 0)
 //void windowing_output_debug_string(const char * pszDebugString);
@@ -466,7 +466,9 @@ namespace user
 
    void interaction_impl::pre_subclass_window()
    {
+
       ::exception::throw_interface_only();
+
    }
 
 
@@ -536,6 +538,24 @@ namespace user
    
    ::e_status interaction_impl::native_create_host()
    {
+
+      auto estatus = __construct(m_pwindow);
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      estatus = m_pwindow->create_window(this);
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
 
       return true;
 
@@ -608,7 +628,7 @@ namespace user
 
       }
 
-      //m_puserinteraction->place(rect_dim(
+      //m_puserinteraction->place(rectangle_dimension(
       //                      pusersystem->m_createstruct.x,
       //                      pusersystem->m_createstruct.y,
       //                      pusersystem->m_createstruct.cx,
@@ -833,15 +853,14 @@ namespace user
 
       auto origin = m_puserinteraction->layout().window().origin();
 
-      return m_pgraphics->get_screen_image()->pixel(x-origin.x, y- origin.y);
+      return m_pgraphics->get_screen_image()->pixel(x - origin.x, y - origin.y);
 
    }
 
-//bool interaction_impl::native_create_window()
+
+   //bool interaction_impl::native_create_window()
    //{
-
    //   return false;
-
    //}
 
 
@@ -882,7 +901,6 @@ namespace user
 //      return native_create_window();
 //
 //   }
-
 
 
    void interaction_impl::prio_install_message_routing(::channel * pchannel)
@@ -1429,6 +1447,99 @@ namespace user
       MESSAGE_LINK(e_message_destroy, pchannel, this, &interaction_impl::_001OnDestroy);
 
       prio_install_message_routing(pchannel);
+
+   }
+
+
+   bool interaction_impl::pre_message_handler(::message::key * & pkey, bool & bKeyMessage, ::message::message* pmessage)
+   {
+
+      ::u32 message = pmessage->m_id.umessage();
+
+      bKeyMessage = message == e_message_key_down ||
+         message == e_message_key_up ||
+         message == e_message_char
+#ifdef WINDOWS_DESKTOP
+         || message == e_message_sys_key_down
+         || message == e_message_sys_key_up
+         || message == e_message_sys_char
+         || message == e_message_ime_key_down
+         || message == e_message_ime_key_up
+         || message == e_message_ime_char
+         || message == e_message_ime_select
+         || message == e_message_ime_set_context
+         || message == e_message_ime_start_composition
+         || message == e_message_ime_composition
+         || message == e_message_ime_composition_full
+         || message == e_message_ime_notify
+         || message == e_message_ime_end_composition
+         || message == e_message_input_language
+#endif
+         ;
+
+      if (bKeyMessage)
+      {
+
+         pkey = dynamic_cast <::message::key*> (pmessage);
+
+         if (pkey)
+         {
+
+            m_pwindowing->set(pkey, pkey->m_oswindow, pkey->m_pwindow, pkey->m_id, pkey->m_wparam, pkey->m_lparam);
+
+         }
+
+         if (message == e_message_key_down || message == e_message_sys_key_down)
+         {
+
+            auto psession = get_session();
+
+            try
+            {
+
+               psession->set_key_pressed(pkey->m_ekey, true);
+
+            }
+            catch (...)
+            {
+            }
+         }
+         else if (message == e_message_key_up || message == e_message_sys_key_up)
+         {
+
+            auto psession = get_session();
+
+            try
+            {
+
+               psession->set_key_pressed(pkey->m_ekey, false);
+
+            }
+            catch (...)
+            {
+
+            }
+
+         }
+
+      }
+
+
+      if (::is_set(m_puserinteraction))
+      {
+
+         m_puserinteraction->pre_translate_message(pmessage);
+
+      }
+
+      if (pmessage->m_bRet)
+      {
+
+         return true;
+
+      }
+
+      return false;
 
    }
 
@@ -3744,16 +3855,16 @@ namespace user
          if (pgraphics == nullptr || pgraphics->get_os_data() == nullptr)
          {
 
-#define SEVERITY_HIGH 5
+//#define SEVERITY_HIGH 5
 
-            int iSeverity = SEVERITY_HIGH;
+            //int iSeverity = SEVERITY_HIGH;
 
-            for(index i = 0; i < iSeverity * 20; i++)
-            {
+            //for(index i = 0; i < iSeverity * 20; i++)
+            //{
 
-               output_debug_string("m_pgraphics->on_begin_draw FAILED (1)");
+            output_debug_string("m_pgraphics->on_begin_draw FAILED (1)\n");
 
-            }
+            //}
 
             return;
 
@@ -3795,6 +3906,13 @@ namespace user
             m_rectUpdateBuffer = r;
 
             //TRACE("PrintBuffer (%d, %d)",  r.right, r.bottom);
+
+            if(!m_pgraphics)
+            {
+
+               return;
+
+            }
 
             m_pgraphics->m_bNewBuffer = true;
 
@@ -4033,8 +4151,98 @@ namespace user
 
    }
 
-
-
+   
+//   bool interaction_impl::pre_message_handler(bool & bKeyMessage, ::message::message * pmessage)
+//   {
+//
+//      ::u32 message = pmessage->m_id.umessage();
+//
+//      ::message::key* pkey = nullptr;
+//
+//      bKeyMessage = message == e_message_key_down ||
+//         message == e_message_key_up ||
+//         message == e_message_char ||
+//         message == e_message_sys_key_down ||
+//         message == e_message_sys_key_up ||
+//         message == e_message_sys_char ||
+//         message == e_message_ime_key_down ||
+//         message == e_message_ime_key_up ||
+//         message == e_message_ime_char ||
+//         message == e_message_ime_select ||
+//         message == e_message_ime_set_context ||
+//         message == e_message_ime_start_composition ||
+//         message == e_message_ime_composition ||
+//         message == e_message_ime_composition_full ||
+//         message == e_message_ime_notify ||
+//         message == e_message_ime_end_composition ||
+//         message == e_message_input_language;
+//
+//      if (bKeyMessage)
+//      {
+//
+//         pkey = dynamic_cast <::message::key*> (pmessage);
+//
+//         if (pkey)
+//         {
+//
+//            m_pwindowing->set(pkey, pkey->m_oswindow, pkey->m_pwindow, pkey->m_id, pkey->m_wparam, pkey->m_lparam);
+//
+//         }
+//
+//         if (message == e_message_key_down || message == e_message_sys_key_down)
+//         {
+//
+//            auto psession = get_session();
+//
+//            try
+//            {
+//
+//               psession->set_key_pressed(pkey->m_ekey, true);
+//
+//            }
+//            catch (...)
+//            {
+//
+//            }
+//
+//         }
+//         else if (message == e_message_key_up || message == e_message_sys_key_up)
+//         {
+//
+//            auto psession = get_session();
+//
+//            try
+//            {
+//
+//               psession->set_key_pressed(pkey->m_ekey, false);
+//
+//            }
+//            catch (...)
+//            {
+//
+//            }
+//
+//         }
+//
+//      }
+//
+//      if (::is_set(m_puserinteraction))
+//      {
+//
+//         m_puserinteraction->pre_translate_message(pmessage);
+//
+//      }
+//
+//      if (pmessage->m_bRet)
+//      {
+//
+//         return true;
+//
+//      }
+//
+//      return false;
+//
+//   }
 
    guie_message_wnd::guie_message_wnd(::property_object * pobject)
    {
@@ -5332,12 +5540,12 @@ namespace user
 
       __pointer(::message::move) pmove(pmessage);
 
-      if(m_puserinteraction->m_ewindowflag & e_window_flag_postpone_visual_update)
-      {
-
-         return;
-
-      }
+//      if(m_puserinteraction->m_ewindowflag & e_window_flag_postpone_visual_update)
+//      {
+//
+//         return;
+//
+//      }
 
 //      bool bLayered = m_puserinteraction->GetExStyle() & WS_EX_LAYERED;
 //

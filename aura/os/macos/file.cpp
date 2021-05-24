@@ -18,12 +18,12 @@ CLASS_DECL_AURA void dll_processes(u32_array & dwa, string_array & straProcesses
 }
 
 
-::file::path dir::home()
-{
-
-   return getenv("HOME");
-
-}
+//::file::path dir::home()
+//{
+//
+//   return getenv("HOME");
+//
+//}
 
 //::file::path dir::ca2_user()
 //{
@@ -32,12 +32,12 @@ CLASS_DECL_AURA void dll_processes(u32_array & dwa, string_array & straProcesses
 //
 //}
 
-::file::path dir::sys_temp()
-{
-
-   return ca2roaming() / "time";
-
-}
+//::file::path dir::sys_temp()
+//{
+//
+//   return ca2roaming() / "time";
+//
+//}
 
 
 char * ns_resolve_alias(const char * psz, bool bNoUI, bool bNoMount);
@@ -81,24 +81,24 @@ CLASS_DECL_AURA bool _os_may_have_alias(const char * psz)
 
 }
 
-
-bool os_is_folder_alias(const char * psz, bool bNoUI, bool bNoMount)
-{
-
-   char * pszTarget = ns_resolve_alias(psz, bNoUI, bNoMount);
-
-   if(::is_null(pszTarget))
-   {
-
-      return false;
-
-   }
-
-   ::file::path path = ::str::from_strdup(pszTarget);
-
-   return is_dir(path);
-
-}
+//
+//bool os_is_folder_alias(const char * psz, bool bNoUI, bool bNoMount)
+//{
+//
+//   char * pszTarget = ns_resolve_alias(psz, bNoUI, bNoMount);
+//
+//   if(::is_null(pszTarget))
+//   {
+//
+//      return false;
+//
+//   }
+//
+//   ::file::path path = ::str::from_strdup(pszTarget);
+//
+//   return is_dir(path);
+//
+//}
 
 
 #ifndef __APPLE__

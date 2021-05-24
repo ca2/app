@@ -532,7 +532,7 @@ uptr virtualkey_to_code(::Windows::::acme::get_system()::VirtualKey e)
 }
 
 
-//::u32 system_main(class ::system * psystem)
+//::u32 system_main(::acme::system * psystem)
 //{
 //
 //   try

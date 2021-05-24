@@ -2051,7 +2051,9 @@ string file_context::get_hash(const ::payload &varFile, enum_hash ehash)
 
    __pointer(::apex::system) psystem = get_system();
 
-   auto phasher = psystem->crypto().create_hasher(ehash);
+   auto pcrypto = psystem->crypto();
+
+   auto phasher = pcrypto->create_hasher(ehash);
 
    memsize iRead;
 

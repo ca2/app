@@ -2905,7 +2905,7 @@ bool g_bFinishX11Thread = false;
 //
 //   }
 //
-//   ::set_thread_name("x11_thread");
+//   ::task_set_name("x11_thread");
 //
 ////   g_pdisplayX11 = pdisplay;
 //
@@ -3817,7 +3817,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
 //
 //               pinteraction->layout().window() = edisplayPrevious;
 //
-//               pinteraction->m_windowrect.m_edisplay = edisplayPrevious;
+//               pinteraction->m_windowrectangle.m_edisplay = edisplayPrevious;
 
                   pinteraction->fork([=]()
                   {

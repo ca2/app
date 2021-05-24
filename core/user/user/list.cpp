@@ -6243,22 +6243,37 @@ namespace user
             _001SearchGetItemText(&item);
             if (item.m_bOk)
             {
+
                item.m_strText.make_lower();
+
                item.m_strText.replace("_", " ");
-               if (m_pregexFilter1->matches(item.m_strText))
+
+               auto ptopic = m_pregexFilter1->create_topic(item.m_strText);
+
+               if (ptopic)
                {
+
                   if (m_eview == impact_icon)
                   {
+
                      m_piaFilterIcon->add_unique(iFilter1Step);
+
                   }
                   else
                   {
+
                      m_piaFilterMesh->add_unique(iFilter1Step);
+
                   }
+
                   break;
+
                }
+
             }
+
          }
+
       }
 
       m_iFilter1Step = (i32)iFilter1Step;

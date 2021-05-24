@@ -5,16 +5,16 @@
 #include "acme/filesystem/filesystem/acme_path.h"
 
 
-class ::system * g_psystem = nullptr;
+::acme::system * g_psystem = nullptr;
 
 extern const char* g_pszTopLevelDomainList[];
 
 enum_dialog_result message_box_for_console(const char * psz, const char * pszTitle, const ::e_message_box & emessagebox);
 
-//
-//namespace acme
-//{
-//
+
+namespace acme
+{
+
 
    system::system()
    {
@@ -33,11 +33,11 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
       ::object::m_pcontext = this;
 
       ::factory::get_factory_map()->initialize(this);
-//#ifdef LINUX
-//
-//      m_elinuxdistribution = e_linux_distribution_unknown;
-//
-//#endif
+   //#ifdef LINUX
+   //
+   //      m_elinuxdistribution = e_linux_distribution_unknown;
+   //
+   //#endif
 
       //m_edesktop = ::user::e_desktop_none;
 
@@ -87,12 +87,12 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
    }
 
 
-//   ::acme::node * system::node()
-//   {
-//
-//      return m_pnode;
-//
-//   }
+   //   ::acme::node * system::node()
+   //   {
+   //
+   //      return m_pnode;
+   //
+   //   }
 
 
    ::xml::xml* system::_xml()
@@ -194,9 +194,9 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
 
       }
 
-//      m_pacmedir = pacmedir;
+   //      m_pacmedir = pacmedir;
 
-  //    m_pacmedir->add_ref();
+   //    m_pacmedir->add_ref();
 
       estatus = __compose(m_pacmepath);
 
@@ -212,32 +212,32 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
    }
 
 
-//   ::e_status system::start()
-//   {
-//
-////      auto estatus = create_os_node();
-////
-////      if (!estatus)
-////      {
-////
-////         //return estatus;
-////
-////         estatus = ::success_none;
-////
-////      }
-//
-//      estatus = os_application_system_run();
-//
-//      if (!estatus)
-//      {
-//
-//         return estatus;
-//
-//      }
-//
-//      return estatus;
-//
-//   }
+   //   ::e_status system::start()
+   //   {
+   //
+   ////      auto estatus = create_os_node();
+   ////
+   ////      if (!estatus)
+   ////      {
+   ////
+   ////         //return estatus;
+   ////
+   ////         estatus = ::success_none;
+   ////
+   ////      }
+   //
+   //      estatus = os_application_system_run();
+   //
+   //      if (!estatus)
+   //      {
+   //
+   //         return estatus;
+   //
+   //      }
+   //
+   //      return estatus;
+   //
+   //   }
 
    void system::TermSystem()
    {
@@ -281,33 +281,33 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
    }
 
 
-//   ::e_status system::main_user_async(const ::routine & routine, ::e_priority epriority)
-//   {
-//
-//      return ::error_interface_only;
-//
-//   }
-//
-//
-//   ::e_status system::main_user_sync(const ::routine & routine, const ::duration & duration, e_priority epriority)
-//   {
-//
-//      auto proutine = ___sync_routine(routine);
-//
-//      main_user_async(proutine, epriority);
-//
-//      auto waitresult = proutine->wait(duration);
-//
-//      if (!waitresult.succeeded())
-//      {
-//
-//         return ::error_timeout;
-//
-//      }
-//
-//      return proutine->m_estatus;
-//
-//   }
+   //   ::e_status system::main_user_async(const ::routine & routine, ::e_priority epriority)
+   //   {
+   //
+   //      return ::error_interface_only;
+   //
+   //   }
+   //
+   //
+   //   ::e_status system::main_user_sync(const ::routine & routine, const ::duration & duration, e_priority epriority)
+   //   {
+   //
+   //      auto proutine = ___sync_routine(routine);
+   //
+   //      main_user_async(proutine, epriority);
+   //
+   //      auto waitresult = proutine->wait(duration);
+   //
+   //      if (!waitresult.succeeded())
+   //      {
+   //
+   //         return ::error_timeout;
+   //
+   //      }
+   //
+   //      return proutine->m_estatus;
+   //
+   //   }
 
 
    ::task * system::get_task(itask_t itask)
@@ -356,11 +356,11 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
 
       synchronous_lock synchronouslock(&m_mutexTask);
 
-#if OBJ_REF_DBG
+   #if OBJ_REF_DBG
 
       m_taskmap[itask].release(OBJ_REF_DBG_THIS_FUNCTION_LINE);
 
-#endif
+   #endif
 
       m_taskmap.erase_key(itask);
 
@@ -476,7 +476,7 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
 
       ::str::begins_eat_ci(strImplementation, strComponent);
 
-#ifdef CUBE
+   #ifdef CUBE
 
       auto pfnFactoryExchange = m_mapFactoryExchange[strComponent][strImplementation];
 
@@ -491,7 +491,7 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
 
       return ::success;
 
-#else
+   #else
 
       auto plibrary = open_containerized_component_library(pszComponent, pszImplementation);
 
@@ -531,7 +531,7 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
 
       return ::success;
 
-#endif
+   #endif
 
    }
 
@@ -609,7 +609,7 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
 
       // Ex. "draw2d" (Component) and implementation: either "draw2dcairo", "cairo", "draw2d_cairo"
 
-      __pointer(class ::system) psystem = get_system();
+      __pointer(::acme::system) psystem = get_system();
 
       synchronous_lock synchronouslock(&psystem->m_mutexLibrary);
 
@@ -645,7 +645,7 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
 
       strLibrary = strComponent + "_" + strImplementation;
 
-#ifdef CUBE
+   #ifdef CUBE
 
       auto plibraryfactory = ::static_setup::get_first(::static_setup::flag_library, strLibrary);
 
@@ -658,7 +658,7 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
 
       plibrary = plibraryfactory->new_library();
 
-#else
+   #else
 
       if (!plibrary)
       {
@@ -684,7 +684,7 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
 
       }
 
-#endif
+   #endif
 
       return plibrary;
 
@@ -717,7 +717,7 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
 
       ::str::begins_eat_ci(strImplementation, strComponent);
 
-      __pointer(class ::system) psystem = get_system();
+      __pointer(::acme::system) psystem = get_system();
 
       synchronous_lock synchronouslock(&psystem->m_mutexContainerizedLibrary);
 
@@ -732,7 +732,7 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
 
       strLibrary = strComponent + "_" + strImplementation;
 
-#ifdef CUBE
+   #ifdef CUBE
 
       auto plibraryfactory = ::static_setup::get_first(::static_setup::flag_library, strLibrary);
 
@@ -745,7 +745,7 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
 
       plibrary = plibraryfactory->new_library();
 
-#else
+   #else
 
       if (!plibrary)
       {
@@ -770,11 +770,19 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
 
       }
 
-#endif
+   #endif
 
       return plibrary;
 
    }
+
+
+      ::millis system::get_update_poll_time(const ::id & id)
+      {
+      
+         return 0;
+      
+      }
 
    
    ::acme::library * system::on_get_library(const char * pszLibrary)
@@ -796,7 +804,7 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
 
       ::str::begins_eat_ci(strImplementation, strComponent);
 
-#ifdef CUBE
+   #ifdef CUBE
 
       auto pfnFactoryExchange = m_mapFactoryExchange[strComponent][strImplementation];
 
@@ -811,7 +819,7 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
 
       return ::success;
 
-#else
+   #else
 
       auto plibrary = open_containerized_component_library(pszComponent, pszImplementation);
 
@@ -853,7 +861,7 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
 
       pfn_factory_exchange(plibrary->m_pfactorymap);
 
-#endif
+   #endif
 
       return plibrary;
 
@@ -867,28 +875,92 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
    }
 
 
-   __pointer(regex) system::create_regular_expression(const char* pszStyle, const string& str)
+   ::regular_expression_pointer system::create_regular_expression(const char* pszStyle, const string& str)
    {
 
-      return nullptr;
+      auto pcontext = get_regular_expression_context(pszStyle);
+
+      if(!pcontext)
+      {
+
+         return nullptr;
+
+      }
+
+      auto pregularexpression = pcontext->compile(str);
+
+      if(!pregularexpression)
+      {
+
+         return nullptr;
+
+      }
+
+      return pregularexpression;
 
    }
 
 
-   __pointer(regex_context) system::create_regular_expression_context(const char* pszStyle, int iCount)
+   __pointer(::regular_expression::context) system::get_regular_expression_context(const char* pszStyle)
    {
 
-      return nullptr;
+      __defer_construct_new(m_pmapRegularExpressionContext);
+
+      auto & pcontext = (*m_pmapRegularExpressionContext)[pszStyle];
+
+      if(!pcontext)
+      {
+
+         auto ptransport = do_containerized_factory_exchange("regular_expression", pszStyle);
+
+         if(!ptransport)
+         {
+
+            return nullptr;
+
+         }
+
+         ptransport->__construct(pcontext);
+
+      }
+
+      return pcontext;
 
    }
+
+
+   ::regular_expression_pointer system::create_pcre(const string& str)
+   {
+
+      return create_regular_expression("pcre2", str);
+
+   }
+
+
+   __pointer(::regular_expression::context) system::get_pcre_context()
+   {
+
+      return get_regular_expression_context("pcre2");
+
+   }
+
+
+   //   int system::pcre_add_tokens(string_array& stra, const string& strTopic, const string& strRegexp, int nCount)
+   //   {
+   //
+   //      throw_todo();
+   //
+   //      return -1;
+   //
+   //   }
 
    
    ::e_status system::get_public_internet_domain_extension_list(string_array& stra)
    {
 
-//         ::file::path pathPublicDomainExtensionList = "https://server.ca2.cc/public_internet_domain_extension_list.txt";
+   //         ::file::path pathPublicDomainExtensionList = "https://server.ca2.cc/public_internet_domain_extension_list.txt";
 
-  //    m_pcontext->m_papexcontext->file().load_lines(stra, pathPublicDomainExtensionList);
+   //    m_pcontext->m_papexcontext->file().load_lines(stra, pathPublicDomainExtensionList);
 
       auto psz = g_pszTopLevelDomainList;
 
@@ -1026,24 +1098,24 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
 
    //}
 
-//
-//   ::e_status system::inline_init()
-//   {
-//
-//      auto estatus = process_init();
-//
-//      if (!estatus)
-//      {
-//
-//         return estatus;
-//
-//      }
-//
-//      return ::success;
-//
-//   }
-//
-//
+   //
+   //   ::e_status system::inline_init()
+   //   {
+   //
+   //      auto estatus = process_init();
+   //
+   //      if (!estatus)
+   //      {
+   //
+   //         return estatus;
+   //
+   //      }
+   //
+   //      return ::success;
+   //
+   //   }
+   //
+   //
    ::e_status system::inline_term()
    {
 
@@ -1052,14 +1124,14 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
    }
 
 
-//   ::e_status system::on_start_system()
-//   {
-//
-//      return ::success;
-//
-//   }
-//
-//
+   //   ::e_status system::on_start_system()
+   //   {
+   //
+   //      return ::success;
+   //
+   //   }
+   //
+   //
    ::e_status system::on_end()
    {
 
@@ -1128,12 +1200,15 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
 
    }
 
-//
-//} // namespace acme
-//
-//
+
+   void system::system_int_update(int iUpdate, int iPayload)
+   {
 
 
+   }
+
+
+} // namespace acme
 
 
 string __get_text(const string& str)
@@ -1144,7 +1219,7 @@ string __get_text(const string& str)
 }
 
 
-CLASS_DECL_ACME class ::system* get_context_system()
+CLASS_DECL_ACME ::acme::system* get_context_system()
 {
 
    return g_psystem;
@@ -1152,10 +1227,10 @@ CLASS_DECL_ACME class ::system* get_context_system()
 }
 
 
-CLASS_DECL_ACME class ::system * acme_system_init()
+CLASS_DECL_ACME ::acme::system * acme_system_init()
 {
 
-   g_psystem = new class system();
+   g_psystem = new ::acme::system();
 
    return g_psystem;
 
@@ -1170,3 +1245,11 @@ CLASS_DECL_ACME void acme_system_term()
 }
 
 
+void int_system_update(void * pSystem, int iUpdate, int iParam)
+{
+   
+   auto psystem = (::acme::system *) pSystem;
+   
+   psystem->system_int_update(iUpdate, iParam);
+   
+}

@@ -597,7 +597,7 @@ namespace apex
 //   }
 
 
-   bool session::on_get_thread_name(string& strThreadName)
+   bool session::on_get_task_name(string& strTaskName)
    {
 
       __pointer(::apex::system) psystem = get_system();
@@ -609,7 +609,7 @@ namespace apex
 
       }
 
-      return ::apex::context::on_get_thread_name(strThreadName);
+      return ::apex::context::on_get_task_name(strTaskName);
 
    }
 
@@ -970,7 +970,7 @@ namespace apex
    }
 
 
-   //::apex::application * session::application_get(const char * pszAppId, bool bCreate, bool bSynch, ::create * pcreate)
+   //::application * session::application_get(const char * pszAppId, bool bCreate, bool bSynch, ::create * pcreate)
    //{
 
    //   __pointer(::apex::application) papp;
@@ -1826,7 +1826,7 @@ namespace apex
       //::e_status session::os_native_bergedge_start()
       //{
 
-      //   if (!::apex::application::os_native_bergedge_start())
+      //   if (!::application::os_native_bergedge_start())
       //   {
 
       //      return false;

@@ -129,7 +129,7 @@ namespace parallelization
    //}
 
 
-   void post_quit_to_all_threads(class ::system * psystem)
+   void post_quit_to_all_threads(::acme::system * psystem)
    {
 
       //__pointer(::apex::system) psystem = get_system();
@@ -370,7 +370,7 @@ namespace parallelization
 //}
 
 //
-//::apex::application * g_papp;
+//::application * g_papp;
 //
 //
 //void set_global_application(::apex::application* papp)
@@ -381,7 +381,7 @@ namespace parallelization
 //}
 //
 //
-//::apex::application * get_global_application()
+//::application * get_global_application()
 //{
 //
 //   return g_papp;
@@ -389,7 +389,7 @@ namespace parallelization
 //}
 
 
-//::apex::application * get_application()
+//::application * get_application()
 //{
 //
 //   task* ptask = get_task();

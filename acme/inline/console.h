@@ -5,7 +5,7 @@
 #endif
 
 //void stage();
-class ::system * acme_system_init();
+::acme::system * acme_system_init();
 void acme_system_term();
 
 
@@ -71,7 +71,7 @@ int main(int argc, platform_char ** argv, platform_char ** envp)
    if (!estatus)
    {
 
-      return estatus;
+      return estatus.error_status();
 
    }
 

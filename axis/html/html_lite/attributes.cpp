@@ -341,7 +341,7 @@ void LiteHTMLElemAttr::putValue(::lite_html_reader * preader, const char * pszVa
    m_strValue.trim_right();
 
    // ignore line feeds
-   m_strValue.erase('\n');
+   m_strValue.erase_character('\n');
 
    // replace tab and carriage-return with a single space
    m_strValue.replace('\r', ' ');

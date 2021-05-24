@@ -11,7 +11,7 @@
 
 
 #undef SYSTEM_TYPE
-#define SYSTEM_TYPE class ::system
+#define SYSTEM_TYPE ::acme::system
 
 #undef SESSION_TYPE
 #define SESSION_TYPE ::acme::session

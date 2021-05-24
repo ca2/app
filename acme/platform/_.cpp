@@ -149,7 +149,7 @@ int g_iAuraRefCount = 0;
 
 
 
-//class ::system* create_acme_system()
+//::acme::system* create_acme_system()
 //{
 //
 //   return g_pfn_create_system();
@@ -205,10 +205,10 @@ CLASS_DECL_ACME int get_acme_init()
 
 
 //extern "C"
-//CLASS_DECL_ACMEclass ::system * acme_create_acme_system()
+//CLASS_DECL_ACMEclass ::acme::system * acme_create_acme_system()
 //{
 //
-//   return new class ::system();
+//   return new ::acme::system();
 //
 //}
 

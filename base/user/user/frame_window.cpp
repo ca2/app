@@ -1453,6 +1453,8 @@ namespace user
 
          }
 
+         puiParent = puiParent->get_parent();
+
       }
 
       // last but not least, pump through cast

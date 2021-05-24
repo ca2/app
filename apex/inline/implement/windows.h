@@ -3,7 +3,7 @@
 #include "acme/primitive/collection/strdup_array.h"
 
 //void stage();
-class ::system* acme_system_init();
+::acme::system* acme_system_init();
 void acme_system_term();
 
 
@@ -80,6 +80,8 @@ int main(int argc, platform_char** argv)
       estatus = psystem->m_estatus;
 
    }
+
+   psystem->end();
 
 //   {
 //

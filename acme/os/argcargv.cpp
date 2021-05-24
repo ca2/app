@@ -8,101 +8,327 @@
 
 #include "framework.h"
 
-#ifdef WINDOWS_DESKTOP
 
-#define _MAX_CMD_LINE_ARGS  32
-wchar_t *_argv[_MAX_CMD_LINE_ARGS+1];
-static wchar_t *_rawCmd = 0;
+//wchar_t* _argv[_MAX_CMD_LINE_ARGS + 1];
+//static wchar_t* _rawCmd = 0;
 
-i32 _init_args()
+
+
+
+
+
+#define new ACME_NEW
+
+
+string_array get_c_args_from_string(const char * psz)
 {
-	_argv[0] = 0;
 
-	wchar_t *sysCmd = GetCommandLineW();
-	auto szSysCmd = wcslen(sysCmd);
+   string_array stra;
 
-	// copy the system command line
-	WCHAR *cmd = (wchar_t*)HeapAlloc(GetProcessHeap(), 0, sizeof(char)*(szSysCmd+1));
-	_rawCmd = cmd;
-	if (!cmd)
-		return 0;
-	wcscpy(cmd, sysCmd);
+   if (psz == nullptr)
+   {
 
-	// Handle a quoted filename
-	if (*cmd == _T('"'))
-	{
-		cmd++;
-		_argv[0] = cmd;						// argv[0] = exe name
+      return stra;
 
-		while (*cmd && *cmd != _T('"'))
-			cmd++;
+   }
 
-		if (*cmd)
-			*cmd++ = 0;
-		else
-			return 0;						// no end quote!
-	}
-	else
-	{
-		_argv[0] = cmd;						// argv[0] = exe name
+   string_array straBeforeColon;
 
-		while (*cmd && !ansi_char_is_space(*cmd))
-			cmd++;
+   string_array straAfterColon;
 
-		if (*cmd)
-			*cmd++ = 0;
-	}
+   const char * pszEnd = psz + strlen(psz);
 
-	i32 argc = 1;
-	for (;;)
-	{
-		while (*cmd && ansi_char_is_space(*cmd))		// Skip over any whitespace
-			cmd++;
+   string str;
 
-		if (*cmd == 0)						// End of command line?
-			return argc;
+   int i = 0;
 
-		if (*cmd == _T('"'))					// Argument starting with a quote???
-		{
-			cmd++;
+   bool bColon = false;
 
-			_argv[argc++] = cmd;
-			_argv[argc] = 0;
+   while (psz < pszEnd)
+   {
 
-			while (*cmd && *cmd != _T('"'))
-				cmd++;
+      ::str::consume_spaces(psz, 0, pszEnd);
 
-			if (*cmd == 0)
-				return argc;
+      if (psz >= pszEnd)
+      {
 
-			if (*cmd)
-				*cmd++ = 0;
-		}
-		else
-		{
-			_argv[argc++] = cmd;
-			_argv[argc] = 0;
+         break;
 
-			while (*cmd && !ansi_char_is_space(*cmd))
-				cmd++;
+      }
+      if (*psz == '\"')
+      {
 
-			if (*cmd == 0)
-				return argc;
+         str = ::str::consume_quoted_value(psz, pszEnd);
 
-			if (*cmd)
-				*cmd++ = 0;
-		}
+      }
+      else if (*psz == '\'')
+      {
 
-		if (argc >= _MAX_CMD_LINE_ARGS)
-			return argc;
-	}
+         str = ::str::consume_quoted_value(psz, pszEnd);
+
+      }
+      else
+      {
+
+         const char * pszValueStart = psz;
+
+         while (!::str::ch::is_whitespace(psz))
+         {
+
+            psz = str::utf8_inc(psz);
+
+            if (psz >= pszEnd)
+            {
+
+               break;
+
+            }
+
+            if (*psz == '\"')
+            {
+
+               ::str::consume_quoted_value_ex(psz, pszEnd);
+
+            }
+            else if (*psz == '\'')
+            {
+
+               ::str::consume_quoted_value_ex(psz, pszEnd);
+
+            }
+
+         }
+
+         str = string(pszValueStart, psz - pszValueStart);
+
+      }
+
+      if (str == ":")
+      {
+
+         bColon = true;
+
+      }
+      else if (!bColon && (i == 0 || str[0] != '-'))
+      {
+
+         straBeforeColon.add(str);
+
+      }
+      else
+      {
+
+         straAfterColon.add(str);
+
+      }
+
+      i++;
+
+   }
+
+   stra = straBeforeColon;
+
+   if (straAfterColon.has_elements())
+   {
+
+      stra.add(":");
+
+      stra += straAfterColon;
+
+   }
+
+   return stra;
+
 }
 
-void _term_args()
+
+
+
+
+
+// it was extracted from macOS code base
+// it is prepared for a command line supplied by macOS*1?
+// (*1.macOS:
+//          proc_pidinfo((pid_t) uiPid, PROC_PIDTASKALLINFO, SHOW_ZOMBIES, &info, sizeof(struct proc_taskallinfo));
+// return info.pbsd.pbi_comm;
+// )
+string_array command_arguments_from_command_line(const ::string & strCommandLine)
 {
-	if (_rawCmd)
-		HeapFree(GetProcessHeap(), 0, _rawCmd);
+
+   string_array stra;
+
+   string strArg;
+
+   const char * psz = strCommandLine;
+
+   string strChar;
+
+   while(*psz != '\0')
+   {
+
+      strChar = ::str::get_utf8_char(psz);
+
+      if(strChar.is_empty())
+      {
+
+         break;
+
+      }
+
+      psz += strChar.get_length();
+
+      if(strChar == "\"")
+      {
+
+         while(*psz != '\0')
+         {
+
+            strChar = ::str::get_utf8_char(psz);
+
+            if(strChar.is_empty())
+            {
+
+               goto end;
+
+            }
+            else if(strChar == "\"")
+            {
+
+               break;
+
+            }
+
+            psz += strChar.get_length();
+
+
+            if(strChar == "\\")
+            {
+
+               strChar = ::str::get_utf8_char(psz);
+
+               if(strChar.is_empty())
+               {
+
+                  goto end;
+
+               }
+
+               psz += strChar.get_length();
+
+               if(strChar == "n")
+               {
+
+                  strArg += "\n";
+
+               }
+               else
+               {
+
+                  strArg += strChar;
+
+               }
+
+            }
+            else
+            {
+
+               strArg += strChar;
+
+            }
+
+         }
+
+         stra.add(strArg);
+
+         strArg.Empty();
+
+      }
+      else if(strChar == " ")
+      {
+
+         stra.add(strArg);
+
+         strArg.Empty();
+
+      }
+      else if(strChar == "\\")
+      {
+
+         strChar = ::str::get_utf8_char(psz);
+
+         if(strChar.is_empty())
+         {
+
+            goto end;
+
+         }
+
+         psz += strChar.get_length();
+
+         if(strChar == "n")
+         {
+
+            strArg += "\n";
+
+         }
+         else
+         {
+
+            strArg += strChar;
+
+         }
+
+      }
+      else
+      {
+
+         strArg += strChar;
+
+      }
+
+
+   }
+
+end:
+
+   if(strArg.has_char())
+   {
+
+      stra.add(strArg);
+
+   }
+
+   return stra;
+
 }
 
 
-#endif
+bool argcargv_find_parameter(int argc, char * argv[], const char * pszParameter)
+{
+
+   for(int i = 1; i < argc; i++)
+   {
+
+      if(!strcmp(argv[i], pszParameter))
+      {
+
+         return i;
+
+      }
+
+   }
+
+   return -1;
+
+}
+
+
+bool argcargv_contains_parameter(int argc, char * argv[], const char * pszParameter)
+{
+
+   return argcargv_find_parameter(argc, argv, pszParameter) >= 0;
+
+}
+
+
+

@@ -30,12 +30,12 @@ void nano_timer::wait(const ::nanos & nanosWait)
 
       LARGE_INTEGER li = {};
 
-      li.QuadPart = -((::i64)uWait / 100LL);
+      li.QuadPart = -((::i64)nanosWait.m_i / 100LL);
 
       if (!SetWaitableTimer(m_hTimer, &li, 0, nullptr, nullptr, false))
       {
 
-         sleep(::millis(uWait / 1000000LL));
+         sleep(::millis(nanosWait.m_i / 1'000'000LL));
 
       }
       else

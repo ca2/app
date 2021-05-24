@@ -366,8 +366,8 @@ namespace user
       //   if(pinteraction != nullptr)
       //   {
       //      pdrawitem->m_rectClient = pdrawitem.m_rectSubItem;
-      //      pdrawitem->m_rectWindow = pdrawitem.m_rectClient;
-      //      _001ClientToScreen(pdrawitem->m_rectWindow);
+      //      pdrawitem->m_rectangleWindow = pdrawitem.m_rectClient;
+      //      _001ClientToScreen(pdrawitem->m_rectangleWindow);
       //      control_keep controlkeep(this,pdrawitem->m_iItem,pdrawitem->m_iSubItem);
       //      pinteraction->_003CallCustomDraw(pdrawitem->m_pgraphics,pdrawitem);
       //   }

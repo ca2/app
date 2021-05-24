@@ -418,7 +418,11 @@ namespace introjection
       strItem = pcontext->m_papexcontext->dir().install() / m_strDynamicSourceStage / m_strStagePlatform / "introjection\\library";
       str = str + strItem + ";";
 
-      str += get_environment_variable("PATH");
+      //auto psystem = m_psystem;
+
+      auto pnode = psystem->node();
+
+      str += pnode->get_environment_variable("PATH");
 
       bool bResult = false;
 #ifdef WINDOWS_DESKTOP

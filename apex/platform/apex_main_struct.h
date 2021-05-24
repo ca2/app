@@ -5,8 +5,10 @@ namespace apex
 {
 
 
-   class library;
    class application;
+
+
+   class library;
 
 
 } // namespace apex
@@ -18,6 +20,8 @@ namespace apex
 struct CLASS_DECL_APEX apex_main_struct
 {
 
+   bool                          m_bDataCentralRequired : 1;
+
    ::logic::bit                  m_bLocalization;
    ::logic::bit                  m_bConsole;
    ::logic::bit                  m_bDraw2d;
@@ -25,12 +29,13 @@ struct CLASS_DECL_APEX apex_main_struct
    ::logic::bit                  m_bUser;
    ::logic::bit                  m_bUserEx;
    ::logic::bit                  m_bImaging;
+   ::logic::bit                  m_bInitializeDataCentral;
 #ifdef WINDOWS_DESKTOP
    ::logic::bit                  m_bGdiplus;
 #elif defined(LINUX)
    ::logic::bit                  m_bGtkApp;
 #endif
-   ::logic::bit                         m_bShowApplicationInformation;
+   ::logic::bit                  m_bShowApplicationInformation;
    INT_STRING *                  m_pintstringLanguageResourceMap;
    int                           m_iMatterFromHttpCache;
 
@@ -41,7 +46,8 @@ struct CLASS_DECL_APEX apex_main_struct
 
    apex_main_struct()
    {
-      
+
+      m_bDataCentralRequired = false;
 
       m_pintstringLanguageResourceMap = nullptr;
 

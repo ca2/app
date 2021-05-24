@@ -647,7 +647,7 @@ public:
 #ifdef CPP20
    
    template < primitive_integral INTEGRAL >
-   inline minutes(INTEGRAL i) : duration(i) {}
+   inline minutes(INTEGRAL i) : duration(i * 60) {}
    
 #else
    

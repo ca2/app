@@ -5452,7 +5452,7 @@ namespace apex
       }
 
 
-      //acme::system::on_subject(psubject);
+      ::subject::manager::on_subject(psubject);
 
    }
 

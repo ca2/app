@@ -5,7 +5,7 @@
 #include "acme/filesystem/filesystem/acme_path.h"
 
 
-::acme::system * g_psystem = nullptr;
+class ::system * g_psystem = nullptr;
 
 extern const char* g_pszTopLevelDomainList[];
 
@@ -609,7 +609,7 @@ namespace acme
 
       // Ex. "draw2d" (Component) and implementation: either "draw2dcairo", "cairo", "draw2d_cairo"
 
-      __pointer(::acme::system) psystem = get_system();
+      __pointer(class ::system) psystem = get_system();
 
       synchronous_lock synchronouslock(&psystem->m_mutexLibrary);
 
@@ -717,7 +717,7 @@ namespace acme
 
       ::str::begins_eat_ci(strImplementation, strComponent);
 
-      __pointer(::acme::system) psystem = get_system();
+      __pointer(class ::system) psystem = get_system();
 
       synchronous_lock synchronouslock(&psystem->m_mutexContainerizedLibrary);
 
@@ -1073,7 +1073,7 @@ namespace acme
 
 
 
-   //::apex::application* system::get_main_application()
+   //::application* system::get_main_application()
    //{
 
    //   __throw(error_interface_only);
@@ -1165,7 +1165,7 @@ namespace acme
    }
 
 
-   ::apex::application* system::get_main_application()
+   ::application* system::get_main_application()
    {
 
 
@@ -1219,7 +1219,7 @@ string __get_text(const string& str)
 }
 
 
-CLASS_DECL_ACME ::acme::system* get_context_system()
+CLASS_DECL_ACME class ::system* get_context_system()
 {
 
    return g_psystem;
@@ -1227,10 +1227,10 @@ CLASS_DECL_ACME ::acme::system* get_context_system()
 }
 
 
-CLASS_DECL_ACME ::acme::system * acme_system_init()
+CLASS_DECL_ACME class ::system * acme_system_init()
 {
 
-   g_psystem = new ::acme::system();
+   g_psystem = new class ::system();
 
    return g_psystem;
 
@@ -1248,7 +1248,7 @@ CLASS_DECL_ACME void acme_system_term()
 void int_system_update(void * pSystem, int iUpdate, int iParam)
 {
    
-   auto psystem = (::acme::system *) pSystem;
+   auto psystem = (class ::system *) pSystem;
    
    psystem->system_int_update(iUpdate, iParam);
    

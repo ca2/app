@@ -49,7 +49,7 @@ public:
    void create_common_construct(const ::payload & varOptions, ::user::primitive * puiParent);
 
 
-   ::apex::application* create_get_application(::apex::application* pappFallback = nullptr);
+   ::application* create_get_application(::application* pappFallback = nullptr);
 
    ::e_status finish_initialization();
 
@@ -57,7 +57,7 @@ public:
    virtual void set_description(string strDescription);
 
    virtual index get_edge();
-   //virtual ::apex::application_bias * get_application_bias();
+   //virtual ::application_bias * get_application_bias();
 
    virtual bool has_file() const;
    virtual ::payload get_file() const;

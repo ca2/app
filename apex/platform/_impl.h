@@ -25,7 +25,7 @@ namespace apex
 
       }
 
-      __pointer(::apex::application) papp;
+      __pointer(::application) papp;
 
       papp = pappNew;
 
@@ -283,7 +283,7 @@ bool channel::add_handler(const ::id & id, RECEIVER* preceiver, void (RECEIVER::
 //}
 
 
-//CLASS_DECL_APEX inline ::apex::application * get_application(::apex::application * papp)
+//CLASS_DECL_APEX inline ::application * get_application(::application * papp)
 //{
 //
 //  return papp;
@@ -591,7 +591,7 @@ bool channel::add_handler(const ::id & id, RECEIVER* preceiver, void (RECEIVER::
 //}
 
 
-//inline void object::set_context_app(::apex::application* pappContext)
+//inline void object::set_context_app(::application* pappContext)
 //{
 //
 //   m_papplication = pappContext;

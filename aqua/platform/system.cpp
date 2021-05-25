@@ -37,7 +37,7 @@ namespace aqua
    void system::common_construct()
    {
 
-      create_factory < ::aqua::application, ::apex::application >();
+      create_factory < ::aqua::application, ::application >();
       create_factory < ::aqua::session, ::apex::session >();
       create_factory < ::aqua::idpool, ::acme::idpool >();
       create_factory < ::aqua::multimedia >();

@@ -190,7 +190,7 @@ namespace apex
 #define SESSION_TYPE ::apex::session
 
 #undef APP_TYPE
-#define APP_TYPE ::apex::application
+#define APP_TYPE ::application
 
 
 #endif
@@ -211,7 +211,7 @@ namespace apex
 
 
 //#define __get_acid_app \
-//extern "C" __declspec(dllexport) ::apex::application * get_acid_app() \
+//extern "C" __declspec(dllexport) ::application * get_acid_app() \
 //{ \
 //\
 //   return new application(); \

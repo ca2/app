@@ -97,7 +97,7 @@ namespace axis
 
       m_pfactorymapsquare = new string_map < __pointer(::factory_map) >();
 
-      create_factory < ::axis::application, ::apex::application >();
+      create_factory < ::axis::application, ::application >();
       create_factory < ::axis::session, ::apex::session >();
       create_factory < ::axis::idpool, ::acme::idpool >();
       create_factory < ::geo::department >();

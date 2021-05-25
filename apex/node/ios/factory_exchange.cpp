@@ -15,13 +15,13 @@
 //      create_factory < file                 >   (__type(::file::binary_file));
 ////      create_factory < file_set             >   (__type(::file::set));
 //      create_factory < file                 >   (__type(::file::file));
-//      //      create_factory < application                >   (__type(::apex::application), 1);
+//      //      create_factory < application                >   (__type(::application), 1);
 //      create_factory < ::thread               >   (__type(::thread));
 //
 //      create_factory < file_system                >   (__type(::file::system), 1);
 ////    create_factory < file_exception, ::file::exception >();
 ////    create_factory <    WinResource             >   (__type(::ca2::resource), 1);
-//      //create_factory < application                >   (__type(::apex::application), 1);
+//      //create_factory < application                >   (__type(::application), 1);
 //      create_factory < dir                        >   (__type(::file::system_dir), 1);
 ////    create_factory < folder_watch, ::ca2::folder_watch >();
 ////      create_factory < window_draw                >   (__type(::user::window_draw), 1);

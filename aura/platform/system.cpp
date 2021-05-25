@@ -116,7 +116,7 @@ namespace aura
       m_bAvoidFirstResponder = false;
 
       create_factory < ::aura::session, ::apex::session >();
-      create_factory < ::aura::application, ::apex::application >();
+      create_factory < ::aura::application, ::application >();
       create_factory < ::aura::idpool, ::acme::idpool >();
 
       m_bMessageThread = true;
@@ -3175,7 +3175,7 @@ namespace aura
 
    //   auto appptra = psession->get_applicationa();
 
-   //   ::apex::application * papp = nullptr;
+   //   ::application * papp = nullptr;
 
    //   appptra.predicate_erase([](auto & papp)
    //   {
@@ -3316,7 +3316,7 @@ namespace aura
 
    //   auto applicationa = psession->get_applicationa();
 
-   //   ::apex::application * papp = nullptr;
+   //   ::application * papp = nullptr;
 
    //   if(applicationa.get_size() > 0)
    //   {
@@ -3967,13 +3967,13 @@ namespace aura
 //
 //            ::file::path pathScript = m_psystem->m_pacmedir->tool() / "papaya/script/xcode_set_active_scheme.scpt";
 //
-//            ::acme::system("osascript \""+pathScript + "\" \"" + strScheme + "\"");
+//            ::system("osascript \""+pathScript + "\" \"" + strScheme + "\"");
 //
 //         }
 //         else if(strBase == "archive")
 //         {
 //
-//            ::acme::system("xcodebuild -scheme \"" + strScheme + "\" archive");
+//            ::system("xcodebuild -scheme \"" + strScheme + "\" archive");
 //
 //         }
 //
@@ -4206,7 +4206,7 @@ namespace aura
 //
 //         //#elif defined(LINUX)
 //         //
-//         //      ::acme::system("xdg-open \"" + strUrl + "\"");
+//         //      ::system("xdg-open \"" + strUrl + "\"");
 //         //
 //         //      return true;
 //         //
@@ -4253,7 +4253,7 @@ namespace aura
 //
 //#elif defined(MACOS)
 //
-//         ::acme::system("open -a /Applications/Safari.app \"" + strUrl + "\"");
+//         ::system("open -a /Applications/Safari.app \"" + strUrl + "\"");
 //
 //#elif defined(APPLE_IOS)
 //
@@ -4340,7 +4340,7 @@ namespace aura
 //         else
 //         {
 //
-//            ::acme::system("xdg-open " + strUrl);
+//            ::system("xdg-open " + strUrl);
 //
 //         }
 //

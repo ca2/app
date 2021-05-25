@@ -144,7 +144,7 @@ namespace apex
    {
 
       create_factory < ::apex::session >();
-      create_factory < ::apex::application >();
+      create_factory < ::application >();
       //create_factory < ::imaging >();
 
       m_bSimpleMessageLoop = false;
@@ -414,7 +414,7 @@ namespace apex
 
 
 
-      //estatus = ::apex::application::initialize(pobject);
+      //estatus = ::application::initialize(pobject);
 
      //if (!estatus)
      //{
@@ -438,7 +438,7 @@ namespace apex
 
 
 
-            //estatus = ::apex::application::initialize(pobject);
+            //estatus = ::application::initialize(pobject);
 
             //if (!estatus)
             //{
@@ -469,7 +469,7 @@ namespace apex
       //      m_window                                  = nullptr;
       //#endif
 
-            //::apex::application * papp = ::get_application(pobject);
+            //::application * papp = ::get_application(pobject);
 
             //if(papp == nullptr)
             //{
@@ -1027,7 +1027,7 @@ namespace apex
       create_factory<command_line>();
       create_factory<http::context>();
 
-      auto estatus = ::acme::system::process_init();
+      auto estatus = ::system::process_init();
 
       if (!estatus)
       {
@@ -1075,7 +1075,7 @@ namespace apex
    ::e_status system::init1()
    {
 
-      auto estatus = ::acme::system::init1();
+      auto estatus = ::system::init1();
 
       if (!estatus)
       {
@@ -1304,7 +1304,7 @@ namespace apex
       //create_factory < ::mutex >();
       //create_factory < event >();
 
-      //if (!::apex::application::process_init())
+      //if (!::application::process_init())
       //{
 
       //   return false;
@@ -1796,7 +1796,7 @@ namespace apex
       psession->m_ptextcontext->defer_ok(m_ptexttable);
 
 
-      //if(!::apex::application::init2())
+      //if(!::application::init2())
       //   return false;
 
       //auto estatus = ::apex::system::init2();
@@ -2088,7 +2088,7 @@ namespace apex
    ::e_status system::inline_init()
    {
 
-      auto estatus = ::acme::system::inline_init();
+      auto estatus = ::system::inline_init();
 
       if (!estatus)
       {
@@ -2157,7 +2157,7 @@ namespace apex
    }
 
 
-   ::apex::application* system::get_main_application()
+   ::application* system::get_main_application()
    {
 
       return m_papplicationMain;
@@ -2168,7 +2168,7 @@ namespace apex
    ::e_status system::init_system()
    {
 
-      auto estatus = ::acme::system::init_system();
+      auto estatus = ::system::init_system();
 
       if(!estatus)
       {
@@ -2502,7 +2502,7 @@ namespace apex
 //
 
 
-       ::acme::system::TermSystem();
+       ::system::TermSystem();
 
    }
 
@@ -2512,7 +2512,7 @@ namespace apex
 
       ::e_status estatus = ::success;
 
-      estatus = ::acme::system::create_os_node();
+      estatus = ::system::create_os_node();
 
       if(!estatus)
       {
@@ -2540,7 +2540,7 @@ namespace apex
    void system::process_term()
    {
 
-      //::apex::application::process_term();
+      //::application::process_term();
 
 
 
@@ -2878,7 +2878,7 @@ namespace apex
 
 //      for(i32 i = 0; i < appptra().get_size(); i++)
       //    {
-      //     ::apex::application * papp = appptra()(i);
+      //     ::application * papp = appptra()(i);
       //   papp->load_string_table();
       //}
 
@@ -2895,7 +2895,7 @@ namespace apex
 
 //      for(i32 i = 0; i < appptra().get_size(); i++)
 //     {
-      //       ::apex::application * papp = appptra()(i);
+      //       ::application * papp = appptra()(i);
       //       papp->set_locale(pszLocale,context);
       //    }
 
@@ -2912,7 +2912,7 @@ namespace apex
 
 //      for(i32 i = 0; i < appptra().get_size(); i++)
       //    {
-      //       ::apex::application * papp = appptra()(i);
+      //       ::application * papp = appptra()(i);
       //       papp->set_schema(pszStyle,context);
       //    }
 
@@ -3631,7 +3631,7 @@ namespace apex
 
       auto appptra = psession->get_applicationa();
 
-      ::apex::application * papp = nullptr;
+      ::application * papp = nullptr;
 
       appptra.predicate_erase([](auto & papp)
       {
@@ -3737,7 +3737,7 @@ namespace apex
 
       //auto applicationa = psession->get_applicationa();
 
-      //::apex::application * papp = nullptr;
+      //::application * papp = nullptr;
 
       //if(applicationa.get_size() > 0)
       //{
@@ -3968,13 +3968,13 @@ namespace apex
 
             ::file::path pathScript = m_psystem->m_pacmedir->tool() / "papaya/script/xcode_set_active_scheme.scpt";
 
-            ::acme::system("osascript \""+pathScript + "\" \"" + strScheme + "\"");
+            class ::system("osascript \""+pathScript + "\" \"" + strScheme + "\"");
 
          }
          else if(strBase == "archive")
          {
 
-            ::acme::system("xcodebuild -scheme \"" + strScheme + "\" archive");
+            class ::system("xcodebuild -scheme \"" + strScheme + "\" archive");
 
          }
 
@@ -4021,7 +4021,7 @@ namespace apex
    }
 
 
-   bool system::set_user_language(::apex::application * papp, index iSel)
+   bool system::set_user_language(::application * papp, index iSel)
    {
 
       __pointer(::apex::system) psystem = get_system();
@@ -4054,7 +4054,7 @@ namespace apex
    }
 
 
-   bool system::set_user_language(::apex::application * papp, string strLang)
+   bool system::set_user_language(::application * papp, string strLang)
    {
 
       __pointer(::apex::system) psystem = get_system();
@@ -4244,7 +4244,7 @@ namespace apex
 
          //#elif defined(LINUX)
          //
-         //      ::acme::system("xdg-open \"" + strUrl + "\"");
+         //      class ::system("xdg-open \"" + strUrl + "\"");
          //
          //      return true;
          //
@@ -4291,7 +4291,7 @@ namespace apex
 
 #elif defined(MACOS)
 
-         ::acme::system("open -a /Applications/Safari.app \"" + strUrl + "\"");
+         class ::system("open -a /Applications/Safari.app \"" + strUrl + "\"");
 
 #elif defined(APPLE_IOS)
 
@@ -4378,7 +4378,7 @@ namespace apex
          else
          {
 
-            ::acme::system("xdg-open " + strUrl);
+            class ::system("xdg-open " + strUrl);
 
          }
 
@@ -4958,7 +4958,7 @@ namespace apex
 //   ::e_status system::defer_initialize_x11()
 //   {
 //
-//      return ::acme::system::defer_initialize_x11();
+//      return class ::system::defer_initialize_x11();
 //
 //   }
 
@@ -5208,7 +5208,7 @@ namespace apex
 
    //   //   xxdebug_box("system::on_install","system::on_install",0);
 
-   //   //   if (!::apex::application::on_install())
+   //   //   if (!::application::on_install())
    //   //   {
 
    //   //      return false;
@@ -5360,7 +5360,7 @@ namespace apex
 //
 //      }
 //
-//      //auto estatus = ::acme::system::main();
+//      //auto estatus = class ::system::main();
 
       auto estatus = ::thread::main();
 
@@ -5494,7 +5494,7 @@ namespace apex
    void system::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
    {
 
-      ::acme::system::on_subject(psubject, pcontext);
+      ::system::on_subject(psubject, pcontext);
 
       //::update updateSetting(pupdate);
 
@@ -5581,7 +5581,7 @@ namespace apex
       else
       {
       
-         ::acme::system::process_exit_status(pobject, estatus);
+         ::system::process_exit_status(pobject, estatus);
       
       }
 
@@ -5828,7 +5828,7 @@ namespace apex
    __pointer(::extended::future < ::conversation >) system::_message_box(::object * pobject, const char* pszText, const char* pszTitle, const ::e_message_box & emessagebox)
    {
 
-      return ::acme::system::_message_box(pobject, pszText, pszTitle, emessagebox);
+      return ::system::_message_box(pobject, pszText, pszTitle, emessagebox);
 
    }
 
@@ -5838,7 +5838,7 @@ namespace apex
    ::e_status system::get_public_internet_domain_extension_list(string_array& stra)
    {
 
-      auto estatus = ::acme::system::get_public_internet_domain_extension_list(stra);
+      auto estatus = ::system::get_public_internet_domain_extension_list(stra);
       
       return estatus;
 
@@ -5848,7 +5848,7 @@ namespace apex
    ::e_status system::system_main()
    {
 
-      auto estatus = ::acme::system::system_main();
+      auto estatus = ::system::system_main();
 
       if (!estatus)
       {
@@ -5904,7 +5904,7 @@ namespace apex
 void int_system_update(void* pSystem, int iUpdate, int iPayload)
 {
 
-   auto psystem = (::acme::system *) pSystem;
+   auto psystem = (class ::system *) pSystem;
 
    psystem->system_int_update(iUpdate, iPayload);
 

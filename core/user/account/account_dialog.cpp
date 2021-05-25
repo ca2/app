@@ -302,7 +302,7 @@ namespace account
       if((rectFontopus.width() < 300 || rectFontopus.height() < 300) && puiParent != nullptr)
       {
 
-         __pointer(::apex::application) papp = puiParent->get_application();
+         __pointer(::application) papp = puiParent->get_application();
 
          if(papp != nullptr)
          {

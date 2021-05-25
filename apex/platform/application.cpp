@@ -114,288 +114,288 @@ CLASS_DECL_APEX int ui_open_url(const char * psz);
 //extern void * g_pf1;
 
 
-namespace apex
+//namespace apex
+//{
+
+
+application::application(const char * pszAppId) :
+m_strAppId(::is_set(pszAppId) ? pszAppId : "")
 {
 
+m_papexapplication = this;
+::object::m_pcontext = this;
+m_pcontext = this;
 
-   application::application(const char * pszAppId) :
-      m_strAppId(::is_set(pszAppId) ? pszAppId : "")
-   {
-
-      m_papexapplication = this;
-      ::object::m_pcontext = this;
-      m_pcontext = this;
-
-      //set_layer(LAYERED_APEX, this);
+//set_layer(LAYERED_APEX, this);
 
 
 #ifdef LINUX
-      m_bSnLauncheeSetup = false;
+m_bSnLauncheeSetup = false;
 #endif
 
-      //m_pappParent = nullptr;
-      m_bMessageThread = true;
-      m_bSimpleMessageLoop = false;
-      m_ethreadClose = thread_none;
+//m_pappParent = nullptr;
+m_bMessageThread = true;
+m_bSimpleMessageLoop = false;
+m_ethreadClose = thread_none;
 
-      //m_puiMainContainer = nullptr;
+//m_puiMainContainer = nullptr;
 
-      m_bRequiresInstallation = false;
-      m_bReadStringTable = true;
+m_bRequiresInstallation = false;
+m_bReadStringTable = true;
 
-      //m_puiCurrent = nullptr;
+//m_puiCurrent = nullptr;
 
-      //m_bInitializeDataCentral = true;
+//m_bInitializeDataCentral = true;
 
-      m_bInitializeDataCentral = false;
+m_bInitializeDataCentral = false;
 
-      m_bContextTheme = false;
-
-
-
-      m_strLocale = "_std";
-      m_strSchema = "_std";
+m_bContextTheme = false;
 
 
-      // default value for acid apps
-      // (but any acid app can have installer, just machine this flag to true in the derived application class constructor).
-      m_bAppHasInstallerProtected = true;
-      m_bAppHasInstallerChangedProtected = false;
 
-      m_strHttpUserAgentToken = "ca2";
-      m_strHttpUserAgentVersion = "1.0";
-
-      //m_http.set_app(this);
-
-      m_eexclusiveinstance = ExclusiveInstanceNone;
-
-      //m_pevAppBeg = nullptr;
-      //m_pevAppEnd = nullptr;
-
-      m_bAgreeExit = true;
-      m_bAgreeExitOk = true;
-      m_bFranceExit = true;
-
-      m_bLicense = false;
-
-      m_bInterprocessIntercommunication = false;
-
-      //m_pimaging = nullptr;
+m_strLocale = "_std";
+m_strSchema = "_std";
 
 
-      //m_phandler = __new(::handler(this));
+// default value for acid apps
+// (but any acid app can have installer, just machine this flag to true in the derived application class constructor).
+m_bAppHasInstallerProtected = true;
+m_bAppHasInstallerChangedProtected = false;
+
+m_strHttpUserAgentToken = "ca2";
+m_strHttpUserAgentVersion = "1.0";
+
+//m_http.set_app(this);
+
+m_eexclusiveinstance = ExclusiveInstanceNone;
+
+//m_pevAppBeg = nullptr;
+//m_pevAppEnd = nullptr;
+
+m_bAgreeExit = true;
+m_bAgreeExitOk = true;
+m_bFranceExit = true;
+
+m_bLicense = false;
+
+m_bInterprocessIntercommunication = false;
+
+//m_pimaging = nullptr;
 
 
-      //m_bAuraProcessInitialize = false;
-      //m_bAuraProcessInitializeResult = false;
-
-      //m_bAuraInitialize1 = false;
-      //m_bAuraInitialize1Result = false;
-
-      //m_bAuraInitialize = false;
-      //m_bAuraInitializeResult = false;
-
-      //m_bAuraInitializeInstance = false;
-      //m_bAuraInitializeInstanceResult = false;
-
-      //create_factory < ::user::user >();
-      //create_factory < ::userfs::userfs >();
-
-      //m_pmainpane = nullptr;
-
-      //m_ppaneviewMain = nullptr;
-
-      // almost always forgotten, assumed, as exception, responsability of application to add first ref on constructor.
-      //::add_ref(this);
-
-      srand((u32) ::_get_nanos());
-
-      m_bService = false;
-
-      m_iResourceId = 8001;
-
-      ::acme::profiler::initialize();
-
-      //m_pdocmanager = nullptr;
-
-      m_eexclusiveinstance = ExclusiveInstanceNone;
-      m_strLocale = "_std";
-      m_strSchema = "_std";
-
-      //m_durationGcomBackgroundUpdate = 30_s;
-
-   }
+//m_phandler = __new(::handler(this));
 
 
-   ::e_status application::initialize(::object * pobject)
-   {
+//m_bAuraProcessInitialize = false;
+//m_bAuraProcessInitializeResult = false;
 
-      auto estatus = ::thread::initialize(pobject);
+//m_bAuraInitialize1 = false;
+//m_bAuraInitialize1Result = false;
 
-      if (!estatus)
-      {
+//m_bAuraInitialize = false;
+//m_bAuraInitializeResult = false;
 
-         return estatus;
+//m_bAuraInitializeInstance = false;
+//m_bAuraInitializeInstanceResult = false;
 
-      }
+//create_factory < ::user::user >();
+//create_factory < ::userfs::userfs >();
 
-      ///initialize(this OBJ_REF_DBG_COMMA_THIS_FUNCTION_LINE);
+//m_pmainpane = nullptr;
 
-      //set_context_app(this);
+//m_ppaneviewMain = nullptr;
 
-      m_pcontext = this;
+// almost always forgotten, assumed, as exception, responsability of application to add first ref on constructor.
+//::add_ref(this);
 
-      //if (::is_set(m_pappParent))
-      //{
+srand((u32) ::_get_nanos());
 
-      //   set_context_session(m_pappParent->get_session());
+m_bService = false;
 
-      //   //set_context_system(m_pappParent->psystem);
+m_iResourceId = 8001;
 
-      //}
+::acme::profiler::initialize();
 
-      {
+//m_pdocmanager = nullptr;
+
+m_eexclusiveinstance = ExclusiveInstanceNone;
+m_strLocale = "_std";
+m_strSchema = "_std";
+
+//m_durationGcomBackgroundUpdate = 30_s;
+
+}
+
+
+::e_status application::initialize(::object * pobject)
+{
+
+auto estatus = ::thread::initialize(pobject);
+
+if (!estatus)
+{
+
+return estatus;
+
+}
+
+///initialize(this OBJ_REF_DBG_COMMA_THIS_FUNCTION_LINE);
+
+//set_context_app(this);
+
+m_pcontext = this;
+
+//if (::is_set(m_pappParent))
+//{
+
+//   set_context_session(m_pappParent->get_session());
+
+//   //set_context_system(m_pappParent->psystem);
+
+//}
+
+{
 
 #include "build.h"
 
-         m_strBuild = pszBuild;
+m_strBuild = pszBuild;
 
-      }
+}
 
-      if (m_strBuild.is_empty())
-      {
+if (m_strBuild.is_empty())
+{
 
-         m_strBuild = "(unknown build version)";
+m_strBuild = "(unknown build version)";
 
-      }
+}
 
-      return estatus;
+return estatus;
 
-   }
-
-
-   application::~application()
-   {
-
-   }
+}
 
 
+application::~application()
+{
+
+}
 
 
-   application_menu & application::applicationmenu()
-   {
-
-      if(m_papplicationmenu.is_null())
-      {
-
-         __own(this, m_papplicationmenu, __new(application_menu));
-
-      }
-
-      return *m_papplicationmenu;
-
-   }
 
 
-   ::file::path application::local_application_path()
-   {
+application_menu & application::applicationmenu()
+{
 
-      return m_psystem->m_pacmedir->localconfig() / "application" / m_strAppName ;
+if(m_papplicationmenu.is_null())
+{
 
+__own(this, m_papplicationmenu, __new(application_menu));
 
-   }
+}
 
+return *m_papplicationmenu;
 
-   ::file::path application::local_application_home_path()
-   {
-
-      return local_application_path() / "home";
-
-
-   }
+}
 
 
-   void application::application_menu_update()
-   {
+::file::path application::local_application_path()
+{
+
+return m_psystem->m_pacmedir->localconfig() / "application" / m_strAppName ;
+
+
+}
+
+
+::file::path application::local_application_home_path()
+{
+
+return local_application_path() / "home";
+
+
+}
+
+
+void application::application_menu_update()
+{
 
 #ifdef LINUX
 
-      auto psystem = m_psystem->m_papexsystem;
+auto psystem = m_psystem->m_papexsystem;
 
-      if(psystem->m_bGtkApp)
-      {
+if(psystem->m_bGtkApp)
+{
 
-         auto pnode = psystem->node();
+auto pnode = psystem->node();
 
-         if(pnode)
-         {
+if(pnode)
+{
 
-            pnode->set_application_menu(m_papplicationmenu, this);
+pnode->set_application_menu(m_papplicationmenu, this);
 
-         }
+}
 
-      }
+}
 
 #endif
 
-   }
+}
 
 
-   ::e_status application::finalize()
-   {
+::e_status application::finalize()
+{
 
-      ::application_container::m_applicationa.erase_all();
+::application_container::m_applicationa.erase_all();
 
-      __unbind(this, m_puserlanguagemap OBJ_REF_DBG_COMMA_THIS);
+__unbind(this, m_puserlanguagemap OBJ_REF_DBG_COMMA_THIS);
 
-      auto estatus = ::apex::context::finalize();
+auto estatus = ::apex::context::finalize();
 
-      return estatus;
+return estatus;
 
-   }
-
-
-   ::object * application::parent_property_set_holder() const
-   {
-
-      return nullptr;
-
-   }
+}
 
 
-   void application::on_change_theme()
-   {
+::object * application::parent_property_set_holder() const
+{
+
+return nullptr;
+
+}
 
 
-   }
+void application::on_change_theme()
+{
 
 
-   //string application::get_theme()
-   //{
-
-   //   return "lite";
-
-   //}
+}
 
 
-   //bool application::is_set_finish() const
-   //{
+//string application::get_theme()
+//{
 
-   //   return ::thread::is_set_finish() || m_ethreadClose != thread_none;
+//   return "lite";
 
-   //}
+//}
 
 
-   void application::set_has_installer(bool bSet)
-   {
+//bool application::is_set_finish() const
+//{
 
-      m_bAppHasInstallerProtected = bSet;
+//   return ::thread::is_set_finish() || m_ethreadClose != thread_none;
 
-      m_bAppHasInstallerChangedProtected = true;
+//}
 
-   }
-   
-   
+
+void application::set_has_installer(bool bSet)
+{
+
+m_bAppHasInstallerProtected = bSet;
+
+m_bAppHasInstallerChangedProtected = true;
+
+}
+
+
 //   void application::show_wait_cursor(bool bShow)
 //   {
 //
@@ -408,18 +408,18 @@ namespace apex
 //   }
 
 
-   void application::assert_valid() const
-   {
+void application::assert_valid() const
+{
 
-      thread::assert_valid();
+thread::assert_valid();
 
-   }
+}
 
 
-   void application::dump(dump_context & dumpcontext) const
-   {
+void application::dump(dump_context & dumpcontext) const
+{
 
-      thread::dump(dumpcontext);
+thread::dump(dumpcontext);
 
 //#ifdef WINDOWS
 //
@@ -427,834 +427,834 @@ namespace apex
 //
 //#endif
 
-      //dumpcontext << "\nm_strCmdLine = " << m_strCmdLine;
-      //dumpcontext << "\nm_nCmdShow = " << m_nCmdShow;
-      dumpcontext << "\nm_bHelpMode = " << m_strAppName;
+//dumpcontext << "\nm_strCmdLine = " << m_strCmdLine;
+//dumpcontext << "\nm_nCmdShow = " << m_nCmdShow;
+dumpcontext << "\nm_bHelpMode = " << m_strAppName;
 
-      dumpcontext << "\n";
+dumpcontext << "\n";
 
-   }
+}
 
 
-   string application::__get_text(string str)
-   {
+string application::__get_text(string str)
+{
 
-      if (!m_puserlanguagemap)
-      {
+if (!m_puserlanguagemap)
+{
 
-         return str;
+return str;
 
-      }
+}
 
-      return m_puserlanguagemap->__get_text(str);
+return m_puserlanguagemap->__get_text(str);
 
-   }
+}
 
 
-   void application::process_command_line(command_line* pcommandline)
-   {
+void application::process_command_line(command_line* pcommandline)
+{
 
 
-   }
+}
 
 
-   //::user::style* application::get_user_style() const
-   //{
+//::user::style* application::get_user_style() const
+//{
 
-   //   if (m_psession)
-   //   {
+//   if (m_psession)
+//   {
 
-   //      return m_psession->get_user_style();
+//      return m_psession->get_user_style();
 
-   //   }
+//   }
 
-   //   return nullptr;
+//   return nullptr;
 
-   //}
+//}
 
 
-   //string application::dialog_box(const char * pszMatter, property_set & propertyset)
-   //{
+//string application::dialog_box(const char * pszMatter, property_set & propertyset)
+//{
 
-   //   throw_todo();
+//   throw_todo();
 
-   //   return "";
+//   return "";
 
-   //}
+//}
 
 
-   void application::install_message_routing(::channel * pchannel)
-   {
+void application::install_message_routing(::channel * pchannel)
+{
 
-      ::thread::install_message_routing(pchannel);
+::thread::install_message_routing(pchannel);
 
-      connect_command("app_exit", this, &application::_001OnAppExit);
-      connect_command("switch_context_theme", this, &application::_001OnSwitchContextTheme);
+connect_command("app_exit", this, &application::_001OnAppExit);
+connect_command("switch_context_theme", this, &application::_001OnSwitchContextTheme);
 
-   }
+}
 
 
-   //imaging & application::imaging()
-   //{
+//imaging & application::imaging()
+//{
 
-   //   return *m_pimaging;
+//   return *m_pimaging;
 
-   //}
+//}
 
 
-   bool application::enable_application_events(::object * pobject, bool bEnable)
-   {
+bool application::enable_application_events(::object * pobject, bool bEnable)
+{
 
-      synchronous_lock synchronouslock(mutex());
+synchronous_lock synchronouslock(mutex());
 
-      if(bEnable)
-      {
+if(bEnable)
+{
 
-         if(pobject == this)
-         {
+if(pobject == this)
+{
 
-            return true;
+return true;
 
-         }
+}
 
-         m_objectptraEventHook.add_unique(pobject);
+m_objectptraEventHook.add_unique(pobject);
 
-      }
-      else
-      {
+}
+else
+{
 
-         m_objectptraEventHook.erase(pobject);
+m_objectptraEventHook.erase(pobject);
 
-      }
+}
 
-      return true;
+return true;
 
-   }
+}
 
 
-   string application::get_title()
-   {
+string application::get_title()
+{
 
-      if(m_textAppTitle.get_text().has_char())
-      {
+if(m_textAppTitle.get_text().has_char())
+{
 
-         return m_textAppTitle.get_text();
+return m_textAppTitle.get_text();
 
-      }
+}
 
-      string_array stra;
+string_array stra;
 
-      stra.explode("/", m_strAppName);
+stra.explode("/", m_strAppName);
 
-      string strTitle;
+string strTitle;
 
-      if(stra.get_count() > 1)
-      {
+if(stra.get_count() > 1)
+{
 
-         strTitle = stra.implode("/", 1);
+strTitle = stra.implode("/", 1);
 
-         if(strTitle.length() > 0)
-         {
+if(strTitle.length() > 0)
+{
 
-            return strTitle;
+return strTitle;
 
-         }
+}
 
-      }
+}
 
-      if(m_strAppName.has_char())
-      {
+if(m_strAppName.has_char())
+{
 
-         return m_strAppName;
+return m_strAppName;
 
-      }
+}
 
-      stra.explode("/", m_strAppId);
+stra.explode("/", m_strAppId);
 
-      if(stra.get_count() > 1)
-      {
+if(stra.get_count() > 1)
+{
 
-         strTitle = stra.implode("/", 1);
+strTitle = stra.implode("/", 1);
 
-         if(strTitle.length() > 0)
-         {
+if(strTitle.length() > 0)
+{
 
-            return strTitle;
+return strTitle;
 
-         }
+}
 
-      }
+}
 
-      if(m_strAppId.has_char())
-      {
+if(m_strAppId.has_char())
+{
 
-         return m_strAppId;
+return m_strAppId;
 
-      }
+}
 
-      return m_pcontext->m_papexcontext->file().module().title();
+return m_pcontext->m_papexcontext->file().module().title();
 
-   }
+}
 
 
-   string_array application::get_categories()
-   {
+string_array application::get_categories()
+{
 
-      return m_straAppCategory;
+return m_straAppCategory;
 
-   }
+}
 
 
-   ::file::path application::get_app_localconfig_folder()
-   {
+::file::path application::get_app_localconfig_folder()
+{
 
-      ::file::path pathFolder = m_psystem->m_pacmedir->localconfig() / m_strAppName;
+::file::path pathFolder = m_psystem->m_pacmedir->localconfig() / m_strAppName;
 
-      return pathFolder;
+return pathFolder;
 
-   }
+}
 
 
-   ::handle::ini application::get_ini()
-   {
+::handle::ini application::get_ini()
+{
 
-      ::handle::ini ini;
+::handle::ini ini;
 
-      auto pathFolder = get_app_localconfig_folder();
+auto pathFolder = get_app_localconfig_folder();
 
-      auto preader = m_pcontext->m_papexcontext->file().get_reader(pathFolder / "this.ini");
+auto preader = m_pcontext->m_papexcontext->file().get_reader(pathFolder / "this.ini");
 
-      if (preader)
-      {
+if (preader)
+{
 
-         string str;
+string str;
 
-         preader->full_read_string(str);
+preader->full_read_string(str);
 
-         ini.parse_ini(str);
+ini.parse_ini(str);
 
-      }
+}
 
-      return ini;
+return ini;
 
-   }
+}
 
 
-   bool application::app_data_set(const ::id & id, stream & os)
-   {
+bool application::app_data_set(const ::id & id, stream & os)
+{
 
-      return false;
+return false;
 
-   }
+}
 
 
-   bool application::app_data_get(const ::id & id, stream & is)
-   {
+bool application::app_data_get(const ::id & id, stream & is)
+{
 
-      return false;
+return false;
 
-   }
+}
 
 
-   bool application::app_data_set(const ::id & id, ::object & obj)
-   {
+bool application::app_data_set(const ::id & id, ::object & obj)
+{
 
-      return false;
+return false;
 
-   }
+}
 
 
-   bool application::app_data_get(const ::id & id, ::object & obj)
-   {
+bool application::app_data_get(const ::id & id, ::object & obj)
+{
 
-      return false;
+return false;
 
-   }
+}
 
 
-   void application::do_request(::create * pcreate)
-   {
+void application::do_request(::create * pcreate)
+{
 
-      pcreate->m_pcontext = this;
-          
-      request(pcreate);
+pcreate->m_pcontext = this;
 
-   }
+request(pcreate);
 
+}
 
-   void application::call_request(::create * pcreate)
-   {
 
-      do_request(pcreate);
+void application::call_request(::create * pcreate)
+{
 
-      //__pointer(::apex::system) psystem = get_system();
+do_request(pcreate);
 
-      //if (pcreate->m_ecommand == ::command_protocol)
-      //{
+//__pointer(::apex::system) psystem = get_system();
 
-      //   string str;
-      //   
-      //   str = pcreate->m_varFile;
+//if (pcreate->m_ecommand == ::command_protocol)
+//{
 
-      //      // apex commented
-      //      //__throw(todo("interaction"));
+//   string str;
+//
+//   str = pcreate->m_varFile;
 
-      //   /*if (!m_pinterprocessintercommunication)
-      //   {
+//      // apex commented
+//      //__throw(todo("interaction"));
 
-      //      __pointer(::user::interaction) pinteraction;
+//   /*if (!m_pinterprocessintercommunication)
+//   {
 
-      //      get_frame(pinteraction);
+//      __pointer(::user::interaction) pinteraction;
 
-      //      if (pinteraction == nullptr)
-      //      {
+//      get_frame(pinteraction);
 
-      //         return error_failed;
+//      if (pinteraction == nullptr)
+//      {
 
-      //      }
+//         return error_failed;
 
-      //      auto papp = pinteraction->get_application();
+//      }
 
-      //      if (papp == nullptr)
-      //      {
+//      auto papp = pinteraction->get_application();
 
-      //         return error_failed;
+//      if (papp == nullptr)
+//      {
 
-      //      }
+//         return error_failed;
 
-      //      if (papp->m_pinterprocessintercommunication == nullptr)
-      //      {
+//      }
 
-      //         return error_failed;
+//      if (papp->m_pinterprocessintercommunication == nullptr)
+//      {
 
-      //      }
+//         return error_failed;
 
-      //   }*/
+//      }
 
-      //   if (::str::begins_eat_ci(str, m_pinterprocessintercommunication->m_prx->m_strBaseChannel))
-      //   {
+//   }*/
 
-      //      if (::str::begins_eat_ci(str, ":///"))
-      //      {
+//   if (::str::begins_eat_ci(str, m_pinterprocessintercommunication->m_prx->m_strBaseChannel))
+//   {
 
-      //         if (::str::begins_eat_ci(str, "send?message="))
-      //         {
+//      if (::str::begins_eat_ci(str, ":///"))
+//      {
 
-      //            m_pinterprocessintercommunication->on_interprocess_receive(m_pinterprocessintercommunication->m_prx, purl->url_decode(str));
+//         if (::str::begins_eat_ci(str, "send?message="))
+//         {
 
-      //         }
-      //         else if (::str::begins_eat_ci(str, "send?messagebin="))
-      //         {
+//            m_pinterprocessintercommunication->on_interprocess_receive(m_pinterprocessintercommunication->m_prx, purl->url_decode(str));
 
-      //            strsize iFind = str.find(',');
+//         }
+//         else if (::str::begins_eat_ci(str, "send?messagebin="))
+//         {
 
-      //            if (iFind >= 0)
-      //            {
+//            strsize iFind = str.find(',');
 
-      //               int message = atoi(str.Left(iFind));
+//            if (iFind >= 0)
+//            {
 
-      //               memory m;
+//               int message = atoi(str.Left(iFind));
 
-      //               pbase64->decode(m, purl->url_decode(str.Mid(iFind + 1)));
+//               memory m;
 
-      //               m_pinterprocessintercommunication->on_interprocess_receive(m_pinterprocessintercommunication->m_prx, message, m.get_data(), m.get_size());
+//               pbase64->decode(m, purl->url_decode(str.Mid(iFind + 1)));
 
-      //            }
+//               m_pinterprocessintercommunication->on_interprocess_receive(m_pinterprocessintercommunication->m_prx, message, m.get_data(), m.get_size());
 
-      //         }
+//            }
 
-      //      }
+//         }
 
-      //   }
+//      }
 
+//   }
 
-      //}
-      //else if (pcreate->m_ecommand == ::command_on_agree_exit)
-      //{
 
-      //   m_bAgreeExit = _001OnAgreeExit();
+//}
+//else if (pcreate->m_ecommand == ::command_on_agree_exit)
+//{
 
-      //   m_bAgreeExitOk = true;
+//   m_bAgreeExit = _001OnAgreeExit();
 
-      //   return ::success;
+//   m_bAgreeExitOk = true;
 
-      //}
-      //else if (pcreate->m_ecommand == ::command_france_exit)
-      //{
+//   return ::success;
 
-      //   _001FranceExit();
+//}
+//else if (pcreate->m_ecommand == ::command_france_exit)
+//{
 
-      //   return ::success;
+//   _001FranceExit();
 
-      //}
-      //else
-      //{
+//   return ::success;
 
-      //   on_request(pcreate);
+//}
+//else
+//{
 
-      //}
+//   on_request(pcreate);
 
-      //return ::success;
+//}
 
-   }
+//return ::success;
 
+}
 
-   void application::on_request(::create * pcreate)
-   {
 
-      if (is_service())
-      {
+void application::on_request(::create * pcreate)
+{
 
-         ::apex::application::on_service_request(pcreate);
+if (is_service())
+{
 
-      }
-      else
-      {
+::application::on_service_request(pcreate);
 
-         __pointer(::apex::system) psystem = get_system();
+}
+else
+{
 
-         try
-         {
+__pointer(::apex::system) psystem = get_system();
 
-            do_request(pcreate);
+try
+{
 
-         }
-         // catch (not_installed * pexception)
-         // {
+do_request(pcreate);
 
-         //    ::exception_pointer esp(pexception);
+}
+// catch (not_installed * pexception)
+// {
 
-         //    psystem->on_run_exception(esp);
+//    ::exception_pointer esp(pexception);
 
-         //    __throw(exit_exception(esp->get_application(), ::exit_application));
+//    psystem->on_run_exception(esp);
 
-         // }
-         catch (const ::exception::exception & e)
-         {
+//    __throw(exit_exception(esp->get_application(), ::exit_application));
 
-            handle_exception(e);
+// }
+catch (const ::exception::exception & e)
+{
 
-         }
+handle_exception(e);
 
-         // Verry Sory for the per request overhead here for the needed information of only first request
-         if (::is_set(psystem) && psystem->m_millisAfterApplicationFirstRequest == 0)
-         {
+}
 
-            psystem->m_millisAfterApplicationFirstRequest.Now(); // cross your fingers that the first recorded is not 0, it will be cleaned up by other requests.
+// Verry Sory for the per request overhead here for the needed information of only first request
+if (::is_set(psystem) && psystem->m_millisAfterApplicationFirstRequest == 0)
+{
 
-         }
+psystem->m_millisAfterApplicationFirstRequest.Now(); // cross your fingers that the first recorded is not 0, it will be cleaned up by other requests.
 
-         try
-         {
+}
 
-            pcreate->m_pcommandline->m_varQuery.unset("document");
+try
+{
 
-         }
-         catch (...)
-         {
+pcreate->m_pcommandline->m_varQuery.unset("document");
 
-         }
+}
+catch (...)
+{
 
-         //__pointer(::apex::session) pbergedge = pcreate->m_pcommandline->m_varQuery["bergedge_callback"].cast < ::apex::session >();
-         // todobergedge
-         /*if(pbergedge != nullptr)
-         {
-         pbergedge->on_app_request_bergedge_callback(this);
-         }*/
-         pcreate->m_pcommandline->m_eventReady.SetEvent();
+}
 
-      }
+//__pointer(::apex::session) pbergedge = pcreate->m_pcommandline->m_varQuery["bergedge_callback"].cast < ::apex::session >();
+// todobergedge
+/*if(pbergedge != nullptr)
+{
+pbergedge->on_app_request_bergedge_callback(this);
+}*/
+pcreate->m_pcommandline->m_eventReady.SetEvent();
 
-   }
+}
 
+}
 
-   //::e_status application::os_message_box(::user::primitive * puiOwner, const char * pszMessage, const char * pszTitle, const ::e_message_box & emessagebox, ::callback callback)
-   //{
 
-   //   return ::os_message_box(puiOwner->get_safe_handle(), pszMessage, pszTitle, emessagebox, callback);
+//::e_status application::os_message_box(::user::primitive * puiOwner, const char * pszMessage, const char * pszTitle, const ::e_message_box & emessagebox, ::callback callback)
+//{
 
-   //}
+//   return ::os_message_box(puiOwner->get_safe_handle(), pszMessage, pszTitle, emessagebox, callback);
 
+//}
 
-   //::e_status application::ui_message_box(::user::primitive* puiOwner, const char* pszMessage, const char* pszTitle, const ::e_message_box & emessagebox, ::callback callback)
-   //{
 
-   //   if (!get_session() || !psession->userex())
-   //   {
+//::e_status application::ui_message_box(::user::primitive* puiOwner, const char* pszMessage, const char* pszTitle, const ::e_message_box & emessagebox, ::callback callback)
+//{
 
-   //      return ::error_failed;
+//   if (!get_session() || !psession->userex())
+//   {
 
-   //   }
+//      return ::error_failed;
 
-   //   return psession->userex()->ui_message_box(this, puiOwner, pszMessage, pszTitle, emessagebox, callback);
+//   }
 
-   //}
+//   return psession->userex()->ui_message_box(this, puiOwner, pszMessage, pszTitle, emessagebox, callback);
 
+//}
 
-   //::e_status application::ui_message_box_timeout(::user::primitive* puiOwner, const char* pszMessage, const char* pszTitle, const ::duration& durationTimeout, const ::e_message_box & emessagebox, ::callback callback)
-   //{
 
-   //   if (!get_session() || !psession->userex())
-   //   {
+//::e_status application::ui_message_box_timeout(::user::primitive* puiOwner, const char* pszMessage, const char* pszTitle, const ::duration& durationTimeout, const ::e_message_box & emessagebox, ::callback callback)
+//{
 
-   //      return ::error_failed;
+//   if (!get_session() || !psession->userex())
+//   {
 
-   //   }
+//      return ::error_failed;
 
-   //   return psession->userex()->ui_message_box_timeout(this, puiOwner, pszMessage, pszTitle, durationTimeout, emessagebox, callback);
+//   }
 
-   //}
+//   return psession->userex()->ui_message_box_timeout(this, puiOwner, pszMessage, pszTitle, durationTimeout, emessagebox, callback);
 
+//}
 
-   //::e_status application::message_box(::user::primitive* puiOwner, const char* pszMessage, const char* pszTitle, const ::e_message_box & emessagebox, ::callback callback)
-   //{
 
-   //   auto estatus = ui_message_box(puiOwner, pszMessage, pszTitle, emessagebox, callback);
+//::e_status application::message_box(::user::primitive* puiOwner, const char* pszMessage, const char* pszTitle, const ::e_message_box & emessagebox, ::callback callback)
+//{
 
-   //   if(!estatus)
-   //   {
+//   auto estatus = ui_message_box(puiOwner, pszMessage, pszTitle, emessagebox, callback);
 
-   //      return estatus;
+//   if(!estatus)
+//   {
 
-   //   }
+//      return estatus;
 
-   //   return os_message_box(puiOwner, pszMessage, pszTitle, emessagebox, callback);
+//   }
 
-   //}
+//   return os_message_box(puiOwner, pszMessage, pszTitle, emessagebox, callback);
 
+//}
 
-   //::e_status application::message_box_timeout(::user::primitive* puiOwner, const char* pszMessage, const char* pszTitle, const ::duration & durationTimeout, const ::e_message_box & emessagebox, ::callback callback)
-   //{
 
-   //   auto estatus = ui_message_box_timeout(puiOwner, pszMessage, pszTitle, durationTimeout, emessagebox, callback);
+//::e_status application::message_box_timeout(::user::primitive* puiOwner, const char* pszMessage, const char* pszTitle, const ::duration & durationTimeout, const ::e_message_box & emessagebox, ::callback callback)
+//{
 
-   //   if (!estatus)
-   //   {
+//   auto estatus = ui_message_box_timeout(puiOwner, pszMessage, pszTitle, durationTimeout, emessagebox, callback);
 
-   //      return estatus;
+//   if (!estatus)
+//   {
 
-   //   }
+//      return estatus;
 
-   //   return os_message_box(puiOwner, pszMessage, pszTitle, emessagebox, callback);
+//   }
 
-   //}
+//   return os_message_box(puiOwner, pszMessage, pszTitle, emessagebox, callback);
 
+//}
 
-   //::e_status application::message_box(const ::payload & payload)
-   //{
 
-   //   __pointer(::user::primitive) puiOwner;
+//::e_status application::message_box(const ::payload & payload)
+//{
 
-   //   string strMessage;
+//   __pointer(::user::primitive) puiOwner;
 
-   //   string strTitle;
+//   string strMessage;
 
-   //   u64 uFlags = 0;
+//   string strTitle;
 
-   //   ::duration durationTimeout;
+//   u64 uFlags = 0;
 
-   //   ::function_arg function;
+//   ::duration durationTimeout;
 
-   //   if (payload.get_type() != e_type_propset)
-   //   {
+//   ::function_arg function;
 
-   //      strMessage = payload;
+//   if (payload.get_type() != e_type_propset)
+//   {
 
-   //   }
-   //   else
-   //   {
+//      strMessage = payload;
 
-   //      puiOwner = payload["owner"].cast < ::user::primitive >();
-   //      strMessage = payload["message"];
-   //      strTitle = payload["title"];
-   //      uFlags = payload["flags"];
-   //      durationTimeout = payload["duration"];
-   //      function = payload["function_arg"];
+//   }
+//   else
+//   {
 
-   //   }
+//      puiOwner = payload["owner"].cast < ::user::primitive >();
+//      strMessage = payload["message"];
+//      strTitle = payload["title"];
+//      uFlags = payload["flags"];
+//      durationTimeout = payload["duration"];
+//      function = payload["function_arg"];
 
-   //   if (durationTimeout.is_null())
-   //   {
+//   }
 
-   //      return message_box(puiOwner, strMessage, strTitle, (::u32) uFlags, function);
+//   if (durationTimeout.is_null())
+//   {
 
-   //   }
-   //   else
-   //   {
+//      return message_box(puiOwner, strMessage, strTitle, (::u32) uFlags, function);
 
-   //      return message_box_timeout(puiOwner, strMessage, strTitle, durationTimeout, (::u32) uFlags, function);
+//   }
+//   else
+//   {
 
-   //   }
+//      return message_box_timeout(puiOwner, strMessage, strTitle, durationTimeout, (::u32) uFlags, function);
 
-   //}
+//   }
 
+//}
 
-   //// lang string
-   //// load string
-   //string application::lstr(const ::id & id, string strDefault)
-   //{
 
-   //   string str;
+//// lang string
+//// load string
+//string application::lstr(const ::id & id, string strDefault)
+//{
 
-   //   if (!load_string(str, id))
-   //   {
+//   string str;
 
-   //      if (strDefault.has_char())
-   //         return strDefault;
+//   if (!load_string(str, id))
+//   {
 
-   //      return "";
+//      if (strDefault.has_char())
+//         return strDefault;
 
-   //   }
+//      return "";
 
-   //   return str;
+//   }
 
-   //}
+//   return str;
 
+//}
 
 
 
-   void application::on_file_new()
-   {
 
-   }
+void application::on_file_new()
+{
 
+}
 
-   //string application::load_string(const ::id & id)
-   //{
-   //   string str;
-   //   if (!load_string(str, id))
-   //   {
-   //      return (const string &)id;
-   //   }
-   //   return str;
-   //}
 
-   //bool application::load_string(string & str, const ::id & id)
-   //{
-   //   if (!load_cached_string(str, id, true))
-   //   {
-   //      return false;
-   //   }
-   //   return true;
-   //}
+//string application::load_string(const ::id & id)
+//{
+//   string str;
+//   if (!load_string(str, id))
+//   {
+//      return (const string &)id;
+//   }
+//   return str;
+//}
 
-   /*bool application::load_cached_string(string & str, const ::id & id, bool bLoadStringTable)
-   {
+//bool application::load_string(string & str, const ::id & id)
+//{
+//   if (!load_cached_string(str, id, true))
+//   {
+//      return false;
+//   }
+//   return true;
+//}
 
-      ::xml::document doc;
+/*bool application::load_cached_string(string & str, const ::id & id, bool bLoadStringTable)
+{
 
-      if (!doc.load(id))
-      {
+::xml::document doc;
 
-         if (load_cached_string_by_id(str, id, bLoadStringTable))
-         {
+if (!doc.load(id))
+{
 
-            return true;
+if (load_cached_string_by_id(str, id, bLoadStringTable))
+{
 
-         }
+return true;
 
-      }
+}
 
-      if (doc.get_name() == "string")
-      {
+}
 
-         string strId = doc.attribute("id");
+if (doc.get_name() == "string")
+{
 
-         if (load_cached_string_by_id(str, strId, bLoadStringTable))
-         {
+string strId = doc.attribute("id");
 
-            return true;
-         }
+if (load_cached_string_by_id(str, strId, bLoadStringTable))
+{
 
-         str = doc.get_value();
+return true;
+}
 
-         return true;
+str = doc.get_value();
 
-      }
+return true;
 
-      return false;
+}
 
-   }*/
+return false;
 
+}*/
 
-   bool application::load_cached_string_by_id(string & str, const ::id & id, bool bLoadStringTable)
-   {
 
-      string strId(id.str());
+bool application::load_cached_string_by_id(string & str, const ::id & id, bool bLoadStringTable)
+{
 
-      string strTable;
+string strId(id.str());
 
-      string strString;
+string strTable;
 
-      __pointer(string_to_string) pmap;
+string strString;
 
-      index iFind = 0;
+__pointer(string_to_string) pmap;
 
-      if ((iFind = strId.find(':')) <= 0)
-      {
+index iFind = 0;
 
-         strTable = "";
+if ((iFind = strId.find(':')) <= 0)
+{
 
-         strString = strId;
+strTable = "";
 
-      }
-      else
-      {
+strString = strId;
 
-         strTable = strId.Mid(0, iFind);
+}
+else
+{
 
-         strString = strId.Mid(iFind + 1);
+strTable = strId.Mid(0, iFind);
 
-      }
+strString = strId.Mid(iFind + 1);
 
-      synchronous_lock synchronouslock(&m_mutexStr);
+}
 
-      if (m_stringtableStd.lookup(strTable, pmap))
-      {
+synchronous_lock synchronouslock(&m_mutexStr);
 
-         if (pmap->lookup(strString, str))
-         {
+if (m_stringtableStd.lookup(strTable, pmap))
+{
 
-            return true;
+if (pmap->lookup(strString, str))
+{
 
-         }
+return true;
 
-      }
-      else if (m_stringtable.lookup(strTable, pmap))
-      {
+}
 
-         if (pmap->lookup(strString, str))
-         {
+}
+else if (m_stringtable.lookup(strTable, pmap))
+{
 
-            return true;
+if (pmap->lookup(strString, str))
+{
 
-         }
+return true;
 
-      }
-      else if (bLoadStringTable)
-      {
+}
 
-         synchronouslock.unlock();
+}
+else if (bLoadStringTable)
+{
 
-         load_string_table(strTable, "");
+synchronouslock.unlock();
 
-         return load_cached_string_by_id(str, id, false);
+load_string_table(strTable, "");
 
-      }
+return load_cached_string_by_id(str, id, false);
 
-      return false;
+}
 
-   }
+return false;
 
+}
 
-   //void application::load_string_table(const string & pszApp, const string & pszId)
-   //{
 
-   //}
+//void application::load_string_table(const string & pszApp, const string & pszId)
+//{
 
+//}
 
 
 
-   void application::load_string_table()
-   {
-      load_string_table("", "");
-   }
 
+void application::load_string_table()
+{
+load_string_table("", "");
+}
 
 
 
 
-   //object * application::alloc(::type info)
-   //{
 
-   //   return psystem->alloc(this, info);
+//object * application::alloc(::type info)
+//{
 
-   //}
+//   return psystem->alloc(this, info);
 
+//}
 
-   //object * application::alloc(const  id & idType)
-   //{
 
-   //   return psystem->alloc(this, idType);
+//object * application::alloc(const  id & idType)
+//{
 
-   //}
+//   return psystem->alloc(this, idType);
 
+//}
 
-   bool application::is_system() const
-   {
 
-      return false;
+bool application::is_system() const
+{
 
-   }
+return false;
 
+}
 
-   bool application::is_session() const
-   {
 
-      return false;
+bool application::is_session() const
+{
 
-   }
+return false;
 
+}
 
-   bool application::is_service() const
-   {
 
-      return false;
+bool application::is_service() const
+{
 
-   }
+return false;
 
+}
 
-   bool application::is_user_service() const
-   {
 
-      bool bIsUserService = true;
+bool application::is_user_service() const
+{
 
-      bool bIsService = is_service();
+bool bIsUserService = true;
 
-      return bIsUserService && bIsService;
+bool bIsService = is_service();
 
-   }
+return bIsUserService && bIsService;
 
+}
 
 
-   ::file::path command_find_path(const char * pszCommand)
-   {
+
+::file::path command_find_path(const char * pszCommand)
+{
 
 #ifdef _UWP
 
-      return "";
+return "";
 
 #else
 
-      string strPath = getenv("PATH");
+string strPath = getenv("PATH");
 
-      string_array straPath;
+string_array straPath;
 
-      straPath.explode(":", strPath);
+straPath.explode(":", strPath);
 
-      for (auto & str : straPath)
-      {
+for (auto & str : straPath)
+{
 
-         ::file::path path;
+::file::path path;
 
-         path = str;
+path = str;
 
-         path /= pszCommand;
+path /= pszCommand;
 
-         if (file_exists(path))
-         {
+if (file_exists(path))
+{
 
-            return path;
+return path;
 
-         }
+}
 
-      }
+}
 
-      return pszCommand;
+return pszCommand;
 
 #endif
 
-   }
+}
 // #ifdef WINDOWS_DESKTOP
 
 
@@ -1335,67 +1335,67 @@ namespace apex
 
 
 
-   //::file::path application::defer_process_path(::file::path path)
-   //{
+//::file::path application::defer_process_path(::file::path path)
+//{
 
-   //   return psystem->defer_process_path(path, this);
+//   return psystem->defer_process_path(path, this);
 
-   //}
-
-
-   //::file::path application::full_process_path(::file::path path)
-   //{
-
-   //   if (!(path & ::file::e_flag_dont_resolve_alias))
-   //   {
-
-   //      path |= ::file::e_flag_resolve_alias;
-
-   //   }
-
-   //   return psystem->full_process_path(path, this);
-
-   //}
+//}
 
 
+//::file::path application::full_process_path(::file::path path)
+//{
+
+//   if (!(path & ::file::e_flag_dont_resolve_alias))
+//   {
+
+//      path |= ::file::e_flag_resolve_alias;
+
+//   }
+
+//   return psystem->full_process_path(path, this);
+
+//}
 
 
-   //void application::sync_open_profile_link(string strUrl, string strProfile, string strTarget)
-   //{
-
-   //   browser(strUrl, "", strProfile, strTarget);
-
-   //}
 
 
-   //bool application::open_link(string strLink, string strProfile, string strTarget)
-   //{
+//void application::sync_open_profile_link(string strUrl, string strProfile, string strTarget)
+//{
 
-   //   if (is_system())
-   //   {
+//   browser(strUrl, "", strProfile, strTarget);
 
-   //      if (strLink.begins_ci("mailto:"))
-   //      {
+//}
 
-   //         return m_pcontext->m_papexcontext->os().file_open(this, strLink);
 
-   //      }
+//bool application::open_link(string strLink, string strProfile, string strTarget)
+//{
 
-   //      open_profile_link(strLink, strProfile, strTarget);
+//   if (is_system())
+//   {
 
-   //      return true;
+//      if (strLink.begins_ci("mailto:"))
+//      {
 
-   //   }
-   //   else
-   //   {
+//         return m_pcontext->m_papexcontext->os().file_open(this, strLink);
 
-   //      return psession->open_link(strLink, strProfile, strTarget);
+//      }
 
-   //   }
+//      open_profile_link(strLink, strProfile, strTarget);
 
-   //   return false;
+//      return true;
 
-   //}
+//   }
+//   else
+//   {
+
+//      return psession->open_link(strLink, strProfile, strTarget);
+
+//   }
+
+//   return false;
+
+//}
 
 
 //#ifdef WINDOWS
@@ -1412,34 +1412,34 @@ namespace apex
 //#endif
 
 
-   bool application::_001OnDDECommand(const char * pcsz)
+bool application::_001OnDDECommand(const char * pcsz)
 
-   {
+{
 
-      ::exception::throw_interface_only();
+::exception::throw_interface_only();
 
-      return false;
+return false;
 
-   }
-
-
-
-   /*::user::document *  application::_001OpenDocumentFile(::payload varFile)
-   {
-
-      ::exception::throw_interface_only();
-
-      return nullptr;
-
-   }*/
+}
 
 
-   //void application::_001OnFileNew(::message::message * pmessage)
-   //{
 
-   //   ::exception::throw_interface_only();
+/*::user::document *  application::_001OpenDocumentFile(::payload varFile)
+{
 
-   //}
+::exception::throw_interface_only();
+
+return nullptr;
+
+}*/
+
+
+//void application::_001OnFileNew(::message::message * pmessage)
+//{
+
+//   ::exception::throw_interface_only();
+
+//}
 
 
 //bool application::update_module_paths()
@@ -1464,14 +1464,12 @@ namespace apex
 
 
 
-   //void application::_001CloseApplication()
-   //{
+//void application::_001CloseApplication()
+//{
 
-   //   __throw(todo);
+//   __throw(todo);
 
-   //}
-
-
+//}
 
 
 
@@ -1482,12 +1480,14 @@ namespace apex
 
 
 
-   //void application::DoWaitCursor(i32 nCode) // 0 => restore, 1=> begin, -1=> end
-   //{
 
-   //   UNREFERENCED_PARAMETER(nCode);
 
-   //}
+//void application::DoWaitCursor(i32 nCode) // 0 => restore, 1=> begin, -1=> end
+//{
+
+//   UNREFERENCED_PARAMETER(nCode);
+
+//}
 
 
 //   void application::show_wait_cursor(bool bShow)
@@ -1513,63 +1513,63 @@ namespace apex
 
 
 
-   ::e_status application::get_temp_file_name_template(string & strRet, const char * lpszName, const char * pszExtension, const char * pszTemplate)
-   {
+::e_status application::get_temp_file_name_template(string & strRet, const char * lpszName, const char * pszExtension, const char * pszTemplate)
+{
 
-      __throw(error_not_implemented);
+__throw(error_not_implemented);
 
-      return false;
+return false;
 
-   }
-
-
-   ::e_status application::get_temp_file_name(string & strRet, const char * lpszName, const char * pszExtension)
-   {
-
-      return get_temp_file_name_template(strRet, lpszName, pszExtension, nullptr);
-
-   }
+}
 
 
-   ::e_status application::france_exit()
-   {
+::e_status application::get_temp_file_name(string & strRet, const char * lpszName, const char * pszExtension)
+{
 
-      _001TryCloseApplication();
+return get_temp_file_name_template(strRet, lpszName, pszExtension, nullptr);
 
-      //return finish();
-
-      return ::success;
-
-   }
+}
 
 
-   ::e_status application::process_exception(const ::exception::exception & e)
-   {
+::e_status application::france_exit()
+{
 
-      return ::thread::process_exception(e);
+_001TryCloseApplication();
 
-   }
+//return finish();
 
+return ::success;
 
-   //bool application::final_handle_exception(const ::exception::exception & e)
-   //{
-
-   //   UNREFERENCED_PARAMETER(pe);
-
-   //   //linux      exit(-1);
-
-   //   if (!is_system())
-   //   {
-
-   //      // get_application() may be it self, it is ok...
-   //      if (psystem->final_handle_exception(pe))
-   //         return true;
+}
 
 
-   //   }
+::e_status application::process_exception(const ::exception::exception & e)
+{
 
-   //   return false;
-   //}
+return ::thread::process_exception(e);
+
+}
+
+
+//bool application::final_handle_exception(const ::exception::exception & e)
+//{
+
+//   UNREFERENCED_PARAMETER(pe);
+
+//   //linux      exit(-1);
+
+//   if (!is_system())
+//   {
+
+//      // get_application() may be it self, it is ok...
+//      if (psystem->final_handle_exception(pe))
+//         return true;
+
+
+//   }
+
+//   return false;
+//}
 
 
 //   ::e_status     application::main()
@@ -1620,90 +1620,90 @@ namespace apex
 //   }
 
 
-   ::e_status application::init_thread()
-   {
+::e_status application::init_thread()
+{
 
-      try
-      {
+try
+{
 
-         if (!pre_run())
-         {
+if (!pre_run())
+{
 
-            return false;
+return false;
 
-         }
+}
 
-      }
-      catch (const ::exception::exception & e)
-      {
+}
+catch (const ::exception::exception & e)
+{
 
-         handle_exception(e);
+handle_exception(e);
 
-         return false;
+return false;
 
-      }
-      catch (...)
-      {
+}
+catch (...)
+{
 
-         return false;
+return false;
 
-      }
+}
 
-      return true;
+return true;
 
-   }
-
-
-   void application::term_thread()
-   {
-
-      INFO("apex::application::term_thread");
-
-      m_millisHeartBeat.Now();
-
-      try
-      {
-
-         pos_run();
-
-      }
-      catch (...)
-      {
-
-      }
-
-      ::thread::term_thread();
-
-   }
+}
 
 
-   ::e_status application::pre_run()
-   {
+void application::term_thread()
+{
 
-      INFO("apex::application::pre_run");
+INFO("apex::application::term_thread");
 
-      try
-      {
+m_millisHeartBeat.Now();
 
-         m_millisHeartBeat.Now();
+try
+{
 
-         if(!application_pre_run())
-         {
+pos_run();
 
-            m_bReady = true;
+}
+catch (...)
+{
 
-            return false;
+}
 
-         }
+::thread::term_thread();
 
-         //    if(!check_install())
-         //    {
+}
 
-         //       m_bReady = true;
 
-         //       return false;
+::e_status application::pre_run()
+{
 
-         //    }
+INFO("apex::application::pre_run");
+
+try
+{
+
+m_millisHeartBeat.Now();
+
+if(!application_pre_run())
+{
+
+m_bReady = true;
+
+return false;
+
+}
+
+//    if(!check_install())
+//    {
+
+//       m_bReady = true;
+
+//       return false;
+
+//    }
 
 //         if(!is_system() && !is_session())
 //         {
@@ -1716,51 +1716,51 @@ namespace apex
 //
 //         }
 
-         //xxdebug_box("pre_run 1 ok", "pre_run 1 ok", e_message_box_icon_information);
+//xxdebug_box("pre_run 1 ok", "pre_run 1 ok", e_message_box_icon_information);
 
-         auto estatus = on_before_launching();
+auto estatus = on_before_launching();
 
-         if(!estatus)
-         {
+if(!estatus)
+{
 
-            m_bReady = true;
+m_bReady = true;
 
-            return estatus;
+return estatus;
 
-         }
+}
 
-         m_millisHeartBeat.Now();
+m_millisHeartBeat.Now();
 
-         if (!os_native_bergedge_start())
-         {
+if (!os_native_bergedge_start())
+{
 
-            m_bReady = true;
+m_bReady = true;
 
-            return false;
+return false;
 
-         }
+}
 
-         INFO("apex::application::pre_run success");
+INFO("apex::application::pre_run success");
 
-         return true;
+return true;
 
-      }
-      catch (const ::exception::exception & e)
-      {
+}
+catch (const ::exception::exception & e)
+{
 
-         handle_exception(e);
+handle_exception(e);
 
-      }
-      catch (...)
-      {
+}
+catch (...)
+{
 
-         INFO("apex::application::pre_run exception.4");
+INFO("apex::application::pre_run exception.4");
 
-      }
+}
 
-      return false;
+return false;
 
-   }
+}
 
 
 //   ::e_status application::on_run()
@@ -1885,149 +1885,149 @@ namespace apex
 //   }
 
 
-   void application::on_pos_run_thread()
-   {
+void application::on_pos_run_thread()
+{
 
-      ::thread::on_pos_run_thread();
+::thread::on_pos_run_thread();
 
-      synchronous_lock synchronouslock(mutex());
+synchronous_lock synchronouslock(mutex());
 
-      //try
-      //{
+//try
+//{
 
-      //   for (auto & papp : m_applicationa)
-      //   {
+//   for (auto & papp : m_applicationa)
+//   {
 
-      //      try
-      //      {
+//      try
+//      {
 
-      //         if (papp != this && papp->get_application() == this)
-      //         {
+//         if (papp != this && papp->get_application() == this)
+//         {
 
-      //            set_object(nullptr);
+//            set_object(nullptr);
 
-      //         }
+//         }
 
-      //         if (is_session())
-      //         {
+//         if (is_session())
+//         {
 
-      //            ::apex::session * psessionThis = dynamic_cast <::apex::session *>(this);
+//            ::apex::session * psessionThis = dynamic_cast <::apex::session *>(this);
 
-      //            if (papp->get_session() == psessionThis && papp != this)
-      //            {
+//            if (papp->get_session() == psessionThis && papp != this)
+//            {
 
-      //               papp->get_session() = nullptr;
+//               papp->get_session() = nullptr;
 
-      //            }
+//            }
 
-      //         }
+//         }
 
-      //         if (is_system())
-      //         {
+//         if (is_system())
+//         {
 
-      //            ::apex::system * psystemThis = dynamic_cast <::apex::system *>(this);
+//            ::apex::system * psystemThis = dynamic_cast <::apex::system *>(this);
 
-      //            if (papp->psystem == psystemThis && papp != this)
-      //            {
+//            if (papp->psystem == psystemThis && papp != this)
+//            {
 
-      //               papp->psystem = nullptr;
+//               papp->psystem = nullptr;
 
-      //            }
+//            }
 
-      //         }
+//         }
 
-      //      }
-      //      catch (...)
-      //      {
+//      }
+//      catch (...)
+//      {
 
-      //      }
+//      }
 
-      //   }
+//   }
 
-      //}
-      //catch (...)
-      //{
+//}
+//catch (...)
+//{
 
-      //}
+//}
 
-   }
-
-
-   void application::pos_run()
-   {
-
-      INFO("apex::application::pos_run");
-
-      try
-      {
-
-         m_millisHeartBeat.Now();
-
-         application_pos_run();
-
-         //xxdebug_box("pre_run 1 ok", "pre_run 1 ok", e_message_box_icon_information);
-
-      }
-      catch (...)
-      {
-
-         INFO("apex::application::pos_run exception.4");
-
-      }
-
-   }
+}
 
 
-   ::e_status application::init_instance()
-   {
+void application::pos_run()
+{
 
-      //xxdebug_box("check_exclusive", "check_exclusive", e_message_box_icon_information);
+INFO("apex::application::pos_run");
 
-      if (m_bInterprocessIntercommunication)
-      {
+try
+{
 
-         try
-         {
+m_millisHeartBeat.Now();
 
-            __raw_compose(m_pinterprocessintercommunication, create_interprocess_intercommunication() OBJ_REF_DBG_COMMA_THIS_NOTE("::application::init_instance"));
+application_pos_run();
 
-         }
-         catch (...)
-         {
+//xxdebug_box("pre_run 1 ok", "pre_run 1 ok", e_message_box_icon_information);
 
-         }
+}
+catch (...)
+{
 
-         if (!m_pinterprocessintercommunication)
-         {
+INFO("apex::application::pos_run exception.4");
 
-            return ::error_failed;
+}
 
-         }
+}
 
-         auto estatus = m_pinterprocessintercommunication->initialize_interprocess_communication(this, m_strAppId);
 
-         if (!estatus)
-         {
+::e_status application::init_instance()
+{
 
-            return estatus;
+//xxdebug_box("check_exclusive", "check_exclusive", e_message_box_icon_information);
 
-         }
+if (m_bInterprocessIntercommunication)
+{
 
-      }
+try
+{
 
-      INFO("apex::application::init_application .1");
+__raw_compose(m_pinterprocessintercommunication, create_interprocess_intercommunication() OBJ_REF_DBG_COMMA_THIS_NOTE("::application::init_instance"));
 
-      bool bHandled = false;
+}
+catch (...)
+{
 
-      if (!check_exclusive(bHandled))
-      {
+}
 
-         if (!bHandled &&
-            (!has_property("install")
-            && !has_property("uninstall")))
-         {
+if (!m_pinterprocessintercommunication)
+{
 
-            duration durationTimeout;
+return ::error_failed;
+
+}
+
+auto estatus = m_pinterprocessintercommunication->initialize_interprocess_communication(this, m_strAppId);
+
+if (!estatus)
+{
+
+return estatus;
+
+}
+
+}
+
+INFO("apex::application::init_application .1");
+
+bool bHandled = false;
+
+if (!check_exclusive(bHandled))
+{
+
+if (!bHandled &&
+(!has_property("install")
+&& !has_property("uninstall")))
+{
+
+duration durationTimeout;
 
 //#ifdef __DEBUG
 //
@@ -2035,3035 +2035,3035 @@ namespace apex
 //
 //#else //__DEBUG
 
-            durationTimeout = 5_s;
+durationTimeout = 5_s;
 
 //#endif //!__DEBUG
 
-            string strMessage;
+string strMessage;
 
-            strMessage = "Another instance of \"" + m_strAppName + "\" is already running (and some exclusivity policy is active).";
+strMessage = "Another instance of \"" + m_strAppName + "\" is already running (and some exclusivity policy is active).";
 
 //          payload["prefix_html"] = "<img src=\"matter://system/exclusive.png\" width=80 height=80 style=\"display:block;\"><br/><br/>";
 
-            //message_box(strMessage, m_strAppName, durationTimeout, e_message_box_icon_asterisk);
+//message_box(strMessage, m_strAppName, durationTimeout, e_message_box_icon_asterisk);
 
-            message_box(strMessage, m_strAppName, e_message_box_icon_asterisk);
+message_box(strMessage, m_strAppName, e_message_box_icon_asterisk);
 
-            INFO("apex::application::init_application exit");
+INFO("apex::application::init_application exit");
 
-            __throw(exit_exception(this));
+__throw(exit_exception(this));
 
-         }
+}
 
-      }
+}
 
-      INFO("apex::application::init_application .2");
+INFO("apex::application::init_application .2");
 
-      if (m_pinterprocessintercommunication)
+if (m_pinterprocessintercommunication)
+{
+
+m_pinterprocessintercommunication->on_new_instance(m_pcontext->m_papexcontext->file().module(), m_pcontext->m_papexcontext->os().get_pid());
+
+}
+
+//xxdebug_box("check_exclusive ok", "check_exclusive ok", e_message_box_icon_information);
+
+//if (m_bInitializeDataCentral)
+//{
+
+
+//   ::file::path pathDatabase;
+
+//   ::file::path pathFolder = m_pcontext->m_papexcontext->dir().appdata();
+
+//   if (is_system())
+//   {
+
+//      pathDatabase = pathFolder / "system.sqlite";
+
+//   }
+//   else if (is_session())
+//   {
+
+//      pathDatabase = pathFolder / "session.sqlite";
+
+//   }
+//   else
+//   {
+
+//      pathDatabase = pathFolder / "app.sqlite";
+
+//   }
+
+//   //__throw(todo("database"));
+
+//   //auto estatus = m_psimpledb->initialize_simpledb_server(this, pathDatabase);
+
+//   //if (!estatus)
+//   //{
+
+//   //   m_result.add(estatus);
+
+//   //   return false;
+
+//   //}
+
+//   //set_data_server(m_psimpledb);
+
+//}
+
+//m_bAxisInitializeInstanceResult = true;
+
+INFO("axis::application::init_instance success");
+
+auto estatus = create_impact_system();
+
+if (failed(estatus))
+{
+
+return false;
+
+}
+
+
+if (!is_system() && !is_session())
+{
+
+string str;
+// if system locale has changed (compared to last recorded one by apex)
+// use the system locale
+if (data_get({ "system_locale", true }, str))
+{
+
+if (str.has_char())
+{
+
+   if (str != get_locale())
+   {
+
+      try
       {
 
-         m_pinterprocessintercommunication->on_new_instance(m_pcontext->m_papexcontext->file().module(), m_pcontext->m_papexcontext->os().get_pid());
+         data_set({ "system_locale", true }, get_locale());
+
+         data_set({ "locale", true }, get_locale());
 
       }
-
-      //xxdebug_box("check_exclusive ok", "check_exclusive ok", e_message_box_icon_information);
-
-      //if (m_bInitializeDataCentral)
-      //{
-
-
-      //   ::file::path pathDatabase;
-
-      //   ::file::path pathFolder = m_pcontext->m_papexcontext->dir().appdata();
-
-      //   if (is_system())
-      //   {
-
-      //      pathDatabase = pathFolder / "system.sqlite";
-
-      //   }
-      //   else if (is_session())
-      //   {
-
-      //      pathDatabase = pathFolder / "session.sqlite";
-
-      //   }
-      //   else
-      //   {
-
-      //      pathDatabase = pathFolder / "app.sqlite";
-
-      //   }
-
-      //   //__throw(todo("database"));
-
-      //   //auto estatus = m_psimpledb->initialize_simpledb_server(this, pathDatabase);
-
-      //   //if (!estatus)
-      //   //{
-
-      //   //   m_result.add(estatus);
-
-      //   //   return false;
-
-      //   //}
-
-      //   //set_data_server(m_psimpledb);
-
-      //}
-
-      //m_bAxisInitializeInstanceResult = true;
-
-      INFO("axis::application::init_instance success");
-
-      auto estatus = create_impact_system();
-
-      if (failed(estatus))
+      catch (...)
       {
 
-         return false;
-
       }
-
-
-      if (!is_system() && !is_session())
-      {
-
-         string str;
-         // if system locale has changed (compared to last recorded one by apex)
-         // use the system locale
-         if (data_get({ "system_locale", true }, str))
-         {
-
-            if (str.has_char())
-            {
-
-               if (str != get_locale())
-               {
-
-                  try
-                  {
-
-                     data_set({ "system_locale", true }, get_locale());
-
-                     data_set({ "locale", true }, get_locale());
-
-                  }
-                  catch (...)
-                  {
-
-                  }
-
-               }
-
-            }
-
-         }
-         else
-         {
-
-            data_set({ "system_locale", true }, get_locale());
-
-         }
-
-         if (payload("locale").get_count() > 0)
-         {
-
-            str = payload("locale").stra()[0];
-
-            data_set({ "system_locale", true }, str);
-
-            data_set({ "locale", true }, str);
-
-            set_locale(str, ::e_source_database);
-
-         }
-         else if (payload("lang").get_count() > 0)
-         {
-
-            str = payload("lang").stra()[0];
-
-            data_set({ "system_locale", true }, str);
-
-            data_set({ "locale", true }, str);
-
-            set_locale(str, ::e_source_database);
-
-         }
-         else if (data_get({ "locale", true }, str))
-         {
-
-            if (str.has_char())
-            {
-
-               set_locale(str, ::e_source_database);
-
-            }
-
-         }
-         // if system schema has changed (compared to last recorded one by apex)
-         // use the system schema
-         if (data_get({ "system_schema", true }, str))
-         {
-
-            if (str.has_char())
-            {
-
-               if (str != get_schema())
-               {
-
-                  try
-                  {
-
-                     data_set({ "system_schema", true }, get_schema());
-
-                     data_set({ "schema", true }, get_schema());
-
-                  }
-                  catch (...)
-                  {
-
-                  }
-
-               }
-
-            }
-
-         }
-         else
-         {
-
-            data_set({ "system_schema", true }, get_schema());
-
-         }
-
-         if (payload("schema").get_count() > 0)
-         {
-
-            str = payload("schema").stra()[0];
-
-            data_set({ "system_schema", true }, str);
-
-            data_set({ "schema", true }, str);
-
-            set_schema(str, ::e_source_database);
-
-         }
-         else if (data_get({ "schema", true }, str))
-         {
-
-            if (str.has_char())
-            {
-
-               set_schema(str, ::e_source_database);
-
-            }
-
-         }
-
-         data_pulse_change({ "ca2.savings", true }, nullptr);
-
-         __pointer(::apex::system) psystem = get_system();
-
-         psystem->appa_load_string_table();
-
-      }
-      if (!is_system() && !is_session())
-      {
-
-         string str;
-         // if system locale has changed (compared to last recorded one by apex)
-         // use the system locale
-         if (data_get({ "system_locale", true }, str))
-         {
-
-            if (str.has_char())
-            {
-
-               if (str != get_locale())
-               {
-
-                  try
-                  {
-
-                     data_set({ "system_locale", true }, get_locale());
-
-                     data_set({ "locale", true }, get_locale());
-
-                  }
-                  catch (...)
-                  {
-
-                  }
-
-               }
-
-            }
-
-         }
-         else
-         {
-
-            data_set({ "system_locale", true }, get_locale());
-
-         }
-
-         if (payload("locale").get_count() > 0)
-         {
-
-            str = payload("locale").stra()[0];
-
-            data_set({ "system_locale", true }, str);
-
-            data_set({ "locale", true }, str);
-
-            set_locale(str, ::e_source_database);
-
-         }
-         else if (payload("lang").get_count() > 0)
-         {
-
-            str = payload("lang").stra()[0];
-
-            data_set({ "system_locale", true }, str);
-
-            data_set({ "locale", true }, str);
-
-            set_locale(str, ::e_source_database);
-
-         }
-         else if (data_get({ "locale", true }, str))
-         {
-
-            if (str.has_char())
-            {
-
-               set_locale(str, ::e_source_database);
-
-            }
-
-         }
-         // if system schema has changed (compared to last recorded one by apex)
-         // use the system schema
-         if (data_get({ "system_schema", true }, str))
-         {
-
-            if (str.has_char())
-            {
-
-               if (str != get_schema())
-               {
-
-                  try
-                  {
-
-                     data_set({ "system_schema", true }, get_schema());
-
-                     data_set({ "schema", true }, get_schema());
-
-                  }
-                  catch (...)
-                  {
-
-                  }
-
-               }
-
-            }
-
-         }
-         else
-         {
-
-            data_set({ "system_schema", true }, get_schema());
-
-         }
-
-         if (payload("schema").get_count() > 0)
-         {
-
-            str = payload("schema").stra()[0];
-
-            data_set({ "system_schema", true }, str);
-
-            data_set({ "schema", true }, str);
-
-            set_schema(str, ::e_source_database);
-
-         }
-         else if (data_get({ "schema", true }, str))
-         {
-
-            if (str.has_char())
-            {
-
-               set_schema(str, ::e_source_database);
-
-            }
-
-         }
-
-         data_pulse_change({ "ca2.savings", true }, nullptr);
-
-         __pointer(::apex::system) psystem = get_system();
-
-         psystem->appa_load_string_table();
-
-      }
-      return true;
 
    }
 
+}
 
-   void application::term_instance()
+}
+else
+{
+
+data_set({ "system_locale", true }, get_locale());
+
+}
+
+if (payload("locale").get_count() > 0)
+{
+
+str = payload("locale").stra()[0];
+
+data_set({ "system_locale", true }, str);
+
+data_set({ "locale", true }, str);
+
+set_locale(str, ::e_source_database);
+
+}
+else if (payload("lang").get_count() > 0)
+{
+
+str = payload("lang").stra()[0];
+
+data_set({ "system_locale", true }, str);
+
+data_set({ "locale", true }, str);
+
+set_locale(str, ::e_source_database);
+
+}
+else if (data_get({ "locale", true }, str))
+{
+
+if (str.has_char())
+{
+
+   set_locale(str, ::e_source_database);
+
+}
+
+}
+// if system schema has changed (compared to last recorded one by apex)
+// use the system schema
+if (data_get({ "system_schema", true }, str))
+{
+
+if (str.has_char())
+{
+
+   if (str != get_schema())
    {
 
+      try
+      {
+
+         data_set({ "system_schema", true }, get_schema());
+
+         data_set({ "schema", true }, get_schema());
+
+      }
+      catch (...)
+      {
+
+      }
 
    }
 
+}
 
-   void application::TermApplication()
+}
+else
+{
+
+data_set({ "system_schema", true }, get_schema());
+
+}
+
+if (payload("schema").get_count() > 0)
+{
+
+str = payload("schema").stra()[0];
+
+data_set({ "system_schema", true }, str);
+
+data_set({ "schema", true }, str);
+
+set_schema(str, ::e_source_database);
+
+}
+else if (data_get({ "schema", true }, str))
+{
+
+if (str.has_char())
+{
+
+   set_schema(str, ::e_source_database);
+
+}
+
+}
+
+data_pulse_change({ "ca2.savings", true }, nullptr);
+
+__pointer(::apex::system) psystem = get_system();
+
+psystem->appa_load_string_table();
+
+}
+if (!is_system() && !is_session())
+{
+
+string str;
+// if system locale has changed (compared to last recorded one by apex)
+// use the system locale
+if (data_get({ "system_locale", true }, str))
+{
+
+if (str.has_char())
+{
+
+   if (str != get_locale())
    {
 
+      try
+      {
+
+         data_set({ "system_locale", true }, get_locale());
+
+         data_set({ "locale", true }, get_locale());
+
+      }
+      catch (...)
+      {
+
+      }
 
    }
 
+}
 
-   ::e_status application::application_pre_run()
+}
+else
+{
+
+data_set({ "system_locale", true }, get_locale());
+
+}
+
+if (payload("locale").get_count() > 0)
+{
+
+str = payload("locale").stra()[0];
+
+data_set({ "system_locale", true }, str);
+
+data_set({ "locale", true }, str);
+
+set_locale(str, ::e_source_database);
+
+}
+else if (payload("lang").get_count() > 0)
+{
+
+str = payload("lang").stra()[0];
+
+data_set({ "system_locale", true }, str);
+
+data_set({ "locale", true }, str);
+
+set_locale(str, ::e_source_database);
+
+}
+else if (data_get({ "locale", true }, str))
+{
+
+if (str.has_char())
+{
+
+   set_locale(str, ::e_source_database);
+
+}
+
+}
+// if system schema has changed (compared to last recorded one by apex)
+// use the system schema
+if (data_get({ "system_schema", true }, str))
+{
+
+if (str.has_char())
+{
+
+   if (str != get_schema())
    {
 
-      INFO("apex::application::application_pre_run");
+      try
+      {
+
+         data_set({ "system_schema", true }, get_schema());
+
+         data_set({ "schema", true }, get_schema());
+
+      }
+      catch (...)
+      {
+
+      }
+
+   }
+
+}
+
+}
+else
+{
+
+data_set({ "system_schema", true }, get_schema());
+
+}
+
+if (payload("schema").get_count() > 0)
+{
+
+str = payload("schema").stra()[0];
+
+data_set({ "system_schema", true }, str);
+
+data_set({ "schema", true }, str);
+
+set_schema(str, ::e_source_database);
+
+}
+else if (data_get({ "schema", true }, str))
+{
+
+if (str.has_char())
+{
+
+   set_schema(str, ::e_source_database);
+
+}
+
+}
+
+data_pulse_change({ "ca2.savings", true }, nullptr);
+
+__pointer(::apex::system) psystem = get_system();
+
+psystem->appa_load_string_table();
+
+}
+return true;
+
+}
+
+
+void application::term_instance()
+{
+
+
+}
+
+
+void application::TermApplication()
+{
+
+
+}
+
+
+::e_status application::application_pre_run()
+{
+
+INFO("apex::application::application_pre_run");
 
 #ifdef WINDOWS_DESKTOP
 
-      MSG msg;
+MSG msg;
 
-      // Create Windows Message Queue
-      ::PeekMessageA(&msg, nullptr, 0, 0xffff, 0);
+// Create Windows Message Queue
+::PeekMessageA(&msg, nullptr, 0, 0xffff, 0);
 
-      MESSAGE message;
+MESSAGE message;
 
-      __copy(message, msg);
+__copy(message, msg);
 
-      auto psystem = m_psystem->m_papexsystem;
+auto psystem = m_psystem->m_papexsystem;
 
-      if (!is_system() && is_true("SessionSynchronizedInput"))
-      {
+if (!is_system() && is_true("SessionSynchronizedInput"))
+{
 
-         ::AttachThreadInput(GetCurrentThreadId(), (u32)psystem->get_ithread(), true);
+::AttachThreadInput(GetCurrentThreadId(), (u32)psystem->get_ithread(), true);
 
-      }
+}
 
 #endif
 
-      m_millisHeartBeat.Now();
+m_millisHeartBeat.Now();
 
-      try
-      {
+try
+{
 
-         if (!InitApplication())
-         {
+if (!InitApplication())
+{
 
-            return false;
+return false;
 
-         }
+}
 
-      }
-      catch (::exit_exception * pe)
-      {
+}
+catch (::exit_exception * pe)
+{
 
-         throw pe;
+throw pe;
 
-      }
-      catch (const ::exception::exception * pe)
-      {
+}
+catch (const ::exception::exception * pe)
+{
 
-         //thisexc << 1 << m_iErrorCode;
+//thisexc << 1 << m_iErrorCode;
 
-         ::acme::del(pe);
+::acme::del(pe);
 
-         return false;
+return false;
 
-      }
-      catch (...)
-      {
+}
+catch (...)
+{
 
-         //thisexcall << 1 << m_iErrorCode;
+//thisexcall << 1 << m_iErrorCode;
 
-         return false;
+return false;
 
-      }
+}
 
-      m_millisHeartBeat.Now();
+m_millisHeartBeat.Now();
 
-      ::e_status estatus = ::success;
+::e_status estatus = ::success;
 
-      try
-      {
+try
+{
 
-         estatus = process_init();
+estatus = process_init();
 
-         if(!estatus)
-         {
+if(!estatus)
+{
 
-            return false;
+return false;
 
-         }
+}
 
-      }
-      catch (::exit_exception * pe)
-      {
+}
+catch (::exit_exception * pe)
+{
 
-         throw pe;
+throw pe;
 
-      }
-      catch (const ::exception::exception * pe)
-      {
+}
+catch (const ::exception::exception * pe)
+{
 
-         ::acme::del(pe);
+::acme::del(pe);
 
-         return false;
+return false;
 
-      }
-      catch (...)
-      {
+}
+catch (...)
+{
 
-         return false;
+return false;
 
-      }
+}
 
-      //auto psystem = m_psystem->m_papexsystem;
+//auto psystem = m_psystem->m_papexsystem;
 
 //      auto psystem = m_psystem;
 //
 //      psystem->install_progress_add_up();
 
-      m_millisHeartBeat.Now();
+m_millisHeartBeat.Now();
 
-      try
-      {
+try
+{
 
-         if (!init_application())
-         {
+if (!init_application())
+{
 
-            return false;
+return false;
 
-         }
+}
 
-      }
-      catch (const ::exception::exception & e)
-      {
+}
+catch (const ::exception::exception & e)
+{
 
-         handle_exception(e);
+handle_exception(e);
 
-         return false;
+return false;
 
-      }
-      catch (...)
-      {
+}
+catch (...)
+{
 
-         return false;
+return false;
 
-      }
+}
 
-      m_millisHeartBeat.Now();
+m_millisHeartBeat.Now();
 
-      try
-      {
+try
+{
 
-         auto psystem = m_psystem;
+auto psystem = m_psystem;
 
-         //if (!is_system() && !is_session())
-         {
+//if (!is_system() && !is_session())
+{
 
-            if (psystem->is_true("uninstall"))
-            {
+if (psystem->is_true("uninstall"))
+{
 
-               do_uninstall();
+   do_uninstall();
 
-               return false;
+   return false;
 
-            }
-            else if (psystem->is_true("install"))
-            {
+}
+else if (psystem->is_true("install"))
+{
 
-               do_install();
+   do_install();
 
-               return false;
+   return false;
 
-            }
+}
 
-         }
+}
 
-         if (!init_instance())
-         {
+if (!init_instance())
+{
 
-            return false;
+return false;
 
-         }
+}
 
-         on_update_matter_locator();
+on_update_matter_locator();
 
-      }
-      catch (const ::exit_exception & exception)
-      {
+}
+catch (const ::exit_exception & exception)
+{
 
-         __rethrow(exception);
+__rethrow(exception);
 
-      }
-      catch(const ::exception::exception & e)
-      {
+}
+catch(const ::exception::exception & e)
+{
 
-         m_result.add(e);
+m_result.add(e);
 
-         return m_result.estatus();
+return m_result.estatus();
 
-      }
-      catch (...)
-      {
+}
+catch (...)
+{
 
-         return false;
+return false;
 
-      }
+}
 
-      return true;
+return true;
 
-   }
+}
 
 
-   void application::application_pos_run()
-   {
+void application::application_pos_run()
+{
 
-      try
-      {
+try
+{
 
-         //if (!is_installing() && !is_unstalling())
-         {
+//if (!is_installing() && !is_unstalling())
+{
 
-            term_instance();
+term_instance();
 
-         }
+}
 
-      }
-      catch (...)
-      {
+}
+catch (...)
+{
 
-      }
+}
 
-      try
-      {
+try
+{
 
-         term_application();
+term_application();
 
-      }
-      catch (...)
-      {
+}
+catch (...)
+{
 
-      }
+}
 
-      m_millisHeartBeat.Now();
+m_millisHeartBeat.Now();
 
-      try
-      {
+try
+{
 
-         process_term();
+process_term();
 
-      }
-      catch (...)
-      {
+}
+catch (...)
+{
 
-      }
+}
 
-      try
-      {
+try
+{
 
-         TermApplication();
+TermApplication();
 
-      }
-      catch (...)
-      {
+}
+catch (...)
+{
 
-      }
+}
 
 
 
-   }
+}
 
-   bool application::InitApplication()
-   {
+bool application::InitApplication()
+{
 
-      LoadSysPolicies();
+LoadSysPolicies();
 
-      return true;
+return true;
 
-   }
+}
 
 
 
-   bool application::do_install()
-   {
+bool application::do_install()
+{
 
-      __pointer(::apex::system) psystem = get_system();
+__pointer(::apex::system) psystem = get_system();
 
-      if (!on_install())
-      {
+if (!on_install())
+{
 
-         ::output_debug_string("Failed at on_install : " + m_strAppId + "\n\n");
+::output_debug_string("Failed at on_install : " + m_strAppId + "\n\n");
 
-         psystem->m_result.add(error_failed);
+psystem->m_result.add(error_failed);
 
-         return false;
+return false;
 
-      }
+}
 
-      string strBuild = m_strBuild;
+string strBuild = m_strBuild;
 
-      string strAppId = m_strAppId;
+string strAppId = m_strAppId;
 
-      //xxdebug_box("on_install1", strAppId, 0);
+//xxdebug_box("on_install1", strAppId, 0);
 
-      system_add_app_install(strAppId, strBuild);
+system_add_app_install(strAppId, strBuild);
 
 
-      return true;
+return true;
 
-   }
+}
 
 
-   ::e_status application::on_before_launching()
-   {
+::e_status application::on_before_launching()
+{
 
-      string strLicense = get_license_id();
+string strLicense = get_license_id();
 
-      //::payload & varTopicQuey = psystem->m_varTopicQuery;
+//::payload & varTopicQuey = psystem->m_varTopicQuery;
 
-      __pointer(::apex::system) psystem = get_system();
+__pointer(::apex::system) psystem = get_system();
 
-      bool bHasInstall = psystem->is_true("install");
+bool bHasInstall = psystem->is_true("install");
 
-      bool bHasUninstall = psystem->is_true("uninstall");
+bool bHasUninstall = psystem->is_true("uninstall");
 
-      if (!(bHasInstall || bHasUninstall)
-            && m_bLicense
-            && strLicense.has_char())
-      {
+if (!(bHasInstall || bHasUninstall)
+&& m_bLicense
+&& strLicense.has_char())
+{
 
-         if (!assert_user_logged_in())
-         {
-            return false;
-         }
+if (!assert_user_logged_in())
+{
+return false;
+}
 
-         // call application's is_licensed function
-         // because if delay is needed for authentication -
-         // or either asking for authentication -
-         // current application startup won't be
-         // exited by timeout.
+// call application's is_licensed function
+// because if delay is needed for authentication -
+// or either asking for authentication -
+// current application startup won't be
+// exited by timeout.
 
-         i32 iRetry = 1;
+i32 iRetry = 1;
 
-         auto psession = get_session();
+auto psession = get_session();
 
 retry_license:
 
-         iRetry--;
+iRetry--;
 
-         if (!psession->is_licensed(strLicense))
-         {
+if (!psession->is_licensed(strLicense))
+{
 
-            if (iRetry > 0)
-               goto retry_license;
+if (iRetry > 0)
+   goto retry_license;
 
-            return false;
+return false;
 
-         }
+}
 
-      }
+}
 
-      INFO("initial_check_directrix : ok (%s)%s\n\n", typeid(*this).name(), m_strAppId.c_str());
+INFO("initial_check_directrix : ok (%s)%s\n\n", typeid(*this).name(), m_strAppId.c_str());
 
-      return true;
+return true;
 
-   }
+}
 
 
 
-   bool application::do_uninstall()
-   {
+bool application::do_uninstall()
+{
 
-      if (!on_uninstall())
-      {
+if (!on_uninstall())
+{
 
-         return false;
+return false;
 
 //         psystem->install().erase_spa_start(m_strAppId);
 
-      }
+}
 
-      return true;
+return true;
 
-   }
+}
 
 
-   ::e_status application::on_install()
-   {
+::e_status application::on_install()
+{
 
-      if (is_service())
-      {
+if (is_service())
+{
 
-         auto estatus = enable_service();
+auto estatus = enable_service();
 
-         if (!estatus)
-         {
+if (!estatus)
+{
 
-            return estatus;
+return estatus;
 
-         }
-         return estatus;
+}
+return estatus;
 
-      }
-      else
-      {
+}
+else
+{
 
 #ifdef WINDOWS_DESKTOP
 
-         m_psystem->m_pnode->install_crash_dump_reporting(m_pcontext->m_papexcontext->file().module().name());
+m_psystem->m_pnode->install_crash_dump_reporting(m_pcontext->m_papexcontext->file().module().name());
 
 #endif
 
-      }
+}
 
-      return ::success;
+return ::success;
 
-   }
+}
 
 
-   ::e_status application::on_uninstall()
-   {
+::e_status application::on_uninstall()
+{
 
-      //bool bOk = axis::application::on_uninstall();
+//bool bOk = axis::application::on_uninstall();
 
-      bool bOk = true;
+bool bOk = true;
 
 
-      if (is_service())
-      {
+if (is_service())
+{
 
-         auto estatus = disable_service();
+auto estatus = disable_service();
 
-         if(!estatus)
-         {
+if(!estatus)
+{
 
-            return estatus;
+return estatus;
 
-         }
+}
 
-         return estatus;
+return estatus;
 
-      }
+}
 
-      return bOk;
+return bOk;
 
-   }
+}
 
-   
-   e_status application::enable_service()
-   {
 
-      auto estatus = m_psystem->m_papexsystem->os().enable_service();
+e_status application::enable_service()
+{
 
-      if (!estatus)
-      {
+auto estatus = m_psystem->m_papexsystem->os().enable_service();
 
-         return estatus;
+if (!estatus)
+{
 
-      }
+return estatus;
 
-      estatus = service_handler()->start_service();
+}
 
-      if (!estatus)
-      {
+estatus = service_handler()->start_service();
 
-         return estatus;
+if (!estatus)
+{
 
-      }
+return estatus;
 
-      return estatus;
+}
 
-   }
+return estatus;
 
+}
 
-   e_status application::disable_service()
-   {
 
-      auto estatus = service_handler()->stop_service();
+e_status application::disable_service()
+{
 
-      if (!estatus)
-      {
+auto estatus = service_handler()->stop_service();
 
-         return estatus;
+if (!estatus)
+{
 
-      }
+return estatus;
 
-      estatus = os().disable_service();
+}
 
-      if (!estatus)
-      {
+estatus = os().disable_service();
 
-         return estatus;
+if (!estatus)
+{
 
-      }
+return estatus;
 
-      return estatus;
+}
 
-   }
+return estatus;
 
+}
 
-   bool application::system_add_app_install(const char * pszId, const char * pszBuild)
-   {
 
-      // cool install
+bool application::system_add_app_install(const char * pszId, const char * pszBuild)
+{
 
-      string strBuild(pszBuild);
+// cool install
 
-      if (strBuild.is_empty())
-      {
+string strBuild(pszBuild);
 
-         strBuild = "0000-00-00 00:00:00";
+if (strBuild.is_empty())
+{
 
-      }
+strBuild = "0000-00-00 00:00:00";
 
-      __pointer(::apex::system) psystem = get_system();
+}
 
-      synchronous_lock synchronouslock(psystem->m_pmutexSystemAppData);
+__pointer(::apex::system) psystem = get_system();
 
-      string strId(pszId);
-      string strSystemLocale = psystem->m_strLocale;
-      string strSystemSchema = psystem->m_strSchema;
-      string_array straLocale;
-      string_array straSchema;
+synchronous_lock synchronouslock(psystem->m_pmutexSystemAppData);
 
-      straLocale = payload("locale");
-      straSchema = payload("schema");
+string strId(pszId);
+string strSystemLocale = psystem->m_strLocale;
+string strSystemSchema = psystem->m_strSchema;
+string_array straLocale;
+string_array straSchema;
 
-      ::file::path pathExe = m_psystem->m_pacmepath->app_module();
+straLocale = payload("locale");
+straSchema = payload("schema");
 
-      straLocale.insert_at(0, strSystemLocale);
-      straSchema.insert_at(0, strSystemSchema);
-      straLocale.insert_at(0, "_std");
-      straSchema.insert_at(0, "_std");
+::file::path pathExe = m_psystem->m_pacmepath->app_module();
 
+straLocale.insert_at(0, strSystemLocale);
+straSchema.insert_at(0, strSystemSchema);
+straLocale.insert_at(0, "_std");
+straSchema.insert_at(0, "_std");
 
-      for (index i = 0; i < straLocale.get_count() && i < straSchema.get_count(); i++)
-      {
 
-         string strLocale = straLocale[i];
+for (index i = 0; i < straLocale.get_count() && i < straSchema.get_count(); i++)
+{
 
-         string strSchema = straSchema[i];
+string strLocale = straLocale[i];
 
-         m_psystem->m_papexsystem->m_papexnode->set_application_installed(pathExe, strId, strBuild, psystem->get_system_platform(), psystem->get_system_configuration(), strLocale, strSchema);
+string strSchema = straSchema[i];
 
-      }
+m_psystem->m_papexsystem->m_papexnode->set_application_installed(pathExe, strId, strBuild, psystem->get_system_platform(), psystem->get_system_configuration(), strLocale, strSchema);
 
-      //psystem->install().erase_spa_start(strId);
-      //psystem->install().add_app_install(strId, strBuild, strSystemLocale, m_strSchema);
-      //psystem->install().add_app_install(strId, strBuild, strSystemLocale, strSystemSchema);
-      //psystem->install().add_app_install(strId, strBuild, m_strLocale, m_strSchema);
+}
 
-      //for (index iLocale = 0; iLocale < straLocale.get_count(); iLocale++)
-      //{
+//psystem->install().erase_spa_start(strId);
+//psystem->install().add_app_install(strId, strBuild, strSystemLocale, m_strSchema);
+//psystem->install().add_app_install(strId, strBuild, strSystemLocale, strSystemSchema);
+//psystem->install().add_app_install(strId, strBuild, m_strLocale, m_strSchema);
 
-      //   psystem->install().add_app_install(strId, strBuild, straLocale[iLocale], m_strSchema);
+//for (index iLocale = 0; iLocale < straLocale.get_count(); iLocale++)
+//{
 
-      //}
+//   psystem->install().add_app_install(strId, strBuild, straLocale[iLocale], m_strSchema);
 
-      //for (index iSchema = 0; iSchema < straSchema.get_count(); iSchema++)
-      //{
+//}
 
-      //   psystem->install().add_app_install(strId, strBuild, m_strLocale, straSchema[iSchema]);
+//for (index iSchema = 0; iSchema < straSchema.get_count(); iSchema++)
+//{
 
-      //}
+//   psystem->install().add_app_install(strId, strBuild, m_strLocale, straSchema[iSchema]);
 
-      //for (index iLocale = 0; iLocale < straLocale.get_count(); iLocale++)
-      //{
+//}
 
-      //   for (index iSchema = 0; iSchema < straSchema.get_count(); iSchema++)
-      //   {
+//for (index iLocale = 0; iLocale < straLocale.get_count(); iLocale++)
+//{
 
-      //      psystem->install().add_app_install(strId, strBuild, straLocale[iLocale], straSchema[iSchema]);
+//   for (index iSchema = 0; iSchema < straSchema.get_count(); iSchema++)
+//   {
 
-      //   }
+//      psystem->install().add_app_install(strId, strBuild, straLocale[iLocale], straSchema[iSchema]);
 
-      //}
+//   }
 
-      //psystem->install().add_app_install(strId, strBuild, strSystemLocale, "");
-      //psystem->install().add_app_install(strId, strBuild, m_strLocale, "");
+//}
 
-      //for (index iLocale = 0; iLocale < straLocale.get_count(); iLocale++)
-      //{
+//psystem->install().add_app_install(strId, strBuild, strSystemLocale, "");
+//psystem->install().add_app_install(strId, strBuild, m_strLocale, "");
 
-      //   psystem->install().add_app_install(strId, strBuild, straLocale[iLocale], "");
+//for (index iLocale = 0; iLocale < straLocale.get_count(); iLocale++)
+//{
 
-      //}
+//   psystem->install().add_app_install(strId, strBuild, straLocale[iLocale], "");
 
-      //psystem->install().add_app_install(strId, strBuild, "", m_strSchema);
-      //psystem->install().add_app_install(strId, strBuild, "", strSystemSchema);
+//}
 
-      //for (index iSchema = 0; iSchema < straSchema.get_count(); iSchema++)
-      //{
+//psystem->install().add_app_install(strId, strBuild, "", m_strSchema);
+//psystem->install().add_app_install(strId, strBuild, "", strSystemSchema);
 
-      //   psystem->install().add_app_install(strId, strBuild, "", straSchema[iSchema]);
+//for (index iSchema = 0; iSchema < straSchema.get_count(); iSchema++)
+//{
 
-      //}
+//   psystem->install().add_app_install(strId, strBuild, "", straSchema[iSchema]);
 
-      //psystem->install().add_app_install(strId, strBuild, "", "");
+//}
 
-      return true;
+//psystem->install().add_app_install(strId, strBuild, "", "");
 
-   }
+return true;
 
+}
 
-   ::e_status application::os_native_bergedge_start()
-   {
 
-      return true;
+::e_status application::os_native_bergedge_start()
+{
 
-   }
+return true;
 
+}
 
-   bool application::on_application_menu_action(const char * pszCommand)
-   {
 
-      return false;
+bool application::on_application_menu_action(const char * pszCommand)
+{
 
-   }
+return false;
 
+}
 
-   ::e_status     application::run()
-   {
 
-      //if (is_system())
-      //{
+::e_status     application::run()
+{
 
+//if (is_system())
+//{
 
 
-      //}
 
-      return ::thread::run();
+//}
 
-   }
+return ::thread::run();
 
+}
 
-   bool application::safe_is_running()
-   {
 
-      bool bRunning = false;
+bool application::safe_is_running()
+{
 
-      try
-      {
+bool bRunning = false;
 
-         if (is_running())
-         {
+try
+{
 
-            bRunning = true;
+if (is_running())
+{
 
-         }
+bRunning = true;
 
-      }
-      catch (...)
-      {
+}
 
-         bRunning = false;
+}
+catch (...)
+{
 
-      }
+bRunning = false;
 
+}
 
-      return bRunning;
 
-   }
+return bRunning;
 
+}
 
-   //service * application::get_service()
-   //{
 
-   //   return m_pservicehanlder->m_pservice;
+//service * application::get_service()
+//{
 
-   //}
+//   return m_pservicehanlder->m_pservice;
 
+//}
 
-   service * application::new_service()
-   {
 
-      return nullptr;
+service * application::new_service()
+{
 
-   }
+return nullptr;
 
+}
 
 
-   //::e_status application::os_create_service()
-   //{
 
-   //   return m_pcontext->m_papexcontext->os().create_service();
+//::e_status application::os_create_service()
+//{
 
-   //}
+//   return m_pcontext->m_papexcontext->os().create_service();
 
+//}
 
-   //::e_status application::os_erase_service()
-   //{
 
-   //   return m_pcontext->m_papexcontext->os().erase_service();
+//::e_status application::os_erase_service()
+//{
 
-   //}
+//   return m_pcontext->m_papexcontext->os().erase_service();
 
+//}
 
-   //::e_status application::os_start_service()
-   //{
 
-   //   return m_pcontext->m_papexcontext->os().start_service();
+//::e_status application::os_start_service()
+//{
 
-   //}
+//   return m_pcontext->m_papexcontext->os().start_service();
 
+//}
 
-   //::e_status application::os_stop_service()
-   //{
 
-   //   return m_pcontext->m_papexcontext->os().stop_service();
+//::e_status application::os_stop_service()
+//{
 
-   //}
+//   return m_pcontext->m_papexcontext->os().stop_service();
 
+//}
 
-   void application::on_service_request(::create * pcreate)
-   {
 
-      if (!is_service())
-      {
+void application::on_service_request(::create * pcreate)
+{
 
-         return;
+if (!is_service())
+{
 
-      }
+return;
 
-      if (pcreate->m_pcommandline->m_varQuery.has_property("create_service"))
-      {
+}
 
-         enable_service();
+if (pcreate->m_pcommandline->m_varQuery.has_property("create_service"))
+{
 
-      }
-      else if (pcreate->m_pcommandline->m_varQuery.has_property("start_service"))
-      {
+enable_service();
 
-         service_handler()->defer_service();
+}
+else if (pcreate->m_pcommandline->m_varQuery.has_property("start_service"))
+{
 
-         service_handler()->start_service();
+service_handler()->defer_service();
 
-      }
-      else if (pcreate->m_pcommandline->m_varQuery.has_property("stop_service"))
-      {
+service_handler()->start_service();
 
-         service_handler()->stop_service();
+}
+else if (pcreate->m_pcommandline->m_varQuery.has_property("stop_service"))
+{
 
-      }
-      else if (pcreate->m_pcommandline->m_varQuery.has_property("erase_service"))
-      {
+service_handler()->stop_service();
 
-         disable_service();
+}
+else if (pcreate->m_pcommandline->m_varQuery.has_property("erase_service"))
+{
 
-      }
-      else if (has_property("service"))
-      {
+disable_service();
 
-         service_handler()->defer_service();
+}
+else if (has_property("service"))
+{
 
-         service_handler()->start_service();
+service_handler()->defer_service();
 
-      }
-      else if (has_property("run"))
-      {
+service_handler()->start_service();
 
-         __compose(m_pservicehanlder)
-            ;
+}
+else if (has_property("run"))
+{
 
-         service_handler()->defer_service();
+__compose(m_pservicehanlder)
+;
 
-         service_handler()->get_service()->run();
+service_handler()->defer_service();
 
-      }
+service_handler()->get_service()->run();
 
-   }
+}
 
+}
 
-   //void application::on_update_matter_locator()
-   //{
 
+//void application::on_update_matter_locator()
+//{
 
 
-   //}
 
-   ::e_status application::process_init()
-   {
+//}
 
-      //if(::get_global_application() == nullptr)
-      //{
+::e_status application::process_init()
+{
 
-      //   set_global_application(this);
+//if(::get_global_application() == nullptr)
+//{
 
-      //}
+//   set_global_application(this);
 
-      string_array stra;
+//}
 
-      stra.explode("/", m_strAppId);
+string_array stra;
 
-      m_strRoot = stra[0];
+stra.explode("/", m_strAppId);
 
-      m_strDomain = stra.slice(1).implode("/");
+m_strRoot = stra[0];
 
-      add_matter_locator(this);
+m_strDomain = stra.slice(1).implode("/");
 
+add_matter_locator(this);
 
-      //if (is_system() || is_session())
-      //{
 
-      //   on_update_matter_locator();
+//if (is_system() || is_session())
+//{
 
-      //}
-      //else
-      //{
+//   on_update_matter_locator();
 
+//}
+//else
+//{
 
-      //}
 
-      __pointer(::apex::system) psystem = get_system();
+//}
 
-      if (!m_bAppHasInstallerChangedProtected)
-      {
+__pointer(::apex::system) psystem = get_system();
+
+if (!m_bAppHasInstallerChangedProtected)
+{
 
 #ifdef _UWP
 
-         set_has_installer(false);
+set_has_installer(false);
 
 #else
 
-         //if (psystem->m_pappcore == nullptr)
-         //{
+//if (psystem->m_pappcore == nullptr)
+//{
 
-         //   set_has_installer(false);
+//   set_has_installer(false);
 
-         //}
-         //else
-         {
+//}
+//else
+{
 
-            set_has_installer(!psystem->has_apex_application_factory());
+set_has_installer(!psystem->has_apex_application_factory());
 
-         }
+}
 
 #endif
 
-      }
+}
 
-      //auto estatus = initialize_context();
+//auto estatus = initialize_context();
 
-      //if (!estatus)
-      //{
+//if (!estatus)
+//{
 
-      //   return estatus;
+//   return estatus;
 
-      //}
+//}
 
-      //if (m_bAuraProcessInitialize)
-      //{
+//if (m_bAuraProcessInitialize)
+//{
 
-      //   return m_bAuraProcessInitializeResult;
+//   return m_bAuraProcessInitializeResult;
 
-      //}
+//}
 
-      INFO("apex::application::process_init");
+INFO("apex::application::process_init");
 
-      m_bThreadToolsForIncreasedFps = psystem->m_bThreadToolsForIncreasedFps;
+m_bThreadToolsForIncreasedFps = psystem->m_bThreadToolsForIncreasedFps;
 
-      if (::get_task() == nullptr)
-      {
+if (::get_task() == nullptr)
+{
 
-         ::set_task(dynamic_cast <task *> (this));
+::set_task(dynamic_cast <task *> (this));
 
-      }
+}
 
-      if (!notify_process_init())
-      {
+if (!notify_process_init())
+{
 
-         FATAL("apex::application::process_init .1");
+FATAL("apex::application::process_init .1");
 
-         return false;
+return false;
 
-      }
+}
 
-      //if (!impl_process_init())
-      //{
+//if (!impl_process_init())
+//{
 
-      //   FATAL("apex::application::process_init .2");
+//   FATAL("apex::application::process_init .2");
 
-      //   return false;
+//   return false;
 
-      //}
+//}
 
 //      m_bAuraProcessInitializeResult = true;
 
-      INFO("apex::application::process_init success");
+INFO("apex::application::process_init success");
 
-      //create_factory < ::database::field_array >();
-      //create_factory < ::database::row >();
-      //create_factory < ::database::row_array >();
+//create_factory < ::database::field_array >();
+//create_factory < ::database::row >();
+//create_factory < ::database::row_array >();
 
-      //if (m_bAxisProcessInitialize)
-      //{
+//if (m_bAxisProcessInitialize)
+//{
 
-      //   return m_bAxisProcessInitializeResult;
+//   return m_bAxisProcessInitializeResult;
 
-      //}
+//}
 
-      INFO("axis::application::process_init");
+INFO("axis::application::process_init");
 
-      //m_bAxisProcessInitialize = true;
+//m_bAxisProcessInitialize = true;
 
-      //m_bAxisProcessInitializeResult = false;
+//m_bAxisProcessInitializeResult = false;
 
-      //if (m_psimpledb.is_null())
-      //{
+//if (m_psimpledb.is_null())
+//{
 
-      //   __construct_new(m_psimpledb);
+//   __construct_new(m_psimpledb);
 
-      //}
+//}
 
-      //if (!::application::process_init())
-      //{
+//if (!::application::process_init())
+//{
 
-      //   FATAL("axis::application::process_init .1");
+//   FATAL("axis::application::process_init .1");
 
-      //   return false;
+//   return false;
 
-      //}
+//}
 
 
-      //m_bAxisProcessInitializeResult = true;
+//m_bAxisProcessInitializeResult = true;
 
-      INFO("axis::application::process_init success");
+INFO("axis::application::process_init success");
 
-      //return true;
+//return true;
 
-      auto estatus = userfs_process_init();
+auto estatus = userfs_process_init();
 
-      if(!estatus && estatus != error_not_implemented)
-      {
+if(!estatus && estatus != error_not_implemented)
+{
 
-         ERR(".2");
+ERR(".2");
 
-         return false;
+return false;
 
-      }
+}
 
-      INFO("success");
+INFO("success");
 
-      return true;
+return true;
 
-   }
+}
 
 
-   void application::process_term()
-   {
+void application::process_term()
+{
 
 
-      try
-      {
+try
+{
 
-         notify_process_term();
+notify_process_term();
 
-      }
-      catch(...)
-      {
+}
+catch(...)
+{
 
-      }
+}
 
-      try
-      {
+try
+{
 
-         release_exclusive();
+release_exclusive();
 
-      }
-      catch(...)
-      {
+}
+catch(...)
+{
 
-      }
+}
 
-      __pointer(::apex::system) psystem = get_system();
-      try
-      {
+__pointer(::apex::system) psystem = get_system();
+try
+{
 
 
-         if (psystem != nullptr)
-         {
+if (psystem != nullptr)
+{
 
-            psystem->check_exit();
+psystem->check_exit();
 
-         }
+}
 
-         
-      }
-      catch(...)
-      {
 
-      }
+}
+catch(...)
+{
 
-      try
-      {
+}
 
-         m_stringtable.erase_all();
+try
+{
 
-         m_stringtableStd.erase_all();
+m_stringtable.erase_all();
 
-      }
-      catch(...)
-      {
+m_stringtableStd.erase_all();
 
-      }
+}
+catch(...)
+{
 
-   }
+}
 
+}
 
-   ::e_status application::init_application()
-   {
 
-      __pointer(::apex::system) psystem = get_system();
+::e_status application::init_application()
+{
 
-      INFO("apex::application::init_application");
+__pointer(::apex::system) psystem = get_system();
 
-      m_millisHeartBeat.Now();
+INFO("apex::application::init_application");
 
-      if (!init1())
-      {
+m_millisHeartBeat.Now();
 
-         //dappy(string(typeid(*this).name()) + " : init1 failure : " + __str(m_iErrorCode));
+if (!init1())
+{
 
-         return false;
+//dappy(string(typeid(*this).name()) + " : init1 failure : " + __str(m_iErrorCode));
 
-      }
+return false;
 
-      psystem->install_progress_add_up(); // 2
+}
 
-      //xxdebug_box("init1 ok", "init1 ok", e_message_box_icon_information);
+psystem->install_progress_add_up(); // 2
 
-      m_millisHeartBeat.Now();
+//xxdebug_box("init1 ok", "init1 ok", e_message_box_icon_information);
 
-      if (!init2())
-      {
+m_millisHeartBeat.Now();
 
-         //dappy(string(typeid(*this).name()) + " : init2 failure : " + __str(m_iErrorCode));
+if (!init2())
+{
 
-         return false;
+//dappy(string(typeid(*this).name()) + " : init2 failure : " + __str(m_iErrorCode));
 
-      }
+return false;
 
-      psystem->install_progress_add_up(); // 3
+}
 
-      //xxdebug_box("init2 ok", "init2 ok", e_message_box_icon_information);
+psystem->install_progress_add_up(); // 3
 
-      m_millisHeartBeat.Now();
+//xxdebug_box("init2 ok", "init2 ok", e_message_box_icon_information);
 
-      if (!init3())
-      {
+m_millisHeartBeat.Now();
 
-         //dappy(string(typeid(*this).name()) + " : init3 failure : " + __str(m_iErrorCode));
+if (!init3())
+{
 
-         return false;
+//dappy(string(typeid(*this).name()) + " : init3 failure : " + __str(m_iErrorCode));
 
-      }
+return false;
 
-      psystem->install_progress_add_up(); // 4
+}
 
-      //xxdebug_box("init3 ok", "init3 ok", e_message_box_icon_information);
+psystem->install_progress_add_up(); // 4
 
-      m_millisHeartBeat.Now();
+//xxdebug_box("init3 ok", "init3 ok", e_message_box_icon_information);
 
-      //dappy(string(typeid(*this).name()) + " : init3 ok : " + __str(m_iErrorCode));
+m_millisHeartBeat.Now();
 
-      try
-      {
+//dappy(string(typeid(*this).name()) + " : init3 ok : " + __str(m_iErrorCode));
 
-         if (!init())
-         {
+try
+{
 
-            //dappy(string(typeid(*this).name()) + " : initialize failure : " + __str(m_iErrorCode));
+if (!init())
+{
 
-            return false;
+//dappy(string(typeid(*this).name()) + " : initialize failure : " + __str(m_iErrorCode));
 
-         }
+return false;
 
-      }
-      catch (const char * psz)
-      {
+}
 
-         if (!strcmp(psz, "You have not logged in! Exiting!"))
-         {
+}
+catch (const char * psz)
+{
 
-            return false;
+if (!strcmp(psz, "You have not logged in! Exiting!"))
+{
 
-         }
+return false;
 
-         return false;
+}
 
-      }
+return false;
 
-      psystem->install_progress_add_up(); // 5
+}
+
+psystem->install_progress_add_up(); // 5
 
 //      m_bAuraInitializeInstanceResult = true;
 
-      return true;
+return true;
 
-   }
-
-
-   __pointer(::interprocess_intercommunication) application::create_interprocess_intercommunication()
-   {
-
-      try
-      {
-
-         return __new(::interprocess_intercommunication());
-
-      }
-      catch (...)
-      {
-
-         return nullptr;
-
-      }
-
-   }
+}
 
 
-   ::e_status application::init1()
-   {
+__pointer(::interprocess_intercommunication) application::create_interprocess_intercommunication()
+{
 
-      auto estatus = initialize_context();
+try
+{
 
-      if (!estatus)
-      {
+return __new(::interprocess_intercommunication());
 
-         return estatus;
+}
+catch (...)
+{
 
-      }
+return nullptr;
 
-      __pointer(::apex::system) psystem = get_system();
+}
 
-      estatus = __own(this, m_puserlanguagemap, __new(::user::language_map) OBJ_REF_DBG_COMMA_THIS_NOTE("::application::init1") );
+}
 
-      if (!estatus)
-      {
 
-         return estatus;
+::e_status application::init1()
+{
 
-      }
+auto estatus = initialize_context();
 
-      if (psystem)
-      {
+if (!estatus)
+{
 
-         if (psystem->m_pintstringLanguageResourceMap != nullptr)
-         {
+return estatus;
 
-            m_puserlanguagemap->set_language_resource_map(psystem->m_pintstringLanguageResourceMap);
+}
 
-         }
+__pointer(::apex::system) psystem = get_system();
 
-      }
+estatus = __own(this, m_puserlanguagemap, __new(::user::language_map) OBJ_REF_DBG_COMMA_THIS_NOTE("::application::init1") );
 
-      if (psystem->m_bLocalization)
-      {
+if (!estatus)
+{
 
-         string strLang = psystem->get_user_language();
+return estatus;
 
-         if (!m_puserlanguagemap->set_language(this, strLang))
-         {
+}
 
-            m_puserlanguagemap->set_default_language(this);
+if (psystem)
+{
 
-         }
+if (psystem->m_pintstringLanguageResourceMap != nullptr)
+{
 
-      }
+m_puserlanguagemap->set_language_resource_map(psystem->m_pintstringLanguageResourceMap);
 
-      m_millisHeartBeat.Now();
+}
 
-      if (!notify_init1())
-      {
+}
 
-         return ::error_failed;
+if (psystem->m_bLocalization)
+{
 
-      }
+string strLang = psystem->get_user_language();
 
-      if (psystem->m_bLocalization)
-      {
+if (!m_puserlanguagemap->set_language(this, strLang))
+{
 
-         string strLocale;
+m_puserlanguagemap->set_default_language(this);
 
-         string strSchema;
+}
 
-         if (psystem->get_user_language().has_char())
-         {
+}
 
-            m_strLocale = psystem->get_user_language();
+m_millisHeartBeat.Now();
 
-            m_strSchema = m_strLocale;
+if (!notify_init1())
+{
 
-         }
-         else
-         {
+return ::error_failed;
+
+}
+
+if (psystem->m_bLocalization)
+{
+
+string strLocale;
+
+string strSchema;
+
+if (psystem->get_user_language().has_char())
+{
+
+m_strLocale = psystem->get_user_language();
+
+m_strSchema = m_strLocale;
+
+}
+else
+{
 
 #ifdef _UWP
 
-            string_array stra;
+string_array stra;
 
-            try
-            {
+try
+{
 
-               stra.explode("-", ::Windows::Globalization::ApplicationLanguages::PrimaryLanguageOverride);
+   stra.explode("-", ::Windows::Globalization::ApplicationLanguages::PrimaryLanguageOverride);
 
-            }
-            catch (long)
-            {
+}
+catch (long)
+{
 
-            }
+}
 
-            strLocale = stra[0];
+strLocale = stra[0];
 
-            strSchema = stra[0];
+strSchema = stra[0];
 
 #elif defined(WINDOWS)
 
-            LANGID langid = ::GetUserDefaultLangID();
+LANGID langid = ::GetUserDefaultLangID();
 
-            string strIso = ::windows::langid_to_iso(langid);
+string strIso = ::windows::langid_to_iso(langid);
 
-            strLocale = strIso;
+strLocale = strIso;
 
-            strSchema = strIso;
+strSchema = strIso;
 
 #endif
 
-         }
+}
 
-         if (strLocale.is_empty())
-         {
+if (strLocale.is_empty())
+{
 
-            strLocale = "_std";
+strLocale = "_std";
 
-         }
+}
 
-         if (strSchema.is_empty())
-         {
+if (strSchema.is_empty())
+{
 
-            strSchema = strLocale;
+strSchema = strLocale;
 
-         }
+}
 
-         if (psystem->payload("locale").get_count() > 0)
-         {
+if (psystem->payload("locale").get_count() > 0)
+{
 
-            strLocale = psystem->payload("locale").stra()[0];
+strLocale = psystem->payload("locale").stra()[0];
 
-         }
+}
 
-         if (psystem->payload("schema").get_count() > 0)
-         {
+if (psystem->payload("schema").get_count() > 0)
+{
 
-            strSchema = psystem->payload("schema").stra()[0];
+strSchema = psystem->payload("schema").stra()[0];
 
-         }
+}
 
-         if (get_application()->payload("locale").get_count() > 0)
-         {
+if (get_application()->payload("locale").get_count() > 0)
+{
 
-            strLocale = get_application()->payload("locale").stra()[0];
+strLocale = get_application()->payload("locale").stra()[0];
 
-         }
+}
 
-         if (get_application()->payload("schema").get_count() > 0)
-         {
+if (get_application()->payload("schema").get_count() > 0)
+{
 
-            strSchema = get_application()->payload("schema").stra()[0];
+strSchema = get_application()->payload("schema").stra()[0];
 
-         }
+}
 
-         set_locale(strLocale, ::e_source_database);
+set_locale(strLocale, ::e_source_database);
 
-         set_schema(strSchema, ::e_source_database);
+set_schema(strSchema, ::e_source_database);
 
-      }
+}
 
-      if (!initialize_contextualized_theme())
-      {
+if (!initialize_contextualized_theme())
+{
 
-         FATAL("Failed to initialize_contextualized_theme");
+FATAL("Failed to initialize_contextualized_theme");
 
-         return false;
+return false;
 
-      }
+}
 
-      INFO("start");
+INFO("start");
 
-      m_millisHeartBeat.Now();
+m_millisHeartBeat.Now();
 
-      return ::success;
+return ::success;
 
-   }
+}
 
 
-   void application::term1()
-   {
+void application::term1()
+{
 
-      //try
-      //{
+//try
+//{
 
-      //   impl_term1();
+//   impl_term1();
 
-      //}
-      //catch (...)
-      //{
+//}
+//catch (...)
+//{
 
-      //}
+//}
 
-      try
-      {
+try
+{
 
-         notify_term1();
+notify_term1();
 
-      }
-      catch(...)
-      {
+}
+catch(...)
+{
 
-      }
+}
 
-   }
+}
 
-   ::e_status application::init2()
-   {
+::e_status application::init2()
+{
 
-      //if (!impl_init2())
-      //{
+//if (!impl_init2())
+//{
 
-      //   return false;
+//   return false;
 
-      //}
+//}
 
-      if (!notify_init2())
-      {
+if (!notify_init2())
+{
 
-         return false;
+return false;
 
-      }
+}
 
 
 
-      return true;
+return true;
 
-   }
+}
 
-   void application::term2()
-   {
+void application::term2()
+{
 
-      //try
-      //{
+//try
+//{
 
-      //   impl_term2();
+//   impl_term2();
 
-      //}
-      //catch (...)
-      //{
+//}
+//catch (...)
+//{
 
-      //}
+//}
 
-      try
-      {
+try
+{
 
-         notify_term2();
+notify_term2();
 
-      }
-      catch(...)
-      {
+}
+catch(...)
+{
 
-      }
+}
 
-   }
+}
 
-   ::e_status application::init3()
-   {
+::e_status application::init3()
+{
 
-      string strFolder = m_strAppName;
+string strFolder = m_strAppName;
 
-      strFolder.replace(".", "_");
-      strFolder.replace("::", "-");
-      strFolder.replace(":", "_");
+strFolder.replace(".", "_");
+strFolder.replace("::", "-");
+strFolder.replace(":", "_");
 
-      m_strRelativeFolder = strFolder;
+m_strRelativeFolder = strFolder;
 
-      //if (!impl_init3())
-      //{
+//if (!impl_init3())
+//{
 
-      //   return false;
+//   return false;
 
-      //}
+//}
 
-      if (!notify_init3())
-      {
+if (!notify_init3())
+{
 
-         return false;
+return false;
 
-      }
+}
 
-      return true;
+return true;
 
-   }
+}
 
 
-   void application::term3()
-   {
+void application::term3()
+{
 
-      //try
-      //{
+//try
+//{
 
-      //   impl_term3();
+//   impl_term3();
 
-      //}
-      //catch (...)
-      //{
+//}
+//catch (...)
+//{
 
-      //}
+//}
 
-      try
-      {
+try
+{
 
-         notify_term3();
+notify_term3();
 
-      }
-      catch(...)
-      {
+}
+catch(...)
+{
 
-      }
+}
 
-   }
+}
 
 
-   void application::term_application()
-   {
+void application::term_application()
+{
 
 
-      try
-      {
+try
+{
 
-         close(::apex::e_end_app);
+close(::apex::e_end_app);
 
-      }
-      catch (...)
-      {
+}
+catch (...)
+{
 
-      }
+}
 
-      release_exclusive();
+release_exclusive();
 
-      try
-      {
+try
+{
 
-         if(::is_set(m_pappParent))
-         {
+if(::is_set(m_pappParent))
+{
 
-            m_pappParent->app_erase(this);
+m_pappParent->app_erase(this);
 
-         }
+}
 
-         if(::is_set(get_session()))
-         {
+if(::is_set(get_session()))
+{
 
-            get_session()->app_erase(this);
+get_session()->app_erase(this);
 
-         }
+}
 
-         try
-         {
+try
+{
 
-            __unbind(this, m_pinterprocessintercommunication OBJ_REF_DBG_COMMA_THIS);
+__unbind(this, m_pinterprocessintercommunication OBJ_REF_DBG_COMMA_THIS);
 
-         }
-         catch (...)
-         {
+}
+catch (...)
+{
 
-         }
+}
 
-         try
-         {
+try
+{
 
-            term();
+term();
 
-         }
-         catch(...)
-         {
+}
+catch(...)
+{
 
 
-         }
+}
 
-         try
-         {
+try
+{
 
-            term3();
+term3();
 
-         }
-         catch(...)
-         {
+}
+catch(...)
+{
 
 
-         }
+}
 
-         try
-         {
+try
+{
 
-            term2();
+term2();
 
-         }
-         catch(...)
-         {
+}
+catch(...)
+{
 
 
-         }
+}
 
-         try
-         {
+try
+{
 
-            term1();
+term1();
 
-         }
-         catch(...)
-         {
+}
+catch(...)
+{
 
 
-         }
+}
 
 
-      }
-      catch (...)
-      {
+}
+catch (...)
+{
 
-      }
+}
 
 
-   }
+}
 
 
 
 
-   __pointer(::acme::exclusive) application::get_exclusive(string strId ARG_SEC_ATTRS)
-   {
+__pointer(::acme::exclusive) application::get_exclusive(string strId ARG_SEC_ATTRS)
+{
 
-      auto & pexclusive = m_mapExclusive[strId];
+auto & pexclusive = m_mapExclusive[strId];
 
-      if(!pexclusive)
-      {
+if(!pexclusive)
+{
 
-         auto pexclusiveNew = __new(::acme::exclusive(strId ADD_PARAM_SEC_ATTRS));
+auto pexclusiveNew = __new(::acme::exclusive(strId ADD_PARAM_SEC_ATTRS));
 
-         __m_own(this, pexclusive, pexclusiveNew OBJ_REF_DBG_COMMA_THIS_NOTE("::application::get_exclusive") );
+__m_own(this, pexclusive, pexclusiveNew OBJ_REF_DBG_COMMA_THIS_NOTE("::application::get_exclusive") );
 
-      }
+}
 
-      return pexclusive;
+return pexclusive;
 
-   }
+}
 
 
-   bool application::exclusive_fails(string strId ARG_SEC_ATTRS)
-   {
+bool application::exclusive_fails(string strId ARG_SEC_ATTRS)
+{
 
-      auto pexclusive = get_exclusive(strId ADD_PARAM_SEC_ATTRS);
+auto pexclusive = get_exclusive(strId ADD_PARAM_SEC_ATTRS);
 
-      if(!pexclusive)
-      {
+if(!pexclusive)
+{
 
-         return false;
+return false;
 
-      }
+}
 
-      return pexclusive->exclusive_fails();
+return pexclusive->exclusive_fails();
 
-   }
+}
 
 
-   bool application::check_exclusive(bool & bHandled)
-   {
+bool application::check_exclusive(bool & bHandled)
+{
 
 #ifdef _UWP
 
-      return true;
+return true;
 
 #endif
 
-      bool bSetOk;
+bool bSetOk;
 
-      bool bResourceException = false;
+bool bResourceException = false;
 
 #ifdef WINDOWS_DESKTOP
 
-      LPSECURITY_ATTRIBUTES psa = nullptr;
+LPSECURITY_ATTRIBUTES psa = nullptr;
 
-      bSetOk = false;
+bSetOk = false;
 
-      SECURITY_ATTRIBUTES MutexAttributes;
-      ZeroMemory(&MutexAttributes, sizeof(MutexAttributes));
-      MutexAttributes.nLength = sizeof(MutexAttributes);
-      MutexAttributes.bInheritHandle = false; // object uninheritable
-      // declare and initialize a security descriptor
-      SECURITY_DESCRIPTOR SD;
-      bool bInitOk = InitializeSecurityDescriptor(&SD, SECURITY_DESCRIPTOR_REVISION) != false;
-      if (bInitOk)
-      {
-         // give the security descriptor a Null Dacl
-         // done using the  "true, (PACL)nullptr" here
-         bSetOk = SetSecurityDescriptorDacl(&SD,
-                                            true,
-                                            (PACL)nullptr,
-                                            false) != false;
-      }
+SECURITY_ATTRIBUTES MutexAttributes;
+ZeroMemory(&MutexAttributes, sizeof(MutexAttributes));
+MutexAttributes.nLength = sizeof(MutexAttributes);
+MutexAttributes.bInheritHandle = false; // object uninheritable
+// declare and initialize a security descriptor
+SECURITY_DESCRIPTOR SD;
+bool bInitOk = InitializeSecurityDescriptor(&SD, SECURITY_DESCRIPTOR_REVISION) != false;
+if (bInitOk)
+{
+// give the security descriptor a Null Dacl
+// done using the  "true, (PACL)nullptr" here
+bSetOk = SetSecurityDescriptorDacl(&SD,
+                                true,
+                                (PACL)nullptr,
+                                false) != false;
+}
 
-      if (bSetOk)
-      {
+if (bSetOk)
+{
 
-         MutexAttributes.lpSecurityDescriptor = &SD;
-
-
-         psa = &MutexAttributes;
+MutexAttributes.lpSecurityDescriptor = &SD;
 
 
-      }
+psa = &MutexAttributes;
+
+
+}
 
 #else
 
-      bSetOk = true;
+bSetOk = true;
 
 #endif
 
 
-      if (bSetOk)
-      {
+if (bSetOk)
+{
 
-         bool bGlobalExclusiveFail = exclusive_fails(get_global_mutex_name() INSERT_PARAM_SEC_ATTRS(&MutexAttributes));
+bool bGlobalExclusiveFail = exclusive_fails(get_global_mutex_name() INSERT_PARAM_SEC_ATTRS(&MutexAttributes));
 
-         if(bGlobalExclusiveFail && m_eexclusiveinstance == ExclusiveInstanceGlobal)
-         {
+if(bGlobalExclusiveFail && m_eexclusiveinstance == ExclusiveInstanceGlobal)
+{
 
-            TRACE("A instance of the application:<br><br> - " + string(m_strAppName) + "<br><br>seems to be already running at the same machine<br>Only one instance of this application can run globally: at the same machine.<br><br>Exiting this new instance.");
+TRACE("A instance of the application:<br><br> - " + string(m_strAppName) + "<br><br>seems to be already running at the same machine<br>Only one instance of this application can run globally: at the same machine.<br><br>Exiting this new instance.");
 
-            try
-            {
+try
+{
 
-               if(!on_exclusive_instance_conflict(bHandled, ExclusiveInstanceGlobal, ""))
-               {
-
-                  return false;
-
-               }
-
-            }
-            catch(...)
-            {
-
-               return false;
-
-            }
-
-         }
-
-         if (m_eexclusiveinstance == ExclusiveInstanceGlobalId)
-         {
-
-            bool bGlobalIdExclusiveFail = exclusive_fails(get_global_id_mutex_name() INSERT_PARAM_SEC_ATTRS(&MutexAttributes));
-
-            if (bGlobalIdExclusiveFail)
-            {
-
-               TRACE("A instance of the application:<br><br>-" + string(m_strAppName) + "with the id \"" + get_local_mutex_id() + "\" <br><br>seems to be already running at the same machine<br>Only one instance of this application can run globally: at the same machine with the same id.<br><br>Exiting this new instance.");
-
-               try
-               {
-
-                  if(!on_exclusive_instance_conflict(bHandled, ExclusiveInstanceGlobalId, get_global_mutex_id()))
-                  {
-
-                     return false;
-
-                  }
-
-               }
-               catch(...)
-               {
-
-                  return false;
-
-               }
-
-            }
-
-         }
-
-         bool bLocalExclusiveFail = exclusive_fails(get_local_mutex_name()  INSERT_PARAM_SEC_ATTRS(&MutexAttributes));
-
-         if (bLocalExclusiveFail && m_eexclusiveinstance == ExclusiveInstanceLocal)
-         {
-
-            try
-            {
-
-               TRACE("A instance of the application:<br><br>-" + string(m_strAppName) + "<br><br>seems to be already running at the same account.<br>Only one instance of this application can run locally: at the same account.<br><br>Exiting this new instance.");
-
-               if(!on_exclusive_instance_conflict(bHandled, ExclusiveInstanceLocal, ""))
-               {
-
-                  return false;
-
-               }
-
-            }
-            catch (...)
-            {
-
-               return false;
-
-            }
-
-         }
-
-         if (m_eexclusiveinstance == ExclusiveInstanceLocalId)
-         {
-
-            bool bLocalIdExclusiveFail = exclusive_fails(get_local_id_mutex_name() INSERT_PARAM_SEC_ATTRS(&MutexAttributes));
-
-            if (bLocalIdExclusiveFail)
-            {
-
-               try
-               {
-
-                  // Should in some way activate the other instance
-                  TRACE("A instance of the application:<br><br>           - " + string(m_strAppName) + "with the id \"" + get_local_mutex_id() + "\" <br><br>seems to be already running at the same account.<br>Only one instance of this application can run locally: at the same ac::count with the same id.<br><br>Exiting this new instance.");
-
-                  if(!on_exclusive_instance_conflict(bHandled, ExclusiveInstanceLocalId, get_local_mutex_id()))
-                  {
-
-                     return false;
-
-                  }
-
-               }
-               catch (...)
-               {
-
-                  return false;
-
-               }
-
-            }
-
-         }
-
-      }
-
-      return true;
-
-   }
-
-
-   bool application::release_exclusive()
-   {
-
-      m_mapExclusive.erase_all();
-
-      return true;
-
-   }
-
-
-   ::e_status application::notify_process_init()
-   {
-
-      ::message::application message(::message::application_process_init);
-
-      route_message(&message);
-
-      return true;
-
-   }
-
-
-   ::e_status application::notify_init1()
-   {
-
-      ::message::application message(::message::application_init1);
-
-      route_message(&message);
-
-      return message.m_bOk;
-
-   }
-
-
-   ::e_status application::notify_init2()
-   {
-
-      ::message::application message(::message::application_init2);
-
-      route_message(&message);
-
-      return message.m_bOk;
-
-   }
-   ::e_status application::notify_init3()
-   {
-
-      ::message::application message(::message::application_init3);
-
-      route_message(&message);
-
-      return message.m_bOk;
-
-   }
-
-
-
-
-   void application::notify_term3()
-   {
-
-      ::message::application message(::message::application_init3);
-
-      route_message(&message);
-
-      //      if (!message.m_bOk)
-      //         return false;
-      //
-      //      return true;
-
-   }
-
-
-   void application::notify_term2()
-   {
-
-      ::message::application message(::message::application_term2);
-
-      route_message(&message);
-
-   }
-
-
-   void application::notify_term1()
-   {
-
-      ::message::application message(::message::application_term1);
-
-      try
-      {
-
-         route_message(&message);
-
-      }
-      catch (...)
-      {
-
-      }
-
-      //return message.m_bOk;
-
-   }
-
-
-   void application::notify_process_term()
-   {
-
-      ::message::application message(::message::application_process_term);
-
-      route_message(&message);
-
-      //return message.m_bOk;
-
-   }
-
-
-
-
-
-
-
-   string application::get_local_mutex_name()
-   {
-      __pointer(::apex::system) psystem = get_system();
-      return psystem->get_local_mutex_name(get_mutex_name_gen());
-   }
-
-
-   string application::get_local_id_mutex_name()
-   {
-      __pointer(::apex::system) psystem = get_system();
-      return psystem->get_local_id_mutex_name(get_mutex_name_gen(), get_local_mutex_id());
-
-   }
-
-
-   string application::get_global_mutex_name()
-   {
-      __pointer(::apex::system) psystem = get_system();
-      return psystem->get_global_mutex_name(get_mutex_name_gen());
-   }
-
-   string application::get_global_id_mutex_name()
-   {
-      __pointer(::apex::system) psystem = get_system();
-      return psystem->get_global_id_mutex_name(get_mutex_name_gen(), get_global_mutex_id());
-   }
-
-
-
-
-   ::e_status application::on_exclusive_instance_conflict(bool & bHandled, EExclusiveInstance eexclusive, string strId)
-   {
-
-      if (eexclusive == ExclusiveInstanceLocal)
-      {
-
-         return on_exclusive_instance_local_conflict(bHandled);
-
-      }
-      else if (eexclusive == ExclusiveInstanceLocalId)
-      {
-
-         return on_exclusive_instance_local_conflict_id(bHandled, strId);
-
-      }
-
-      return false;
-
-   }
-
-
-   ::e_status application::on_exclusive_instance_local_conflict(bool & bHandled)
-   {
-
-      bool bContinue = false;
-
-      try
-      {
-
-         __pointer(::apex::system) psystem = get_system();
-
-         if (m_pinterprocessintercommunication)
-         {
-
-            auto pcall = m_pinterprocessintercommunication->create_call("application", "on_additional_local_instance");
-
-            pcall->add_arg(m_pcontext->m_papexcontext->file().module());
-
-            pcall->add_arg(m_pcontext->m_papexcontext->os().get_pid());
-
-            pcall->add_arg(psystem->command_line_text());
-
-            string strId;
-
-            pcall->add_arg(strId);
-
-            pcall->announce();
-
-            pcall->wait();
-
-            for(auto & pair : pcall->m_mapTask)
-            {
-
-               auto & pobjectTask = pair.element2();
-
-               if(bContinue && pobjectTask->has_property("continue"))
-               {
-
-                  bContinue = pobjectTask->m_var["continue"];
-
-               }
-
-               if(!bHandled && pobjectTask->has_property("handled"))
-               {
-
-                  bHandled = pobjectTask->m_var["handled"];
-
-               }
-
-            }
-
-         }
-
-      }
-      catch (...)
-      {
-
-      }
-
-      return bContinue;
-
-   }
-
-
-   ::e_status application::on_exclusive_instance_local_conflict_id(bool & bHandled, string strId)
-   {
-
-      bool bContinue = false;
-      __pointer(::apex::system) psystem = get_system();
-      try
-      {
-
-         if (m_pinterprocessintercommunication)
-         {
-
-            auto pcall = m_pinterprocessintercommunication->create_call("application", "on_additional_local_instance");
-
-            pcall->add_arg(m_pcontext->m_papexcontext->file().module());
-
-            pcall->add_arg(m_pcontext->m_papexcontext->os().get_pid());
-
-            pcall->add_arg(psystem->command_line_text());
-
-            pcall->add_arg(strId);
-
-            for(auto & ptask : pcall->m_mapTask.values())
-            {
-
-               if(!bHandled)
-               {
-
-                  bHandled = ptask->is_true("handled");
-
-                  if(bHandled)
-                  {
-
-                     bContinue = ptask->is_true("continue");
-
-                  }
-
-               }
-
-            }
-
-         }
-
-      }
-      catch (...)
-      {
-
-      }
-
-      return bContinue;
-
-   }
-
-
-   ::e_status application::on_additional_local_instance(bool & bHandled, string strModule, int iPid, string strCommandLine)
-   {
-
-      auto pcommandline = __create_new < command_line >();
-
-      pcommandline->initialize_command_line(strCommandLine);
-
-      process_command_line(pcommandline);
-
-      bHandled = true;
-
-      return false;
-
-   }
-
-
-   void application::on_new_instance(string strModule, const ::id & iPid)
-   {
-
-   }
-
-
-   //string application::get_mutex_name_gen()
-   //{
-   //   return m_strAppName;
-   //}
-
-
-   string application::get_local_mutex_id()
-   {
-
-      string str;
-
-      str = payload("local_mutex_id");
-
-      return str;
-
-   }
-
-
-   string application::get_global_mutex_id()
-   {
-
-      string str;
-
-      str = payload("global_mutex_id");
-
-      return str;
-
-   }
-
-
-   bool application::Ex2OnAppInstall()
-   {
-
-      return true;
-
-   }
-
-
-   bool application::Ex2OnAppUninstall()
-   {
-
-      return true;
-
-   }
-
-
-   void application::on_set_scalar(e_scalar escalar, i64 iValue, int iFlags)
-   {
-
-      //if (escalar == scalar_app_install_progress)
-      //{
-
-      //   m_iProgressInstallStep = iValue;
-
-      //}
-      //else if (escalar == scalar_app_install_progress_min)
-      //{
-
-      //   m_iProgressInstallStart = iValue;
-
-      //}
-      //else if (escalar == scalar_app_install_progress_max)
-      //{
-
-      //   m_iProgressInstallEnd = iValue;
-
-      //}
-      //else
-      {
-
-         return ::int_scalar_source::on_set_scalar(escalar, iValue, iFlags);
-
-      }
-
-   }
-
-
-   void application::get_scalar_minimum(e_scalar escalar, i64 & i)
-   {
-
-      //if (escalar == scalar_app_install_progress)
-      //{
-
-      //   i = m_iProgressInstallStart;
-
-      //}
-      //else if (escalar == scalar_app_install_progress_min)
-      //{
-
-      //   i = 0;
-
-      //}
-      //else if (escalar == scalar_app_install_progress_max)
-      //{
-
-      //   i = 0;
-
-      //}
-      //else
-      {
-
-         ::int_scalar_source::get_scalar_minimum(escalar, i);
-
-      }
-
-   }
-
-   void application::get_scalar(e_scalar escalar, i64 & i)
-   {
-
-      //if (escalar == scalar_app_install_progress)
-      //{
-
-      //   i = m_iProgressInstallStep;
-
-      //}
-      //else if (escalar == scalar_app_install_progress_min)
-      //{
-
-      //   i = m_iProgressInstallStart;
-
-      //}
-      //else if (escalar == scalar_app_install_progress_max)
-      //{
-
-      //   i = m_iProgressInstallEnd;
-
-      //}
-      //else
-      {
-
-         ::int_scalar_source::get_scalar(escalar, i);
-
-      }
-
-   }
-
-   void application::get_scalar_maximum(e_scalar escalar, i64 & i)
-   {
-
-      //if (escalar == scalar_download_size)
-      //{
-
-      //   i = m_iProgressInstallEnd;
-
-      //}
-      //else if (escalar == scalar_app_install_progress_min)
-      //{
-
-      //   i = 0x7fffffff;
-
-      //}
-      //else if (escalar == scalar_app_install_progress_max)
-      //{
-
-      //   i = 0x7fffffff;
-
-      //}
-      //else
-      {
-
-         ::int_scalar_source::get_scalar_minimum(escalar, i);
-
-      }
-
-   }
-
-
-   //i32 application::sync_message_box_timeout(::user::primitive * puserinteractionOwner, ::payload payload, const char * pszTitle, ::duration durationTimeOut, ::u32 fuStyle)
-   //{
-
-   //   UNREFERENCED_PARAMETER(durationTimeOut);
-
-   //   return sync_message_box(puserinteractionOwner, payload, pszTitle, fuStyle);
-
-   //}
-
-
-
-
-
-
-   string application::http_get_locale_schema(const char * pszUrl, const char * pszLocale, const char * pszSchema)
-   {
-
-      ::exception::throw_interface_only();
-
-      return "";
-
-   }
-
-
-   void application::message_handler(::message::message * pmessage)
-   {
-
-      ::thread::message_handler(pmessage);
-
-   }
-
-
-   void application::set_locale(const string & pcsz, const ::action_context & context)
-   {
-
-      string strLocale(pcsz);
-
-
-      strLocale.trim();
-
-      m_strLocale = strLocale;
-
-      on_set_locale(m_strLocale, context);
-
-   }
-
-
-   void application::set_schema(const string & pcsz, const ::action_context & context)
-
-   {
-
-      string strSchema(pcsz);
-
-
-      strSchema.trim();
-
-      m_strSchema = strSchema;
-
-      on_set_schema(m_strSchema, context);
-
-   }
-
-
-   void application::on_set_locale(const string & pcsz, const ::action_context & context)
-
-   {
-      UNREFERENCED_PARAMETER(context);
-      UNREFERENCED_PARAMETER(pcsz);
-
-      //psystem->appa_load_string_table();
-   }
-
-
-   void application::on_set_schema(const string & pcsz, const ::action_context & context)
-
-   {
-      UNREFERENCED_PARAMETER(context);
-      UNREFERENCED_PARAMETER(pcsz);
-
-      //psystem->appa_load_string_table();
-   }
-
-
-
-
-
-   string application::get_locale_schema_dir()
-   {
-
-      return ::str::_001Concat(get_locale(), "/", get_schema());
-
-   }
-
-
-   string application::get_locale_schema_dir(const string & strLocale)
-   {
-
-      return ::str::_001Concat(strLocale.is_empty() ? get_locale() : strLocale, "/", get_schema());
-
-   }
-
-
-   void application::matter_locator_locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const string & strLocale, const string & strSchema)
-   {
-
-      if (strLocale.is_empty() || strSchema.is_empty())
-      {
-
-         return;
-
-      }
-
-      for (auto & strMatterLocator : straMatterLocator)
-      {
-
-         string strLs = get_locale_schema_dir(strLocale, strSchema);
-
-         stra.add_unique(::file::path(strMatterLocator) / strLs);
-
-      }
-
-   }
-
-
-   void application::locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const string & strLocale, const string & strSchema)
-   {
-
-      if (straMatterLocator.has_elements())
-      {
-
-         stra.add_unique(::file::path(straMatterLocator.first()) / get_locale_schema_dir("map", "map"));
-
-      }
-
-      matter_locator_locale_schema_matter(stra, straMatterLocator, strLocale, strSchema);
-
-      auto psession = get_session();
-
-      auto ptextcontext = psession->text_context();
-
-      for (i32 i = 0; i < ptextcontext->localeschema().m_idaLocale.get_count(); i++)
-      {
-
-         string strLocale = ptextcontext->localeschema().m_idaLocale[i];
-
-         string strSchema = ptextcontext->localeschema().m_idaSchema[i];
-
-         matter_locator_locale_schema_matter(stra, straMatterLocator, strLocale, strSchema);
-
-      }
-
-      matter_locator_locale_schema_matter(stra, straMatterLocator, "en", "en");
-
-      matter_locator_locale_schema_matter(stra, straMatterLocator, "_std", "_std");
-
-      if (straMatterLocator.has_elements())
-      {
-
-         stra.add_unique(::file::path(straMatterLocator.first()) / get_locale_schema_dir("404", "404"));
-
-      }
-
-   }
-
-
-   string application::get_locale_schema_dir(const string & strLocale, const string & strSchema)
-   {
-
-      return ::str::_001Concat(strLocale, "/", strSchema);
-
-   }
-
-
-   void application::fill_locale_schema(::text::international::locale_schema & localeschema, const string & pszLocale, const string & pszSchema)
-   {
-
-
-      localeschema.m_idaLocale.erase_all();
-      localeschema.m_idaSchema.erase_all();
-
-
-      string strLocale(pszLocale);
-      string strSchema(pszSchema);
-
-
-      localeschema.m_idLocale = pszLocale;
-      localeschema.m_idSchema = pszSchema;
-
-
-      localeschema.add_locale_variant(strLocale, strSchema);
-      localeschema.add_locale_variant(get_locale(), strSchema);
-      localeschema.add_locale_variant(__id(std), strSchema);
-      localeschema.add_locale_variant(__id(en), strSchema);
-
-      localeschema.finalize();
-
-   }
-
-
-   void application::fill_locale_schema(::text::international::locale_schema & localeschema)
-   {
-
-
-      localeschema.m_idaLocale.erase_all();
-      localeschema.m_idaSchema.erase_all();
-
-
-      //localeschema.m_bAddAlternateStyle = true;
-
-
-      string_array straLocale;
-      string_array straSchema;
-
-      straLocale.add(get_locale());
-      straSchema.add(get_schema());
-
-
-      string_array stra;
-
-      stra = payload("locale").stra();
-
-      stra.erase_ci("_std");
-
-      straLocale.add_unique(payload("locale").stra());
-
-      stra.empty();
-
-      stra = payload("schema").stra();
-
-      stra.erase_ci("_std");
-
-      straSchema.add_unique(payload("schema").stra());
-
-      localeschema.m_idLocale = straLocale[0];
-      localeschema.m_idSchema = straSchema[0];
-
-      for (index iLocale = 0; iLocale < straLocale.get_count(); iLocale++)
-      {
-
-         for (index iSchema = 0; iSchema < straSchema.get_count(); iSchema++)
-         {
-
-            localeschema.add_locale_variant(straLocale[iLocale], straSchema[iSchema]);
-
-         }
-
-      }
-
-      for (index iSchema = 0; iSchema < straSchema.get_count(); iSchema++)
-      {
-
-         localeschema.add_locale_variant(get_locale(), straSchema[iSchema]);
-
-      }
-
-      for (index iSchema = 0; iSchema < straSchema.get_count(); iSchema++)
-      {
-
-         localeschema.add_locale_variant(__id(std), straSchema[iSchema]);
-
-      }
-
-
-      for (index iSchema = 0; iSchema < straSchema.get_count(); iSchema++)
-      {
-
-         localeschema.add_locale_variant(__id(en), straSchema[iSchema]);
-
-      }
-
-      localeschema.finalize();
-
-   }
-
-
-   bool application::platform_open_by_file_extension(index iEdge, const char * pszPathName, ::create * pcreate)
+   if(!on_exclusive_instance_conflict(bHandled, ExclusiveInstanceGlobal, ""))
    {
 
       return false;
 
    }
 
+}
+catch(...)
+{
 
-   bool application::platform_open_by_file_extension(index iEdge, ::create * pcc)
+   return false;
+
+}
+
+}
+
+if (m_eexclusiveinstance == ExclusiveInstanceGlobalId)
+{
+
+bool bGlobalIdExclusiveFail = exclusive_fails(get_global_id_mutex_name() INSERT_PARAM_SEC_ATTRS(&MutexAttributes));
+
+if (bGlobalIdExclusiveFail)
+{
+
+   TRACE("A instance of the application:<br><br>-" + string(m_strAppName) + "with the id \"" + get_local_mutex_id() + "\" <br><br>seems to be already running at the same machine<br>Only one instance of this application can run globally: at the same machine with the same id.<br><br>Exiting this new instance.");
+
+   try
+   {
+
+      if(!on_exclusive_instance_conflict(bHandled, ExclusiveInstanceGlobalId, get_global_mutex_id()))
+      {
+
+         return false;
+
+      }
+
+   }
+   catch(...)
    {
 
       return false;
 
    }
 
+}
 
+}
 
+bool bLocalExclusiveFail = exclusive_fails(get_local_mutex_name()  INSERT_PARAM_SEC_ATTRS(&MutexAttributes));
 
-   //i32 application::hotplugin_host_starter_start_sync(const char * pszCommandLine, ::apex::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin)
-   //{
+if (bLocalExclusiveFail && m_eexclusiveinstance == ExclusiveInstanceLocal)
+{
 
-   //   return -1;
+try
+{
 
-   //}
+   TRACE("A instance of the application:<br><br>-" + string(m_strAppName) + "<br><br>seems to be already running at the same account.<br>Only one instance of this application can run locally: at the same account.<br><br>Exiting this new instance.");
 
-
-   bool application::is_application() const
+   if(!on_exclusive_instance_conflict(bHandled, ExclusiveInstanceLocal, ""))
    {
 
-      return !is_session() && !is_system();
+      return false;
 
    }
 
+}
+catch (...)
+{
 
+   return false;
 
-   //bool application::_001OnAgreeExit()
-   //{
+}
 
-   //   return true;
+}
 
-   //}
+if (m_eexclusiveinstance == ExclusiveInstanceLocalId)
+{
 
+bool bLocalIdExclusiveFail = exclusive_fails(get_local_id_mutex_name() INSERT_PARAM_SEC_ATTRS(&MutexAttributes));
 
-   void application::_001OnFranceExit()
+if (bLocalIdExclusiveFail)
+{
+
+   try
    {
 
-      HideApplication();
+      // Should in some way activate the other instance
+      TRACE("A instance of the application:<br><br>           - " + string(m_strAppName) + "with the id \"" + get_local_mutex_id() + "\" <br><br>seems to be already running at the same account.<br>Only one instance of this application can run locally: at the same ac::count with the same id.<br><br>Exiting this new instance.");
 
-      finish();
-
-   }
-
-
-   void application::_001FranceExit()
-   {
-
-      _001OnFranceExit();
-
-      m_bFranceExit = true;
-
-   }
-
-
-   //void application::dispatch_user_message(::user::message * pusermessage)
-   //{
-
-   //   pusermessage->send();
-
-   //}
-
-
-   //void application::play_audio(::payload varFile, bool bSynch)
-   //{
-
-   //   UNREFERENCED_PARAMETER(varFile);
-   //   UNREFERENCED_PARAMETER(bSynch);
-
-   //}
-
-   void application::post_critical_error_message(const char * pszMessage, bool bShowLog)
-   {
-
-      string strMessage;
-
-      auto psystem = m_psystem;
-
-      auto pdatetime = psystem->m_pdatetime;
-
-      strMessage = pdatetime->international().get_gmt_date_time();
-      strMessage += " ";
-      strMessage += pszMessage;
-      strMessage += "\n";
-
+      if(!on_exclusive_instance_conflict(bHandled, ExclusiveInstanceLocalId, get_local_mutex_id()))
       {
 
-         synchronous_lock synchronouslock(mutex());
-
-         m_pcontext->m_papexcontext->file().add_contents(m_pcontext->m_papexcontext->dir().appdata() / (m_pcontext->m_papexcontext->file().module().name() + "_log_error.txt"), strMessage);
-
-      }
-
-      if (bShowLog)
-      {
-
-         show_critical_error_log();
+         return false;
 
       }
 
    }
-
-
-   string application::get_app_user_friendly_task_bar_name()
+   catch (...)
    {
 
-      ::file::path path = m_strAppName;
-
-      string strTitle = path.title();
-
-      return strTitle;
+      return false;
 
    }
 
+}
+
+}
+
+}
+
+return true;
+
+}
 
 
-   void application::show_critical_error_log()
+bool application::release_exclusive()
+{
+
+m_mapExclusive.erase_all();
+
+return true;
+
+}
+
+
+::e_status application::notify_process_init()
+{
+
+::message::application message(::message::application_process_init);
+
+route_message(&message);
+
+return true;
+
+}
+
+
+::e_status application::notify_init1()
+{
+
+::message::application message(::message::application_init1);
+
+route_message(&message);
+
+return message.m_bOk;
+
+}
+
+
+::e_status application::notify_init2()
+{
+
+::message::application message(::message::application_init2);
+
+route_message(&message);
+
+return message.m_bOk;
+
+}
+::e_status application::notify_init3()
+{
+
+::message::application message(::message::application_init3);
+
+route_message(&message);
+
+return message.m_bOk;
+
+}
+
+
+
+
+void application::notify_term3()
+{
+
+::message::application message(::message::application_init3);
+
+route_message(&message);
+
+//      if (!message.m_bOk)
+//         return false;
+//
+//      return true;
+
+}
+
+
+void application::notify_term2()
+{
+
+::message::application message(::message::application_term2);
+
+route_message(&message);
+
+}
+
+
+void application::notify_term1()
+{
+
+::message::application message(::message::application_term1);
+
+try
+{
+
+route_message(&message);
+
+}
+catch (...)
+{
+
+}
+
+//return message.m_bOk;
+
+}
+
+
+void application::notify_process_term()
+{
+
+::message::application message(::message::application_process_term);
+
+route_message(&message);
+
+//return message.m_bOk;
+
+}
+
+
+
+
+
+
+
+string application::get_local_mutex_name()
+{
+__pointer(::apex::system) psystem = get_system();
+return psystem->get_local_mutex_name(get_mutex_name_gen());
+}
+
+
+string application::get_local_id_mutex_name()
+{
+__pointer(::apex::system) psystem = get_system();
+return psystem->get_local_id_mutex_name(get_mutex_name_gen(), get_local_mutex_id());
+
+}
+
+
+string application::get_global_mutex_name()
+{
+__pointer(::apex::system) psystem = get_system();
+return psystem->get_global_mutex_name(get_mutex_name_gen());
+}
+
+string application::get_global_id_mutex_name()
+{
+__pointer(::apex::system) psystem = get_system();
+return psystem->get_global_id_mutex_name(get_mutex_name_gen(), get_global_mutex_id());
+}
+
+
+
+
+::e_status application::on_exclusive_instance_conflict(bool & bHandled, EExclusiveInstance eexclusive, string strId)
+{
+
+if (eexclusive == ExclusiveInstanceLocal)
+{
+
+return on_exclusive_instance_local_conflict(bHandled);
+
+}
+else if (eexclusive == ExclusiveInstanceLocalId)
+{
+
+return on_exclusive_instance_local_conflict_id(bHandled, strId);
+
+}
+
+return false;
+
+}
+
+
+::e_status application::on_exclusive_instance_local_conflict(bool & bHandled)
+{
+
+bool bContinue = false;
+
+try
+{
+
+__pointer(::apex::system) psystem = get_system();
+
+if (m_pinterprocessintercommunication)
+{
+
+auto pcall = m_pinterprocessintercommunication->create_call("application", "on_additional_local_instance");
+
+pcall->add_arg(m_pcontext->m_papexcontext->file().module());
+
+pcall->add_arg(m_pcontext->m_papexcontext->os().get_pid());
+
+pcall->add_arg(psystem->command_line_text());
+
+string strId;
+
+pcall->add_arg(strId);
+
+pcall->announce();
+
+pcall->wait();
+
+for(auto & pair : pcall->m_mapTask)
+{
+
+   auto & pobjectTask = pair.element2();
+
+   if(bContinue && pobjectTask->has_property("continue"))
    {
 
-      static int g_iCount = 0;
+      bContinue = pobjectTask->m_var["continue"];
 
-      string strFile = m_pcontext->m_papexcontext->dir().appdata() / (m_pcontext->m_papexcontext->file().module().name() + "_log_error.txt");
+   }
 
-      g_iCount++;
+   if(!bHandled && pobjectTask->has_property("handled"))
+   {
 
-      if (g_iCount == 1)
+      bHandled = pobjectTask->m_var["handled"];
+
+   }
+
+}
+
+}
+
+}
+catch (...)
+{
+
+}
+
+return bContinue;
+
+}
+
+
+::e_status application::on_exclusive_instance_local_conflict_id(bool & bHandled, string strId)
+{
+
+bool bContinue = false;
+__pointer(::apex::system) psystem = get_system();
+try
+{
+
+if (m_pinterprocessintercommunication)
+{
+
+auto pcall = m_pinterprocessintercommunication->create_call("application", "on_additional_local_instance");
+
+pcall->add_arg(m_pcontext->m_papexcontext->file().module());
+
+pcall->add_arg(m_pcontext->m_papexcontext->os().get_pid());
+
+pcall->add_arg(psystem->command_line_text());
+
+pcall->add_arg(strId);
+
+for(auto & ptask : pcall->m_mapTask.values())
+{
+
+   if(!bHandled)
+   {
+
+      bHandled = ptask->is_true("handled");
+
+      if(bHandled)
       {
 
-         m_pcontext->m_papexcontext->os().file_open(strFile);
+         bContinue = ptask->is_true("continue");
 
       }
+
+   }
+
+}
+
+}
+
+}
+catch (...)
+{
+
+}
+
+return bContinue;
+
+}
+
+
+::e_status application::on_additional_local_instance(bool & bHandled, string strModule, int iPid, string strCommandLine)
+{
+
+auto pcommandline = __create_new < command_line >();
+
+pcommandline->initialize_command_line(strCommandLine);
+
+process_command_line(pcommandline);
+
+bHandled = true;
+
+return false;
+
+}
+
+
+void application::on_new_instance(string strModule, const ::id & iPid)
+{
+
+}
+
+
+//string application::get_mutex_name_gen()
+//{
+//   return m_strAppName;
+//}
+
+
+string application::get_local_mutex_id()
+{
+
+string str;
+
+str = payload("local_mutex_id");
+
+return str;
+
+}
+
+
+string application::get_global_mutex_id()
+{
+
+string str;
+
+str = payload("global_mutex_id");
+
+return str;
+
+}
+
+
+bool application::Ex2OnAppInstall()
+{
+
+return true;
+
+}
+
+
+bool application::Ex2OnAppUninstall()
+{
+
+return true;
+
+}
+
+
+void application::on_set_scalar(e_scalar escalar, i64 iValue, int iFlags)
+{
+
+//if (escalar == scalar_app_install_progress)
+//{
+
+//   m_iProgressInstallStep = iValue;
+
+//}
+//else if (escalar == scalar_app_install_progress_min)
+//{
+
+//   m_iProgressInstallStart = iValue;
+
+//}
+//else if (escalar == scalar_app_install_progress_max)
+//{
+
+//   m_iProgressInstallEnd = iValue;
+
+//}
+//else
+{
+
+return ::int_scalar_source::on_set_scalar(escalar, iValue, iFlags);
+
+}
+
+}
+
+
+void application::get_scalar_minimum(e_scalar escalar, i64 & i)
+{
+
+//if (escalar == scalar_app_install_progress)
+//{
+
+//   i = m_iProgressInstallStart;
+
+//}
+//else if (escalar == scalar_app_install_progress_min)
+//{
+
+//   i = 0;
+
+//}
+//else if (escalar == scalar_app_install_progress_max)
+//{
+
+//   i = 0;
+
+//}
+//else
+{
+
+::int_scalar_source::get_scalar_minimum(escalar, i);
+
+}
+
+}
+
+void application::get_scalar(e_scalar escalar, i64 & i)
+{
+
+//if (escalar == scalar_app_install_progress)
+//{
+
+//   i = m_iProgressInstallStep;
+
+//}
+//else if (escalar == scalar_app_install_progress_min)
+//{
+
+//   i = m_iProgressInstallStart;
+
+//}
+//else if (escalar == scalar_app_install_progress_max)
+//{
+
+//   i = m_iProgressInstallEnd;
+
+//}
+//else
+{
+
+::int_scalar_source::get_scalar(escalar, i);
+
+}
+
+}
+
+void application::get_scalar_maximum(e_scalar escalar, i64 & i)
+{
+
+//if (escalar == scalar_download_size)
+//{
+
+//   i = m_iProgressInstallEnd;
+
+//}
+//else if (escalar == scalar_app_install_progress_min)
+//{
+
+//   i = 0x7fffffff;
+
+//}
+//else if (escalar == scalar_app_install_progress_max)
+//{
+
+//   i = 0x7fffffff;
+
+//}
+//else
+{
+
+::int_scalar_source::get_scalar_minimum(escalar, i);
+
+}
+
+}
+
+
+//i32 application::sync_message_box_timeout(::user::primitive * puserinteractionOwner, ::payload payload, const char * pszTitle, ::duration durationTimeOut, ::u32 fuStyle)
+//{
+
+//   UNREFERENCED_PARAMETER(durationTimeOut);
+
+//   return sync_message_box(puserinteractionOwner, payload, pszTitle, fuStyle);
+
+//}
+
+
+
+
+
+
+string application::http_get_locale_schema(const char * pszUrl, const char * pszLocale, const char * pszSchema)
+{
+
+::exception::throw_interface_only();
+
+return "";
+
+}
+
+
+void application::message_handler(::message::message * pmessage)
+{
+
+::thread::message_handler(pmessage);
+
+}
+
+
+void application::set_locale(const string & pcsz, const ::action_context & context)
+{
+
+string strLocale(pcsz);
+
+
+strLocale.trim();
+
+m_strLocale = strLocale;
+
+on_set_locale(m_strLocale, context);
+
+}
+
+
+void application::set_schema(const string & pcsz, const ::action_context & context)
+
+{
+
+string strSchema(pcsz);
+
+
+strSchema.trim();
+
+m_strSchema = strSchema;
+
+on_set_schema(m_strSchema, context);
+
+}
+
+
+void application::on_set_locale(const string & pcsz, const ::action_context & context)
+
+{
+UNREFERENCED_PARAMETER(context);
+UNREFERENCED_PARAMETER(pcsz);
+
+//psystem->appa_load_string_table();
+}
+
+
+void application::on_set_schema(const string & pcsz, const ::action_context & context)
+
+{
+UNREFERENCED_PARAMETER(context);
+UNREFERENCED_PARAMETER(pcsz);
+
+//psystem->appa_load_string_table();
+}
+
+
+
+
+
+string application::get_locale_schema_dir()
+{
+
+return ::str::_001Concat(get_locale(), "/", get_schema());
+
+}
+
+
+string application::get_locale_schema_dir(const string & strLocale)
+{
+
+return ::str::_001Concat(strLocale.is_empty() ? get_locale() : strLocale, "/", get_schema());
+
+}
+
+
+void application::matter_locator_locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const string & strLocale, const string & strSchema)
+{
+
+if (strLocale.is_empty() || strSchema.is_empty())
+{
+
+return;
+
+}
+
+for (auto & strMatterLocator : straMatterLocator)
+{
+
+string strLs = get_locale_schema_dir(strLocale, strSchema);
+
+stra.add_unique(::file::path(strMatterLocator) / strLs);
+
+}
+
+}
+
+
+void application::locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const string & strLocale, const string & strSchema)
+{
+
+if (straMatterLocator.has_elements())
+{
+
+stra.add_unique(::file::path(straMatterLocator.first()) / get_locale_schema_dir("map", "map"));
+
+}
+
+matter_locator_locale_schema_matter(stra, straMatterLocator, strLocale, strSchema);
+
+auto psession = get_session();
+
+auto ptextcontext = psession->text_context();
+
+for (i32 i = 0; i < ptextcontext->localeschema().m_idaLocale.get_count(); i++)
+{
+
+string strLocale = ptextcontext->localeschema().m_idaLocale[i];
+
+string strSchema = ptextcontext->localeschema().m_idaSchema[i];
+
+matter_locator_locale_schema_matter(stra, straMatterLocator, strLocale, strSchema);
+
+}
+
+matter_locator_locale_schema_matter(stra, straMatterLocator, "en", "en");
+
+matter_locator_locale_schema_matter(stra, straMatterLocator, "_std", "_std");
+
+if (straMatterLocator.has_elements())
+{
+
+stra.add_unique(::file::path(straMatterLocator.first()) / get_locale_schema_dir("404", "404"));
+
+}
+
+}
+
+
+string application::get_locale_schema_dir(const string & strLocale, const string & strSchema)
+{
+
+return ::str::_001Concat(strLocale, "/", strSchema);
+
+}
+
+
+void application::fill_locale_schema(::text::international::locale_schema & localeschema, const string & pszLocale, const string & pszSchema)
+{
+
+
+localeschema.m_idaLocale.erase_all();
+localeschema.m_idaSchema.erase_all();
+
+
+string strLocale(pszLocale);
+string strSchema(pszSchema);
+
+
+localeschema.m_idLocale = pszLocale;
+localeschema.m_idSchema = pszSchema;
+
+
+localeschema.add_locale_variant(strLocale, strSchema);
+localeschema.add_locale_variant(get_locale(), strSchema);
+localeschema.add_locale_variant(__id(std), strSchema);
+localeschema.add_locale_variant(__id(en), strSchema);
+
+localeschema.finalize();
+
+}
+
+
+void application::fill_locale_schema(::text::international::locale_schema & localeschema)
+{
+
+
+localeschema.m_idaLocale.erase_all();
+localeschema.m_idaSchema.erase_all();
+
+
+//localeschema.m_bAddAlternateStyle = true;
+
+
+string_array straLocale;
+string_array straSchema;
+
+straLocale.add(get_locale());
+straSchema.add(get_schema());
+
+
+string_array stra;
+
+stra = payload("locale").stra();
+
+stra.erase_ci("_std");
+
+straLocale.add_unique(payload("locale").stra());
+
+stra.empty();
+
+stra = payload("schema").stra();
+
+stra.erase_ci("_std");
+
+straSchema.add_unique(payload("schema").stra());
+
+localeschema.m_idLocale = straLocale[0];
+localeschema.m_idSchema = straSchema[0];
+
+for (index iLocale = 0; iLocale < straLocale.get_count(); iLocale++)
+{
+
+for (index iSchema = 0; iSchema < straSchema.get_count(); iSchema++)
+{
+
+localeschema.add_locale_variant(straLocale[iLocale], straSchema[iSchema]);
+
+}
+
+}
+
+for (index iSchema = 0; iSchema < straSchema.get_count(); iSchema++)
+{
+
+localeschema.add_locale_variant(get_locale(), straSchema[iSchema]);
+
+}
+
+for (index iSchema = 0; iSchema < straSchema.get_count(); iSchema++)
+{
+
+localeschema.add_locale_variant(__id(std), straSchema[iSchema]);
+
+}
+
+
+for (index iSchema = 0; iSchema < straSchema.get_count(); iSchema++)
+{
+
+localeschema.add_locale_variant(__id(en), straSchema[iSchema]);
+
+}
+
+localeschema.finalize();
+
+}
+
+
+bool application::platform_open_by_file_extension(index iEdge, const char * pszPathName, ::create * pcreate)
+{
+
+return false;
+
+}
+
+
+bool application::platform_open_by_file_extension(index iEdge, ::create * pcc)
+{
+
+return false;
+
+}
+
+
+
+
+//i32 application::hotplugin_host_starter_start_sync(const char * pszCommandLine, ::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin)
+//{
+
+//   return -1;
+
+//}
+
+
+bool application::is_application() const
+{
+
+return !is_session() && !is_system();
+
+}
+
+
+
+//bool application::_001OnAgreeExit()
+//{
+
+//   return true;
+
+//}
+
+
+void application::_001OnFranceExit()
+{
+
+HideApplication();
+
+finish();
+
+}
+
+
+void application::_001FranceExit()
+{
+
+_001OnFranceExit();
+
+m_bFranceExit = true;
+
+}
+
+
+//void application::dispatch_user_message(::user::message * pusermessage)
+//{
+
+//   pusermessage->send();
+
+//}
+
+
+//void application::play_audio(::payload varFile, bool bSynch)
+//{
+
+//   UNREFERENCED_PARAMETER(varFile);
+//   UNREFERENCED_PARAMETER(bSynch);
+
+//}
+
+void application::post_critical_error_message(const char * pszMessage, bool bShowLog)
+{
+
+string strMessage;
+
+auto psystem = m_psystem;
+
+auto pdatetime = psystem->m_pdatetime;
+
+strMessage = pdatetime->international().get_gmt_date_time();
+strMessage += " ";
+strMessage += pszMessage;
+strMessage += "\n";
+
+{
+
+synchronous_lock synchronouslock(mutex());
+
+m_pcontext->m_papexcontext->file().add_contents(m_pcontext->m_papexcontext->dir().appdata() / (m_pcontext->m_papexcontext->file().module().name() + "_log_error.txt"), strMessage);
+
+}
+
+if (bShowLog)
+{
+
+show_critical_error_log();
+
+}
+
+}
+
+
+string application::get_app_user_friendly_task_bar_name()
+{
+
+::file::path path = m_strAppName;
+
+string strTitle = path.title();
+
+return strTitle;
+
+}
+
+
+
+void application::show_critical_error_log()
+{
+
+static int g_iCount = 0;
+
+string strFile = m_pcontext->m_papexcontext->dir().appdata() / (m_pcontext->m_papexcontext->file().module().name() + "_log_error.txt");
+
+g_iCount++;
+
+if (g_iCount == 1)
+{
+
+m_pcontext->m_papexcontext->os().file_open(strFile);
+
+}
 
 //#ifdef _UWP
 //
@@ -5092,619 +5092,619 @@ retry_license:
 
 
 
-   }
+}
 
 
-   void application::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
-   {
+void application::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+{
 
 
-   }
+}
 
 
-   //bool application::compress_ungz(::file::file * pfileUncompressed, ::file::file * pfileCompressed)
-   //{
+//bool application::compress_ungz(::file::file * pfileUncompressed, ::file::file * pfileCompressed)
+//{
 
-   //   return psystem->compress().ungz(this, pfileUncompressed, pfileCompressed);
+//   return psystem->compress().ungz(this, pfileUncompressed, pfileCompressed);
 
-   //}
-
-
-   //bool application::compress_gz(::file::file * pfileCompressed, ::file::file * pfileUncompressed, int iLevel)
-   //{
-
-   //   return psystem->compress().gz(this, pfileCompressed, pfileUncompressed, iLevel);
+//}
 
 
-   //}
+//bool application::compress_gz(::file::file * pfileCompressed, ::file::file * pfileUncompressed, int iLevel)
+//{
 
-   //void application::interactive_credentials(::account::credentials * pcredentials)
-   //{
-
-   //   psession->interactive_credentials(pcredentials);
-
-   //}
+//   return psystem->compress().gz(this, pfileCompressed, pfileUncompressed, iLevel);
 
 
-   ::file::path application::get_executable_path()
-   {
+//}
 
-      return m_psystem->m_pacmedir->module() / (get_executable_title() + get_executable_extension());
+//void application::interactive_credentials(::account::credentials * pcredentials)
+//{
+
+//   psession->interactive_credentials(pcredentials);
+
+//}
 
 
-   }
+::file::path application::get_executable_path()
+{
+
+return m_psystem->m_pacmedir->module() / (get_executable_title() + get_executable_extension());
 
 
-   string application::get_executable_extension()
-   {
+}
+
+
+string application::get_executable_extension()
+{
 
 #ifdef WINDOWS
 
-      return ".exe";
+return ".exe";
 
 #else
 
-      return "";
+return "";
 
 #endif
 
-   }
+}
 
 
-   string application::get_executable_title()
-   {
+string application::get_executable_title()
+{
 
-      return executable_title_from_appid(get_executable_appid());
+return executable_title_from_appid(get_executable_appid());
 
-   }
-
-
-   string application::get_executable_appid()
-   {
-
-      return m_strAppId;
-
-   }
+}
 
 
-   ::e_status application::app_set(string strPath, string strValue)
-   {
+string application::get_executable_appid()
+{
 
-      return m_pcontext->m_papexcontext->sys_set(::file::path(m_strAppName) / strPath, strValue);
+return m_strAppId;
 
-   }
-
-
-   string application::app_get(string strPath, string strDefault)
-   {
-
-      return m_pcontext->m_papexcontext->sys_get(::file::path(m_strAppName) / strPath, strDefault);
-
-   }
+}
 
 
-   bool application::on_open_document_file(::payload varFile)
-   {
+::e_status application::app_set(string strPath, string strValue)
+{
 
-      //request_file(varFile);
+return m_pcontext->m_papexcontext->sys_set(::file::path(m_strAppName) / strPath, strValue);
 
-      //return varFile["document"].cast < ::object > () != nullptr;
-
-      return false;
-
-   }
+}
 
 
+string application::app_get(string strPath, string strDefault)
+{
 
-   void application::install_trace(const string & str)
-   {
+return m_pcontext->m_papexcontext->sys_get(::file::path(m_strAppName) / strPath, strDefault);
 
-      synchronous_lock synchronouslock(mutex());
-
-      //::install::trace_file(this, m_strInstallTraceLabel).print(str);
-
-   }
+}
 
 
-   void application::install_trace(double dRate)
-   {
+bool application::on_open_document_file(::payload varFile)
+{
 
-      synchronous_lock synchronouslock(mutex());
+//request_file(varFile);
 
-      //::install::trace_file(this, m_strInstallTraceLabel).print(dRate);
+//return varFile["document"].cast < ::object > () != nullptr;
 
-   }
+return false;
+
+}
 
 
-   bool application::register_spa_file_type()
-   {
+
+void application::install_trace(const string & str)
+{
+
+synchronous_lock synchronouslock(mutex());
+
+//::install::trace_file(this, m_strInstallTraceLabel).print(str);
+
+}
+
+
+void application::install_trace(double dRate)
+{
+
+synchronous_lock synchronouslock(mutex());
+
+//::install::trace_file(this, m_strInstallTraceLabel).print(dRate);
+
+}
+
+
+bool application::register_spa_file_type()
+{
 
 #ifdef WINDOWS_DESKTOP
 
-      HKEY hkey;
+HKEY hkey;
 
-      wstring extension = L".spa";                     // file extension
-      wstring desc = L"spafile";          // file type description
-      wstring content_type = L"application/x-spa";
+wstring extension = L".spa";                     // file extension
+wstring desc = L"spafile";          // file type description
+wstring content_type = L"application/x-spa";
 
-      wstring app(m_psystem->m_pacmedir->stage(m_strAppId, process_platform_dir_name(), process_configuration_dir_name()));
+wstring app(m_psystem->m_pacmedir->stage(m_strAppId, process_platform_dir_name(), process_configuration_dir_name()));
 
-      wstring icon(app);
+wstring icon(app);
 
-      app = L"\"" + app + L"\"" + L" \"%1\"";
-      icon = L"\"" + icon + L"\",107";
+app = L"\"" + app + L"\"" + L" \"%1\"";
+icon = L"\"" + icon + L"\",107";
 
-      wstring action = L"Open";
+wstring action = L"Open";
 
-      wstring sub = L"\\shell\\";
+wstring sub = L"\\shell\\";
 
-      wstring path = L"spafile\\shell\\open\\command";
-
-
-      // 1: Create subkey for extension -> HKEY_CLASSES_ROOT\.002
-      if (RegCreateKeyExW(HKEY_CLASSES_ROOT, extension.c_str(), 0, 0, 0, KEY_ALL_ACCESS, 0, &hkey, 0) != ERROR_SUCCESS)
-      {
-         output_debug_string("Could not create or open a registrty key\n");
-         return 0;
-      }
-      RegSetValueExW(hkey, L"", 0, REG_SZ, (byte*)desc.c_str(), ::u32 (desc.length() * sizeof(wchar_t))); // default vlaue is description of file extension
-      RegSetValueExW(hkey, L"ContentType", 0, REG_SZ, (byte*)content_type.c_str(), ::u32 (content_type.length() * sizeof(wchar_t))); // default vlaue is description of file extension
-      RegCloseKey(hkey);
+wstring path = L"spafile\\shell\\open\\command";
 
 
+// 1: Create subkey for extension -> HKEY_CLASSES_ROOT\.002
+if (RegCreateKeyExW(HKEY_CLASSES_ROOT, extension.c_str(), 0, 0, 0, KEY_ALL_ACCESS, 0, &hkey, 0) != ERROR_SUCCESS)
+{
+output_debug_string("Could not create or open a registrty key\n");
+return 0;
+}
+RegSetValueExW(hkey, L"", 0, REG_SZ, (byte*)desc.c_str(), ::u32 (desc.length() * sizeof(wchar_t))); // default vlaue is description of file extension
+RegSetValueExW(hkey, L"ContentType", 0, REG_SZ, (byte*)content_type.c_str(), ::u32 (content_type.length() * sizeof(wchar_t))); // default vlaue is description of file extension
+RegCloseKey(hkey);
 
-      // 2: Create Subkeys for action ( "Open with my program" )
-      // HKEY_CLASSES_ROOT\.002\Shell\\open with my program\\command
-      if (RegCreateKeyExW(HKEY_CLASSES_ROOT, path.c_str(), 0, 0, 0, KEY_ALL_ACCESS, 0, &hkey, 0) != ERROR_SUCCESS)
-      {
-         output_debug_string("Could not create or open a registrty key\n");
-         return 0;
-      }
-      RegSetValueExW(hkey, L"", 0, REG_SZ, (byte*)app.c_str(), ::u32(app.length() * sizeof(wchar_t)));
-      RegCloseKey(hkey);
 
 
-      path = L"spafile\\DefaultIcon";
+// 2: Create Subkeys for action ( "Open with my program" )
+// HKEY_CLASSES_ROOT\.002\Shell\\open with my program\\command
+if (RegCreateKeyExW(HKEY_CLASSES_ROOT, path.c_str(), 0, 0, 0, KEY_ALL_ACCESS, 0, &hkey, 0) != ERROR_SUCCESS)
+{
+output_debug_string("Could not create or open a registrty key\n");
+return 0;
+}
+RegSetValueExW(hkey, L"", 0, REG_SZ, (byte*)app.c_str(), ::u32(app.length() * sizeof(wchar_t)));
+RegCloseKey(hkey);
 
-      if (RegCreateKeyExW(HKEY_CLASSES_ROOT, path.c_str(), 0, 0, 0, KEY_ALL_ACCESS, 0, &hkey, 0) != ERROR_SUCCESS)
-      {
-         output_debug_string("Could not create or open a registrty key\n");
-         return 0;
-      }
-      RegSetValueExW(hkey, L"", 0, REG_SZ, (byte*)icon.c_str(), ::u32 (icon.length() * sizeof(wchar_t)));
-      RegCloseKey(hkey);
 
-      wstring wstr(m_psystem->m_pacmedir->stage(m_strAppId, process_platform_dir_name(), process_configuration_dir_name()) / "spa_register.txt");
+path = L"spafile\\DefaultIcon";
 
-      int iRetry = 9;
+if (RegCreateKeyExW(HKEY_CLASSES_ROOT, path.c_str(), 0, 0, 0, KEY_ALL_ACCESS, 0, &hkey, 0) != ERROR_SUCCESS)
+{
+output_debug_string("Could not create or open a registrty key\n");
+return 0;
+}
+RegSetValueExW(hkey, L"", 0, REG_SZ, (byte*)icon.c_str(), ::u32 (icon.length() * sizeof(wchar_t)));
+RegCloseKey(hkey);
 
-      while (!file_exists(utf8(wstr.c_str())) && iRetry > 0)
-      {
+wstring wstr(m_psystem->m_pacmedir->stage(m_strAppId, process_platform_dir_name(), process_configuration_dir_name()) / "spa_register.txt");
 
-         dir::mk(dir::name(utf8(wstr.c_str())).c_str());
+int iRetry = 9;
 
-         file_put_contents(utf8(wstr.c_str()).c_str(), "");
+while (!file_exists(utf8(wstr.c_str())) && iRetry > 0)
+{
 
-         iRetry--;
+dir::mk(dir::name(utf8(wstr.c_str())).c_str());
 
-         sleep(100_ms);
+file_put_contents(utf8(wstr.c_str()).c_str(), "");
 
-      }
+iRetry--;
+
+sleep(100_ms);
+
+}
 
 #endif
 
-      return true;
+return true;
 
-   }
-
-
-   bool application::low_is_app_app_admin_running(string strPlatform, string strConfiguration)
-   {
-
-      ::install::admin_mutex smutex(strPlatform);
-
-      return smutex.already_exists();
-
-   }
+}
 
 
-   void application::defer_start_program_files_app_app_admin(string strPlatform, string strConfiguration)
-   {
+bool application::low_is_app_app_admin_running(string strPlatform, string strConfiguration)
+{
 
-      if (low_is_app_app_admin_running(strPlatform, strConfiguration))
-      {
+::install::admin_mutex smutex(strPlatform);
 
-         return;
+return smutex.already_exists();
 
-      }
-
-      start_program_files_app_app_admin(strPlatform, strConfiguration);
-
-   }
+}
 
 
-   void application::start_program_files_app_app_admin(string strPlatform, string strConfiguration)
-   {
+void application::defer_start_program_files_app_app_admin(string strPlatform, string strConfiguration)
+{
+
+if (low_is_app_app_admin_running(strPlatform, strConfiguration))
+{
+
+return;
+
+}
+
+start_program_files_app_app_admin(strPlatform, strConfiguration);
+
+}
+
+
+void application::start_program_files_app_app_admin(string strPlatform, string strConfiguration)
+{
 
 #ifdef WINDOWS_DESKTOP
 
-      SHELLEXECUTEINFOW sei = {};
+SHELLEXECUTEINFOW sei = {};
 
-      string str = m_psystem->m_pacmepath->app_app_admin(strPlatform, strConfiguration);
+string str = m_psystem->m_pacmepath->app_app_admin(strPlatform, strConfiguration);
 
-      if (!::file_exists(str))
-      {
+if (!::file_exists(str))
+{
 
-         return;
+return;
 
-      }
+}
 
-      ::install::admin_mutex mutexStartup("-startup");
+::install::admin_mutex mutexStartup("-startup");
 
-      wstring wstr(str);
+wstring wstr(str);
 
-      sei.cbSize = sizeof(SHELLEXECUTEINFOW);
-      sei.fMask = SEE_MASK_NOASYNC | SEE_MASK_NOCLOSEPROCESS;
-      sei.lpVerb = L"RunAs";
+sei.cbSize = sizeof(SHELLEXECUTEINFOW);
+sei.fMask = SEE_MASK_NOASYNC | SEE_MASK_NOCLOSEPROCESS;
+sei.lpVerb = L"RunAs";
 
-      sei.lpFile = wstr.c_str();
+sei.lpFile = wstr.c_str();
 
-      ::ShellExecuteExW(&sei);
+::ShellExecuteExW(&sei);
 
-      DWORD dwGetLastError = GetLastError();
+DWORD dwGetLastError = GetLastError();
 
 #endif
 
-   }
+}
 
 
-   string application::get_app_id(string wstr)
-   {
+string application::get_app_id(string wstr)
+{
 
-      if (wstr.length() <= 0)
-      {
+if (wstr.length() <= 0)
+{
 
-         return "";
+return "";
 
-      }
+}
 
-      wstr.trim();
+wstr.trim();
 
-      ::str::trim_any_quotes(wstr);
+::str::trim_any_quotes(wstr);
 
-      wstr.trim();
+wstr.trim();
 
-      if (wstr.length() <= 0)
-      {
+if (wstr.length() <= 0)
+{
 
-         return "";
+return "";
 
-      }
+}
 
 
-      ::string strPath = wstr.c_str();
+::string strPath = wstr.c_str();
 
-      ::string strContents = file_as_string(strPath.c_str());
+::string strContents = file_as_string(strPath.c_str());
 
-      __throw(todo, "xml");
+__throw(todo, "xml");
 
-      //::xml::document doc;
+//::xml::document doc;
 
-      //if (!doc.load(strContents.c_str()))
-      //{
+//if (!doc.load(strContents.c_str()))
+//{
 
-      //   return "";
+//   return "";
 
-      //}
+//}
 
-      //const char * psz = doc.GetChildAttrValue("launch", "app");
+//const char * psz = doc.GetChildAttrValue("launch", "app");
 
-      //if (psz == nullptr || *psz == '\0')
-      //{
+//if (psz == nullptr || *psz == '\0')
+//{
 
-      //   return "";
+//   return "";
 
-      //}
+//}
 
-      //return psz;
+//return psz;
 
-      return nullptr;
+return nullptr;
 
-   }
+}
 
 
-   //LPWAVEOUT application::waveout_open(int iChannel, LPAUDIOFORMAT pformat, LPWAVEOUT_CALLBACK pcallback)
-   //{
+//LPWAVEOUT application::waveout_open(int iChannel, LPAUDIOFORMAT pformat, LPWAVEOUT_CALLBACK pcallback)
+//{
 
-   //   __throw(interface_only_exception(nullptr));
+//   __throw(interface_only_exception(nullptr));
 
-   //   return nullptr;
+//   return nullptr;
 
-   //}
+//}
 
 
-   void application::defer_create_keyboard()
-   {
+void application::defer_create_keyboard()
+{
 
-      //set_keyboard_layout(nullptr,::e_source_database);
+//set_keyboard_layout(nullptr,::e_source_database);
 
-   }
+}
 
 
-   bool application::keyboard_focus_is_focusable(const ::user::primitive * pue)
-   {
+bool application::keyboard_focus_is_focusable(const ::user::primitive * pue)
+{
 
-      return false;
+return false;
 
-   }
+}
 
 
-   bool application::keyboard_focus_OnSetFocus(::user::primitive * pue)
-   {
+bool application::keyboard_focus_OnSetFocus(::user::primitive * pue)
+{
 
-      return true;
+return true;
 
-   }
+}
 
 
-   bool application::send_message_to_windows(const ::id & id, wparam wparam, lparam lparam) // with tbs in <3
-   {
+bool application::send_message_to_windows(const ::id & id, wparam wparam, lparam lparam) // with tbs in <3
+{
 
-      //__pointer(::user::interaction) puserinteraction;
+//__pointer(::user::interaction) puserinteraction;
 
-      //try
-      //{
+//try
+//{
 
-      //   while (get_frame(puserinteraction))
-      //   {
+//   while (get_frame(puserinteraction))
+//   {
 
-      //      try
-      //      {
+//      try
+//      {
 
-      //         if (puserinteraction && puserinteraction->is_window())
-      //         {
+//         if (puserinteraction && puserinteraction->is_window())
+//         {
 
-      //            try
-      //            {
+//            try
+//            {
 
-      //               puserinteraction->send_message(message, wparam, lparam);
+//               puserinteraction->send_message(message, wparam, lparam);
 
 
-      //            }
-      //            catch (...)
-      //            {
+//            }
+//            catch (...)
+//            {
 
-      //            }
+//            }
 
-      //            try
-      //            {
+//            try
+//            {
 
-      //               puserinteraction->send_message_to_descendants(message, wparam, lparam);
+//               puserinteraction->send_message_to_descendants(message, wparam, lparam);
 
 
-      //            }
-      //            catch (...)
-      //            {
+//            }
+//            catch (...)
+//            {
 
 
-      //            }
+//            }
 
-      //         }
+//         }
 
-      //      }
-      //      catch (...)
-      //      {
+//      }
+//      catch (...)
+//      {
 
-      //      }
+//      }
 
-      //   }
+//   }
 
-      //}
-      //catch (...)
-      //{
+//}
+//catch (...)
+//{
 
-      //}
+//}
 
-      __throw(error_interface_only);
+__throw(error_interface_only);
 
-      return false;
+return false;
 
-   }
+}
 
 
-   bool application::route_message_to_windows(::message::message * pmessage) // with tbs in <3
-   {
+bool application::route_message_to_windows(::message::message * pmessage) // with tbs in <3
+{
 
-      __throw(error_interface_only);
+__throw(error_interface_only);
 
-      //__pointer(::user::interaction) puserinteraction;
+//__pointer(::user::interaction) puserinteraction;
 
-      //try
-      //{
+//try
+//{
 
-      //   while (get_frame(puserinteraction))
-      //   {
+//   while (get_frame(puserinteraction))
+//   {
 
-      //      try
-      //      {
+//      try
+//      {
 
-      //         if (puserinteraction && puserinteraction->is_window())
-      //         {
+//         if (puserinteraction && puserinteraction->is_window())
+//         {
 
-      //            try
-      //            {
+//            try
+//            {
 
-      //               puserinteraction->route_message(pmessage);
+//               puserinteraction->route_message(pmessage);
 
-      //            }
-      //            catch (...)
-      //            {
+//            }
+//            catch (...)
+//            {
 
-      //            }
+//            }
 
-      //            try
-      //            {
+//            try
+//            {
 
-      //               puserinteraction->route_message_to_descendants(pmessage);
+//               puserinteraction->route_message_to_descendants(pmessage);
 
-      //            }
-      //            catch (...)
-      //            {
+//            }
+//            catch (...)
+//            {
 
 
-      //            }
+//            }
 
-      //         }
+//         }
 
-      //      }
-      //      catch (...)
-      //      {
+//      }
+//      catch (...)
+//      {
 
-      //      }
+//      }
 
-      //   }
+//   }
 
-      //}
-      //catch (...)
-      //{
+//}
+//catch (...)
+//{
 
 
-      //}
+//}
 
-      return false;
+return false;
 
-   }
+}
 
 
-   void application::send_language_change_message()
-   {
+void application::send_language_change_message()
+{
 
-      ::message::message message(e_message_language);
+::message::message message(e_message_language);
 
-      route_message_to_windows(&message);
+route_message_to_windows(&message);
 
-   }
+}
 
 
-   //::user::interaction * application::main_window()
-   //{
+//::user::interaction * application::main_window()
+//{
 
-   //   if (!m_puserinteractionMain)
-   //   {
+//   if (!m_puserinteractionMain)
+//   {
 
-   //      return nullptr;
+//      return nullptr;
 
-   //   }
+//   }
 
-   //   return m_puserinteractionMain->m_puiThis;
+//   return m_puserinteractionMain->m_puiThis;
 
-   //}
+//}
 
 
-   string application::preferred_experience()
-   {
+string application::preferred_experience()
+{
 
-      string strExperience;
+string strExperience;
 
-      strExperience = payload("experience");
+strExperience = payload("experience");
 
-      if (strExperience.has_char())
-      {
+if (strExperience.has_char())
+{
 
-         return strExperience;
+return strExperience;
 
-      }
+}
 
-      return "core";
+return "core";
 
-   }
+}
 
-   //::user::document *application::place_hold(::user::interaction * pinteraction)
-   //{
+//::user::document *application::place_hold(::user::interaction * pinteraction)
+//{
 
-   //   return nullptr;
+//   return nullptr;
 
-   //}
+//}
 
 
-   bool application::post_message(const ::id & id, wparam wparam, lparam lparam )
-   {
+bool application::post_message(const ::id & id, wparam wparam, lparam lparam )
+{
 
-      return ::thread::post_message(id, wparam, lparam);
+return ::thread::post_message(id, wparam, lparam);
 
-   }
+}
 
 
-   //::draw2d::icon * application::set_icon(object * pobject, ::draw2d::icon * picon, bool bBigIcon)
-   //{
+//::draw2d::icon * application::set_icon(object * pobject, ::draw2d::icon * picon, bool bBigIcon)
+//{
 
-   //   ::draw2d::icon * piconOld = get_icon(pobject, bBigIcon);
+//   ::draw2d::icon * piconOld = get_icon(pobject, bBigIcon);
 
-   //   if (bBigIcon)
-   //   {
+//   if (bBigIcon)
+//   {
 
-   //      pobject->payload("big_icon") = (__pointer(object)) picon;
+//      pobject->payload("big_icon") = (__pointer(object)) picon;
 
-   //   }
-   //   else
-   //   {
+//   }
+//   else
+//   {
 
-   //      pobject->payload("small_icon") = (__pointer(object)) picon;
+//      pobject->payload("small_icon") = (__pointer(object)) picon;
 
-   //   }
+//   }
 
-   //   return piconOld;
+//   return piconOld;
 
-   //}
+//}
 
 
-   //::draw2d::icon * application::get_icon(object * pobject, bool bBigIcon) const
-   //{
+//::draw2d::icon * application::get_icon(object * pobject, bool bBigIcon) const
+//{
 
-   //   if (bBigIcon)
-   //   {
+//   if (bBigIcon)
+//   {
 
-   //      return ((object *)pobject)->cast < ::draw2d::icon >("big_icon");
+//      return ((object *)pobject)->cast < ::draw2d::icon >("big_icon");
 
-   //   }
-   //   else
-   //   {
+//   }
+//   else
+//   {
 
-   //      return ((object *)pobject)->cast <::draw2d::icon>("small_icon");
+//      return ((object *)pobject)->cast <::draw2d::icon>("small_icon");
 
-   //   }
+//   }
 
-   //}
+//}
 
 
-   void application::_001OnAppExit(::message::message * pmessage)
-   {
+void application::_001OnAppExit(::message::message * pmessage)
+{
 
-      pmessage->m_bRet = true;
+pmessage->m_bRet = true;
 
-      _001TryCloseApplication();
+_001TryCloseApplication();
 
-   }
+}
 
 
-   bool application::is_equal_file_path(const ::file::path & path1Param, const ::file::path & path2Param)
-   {
+bool application::is_equal_file_path(const ::file::path & path1Param, const ::file::path & path2Param)
+{
 
-      ::file::path path1;
+::file::path path1;
 
-      ::file::path path2;
+::file::path path2;
 
-      path1 = m_pcontext->m_papexcontext->defer_process_path(path1Param);
+path1 = m_pcontext->m_papexcontext->defer_process_path(path1Param);
 
-      path2 = m_pcontext->m_papexcontext->defer_process_path(path2Param);
+path2 = m_pcontext->m_papexcontext->defer_process_path(path2Param);
 
-      path1 = node_full_file_path(path1);
+path1 = node_full_file_path(path1);
 
-      path2 = node_full_file_path(path2);
+path2 = node_full_file_path(path2);
 
-      return strcmp(path1, path2) == 0;
+return strcmp(path1, path2) == 0;
 
-   }
+}
 
 
 //   void application::on_event(::u64 u, ::object * pobject)
@@ -5731,83 +5731,83 @@ retry_license:
 //   }
 
 
-   ::file::path application::appconfig_folder()
-   {
+::file::path application::appconfig_folder()
+{
 
-      return m_psystem->m_pacmedir->config() / m_strAppName;
+return m_psystem->m_pacmedir->config() / m_strAppName;
 
-   }
-
-
-   //::account::user * application::get_user(::file::path pathUrl, bool bFetch, bool bInteractive)
-   //{
-
-   //   if(::is_null(get_session()))
-   //   {
-
-   //      return nullptr;
-
-   //   }
-
-   //   return get_session()->get_user(pathUrl, bFetch, bInteractive);
-
-   //}
+}
 
 
-   //::account::user * application::interactive_get_user(::file::path pathUrl)
-   //{
+//::account::user * application::get_user(::file::path pathUrl, bool bFetch, bool bInteractive)
+//{
 
-   //   return get_user(pathUrl, true, true);
+//   if(::is_null(get_session()))
+//   {
 
-   //}
+//      return nullptr;
 
+//   }
 
-   //::account::user * application::noninteractive_get_user(::file::path pathUrl)
-   //{
+//   return get_session()->get_user(pathUrl, bFetch, bInteractive);
 
-   //   return get_user(pathUrl, true, false);
-
-   //}
-
-
-   void application::on_initial_frame_position(::user::frame * pframe)
-   {
-
-      __pointer(::apex::system) psystem = get_system();
-
-      psystem->on_initial_frame_position(pframe);
-
-   }
+//}
 
 
-   void application::on_graphics_ready()
-   {
+//::account::user * application::interactive_get_user(::file::path pathUrl)
+//{
 
-   }
+//   return get_user(pathUrl, true, true);
+
+//}
 
 
-   //__pointer(::user::document) application::defer_create_view(string strView, ::user::interaction * puiParent, ewindowflag ewindowflag, const ::id & id)
-   //{
+//::account::user * application::noninteractive_get_user(::file::path pathUrl)
+//{
 
-   //   //auto pcontroller = pmultimedia->defer_create_view(strView, puiParent, ewindowflag, id);
+//   return get_user(pathUrl, true, false);
 
-   //   //if (pcontroller)
-   //   //{
+//}
 
-   //   //   return pcontroller;
 
-   //   //}
+void application::on_initial_frame_position(::user::frame * pframe)
+{
 
-   //   return nullptr;
+__pointer(::apex::system) psystem = get_system();
 
-   //}
+psystem->on_initial_frame_position(pframe);
 
-   //void application::process_message(::user::message * pusermessage)
-   //{
+}
 
-   //   return ::thread::process_message(pusermessage);
 
-   //}
+void application::on_graphics_ready()
+{
+
+}
+
+
+//__pointer(::user::document) application::defer_create_view(string strView, ::user::interaction * puiParent, ewindowflag ewindowflag, const ::id & id)
+//{
+
+//   //auto pcontroller = pmultimedia->defer_create_view(strView, puiParent, ewindowflag, id);
+
+//   //if (pcontroller)
+//   //{
+
+//   //   return pcontroller;
+
+//   //}
+
+//   return nullptr;
+
+//}
+
+//void application::process_message(::user::message * pusermessage)
+//{
+
+//   return ::thread::process_message(pusermessage);
+
+//}
 
 
 //   ::account::user * application::interactive_get_user(::file::path pathUrl)
@@ -5840,103 +5840,103 @@ retry_license:
 //   }
 
 
-   //::type application::user_default_controltype_to_typeinfo(::user::enum_control_type econtroltype)
-   //{
+//::type application::user_default_controltype_to_typeinfo(::user::enum_control_type econtroltype)
+//{
 
-   //   return __type(::user::interaction);
+//   return __type(::user::interaction);
 
-   //}
-
-
-   //::type application::control_type_from_id(const ::id & id, ::user::enum_control_type & econtroltype)
-   //{
-
-   //   econtroltype = ::user::e_control_type_none;
-
-   //   return __type(::user::interaction);
-
-   //}
+//}
 
 
-   ::id application::translate_property_id(const ::id & id)
-   {
+//::type application::control_type_from_id(const ::id & id, ::user::enum_control_type & econtroltype)
+//{
 
-      //if(!is_system())
-      //{
+//   econtroltype = ::user::e_control_type_none;
 
-        // if(!is_session())
-         //{
+//   return __type(::user::interaction);
 
-           // return psession->translate_property_id(id);
-
-         //}
-         //else
-         //{
-
-           // return psystem->translate_property_id(id);
-
-         //}
-
-      //}
-
-      return id;
-
-   }
+//}
 
 
-   //void application::record(::create * pcommand)
-   //{
+::id application::translate_property_id(const ::id & id)
+{
 
-   //   synchronous_lock synchronouslock(mutex());
+//if(!is_system())
+//{
 
-   //   get_command()->m_createa.add(pcommand);
+// if(!is_session())
+//{
 
-   //}
+// return psession->translate_property_id(id);
 
+//}
+//else
+//{
 
-   bool application::on_start_application()
-   {
+// return psystem->translate_property_id(id);
 
-      string strAppId = m_strAppId;
+//}
 
-      __pointer(::apex::system) psystem = get_system();
+//}
 
-      auto& file = psystem->file();
+return id;
 
-      string strJson = file.as_string(m_psystem->m_pacmedir->config() / strAppId / +"http.json");
-
-      if (strJson.has_char())
-      {
-
-         try
-         {
-
-            psystem->http().m_setHttp.parse_json(strJson);
-
-         }
-         catch (...)
-         {
-
-         }
-
-      }
-
-      m_psystem->m_papexsystem->m_papexnode->set_last_run_application_path(strAppId);
-
-      if (!os_on_start_application())
-      {
-
-         return false;
-
-      }
-
-      return true;
-
-   }
+}
 
 
-   bool application::start_application(bool bSynch, ::create * pcreate)
-   {
+//void application::record(::create * pcommand)
+//{
+
+//   synchronous_lock synchronouslock(mutex());
+
+//   get_command()->m_createa.add(pcommand);
+
+//}
+
+
+bool application::on_start_application()
+{
+
+string strAppId = m_strAppId;
+
+__pointer(::apex::system) psystem = get_system();
+
+auto& file = psystem->file();
+
+string strJson = file.as_string(m_psystem->m_pacmedir->config() / strAppId / +"http.json");
+
+if (strJson.has_char())
+{
+
+try
+{
+
+psystem->http().m_setHttp.parse_json(strJson);
+
+}
+catch (...)
+{
+
+}
+
+}
+
+m_psystem->m_papexsystem->m_papexnode->set_last_run_application_path(strAppId);
+
+if (!os_on_start_application())
+{
+
+return false;
+
+}
+
+return true;
+
+}
+
+
+bool application::start_application(bool bSynch, ::create * pcreate)
+{
 
 //      try
 //      {
@@ -5964,1119 +5964,1119 @@ retry_license:
 //
 //      }
 
-      if (bSynch)
-      {
+if (bSynch)
+{
 
-         if (!begin_synch())
-         {
+if (!begin_synch())
+{
 
-            return false;
+return false;
 
-         }
+}
 
-      }
-      else
-      {
+}
+else
+{
 
-         branch();
+branch();
 
-      }
+}
 
-      return true;
+return true;
 
-   }
+}
 
 
-   void application::HideApplication()
-   {
+void application::HideApplication()
+{
 
 
-      //try
-      //{
-      __throw(todo, "interaction");
+//try
+//{
+__throw(todo, "interaction");
 
-      //   if (m_puserinteractionMain)
-      //   {
+//   if (m_puserinteractionMain)
+//   {
 
-      //      m_puserinteractionMain->display(::e_display_hide);
+//      m_puserinteractionMain->display(::e_display_hide);
 
-      //      m_puserinteractionMain->set_need_redraw();
+//      m_puserinteractionMain->set_need_redraw();
 
-      //      m_puserinteractionMain->post_redraw();
+//      m_puserinteractionMain->post_redraw();
 
-      //   }
+//   }
 
-      //}
-      //catch (...)
-      //{
+//}
+//catch (...)
+//{
 
-      //}
+//}
 
-   }
+}
 
 
-   string application::load_string(const ::id & id)
-   {
+string application::load_string(const ::id & id)
+{
 
-      synchronous_lock synchronouslock(&m_mutexStr);
+synchronous_lock synchronouslock(&m_mutexStr);
 
-      string str;
+string str;
 
-      if (m_stringmap.lookup(id, str))
-      {
+if (m_stringmap.lookup(id, str))
+{
 
-         return str;
+return str;
 
-      }
+}
 
-      if (!load_string(str, id))
-      {
+if (!load_string(str, id))
+{
 
-         id.to_string(str);
+id.to_string(str);
 
-         return str;
+return str;
 
-      }
+}
 
-      m_stringmap.set_at(id, str);
+m_stringmap.set_at(id, str);
 
-      return str;
+return str;
 
-   }
+}
 
 
-   bool application::load_string(string & str, const ::id & id)
-   {
+bool application::load_string(string & str, const ::id & id)
+{
 
-      if (!load_cached_string(str, id, true))
-      {
+if (!load_cached_string(str, id, true))
+{
 
-         return false;
+return false;
 
-      }
+}
 
-      return true;
+return true;
 
-   }
+}
 
 
-   bool application::load_cached_string(string & str, const ::id & id, bool bLoadStringTable)
-   {
+bool application::load_cached_string(string & str, const ::id & id, bool bLoadStringTable)
+{
 
 
-      //__throw(todo("xml"));
+//__throw(todo("xml"));
 
-      //auto pdocument = __new(::xml::document);
+//auto pdocument = __new(::xml::document);
 
-      //if (!pdocument->load(id) || !*pdocument)
-      //{
+//if (!pdocument->load(id) || !*pdocument)
+//{
 
-      //   return load_cached_string_by_id(str, id, bLoadStringTable);
+//   return load_cached_string_by_id(str, id, bLoadStringTable);
 
-      //}
+//}
 
-      //auto pnodeRoot = pdocument->root();
+//auto pnodeRoot = pdocument->root();
 
-      //if (pnodeRoot->get_name() == "string")
-      //{
+//if (pnodeRoot->get_name() == "string")
+//{
 
-      //   string strId = pnodeRoot->attribute("id");
+//   string strId = pnodeRoot->attribute("id");
 
-      //   if (!load_cached_string_by_id(str, strId, bLoadStringTable))
-      //   {
+//   if (!load_cached_string_by_id(str, strId, bLoadStringTable))
+//   {
 
-      //      str = pnodeRoot->get_value();
+//      str = pnodeRoot->get_value();
 
-      //   }
+//   }
 
-      //   return true;
+//   return true;
 
-      //}
+//}
 
-      return false;
+return false;
 
-   }
+}
 
 
-   //bool application::load_cached_string_by_id(string & str, const ::id & id, bool bLoadStringTable)
-   //{
+//bool application::load_cached_string_by_id(string & str, const ::id & id, bool bLoadStringTable)
+//{
 
-   //   string strId(id.str());
+//   string strId(id.str());
 
-   //   string strTable;
+//   string strTable;
 
-   //   string strString;
+//   string strString;
 
-   //   index iFind = 0;
+//   index iFind = 0;
 
-   //   if ((iFind = strId.find(':')) <= 0)
-   //   {
+//   if ((iFind = strId.find(':')) <= 0)
+//   {
 
-   //      strTable = "";
+//      strTable = "";
 
-   //      strString = strId;
+//      strString = strId;
 
-   //   }
-   //   else
-   //   {
+//   }
+//   else
+//   {
 
-   //      strTable = strId.Mid(0, iFind);
+//      strTable = strId.Mid(0, iFind);
 
-   //      strString = strId.Mid(iFind + 1);
+//      strString = strId.Mid(iFind + 1);
 
-   //   }
+//   }
 
-   //   synchronous_lock synchronouslock(&m_mutexStr);
+//   synchronous_lock synchronouslock(&m_mutexStr);
 
-   //   __pointer(string_to_string) pmap;
+//   __pointer(string_to_string) pmap;
 
-   //   if (m_stringtableStd.lookup(strTable, pmap))
-   //   {
+//   if (m_stringtableStd.lookup(strTable, pmap))
+//   {
 
-   //      if (pmap != nullptr && pmap->lookup(strString, str))
-   //      {
+//      if (pmap != nullptr && pmap->lookup(strString, str))
+//      {
 
-   //         return true;
+//         return true;
 
-   //      }
+//      }
 
-   //   }
-   //   else if (m_stringtable.lookup(strTable, pmap))
-   //   {
+//   }
+//   else if (m_stringtable.lookup(strTable, pmap))
+//   {
 
-   //      if (pmap != nullptr && pmap->lookup(strString, str))
-   //      {
+//      if (pmap != nullptr && pmap->lookup(strString, str))
+//      {
 
-   //         return true;
+//         return true;
 
-   //      }
+//      }
 
-   //   }
-   //   else if (bLoadStringTable)
-   //   {
+//   }
+//   else if (bLoadStringTable)
+//   {
 
-   //      load_string_table(strTable, "");
+//      load_string_table(strTable, "");
 
-   //      return load_cached_string_by_id(str, id, false);
+//      return load_cached_string_by_id(str, id, false);
 
-   //   }
+//   }
 
-   //   return false;
+//   return false;
 
-   //}
+//}
 
 
-   void application::load_string_table(const string & pszApp, const string & pszId)
-   {
+void application::load_string_table(const string & pszApp, const string & pszId)
+{
 
 
-   }
+}
 
 
 
 
-   //void application::load_string_table()
-   //{
+//void application::load_string_table()
+//{
 
-   //   load_string_table("", "");
+//   load_string_table("", "");
 
-   //}
+//}
 
 
-   //bool application::is_system() const
-   //{
+//bool application::is_system() const
+//{
 
-   //   return false;
+//   return false;
 
-   //}
+//}
 
 
-   //bool application::is_session() const
-   //{
+//bool application::is_session() const
+//{
 
-   //   return false;
+//   return false;
 
-   //}
+//}
 
 
-   //bool application::is_serviceable() const
-   //{
+//bool application::is_serviceable() const
+//{
 
-   //   return false;
+//   return false;
 
-   //}
+//}
 
 
-   //::simpledb::server * application::simpledb()
-   //{
+//::simpledb::server * application::simpledb()
+//{
 
-   //   return m_psimpledb;
+//   return m_psimpledb;
 
-   //}
+//}
 
 
-   ::database::server * application::dataserver()
-   {
+::database::server * application::dataserver()
+{
 
-      //return simpledb();
+//return simpledb();
 
-      return nullptr;
+return nullptr;
 
-   }
+}
 
 
-   ::e_status application::verb()
-   {
+::e_status application::verb()
+{
 
-      return true;
+return true;
 
-   }
+}
 
 
-   //void application::SetCurrentHandles()
-   //{
+//void application::SetCurrentHandles()
+//{
 
-   //   ::apex::application::SetCurrentHandles();
+//   ::application::SetCurrentHandles();
 
-   //}
+//}
 
 
-   void application::_001TryCloseApplication()
-   {
+void application::_001TryCloseApplication()
+{
 
-      if (_001CanCloseApplication())
-      {
+if (_001CanCloseApplication())
+{
 
-         _001CloseApplication();
+_001CloseApplication();
 
-      }
+}
 
-   }
+}
 
 
-   bool application::_001CanCloseApplication()
-   {
+bool application::_001CanCloseApplication()
+{
 
-      return true;
+return true;
 
-   }
+}
 
 
-   void application::_001CloseApplication()
-   {
+void application::_001CloseApplication()
+{
 
 #ifdef _UWP
 
-      Windows::ApplicationModel::Core::CoreApplication::MainView->CoreWindow->Dispatcher->RunAsync(
-         Windows::UI::Core::CoreDispatcherPriority::Normal,
-         ref new Windows::UI::Core::DispatchedHandler([this]()
-      {
-         Windows::UI::ViewManagement::ApplicationView::GetForCurrentView()->TryConsolidateAsync();
-      }));
+Windows::ApplicationModel::Core::CoreApplication::MainView->CoreWindow->Dispatcher->RunAsync(
+Windows::UI::Core::CoreDispatcherPriority::Normal,
+ref new Windows::UI::Core::DispatchedHandler([this]()
+{
+Windows::UI::ViewManagement::ApplicationView::GetForCurrentView()->TryConsolidateAsync();
+}));
 
 #else
 
-      finish();
+finish();
 
 #endif
 
-   }
+}
 
 
-   //bool application::process_exception(const ::exception::exception & e)
-   //{
+//bool application::process_exception(const ::exception::exception & e)
+//{
 
-   //   return apex::application::process_exception(e);
+//   return apex::application::process_exception(e);
 
-   //}
+//}
 
 
-   //::e_status     application::main()
-   //{
+//::e_status     application::main()
+//{
 
-   //   return ::apex::application::main();
+//   return ::application::main();
 
-   //}
+//}
 
 
-   ::e_status application::on_run()
-   {
+::e_status application::on_run()
+{
 
-      //try
-      //{
+//try
+//{
 
-      //   ::apex::::message::application signal(::apex::::message::application_begin);
+//   ::apex::::message::application signal(::apex::::message::application_begin);
 
-      //   route_message(&signal);
+//   route_message(&signal);
 
-      //}
-      //catch (...)
-      //{
+//}
+//catch (...)
+//{
 
-      //}
+//}
 
-      auto ptask = ::get_task()->get_thread();
+auto ptask = ::get_task()->get_thread();
 
-      install_message_routing(ptask);
+install_message_routing(ptask);
 
-      m_bReady = true;
+m_bReady = true;
 
-      try
-      {
+try
+{
 
-         string strType = type_name();
+string strType = type_name();
 
-         //if(::is_set(m_psystem))
-         //{
+//if(::is_set(m_psystem))
+//{
 
-         //   m_psystem->add_reference(this);
+//   m_psystem->add_reference(this);
 
-         //}
+//}
 
-         //if(::is_set(m_psession))
-         //{
+//if(::is_set(m_psession))
+//{
 
-         //   m_psession->add_reference(this);
+//   m_psession->add_reference(this);
 
-         //}
+//}
 
-         if (::is_set(m_pappParent))
-         {
+if (::is_set(m_pappParent))
+{
 
-            m_pappParent->add_reference(this);
+m_pappParent->add_reference(this);
 
-         }
+}
 
-      resume_on_exception:
+resume_on_exception:
 
-         try
-         {
+try
+{
 
-            m_estatus = run();
+m_estatus = run();
 
-         }
-         catch (const ::exception::exception & e)
-         {
+}
+catch (const ::exception::exception & e)
+{
 
-            if (handle_exception(e))
-            {
+if (handle_exception(e))
+{
 
-               goto resume_on_exception;
+   goto resume_on_exception;
 
-            }
+}
 
-            m_estatus = e.m_estatus;
+m_estatus = e.m_estatus;
 
-         }
+}
 
-      }
-      catch (const ::exception::exception &)
-      {
+}
+catch (const ::exception::exception &)
+{
 
-      }
+}
 
-      try
-      {
+try
+{
 
-         thread * pthread = this;
+thread * pthread = this;
 
-         if (pthread != nullptr && pthread->m_pevReady != nullptr)
-         {
+if (pthread != nullptr && pthread->m_pevReady != nullptr)
+{
 
-            pthread->m_pevReady->SetEvent();
+pthread->m_pevReady->SetEvent();
 
-         }
+}
 
-      }
-      catch (...)
-      {
+}
+catch (...)
+{
 
-         m_result.add(error_failed);
+m_result.add(error_failed);
 
-      }
+}
 
-      return m_estatus;
+return m_estatus;
 
-   }
+}
 
 
-   //::e_status application::init_application()
-   //{
+//::e_status application::init_application()
+//{
 
-   //   return ::apex::application::init_application();
+//   return ::application::init_application();
 
-   //}
+//}
 
 
-   //::e_status application::application_pre_run()
-   //{
+//::e_status application::application_pre_run()
+//{
 
-   //   return ::apex::application::application_pre_run();
+//   return ::application::application_pre_run();
 
-   //}
+//}
 
 
 
-   //bool application::InitApplication()
-   //{
+//bool application::InitApplication()
+//{
 
-   //   return true;
+//   return true;
 
-   //}
+//}
 
 
-   //bool application::do_install()
-   //{
+//bool application::do_install()
+//{
 
 
-   //   if (!::application::do_install())
-   //   {
+//   if (!::application::do_install())
+//   {
 
-   //      return false;
+//      return false;
 
-   //   }
+//   }
 
-   //   return true;
+//   return true;
 
-   //}
+//}
 
 
-   //bool application::do_uninstall()
-   //{
+//bool application::do_uninstall()
+//{
 
-   //   bool bOk = apex::application::do_uninstall();
+//   bool bOk = apex::application::do_uninstall();
 
-   //   return bOk;
+//   return bOk;
 
-   //}
+//}
 
 
-   //bool application::on_install()
-   //{
+//bool application::on_install()
+//{
 
-   //   if (!apex::application::on_install())
-   //   {
+//   if (!apex::application::on_install())
+//   {
 
-   //      return false;
+//      return false;
 
-   //   }
+//   }
 
-   //   return true;
+//   return true;
 
-   //}
+//}
 
 
-   //bool application::on_uninstall()
-   //{
+//bool application::on_uninstall()
+//{
 
-   //   if (!apex::application::on_uninstall())
-   //   {
+//   if (!apex::application::on_uninstall())
+//   {
 
-   //      return false;
+//      return false;
 
-   //   }
+//   }
 
-   //   return true;
+//   return true;
 
-   //}
+//}
 
 
-   //::e_status application::os_native_bergedge_start()
-   //{
+//::e_status application::os_native_bergedge_start()
+//{
 
-   //   if (!::application::os_native_bergedge_start())
-   //   {
+//   if (!::application::os_native_bergedge_start())
+//   {
 
-   //      return false;
+//      return false;
 
-   //   }
+//   }
 
-   //   return true;
+//   return true;
 
-   //}
+//}
 
 
-   //void application::on_request(::create * pcreate)
-   //{
+//void application::on_request(::create * pcreate)
+//{
 
-   //   apex::application::on_request(pcreate);
+//   apex::application::on_request(pcreate);
 
-   //}
+//}
 
 
-   //::e_status     application::run()
-   //{
+//::e_status     application::run()
+//{
 
-   //   return ::apex::application::run();
+//   return ::application::run();
 
-   //}
+//}
 
 
-   //__pointer(::apex::application) application::assert_running(const char * pszAppId)
-   //{
+//__pointer(::application) application::assert_running(const char * pszAppId)
+//{
 
-   //   __pointer(::apex::application) papp;
+//   __pointer(::application) papp;
 
-   //   papp = psession->m_applicationa.find_running_defer_try_quit_damaged(pszAppId);
+//   papp = psession->m_applicationa.find_running_defer_try_quit_damaged(pszAppId);
 
-   //   if(papp.is_null())
-   //   {
+//   if(papp.is_null())
+//   {
 
-   //      __pointer(::create) spcreate(e_create);
+//      __pointer(::create) spcreate(e_create);
 
-   //      papp = psession->start_application(pszAppId,spcreate);
+//      papp = psession->start_application(pszAppId,spcreate);
 
-   //   }
+//   }
 
-   //   return papp;
+//   return papp;
 
-   //}
+//}
 
 
-   //::e_status application::process_init()
-   //{
+//::e_status application::process_init()
+//{
 
-   //   create_factory < ::database::field_array >();
-   //   create_factory < ::database::row >();
-   //   create_factory < ::database::row_array >();
+//   create_factory < ::database::field_array >();
+//   create_factory < ::database::row >();
+//   create_factory < ::database::row_array >();
 
-   //   //if (m_bAxisProcessInitialize)
-   //   //{
+//   //if (m_bAxisProcessInitialize)
+//   //{
 
-   //   //   return m_bAxisProcessInitializeResult;
+//   //   return m_bAxisProcessInitializeResult;
 
-   //   //}
+//   //}
 
-   //   INFO("axis::application::process_init");
+//   INFO("axis::application::process_init");
 
-   //   //m_bAxisProcessInitialize = true;
+//   //m_bAxisProcessInitialize = true;
 
-   //   //m_bAxisProcessInitializeResult = false;
+//   //m_bAxisProcessInitializeResult = false;
 
-   //   if (m_psimpledb.is_null())
-   //   {
+//   if (m_psimpledb.is_null())
+//   {
 
-   //      __construct_new(m_psimpledb);
+//      __construct_new(m_psimpledb);
 
-   //   }
+//   }
 
-   //   if (!::application::process_init())
-   //   {
+//   if (!::application::process_init())
+//   {
 
-   //      FATAL("axis::application::process_init .1");
+//      FATAL("axis::application::process_init .1");
 
-   //      return false;
+//      return false;
 
-   //   }
+//   }
 
 
-   //   //m_bAxisProcessInitializeResult = true;
+//   //m_bAxisProcessInitializeResult = true;
 
-   //   FATAL("axis::application::process_init success");
+//   FATAL("axis::application::process_init success");
 
-   //   return true;
+//   return true;
 
-   //}
+//}
 
 
-   //::e_status application::init_instance()
-   //{
+//::e_status application::init_instance()
+//{
 
-   //   //if (m_bAxisInitializeInstance)
-   //   //{
+//   //if (m_bAxisInitializeInstance)
+//   //{
 
-   //   //   return m_bAxisInitializeInstanceResult;
+//   //   return m_bAxisInitializeInstanceResult;
 
-   //   //}
+//   //}
 
-   //   INFO("axis::application::init_instance .1");
+//   INFO("axis::application::init_instance .1");
 
-   //   //m_bAxisInitializeInstance = true;
+//   //m_bAxisInitializeInstance = true;
 
-   //   //m_bAxisInitializeInstanceResult = false;
+//   //m_bAxisInitializeInstanceResult = false;
 
-   //   if (!::application::init_instance())
-   //   {
+//   if (!::application::init_instance())
+//   {
 
-   //      FATAL("axis::application::init_instance .2");
+//      FATAL("axis::application::init_instance .2");
 
-   //      return false;
+//      return false;
 
-   //   }
+//   }
 
 
-   //   if (m_bInitializeDataCentral)
-   //   {
+//   if (m_bInitializeDataCentral)
+//   {
 
 
-   //      ::file::path pathDatabase;
+//      ::file::path pathDatabase;
 
-   //      if (is_system())
-   //      {
+//      if (is_system())
+//      {
 
-   //         pathDatabase = m_pcontext->m_papexcontext->dir().appdata() / "system.sqlite";
+//         pathDatabase = m_pcontext->m_papexcontext->dir().appdata() / "system.sqlite";
 
-   //      }
-   //      else if (is_session())
-   //      {
+//      }
+//      else if (is_session())
+//      {
 
-   //         pathDatabase = m_pcontext->m_papexcontext->dir().appdata() / "session.sqlite";
+//         pathDatabase = m_pcontext->m_papexcontext->dir().appdata() / "session.sqlite";
 
-   //      }
-   //      else
-   //      {
+//      }
+//      else
+//      {
 
-   //         pathDatabase = m_pcontext->m_papexcontext->dir().appdata() / "app.sqlite";
+//         pathDatabase = m_pcontext->m_papexcontext->dir().appdata() / "app.sqlite";
 
-   //      }
+//      }
 
-   //      auto estatus = m_psimpledb->initialize_simpledb_server(this, pathDatabase);
+//      auto estatus = m_psimpledb->initialize_simpledb_server(this, pathDatabase);
 
-   //      if (!estatus)
-   //      {
+//      if (!estatus)
+//      {
 
-   //         m_result.add(estatus);
+//         m_result.add(estatus);
 
-   //         return false;
+//         return false;
 
-   //      }
+//      }
 
-   //      set_data_server(m_psimpledb);
+//      set_data_server(m_psimpledb);
 
-   //   }
+//   }
 
 
 
-   //   //m_bAxisInitializeInstanceResult = true;
+//   //m_bAxisInitializeInstanceResult = true;
 
-   //   INFO("axis::application::init_instance success");
+//   INFO("axis::application::init_instance success");
 
-   //   return true;
+//   return true;
 
-   //}
+//}
 
 
-   //::database::key application::calc_data_key()
-   //{
+//::database::key application::calc_data_key()
+//{
 
-   //   return ::database::key("app://" + m_strAppName, is_local_data());
+//   return ::database::key("app://" + m_strAppName, is_local_data());
 
-   //}
+//}
 
 
 
 
-   //::e_status application::init1()
-   //{
+//::e_status application::init1()
+//{
 
-   //   //if (m_bAxisInitialize1)
-   //   //{
+//   //if (m_bAxisInitialize1)
+//   //{
 
-   //   //   return m_bAxisInitialize1Result;
+//   //   return m_bAxisInitialize1Result;
 
-   //   //}
+//   //}
 
-   //   //m_bAxisInitialize1 = true;
+//   //m_bAxisInitialize1 = true;
 
-   //   //m_bAxisInitialize1Result = false;
+//   //m_bAxisInitialize1Result = false;
 
-   //   m_millisHeartBeat.Now();
+//   m_millisHeartBeat.Now();
 
-   //   if (!::application::init1())
-   //   {
+//   if (!::application::init1())
+//   {
 
-   //      return false;
+//      return false;
 
-   //   }
+//   }
 
-   //   /*     if (!m_psystem->m_phtml->initialize())
-   //        {
+//   /*     if (!m_psystem->m_phtml->initialize())
+//        {
 
-   //           return false;
+//           return false;
 
-   //        }*/
+//        }*/
 
 
 
-   //        //m_bAxisInitialize1Result = true;
+//        //m_bAxisInitialize1Result = true;
 
-   //   return true;
+//   return true;
 
-   //}
+//}
 
 
-   //::e_status application::init2()
-   //{
+//::e_status application::init2()
+//{
 
-   //   if (!::application::init2())
-   //      return false;
+//   if (!::application::init2())
+//      return false;
 
-   //   return true;
+//   return true;
 
-   //}
+//}
 
 
-   //::e_status application::init3()
-   //{
+//::e_status application::init3()
+//{
 
-   //   if (!::application::init3())
-   //   {
+//   if (!::application::init3())
+//   {
 
-   //      return false;
+//      return false;
 
-   //   }
+//   }
 
-   //   return true;
+//   return true;
 
-   //}
+//}
 
 //
 
 
-   ::e_status application::init()
-   {
+::e_status application::init()
+{
 
-      m_millisHeartBeat.Now();
+m_millisHeartBeat.Now();
 
-      if (has_property("install"))
-      {
+if (has_property("install"))
+{
 
-         // apex level app install
-         if (!Ex2OnAppInstall())
-         {
+// apex level app install
+if (!Ex2OnAppInstall())
+{
 
-            return false;
+return false;
 
-         }
+}
 
-      }
-      else if (has_property("uninstall"))
-      {
+}
+else if (has_property("uninstall"))
+{
 
-         // apex level app uninstall
-         if (!Ex2OnAppUninstall())
-         {
+// apex level app uninstall
+if (!Ex2OnAppUninstall())
+{
 
-            return false;
+return false;
 
-         }
+}
 
-      }
-      else
-      {
+}
+else
+{
 #ifdef WINDOWS_DESKTOP
-         // when this process is started in the context of a system account,
-         // for example, this code ensure that the process will
-         // impersonate a loggen on ::account::user
-         HANDLE hprocess;
-         HANDLE htoken;
+// when this process is started in the context of a system account,
+// for example, this code ensure that the process will
+// impersonate a loggen on ::account::user
+HANDLE hprocess;
+HANDLE htoken;
 
-         hprocess = ::GetCurrentProcess();
+hprocess = ::GetCurrentProcess();
 
-         if (!OpenProcessToken(
-            hprocess,
-            TOKEN_ALL_ACCESS,
-            &htoken))
-            return false;
+if (!OpenProcessToken(
+hprocess,
+TOKEN_ALL_ACCESS,
+&htoken))
+return false;
 
-         if (!ImpersonateLoggedOnUser(htoken))
-         {
-            TRACELASTERROR();
-            return false;
-         }
+if (!ImpersonateLoggedOnUser(htoken))
+{
+TRACELASTERROR();
+return false;
+}
 #endif
-      }
+}
 
-      m_millisHeartBeat.Now();
+m_millisHeartBeat.Now();
 
-      ensure_app_interest();
+ensure_app_interest();
 
-      INFO(".2");
+INFO(".2");
 
-      if (is_true("install"))
-      {
+if (is_true("install"))
+{
 
-         if (is_user_service())
-         {
+if (is_user_service())
+{
 
 
-         }
+}
 
-      }
+}
 
-      ERR("1.1");
+ERR("1.1");
 
-      index i = applicationmenu().get_count();
+index i = applicationmenu().get_count();
 
-      applicationmenu().add_item(i++, _("Transparent Frame"), "transparent_frame");
+applicationmenu().add_item(i++, _("Transparent Frame"), "transparent_frame");
 
-      application_menu_update();
+application_menu_update();
 
-      INFO("success");
+INFO("success");
 
-      return true;
+return true;
 
-   }
+}
 
 
-   void application::term()
-   {
+void application::term()
+{
 
 
 
-   }
+}
 
 
-   bool application::is_running()
-   {
+bool application::is_running()
+{
 
-      return is_alive();
+return is_alive();
 
-   }
+}
 
 
-   //bool application::Ex2OnAppInstall()
-   //{
-   //   return true;
-   //}
+//bool application::Ex2OnAppInstall()
+//{
+//   return true;
+//}
 
 
-   //bool application::Ex2OnAppUninstall()
-   //{
+//bool application::Ex2OnAppUninstall()
+//{
 
-   //   return true;
+//   return true;
 
-   //}
+//}
 
 
-   bool application::update_appmatter(__pointer(::sockets::http_session) & psession, const ::file::path & pszRoot, const string & pszRelative)
-   {
+bool application::update_appmatter(__pointer(::sockets::http_session) & psession, const ::file::path & pszRoot, const string & pszRelative)
+{
 
-      __pointer(::apex::system) psystem = get_system();
+__pointer(::apex::system) psystem = get_system();
 
-      auto plocaleschema = __create_new < ::text::international::locale_schema >();
+auto plocaleschema = __create_new < ::text::international::locale_schema >();
 
-      //psession->fill_locale_schema(localeschema);
+//psession->fill_locale_schema(localeschema);
 
-      bool bIgnoreStdStd = string(pszRoot) == "app" && (string(pszRelative) == "main" || string(pszRelative) == "bergedge");
+bool bIgnoreStdStd = string(pszRoot) == "app" && (string(pszRelative) == "main" || string(pszRelative) == "bergedge");
 
-      //update_appmatter(h, psession, pszRoot, pszRelative, plocaleschema->m_idLocale, plocaleschema->m_idSchema);
+//update_appmatter(h, psession, pszRoot, pszRelative, plocaleschema->m_idLocale, plocaleschema->m_idSchema);
 
-      ::count iCount = plocaleschema->m_idaLocale.get_count();
+::count iCount = plocaleschema->m_idaLocale.get_count();
 
-      for (index i = 0; i < iCount; i++)
-      {
+for (index i = 0; i < iCount; i++)
+{
 
-         if (plocaleschema->m_idaLocale[i] == __id(std) && plocaleschema->m_idaSchema[i] == __id(std) && bIgnoreStdStd)
-            continue;
+if (plocaleschema->m_idaLocale[i] == __id(std) && plocaleschema->m_idaSchema[i] == __id(std) && bIgnoreStdStd)
+continue;
 
-         string strLocale;
+string strLocale;
 
-         plocaleschema->m_idaLocale[i].to_string(strLocale);
+plocaleschema->m_idaLocale[i].to_string(strLocale);
 
-         string strSchema;
+string strSchema;
 
-         plocaleschema->m_idaSchema[i].to_string(strSchema);
+plocaleschema->m_idaSchema[i].to_string(strSchema);
 
-         update_appmatter(psession, pszRoot, pszRelative, strLocale, strSchema);
+update_appmatter(psession, pszRoot, pszRelative, strLocale, strSchema);
 
-         psystem->install_progress_add_up();
+psystem->install_progress_add_up();
 
-      }
+}
 
 
-      return true;
+return true;
 
-   }
+}
 
-   bool application::update_appmatter(__pointer(::sockets::http_session) & psession, const ::file::path & pszRoot, const string & pszRelative, const string & pszLocale, const string & pszStyle)
-   {
+bool application::update_appmatter(__pointer(::sockets::http_session) & psession, const ::file::path & pszRoot, const string & pszRelative, const string & pszLocale, const string & pszStyle)
+{
 
-      string strLocale;
-      string strSchema;
-      TRACE("update_appmatter(root=%s, relative=%s, locale=%s, style=%s)", pszRoot.c_str(), pszRelative.c_str(), pszLocale.c_str(), pszStyle.c_str());
-      ::file::path strRelative = ::file::path(pszRoot) / "_matter" / pszRelative / get_locale_schema_dir(pszLocale, pszStyle) + ".zip";
-      ::file::path strFile = m_pcontext->m_papexcontext->dir().install() / strRelative;
-      ::file::path strUrl(::file::path_url);
+string strLocale;
+string strSchema;
+TRACE("update_appmatter(root=%s, relative=%s, locale=%s, style=%s)", pszRoot.c_str(), pszRelative.c_str(), pszLocale.c_str(), pszStyle.c_str());
+::file::path strRelative = ::file::path(pszRoot) / "_matter" / pszRelative / get_locale_schema_dir(pszLocale, pszStyle) + ".zip";
+::file::path strFile = m_pcontext->m_papexcontext->dir().install() / strRelative;
+::file::path strUrl(::file::path_url);
 
-      if (framework_is_basis())
-      {
-         strUrl = "http://basis-server.ca2.cc/api/spaignition/download?authnone&configuration=basis&stage=";
-      }
-      else
-      {
-         strUrl = "http://stage-server.ca2.cc/api/spaignition/download?authnone&configuration=stage&stage=";
-      }
+if (framework_is_basis())
+{
+strUrl = "http://basis-server.ca2.cc/api/spaignition/download?authnone&configuration=basis&stage=";
+}
+else
+{
+strUrl = "http://stage-server.ca2.cc/api/spaignition/download?authnone&configuration=stage&stage=";
+}
 
-      auto psystem = m_psystem;
+auto psystem = m_psystem;
 
-      auto purl = psystem->url();
+auto purl = psystem->url();
 
-      strUrl += purl->url_encode(strRelative);
+strUrl += purl->url_encode(strRelative);
 
-      if (psession == nullptr)
-      {
+if (psession == nullptr)
+{
 
-         while (true)
-         {
+while (true)
+{
 
-            property_set setEmpty;
+property_set setEmpty;
 
-            if (m_pcontext->m_papexcontext->http().open(psession, purl->get_server(strUrl), purl->get_protocol(strUrl), setEmpty, nullptr))
-            {
+if (m_pcontext->m_papexcontext->http().open(psession, purl->get_server(strUrl), purl->get_protocol(strUrl), setEmpty, nullptr))
+{
 
-               break;
+   break;
 
-            }
+}
 
-            sleep(200_ms);
+sleep(200_ms);
 
-         }
+}
 
-      }
+}
 
-      property_set set;
+property_set set;
 
-      set["get_memory"] = "";
+set["get_memory"] = "";
 
-      if (!m_pcontext->m_papexcontext->http().request(psession, strUrl, set))
-      {
+if (!m_pcontext->m_papexcontext->http().request(psession, strUrl, set))
+{
 
-         return false;
+return false;
 
-      }
+}
 
-      ::memory_file file;
+::memory_file file;
 
-      if (set["get_memory"].cast < memory >() != nullptr && set["get_memory"].cast < memory >()->get_size() > 0)
-      {
+if (set["get_memory"].cast < memory >() != nullptr && set["get_memory"].cast < memory >()->get_size() > 0)
+{
 
-         zip_context zip(this);
+zip_context zip(this);
 
-         string strDir = strFile;
+string strDir = strFile;
 
-         ::str::ends_eat_ci(strDir, ".zip");
+::str::ends_eat_ci(strDir, ".zip");
 
-         try
-         {
+try
+{
 
-            zip.extract_all(strDir, &file);
+zip.extract_all(strDir, &file);
 
-         }
-         catch (...)
-         {
+}
+catch (...)
+{
 
-            // spa app_app_admin.exe would recover by retrying or someone would fix the resource packaging problem and then zip extraction at least should work.
+// spa app_app_admin.exe would recover by retrying or someone would fix the resource packaging problem and then zip extraction at least should work.
 
-            return false;
+return false;
 
-         }
+}
 
-         //psystem->compress().extract_all(strFile, this);
+//psystem->compress().extract_all(strFile, this);
 
-      }
+}
 
-      return true;
+return true;
 
-   }
+}
 
 
 
 
 
-   bool application::assert_user_logged_in()
-   {
+bool application::assert_user_logged_in()
+{
 
-      const char * pszRequestUrl = nullptr;
+const char * pszRequestUrl = nullptr;
 
-      string strRequestUrl;
+string strRequestUrl;
 
-      if (file_as_string(m_psystem->m_pacmedir->system() / "config\\system\\ignition_server.txt").has_char())
-      {
+if (file_as_string(m_psystem->m_pacmedir->system() / "config\\system\\ignition_server.txt").has_char())
+{
 
-         strRequestUrl = "https://" + file_as_string(m_psystem->m_pacmedir->system() / "config\\system\\ignition_server.txt") + "/api/spaignition";
+strRequestUrl = "https://" + file_as_string(m_psystem->m_pacmedir->system() / "config\\system\\ignition_server.txt") + "/api/spaignition";
 
-         pszRequestUrl = strRequestUrl;
+pszRequestUrl = strRequestUrl;
 
-      }
+}
 
-      if (get_session() == nullptr)
-      {
+if (get_session() == nullptr)
+{
 
-         return false;
+return false;
 
-      }
+}
 
-      //if (get_session()->account() == nullptr)
-      //{
+//if (get_session()->account() == nullptr)
+//{
 
-      //   return false;
+//   return false;
 
-      //}
+//}
 
-      //if (interactive_get_user() == nullptr)
-      //{
+//if (interactive_get_user() == nullptr)
+//{
 
-      //   return false;
+//   return false;
 
-      //}
+//}
 
-      return true;
+return true;
 
-   }
+}
 
 
 
 
-   string application::matter_as_string(const char * pszMatter, const char * pszMatter2)
-   {
+string application::matter_as_string(const char * pszMatter, const char * pszMatter2)
+{
 
-      ::payload varFile;
+::payload varFile;
 
-      varFile["disable_ca2_sessid"] = true;
+varFile["disable_ca2_sessid"] = true;
 
-      string strMatter = m_pcontext->m_papexcontext->dir().matter(::file::path(pszMatter) / pszMatter2);
+string strMatter = m_pcontext->m_papexcontext->dir().matter(::file::path(pszMatter) / pszMatter2);
 
-      varFile["url"] = strMatter;
+varFile["url"] = strMatter;
 
-      return m_pcontext->m_papexcontext->file().as_string(varFile);
+return m_pcontext->m_papexcontext->file().as_string(varFile);
 
-   }
+}
 
-   //string application::dir().matter(const char * pszMatter,const char * pszMatter2)
-   //{
+//string application::dir().matter(const char * pszMatter,const char * pszMatter2)
+//{
 
-   //   return dir().matter(pszMatter,pszMatter2);
+//   return dir().matter(pszMatter,pszMatter2);
 
-   //}
+//}
 
-   //bool application::is_inside_time_dir(const char * pszPath)
-   //{
-   //   return dir().is_inside_time(pszPath);
-   //}
+//bool application::is_inside_time_dir(const char * pszPath)
+//{
+//   return dir().is_inside_time(pszPath);
+//}
 
 
-   //bool application::file_is_read_only(const char * pszPath)
-   //{
+//bool application::file_is_read_only(const char * pszPath)
+//{
 
-   //   return false;
-   //   //return file().is_read_only(pszPath);
+//   return false;
+//   //return file().is_read_only(pszPath);
 
-   //}
+//}
 
 
 
-   //void application::process_message_filter(i32 code, ::message::message * pmessage)
-   //{
+//void application::process_message_filter(i32 code, ::message::message * pmessage)
+//{
 
-   //   //__pointer(::user::message) pusermessage(pmessage);
+//   //__pointer(::user::message) pusermessage(pmessage);
 
-   //   UNREFERENCED_PARAMETER(code);
+//   UNREFERENCED_PARAMETER(code);
 
-   //   UNREFERENCED_PARAMETER(pmessage);
+//   UNREFERENCED_PARAMETER(pmessage);
 
 
-   //}
+//}
 
 
 
@@ -7084,96 +7084,96 @@ retry_license:
 
 
 
-   void application::DoWaitCursor(i32 nCode)
-   {
+void application::DoWaitCursor(i32 nCode)
+{
 
-      if (nCode < 0)
-      {
+if (nCode < 0)
+{
 
-         m_iWaitCursorCount = 0;
+m_iWaitCursorCount = 0;
 
-         auto psystem = m_psystem;
+auto psystem = m_psystem;
 
-         auto pnode = psystem->node()->m_papexnode;
+auto pnode = psystem->node()->m_papexnode;
 
-         pnode->show_wait_cursor(false);
+pnode->show_wait_cursor(false);
 
-      }
-      else if (nCode == 0)
-      {
+}
+else if (nCode == 0)
+{
 
-         if (m_iWaitCursorCount > 0)
-         {
-            m_iWaitCursorCount--;
-         }
+if (m_iWaitCursorCount > 0)
+{
+m_iWaitCursorCount--;
+}
 
-         if (m_iWaitCursorCount > 0)
-         {
+if (m_iWaitCursorCount > 0)
+{
 
-            auto psystem = m_psystem;
+auto psystem = m_psystem;
 
-            auto pnode = psystem->node()->m_papexnode;
+auto pnode = psystem->node()->m_papexnode;
 
-            pnode->show_wait_cursor(true);
+pnode->show_wait_cursor(true);
 
-         }
+}
 
-         m_iWaitCursorCount = 0;
+m_iWaitCursorCount = 0;
 
-         auto psystem = m_psystem;
+auto psystem = m_psystem;
 
-         auto pnode = psystem->node()->m_papexnode;
+auto pnode = psystem->node()->m_papexnode;
 
-         pnode->show_wait_cursor(false);
+pnode->show_wait_cursor(false);
 
-      }
-      else
-      {
+}
+else
+{
 
-         if (m_iWaitCursorCount < 0)
-         {
-            m_iWaitCursorCount = 0;
-         }
+if (m_iWaitCursorCount < 0)
+{
+m_iWaitCursorCount = 0;
+}
 
-         m_iWaitCursorCount++;
+m_iWaitCursorCount++;
 
-         auto psystem = m_psystem;
+auto psystem = m_psystem;
 
-         auto pnode = psystem->node()->m_papexnode;
+auto pnode = psystem->node()->m_papexnode;
 
-         pnode->show_wait_cursor(true);
+pnode->show_wait_cursor(true);
 
-      }
+}
 
 
 
-   }
+}
 
-   //void application::show_wait_cursor(bool bShow)
-   //{
+//void application::show_wait_cursor(bool bShow)
+//{
 
-   //}
+//}
 
 
 
-   //void application::TermThread(HINSTANCE hInstTerm)
-   //{
+//void application::TermThread(HINSTANCE hInstTerm)
+//{
 
-   //   ::exception::throw_interface_only();
+//   ::exception::throw_interface_only();
 
-   //}
+//}
 
 
 
 
-   //string application::get_version()
-   //{
+//string application::get_version()
+//{
 
-   //   ::exception::throw_interface_only();
+//   ::exception::throw_interface_only();
 
-   //   return "";
+//   return "";
 
-   //}
+//}
 
 
 
@@ -7187,71 +7187,71 @@ retry_license:
 
 
 
-   //::draw2d::printer * application::get_printer(const char * pszDeviceName)
-   //{
+//::draw2d::printer * application::get_printer(const char * pszDeviceName)
+//{
 
-   //   ::exception::throw_interface_only();
+//   ::exception::throw_interface_only();
 
-   //   return nullptr;
+//   return nullptr;
 
-   //}
+//}
 
 
-   ::e_status application::userfs_init1()
-   {
+::e_status application::userfs_init1()
+{
 
-      return error_not_implemented;
+return error_not_implemented;
 
-   }
+}
 
-   ::e_status application::userfs_process_init()
-   {
+::e_status application::userfs_process_init()
+{
 
-      return error_not_implemented;
+return error_not_implemented;
 
-   }
+}
 
 
-   string application::dialog_box(const char* pszMatter, property_set& propertyset)
-   {
+string application::dialog_box(const char* pszMatter, property_set& propertyset)
+{
 
-      __throw(todo, "core and os");
+__throw(todo, "core and os");
 
-      return"";
+return"";
 
-   }
+}
 
-   //bool application::do_prompt_file_name(::payload & varFile, string nIDSTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pdocument)
-   //{
+//bool application::do_prompt_file_name(::payload & varFile, string nIDSTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pdocument)
+//{
 
-   //   UNREFERENCED_PARAMETER(varFile);
-   //   UNREFERENCED_PARAMETER(nIDSTitle);
+//   UNREFERENCED_PARAMETER(varFile);
+//   UNREFERENCED_PARAMETER(nIDSTitle);
 
-   //   return false;
+//   return false;
 
-   //}
+//}
 
 
 
 
 
 
-   //bool application::get_temp_file_name_template(string & strRet,const char * lpszName,const char * pszExtension,const char * pszTemplate)
-   //{
+//bool application::get_temp_file_name_template(string & strRet,const char * lpszName,const char * pszExtension,const char * pszTemplate)
+//{
 
-   //   __throw(error_not_implemented);
+//   __throw(error_not_implemented);
 
-   //   return false;
+//   return false;
 
-   //}
+//}
 
 
-   //bool application::get_temp_file_name(string & strRet,const char * lpszName,const char * pszExtension)
-   //{
+//bool application::get_temp_file_name(string & strRet,const char * lpszName,const char * pszExtension)
+//{
 
-   //   return get_temp_file_name_template(strRet,lpszName,pszExtension,nullptr);
+//   return get_temp_file_name_template(strRet,lpszName,pszExtension,nullptr);
 
-   //}
+//}
 
 
 
@@ -7260,309 +7260,309 @@ retry_license:
 
 
 
-   //::draw2d::icon * application::set_icon(object * pobject, ::draw2d::icon * picon, bool bBigIcon)
-   //{
+//::draw2d::icon * application::set_icon(object * pobject, ::draw2d::icon * picon, bool bBigIcon)
+//{
 
-   //   return nullptr;
+//   return nullptr;
 
-   //}
+//}
 
 
-   //::draw2d::icon * application::get_icon(object * pobject, bool bBigIcon) const
-   //{
+//::draw2d::icon * application::get_icon(object * pobject, bool bBigIcon) const
+//{
 
-   //   return nullptr;
+//   return nullptr;
 
-   //}
+//}
 
 
-   //void application::on_service_request(::create * pcreate)
-   //{
+//void application::on_service_request(::create * pcreate)
+//{
 
-   //   ::apex::application::on_service_request(pcreate);
+//   ::application::on_service_request(pcreate);
 
-   //}
+//}
 
 
-   string application::get_mutex_name_gen()
-   {
-      return m_strAppName;
-   }
+string application::get_mutex_name_gen()
+{
+return m_strAppName;
+}
 
 
 
-   string application::get_license_id()
-   {
+string application::get_license_id()
+{
 
-      if (m_strLicense.has_char())
-         return m_strLicense;
+if (m_strLicense.has_char())
+return m_strLicense;
 
-      if (m_strInstallToken.has_char())
-         return m_strInstallToken;
+if (m_strInstallToken.has_char())
+return m_strInstallToken;
 
-      return m_strAppId;
+return m_strAppId;
 
-   }
+}
 
 
 
 
 
 
-   //bool application::assert_user_logged_in()
-   //{
+//bool application::assert_user_logged_in()
+//{
 
-   //   return axis::application::assert_user_logged_in();
+//   return axis::application::assert_user_logged_in();
 
-   //}
+//}
 
 
-   ::e_status application::hotplugin_host_starter_start_sync(const char * pszCommandLine, ::apex::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin)
-   {
+::e_status application::hotplugin_host_starter_start_sync(const char * pszCommandLine, ::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin)
+{
 
-      {
+{
 
-         auto pmutex = __new(::install::mutex(process_platform_dir_name2()));
+auto pmutex = __new(::install::mutex(process_platform_dir_name2()));
 
-         if (pmutex->already_exists())
-         {
+if (pmutex->already_exists())
+{
 
-            //            message_box("Could not launch spa installer. It is already running.", e_message_box_ok);
+//            message_box("Could not launch spa installer. It is already running.", e_message_box_ok);
 
-            return -35;
+return -35;
 
-         }
+}
 
-      }
+}
 
-      string strValue;
+string strValue;
 
-      if (get_command_line_param(strValue, pszCommandLine, "enable_desktop_launch"))
-      {
+if (get_command_line_param(strValue, pszCommandLine, "enable_desktop_launch"))
+{
 
 #ifdef _UWP
 
-         return -1;
+return -1;
 
 #else
 
-         ::property_set set;
+::property_set set;
 
-         auto psystem = m_psystem;
+auto psystem = m_psystem;
 
-         auto pnode = psystem->node();
+auto pnode = psystem->node();
 
-         return pnode->call_sync(m_psystem->m_pacmepath->app_app(process_platform_dir_name2(), process_configuration_dir_name()), pszCommandLine, m_psystem->m_pacmepath->app_app(process_platform_dir_name2(), process_configuration_dir_name()), e_display_normal, 2_min, set);
+return pnode->call_sync(m_psystem->m_pacmepath->app_app(process_platform_dir_name2(), process_configuration_dir_name()), pszCommandLine, m_psystem->m_pacmepath->app_app(process_platform_dir_name2(), process_configuration_dir_name()), e_display_normal, 2_min, set);
 
 #endif
 
-      }
-      else
-      {
+}
+else
+{
 
-         return hotplugin_host_host_starter_start_sync(pszCommandLine, get_application(), nullptr);
+return hotplugin_host_host_starter_start_sync(pszCommandLine, get_application(), nullptr);
 
-      }
+}
 
-   }
+}
 
 
-   ::e_status application::hotplugin_host_host_starter_start_sync(const char * pszCommandLine, ::apex::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin)
-   {
+::e_status application::hotplugin_host_host_starter_start_sync(const char * pszCommandLine, ::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin)
+{
 
-      return -1;
+return -1;
 
-   }
+}
 
 
 
-   //void application::on_control_event(::user::control_event * pevent)
-   //{
+//void application::on_control_event(::user::control_event * pevent)
+//{
 
-   //}
+//}
 
 
-   //bool application::on_open_document(::user::document * pdocument, ::payload varFile)
-   //{
+//bool application::on_open_document(::user::document * pdocument, ::payload varFile)
+//{
 
-   //   UNREFERENCED_PARAMETER(pdocument);
-   //   UNREFERENCED_PARAMETER(varFile);
-   //   return true;
+//   UNREFERENCED_PARAMETER(pdocument);
+//   UNREFERENCED_PARAMETER(varFile);
+//   return true;
 
-   //}
+//}
 
 
-   //bool application::on_save_document(::user::document * pdocument, ::payload varFile)
-   //{
+//bool application::on_save_document(::user::document * pdocument, ::payload varFile)
+//{
 
-   //   UNREFERENCED_PARAMETER(pdocument);
-   //   UNREFERENCED_PARAMETER(varFile);
-   //   return true;
+//   UNREFERENCED_PARAMETER(pdocument);
+//   UNREFERENCED_PARAMETER(varFile);
+//   return true;
 
-   //}
+//}
 
 
-   //void application::on_update_view(::user::impact * pview, ::user::impact * pviewSender, LPARAM lHint, object * pHint)
-   //{
+//void application::on_update_view(::user::impact * pview, ::user::impact * pviewSender, LPARAM lHint, object * pHint)
+//{
 
 
-   //}
+//}
 
-   //void application::on_control_event(::user::control_event* pevent)
-   //{
+//void application::on_control_event(::user::control_event* pevent)
+//{
 
-   //}
+//}
 
 
-   //void application::on_notify_control_event(::user::control_event* pevent)
-   //{
+//void application::on_notify_control_event(::user::control_event* pevent)
+//{
 
 
-   //}
+//}
 
 
-   //void application::route_control_event(::user::control_event* pevent)
-   //{
+//void application::route_control_event(::user::control_event* pevent)
+//{
 
-   //   on_control_event(pevent);
+//   on_control_event(pevent);
 
-   //   if (pevent->m_bRet)
-   //   {
+//   if (pevent->m_bRet)
+//   {
 
-   //      return;
+//      return;
 
-   //   }
+//   }
 
-   //   on_notify_control_event(pevent);
+//   on_notify_control_event(pevent);
 
-   //   if (pevent->m_bRet)
-   //   {
+//   if (pevent->m_bRet)
+//   {
 
-   //      return;
+//      return;
 
-   //   }
+//   }
 
-   //}
+//}
 
 
 
-   //   ::e_status     application::interactive_credentials(::account::credentials * pcredentials)
-   //   {
-   //
-   //      return ::apex::applciation::interactive_credentials(pcredentials);
-   //
-   //   }
-   //
-   //
-   //   string application::interactive_get_credentials(string & strUsername, string & strPassword, string strToken)
-   //   {
-   //
-   //      return ::account::get_cred(this, strUsername, strPassword, strToken);
-   //
-   //   }
-   //
-   //   void application::set_cred(string strToken, const char * pszUsername, const char * pszPassword)
-   //   {
-   //
-   //      ::account::set_cred(this,strToken, pszUsername, pszPassword);
-   //
-   //   }
-   //
-   //   void application::set_cred_ok(string strToken, bool bOk)
-   //   {
-   //
-   //      ::account::set_cred_ok(this, strToken, bOk);
-   //
-   //   }
+//   ::e_status     application::interactive_credentials(::account::credentials * pcredentials)
+//   {
+//
+//      return ::apex::applciation::interactive_credentials(pcredentials);
+//
+//   }
+//
+//
+//   string application::interactive_get_credentials(string & strUsername, string & strPassword, string strToken)
+//   {
+//
+//      return ::account::get_cred(this, strUsername, strPassword, strToken);
+//
+//   }
+//
+//   void application::set_cred(string strToken, const char * pszUsername, const char * pszPassword)
+//   {
+//
+//      ::account::set_cred(this,strToken, pszUsername, pszPassword);
+//
+//   }
+//
+//   void application::set_cred_ok(string strToken, bool bOk)
+//   {
+//
+//      ::account::set_cred_ok(this, strToken, bOk);
+//
+//   }
 
-      //::html::html * application::create_html()
-      //{
+//::html::html * application::create_html()
+//{
 
-      //   return new ::html::html(get_application());
+//   return new ::html::html(get_application());
 
-      //}
+//}
 
 
-      //string application::http_get(const string & strUrl, ::property_set & set)
-      //{
+//string application::http_get(const string & strUrl, ::property_set & set)
+//{
 
-      //   return http().get(strUrl, set);
+//   return http().get(strUrl, set);
 
-      //}
+//}
 
-      //bool application::app_data_set(::const ::id & id, stream & stream)
-      //{
+//bool application::app_data_set(::const ::id & id, stream & stream)
+//{
 
-      //   return data_save(id, stream);
+//   return data_save(id, stream);
 
-      //}
+//}
 
 
-      //bool application::app_data_get(::const ::id & id, stream & stream)
-      //{
+//bool application::app_data_get(::const ::id & id, stream & stream)
+//{
 
-      //   return data_get(id, stream);
+//   return data_get(id, stream);
 
-      //}
+//}
 
 
-      //bool application::app_data_set(::const ::id & id, ::object & obj)
-      //{
+//bool application::app_data_set(::const ::id & id, ::object & obj)
+//{
 
-      //   return data_set(id, obj);
+//   return data_set(id, obj);
 
-      //}
+//}
 
 
-      //bool application::app_data_get(::const ::id & id, ::object & obj)
-      //{
+//bool application::app_data_get(::const ::id & id, ::object & obj)
+//{
 
-      //   return data_get(id, obj);
+//   return data_get(id, obj);
 
-      //}
+//}
 
 
-      //bool application::compress_ungz(const ::stream & os, const ::stream & is)
-      //{
+//bool application::compress_ungz(const ::stream & os, const ::stream & is)
+//{
 
-      //   return psystem->compress().ungz(this, os, is);
+//   return psystem->compress().ungz(this, os, is);
 
 
-      //}
+//}
 
 
-      //bool application::compress_ungz(memory_base & mem)
-      //{
+//bool application::compress_ungz(memory_base & mem)
+//{
 
-      //   return psystem->compress().ungz(this, mem);
+//   return psystem->compress().ungz(this, mem);
 
-      //}
+//}
 
 
-      //bool application::compress_gz(const ::stream & os, const ::stream & is, int iLevel)
+//bool application::compress_gz(const ::stream & os, const ::stream & is, int iLevel)
 
-      //{
+//{
 
-      //   return psystem->compress().gz(this, os, is, iLevel);
+//   return psystem->compress().gz(this, os, is, iLevel);
 
 
-      //}
+//}
 
 
-      //bool application::compress_gz(const ::stream & os, const ::stream & is, int iLevel)
-      //{
+//bool application::compress_gz(const ::stream & os, const ::stream & is, int iLevel)
+//{
 
-      //   return psystem->compress().gz(this, os, is, iLevel);
+//   return psystem->compress().gz(this, os, is, iLevel);
 
-      //}
+//}
 
 
-   bool application::is_local_data()
-   {
+bool application::is_local_data()
+{
 
-      return m_datakey.m_bLocalData;
+return m_datakey.m_bLocalData;
 
-   }
+}
 
 
 
@@ -7570,75 +7570,75 @@ retry_license:
 
 
 
-   const char application::gen_FileSection[] = "Recent File List";
-   const char application::gen_FileEntry[] = "File%d";
-   const char application::gen_PreviewSection[] = "Settings";
-   const char application::gen_PreviewEntry[] = "PreviewPages";
+const char application::gen_FileSection[] = "Recent File List";
+const char application::gen_FileEntry[] = "File%d";
+const char application::gen_PreviewSection[] = "Settings";
+const char application::gen_PreviewEntry[] = "PreviewPages";
 
 
-   //application::application()
-   //{
+//application::application()
+//{
 
-   //   create_factory < ::user::user >();
-   //   create_factory < ::userfs::userfs >();
+//   create_factory < ::user::user >();
+//   create_factory < ::userfs::userfs >();
 
-   //   m_pmainpane = nullptr;
+//   m_pmainpane = nullptr;
 
-   //   m_ppaneviewMain = nullptr;
+//   m_ppaneviewMain = nullptr;
 
-   //   // almost always forgotten, assumed, as exception, responsability of application to add first ref on constructor.
-   //   //::add_ref(this);
+//   // almost always forgotten, assumed, as exception, responsability of application to add first ref on constructor.
+//   //::add_ref(this);
 
-   //   srand((u32) ::get_tick());
+//   srand((u32) ::get_tick());
 
-   //   m_bService = false;
+//   m_bService = false;
 
-   //   m_iResourceId = 8001;
+//   m_iResourceId = 8001;
 
-   //   ::apex::profiler::initialize();
+//   ::apex::profiler::initialize();
 
-   //   m_pdocmanager = nullptr;
+//   m_pdocmanager = nullptr;
 
-   //   m_eexclusiveinstance = ExclusiveInstanceNone;
-   //   m_strLocale = "_std";
-   //   m_strSchema = "_std";
+//   m_eexclusiveinstance = ExclusiveInstanceNone;
+//   m_strLocale = "_std";
+//   m_strSchema = "_std";
 
-   //   m_iGcomBackgroundUpdateMillis = -1;
+//   m_iGcomBackgroundUpdateMillis = -1;
 
-   //}
+//}
 
 
-   //application::~application()
-   //{
+//application::~application()
+//{
 
-   //}
+//}
 
 
-   //::e_status application::initialize(::object * pobject)
-   //{
+//::e_status application::initialize(::object * pobject)
+//{
 
-   //   auto estatus = ::apex::application::initialize(pobject);
+//   auto estatus = ::application::initialize(pobject);
 
-   //   if (!estatus)
-   //   {
+//   if (!estatus)
+//   {
 
-   //      return estatus;
+//      return estatus;
 
-   //   }
+//   }
 
-   //   return estatus;
+//   return estatus;
 
-   //}
+//}
 
 
 
 
-   //::application * application::get_application() const
-   //{
+//::application * application::get_application() const
+//{
 
-   //   return (application *) this;
+//   return (application *) this;
 
-   //}
+//}
 
 
 
@@ -7647,100 +7647,100 @@ retry_license:
 
 
 
-   //bool application::is_system() const
-   //{
+//bool application::is_system() const
+//{
 
-   //   return false;
+//   return false;
 
-   //}
+//}
 
 
-   //bool application::is_session() const
-   //{
+//bool application::is_session() const
+//{
 
-   //   return false;
+//   return false;
 
-   //}
+//}
 
 
-   u32 application::guess_code_page(const string& str)
-   {
+u32 application::guess_code_page(const string& str)
+{
 
-      return 0;
+return 0;
 
-   }
+}
 
 
-   //LRESULT application::GetPaintMsgProc(i32 nCode, WPARAM wParam, LPARAM lParam)
-   //{
+//LRESULT application::GetPaintMsgProc(i32 nCode, WPARAM wParam, LPARAM lParam)
+//{
 
-   //   UNREFERENCED_PARAMETER(nCode);
-   //   UNREFERENCED_PARAMETER(wParam);
-   //   UNREFERENCED_PARAMETER(lParam);
+//   UNREFERENCED_PARAMETER(nCode);
+//   UNREFERENCED_PARAMETER(wParam);
+//   UNREFERENCED_PARAMETER(lParam);
 
-   //   return 0;
+//   return 0;
 
-   //}
+//}
 
 
-   bool application::CreateFileFromRawResource(::u32 nID, const char* pcszType, const char* pcszFilePath)
-   {
+bool application::CreateFileFromRawResource(::u32 nID, const char* pcszType, const char* pcszFilePath)
+{
 
-      UNREFERENCED_PARAMETER(nID);
-      UNREFERENCED_PARAMETER(pcszType);
-      UNREFERENCED_PARAMETER(pcszFilePath);
+UNREFERENCED_PARAMETER(nID);
+UNREFERENCED_PARAMETER(pcszType);
+UNREFERENCED_PARAMETER(pcszFilePath);
 
-      return false;
+return false;
 
-   }
+}
 
 
 #ifdef WINDOWS
 
-   bool application::OnMessageWindowMessage(MESSAGE * pmsg)
+bool application::OnMessageWindowMessage(MESSAGE * pmsg)
 
-   {
+{
 
-      UNREFERENCED_PARAMETER(pmsg);
+UNREFERENCED_PARAMETER(pmsg);
 
 
-      return false;
+return false;
 
-   }
+}
 
 #elif defined(LINUX)
 
-   bool application::OnX11WindowMessage(void* pXevent) // XEvent *
-   {
+bool application::OnX11WindowMessage(void* pXevent) // XEvent *
+{
 
-      UNREFERENCED_PARAMETER(pXevent);
+UNREFERENCED_PARAMETER(pXevent);
 
-      return false;
+return false;
 
-   }
+}
 
 #endif
 
-   void application::OnUpdateRecentFileMenu(::message::command* pcommand)
-   {
+void application::OnUpdateRecentFileMenu(::message::command* pcommand)
+{
 
-      UNREFERENCED_PARAMETER(pcommand);
+UNREFERENCED_PARAMETER(pcommand);
 
-   }
+}
 
 
-   bool application::GetResourceData(::u32 nID, const char* pcszType, memory& storage)
+bool application::GetResourceData(::u32 nID, const char* pcszType, memory& storage)
 
-   {
+{
 
-      UNREFERENCED_PARAMETER(nID);
-      UNREFERENCED_PARAMETER(pcszType);
+UNREFERENCED_PARAMETER(nID);
+UNREFERENCED_PARAMETER(pcszType);
 
-      UNREFERENCED_PARAMETER(storage);
+UNREFERENCED_PARAMETER(storage);
 
-      return false;
+return false;
 
-   }
+}
 
 
 //#ifdef WINDOWS_DESKTOP
@@ -7763,691 +7763,691 @@ retry_license:
 //
 //#endif
 
-   /////////////////////////////////////////////////////////////////////////////
-   // WinApp UI related functions
+/////////////////////////////////////////////////////////////////////////////
+// WinApp UI related functions
 
-   void application::EnableModelessEx(bool bEnable)
-   {
-      UNREFERENCED_PARAMETER(bEnable);
+void application::EnableModelessEx(bool bEnable)
+{
+UNREFERENCED_PARAMETER(bEnable);
 #ifdef ___NO_OLE_SUPPORT
-      UNUSED(bEnable);
+UNUSED(bEnable);
 #endif
 
 
-   }
+}
 
 
 
-  /* ::e_status     application::run()
-   {
+/* ::e_status     application::run()
+{
 
-      return ::apex::application::run();
+return ::application::run();
 
-   }*/
+}*/
 
 
-   bool application::on_idle(::i32 lCount)
-   {
+bool application::on_idle(::i32 lCount)
+{
 
-      return false;
+return false;
 
-   }
+}
 
 
-   void application::process_window_procedure_exception(const ::exception::exception & e, ::message::message* pmessage)
-   {
+void application::process_window_procedure_exception(const ::exception::exception & e, ::message::message* pmessage)
+{
 
-      ENSURE_ARG(pmessage != nullptr);
+ENSURE_ARG(pmessage != nullptr);
 
-      //__pointer(::user::message) pusermessage(pmessage);
+//__pointer(::user::message) pusermessage(pmessage);
 
-      // handle certain messages in thread
+// handle certain messages in thread
 
-      switch (pmessage->m_id)
-      {
-      case e_message_create:
-      case e_message_paint:
+switch (pmessage->m_id)
+{
+case e_message_create:
+case e_message_paint:
 
-         return thread::process_window_procedure_exception(e, pmessage);
+return thread::process_window_procedure_exception(e, pmessage);
 
-      }
+}
 
-      // handle all the rest
-      //linux ::u32 nIDP = __IDP_INTERNAL_FAILURE;   // matter message string
-      const char* nIDP = "Internal Failure";
-      pmessage->m_lresult = 0;        // sensible default
-      if (pmessage->m_id == e_message_command)
-      {
-         if (pmessage->m_lparam == 0)
-            //linux nIDP = __IDP_COMMAND_FAILURE; // command (not from a control)
-            nIDP = "Command Failure";
-         pmessage->m_lresult = true;        // pretend the command was handled
-      }
+// handle all the rest
+//linux ::u32 nIDP = __IDP_INTERNAL_FAILURE;   // matter message string
+const char* nIDP = "Internal Failure";
+pmessage->m_lresult = 0;        // sensible default
+if (pmessage->m_id == e_message_command)
+{
+if (pmessage->m_lparam == 0)
+//linux nIDP = __IDP_COMMAND_FAILURE; // command (not from a control)
+nIDP = "Command Failure";
+pmessage->m_lresult = true;        // pretend the command was handled
+}
 
-      if (e.estatus() == error_no_memory)
-      {
+if (e.estatus() == error_no_memory)
+{
 
-         report_error(e, e_message_box_icon_exclamation | e_message_box_system_modal, nullptr);
+report_error(e, e_message_box_icon_exclamation | e_message_box_system_modal, nullptr);
 
-      }
-      else if (e.estatus() == error_user)
-      {
+}
+else if (e.estatus() == error_user)
+{
 
-         // ::account::user has not been alerted yet of this catastrophic problem
+// ::account::user has not been alerted yet of this catastrophic problem
 
-         report_error(e, e_message_box_icon_stop, nullptr);
+report_error(e, e_message_box_icon_stop, nullptr);
 
-      }
+}
 
-   }
+}
 
 
-   void application::route_command_message(::message::command* pcommand)
-   {
+void application::route_command_message(::message::command* pcommand)
+{
 
-      ::thread::route_command_message(pcommand);
+::thread::route_command_message(pcommand);
 
-   }
+}
 
 
-   /*
-   bool application::hex_to_memory(memory & memory, const char * pszHex)
-   {
-   ::count len = strlen(pszHex);
-   ::count count = (len + 1) / 2;
-   memory.set_size(count);
-   index i = 0;
-   byte b;
-   while(*pszHex != '\0')
-   {
-   char ch = (char) tolower(*pszHex);
-   if(ch >= '0' && ch <= '9')
-   {
-   b = ch - '0';
-   }
-   else if(ch >= 'a' && ch <= 'f')
-   {
-   b = ch - 'a' + 10;
-   }
-   else
-   {
-   return false;
-   }
-   pszHex++;
-   if(*pszHex == '\0')
-   {
-   memory.get_data()[i] = b;
-   return true;
-   }
-   b = b << 4;
-   ch = (char) tolower(*pszHex);
-   if(ch >= '0' && ch <= '9')
-   {
-   b |= (ch - '0');
-   }
-   else if(ch >= 'a' && ch <= 'f')
-   {
-   b |= (ch - 'a' + 10);
-   }
-   else
-   {
-   return false;
-   }
-   pszHex++;
-   memory.get_data()[i] = b;
-   i++;
-   }
-   return true;
-   }
-
-
-   void application::memory_to_hex(string & strHex, memory & memory)
-   {
-   ::count count = memory.get_size();
-   char * psz = strHex.get_string_buffer(count * 2);
-
-   for(index i = 0; i < count; i++)
-   {
-   *psz++ = ::hex::lower_from((byte) ((memory.get_data()[i] >> 4) & 0xf));
-
-   *psz++ = ::hex::lower_from((byte) (memory.get_data()[i] & 0xf));
-
-   }
-   strHex.ReleaseBuffer(count * 2);
-   }
-   */
-
-
-
-
-
-
-
-
-
-
-
-   // // BEGIN_MESSAGE_MAP(application, channel)
-   //{{__MSG_MAP(application)
-   // Global File commands
-   //   ON_COMMAND(ID_APP_EXIT, &application::OnAppExit)
-   // MRU - most recently used file menu
-   //   ON_UPDATE_::message::command(ID_FILE_MRU_FILE1, &application::OnUpdateRecentFileMenu)
-   //   ON_COMMAND_EX_RANGE(ID_FILE_MRU_FILE1, ID_FILE_MRU_FILE16, &application::OnOpenRecentFile)
-   //}}__MSG_MAP
-   // // END_MESSAGE_MAP()
-
-   /*#ifdef WINDOWS
-
-
-   typedef LANGID (WINAPI*PFNGETUSERDEFAULTUILANGUAGE)();
-   typedef LANGID (WINAPI*PFNGETSYSTEMDEFAULTUILANGUAGE)();
-
-
-   class CActivationContext
-   {
-   protected :
-   HANDLE m_hCtxt;
-   uptr m_uCookie;
-
-   // If pointers are nullptr then we are on a platform that does not support WinSXS.
-   typedef HANDLE (WINAPI * PFNCreateActCtx)(PCACTCTX);
-   static PFNCreateActCtx s_pfnCreateActCtx;
-
-   typedef void (WINAPI * PFNReleaseActCtx)(HANDLE);
-   static PFNReleaseActCtx s_pfnReleaseActCtx;
-
-   typedef bool (WINAPI * PFNActivateActCtx)(HANDLE, uptr*);
-   static PFNActivateActCtx s_pfnActivateActCtx;
-
-   typedef bool (WINAPI * PFNDeactivateActCtx)(u32, uptr);
-   static PFNDeactivateActCtx s_pfnDeactivateActCtx;
-
-   static bool s_bPFNInitialized;
-
-   public:
-   CActivationContext(HANDLE hCtxt = INVALID_HANDLE_VALUE) : m_hCtxt( hCtxt ), m_uCookie( 0 )
-   {
-   // Multiple threads initializing is fine since they will initialize the pointers to the
-   // same value.
-   if (!s_bPFNInitialized)
-   {
-   HMODULE hKernel = GetModuleHandle("KERNEL32");
-   ENSURE (hKernel != nullptr);
-   #ifdef _UNICODE
-   s_pfnCreateActCtx = (PFNCreateActCtx) GetProcAddress(hKernel, "CreateActCtxW");
-   #else
-   s_pfnCreateActCtx = (PFNCreateActCtx) GetProcAddress(hKernel, "CreateActCtxA");
-   #endif
-   s_pfnReleaseActCtx = (PFNReleaseActCtx) GetProcAddress(hKernel, "ReleaseActCtx");
-   s_pfnActivateActCtx = (PFNActivateActCtx) GetProcAddress(hKernel, "ActivateActCtx");
-   s_pfnDeactivateActCtx = (PFNDeactivateActCtx) GetProcAddress(hKernel, "DeactivateActCtx");
-   if (s_pfnCreateActCtx != nullptr)
-   {
-   // If one of the functions is present then all the functions have to be present.
-   ENSURE( s_pfnReleaseActCtx != nullptr &&
-   s_pfnActivateActCtx != nullptr &&
-   s_pfnDeactivateActCtx != nullptr);
-   }
-   else
-   {
-   // If one of the functions is not present then all the functions should not be present.
-   ENSURE( s_pfnReleaseActCtx == nullptr &&
-   s_pfnActivateActCtx == nullptr &&
-   s_pfnDeactivateActCtx == nullptr);
-   }
-   s_bPFNInitialized = true;
-   }
-   };
-
-   ~CActivationContext()
-   {
-   Release();
-   }
-
-   bool create( PCACTCTX pactctx )
-   {
-   // nullptr on a platform that do not support WinSXS
-   if (s_pfnCreateActCtx == nullptr)
-   {
-   return true;
-   }
-
-   ASSERT( pactctx != nullptr );
-   if ( pactctx == nullptr )
-   {
-   return false;
-   }
-
-   ASSERT( m_hCtxt == INVALID_HANDLE_VALUE );
-   if ( m_hCtxt != INVALID_HANDLE_VALUE )
-   {
-   return false;
-   }
-
-   return ( ( m_hCtxt = s_pfnCreateActCtx( pactctx ) ) != INVALID_HANDLE_VALUE );
-   }
-
-   void Release()
-   {
-   // nullptr on a platform that do not support WinSXS
-   if (s_pfnReleaseActCtx == nullptr)
-   {
-   return;
-   }
-
-   if ( m_hCtxt != INVALID_HANDLE_VALUE )
-   {
-   Deactivate();
-   s_pfnReleaseActCtx( m_hCtxt );
-   }
-   }
-
-   bool Activate()
-   {
-   // nullptr on a platform that do not support WinSXS
-   if (s_pfnActivateActCtx == nullptr)
-   {
-   return true;
-   }
-
-   ASSERT( m_hCtxt != INVALID_HANDLE_VALUE );
-   if ( m_hCtxt == INVALID_HANDLE_VALUE )
-   {
-   return false;
-   }
-
-   ASSERT( m_uCookie == 0 );
-   if ( m_uCookie != 0 )
-   {
-   return false;
-   }
-
-   return ( s_pfnActivateActCtx( m_hCtxt, &m_uCookie) == true );
-   }
-
-   bool Deactivate()
-   {
-   // nullptr on a platform that do not support WinSXS
-   if (s_pfnDeactivateActCtx == nullptr)
-   {
-   return true;
-   }
-
-   if ( m_uCookie != 0 )
-   {
-   uptr uCookie = m_uCookie;
-   m_uCookie = 0;
-   return ( s_pfnDeactivateActCtx(0, uCookie) == true );
-   }
-   return true;
-   }
-   };
-
-
-   CActivationContext::PFNCreateActCtx CActivationContext::s_pfnCreateActCtx = nullptr;
-   CActivationContext::PFNReleaseActCtx CActivationContext::s_pfnReleaseActCtx = nullptr;
-   CActivationContext::PFNActivateActCtx CActivationContext::s_pfnActivateActCtx = nullptr;
-   CActivationContext::PFNDeactivateActCtx CActivationContext::s_pfnDeactivateActCtx = nullptr;
-   bool CActivationContext::s_bPFNInitialized = false;
-
-
-   // HINSTANCE of the module
-   extern "C" IMAGE_DOS_HEADER __ImageBase;
-
-   */
-
-
-   bool application::LoadSysPolicies()
-   {
-      return _LoadSysPolicies();
-   }
-
-   // This function is not exception safe - will leak a registry key if exceptions are thrown from some places
-   // To reduce risk of leaks, I've declared the whole function noexcept. This despite the fact that its callers have
-   // no dependency on non-throwing.
-   bool application::_LoadSysPolicies() noexcept
-   {
+/*
+bool application::hex_to_memory(memory & memory, const char * pszHex)
+{
+::count len = strlen(pszHex);
+::count count = (len + 1) / 2;
+memory.set_size(count);
+index i = 0;
+byte b;
+while(*pszHex != '\0')
+{
+char ch = (char) tolower(*pszHex);
+if(ch >= '0' && ch <= '9')
+{
+b = ch - '0';
+}
+else if(ch >= 'a' && ch <= 'f')
+{
+b = ch - 'a' + 10;
+}
+else
+{
+return false;
+}
+pszHex++;
+if(*pszHex == '\0')
+{
+memory.get_data()[i] = b;
+return true;
+}
+b = b << 4;
+ch = (char) tolower(*pszHex);
+if(ch >= '0' && ch <= '9')
+{
+b |= (ch - '0');
+}
+else if(ch >= 'a' && ch <= 'f')
+{
+b |= (ch - 'a' + 10);
+}
+else
+{
+return false;
+}
+pszHex++;
+memory.get_data()[i] = b;
+i++;
+}
+return true;
+}
+
+
+void application::memory_to_hex(string & strHex, memory & memory)
+{
+::count count = memory.get_size();
+char * psz = strHex.get_string_buffer(count * 2);
+
+for(index i = 0; i < count; i++)
+{
+*psz++ = ::hex::lower_from((byte) ((memory.get_data()[i] >> 4) & 0xf));
+
+*psz++ = ::hex::lower_from((byte) (memory.get_data()[i] & 0xf));
+
+}
+strHex.ReleaseBuffer(count * 2);
+}
+*/
+
+
+
+
+
+
+
+
+
+
+
+// // BEGIN_MESSAGE_MAP(application, channel)
+//{{__MSG_MAP(application)
+// Global File commands
+//   ON_COMMAND(ID_APP_EXIT, &application::OnAppExit)
+// MRU - most recently used file menu
+//   ON_UPDATE_::message::command(ID_FILE_MRU_FILE1, &application::OnUpdateRecentFileMenu)
+//   ON_COMMAND_EX_RANGE(ID_FILE_MRU_FILE1, ID_FILE_MRU_FILE16, &application::OnOpenRecentFile)
+//}}__MSG_MAP
+// // END_MESSAGE_MAP()
+
+/*#ifdef WINDOWS
+
+
+typedef LANGID (WINAPI*PFNGETUSERDEFAULTUILANGUAGE)();
+typedef LANGID (WINAPI*PFNGETSYSTEMDEFAULTUILANGUAGE)();
+
+
+class CActivationContext
+{
+protected :
+HANDLE m_hCtxt;
+uptr m_uCookie;
+
+// If pointers are nullptr then we are on a platform that does not support WinSXS.
+typedef HANDLE (WINAPI * PFNCreateActCtx)(PCACTCTX);
+static PFNCreateActCtx s_pfnCreateActCtx;
+
+typedef void (WINAPI * PFNReleaseActCtx)(HANDLE);
+static PFNReleaseActCtx s_pfnReleaseActCtx;
+
+typedef bool (WINAPI * PFNActivateActCtx)(HANDLE, uptr*);
+static PFNActivateActCtx s_pfnActivateActCtx;
+
+typedef bool (WINAPI * PFNDeactivateActCtx)(u32, uptr);
+static PFNDeactivateActCtx s_pfnDeactivateActCtx;
+
+static bool s_bPFNInitialized;
+
+public:
+CActivationContext(HANDLE hCtxt = INVALID_HANDLE_VALUE) : m_hCtxt( hCtxt ), m_uCookie( 0 )
+{
+// Multiple threads initializing is fine since they will initialize the pointers to the
+// same value.
+if (!s_bPFNInitialized)
+{
+HMODULE hKernel = GetModuleHandle("KERNEL32");
+ENSURE (hKernel != nullptr);
+#ifdef _UNICODE
+s_pfnCreateActCtx = (PFNCreateActCtx) GetProcAddress(hKernel, "CreateActCtxW");
+#else
+s_pfnCreateActCtx = (PFNCreateActCtx) GetProcAddress(hKernel, "CreateActCtxA");
+#endif
+s_pfnReleaseActCtx = (PFNReleaseActCtx) GetProcAddress(hKernel, "ReleaseActCtx");
+s_pfnActivateActCtx = (PFNActivateActCtx) GetProcAddress(hKernel, "ActivateActCtx");
+s_pfnDeactivateActCtx = (PFNDeactivateActCtx) GetProcAddress(hKernel, "DeactivateActCtx");
+if (s_pfnCreateActCtx != nullptr)
+{
+// If one of the functions is present then all the functions have to be present.
+ENSURE( s_pfnReleaseActCtx != nullptr &&
+s_pfnActivateActCtx != nullptr &&
+s_pfnDeactivateActCtx != nullptr);
+}
+else
+{
+// If one of the functions is not present then all the functions should not be present.
+ENSURE( s_pfnReleaseActCtx == nullptr &&
+s_pfnActivateActCtx == nullptr &&
+s_pfnDeactivateActCtx == nullptr);
+}
+s_bPFNInitialized = true;
+}
+};
+
+~CActivationContext()
+{
+Release();
+}
+
+bool create( PCACTCTX pactctx )
+{
+// nullptr on a platform that do not support WinSXS
+if (s_pfnCreateActCtx == nullptr)
+{
+return true;
+}
+
+ASSERT( pactctx != nullptr );
+if ( pactctx == nullptr )
+{
+return false;
+}
+
+ASSERT( m_hCtxt == INVALID_HANDLE_VALUE );
+if ( m_hCtxt != INVALID_HANDLE_VALUE )
+{
+return false;
+}
+
+return ( ( m_hCtxt = s_pfnCreateActCtx( pactctx ) ) != INVALID_HANDLE_VALUE );
+}
+
+void Release()
+{
+// nullptr on a platform that do not support WinSXS
+if (s_pfnReleaseActCtx == nullptr)
+{
+return;
+}
+
+if ( m_hCtxt != INVALID_HANDLE_VALUE )
+{
+Deactivate();
+s_pfnReleaseActCtx( m_hCtxt );
+}
+}
+
+bool Activate()
+{
+// nullptr on a platform that do not support WinSXS
+if (s_pfnActivateActCtx == nullptr)
+{
+return true;
+}
+
+ASSERT( m_hCtxt != INVALID_HANDLE_VALUE );
+if ( m_hCtxt == INVALID_HANDLE_VALUE )
+{
+return false;
+}
+
+ASSERT( m_uCookie == 0 );
+if ( m_uCookie != 0 )
+{
+return false;
+}
+
+return ( s_pfnActivateActCtx( m_hCtxt, &m_uCookie) == true );
+}
+
+bool Deactivate()
+{
+// nullptr on a platform that do not support WinSXS
+if (s_pfnDeactivateActCtx == nullptr)
+{
+return true;
+}
+
+if ( m_uCookie != 0 )
+{
+uptr uCookie = m_uCookie;
+m_uCookie = 0;
+return ( s_pfnDeactivateActCtx(0, uCookie) == true );
+}
+return true;
+}
+};
+
+
+CActivationContext::PFNCreateActCtx CActivationContext::s_pfnCreateActCtx = nullptr;
+CActivationContext::PFNReleaseActCtx CActivationContext::s_pfnReleaseActCtx = nullptr;
+CActivationContext::PFNActivateActCtx CActivationContext::s_pfnActivateActCtx = nullptr;
+CActivationContext::PFNDeactivateActCtx CActivationContext::s_pfnDeactivateActCtx = nullptr;
+bool CActivationContext::s_bPFNInitialized = false;
+
+
+// HINSTANCE of the module
+extern "C" IMAGE_DOS_HEADER __ImageBase;
+
+*/
+
+
+bool application::LoadSysPolicies()
+{
+return _LoadSysPolicies();
+}
+
+// This function is not exception safe - will leak a registry key if exceptions are thrown from some places
+// To reduce risk of leaks, I've declared the whole function noexcept. This despite the fact that its callers have
+// no dependency on non-throwing.
+bool application::_LoadSysPolicies() noexcept
+{
 
 #ifdef WINDOWS_DESKTOP
 
-      HKEY hkPolicy = nullptr;
-      ::u32 dwValue = 0;
-      ::u32 dwDataLen = sizeof(dwValue);
-      ::u32 dwType = 0;
+HKEY hkPolicy = nullptr;
+::u32 dwValue = 0;
+::u32 dwDataLen = sizeof(dwValue);
+::u32 dwType = 0;
 
-      //// clear current policy settings.
-      //m_dwPolicies = ___SYSPOLICY_NOTINITIALIZED;
+//// clear current policy settings.
+//m_dwPolicies = ___SYSPOLICY_NOTINITIALIZED;
 
-      //static __system_policy_data rgExplorerData[] =
-      //{
-      //   {"NoRun",___SYSPOLICY_NORUN},
-      //   {"NoDrives",___SYSPOLICY_NODRIVES},
-      //   {"RestrictRun",___SYSPOLICY_RESTRICTRUN},
-      //   {"NoNetConnectDisconnect",___SYSPOLICY_NONETCONNECTDISCONNECTD},
-      //   {"NoRecentDocsHistory",___SYSPOLICY_NORECENTDOCHISTORY},
-      //   {"NoClose",___SYSPOLICY_NOCLOSE},
-      //   {nullptr,0}
-      //};
+//static __system_policy_data rgExplorerData[] =
+//{
+//   {"NoRun",___SYSPOLICY_NORUN},
+//   {"NoDrives",___SYSPOLICY_NODRIVES},
+//   {"RestrictRun",___SYSPOLICY_RESTRICTRUN},
+//   {"NoNetConnectDisconnect",___SYSPOLICY_NONETCONNECTDISCONNECTD},
+//   {"NoRecentDocsHistory",___SYSPOLICY_NORECENTDOCHISTORY},
+//   {"NoClose",___SYSPOLICY_NOCLOSE},
+//   {nullptr,0}
+//};
 
-      //static __system_policy_data rgNetworkData[] =
-      //{
-      //   {"NoEntireNetwork",___SYSPOLICY_NOENTIRENETWORK},
-      //   {nullptr,0}
-      //};
+//static __system_policy_data rgNetworkData[] =
+//{
+//   {"NoEntireNetwork",___SYSPOLICY_NOENTIRENETWORK},
+//   {nullptr,0}
+//};
 
-      //static __system_policy_data rgComDlgData[] =
-      //{
-      //   {"NoPlacesBar",___SYSPOLICY_NOPLACESBAR},
-      //   {"NoBackButton",___SYSPOLICY_NOBACKBUTTON},
-      //   {"NoFileMru",___SYSPOLICY_NOFILEMRU},
-      //   {nullptr,0}
-      //};
+//static __system_policy_data rgComDlgData[] =
+//{
+//   {"NoPlacesBar",___SYSPOLICY_NOPLACESBAR},
+//   {"NoBackButton",___SYSPOLICY_NOBACKBUTTON},
+//   {"NoFileMru",___SYSPOLICY_NOFILEMRU},
+//   {nullptr,0}
+//};
 
-      //static __system_policies rgPolicies[] =
-      //{
-      //   {  "Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\Explorer",
-      //      rgExplorerData
-      //   },
-      //   {  "Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\Network",
-      //      rgNetworkData
-      //   },
-      //   {  "Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\Comdlg32",
-      //      rgComDlgData
-      //   },
-      //   {nullptr,0}
-      //};
+//static __system_policies rgPolicies[] =
+//{
+//   {  "Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\Explorer",
+//      rgExplorerData
+//   },
+//   {  "Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\Network",
+//      rgNetworkData
+//   },
+//   {  "Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\Comdlg32",
+//      rgComDlgData
+//   },
+//   {nullptr,0}
+//};
 
-      //__system_policies *pPolicies = rgPolicies;
-      //__system_policy_data *pData = nullptr;
+//__system_policies *pPolicies = rgPolicies;
+//__system_policy_data *pData = nullptr;
 
-      //while (pPolicies->szPolicyKey != nullptr)
-      //{
+//while (pPolicies->szPolicyKey != nullptr)
+//{
 
-      //   if (ERROR_SUCCESS == ::RegOpenKeyEx(
-      //            HKEY_CURRENT_USER,
-      //            pPolicies->szPolicyKey,
-      //            0,
-      //            KEY_QUERY_VALUE,
-      //            &hkPolicy
-      //         ))
-      //   {
-      //      pData = pPolicies->pData;
-      //      while (pData->szPolicyName)
-      //      {
-      //         if (ERROR_SUCCESS == ::RegQueryValueEx(
-      //                  hkPolicy,
-      //                  pData->szPolicyName,
-      //                  nullptr,
-      //                  &dwType,
-      //                  (byte*)&dwValue,
-      //                  &dwDataLen))
-      //         {
-      //            if (dwType == REG_DWORD)
-      //            {
-      //               if (dwValue != 0)
-      //                  m_dwPolicies |= pData->dwID;
-      //               else
-      //                  m_dwPolicies &= ~pData->dwID;
-      //            }
-      //         }
-      //         dwValue = 0;
-      //         dwDataLen = sizeof(dwValue);
-      //         dwType = 0;
-      //         pData++;
-      //      }
-      //      ::RegCloseKey(hkPolicy);
-      //      hkPolicy = nullptr;
-      //   }
-      //   pPolicies++;
-      //};
+//   if (ERROR_SUCCESS == ::RegOpenKeyEx(
+//            HKEY_CURRENT_USER,
+//            pPolicies->szPolicyKey,
+//            0,
+//            KEY_QUERY_VALUE,
+//            &hkPolicy
+//         ))
+//   {
+//      pData = pPolicies->pData;
+//      while (pData->szPolicyName)
+//      {
+//         if (ERROR_SUCCESS == ::RegQueryValueEx(
+//                  hkPolicy,
+//                  pData->szPolicyName,
+//                  nullptr,
+//                  &dwType,
+//                  (byte*)&dwValue,
+//                  &dwDataLen))
+//         {
+//            if (dwType == REG_DWORD)
+//            {
+//               if (dwValue != 0)
+//                  m_dwPolicies |= pData->dwID;
+//               else
+//                  m_dwPolicies &= ~pData->dwID;
+//            }
+//         }
+//         dwValue = 0;
+//         dwDataLen = sizeof(dwValue);
+//         dwType = 0;
+//         pData++;
+//      }
+//      ::RegCloseKey(hkPolicy);
+//      hkPolicy = nullptr;
+//   }
+//   pPolicies++;
+//};
 
 #endif
 
-      return true;
+return true;
 
 
-   }
+}
 
-   bool application::GetSysPolicyValue(u32 dwPolicyID, bool* pbValue)
-   {
-      if (!pbValue)
-         return false; // bad pointer
-      *pbValue = (m_dwPolicies & dwPolicyID) != 0;
-      return true;
-   }
+bool application::GetSysPolicyValue(u32 dwPolicyID, bool* pbValue)
+{
+if (!pbValue)
+return false; // bad pointer
+*pbValue = (m_dwPolicies & dwPolicyID) != 0;
+return true;
+}
 
-   //bool application::InitApplication()
-   //{
-
-
-   //   LoadSysPolicies();
-
-   //   return true;
+//bool application::InitApplication()
+//{
 
 
-   //}
+//   LoadSysPolicies();
+
+//   return true;
 
 
-
-   /*   void application::LoadStdProfileSettings(::u32 nMaxMRU)
-   {
-   UNREFERENCED_PARAMETER(nMaxMRU);
-   ASSERT_VALID(this);
-
-   // 0 by default means not set
-   m_nNumPreviewPages = GetProfileInt(gen_PreviewSection, gen_PreviewEntry, 0);
-   }*/
-
-   /*void application::ParseCommandLine(CCommandLineInfo& rCmdInfo)
-   {
-   for (i32 i = 1; i < __argc; i++)
-   {
-   const char * pszParam = __targv[i];
-   bool bFlag = false;
-   bool bLast = ((i + 1) == __argc);
-   if (pszParam[0] == '-' || pszParam[0] == '/')
-   {
-   // erase flag specifier
-   bFlag = true;
-   ++pszParam;
-   }
-   rCmdInfo.ParseParam(pszParam, bFlag, bLast);
-   }
-   }*/
-
-   /////////////////////////////////////////////////////////////////////////////
-   // CCommandLineInfo implementation
-
-   /*CCommandLineInfo::CCommandLineInfo()
-   {
-   m_bShowSplash = true;
-   m_bRunEmbedded = false;
-   m_bRunAutomated = false;
-   m_nShellCommand = FileNew;
-   }
-
-   CCommandLineInfo::~CCommandLineInfo()
-   {
-   }
-
-   void CCommandLineInfo::ParseParam(const char* pszParam,bool bFlag,bool bLast)
-   {
-   if (bFlag)
-   {
-   const astring strParam(pszParam);
-   ParseParamFlag(strParam.GetString());
-   }
-   else
-   ParseParamNotFlag(pszParam);
-
-   ParseLast(bLast);
-   }*/
-
-   /*
-   #ifdef UNICODE
-   void CCommandLineInfo::ParseParam(const char* pszParam, bool bFlag, bool bLast)
-   {
-   if (bFlag)
-   ParseParamFlag(pszParam);
-   else
-   ParseParamNotFlag(pszParam);
-
-   ParseLast(bLast);
-   }
-   #endif // UNICODE
-   */
-
-   /*
-   void CCommandLineInfo::ParseParamFlag(const char* pszParam)
-   {
-   // OLE command switches are case insensitive, while
-   // shell command switches are case sensitive
-
-   if (lstrcmpA(pszParam, "point_i32") == 0)
-   m_nShellCommand = FilePrintTo;
-   else if (lstrcmpA(pszParam, "point_i32") == 0)
-   m_nShellCommand = FilePrint;
-   else if (::__invariant_stricmp(pszParam, "Register") == 0 ||
-   ::__invariant_stricmp(pszParam, "Regserver") == 0)
-   m_nShellCommand = AppRegister;
-   else if (::__invariant_stricmp(pszParam, "Unregister") == 0 ||
-   ::__invariant_stricmp(pszParam, "Unregserver") == 0)
-   m_nShellCommand = AppUnregister;
-   else if (lstrcmpA(pszParam, "dde") == 0)
-   {
-   m_nShellCommand = FileDDE;
-   }
-   else if (::__invariant_stricmp(pszParam, "Embedding") == 0)
-   {
-   m_bRunEmbedded = true;
-   m_bShowSplash = false;
-   }
-   else if (::__invariant_stricmp(pszParam, "Automation") == 0)
-   {
-   m_bRunAutomated = true;
-   m_bShowSplash = false;
-   }
-   }
-
-   void CCommandLineInfo::ParseParamNotFlag(const char* pszParam)
-   {
-   if (m_strFileName.is_empty())
-   m_strFileName = pszParam;
-   else if (m_nShellCommand == FilePrintTo && m_strPrinterName.is_empty())
-   m_strPrinterName = pszParam;
-   else if (m_nShellCommand == FilePrintTo && m_strDriverName.is_empty())
-   m_strDriverName = pszParam;
-   else if (m_nShellCommand == FilePrintTo && m_strPortName.is_empty())
-   m_strPortName = pszParam;
-   }
-
-   #ifdef UNICODE
-   void CCommandLineInfo::ParseParamNotFlag(const char* pszParam)
-   {
-   if (m_strFileName.is_empty())
-   m_strFileName = pszParam;
-   else if (m_nShellCommand == FilePrintTo && m_strPrinterName.is_empty())
-   m_strPrinterName = pszParam;
-   else if (m_nShellCommand == FilePrintTo && m_strDriverName.is_empty())
-   m_strDriverName = pszParam;
-   else if (m_nShellCommand == FilePrintTo && m_strPortName.is_empty())
-   m_strPortName = pszParam;
-   }
-   #endif
-
-   void CCommandLineInfo::ParseLast(bool bLast)
-   {
-   if (bLast)
-   {
-   if (m_nShellCommand == FileNew && !m_strFileName.is_empty())
-   m_nShellCommand = FileOpen;
-   m_bShowSplash = !m_bRunEmbedded && !m_bRunAutomated;
-   }
-   }
-   */
-
-   /////////////////////////////////////////////////////////////////////////////
-   // App termination
-
-   void application::SaveStdProfileSettings()
-   {
-      ASSERT_VALID(this);
-
-
-      //      if (m_nNumPreviewPages != 0)
-      //       WriteProfileInt(gen_PreviewSection, gen_PreviewEntry, m_nNumPreviewPages);
-   }
-
-
-   //
-   //
-   //
-   //
-   //#ifdef WINDOWS_DESKTOP
-   //
-   //
-   //   /////////////////////////////////////////////////////////////////////////////
-   //   // WinHelp helper
-   //
-   //
-   //   void application::WinHelp(uptr dwData, ::u32 nCmd)
-   //   {
-   //      UNREFERENCED_PARAMETER(dwData);
-   //      UNREFERENCED_PARAMETER(nCmd);
-   //
-   //      // return global cast help mode state to false (backward compatibility)
-   //      m_bHelpMode = false;
-   //      // trans pMainWnd->PostMessage(WM_KICKIDLE); // trigger idle task
-   //
-   //      //trans pMainWnd->WinHelp(dwData, nCmd);
-   //   }
-   //
-   //   /////////////////////////////////////////////////////////////////////////////
-   //   // HtmlHelp helper
-   //
-   //   void application::HtmlHelp(uptr dwData, ::u32 nCmd)
-   //   {
-   //
-   //      UNREFERENCED_PARAMETER(dwData);
-   //
-   //      UNREFERENCED_PARAMETER(nCmd);
-   //
-   //      // return global cast help mode state to false (backward compatibility)
-   //      m_bHelpMode = false;
-   //      // trans pMainWnd->PostMessage(WM_KICKIDLE); // trigger idle task
-   //
-   //      // trans pMainWnd->HtmlHelp(dwData, nCmd);
-   //   }
-   //
-   //
-   //   void application::WinHelpInternal(uptr dwData, ::u32 nCmd)
-   //   {
-   //      UNREFERENCED_PARAMETER(dwData);
-   //      UNREFERENCED_PARAMETER(nCmd);
-   //      //   __pointer(::user::interaction) pMainWnd = psystem->m_puiMain;
-   //      //   ENSURE_VALID(pMainWnd);
-   //
-   //      // return global cast help mode state to false (backward compatibility)
-   //      m_bHelpMode = false;
-   //      // trans pMainWnd->PostMessage(WM_KICKIDLE); // trigger idle task
-   //      // trans pMainWnd->WinHelpInternal(dwData, nCmd);
-   //   }
-   //
-   //
-   //#endif
-   //
+//}
 
 
 
+/*   void application::LoadStdProfileSettings(::u32 nMaxMRU)
+{
+UNREFERENCED_PARAMETER(nMaxMRU);
+ASSERT_VALID(this);
 
-      /////////////////////////////////////////////////////////////////////////////
-      // application idle processing
+// 0 by default means not set
+m_nNumPreviewPages = GetProfileInt(gen_PreviewSection, gen_PreviewEntry, 0);
+}*/
 
-   void application::DevModeChange(char * pDeviceName)
+/*void application::ParseCommandLine(CCommandLineInfo& rCmdInfo)
+{
+for (i32 i = 1; i < __argc; i++)
+{
+const char * pszParam = __targv[i];
+bool bFlag = false;
+bool bLast = ((i + 1) == __argc);
+if (pszParam[0] == '-' || pszParam[0] == '/')
+{
+// erase flag specifier
+bFlag = true;
+++pszParam;
+}
+rCmdInfo.ParseParam(pszParam, bFlag, bLast);
+}
+}*/
 
-   {
-      UNREFERENCED_PARAMETER(pDeviceName);
+/////////////////////////////////////////////////////////////////////////////
+// CCommandLineInfo implementation
+
+/*CCommandLineInfo::CCommandLineInfo()
+{
+m_bShowSplash = true;
+m_bRunEmbedded = false;
+m_bRunAutomated = false;
+m_nShellCommand = FileNew;
+}
+
+CCommandLineInfo::~CCommandLineInfo()
+{
+}
+
+void CCommandLineInfo::ParseParam(const char* pszParam,bool bFlag,bool bLast)
+{
+if (bFlag)
+{
+const astring strParam(pszParam);
+ParseParamFlag(strParam.GetString());
+}
+else
+ParseParamNotFlag(pszParam);
+
+ParseLast(bLast);
+}*/
+
+/*
+#ifdef UNICODE
+void CCommandLineInfo::ParseParam(const char* pszParam, bool bFlag, bool bLast)
+{
+if (bFlag)
+ParseParamFlag(pszParam);
+else
+ParseParamNotFlag(pszParam);
+
+ParseLast(bLast);
+}
+#endif // UNICODE
+*/
+
+/*
+void CCommandLineInfo::ParseParamFlag(const char* pszParam)
+{
+// OLE command switches are case insensitive, while
+// shell command switches are case sensitive
+
+if (lstrcmpA(pszParam, "point_i32") == 0)
+m_nShellCommand = FilePrintTo;
+else if (lstrcmpA(pszParam, "point_i32") == 0)
+m_nShellCommand = FilePrint;
+else if (::__invariant_stricmp(pszParam, "Register") == 0 ||
+::__invariant_stricmp(pszParam, "Regserver") == 0)
+m_nShellCommand = AppRegister;
+else if (::__invariant_stricmp(pszParam, "Unregister") == 0 ||
+::__invariant_stricmp(pszParam, "Unregserver") == 0)
+m_nShellCommand = AppUnregister;
+else if (lstrcmpA(pszParam, "dde") == 0)
+{
+m_nShellCommand = FileDDE;
+}
+else if (::__invariant_stricmp(pszParam, "Embedding") == 0)
+{
+m_bRunEmbedded = true;
+m_bShowSplash = false;
+}
+else if (::__invariant_stricmp(pszParam, "Automation") == 0)
+{
+m_bRunAutomated = true;
+m_bShowSplash = false;
+}
+}
+
+void CCommandLineInfo::ParseParamNotFlag(const char* pszParam)
+{
+if (m_strFileName.is_empty())
+m_strFileName = pszParam;
+else if (m_nShellCommand == FilePrintTo && m_strPrinterName.is_empty())
+m_strPrinterName = pszParam;
+else if (m_nShellCommand == FilePrintTo && m_strDriverName.is_empty())
+m_strDriverName = pszParam;
+else if (m_nShellCommand == FilePrintTo && m_strPortName.is_empty())
+m_strPortName = pszParam;
+}
+
+#ifdef UNICODE
+void CCommandLineInfo::ParseParamNotFlag(const char* pszParam)
+{
+if (m_strFileName.is_empty())
+m_strFileName = pszParam;
+else if (m_nShellCommand == FilePrintTo && m_strPrinterName.is_empty())
+m_strPrinterName = pszParam;
+else if (m_nShellCommand == FilePrintTo && m_strDriverName.is_empty())
+m_strDriverName = pszParam;
+else if (m_nShellCommand == FilePrintTo && m_strPortName.is_empty())
+m_strPortName = pszParam;
+}
+#endif
+
+void CCommandLineInfo::ParseLast(bool bLast)
+{
+if (bLast)
+{
+if (m_nShellCommand == FileNew && !m_strFileName.is_empty())
+m_nShellCommand = FileOpen;
+m_bShowSplash = !m_bRunEmbedded && !m_bRunAutomated;
+}
+}
+*/
+
+/////////////////////////////////////////////////////////////////////////////
+// App termination
+
+void application::SaveStdProfileSettings()
+{
+ASSERT_VALID(this);
+
+
+//      if (m_nNumPreviewPages != 0)
+//       WriteProfileInt(gen_PreviewSection, gen_PreviewEntry, m_nNumPreviewPages);
+}
+
+
+//
+//
+//
+//
+//#ifdef WINDOWS_DESKTOP
+//
+//
+//   /////////////////////////////////////////////////////////////////////////////
+//   // WinHelp helper
+//
+//
+//   void application::WinHelp(uptr dwData, ::u32 nCmd)
+//   {
+//      UNREFERENCED_PARAMETER(dwData);
+//      UNREFERENCED_PARAMETER(nCmd);
+//
+//      // return global cast help mode state to false (backward compatibility)
+//      m_bHelpMode = false;
+//      // trans pMainWnd->PostMessage(WM_KICKIDLE); // trigger idle task
+//
+//      //trans pMainWnd->WinHelp(dwData, nCmd);
+//   }
+//
+//   /////////////////////////////////////////////////////////////////////////////
+//   // HtmlHelp helper
+//
+//   void application::HtmlHelp(uptr dwData, ::u32 nCmd)
+//   {
+//
+//      UNREFERENCED_PARAMETER(dwData);
+//
+//      UNREFERENCED_PARAMETER(nCmd);
+//
+//      // return global cast help mode state to false (backward compatibility)
+//      m_bHelpMode = false;
+//      // trans pMainWnd->PostMessage(WM_KICKIDLE); // trigger idle task
+//
+//      // trans pMainWnd->HtmlHelp(dwData, nCmd);
+//   }
+//
+//
+//   void application::WinHelpInternal(uptr dwData, ::u32 nCmd)
+//   {
+//      UNREFERENCED_PARAMETER(dwData);
+//      UNREFERENCED_PARAMETER(nCmd);
+//      //   __pointer(::user::interaction) pMainWnd = psystem->m_puiMain;
+//      //   ENSURE_VALID(pMainWnd);
+//
+//      // return global cast help mode state to false (backward compatibility)
+//      m_bHelpMode = false;
+//      // trans pMainWnd->PostMessage(WM_KICKIDLE); // trigger idle task
+//      // trans pMainWnd->WinHelpInternal(dwData, nCmd);
+//   }
+//
+//
+//#endif
+//
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////
+// application idle processing
+
+void application::DevModeChange(char * pDeviceName)
+
+{
+UNREFERENCED_PARAMETER(pDeviceName);
 
 
 //#ifdef WINDOWS
@@ -8456,53 +8456,53 @@ retry_license:
 //
 //#endif
 
-   }
+}
 
 
-   //bool application::process_exception(const ::exception::exception & e)
-   //{
+//bool application::process_exception(const ::exception::exception & e)
+//{
 
-   //   return ::apex::application::on_run_exception(pexception))
-   //   {
+//   return ::application::on_run_exception(pexception))
+//   {
 
-   //      return false;
+//      return false;
 
-   //   }
+//   }
 
-   //   return true;
+//   return true;
 
-   //}
+//}
 
 
-   //bool application::final_handle_exception(const ::exception::exception & e)
-   //{
+//bool application::final_handle_exception(const ::exception::exception & e)
+//{
 
-   //   UNREFERENCED_PARAMETER(pexception);
+//   UNREFERENCED_PARAMETER(pexception);
 
-   //   if (!is_system())
-   //   {
+//   if (!is_system())
+//   {
 
-   //      if (psystem->final_handle_exception(pexception))
-   //      {
+//      if (psystem->final_handle_exception(pexception))
+//      {
 
-   //         return true;
+//         return true;
 
-   //      }
+//      }
 
-   //   }
+//   }
 
-   //   return false;
+//   return false;
 
-   //}
+//}
 
 
-   /*   bool application::open_link(const char * pszLink, const char * pszTarget)
-   {
-   UNREFERENCED_PARAMETER(pszLink);
-   UNREFERENCED_PARAMETER(pszTarget);
-   return false;
-   }
-   */
+/*   bool application::open_link(const char * pszLink, const char * pszTarget)
+{
+UNREFERENCED_PARAMETER(pszLink);
+UNREFERENCED_PARAMETER(pszTarget);
+return false;
+}
+*/
 
 
 
@@ -8513,178 +8513,178 @@ retry_license:
 
 
 
-   void application::_001OnFileNew()
-   {
-      string strId = m_strId;
-      char chFirst = '\0';
-      if (strId.get_length() > 0)
-      {
-         chFirst = strId[0];
-      }
-      /*      if (m_pdocmanager != nullptr)
-      document_manager()->_001OnFileNew();*/
-   }
+void application::_001OnFileNew()
+{
+string strId = m_strId;
+char chFirst = '\0';
+if (strId.get_length() > 0)
+{
+chFirst = strId[0];
+}
+/*      if (m_pdocmanager != nullptr)
+document_manager()->_001OnFileNew();*/
+}
 
-   void application::on_file_open()
-   {
-      //ENSURE(m_pdocmanager != nullptr);
-      //document_manager()->on_file_open();
-   }
+void application::on_file_open()
+{
+//ENSURE(m_pdocmanager != nullptr);
+//document_manager()->on_file_open();
+}
 
 
-   // This is apex API library.
-   //
-   //
-   //
-   //
-   //
-   //
-   //
-   //
+// This is apex API library.
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
 
-   /*void ::apex::FormatString1(string & rString, ::u32 nIDS, const char * psz1)
+/*void ::apex::FormatString1(string & rString, ::u32 nIDS, const char * psz1)
 
-   {
-   __format_strings(rString, nIDS, &psz1, 1);
+{
+__format_strings(rString, nIDS, &psz1, 1);
 
-   }
+}
 
-   void ::apex::FormatString2(string & rString, ::u32 nIDS, const char * psz1,
+void ::apex::FormatString2(string & rString, ::u32 nIDS, const char * psz1,
 
-   const char * psz2)
+const char * psz2)
 
-   {
-   const char * rgpsz[2];
-   rgpsz[0] = psz1;
+{
+const char * rgpsz[2];
+rgpsz[0] = psz1;
 
-   rgpsz[1] = psz2;
+rgpsz[1] = psz2;
 
-   __format_strings(rString, nIDS, rgpsz, 2);
-   }*/
+__format_strings(rString, nIDS, rgpsz, 2);
+}*/
 
-   /////////////////////////////////////////////////////////////////////////////
-
+/////////////////////////////////////////////////////////////////////////////
+
 
-   /////////////////////////////////////////////////////////////////////////////
-   // Basic Help support (for backward compatibility to apex API 2.0)
-
-   void application::OnHelp()  // use context to derive help context
-   {
-      if (m_dwPromptContext != 0)
-      {
-         // do not call WinHelp when the error is failing to lauch help
-         //         if (m_dwPromptContext != HID_BASE_PROMPT+__IDP_FAILED_TO_LAUNCH_HELP)
-         //          WinHelpInternal(m_dwPromptContext);
-         return;
-      }
-
-      // otherwise, use window::OnHelp implementation
-      /* trans ::user::interaction_impl * pwindow = psystem->m_puiMain;
-      ENSURE_VALID(pwindow);
-      if (!pwindow->is_frame_window())
-      pwindow->OnHelp();
-      else
-      ((pwindow))->OnHelp();*/
-   }
-
-
-   void application::OnHelpIndex()
-   {
-      //
-      //#ifdef WINDOWS_DESKTOP
-      //
-      //      WinHelpInternal(0L, HELP_INDEX);
-      //
-      //#endif
-      //
-   }
-
-
-   void application::OnHelpFinder()
-   {
-
-      //#ifdef WINDOWS_DESKTOP
-      //
-      //      WinHelpInternal(0L, HELP_FINDER);
-      //
-      //#endif
-
-   }
-
-
-   void application::OnHelpUsing()
-   {
-
-      //#ifdef WINDOWS_DESKTOP
-      //
-      //      WinHelpInternal(0L, HELP_HELPONHELP);
-      //
-      //#endif
-      //
-   }
-
-
-   /////////////////////////////////////////////////////////////////////////////
-   // Context Help Mode support (backward compatibility to apex API 2.0)
-
-   void application::OnContextHelp()
-   {
-      // just use frame_window::OnContextHelp implementation
-      /* trans   m_bHelpMode = HELP_ACTIVE;
-      __pointer(::user::frame_window) pMainWnd = (psystem->m_puiMain);
-      ENSURE_VALID(pMainWnd);
-      ENSURE(pMainWnd->is_frame_window());
-      pMainWnd->OnContextHelp();
-      m_bHelpMode = pMainWnd->m_bHelpMode;
-      pMainWnd->PostMessage(WM_KICKIDLE); // trigger idle task */
-   }
-
-   /////////////////////////////////////////////////////////////////////////////
-
-
-   // This is apex API library.
-   //
-   //
-   //
-   //
-   //
-   //
-   //
-   //
-
-
-
-
-   /////////////////////////////////////////////////////////////////////////////
-   // WinApp support for printing
-
-   /*bool application::GetPrinterDeviceDefaults(PRINTDLG* pPrintDlg)
-   {
-   UpdatePrinterSelection(m_hDevNames == nullptr); //force default if no current
-   if (m_hDevNames == nullptr)
-   return false;               // no printer defaults
-
-   ENSURE_ARG(pPrintDlg != nullptr);
-   pPrintDlg->hDevNames = m_hDevNames;
-   pPrintDlg->hDevMode = m_hDevMode;
-
-   ::GlobalUnlock(m_hDevNames);
-   ::GlobalUnlock(m_hDevMode);
-   return true;
-   }*/
-
-   void application::UpdatePrinterSelection(bool bForceDefaults)
-   {
-      UNREFERENCED_PARAMETER(bForceDefaults);
-   }
-
-
-   void application::OnFilePrintSetup()
-   {
-   }
+/////////////////////////////////////////////////////////////////////////////
+// Basic Help support (for backward compatibility to apex API 2.0)
+
+void application::OnHelp()  // use context to derive help context
+{
+if (m_dwPromptContext != 0)
+{
+// do not call WinHelp when the error is failing to lauch help
+//         if (m_dwPromptContext != HID_BASE_PROMPT+__IDP_FAILED_TO_LAUNCH_HELP)
+//          WinHelpInternal(m_dwPromptContext);
+return;
+}
+
+// otherwise, use window::OnHelp implementation
+/* trans ::user::interaction_impl * pwindow = psystem->m_puiMain;
+ENSURE_VALID(pwindow);
+if (!pwindow->is_frame_window())
+pwindow->OnHelp();
+else
+((pwindow))->OnHelp();*/
+}
+
+
+void application::OnHelpIndex()
+{
+//
+//#ifdef WINDOWS_DESKTOP
+//
+//      WinHelpInternal(0L, HELP_INDEX);
+//
+//#endif
+//
+}
+
+
+void application::OnHelpFinder()
+{
+
+//#ifdef WINDOWS_DESKTOP
+//
+//      WinHelpInternal(0L, HELP_FINDER);
+//
+//#endif
+
+}
+
+
+void application::OnHelpUsing()
+{
+
+//#ifdef WINDOWS_DESKTOP
+//
+//      WinHelpInternal(0L, HELP_HELPONHELP);
+//
+//#endif
+//
+}
+
+
+/////////////////////////////////////////////////////////////////////////////
+// Context Help Mode support (backward compatibility to apex API 2.0)
+
+void application::OnContextHelp()
+{
+// just use frame_window::OnContextHelp implementation
+/* trans   m_bHelpMode = HELP_ACTIVE;
+__pointer(::user::frame_window) pMainWnd = (psystem->m_puiMain);
+ENSURE_VALID(pMainWnd);
+ENSURE(pMainWnd->is_frame_window());
+pMainWnd->OnContextHelp();
+m_bHelpMode = pMainWnd->m_bHelpMode;
+pMainWnd->PostMessage(WM_KICKIDLE); // trigger idle task */
+}
+
+/////////////////////////////////////////////////////////////////////////////
+
+
+// This is apex API library.
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////
+// WinApp support for printing
+
+/*bool application::GetPrinterDeviceDefaults(PRINTDLG* pPrintDlg)
+{
+UpdatePrinterSelection(m_hDevNames == nullptr); //force default if no current
+if (m_hDevNames == nullptr)
+return false;               // no printer defaults
+
+ENSURE_ARG(pPrintDlg != nullptr);
+pPrintDlg->hDevNames = m_hDevNames;
+pPrintDlg->hDevMode = m_hDevMode;
+
+::GlobalUnlock(m_hDevNames);
+::GlobalUnlock(m_hDevMode);
+return true;
+}*/
+
+void application::UpdatePrinterSelection(bool bForceDefaults)
+{
+UNREFERENCED_PARAMETER(bForceDefaults);
+}
+
+
+void application::OnFilePrintSetup()
+{
+}
 
 
 //#ifdef WINDOWS
@@ -8700,129 +8700,129 @@ retry_license:
 //
 //#endif
 
-   ::draw2d::graphics* application::CreatePrinterDC()
-   {
-      ::exception::throw_not_implemented();
-      return nullptr;
-   }
+::draw2d::graphics* application::CreatePrinterDC()
+{
+::exception::throw_not_implemented();
+return nullptr;
+}
 
-   /////////////////////////////////////////////////////////////////////////////
-
-
-   // This is apex API library.
-   //
-   //
-   //
-   //
-   //
-   //
-   //
-   //
+/////////////////////////////////////////////////////////////////////////////
 
 
-
-   /////////////////////////////////////////////////////////////////////////////
-   // application User Interface Extensions
-
-   void application::OnAppExit()
-   {
-
-      // same as double-clicking on main window close box
-
-      //ASSERT(m_puserinteractionMain != nullptr);
-
-      //m_puserinteractionMain->m_puiThis->send_message(e_message_close);
-
-   }
-
-
-   //void application::HideApplication()
-   //{
-
-   //   try
-   //   {
-
-   //      if (m_puserinteractionMain == nullptr)
-   //      {
-
-   //         return;
-
-   //      }
-
-   //      // hide the application's windows before closing all the documents
-   //      m_puserinteractionMain->m_puiThis->display(e_display_none);
-   //      // trans    m_puiMain->ShowOwnedPopups(false);
-
-
-   //      m_puserinteractionMain->m_puiThis->order(e_zorder_bottom);
-   //      //m_puiMain->m_puiThis->m_bZ = true;
-   //      // put the window at the bottom of zorder, so it isn't activated
-   //      // m_puiMain->m_puiThis->zorder();
-
-   //      //m_puiMain->m_puiThis->wait_redraw();
-
-   //      m_puserinteractionMain->m_puiThis->display(e_display_none);
-
-
-   //   }
-   //   catch (...)
-   //   {
-   //   }
-
-   //}
+// This is apex API library.
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
+/////////////////////////////////////////////////////////////////////////////
+// application User Interface Extensions
+
+void application::OnAppExit()
+{
+
+// same as double-clicking on main window close box
+
+//ASSERT(m_puserinteractionMain != nullptr);
+
+//m_puserinteractionMain->m_puiThis->send_message(e_message_close);
+
+}
 
 
-   bool application::save_all_modified()
-   {
-      /*      if (m_pdocmanager != nullptr)
-      return document_manager()->save_all_modified();*/
-      return true;
-   }
+//void application::HideApplication()
+//{
+
+//   try
+//   {
+
+//      if (m_puserinteractionMain == nullptr)
+//      {
+
+//         return;
+
+//      }
+
+//      // hide the application's windows before closing all the documents
+//      m_puserinteractionMain->m_puiThis->display(e_display_none);
+//      // trans    m_puiMain->ShowOwnedPopups(false);
+
+
+//      m_puserinteractionMain->m_puiThis->order(e_zorder_bottom);
+//      //m_puiMain->m_puiThis->m_bZ = true;
+//      // put the window at the bottom of zorder, so it isn't activated
+//      // m_puiMain->m_puiThis->zorder();
+
+//      //m_puiMain->m_puiThis->wait_redraw();
+
+//      m_puserinteractionMain->m_puiThis->display(e_display_none);
+
+
+//   }
+//   catch (...)
+//   {
+//   }
+
+//}
 
 
 
-   //   bool application::OnDDECommand(char * pszCommand)
-   //
-   //   {
-   //      /*      if (m_pdocmanager != nullptr)
-   //      return document_manager()->OnDDECommand(pszCommand);
-   //
-   //      else*/
-   //      return false;
-   //   }
+
+
+bool application::save_all_modified()
+{
+/*      if (m_pdocmanager != nullptr)
+return document_manager()->save_all_modified();*/
+return true;
+}
 
 
 
-   void application::EnableModeless(bool bEnable)
-   {
-      DoEnableModeless(bEnable);
-   }
+//   bool application::OnDDECommand(char * pszCommand)
+//
+//   {
+//      /*      if (m_pdocmanager != nullptr)
+//      return document_manager()->OnDDECommand(pszCommand);
+//
+//      else*/
+//      return false;
+//   }
 
-   void application::DoEnableModeless(bool bEnable)
-   {
-      UNREFERENCED_PARAMETER(bEnable);
+
+
+void application::EnableModeless(bool bEnable)
+{
+DoEnableModeless(bEnable);
+}
+
+void application::DoEnableModeless(bool bEnable)
+{
+UNREFERENCED_PARAMETER(bEnable);
 #ifdef ___NO_OLE_SUPPORT
-      UNUSED(bEnable);
+UNUSED(bEnable);
 #endif
 
-      // no-op if main window is nullptr or not a frame_window
-      /*   __pointer(::user::interaction) pMainWnd = psystem->m_puiMain;
-      if (pMainWnd == nullptr || !pMainWnd->is_frame_window())
-      return;*/
+// no-op if main window is nullptr or not a frame_window
+/*   __pointer(::user::interaction) pMainWnd = psystem->m_puiMain;
+if (pMainWnd == nullptr || !pMainWnd->is_frame_window())
+return;*/
 
 #ifndef ___NO_OLE_SUPPORT
-      // check if notify hook installed
-      /*xxx
-      ASSERT_KINDOF(frame_window, pMainWnd);
-      __pointer(::user::frame_window) pFrameWnd = (__pointer(::user::frame_window))pMainWnd;
-      if (pFrameWnd->m_pNotifyHook != nullptr)
-      pFrameWnd->m_pNotifyHook->OnEnableModeless(bEnable);
-      */
+// check if notify hook installed
+/*xxx
+ASSERT_KINDOF(frame_window, pMainWnd);
+__pointer(::user::frame_window) pFrameWnd = (__pointer(::user::frame_window))pMainWnd;
+if (pFrameWnd->m_pNotifyHook != nullptr)
+pFrameWnd->m_pNotifyHook->OnEnableModeless(bEnable);
+*/
 #endif
-   }
+}
 
 
 
@@ -8835,67 +8835,67 @@ retry_license:
 
 
 
-   void application::RegisterShellFileTypes(bool bCompat)
-   {
-      //ENSURE(m_pdocmanager != nullptr);
-      //      document_manager()->RegisterShellFileTypes(bCompat);
-   }
+void application::RegisterShellFileTypes(bool bCompat)
+{
+//ENSURE(m_pdocmanager != nullptr);
+//      document_manager()->RegisterShellFileTypes(bCompat);
+}
 
-   void application::UnregisterShellFileTypes()
-   {
-      //ENSURE(m_pdocmanager != nullptr);
-      //    document_manager()->UnregisterShellFileTypes();
-   }
-
-
-   i32 application::get_open_document_count()
-   {
-      //ENSURE(m_pdocmanager != nullptr);
-      //  return document_manager()->get_open_document_count();
-      return 0;
-   }
+void application::UnregisterShellFileTypes()
+{
+//ENSURE(m_pdocmanager != nullptr);
+//    document_manager()->UnregisterShellFileTypes();
+}
 
 
-   // This is apex API library.
-   //
-   //
-   //
-   //
-   //
-   //
-   //
-   //
-
-   /////////////////////////////////////////////////////////////////////////////
-   // application Settings Helpers
+i32 application::get_open_document_count()
+{
+//ENSURE(m_pdocmanager != nullptr);
+//  return document_manager()->get_open_document_count();
+return 0;
+}
 
 
-   void application::SetRegistryKey(const char* pszRegistryKey)
+// This is apex API library.
+//
+//
+//
+//
+//
+//
+//
+//
 
-   {
-      //ASSERT(m_pszRegistryKey == nullptr);
-      //ASSERT(pszRegistryKey != nullptr);
+/////////////////////////////////////////////////////////////////////////////
+// application Settings Helpers
 
-      //ASSERT(m_strAppName.has_char());
 
-      ////bool bEnable = __enable_memory_tracking(false);
-      //free((void *)m_pszRegistryKey);
-      //m_pszRegistryKey = strdup(pszRegistryKey);
+void application::SetRegistryKey(const char* pszRegistryKey)
 
-      //free((void *)m_pszProfileName);
-      //m_pszProfileName = strdup(m_strAppName);
-      ////__enable_memory_tracking(bEnable);
-   }
+{
+//ASSERT(m_pszRegistryKey == nullptr);
+//ASSERT(pszRegistryKey != nullptr);
 
-   void application::SetRegistryKey(::u32 nIDRegistryKey)
-   {
-      //UNREFERENCED_PARAMETER(nIDRegistryKey);
-      //ASSERT(m_pszRegistryKey == nullptr);
-      //::exception::throw_not_implemented();
-      ///*char szRegistryKey[256];
-      //VERIFY(::apex::LoadString(nIDRegistryKey, szRegistryKey));
-      //SetRegistryKey(szRegistryKey);*/
-   }
+//ASSERT(m_strAppName.has_char());
+
+////bool bEnable = __enable_memory_tracking(false);
+//free((void *)m_pszRegistryKey);
+//m_pszRegistryKey = strdup(pszRegistryKey);
+
+//free((void *)m_pszProfileName);
+//m_pszProfileName = strdup(m_strAppName);
+////__enable_memory_tracking(bEnable);
+}
+
+void application::SetRegistryKey(::u32 nIDRegistryKey)
+{
+//UNREFERENCED_PARAMETER(nIDRegistryKey);
+//ASSERT(m_pszRegistryKey == nullptr);
+//::exception::throw_not_implemented();
+///*char szRegistryKey[256];
+//VERIFY(::apex::LoadString(nIDRegistryKey, szRegistryKey));
+//SetRegistryKey(szRegistryKey);*/
+}
 
 
 //#ifdef WINDOWS_DESKTOP
@@ -8966,424 +8966,424 @@ retry_license:
 //
 //#endif
 
-   /*   ::u32 application::GetProfileInt(const char * pszSection, const char * pszEntry,
-
-   i32 nDefault)
-   {
-   ASSERT(pszSection != nullptr);
-
-   ASSERT(pszEntry != nullptr);
-
-   if (m_pszRegistryKey != nullptr) // use registry
-   {
-   HKEY hSecKey = GetSectionKey(pszSection);
-
-   if (hSecKey == nullptr)
-   return nDefault;
-   u32 dwValue;
-   u32 dwType;
-   u32 dwCount = sizeof(u32);
-   ::i32 lResult = RegQueryValueEx(hSecKey, (char *)pszEntry, nullptr, &dwType,
-
-   (byte *)&dwValue, &dwCount);
-   RegCloseKey(hSecKey);
-   if (lResult == ERROR_SUCCESS)
-   {
-   ASSERT(dwType == REG_DWORD);
-   ASSERT(dwCount == sizeof(dwValue));
-   return (::u32)dwValue;
-   }
-   return nDefault;
-   }
-   else
-   {
-   ASSERT(m_pszProfileName != nullptr);
-   return ::GetPrivateProfileInt(pszSection, pszEntry, nDefault,
-
-   m_pszProfileName);
-   }
-   }
-
-   string application::GetProfileString(const char * pszSection, const char * pszEntry,
-
-   const char * pszDefault)
-
-   {
-   ASSERT(pszSection != nullptr);
-
-   ASSERT(pszEntry != nullptr);
-
-   if (m_pszRegistryKey != nullptr)
-   {
-   HKEY hSecKey = GetSectionKey(pszSection);
-
-   if (hSecKey == nullptr)
-   return pszDefault;
-
-   string strValue;
-   u32 dwType=REG_NONE;
-   u32 dwCount=0;
-   ::i32 lResult = RegQueryValueEx(hSecKey, (char *)pszEntry, nullptr, &dwType,
-
-   nullptr, &dwCount);
-   if (lResult == ERROR_SUCCESS)
-   {
-   ASSERT(dwType == REG_SZ);
-   lResult = RegQueryValueEx(hSecKey, (char *)pszEntry, nullptr, &dwType,
-
-   (byte *)strValue.GetBuffer(dwCount/sizeof(char)), &dwCount);
-   strValue.ReleaseBuffer();
-   }
-   RegCloseKey(hSecKey);
-   if (lResult == ERROR_SUCCESS)
-   {
-   ASSERT(dwType == REG_SZ);
-   return strValue;
-   }
-   return pszDefault;
-
-   }
-   else
-   {
-   ASSERT(m_pszProfileName != nullptr);
-
-   if (pszDefault == nullptr)
-
-   pszDefault = "";   // don't pass in nullptr
-
-   char szT[4096];
-   u32 dw = ::GetPrivateProfileString(pszSection, pszEntry,
-
-   pszDefault, szT, _countof(szT), m_pszProfileName);
-
-   ASSERT(dw < 4095);
-   return szT;
-   }
-   }
-
-   bool application::GetProfileBinary(const char * pszSection, const char * pszEntry,
-
-   byte** ppData, ::u32* pBytes)
-   {
-   ASSERT(pszSection != nullptr);
-
-   ASSERT(pszEntry != nullptr);
-
-   ASSERT(ppData != nullptr);
-   ASSERT(pBytes != nullptr);
-   *ppData = nullptr;
-   *pBytes = 0;
-   if (m_pszRegistryKey != nullptr)
-   {
-   HKEY hSecKey = GetSectionKey(pszSection);
-
-   if (hSecKey == nullptr)
-   {
-   return false;
-   }
-
-   // ensure destruction
-
-   // linux ::apex::CRegKey rkSecKey(hSecKey);
-
-   u32 dwType=0;
-   u32 dwCount=0;
-   ::i32 lResult = RegQueryValueEx(hSecKey, (char *)pszEntry, nullptr, &dwType, nullptr, &dwCount);
-
-   *pBytes = dwCount;
-   if (lResult == ERROR_SUCCESS)
-   {
-   ASSERT(dwType == REG_BINARY);
-   *ppData = new byte[*pBytes];
-   lResult = RegQueryValueEx(hSecKey, (char *)pszEntry, nullptr, &dwType,
-
-   *ppData, &dwCount);
-   }
-   if (lResult == ERROR_SUCCESS)
-   {
-   ASSERT(dwType == REG_BINARY);
-   return true;
-   }
-   else
-   {
-   delete [] *ppData;
-   *ppData = nullptr;
-   }
-   return false;
-   }
-   else
-   {
-   ASSERT(m_pszProfileName != nullptr);
-
-   string str = GetProfileString(pszSection, pszEntry, nullptr);
-
-   if (str.is_empty())
-   return false;
-   ASSERT(str.get_length()%2 == 0);
-   iptr nLen = str.get_length();
-   *pBytes = ::u32(nLen)/2;
-   *ppData = new byte[*pBytes];
-   for (i32 i=0;i<nLen;i+=2)
-   {
-   (*ppData)[i/2] = (byte)
-   (((str[i+1] - 'A') << 4) + (str[i] - 'A'));
-   }
-   return true;
-   }
-   }
-
-
-   bool application::WriteProfileInt(const char * pszSection, const char * pszEntry,
-
-   i32 nValue)
-   {
-   ASSERT(pszSection != nullptr);
-
-   ASSERT(pszEntry != nullptr);
-
-   if (m_pszRegistryKey != nullptr)
-   {
-   HKEY hSecKey = GetSectionKey(pszSection);
-
-   if (hSecKey == nullptr)
-   return false;
-   ::i32 lResult = RegSetValueEx(hSecKey, pszEntry, nullptr, REG_DWORD,
-
-   (byte *)&nValue, sizeof(nValue));
-   RegCloseKey(hSecKey);
-   return lResult == ERROR_SUCCESS;
-   }
-   else
-   {
-   ASSERT(m_pszProfileName != nullptr);
-
-   char szT[16];
-   _stprintf_s(szT, _countof(szT), "%d", nValue);
-   return ::WritePrivateProfileString(pszSection, pszEntry, szT,
-
-   m_pszProfileName);
-   }
-   }
-
-   bool application::WriteProfileString(const char * pszSection, const char * pszEntry,
-
-   const char * pszValue)
-
-   {
-   ASSERT(pszSection != nullptr);
-
-   if (m_pszRegistryKey != nullptr)
-   {
-   ::i32 lResult;
-   if (pszEntry == nullptr) //delete whole department
-
-   {
-   HKEY hAppKey = GetAppRegistryKey();
-   if (hAppKey == nullptr)
-   return false;
-   lResult = ::RegDeleteKey(hAppKey, pszSection);
-
-   RegCloseKey(hAppKey);
-   }
-   else if (pszValue == nullptr)
+/*   ::u32 application::GetProfileInt(const char * pszSection, const char * pszEntry,
+
+i32 nDefault)
+{
+ASSERT(pszSection != nullptr);
+
+ASSERT(pszEntry != nullptr);
+
+if (m_pszRegistryKey != nullptr) // use registry
+{
+HKEY hSecKey = GetSectionKey(pszSection);
+
+if (hSecKey == nullptr)
+return nDefault;
+u32 dwValue;
+u32 dwType;
+u32 dwCount = sizeof(u32);
+::i32 lResult = RegQueryValueEx(hSecKey, (char *)pszEntry, nullptr, &dwType,
+
+(byte *)&dwValue, &dwCount);
+RegCloseKey(hSecKey);
+if (lResult == ERROR_SUCCESS)
+{
+ASSERT(dwType == REG_DWORD);
+ASSERT(dwCount == sizeof(dwValue));
+return (::u32)dwValue;
+}
+return nDefault;
+}
+else
+{
+ASSERT(m_pszProfileName != nullptr);
+return ::GetPrivateProfileInt(pszSection, pszEntry, nDefault,
+
+m_pszProfileName);
+}
+}
+
+string application::GetProfileString(const char * pszSection, const char * pszEntry,
+
+const char * pszDefault)
+
+{
+ASSERT(pszSection != nullptr);
+
+ASSERT(pszEntry != nullptr);
+
+if (m_pszRegistryKey != nullptr)
+{
+HKEY hSecKey = GetSectionKey(pszSection);
+
+if (hSecKey == nullptr)
+return pszDefault;
+
+string strValue;
+u32 dwType=REG_NONE;
+u32 dwCount=0;
+::i32 lResult = RegQueryValueEx(hSecKey, (char *)pszEntry, nullptr, &dwType,
+
+nullptr, &dwCount);
+if (lResult == ERROR_SUCCESS)
+{
+ASSERT(dwType == REG_SZ);
+lResult = RegQueryValueEx(hSecKey, (char *)pszEntry, nullptr, &dwType,
+
+(byte *)strValue.GetBuffer(dwCount/sizeof(char)), &dwCount);
+strValue.ReleaseBuffer();
+}
+RegCloseKey(hSecKey);
+if (lResult == ERROR_SUCCESS)
+{
+ASSERT(dwType == REG_SZ);
+return strValue;
+}
+return pszDefault;
+
+}
+else
+{
+ASSERT(m_pszProfileName != nullptr);
+
+if (pszDefault == nullptr)
+
+pszDefault = "";   // don't pass in nullptr
+
+char szT[4096];
+u32 dw = ::GetPrivateProfileString(pszSection, pszEntry,
+
+pszDefault, szT, _countof(szT), m_pszProfileName);
+
+ASSERT(dw < 4095);
+return szT;
+}
+}
+
+bool application::GetProfileBinary(const char * pszSection, const char * pszEntry,
+
+byte** ppData, ::u32* pBytes)
+{
+ASSERT(pszSection != nullptr);
+
+ASSERT(pszEntry != nullptr);
+
+ASSERT(ppData != nullptr);
+ASSERT(pBytes != nullptr);
+*ppData = nullptr;
+*pBytes = 0;
+if (m_pszRegistryKey != nullptr)
+{
+HKEY hSecKey = GetSectionKey(pszSection);
+
+if (hSecKey == nullptr)
+{
+return false;
+}
+
+// ensure destruction
+
+// linux ::apex::CRegKey rkSecKey(hSecKey);
+
+u32 dwType=0;
+u32 dwCount=0;
+::i32 lResult = RegQueryValueEx(hSecKey, (char *)pszEntry, nullptr, &dwType, nullptr, &dwCount);
+
+*pBytes = dwCount;
+if (lResult == ERROR_SUCCESS)
+{
+ASSERT(dwType == REG_BINARY);
+*ppData = new byte[*pBytes];
+lResult = RegQueryValueEx(hSecKey, (char *)pszEntry, nullptr, &dwType,
+
+*ppData, &dwCount);
+}
+if (lResult == ERROR_SUCCESS)
+{
+ASSERT(dwType == REG_BINARY);
+return true;
+}
+else
+{
+delete [] *ppData;
+*ppData = nullptr;
+}
+return false;
+}
+else
+{
+ASSERT(m_pszProfileName != nullptr);
+
+string str = GetProfileString(pszSection, pszEntry, nullptr);
+
+if (str.is_empty())
+return false;
+ASSERT(str.get_length()%2 == 0);
+iptr nLen = str.get_length();
+*pBytes = ::u32(nLen)/2;
+*ppData = new byte[*pBytes];
+for (i32 i=0;i<nLen;i+=2)
+{
+(*ppData)[i/2] = (byte)
+(((str[i+1] - 'A') << 4) + (str[i] - 'A'));
+}
+return true;
+}
+}
+
+
+bool application::WriteProfileInt(const char * pszSection, const char * pszEntry,
+
+i32 nValue)
+{
+ASSERT(pszSection != nullptr);
+
+ASSERT(pszEntry != nullptr);
+
+if (m_pszRegistryKey != nullptr)
+{
+HKEY hSecKey = GetSectionKey(pszSection);
+
+if (hSecKey == nullptr)
+return false;
+::i32 lResult = RegSetValueEx(hSecKey, pszEntry, nullptr, REG_DWORD,
+
+(byte *)&nValue, sizeof(nValue));
+RegCloseKey(hSecKey);
+return lResult == ERROR_SUCCESS;
+}
+else
+{
+ASSERT(m_pszProfileName != nullptr);
+
+char szT[16];
+_stprintf_s(szT, _countof(szT), "%d", nValue);
+return ::WritePrivateProfileString(pszSection, pszEntry, szT,
+
+m_pszProfileName);
+}
+}
+
+bool application::WriteProfileString(const char * pszSection, const char * pszEntry,
+
+const char * pszValue)
+
+{
+ASSERT(pszSection != nullptr);
+
+if (m_pszRegistryKey != nullptr)
+{
+::i32 lResult;
+if (pszEntry == nullptr) //delete whole department
+
+{
+HKEY hAppKey = GetAppRegistryKey();
+if (hAppKey == nullptr)
+return false;
+lResult = ::RegDeleteKey(hAppKey, pszSection);
+
+RegCloseKey(hAppKey);
+}
+else if (pszValue == nullptr)
 
-   {
-   HKEY hSecKey = GetSectionKey(pszSection);
+{
+HKEY hSecKey = GetSectionKey(pszSection);
 
-   if (hSecKey == nullptr)
-   return false;
-   // necessary to cast away const below
-   lResult = ::RegDeleteValue(hSecKey, (char *)pszEntry);
+if (hSecKey == nullptr)
+return false;
+// necessary to cast away const below
+lResult = ::RegDeleteValue(hSecKey, (char *)pszEntry);
 
-   RegCloseKey(hSecKey);
-   }
-   else
-   {
-   HKEY hSecKey = GetSectionKey(pszSection);
+RegCloseKey(hSecKey);
+}
+else
+{
+HKEY hSecKey = GetSectionKey(pszSection);
 
-   if (hSecKey == nullptr)
-   return false;
-   lResult = RegSetValueEx(hSecKey, pszEntry, nullptr, REG_SZ,
+if (hSecKey == nullptr)
+return false;
+lResult = RegSetValueEx(hSecKey, pszEntry, nullptr, REG_SZ,
 
-   (byte *)pszValue, (lstrlen(pszValue)+1)*sizeof(char));
+(byte *)pszValue, (lstrlen(pszValue)+1)*sizeof(char));
 
-   RegCloseKey(hSecKey);
-   }
-   return lResult == ERROR_SUCCESS;
-   }
-   else
-   {
-   ASSERT(m_pszProfileName != nullptr);
-   ASSERT(lstrlen(m_pszProfileName) < 4095); // can't read in bigger
-   return ::WritePrivateProfileString(pszSection, pszEntry, pszValue,
+RegCloseKey(hSecKey);
+}
+return lResult == ERROR_SUCCESS;
+}
+else
+{
+ASSERT(m_pszProfileName != nullptr);
+ASSERT(lstrlen(m_pszProfileName) < 4095); // can't read in bigger
+return ::WritePrivateProfileString(pszSection, pszEntry, pszValue,
 
-   m_pszProfileName);
-   }
-   }
+m_pszProfileName);
+}
+}
 
-   bool application::WriteProfileBinary(const char * pszSection, const char * pszEntry,
+bool application::WriteProfileBinary(const char * pszSection, const char * pszEntry,
 
-   byte * pData, ::u32 nBytes)
-   {
-   ASSERT(pszSection != nullptr);
+byte * pData, ::u32 nBytes)
+{
+ASSERT(pszSection != nullptr);
 
-   if (m_pszRegistryKey != nullptr)
-   {
-   ::i32 lResult;
-   HKEY hSecKey = GetSectionKey(pszSection);
+if (m_pszRegistryKey != nullptr)
+{
+::i32 lResult;
+HKEY hSecKey = GetSectionKey(pszSection);
 
-   if (hSecKey == nullptr)
-   return false;
-   lResult = RegSetValueEx(hSecKey, pszEntry, nullptr, REG_BINARY,
+if (hSecKey == nullptr)
+return false;
+lResult = RegSetValueEx(hSecKey, pszEntry, nullptr, REG_BINARY,
 
-   pData, nBytes);
-   RegCloseKey(hSecKey);
-   return lResult == ERROR_SUCCESS;
-   }
+pData, nBytes);
+RegCloseKey(hSecKey);
+return lResult == ERROR_SUCCESS;
+}
 
-   // convert to string and write out
-   char * psz = new char[nBytes*2+1];
+// convert to string and write out
+char * psz = new char[nBytes*2+1];
 
-   ::u32 i;
-   for (i = 0; i < nBytes; i++)
-   {
-   psz[i*2] = (char)((pData[i] & 0x0F) + 'A'); //low nibble
+::u32 i;
+for (i = 0; i < nBytes; i++)
+{
+psz[i*2] = (char)((pData[i] & 0x0F) + 'A'); //low nibble
 
-   psz[i*2+1] = (char)(((pData[i] >> 4) & 0x0F) + 'A'); //high nibble
+psz[i*2+1] = (char)(((pData[i] >> 4) & 0x0F) + 'A'); //high nibble
 
-   }
-   psz[i*2] = 0;
+}
+psz[i*2] = 0;
 
 
-   ASSERT(m_pszProfileName != nullptr);
+ASSERT(m_pszProfileName != nullptr);
 
-   bool bResult = WriteProfileString(pszSection, pszEntry, psz);
+bool bResult = WriteProfileString(pszSection, pszEntry, psz);
 
-   delete[] psz;
+delete[] psz;
 
-   return bResult;
-   }
+return bResult;
+}
 
-   #include "framework.h"*/
+#include "framework.h"*/
 
 
 
 
-   /*   property_set & application::propset(object * pobject)
-   {
-   single_lock synchronouslock(&m_mapObjectSet, true);
-   return m_mapObjectSet[pobject];
-   }
+/*   property_set & application::propset(object * pobject)
+{
+single_lock synchronouslock(&m_mapObjectSet, true);
+return m_mapObjectSet[pobject];
+}
 
-   property_set * application::existing_propset(object * pobject)
-   {
-   single_lock synchronouslock(&m_mapObjectSet, true);
-   auto point = m_mapObjectSet.plookup(pobject);
-   if(point == nullptr)
-   return nullptr;
-   return &point->m_value;
-   }*/
+property_set * application::existing_propset(object * pobject)
+{
+single_lock synchronouslock(&m_mapObjectSet, true);
+auto point = m_mapObjectSet.plookup(pobject);
+if(point == nullptr)
+return nullptr;
+return &point->m_value;
+}*/
 
 
 
-   bool application::does_launch_window_on_startup()
-   {
+bool application::does_launch_window_on_startup()
+{
 
-      return true;
+return true;
 
-   }
+}
 
 
-   bool application::activate_app()
-   {
+bool application::activate_app()
+{
 
-      //if (m_puserinteractionMain != nullptr)
-      //{
+//if (m_puserinteractionMain != nullptr)
+//{
 
-      //   m_puserinteractionMain->m_puiThis->display(SW_SHOWNORMAL);
+//   m_puserinteractionMain->m_puiThis->display(SW_SHOWNORMAL);
 
-      //}
+//}
 
-      return true;
+return true;
 
-   }
+}
 
 
-   //void application::term()
-   //{
+//void application::term()
+//{
 
 
-   //   try
-   //   {
+//   try
+//   {
 
-   //      if (m_puserinteractionMain == nullptr)
-   //      {
+//      if (m_puserinteractionMain == nullptr)
+//      {
 
-   //         return;
+//         return;
 
-   //      }
+//      }
 
-   //      // hide the application's windows before closing all the documents
-   //      m_puserinteractionMain->m_puiThis->display(e_display_none);
-   //      // trans    m_puiMain->ShowOwnedPopups(false);
+//      // hide the application's windows before closing all the documents
+//      m_puserinteractionMain->m_puiThis->display(e_display_none);
+//      // trans    m_puiMain->ShowOwnedPopups(false);
 
 
-   //      m_puserinteractionMain->m_puiThis->order(e_zorder_bottom);
-   //      //m_puiMain->m_puiThis->m_bZ = true;
-   //      // put the window at the bottom of zorder, so it isn't activated
-   //      // m_puiMain->m_puiThis->zorder();
+//      m_puserinteractionMain->m_puiThis->order(e_zorder_bottom);
+//      //m_puiMain->m_puiThis->m_bZ = true;
+//      // put the window at the bottom of zorder, so it isn't activated
+//      // m_puiMain->m_puiThis->zorder();
 
-   //      //m_puiMain->m_puiThis->wait_redraw();
+//      //m_puiMain->m_puiThis->wait_redraw();
 
-   //      m_puserinteractionMain->m_puiThis->display(e_display_none);
+//      m_puserinteractionMain->m_puiThis->display(e_display_none);
 
 
-   //   }
-   //   catch (...)
-   //   {
-   //   }
+//   }
+//   catch (...)
+//   {
+//   }
 
-   //   try
-   //   {
+//   try
+//   {
 
-   //      ::apex::application::term();
+//      ::application::term();
 
-   //   }
-   //   catch (...)
-   //   {
+//   }
+//   catch (...)
+//   {
 
-   //      m_result.add(error_failed);
+//      m_result.add(error_failed);
 
-   //   }
+//   }
 
-   //}
+//}
 
 
-   //::user::interaction* application::get_request_parent_ui(::user::interaction* pinteraction, ::create* pcreate)
-   //{
+//::user::interaction* application::get_request_parent_ui(::user::interaction* pinteraction, ::create* pcreate)
+//{
 
-   //   ::user::interaction* puiParent = nullptr;
+//   ::user::interaction* puiParent = nullptr;
 
-   //   if (puiParent == nullptr)
-   //   {
-   //      puiParent = dynamic_cast <::user::interaction*> (pcreate->m_puserinteractionParent);
-   //   }
+//   if (puiParent == nullptr)
+//   {
+//      puiParent = dynamic_cast <::user::interaction*> (pcreate->m_puserinteractionParent);
+//   }
 
-   //   //      if (puiParent == nullptr && pcreate->m_papplicationbias.is_set())
-   //   //      {
-   //   //         puiParent = dynamic_cast < ::user::interaction * > (pcreate->m_papplicationbias->m_puserinteractionParent);
-   //   //      }
+//   //      if (puiParent == nullptr && pcreate->m_papplicationbias.is_set())
+//   //      {
+//   //         puiParent = dynamic_cast < ::user::interaction * > (pcreate->m_papplicationbias->m_puserinteractionParent);
+//   //      }
 
-   //         //if(puiParent == nullptr && m_psession != nullptr && m_psession->m_psession != nullptr && !pcreate->m_bClientOnly
-   //         /*if (puiParent == nullptr && m_psession != nullptr && m_psession != nullptr
-   //               && !pcreate->m_bOuterPopupAlertLike && m_psession != dynamic_cast < session * > (this))
-   //         {
-   //            puiParent = psession->get_request_parent_ui(pinteraction, pcreate);
-   //         }*/
+//         //if(puiParent == nullptr && m_psession != nullptr && m_psession->m_psession != nullptr && !pcreate->m_bClientOnly
+//         /*if (puiParent == nullptr && m_psession != nullptr && m_psession != nullptr
+//               && !pcreate->m_bOuterPopupAlertLike && m_psession != dynamic_cast < session * > (this))
+//         {
+//            puiParent = psession->get_request_parent_ui(pinteraction, pcreate);
+//         }*/
 
-   //   return puiParent;
+//   return puiParent;
 
-   //}
+//}
 
 
 
@@ -9391,54 +9391,54 @@ retry_license:
 
 
 
-   void application::_001OnFileNew(::message::message* pmessage)
-   {
+void application::_001OnFileNew(::message::message* pmessage)
+{
 
-      ::payload varFile;
+::payload varFile;
 
-      ::payload varQuery;
+::payload varQuery;
 
-      varQuery["command"] = "new_file";
+varQuery["command"] = "new_file";
 
-      //request_file(varFile, varQuery);
+//request_file(varFile, varQuery);
 
-      pmessage->m_bRet = true;
+pmessage->m_bRet = true;
 
-   }
+}
 
 
 
-   //   bool application::on_open_document_file(::payload varFile)
-   //   {
-   //
-   //      return _001OpenDocumentFile(varFile);
-   //
-   //   }
+//   bool application::on_open_document_file(::payload varFile)
+//   {
+//
+//      return _001OpenDocumentFile(varFile);
+//
+//   }
 
-   //::user::document* application::_001OpenDocumentFile(::payload varFile)
-   //{
+//::user::document* application::_001OpenDocumentFile(::payload varFile)
+//{
 
-   //   request_file(varFile);
+//   request_file(varFile);
 
-   //   return varFile["document"].cast < ::user::document >();
+//   return varFile["document"].cast < ::user::document >();
 
-   //}
+//}
 
 
-   //bool application::_001OnDDECommand(const char* pcsz)
+//bool application::_001OnDDECommand(const char* pcsz)
 
-   //{
-   //   ::exception::throw_not_implemented();
-   //   //return m_pimpl->_001OnDDECommand(pcsz);
+//{
+//   ::exception::throw_not_implemented();
+//   //return m_pimpl->_001OnDDECommand(pcsz);
 
 
-   //   return false;
-   //}
+//   return false;
+//}
 
-   //   ::apex::file_system & application::file_system()
-   // {
-   //  return m_spfilesystem;
-   //}
+//   ::apex::file_system & application::file_system()
+// {
+//  return m_spfilesystem;
+//}
 
 
 
@@ -9475,25 +9475,25 @@ retry_license:
 
 
 
-   //void application::assert_valid() const
-   //{
-   //   thread::assert_valid();
+//void application::assert_valid() const
+//{
+//   thread::assert_valid();
 
 
-   //   if (::get_task() != (thread*)this)
-   //      return;     // only do subset if called from different thread
+//   if (::get_task() != (thread*)this)
+//      return;     // only do subset if called from different thread
 
-   //   ASSERT(::get_task() == this);
-   //   //ASSERT(afxCurrentInstanceHandle == m_hInstance);
+//   ASSERT(::get_task() == this);
+//   //ASSERT(afxCurrentInstanceHandle == m_hInstance);
 
-   //   /*      if (m_pdocmanager != nullptr)
-   //   ASSERT_VALID(m_pdocmanager);*/
-   //}
+//   /*      if (m_pdocmanager != nullptr)
+//   ASSERT_VALID(m_pdocmanager);*/
+//}
 
 //   void application::dump(dump_context& dumpcontext) const
 //   {
 //
-//      ::apex::application::dump(dumpcontext);
+//      ::application::dump(dumpcontext);
 //
 //      dumpcontext << "\nm_bHelpMode = " << m_bHelpMode;
 //      dumpcontext << "\nm_pszHelpFilePath = " << m_strHelpFilePath;
@@ -9518,122 +9518,122 @@ retry_license:
 //   }
 
 
-   //void application::install_message_routing(::channel* pchannel)
-   //{
+//void application::install_message_routing(::channel* pchannel)
+//{
 
-   //   apex::application::install_message_routing(pchannel);
+//   apex::application::install_message_routing(pchannel);
 
-   //   connect_command("switch_context_theme", &application::_001OnSwitchContextTheme);
+//   connect_command("switch_context_theme", &application::_001OnSwitchContextTheme);
 
-   //}
-
-
-   bool application::base_support()
-   {
-
-      //if(!application::base_support())
-      // return false;
-
-      if (m_strBaseSupportId.is_empty())
-      {
-
-         property_set propertyset;
-
-         dialog_box("err\\developer\\base_support\\support_id_not_specified.xml", propertyset);
-
-         return false;
-
-      }
-
-      return true;
-   }
+//}
 
 
-   //string application::sync_message_box(const string & pszMatter, property_set & propertyset)
-   //{
-   //
-   //   UNREFERENCED_PARAMETER(propertyset);
-   //
-   //   UNREFERENCED_PARAMETER(pszMatter);
-   //
-   //   return "";
+bool application::base_support()
+{
 
-   //}
+//if(!application::base_support())
+// return false;
+
+if (m_strBaseSupportId.is_empty())
+{
+
+property_set propertyset;
+
+dialog_box("err\\developer\\base_support\\support_id_not_specified.xml", propertyset);
+
+return false;
+
+}
+
+return true;
+}
 
 
-   //::e_status application::bergedge_start()
-   //{
+//string application::sync_message_box(const string & pszMatter, property_set & propertyset)
+//{
+//
+//   UNREFERENCED_PARAMETER(propertyset);
+//
+//   UNREFERENCED_PARAMETER(pszMatter);
+//
+//   return "";
 
-   //   string strId = m_strId;
+//}
 
-   //   char chFirst = '\0';
 
-   //   if (strId.get_length() > 0)
-   //   {
+//::e_status application::bergedge_start()
+//{
 
-   //      chFirst = strId[0];
+//   string strId = m_strId;
 
-   //   }
+//   char chFirst = '\0';
 
-   //   return true;
+//   if (strId.get_length() > 0)
+//   {
 
-   //}
+//      chFirst = strId[0];
+
+//   }
+
+//   return true;
+
+//}
 
 
 #ifdef WINDOWS_DESKTOP
 
 
-   bool Is_Vista_or_Later()
-   {
-      OSVERSIONINFOEX osvi;
-      DWORDLONG dwlConditionMask = 0;
-      byte op = VER_GREATER_EQUAL;
+bool Is_Vista_or_Later()
+{
+OSVERSIONINFOEX osvi;
+DWORDLONG dwlConditionMask = 0;
+byte op = VER_GREATER_EQUAL;
 
-      // Initialize the OSVERSIONINFOEX structure.
+// Initialize the OSVERSIONINFOEX structure.
 
-      ZeroMemory(&osvi, sizeof(OSVERSIONINFOEX));
-      osvi.dwOSVersionInfoSize = sizeof(OSVERSIONINFOEX);
-      osvi.dwMajorVersion = 6;
-      //   osvi.dwMinorVersion = 1;
-      //   osvi.wServicePackMajor = 0;
-      //   osvi.wServicePackMinor = 0;
+ZeroMemory(&osvi, sizeof(OSVERSIONINFOEX));
+osvi.dwOSVersionInfoSize = sizeof(OSVERSIONINFOEX);
+osvi.dwMajorVersion = 6;
+//   osvi.dwMinorVersion = 1;
+//   osvi.wServicePackMajor = 0;
+//   osvi.wServicePackMinor = 0;
 
-      // Initialize the condition mask.
+// Initialize the condition mask.
 
-      VER_SET_CONDITION(dwlConditionMask, VER_MAJORVERSION, op);
-      //VER_SET_CONDITION( dwlConditionMask, VER_MINORVERSION, op );
-      //VER_SET_CONDITION( dwlConditionMask, VER_SERVICEPACKMAJOR, op );
-      //VER_SET_CONDITION( dwlConditionMask, VER_SERVICEPACKMINOR, op );
+VER_SET_CONDITION(dwlConditionMask, VER_MAJORVERSION, op);
+//VER_SET_CONDITION( dwlConditionMask, VER_MINORVERSION, op );
+//VER_SET_CONDITION( dwlConditionMask, VER_SERVICEPACKMAJOR, op );
+//VER_SET_CONDITION( dwlConditionMask, VER_SERVICEPACKMINOR, op );
 
-      // Perform the test.
+// Perform the test.
 
-      return VerifyVersionInfo(
-         &osvi,
-         VER_MAJORVERSION | VER_MINORVERSION |
-         VER_SERVICEPACKMAJOR | VER_SERVICEPACKMINOR,
-         dwlConditionMask) != false;
-   }
+return VerifyVersionInfo(
+&osvi,
+VER_MAJORVERSION | VER_MINORVERSION |
+VER_SERVICEPACKMAJOR | VER_SERVICEPACKMINOR,
+dwlConditionMask) != false;
+}
 
 
 #endif
 
 
-   void application::pre_translate_message(::message::message * pmessage)
-   {
+void application::pre_translate_message(::message::message * pmessage)
+{
 
-      return thread::pre_translate_message(pmessage);
+return thread::pre_translate_message(pmessage);
 
-   }
-
-
-   //void application::on_create_split_view(::user::split_view* psplit)
-   //{
-
-   //}
+}
 
 
-   void application::EnableShellOpen()
-   {
+//void application::on_create_split_view(::user::split_view* psplit)
+//{
+
+//}
+
+
+void application::EnableShellOpen()
+{
 
 //#ifdef WINDOWS
 //
@@ -9664,302 +9664,302 @@ retry_license:
 //
 //#endif
 
-   }
+}
 
 
-   //__pointer(::user::interaction) application::uie_from_point(const ::point_i32& point)
-   //{
+//__pointer(::user::interaction) application::uie_from_point(const ::point_i32& point)
+//{
 
-   //   user::interaction_pointer_array wnda = *m_puiptraFrame;
+//   user::interaction_pointer_array wnda = *m_puiptraFrame;
 
-   //   user::oswindow_array oswindowa;
+//   user::oswindow_array oswindowa;
 
-   //   oswindowa = wnda.get_hwnda();
+//   oswindowa = wnda.get_hwnda();
 
-   //   user::window_util::SortByZOrder(oswindowa);
+//   user::window_util::SortByZOrder(oswindowa);
 
-   //   for (i32 i = 0; i < oswindowa.get_count(); i++)
-   //   {
+//   for (i32 i = 0; i < oswindowa.get_count(); i++)
+//   {
 
-   //      __pointer(::user::interaction) puieWindow = wnda.find_first(oswindowa[i]);
+//      __pointer(::user::interaction) puieWindow = wnda.find_first(oswindowa[i]);
 
-   //      __pointer(::user::interaction) puie = puieWindow->_001FromPoint(point);
+//      __pointer(::user::interaction) puie = puieWindow->_001FromPoint(point);
 
-   //      if (puie != nullptr)
-   //      {
+//      if (puie != nullptr)
+//      {
 
-   //         return puie;
+//         return puie;
 
-   //      }
+//      }
 
-   //   }
+//   }
 
-   //   return nullptr;
+//   return nullptr;
 
-   //}
+//}
 
 
-   //bool application::on_install()
-   //{
+//bool application::on_install()
+//{
 
-   //   if (!::application::on_install())
-   //   {
+//   if (!::application::on_install())
+//   {
 
-   //      return false;
+//      return false;
 
-   //   }
+//   }
 
-   //   string strId = m_strId;
+//   string strId = m_strId;
 
-   //   char chFirst = '\0';
+//   char chFirst = '\0';
 
-   //   if (strId.get_length() > 0)
-   //   {
+//   if (strId.get_length() > 0)
+//   {
 
-   //      chFirst = strId[0];
+//      chFirst = strId[0];
 
-   //   }
+//   }
 
-   //   return true;
+//   return true;
 
-   //}
+//}
 
 
-   bool application::on_run_install()
-   {
+bool application::on_run_install()
+{
 
-      __pointer(::apex::system) psystem = get_system();
+__pointer(::apex::system) psystem = get_system();
 
-      if (m_strId == "session" || m_strAppName == "session")
-      {
+if (m_strId == "session" || m_strAppName == "session")
+{
 
-         if (is_false("session_start"))
-         {
+if (is_false("session_start"))
+{
 
-            //::parallelization::finish(psystem);
+//::parallelization::finish(psystem);
 
-         }
+}
 
-      }
-      else
-      {
+}
+else
+{
 
-         psystem->finish();
+psystem->finish();
 
-      }
+}
 
-      return true;
+return true;
 
-   }
+}
 
 
-   //bool application::on_uninstall()
-   //{
+//bool application::on_uninstall()
+//{
 
-   //   bool bOk = ::apex::application::on_uninstall();
+//   bool bOk = ::application::on_uninstall();
 
-   //   string strId = m_strId;
+//   string strId = m_strId;
 
-   //   char chFirst = '\0';
+//   char chFirst = '\0';
 
-   //   if (strId.get_length() > 0)
-   //   {
+//   if (strId.get_length() > 0)
+//   {
 
-   //      chFirst = strId[0];
+//      chFirst = strId[0];
 
-   //   }
+//   }
 
-   //   return bOk;
+//   return bOk;
 
-   //}
+//}
 
 
-   bool application::on_run_uninstall()
-   {
+bool application::on_run_uninstall()
+{
 
-      if (m_strId == "session")
-      {
+if (m_strId == "session")
+{
 
-         if (is_false("session_start"))
-         {
+if (is_false("session_start"))
+{
 
-            //::parallelization::finish(psystem);
+//::parallelization::finish(psystem);
 
-         }
+}
 
-      }
-      else
-      {
+}
+else
+{
 
-         //::parallelization::finish(psystem);
+//::parallelization::finish(psystem);
 
-      }
+}
 
-      return true;
+return true;
 
-   }
+}
 
 
-   void application::on_application_signal(::message::message* pmessage)
-   {
+void application::on_application_signal(::message::message* pmessage)
+{
 
-      UNREFERENCED_PARAMETER(pmessage);
+UNREFERENCED_PARAMETER(pmessage);
 
-   }
+}
 
 
-   //::apex::printer* application::get_printer(const char* pszDeviceName)
-   //{
+//::apex::printer* application::get_printer(const char* pszDeviceName)
+//{
 
-   //   return nullptr;
+//   return nullptr;
 
-   //}
+//}
 
 
-   //bool application::set_keyboard_layout(const char* pszPath, const ::action_context& context)
-   //{
+//bool application::set_keyboard_layout(const char* pszPath, const ::action_context& context)
+//{
 
-   //   return psession->keyboard().load_layout(pszPath, context);
+//   return psession->keyboard().load_layout(pszPath, context);
 
-   //}
+//}
 
 
-   //i32 application::track_popup_menu(const char* pszMatter, const ::point_i32& point, __pointer(::user::interaction) puie)
-   //{
+//i32 application::track_popup_menu(const char* pszMatter, const ::point_i32& point, __pointer(::user::interaction) puie)
+//{
 
-   //   UNREFERENCED_PARAMETER(pszMatter);
-   //   UNREFERENCED_PARAMETER(point);
-   //   UNREFERENCED_PARAMETER(puie);
+//   UNREFERENCED_PARAMETER(pszMatter);
+//   UNREFERENCED_PARAMETER(point);
+//   UNREFERENCED_PARAMETER(puie);
 
-   //   return 1;
+//   return 1;
 
-   //}
+//}
 
 
-   bool application::get_fs_size(string& strSize, const char* pszPath, bool& bPending)
-   {
+bool application::get_fs_size(string& strSize, const char* pszPath, bool& bPending)
+{
 
-      i64 i64Size;
+i64 i64Size;
 
-      if (!get_fs_size(i64Size, pszPath, bPending))
-      {
+if (!get_fs_size(i64Size, pszPath, bPending))
+{
 
-         strSize.Empty();
+strSize.Empty();
 
-         return false;
+return false;
 
-      }
+}
 
-      if (i64Size > 1024 * 1024 * 1024)
-      {
+if (i64Size > 1024 * 1024 * 1024)
+{
 
-         double d = (double)i64Size / (1024.0 * 1024.0 * 1024.0);
+double d = (double)i64Size / (1024.0 * 1024.0 * 1024.0);
 
-         strSize.Format("%0.2f GB", d);
+strSize.Format("%0.2f GB", d);
 
-      }
-      else if (i64Size > 1024 * 1024)
-      {
+}
+else if (i64Size > 1024 * 1024)
+{
 
-         double d = (double)i64Size / (1024.0 * 1024.0);
+double d = (double)i64Size / (1024.0 * 1024.0);
 
-         strSize.Format("%0.1f MB", d);
+strSize.Format("%0.1f MB", d);
 
-      }
-      else if (i64Size > 1024)
-      {
+}
+else if (i64Size > 1024)
+{
 
-         double d = (double)i64Size / (1024.0);
+double d = (double)i64Size / (1024.0);
 
-         strSize.Format("%0.0f KB", d);
+strSize.Format("%0.0f KB", d);
 
-      }
-      else if (i64Size > 0)
-      {
+}
+else if (i64Size > 0)
+{
 
-         strSize.Format("1 KB");
+strSize.Format("1 KB");
 
-      }
-      else
-      {
+}
+else
+{
 
-         strSize.Format("0 KB");
+strSize.Format("0 KB");
 
-      }
+}
 
-      if (bPending)
-      {
+if (bPending)
+{
 
-         strSize = "~" + strSize;
+strSize = "~" + strSize;
 
-      }
+}
 
-      return true;
+return true;
 
-   }
+}
 
 
-   bool application::get_fs_size(i64& i64Size, const char* pszPath, bool& bPending)
-   {
-      return false;
-      //db_server * pcentral = dynamic_cast <db_server *> (psystem->m_psimpledb->db());
+bool application::get_fs_size(i64& i64Size, const char* pszPath, bool& bPending)
+{
+return false;
+//db_server * pcentral = dynamic_cast <db_server *> (psystem->m_psimpledb->db());
 
-      //if (pcentral == nullptr)
-      //{
+//if (pcentral == nullptr)
+//{
 
-      //   return false;
+//   return false;
 
-      //}
+//}
 
-      //return pcentral->m_pfilesystemsizeset->get_cache_fs_size(i64Size, pszPath, bPending);
+//return pcentral->m_pfilesystemsizeset->get_cache_fs_size(i64Size, pszPath, bPending);
 
-   }
+}
 
 
-   void application::set_title(const char* pszTitle)
-   {
+void application::set_title(const char* pszTitle)
+{
 
-      auto psession = get_session();
+auto psession = get_session();
 
-      psession->set_app_title(m_strAppName, pszTitle);
+psession->set_app_title(m_strAppName, pszTitle);
 
-   }
+}
 
 
-   //bool application::_001CloseApplicationByUser(__pointer(::user::interaction) puserinteractionExcept)
-   //{
+//bool application::_001CloseApplicationByUser(__pointer(::user::interaction) puserinteractionExcept)
+//{
 
-   //   // Closing just this application.
-   //   // It is different of a system exit.
-   //   // psystem (a single ca2 process) can host
-   //   // multiple ca2 application objects.
+//   // Closing just this application.
+//   // It is different of a system exit.
+//   // psystem (a single ca2 process) can host
+//   // multiple ca2 application objects.
 
-   //   // attempt to save all documents
-   //   if (!save_all_modified())
-   //   {
+//   // attempt to save all documents
+//   if (!save_all_modified())
+//   {
 
-   //      return false;     // don't close it
+//      return false;     // don't close it
 
-   //   }
+//   }
 
-   //   // hide the application's windows before closing all the documents
-   //   HideApplication();
+//   // hide the application's windows before closing all the documents
+//   HideApplication();
 
-   //   close(::apex::end_app);
+//   close(::apex::end_app);
 
-   //   return true;
+//   return true;
 
-   //}
+//}
 
 
-   //oswindow application::get_ca2_app_wnd(const char* psz)
-   //{
+//oswindow application::get_ca2_app_wnd(const char* psz)
+//{
 
-   //   UNREFERENCED_PARAMETER(psz);
+//   UNREFERENCED_PARAMETER(psz);
 
-   //   return nullptr;
+//   return nullptr;
 
-   //}
+//}
 
 
 //   i32 application::send_simple_command(const char* psz, void* osdataSender)
@@ -9999,8 +9999,8 @@ retry_license:
 //   }
 
 
-   void application::ensure_app_interest()
-   {
+void application::ensure_app_interest()
+{
 
 //#ifndef _UWP
 //
@@ -10018,17 +10018,17 @@ retry_license:
 //
 //#endif
 
-   }
+}
 
 
 
 
-   //::application * application::psystem
-   //{
+//::application * application::psystem
+//{
 
-   //   return ::object::psystem;
+//   return ::object::psystem;
 
-   //}
+//}
 
 
 
@@ -10047,99 +10047,99 @@ retry_license:
 
 
 
-   /*
-   __pointer(::apex::application) application::assert_running(const char * pszAppId)
-   {
+/*
+__pointer(::application) application::assert_running(const char * pszAppId)
+{
 
 
-   __pointer(::apex::application) papp = nullptr;
+__pointer(::application) papp = nullptr;
 
 
-   try
-   {
+try
+{
 
-   bool bFound = false;
+bool bFound = false;
 
-   for(i32 i  = 0; i < psystem->m_appptra.get_count(); i++)
-   {
-   try
-   {
+for(i32 i  = 0; i < psystem->m_appptra.get_count(); i++)
+{
+try
+{
 
-   papp = psystem->m_appptra(i);
+papp = psystem->m_appptra(i);
 
-   if(papp->m_strAppName == pszAppId)
-   {
-   bFound = true;
-   break;
-   }
+if(papp->m_strAppName == pszAppId)
+{
+bFound = true;
+break;
+}
 
-   }
-   catch(...)
-   {
-   }
+}
+catch(...)
+{
+}
 
-   }
+}
 
-   bool bCreate = !bFound;
+bool bCreate = !bFound;
 
-   if(bFound)
-   {
+if(bFound)
+{
 
-   bool bRunning = false;
+bool bRunning = false;
 
-   try
-   {
-   if(papp->is_running())
-   {
-   bRunning = true;
-   }
-   }
-   catch(...)
-   {
-   }
+try
+{
+if(papp->is_running())
+{
+bRunning = true;
+}
+}
+catch(...)
+{
+}
 
 
-   if(bCreate)
-   {
+if(bCreate)
+{
 
-   __pointer(::create) spcreate(e_create);
+__pointer(::create) spcreate(e_create);
 
-   papp = psession->start_application("application", pszAppId, spcreate);
+papp = psession->start_application("application", pszAppId, spcreate);
 
-   }
+}
 
-   }
-   catch(const ::exit_exception & e)
-   {
+}
+catch(const ::exit_exception & e)
+{
 
-   __throw(e);
+__throw(e);
 
-   }
-   catch(const const ::exception::exception & e)
-   {
+}
+catch(const const ::exception::exception & e)
+{
 
-   if(!get_application()->on_run_exception((::exception::exception &) e))
-   __throw(exit_exception());
+if(!get_application()->on_run_exception((::exception::exception &) e))
+__throw(exit_exception());
 
-   }
-   catch(...)
-   {
+}
+catch(...)
+{
 
-   papp = nullptr;
+papp = nullptr;
 
-   }
+}
 
 
-   return papp;
+return papp;
 
-   }
-   */
+}
+*/
 
 
 
 
 
-   //typedef  void (* PFN_factory_exchange)();
+//typedef  void (* PFN_factory_exchange)();
 
 
 
@@ -10156,398 +10156,398 @@ retry_license:
 
 
 
-   void application::data_on_after_change(::database::client* pclient, const ::database::key& key, const ::payload & payload, ::subject::subject * psubject)
-   {
+void application::data_on_after_change(::database::client* pclient, const ::database::key& key, const ::payload & payload, ::subject::subject * psubject)
+{
 
 
-   }
+}
 
 
-   __pointer(::apex::application) application::create_platform(::apex::session* psession)
-   {
+__pointer(::application) application::create_platform(::apex::session* psession)
+{
 
-      return __new(::apex::session);
+return __new(::apex::session);
 
-   }
+}
 
 
-   //void application::on_change_cur_sel(::user::tab* ptab)
-   //{
+//void application::on_change_cur_sel(::user::tab* ptab)
+//{
 
 
 
-   //}
+//}
 
 
-   bool application::_001OnAgreeExit()
-   {
+bool application::_001OnAgreeExit()
+{
 
-      if (!save_all_modified())
-      {
+if (!save_all_modified())
+{
 
-         return false;
+return false;
 
-      }
+}
 
-      return true;
+return true;
 
-   }
+}
 
 
-   //void application::_001OnFranceExit()
-   //{
+//void application::_001OnFranceExit()
+//{
 
-   //   ::apex::application::_001OnFranceExit();
+//   ::application::_001OnFranceExit();
 
-   //}
+//}
 
 
-   //void application::prepare_form(id id, ::form_document* pdocument)
-   //{
+//void application::prepare_form(id id, ::form_document* pdocument)
+//{
 
 
 
-   //}
+//}
 
 
-   void application::report_error(const ::exception::exception & e, int iMessageFlags, const char* pszTopic)
-   {
+void application::report_error(const ::exception::exception & e, int iMessageFlags, const char* pszTopic)
+{
 
-      string strMessage;
+string strMessage;
 
-      strMessage += pszTopic;
+strMessage += pszTopic;
 
-      strMessage += " : ";
+strMessage += " : ";
 
-      strMessage += e.get_message();
+strMessage += e.get_message();
 
-      __throw(todo, "interaction");
+__throw(todo, "interaction");
 
-      //m_puserinteractionMain->message_box(strMessage + ::enum_message_box(iMessageFlags));
+//m_puserinteractionMain->message_box(strMessage + ::enum_message_box(iMessageFlags));
 
-   }
+}
 
 
-   bool application::on_close_frame_window(::user::frame* pframe)
-   {
+bool application::on_close_frame_window(::user::frame* pframe)
+{
 
-      __throw(todo, "interaction");
+__throw(todo, "interaction");
 
-      //if (pframe->m_bCloseApplicationIfLastVisibleFrame)
-      //{
+//if (pframe->m_bCloseApplicationIfLastVisibleFrame)
+//{
 
-      //   if (GetVisibleTopLevelFrameCountExcept(pframe) <= 0)
-      //   {
+//   if (GetVisibleTopLevelFrameCountExcept(pframe) <= 0)
+//   {
 
-      //      pframe->DestroyWindow();
+//      pframe->DestroyWindow();
 
-      //      _001CloseApplication();
+//      _001CloseApplication();
 
-      //   }
-      //   else
-      //   {
+//   }
+//   else
+//   {
 
-      //      pframe->hide();
+//      pframe->hide();
 
-      //   }
+//   }
 
-      //}
-      //else
-      //{
+//}
+//else
+//{
 
-      //   pframe->DestroyWindow();
+//   pframe->DestroyWindow();
 
-      //}
+//}
 
-      return true;
+return true;
 
-   }
+}
 
 
-   //::type application::control_type_from_id(const ::id& id, ::user::enum_control_type& econtroltype)
-   //{
+//::type application::control_type_from_id(const ::id& id, ::user::enum_control_type& econtroltype)
+//{
 
-   //   string str(id);
+//   string str(id);
 
-   //   if (str.begins_ci("combo_"))
-   //   {
+//   if (str.begins_ci("combo_"))
+//   {
 
-   //      econtroltype = ::user::e_control_type_combo_box;
+//      econtroltype = ::user::e_control_type_combo_box;
 
-   //      return __type(::user::combo_box);
+//      return __type(::user::combo_box);
 
-   //   }
-   //   else if (str.begins_ci("check_") || str.begins_ci("checkbox_"))
-   //   {
+//   }
+//   else if (str.begins_ci("check_") || str.begins_ci("checkbox_"))
+//   {
 
-   //      econtroltype = ::user::e_control_type_check_box;
+//      econtroltype = ::user::e_control_type_check_box;
 
-   //      return __type(::user::check_box);
+//      return __type(::user::check_box);
 
-   //   }
-   //   else if (str.begins_ci("still_"))
-   //   {
+//   }
+//   else if (str.begins_ci("still_"))
+//   {
 
-   //      econtroltype = ::user::e_control_type_static;
+//      econtroltype = ::user::e_control_type_static;
 
-   //      return __type(::user::still);
+//      return __type(::user::still);
 
-   //   }
-   //   else if (str.begins_ci("label_"))
-   //   {
+//   }
+//   else if (str.begins_ci("label_"))
+//   {
 
-   //      econtroltype = ::user::e_control_type_static;
+//      econtroltype = ::user::e_control_type_static;
 
-   //      return __type(::user::still);
+//      return __type(::user::still);
 
-   //   }
-   //   else if (str.begins_ci("edit_"))
-   //   {
+//   }
+//   else if (str.begins_ci("edit_"))
+//   {
 
-   //      econtroltype = ::user::e_control_type_edit_plain_text;
+//      econtroltype = ::user::e_control_type_edit_plain_text;
 
-   //      return __type(::user::plain_edit);
+//      return __type(::user::plain_edit);
 
-   //   }
-   //   else if (str.begins_ci("button_"))
-   //   {
+//   }
+//   else if (str.begins_ci("button_"))
+//   {
 
-   //      econtroltype = ::user::e_control_type_button;
+//      econtroltype = ::user::e_control_type_button;
 
-   //      return __type(::user::button);
+//      return __type(::user::button);
 
-   //   }
+//   }
 
-   //   return ::apex::application::control_type_from_id(id, econtroltype);
+//   return ::application::control_type_from_id(id, econtroltype);
 
-   //}
+//}
 
 
-   string application::get_theme()
-   {
+string application::get_theme()
+{
 
-      return "";
+return "";
 
-   }
+}
 
 
-   ::e_status application::initialize_contextualized_theme()
-   {
+::e_status application::initialize_contextualized_theme()
+{
 
-      return ::success;
+return ::success;
 
-   }
+}
 
 
-   //void application::on_change_theme()
-   //{
+//void application::on_change_theme()
+//{
 
 
-   //}
+//}
 
 
-   void application::_001OnSwitchContextTheme(::message::message* pmessage)
-   {
+void application::_001OnSwitchContextTheme(::message::message* pmessage)
+{
 
-      if (pmessage != nullptr)
-      {
+if (pmessage != nullptr)
+{
 
-         pmessage->m_bRet = true;
+pmessage->m_bRet = true;
 
-      }
+}
 
-      //if (!m_ptheme)
-      //{
+//if (!m_ptheme)
+//{
 
-      //   return;
+//   return;
 
-      //}
+//}
 
-      //if (m_bContextTheme)
-      //{
+//if (m_bContextTheme)
+//{
 
-      //   m_ptheme->switch_context_theme();
+//   m_ptheme->switch_context_theme();
 
-      //}
+//}
 
-   }
+}
 
 
-   //application::application()
-   //{
+//application::application()
+//{
 
-   //   create_factory < ::user::user >();
+//   create_factory < ::user::user >();
 
-   //   //m_bBaseProcessInitialize         = false;
-   //   //m_bBaseProcessInitializeResult   = false;
+//   //m_bBaseProcessInitialize         = false;
+//   //m_bBaseProcessInitializeResult   = false;
 
-   //   //m_bBaseInitialize1               = false;
-   //   //m_bBaseInitialize1Result         = false;
+//   //m_bBaseInitialize1               = false;
+//   //m_bBaseInitialize1Result         = false;
 
-   //   //m_bBaseInitialize                = false;
-   //   //m_bBaseInitializeResult          = false;
+//   //m_bBaseInitialize                = false;
+//   //m_bBaseInitializeResult          = false;
 
-   //   //m_bBaseInitializeInstance        = false;
-   //   //m_bBaseInitializeInstanceResult  = false;
+//   //m_bBaseInitializeInstance        = false;
+//   //m_bBaseInitializeInstanceResult  = false;
 
 
 
 
-   //}
+//}
 
-   //application::~application()
-   //{
+//application::~application()
+//{
 
-   //}
+//}
 
 
-   //::e_status application::initialize(::object * pobject)
-   //{
+//::e_status application::initialize(::object * pobject)
+//{
 
-   //   auto estatus = ::apex::application::initialize(pobject);
+//   auto estatus = ::application::initialize(pobject);
 
-   //   if (!estatus)
-   //   {
+//   if (!estatus)
+//   {
 
-   //      return estatus;
+//      return estatus;
 
-   //   }
+//   }
 
-   //   return estatus;
+//   return estatus;
 
-   //}
+//}
 
-   //   void application::install_message_routing(::channel * pchannel)
-   //   {
-   //
-   //
-   //
-   //   }
+//   void application::install_message_routing(::channel * pchannel)
+//   {
+//
+//
+//
+//   }
 
 
-      //void application::task(::machine * pchange)
-      //{
+//void application::task(::machine * pchange)
+//{
 
-      //   ::apex::application::task(ptask);
+//   ::application::task(ptask);
 
-      //   if (ptask->m_bRet)
-      //   {
-      //
-      //      return;
+//   if (ptask->m_bRet)
+//   {
+//
+//      return;
 
-      //   }
-      //
-      //   ::user::form_callback::task(ptask);
+//   }
+//
+//   ::user::form_callback::task(ptask);
 
-      //   if (ptask->m_bRet)
-      //   {
+//   if (ptask->m_bRet)
+//   {
 
-      //      return;
+//      return;
 
-      //   }
+//   }
 
-      //}
+//}
 
 
-   //::e_status application::process_init()
-   //{
+//::e_status application::process_init()
+//{
 
-   //   if (::apex::application::process_init())
-   //   {
+//   if (::application::process_init())
+//   {
 
-   //      return true;
+//      return true;
 
-   //   }
+//   }
 
-   //   return true;
+//   return true;
 
-   //}
+//}
 
 
-   //::e_status application::init_instance()
-   //{
+//::e_status application::init_instance()
+//{
 
-   //   if (!::application::init_instance())
-   //   {
+//   if (!::application::init_instance())
+//   {
 
-   //      return false;
+//      return false;
 
-   //   }
+//   }
 
-   //   auto estatus = create_impact_system();
+//   auto estatus = create_impact_system();
 
-   //   if (failed(estatus))
-   //   {
+//   if (failed(estatus))
+//   {
 
-   //      return false;
+//      return false;
 
-   //   }
+//   }
 
-   //   return true;
+//   return true;
 
-   //}
+//}
 
 
-   ::e_status     application::create_impact_system()
-   {
+::e_status     application::create_impact_system()
+{
 
-      return ::success;
+return ::success;
 
-   }
+}
 
 
-   void application::process_message_filter(i32 code, ::message::message* pmessage)
-   {
+void application::process_message_filter(i32 code, ::message::message* pmessage)
+{
 
-      //if (pmessage == nullptr)
-      //   return;   // not handled
+//if (pmessage == nullptr)
+//   return;   // not handled
 
-      //__pointer(::user::message) pusermessage(pmessage);
+//__pointer(::user::message) pusermessage(pmessage);
 
-      //__pointer(::user::frame_window) pTopFrameWnd;
-      ////::user::interaction * pMainWnd;
-      //::user::interaction* pMsgWnd;
-      //switch (code)
-      //{
-      //   //case MSGF_DDEMGR:
-      //   // Unlike other WH_MSGFILTER codes, MSGF_DDEMGR should
-      //   //  never call the next hook.
-      //   // By returning false, the message will be dispatched
-      //   //  instead (the default behavior).
-      //   //return;
+//__pointer(::user::frame_window) pTopFrameWnd;
+////::user::interaction * pMainWnd;
+//::user::interaction* pMsgWnd;
+//switch (code)
+//{
+//   //case MSGF_DDEMGR:
+//   // Unlike other WH_MSGFILTER codes, MSGF_DDEMGR should
+//   //  never call the next hook.
+//   // By returning false, the message will be dispatched
+//   //  instead (the default behavior).
+//   //return;
 
-      //case MSGF_MENU:
+//case MSGF_MENU:
 
-      //   pMsgWnd = dynamic_cast <::user::interaction*> (pusermessage->m_puserinteraction);
+//   pMsgWnd = dynamic_cast <::user::interaction*> (pusermessage->m_puserinteraction);
 
-      //   if (pMsgWnd != nullptr)
-      //   {
-      //      pTopFrameWnd = pMsgWnd->top_level_frame();
-      //      if (pTopFrameWnd != nullptr && pTopFrameWnd->IsTracking() &&
-      //         pTopFrameWnd->m_bHelpMode)
-      //      {
-      //         //pMainWnd = __get_main_window();
-      //         //if((m_puiMain != nullptr) && (IsEnterKey(pusermessage) || IsButtonUp(pusermessage)))
-      //         //{
-      //         //   //                  pMainWnd->SendMessage(e_message_command, ID_HELP);
-      //         //   pusermessage->m_bRet = true;
-      //         //   return;
-      //         //}
-      //      }
-      //   }
-      //   // fall through...
+//   if (pMsgWnd != nullptr)
+//   {
+//      pTopFrameWnd = pMsgWnd->top_level_frame();
+//      if (pTopFrameWnd != nullptr && pTopFrameWnd->IsTracking() &&
+//         pTopFrameWnd->m_bHelpMode)
+//      {
+//         //pMainWnd = __get_main_window();
+//         //if((m_puiMain != nullptr) && (IsEnterKey(pusermessage) || IsButtonUp(pusermessage)))
+//         //{
+//         //   //                  pMainWnd->SendMessage(e_message_command, ID_HELP);
+//         //   pusermessage->m_bRet = true;
+//         //   return;
+//         //}
+//      }
+//   }
+//   // fall through...
 
-      //case MSGF_DIALOGBOX:    // handles message boxes as well.
-      //   //pMainWnd = __get_main_window();
-      //   if (code == MSGF_DIALOGBOX && m_puiActive != nullptr &&
-      //      pusermessage->m_id >= e_message_key_first && pusermessage->m_id <= e_message_key_last)
-      //   {
-      //   }
-      //   break;
-      //}
-      //// default to not handled
+//case MSGF_DIALOGBOX:    // handles message boxes as well.
+//   //pMainWnd = __get_main_window();
+//   if (code == MSGF_DIALOGBOX && m_puiActive != nullptr &&
+//      pusermessage->m_id >= e_message_key_first && pusermessage->m_id <= e_message_key_last)
+//   {
+//   }
+//   break;
+//}
+//// default to not handled
 
-   }
+}
 
 
 
@@ -10569,571 +10569,571 @@ retry_license:
 
 
 
-   /*string application::get_cred(const string & strRequestUrlParam,const ::rectangle_i32 & rectangle,string & strUsername,string & strPassword,string strToken,string strTitle,bool bInteractive)
-   {
+/*string application::get_cred(const string & strRequestUrlParam,const ::rectangle_i32 & rectangle,string & strUsername,string & strPassword,string strToken,string strTitle,bool bInteractive)
+{
 
-      string str = ::account::get_cred(this,strUsername,strPassword,strToken);
+string str = ::account::get_cred(this,strUsername,strPassword,strToken);
 
-      if(str == "ok" && strUsername.has_char() && strPassword.has_char())
-         return "ok";
+if(str == "ok" && strUsername.has_char() && strPassword.has_char())
+return "ok";
 
-      if(!bInteractive)
-         return "failed";
+if(!bInteractive)
+return "failed";
 
-      __pointer(::account::simple_ui) pinteraction;
+__pointer(::account::simple_ui) pinteraction;
 
-      string strRequestUrl(strRequestUrlParam);
+string strRequestUrl(strRequestUrlParam);
 
-      if(strRequestUrl.is_empty())
-      {
+if(strRequestUrl.is_empty())
+{
 
-         string strIgnitionServer = file_as_string(m_psystem->m_pacmedir->system() / "config\\system\\ignition_server.txt");
+string strIgnitionServer = file_as_string(m_psystem->m_pacmedir->system() / "config\\system\\ignition_server.txt");
 
-         if(::str::ends_ci(strIgnitionServer,".ca2.cc"))
-         {
+if(::str::ends_ci(strIgnitionServer,".ca2.cc"))
+{
 
-            strRequestUrl = "https://" + strIgnitionServer + "/";
+strRequestUrl = "https://" + strIgnitionServer + "/";
 
-         }
-         else
-         {
+}
+else
+{
 
-            strRequestUrl = "https://account.ca2.cc/";
+strRequestUrl = "https://account.ca2.cc/";
 
-         }
+}
 
-         strRequestUrl = "https://account.ca2.cc/";
+strRequestUrl = "https://account.ca2.cc/";
 
-      }
+}
 
-      pinteraction = __new(::account::simple_ui(this,strRequestUrl));
+pinteraction = __new(::account::simple_ui(this,strRequestUrl));
 
-      pinteraction->m_login.m_peditUser->set_window_text(strUsername);
+pinteraction->m_login.m_peditUser->set_window_text(strUsername);
 
-      pinteraction->m_login.m_ppassword->set_window_text("");
+pinteraction->m_login.m_ppassword->set_window_text("");
 
-      string strResult = pinteraction->get_cred(rectangle,strUsername,strPassword,strToken,strTitle);
+string strResult = pinteraction->get_cred(rectangle,strUsername,strPassword,strToken,strTitle);
 
-      pinteraction->DestroyWindow();
+pinteraction->DestroyWindow();
 
-      ::account::set_cred(this,strToken,strUsername,strPassword);
+::account::set_cred(this,strToken,strUsername,strPassword);
 
-      return strResult;
+return strResult;
 
-   }*/
+}*/
 
 
-   //__pointer(::user::user) application::create_user()
-   //{
+//__pointer(::user::user) application::create_user()
+//{
 
-   //   return __new(::user::user);
+//   return __new(::user::user);
 
-   //}
+//}
 
 
-   ::e_status application::on_thread_on_idle(::thread* pthread, ::i32 lCount)
-   {
+::e_status application::on_thread_on_idle(::thread* pthread, ::i32 lCount)
+{
 
-      __throw(todo, "interaction");
-      //if (lCount <= 0)
-      //{
+__throw(todo, "interaction");
+//if (lCount <= 0)
+//{
 
-      //   __pointer(::user::interaction) pinteraction;
+//   __pointer(::user::interaction) pinteraction;
 
-      //   while (get_frame(pinteraction))
-      //   {
-      //      //::user::interaction * pinteraction = (::user::interaction *) pimpl->m_spuiptra->element_at(i)->m_pvoidUserInteraction;
-      //      bool bOk = false;
-      //      try
-      //      {
+//   while (get_frame(pinteraction))
+//   {
+//      //::user::interaction * pinteraction = (::user::interaction *) pimpl->m_spuiptra->element_at(i)->m_pvoidUserInteraction;
+//      bool bOk = false;
+//      try
+//      {
 
-      //         bOk = pinteraction != nullptr && pinteraction->is_window_visible();
-      //      }
-      //      catch (...)
-      //      {
-      //      }
-      //      if (!bOk)
-      //      {
-      //         //   try
-      //         //   {
-      //         //      get_application()->erase_frame(pinteraction);
-      //         //   }
-      //         //   catch(...)
-      //         //   {
-      //         //   }
-      //         //   try
-      //         //   {
-      //         //      psession->erase_frame(pinteraction);
-      //         //   }
-      //         //   catch(...)
-      //         //   {
-      //         //   }
-      //         //   try
-      //         //   {
-      //         //      psystem->erase_frame(pinteraction);
-      //         //   }
-      //         //   catch(...)
-      //         //   {
-      //         //   }
-      //      }
-      //      else
-      //      {
-      //         //               synchronouslock.unlock();
-      //         try
-      //         {
-      //            pinteraction->send_message(WM_IDLEUPDATECMDUI, (WPARAM)true);
-      //         }
-      //         catch (...)
-      //         {
+//         bOk = pinteraction != nullptr && pinteraction->is_window_visible();
+//      }
+//      catch (...)
+//      {
+//      }
+//      if (!bOk)
+//      {
+//         //   try
+//         //   {
+//         //      get_application()->erase_frame(pinteraction);
+//         //   }
+//         //   catch(...)
+//         //   {
+//         //   }
+//         //   try
+//         //   {
+//         //      psession->erase_frame(pinteraction);
+//         //   }
+//         //   catch(...)
+//         //   {
+//         //   }
+//         //   try
+//         //   {
+//         //      psystem->erase_frame(pinteraction);
+//         //   }
+//         //   catch(...)
+//         //   {
+//         //   }
+//      }
+//      else
+//      {
+//         //               synchronouslock.unlock();
+//         try
+//         {
+//            pinteraction->send_message(WM_IDLEUPDATECMDUI, (WPARAM)true);
+//         }
+//         catch (...)
+//         {
 
-      //         }
-      //         //             synchronouslock.lock();
-      //      }
-      //   }
+//         }
+//         //             synchronouslock.lock();
+//      }
+//   }
 
 
-      //}
-      //else if (lCount >= 0)
-      //{
-      //}
+//}
+//else if (lCount >= 0)
+//{
+//}
 
-      //return lCount < 0;  // nothing more to do if lCount >= 0
+//return lCount < 0;  // nothing more to do if lCount >= 0
 
-   }
+}
 
 
 
 
 
-   //void application::on_create_impact(::user::impact_data* pimpactdata)
-   //{
+//void application::on_create_impact(::user::impact_data* pimpactdata)
+//{
 
 
-   //}
+//}
 
 
-   //::e_status application::process_message()
-   //{
+//::e_status application::process_message()
+//{
 
-   //   return ::thread::process_message();
+//   return ::thread::process_message();
 
-   //}
+//}
 
 
-   //void application::SetCurrentHandles()
-   //{
+//void application::SetCurrentHandles()
+//{
 
-   //   ::apex::application::SetCurrentHandles();
+//   ::application::SetCurrentHandles();
 
-   //}
+//}
 
 
-   //void application::term_application()
-   //{
+//void application::term_application()
+//{
 
-   //   try
-   //   {
+//   try
+//   {
 
-   //      apex::application::term_application();
+//      apex::application::term_application();
 
-   //   }
-   //   catch (...)
-   //   {
+//   }
+//   catch (...)
+//   {
 
-   //   }
+//   }
 
-   //}
+//}
 
 
-   //::draw2d::icon* application::set_icon(object* pobject, ::draw2d::icon* picon, bool bBigIcon)
-   //{
+//::draw2d::icon* application::set_icon(object* pobject, ::draw2d::icon* picon, bool bBigIcon)
+//{
 
-   //   ::draw2d::icon* piconOld = get_icon(pobject, bBigIcon);
+//   ::draw2d::icon* piconOld = get_icon(pobject, bBigIcon);
 
-   //   if (bBigIcon)
-   //   {
+//   if (bBigIcon)
+//   {
 
-   //      pobject->payload("big_icon") = (__pointer(object)) picon;
+//      pobject->payload("big_icon") = (__pointer(object)) picon;
 
-   //   }
-   //   else
-   //   {
+//   }
+//   else
+//   {
 
-   //      pobject->payload("small_icon") = (__pointer(object)) picon;
+//      pobject->payload("small_icon") = (__pointer(object)) picon;
 
-   //   }
+//   }
 
-   //   return piconOld;
+//   return piconOld;
 
-   //}
+//}
 
 
-   //::draw2d::icon* application::get_icon(object* pobject, bool bBigIcon) const
-   //{
+//::draw2d::icon* application::get_icon(object* pobject, bool bBigIcon) const
+//{
 
-   //   if (bBigIcon)
-   //   {
+//   if (bBigIcon)
+//   {
 
-   //      return const_cast <object*> (pobject)->cast < ::draw2d::icon >("big_icon");
+//      return const_cast <object*> (pobject)->cast < ::draw2d::icon >("big_icon");
 
-   //   }
-   //   else
-   //   {
+//   }
+//   else
+//   {
 
-   //      return const_cast <object*> (pobject)->cast < ::draw2d::icon >("small_icon");
+//      return const_cast <object*> (pobject)->cast < ::draw2d::icon >("small_icon");
 
-   //   }
+//   }
 
-   //}
+//}
 
 
-   //void application::on_control_event(::user::control_event* pevent)
-   //{
+//void application::on_control_event(::user::control_event* pevent)
+//{
 
-   //   if (pevent->m_eevent == ::user::e_event_initialize_control)
-   //   {
+//   if (pevent->m_eevent == ::user::e_event_initialize_control)
+//   {
 
-   //      if (pevent->m_puie->m_id == __id(system_startup_checkbox))
-   //      {
+//      if (pevent->m_puie->m_id == __id(system_startup_checkbox))
+//      {
 
-   //         try
-   //         {
-   //            __pointer(::user::check) pcheck = pevent->m_puie;
+//         try
+//         {
+//            __pointer(::user::check) pcheck = pevent->m_puie;
 
-   //            if (pcheck.is_set())
-   //            {
+//            if (pcheck.is_set())
+//            {
 
-   //               pcheck->_001SetCheck(
-   //                  m_pcontext->m_papexcontext->os().is_user_auto_start(get_executable_appid()),
-   //                  ::e_source_initialize);
+//               pcheck->_001SetCheck(
+//                  m_pcontext->m_papexcontext->os().is_user_auto_start(get_executable_appid()),
+//                  ::e_source_initialize);
 
-   //            }
-   //         }
-   //         catch (...)
-   //         {
+//            }
+//         }
+//         catch (...)
+//         {
 
-   //         }
+//         }
 
-   //      }
+//      }
 
-   //   }
-   //   else if (pevent->m_eevent == ::user::e_event_set_check)
-   //   {
+//   }
+//   else if (pevent->m_eevent == ::user::e_event_set_check)
+//   {
 
-   //      if (pevent->m_puie->m_id == __id(system_startup_checkbox)
-   //         && pevent->m_actioncontext.is_user_source())
-   //      {
+//      if (pevent->m_puie->m_id == __id(system_startup_checkbox)
+//         && pevent->m_actioncontext.is_user_source())
+//      {
 
-   //         try
-   //         {
+//         try
+//         {
 
-   //            __pointer(::user::check) pcheck = pevent->m_puie;
+//            __pointer(::user::check) pcheck = pevent->m_puie;
 
-   //            if (pcheck.is_set())
-   //            {
+//            if (pcheck.is_set())
+//            {
 
-   //               m_pcontext->m_papexcontext->os().register_user_auto_start(
-   //                  get_executable_appid(),
-   //                  get_executable_path(),
-   //                  pcheck->echeck() == ::check_checked);
+//               m_pcontext->m_papexcontext->os().register_user_auto_start(
+//                  get_executable_appid(),
+//                  get_executable_path(),
+//                  pcheck->echeck() == ::check_checked);
 
-   //            }
+//            }
 
-   //            pevent->m_bRet = true;
+//            pevent->m_bRet = true;
 
-   //            return;
+//            return;
 
-   //         }
-   //         catch (...)
-   //         {
+//         }
+//         catch (...)
+//         {
 
-   //         }
+//         }
 
-   //      }
+//      }
 
-   //   }
+//   }
 
-   //}
+//}
 
 
-   //::user::interaction* application::create_menu_interaction()
-   //{
+//::user::interaction* application::create_menu_interaction()
+//{
 
-   //   return __new(::user::button);
+//   return __new(::user::button);
 
-   //}
+//}
 
 
-   //__pointer(::user::document) application::defer_create_view(string strView, ::user::interaction* puiParent, ewindowflag ewindowflag, const ::id& id)
-   //{
+//__pointer(::user::document) application::defer_create_view(string strView, ::user::interaction* puiParent, ewindowflag ewindowflag, const ::id& id)
+//{
 
-   //   auto pcontroller = ::apex::application::defer_create_view(strView, puiParent, ewindowflag, id);
+//   auto pcontroller = ::application::defer_create_view(strView, puiParent, ewindowflag, id);
 
-   //   if (pcontroller)
-   //   {
+//   if (pcontroller)
+//   {
 
-   //      return pcontroller;
+//      return pcontroller;
 
-   //   }
+//   }
 
-   //   return nullptr;
+//   return nullptr;
 
-   //}
+//}
 
 
-   void application::on_song_added(const string& str)
-   {
+void application::on_song_added(const string& str)
+{
 
-   }
+}
 
 
-   //::type application::control_type_from_id(const ::id& id, ::user::enum_control_type& econtroltype)
-   //{
+//::type application::control_type_from_id(const ::id& id, ::user::enum_control_type& econtroltype)
+//{
 
-   //
-   //}
+//
+//}
 
 
-   //::form_property_set * application::get_form_property_set()
-   //{
+//::form_property_set * application::get_form_property_set()
+//{
 
-   //   auto pset = ::user::form_callback::get_form_property_set();
+//   auto pset = ::user::form_callback::get_form_property_set();
 
-   //   if (::is_set(pset))
-   //   {
+//   if (::is_set(pset))
+//   {
 
-   //      return pset;
+//      return pset;
 
-   //   }
+//   }
 
-   //   return this;
+//   return this;
 
-   //}
+//}
 
-   string application::get_visual_studio_build()
-   {
+string application::get_visual_studio_build()
+{
 
-      ::file::path path = m_psystem->m_pacmedir->config() / "programming/vs_build.txt";
+::file::path path = m_psystem->m_pacmedir->config() / "programming/vs_build.txt";
 
-      string strBuild = m_pcontext->m_papexcontext->file().as_string(path);
+string strBuild = m_pcontext->m_papexcontext->file().as_string(path);
 
-      strBuild.trim();
+strBuild.trim();
 
-      return strBuild;
+return strBuild;
 
-   }
+}
 
 
-   string application::as_string(const ::payload & payload)
-   {
+string application::as_string(const ::payload & payload)
+{
 
-      auto path = payload.get_file_path();
+auto path = payload.get_file_path();
 
-      if(path.has_char())
-      {
+if(path.has_char())
+{
 
-         if (::is_url(path) || ::file_exists(path))
-         {
+if (::is_url(path) || ::file_exists(path))
+{
 
-            return file().as_string(path);
+return file().as_string(path);
 
-         }
+}
 
-      }
+}
 
-      return payload.get_string();
+return payload.get_string();
 
-   }
+}
 
 
-   string application::sound_path(const char* psz)
-   {
+string application::sound_path(const char* psz)
+{
 
-      string strFileName = string(psz) + string(".wav");
+string strFileName = string(psz) + string(".wav");
 
-      string strFilePath = dir().matter(strFileName);
+string strFilePath = dir().matter(strFileName);
 
-      return strFilePath;
+return strFilePath;
 
-   }
+}
 
 
-   string application::get_default_playlist_path()
-   {
+string application::get_default_playlist_path()
+{
 
-      return "playlist/default";
+return "playlist/default";
 
-   }
+}
 
 
-   //bool application::do_prompt_file_name(::payload& varFile, string nIDSTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system* ptemplate, ::user::document* pdocument)
-   //{
+//bool application::do_prompt_file_name(::payload& varFile, string nIDSTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system* ptemplate, ::user::document* pdocument)
+//{
 
-   //   __throw(todo("core and os"));
+//   __throw(todo("core and os"));
 
-   //   return false;
+//   return false;
 
-   //}
+//}
 
 
 
 
-   void application::close(::apex::enum_end eend)
-   {
+void application::close(::apex::enum_end eend)
+{
 
-      if (eend == ::apex::e_end_close)
-      {
+if (eend == ::apex::e_end_close)
+{
 
-         return;
+return;
 
-      }
+}
 
-      m_ethreadClose = thread_application;
+m_ethreadClose = thread_application;
 
-      //if (get_session())
-      //{
+//if (get_session())
+//{
 
-      //   if (psession->m_pdocmanager)
-      //   {
+//   if (psession->m_pdocmanager)
+//   {
 
-      //      psession->m_pdocmanager->close_all_documents(true);
+//      psession->m_pdocmanager->close_all_documents(true);
 
-      //   }
+//   }
 
-      //}
+//}
 
-      if (eend == ::apex::e_end_app)
-      {
+if (eend == ::apex::e_end_app)
+{
 
-         finish();
+finish();
 
-         return;
+return;
 
-      }
+}
 
-      if (eend == ::apex::e_end_session)
-      {
+if (eend == ::apex::e_end_session)
+{
 
-         try
-         {
+try
+{
 
-            if (get_session())
-            {
+if (get_session())
+{
 
-               auto psession = get_session();
+   auto psession = get_session();
 
-               psession->finish();
+   psession->finish();
 
-            }
+}
 
-         }
-         catch (...)
-         {
+}
+catch (...)
+{
 
-         }
+}
 
-         return;
+return;
 
-      }
+}
 
 
-      if (eend == ::apex::e_end_system)
-      {
+if (eend == ::apex::e_end_system)
+{
 
-         try
-         {
+try
+{
 
-            __pointer(::apex::system) psystem = get_system();
+__pointer(::apex::system) psystem = get_system();
 
-            if (psystem)
-            {
+if (psystem)
+{
 
-               psystem->finish();
+   psystem->finish();
 
-            }
+}
 
-         }
-         catch (...)
-         {
+}
+catch (...)
+{
 
-         }
+}
 
-      }
+}
 
-   }
+}
 
 
-   __pointer(::extended::future < ::conversation >) application::message_box(const char * pszMessage, const char * pszTitle, const ::e_message_box & emessagebox)
-   {
-      
-      __pointer(::apex::system) psystem = get_system();
+__pointer(::extended::future < ::conversation >) application::message_box(const char * pszMessage, const char * pszTitle, const ::e_message_box & emessagebox)
+{
 
-      return psystem->_message_box(this, pszMessage, pszTitle, emessagebox);
+__pointer(::apex::system) psystem = get_system();
 
-   }
+return psystem->_message_box(this, pszMessage, pszTitle, emessagebox);
 
+}
 
-   //::enum_dialog_result application::message_box_timeout(const char * pszMessage, const char * pszTitle, const ::duration & durationTimeout, const ::e_message_box & emessagebox, const ::future & process)
-   //{
 
-   //   auto estatus = psystem->message_box_timeout(pszMessage, pszTitle, durationTimeout, emessagebox, process);
+//::enum_dialog_result application::message_box_timeout(const char * pszMessage, const char * pszTitle, const ::duration & durationTimeout, const ::e_message_box & emessagebox, const ::future & process)
+//{
 
-   //   return estatus;
+//   auto estatus = psystem->message_box_timeout(pszMessage, pszTitle, durationTimeout, emessagebox, process);
 
-   //}
+//   return estatus;
 
+//}
 
-   string application::get_version()
-   {
 
-      auto psystem = m_psystem->m_papexsystem;
+string application::get_version()
+{
 
-      auto papex = psystem->m_papexnode;
+auto psystem = m_psystem->m_papexsystem;
 
-      return papex->get_version();
+auto papex = psystem->m_papexnode;
 
-   }
+return papex->get_version();
 
+}
 
-   ::e_status application::_001InitializeShellOpen()
-   {
 
-      auto psystem = m_psystem->m_papexsystem;
+::e_status application::_001InitializeShellOpen()
+{
 
-      auto papex = psystem->m_papexnode;
+auto psystem = m_psystem->m_papexsystem;
 
-      return papex->_001InitializeShellOpen();
+auto papex = psystem->m_papexnode;
 
-   }
+return papex->_001InitializeShellOpen();
+
+}
 
 
 #ifdef LINUX
 
 
-   string application::get_wm_class() const
-   {
+string application::get_wm_class() const
+{
 
-      string strWMClass = m_strAppId;
+string strWMClass = m_strAppId;
 
-      strWMClass.replace("/", ".");
+strWMClass.replace("/", ".");
 
-      strWMClass.replace("_", "-");
+strWMClass.replace("_", "-");
 
-      return strWMClass;
+return strWMClass;
 
-   }
+}
 
 
 #endif
 
 
-} // namespace apex
+//} // namespace apex
 
 
 void application_on_menu_action(void * pApplication, const char * pszCommand)
 {
    
-   auto papplication = (::apex::application *) pApplication;
+   auto papplication = (::application *) pApplication;
    
    papplication->on_application_menu_action(pszCommand);
    
@@ -11143,7 +11143,7 @@ void application_on_menu_action(void * pApplication, const char * pszCommand)
 void * application_system(void * pApplication)
 {
    
-   auto papplication = (::apex::application *) pApplication;
+   auto papplication = (::application *) pApplication;
    
    return papplication->m_psystem;
    

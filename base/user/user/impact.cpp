@@ -342,7 +342,7 @@ namespace user
       }
 
       // last but not least, pump through cast
-      ::apex::application* papp = get_application();
+      ::application* papp = get_application();
 
       if (papp != nullptr)
       {
@@ -820,7 +820,7 @@ namespace user
 
       ASSERT(pusersystem->m_typeNewView || pusersystem->m_puserprimitiveNew != nullptr);
 
-      ::apex::application * papp = puserinteractionParent->get_application();
+      ::application * papp = puserinteractionParent->get_application();
 
       __pointer(::user::interaction) pinteraction;
 

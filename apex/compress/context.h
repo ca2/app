@@ -26,13 +26,13 @@ public:
 
    virtual bool unbz(::file::file * pfileUncompressed, ::file::file * pfileCompressed);
 
-   ::count extract_all(const ::file::path & pszDir, const ::file::path & pszFile, ::apex::application * papp);
+   ::count extract_all(const ::file::path & pszDir, const ::file::path & pszFile, ::application * papp);
 
-   ::count extract_all(const ::file::path & pszFile, ::apex::application * papp);
+   ::count extract_all(const ::file::path & pszFile, ::application * papp);
 
-   bool zip(const ::file::path & pszZip,const ::file::path & psz, ::apex::application * papp);
+   bool zip(const ::file::path & pszZip,const ::file::path & psz, ::application * papp);
 
-   bool zip(const ::file::path & psz, ::apex::application * papp);
+   bool zip(const ::file::path & psz, ::application * papp);
 
    bool unzip(const ::payload & varFile, const ::file::path & pathZipFileCompressed);
 

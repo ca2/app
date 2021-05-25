@@ -79,7 +79,7 @@ void object::process_exit_status(const ::e_status& estatus)
 }
 
 
-::apex::application* object::_get_application()
+::application* object::_get_application()
 {
 
    return m_papplication;
@@ -320,14 +320,14 @@ void object::process_exit_status(const ::e_status& estatus)
 //#ifdef DEBUG
 //    void set_context(::context* pcontext OBJ_REF_DBG_COMMA_PARAMS);
 //    void set_context_thread(::thread* pthread OBJ_REF_DBG_COMMA_PARAMS);
-//    void set_context_app(::apex::application* pappContext OBJ_REF_DBG_COMMA_PARAMS);
+//    void set_context_app(::application* pappContext OBJ_REF_DBG_COMMA_PARAMS);
 //    void set_context_session(::apex::session* psessionContext OBJ_REF_DBG_COMMA_PARAMS);
 //   // void set_context_system(::apex::system* psystemContext OBJ_REF_DBG_COMMA_PARAMS);
 //   // void set_context_user(::object * puserContext);
 //#else
 //   inline void set_context(::context* pcontext);
 //   inline void set_context_thread(::thread* pthread);
-//   inline void set_context_app(::apex::application* pappContext);
+//   inline void set_context_app(::application* pappContext);
 //   inline void set_context_session(::apex::session* psessionContext);
 //   //inline void set_context_system(::apex::system* psystemContext);
 //   //inline void set_context_user(::object * puserContext);
@@ -791,16 +791,16 @@ void object::delete_this()
     }
 
    //// former user::server
-   // ::user::document* open_new_document(::apex::application* pappOnBehalfOf);
+   // ::user::document* open_new_document(::application* pappOnBehalfOf);
     void object::on_request(::create* pcreate)
     {
 
 
     }
 
-   // ::user::document* open_document_file(::apex::application* pappOnBehalfOf);
-   // ::user::document* open_document_file(::apex::application* pappOnBehalfOf, const ::payload& varFile, const ::payload & varOptions, ::user::interaction* puiParent = nullptr, ewindowflag eflag = e_window_flag_none, ::id id = ::id());
-   // ::user::document* open_document_file(::apex::application* pappOnBehalfOf, const ::payload& varFile);
+   // ::user::document* open_document_file(::application* pappOnBehalfOf);
+   // ::user::document* open_document_file(::application* pappOnBehalfOf, const ::payload& varFile, const ::payload & varOptions, ::user::interaction* puiParent = nullptr, ewindowflag eflag = e_window_flag_none, ::id id = ::id());
+   // ::user::document* open_document_file(::application* pappOnBehalfOf, const ::payload& varFile);
    // ::user::document* create_subdocument(::user::impact_data* pimpactdata);
 
 

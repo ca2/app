@@ -11,7 +11,7 @@
 
 #ifdef ACID
 
-::apex::application * get_acid_app();
+::application * get_acid_app();
 
 #endif
 

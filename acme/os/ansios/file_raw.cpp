@@ -362,7 +362,7 @@ bool file_set_line_dup(const char * pszPath, index iLine, const char * pszLine)
 
 #else
 
-      ::acme::system("mv -f \"" + string(pathTime) + "\" \"" + string(path) + "\"");
+      ::system("mv -f \"" + string(pathTime) + "\" \"" + string(path) + "\"");
 
 #endif
 

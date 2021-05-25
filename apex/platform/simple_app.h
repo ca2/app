@@ -5,7 +5,7 @@ namespace apex
 {
 
 
-   using simple_app = ::apex::application;
+   using simple_app = ::application;
 
 
 } // namespace apex

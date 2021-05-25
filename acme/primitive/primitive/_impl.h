@@ -2481,7 +2481,7 @@ inline uptr uptr_hash < block >(block b)
 }
 
 
-inline ::apex::application* object::get_application() const 
+inline ::application* object::get_application() const 
 { 
    
    return m_pcontext && m_pcontext->m_papexapplication ? m_pcontext->m_papexapplication : (m_psystem ? m_psystem->m_papplicationMain.get() : nullptr);
@@ -3907,7 +3907,7 @@ inline ::e_status object::defer_branch(::task_pointer& pthread, const ::routine&
 }
 
 
-//inline ::apex::application* object::application()
+//inline ::application* object::application()
 //{ 
 //   
 //   return m_papplication->layer(LAYERED_APEX); 
@@ -3938,10 +3938,10 @@ inline ::task_pointer object::predicate_run(bool bSync, PRED pred)
 }
 
 
-//inline ::acme::system* object::get_system() const
+//inline class ::system* object::get_system() const
 //{
 //
-//   return m_psystem ? dynamic_cast <::apex::system*>((::acme::system*)m_psystem) : nullptr;
+//   return m_psystem ? dynamic_cast <::apex::system*>((class ::system*)m_psystem) : nullptr;
 //
 //}
 
@@ -4127,7 +4127,18 @@ template < typename BRANCHING_OBJECT, typename BRANCHING_METHOD >
    auto proutine = __routine([routine, psignalization]()
                              {
 
-                                routine();
+                                try
+                                {
+
+                                   psignalization->m_estatus = routine();
+
+                                }
+                                catch(...)
+                                {
+
+                                   psignalization->m_estatus = ::error_exception;
+
+                                }
 
                                 psignalization->m_evReady.SetEvent();
 
@@ -4144,6 +4155,6 @@ template < typename BRANCHING_OBJECT, typename BRANCHING_METHOD >
 
    }
 
-   return ::success;
+   return psignalization->m_estatus;
 
 }

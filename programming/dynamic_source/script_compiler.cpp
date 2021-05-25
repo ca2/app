@@ -1341,7 +1341,7 @@ namespace dynamic_source
       string strLog;
 
 
-      __pointer(::apex::application) papplication = get_application();
+      __pointer(::application) papplication = get_application();
 
 
 #ifdef WINDOWS

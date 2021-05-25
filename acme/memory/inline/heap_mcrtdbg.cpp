@@ -229,7 +229,7 @@ void * unaligned_memory_alloc(memsize size)
 
    memdleak_block * pblock;
 
-   pblock = (memdleak_block *) ::acme::system_heap_alloc(nAllocSize);
+   pblock = (memdleak_block *) class ::system_heap_alloc(nAllocSize);
 
    pblock->m_iBlockUse = 0;
 
@@ -551,13 +551,13 @@ void * memory_realloc_dbg(void * pmemory, memsize size, i32 nBlockUse, const cha
    }
 
    //if (pblock->m_pszFileName)
-   // ::acme::system_heap_free((void *)pblock->m_pszFileName);
+   // class ::system_heap_free((void *)pblock->m_pszFileName);
    //if (pblock->m_puiStack)
-   // ::acme::system_heap_free((void *)pblock->m_puiStack);
+   // class ::system_heap_free((void *)pblock->m_puiStack);
 
    memsize * psizeNew = nullptr;
 
-   pblock = (memdleak_block *) ::acme::system_heap_realloc(pblock, size + sizeof(memdleak_block));
+   pblock = (memdleak_block *) class ::system_heap_realloc(pblock, size + sizeof(memdleak_block));
 
    pblock->m_iBlockUse = nBlockUse;
    if (g_ee == nullptr)
@@ -730,11 +730,11 @@ void memory_free_dbg(void * pmemory, i32 iBlockType)
       }
    }
    //if (pblock->m_pszFileName)
-   // ::acme::system_heap_free((void *)pblock->m_pszFileName);
+   // class ::system_heap_free((void *)pblock->m_pszFileName);
    //if (pblock->m_puiStack)
-   // ::acme::system_heap_free((void *)pblock->m_puiStack);
+   // class ::system_heap_free((void *)pblock->m_puiStack);
 
-   return ::acme::system_heap_free(pblock);
+   return class ::system_heap_free(pblock);
 
 
 #else
@@ -970,9 +970,9 @@ memsize memory_size_dbg(void * p, i32 iBlockType)
 void destroy_id_space() // let it go with the ({"eco}system") processs
 {
 
-   delete ::acme::system::s_pidspace;
+   delete class ::system::s_pidspace;
 
-   ::acme::system::s_pidspace = nullptr;
+   class ::system::s_pidspace = nullptr;
 
 }
 */

@@ -923,7 +923,7 @@ namespace crypto
    }
 
 
-   bool crypto::file_set(::payload varFile, const char* pszData, const char* pszSalt, ::apex::application* papp)
+   bool crypto::file_set(::payload varFile, const char* pszData, const char* pszSalt, ::application* papp)
    {
 
       memory memoryEncrypt;
@@ -947,7 +947,7 @@ namespace crypto
    }
 
 
-   ::e_status     crypto::file_get(::payload varFile, string& str, const char* pszSalt, ::apex::application* papp)
+   ::e_status     crypto::file_get(::payload varFile, string& str, const char* pszSalt, ::application* papp)
    {
 
       memory memoryEncrypt;

@@ -10,8 +10,8 @@
 #include "acme/os/ansios/_pthread.h"
 
 
-namespace apex
-{
+//namespace apex
+//{
 
 //   application::application(::object * pobject) :
 //      ::object(pobject)
@@ -489,7 +489,7 @@ namespace apex
    }
 
 
-} // namespace linux
+//} // namespace linux
 
 
 

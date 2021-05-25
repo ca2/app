@@ -56,6 +56,7 @@ inline secs operator /(const ::secs& secs, const NUMBER& number)
 
 inline ::i64 _first_sec();
 inline ::i64 _get_secs();
+inline double _secs() { return _get_nanos() / 1'000'000'000.0; }
 
 
 inline ::secs first_sec() { return _first_sec(); }

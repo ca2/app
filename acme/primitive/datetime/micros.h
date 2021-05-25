@@ -69,6 +69,7 @@ inline micros operator /(const ::micros& micros, const NUMBER& number)
 
 inline ::i64 _first_micro();
 inline ::i64 _get_micros();
+inline double _micros() { return _get_nanos() / 1'000.0; }
 
 
 inline ::micros first_micro() { return _first_micro(); }

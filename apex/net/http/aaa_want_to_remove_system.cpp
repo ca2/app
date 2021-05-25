@@ -587,7 +587,7 @@ namespace http
 
       string strProtocol = pszProtocol;
 
-      __pointer(::apex::application) papp = set["app"].cast < ::application >();
+      __pointer(::application) papp = set["app"].cast < ::application >();
 
       i32 iPort;
 
@@ -1265,9 +1265,9 @@ retry:
 
       string strObject = ::apex::get_system()->url().get_object(pszUrl);
 
-      __pointer(::apex::application) papp = set["app"].cast < ::application >();
+      __pointer(::application) papp = set["app"].cast < ::application >();
 
-      __pointer(::apex::application) pappAgent = papp;
+      __pointer(::application) pappAgent = papp;
 
       i32 iPort;
       

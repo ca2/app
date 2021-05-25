@@ -106,7 +106,9 @@ namespace dynamic_source
    ::e_status script_manager::initialize(::object * pobject)
    {
 
-      auto estatus = ::user::message_window_listener::initialize(pobject);
+      //auto estatus = ::user::message_window_listener::initialize(pobject);
+
+      auto estatus = ::channel::initialize(pobject);
 
       if (!estatus)
       {
@@ -115,14 +117,14 @@ namespace dynamic_source
 
       }
       
-      estatus = __compose_new(m_pmessagequeue);
-      
-      if(!estatus)
-      {
-         
-         return estatus;
-         
-      }
+      //estatus = __compose_new(m_pmessagequeue);
+      //
+      //if(!estatus)
+      //{
+      //   
+      //   return estatus;
+      //   
+      //}
 
       calc_rsa_key();
 

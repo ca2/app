@@ -1,7 +1,6 @@
 ﻿#pragma once
 
 
-
 class CLASS_DECL_CORE simple_tab_view :
    virtual public ::user::show < ::user::tab >
 {

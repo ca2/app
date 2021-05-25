@@ -6,7 +6,31 @@ list(APPEND library_source
     _.cpp
     _.h
     framework.cpp
-    framework.h)
+    framework.h
+   dynamic_source/exit_exception.cpp
+   dynamic_source/exit_exception.h
+   dynamic_source/httpd_socket.cpp
+   dynamic_source/httpd_socket.h
+   dynamic_source/script.cpp
+   dynamic_source/script.h
+   dynamic_source/script_cache.cpp
+   dynamic_source/script_cache.h
+   dynamic_source/script_compiler.cpp
+   dynamic_source/script_compiler.cpp
+   dynamic_source/script_composite.cpp
+   dynamic_source/script_composite.h
+   dynamic_source/script_instance.cpp
+   dynamic_source/script_instance.h
+   dynamic_source/script_interface.cpp
+   dynamic_source/script_interface.h
+   dynamic_source/script_main.cpp
+   dynamic_source/script_main.h
+   dynamic_source/script_manager.cpp
+   dynamic_source/script_manager.h
+   dynamic_source/session.cpp
+   dynamic_source/session.h
+   introjection/compiler.cpp
+   introjection/compiler.h)
 
 
 add_library(programming SHARED ${library_source} _programming.h)

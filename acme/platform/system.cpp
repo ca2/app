@@ -7,7 +7,7 @@
 
 class ::system * g_psystem = nullptr;
 
-extern const char* g_pszTopLevelDomainList[];
+extern const char8_t  * g_pszTopLevelDomainList[];
 
 enum_dialog_result message_box_for_console(const char * psz, const char * pszTitle, const ::e_message_box & emessagebox);
 

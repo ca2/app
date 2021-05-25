@@ -26,7 +26,8 @@ namespace dynamic_source
 
 
    class CLASS_DECL_APP_PROGRAMMING script_manager :
-      virtual public ::user::message_window_listener
+      //virtual public ::user::message_window_listener
+      virtual public ::channel
    {
    public:
 
@@ -93,7 +94,7 @@ namespace dynamic_source
       string_map < bool >                                   m_mapShouldBuild;
       ::mutex                                               m_mutexIncludeExpandMd5;
       string_to_string                                      m_mapIncludeExpandMd5;
-      __composite(::user::message_window)                   m_pmessagequeue;
+      //__composite(::user::message_window)                   m_pmessagequeue;
 
       i32                                                   m_iTunnelPluginCount;
       ::mutex                                               m_mutexOutLink;
@@ -188,7 +189,7 @@ namespace dynamic_source
 
       virtual void clear_include_matches(::file::path path);
       virtual void clear_include_matches();
-      static ::u32 c_cdecl clear_include_matches_FolderWatchThread(LPVOID lpParam); // thread procedure
+      //static ::u32 c_cdecl clear_include_matches_FolderWatchThread(LPVOID lpParam); // thread procedure
 
       virtual ::file::path real_path(const ::file::path & str);
       virtual ::file::path real_path(const ::file::path & strBase,const ::file::path & str);

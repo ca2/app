@@ -4142,9 +4142,13 @@ template < typename BRANCHING_OBJECT, typename BRANCHING_METHOD >
 
                                 psignalization->m_evReady.SetEvent();
 
+                                psignalization->m_pmatterHold.release();
+
                                 //::release((::matter * &)psignalization.m_p);
 
                              });
+
+   psignalization->m_pmatterHold = proutine;
 
    (pbranching->*branching_method)(proutine);
 

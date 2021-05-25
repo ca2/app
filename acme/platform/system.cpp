@@ -12,8 +12,8 @@ extern const char* g_pszTopLevelDomainList[];
 enum_dialog_result message_box_for_console(const char * psz, const char * pszTitle, const ::e_message_box & emessagebox);
 
 
-namespace acme
-{
+//namespace acme
+//{
 
 
    system::system()
@@ -1208,7 +1208,7 @@ namespace acme
    }
 
 
-} // namespace acme
+//} // namespace acme
 
 
 string __get_text(const string& str)

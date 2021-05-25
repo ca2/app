@@ -5582,6 +5582,12 @@ namespace user
          m_puserinteraction->layout().sketch().screen_origin() = m_puserinteraction->layout().window().screen_origin();
          m_puserinteraction->layout().design().screen_origin() = m_puserinteraction->layout().window().screen_origin();
 
+         m_puserinteraction->set_reposition();
+
+         m_puserinteraction->set_need_redraw();
+
+         m_puserinteraction->post_redraw();
+
          //if (m_puserinteraction->layout().is_moving())
          //{
 

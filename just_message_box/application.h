@@ -2,7 +2,7 @@
 
 
 
-namespace app_message_box
+namespace app_just_message_box
 {
 
 
@@ -12,11 +12,9 @@ namespace app_message_box
    public:
 
 
-      __composite(window)                             m_pwindow;
-
-
       application();
       virtual ~application();
+
 
       virtual ::e_status init_instance() override;
       virtual void term_application() override;
@@ -29,10 +27,13 @@ namespace app_message_box
 #endif
 
 
+      virtual void show_message_box();
+
+
    };
 
 
-} // namespace app_message_box
+} // namespace app_just_message_box
 
 
 

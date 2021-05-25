@@ -213,6 +213,8 @@ namespace user
 
 //#include "aura/database/key.h"
 
+#include "apex/user/notify_icon_bridge.h"
+
 #include "notify_icon_listener.h"
 
 #include "control_descriptor.h"

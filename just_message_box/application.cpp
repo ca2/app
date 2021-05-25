@@ -2,7 +2,7 @@
 #include "aura/update.h"
 
 
-namespace app_message_box
+namespace app_just_message_box
 {
 
 
@@ -11,9 +11,9 @@ namespace app_message_box
 
       m_strAppId = "app/app";
 
-      m_strAppName = "app/app";
+      m_strAppName = "app/just_message_box";
 
-      m_strBaseSupportId = "app_message_box";
+      m_strBaseSupportId = "app_just_message_box";
 
       m_bLicense = false;
 
@@ -56,39 +56,7 @@ namespace app_message_box
    void application::on_request(::create * pcreate)
    {
 
-      //return;
-
-      //sleep(0.5_s);
-
-      __compose_new(m_pwindow);
-
-      //rectangle_i32 rectWindow;
-
-      //bool bOk = m_pwindow->_001InitialFramePosition(rectWindow, );
-      m_pwindow->display(e_display_normal);
-
-      m_pwindow->create_main_window();
-
-
-//      if (bOk)
-  //    {
-
-         m_pwindow->start_layout();
-
-
-    //     m_pwindow->place(rectWindow);
-
-         m_pwindow->set_need_layout();
-
-         m_pwindow->set_need_redraw();
-
-         m_pwindow->set_layout_ready();
-
-         m_pwindow->post_redraw();
-
-      //}
-
-
+      show_message_box();
 
    }
 
@@ -114,8 +82,36 @@ namespace app_message_box
 
 #endif
 
-  
-} // namespace app_message_box
+
+   void application::show_message_box()
+   {
+
+      auto pprocess = message_box("Showing a message box as requested.\n\nIs it ok?", nullptr, e_message_box_yes_no_cancel);
+
+      pprocess->then([this](auto future)
+                     {
+
+                        if (future->m_edialogresult == e_dialog_result_yes)
+                        {
+
+                           auto papplication = get_application();
+
+                           papplication->_001TryCloseApplication();
+
+                        }
+                        else
+                        {
+
+                           show_message_box();
+
+                        }
+
+                     });
+
+   }
+
+
+} // namespace app_just_message_box
 
 
 

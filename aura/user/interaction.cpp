@@ -15136,6 +15136,13 @@ restart:
       if (m_bSimpleUIDefaultMouseHandling)
       {
 
+         if(string(type_c_str()).contains_ci("button"))
+         {
+
+            output_debug_string("button");
+
+         }
+
          update_hover(pmouse->m_point, false);
 
          if (m_itemHover)

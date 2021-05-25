@@ -85,11 +85,11 @@ inline ::i64 _first_sec() { return _get_millis() / 1'000; }
 inline ::i64 _get_secs() { return _get_millis() / 1'000; }
 
 
-inline ::i64 _first_millis() { return _get_micros() / 1'000; }
+inline ::i64 _first_milli() { return _get_micros() / 1'000; }
 inline ::i64 _get_millis() { return _get_micros() / 1'000; }
 
 
-inline ::i64 _first_micros() { return _get_nanos() / 1'000; }
+inline ::i64 _first_micro() { return _get_nanos() / 1'000; }
 inline ::i64 _get_micros() { return _get_nanos() / 1'000; }
 
 

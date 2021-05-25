@@ -1,8 +1,8 @@
 //
-// Created by camilo on 25/05/2021.
+// Created by camilo on 25/05/2021 18:55 BRT <3ThomasBS_!!
 //
+#pragma once
 
-#ifndef BASIS__PROGRAMMING_H
-#define BASIS__PROGRAMMING_H
 
-#endif //BASIS__PROGRAMMING_H
+
+

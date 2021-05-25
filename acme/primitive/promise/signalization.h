@@ -14,7 +14,8 @@ namespace promise
       public:
 
 
-      manual_reset_event m_evReady;
+      manual_reset_event         m_evReady;
+      __pointer(::matter)        m_pmatterHold;
 
 
    //synchronization(PRED pred) : m_predicate(pred) {}

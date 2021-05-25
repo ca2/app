@@ -1,75 +1,47 @@
 cmake_minimum_required(VERSION 3.17)
-project(draw2d_cairo CXX)
+project(programming CXX)
 
 
-list(APPEND draw2d_cairo_source
-        _.cpp
-        _.h
-        bitmap.cpp
-        bitmap.h
-        brush.cpp
-        brush.h
-        cairo.cpp
-        draw2d.cpp
-        draw2d.h
-        factory_exchange.cpp
-        factory_exchange.h
-        font.cpp
-        font.h
-        framework.cpp
-        framework.h
-        graphics.cpp
-        graphics.h
-        image.cpp
-        image.h
-        keep.cpp
-        keep.h
-        object.cpp
-        object.h
-        palette.cpp
-        palette.h
-        path.cpp
-        path.h
-        pen.cpp
-        pen.h
-        preview_dc.cpp
-        region.cpp
-        region.h)
+list(APPEND library_source
+    _.cpp
+    _.h
+    framework.cpp
+    framework.h)
 
 
-add_library(draw2d_cairo SHARED ${draw2d_cairo_source} _impl.h)
+add_library(programming SHARED ${library_source} _programming.h)
 
 
-target_precompile_headers(draw2d_cairo PRIVATE framework.h)
+target_precompile_headers(programming PRIVATE framework.h)
 
 
-set_target_properties(draw2d_cairo PROPERTIES LINKER_LANGUAGE CXX)
+set_target_properties(programming PROPERTIES LINKER_LANGUAGE CXX)
 
 
 if (MSVC)
-    target_compile_options(draw2d_cairo PRIVATE "/MD$<$<CONFIG:Debug>:d>")
-    target_link_options(draw2d_cairo PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
-    target_link_options(draw2d_cairo PRIVATE "/IMPLIB:${LIBRARY_OUTPUT_PATH}/draw2d_cairo.lib")
-    target_link_options(draw2d_cairo PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/draw2d_cairo.def")
-    target_link_libraries(draw2d_cairo PRIVATE acme)
+    target_compile_options(programming PRIVATE "/MD$<$<CONFIG:Debug>:d>")
+    target_link_options(programming PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
+    target_link_options(programming PRIVATE "/IMPLIB:${LIBRARY_OUTPUT_PATH}/programming.lib")
+    target_link_options(programming PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/programming.def")
+    target_link_libraries(programming PRIVATE acme)
 elseif(LINUX)
     pkg_check_modules(PKGCONFIG freetype2 pango cairo pangocairo)
-    target_compile_options(draw2d_cairo PRIVATE -fpermissive)
-    target_compile_options(draw2d_cairo PRIVATE ${PKGCONFIG_CFLAGS})
-    target_link_options(draw2d_cairo PRIVATE -Wl,-rpath=\$ORIGIN)
-    target_link_libraries(draw2d_cairo PRIVATE ${PKGCONFIG_LIBRARIES})
-    target_link_libraries(draw2d_cairo PRIVATE acme apex aqua aura)
-    target_link_options(draw2d_cairo PRIVATE -Wl,-z,defs)
+    target_compile_options(programming PRIVATE -fpermissive)
+    target_compile_options(programming PRIVATE ${PKGCONFIG_CFLAGS})
+    target_link_options(programming PRIVATE -Wl,-rpath=\$ORIGIN)
+    target_link_libraries(programming PRIVATE ${PKGCONFIG_LIBRARIES})
+    target_link_libraries(programming PRIVATE acme apex aqua aura)
+    target_link_options(programming PRIVATE -Wl,-z,defs)
     message("PKGCONFIG_LIBRARIES is " ${PKGCONFIG_LIBRARIES})
 endif()
 
 
-target_include_directories(draw2d_cairo PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../..)
-target_include_directories(draw2d_cairo PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/..)
-target_include_directories(draw2d_cairo PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
+target_include_directories(programming PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../..)
+target_include_directories(programming PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/..)
+target_include_directories(programming PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 
 
-target_compile_definitions(draw2d_cairo PRIVATE _DRAW2D_CAIRO_LIBRARY)
+target_compile_definitions(programming PRIVATE _PROGRAMMING_LIBRARY)
 
 
 

@@ -1161,12 +1161,12 @@ namespace dynamic_source
    }
 
 
-   ::u32 ThreadProcRsa(LPVOID lp)
-   {
-      script_manager * pmanager = (script_manager *) lp;
-      pmanager->calc_rsa_key();
-      return 0;
-   }
+//   ::u32 ThreadProcRsa(LPVOID lp)
+//   {
+//      script_manager * pmanager = (script_manager *) lp;
+//      pmanager->calc_rsa_key();
+//      return 0;
+//   }
 
    __pointer(::crypto::rsa) script_manager::get_rsa_key()
    {

@@ -33,7 +33,13 @@ string transform_to_c_arg(const char * psz);
 
 int create_process2(const char * _cmd_line, int * pprocessId);
 
-i32 create_process(const char * pszCommandLine, i32 * pprocessId)
+namespace acme
+{
+
+   namespace macos
+   {
+
+::e_status node::create_process(const char * pszCommandLine, i32 * pprocessId)
 {
 
    string_array stra;
@@ -84,6 +90,12 @@ i32 create_process(const char * pszCommandLine, i32 * pprocessId)
    }
 
 }
+
+
+   } // namespace macos
+
+
+} // namespace acme
 
 
 

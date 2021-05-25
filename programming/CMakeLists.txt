@@ -5,6 +5,7 @@ project(programming CXX)
 list(APPEND library_source
     _.cpp
     _.h
+   _programming.h
     framework.cpp
     framework.h
    dynamic_source/exit_exception.cpp
@@ -33,7 +34,17 @@ list(APPEND library_source
    introjection/compiler.h)
 
 
-add_library(programming SHARED ${library_source} _programming.h)
+
+list(APPEND library_references
+   acme
+   apex
+   aqua
+   aura
+   axis
+   )
+
+
+add_library(programming SHARED ${library_source} )
 
 
 target_precompile_headers(programming PRIVATE framework.h)
@@ -43,20 +54,24 @@ set_target_properties(programming PROPERTIES LINKER_LANGUAGE CXX)
 
 
 if (MSVC)
+
+
     target_compile_options(programming PRIVATE "/MD$<$<CONFIG:Debug>:d>")
     target_link_options(programming PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
     target_link_options(programming PRIVATE "/IMPLIB:${LIBRARY_OUTPUT_PATH}/programming.lib")
     target_link_options(programming PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/programming.def")
-    target_link_libraries(programming PRIVATE acme)
+    target_link_libraries(programming PRIVATE ${library_references})
+
+
 elseif(LINUX)
-    pkg_check_modules(PKGCONFIG freetype2 pango cairo pangocairo)
+
+
     target_compile_options(programming PRIVATE -fpermissive)
-    target_compile_options(programming PRIVATE ${PKGCONFIG_CFLAGS})
     target_link_options(programming PRIVATE -Wl,-rpath=\$ORIGIN)
-    target_link_libraries(programming PRIVATE ${PKGCONFIG_LIBRARIES})
-    target_link_libraries(programming PRIVATE acme apex aqua aura)
+    target_link_libraries(programming PRIVATE dl ${library_references})
     target_link_options(programming PRIVATE -Wl,-z,defs)
-    message("PKGCONFIG_LIBRARIES is " ${PKGCONFIG_LIBRARIES})
+
+
 endif()
 
 

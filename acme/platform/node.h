@@ -308,6 +308,8 @@ namespace acme
       
 #endif
 
+      virtual ::e_status create_process(const char * pszCommandLine, u32 * pprocessID);
+
       virtual bool process_modules(string_array& stra, u32 processID);
 
       virtual bool load_modules_diff(string_array& straOld, string_array& straNew, const char* pszExceptDir);

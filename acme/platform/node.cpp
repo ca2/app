@@ -1009,6 +1009,15 @@ namespace acme
 #endif
 
 
+   ::e_status node::create_process(const char * pszCommandLine, u32 * pprocessID);
+   {
+
+      __throw(error_interface_only);
+
+      return false;
+
+   }
+
    bool node::process_modules(string_array& stra, u32 processID)
    {
 

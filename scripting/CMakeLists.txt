@@ -5,6 +5,10 @@ project(scripting CXX)
 list(APPEND library_source
     _.cpp
     _.h
+   javascript/_.cpp
+   javascript/_.h
+   javascript/functions.cpp
+   javascript/functions.h
     framework.cpp
     framework.h)
 

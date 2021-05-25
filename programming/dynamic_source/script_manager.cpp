@@ -8,7 +8,7 @@ namespace dynamic_source
 {
 
    
-   ::u32 ThreadProcRsa(LPVOID lp);
+   //::u32 ThreadProcRsa(void  lp);
 
 
    //script_instance * get_seed_instance()
@@ -106,7 +106,8 @@ namespace dynamic_source
    ::e_status script_manager::initialize(::object * pobject)
    {
 
-      auto estatus = ::user::message_window_listener::initialize(pobject);
+      //auto estatus = ::user::message_window_listener::initialize(pobject);
+      auto estatus = ::channel::initialize(pobject);
 
       if (!estatus)
       {

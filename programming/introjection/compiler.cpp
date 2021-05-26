@@ -34,7 +34,7 @@ string vs_build(::object * pobject)
 #endif
 
 
-::u32 RunSilent(const char* strFunct, const char* strstrParams);
+//::u32 RunSilent(const char* strFunct, const char* strstrParams);
 
 
 namespace introjection
@@ -481,7 +481,11 @@ namespace introjection
 
       file_put_contents(pacmedir->system() / "env.bat","@call " + strBuildCmd + "\r\n@set");
 
-      RunSilent(pacmedir->system() / "env1.bat","");
+      auto psystem = m_psystem;
+
+      auto pnode = psystem->node();
+
+      pnode->run_silent(pacmedir->system() / "env1.bat","");
 
       string strLog;
 

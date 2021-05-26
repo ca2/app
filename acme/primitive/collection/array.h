@@ -76,9 +76,10 @@ public:
    inline ::index add_new( ::count count);
 
 
+   inline TYPE & add_new_at(::index iIndex, ::count count = 1);
+
+
    inline array & operator << (ARG_TYPE newElement) { add(newElement); return *this; }
-
-
 
 
    // Operations that move elements around

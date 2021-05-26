@@ -3753,13 +3753,13 @@ inline void add_routine(::routine_array& routinea, PRED pred)
 //
 
 
-template < typename TYPE >
-inline __pointer(TYPE) material_object::cast(const ::id& id)
-{
-
-   return payload(id).cast < TYPE>();
-
-}
+//template < typename TYPE >
+//inline __pointer(TYPE) material_object::cast(const ::id& id)
+//{
+//
+//   return payload(id).cast < TYPE>();
+//
+//}
 
 
 //

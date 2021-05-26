@@ -920,35 +920,35 @@ namespace user
    bool split_layout::InsertPaneAt(index iIndex, ::user::interaction * puserinteraction, bool bFixedSize, ::id id)
    {
 
-      ::count iSplitBarCount = get_pane_count();
+      //::count iSplitBarCount = get_pane_count();
 
-      m_splitbara.erase_all();
+      //m_splitbara.erase_all();
 
-      index i;
+      //index i;
 
-      for(i = 0; i < iSplitBarCount; i++)
-      {
+      //for(i = 0; i < iSplitBarCount; i++)
+      //{
 
          auto  pbar =__create_new<split_bar>();
 
          m_splitbara.insert_at(iIndex, pbar);
 
-         ::user::split_bar & splitbar = *m_splitbara.element_at(i);
+         //::user::split_bar & splitbar = *m_splitbara.element_at(iIndex);
 
-         splitbar.m_iIndex = i;
+         pbar->m_iIndex = iIndex;
 
-         if (!splitbar.create_child(this))
+         if (!pbar->create_child(this))
          {
 
             return false;
 
          }
 
-      }
+      //}
 
-      auto& ppane = m_splitpanecompositea.add_new();
+      auto & ppane = m_splitpanecompositea.add_new_at(iIndex);
 
-      auto estatus= __compose_new(ppane);
+      auto estatus = __compose_new(ppane);
 
       if (!estatus)
       {
@@ -957,40 +957,18 @@ namespace user
 
       }
 
-      ASSERT(iIndex >= 0);
+      ppane->m_pplaceholder = place_hold(puserinteraction, ppane->m_rectClient);
 
-      ASSERT(iIndex < get_pane_count());
-
-      split_pane * pcomponent = m_splitpanecompositea.element_at(iIndex);
-
-      if(pcomponent->m_pplaceholder != nullptr)
+      if (ppane->m_pplaceholder == nullptr)
       {
 
-         if (!pcomponent->m_pplaceholder->place_hold(puserinteraction))
-         {
-
-            return false;
-
-         }
-
-      }
-      else
-      {
-
-         pcomponent->m_pplaceholder = place_hold(puserinteraction,pcomponent->m_rectClient);
-
-         if (pcomponent->m_pplaceholder == nullptr)
-         {
-
-            return false;
-
-         }
+         return false;
 
       }
 
-      pcomponent->m_id = id.is_empty() ? (::id) iIndex : id;
+      ppane->m_id = id.is_empty() ? (::id) iIndex : id;
 
-      m_splitpanecompositea[iIndex]->m_bFixedSize = bFixedSize;
+      ppane->m_bFixedSize = bFixedSize;
 
       return true;
 

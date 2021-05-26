@@ -531,6 +531,9 @@ public:
    ::index erase_at(::index nIndex, ::count nCount = 1);
    ::index insert_at(::index nStartIndex, array_base * pNewArray);
 
+
+   ::index make_room_at(::index nIndex, ::count nCount = 1);
+
    
    TYPE pick_at(::index nIndex);
    TYPE pick_first(::index nIndex = 0) { return pick_at(nIndex); }

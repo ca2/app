@@ -320,7 +320,7 @@ namespace mysql
       if (pres) /* a result dataset was returned */
       {
 
-         m_iLastUsedTime = ::acme::profiler::micros();
+         m_iLastUsedTime = _get_micros();
 
          return pres;
 

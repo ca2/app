@@ -5,7 +5,7 @@
 #endif
 
 //void stage();
-::acme::system * acme_system_init();
+class ::system * acme_system_init();
 void acme_system_term();
 
 

@@ -1043,10 +1043,10 @@ namespace acme
    }
 
 
-   //::acme::system * acme_create_system(app_core * pappcore)
+   //class ::system * acme_create_system(app_core * pappcore)
    //{
 
-   //   auto psystem = new ::acme::system();
+   //   auto psystem = new class ::system();
 
    //   psystem->initialize(nullptr);
 

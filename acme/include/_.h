@@ -1507,12 +1507,12 @@ class create;
 class synchronization_object;
 
 
-//CLASS_DECL_ACME i32 acme_run_system(::acme::system* psystem);
+//CLASS_DECL_ACME i32 acme_run_system(class ::system* psystem);
 
 
-//CLASS_DECL_ACME ::e_status acme_run_system_init(::acme::system * psystem);
-//CLASS_DECL_ACME ::e_status acme_run_system_proc(::acme::system * psystem);
-//CLASS_DECL_ACME ::e_status acme_run_system_term(::acme::system * psystem);
+//CLASS_DECL_ACME ::e_status acme_run_system_init(class ::system * psystem);
+//CLASS_DECL_ACME ::e_status acme_run_system_proc(class ::system * psystem);
+//CLASS_DECL_ACME ::e_status acme_run_system_term(class ::system * psystem);
 
 
 template<typename VAR>

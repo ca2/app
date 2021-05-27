@@ -35,7 +35,7 @@ namespace uwp
 
 
       bool                             m_b3D;
-      ::acme::system *                 m_psystem;
+      class ::system *                 m_psystem;
       ::mutex                          m_mutexDc;
       size                             m_size;
       ::user::interaction_impl *       m_pimpl;

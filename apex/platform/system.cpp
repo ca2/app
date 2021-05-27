@@ -1027,7 +1027,7 @@ namespace apex
       create_factory<command_line>();
       create_factory<http::context>();
 
-      auto estatus = ::acme::system::process_init();
+      auto estatus = class ::system::process_init();
 
       if (!estatus)
       {
@@ -4954,7 +4954,7 @@ namespace apex
 //   ::e_status system::defer_initialize_x11()
 //   {
 //
-//      return ::acme::system::defer_initialize_x11();
+//      return class ::system::defer_initialize_x11();
 //
 //   }
 
@@ -5356,7 +5356,7 @@ namespace apex
 //
 //      }
 //
-//      //auto estatus = ::acme::system::main();
+//      //auto estatus = class ::system::main();
 
       auto estatus = ::thread::main();
 
@@ -5898,7 +5898,7 @@ namespace apex
 void int_system_update(void* pSystem, int iUpdate, int iPayload)
 {
 
-   auto psystem = (::acme::system *) pSystem;
+   auto psystem = (class ::system *) pSystem;
 
    psystem->int_system_update(iUpdate, iPayload);
 

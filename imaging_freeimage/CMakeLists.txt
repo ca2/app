@@ -14,7 +14,6 @@ list(APPEND imaging_freeimage_source
         fimemory.h
         framework.cpp
         framework.h
-        #imaging_freeimage.cpp
         loading.cpp
         loading_gif.cpp
         saving.cpp)
@@ -30,45 +29,32 @@ set_target_properties(imaging_freeimage PROPERTIES LINKER_LANGUAGE CXX)
 
 
 if (MSVC)
+
+
     target_compile_options(imaging_freeimage PRIVATE "/MD$<$<CONFIG:Debug>:d>")
     target_link_options(imaging_freeimage PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
     target_link_options(imaging_freeimage PRIVATE "/IMPLIB:${LIBRARY_OUTPUT_PATH}/imaging_freeimage.lib")
     target_link_options(imaging_freeimage PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/imaging_freeimage.def")
     target_link_libraries(imaging_freeimage PRIVATE acme apex aqua aura freeimage)
+
+
 elseif(LINUX)
+
+
     target_compile_options(imaging_freeimage PRIVATE -fpermissive)
     target_link_options(imaging_freeimage PRIVATE -Wl,-rpath=\$ORIGIN)
     target_link_libraries(imaging_freeimage PRIVATE freeimage)
-    target_link_libraries(imaging_freeimage PRIVATE ${PKGCONFIG_LIBRARIES})
     target_link_libraries(imaging_freeimage PRIVATE acme apex aqua aura)
     target_link_options(imaging_freeimage PRIVATE -Wl,-z,defs)
+
+
 endif()
 
 
-target_link_directories(imaging_freeimage PRIVATE ${LIBRARY_OUTPUT_PATH})
-target_link_directories(imaging_freeimage PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/storage-${PLATFORM_NAME}/library/x64/basis)
-target_link_directories(imaging_freeimage PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/storage-${PLATFORM_NAME}/third/library/x64/basis)
-
-
-target_include_directories(imaging_freeimage PRIVATE .)
 target_include_directories(imaging_freeimage PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
-target_include_directories(imaging_freeimage PRIVATE $ENV{HOME}/__config)
-target_include_directories(imaging_freeimage PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../source)
-target_include_directories(imaging_freeimage PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive)
-target_include_directories(imaging_freeimage PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../source)
-target_include_directories(imaging_freeimage PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../source/app)
-target_include_directories(imaging_freeimage PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../source/app/_include)
-target_include_directories(imaging_freeimage PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../source/include)
-target_include_directories(imaging_freeimage PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/platform-${PLATFORM_NAME})
-target_include_directories(imaging_freeimage PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/platform-${PLATFORM_NAME}/_include)
-target_include_directories(imaging_freeimage PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/third-${PLATFORM_NAME}/include)
-target_include_directories(imaging_freeimage PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/third-${PLATFORM_NAME}/third/include)
-target_include_directories(imaging_freeimage PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/third-${PLATFORM_NAME}/third/include/include)
 
 
-target_compile_definitions(imaging_freeimage PRIVATE _imaging_freeimage_LIBRARY)
-target_compile_definitions(imaging_freeimage PRIVATE UNICODE)
-target_compile_definitions(imaging_freeimage PRIVATE _UNICODE)
+target_compile_definitions(imaging_freeimage PRIVATE _IMAGING_FREEIMAGE_LIBRARY)
 
 
 

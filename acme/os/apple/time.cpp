@@ -23,7 +23,7 @@ extern double g_machtime_conversion_factor;
 void ns_Sleep(unsigned int uiMillis);
 
 
-CLASS_DECL_ACME ::i64 get_nanos()
+CLASS_DECL_ACME ::i64 _get_nanos()
 {
    
    return mach_absolute_time() * ::acme::g_machtime_conversion_factor;

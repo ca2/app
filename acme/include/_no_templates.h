@@ -55,6 +55,7 @@ namespace message
 
 
 class application;
+class system;
 
 
 #include "acme/const/_.h"

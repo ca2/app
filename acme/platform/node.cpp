@@ -53,6 +53,26 @@ namespace acme
    }
 
 
+   ::e_status node::call_async(const char * pszPath, const char * pszParam, const char * pszDir, ::e_display edisplay, bool bPrivileged, unsigned int * puiPid)
+   {
+
+      __throw(error_interface_only);
+
+      return error_interface_only;
+
+   }
+
+
+   ::e_status node::call_sync(const char * pszPath, const char * pszParam, const char * pszDir, ::e_display edisplay, const ::duration & durationTimeout, ::property_set & set)
+   {
+
+      __throw(error_interface_only);
+
+      return error_interface_only;
+
+   }
+  
+
    ::e_status node::initialize(::object * pobject)
    {
 
@@ -1182,24 +1202,6 @@ namespace acme
    }
 
 
-   ::e_status node::call_async(const char * pszPath, const char * pszParam, const char * pszDir, ::e_display edisplay, bool bPrivileged, unsigned int * puiPid)
-   {
-
-      __throw(error_interface_only);
-
-      return error_interface_only;
-
-   }
-
-
-   ::e_status node::call_sync(const char * pszPath, const char * pszParam, const char * pszDir, ::e_display edisplay, const ::duration & durationTimeout, ::property_set & set)
-   {
-
-      __throw(error_interface_only);
-
-      return error_interface_only;
-
-   }
 
 
 } // namespace acme

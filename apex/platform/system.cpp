@@ -3968,13 +3968,13 @@ namespace apex
 
             ::file::path pathScript = m_psystem->m_pacmedir->tool() / "papaya/script/xcode_set_active_scheme.scpt";
 
-            class ::system("osascript \""+pathScript + "\" \"" + strScheme + "\"");
+            ::system("osascript \""+pathScript + "\" \"" + strScheme + "\"");
 
          }
          else if(strBase == "archive")
          {
 
-            class ::system("xcodebuild -scheme \"" + strScheme + "\" archive");
+            ::system("xcodebuild -scheme \"" + strScheme + "\" archive");
 
          }
 

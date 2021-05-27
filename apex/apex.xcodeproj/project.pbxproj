@@ -32,6 +32,8 @@
 		9A4F4E3025311DAB00733584 /* rsa.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4F4E2725311DAB00733584 /* rsa.cpp */; };
 		9A5EE40D2650B21D009F25F0 /* libcrypto.1.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A5EE4082650B1F2009F25F0 /* libcrypto.1.1.dylib */; };
 		9A5EE40E2650B221009F25F0 /* libssl.1.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A5EE40A2650B1F2009F25F0 /* libssl.1.1.dylib */; };
+		9A64C0932660273E0074030F /* crypto_initializer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A64C0902660273E0074030F /* crypto_initializer.cpp */; };
+		9A64C0942660273E0074030F /* crypto_initializer.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A64C0922660273E0074030F /* crypto_initializer.h */; };
 		9A68BB3A2511444D008DABD2 /* procedure.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B4092511444A008DABD2 /* procedure.h */; };
 		9A68BB3B2511444D008DABD2 /* console.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B40A2511444A008DABD2 /* console.h */; };
 		9A68BB3C2511444D008DABD2 /* _impl.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B40D2511444A008DABD2 /* _impl.h */; };
@@ -1267,6 +1269,8 @@
 		9A4F4E2725311DAB00733584 /* rsa.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = rsa.cpp; sourceTree = "<group>"; };
 		9A5EE4082650B1F2009F25F0 /* libcrypto.1.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcrypto.1.1.dylib; path = "../../../../../../Shared/.local/Cellar/openssl@1.1/1.1.1k/lib/libcrypto.1.1.dylib"; sourceTree = "<group>"; };
 		9A5EE40A2650B1F2009F25F0 /* libssl.1.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libssl.1.1.dylib; path = "../../../../../../Shared/.local/Cellar/openssl@1.1/1.1.1k/lib/libssl.1.1.dylib"; sourceTree = "<group>"; };
+		9A64C0902660273E0074030F /* crypto_initializer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = crypto_initializer.cpp; sourceTree = "<group>"; };
+		9A64C0922660273E0074030F /* crypto_initializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypto_initializer.h; sourceTree = "<group>"; };
 		9A68A446251143F8008DABD2 /* libapex.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libapex.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A68B4092511444A008DABD2 /* procedure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = procedure.h; sourceTree = "<group>"; };
 		9A68B40A2511444A008DABD2 /* console.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = console.h; sourceTree = "<group>"; };
@@ -2107,6 +2111,8 @@
 				9A4F4E0D25311DA300733584 /* _.h */,
 				9A4F4E0C25311DA300733584 /* _crypto.h */,
 				9A4F4E0F25311DA400733584 /* crypto.cpp */,
+				9A64C0902660273E0074030F /* crypto_initializer.cpp */,
+				9A64C0922660273E0074030F /* crypto_initializer.h */,
 				9A4F4E0E25311DA300733584 /* hasher_algorithm.cpp */,
 				9A4F4E1025311DA400733584 /* hasher_algorithm.h */,
 				9A4F4E1225311DA400733584 /* hasher.cpp */,
@@ -3216,6 +3222,7 @@
 				9A68BEE82511444F008DABD2 /* window_impl.h in Headers */,
 				9A68BC432511444E008DABD2 /* get_socket.h in Headers */,
 				9A68BBBB2511444E008DABD2 /* link_out_socket.h in Headers */,
+				9A64C0942660273E0074030F /* crypto_initializer.h in Headers */,
 				9A68BDF82511444F008DABD2 /* remote_native_fs.h in Headers */,
 				9A78633E264B937F003DF8A0 /* promise1.h in Headers */,
 				9A68BDFA2511444F008DABD2 /* set.h in Headers */,
@@ -4038,6 +4045,7 @@
 				9A68BE3F2511444F008DABD2 /* debug.cpp in Sources */,
 				9A68BC3E2511444E008DABD2 /* cookie.cpp in Sources */,
 				9A68BB7F2511444E008DABD2 /* transfer_socket.cpp in Sources */,
+				9A64C0932660273E0074030F /* crypto_initializer.cpp in Sources */,
 				9A68BCAF2511444E008DABD2 /* app_core.cpp in Sources */,
 				9A68BC362511444E008DABD2 /* request.cpp in Sources */,
 				9A68BF9525114450008DABD2 /* debug.cpp in Sources */,

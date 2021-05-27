@@ -1245,7 +1245,7 @@ CLASS_DECL_ACME void acme_system_term()
 }
 
 
-void int_system_update(void * pSystem, int iUpdate, int iParam)
+void system_int_update(void * pSystem, int iUpdate, int iParam)
 {
    
    auto psystem = (class ::system *) pSystem;

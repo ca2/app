@@ -18,7 +18,7 @@
 #include <ctype.h>
 #endif
 
-::u32 RunSilent(const char* strFunct, const char* strstrParams);
+//::u32 RunSilent(const char* strFunct, const char* strstrParams);
 
 
 
@@ -1380,7 +1380,11 @@ namespace dynamic_source
 
       file_put_contents(pacmedir->system() / "env.bat", "@call " + strBuildCmd + "\r\n@set");
 
-      RunSilent(pacmedir->system() / "env1.bat", "");
+      auto psystem = m_psystem;
+
+      auto pnode = psystem->node();
+
+      pnode->run_silent(pacmedir->system() / "env1.bat", "");
 
       strLog = file_as_string(pacmedir->system() / "env.txt");
 

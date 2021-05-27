@@ -7,7 +7,7 @@ namespace apex
 
    class CLASS_DECL_APEX system:
       virtual public ::app_core,
-      virtual public class ::system,
+      virtual public ::system,
       virtual public ::apex::context
 #ifndef WINDOWS
       ,virtual public ::exception::translator
@@ -661,7 +661,8 @@ namespace apex
       //   return *m_sphttpsystem;
       //}
 
-      class ::crypto::crypto                       & crypto();
+
+      class ::crypto::crypto * crypto();
 
 
       virtual ::file::path local_get_matter_cache_path();

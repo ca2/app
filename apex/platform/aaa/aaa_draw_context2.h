@@ -80,7 +80,7 @@ namespace apex
 
       ::draw2d::graphics_pointer    m_pgraphics;
       ::rect                        m_rectClient;
-      ::rect                        m_rectWindow;
+      ::rect                        m_rectangleWindow;
       bool                          m_bListItemHover;
       bool                          m_bListSubItemHover;
       bool                          m_bListItemSelected;

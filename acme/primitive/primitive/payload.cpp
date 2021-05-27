@@ -5910,8 +5910,8 @@ namespace user
       bool                       m_bZoomed = false;
       bool                       m_bFullScreen = false;
       bool                       m_bIconic = false;
-      rectangle_i32                       m_rectRestored = nullptr;
-      rectangle_i32                       m_rectWindow = nullptr;
+      rectangle_i32                       m_rectangleRestored = nullptr;
+      rectangle_i32                       m_rectangleWindow = nullptr;
       int                        m_iControlBoxRightToLeft = 0;
       edisplay                   m_edisplay = e_display_default;
       edisplay                   m_edisplayPrevious = e_display_none;

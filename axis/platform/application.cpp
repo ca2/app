@@ -1425,7 +1425,7 @@ namespace axis
 
       release_exclusive();
 
-      //::apex::application_message signal(::apex::application_message_term_instance);
+      //::application_message signal(::application_message_term_instance);
 
       //try
       //{
@@ -1710,7 +1710,7 @@ namespace axis
       //try
       //{
 
-      //   ::apex::application_message signal(::apex::application_message_begin);
+      //   ::application_message signal(::application_message_begin);
 
       //   route_message(&signal);
 

@@ -65,16 +65,16 @@ namespace experience
 
       //   auto pointRate = rectWindow.to_point_rate(pointCursor);
 
-      //   auto pointRelative = m_pframewindow->m_windowrect.m_rectRestored.from_point_rate(pointRate);
+      //   auto pointRelative = m_pframewindow->m_windowrectangle.m_rectangleRestored.from_point_rate(pointRate);
 
       //   point_i32 pointMove = __point(pointCursor - __point(pointRelative -
-      //      m_pframewindow->m_windowrect.m_rectRestored.origin()));
+      //      m_pframewindow->m_windowrectangle.m_rectangleRestored.origin()));
 
       //   m_pframewindow->move_to(pointMove);
 
       //   rectWindow.top_left() = pointMove;
 
-      //   m_pframewindow->set_size(m_pframewindow->m_windowrect.m_rectRestored.size());
+      //   m_pframewindow->set_size(m_pframewindow->m_windowrectangle.m_rectangleRestored.size());
 
       //   m_pframewindow->display(::e_display_normal);
 

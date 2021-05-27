@@ -7,13 +7,13 @@
 
 class ::system * g_psystem = nullptr;
 
-extern const char* g_pszTopLevelDomainList[];
+extern const char8_t  * g_pszTopLevelDomainList[];
 
 enum_dialog_result message_box_for_console(const char * psz, const char * pszTitle, const ::e_message_box & emessagebox);
 
 
-namespace acme
-{
+//namespace acme
+//{
 
 
    system::system()
@@ -1073,7 +1073,7 @@ namespace acme
 
 
 
-   //::apex::application* system::get_main_application()
+   //::application* system::get_main_application()
    //{
 
    //   __throw(error_interface_only);
@@ -1165,7 +1165,7 @@ namespace acme
    }
 
 
-   ::apex::application* system::get_main_application()
+   ::application* system::get_main_application()
    {
 
 
@@ -1201,14 +1201,14 @@ namespace acme
    }
 
 
-   void system::int_system_update(int iUpdate, int iPayload)
+   void system::system_int_update(int iUpdate, int iPayload)
    {
 
 
    }
 
 
-} // namespace acme
+//} // namespace acme
 
 
 string __get_text(const string& str)
@@ -1250,6 +1250,6 @@ void int_system_update(void * pSystem, int iUpdate, int iParam)
    
    auto psystem = (class ::system *) pSystem;
    
-   psystem->int_system_update(iUpdate, iParam);
+   psystem->system_int_update(iUpdate, iParam);
    
 }

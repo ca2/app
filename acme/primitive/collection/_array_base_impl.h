@@ -182,6 +182,25 @@ template < class TYPE, class ARG_TYPE, class ALLOCATOR >
 ::index array_base < TYPE, ARG_TYPE, ALLOCATOR >::insert_at(::index nIndex,const TYPE & newElement,::count nCount /*=1*/)
 {
 
+   ::index nIndexParam = make_room_at(nIndex, nCount);
+
+   while(nCount--)
+   {
+
+      ALLOCATOR::copy(m_pData + nIndex, &newElement);
+
+      nIndex++;
+
+   }
+
+   return nIndexParam;
+
+}
+
+template < class TYPE, class ARG_TYPE, class ALLOCATOR >
+::index array_base < TYPE, ARG_TYPE, ALLOCATOR >::make_room_at(::index nIndex, ::count nCount /*=1*/)
+{
+
    ASSERT(nIndex >= 0);    // will expand to meet need
 
    if(nCount <= 0)
@@ -217,20 +236,10 @@ template < class TYPE, class ARG_TYPE, class ALLOCATOR >
    // insert new value in the gap
    ASSERT(nIndex + nCount <= m_nSize);
 
-   ::index nIndexParam = nIndex;
-
-   while(nCount--)
-   {
-
-      ALLOCATOR::copy(m_pData + nIndex, &newElement);
-
-      nIndex++;
-
-   }
-
-   return nIndexParam;
+   return nIndex;
 
 }
+
 
 
 template < class TYPE, class ARG_TYPE, class ALLOCATOR >

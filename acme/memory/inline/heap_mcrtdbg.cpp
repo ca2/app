@@ -229,7 +229,7 @@ void * unaligned_memory_alloc(memsize size)
 
    memdleak_block * pblock;
 
-   pblock = (memdleak_block *) ::system_heap_alloc(nAllocSize);
+   pblock = (memdleak_block *) class ::system_heap_alloc(nAllocSize);
 
    pblock->m_iBlockUse = 0;
 
@@ -551,13 +551,13 @@ void * memory_realloc_dbg(void * pmemory, memsize size, i32 nBlockUse, const cha
    }
 
    //if (pblock->m_pszFileName)
-   // ::system_heap_free((void *)pblock->m_pszFileName);
+   // class ::system_heap_free((void *)pblock->m_pszFileName);
    //if (pblock->m_puiStack)
-   // ::system_heap_free((void *)pblock->m_puiStack);
+   // class ::system_heap_free((void *)pblock->m_puiStack);
 
    memsize * psizeNew = nullptr;
 
-   pblock = (memdleak_block *) ::system_heap_realloc(pblock, size + sizeof(memdleak_block));
+   pblock = (memdleak_block *) class ::system_heap_realloc(pblock, size + sizeof(memdleak_block));
 
    pblock->m_iBlockUse = nBlockUse;
    if (g_ee == nullptr)
@@ -730,11 +730,11 @@ void memory_free_dbg(void * pmemory, i32 iBlockType)
       }
    }
    //if (pblock->m_pszFileName)
-   // ::system_heap_free((void *)pblock->m_pszFileName);
+   // class ::system_heap_free((void *)pblock->m_pszFileName);
    //if (pblock->m_puiStack)
-   // ::system_heap_free((void *)pblock->m_puiStack);
+   // class ::system_heap_free((void *)pblock->m_puiStack);
 
-   return ::system_heap_free(pblock);
+   return class ::system_heap_free(pblock);
 
 
 #else

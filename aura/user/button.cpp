@@ -702,6 +702,13 @@ namespace user
 
       _001OnButtonDrawBackground(pgraphics);
 
+//      if(m_itemHover)
+//      {
+//
+//         pgraphics->fill_rectangle(::rectangle_i32(0, 0, 20, 20), argb(255, 255, 0, 0));
+//
+//      }
+
       ::rectangle_i32 rectPadding(4, 4, 4,4);
 
       rectClient.deflate(rectPadding);

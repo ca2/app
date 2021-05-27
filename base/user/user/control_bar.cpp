@@ -487,8 +487,10 @@ namespace user
       // special behavior when floating
       ActivateTopParent();
 
-      pmouseactivate->m_lresult = MA_NOACTIVATE;   // activation already done
+      pmouseactivate->m_lresult = e_mouse_activate_no_activate;   // activation already done
+
       pmessage->m_bRet = true;
+
       return;
    }
 

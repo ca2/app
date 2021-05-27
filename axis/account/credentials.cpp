@@ -435,7 +435,7 @@ namespace account
 
       __pointer(::axis::system) psystem = get_system();
 
-      m_strModHash = psystem->crypto().md5(straHash.implode(";"));
+      m_strModHash = psystem->crypto()->md5(straHash.implode(";"));
 
       return m_strModHash;
 

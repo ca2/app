@@ -410,7 +410,7 @@
 //   //   if (m_pdrawcontext != nullptr)
 //   //   {
 //
-//   //      *prectangle = m_pdrawcontext->m_rectWindow;
+//   //      *prectangle = m_pdrawcontext->m_rectangleWindow;
 //
 //
 //   //      return true;

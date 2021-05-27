@@ -303,7 +303,7 @@ end:
 }
 
 
-bool argcargv_find_parameter(int argc, char * argv[], const char * pszParameter)
+int argcargv_find_parameter(int argc, char * argv[], const char * pszParameter)
 {
 
    for(int i = 1; i < argc; i++)

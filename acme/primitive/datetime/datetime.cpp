@@ -593,8 +593,7 @@ namespace datetime
 ::i64 g_iNanosFirst;
 
 
-//extern "C"
-CLASS_DECL_ACME ::i64 first_nano()
+CLASS_DECL_ACME ::i64 _first_nano()
 {
 
    return g_iNanosFirst;
@@ -602,7 +601,6 @@ CLASS_DECL_ACME ::i64 first_nano()
 }
 
 
-//extern "C"
 CLASS_DECL_ACME ::u32 get_fast_tick_count()
 {
 

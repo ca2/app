@@ -4,6 +4,7 @@
 #ifdef LINUX
 
 #undef _WINDOWS_
+// apt install libfreeimage-dev
 // dnf install freeimage-devel
 // zypper install freeimage-devel
 // pacman -S freeimage

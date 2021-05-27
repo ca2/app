@@ -529,7 +529,7 @@ bool prodevian::prodevian_iteration()
 
    }
 
-   i64 i1 = get_nanos();
+   i64 i1 = _get_nanos();
 
    bRedraw = m_message.wParam & 1;
 
@@ -930,7 +930,7 @@ bool prodevian::prodevian_iteration()
 
          bUpdateWindow = false;
 
-         i64 i1 = get_nanos();
+         i64 i1 = _get_nanos();
 
       //   bool bTransparentDraw;
 
@@ -1102,7 +1102,7 @@ bool prodevian::prodevian_iteration()
 
             m_millisOutOfDrawing = m_millisBeforeDrawing - m_millisAfterDrawing;
 
-            i64 i2 = get_nanos();
+            i64 i2 = _get_nanos();
 
             m_pimpl->_001UpdateBuffer();
 

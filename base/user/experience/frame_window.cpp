@@ -152,7 +152,7 @@ namespace experience
 
                      pkey->m_bRet = true;
 
-                     defer_restore(m_windowrect.m_rectRestored);
+                     defer_restore(m_windowrectangle.m_rectangleRestored);
 
                      display(e_display_restore);
 
@@ -181,7 +181,7 @@ namespace experience
 
                      pkey->m_bRet = true;
 
-                     defer_restore(m_windowrect.m_rectRestored);
+                     defer_restore(m_windowrectangle.m_rectangleRestored);
 
                      display(e_display_restore);
 
@@ -976,10 +976,10 @@ namespace experience
    void frame_window::display_previous_restore()
    {
 
-      if(::is_screen_visible(m_windowrect.m_edisplayPrevious))
+      if(::is_screen_visible(m_windowrectangle.m_edisplayPrevious))
       {
 
-         display(m_windowrect.m_edisplayPrevious);
+         display(m_windowrectangle.m_edisplayPrevious);
 
       }
       else
@@ -1758,7 +1758,7 @@ namespace experience
          if (layout().sketch().display() != e_display_iconic)
          {
 
-            m_windowrect.m_edisplayPrevious = layout().sketch().display();
+            m_windowrectangle.m_edisplayPrevious = layout().sketch().display();
 
          }
 
@@ -2293,13 +2293,13 @@ namespace experience
       if (!::is_equivalent(edisplay, e_display_normal))
       {
 
-         defer_restore(m_windowrect.m_rectRestored);
+         defer_restore(m_windowrectangle.m_rectangleRestored);
 
       }
       else if(rectRequest.size() == m_sizeRestoreBroad)
       {
 
-         if (m_windowrect.m_rectRestored.size() == m_sizeRestoreBroad)
+         if (m_windowrectangle.m_rectangleRestored.size() == m_sizeRestoreBroad)
          {
 
             display(e_display_compact);
@@ -2308,7 +2308,7 @@ namespace experience
          else
          {
 
-            defer_restore(m_windowrect.m_rectRestored);
+            defer_restore(m_windowrectangle.m_rectangleRestored);
 
          }
 

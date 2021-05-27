@@ -522,14 +522,24 @@ inline TYPE & array < TYPE, ARG_TYPE, ALLOCATOR > ::add_new()
 
 }
 
+//template < class TYPE, class ARG_TYPE, class ALLOCATOR >
+//inline TYPE & array < TYPE, ARG_TYPE, ALLOCATOR > ::add_new_at(int iIndex)
+//{
+//
+//   this->make_room_at(iIndex);
+//
+//   return this->element_at(iIndex);
+//
+//}
+
 
 template < class TYPE, class ARG_TYPE, class ALLOCATOR >
-inline ::index array < TYPE, ARG_TYPE, ALLOCATOR > ::add_new(::count count)
+inline TYPE & array < TYPE, ARG_TYPE, ALLOCATOR > ::add_new_at(::index iIndex, ::count nCount)
 {
 
-   this->set_size(__count(this->m_nSize) + count);
+   this->make_room_at(iIndex, nCount);
 
-   return this->get_upper_bound();
+   return this->element_at(iIndex);
 
 }
 

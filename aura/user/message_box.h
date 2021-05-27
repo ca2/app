@@ -116,7 +116,9 @@ namespace user
 
       virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
 
-      virtual void on_layout(::draw2d::graphics_pointer & pgraphics) override;
+      //virtual void on_layout(::draw2d::graphics_pointer & pgraphics) override;
+
+      virtual void do_layout();
 
       //void on_colors(Display * pdisplay);
 

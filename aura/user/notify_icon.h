@@ -37,18 +37,18 @@ namespace user
       };
 
 
-      __pointer(user_notify_icon_bridge)   m_pbridge;
-      ::u32                                  m_uiId;
-      bool                                   m_bCreated;
-      string                                 m_strId;
+      //__pointer(user_notify_icon_bridge)           m_pbridge;
+      ::u32                                        m_uiId;
+      bool                                         m_bCreated;
+      string                                       m_strId;
 //#ifdef WINDOWS_DESKTOP
 //      NOTIFYICONDATA m_nid;
 //#elif defined(LINUX)
 //      ::linux::appindicator *       m_pindicator;
 //#endif
-      notify_icon_listener *                 m_plistener;
-      __pointer_array(::user::interaction)   m_wndptraHidden;
-      __pointer(::windowing::icon)           m_piconCurrent;
+      __pointer(notify_icon_listener)              m_plistener;
+      __pointer_array(::user::interaction)      m_wndptraHidden;
+      __pointer(::windowing::icon)                 m_piconCurrent;
 
 
       notify_icon();

@@ -279,7 +279,7 @@ namespace experience
          if (edisplayOld != e_display_normal)
          {
 
-            m_pframewindow->set_size(m_pframewindow->m_windowrect.m_rectRestored.size());
+            m_pframewindow->set_size(m_pframewindow->m_windowrectangle.m_rectangleRestored.size());
 
             bChange = true;
 
@@ -287,7 +287,7 @@ namespace experience
          else
          {
 
-            ::rectangle_i32 rectNew(pointMove, m_pframewindow->m_windowrect.m_rectRestored.size());
+            ::rectangle_i32 rectNew(pointMove, m_pframewindow->m_windowrectangle.m_rectangleRestored.size());
 
             rectNew._001Constraint(rectWork);
 

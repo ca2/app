@@ -144,7 +144,7 @@ namespace apex
    {
 
       create_factory < ::apex::session >();
-      create_factory < ::apex::application >();
+      create_factory < ::application >();
       //create_factory < ::imaging >();
 
       m_bSimpleMessageLoop = false;
@@ -414,7 +414,7 @@ namespace apex
 
 
 
-      //estatus = ::apex::application::initialize(pobject);
+      //estatus = ::application::initialize(pobject);
 
      //if (!estatus)
      //{
@@ -438,7 +438,7 @@ namespace apex
 
 
 
-            //estatus = ::apex::application::initialize(pobject);
+            //estatus = ::application::initialize(pobject);
 
             //if (!estatus)
             //{
@@ -469,7 +469,7 @@ namespace apex
       //      m_window                                  = nullptr;
       //#endif
 
-            //::apex::application * papp = ::get_application(pobject);
+            //::application * papp = ::get_application(pobject);
 
             //if(papp == nullptr)
             //{
@@ -1027,7 +1027,7 @@ namespace apex
       create_factory<command_line>();
       create_factory<http::context>();
 
-      auto estatus = class ::system::process_init();
+      auto estatus = ::system::process_init();
 
       if (!estatus)
       {
@@ -1304,7 +1304,7 @@ namespace apex
       //create_factory < ::mutex >();
       //create_factory < event >();
 
-      //if (!::apex::application::process_init())
+      //if (!::application::process_init())
       //{
 
       //   return false;
@@ -1796,7 +1796,7 @@ namespace apex
       psession->m_ptextcontext->defer_ok(m_ptexttable);
 
 
-      //if(!::apex::application::init2())
+      //if(!::application::init2())
       //   return false;
 
       //auto estatus = ::apex::system::init2();
@@ -2157,7 +2157,7 @@ namespace apex
    }
 
 
-   ::apex::application* system::get_main_application()
+   ::application* system::get_main_application()
    {
 
       return m_papplicationMain;
@@ -2540,7 +2540,7 @@ namespace apex
    void system::process_term()
    {
 
-      //::apex::application::process_term();
+      //::application::process_term();
 
 
 
@@ -2878,7 +2878,7 @@ namespace apex
 
 //      for(i32 i = 0; i < appptra().get_size(); i++)
       //    {
-      //     ::apex::application * papp = appptra()(i);
+      //     ::application * papp = appptra()(i);
       //   papp->load_string_table();
       //}
 
@@ -2895,7 +2895,7 @@ namespace apex
 
 //      for(i32 i = 0; i < appptra().get_size(); i++)
 //     {
-      //       ::apex::application * papp = appptra()(i);
+      //       ::application * papp = appptra()(i);
       //       papp->set_locale(pszLocale,context);
       //    }
 
@@ -2912,7 +2912,7 @@ namespace apex
 
 //      for(i32 i = 0; i < appptra().get_size(); i++)
       //    {
-      //       ::apex::application * papp = appptra()(i);
+      //       ::application * papp = appptra()(i);
       //       papp->set_schema(pszStyle,context);
       //    }
 
@@ -3569,10 +3569,10 @@ namespace apex
 
 #endif
 
-   class ::crypto::crypto & system::crypto()
+   ::crypto::crypto * system::crypto()
    {
 
-      return *m_pcrypto;
+      return m_pcrypto;
 
    }
 
@@ -3631,7 +3631,7 @@ namespace apex
 
       auto appptra = psession->get_applicationa();
 
-      ::apex::application * papp = nullptr;
+      ::application * papp = nullptr;
 
       appptra.predicate_erase([](auto & papp)
       {
@@ -3737,7 +3737,7 @@ namespace apex
 
       //auto applicationa = psession->get_applicationa();
 
-      //::apex::application * papp = nullptr;
+      //::application * papp = nullptr;
 
       //if(applicationa.get_size() > 0)
       //{
@@ -3968,13 +3968,13 @@ namespace apex
 
             ::file::path pathScript = m_psystem->m_pacmedir->tool() / "papaya/script/xcode_set_active_scheme.scpt";
 
-            ::system("osascript \""+pathScript + "\" \"" + strScheme + "\"");
+            class ::system("osascript \""+pathScript + "\" \"" + strScheme + "\"");
 
          }
          else if(strBase == "archive")
          {
 
-            ::system("xcodebuild -scheme \"" + strScheme + "\" archive");
+            class ::system("xcodebuild -scheme \"" + strScheme + "\" archive");
 
          }
 
@@ -4021,7 +4021,7 @@ namespace apex
    }
 
 
-   bool system::set_user_language(::apex::application * papp, index iSel)
+   bool system::set_user_language(::application * papp, index iSel)
    {
 
       __pointer(::apex::system) psystem = get_system();
@@ -4054,7 +4054,7 @@ namespace apex
    }
 
 
-   bool system::set_user_language(::apex::application * papp, string strLang)
+   bool system::set_user_language(::application * papp, string strLang)
    {
 
       __pointer(::apex::system) psystem = get_system();
@@ -4244,7 +4244,7 @@ namespace apex
 
          //#elif defined(LINUX)
          //
-         //      ::system("xdg-open \"" + strUrl + "\"");
+         //      class ::system("xdg-open \"" + strUrl + "\"");
          //
          //      return true;
          //
@@ -4291,7 +4291,7 @@ namespace apex
 
 #elif defined(MACOS)
 
-         ::system("open -a /Applications/Safari.app \"" + strUrl + "\"");
+         class ::system("open -a /Applications/Safari.app \"" + strUrl + "\"");
 
 #elif defined(APPLE_IOS)
 
@@ -4378,7 +4378,7 @@ namespace apex
          else
          {
 
-            ::system("xdg-open " + strUrl);
+            class ::system("xdg-open " + strUrl);
 
          }
 
@@ -4813,7 +4813,11 @@ namespace apex
    string system::crypto_md5_text(const string & str)
    {
 
-      return crypto().md5(str);
+      auto psystem = m_psystem->m_papexsystem;
+
+      auto pcrypto = psystem->crypto();
+
+      return pcrypto->md5(str);
 
    }
 
@@ -5204,7 +5208,7 @@ namespace apex
 
    //   //   xxdebug_box("system::on_install","system::on_install",0);
 
-   //   //   if (!::apex::application::on_install())
+   //   //   if (!::application::on_install())
    //   //   {
 
    //   //      return false;
@@ -5388,7 +5392,7 @@ namespace apex
    }
 
 
-   void system::int_system_update(int iUpdate, int iPayload)
+   void system::system_int_update(int iUpdate, int iPayload)
    {
 
       process_subject(iUpdate, iPayload);
@@ -5482,7 +5486,7 @@ namespace apex
       }
 
 
-      //acme::system::on_subject(psubject);
+      ::subject::manager::on_subject(psubject);
 
    }
 
@@ -5719,23 +5723,25 @@ string get_bundle_app_library_name();
       if (!plibrary)
       {
 
-         {
+         //{
 
-            auto pfuture = __sync_future();
+         //   //auto pfuture = __sync_future();
 
-            //message_box(strMessage, "Could not open required library. Want to give an yes/no answer insted of pression cancel?", e_message_box_icon_exclamation | e_message_box_yes_no_cancel, pfuture);
+         //   //message_box(strMessage, "Could not open required library. Want to give an yes/no answer insted of pression cancel?", e_message_box_icon_exclamation | e_message_box_yes_no_cancel, pfuture);
 
-            pfuture->wait(10_s);
+         //   //pfuture->wait(10_s);
 
-            int iDialogResult = pfuture->m_var;
+         //   int iDialogResult = pfuture->m_var;
 
-            ::output_debug_string("result " + __str(iDialogResult));
+         //   ::output_debug_string("result " + __str(iDialogResult));
 
-         }
+         //}
 
-         __throw(error_failed, strMessage + "\n\nCould not open required library.");
+         //__throw(error_failed, strMessage + "\n\nCould not open required library.");
 
-         return nullptr;
+         ::output_debug_string("The application library for appid \"" + strAppId + "\" wasn't loaded.");
+
+         //return nullptr;
 
       }
 
@@ -5900,6 +5906,6 @@ void int_system_update(void* pSystem, int iUpdate, int iPayload)
 
    auto psystem = (class ::system *) pSystem;
 
-   psystem->int_system_update(iUpdate, iPayload);
+   psystem->system_int_update(iUpdate, iPayload);
 
 }

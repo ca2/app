@@ -368,7 +368,7 @@ namespace account
 
             auto psystem = m_psystem->m_paurasystem;
 
-            strText = psystem->crypto().nessie(strText);
+            strText = psystem->crypto()->nessie(strText);
 
             m_peditPassword->_001SetText(strText,::e_source_database);
 

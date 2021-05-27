@@ -1328,6 +1328,9 @@
     <ClInclude Include="user\menu_shared_command.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
+    <ClInclude Include="crypto\crypto_initializer.h">
+      <Filter>Header Files\crypto</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="filesystem\file\set.cpp">
@@ -1920,6 +1923,9 @@
     </ClCompile>
     <ClCompile Include="user\menu_shared_commnand.cpp">
       <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="crypto\crypto_initializer.cpp">
+      <Filter>Source Files\crypto</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

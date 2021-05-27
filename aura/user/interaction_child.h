@@ -12,8 +12,8 @@ namespace user
 
 
       // interaction_impl rectangle_i32 relative to the parent
-      // this rectangle_i32 comes before in importance compared to m_rectWindow
-      // m_rectWindow should be sychronized and recalculated based
+      // this rectangle_i32 comes before in importance compared to m_rectangleWindow
+      // m_rectangleWindow should be sychronized and recalculated based
       // on m_rectParentClient values of the interaction_impl and its ascendants.
       size_i32                                m_size;
       bool                                m_bCreate;

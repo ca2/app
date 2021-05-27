@@ -1828,7 +1828,7 @@ if (LINUX)
 endif ()
 
 
-add_library(acme SHARED ${acme_source})
+add_library(acme SHARED ${acme_source} ../scripting/_scripting.h)
 
 
 target_precompile_headers(acme PRIVATE framework.h)

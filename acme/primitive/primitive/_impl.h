@@ -3753,13 +3753,13 @@ inline void add_routine(::routine_array& routinea, PRED pred)
 //
 
 
-template < typename TYPE >
-inline __pointer(TYPE) material_object::cast(const ::id& id)
-{
-
-   return payload(id).cast < TYPE>();
-
-}
+//template < typename TYPE >
+//inline __pointer(TYPE) material_object::cast(const ::id& id)
+//{
+//
+//   return payload(id).cast < TYPE>();
+//
+//}
 
 
 //
@@ -4127,13 +4127,28 @@ template < typename BRANCHING_OBJECT, typename BRANCHING_METHOD >
    auto proutine = __routine([routine, psignalization]()
                              {
 
-                                routine();
+                                try
+                                {
+
+                                   psignalization->m_estatus = routine();
+
+                                }
+                                catch(...)
+                                {
+
+                                   psignalization->m_estatus = ::error_exception;
+
+                                }
 
                                 psignalization->m_evReady.SetEvent();
+
+                                psignalization->m_pmatterHold.release();
 
                                 //::release((::matter * &)psignalization.m_p);
 
                              });
+
+   psignalization->m_pmatterHold = proutine;
 
    (pbranching->*branching_method)(proutine);
 
@@ -4144,6 +4159,6 @@ template < typename BRANCHING_OBJECT, typename BRANCHING_METHOD >
 
    }
 
-   return ::success;
+   return psignalization->m_estatus;
 
 }

@@ -18,7 +18,9 @@ namespace datetime
 } // namespace datetime
 
 
-CLASS_DECL_ACME ::i64 get_nanos();
+CLASS_DECL_ACME ::i64 _first_nano();
+CLASS_DECL_ACME ::i64 _get_nanos();
+
 
 #include "secs.h"
 #include "millis.h"

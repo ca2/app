@@ -24,12 +24,10 @@ CLASS_DECL_ACME void __seed_srand()
 CLASS_DECL_ACME void sleep(const duration & duration)
 {
 
-   auto iSeconds = duration.secs().m_i;
-
-   if(iSeconds >= 20)
+   if(duration.secs() >= 20)
    {
 
-      ::sleep((unsigned int) iSeconds);
+      sleep(duration.secs());
 
    }
    else if(duration.millis().m_i >= 20)

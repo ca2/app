@@ -34,7 +34,7 @@ string vs_build(::object * pobject)
 #endif
 
 
-::u32 RunSilent(const char* strFunct, const char* strstrParams);
+//::u32 RunSilent(const char* strFunct, const char* strstrParams);
 
 
 namespace introjection
@@ -481,7 +481,11 @@ namespace introjection
 
       file_put_contents(pacmedir->system() / "env.bat","@call " + strBuildCmd + "\r\n@set");
 
-      RunSilent(pacmedir->system() / "env1.bat","");
+      auto psystem = m_psystem;
+
+      auto pnode = psystem->node();
+
+      pnode->run_silent(pacmedir->system() / "env1.bat","");
 
       string strLog;
 
@@ -1481,130 +1485,5 @@ auto tickStart = ::millis::now();
 
 }
 
-
-::u32 RunSilent(const char* strFunct, const char* strstrParams)
-{
-
-#if defined(_UWP)
-
-   throw interface_only_exception();
-
-#elif defined(WINDOWS_DESKTOP)
-
-   STARTUPINFO StartupInfo;
-
-   PROCESS_INFORMATION ProcessInfo;
-
-   char Args[4096];
-
-   char *pEnvCMD = nullptr;
-
-   const char *pDefaultCMD = "CMD.EXE";
-
-   ULONG rc;
-
-   __memset(&StartupInfo, 0, sizeof(StartupInfo));
-
-   StartupInfo.cb = sizeof(STARTUPINFO);
-
-   StartupInfo.dwFlags = STARTF_USESHOWWINDOW;
-
-   StartupInfo.wShowWindow = SW_HIDE;
-
-   Args[0] = 0;
-
-   pEnvCMD = getenv("COMSPEC");
-
-   if (pEnvCMD)
-   {
-
-      strcpy(Args, pEnvCMD);
-
-   }
-   else
-   {
-
-      strcpy(Args, pDefaultCMD);
-
-   }
-
-   // "/c" option - Do the command then terminate the command window
-   ansi_concatenate(Args, " /c ");
-   //the application you would like to run from the command window
-   ansi_concatenate(Args, strFunct);
-   ansi_concatenate(Args, " ");
-   //the parameters passed to the application being run from the command window.
-   ansi_concatenate(Args, strstrParams);
-
-   if (!CreateProcessW(nullptr, wstring(Args), nullptr, nullptr, false,
-                      CREATE_NEW_CONSOLE,
-                      nullptr,
-                      nullptr,
-                      &StartupInfo,
-                      &ProcessInfo))
-   {
-
-      return ::GetLastError();
-
-   }
-
-   WaitForSingleObject(ProcessInfo.hProcess, U32_INFINITE_TIMEOUT);
-
-   if (!GetExitCodeProcess(ProcessInfo.hProcess, &rc))
-   {
-
-      rc = 0;
-
-   }
-
-   CloseHandle(ProcessInfo.hThread);
-
-   CloseHandle(ProcessInfo.hProcess);
-
-   return rc;
-
-#else
-
-   string strCmdLine;
-
-   strCmdLine = strFunct;
-
-   if (ansi_length(strstrParams) > 0)
-   {
-
-      strCmdLine += " ";
-
-      strCmdLine += strstrParams;
-
-   }
-
-   i32 processId;
-
-   if (!create_process(strCmdLine, &processId))
-   {
-
-      return -1;
-
-   }
-
-   while (true)
-   {
-
-      if (kill(processId, 0) == -1 && errno == ESRCH) // No process can be found corresponding to processId
-      {
-
-         break;
-
-      }
-
-      sleep(millis(23));
-
-   }
-
-   return 0;
-
-#endif
-
-}
 
 

@@ -93,44 +93,44 @@ CLASS_DECL_APEX i32 ca2_main();
 //}
 
 
-namespace apex
+//namespace apex
+//{
+
+
+bool application::os_on_start_application()
 {
 
-
-   bool application::os_on_start_application()
+   if (!::is_debugger_attached())
    {
 
-      if (!::is_debugger_attached())
-      {
+      ::file::path pathObj;
 
-         ::file::path pathObj;
+      ::file::path pathLnk;
 
-         ::file::path pathLnk;
+      pathObj = m_pcontext->m_papexcontext->file().module();
 
-         pathObj = m_pcontext->m_papexcontext->file().module();
+      string strLinkTitle;
 
-         string strLinkTitle;
+      strLinkTitle = m_strAppName;
 
-         strLinkTitle = m_strAppName;
+      strLinkTitle.replace("/", "_");
+      strLinkTitle.replace("\\", "_");
+      strLinkTitle.replace("-", "_");
 
-         strLinkTitle.replace("/", "_");
-         strLinkTitle.replace("\\", "_");
-         strLinkTitle.replace("-", "_");
+      pathLnk = m_psystem->m_pacmedir->localconfig() / "desk/monitor-0/2desk" / strLinkTitle + ".lnk";
 
-         pathLnk = m_psystem->m_pacmedir->localconfig() / "desk/monitor-0/2desk" / strLinkTitle + ".lnk";
+      ::dir::mk(pathLnk.folder());
 
-         ::dir::mk(pathLnk.folder());
-
-         m_psystem->m_papexsystem->m_papexnode->shell_create_link(pathObj, pathLnk, "app=" + m_strAppName);
-
-      }
-
-      return true;
+      m_psystem->m_papexsystem->m_papexnode->shell_create_link(pathObj, pathLnk, "app=" + m_strAppName);
 
    }
 
+   return true;
 
-} // namespace apex
+}
+
+
+//} // namespace apex
 
 
 

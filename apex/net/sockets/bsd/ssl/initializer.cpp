@@ -54,8 +54,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include <openssl/conf.h>
 
 
-
 #if defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
+
 
 #include "acme/os/ansios/_pthread.h"
 
@@ -65,26 +65,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 extern void *OPENSSL_UplinkTable[];
 
-extern "C" void SSLInitializer_SSL_locking_function(i32 mode, i32 n, const char * file, i32 line);
-extern "C" unsigned long SSLInitializer_SSL_id_function();
-extern "C"
-#if defined(_UWP) && (!defined(RASPBIAN))
-void
-#else
-int
-#endif
-SSLInitializer_rand_seed(const void * buf, i32 num);
-extern "C" i32 SSLInitializer_rand_bytes(uchar * buf, i32 num);
-extern "C" void SSLInitializer_rand_cleanup();
-extern "C"
-#if defined(_UWP) && (!defined(RASPBIAN))
-void
-#else
-int
-#endif
-SSLInitializer_rand_add(const void * buf, int num, double entropy);
-extern "C" i32 SSLInitializer_rand_pseudorand(uchar * buf, i32 num);
-extern "C" i32 SSLInitializer_rand_status();
 
 //#ifdef _UWP
 //extern "C"
@@ -95,13 +75,7 @@ extern "C" i32 SSLInitializer_rand_status();
 namespace sockets
 {
 
-#if OPENSSL_API_COMPAT < 0x10100000L
 
-   map < i32, ::mutex * >  * g_pmapMutex = nullptr;
-
-   ::mutex * g_pmutexMap = nullptr;
-
-#endif
 
 #ifdef LINUX
    // ssl_sigpipe_handle ---------------------------------------------------------
@@ -111,12 +85,6 @@ namespace sockets
    }
 #endif
 
-
-#if OPENSSL_API_COMPAT < 0x10100000L
-
-   RAND_METHOD rand_meth;
-
-#endif
 
    SSLInitializer::SSLInitializer()
    {
@@ -131,14 +99,6 @@ namespace sockets
 
 #if OPENSSL_API_COMPAT < 0x10100000L
 
-      m_rand_size = 1024;
-
-      g_pmapMutex = new map < i32, ::mutex *>;
-
-      g_pmutexMap = new ::mutex();
-
-      CRYPTO_set_locking_callback(SSLInitializer_SSL_locking_function);
-      CRYPTO_set_id_callback(SSLInitializer_SSL_id_function);
 
       SSL_load_error_strings();
       SSL_library_init();
@@ -150,25 +110,6 @@ namespace sockets
 
       INFO("SSLInitializer::SSLInitializer .2");
 
-#if OPENSSL_API_COMPAT < 0x10100000L
-
-      rand_meth.add = &SSLInitializer_rand_add;
-      rand_meth.bytes = &SSLInitializer_rand_bytes;
-      rand_meth.cleanup = &SSLInitializer_rand_cleanup;
-      rand_meth.pseudorand = &SSLInitializer_rand_pseudorand;
-      rand_meth.seed = &SSLInitializer_rand_seed;
-      rand_meth.status = &SSLInitializer_rand_status;
-
-      RAND_set_rand_method(&rand_meth);
-
-#endif
-
-
-      //if (!initialized)
-      {
-         RAND_poll();
-         // initialized = 1;
-      }
 
       //ENGINE_load_openssl();
       //ENGINE_load_dynamic();
@@ -227,197 +168,14 @@ namespace sockets
       //DeleteRandFile();
       // %! delete mutexes
 
-#if OPENSSL_API_COMPAT < 0x10100000L
-
-      if (g_pmapMutex != nullptr)
-      {
-
-         for (auto i : *g_pmapMutex)
-         {
-
-            delete i.element2();
-
-         }
-         delete g_pmapMutex;
-
-         g_pmapMutex = nullptr;
-      }
-
-      if (g_pmutexMap != nullptr)
-      {
-         delete g_pmutexMap;
-
-         g_pmutexMap = nullptr;
-      }
-
-#endif
-
-   }
-
-
-   void SSLInitializer::DeleteRandFile()
-   {
-
-#if OPENSSL_API_COMPAT < 0x10100000L
-
-      if (m_rand_file.get_length())
-      {
-
-         m_pcontext->m_papexcontext->file().del(m_rand_file);
-
-      }
-
-#endif
 
    }
 
 
 } // namespace sockets
 
-#if OPENSSL_API_COMPAT < 0x10100000L
-extern "C" void SSLInitializer_SSL_locking_function(i32 mode, i32 n, const char * file, i32 line)
-{
-
-   UNREFERENCED_PARAMETER(file);
-
-   UNREFERENCED_PARAMETER(line);
-
-   synchronous_lock synchronouslock(::sockets::g_pmutexMap);
-
-   ::mutex * pmutex = nullptr;
-
-   if (::sockets::g_pmapMutex != nullptr && !::sockets::g_pmapMutex->lookup(n, pmutex))
-   {
-
-      ::sockets::g_pmapMutex->operator [](n) = new ::mutex();
-
-      if (!::sockets::g_pmapMutex->lookup(n, pmutex))
-      {
-
-         return;
-
-      }
-
-   }
-
-   if (pmutex == nullptr)
-   {
-
-      return;
-
-   }
-
-   synchronouslock.unlock();
-
-   if (mode & CRYPTO_LOCK)
-   {
-
-      pmutex->lock();
-
-   }
-   else
-   {
-
-      pmutex->unlock();
-
-   }
-
-}
 
 #endif
-
-extern "C" unsigned long SSLInitializer_SSL_id_function()
-{
-
-//#ifdef WIN32
-
-   return (unsigned long) ::get_current_ithread();
-
-//#else
-//
-//   unsigned long ul = (unsigned long)(iptr) ::pthread_self();
-//
-//   return ul;
-//
-//#endif
-//
-}
-
-
-#if OPENSSL_API_COMPAT < 0x10100000L
-
-extern "C"
-#if defined(_UWP) && (!defined(RASPBIAN))
-void
-#else
-int
-#endif
-SSLInitializer_rand_seed(const void * buf, i32 num)
-{
-   UNREFERENCED_PARAMETER(buf);
-   UNREFERENCED_PARAMETER(num);
-#if defined(_UWP) && (!defined(RASPBIAN))
-#else
-   return 1;
-#endif
-}
-
-
-extern "C" i32 SSLInitializer_rand_bytes(uchar * buf, i32 num)
-{
-
-   generate_random_bytes(buf, num);
-   
-   return 1;
-
-}
-
-
-extern "C" void SSLInitializer_rand_cleanup()
-{
-
-}
-
-
-extern "C"
-#if defined(_UWP)
-void
-#else
-int
-#endif
-SSLInitializer_rand_add(const void * buf, int num, double entropy)
-{
-   UNREFERENCED_PARAMETER(buf);
-   UNREFERENCED_PARAMETER(num);
-   UNREFERENCED_PARAMETER(entropy);
-#if defined(_UWP)
-#else
-   return 1;
-#endif
-}
-
-
-extern "C" i32 SSLInitializer_rand_pseudorand(uchar * buf, i32 num)
-{
-   
-   generate_random_bytes(buf, num);
-
-   return num;
-
-}
-
-
-extern "C" i32 SSLInitializer_rand_status()
-{
-
-   return 1024;
-
-}
-
-
-#endif
-
-#endif // HAVE_OPENSSL
 
 
 

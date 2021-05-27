@@ -683,7 +683,9 @@ namespace sockets
 
                auto pbase64 = psystem->base64();
 
-               psystem->crypto().sha1(mem2, mem);
+               auto pcrypto = psystem->crypto();
+
+               pcrypto->sha1(mem2, mem);
 
                strKey = pbase64->encode(mem2);
 

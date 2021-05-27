@@ -8,7 +8,7 @@ namespace dynamic_source
 {
 
    
-   ::u32 ThreadProcRsa(LPVOID lp);
+   //::u32 ThreadProcRsa(void  lp);
 
 
    //script_instance * get_seed_instance()
@@ -106,7 +106,8 @@ namespace dynamic_source
    ::e_status script_manager::initialize(::object * pobject)
    {
 
-      auto estatus = ::user::message_window_listener::initialize(pobject);
+      //auto estatus = ::user::message_window_listener::initialize(pobject);
+      auto estatus = ::channel::initialize(pobject);
 
       if (!estatus)
       {
@@ -115,14 +116,14 @@ namespace dynamic_source
 
       }
       
-      estatus = __compose_new(m_pmessagequeue);
-      
-      if(!estatus)
-      {
-         
-         return estatus;
-         
-      }
+      //estatus = __compose_new(m_pmessagequeue);
+      //
+      //if(!estatus)
+      //{
+      //   
+      //   return estatus;
+      //   
+      //}
 
       calc_rsa_key();
 
@@ -1160,12 +1161,12 @@ namespace dynamic_source
    }
 
 
-   ::u32 ThreadProcRsa(LPVOID lp)
-   {
-      script_manager * pmanager = (script_manager *) lp;
-      pmanager->calc_rsa_key();
-      return 0;
-   }
+//   ::u32 ThreadProcRsa(LPVOID lp)
+//   {
+//      script_manager * pmanager = (script_manager *) lp;
+//      pmanager->calc_rsa_key();
+//      return 0;
+//   }
 
    __pointer(::crypto::rsa) script_manager::get_rsa_key()
    {
@@ -1183,7 +1184,9 @@ namespace dynamic_source
 
       auto psystem = m_psystem->m_paurasystem;
 
-      return  psystem->crypto().generate_rsa_key();
+      auto pcrypto = psystem->crypto();
+
+      return pcrypto->generate_rsa_key();
 
    }
 
@@ -1209,7 +1212,9 @@ namespace dynamic_source
 
       auto psystem = m_psystem->m_paurasystem;
 
-      __pointer(::crypto::rsa) prsa = psystem->crypto().generate_rsa_key();
+      auto pcrypto = psystem->crypto();
+
+      auto prsa = pcrypto->generate_rsa_key();
 
       single_lock synchronouslock(&m_mutexRsa, true);
 

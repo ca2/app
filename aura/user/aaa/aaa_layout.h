@@ -38,8 +38,8 @@ namespace user
       struct window_state                       m_stateProcess2;
       struct window_state                       m_state2;
       struct window_state                       m_stateWindow3;
-      struct window_rect                        m_windowrect;
-      struct window_rect                        m_windowrectStore;
+      struct window_rect                        m_windowrectangle;
+      struct window_rect                        m_windowrectangleStore;
 
       cflag < enum_layout >                        m_eflagLayouting;
       bool                                      m_bUpdatingVisual;

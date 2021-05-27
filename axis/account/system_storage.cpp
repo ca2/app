@@ -77,9 +77,9 @@ namespace account
 
       __pointer(::apex::system) psystem = get_system();
       
-      path /= psystem->crypto().md5(strToken + strKey);
+      path /= psystem->crypto()->md5(strToken + strKey);
       
-      return psystem->crypto().file_get(path, strValue, strToken, get_application());
+      return psystem->crypto()->file_get(path, strValue, strToken, get_application());
       
    }
    
@@ -95,9 +95,9 @@ namespace account
 
       __pointer(::apex::system) psystem = get_system();
       
-      path /= psystem->crypto().md5(strToken + strKey);
+      path /= psystem->crypto()->md5(strToken + strKey);
       
-      return psystem->crypto().file_set(path, strValue, strToken, get_application());
+      return psystem->crypto()->file_set(path, strValue, strToken, get_application());
       
    }
    

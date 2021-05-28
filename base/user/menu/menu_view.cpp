@@ -660,7 +660,7 @@ namespace user
 
       int iCommand;
 
-      auto papplication = get_application();
+//      auto papplication = get_application();
 
       xml::node * pnodeMain = m_pxmldoc->get_child_at("menubar", 0, 1);
 

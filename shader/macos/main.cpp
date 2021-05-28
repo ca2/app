@@ -16,5 +16,5 @@
 //  Created by Camilo Sasuke Tsumanuma on 1/19/13.
 //  Copyright (c) 2013 Camilo Sasuke Tsumanuma. All rights reserved.
 //
-
+#define _APP_ID "app/shader"
 #include "aura/application.h"

@@ -101,7 +101,7 @@ namespace write_text
 
       pfont->create_point_font(pszFontName, dFontSize, iFontWeight);
 
-      return pfont;
+      return ::move(pfont);
 
    }
 

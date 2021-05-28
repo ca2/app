@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 template < class T >
@@ -19,8 +19,8 @@ public:
    using comparable_array < ___pointer < T >, const T * >::operator -=;
    using comparable_array < ___pointer < T >, const T * >::operator |=;
    using comparable_array < ___pointer < T >, const T * >::operator -;
-   using comparable_array < ___pointer < T >, const T * >::operator ==;
-   using comparable_array < ___pointer < T >, const T * >::operator !=;
+//   using comparable_array < ___pointer < T >, const T * >::operator ==;
+//   using comparable_array < ___pointer < T >, const T * >::operator !=;
 
    pointer_array()
    {

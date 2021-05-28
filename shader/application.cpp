@@ -1,6 +1,4 @@
 #include "framework.h"
-#define WITH_GPU
-#include "aura/application.h"
 #include "aura/update.h"
 
 
@@ -108,9 +106,6 @@ namespace app_shader
 
 
 #endif
-
-
-   __namespace_application_factory("app/shader");
 
 
 } // namespace app_shader

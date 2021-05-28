@@ -12093,6 +12093,63 @@ restart:
 
    }
 
+   
+::e_status interaction::frame_experience_restore()
+   {
+   
+      return ::error_interface_only;
+      
+   }
+
+
+   ::e_status interaction::frame_toggle_restore()
+   {
+
+      if (!is_window_visible() || _001GetTopLeftWeightedOccludedOpaqueRate() > 0.025 || layout().is_iconic())
+      {
+
+         set_tool_window(false);
+
+         if (!is_window_screen_visible())
+         {
+
+            frame_experience_restore();
+
+         }
+         else
+         {
+
+            order_top();
+
+            display(e_display_normal, e_activation_set_foreground);
+
+         }
+
+      }
+      else
+      {
+
+         set_tool_window();
+
+         hide();
+
+      }
+
+      set_need_redraw();
+
+      post_redraw();
+      
+      return success;
+      
+   }
+
+
+   ::e_status interaction::display_previous_restore()
+   {
+   
+      return error_interface_only;
+   
+   }
 
    index interaction::best_monitor(RECTANGLE_I32 * prectangle, const ::rectangle_i32 & rectangle, bool bSet, ::e_activation eactivation, ::zorder zorderParam)
    {

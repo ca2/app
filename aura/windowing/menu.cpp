@@ -5,6 +5,8 @@
 //  Created by Camilo Sasuke Tsumanuma on 10/08/20.
 //
 #include "framework.h"
+#include "aura/user/menu_command.h"
+#include "menu_command.h"
 #include "menu_item.h"
 #include "menu.h"
 
@@ -171,6 +173,46 @@ namespace windowing
 
    }
 
+
+   void menu::on_idle(::channel * pchannel)
+{
+//      void menu_shared_idle(::user::frame * pframe)
+//      {
+//
+//         auto pmenushared = pframe->m_pmenushared;
+//
+//         if(::is_null(pmenushared))
+//         {
+//
+//            return;
+//
+//         }
+
+         for(int i = 0; i < m_itema.get_count(); i++)
+         {
+
+            auto pitem = m_itema[i];
+
+            if(pitem)
+            {
+
+               ::id id(::id::e_type_command_probe, pitem->m_id);
+
+               menu_command command(pitem);
+
+               command.m_id = id;
+
+               pchannel->on_command_probe(&command);
+
+            }
+
+         }
+
+         on_idle_update();
+
+      }
+
+   //}
 
 } // namespace windowing
 

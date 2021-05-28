@@ -2515,9 +2515,9 @@ void simple_frame_window::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 
       //printf("simplefrmwnd : " + string(type_name()) + " : blur_background");
 
-      auto psystem = m_psystem->m_pbasesystem;
+      //auto psystem = m_psystem->m_pbasesystem;
 
-      class imaging & imaging = psystem->imaging();
+//      class imaging & imaging = psystem->imaging();
 
       ::rectangle_i32 rectClient;
 
@@ -3920,7 +3920,7 @@ void simple_frame_window::_001OnNotifyIconTopic(::message::message * pmessage)
 void simple_frame_window::default_notify_icon_topic()
 {
 
-   toggle_restore();
+   frame_toggle_restore();
 
 }
 

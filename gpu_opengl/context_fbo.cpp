@@ -47,7 +47,7 @@ namespace opengl
    ::e_status context_fbo::_create_offscreen_buffer(const ::size_i32 & size)
    {
 
-      auto pgpu = psystem->get_gpu();
+      auto pgpu = m_psystem->m_paurasystem->get_gpu();
 
       __pointer(opengl) popengl = pgpu;
 
@@ -173,8 +173,8 @@ namespace opengl
       ::gpu::context_lock lock(this);
 
       // Set the width and height appropriately for your image
-      GL::u32 imageWidth = size.cx;
-      GL::u32 imageHeight = size.cy;
+      GLuint imageWidth = size.cx;
+      GLuint imageHeight = size.cy;
       
       //Set up a FBO with one renderbuffer attachment
       glGenFramebuffersEXT(1, &m_framebuffer);

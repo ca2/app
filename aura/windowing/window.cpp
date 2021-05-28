@@ -1076,6 +1076,21 @@ namespace windowing
       
    }
 
+ ::e_status window::frame_toggle_restore()
+{
+    
+    auto estatus= m_pimpl->m_puserinteraction->frame_toggle_restore();
+    
+    if(!estatus)
+    {
+       
+       return estatus;
+    
+    }
+    return estatus;
+    
+ }
+
 
 } // namespace windowing
 

@@ -263,6 +263,8 @@ namespace windowing
 
       virtual void update_screen();
       virtual void window_show();
+      
+      virtual ::e_status frame_toggle_restore();
 
 
    };

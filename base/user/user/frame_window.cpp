@@ -6,13 +6,14 @@
 #include "acme/filesystem/filesystem/acme_dir.h"
 
 
-#ifdef MACOS
+//#ifdef MACOS
+//
+//__pointer(menu_shared) create_menu_shared(const string_array & straParent, const string_array & straMenu, const string_array & straId);
+//
+//void ns_create_main_menu(menu_shared * pmenushared);
+//
+//#endif
 
-__pointer(menu_shared) create_menu_shared(const string_array & straParent, const string_array & straMenu, const string_array & straId);
-
-void ns_create_main_menu(menu_shared * pmenushared);
-
-#endif
 
 namespace user
 {
@@ -922,31 +923,32 @@ namespace user
    void frame_window::on_message_create(::message::message * pmessage)
    {
 
-
-
       if (pmessage->previous())
+      {
+         
          return;
+         
+      }
 
-#ifdef MACOS
+//#ifdef MACOS
 
       if(get_parent() == nullptr)
       {
-
-         m_pmenushared = create_menu_shared(
-                                            m_straMenuParent,
-                                            m_straMenuName,
-                                            m_straMenuId);
-
-         ns_main_async(^()
-         {
-
-            ns_create_main_menu(m_pmenushared);
-
-         });
+         
+         auto psystem = m_psystem->m_papexsystem;
+         
+         auto pnode = psystem->node();
+         
+         pnode->defer_create_main_menu(
+                                       
+                                       m_straMenuParent,
+                                       m_straMenuName,
+                                       m_straMenuId
+                                       );
 
       }
 
-#endif
+//#endif
 
       __pointer(::message::create) pcreatemessage(pmessage);
 

@@ -20,8 +20,8 @@ namespace opengl
 
       CGLContextObj           m_context;
       CGLContextObj           m_contextOld;
-      GL::u32                  m_renderbuffer;
-      GL::u32                  m_framebuffer;
+      GLuint                  m_renderbuffer;
+      GLuint                  m_framebuffer;
 
 
       context_fbo();

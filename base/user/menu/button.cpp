@@ -287,7 +287,7 @@ namespace user
 
                pgraphics->fill_rectangle(rectImageBorder, rgb(127, 127, 127));
 
-               auto psession = get_session();
+               //auto psession = get_session();
 
                auto pstyle = get_style(pgraphics);
 

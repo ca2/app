@@ -289,7 +289,7 @@ namespace user
       else if(pMsg->m_id == e_message_mouse_move)
       {
 
-         i32   fwKeys = (i32) pMsg->wParam;        // key flags
+//         i32   fwKeys = (i32) pMsg->wParam;        // key flags
 
 
          auto point = pointCursor;

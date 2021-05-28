@@ -695,6 +695,11 @@ namespace user
       virtual void sketch_prepare_window_restore(edisplay edisplay) override;
       virtual void sketch_prepare_window_dock(edisplay edisplay) override;
 
+      virtual ::e_status frame_experience_restore();
+      
+      virtual ::e_status frame_toggle_restore();
+      
+      virtual ::e_status display_previous_restore();
 
       inline void get_client_rect(RECTANGLE_I32 * lprect, enum_layout elayout = e_layout_design) const { layout().state(elayout).client_rect(lprect); }
       inline ::rectangle_i32 get_client_rect(enum_layout elayout = e_layout_design) const { return layout().state(elayout).client_rect(); }

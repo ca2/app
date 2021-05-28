@@ -182,6 +182,14 @@ namespace apex
    }
 
 
+   ::e_status node::defer_create_main_menu(const string_array & straParent, const string_array & straMenu, const string_array & straId)
+   {
+      
+      return error_interface_only;
+      
+   }
+
+
    void node::set_application_menu(::application_menu * pmenu, ::application * papplication)
    {
 

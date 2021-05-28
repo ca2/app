@@ -9,11 +9,13 @@ public:
 
    using BASE_ARRAY = ARRAY_TYPE;
 
+   
    explicit comparable_eq_array(::matter * pobject = nullptr) : BASE_ARRAY(pobject) { }
    comparable_eq_array(::std::initializer_list < TYPE > l) : BASE_ARRAY(l) {   }
    comparable_eq_array(const comparable_eq_array & array) : BASE_ARRAY(array) { }
    comparable_eq_array(comparable_eq_array && array) noexcept : BASE_ARRAY(::move(array)) { }
 
+   
    ::index find_first(ARG_TYPE t) const;
    ::index find_first(ARG_TYPE t, ::index find, ::index last = -1) const;
    ::index find_last(ARG_TYPE t) const;
@@ -37,17 +39,15 @@ public:
       }
       return true;
    }
+   
+   
    using BASE_ARRAY::erase_last;
    ::index erase_last(ARG_TYPE t);
    ::index erase_first(ARG_TYPE t);
    ::index erase_first(ARG_TYPE t, ::index find, ::index last = -1);
    ::count erase(ARG_TYPE t);
    ::count erase(ARG_TYPE t, ::index find, ::index last = -1, ::count countMin = 0, ::count countMax = -1);
-   //typename ARRAY_TYPE::iterator erase(typename ARRAY_TYPE::iterator it);
-   //typename ARRAY_TYPE::iterator erase(typename ARRAY_TYPE::iterator first, typename ARRAY_TYPE::iterator last);
-   //::index erase(ARG_TYPE t, ::index find = 0, ::index last = -1, ::count countMin = 0, ::count countMax = -1);
    ::count erase_array(const comparable_eq_array & a);
-
 
 
    bool add_unique(ARG_TYPE t);
@@ -69,60 +69,37 @@ public:
 
    comparable_eq_array operator -(const comparable_eq_array & a) const;
 
-   //bool operator == (const comparable_eq_array  & a);
-   //bool operator != (const comparable_eq_array  & a);
+   
 
-
-   template < typename A >
-   bool operator == (const A & a) const
-   {
-
-      if (a.get_size() != this->get_size())
-      {
-
-         return false;
-
-      }
-
-      for (::index i = 0; i < this->get_size(); i++)
-      {
-
-         if (this->element_at(i) != a.element_at(i))
-         {
-
-            return false;
-
-         }
-
-      }
-
-      return true;
-
-   }
-
-   template < typename A >
-   bool operator != (const A & a) const
-   {
-
-      return !operator==(a);
-
-   }
-
+   
    using ARRAY_TYPE::operator =;
    comparable_eq_array & operator = (const comparable_eq_array & array)
    {
+      
       BASE_ARRAY::operator =(array);
+      
       return *this;
+      
    }
+   
+   
    comparable_eq_array & operator = (comparable_eq_array && array)
    {
+      
       move(::move(array));
+      
       return *this;
+      
    }
+   
+   
    comparable_eq_array & move(comparable_eq_array && array)
    {
+      
       BASE_ARRAY::move(::move(array));
+      
       return *this;
+      
    }
 
    
@@ -522,3 +499,38 @@ erase_array(const comparable_eq_array & a)
 
 
 
+template < indexed_array ARRAY1, indexed_array ARRAY2 >
+bool operator == (const ARRAY1 & array1, const ARRAY2 & array2)
+{
+
+   if (array1.get_size() != array2.get_size())
+   {
+
+      return false;
+
+   }
+
+   for (::index i = 0; i < array1.get_size(); i++)
+   {
+
+      if (array1.element_at(i) != array2.element_at(i))
+      {
+
+         return false;
+
+      }
+
+   }
+
+   return true;
+
+}
+
+
+template < indexed_array ARRAY1, indexed_array ARRAY2 >
+bool operator != (const ARRAY1 & array1, const ARRAY2 & array2)
+{
+
+   return !operator==(array1, array2);
+
+}

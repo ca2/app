@@ -276,7 +276,7 @@ namespace user
 
       synchronous_lock synchronouslock(mutex());
       
-      auto papplication = get_application();
+//      auto papplication = get_application();
 
       if (id.is_empty())
       {

@@ -681,7 +681,7 @@ namespace user
    u32 control_bar::RecalcDelayShow(void * pvoidSIZEPARENTPARAMS)
    {
 
-      SIZEPARENTPARAMS * playout = (SIZEPARENTPARAMS * ) pvoidSIZEPARENTPARAMS;
+//      SIZEPARENTPARAMS * playout = (SIZEPARENTPARAMS * ) pvoidSIZEPARENTPARAMS;
 
       u32 uStyleVisible = 0;
 

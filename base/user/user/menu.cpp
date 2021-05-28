@@ -395,7 +395,7 @@ namespace user
 
       }
 
-      ::create * pcreate = nullptr;
+      //::create * pcreate = nullptr;
 
       auto pgraphics = ::draw2d::create_memory_graphics();
 
@@ -448,18 +448,18 @@ namespace user
       if (!is_window())
       {
 
-         int iStyleEx = 0;
-
-         if (puiParent == nullptr)
-         {
-
-//#ifdef WINDOWS_DESKTOP
+//         int iStyleEx = 0;
 //
-//            iStyleEx = WS_EX_LAYERED | WS_EX_TOOLWINDOW;
+//         if (puiParent == nullptr)
+//         {
 //
-//#endif
-
-         }
+////#ifdef WINDOWS_DESKTOP
+////
+////            iStyleEx = WS_EX_LAYERED | WS_EX_TOOLWINDOW;
+////
+////#endif
+//
+//         }
 
          set_tool_window();
 

@@ -30,6 +30,7 @@ namespace windowing
 
       void on_idle_update();
 
+      void on_idle(::channel * pchannel);
 
    };
 

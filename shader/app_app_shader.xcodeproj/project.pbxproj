@@ -8,13 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		9A2E626B25258D640001CC7E /* libaqua.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A2E626A25258D640001CC7E /* libaqua.dylib */; };
-		9A488A2924EB4AF400119EC4 /* application.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A488A2324EB4AF300119EC4 /* application.h */; };
-		9A488A2A24EB4AF400119EC4 /* render.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A488A2424EB4AF300119EC4 /* render.h */; };
-		9A488A2B24EB4AF400119EC4 /* application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A488A2524EB4AF300119EC4 /* application.cpp */; };
-		9A488A2C24EB4AF400119EC4 /* render.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A488A2624EB4AF400119EC4 /* render.cpp */; };
-		9A488A2D24EB4AF400119EC4 /* window.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A488A2724EB4AF400119EC4 /* window.cpp */; };
-		9A488A2E24EB4AF400119EC4 /* window.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A488A2824EB4AF400119EC4 /* window.h */; };
 		9A488A5424EB4BB700119EC4 /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A488A3624EB4B0200119EC4 /* libaura.dylib */; };
+		9A6A47A22660E8C2004ED97A /* _.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A6A479F2660E8BB004ED97A /* _.cpp */; };
+		9A6A47A5266106B0004ED97A /* application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8FCCFA2651A8C400C0D8A1 /* application.cpp */; };
+		9A6A47A8266106C5004ED97A /* render.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8FCC3A2651A8BE00C0D8A1 /* render.cpp */; };
+		9A6A47A926610748004ED97A /* main_window.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8FCCF12651A8C300C0D8A1 /* main_window.cpp */; };
 		9AC3971425195E790036B92A /* libacme.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC3971325195E790036B92A /* libacme.dylib */; };
 		9AC3971625195E790036B92A /* libapex.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC3971525195E790036B92A /* libapex.dylib */; };
 /* End PBXBuildFile section */
@@ -53,13 +51,8 @@
 /* Begin PBXFileReference section */
 		9A2E626A25258D640001CC7E /* libaqua.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libaqua.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A4889B624EB494600119EC4 /* libapp_shader.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libapp_shader.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
-		9A488A2324EB4AF300119EC4 /* application.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = application.h; sourceTree = SOURCE_ROOT; };
-		9A488A2424EB4AF300119EC4 /* render.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = render.h; sourceTree = SOURCE_ROOT; };
-		9A488A2524EB4AF300119EC4 /* application.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = application.cpp; sourceTree = SOURCE_ROOT; };
-		9A488A2624EB4AF400119EC4 /* render.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = render.cpp; sourceTree = SOURCE_ROOT; };
-		9A488A2724EB4AF400119EC4 /* window.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = window.cpp; sourceTree = SOURCE_ROOT; };
-		9A488A2824EB4AF400119EC4 /* window.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = window.h; sourceTree = SOURCE_ROOT; };
 		9A488A2F24EB4B0200119EC4 /* aura.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = aura.xcodeproj; path = ../aura/aura.xcodeproj; sourceTree = "<group>"; };
+		9A6A479F2660E8BB004ED97A /* _.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = _.cpp; sourceTree = "<group>"; };
 		9A8FCC372651A8BE00C0D8A1 /* app_shader_1through3.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = app_shader_1through3.cpp; sourceTree = "<group>"; };
 		9A8FCC3A2651A8BE00C0D8A1 /* render.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = render.cpp; sourceTree = "<group>"; };
 		9A8FCC532651A8BF00C0D8A1 /* aaa_want_to_remove_pane_view_update_hint.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = aaa_want_to_remove_pane_view_update_hint.h; sourceTree = "<group>"; };
@@ -99,7 +92,6 @@
 			children = (
 				9A488A2F24EB4B0200119EC4 /* aura.xcodeproj */,
 				9A8FCC312651A8BD00C0D8A1 /* shader */,
-				9A4889B824EB494600119EC4 /* app_shader */,
 				9A4889B724EB494600119EC4 /* Products */,
 				9A488A5324EB4BB700119EC4 /* Frameworks */,
 			);
@@ -111,19 +103,6 @@
 				9A4889B624EB494600119EC4 /* libapp_shader.dylib */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		9A4889B824EB494600119EC4 /* app_shader */ = {
-			isa = PBXGroup;
-			children = (
-				9A488A2524EB4AF300119EC4 /* application.cpp */,
-				9A488A2324EB4AF300119EC4 /* application.h */,
-				9A488A2624EB4AF400119EC4 /* render.cpp */,
-				9A488A2424EB4AF300119EC4 /* render.h */,
-				9A488A2724EB4AF400119EC4 /* window.cpp */,
-				9A488A2824EB4AF400119EC4 /* window.h */,
-			);
-			path = app_shader;
 			sourceTree = "<group>";
 		};
 		9A488A3024EB4B0200119EC4 /* Products */ = {
@@ -149,6 +128,7 @@
 		9A8FCC312651A8BD00C0D8A1 /* shader */ = {
 			isa = PBXGroup;
 			children = (
+				9A6A479F2660E8BB004ED97A /* _.cpp */,
 				9A8FCD2E2651A8C500C0D8A1 /* _.h */,
 				9A8FCCCA2651A8C100C0D8A1 /* _user.h */,
 				9A8FCC642651A8C000C0D8A1 /* aaa_want_to_remove_app_shader_main_view.h */,
@@ -175,9 +155,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A488A2A24EB4AF400119EC4 /* render.h in Headers */,
-				9A488A2E24EB4AF400119EC4 /* window.h in Headers */,
-				9A488A2924EB4AF400119EC4 /* application.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -269,9 +246,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A488A2D24EB4AF400119EC4 /* window.cpp in Sources */,
-				9A488A2B24EB4AF400119EC4 /* application.cpp in Sources */,
-				9A488A2C24EB4AF400119EC4 /* render.cpp in Sources */,
+				9A6A47A926610748004ED97A /* main_window.cpp in Sources */,
+				9A6A47A8266106C5004ED97A /* render.cpp in Sources */,
+				9A6A47A5266106B0004ED97A /* application.cpp in Sources */,
+				9A6A47A22660E8C2004ED97A /* _.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -351,9 +329,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(WorkspaceDir)/archive",
-					"$(WorkspaceDir)/archive/platform-$(PLATFORM_MODIFIER)/storage-$(PLATFORM_MODIFIER)/library/$(CONFIGURATION)",
-					"$(WorkspaceDir)/archive",
-					"$(WorkspaceDir)/archive/platform-$(PLATFORM_MODIFIER)/storage-$(PLATFORM_MODIFIER)/third/library/$(CONFIGURATION)",
+					"$(WorkspaceDir)/archive/storage-$(PLATFORM_MODIFIER)/library/$(CONFIGURATION)",
 					"$(WorkspaceDir)/time/$(PLATFORM_MODIFIER)",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
@@ -364,45 +340,22 @@
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				STRIP_INSTALLED_PRODUCT = NO;
-				SYSTEM_HEADER_SEARCH_PATHS = (
-					"$(WorkspaceDir)/archive",
-					"$(WorkspaceDir)/archive/platform-$(PLATFORM_MODIFIER)/third-$(PLATFORM_MODIFIER)/include",
-					"$(WorkspaceDir)/source/third/include",
-					"$(WorkspaceDir)/archive",
-					"$(WorkspaceDir)/archive/third-$(PLATFORM_MODIFIER)/third/include/include",
-					"$(WorkspaceDir)/archive",
-					"$(WorkspaceDir)/archive/third-$(PLATFORM_MODIFIER)/third/include",
-					"$(WorkspaceDir)/source/app",
-					"$(WorkspaceDir)/archive",
-					"$(WorkspaceDir)/archive/platform-$(PLATFORM_MODIFIER)",
-					"$(WorkspaceDir)/archive",
-					"$(WorkspaceDir)/archive/platform-$(PLATFORM_MODIFIER)/_include",
-					"$(WorkspaceDir)/archive",
-					"$(WorkspaceDir)/archive/platform-$(PLATFORM_MODIFIER)/third-$(PLATFORM_MODIFIER)/third/include/",
-				);
 				USER_HEADER_SEARCH_PATHS = (
+					.,
 					"$(WorkspaceDir)/source",
 					"$(WorkspaceDir)/source/include",
-					"$(WorkspaceDir)/platform-$(PLATFORM_MODIFIER)",
-					"$(WorkspaceDir)/platform-$(PLATFORM_MODIFIER)/_include",
 					"$(WorkspaceDir)/source/app",
+					"$(WorkspaceDir)/source/app/_include",
 					"$(WorkspaceDir)/archive",
 					"$(WorkspaceDir)/archive/platform-$(PLATFORM_MODIFIER)",
-					"$(WorkspaceDir)/archive",
 					"$(WorkspaceDir)/archive/platform-$(PLATFORM_MODIFIER)/_include",
+					"$(WorkspaceDir)/archive/platform-apple",
+					"$(WorkspaceDir)/archive/platform-posix",
 					"$(WorkspaceDir)/source/third/include",
-					"$(WorkspaceDir)/archive",
 					"$(WorkspaceDir)/archive/third-$(PLATFORM_MODIFIER)/third/include/include",
-					"$(WorkspaceDir)/archive",
 					"$(WorkspaceDir)/archive/third-$(PLATFORM_MODIFIER)/third/include",
-					"$(WorkspaceDir)/source/app",
-					"$(WorkspaceDir)/archive",
-					"$(WorkspaceDir)/archive/platform-$(PLATFORM_MODIFIER)",
-					"$(WorkspaceDir)/archive",
-					"$(WorkspaceDir)/archive/platform-$(PLATFORM_MODIFIER)",
-					.,
 					"$(PROJECT_DIR)",
-					"$(HOME)/__archive/sensitive/sensitive/include",
+					"$(HOME)/sensitive/sensitive/include",
 				);
 				USE_HEADERMAP = NO;
 				WorkspaceDir = "$(SRCROOT)/../../..";
@@ -482,45 +435,22 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
-				SYSTEM_HEADER_SEARCH_PATHS = (
-					"$(WorkspaceDir)/archive",
-					"$(WorkspaceDir)/archive/platform-$(PLATFORM_MODIFIER)/third-$(PLATFORM_MODIFIER)/include",
-					"$(WorkspaceDir)/source/third/include",
-					"$(WorkspaceDir)/archive",
-					"$(WorkspaceDir)/archive/third-$(PLATFORM_MODIFIER)/third/include/include",
-					"$(WorkspaceDir)/archive",
-					"$(WorkspaceDir)/archive/third-$(PLATFORM_MODIFIER)/third/include",
-					"$(WorkspaceDir)/source/app",
-					"$(WorkspaceDir)/archive",
-					"$(WorkspaceDir)/archive/platform-$(PLATFORM_MODIFIER)",
-					"$(WorkspaceDir)/archive",
-					"$(WorkspaceDir)/archive/platform-$(PLATFORM_MODIFIER)/_include",
-					"$(WorkspaceDir)/archive",
-					"$(WorkspaceDir)/archive/platform-$(PLATFORM_MODIFIER)/third-$(PLATFORM_MODIFIER)/third/include/",
-				);
 				USER_HEADER_SEARCH_PATHS = (
+					.,
 					"$(WorkspaceDir)/source",
 					"$(WorkspaceDir)/source/include",
-					"$(WorkspaceDir)/platform-$(PLATFORM_MODIFIER)",
-					"$(WorkspaceDir)/platform-$(PLATFORM_MODIFIER)/_include",
 					"$(WorkspaceDir)/source/app",
+					"$(WorkspaceDir)/source/app/_include",
 					"$(WorkspaceDir)/archive",
 					"$(WorkspaceDir)/archive/platform-$(PLATFORM_MODIFIER)",
-					"$(WorkspaceDir)/archive",
 					"$(WorkspaceDir)/archive/platform-$(PLATFORM_MODIFIER)/_include",
+					"$(WorkspaceDir)/archive/platform-apple",
+					"$(WorkspaceDir)/archive/platform-posix",
 					"$(WorkspaceDir)/source/third/include",
-					"$(WorkspaceDir)/archive",
 					"$(WorkspaceDir)/archive/third-$(PLATFORM_MODIFIER)/third/include/include",
-					"$(WorkspaceDir)/archive",
 					"$(WorkspaceDir)/archive/third-$(PLATFORM_MODIFIER)/third/include",
-					"$(WorkspaceDir)/source/app",
-					"$(WorkspaceDir)/archive",
-					"$(WorkspaceDir)/archive/platform-$(PLATFORM_MODIFIER)",
-					"$(WorkspaceDir)/archive",
-					"$(WorkspaceDir)/archive/platform-$(PLATFORM_MODIFIER)",
-					.,
 					"$(PROJECT_DIR)",
-					"$(HOME)/__archive/sensitive/sensitive/include",
+					"$(HOME)/sensitive/sensitive/include",
 				);
 				USE_HEADERMAP = NO;
 				VALIDATE_PRODUCT = YES;

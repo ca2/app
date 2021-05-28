@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "070B8EE91B6E53F900D26137"
-               BuildableName = "app_simple_app_shader.app"
+               BuildableName = "app_shader.app"
                BlueprintName = "app_shader"
                ReferencedContainer = "container:app_shader.xcodeproj">
             </BuildableReference>
@@ -45,7 +45,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "070B8EE91B6E53F900D26137"
-            BuildableName = "app_simple_app_shader.app"
+            BuildableName = "app_shader.app"
             BlueprintName = "app_shader"
             ReferencedContainer = "container:app_shader.xcodeproj">
          </BuildableReference>
@@ -62,7 +62,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "070B8EE91B6E53F900D26137"
-            BuildableName = "app_simple_app_shader.app"
+            BuildableName = "app_shader.app"
             BlueprintName = "app_shader"
             ReferencedContainer = "container:app_shader.xcodeproj">
          </BuildableReference>

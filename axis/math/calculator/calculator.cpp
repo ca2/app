@@ -1,7 +1,6 @@
 #include "framework.h"
 
 
-
 namespace calculator
 {
 

@@ -1,6 +1,14 @@
 #pragma once
 
 
+template < typename ARRAY >
+concept indexed_array = requires(ARRAY array, ::index i)
+{
+   array.get_size();
+   array.element_at(i);
+};
+
+
 #define __default_array_array_base(TYPE) ::array_base < TYPE, const TYPE &, ::allocator::def < TYPE > >
 
 

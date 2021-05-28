@@ -63,8 +63,13 @@ namespace user
       auto pdraw2d = psystem->draw2d();
       
       auto pwritetext = pdraw2d->write_text();
+      
+      if(pwritetext)
+      {
 
       m_pfont = pwritetext->point_font(m_pnode->font_name(e_font_sans_ui), 12.0);
+         
+      }
 
       return estatus;
 

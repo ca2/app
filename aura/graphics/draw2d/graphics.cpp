@@ -809,7 +809,7 @@ namespace draw2d
    bool graphics::Arc(double x1, double y1, double w, double h, angle start, angle extends)
    {
 
-      return Arc((double)x1, (double)y1, (double)w, (double)h, start, extends);
+      return Arc(rectangle_dimension(x1, y1, w, h), start, extends);
 
    }
 
@@ -991,6 +991,8 @@ namespace draw2d
 
    bool graphics::fill_polygon(const POINT_F64 * ppoints, count nCount)
    {
+      
+      __throw(error_interface_only);
 
       return false;
 
@@ -999,12 +1001,10 @@ namespace draw2d
 
    bool graphics::draw_polygon(const POINT_F64 * ppoints, count nCount)
    {
+      
+      __throw(error_interface_only);
 
-      point_f64_array pointa;
-
-      ::papaya::array::copy_points(pointa, ppoints, nCount);
-
-      return draw_polygon(pointa.get_data(), pointa.get_count());
+      return false;
 
    }
 

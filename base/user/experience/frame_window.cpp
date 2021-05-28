@@ -260,91 +260,31 @@ namespace experience
    }
 
 
-   void frame_window::toggle_restore()
+   ::e_status frame_window::frame_toggle_restore()
    {
-
-#ifdef MACOS
-
-      ns_main_async(^()
-                     {
-
-      if(get_parent() == nullptr && get_owner() == nullptr)
+      
+      if(m_pimpl2 && m_pimpl2->m_pwindow)
       {
-
-         if(!is_window_visible()
-            || (!(m_ewindowflag & window_flag_miniaturizable)
-                && !is_window_screen_visible()))
-         {
-
-            display_previous_restore();
-
-         }
-         else if(_001GetTopLeftWeightedOccludedOpaqueRate()  > 0.025)
-         {
-
-            order(::e_zorder_top);
-
-            display(e_display_default, e_activation_set_foreground);
-
-         }
-         else if(m_pimpl2 && m_pimpl2->m_millisLastExposureAddUp.elapsed() < 300)
-         {
-
-            INFO("Ignored minituarize request (by toggle intent) because of recent full exposure.");
-
-         }
-         else
-         {
-
-            display(e_display_iconic, e_activation_no_activate);
-
-         }
-
-         set_need_redraw();
-
-         post_redraw();
-
-      }
-
-      });
-
-#else
-
-      if (!is_window_visible() || _001GetTopLeftWeightedOccludedOpaqueRate() > 0.025 || layout().is_iconic())
-      {
-
-         set_tool_window(false);
-
-         if (!is_window_screen_visible())
-         {
-
-            frame_experience_restore();
-
-         }
-         else
-         {
-
-            order_top();
-
-            display(e_display_normal, e_activation_set_foreground);
-
-         }
-
+         
+         return m_pimpl2->m_pwindow->frame_toggle_restore();
+         
       }
       else
       {
-
-         set_tool_window();
-
-         hide();
-
+         
+         return ::user::frame_window::frame_toggle_restore();
+         
       }
+      
+      
 
-      set_need_redraw();
-
-      post_redraw();
-
-#endif
+//#ifdef MACOS
+//
+//
+//#else
+//
+//
+//#endif
 
    }
 
@@ -973,19 +913,19 @@ namespace experience
    }
 
 
-   void frame_window::display_previous_restore()
+   ::e_status frame_window::display_previous_restore()
    {
 
       if(::is_screen_visible(m_windowrectangle.m_edisplayPrevious))
       {
 
-         display(m_windowrectangle.m_edisplayPrevious);
+         return display(m_windowrectangle.m_edisplayPrevious);
 
       }
       else
       {
 
-         display(e_display_restore);
+         return display(e_display_restore);
 
       }
 
@@ -2281,7 +2221,7 @@ namespace experience
    }
 
 
-   void frame_window::frame_experience_restore()
+   ::e_status frame_window::frame_experience_restore()
    {
 
       calculate_broad_and_compact_restore();
@@ -2333,6 +2273,8 @@ namespace experience
       set_need_redraw();
 
       post_redraw();
+      
+      return ::success;
 
    }
 
@@ -2344,12 +2286,11 @@ namespace experience
       if(psubject->id() == id_app_activated)
       {
 
-         toggle_restore();
+         frame_toggle_restore();
 
       }
 
    }
-
 
 
 } // namespace experience

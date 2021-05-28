@@ -301,7 +301,7 @@ namespace base
    void user::SendMessageToWindows(const ::id & id,wparam wparam,lparam lparam)
    {
 
-      auto papplicationBase = get_application();
+      //auto papplicationBase = get_application();
 
       auto psession = get_session();
 

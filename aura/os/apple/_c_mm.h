@@ -40,22 +40,22 @@ void window_copy(RECTANGLE_I32 * lprect, const NSRect & rectSrc);
 #include "graphics.h"
 #include "ns_exception.h"
 #include "time.h"
-
-void ns_launch_app(const char * psz, const char ** argv, int iFlags);
-bool ns_open_file(const char * psz);
-void ns_main_async(dispatch_block_t block);
-
-void apple_on_open_file(const char ** psza, int iCount, const char * pszExtra);
-void apple_accumulate_on_open_file(const char ** psza, int iCount, const char * pszExtra);
-void apple_on_new_file();
-
-
-void aura_application_main(int argc, char *argv[], const char * pszCommandLine);
-
-
-
-int is_window(oswindow window);
-
-//void ns_main_sync(dispatch_block_t block, unsigned int uiMillis = -1);
+//
+//void ns_launch_app(const char * psz, const char ** argv, int iFlags);
+//bool ns_open_file(const char * psz);
 //void ns_main_async(dispatch_block_t block);
-
+//
+//void apple_on_open_file(const char ** psza, int iCount, const char * pszExtra);
+//void apple_accumulate_on_open_file(const char ** psza, int iCount, const char * pszExtra);
+//void apple_on_new_file();
+//
+//
+//void aura_application_main(int argc, char *argv[], const char * pszCommandLine);
+//
+//
+//
+//int is_window(oswindow window);
+//
+////void ns_main_sync(dispatch_block_t block, unsigned int uiMillis = -1);
+////void ns_main_async(dispatch_block_t block);
+//

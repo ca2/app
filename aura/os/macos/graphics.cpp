@@ -1322,7 +1322,9 @@ void * cg_image_get_image_data(int & width, int & height, int & iScan, CGImageRe
 
    // 3.
    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
-   CGContextRef context = CGBitmapContextCreate(pixels, width, height, bitsPerComponent, bytesPerRow, colorSpace, kCGImageAlphaPremultipliedLast | kCGBitmapByteOrder32Big);
+   CGContextRef context = CGBitmapContextCreate(pixels, width, height, bitsPerComponent, bytesPerRow, colorSpace, kCGImageAlphaPremultipliedLast
+// kCGBitmapByteOrder32Big
+                                                );
 
    // 4.
    CGContextDrawImage(context, CGRectMake(0, 0, width, height), image);

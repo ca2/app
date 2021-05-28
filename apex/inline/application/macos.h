@@ -22,7 +22,7 @@ int main(int argc, char * argv[], char ** envp)
 
    psystem->system_construct(argc, argv, envp);
 
-   psystem->set_current_handles();
+   //psystem->set_current_handles();
 
 //   auto estatus = psystem->system_main();
 //

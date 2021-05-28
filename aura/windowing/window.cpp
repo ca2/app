@@ -1044,7 +1044,9 @@ namespace windowing
 
 
    void window::window_show()
-    m_pwindowing->windowing_branch(__routine([this]()
+   {
+   
+      m_pwindowing->windowing_branch(__routine([this]()
                                              {
 
                                                  auto pimpl = m_pimpl;
@@ -1071,9 +1073,8 @@ namespace windowing
                                                  }
 
                                              }));
-
-
-
+      
+   }
 
 
 } // namespace windowing

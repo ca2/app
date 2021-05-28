@@ -18,6 +18,8 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
 
    system::system()
    {
+      
+      m_bPostedInitialRequest = false;
 
       //m_pcleanuptask = __new(::parallelization::cleanup_task);
 
@@ -1208,6 +1210,45 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
    }
 
 
+   ::e_status system::node_will_finish_launching()
+   {
+
+      auto pnode = node();
+      
+      pnode->_will_finish_launching();
+      
+      return ::success;
+      
+   }
+
+
+   ::e_status system::on_open_untitled_file()
+   {
+      
+      if(!m_bPostedInitialRequest)
+      {
+         
+         post_initial_request();
+         
+      }
+      
+//      __throw(error_interface_only);
+   
+      return error_interface_only;
+   
+   }
+
+
+   ::e_status system::on_open_file(const char * pszFile)
+   {
+      
+      __throw(error_interface_only);
+   
+      return error_interface_only;
+      
+   }
+
+
 //} // namespace acme
 
 
@@ -1253,3 +1294,42 @@ void system_int_update(void * pSystem, int iUpdate, int iParam)
    psystem->system_int_update(iUpdate, iParam);
    
 }
+
+
+void node_will_finish_launching(void * pSystem);
+void system_on_open_untitled_file(void * pSystem);
+void system_on_open_file(void * pSystem, const char * pszFile);
+
+
+void node_will_finish_launching(void * pSystem)
+{
+
+   auto psystem = (class ::system *) pSystem;
+   
+   psystem->node_will_finish_launching();
+
+}
+
+
+void system_on_open_untitled_file(void * pSystem)
+{
+
+   auto psystem = (class ::system *) pSystem;
+   
+   psystem->on_open_untitled_file();
+
+}
+
+
+void system_on_open_file(void * pSystem, const char * pszFile)
+{
+
+   auto psystem = (class ::system *) pSystem;
+   
+   psystem->on_open_file(pszFile);
+
+
+}
+
+
+

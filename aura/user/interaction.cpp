@@ -15068,7 +15068,6 @@ restart:
    }
 
 
-
    void interaction::on_message_middle_button_down(::message::message* pmessage)
    {
 
@@ -15947,7 +15946,9 @@ restart:
 
       //}
 
-      return has_function(econtrolfunction);
+      //return ::user::primitive::has_function(econtrolfunction);
+      
+      return false;
 
    }
 

@@ -263,28 +263,27 @@ namespace user
 
       m_pwindowing = pwindowing;
 
+      if (!m_pimpl->native_create_host())
+      {
 
-         if (!m_pimpl->native_create_host())
+         if (is_debugger_attached())
          {
 
-            if (is_debugger_attached())
-            {
-
-               message_box("Window not created", "Window not created", e_message_box_icon_warning);
-
-            }
-
-            //delete m_pusersystem;
-
-            //m_pusersystem = nullptr;
-
-            m_estatus = error_failed;
-
-            finish();
-
-            return false;
+            message_box("Window not created", "Window not created", e_message_box_icon_warning);
 
          }
+
+         //delete m_pusersystem;
+
+         //m_pusersystem = nullptr;
+
+         m_estatus = error_failed;
+
+         finish();
+
+         return false;
+
+      }
 
       //}
       //else

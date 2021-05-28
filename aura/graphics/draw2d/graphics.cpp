@@ -762,14 +762,18 @@ namespace draw2d
 
    bool graphics::draw_rectangle(const ::rectangle_f64 & rectangle, ::draw2d::pen * ppen)
    {
+      
+      __throw(error_interface_only);
 
-      return draw_rectangle(::rectangle_f64(rectangle), ppen);
+      return false;
 
    }
+
+
    bool graphics::fill_rectangle(const ::rectangle_f64 & rectangle)
    {
 
-      return fill_rectangle(rectangle, m_pbrush);
+      return false;
 
    }
 

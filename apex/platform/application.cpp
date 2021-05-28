@@ -122,9 +122,9 @@ application::application(const char * pszAppId) :
 m_strAppId(::is_set(pszAppId) ? pszAppId : "")
 {
 
-m_papexapplication = this;
-::object::m_pcontext = this;
-m_pcontext = this;
+   m_papexapplication = this;
+   ::object::m_pcontext = this;
+   m_pcontext = this;
 
 //set_layer(LAYERED_APEX, this);
 

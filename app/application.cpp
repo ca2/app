@@ -8,7 +8,7 @@ namespace app_app
 
    application::application()
    {
-
+      
       m_strAppId = "app/app";
 
       m_strAppName = "app/app";

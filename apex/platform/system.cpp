@@ -2049,6 +2049,8 @@ namespace apex
       //set_main_struct(*papp);
 
       //papp->inline_init();
+      
+      m_bPostedInitialRequest = true;
 
       auto pcreate = __create_new< ::create>();
 
@@ -2191,6 +2193,8 @@ namespace apex
       m_papplicationStartup->get_property_set().merge(get_property_set());
 
       set_main_struct(*m_papplicationStartup);
+      
+      m_papplicationStartup->m_psystem = this;
 
       return estatus;
 

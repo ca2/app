@@ -202,11 +202,18 @@ namespace acme
 
    ::e_status node::on_start_system()
    {
-
+      
       return ::success;
 
    }
 
+
+   ::e_status node::_will_finish_launching()
+   {
+   
+      return ::success;
+
+   }
 
 #ifdef LINUX
 

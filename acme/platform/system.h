@@ -22,6 +22,9 @@ public:
    //::base::system *              m_pbasesystem;
    //::bred::system *              m_pbredsystem;
    //::core::system *              m_pcoresystem;
+   
+   
+   bool                             m_bPostedInitialRequest;
 
 
    __reference(::application)                   m_papplicationStartup;
@@ -419,6 +422,13 @@ public:
 
    virtual void system_int_update(int iUpdate, int iPayload);
 
+   
+   virtual ::e_status node_will_finish_launching();
+   
+   virtual ::e_status on_open_untitled_file();
+   
+   virtual ::e_status on_open_file(const char * pszFile);
+   
 
 };
 

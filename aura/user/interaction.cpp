@@ -14753,6 +14753,8 @@ restart:
 
    void interaction::on_message_left_button_down(::message::message* pmessage)
    {
+      
+      string strType = this->type_c_str();
 
       __pointer(::message::mouse) pmouse(pmessage);
 
@@ -14798,7 +14800,7 @@ restart:
 
       hit_test(m_itemLButtonDown, pmouse);
 
-      if(m_itemLButtonDown && m_itemLButtonDown == e_element_client && m_pdragmove)
+      if(m_pdragmove && m_itemLButtonDown && m_itemLButtonDown == e_element_client)
       {
 
          get_wnd()->show_keyboard(false);
@@ -17045,6 +17047,8 @@ restart:
    {
 
       m_bDrag = false;
+      
+      m_bLButtonDown = false;
 
    }
 

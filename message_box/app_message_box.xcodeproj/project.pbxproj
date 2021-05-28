@@ -70,6 +70,20 @@
 			remoteGlobalIDString = 9A64C1702660C62C0074030F;
 			remoteInfo = write_text_quartz2d;
 		};
+		9A6A473D2660CFE2004ED97A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A6A47392660CFE1004ED97A /* windowing_macos.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9A440A1526548BE4000C490B;
+			remoteInfo = windowing_macos;
+		};
+		9A6A473F2660CFF5004ED97A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A6A47392660CFE1004ED97A /* windowing_macos.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9A440A1426548BE4000C490B;
+			remoteInfo = windowing_macos;
+		};
 		9A8FC8A92651A67C00C0D8A1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9A8FC8A52651A67C00C0D8A1 /* app_message_box_app.xcodeproj */;
@@ -297,6 +311,7 @@
 		070B8F031B6E53FA00D26137 /* Hello_Multiverse__Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Hello_Multiverse__Tests.m; sourceTree = "<group>"; };
 		9A64C1412660BDCD0074030F /* app_app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; path = app_app.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A64C1CB2660C7890074030F /* write_text_quartz2d.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = write_text_quartz2d.xcodeproj; path = "../../../archive/platform-apple/write_text_quartz2d/write_text_quartz2d.xcodeproj"; sourceTree = "<group>"; };
+		9A6A47392660CFE1004ED97A /* windowing_macos.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = windowing_macos.xcodeproj; path = "../../../archive/platform-macos/windowing_macos/windowing_macos.xcodeproj"; sourceTree = "<group>"; };
 		9A8FC8A52651A67C00C0D8A1 /* app_message_box_app.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = app_message_box_app.xcodeproj; sourceTree = "<group>"; };
 		9A8FC8AB2651A69900C0D8A1 /* apex_posix.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = apex_posix.xcodeproj; path = "../../../archive/platform-posix/apex_posix/apex_posix.xcodeproj"; sourceTree = "<group>"; };
 		9A8FC8B12651A69A00C0D8A1 /* apex_apple.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = apex_apple.xcodeproj; path = "../../../archive/platform-apple/apex_apple/apex_apple.xcodeproj"; sourceTree = "<group>"; };
@@ -363,6 +378,7 @@
 				9A8FC8A52651A67C00C0D8A1 /* app_message_box_app.xcodeproj */,
 				9AC2D07C26540D6B00CC8096 /* draw2d_quartz2d.xcodeproj */,
 				9AC2D0B426540F6700CC8096 /* node_macos.xcodeproj */,
+				9A6A47392660CFE1004ED97A /* windowing_macos.xcodeproj */,
 				9A64C1CB2660C7890074030F /* write_text_quartz2d.xcodeproj */,
 				9A8FCA842651A7FE00C0D8A1 /* macos */,
 				070B8F001B6E53FA00D26137 /* Hello Multiverse!!Tests */,
@@ -410,6 +426,14 @@
 			isa = PBXGroup;
 			children = (
 				9A64C1D02660C7890074030F /* libwrite_text_quartz2d.dylib */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9A6A473A2660CFE1004ED97A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9A6A473E2660CFE2004ED97A /* libwindowing_macos.dylib */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -606,6 +630,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				9A6A47402660CFF5004ED97A /* PBXTargetDependency */,
 				9A64C1D42660C7EB0074030F /* PBXTargetDependency */,
 				9A64C1652660BF730074030F /* PBXTargetDependency */,
 			);
@@ -733,6 +758,10 @@
 					ProjectRef = 9AC2D0B426540F6700CC8096 /* node_macos.xcodeproj */;
 				},
 				{
+					ProductGroup = 9A6A473A2660CFE1004ED97A /* Products */;
+					ProjectRef = 9A6A47392660CFE1004ED97A /* windowing_macos.xcodeproj */;
+				},
+				{
 					ProductGroup = 9A64C1CC2660C7890074030F /* Products */;
 					ProjectRef = 9A64C1CB2660C7890074030F /* write_text_quartz2d.xcodeproj */;
 				},
@@ -758,6 +787,13 @@
 			fileType = "compiled.mach-o.dylib";
 			path = libwrite_text_quartz2d.dylib;
 			remoteRef = 9A64C1CF2660C7890074030F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9A6A473E2660CFE2004ED97A /* libwindowing_macos.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libwindowing_macos.dylib;
+			remoteRef = 9A6A473D2660CFE2004ED97A /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		9A8FC8AA2651A67C00C0D8A1 /* libapp_message_box.dylib */ = {
@@ -1027,6 +1063,11 @@
 			isa = PBXTargetDependency;
 			name = write_text_quartz2d;
 			targetProxy = 9A64C1D32660C7EB0074030F /* PBXContainerItemProxy */;
+		};
+		9A6A47402660CFF5004ED97A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = windowing_macos;
+			targetProxy = 9A6A473F2660CFF5004ED97A /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

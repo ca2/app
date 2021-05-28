@@ -234,17 +234,6 @@ namespace write_text
    using enum_item_array = __pointer_array(font_enum_item);
 
 
-   inline font_pointer point_font(const char * pszFontName, double dFontSize, int iFontWeight = e_font_weight_normal)
-   {
-
-      auto pfont = ::__create < font >();
-
-      pfont->create_point_font(pszFontName, dFontSize, iFontWeight);
-
-      return pfont;
-
-   }
-
 
 } // namespace write_text
 

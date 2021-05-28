@@ -94,6 +94,17 @@ namespace write_text
    }
 
 
+   font_pointer write_text::point_font(const char * pszFontName, double dFontSize, int iFontWeight)
+   {
+
+      auto pfont = __create < font >();
+
+      pfont->create_point_font(pszFontName, dFontSize, iFontWeight);
+
+      return pfont;
+
+   }
+
 
 } // namespace write_text
 

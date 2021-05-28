@@ -31,11 +31,15 @@ namespace user
 
       }
 
-      auto psystem = m_psystem->m_paurasystem;
+      auto psystem = get_system()->m_paurasystem;
 
       auto pnode = psystem->node();
+      
+      auto pdraw2d = psystem->draw2d();
+      
+      auto pwritetext = pdraw2d->write_text();
 
-      m_pfont = ::write_text::point_font(pnode->font_name(e_font_sans), 14.0);
+      m_pfont = pwritetext->point_font(pnode->font_name(e_font_sans), 14.0);
 
       return true;
 

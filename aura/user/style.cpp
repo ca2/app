@@ -56,11 +56,15 @@ namespace user
 
       }
 
-      __pointer(::aura::system) psystem = get_system();
+      auto psystem = get_system()->m_paurasystem;
 
       m_pnode = psystem->node();
+      
+      auto pdraw2d = psystem->draw2d();
+      
+      auto pwritetext = pdraw2d->write_text();
 
-      m_pfont = ::write_text::point_font(m_pnode->font_name(e_font_sans_ui), 12.0);
+      m_pfont = pwritetext->point_font(m_pnode->font_name(e_font_sans_ui), 12.0);
 
       return estatus;
 

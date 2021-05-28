@@ -46,10 +46,19 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "070B8EE91B6E53F900D26137"
             BuildableName = "app_message_box.app"
+            BlueprintName = "app_just_message_box"
+            ReferencedContainer = "container:app_just_message_box.xcodeproj">
+         </BuildableReference>
+      </BuildableProductRunnable>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "070B8EE91B6E53F900D26137"
+            BuildableName = "app_message_box.app"
             BlueprintName = "app_message_box"
             ReferencedContainer = "container:app_message_box.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"

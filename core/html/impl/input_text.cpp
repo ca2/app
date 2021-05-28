@@ -80,6 +80,8 @@ namespace html
 
             m_pedit->create_child(pdata->m_pcoredata->m_puserinteraction);
 
+            m_pedit->m_id = id;
+
             pdata->on_create_interaction(m_pedit);
 
             m_pedit->m_bPassword = pelemental->m_propertyset["type"].compare_ci("password") == 0;

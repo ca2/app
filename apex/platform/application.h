@@ -71,7 +71,7 @@
       bool                                            m_bSnLauncheeSetup;
 #endif
       semaphore                                       m_semCompiler;
-      // former ::apex::application_interface // moved on 2015-05-23 Sammstag while listening to RocketBeansTV (a German channel?) at TwitchTV
+      // former ::application_interface // moved on 2015-05-23 Sammstag while listening to RocketBeansTV (a German channel?) at TwitchTV
 
       ::u32                                           m_dwInstallGoodToCheckAgain;
 
@@ -1451,10 +1451,10 @@
 
 
    };
-//
-//
+
+
 //} // namespace apex
-//
+
 
 
 

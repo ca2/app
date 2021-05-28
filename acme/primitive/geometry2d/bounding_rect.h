@@ -30,10 +30,10 @@ inline bool get_bounding_rectangle(RECTANGLE_F64 * prectangleBounding, const ::a
 inline bool get_bounding_rectangle(RECTANGLE_I32* prectangleBounding, const line * pline)
 {
 
-   prectangleBounding->left = minimum(pline->m_p1.x, pline->m_p2.x);
-   prectangleBounding->top = minimum(pline->m_p1.y, pline->m_p2.y);
-   prectangleBounding->right = maximum(pline->m_p1.x, pline->m_p2.x);
-   prectangleBounding->bottom = maximum(pline->m_p1.y, pline->m_p2.y);
+   prectangleBounding->left = (::i32) minimum(pline->m_p1.x, pline->m_p2.x);
+   prectangleBounding->top = (::i32) minimum(pline->m_p1.y, pline->m_p2.y);
+   prectangleBounding->right = (::i32) maximum(pline->m_p1.x, pline->m_p2.x);
+   prectangleBounding->bottom = (::i32) maximum(pline->m_p1.y, pline->m_p2.y);
 
    return true;
 

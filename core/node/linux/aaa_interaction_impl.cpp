@@ -907,7 +907,7 @@ namespace linux
 
             m_puserinteraction->hide();
 
-            if(m_puserinteraction->m_windowrect.m_edisplayPrevious == ::e_display_iconic)
+            if(m_puserinteraction->m_windowrectangle.m_edisplayPrevious == ::e_display_iconic)
             {
 
                m_puserinteraction->_001OnDeiconify(::e_display_normal);
@@ -916,7 +916,7 @@ namespace linux
             else
             {
 
-               m_puserinteraction->_001OnDeiconify(m_puserinteraction->m_windowrect.m_edisplayPrevious);
+               m_puserinteraction->_001OnDeiconify(m_puserinteraction->m_windowrectangle.m_edisplayPrevious);
 
             }
 

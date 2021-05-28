@@ -136,7 +136,7 @@ namespace acme
    double chronometer::getTimeInMicroSec()
    {
 
-      return get_nanos() / 1000.0;
+      return _get_nanos() / 1'000.0;
 
    }
 
@@ -148,7 +148,7 @@ namespace acme
    double chronometer::getTimeInMilliSec()
    {
 
-      return get_nanos() / 1'000'000.0;
+      return _get_nanos() / 1'000'000.0;
 
    }
 
@@ -160,7 +160,7 @@ namespace acme
    double chronometer::getTimeInSec()
    {
 
-      return get_nanos() / 1'000'000'000.0;
+      return _get_nanos() / 1'000'000'000.0;
 
    }
 

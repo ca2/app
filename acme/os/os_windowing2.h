@@ -17,7 +17,7 @@
 
    
 
-//    ::acme::system_window ^                      m_pwindow;
+//    class ::system_window ^                      m_pwindow;
 
 //    os_system_window();
 

@@ -1089,6 +1089,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClCompile Include="compress\zip\context.cpp" />
     <ClCompile Include="const\idpool.cpp" />
     <ClCompile Include="crypto\crypto.cpp" />
+    <ClCompile Include="crypto\crypto_initializer.cpp" />
     <ClCompile Include="crypto\hasher.cpp" />
     <ClCompile Include="crypto\hasher_algorithm.cpp" />
     <ClCompile Include="crypto\macos\rsa.cpp">
@@ -1149,6 +1150,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClCompile Include="message\sender.cpp" />
     <ClCompile Include="message\simple_command.cpp" />
     <ClCompile Include="message\_.cpp" />
+    <ClInclude Include="crypto\crypto_initializer.h" />
     <ClInclude Include="inline\implement\ansi.h" />
     <ClInclude Include="inline\implement\windows.h" />
     <ClInclude Include="net\address_department.h" />

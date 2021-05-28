@@ -8,8 +8,13 @@
 
 //extern thread_pointer < os_thread > t_posthread;
 
+namespace acme
+{
 
-int create_process(const char * _cmd_line, int * pprocessId)
+   namespace ios
+   {
+
+::e_status node::create_process(const char * _cmd_line, int * pprocessId)
 {
    char *   exec_path_name;
    char *	cmd_line;

@@ -19,13 +19,16 @@ namespace dynamic_source
 {
 
 
-   script::script() :
-      m_streamError(&m_fileError)
+   script::script()
    {
 
       m_bNew = true;
 
       defer_create_mutex();
+
+      m_pfileError.create_new();
+
+      m_streamError.m_p = m_pfileError;
 
    }
 

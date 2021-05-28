@@ -1185,7 +1185,11 @@ namespace xml
          for (i32 i = 0; i < m_nodea.get_size(); i++)
          {
 
-            ostring += m_nodea[i]->get_xml_node()->get_xml(opt);
+            auto pnode = m_nodea[i];
+
+            auto pxmlnode = pnode->get_xml_node();
+
+            ostring += pxmlnode->get_xml(opt);
 
             if (i >= m_nodea.get_upper_bound())
             {

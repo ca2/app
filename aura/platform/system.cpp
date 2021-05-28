@@ -5055,7 +5055,7 @@ namespace aura
    string system::crypto_md5_text(const string & str)
    {
 
-      return crypto().md5(str);
+      return crypto()->md5(str);
 
    }
 

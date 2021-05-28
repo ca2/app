@@ -6,7 +6,7 @@ namespace user
 
 
    class CLASS_DECL_AURA notify_icon_listener :
-      virtual public ::matter
+      virtual public ::user_notify_icon_bridge
    {
    public:
 

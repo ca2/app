@@ -53,6 +53,26 @@ namespace acme
    }
 
 
+   ::e_status node::call_async(const char * pszPath, const char * pszParam, const char * pszDir, ::e_display edisplay, bool bPrivileged, unsigned int * puiPid)
+   {
+
+      __throw(error_interface_only);
+
+      return error_interface_only;
+
+   }
+
+
+   ::e_status node::call_sync(const char * pszPath, const char * pszParam, const char * pszDir, ::e_display edisplay, const ::duration & durationTimeout, ::property_set & set)
+   {
+
+      __throw(error_interface_only);
+
+      return error_interface_only;
+
+   }
+  
+
    ::e_status node::initialize(::object * pobject)
    {
 
@@ -1009,6 +1029,26 @@ namespace acme
 #endif
 
 
+   ::e_status node::create_process(const char * pszCommandLine, u32 * pprocessID)
+   {
+
+      __throw(error_interface_only);
+
+      return false;
+
+   }
+
+
+   ::e_status node::run_silent(const char* strFunct, const char* strstrParams)
+   {
+
+      __throw(error_interface_only);
+
+      return false;
+
+   }
+
+
    bool node::process_modules(string_array& stra, u32 processID)
    {
 
@@ -1162,24 +1202,6 @@ namespace acme
    }
 
 
-   ::e_status node::call_async(const char * pszPath, const char * pszParam, const char * pszDir, ::e_display edisplay, bool bPrivileged, unsigned int * puiPid)
-   {
-
-      __throw(error_interface_only);
-
-      return error_interface_only;
-
-   }
-
-
-   ::e_status node::call_sync(const char * pszPath, const char * pszParam, const char * pszDir, ::e_display edisplay, const ::duration & durationTimeout, ::property_set & set)
-   {
-
-      __throw(error_interface_only);
-
-      return error_interface_only;
-
-   }
 
 
 } // namespace acme

@@ -53,6 +53,16 @@ concept XYDim_rectangle = requires(RECTANGLE rectangle)
 };
 
 
+template < typename RECTANGLE >
+concept xydim_rectangle = requires(RECTANGLE rectangle)
+{
+   rectangle.x;
+   rectangle.y;
+   rectangle.width;
+   rectangle.height;
+};
+
+
 #include "_struct.h"
 
 
@@ -590,6 +600,20 @@ RECT_TYPE1 * copy(RECT_TYPE1 * prect1, const RECT_TYPE2 * prect2)
 }
 
 
+template < primitive_rectangle RECT_TYPE1, xydim_rectangle RECT_TYPE2 >
+RECT_TYPE1 * copy(RECT_TYPE1 * prect1, const RECT_TYPE2 * prect2)
+{
+
+   prect1->left = (decltype(RECT_TYPE1::left))prect2->x;
+   prect1->top = (decltype(RECT_TYPE1::top))prect2->y;
+   prect1->right = (decltype(RECT_TYPE1::right))(prect2->x + prect2->width);
+   prect1->bottom = (decltype(RECT_TYPE1::bottom))(prect2->y + prect2->height);
+
+   return prect1;
+
+}
+
+
 template < XY_point POINT1, primitive_point POINT2 >
 POINT1 * copy(POINT1 * ppoint1, const POINT2 * ppoint2)
 {
@@ -622,6 +646,20 @@ RECT_TYPE1 * copy(RECT_TYPE1 * prect1, const RECT_TYPE2 * prect2)
    prect1->Y = (decltype(RECT_TYPE1::Y))prect2->top;
    prect1->Width = (decltype(RECT_TYPE1::Width))(prect2->right - prect2->left);
    prect1->Height = (decltype(RECT_TYPE1::Height))(prect2->bottom - prect2->top);
+
+   return prect1;
+
+}
+
+
+template < xydim_rectangle RECT_TYPE1, primitive_rectangle RECT_TYPE2 >
+RECT_TYPE1 * copy(RECT_TYPE1 * prect1, const RECT_TYPE2 * prect2)
+{
+
+   prect1->x = (decltype(RECT_TYPE1::X))prect2->left;
+   prect1->y = (decltype(RECT_TYPE1::Y))prect2->top;
+   prect1->width = (decltype(RECT_TYPE1::Width))(prect2->right - prect2->left);
+   prect1->height = (decltype(RECT_TYPE1::Height))(prect2->bottom - prect2->top);
 
    return prect1;
 

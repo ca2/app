@@ -458,7 +458,13 @@ namespace user
       if(iPane >= 0)
       {
 
-         get_data()->m_tabpanecompositea[iPane]->m_pimpactdata = pimpactdata;
+         auto pdata = get_data();
+
+         auto& tabpanecompositea = pdata->m_tabpanecompositea;
+
+         auto & ptabpanecomposite = tabpanecompositea[iPane];
+
+         ptabpanecomposite->m_pimpactdata = pimpactdata;
 
          if(pimpactdata->m_pplaceholder != nullptr)
          {
@@ -838,22 +844,31 @@ namespace user
 
       }
 
-      if (pimpactdata->m_puserinteraction != nullptr)
+      auto puserinteraction = pimpactdata->m_puserinteraction;
+
+      if (::is_set(puserinteraction))
       {
 
-         return pimpactdata->m_puserinteraction;
+         return puserinteraction;
 
       }
 
-      auto puserinteractionpointeraChild = pimpactdata->m_pplaceholder->m_puserinteractionpointeraChild;
+      auto pplaceholder = pimpactdata->m_pplaceholder;
 
-      if (puserinteractionpointeraChild)
+      if (::is_set(pplaceholder))
       {
 
-         if (pimpactdata->m_pplaceholder != nullptr && puserinteractionpointeraChild->interaction_count() == 1)
+         auto puserinteractionpointeraChild = pplaceholder->m_puserinteractionpointeraChild;
+
+         if (::is_set(puserinteractionpointeraChild))
          {
 
-            return puserinteractionpointeraChild->first_interaction();
+            if (puserinteractionpointeraChild->interaction_count() == 1)
+            {
+
+               return puserinteractionpointeraChild->first_interaction();
+
+            }
 
          }
 

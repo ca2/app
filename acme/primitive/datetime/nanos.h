@@ -25,7 +25,7 @@ public:
 
    void sleep() const;
    
-   void Now() { m_i = ::get_nanos(); }
+   void Now() { m_i = ::_get_nanos(); }
 
 
 };
@@ -82,6 +82,8 @@ inline nanos operator /(const ::nanos& nanos, const NUMBER& number)
 #endif
 
 
-CLASS_DECL_ACME ::i64 first_nano();
-CLASS_DECL_ACME ::i64 get_nanos();
+inline ::nanos first_nano() { return _first_nano(); }
+inline ::nanos get_nanos() { return _get_nanos(); }
+
+
 

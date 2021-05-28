@@ -661,7 +661,8 @@ namespace apex
       //   return *m_sphttpsystem;
       //}
 
-      class ::crypto::crypto                       & crypto();
+
+      class ::crypto::crypto * crypto();
 
 
       virtual ::file::path local_get_matter_cache_path();

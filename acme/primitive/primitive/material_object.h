@@ -32,8 +32,6 @@ public:
    template < typename TYPE >
    inline bool is() const { return cast < TYPE >(); }
 
-   template < typename TYPE >
-   inline __pointer(TYPE) cast(const ::id& id);
 
 
 //   __transport(task) branch(

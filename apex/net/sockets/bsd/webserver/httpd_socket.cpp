@@ -256,7 +256,9 @@ namespace sockets
       if (strId.begins_ci("cat://"))
       {
 
-         strId = "cat://" + psystem->crypto().md5(strId);
+         auto pcrypto = psystem->crypto();
+
+         strId = "cat://" + psystem->crypto()->md5(strId);
 
       }
       InitializeContext(strId, m_strCat, "", TLS_server_method());

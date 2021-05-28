@@ -8,6 +8,11 @@
 
 extern thread_int_ptr < os_thread > t_posthread;
 
+namespace acme
+{
+
+ namespace solaris
+ {
 
 i32 create_process(const char * _cmd_line, i32 * pprocessId)
 {
@@ -62,6 +67,10 @@ i32 create_process(const char * _cmd_line, i32 * pprocessId)
    // in parent, success
    return 1;
 }
+
+ } //namespace solaris
+
+ }// namespace acme
 
 CLASS_DECL_ACME i32 call_async(
 const char * pszPath,

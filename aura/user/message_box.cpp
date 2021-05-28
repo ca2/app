@@ -84,6 +84,10 @@ namespace user
 
       set_tool_window();
 
+      display(::e_display_normal);
+
+      do_layout();
+
       auto estatus = create_host();
 
       if (!estatus)
@@ -201,8 +205,6 @@ namespace user
    void message_box::do_show()
    {
 
-      display(::e_display_normal);
-
       set_need_layout();
 
       set_need_redraw();
@@ -211,9 +213,94 @@ namespace user
 
    }
 
+//
+//   void message_box::on_layout(::draw2d::graphics_pointer & pgraphics)
+//   {
+//
+//      int iMaxWidth = 100;
+//
+//      for (auto& pbutton : m_buttona)
+//      {
+//
+//         pbutton->resize_to_fit(pgraphics);
+//
+//         if (pbutton->width() > iMaxWidth)
+//         {
+//
+//            iMaxWidth = pbutton->width();
+//
+//         }
+//
+//      }
+//
+//      ::rectangle_i32 rectangleMonitor;
+//
+//      auto psession = get_session();
+//
+//      auto puser = psession->user();
+//
+//      puser->windowing()->display()->get_main_monitor(rectangleMonitor);
+//
+//      int iButtonGroupWidth = (int) (iMaxWidth * 1.25 * m_buttona.get_count());
+//
+//      int iWidth = maximum((int)(iButtonGroupWidth * 1.1), rectangleMonitor.width() / 2);
+//
+//      m_pstill->place({ 10, 10, iWidth - 20, 200 });
+//
+//      m_pstill->display();
+//
+//      int right = (int) (iWidth - 10);
+//
+//      int iButton = (int) m_buttona.get_upper_bound();
+//
+//      while(iButton>= 0)
+//      {
+//
+//         auto pbutton = m_buttona[iButton];
+//
+//         pbutton->place({ right - iMaxWidth, 210, right, 280 });
+//         pbutton->display();
+//         right -= (int) (iMaxWidth * 1.25);
+//         iButton--;
+//      }
+//
+//      ::rectangle_i32 r;
+//
+//      r.set_dim(0, 0, iWidth, 300);
+//
+//      r.Align(e_align_center, rectangleMonitor);
+//
+//      if (r != layout().sketch().screen_rect())
+//      {
+//
+//         place(r);
+//
+//         if (!m_bFirstLayoutDone)
+//         {
+//
+//            m_bFirstLayoutDone = true;
+//
+//            set_need_layout();
+//
+//            set_need_redraw();
+//
+//            post_redraw();
+//
+//         }
+//
+//      }
+//
+//   }
 
-   void message_box::on_layout(::draw2d::graphics_pointer & pgraphics)
+
+   void message_box::do_layout()
    {
+
+      ::draw2d::graphics_pointer pgraphics;
+
+      pgraphics.create();
+
+      pgraphics->create_memory_graphics();
 
       int iMaxWidth = 100;
 
@@ -266,25 +353,27 @@ namespace user
 
       r.set_dim(0, 0, iWidth, 300);
 
-      r.Align(e_align_center, rectangleMonitor);
+      r.Align(e_align_horizontal_center, rectangleMonitor);
+
+      r.offset_y((rectangleMonitor.height() - r.height()) * 2 / 5);
 
       if (r != layout().sketch().screen_rect())
       {
 
          place(r);
 
-         if (!m_bFirstLayoutDone)
-         {
-
-            m_bFirstLayoutDone = true;
-
-            set_need_layout();
-
-            set_need_redraw();
-
-            post_redraw();
-
-         }
+//         if (!m_bFirstLayoutDone)
+//         {
+//
+//            m_bFirstLayoutDone = true;
+//
+//            set_need_layout();
+//
+//            set_need_redraw();
+//
+//            post_redraw();
+//
+//         }
 
       }
 

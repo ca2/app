@@ -50,6 +50,8 @@ list(APPEND apex_source
    crypto/_crypto.h
    crypto/crypto.cpp
    crypto/crypto.h
+   crypto/crypto_initializer.cpp
+   crypto/crypto_initializer.h
    crypto/hasher.cpp
    crypto/hasher.h
    crypto/hasher_algorithm.cpp

@@ -80,9 +80,6 @@
 #define __spin_namespace apex // back bone / four-letter "spin*" namespace name
 
 
-class application;
-
-
 namespace apex
 {
 
@@ -91,6 +88,10 @@ namespace apex
    class node;
    class session;
    
+
+   class application;
+
+
    //class apex;
 
 

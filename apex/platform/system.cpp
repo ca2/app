@@ -16,9 +16,6 @@
 #include "acme/filesystem/filesystem/acme_dir.h"
 
 
-#define DUMP_COMMAND_LINE_AND_ENVIRONMENT_VARIABLES_TO_FILE TRUE
-
-
 //extern ::apex::system* g_papexsystem;
 
 //CLASS_DECL_APEX void apex_generate_random_bytes(void* p, memsize s);
@@ -53,6 +50,7 @@ CLASS_DECL_APEX const char * multimedia_get_library_name()
 extern "C"
 ::acme::library * experience_get_new_library();
 #endif
+
 
 
 #ifdef LINUX
@@ -1469,13 +1467,97 @@ namespace apex
       //   return estatus;
 
       //}
-      
-#ifdef DUMP_COMMAND_LINE_AND_ENVIRONMENT_VARIABLES_TO_FILE
-      
-      dump_command_line_and_environment_variables_to_file();
-      
-#endif
 
+      auto psystem = m_psystem;
+
+      auto pdatetime = psystem->datetime();
+
+      string strLogTime = pdatetime->international().get_gmt_date_time_for_file_with_no_spaces();
+
+      strLogTime.replace("-", "/");
+
+      strLogTime.replace("_", "/");
+
+      {
+
+         string_array straCmds;
+
+         for (int i = 0; i < m_argc; i++)
+         {
+
+            if (m_argv && m_argv[i])
+            {
+
+               char* thisCmd = m_argv[i];
+
+               straCmds.add(thisCmd);
+
+            }
+            else if (m_wargv && m_wargv[i])
+            {
+
+               wchar_t* thisCmd = m_wargv[i];
+
+               straCmds.add(thisCmd);
+
+            }
+
+         }
+
+         string strCmd = straCmds.implode("\n");
+
+         string strAppId = m_strAppId;
+
+         string strCmdLineDumpFileName = strAppId / strLogTime + "-command_line.txt";
+
+         ::file::path pathCmdLineDumpFile = m_psystem->m_pacmedir->home() / "application" / strCmdLineDumpFileName;
+
+         file_put_contents(pathCmdLineDumpFile, strCmd);
+
+      }
+
+      {
+
+         string_array straEnv;
+
+         if (m_wenvp)
+         {
+
+            for (auto wenv = m_wenvp; *wenv != 0; wenv++)
+            {
+
+               auto thisEnv = *wenv;
+
+               straEnv.add(thisEnv);
+
+            }
+
+         }
+         else if (m_envp)
+         {
+
+            for (auto env = m_envp; *env != 0; env++)
+            {
+
+               auto thisEnv = *env;
+
+               straEnv.add(thisEnv);
+
+            }
+
+         }
+
+         string strEnv = straEnv.implode("\n");
+
+         string strAppId = m_strAppId;
+
+         string strEnvDumpFileName = strAppId / strLogTime + "-environment_variables.txt";
+
+         ::file::path pathEnvDumpFile = m_psystem->m_pacmedir->home() / "application" / strEnvDumpFileName;
+
+         file_put_contents(pathEnvDumpFile, strEnv);
+
+      }
 
 //      {
 //
@@ -1656,103 +1738,6 @@ namespace apex
 
       return true;
 
-   }
-
-
-   void system::dump_command_line_and_environment_variables_to_file()
-   {
-      
-      auto psystem = m_psystem;
-
-      auto pdatetime = psystem->datetime();
-
-      string strLogTime = pdatetime->international().get_gmt_date_time_for_file_with_no_spaces();
-
-      strLogTime.replace("-", "/");
-
-      strLogTime.replace("_", "/");
-
-      {
-
-         string_array straCmds;
-
-         for (int i = 0; i < m_argc; i++)
-         {
-
-            if (m_argv && m_argv[i])
-            {
-
-               char* thisCmd = m_argv[i];
-
-               straCmds.add(thisCmd);
-
-            }
-            else if (m_wargv && m_wargv[i])
-            {
-
-               wchar_t* thisCmd = m_wargv[i];
-
-               straCmds.add(thisCmd);
-
-            }
-
-         }
-
-         string strCmd = straCmds.implode("\n");
-
-         string strAppId = m_strAppId;
-
-         string strCmdLineDumpFileName = strAppId / strLogTime + "-command_line.txt";
-
-         ::file::path pathCmdLineDumpFile = m_psystem->m_pacmedir->home() / "application" / strCmdLineDumpFileName;
-
-         file_put_contents(pathCmdLineDumpFile, strCmd);
-
-      }
-
-      {
-
-         string_array straEnv;
-
-         if (m_wenvp)
-         {
-
-            for (auto wenv = m_wenvp; *wenv != 0; wenv++)
-            {
-
-               auto thisEnv = *wenv;
-
-               straEnv.add(thisEnv);
-
-            }
-
-         }
-         else if (m_envp)
-         {
-
-            for (auto env = m_envp; *env != 0; env++)
-            {
-
-               auto thisEnv = *env;
-
-               straEnv.add(thisEnv);
-
-            }
-
-         }
-
-         string strEnv = straEnv.implode("\n");
-
-         string strAppId = m_strAppId;
-
-         string strEnvDumpFileName = strAppId / strLogTime + "-environment_variables.txt";
-
-         ::file::path pathEnvDumpFile = m_psystem->m_pacmedir->home() / "application" / strEnvDumpFileName;
-
-         file_put_contents(pathEnvDumpFile, strEnv);
-
-      }
-      
    }
 
 
@@ -3584,10 +3569,10 @@ namespace apex
 
 #endif
 
-   class ::crypto::crypto & system::crypto()
+   ::crypto::crypto * system::crypto()
    {
 
-      return *m_pcrypto;
+      return m_pcrypto;
 
    }
 
@@ -4259,7 +4244,7 @@ namespace apex
 
          //#elif defined(LINUX)
          //
-         //      ::system("xdg-open \"" + strUrl + "\"");
+         //      class ::system("xdg-open \"" + strUrl + "\"");
          //
          //      return true;
          //
@@ -4306,7 +4291,7 @@ namespace apex
 
 #elif defined(MACOS)
 
-         ::system("open -a /Applications/Safari.app \"" + strUrl + "\"");
+         class ::system("open -a /Applications/Safari.app \"" + strUrl + "\"");
 
 #elif defined(APPLE_IOS)
 
@@ -4393,7 +4378,7 @@ namespace apex
          else
          {
 
-            ::system("xdg-open " + strUrl);
+            class ::system("xdg-open " + strUrl);
 
          }
 
@@ -4508,7 +4493,11 @@ namespace apex
 
             strParam += " " + file_as_string(m_psystem->m_pacmedir->localconfig() / "app-core/commander/chrome.txt");
 
-            call_async(path, strParam, pathDir, e_display_default, false);
+            auto psystem = m_psystem;
+
+            auto pnode = psystem->node();
+
+            pnode->call_async(path, strParam, pathDir, e_display_default, false);
 
          }
 
@@ -4824,7 +4813,11 @@ namespace apex
    string system::crypto_md5_text(const string & str)
    {
 
-      return crypto().md5(str);
+      auto psystem = m_psystem->m_papexsystem;
+
+      auto pcrypto = psystem->crypto();
+
+      return pcrypto->md5(str);
 
    }
 
@@ -5358,6 +5351,17 @@ namespace apex
    ::e_status system::main()
    {
 
+//      auto estatus = init_system();
+//
+//      if (!estatus)
+//      {
+//
+//         return estatus;
+//
+//      }
+//
+//      //auto estatus = class ::system::main();
+
       auto estatus = ::thread::main();
 
       if (!estatus)
@@ -5482,7 +5486,7 @@ namespace apex
       }
 
 
-      //acme::system::on_subject(psubject);
+      ::subject::manager::on_subject(psubject);
 
    }
 
@@ -5712,28 +5716,30 @@ string get_bundle_app_library_name();
 
       strLibrary.replace(".", "_");
 
+
+
       auto plibrary = __node_library_open(strLibrary, strMessage);
 
       if (!plibrary)
       {
 
-//         {
-//
-//            auto pfuture = __sync_future();
-//
-//            //message_box(strMessage, "Could not open required library. Want to give an yes/no answer insted of pression cancel?", e_message_box_icon_exclamation | e_message_box_yes_no_cancel, pfuture);
-//
-//            pfuture->wait(10_s);
-//
-//            int iDialogResult = pfuture->m_var;
-//
-//            ::output_debug_string("result " + __str(iDialogResult));
-//
-//         }
+         //{
+
+         //   //auto pfuture = __sync_future();
+
+         //   //message_box(strMessage, "Could not open required library. Want to give an yes/no answer insted of pression cancel?", e_message_box_icon_exclamation | e_message_box_yes_no_cancel, pfuture);
+
+         //   //pfuture->wait(10_s);
+
+         //   int iDialogResult = pfuture->m_var;
+
+         //   ::output_debug_string("result " + __str(iDialogResult));
+
+         //}
 
          //__throw(error_failed, strMessage + "\n\nCould not open required library.");
 
-         ::output_debug_string("Dynamic library for app_id \"" + strAppId + "\" wasn't loaded.");
+         ::output_debug_string("The application library for appid \"" + strAppId + "\" wasn't loaded.");
 
          //return nullptr;
 
@@ -5895,7 +5901,7 @@ namespace apex
 //
 
 
-void system_int_update(void* pSystem, int iUpdate, int iPayload)
+void int_system_update(void* pSystem, int iUpdate, int iPayload)
 {
 
    auto psystem = (class ::system *) pSystem;

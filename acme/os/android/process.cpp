@@ -4,7 +4,13 @@
 void get_os_priority(i32 * piPolicy, sched_param * pparam, ::e_priority epriority);
 
 
-i32 create_process(const char * _cmd_line, i32 * pprocessId)
+namespace acme
+{
+
+   namespace android
+   {
+
+::e_status node::create_process(const char * _cmd_line, i32 * pprocessId, int * piErrorCode)
 {
 
    char *   exec_path_name = nullptr;
@@ -72,7 +78,9 @@ i32 create_process(const char * _cmd_line, i32 * pprocessId)
    return 1;
 
 }
+   } // namespace android
 
+} // namespace acme
 
 CLASS_DECL_ACME i32 call_async(
 const char * pszPath,

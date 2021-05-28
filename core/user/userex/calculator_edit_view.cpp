@@ -218,7 +218,7 @@ namespace calculator
                //__throw(::exception::exception("now a simple exception here"));
 
             }
-            catch (const numeric_parser_exception & exception)
+            catch (const ::exception::exception & exception)
             {
 
                e.m_strMessage = exception.get_message();

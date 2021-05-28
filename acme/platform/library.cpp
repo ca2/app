@@ -197,7 +197,7 @@ namespace acme
    bool library::open_library(string strTitle)
    {
 
-      __pointer(class ::system) psystem = get_system();
+      auto psystem = get_system();
 
       synchronous_lock synchronouslock(&psystem->m_mutexLibrary);
 
@@ -370,7 +370,7 @@ namespace acme
    string library::get_library_name()
    {
 
-      __pointer(class ::system) psystem = get_system();
+      auto psystem = get_system();
 
       synchronous_lock synchronouslock(&psystem->m_mutexLibrary);
 

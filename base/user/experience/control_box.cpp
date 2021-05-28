@@ -1160,7 +1160,7 @@ namespace experience
          if (pdrawcontext != nullptr)
          {
 
-            rectClient = pdrawcontext->m_rectWindow;
+            rectClient = pdrawcontext->m_rectangleWindow;
 
             _001ScreenToClient(rectClient);
 
@@ -1189,7 +1189,7 @@ namespace experience
 
                _001ScreenToClient(rectFocus);
 
-               m_pshapeaClip->add_item(__new(rectd_shape(rectFocus)));
+               m_pshapeaClip->add_item(__new(rectangle_shape(rectFocus)));
 
                m_pshapeaClip->add_item(__new(intersect_clip_shape));
 

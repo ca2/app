@@ -1575,14 +1575,14 @@ namespace user
    void primitive_impl::prio_install_message_routing(::channel * pchannel)
    {
 
-      if (g_p == nullptr)
-      {
+      //if (g_p == nullptr)
+      //{
 
-         g_p = new iptr_map < string >;
+      //   g_p = new iptr_map < string >;
 
-      }
+      //}
 
-      g_p->set_at((iptr)this, ::str::demangle(m_puserinteraction->type_name()) + "xxx" + type_name());
+      //g_p->set_at((iptr)this, ::str::demangle(m_puserinteraction->type_name()) + "xxx" + type_name());
       MESSAGE_LINK(e_message_show_window, pchannel, this, &primitive_impl::_001OnShowWindow);
       MESSAGE_LINK(e_message_destroy, pchannel, this, &primitive_impl::_001OnDestroy);
       MESSAGE_LINK(e_message_ncdestroy, pchannel, this, &primitive_impl::_001OnNcDestroy);

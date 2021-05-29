@@ -1402,7 +1402,6 @@
 		9AC2CEC92653455600CC8096 /* windowing.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = windowing.cpp; sourceTree = "<group>"; };
 		9AC2CECA2653455600CC8096 /* _.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
 		9AC2CECB2653455600CC8096 /* menu_command.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = menu_command.cpp; sourceTree = "<group>"; };
-		9AC31C92248538F000F18145 /* clipboard.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = clipboard.cpp; sourceTree = "<group>"; };
 		9AC31C9424853D7400F18145 /* keyboard.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = keyboard.cpp; sourceTree = "<group>"; };
 		9AC35AE724744FF90044A638 /* _ios.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _ios.h; sourceTree = "<group>"; };
 		9AC35AE8247450370044A638 /* _ios.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _ios.h; sourceTree = "<group>"; };
@@ -1664,7 +1663,6 @@
 				9A247D3F2452C47E00F23D28 /* _macos.h */,
 				9A247D2B2452C47E00F23D28 /* _mm.h */,
 				9A247D372452C47E00F23D28 /* aura.cpp */,
-				9AC31C92248538F000F18145 /* clipboard.cpp */,
 				9A247D2F2452C47E00F23D28 /* cross_win_file.cpp */,
 				9A247D2E2452C47E00F23D28 /* cross_win_gdi.h */,
 				9A247D1F2452C47E00F23D28 /* cross_win.cpp */,

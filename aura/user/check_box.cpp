@@ -53,18 +53,23 @@ namespace user
       {
 
          check::_001SetCheck(echeck, context);
+         
+         if(has_control_event_handler())
+         {
 
-         ::user::control_event ev;
+            ::user::control_event ev;
 
-         ev.m_puie = this;
+            ev.m_puie = this;
 
-         ev.m_id = m_id;
+            ev.m_id = m_id;
 
-         ev.m_eevent = ::user::e_event_set_check;
+            ev.m_eevent = ::user::e_event_set_check;
 
-         ev.m_actioncontext = context;
+            ev.m_actioncontext = context;
 
-         route_control_event(&ev);
+            route_control_event(&ev);
+            
+         }
 
          set_need_redraw();
 
@@ -665,8 +670,8 @@ namespace user
    {
 
       pmessage->previous();
-
-      //m_propertyCheck = fetch_property(m_id, true);
+      
+      m_propertyCheck = fetch_property(m_id, true);
 
       ///add_update_notification(m_ppropertyCheck);
 

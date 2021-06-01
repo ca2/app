@@ -243,29 +243,34 @@ void simple_scroll_bar::on_message_left_button_up(::message::message * pmessage)
    auto pwindowing = puser->windowing();
 
    auto puserinteractionCapture = puser->get_mouse_capture(m_pthreadUserInteraction);
-
-   auto pcapture = puserinteractionCapture->cast < simple_scroll_bar >();
-
-   if ((pcapture != nullptr && pcapture == this) || m_bTracking)
+   
+   if(puserinteractionCapture)
    {
+      
+      auto pcapture = puserinteractionCapture->cast < simple_scroll_bar >();
 
-      KillTimer(43212345);
-
-      bool bWasTracking = m_bTracking;
-
-      m_bTracking = false;
-
-      if (bWasTracking)
+      if ((pcapture != nullptr && pcapture == this) || m_bTracking)
       {
 
-         auto point = screen_to_client(pmouse->m_point);
+         KillTimer(43212345);
 
-         point -= m_sizeTrackOffset;
+         bool bWasTracking = m_bTracking;
 
-         auto pgraphics = create_memory_graphics();
+         m_bTracking = false;
 
-         SetTrackingPos(point, pgraphics);
+         if (bWasTracking)
+         {
 
+            auto point = screen_to_client(pmouse->m_point);
+
+            point -= m_sizeTrackOffset;
+
+            auto pgraphics = create_memory_graphics();
+
+            SetTrackingPos(point, pgraphics);
+
+         }
+         
       }
 
       pwindowing->release_mouse_capture();

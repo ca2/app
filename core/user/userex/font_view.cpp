@@ -162,7 +162,7 @@ namespace userex
 
          m_ptopview->m_peditview->_001SetText(str, ::e_source_sync);
 
-         m_ptopview->m_peditview->m_pfont.defer_create();
+         m_ptopview->m_peditview->m_pfont.defer_create(this);
 
          m_ptopview->m_peditview->m_pfont->set_family_name(str);
 
@@ -214,7 +214,7 @@ namespace userex
 
                m_ptopview->m_peditview->_001SetText(strText, ::e_source_sync);
 
-               m_ptopview->m_peditview->m_pfont.defer_create();
+               m_ptopview->m_peditview->m_pfont.defer_create(this);
 
                m_ptopview->m_peditview->m_pfont->set_family_name(strText);
 

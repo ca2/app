@@ -235,8 +235,8 @@ namespace user
       //m_pcomboFamily->display_child(70, 5, 120, 20);
       //m_pcomboSize->display_child(195, 5, 40, 20);
 
-      int x = 245;
-      throw "create line layout";
+      //int x = 245;
+      //throw "create line layout";
       //m_pbuttonForeground->display_child(x, 5, 20, 20);
       //x += 20;
       //m_pbuttonBackground->display_child(x, 5, 20, 20);
@@ -246,7 +246,7 @@ namespace user
       //m_pbuttonSuperscript->display_child(x, 5, 20, 20);
       //x += 20;
 
-      x += 10;
+      //x += 10;
 
       //m_pbuttonAlignLeft->display_child(x, 5, 20, 20);
       //x += 20;

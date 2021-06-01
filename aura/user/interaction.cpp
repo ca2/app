@@ -9042,7 +9042,7 @@ namespace user
 //   }
 
 
-   void interaction::add_control_event_listener(::user::interaction * puserinteraction, bool bPriority)
+   void interaction::add_control_event_handler(::user::interaction * puserinteraction, bool bPriority)
    {
       
       __defer_construct_new(m_puserinteractionaControlEventHandler);

@@ -1447,7 +1447,7 @@ namespace aura
    }
 
 
-   ::user::copydesk& session::copydesk()
+   ::user::copydesk * session::copydesk()
    {
 
       if (!m_pcopydesk)
@@ -1457,7 +1457,7 @@ namespace aura
 
       }
 
-      return *m_pcopydesk;
+      return m_pcopydesk;
 
    }
 

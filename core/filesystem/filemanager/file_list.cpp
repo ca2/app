@@ -540,7 +540,9 @@ namespace filemanager
 
       auto psession = get_session();
 
-      psession->copydesk().set_filea(patha, ::user::copydesk::op_copy);
+      auto pcopydesk = psession->copydesk();
+
+      pcopydesk->set_filea(patha, ::user::copydesk::op_copy);
 
       pmessage->m_bRet = true;
 

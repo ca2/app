@@ -468,6 +468,8 @@ namespace userex
          pdocument->m_pviewTopic->set_notify_user_interaction(this);
 
          pimpactdata->m_puserinteraction = pdocument->m_pviewTopic;
+         
+         m_pfontview->m_pview->add_control_event_handler(this);
 
       }
       else if (is_color_sel(pimpactdata->m_id))
@@ -488,6 +490,8 @@ namespace userex
          pdocument->m_pviewTopic->set_notify_user_interaction(this);
 
          pimpactdata->m_puserinteraction = pdocument->m_pviewTopic;
+         
+         m_pcolorview->add_control_event_handler(this);
 
       }
       else if(is_filemanager(pimpactdata->m_id))

@@ -312,7 +312,7 @@ namespace html
 
          for (auto & pinteraction : m_pform->m_puserinteractionpointeraChild->interactiona())
          {
-
+            
             ::user::control_event event;
 
             event.m_eevent = ::user::e_event_initialize_control;

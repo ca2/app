@@ -23,35 +23,35 @@
 //CLASS_DECL_CORE void attach_thread_input_to_main_thread(bool bAttach);
 //#endif
 
-#ifdef MACOS
-
-bool macos_set_user_wallpaper(int iScreen, const char * psz);
-
-long long mm_get_user_wallpaper(long long llScreen, char ** ppp);
-
-CLASS_DECL_CORE string macos_get_user_wallpaper(int iScreen)
-{
-
-   string str;
-
-   char * psz = nullptr;
-
-   mm_get_user_wallpaper(iScreen, &psz);
-
-   if(psz != nullptr)
-   {
-
-      str = psz;
-
-      free(psz);
-
-   }
-
-   return str;
-
-}
-
-#endif
+//#ifdef MACOS
+//
+//bool macos_set_user_wallpaper(int iScreen, const char * psz);
+//
+////long long mm_get_user_wallpaper(long long llScreen, char ** ppp);
+////
+////CLASS_DECL_CORE string macos_get_user_wallpaper(int iScreen)
+////{
+////
+////   string str;
+////
+////   char * psz = nullptr;
+////
+////   mm_get_user_wallpaper(iScreen, &psz);
+////
+////   if(psz != nullptr)
+////   {
+////
+////      str = psz;
+////
+////      free(psz);
+////
+////   }
+////
+////   return str;
+////
+////}
+////
+//#endif
 
 CLASS_DECL_CORE ::mutex * get_cred_mutex();
 
@@ -1627,171 +1627,171 @@ namespace core
 
 #elif defined(APPLE_IOS)
 
-   bool user::impl_set_os_desktop_theme(string strTheme)
-   {
+//   bool user::impl_set_os_desktop_theme(string strTheme)
+//   {
+//
+//      return false;
+//
+//   }
+//
+//   bool user::impl_set_wallpaper(index iScreen, string strLocalImagePath)
+//   {
+//
+//      return false;
+//
+//   }
+//
+//   string user::impl_get_wallpaper(index iScreen)
+//   {
+//
+//      return string();
+//
+//   }
+//
+//   string user::impl_get_os_desktop_theme()
+//   {
+//
+//      return "";
+//
+//   }
 
-      return false;
-
-   }
-
-   bool user::impl_set_wallpaper(index iScreen, string strLocalImagePath)
-   {
-
-      return false;
-
-   }
-
-   string user::impl_get_wallpaper(index iScreen)
-   {
-
-      return string();
-
-   }
-
-   string user::impl_get_os_desktop_theme()
-   {
-
-      return "";
-
-   }
-
-   void user::enable_wallpaper_change_notification()
-   {
-
-   }
+//   void user::enable_wallpaper_change_notification()
+//   {
+//
+//   }
 
 
 #elif defined(ANDROID)
 
-   bool user::impl_set_wallpaper(index iScreen, string strLocalImagePath)
-   {
+//   bool user::impl_set_wallpaper(index iScreen, string strLocalImagePath)
+//   {
+//
+//      return psystem->android_set_user_wallpaper(strLocalImagePath);
+//
+//   }
+//
+//   string user::impl_get_wallpaper(index iScreen)
+//   {
+//
+//      string strLocalImagePath;
+//
+//      psystem->android_get_user_wallpaper(strLocalImagePath);
+//
+//      return strLocalImagePath;
+//
+//   }
 
-      return psystem->android_set_user_wallpaper(strLocalImagePath);
-
-   }
-
-   string user::impl_get_wallpaper(index iScreen)
-   {
-
-      string strLocalImagePath;
-
-      psystem->android_get_user_wallpaper(strLocalImagePath);
-
-      return strLocalImagePath;
-
-   }
-
-   void user::enable_wallpaper_change_notification()
-   {
-
-   }
-
-
-   string user::impl_get_os_desktop_theme()
-   {
-
-      return "";
-
-   }
+//   void user::enable_wallpaper_change_notification()
+//   {
+//
+//   }
 
 
-   bool user::impl_set_os_desktop_theme(string strTheme)
-   {
-
-      UNREFERENCED_PARAMETER(strTheme);
-
-      return true;
-
-   }
+//   string user::impl_get_os_desktop_theme()
+//   {
+//
+//      return "";
+//
+//   }
+//
+//
+//   bool user::impl_set_os_desktop_theme(string strTheme)
+//   {
+//
+//      UNREFERENCED_PARAMETER(strTheme);
+//
+//      return true;
+//
+//   }
 
 
 
 #elif defined(_UWP)
 
 
-   void user::enable_wallpaper_change_notification()
-   {
-
-   }
-
-
-   bool user::impl_set_wallpaper(index iScreen, string strLocalImagePath)
-   {
-
-      // Someday we will be together...
-      // What do you mean...
-      // Cold Water...
-
-      return false;
-
-   }
-
-   string user::impl_get_wallpaper(index iScreen)
-   {
-
-      return string();
-
-   }
-
-   string user::impl_get_os_desktop_theme()
-   {
-
-      return "";
-
-   }
+//   void user::enable_wallpaper_change_notification()
+//   {
+//
+//   }
 
 
-   bool user::impl_set_os_desktop_theme(string strTheme)
-   {
-
-      UNREFERENCED_PARAMETER(strTheme);
-
-      return true;
-
-   }
+//   bool user::impl_set_wallpaper(index iScreen, string strLocalImagePath)
+//   {
+//
+//      // Someday we will be together...
+//      // What do you mean...
+//      // Cold Water...
+//
+//      return false;
+//
+//   }
+//
+//   string user::impl_get_wallpaper(index iScreen)
+//   {
+//
+//      return string();
+//
+//   }
+//
+//   string user::impl_get_os_desktop_theme()
+//   {
+//
+//      return "";
+//
+//   }
+//
+//
+//   bool user::impl_set_os_desktop_theme(string strTheme)
+//   {
+//
+//      UNREFERENCED_PARAMETER(strTheme);
+//
+//      return true;
+//
+//   }
 
 #else
 
+//
+//   void user::enable_wallpaper_change_notification()
+//   {
+//
+//   }
 
-   void user::enable_wallpaper_change_notification()
-   {
-
-   }
-
-   bool user::impl_set_wallpaper(index iScreen, string strLocalImagePath)
-   {
-
-      return macos_set_user_wallpaper((int)iScreen, strLocalImagePath);
-
-   }
-
-   string user::impl_get_wallpaper(index iScreen)
-   {
-
-      return macos_get_user_wallpaper((int)iScreen);
-
-   }
-
-
-
-
-
-   string user::impl_get_os_desktop_theme()
-   {
-
-      return "";
-
-   }
-
-
-   bool user::impl_set_os_desktop_theme(string strTheme)
-   {
-
-      UNREFERENCED_PARAMETER(strTheme);
-
-      return true;
-
-   }
+//   bool user::impl_set_wallpaper(index iScreen, string strLocalImagePath)
+//   {
+//
+//      return macos_set_user_wallpaper((int)iScreen, strLocalImagePath);
+//
+//   }
+//
+//   string user::impl_get_wallpaper(index iScreen)
+//   {
+//
+//      return macos_get_user_wallpaper((int)iScreen);
+//
+//   }
+//
+//
+//
+//
+//
+//   string user::impl_get_os_desktop_theme()
+//   {
+//
+//      return "";
+//
+//   }
+//
+//
+//   bool user::impl_set_os_desktop_theme(string strTheme)
+//   {
+//
+//      UNREFERENCED_PARAMETER(strTheme);
+//
+//      return true;
+//
+//   }
 
 
 #endif

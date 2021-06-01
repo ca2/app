@@ -6154,7 +6154,9 @@ finished_update:
       
       auto psession = get_session();
 
-      psession->copydesk().set_plain_text(str);
+      auto pcopydesk = psession->copydesk();
+      
+      pcopydesk->set_plain_text(str);
 
    }
 
@@ -6173,8 +6175,10 @@ finished_update:
       string str;
 
       auto psession = get_session();
+      
+      auto pcopydesk = psession->copydesk();
 
-      if(!psession->copydesk().get_plain_text(str))
+      if(!pcopydesk->get_plain_text(str))
       {
 
          return;
@@ -6472,8 +6476,10 @@ finished_update:
       __pointer(::message::command) pcommand(pmessage);
 
       auto psession = get_session();
-
-      pcommand->enable(psession->copydesk().has_plain_text());
+      
+      auto pcopydesk = psession->copydesk();
+      
+      pcommand->enable(pcopydesk->has_plain_text());
 
    }
 

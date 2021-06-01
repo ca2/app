@@ -83,15 +83,15 @@ namespace user
 
          //}
 
-         m_pcontainer = pcontainer;
-
-         auto psystem = m_psystem->m_paurasystem;
-
-         auto pnode = psystem->node();
-
-         m_strFontFamily = pnode->font_name(e_font_sans);
-
-         return ::success;
+//         m_pcontainer = pcontainer;
+//
+//         auto psystem = m_psystem->m_paurasystem;
+//
+//         auto pnode = psystem->node();
+//
+//         m_strFontFamily = pnode->font_name(e_font_sans);
+//
+//         return ::success;
 
       }
 

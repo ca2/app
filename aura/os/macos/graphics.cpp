@@ -1295,48 +1295,6 @@ namespace draw2d
 
 
 
-void * cg_image_get_image_data(int & width, int & height, int & iScan, CGImageRef image)
-{
-
-   if(image == nullptr)
-   {
-
-      return nullptr;
-
-   }
-
-   //https://www.raywenderlich.com/69855/image-processing-in-ios-part-1-raw-bitmap-modification
-   // 1.
-   width = (int) CGImageGetWidth(image);
-   height = (int) CGImageGetHeight(image);
-
-   // 2.
-   long bytesPerPixel = 4;
-   long bytesPerRow = bytesPerPixel * width;
-   long bitsPerComponent = 8;
-
-   ::u32 * pixels;
-   pixels = (::u32 *) calloc(height * width, sizeof(::u32));
-   
-   iScan = width * sizeof(::u32);
-
-   // 3.
-   CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
-   CGContextRef context = CGBitmapContextCreate(pixels, width, height, bitsPerComponent, bytesPerRow, colorSpace, kCGImageAlphaPremultipliedLast
-// kCGBitmapByteOrder32Big
-                                                );
-
-   // 4.
-   CGContextDrawImage(context, CGRectMake(0, 0, width, height), image);
-
-   // 5. Cleanup
-   CGColorSpaceRelease(colorSpace);
-
-   CGContextRelease(context);
-
-   return pixels;
-
-}
 
 
 //HCURSOR imaging::CreateAlphaCursor(oswindow window, const ::image * pimage, int xHotSpot, int yHotSpot)

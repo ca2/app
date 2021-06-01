@@ -22,14 +22,14 @@ namespace regular_expression_pcre2
       topic();
       virtual ~topic();
 
-      virtual ::e_status create(const string & str) override;
+      ::e_status create(const string & str) override;
 
 
-      virtual ::count get_count() const override;
+      ::count get_count() const override;
 
-      virtual string get_match(::index i) const override;
+      string get_match(::index i) const override;
 
-      virtual void _get_range_array();
+      void _get_range_array() override;
 
       //virtual bool replace(string & strFind, const string & strReplace, string & strResult) override;
 

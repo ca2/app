@@ -195,7 +195,7 @@ namespace aura
 
       //inline ::account::department * account() { return m_paccount; }
 
-      ::user::copydesk & copydesk();
+      ::user::copydesk * copydesk();
 
       //virtual ::account::user * get_user(::file::path pathUrl = nullptr, bool bFetch = false, bool bInteractive = true);
 

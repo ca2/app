@@ -110,7 +110,7 @@ void simple_toolbar::install_message_routing(::channel * pchannel)
    //MESSAGE_LINK(e_message_nchittest    , pchannel, this, &simple_toolbar::_001OnNcHitTest);
    //MESSAGE_LINK(e_message_mouse_leave   , pchannel, this, &simple_toolbar::on_message_mouse_leave);
 
-   install_simple_ui_default_mouse_handling(pchannel);
+   install_click_default_mouse_handling(pchannel);
    
 }
 

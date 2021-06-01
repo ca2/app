@@ -119,8 +119,12 @@ void filemanager_impact::_001OnUpdateEditPaste(::message::message * pmessage)
    __pointer(::message::command) pcommand(pmessage);
 
    auto psession = get_session();
+   
+   auto pcopydesk = psession->copydesk();
+   
+   bool bHasFile = pcopydesk->has_filea();
          
-   pcommand->enable(psession->copydesk().has_filea());
+   pcommand->enable(bHasFile);
 
    pmessage->m_bRet = true;
 
@@ -137,8 +141,12 @@ void filemanager_impact::_001OnEditPaste(::message::message * pmessage)
    ::user::copydesk::e_op eop;
 
    auto psession = get_session();
+   
+   auto pcopydesk = psession->copydesk();
+   
+   bool bOk = pcopydesk->get_filea(listing, eop);
 
-   if(!psession->copydesk().get_filea(listing, eop) || listing.is_empty())
+   if(!bOk || listing.is_empty())
    {
 
       pmessage->m_bRet = true;

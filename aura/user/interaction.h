@@ -964,7 +964,7 @@ namespace user
          
       }
       
-      void add_control_event_listener(::user::interaction * puserinteraction, bool bPriority = false);
+      void add_control_event_handler(::user::interaction * puserinteraction, bool bPriority = false);
       
       virtual void route_control_event(::user::control_event* pevent);
 

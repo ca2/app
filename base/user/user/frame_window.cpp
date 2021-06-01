@@ -509,7 +509,9 @@ namespace user
 
                   pimage1->get_graphics()->draw(rectDst, pgraphics);
 
-                  psession->copydesk().image_to_desk(pimage1);
+                  auto pcopydesk = psession->copydesk();
+
+                  pcopydesk->image_to_desk(pimage1);
 
                   auto pcontext = m_pcontext->m_pauracontext;
 

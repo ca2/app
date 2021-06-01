@@ -26,6 +26,18 @@ CLASS_DECL_ACME ::u64 translate_processor_affinity(int iOrder);
 CLASS_DECL_ACME bool is_main_thread();
 
 
+#ifdef __APPLE__
+
+
+void ns_main_async(dispatch_block_t block);
+
+
+void ns_main_sync(dispatch_block_t block);
+
+
+#endif
+
+
 #if defined(ANDROID)
 
 

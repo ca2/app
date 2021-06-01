@@ -709,8 +709,7 @@ namespace draw2d
    bool graphics::line_to(double x, double y)
    {
 
-      //return line_to(point_f64(point));
-      return false;
+      return draw_line(m_point.x, m_point.y, x, y);
 
    }
 

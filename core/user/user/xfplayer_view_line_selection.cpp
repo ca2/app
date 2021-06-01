@@ -26,9 +26,9 @@ void XfplayerViewLineSelection::relay_event(xfplayer_view_line & viewline, ::mes
    message = pusermessage->m_id.umessage();
 
    if(message != e_message_mouse_move
-         || message != e_message_timer
-         || message != e_message_left_button_down
-         || message != e_message_left_button_up)
+         && message != e_message_timer
+         && message != e_message_left_button_down
+         && message != e_message_left_button_up)
    {
       return;
    }

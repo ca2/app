@@ -162,20 +162,25 @@ namespace user
             m_pfontlist->m_strFontFamily = m_pfontlist->m_pfontenumeration->m_pitema->element_at((::index) iItem)->m_strName;
 
          }
+         
+         if(has_control_event_handler())
+         {
 
-         ::user::control_event ev;
+            ::user::control_event ev;
 
-         ev.m_puie = this;
+            ev.m_puie = this;
 
-         ev.m_eevent = ::user::e_event_after_change_cur_sel;
+            ev.m_eevent = ::user::e_event_after_change_cur_sel;
 
-         ev.m_actioncontext = ::e_source_user;
+            ev.m_actioncontext = ::e_source_user;
 
-         ev.m_item = item;
+            ev.m_item = item;
 
-         ev.m_id = m_idView;
+            ev.m_id = m_idView;
 
-         route_control_event(&ev);
+            route_control_event(&ev);
+            
+         }
 
          pmouse->m_lresult = 0;
 
@@ -206,18 +211,23 @@ namespace user
             m_pfontlist->m_strFontFamily = m_pfontlist->m_pfontenumeration->m_pitema->element_at((::index) iItem)->m_strName;
 
          }
+         
+         if(has_control_event_handler())
+         {
 
-         ::user::control_event ev;
+            ::user::control_event ev;
 
-         ev.m_puie = this;
+            ev.m_puie = this;
 
-         ev.m_eevent = ::user::e_event_after_change_cur_hover;
+            ev.m_eevent = ::user::e_event_after_change_cur_hover;
 
-         ev.m_actioncontext = ::e_source_user;
+            ev.m_actioncontext = ::e_source_user;
 
-         ev.m_id = m_idView;
+            ev.m_id = m_idView;
 
-         route_control_event(&ev);
+            route_control_event(&ev);
+               
+         }
 
          set_need_redraw();
 

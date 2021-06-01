@@ -20,13 +20,13 @@ namespace regular_expression_pcre2
       virtual ~regular_expression();
 
 
-      virtual ::e_status create(const string& str) override;
+      ::e_status create(const string& str) override;
 
 
-      __pointer(::regular_expression::topic) create_topic(const string & str);
+      __pointer(::regular_expression::topic) create_topic(const string & str) override;
 
 
-      virtual bool replace(string& str, const string& strPrefix, string& strRet) override;
+      bool replace(string& str, const string& strPrefix, string& strRet) override;
 
 
    };

@@ -614,7 +614,9 @@ namespace user
 
                }
 
-               psession->copydesk().set_plain_text(str);
+               auto pcopydesk = psession->copydesk();
+
+               pcopydesk->set_plain_text(str);
 
                return;
 
@@ -651,7 +653,9 @@ namespace user
 
                _001GetSelText(str);
 
-               psession->copydesk().set_plain_text(str);
+               auto pcopydesk = psession->copydesk();
+
+               pcopydesk->set_plain_text(str);
 
                if (is_window_enabled())
                {

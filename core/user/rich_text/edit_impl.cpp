@@ -1106,8 +1106,10 @@ namespace user
                   _001GetSelLineText(str);
 
                }
+               
+               auto pcopydesk = psession->copydesk();
 
-               psession->copydesk().set_plain_text(str);
+               pcopydesk->set_plain_text(str);
 
                return;
 
@@ -1127,7 +1129,9 @@ namespace user
 
                   string str;
 
-                  psession->copydesk().get_plain_text(str);
+                  auto pcopydesk = psession->copydesk();
+
+                  pcopydesk->get_plain_text(str);
 
                   m_pdata->_001InsertText(str);
 
@@ -1150,7 +1154,9 @@ namespace user
 
                _001GetSelText(str);
 
-               psession->copydesk().set_plain_text(str);
+               auto pcopydesk = psession->copydesk();
+
+               pcopydesk->set_plain_text(str);
 
                if (is_window_enabled())
                {

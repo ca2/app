@@ -68,7 +68,9 @@ namespace write_text
 
          auto psubject = psystem->subject(id_os_font_change);
 
-         update(psubject);
+         update();
+         
+         psubject->set_modified();
 
       }
 
@@ -113,6 +115,13 @@ namespace write_text
       auto * pwritetext = pdraw2d->write_text();
 
       auto * pfonts = pwritetext->fonts();
+      
+      if(m_pitema->is_empty())
+      {
+         
+         update();
+         
+      }
 
       for(auto & pitem : *m_pitema)
       {
@@ -214,7 +223,7 @@ namespace write_text
    }
 
 
-   bool font_enumeration::update(::subject::subject * psubject)
+   bool font_enumeration::update()
    {
 
       m_bUpdating = true;
@@ -237,7 +246,7 @@ namespace write_text
 
       m_bUpdating = false;
 
-      psubject->set_modified();
+      //psubject->set_modified();
 
       return true;
 

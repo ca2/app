@@ -28,7 +28,8 @@ namespace write_text
 
 
       virtual void check_need_update(::subject::subject * psubject);
-      virtual bool update(::subject::subject * psubject);
+      //virtual bool update(::subject::subject * psubject);
+      virtual bool update();
 
 
       //bool similar_font(char sz[256], const char* psz);

@@ -100,7 +100,9 @@ namespace write_text
 
          defer_font_enumeration(psubject);
 
-         m_pfontenumeration->update(psubject);
+         m_pfontenumeration->update();
+         
+         psubject->set_modified();
 
       }
       catch (...)

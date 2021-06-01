@@ -654,8 +654,8 @@ namespace user
 
       ::user::interaction::install_message_routing(pchannel);
 
-      install_simple_ui_default_mouse_handling(pchannel);
-
+      install_click_default_mouse_handling(pchannel);
+      
       MESSAGE_LINK(e_message_create, pchannel, this, &check_box::on_message_create);
 
    }
@@ -666,7 +666,7 @@ namespace user
 
       pmessage->previous();
 
-      m_propertyCheck = fetch_property(m_id, true);
+      //m_propertyCheck = fetch_property(m_id, true);
 
       ///add_update_notification(m_ppropertyCheck);
 

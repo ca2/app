@@ -107,7 +107,7 @@ namespace user
 
       ::user::box::install_message_routing(pchannel);
 
-      install_simple_ui_default_mouse_handling(pchannel);
+      install_click_default_mouse_handling(pchannel);
 
       MESSAGE_LINK(e_message_create, pchannel, this, &image_list::on_message_create);
       MESSAGE_LINK(e_message_destroy, pchannel, this, &image_list::_001OnDestroy);

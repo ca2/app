@@ -12,6 +12,9 @@
 #include "acme/os/_user.h"
 //#include "acme/os/cross/windows/_windows.h"
 
+
+#define MOUSE_MIDDLE_BUTTON_MESSAGE_HANDLING_DEBUG 0
+
 int g_iMouseHoverCount = 0;
 int g_i134 = 0;
 #define TEST_PRINT_BUFFER
@@ -96,7 +99,9 @@ namespace user
 
       //m_bTrackMouseLeave = false;
 
-      m_bSimpleUIDefaultMouseHandling = false;
+      m_bClickDefaultMouseHandling = false;
+      
+      m_bHoverDefaultMouseHandling = false;
 
       m_iIndex = -1;
 
@@ -1507,10 +1512,19 @@ namespace user
       //MESSAGE_LINK(e_message_command, pchannel, this, &interaction::_001OnCommand);
       MESSAGE_LINK(e_message_simple_command, pchannel, this, &interaction::_001OnSimpleCommand);
 
-      if (m_bSimpleUIDefaultMouseHandling)
+      if (m_bClickDefaultMouseHandling)
       {
 
-         install_simple_ui_default_mouse_handling(pchannel);
+         install_click_default_mouse_handling(pchannel);
+         
+         m_bHoverDefaultMouseHandling = true;
+         
+      }
+      
+      if (m_bHoverDefaultMouseHandling)
+      {
+
+         install_hover_default_mouse_handling(pchannel);
 
       }
 
@@ -4012,52 +4026,56 @@ namespace user
 
    void interaction::_001OnTextComposition(::message::message * pmessage)
    {
+      
+      __pointer(::message::key) ptext = pmessage;
+      
+      on_text_composition(ptext->m_strText);
 
-      string strText;
-
-      bool bOk = false;
-
-      try
-      {
-
-         string * pstringText = (string *) (iptr) (lparam) pmessage->m_lparam.m_lparam;
-
-         if(pstringText)
-         {
-
-            strText = *pstringText;
-
-            ::acme::del(pstringText);
-
-            bOk = true;
-
-         }
-
-      }
-      catch(...)
-      {
-
-      }
-
-      if(bOk)
-      {
-
-         auto puserinteractionFocus = get_keyboard_focus();
-
-         if (puserinteractionFocus)
-         {
-
-            puserinteractionFocus->on_text_composition(strText);
-
-         }
-         else
-         {
-
-            on_text_composition(strText);
-
-         }
-
-      }
+//      string strText;
+//
+//      bool bOk = false;
+//
+//      try
+//      {
+//
+//         string * pstringText = (string *) (iptr) (lparam) pmessage->m_lparam.m_lparam;
+//
+//         if(pstringText)
+//         {
+//
+//            strText = *pstringText;
+//
+//            ::acme::del(pstringText);
+//
+//            bOk = true;
+//
+//         }
+//
+//      }
+//      catch(...)
+//      {
+//
+//      }
+//
+//      if(bOk)
+//      {
+//
+//         auto puserinteractionFocus = get_keyboard_focus();
+//
+//         if (puserinteractionFocus)
+//         {
+//
+//            puserinteractionFocus->on_text_composition(strText);
+//
+//         }
+//         else
+//         {
+//
+//            on_text_composition(strText);
+//
+//         }
+//
+//      }
 
    }
 
@@ -5198,14 +5216,13 @@ namespace user
 
          //synchronouslock.unlock();
 
-         for (auto & pinteraction : puserinteractionpointeraChild->interactiona())
+         for (auto & puserinteraction : puserinteractionpointeraChild->interactiona())
          {
 
             try
             {
 
-               pinteraction->send_message(id, wparam, lparam);
-
+               puserinteraction->send_message(id, wparam, lparam);
 
             }
             catch (...)
@@ -5215,7 +5232,6 @@ namespace user
 
          }
 
-
          if (!bDeep)
          {
 
@@ -5223,13 +5239,13 @@ namespace user
 
          }
 
-         for (auto & pinteraction : puserinteractionpointeraChild->interactiona())
+         for (auto & puserinteraction : puserinteractionpointeraChild->interactiona())
          {
 
             try
             {
 
-               pinteraction->send_message_to_descendants(id, wparam, lparam, true, bOnlyPerm);
+               puserinteraction->send_message_to_descendants(id, wparam, lparam, true, bOnlyPerm);
 
 
             }
@@ -8930,99 +8946,149 @@ namespace user
    }
 
 
-   void interaction::route_control_event(control_event * pevent)
+//   void interaction::route_control_event(control_event * pevent)
+//   {
+//
+//      on_control_event(pevent);
+//
+//      if (pevent->m_bRet)
+//      {
+//
+//         return;
+//
+//      }
+//
+//      on_notify_control_event(pevent);
+//
+//      if (pevent->m_bRet)
+//      {
+//
+//         return;
+//
+//      }
+//
+//   }
+
+
+//   void interaction::on_notify_control_event(control_event* pevent)
+//   {
+//
+//      auto pusercallback = get_user_callback();
+//
+//      if (pusercallback)
+//      {
+//
+//         pusercallback->on_control_event(pevent);
+//
+//         if (pevent->m_bRet)
+//         {
+//
+//            return;
+//
+//         }
+//
+//      }
+//
+//      __pointer(::user::interaction) pinteractionBind = get_bind_ui();
+//
+//      if (pinteractionBind && pinteractionBind != pusercallback)
+//      {
+//
+//         pinteractionBind->on_control_event(pevent);
+//
+//         if (pevent->m_bRet)
+//         {
+//
+//            return;
+//
+//         }
+//
+//      }
+//
+//      auto puiOwner = get_owner();
+//
+//      if (puiOwner && puiOwner != pinteractionBind && puiOwner != pusercallback)
+//      {
+//
+//         puiOwner->route_control_event(pevent);
+//
+//         return;
+//
+//      }
+//
+//      auto puiParent = get_parent();
+//
+//      if (puiParent && puiParent != puiOwner && puiParent != pinteractionBind && puiParent != pusercallback)
+//      {
+//
+//         puiParent->route_control_event(pevent);
+//
+//         return;
+//
+//      }
+//
+//      auto papplication = get_application();
+//
+//      if (papplication && papplication != pusercallback)
+//      {
+//
+//         papplication->route_control_event(pevent);
+//
+//         return;
+//
+//      }
+//
+//
+//   }
+
+
+   void interaction::add_control_event_listener(::user::interaction * puserinteraction, bool bPriority)
    {
-
-      on_control_event(pevent);
-
-      if (pevent->m_bRet)
+      
+      __defer_construct_new(m_puserinteractionaControlEventHandler);
+      
+      if(bPriority)
       {
-
-         return;
-
+      
+         m_puserinteractionaControlEventHandler->insert_at(0,puserinteraction);
+         
       }
-
-      on_notify_control_event(pevent);
-
-      if (pevent->m_bRet)
+      else
       {
-
-         return;
-
+       
+         m_puserinteractionaControlEventHandler->add(puserinteraction);
+         
       }
-
+      
    }
 
 
-   void interaction::on_notify_control_event(control_event* pevent)
+   void interaction::route_control_event(control_event * pevent)
    {
-
-      auto pusercallback = get_user_callback();
-
-      if (pusercallback)
+      
+      for(auto & puserinteraction : *m_puserinteractionaControlEventHandler)
       {
-
-         pusercallback->on_control_event(pevent);
-
-         if (pevent->m_bRet)
+         
+         try
          {
-
-            return;
-
+            
+            puserinteraction->on_control_event(pevent);
+            
          }
-
-      }
-
-      __pointer(::user::interaction) pinteractionBind = get_bind_ui();
-
-      if (pinteractionBind && pinteractionBind != pusercallback)
-      {
-
-         pinteractionBind->on_control_event(pevent);
-
-         if (pevent->m_bRet)
+         catch(...)
          {
-
-            return;
-
+          
          }
-
+         
+         if(pevent->m_bRet)
+         {
+          
+            break;
+            
+         }
+         
       }
-
-      auto puiOwner = get_owner();
-
-      if (puiOwner && puiOwner != pinteractionBind && puiOwner != pusercallback)
-      {
-
-         puiOwner->route_control_event(pevent);
-
-         return;
-
-      }
-
-      auto puiParent = get_parent();
-
-      if (puiParent && puiParent != puiOwner && puiParent != pinteractionBind && puiParent != pusercallback)
-      {
-
-         puiParent->route_control_event(pevent);
-
-         return;
-
-      }
-
-      auto papplication = get_application();
-
-      if (papplication && papplication != pusercallback)
-      {
-
-         papplication->route_control_event(pevent);
-
-         return;
-
-      }
-
-
+   
    }
 
 
@@ -14700,19 +14766,41 @@ restart:
    }
 
 
-   void interaction::install_simple_ui_default_mouse_handling(::channel* pchannel)
+   void interaction::install_click_default_mouse_handling(::channel* pchannel)
    {
 
-      m_bSimpleUIDefaultMouseHandling = true;
+      m_bClickDefaultMouseHandling = true;
 
       MESSAGE_LINK(e_message_left_button_down, pchannel, this, &interaction::on_message_left_button_down);
       MESSAGE_LINK(e_message_left_button_up, pchannel, this, &interaction::on_message_left_button_up);
+      
+      
+#if MOUSE_MIDDLE_BUTTON_MESSAGE_HANDLING_DEBUG
+      
       MESSAGE_LINK(e_message_middle_button_down, pchannel, this, &interaction::on_message_middle_button_down);
       MESSAGE_LINK(e_message_middle_button_up, pchannel, this, &interaction::on_message_middle_button_up);
+      
+#endif
+//      MESSAGE_LINK(e_message_mouse_move, pchannel, this, &interaction::on_message_mouse_move);
+//      MESSAGE_LINK(e_message_mouse_leave, pchannel, this, &interaction::on_message_mouse_leave);
+
+   }
+
+
+   void interaction::install_hover_default_mouse_handling(::channel* pchannel)
+   {
+
+      m_bHoverDefaultMouseHandling = true;
+
+//      MESSAGE_LINK(e_message_left_button_down, pchannel, this, &interaction::on_message_left_button_down);
+//      MESSAGE_LINK(e_message_left_button_up, pchannel, this, &interaction::on_message_left_button_up);
+//      MESSAGE_LINK(e_message_middle_button_down, pchannel, this, &interaction::on_message_middle_button_down);
+//      MESSAGE_LINK(e_message_middle_button_up, pchannel, this, &interaction::on_message_middle_button_up);
       MESSAGE_LINK(e_message_mouse_move, pchannel, this, &interaction::on_message_mouse_move);
       MESSAGE_LINK(e_message_mouse_leave, pchannel, this, &interaction::on_message_mouse_leave);
 
    }
+
 
    void interaction::install_update_data_message_routing(::channel * pchannel)
    {
@@ -14724,66 +14812,66 @@ restart:
 
 
 
-   bool interaction::simple_on_control_event(::message::message* pmessage, ::user::enum_event eevent)
-   {
-
-      if (eevent == e_event_mouse_leave)
-      {
-
-         __pointer(interaction) pinteraction = top_child();
-
-         while (pinteraction != nullptr)
-         {
-
-            if (pinteraction->m_bCursorInside)
-            {
-
-               pinteraction->m_bCursorInside = false;
-
-               pinteraction->message_handler(pmessage);
-
-            }
-
-            pinteraction = pinteraction->under_sibling();
-
-         }
-
-      }
-
-      ::user::control_event ev;
-
-      ev.m_puie = this;
-
-      ev.m_id = m_id;
-
-      ev.m_eevent = eevent;
-
-      ev.m_pmessage = pmessage;
-
-      route_control_event(&ev);
-
-      if (::is_set(pmessage))
-      {
-
-         pmessage->m_bRet = ev.m_bRet;
-
-         if (pmessage->m_bRet)
-         {
-
-            if (pmessage != nullptr)
-            {
-
-               pmessage->m_lresult = 1;
-
-            }
-
-         }
-
-      }
-
-      return ev.m_bRet;
-
-   }
+//   bool interaction::simple_on_control_event(::message::message* pmessage, ::user::enum_event eevent)
+//   {
+//
+//      if (eevent == e_event_mouse_leave)
+//      {
+//
+//         __pointer(interaction) pinteraction = top_child();
+//
+//         while (pinteraction != nullptr)
+//         {
+//
+//            if (pinteraction->m_bCursorInside)
+//            {
+//
+//               pinteraction->m_bCursorInside = false;
+//
+//               pinteraction->message_handler(pmessage);
+//
+//            }
+//
+//            pinteraction = pinteraction->under_sibling();
+//
+//         }
+//
+//      }
+//
+//      ::user::control_event ev;
+//
+//      ev.m_puie = this;
+//
+//      ev.m_id = m_id;
+//
+//      ev.m_eevent = eevent;
+//
+//      ev.m_pmessage = pmessage;
+//
+//      route_control_event(&ev);
+//
+//      if (::is_set(pmessage))
+//      {
+//
+//         pmessage->m_bRet = ev.m_bRet;
+//
+//         if (pmessage->m_bRet)
+//         {
+//
+//            if (pmessage != nullptr)
+//            {
+//
+//               pmessage->m_lresult = 1;
+//
+//            }
+//
+//         }
+//
+//      }
+//
+//      return ev.m_bRet;
+//
+//   }
 
 
    bool interaction::is_window_enabled() const
@@ -14878,7 +14966,7 @@ restart:
 
       }
 
-      if (m_bSimpleUIDefaultMouseHandling)
+      if (m_bClickDefaultMouseHandling || m_bHoverDefaultMouseHandling)
       {
 
          if (m_itemLButtonDown.is_set())
@@ -14914,6 +15002,9 @@ restart:
 //            pmouse->m_bRet = m_itemLButtonDown.m_eelement != e_element_none
   //             && m_itemLButtonDown.m_eelement != e_element_client;
 
+            if(m_bClickDefaultMouseHandling)
+            {
+            
             // For Windows: ... (please fill in...)
             // For Linux: ...
             // - control box button scenario:
@@ -14925,45 +15016,44 @@ restart:
             //   main frame handling (move_manager) is skipped. (OK)
             //   Later l_button_up can trigger button on click using
             //   interaction SimpleUIMouseHandling
-            pmouse->m_bRet = m_itemLButtonDown.m_eelement != e_element_none;
-
-            if (pmouse->m_bRet)
-            {
-
-               return;
+            pmouse->m_bRet = true;
+               
+            return;
 
             }
 
          }
-         else
-         {
-
-            if (pmessage->previous())
-            {
-
-               return;
-
-            }
-
-            auto psession = get_session();
-
-            psession->m_puiLastLButtonDown = this;
-
-            simple_on_control_event(pmessage, ::user::e_event_button_down);
-
-            if (pmessage->m_bRet)
-            {
-
-               pmouse->m_bRet = true;
-
-               return;
-
-            }
-
-         }
-
+            
       }
-
+         
+//         else
+//         {
+//
+//            if (pmessage->previous())
+//            {
+//
+//               return;
+//
+//            }
+//
+//            auto psession = get_session();
+//
+//            psession->m_puiLastLButtonDown = this;
+//
+////            simple_on_control_event(pmessage, ::user::e_event_button_down);
+////
+////            if (pmessage->m_bRet)
+////            {
+////
+////               pmouse->m_bRet = true;
+////
+////               return;
+////
+////            }
+//
+//         }
+//
+//      }
 
    }
 
@@ -15008,7 +15098,7 @@ restart:
 
       }
 
-      if (m_bSimpleUIDefaultMouseHandling)
+      if (m_bClickDefaultMouseHandling || m_bHoverDefaultMouseHandling)
       {
 
          //if(m_bSimpleUIDefaultMouseHandlingMouseCaptureOnLeftButtonDown)
@@ -15024,61 +15114,72 @@ restart:
             }
 
          //}
-
-         auto item = hit_test(pmouse);
-
+         
          auto psession = get_session();
 
-         bool bSameUserInteractionAsMouseDown = psession->m_puiLastLButtonDown == this;
-
-         int iSizeOfItem = sizeof(ITEM);
-
-         bool bSameItemAsMouseDown = m_itemLButtonDown == item;
-
-         TRACE("interaction::on_message_left_button_up item=%d, SameUserInteractionAsMsDwn=%d, SameItemAsMsDwn=%d", (int) item.m_iItem, (int) bSameUserInteractionAsMouseDown, (int) bSameItemAsMouseDown);
-
-         if (m_itemLButtonDown.is_set() && bSameUserInteractionAsMouseDown && bSameItemAsMouseDown)
+         if(m_bClickDefaultMouseHandling)
          {
 
-            psession->m_puiLastLButtonDown = nullptr;
+            auto item = hit_test(pmouse);
 
-            pmessage->m_bRet = on_click(item);
+            bool bSameUserInteractionAsMouseDown = psession->m_puiLastLButtonDown == this;
 
-            TRACE("interaction::on_message_left_button_up on_click_ret=%d", (int) pmessage->m_bRet);
+            int iSizeOfItem = sizeof(ITEM);
 
-            if (pmessage->m_bRet)
+            bool bSameItemAsMouseDown = m_itemLButtonDown == item;
+
+            TRACE("interaction::on_message_left_button_up item=%d, SameUserInteractionAsMsDwn=%d, SameItemAsMsDwn=%d", (int) item.m_iItem, (int) bSameUserInteractionAsMouseDown, (int) bSameItemAsMouseDown);
+
+            if (m_itemLButtonDown.is_set() && bSameUserInteractionAsMouseDown && bSameItemAsMouseDown)
             {
 
-               pmouse->m_lresult = 1;
+               psession->m_puiLastLButtonDown = nullptr;
 
-            }
-            else
-            {
+               pmessage->m_bRet = on_click(item);
 
-               ::user::control_event ev;
+               TRACE("interaction::on_message_left_button_up on_click_ret=%d", (int) pmessage->m_bRet);
+               
+               if (pmessage->m_bRet)
+               {
 
-               ev.m_puie = this;
+                  pmouse->m_lresult = 1;
 
-               ev.m_id = m_id;
+               }
+               else
+               {
+               
+                  
+                  ::id id = translate_property_id(m_id);
+                  
+                if(has_control_event_handler())
+               {
 
-               ev.m_eevent = ::user::e_event_button_clicked;
+                  ::user::control_event ev;
 
-               ev.m_pmessage = pmouse;
+                  ev.m_puie = this;
 
-               ev.m_item = item;
+                  ev.m_id = id;
 
-               ev.m_actioncontext.add(::e_source_user);
+                  ev.m_eevent = ::user::e_event_button_clicked;
 
-               route_control_event(&ev);
+                  ev.m_pmessage = pmouse;
 
-               TRACE("interaction::on_message_left_button_up route_btn_clked=%d", (int) ev.m_bRet);
+                  ev.m_item = item;
 
-               pmessage->m_bRet = ev.m_bRet;
+                  ev.m_actioncontext.add(::e_source_user);
+
+                  route_control_event(&ev);
+
+                  TRACE("interaction::on_message_left_button_up route_btn_clked=%d", (int) ev.m_bRet);
+
+                  pmessage->m_bRet = ev.m_bRet;
+                  
+               }
 
                if (!pmessage->m_bRet)
                {
 
-                  ::message::command command(m_id);
+                  ::message::command command(id);
 
                   command.m_puiOther = this;
 
@@ -15096,27 +15197,40 @@ restart:
                   pmouse->m_lresult = 1;
 
                }
+               
+//               if(!pmessage->m_bRet)
+//               {
+//
+//                  auto linkedproperty = fetch_property(m_id);
+//
+////                  if(linkedproperty)
+////                  {
+////
+////                     linkproperty
+////
+////                  }
+////
+////               }
+               }
 
             }
-
-
-
+//            else
+//            {
+//
+//               if (pmessage->previous())
+//               {
+//
+//                  return;
+//
+//               }
+//
+//               simple_on_control_event(pmessage, ::user::e_event_button_down);
+//
+//            }
+            
          }
-         else
-         {
 
-            if (pmessage->previous())
-            {
-
-               return;
-
-            }
-
-            psession->m_puiLastLButtonDown = nullptr;
-
-            simple_on_control_event(pmessage, ::user::e_event_button_down);
-
-         }
+         psession->m_puiLastLButtonDown = nullptr;
 
          set_need_redraw();
 
@@ -15127,6 +15241,9 @@ restart:
    }
 
 
+#ifdef MOUSE_MIDDLE_BUTTON_MESSAGE_HANDLING_DEBUG
+
+
    void interaction::on_message_middle_button_down(::message::message* pmessage)
    {
 
@@ -15134,19 +15251,19 @@ restart:
 
       pmessage->previous();
 
-      if (m_bSimpleUIDefaultMouseHandling)
-      {
+      //if (m_bClickDefaultMouseHandling)
+      //{
 
-         auto item = hit_test(pmouse);
+//         auto item = hit_test(pmouse);
+//
+//         if (item.is_set())
+//         {
+//
+//            simple_on_control_event(pmessage, ::user::e_event_m_button_down);
+//
+//         }
 
-         if (item.is_set())
-         {
-
-            simple_on_control_event(pmessage, ::user::e_event_m_button_down);
-
-         }
-
-      }
+      //}
 
    }
 
@@ -15158,22 +15275,23 @@ restart:
 
       pmessage->previous();
 
-      if (m_bSimpleUIDefaultMouseHandling)
-      {
+      //if (m_bSimpleUIDefaultMouseHandling)
+      //{
 
-         auto item = hit_test(pmouse);
-
-         if (item.is_set())
-         {
-
-            simple_on_control_event(pmessage, ::user::e_event_m_button_up);
-
-         }
-
-      }
+//         auto item = hit_test(pmouse);
+//
+//         if (item.is_set())
+//         {
+//
+//            simple_on_control_event(pmessage, ::user::e_event_m_button_up);
+//
+//         }
+//
+//      }
 
    }
 
+#endif // MOUSE_MIDDLE_BUTTON_MESSAGE_HANDLING_DEBUG
 
    void interaction::on_message_mouse_move(::message::message* pmessage)
    {
@@ -15191,7 +15309,7 @@ restart:
 
       pmouse->m_pcursor = get_mouse_cursor();
 
-      if (m_bSimpleUIDefaultMouseHandling)
+      if (m_bHoverDefaultMouseHandling)
       {
 
          if(string(type_c_str()).contains_ci("button"))
@@ -15318,13 +15436,13 @@ restart:
 
                track_mouse_hover();
 
-               simple_on_control_event(pmouse, e_event_mouse_enter);
+               //simple_on_control_event(pmouse, e_event_mouse_enter);
 
             }
             else if (!m_itemHoverMouse.is_set() && itemOldMouseHover.is_set())
             {
 
-               simple_on_control_event(pmouse, e_event_mouse_leave);
+               //simple_on_control_event(pmouse, e_event_mouse_leave);
 
             }
 
@@ -15371,7 +15489,7 @@ restart:
 
          set_need_redraw();
 
-         simple_on_control_event(pmessage, e_event_mouse_leave);
+         //simple_on_control_event(pmessage, e_event_mouse_leave);
 
          post_redraw();
 
@@ -16888,58 +17006,7 @@ restart:
 
       m_iDataValue = (int)value;
 
-
-
-
    }
-
-   //control * control_descriptor::get_control(::user::form * pform, index iItem)
-   //{
-
-   //   __pointer(interaction) &  pinteraction = m_controlmap[0];
-
-   //   if (pinteraction != nullptr)
-   //   {
-
-   //      return pinteraction;
-
-   //   }
-
-   //   iItem = 0;
-
-   //   if (!pform->create_interaction(this, iItem))
-   //   {
-
-   //      pinteraction.release();
-
-   //      return nullptr;
-
-   //   }
-
-   //   pinteraction = m_puserinteraction;
-
-   //   return pinteraction.cast < control>();
-
-   //}
-
-   //index interaction::find_control(::user::interaction * pinteraction)
-   //{
-
-   //   for (auto pair : m_controlmap)
-   //   {
-
-   //      if (pair.element2() == pinteraction)
-   //      {
-
-   //         return pair.element1();
-
-   //      }
-
-   //   }
-
-   //   return -1;
-
-   //}
 
 
    void interaction::set_control_type(enum_control_type econtroltype)
@@ -16971,69 +17038,6 @@ restart:
    }
 
 
-   //enum_control_type interaction::get_control_type() const
-   //{
-
-   //   return m_econtroltype;
-
-   //}
-
-
-   //__pointer(interaction) interaction::alloc()
-   //{
-
-   //   //ASSERT(::is_set(m_puserinteractionParent));
-
-   //   enum_control_type econtroltype = e_control_type_none;
-
-   //   if (m_type.m_strName.is_empty())
-   //   {
-
-   //      if (m_id.has_char())
-   //      {
-
-   //         m_type = App(m_puserinteraction).control_type_from_id(m_id, econtroltype);
-
-   //      }
-   //      //else if(m_econtroltype != e_control_type_none)
-   //      //{
-
-   //      //   m_type = App(m_puserinteractionParent).user_default_controltype_to_typeinfo(m_econtroltype);
-
-   //      //}
-
-   //   }
-
-   //   if (m_econtroltype == e_control_type_none)
-   //   {
-
-   //      m_econtroltype = econtroltype;
-
-   //   }
-
-   //   if (m_type.m_strName.is_empty())
-   //   {
-
-   //      dev_log("Could not allocate control: (empty type name)");
-
-   //      return nullptr;
-
-   //   }
-
-   //   auto pinteraction = m_puserinteraction->__id_create<interaction>(m_type);
-
-   //   if (pinteraction.is_null())
-   //   {
-
-   //      dev_log("Could not allocate control: Type \"" + m_type.m_strName + "\" doesn't have allocator or isn't ::user::interaction");
-
-   //   }
-
-   //   return ::move(pinteraction);
-
-   //}
-
-
    string interaction::get_class_name()
    {
 
@@ -17049,6 +17053,7 @@ restart:
 
 
 #ifdef WINDOWS_DESKTOP
+
 
    void interaction::_task_transparent_mouse_event()
    {
@@ -17066,6 +17071,7 @@ restart:
 
 
 #endif
+
 
    callback* interaction::get_user_callback()
    {
@@ -17100,6 +17106,7 @@ restart:
 
    }
 
+
    interaction::drag_move::drag_move()
    {
 
@@ -17108,6 +17115,7 @@ restart:
       m_bLButtonDown = false;
 
    }
+
 
 } // namespace user
 

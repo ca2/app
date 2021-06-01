@@ -106,8 +106,15 @@ namespace write_text
    }
 
 
-} // namespace write_text
+   font_pointer write_text::create_font()
+   {
 
+      return __create < font > ();
+      
+   }
+
+
+} // namespace write_text
 
 
 

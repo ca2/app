@@ -32,7 +32,7 @@ namespace windowing
    }
 
    
-   ::e_status cursor::create_from_image(const ::image * pimage, ::i32 xHotspot, ::i16 yHotspot)
+   ::e_status cursor::create_from_image(const ::image * pimage, ::i32 xHotspot, ::i32 yHotspot)
    {
 
       __throw(error_interface_only);

@@ -14,6 +14,7 @@
 
 #include "_m.h"
 
+
 class oswindow_data;
 typedef oswindow_data * oswindow;
 

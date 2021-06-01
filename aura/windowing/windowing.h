@@ -112,8 +112,6 @@ namespace windowing
 
       virtual ::e_status release_mouse_capture();
 
-
-
       virtual ::extended::transport < ::windowing::icon > load_icon(const ::payload & payloadFile);
 
 

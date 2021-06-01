@@ -124,8 +124,8 @@ namespace user
       MESSAGE_LINK(e_message_create    , pchannel, this, &button::on_message_create);
       MESSAGE_LINK(e_message_key_down   , pchannel, this, &button::_001OnKeyDown);
 
-      install_simple_ui_default_mouse_handling(pchannel);
-
+      install_click_default_mouse_handling(pchannel);
+      
    }
 
 
@@ -257,7 +257,7 @@ namespace user
 
       }
 
-//      m_ppropertyCheck = fetch_property(m_id, true);
+//      m_propertyCheck = fetch_property(m_id, true);
 //
 //      if (m_ppropertyCheck)
 //      {

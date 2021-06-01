@@ -44,7 +44,7 @@ public:
    interlocked < INTEGRAL >      m_interlocked;
 
 
-   counter(long lCount) : m_interlocked(lCount) {}
+   counter(INTEGRAL lCount) : m_interlocked(lCount) {}
 
 
    INTEGRAL operator ++()

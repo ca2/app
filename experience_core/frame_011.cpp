@@ -210,7 +210,7 @@ SizingNone:;
 
                }
 
-               auto psession = get_session();
+               //auto psession = get_session();
 
                status < ::color::color > crMoveableBorder;
                status < ::color::color > crMoveableBorderHilight;
@@ -248,7 +248,7 @@ SizingNone:;
 
                   GetBorderRect(rectClient,rectangle,eside);
 
-                  auto psystem = m_psystem->m_paurasystem;
+                  //auto psystem = m_psystem->m_paurasystem;
 
 
 
@@ -602,7 +602,7 @@ SizingNone:;
             void frame_011::DrawRectGrip(::draw2d::graphics_pointer & pgraphics,const ::rectangle_i32 & rectParam)
             {
 
-               auto psession = get_session();
+               //auto psession = get_session();
 
                ::rectangle_i32 rectangle(rectParam);
 

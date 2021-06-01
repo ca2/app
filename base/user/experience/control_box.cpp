@@ -8,7 +8,6 @@ namespace experience
 
 
    control_box::control_box() :
-      m_fontMarlett(e_create),
       m_brushButtonBack(e_create),
       m_brushButtonBackSel(e_create),
       m_brushButtonBackFocus(e_create),
@@ -32,8 +31,6 @@ namespace experience
       set_control_box_button_id(e_button_dock,"frame::e_button_dock");
       m_bDrag = false;
       m_iDefaultButtonMargin = 3;
-
-      m_fontMarlett->create_pixel_font("Marlett", 16.0);
 
    }
 
@@ -377,6 +374,10 @@ namespace experience
          return;
 
       }
+      
+      m_fontMarlett.create(this);
+      
+      m_fontMarlett->create_pixel_font("Marlett", 16.0);
 
       create_buttons();
 

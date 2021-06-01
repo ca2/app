@@ -1786,8 +1786,10 @@ __transport(::application) app_core::new_application(const char* pszAppId)
 
 #ifndef _UWP
 
-            message_box("papplication \"" + strAppId + "\" cannot be created.\n\nThe library \"" + strLibrary + "\" could not be loaded. " + plibrary->m_strMessage, "ca2", e_message_box_icon_error);
+//            message_box("papplication \"" + strAppId + "\" cannot be created.\n\nThe library \"" + strLibrary + "\" could not be loaded. " + plibrary->m_strMessage, "ca2", e_message_box_icon_error);
 
+            message_box("papplication \"" + strAppId + "\" cannot be created.\n\nThe library \"" + strLibrary + "\" could not be loaded. ", "ca2", e_message_box_icon_error);
+            
 #endif
 
             return nullptr;

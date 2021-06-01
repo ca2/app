@@ -52,7 +52,7 @@
 
                frame::on_initialize_experience_frame();
 
-               auto psession = get_session();
+               //auto psession = get_session();
 
                auto pframewindow = m_pframewindow;
 
@@ -233,7 +233,7 @@ SizingNone:;
 
                }
 
-               auto psession = get_session();
+               //auto psession = get_session();
 
                status < ::color::color > crMoveableBorder;
                status < ::color::color > crMoveableBorderHilight;
@@ -723,7 +723,7 @@ SizingNone:;
 
                ::rectangle_i32 rectangle(rectParam);
 
-               auto psession = get_session();
+               //auto psession = get_session();
 
                auto pframewindow = m_pframewindow;
 

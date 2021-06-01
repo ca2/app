@@ -527,6 +527,21 @@ namespace message
    };
 
 
+//   class CLASS_DECL_AURA text : public ::user::message
+//   {
+//   public:
+//
+//
+//      string         m_strText;
+//
+//
+//      text();
+//
+//
+//   };
+
+
+
 } // namespace message
 
 

@@ -56,7 +56,7 @@ namespace user
 
       ::user::scroll_base::install_message_routing(pchannel);
 
-      install_simple_ui_default_mouse_handling(pchannel);
+      install_click_default_mouse_handling(pchannel);
 
       MESSAGE_LINK(e_message_create, pchannel, this, &combo_list::on_message_create);
       MESSAGE_LINK(e_message_destroy, pchannel, this, &combo_list::_001OnDestroy);
@@ -843,20 +843,25 @@ namespace user
                m_pcombo->_001ShowDropDown(false);
 
             }
+            
+            if(has_control_event_handler())
+            {
 
-            ::user::control_event ev;
+               ::user::control_event ev;
 
-            ev.m_puie = this;
+               ev.m_puie = this;
 
-            ev.m_id = m_id;
+               ev.m_id = m_id;
 
-            ev.m_eevent = ::user::e_event_after_change_cur_sel;
+               ev.m_eevent = ::user::e_event_after_change_cur_sel;
 
-            ev.m_actioncontext = ::e_source_user;
+               ev.m_actioncontext = ::e_source_user;
 
-            ev.m_item = itemHit;
+               ev.m_item = itemHit;
 
-            route_control_event(&ev);
+               route_control_event(&ev);
+                  
+            }
 
          }
 

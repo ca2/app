@@ -31,7 +31,7 @@ namespace experience
                void GetBorderRect(const ::rectangle_i32 & rectClient, RECTANGLE_I32 * prectangle, enum_border eside);
 
 
-               virtual e_hittest _001HitTest(const ::point_i32 & point) override;
+               e_hittest _001HitTest(const ::point_i32 & point) override;
                //color32_t get_border_main_body_color() override;
 
                //virtual bool get_color(color32_t & cr, ::user::e_color ecolor, ::user::style_context * pcontext) override;

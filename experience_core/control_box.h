@@ -34,8 +34,8 @@ namespace experience
          void _001OnTimer(::timer * ptimer) override;
 
 
-         virtual i32 calc_button_size(::draw2d::graphics_pointer & pgraphics) override;
-         virtual ::rectangle_i32 get_button_margin(enum_button ebutton);
+         i32 calc_button_size(::draw2d::graphics_pointer & pgraphics) override;
+         ::rectangle_i32 get_button_margin(enum_button ebutton) override;
 
 
       };

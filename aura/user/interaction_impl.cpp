@@ -1458,7 +1458,8 @@ namespace user
 
       bKeyMessage = message == e_message_key_down ||
          message == e_message_key_up ||
-         message == e_message_char
+         message == e_message_char ||
+      message == e_message_text_composition
 #ifdef WINDOWS_DESKTOP
          || message == e_message_sys_key_down
          || message == e_message_sys_key_up

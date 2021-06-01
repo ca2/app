@@ -2551,7 +2551,7 @@ namespace user
 
       ::user::interaction::install_message_routing(pchannel);
 
-      install_simple_ui_default_mouse_handling(pchannel);
+      install_hover_default_mouse_handling(pchannel);
 
       MESSAGE_LINK(e_message_left_button_down, pchannel, this, &tab::on_message_left_button_down);
       MESSAGE_LINK(e_message_left_button_up, pchannel, this, &tab::on_message_left_button_up);

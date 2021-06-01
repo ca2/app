@@ -4,8 +4,12 @@ int main(int argc, char * argv[], char ** envp)
 {
    
    string strAppId;
+   
+#ifdef _APP_ID
 
    strAppId = _APP_ID;
+   
+#endif
 
    auto psystem = platform_create_system(strAppId);
 

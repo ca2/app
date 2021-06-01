@@ -704,7 +704,7 @@ namespace windowing
          if (!m_pkeyboard)
          {
 
-            __throw(::exception::exception("Could not create keyboard"));
+            __throw(error_exception, "Could not create keyboard");
 
          }
 

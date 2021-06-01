@@ -285,21 +285,23 @@ namespace experience
 
             }
 
-            bool frame::_001HitTest(const POINT_I32 &point, enum_element &eelementParam)
+   
+            e_hittest frame::_001HitTest(const ::point_i32 &point)
             {
-               ::rectangle_i32 rectangle;
-               for(enum_element eelement = (enum_element)(ElementNone + 1);
-                     eelement < ElementEnd;
-                     eelement++)
-               {
-                  get_element_rect(rectangle, eelement);
-                  if(rectangle.contains(point))
-                  {
-                     eelementParam = eelement;
-                     return true;
-                  }
-               }
-               return false;
+               return ::experience::frame::_001HitTest(point);
+//               ::rectangle_i32 rectangle;
+//               for(enum_element eelement = (enum_element)(ElementNone + 1);
+//                     eelement < ElementEnd;
+//                     eelement++)
+//               {
+//                  get_element_rect(rectangle, eelement);
+//                  if(rectangle.contains(point))
+//                  {
+//                     eelementParam = eelement;
+//                     return true;
+//                  }
+//               }
+//               return false;
             }
 
 
@@ -409,7 +411,7 @@ namespace experience
 
                auto pframewindow = m_pframewindow;
 
-               auto estyle = pframewindow->m_estyle;
+               //auto estyle = pframewindow->m_estyle;
 
                auto colorBorder = pframewindow->get_moveable_border_color();
 
@@ -575,7 +577,7 @@ namespace experience
 
                }
 
-               auto psession = get_session();
+               //auto psession = get_session();
 
                pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 

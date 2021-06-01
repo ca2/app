@@ -27,71 +27,70 @@ namespace sqlite
 
    protected:
 
-      virtual void start_transaction() override;
-      virtual void commit_transaction() override;
-      virtual void rollback_transaction() override;
+      void start_transaction() override;
+      void commit_transaction() override;
+      void rollback_transaction() override;
 
    public:
 
 
       //virtual __pointer(::database::dataset) dataset() override;
-      virtual ::database::e_connection connection_status() override;
+      ::database::e_connection connection_status() override;
 
-      virtual ::e_status     set_error_code(i32 iErrorCode) override;
+      ::e_status set_error_code(i32 iErrorCode) override;
 
-      virtual void * get_handle() override;
-      virtual string get_error_message() override;
+      void * get_handle() override;
+      string get_error_message() override;
 
-      virtual ::e_status     _connect() override;
-      virtual void disconnect() override;
-      virtual ::e_status     create() override;
-      virtual ::e_status     drop() override;
+      ::e_status _connect() override;
+      void disconnect() override;
+      ::e_status create() override;
+      ::e_status drop() override;
 
 
       string escape(const char * psz) override;
 
       //virtual __pointer(class dataset) dataset() = 0;
 
-      virtual bool isActive();
+      bool isActive() override;
 
 
-      virtual ::e_status init();
+      ::e_status init() override;
 
-      virtual string add_error_message(const ::string& strErrorMessage);
+      string add_error_message(const ::string& strErrorMessage) override;
 
-      virtual ::e_status     connect(
+      ::e_status connect(
          const char* name,
          const char* host = nullptr,
          const char* port = nullptr,
          const char* user = nullptr,
          const char* pass = nullptr,
          const char* sckt = nullptr,
-         u64 uConnectionFlags = 0);
+         u64 uConnectionFlags = 0) override;
 
 
-      virtual ::e_status reset();
+      ::e_status reset() override;
 
       //virtual string escape(const char * psz);
 
+      ::count get_affected_rows_count() override;
 
+      bool in_transaction() override;
 
-      virtual ::count get_affected_rows_count();
+      bool exec(const char* pszQuery) override;
 
-      virtual bool in_transaction();
+      __pointer(::database::result_set) query_result(const char* pszQuery, ::count iRowCount, ::count iColumnCount) override;
 
-
-      virtual bool exec(const char* pszQuery);
-
-
-      virtual __pointer(::database::result_set) query_result(const char* pszQuery, ::count iRowCount, ::count iColumnCount);
-
-      inline __pointer(::database::result_set) query(const char* pszQuery, ::count iRowCount = -1, ::count iColumnCount = -1);
+      __pointer(::database::result_set) query(const char* pszQuery, ::count iRowCount = -1, ::count iColumnCount = -1) override;
 
 
       //virtual ::payload query(const char * pszQuery, ::count iMaxRowCount = -1, ::count iMaxColumnCount = -1);
-      virtual __pointer(::database::row_array) query_rows(const char* pszQuery);
-      virtual __pointer(::database::row) query_row(const char* pszQuery);
-      virtual __pointer(::var_array) query_items(const char* pszQuery);
+      __pointer(::database::row_array) query_rows(const char* pszQuery) override;
+      
+      __pointer(::database::row) query_row(const char* pszQuery) override;
+      
+      __pointer(::var_array) query_items(const char* pszQuery) override;
+      
       virtual ::payload query_item(const char* pszQuery);
       virtual bool memory_query_item(get_memory getmemory, const char* pszQuery);
 

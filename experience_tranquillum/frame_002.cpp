@@ -207,7 +207,7 @@ SizingNone:;
             void frame_002::draw_border_side(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectClientParam, enum_border eside)
             {
 
-               auto psession = get_session();
+               //auto psession = get_session();
 
                auto rectClient(rectClientParam);
 
@@ -226,7 +226,7 @@ SizingNone:;
                else
                {
 
-                  auto psession = get_session();
+                  //auto psession = get_session();
 
                   auto pstyle = pframewindow->get_style(pgraphics);
 
@@ -984,7 +984,7 @@ SizingNone:;
             void frame_002::DrawRectGrip(::draw2d::graphics_pointer & pgraphics,const rectangle_i32 & rectParam)
             {
 
-               auto psession = get_session();
+               //auto psession = get_session();
 
                auto pframewindow = m_pframewindow;
 

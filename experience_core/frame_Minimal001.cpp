@@ -212,7 +212,7 @@ SizingNone:;
 
                }
 
-               auto psession = get_session();
+               //auto psession = get_session();
 
                auto pframewindow = m_pframewindow;
 
@@ -254,9 +254,7 @@ SizingNone:;
 
                   GetBorderRect(rectClient, rectangle, eside);
 
-                  auto psystem = m_psystem->m_paurasystem;
-
-
+                  //auto psystem = m_psystem->m_paurasystem;
 
                   pgraphics->color_blend( rectangle, crMoveableBorder, 127);
 
@@ -1156,7 +1154,7 @@ SizingNone:;
 
                //rectangle.bottom++;
 
-               auto psession = get_session();
+               //auto psession = get_session();
 
                auto pframewindow = m_pframewindow;
 

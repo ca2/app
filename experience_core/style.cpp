@@ -1343,13 +1343,13 @@ namespace experience
 
             pbar->_001ClientToScreen(point1);
 
-            auto psession = get_session();
+            //auto psession = get_session();
 
-            auto puser = psession->user();
+            //auto puser = psession->user();
 
-            auto pwindowing = puser->windowing();
+            //auto pwindowing = puser->windowing();
 
-            auto pointCursor = pwindowing->get_cursor_position();
+            //auto pointCursor = pwindowing->get_cursor_position();
 
             pbar->_001ClientToScreen(point1);
 

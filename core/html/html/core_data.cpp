@@ -328,9 +328,11 @@ namespace html
       }
 
       MESSAGE_LINK(e_message_key_down, m_puserinteraction, this, &core_data::_001OnKeyDown);
-
+      
       m_bImplemented = true;
-
+      
+      m_pform->on_form_implemented();
+      
    }
 
 

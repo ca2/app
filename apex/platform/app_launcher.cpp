@@ -84,9 +84,13 @@ namespace apex
 
 #if !defined(MACOS)
 
+      
 #ifdef WINDOWS_DESKTOP
+      
       if (::str::ends_ci(get_executable_path(), "\\app.exe"))
+         
 #endif
+         
       {
 
          strParameters = " : app=" + m_strApp;
@@ -116,6 +120,7 @@ namespace apex
       wstring wstrParams = get_params();
 
       STARTUPINFOW si;
+      
       __memset(&si,0,sizeof(si));
       si.cb = sizeof(si);
       si.dwFlags = STARTF_USESHOWWINDOW;
@@ -125,7 +130,7 @@ namespace apex
 
       wstring wstrCmdLine = L"\"" + wstrApp + L"\"" + wstrParams;
 
-      if(::CreateProcessW((unichar *)wstrApp.c_str(),(unichar *)wstrCmdLine.c_str(),
+      if(::CreateProcessW( (unichar *) wstrApp.c_str(), (unichar *) wstrCmdLine.c_str(),
                           nullptr,nullptr,false,0,nullptr,wstrDir,
                           &si,&pi))
          return true;
@@ -133,26 +138,44 @@ namespace apex
 #elif defined(MACOS)
 
       ::file::path path = get_executable_path();
-
-      path -= 3;
-
-      string strParams = get_params();
       
       auto psystem = m_psystem;
       
       auto pnode = psystem->node();
 
-      if(strParams.is_empty())
+      if(path.find_ci(".app//") >= 0)
       {
 
-         pnode->_launch_macos_app(path);
+         path -= 3;
 
+         string strParams = get_params();
+         
+         if(strParams.is_empty())
+         {
+
+            pnode->_launch_macos_app(path);
+
+         }
+         else
+         {
+
+            pnode->_launch_macos_app_args(path, strParams);
+
+         }
+            
       }
       else
       {
+         
+         auto estatus = pnode->call_async(path, "", "", e_display_none, false);
 
-         pnode->_launch_macos_app_args(path, strParams);
+         if (::succeeded(estatus))
+         {
 
+            return true;
+
+         }
+         
       }
 
 #else

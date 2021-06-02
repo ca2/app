@@ -59,12 +59,12 @@ void html_form::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 
    //pgraphics->fill_solid_rect_dim(5, 5, 100, 100, argb(255, 255, 255, 0));
 
-   ::html_data * sphtmldata = nullptr;
+   ::html_data * phtmldata = nullptr;
 
    try
    {
 
-      sphtmldata = get_html_data();
+      phtmldata = get_html_data();
 
    }
    catch(...)
@@ -72,10 +72,10 @@ void html_form::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 
    }
 
-   if(sphtmldata != nullptr)
+   if(phtmldata != nullptr)
    {
 
-      sphtmldata->_001OnDraw(pgraphics);
+      phtmldata->_001OnDraw(pgraphics);
 
    }
 
@@ -115,7 +115,9 @@ void html_form::_001DrawChildren(::draw2d::graphics_pointer & pgraphics)
 
 void html_form::_001OnImageLoaded(::message::message * pmessage)
 {
+   
    UNREFERENCED_PARAMETER(pmessage);
+   
    if(get_html_data() != nullptr)
    {
 
@@ -212,7 +214,6 @@ void html_form::on_layout(::draw2d::graphics_pointer & pgraphics)
 
    }
 
-
 }
 
 
@@ -246,8 +247,7 @@ void html_form::on_message_left_button_down(::message::message * pmessage)
 
    _001ScreenToClient(point);
 
-   if(get_html_data() != nullptr
-      && get_html_data()->m_pcoredata != nullptr)
+   if(get_html_data() != nullptr && get_html_data()->m_pcoredata != nullptr)
    {
 
       m_pelementLButtonDown = get_html_data()->m_pcoredata->m_pelement->hit_test(get_html_data(), point);
@@ -396,6 +396,7 @@ void html_form::on_message_left_button_up(::message::message * pmessage)
       m_pelementLButtonDown->OnLButtonUp(&htmlmessage);
 
    }
+   
 }
 
 
@@ -405,7 +406,7 @@ void html_form::_001OnDestroy(::message::message * pmessage)
    if (get_document() != nullptr)
    {
 
-      ::html_data * pdata = get_document()->get_html_data();
+      ::html_data * pdata = get_html_data();
 
       if (pdata != nullptr)
       {
@@ -569,17 +570,17 @@ void html_form::_001SetText(const string & str, const ::action_context & context
 
    bool bFocus = has_keyboard_focus() || is_descendant(puserinteraction, true);
 
-   __pointer(::html_data) sphtmldata;
+   __pointer(::html_data) phtmldata;
 
-   sphtmldata = __new(::html_data);
+   phtmldata = __new(::html_data);
 
-   sphtmldata->m_pcoredata->m_pform = this;
+   phtmldata->m_pcoredata->m_pform = this;
 
-   sphtmldata->load(str);
+   phtmldata->load(str);
 
-   sphtmldata->implement_and_layout(this);
+   phtmldata->implement_and_layout(this);
 
-   m_phtmldata = sphtmldata;
+   m_phtmldata = phtmldata;
 
    if(bFocus)
    {
@@ -602,12 +603,12 @@ void html_form::_001SetText(const string & str, const ::action_context & context
 }
 
 
-html_document * html_form::get_document()
-{
-
-   return dynamic_cast <html_document*> (::user::impact::get_document());
-
-}
+//html_document * html_form::get_document()
+//{
+//
+//   return dynamic_cast <html_document*> (::user::impact::get_document());
+//
+//}
 
 
 ::html_data * html_form::get_html_data()
@@ -649,12 +650,18 @@ html_document * html_form::get_document()
 
 void html_form::_001OnKeyDown(::message::message * pmessage)
 {
+   
    __pointer(::message::key) pkey(pmessage);
+   
    if(pkey->m_ekey == ::user::e_key_tab)
    {
+      
       pkey->m_bRet = true;
+      
       return;
+      
    }
+   
 }
 
 
@@ -662,12 +669,20 @@ void html_form::defer_implement()
 {
 
    if(get_html_data() == nullptr)
+   {
+
       return;
+      
+   }
 
    GetClientBox(get_html_data()->m_pcoredata->m_box);
 
    if(get_html_data()->m_pcoredata->m_box.area() <= 0.f)
+   {
+
       return;
+      
+   }
 
    auto pimage = create_image({ 50,  50 });
 
@@ -678,7 +693,6 @@ void html_form::defer_implement()
    ::draw2d::graphics_pointer pgraphics = pimage->g();
 
    get_html_data()->implement(pgraphics);
-
 
 }
 
@@ -748,7 +762,7 @@ void html_form::on_subject(::subject::subject * psubject, ::subject::context * p
       if (psubject->id() == id_document_complete)
       {
 
-         m_phtmldata = get_document()->get_html_data();
+         m_phtmldata = get_html_data();
 
       }
 
@@ -856,7 +870,6 @@ void html_form_view::on_subject(::subject::subject * psubject, ::subject::contex
 }
 
 
-
 void html_view::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
 {
 
@@ -882,7 +895,7 @@ void html_view::on_subject(::subject::subject * psubject, ::subject::context * p
             get_html_data()->implement(this);
 
          }
-
+         
          on_document_complete(psubject->payload(id_url));
 
          set_need_layout();
@@ -894,4 +907,21 @@ void html_view::on_subject(::subject::subject * psubject, ::subject::context * p
    }
 
 }
+
+
+void html_form::on_form_implemented()
+{
+   
+   auto pdocument = get_document();
+   
+   if(::is_set(pdocument))
+   {
+      
+      pdocument->call_routine("load");
+      
+   }
+   
+}
+
+
 

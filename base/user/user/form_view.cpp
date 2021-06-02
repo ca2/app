@@ -324,6 +324,14 @@ namespace user
    }
 
 
+   ::form_document * form_view::get_document()
+   {
+      
+      return dynamic_cast < ::form_document * >(::user::impact::get_document());
+      
+   }
+
+
 } // namespace user
 
 

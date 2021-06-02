@@ -390,12 +390,31 @@ void object::dev_log(string strMessage) const
 //}
 //
 
+
 void object::call_routine(const ::id& id)
 {
+   
+   auto & routinea = this->routine_array(id);
 
-   auto payload = this->payload(id);
+   for(auto & routine : routinea)
+   {
+      
+      try
+      {
+      
+         routine();
+      
+      }
+      catch(...)
+      {
+         
+      }
+      
+   }
+   
+   //auto payload = this->payload(id);
 
-   payload.predicate_each([](auto payload) { payload(); });
+   //payload.predicate_each([](auto payload) { payload(); });
 
 }
 

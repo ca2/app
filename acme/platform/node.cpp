@@ -322,6 +322,45 @@ namespace acme
 
    }
 
+
+   string node::app_id_to_app_name(const string & strAppId)
+   {
+
+      string strName;
+
+      for (index i = 0; i < strAppId.length(); i++)
+      {
+
+         if (strAppId[i] == '-' || strAppId[i] == '/' || strAppId[i] == '\\')
+         {
+
+            strName += "_";
+
+         }
+         else
+         {
+
+            strName += strAppId[i];
+
+         }
+
+      }
+
+      return strName;
+
+   }
+
+
+   string node::app_id_to_executable_name(const string & strAppId)
+   {
+      
+      string strName = app_id_to_app_name(strAppId);
+
+      return strName;
+
+   }
+
+
    bool node::is_application_installed(const ::file::path& pathExe, string strAppId, string& strBuild, const char* pszPlatform, const char* pszConfiguration, const char* pszLocale, const char* pszSchema)
    {
 
@@ -362,6 +401,15 @@ namespace acme
 
    ::file::path node::get_application_path(string strAppId, const char* pszPlatform, const char* pszConfiguration)
    {
+      
+      auto pathLastRun = get_last_run_application_path(strAppId);
+      
+      if(pathLastRun.has_char() && ::file_exists(pathLastRun))
+      {
+         
+         return pathLastRun;
+         
+      }
 
       ::file::path pathFolder;
 
@@ -369,15 +417,18 @@ namespace acme
 
       string strName;
 
-      strName = ::process::app_id_to_app_name(strAppId);
+      strName = app_id_to_executable_name(strAppId);
 
       ::file::path path;
 
-      path = pathFolder / (strName + ".exe");
+      path = pathFolder / strName;
 
       return path;
 
    }
+
+
+
 
 
    ::file::path node::get_last_run_application_path_file(const string & strAppId)
@@ -966,7 +1017,16 @@ namespace acme
    }
 
 
-   //::e_status node::get_system_time_as_file_time(filetime_t * pfiletime)
+   ::e_status node::open_file(::file::path & path)
+   {
+
+      __throw(error_interface_only);
+     
+      return ::error_interface_only;
+
+   }
+
+//::e_status node::get_system_time_as_file_time(filetime_t * pfiletime)
    //{
 
    //   return ::error_interface_only;

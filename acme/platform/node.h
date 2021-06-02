@@ -121,6 +121,11 @@ namespace acme
       //virtual ::file::path module_path_origin();
       //::file::path update_module_path();
 
+      
+      
+      virtual string app_id_to_app_name(const string & strAppId);
+      virtual string app_id_to_executable_name(const string & strAppId);
+
 
       virtual bool is_application_installed(const ::file::path& pathExe, string strAppId, string& strBuild, const char* pszPlatform, const char* pszConfiguration, const char* pszLocale, const char* pszSchema);
       virtual bool set_application_installed(const ::file::path& pathExe, string strAppId, const char* pszBuild, const char* pszPlatform, const char* pszConfiguration, const char* pszLocale, const char* pszSchema);
@@ -280,7 +285,8 @@ namespace acme
 
       virtual void set_console_colors(::u32 dwScreenColors, ::u32 dwPopupColors, ::u32 dwWindowAlpha);
 
-      virtual ::e_status open_folder(::file::path & pathFolder);
+      virtual ::e_status open_folder(const ::file::path & pathFolder);
+      virtual ::e_status open_file(const ::file::path & path);
 
 
 

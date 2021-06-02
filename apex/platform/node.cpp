@@ -154,32 +154,32 @@ namespace apex
    }
 
 
-   bool node::is_application_installed(const ::file::path & pathExe, string strAppId, string & strBuild,
-                                       const char * pszPlatform, const char * pszConfiguration,
-                                       const char * pszLocale, const char * pszSchema)
-   {
-
-      return false;
-
-   }
-
-   bool node::set_application_installed(const ::file::path & pathExe, string strAppId, const char * pszBuild,
-                                        const char * pszPlatform, const char * pszConfiguration,
-                                        const char * pszLocale, const char * pszSchema)
-   {
-
-
-      return false;
-
-   }
-
-
-   bool node::set_last_run_application_path(string strAppId)
-   {
-
-      return false;
-
-   }
+//   bool node::is_application_installed(const ::file::path & pathExe, string strAppId, string & strBuild,
+//                                       const char * pszPlatform, const char * pszConfiguration,
+//                                       const char * pszLocale, const char * pszSchema)
+//   {
+//
+//      return false;
+//
+//   }
+//
+//   bool node::set_application_installed(const ::file::path & pathExe, string strAppId, const char * pszBuild,
+//                                        const char * pszPlatform, const char * pszConfiguration,
+//                                        const char * pszLocale, const char * pszSchema)
+//   {
+//
+//
+//      return false;
+//
+//   }
+//
+//
+//   bool node::set_last_run_application_path(string strAppId)
+//   {
+//
+//      return false;
+//
+//   }
 
 
    ::e_status node::defer_create_main_menu(const string_array & straParent, const string_array & straMenu, const string_array & straId)

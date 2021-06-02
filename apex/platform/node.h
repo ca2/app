@@ -71,11 +71,11 @@ namespace apex
 
 
 
-      virtual bool is_application_installed(const ::file::path& pathExe, string strAppId, string& strBuild, const char* pszPlatform, const char* pszConfiguration, const char* pszLocale, const char* pszSchema);
-
-      virtual bool set_application_installed(const ::file::path& pathExe, string strAppId, const char* pszBuild, const char* pszPlatform, const char* pszConfiguration, const char* pszLocale, const char* pszSchema);
-
-      virtual bool set_last_run_application_path(string strAppId);
+//      virtual bool is_application_installed(const ::file::path& pathExe, string strAppId, string& strBuild, const char* pszPlatform, const char* pszConfiguration, const char* pszLocale, const char* pszSchema);
+//
+//      virtual bool set_application_installed(const ::file::path& pathExe, string strAppId, const char* pszBuild, const char* pszPlatform, const char* pszConfiguration, const char* pszLocale, const char* pszSchema);
+//
+//      virtual bool set_last_run_application_path(string strAppId);
 
       virtual void os_menu_item_enable(void * pitem, bool bEnable);
       virtual void os_menu_item_check(void * pitem, bool bCheck);

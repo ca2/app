@@ -76,6 +76,32 @@ static_setup* static_setup::get_first(::static_setup::enum_flag eflag, const cha
 
 }
 
+
+static_setup* static_setup::get_last(::static_setup::enum_flag eflag, const char* pszName)
+{
+
+   auto psetup = s_psetupList;
+
+   while (psetup != nullptr)
+   {
+
+      if ((int)(psetup->m_eflag & eflag) == (int)eflag
+         && (string(pszName).is_empty() || (!stricmp(pszName, psetup->m_pszName))))
+      {
+
+         return psetup;
+
+      }
+
+      psetup = psetup->m_psetupNext;
+
+   }
+
+   return nullptr;
+
+
+}
+
 //::static_setup * static_setup::get(const char * lpszName)
 //{
 //

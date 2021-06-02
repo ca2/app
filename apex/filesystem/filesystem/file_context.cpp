@@ -1581,7 +1581,7 @@ bool file_context::transfer(::file::file *pfileOut, ::file::file *pfileIn)
 bool file_context::is_read_only(const ::file::path &psz)
 {
 
-   __throw(error_interface_only);
+   //__throw(error_interface_only);
 
    return false;
 

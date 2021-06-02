@@ -51,6 +51,7 @@ public:
    bool has_flag(::static_setup::enum_flag eflag) { return ((int)m_eflag & (int)eflag) == (int)eflag; }
 
 
+   static static_setup* get_last(::static_setup::enum_flag eflag, const char* pszName = nullptr);
    static static_setup* get_first(::static_setup::enum_flag eflag, const char* pszName = nullptr);
 
    virtual ::matter * create_new_object();

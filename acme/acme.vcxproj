@@ -1658,6 +1658,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClCompile Include="process\exit_status.cpp" />
     <ClCompile Include="process\main.cpp" />
     <ClCompile Include="process\pipe.cpp" />
+    <ClCompile Include="process\_.cpp" />
     <ClCompile Include="regular_expression\context.cpp" />
     <ClCompile Include="regular_expression\regular_expression.cpp" />
     <ClCompile Include="regular_expression\topic.cpp" />

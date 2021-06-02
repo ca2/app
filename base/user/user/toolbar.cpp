@@ -1275,10 +1275,9 @@ return { 0,0 };
 
       bool bHorz = (m_dwStyle & CBRS_ORIENT_HORZ) != 0;
 
-      auto pgraphics = ::draw2d::create_memory_graphics();
+      auto pgraphics = create_memory_graphics();
 
       ::user::control_bar::CalcInsideRect(pgraphics, rectangle, bHorz);
-
 
       NCCALCSIZE_PARAMS * pparams = (NCCALCSIZE_PARAMS *)pnccalcsize->m_pNCCALCSIZE_PARAMS;
       // adjust non-client area for border space

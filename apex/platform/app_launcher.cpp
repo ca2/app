@@ -40,7 +40,11 @@ namespace apex
    string app_launcher::get_executable_path()
    {
 
-      ::file::path path = m_psystem->m_papexsystem->m_pdirsystem->get_last_run_application_path(m_strApp);
+      auto psystem = m_psystem;
+
+      auto pnode = psystem->node();
+
+      ::file::path path = pnode->get_last_run_application_path(m_strApp);
 
       if(file_exists(path))
       {

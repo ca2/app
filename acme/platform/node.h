@@ -122,6 +122,19 @@ namespace acme
       //::file::path update_module_path();
 
 
+      virtual bool is_application_installed(const ::file::path& pathExe, string strAppId, string& strBuild, const char* pszPlatform, const char* pszConfiguration, const char* pszLocale, const char* pszSchema);
+      virtual bool set_application_installed(const ::file::path& pathExe, string strAppId, const char* pszBuild, const char* pszPlatform, const char* pszConfiguration, const char* pszLocale, const char* pszSchema);
+
+
+      virtual ::file::path application_installer_folder(const ::file::path& pathExe, string strAppId, const char* pszPlatform, const char* pszConfiguration, const char* pszLocale, const char* pszSchema);
+      virtual ::file::path get_application_path(string strAppId, const char* pszPlatform, const char* pszConfiguration);
+
+
+      virtual ::file::path get_last_run_application_path_file(const string & strAppId);
+      virtual ::file::path get_last_run_application_path(const string & strAppId);
+      virtual ::e_status  set_last_run_application_path(const string& strAppId);
+
+
       virtual ::e_status register_extended_event_listener(::matter * pdata, bool bMouse, bool bKeyboard);
 
 

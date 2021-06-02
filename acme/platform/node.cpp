@@ -5,6 +5,7 @@
 #include "acme/id.h"
 #include "acme/platform/node.h"
 #include "acme/filesystem/filesystem/acme_dir.h"
+#include "acme/filesystem/filesystem/acme_path.h"
 
 
 namespace acme
@@ -318,6 +319,97 @@ namespace acme
       m_pathModule = _module_path();
 
       return m_pathModule;
+
+   }
+
+   bool node::is_application_installed(const ::file::path& pathExe, string strAppId, string& strBuild, const char* pszPlatform, const char* pszConfiguration, const char* pszLocale, const char* pszSchema)
+   {
+
+      ::file::path path;
+
+      path = application_installer_folder(pathExe, strAppId, pszPlatform, pszConfiguration, pszLocale, pszSchema) / "installed.txt";
+
+      strBuild = file_as_string(path);
+
+      return strBuild.has_char();
+
+   }
+
+
+   bool node::set_application_installed(const ::file::path& pathExe, string strAppId, const char* pszBuild, const char* pszPlatform, const char* pszConfiguration, const char* pszLocale, const char* pszSchema)
+   {
+
+      ::file::path path;
+
+      path = application_installer_folder(pathExe, strAppId, pszPlatform, pszConfiguration, pszLocale, pszSchema) / "installed.txt";
+
+      return file_put_contents(path, pszBuild);
+
+   }
+
+
+   ::file::path node::application_installer_folder(const ::file::path& pathExe, string strAppId, const char* pszPlatform, const char* pszConfiguration, const char* pszLocale, const char* pszSchema)
+   {
+
+      string strFolder = pathExe.folder();
+
+      strFolder.replace(":", "");
+
+      return m_psystem->m_pacmedir->ca2roaming() / "appdata" / strFolder / strAppId / pszPlatform / pszConfiguration / pszLocale / pszSchema;
+
+   }
+
+
+   ::file::path node::get_application_path(string strAppId, const char* pszPlatform, const char* pszConfiguration)
+   {
+
+      ::file::path pathFolder;
+
+      pathFolder = m_psystem->m_pacmedir->stage(strAppId, pszPlatform, pszConfiguration);
+
+      string strName;
+
+      strName = ::process::app_id_to_app_name(strAppId);
+
+      ::file::path path;
+
+      path = pathFolder / (strName + ".exe");
+
+      return path;
+
+   }
+
+
+   ::file::path node::get_last_run_application_path_file(const string & strAppId)
+   {
+
+      ::file::path pathFile = m_psystem->m_pacmedir->local() / "appdata" / strAppId / "last_run_path.txt";
+
+      return pathFile;
+
+   }
+
+
+   ::file::path node::get_last_run_application_path(const string & strAppId)
+   {
+
+      ::file::path pathFile = get_last_run_application_path_file(strAppId);
+
+      ::file::path path = ::file_as_string(pathFile);
+
+      return path;
+
+   }
+
+
+   ::e_status node::set_last_run_application_path(const string & strAppId)
+   {
+
+      ::file::path path = m_psystem->m_pacmepath->app_module();
+
+      ::file::path pathFile = get_last_run_application_path_file(strAppId);
+
+      return file_put_contents(pathFile, path);
 
    }
 

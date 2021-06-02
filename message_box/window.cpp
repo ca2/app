@@ -42,6 +42,8 @@ namespace app_message_box
 
       m_pbuttonShowMessageBox->set_window_text("Show message box");
 
+      m_pbuttonShowMessageBox->add_control_event_handler(this);
+
 #if !STEPPY_DEBUG
 
       set_prodevian();

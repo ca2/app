@@ -3735,7 +3735,7 @@ namespace user
 
       m_strTopText = pcwsz;
 
-      auto pgraphics = ::draw2d::create_memory_graphics();
+      auto pgraphics = create_memory_graphics();
 
       _001LayoutTopText(pgraphics);
 
@@ -4506,7 +4506,7 @@ namespace user
    void mesh::_001OnMeshHeaderItemDblClk(index iHeaderItem)
    {
       
-      auto pgraphics = ::draw2d::create_memory_graphics();
+      auto pgraphics = create_memory_graphics();
 
       _001MaximizeColumnWidth(pgraphics, iHeaderItem);
 

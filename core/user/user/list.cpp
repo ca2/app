@@ -1444,7 +1444,7 @@ namespace user
 
       }
 
-      auto pgraphics = ::draw2d::create_memory_graphics();
+      auto pgraphics = create_memory_graphics();
 
       //draw_select ds(this, pgraphics);
 
@@ -5497,7 +5497,7 @@ namespace user
 
       m_strTopText = pcwsz;
 
-      auto pgraphics = ::draw2d::create_memory_graphics();
+      auto pgraphics = create_memory_graphics();
 
       _001LayoutTopText(pgraphics);
 

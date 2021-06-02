@@ -101,15 +101,14 @@ namespace user
 
       ::rectangle_i32 rectangle;
 
-      auto pgraphics = ::draw2d::create_memory_graphics();
+      auto pgraphics = create_memory_graphics();
 
       GetToolRect(iTool, rectangle);
 
-
       m_ealign = m_ealignDefault;
 
-
       __pointer(::user::interaction) puserinteraction = m_puserinteraction;
+      
       ::user::tool_tip_tool * ptool = GetTool(iTool);
 
       bool bVRetry = false;

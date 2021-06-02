@@ -788,7 +788,7 @@ namespace user
          else
             dwMode |=  LM_VERTDOCK;
 
-         auto pgraphics = ::draw2d::create_memory_graphics();
+         auto pgraphics = create_memory_graphics();
 
          ::size_i32 size = CalcDynamicLayout(pgraphics, -1, dwMode);
 

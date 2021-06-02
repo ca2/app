@@ -15,6 +15,8 @@ namespace aura
       virtual ~drawable();
 
 
+      virtual ::draw2d::graphics_pointer create_graphics();
+      
       virtual ::draw2d::graphics_pointer create_memory_graphics();
 
       virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics);

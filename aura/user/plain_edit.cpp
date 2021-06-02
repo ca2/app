@@ -4118,7 +4118,7 @@ finished_update:
 
       index iLineUpdate = -1;
 
-      auto pgraphics = ::draw2d::create_memory_graphics();
+      auto pgraphics = create_memory_graphics();
 
       if(plain_edit_delete_sel(pgraphics, bFullUpdate, iLineUpdate))
       {
@@ -4222,7 +4222,7 @@ finished_update:
       if(_001ReplaceSel(pszText, bFullUpdate, iLineUpdate))
       {
 
-         auto pgraphics = ::draw2d::create_memory_graphics();
+         auto pgraphics = create_memory_graphics();
 
          plain_edit_update(pgraphics, bFullUpdate, iLineUpdate);
 
@@ -5903,7 +5903,7 @@ finished_update:
 
       plain_edit_undo();
 
-      auto pgraphics = ::draw2d::create_memory_graphics();
+      auto pgraphics = create_memory_graphics();
 
       plain_edit_create_line_index(pgraphics);
 
@@ -6949,7 +6949,7 @@ finished_update:
          if (iHint == id_set_file)
          {
 
-            auto pgraphics = ::draw2d::create_memory_graphics();
+            auto pgraphics = create_memory_graphics();
 
             plain_edit_on_file_update(pgraphics);
 

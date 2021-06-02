@@ -11,20 +11,22 @@ namespace html
    public:
       
       
-      index                m_iIndex;
-      string               m_strFamily;
-      string               m_strWeight;
-      string               m_strSize;
-      string               m_strTextDecoration;
+      index                         m_iIndex;
+      string                        m_strFamily;
+      string                        m_strWeight;
+      string                        m_strSize;
+      string                        m_strTextDecoration;
       ::write_text::font_pointer    m_font;
 
 
       font();
       font(const class font & font);
       
+      
       bool create(::object * pobject);
 
-      bool operator == (const font & font);
+
+      bool operator == (const font & font) const;
 
 
    };

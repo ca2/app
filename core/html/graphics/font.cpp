@@ -100,12 +100,19 @@ namespace html
       return true;
    }
 
-   bool font::operator == (const font & font)
+
+   bool font::operator == (const font & font) const
    {
+      
       return !m_strFamily.compare_ci(font.m_strFamily)
              && !m_strSize.compare_ci(font.m_strSize)
              && !m_strWeight.compare_ci(font.m_strWeight)
              && !m_strTextDecoration.compare_ci(font.m_strTextDecoration);
+      
    }
 
+
 } // namespace html
+
+
+

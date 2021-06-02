@@ -360,7 +360,7 @@ namespace user
       if (pgraphics.is_null())
       {
 
-         pgraphics = ::draw2d::create_memory_graphics();
+         pgraphics = create_memory_graphics();
 
       }
 

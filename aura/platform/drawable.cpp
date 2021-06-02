@@ -18,10 +18,36 @@ namespace aura
    }
 
 
+   ::draw2d::graphics_pointer drawable::create_graphics()
+   {
+
+      auto pgraphics = __create< ::draw2d::graphics>();
+
+      return ::move(pgraphics);
+
+   }
+
+
    ::draw2d::graphics_pointer drawable::create_memory_graphics()
    {
 
-      return ::draw2d::create_memory_graphics();
+      auto pgraphics = create_graphics();
+
+      if (!pgraphics)
+      {
+
+         return nullptr;
+
+      }
+
+      if (!pgraphics->create_memory_graphics())
+      {
+
+         return nullptr;
+
+      }
+
+      return pgraphics;
 
    }
 

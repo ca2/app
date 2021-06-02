@@ -1187,8 +1187,8 @@ namespace draw2d
 
    };
 
-   CLASS_DECL_AURA ::draw2d::graphics_pointer create_graphics();
-   CLASS_DECL_AURA ::draw2d::graphics_pointer create_memory_graphics();
+   //CLASS_DECL_AURA ::draw2d::graphics_pointer create_graphics();
+   //CLASS_DECL_AURA ::draw2d::graphics_pointer create_memory_graphics();
 
 
 

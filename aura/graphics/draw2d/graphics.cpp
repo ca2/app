@@ -5590,38 +5590,8 @@ namespace draw2d
    }
 
 
-   ::draw2d::graphics_pointer create_graphics()
-   {
-
-      auto pgraphics = __create< graphics>();
-
-      return ::move(pgraphics);
-
-   }
 
 
-   ::draw2d::graphics_pointer create_memory_graphics()
-   {
-
-      auto pgraphics = create_graphics();
-
-      if (!pgraphics)
-      {
-
-         return nullptr;
-
-      }
-
-      if (!pgraphics->create_memory_graphics())
-      {
-
-         return nullptr;
-
-      }
-
-      return pgraphics;
-
-   }
 
 
 } // namespace draw2d

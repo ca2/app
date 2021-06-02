@@ -318,21 +318,26 @@ namespace user
 
    void tree_data::on_tree_layout()
    {
-
-      auto pgraphics = ::draw2d::create_memory_graphics();
-
-      for(index i = 0; i < m_usertreea.get_count(); i++)
+      
+      if(m_usertreea.has_element())
       {
-         try
-         {
 
-            m_usertreea[i]->on_layout(pgraphics);
+         auto pgraphics = m_usertreea.first()->create_memory_graphics();
+
+         for(index i = 0; i < m_usertreea.get_count(); i++)
+         {
+            try
+            {
+
+               m_usertreea[i]->on_layout(pgraphics);
+
+            }
+            catch(...)
+            {
+            }
 
          }
-         catch(...)
-         {
-         }
-
+         
       }
 
    }

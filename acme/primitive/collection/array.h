@@ -72,8 +72,7 @@ public:
    inline ::index append(const array& src);
    inline void copy(const array& src);
 
-   inline TYPE & add_new();
-   inline ::index add_new( ::count count);
+   inline TYPE & add_new(::count c = 1);
 
 
    inline TYPE & add_new_at(::index iIndex, ::count count = 1);

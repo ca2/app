@@ -513,12 +513,21 @@ inline array < TYPE, ARG_TYPE, ALLOCATOR > & array < TYPE, ARG_TYPE, ALLOCATOR >
 //
 
 template < class TYPE, class ARG_TYPE, class ALLOCATOR >
-inline TYPE & array < TYPE, ARG_TYPE, ALLOCATOR > ::add_new()
+inline TYPE & array < TYPE, ARG_TYPE, ALLOCATOR > ::add_new(::count c)
 {
 
-   this->set_size(__count(this->m_nSize) + 1);
+   if (c <= 0)
+   {
 
-   return this->last();
+      __throw(error_invalid_argument);
+
+   }
+
+   auto end = __count(this->m_nSize);
+
+   this->set_size(end + c);
+
+   return this->element_at(end);
 
 }
 

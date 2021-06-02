@@ -23,7 +23,7 @@ namespace app_shader
 
       m_colorBackground = 0;
 
-      m_bSimpleUIDefaultMouseHandling = true;
+      m_bClickDefaultMouseHandling = true;
 
    }
 

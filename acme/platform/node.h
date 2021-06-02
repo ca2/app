@@ -323,12 +323,7 @@ namespace acme
 #endif
       
       
-#ifdef MACOS
-      
-      virtual void ns_launch_app(const char * psz, const char ** argv, int iFlags);
-      
-#endif
-
+   virtual ::e_status launch_app(const char * psz, const char ** argv, int iFlags);
 
    virtual ::e_status create_process(const char * pszCommandLine, u32 * pprocessID);
 

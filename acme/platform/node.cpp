@@ -1007,7 +1007,7 @@ namespace acme
    //}
 
 
-   ::e_status node::open_folder(::file::path & pathFolder)
+   ::e_status node::open_folder(const ::file::path & pathFolder)
    {
 
       __throw(error_interface_only);
@@ -1017,7 +1017,7 @@ namespace acme
    }
 
 
-   ::e_status node::open_file(::file::path & path)
+   ::e_status node::open_file(const ::file::path & path)
    {
 
       __throw(error_interface_only);
@@ -1176,16 +1176,27 @@ namespace acme
 
    }
 
+//
+//#ifdef MACOS
+//      
+//   void node::ns_launch_app(const char * psz, const char ** argv, int iFlags)
+//   {
+//      
+//      
+//   }
+//      
+//#endif
 
-#ifdef MACOS
-      
-   void node::ns_launch_app(const char * psz, const char ** argv, int iFlags)
+
+   ::e_status node::launch_app(const char * psz, const char ** argv, int iFlags)
    {
       
+      __throw(error_interface_only);
+      
+      return error_interface_only;
       
    }
-      
-#endif
+
 
 
    ::e_status node::create_process(const char * pszCommandLine, u32 * pprocessID)

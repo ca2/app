@@ -1254,7 +1254,9 @@ breakFilter2:
       try
       {
 
-         if (!write_text_factory_exchange(::factory::get_factory_map()))
+         estatus = write_text_factory_exchange(::factory::get_factory_map());
+
+         if (!estatus)
          {
 
             message_box("Failed to initialize draw2d library.");
@@ -1280,7 +1282,7 @@ breakFilter2:
 
       }
 
-      __pointer(::aura::system) psystem = get_system();
+      auto psystem = get_system();
 
       synchronous_lock synchronouslock(&psystem->m_mutexLibrary);
 
@@ -1291,7 +1293,7 @@ breakFilter2:
 
          TRACE("Couldn't construct new write_text.");
 
-         return false;
+         return estatus;
 
       }
 

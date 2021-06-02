@@ -1099,7 +1099,9 @@ namespace aura
          try
          {
 
-            if (!imaging_factory_exchange(::factory::get_factory_map()))
+            estatus = imaging_factory_exchange(::factory::get_factory_map());
+
+            if(!estatus)
             {
 
                WARN("Failed to initialize imaging library.");
@@ -1122,7 +1124,7 @@ namespace aura
 
       }
 
-      __pointer(::aura::system) psystem = get_system();
+      auto psystem = get_system();
 
       synchronous_lock synchronouslock(&m_mutexLibrary);
 

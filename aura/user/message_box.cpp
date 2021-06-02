@@ -80,6 +80,8 @@ namespace user
 
          pbutton->initialize(this);
 
+         pbutton->add_control_event_handler(this);
+
       }
 
       set_tool_window();
@@ -347,6 +349,7 @@ namespace user
          pbutton->display();
          right -= (int) (iMaxWidth * 1.25);
          iButton--;
+
       }
 
       ::rectangle_i32 r;

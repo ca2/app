@@ -2485,7 +2485,9 @@ namespace user
 
       get_data()->m_pimagelist->create(16, 16, 0, 0, 0);
 
-      auto pgraphics = create_memory_graphics();
+      auto pdraw2d = psystem->draw2d();
+
+      auto pgraphics = pdraw2d->create_memory_graphics();
 
       get_data()->m_bCreated = true;
 

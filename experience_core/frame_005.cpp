@@ -56,7 +56,11 @@
 
                auto pframewindow = m_pframewindow;
 
-               auto pgraphics = pframewindow->create_memory_graphics();
+               auto psystem = m_psystem->m_paurasystem;
+
+               auto pdraw2d = psystem->draw2d();
+
+               auto pgraphics = pdraw2d->create_memory_graphics();
 
                auto pstyle = pframewindow->get_style(pgraphics);
 
@@ -494,7 +498,7 @@ SizingNone:;
                if(eborder & e_border_top)
                {
 
-                  rectDraw = ::rectangle_dimension(x, y, cx, 1);
+                  rectDraw = rectangle_i32_dimension(x, y, cx, 1);
 
                   if(psession->m_paurasession->savings().is_trying_to_save(::e_resource_processing))
                   {
@@ -513,7 +517,7 @@ SizingNone:;
                if(eborder & e_border_left)
                {
 
-                  rectDraw = ::rectangle_dimension(x, y + 1, 1, cy - 2);
+                  rectDraw = rectangle_i32_dimension(x, y + 1, 1, cy - 2);
 
                   if(psession->m_paurasession->savings().is_trying_to_save(::e_resource_processing))
                   {
@@ -533,7 +537,7 @@ SizingNone:;
                if(eborder & e_border_right)
                {
 
-                  rectDraw = ::rectangle_dimension(x + cx - 1, y + 1, 1, cy - 2);
+                  rectDraw = rectangle_i32_dimension(x + cx - 1, y + 1, 1, cy - 2);
 
                   if(psession->m_paurasession->savings().is_trying_to_save(::e_resource_processing))
                   {
@@ -553,7 +557,7 @@ SizingNone:;
                if(eborder & e_border_bottom)
                {
 
-                  rectDraw = ::rectangle_dimension(x, y + cy - 1, cx, 1);
+                  rectDraw = rectangle_i32_dimension(x, y + cy - 1, cx, 1);
 
                   if(psession->m_paurasession->savings().is_trying_to_save(::e_resource_processing))
                   {

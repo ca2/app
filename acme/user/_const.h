@@ -333,6 +333,8 @@ namespace user
       e_event_after_change_text_format,
       e_event_after_change_cur_sel,
       e_event_after_change_cur_hover,
+      e_event_mouse_enter,
+      e_event_mouse_leave,
       e_event_timebar_change,
       e_event_menu_hover,
       e_event_context_menu_close,

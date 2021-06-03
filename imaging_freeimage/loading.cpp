@@ -2,7 +2,7 @@
 #include "_imaging_freeimage.h"
 
 
-void set_bypass_cache_if_empty(::payload & varFile);
+CLASS_DECL_APEX void set_bypass_cache_if_empty(::payload & varFile);
 
 
 namespace imaging_freeimage

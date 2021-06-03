@@ -150,7 +150,7 @@ void rectangle_array_base < RECTANGLE_TYPE >::add(UNIT_TYPE left, UNIT_TYPE top,
 template < typename RECTANGLE_TYPE >
 void rectangle_array_base < RECTANGLE_TYPE >::add_dim(UNIT_TYPE x, UNIT_TYPE y, UNIT_TYPE cx, UNIT_TYPE cy)
 {
-   add(rectangle_dimension(x, y, cx, cy));
+   add(rectangle_i32_dimension(x, y, cx, cy));
 }
 
 

@@ -33,11 +33,10 @@ namespace draw2d
       virtual ~region();
 
 
-      virtual bool create_rect(const ::rectangle_i32 & rectangle);
+      virtual bool create_rectangle(const ::rectangle_i32 & rectangle);
 
-      virtual bool create_oval(const ::rectangle_i32 & rectangle);
+      virtual bool create_ellipse(const ::rectangle_i32 & rectangle);
       
-
       virtual bool create_polygon(const POINT_I32 * pPoints, i32 nCount, ::draw2d::enum_fill_mode efillmode);
 
       virtual bool create_polygon(const POINT_F64 * pPoints, i32 nCount,::draw2d::enum_fill_mode efillmode);
@@ -108,19 +107,11 @@ namespace draw2d
 
       virtual void max_bounding_box_combine(RECTANGLE_F64 * prectangle, ::draw2d::graphics * pgraphics = nullptr);
 
-
       
       virtual ::e_status finalize() override;
 
-      
 
       region & operator = (const ::draw2d::region & regionSrc);
-
-      
-      inline bool create_rect_coord(i32 x1, i32 y1, i32 x2, i32 y2) { return create_rect(::rectangle_i32(x1, y1, x2, y2)); }
-      inline bool create_rect_dim(i32 x, i32 y, i32 cx, i32 cy) { return create_rect(rectangle_dimension(x, y, cx, cy)); }
-      inline bool create_oval_coord(i32 x1, i32 y1, i32 x2, i32 y2) { return create_oval(::rectangle_i32(x1, y1, x2, y2)); }
-      inline bool create_oval_dim(i32 x, i32 y, i32 cx, i32 cy) { return create_oval(rectangle_dimension(x, y, cx, cy)); }
 
 
    };

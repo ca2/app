@@ -2,13 +2,13 @@
 
 
 class CLASS_DECL_AXIS numeric_parser_exception:
-   virtual public ::exception::exception
+   public ::exception::exception
 {
 public:
 
 
    numeric_parser_exception(const char * pszMessage = nullptr);
-   virtual ~numeric_parser_exception();
+   ~numeric_parser_exception() override;
 
 
 };

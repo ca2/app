@@ -1275,7 +1275,11 @@ return { 0,0 };
 
       bool bHorz = (m_dwStyle & CBRS_ORIENT_HORZ) != 0;
 
-      auto pgraphics = create_memory_graphics();
+      auto psystem = m_psystem->m_paurasystem;
+
+      auto pdraw2d = psystem->draw2d();
+
+      auto pgraphics = pdraw2d->create_memory_graphics();
 
       ::user::control_bar::CalcInsideRect(pgraphics, rectangle, bHorz);
 

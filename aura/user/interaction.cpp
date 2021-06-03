@@ -8818,7 +8818,7 @@ namespace user
 
       order(e_zorder_top);
 
-      layout().sketch() = ::rectangle_dimension(x, y, cx, cy);
+      layout().sketch() = rectangle_i32_dimension(x, y, cx, cy);
 
       display(e_display_normal);
 
@@ -9681,7 +9681,7 @@ namespace user
       else
       {
 
-         //place(rectangle_dimension(10, 10, 800, 300));
+         //place(rectangle_i32_dimension(10, 10, 800, 300));
 
          ::rectangle_i32 rectPlace(rectRequest);
 
@@ -12020,7 +12020,7 @@ restart:
    void interaction::set_dim(i32 x, i32 y, i32 cx, i32 cy)
    {
 
-      place(::rectangle_dimension(x, y, cx, cy));
+      place(rectangle_i32_dimension(x, y, cx, cy));
 
    }
 

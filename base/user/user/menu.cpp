@@ -397,7 +397,11 @@ namespace user
 
       //::create * pcreate = nullptr;
 
-      auto pgraphics = create_memory_graphics();
+      auto psystem = m_psystem->m_paurasystem;
+
+      auto pdraw2d = psystem->draw2d();
+
+      auto pgraphics = pdraw2d->create_memory_graphics();
 
       //if (pstyle == nullptr)
       //{
@@ -596,7 +600,11 @@ namespace user
 
       }
 
-      auto pgraphics = create_memory_graphics();
+      auto psystem = m_psystem->m_paurasystem;
+
+      auto pdraw2d = psystem->draw2d();
+
+      auto pgraphics = pdraw2d->create_memory_graphics();
 
       m_pointTrack = m_pointPositionHint;
 

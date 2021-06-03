@@ -485,7 +485,7 @@ namespace file
    }
 
 
-   int file::sgetc()
+   int file::peek_character()
    {
 
       char ch;
@@ -493,24 +493,7 @@ namespace file
       if (!peek(&ch))
       {
 
-         return EOF;
-
-      }
-
-      return ch;
-
-   }
-
-
-   int file::sbumpc()
-   {
-
-      char ch;
-
-      if (read(&ch, 1) <= 0)
-      {
-
-         return EOF;
+         return -1;
 
       }
 
@@ -522,9 +505,16 @@ namespace file
    int file::get_character()
    {
 
-      __throw(error_interface_only);
+      char ch;
 
-      return -1;
+      if (read(&ch, 1) <= 0)
+      {
+
+         return -1;
+
+      }
+
+      return ch;
 
    }
 
@@ -542,7 +532,7 @@ namespace file
    bool file::read_string(string & str)
    {
 
-      int i = sbumpc();
+      int i = get_character();
 
       if (i == EOF)
       {
@@ -564,16 +554,18 @@ namespace file
             break;
 
          }
+         
          char ch = i;
+
          m.append(&ch, 1);
 
-         i = sbumpc();
+         i = get_character();
 
       };
 
       m.to_string(str);
 
-      int iNew = sbumpc();
+      int iNew = get_character();
 
       if(iNew == EOF)
       {
@@ -585,7 +577,7 @@ namespace file
       if (iNew == i || ((char)iNew != '\n' && (char)iNew != '\r'))
       {
 
-         ungetc(iNew);
+         put_character_back(iNew);
 
       }
 
@@ -599,7 +591,7 @@ namespace file
 
       m_estate -= ::file::e_state_read_line_truncated;
 
-      int i = sbumpc();
+      int i = get_character();
 
       if (i == EOF)
       {
@@ -622,7 +614,7 @@ namespace file
 
          mem.set_char_at_grow(iPos, char(i));
 
-         i = sbumpc();
+         i = get_character();
 
          iPos++;
 
@@ -630,7 +622,7 @@ namespace file
 
       mem.set_char_at_grow(iPos, '\0');
 
-      int iNew = sbumpc();
+      int iNew = get_character();
 
       if ((iNew == i || ((char)iNew != '\n' && (char)iNew != '\r')) && iNew != EOF)
       {
@@ -666,6 +658,8 @@ namespace file
       return readBytes == fileLen;
 
    }
+
+
    bool file::full_read_string(string & str)
    {
 

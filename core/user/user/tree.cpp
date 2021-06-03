@@ -1137,7 +1137,11 @@ namespace user
 
 //      style_context context(this);
 
-      auto pgraphics = create_memory_graphics();
+      auto psystem = m_psystem->m_paurasystem;
+
+      auto pdraw2d = psystem->draw2d();
+
+      auto pgraphics = pdraw2d->create_memory_graphics();
 
       auto pstyle = get_style(pgraphics);
 

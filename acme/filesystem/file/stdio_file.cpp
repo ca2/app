@@ -162,7 +162,7 @@ memsize stdio_file::read(void * pdata, memsize nCount)
    if (!iEof)
    {
 
-      int iError = ferror(m_pfile);
+      int iError = FILE_error(m_pfile);
 
       if (iError > 0)
       {
@@ -180,10 +180,33 @@ memsize stdio_file::read(void * pdata, memsize nCount)
 }
 
 
-int stdio_file::ungetc(int iChar)
+int stdio_file::get_character()
 {
 
-   int iCharRet = ::ungetc(iChar, m_pfile);
+   int iChar = ::FILE_getc(m_pfile);
+
+   return iChar;
+
+}
+
+
+
+int stdio_file::peek_character()
+{
+
+   int iChar = FILE_getc(m_pfile);
+
+   FILE_ungetc(iChar, m_pfile);
+
+   return iChar;
+
+}
+
+
+int stdio_file::put_character_back(int iChar)
+{
+
+   int iCharRet = FILE_ungetc(iChar, m_pfile);
 
    return iCharRet;
 

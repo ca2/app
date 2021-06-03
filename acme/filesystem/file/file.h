@@ -120,6 +120,7 @@ namespace file
       //virtual int sgetc();
       //virtual int sbumpc();
 
+      virtual int peek_character();
       virtual int get_character();
       virtual int put_character_back(int iCharacter);
 

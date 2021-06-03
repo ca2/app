@@ -985,9 +985,13 @@ bool prodevian::prodevian_iteration()
 
             synchronouslock.unlock();
 
-            auto pgraphicsMemory = m_puserinteraction->create_memory_graphics();
+            auto psystem = m_psystem->m_paurasystem;
 
-            m_puserinteraction->sketch_to_design(pgraphicsMemory, bUpdateBuffer, bUpdateWindow);
+            auto pdraw2d = psystem->draw2d();
+
+            auto pgraphics = pdraw2d->create_memory_graphics();
+
+            m_puserinteraction->sketch_to_design(pgraphics, bUpdateBuffer, bUpdateWindow);
 
             synchronouslock.lock();
 

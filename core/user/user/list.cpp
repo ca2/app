@@ -1444,7 +1444,11 @@ namespace user
 
       }
 
-      auto pgraphics = create_memory_graphics();
+      auto psystem = m_psystem->m_paurasystem;
+
+      auto pdraw2d = psystem->draw2d();
+
+      auto pgraphics = pdraw2d->create_memory_graphics();
 
       //draw_select ds(this, pgraphics);
 
@@ -5497,7 +5501,11 @@ namespace user
 
       m_strTopText = pcwsz;
 
-      auto pgraphics = create_memory_graphics();
+      auto psystem = m_psystem->m_paurasystem;
+
+      auto pdraw2d = psystem->draw2d();
+
+      auto pgraphics = pdraw2d->create_memory_graphics();
 
       _001LayoutTopText(pgraphics);
 
@@ -6345,19 +6353,33 @@ namespace user
 
    }
 
+
    void list::_001OnListHeaderItemClick(index iHeaderItem)
    {
+
       if (!m_bSortEnable)
+      {
+
          return;
+
+      }
+
       _001OnSort(_001MapColumnToSubItem(iHeaderItem));
+
    }
+
 
    void list::_001OnListHeaderItemDblClk(index iHeaderItem)
    {
 
-      auto pgraphics = create_memory_graphics();
+      auto psystem = m_psystem->m_paurasystem;
+
+      auto pdraw2d = psystem->draw2d();
+
+      auto pgraphics = pdraw2d->create_memory_graphics();
 
       _001MaximizeColumnWidth(pgraphics, iHeaderItem);
+
    }
 
 

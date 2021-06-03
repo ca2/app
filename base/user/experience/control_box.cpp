@@ -665,6 +665,8 @@ namespace experience
 
       pbutton->m_ebutton = ebutton;
 
+      pbutton->add_control_event_handler(m_pframewindow);
+
       // if(ebutton == e_button_dock)
       // {
 

@@ -1309,13 +1309,36 @@ inline RECTANGLE_F64& operator += (RECTANGLE_F64& rectangle, const ::point_f64& 
 CLASS_DECL_ACME double d_distance(const point_i32 & point1, const point_i32 & point2);
 
 
-inline CLASS_DECL_ACME rectangle_i32 rectangle_dimension(::i32 x, ::i32 y, ::i32 cx, ::i32 cy)
+inline CLASS_DECL_ACME rectangle_i32 rectangle_i32_dimension(i32 x, i32 y, i32 cx, i32 cy)
 {
 
    return rectangle_i32(x, y, x + cx, y + cy);
 
 }
 
+
+inline CLASS_DECL_ACME rectangle_i64 rectangle_i64_dimension(i64 x, i64 y, i64 cx, i64 cy)
+{
+
+   return rectangle_i64(x, y, x + cx, y + cy);
+
+}
+
+
+inline CLASS_DECL_ACME rectangle_f32 rectangle_f32_dimension(f32 x, f32 y, f32 cx, f32 cy)
+{
+
+   return rectangle_f32(x, y, x + cx, y + cy);
+
+}
+
+
+inline CLASS_DECL_ACME rectangle_f64 rectangle_f64_dimension(f64 x, f64 y, f64 cx, f64 cy)
+{
+
+   return rectangle_f64(x, y, x + cx, y + cy);
+
+}
 
 
 

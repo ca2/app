@@ -310,7 +310,7 @@ namespace user
 
       ::rect rectL(1, 1, h-2, h-2);
 
-      auto rectR = rectangle_dimension(h-2, 1, h-2, h-2);
+      auto rectR = rectangle_i32_dimension(h-2, 1, h-2, h-2);
 
       point->add_arc(rectL, -90_degree, -180_degree);
 

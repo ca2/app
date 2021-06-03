@@ -805,10 +805,10 @@ namespace draw2d
    }
 
 
-   bool graphics::Arc(double x1, double y1, double w, double h, angle start, angle extends)
+   bool graphics::Arc(double x, double y, double w, double h, angle start, angle extends)
    {
 
-      return Arc(rectangle_dimension(x1, y1, w, h), start, extends);
+      return Arc(rectangle_f64_dimension(x, y, w, h), start, extends);
 
    }
 

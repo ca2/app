@@ -188,7 +188,11 @@ void simple_scroll_bar::on_message_left_button_down(::message::message * pmessag
 
    set_mouse_capture();
 
-   auto pgraphics = create_memory_graphics();
+   auto psystem = m_psystem->m_paurasystem;
+
+   auto pdraw2d = psystem->draw2d();
+
+   auto pgraphics = pdraw2d->create_memory_graphics();
 
    if(m_itemCurrent == ::user::e_element_scrollbar_rect)
    {
@@ -265,7 +269,11 @@ void simple_scroll_bar::on_message_left_button_up(::message::message * pmessage)
 
             point -= m_sizeTrackOffset;
 
-            auto pgraphics = create_memory_graphics();
+            auto psystem = m_psystem->m_paurasystem;
+
+            auto pdraw2d = psystem->draw2d();
+
+            auto pgraphics = pdraw2d->create_memory_graphics();
 
             SetTrackingPos(point, pgraphics);
 
@@ -757,8 +765,8 @@ void simple_scroll_bar::on_layout(::draw2d::graphics_pointer & pgraphics)
       ASSERT(false);
    }
 
-   m_rgnA->create_rect(m_rectA);
-   m_rgnB->create_rect(m_rectB);
+   m_rgnA->create_rectangle(m_rectA);
+   m_rgnB->create_rectangle(m_rectB);
 
 
 //   psize->m_bRet = false;
@@ -791,7 +799,11 @@ void simple_scroll_bar::_001OnTimer(::timer * ptimer)
    else if(ptimer->m_uEvent == ((uptr) this) + 1)
    {
 
-      auto pgraphics = create_memory_graphics();
+      auto psystem = m_psystem->m_paurasystem;
+
+      auto pdraw2d = psystem->draw2d();
+
+      auto pgraphics = pdraw2d->create_memory_graphics();
 
       if(!scrollbar_action(m_itemCurrent, pgraphics))
       {
@@ -1777,7 +1789,11 @@ void simple_scroll_bar::on_hit_test(::user::item & item)
 
    ::rectangle_i32 rectTrack;
 
-   auto pgraphics = create_memory_graphics();
+   auto psystem = m_psystem->m_paurasystem;
+
+   auto pdraw2d = psystem->draw2d();
+
+   auto pgraphics = pdraw2d->create_memory_graphics();
 
    GetTrackRect(rectTrack, pgraphics);
 

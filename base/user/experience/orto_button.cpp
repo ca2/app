@@ -229,10 +229,10 @@ namespace experience
 
       ::user::interaction::get_client_rect(rectClient);
 
-      m_spregion->create_oval(rectClient);
-
+      m_spregion->create_ellipse(rectClient);
 
    }
+
 
    void orto_button::install_message_routing(::channel * pchannel)
    {

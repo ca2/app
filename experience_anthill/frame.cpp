@@ -101,7 +101,7 @@ namespace experience
                //pimage = create_image({rectClient.width(),  rectClient.height()});
                //bool b = pimage2->get_graphics()->BitBlt(0, 0, rectClient.width() + iInflate * 2, rectClient.height() + iInflate * 2, pgraphics, rectClient.left - iInflate, rectClient.top - iInflate);
                pimage2->get_graphics()->draw(
-                  ::rectangle_dimension(0, 0, rectClient.width() + iInflate * 2, rectClient.height() + iInflate * 2),
+                  rectangle_i32_dimension(0, 0, rectClient.width() + iInflate * 2, rectClient.height() + iInflate * 2),
                   pgraphics, 
                   ::point_i32(rectClient.left - iInflate, rectClient.top - iInflate));
                //bool b = ::BitBlt(dc2, 0, 0, rectClient.width() + iInflate * 2, rectClient.height() + iInflate * 2, hdcScreen, rectClient.left - iInflate, rectClient.top - iInflate);
@@ -581,7 +581,7 @@ namespace experience
                      while (i < rectGrip.width() - 5 + 1)
                      {
 
-                        pgraphics->draw_3drect(::rectangle_dimension(rectGrip.left + i, rectGrip.top, 3, rectGrip.height()), argb(110, 230, 230, 230), argb(110, 130, 130, 130));
+                        pgraphics->draw_3drect(rectangle_i32_dimension(rectGrip.left + i, rectGrip.top, 3, rectGrip.height()), argb(110, 230, 230, 230), argb(110, 130, 130, 130));
 
                         i += 5;
 

@@ -1104,6 +1104,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClCompile Include="const\idpool.cpp" />
     <ClCompile Include="exception\engine.cpp" />
     <ClCompile Include="exception\extended_status.cpp" />
+    <ClCompile Include="exception\file.cpp" />
     <ClCompile Include="exception\hresult.cpp" />
     <ClCompile Include="exception\aaa_not_installed.cpp" />
     <ClCompile Include="exception\parsing.cpp" />
@@ -1736,6 +1737,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClInclude Include="exception\aaa_want_to_remove_memory_state.h" />
     <ClInclude Include="exception\extended_status.h" />
     <ClInclude Include="exception\extended_transport.h" />
+    <ClInclude Include="exception\file.h" />
     <ClInclude Include="exception\hresult.h" />
     <ClInclude Include="exception\parsing.h" />
     <ClInclude Include="exception\callstack.h" />

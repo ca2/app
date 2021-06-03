@@ -518,7 +518,7 @@ SizingNone:;
                if(eborder & e_border_top)
                {
 
-                  rectDraw = ::rectangle_dimension(x, y, cx, 1);
+                  rectDraw = rectangle_i32_dimension(x, y, cx, 1);
 
                   if(psession->m_paurasession->savings().is_trying_to_save(::e_resource_processing))
                   {
@@ -537,7 +537,7 @@ SizingNone:;
                if(eborder & e_border_left)
                {
 
-                  rectDraw = ::rectangle_dimension(x, y + 1, 1, cy - 2);
+                  rectDraw = rectangle_i32_dimension(x, y + 1, 1, cy - 2);
 
                   if(psession->m_paurasession->savings().is_trying_to_save(::e_resource_processing))
                   {
@@ -557,7 +557,7 @@ SizingNone:;
                if(eborder & e_border_right)
                {
 
-                  rectDraw = ::rectangle_dimension(x + cx - 1, y + 1, 1, cy - 2);
+                  rectDraw = rectangle_i32_dimension(x + cx - 1, y + 1, 1, cy - 2);
 
                   if(psession->m_paurasession->savings().is_trying_to_save(e_resource_processing))
                   {
@@ -577,7 +577,7 @@ SizingNone:;
                if(eborder & e_border_bottom)
                {
 
-                  rectDraw = ::rectangle_dimension(x, y + cy - 1, cx, 1);
+                  rectDraw = rectangle_i32_dimension(x, y + cy - 1, cx, 1);
 
                   if(psession->m_paurasession->savings().is_trying_to_save(e_resource_processing))
                   {

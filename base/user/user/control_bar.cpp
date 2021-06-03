@@ -782,13 +782,29 @@ namespace user
          u32 dwMode = playout->bStretch ? LM_STRETCH : 0;
 
          if ((m_dwStyle & CBRS_SIZE_DYNAMIC) && m_dwStyle & CBRS_FLOATING)
-            dwMode |= LM_HORZ | LM_MRUWIDTH;
-         else if (uStyle & CBRS_ORIENT_HORZ)
-            dwMode |= LM_HORZ | LM_HORZDOCK;
-         else
-            dwMode |=  LM_VERTDOCK;
+         {
 
-         auto pgraphics = create_memory_graphics();
+            dwMode |= LM_HORZ | LM_MRUWIDTH;
+
+         }
+         else if (uStyle & CBRS_ORIENT_HORZ)
+         {
+
+            dwMode |= LM_HORZ | LM_HORZDOCK;
+
+         }
+         else
+         {
+
+            dwMode |= LM_VERTDOCK;
+
+         }
+
+         auto psystem = m_psystem->m_paurasystem;
+
+         auto pdraw2d = psystem->draw2d();
+
+         auto pgraphics = pdraw2d->create_memory_graphics();
 
          ::size_i32 size = CalcDynamicLayout(pgraphics, -1, dwMode);
 

@@ -16,6 +16,10 @@ CLASS_DECL_ACME string estatus_to_string(::e_status estatus);
 //#include "simple.h"
 #include "cancel.h"
 
+
+#include "file.h"
+
+
 //#include "memory.h"
 //#include "invalid_argument.h"
 

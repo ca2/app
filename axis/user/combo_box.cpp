@@ -443,7 +443,11 @@ namespace user
 
          m_strText = str;
 
-         auto pgraphics = create_memory_graphics();
+         auto psystem = m_psystem->m_paurasystem;
+
+         auto pdraw2d = psystem->draw2d();
+
+         auto pgraphics = pdraw2d->create_memory_graphics();
 
          plain_edit_on_after_change_text(pgraphics, context);
 
@@ -777,7 +781,11 @@ namespace user
 
          psession->on_show_user_input_popup(m_plist);
 
-         auto pgraphics = create_memory_graphics();
+         auto psystem = m_psystem->m_paurasystem;
+
+         auto pdraw2d = psystem->draw2d();
+
+         auto pgraphics = pdraw2d->create_memory_graphics();
 
          m_plist->query_full_size(pgraphics, m_sizeFull);
 

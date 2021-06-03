@@ -194,7 +194,7 @@ namespace experience
 
          auto rectClient = get_client_rect();
 
-         m_pregion->create_oval(rectClient);
+         m_pregion->create_ellipse(rectClient);
 
       }
 

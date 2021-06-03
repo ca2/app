@@ -296,6 +296,45 @@ namespace file
    }
 
 
+   int buffered_file::put_character_back(int iCharacterPutBack)
+   {
+
+      m_uiPosition--;
+
+      if (m_uiPosition < m_uiBufLPos && m_uiPosition >= (m_uiBufLPos + 1))
+      {
+
+         buffer(1);
+
+      }
+
+      //m_bDirty = true;
+
+      //uiWriteNow = minimum(nCount - uiWrite, (memsize)((m_uiBufLPos + m_uiBufferSize) - m_uiPosition + 1));
+
+      //if (m_uiWriteLPos == 0xffffffff || m_uiWriteLPos > m_uiPosition)
+      //{
+
+      //   m_uiWriteLPos = m_uiPosition;
+
+      //}
+
+      //if (m_uiWriteUPos == 0xffffffff || m_uiWriteUPos < (m_uiPosition + uiWriteNow - 1))
+      //{
+
+      //   m_uiWriteUPos = (m_uiPosition + uiWriteNow - 1);
+
+      //}
+
+      m_storage.get_data()[m_uiPosition] = (::u8) iCharacterPutBack;
+
+      //}
+
+      return iCharacterPutBack;
+
+   }
+
+
    void buffered_file::flush()
    {
 

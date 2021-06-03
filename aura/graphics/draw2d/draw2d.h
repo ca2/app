@@ -48,6 +48,9 @@ namespace draw2d
       __pointer(save_image) new_save_image(const ::payload& varFile, const ::payload& varOptions);
 
 
+      virtual graphics_pointer create_graphics();
+
+      virtual graphics_pointer create_memory_graphics();
 
       virtual class api & api();
 

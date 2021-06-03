@@ -984,7 +984,11 @@ namespace user
 
       CacheHint();
 
-      auto pgraphics = create_memory_graphics();
+      auto psystem = m_psystem->m_paurasystem;
+
+      auto pdraw2d = psystem->draw2d();
+
+      auto pgraphics = pdraw2d->create_memory_graphics();
 
       on_change_view_size(pgraphics);
 
@@ -3735,7 +3739,11 @@ namespace user
 
       m_strTopText = pcwsz;
 
-      auto pgraphics = create_memory_graphics();
+      auto psystem = m_psystem->m_paurasystem;
+
+      auto pdraw2d = psystem->draw2d();
+
+      auto pgraphics = pdraw2d->create_memory_graphics();
 
       _001LayoutTopText(pgraphics);
 
@@ -4250,7 +4258,11 @@ namespace user
 
       m_efilterstate = FilterStateFilter;
 
-      auto pgraphics = create_memory_graphics();
+      auto psystem = m_psystem->m_paurasystem;
+
+      auto pdraw2d = psystem->draw2d();
+
+      auto pgraphics = pdraw2d->create_memory_graphics();
 
       on_change_view_size(pgraphics);
 
@@ -4299,7 +4311,11 @@ namespace user
 
       }
 
-      auto pgraphics = create_memory_graphics();
+      auto psystem = m_psystem->m_paurasystem;
+
+      auto pdraw2d = psystem->draw2d();
+
+      auto pgraphics = pdraw2d->create_memory_graphics();
 
       on_change_view_size(pgraphics);
 
@@ -4443,7 +4459,11 @@ namespace user
 
       m_efilterstate = FilterStateFilter;
 
-      auto pgraphics = create_memory_graphics();
+      auto psystem = m_psystem->m_paurasystem;
+
+      auto pdraw2d = psystem->draw2d();
+
+      auto pgraphics = pdraw2d->create_memory_graphics();
 
       on_change_view_size(pgraphics);
 
@@ -4506,7 +4526,11 @@ namespace user
    void mesh::_001OnMeshHeaderItemDblClk(index iHeaderItem)
    {
       
-      auto pgraphics = create_memory_graphics();
+      auto psystem = m_psystem->m_paurasystem;
+
+      auto pdraw2d = psystem->draw2d();
+
+      auto pgraphics = pdraw2d->create_memory_graphics();
 
       _001MaximizeColumnWidth(pgraphics, iHeaderItem);
 
@@ -5028,7 +5052,11 @@ namespace user
 
                m_nItemCount = minimum(m_nGridItemCount,m_nItemCount + (::count)(sizePage.cy / m_dItemHeight));
 
-               auto pgraphics = create_memory_graphics();
+               auto psystem = m_psystem->m_paurasystem;
+
+               auto pdraw2d = psystem->draw2d();
+
+               auto pgraphics = pdraw2d->create_memory_graphics();
 
                on_change_view_size(pgraphics);
 
@@ -5066,7 +5094,11 @@ namespace user
 /// 
                m_nColumnCount = m_nGridColumnCount;
 
-               auto pgraphics = create_memory_graphics();
+               auto psystem = m_psystem->m_paurasystem;
+
+               auto pdraw2d = psystem->draw2d();
+
+               auto pgraphics = pdraw2d->create_memory_graphics();
 
                on_change_view_size(pgraphics);
 

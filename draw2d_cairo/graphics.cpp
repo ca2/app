@@ -4300,7 +4300,7 @@ bool graphics::TextOutRaw(double x, double y, const block & block)
 
 #else
 
-    ::rectangle_i32 rectangle = ::rectangle_dimension(
+    ::rectangle_i32 rectangle = rectangle_i32_dimension(
                       ::i32(x),
                       ::i32(y),
                       65535,

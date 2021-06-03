@@ -499,6 +499,26 @@ namespace file
    }
 
 
+   int file::get_character()
+   {
+
+      __throw(error_interface_only);
+
+      return -1;
+
+   }
+
+
+   int file::put_character_back(int iCharacter)
+   {
+
+      __throw(error_interface_only);
+
+      return -1;
+
+   }
+
+
    bool file::read_string(string & str)
    {
 

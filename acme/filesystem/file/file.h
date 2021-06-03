@@ -115,8 +115,12 @@ namespace file
       virtual bool read(uchar * puch);
       virtual bool peek(char * pch);
       virtual bool peek(uchar * puch);
-      virtual int sgetc();
-      virtual int sbumpc();
+      //virtual int sgetc();
+      //virtual int sbumpc();
+
+      virtual int get_character();
+      virtual int put_character_back(int iCharacter);
+
       virtual bool read_string(string & str);
       virtual bool read_string(memory_base & mem);
       virtual bool read_block(const block & block);

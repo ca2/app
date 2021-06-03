@@ -1179,7 +1179,7 @@ HANDLE _get_osfhandle(i32 i)
 return (HANDLE)i;		// FIXME:  This doesn't work under Win64
 }*/
 
-//FILE *fopen_dup(const char *path,const char *attrs)
+//FILE *FILE_open(const char *path,const char *attrs)
 //{
 //
 //
@@ -1316,7 +1316,7 @@ return (HANDLE)i;		// FIXME:  This doesn't work under Win64
 //
 //}
 //
-//size_t fread_dup(void *buffer,size_t size,size_t count,FILE *str)
+//size_t FILE_read(void *buffer,size_t size,size_t count,FILE *str)
 //{
 //
 //   if(size*count == 0)
@@ -1472,7 +1472,7 @@ return (HANDLE)i;		// FIXME:  This doesn't work under Win64
 //   i32 i;
 //   for(i = 0; i < n - 1; i++)
 //   {
-//      if(!fread_dup(&str[i],1,sizeof(char),s))
+//      if(!FILE_read(&str[i],1,sizeof(char),s))
 //         break;
 //      if(str[i] == '\r')
 //      {
@@ -1513,7 +1513,7 @@ return (HANDLE)i;		// FIXME:  This doesn't work under Win64
 //   i32 i;
 //   for(i = 0; i < n - 1; i++)
 //   {
-//      if(!fread_dup(&str[i],1,sizeof(unichar),s))
+//      if(!FILE_read(&str[i],1,sizeof(unichar),s))
 //         break;
 //      if(str[i] == L'\r')
 //      {
@@ -1537,7 +1537,7 @@ return (HANDLE)i;		// FIXME:  This doesn't work under Win64
 //      return EOF;
 //
 //   uchar c;
-//   fread_dup(&c,1,sizeof(uchar),s);
+//   FILE_read(&c,1,sizeof(uchar),s);
 //
 //   return (i32)c;
 //}
@@ -1569,7 +1569,7 @@ return (HANDLE)i;		// FIXME:  This doesn't work under Win64
 //   // binary fgetwc reads unicode
 //
 //   wint_t c;
-//   fread_dup(&c,1,sizeof(wint_t),s);
+//   FILE_read(&c,1,sizeof(wint_t),s);
 //
 //   return c;
 //

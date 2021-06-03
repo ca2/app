@@ -101,19 +101,19 @@ CLASS_DECL_ACME int_bool file_is_equal_path(const char * pszPath1, const char * 
 
 
 
-CLASS_DECL_ACME FILE * fopen_dup(const char *path, const char *attrs, int iShare);
-CLASS_DECL_ACME i32 fprintf_dup(FILE *fp, const char *s, ...);
-CLASS_DECL_ACME i32 fclose_dup(FILE *fp);
-CLASS_DECL_ACME i32 feof_dup(FILE *fp);
-CLASS_DECL_ACME filesize fseek_dup(FILE *str, filesize offset, i32 origin);
-CLASS_DECL_ACME filesize ftell_dup(FILE *fp);
-CLASS_DECL_ACME filesize fread_dup(void *buffer, memsize size, memsize count, FILE *str);
-CLASS_DECL_ACME filesize fwrite_dup(const void *buffer, memsize size, memsize count, FILE *str);
-CLASS_DECL_ACME char *fgets_dup(char *str, strsize n, FILE *s);
-CLASS_DECL_ACME i32 fgetc_dup(FILE *s);
-CLASS_DECL_ACME i32 ungetc_dup(i32 c,FILE *s);
-CLASS_DECL_ACME i32 ferror_dup(FILE *s);
-CLASS_DECL_ACME i32 fflush_dup(FILE *s);
+CLASS_DECL_ACME FILE * FILE_open(const char *path, const char *attrs, int iShare);
+CLASS_DECL_ACME i32 FILE_printf(FILE *fp, const char *s, ...);
+CLASS_DECL_ACME i32 FILE_close(FILE *fp);
+CLASS_DECL_ACME i32 FILE_eof(FILE *fp);
+CLASS_DECL_ACME filesize FILE_seek(FILE *str, filesize offset, i32 origin);
+CLASS_DECL_ACME filesize FILE_tell(FILE *fp);
+CLASS_DECL_ACME filesize FILE_read(void *buffer, memsize size, memsize count, FILE *str);
+CLASS_DECL_ACME filesize FILE_write(const void *buffer, memsize size, memsize count, FILE *str);
+CLASS_DECL_ACME char * FILE_gets(char *str, strsize n, FILE *s);
+CLASS_DECL_ACME i32 FILE_getc(FILE *s);
+CLASS_DECL_ACME i32 FILE_ungetc(i32 c,FILE *s);
+CLASS_DECL_ACME i32 FILE_error(FILE *s);
+CLASS_DECL_ACME i32 FILE_flush(FILE *s);
 
 
 //#ifdef WINDOWS

@@ -8,7 +8,7 @@
 
 
 
-FILE *fopen_dup(const char *path, const char *attrs, int iShare)
+FILE *FILE_open(const char *path, const char *attrs, int iShare)
 {
 
 #if defined(WINDOWS)
@@ -63,7 +63,7 @@ filesize ftell_dup(FILE *fp)
 }
 
 
-filesize fread_dup(void *buffer, memsize size, memsize count, FILE *str)
+filesize FILE_read(void *buffer, memsize size, memsize count, FILE *str)
 {
 
    return fread(buffer, (size_t) size, (size_t) count, str);
@@ -99,7 +99,7 @@ i32 fgetc_dup(FILE * s)
 
    uchar c;
 
-   fread_dup(&c, 1, sizeof(uchar), s);
+   FILE_read(&c, 1, sizeof(uchar), s);
 
    return (i32)c;
 }

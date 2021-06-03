@@ -131,6 +131,26 @@ namespace file
    }
 
 
+   int file::getc()
+   {
+
+      __throw(error_interface_only);
+
+      return -1;
+
+   }
+
+
+   int file::ungetc(int iChar)
+   {
+
+      __throw(error_interface_only);
+
+      return -1;
+
+   }
+
+
    bool file::is_seekable()
    {
 
@@ -565,7 +585,7 @@ namespace file
       if (iNew == i || ((char)iNew != '\n' && (char)iNew != '\r'))
       {
 
-         seek(-1, seek_current);
+         ungetc(iNew);
 
       }
 

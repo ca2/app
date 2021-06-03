@@ -40,14 +40,14 @@ int_bool read_resource_as_file(const char * pszFile, HINSTANCE hinstance, DWORD 
 
       dir::mk(dir::name(pszFile));
 
-      file = fopen_dup(pszFile, "wb", _SH_DENYNO);
+      file = FILE_open(pszFile, "wb", _SH_DENYNO);
 
       if(file != nullptr)
       {
 
-         auto dwWritten = fwrite(pResource, 1, dwResourseSize, file);
+         auto dwWritten = FILE_write(pResource, 1, dwResourseSize, file);
 
-         fclose(file);
+         FILE_close(file);
 
          bOk = dwWritten == dwResourseSize;
 
@@ -86,7 +86,7 @@ int_bool file_put_contents(const char * path, const char * contents, memsize len
 
    wstring wstr(path);
 
-   FILE * file = fopen_dup(path, "w", _SH_DENYWR);
+   FILE * file = FILE_open(path, "w", _SH_DENYWR);
 
    if (file == nullptr)
    {
@@ -278,7 +278,7 @@ string file_as_string(const char * path, strsize iReadAtMostByteCount)
 
    string str;
 
-   FILE * file = ::fopen_dup(path, "r", _SH_DENYNO);
+   FILE * file = FILE_open(path, "r", _SH_DENYNO);
 
    if (file == nullptr)
    {
@@ -331,7 +331,7 @@ string file_as_string(const char * path, strsize iReadAtMostByteCount)
 memsize file_as_memory(const char * path, void * p, memsize s)
 {
 
-   FILE * file = ::fopen_dup(path, "r", _SH_DENYNO);
+   FILE * file = FILE_open(path, "r", _SH_DENYNO);
 
    if (file == nullptr)
    {
@@ -368,7 +368,7 @@ bool file_as_memory(memory_base & memory, const char * path, memsize iReadAtMost
 
    memory.set_size(0);
 
-   FILE * file = ::fopen_dup(path, "r", _SH_DENYNO);
+   FILE * file = FILE_open(path, "r", _SH_DENYNO);
 
    if (file == nullptr)
    {

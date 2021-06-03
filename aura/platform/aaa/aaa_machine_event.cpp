@@ -54,7 +54,7 @@ bool machine_event::read(machine_event_data * pdata)
    try
    {
 
-      pfile = fopen_dup(machine_event_file_path(), "r", _SH_DENYNO);
+      pfile = FILE_open(machine_event_file_path(), "r", _SH_DENYNO);
 
       if (pfile == nullptr)
       {
@@ -90,7 +90,7 @@ bool machine_event::write(machine_event_data * pdata)
 
       dir::mk(dir::name(machine_event_file_path()));
 
-      pfile = fopen_dup(machine_event_file_path(), "w", _SH_DENYWR);
+      pfile = FILE_open(machine_event_file_path(), "w", _SH_DENYWR);
 
       if (pfile == nullptr)
       {

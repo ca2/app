@@ -500,7 +500,7 @@ void memory_base::fread(FILE * pfile)
    while(true)
    {
 
-      auto iRead = ::fread_dup(buffer, 1, buffer.size(), pfile);
+      auto iRead = FILE_read(buffer, 1, buffer.size(), pfile);
 
       if(iRead > 0)
       {

@@ -8,7 +8,7 @@
 
 
 
-FILE *fopen_dup(const char *path, const char *attrs)
+FILE *FILE_open(const char *path, const char *attrs)
 {
 
 #if defined(WINDOWS)
@@ -62,7 +62,7 @@ long ftell_dup(FILE *fp)
    return ftell(fp);
 }
 
-size_t fread_dup(void *buffer, size_t size, size_t count, FILE *str)
+size_t FILE_read(void *buffer, size_t size, size_t count, FILE *str)
 {
 
 
@@ -95,7 +95,7 @@ int32_t fgetc_dup(FILE *s)
       return EOF;
 
    uchar c;
-   fread_dup(&c, 1, sizeof(uchar), s);
+   FILE_read(&c, 1, sizeof(uchar), s);
 
    return (int32_t)c;
 }

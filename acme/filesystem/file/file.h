@@ -72,6 +72,8 @@ namespace file
       virtual filesize seek(filesize offset, ::file::e_seek seekOrigin);
       virtual filesize get_position() const;
       virtual filesize set_position(filesize offset);
+      virtual int getc();
+      virtual int ungetc(int iChar);
 
       inline filesize get_remaining_byte_count() { return get_size() - get_position(); }
 

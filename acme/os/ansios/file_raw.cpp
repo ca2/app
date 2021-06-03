@@ -146,7 +146,7 @@ string file_line_dup(const char * path, index iLine)
 
    string str;
 
-   FILE * file = ::fopen_dup(path, "r", _SH_DENYNO);
+   FILE * file = FILE_open(path, "r", _SH_DENYNO);
 
    if (file == nullptr)
    {
@@ -224,7 +224,7 @@ bool file_set_line_dup(const char * pszPath, index iLine, const char * pszLine)
 
    ::dir::mk(path.folder());
 
-   FILE * file = ::fopen_dup(path, "a+", _SH_DENYWR);
+   FILE * file = FILE_open(path, "a+", _SH_DENYWR);
 
    if (file == nullptr)
    {
@@ -309,7 +309,7 @@ bool file_set_line_dup(const char * pszPath, index iLine, const char * pszLine)
 
       pathTime += ".time";
 
-      FILE * file2 = ::fopen_dup(pathTime, "w", _SH_DENYWR);
+      FILE * file2 = FILE_open(pathTime, "w", _SH_DENYWR);
 
       if (iPosStart > 0)
       {

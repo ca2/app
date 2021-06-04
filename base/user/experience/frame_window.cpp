@@ -260,33 +260,33 @@ namespace experience
    }
 
 
-   ::e_status frame_window::frame_toggle_restore()
-   {
-      
-      if(m_pimpl2 && m_pimpl2->m_pwindow)
-      {
-         
-         return m_pimpl2->m_pwindow->frame_toggle_restore();
-         
-      }
-      else
-      {
-         
-         return ::user::frame_window::frame_toggle_restore();
-         
-      }
-      
-      
-
-//#ifdef MACOS
+//   ::e_status frame_window::frame_toggle_restore()
+//   {
+//
+//      if(m_pimpl2 && m_pimpl2->m_pwindow)
+//      {
+//
+//         return m_pimpl2->m_pwindow->frame_toggle_restore();
+//
+//      }
+//      else
+//      {
+//
+//         return ::user::frame_window::frame_toggle_restore();
+//
+//      }
 //
 //
-//#else
 //
+////#ifdef MACOS
+////
+////
+////#else
+////
+////
+////#endif
 //
-//#endif
-
-   }
+//   }
 
 
    void frame_window::message_handler(::message::message* pusermessage)

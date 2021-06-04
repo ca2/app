@@ -77,7 +77,7 @@ namespace experience
 
       void display_system_minimize() override;
 
-      ::e_status frame_toggle_restore() override;
+      //::e_status frame_toggle_restore() override;
 
       virtual ::e_status initialize_frame_window_experience();
 

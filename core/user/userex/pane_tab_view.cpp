@@ -471,8 +471,6 @@ namespace userex
          
          m_pfontview->m_pview->add_control_event_handler(this);
 
-         auto pmultimedia = psystem->multimedia()->m_pveriwellmultimedia;
-
          auto psession = get_session();
 
          __pointer(::user::interaction) pview = psession->get_bound_ui(FONTSEL_IMPACT);

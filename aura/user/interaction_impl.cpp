@@ -3799,9 +3799,6 @@ namespace user
    }
 
 
-
-
-
    void interaction_impl::_001UpdateBuffer()
    {
 

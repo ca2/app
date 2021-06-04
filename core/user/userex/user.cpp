@@ -2047,6 +2047,8 @@ namespace core
 
          pdraw2d->write_text()->fonts();
 
+
+
          //fork([&]()
          //{
          //         pdraw2d->fonts().m_pfontenumeration->check_need_update();

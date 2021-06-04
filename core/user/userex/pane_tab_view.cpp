@@ -471,6 +471,19 @@ namespace userex
          
          m_pfontview->m_pview->add_control_event_handler(this);
 
+         auto pmultimedia = psystem->multimedia()->m_pveriwellmultimedia;
+
+         auto psession = get_session();
+
+         __pointer(::user::interaction) pview = psession->get_bound_ui(FONTSEL_IMPACT);
+
+         if(pview)
+         {
+
+            m_pfontview->m_pview->add_control_event_handler(pview);
+
+         }
+
       }
       else if (is_color_sel(pimpactdata->m_id))
       {
@@ -492,6 +505,17 @@ namespace userex
          pimpactdata->m_puserinteraction = pdocument->m_pviewTopic;
          
          m_pcolorview->add_control_event_handler(this);
+
+         auto psession = get_session();
+
+         __pointer(::user::interaction) pview = psession->get_bound_ui(COLORSEL_IMPACT);
+
+         if(pview)
+         {
+
+            m_pcolorview->add_control_event_handler(pview);
+
+         }
 
       }
       else if(is_filemanager(pimpactdata->m_id))

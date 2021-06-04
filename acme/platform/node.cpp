@@ -431,8 +431,33 @@ namespace acme
 
 
 
-   ::file::path node::get_last_run_application_path_file(const string & strAppId)
+   ::file::path node::get_last_run_application_path_file(const string & strAppIdParam)
    {
+
+      string strAppId = strAppIdParam;
+
+      auto iSlash = strAppId.find('/');
+
+      if(iSlash > 0)
+      {
+
+         auto iOpenParenthesis = strAppId.find('(', iSlash + 1);
+
+         if(iOpenParenthesis > iSlash + 1)
+         {
+
+            auto iCloseParenthesis = strAppId.find('(', iOpenParenthesis + 1);
+
+            if(iCloseParenthesis > iOpenParenthesis + 1)
+            {
+
+               strAppId = strAppId.Left(iOpenParenthesis) + strAppId.Mid(iCloseParenthesis + 1);
+
+            }
+
+         }
+
+      }
 
       ::file::path pathFile = m_psystem->m_pacmedir->local() / "appdata" / strAppId / "last_run_path.txt";
 

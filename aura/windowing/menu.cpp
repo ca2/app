@@ -5,10 +5,7 @@
 //  Created by Camilo Sasuke Tsumanuma on 10/08/20.
 //
 #include "framework.h"
-#include "aura/user/menu_command.h"
-#include "menu_command.h"
-#include "menu_item.h"
-#include "menu.h"
+#include "aura/user/_menu.h"
 
 
 namespace windowing

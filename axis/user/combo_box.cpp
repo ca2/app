@@ -838,6 +838,8 @@ namespace user
 
          m_plist->m_pcombo = this;
 
+         m_plist->add_control_event_handler(this);
+
       }
 
       ::rectangle_i32 rectClient;
@@ -857,21 +859,26 @@ namespace user
 
          m_itemCurrent = item;
 
-         ::user::control_event ev;
+         if(has_control_event_handler())
+         {
 
-         ev.m_puie = this;
+            ::user::control_event ev;
 
-         ev.m_id = m_id;
+            ev.m_puie = this;
 
-         ev.m_eevent = ::user::e_event_after_change_cur_sel;
+            ev.m_id = m_id;
 
-         ev.m_item = item;
+            ev.m_eevent = ::user::e_event_after_change_cur_sel;
 
-         ev.m_actioncontext = context;
+            ev.m_item = item;
 
-         route_control_event(&ev);
+            ev.m_actioncontext = context;
 
-         set_need_redraw();
+            route_control_event(&ev);
+
+            set_need_redraw();
+
+         }
 
       }
 

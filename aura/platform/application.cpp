@@ -5811,9 +5811,7 @@ namespace aura
             pinteraction->post_routine(__routine([pinteraction, idCommand]()
             {
 
-               ::message::command command;
-
-               command.m_id = idCommand;
+               ::message::command command(idCommand);
 
                pinteraction->route_command_message(&command);
 

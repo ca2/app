@@ -79,10 +79,10 @@ namespace write_text
 
       synchronous_lock synchronouslock(mutex());
 
-      for (auto& pitem : *m_pitema)
+      for (auto& m_pfontenumerationitema : *m_pfontenumerationitema)
       {
 
-         if (pitem->m_strName.compare_ci(str) == 0)
+         if (m_pfontenumerationitema->m_strName.compare_ci(str) == 0)
          {
 
             return true;
@@ -113,14 +113,14 @@ namespace write_text
 
       auto * pfonts = pwritetext->fonts();
       
-      if(m_pitema->is_empty())
+      if(m_pfontenumerationitema->is_empty())
       {
          
          update();
          
       }
 
-      for(auto & pitem : *m_pitema)
+      for(auto & pitem : *m_pfontenumerationitema)
       {
 
          int iFound = -1;
@@ -198,7 +198,7 @@ namespace write_text
 
       sort_fonts();
 
-      if (m_pitema.is_set() && ::papaya::array::are_all_elements_equal(*pitema, *m_pitema))
+      if (m_pfontenumerationitema.is_set() && ::papaya::array::are_all_elements_equal(*pitema, *m_pfontenumerationitema))
       {
 
          m_bUpdating = false;
@@ -209,7 +209,7 @@ namespace write_text
 
       }
 
-      m_pitema = pitema;
+      m_pfontenumerationitema = pitema;
 
       m_iUpdateId++;
 
@@ -259,7 +259,7 @@ namespace write_text
 
       }
 
-      m_pitema = pitema;
+      m_pfontenumerationitema = pitema;
 
       m_iUpdateId++;
 
@@ -287,7 +287,7 @@ namespace write_text
    ::e_status font_enumeration::sort_fonts()
    {
 
-      ::sort::array::predicate_sort(*m_pitema, [&](auto& a, auto& b)
+      ::sort::array::predicate_sort(*m_pfontenumerationitema, [&](auto& a, auto& b)
       {
 
          return a->m_strName < b->m_strName;

@@ -283,7 +283,7 @@ namespace user
 
          drawitemdata.m_dItemHeight = _001GetItemHeight();
 
-         drawitemdata.m_rectClient = get_client_rect();
+         drawitemdata.m_rectangleClient = get_client_rect();
 
          auto pitem = m_pitemFirstVisible;
 
@@ -302,7 +302,7 @@ namespace user
 
             drawitemdata.m_iItem = iItem;
 
-            drawitemdata.m_rectangle = drawitemdata.m_rectClient;
+            drawitemdata.m_rectangle = drawitemdata.m_rectangleClient;
 
             drawitemdata.m_rectangle.left = (::i32) (drawitemdata.m_iIndentation * pitem->m_iLevel);
 
@@ -427,7 +427,7 @@ namespace user
       if (bHover) // selected
       {
 
-         auto rectFill = ::rectangle_f64(data.m_rectClient.left, data.m_rectangle.top, data.m_rectClient.right, data.m_rectangle.bottom);
+         auto rectFill = ::rectangle_f64(data.m_rectangleClient.left, data.m_rectangle.top, data.m_rectangleClient.right, data.m_rectangle.bottom);
 
          data.m_pdc->fill_rectangle(rectFill, argb(127, 125, 166, 228));
 

@@ -222,7 +222,7 @@ namespace user
          if(m_splitpanecompositea[i]->m_pplaceholder.is_null())
          {
 
-            m_splitpanecompositea[i]->m_pplaceholder = get_new_place_holder(m_splitpanecompositea[i]->m_rectClient);
+            m_splitpanecompositea[i]->m_pplaceholder = get_new_place_holder(m_splitpanecompositea[i]->m_rectangleClient);
 
          }
 
@@ -551,7 +551,7 @@ namespace user
 
          ::rectangle_i32 & rectPane = m_splitpanecompositea[i]->m_rectangle;
 
-         ::rectangle_i32 & rectClient = m_splitpanecompositea[i]->m_rectClient;
+         ::rectangle_i32 & rectClient = m_splitpanecompositea[i]->m_rectangleClient;
 
          CalcPaneRect(i,&rectPane);
 
@@ -957,7 +957,7 @@ namespace user
 
       }
 
-      ppane->m_pplaceholder = place_hold(puserinteraction, ppane->m_rectClient);
+      ppane->m_pplaceholder = place_hold(puserinteraction, ppane->m_rectangleClient);
 
       if (ppane->m_pplaceholder == nullptr)
       {
@@ -1281,7 +1281,7 @@ namespace user
 
       }
 
-      return m_splitpanecompositea[iPane]->m_rectClient;
+      return m_splitpanecompositea[iPane]->m_rectangleClient;
 
    }
 

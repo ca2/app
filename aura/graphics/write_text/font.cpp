@@ -437,11 +437,11 @@ namespace write_text
 //   }
 //
 //
-//   void font::embossed_text_out(::draw2d::graphics * pgraphics, const ::rect & rect, double dRateX, double dHeight, string & str)
+//   void font::embossed_text_out(::draw2d::graphics * pgraphics, const ::rectangle & rectangle, double dRateX, double dHeight, string & str)
 //   {
 //
 //
-//      psystem->draw2d().api().embossed_text_out(pgraphics, rect, dRateX, dHeight, str);
+//      psystem->draw2d().api().embossed_text_out(pgraphics, rectangle, dRateX, dHeight, str);
 //
 //      return;
 //
@@ -450,7 +450,7 @@ namespace write_text
 //      //      SetDC(pgraphics);
 //      //      SelectFont();
 //      //
-//      //      ::rect rectOffset(rect);
+//      //      ::rectangle rectOffset(rectangle);
 //      //      const ::point & pointOffset(rectOffset.top_left());
 //      //
 //      //      glyph * pglyph;
@@ -492,11 +492,11 @@ namespace write_text
 //
 //   }
 //
-//   void font::embossed_text_out(::draw2d::graphics * pgraphics, const ::rect & rect, double dRateX, double dHeight, string & str, LPINT piCharsPositions, i32 iCharsPositions, i32 iOffset)
+//   void font::embossed_text_out(::draw2d::graphics * pgraphics, const ::rectangle & rectangle, double dRateX, double dHeight, string & str, LPINT piCharsPositions, i32 iCharsPositions, i32 iOffset)
 
 //   {
 //
-//      psystem->draw2d().api().embossed_text_out(pgraphics, rect, dRateX, dHeight, str, piCharsPositions, iCharsPositions, iOffset);
+//      psystem->draw2d().api().embossed_text_out(pgraphics, rectangle, dRateX, dHeight, str, piCharsPositions, iCharsPositions, iOffset);
 
 //
 //      return;
@@ -506,7 +506,7 @@ namespace write_text
 //      //      SetDC(pgraphics);
 //      //      SelectFont();
 //      //
-//      //      const ::rect rectOffset(rect);
+//      //      const ::rectangle rectOffset(rectangle);
 //      //      ::point pointOffset;
 //      //
 //      //
@@ -550,7 +550,7 @@ namespace write_text
 //      /*   SetDC(pgraphics);
 //         SelectFont();
 //
-//         rect clipRect;
+//         rectangle clipRect;
 //
 //         i32 iOldMapMode = pgraphics->GetMapMode();
 //         pgraphics->SetMapMode(MM_TEXT);
@@ -577,7 +577,7 @@ namespace write_text
 //      SetDC(pgraphics);
 //      SelectFont();
 //
-//      rect clipRect;
+//      rectangle clipRect;
 //
 //      pgraphics->text_out(x, y, str);
 //
@@ -778,7 +778,7 @@ namespace write_text
 //
 //   void font::TextOutEx(
 //   ::draw2d::graphics * pgraphics,
-//   const rect &               rect,
+//   const rectangle &               rectangle,
 //   double               dRateX,
 //   double               dHeight,
 //   string                 &str,
@@ -792,13 +792,13 @@ namespace write_text
 //      switch (iEffect)
 //      {
 //      case EffectSimple:
-//         simple_text_out(pgraphics, rect.left, rect.top, str, piCharsPositions, iCharsPositions);
+//         simple_text_out(pgraphics, rectangle.left, rectangle.top, str, piCharsPositions, iCharsPositions);
 
 //         break;
 //      case EffectEmbossed:
 //         embossed_text_out(
 //         pgraphics,
-//         rect,
+//         rectangle,
 //         dRateX,
 //         dHeight,
 //         str,

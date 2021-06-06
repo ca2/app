@@ -148,18 +148,18 @@ int xinerama_get_screen_size(int& width, int& height)
 
 
 // it doesn't work for final purpose, but it has example on how to "sort" rectangles with stability
-::array < rect > get_ordered_monitor_recta(::object * pobject)
+::array < rectangle > get_ordered_monitor_recta(::object * pobject)
 {
 
    index iMonitor = 0;
 
-   ::array < ::rect > rectaMonitor;
+   ::array < ::rectangle > rectaMonitor;
 
    ::aura::system & system = Sys(pobject);
 
    ::count cMonitor = system.get_monitor_count();
 
-   ::rect rectMonitor;
+   ::rectangle rectMonitor;
 
    rectaMonitor.set_size(cMonitor);
 
@@ -226,32 +226,32 @@ int get_best_ordered_monitor(::user::interaction * pinteraction, RECT32 * prectR
 }
 
 
-int best_xinerama_monitor(::user::interaction * pinteraction, const ::rect & rectParam, RECT32 * prectRet)
+int best_xinerama_monitor(::user::interaction * pinteraction, const ::rectangle & rectParam, RECT32 * prectRet)
 {
 
    ::null_rect(prectRet);
 
-   ::rect rect(rectParam);
+   ::rectangle rectangle(rectParam);
 
-   if(rect == nullptr)
+   if(rectangle == nullptr)
    {
 
-      rect = prectRet;
+      rectangle = prectRet;
 
    }
 
-   index iOrdered = pinteraction->best_monitor(prectRet, rect, false, 0, zorder_none);
+   index iOrdered = pinteraction->best_monitor(prectRet, rectangle, false, 0, zorder_none);
 
    ::count cMonitor = xinerama_get_monitor_count();
 
-   ::rect rectMonitor;
+   ::rectangle rectMonitor;
 
    for(index i = 0; i < cMonitor; i++)
    {
 
       int iScreen = xinerama_get_monitor_rect(i, &rectMonitor);
 
-      if(rectMonitor == rect)
+      if(rectMonitor == rectangle)
       {
 
          iOrdered = iScreen;
@@ -279,21 +279,21 @@ int best_xinerama_monitor(::user::interaction * pinteraction, RECT32 * prectRet)
 }
 
 
-int get_best_monitor(::user::interaction * pinteraction, const ::rect & rectParam, RECT32 * prectRet)
+int get_best_monitor(::user::interaction * pinteraction, const ::rectangle & rectParam, RECT32 * prectRet)
 {
 
-   ::rect rNull = nullptr;
+   ::rectangle rNull = nullptr;
 
-   ::rect rect(rectParam);
+   ::rectangle rectangle(rectParam);
 
-   if(rect == nullptr)
+   if(rectangle == nullptr)
    {
 
-      rect = rNull;
+      rectangle = rNull;
 
    }
 
-   index i = pinteraction->best_monitor(prectRet, rect, false, 0, zorder_none);
+   index i = pinteraction->best_monitor(prectRet, rectangle, false, 0, zorder_none);
 
    return i;
 

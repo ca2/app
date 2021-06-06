@@ -718,7 +718,7 @@ namespace experience
 
       rectClient.top = m_rectCaption.bottom - 1;
 
-      m_rectClient = rectClient;
+      m_rectangleClient = rectClient;
 
       m_iControlBoxPosition = rectClient.right;
 
@@ -908,7 +908,7 @@ namespace experience
 
       }
 
-      *prectangle = m_rectClient;
+      *prectangle = m_rectangleClient;
 
       return true;
 
@@ -956,7 +956,7 @@ namespace experience
 
       pframewindow->::user::interaction::get_client_rect(rectClient);
 
-      //calc_window_client_rect(m_rectClient, rectClient);
+      //calc_window_client_rect(m_rectangleClient, rectClient);
 
    }
 

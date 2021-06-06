@@ -92,4 +92,4 @@ bool m_bDirty;
 };
 
 
-UIWindow * new_round_window(round_window * pwindow, CGRect rect);
+UIWindow * new_round_window(round_window * pwindow, CGRect rectangle);

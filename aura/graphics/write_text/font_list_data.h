@@ -16,7 +16,7 @@ namespace write_text
       index             m_iUpdateId;
       int               m_iBaseSize;
       int_array         m_iaSize;
-      ::rectangle_i32   m_rectClient;
+      ::rectangle_i32   m_rectangleClient;
       int               m_iUpdatedCount;
       bool              m_bLayoutStillIntersect;
 

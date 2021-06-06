@@ -281,7 +281,7 @@ namespace helloworld
 
       m_prender->m_cy = rectClient.height();
 
-      m_prender->m_rectClient = rectClient;
+      m_prender->m_rectangleClient = rectClient;
 
       m_prender->m_bNewLayout = true;
 

@@ -23,7 +23,7 @@ namespace experience
 
          m_colorCaptionText = argb(255, 255, 255, 255);
 
-         m_rectClient = nullptr;
+         m_rectangleClient = nullptr;
 
       }
 

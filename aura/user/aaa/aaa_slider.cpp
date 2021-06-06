@@ -53,15 +53,15 @@ namespace user
 
       __pointer(::message::mouse) pmouse(pmessage);
 
-      //::rect rect;
+      //::rectangle rectangle;
 
-      //get_slider_rect(rect);
+      //get_slider_rect(rectangle);
 
       //auto point(pmouse->m_point);
 
       //_001ScreenToClient(point);
 
-      //if(rect.contains(point))
+      //if(rectangle.contains(point))
       //{
 
       SetCapture();
@@ -140,14 +140,14 @@ namespace user
 
       _001ScreenToClient(point, e_layout_design);
 
-      ::rect rect;
+      ::rectangle rectangle;
 
-      get_client_rect(rect);
+      get_client_rect(rectangle);
 
-      if(rect.width() != 0)
+      if(rectangle.width() != 0)
       {
 
-         dScalar = (double) (point.x - rect.left) / (double) rect.width();
+         dScalar = (double) (point.x - rectangle.left) / (double) rectangle.width();
 
       }
 
@@ -199,7 +199,7 @@ namespace user
 
       }
 
-      ::rect rectClient;
+      ::rectangle rectClient;
 
       get_client_rect(rectClient);
 
@@ -209,22 +209,22 @@ namespace user
 
       imaging.color_blend(pgraphics, rectClient, rgb(250,255,255), bAlpha1);
 
-      ::rect rect;
+      ::rectangle rectangle;
 
-      get_slider_rect(rect);
+      get_slider_rect(rectangle);
 
       byte bAlpha = (byte) (220.0* get_alpha());
 
-      pgraphics->draw_3drect(rect,argb(bAlpha / 255,108,100,210),argb(bAlpha,90,70,180));
-      rect.deflate(1,1);
-      pgraphics->draw_3drect(rect,argb(bAlpha / 255,150,120,150),argb(bAlpha,60,80,150));
-      rect.deflate(1,1);
-      pgraphics->draw_3drect(rect,argb(bAlpha / 255,108,100,210),argb(bAlpha,90,70,180));
-      rect.deflate(1,1);
-      pgraphics->fill_rectangle(rect,argb(bAlpha1,140,108,120));
+      pgraphics->draw_3drect(rectangle,argb(bAlpha / 255,108,100,210),argb(bAlpha,90,70,180));
+      rectangle.deflate(1,1);
+      pgraphics->draw_3drect(rectangle,argb(bAlpha / 255,150,120,150),argb(bAlpha,60,80,150));
+      rectangle.deflate(1,1);
+      pgraphics->draw_3drect(rectangle,argb(bAlpha / 255,108,100,210),argb(bAlpha,90,70,180));
+      rectangle.deflate(1,1);
+      pgraphics->fill_rectangle(rectangle,argb(bAlpha1,140,108,120));
       //if(m_bSlide)
       //{
-      //   pgraphics->move_to(rect.center());
+      //   pgraphics->move_to(rectangle.center());
       //   auto point = psession->get_cursor_position();
       //   _001ScreenToClient(point);
       //   pgraphics->line_to(point);
@@ -232,19 +232,19 @@ namespace user
    }
 
 
-   void slider::get_slider_rect(::rect & rect)
+   void slider::get_slider_rect(::rectangle & rectangle)
    {
 
-      ::rect rectClient;
+      ::rectangle rectClient;
 
       get_client_rect(rectClient);
 
       i32 iWidth = 16;
 
-      rect.top = rectClient.top;
-      rect.bottom = rectClient.bottom;
-      rect.left = (::i32)minimum(rectClient.right,m_dRate * (rectClient.width() - iWidth));
-      rect.right = (::i32)minimum(rectClient.right,m_dRate * ((rectClient.width() - iWidth)) + iWidth);
+      rectangle.top = rectClient.top;
+      rectangle.bottom = rectClient.bottom;
+      rectangle.left = (::i32)minimum(rectClient.right,m_dRate * (rectClient.width() - iWidth));
+      rectangle.right = (::i32)minimum(rectClient.right,m_dRate * ((rectClient.width() - iWidth)) + iWidth);
 
 
    }

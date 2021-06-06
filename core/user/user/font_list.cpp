@@ -424,7 +424,7 @@ namespace user
 
       rectFontList.bottom -= iScrollBarWidth;
 
-      m_pfontlist->set_client_rect(rectFontList);
+      m_pfontlist->set_client_rectangle(rectFontList);
 
       m_sizeTotal = m_pfontlist->m_size;
 

@@ -85,7 +85,7 @@ namespace user
 
       }
 
-      ::rect rectClipBox;
+      ::rectangle rectClipBox;
 
       pgraphics->get_clip_box(rectClipBox);
 
@@ -103,7 +103,7 @@ namespace user
 
       string strItem;
 
-      ::rect rectClient;
+      ::rectangle rectClient;
 
       layout().get_client_rect(rectClient, ::user::e_layout_design);
 
@@ -115,7 +115,7 @@ namespace user
 
       pgraphics->fill_rectangle(rectClient);
 
-      ::rect rectItem;
+      ::rectangle rectItem;
 
       //point p = pgraphics->GetViewportOrg();
 
@@ -922,7 +922,7 @@ namespace user
 
       auto rectClient = get_client_rect();
 
-      ::rect rectItem = rectClient;
+      ::rectangle rectItem = rectClient;
 
       int iAddUp = 0;
 
@@ -978,14 +978,14 @@ namespace user
    }
 
 
-   void combo_list::on_drop_down(const ::rect & rectWindow, const ::size & sizeFull)
+   void combo_list::on_drop_down(const ::rectangle & rectWindow, const ::size & sizeFull)
    {
 
-      ::rect rectMonitor;
+      ::rectangle rectMonitor;
 
       psession->get_best_monitor(rectMonitor, rectWindow);
 
-      ::rect rectList;
+      ::rectangle rectList;
 
       rectList.left = rectWindow.left;
       rectList.right = rectWindow.left + maximum(rectWindow.width(), sizeFull.cx);
@@ -997,7 +997,7 @@ namespace user
 
          rectList.bottom = rectMonitor.bottom - m_iBorder;
 
-         ::rect rectListOver;
+         ::rectangle rectListOver;
 
          rectListOver.left = rectWindow.left;
          rectListOver.right = rectWindow.left + sizeFull.cx;
@@ -1050,7 +1050,7 @@ namespace user
 
          ::user::system createstruct(0, nullptr, "combo_list");
 
-         pusersystem->m_createstruct.set_rect(::rect(rectList).inflate(m_iBorder));
+         pusersystem->m_createstruct.set_rect(::rectangle(rectList).inflate(m_iBorder));
 
          if (!create_window_ex(createstruct))
          {
@@ -1067,7 +1067,7 @@ namespace user
       else
       {
 
-         place(::rect(rectList).inflate(m_iBorder));
+         place(::rectangle(rectList).inflate(m_iBorder));
 
       }
 

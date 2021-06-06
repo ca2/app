@@ -1914,7 +1914,7 @@ namespace draw2d_opengl
 
    //void image::rotate(
    //   ::image * pimage,
-   //   const ::rect & rect,
+   //   const ::rectangle & rectangle,
    //   double dAngle,
    //   double dScale)
    //{
@@ -1923,10 +1923,10 @@ namespace draw2d_opengl
 
 
 
-   //   ::rect rect(rect);
+   //   ::rectangle rectangle(rectangle);
 
-   //   i32 cx = rect.width();
-   //   i32 cy = rect.height();
+   //   i32 cx = rectangle.width();
+   //   i32 cy = rectangle.height();
 
    //   i32 l = maximum(cx, cy);
    //
@@ -1936,8 +1936,8 @@ namespace draw2d_opengl
    //   i32 imin = - imax;
 
 
-   //   i32 joff = cy / 2 + rect.left;
-   //   i32 ioff = cx / 2 + rect.top;
+   //   i32 joff = cy / 2 + rectangle.left;
+   //   i32 ioff = cx / 2 + rectangle.top;
 
    //   //i32 iAngle = iStep % 360;
    //   //i32 iAngle = iStep;
@@ -2540,7 +2540,7 @@ namespace draw2d_opengl
 //////
 ////      }
 ////#endif
-//      ::rect rect(rectWindow);
+//      ::rectangle rectangle(rectWindow);
 //
 //      // Copy the contents of the framebuffer - which in our case is our pbuffer -
 //      // to our bitmap image in local system memory. Notice that we also need
@@ -2575,7 +2575,7 @@ namespace draw2d_opengl
 //      }
 //
 //
-//      puserinteraction->get_window_graphics()->update_window(puserinteraction->get_handle(),(color32_t*)b->m_memOut.get_data(),rect, b->m_sizeOut.cx, b.m_sizeOut.cy, b.m_sizeOut.cx * 4,bTransferBuffer);
+//      puserinteraction->get_window_graphics()->update_window(puserinteraction->get_handle(),(color32_t*)b->m_memOut.get_data(),rectangle, b->m_sizeOut.cx, b.m_sizeOut.cy, b.m_sizeOut.cx * 4,bTransferBuffer);
 //      b->m_bFlashed = true;
 //
 //      return true;
@@ -2593,7 +2593,7 @@ namespace draw2d_opengl
 //
 //      m_spgraphics->attach((HDC) pusermessage->m_wparam);
 //
-//      ::rect rectx;
+//      ::rectangle rectx;
 //
 //      ::draw2d::bitmap * pbitmap = m_spgraphics->get_current_bitmap();
 //
@@ -2610,7 +2610,7 @@ namespace draw2d_opengl
 //      try
 //      {
 //
-//         ::rect rectWindow;
+//         ::rectangle rectWindow;
 //
 //         puserinteraction->get_window_rect(rectWindow);
 //
@@ -2624,8 +2624,8 @@ namespace draw2d_opengl
 //         if(pgraphics->get_os_data() == nullptr)
 //            return false;
 //
-//         ::rect rectPaint;
-//         ::rect rectUpdate;
+//         ::rectangle rectPaint;
+//         ::rectangle rectUpdate;
 //         rectUpdate = rectWindow;
 //         rectPaint = rectWindow;
 //         rectPaint.offset(-rectPaint.top_left());

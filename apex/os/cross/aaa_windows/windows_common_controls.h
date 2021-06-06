@@ -781,7 +781,7 @@ typedef struct tagREBARBANDINFOA
    LPARAM      lParam;
    ::u32        cxHeader;
 #if (NTDDI_VERSION >= NTDDI_VISTA)
-   RECT32        rcChevronLocation;  // the rect is in client co-ord wrt hwndChild
+   RECT32        rcChevronLocation;  // the rectangle is in client co-ord wrt hwndChild
    ::u32        uChevronState;      // STATE_SYSTEM_*
 #endif
 }   REBARBANDINFOA,*LPREBARBANDINFOA;
@@ -816,7 +816,7 @@ typedef struct tagREBARBANDINFOW
    LPARAM      lParam;
    ::u32        cxHeader;
 #if (NTDDI_VERSION >= NTDDI_VISTA)
-   RECT32        rcChevronLocation;    // the rect is in client co-ord wrt hwndChild
+   RECT32        rcChevronLocation;    // the rectangle is in client co-ord wrt hwndChild
    ::u32        uChevronState; // STATE_SYSTEM_*
 #endif
 }   REBARBANDINFOW,*LPREBARBANDINFOW;
@@ -861,7 +861,7 @@ typedef REBARBANDINFOW const *LPCREBARBANDINFOW;
 #define RBSTR_CHANGERECT            0x0001   // flags for RB_SIZETORECT
 #endif
 
-#define RB_SIZETORECT   (WM_USER +  23) // resize the rebar/break bands and such to this rect (lparam)
+#define RB_SIZETORECT   (WM_USER +  23) // resize the rebar/break bands and such to this rectangle (lparam)
 
 #define RB_SETCOLORSCHEME   CCM_SETCOLORSCHEME  // lParam is color scheme
 #define RB_GETCOLORSCHEME   CCM_GETCOLORSCHEME  // fills in COLORSCHEME pointed to by lParam
@@ -1070,7 +1070,7 @@ typedef struct tagTOOLINFOA {
    ::u32 uFlags;
    oswindow hwnd;
    UINT_PTR uId;
-   RECT32 rect;
+   RECT32 rectangle;
    HINSTANCE hinst;
    char * lpszText;
    LPARAM lParam;
@@ -1084,7 +1084,7 @@ typedef struct tagTOOLINFOW {
    ::u32 uFlags;
    oswindow hwnd;
    UINT_PTR uId;
-   RECT32 rect;
+   RECT32 rectangle;
    HINSTANCE hinst;
    LPWSTR lpszText;
    LPARAM lParam;

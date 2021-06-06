@@ -27,15 +27,16 @@ namespace write_text
    font_list::font_list()
    {
 
-      m_bUpdatesHooked = false;
-
-      m_bUpdating = false;
+      m_bUpdatingFontList = false;
 
       m_iSelUpdateId = -1;
 
       m_puserinteraction = nullptr;
+
       m_rectMargin = rectangle_i32(5, 5, 5, 5);
+
       m_iSel = -1;
+
       m_iHover = -1;
 
       defer_create_mutex();
@@ -58,80 +59,6 @@ namespace write_text
 
 
    }
-
-
-   //void font_list::defer_font_enumeration(::subject::subject * psubject)
-   //{
-
-   //   try
-   //   {
-
-   //      synchronous_lock synchronouslock(mutex());
-
-   //      if (m_pfontenumeration.is_null())
-   //      {
-
-   //         auto psystem = m_psystem->m_paurasystem;
-
-   //         auto pdraw2d = psystem->draw2d();
-
-   //         pdraw2d->write_text()->fonts()->defer_create_font_enumeration(psubject);
-
-   //         m_pfontenumeration = pdraw2d->write_text()->fonts()->m_pfontenumeration;
-
-   //      }
-
-   //   }
-   //   catch (...)
-   //   {
-
-   //   }
-
-   //}
-
-
-   //void font_list::update_font_enumeration(::subject::subject * psubject)
-   //{
-
-   //   try
-   //   {
-
-   //      synchronous_lock synchronouslock(mutex());
-
-   //      defer_font_enumeration(psubject);
-
-   //      m_pfontenumeration->update();
-   //      
-   //      psubject->set_modified();
-
-   //   }
-   //   catch (...)
-   //   {
-
-   //   }
-
-   //}
-
-
-   //void font_list::sync_font_enumeration(::subject::subject * psubject)
-   //{
-
-   //   try
-   //   {
-
-   //      synchronous_lock synchronouslock(mutex());
-
-   //      defer_font_enumeration(psubject);
-
-   //      m_pfontenumerationitema = m_pfontenumeration->m_pfontenumerationitema;
-
-   //   }
-   //   catch (...)
-   //   {
-
-   //   }
-
-   //}
 
 
    bool font_list::set_sel_by_name(string str)
@@ -163,12 +90,14 @@ namespace write_text
 
       auto pfontlistdata = m_pfontlistdata;
 
-      if (pfontlistdata.is_null())
+      if (!pfontlistdata)
       {
 
-         //m_puserinteraction->set_need_layout();
+         m_puserinteraction->set_need_layout();
 
-         //m_puserinteraction->set_need_redraw();
+         m_puserinteraction->set_need_redraw();
+
+         m_puserinteraction->post_redraw();
 
          return;
 
@@ -586,38 +515,6 @@ namespace write_text
    }
 
 
-   void font_list::set_need_layout()
-   {
-
-      if (m_puserinteraction)
-      {
-
-         m_puserinteraction->set_need_layout();
-
-      }
-
-      set_need_redraw();
-
-   }
-
-
-   void font_list::set_need_redraw()
-   {
-      
-      if (::is_null(m_puserinteraction))
-      {
-
-         return;
-
-      }
-
-      m_puserinteraction->set_need_redraw();
-
-      m_puserinteraction->post_redraw();
-
-   }
-
-
    ::e_status font_list::initialize_font_list(::user::interaction * puserinteraction)
    {
 
@@ -641,38 +538,6 @@ namespace write_text
    {
 
       ::subject::manager::on_subject(psubject);
-
-      //if (psubject->m_esubject == e_subject_prepare)
-      //{
-
-      //   e_id eid = (e_id)psubject->id().i64();
-
-      //   if (eid == id_font_extents)
-      //   {
-
-      //      update_extents();
-
-      //   }
-      //   else if (eid == id_font_list_layout)
-      //   {
-
-      //      layout();
-
-      //   }
-      //   else if (eid == id_font_list_total_size)
-      //   {
-
-      //      set_need_layout();
-
-      //   }
-      //   else if (eid == id_font_list_redraw)
-      //   {
-
-      //      set_need_redraw();
-
-      //   }
-
-      //}
 
    }
 
@@ -709,13 +574,19 @@ namespace write_text
       else if (eid == id_font_list_total_size)
       {
 
-         set_need_layout();
+         m_puserinteraction->set_need_layout();
+
+         m_puserinteraction->set_need_redraw();
+
+         m_puserinteraction->post_redraw();
 
       }
       else if (eid == id_font_list_redraw)
       {
 
-         set_need_redraw();
+         m_puserinteraction->set_need_redraw();
+
+         m_puserinteraction->post_redraw();
 
       }
 
@@ -727,24 +598,11 @@ namespace write_text
 
       m_etype = etype;
 
-      if (!m_bUpdatesHooked)
-      {
+      m_puserinteraction->set_need_layout();
 
-         m_bUpdatesHooked = true;
+      m_puserinteraction->set_need_redraw();
 
-         delivery_for(id_font_extents, this, true);
-
-         delivery_for(id_font_list_layout, this, true);
-
-         delivery_for(id_font_list_total_size, this, true);
-
-      }
-      else
-      {
-
-         set_modified(id_font_extents);
-
-      }
+      m_puserinteraction->post_redraw();
 
    }
 
@@ -787,27 +645,31 @@ namespace write_text
 
          }
 
-         synchronous_lock synchronouslock(mutex());
+         {
 
-         m_pfontenumeration = pfontenumeration;
+            synchronous_lock synchronouslock(mutex());
 
-         m_pfontenumerationitema = pfontenumeration->m_pfontenumerationitema;
+            m_pfontenumeration = pfontenumeration;
 
-         if (!m_pfontenumerationitema)
+            m_pfontenumerationitema = pfontenumeration->m_pfontenumerationitema;
+
+            if (!m_pfontenumerationitema)
+            {
+
+               return;
+
+            }
+
+         }
+
+         if (m_etype != type_single_column && !m_rectangleClient)
          {
 
             return;
 
          }
 
-         if (m_etype != type_single_column && !m_rectClient)
-         {
-
-            return;
-
-         }
-
-         //if (m_rectClient.is_empty())
+         //if (m_rectangleClient.is_empty())
          //{
 
          //   return;
@@ -817,7 +679,7 @@ namespace write_text
          if (m_etype == type_wide)
          {
 
-            int iBaseHeight = maximum(250, m_rectClient.height());
+            int iBaseHeight = maximum(250, m_rectangleClient.height());
 
             iBaseHeight = iBaseHeight + 250;
 
@@ -838,7 +700,7 @@ namespace write_text
          if (pfontlistdata.is_set() &&
             pfontlistdata->m_iUpdateId == m_pfontenumeration->m_iUpdateId
             && (m_etype == type_single_column ||
-               pfontlistdata->m_rectClient == m_rectClient))
+               pfontlistdata->m_rectangleClient == m_rectangleClient))
          {
 
             set_modified(id_font_list_layout);
@@ -967,7 +829,7 @@ namespace write_text
 
          }
 
-         pfontlistdata->m_rectClient = m_rectClient;
+         pfontlistdata->m_rectangleClient = m_rectangleClient;
 
          pfontlistdata->m_iUpdateId = m_pfontenumeration->m_iUpdateId;
 
@@ -988,11 +850,11 @@ namespace write_text
       auto pcounter = fork_count(this, pfontlistdata->get_count(), [this, pfontlistdata, bSameSize](index iOrder, index iStart, index iCount, index iScan)
       {
 
-         ::draw2d::graphics_pointer g(e_create);
+         auto psystem = m_psystem->m_paurasystem;
 
-         g->CreateCompatibleDC(nullptr);
+         auto pdraw2d = psystem->draw2d();
 
-         ::draw2d::graphics_pointer & pgraphics = g;
+         auto pgraphics = pdraw2d->create_memory_graphics();
 
       restart:
 
@@ -1008,7 +870,7 @@ namespace write_text
 
          __pointer(font_enumeration_item) penumitem;
 
-         single_lock lock(mutex());
+         //single_lock lock(mutex());
 
          for (index iItem = iStart; iItem < pfontlistdata->get_count(); iItem += iScan)
          {
@@ -1127,11 +989,11 @@ namespace write_text
 
             auto iSerial = pfontlistdata->m_iSerial;
 
-            ::draw2d::graphics_pointer g(e_create);
+            auto psystem = m_psystem->m_paurasystem;
 
-            g->CreateCompatibleDC(nullptr);
+            auto pdraw2d = psystem->draw2d();
 
-            ::draw2d::graphics_pointer & pgraphics = g;
+            auto pgraphics = pdraw2d->create_memory_graphics();
 
             string strText = m_strTextLayout;
 
@@ -1180,6 +1042,8 @@ namespace write_text
 
             //}
 
+            layout();
+
          }
 
       }
@@ -1212,7 +1076,13 @@ namespace write_text
 
          m_size = sizeTotal;
 
-         set_modified(id_font_list_total_size);
+         //set_modified(id_font_list_total_size);
+
+         m_puserinteraction->set_need_layout();
+
+         m_puserinteraction->set_need_redraw();
+
+         m_puserinteraction->post_redraw();
 
       }
 
@@ -1245,7 +1115,7 @@ namespace write_text
 
       int iMargin = 40;
 
-      int w = m_rectClient.width() - iMargin * 2;
+      int w = m_rectangleClient.width() - iMargin * 2;
 
       int iPadding = 15;
 
@@ -1259,7 +1129,7 @@ namespace write_text
 
       int nextx;
 
-      sizeTotal.cx = m_rectClient.width();
+      sizeTotal.cx = m_rectangleClient.width();
 
       rectangle_i32 rectClient = m_puserinteraction->get_client_rect();
 
@@ -1412,31 +1282,31 @@ namespace write_text
             int dw = (size2.cx - s.cx) / 2;
             int dh = (size2.cy - s.cy) / 2;
 
-            int x = m_rectClient.center_x() - rectangle.center_x();
+            int x = m_rectangleClient.center_x() - rectangle.center_x();
 
             if (x > 0)
             {
 
-               x = m_rectClient.center_x() - rectangle.left;
+               x = m_rectangleClient.center_x() - rectangle.left;
 
             }
             else
             {
 
-               x = m_rectClient.center_x() - rectangle.right;
+               x = m_rectangleClient.center_x() - rectangle.right;
 
             }
 
-            x = x * (m_rectClient.width() + iPadding * 2) / w;
+            x = x * (m_rectangleClient.width() + iPadding * 2) / w;
 
             if (x > 0)
             {
-               rect2.left = m_rectClient.center_x() - x;
+               rect2.left = m_rectangleClient.center_x() - x;
                rect2.right = rect2.left + size2.cx;
             }
             else
             {
-               rect2.right = m_rectClient.center_x()- x;
+               rect2.right = m_rectangleClient.center_x()- x;
                rect2.left = rect2.right - size2.cx;
             }
             rect2.top = rectangle.top - dh;
@@ -1722,24 +1592,29 @@ namespace write_text
    }
 
 
-   void font_list::set_client_rect(const RECTANGLE_I32 * lpcrect)
+   void font_list::set_client_rectangle(const RECTANGLE_I32 * lpcrectangle)
    {
 
-      ::rectangle_i32 rectangle(lpcrect);
+      ::rectangle_i32 rectangle(lpcrectangle);
 
-      if (rectangle != m_rectClient)
+      if (rectangle != m_rectangleClient)
       {
 
-         ::size_i32 sizeOld(m_rectClient.size());
+         ::size_i32 sizeOld(m_rectangleClient.size());
 
          ::size_i32 sizeNew(rectangle.size());
 
-         m_rectClient = *lpcrect;
+         m_rectangleClient = *lpcrectangle;
 
          if (sizeOld != sizeNew)
          {
 
-            set_modified(id_font_extents);
+            fork([this]()
+               {
+
+                  update_extents();
+
+               });
 
          }
 
@@ -1787,49 +1662,6 @@ namespace write_text
    }
 
 
-   //void font_list::update()
-   //{
-
-   //   m_bUpdating = true;
-
-   //   try
-   //   {
-
-   //      //update_font_enumeration();
-   //      sync_font_enumeration();
-
-
-
-   //      update_extents();
-
-   //   }
-   //   catch (...)
-   //   {
-
-   //   }
-
-   //   set_need_layout();
-
-   //   //try
-   //   //{
-
-   //   //   m_puserinteraction->set_need_layout();
-
-   //   //   m_puserinteraction->set_need_redraw();
-
-   //   //   m_puserinteraction->post_redraw();
-
-   //   //}
-   //   //catch (...)
-   //   //{
-
-   //   //}
-
-   //   m_bUpdating = false;
-
-   //}
-
-
    bool font_list::is_updating() const
    {
 
@@ -1847,7 +1679,7 @@ namespace write_text
 
       }
 
-      return m_bUpdating;
+      return m_bUpdatingFontList;
 
    }
 

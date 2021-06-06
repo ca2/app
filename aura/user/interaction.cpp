@@ -3740,7 +3740,7 @@ namespace user
       if (pdrawcontext != nullptr)
       {
 
-         rectClient = pdrawcontext->m_rectClient;
+         rectClient = pdrawcontext->m_rectangleClient;
 
       }
       else

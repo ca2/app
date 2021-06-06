@@ -3,12 +3,12 @@
 #include "acme/const/timer.h"
 
 
-void scroll_x(RECT32 * prect, double dRateX, const ::rect & rect)
+void scroll_x(RECT32 * prect, double dRateX, const ::rectangle & rectangle)
 {
 
    ::i32 w = ::width(prect);
 
-   prect->left = (::i32) (rect.left + (rect.width() - w) * dRateX);
+   prect->left = (::i32) (rectangle.left + (rectangle.width() - w) * dRateX);
 
    prect->right = prect->left + w;
 
@@ -121,7 +121,7 @@ namespace user
 
       __keep(pgraphics->m_pdrawcontext, &drawcontext);
 
-      ::rect rectClient;
+      ::rectangle rectClient;
 
       get_client_rect(rectClient);
 
@@ -142,9 +142,9 @@ namespace user
 
       pgraphics->OffsetViewportOrg(rectClient.left, rectClient.top);
 
-      ::rect rectCheckBox;
+      ::rectangle rectCheckBox;
 
-      ::rect rectText;
+      ::rectangle rectText;
 
       {
 
@@ -250,7 +250,7 @@ namespace user
 
       __keep(pgraphics->m_pdrawcontext, &drawcontext);
 
-      ::rect rectClient;
+      ::rectangle rectClient;
 
       get_client_rect(rectClient);
 
@@ -300,15 +300,15 @@ namespace user
 
       }
 
-      ::rect rect(1, 1, w-2, h-2);
+      ::rectangle rectangle(1, 1, w-2, h-2);
 
-      ::rect rectEllipse(1, 1, h-2, h-2);
+      ::rectangle rectEllipse(1, 1, h-2, h-2);
 
       //double dNow = ::get_millis();
 
       ::draw2d::path_pointer point(e_create);
 
-      ::rect rectL(1, 1, h-2, h-2);
+      ::rectangle rectL(1, 1, h-2, h-2);
 
       auto rectR = rectangle_i32_dimension(h-2, 1, h-2, h-2);
 
@@ -395,7 +395,7 @@ namespace user
                                (byte)((double) colorref_get_g_value(cr) * dRate),
                                (byte)((double) colorref_get_b_value(cr) * dRate)));
 
-         ::scroll_x(rectEllipse, dRate, rect);
+         ::scroll_x(rectEllipse, dRate, rectangle);
 
          rectEllipse.rate(0.6);
 
@@ -425,7 +425,7 @@ namespace user
          if (echeck() == ::check_unchecked)
          {
 
-            rectEllipse.Align({e_align_left, e_align_vertical_center}, rect);
+            rectEllipse.Align({e_align_left, e_align_vertical_center}, rectangle);
 
             rectEllipse.rate(0.6);
 
@@ -456,7 +456,7 @@ namespace user
 
             pgraphics->path(point);
 
-            rectEllipse.Align(e_align_right | e_align_vertical_center, rect);
+            rectEllipse.Align(e_align_right | e_align_vertical_center, rectangle);
 
             rectEllipse.rate(0.6);
 
@@ -478,13 +478,13 @@ namespace user
    void check_box::_001OnDrawRedGreenCircle(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::rect rectClient;
+      ::rectangle rectClient;
 
       get_client_rect(rectClient);
 
       int iMin = maximum(rectClient.min_dim() -1, 1);
 
-      ::rect rectCheckBox;
+      ::rectangle rectCheckBox;
       rectCheckBox.left = 1;
       rectCheckBox.top = 1;
       rectCheckBox.right = iMin + 1;

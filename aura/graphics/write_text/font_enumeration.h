@@ -15,10 +15,9 @@ namespace write_text
       bool                                            m_bTrueType;
       bool                                            m_bOther;
       int                                             m_iUpdateId;
-      __pointer(font_enumeration_item_array)                 m_pfontenumerationitema;
+      __pointer(font_enumeration_item_array)          m_pfontenumerationitema;
       bool                                            m_bUpdating;
       manual_reset_event                              m_eventReady;
-
 
 
       font_enumeration();

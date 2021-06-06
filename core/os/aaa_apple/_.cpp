@@ -213,7 +213,7 @@ string ca2_command_line()
 }
 
 
-void window_copy(CGRect * prectTarget, const ::rect * prectSource)
+void window_copy(CGRect * prectTarget, const ::rectangle * prectSource)
 {
 
    CGRect rectWorkspace = mm_get_workspace_rect();

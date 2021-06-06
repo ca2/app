@@ -8,6 +8,10 @@ namespace write_text
    font_enumeration::font_enumeration()
    {
 
+      m_bRaster = true;
+      m_bTrueType = true;
+      m_bOther = true;
+
       m_iUpdateId = -1;
       m_bUpdating = true;
 

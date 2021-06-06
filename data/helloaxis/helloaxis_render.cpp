@@ -86,7 +86,7 @@ namespace helloaxis
       m_dMinRadius = 0.0;
       m_dMaxRadius = 0.0;
 
-      m_rectClient.null();
+      m_rectangleClient.null();
 
 
       m_bVoidTransfer = false;
@@ -985,7 +985,7 @@ namespace helloaxis
 
 #endif
 
-      if (strHelloAxis == get_helloaxis() && m_cx == m_rectClient.width() && m_cy == m_rectClient.height())
+      if (strHelloAxis == get_helloaxis() && m_cx == m_rectangleClient.width() && m_cy == m_rectangleClient.height())
       {
 
          m_bFirstDone = true;

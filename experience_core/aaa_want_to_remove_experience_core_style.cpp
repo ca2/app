@@ -33,12 +33,12 @@ namespace experience_lite
    bool user_style::_001TabOnDrawSchema01(::draw2d::graphics_pointer & pgraphics,::user::tab * ptab)
    {
 
-      ::rect rect;
-      ::rect rectBorder;
-      ::rect rectText;
-      ::rect rectClient;
-      ::rect rectIcon;
-      ::rect rectClose;
+      ::rectangle rectangle;
+      ::rectangle rectBorder;
+      ::rectangle rectText;
+      ::rectangle rectClient;
+      ::rectangle rectIcon;
+      ::rectangle rectClose;
 
       ptab->get_data()->m_pen->create_solid(1,rgb(32,32,32));
 
@@ -60,7 +60,7 @@ namespace experience_lite
 
          iTab++;
 
-         if(!ptab->get_element_rect(iTab,rect, ::user::e_element_tab))
+         if(!ptab->get_element_rect(iTab,rectangle, ::user::e_element_tab))
             continue;
 
          if(!ptab->get_element_rect(iTab,rectBorder, ::user::e_element_border))
@@ -337,12 +337,12 @@ namespace experience_lite
       else
       {
 
-         ::rect rectText(lpcrect);
+         ::rectangle rectText(lpcrect);
 
          ::write_text::font_pointer font;
          font = pgraphics->get_current_font();
          size sSep = ptab->get_data()->m_sizeSep;
-         ::rect rectEmp;
+         ::rectangle rectEmp;
          for(index i = 0; i < straTitle.get_size(); i++)
          {
             string str = straTitle[i];
@@ -471,7 +471,7 @@ namespace experience_lite
 
          ptab->get_data()->m_iTabHeight = iTabHeight;
 
-         ::rect rectClient;
+         ::rectangle rectClient;
          ptab->GetClientRect(rectClient);
 
          ptab->get_data()->m_rectTab.left       = rectClient.left;
@@ -502,7 +502,7 @@ namespace experience_lite
          ::draw2d::graphics_pointer & pgraphics = graphics;
          pgraphics->SelectObject(ptab->get_data()->m_fontBold);
 
-         ::rect rectClient;
+         ::rectangle rectClient;
          ptab->GetClientRect(rectClient);
          int x = rectClient.left;
 
@@ -603,7 +603,7 @@ namespace experience_lite
          m_rectTab.height(),
          0);*/
 
-         rect & rectTabClient = ptab->get_data()->m_rectTabClient;
+         rectangle & rectTabClient = ptab->get_data()->m_rectTabClient;
 
          rectTabClient.left       = ptab->get_data()->m_rectTab.left;
          rectTabClient.top        = ptab->m_bShowTabs ? ptab->get_data()->m_rectTab.bottom : rectClient.top;
@@ -639,7 +639,7 @@ namespace experience_lite
 
       pbar->get_color(crBackground, ::user::color_scrollbar_background);
 
-      ::rect rectClient;
+      ::rectangle rectClient;
 
       pbar->GetClientRect(rectClient);
 
@@ -663,11 +663,11 @@ namespace experience_lite
 
       }
 
-      ::rect rectTrack;
+      ::rectangle rectTrack;
 
       pbar->GetTrackRect(rectTrack);
 
-      ::rect rectWindow;
+      ::rectangle rectWindow;
 
       pbar->GetWindowRect(rectWindow);
 
@@ -763,7 +763,7 @@ namespace experience_lite
             uchAlpha = 255;
          }
 
-         ::rect rectMachineThumb;
+         ::rectangle rectMachineThumb;
 
          bool bSimple = (bool)pbar->prop("tracking_simple");
 
@@ -776,7 +776,7 @@ namespace experience_lite
 
             rectMachineThumb.bottom_right() = rectMachineThumb.top_left() + size(iSize, iSize);
 
-            ::rect rectIntersect;
+            ::rectangle rectIntersect;
 
             rectIntersect.intersect(rectMachineThumb, rectTrack);
 
@@ -867,30 +867,30 @@ namespace experience_lite
 
       pgraphics->Rectangle(pbar->m_rectB);
 
-      ::rect rect;
+      ::rectangle rectangle;
 
       if (pbar->m_eelement == ::user::e_element_scrollbar_pageA || pbar->m_eelementHover == ::user::e_element_scrollbar_pageA)
       {
 
-         pbar->GetPageARect(rectClient, rectTrack, rect);
+         pbar->GetPageARect(rectClient, rectTrack, rectangle);
 
          pbar->m_brushDraw->create_solid(pbar->scrollbar_color(::user::e_element_scrollbar_pageA));
 
          pgraphics->SelectObject(pbar->m_brushDraw);
 
-         pgraphics->FillRectangle(rect);
+         pgraphics->FillRectangle(rectangle);
 
       }
       else if (pbar->m_eelement == ::user::e_element_scrollbar_pageB || pbar->m_eelementHover == ::user::e_element_scrollbar_pageB)
       {
 
-         pbar->GetPageBRect(rectClient, rectTrack, rect);
+         pbar->GetPageBRect(rectClient, rectTrack, rectangle);
 
          pbar->m_brushDraw->create_solid(pbar->scrollbar_color(::user::e_element_scrollbar_pageB));
 
          pgraphics->SelectObject(pbar->m_brushDraw);
 
-         pgraphics->FillRectangle(rect);
+         pgraphics->FillRectangle(rectangle);
 
 
       }

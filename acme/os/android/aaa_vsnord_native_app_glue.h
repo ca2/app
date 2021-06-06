@@ -276,7 +276,7 @@ enum
    /**
    * Command from main thread: the content area of the window has changed,
    * such as from the soft input window being shown or hidden.  You can
-   * find the new content rect in android_app::contentRect.
+   * find the new content rectangle in android_app::contentRect.
    */
    APP_CMD_CONTENT_RECT_CHANGED,
 

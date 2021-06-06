@@ -65,13 +65,13 @@ namespace user
 
          get_window_text(strText);
 
-         ::rect rectClient;
+         ::rectangle rectClient;
 
          get_client_rect(rectClient);
 
-         //::rect rectMargin(2, 2,2, 2);
+         //::rectangle rectMargin(2, 2,2, 2);
 
-//         ::rect rectBorder(2, 2,2, 2);
+//         ::rectangle rectBorder(2, 2,2, 2);
 
   //       rectClient.deflate(rectMargin);
 
@@ -131,7 +131,7 @@ namespace user
 
          }
 
-         ::rect rectPadding(0, 0, 0, 0);
+         ::rectangle rectPadding(0, 0, 0, 0);
 
          rectClient.deflate(rectPadding);
 
@@ -173,7 +173,7 @@ namespace user
 
             pgraphics->set(pen);
 
-            ::rect rectIcon(rectClient);
+            ::rectangle rectIcon(rectClient);
 
             rectIcon.deflate(rectIcon.width() / 4, rectIcon.height() / 4);
 
@@ -417,7 +417,7 @@ namespace user
 
    //   return control::hit_test(pmouse);
 
-   //   //::rect rectWindow;
+   //   //::rectangle rectWindow;
    //   //get_window_rect(rectWindow);
    //   //if (rectWindow.contains(point))
    //   //{
@@ -479,12 +479,12 @@ namespace user
 
          auto size = pgraphics->GetTextExtent(str);
 
-         ::rect rect(0, 0, 0, 0);
+         ::rectangle rectangle(0, 0, 0, 0);
 
-         rect.right = ::i32(size.cx * 1.6);
-         rect.bottom = ::i32(size.cy * 1.4);
+         rectangle.right = ::i32(size.cx * 1.6);
+         rectangle.bottom = ::i32(size.cy * 1.4);
 
-         layout().sketch() = rect.size();
+         layout().sketch() = rectangle.size();
 
       }
       else if (m_estyle == style_image)
@@ -572,24 +572,24 @@ namespace user
    void still::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::rect rectClient;
+      ::rectangle rectClient;
 
       get_client_rect(rectClient);
 
 
       ::size sizeText = calc_text_size();
 
-      ::rect rect;
+      ::rectangle rectangle;
 
-      rect.left = rectClient.left + (rectClient.width() - sizeText.cx) / 2;
+      rectangle.left = rectClient.left + (rectClient.width() - sizeText.cx) / 2;
 
-      rect.top = rectClient.top + (rectClient.height() - sizeText.cy) / 2;
+      rectangle.top = rectClient.top + (rectClient.height() - sizeText.cy) / 2;
 
-      rect.right = rect.left + sizeText.cx;
+      rectangle.right = rectangle.left + sizeText.cx;
 
-      rect.bottom = rect.top + sizeText.cy;
+      rectangle.bottom = rectangle.top + sizeText.cy;
 
-      m_rectText = rect;
+      m_rectText = rectangle;
 
    }
 
@@ -637,7 +637,7 @@ namespace user
 
 
 
-      ::rect rectClient;
+      ::rectangle rectClient;
 
       get_client_rect(rectClient);
 
@@ -701,9 +701,9 @@ namespace user
          crBorder = argb(255, 10, 10, 100);
       }
 
-      auto rect = get_border(pstyle);
+      auto rectangle = get_border(pstyle);
 
-      if (rect.is_set())
+      if (rectangle.is_set())
       {
 
          pgraphics->draw_rectangle(rectClient, crBorder);
@@ -714,11 +714,11 @@ namespace user
 
       rectClient.left += 3;
       rectClient.top += 3;
-      ::rect rectText = m_rectText;
+      ::rectangle rectText = m_rectText;
       //      string str = ::str::international::utf8_to_unicode(str);
       if (m_pimage->is_ok())
       {
-         ::rect rectDib;
+         ::rectangle rectDib;
          rectDib = m_rectText;
          rectDib.bottom = minimum(rectText.top + m_pimage->height(), rectText.bottom);
          rectDib.right = minimum(rectText.left + m_pimage->width(), rectText.right);
@@ -809,7 +809,7 @@ namespace user
 
       get_window_text(strText);
 
-      ::rect rectClient;
+      ::rectangle rectClient;
       get_client_rect(rectClient);
 
 
@@ -872,7 +872,7 @@ namespace user
       if (pimage->area() > 0 && rectClient.area() > 0)
       {
 
-         ::rect rectAspect;
+         ::rectangle rectAspect;
 
          rectAspect.left = 0;
 
@@ -890,7 +890,7 @@ namespace user
 
          rectAspect.Align(e_align_center, rectClient);
 
-        pgraphics->draw(rectClient, pimage->g(), ::rect(pimage->get_size()));
+        pgraphics->draw(rectClient, pimage->g(), ::rectangle(pimage->get_size()));
 
       }
 
@@ -1003,7 +1003,7 @@ namespace user
    void still::BaseToolTipGetRect(RECT32 * prect)
 
    {
-      // use window client rect as the tool rect
+      // use window client rectangle as the tool rectangle
       get_client_rect(prect);
 
    }

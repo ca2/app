@@ -11,9 +11,13 @@ namespace write_text
    public:
 
 
+      bool                                            m_bRaster : 1;
+      bool                                            m_bTrueType : 1;
+      bool                                            m_bOther : 1;
       int                                             m_iUpdateId;
-      __pointer(font_enum_item_array)                 m_pitema;
+      __pointer(font_enumeration_item_array)          m_pfontenumerationitema;
       bool                                            m_bUpdating;
+      manual_reset_event                              m_eventReady;
 
 
       font_enumeration();
@@ -29,15 +33,25 @@ namespace write_text
 
       virtual void check_need_update(::subject::subject * psubject);
       //virtual bool update(::subject::subject * psubject);
-      virtual bool update();
+      virtual ::e_status update();
 
+
+      virtual ::e_status enumerate_fonts();
+
+   protected:
+      virtual ::e_status sort_fonts();
+
+
+      virtual ::e_status on_enumerate_fonts();
+
+   public:
 
       //bool similar_font(char sz[256], const char* psz);
       //void default_font_name(char sz[256]);
       //double font_similarity(const char* pszSystem, const char* pszUser);
 
 
-      virtual __pointer(font_enum_item) similar_font(const char* psz);
+      virtual __pointer(font_enumeration_item) similar_font(const char* psz);
       virtual void adapt_font_name(string & str);
       virtual bool has_font_name(const string& str);
 
@@ -75,6 +89,7 @@ namespace write_text
 
 
 } // namespace write_text
+
 
 
 

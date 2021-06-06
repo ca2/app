@@ -1718,18 +1718,16 @@ using task_pointer = __pointer(::task);
 
 
 class task_pool;
-//using task_pool = ___task_pool<::task_pointer>;
-
 
 
 namespace write_text
 {
 
    
-   class font_enum_item;
+   class font_enumeration_item;
 
 
-   using font_enum_item_array = __pointer_array(font_enum_item);
+   using font_enumeration_item_array = __pointer_array(font_enumeration_item);
 
 
 } // namespace write_text

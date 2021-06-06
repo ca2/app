@@ -19,7 +19,7 @@ namespace experience
 
                m_colorCaptionText = argb(255, 0, 0, 0);
 
-               m_rectClient.set(0, 0, 0, 0);
+               m_rectangleClient.set(0, 0, 0, 0);
 
             }
 

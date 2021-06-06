@@ -213,7 +213,7 @@ namespace hellobase
       if(rectClient.area() <= 0)
          return;
 
-      if(m_prender->m_rectClient == rectClient && m_strNewFont == m_strFont)
+      if(m_prender->m_rectangleClient == rectClient && m_strNewFont == m_strFont)
          return;
 
       if(m_strNewFont != m_strFont)
@@ -225,7 +225,7 @@ namespace hellobase
 
       }
 
-      m_prender->m_rectClient = rectClient;
+      m_prender->m_rectangleClient = rectClient;
 
       m_prender->m_bNewLayout = true;
 

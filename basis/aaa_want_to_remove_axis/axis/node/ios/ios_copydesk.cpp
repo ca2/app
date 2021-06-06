@@ -117,10 +117,10 @@ namespace ios
       if(!::user::copydesk::initialize())
          return false;
 
-      //    if(!m_p->CreateEx(0, psystem->RegisterWndClass(0), nullptr, 0, rect(0, 0, 0, 0), nullptr, id()))
+      //    if(!m_p->CreateEx(0, psystem->RegisterWndClass(0), nullptr, 0, rectangle(0, 0, 0, 0), nullptr, id()))
       //     return false;
 
-//      if(!m_p->CreateEx(0, nullptr, nullptr, 0, rect(0, 0, 0, 0), nullptr, id()))
+//      if(!m_p->CreateEx(0, nullptr, nullptr, 0, rectangle(0, 0, 0, 0), nullptr, id()))
       //       return false;
 
       return true;

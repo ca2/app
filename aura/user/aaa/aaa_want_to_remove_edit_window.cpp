@@ -96,7 +96,7 @@ namespace user
    }
 
 
-   void edit_window::get_text_composition_area(::rect & r)
+   void edit_window::get_text_composition_area(::rectangle & r)
    {
 
 

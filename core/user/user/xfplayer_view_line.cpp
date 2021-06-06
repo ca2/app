@@ -201,7 +201,7 @@ bool xfplayer_view_line::_001OnDraw(::draw2d::graphics_pointer & pgraphics, bool
 
    }
 
-   if (bRecalcLayout || m_rectClient != rectangle)
+   if (bRecalcLayout || m_rectangleClient != rectangle)
    {
 
       m_bCacheEmboss = false;
@@ -708,7 +708,7 @@ void xfplayer_view_line::CalcCharsPositions(::draw2d::graphics_pointer & pgraphi
    ::size_i32 size;
    ::rectangle_i32 rectClient(rectangle);
 
-   m_rectClient = rectClient;
+   m_rectangleClient = rectClient;
    ::rectangle_i32 rectPlacement;
    GetPlacement(rectPlacement);
 
@@ -900,7 +900,7 @@ void xfplayer_view_line::CalcCharsPositions(::draw2d::graphics_pointer & pgraphi
    ::size_i32 size;
    ::rectangle_i32 rectClient(rectangle);
 
-   m_rectClient = rectClient;
+   m_rectangleClient = rectClient;
    ::write_text::font * pfont = pFont;
    ::draw2d::graphics_pointer & pgraphics = pdcForeground;
    ASSERT(pfont != nullptr);

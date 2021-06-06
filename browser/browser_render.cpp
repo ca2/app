@@ -1003,7 +1003,7 @@ namespace browser
 
 #endif
 
-      if (strHelloBrowser == strGetHelloBrowser && m_cx == m_rectClient.width() && m_cy == m_rectClient.height())
+      if (strHelloBrowser == strGetHelloBrowser && m_cx == m_rectangleClient.width() && m_cy == m_rectangleClient.height())
       {
 
          m_bFirstDone = true;

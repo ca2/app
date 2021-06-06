@@ -138,7 +138,7 @@ public:
    virtual bool blend2(const ::point & pointDst, ::image * pimageSrc, const ::point & pointSrc, const ::size & size, byte bA) override;
    virtual bool fork_blend(const ::point & pointDst, ::image * pimageAlf, const ::point & pointAlf, const ::size & size) override;
    virtual bool fork_blend(const ::point & pointDst, ::image * pimageAlf, const ::point & pointAlf, const ::size & size, byte bA) override;
-   virtual bool bitmap_blend(::draw2d::graphics_pointer & pgraphics, const ::rect & rect) override;
+   virtual bool bitmap_blend(::draw2d::graphics_pointer & pgraphics, const ::rectangle & rectangle) override;
 
    virtual bool color_blend(color32_t cr, byte bAlpha) override;
    virtual bool BitBlt(::image * pimage, i32 op) override;
@@ -178,7 +178,7 @@ public:
    virtual bool mult_alpha(const ::point & point, const ::size & size) override;
    virtual bool div_alpha(const ::point & point, const ::size & size) override;
 
-   virtual bool rotate(::image * pimage, const ::rect & rect, double dAngle, double dScale) override;
+   virtual bool rotate(::image * pimage, const ::rectangle & rectangle, double dAngle, double dScale) override;
 
    virtual bool rotate(::image * pimage, double dAngle, double dScale) override;
    virtual bool rotate(::image * pimage, double dAngle) override;
@@ -212,7 +212,7 @@ public:
 
 
    virtual bool SetIconMask(::draw2d::icon * picon, i32 cx, i32 cy) override;
-   virtual bool RadialFill(byte a, byte rect, byte g, byte b, i32 x, i32 y, i32 iRadius) override;
+   virtual bool RadialFill(byte a, byte rectangle, byte g, byte b, i32 x, i32 y, i32 iRadius) override;
    virtual bool RadialFill(
    byte a1, byte r1, byte g1, byte b1, // center colors
    byte a2, byte r2, byte g2, byte b2, // border colors
@@ -271,7 +271,7 @@ public:
    virtual bool to(::draw2d::graphics_pointer & pgraphics, const ::point & point) override;
    virtual bool to(::draw2d::graphics_pointer & pgraphics, const ::size & size) override;
    virtual bool to(::draw2d::graphics_pointer & pgraphics, const ::point & point, const ::size & size) override;
-   virtual bool to(::draw2d::graphics_pointer & pgraphics, const ::rect & rect) override;
+   virtual bool to(::draw2d::graphics_pointer & pgraphics, const ::rectangle & rectangle) override;
 
    virtual bool to(::draw2d::graphics_pointer & pgraphics, const ::point & point, const ::size & size, const ::point & pointSrc) override;
 
@@ -297,9 +297,9 @@ public:
    virtual bool channel_lighten(color::e_channel echannel, ::image * pimage) override;
    virtual bool channel_darken(color::e_channel echannel, ::image * pimage) override;
    virtual bool channel_from(color::e_channel echannel, ::image * pimage) override;
-   virtual bool channel_multiply(color::e_channel echannel, ::image * pimage, const ::rect & rect, bool bIfAlphaIgnorePreDivPosMult = false) override;
+   virtual bool channel_multiply(color::e_channel echannel, ::image * pimage, const ::rectangle & rectangle, bool bIfAlphaIgnorePreDivPosMult = false) override;
 
-   virtual bool channel_from(color::e_channel echannel, ::image * pimage, const ::rect & rect) override;
+   virtual bool channel_from(color::e_channel echannel, ::image * pimage, const ::rectangle & rectangle) override;
 
    virtual bool channel_copy(color::e_channel echannelDst, color::e_channel echannelSrc) override;
    virtual bool channel_copy(color::e_channel echannelDst, color::e_channel echannelSrc, ::image * pimage) override;
@@ -325,14 +325,14 @@ public:
    virtual bool copy(::image * pimage, i32 x, i32 y) override;
    virtual bool PasteRect(::image * pimage, i32 x, i32 y) override;
 
-   virtual bool fill_rectangle(const ::rect & rect, color32_t cr) override;
+   virtual bool fill_rectangle(const ::rectangle & rectangle, color32_t cr) override;
 
-   virtual bool fill_rectangle(const ::rect & rect, i32 R, i32 G, i32 B) override;
+   virtual bool fill_rectangle(const ::rectangle & rectangle, i32 R, i32 G, i32 B) override;
 
 
-   virtual bool fill_glass_rect(const ::rect & rect, i32 R, i32 G, i32 B, i32 A) override;
+   virtual bool fill_glass_rect(const ::rectangle & rectangle, i32 R, i32 G, i32 B, i32 A) override;
 
-   virtual bool fill_stippled_glass_rect(const ::rect & rect, i32 R, i32 G, i32 B) override;
+   virtual bool fill_stippled_glass_rect(const ::rectangle & rectangle, i32 R, i32 G, i32 B) override;
 
 
    virtual bool BlendRect(::image * pimage, i32 x, i32 y, i32 A) override;
@@ -360,7 +360,7 @@ public:
    virtual bool create_framed_square(::image * pimage, int inner, int outer, color32_t cr) override;
 
 
-   virtual bool invert_rgb(const ::rect & rect) override;
+   virtual bool invert_rgb(const ::rectangle & rectangle) override;
    virtual bool invert_rgb() override;
 
 
@@ -387,8 +387,8 @@ public:
 
    inline ::size size() const;
 
-   inline ::rect rect(const ::point & point = nullptr);
-   inline const ::rect rect(const ::point & point = nullptr) const;
+   inline ::rectangle rectangle(const ::point & point = nullptr);
+   inline const ::rectangle rectangle(const ::point & point = nullptr) const;
 
 
    inline color32_t pixel(int x, int y);
@@ -539,7 +539,7 @@ class CLASS_DECL_AURA work_image :
 public:
 
 
-   ::rect       m_rectMap;
+   ::rectangle       m_rectMap;
 
 
    work_image(::object * pobject, const ::size & size);

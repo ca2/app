@@ -85,7 +85,9 @@ namespace user
          if (m_pfontlist.is_null() || m_pfontlist->get_font_list_type() != ::write_text::font_list::type_wide)
          {
 
-            m_pfontlist = __create_new < ::write_text::font_list >();
+            m_pfontlist = ::__create_new < ::write_text::font_list >();
+
+            m_pfontlist->initialize_font_list(this);
 
             m_pfontlist->set_font_list_type(::write_text::font_list::type_wide);
 
@@ -156,10 +158,14 @@ namespace user
 
          auto iItem = item.m_iItem;
 
-         if(iItem >= 0 && iItem < m_pfontlist->m_pfontenumeration->m_pitema->get_count())
+         auto pfontenumerationitema = m_pfontlist->m_pfontenumeration->m_pfontenumerationitema;
+
+         if(iItem >= 0 && iItem < pfontenumerationitema->get_count())
          {
 
-            m_pfontlist->m_strFontFamily = m_pfontlist->m_pfontenumeration->m_pitema->element_at((::index) iItem)->m_strName;
+            auto pfontenumerationitem = pfontenumerationitema->element_at((::index)iItem);
+
+            m_pfontlist->m_strFontFamily = pfontenumerationitem->m_strName;
 
          }
          
@@ -205,10 +211,14 @@ namespace user
 
          auto iItem = item.m_iItem;
 
-         if(iItem >= 0 && iItem < m_pfontlist->m_pfontenumeration->m_pitema->get_count())
+         auto pfontenumerationitema = m_pfontlist->m_pfontenumeration->m_pfontenumerationitema;
+
+         if(pfontenumerationitema->contains_index(iItem))
          {
 
-            m_pfontlist->m_strFontFamily = m_pfontlist->m_pfontenumeration->m_pitema->element_at((::index) iItem)->m_strName;
+            auto pfontenumerationitem = pfontenumerationitema->element_at((::index)iItem);
+
+            m_pfontlist->m_strFontFamily = pfontenumerationitem->m_strName;
 
          }
          
@@ -414,7 +424,7 @@ namespace user
 
       rectFontList.bottom -= iScrollBarWidth;
 
-      m_pfontlist->set_client_rect(rectFontList);
+      m_pfontlist->set_client_rectangle(rectFontList);
 
       m_sizeTotal = m_pfontlist->m_size;
 
@@ -437,7 +447,7 @@ namespace user
 
       synchronous_lock synchronouslock(m_pfontlist->mutex());
 
-      return m_pfontlist->m_plistdata->element_at(item)->m_strFont;
+      return m_pfontlist->m_pfontlistdata->element_at(item)->m_strFont;
 
    }
 
@@ -456,7 +466,7 @@ namespace user
 
       synchronous_lock synchronouslock(m_pfontlist->mutex());
 
-      return m_pfontlist->m_plistdata->element_at(item)->m_strFont;
+      return m_pfontlist->m_pfontlistdata->element_at(item)->m_strFont;
 
    }
 
@@ -473,7 +483,7 @@ namespace user
 
       }
 
-      if (m_pfontlist->m_iSel >= m_pfontlist->m_plistdata->get_count())
+      if (m_pfontlist->m_iSel >= m_pfontlist->m_pfontlistdata->get_count())
       {
 
          return -1;
@@ -497,7 +507,7 @@ namespace user
 
       }
 
-      if (m_pfontlist->m_iHover >= m_pfontlist->m_plistdata->get_count())
+      if (m_pfontlist->m_iHover >= m_pfontlist->m_pfontlistdata->get_count())
       {
 
          return -1;
@@ -594,10 +604,14 @@ namespace user
 
          auto iItem = current_item().m_iItem;
 
-         if(iItem >= 0 && iItem < m_pfontlist->m_pfontenumeration->m_pitema->get_count())
+         auto pfontenumerationitema = m_pfontlist->m_pfontenumeration->m_pfontenumerationitema;
+
+         if (pfontenumerationitema->contains_index(iItem))
          {
 
-            m_pfontlist->m_strFontFamily = m_pfontlist->m_pfontenumeration->m_pitema->element_at((::index) iItem)->m_strName;
+            auto pfontenumerationitem = pfontenumerationitema->element_at((::index)iItem);
+
+            m_pfontlist->m_strFontFamily = pfontenumerationitem->m_strName;
 
          }
 
@@ -611,12 +625,12 @@ namespace user
 
       if (m_pfontlist.is_set()
          && iItem >= 0
-         && iItem < m_pfontlist->m_plistdata->get_size())
+         && iItem < m_pfontlist->m_pfontlistdata->get_size())
       {
 
          m_pfontlist->m_iSel = iItem;
 
-         m_pointScroll.y = m_pfontlist->m_plistdata->element_at(iItem)->m_box[0].m_rectangle.top;
+         m_pointScroll.y = m_pfontlist->m_pfontlistdata->element_at(iItem)->m_box[0].m_rectangle.top;
 
       }
       else

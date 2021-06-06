@@ -13,7 +13,7 @@ namespace user
 
       id                                  m_id;
       ::rectangle_i32                              m_rectangle;
-      ::rectangle_i32                              m_rectClient;
+      ::rectangle_i32                              m_rectangleClient;
       ::size_i32                              m_sizeFixed;
       bool                                m_bFixedSize;
       __pointer(::user::place_holder)     m_pplaceholder;

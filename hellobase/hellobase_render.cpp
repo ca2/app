@@ -53,7 +53,7 @@ namespace hellobase
       m_dMinRadius = 0.0;
       m_dMaxRadius = 0.0;
 
-      m_rectClient.null();
+      m_rectangleClient.null();
 
 
       m_bVoidTransfer = false;
@@ -962,7 +962,7 @@ namespace hellobase
 //
 //#endif
 //
-//      if (strHelloBase == get_helloaura() && m_cx == m_rectClient.width() && m_cy == m_rectClient.height())
+//      if (strHelloBase == get_helloaura() && m_cx == m_rectangleClient.width() && m_cy == m_rectangleClient.height())
 //      {
 //
 //         m_bFirstDone = true;

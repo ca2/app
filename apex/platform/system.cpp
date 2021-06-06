@@ -4792,7 +4792,9 @@ namespace apex
    __pointer(::subject::subject) system::new_subject(const MESSAGE& message)
    {
 
-      auto psubject = subject((::iptr) message.wParam);
+      auto id = (::iptr)message.wParam;
+
+      auto psubject = subject(id);
 
       psubject->m_pobjectTopic = (::object*) message.lParam.m_lparam;
 

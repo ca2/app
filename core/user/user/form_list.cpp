@@ -2194,9 +2194,9 @@ break_click:;
          if (pinteraction)
          {
 
-            pdrawitem->m_rectClient = pdrawitem->m_rectSubItem;
+            pdrawitem->m_rectangleClient = pdrawitem->m_rectSubItem;
 
-            pdrawitem->m_rectangleWindow = pdrawitem->m_rectClient;
+            pdrawitem->m_rectangleWindow = pdrawitem->m_rectangleClient;
 
             _001ClientToScreen(pdrawitem->m_rectangleWindow);
 
@@ -2206,10 +2206,10 @@ break_click:;
 
             //_001ScreenToClient(rectWindow);
 
-            //if (rectWindow != pdrawitem->m_rectClient)
+            //if (rectWindow != pdrawitem->m_rectangleClient)
             {
 
-               // pinteraction->set_window_position(0, pdrawitem->m_rectClient, SWP_HIDEWINDOW | SWP_NOZORDER);
+               // pinteraction->set_window_position(0, pdrawitem->m_rectangleClient, SWP_HIDEWINDOW | SWP_NOZORDER);
 
             }
 
@@ -2279,7 +2279,7 @@ ok_control:;
             ::draw2d::savedc savedc(pdrawitem->m_pgraphics);
 
             on_viewport_offset(pdrawitem->m_pgraphics);
-            pdrawitem->m_pgraphics->OffsetViewportOrg(pdrawitem->m_rectClient.left, pdrawitem->m_rectClient.top);
+            pdrawitem->m_pgraphics->OffsetViewportOrg(pdrawitem->m_rectangleClient.left, pdrawitem->m_rectangleClient.top);
 
             __keep(pinteraction->m_pdrawcontext, pdrawitem);
 

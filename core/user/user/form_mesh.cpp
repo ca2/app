@@ -365,8 +365,8 @@ namespace user
       //   ::user::interaction * pinteraction = _001GetControlBySubItem(pdrawitem->m_iSubItem);
       //   if(pinteraction != nullptr)
       //   {
-      //      pdrawitem->m_rectClient = pdrawitem.m_rectSubItem;
-      //      pdrawitem->m_rectangleWindow = pdrawitem.m_rectClient;
+      //      pdrawitem->m_rectangleClient = pdrawitem.m_rectSubItem;
+      //      pdrawitem->m_rectangleWindow = pdrawitem.m_rectangleClient;
       //      _001ClientToScreen(pdrawitem->m_rectangleWindow);
       //      control_keep controlkeep(this,pdrawitem->m_iItem,pdrawitem->m_iSubItem);
       //      pinteraction->_003CallCustomDraw(pdrawitem->m_pgraphics,pdrawitem);

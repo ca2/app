@@ -6,37 +6,6 @@ namespace subject
 {
 
 
-   //subject::subject()
-   //{
-
-   //   subject_common_construct();
-
-   //}
-
-
-   /*subject::subject(const ::id &id, const ::action_context &actioncontext)
-   {
-
-      subject_common_construct();
-
-      m_id = id;
-
-      m_actioncontext = actioncontext;
-
-   }
-
-
-   subject::subject(const ::id &id, ::matter *pmatter) :
-           m_pmatter(pmatter)
-   {
-
-      subject_common_construct();
-
-      m_id = id;
-
-   }*/
-
-
    subject::subject(::subject::manager * pmanager, const ::id & id)
    {
 
@@ -47,45 +16,6 @@ namespace subject
       m_id = id;
 
    }
-
-
-
-   //subject::subject(::subject::subject * phandler, ::matter *pmatter) :
-   //        m_phandler(phandler),
-   //        m_pcontext(pmatter ? phandler->context(pmatter) : nullptr)
-   //{
-
-   //   m_pmatter.reset(pmatter OBJ_REF_DBG_COMMA_THIS_FUNCTION_LINE);
-
-   //   subject_common_construct();
-
-   //   if (m_phandler)
-   //   {
-
-   //      m_id = m_phandler->m_id;
-
-   //   }
-
-   //}
-
-
-   //subject::subject(::subject::subject * phandler, ::subject::context * pcontext, ::matter * pmatter) :
-   //   m_phandler(phandler),
-   //   m_pcontext(pcontext)
-   //{
-
-   //   m_pmatter.reset(pmatter OBJ_REF_DBG_COMMA_THIS_FUNCTION_LINE);
-
-   //   subject_common_construct();
-
-   //   if (m_phandler)
-   //   {
-
-   //      m_id = m_phandler->m_id;
-
-   //   }
-
-   //}
 
 
    subject::~subject()

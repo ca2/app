@@ -431,10 +431,10 @@
 //   //   if (m_pdrawcontext != nullptr)
 //   //   {
 //
-//   //      *prectangle = m_pdrawcontext->m_rectClient;
+//   //      *prectangle = m_pdrawcontext->m_rectangleClient;
 //
 //
-//   //      ::offset_rect(prectangle, -m_pdrawcontext->m_rectClient.top_left());
+//   //      ::offset_rect(prectangle, -m_pdrawcontext->m_rectangleClient.top_left());
 //
 //
 //   //      return true;

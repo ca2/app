@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "acme/const/charset.h"
+#include "acme/const/character_set.h"
 
 
 enum enum_font_weight
@@ -20,7 +20,7 @@ enum enum_font_weight
 
 };
 
-typedef comparable_array < e_char_set > char_set_array;
+typedef comparable_array < enum_character_set > enum_character_set_array;
 
 
 namespace write_text
@@ -88,20 +88,20 @@ namespace write_text
       };
 
 
-      string                  m_strFontFamilyName;
-      double                  m_dFontSize;
-      double                  m_dFontWidth;
-      ::draw2d::enum_unit     m_eunitFontSize;
-      i32                     m_iFontWeight;
-      bool                    m_bItalic;
-      bool                    m_bUnderline;
-      bool                    m_bStrikeout;
-      char_set_array          m_echarseta;
-      e_char_set              m_echarset;
-      enum_rendering          m_erendering;
-      text_metric             m_textmetric;
-      bool                    m_bTextMetric;
-      string_map < text >     m_mapText;
+      string                        m_strFontFamilyName;
+      double                        m_dFontSize;
+      double                        m_dFontWidth;
+      ::draw2d::enum_unit           m_eunitFontSize;
+      i32                           m_iFontWeight;
+      bool                          m_bItalic;
+      bool                          m_bUnderline;
+      bool                          m_bStrikeout;
+      enum_character_set_array      m_echaracterseta;
+      enum_character_set            m_echaracterset;
+      enum_rendering                m_erendering;
+      text_metric                   m_textmetric;
+      bool                          m_bTextMetric;
+      string_map < text >           m_mapText;
 
 
       font();
@@ -140,11 +140,11 @@ namespace write_text
       virtual void set_underline(bool bUnderline = true);
       virtual void set_strikeout(bool bStrikeout = true);
 
-      virtual e_char_set calc_char_set(::draw2d::graphics * pgraphics);
-      virtual e_char_set get_char_set(::draw2d::graphics * pgraphics);
+      virtual enum_character_set calculate_character_set(::draw2d::graphics * pgraphics);
+      virtual enum_character_set get_character_set(::draw2d::graphics * pgraphics);
       virtual string get_sample_text(::draw2d::graphics * pgraphics);
 
-      static string get_sample_text(e_char_set echarsset);
+      static string get_sample_text(enum_character_set echarsset);
 
       virtual double get_pixel_font_height(::draw2d::graphics * pgraphics);
 
@@ -166,7 +166,8 @@ namespace write_text
 
    typedef ___pointer < font > font_pointer;
 
-   class CLASS_DECL_AURA font_enum_item :
+
+   class CLASS_DECL_AURA font_enumeration_item :
       virtual public object
    {
    public:
@@ -175,63 +176,63 @@ namespace write_text
       // 101 Ultra Light Italic
       // 200 Light
       // 201 Light Italic
-      int_to_string           m_mapFileName;
-      string                  m_strName;
+      int_to_string              m_mapFileName;
+      string                     m_strName;
 #ifdef WINDOWS
-      wstring                 m_wstrName;
+      wstring                    m_wstrName;
 #endif
-      char_set_array          m_echarseta;
+      enum_character_set_array   m_echaracterseta;
       
 
 
-      font_enum_item();
+      font_enumeration_item();
 #ifdef WINDOWS
-      font_enum_item(const widechar* pwideszName);
+      font_enumeration_item(const widechar* pwideszName);
 #endif
-      font_enum_item(string strName);
-      font_enum_item(string strFile, string strName);
-      virtual ~font_enum_item();
+      font_enumeration_item(const string & strName);
+      font_enumeration_item(const string & strFile, const string & strName);
+      virtual ~font_enumeration_item();
 
-      bool operator < (const font_enum_item& item) const
+
+      bool operator < (const font_enumeration_item & item) const
       {
 
          int iCompare = m_strName.compare(item.m_strName);
 
          if (iCompare < 0)
+         {
+
             return true;
 
+         }
+
          if (iCompare > 0)
+         {
+
             return false;
 
-         //iCompare = ((int)m_echarset) - ((int) item.m_echarset);
+         }
 
-         //if (iCompare < 0)
-         // return true;
-
-         //if (iCompare > 0)
-         // return false;
-
-         //return m_strFile.compare(item.m_strFile);
          return false;
 
       }
 
-      bool operator == (const font_enum_item& item) const
+      bool operator == (const font_enumeration_item& item) const
       {
 
          return //m_strFile == item.m_strFile
              m_strName == item.m_strName;
 //            && m_strName == item.m_strName;
-         //                   && m_echarset == item.m_echarset;
+         //                   && m_echaracterset == item.m_echaracterset;
 
       }
 
-      bool operator != (const font_enum_item& item) const { return !this->operator==(item); }
+      bool operator != (const font_enumeration_item& item) const { return !this->operator==(item); }
 
    };
 
 
-   using enum_item_array = __pointer_array(font_enum_item);
+   using enum_item_array = __pointer_array(font_enumeration_item);
 
 
 

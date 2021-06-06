@@ -129,7 +129,7 @@ namespace uwp
       virtual ::e_status update_graphics_resources() override;
 
       // for child windows, views, panes etc
-      //virtual bool create_window(::user::interaction * pinteraction, const char * lpszClassName,const char * lpszWindowName,u32 dwStyle,const RECT32 & rect,::user::interaction * pParentWnd,id id, ::create * pcreate = nullptr) override;
+      //virtual bool create_window(::user::interaction * pinteraction, const char * lpszClassName,const char * lpszWindowName,u32 dwStyle,const RECT32 & rectangle,::user::interaction * pParentWnd,id id, ::create * pcreate = nullptr) override;
 
       virtual bool _native_create_window_ex(::user::system& cs);
 
@@ -141,13 +141,13 @@ namespace uwp
 
       //virtual bool CreateEx(u32 dwExStyle, const char * lpszClassName,
       //                      const char * lpszWindowName, u32 dwStyle,
-      //                      const RECT32& rect,
+      //                      const RECT32& rectangle,
       //                      ::user::interaction* pParentWnd, id id,
       //                      LPVOID lpParam = nullptr);
 
       virtual bool DestroyWindow();
 
-      // special pre-creation and ::user::interaction_impl rect adjustment hooks
+      // special pre-creation and ::user::interaction_impl rectangle adjustment hooks
       virtual bool pre_create_window(::user::system * pusersystem);
 
       // Advanced: virtual AdjustWindowRect
@@ -244,7 +244,7 @@ namespace uwp
       virtual ::draw2d::graphics * GetDCEx(::draw2d::region* prgnClip, u32 flags);
       virtual bool LockWindowUpdate();
       virtual void UnlockWindowUpdate();
-      virtual bool RedrawWindow(const ::rect& rectUpdate = nullptr,
+      virtual bool RedrawWindow(const ::rectangle& rectUpdate = nullptr,
                                 ::draw2d::region* prgnUpdate = nullptr,
                                 ::u32 flags = RDW_INVALIDATE | RDW_ERASE);
       //      virtual bool EnableScrollBar(int nSBFlags, ::u32 nArrowFlags = ESB_ENABLE_BOTH);
@@ -701,11 +701,11 @@ namespace uwp
 
       virtual bool is_text_composition_active() override;
 
-      virtual void set_input_content_rect(const rect& rect);
-      virtual void set_input_selection_rect(const rect& rect);
+      virtual void set_input_content_rect(const rectangle& rectangle);
+      virtual void set_input_selection_rect(const rectangle& rectangle);
 
-      virtual rect get_input_content_rect();
-      virtual rect get_input_selection_rect();
+      virtual rectangle get_input_content_rect();
+      virtual rectangle get_input_selection_rect();
 
 
    };

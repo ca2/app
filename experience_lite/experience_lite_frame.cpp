@@ -34,7 +34,7 @@
 
                m_colorCaptionText = argb(255, 255, 255, 255);
 
-               m_rectClient = ::rectangle_i32();
+               m_rectangleClient = ::rectangle_i32();
 
                //               m_iMargin = 7;
 
@@ -664,7 +664,7 @@
 
                   }
 
-                  //class font_department & fonts = pdraw2d->fonts();
+                  //class fonts & fonts = pdraw2d->fonts();
 
                   string wstrWindowText;
 

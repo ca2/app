@@ -333,20 +333,20 @@ HBRUSH CreateSolidBrush(color32_t cr)
 //
 //
 //
-//void FillSolidRect_dup(HDC hdc, const ::rect & rect, color32_t clr)
+//void FillSolidRect_dup(HDC hdc, const ::rectangle & rectangle, color32_t clr)
 
 //{
 //   CGColorRef color = cg_create_color(clr);
-//   CGRect rect;
-//   rect.origin.x = prect->left;
+//   CGRect rectangle;
+//   rectangle.origin.x = prect->left;
 
-//   rect.origin.y = prect->top;
+//   rectangle.origin.y = prect->top;
 
-//   rect.size.width = prect->right - prect->left;
+//   rectangle.size.width = prect->right - prect->left;
 
-//   rect.size.height = prect->bottom - prect->top;
+//   rectangle.size.height = prect->bottom - prect->top;
 
-//   CGContextFillRect(hdc->m_cgcontext, rect);
+//   CGContextFillRect(hdc->m_cgcontext, rectangle);
 //   cg_release_color(color);
 //}
 
@@ -452,9 +452,9 @@ bool mm_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const char
 //
 //   }
 //
-//   CGRect rect = {{0,0},{(CGFloat)cx,(CGFloat)cy}};
+//   CGRect rectangle = {{0,0},{(CGFloat)cx,(CGFloat)cy}};
 //
-//   CGContextDrawImage(cgctx, rect, inImage);
+//   CGContextDrawImage(cgctx, rectangle, inImage);
 //
 //   void *data = CGBitmapContextGetData (cgctx);
 //
@@ -773,24 +773,24 @@ int_bool get_client_rect(oswindow hwnd, RECT32 * prect)
 
 
 /*
- int FillRect(HDC hdc, const ::rect & prc, HBRUSH hbr)
+ int FillRect(HDC hdc, const ::rectangle & prc, HBRUSH hbr)
 
  {
 
- CGRect rect;
+ CGRect rectangle;
 
- rect.origin.x     = prc->left;
+ rectangle.origin.x     = prc->left;
 
- rect.origin.y     = prc->top;
+ rectangle.origin.y     = prc->top;
 
- rect.size.width   = prc->right - lprc->left;
+ rectangle.size.width   = prc->right - lprc->left;
 
- rect.size.height  = prc->bottom - lprc->top;
+ rectangle.size.height  = prc->bottom - lprc->top;
 
 
  CGContextSetRGBFillColor(hdc->m_cgcontext, colorref_get_r_value(hbr->lbColor), colorref_get_g_value(hbr->lbColor), colorref_get_b_value(hbr->lbColor), colorref_get_a_value(hbr->lbColor));
 
- CGContextFillRect(hdc->m_cgcontext, rect);
+ CGContextFillRect(hdc->m_cgcontext, rectangle);
 
  return 1;
  }
@@ -1088,20 +1088,20 @@ int_bool get_client_rect(oswindow hwnd, RECT32 * prect)
 
 
 
-// void FillSolidRect_dup(HDC hdc, const ::rect & rect, color32_t clr)
+// void FillSolidRect_dup(HDC hdc, const ::rectangle & rectangle, color32_t clr)
 
 // {
 //    CGColorRef color = cg_create_color(clr);
-//    CGRect rect;
-//    rect.origin.x = prect->left;
+//    CGRect rectangle;
+//    rectangle.origin.x = prect->left;
 
-//    rect.origin.y = prect->top;
+//    rectangle.origin.y = prect->top;
 
-//    rect.size.width = prect->right - prect->left;
+//    rectangle.size.width = prect->right - prect->left;
 
-//    rect.size.height = prect->bottom - prect->top;
+//    rectangle.size.height = prect->bottom - prect->top;
 
-//    CGContextFillRect(hdc->m_cgcontext, rect);
+//    CGContextFillRect(hdc->m_cgcontext, rectangle);
 //    cg_release_color(color);
 // }
 

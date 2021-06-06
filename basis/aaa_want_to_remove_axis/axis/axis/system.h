@@ -39,7 +39,7 @@ namespace axis
       //virtual i32 install_progress_app_add_up(int iAddUp = 1) override;
 
       //virtual ::install::canvas * install_create_canvas();
-      //virtual void install_canvas_on_paint(::draw2d::graphics_pointer & pgraphics, const ::rect & rect);
+      //virtual void install_canvas_on_paint(::draw2d::graphics_pointer & pgraphics, const ::rectangle & rectangle);
       //virtual int install_canvas_increment_mode();
 
       //virtual string install_get_platform() override;

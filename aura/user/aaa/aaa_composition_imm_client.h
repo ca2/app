@@ -10,7 +10,7 @@ public:
 
 
 
-   virtual void get_ime_composition_area(::rect & r);
+   virtual void get_ime_composition_area(::rectangle & r);
    virtual bool edit_undo();
 
 

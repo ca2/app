@@ -237,7 +237,7 @@ namespace draw2d
 #include "glyph.h"
 #include "glyph_set.h"
 //#include "font_enumeration.h"
-//#include "font_department.h"
+//#include "fonts.h"
 #include "image_palette.h"
 
 #include "buffered_graphics.h"

@@ -41,7 +41,7 @@ CLASS_DECL_CORE int xinerama_get_screen_size(int& width, int& height);
 
 int best_xinerama_monitor(::user::interaction * pinteraction, RECT32 * prectRet);
 
-int best_xinerama_monitor(::user::interaction * pinteraction, const ::rect & rect, RECT32 * lprectRet);
+int best_xinerama_monitor(::user::interaction * pinteraction, const ::rectangle & rectangle, RECT32 * lprectRet);
 
 
 

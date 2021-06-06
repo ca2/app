@@ -5078,7 +5078,7 @@ namespace draw2d
    }
 
 
-   //void graphics::enum_fonts(::write_text::font_enum_item_array & itema)
+   //void graphics::enum_fonts(::write_text::font_enumeration_item_array & itema)
    //{
 
    //   UNREFERENCED_PARAMETER(itema);
@@ -5088,7 +5088,7 @@ namespace draw2d
    //}
 
 
-   //void graphics::sorted_fonts(::write_text::font_enum_item_array & itema)
+   //void graphics::sorted_fonts(::write_text::font_enumeration_item_array & itema)
    //{
 
    //   enum_fonts(itema);

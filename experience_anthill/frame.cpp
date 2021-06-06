@@ -25,7 +25,7 @@ namespace experience
 
                m_colorCaptionText = argb(255, 255, 255, 255);
 
-               //m_rectClient = nullptr;
+               //m_rectangleClient = nullptr;
 
                //               m_iMargin = 7;
 
@@ -672,7 +672,7 @@ namespace experience
 
                   }
 
-                  //class font_department & fonts = pdraw2d->fonts();
+                  //class fonts & fonts = pdraw2d->fonts();
                   
                   auto pstyle = pframewindow->get_style(pgraphics);
 

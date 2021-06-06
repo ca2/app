@@ -11,6 +11,7 @@ namespace subject
    public:
 
 
+      bool                                m_bNewSubject : 1;
       __pointer(::subject::manager)       m_pmanager;
       ::subject::matter_context           m_mattercontext;
       ::user::enum_key                    m_ekey;
@@ -34,25 +35,16 @@ namespace subject
       virtual ~subject();
 
 
-      //handler(const ::id &id);
-      //handler(::subject::manager * pbacking, const ::id & id);
-      //virtual ~handler();
-
-
 #ifdef DEBUG
+
       virtual i64 add_ref(OBJ_REF_DBG_PARAMS) override;
       virtual i64 dec_ref(OBJ_REF_DBG_PARAMS) override;
       virtual i64 release(OBJ_REF_DBG_PARAMS) override;
+
 #endif
 
       virtual ::e_status step() override;
       virtual ::e_status run() override;
-
-      //virtual void process(const ::payload & payload);
-
-      //virtual void process(const ::action_context & actioncontext);
-
-      //virtual void process();
 
       virtual void deliver(const ::action_context & actioncontext);
 
@@ -66,18 +58,12 @@ namespace subject
 
       virtual ::subject::context * context(::matter * pmatter);
 
-      //virtual ::e_status run() override;
-
       void post_destroy_all();
 
       inline bool is_ending()
       {
 
          return false;
-
-//         synchronous_lock synchronouslock(mutex());
-//
-//         return m_mattercontext.is_empty();
 
       }
 

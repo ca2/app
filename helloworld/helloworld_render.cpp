@@ -88,7 +88,7 @@ namespace helloworld
       m_dMinRadius = 0.0;
       m_dMaxRadius = 0.0;
 
-      m_rectClient.null();
+      m_rectangleClient.null();
 
 
       m_bVoidTransfer = false;
@@ -964,7 +964,7 @@ namespace helloworld
 
 #endif
 
-      if (strHelloWorld == get_helloworld() && m_cx == m_rectClient.width() && m_cy == m_rectClient.height())
+      if (strHelloWorld == get_helloworld() && m_cx == m_rectangleClient.width() && m_cy == m_rectangleClient.height())
       {
 
          m_bFirstDone = true;

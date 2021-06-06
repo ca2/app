@@ -1136,7 +1136,7 @@ namespace user
 
       if(pdrawcontext != nullptr)
       {
-         rectClient     = pdrawcontext->m_rectClient;
+         rectClient     = pdrawcontext->m_rectangleClient;
          bItemHover     = pdrawcontext->m_bListItemHover;
          bSubItemHover  = pdrawcontext->m_bListSubItemHover;
       }

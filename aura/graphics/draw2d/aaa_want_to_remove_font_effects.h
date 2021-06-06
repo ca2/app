@@ -58,7 +58,7 @@ namespace draw2d
       void SetDC(::draw2d::graphics_pointer & pgraphics);
       void embossed_text_out(
       ::draw2d::graphics_pointer & pgraphics,
-      const rect &               pcrect,
+      const rectangle &               pcrect,
 
       double               dRateX,
       double               dHeight,
@@ -66,7 +66,7 @@ namespace draw2d
 
       void embossed_text_out(
       ::draw2d::graphics_pointer & pgraphics,
-      const rect &               pcrect,
+      const rectangle &               pcrect,
 
       double               dRateX,
       double               dHeight,
@@ -87,7 +87,7 @@ namespace draw2d
 
       void TextOutEx(
       ::draw2d::graphics_pointer & pgraphics,
-      const rect &               pcrect,
+      const rectangle &               pcrect,
 
       double               dRateX,
       double               dHeight,

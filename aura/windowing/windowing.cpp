@@ -573,7 +573,7 @@ namespace windowing
    }
 
 
-   //void windowing::enum_draw2d_fonts(::write_text::font_enum_item_array & itema)
+   //void windowing::enum_draw2d_fonts(::write_text::font_enumeration_item_array & itema)
    //{
 
 

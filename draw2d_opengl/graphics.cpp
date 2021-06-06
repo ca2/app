@@ -23,10 +23,10 @@ class draw2d_opengl_enum_fonts
 public:
 
 
-   ::write_text::font_enum_item_array& m_itema;
+   ::write_text::font_enumeration_item_array& m_itema;
 
 
-   draw2d_opengl_enum_fonts(::write_text::font_enum_item_array& itema):
+   draw2d_opengl_enum_fonts(::write_text::font_enumeration_item_array& itema):
       m_itema(itema)
    {
 
@@ -5440,7 +5440,7 @@ namespace draw2d_opengl
    }
 
 
-   void graphics::enum_fonts(::write_text::font_enum_item_array& itema)
+   void graphics::enum_fonts(::write_text::font_enumeration_item_array& itema)
    {
 
       return;

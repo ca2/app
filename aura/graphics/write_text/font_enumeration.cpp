@@ -186,9 +186,9 @@ namespace write_text
 
       //auto pgraphics = ::draw2d::create_memory_graphics();
 
-      __pointer(::write_text::font_enum_item_array) pitema;
+      __pointer(::write_text::font_enumeration_item_array) pitema;
 
-      pitema = __new(::write_text::font_enum_item_array);
+      pitema = __new(::write_text::font_enumeration_item_array);
 
       auto psystem = m_psystem->m_paurasystem;
 
@@ -229,9 +229,9 @@ namespace write_text
 
       //auto g = create_memory_graphics();
 
-      __pointer(::write_text::font_enum_item_array) pitema;
+      __pointer(::write_text::font_enumeration_item_array) pitema;
 
-      pitema = __new(::write_text::font_enum_item_array);
+      pitema = __new(::write_text::font_enumeration_item_array);
 
       auto psystem = m_psystem->m_paurasystem;
 

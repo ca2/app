@@ -5766,7 +5766,7 @@ bool graphics::flush()
 //#if defined(USE_PANGO)
 //
 //
-//void graphics::enum_fonts(::write_text::font_enum_item_array & itema)
+//void graphics::enum_fonts(::write_text::font_enumeration_item_array & itema)
 //{
 //
 //    synchronous_lock ml(cairo_mutex());
@@ -5809,7 +5809,7 @@ bool graphics::flush()
 //#else
 //
 ////
-////void graphics::enum_fonts(::write_text::font_enum_item_array & itema)
+////void graphics::enum_fonts(::write_text::font_enumeration_item_array & itema)
 ////{
 ////
 ////   __pointer(::write_text::font_enumeration_item) pitem;
@@ -6001,7 +6001,7 @@ bool graphics::flush()
 //
 //        string_array stra;
 //
-//        ::write_text::font_enum_item_array itema;
+//        ::write_text::font_enumeration_item_array itema;
 //
 //        enum_fonts(itema);
 //

@@ -539,7 +539,7 @@ namespace draw2d_opengl
       virtual bool draw_line(const point_i32& point1, const point_i32& point2, ::draw2d::pen* ppen);
 
 
-      virtual void enum_fonts(::write_text::font_enum_item_array& itema) override;
+      virtual void enum_fonts(::write_text::font_enumeration_item_array& itema) override;
 
       virtual bool prefer_mapped_image_on_mix();
 

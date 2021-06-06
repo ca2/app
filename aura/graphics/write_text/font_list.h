@@ -71,7 +71,7 @@ namespace write_text
       string                                 m_strFontFamily;
       ::i32                                  m_iLayoutSerial;
       __pointer(font_enumeration)            m_pfontenumeration;
-      __pointer(font_enum_item_array)        m_pitema;
+      __pointer(font_enumeration_item_array)        m_pitema;
 
       __pointer(font_list_data)              m_plistdata;
 

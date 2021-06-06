@@ -558,7 +558,7 @@ namespace draw2d_cairo
 
 //#endif
 
-      //virtual void enum_fonts(::write_text::font_enum_item_array & itema) override;
+      //virtual void enum_fonts(::write_text::font_enumeration_item_array & itema) override;
 
       //virtual ::file::path get_font_path(const string & strName, int iWeight, bool bItalic) override;
 

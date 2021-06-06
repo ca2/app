@@ -83,7 +83,7 @@ namespace apex
 
 
       // apex commented
-      //::write_text::font_enum_item_array                        m_fontenumitema;
+      //::write_text::font_enumeration_item_array                        m_fontenumitema;
 
       //index                                               m_iEdge;
 

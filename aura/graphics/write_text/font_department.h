@@ -12,7 +12,7 @@ namespace write_text
 
 
       __pointer(::write_text::font_enumeration)    m_pfontenumeration;
-      ::write_text::font_enum_item_array           m_fontenumitema;
+      ::write_text::font_enumeration_item_array           m_fontenumitema;
 
 
       font_department();

@@ -7,10 +7,12 @@ namespace write_text
 
    font_enumeration_item::font_enumeration_item()
    {
+
+
    }
 
 
-   font_enumeration_item::font_enumeration_item(string strName) :
+   font_enumeration_item::font_enumeration_item(const string & strName) :
       m_strName(strName)
    {
 
@@ -24,7 +26,9 @@ namespace write_text
 
    }
 
+
 #ifdef WINDOWS
+
 
    font_enumeration_item::font_enumeration_item(const widechar * pwideszName) :
       m_wstrName(pwideszName)
@@ -37,9 +41,11 @@ namespace write_text
 
    }
 
+
 #endif
 
-   font_enumeration_item::font_enumeration_item(string strFile, string strName) :
+
+   font_enumeration_item::font_enumeration_item(const string & strFile, const string & strName) :
       m_strName(strName)
    {
 

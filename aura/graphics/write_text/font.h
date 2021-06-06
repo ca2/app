@@ -194,7 +194,7 @@ namespace write_text
       virtual ~font_enumeration_item();
 
 
-      bool operator < (const font_enum_item & item) const
+      bool operator < (const font_enumeration_item & item) const
       {
 
          int iCompare = m_strName.compare(item.m_strName);
@@ -217,7 +217,7 @@ namespace write_text
 
       }
 
-      bool operator == (const font_enum_item& item) const
+      bool operator == (const font_enumeration_item& item) const
       {
 
          return //m_strFile == item.m_strFile
@@ -227,12 +227,12 @@ namespace write_text
 
       }
 
-      bool operator != (const font_enum_item& item) const { return !this->operator==(item); }
+      bool operator != (const font_enumeration_item& item) const { return !this->operator==(item); }
 
    };
 
 
-   using enum_item_array = __pointer_array(font_enum_item);
+   using enum_item_array = __pointer_array(font_enumeration_item);
 
 
 

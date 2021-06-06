@@ -5,18 +5,18 @@ namespace write_text
 {
 
 
-   class CLASS_DECL_AURA font_department :
+   class CLASS_DECL_AURA fonts :
       virtual public ::acme::department
    {
    public:
 
 
-      __pointer(::write_text::font_enumeration)    m_pfontenumeration;
-      ::write_text::font_enumeration_item_array           m_fontenumitema;
+      __pointer(font_enumeration)                  m_pfontenumeration;
+      ::write_text::font_enumeration_item_array    m_fontenumerationitema;
 
 
-      font_department();
-      virtual ~font_department();
+      fonts();
+      ~fonts() override;
 
 
       ::e_status initialize(::object* pobject) override;
@@ -25,7 +25,7 @@ namespace write_text
       virtual ::e_status enumerate_fonts();
 
 
-      virtual font_enumeration* font_enumeration();
+      virtual font_enumeration* enumeration();
 
 
       virtual string default_font_name();

@@ -10,7 +10,7 @@ namespace write_text
 {
 
 
-   font_department::font_department()
+   fonts::fonts()
    {
 
       defer_create_mutex();
@@ -18,13 +18,13 @@ namespace write_text
    }
 
 
-   font_department::~font_department()
+   fonts::~fonts()
    {
 
    }
 
 
-   ::e_status font_department::initialize(::object* pobject)
+   ::e_status fonts::initialize(::object* pobject)
    {
 
       auto estatus = ::acme::department::initialize(pobject);
@@ -40,8 +40,8 @@ namespace write_text
 
    }
 
-   
-   font_enumeration* font_department::font_enumeration()
+
+   font_enumeration* fonts::enumeration()
    {
 
       synchronous_lock syncronouslock(mutex());
@@ -57,20 +57,20 @@ namespace write_text
 
    }
 
-
-   ::e_status font_department::enumerate_fonts()
+   
+   ::e_status fonts::enumerate_fonts()
    {
+
+      synchronous_lock syncronouslock(mutex());
 
       auto pfontenumeration = __create < ::write_text::font_enumeration >();
 
-      if(!pfontenumeration.m_estatus)
+      if (!pfontenumeration.m_estatus)
       {
 
          return pfontenumeration.m_estatus;
 
       }
-
-      synchronous_lock syncronouslock(mutex());
 
       if (!m_pfontenumeration)
       {
@@ -95,7 +95,7 @@ namespace write_text
    }
 
 
-   string font_department::default_font_name()
+   string fonts::default_font_name()
    {
 
       return "sans-serif";
@@ -103,7 +103,7 @@ namespace write_text
    }
 
 
-   double font_department::font_similarity(const char* pszSystem, const char* pszUser)
+   double fonts::font_similarity(const char* pszSystem, const char* pszUser)
    {
 
       if (::is_null(pszSystem) || ::is_null(pszUser))

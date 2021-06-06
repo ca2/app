@@ -85,7 +85,9 @@ namespace user
          if (m_pfontlist.is_null() || m_pfontlist->get_font_list_type() != ::write_text::font_list::type_wide)
          {
 
-            m_pfontlist = __create_new < ::write_text::font_list >();
+            m_pfontlist = ::__create_new < ::write_text::font_list >();
+
+            m_pfontlist->initialize_font_list(this);
 
             m_pfontlist->set_font_list_type(::write_text::font_list::type_wide);
 

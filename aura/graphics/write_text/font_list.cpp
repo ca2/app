@@ -907,7 +907,9 @@ namespace write_text
 
          m_pfontlistdata = pfontlistdata;
 
-         pfontlistdata->set_size(m_pfontenumerationitema->get_count());
+         auto fontCount = m_pfontenumerationitema->get_count();
+
+         pfontlistdata->set_size(fontCount);
 
       }
       else

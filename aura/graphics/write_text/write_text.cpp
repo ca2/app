@@ -99,7 +99,7 @@ namespace write_text
 
       __pointer(::subject::subject) psubjectHold(psubject);
 
-      auto pfonts = fonts();
+      auto pfonts = this->fonts();
 
       auto estatus = pfonts->enumerate_fonts();
 

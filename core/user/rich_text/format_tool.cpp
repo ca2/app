@@ -591,7 +591,17 @@ namespace user
          if (m_pcomboFamily->m_itemCurrent.is_set())
          {
 
-            m_formata[0]->m_strFontFamily = m_pcomboFamily->m_plist.cast <::user::font_list>()->m_pfontlist->m_pitema->element_at(m_pcomboFamily->m_itemCurrent)->m_strName;
+            auto pcombolist = m_pcomboFamily->m_plist;
+
+            auto itemCurrent = m_pcomboFamily->m_itemCurrent;
+
+            __pointer(::user::font_list) pfontlist = pcombolist;
+
+            auto pfontenumerationitema = pfontlist->m_pfontlist->m_pfontenumerationitema;
+
+            auto pfontenumerationitem = pfontenumerationitema->element_at(itemCurrent);
+
+            m_formata[0]->m_strFontFamily = pfontenumerationitem->m_strName;
 
          }
 

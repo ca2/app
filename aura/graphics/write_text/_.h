@@ -79,6 +79,12 @@ inline ___shape* __new_shape(const ::write_text::draw_text& drawtext)
 
 #include "fonts.h"
 
+#include "text_box.h"
+
+#include "font_list_item.h"
+
+#include "font_list_data.h"
+
 #include "write_text.h"
 
 

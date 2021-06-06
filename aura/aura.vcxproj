@@ -1379,6 +1379,8 @@
     <ClInclude Include="graphics\write_text\fonts.h" />
     <ClInclude Include="graphics\write_text\font_enumeration.h" />
     <ClInclude Include="graphics\write_text\font_list.h" />
+    <ClInclude Include="graphics\write_text\font_list_data.h" />
+    <ClInclude Include="graphics\write_text\font_list_item.h" />
     <ClInclude Include="graphics\write_text\text.h" />
     <ClInclude Include="graphics\write_text\text_box.h" />
     <ClInclude Include="graphics\write_text\text_out.h" />

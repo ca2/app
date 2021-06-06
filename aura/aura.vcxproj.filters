@@ -1022,6 +1022,12 @@
     <ClInclude Include="user\menu_command.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
+    <ClInclude Include="graphics\write_text\font_list_item.h">
+      <Filter>Header Files\graphics\write_text</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\write_text\font_list_data.h">
+      <Filter>Header Files\graphics\write_text</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="graphics\draw2d\apple\image_gif.cpp">

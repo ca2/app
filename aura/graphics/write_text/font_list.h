@@ -5,42 +5,6 @@ namespace write_text
 {
 
 
-   class CLASS_DECL_AURA font_list_item :
-      virtual public object
-   {
-   public:
-
-
-      index                               m_iItem;
-      text_box                            m_box[3];
-      string                              m_strName;
-      string                              m_strFont;
-      string                              m_strSample;
-      enum_character_set_array            m_echaracterseta;
-
-
-      font_list_item();
-      virtual ~font_list_item();
-
-   };
-
-
-   class CLASS_DECL_AURA font_list_data :
-      virtual public __pointer_array(font_list_item)
-   {
-   public:
-
-
-      index             m_iSerial;
-      index             m_iUpdateId;
-      int               m_iBaseSize;
-      int_array         m_iaSize;
-      ::rectangle_i32   m_rectClient;
-      int               m_iUpdatedCount;
-      bool              m_bLayoutStillIntersect;
-
-
-   };
 
 
    class CLASS_DECL_AURA font_list :
@@ -77,7 +41,7 @@ namespace write_text
 
       u32_array                                 m_uaBackgroundColor;
       u32_array                                 m_uaForegroundColor;
-      ::user::interaction *                     m_puserinteraction;
+      __pointer(::user::interaction)            m_puserinteraction;
 
 
       point_i32                                 m_point;
@@ -103,7 +67,7 @@ namespace write_text
       virtual ~font_list();
 
 
-      virtual ::e_status initialize(::object * pobject) override;
+      virtual ::e_status initialize_font_list(::user::interaction * puserinteraction);
 
       virtual void on_subject(::subject::subject * psubject) override;
 

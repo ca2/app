@@ -445,7 +445,7 @@ namespace user
 
       synchronous_lock synchronouslock(m_pfontlist->mutex());
 
-      return m_pfontlist->m_plistdata->element_at(item)->m_strFont;
+      return m_pfontlist->m_pfontlistdata->element_at(item)->m_strFont;
 
    }
 
@@ -464,7 +464,7 @@ namespace user
 
       synchronous_lock synchronouslock(m_pfontlist->mutex());
 
-      return m_pfontlist->m_plistdata->element_at(item)->m_strFont;
+      return m_pfontlist->m_pfontlistdata->element_at(item)->m_strFont;
 
    }
 
@@ -481,7 +481,7 @@ namespace user
 
       }
 
-      if (m_pfontlist->m_iSel >= m_pfontlist->m_plistdata->get_count())
+      if (m_pfontlist->m_iSel >= m_pfontlist->m_pfontlistdata->get_count())
       {
 
          return -1;
@@ -505,7 +505,7 @@ namespace user
 
       }
 
-      if (m_pfontlist->m_iHover >= m_pfontlist->m_plistdata->get_count())
+      if (m_pfontlist->m_iHover >= m_pfontlist->m_pfontlistdata->get_count())
       {
 
          return -1;
@@ -623,12 +623,12 @@ namespace user
 
       if (m_pfontlist.is_set()
          && iItem >= 0
-         && iItem < m_pfontlist->m_plistdata->get_size())
+         && iItem < m_pfontlist->m_pfontlistdata->get_size())
       {
 
          m_pfontlist->m_iSel = iItem;
 
-         m_pointScroll.y = m_pfontlist->m_plistdata->element_at(iItem)->m_box[0].m_rectangle.top;
+         m_pointScroll.y = m_pfontlist->m_pfontlistdata->element_at(iItem)->m_box[0].m_rectangle.top;
 
       }
       else

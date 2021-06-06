@@ -61,43 +61,42 @@ namespace write_text
    protected:
 
 
-      ::rectangle_i32                                 m_rectClient;
-      enum_type                                       m_etype;
+      ::rectangle_i32                           m_rectClient;
+      enum_type                                 m_etype;
 
 
    public:
 
 
-      string                                 m_strFontFamily;
-      ::i32                                  m_iLayoutSerial;
-      __pointer(font_enumeration)            m_pfontenumeration;
-      __pointer(font_enumeration_item_array)        m_pitema;
-
-      __pointer(font_list_data)              m_plistdata;
-
-
-      u32_array                              m_dwaBg;
-      u32_array                              m_dwaFg;
-      ::user::interaction *                  m_puserinteraction;
+      string                                    m_strFontFamily;
+      ::i32                                     m_iLayoutSerial;
+      __pointer(font_enumeration)               m_pfontenumeration;
+      __pointer(font_enumeration_item_array)    m_pfontenumerationitema;
+      __pointer(font_list_data)                 m_pfontlistdata;
 
 
-      point_i32                              m_point;
-      ::size_i32                             m_size;
-      string                                 m_strText;
-      string                                 m_strTextLayout;
+      u32_array                                 m_uaBackgroundColor;
+      u32_array                                 m_uaForegroundColor;
+      ::user::interaction *                     m_puserinteraction;
 
-      ::rectangle_i32                        m_rectMargin;
-      int                                    m_iBaseSizeLayout;
-      millis                                 m_millisLastLayout;
-      __pointer(::thread)                    m_pthreadLayout;
-      bool                                   m_bLayoutWideStillIntersect;
-      int_array                              m_iaSize;
 
-      int                                    m_iSelUpdateId;
-      ::index                                m_iSel;
-      ::index                                m_iHover;
-      bool                                   m_bUpdating;
-      bool                                   m_bUpdatesHooked;
+      point_i32                                 m_point;
+      ::size_i32                                m_size;
+      string                                    m_strText;
+      string                                    m_strTextLayout;
+
+      ::rectangle_i32                           m_rectMargin;
+      int                                       m_iBaseSizeLayout;
+      millis                                    m_millisLastLayout;
+      __pointer(::thread)                       m_pthreadLayout;
+      bool                                      m_bLayoutWideStillIntersect;
+      int_array                                 m_iaSize;
+
+      int                                       m_iSelUpdateId;
+      ::index                                   m_iSel;
+      ::index                                   m_iHover;
+      bool                                      m_bUpdating;
+      bool                                      m_bUpdatesHooked;
 
 
       font_list();

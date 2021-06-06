@@ -1115,7 +1115,7 @@
     <ClCompile Include="graphics\draw2d\task_tool.cpp" />
     <ClCompile Include="graphics\graphics\monitor.cpp" />
     <ClCompile Include="graphics\write_text\font.cpp" />
-    <ClCompile Include="graphics\write_text\font_department.cpp" />
+    <ClCompile Include="graphics\write_text\fonts.cpp" />
     <ClCompile Include="graphics\write_text\font_enumeration.cpp" />
     <ClCompile Include="graphics\write_text\font_list.cpp" />
     <ClCompile Include="graphics\write_text\text_box.cpp" />
@@ -1376,7 +1376,7 @@
     <ClInclude Include="graphics\write_text\contains.h" />
     <ClInclude Include="graphics\write_text\draw_text.h" />
     <ClInclude Include="graphics\write_text\font.h" />
-    <ClInclude Include="graphics\write_text\font_department.h" />
+    <ClInclude Include="graphics\write_text\fonts.h" />
     <ClInclude Include="graphics\write_text\font_enumeration.h" />
     <ClInclude Include="graphics\write_text\font_list.h" />
     <ClInclude Include="graphics\write_text\text.h" />

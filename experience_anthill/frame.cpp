@@ -672,7 +672,7 @@ namespace experience
 
                   }
 
-                  //class font_department & fonts = pdraw2d->fonts();
+                  //class fonts & fonts = pdraw2d->fonts();
                   
                   auto pstyle = pframewindow->get_style(pgraphics);
 

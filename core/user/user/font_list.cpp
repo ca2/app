@@ -156,10 +156,14 @@ namespace user
 
          auto iItem = item.m_iItem;
 
-         if(iItem >= 0 && iItem < m_pfontlist->m_pfontenumeration->m_pitema->get_count())
+         auto pfontenumerationitema = m_pfontlist->m_pfontenumeration->m_pfontenumerationitema;
+
+         if(iItem >= 0 && iItem < pfontenumerationitema->get_count())
          {
 
-            m_pfontlist->m_strFontFamily = m_pfontlist->m_pfontenumeration->m_pitema->element_at((::index) iItem)->m_strName;
+            auto pfontenumerationitem = pfontenumerationitema->element_at((::index)iItem);
+
+            m_pfontlist->m_strFontFamily = pfontenumerationitem->m_strName;
 
          }
          
@@ -205,10 +209,14 @@ namespace user
 
          auto iItem = item.m_iItem;
 
-         if(iItem >= 0 && iItem < m_pfontlist->m_pfontenumeration->m_pitema->get_count())
+         auto pfontenumerationitema = m_pfontlist->m_pfontenumeration->m_pfontenumerationitema;
+
+         if(pfontenumerationitema->contains_index(iItem))
          {
 
-            m_pfontlist->m_strFontFamily = m_pfontlist->m_pfontenumeration->m_pitema->element_at((::index) iItem)->m_strName;
+            auto pfontenumerationitem = pfontenumerationitema->element_at((::index)iItem);
+
+            m_pfontlist->m_strFontFamily = pfontenumerationitem->m_strName;
 
          }
          
@@ -594,10 +602,14 @@ namespace user
 
          auto iItem = current_item().m_iItem;
 
-         if(iItem >= 0 && iItem < m_pfontlist->m_pfontenumeration->m_pitema->get_count())
+         auto pfontenumerationitema = m_pfontlist->m_pfontenumeration->m_pfontenumerationitema;
+
+         if (pfontenumerationitema->contains_index(iItem))
          {
 
-            m_pfontlist->m_strFontFamily = m_pfontlist->m_pfontenumeration->m_pitema->element_at((::index) iItem)->m_strName;
+            auto pfontenumerationitem = pfontenumerationitema->element_at((::index)iItem);
+
+            m_pfontlist->m_strFontFamily = pfontenumerationitem->m_strName;
 
          }
 

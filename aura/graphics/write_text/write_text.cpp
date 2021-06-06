@@ -19,15 +19,15 @@ namespace write_text
    }
 
 
-   class font_department* write_text::fonts()
+   class fonts * write_text::fonts()
    {
 
       synchronous_lock synchronouslock(mutex());
 
-      if (m_pfontdepartment == nullptr)
+      if (m_pfonts == nullptr)
       {
 
-         auto estatus = __construct(m_pfontdepartment);
+         auto estatus = __construct(m_pfonts);
 
          if (!estatus)
          {
@@ -36,7 +36,7 @@ namespace write_text
 
          }
 
-         //estatus = m_pfontdepartment->init1();
+         //estatus = m_pfonts->init1();
 
          //if (!estatus)
          //{
@@ -51,7 +51,7 @@ namespace write_text
 
       }
 
-      return m_pfontdepartment;
+      return m_pfonts;
 
    }
 
@@ -62,10 +62,10 @@ namespace write_text
       try
       {
 
-         if (m_pfontdepartment)
+         if (m_pfonts)
          {
 
-            m_pfontdepartment->finalize();
+            m_pfonts->finalize();
 
          }
 
@@ -85,7 +85,7 @@ namespace write_text
    ::e_status write_text::finalize()
    {
 
-      m_pfontdepartment.release();
+      m_pfonts.release();
 
       auto estatus = ::acme::department::finalize();
 
@@ -99,30 +99,11 @@ namespace write_text
 
       __pointer(::subject::subject) psubjectHold(psubject);
 
-      fork([this, psubjectHold]
-      {
+      auto pfonts = fonts();
 
-         auto pfontdepartment = fonts();
+      auto estatus = pfonts->enumerate_fonts();
 
-         auto estatus = pfontdepartment->enumerate_fonts();
-
-         if (estatus)
-         {
-
-            auto pfontenumeration = pfontdepartment->font_enumeration();
-
-            if (pfontenumeration->m_eventReady.wait(30_s).succeeded())
-            {
-
-               psubjectHold->set_modified();
-
-            }
-
-         }
-
-      });
-
-      return ::success;
+      return estatus;
 
    }
 

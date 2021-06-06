@@ -965,7 +965,7 @@
     <ClInclude Include="graphics\write_text\font_enumeration.h">
       <Filter>Header Files\graphics\write_text</Filter>
     </ClInclude>
-    <ClInclude Include="graphics\write_text\font_department.h">
+    <ClInclude Include="graphics\write_text\fonts.h">
       <Filter>Header Files\graphics\write_text</Filter>
     </ClInclude>
     <ClInclude Include="graphics\write_text\font.h">
@@ -1510,7 +1510,7 @@
     <ClCompile Include="graphics\write_text\font.cpp">
       <Filter>Source Files\graphics\write_text</Filter>
     </ClCompile>
-    <ClCompile Include="graphics\write_text\font_department.cpp">
+    <ClCompile Include="graphics\write_text\fonts.cpp">
       <Filter>Source Files\graphics\write_text</Filter>
     </ClCompile>
     <ClCompile Include="graphics\write_text\font_enumeration.cpp">

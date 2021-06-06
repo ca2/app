@@ -36,19 +36,19 @@ namespace write_text
 
       m_pimage->create(m_size);
 
-      auto colorbg = plist->m_dwaBg[iBox];
+      auto uBackgroundColor = plist->m_uaBackgroundColor[iBox];
 
       m_pimage->g()->set_alpha_mode(::draw2d::alpha_mode_set);
 
-      m_pimage->g()->fill_rectangle(::rectangle_i32(m_size), colorbg);
+      m_pimage->g()->fill_rectangle(::rectangle_i32(m_size), uBackgroundColor);
 
       m_pimage->g()->set_alpha_mode(::draw2d::alpha_mode_blend);
 
       m_pimage->g()->set(m_pfont);
 
-      auto colorfg = plist->m_dwaFg[iBox];
+      auto uForegroundColor = plist->m_uaForegroundColor[iBox];
 
-      m_pimage->g()->set_text_color(colorfg);
+      m_pimage->g()->set_text_color(uForegroundColor);
 
       m_pimage->g()->text_out(plist->m_rectMargin.left, plist->m_rectMargin.top, strText);
 

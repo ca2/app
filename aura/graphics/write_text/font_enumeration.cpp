@@ -32,8 +32,6 @@ namespace write_text
 
       }
 
-      //psystem->add_process(id_os_font_change, this);
-
       return estatus;
 
    }
@@ -53,7 +51,6 @@ namespace write_text
          }
 
       }
-
 
    }
 
@@ -99,12 +96,12 @@ namespace write_text
    }
 
 
-   __pointer(::write_text::font_enum_item) font_enumeration::similar_font(const char* psz)
+   __pointer(::write_text::font_enumeration_item) font_enumeration::similar_font(const char* psz)
    {
 
       synchronous_lock synchronouslock(mutex());
 
-      __pointer(::write_text::font_enum_item) pitemFound;
+      __pointer(::write_text::font_enumeration_item) pitemFound;
 
       double dMaxSimilarity = 0.2;
 
@@ -197,7 +194,9 @@ namespace write_text
 
       auto pdraw2d = psystem->draw2d();
 
-      pdraw2d->write_text()->fonts()->sorted_fonts(*pitema);
+      enumerate_fonts();
+
+      sort_fonts();
 
       if (m_pitema.is_set() && ::papaya::array::are_all_elements_equal(*pitema, *m_pitema))
       {
@@ -223,7 +222,7 @@ namespace write_text
    }
 
 
-   bool font_enumeration::update()
+   ::e_status font_enumeration::update()
    {
 
       m_bUpdating = true;
@@ -238,7 +237,27 @@ namespace write_text
 
       auto pdraw2d = psystem->draw2d();
 
-      pdraw2d->write_text()->fonts()->sorted_fonts(*pitema);
+      auto estatus = enumerate_fonts();
+
+      if (!estatus)
+      {
+
+         output_debug_string("write_text::font_enumeration Failed to enumerate fonts");
+
+         return estatus;
+
+      }
+
+      estatus = sort_fonts();
+
+      if (!estatus)
+      {
+
+         output_debug_string("write_text::font_enumeration Failed to sort fonts");
+
+         //return estatus;
+
+      }
 
       m_pitema = pitema;
 
@@ -246,13 +265,51 @@ namespace write_text
 
       m_bUpdating = false;
 
-      //psubject->set_modified();
+      return estatus;
 
-      return true;
+   }
+
+
+   ::e_status font_enumeration::enumerate_fonts()
+   {
+
+      on_enumerate_fonts();
+
+      sort_fonts();
+
+      m_eventReady.SetEvent();
+
+      return ::success;
+
+   }
+
+
+   ::e_status font_enumeration::sort_fonts()
+   {
+
+      ::sort::array::predicate_sort(*m_pitema, [&](auto& a, auto& b)
+      {
+
+         return a->m_strName < b->m_strName;
+
+      });
+
+      return ::success;
+
+   }
+
+
+   ::e_status font_enumeration::on_enumerate_fonts()
+   {
+
+      __throw(error_interface_only);
+
+      return ::error_interface_only;
 
    }
 
 
 } // namespace write_text
+
 
 

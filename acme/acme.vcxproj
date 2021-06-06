@@ -1688,7 +1688,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClInclude Include="const\button_state.h" />
     <ClInclude Include="const\code_page.h" />
     <ClInclude Include="const\future.h" />
-    <ClInclude Include="const\charset.h" />
+    <ClInclude Include="const\character_set.h" />
     <ClInclude Include="const\check.h" />
     <ClInclude Include="const\context.h" />
     <ClInclude Include="const\GLOBAL_ID.h" />

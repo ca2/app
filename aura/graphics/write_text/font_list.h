@@ -16,7 +16,7 @@ namespace write_text
       string                              m_strName;
       string                              m_strFont;
       string                              m_strSample;
-      ::char_set_array                    m_echarseta;
+      enum_character_set_array            m_echaracterseta;
 
 
       font_list_item();
@@ -110,9 +110,9 @@ namespace write_text
 
       virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
 
-      virtual void defer_font_enumeration(::subject::subject * psubject);
-      virtual void update_font_enumeration(::subject::subject * psubject);
-      virtual void sync_font_enumeration(::subject::subject * psubject);
+      //virtual void defer_enumerate_fonts(::subject::subject * psubject);
+      //virtual void enumerate_fonts(::subject::subject * psubject);
+      //virtual void sync_enumerate_fonts(::subject::subject * psubject);
 
       virtual void update_extents();
       virtual void update_extents(font_list_data * plistdata, font_list_item * pitem, ::draw2d::graphics_pointer & pgraphics, index iBox);

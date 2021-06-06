@@ -67,7 +67,7 @@ namespace draw2d
 
       critical_section_lock synchronouslock(::aura::g_pcsFont);
 
-      __pointer(::write_text::font_enum_item) pitem;
+      __pointer(::write_text::font_enumeration_item) pitem;
 
       double dAndroid = 4.4;
 
@@ -118,7 +118,7 @@ namespace draw2d
 
                   ::file::path path = (*::aura::g_pmapFontFaceName)[strFamily][iKey];
 
-                  //pitem = __new(::write_text::font_enum_item);
+                  //pitem = __new(::write_text::font_enumeration_item);
 
                   //pitem->m_mapFileName[iKey] = path;
 
@@ -142,7 +142,7 @@ namespace draw2d
                   for (auto & pair : (*::aura::g_pmapFontFaceName)[strFamily])
                   {
                      
-                     //pitem = __new(::write_text::font_enum_item);
+                     //pitem = __new(::write_text::font_enumeration_item);
 
                      //pitem->m_mapFileName[pair.m_element1] = pair.m_element2;
 
@@ -212,7 +212,7 @@ namespace draw2d
 
                         path /= strFile;
 
-                        pitem = __new(::write_text::font_enum_item);
+                        pitem = __new(::write_text::font_enumeration_item);
 
                         if (::file_exists(path))
                         {
@@ -245,7 +245,7 @@ namespace draw2d
 
                   strFamily = pfamily->attribute("name");
 
-                  pitem = __new(::write_text::font_enum_item);
+                  pitem = __new(::write_text::font_enumeration_item);
 
                   pitem->m_strName = strFamily;
 
@@ -319,7 +319,7 @@ namespace draw2d
             for (auto & path : patha)
             {
 
-               pitem = __new(::write_text::font_enum_item);
+               pitem = __new(::write_text::font_enumeration_item);
 
                pitem->m_mapFileName[0] = path;
 
@@ -350,7 +350,7 @@ namespace draw2d
 
 #ifdef pnode->font_name(e_font_mono)
 
-         pitem = __new(::write_text::font_enum_item);
+         pitem = __new(::write_text::font_enumeration_item);
 
          pitem->m_mapFileName[0] = pnode->font_name(e_font_mono);
 
@@ -363,7 +363,7 @@ namespace draw2d
 
 #ifdef pnode->font_name(e_font_sans)
 
-         pitem = __new(::write_text::font_enum_item);
+         pitem = __new(::write_text::font_enumeration_item);
 
          pitem->m_mapFileName[0] = pnode->font_name(e_font_sans);
 
@@ -376,7 +376,7 @@ namespace draw2d
 
 #ifdef pnode->font_name(e_font_serif)
 
-         pitem = __new(::write_text::font_enum_item);
+         pitem = __new(::write_text::font_enumeration_item);
 
          pitem->m_mapFileName[0] = pnode->font_name(e_font_serif);
 
@@ -389,7 +389,7 @@ namespace draw2d
 
 #ifdef pnode->font_name(e_font_sans_ex)
 
-         pitem = __new(::write_text::font_enum_item);
+         pitem = __new(::write_text::font_enumeration_item);
 
          pitem->m_mapFileName[0] = pnode->font_name(e_font_sans_ex);
 
@@ -402,7 +402,7 @@ namespace draw2d
 
 #ifdef pnode->font_name(e_font_serif_ex)
 
-         pitem = __new(::write_text::font_enum_item);
+         pitem = __new(::write_text::font_enumeration_item);
 
          pitem->m_mapFileName[0] = pnode->font_name(e_font_serif_ex);
 
@@ -415,7 +415,7 @@ namespace draw2d
 
 #ifdef pnode->font_name(e_font_sans_fx)
 
-         pitem = __new(::write_text::font_enum_item);
+         pitem = __new(::write_text::font_enumeration_item);
 
          pitem->m_mapFileName[0] = pnode->font_name(e_font_sans_fx);
 
@@ -428,7 +428,7 @@ namespace draw2d
 
 #ifdef pnode->font_name(e_font_serif_fx)
 
-         pitem = __new(::write_text::font_enum_item);
+         pitem = __new(::write_text::font_enumeration_item);
 
          pitem->m_mapFileName[0] = pnode->font_name(e_font_serif_fx);
 
@@ -441,7 +441,7 @@ namespace draw2d
 
 #ifdef FONT_SANS_FX2
 
-         pitem = __new(::write_text::font_enum_item);
+         pitem = __new(::write_text::font_enumeration_item);
 
          pitem->m_mapFileName[0] = FONT_SANS_FX2;
 

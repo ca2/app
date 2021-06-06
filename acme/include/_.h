@@ -1726,10 +1726,10 @@ namespace write_text
 {
 
    
-   class font_enum_item;
+   class font_enumeration_item;
 
 
-   using font_enum_item_array = __pointer_array(font_enum_item);
+   using font_enum_item_array = __pointer_array(font_enumeration_item);
 
 
 } // namespace write_text

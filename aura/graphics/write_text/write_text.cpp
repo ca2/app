@@ -19,7 +19,7 @@ namespace write_text
    }
 
 
-   class font_department * write_text::fonts()
+   class font_department* write_text::fonts()
    {
 
       synchronous_lock synchronouslock(mutex());
@@ -46,7 +46,7 @@ namespace write_text
          //}
 
          __pointer(::aura::system) psystem = m_psystem;
-         
+
          psystem->process_subject(id_font_enumeration);
 
       }
@@ -90,6 +90,39 @@ namespace write_text
       auto estatus = ::acme::department::finalize();
 
       return estatus;
+
+   }
+
+
+   ::e_status write_text::handle_font_enumeration(::subject::subject* psubject)
+   {
+
+      __pointer(::subject::subject) psubjectHold(psubject);
+
+      fork([this, psubjectHold]
+      {
+
+         auto pfontdepartment = fonts();
+
+         auto estatus = pfontdepartment->enumerate_fonts();
+
+         if (estatus)
+         {
+
+            auto pfontenumeration = pfontdepartment->font_enumeration();
+
+            if (pfontenumeration->m_eventReady.wait(30_s).succeeded())
+            {
+
+               psubjectHold->set_modified();
+
+            }
+
+         }
+
+      });
+
+      return ::success;
 
    }
 

@@ -6527,7 +6527,7 @@ namespace aura
          if (psubject->m_id == id_font_enumeration)
          {
 
-            draw2d()->write_text()->fonts()->defer_create_font_enumeration(psubject);
+            draw2d()->write_text()->handle_font_enumeration(psubject);
 
          }
          else if (psubject->m_id == id_os_dark_mode)

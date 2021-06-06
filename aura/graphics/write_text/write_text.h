@@ -30,10 +30,15 @@ namespace write_text
 
       //virtual double font_similarity(const char * pszSystem, const char * pszUser);
 
+
+      virtual ::e_status handle_font_enumeration(::subject::subject* psubject);
+
       
       virtual font_pointer point_font(const char * pszFontName, double dFontSize, int iFontWeight = e_font_weight_normal);
 
+
       virtual font_pointer create_font();
+
 
    };
 

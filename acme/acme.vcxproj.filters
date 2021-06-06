@@ -2375,7 +2375,7 @@
     <ClInclude Include="const\_const.h">
       <Filter>Header Files\const</Filter>
     </ClInclude>
-    <ClInclude Include="const\charset.h">
+    <ClInclude Include="const\character_set.h">
       <Filter>Header Files\const</Filter>
     </ClInclude>
     <ClInclude Include="const\check.h">

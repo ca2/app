@@ -656,7 +656,7 @@ namespace android
 //
 //      critical_section_lock synchronouslock(::apex::g_pcsFont);
 //
-//      __pointer(::write_text::font_enum_item) pitem;
+//      __pointer(::write_text::font_enumeration_item) pitem;
 //
 //      double dAndroid = 4.4;
 //
@@ -725,7 +725,7 @@ namespace android
 //
 //                        path /= strFile;
 //
-//                        pitem = __new(::write_text::font_enum_item);
+//                        pitem = __new(::write_text::font_enumeration_item);
 //
 //                        if (::file_exists(path))
 //                        {
@@ -771,7 +771,7 @@ namespace android
 //            for (auto& path : patha)
 //            {
 //
-//               pitem = __new(::write_text::font_enum_item);
+//               pitem = __new(::write_text::font_enumeration_item);
 //
 //               pitem->m_strFile = path;
 //
@@ -802,7 +802,7 @@ namespace android
 //
 //#ifdef pnode->font_name(e_font_mono)
 //
-//         pitem = __new(::write_text::font_enum_item);
+//         pitem = __new(::write_text::font_enumeration_item);
 //
 //         pitem->m_strFile = pnode->font_name(e_font_mono);
 //
@@ -815,7 +815,7 @@ namespace android
 //
 //#ifdef pnode->font_name(e_font_sans)
 //
-//         pitem = __new(::write_text::font_enum_item);
+//         pitem = __new(::write_text::font_enumeration_item);
 //
 //         pitem->m_strFile = pnode->font_name(e_font_sans);
 //
@@ -828,7 +828,7 @@ namespace android
 //
 //#ifdef pnode->font_name(e_font_serif)
 //
-//         pitem = __new(::write_text::font_enum_item);
+//         pitem = __new(::write_text::font_enumeration_item);
 //
 //         pitem->m_strFile = pnode->font_name(e_font_serif);
 //
@@ -841,7 +841,7 @@ namespace android
 //
 //#ifdef pnode->font_name(e_font_sans_ex)
 //
-//         pitem = __new(::write_text::font_enum_item);
+//         pitem = __new(::write_text::font_enumeration_item);
 //
 //         pitem->m_strFile = pnode->font_name(e_font_sans_ex);
 //
@@ -854,7 +854,7 @@ namespace android
 //
 //#ifdef pnode->font_name(e_font_serif_ex)
 //
-//         pitem = __new(::write_text::font_enum_item);
+//         pitem = __new(::write_text::font_enumeration_item);
 //
 //         pitem->m_strFile = pnode->font_name(e_font_serif_ex);
 //
@@ -867,7 +867,7 @@ namespace android
 //
 //#ifdef pnode->font_name(e_font_sans_fx)
 //
-//         pitem = __new(::write_text::font_enum_item);
+//         pitem = __new(::write_text::font_enumeration_item);
 //
 //         pitem->m_strFile = pnode->font_name(e_font_sans_fx);
 //
@@ -880,7 +880,7 @@ namespace android
 //
 //#ifdef pnode->font_name(e_font_serif_fx)
 //
-//         pitem = __new(::write_text::font_enum_item);
+//         pitem = __new(::write_text::font_enumeration_item);
 //
 //         pitem->m_strFile = pnode->font_name(e_font_serif_fx);
 //
@@ -893,7 +893,7 @@ namespace android
 //
 //#ifdef FONT_SANS_FX2
 //
-//         pitem = __new(::write_text::font_enum_item);
+//         pitem = __new(::write_text::font_enumeration_item);
 //
 //         pitem->m_strFile = FONT_SANS_FX2;
 //

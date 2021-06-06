@@ -2,30 +2,30 @@
 
 
 
-enum e_char_set
+enum enum_character_set
 {
 
-   char_set_none,
-   char_set_ansi,
-   char_set_default,
-   char_set_symbol,
-   char_set_shiftjis,
-   char_set_hangeul,
-   char_set_hangul,
-   char_set_gb2312,
-   char_set_chinesebig5,
-   char_set_johab,
-   char_set_hebrew,
-   char_set_arabic,
-   char_set_greek,
-   char_set_turkish,
-   char_set_vietnamese,
-   char_set_thai,
-   char_set_easteurope,
-   char_set_russian,
-   char_set_mac,
-   char_set_baltic,
-   char_set_count
+   e_character_set_none,
+   e_character_set_ansi,
+   e_character_set_default,
+   e_character_set_symbol,
+   e_character_set_shiftjis,
+   e_character_set_hangeul,
+   e_character_set_hangul,
+   e_character_set_gb2312,
+   e_character_set_chinesebig5,
+   e_character_set_johab,
+   e_character_set_hebrew,
+   e_character_set_arabic,
+   e_character_set_greek,
+   e_character_set_turkish,
+   e_character_set_vietnamese,
+   e_character_set_thai,
+   e_character_set_easteurope,
+   e_character_set_russian,
+   e_character_set_mac,
+   e_character_set_baltic,
+   e_character_set_count
 
 };
 

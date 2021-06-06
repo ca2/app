@@ -5781,12 +5781,12 @@ bool graphics::flush()
 //
 //    printf("Total fonts: %d", n_families);
 //
-//    __pointer(::write_text::font_enum_item) item;
+//    __pointer(::write_text::font_enumeration_item) item;
 //
 //    for (int i = 0; i < n_families; i++)
 //    {
 //
-//        item = __new(::write_text::font_enum_item);
+//        item = __new(::write_text::font_enumeration_item);
 //
 //        PangoFontFamily * pfamily = families[i];
 //
@@ -5812,7 +5812,7 @@ bool graphics::flush()
 ////void graphics::enum_fonts(::write_text::font_enum_item_array & itema)
 ////{
 ////
-////   __pointer(::write_text::font_enum_item) pitem;
+////   __pointer(::write_text::font_enumeration_item) pitem;
 ////
 ////#if DEBUG_WINDOWS_C_ANDROID_FONTS
 ////
@@ -5827,7 +5827,7 @@ bool graphics::flush()
 ////   for (auto& path : listing)
 ////   {
 ////
-////      pitem = __new(::write_text::font_enum_item);
+////      pitem = __new(::write_text::font_enumeration_item);
 ////
 ////      pitem->m_strFile = path;
 ////
@@ -5893,7 +5893,7 @@ bool graphics::flush()
 ////   for (i = 0; fs && i < fs->nfont; i++)
 ////   {
 ////
-////      pitem = __new(::write_text::font_enum_item);
+////      pitem = __new(::write_text::font_enumeration_item);
 ////
 ////      FcPattern * font = fs->fonts[i];//FcFontSetFont(fs, i);
 ////

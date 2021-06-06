@@ -60,78 +60,78 @@ namespace write_text
    }
 
 
-   void font_list::defer_font_enumeration(::subject::subject * psubject)
-   {
+   //void font_list::defer_font_enumeration(::subject::subject * psubject)
+   //{
 
-      try
-      {
+   //   try
+   //   {
 
-         synchronous_lock synchronouslock(mutex());
+   //      synchronous_lock synchronouslock(mutex());
 
-         if (m_pfontenumeration.is_null())
-         {
+   //      if (m_pfontenumeration.is_null())
+   //      {
 
-            auto psystem = m_psystem->m_paurasystem;
+   //         auto psystem = m_psystem->m_paurasystem;
 
-            auto pdraw2d = psystem->draw2d();
+   //         auto pdraw2d = psystem->draw2d();
 
-            pdraw2d->write_text()->fonts()->defer_create_font_enumeration(psubject);
+   //         pdraw2d->write_text()->fonts()->defer_create_font_enumeration(psubject);
 
-            m_pfontenumeration = pdraw2d->write_text()->fonts()->m_pfontenumeration;
+   //         m_pfontenumeration = pdraw2d->write_text()->fonts()->m_pfontenumeration;
 
-         }
+   //      }
 
-      }
-      catch (...)
-      {
+   //   }
+   //   catch (...)
+   //   {
 
-      }
+   //   }
 
-   }
-
-
-   void font_list::update_font_enumeration(::subject::subject * psubject)
-   {
-
-      try
-      {
-
-         synchronous_lock synchronouslock(mutex());
-
-         defer_font_enumeration(psubject);
-
-         m_pfontenumeration->update();
-         
-         psubject->set_modified();
-
-      }
-      catch (...)
-      {
-
-      }
-
-   }
+   //}
 
 
-   void font_list::sync_font_enumeration(::subject::subject * psubject)
-   {
+   //void font_list::update_font_enumeration(::subject::subject * psubject)
+   //{
 
-      try
-      {
+   //   try
+   //   {
 
-         synchronous_lock synchronouslock(mutex());
+   //      synchronous_lock synchronouslock(mutex());
 
-         defer_font_enumeration(psubject);
+   //      defer_font_enumeration(psubject);
 
-         m_pitema = m_pfontenumeration->m_pitema;
+   //      m_pfontenumeration->update();
+   //      
+   //      psubject->set_modified();
 
-      }
-      catch (...)
-      {
+   //   }
+   //   catch (...)
+   //   {
 
-      }
+   //   }
 
-   }
+   //}
+
+
+   //void font_list::sync_font_enumeration(::subject::subject * psubject)
+   //{
+
+   //   try
+   //   {
+
+   //      synchronous_lock synchronouslock(mutex());
+
+   //      defer_font_enumeration(psubject);
+
+   //      m_pitema = m_pfontenumeration->m_pitema;
+
+   //   }
+   //   catch (...)
+   //   {
+
+   //   }
+
+   //}
 
 
    bool font_list::set_sel_by_name(string str)
@@ -464,7 +464,7 @@ namespace write_text
 
          pgraphics->set(pbox->m_pfont);
 
-         pbox->m_pfont->m_echarseta = pitem->m_echarseta;
+         pbox->m_pfont->m_echaracterseta = pitem->m_echaracterseta;
 
          if (iBox == 0)
          {
@@ -472,11 +472,11 @@ namespace write_text
             strText = m_strTextLayout;
 
             if (strText.is_empty() ||
-               (pbox->m_pfont->get_char_set(pgraphics) != ::char_set_ansi
-                  && pbox->m_pfont->get_char_set(pgraphics) != ::char_set_default))
+               (pbox->m_pfont->get_character_set(pgraphics) != ::e_character_set_ansi
+                  && pbox->m_pfont->get_character_set(pgraphics) != ::e_character_set_default))
             {
 
-               strText = ::write_text::font::get_sample_text(pbox->m_pfont->m_echarset);
+               strText = ::write_text::font::get_sample_text(pbox->m_pfont->m_echaracterset);
 
                if (strText.is_empty())
                {
@@ -501,7 +501,7 @@ namespace write_text
 
                int maxarea = 0;
 
-               ::e_char_set echarsetFound = pbox->m_pfont->get_char_set(pgraphics);
+               ::enum_character_set echarsetFound = pbox->m_pfont->get_character_set(pgraphics);
 
                size_i32 sSample;
 
@@ -555,7 +555,7 @@ namespace write_text
 
                }
 
-               pbox->m_pfont->m_echarset = echarsetFound;
+               pbox->m_pfont->m_echaracterset = echarsetFound;
 
             }
 
@@ -565,7 +565,7 @@ namespace write_text
          else
          {
 
-            pbox->m_pfont->m_echarset = pitem->m_box[0].m_pfont->m_echarset;
+            pbox->m_pfont->m_echaracterset = pitem->m_box[0].m_pfont->m_echaracterset;
 
             s = pgraphics->GetTextExtent(pitem->m_strSample);
 
@@ -680,14 +680,13 @@ namespace write_text
       if (eid == id_font_enumeration)
       {
 
-         sync_font_enumeration(psubject);
+         auto psystem = m_psystem->m_paurasystem;
 
-         if (!m_rectClient.is_empty())
-         {
+         auto pdraw2d = psystem->draw2d();
 
-            psubject->set_modified();
+         auto pwritetext = pdraw2d->write_text();
 
-         }
+         pwritetext->handle_font_enumeration(psubject);
 
       }
       else if (eid == id_font_extents)
@@ -983,7 +982,7 @@ namespace write_text
 
          __pointer(font_list_item) plistitem;
 
-         __pointer(font_enum_item) penumitem;
+         __pointer(font_enumeration_item) penumitem;
 
          single_lock lock(mutex());
 
@@ -1036,7 +1035,7 @@ namespace write_text
 
                plistitem->m_strName = penumitem->m_strName;
 
-               plistitem->m_echarseta = penumitem->m_echarseta;
+               plistitem->m_echaracterseta = penumitem->m_echaracterseta;
 
             }
             else if (plistitem->m_strFont != penumitem->m_mapFileName[0])

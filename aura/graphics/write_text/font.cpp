@@ -5,12 +5,12 @@ namespace write_text
 {
 
 
-   font_enum_item::font_enum_item()
+   font_enumeration_item::font_enumeration_item()
    {
    }
 
 
-   font_enum_item::font_enum_item(string strName) :
+   font_enumeration_item::font_enumeration_item(string strName) :
       m_strName(strName)
    {
 
@@ -26,7 +26,7 @@ namespace write_text
 
 #ifdef WINDOWS
 
-   font_enum_item::font_enum_item(const widechar * pwideszName) :
+   font_enumeration_item::font_enumeration_item(const widechar * pwideszName) :
       m_wstrName(pwideszName)
    {
 
@@ -39,7 +39,7 @@ namespace write_text
 
 #endif
 
-   font_enum_item::font_enum_item(string strFile, string strName) :
+   font_enumeration_item::font_enumeration_item(string strFile, string strName) :
       m_strName(strName)
    {
 
@@ -54,7 +54,7 @@ namespace write_text
    }
 
 
-   font_enum_item::~font_enum_item()
+   font_enumeration_item::~font_enumeration_item()
    {
 
    }
@@ -72,7 +72,7 @@ namespace write_text
       m_bUnderline = false;
       m_bStrikeout = false;
       m_erendering = e_rendering_undefined;
-      m_echarset = char_set_none;
+      m_echaracterset = e_character_set_none;
 
    }
 
@@ -170,8 +170,8 @@ namespace write_text
          m_bItalic = fontSrc.m_bItalic;
          m_bUnderline = fontSrc.m_bUnderline;
          m_bStrikeout = fontSrc.m_bStrikeout;
-         m_echarseta = fontSrc.m_echarseta;
-         m_echarset = fontSrc.m_echarset;
+         m_echaracterseta = fontSrc.m_echaracterseta;
+         m_echaracterset = fontSrc.m_echaracterset;
          set_modified();
 
       }
@@ -249,112 +249,112 @@ namespace write_text
    }
 
 
-   ::e_char_set font::get_char_set(::draw2d::graphics * pgraphics)
+   ::enum_character_set font::get_character_set(::draw2d::graphics * pgraphics)
    {
 
-      if (m_echarset == char_set_none)
+      if (m_echaracterset == e_character_set_none)
       {
 
-         m_echarset = calc_char_set(pgraphics);
+         m_echaracterset = calculate_character_set(pgraphics);
 
       }
 
-      return m_echarset;
+      return m_echaracterset;
 
    }
 
 
-   ::e_char_set font::calc_char_set(::draw2d::graphics * pgraphics)
+   ::enum_character_set font::calculate_character_set(::draw2d::graphics * pgraphics)
    {
 
-      if (m_echarseta.get_count() == 1)
+      if (m_echaracterseta.get_count() == 1)
       {
 
-         return m_echarseta[0];
+         return m_echaracterseta[0];
 
       }
 
-      return char_set_default;
+      return e_character_set_default;
 
    }
 
 
-   string font::get_sample_text(e_char_set echarset)
+   string font::get_sample_text(enum_character_set echarset)
    {
 
-      if (echarset == char_set_chinesebig5)
+      if (echarset == e_character_set_chinesebig5)
       {
 
          return unitext("示例文本");
 
       }
-      else if (echarset == char_set_gb2312)
+      else if (echarset == e_character_set_gb2312)
       {
 
          return unitext("示例文本");
 
       }
-      else if (echarset == char_set_shiftjis)
+      else if (echarset == e_character_set_shiftjis)
       {
 
          return unitext("サンプルテキスト");
 
       }
-      else if (echarset == char_set_hebrew)
+      else if (echarset == e_character_set_hebrew)
       {
 
          return unitext("טקסט לדוגמה");
 
       }
-      else if (echarset == char_set_arabic)
+      else if (echarset == e_character_set_arabic)
       {
 
          return unitext("نص بسيط");
 
       }
-      else if (echarset == char_set_greek)
+      else if (echarset == e_character_set_greek)
       {
 
          return unitext("Δείγμα κειμένου");
 
       }
-      else if (echarset == char_set_turkish)
+      else if (echarset == e_character_set_turkish)
       {
 
          return unitext("Örnek yazı");
 
       }
-      else if (echarset == char_set_vietnamese)
+      else if (echarset == e_character_set_vietnamese)
       {
 
          return unitext("văn bản mẫu");
 
       }
-      else if (echarset == char_set_thai)
+      else if (echarset == e_character_set_thai)
       {
 
          return unitext("ตัวอย่างข้อความ");
 
       }
-      else if (echarset == char_set_easteurope)
+      else if (echarset == e_character_set_easteurope)
       {
 
          return unitext("Sample Text");
 
       }
-      else if (echarset == char_set_russian)
+      else if (echarset == e_character_set_russian)
       {
 
          return unitext("Образец текста");
 
       }
-      else if (echarset == char_set_johab)
+      else if (echarset == e_character_set_johab)
       {
 
          return unitext("샘플 텍스트");
 
       }
-      else if (echarset == char_set_hangul)
+      else if (echarset == e_character_set_hangul)
       {
 
          return unitext("샘플 텍스트");
@@ -369,7 +369,7 @@ namespace write_text
    string font::get_sample_text(::draw2d::graphics * pgraphics)
    {
 
-      auto ecs = get_char_set(pgraphics);
+      auto ecs = get_character_set(pgraphics);
 
       string str = get_sample_text(ecs);
 

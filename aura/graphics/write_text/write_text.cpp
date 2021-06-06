@@ -36,16 +36,7 @@ namespace write_text
 
          }
 
-         //estatus = m_pfonts->init1();
-
-         //if (!estatus)
-         //{
-
-         //   return nullptr;
-
-         //}
-
-         __pointer(::aura::system) psystem = m_psystem;
+         auto psystem = m_psystem->m_paurasystem;
 
          psystem->process_subject(id_font_enumeration);
 

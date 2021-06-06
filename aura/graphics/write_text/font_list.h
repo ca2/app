@@ -60,7 +60,8 @@ namespace write_text
       ::index                                   m_iSel;
       ::index                                   m_iHover;
       bool                                      m_bUpdating;
-      bool                                      m_bUpdatesHooked;
+      bool                                      m_bNewListType;
+      //bool                                      m_bUpdatesHooked;
 
 
       font_list();
@@ -80,10 +81,6 @@ namespace write_text
       virtual void update_extents();
       virtual void update_extents(font_list_data * plistdata, font_list_item * pitem, ::draw2d::graphics_pointer & pgraphics, index iBox);
       
-      virtual void set_need_layout();
-
-      virtual void set_need_redraw();
-
       virtual void layout();
       virtual ::size_i32 layout_wide();
       virtual ::size_i32 layout_single_column();

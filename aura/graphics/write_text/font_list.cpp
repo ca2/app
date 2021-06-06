@@ -27,7 +27,7 @@ namespace write_text
    font_list::font_list()
    {
 
-      m_bUpdatesHooked = false;
+      m_bNewListType = false;
 
       m_bUpdating = false;
 
@@ -58,80 +58,6 @@ namespace write_text
 
 
    }
-
-
-   //void font_list::defer_font_enumeration(::subject::subject * psubject)
-   //{
-
-   //   try
-   //   {
-
-   //      synchronous_lock synchronouslock(mutex());
-
-   //      if (m_pfontenumeration.is_null())
-   //      {
-
-   //         auto psystem = m_psystem->m_paurasystem;
-
-   //         auto pdraw2d = psystem->draw2d();
-
-   //         pdraw2d->write_text()->fonts()->defer_create_font_enumeration(psubject);
-
-   //         m_pfontenumeration = pdraw2d->write_text()->fonts()->m_pfontenumeration;
-
-   //      }
-
-   //   }
-   //   catch (...)
-   //   {
-
-   //   }
-
-   //}
-
-
-   //void font_list::update_font_enumeration(::subject::subject * psubject)
-   //{
-
-   //   try
-   //   {
-
-   //      synchronous_lock synchronouslock(mutex());
-
-   //      defer_font_enumeration(psubject);
-
-   //      m_pfontenumeration->update();
-   //      
-   //      psubject->set_modified();
-
-   //   }
-   //   catch (...)
-   //   {
-
-   //   }
-
-   //}
-
-
-   //void font_list::sync_font_enumeration(::subject::subject * psubject)
-   //{
-
-   //   try
-   //   {
-
-   //      synchronous_lock synchronouslock(mutex());
-
-   //      defer_font_enumeration(psubject);
-
-   //      m_pfontenumerationitema = m_pfontenumeration->m_pfontenumerationitema;
-
-   //   }
-   //   catch (...)
-   //   {
-
-   //   }
-
-   //}
 
 
    bool font_list::set_sel_by_name(string str)
@@ -586,38 +512,6 @@ namespace write_text
    }
 
 
-   void font_list::set_need_layout()
-   {
-
-      if (m_puserinteraction)
-      {
-
-         m_puserinteraction->set_need_layout();
-
-      }
-
-      set_need_redraw();
-
-   }
-
-
-   void font_list::set_need_redraw()
-   {
-      
-      if (::is_null(m_puserinteraction))
-      {
-
-         return;
-
-      }
-
-      m_puserinteraction->set_need_redraw();
-
-      m_puserinteraction->post_redraw();
-
-   }
-
-
    ::e_status font_list::initialize_font_list(::user::interaction * puserinteraction)
    {
 
@@ -641,38 +535,6 @@ namespace write_text
    {
 
       ::subject::manager::on_subject(psubject);
-
-      //if (psubject->m_esubject == e_subject_prepare)
-      //{
-
-      //   e_id eid = (e_id)psubject->id().i64();
-
-      //   if (eid == id_font_extents)
-      //   {
-
-      //      update_extents();
-
-      //   }
-      //   else if (eid == id_font_list_layout)
-      //   {
-
-      //      layout();
-
-      //   }
-      //   else if (eid == id_font_list_total_size)
-      //   {
-
-      //      set_need_layout();
-
-      //   }
-      //   else if (eid == id_font_list_redraw)
-      //   {
-
-      //      set_need_redraw();
-
-      //   }
-
-      //}
 
    }
 
@@ -709,13 +571,21 @@ namespace write_text
       else if (eid == id_font_list_total_size)
       {
 
-         set_need_layout();
+         m_puserinteraction->set_need_layout();
+
+         m_puserinteraction->set_need_redraw();
+
+         m_puserinteraction->post_redraw();
 
       }
       else if (eid == id_font_list_redraw)
       {
 
-         set_need_redraw();
+         m_puserinteraction->set_need_layout();
+
+         m_puserinteraction->set_need_redraw();
+
+         m_puserinteraction->post_redraw();
 
       }
 
@@ -727,24 +597,13 @@ namespace write_text
 
       m_etype = etype;
 
-      if (!m_bUpdatesHooked)
-      {
+      m_bNewListType = true;
 
-         m_bUpdatesHooked = true;
+      m_puserinteraction->set_need_layout();
 
-         delivery_for(id_font_extents, this, true);
+      m_puserinteraction->set_need_redraw();
 
-         delivery_for(id_font_list_layout, this, true);
-
-         delivery_for(id_font_list_total_size, this, true);
-
-      }
-      else
-      {
-
-         set_modified(id_font_extents);
-
-      }
+      m_puserinteraction->post_redraw();
 
    }
 
@@ -806,13 +665,6 @@ namespace write_text
             return;
 
          }
-
-         //if (m_rectClient.is_empty())
-         //{
-
-         //   return;
-
-         //}
 
          if (m_etype == type_wide)
          {

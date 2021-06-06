@@ -3781,6 +3781,16 @@ namespace apex
    }
 
 
+   ::e_status system::on_open_file(const char * pszFile)
+   {
+      
+      defer_accumulate_on_open_file({pszFile}, "");
+      
+      return ::success;
+      
+   }
+
+
    //LPWAVEOUT system::waveout_open(int iChannel, LPAUDIOFORMAT pformat, LPWAVEOUT_CALLBACK pcallback)
    //{
 

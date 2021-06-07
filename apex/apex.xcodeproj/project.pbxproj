@@ -4539,7 +4539,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"/Users/shared/.local/Cellar/openssl@1.1/1.1.1k/lib",
+					"$(WorkspaceDir)/archive/storage-$(PLATFORM_MODIFIER)/library/",
 					"$(WorkspaceDir)/archive",
 					"$(WorkspaceDir)/archive/storage-$(PLATFORM_MODIFIER)/library/$(CONFIGURATION)",
 					"$(WorkspaceDir)/time/$(PLATFORM_MODIFIER)",

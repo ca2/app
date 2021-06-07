@@ -538,12 +538,12 @@
 		9A8FCD902651AFAB00C0D8A1 /* write_text.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8FCD7A2651AFAB00C0D8A1 /* write_text.cpp */; };
 		9A8FCD912651AFAB00C0D8A1 /* write_text.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8FCD7A2651AFAB00C0D8A1 /* write_text.cpp */; };
 		9A8FCD922651AFAB00C0D8A1 /* font_list.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8FCD7B2651AFAB00C0D8A1 /* font_list.h */; };
-		9A8FCD932651AFAB00C0D8A1 /* font_department.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8FCD7C2651AFAB00C0D8A1 /* font_department.cpp */; };
-		9A8FCD942651AFAB00C0D8A1 /* font_department.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8FCD7C2651AFAB00C0D8A1 /* font_department.cpp */; };
+		9A8FCD932651AFAB00C0D8A1 /* fonts.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8FCD7C2651AFAB00C0D8A1 /* fonts.cpp */; };
+		9A8FCD942651AFAB00C0D8A1 /* fonts.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8FCD7C2651AFAB00C0D8A1 /* fonts.cpp */; };
 		9A8FCD952651AFAB00C0D8A1 /* contains.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8FCD7D2651AFAB00C0D8A1 /* contains.h */; };
 		9A8FCD962651AFAB00C0D8A1 /* font.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8FCD7E2651AFAB00C0D8A1 /* font.h */; };
 		9A8FCD972651AFAB00C0D8A1 /* text_box.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8FCD7F2651AFAB00C0D8A1 /* text_box.h */; };
-		9A8FCD982651AFAB00C0D8A1 /* font_department.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8FCD802651AFAB00C0D8A1 /* font_department.h */; };
+		9A8FCD982651AFAB00C0D8A1 /* fonts.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8FCD802651AFAB00C0D8A1 /* fonts.h */; };
 		9A8FCD992651AFAB00C0D8A1 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8FCD812651AFAB00C0D8A1 /* _.h */; };
 		9A92358223286D7100804A1C /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A92358123286D7100804A1C /* libiconv.tbd */; };
 		9A92358423286D8500804A1C /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A92358323286D8400804A1C /* libz.tbd */; };
@@ -1292,11 +1292,11 @@
 		9A8FCD792651AFAB00C0D8A1 /* font_enumeration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = font_enumeration.h; sourceTree = "<group>"; };
 		9A8FCD7A2651AFAB00C0D8A1 /* write_text.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = write_text.cpp; sourceTree = "<group>"; };
 		9A8FCD7B2651AFAB00C0D8A1 /* font_list.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = font_list.h; sourceTree = "<group>"; };
-		9A8FCD7C2651AFAB00C0D8A1 /* font_department.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = font_department.cpp; sourceTree = "<group>"; };
+		9A8FCD7C2651AFAB00C0D8A1 /* fonts.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = fonts.cpp; sourceTree = "<group>"; };
 		9A8FCD7D2651AFAB00C0D8A1 /* contains.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = contains.h; sourceTree = "<group>"; };
 		9A8FCD7E2651AFAB00C0D8A1 /* font.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = font.h; sourceTree = "<group>"; };
 		9A8FCD7F2651AFAB00C0D8A1 /* text_box.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = text_box.h; sourceTree = "<group>"; };
-		9A8FCD802651AFAB00C0D8A1 /* font_department.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = font_department.h; sourceTree = "<group>"; };
+		9A8FCD802651AFAB00C0D8A1 /* fonts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fonts.h; sourceTree = "<group>"; };
 		9A8FCD812651AFAB00C0D8A1 /* _.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
 		9A92358123286D7100804A1C /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
 		9A92358323286D8400804A1C /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
@@ -2310,8 +2310,8 @@
 				9A8FCD712651AFAB00C0D8A1 /* bounding_rect.h */,
 				9A8FCD7D2651AFAB00C0D8A1 /* contains.h */,
 				9A8FCD732651AFAB00C0D8A1 /* draw_text.h */,
-				9A8FCD7C2651AFAB00C0D8A1 /* font_department.cpp */,
-				9A8FCD802651AFAB00C0D8A1 /* font_department.h */,
+				9A8FCD7C2651AFAB00C0D8A1 /* fonts.cpp */,
+				9A8FCD802651AFAB00C0D8A1 /* fonts.h */,
 				9A8FCD762651AFAB00C0D8A1 /* font_enumeration.cpp */,
 				9A8FCD792651AFAB00C0D8A1 /* font_enumeration.h */,
 				9A8FCD752651AFAB00C0D8A1 /* font_list.cpp */,
@@ -2868,7 +2868,7 @@
 				9A8FCD8C2651AFAB00C0D8A1 /* text_out.h in Headers */,
 				9A41730F20004E7A0056265A /* bn.h in Headers */,
 				9A41734620004E7A0056265A /* ssl3.h in Headers */,
-				9A8FCD982651AFAB00C0D8A1 /* font_department.h in Headers */,
+				9A8FCD982651AFAB00C0D8A1 /* fonts.h in Headers */,
 				9A2483BF2452C48900F23D28 /* window.h in Headers */,
 				9A41730C20004E7A0056265A /* async.h in Headers */,
 				9A41732120004E7A0056265A /* ecdh.h in Headers */,
@@ -3216,7 +3216,7 @@
 				9A201C02247733DB00A31CBF /* error.cpp in Sources */,
 				9A201C03247733DB00A31CBF /* exception_engine.cpp in Sources */,
 				9A201C04247733DB00A31CBF /* file.cpp in Sources */,
-				9A8FCD942651AFAB00C0D8A1 /* font_department.cpp in Sources */,
+				9A8FCD942651AFAB00C0D8A1 /* fonts.cpp in Sources */,
 				9A201C05247733DC00A31CBF /* fontopus.cpp in Sources */,
 				9A201C06247733DC00A31CBF /* graphics.cpp in Sources */,
 				9A201C07247733DC00A31CBF /* language.cpp in Sources */,
@@ -3453,7 +3453,7 @@
 				9A8EB3562449821B0056E362 /* callback.cpp in Sources */,
 				9AD1170924F5147800177261 /* frame.cpp in Sources */,
 				9AC2CEDA2653455600CC8096 /* display.cpp in Sources */,
-				9A8FCD932651AFAB00C0D8A1 /* font_department.cpp in Sources */,
+				9A8FCD932651AFAB00C0D8A1 /* fonts.cpp in Sources */,
 				9A24854D2452C48D00F23D28 /* windowing.cpp in Sources */,
 				9AD1172824F5147900177261 /* wait_cursor.cpp in Sources */,
 				9A8B636124CBCD3C00A93185 /* context.cpp in Sources */,

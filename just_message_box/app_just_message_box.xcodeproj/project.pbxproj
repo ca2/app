@@ -182,7 +182,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 9A48898124EB48DE00119EC4 /* Build configuration list for PBXProject "just_message_box_app" */;
+			buildConfigurationList = 9A48898124EB48DE00119EC4 /* Build configuration list for PBXProject "app_just_message_box" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -488,7 +488,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		9A48898124EB48DE00119EC4 /* Build configuration list for PBXProject "just_message_box_app" */ = {
+		9A48898124EB48DE00119EC4 /* Build configuration list for PBXProject "app_just_message_box" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9A48898D24EB48DE00119EC4 /* Debug */,

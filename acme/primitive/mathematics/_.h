@@ -13,8 +13,6 @@ template < primitive_integer INTEGER1, primitive_integer INTEGER2 >
 inline constexpr bool __lt(const INTEGER1 & a, const INTEGER2 & b) { return a < b; }
 template < primitive_integer INTEGER1, primitive_integer INTEGER2 >
 inline constexpr bool __le(const INTEGER1 & a, const INTEGER2 & b) { return a <= b; }
-
-
 template < primitive_natural NATURAL1, primitive_integer INTEGER2 >
 inline constexpr bool __lt(const NATURAL1 & a, const INTEGER2 & b) { return b < 0 ? false : a < static_cast < u32 > (b); }
 template < primitive_natural NATURAL1, primitive_integer INTEGER2 >
@@ -121,6 +119,14 @@ constexpr TYPE1 maximum(const TYPE1 & a, const TYPE2 & b) { return __lt(b, a) ? 
 
 
 #include "index.h"
+
+
+template < primitive_integer INTEGER >
+inline bool __found(INTEGER i) { return i >= 0; }
+template < primitive_integer INTEGER >
+inline bool __not_found(INTEGER i) { return i < 0; }
+
+
 
 
 CLASS_DECL_ACME i64 ceil_div(i64 num, i64 den);

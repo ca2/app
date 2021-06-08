@@ -21,7 +21,6 @@
 		9A8FCDA52651C10200C0D8A1 /* libapex_apple.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A7ECB892651A60B00D5BA45 /* libapex_apple.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9A8FCDA72651C10200C0D8A1 /* libapex_macos.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A7ECB6B2651A60A00D5BA45 /* libapex_macos.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9A8FCDA92651C10200C0D8A1 /* libapex_posix.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A7ECB5F2651A60900D5BA45 /* libapex_posix.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		9A8FCDAB2651C10200C0D8A1 /* libapp_app.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A7ECB142651A5B900D5BA45 /* libapp_app.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9A8FCDAD2651C10200C0D8A1 /* libaqua.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A7ECB652651A60A00D5BA45 /* libaqua.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9A8FCDAF2651C10200C0D8A1 /* libaura.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A8FC9032651A6AE00C0D8A1 /* libaura.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9AC2D1162654154800CC8096 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8FCA822651A7DC00C0D8A1 /* main.cpp */; };
@@ -51,13 +50,6 @@
 			proxyType = 2;
 			remoteGlobalIDString = 9A440A1526548BE4000C490B;
 			remoteInfo = windowing_macos;
-		};
-		9A7ECB132651A5B900D5BA45 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9A7ECB0F2651A5B900D5BA45 /* app_app_app.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 9A48898624EB48DE00119EC4;
-			remoteInfo = app_app;
 		};
 		9A7ECB4A2651A60900D5BA45 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -276,13 +268,6 @@
 			remoteGlobalIDString = 9AE24E151904CF99001AEFFB;
 			remoteInfo = draw2d_quartz2d_iosTests;
 		};
-		9AC2D1082654139300CC8096 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9A7ECB0F2651A5B900D5BA45 /* app_app_app.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 9A48898524EB48DE00119EC4;
-			remoteInfo = app_app;
-		};
 		9AC2D17F26542E2F00CC8096 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9AC2D17B26542E2E00CC8096 /* node_macos.xcodeproj */;
@@ -317,7 +302,6 @@
 				9A8FCDAD2651C10200C0D8A1 /* libaqua.dylib in Embed Libraries */,
 				9A8FCDA92651C10200C0D8A1 /* libapex_posix.dylib in Embed Libraries */,
 				9A8FCDA72651C10200C0D8A1 /* libapex_macos.dylib in Embed Libraries */,
-				9A8FCDAB2651C10200C0D8A1 /* libapp_app.dylib in Embed Libraries */,
 				9A8FCDAF2651C10200C0D8A1 /* libaura.dylib in Embed Libraries */,
 				9A8FCDA32651C10200C0D8A1 /* libapex.dylib in Embed Libraries */,
 				9A8FCD9F2651C10200C0D8A1 /* libacme_macos.dylib in Embed Libraries */,
@@ -328,12 +312,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		070B8EEA1B6E53F900D26137 /* app_app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = app_app.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		070B8EEA1B6E53F900D26137 /* _app_app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = _app_app.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		070B8EFD1B6E53FA00D26137 /* Hello Multiverse!!Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Hello Multiverse!!Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A413D7D266EDED800C3FF0E /* libcrypto.1.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcrypto.1.1.dylib; path = "../../../archive/storage-macos/library/libcrypto.1.1.dylib"; sourceTree = "<group>"; };
 		9A413D93266EDED900C3FF0E /* libssl.1.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libssl.1.1.dylib; path = "../../../archive/storage-macos/library/libssl.1.1.dylib"; sourceTree = "<group>"; };
 		9A694C6926548A97005D1D62 /* windowing_macos.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = windowing_macos.xcodeproj; path = "../../../archive/platform-macos/windowing_macos/windowing_macos.xcodeproj"; sourceTree = "<group>"; };
-		9A7ECB0F2651A5B900D5BA45 /* app_app_app.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = app_app_app.xcodeproj; sourceTree = "<group>"; };
+		9A7ECB0F2651A5B900D5BA45 /* app_app.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = app_app.xcodeproj; sourceTree = "<group>"; };
 		9A7ECB452651A60800D5BA45 /* acme.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = acme.xcodeproj; path = ../acme/acme.xcodeproj; sourceTree = "<group>"; };
 		9A7ECB4E2651A60900D5BA45 /* acme_apple.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = acme_apple.xcodeproj; path = "../../../archive/platform-apple/acme_apple/acme_apple.xcodeproj"; sourceTree = "<group>"; };
 		9A7ECB542651A60900D5BA45 /* acme_macos.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = acme_macos.xcodeproj; path = "../../../archive/platform-macos/acme_macos/acme_macos.xcodeproj"; sourceTree = "<group>"; };
@@ -391,7 +375,7 @@
 				9A7ECB842651A60B00D5BA45 /* apex_apple.xcodeproj */,
 				9A7ECB5A2651A60900D5BA45 /* apex_posix.xcodeproj */,
 				9A7ECB662651A60A00D5BA45 /* apex_macos.xcodeproj */,
-				9A7ECB0F2651A5B900D5BA45 /* app_app_app.xcodeproj */,
+				9A7ECB0F2651A5B900D5BA45 /* app_app.xcodeproj */,
 				9A7ECB602651A60A00D5BA45 /* aqua.xcodeproj */,
 				9A8FC8F02651A6AD00C0D8A1 /* aura.xcodeproj */,
 				9AC2CF9F2653DA8D00CC8096 /* aura_posix.xcodeproj */,
@@ -412,7 +396,7 @@
 		070B8EEB1B6E53F900D26137 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				070B8EEA1B6E53F900D26137 /* app_app.app */,
+				070B8EEA1B6E53F900D26137 /* _app_app.app */,
 				070B8EFD1B6E53FA00D26137 /* Hello Multiverse!!Tests.xctest */,
 			);
 			name = Products;
@@ -429,14 +413,6 @@
 			isa = PBXGroup;
 			children = (
 				9A5D7379265554D600D5C39E /* libwindowing_macos.dylib */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		9A7ECB102651A5B900D5BA45 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				9A7ECB142651A5B900D5BA45 /* libapp_app.dylib */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -612,9 +588,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		070B8EE91B6E53F900D26137 /* app_app */ = {
+		070B8EE91B6E53F900D26137 /* _app_app */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 070B8F071B6E53FA00D26137 /* Build configuration list for PBXNativeTarget "app_app" */;
+			buildConfigurationList = 070B8F071B6E53FA00D26137 /* Build configuration list for PBXNativeTarget "_app_app" */;
 			buildPhases = (
 				070B8EE61B6E53F900D26137 /* Sources */,
 				070B8EE71B6E53F900D26137 /* Frameworks */,
@@ -626,16 +602,15 @@
 			dependencies = (
 				9A5D7361265554D600D5C39E /* PBXTargetDependency */,
 				9AC2D1B026542ED300CC8096 /* PBXTargetDependency */,
-				9AC2D1092654139300CC8096 /* PBXTargetDependency */,
 				9AC2CF412653DA0100CC8096 /* PBXTargetDependency */,
 				9A8FCD5D2651AB4000C0D8A1 /* PBXTargetDependency */,
 				9A8FCD5F2651AB4000C0D8A1 /* PBXTargetDependency */,
 				9A8FCD612651AB4000C0D8A1 /* PBXTargetDependency */,
 				9A8FCD632651AB4000C0D8A1 /* PBXTargetDependency */,
 			);
-			name = app_app;
+			name = _app_app;
 			productName = "Hello Multiverse!!";
-			productReference = 070B8EEA1B6E53F900D26137 /* app_app.app */;
+			productReference = 070B8EEA1B6E53F900D26137 /* _app_app.app */;
 			productType = "com.apple.product-type.application";
 		};
 		070B8EFC1B6E53FA00D26137 /* Hello Multiverse!!Tests */ = {
@@ -676,7 +651,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 070B8EE51B6E53F900D26137 /* Build configuration list for PBXProject "app_app" */;
+			buildConfigurationList = 070B8EE51B6E53F900D26137 /* Build configuration list for PBXProject "_app_app" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -721,10 +696,6 @@
 					ProjectRef = 9A7ECB5A2651A60900D5BA45 /* apex_posix.xcodeproj */;
 				},
 				{
-					ProductGroup = 9A7ECB102651A5B900D5BA45 /* Products */;
-					ProjectRef = 9A7ECB0F2651A5B900D5BA45 /* app_app_app.xcodeproj */;
-				},
-				{
 					ProductGroup = 9A7ECB612651A60A00D5BA45 /* Products */;
 					ProjectRef = 9A7ECB602651A60A00D5BA45 /* aqua.xcodeproj */;
 				},
@@ -763,7 +734,7 @@
 			);
 			projectRoot = "";
 			targets = (
-				070B8EE91B6E53F900D26137 /* app_app */,
+				070B8EE91B6E53F900D26137 /* _app_app */,
 				070B8EFC1B6E53FA00D26137 /* Hello Multiverse!!Tests */,
 			);
 		};
@@ -775,13 +746,6 @@
 			fileType = "compiled.mach-o.dylib";
 			path = libwindowing_macos.dylib;
 			remoteRef = 9A5D7378265554D600D5C39E /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		9A7ECB142651A5B900D5BA45 /* libapp_app.dylib */ = {
-			isa = PBXReferenceProxy;
-			fileType = "compiled.mach-o.dylib";
-			path = libapp_app.dylib;
-			remoteRef = 9A7ECB132651A5B900D5BA45 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		9A7ECB4B2651A60900D5BA45 /* libacme.dylib */ = {
@@ -1014,7 +978,7 @@
 /* Begin PBXTargetDependency section */
 		070B8EFF1B6E53FA00D26137 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 070B8EE91B6E53F900D26137 /* app_app */;
+			target = 070B8EE91B6E53F900D26137 /* _app_app */;
 			targetProxy = 070B8EFE1B6E53FA00D26137 /* PBXContainerItemProxy */;
 		};
 		9A5D7361265554D600D5C39E /* PBXTargetDependency */ = {
@@ -1046,11 +1010,6 @@
 			isa = PBXTargetDependency;
 			name = apex_macos;
 			targetProxy = 9AC2CF402653DA0100CC8096 /* PBXContainerItemProxy */;
-		};
-		9AC2D1092654139300CC8096 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = app_app;
-			targetProxy = 9AC2D1082654139300CC8096 /* PBXContainerItemProxy */;
 		};
 		9AC2D1B026542ED300CC8096 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1219,7 +1178,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_BUNDLE_IDENTIFIER = app.app;
-				PRODUCT_NAME = app_app;
+				PRODUCT_NAME = _app_app;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Debug;
@@ -1241,7 +1200,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_BUNDLE_IDENTIFIER = app.app;
-				PRODUCT_NAME = app_app;
+				PRODUCT_NAME = _app_app;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Release;
@@ -1263,7 +1222,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ca2.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Hello Multiverse!!.app_app/Contents/MacOS/Hello Multiverse!!";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Hello Multiverse!!._app_app/Contents/MacOS/Hello Multiverse!!";
 			};
 			name = Debug;
 		};
@@ -1280,14 +1239,14 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ca2.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Hello Multiverse!!.app_app/Contents/MacOS/Hello Multiverse!!";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Hello Multiverse!!._app_app/Contents/MacOS/Hello Multiverse!!";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		070B8EE51B6E53F900D26137 /* Build configuration list for PBXProject "app_app" */ = {
+		070B8EE51B6E53F900D26137 /* Build configuration list for PBXProject "_app_app" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				070B8F051B6E53FA00D26137 /* Debug */,
@@ -1296,7 +1255,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		070B8F071B6E53FA00D26137 /* Build configuration list for PBXNativeTarget "app_app" */ = {
+		070B8F071B6E53FA00D26137 /* Build configuration list for PBXNativeTarget "_app_app" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				070B8F081B6E53FA00D26137 /* Debug */,

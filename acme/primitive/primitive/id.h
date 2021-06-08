@@ -134,10 +134,10 @@ public:
    inline id(enum_type etype, ::i64 i);
    inline id(const id & id);
    id(const char * psz);
-   id(::i32 i);
-   id(::i64 i);
-   id(::u32 u);
-   id(::u64 u);
+   template < primitive_integer INTEGER >
+   id(INTEGER i);
+   template < primitive_natural NATURAL >
+   id(NATURAL n);
    id(const ::lparam & lparam);
    id(const string & str);
    id(const ::payload & payload);
@@ -239,22 +239,20 @@ public:
    inline bool operator >= (const string & str) const;
 
 
-   inline int compare(::i32 i) const;
-   inline bool operator == (::i32 i) const;
-   inline bool operator != (::i32 i) const;
-   inline bool operator < (::i32 i) const;
-   inline bool operator <= (::i32 i) const;
-   inline bool operator > (::i32 i) const;
-   inline bool operator >= (::i32 i) const;
-
-
-   inline int compare(::i64 i) const;
-   inline bool operator == (::i64 i) const;
-   inline bool operator != (::i64 i) const;
-   inline bool operator < (::i64 i) const;
-   inline bool operator <= (::i64 i) const;
-   inline bool operator > (::i64 i) const;
-   inline bool operator >= (::i64 i) const;
+   template < primitive_integral INTEGRAL >
+   inline int compare(INTEGRAL i) const;
+   template < primitive_integral INTEGRAL >
+   inline bool operator == (INTEGRAL i) const;
+   template < primitive_integral INTEGRAL >
+   inline bool operator != (INTEGRAL i) const;
+   template < primitive_integral INTEGRAL >
+   inline bool operator < (INTEGRAL i) const;
+   template < primitive_integral INTEGRAL >
+   inline bool operator <= (INTEGRAL i) const;
+   template < primitive_integral INTEGRAL >
+   inline bool operator > (INTEGRAL i) const;
+   template < primitive_integral INTEGRAL >
+   inline bool operator >= (INTEGRAL i) const;
 
 
    inline int compare(::e_id i) const;
@@ -280,9 +278,10 @@ public:
    id & operator = (const id & id);
    id & operator = (const char * psz);
    id & operator = (const string & str);
-   id & operator = (::i32 i);
-   id & operator = (::i64 i);
-   id & operator = (::u64 u);
+   template < primitive_integer INTEGER >
+   id & operator = (INTEGER i);
+   template < primitive_natural NATURAL >
+   id & operator = (NATURAL u);
    id & operator = (const enum_property & eproperty);
    id & operator = (const enum_factory & efactory);
    id & operator = (const enum_task_tool & etasktool);
@@ -450,7 +449,8 @@ inline id::id(const char * psz, id_space *)
 }
 
 
-inline id::id(::i32 i)
+template < primitive_integer INTEGER >
+inline id::id(INTEGER i)
 {
 
    m_etype = e_type_integer;
@@ -460,27 +460,8 @@ inline id::id(::i32 i)
 }
 
 
-inline id::id(::i64 i)
-{
-
-   m_etype = e_type_integer;
-
-   m_i = i;
-
-}
-
-
-inline id::id(::u32 u)
-{
-
-   m_etype = e_type_integer;
-
-   m_u = u;
-
-}
-
-
-inline id::id(::u64 u)
+template < primitive_natural UNSIGNED >
+inline id::id(UNSIGNED u)
 {
 
    m_etype = e_type_integer;
@@ -772,7 +753,9 @@ inline bool id::operator >= (const char * psz) const
 
 }
 
-inline int id::compare(::i32 i) const
+
+template < primitive_integral INTEGRAL >
+inline int id::compare(INTEGRAL i) const
 {
 
    return __COMPARE_SQUARE(primitive_type() - e_type_integer, m_i - i);
@@ -780,7 +763,8 @@ inline int id::compare(::i32 i) const
 }
 
 
-inline bool id::operator == (::i32 i) const
+template < primitive_integral INTEGRAL >
+inline bool id::operator == (INTEGRAL i) const
 {
 
    return compare(i)== 0;
@@ -788,7 +772,8 @@ inline bool id::operator == (::i32 i) const
 }
 
 
-inline bool id::operator != (::i32 i) const
+template < primitive_integral INTEGRAL >
+inline bool id::operator != (INTEGRAL i) const
 {
 
    return compare(i) != 0;
@@ -796,7 +781,8 @@ inline bool id::operator != (::i32 i) const
 }
 
 
-inline bool id::operator < (::i32 i) const
+template < primitive_integral INTEGRAL >
+inline bool id::operator < (INTEGRAL i) const
 {
 
    return compare(i) < 0;
@@ -804,7 +790,8 @@ inline bool id::operator < (::i32 i) const
 }
 
 
-inline bool id::operator <= (::i32 i) const
+template < primitive_integral INTEGRAL >
+inline bool id::operator <= (INTEGRAL i) const
 {
 
    return compare(i) <= 0;
@@ -812,7 +799,8 @@ inline bool id::operator <= (::i32 i) const
 }
 
 
-inline bool id::operator > (::i32 i) const
+template < primitive_integral INTEGRAL >
+inline bool id::operator > (INTEGRAL i) const
 {
 
    return compare(i) > 0;
@@ -820,63 +808,8 @@ inline bool id::operator > (::i32 i) const
 }
 
 
-inline bool id::operator >= (::i32 i) const
-{
-
-   return compare(i) >= 0;
-
-}
-
-
-inline int id::compare(::i64 i) const
-{
-
-   return __COMPARE_SQUARE(primitive_type() - e_type_integer, m_i - i);
-
-}
-
-
-inline bool id::operator == (::i64 i) const
-{
-
-   return compare(i) == 0;
-
-}
-
-
-inline bool id::operator != (::i64 i) const
-{
-
-   return compare(i) != 0;
-
-}
-
-
-inline bool id::operator < (::i64 i) const
-{
-
-   return compare(i) < 0;
-
-}
-
-
-inline bool id::operator <= (::i64 i) const
-{
-
-   return compare(i) <= 0;
-
-}
-
-
-inline bool id::operator > (::i64 i) const
-{
-
-   return compare(i) > 0;
-
-}
-
-
-inline bool id::operator >= (::i64 i) const
+template < primitive_integral INTEGRAL >
+inline bool id::operator >= (INTEGRAL i) const
 {
 
    return compare(i) >= 0;

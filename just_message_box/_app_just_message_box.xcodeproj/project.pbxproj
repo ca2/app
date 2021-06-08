@@ -50,13 +50,6 @@
 			remoteGlobalIDString = 9AC2D16F26542E1000CC8096;
 			remoteInfo = node_macos;
 		};
-		9A6A47DD26611134004ED97A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9A6A47D826611133004ED97A /* app_just_message_box_app.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 9A48898624EB48DE00119EC4;
-			remoteInfo = app_message_box;
-		};
 		9A6A481126611372004ED97A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9AC2D07C26540D6B00CC8096 /* draw2d_quartz2d.xcodeproj */;
@@ -77,13 +70,6 @@
 			proxyType = 2;
 			remoteGlobalIDString = 9A440A1526548BE4000C490B;
 			remoteInfo = windowing_macos;
-		};
-		9A6A481D266114FD004ED97A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9A6A47D826611133004ED97A /* app_just_message_box_app.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 9A48898524EB48DE00119EC4;
-			remoteInfo = app_just_message_box;
 		};
 		9A6A48232661155F004ED97A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -328,7 +314,7 @@
 		9A39BB1724EB2D04003C070E /* libapp_app.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libapp_app.dylib; path = ../../time/macos/libapp_app.dylib; sourceTree = "<group>"; };
 		9A413D96266EDEE500C3FF0E /* libcrypto.1.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcrypto.1.1.dylib; path = "../../../archive/storage-macos/library/libcrypto.1.1.dylib"; sourceTree = "<group>"; };
 		9A413DB1266EDEE500C3FF0E /* libssl.1.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libssl.1.1.dylib; path = "../../../archive/storage-macos/library/libssl.1.1.dylib"; sourceTree = "<group>"; };
-		9A6A47D826611133004ED97A /* app_just_message_box_app.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = app_just_message_box_app.xcodeproj; sourceTree = "<group>"; };
+		9A6A47D826611133004ED97A /* app_just_message_box.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = app_just_message_box.xcodeproj; sourceTree = "<group>"; };
 		9A6A47F226611202004ED97A /* libwindowing_macos.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libwindowing_macos.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A6A480626611214004ED97A /* libwrite_text_quartz2d.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libwrite_text_quartz2d.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A6A480C26611372004ED97A /* windowing_macos.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = windowing_macos.xcodeproj; path = "/Users/camilo/solution/basis/archive/platform-macos/windowing_macos/windowing_macos.xcodeproj"; sourceTree = "<absolute>"; };
@@ -395,7 +381,7 @@
 				9A8FC8D22651A69B00C0D8A1 /* apex.xcodeproj */,
 				9A8FC8DB2651A69B00C0D8A1 /* aqua.xcodeproj */,
 				9A8FC8BD2651A69A00C0D8A1 /* idn.xcodeproj */,
-				9A6A47D826611133004ED97A /* app_just_message_box_app.xcodeproj */,
+				9A6A47D826611133004ED97A /* app_just_message_box.xcodeproj */,
 				9A8FC9102651A6C000C0D8A1 /* aura.xcodeproj */,
 				9AC2D0A226540F4600CC8096 /* aura_posix.xcodeproj */,
 				9AC2D0AE26540F4700CC8096 /* aura_apple.xcodeproj */,
@@ -452,14 +438,6 @@
 				9A39BAE424EB25CA003C070E /* libssl.dylib */,
 			);
 			name = Library;
-			sourceTree = "<group>";
-		};
-		9A6A47D926611133004ED97A /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				9A6A47DE26611134004ED97A /* libapp_just_message_box_app.dylib */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		9A6A480D26611372004ED97A /* Products */ = {
@@ -654,9 +632,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		070B8EE91B6E53F900D26137 /* app_just_message_box */ = {
+		070B8EE91B6E53F900D26137 /* _app_just_message_box */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 070B8F071B6E53FA00D26137 /* Build configuration list for PBXNativeTarget "app_just_message_box" */;
+			buildConfigurationList = 070B8F071B6E53FA00D26137 /* Build configuration list for PBXNativeTarget "_app_just_message_box" */;
 			buildPhases = (
 				070B8EE61B6E53F900D26137 /* Sources */,
 				070B8EE71B6E53F900D26137 /* Frameworks */,
@@ -667,11 +645,10 @@
 			);
 			dependencies = (
 				9A6A482626611594004ED97A /* PBXTargetDependency */,
-				9A6A481E266114FD004ED97A /* PBXTargetDependency */,
 				9A6A481226611372004ED97A /* PBXTargetDependency */,
 				9A6A481426611372004ED97A /* PBXTargetDependency */,
 			);
-			name = app_just_message_box;
+			name = _app_just_message_box;
 			productName = "Hello Multiverse!!";
 			productReference = 070B8EEA1B6E53F900D26137 /* app_message_box.app */;
 			productType = "com.apple.product-type.application";
@@ -714,7 +691,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 070B8EE51B6E53F900D26137 /* Build configuration list for PBXProject "app_just_message_box" */;
+			buildConfigurationList = 070B8EE51B6E53F900D26137 /* Build configuration list for PBXProject "_app_just_message_box" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -759,10 +736,6 @@
 					ProjectRef = 9A8FC8AB2651A69900C0D8A1 /* apex_posix.xcodeproj */;
 				},
 				{
-					ProductGroup = 9A6A47D926611133004ED97A /* Products */;
-					ProjectRef = 9A6A47D826611133004ED97A /* app_just_message_box_app.xcodeproj */;
-				},
-				{
 					ProductGroup = 9A8FC8DC2651A69B00C0D8A1 /* Products */;
 					ProjectRef = 9A8FC8DB2651A69B00C0D8A1 /* aqua.xcodeproj */;
 				},
@@ -805,7 +778,7 @@
 			);
 			projectRoot = "";
 			targets = (
-				070B8EE91B6E53F900D26137 /* app_just_message_box */,
+				070B8EE91B6E53F900D26137 /* _app_just_message_box */,
 				070B8EFC1B6E53FA00D26137 /* Hello Multiverse!!Tests */,
 			);
 		};
@@ -817,14 +790,6 @@
 			fileType = "compiled.mach-o.dylib";
 			path = libnode_macos.dylib;
 			remoteRef = 9A6A47D626611129004ED97A /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		9A6A47DE26611134004ED97A /* libapp_just_message_box_app.dylib */ = {
-			isa = PBXReferenceProxy;
-			fileType = "compiled.mach-o.dylib";
-			name = libapp_just_message_box_app.dylib;
-			path = libapp_just_message_box.dylib;
-			remoteRef = 9A6A47DD26611134004ED97A /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		9A6A481726611373004ED97A /* libwindowing_macos.dylib */ = {
@@ -1067,7 +1032,7 @@
 /* Begin PBXTargetDependency section */
 		070B8EFF1B6E53FA00D26137 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 070B8EE91B6E53F900D26137 /* app_just_message_box */;
+			target = 070B8EE91B6E53F900D26137 /* _app_just_message_box */;
 			targetProxy = 070B8EFE1B6E53FA00D26137 /* PBXContainerItemProxy */;
 		};
 		9A6A481226611372004ED97A /* PBXTargetDependency */ = {
@@ -1079,11 +1044,6 @@
 			isa = PBXTargetDependency;
 			name = windowing_macos;
 			targetProxy = 9A6A481326611372004ED97A /* PBXContainerItemProxy */;
-		};
-		9A6A481E266114FD004ED97A /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = app_just_message_box;
-			targetProxy = 9A6A481D266114FD004ED97A /* PBXContainerItemProxy */;
 		};
 		9A6A482626611594004ED97A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1318,7 +1278,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		070B8EE51B6E53F900D26137 /* Build configuration list for PBXProject "app_just_message_box" */ = {
+		070B8EE51B6E53F900D26137 /* Build configuration list for PBXProject "_app_just_message_box" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				070B8F051B6E53FA00D26137 /* Debug */,
@@ -1327,7 +1287,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		070B8F071B6E53FA00D26137 /* Build configuration list for PBXNativeTarget "app_just_message_box" */ = {
+		070B8F071B6E53FA00D26137 /* Build configuration list for PBXNativeTarget "_app_just_message_box" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				070B8F081B6E53FA00D26137 /* Debug */,

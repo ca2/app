@@ -139,7 +139,8 @@ inline id::id(const type& type) :
 }
 
 
-inline id& id::operator = (::i32 i)
+template < primitive_integer INTEGER >
+inline id& id::operator = (INTEGER i)
 {
 
    m_etype = e_type_integer;
@@ -151,24 +152,13 @@ inline id& id::operator = (::i32 i)
 }
 
 
-inline id& id::operator = (::i64 i)
+template < primitive_natural NATURAL >
+inline id& id::operator = (NATURAL n)
 {
 
    m_etype = e_type_integer;
 
-   m_i = i;
-
-   return *this;
-
-}
-
-
-inline id& id::operator = (::u64 u)
-{
-
-   m_etype = e_type_integer;
-
-   m_u = u;
+   m_i = n;
 
    return *this;
 

@@ -559,7 +559,7 @@ memory_base & memory_base::erase(memsize pos,memsize len)
 
    }
 
-   len = minimum(natural(len),get_size() - pos);
+   len = minimum(len,get_size() - pos);
 
    if(len <= 0)
    {

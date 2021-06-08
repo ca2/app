@@ -20,7 +20,6 @@
 		9A6A47792660E5B3004ED97A /* libapex_apple.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A7ECB8F2651A61800D5BA45 /* libapex_apple.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9A6A477B2660E5B3004ED97A /* libapex_macos.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A7ECBA72651A61800D5BA45 /* libapex_macos.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9A6A477D2660E5B3004ED97A /* libapex_posix.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A7ECBAD2651A61800D5BA45 /* libapex_posix.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		9A6A477F2660E5B3004ED97A /* libapp_shader.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A7ECB0E2651A5AB00D5BA45 /* libapp_shader.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9A6A47812660E5B3004ED97A /* libaqua.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A7ECBC82651A61900D5BA45 /* libaqua.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9A6A47832660E5B3004ED97A /* libaura.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A6A47712660E5B3004ED97A /* libaura.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9A6A47872660E5DE004ED97A /* libaura_apple.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9AC2D10726540F9800CC8096 /* libaura_apple.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
@@ -78,20 +77,6 @@
 			proxyType = 2;
 			remoteGlobalIDString = 9A440A1526548BE4000C490B;
 			remoteInfo = windowing_macos;
-		};
-		9A6A47A32660E90D004ED97A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9A7ECB092651A5AB00D5BA45 /* app_app_shader.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 9A4889B524EB494600119EC4;
-			remoteInfo = app_shader;
-		};
-		9A7ECB0D2651A5AB00D5BA45 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9A7ECB092651A5AB00D5BA45 /* app_app_shader.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 9A4889B624EB494600119EC4;
-			remoteInfo = app_shader;
 		};
 		9A7ECB272651A5D300D5BA45 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -295,7 +280,6 @@
 				9A6A47812660E5B3004ED97A /* libaqua.dylib in Embed Libraries */,
 				9A6A477D2660E5B3004ED97A /* libapex_posix.dylib in Embed Libraries */,
 				9A6A47872660E5DE004ED97A /* libaura_apple.dylib in Embed Libraries */,
-				9A6A477F2660E5B3004ED97A /* libapp_shader.dylib in Embed Libraries */,
 				9A6A477B2660E5B3004ED97A /* libapex_macos.dylib in Embed Libraries */,
 				9A6A47912660E5DF004ED97A /* libidn.dylib in Embed Libraries */,
 				9A6A47832660E5B3004ED97A /* libaura.dylib in Embed Libraries */,
@@ -313,7 +297,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		070B8EEA1B6E53F900D26137 /* app_shader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = app_shader.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		070B8EEA1B6E53F900D26137 /* _app_shader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = _app_shader.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		070B8EFD1B6E53FA00D26137 /* Hello Multiverse!!Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Hello Multiverse!!Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		070B8F021B6E53FA00D26137 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		070B8F031B6E53FA00D26137 /* Hello_Multiverse__Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Hello_Multiverse__Tests.m; sourceTree = "<group>"; };
@@ -326,7 +310,7 @@
 		9A6A47602660E578004ED97A /* windowing_macos.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = windowing_macos.xcodeproj; path = "/Users/camilo/solution/basis/archive/platform-macos/windowing_macos/windowing_macos.xcodeproj"; sourceTree = "<absolute>"; };
 		9A6A47712660E5B3004ED97A /* libaura.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libaura.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A6A47852660E5DE004ED97A /* libwrite_text_quartz2d.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libwrite_text_quartz2d.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
-		9A7ECB092651A5AB00D5BA45 /* app_app_shader.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = app_app_shader.xcodeproj; sourceTree = "<group>"; };
+		9A7ECB092651A5AB00D5BA45 /* app_shader.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = app_shader.xcodeproj; sourceTree = "<group>"; };
 		9A7ECB212651A5D300D5BA45 /* gpu_opengl.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = gpu_opengl.xcodeproj; path = /Users/camilo/solution/basis/source/app/_group/../gpu_opengl/gpu_opengl.xcodeproj; sourceTree = "<absolute>"; };
 		9A7ECB8A2651A61800D5BA45 /* apex_apple.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = apex_apple.xcodeproj; path = "../../../archive/platform-apple/apex_apple/apex_apple.xcodeproj"; sourceTree = "<group>"; };
 		9A7ECB902651A61800D5BA45 /* apex.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = apex.xcodeproj; path = ../apex/apex.xcodeproj; sourceTree = "<group>"; };
@@ -383,7 +367,7 @@
 				9A7ECB902651A61800D5BA45 /* apex.xcodeproj */,
 				9A7ECBC32651A61800D5BA45 /* aqua.xcodeproj */,
 				9A7ECBB42651A61800D5BA45 /* idn.xcodeproj */,
-				9A7ECB092651A5AB00D5BA45 /* app_app_shader.xcodeproj */,
+				9A7ECB092651A5AB00D5BA45 /* app_shader.xcodeproj */,
 				9AC2D0C026540F9700CC8096 /* aura_posix.xcodeproj */,
 				9AC2D10226540F9800CC8096 /* aura_apple.xcodeproj */,
 				9AC2D0DE26540F9700CC8096 /* aura_macos.xcodeproj */,
@@ -403,7 +387,7 @@
 		070B8EEB1B6E53F900D26137 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				070B8EEA1B6E53F900D26137 /* app_shader.app */,
+				070B8EEA1B6E53F900D26137 /* _app_shader.app */,
 				070B8EFD1B6E53FA00D26137 /* Hello Multiverse!!Tests.xctest */,
 			);
 			name = Products;
@@ -441,14 +425,6 @@
 			isa = PBXGroup;
 			children = (
 				9A6A476B2660E578004ED97A /* libwindowing_macos.dylib */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		9A7ECB0A2651A5AB00D5BA45 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				9A7ECB0E2651A5AB00D5BA45 /* libapp_shader.dylib */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -625,9 +601,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		070B8EE91B6E53F900D26137 /* app_shader */ = {
+		070B8EE91B6E53F900D26137 /* _app_shader */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 070B8F071B6E53FA00D26137 /* Build configuration list for PBXNativeTarget "app_shader" */;
+			buildConfigurationList = 070B8F071B6E53FA00D26137 /* Build configuration list for PBXNativeTarget "_app_shader" */;
 			buildPhases = (
 				070B8EE61B6E53F900D26137 /* Sources */,
 				070B8EE71B6E53F900D26137 /* Frameworks */,
@@ -637,14 +613,13 @@
 			buildRules = (
 			);
 			dependencies = (
-				9A6A47A42660E90D004ED97A /* PBXTargetDependency */,
 				9A6A47642660E578004ED97A /* PBXTargetDependency */,
 				9A6A47662660E578004ED97A /* PBXTargetDependency */,
 				9A6A47682660E578004ED97A /* PBXTargetDependency */,
 			);
-			name = app_shader;
+			name = _app_shader;
 			productName = "Hello Multiverse!!";
-			productReference = 070B8EEA1B6E53F900D26137 /* app_shader.app */;
+			productReference = 070B8EEA1B6E53F900D26137 /* _app_shader.app */;
 			productType = "com.apple.product-type.application";
 		};
 		070B8EFC1B6E53FA00D26137 /* Hello Multiverse!!Tests */ = {
@@ -685,7 +660,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 070B8EE51B6E53F900D26137 /* Build configuration list for PBXProject "app_shader" */;
+			buildConfigurationList = 070B8EE51B6E53F900D26137 /* Build configuration list for PBXProject "_app_shader" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -730,10 +705,6 @@
 					ProjectRef = 9A7ECBA82651A61800D5BA45 /* apex_posix.xcodeproj */;
 				},
 				{
-					ProductGroup = 9A7ECB0A2651A5AB00D5BA45 /* Products */;
-					ProjectRef = 9A7ECB092651A5AB00D5BA45 /* app_app_shader.xcodeproj */;
-				},
-				{
 					ProductGroup = 9A7ECBC42651A61800D5BA45 /* Products */;
 					ProjectRef = 9A7ECBC32651A61800D5BA45 /* aqua.xcodeproj */;
 				},
@@ -772,7 +743,7 @@
 			);
 			projectRoot = "";
 			targets = (
-				070B8EE91B6E53F900D26137 /* app_shader */,
+				070B8EE91B6E53F900D26137 /* _app_shader */,
 				070B8EFC1B6E53FA00D26137 /* Hello Multiverse!!Tests */,
 			);
 		};
@@ -791,13 +762,6 @@
 			fileType = "compiled.mach-o.dylib";
 			path = libwindowing_macos.dylib;
 			remoteRef = 9A6A476A2660E578004ED97A /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		9A7ECB0E2651A5AB00D5BA45 /* libapp_shader.dylib */ = {
-			isa = PBXReferenceProxy;
-			fileType = "compiled.mach-o.dylib";
-			path = libapp_shader.dylib;
-			remoteRef = 9A7ECB0D2651A5AB00D5BA45 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		9A7ECB282651A5D300D5BA45 /* libgpu_opengl.dylib */ = {
@@ -1024,7 +988,7 @@
 /* Begin PBXTargetDependency section */
 		070B8EFF1B6E53FA00D26137 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 070B8EE91B6E53F900D26137 /* app_shader */;
+			target = 070B8EE91B6E53F900D26137 /* _app_shader */;
 			targetProxy = 070B8EFE1B6E53FA00D26137 /* PBXContainerItemProxy */;
 		};
 		9A6A47642660E578004ED97A /* PBXTargetDependency */ = {
@@ -1041,11 +1005,6 @@
 			isa = PBXTargetDependency;
 			name = windowing_macos;
 			targetProxy = 9A6A47672660E578004ED97A /* PBXContainerItemProxy */;
-		};
-		9A6A47A42660E90D004ED97A /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = app_shader;
-			targetProxy = 9A6A47A32660E90D004ED97A /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1206,6 +1165,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/macos/Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_BUNDLE_IDENTIFIER = app.shader;
+				PRODUCT_NAME = _app_shader;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Debug;
@@ -1222,6 +1182,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/macos/Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_BUNDLE_IDENTIFIER = app.shader;
+				PRODUCT_NAME = _app_shader;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Release;
@@ -1267,7 +1228,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		070B8EE51B6E53F900D26137 /* Build configuration list for PBXProject "app_shader" */ = {
+		070B8EE51B6E53F900D26137 /* Build configuration list for PBXProject "_app_shader" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				070B8F051B6E53FA00D26137 /* Debug */,
@@ -1276,7 +1237,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		070B8F071B6E53FA00D26137 /* Build configuration list for PBXNativeTarget "app_shader" */ = {
+		070B8F071B6E53FA00D26137 /* Build configuration list for PBXNativeTarget "_app_shader" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				070B8F081B6E53FA00D26137 /* Debug */,

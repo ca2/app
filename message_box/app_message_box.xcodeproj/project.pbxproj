@@ -49,7 +49,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		9A48898624EB48DE00119EC4 /* libapp_message_box.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libapp_message_box.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A48898624EB48DE00119EC4 /* libapp_message_boxx.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libapp_message_boxx.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A488A3B24EB4B0C00119EC4 /* aura.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = aura.xcodeproj; path = ../aura/aura.xcodeproj; sourceTree = "<group>"; };
 		9A64C11D2660BC5C0074030F /* libacme.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libacme.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A64C11F2660BC5C0074030F /* libapex.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libapex.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -97,7 +97,7 @@
 		9A48898724EB48DE00119EC4 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9A48898624EB48DE00119EC4 /* libapp_message_box.dylib */,
+				9A48898624EB48DE00119EC4 /* libapp_message_boxx.dylib */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -155,9 +155,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		9A48898524EB48DE00119EC4 /* app_message_box */ = {
+		9A48898524EB48DE00119EC4 /* app_message_boxx */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9A48898F24EB48DE00119EC4 /* Build configuration list for PBXNativeTarget "app_message_box" */;
+			buildConfigurationList = 9A48898F24EB48DE00119EC4 /* Build configuration list for PBXNativeTarget "app_message_boxx" */;
 			buildPhases = (
 				9A48898224EB48DE00119EC4 /* Headers */,
 				9A48898324EB48DE00119EC4 /* Sources */,
@@ -168,9 +168,9 @@
 			dependencies = (
 				9A488A4824EB4B1B00119EC4 /* PBXTargetDependency */,
 			);
-			name = app_message_box;
+			name = app_message_boxx;
 			productName = app_app_app;
-			productReference = 9A48898624EB48DE00119EC4 /* libapp_message_box.dylib */;
+			productReference = 9A48898624EB48DE00119EC4 /* libapp_message_boxx.dylib */;
 			productType = "com.apple.product-type.library.dynamic";
 		};
 /* End PBXNativeTarget section */
@@ -187,7 +187,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 9A48898124EB48DE00119EC4 /* Build configuration list for PBXProject "app_message_bo" */;
+			buildConfigurationList = 9A48898124EB48DE00119EC4 /* Build configuration list for PBXProject "app_message_box" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -206,7 +206,7 @@
 			);
 			projectRoot = "";
 			targets = (
-				9A48898524EB48DE00119EC4 /* app_message_box */,
+				9A48898524EB48DE00119EC4 /* app_message_boxx */,
 			);
 		};
 /* End PBXProject section */
@@ -474,6 +474,7 @@
 				DYLIB_CURRENT_VERSION = 1;
 				EXECUTABLE_PREFIX = lib;
 				PLATFORM_MODIFIER = macos;
+				PRODUCT_NAME = app_message_boxx;
 				SKIP_INSTALL = YES;
 			};
 			name = Debug;
@@ -487,6 +488,7 @@
 				DYLIB_CURRENT_VERSION = 1;
 				EXECUTABLE_PREFIX = lib;
 				PLATFORM_MODIFIER = macos;
+				PRODUCT_NAME = app_message_boxx;
 				SKIP_INSTALL = YES;
 			};
 			name = Release;
@@ -494,7 +496,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		9A48898124EB48DE00119EC4 /* Build configuration list for PBXProject "app_message_bo" */ = {
+		9A48898124EB48DE00119EC4 /* Build configuration list for PBXProject "app_message_box" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9A48898D24EB48DE00119EC4 /* Debug */,
@@ -503,7 +505,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9A48898F24EB48DE00119EC4 /* Build configuration list for PBXNativeTarget "app_message_box" */ = {
+		9A48898F24EB48DE00119EC4 /* Build configuration list for PBXNativeTarget "app_message_boxx" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9A48899024EB48DE00119EC4 /* Debug */,

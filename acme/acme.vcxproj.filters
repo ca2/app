@@ -2774,6 +2774,12 @@
     <ClInclude Include="exception\file.h">
       <Filter>Header Files\exception</Filter>
     </ClInclude>
+    <ClInclude Include="include\_no_templates.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\_c.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="primitive\primitive\application_bias.cpp">

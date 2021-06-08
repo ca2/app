@@ -1094,7 +1094,7 @@ inline payload::operator ::u64() const
 // returns 0 for unknown conversions
 inline payload::operator unsigned long() const
 {
-#ifdef LONG_IS_32BIT
+#if LONG_IS_32BIT
    return u32();
 #else
    return u64();

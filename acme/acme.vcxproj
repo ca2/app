@@ -1778,6 +1778,8 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClInclude Include="graphics\draw2d\_.h" />
     <ClInclude Include="graphics\draw2d\_const.h" />
     <ClInclude Include="id.h" />
+    <ClInclude Include="include\_c.h" />
+    <ClInclude Include="include\_no_templates.h" />
     <ClInclude Include="inline\application_common.h" />
     <ClInclude Include="inline\console.h" />
     <ClInclude Include="inline\console_common.h" />

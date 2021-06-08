@@ -165,9 +165,7 @@ namespace user
 
       operator enum_element() const { return m_eelement; }
 
-      operator i32() const { return (::i32) m_iItem; }
-
-      operator i64() const { return (::i64) m_iItem; }
+      operator ::index() const { return (::index) m_iItem; }
 
       item& operator = (const item & item) { item_data::operator=(item); return *this; }
 

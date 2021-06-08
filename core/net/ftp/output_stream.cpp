@@ -91,7 +91,7 @@ namespace ftp
 
    ::u32 output_stream::GetLocalStreamSize() const
    {
-       return (::u32) natural(m_pimpl->m_vBuffer.size());
+       return (::u32) m_pimpl->m_vBuffer.size();
    }
 
    void output_stream::SetLocalStreamOffset(::u32 dwOffsetFromBeginOfStream)

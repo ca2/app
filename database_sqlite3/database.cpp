@@ -343,7 +343,7 @@ namespace sqlite
    }
 
 
-   ::i64 database::get_affected_rows_count()
+   ::count database::get_affected_rows_count()
    {
 
       return -1;

@@ -809,7 +809,7 @@ namespace draw2d
 
       virtual ::size_f64 get_text_extent(const char * pszString, strsize nCount, strsize iIndex);
 
-      virtual ::size_f64 get_text_extent(const ::block & block);
+      ::size_f64 get_text_extent(const ::block & block) override;
 
       virtual ::size_f64 GetTextBegin(const char * pszString, strsize nCount, strsize iIndex);
 
@@ -840,7 +840,7 @@ namespace draw2d
       virtual i32 GetTextFace(string & rString);
 
       using ::write_text::drawer::get_text_metrics;
-      ::e_status get_text_metrics(::write_text::text_metric * pmetrics);
+      ::e_status get_text_metrics(::write_text::text_metric * pmetrics) override;
       virtual bool get_output_text_metrics(::write_text::text_metric * pMetrics);
 
 

@@ -53,7 +53,7 @@ namespace str
          inverse = true;
          pos++;
       }
-      for(; pos < strlen(ccs); pos++)
+      for(; __lt(pos, strlen(ccs)); pos++)
       {
          if(ccs[pos] == ']')
          {
@@ -91,7 +91,7 @@ namespace str
             prev_char = BAD_WCHAR;
             continue;
          }
-         if(ccs[pos] == '\\' && pos+1 < strlen(ccs))
+         if(ccs[pos] == '\\' && __lt(pos+1, strlen(ccs)))
          {
 //            i32 retEnd;
             prev_char = BAD_WCHAR;

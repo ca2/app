@@ -4616,7 +4616,7 @@ namespace draw2d_opengl
    }
 
 
-   size_f64 graphics::GetTextExtent(const char * lpszString, strsize nCount, strsize iIndex)
+   size_f64 graphics::get_text_extent(const char * lpszString, strsize nCount, strsize iIndex)
    {
 
       if(lpszString == nullptr || *lpszString == '\0')
@@ -4664,12 +4664,12 @@ namespace draw2d_opengl
    }
 
 
-   size_f64 graphics::GetTextExtent(const char * lpszString, strsize nCount)
+   size_f64 graphics::get_text_extent(const char * lpszString, strsize nCount)
    {
 
       ::size_f64 size;
 
-      if (!GetTextExtent(size, lpszString, nCount, 0))
+      if (!get_text_extent(size, lpszString, nCount, 0))
          return ::size_i32(0, 0);
 
       return ::size_i32(size.cx, size.cy);
@@ -4677,12 +4677,12 @@ namespace draw2d_opengl
    }
 
 
-   size_f64 graphics::GetTextExtent(const string & str)
+   size_f64 graphics::get_text_extent(const string & str)
    {
 
       ::size_f64 size;
 
-      if(!GetTextExtent(size, str, (i32) str.get_length(), 0))
+      if(!get_text_extent(size, str, (i32) str.get_length(), 0))
          return ::size_i32(0, 0);
 
       return ::size_i32((long) size.cx, (long) size.cy);
@@ -4718,7 +4718,7 @@ namespace draw2d_opengl
    }
 
 
-   bool graphics::GetTextExtent(size_f64 & size, const char * lpszString, strsize nCount, strsize iIndex)
+   bool graphics::get_text_extent(size_f64 & size, const char * lpszString, strsize nCount, strsize iIndex)
    {
 
       //// ASSERT(m_hdc != nullptr);
@@ -4803,7 +4803,7 @@ namespace draw2d_opengl
    }
 
 
-   bool graphics::GetTextExtent(size_f64 & size, const char * lpszString, strsize nCount)
+   bool graphics::get_text_extent(size_f64 & size, const char * lpszString, strsize nCount)
    {
 
       //// ASSERT(m_hdc != nullptr);
@@ -4828,7 +4828,7 @@ namespace draw2d_opengl
    }
 
 
-   bool graphics::GetTextExtent(size_f64 & size, const string & str)
+   bool graphics::get_text_extent(size_f64 & size, const string & str)
    {
 
       //// ASSERT(m_hdc != nullptr);

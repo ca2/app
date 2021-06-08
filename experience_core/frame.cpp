@@ -65,11 +65,11 @@ namespace experience
 
                auto imaging = psystem->imaging();
 
-               ::rectangle_i32 rectClient(rectParam);
+               ::rectangle_i32 rectangleClient(rectParam);
 
                ::rectangle_i32 rectInflate;
 
-               if(rectClient.is_empty())
+               if(rectangleClient.is_empty())
                {
 
                   return;
@@ -79,7 +79,7 @@ namespace experience
 
                i32 iInflate = 5; // raio 2 pixels + centro 1 pixel
 
-               rectInflate = rectClient;
+               rectInflate = rectangleClient;
 
                rectInflate.inflate(iInflate, iInflate);
 
@@ -91,17 +91,17 @@ namespace experience
 
                ::image_pointer pimage2;
 
-               pimage1 = create_image({rectClient.width() + iInflate * 2,  rectClient.height() + iInflate * 2});
+               pimage1 = create_image({rectangleClient.width() + iInflate * 2,  rectangleClient.height() + iInflate * 2});
 
-               pimage2 = create_image({rectClient.width() + iInflate * 2,  rectClient.height() + iInflate * 2});
+               pimage2 = create_image({rectangleClient.width() + iInflate * 2,  rectangleClient.height() + iInflate * 2});
 
-               ::rectangle_i32 rectWindow = rectClient;
+               ::rectangle_i32 rectWindow = rectangleClient;
 
                pframewindow->_001ClientToScreen(rectWindow);
 
                ::point_i32 pointInflate(iInflate, iInflate);
 
-               auto point = rectClient.top_left();
+               auto point = rectangleClient.top_left();
 
                point -= pointInflate;
 
@@ -109,7 +109,7 @@ namespace experience
 
                b = imaging.blur(pimage2, 2);
 
-               pgraphics->stretch(rectClient, pimage2->g(), ::rectangle_i32(pointInflate, rectClient.size()));
+               pgraphics->stretch(rectangleClient, pimage2->g(), ::rectangle_i32(pointInflate, rectangleClient.size()));
 
             }
 

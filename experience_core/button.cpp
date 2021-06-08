@@ -58,9 +58,9 @@ namespace experience
 
          }
 
-         auto rectClient = get_client_rect();
+         auto rectangleClient = get_client_rect();
 
-         if (rectClient.is_empty())
+         if (rectangleClient.is_empty())
          {
 
             return;
@@ -117,7 +117,7 @@ namespace experience
 
          }
 
-         ::rectangle_i32 rectEllipse(rectClient);
+         ::rectangle_i32 rectEllipse(rectangleClient);
 
          rectEllipse.deflate(0, 0, 2, 2);
 
@@ -138,7 +138,7 @@ namespace experience
 
             pgraphics->set_text_color(crText);
 
-            pgraphics->draw_text(str, rectClient, e_align_center, e_draw_text_single_line);
+            pgraphics->draw_text(str, rectangleClient, e_align_center, e_draw_text_single_line);
 
          }
          else
@@ -192,9 +192,9 @@ namespace experience
       void button::on_layout(::draw2d::graphics_pointer & pgraphics)
       {
 
-         auto rectClient = get_client_rect();
+         auto rectangleClient = get_client_rect();
 
-         m_pregion->create_ellipse(rectClient);
+         m_pregion->create_ellipse(rectangleClient);
 
       }
 

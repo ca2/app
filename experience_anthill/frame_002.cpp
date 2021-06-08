@@ -212,7 +212,7 @@ SizingNone:;
 
                auto psession = get_session();
 
-               ::rectangle_i32 rectClient(rectClientParam);
+               ::rectangle_i32 rectangleClient(rectClientParam);
 
                auto pframewindow = m_pframewindow;
 
@@ -244,7 +244,7 @@ SizingNone:;
                }
 
                enum_dock edock = m_pframewindow->dock_manager()->get_dock_mask();
-               ::rectangle_i32 rectA(rectClient);
+               ::rectangle_i32 rectA(rectangleClient);
 
                auto estyle = get_style();
 
@@ -253,7 +253,7 @@ SizingNone:;
                      || estyle == ::user::StyleTranslucidLightGreen)
                {
                   ::rectangle_i32 rectangle;
-                  GetBorderRect(rectClient, rectangle, eside);
+                  GetBorderRect(rectangleClient, rectangle, eside);
 
                   pgraphics->color_blend(
                                       rectangle,
@@ -275,7 +275,7 @@ SizingNone:;
                   Draw3dRectSide(pgraphics, rectA, eside, colorMoveableBorder, colorMoveableBorder);
 
                   ::rectangle_i32 rectangle;
-                  GetBorderRect(rectClient, rectangle, eside);
+                  GetBorderRect(rectangleClient, rectangle, eside);
 
                   pgraphics->color_blend(
                                       rectangle,
@@ -285,15 +285,15 @@ SizingNone:;
                else
                {
                   ::rectangle_i32 rectangle;
-                  rectClient.deflate(1, 1);
-                  GetBorderRect(rectClient, rectangle, eside);
+                  rectangleClient.deflate(1, 1);
+                  GetBorderRect(rectangleClient, rectangle, eside);
 
                   pgraphics->color_blend(
                                       rectangle,
                                       colorMoveableBorder,
                                       200);
 
-                  GetBorderRect(rectClient, rectangle, eside);
+                  GetBorderRect(rectangleClient, rectangle, eside);
 
                   ::rectangle_i32 rectClientB = rectA;
 
@@ -346,7 +346,7 @@ SizingNone:;
                //    CVMSApp * pApp = (CVMSApp *) System;
                //::aura::savings & savings = psession->savings();
 
-               //::rectangle_i32 rectClient = pframewindow->get_client_rect();
+               //::rectangle_i32 rectangleClient = pframewindow->get_client_rect();
 
                string str;
 
@@ -387,7 +387,7 @@ SizingNone:;
             }
 
 
-            void frame_002::DrawBorder(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectClient)
+            void frame_002::DrawBorder(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangleClient)
             {
 
 
@@ -406,29 +406,29 @@ SizingNone:;
 
                if(eborder & e_border_top)
                {
-                  draw_border_side(pgraphics, rectClient, e_border_top);
+                  draw_border_side(pgraphics, rectangleClient, e_border_top);
                }
                if(eborder & e_border_right)
                {
-                  draw_border_side(pgraphics, rectClient, e_border_right);
+                  draw_border_side(pgraphics, rectangleClient, e_border_right);
                }
                if(eborder & e_border_bottom)
                {
-                  draw_border_side(pgraphics, rectClient, e_border_bottom);
+                  draw_border_side(pgraphics, rectangleClient, e_border_bottom);
                }
                if(eborder & e_border_left)
                {
-                  draw_border_side(pgraphics, rectClient, e_border_left);
+                  draw_border_side(pgraphics, rectangleClient, e_border_left);
                }
 
             }
 
             void frame_002::GetBorderRect(
-            const ::rectangle_i32 & rectClient,
+            const ::rectangle_i32 & rectangleClient,
             RECTANGLE_I32 * lprect,
             enum_border eside)
             {
-               ::rectangle_i32 rectBig(rectClient);
+               ::rectangle_i32 rectBig(rectangleClient);
                ::rectangle_i32 rectSmall;
                get_window_client_rect(rectSmall);
                ::rectangle_i32 rectangle;
@@ -481,13 +481,13 @@ SizingNone:;
                //            const i32 size1 = 14;
                //      const i32 size2 = 15;
 
-               ::rectangle_i32 rectClient(rectClientParam);
-               //            ::rectangle_i32 rectClientB(rectClient);
+               ::rectangle_i32 rectangleClient(rectClientParam);
+               //            ::rectangle_i32 rectClientB(rectangleClient);
                ::rectangle_i32 rectA;
                ::point_i32 pointA;
                ::point_i32 pointB;
                ::point_i32 pointC;
-               ::rectangle_i32 rectangle(rectClient);
+               ::rectangle_i32 rectangle(rectangleClient);
 
 
 
@@ -496,10 +496,10 @@ SizingNone:;
                case e_grip_top_left:
                {
 
-                  rectClient.bottom--;
-                  rectClient.right--;
+                  rectangleClient.bottom--;
+                  rectangleClient.right--;
 
-                  rectA = rectClient;
+                  rectA = rectangleClient;
 
                   pgraphics->set(m_penHilight1);
 
@@ -598,10 +598,10 @@ SizingNone:;
                case e_grip_top_right:
                {
 
-                  rectClient.bottom--;
-                  rectClient.right--;
+                  rectangleClient.bottom--;
+                  rectangleClient.right--;
 
-                  rectA = rectClient;
+                  rectA = rectangleClient;
 
                   pgraphics->set(m_penHilight1);
 
@@ -700,10 +700,10 @@ SizingNone:;
                {
                   pgraphics->set(m_penHilight1);
 
-                  rectClient.bottom--;
-                  rectClient.right--;
+                  rectangleClient.bottom--;
+                  rectangleClient.right--;
 
-                  rectA = rectClient;
+                  rectA = rectangleClient;
 
 
                   pointA = rectA.bottom_left();
@@ -799,10 +799,10 @@ SizingNone:;
                break;
                case e_grip_bottom_right:
                {
-                  rectClient.bottom--;
-                  rectClient.right--;
+                  rectangleClient.bottom--;
+                  rectangleClient.right--;
 
-                  rectA = rectClient;
+                  rectA = rectangleClient;
 
 
                   pgraphics->set(m_penDkShadow1);
@@ -907,7 +907,7 @@ SizingNone:;
 
                   ::rectangle_i32 rectB;
 
-                  rectB.top = rectClient.top;
+                  rectB.top = rectangleClient.top;
                   rectB.left = pointCenter.x - GRIP_CENTER_LARGE_CX / 2;
                   rectB.right = pointCenter.x + GRIP_CENTER_LARGE_CX / 2;
                   rectB.bottom = rectB.top + GRIP_CENTER_SMALL_CY;
@@ -921,7 +921,7 @@ SizingNone:;
 
                   ::rectangle_i32 rectB;
 
-                  rectB.bottom = rectClient.bottom;
+                  rectB.bottom = rectangleClient.bottom;
                   rectB.left = pointCenter.x - GRIP_CENTER_LARGE_CX / 2;
                   rectB.right = pointCenter.x + GRIP_CENTER_LARGE_CX / 2;
                   rectB.top = rectB.bottom - GRIP_CENTER_SMALL_CY;
@@ -936,8 +936,8 @@ SizingNone:;
                   ::rectangle_i32 rectB;
 
                   rectB.top = pointCenter.y - GRIP_CENTER_LARGE_CY / 2;
-                  rectB.left = rectClient.left;
-                  rectB.right = rectClient.left + GRIP_CENTER_SMALL_CX;
+                  rectB.left = rectangleClient.left;
+                  rectB.right = rectangleClient.left + GRIP_CENTER_SMALL_CX;
                   rectB.bottom = pointCenter.y + GRIP_CENTER_LARGE_CY / 2;
 
                   DrawRectGrip(pgraphics, rectB);
@@ -950,8 +950,8 @@ SizingNone:;
                   ::rectangle_i32 rectB;
 
                   rectB.top = pointCenter.y - GRIP_CENTER_LARGE_CY / 2;
-                  rectB.right = rectClient.right;
-                  rectB.left = rectClient.right - GRIP_CENTER_SMALL_CX;
+                  rectB.right = rectangleClient.right;
+                  rectB.left = rectangleClient.right - GRIP_CENTER_SMALL_CX;
                   rectB.bottom = pointCenter.y + GRIP_CENTER_LARGE_CY / 2;
 
                   DrawRectGrip(pgraphics, rectB);
@@ -1003,7 +1003,7 @@ SizingNone:;
             }
 
 
-            void frame_002::DrawGripSet(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectClient)
+            void frame_002::DrawGripSet(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangleClient)
             {
 
                auto psizenager = m_pframewindow->size_manager();
@@ -1012,42 +1012,42 @@ SizingNone:;
 
                if(egrip & e_grip_top)
                {
-                  DrawGrip(pgraphics, rectClient, e_grip_top);
+                  DrawGrip(pgraphics, rectangleClient, e_grip_top);
                }
 
                if(egrip & e_grip_top_right)
                {
-                  DrawGrip(pgraphics, rectClient, e_grip_top_right);
+                  DrawGrip(pgraphics, rectangleClient, e_grip_top_right);
                }
 
                if(egrip & e_grip_right)
                {
-                  DrawGrip(pgraphics, rectClient, e_grip_right);
+                  DrawGrip(pgraphics, rectangleClient, e_grip_right);
                }
 
                if(egrip & e_grip_bottom_right)
                {
-                  DrawGrip(pgraphics, rectClient, e_grip_bottom_right);
+                  DrawGrip(pgraphics, rectangleClient, e_grip_bottom_right);
                }
 
                if(egrip & e_grip_bottom)
                {
-                  DrawGrip(pgraphics, rectClient, e_grip_bottom);
+                  DrawGrip(pgraphics, rectangleClient, e_grip_bottom);
                }
 
                if(egrip & e_grip_bottom_left)
                {
-                  DrawGrip(pgraphics, rectClient, e_grip_bottom_left);
+                  DrawGrip(pgraphics, rectangleClient, e_grip_bottom_left);
                }
 
                if(egrip & e_grip_left)
                {
-                  DrawGrip(pgraphics, rectClient, e_grip_left);
+                  DrawGrip(pgraphics, rectangleClient, e_grip_left);
                }
 
                if(egrip & e_grip_top_left)
                {
-                  DrawGrip(pgraphics, rectClient, e_grip_top_left);
+                  DrawGrip(pgraphics, rectangleClient, e_grip_top_left);
                }
 
             }

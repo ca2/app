@@ -84,9 +84,9 @@ namespace write_text
 
       pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-      ::rectangle_i32 rectClient = m_puserinteraction->get_client_rect();
+      ::rectangle_i32 rectangleClient = m_puserinteraction->get_client_rect();
 
-      rectClient += m_puserinteraction->get_viewport_offset();
+      rectangleClient += m_puserinteraction->get_viewport_offset();
 
       auto pfontlistdata = m_pfontlistdata;
 
@@ -133,7 +133,7 @@ namespace write_text
 
          }
 
-         if (!pbox->m_rectangle.intersects(rectClient))
+         if (!pbox->m_rectangle.intersects(rectangleClient))
          {
 
             continue;
@@ -223,9 +223,9 @@ namespace write_text
 
       auto pfontlistdata = m_pfontlistdata;
 
-      rectangle_i32 rectClient = m_puserinteraction->get_client_rect();
+      rectangle_i32 rectangleClient = m_puserinteraction->get_client_rect();
 
-      rectClient += m_puserinteraction->get_viewport_offset();
+      rectangleClient += m_puserinteraction->get_viewport_offset();
 
       __pointer(::aura::session) psession = get_session();
 
@@ -272,7 +272,7 @@ namespace write_text
 
          }
 
-         if (!rectClient.intersects(rectangle))
+         if (!rectangleClient.intersects(rectangle))
          {
 
             if (bIntersected)
@@ -419,7 +419,7 @@ namespace write_text
             if (strText.has_char())
             {
 
-               s = pgraphics->GetTextExtent(strText);
+               s = pgraphics->get_text_extent(strText);
 
             }
 
@@ -442,7 +442,7 @@ namespace write_text
                   if (strSample.has_char())
                   {
 
-                     sSample = pgraphics->GetTextExtent(strSample);
+                     sSample = pgraphics->get_text_extent(strSample);
 
                      if (sSample.area() > maxarea)
                      {
@@ -467,7 +467,7 @@ namespace write_text
                   if (strSample.has_char())
                   {
 
-                     sSample = pgraphics->GetTextExtent(strSample);
+                     sSample = pgraphics->get_text_extent(strSample);
 
                      if (sSample.area() > maxarea)
                      {
@@ -496,7 +496,7 @@ namespace write_text
 
             pbox->m_pfont->m_echaracterset = pitem->m_box[0].m_pfont->m_echaracterset;
 
-            s = pgraphics->GetTextExtent(pitem->m_strSample);
+            s = pgraphics->get_text_extent(pitem->m_strSample);
 
          }
 
@@ -1131,9 +1131,9 @@ namespace write_text
 
       sizeTotal.cx = m_rectangleClient.width();
 
-      rectangle_i32 rectClient = m_puserinteraction->get_client_rect();
+      rectangle_i32 rectangleClient = m_puserinteraction->get_client_rect();
 
-      rectClient += m_puserinteraction->get_viewport_offset();
+      rectangleClient += m_puserinteraction->get_viewport_offset();
 
       auto pfontlistdata = m_pfontlistdata;
 
@@ -1236,7 +1236,7 @@ namespace write_text
 
          rectangle.bottom = rectangle.top + s.cy;
 
-         if (rectangle.intersects(rectClient))
+         if (rectangle.intersects(rectangleClient))
          {
 
             bIntersected = true;

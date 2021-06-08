@@ -97,17 +97,17 @@ namespace turboc
       if(m_pimageWork->area() <= 0)
          return;
 
-      ::rectangle_i32 rectClient;
+      ::rectangle_i32 rectangleClient;
 
-      rectClient.left = 0;
+      rectangleClient.left = 0;
 
-      rectClient.top = 0;
+      rectangleClient.top = 0;
 
-      rectClient.right = m_cx;
+      rectangleClient.right = m_cx;
 
-      rectClient.bottom = m_cy;
+      rectangleClient.bottom = m_cy;
 
-      if(rectClient.area() <= 0)
+      if(rectangleClient.area() <= 0)
          return;
 
 //      i32 iCount = 30;
@@ -174,7 +174,7 @@ namespace turboc
 
       string strHelloMultiverse = get_processed_turboc();
 
-      ::size_i32 size = pgraphics->GetTextExtent(strHelloMultiverse);
+      ::size_i32 size = pgraphics->get_text_extent(strHelloMultiverse);
 
       if(!psession->savings().is_trying_to_save(::e_resource_display_bandwidth))
       {
@@ -239,7 +239,7 @@ namespace turboc
 
          pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-/*         pgraphics->BitBlt(rectClient,m_pimage->g());
+/*         pgraphics->BitBlt(rectangleClient,m_pimage->g());
 
       }
 
@@ -405,9 +405,9 @@ namespace turboc
 
 #endif
 
-      GetClientRect(rectClient);
+      GetClientRect(rectangleClient);
 
-      if(strHelloMultiverse == get_processed_turboc() && m_cx == rectClient.width() && m_cy == rectClient.height())
+      if(strHelloMultiverse == get_processed_turboc() && m_cx == rectangleClient.width() && m_cy == rectangleClient.height())
       {
 
          m_bFirstDone = true;

@@ -469,7 +469,7 @@ namespace userstack
          //set_need_redraw();
       }
 
-      //m_pimage->to(pgraphics, 0, 0, rectClient->right, rectClient->bottom);
+      //m_pimage->to(pgraphics, 0, 0, rectangleClient->right, rectangleClient->bottom);
 
       ::userex::pane_tab_view::_001OnDraw(pgraphics);
 

@@ -203,6 +203,9 @@ namespace draw2d_direct2d
 #endif
 
 
+#include "aura/graphics/write_text/drawer.h"
+
+
 #include "aura/platform/draw_context2.h"
 #include "graphics.h"
 

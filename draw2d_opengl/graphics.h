@@ -374,12 +374,12 @@ namespace draw2d_opengl
 
       virtual bool draw_text_ex(const string & str,const ::rectangle_f64 & rectangle, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none,LPDRAWTEXTPARAMS lpDTParams = nullptr);
 
-      virtual size_f64 GetTextExtent(const char * lpszString, strsize nCount, strsize iIndex) override;
-      virtual size_f64 GetTextExtent(const char * lpszString, strsize nCount) override;
-      virtual size_f64 GetTextExtent(const string & str) override;
-      virtual bool GetTextExtent(size_f64 & size, const char * lpszString, strsize nCount, strsize iIndex);
-      virtual bool GetTextExtent(size_f64 & size, const char * lpszString, strsize nCount);
-      virtual bool GetTextExtent(size_f64 & size, const string & str);
+      virtual size_f64 get_text_extent(const char * lpszString, strsize nCount, strsize iIndex) override;
+      virtual size_f64 get_text_extent(const char * lpszString, strsize nCount) override;
+      virtual size_f64 get_text_extent(const string & str) override;
+      virtual bool get_text_extent(size_f64 & size, const char * lpszString, strsize nCount, strsize iIndex);
+      virtual bool get_text_extent(size_f64 & size, const char * lpszString, strsize nCount);
+      virtual bool get_text_extent(size_f64 & size, const string & str);
       virtual size_i32 GetOutputTextExtent(const char * lpszString, strsize nCount);
       virtual size_i32 GetOutputTextExtent(const string & str);
       virtual size_i32 GetTabbedTextExtent(const char * lpszString, strsize nCount,count nTabPositions, LPINT lpnTabStopPositions);

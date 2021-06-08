@@ -103,9 +103,9 @@ namespace user
 
       string strItem;
 
-      ::rectangle rectClient;
+      ::rectangle rectangleClient;
 
-      layout().get_client_rect(rectClient, ::user::e_layout_design);
+      layout().get_client_rect(rectangleClient, ::user::e_layout_design);
 
       ::draw2d::brush_pointer brBk(e_create);
 
@@ -113,15 +113,15 @@ namespace user
 
       pgraphics->set(brBk);
 
-      pgraphics->fill_rectangle(rectClient);
+      pgraphics->fill_rectangle(rectangleClient);
 
       ::rectangle rectItem;
 
       //point p = pgraphics->GetViewportOrg();
 
-      rectItem = rectClient;
+      rectItem = rectangleClient;
 
-      rectItem.bottom = rectClient.top;
+      rectItem.bottom = rectangleClient.top;
 
       if (m_pcombo->m_bEdit)
       {
@@ -239,9 +239,9 @@ namespace user
 
       pgraphics->set(pen);
 
-      rectClient.deflate(0, 0, 1, 1);
+      rectangleClient.deflate(0, 0, 1, 1);
 
-      pgraphics->draw_rectangle(rectClient);
+      pgraphics->draw_rectangle(rectangleClient);
 
    }
 
@@ -312,7 +312,7 @@ namespace user
 
          m_pcombo->_001GetListText(i, strItem);
 
-         size = pgraphics->GetTextExtent(strItem);
+         size = pgraphics->get_text_extent(strItem);
 
          size.cx += m_iPadding * 2;
 
@@ -727,13 +727,13 @@ namespace user
 
       auto point = screen_to_client(pmouse->m_point, e_layout_sketch);
 
-      auto rectClient = get_client_rect();
+      auto rectangleClient = get_client_rect();
 
       psession->user()->set_mouse_focus_LButtonDown(this);
 
       m_itemLButtonDown = -1;
 
-      if (rectClient.contains(point))
+      if (rectangleClient.contains(point))
       {
 
          m_itemLButtonDown = hit_test(pmouse);
@@ -754,13 +754,13 @@ namespace user
 
       auto point = screen_to_client(pmouse->m_point, e_layout_sketch);
 
-      auto rectClient = get_client_rect();
+      auto rectangleClient = get_client_rect();
 
       psession->user()->set_mouse_focus_LButtonDown(this);
 
       ReleaseCapture();
 
-      if (rectClient.contains(point))
+      if (rectangleClient.contains(point))
       {
 
          auto itemHit = hit_test(pmouse);
@@ -809,9 +809,9 @@ namespace user
 
       _001ScreenToClient(point, e_layout_sketch);
 
-      auto rectClient = get_client_rect();
+      auto rectangleClient = get_client_rect();
 
-      if (rectClient.contains(point))
+      if (rectangleClient.contains(point))
       {
 
       }
@@ -836,9 +836,9 @@ namespace user
 
       _001ScreenToClient(point, e_layout_sketch);
 
-      auto rectClient = get_client_rect();
+      auto rectangleClient = get_client_rect();
 
-      if (rectClient.contains(point))
+      if (rectangleClient.contains(point))
       {
 
       }
@@ -920,9 +920,9 @@ namespace user
 
       ::count iItemCount = m_pcombo->_001GetListCount();
 
-      auto rectClient = get_client_rect();
+      auto rectangleClient = get_client_rect();
 
-      ::rectangle rectItem = rectClient;
+      ::rectangle rectItem = rectangleClient;
 
       int iAddUp = 0;
 
@@ -936,7 +936,7 @@ namespace user
       for (::index iItem = 0; iItem < iItemCount; iItem++)
       {
 
-         rectItem.top = rectClient.top + (_001GetItemHeight() * (int) (iAddUp + iItem));
+         rectItem.top = rectangleClient.top + (_001GetItemHeight() * (int) (iAddUp + iItem));
 
          rectItem.bottom = rectItem.top + _001GetItemHeight();
 
@@ -952,7 +952,7 @@ namespace user
 
       }
 
-      rectItem.top = rectClient.top;
+      rectItem.top = rectangleClient.top;
 
       rectItem.bottom = rectItem.top + _001GetItemHeight();
 

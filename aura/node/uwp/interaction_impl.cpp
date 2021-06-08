@@ -6324,11 +6324,11 @@ namespace uwp
 
       ::user::interaction_impl::on_layout(pgraphics);
 
-      rectangle_i32 rectClient;
+      rectangle_i32 rectangleClient;
 
-      m_puserinteraction->get_client_rect(rectClient);
+      m_puserinteraction->get_client_rect(rectangleClient);
 
-      if (rectClient.is_empty())
+      if (rectangleClient.is_empty())
       {
 
          return;

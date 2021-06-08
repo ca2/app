@@ -350,7 +350,7 @@ SizingNone:
 
                //    CVMSApp * pApp = (CVMSApp *) System;
                //::aura::savings & savings = psession->savings();
-               auto rectClient = pframewindow->get_client_rect();
+               auto rectangleClient = pframewindow->get_client_rect();
 
                string str;
 

@@ -1136,8 +1136,8 @@ namespace android
       }
       else if(pmessage->m_id == e_message_left_button_down)
       {
-         //::rectangle_i32 rectClient;
-         //::get_client_rect(get_handle(),rectClient);
+         //::rectangle_i32 rectangleClient;
+         //::get_client_rect(get_handle(),rectangleClient);
          //::rectangle_i32 rectWindow;
          //::get_window_rect(get_handle(),rectWindow);
          //::rectangle_i32 rectRegion;
@@ -1956,12 +1956,12 @@ namespace android
    void interaction_impl::_001DeferPaintLayeredWindowBackground(HDC hdc)
    {
 
-      ::rectangle_i32 rectClient;
+      ::rectangle_i32 rectangleClient;
 
-      m_puserinteraction->get_client_rect(rectClient);
+      m_puserinteraction->get_client_rect(rectangleClient);
 
 
-      //pgraphics->FillSolidRect(rectClient, 0x00000000);
+      //pgraphics->FillSolidRect(rectangleClient, 0x00000000);
 
       //return;
       ::rectangle_i32 rectUpdate;
@@ -3102,15 +3102,15 @@ namespace android
 
       }
 
-      ::rectangle_i32 rectClient;
+      ::rectangle_i32 rectangleClient;
 
-      //oswindow->get_client_rect(rectClient);
+      //oswindow->get_client_rect(rectangleClient);
 
-      rectClient.left = 0;
-      rectClient.top = 0;
-      rectClient.right = 500;
-      rectClient.bottom = 500;
-      //      (dynamic_cast < ::android::graphics * >(g.m_p))->attach(cairo_create(cairo_xlib_surface_create(oswindow->display(), oswindow->interaction_impl(), oswindow->draw2d(),rectClient.width(), rectClient.height())));
+      rectangleClient.left = 0;
+      rectangleClient.top = 0;
+      rectangleClient.right = 500;
+      rectangleClient.bottom = 500;
+      //      (dynamic_cast < ::android::graphics * >(g.m_p))->attach(cairo_create(cairo_xlib_surface_create(oswindow->display(), oswindow->interaction_impl(), oswindow->draw2d(),rectangleClient.width(), rectangleClient.height())));
       return g.detach();
    }
 

@@ -251,11 +251,11 @@ namespace user
 
       y += 10;
 
-      ::rectangle_i32 rectClient;
+      ::rectangle_i32 rectangleClient;
 
-      get_client_rect(rectClient);
+      get_client_rect(rectangleClient);
 
-      int w = rectClient.width() - x * 2;
+      int w = rectangleClient.width() - x * 2;
 
       int k = 0;
 
@@ -365,18 +365,18 @@ namespace user
 
       pimage1 = m_pimageMem;
 
-      ::rectangle_i32 rectClient;
+      ::rectangle_i32 rectangleClient;
 
-      get_client_rect(rectClient);
+      get_client_rect(rectangleClient);
 
-      if (rectClient.area() <= 0)
+      if (rectangleClient.area() <= 0)
       {
 
          return;
 
       }
 
-      pimage1->create(rectClient.size());
+      pimage1->create(rectangleClient.size());
 
       ::draw2d::graphics_pointer pgraphics = pimage1->get_graphics();
 
@@ -610,7 +610,7 @@ namespace user
 
       }
 
-      pgraphicsParam->stretch(rectClient, pimage1->get_graphics());
+      pgraphicsParam->stretch(rectangleClient, pimage1->get_graphics());
 
    }
 
@@ -626,11 +626,11 @@ namespace user
    void menu_view::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::rectangle_i32 rectClient;
+      ::rectangle_i32 rectangleClient;
 
-      get_client_rect(rectClient);
+      get_client_rect(rectangleClient);
 
-      if (rectClient.area() <= 0)
+      if (rectangleClient.area() <= 0)
          return;
 
    }

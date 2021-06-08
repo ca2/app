@@ -103,7 +103,7 @@ i32                 cy)
    ** or 'drop shadowed' look depending on what shadow color
    ** and offset are used.
    */
-   sizeText = pgraphics->GetTextExtent(string(pcsz,cb));
+   sizeText = pgraphics->get_text_extent(string(pcsz,cb));
 
    rectText.left    = x;
    rectText.right   = ::i32 (x + cx + sizeText.cx);

@@ -189,7 +189,7 @@ namespace axis
 
       ::draw2d::savedc savedc(pgraphics);
 
-      ::rectangle_i32 rectClient = pinteraction->::user::interaction::get_client_rect();
+      ::rectangle_i32 rectangleClient = pinteraction->::user::interaction::get_client_rect();
 
       double dRotate = pinteraction->get_rotate();
 
@@ -204,13 +204,13 @@ namespace axis
 
          ::draw2d::matrix mTrans;
 
-         auto offset = rectClient.center();
+         auto offset = rectangleClient.center();
 
          mTrans.append(::draw2d::matrix::translation(offset.x, offset.y));
 
          pgraphics->append(mTrans);
 
-         rectClient -= offset;
+         rectangleClient -= offset;
 
       }
 
@@ -218,9 +218,9 @@ namespace axis
 
       i32 iStyle = 1;
 
-      rectClient.left--;
+      rectangleClient.left--;
 
-      rectClient.top--;
+      rectangleClient.top--;
 
       if (get_application() != nullptr && (pinteraction->hover_item().is_set() || pinteraction->has_keyboard_focus()))
       {
@@ -234,7 +234,7 @@ namespace axis
 
             pgraphics->set(brush);
 
-            pgraphics->fill_rectangle(rectClient);
+            pgraphics->fill_rectangle(rectangleClient);
 
          }
 
@@ -257,7 +257,7 @@ namespace axis
 
                }
 
-               pgraphics->draw_rectangle(rectClient, pen);
+               pgraphics->draw_rectangle(rectangleClient, pen);
 
             }
             else
@@ -274,7 +274,7 @@ namespace axis
 
                }
 
-               pgraphics->draw_rectangle(rectClient, pen);
+               pgraphics->draw_rectangle(rectangleClient, pen);
 
             }
 
@@ -291,10 +291,10 @@ namespace axis
             if (pinteraction->has_keyboard_focus())
             {
 
-               rectClient.left--;
-               rectClient.right++;
-               rectClient.top--;
-               rectClient.bottom++;
+               rectangleClient.left--;
+               rectangleClient.right++;
+               rectangleClient.top--;
+               rectangleClient.bottom++;
 
                {
 
@@ -309,14 +309,14 @@ namespace axis
 
                   }
 
-                  pgraphics->draw_rectangle(rectClient, pen);
+                  pgraphics->draw_rectangle(rectangleClient, pen);
 
                }
 
-               rectClient.left--;
-               rectClient.right++;
-               rectClient.top--;
-               rectClient.bottom++;
+               rectangleClient.left--;
+               rectangleClient.right++;
+               rectangleClient.top--;
+               rectangleClient.bottom++;
 
                {
 
@@ -333,14 +333,14 @@ namespace axis
 
                   pgraphics->set(pen);
 
-                  pgraphics->draw_rectangle(rectClient, pen);
+                  pgraphics->draw_rectangle(rectangleClient, pen);
 
                }
 
-               rectClient.left--;
-               rectClient.right++;
-               rectClient.top--;
-               rectClient.bottom++;
+               rectangleClient.left--;
+               rectangleClient.right++;
+               rectangleClient.top--;
+               rectangleClient.bottom++;
 
                {
 
@@ -353,7 +353,7 @@ namespace axis
 
                   //   pathRound->begin_figure(true, ::draw2d::fill_mode_winding);
 
-                  //   pathRound->add_round_rect(rectClient, 1 * 2);
+                  //   pathRound->add_round_rect(rectangleClient, 1 * 2);
 
                   //   pathRound->end_figure(true);
 
@@ -372,14 +372,14 @@ namespace axis
 
                   pgraphics->set(pen);
 
-                  pgraphics->draw_rectangle(rectClient, pen);
+                  pgraphics->draw_rectangle(rectangleClient, pen);
 
                }
 
-               rectClient.left--;
-               rectClient.right++;
-               rectClient.top--;
-               rectClient.bottom++;
+               rectangleClient.left--;
+               rectangleClient.right++;
+               rectangleClient.top--;
+               rectangleClient.bottom++;
 
                {
 
@@ -387,7 +387,7 @@ namespace axis
 
                   //pathRound->begin_figure(true, ::draw2d::fill_mode_winding);
 
-                  //pathRound->add_round_rect(rectClient, 1 * 2);
+                  //pathRound->add_round_rect(rectangleClient, 1 * 2);
 
                   //pathRound->end_figure(true);
 
@@ -398,15 +398,15 @@ namespace axis
 
                   pgraphics->set(pen);
 
-                  pgraphics->draw_rectangle(rectClient, pen);
+                  pgraphics->draw_rectangle(rectangleClient, pen);
 
                }
 
 
-               rectClient.left--;
-               rectClient.right++;
-               rectClient.top--;
-               rectClient.bottom++;
+               rectangleClient.left--;
+               rectangleClient.right++;
+               rectangleClient.top--;
+               rectangleClient.bottom++;
 
                {
 
@@ -414,7 +414,7 @@ namespace axis
 
                   //pathRound->begin_figure(true, ::draw2d::fill_mode_winding);
 
-                  //pathRound->add_round_rect(rectClient, 1 * 2);
+                  //pathRound->add_round_rect(rectangleClient, 1 * 2);
 
                   //pathRound->end_figure(true);
 
@@ -425,16 +425,16 @@ namespace axis
 
                   pgraphics->set(pen);
 
-                  pgraphics->draw_rectangle(rectClient, pen);
+                  pgraphics->draw_rectangle(rectangleClient, pen);
 
                }
 
 
 
-               rectClient.left--;
-               rectClient.right++;
-               rectClient.top--;
-               rectClient.bottom++;
+               rectangleClient.left--;
+               rectangleClient.right++;
+               rectangleClient.top--;
+               rectangleClient.bottom++;
 
                {
 
@@ -442,7 +442,7 @@ namespace axis
 
                   //pathRound->begin_figure(true, ::draw2d::fill_mode_winding);
 
-                  //pathRound->add_round_rect(rectClient, 1 * 2);
+                  //pathRound->add_round_rect(rectangleClient, 1 * 2);
 
                   //pathRound->end_figure(true);
 
@@ -453,7 +453,7 @@ namespace axis
 
                   pgraphics->set(pen);
 
-                  pgraphics->draw_rectangle(rectClient, pen);
+                  pgraphics->draw_rectangle(rectangleClient, pen);
 
                }
 
@@ -470,7 +470,7 @@ namespace axis
 
             pen->create_solid(3.0, argb(255, 90, 80, 255));
 
-            pgraphics->draw_rectangle(rectClient, pen);
+            pgraphics->draw_rectangle(rectangleClient, pen);
 
          }
 
@@ -482,7 +482,7 @@ namespace axis
 
          pen->create_solid(1.0, pinteraction->get_color(this, ::user::e_element_border));
 
-         pgraphics->draw_rectangle(rectClient, pen);
+         pgraphics->draw_rectangle(rectangleClient, pen);
 
       }
 

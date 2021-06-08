@@ -287,7 +287,7 @@ namespace browser
       if (m_pimageBrowser)
       {
 
-         auto rectClient = get_client_rect();
+         auto rectangleClient = get_client_rect();
 
          pgraphics->draw(::rectangle_i32(m_pimageBrowser->size()), m_pimageBrowser->g(), m_pimageBrowser->rectangle());
 
@@ -362,11 +362,11 @@ namespace browser
    void view::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::rectangle_i32 rectClient;
+      ::rectangle_i32 rectangleClient;
 
-      get_client_rect(rectClient);
+      get_client_rect(rectangleClient);
 
-      if(rectClient.area() <= 0)
+      if(rectangleClient.area() <= 0)
          return;
 
 
@@ -436,8 +436,8 @@ namespace browser
                     && GetTypedParent < pane_view >()->m_pviewLast == this
                     && GetTypedParent < pane_view >()->get_cur_tab_id() == FONTSEL_IMPACT;
 
-      //if(m_prender->m_cx == rectClient.width()
-      //    && m_prender->m_cy == rectClient.height()
+      //if(m_prender->m_cx == rectangleClient.width()
+      //    && m_prender->m_cy == rectangleClient.height()
       //  && !bHover
       //&& m_prender->m_strNewFont == m_prender->m_strFont)
       //return;
@@ -455,11 +455,11 @@ namespace browser
 
       }
 
-      m_prender->m_cx = rectClient.width();
+      m_prender->m_cx = rectangleClient.width();
 
-      m_prender->m_cy = rectClient.height();
+      m_prender->m_cy = rectangleClient.height();
 
-      m_prender->m_rectangleClient = rectClient;
+      m_prender->m_rectangleClient = rectangleClient;
 
       m_prender->m_bNewLayout = true;
 
@@ -873,11 +873,11 @@ namespace browser
    bool view::GetViewRect(CefRefPtr<CefBrowser> browser, CefRect& rectangle)
    {
 
-      ::rectangle_i32 rectClient = get_client_rect();
+      ::rectangle_i32 rectangleClient = get_client_rect();
 
-      _001ClientToScreen(rectClient);
+      _001ClientToScreen(rectangleClient);
 
-      rectangle.Set(rectClient.left, rectClient.top, rectClient.width(), rectClient.height());
+      rectangle.Set(rectangleClient.left, rectangleClient.top, rectangleClient.width(), rectangleClient.height());
 
       return true;
 

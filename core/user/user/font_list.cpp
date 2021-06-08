@@ -316,7 +316,7 @@ namespace user
 
       }
 
-      auto rectClient = get_client_rect();
+      auto rectangleClient = get_client_rect();
 
       if (m_pfontlist->get_font_list_type() != ::write_text::font_list::type_wide)
       {
@@ -325,7 +325,7 @@ namespace user
 
          ::color::color colorBackground = get_color(pstyle, ::user::e_element_background);
 
-         auto rectBackground(rectClient);
+         auto rectBackground(rectangleClient);
 
          rectBackground += m_pointScroll;
 

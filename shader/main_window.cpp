@@ -128,7 +128,7 @@ namespace app_shader
    void main_window::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      auto rectClient = layout().get_client_rect();
+      auto rectangleClient = layout().get_client_rect();
 
       auto & prender = m_rendera.element_at_grow(m_iShader);
 
@@ -142,7 +142,7 @@ namespace app_shader
 
             m_bSaveFrame = false;
 
-            auto pimage = create_image(rectClient);
+            auto pimage = create_image(rectangleClient);
 
             ::draw2d::graphics_pointer pgraphics = pimage->get_graphics();
 
@@ -182,9 +182,9 @@ namespace app_shader
    void main_window::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      auto rectClient = get_client_rect();
+      auto rectangleClient = get_client_rect();
 
-      if(rectClient.is_empty())
+      if(rectangleClient.is_empty())
       {
 
          return;
@@ -196,7 +196,7 @@ namespace app_shader
       if(::is_set(prender))
       {
 
-         prender->m_rectangle = rectClient;
+         prender->m_rectangle = rectangleClient;
 
          prender->on_layout(pgraphics);
 

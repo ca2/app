@@ -121,14 +121,14 @@ void html_form::_001OnImageLoaded(::message::message * pmessage)
    if(get_html_data() != nullptr)
    {
 
-      ::rectangle_i32 rectClient;
+      ::rectangle_i32 rectangleClient;
 
-      get_client_rect(rectClient);
+      get_client_rect(rectangleClient);
 
-      if(rectClient.area() > 0)
+      if(rectangleClient.area() > 0)
       {
 
-         get_html_data()->m_pcoredata->m_box = rectClient;
+         get_html_data()->m_pcoredata->m_box = rectangleClient;
 
          synchronous_lock lock(get_html_data()->mutex());
 
@@ -176,11 +176,11 @@ void html_form::install_message_routing(::channel * pchannel)
 void html_form::GetClientBox(::rectangle_f32 & box)
 {
 
-   ::rectangle_i32 rectClient;
+   ::rectangle_i32 rectangleClient;
 
-   get_client_rect(rectClient);
+   get_client_rect(rectangleClient);
 
-   box = rectClient;
+   box = rectangleClient;
 
 }
 

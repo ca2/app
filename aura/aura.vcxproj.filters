@@ -1028,6 +1028,12 @@
     <ClInclude Include="graphics\write_text\font_list_data.h">
       <Filter>Header Files\graphics\write_text</Filter>
     </ClInclude>
+    <ClInclude Include="graphics\write_text\text_out_array.h">
+      <Filter>Header Files\graphics\write_text</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\write_text\drawer.h">
+      <Filter>Header Files\graphics\draw2d</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="graphics\draw2d\apple\image_gif.cpp">
@@ -1557,6 +1563,15 @@
     </ClCompile>
     <ClCompile Include="user\menu_command.cpp">
       <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\write_text\text_out_array.cpp">
+      <Filter>Source Files\graphics\write_text</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\write_text\drawer.cpp">
+      <Filter>Source Files\graphics\write_text</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\write_text\text_out.cpp">
+      <Filter>Source Files\graphics\write_text</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -34,9 +34,9 @@ bool simple_status_bar::OnEraseBkgnd(::draw2d::graphics_pointer & pgraphics)
 void simple_status_bar::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 {
    return;
-//   ::rectangle_i32 rectClient;
+//   ::rectangle_i32 rectangleClient;
 //
-//   get_client_rect(rectClient);
+//   get_client_rect(rectangleClient);
 //
 //   
 //
@@ -44,19 +44,19 @@ void simple_status_bar::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 //#ifdef WINDOWS_DESKTOP
 //   imaging.color_blend(
 //      pgraphics,
-//      rectClient.left,
-//      rectClient.top,
-//      rectClient.width(),
-//      rectClient.height(),
+//      rectangleClient.left,
+//      rectangleClient.top,
+//      rectangleClient.width(),
+//      rectangleClient.height(),
 //      psession->get_default_color(COLOR_3DFACE),
 //      208);
 //#else
 //   imaging.color_blend(
 //      pgraphics,
-//      rectClient.left,
-//      rectClient.top,
-//      rectClient.width(),
-//      rectClient.height(),
+//      rectangleClient.left,
+//      rectangleClient.top,
+//      rectangleClient.width(),
+//      rectangleClient.height(),
 //      argb(255, 190, 184, 177),
 //      208);
 //#endif

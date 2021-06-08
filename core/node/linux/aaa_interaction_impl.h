@@ -418,7 +418,7 @@ namespace linux
 //      virtual void GetScrollRange(i32 nBar, LPINT pMinPos, LPINT lpMaxPos) const;
 //
 //      virtual void ScrollWindow(i32 xAmount, i32 yAmount,
-//                                const ::rectangle & rectClient = nullptr,
+//                                const ::rectangle & rectangleClient = nullptr,
 //                                const ::rectangle & rectClip = nullptr);
 //
 //      virtual i32 SetScrollPos(i32 nBar, i32 nPos, bool bRedraw = true);

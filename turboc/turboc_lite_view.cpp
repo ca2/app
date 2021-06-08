@@ -105,19 +105,19 @@ namespace turboc
       if(m_pimageWork->area() <= 0)
          return;
 
-      ::rectangle_i32 rectClient;
+      ::rectangle_i32 rectangleClient;
 
-      rectClient.left = 0;
+      rectangleClient.left = 0;
 
-      rectClient.top = 0;
+      rectangleClient.top = 0;
 
-      rectClient.right = m_cx;
+      rectangleClient.right = m_cx;
 
-      rectClient.bottom = m_cy;
+      rectangleClient.bottom = m_cy;
 
       //pgraphics->set_alpha_mode(::draw2d::alpha_mode_set);
 
-      //pgraphics->FillSolidRect(rectClient,argb(0, 0, 0, 0));
+      //pgraphics->FillSolidRect(rectangleClient,argb(0, 0, 0, 0));
 
 //      i32 iCount = 30;
 
@@ -164,7 +164,7 @@ namespace turboc
 
       pgraphics->set_font(m_font);
 
-      ::size_i32 size = pgraphics->GetTextExtent(strHelloMultiverse);
+      ::size_i32 size = pgraphics->get_text_extent(strHelloMultiverse);
 
 
       if(!m_bFirstDone)
@@ -261,9 +261,9 @@ namespace turboc
 
       pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-      pdraw2d->imaging().bitmap_blend(pgraphics,::point_i32(),rectClient.size(),m_pimageTemplate->get_graphics(),::point_i32(),140 + 220 * r);
+      pdraw2d->imaging().bitmap_blend(pgraphics,::point_i32(),rectangleClient.size(),m_pimageTemplate->get_graphics(),::point_i32(),140 + 220 * r);
 
-      //pgraphics->BitBlt(rectClient,m_pimageTemplate->get_graphics());
+      //pgraphics->BitBlt(rectangleClient,m_pimageTemplate->get_graphics());
 
       pgraphics->set_font(m_font);
 

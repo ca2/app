@@ -87,7 +87,7 @@ namespace user
 
       //}
 
-      //::rectangle_i32 rectClient;
+      //::rectangle_i32 rectangleClient;
 
       //for (i = 0; i < get_pane_count(); i++)
       //{
@@ -112,9 +112,9 @@ namespace user
 
       //   }
 
-      //   rectClient = rectPane;
+      //   rectangleClient = rectPane;
 
-      //   rectClient.deflate(m_cxBorder, m_cyBorder);
+      //   rectangleClient.deflate(m_cxBorder, m_cyBorder);
 
       //   if (rectPane.area() <= 0 || !bIsWindowVisible)
       //   {
@@ -378,20 +378,20 @@ namespace user
    i32 split_layout::GetMinPos()
    {
 
-      ::rectangle_i32 rectClient;
+      ::rectangle_i32 rectangleClient;
 
-      get_client_rect(rectClient);
+      get_client_rect(rectangleClient);
 
       if (m_eorientationSplit == e_orientation_horizontal)
       {
 
-         return rectClient.top;
+         return rectangleClient.top;
 
       }
       else
       {
 
-         return rectClient.left;
+         return rectangleClient.left;
 
       }
 
@@ -401,20 +401,20 @@ namespace user
    i32 split_layout::GetMaxPos()
    {
 
-      ::rectangle_i32 rectClient;
+      ::rectangle_i32 rectangleClient;
 
-      get_client_rect(rectClient);
+      get_client_rect(rectangleClient);
 
       if (m_eorientationSplit == e_orientation_horizontal)
       {
 
-         return rectClient.bottom;
+         return rectangleClient.bottom;
 
       }
       else
       {
 
-         return rectClient.right;
+         return rectangleClient.right;
 
       }
 
@@ -426,9 +426,9 @@ namespace user
 
       bool bIsWindowVisible = is_this_visible();
 
-      auto rectClient = get_client_rect();
+      auto rectangleClient = get_client_rect();
 
-      if (rectClient.is_empty())
+      if (rectangleClient.is_empty())
       {
 
          return;
@@ -551,7 +551,7 @@ namespace user
 
          ::rectangle_i32 & rectPane = m_splitpanecompositea[i]->m_rectangle;
 
-         ::rectangle_i32 & rectClient = m_splitpanecompositea[i]->m_rectangleClient;
+         ::rectangle_i32 & rectangleClient = m_splitpanecompositea[i]->m_rectangleClient;
 
          CalcPaneRect(i,&rectPane);
 
@@ -566,13 +566,13 @@ namespace user
 
          }
 
-         rectClient = rectPane;
+         rectangleClient = rectPane;
 
-         rectClient.deflate(m_cxBorder,m_cyBorder);
+         rectangleClient.deflate(m_cxBorder,m_cyBorder);
 
          puserinteraction->order(e_zorder_top);
 
-         puserinteraction->place(rectClient);
+         puserinteraction->place(rectangleClient);
 
          if (puserinteraction->layout().sketch().is_visible())
          {
@@ -801,20 +801,20 @@ namespace user
    i32 split_layout::get_normal_dimension()
    {
 
-      ::rectangle_i32 rectClient;
+      ::rectangle_i32 rectangleClient;
 
-      get_client_rect(rectClient);
+      get_client_rect(rectangleClient);
 
       if(m_eorientationSplit == e_orientation_horizontal)
       {
 
-         return rectClient.height();
+         return rectangleClient.height();
 
       }
       else
       {
 
-         return rectClient.width();
+         return rectangleClient.width();
 
       }
 
@@ -824,20 +824,20 @@ namespace user
    i32 split_layout::get_ortogonal_dimension()
    {
 
-      ::rectangle_i32 rectClient;
+      ::rectangle_i32 rectangleClient;
 
-      get_client_rect(rectClient);
+      get_client_rect(rectangleClient);
 
       if(m_eorientationSplit == e_orientation_horizontal)
       {
 
-         return rectClient.width();
+         return rectangleClient.width();
 
       }
       else
       {
 
-         return rectClient.height();
+         return rectangleClient.height();
 
       }
 
@@ -1375,13 +1375,13 @@ namespace user
       if (colorBackground.alpha > 0)
       {
 
-         ::rectangle_i32 rectClient;
+         ::rectangle_i32 rectangleClient;
 
-         get_client_rect(rectClient);
+         get_client_rect(rectangleClient);
 
          pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-         pgraphics->fill_rectangle(rectClient, colorBackground);
+         pgraphics->fill_rectangle(rectangleClient, colorBackground);
 
       }
 

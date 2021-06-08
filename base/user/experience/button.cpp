@@ -69,21 +69,21 @@ namespace experience
 
          ::aura::draw_context * pdrawcontext = pgraphics->::aura::simple_chain < ::aura::draw_context >::get_last();
 
-         ::rectangle_i32 rectClient;
+         ::rectangle_i32 rectangleClient;
 
          bool bFirst = true;
 
          if (pdrawcontext != nullptr)
          {
 
-            rectClient = pdrawcontext->m_rectangleWindow;
+            rectangleClient = pdrawcontext->m_rectangleWindow;
 
-            _001ScreenToClient(rectClient);
+            _001ScreenToClient(rectangleClient);
 
-            rectClient.bottom++;
-            rectClient.right++;
+            rectangleClient.bottom++;
+            rectangleClient.right++;
 
-            rectClip = rectClient;
+            rectClip = rectangleClient;
 
             bFirst = false;
 

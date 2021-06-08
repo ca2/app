@@ -372,11 +372,11 @@ namespace user
       status < ::color::color > crSel;
       status < ::color::color > cr;
 
-      ::rectangle_f64 rectClient = get_client_rect();
+      ::rectangle_f64 rectangleClient = get_client_rect();
 
       auto crEditBackground = get_color(pstyle, e_element_background);
 
-      pgraphics->fill_rectangle(rectClient, crEditBackground);
+      pgraphics->fill_rectangle(rectangleClient, crEditBackground);
 
       bool bComposing = ::is_set(m_pitemComposing);
 
@@ -422,9 +422,9 @@ namespace user
 
       auto rectPadding = get_padding(pstyle);
 
-      rectClient.deflate(rectPadding);
+      rectangleClient.deflate(rectPadding);
 
-      double left = rectClient.left;
+      double left = rectangleClient.left;
 
       strsize iSelBeg;
       strsize iSelEnd;
@@ -458,7 +458,7 @@ namespace user
 
       pgraphics->OffsetViewportOrg(-pointOffset.x, 0);
 
-      double y = rectClient.top;
+      double y = rectangleClient.top;
 
       _001GetViewSel(iSelBegOriginal, iSelEndOriginal);
 
@@ -691,8 +691,8 @@ namespace user
                pgraphics->fill_rectangle(
                ::rectd_dim((double)((double)left + x1),
                (double)y,
-               (double)minimum(x2-x1, (double)rectClient.right - ((double)left + x1)),
-               (double)minimum((double)m_dLineHeight, (double)rectClient.bottom - y)),
+               (double)minimum(x2-x1, (double)rectangleClient.right - ((double)left + x1)),
+               (double)minimum((double)m_dLineHeight, (double)rectangleClient.bottom - y)),
                crBkSel);
 
                pgraphics->set(brushTextSel);
@@ -705,8 +705,8 @@ namespace user
                pgraphics->fill_rectangle(
                   ::rectd_dim((double)((double)left + compose1),
                   (double)y,
-                  (double)minimum(compose2 - compose1, (double)rectClient.right - ((double)left + compose1)),
-                  (double)minimum((double)m_dLineHeight, (double)rectClient.bottom - y)),
+                  (double)minimum(compose2 - compose1, (double)rectangleClient.right - ((double)left + compose1)),
+                  (double)minimum((double)m_dLineHeight, (double)rectangleClient.bottom - y)),
                   colorComposeBk);
 
                pgraphics->set(brushTextSel);
@@ -1665,22 +1665,22 @@ namespace user
 
       xEnd = index (plain_edit_get_line_extent(pgraphics, iLine, m_iaLineLen[iLine]));
 
-      ::rectangle_i32 rectClient;
+      ::rectangle_i32 rectangleClient;
 
-      get_client_rect(rectClient);
+      get_client_rect(rectangleClient);
 
       auto xViewport = get_viewport_offset().x;
 
       if (x > 0 && x < get_viewport_offset().x)
       {
 
-         xViewport = maximum(0, x - rectClient.width() / 2);
+         xViewport = maximum(0, x - rectangleClient.width() / 2);
 
       }
-      else if (x > rectClient.width())
+      else if (x > rectangleClient.width())
       {
 
-         xViewport = maximum(0, x - rectClient.width() / 2);
+         xViewport = maximum(0, x - rectangleClient.width() / 2);
 
       }
 
@@ -1818,13 +1818,13 @@ namespace user
       else
       {
 
-         ::rectangle_i32 rectClient;
+         ::rectangle_i32 rectangleClient;
 
-         GetFocusRect(rectClient);
+         GetFocusRect(rectangleClient);
 
          int iCurrentPageOffsetStart = (int) get_viewport_offset().y;
 
-         int iCurrentPageOffsetEnd = (int) (get_viewport_offset().y + rectClient.height());
+         int iCurrentPageOffsetEnd = (int) (get_viewport_offset().y + rectangleClient.height());
 
          index iCandidateCursorOffset = (::index) (minimum((double) maximum(0, iLine)* m_dLineHeight, m_sizeTotal.cy));
 
@@ -2071,9 +2071,9 @@ namespace user
 
       synchronous_lock synchronouslock(mutex());
 
-      ::rectangle_i32 rectClient;
+      ::rectangle_i32 rectangleClient;
 
-      GetFocusRect(rectClient);
+      GetFocusRect(rectangleClient);
 
       if (m_ptree == nullptr)
       {
@@ -2126,7 +2126,7 @@ namespace user
 
       auto pointOffset = get_viewport_offset();
 
-      m_iLineCount = (::count) ceil((double)rectClient.height() / m_dLineHeight);
+      m_iLineCount = (::count) ceil((double)rectangleClient.height() / m_dLineHeight);
 
       m_iLineOffset = (::index) minimum(maximum(0, pointOffset.y / m_dLineHeight), m_iaLineBeg.get_upper_bound());
 
@@ -2367,7 +2367,7 @@ namespace user
 
                }
 
-               size = pgraphics->GetTextExtent(strLineGraphics, strLineGraphics.get_length(), pszNext - pszStart + iAddUp);
+               size = pgraphics->get_text_extent(strLineGraphics, strLineGraphics.get_length(), pszNext - pszStart + iAddUp);
 
                for (int j = 0; j < iLen; j++)
                {
@@ -2383,7 +2383,7 @@ namespace user
             if (strLineGraphics.has_char())
             {
 
-               size = pgraphics->GetTextExtent(strLineGraphics, strLineGraphics.get_length());
+               size = pgraphics->get_text_extent(strLineGraphics, strLineGraphics.get_length());
 
                for (int j = 0; j < iLen; j++)
                {
@@ -2414,7 +2414,7 @@ namespace user
 
       //   const ::size_i32 & sizePage;
 
-      //   sizePage = rectClient.size();
+      //   sizePage = rectangleClient.size();
 
       //   if (m_sizeTotal.cy < sizePage.cy)
       //   {
@@ -2501,11 +2501,11 @@ namespace user
 
       }
 
-      ::rectangle_i32 rectClient;
+      ::rectangle_i32 rectangleClient;
 
-      GetFocusRect(rectClient);
+      GetFocusRect(rectangleClient);
 
-      if (rectClient.area() <= 0)
+      if (rectangleClient.area() <= 0)
       {
 
          return;
@@ -2536,7 +2536,7 @@ namespace user
 
          m_iViewSize = 0;
 
-         m_sizeTotal = rectClient.size();
+         m_sizeTotal = rectangleClient.size();
 
          on_change_view_size(pgraphics);
 
@@ -2578,7 +2578,7 @@ namespace user
 
       auto pointOffset = get_viewport_offset();
 
-      m_iLineCount = (::count) ceil((double) rectClient.height() / m_dLineHeight);
+      m_iLineCount = (::count) ceil((double) rectangleClient.height() / m_dLineHeight);
 
       m_iLineOffset = (::index) minimum(maximum(0, pointOffset.y / m_dLineHeight), m_iaLineBeg.get_upper_bound());
 
@@ -2844,9 +2844,9 @@ namespace user
 
                }
 
-               size = pgraphics->GetTextExtent(strLineGraphics, strLineGraphics.get_length(), pszNext - pszStart + iAddUp);
+               size = pgraphics->get_text_extent(strLineGraphics, strLineGraphics.get_length(), pszNext - pszStart + iAddUp);
 
-               if (size.cx > rectClient.width() + 200)
+               if (size.cx > rectangleClient.width() + 200)
                {
 
                   while (*psz != '\0')
@@ -2877,7 +2877,7 @@ namespace user
             if (strLineGraphics.has_char())
             {
 
-               size = pgraphics->GetTextExtent(strLineGraphics, strLineGraphics.get_length());
+               size = pgraphics->get_text_extent(strLineGraphics, strLineGraphics.get_length());
 
                daExtent[(::index)(psz - pszStart)] = size.cx;
 
@@ -2902,7 +2902,7 @@ namespace user
 
          ::size_f64 sizePage;
 
-         sizePage = rectClient.size();
+         sizePage = rectangleClient.size();
 
          if (m_sizeTotal.cy < sizePage.cy)
          {
@@ -3076,7 +3076,7 @@ namespace user
 
       string strLine = plain_edit_get_expanded_line(pgraphics, iLine, { &iChar });
 
-      size_f64 size = pgraphics->GetTextExtent(strLine, (i32)strLine.length(), (i32)iChar);
+      size_f64 size = pgraphics->get_text_extent(strLine, (i32)strLine.length(), (i32)iChar);
 
       return size.cx;
 
@@ -3089,9 +3089,9 @@ namespace user
 
       synchronous_lock synchronouslock(mutex());
 
-      ::rectangle_i32 rectClient;
+      ::rectangle_i32 rectangleClient;
 
-      GetFocusRect(rectClient);
+      GetFocusRect(rectangleClient);
 
       strsize i1;
 
@@ -3117,7 +3117,7 @@ namespace user
 
       }
 
-      x = rectClient.left;
+      x = rectangleClient.left;
 
       return m_iaLineLen.get_upper_bound();
 
@@ -3215,9 +3215,9 @@ namespace user
 
       pgraphics->set_font(this, ::user::e_element_none);
 
-      ::rectangle_i32 rectClient;
+      ::rectangle_i32 rectangleClient;
 
-      GetFocusRect(rectClient);
+      GetFocusRect(rectangleClient);
 
       pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
@@ -3233,9 +3233,9 @@ namespace user
 
       synchronous_lock synchronouslock(mutex());
 
-      ::rectangle_i32 rectClient;
+      ::rectangle_i32 rectangleClient;
 
-      GetFocusRect(rectClient);
+      GetFocusRect(rectangleClient);
 
       strsize i1;
 
@@ -3257,7 +3257,7 @@ namespace user
 
             x = (int) (plain_edit_get_line_extent(pgraphics, iLine, iRel));
 
-            x = rectClient.left + x;
+            x = rectangleClient.left + x;
 
             return iRel;
 
@@ -3307,11 +3307,11 @@ namespace user
 
       ::point_i32 point(pointParam);
 
-      ::rectangle_i32 rectClient;
+      ::rectangle_i32 rectangleClient;
 
-      GetFocusRect(rectClient);
+      GetFocusRect(rectangleClient);
 
-      point.y -= rectClient.top;
+      point.y -= rectangleClient.top;
 
       auto pointOffset = get_viewport_offset();
 
@@ -3383,13 +3383,13 @@ namespace user
 
       synchronous_lock synchronouslock(mutex());
 
-      ::rectangle_i32 rectClient;
+      ::rectangle_i32 rectangleClient;
 
-      GetFocusRect(rectClient);
+      GetFocusRect(rectangleClient);
 
       auto pointOffset = get_viewport_offset();
 
-      px -= (rectClient.left - pointOffset.x);
+      px -= (rectangleClient.left - pointOffset.x);
 
 
       if (px <= 0)
@@ -4454,11 +4454,11 @@ finished_update:
 
                      index iLine = plain_edit_sel_to_line_x(pgraphics, m_ptree->m_iSelEnd, x);
 
-                     ::rectangle_i32 rectClient;
+                     ::rectangle_i32 rectangleClient;
 
-                     GetFocusRect(rectClient);
+                     GetFocusRect(rectangleClient);
 
-                     iLine -= (::index)(rectClient.height() / m_dLineHeight);
+                     iLine -= (::index)(rectangleClient.height() / m_dLineHeight);
 
                      if (iLine < 0)
                      {
@@ -4500,11 +4500,11 @@ finished_update:
 
                      index iLine = plain_edit_sel_to_line_x(pgraphics, m_ptree->m_iSelEnd, x);
 
-                     ::rectangle_i32 rectClient;
+                     ::rectangle_i32 rectangleClient;
 
-                     GetFocusRect(rectClient);
+                     GetFocusRect(rectangleClient);
 
-                     iLine += (::index) (rectClient.height() / m_dLineHeight);
+                     iLine += (::index) (rectangleClient.height() / m_dLineHeight);
 
                      if (iLine >= m_iaLineBeg.get_size())
                      {

@@ -74,11 +74,11 @@ namespace app_message_box
 
       m_iCloseButtonDraw = 0;
 
-      ::rectangle_i32 rectClient;
+      ::rectangle_i32 rectangleClient;
 
-      get_client_rect(rectClient);
+      get_client_rect(rectangleClient);
 
-      if (rectClient.is_empty())
+      if (rectangleClient.is_empty())
       {
 
          return;
@@ -89,11 +89,11 @@ namespace app_message_box
 
       pgraphics->set_smooth_mode(::draw2d::smooth_mode_none);
 
-      pgraphics->fill_rectangle(rectClient, argb(127, 255, 255, 255));
+      pgraphics->fill_rectangle(rectangleClient, argb(127, 255, 255, 255));
 
       //return;
 
-      double dBase = (double) rectClient.minimum_signed_absolute_dimension() / 17.0;
+      double dBase = (double) rectangleClient.minimum_signed_absolute_dimension() / 17.0;
 
       double x = dBase * 3;
 
@@ -105,14 +105,14 @@ namespace app_message_box
 
       pgraphics->fill_rectangle(::rectd_dim(x, y + dBase * 6.0, dBase * 11.0, dBase * 5.0), __acolor(127, 255, 110, 150));
 
-      rectClient.deflate((::i32) dBase);
+      rectangleClient.deflate((::i32) dBase);
 
       for (int i = 0; i < dBase; i++)
       {
 
-         pgraphics->draw_rectangle(rectClient, __acolor(255, 127, 127, 127));
+         pgraphics->draw_rectangle(rectangleClient, __acolor(255, 127, 127, 127));
 
-         rectClient.deflate(1, 1);
+         rectangleClient.deflate(1, 1);
 
       }
 

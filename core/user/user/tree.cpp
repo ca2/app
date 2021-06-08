@@ -201,13 +201,13 @@ namespace user
 
          tickStart.Now();
 
-         ::rectangle_i32 rectClient;
+         ::rectangle_i32 rectangleClient;
 
-         get_client_rect(rectClient);
+         get_client_rect(rectangleClient);
 
          //pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-         //pgraphics->fill_rectangle(rectClient, m_colorTreeBackground);
+         //pgraphics->fill_rectangle(rectangleClient, m_colorTreeBackground);
 
 
          auto psession = get_session();
@@ -221,7 +221,7 @@ namespace user
          ::u32 dwHoverIn = 384;
          ::u32 dwHoverOut = 1284;
          _001ScreenToClient(&pointCursor);
-         bool bTreeHover = rectClient.contains(pointCursor);
+         bool bTreeHover = rectangleClient.contains(pointCursor);
          if(bTreeHover)
          {
             if(!m_bHoverStart)
@@ -1191,11 +1191,11 @@ namespace user
 
       ::user::interaction::on_layout(pgraphics);
 
-      ::rectangle_i32 rectClient;
+      ::rectangle_i32 rectangleClient;
 
-      get_client_rect(rectClient);
+      get_client_rect(rectangleClient);
 
-      if (rectClient.area() <= 0)
+      if (rectangleClient.area() <= 0)
       {
 
          return;
@@ -1355,13 +1355,13 @@ namespace user
    i32 tree::_001CalcCurrentViewWidth()
    {
 
-      ::rectangle_i32 rectClient;
+      ::rectangle_i32 rectangleClient;
 
-      get_client_rect(rectClient);
+      get_client_rect(rectangleClient);
 
       ::count iCount = _001GetVisibleItemCount();
 
-      i32 iMaxWidth = rectClient.width();
+      i32 iMaxWidth = rectangleClient.width();
 
       i32 iWidth;
 
@@ -1515,7 +1515,7 @@ namespace user
 
 
       ::size_i32 size;
-      size = g->GetTextExtent(unitext("Ág"));
+      size = g->get_text_extent(unitext("Ág"));
 
       int iItemHeight = 1;
 
@@ -1555,7 +1555,7 @@ namespace user
             }
             nOffset--;
             string strText = pitem->get_text();
-            size_f64 s = g->GetTextExtent(strText);
+            size_f64 s = g->get_text_extent(strText);
             iWidth = (i32)(48 + s.cx + iIndent * (iLevel + 1));
             if (iWidth > iMaxWidth)
             {

@@ -206,7 +206,7 @@ SizingNone:;
 
 
 
-            void frame_011::draw_border_side(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectClient, enum_border eside)
+            void frame_011::draw_border_side(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangleClient, enum_border eside)
             {
 
                auto pframewindow = m_pframewindow;
@@ -244,7 +244,7 @@ SizingNone:;
                }
 
                enum_dock edock = m_pframewindow->dock_manager()->get_dock_mask();
-               ::rectangle_i32 rectA(rectClient);
+               ::rectangle_i32 rectA(rectangleClient);
 
 
                if (estyle == ::user::StyleTranslucidWarmGray
@@ -252,7 +252,7 @@ SizingNone:;
                      || estyle == ::user::StyleTranslucidLightGreen)
                {
                   ::rectangle_i32 rectangle;
-                  GetBorderRect(rectClient, rectangle, eside);
+                  GetBorderRect(rectangleClient, rectangle, eside);
 
                   //class imaging & imaging = psystem->imaging();
                   //imaging.color_blend(
@@ -276,7 +276,7 @@ SizingNone:;
                   Draw3dRectSide(pgraphics, rectA, eside, colorMoveableBorder, colorMoveableBorder);
 
                   //::rectangle_i32 rectangle;
-                  //GetBorderRect(rectClient,rectangle,eside);
+                  //GetBorderRect(rectangleClient,rectangle,eside);
 
                   //class imaging & imaging = psystem->imaging();
                   //imaging.color_blend(pgraphics,
@@ -287,7 +287,7 @@ SizingNone:;
                else
                {
                   ::rectangle_i32 rectangle;
-                  GetBorderRect(rectClient, rectangle, eside);
+                  GetBorderRect(rectangleClient, rectangle, eside);
 
                   //class imaging & imaging = psystem->imaging();
                   //imaging.color_blend(
@@ -345,8 +345,8 @@ SizingNone:;
                //::aura::savings & savings = psession->m_paurasession->savings();
 
 
-               ::rectangle_i32 rectClient;
-               pframewindow->get_client_rect(rectClient);
+               ::rectangle_i32 rectangleClient;
+               pframewindow->get_client_rect(rectangleClient);
 
                string str;
 
@@ -390,7 +390,7 @@ SizingNone:;
             }
 
 
-            void frame_011::DrawBorder(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectClient)
+            void frame_011::DrawBorder(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangleClient)
 
             {
 
@@ -409,35 +409,35 @@ SizingNone:;
 
                if (eborder & e_border_top)
                {
-                  draw_border_side(pgraphics, rectClient, e_border_top);
+                  draw_border_side(pgraphics, rectangleClient, e_border_top);
 
                }
                if (eborder & e_border_right)
                {
-                  draw_border_side(pgraphics, rectClient, e_border_right);
+                  draw_border_side(pgraphics, rectangleClient, e_border_right);
 
                }
                if (eborder & e_border_bottom)
                {
-                  draw_border_side(pgraphics, rectClient, e_border_bottom);
+                  draw_border_side(pgraphics, rectangleClient, e_border_bottom);
 
                }
                if (eborder & e_border_left)
                {
-                  draw_border_side(pgraphics, rectClient, e_border_left);
+                  draw_border_side(pgraphics, rectangleClient, e_border_left);
 
                }
 
             }
 
             void frame_011::GetBorderRect(
-            const ::rectangle_i32 & rectClient,
+            const ::rectangle_i32 & rectangleClient,
 
             RECTANGLE_I32 * prectangle,
 
             enum_border eside)
             {
-               ::rectangle_i32 rectBig(rectClient);
+               ::rectangle_i32 rectBig(rectangleClient);
 
                ::rectangle_i32 rectSmall;
                get_window_client_rect(rectSmall);
@@ -493,20 +493,20 @@ SizingNone:;
 
                const i32 size = 16;
 
-               ::rectangle_i32 rectClient(rectClientParam);
+               ::rectangle_i32 rectangleClient(rectClientParam);
 
-               //            ::rectangle_i32 rectClientB(rectClient);
+               //            ::rectangle_i32 rectClientB(rectangleClient);
                ::rectangle_i32 rectA;
                ::point_i32 pointA;
                ::point_i32 pointB;
                ::point_i32 pointC;
-               //            ::rectangle_i32 rectangle(rectClient);
+               //            ::rectangle_i32 rectangle(rectangleClient);
                switch (egrip)
                {
                case e_grip_top_left:
                {
 
-                  rectA = rectClient;
+                  rectA = rectangleClient;
 
                   rectA.right = 4;
                   rectA.bottom = size;
@@ -522,7 +522,7 @@ SizingNone:;
                break;
                case e_grip_top_right:
                {
-                  rectA = rectClient;
+                  rectA = rectangleClient;
 
                   rectA.left = rectA.right - 4;
                   rectA.bottom = size;
@@ -537,7 +537,7 @@ SizingNone:;
                break;
                case e_grip_bottom_left:
                {
-                  rectA = rectClient;
+                  rectA = rectangleClient;
 
                   rectA.right = 4;
                   rectA.top = rectA.bottom - size;
@@ -552,7 +552,7 @@ SizingNone:;
                break;
                case e_grip_bottom_right:
                {
-                  rectA = rectClient;
+                  rectA = rectangleClient;
 
                   rectA.left = rectA.right - 4;
                   rectA.top = rectA.bottom - size;
@@ -567,7 +567,7 @@ SizingNone:;
                break;
                case e_grip_top:
                {
-                  rectA = rectClient;
+                  rectA = rectangleClient;
 
                   rectA.left = rectA.left + rectA.width() / 2 - size / 2;
                   rectA.right = rectA.left + size;
@@ -579,7 +579,7 @@ SizingNone:;
                break;
                case e_grip_bottom:
                {
-                  rectA = rectClient;
+                  rectA = rectangleClient;
 
                   rectA.left = rectA.left + rectA.width() / 2 - size / 2;
                   rectA.right = rectA.left + size;
@@ -590,7 +590,7 @@ SizingNone:;
                break;
                case e_grip_left:
                {
-                  rectA = rectClient;
+                  rectA = rectangleClient;
 
                   rectA.right = 4;
                   rectA.top = rectA.top + rectA.height() / 2 - size / 2;
@@ -601,7 +601,7 @@ SizingNone:;
                break;
                case e_grip_right:
                {
-                  rectA = rectClient;
+                  rectA = rectangleClient;
 
                   rectA.left = rectA.right - 4;
                   rectA.top = rectA.top + rectA.height() / 2 - size / 2;
@@ -656,7 +656,7 @@ SizingNone:;
             }
 
 
-            void frame_011::DrawGripSet(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectClient)
+            void frame_011::DrawGripSet(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangleClient)
 
             {
 
@@ -666,42 +666,42 @@ SizingNone:;
 
                if (egrip & e_grip_top)
                {
-                  DrawGrip(pgraphics, rectClient, e_grip_top);
+                  DrawGrip(pgraphics, rectangleClient, e_grip_top);
 
                }
                if (egrip & e_grip_top_right)
                {
-                  DrawGrip(pgraphics, rectClient, e_grip_top_right);
+                  DrawGrip(pgraphics, rectangleClient, e_grip_top_right);
 
                }
                if (egrip & e_grip_right)
                {
-                  DrawGrip(pgraphics, rectClient, e_grip_right);
+                  DrawGrip(pgraphics, rectangleClient, e_grip_right);
 
                }
                if (egrip & e_grip_bottom_right)
                {
-                  DrawGrip(pgraphics, rectClient, e_grip_bottom_right);
+                  DrawGrip(pgraphics, rectangleClient, e_grip_bottom_right);
 
                }
                if (egrip & e_grip_bottom)
                {
-                  DrawGrip(pgraphics, rectClient, e_grip_bottom);
+                  DrawGrip(pgraphics, rectangleClient, e_grip_bottom);
 
                }
                if (egrip & e_grip_bottom_left)
                {
-                  DrawGrip(pgraphics, rectClient, e_grip_bottom_left);
+                  DrawGrip(pgraphics, rectangleClient, e_grip_bottom_left);
 
                }
                if (egrip & e_grip_left)
                {
-                  DrawGrip(pgraphics, rectClient, e_grip_left);
+                  DrawGrip(pgraphics, rectangleClient, e_grip_left);
 
                }
                if (egrip & e_grip_top_left)
                {
-                  DrawGrip(pgraphics, rectClient, e_grip_top_left);
+                  DrawGrip(pgraphics, rectangleClient, e_grip_top_left);
 
                }
 

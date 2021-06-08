@@ -115,9 +115,9 @@ namespace account
    void login::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      auto rectClient = get_client_rect();
+      auto rectangleClient = get_client_rect();
 
-      if(rectClient.is_empty())
+      if(rectangleClient.is_empty())
       {
 
          return;
@@ -132,9 +132,9 @@ namespace account
 
       int w;
 
-      w = (int)(rectClient.width());
+      w = (int)(rectangleClient.width());
 
-      h = (int)(rectClient.height());
+      h = (int)(rectangleClient.height());
 
       m_dRateX = (double)w / (double)stdw;
 
@@ -146,7 +146,7 @@ namespace account
 
       i32 x1 = (int) (49 * rx);
 
-      i32 w2 = (int) ((rectClient.width() - 49 * 2 * rx));
+      i32 w2 = (int) ((rectangleClient.width() - 49 * 2 * rx));
 
       i32 h1 = (int) (23 * ry);
 
@@ -298,9 +298,9 @@ namespace account
 
          ::write_text::font_pointer f(e_create);
 
-         /*f->create_pixel_font(pnode->font_name(e_font_sans_ex), (i32)height(rectClient) * 0.7);
+         /*f->create_pixel_font(pnode->font_name(e_font_sans_ex), (i32)height(rectangleClient) * 0.7);
 
-         float fMargin = (height(rectClient) * ((1.0f - 0.7f) / 2.0f));*/
+         float fMargin = (height(rectangleClient) * ((1.0f - 0.7f) / 2.0f));*/
 
          __pointer(::core::system) psystem = get_system();
 

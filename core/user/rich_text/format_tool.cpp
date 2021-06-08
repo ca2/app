@@ -214,14 +214,14 @@ namespace user
 
       ::draw2d::brush_pointer brBk(e_create);
 
-      ::rectangle_i32 rectClient;
+      ::rectangle_i32 rectangleClient;
 
-      get_client_rect(rectClient);
+      get_client_rect(rectangleClient);
 
-      brBk->CreateLinearGradientBrush(rectClient.top_left(), rectClient.bottom_left(),
+      brBk->CreateLinearGradientBrush(rectangleClient.top_left(), rectangleClient.bottom_left(),
                                       argb(255, 230, 230, 230), argb(255, 200, 200, 200));
 
-      pgraphics->fill_rectangle(rectClient, brBk);
+      pgraphics->fill_rectangle(rectangleClient, brBk);
 
    }
 

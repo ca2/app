@@ -55,11 +55,11 @@ namespace experience
 
          //class imaging & imaging = psystem->imaging();
 
-         ::rectangle_i32 rectClient(rectangle);
+         ::rectangle_i32 rectangleClient(rectangle);
 
          ::rectangle_i32 rectInflate;
 
-         if (rectClient.area() <= 0)
+         if (rectangleClient.area() <= 0)
          {
 
             return;
@@ -70,7 +70,7 @@ namespace experience
 
          //i32 iInflate = 5; // raio 2 pixels + centro 1 pixel
 
-         //rectInflate = rectClient;
+         //rectInflate = rectangleClient;
          //rectInflate.inflate(iInflate, iInflate);
 
          ////__pointer(::user::interaction) puserinteractionDesktop = psystem->get_desktop_window();
@@ -83,21 +83,21 @@ namespace experience
 
          //::image_pointer pimage2;
 
-         //pimage = create_image({rectClient.width() + iInflate * 2,  rectClient.height() + iInflate * 2});
+         //pimage = create_image({rectangleClient.width() + iInflate * 2,  rectangleClient.height() + iInflate * 2});
 
-         //pimage2 = create_image({rectClient.width() + iInflate * 2,  rectClient.height() + iInflate * 2});
-         //::rectangle_i32 rectWindow = rectClient;
+         //pimage2 = create_image({rectangleClient.width() + iInflate * 2,  rectangleClient.height() + iInflate * 2});
+         //::rectangle_i32 rectWindow = rectangleClient;
          //pframewindow->_001ClientToScreen(rectWindow);
-         ////pimage = create_image({rectClient.width(),  rectClient.height()});
-         //bool b = pimage2->get_graphics()->BitBlt(0, 0, rectClient.width() + iInflate * 2, rectClient.height() + iInflate * 2, pgraphics, rectClient.left - iInflate, rectClient.top - iInflate);
-         ////bool b = ::BitBlt(dc2, 0, 0, rectClient.width() + iInflate * 2, rectClient.height() + iInflate * 2, hdcScreen, rectClient.left - iInflate, rectClient.top - iInflate);
+         ////pimage = create_image({rectangleClient.width(),  rectangleClient.height()});
+         //bool b = pimage2->get_graphics()->BitBlt(0, 0, rectangleClient.width() + iInflate * 2, rectangleClient.height() + iInflate * 2, pgraphics, rectangleClient.left - iInflate, rectangleClient.top - iInflate);
+         ////bool b = ::BitBlt(dc2, 0, 0, rectangleClient.width() + iInflate * 2, rectangleClient.height() + iInflate * 2, hdcScreen, rectangleClient.left - iInflate, rectangleClient.top - iInflate);
          //b = imaging.blur(pimage->g(), ::point_i32(),
-         //                 size_i32(rectClient.width() + iInflate * 2, rectClient.height() + iInflate * 2),
+         //                 size_i32(rectangleClient.width() + iInflate * 2, rectangleClient.height() + iInflate * 2),
          //                 pimage2->get_graphics(), ::point_i32(), 2);
 
-         ////spgraphics->Draw3dRect(rectClient, 127 << 24, 127 << 24);
-         ////rectClient.deflate(1, 1);
-         ////spgraphics->Draw3dRect(rectClient, 64 << 24, 64 << 24);
+         ////spgraphics->Draw3dRect(rectangleClient, 127 << 24, 127 << 24);
+         ////rectangleClient.deflate(1, 1);
+         ////spgraphics->Draw3dRect(rectangleClient, 64 << 24, 64 << 24);
          ////b = imaging.bitmap_blend(pgraphics, prectangle->left, prectangle->top,
 
          //rectWindow.width(),
@@ -120,7 +120,7 @@ namespace experience
          //rectWindow.height(),
          //bf);*/
 
-         //pgraphics->BitBlt(rectClient.left, rectClient.top, rectClient.width(), rectClient.height(), pimage->g(), iInflate, iInflate);
+         //pgraphics->BitBlt(rectangleClient.left, rectangleClient.top, rectangleClient.width(), rectangleClient.height(), pimage->g(), iInflate, iInflate);
 
       }
 

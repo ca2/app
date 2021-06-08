@@ -15,11 +15,11 @@ namespace draw2d
       virtual ~graphics_extension();
 
 
-      void GetTextExtent(::draw2d::graphics_pointer & pgraphics, const char * pcwsz, ::size_array & sizea);
+      void get_text_extent(::draw2d::graphics_pointer & pgraphics, const char * pcwsz, ::size_array & sizea);
 
-      void GetTextExtent(::draw2d::graphics_pointer & pgraphics, const char * pcwsz, size_i32 & size);
+      void get_text_extent(::draw2d::graphics_pointer & pgraphics, const char * pcwsz, size_i32 & size);
 
-      void GetTextExtent(::draw2d::graphics_pointer & pgraphics, const char * pcwsz, strsize iCount, size_i32 & size);
+      void get_text_extent(::draw2d::graphics_pointer & pgraphics, const char * pcwsz, strsize iCount, size_i32 & size);
 
 
       bool text_out(::draw2d::graphics_pointer & pgraphics, i32 x, i32 y, const char * pcwsz, strsize iCount,size_i32 & s);

@@ -37,6 +37,8 @@ DECLARE_ENUMERATION(e_draw_text, enum_draw_text);
 
 #include "text_out.h"
 
+#include "text_out_array.h"
+
 #include "draw_text.h"
 
 

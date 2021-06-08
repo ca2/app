@@ -436,7 +436,7 @@ namespace user
       //virtual bool is_descendant(const ::user::primitive * pinteraction,bool bIncludeSelf = false) const;
       virtual ::user::interaction * get_focusable_descendant() const;
 
-      virtual void RepositionBars(::u32 nIDFirst, ::u32 nIDLast, ::id idLeftOver, ::u32 nFlag = reposDefault, RECTANGLE_I32 * prectParam = nullptr, const ::rectangle_i32 & rectClient = nullptr, bool bStretch = true);
+      virtual void RepositionBars(::u32 nIDFirst, ::u32 nIDLast, ::id idLeftOver, ::u32 nFlag = reposDefault, RECTANGLE_I32 * prectParam = nullptr, const ::rectangle_i32 & rectangleClient = nullptr, bool bStretch = true);
 
       virtual ::user::interaction * ChildWindowFromPoint(const ::point_i32 & point);
       virtual ::user::interaction * ChildWindowFromPoint(const ::point_i32 & point,::u32 nFlags);

@@ -3776,7 +3776,7 @@ bool graphics::internal_draw_text(const ::block & block, const ::rectangle_f64 &
 
     cairo_font_extents(m_pdc, &e);
 
-    size_f64 sz = GetTextExtent(str);
+    size_f64 sz = get_text_extent(str);
 
     double dx;
 
@@ -3910,12 +3910,12 @@ bool graphics::draw_text_ex(const string & str, const ::rectangle_f64 & rectangl
 }
 
 
-size_f64 graphics::GetTextExtent(const char * lpszString, strsize nCount, strsize iIndex)
+size_f64 graphics::get_text_extent(const char * lpszString, strsize nCount, strsize iIndex)
 {
 
     size_f64 sz;
 
-    if (!GetTextExtent(sz, lpszString, nCount, iIndex))
+    if (!get_text_extent(sz, lpszString, nCount, iIndex))
     {
 
         return ::size_f64(0.0, 0.0);
@@ -3927,18 +3927,18 @@ size_f64 graphics::GetTextExtent(const char * lpszString, strsize nCount, strsiz
 }
 
 
-size_f64 graphics::GetTextExtent(const char * lpszString, strsize nCount)
+size_f64 graphics::get_text_extent(const char * lpszString, strsize nCount)
 {
 
-    return GetTextExtent(lpszString, nCount, -1);
+    return get_text_extent(lpszString, nCount, -1);
 
 }
 
 
-size_f64 graphics::GetTextExtent(const string & str)
+size_f64 graphics::get_text_extent(const string & str)
 {
 
-    return GetTextExtent(str, str.get_length());
+    return get_text_extent(str, str.get_length());
 
 }
 
@@ -3963,7 +3963,7 @@ size_f64 graphics::GetOutputTextExtent(const string & str)
 }
 
 
-bool graphics::GetTextExtent(size_f64 & size, const char * lpszString, strsize nCount, strsize iIndex)
+bool graphics::get_text_extent(size_f64 & size, const char * lpszString, strsize nCount, strsize iIndex)
 {
 
    string str(lpszString, minimum_non_negative(iIndex, nCount));
@@ -4077,7 +4077,7 @@ bool graphics::GetTextExtent(size_f64 & size, const char * lpszString, strsize n
 
       size_f64 s0(0.0, 0.0);
 
-      GetTextExtent(s0, strLine, str.get_length(), str.get_length());
+      get_text_extent(s0, strLine, str.get_length(), str.get_length());
 
       size.cx = maximum(size.cx, s0.cx);
 
@@ -4215,18 +4215,18 @@ bool graphics::_GetTextExtent(size_f64 & size, const char * lpszString, strsize 
 }
 
 
-bool graphics::GetTextExtent(size_f64 & size_f64, const char * lpszString, strsize nCount)
+bool graphics::get_text_extent(size_f64 & size_f64, const char * lpszString, strsize nCount)
 {
 
-    return GetTextExtent(size_f64, lpszString, nCount, -1);
+    return get_text_extent(size_f64, lpszString, nCount, -1);
 
 }
 
 
-bool graphics::GetTextExtent(size_f64 & size_f64, const string & str)
+bool graphics::get_text_extent(size_f64 & size_f64, const string & str)
 {
 
-    return GetTextExtent(size_f64, str, str.get_length());
+    return get_text_extent(size_f64, str, str.get_length());
 
 }
 

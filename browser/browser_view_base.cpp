@@ -107,14 +107,14 @@ auto m_millisRoll = ::millis::now();
 
       defer_check_on_draw_layout();
 
-      ::rectangle_i32 rectClient;
+      ::rectangle_i32 rectangleClient;
 
-      get_client_rect(rectClient);
+      get_client_rect(rectangleClient);
 
-      if (rectClient.area() <= 0)
+      if (rectangleClient.area() <= 0)
          return;
 
-/*      m_pimagePost->create_image({this,  rectClient->size()});
+/*      m_pimagePost->create_image({this,  rectangleClient->size()});
 
       if (m_pimagePost)
       {
@@ -228,9 +228,9 @@ auto m_millisRoll = ::millis::now();
 
       //image d(e_create);
 
-      //d->create(rectClient.size());
+      //d->create(rectangleClient.size());
 
-      //d->get_graphics()->BitBlt(rectClient, pimage->g());
+      //d->get_graphics()->BitBlt(rectangleClient, pimage->g());
 
       //d.save_to_file(pacmedir->system() / "obs.png");
 
@@ -296,11 +296,11 @@ auto m_millisRoll = ::millis::now();
          int iFactor = 2;
          int iMult = 1 << iFactor;
 
-         ::rectangle_i32 rectClient;
+         ::rectangle_i32 rectangleClient;
 
-         get_client_rect(rectClient);
+         get_client_rect(rectangleClient);
 
-         ::size_i32 size = rectClient.size();
+         ::size_i32 size = rectangleClient.size();
 
          ::size_i32 size2(size.cx / iMult, size.cy / iMult);
 

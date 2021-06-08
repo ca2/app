@@ -74,9 +74,9 @@ namespace user
    void menu_button::_001OnDrawDefault(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::rectangle_i32 rectClient;
+      ::rectangle_i32 rectangleClient;
 
-      get_client_rect(rectClient);
+      get_client_rect(rectangleClient);
 
       if (m_id == "separator")
       {
@@ -85,7 +85,7 @@ namespace user
 
          //pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-         //pgraphics->fill_rectangle(rectClient, _001GetButtonBackgroundColor());
+         //pgraphics->fill_rectangle(rectangleClient, _001GetButtonBackgroundColor());
 
          //::draw2d::pen_pointer pen(e_create);
 
@@ -93,9 +93,9 @@ namespace user
 
          //pgraphics->set(pen);
 
-         //pgraphics->move_to(rectClient.left + rectClient.width() / 8, (rectClient.top + rectClient.bottom) / 2);
+         //pgraphics->move_to(rectangleClient.left + rectangleClient.width() / 8, (rectangleClient.top + rectangleClient.bottom) / 2);
 
-         ///pgraphics->line_to(rectClient.right - rectClient.width() / 8, (rectClient.top + rectClient.bottom) / 2);
+         ///pgraphics->line_to(rectangleClient.right - rectangleClient.width() / 8, (rectangleClient.top + rectangleClient.bottom) / 2);
 
          return;
 
@@ -116,10 +116,10 @@ namespace user
          pgraphics->set(pen);
          pgraphics->set(br);
          ::rectangle_i32 rectPopupArrow;
-         rectPopupArrow.left = rectClient.right - 9;
-         rectPopupArrow.right = rectClient.right - 4;
-         rectPopupArrow.top = ((rectClient.top + rectClient.bottom) / 2) - 4;
-         rectPopupArrow.bottom = ((rectClient.top + rectClient.bottom) / 2) + 4;
+         rectPopupArrow.left = rectangleClient.right - 9;
+         rectPopupArrow.right = rectangleClient.right - 4;
+         rectPopupArrow.top = ((rectangleClient.top + rectangleClient.bottom) / 2) - 4;
+         rectPopupArrow.bottom = ((rectangleClient.top + rectangleClient.bottom) / 2) + 4;
          point_f64_array pointa;
          pointa.add(point_i32(rectPopupArrow.left, rectPopupArrow.bottom));
          pointa.add(point_i32(rectPopupArrow.right, (rectPopupArrow.bottom + rectPopupArrow.top) / 2));
@@ -372,7 +372,7 @@ namespace user
 
       }
 
-      auto size = pcalcsize->m_pgraphics->GetTextExtent(strButtonText);
+      auto size = pcalcsize->m_pgraphics->get_text_extent(strButtonText);
 
       if (bSeparator)
       {

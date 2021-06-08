@@ -1244,12 +1244,12 @@ break_click:;
 //      _001ClientToScreen(rectControl);
 //      rectangle_i64 rectForm;
 //      get_window_rect(rectForm);
-//      rectangle_i64 rectClient;
-//      rectClient.top = rectForm.top;
-//      rectClient.bottom = rectForm.bottom;
-//      rectClient.left = rectControl.left;
-//      rectClient.right = rectControl.right;
-//      return rectClient.contains(point) != false;
+//      rectangle_i64 rectangleClient;
+//      rectangleClient.top = rectForm.top;
+//      rectangleClient.bottom = rectForm.bottom;
+//      rectangleClient.left = rectControl.left;
+//      rectangleClient.right = rectControl.right;
+//      return rectangleClient.contains(point) != false;
    }
 
 

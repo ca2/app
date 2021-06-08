@@ -89,7 +89,7 @@ namespace simple_shader
 
       //   strTitle = papplication->get_main_title();
 
-      //   size = pgraphics->GetTextExtent(strTitle);
+      //   size = pgraphics->get_text_extent(strTitle);
 
       //   if (!size.is_empty())
       //   {
@@ -111,7 +111,7 @@ namespace simple_shader
 
       //   pgraphics->selectFont(font);
 
-      //   size = pgraphics->GetTextExtent(strTitle);
+      //   size = pgraphics->get_text_extent(strTitle);
       //      
       //}
 

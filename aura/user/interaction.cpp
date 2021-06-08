@@ -2603,7 +2603,7 @@ namespace user
 
          ::aura::draw_context * pdrawcontext = pgraphics->::aura::simple_chain < ::aura::draw_context >::get_last();
 
-         ::rectangle_i32 rectClient;
+         ::rectangle_i32 rectangleClient;
 
          bool bFirst = true;
 
@@ -2619,14 +2619,14 @@ namespace user
          if (pdrawcontext != nullptr)
          {
 
-            rectClient = pdrawcontext->m_rectangleWindow;
+            rectangleClient = pdrawcontext->m_rectangleWindow;
 
-            _001ScreenToClient(rectClient, e_layout_design);
+            _001ScreenToClient(rectangleClient, e_layout_design);
 
-            rectClient.bottom++;
-            rectClient.right++;
+            rectangleClient.bottom++;
+            rectangleClient.right++;
 
-            rectClip = rectClient;
+            rectClip = rectangleClient;
 
             bFirst = false;
 
@@ -2644,13 +2644,13 @@ namespace user
             while (pinteraction != nullptr)
             {
 
-               pinteraction->get_client_rect(rectClient);
+               pinteraction->get_client_rect(rectangleClient);
 
-               pinteraction->_001ClientToHost(rectClient);
+               pinteraction->_001ClientToHost(rectangleClient);
 
-               _001HostToClient(rectClient);
+               _001HostToClient(rectangleClient);
 
-               m_pshapeaClip->add_item(__new(rectangle_shape(::rectangle_f64(rectClient))));
+               m_pshapeaClip->add_item(__new(rectangle_shape(::rectangle_f64(rectangleClient))));
 
                m_pshapeaClip->add_item(__new(intersect_clip_shape()));
 
@@ -3254,9 +3254,9 @@ namespace user
 
       {
 
-         auto rectClient = m_puserinteraction->get_client_rect();
+         auto rectangleClient = m_puserinteraction->get_client_rect();
 
-         ::rectangle_i32 rectHint(rectClient);
+         ::rectangle_i32 rectHint(rectangleClient);
 
          pgraphics->SelectClipRgn(nullptr);
 
@@ -3735,18 +3735,18 @@ namespace user
 
       ::aura::draw_context * pdrawcontext = pgraphics->::aura::simple_chain < ::aura::draw_context >::get_last();
 
-      ::rectangle_i32 rectClient;
+      ::rectangle_i32 rectangleClient;
 
       if (pdrawcontext != nullptr)
       {
 
-         rectClient = pdrawcontext->m_rectangleClient;
+         rectangleClient = pdrawcontext->m_rectangleClient;
 
       }
       else
       {
 
-         get_client_rect(rectClient);
+         get_client_rect(rectangleClient);
 
       }
 
@@ -3781,7 +3781,7 @@ namespace user
 
             pgraphics->set_smooth_mode(::draw2d::smooth_mode_none);
 
-            pgraphics->fill_rectangle(rectClient, colorBackground);
+            pgraphics->fill_rectangle(rectangleClient, colorBackground);
 
             pgraphics->set_smooth_mode(esmoothmode);
 
@@ -3802,7 +3802,7 @@ namespace user
 
          //}
 
-         pgraphics->fill_rectangle(rectClient, colorBackground);
+         pgraphics->fill_rectangle(rectangleClient, colorBackground);
 
       }
 
@@ -6979,7 +6979,7 @@ namespace user
    //}
 
 
-   void interaction::RepositionBars(::u32 nIDFirst, ::u32 nIDLast, ::id idLeftOver, ::u32 nFlag, RECTANGLE_I32 * prectParam, const ::rectangle_i32 & rectClient, bool bStretch)
+   void interaction::RepositionBars(::u32 nIDFirst, ::u32 nIDLast, ::id idLeftOver, ::u32 nFlag, RECTANGLE_I32 * prectParam, const ::rectangle_i32 & rectangleClient, bool bStretch)
    {
 
       if (m_pimpl == nullptr)
@@ -6989,7 +6989,7 @@ namespace user
 
       }
 
-      return m_pimpl->RepositionBars(nIDFirst, nIDLast, idLeftOver, nFlag, prectParam, rectClient, bStretch);
+      return m_pimpl->RepositionBars(nIDFirst, nIDLast, idLeftOver, nFlag, prectParam, rectangleClient, bStretch);
 
    }
 
@@ -7804,9 +7804,9 @@ namespace user
       if (puserinteractionpointeraChild)
       {
 
-         ::rectangle_i32 rectClient;
+         ::rectangle_i32 rectangleClient;
 
-         get_client_rect(rectClient);
+         get_client_rect(rectangleClient);
 
          auto children = puserinteractionpointeraChild->m_interactiona;
 
@@ -7825,7 +7825,7 @@ namespace user
 
                   bool bThisVisible = pinteraction->is_this_visible();
 
-                  pinteraction->place(rectClient);
+                  pinteraction->place(rectangleClient);
 
                   pinteraction->set_need_layout();
 
@@ -7849,11 +7849,11 @@ namespace user
       //   if (m_playout->m_bFillParent)
       //   {
 
-      //      ::rectangle_i32 rectClient;
+      //      ::rectangle_i32 rectangleClient;
 
-      //      get_client_rect(rectClient);
+      //      get_client_rect(rectangleClient);
 
-      //      m_playout->place(rectClient);
+      //      m_playout->place(rectangleClient);
 
       //   }
 
@@ -8344,7 +8344,7 @@ namespace user
 
       get_window_text(str);
 
-      ::size_f64 size = pgraphics->GetTextExtent(str);
+      ::size_f64 size = pgraphics->get_text_extent(str);
 
       setFittingFontHeight.cx = size.cx;
 
@@ -13114,11 +13114,11 @@ restart:
    size_f64 interaction::get_total_size()
    {
 
-      ::rectangle_i32 rectClient;
+      ::rectangle_i32 rectangleClient;
 
-      get_client_rect(rectClient);
+      get_client_rect(rectangleClient);
 
-      return rectClient.size();
+      return rectangleClient.size();
 
    }
 
@@ -13147,11 +13147,11 @@ restart:
    size_f64 interaction::get_page_size()
    {
 
-      ::rectangle_i32 rectClient;
+      ::rectangle_i32 rectangleClient;
 
-      get_client_rect(rectClient);
+      get_client_rect(rectangleClient);
 
-      return rectClient.size();
+      return rectangleClient.size();
 
    }
 
@@ -14322,11 +14322,11 @@ restart:
    ::size_f64 interaction::get_client_size()
    {
 
-      ::rectangle_i32 rectClient;
+      ::rectangle_i32 rectangleClient;
 
-      get_client_rect(rectClient);
+      get_client_rect(rectangleClient);
 
-      return rectClient.size();
+      return rectangleClient.size();
 
    }
 
@@ -14358,11 +14358,11 @@ restart:
    int interaction::client_width()
    {
 
-      ::rectangle_i32 rectClient;
+      ::rectangle_i32 rectangleClient;
 
-      get_client_rect(rectClient);
+      get_client_rect(rectangleClient);
 
-      return rectClient.width();
+      return rectangleClient.width();
 
    }
 
@@ -14370,11 +14370,11 @@ restart:
    int interaction::client_height()
    {
 
-      ::rectangle_i32 rectClient;
+      ::rectangle_i32 rectangleClient;
 
-      get_client_rect(rectClient);
+      get_client_rect(rectangleClient);
 
-      return rectClient.height();
+      return rectangleClient.height();
 
    }
 
@@ -15293,6 +15293,7 @@ restart:
 
 #endif // MOUSE_MIDDLE_BUTTON_MESSAGE_HANDLING_DEBUG
 
+
    void interaction::on_message_mouse_move(::message::message* pmessage)
    {
 
@@ -15308,27 +15309,6 @@ restart:
       synchronous_lock synchronouslock(mutex());
 
       pmouse->m_pcursor = get_mouse_cursor();
-
-      if (m_bHoverDefaultMouseHandling)
-      {
-
-         if(string(type_c_str()).contains_ci("button"))
-         {
-
-            output_debug_string("button");
-
-         }
-
-         update_hover(pmouse->m_point, false);
-
-         if (m_itemHover)
-         {
-
-            track_mouse_leave();
-
-         }
-
-      }
 
       if (m_pdragmove && m_pdragmove->m_bLButtonDown)
       {
@@ -15352,6 +15332,10 @@ restart:
 
             move_to(point);
 
+            set_need_redraw();
+
+            post_redraw();
+
             m_pdragmove->m_bDrag = false;
 
          }
@@ -15361,6 +15345,29 @@ restart:
          return;
 
       }
+
+      if (m_bHoverDefaultMouseHandling)
+      {
+
+         if(string(type_c_str()).contains_ci("button"))
+         {
+
+            output_debug_string("button");
+
+         }
+
+         update_hover(pmouse->m_point, false);
+
+         if (m_itemHover)
+         {
+
+            track_mouse_leave();
+
+         }
+
+      }
+
+
 
 
    }
@@ -16610,18 +16617,18 @@ restart:
       else if (eelement == e_element_drop_down)
       {
 
-         ::rectangle_i32 rectClient;
+         ::rectangle_i32 rectangleClient;
 
-         get_client_rect(rectClient);
+         get_client_rect(rectangleClient);
 
-         //i32 iMargin = rectClient.height() / 8;
+         //i32 iMargin = rectangleClient.height() / 8;
          i32 iMargin = 0;
 
          ::rectangle_i32 rectDropDown;
 
-         rectDropDown = rectClient;
+         rectDropDown = rectangleClient;
 
-         i32 iW = rectClient.height() * 5 / 8;
+         i32 iW = rectangleClient.height() * 5 / 8;
 
          rectDropDown.right -= iMargin;
          rectDropDown.bottom -= iMargin;
@@ -16637,15 +16644,15 @@ restart:
       else if (eelement == e_element_combo_edit)
       {
 
-         ::rectangle_i32 rectClient;
+         ::rectangle_i32 rectangleClient;
 
-         get_client_rect(rectClient);
+         get_client_rect(rectangleClient);
 
          ::rectangle_i32 rectDropDown;
 
          get_element_rect(rectDropDown, e_element_drop_down);
 
-         ::rectangle_i32 rectEdit = rectClient;
+         ::rectangle_i32 rectEdit = rectangleClient;
 
          rectEdit.right = rectDropDown.left;
 

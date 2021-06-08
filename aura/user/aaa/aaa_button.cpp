@@ -167,7 +167,7 @@ namespace user
 
       string strText(m_strWindowText);
 
-      const ::size & size = pgraphics->GetTextExtent(strText);
+      const ::size & size = pgraphics->get_text_extent(strText);
 
       ::write_text::text_metric tm;
 
@@ -194,7 +194,7 @@ namespace user
 
          string str;
          get_window_text(str);
-         const ::size & size = pgraphics->GetTextExtent(str);
+         const ::size & size = pgraphics->get_text_extent(str);
 
          ::rectangle rectangle(0, 0, 0, 0);
          rectangle.right = ::i32(size.cx * 1.6);
@@ -287,17 +287,17 @@ namespace user
    void button::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::rectangle rectClient;
+      ::rectangle rectangleClient;
 
-      get_client_rect(rectClient, ::user::e_layout_design);
+      get_client_rect(rectangleClient, ::user::e_layout_design);
 
       ::size sizeText = calc_text_size();
 
       ::rectangle rectangle;
 
-      rectangle.left = rectClient.left + (rectClient.width() - sizeText.cx) / 2;
+      rectangle.left = rectangleClient.left + (rectangleClient.width() - sizeText.cx) / 2;
 
-      rectangle.top = rectClient.top + (rectClient.height() - sizeText.cy) / 2;
+      rectangle.top = rectangleClient.top + (rectangleClient.height() - sizeText.cy) / 2;
 
       rectangle.right = rectangle.left + sizeText.cx;
 
@@ -320,9 +320,9 @@ namespace user
    void button::_002OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::rectangle rectClient;
+      ::rectangle rectangleClient;
 
-      get_client_rect(rectClient);
+      get_client_rect(rectangleClient);
 
       color32_t crBk;
 
@@ -363,7 +363,7 @@ namespace user
 
          imaging.color_blend(
          pgraphics,
-         rectClient,
+         rectangleClient,
          crBk,
          127);
 
@@ -371,7 +371,7 @@ namespace user
       else
       {
 
-         pgraphics->fill_rectangle(rectClient, crBk);
+         pgraphics->fill_rectangle(rectangleClient, crBk);
 
       }
 
@@ -406,14 +406,14 @@ namespace user
       //if (_001GetFlag(flag_border))
       {
 
-         pgraphics->draw_rectangle(rectClient, crBorder);
+         pgraphics->draw_rectangle(rectangleClient, crBorder);
 
       }
 
       //      pgraphics->SetBkMode(TRANSPARENT);
 
-      rectClient.left += 3;
-      rectClient.top += 3;
+      rectangleClient.left += 3;
+      rectangleClient.top += 3;
       ::rectangle rectText = m_rectText;
       //      string str = ::str::international::utf8_to_unicode(str);
       if (m_pbitmap->m_pimage->is_set())
@@ -559,9 +559,9 @@ namespace user
    void button::_001OnButtonDrawBackground(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::rectangle rectClient;
+      ::rectangle rectangleClient;
 
-      get_client_rect(rectClient);
+      get_client_rect(rectangleClient);
 
       color32_t crBackground = _001GetButtonBackgroundColor();
 
@@ -577,7 +577,7 @@ namespace user
 
             pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-            pgraphics->fill_rectangle(rectClient, colorBack);
+            pgraphics->fill_rectangle(rectangleClient, colorBack);
 
          }
 
@@ -589,7 +589,7 @@ namespace user
 
          colorBottomRight.hls_rate(0.0, 0.2, 0.0);
 
-         ::rectangle rectPush(rectClient);
+         ::rectangle rectPush(rectangleClient);
 
          pgraphics->draw_3drect(rectPush, colorTopLeft, colorBottomRight);
 
@@ -606,7 +606,7 @@ namespace user
 
             pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-            pgraphics->fill_rectangle(rectClient, crBackground);
+            pgraphics->fill_rectangle(rectangleClient, crBackground);
 
          }
 
@@ -709,9 +709,9 @@ namespace user
    void button::_001OnButtonDrawNormal(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::rectangle rectClient;
+      ::rectangle rectangleClient;
 
-      get_client_rect(rectClient);
+      get_client_rect(rectangleClient);
 
       pgraphics->set_font(this, ::user::e_element_none);
 
@@ -719,17 +719,17 @@ namespace user
 
       ::rectangle rectBorder(2, 2, 2, 2);
 
-      rectClient.deflate(rectMargin);
+      rectangleClient.deflate(rectMargin);
 
-      rectClient.deflate(rectBorder);
+      rectangleClient.deflate(rectBorder);
 
       _001OnButtonDrawBackground(pgraphics);
 
       ::rectangle rectPadding(4, 4, 4,4);
 
-      rectClient.deflate(rectPadding);
+      rectangleClient.deflate(rectPadding);
 
-      _001OnButtonDrawTextLayer(pgraphics, rectClient);
+      _001OnButtonDrawTextLayer(pgraphics, rectangleClient);
 
    }
 
@@ -760,23 +760,23 @@ namespace user
       else if(!is_window_enabled() && ::is_ok(m_pbitmap->m_pimageDisabled))
          pimage = m_pbitmap->m_pimageDisabled;   // last image for disabled
 
-      ::rectangle rectClient;
+      ::rectangle rectangleClient;
 
-      get_client_rect(rectClient);
+      get_client_rect(rectangleClient);
 
       ::rectangle rectMargin(4, 4, 4, 4);
 
       ::rectangle rectBorder(2, 2,2 ,2);
 
-      rectClient.deflate(rectMargin);
+      rectangleClient.deflate(rectMargin);
 
-      rectClient.deflate(rectBorder);
+      rectangleClient.deflate(rectBorder);
 
       ::rectangle rectPadding(4, 4,4,4);
 
-      rectClient.deflate(rectPadding);
+      rectangleClient.deflate(rectPadding);
 
-      if (pimage->area() > 0 && rectClient.area() > 0)
+      if (pimage->area() > 0 && rectangleClient.area() > 0)
       {
 
          ::rectangle rectAspect;
@@ -785,9 +785,9 @@ namespace user
 
          rectAspect.top = 0;
 
-         double dW = (double) rectClient.width() / (double)pimage->width();
+         double dW = (double) rectangleClient.width() / (double)pimage->width();
 
-         double dH = (double) rectClient.height() / (double) pimage->height();
+         double dH = (double) rectangleClient.height() / (double) pimage->height();
 
          double dMin = minimum(minimum(dW, dH), 1.0);
 
@@ -795,7 +795,7 @@ namespace user
 
          rectAspect.bottom = (::i32) (pimage->height() * dMin);
 
-         rectAspect.Align(e_align_center, rectClient);
+         rectAspect.Align(e_align_center, rectangleClient);
 
          pgraphics->set_interpolation_mode(e_interpolation_mode_high_quality_bicubic);
 
@@ -813,11 +813,11 @@ namespace user
 
       _001OnButtonDrawBackground(pgraphics);
 
-      ::rectangle rectClient;
+      ::rectangle rectangleClient;
 
-      get_client_rect(rectClient);
+      get_client_rect(rectangleClient);
 
-      ::rectangle rectPadded(rectClient);
+      ::rectangle rectPadded(rectangleClient);
 
       int iPadding = 4;
 
@@ -842,7 +842,7 @@ namespace user
          else if (!is_window_enabled() && m_pbitmap->m_pimageDisabled->is_set() && m_pbitmap->m_pimageDisabled->area() > 0)
             pimage = m_pbitmap->m_pimageDisabled;   // last image for disabled
 
-         if (pimage->area() > 0 && rectClient.area() > 0)
+         if (pimage->area() > 0 && rectangleClient.area() > 0)
          {
 
             rectAspect.left = 0;
@@ -886,9 +886,9 @@ namespace user
 
       auto pstyle = get_style(pgraphics);
 
-      ::rectangle rectClient;
+      ::rectangle rectangleClient;
 
-      get_client_rect(rectClient);
+      get_client_rect(rectangleClient);
 
       auto color = get_color(pstyle, e_element_background);
 
@@ -941,7 +941,7 @@ namespace user
 
       class imaging & imaging = ::aura::get_system()->imaging();
 
-      ::rectangle rectangle = rectClient;
+      ::rectangle rectangle = rectangleClient;
       pgraphics->color_blend_3dRect(rectangle,colorExt1TL,215,colorExt1BR,215);
       rectangle.deflate(1,1,1,1);
       pgraphics->color_blend_3dRect(rectangle,colorExt1TL,210,colorExt1BR,210);
@@ -1131,7 +1131,7 @@ namespace user
 
    void button::_001OnButtonDrawList(::draw2d::graphics_pointer & pgraphics)
    {
-      ::rectangle rectClient;
+      ::rectangle rectangleClient;
       bool bItemHover;
       bool bSubItemHover;
 
@@ -1141,7 +1141,7 @@ namespace user
 
       if(pdrawcontext != nullptr)
       {
-         rectClient     = pdrawcontext->m_rectangleClient;
+         rectangleClient     = pdrawcontext->m_rectangleClient;
          bItemHover     = pdrawcontext->m_bListItemHover;
          bSubItemHover  = pdrawcontext->m_bListSubItemHover;
       }
@@ -1149,18 +1149,18 @@ namespace user
       {
          if(get_form() != nullptr)
             return;
-         get_client_rect(rectClient);
+         get_client_rect(rectangleClient);
          bItemHover     = m_itemHover.is_set();
          bSubItemHover  = bItemHover;
       }
 
-      ::point point = rectClient.top_left();
+      ::point point = rectangleClient.top_left();
       point += ::size(1, 1);
 
       if(bSubItemHover)
       {
          pgraphics->draw_3drect(
-         rectClient,
+         rectangleClient,
          rgb(255,255,255),
          rgb(155,155,105));
 

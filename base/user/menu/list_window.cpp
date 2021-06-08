@@ -123,7 +123,7 @@ namespace user
 
          }
 
-         auto size = pgraphics->GetTextExtent(pitem->m_puserinteraction->get_window_text());
+         auto size = pgraphics->get_text_extent(pitem->m_puserinteraction->get_window_text());
 
          size.cx += pitem->m_iLevel * g_base_menu_indent;
 
@@ -169,13 +169,13 @@ namespace user
 
       }
 
-      ::rectangle_i32 rectClient;
+      ::rectangle_i32 rectangleClient;
 
-      get_parent()->get_client_rect(rectClient);
+      get_parent()->get_client_rect(rectangleClient);
 
       pgraphics->set_font(this, ::user::e_element_none);
 
-      const ::size_i32 & size = pgraphics->GetTextExtent("XXXMMM");
+      const ::size_i32 & size = pgraphics->get_text_extent("XXXMMM");
 
       i32 iMaxHeight = size.cy;
 
@@ -195,7 +195,7 @@ namespace user
 
       string str;
 
-      layout_buttons(m_pmenuitem, iMaxWidth + 4, rectangle, rectClient);
+      layout_buttons(m_pmenuitem, iMaxWidth + 4, rectangle, rectangleClient);
 
       auto & puiClose = m_pitemClose->m_puserinteraction;
 

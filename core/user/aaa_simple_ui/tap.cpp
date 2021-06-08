@@ -219,11 +219,11 @@ namespace simple_ui
 
 #endif
 
-         ::rectangle_i32 rectClient;
+         ::rectangle_i32 rectangleClient;
 
-         get_client_rect(rectClient);
+         get_client_rect(rectangleClient);
 
-         pgraphics->fill_rectangle(rectClient, br);
+         pgraphics->fill_rectangle(rectangleClient, br);
 
       }
 
@@ -249,9 +249,9 @@ namespace simple_ui
 
          color32_t crBorderIn;
 
-         ::rectangle_i32 rectClient;
+         ::rectangle_i32 rectangleClient;
 
-         get_client_rect(rectClient);
+         get_client_rect(rectangleClient);
 
          ::datetime::time timeNow = ::datetime::time::get_current_time();
 
@@ -370,7 +370,7 @@ namespace simple_ui
 
             pgraphics->set(br);
 
-            pgraphics->fill_rectangle(rectClient,br);
+            pgraphics->fill_rectangle(rectangleClient,br);
 
             ::draw2d::pen_pointer pen(e_create);
 
@@ -378,33 +378,33 @@ namespace simple_ui
 
             pgraphics->set(pen);
 
-            pgraphics->draw_stock_icon(rectClient,m_estockicon);
+            pgraphics->draw_stock_icon(rectangleClient,m_estockicon);
 
             return;
 
          }
 
-         i32 iBorderH = rectClient.height() / 2;
+         i32 iBorderH = rectangleClient.height() / 2;
 
          ::draw2d::brush_pointer br(e_create);
 
-         br->CreateLinearGradientBrush(point_i32(rectClient.left, rectClient.top - 1), point_i32(rectClient.left, rectClient.top + iBorderH + 2), crOut, crIn);
+         br->CreateLinearGradientBrush(point_i32(rectangleClient.left, rectangleClient.top - 1), point_i32(rectangleClient.left, rectangleClient.top + iBorderH + 2), crOut, crIn);
 
-         pgraphics->fill_rectangle(::rectangle_i32(rectClient.left + 1, rectClient.top + 1, (i32)rectClient.width(), iBorderH), br);
+         pgraphics->fill_rectangle(::rectangle_i32(rectangleClient.left + 1, rectangleClient.top + 1, (i32)rectangleClient.width(), iBorderH), br);
 
-         br->CreateLinearGradientBrush(point_i32(rectClient.left, rectClient.top + iBorderH - 1), point_i32(rectClient.left, rectClient.top + iBorderH * 2 + 2), crIn, crOut);
+         br->CreateLinearGradientBrush(point_i32(rectangleClient.left, rectangleClient.top + iBorderH - 1), point_i32(rectangleClient.left, rectangleClient.top + iBorderH * 2 + 2), crIn, crOut);
 
-         pgraphics->fill_rectangle(::rectangle_i32(rectClient.left + 1, rectClient.top + iBorderH, rectClient.left + (i32)rectClient.width(), rectClient.top + iBorderH + iBorderH), br);
+         pgraphics->fill_rectangle(::rectangle_i32(rectangleClient.left + 1, rectangleClient.top + iBorderH, rectangleClient.left + (i32)rectangleClient.width(), rectangleClient.top + iBorderH + iBorderH), br);
 
          /*Gdiplus::Pen pen1(crBorderOut);
 
-         graphics2.DrawRectangle(&pen1, rectClient.left, rectClient.top, rectClient.width(), iBorderH * 2);*/
+         graphics2.DrawRectangle(&pen1, rectangleClient.left, rectangleClient.top, rectangleClient.width(), iBorderH * 2);*/
 
          ::draw2d::pen_pointer pen(e_create);
 
          pen->create_solid(1.0, crBorderIn);
 
-         pgraphics->draw_rectangle(::rectangle_i32(rectClient.left + 1, rectClient.top + 1, rectClient.left + (i32)rectClient.width() - 2, rectClient.top + iBorderH * 2 - 2), pen);
+         pgraphics->draw_rectangle(::rectangle_i32(rectangleClient.left + 1, rectangleClient.top + 1, rectangleClient.left + (i32)rectangleClient.width() - 2, rectangleClient.top + iBorderH * 2 - 2), pen);
 
       }
 
@@ -421,9 +421,9 @@ namespace simple_ui
    void tap::simple_ui_draw_text(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::rectangle_i32 rectClient;
+      ::rectangle_i32 rectangleClient;
 
-      get_client_rect(rectClient);
+      get_client_rect(rectangleClient);
 
       ::datetime::time timeNow = ::datetime::time::get_current_time();
 
@@ -469,19 +469,19 @@ namespace simple_ui
 
       pgraphics->set(b);
 
-      //float fMargin = (rectClient.height() * ((1.0f - 0.7f) / 2.0f));
+      //float fMargin = (rectangleClient.height() * ((1.0f - 0.7f) / 2.0f));
 
-      float fMargin = (rectClient.height() * ((1.0f - 0.84f) / 2.0f));
+      float fMargin = (rectangleClient.height() * ((1.0f - 0.84f) / 2.0f));
 
-      rectClient.deflate((i32) fMargin, (i32) fMargin);
+      rectangleClient.deflate((i32) fMargin, (i32) fMargin);
 
       ::write_text::font_pointer f(e_create);
 
-      f->create_pixel_font(pnode->font_name(e_font_sans_ex), (i32)rectClient.height()* 0.7);
+      f->create_pixel_font(pnode->font_name(e_font_sans_ex), (i32)rectangleClient.height()* 0.7);
 
       pgraphics->set(f);
 
-      pgraphics->draw_text(get_window_text(), rectClient, e_align_left_center);
+      pgraphics->draw_text(get_window_text(), rectangleClient, e_align_left_center);
 
    }
 
@@ -522,14 +522,14 @@ namespace simple_ui
    void tap::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::rectangle_i32 rectClient;
+      ::rectangle_i32 rectangleClient;
 
-      get_client_rect(rectClient);
+      get_client_rect(rectangleClient);
 
       if(m_bAutoStockIconPenWidth)
       {
 
-         m_dStockIconPenWidth = rectClient.minimum_natural_dimension() / 12.5;
+         m_dStockIconPenWidth = rectangleClient.minimum_natural_dimension() / 12.5;
 
       }
 

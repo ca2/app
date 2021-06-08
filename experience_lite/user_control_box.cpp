@@ -35,11 +35,11 @@ void MetaControlBox::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 
    }
 
-   ::rectangle_i32 rectClient;
+   ::rectangle_i32 rectangleClient;
 
-   get_client_rect(rectClient);
+   get_client_rect(rectangleClient);
 
-   if (rectClient.area() <= 0)
+   if (rectangleClient.area() <= 0)
       return;
 
    pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
@@ -59,7 +59,7 @@ void MetaControlBox::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 
    }
 
-   pgraphics->fill_rectangle(rectClient, m_colorBackground);
+   pgraphics->fill_rectangle(rectangleClient, m_colorBackground);
 
 }
 

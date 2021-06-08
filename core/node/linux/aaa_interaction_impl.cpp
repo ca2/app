@@ -2463,12 +2463,12 @@ namespace linux
 //   void interaction_impl::_001DeferPaintLayeredWindowBackground(HDC hdc)
 //   {
 //
-//      ::rectangle rectClient;
+//      ::rectangle rectangleClient;
 //
-//      m_puserinteraction->get_client_rect(rectClient);
+//      m_puserinteraction->get_client_rect(rectangleClient);
 //
 //
-//      //pgraphics->FillSolidRect(rectClient, 0x00000000);
+//      //pgraphics->FillSolidRect(rectangleClient, 0x00000000);
 //
 //      //return;
 //      ::rectangle rectUpdate;
@@ -3408,15 +3408,15 @@ namespace linux
 //
 //      }
 //
-//      ::rectangle rectClient;
+//      ::rectangle rectangleClient;
 //
-//      //oswindow->get_client_rect(rectClient);
+//      //oswindow->get_client_rect(rectangleClient);
 //
-//      rectClient.left = 0;
-//      rectClient.top = 0;
-//      rectClient.right = 500;
-//      rectClient.bottom = 500;
-////      (dynamic_cast < ::linux::graphics * >(g.m_p))->attach(cairo_create(cairo_xlib_surface_create(oswindow->display(), oswindow->interaction_impl(), oswindow->draw2d(),rectClient.width(), rectClient.height())));
+//      rectangleClient.left = 0;
+//      rectangleClient.top = 0;
+//      rectangleClient.right = 500;
+//      rectangleClient.bottom = 500;
+////      (dynamic_cast < ::linux::graphics * >(g.m_p))->attach(cairo_create(cairo_xlib_surface_create(oswindow->display(), oswindow->interaction_impl(), oswindow->draw2d(),rectangleClient.width(), rectangleClient.height())));
 //
 //      windowing_output_debug_string("\nlinux::interaction_impl::GetDC END");
 //

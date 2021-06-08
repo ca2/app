@@ -905,11 +905,11 @@ namespace userex
 
       ::user::impact::on_layout(pgraphics);
 
-      ::rectangle_i32 rectClient;
+      ::rectangle_i32 rectangleClient;
 
-      get_client_rect(rectClient);
+      get_client_rect(rectangleClient);
 
-      if (rectClient.area() <= 0)
+      if (rectangleClient.area() <= 0)
       {
 
          return;
@@ -923,10 +923,10 @@ namespace userex
       if(!m_bCompact)
       {
 
-         rectColors.left = rectClient.center().x;
-         rectColors.bottom = rectClient.center().y;
+         rectColors.left = rectangleClient.center().x;
+         rectColors.bottom = rectangleClient.center().y;
 
-         rectColors.deflate(rectClient.width() / 16, rectClient.height() / 16);
+         rectColors.deflate(rectangleClient.width() / 16, rectangleClient.height() / 16);
 
       }
 

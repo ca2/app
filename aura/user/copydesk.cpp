@@ -438,7 +438,7 @@ namespace user
 
                      pimage->g()->set(pfont);
 
-                     size_f64 s = pimage->g()->GetTextExtent(str);
+                     size_f64 s = pimage->g()->get_text_extent(str);
 
                      if (s.area() > 0.)
                      {

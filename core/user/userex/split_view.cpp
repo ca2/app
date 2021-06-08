@@ -99,9 +99,9 @@ namespace userex
 
       ppane->m_id = id;
 
-      ::rectangle_i32 rectClient;
+      ::rectangle_i32 rectangleClient;
 
-      ppane->m_pplaceholder->get_client_rect(rectClient);
+      ppane->m_pplaceholder->get_client_rect(rectangleClient);
 
       ::user::impact_data * pdata = create_impact(id);
 

@@ -557,9 +557,9 @@ namespace user
 
       //on_layout(::draw2d::graphics_pointer & pgraphics);
 
-      //auto rectClient = puiParent->get_client_rect();
+      //auto rectangleClient = puiParent->get_client_rect();
 
-      //place(rectClient);
+      //place(rectangleClient);
 
       //display();
 
@@ -868,11 +868,11 @@ namespace user
       if (crBackground.is_translucent())
       {
 
-         ::rectangle_i32 rectClient;
+         ::rectangle_i32 rectangleClient;
 
-         get_client_rect(rectClient);
+         get_client_rect(rectangleClient);
 
-         pgraphics->fill_rectangle(rectClient, argb(255, 255, 255, 255));
+         pgraphics->fill_rectangle(rectangleClient, argb(255, 255, 255, 255));
 
       }
 

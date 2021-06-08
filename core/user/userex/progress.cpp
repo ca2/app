@@ -323,23 +323,23 @@ namespace userex
    void progress_view::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      auto rectClient = get_client_rect();
+      auto rectangleClient = get_client_rect();
 
-      if(rectClient.is_empty())
+      if(rectangleClient.is_empty())
       {
 
          return;
 
       }
 
-      int cxBorder = rectClient.width() / 16;
-      int h = rectClient.height() / 4;
+      int cxBorder = rectangleClient.width() / 16;
+      int h = rectangleClient.height() / 4;
 
-      ::rectangle_i32 rectIndicator(rectClient);
+      ::rectangle_i32 rectIndicator(rectangleClient);
 
       rectIndicator.deflate(cxBorder, h, cxBorder, h * 2);
 
-      m_rectStatus = rectClient;
+      m_rectStatus = rectangleClient;
 
       m_rectStatus.deflate(cxBorder, h * 2, cxBorder, h);
 

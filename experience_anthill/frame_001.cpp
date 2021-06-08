@@ -195,7 +195,7 @@ SizingNone:;
                
                auto psession = get_session();
 
-               ::rectangle_i32 rectClient(rectClientParam);
+               ::rectangle_i32 rectangleClient(rectClientParam);
 
                auto pframewindow = m_pframewindow;
 
@@ -233,14 +233,14 @@ SizingNone:;
 
 //               enum_dock edock = m_pframewindow->dock_manager()->GetDockState();
 
-               //::rectangle_i32 rectA(rectClient);
+               //::rectangle_i32 rectA(rectangleClient);
 
                if(is_translucid())
                {
 
                   ::rectangle_i32 rectangle;
 
-                  GetBorderRect(rectClient, rectangle, eside);
+                  GetBorderRect(rectangleClient, rectangle, eside);
 
 
 
@@ -252,7 +252,7 @@ SizingNone:;
 
                   ::rectangle_i32 rectangle;
 
-                  GetBorderRect(rectClient, rectangle, eside);
+                  GetBorderRect(rectangleClient, rectangle, eside);
 
 
 
@@ -274,13 +274,13 @@ SizingNone:;
                else
                {
 
-                  ::rectangle_i32 rectClient(rectClientParam);
+                  ::rectangle_i32 rectangleClient(rectClientParam);
 
-                  rectClient.deflate(2, 2, 2, 2);
+                  rectangleClient.deflate(2, 2, 2, 2);
 
                   ::rectangle_i32 rectangle;
 
-                  GetBorderRect(rectClient, rectangle, eside);
+                  GetBorderRect(rectangleClient, rectangle, eside);
 
 
 
@@ -329,7 +329,7 @@ SizingNone:;
             }
 
 
-            void frame_001::DrawBorder(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectClient)
+            void frame_001::DrawBorder(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangleClient)
             {
 
 
@@ -350,37 +350,37 @@ SizingNone:;
                if(eborder & e_border_top)
                {
 
-                  draw_border_side(pgraphics, rectClient, e_border_top);
+                  draw_border_side(pgraphics, rectangleClient, e_border_top);
 
                }
 
                if(eborder & e_border_right)
                {
 
-                  draw_border_side(pgraphics, rectClient, e_border_right);
+                  draw_border_side(pgraphics, rectangleClient, e_border_right);
 
                }
 
                if(eborder & e_border_bottom)
                {
 
-                  draw_border_side(pgraphics, rectClient, e_border_bottom);
+                  draw_border_side(pgraphics, rectangleClient, e_border_bottom);
 
                }
 
                if(eborder & e_border_left)
                {
 
-                  draw_border_side(pgraphics, rectClient, e_border_left);
+                  draw_border_side(pgraphics, rectangleClient, e_border_left);
 
                }
 
             }
 
-            void frame_001::GetBorderRect(const ::rectangle_i32 & rectClient, RECTANGLE_I32 * lprect, enum_border eside)
+            void frame_001::GetBorderRect(const ::rectangle_i32 & rectangleClient, RECTANGLE_I32 * lprect, enum_border eside)
             {
 
-               ::rectangle_i32 rectBig(rectClient);
+               ::rectangle_i32 rectBig(rectangleClient);
 
                ::rectangle_i32 rectSmall;
 
@@ -433,13 +433,13 @@ SizingNone:;
 
                ::rectangle_i32 rectC(rectClientParam);
 
-               ::rectangle_i32 rectClient(rectClientParam);
+               ::rectangle_i32 rectangleClient(rectClientParam);
 
-               rectClient.right--;
+               rectangleClient.right--;
 
-               rectClient.bottom--;
+               rectangleClient.bottom--;
 
-               ::rectangle_i32 rectClientB(rectClient);
+               ::rectangle_i32 rectClientB(rectangleClient);
 
                ::rectangle_i32 rectA;
 
@@ -449,7 +449,7 @@ SizingNone:;
 
                ::point_i32 pointC;
 
-               ::rectangle_i32 rectangle(rectClient);
+               ::rectangle_i32 rectangle(rectangleClient);
 
 
 
@@ -459,7 +459,7 @@ SizingNone:;
                {
                   pgraphics->set(m_penHilight1);
 
-                  rectA = rectClient;
+                  rectA = rectangleClient;
 
                   rectA.top++;
                   rectA.left++;
@@ -480,7 +480,7 @@ SizingNone:;
 
                   // Most external rectangle_i32
 
-                  rectA = rectClient;
+                  rectA = rectangleClient;
 
                   pointA = rectA.top_left();
                   pointA.y += 15;
@@ -493,7 +493,7 @@ SizingNone:;
 
                   // Midle Rectangle
 
-                  rectA = rectClient;
+                  rectA = rectangleClient;
 
                   rectA.top += 2;
                   rectA.left += 2;
@@ -511,7 +511,7 @@ SizingNone:;
 
                   pgraphics->set(m_penShadow1);
 
-                  rectA = rectClient;
+                  rectA = rectangleClient;
 
                   rectA.top++;
                   rectA.left++;
@@ -535,7 +535,7 @@ SizingNone:;
 
                   pgraphics->set(m_penDkShadow1);
 
-                  rectA = rectClient;
+                  rectA = rectangleClient;
 
                   rectA.top += 4;
                   rectA.left += 4;
@@ -597,7 +597,7 @@ SizingNone:;
                {
                   pgraphics->set(m_penHilight1);
 
-                  rectA = rectClient;
+                  rectA = rectangleClient;
 
                   rectA.top++;
                   rectA.left++;
@@ -625,7 +625,7 @@ SizingNone:;
 
                   // Most external rectangle_i32
 
-                  rectA = rectClient;
+                  rectA = rectangleClient;
 
                   pointA = rectA.top_right();
                   pointA.x -= 16;
@@ -649,7 +649,7 @@ SizingNone:;
 
                   // Midle Rectangle
 
-                  rectA = rectClient;
+                  rectA = rectangleClient;
 
                   rectA.top += 2;
                   rectA.left += 2;
@@ -667,7 +667,7 @@ SizingNone:;
 
                   pgraphics->set(m_penShadow1);
 
-                  rectA = rectClient;
+                  rectA = rectangleClient;
 
                   rectA.top++;
                   rectA.left++;
@@ -693,7 +693,7 @@ SizingNone:;
 
                   pgraphics->set(m_penDkShadow1);
 
-                  rectA = rectClient;
+                  rectA = rectangleClient;
 
                   pointB = rectA.top_right();
                   pointC = rectA.top_right();
@@ -760,7 +760,7 @@ SizingNone:;
 
                   pgraphics->set(m_penHilight1);
 
-                  rectA = rectClient;
+                  rectA = rectangleClient;
 
                   rectA.left++;
                   rectA.bottom--;
@@ -772,7 +772,7 @@ SizingNone:;
                   pgraphics->move_to(pointB);
                   pgraphics->line_to(pointA);
 
-                  rectA = rectClient;
+                  rectA = rectangleClient;
 
                   rectA.left += 3;
                   rectA.bottom -= 3;
@@ -788,7 +788,7 @@ SizingNone:;
 
                   // Most external rectangle_i32 0
 
-                  rectA = rectClient;
+                  rectA = rectangleClient;
 
                   pointA = rectA.bottom_left();
                   pointA.y -= 15;
@@ -811,7 +811,7 @@ SizingNone:;
 
                   // Midle Rectangle 2
 
-                  rectA = rectClient;
+                  rectA = rectangleClient;
 
                   rectA.top += 2;
                   rectA.left += 2;
@@ -829,7 +829,7 @@ SizingNone:;
 
                   pgraphics->set(m_penShadow1);
 
-                  rectA = rectClient;
+                  rectA = rectangleClient;
 
                   rectA.left += 2;
                   rectA.bottom--;
@@ -840,7 +840,7 @@ SizingNone:;
                   pgraphics->move_to(pointB);
                   pgraphics->line_to(pointC);
 
-                  rectA = rectClient;
+                  rectA = rectangleClient;
 
                   rectA.left += 3;
                   rectA.bottom -= 2;
@@ -853,7 +853,7 @@ SizingNone:;
 
                   pgraphics->set(m_penDkShadow1);
 
-                  rectA = rectClient;
+                  rectA = rectangleClient;
 
                   pointB = rectA.bottom_left();
                   pointB.x++;
@@ -920,7 +920,7 @@ SizingNone:;
                {
                   pgraphics->set(m_penHilight1);
 
-                  rectA = rectClient;
+                  rectA = rectangleClient;
 
                   rectA.top++;
                   rectA.left++;
@@ -943,7 +943,7 @@ SizingNone:;
 
                   pgraphics->set(m_penFace1);
 
-                  rectA = rectClient;
+                  rectA = rectangleClient;
 
                   // Most internal rectangle_i32
 
@@ -963,7 +963,7 @@ SizingNone:;
 
                   // Midle Rectangle
 
-                  rectA = rectClient;
+                  rectA = rectangleClient;
 
                   rectA.top += 2;
                   rectA.left += 2;
@@ -980,7 +980,7 @@ SizingNone:;
                   pgraphics->line_to(pointC);
                   pgraphics->set(m_penShadow1);
 
-                  rectA = rectClient;
+                  rectA = rectangleClient;
 
                   rectA.top++;
                   rectA.left++;
@@ -998,7 +998,7 @@ SizingNone:;
 
                   pgraphics->set(m_penDkShadow1);
 
-                  rectA = rectClient;
+                  rectA = rectangleClient;
 
                   pointA = rectA.bottom_right();
                   pointA.y -= 15;
@@ -1164,7 +1164,7 @@ SizingNone:;
 
             }
 
-            void frame_001::DrawGripSet(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectClient)
+            void frame_001::DrawGripSet(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangleClient)
             {
                auto psizenager = m_pframewindow->size_manager();
 
@@ -1172,35 +1172,35 @@ SizingNone:;
 
                if(egrip & e_grip_top)
                {
-                  DrawGrip(pgraphics, rectClient, e_grip_top);
+                  DrawGrip(pgraphics, rectangleClient, e_grip_top);
                }
                if(egrip & e_grip_top_right)
                {
-                  DrawGrip(pgraphics, rectClient, e_grip_top_right);
+                  DrawGrip(pgraphics, rectangleClient, e_grip_top_right);
                }
                if(egrip & e_grip_right)
                {
-                  DrawGrip(pgraphics, rectClient, e_grip_right);
+                  DrawGrip(pgraphics, rectangleClient, e_grip_right);
                }
                if(egrip & e_grip_bottom_right)
                {
-                  DrawGrip(pgraphics, rectClient, e_grip_bottom_right);
+                  DrawGrip(pgraphics, rectangleClient, e_grip_bottom_right);
                }
                if(egrip & e_grip_bottom)
                {
-                  DrawGrip(pgraphics, rectClient, e_grip_bottom);
+                  DrawGrip(pgraphics, rectangleClient, e_grip_bottom);
                }
                if(egrip & e_grip_bottom_left)
                {
-                  DrawGrip(pgraphics, rectClient, e_grip_bottom_left);
+                  DrawGrip(pgraphics, rectangleClient, e_grip_bottom_left);
                }
                if(egrip & e_grip_left)
                {
-                  DrawGrip(pgraphics, rectClient, e_grip_left);
+                  DrawGrip(pgraphics, rectangleClient, e_grip_left);
                }
                if(egrip & e_grip_top_left)
                {
-                  DrawGrip(pgraphics, rectClient, e_grip_top_left);
+                  DrawGrip(pgraphics, rectangleClient, e_grip_top_left);
                }
 
             }

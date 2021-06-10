@@ -6,8 +6,7 @@ const i32 xfplayer_view_line::AlignLeft = 1;
 const i32 xfplayer_view_line::AlignRight = 2;
 
 
-xfplayer_view_line::xfplayer_view_line() :
-   m_font(e_create)
+xfplayer_view_line::xfplayer_view_line()
 {
 
    m_bColonPrefix = false;
@@ -37,11 +36,19 @@ xfplayer_view_line::xfplayer_view_line() :
 }
 
 
-xfplayer_view_line::xfplayer_view_line(xfplayer_view_linea * pContainer) :
-   m_font(e_create)
+::e_status xfplayer_view_line::initialize_xfplayer_view_line(xfplayer_view_linea * pContainer)
 {
 
-   initialize(pContainer);
+   auto estatus = initialize(pContainer);
+   
+   if(!estatus)
+   {
+      
+      return estatus;
+      
+   }
+   
+   m_font.create(this);
 
    m_pContainer = pContainer;
    m_bEnhancedEmboss = true;
@@ -62,19 +69,22 @@ xfplayer_view_line::xfplayer_view_line(xfplayer_view_linea * pContainer) :
    m_dAnimateProgress = 0;
    m_dAnimateProgressIncrement = 1.0;
    m_iIndex = 0;
+   
+   return estatus;
+   
 }
 
 
-xfplayer_view_line::xfplayer_view_line(const xfplayer_view_line & line) :
-
-   m_font(e_create)
-{
-
-   initialize((object *) &line);
-
-   operator = (line);
-
-}
+//xfplayer_view_line::xfplayer_view_line(const xfplayer_view_line & line)
+//{
+//
+//   initialize((object *) &line);
+//   
+//   m_font.create(this);
+//
+//   operator = (line);
+//
+//}
 
 
 xfplayer_view_line::~xfplayer_view_line()

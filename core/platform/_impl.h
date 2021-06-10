@@ -30,6 +30,7 @@ namespace core
    }
 
 
+
    template < typename CORE_OBJECT >
    inline ::core::application* core < CORE_OBJECT >::get_application() const 
    {

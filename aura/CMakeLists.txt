@@ -2,14 +2,6 @@ cmake_minimum_required(VERSION 3.17)
 project(aura CXX)
 
 
-add_compile_options("$<$<CONFIG:DEBUG>:-DDEBUG>")
-
-if (LINUX)
-   set(LINUX TRUE)
-elseif (WIN32)
-elseif (UWP)
-   set(WINDOWS_TSF TRUE)
-endif ()
 
 
 list(APPEND aura_source
@@ -180,11 +172,13 @@ list(APPEND aura_source
    graphics/write_text/_.h
    graphics/write_text/bounding_rect.h
    graphics/write_text/contains.h
+   graphics/write_text/drawer.cpp
+   graphics/write_text/drawer.h
    graphics/write_text/draw_text.h
    graphics/write_text/font.cpp
    graphics/write_text/font.h
-   graphics/write_text/font_department.cpp
-   graphics/write_text/font_department.h
+   graphics/write_text/fonts.cpp
+   graphics/write_text/fonts.h
    graphics/write_text/font_enumeration.cpp
    graphics/write_text/font_enumeration.h
    graphics/write_text/font_list.cpp
@@ -192,7 +186,10 @@ list(APPEND aura_source
    graphics/write_text/text.h
    graphics/write_text/text_box.cpp
    graphics/write_text/text_box.h
+   graphics/write_text/text_out.cpp
    graphics/write_text/text_out.h
+   graphics/write_text/text_out_array.cpp
+   graphics/write_text/text_out_array.h
    graphics/write_text/write_text.cpp
    graphics/write_text/write_text.h
    graphics/_.h

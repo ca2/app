@@ -336,7 +336,7 @@ namespace draw2d_cairo
       // Text Functions
       //virtual bool text_out(double x, double y, const char * lpszString, strsize nCount) override;
       //virtual bool text_out(double x, double y, const string & str) override;
-      virtual bool TextOutRaw(double x, double y, const block & block) override;
+      virtual ::e_status TextOutRaw(double x, double y, const block & block) override;
       ///virtual bool text_out(double x, double y, const string & str) override;
       //virtual bool ExtTextOut(double x, double y, ::u32 nOptions, const ::rectangle_f64 & rectangle_f64, const char * lpszString, strsize nCount, int * lpDxWidths) override;
       //virtual bool ExtTextOut(double x, double y, ::u32 nOptions, const ::rectangle_f64 & rectangle_f64, const string & str, int * lpDxWidths) override;
@@ -359,7 +359,7 @@ namespace draw2d_cairo
 
       size_f64 get_text_extent(const char * lpszString, strsize nCount, strsize iIndex) override;
       size_f64 get_text_extent(const char * lpszString, strsize nCount) override;
-      size_f64 get_text_extent(const string & str) override;
+      size_f64 get_text_extent(const block & block) override;
       bool _GetTextExtent(size_f64 & size_f64, const char * lpszString, strsize nCount, strsize iIndex);
       bool get_text_extent(size_f64 & size_f64, const char * lpszString, strsize nCount, strsize iIndex) override;
       bool get_text_extent(size_f64 & size_f64, const char * lpszString, strsize nCount) override;
@@ -375,7 +375,7 @@ namespace draw2d_cairo
       ::u32 SetTextAlign(::u32 nFlags) override;
       //i32 GetTextFace(count nCount, char * lpszFacename) override;
       //i32 GetTextFace(string & rString) override;
-      bool get_text_metrics(::write_text::text_metric * lpMetrics) override;
+      ::e_status get_text_metrics(::write_text::text_metric * lpMetrics) override;
       bool get_output_text_metrics(::write_text::text_metric * lpMetrics) override;
 //      i32 SetTextJustification(i32 nBreakExtra, i32 nBreakCount) override;
 //      i32 GetTextCharacterExtra() override;

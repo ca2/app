@@ -480,7 +480,7 @@ list(APPEND acme_source
    console.h
    const/GLOBAL_ID.h
    const/_const.h
-   const/charset.h
+   const/character_set.h
    const/check.h
    const/context.h
    const/future.h
@@ -1828,7 +1828,7 @@ if (LINUX)
 endif ()
 
 
-add_library(acme SHARED ${acme_source} ../scripting/_scripting.h)
+add_library(acme SHARED ${acme_source})
 
 
 target_precompile_headers(acme PRIVATE framework.h)

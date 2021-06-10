@@ -350,6 +350,13 @@ namespace user
 
       ::user::list_column * pcolumn = m_columna.get_by_subitem(iSubItem);
 
+      if (!pcolumn || pcolumn->m_id.is_empty())
+      {
+
+         return nullptr;
+
+      }
+
       auto pinteraction = get_child_by_id(pcolumn->m_id);
 
       return pinteraction;

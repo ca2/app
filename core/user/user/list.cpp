@@ -702,7 +702,6 @@ namespace user
          pdrawitem->m_pgraphics->fill_rectangle(pdrawitem->m_rectItem, pdrawitem->m_colorItemBackground);
 
       }
-
       string str;
 
       index iColumnCount;

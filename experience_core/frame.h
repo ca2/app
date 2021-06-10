@@ -41,13 +41,13 @@
                virtual ~frame();
 
 
-               virtual void on_initialize_experience_frame();
+               void on_initialize_experience_frame() override;
 
-               virtual string get_default_user_style() const;
+               string get_default_user_style() const override;
 
-               virtual status < ::color::color > get_border_main_body_color();
+               status < ::color::color > get_border_main_body_color() override;
 
-               virtual void set_moveable_border_color(const ::color::color& colorMoveableBorder);
+               void set_moveable_border_color(const ::color::color& colorMoveableBorder) override;
 
                virtual void set_button_color_schema_001(const ::color::color& colorMoveableBorder);
 
@@ -57,7 +57,7 @@
 
                //virtual color32_t get_style_moveable_border_color(::user::enum_style estyle);
 
-               virtual void OnMove(__pointer(::user::interaction) pframewindow);
+               void OnMove(__pointer(::user::interaction) pframewindow) override;
 
                //virtual void set_style(::user::enum_style estyle);
 
@@ -69,11 +69,13 @@
 
                //virtual void _001OnBeforeSize(const RECTANGLE_I32 & lpcrectWindow);
 
-               virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics);
+               void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
-               virtual bool get_element_rect(RECTANGLE_I32 * lprect, enum_element eelement);
+               bool get_element_rect(RECTANGLE_I32 * lprect, enum_element eelement) override;
 
-               virtual bool _001HitTest(const POINT_I32 &point, enum_element &eelementParam);
+               //bool _001HitTest(const POINT_I32 &point, enum_element &eelementParam) override;
+
+               e_hittest _001HitTest(const ::point_i32 & point) override;
 
                virtual void Glass(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle);
 

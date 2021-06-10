@@ -167,7 +167,7 @@ void* load_lib(const char* l)
 }
 
 
-//::e_status os_application_system_run(::acme::system* psystem);
+//::e_status os_application_system_run(class ::system* psystem);
 
 
 int SetMainScreenRect(LPCRECT32 lpcrect);
@@ -179,7 +179,7 @@ int SetMainScreenRect(LPCRECT32 lpcrect);
 //
 //   auto plocal = g_poslocal;
 //
-//   auto psystem = __new(::acme::system());
+//   auto psystem = __new(class ::system());
 //
 //   psystem->m_pathCacheDir = premote->getCacheDir();
 //
@@ -196,16 +196,16 @@ int SetMainScreenRect(LPCRECT32 lpcrect);
 //
 //   }
 //
-//   ::rect rect;
+//   ::rectangle rectangle;
 //
-//   rect.left = 0;
-//   rect.top = 0;
-//   rect.right = premote->getWidth();
-//   rect.bottom = premote->getHeight();
+//   rectangle.left = 0;
+//   rectangle.top = 0;
+//   rectangle.right = premote->getWidth();
+//   rectangle.bottom = premote->getHeight();
 //
-//   ::acme::get_system()->get_session()->defer_initialize_host_window(rect);
+//   ::acme::get_system()->get_session()->defer_initialize_host_window(rectangle);
 //
-//   SetMainScreenRect(rect);
+//   SetMainScreenRect(rectangle);
 //
 //}
 

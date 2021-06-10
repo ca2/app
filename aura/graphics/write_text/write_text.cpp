@@ -19,15 +19,15 @@ namespace write_text
    }
 
 
-   class font_department * write_text::fonts()
+   class fonts * write_text::fonts()
    {
 
       synchronous_lock synchronouslock(mutex());
 
-      if (m_pfontdepartment == nullptr)
+      if (m_pfonts == nullptr)
       {
 
-         auto estatus = __construct(m_pfontdepartment);
+         auto estatus = __construct(m_pfonts);
 
          if (!estatus)
          {
@@ -36,22 +36,13 @@ namespace write_text
 
          }
 
-         //estatus = m_pfontdepartment->init1();
+         auto psystem = m_psystem->m_paurasystem;
 
-         //if (!estatus)
-         //{
-
-         //   return nullptr;
-
-         //}
-
-         __pointer(::aura::system) psystem = m_psystem;
-         
          psystem->process_subject(id_font_enumeration);
 
       }
 
-      return m_pfontdepartment;
+      return m_pfonts;
 
    }
 
@@ -62,10 +53,10 @@ namespace write_text
       try
       {
 
-         if (m_pfontdepartment)
+         if (m_pfonts)
          {
 
-            m_pfontdepartment->finalize();
+            m_pfonts->finalize();
 
          }
 
@@ -85,7 +76,7 @@ namespace write_text
    ::e_status write_text::finalize()
    {
 
-      m_pfontdepartment.release();
+      m_pfonts.release();
 
       auto estatus = ::acme::department::finalize();
 
@@ -94,9 +85,41 @@ namespace write_text
    }
 
 
+   ::e_status write_text::handle_font_enumeration(::subject::subject* psubject)
+   {
+
+      __pointer(::subject::subject) psubjectHold(psubject);
+
+      auto pfonts = this->fonts();
+
+      auto estatus = pfonts->enumerate_fonts();
+
+      return estatus;
+
+   }
+
+
+   font_pointer write_text::point_font(const char * pszFontName, double dFontSize, int iFontWeight)
+   {
+
+      auto pfont = __create < font >();
+
+      pfont->create_point_font(pszFontName, dFontSize, iFontWeight);
+
+      return ::move(pfont);
+
+   }
+
+
+   font_pointer write_text::create_font()
+   {
+
+      return __create < font > ();
+      
+   }
+
 
 } // namespace write_text
-
 
 
 

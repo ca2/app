@@ -4,8 +4,12 @@ int main(int argc, char * argv[], char ** envp)
 {
    
    string strAppId;
+   
+#ifdef _APP_ID
 
    strAppId = _APP_ID;
+   
+#endif
 
    auto psystem = platform_create_system(strAppId);
 
@@ -22,7 +26,7 @@ int main(int argc, char * argv[], char ** envp)
 
    psystem->system_construct(argc, argv, envp);
 
-   psystem->set_current_handles();
+   //psystem->set_current_handles();
 
 //   auto estatus = psystem->system_main();
 //

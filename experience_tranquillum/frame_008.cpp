@@ -212,7 +212,7 @@ SizingNone:
 
 
 
-            void frame_008::draw_border_side(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectClient, enum_border eside)
+            void frame_008::draw_border_side(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangleClient, enum_border eside)
 
             {
 
@@ -225,7 +225,7 @@ SizingNone:
 
                }
 
-               auto psession = get_session();
+               //auto psession = get_session();
 
                status < ::color::color > crMoveableBorder;
                status < ::color::color > crMoveableBorderHilight;
@@ -240,7 +240,7 @@ SizingNone:
                else
                {
 
-                  auto psession = get_session();
+                  //auto psession = get_session();
 
                   auto pstyle = pframewindow->get_style(pgraphics);
 
@@ -253,7 +253,7 @@ SizingNone:
                }
 
                enum_dock edock = m_pframewindow->dock_manager()->get_dock_mask();
-               ::rectangle_i32 rectA(rectClient);
+               ::rectangle_i32 rectA(rectangleClient);
 
                auto estyle = pframewindow->m_estyle;
 
@@ -273,7 +273,7 @@ SizingNone:
                        || estyle == ::user::StyleTranslucidLightGreen)
                {
                   ::rectangle_i32 rectangle;
-                  GetBorderRect(rectClient, rectangle, eside);
+                  GetBorderRect(rectangleClient, rectangle, eside);
 
                   //class imaging & imaging = psystem->imaging();
                   //imaging.color_blend(
@@ -285,7 +285,7 @@ SizingNone:
                else
                {
                   ::rectangle_i32 rectangle;
-                  GetBorderRect(rectClient, rectangle, eside);
+                  GetBorderRect(rectangleClient, rectangle, eside);
 
                   //class imaging & imaging = psystem->imaging();
                   //imaging.color_blend(pgraphics,
@@ -338,8 +338,8 @@ SizingNone:
                if(!pframewindow->is_frame_experience_enabled())
                   return;
 
-               ::rectangle_i32 rectClient;
-               pframewindow->get_client_rect(rectClient);
+               ::rectangle_i32 rectangleClient;
+               pframewindow->get_client_rect(rectangleClient);
 
                string str;
 
@@ -371,7 +371,7 @@ SizingNone:
             }
 
 
-            void frame_008::DrawBorder(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectClient)
+            void frame_008::DrawBorder(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangleClient)
 
             {
 
@@ -398,7 +398,7 @@ SizingNone:
                if(m_bHollow)
                {
                   //return;
-                  ::rectangle_i32 rectA(rectClient);
+                  ::rectangle_i32 rectA(rectangleClient);
 
 
                   pgraphics->set_alpha_mode(::draw2d::alpha_mode_set);
@@ -432,7 +432,7 @@ SizingNone:
                      if (m_pframewindow->is_active_window())
                      {
 
-                        ::rectangle_i32 rectA(rectClient);
+                        ::rectangle_i32 rectA(rectangleClient);
 
                         for (index i = 0; i < iMaxBorder; i++)
                         {
@@ -492,22 +492,22 @@ SizingNone:
 
                   if(eborder & e_border_top)
                   {
-                     draw_border_side(pgraphics,rectClient,e_border_top);
+                     draw_border_side(pgraphics,rectangleClient,e_border_top);
 
                   }
                   if(eborder & e_border_right)
                   {
-                     draw_border_side(pgraphics,rectClient,e_border_right);
+                     draw_border_side(pgraphics,rectangleClient,e_border_right);
 
                   }
                   if(eborder & e_border_bottom)
                   {
-                     draw_border_side(pgraphics,rectClient,e_border_bottom);
+                     draw_border_side(pgraphics,rectangleClient,e_border_bottom);
 
                   }
                   if(eborder & e_border_left)
                   {
-                     draw_border_side(pgraphics,rectClient,e_border_left);
+                     draw_border_side(pgraphics,rectangleClient,e_border_left);
 
                   }
 
@@ -516,13 +516,13 @@ SizingNone:
             }
 
             void frame_008::GetBorderRect(
-            const ::rectangle_i32 & rectClient,
+            const ::rectangle_i32 & rectangleClient,
 
             RECTANGLE_I32 * prectangle,
 
             enum_border eside)
             {
-               ::rectangle_i32 rectBig(rectClient);
+               ::rectangle_i32 rectBig(rectangleClient);
 
                ::rectangle_i32 rectSmall;
                get_window_client_rect(rectSmall);

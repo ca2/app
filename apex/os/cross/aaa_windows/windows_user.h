@@ -723,7 +723,7 @@ oswindow hWnd);
 //
 //
 ///*
-//* e_message_nccalcsize "window valid rect" return values
+//* e_message_nccalcsize "window valid rectangle" return values
 //*/
 //#define WVR_ALIGNTOP        0x0010
 //#define WVR_ALIGNLEFT       0x0020
@@ -2290,7 +2290,7 @@ oswindow hWnd);
 ////#pragma endregion
 //
 ///*
-// * e_message_nccalcsize "interaction_impl valid rect" return values
+// * e_message_nccalcsize "interaction_impl valid rectangle" return values
 // */
 //#define WVR_ALIGNTOP        0x0010
 //#define WVR_ALIGNLEFT       0x0020
@@ -2791,7 +2791,7 @@ oswindow hWnd);
 //
 ////#ifdef cplusplus
 ////
-////CLASS_DECL_APEX int_bool IsRectEmpty(const ::rect & rect);
+////CLASS_DECL_APEX int_bool IsRectEmpty(const ::rectangle & rectangle);
 ////
 ////#endif
 //

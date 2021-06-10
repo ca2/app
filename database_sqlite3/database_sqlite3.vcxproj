@@ -43,7 +43,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{7A9BFF50-1888-4722-8DEE-73A3B5B32BCB}</ProjectGuid>
+    <ProjectGuid>{F85061D8-22DC-4A8B-85EA-76D330BE52CC}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>draw2d_direct2d</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>

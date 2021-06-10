@@ -254,9 +254,9 @@ namespace user
       if (m_pform)
       {
 
-         auto rectClient = get_client_rect();
+         auto rectangleClient = get_client_rect();
 
-         m_pform->place(rectClient);
+         m_pform->place(rectangleClient);
 
          m_pform->display();
 
@@ -321,6 +321,14 @@ namespace user
 
       }
 
+   }
+
+
+   ::form_document * form_view::get_document()
+   {
+      
+      return dynamic_cast < ::form_document * >(::user::impact::get_document());
+      
    }
 
 

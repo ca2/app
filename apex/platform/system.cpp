@@ -2049,6 +2049,8 @@ namespace apex
       //set_main_struct(*papp);
 
       //papp->inline_init();
+      
+      m_bPostedInitialRequest = true;
 
       auto pcreate = __create_new< ::create>();
 
@@ -2191,6 +2193,8 @@ namespace apex
       m_papplicationStartup->get_property_set().merge(get_property_set());
 
       set_main_struct(*m_papplicationStartup);
+      
+      m_papplicationStartup->m_psystem = this;
 
       return estatus;
 
@@ -3777,6 +3781,16 @@ namespace apex
    }
 
 
+   ::e_status system::on_open_file(const char * pszFile)
+   {
+      
+      defer_accumulate_on_open_file({pszFile}, "");
+      
+      return ::success;
+      
+   }
+
+
    //LPWAVEOUT system::waveout_open(int iChannel, LPAUDIOFORMAT pformat, LPWAVEOUT_CALLBACK pcallback)
    //{
 
@@ -3968,13 +3982,13 @@ namespace apex
 
             ::file::path pathScript = m_psystem->m_pacmedir->tool() / "papaya/script/xcode_set_active_scheme.scpt";
 
-            class ::system("osascript \""+pathScript + "\" \"" + strScheme + "\"");
+            ::system("osascript \""+pathScript + "\" \"" + strScheme + "\"");
 
          }
          else if(strBase == "archive")
          {
 
-            class ::system("xcodebuild -scheme \"" + strScheme + "\" archive");
+            ::system("xcodebuild -scheme \"" + strScheme + "\" archive");
 
          }
 
@@ -4530,7 +4544,7 @@ namespace apex
 
          auto pnode = psystem->node();
          
-         pnode->ns_launch_app(strApp, argv.get_data(), 0x00010000 | 0x00080000);
+         pnode->launch_app(strApp, argv.get_data(), 0x00010000 | 0x00080000);
 
 #elif defined(LINUX)
 
@@ -4778,7 +4792,9 @@ namespace apex
    __pointer(::subject::subject) system::new_subject(const MESSAGE& message)
    {
 
-      auto psubject = subject((::iptr) message.wParam);
+      auto id = (::iptr)message.wParam;
+
+      auto psubject = subject(id);
 
       psubject->m_pobjectTopic = (::object*) message.lParam.m_lparam;
 

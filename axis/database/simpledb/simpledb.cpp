@@ -150,7 +150,7 @@ namespace simpledb
 
          synchronous_lock slDatabase(pmutex);
 
-      retry_statement:
+      //retry_statement:
 
          // LOCAL (sqlite)
          auto estatus = pdatabase->get_id_blob(strKey, getmemory);

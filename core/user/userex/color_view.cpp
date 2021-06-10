@@ -441,7 +441,7 @@ namespace userex
 
       //m_pimageBeam->g()->set(pen);
 
-      //m_pimageBeam->g()->DrawEllipse(rectangle_dimension(0, 0, 32, 32));
+      //m_pimageBeam->g()->DrawEllipse(rectangle_i32_dimension(0, 0, 32, 32));
 
 
 
@@ -556,18 +556,23 @@ namespace userex
          m_hls.m_dS = hls.m_dS;
 
          rebuild_luminance();
+         
+         if(has_control_event_handler())
+         {
 
-         ::user::control_event ev;
+            ::user::control_event ev;
 
-         ev.m_eevent = ::user::e_event_after_change_cur_hover;
+            ev.m_eevent = ::user::e_event_after_change_cur_hover;
 
-         ev.m_id = m_idView;
+            ev.m_id = m_idView;
 
-         ev.m_puie = this;
+            ev.m_puie = this;
 
-         ev.m_actioncontext = ::e_source_user;
+            ev.m_actioncontext = ::e_source_user;
 
-         route_control_event(&ev);
+            route_control_event(&ev);
+               
+         }
 
          set_need_redraw();
 
@@ -580,18 +585,23 @@ namespace userex
          auto pointLuminance = point - ::size_i32(m_rectColors.center().x, m_rectColors.top);
 
          m_hls.m_dL = 1.0 - ((double)pointLuminance.y / (double) m_pimage->height());
+         
+         if(has_control_event_handler())
+         {
 
-         ::user::control_event ev;
+            ::user::control_event ev;
 
-         ev.m_eevent = ::user::e_event_after_change_cur_hover;
+            ev.m_eevent = ::user::e_event_after_change_cur_hover;
 
-         ev.m_id = m_idView;
+            ev.m_id = m_idView;
 
-         ev.m_puie = this;
+            ev.m_puie = this;
 
-         ev.m_actioncontext = ::e_source_user;
+            ev.m_actioncontext = ::e_source_user;
 
-         route_control_event(&ev);
+            route_control_event(&ev);
+               
+         }
 
          set_need_redraw();
 
@@ -848,18 +858,23 @@ namespace userex
       pwindowing->release_mouse_capture();
 
       m_bLButtonPressed = false;
+      
+      if(has_control_event_handler())
+      {
 
-      ::user::control_event ev;
+         ::user::control_event ev;
 
-      ev.m_eevent = ::user::e_event_after_change_cur_sel;
+         ev.m_eevent = ::user::e_event_after_change_cur_sel;
 
-      ev.m_id = m_idView;
+         ev.m_id = m_idView;
 
-      ev.m_puie = this;
+         ev.m_puie = this;
 
-      ev.m_actioncontext = ::e_source_user;
+         ev.m_actioncontext = ::e_source_user;
 
-      route_control_event(&ev);
+         route_control_event(&ev);
+            
+      }
 
    }
 
@@ -890,11 +905,11 @@ namespace userex
 
       ::user::impact::on_layout(pgraphics);
 
-      ::rectangle_i32 rectClient;
+      ::rectangle_i32 rectangleClient;
 
-      get_client_rect(rectClient);
+      get_client_rect(rectangleClient);
 
-      if (rectClient.area() <= 0)
+      if (rectangleClient.area() <= 0)
       {
 
          return;
@@ -908,10 +923,10 @@ namespace userex
       if(!m_bCompact)
       {
 
-         rectColors.left = rectClient.center().x;
-         rectColors.bottom = rectClient.center().y;
+         rectColors.left = rectangleClient.center().x;
+         rectColors.bottom = rectangleClient.center().y;
 
-         rectColors.deflate(rectClient.width() / 16, rectClient.height() / 16);
+         rectColors.deflate(rectangleClient.width() / 16, rectangleClient.height() / 16);
 
       }
 

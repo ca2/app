@@ -36,68 +36,68 @@ namespace database
       friend class transaction;
 
       database_impl();
-      virtual ~database_impl();
+      ~database_impl() override;
 
 
    protected:
 
-      virtual void start_transaction() {};
-      virtual void commit_transaction() {};
-      virtual void rollback_transaction() {};
+      void start_transaction()  override{};
+      void commit_transaction() override {};
+      void rollback_transaction() override {};
 
    public:
       //virtual __pointer(class dataset) dataset() = 0;
 
-      virtual bool isActive() { return m_bActive; }
+      bool isActive() override { return m_bActive; }
 
 
-      virtual ::e_status     init();
-      virtual e_connection connection_status() { return m_econnection; }
-      virtual ::e_status     set_error_code(int iErrorCode);
-      virtual string get_error_message();
-      virtual void* get_handle() = 0;
+      ::e_status     init() override;
+      e_connection connection_status() override { return m_econnection; }
+      ::e_status     set_error_code(int iErrorCode) override;
+      string get_error_message() override;
+      void* get_handle() override = 0;
 
-      virtual ::e_status     connect(
+      ::e_status     connect(
          const char* name,
          const char* host = nullptr,
          const char* port = nullptr,
          const char* user = nullptr,
          const char* pass = nullptr,
          const char* sckt = nullptr,
-         u64 uConnectionFlags = 0);
+         u64 uConnectionFlags = 0) override;
 
-      virtual ::e_status     _connect() = 0;
+      ::e_status     _connect()  override= 0;
 
-      virtual void disconnect();
-      virtual ::e_status     reset();
-      virtual ::e_status     create();
-      virtual ::e_status     drop();
+      void disconnect() override;
+      ::e_status     reset() override;
+      ::e_status     create() override;
+      ::e_status     drop() override;
 
       //virtual string escape(const char * psz);
 
       //inline __pointer(class transaction) transaction();
 
 
-      virtual ::count get_affected_rows_count();
+      ::count get_affected_rows_count() override;
 
-      virtual bool in_transaction();
+      bool in_transaction() override;
 
 
       virtual bool exec(const char* pszQuery) override;
 
 
-      virtual ::payload get_agent(const char* pszTable, const char* psz, const char* pszUser);
+      ::payload get_agent(const char* pszTable, const char* psz, const char* pszUser) override;
 
-      virtual __pointer(result_set) query_result(const char* pszQuery, ::count iRowCount = -1, ::count iColumnCount = -1);
+      __pointer(result_set) query_result(const char* pszQuery, ::count iRowCount = -1, ::count iColumnCount = -1) override;
       //inline auto query(const char* pszQuery, ::count iRowCount = -1, ::count iColumnCount = -1) { return query_result(pszQuery, iRowCount, iColumnCount); }
 
 
       //virtual ::payload query(const char * pszQuery, ::count iMaxRowCount = -1, ::count iMaxColumnCount = -1);
-      virtual __pointer(row_array) query_rows(const char* pszQuery) override;
-      virtual __pointer(row) query_row(const char* pszQuery) override;
-      virtual __pointer(var_array) query_items(const char* pszQuery) override;
-      virtual ::payload query_item(const char* pszQuery, const ::payload & payloadDefault = ::payload()) override;
-      virtual bool query_blob(get_memory getmemory, const char* pszQuery) override;
+      __pointer(row_array) query_rows(const char* pszQuery) override;
+      __pointer(row) query_row(const char* pszQuery) override;
+      __pointer(var_array) query_items(const char* pszQuery) override;
+      ::payload query_item(const char* pszQuery, const ::payload & payloadDefault = ::payload()) override;
+      bool query_blob(get_memory getmemory, const char* pszQuery) override;
 
       //virtual bool query_rows(__pointer(row_array) & rows, const char * pszQuery);
       //virtual bool query_row(__pointer(row) & rows, const char * pszQuery);
@@ -105,12 +105,12 @@ namespace database
       //virtual bool query_item(::payload & item, const char * pszQuery);
 
 
-      virtual string escape(const char* psz) override;
+      string escape(const char* psz) override;
 
-      virtual string error1(const char* pszPrefix = nullptr) override;
-      virtual void trace_error1(const char* pszPrefix = nullptr) override;
+      string error1(const char* pszPrefix = nullptr) override;
+      void trace_error1(const char* pszPrefix = nullptr) override;
 
-      virtual ::payload get_insert_id() override;
+      ::payload get_insert_id() override;
 
    };
 

@@ -1099,7 +1099,9 @@ namespace aura
          try
          {
 
-            if (!imaging_factory_exchange(::factory::get_factory_map()))
+            estatus = imaging_factory_exchange(::factory::get_factory_map());
+
+            if(!estatus)
             {
 
                WARN("Failed to initialize imaging library.");
@@ -1122,7 +1124,7 @@ namespace aura
 
       }
 
-      __pointer(::aura::system) psystem = get_system();
+      auto psystem = get_system();
 
       synchronous_lock synchronouslock(&m_mutexLibrary);
 
@@ -6525,7 +6527,7 @@ namespace aura
          if (psubject->m_id == id_font_enumeration)
          {
 
-            draw2d()->write_text()->fonts()->defer_create_font_enumeration(psubject);
+            draw2d()->write_text()->handle_font_enumeration(psubject);
 
          }
          else if (psubject->m_id == id_os_dark_mode)

@@ -431,10 +431,10 @@
 //   //   if (m_pdrawcontext != nullptr)
 //   //   {
 //
-//   //      *prectangle = m_pdrawcontext->m_rectClient;
+//   //      *prectangle = m_pdrawcontext->m_rectangleClient;
 //
 //
-//   //      ::offset_rect(prectangle, -m_pdrawcontext->m_rectClient.top_left());
+//   //      ::offset_rect(prectangle, -m_pdrawcontext->m_rectangleClient.top_left());
 //
 //
 //   //      return true;
@@ -864,9 +864,9 @@
 //   //void control::on_hit_test(::user::item & item)
 //   //{
 //
-//   //   auto rectClient = get_client_rect();
+//   //   auto rectangleClient = get_client_rect();
 //
-//   //   if (!rectClient.contains(point))
+//   //   if (!rectangleClient.contains(point))
 //   //   {
 //
 //   //      return e_element_none;
@@ -987,18 +987,18 @@
 //      if (eelement == e_element_drop_down)
 //      {
 //
-//         ::rectangle_i32 rectClient;
+//         ::rectangle_i32 rectangleClient;
 //
-//         ((control *)this)->get_client_rect(rectClient);
+//         ((control *)this)->get_client_rect(rectangleClient);
 //
-//         //i32 iMargin = rectClient.height() / 8;
+//         //i32 iMargin = rectangleClient.height() / 8;
 //         i32 iMargin = 0;
 //
 //         ::rectangle_i32 rectDropDown;
 //
-//         rectDropDown = rectClient;
+//         rectDropDown = rectangleClient;
 //
-//         i32 iW = rectClient.height() * 5 / 8;
+//         i32 iW = rectangleClient.height() * 5 / 8;
 //
 //         rectDropDown.right -= iMargin;
 //         rectDropDown.bottom -= iMargin;
@@ -1014,15 +1014,15 @@
 //      else if (eelement == e_element_combo_edit)
 //      {
 //
-//         ::rectangle_i32 rectClient;
+//         ::rectangle_i32 rectangleClient;
 //
-//         get_client_rect(rectClient);
+//         get_client_rect(rectangleClient);
 //
 //         ::rectangle_i32 rectDropDown;
 //
 //         get_element_rect(rectDropDown, e_element_drop_down);
 //
-//         ::rectangle_i32 rectEdit = rectClient;
+//         ::rectangle_i32 rectEdit = rectangleClient;
 //
 //         rectEdit.right = rectDropDown.left;
 //

@@ -616,9 +616,9 @@ namespace user
       }
 
 
-      ::rectangle_i32 rectClient;
+      ::rectangle_i32 rectangleClient;
 
-      m_pimpactdata->m_pplaceholder->get_client_rect(rectClient);
+      m_pimpactdata->m_pplaceholder->get_client_rect(rectangleClient);
 
       if (!rectTabClient.is_empty())
       {

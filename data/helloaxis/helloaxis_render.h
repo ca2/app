@@ -78,7 +78,7 @@ namespace helloaxis
 
       string                           m_strHelloAxis;
 
-      ::rectangle_i32                           m_rectClient;
+      ::rectangle_i32                           m_rectangleClient;
 
 
       ::mutex *                          m_pmutexText;

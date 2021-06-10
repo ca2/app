@@ -8,6 +8,10 @@ namespace write_text
    font_enumeration::font_enumeration()
    {
 
+      m_bRaster = true;
+      m_bTrueType = true;
+      m_bOther = true;
+
       m_iUpdateId = -1;
       m_bUpdating = true;
 
@@ -32,8 +36,6 @@ namespace write_text
 
       }
 
-      //psystem->add_process(id_os_font_change, this);
-
       return estatus;
 
    }
@@ -54,7 +56,6 @@ namespace write_text
 
       }
 
-
    }
 
 
@@ -68,7 +69,9 @@ namespace write_text
 
          auto psubject = psystem->subject(id_os_font_change);
 
-         update(psubject);
+         update();
+         
+         psubject->set_modified();
 
       }
 
@@ -80,10 +83,10 @@ namespace write_text
 
       synchronous_lock synchronouslock(mutex());
 
-      for (auto& pitem : *m_pitema)
+      for (auto& m_pfontenumerationitema : *m_pfontenumerationitema)
       {
 
-         if (pitem->m_strName.compare_ci(str) == 0)
+         if (m_pfontenumerationitema->m_strName.compare_ci(str) == 0)
          {
 
             return true;
@@ -97,12 +100,12 @@ namespace write_text
    }
 
 
-   __pointer(::write_text::font_enum_item) font_enumeration::similar_font(const char* psz)
+   __pointer(::write_text::font_enumeration_item) font_enumeration::similar_font(const char* psz)
    {
 
       synchronous_lock synchronouslock(mutex());
 
-      __pointer(::write_text::font_enum_item) pitemFound;
+      __pointer(::write_text::font_enumeration_item) pitemFound;
 
       double dMaxSimilarity = 0.2;
 
@@ -113,8 +116,15 @@ namespace write_text
       auto * pwritetext = pdraw2d->write_text();
 
       auto * pfonts = pwritetext->fonts();
+      
+      if(m_pfontenumerationitema->is_empty())
+      {
+         
+         update();
+         
+      }
 
-      for(auto & pitem : *m_pitema)
+      for(auto & pitem : *m_pfontenumerationitema)
       {
 
          int iFound = -1;
@@ -180,17 +190,19 @@ namespace write_text
 
       //auto pgraphics = ::draw2d::create_memory_graphics();
 
-      __pointer(::write_text::font_enum_item_array) pitema;
+      __pointer(::write_text::font_enumeration_item_array) pitema;
 
-      pitema = __new(::write_text::font_enum_item_array);
+      pitema = __new(::write_text::font_enumeration_item_array);
 
       auto psystem = m_psystem->m_paurasystem;
 
       auto pdraw2d = psystem->draw2d();
 
-      pdraw2d->write_text()->fonts()->sorted_fonts(*pitema);
+      enumerate_fonts();
 
-      if (m_pitema.is_set() && ::papaya::array::are_all_elements_equal(*pitema, *m_pitema))
+      sort_fonts();
+
+      if (m_pfontenumerationitema.is_set() && ::papaya::array::are_all_elements_equal(*pitema, *m_pfontenumerationitema))
       {
 
          m_bUpdating = false;
@@ -201,7 +213,7 @@ namespace write_text
 
       }
 
-      m_pitema = pitema;
+      m_pfontenumerationitema = pitema;
 
       m_iUpdateId++;
 
@@ -214,36 +226,94 @@ namespace write_text
    }
 
 
-   bool font_enumeration::update(::subject::subject * psubject)
+   ::e_status font_enumeration::update()
    {
 
       m_bUpdating = true;
 
       //auto g = create_memory_graphics();
 
-      __pointer(::write_text::font_enum_item_array) pitema;
+      __pointer(::write_text::font_enumeration_item_array) pitema;
 
-      pitema = __new(::write_text::font_enum_item_array);
+      pitema = __new(::write_text::font_enumeration_item_array);
 
       auto psystem = m_psystem->m_paurasystem;
 
       auto pdraw2d = psystem->draw2d();
 
-      pdraw2d->write_text()->fonts()->sorted_fonts(*pitema);
+      auto estatus = enumerate_fonts();
 
-      m_pitema = pitema;
+      if (!estatus)
+      {
+
+         output_debug_string("write_text::font_enumeration Failed to enumerate fonts");
+
+         return estatus;
+
+      }
+
+      estatus = sort_fonts();
+
+      if (!estatus)
+      {
+
+         output_debug_string("write_text::font_enumeration Failed to sort fonts");
+
+         //return estatus;
+
+      }
+
+      m_pfontenumerationitema = pitema;
 
       m_iUpdateId++;
 
       m_bUpdating = false;
 
-      psubject->set_modified();
+      return estatus;
 
-      return true;
+   }
+
+
+   ::e_status font_enumeration::enumerate_fonts()
+   {
+
+      on_enumerate_fonts();
+
+      sort_fonts();
+
+      m_eventReady.SetEvent();
+
+      return ::success;
+
+   }
+
+
+   ::e_status font_enumeration::sort_fonts()
+   {
+
+      ::sort::array::predicate_sort(*m_pfontenumerationitema, [&](auto& a, auto& b)
+      {
+
+         return a->m_strName < b->m_strName;
+
+      });
+
+      return ::success;
+
+   }
+
+
+   ::e_status font_enumeration::on_enumerate_fonts()
+   {
+
+      __throw(error_interface_only);
+
+      return ::error_interface_only;
 
    }
 
 
 } // namespace write_text
+
 
 

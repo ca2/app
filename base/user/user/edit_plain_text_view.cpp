@@ -55,9 +55,9 @@ namespace user
    //{
 
 
-   //   // ::rectangle_i32 rectClient;
-   //   // get_client_rect(rectClient);
-   //   // set_window_position(0, rectClient.left, rectClient.top, rectClient.width(), rectClient.height(), SWP_SHOWWINDOW);
+   //   // ::rectangle_i32 rectangleClient;
+   //   // get_client_rect(rectangleClient);
+   //   // set_window_position(0, rectangleClient.left, rectangleClient.top, rectangleClient.width(), rectangleClient.height(), SWP_SHOWWINDOW);
    //   // _001OnUpdate();
    //   //ThreadProcScrollSize((LPVOID) dynamic_cast < ::user::plain_edit * > (this));
 

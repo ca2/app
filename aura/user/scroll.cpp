@@ -47,9 +47,9 @@ namespace user
    void horizontal_scroll_base::layout_scroll_bar(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::rectangle_i32 rectClient;
+      ::rectangle_i32 rectangleClient;
 
-      ::user::interaction::get_client_rect(rectClient);
+      ::user::interaction::get_client_rect(rectangleClient);
 
       defer_create_horizontal_scroll_bar();
 
@@ -65,10 +65,10 @@ namespace user
 
             auto pstyle = get_style(pgraphics);
 
-            rectNewPos.left = rectClient.left;
-            rectNewPos.top = rectClient.bottom - get_int(pstyle,e_int_scroll_bar_width);
-            rectNewPos.right = rectNewPos.left + rectClient.width() - get_final_y_scroll_bar_width();
-            rectNewPos.bottom = rectClient.bottom;
+            rectNewPos.left = rectangleClient.left;
+            rectNewPos.top = rectangleClient.bottom - get_int(pstyle,e_int_scroll_bar_width);
+            rectNewPos.right = rectNewPos.left + rectangleClient.width() - get_final_y_scroll_bar_width();
+            rectNewPos.bottom = rectangleClient.bottom;
 
             m_pscrollbarHorizontal->order(e_zorder_top);
 
@@ -252,17 +252,17 @@ namespace user
 
       m_scrolldataHorizontal.m_iWidth = get_int(pstyle, e_int_scroll_bar_width);
 
-      ::rectangle_i32 rectClient;
+      ::rectangle_i32 rectangleClient;
 
-      get_client_rect(rectClient);
+      get_client_rect(rectangleClient);
 
       ::i32 iTotalHeight = (::i32) sizeTotal.cy;
 
       ::i32 iTotalWidth = (::i32) sizeTotal.cx;
 
-      ::i32 iClientHeight = rectClient.height();
+      ::i32 iClientHeight = rectangleClient.height();
 
-      ::i32 iClientWidth = rectClient.width();
+      ::i32 iClientWidth = rectangleClient.width();
 
       //::i32 iScrollHeight = iClientHeight - GetSystemMetrics(SM_CYHSCROLL);
 
@@ -362,9 +362,9 @@ namespace user
    void vertical_scroll_base::layout_scroll_bar(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::rectangle_i32 rectClient = get_client_rect();
+      ::rectangle_i32 rectangleClient = get_client_rect();
 
-      //scroll_bar_get_client_rect(rectClient);
+      //scroll_bar_get_client_rect(rectangleClient);
 
 //      i32 ifswp = SWP_SHOWWINDOW | SWP_NOCOPYBITS;
 
@@ -384,10 +384,10 @@ namespace user
 
             int iScrollBarWidth = get_int(pstyle,e_int_scroll_bar_width);
 
-            rectNewPos.left = rectClient.right - iScrollBarWidth;
-            rectNewPos.top = rectClient.top;
-            rectNewPos.right = rectClient.right;
-            rectNewPos.bottom = rectNewPos.top+ rectClient.height() - get_final_x_scroll_bar_width();
+            rectNewPos.left = rectangleClient.right - iScrollBarWidth;
+            rectNewPos.top = rectangleClient.top;
+            rectNewPos.right = rectangleClient.right;
+            rectNewPos.bottom = rectNewPos.top+ rectangleClient.height() - get_final_x_scroll_bar_width();
 
             m_pscrollbarVertical->order(e_zorder_top);
 
@@ -638,17 +638,17 @@ namespace user
 
       m_scrolldataVertical.m_iWidth = get_int(pstyle, e_int_scroll_bar_width);
 
-      ::rectangle_i32 rectClient;
+      ::rectangle_i32 rectangleClient;
 
-      get_client_rect(rectClient);
+      get_client_rect(rectangleClient);
 
       ::i32 iTotalHeight = (::i32) sizeTotal.cy;
 
       ::i32 iTotalWidth = (::i32) sizeTotal.cx;
 
-      ::i32 iClientHeight = rectClient.height();
+      ::i32 iClientHeight = rectangleClient.height();
 
-      ::i32 iClientWidth = rectClient.width();
+      ::i32 iClientWidth = rectangleClient.width();
 
       ::i32 iScrollHeight = iClientHeight - get_int(pstyle, e_int_scroll_bar_width);
 
@@ -777,11 +777,11 @@ namespace user
 
       auto sizeTotal = get_total_size();
 
-      ::rectangle_i32 rectClient;
+      ::rectangle_i32 rectangleClient;
 
-      get_client_rect(rectClient);
+      get_client_rect(rectangleClient);
 
-      if(rectClient.area() <= 0)
+      if(rectangleClient.area() <= 0)
       {
 
          return;
@@ -794,9 +794,9 @@ namespace user
 
       ::i32 iTotalWidth = (::i32) sizeTotal.cx;
 
-      ::i32 iClientHeight = rectClient.height();
+      ::i32 iClientHeight = rectangleClient.height();
 
-      ::i32 iClientWidth = rectClient.width();
+      ::i32 iClientWidth = rectangleClient.width();
 
       ::i32 iScrollHeight = iClientHeight - get_int(pstyle, e_int_scroll_bar_width);;
 
@@ -1158,14 +1158,14 @@ namespace user
             && m_pscrollbarVertical.is_set() && m_pscrollbarVertical->m_pimpl.is_set())
       {
 
-         ::rectangle_i32 rectClient;
+         ::rectangle_i32 rectangleClient;
 
-         get_client_rect(rectClient);
+         get_client_rect(rectangleClient);
 
          ::rectangle_i32 rectangle;
 
-         rectangle.top = rectClient.bottom;
-         rectangle.left = rectClient.right;
+         rectangle.top = rectangleClient.bottom;
+         rectangle.left = rectangleClient.right;
          rectangle.right = (::i32) (rectangle.left + m_pscrollbarVertical->layout().design().size().cx);
          rectangle.bottom = (::i32) (rectangle.top + m_pscrollbarHorizontal->layout().design().size().cy);
 

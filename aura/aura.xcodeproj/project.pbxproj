@@ -538,12 +538,12 @@
 		9A8FCD902651AFAB00C0D8A1 /* write_text.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8FCD7A2651AFAB00C0D8A1 /* write_text.cpp */; };
 		9A8FCD912651AFAB00C0D8A1 /* write_text.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8FCD7A2651AFAB00C0D8A1 /* write_text.cpp */; };
 		9A8FCD922651AFAB00C0D8A1 /* font_list.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8FCD7B2651AFAB00C0D8A1 /* font_list.h */; };
-		9A8FCD932651AFAB00C0D8A1 /* font_department.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8FCD7C2651AFAB00C0D8A1 /* font_department.cpp */; };
-		9A8FCD942651AFAB00C0D8A1 /* font_department.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8FCD7C2651AFAB00C0D8A1 /* font_department.cpp */; };
+		9A8FCD932651AFAB00C0D8A1 /* fonts.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8FCD7C2651AFAB00C0D8A1 /* fonts.cpp */; };
+		9A8FCD942651AFAB00C0D8A1 /* fonts.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8FCD7C2651AFAB00C0D8A1 /* fonts.cpp */; };
 		9A8FCD952651AFAB00C0D8A1 /* contains.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8FCD7D2651AFAB00C0D8A1 /* contains.h */; };
 		9A8FCD962651AFAB00C0D8A1 /* font.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8FCD7E2651AFAB00C0D8A1 /* font.h */; };
 		9A8FCD972651AFAB00C0D8A1 /* text_box.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8FCD7F2651AFAB00C0D8A1 /* text_box.h */; };
-		9A8FCD982651AFAB00C0D8A1 /* font_department.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8FCD802651AFAB00C0D8A1 /* font_department.h */; };
+		9A8FCD982651AFAB00C0D8A1 /* fonts.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8FCD802651AFAB00C0D8A1 /* fonts.h */; };
 		9A8FCD992651AFAB00C0D8A1 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8FCD812651AFAB00C0D8A1 /* _.h */; };
 		9A92358223286D7100804A1C /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A92358123286D7100804A1C /* libiconv.tbd */; };
 		9A92358423286D8500804A1C /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A92358323286D8400804A1C /* libz.tbd */; };
@@ -733,6 +733,13 @@
 		9AD19A0E2512B8B200B4C44A /* interaction_layout.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AD19A0C2512B8B200B4C44A /* interaction_layout.cpp */; };
 		9AD19A102512B8CB00B4C44A /* timer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AD19A0F2512B8CB00B4C44A /* timer.cpp */; };
 		9AD695F6251A77AE00C0EBD7 /* AuraViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AD695F4251A77AD00C0EBD7 /* AuraViewController.h */; };
+		9AE6378E26700C1A005F3412 /* text_out.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE6378526700C19005F3412 /* text_out.cpp */; };
+		9AE6378F26700C1A005F3412 /* text_out_array.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE6378826700C19005F3412 /* text_out_array.cpp */; };
+		9AE6379026700C1A005F3412 /* font_list_data.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE6378926700C19005F3412 /* font_list_data.h */; };
+		9AE6379126700C1A005F3412 /* font_list_item.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE6378A26700C19005F3412 /* font_list_item.h */; };
+		9AE6379226700C1A005F3412 /* drawer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE6378B26700C19005F3412 /* drawer.cpp */; };
+		9AE6379326700C1A005F3412 /* text_out_array.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE6378C26700C19005F3412 /* text_out_array.h */; };
+		9AE6379426700C1A005F3412 /* drawer.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE6378D26700C19005F3412 /* drawer.h */; };
 		9AF13603249DDCB8009410E0 /* _posix.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AF135F9249DDCB7009410E0 /* _posix.h */; };
 		9AF13609249DDCB8009410E0 /* application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AF135FF249DDCB7009410E0 /* application.cpp */; };
 		9AF13617249DE735009410E0 /* _new_impl.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AF13616249DE735009410E0 /* _new_impl.h */; };
@@ -1292,11 +1299,11 @@
 		9A8FCD792651AFAB00C0D8A1 /* font_enumeration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = font_enumeration.h; sourceTree = "<group>"; };
 		9A8FCD7A2651AFAB00C0D8A1 /* write_text.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = write_text.cpp; sourceTree = "<group>"; };
 		9A8FCD7B2651AFAB00C0D8A1 /* font_list.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = font_list.h; sourceTree = "<group>"; };
-		9A8FCD7C2651AFAB00C0D8A1 /* font_department.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = font_department.cpp; sourceTree = "<group>"; };
+		9A8FCD7C2651AFAB00C0D8A1 /* fonts.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = fonts.cpp; sourceTree = "<group>"; };
 		9A8FCD7D2651AFAB00C0D8A1 /* contains.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = contains.h; sourceTree = "<group>"; };
 		9A8FCD7E2651AFAB00C0D8A1 /* font.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = font.h; sourceTree = "<group>"; };
 		9A8FCD7F2651AFAB00C0D8A1 /* text_box.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = text_box.h; sourceTree = "<group>"; };
-		9A8FCD802651AFAB00C0D8A1 /* font_department.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = font_department.h; sourceTree = "<group>"; };
+		9A8FCD802651AFAB00C0D8A1 /* fonts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fonts.h; sourceTree = "<group>"; };
 		9A8FCD812651AFAB00C0D8A1 /* _.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
 		9A92358123286D7100804A1C /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
 		9A92358323286D8400804A1C /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
@@ -1402,7 +1409,6 @@
 		9AC2CEC92653455600CC8096 /* windowing.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = windowing.cpp; sourceTree = "<group>"; };
 		9AC2CECA2653455600CC8096 /* _.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
 		9AC2CECB2653455600CC8096 /* menu_command.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = menu_command.cpp; sourceTree = "<group>"; };
-		9AC31C92248538F000F18145 /* clipboard.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = clipboard.cpp; sourceTree = "<group>"; };
 		9AC31C9424853D7400F18145 /* keyboard.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = keyboard.cpp; sourceTree = "<group>"; };
 		9AC35AE724744FF90044A638 /* _ios.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _ios.h; sourceTree = "<group>"; };
 		9AC35AE8247450370044A638 /* _ios.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _ios.h; sourceTree = "<group>"; };
@@ -1494,6 +1500,13 @@
 		9AD695F4251A77AD00C0EBD7 /* AuraViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuraViewController.h; sourceTree = "<group>"; };
 		9AD695F5251A77AE00C0EBD7 /* AuraViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AuraViewController.mm; sourceTree = "<group>"; };
 		9AE24D431904CEFE001AEFFB /* aura_iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = aura_iosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		9AE6378526700C19005F3412 /* text_out.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = text_out.cpp; sourceTree = "<group>"; };
+		9AE6378826700C19005F3412 /* text_out_array.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = text_out_array.cpp; sourceTree = "<group>"; };
+		9AE6378926700C19005F3412 /* font_list_data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = font_list_data.h; sourceTree = "<group>"; };
+		9AE6378A26700C19005F3412 /* font_list_item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = font_list_item.h; sourceTree = "<group>"; };
+		9AE6378B26700C19005F3412 /* drawer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = drawer.cpp; sourceTree = "<group>"; };
+		9AE6378C26700C19005F3412 /* text_out_array.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = text_out_array.h; sourceTree = "<group>"; };
+		9AE6378D26700C19005F3412 /* drawer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = drawer.h; sourceTree = "<group>"; };
 		9AEF8E84251AD91900E967EF /* mm.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = mm.mm; sourceTree = "<group>"; };
 		9AF135F9249DDCB7009410E0 /* _posix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _posix.h; sourceTree = "<group>"; };
 		9AF135FF249DDCB7009410E0 /* application.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = application.cpp; sourceTree = "<group>"; };
@@ -1664,7 +1677,6 @@
 				9A247D3F2452C47E00F23D28 /* _macos.h */,
 				9A247D2B2452C47E00F23D28 /* _mm.h */,
 				9A247D372452C47E00F23D28 /* aura.cpp */,
-				9AC31C92248538F000F18145 /* clipboard.cpp */,
 				9A247D2F2452C47E00F23D28 /* cross_win_file.cpp */,
 				9A247D2E2452C47E00F23D28 /* cross_win_gdi.h */,
 				9A247D1F2452C47E00F23D28 /* cross_win.cpp */,
@@ -2308,24 +2320,31 @@
 		9A8FCD6F2651AFAB00C0D8A1 /* write_text */ = {
 			isa = PBXGroup;
 			children = (
-				9A8FCD702651AFAB00C0D8A1 /* write_text.h */,
-				9A8FCD712651AFAB00C0D8A1 /* bounding_rect.h */,
-				9A8FCD722651AFAB00C0D8A1 /* text_box.cpp */,
-				9A8FCD732651AFAB00C0D8A1 /* draw_text.h */,
-				9A8FCD742651AFAB00C0D8A1 /* text.h */,
-				9A8FCD752651AFAB00C0D8A1 /* font_list.cpp */,
-				9A8FCD762651AFAB00C0D8A1 /* font_enumeration.cpp */,
-				9A8FCD772651AFAB00C0D8A1 /* text_out.h */,
-				9A8FCD782651AFAB00C0D8A1 /* font.cpp */,
-				9A8FCD792651AFAB00C0D8A1 /* font_enumeration.h */,
-				9A8FCD7A2651AFAB00C0D8A1 /* write_text.cpp */,
-				9A8FCD7B2651AFAB00C0D8A1 /* font_list.h */,
-				9A8FCD7C2651AFAB00C0D8A1 /* font_department.cpp */,
-				9A8FCD7D2651AFAB00C0D8A1 /* contains.h */,
-				9A8FCD7E2651AFAB00C0D8A1 /* font.h */,
-				9A8FCD7F2651AFAB00C0D8A1 /* text_box.h */,
-				9A8FCD802651AFAB00C0D8A1 /* font_department.h */,
 				9A8FCD812651AFAB00C0D8A1 /* _.h */,
+				9A8FCD712651AFAB00C0D8A1 /* bounding_rect.h */,
+				9A8FCD7D2651AFAB00C0D8A1 /* contains.h */,
+				9A8FCD732651AFAB00C0D8A1 /* draw_text.h */,
+				9AE6378B26700C19005F3412 /* drawer.cpp */,
+				9AE6378D26700C19005F3412 /* drawer.h */,
+				9A8FCD762651AFAB00C0D8A1 /* font_enumeration.cpp */,
+				9A8FCD792651AFAB00C0D8A1 /* font_enumeration.h */,
+				9AE6378926700C19005F3412 /* font_list_data.h */,
+				9AE6378A26700C19005F3412 /* font_list_item.h */,
+				9A8FCD752651AFAB00C0D8A1 /* font_list.cpp */,
+				9A8FCD7B2651AFAB00C0D8A1 /* font_list.h */,
+				9A8FCD782651AFAB00C0D8A1 /* font.cpp */,
+				9A8FCD7E2651AFAB00C0D8A1 /* font.h */,
+				9A8FCD7C2651AFAB00C0D8A1 /* fonts.cpp */,
+				9A8FCD802651AFAB00C0D8A1 /* fonts.h */,
+				9A8FCD722651AFAB00C0D8A1 /* text_box.cpp */,
+				9A8FCD7F2651AFAB00C0D8A1 /* text_box.h */,
+				9AE6378826700C19005F3412 /* text_out_array.cpp */,
+				9AE6378C26700C19005F3412 /* text_out_array.h */,
+				9AE6378526700C19005F3412 /* text_out.cpp */,
+				9A8FCD772651AFAB00C0D8A1 /* text_out.h */,
+				9A8FCD742651AFAB00C0D8A1 /* text.h */,
+				9A8FCD7A2651AFAB00C0D8A1 /* write_text.cpp */,
+				9A8FCD702651AFAB00C0D8A1 /* write_text.h */,
 			);
 			path = write_text;
 			sourceTree = "<group>";
@@ -2624,6 +2643,7 @@
 				9AD1173824F5147900177261 /* frame.h in Headers */,
 				9AD1171624F5147800177261 /* wait_cursor.h in Headers */,
 				9A1E1D7122F0AF69004243B8 /* console.h in Headers */,
+				9AE6379126700C1A005F3412 /* font_list_item.h in Headers */,
 				9AC2CEDE2653455600CC8096 /* display.h in Headers */,
 				9A41733220004E7A0056265A /* opensslconf.h in Headers */,
 				9A2483632452C48800F23D28 /* text.h in Headers */,
@@ -2670,6 +2690,7 @@
 				9AD116ED24F5147800177261 /* main_window.h in Headers */,
 				9A41731520004E7A0056265A /* comp.h in Headers */,
 				9A24830E2452C48700F23D28 /* _mm.h in Headers */,
+				9AE6379426700C1A005F3412 /* drawer.h in Headers */,
 				9A2483222452C48700F23D28 /* _.h in Headers */,
 				9AC2CE782653419500CC8096 /* notify_icon.h in Headers */,
 				9A8EB3972449821C0056E362 /* item_action.h in Headers */,
@@ -2741,6 +2762,7 @@
 				9AC2CECE2653455600CC8096 /* simple_ui_display.h in Headers */,
 				9A24876B2452C49300F23D28 /* _node.h in Headers */,
 				9A2BE851251EC3BC0075218C /* game.h in Headers */,
+				9AE6379026700C1A005F3412 /* font_list_data.h in Headers */,
 				9A41733A20004E7A0056265A /* rc2.h in Headers */,
 				9A2483C72452C48900F23D28 /* window_boot 2.h in Headers */,
 				9AD1172424F5147900177261 /* plain_text_data.h in Headers */,
@@ -2838,6 +2860,7 @@
 				9AD116F624F5147800177261 /* window_util.h in Headers */,
 				9A41732720004E7A0056265A /* idea.h in Headers */,
 				9A41731120004E7A0056265A /* camellia.h in Headers */,
+				9AE6379326700C1A005F3412 /* text_out_array.h in Headers */,
 				9A1E1D7F22F0AF69004243B8 /* window.h in Headers */,
 				9AC2CE832653419500CC8096 /* still.h in Headers */,
 				9AD116F224F5147800177261 /* interaction_prodevian.h in Headers */,
@@ -2870,7 +2893,7 @@
 				9A8FCD8C2651AFAB00C0D8A1 /* text_out.h in Headers */,
 				9A41730F20004E7A0056265A /* bn.h in Headers */,
 				9A41734620004E7A0056265A /* ssl3.h in Headers */,
-				9A8FCD982651AFAB00C0D8A1 /* font_department.h in Headers */,
+				9A8FCD982651AFAB00C0D8A1 /* fonts.h in Headers */,
 				9A2483BF2452C48900F23D28 /* window.h in Headers */,
 				9A41730C20004E7A0056265A /* async.h in Headers */,
 				9A41732120004E7A0056265A /* ecdh.h in Headers */,
@@ -3218,7 +3241,7 @@
 				9A201C02247733DB00A31CBF /* error.cpp in Sources */,
 				9A201C03247733DB00A31CBF /* exception_engine.cpp in Sources */,
 				9A201C04247733DB00A31CBF /* file.cpp in Sources */,
-				9A8FCD942651AFAB00C0D8A1 /* font_department.cpp in Sources */,
+				9A8FCD942651AFAB00C0D8A1 /* fonts.cpp in Sources */,
 				9A201C05247733DC00A31CBF /* fontopus.cpp in Sources */,
 				9A201C06247733DC00A31CBF /* graphics.cpp in Sources */,
 				9A201C07247733DC00A31CBF /* language.cpp in Sources */,
@@ -3352,6 +3375,7 @@
 				9A3764A62409BF0C002D15D3 /* pen.cpp in Sources */,
 				9A68547B2432ED420002FE94 /* bitmap_source_buffer.cpp in Sources */,
 				9AC2CE5D2653416400CC8096 /* message.cpp in Sources */,
+				9AE6378F26700C1A005F3412 /* text_out_array.cpp in Sources */,
 				9A2483352452C48700F23D28 /* os.cpp in Sources */,
 				9A24833D2452C48700F23D28 /* cross_win_file.cpp in Sources */,
 				9A3764DE2409BF0C002D15D3 /* debug.cpp in Sources */,
@@ -3402,6 +3426,7 @@
 				9AC2CE7E2653419500CC8096 /* style_control.cpp in Sources */,
 				9A2489E62453417F00F23D28 /* user.cpp in Sources */,
 				9A2486632452C49000F23D28 /* theme.cpp in Sources */,
+				9AE6379226700C1A005F3412 /* drawer.cpp in Sources */,
 				9A2486D02452C49100F23D28 /* util.cpp in Sources */,
 				9A24846C2452C48B00F23D28 /* http.cpp in Sources */,
 				9A3764DA2409BF0C002D15D3 /* api.cpp in Sources */,
@@ -3446,6 +3471,7 @@
 				9A2483502452C48800F23D28 /* debug.cpp in Sources */,
 				9A2486A32452C49100F23D28 /* application.cpp in Sources */,
 				9A92E3A9240B067300660EFD /* idpool.cpp in Sources */,
+				9AE6378E26700C1A005F3412 /* text_out.cpp in Sources */,
 				9AD116E924F5147800177261 /* style.cpp in Sources */,
 				9A37647A2409BF0C002D15D3 /* image_map.cpp in Sources */,
 				9A3764C32409BF0C002D15D3 /* glyph.cpp in Sources */,
@@ -3455,7 +3481,7 @@
 				9A8EB3562449821B0056E362 /* callback.cpp in Sources */,
 				9AD1170924F5147800177261 /* frame.cpp in Sources */,
 				9AC2CEDA2653455600CC8096 /* display.cpp in Sources */,
-				9A8FCD932651AFAB00C0D8A1 /* font_department.cpp in Sources */,
+				9A8FCD932651AFAB00C0D8A1 /* fonts.cpp in Sources */,
 				9A24854D2452C48D00F23D28 /* windowing.cpp in Sources */,
 				9AD1172824F5147900177261 /* wait_cursor.cpp in Sources */,
 				9A8B636124CBCD3C00A93185 /* context.cpp in Sources */,

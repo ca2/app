@@ -1149,7 +1149,7 @@ else ()
 endif ()
 
 
-add_library(aura SHARED ${aura_source})
+add_library(aura SHARED ${aura_source} user/_menu.h)
 
 
 target_precompile_headers(aura PRIVATE framework.h)

@@ -117,7 +117,9 @@ enum_synchronization_result MsgWaitForMultipleObjectsEx(::u32 dwSize, HSYNC * sy
          //     hsynca[j]->unlock();
          //}
 
-         return e_synchronization_result_timed_out;
+         return i==dwSize ?
+         e_synchronization_result_signaled_base :
+         e_synchronization_result_timed_out;
 
       }
 

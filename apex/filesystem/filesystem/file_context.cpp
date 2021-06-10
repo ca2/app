@@ -1324,7 +1324,7 @@ bool file_context::put_contents_utf8(const ::payload &varFile, const char *pcszC
 }
 
 
-::extended::status file_context::del(const ::file::path &psz)
+::extended::status file_context::del(const ::file::path & path)
 {
 
    __throw(error_interface_only);
@@ -1581,7 +1581,7 @@ bool file_context::transfer(::file::file *pfileOut, ::file::file *pfileIn)
 bool file_context::is_read_only(const ::file::path &psz)
 {
 
-   __throw(error_interface_only);
+   //__throw(error_interface_only);
 
    return false;
 

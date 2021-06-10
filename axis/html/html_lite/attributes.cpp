@@ -481,7 +481,7 @@ color32_t LiteHTMLElemAttr::getColorValue(::lite_html_reader * preader) const
    else if (isHexColorValue())
    {
 
-      color.u32 = ::strtoul(m_strValue.Mid(1), nullptr, 16);
+      color.u32 = (::u32) ::strtoul(m_strValue.Mid(1), nullptr, 16);
 
       color.m_estatus = ::success;
 

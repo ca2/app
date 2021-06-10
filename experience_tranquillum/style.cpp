@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "base/user/user/tab_pane.h"
 //#include "core/user/userex/_userex.h"
-// pgraphics->GetTextExtent("->:<-"); // oh no!! omg!! The size_i32 is the size_i32 of the alien!!
+// pgraphics->get_text_extent("->:<-"); // oh no!! omg!! The size_i32 is the size_i32 of the alien!!
 #define MAGIC_PALACE_TAB_SPLT "->:<-"
 #define MAGIC_PALACE_TAB_SIZE "-/-"
 #define MAGIC_PALACE_TAB_TEXT "/"
@@ -283,7 +283,7 @@ namespace tranquillum
 
       }
 
-      auto rectClient = pframe->get_client_rect();
+      auto rectangleClient = pframe->get_client_rect();
 
       auto pstyle = pframe->get_style(pgraphics);
 
@@ -291,7 +291,7 @@ namespace tranquillum
 
       //crBackground = argb(255, 200, 180, 180);
 
-      pgraphics->fill_rectangle(rectClient, crBackground);
+      pgraphics->fill_rectangle(rectangleClient, crBackground);
 
       return true;
 
@@ -310,7 +310,7 @@ namespace tranquillum
 
       pgraphics->set_font(ptab, ::user::e_element_none, ::user::e_state_selected);
 
-      ptab->m_dcextension.GetTextExtent(pgraphics, MAGIC_PALACE_TAB_SIZE, ptab->get_data()->m_sizeSep);
+      ptab->m_dcextension.get_text_extent(pgraphics, MAGIC_PALACE_TAB_SIZE, ptab->get_data()->m_sizeSep);
 
       if (ptab->get_data()->m_bVertical)
       {
@@ -336,7 +336,7 @@ namespace tranquillum
 
             ::size_i32 size;
 
-            ptab->m_dcextension.GetTextExtent(pgraphics, str, size);
+            ptab->m_dcextension.get_text_extent(pgraphics, str, size);
 
 
 
@@ -382,13 +382,13 @@ namespace tranquillum
 
          ptab->get_data()->m_iTabHeight = iTabHeight;
 
-         ::rectangle_i32 rectClient;
-         ptab->get_client_rect(rectClient);
+         ::rectangle_i32 rectangleClient;
+         ptab->get_client_rect(rectangleClient);
 
-         ptab->get_data()->m_rectTab.left = rectClient.left;
-         ptab->get_data()->m_rectTab.top = rectClient.top;
+         ptab->get_data()->m_rectTab.left = rectangleClient.left;
+         ptab->get_data()->m_rectTab.top = rectangleClient.top;
          ptab->get_data()->m_rectTab.right = ptab->get_data()->m_rectTab.left + ptab->get_data()->m_iTabWidth;
-         ptab->get_data()->m_rectTab.bottom = rectClient.bottom;
+         ptab->get_data()->m_rectTab.bottom = rectangleClient.bottom;
 
          /*      m_puserinteraction->set_window_position(
          e_zorder_top,
@@ -398,9 +398,9 @@ namespace tranquillum
          m_rectTab.height(),
          0);*/
 
-         ptab->get_data()->m_rectTabClient.left = ptab->m_bShowTabs ? ptab->get_data()->m_rectTab.right : rectClient.left;
+         ptab->get_data()->m_rectTabClient.left = ptab->m_bShowTabs ? ptab->get_data()->m_rectTab.right : rectangleClient.left;
          ptab->get_data()->m_rectTabClient.top = ptab->get_data()->m_rectTab.top;
-         ptab->get_data()->m_rectTabClient.right = rectClient.right;
+         ptab->get_data()->m_rectTabClient.right = rectangleClient.right;
          ptab->get_data()->m_rectTabClient.bottom = ptab->get_data()->m_rectTab.bottom;
 
       }
@@ -410,9 +410,9 @@ namespace tranquillum
          i32 cy;
          pgraphics->set_font(ptab, ::user::e_element_none, ::user::e_state_selected);
 
-         ::rectangle_i32 rectClient;
-         ptab->get_client_rect(rectClient);
-         int x = rectClient.left;
+         ::rectangle_i32 rectangleClient;
+         ptab->get_client_rect(rectangleClient);
+         int x = rectangleClient.left;
 
          i32 ixAdd;
          for (i32 iPane = 0; iPane < ptab->get_data()->m_tabpanecompositea.get_size(); iPane++)
@@ -433,7 +433,7 @@ namespace tranquillum
 
             ::size_i32 size;
 
-            ptab->m_dcextension.GetTextExtent(pgraphics, str, size);
+            ptab->m_dcextension.get_text_extent(pgraphics, str, size);
 
             ::write_text::text_metric metric;
 
@@ -454,7 +454,7 @@ namespace tranquillum
             }
 
             pane.m_point.x = x;
-            pane.m_point.y = rectClient.top;
+            pane.m_point.y = rectangleClient.top;
 
 
             //            string str = pane.get_title();
@@ -509,9 +509,9 @@ namespace tranquillum
 
 
 
-         ptab->get_data()->m_rectTab.left = rectClient.left;
-         ptab->get_data()->m_rectTab.top = rectClient.top;
-         ptab->get_data()->m_rectTab.right = rectClient.right;
+         ptab->get_data()->m_rectTab.left = rectangleClient.left;
+         ptab->get_data()->m_rectTab.top = rectangleClient.top;
+         ptab->get_data()->m_rectTab.right = rectangleClient.right;
          ptab->get_data()->m_rectTab.bottom = ptab->get_data()->m_rectTab.top + ptab->get_data()->m_iTabHeight;
 
          /*      set_window_position(
@@ -528,9 +528,9 @@ namespace tranquillum
          bool bTabbedClient = ptab->m_bShowTabs;
 
          rectTabClient.left = ptab->get_data()->m_rectTab.left;
-         rectTabClient.top = bTabbedClient ? ptab->get_data()->m_rectTab.bottom : rectClient.top;
+         rectTabClient.top = bTabbedClient ? ptab->get_data()->m_rectTab.bottom : rectangleClient.top;
          rectTabClient.right = ptab->get_data()->m_rectTab.right;
-         rectTabClient.bottom = rectClient.bottom;
+         rectTabClient.bottom = rectangleClient.bottom;
 
 
          //TRACE0("rectTabClient");
@@ -562,7 +562,7 @@ namespace tranquillum
       ::rectangle_i32 rectangle;
       ::rectangle_i32 rectBorder;
       ::rectangle_i32 rectText;
-      ::rectangle_i32 rectClient;
+      ::rectangle_i32 rectangleClient;
       ::rectangle_i32 rectIcon;
       ::rectangle_i32 rectClose;
 
@@ -657,7 +657,7 @@ namespace tranquillum
 
          }
 
-         if (!ptab->get_element_rect(iTab, rectClient, ::user::e_element_client))
+         if (!ptab->get_element_rect(iTab, rectangleClient, ::user::e_element_client))
          {
 
             continue;
@@ -686,9 +686,9 @@ namespace tranquillum
 
                   ::rectangle_i32 rSel;
 
-                  rSel = rectClient;
+                  rSel = rectangleClient;
 
-                  rSel.bottom = rectClient.top + 3;
+                  rSel.bottom = rectangleClient.top + 3;
 
                   pgraphics->fill_rectangle(rSel, argb(255, 120, 155, 240));
 
@@ -730,7 +730,7 @@ namespace tranquillum
                   //path->start_figure();
 
                   path->add_line(rectBorder.right, rectBorder.bottom, rectBorder.left + 1, rectBorder.bottom);
-                  path->add_line(rectBorder.left, rectBorder.top - (rectBorder.left - rectClient.left));
+                  path->add_line(rectBorder.left, rectBorder.top - (rectBorder.left - rectangleClient.left));
                   path->add_line(rectText.left, rectBorder.top);
                   path->add_line(rectBorder.right, rectBorder.top);
                   path->add_line(rectBorder.right, rectBorder.bottom);
@@ -806,7 +806,7 @@ namespace tranquillum
 
             //      pgraphics->set(ptab->get_data()->m_penBorder);
 
-            //      pgraphics->draw_line(rcTab.left, rectClient.bottom, rectBorder.left, rectClient.bottom);
+            //      pgraphics->draw_line(rcTab.left, rectangleClient.bottom, rectBorder.left, rectangleClient.bottom);
 
             //   }
 
@@ -824,7 +824,7 @@ namespace tranquillum
 
                   rSel = rectangle;
 
-                  rSel.bottom = rectClient.top + 3;
+                  rSel.bottom = rectangleClient.top + 3;
 
                   pgraphics->fill_rectangle(rSel, argb(255, 120, 155, 240));
 
@@ -922,7 +922,7 @@ namespace tranquillum
 
             //      pgraphics->set(ptab->get_data()->m_penBorder);
 
-            //      pgraphics->draw_line(rectBorder.right - 1, rectClient.bottom, rcTab.right, rectClient.bottom);
+            //      pgraphics->draw_line(rectBorder.right - 1, rectangleClient.bottom, rcTab.right, rectangleClient.bottom);
 
             //   }
 
@@ -1736,11 +1736,11 @@ namespace tranquillum
    bool style::_001OnDrawSplitLayout(::draw2d::graphics_pointer & pgraphics, ::user::split_layout * psplitlayout)
    {
 
-      ::rectangle_i32 rectClient;
+      ::rectangle_i32 rectangleClient;
 
-      psplitlayout->get_client_rect(rectClient);
+      psplitlayout->get_client_rect(rectangleClient);
 
-      pgraphics->fill_rectangle(rectClient, argb(255, 255, 255, 255));
+      pgraphics->fill_rectangle(rectangleClient, argb(255, 255, 255, 255));
 
       return true;
 

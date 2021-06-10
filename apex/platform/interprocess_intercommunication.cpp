@@ -575,8 +575,10 @@ id_array interprocess_intercommunication::get_pid(const string & strApp)
    auto psystem = m_psystem;
    
    auto pnode = psystem->node();
+   
+   ::file::path path = pnode->get_application_path(strApp, nullptr, nullptr);
 
-   idaPid = pnode->module_path_get_pid(strApp, false);
+   idaPid = pnode->module_path_get_pid(path, false);
 
 #else
 

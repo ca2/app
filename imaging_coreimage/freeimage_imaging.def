@@ -1,8 +1,0 @@
-LIBRARY "coreimage_imaging"
-
-
-EXPORTS
-imaging_factory_exchange
-
-
-

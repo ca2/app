@@ -5,6 +5,7 @@
 #include "acme/id.h"
 #include "acme/platform/node.h"
 #include "acme/filesystem/filesystem/acme_dir.h"
+#include "acme/filesystem/filesystem/acme_path.h"
 
 
 namespace acme
@@ -52,6 +53,26 @@ namespace acme
 
    }
 
+
+   ::e_status node::call_async(const char * pszPath, const char * pszParam, const char * pszDir, ::e_display edisplay, bool bPrivileged, unsigned int * puiPid)
+   {
+
+      __throw(error_interface_only);
+
+      return error_interface_only;
+
+   }
+
+
+   ::e_status node::call_sync(const char * pszPath, const char * pszParam, const char * pszDir, ::e_display edisplay, const ::duration & durationTimeout, ::property_set & set)
+   {
+
+      __throw(error_interface_only);
+
+      return error_interface_only;
+
+   }
+  
 
    ::e_status node::initialize(::object * pobject)
    {
@@ -182,11 +203,18 @@ namespace acme
 
    ::e_status node::on_start_system()
    {
-
+      
       return ::success;
 
    }
 
+
+   ::e_status node::_will_finish_launching()
+   {
+   
+      return ::success;
+
+   }
 
 #ifdef LINUX
 
@@ -291,6 +319,173 @@ namespace acme
       m_pathModule = _module_path();
 
       return m_pathModule;
+
+   }
+
+
+   string node::app_id_to_app_name(const string & strAppId)
+   {
+
+      string strName;
+
+      for (index i = 0; i < strAppId.length(); i++)
+      {
+
+         if (strAppId[i] == '-' || strAppId[i] == '/' || strAppId[i] == '\\')
+         {
+
+            strName += "_";
+
+         }
+         else
+         {
+
+            strName += strAppId[i];
+
+         }
+
+      }
+
+      return strName;
+
+   }
+
+
+   string node::app_id_to_executable_name(const string & strAppId)
+   {
+      
+      string strName = app_id_to_app_name(strAppId);
+
+      return strName;
+
+   }
+
+
+   bool node::is_application_installed(const ::file::path& pathExe, string strAppId, string& strBuild, const char* pszPlatform, const char* pszConfiguration, const char* pszLocale, const char* pszSchema)
+   {
+
+      ::file::path path;
+
+      path = application_installer_folder(pathExe, strAppId, pszPlatform, pszConfiguration, pszLocale, pszSchema) / "installed.txt";
+
+      strBuild = file_as_string(path);
+
+      return strBuild.has_char();
+
+   }
+
+
+   bool node::set_application_installed(const ::file::path& pathExe, string strAppId, const char* pszBuild, const char* pszPlatform, const char* pszConfiguration, const char* pszLocale, const char* pszSchema)
+   {
+
+      ::file::path path;
+
+      path = application_installer_folder(pathExe, strAppId, pszPlatform, pszConfiguration, pszLocale, pszSchema) / "installed.txt";
+
+      return file_put_contents(path, pszBuild);
+
+   }
+
+
+   ::file::path node::application_installer_folder(const ::file::path& pathExe, string strAppId, const char* pszPlatform, const char* pszConfiguration, const char* pszLocale, const char* pszSchema)
+   {
+
+      string strFolder = pathExe.folder();
+
+      strFolder.replace(":", "");
+
+      return m_psystem->m_pacmedir->ca2roaming() / "appdata" / strFolder / strAppId / pszPlatform / pszConfiguration / pszLocale / pszSchema;
+
+   }
+
+
+   ::file::path node::get_application_path(string strAppId, const char* pszPlatform, const char* pszConfiguration)
+   {
+      
+      auto pathLastRun = get_last_run_application_path(strAppId);
+      
+      if(pathLastRun.has_char() && ::file_exists(pathLastRun))
+      {
+         
+         return pathLastRun;
+         
+      }
+
+      ::file::path pathFolder;
+
+      pathFolder = m_psystem->m_pacmedir->stage(strAppId, pszPlatform, pszConfiguration);
+
+      string strName;
+
+      strName = app_id_to_executable_name(strAppId);
+
+      ::file::path path;
+
+      path = pathFolder / strName;
+
+      return path;
+
+   }
+
+
+
+
+
+   ::file::path node::get_last_run_application_path_file(const string & strAppIdParam)
+   {
+
+      string strAppId = strAppIdParam;
+
+      auto iSlash = strAppId.find('/');
+
+      if(iSlash > 0)
+      {
+
+         auto iOpenParenthesis = strAppId.find('(', iSlash + 1);
+
+         if(iOpenParenthesis > iSlash + 1)
+         {
+
+            auto iCloseParenthesis = strAppId.find('(', iOpenParenthesis + 1);
+
+            if(iCloseParenthesis > iOpenParenthesis + 1)
+            {
+
+               strAppId = strAppId.Left(iOpenParenthesis) + strAppId.Mid(iCloseParenthesis + 1);
+
+            }
+
+         }
+
+      }
+
+      ::file::path pathFile = m_psystem->m_pacmedir->local() / "appdata" / strAppId / "last_run_path.txt";
+
+      return pathFile;
+
+   }
+
+
+   ::file::path node::get_last_run_application_path(const string & strAppId)
+   {
+
+      ::file::path pathFile = get_last_run_application_path_file(strAppId);
+
+      ::file::path path = ::file_as_string(pathFile);
+
+      return path;
+
+   }
+
+
+   ::e_status node::set_last_run_application_path(const string & strAppId)
+   {
+
+      ::file::path path = m_psystem->m_pacmepath->app_module();
+
+      ::file::path pathFile = get_last_run_application_path_file(strAppId);
+
+      return file_put_contents(pathFile, path);
 
    }
 
@@ -837,7 +1032,7 @@ namespace acme
    //}
 
 
-   ::e_status node::open_folder(::file::path & pathFolder)
+   ::e_status node::open_folder(const ::file::path & pathFolder)
    {
 
       __throw(error_interface_only);
@@ -847,7 +1042,16 @@ namespace acme
    }
 
 
-   //::e_status node::get_system_time_as_file_time(filetime_t * pfiletime)
+   ::e_status node::open_file(const ::file::path & path)
+   {
+
+      __throw(error_interface_only);
+     
+      return ::error_interface_only;
+
+   }
+
+//::e_status node::get_system_time_as_file_time(filetime_t * pfiletime)
    //{
 
    //   return ::error_interface_only;
@@ -997,16 +1201,27 @@ namespace acme
 
    }
 
+//
+//#ifdef MACOS
+//      
+//   void node::ns_launch_app(const char * psz, const char ** argv, int iFlags)
+//   {
+//      
+//      
+//   }
+//      
+//#endif
 
-#ifdef MACOS
-      
-   void node::ns_launch_app(const char * psz, const char ** argv, int iFlags)
+
+   ::e_status node::launch_app(const char * psz, const char ** argv, int iFlags)
    {
       
+      __throw(error_interface_only);
+      
+      return error_interface_only;
       
    }
-      
-#endif
+
 
 
    ::e_status node::create_process(const char * pszCommandLine, u32 * pprocessID)
@@ -1182,24 +1397,6 @@ namespace acme
    }
 
 
-   ::e_status node::call_async(const char * pszPath, const char * pszParam, const char * pszDir, ::e_display edisplay, bool bPrivileged, unsigned int * puiPid)
-   {
-
-      __throw(error_interface_only);
-
-      return error_interface_only;
-
-   }
-
-
-   ::e_status node::call_sync(const char * pszPath, const char * pszParam, const char * pszDir, ::e_display edisplay, const ::duration & durationTimeout, ::property_set & set)
-   {
-
-      __throw(error_interface_only);
-
-      return error_interface_only;
-
-   }
 
 
 } // namespace acme

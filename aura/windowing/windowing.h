@@ -112,8 +112,6 @@ namespace windowing
 
       virtual ::e_status release_mouse_capture();
 
-
-
       virtual ::extended::transport < ::windowing::icon > load_icon(const ::payload & payloadFile);
 
 
@@ -163,7 +161,7 @@ namespace windowing
 
       inline ::point_i32 get_cursor_position() { ::point_i32 point; get_cursor_position(&point); return point; }
 
-      //virtual void enum_draw2d_fonts(::write_text::font_enum_item_array& itema);
+      //virtual void enum_draw2d_fonts(::write_text::font_enumeration_item_array& itema);
 
       virtual int_bool point_is_window_origin(POINT_I32 ptHitTest, oswindow oswindowExclude, int iMargin);
 

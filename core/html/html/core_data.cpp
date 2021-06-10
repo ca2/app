@@ -312,7 +312,7 @@ namespace html
 
          for (auto & pinteraction : m_pform->m_puserinteractionpointeraChild->interactiona())
          {
-
+            
             ::user::control_event event;
 
             event.m_eevent = ::user::e_event_initialize_control;
@@ -328,9 +328,11 @@ namespace html
       }
 
       MESSAGE_LINK(e_message_key_down, m_puserinteraction, this, &core_data::_001OnKeyDown);
-
+      
       m_bImplemented = true;
-
+      
+      m_pform->on_form_implemented();
+      
    }
 
 

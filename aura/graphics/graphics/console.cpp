@@ -114,6 +114,8 @@ namespace graphics
          return argb(255, 255, 255, 0);
       case e_dos_color_background_black:
          return argb(255, 0, 0, 0);
+      default:
+         break;
       }
 
       return 0;

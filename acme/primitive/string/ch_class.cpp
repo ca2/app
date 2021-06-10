@@ -53,7 +53,7 @@ namespace str
          inverse = true;
          pos++;
       }
-      for(; natural(pos) < strlen(ccs); pos++)
+      for(; __lt(pos, strlen(ccs)); pos++)
       {
          if(ccs[pos] == ']')
          {
@@ -91,7 +91,7 @@ namespace str
             prev_char = BAD_WCHAR;
             continue;
          }
-         if(ccs[pos] == '\\' && natural(pos+1) < strlen(ccs))
+         if(ccs[pos] == '\\' && __lt(pos+1, strlen(ccs)))
          {
 //            i32 retEnd;
             prev_char = BAD_WCHAR;
@@ -147,11 +147,11 @@ namespace str
             continue;
          };
          // substract -[class]
-         if (natural(pos+1) < strlen(ccs) && ccs[pos] == '-' && ccs[pos+1] == '[')
+         if (__lt(pos+1, strlen(ccs)) && ccs[pos] == '-' && ccs[pos+1] == '[')
          {
             strsize retEnd;
             ch_class * scc = createCharClass(ccs, pos+1, &retEnd);
-            if(natural(retEnd) == strlen(ccs))
+            if(retEnd == strlen(ccs))
                return nullptr;
             if(scc == nullptr)
             {
@@ -165,11 +165,11 @@ namespace str
             continue;
          }
          // intersect &&[class]
-         if (natural(pos+2) < strlen(ccs) && ccs[pos] == '&' && ccs[pos+1] == '&' && ccs[pos+2] == '[')
+         if (__lt(pos+2, strlen(ccs)) && ccs[pos] == '&' && ccs[pos+1] == '&' && ccs[pos+2] == '[')
          {
             strsize retEnd;
             ch_class *scc = createCharClass(ccs, pos+2, &retEnd);
-            if(natural(retEnd) == strlen(ccs))
+            if(retEnd == strlen(ccs))
                return nullptr;
             if(scc == nullptr)
             {
@@ -199,7 +199,7 @@ namespace str
             continue;
          }
 
-         if(ccs[pos] == '-' && prev_char.has_char() && natural(pos+1) < strlen(ccs) && ccs[pos+1] != ']')
+         if(ccs[pos] == '-' && prev_char.has_char() && __lt(pos+1, strlen(ccs)) && ccs[pos+1] != ']')
          {
 
             strsize retEnd;

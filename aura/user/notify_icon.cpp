@@ -69,198 +69,202 @@ namespace user
 
    bool notify_icon::create_notify_icon(::u32 uId, notify_icon_listener * plistener, ::windowing::icon * picon)
    {
+      
+      __throw(error_interface_only);
+      
+      return false;
 
-      if(m_bCreated)
-      {
-
-         return false;
-
-      }
-
-      m_strId.Format("notify_icon_%d", uId);
-
-      m_strId = "ca2-" + picon->get_tray_icon_name() + "-" + m_strId;
-
-#ifdef WINDOWS_DESKTOP
-
-      if(!create_message_queue(m_strId))
-      {
-
-         return false;
-
-      }
-
-#endif
-
-      m_uiId                     = uId;
-
-#ifdef WINDOWS_DESKTOP
-
-      //m_nid.hWnd                 = get_safe_handle();
-      //m_nid.uID                  = uId;
-      //m_nid.hIcon                = *pvisualicon;
-      //m_nid.uFlags               = NIF_ICON | NIF_MESSAGE;
-      //m_nid.uCallbackMessage     = MessageNotifyIcon;
-
-#elif defined(LINUX)
-
-#elif defined(MACOS)
-
-#elif defined(_UWP)
-
-#elif defined(ANDROID)
-
-#elif defined(APPLE_IOS)
-
-#else
-      __throw(todo);
-
-#endif
-
-      m_plistener                = plistener;
-
-#ifdef WINDOWS_DESKTOP
-
-      //if(!Shell_NotifyIcon(NIM_ADD, &m_nid))
-      //{
-
-      //   m_plistener = nullptr;
-
-      //   DestroyWindow();
-
-      //   return false;
-
-      //}
-
-#elif defined(LINUX) && !defined(RASPBIAN)
-
+//      if(m_bCreated)
 //      {
-//
-//         string strAppId = picon->get_tray_icon_name();
-//
-//         string strId(strAppId);
-//
-//         string strMatterRoot = ::str::token(strId, "/");
-//
-//         if(strMatterRoot.is_empty())
-//         {
-//
-//            strMatterRoot = "app";
-//
-//         }
-//
-//         ::file::path pathFolder("appmatter://" + strMatterRoot);
-//
-//         pathFolder /= "_matter" / strId / "_std/_std/main" ;
-//
-//         string strNotifyIcon = _002Underscore(strAppId);
-//
-//         ::file::path path = pathFolder / (strNotifyIcon + "_128.png");
-//
-//         path = pcontext->m_papexcontext->defer_process_path(path);
-//
-//         pathFolder = path.folder();
-//
-//         auto pnode = Node;
-//
-//         pnode->node_sync(5_s, __routine([this, pnode, strNotifyIcon, pathFolder]()
-//         {
-//
-//            m_pindicator = pnode->appindicator_allocate();
-//
-//            m_pindicator->create(m_strId, strNotifyIcon + "_128", pathFolder, this);
-//
-//         }));
-//
-//      }
-//
-//      if(m_pindicator == nullptr)
-//      {
-//
-//         m_plistener = nullptr;
-//
-//         //DestroyWindow();
 //
 //         return false;
 //
 //      }
-
-#elif defined(MACOS)
-
-//      string strFolder;
 //
-//      string str1 = pvisualicon->m_strAppTrayIcon;
+//      m_strId.Format("notify_icon_%d", uId);
 //
-//      str1.replace("-", "_");
+//      m_strId = "ca2-" + picon->get_tray_icon_name() + "-" + m_strId;
 //
-//      str1.replace("/", "_");
+//#ifdef WINDOWS_DESKTOP
 //
-//      str1.replace("\\", "_");
-//
-//      string str(str1);
-//
-//      if(::str::begins_eat_ci(str, "app_veriwell_"))
+//      if(!create_message_queue(m_strId))
 //      {
 //
-//         strFolder+="app-veriwell";
-//
-//      }
-//      else if(::str::begins_eat_ci(str, "app_core_"))
-//      {
-//
-//         strFolder+="app-core";
-//
-//      }
-//      else
-//      {
-//
-//         strFolder+="app";
+//         return false;
 //
 //      }
 //
-//      //str
+//#endif
 //
-//      strFolder+= "/appmatter/" + str;
+//      m_uiId                     = uId;
 //
-//      strFolder += "/_std/_std/main/";
+//#ifdef WINDOWS_DESKTOP
 //
-//      string strFile = "menubar-icon-22.png";
+//      //m_nid.hWnd                 = get_safe_handle();
+//      //m_nid.uID                  = uId;
+//      //m_nid.hIcon                = *pvisualicon;
+//      //m_nid.uFlags               = NIF_ICON | NIF_MESSAGE;
+//      //m_nid.uCallbackMessage     = MessageNotifyIcon;
 //
-//      string strUrl = "https://server.ca2.cc/matter/" + strFolder + strFile;
+//#elif defined(LINUX)
 //
-//      strFile = pcontext->m_papexcontext->dir().appdata() / strFolder / strFile;
+//#elif defined(MACOS)
 //
-//      int iRetry = 3;
+//#elif defined(_UWP)
 //
-//      while(iRetry >= 0 && (!pcontext->m_papexcontext->file().exists(strFile) || pcontext->m_papexcontext->file().length(strFile) <= 0))
-//      {
+//#elif defined(ANDROID)
 //
-//         ::property_set set;
+//#elif defined(APPLE_IOS)
 //
-//         set["raw_http"] = true;
-//         set["disable_common_name_cert_check"] = true;
+//#else
+//      __throw(todo);
 //
-//         pcontext->m_papexcontext->http().download(strUrl, strFile, set);
+//#endif
 //
-//         iRetry--;
+//      m_plistener                = plistener;
 //
-//      }
-
-      string strFile;
-      
-      auto pcontext = m_pcontext;
-
-      strFile = pcontext->m_papexcontext->defer_process_matter_path("matter://main/menubar-icon-22.png");
-
-      notify_icon_init(strFile);
-
-#else
-
-#endif
-
-      m_bCreated = true;
-
-      return true;
+//#ifdef WINDOWS_DESKTOP
+//
+//      //if(!Shell_NotifyIcon(NIM_ADD, &m_nid))
+//      //{
+//
+//      //   m_plistener = nullptr;
+//
+//      //   DestroyWindow();
+//
+//      //   return false;
+//
+//      //}
+//
+//#elif defined(LINUX) && !defined(RASPBIAN)
+//
+////      {
+////
+////         string strAppId = picon->get_tray_icon_name();
+////
+////         string strId(strAppId);
+////
+////         string strMatterRoot = ::str::token(strId, "/");
+////
+////         if(strMatterRoot.is_empty())
+////         {
+////
+////            strMatterRoot = "app";
+////
+////         }
+////
+////         ::file::path pathFolder("appmatter://" + strMatterRoot);
+////
+////         pathFolder /= "_matter" / strId / "_std/_std/main" ;
+////
+////         string strNotifyIcon = _002Underscore(strAppId);
+////
+////         ::file::path path = pathFolder / (strNotifyIcon + "_128.png");
+////
+////         path = pcontext->m_papexcontext->defer_process_path(path);
+////
+////         pathFolder = path.folder();
+////
+////         auto pnode = Node;
+////
+////         pnode->node_sync(5_s, __routine([this, pnode, strNotifyIcon, pathFolder]()
+////         {
+////
+////            m_pindicator = pnode->appindicator_allocate();
+////
+////            m_pindicator->create(m_strId, strNotifyIcon + "_128", pathFolder, this);
+////
+////         }));
+////
+////      }
+////
+////      if(m_pindicator == nullptr)
+////      {
+////
+////         m_plistener = nullptr;
+////
+////         //DestroyWindow();
+////
+////         return false;
+////
+////      }
+//
+//#elif defined(MACOS)
+//
+////      string strFolder;
+////
+////      string str1 = pvisualicon->m_strAppTrayIcon;
+////
+////      str1.replace("-", "_");
+////
+////      str1.replace("/", "_");
+////
+////      str1.replace("\\", "_");
+////
+////      string str(str1);
+////
+////      if(::str::begins_eat_ci(str, "app_veriwell_"))
+////      {
+////
+////         strFolder+="app-veriwell";
+////
+////      }
+////      else if(::str::begins_eat_ci(str, "app_core_"))
+////      {
+////
+////         strFolder+="app-core";
+////
+////      }
+////      else
+////      {
+////
+////         strFolder+="app";
+////
+////      }
+////
+////      //str
+////
+////      strFolder+= "/appmatter/" + str;
+////
+////      strFolder += "/_std/_std/main/";
+////
+////      string strFile = "menubar-icon-22.png";
+////
+////      string strUrl = "https://server.ca2.cc/matter/" + strFolder + strFile;
+////
+////      strFile = pcontext->m_papexcontext->dir().appdata() / strFolder / strFile;
+////
+////      int iRetry = 3;
+////
+////      while(iRetry >= 0 && (!pcontext->m_papexcontext->file().exists(strFile) || pcontext->m_papexcontext->file().length(strFile) <= 0))
+////      {
+////
+////         ::property_set set;
+////
+////         set["raw_http"] = true;
+////         set["disable_common_name_cert_check"] = true;
+////
+////         pcontext->m_papexcontext->http().download(strUrl, strFile, set);
+////
+////         iRetry--;
+////
+////      }
+//
+//      string strFile;
+//
+//      auto pcontext = m_pcontext;
+//
+//      strFile = pcontext->m_papexcontext->defer_process_matter_path("matter://main/menubar-icon-22.png");
+//
+//      notify_icon_init(strFile);
+//
+//#else
+//
+//#endif
+//
+//      m_bCreated = true;
+//
+//      return true;
 
    }
 
@@ -549,12 +553,12 @@ namespace user
    }
 
 
-void notify_icon::notify_icon_init(const char * pszId)
-{
-
-   //m_plistener->notify_icon_init(pszId);
-
-}
+//void notify_icon::notify_icon_init(const char * pszId)
+//{
+//
+//   //m_plistener->notify_icon_init(pszId);
+//
+//}
 
 //#endif
 

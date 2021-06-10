@@ -69,6 +69,7 @@ public:
    virtual bool _desk_has_image();
    virtual bool _image_to_desk(const ::image* pimage);
 #endif
+   
 
 };
 

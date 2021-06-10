@@ -45,8 +45,8 @@ namespace user
       bool                                      m_bUpdatingVisual;
       bool                                      m_bUpdateVisual;
       bool                                      m_bFillParent;
-      ::rect                                    m_rectHint;
-      ::rect                                    m_rectPadding;
+      ::rectangle                                    m_rectHint;
+      ::rectangle                                    m_rectPadding;
       int                                       m_iCellPadding;
       ::size                                    m_sizeSpan;
       ::sized                                   m_sizeWeight;
@@ -97,8 +97,8 @@ namespace user
       //mutable point     m_pointParentClient;
 
 
-      //inline auto get_client_rect64() { ::rect64 rect; get_client_rect(rect); return rect; }
-      //inline auto get_window_rect64() { ::rect64 rect; get_window_rect(rect); return rect; }
+      //inline auto get_client_rect64() { ::rect64 rectangle; get_client_rect(rectangle); return rectangle; }
+      //inline auto get_window_rect64() { ::rect64 rectangle; get_window_rect(rectangle); return rectangle; }
 
       //virtual ::window_graphics* get_window_graphics();
       //virtual oswindow get_handle() const;
@@ -136,10 +136,10 @@ namespace user
       //inline void get_client_rect(RECT32* prect) { ::set_rect_point_size(prect, m_pointClient, client_size()); }
       //inline void get_window_rect(RECT32* prect) { ::set_rect_point_size(prect, m_pointScreenWindow, window_size()); }
 
-      //inline auto get_client_rect() { ::rect rect; get_client_rect(rect); return rect; }
-      //inline auto get_window_rect() { ::rect rect; get_window_rect(rect); return rect; }
+      //inline auto get_client_rect() { ::rectangle rectangle; get_client_rect(rectangle); return rectangle; }
+      //inline auto get_window_rect() { ::rectangle rectangle; get_window_rect(rectangle); return rectangle; }
 
-      virtual void set_placement(const ::rect & rect);
+      virtual void set_placement(const ::rectangle & rectangle);
 
 
       virtual bool window_is_full_screen_enabled();
@@ -219,9 +219,9 @@ namespace user
       inline void move_to(i32 x, i32 y) { request_state().m_point.set(x, y); m_bRequestReady = false; }
       inline void set_size(i32 cx, i32 cy) { request_state().m_size.set(cx, cy); m_bRequestReady = false; }
       inline void set_dim(const ::point & point, const ::size & size) { request_state().m_point = point; request_state().m_size = size; m_bRequestReady = false; }
-      inline void place(const ::rect & rect) { set_dim(rect.origin(), rect.size()); }
+      inline void place(const ::rectangle & rectangle) { set_dim(rectangle.origin(), rectangle.size()); }
       inline void set_dim(i32 x, i32 y, i32 cx, i32 cy) { set_dim(::point(x, y), ::size(cx, cy)); }
-      inline layout & operator =(const ::rect& rect) { place(rect); return *this; }
+      inline layout & operator =(const ::rectangle& rectangle) { place(rectangle); return *this; }
 
 
 
@@ -295,21 +295,21 @@ namespace user
       {
          return window_place(point.x, point.y, size.cx, size.cy, edisplay, eactivation);
       }
-      inline bool set_window_position(::zorder zorder, const ::rect & rect, edisplay edisplay = e_display_default, eactivation eactivation = e_activation_default)
+      inline bool set_window_position(::zorder zorder, const ::rectangle & rectangle, edisplay edisplay = e_display_default, eactivation eactivation = e_activation_default)
       {
-         return set_window_position(zorder, rect.origin(), rect.size(), edisplay, eactivation);
+         return set_window_position(zorder, rectangle.origin(), rectangle.size(), edisplay, eactivation);
       }
-      inline bool window_place(const ::rect & rect, edisplay edisplay = e_display_default, eactivation eactivation = e_activation_default)
+      inline bool window_place(const ::rectangle & rectangle, edisplay edisplay = e_display_default, eactivation eactivation = e_activation_default)
       {
-         return window_place(rect.origin(), rect.size(), edisplay, eactivation);
+         return window_place(rectangle.origin(), rectangle.size(), edisplay, eactivation);
       }
 
 
 
-      //virtual void set_placement(const ::rect & rect);
+      //virtual void set_placement(const ::rectangle & rectangle);
 
 
-      //virtual bool place(const ::rect & rect);
+      //virtual bool place(const ::rectangle & rectangle);
 
       virtual ::point get_parent_accumulated_scroll() const;
 
@@ -390,10 +390,10 @@ namespace user
       inline void window_request_rect(RECT32 * prect) const { ::set_rect_point_size(prect, request_state().m_point, request_state().m_size); }
       inline void parent_client_rect(RECT32* prect) const { ::set_rect_point_size(prect, ui_state().m_point, ui_state().m_size); }
 
-      inline auto get_client_rect() const { ::rect rect; get_client_rect(rect); return rect; }
-      inline auto get_window_rect() const { ::rect rect; get_window_rect(rect); return rect; }
-      inline auto window_request_rect() const { ::rect rect; window_request_rect(rect); return rect; }
-      inline auto parent_client_rect() const { ::rect rect; parent_client_rect(rect); return rect; }
+      inline auto get_client_rect() const { ::rectangle rectangle; get_client_rect(rectangle); return rectangle; }
+      inline auto get_window_rect() const { ::rectangle rectangle; get_window_rect(rectangle); return rectangle; }
+      inline auto window_request_rect() const { ::rectangle rectangle; window_request_rect(rectangle); return rectangle; }
+      inline auto parent_client_rect() const { ::rectangle rectangle; parent_client_rect(rectangle); return rectangle; }
 
 
       //virtual void _on_display(bool bKickIdle = true);

@@ -301,7 +301,7 @@ stop1:
 //   string strUn(pcszUncompressed);
 
 //   //   strUn += ".tmp";
-//   FILE * fileUn = fopen_dup(strUn, "wb+");
+//   FILE * fileUn = FILE_open(strUn, "wb+");
 //   if (fileUn == nullptr)
 //   {
 //      BZ2_bzclose(file);

@@ -110,7 +110,9 @@ namespace filemanager
 
       auto psystem = m_psystem->m_paurasystem;
 
-      if (filemanager_document() == psubject->cast < ::user::document >(id_document))
+      auto pdocumentSubject = psubject->cast < ::user::document >(id_document);
+
+      if (filemanager_document() == pdocumentSubject)
       {
 
          //if (psubject->id() == id_initialize)
@@ -204,16 +206,29 @@ namespace filemanager
 
                string strSuffix;
 
-               if (path.ext().has_char())
-               {
-
-                  strSuffix = "." + path.ext();
-
-               }
-               else if (filemanager_data()->m_pdocumentTopic->get_save_file_extension().has_char())
+               if (filemanager_data()->m_pdocumentTopic->get_save_file_extension().has_char())
                {
 
                   strSuffix = "." + filemanager_data()->m_pdocumentTopic->get_save_file_extension();
+
+               }
+               else if (path.ext().has_char())
+               {
+
+                  string strExtension = psubject->payload("file_extension");
+
+                  if (strExtension.has_char())
+                  {
+
+                     strSuffix = "." + strExtension;
+
+                  }
+                  else
+                  {
+
+                     strSuffix = "." + path.ext();
+
+                  }
 
                }
 
@@ -233,9 +248,9 @@ namespace filemanager
 
                set_position(1, 56);
 
-               ::rectangle_i32 rectClient;
+               ::rectangle_i32 rectangleClient;
 
-               get_client_rect(rectClient);
+               get_client_rect(rectangleClient);
 
                set_need_layout();
 

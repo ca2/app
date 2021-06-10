@@ -214,14 +214,14 @@ namespace user
 
       ::draw2d::brush_pointer brBk(e_create);
 
-      ::rectangle_i32 rectClient;
+      ::rectangle_i32 rectangleClient;
 
-      get_client_rect(rectClient);
+      get_client_rect(rectangleClient);
 
-      brBk->CreateLinearGradientBrush(rectClient.top_left(), rectClient.bottom_left(),
+      brBk->CreateLinearGradientBrush(rectangleClient.top_left(), rectangleClient.bottom_left(),
                                       argb(255, 230, 230, 230), argb(255, 200, 200, 200));
 
-      pgraphics->fill_rectangle(rectClient, brBk);
+      pgraphics->fill_rectangle(rectangleClient, brBk);
 
    }
 
@@ -235,8 +235,8 @@ namespace user
       //m_pcomboFamily->display_child(70, 5, 120, 20);
       //m_pcomboSize->display_child(195, 5, 40, 20);
 
-      int x = 245;
-      throw "create line layout";
+      //int x = 245;
+      //throw "create line layout";
       //m_pbuttonForeground->display_child(x, 5, 20, 20);
       //x += 20;
       //m_pbuttonBackground->display_child(x, 5, 20, 20);
@@ -246,7 +246,7 @@ namespace user
       //m_pbuttonSuperscript->display_child(x, 5, 20, 20);
       //x += 20;
 
-      x += 10;
+      //x += 10;
 
       //m_pbuttonAlignLeft->display_child(x, 5, 20, 20);
       //x += 20;
@@ -591,7 +591,17 @@ namespace user
          if (m_pcomboFamily->m_itemCurrent.is_set())
          {
 
-            m_formata[0]->m_strFontFamily = m_pcomboFamily->m_plist.cast <::user::font_list>()->m_pfontlist->m_pitema->element_at(m_pcomboFamily->m_itemCurrent)->m_strName;
+            auto pcombolist = m_pcomboFamily->m_plist;
+
+            auto itemCurrent = m_pcomboFamily->m_itemCurrent;
+
+            __pointer(::user::font_list) pfontlist = pcombolist;
+
+            auto pfontenumerationitema = pfontlist->m_pfontlist->m_pfontenumerationitema;
+
+            auto pfontenumerationitem = pfontenumerationitema->element_at(itemCurrent);
+
+            m_formata[0]->m_strFontFamily = pfontenumerationitem->m_strName;
 
          }
 

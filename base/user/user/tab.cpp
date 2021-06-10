@@ -8,7 +8,7 @@
 
 //extern CLASS_DECL_BASE thread_int_ptr < DWORD_PTR > t_time1;
 
-// pgraphics->GetTextExtent("->:<-"); // oh no!! omg!! The size_i32 is the size_i32 of the alien!!
+// pgraphics->get_text_extent("->:<-"); // oh no!! omg!! The size_i32 is the size_i32 of the alien!!
 #define MAGIC_PALACE_TAB_SPLT "->:<-"
 #define MAGIC_PALACE_TAB_SIZE "-/-"
 #define MAGIC_PALACE_TAB_TEXT "/"
@@ -276,7 +276,7 @@ namespace user
 
       synchronous_lock synchronouslock(mutex());
       
-      auto papplication = get_application();
+//      auto papplication = get_application();
 
       if (id.is_empty())
       {
@@ -638,7 +638,7 @@ namespace user
       ::rectangle_i32 rectangle;
       ::rectangle_i32 rectBorder;
       ::rectangle_i32 rectText;
-      ::rectangle_i32 rectClient;
+      ::rectangle_i32 rectangleClient;
       ::rectangle_i32 rectIcon;
       ::rectangle_i32 rectClose;
 
@@ -672,7 +672,7 @@ namespace user
          if (!get_element_rect(iTab, rectBorder, ::user::e_element_border))
             continue;
 
-         if (!get_element_rect(iTab, rectClient, ::user::e_element_client))
+         if (!get_element_rect(iTab, rectangleClient, ::user::e_element_client))
             continue;
 
          if (get_data()->m_bVertical)
@@ -697,8 +697,8 @@ namespace user
 
                   path->add_line(rectBorder.right, rectBorder.bottom, rectBorder.left + 1, rectBorder.bottom);
 
-                  path->add_line(rectBorder.left, rectBorder.top - (rectBorder.left - rectClient.left));
-                  path->add_line(rectClient.left, rectBorder.top);
+                  path->add_line(rectBorder.left, rectBorder.top - (rectBorder.left - rectangleClient.left));
+                  path->add_line(rectangleClient.left, rectBorder.top);
                   path->add_line(rectBorder.right, rectBorder.top);
 
                   path->close_figure();
@@ -722,7 +722,7 @@ namespace user
                {
 
                   path->add_line(rectBorder.right, rectBorder.bottom, rectBorder.left + 1, rectBorder.bottom);
-                  path->add_line(rectBorder.left, rectBorder.top - (rectBorder.left - rectClient.left));
+                  path->add_line(rectBorder.left, rectBorder.top - (rectBorder.left - rectangleClient.left));
                   path->add_line(rectText.left, rectBorder.top);
                   path->add_line(rectBorder.right, rectBorder.top);
                   path->add_line(rectBorder.right, rectBorder.bottom);
@@ -795,13 +795,13 @@ namespace user
                if (get_data()->m_idaSel.contains(ppane->m_id))
                {
 
-                  path->add_line(rectBorder.left, rectClient.bottom, rectBorder.left, rectBorder.top);
+                  path->add_line(rectBorder.left, rectangleClient.bottom, rectBorder.left, rectBorder.top);
 
-                  path->add_line(rectClient.right, rectBorder.top);
+                  path->add_line(rectangleClient.right, rectBorder.top);
 
-                  path->add_line(rectBorder.right, rectBorder.top + (rectBorder.right - rectClient.right));
+                  path->add_line(rectBorder.right, rectBorder.top + (rectBorder.right - rectangleClient.right));
 
-                  path->add_line(rectBorder.right - 1, rectClient.bottom);
+                  path->add_line(rectBorder.right - 1, rectangleClient.bottom);
 
                   path->close_figure();
 
@@ -825,13 +825,13 @@ namespace user
                else
                {
 
-                  path->add_line(rectBorder.left, rectClient.bottom, rectBorder.left, rectBorder.top);
+                  path->add_line(rectBorder.left, rectangleClient.bottom, rectBorder.left, rectBorder.top);
 
-                  path->add_line(rectClient.right, rectBorder.top);
+                  path->add_line(rectangleClient.right, rectBorder.top);
 
-                  path->add_line(rectBorder.right, rectBorder.top + (rectBorder.right - rectClient.right));
+                  path->add_line(rectBorder.right, rectBorder.top + (rectBorder.right - rectangleClient.right));
 
-                  path->add_line(rectBorder.right - 1, rectClient.bottom);
+                  path->add_line(rectBorder.right - 1, rectangleClient.bottom);
 
                   path->close_figure();
 
@@ -934,7 +934,7 @@ namespace user
       ::rectangle_i32 rectangle;
       ::rectangle_i32 rectBorder;
       ::rectangle_i32 rectText;
-      ::rectangle_i32 rectClient;
+      ::rectangle_i32 rectangleClient;
       ::rectangle_i32 rectIcon;
       ::rectangle_i32 rectClose;
 
@@ -978,7 +978,7 @@ namespace user
 
          }
 
-         if (!get_element_rect(iVisiblePane, rectClient, e_element_client))
+         if (!get_element_rect(iVisiblePane, rectangleClient, e_element_client))
          {
 
             continue;
@@ -1008,8 +1008,8 @@ namespace user
 
                pgraphics->move_to(rectBorder.right, rectBorder.bottom);
                pgraphics->line_to(rectBorder.left + 1, rectBorder.bottom);
-               pgraphics->line_to(rectBorder.left, rectBorder.top - (rectBorder.left - rectClient.left));
-               pgraphics->line_to(rectClient.left, rectBorder.top);
+               pgraphics->line_to(rectBorder.left, rectBorder.top - (rectBorder.left - rectangleClient.left));
+               pgraphics->line_to(rectangleClient.left, rectBorder.top);
                pgraphics->line_to(rectBorder.right, rectBorder.top);
 
                auto pstyle = get_style(pgraphics);
@@ -1030,7 +1030,7 @@ namespace user
 
                pgraphics->move_to(rectBorder.right, rectBorder.bottom);
                pgraphics->line_to(rectBorder.left + 1, rectBorder.bottom);
-               pgraphics->line_to(rectBorder.left, rectBorder.top - (rectBorder.left - rectClient.left));
+               pgraphics->line_to(rectBorder.left, rectBorder.top - (rectBorder.left - rectangleClient.left));
                pgraphics->line_to(rectText.left, rectBorder.top);
                pgraphics->line_to(rectBorder.right, rectBorder.top);
                pgraphics->line_to(rectBorder.right, rectBorder.bottom);
@@ -1081,11 +1081,11 @@ namespace user
 
                pgraphics->set(pen);
 
-               pgraphics->move_to(rectBorder.left, rectClient.bottom);
+               pgraphics->move_to(rectBorder.left, rectangleClient.bottom);
                pgraphics->line_to(rectBorder.left, rectBorder.top);
-               pgraphics->line_to(rectClient.right, rectBorder.top);
-               pgraphics->line_to(rectBorder.right, rectBorder.top + (rectBorder.right - rectClient.right));
-               pgraphics->line_to(rectBorder.right - 1, rectClient.bottom);
+               pgraphics->line_to(rectangleClient.right, rectBorder.top);
+               pgraphics->line_to(rectBorder.right, rectBorder.top + (rectBorder.right - rectangleClient.right));
+               pgraphics->line_to(rectBorder.right - 1, rectangleClient.bottom);
 
                auto pstyle = get_style(pgraphics);
 
@@ -1103,12 +1103,12 @@ namespace user
 
                pgraphics->set(pen);
 
-               pgraphics->move_to(rectBorder.left, rectClient.bottom);
+               pgraphics->move_to(rectBorder.left, rectangleClient.bottom);
                pgraphics->line_to(rectBorder.left, rectBorder.top);
-               pgraphics->line_to(rectClient.right, rectBorder.top);
-               pgraphics->line_to(rectBorder.right, rectBorder.top + (rectBorder.right - rectClient.right));
-               pgraphics->line_to(rectBorder.right - 1, rectClient.bottom);
-               pgraphics->line_to(rectBorder.left, rectClient.bottom);
+               pgraphics->line_to(rectangleClient.right, rectBorder.top);
+               pgraphics->line_to(rectBorder.right, rectBorder.top + (rectBorder.right - rectangleClient.right));
+               pgraphics->line_to(rectBorder.right - 1, rectangleClient.bottom);
+               pgraphics->line_to(rectBorder.left, rectangleClient.bottom);
 
                if (m_itemHover == iVisiblePane && m_itemHover != e_element_close_tab_button)
                {
@@ -1197,9 +1197,9 @@ namespace user
 
    {
 
-      ::rectangle_i32 rectClient;
-      get_client_rect(rectClient);
-      rectangle_i64 rectangle_i64(rectClient);
+      ::rectangle_i32 rectangleClient;
+      get_client_rect(rectangleClient);
+      rectangle_i64 rectangle_i64(rectangleClient);
       *prectangle = rectangle_i64;
 
 
@@ -1209,9 +1209,9 @@ namespace user
    void tab::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      auto rectClient = get_client_rect();
+      auto rectangleClient = get_client_rect();
 
-      if(!rectClient)
+      if(!rectangleClient)
       {
 
          return;
@@ -1276,7 +1276,7 @@ namespace user
 
       pgraphics->set(get_font(pstyle, e_element_close_tab_button));
 
-      m_dcextension.GetTextExtent(pgraphics,MAGIC_PALACE_TAB_SIZE,get_data()->m_sizeSep);
+      m_dcextension.get_text_extent(pgraphics,MAGIC_PALACE_TAB_SIZE,get_data()->m_sizeSep);
 
       if(get_data()->m_bVertical)
       {
@@ -1307,7 +1307,7 @@ namespace user
 
             ::size_i32 size;
 
-            m_dcextension.GetTextExtent(pgraphics, str, size);
+            m_dcextension.get_text_extent(pgraphics, str, size);
 
             if(ppane->m_pimage->is_set())
             {
@@ -1366,18 +1366,18 @@ namespace user
 
          get_data()->m_iTabHeight = iTabHeight;
 
-         //::rectangle_i32 rectClient;
+         //::rectangle_i32 rectangleClient;
 
-         //get_client_rect(rectClient);
+         //get_client_rect(rectangleClient);
 
-         get_data()->m_rectTab.left       = rectClient.left;
-         get_data()->m_rectTab.top        = rectClient.top;
+         get_data()->m_rectTab.left       = rectangleClient.left;
+         get_data()->m_rectTab.top        = rectangleClient.top;
          get_data()->m_rectTab.right      = get_data()->m_rectTab.left + get_data()->m_iTabWidth;
-         get_data()->m_rectTab.bottom     = rectClient.bottom;
+         get_data()->m_rectTab.bottom     = rectangleClient.bottom;
 
-         get_data()->m_rectTabClient.left       = m_bShowTabs ? get_data()->m_rectTab.right : rectClient.left;
+         get_data()->m_rectTabClient.left       = m_bShowTabs ? get_data()->m_rectTab.right : rectangleClient.left;
          get_data()->m_rectTabClient.top        = get_data()->m_rectTab.top;
-         get_data()->m_rectTabClient.right      = rectClient.right;
+         get_data()->m_rectTabClient.right      = rectangleClient.right;
          get_data()->m_rectTabClient.bottom     = get_data()->m_rectTab.bottom;
 
       }
@@ -1390,11 +1390,11 @@ namespace user
 
          pgraphics->set(get_font(pstyle, e_state_selected));
 
-//         ::rectangle_i32 rectClient;
+//         ::rectangle_i32 rectangleClient;
 
-//         get_client_rect(rectClient);
+//         get_client_rect(rectangleClient);
 
-         int x = rectClient.left;
+         int x = rectangleClient.left;
 
          i32 ixAdd;
 
@@ -1416,7 +1416,7 @@ namespace user
 
             ::size_i32 size;
 
-            m_dcextension.GetTextExtent(pgraphics, str, size);
+            m_dcextension.get_text_extent(pgraphics, str, size);
 
             if(ppane->m_pimage->is_ok())
             {
@@ -1436,7 +1436,7 @@ namespace user
 
             ppane->m_point.x = x;
 
-            ppane->m_point.y = rectClient.top;
+            ppane->m_point.y = rectangleClient.top;
 
             ixAdd = 5;
 
@@ -1486,9 +1486,9 @@ namespace user
 
 
 
-         get_data()->m_rectTab.left       = rectClient.left;
-         get_data()->m_rectTab.top        = rectClient.top;
-         get_data()->m_rectTab.right      = rectClient.right;
+         get_data()->m_rectTab.left       = rectangleClient.left;
+         get_data()->m_rectTab.top        = rectangleClient.top;
+         get_data()->m_rectTab.right      = rectangleClient.right;
          get_data()->m_rectTab.bottom     = get_data()->m_rectTab.top + get_data()->m_iTabHeight;
 
          ::rectangle_i32 & rectTabClient = get_data()->m_rectTabClient;
@@ -1496,9 +1496,9 @@ namespace user
          bool bTabbedClient = m_bShowTabs;
 
          rectTabClient.left       = get_data()->m_rectTab.left;
-         rectTabClient.top        = bTabbedClient ? get_data()->m_rectTab.bottom : rectClient.top;
+         rectTabClient.top        = bTabbedClient ? get_data()->m_rectTab.bottom : rectangleClient.top;
          rectTabClient.right      = get_data()->m_rectTab.right;
-         rectTabClient.bottom     = rectClient.bottom;
+         rectTabClient.bottom     = rectangleClient.bottom;
 
          //TRACE0("rectTabClient");
       }
@@ -1531,7 +1531,7 @@ namespace user
 
          m_iTabSize = (int) m_pdata->m_tabpanecompositea.get_count() * m_pdata->m_iTabHeight;
 
-         m_iTabScrollMax = m_iTabSize - rectClient.height();
+         m_iTabScrollMax = m_iTabSize - rectangleClient.height();
 
       }
       else
@@ -1540,7 +1540,7 @@ namespace user
          m_iTabSize = m_pdata->m_tabpanecompositea.last()->m_point.x +
          m_pdata->m_tabpanecompositea.last()->m_size.cx;
 
-         m_iTabScrollMax = m_iTabSize - rectClient.width();
+         m_iTabScrollMax = m_iTabSize - rectangleClient.width();
 
       }
 
@@ -2485,7 +2485,9 @@ namespace user
 
       get_data()->m_pimagelist->create(16, 16, 0, 0, 0);
 
-      auto pgraphics = ::draw2d::create_memory_graphics();
+      auto pdraw2d = psystem->draw2d();
+
+      auto pgraphics = pdraw2d->create_memory_graphics();
 
       get_data()->m_bCreated = true;
 
@@ -2551,7 +2553,7 @@ namespace user
 
       ::user::interaction::install_message_routing(pchannel);
 
-      install_simple_ui_default_mouse_handling(pchannel);
+      install_hover_default_mouse_handling(pchannel);
 
       MESSAGE_LINK(e_message_left_button_down, pchannel, this, &tab::on_message_left_button_down);
       MESSAGE_LINK(e_message_left_button_up, pchannel, this, &tab::on_message_left_button_up);

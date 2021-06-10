@@ -75,11 +75,11 @@ namespace draw2d_opengl
       //void mult_alpha(::image::image * pimageWork, bool bPreserveAlpha = true);
       //void set_rgb(i32 R, i32 G, i32 B);
 
-      //void rotate(::image::image * pimage, const ::rect & rect, double dAngle, double dScale);
+      //void rotate(::image::image * pimage, const ::rectangle & rectangle, double dAngle, double dScale);
       //void rotate(::image::image * pimage, double dAngle, double dScale);
       //void Rotate034(::image::image * pimage, double dAngle, double dScale);
 
-      //void RadialFill(byte a, byte rect, byte g, byte b, i32 x, i32 y, i32 iRadius);
+      //void RadialFill(byte a, byte rectangle, byte g, byte b, i32 x, i32 y, i32 iRadius);
       //void RadialFill(
       //   byte a1, byte r1, byte g1, byte b1, // center colors
       //   byte a2, byte r2, byte g2, byte b2, // border colors

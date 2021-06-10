@@ -1315,8 +1315,21 @@ namespace xml
                }
 
             }
+            
+            auto pnode = m_nodea[i];
+            
+            if(!pnode)
+            {
+               
+               continue;
+               
+            }
+            
+            auto pxmlnode = pnode->get_xml_node();
+            
+            string strXml = pxmlnode->get_xml(opt);
              
-            ostring += m_nodea[i]->get_xml_node()->get_xml(opt);
+            ostring += strXml;
 
             if (i >= m_nodea.get_upper_bound())
             {

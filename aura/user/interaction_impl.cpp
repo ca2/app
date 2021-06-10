@@ -628,7 +628,7 @@ namespace user
 
       }
 
-      //m_puserinteraction->place(rectangle_dimension(
+      //m_puserinteraction->place(rectangle_i32_dimension(
       //                      pusersystem->m_createstruct.x,
       //                      pusersystem->m_createstruct.y,
       //                      pusersystem->m_createstruct.cx,
@@ -1458,7 +1458,8 @@ namespace user
 
       bKeyMessage = message == e_message_key_down ||
          message == e_message_key_up ||
-         message == e_message_char
+         message == e_message_char ||
+      message == e_message_text_composition
 #ifdef WINDOWS_DESKTOP
          || message == e_message_sys_key_down
          || message == e_message_sys_key_up
@@ -3796,9 +3797,6 @@ namespace user
       return (::user::interaction_impl *) this;
 
    }
-
-
-
 
 
    void interaction_impl::_001UpdateBuffer()

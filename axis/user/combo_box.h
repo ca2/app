@@ -112,8 +112,8 @@ namespace user
       virtual void _001ToggleDropDown();
 
 
-      virtual void on_set_keyboard_focus();
-      virtual void on_kill_keyboard_focus();
+      void on_set_keyboard_focus() override;
+      void on_kill_keyboard_focus() override;
 
 
       virtual void defer_create_combo_list();

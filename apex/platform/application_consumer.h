@@ -3,7 +3,7 @@
 
 #define APPLICATION_CONSUMER_BODY                                                      \
                                                                                        \
-virtual void assert_valid() const override                                             \
+void assert_valid() const override                                             \
 {                                                                                      \
                                                                                        \
    BASE1::assert_valid();                                                              \
@@ -17,7 +17,7 @@ virtual void assert_valid() const override                                      
 }                                                                                      \
                                                                                        \
                                                                                        \
-virtual void dump(dump_context& dumpcontext) const override                            \
+void dump(dump_context& dumpcontext) const override                            \
 {                                                                                      \
                                                                                        \
    BASE1::dump(dumpcontext);                                                           \
@@ -31,7 +31,7 @@ virtual void dump(dump_context& dumpcontext) const override                     
 }                                                                                      \
                                                                                        \
                                                                                        \
-virtual ::e_status on_initialize_object() override                                     \
+::e_status on_initialize_object() override                                     \
 {                                                                                      \
                                                                                        \
    m_papplication = m_pcontext ? m_pcontext->m_papexapplication : nullptr;             \
@@ -49,7 +49,7 @@ virtual ::e_status on_initialize_object() override                              
 }                                                                                      \
                                                                                        \
                                                                                        \
-virtual void on_subject(::subject::subject* psubject, ::subject::context* pcontext)    \
+void on_subject(::subject::subject* psubject, ::subject::context* pcontext) override   \
 {                                                                                      \
                                                                                        \
    BASE1::on_subject(psubject, pcontext);                                              \
@@ -130,7 +130,7 @@ public:
    }                                                                                      
       
       
-   virtual void on_layout(::draw2d::graphics_pointer& pgraphics)
+   void on_layout(::draw2d::graphics_pointer& pgraphics) override
    {
 
       BASE1::on_layout(pgraphics);

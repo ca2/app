@@ -30,7 +30,7 @@ namespace uwp
 {
 
 
-   directx_framework_view::directx_framework_view(::acme::system * psystem, ::String ^ strId)
+   directx_framework_view::directx_framework_view(class ::system * psystem, ::String ^ strId)
    {
 
       draw2d_direct2d::direct2d_initialize();
@@ -687,7 +687,7 @@ namespace uwp
    }
 
 
-   directx_application_source::directx_application_source(::acme::system * paxissystem, const string & strId)
+   directx_application_source::directx_application_source(class ::system * paxissystem, const string & strId)
    {
 
       m_psystem     = paxissystem;
@@ -705,7 +705,7 @@ namespace uwp
    }
 
 
-   directx_application_source ^ new_directx_application_source(::acme::system * paurasystem, const string & strId)
+   directx_application_source ^ new_directx_application_source(class ::system * paurasystem, const string & strId)
    {
 
       string str = strId;
@@ -722,9 +722,9 @@ namespace uwp
    Windows::Foundation::Rect directx_framework_view::get_input_content_rect()
    {
 
-      Windows::Foundation::Rect rect = m_rectInputContentRect;
+      Windows::Foundation::Rect rectangle = m_rectInputContentRect;
 
-      return rect;
+      return rectangle;
 
    }
 
@@ -732,9 +732,9 @@ namespace uwp
    Windows::Foundation::Rect directx_framework_view::get_input_selection_rect()
    {
 
-      Windows::Foundation::Rect rect = m_rectInputSelectionRect;
+      Windows::Foundation::Rect rectangle = m_rectInputSelectionRect;
 
-      return rect;
+      return rectangle;
 
    }
 
@@ -742,28 +742,28 @@ namespace uwp
    Windows::Foundation::Rect directx_framework_view::get_window_rect()
    {
 
-      Windows::Foundation::Rect rect = m_rectLastWindowRect;
+      Windows::Foundation::Rect rectangle = m_rectLastWindowRect;
 
-      /*      rect.X = 0;
-            rect.Y = 0;
-            rect.Width = 600;
-            rect.Height = 480;
+      /*      rectangle.X = 0;
+            rectangle.Y = 0;
+            rectangle.Width = 600;
+            rectangle.Height = 480;
 
             if(m_window == nullptr)
-               return rect;
+               return rectangle;
 
-            ::wait(m_window->Dispatcher->RunAsync(Windows::UI::Core::CoreDispatcherPriority::Normal, ref new Windows::UI::Core::DispatchedHandler ([=, &rect]()
+            ::wait(m_window->Dispatcher->RunAsync(Windows::UI::Core::CoreDispatcherPriority::Normal, ref new Windows::UI::Core::DispatchedHandler ([=, &rectangle]()
             {
                try
                {
-                  rect = m_window->Bounds;
+                  rectangle = m_window->Bounds;
                }
                catch(...)
                {
                }
             })));*/
 
-      return rect;
+      return rectangle;
 
    }
 

@@ -1045,8 +1045,51 @@ namespace windowing
 
    void window::window_show()
    {
+   
+      m_pwindowing->windowing_branch(__routine([this]()
+                                             {
 
+                                                 auto pimpl = m_pimpl;
+
+                                                 if (::is_set(pimpl))
+                                                 {
+
+                                                     auto puserinteraction = pimpl->m_puserinteraction;
+
+                                                     if (::is_set(puserinteraction))
+                                                     {
+
+                                                         auto pimpl2 = puserinteraction->m_pimpl2;
+
+                                                         if (::is_set(pimpl2))
+                                                         {
+
+                                                             pimpl2->window_show();
+
+                                                         }
+
+                                                     }
+
+                                                 }
+
+                                             }));
+      
    }
+
+ ::e_status window::frame_toggle_restore()
+{
+    
+    auto estatus= m_pimpl->m_puserinteraction->frame_toggle_restore();
+    
+    if(!estatus)
+    {
+       
+       return estatus;
+    
+    }
+    return estatus;
+    
+ }
 
 
 } // namespace windowing

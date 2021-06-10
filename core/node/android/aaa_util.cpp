@@ -60,9 +60,9 @@ oswindow CLASS_DECL_lnx _AfxChildWindowFromPoint(oswindow hWnd, POINT32 pt)
          (::GetWindowLong(hWndChild, GWL_STYLE) & WS_VISIBLE))
       {
          // see if point hits the child ::interaction_impl
-         ::rect rect;
-         ::get_window_rect(hWndChild, rect);
-         if (rect.contains(point))
+         ::rectangle rectangle;
+         ::get_window_rect(hWndChild, rectangle);
+         if (rectangle.contains(point))
             return hWndChild;
       }
    }

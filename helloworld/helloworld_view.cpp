@@ -247,17 +247,17 @@ namespace helloworld
    void view::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::rectangle_i32 rectClient;
+      ::rectangle_i32 rectangleClient;
 
-      get_client_rect(rectClient);
+      get_client_rect(rectangleClient);
 
-      if(rectClient.area() <= 0)
+      if(rectangleClient.area() <= 0)
          return;
 
       bool bHover = GetTypedParent < pane_view >()->m_pviewLast == this && GetTypedParent < pane_view >()->get_cur_tab_id() == FONTSEL_IMPACT;
 
-      if(m_prender->m_cx == rectClient.width()
-            && m_prender->m_cy == rectClient.height()
+      if(m_prender->m_cx == rectangleClient.width()
+            && m_prender->m_cy == rectangleClient.height()
             && !bHover
             && m_strNewFont == m_strFont)
          return;
@@ -277,11 +277,11 @@ namespace helloworld
 
       }
 
-      m_prender->m_cx = rectClient.width();
+      m_prender->m_cx = rectangleClient.width();
 
-      m_prender->m_cy = rectClient.height();
+      m_prender->m_cy = rectangleClient.height();
 
-      m_prender->m_rectClient = rectClient;
+      m_prender->m_rectangleClient = rectangleClient;
 
       m_prender->m_bNewLayout = true;
 

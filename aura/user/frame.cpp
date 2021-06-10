@@ -1,9 +1,5 @@
 #include "framework.h"
 #include "aura/user/_user.h"
-#include "aura/windowing/menu_item.h"
-#include "aura/windowing/menu.h"
-#include "aura/user/menu_command.h"
-#include "aura/windowing/menu_command.h"
 
 
 namespace user
@@ -361,9 +357,10 @@ namespace user
    }
 
 
-   void frame::display_previous_restore()
+   ::e_status frame::display_previous_restore()
    {
 
+      return ::success;
 
    }
 
@@ -453,38 +450,3 @@ namespace user
 
 
 
-void menu_shared_idle(::user::frame * pframe)
-{
-
-   auto pmenushared = pframe->m_pmenushared;
-
-   if(::is_null(pmenushared))
-   {
-
-      return;
-
-   }
-
-   for(int i = 0; i < pmenushared->m_itema.get_count(); i++)
-   {
-
-      auto pitem = pmenushared->m_itema[i];
-
-      if(pitem)
-      {
-
-         ::id id(::id::e_type_command_probe, pitem->m_id);
-
-         ::windowing::menu_command command(pitem);
-
-         command.m_id = id;
-
-         pframe->on_command_probe(&command);
-
-      }
-
-   }
-
-   pmenushared->on_idle_update();
-
-}

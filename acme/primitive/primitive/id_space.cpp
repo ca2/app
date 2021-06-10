@@ -354,7 +354,7 @@ void strid_array::sort()
    index iLPos,iUPos,iMPos;
    index i;
    stackLowerBound.push(0);
-   stackUpperBound.push(__count(m_idptra.m_nSize) - 1);
+   stackUpperBound.push(m_idptra.m_nSize - 1);
    while(true)
    {
       iLowerBound = stackLowerBound.pop();
@@ -432,7 +432,7 @@ bool strid_array::find(const char * psz,index & iIndex) const
    }
 
    index iLowerBound = 0;
-   index iMaxBound = __count(m_idptra.m_nSize) - 1;
+   index iMaxBound = m_idptra.m_nSize - 1;
    index iUpperBound = iMaxBound;
    index iCompare;
    // do binary search

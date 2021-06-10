@@ -387,12 +387,12 @@ namespace file
 #ifdef WINDOWS
 
 
-      void throw_os_error(DWORD dwLastError, const ::file::path& path)
-      {
+      //void throw_os_error(DWORD dwLastError, const ::file::path& path)
+      //{
 
-         throw_status(os_error_to_status(dwLastError), dwLastError, path);
+      //   throw_status(os_error_to_status(dwLastError), dwLastError, path);
 
-      }
+      //}
 
 
 #endif

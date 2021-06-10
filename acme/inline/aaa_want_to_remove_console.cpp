@@ -63,7 +63,7 @@ console::console(int argc, wchar_t* argv[])
 
 #endif
 
-   auto psystem = __new(::acme::system());
+   auto psystem = __new(class ::system());
 
    psystem->system_construct(this, argc, argv);
 
@@ -142,7 +142,7 @@ console::console(int argc, char * argv[])
 
 #endif
 
-   m_psystem = __new(::acme::system());
+   m_psystem = __new(class ::system());
 
    m_psystem->construct_system(this, argc, argv, pszCommandLine);
 

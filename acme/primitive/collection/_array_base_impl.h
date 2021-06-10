@@ -73,7 +73,7 @@ template < class TYPE, class ARG_TYPE, class ALLOCATOR >
 
    }
 
-   ::count nMoveCount = (::count_cast) m_nSize - (nUpperBound);
+   ::count nMoveCount = m_nSize - (nUpperBound);
 
    ALLOCATOR::destruct_count(m_pData + nIndex, nCount OBJ_REF_DBG_COMMA_THIS);
 
@@ -165,7 +165,7 @@ void array_base < TYPE, ARG_TYPE, ALLOCATOR >::destroy()
    if(m_pData != nullptr)
    {
 
-      ALLOCATOR::destruct_count(m_pData, (::count_cast) m_nSize OBJ_REF_DBG_COMMA_THIS);
+      ALLOCATOR::destruct_count(m_pData, m_nSize OBJ_REF_DBG_COMMA_THIS);
 
       ALLOCATOR::_free(m_pData);
 
@@ -180,6 +180,25 @@ void array_base < TYPE, ARG_TYPE, ALLOCATOR >::destroy()
 
 template < class TYPE, class ARG_TYPE, class ALLOCATOR >
 ::index array_base < TYPE, ARG_TYPE, ALLOCATOR >::insert_at(::index nIndex,const TYPE & newElement,::count nCount /*=1*/)
+{
+
+   ::index nIndexParam = make_room_at(nIndex, nCount);
+
+   while(nCount--)
+   {
+
+      ALLOCATOR::copy(m_pData + nIndex, &newElement);
+
+      nIndex++;
+
+   }
+
+   return nIndexParam;
+
+}
+
+template < class TYPE, class ARG_TYPE, class ALLOCATOR >
+::index array_base < TYPE, ARG_TYPE, ALLOCATOR >::make_room_at(::index nIndex, ::count nCount /*=1*/)
 {
 
    ASSERT(nIndex >= 0);    // will expand to meet need
@@ -217,29 +236,19 @@ template < class TYPE, class ARG_TYPE, class ALLOCATOR >
    // insert new value in the gap
    ASSERT(nIndex + nCount <= m_nSize);
 
-   ::index nIndexParam = nIndex;
-
-   while(nCount--)
-   {
-
-      ALLOCATOR::copy(m_pData + nIndex, &newElement);
-
-      nIndex++;
-
-   }
-
-   return nIndexParam;
+   return nIndex;
 
 }
+
 
 
 template < class TYPE, class ARG_TYPE, class ALLOCATOR >
 ::count array_base < TYPE, ARG_TYPE, ALLOCATOR >::append(const array_base < TYPE, ARG_TYPE, ALLOCATOR > & src)
 {
 
-   ::count nOldSize = (::count_cast) m_nSize;
+   ::count nOldSize = m_nSize;
 
-   ::count nSrcSize = (::count_cast) src.m_nSize;   // to enable to append to itself
+   ::count nSrcSize = src.m_nSize;   // to enable to append to itself
 
    allocate(nOldSize + nSrcSize);
 
@@ -261,7 +270,7 @@ void array_base < TYPE, ARG_TYPE, ALLOCATOR >::copy(const array_base < TYPE, ARG
 
    }
 
-   ::count nSrcSize = (::count_cast) src.m_nSize;
+   ::count nSrcSize = src.m_nSize;
 
    allocate(nSrcSize);
 
@@ -427,7 +436,7 @@ TYPE array_base < TYPE, ARG_TYPE, ALLOCATOR >::pick_at(::index nIndex)
 
    }
 
-   ::count nMoveCount = (::count_cast)m_nSize - (nUpperBound);
+   ::count nMoveCount = m_nSize - (nUpperBound);
 
    auto t = m_pData[nIndex];
 
@@ -462,7 +471,7 @@ array_base < TYPE, ARG_TYPE, ALLOCATOR > array_base < TYPE, ARG_TYPE, ALLOCATOR 
 
    }
 
-   ::count nMoveCount = (::count_cast)m_nSize - (nUpperBound);
+   ::count nMoveCount = m_nSize - (nUpperBound);
 
    array_base < TYPE, ARG_TYPE, ALLOCATOR > a(m_pData + nIndex, (size_t)nMoveCount);
 
@@ -650,7 +659,7 @@ template < class TYPE, class ARG_TYPE, class ALLOCATOR >
    if(nNewSize == m_nSize)
    {
 
-      return __count(m_nSize);
+      return m_nSize;
 
    }
 
@@ -661,7 +670,7 @@ template < class TYPE, class ARG_TYPE, class ALLOCATOR >
       if(m_pData != nullptr)
       {
 
-         ALLOCATOR::destruct_count(m_pData, __count(m_nSize)  OBJ_REF_DBG_COMMA_THIS);
+         ALLOCATOR::destruct_count(m_pData, m_nSize  OBJ_REF_DBG_COMMA_THIS);
 
          ALLOCATOR::_free(m_pData);
 
@@ -683,7 +692,7 @@ template < class TYPE, class ARG_TYPE, class ALLOCATOR >
       ASSERT(::comparison::lt(nNewSize, SIZE_T_MAX / sizeof(TYPE)));    // no overflow
 #endif
 
-      auto nAllocSize = __count(maximum(nNewSize, m_nGrowBy));
+      auto nAllocSize = maximum(nNewSize, m_nGrowBy);
 
 #if MEMDLEAK  || defined(__MCRTDBG)
 
@@ -750,13 +759,13 @@ template < class TYPE, class ARG_TYPE, class ALLOCATOR >
       if(nNewSize > m_nSize)
       {
 
-         ALLOCATOR::construct_count(m_pData + m_nSize,nNewSize - __count(m_nSize));
+         ALLOCATOR::construct_count(m_pData + m_nSize,nNewSize - m_nSize);
 
       }
       else if(m_nSize > nNewSize)
       {
 
-         ALLOCATOR::destruct_count(m_pData + nNewSize,__count(m_nSize) - nNewSize OBJ_REF_DBG_COMMA_THIS);
+         ALLOCATOR::destruct_count(m_pData + nNewSize,m_nSize - nNewSize OBJ_REF_DBG_COMMA_THIS);
 
       }
 
@@ -767,24 +776,24 @@ template < class TYPE, class ARG_TYPE, class ALLOCATOR >
    {
 
    // otherwise, grow aaa_base_array
-      nGrowBy = __count(m_nGrowBy);
+      nGrowBy = m_nGrowBy;
 
       if(nGrowBy == 0)
       {
 
          // heuristically determine growth when nGrowBy == 0
          //  (this avoids heap fragmentation in many situations)
-         nGrowBy = __count(m_nSize);
+         nGrowBy = m_nSize;
          nGrowBy = (nGrowBy < 4) ? 4 : ((nGrowBy > 1024) ? 1024 : nGrowBy);
 
       }
 
       ::count nNewMax;
 
-      if(nNewSize < __count(m_nMaxSize) + nGrowBy)
+      if(nNewSize < m_nMaxSize+ nGrowBy)
       {
 
-         nNewMax = __count(m_nMaxSize) + nGrowBy;  // granularity
+         nNewMax = m_nMaxSize+ nGrowBy;  // granularity
 
       }
       else
@@ -872,7 +881,7 @@ template < class TYPE, class ARG_TYPE, class ALLOCATOR >
       if (nNewSize > m_nSize)
       {
 
-         ALLOCATOR::construct_count(pNewData + m_nSize, nNewSize - __count(m_nSize));
+         ALLOCATOR::construct_count(pNewData + m_nSize, nNewSize - m_nSize);
 
       }
 
@@ -910,7 +919,7 @@ inline void array_base < TYPE, ARG_TYPE, ALLOCATOR > ::set_at_grow(::index nInde
 
    ASSERT(nIndex >= 0);
 
-   if (nIndex >= __count(this->m_nSize))
+   if (nIndex >= this->m_nSize)
    {
 
       this->set_size(nIndex + 1, nGrowBy);
@@ -928,7 +937,7 @@ inline TYPE & array_base < TYPE, ARG_TYPE, ALLOCATOR > ::element_at_grow(::index
 
    ASSERT(nIndex >= 0);
 
-   if (nIndex >= __count(this->m_nSize))
+   if (nIndex >= this->m_nSize)
    {
 
       this->set_size(nIndex + 1, nGrowBy);

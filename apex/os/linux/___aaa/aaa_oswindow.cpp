@@ -531,7 +531,7 @@ bool oswindow_data::set_icon(::image * pimage)
 
    d1->g()->set_interpolation_mode(e_interpolation_mode_high_quality_bicubic);
 
-   d1->g()->StretchBlt(d1->rect(), pimage->g(), pimage->rect());
+   d1->g()->StretchBlt(d1->rectangle(), pimage->g(), pimage->rectangle());
 
    memory m(m_pimpl->m_puserinteraction->get_application());
 
@@ -940,12 +940,12 @@ bool oswindow_data::show_window(int iShow)
 }
 
 
-void oswindow_data::full_screen(const ::rect & rect)
+void oswindow_data::full_screen(const ::rectangle & rectangle)
 {
 
-   ::rect rBest;
+   ::rectangle rBest;
 
-   int iMonitor = best_xinerama_monitor(m_pimpl->m_puserinteraction, rect, rBest);
+   int iMonitor = best_xinerama_monitor(m_pimpl->m_puserinteraction, rectangle, rBest);
 
    windowing_output_debug_string("\n::oswindow_data::full_screen 1");
 
@@ -973,7 +973,7 @@ void oswindow_data::full_screen(const ::rect & rect)
 
    }
 
-   ::rect rWindow;
+   ::rectangle rWindow;
 
    rWindow.left      = attr.x;
    rWindow.top       = attr.y;

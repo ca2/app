@@ -19,7 +19,7 @@ namespace experience
 
                m_colorCaptionText = argb(255, 0, 0, 0);
 
-               m_rectClient.set(0, 0, 0, 0);
+               m_rectangleClient.set(0, 0, 0, 0);
 
             }
 
@@ -65,11 +65,11 @@ namespace experience
 
                auto imaging = psystem->imaging();
 
-               ::rectangle_i32 rectClient(rectParam);
+               ::rectangle_i32 rectangleClient(rectParam);
 
                ::rectangle_i32 rectInflate;
 
-               if(rectClient.is_empty())
+               if(rectangleClient.is_empty())
                {
 
                   return;
@@ -79,7 +79,7 @@ namespace experience
 
                i32 iInflate = 5; // raio 2 pixels + centro 1 pixel
 
-               rectInflate = rectClient;
+               rectInflate = rectangleClient;
 
                rectInflate.inflate(iInflate, iInflate);
 
@@ -91,17 +91,17 @@ namespace experience
 
                ::image_pointer pimage2;
 
-               pimage1 = create_image({rectClient.width() + iInflate * 2,  rectClient.height() + iInflate * 2});
+               pimage1 = create_image({rectangleClient.width() + iInflate * 2,  rectangleClient.height() + iInflate * 2});
 
-               pimage2 = create_image({rectClient.width() + iInflate * 2,  rectClient.height() + iInflate * 2});
+               pimage2 = create_image({rectangleClient.width() + iInflate * 2,  rectangleClient.height() + iInflate * 2});
 
-               ::rectangle_i32 rectWindow = rectClient;
+               ::rectangle_i32 rectWindow = rectangleClient;
 
                pframewindow->_001ClientToScreen(rectWindow);
 
                ::point_i32 pointInflate(iInflate, iInflate);
 
-               auto point = rectClient.top_left();
+               auto point = rectangleClient.top_left();
 
                point -= pointInflate;
 
@@ -109,7 +109,7 @@ namespace experience
 
                b = imaging.blur(pimage2, 2);
 
-               pgraphics->stretch(rectClient, pimage2->g(), ::rectangle_i32(pointInflate, rectClient.size()));
+               pgraphics->stretch(rectangleClient, pimage2->g(), ::rectangle_i32(pointInflate, rectangleClient.size()));
 
             }
 
@@ -285,21 +285,23 @@ namespace experience
 
             }
 
-            bool frame::_001HitTest(const POINT_I32 &point, enum_element &eelementParam)
+   
+            e_hittest frame::_001HitTest(const ::point_i32 &point)
             {
-               ::rectangle_i32 rectangle;
-               for(enum_element eelement = (enum_element)(ElementNone + 1);
-                     eelement < ElementEnd;
-                     eelement++)
-               {
-                  get_element_rect(rectangle, eelement);
-                  if(rectangle.contains(point))
-                  {
-                     eelementParam = eelement;
-                     return true;
-                  }
-               }
-               return false;
+               return ::experience::frame::_001HitTest(point);
+//               ::rectangle_i32 rectangle;
+//               for(enum_element eelement = (enum_element)(ElementNone + 1);
+//                     eelement < ElementEnd;
+//                     eelement++)
+//               {
+//                  get_element_rect(rectangle, eelement);
+//                  if(rectangle.contains(point))
+//                  {
+//                     eelementParam = eelement;
+//                     return true;
+//                  }
+//               }
+//               return false;
             }
 
 
@@ -374,7 +376,11 @@ namespace experience
 
                auto pframewindow = m_pframewindow;
 
-               auto pgraphics = pframewindow->create_memory_graphics();
+               auto psystem = m_psystem->m_paurasystem;
+
+               auto pdraw2d = psystem->draw2d();
+
+               auto pgraphics = pdraw2d->create_memory_graphics();
 
                auto pstyle = pframewindow->get_style(pgraphics);
 
@@ -409,7 +415,7 @@ namespace experience
 
                auto pframewindow = m_pframewindow;
 
-               auto estyle = pframewindow->m_estyle;
+               //auto estyle = pframewindow->m_estyle;
 
                auto colorBorder = pframewindow->get_moveable_border_color();
 
@@ -575,7 +581,7 @@ namespace experience
 
                }
 
-               auto psession = get_session();
+               //auto psession = get_session();
 
                pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 

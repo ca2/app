@@ -55,7 +55,7 @@ namespace filemanager
       virtual bool make_duplicate_name(::file::path & str,const ::file::path & psz);
 
 
-      virtual ::e_status initialize(::object * pobject);
+      ::e_status initialize(::object * pobject) override;
       virtual bool open_src_dst(const ::file::path & pszSrc,::file::path & strDst,const ::file::path & pszDir);
 
       virtual void set_operation(e_operation eoperation);

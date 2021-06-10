@@ -62,11 +62,11 @@ namespace user
    void split_bar::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::rectangle_i32 rectClient;
+      ::rectangle_i32 rectangleClient;
 
-      get_client_rect(rectClient);
+      get_client_rect(rectangleClient);
 
-      pgraphics->fill_rectangle(rectClient, argb(255, 180, 180, 180));
+      pgraphics->fill_rectangle(rectangleClient, argb(255, 180, 180, 180));
 
 
    }

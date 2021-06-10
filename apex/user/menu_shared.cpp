@@ -11,17 +11,23 @@
 void free_c_string_array(char * const * ppszList, int iCount);
 char * const * alloc_c_string_array(const string_array & stra);
 
- menu_shared::menu_shared()
+
+menu_shared::menu_shared()
 {
+   
    m_ppszParent = nullptr;
    m_ppszMenu = nullptr;
    m_ppszId = nullptr;
    m_ositema = nullptr;
    m_statusa = nullptr;
    m_iCount = 0;
+   
 }
- menu_shared::~menu_shared()
+
+
+menu_shared::~menu_shared()
 {
+   
    free_c_string_array(m_ppszParent, m_iCount);
    free_c_string_array(m_ppszMenu, m_iCount);
    free_c_string_array(m_ppszId, m_iCount);

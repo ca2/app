@@ -1477,12 +1477,12 @@ namespace filemanager
 
       __pointer(::filemanager::data) pfilemanagerdata(__new(data));
 
-      callback * pcallback = nullptr;
+      ::filemanager::callback * pcallback = nullptr;
 
       if (pcreate != nullptr)
       {
 
-         pcallback = pcreate->cast < callback >("department::callback");
+         pcallback = pcreate->cast < ::filemanager::callback >("department::callback");
 
       }
 

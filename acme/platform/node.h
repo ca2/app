@@ -102,6 +102,8 @@ namespace acme
       virtual ::e_status system_main();
 
       virtual ::e_status on_start_system();
+      
+      virtual ::e_status _will_finish_launching();
 
 
       virtual void install_crash_dump_reporting(const string& strModuleNameWithTheExeExtension);
@@ -118,6 +120,24 @@ namespace acme
       //virtual ::file::path module_path_seed();
       //virtual ::file::path module_path_origin();
       //::file::path update_module_path();
+
+      
+      
+      virtual string app_id_to_app_name(const string & strAppId);
+      virtual string app_id_to_executable_name(const string & strAppId);
+
+
+      virtual bool is_application_installed(const ::file::path& pathExe, string strAppId, string& strBuild, const char* pszPlatform, const char* pszConfiguration, const char* pszLocale, const char* pszSchema);
+      virtual bool set_application_installed(const ::file::path& pathExe, string strAppId, const char* pszBuild, const char* pszPlatform, const char* pszConfiguration, const char* pszLocale, const char* pszSchema);
+
+
+      virtual ::file::path application_installer_folder(const ::file::path& pathExe, string strAppId, const char* pszPlatform, const char* pszConfiguration, const char* pszLocale, const char* pszSchema);
+      virtual ::file::path get_application_path(string strAppId, const char* pszPlatform, const char* pszConfiguration);
+
+
+      virtual ::file::path get_last_run_application_path_file(const string & strAppId);
+      virtual ::file::path get_last_run_application_path(const string & strAppId);
+      virtual ::e_status  set_last_run_application_path(const string& strAppId);
 
 
       virtual ::e_status register_extended_event_listener(::matter * pdata, bool bMouse, bool bKeyboard);
@@ -265,7 +285,8 @@ namespace acme
 
       virtual void set_console_colors(::u32 dwScreenColors, ::u32 dwPopupColors, ::u32 dwWindowAlpha);
 
-      virtual ::e_status open_folder(::file::path & pathFolder);
+      virtual ::e_status open_folder(const ::file::path & pathFolder);
+      virtual ::e_status open_file(const ::file::path & path);
 
 
 
@@ -302,12 +323,7 @@ namespace acme
 #endif
       
       
-#ifdef MACOS
-      
-      virtual void ns_launch_app(const char * psz, const char ** argv, int iFlags);
-      
-#endif
-
+   virtual ::e_status launch_app(const char * psz, const char ** argv, int iFlags);
 
    virtual ::e_status create_process(const char * pszCommandLine, u32 * pprocessID);
 

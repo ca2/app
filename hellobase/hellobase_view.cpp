@@ -206,14 +206,14 @@ namespace hellobase
    void view::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::rectangle_i32 rectClient;
+      ::rectangle_i32 rectangleClient;
 
-      get_client_rect(rectClient);
+      get_client_rect(rectangleClient);
 
-      if(rectClient.area() <= 0)
+      if(rectangleClient.area() <= 0)
          return;
 
-      if(m_prender->m_rectClient == rectClient && m_strNewFont == m_strFont)
+      if(m_prender->m_rectangleClient == rectangleClient && m_strNewFont == m_strFont)
          return;
 
       if(m_strNewFont != m_strFont)
@@ -225,7 +225,7 @@ namespace hellobase
 
       }
 
-      m_prender->m_rectClient = rectClient;
+      m_prender->m_rectangleClient = rectangleClient;
 
       m_prender->m_bNewLayout = true;
 

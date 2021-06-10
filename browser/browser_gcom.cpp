@@ -96,27 +96,27 @@ namespace browser
    {
 
 
-      ::rectangle_i32 rectClient;
+      ::rectangle_i32 rectangleClient;
 
-      get_client_rect(rectClient);
+      get_client_rect(rectangleClient);
 
       if (m_pimageBk)
       {
 
-/*         m_pimagePost->g()->draw(rectClient->intersect(m_pimage->rectangle()), m_pimage->g());
+/*         m_pimagePost->g()->draw(rectangleClient->intersect(m_pimage->rectangle()), m_pimage->g());
 
          return;
 
       }
 
-      if (rectClient.area() <= 0)
+      if (rectangleClient.area() <= 0)
       {
 
          return;
 
       }
 
-      backview::user::impact::BackViewRender(pgraphics, rectClient);
+      backview::user::impact::BackViewRender(pgraphics, rectangleClient);
 
    }
 

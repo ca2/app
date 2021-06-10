@@ -3776,7 +3776,7 @@ bool graphics::internal_draw_text(const ::block & block, const ::rectangle_f64 &
 
     cairo_font_extents(m_pdc, &e);
 
-    size_f64 sz = GetTextExtent(str);
+    size_f64 sz = get_text_extent(str);
 
     double dx;
 
@@ -3910,12 +3910,12 @@ bool graphics::draw_text_ex(const string & str, const ::rectangle_f64 & rectangl
 }
 
 
-size_f64 graphics::GetTextExtent(const char * lpszString, strsize nCount, strsize iIndex)
+size_f64 graphics::get_text_extent(const char * lpszString, strsize nCount, strsize iIndex)
 {
 
     size_f64 sz;
 
-    if (!GetTextExtent(sz, lpszString, nCount, iIndex))
+    if (!get_text_extent(sz, lpszString, nCount, iIndex))
     {
 
         return ::size_f64(0.0, 0.0);
@@ -3927,18 +3927,18 @@ size_f64 graphics::GetTextExtent(const char * lpszString, strsize nCount, strsiz
 }
 
 
-size_f64 graphics::GetTextExtent(const char * lpszString, strsize nCount)
+size_f64 graphics::get_text_extent(const char * lpszString, strsize nCount)
 {
 
-    return GetTextExtent(lpszString, nCount, -1);
+    return get_text_extent(lpszString, nCount, -1);
 
 }
 
 
-size_f64 graphics::GetTextExtent(const string & str)
+size_f64 graphics::get_text_extent(const string & str)
 {
 
-    return GetTextExtent(str, str.get_length());
+    return get_text_extent(str, str.get_length());
 
 }
 
@@ -3963,7 +3963,7 @@ size_f64 graphics::GetOutputTextExtent(const string & str)
 }
 
 
-bool graphics::GetTextExtent(size_f64 & size, const char * lpszString, strsize nCount, strsize iIndex)
+bool graphics::get_text_extent(size_f64 & size, const char * lpszString, strsize nCount, strsize iIndex)
 {
 
    string str(lpszString, minimum_non_negative(iIndex, nCount));
@@ -4077,7 +4077,7 @@ bool graphics::GetTextExtent(size_f64 & size, const char * lpszString, strsize n
 
       size_f64 s0(0.0, 0.0);
 
-      GetTextExtent(s0, strLine, str.get_length(), str.get_length());
+      get_text_extent(s0, strLine, str.get_length(), str.get_length());
 
       size.cx = maximum(size.cx, s0.cx);
 
@@ -4215,18 +4215,18 @@ bool graphics::_GetTextExtent(size_f64 & size, const char * lpszString, strsize 
 }
 
 
-bool graphics::GetTextExtent(size_f64 & size_f64, const char * lpszString, strsize nCount)
+bool graphics::get_text_extent(size_f64 & size_f64, const char * lpszString, strsize nCount)
 {
 
-    return GetTextExtent(size_f64, lpszString, nCount, -1);
+    return get_text_extent(size_f64, lpszString, nCount, -1);
 
 }
 
 
-bool graphics::GetTextExtent(size_f64 & size_f64, const string & str)
+bool graphics::get_text_extent(size_f64 & size_f64, const string & str)
 {
 
-    return GetTextExtent(size_f64, str, str.get_length());
+    return get_text_extent(size_f64, str, str.get_length());
 
 }
 
@@ -4300,7 +4300,7 @@ bool graphics::TextOutRaw(double x, double y, const block & block)
 
 #else
 
-    ::rectangle_i32 rectangle = ::rectangle_dimension(
+    ::rectangle_i32 rectangle = rectangle_i32_dimension(
                       ::i32(x),
                       ::i32(y),
                       65535,
@@ -5766,7 +5766,7 @@ bool graphics::flush()
 //#if defined(USE_PANGO)
 //
 //
-//void graphics::enum_fonts(::write_text::font_enum_item_array & itema)
+//void graphics::enum_fonts(::write_text::font_enumeration_item_array & itema)
 //{
 //
 //    synchronous_lock ml(cairo_mutex());
@@ -5781,12 +5781,12 @@ bool graphics::flush()
 //
 //    printf("Total fonts: %d", n_families);
 //
-//    __pointer(::write_text::font_enum_item) item;
+//    __pointer(::write_text::font_enumeration_item) item;
 //
 //    for (int i = 0; i < n_families; i++)
 //    {
 //
-//        item = __new(::write_text::font_enum_item);
+//        item = __new(::write_text::font_enumeration_item);
 //
 //        PangoFontFamily * pfamily = families[i];
 //
@@ -5809,10 +5809,10 @@ bool graphics::flush()
 //#else
 //
 ////
-////void graphics::enum_fonts(::write_text::font_enum_item_array & itema)
+////void graphics::enum_fonts(::write_text::font_enumeration_item_array & itema)
 ////{
 ////
-////   __pointer(::write_text::font_enum_item) pitem;
+////   __pointer(::write_text::font_enumeration_item) pitem;
 ////
 ////#if DEBUG_WINDOWS_C_ANDROID_FONTS
 ////
@@ -5827,7 +5827,7 @@ bool graphics::flush()
 ////   for (auto& path : listing)
 ////   {
 ////
-////      pitem = __new(::write_text::font_enum_item);
+////      pitem = __new(::write_text::font_enumeration_item);
 ////
 ////      pitem->m_strFile = path;
 ////
@@ -5893,7 +5893,7 @@ bool graphics::flush()
 ////   for (i = 0; fs && i < fs->nfont; i++)
 ////   {
 ////
-////      pitem = __new(::write_text::font_enum_item);
+////      pitem = __new(::write_text::font_enumeration_item);
 ////
 ////      FcPattern * font = fs->fonts[i];//FcFontSetFont(fs, i);
 ////
@@ -6001,7 +6001,7 @@ bool graphics::flush()
 //
 //        string_array stra;
 //
-//        ::write_text::font_enum_item_array itema;
+//        ::write_text::font_enumeration_item_array itema;
 //
 //        enum_fonts(itema);
 //

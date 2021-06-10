@@ -138,7 +138,7 @@ template<class TYPE, class ARG_TYPE, class ALLOCATOR >
 inline ::index raw_array < TYPE, ARG_TYPE, ALLOCATOR >::add(ARG_TYPE newElement)
 {
 
-   ::index nIndex = (::index_cast ) this->m_nSize;
+   ::index nIndex = this->m_nSize;
 
    this->set_at_grow(nIndex, newElement);
 
@@ -587,7 +587,7 @@ template<class TYPE, class ARG_TYPE, class ALLOCATOR >
 //
 //      dumpcontext << "\n";
 //
-//      dump_elements<TYPE>(dumpcontext,get_data(), (::count_cast) this->m_nSize);
+//      dump_elements<TYPE>(dumpcontext,get_data(), this->m_nSize);
 //
 //   }
 //

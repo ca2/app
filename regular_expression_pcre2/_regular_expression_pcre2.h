@@ -9,12 +9,12 @@
 #define PCRE2_STATIC
 #endif
 
-#ifdef __APPLE__
-#include <pcre/pcre2.h>
-#else
+//#ifdef __APPLE__
+//#include <pcre/pcre2.h>
+//#else
 // apt install libpcre2-dev
 #include <pcre2.h>
-#endif
+//#endif
 
 
 namespace regular_expression_pcre2

@@ -6,12 +6,15 @@ namespace subject
 
 
    critical_section manager::s_criticalsection;
+   
    ::set<manager_pointer > manager::s_managerset;
+
    bool manager::s_bDestroyAll = false;
 
 
    manager::manager()
    {
+
 
    }
 
@@ -22,7 +25,7 @@ namespace subject
    }
 
 
-   ::subject::subject * manager::subject(const ::id & id)
+   ::subject::subject * manager::subject(const ::id & id, const ::action_context& actioncontext)
    {
 
       synchronous_lock synchronouslock(mutex());
@@ -36,16 +39,43 @@ namespace subject
 
       auto & psubject = m_pmapSubject->operator[](id);
 
-      if(::is_null(psubject))
+      if (!psubject)
       {
 
          psubject = __new(::subject::subject(this, id));
 
          psubject->initialize(this);
 
+         psubject->m_actioncontext = actioncontext;
+
+         psubject->m_bNewSubject = true;
+
+         auto psystem = m_psystem;
+
+         psubject->m_millisSleep = psystem->get_update_poll_time(id);
+
          synchronouslock.unlock();
 
-         start_subject_handling(id);
+         process(psubject);
+
+         auto pnode = psystem->node();
+
+         if (pnode && pnode->defer_launch_on_node(psubject))
+         {
+
+         }
+         else if (psubject->should_poll(psubject->poll_time()))
+         {
+
+            m_pcontext->branch(psubject);
+
+         }
+
+      }
+      else if (psubject->m_bNewSubject)
+      {
+
+         psubject->m_bNewSubject = false;
 
       }
 
@@ -64,51 +94,13 @@ namespace subject
    }
 
 
-   ::subject::subject * manager::start_subject_handling(const ::id &id)
-   {
-
-      auto psubject = this->subject(id);
-
-      psubject->defer_create_mutex();
-
-      auto psystem = m_psystem->m_papexsystem;
-
-      psubject->m_millisSleep = psystem->get_update_poll_time(id);
-
-      process(psubject);
-
-      //auto pnode = Node;
-
-      auto pnode = psystem->node();
-
-      if(pnode && pnode->defer_launch_on_node(psubject))
-      {
-
-      }
-      else if (psubject->should_poll(psubject->poll_time()))
-      {
-
-         m_pcontext->branch(psubject);
-
-      }
-
-      return psubject;
-
-   }
-
-
    void manager::erase_from_any_source(::matter* pmatter)
    {
 
-//      void matter::erase_from_any_source()
-  //    {
-
-         ::subject::manager::__erase(pmatter);
-
-    //  }
-
+      ::subject::manager::__erase(pmatter);
 
    }
+
 
    void manager::deliver(const ::id &id)
    {
@@ -137,6 +129,13 @@ namespace subject
    {
 
       auto psubject = subject(id);
+
+      if (psubject->m_bNewSubject)
+      {
+
+         return;
+
+      }
 
       process(psubject);
 

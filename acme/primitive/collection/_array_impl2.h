@@ -186,7 +186,7 @@ template < class TYPE, class ARG_TYPE, class ALLOCATOR >
 inline TYPE& array < TYPE, ARG_TYPE, ALLOCATOR > ::get_at(::index nIndex)
 {
    
-   ASSERT(nIndex >= 0 && nIndex < __count(this->m_nSize));
+   ASSERT(nIndex >= 0 && nIndex < this->m_nSize);
 
    return get_data()[nIndex];
 
@@ -197,7 +197,7 @@ template < class TYPE, class ARG_TYPE, class ALLOCATOR >
 inline const TYPE& array < TYPE, ARG_TYPE, ALLOCATOR > ::get_at(::index nIndex) const
 {
 
-   ASSERT(nIndex >= 0 && nIndex < __count(this->m_nSize));
+   ASSERT(nIndex >= 0 && nIndex < this->m_nSize);
 
    return get_data()[nIndex];
 
@@ -208,7 +208,7 @@ template < class TYPE, class ARG_TYPE, class ALLOCATOR >
 inline void array < TYPE, ARG_TYPE, ALLOCATOR > ::set_at(::index nIndex, ARG_TYPE newElement)
 {
 
-   ASSERT(nIndex >= 0 && nIndex < __count(this->m_nSize));
+   ASSERT(nIndex >= 0 && nIndex < this->m_nSize);
 
    get_data()[nIndex] = newElement;
 
@@ -219,7 +219,7 @@ template < class TYPE, class ARG_TYPE, class ALLOCATOR >
 inline const TYPE& array_base < TYPE, ARG_TYPE, ALLOCATOR > ::element_at(::index nIndex) const
 {
 
-   ASSERT(nIndex >= 0 && nIndex < __count(this->m_nSize));
+   ASSERT(nIndex >= 0 && nIndex < this->m_nSize);
 
    return m_pData[nIndex];
 
@@ -230,7 +230,7 @@ template < class TYPE, class ARG_TYPE, class ALLOCATOR >
 inline TYPE& array_base < TYPE, ARG_TYPE, ALLOCATOR > ::element_at(::index nIndex)
 {
 
-   ASSERT(nIndex >= 0 && nIndex < __count(this->m_nSize));
+   ASSERT(nIndex >= 0 && nIndex < this->m_nSize);
 
    return m_pData[nIndex];
 
@@ -279,7 +279,7 @@ template < class TYPE, class ARG_TYPE, class ALLOCATOR >
 inline ::index array < TYPE, ARG_TYPE, ALLOCATOR > ::add_item(ARG_TYPE newElement)
 {
 
-   ::index nIndex = (::index_cast) __count(this->m_nSize);
+   ::index nIndex = (::index_cast) this->m_nSize;
 
    this->allocate(nIndex + 1);
 
@@ -376,7 +376,7 @@ array < TYPE, ARG_TYPE, ALLOCATOR > ::array(::matter * pobject, ::count nGrowBy)
 {
 //   this->m_nGrowBy = maximum(0, nGrowBy);
 //   this->m_pData = nullptr;
-//   __count(this->m_nSize) = this->m_nMaxSize = 0;
+//   this->m_nSize = this->m_nMaxSize = 0;
 }
 
 
@@ -441,9 +441,9 @@ inline ::index array < TYPE, ARG_TYPE, ALLOCATOR > ::append(const array& src)
    if(this == &src)
       __throw(error_invalid_argument);
 
-   ::count nOldSize = __count(this->m_nSize);
-   this->allocate(__count(this->m_nSize) + __count(src.m_nSize));
-   CopyElements<TYPE>(&this->m_pData[nOldSize], src.m_pData, __count(src.m_nSize));
+   ::count nOldSize = this->m_nSize;
+   this->allocate(this->m_nSize) + __count(src.m_nSize);
+   CopyElements<TYPE>(&this->m_pData[nOldSize], src.m_pData, src.m_nSize);
    return nOldSize;
 }
 
@@ -458,7 +458,7 @@ inline void array < TYPE, ARG_TYPE, ALLOCATOR >::copy(const array& src)
    if(this != &src)
    {
       
-      auto nSrcSize = __count(src.m_nSize);
+      auto nSrcSize = src.m_nSize;
       
       this->allocate(nSrcSize);
       
@@ -482,7 +482,7 @@ inline void array < TYPE, ARG_TYPE, ALLOCATOR >::copy(const array& src)
 //
 //   dumpcontext << "with ";
 //
-//   dumpcontext.write(__count(this->m_nSize));
+//   dumpcontext.write(this->m_nSize);
 //
 //   dumpcontext << " elements";
 //
@@ -491,7 +491,7 @@ inline void array < TYPE, ARG_TYPE, ALLOCATOR >::copy(const array& src)
 //
 //      dumpcontext << "\n";
 //
-//      dump_elements<TYPE>(dumpcontext, this->get_data(), (::count_cast) __count(this->m_nSize));
+//      dump_elements<TYPE>(dumpcontext, this->get_data(), this->m_nSize);
 //
 //   }
 //
@@ -509,16 +509,16 @@ inline void array < TYPE, ARG_TYPE, ALLOCATOR >::copy(const array& src)
 //   if (this->m_pData == nullptr)
 //   {
 //      
-//      ASSERT(__count(this->m_nSize) == 0);
+//      ASSERT(this->m_nSize) == 0;
 //      ASSERT(this->m_nMaxSize == 0);
 //
 //   }
 //   else
 //   {
 //      
-//      ASSERT(__count(this->m_nSize) >= 0);
+//      ASSERT(this->m_nSize) >= 0;
 //      ASSERT(this->m_nMaxSize >= 0);
-//      ASSERT(__count(this->m_nSize) <= this->m_nMaxSize);
+//      ASSERT(this->m_nSize) <= this->m_nMaxSize;
 //      ASSERT(__is_valid_address(this->m_pData, (::memsize_cast) this->m_nMaxSize * sizeof(TYPE)));
 //
 //   }
@@ -596,7 +596,7 @@ template < class TYPE, class ARG_TYPE, class ALLOCATOR >
 inline TYPE & array < TYPE, ARG_TYPE, ALLOCATOR > ::add_new()
 {
 
-   this->set_size(__count(this->m_nSize) + 1);
+   this->set_size(this->m_nSize) + 1;
 
    return this->last();
 
@@ -607,7 +607,7 @@ template < class TYPE, class ARG_TYPE, class ALLOCATOR >
 inline ::index array < TYPE, ARG_TYPE, ALLOCATOR > ::add_new(::count count)
 {
 
-   this->set_size(__count(this->m_nSize) + count);
+   this->set_size(this->m_nSize) + count;
 
    return this->get_upper_bound();
 
@@ -693,7 +693,7 @@ inline void array_base < TYPE, ARG_TYPE, ALLOCATOR > ::set_at_grow(::index nInde
 
    ASSERT(nIndex >= 0);
 
-   if (nIndex >= __count(this->m_nSize))
+   if (nIndex >= this->m_nSize)
    {
 
       this->set_size(nIndex + 1, nGrowBy);
@@ -711,7 +711,7 @@ inline TYPE & array_base < TYPE, ARG_TYPE, ALLOCATOR > ::element_at_grow(::index
 
    ASSERT(nIndex >= 0);
 
-   if (nIndex >= __count(this->m_nSize))
+   if (nIndex >= this->m_nSize)
    {
 
       this->set_size(nIndex + 1, nGrowBy);

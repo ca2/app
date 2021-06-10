@@ -1120,7 +1120,7 @@ namespace user
 
          auto rectangle = get_drawing_rect();
 
-         rectangle_f64 rectClient(rectangle);
+         rectangle_f64 rectangleClient(rectangle);
 
          int x = (int) rectangle.left;
 
@@ -1220,7 +1220,7 @@ namespace user
 
             }
 
-            pspan->m_sizeSpan = pgraphics->GetTextExtent(pspan->m_str);
+            pspan->m_sizeSpan = pgraphics->get_text_extent(pspan->m_str);
 
             strsize iSpanChar = 0;
 
@@ -1339,7 +1339,7 @@ namespace user
 
             strSlice.Empty();
 
-            cWords = (int) longest_pline(strSlice, dPosition, straWords, &pspan->m_daPositionRight[iSpanChar], dPositionLeft, (int) rectClient.right - x);
+            cWords = (int) longest_pline(strSlice, dPosition, straWords, &pspan->m_daPositionRight[iSpanChar], dPositionLeft, (int) rectangleClient.right - x);
 
             if (ansi_char_is_space(straWords.last().last_char())
                || (iSpan + 1 < m_spana.get_count()
@@ -1397,7 +1397,7 @@ namespace user
 
                strSlice.Empty();
 
-               longest_word(strSlice, dPosition, strWord, &pspan->m_daPositionRight[iSpanChar], dPositionLeft, (int) rectClient.right - x);
+               longest_word(strSlice, dPosition, strWord, &pspan->m_daPositionRight[iSpanChar], dPositionLeft, (int) rectangleClient.right - x);
 
                auto pbox = __new(box(pspan));
 
@@ -1475,7 +1475,7 @@ namespace user
          for (auto& pline : plinea->ptra())
          {
 
-            align(pline, rectClient);
+            align(pline, rectangleClient);
 
          }
 
@@ -1527,7 +1527,7 @@ namespace user
 
          }
 
-         //rectangle_f64 rectClient(rectangle);
+         //rectangle_f64 rectangleClient(rectangle);
 
          auto rectangle = get_drawing_rect();
 

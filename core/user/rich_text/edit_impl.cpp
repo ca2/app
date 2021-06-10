@@ -678,18 +678,18 @@ namespace user
 
          //::aura::draw_context* pdrawcontext = pgraphics->::aura::simple_chain < ::aura::draw_context >::get_last();
 
-         //::rectangle_i32 rectClient;
+         //::rectangle_i32 rectangleClient;
 
          //if (pdrawcontext != nullptr)
          //{
 
-         //   rectClient = pdrawcontext->m_rectClient;
+         //   rectangleClient = pdrawcontext->m_rectangleClient;
 
          //}
          //else
          //{
 
-         //   get_client_rect(rectClient);
+         //   get_client_rect(rectangleClient);
 
          //}
 
@@ -716,7 +716,7 @@ namespace user
          //   if (crBackground != 0)
          //   {
 
-         //      pgraphics->fill_rectangle(rectClient, crBackground);
+         //      pgraphics->fill_rectangle(rectangleClient, crBackground);
 
          //   }
 
@@ -737,7 +737,7 @@ namespace user
 
          //   //crBackground = argb(255, 255, 200, 100);
 
-         //   pgraphics->fill_rectangle(rectClient, crBackground);
+         //   pgraphics->fill_rectangle(rectangleClient, crBackground);
 
          //}
 
@@ -761,11 +761,11 @@ namespace user
          else
          {*/
 
-            ::rectangle_i32 rectClient;
+            ::rectangle_i32 rectangleClient;
 
-            get_client_rect(rectClient);
+            get_client_rect(rectangleClient);
 
-            pgraphics->fill_rectangle(rectClient, argb(40, 255, 255, 255));
+            pgraphics->fill_rectangle(rectangleClient, argb(40, 255, 255, 255));
 
             draw_impl(pgraphics);
 
@@ -881,9 +881,9 @@ namespace user
 
             point -= rectWindow.top_left();
 
-            auto rectClient = get_client_rect();
+            auto rectangleClient = get_client_rect();
 
-            return rectClient.contains(::point_i32(point));
+            return rectangleClient.contains(::point_i32(point));
 
          }
 
@@ -1106,8 +1106,10 @@ namespace user
                   _001GetSelLineText(str);
 
                }
+               
+               auto pcopydesk = psession->copydesk();
 
-               psession->copydesk().set_plain_text(str);
+               pcopydesk->set_plain_text(str);
 
                return;
 
@@ -1127,7 +1129,9 @@ namespace user
 
                   string str;
 
-                  psession->copydesk().get_plain_text(str);
+                  auto pcopydesk = psession->copydesk();
+
+                  pcopydesk->get_plain_text(str);
 
                   m_pdata->_001InsertText(str);
 
@@ -1150,7 +1154,9 @@ namespace user
 
                _001GetSelText(str);
 
-               psession->copydesk().set_plain_text(str);
+               auto pcopydesk = psession->copydesk();
+
+               pcopydesk->set_plain_text(str);
 
                if (is_window_enabled())
                {
@@ -1452,11 +1458,11 @@ namespace user
                   //i32 x;
                   //index iLine = SelToLineX(m_pdata->m_iSelEnd, x);
 
-                  //::rectangle_i32 rectClient;
+                  //::rectangle_i32 rectangleClient;
 
-                  //GetFocusRect(rectClient);
+                  //GetFocusRect(rectangleClient);
 
-                  //iLine -= rectClient.height() / m_iLineHeight;
+                  //iLine -= rectangleClient.height() / m_iLineHeight;
 
                   //if (iLine < 0)
                   //{
@@ -1486,11 +1492,11 @@ namespace user
 
                   //index iLine = SelToLineX(m_pdata->m_iSelEnd, x);
 
-                  //::rectangle_i32 rectClient;
+                  //::rectangle_i32 rectangleClient;
 
-                  //GetFocusRect(rectClient);
+                  //GetFocusRect(rectangleClient);
 
-                  //iLine += rectClient.height() / m_iLineHeight;
+                  //iLine += rectangleClient.height() / m_iLineHeight;
 
                   //if (iLine >= m_iaLineBeg.get_size())
                   //{

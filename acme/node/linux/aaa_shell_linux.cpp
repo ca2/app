@@ -1080,7 +1080,7 @@ namespace linux
 //               pimage->fill(255, colorref_get_r_value(crBk), colorref_get_g_value(crBk), colorref_get_b_value(crBk));
 //               pimage->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_blend);
 //               pimage->get_graphics()->draw(::point(), d->size(), d->get_graphics());
-//               pimage->get_graphics()->fill_rectangle(rect(d->size()), argb(123, colorref_get_r_value(crBk), colorref_get_g_value(crBk), colorref_get_b_value(crBk)));
+//               pimage->get_graphics()->fill_rectangle(rectangle(d->size()), argb(123, colorref_get_r_value(crBk), colorref_get_g_value(crBk), colorref_get_b_value(crBk)));
 //               m_pil[iSize]->m_pimage->g()->set_alpha_mode(::draw2d::alpha_mode_set);
 //               m_pil[iSize]->m_pimage->g()->draw(::point(), d->size(), pimage->get_graphics());
 //               m_pil[iSize]->m_pimage->g()->set_alpha_mode(::draw2d::alpha_mode_blend);

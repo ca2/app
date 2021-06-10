@@ -140,7 +140,8 @@ namespace user
       bool              m_bMouseHoverOnCapture : 1;
       //bool              m_bTrackMouseLeave : 1;
       bool              m_bMouseHover : 1;
-      bool              m_bSimpleUIDefaultMouseHandling : 1;
+      bool              m_bClickDefaultMouseHandling : 1;
+      bool              m_bHoverDefaultMouseHandling : 1;
       //bool              m_bSimpleUIDefaultMouseHandlingMouseCaptureOnLeftButtonDown : 1;
 
 
@@ -195,6 +196,7 @@ namespace user
       id                                        m_uiText;
       ::type                                    m_type;
       id                                        m_idPrivateDataSection;
+      //::id                                      m_idTranslated;
       bool                                      m_bTransparent;
       enum_control_type                         m_econtroltype;
       bool                                      m_bCreated;
@@ -216,7 +218,7 @@ namespace user
       string                                    m_strStyle;
       property_set                              m_setStyle;
 
-
+      __pointer(__pointer_array(::user::interaction))      m_puserinteractionaControlEventHandler;
 
 
 
@@ -695,6 +697,11 @@ namespace user
       virtual void sketch_prepare_window_restore(edisplay edisplay) override;
       virtual void sketch_prepare_window_dock(edisplay edisplay) override;
 
+      virtual ::e_status frame_experience_restore();
+      
+      virtual ::e_status frame_toggle_restore();
+      
+      virtual ::e_status display_previous_restore();
 
       inline void get_client_rect(RECTANGLE_I32 * lprect, enum_layout elayout = e_layout_design) const { layout().state(elayout).client_rect(lprect); }
       inline ::rectangle_i32 get_client_rect(enum_layout elayout = e_layout_design) const { return layout().state(elayout).client_rect(); }
@@ -943,11 +950,23 @@ namespace user
       virtual void EndModalLoop(id nResult) override;
 
 
-      virtual void route_control_event(::user::control_event* pevent);
+      //virtual void route_control_event(::user::control_event* pevent);
 
       virtual void on_control_event(::message::message* pmessage);
 
-      virtual void on_notify_control_event(control_event* pevent);
+      //virtual void on_notify_control_event(control_event* pevent);
+      
+      inline bool has_control_event_handler() const
+      {
+         
+         return m_puserinteractionaControlEventHandler &&
+         m_puserinteractionaControlEventHandler->has_element();
+         
+      }
+      
+      void add_control_event_handler(::user::interaction * puserinteraction, bool bPriority = false);
+      
+      virtual void route_control_event(::user::control_event* pevent);
 
       virtual void on_control_event(::user::control_event* pevent) override;
 
@@ -1380,7 +1399,7 @@ namespace user
 
       virtual ::user::interaction* get_focusable_descendant() const override;
 
-      virtual void RepositionBars(::u32 nIDFirst, ::u32 nIDLast, ::id idLeftOver, ::u32 nFlag = reposDefault, RECTANGLE_I32* prectParam = nullptr, const ::rectangle_i32& rectClient = nullptr, bool bStretch = true) override;
+      virtual void RepositionBars(::u32 nIDFirst, ::u32 nIDLast, ::id idLeftOver, ::u32 nFlag = reposDefault, RECTANGLE_I32* prectParam = nullptr, const ::rectangle_i32& rectangleClient = nullptr, bool bStretch = true) override;
 
       virtual ::user::interaction* ChildWindowFromPoint(const ::point_i32& point) override;
       virtual ::user::interaction* ChildWindowFromPoint(const ::point_i32& point, ::u32 nFlags) override;
@@ -1724,7 +1743,8 @@ namespace user
       virtual void clear_bitmap_source() override;
 
 
-      void install_simple_ui_default_mouse_handling(::channel* pchannel);
+      void install_click_default_mouse_handling(::channel* pchannel);
+      void install_hover_default_mouse_handling(::channel* pchannel);
       void install_update_data_message_routing(::channel * pchannel);
 
 
@@ -1744,7 +1764,7 @@ namespace user
 
       virtual bool keyboard_focus_is_focusable() const override;
 
-      virtual bool simple_on_control_event(::message::message* pmessage, ::user::enum_event eevent);
+      //virtual bool simple_on_control_event(::message::message* pmessage, ::user::enum_event eevent);
 
       using ::aura::drawable::hit_test;
       virtual void hit_test(::user::item& item, const ::point_i32 & point) override;

@@ -468,6 +468,19 @@ namespace userex
          pdocument->m_pviewTopic->set_notify_user_interaction(this);
 
          pimpactdata->m_puserinteraction = pdocument->m_pviewTopic;
+         
+         m_pfontview->m_pview->add_control_event_handler(this);
+
+         auto psession = get_session();
+
+         __pointer(::user::interaction) pview = psession->get_bound_ui(FONTSEL_IMPACT);
+
+         if(pview)
+         {
+
+            m_pfontview->m_pview->add_control_event_handler(pview);
+
+         }
 
       }
       else if (is_color_sel(pimpactdata->m_id))
@@ -488,6 +501,19 @@ namespace userex
          pdocument->m_pviewTopic->set_notify_user_interaction(this);
 
          pimpactdata->m_puserinteraction = pdocument->m_pviewTopic;
+         
+         m_pcolorview->add_control_event_handler(this);
+
+         auto psession = get_session();
+
+         __pointer(::user::interaction) pview = psession->get_bound_ui(COLORSEL_IMPACT);
+
+         if(pview)
+         {
+
+            m_pcolorview->add_control_event_handler(pview);
+
+         }
 
       }
       else if(is_filemanager(pimpactdata->m_id))

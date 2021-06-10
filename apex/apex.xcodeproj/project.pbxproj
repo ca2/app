@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		9A220F68251A1C64002B42B7 /* thread_set.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A220F67251A1C63002B42B7 /* thread_set.h */; };
+		9A413CB0266EB98E00C3FF0E /* libssl.1.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A413CAE266EB98D00C3FF0E /* libssl.1.1.dylib */; };
+		9A413CB1266EB98E00C3FF0E /* libcrypto.1.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A413CAF266EB98E00C3FF0E /* libcrypto.1.1.dylib */; };
 		9A4E5D742519423600CC6817 /* application_system_run.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A68B8292511444C008DABD2 /* application_system_run.cpp */; };
 		9A4F4E0825311CFC00733584 /* http_base_socket.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A4F4E0625311CFC00733584 /* http_base_socket.h */; };
 		9A4F4E0925311CFC00733584 /* http_base_socket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4F4E0725311CFC00733584 /* http_base_socket.cpp */; };
@@ -30,8 +32,8 @@
 		9A4F4E2E25311DAB00733584 /* rsa.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A4F4E2525311DAB00733584 /* rsa.h */; };
 		9A4F4E2F25311DAB00733584 /* hasher_algorithm.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A4F4E2625311DAB00733584 /* hasher_algorithm.h */; };
 		9A4F4E3025311DAB00733584 /* rsa.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4F4E2725311DAB00733584 /* rsa.cpp */; };
-		9A5EE40D2650B21D009F25F0 /* libcrypto.1.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A5EE4082650B1F2009F25F0 /* libcrypto.1.1.dylib */; };
-		9A5EE40E2650B221009F25F0 /* libssl.1.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A5EE40A2650B1F2009F25F0 /* libssl.1.1.dylib */; };
+		9A64C0932660273E0074030F /* crypto_initializer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A64C0902660273E0074030F /* crypto_initializer.cpp */; };
+		9A64C0942660273E0074030F /* crypto_initializer.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A64C0922660273E0074030F /* crypto_initializer.h */; };
 		9A68BB3A2511444D008DABD2 /* procedure.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B4092511444A008DABD2 /* procedure.h */; };
 		9A68BB3B2511444D008DABD2 /* console.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B40A2511444A008DABD2 /* console.h */; };
 		9A68BB3C2511444D008DABD2 /* _impl.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B40D2511444A008DABD2 /* _impl.h */; };
@@ -1244,6 +1246,8 @@
 
 /* Begin PBXFileReference section */
 		9A220F67251A1C63002B42B7 /* thread_set.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = thread_set.h; sourceTree = "<group>"; };
+		9A413CAE266EB98D00C3FF0E /* libssl.1.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libssl.1.1.dylib; path = "../../../archive/storage-macos/library/libssl.1.1.dylib"; sourceTree = "<group>"; };
+		9A413CAF266EB98E00C3FF0E /* libcrypto.1.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcrypto.1.1.dylib; path = "../../../archive/storage-macos/library/libcrypto.1.1.dylib"; sourceTree = "<group>"; };
 		9A4F4E0625311CFC00733584 /* http_base_socket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = http_base_socket.h; sourceTree = "<group>"; };
 		9A4F4E0725311CFC00733584 /* http_base_socket.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = http_base_socket.cpp; sourceTree = "<group>"; };
 		9A4F4E0A25311D3400733584 /* _system_sockets.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _system_sockets.cpp; sourceTree = "<group>"; };
@@ -1265,8 +1269,8 @@
 		9A4F4E2525311DAB00733584 /* rsa.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rsa.h; sourceTree = "<group>"; };
 		9A4F4E2625311DAB00733584 /* hasher_algorithm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = hasher_algorithm.h; sourceTree = "<group>"; };
 		9A4F4E2725311DAB00733584 /* rsa.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = rsa.cpp; sourceTree = "<group>"; };
-		9A5EE4082650B1F2009F25F0 /* libcrypto.1.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcrypto.1.1.dylib; path = "../../../../../../Shared/.local/Cellar/openssl@1.1/1.1.1k/lib/libcrypto.1.1.dylib"; sourceTree = "<group>"; };
-		9A5EE40A2650B1F2009F25F0 /* libssl.1.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libssl.1.1.dylib; path = "../../../../../../Shared/.local/Cellar/openssl@1.1/1.1.1k/lib/libssl.1.1.dylib"; sourceTree = "<group>"; };
+		9A64C0902660273E0074030F /* crypto_initializer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = crypto_initializer.cpp; sourceTree = "<group>"; };
+		9A64C0922660273E0074030F /* crypto_initializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypto_initializer.h; sourceTree = "<group>"; };
 		9A68A446251143F8008DABD2 /* libapex.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libapex.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A68B4092511444A008DABD2 /* procedure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = procedure.h; sourceTree = "<group>"; };
 		9A68B40A2511444A008DABD2 /* console.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = console.h; sourceTree = "<group>"; };
@@ -1966,14 +1970,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				9AD199AD251279BC00B4C44A /* libz.tbd in Frameworks */,
-				9A5EE40D2650B21D009F25F0 /* libcrypto.1.1.dylib in Frameworks */,
-				9A5EE40E2650B221009F25F0 /* libssl.1.1.dylib in Frameworks */,
+				9A413CB0266EB98E00C3FF0E /* libssl.1.1.dylib in Frameworks */,
 				9AD199C925127AB500B4C44A /* Security.framework in Frameworks */,
 				9AD199C725127A4A00B4C44A /* IOKit.framework in Frameworks */,
 				9AD199AB251279A000B4C44A /* Cocoa.framework in Frameworks */,
 				9AD199A92512797800B4C44A /* CoreText.framework in Frameworks */,
 				9AD199A72512795100B4C44A /* CoreGraphics.framework in Frameworks */,
 				9AD199A1251278DA00B4C44A /* libacme.dylib in Frameworks */,
+				9A413CB1266EB98E00C3FF0E /* libcrypto.1.1.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2107,6 +2111,8 @@
 				9A4F4E0D25311DA300733584 /* _.h */,
 				9A4F4E0C25311DA300733584 /* _crypto.h */,
 				9A4F4E0F25311DA400733584 /* crypto.cpp */,
+				9A64C0902660273E0074030F /* crypto_initializer.cpp */,
+				9A64C0922660273E0074030F /* crypto_initializer.h */,
 				9A4F4E0E25311DA300733584 /* hasher_algorithm.cpp */,
 				9A4F4E1025311DA400733584 /* hasher_algorithm.h */,
 				9A4F4E1225311DA400733584 /* hasher.cpp */,
@@ -2229,27 +2235,27 @@
 		9A68B4792511444A008DABD2 /* basic */ = {
 			isa = PBXGroup;
 			children = (
+				9A68B48E2511444A008DABD2 /* _.h */,
 				9A786361264B94C9003DF8A0 /* basic_net.cpp */,
-				9A68B47A2511444A008DABD2 /* tls_socket.h */,
-				9A68B47B2511444A008DABD2 /* sctp_socket.cpp */,
-				9A68B47C2511444A008DABD2 /* sync_socket_handler.cpp */,
+				9A68B4882511444A008DABD2 /* listen_socket.cpp */,
+				9A68B4852511444A008DABD2 /* listen_socket.h */,
 				9A68B47D2511444A008DABD2 /* net.h */,
-				9A68B47E2511444A008DABD2 /* tcp_socket.h */,
+				9A68B47B2511444A008DABD2 /* sctp_socket.cpp */,
+				9A68B48D2511444A008DABD2 /* sctp_socket.h */,
+				9A68B4862511444A008DABD2 /* socket_handler.cpp */,
+				9A68B4832511444A008DABD2 /* socket_handler.h */,
 				9A68B47F2511444A008DABD2 /* socket.cpp */,
+				9A68B48C2511444A008DABD2 /* socket.h */,
+				9A68B48A2511444A008DABD2 /* stream_socket.cpp */,
+				9A68B4872511444A008DABD2 /* stream_socket.h */,
+				9A68B47C2511444A008DABD2 /* sync_socket_handler.cpp */,
 				9A68B4802511444A008DABD2 /* sync_socket_handler.h */,
 				9A68B4822511444A008DABD2 /* tcp_socket.cpp */,
-				9A68B4832511444A008DABD2 /* socket_handler.h */,
-				9A68B4842511444A008DABD2 /* udp_socket.cpp */,
-				9A68B4852511444A008DABD2 /* listen_socket.h */,
-				9A68B4862511444A008DABD2 /* socket_handler.cpp */,
-				9A68B4872511444A008DABD2 /* stream_socket.h */,
-				9A68B4882511444A008DABD2 /* listen_socket.cpp */,
+				9A68B47E2511444A008DABD2 /* tcp_socket.h */,
 				9A68B4892511444A008DABD2 /* tls_socket.cpp */,
-				9A68B48A2511444A008DABD2 /* stream_socket.cpp */,
+				9A68B47A2511444A008DABD2 /* tls_socket.h */,
+				9A68B4842511444A008DABD2 /* udp_socket.cpp */,
 				9A68B48B2511444A008DABD2 /* udp_socket.h */,
-				9A68B48C2511444A008DABD2 /* socket.h */,
-				9A68B48D2511444A008DABD2 /* sctp_socket.h */,
-				9A68B48E2511444A008DABD2 /* _.h */,
 			);
 			path = basic;
 			sourceTree = "<group>";
@@ -2277,27 +2283,27 @@
 		9A68B4AB2511444A008DABD2 /* http */ = {
 			isa = PBXGroup;
 			children = (
+				9A68B4BE2511444A008DABD2 /* _.h */,
+				9A68B4BB2511444A008DABD2 /* client_socket.cpp */,
+				9A68B4B22511444A008DABD2 /* client_socket.h */,
+				9A68B4AD2511444A008DABD2 /* debug_socket.cpp */,
+				9A68B4B42511444A008DABD2 /* debug_socket.h */,
+				9A68B4BC2511444A008DABD2 /* get_socket.cpp */,
+				9A68B4BA2511444A008DABD2 /* get_socket.h */,
 				9A4F4E0725311CFC00733584 /* http_base_socket.cpp */,
 				9A4F4E0625311CFC00733584 /* http_base_socket.h */,
-				9A68B4AC2511444A008DABD2 /* post_socket.cpp */,
-				9A68B4AD2511444A008DABD2 /* debug_socket.cpp */,
-				9A68B4AE2511444A008DABD2 /* listener.h */,
-				9A68B4AF2511444A008DABD2 /* put_socket.cpp */,
-				9A68B4B02511444A008DABD2 /* socket.cpp */,
-				9A68B4B12511444A008DABD2 /* tunnel.h */,
-				9A68B4B22511444A008DABD2 /* client_socket.h */,
-				9A68B4B32511444A008DABD2 /* post_socket.h */,
-				9A68B4B42511444A008DABD2 /* debug_socket.h */,
-				9A68B4B52511444A008DABD2 /* tunnel.cpp */,
-				9A68B4B62511444A008DABD2 /* session.h */,
-				9A68B4B72511444A008DABD2 /* session.cpp */,
 				9A68B4B82511444A008DABD2 /* listener.cpp */,
+				9A68B4AE2511444A008DABD2 /* listener.h */,
+				9A68B4AC2511444A008DABD2 /* post_socket.cpp */,
+				9A68B4B32511444A008DABD2 /* post_socket.h */,
+				9A68B4AF2511444A008DABD2 /* put_socket.cpp */,
 				9A68B4B92511444A008DABD2 /* put_socket.h */,
-				9A68B4BA2511444A008DABD2 /* get_socket.h */,
-				9A68B4BB2511444A008DABD2 /* client_socket.cpp */,
-				9A68B4BC2511444A008DABD2 /* get_socket.cpp */,
+				9A68B4B72511444A008DABD2 /* session.cpp */,
+				9A68B4B62511444A008DABD2 /* session.h */,
+				9A68B4B02511444A008DABD2 /* socket.cpp */,
 				9A68B4BD2511444A008DABD2 /* socket.h */,
-				9A68B4BE2511444A008DABD2 /* _.h */,
+				9A68B4B52511444A008DABD2 /* tunnel.cpp */,
+				9A68B4B12511444A008DABD2 /* tunnel.h */,
 			);
 			path = http;
 			sourceTree = "<group>";
@@ -3097,8 +3103,8 @@
 		9AD199A0251278DA00B4C44A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				9A5EE4082650B1F2009F25F0 /* libcrypto.1.1.dylib */,
-				9A5EE40A2650B1F2009F25F0 /* libssl.1.1.dylib */,
+				9A413CAF266EB98E00C3FF0E /* libcrypto.1.1.dylib */,
+				9A413CAE266EB98D00C3FF0E /* libssl.1.1.dylib */,
 				9AD199AC251279BC00B4C44A /* libz.tbd */,
 				9AD199C825127AB500B4C44A /* Security.framework */,
 				9AD199C625127A4900B4C44A /* IOKit.framework */,
@@ -3216,6 +3222,7 @@
 				9A68BEE82511444F008DABD2 /* window_impl.h in Headers */,
 				9A68BC432511444E008DABD2 /* get_socket.h in Headers */,
 				9A68BBBB2511444E008DABD2 /* link_out_socket.h in Headers */,
+				9A64C0942660273E0074030F /* crypto_initializer.h in Headers */,
 				9A68BDF82511444F008DABD2 /* remote_native_fs.h in Headers */,
 				9A78633E264B937F003DF8A0 /* promise1.h in Headers */,
 				9A68BDFA2511444F008DABD2 /* set.h in Headers */,
@@ -4038,6 +4045,7 @@
 				9A68BE3F2511444F008DABD2 /* debug.cpp in Sources */,
 				9A68BC3E2511444E008DABD2 /* cookie.cpp in Sources */,
 				9A68BB7F2511444E008DABD2 /* transfer_socket.cpp in Sources */,
+				9A64C0932660273E0074030F /* crypto_initializer.cpp in Sources */,
 				9A68BCAF2511444E008DABD2 /* app_core.cpp in Sources */,
 				9A68BC362511444E008DABD2 /* request.cpp in Sources */,
 				9A68BF9525114450008DABD2 /* debug.cpp in Sources */,
@@ -4531,6 +4539,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"$(WorkspaceDir)/archive/storage-$(PLATFORM_MODIFIER)/library/",
 					"$(WorkspaceDir)/archive",
 					"$(WorkspaceDir)/archive/storage-$(PLATFORM_MODIFIER)/library/$(CONFIGURATION)",
 					"$(WorkspaceDir)/time/$(PLATFORM_MODIFIER)",
@@ -4679,13 +4688,6 @@
 		9A68A450251143F8008DABD2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(WorkspaceDir)/archive",
-					"$(WorkspaceDir)/archive/storage-$(PLATFORM_MODIFIER)/library/$(CONFIGURATION)",
-					"$(WorkspaceDir)/time/$(PLATFORM_MODIFIER)",
-					"/Users/Shared/.local/Cellar/openssl@1.1/1.1.1k/lib",
-				);
 				PLATFORM_MODIFIER = macos;
 				SDKROOT = macosx;
 			};

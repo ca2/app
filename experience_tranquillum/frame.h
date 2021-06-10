@@ -50,7 +50,7 @@ namespace experience
 
                virtual bool is_translucid_style(::user::enum_style estyle);
 
-               virtual void set_moveable_border_color(const ::color::color & cr);
+               void set_moveable_border_color(const ::color::color & color) override;
 
                virtual void set_button_color_schema_001(const ::color::color& crMoveableBorder);
 

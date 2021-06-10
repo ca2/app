@@ -28,7 +28,7 @@ struct CLASS_DECL_ACME block :
    block & operator = (const block & block) { if (this != &block) { m_pdata = block.m_pdata; m_iSize = block.m_iSize; } return *this; }
 
    void * get_data() const { return m_pdata; }
-   memsize get_size() const { return (memsize_cast) m_iSize; }
+   memsize get_size() const { return m_iSize; }
    memsize size() const { return (memsize)m_iSize; }
 
    inline bool is_empty() const { return get_size() <= 0; }

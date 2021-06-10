@@ -60,11 +60,15 @@
 
                m_brushGrip->create_solid(argb(0xff, 0x60, 0x65, 0x55));
 
-               auto psession = get_session();
+               //auto psession = get_session();
 
                auto pframewindow = m_pframewindow;
 
-               auto pgraphics = pframewindow->create_memory_graphics();
+               auto psystem = m_psystem->m_paurasystem;
+
+               auto pdraw2d = psystem->draw2d();
+
+               auto pgraphics = pdraw2d->create_memory_graphics();
 
                auto pstyle = pframewindow->get_style(pgraphics);
 
@@ -227,7 +231,7 @@ SizingNone:;
 
 
 
-            void frame_005::draw_border_side(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectClient,
+            void frame_005::draw_border_side(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangleClient,
 
                   enum_border eside)
             {
@@ -241,7 +245,7 @@ SizingNone:;
 
                }
 
-               auto psession = get_session();
+               //auto psession = get_session();
 
                status < ::color::color > crMoveableBorder;
                status < ::color::color > crMoveableBorderHilight;
@@ -256,7 +260,7 @@ SizingNone:;
                else
                {
 
-                  auto psession = get_session();
+                  //auto psession = get_session();
 
                   auto pstyle = pframewindow->get_style(pgraphics);
 
@@ -269,7 +273,7 @@ SizingNone:;
 }
 
                enum_dock edock = m_pframewindow->dock_manager()->get_dock_mask();
-               ::rectangle_i32 rectA(rectClient);
+               ::rectangle_i32 rectA(rectangleClient);
 
                auto estyle = pframewindow->m_estyle;
 
@@ -280,7 +284,7 @@ SizingNone:;
 
                   ::rectangle_i32 rectangle;
 
-                  GetBorderRect(rectClient, rectangle, eside);
+                  GetBorderRect(rectangleClient, rectangle, eside);
 
                   ColorGlass(pgraphics, rectangle, crMoveableBorder, 127);
 
@@ -300,7 +304,7 @@ SizingNone:;
                   Draw3dRectSide(pgraphics, rectA, eside, crMoveableBorder, crMoveableBorder);
 
                   ::rectangle_i32 rectangle;
-                  GetBorderRect(rectClient, rectangle, eside);
+                  GetBorderRect(rectangleClient, rectangle, eside);
 
                   //class imaging & imaging = psystem->imaging();
                   //imaging.color_blend(
@@ -314,7 +318,7 @@ SizingNone:;
                {
 
                   ::rectangle_i32 rectangle;
-                  GetBorderRect(rectClient, rectangle, eside);
+                  GetBorderRect(rectangleClient, rectangle, eside);
 
                   ColorGlass(pgraphics, rectangle, crMoveableBorder, 230);
 
@@ -363,8 +367,8 @@ SizingNone:;
 
                bool bZoomed = pframewindow->layout().is_zoomed();
 
-               ::rectangle_i32 rectClient;
-               pframewindow->get_client_rect(rectClient);
+               ::rectangle_i32 rectangleClient;
+               pframewindow->get_client_rect(rectangleClient);
 
 
                string str;
@@ -408,7 +412,7 @@ SizingNone:;
             }
 
 
-            void frame_005::DrawBorder(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectClient)
+            void frame_005::DrawBorder(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangleClient)
 
             {
                auto pmovemanager = m_pframewindow->move_manager();
@@ -426,35 +430,35 @@ SizingNone:;
 
                if(eborder & e_border_top)
                {
-                  draw_border_side(pgraphics, rectClient, e_border_top);
+                  draw_border_side(pgraphics, rectangleClient, e_border_top);
 
                }
                if(eborder & e_border_right)
                {
-                  draw_border_side(pgraphics, rectClient, e_border_right);
+                  draw_border_side(pgraphics, rectangleClient, e_border_right);
 
                }
                if(eborder & e_border_bottom)
                {
-                  draw_border_side(pgraphics, rectClient, e_border_bottom);
+                  draw_border_side(pgraphics, rectangleClient, e_border_bottom);
 
                }
                if(eborder & e_border_left)
                {
-                  draw_border_side(pgraphics, rectClient, e_border_left);
+                  draw_border_side(pgraphics, rectangleClient, e_border_left);
 
                }
 
             }
 
             void frame_005::GetBorderRect(
-            const ::rectangle_i32 & rectClient,
+            const ::rectangle_i32 & rectangleClient,
 
             RECTANGLE_I32 * prectangle,
 
             enum_border eside)
             {
-               ::rectangle_i32 rectBig(rectClient);
+               ::rectangle_i32 rectBig(rectangleClient);
 
                ::rectangle_i32 rectSmall;
                get_window_client_rect(rectSmall);
@@ -518,7 +522,7 @@ SizingNone:;
                if(eborder & e_border_top)
                {
 
-                  rectDraw = ::rectangle_dimension(x, y, cx, 1);
+                  rectDraw = rectangle_i32_dimension(x, y, cx, 1);
 
                   if(psession->m_paurasession->savings().is_trying_to_save(::e_resource_processing))
                   {
@@ -537,7 +541,7 @@ SizingNone:;
                if(eborder & e_border_left)
                {
 
-                  rectDraw = ::rectangle_dimension(x, y + 1, 1, cy - 2);
+                  rectDraw = rectangle_i32_dimension(x, y + 1, 1, cy - 2);
 
                   if(psession->m_paurasession->savings().is_trying_to_save(::e_resource_processing))
                   {
@@ -557,7 +561,7 @@ SizingNone:;
                if(eborder & e_border_right)
                {
 
-                  rectDraw = ::rectangle_dimension(x + cx - 1, y + 1, 1, cy - 2);
+                  rectDraw = rectangle_i32_dimension(x + cx - 1, y + 1, 1, cy - 2);
 
                   if(psession->m_paurasession->savings().is_trying_to_save(e_resource_processing))
                   {
@@ -577,7 +581,7 @@ SizingNone:;
                if(eborder & e_border_bottom)
                {
 
-                  rectDraw = ::rectangle_dimension(x, y + cy - 1, cx, 1);
+                  rectDraw = rectangle_i32_dimension(x, y + cy - 1, cx, 1);
 
                   if(psession->m_paurasession->savings().is_trying_to_save(e_resource_processing))
                   {
@@ -618,20 +622,20 @@ SizingNone:;
 
                const i32 size = 16;
 
-               ::rectangle_i32 rectClient(rectClientParam);
+               ::rectangle_i32 rectangleClient(rectClientParam);
 
-               //            ::rectangle_i32 rectClientB(rectClient);
+               //            ::rectangle_i32 rectClientB(rectangleClient);
                ::rectangle_i32 rectA;
                ::point_i32 pointA;
                ::point_i32 pointB;
                ::point_i32 pointC;
-               //            ::rectangle_i32 rectangle(rectClient);
+               //            ::rectangle_i32 rectangle(rectangleClient);
                switch(egrip)
                {
                case e_grip_top_left:
                {
 
-                  rectA = rectClient;
+                  rectA = rectangleClient;
 
                   rectA.right = 4;
                   rectA.bottom = size;
@@ -647,7 +651,7 @@ SizingNone:;
                break;
                case e_grip_top_right:
                {
-                  rectA = rectClient;
+                  rectA = rectangleClient;
 
                   rectA.left = rectA.right - 4;
                   rectA.bottom = size;
@@ -662,7 +666,7 @@ SizingNone:;
                break;
                case e_grip_bottom_left:
                {
-                  rectA = rectClient;
+                  rectA = rectangleClient;
 
                   rectA.right = 4;
                   rectA.top = rectA.bottom - size;
@@ -677,7 +681,7 @@ SizingNone:;
                break;
                case e_grip_bottom_right:
                {
-                  rectA = rectClient;
+                  rectA = rectangleClient;
 
                   rectA.left = rectA.right - 4;
                   rectA.top = rectA.bottom - size;
@@ -692,7 +696,7 @@ SizingNone:;
                break;
                case e_grip_top:
                {
-                  rectA = rectClient;
+                  rectA = rectangleClient;
 
                   rectA.left = rectA.left + rectA.width() / 2 - size / 2;
                   rectA.right = rectA.left + size;
@@ -704,7 +708,7 @@ SizingNone:;
                break;
                case e_grip_bottom:
                {
-                  rectA = rectClient;
+                  rectA = rectangleClient;
 
                   rectA.left = rectA.left + rectA.width() / 2 - size / 2;
                   rectA.right = rectA.left + size;
@@ -716,7 +720,7 @@ SizingNone:;
                case e_grip_left:
                {
 
-                  rectA = rectClient;
+                  rectA = rectangleClient;
 
                   rectA.right = 4;
                   rectA.top = rectA.top + rectA.height() / 2 - size / 2;
@@ -729,7 +733,7 @@ SizingNone:;
                case e_grip_right:
                {
 
-                  rectA = rectClient;
+                  rectA = rectangleClient;
 
                   rectA.left = rectA.right - 4;
                   rectA.top = rectA.top + rectA.height() / 2 - size / 2;
@@ -750,7 +754,7 @@ SizingNone:;
             void frame_005::DrawRectGrip(::draw2d::graphics_pointer & pgraphics,const rectangle_i32 & rectParam)
             {
 
-               auto psession = get_session();
+               ///auto psession = get_session();
 
                auto pframewindow = m_pframewindow;
 
@@ -785,7 +789,7 @@ SizingNone:;
             }
 
 
-            void frame_005::DrawGripSet(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectClient)
+            void frame_005::DrawGripSet(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangleClient)
 
             {
 
@@ -798,42 +802,42 @@ SizingNone:;
 
                if(egrip & e_grip_top)
                {
-                  DrawGrip(pgraphics, rectClient, e_grip_top);
+                  DrawGrip(pgraphics, rectangleClient, e_grip_top);
 
                }
                if(egrip & e_grip_top_right)
                {
-                  DrawGrip(pgraphics, rectClient, e_grip_top_right);
+                  DrawGrip(pgraphics, rectangleClient, e_grip_top_right);
 
                }
                if(egrip & e_grip_right)
                {
-                  DrawGrip(pgraphics, rectClient, e_grip_right);
+                  DrawGrip(pgraphics, rectangleClient, e_grip_right);
 
                }
                if(egrip & e_grip_bottom_right)
                {
-                  DrawGrip(pgraphics, rectClient, e_grip_bottom_right);
+                  DrawGrip(pgraphics, rectangleClient, e_grip_bottom_right);
 
                }
                if(egrip & e_grip_bottom)
                {
-                  DrawGrip(pgraphics, rectClient, e_grip_bottom);
+                  DrawGrip(pgraphics, rectangleClient, e_grip_bottom);
 
                }
                if(egrip & e_grip_bottom_left)
                {
-                  DrawGrip(pgraphics, rectClient, e_grip_bottom_left);
+                  DrawGrip(pgraphics, rectangleClient, e_grip_bottom_left);
 
                }
                if(egrip & e_grip_left)
                {
-                  DrawGrip(pgraphics, rectClient, e_grip_left);
+                  DrawGrip(pgraphics, rectangleClient, e_grip_left);
 
                }
                if(egrip & e_grip_top_left)
                {
-                  DrawGrip(pgraphics, rectClient, e_grip_top_left);
+                  DrawGrip(pgraphics, rectangleClient, e_grip_top_left);
 
                }
 

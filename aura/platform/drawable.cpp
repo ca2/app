@@ -18,14 +18,6 @@ namespace aura
    }
 
 
-   ::draw2d::graphics_pointer drawable::create_memory_graphics()
-   {
-
-      return ::draw2d::create_memory_graphics();
-
-   }
-
-
    void drawable::_001OnDraw(::draw2d::graphics_pointer& pgraphics)
    {
 

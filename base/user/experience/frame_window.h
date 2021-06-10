@@ -64,25 +64,25 @@ namespace experience
       virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
 
-      virtual void defer_save_window_placement() override;
+      void defer_save_window_placement() override;
 
       virtual void window_enable_full_screen(bool bEnable = true);
-      virtual bool is_full_screen_enabled() const override;
+      bool is_full_screen_enabled() const override;
 
 
-      virtual bool sketch_on_display() override;
+      bool sketch_on_display() override;
 
 
-      virtual void display_previous_restore() override;
+      ::e_status display_previous_restore() override;
 
-      virtual void display_system_minimize() override;
+      void display_system_minimize() override;
 
-      virtual void toggle_restore();
+      //::e_status frame_toggle_restore() override;
 
       virtual ::e_status initialize_frame_window_experience();
 
-      virtual void on_command_message(::message::command* pcommand) override;
-      virtual void route_command_message(::message::command* pcommand) override;
+      void on_command_message(::message::command* pcommand) override;
+      void route_command_message(::message::command* pcommand) override;
 
 
       //virtual void wfi_dock_on_button_down(::user::control_event * pevent);
@@ -91,7 +91,7 @@ namespace experience
       //virtual bool WfiOnBeginSizing(::u32 nType, const ::point_i32 & point);
       //virtual bool WfiOnBeginMoving(const ::point_i32 & point);
 
-      virtual void frame_experience_restore();
+      ::e_status frame_experience_restore() override;
 
       virtual void on_start_layout_experience(enum_layout_experience elayoutexperience) override;
       virtual void on_end_layout_experience(enum_layout_experience elayoutexperience) override;

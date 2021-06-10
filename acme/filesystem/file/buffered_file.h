@@ -38,6 +38,8 @@ namespace file
       using ::file::file::write;
       virtual void write(const void * pdata, memsize nCount) override;
 
+      virtual int put_character_back(int iCharacterPutBack) override;
+
       virtual void flush() override;
       virtual bool buffer(memsize uiGrow = 0);
       virtual void set_size(filesize dwNewLen) override;

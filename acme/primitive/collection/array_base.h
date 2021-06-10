@@ -1,6 +1,14 @@
 #pragma once
 
 
+template < typename ARRAY >
+concept indexed_array = requires(ARRAY array, ::index i)
+{
+   array.get_size();
+   array.element_at(i);
+};
+
+
 #define __default_array_array_base(TYPE) ::array_base < TYPE, const TYPE &, ::allocator::def < TYPE > >
 
 
@@ -530,6 +538,9 @@ public:
    ::index insert_at(::index nIndex, const TYPE & newElement, ::count nCount = 1);
    ::index erase_at(::index nIndex, ::count nCount = 1);
    ::index insert_at(::index nStartIndex, array_base * pNewArray);
+
+
+   ::index make_room_at(::index nIndex, ::count nCount = 1);
 
    
    TYPE pick_at(::index nIndex);

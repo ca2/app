@@ -494,7 +494,7 @@ namespace userex
                   INFO("pframewindowTab VISIBLE VISIBLE VISIBLE");
                   INFO("");
                   INFO("");
-                  auto rectRequest = rectangle_dimension(20, 20, 800, 300);
+                  auto rectRequest = rectangle_i32_dimension(20, 20, 800, 300);
 
                   //if (!pframewindowTab->is_this_visible() || rectRequest != pframewindowTab->window_request_rect())
                   {

@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 template < typename POINTER, class ARRAY_TYPE = comparable_array < POINTER, POINTER, comparable_eq_array < POINTER, POINTER, raw_array < POINTER, POINTER, ::allocator::zero < POINTER > > > > >
@@ -6,7 +6,6 @@ class address_array :
    public ARRAY_TYPE
 {
 public:
-
 
 
    inline address_array() {}
@@ -25,21 +24,22 @@ public:
    inline POINTER & element_at(::index i) { return (POINTER &)ARRAY_TYPE::element_at(i); }
    inline POINTER element_at(::index i) const { return (POINTER)ARRAY_TYPE::element_at(i); }
 
+   
    inline POINTER & element_at_grow(::index i) { return (POINTER &)ARRAY_TYPE::element_at_grow(i); }
 
-
-   //inline POINTER & operator[](::index i) { return element_at(i); }
-   //inline POINTER operator[](::index i) const { return element_at(i); }
 
    inline POINTER & first(::index i = 0) { return (POINTER &)ARRAY_TYPE::first(i); }
    inline POINTER first(::index i = 0) const { return (POINTER)ARRAY_TYPE::first(i); }
 
+   
    inline POINTER & last(::index i = -1) { return (POINTER &)ARRAY_TYPE::last(i); }
    inline POINTER last(::index i = 0) const { return (POINTER)ARRAY_TYPE::last(i); }
 
+   
    inline POINTER* get_data() { return (POINTER*)ARRAY_TYPE::get_data(); }
    inline POINTER* get_data() const { return (POINTER*)ARRAY_TYPE::get_data(); }
 
+   
 };
 
 

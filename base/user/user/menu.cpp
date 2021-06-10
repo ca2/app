@@ -395,9 +395,13 @@ namespace user
 
       }
 
-      ::create * pcreate = nullptr;
+      //::create * pcreate = nullptr;
 
-      auto pgraphics = ::draw2d::create_memory_graphics();
+      auto psystem = m_psystem->m_paurasystem;
+
+      auto pdraw2d = psystem->draw2d();
+
+      auto pgraphics = pdraw2d->create_memory_graphics();
 
       //if (pstyle == nullptr)
       //{
@@ -448,18 +452,18 @@ namespace user
       if (!is_window())
       {
 
-         int iStyleEx = 0;
-
-         if (puiParent == nullptr)
-         {
-
-//#ifdef WINDOWS_DESKTOP
+//         int iStyleEx = 0;
 //
-//            iStyleEx = WS_EX_LAYERED | WS_EX_TOOLWINDOW;
+//         if (puiParent == nullptr)
+//         {
 //
-//#endif
-
-         }
+////#ifdef WINDOWS_DESKTOP
+////
+////            iStyleEx = WS_EX_LAYERED | WS_EX_TOOLWINDOW;
+////
+////#endif
+//
+//         }
 
          set_tool_window();
 
@@ -553,9 +557,9 @@ namespace user
 
       //on_layout(::draw2d::graphics_pointer & pgraphics);
 
-      //auto rectClient = puiParent->get_client_rect();
+      //auto rectangleClient = puiParent->get_client_rect();
 
-      //place(rectClient);
+      //place(rectangleClient);
 
       //display();
 
@@ -596,7 +600,11 @@ namespace user
 
       }
 
-      auto pgraphics = ::draw2d::create_memory_graphics();
+      auto psystem = m_psystem->m_paurasystem;
+
+      auto pdraw2d = psystem->draw2d();
+
+      auto pgraphics = pdraw2d->create_memory_graphics();
 
       m_pointTrack = m_pointPositionHint;
 
@@ -860,11 +868,11 @@ namespace user
       if (crBackground.is_translucent())
       {
 
-         ::rectangle_i32 rectClient;
+         ::rectangle_i32 rectangleClient;
 
-         get_client_rect(rectClient);
+         get_client_rect(rectangleClient);
 
-         pgraphics->fill_rectangle(rectClient, argb(255, 255, 255, 255));
+         pgraphics->fill_rectangle(rectangleClient, argb(255, 255, 255, 255));
 
       }
 
@@ -979,107 +987,107 @@ namespace user
          }
 
       }
-      else if (pevent->m_eevent == ::user::e_event_mouse_enter)
-      {
-
-         if (m_pitemClose.is_set()
-               && pevent->m_puie != m_pitemClose->m_puserinteraction)
-         {
-
-            if (!m_bInline)
-            {
-
-               if (pevent->m_puie->m_pmenuitem != m_pmenuitemSub)
-               {
-
-                  {
-
-                     __pointer(::user::menu_item) pitem = pevent->m_puie->m_pmenuitem;
-
-                     if (pitem)
-                     {
-
-                        if (pitem->m_bPopup)
-                        {
-
-                           if (m_psubmenu != nullptr)
-                           {
-
-                              m_psubmenu->start_destroying_window();
-
-                              m_psubmenu = nullptr;
-
-                              m_pmenuitemSub = nullptr;
-
-                           }
-
-                           m_pmenuitemSub = pitem;
-
-                           m_psubmenu = __new(menu(pitem));
-
-                           m_psubmenu->initialize(this);
-
-                           m_psubmenu->m_pmenuParent = this;
-
-                           ::rectangle_i32 rectangle;
-
-                           pevent->m_puie->get_window_rect(rectangle);
-
-                           m_psubmenu->update_position(rectangle.top_right());
-
-                           m_psubmenu->track_popup_menu(m_puiMenuNotify);
-
-                        }
-                        else
-                        {
-
-                           ::user::control_event ev;
-
-                           ev.m_eevent = ::user::e_event_menu_hover;
-
-                           ev.m_id = pitem->m_id;
-
-                           ::user::interaction * puiTarget = get_target_window();
-
-                           if (puiTarget == nullptr)
-                           {
-
-                              return;
-
-                           }
-
-                           return puiTarget->on_control_event(&ev);
-
-                        }
-
-                     }
-
-                  }
-
-               }
-
-            }
-
-         }
-
-         pevent->m_bRet = true;
-
-         return;
-
-      }
-      else if (pevent->m_eevent == ::user::e_event_mouse_leave)
-      {
-         if (pevent->m_puie->m_id == m_idTimerMenu)
-         {
-            KillTimer(e_timer_menu);
-            m_idTimerMenu.is_empty();
-         }
-
-         pevent->m_bRet = true;
-
-         return;
-
-      }
+//      else if (pevent->m_eevent == ::user::e_event_mouse_enter)
+//      {
+//
+//         if (m_pitemClose.is_set()
+//               && pevent->m_puie != m_pitemClose->m_puserinteraction)
+//         {
+//
+//            if (!m_bInline)
+//            {
+//
+//               if (pevent->m_puie->m_pmenuitem != m_pmenuitemSub)
+//               {
+//
+//                  {
+//
+//                     __pointer(::user::menu_item) pitem = pevent->m_puie->m_pmenuitem;
+//
+//                     if (pitem)
+//                     {
+//
+//                        if (pitem->m_bPopup)
+//                        {
+//
+//                           if (m_psubmenu != nullptr)
+//                           {
+//
+//                              m_psubmenu->start_destroying_window();
+//
+//                              m_psubmenu = nullptr;
+//
+//                              m_pmenuitemSub = nullptr;
+//
+//                           }
+//
+//                           m_pmenuitemSub = pitem;
+//
+//                           m_psubmenu = __new(menu(pitem));
+//
+//                           m_psubmenu->initialize(this);
+//
+//                           m_psubmenu->m_pmenuParent = this;
+//
+//                           ::rectangle_i32 rectangle;
+//
+//                           pevent->m_puie->get_window_rect(rectangle);
+//
+//                           m_psubmenu->update_position(rectangle.top_right());
+//
+//                           m_psubmenu->track_popup_menu(m_puiMenuNotify);
+//
+//                        }
+//                        else
+//                        {
+//
+//                           ::user::control_event ev;
+//
+//                           ev.m_eevent = ::user::e_event_menu_hover;
+//
+//                           ev.m_id = pitem->m_id;
+//
+//                           ::user::interaction * puiTarget = get_target_window();
+//
+//                           if (puiTarget == nullptr)
+//                           {
+//
+//                              return;
+//
+//                           }
+//
+//                           return puiTarget->on_control_event(&ev);
+//
+//                        }
+//
+//                     }
+//
+//                  }
+//
+//               }
+//
+//            }
+//
+//         }
+//
+//         pevent->m_bRet = true;
+//
+//         return;
+//
+//      }
+//      else if (pevent->m_eevent == ::user::e_event_mouse_leave)
+//      {
+//         if (pevent->m_puie->m_id == m_idTimerMenu)
+//         {
+//            KillTimer(e_timer_menu);
+//            m_idTimerMenu.is_empty();
+//         }
+//
+//         pevent->m_bRet = true;
+//
+//         return;
+//
+//      }
 
       ::user::interaction::on_control_event(pevent);
 

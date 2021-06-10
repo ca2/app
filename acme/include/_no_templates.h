@@ -9,6 +9,7 @@
 #include "operating_system/config.h"
 
 
+#include "_c.h"
 #include "__/__bit.h"
 #include "__/__stdint.h"
 #include "__/__inttypes.h"
@@ -55,6 +56,7 @@ namespace message
 
 
 class application;
+class system;
 
 
 #include "acme/const/_.h"

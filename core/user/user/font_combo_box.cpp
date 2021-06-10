@@ -67,7 +67,9 @@ namespace user
 
       synchronous_lock synchronouslock(list.mutex());
 
-      for (auto& item : list.m_pfontlist->m_pitema->ptra())
+      auto pfontenumerationitema = list.m_pfontlist->m_pfontenumerationitema;
+
+      for (auto& item : pfontenumerationitema->ptra())
       {
 
          if (item.is_set())
@@ -78,7 +80,6 @@ namespace user
          }
 
       }
-
 
    }
 

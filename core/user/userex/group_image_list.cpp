@@ -460,24 +460,24 @@ namespace userex
    void group_image_list_view::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      auto rectClient = get_client_rect();
+      auto rectangleClient = get_client_rect();
 
-      if (!rectClient)
+      if (!rectangleClient)
       {
 
          return;
 
       }
 
-      ::rectangle_i32 rectMenu(rectClient);
+      ::rectangle_i32 rectMenu(rectangleClient);
 
-      rectMenu.bottom = rectClient.top + 32;
+      rectMenu.bottom = rectangleClient.top + 32;
 
       m_buttonMenu.display_child(rectMenu);
 
-      ::rectangle_i32 rectList(rectClient);
+      ::rectangle_i32 rectList(rectangleClient);
 
-      rectList.top = rectClient.top + 32;
+      rectList.top = rectangleClient.top + 32;
 
       auto * plist = get_current_list();
 

@@ -15,8 +15,8 @@ public:
    using BASE_ARRAY::operator -=;
    using BASE_ARRAY::operator |=;
    using BASE_ARRAY::operator -;
-   using BASE_ARRAY::operator ==;
-   using BASE_ARRAY::operator !=;
+   //using BASE_ARRAY::operator ==;
+   //using BASE_ARRAY::operator !=;
 
    using BASE_ARRAY::operator +=;
 

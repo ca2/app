@@ -104,7 +104,7 @@ namespace user
       virtual const char * _get_notification_area_action_description(int iIndex) ;
       virtual void call_notification_area_action(const char * pszId) ;
 //#endif
-      virtual void notify_icon_init(const char * pszFile);
+      //virtual void notify_icon_init(const char * pszFile);
 
 //#endif
 

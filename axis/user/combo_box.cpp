@@ -95,9 +95,9 @@ namespace user
 
       }
 
-      ::rectangle_i32 rectClient;
+      ::rectangle_i32 rectangleClient;
 
-      layout().get_client_rect(rectClient, ::user::e_layout_design);
+      layout().get_client_rect(rectangleClient, ::user::e_layout_design);
       //::user::e_::color::color colorText = color_text;
 
       ::color::color colorText(0, 0, 0, 255);
@@ -206,9 +206,9 @@ namespace user
    void combo_box::_001OnDrawCombo(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::rectangle_i32 rectClient;
+      ::rectangle_i32 rectangleClient;
 
-      get_client_rect(rectClient);
+      get_client_rect(rectangleClient);
 
       ::draw2d::brush_pointer br(e_create);
 
@@ -443,7 +443,11 @@ namespace user
 
          m_strText = str;
 
-         auto pgraphics = ::draw2d::create_memory_graphics();
+         auto psystem = m_psystem->m_paurasystem;
+
+         auto pdraw2d = psystem->draw2d();
+
+         auto pgraphics = pdraw2d->create_memory_graphics();
 
          plain_edit_on_after_change_text(pgraphics, context);
 
@@ -496,9 +500,9 @@ namespace user
 
       }
 
-      auto rectClient = get_client_rect(::user::e_layout_sketch);
+      auto rectangleClient = get_client_rect(::user::e_layout_sketch);
 
-      if (rectClient.contains(item.m_pointHitTest))
+      if (rectangleClient.contains(item.m_pointHitTest))
       {
 
          item = e_element_text;
@@ -777,7 +781,11 @@ namespace user
 
          psession->on_show_user_input_popup(m_plist);
 
-         auto pgraphics = ::draw2d::create_memory_graphics();
+         auto psystem = m_psystem->m_paurasystem;
+
+         auto pdraw2d = psystem->draw2d();
+
+         auto pgraphics = pdraw2d->create_memory_graphics();
 
          m_plist->query_full_size(pgraphics, m_sizeFull);
 
@@ -830,13 +838,15 @@ namespace user
 
          m_plist->m_pcombo = this;
 
+         m_plist->add_control_event_handler(this);
+
       }
 
-      ::rectangle_i32 rectClient;
+      ::rectangle_i32 rectangleClient;
 
-      get_client_rect(rectClient, ::user::e_layout_sketch);
+      get_client_rect(rectangleClient, ::user::e_layout_sketch);
 
-      m_plist->m_dItemHeight = minimum(24, rectClient.height());
+      m_plist->m_dItemHeight = minimum(24, rectangleClient.height());
 
    }
 
@@ -849,21 +859,26 @@ namespace user
 
          m_itemCurrent = item;
 
-         ::user::control_event ev;
+         if(has_control_event_handler())
+         {
 
-         ev.m_puie = this;
+            ::user::control_event ev;
 
-         ev.m_id = m_id;
+            ev.m_puie = this;
 
-         ev.m_eevent = ::user::e_event_after_change_cur_sel;
+            ev.m_id = m_id;
 
-         ev.m_item = item;
+            ev.m_eevent = ::user::e_event_after_change_cur_sel;
 
-         ev.m_actioncontext = context;
+            ev.m_item = item;
 
-         route_control_event(&ev);
+            ev.m_actioncontext = context;
 
-         set_need_redraw();
+            route_control_event(&ev);
+
+            set_need_redraw();
+
+         }
 
       }
 
@@ -915,11 +930,11 @@ namespace user
 
       /*      ::write_text::font_pointer fontxyz(e_create);
 
-            ::rectangle_i32 rectClient;
+            ::rectangle_i32 rectangleClient;
 
-            get_client_rect(rectClient);
+            get_client_rect(rectangleClient);
 
-            fontxyz->m_dFontSize = rectClient.height() * 0.4;
+            fontxyz->m_dFontSize = rectangleClient.height() * 0.4;
             fontxyz->m_eunitFontSize = ::draw2d::unit_pixel;
             fontxyz->m_bUpdated = false;
 

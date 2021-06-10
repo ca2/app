@@ -28,7 +28,8 @@ namespace draw2d
 /// </summary>
    class CLASS_DECL_AURA graphics :
       virtual public ::aura::simple_chain < ::aura::draw_context >,
-      virtual public ::image_drawer
+      virtual public ::image_drawer,
+      virtual public ::write_text::drawer
    {
    public:
 
@@ -50,8 +51,6 @@ namespace draw2d
       ::draw2d::bitmap_pointer               m_pbitmap;
       ::draw2d::pen_pointer                  m_ppen;
       ::draw2d::brush_pointer                m_pbrush;
-      ::write_text::font_pointer                 m_pfont;
-      ::write_text::font_pointer                 m_pfontDevice;
       ::draw2d::region_pointer               m_pregion;
       bool                                   m_bStoreThumbnails;
 
@@ -119,6 +118,9 @@ namespace draw2d
          return get_os_data < void >(i);
 
       }
+
+      using image_drawer::draw;
+      using write_text::drawer::draw;
 
       virtual ::file::path get_font_path(const string & strName, int iWeight, bool bItalic);
 
@@ -209,7 +211,6 @@ namespace draw2d
       virtual ::draw2d::pen *      get_current_pen();
       virtual ::draw2d::brush *    get_current_brush();
       virtual ::draw2d::palette *  get_current_palette();
-      virtual ::write_text::font *     get_current_font();
       virtual ::draw2d::bitmap *   get_current_bitmap();
 
       // for bidi and mirrored localization
@@ -252,9 +253,10 @@ namespace draw2d
 
       virtual bool set_text_color(::color::color color);
 
+
+      using ::write_text::drawer::set;
       virtual ::e_status set(::draw2d::region* pregion);
       virtual ::e_status set(::draw2d::pen* ppen);
-      virtual ::e_status set(::write_text::font* pfont);
       virtual ::e_status set(::draw2d::brush* pbrush);
       virtual ::e_status set(::draw2d::bitmap* pbitmap);
       virtual ::draw2d::object* set_stock_object(i32 nIndex);
@@ -551,6 +553,8 @@ namespace draw2d
 
 
 
+
+
       virtual bool ellipse(double x1,double y1,double x2,double y2);
       virtual bool ellipse(const rectangle_f64 & prectd);
 
@@ -775,8 +779,7 @@ namespace draw2d
       virtual ::size_f64 TabbedTextOut(double x, double y, const string & str, count nTabPositions, i32 * pnTabStopPositions, i32 nTabOrigin);
 
 
-
-      virtual bool TextOutRaw(double x, double y, const block & block);
+      ::e_status TextOutRaw(double x, double y, const block & block) override;
 
       virtual bool TextOutAlphaBlend(double x, double y, const block & block);
 
@@ -804,18 +807,19 @@ namespace draw2d
 
       virtual ::count get_character_extent(double_array & daLeft, double_array & daRight, const string & str, strsize iStart = 0, strsize iCount = -1);
 
-      virtual ::size_f64 GetTextExtent(const char * pszString, strsize nCount, strsize iIndex);
+      virtual ::size_f64 get_text_extent(const char * pszString, strsize nCount, strsize iIndex);
+
+      ::size_f64 get_text_extent(const ::block & block) override;
 
       virtual ::size_f64 GetTextBegin(const char * pszString, strsize nCount, strsize iIndex);
 
-      virtual ::size_f64 GetTextExtent(const char * pszString, strsize nCount);
+      virtual ::size_f64 get_text_extent(const char * pszString, strsize nCount);
 
-      virtual ::size_f64 GetTextExtent(const string & str);
-      virtual bool GetTextExtent(::size_f64 & size, const char * pszString, strsize nCount, strsize iIndex);
+      virtual bool get_text_extent(::size_f64 & size, const char * pszString, strsize nCount, strsize iIndex);
 
-      virtual bool GetTextExtent(::size_f64 & size, const char * pszString, strsize nCount);
+      virtual bool get_text_extent(::size_f64 & size, const char * pszString, strsize nCount);
 
-      virtual bool GetTextExtent(::size_f64 & size, const string & str);
+      virtual bool get_text_extent(::size_f64 & size, const string & str);
       virtual ::size_f64 GetOutputTextExtent(const char * pszString, strsize nCount);
 
       virtual ::size_f64 GetOutputTextExtent(const string & str);
@@ -835,9 +839,8 @@ namespace draw2d
 
       virtual i32 GetTextFace(string & rString);
 
-
-      virtual ::write_text::text_metric get_text_metrics();
-      virtual bool get_text_metrics(::write_text::text_metric * pmetrics);
+      using ::write_text::drawer::get_text_metrics;
+      ::e_status get_text_metrics(::write_text::text_metric * pmetrics) override;
       virtual bool get_output_text_metrics(::write_text::text_metric * pMetrics);
 
 
@@ -857,9 +860,9 @@ namespace draw2d
 
 // #if (_WIN32_WINNT >= 0x0500)
 
-//       virtual bool GetTextExtentExPointI(LPWORD pgiIn, i32 cgi, i32 nMaxExtent, i32 * pnFit, i32 * alpDx, __out_opt ::size_f64 * ::size_f64 *);
+//       virtual bool get_text_extentExPointI(LPWORD pgiIn, i32 cgi, i32 nMaxExtent, i32 * pnFit, i32 * alpDx, __out_opt ::size_f64 * ::size_f64 *);
 
-//       virtual bool GetTextExtentPointI(LPWORD pgiIn, i32 cgi, __out_opt ::size_f64 * pSize);
+//       virtual bool get_text_extentPointI(LPWORD pgiIn, i32 cgi, __out_opt ::size_f64 * pSize);
 
 
 // #endif
@@ -1187,8 +1190,8 @@ namespace draw2d
 
    };
 
-   CLASS_DECL_AURA ::draw2d::graphics_pointer create_graphics();
-   CLASS_DECL_AURA ::draw2d::graphics_pointer create_memory_graphics();
+   //CLASS_DECL_AURA ::draw2d::graphics_pointer create_graphics();
+   //CLASS_DECL_AURA ::draw2d::graphics_pointer create_memory_graphics();
 
 
 

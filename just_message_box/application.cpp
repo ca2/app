@@ -9,17 +9,17 @@ namespace app_just_message_box
    application::application()
    {
 
-      m_strAppId = "app/app";
+      m_strAppId = "app/just_message_box";
 
       m_strAppName = "app/just_message_box";
 
-      m_strBaseSupportId = "app_just_message_box";
+      m_strBaseSupportId = "app/just_message_box";
 
       m_bLicense = false;
 
       m_bImaging = false;
 
-      m_bWriteText = false;
+      //m_bWriteText = false;
 
    }
 

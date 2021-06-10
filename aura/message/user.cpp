@@ -651,6 +651,12 @@ namespace message
    }
 
 
+//   text::text()
+//   {
+//      
+//   }
+
+
 } // namespace message
 
 

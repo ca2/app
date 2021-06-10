@@ -199,13 +199,13 @@ flags < ENUM > & flags < ENUM > ::operator = (const flags < ENUM > & f)
 template < class ENUM >
 bool flags < ENUM > ::operator == (const flags < ENUM > & f)
 {
-   return m_ia.operator == (f.m_ia);
+   return m_ia == f.m_ia;
 }
 
 template < class ENUM >
 bool flags < ENUM > ::operator != (const flags < ENUM > & f)
 {
-   return m_ia.operator != (f.m_ia);
+   return m_ia != f.m_ia;
 }
 
 template < class ENUM >

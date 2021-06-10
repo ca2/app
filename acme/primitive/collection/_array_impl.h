@@ -179,7 +179,7 @@ template < class TYPE, class ARG_TYPE, class ALLOCATOR >
 inline TYPE& array < TYPE, ARG_TYPE, ALLOCATOR > ::get_at(::index nIndex)
 {
 
-   ASSERT(nIndex >= 0 && nIndex < __count(this->m_nSize));
+   ASSERT(nIndex >= 0 && nIndex < this->m_nSize);
 
    return get_data()[nIndex];
 
@@ -190,7 +190,7 @@ template < class TYPE, class ARG_TYPE, class ALLOCATOR >
 inline const TYPE& array < TYPE, ARG_TYPE, ALLOCATOR > ::get_at(::index nIndex) const
 {
 
-   ASSERT(nIndex >= 0 && nIndex < __count(this->m_nSize));
+   ASSERT(nIndex >= 0 && nIndex < this->m_nSize);
 
    return get_data()[nIndex];
 
@@ -201,7 +201,7 @@ template < class TYPE, class ARG_TYPE, class ALLOCATOR >
 inline void array < TYPE, ARG_TYPE, ALLOCATOR > ::set_at(::index nIndex, ARG_TYPE newElement)
 {
 
-   ASSERT(nIndex >= 0 && nIndex < __count(this->m_nSize));
+   ASSERT(nIndex >= 0 && nIndex < this->m_nSize);
 
    get_data()[nIndex] = newElement;
 
@@ -432,9 +432,9 @@ inline ::index array < TYPE, ARG_TYPE, ALLOCATOR > ::append(const array& src)
    if(this == &src)
       __throw(error_invalid_argument);
 
-   ::count nOldSize = __count(this->m_nSize);
-   this->allocate(__count(this->m_nSize) + __count(src.m_nSize));
-   CopyElements<TYPE>(&this->m_pData[nOldSize], src.m_pData, __count(src.m_nSize));
+   ::count nOldSize = this->m_nSize;
+   this->allocate(this->m_nSize + src.m_nSize);
+   CopyElements<TYPE>(&this->m_pData[nOldSize], src.m_pData, src.m_nSize);
    return nOldSize;
 }
 
@@ -448,7 +448,7 @@ inline void array < TYPE, ARG_TYPE, ALLOCATOR >::copy(const array& src)
    if(this != &src)
    {
 
-      auto nSrcSize = __count(src.m_nSize);
+      auto nSrcSize = src.m_nSize;
 
       this->allocate(nSrcSize);
 
@@ -513,23 +513,42 @@ inline array < TYPE, ARG_TYPE, ALLOCATOR > & array < TYPE, ARG_TYPE, ALLOCATOR >
 //
 
 template < class TYPE, class ARG_TYPE, class ALLOCATOR >
-inline TYPE & array < TYPE, ARG_TYPE, ALLOCATOR > ::add_new()
+inline TYPE & array < TYPE, ARG_TYPE, ALLOCATOR > ::add_new(::count c)
 {
 
-   this->set_size(__count(this->m_nSize) + 1);
+   if (c <= 0)
+   {
 
-   return this->last();
+      __throw(error_invalid_argument);
+
+   }
+
+   auto end = this->m_nSize;
+
+   this->set_size(end + c);
+
+   return this->element_at(end);
 
 }
 
+//template < class TYPE, class ARG_TYPE, class ALLOCATOR >
+//inline TYPE & array < TYPE, ARG_TYPE, ALLOCATOR > ::add_new_at(int iIndex)
+//{
+//
+//   this->make_room_at(iIndex);
+//
+//   return this->element_at(iIndex);
+//
+//}
+
 
 template < class TYPE, class ARG_TYPE, class ALLOCATOR >
-inline ::index array < TYPE, ARG_TYPE, ALLOCATOR > ::add_new(::count count)
+inline TYPE & array < TYPE, ARG_TYPE, ALLOCATOR > ::add_new_at(::index iIndex, ::count nCount)
 {
 
-   this->set_size(__count(this->m_nSize) + count);
+   this->make_room_at(iIndex, nCount);
 
-   return this->get_upper_bound();
+   return this->element_at(iIndex);
 
 }
 

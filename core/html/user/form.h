@@ -1,12 +1,10 @@
 #pragma once
 
 
-
 class CLASS_DECL_CORE html_form :
    virtual public ::user::form_view
 {
 public:
-
 
 
    __pointer(::html::element)          m_pelementLButtonDown;
@@ -40,8 +38,7 @@ public:
 
    ::html_data * get_html_data();
 
-   ::html_document * get_document();
-
+   //::html_document * get_document();
 
 
    DECLARE_MESSAGE_HANDLER(on_message_create);
@@ -74,6 +71,8 @@ public:
    virtual void soft_reload() override;
 
    virtual void set_need_load_form_data() override;
+   
+   virtual void on_form_implemented();
 
 
 };

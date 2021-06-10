@@ -20,7 +20,7 @@ namespace draw2d
    bool graphics_extension::text_out(::draw2d::graphics_pointer & pgraphics, i32 x, i32 y, const char * pcsz, strsize iCount, size_i32 & s)
 
    {
-      s = pgraphics->GetTextExtent(string(pcsz,iCount));
+      s = pgraphics->get_text_extent(string(pcsz,iCount));
 
       return pgraphics->text_out(x, y, string(pcsz, iCount));
 
@@ -30,7 +30,7 @@ namespace draw2d
    }
 
 
-   void graphics_extension::GetTextExtent(::draw2d::graphics_pointer & pgraphics, const char * pcsz, ::size_array & sizea)
+   void graphics_extension::get_text_extent(::draw2d::graphics_pointer & pgraphics, const char * pcsz, ::size_array & sizea)
    {
 
 
@@ -55,7 +55,7 @@ namespace draw2d
    }
 
 
-   void graphics_extension::GetTextExtent(::draw2d::graphics_pointer& pgraphics, const char * psz, size_i32 & size)
+   void graphics_extension::get_text_extent(::draw2d::graphics_pointer& pgraphics, const char * psz, size_i32 & size)
    {
 
       //synchronous_lock ml(&user_mutex());
@@ -70,13 +70,13 @@ namespace draw2d
          str.get_length(),
          &size);*/
 
-      size = pgraphics->GetTextExtent(psz);
+      size = pgraphics->get_text_extent(psz);
 
 
    }
 
 
-   void graphics_extension::GetTextExtent(::draw2d::graphics_pointer& pgraphics, const char * pcsz, strsize iCount, size_i32 & size)
+   void graphics_extension::get_text_extent(::draw2d::graphics_pointer& pgraphics, const char * pcsz, strsize iCount, size_i32 & size)
    {
 
       /*::GetTextExtentPoint32U(
@@ -86,7 +86,7 @@ namespace draw2d
          iCount,
          &size);*/
 
-      size = pgraphics->GetTextExtent(string(pcsz, iCount));
+      size = pgraphics->get_text_extent(string(pcsz, iCount));
 
    }
 

@@ -48,7 +48,7 @@ namespace draw2d
    }
 
 
-   bool region::create_rect(const ::rectangle_i32 & rectangle)
+   bool region::create_rectangle(const ::rectangle_i32 & rectangle)
    {
 
       if(m_eregion != e_region_none)
@@ -73,7 +73,7 @@ namespace draw2d
    }
 
 
-   bool region::create_oval(const ::rectangle_i32 & rectangle)
+   bool region::create_ellipse(const ::rectangle_i32 & rectangle)
    {
 
       if(m_eregion != e_region_none)

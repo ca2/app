@@ -87,7 +87,7 @@ namespace user
       
       virtual bool prodevian_update_screen();
 
-      virtual void RepositionBars(::u32 nIDFirst, ::u32 nIDLast, ::id nIdLeftOver, ::u32 nFlag = reposDefault, RECTANGLE_I32 * prectParam = nullptr, const ::rectangle_i32 & rectClient = nullptr, bool bStretch = true) override;
+      virtual void RepositionBars(::u32 nIDFirst, ::u32 nIDLast, ::id nIdLeftOver, ::u32 nFlag = reposDefault, RECTANGLE_I32 * prectParam = nullptr, const ::rectangle_i32 & rectangleClient = nullptr, bool bStretch = true) override;
 
       virtual bool window_move(i32 x, i32 y);
 

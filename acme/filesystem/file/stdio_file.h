@@ -38,13 +38,17 @@ public:
    virtual void close() override;
 
 
-   virtual memsize read(void *pdata,memsize nCount) override;
+   memsize read(void *pdata,memsize nCount) override;
 
-   virtual void write(const void * pdata,memsize nCount) override;
+   int get_character() override;
+   int peek_character() override;
+   int put_character_back(int iChar) override;
 
-   virtual string get_location() const override;
+   void write(const void * pdata,memsize nCount) override;
 
-   virtual bool is_opened() const override;
+   string get_location() const override;
+
+   bool is_opened() const override;
 
 
 };

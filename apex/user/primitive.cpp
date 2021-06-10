@@ -1878,7 +1878,7 @@ namespace user
    //}
 
 
-   void primitive::RepositionBars(::u32 nIDFirst, ::u32 nIDLast, ::id idLeftOver, ::u32 nFlag, RECTANGLE_I32 * prectParam, const ::rectangle_i32 & rectClient, bool bStretch)
+   void primitive::RepositionBars(::u32 nIDFirst, ::u32 nIDLast, ::id idLeftOver, ::u32 nFlag, RECTANGLE_I32 * prectParam, const ::rectangle_i32 & rectangleClient, bool bStretch)
    {
 
       ::exception::throw_interface_only();

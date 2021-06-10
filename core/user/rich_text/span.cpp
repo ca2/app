@@ -202,7 +202,7 @@ namespace user
 
          pgraphics->set(m_pformat->get_font(pgraphics));
 
-         m_sizeSpan = pgraphics->GetTextExtent(m_str);
+         m_sizeSpan = pgraphics->get_text_extent(m_str);
 
          pgraphics->get_character_extent(m_daPositionLeft, m_daPositionRight, m_str);
 

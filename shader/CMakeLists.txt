@@ -2,15 +2,8 @@ cmake_minimum_required(VERSION 3.17)
 project(app_shader CXX)
 
 
-add_compile_options("$<$<CONFIG:DEBUG>:-DDEBUG>")
-
-
-
-set(LIBRARY_OUTPUT_PATH ${CMAKE_CURRENT_SOURCE_DIR}/../../../time-${PLATFORM_NAME}/cmake)
-set(EXECUTABLE_OUTPUT_PATH ${CMAKE_CURRENT_SOURCE_DIR}/../../../time-${PLATFORM_NAME}/cmake)
-
-
-list(APPEND app_shader_source
+list(APPEND library_source
+   _.cpp
     _.h
     _user.h
     application.cpp
@@ -22,14 +15,15 @@ list(APPEND app_shader_source
     main_window.h)
 
 
-if (MSVC)
-    set(LIBCXX_TARGETING_MSVC ON)
-else()
-    set(LIBCXX_TARGETING_MSVC OFF)
-endif()
+list(APPEND library_references
+   acme
+   apex
+   aqua
+   aura
+   )
 
 
-add_executable(app_shader ${app_shader_source})
+add_executable(app_shader ${library_source})
 
 target_precompile_headers(app_shader PRIVATE framework.h)
 
@@ -39,18 +33,19 @@ if (MSVC)
     target_compile_options(app_shader PRIVATE "/MD$<$<CONFIG:Debug>:d>")
     target_link_options(app_shader PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
     target_link_options(app_shader PRIVATE "/SUBSYSTEM:WINDOWS")
-    target_link_libraries(app_shader PRIVATE acme apex aqua aura)
-    add_dependencies(app_shader draw2d_gdiplus)
+    target_link_libraries(app_shader PRIVATE ${library_references})
+
 elseif(LINUX)
     target_link_options(app_shader PRIVATE -Wl,-rpath=\$ORIGIN)
-    target_link_libraries(app_shader PRIVATE acme apex aqua aura)
+    target_link_libraries(app_shader PRIVATE ${library_references})
     target_link_options(app_shader PRIVATE -Wl,-z,defs)
-    add_dependencies(app_shader draw2d_cairo)
+
 endif()
 
 add_dependencies(app_shader ${app_common_dependencies})
+add_dependencies(app_shader ${default_gpu})
+add_dependencies(app_shader ${default_draw2d})
 
-add_dependencies(app_shader gpu_opengl)
 
 
 target_link_directories(app_shader PRIVATE ${LIBRARY_OUTPUT_PATH})

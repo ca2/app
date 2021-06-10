@@ -500,7 +500,7 @@ void memory_base::fread(FILE * pfile)
    while(true)
    {
 
-      auto iRead = ::fread_dup(buffer, 1, buffer.size(), pfile);
+      auto iRead = FILE_read(buffer, 1, buffer.size(), pfile);
 
       if(iRead > 0)
       {
@@ -559,7 +559,7 @@ memory_base & memory_base::erase(memsize pos,memsize len)
 
    }
 
-   len = minimum(natural(len),get_size() - pos);
+   len = minimum(len,get_size() - pos);
 
    if(len <= 0)
    {

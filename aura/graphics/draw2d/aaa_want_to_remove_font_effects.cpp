@@ -39,11 +39,11 @@ namespace draw2d
    }
 
 
-   void font::embossed_text_out(::draw2d::graphics_pointer & pgraphics, const ::rect & rect, double dRateX, double dHeight, string & str)
+   void font::embossed_text_out(::draw2d::graphics_pointer & pgraphics, const ::rectangle & rectangle, double dRateX, double dHeight, string & str)
    {
 
 
-      ::aura::get_system()->draw2d()->api().embossed_text_out(pgraphics, rect, dRateX, dHeight, str);
+      ::aura::get_system()->draw2d()->api().embossed_text_out(pgraphics, rectangle, dRateX, dHeight, str);
 
       return;
 
@@ -52,7 +52,7 @@ namespace draw2d
 //      SetDC(pgraphics);
 //      SelectFont();
 //
-//      ::rect rectOffset(rect);
+//      ::rectangle rectOffset(rectangle);
 //      const ::point & pointOffset(rectOffset.top_left());
 //
 //      glyph * pglyph;
@@ -65,7 +65,7 @@ namespace draw2d
 //         if(pglyph != nullptr)
 
 //         {
-//            pointOffset.x = ::i32(pgraphics->GetTextExtent(str.Left(i)).cx);
+//            pointOffset.x = ::i32(pgraphics->get_text_extent(str.Left(i)).cx);
 //            pglyph->DrawGlyph(
 
 //               pgraphics,
@@ -94,11 +94,11 @@ namespace draw2d
 
    }
 
-   void font::embossed_text_out(::draw2d::graphics_pointer & pgraphics, const ::rect & rect, double dRateX, double dHeight, string & str, LPINT piCharsPositions, i32 iCharsPositions, i32 iOffset)
+   void font::embossed_text_out(::draw2d::graphics_pointer & pgraphics, const ::rectangle & rectangle, double dRateX, double dHeight, string & str, LPINT piCharsPositions, i32 iCharsPositions, i32 iOffset)
 
    {
 
-      ::aura::get_system()->draw2d()->api().embossed_text_out(pgraphics, rect, dRateX, dHeight, str, piCharsPositions, iCharsPositions, iOffset);
+      ::aura::get_system()->draw2d()->api().embossed_text_out(pgraphics, rectangle, dRateX, dHeight, str, piCharsPositions, iCharsPositions, iOffset);
 
 
       return;
@@ -108,7 +108,7 @@ namespace draw2d
 //      SetDC(pgraphics);
 //      SelectFont();
 //
-//      const ::rect rectOffset(rect);
+//      const ::rectangle rectOffset(rectangle);
 //      const ::point & pointOffset;
 //
 //
@@ -152,7 +152,7 @@ namespace draw2d
       /*   SetDC(pgraphics);
          SelectFont();
 
-         ::rect clipRect;
+         ::rectangle clipRect;
 
          i32 iOldMapMode = pgraphics->GetMapMode();
          pgraphics->SetMapMode(MM_TEXT);
@@ -179,7 +179,7 @@ namespace draw2d
       SetDC(pgraphics);
       SelectFont();
 
-      ::rect clipRect;
+      ::rectangle clipRect;
 
       pgraphics->text_out(x, y, str);
 
@@ -380,7 +380,7 @@ namespace draw2d
 
    void font::TextOutEx(
    ::draw2d::graphics_pointer & pgraphics,
-   const rect &               rect,
+   const rectangle &               rectangle,
    double               dRateX,
    double               dHeight,
    string                 &str,
@@ -394,13 +394,13 @@ namespace draw2d
       switch(iEffect)
       {
       case EffectSimple:
-         simple_text_out(pgraphics, rect.left, rect.top, str, piCharsPositions, iCharsPositions);
+         simple_text_out(pgraphics, rectangle.left, rectangle.top, str, piCharsPositions, iCharsPositions);
 
          break;
       case EffectEmbossed:
          embossed_text_out(
          pgraphics,
-         rect,
+         rectangle,
          dRateX,
          dHeight,
          str,

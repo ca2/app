@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "base/user/menu/central.h"
 #include "base/user/user/tab_pane.h"
-// pgraphics->GetTextExtent("->:<-"); // oh no!! omg!! The size_i32 is the size_i32 of the alien!!
+// pgraphics->get_text_extent("->:<-"); // oh no!! omg!! The size_i32 is the size_i32 of the alien!!
 #define MAGIC_PALACE_TAB_SPLT "->:<-"
 #define MAGIC_PALACE_TAB_SIZE "-/-"
 #define MAGIC_PALACE_TAB_TEXT "/"
@@ -394,7 +394,7 @@ namespace experience
       ::rectangle_i32 rectangle;
       ::rectangle_i32 rectBorder;
       ::rectangle_i32 rectText;
-      ::rectangle_i32 rectClient;
+      ::rectangle_i32 rectangleClient;
       ::rectangle_i32 rectIcon;
       ::rectangle_i32 rectClose;
 
@@ -488,7 +488,7 @@ namespace experience
          if(!ptab->get_element_rect(iTab,rectBorder, ::user::e_element_border))
             continue;
 
-         if(!ptab->get_element_rect(iTab,rectClient, ::user::e_element_client))
+         if(!ptab->get_element_rect(iTab,rectangleClient, ::user::e_element_client))
             continue;
 
          if(ptab->get_data()->m_bVertical)
@@ -513,9 +513,9 @@ namespace experience
                   //path->start_figure();
 
                   path->add_line(rectBorder.right,rectBorder.bottom,rectBorder.left + 1,rectBorder.bottom);
-                  //path->add_line(rectClient.right, rectBorder.top);
-                  path->add_line(rectBorder.left,rectBorder.top - (rectBorder.left - rectClient.left));
-                  path->add_line(rectClient.left,rectBorder.top);
+                  //path->add_line(rectangleClient.right, rectBorder.top);
+                  path->add_line(rectBorder.left,rectBorder.top - (rectBorder.left - rectangleClient.left));
+                  path->add_line(rectangleClient.left,rectBorder.top);
                   path->add_line(rectBorder.right,rectBorder.top);
 
                   path->close_figure();
@@ -562,7 +562,7 @@ namespace experience
                   //path->start_figure();
 
                   path->add_line(rectBorder.right,rectBorder.bottom,rectBorder.left + 1,rectBorder.bottom);
-                  path->add_line(rectBorder.left,rectBorder.top - (rectBorder.left - rectClient.left));
+                  path->add_line(rectBorder.left,rectBorder.top - (rectBorder.left - rectangleClient.left));
                   path->add_line(rectText.left,rectBorder.top);
                   path->add_line(rectBorder.right,rectBorder.top);
                   path->add_line(rectBorder.right,rectBorder.bottom);
@@ -640,7 +640,7 @@ namespace experience
 
                   pgraphics->set(penBorder);
 
-                  pgraphics->draw_line(rcTab.left, rectClient.bottom, rectBorder.left, rectClient.bottom);
+                  pgraphics->draw_line(rcTab.left, rectangleClient.bottom, rectBorder.left, rectangleClient.bottom);
 
                }
 
@@ -657,17 +657,17 @@ namespace experience
                   if (iPane > 0)
                   {
 
-                     path->add_line(rectangle.left, rectClient.bottom, rectBorder.left, rectClient.bottom);
+                     path->add_line(rectangle.left, rectangleClient.bottom, rectBorder.left, rectangleClient.bottom);
 
                   }
 
-                  path->add_line(rectBorder.left,rectClient.bottom,rectBorder.left,rectBorder.top);
+                  path->add_line(rectBorder.left,rectangleClient.bottom,rectBorder.left,rectBorder.top);
 
-                  path->add_line(rectClient.right,rectBorder.top);
+                  path->add_line(rectangleClient.right,rectBorder.top);
 
-                  path->add_line(rectBorder.right,rectBorder.top + (rectBorder.right - rectClient.right));
+                  path->add_line(rectBorder.right,rectBorder.top + (rectBorder.right - rectangleClient.right));
 
-                  path->add_line(rectBorder.right - 1,rectClient.bottom);
+                  path->add_line(rectBorder.right - 1,rectangleClient.bottom);
 
                   path->close_figure();
 
@@ -719,17 +719,17 @@ namespace experience
                   if (iPane > 0)
                   {
 
-                     path->add_line(rectangle.left, rectClient.bottom, rectBorder.left, rectClient.bottom);
+                     path->add_line(rectangle.left, rectangleClient.bottom, rectBorder.left, rectangleClient.bottom);
 
                   }
 
-                  path->add_line(rectBorder.left,rectClient.bottom,rectBorder.left,rectBorder.top);
+                  path->add_line(rectBorder.left,rectangleClient.bottom,rectBorder.left,rectBorder.top);
 
-                  path->add_line(rectClient.right,rectBorder.top);
+                  path->add_line(rectangleClient.right,rectBorder.top);
 
-                  path->add_line(rectBorder.right,rectBorder.top + (rectBorder.right - rectClient.right));
+                  path->add_line(rectBorder.right,rectBorder.top + (rectBorder.right - rectangleClient.right));
 
-                  path->add_line(rectBorder.right - 1,rectClient.bottom);
+                  path->add_line(rectBorder.right - 1,rectangleClient.bottom);
 
                   path->close_figure();
 
@@ -794,7 +794,7 @@ namespace experience
 
                   pgraphics->set(penBorder);
 
-                  pgraphics->draw_line(rectBorder.right - 1, rectClient.bottom, rcTab.right, rectClient.bottom);
+                  pgraphics->draw_line(rectBorder.right - 1, rectangleClient.bottom, rcTab.right, rectangleClient.bottom);
 
                }
 
@@ -972,7 +972,7 @@ namespace experience
 
       }
 
-      ptab->m_dcextension.GetTextExtent(pgraphics,MAGIC_PALACE_TAB_SIZE,ptab->get_data()->m_sizeSep);
+      ptab->m_dcextension.get_text_extent(pgraphics,MAGIC_PALACE_TAB_SIZE,ptab->get_data()->m_sizeSep);
 
       if(ptab->get_data()->m_bVertical)
       {
@@ -1000,7 +1000,7 @@ namespace experience
 
             ::size_i32 size;
 
-            ptab->m_dcextension.GetTextExtent(pgraphics,str, size);
+            ptab->m_dcextension.get_text_extent(pgraphics,str, size);
 
             if(ppane->m_pimage->is_set())
             {
@@ -1053,12 +1053,12 @@ namespace experience
 
          ptab->get_data()->m_iTabHeight = iTabHeight;
 
-         ::rectangle_i32 rectClient = ptab->get_client_rect();
+         ::rectangle_i32 rectangleClient = ptab->get_client_rect();
 
-         ptab->get_data()->m_rectTab.left       = rectClient.left;
-         ptab->get_data()->m_rectTab.top        = rectClient.top;
+         ptab->get_data()->m_rectTab.left       = rectangleClient.left;
+         ptab->get_data()->m_rectTab.top        = rectangleClient.top;
          ptab->get_data()->m_rectTab.right      = ptab->get_data()->m_rectTab.left + ptab->get_data()->m_iTabWidth;
-         ptab->get_data()->m_rectTab.bottom     = rectClient.bottom;
+         ptab->get_data()->m_rectTab.bottom     = rectangleClient.bottom;
 
          /*      m_puserinteraction->set_window_position(
          e_zorder_top,
@@ -1068,9 +1068,9 @@ namespace experience
          m_rectTab.height(),
          0);*/
 
-         ptab->get_data()->m_rectTabClient.left       = ptab->m_bShowTabs ? ptab->get_data()->m_rectTab.right : rectClient.left;
+         ptab->get_data()->m_rectTabClient.left       = ptab->m_bShowTabs ? ptab->get_data()->m_rectTab.right : rectangleClient.left;
          ptab->get_data()->m_rectTabClient.top        = ptab->get_data()->m_rectTab.top;
-         ptab->get_data()->m_rectTabClient.right      = rectClient.right;
+         ptab->get_data()->m_rectTabClient.right      = rectangleClient.right;
          ptab->get_data()->m_rectTabClient.bottom     = ptab->get_data()->m_rectTab.bottom;
 
       }
@@ -1084,9 +1084,9 @@ namespace experience
 
          pgraphics->set(ptab->get_font(pstyle, ::user::e_state_selected));
 
-         ::rectangle_i32 rectClient = ptab->get_client_rect();
+         ::rectangle_i32 rectangleClient = ptab->get_client_rect();
 
-         int x = rectClient.left;
+         int x = rectangleClient.left;
 
          i32 ixAdd;
 
@@ -1108,7 +1108,7 @@ namespace experience
 
             size_i32 size;
 
-            ptab->m_dcextension.GetTextExtent(pgraphics,str, size);
+            ptab->m_dcextension.get_text_extent(pgraphics,str, size);
 
             if(ppane->m_pimage)
             {
@@ -1127,7 +1127,7 @@ namespace experience
             }
 
             ppane->m_point.x = x;
-            ppane->m_point.y = rectClient.top;
+            ppane->m_point.y = rectangleClient.top;
 
 
             //            string str = ppane->get_title();
@@ -1187,9 +1187,9 @@ namespace experience
 
 
 
-         ptab->get_data()->m_rectTab.left       = rectClient.left;
-         ptab->get_data()->m_rectTab.top        = rectClient.top;
-         ptab->get_data()->m_rectTab.right      = rectClient.right;
+         ptab->get_data()->m_rectTab.left       = rectangleClient.left;
+         ptab->get_data()->m_rectTab.top        = rectangleClient.top;
+         ptab->get_data()->m_rectTab.right      = rectangleClient.right;
          ptab->get_data()->m_rectTab.bottom     = ptab->get_data()->m_rectTab.top + ptab->get_data()->m_iTabHeight;
 
          /*      set_window_position(
@@ -1203,9 +1203,9 @@ namespace experience
          auto & rectTabClient = ptab->get_data()->m_rectTabClient;
 
          rectTabClient.left       = ptab->get_data()->m_rectTab.left;
-         rectTabClient.top        = ptab->m_bShowTabs ? ptab->get_data()->m_rectTab.bottom : rectClient.top;
+         rectTabClient.top        = ptab->m_bShowTabs ? ptab->get_data()->m_rectTab.bottom : rectangleClient.top;
          rectTabClient.right      = ptab->get_data()->m_rectTab.right;
-         rectTabClient.bottom     = rectClient.bottom;
+         rectTabClient.bottom     = rectangleClient.bottom;
 
          //TRACE0("rectTabClient");
 
@@ -1836,9 +1836,9 @@ namespace experience
    bool style::_001OnDrawSplitLayout(::draw2d::graphics_pointer & pgraphics, ::user::split_layout * psplitlayout)
    {
 
-      ::rectangle_i32 rectClient = psplitlayout->get_client_rect();
+      ::rectangle_i32 rectangleClient = psplitlayout->get_client_rect();
 
-      pgraphics->fill_rectangle(rectClient, argb(255, 255, 255, 255));
+      pgraphics->fill_rectangle(rectangleClient, argb(255, 255, 255, 255));
 
       return true;
 

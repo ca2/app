@@ -75,13 +75,13 @@ color::~color()
 
 proc hls2rgb {h l s} {
     # Posted by frederic.bonnet@ciril.fr
-    # h, l and s are floats between 0.0 and 1.0, ditto for rect, g and b
+    # h, l and s are floats between 0.0 and 1.0, ditto for rectangle, g and b
     # h = 0   => red
     # h = 1/3 => green
     # h = 2/3 => blue
 
     set h6 [expr {($h-floor($h))*6}]
-    set rect [expr {  $h6 <= 3 ? 2-$h6
+    set rectangle [expr {  $h6 <= 3 ? 2-$h6
                             : $h6-4}]
     set g [expr {  $h6 <= 2 ? $h6
                             : $h6 <= 5 ? 4-$h6
@@ -89,14 +89,14 @@ proc hls2rgb {h l s} {
 1    set b [expr {  $h6 <= 1 ? -$h6
                             : $h6 <= 4 ? $h6-2
                             : 6-$h6}]
-    set rect [expr {$rect < 0.0 ? 0.0 : $rect > 1.0 ? 1.0 : double($rect)}]
+    set rectangle [expr {$rectangle < 0.0 ? 0.0 : $rectangle > 1.0 ? 1.0 : double($rectangle)}]
     set g [expr {$g < 0.0 ? 0.0 : $g > 1.0 ? 1.0 : double($g)}]
     set b [expr {$b < 0.0 ? 0.0 : $b > 1.0 ? 1.0 : double($b)}]
 
-    set rect [expr {(($rect-1)*$s+1)*$l}]
+    set rectangle [expr {(($rectangle-1)*$s+1)*$l}]
     set g [expr {(($g-1)*$s+1)*$l}]
     set b [expr {(($b-1)*$s+1)*$l}]
-    return [list $rect $g $b]
+    return [list $rectangle $g $b]
 }
 
   */
@@ -104,11 +104,11 @@ proc hls2rgb {h l s} {
 void color::get_hls(double & h, double & l, double & s) const
 {
 
-   double rect = m_iR / 255.0;
+   double rectangle = m_iR / 255.0;
    double g = m_iG / 255.0;
    double b = m_iB / 255.0;
 
-   //double rect = rgb.R / 255.0;
+   //double rectangle = rgb.R / 255.0;
 
    //double g = rgb.G / 255.0;
 
@@ -130,11 +130,11 @@ void color::get_hls(double & h, double & l, double & s) const
 
    l = 0;
 
-   v = maximum(rect, g);
+   v = maximum(rectangle, g);
 
    v = maximum(v, b);
 
-   m = minimum(rect, g);
+   m = minimum(rectangle, g);
 
    m = minimum(m, b);
 
@@ -168,13 +168,13 @@ void color::get_hls(double & h, double & l, double & s) const
 
    }
 
-   r2 = (v - rect) / vm;
+   r2 = (v - rectangle) / vm;
 
    g2 = (v - g) / vm;
 
    b2 = (v - b) / vm;
 
-   if (rect == v)
+   if (rectangle == v)
 
    {
 
@@ -194,7 +194,7 @@ void color::get_hls(double & h, double & l, double & s) const
 
    {
 
-      h = (rect == m ? 3.0 + g2 : 5.0 - r2);
+      h = (rectangle == m ? 3.0 + g2 : 5.0 - r2);
 
    }
 
@@ -743,7 +743,7 @@ void CColor::get_hls(byte * H, byte * L, byte * S)
    dLightness = (byte) (((dMax + dMin) * HLSMAX) + RGBMAX) / (2 * RGBMAX);
    if(dMax == dMin)
    {
-      // rect=g=b --> achromatic case
+      // rectangle=g=b --> achromatic case
       dSaturation = 0;                     // saturation
       dHue = UNDEFINED_HUE;             // hue
    }
@@ -792,7 +792,7 @@ double HueToRGB(
       dHue += HLSMAX;
    if (dHue > HLSMAX)
       dHue -= HLSMAX;
-   // return rect,g, or b value from this tridrant
+   // return rectangle,g, or b value from this tridrant
    if (dHue < (HLSMAX/6))
       return ( d1 + (((d2-d1)*dHue+(HLSMAX/12))/(HLSMAX/6)) );
    if (dHue < (HLSMAX/2))

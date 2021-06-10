@@ -110,7 +110,7 @@ void simple_toolbar::install_message_routing(::channel * pchannel)
    //MESSAGE_LINK(e_message_nchittest    , pchannel, this, &simple_toolbar::_001OnNcHitTest);
    //MESSAGE_LINK(e_message_mouse_leave   , pchannel, this, &simple_toolbar::on_message_mouse_leave);
 
-   install_simple_ui_default_mouse_handling(pchannel);
+   install_click_default_mouse_handling(pchannel);
    
 }
 
@@ -238,15 +238,15 @@ void simple_toolbar::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 
    //}
 
-   ::rectangle_i32 rectClient;
+   ::rectangle_i32 rectangleClient;
 
-   get_client_rect(rectClient);
+   get_client_rect(rectangleClient);
 
    pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
    auto pstyle = get_style(pgraphics);
 
-   pgraphics->fill_rectangle(rectClient, get_color(pstyle, ::user::e_element_background));
+   pgraphics->fill_rectangle(rectangleClient, get_color(pstyle, ::user::e_element_background));
 
    //::user::interaction::_001OnDraw(pgraphics);
 
@@ -560,7 +560,7 @@ size_i32 simple_toolbar::CalcSize(::draw2d::graphics_pointer & pgraphics, index 
 
          GetButtonText(i, str);
 
-         size = pgraphics->GetTextExtent(str);
+         size = pgraphics->get_text_extent(str);
 
          buttonx += (index) (size.cx + EXTRA_TEXT_CX);
 
@@ -1143,9 +1143,9 @@ return true;
 void simple_toolbar::on_layout(::draw2d::graphics_pointer & pgraphics)
 {
 
-   auto rectClient = get_client_rect();
+   auto rectangleClient = get_client_rect();
 
-   if (rectClient.is_empty())
+   if (rectangleClient.is_empty())
    {
 
       return;
@@ -1206,7 +1206,7 @@ void simple_toolbar::on_layout(::draw2d::graphics_pointer & pgraphics)
 
                }
 
-               int offsetx = (rectClient.width() - iTotalX) / 2;
+               int offsetx = (rectangleClient.width() - iTotalX) / 2;
 
                for (index j = 0; j <= i; j++)
                {
@@ -1769,7 +1769,11 @@ void simple_toolbar::_001OnNcCalcSize(::message::message * pmessage)
 
    bool bHorz = (m_dwStyle & CBRS_ORIENT_HORZ) != 0;
 
-   auto pgraphics = ::draw2d::create_memory_graphics();
+   auto psystem = m_psystem->m_paurasystem;
+
+   auto pdraw2d = psystem->draw2d();
+
+   auto pgraphics = pdraw2d->create_memory_graphics();
 
    ::user::control_bar::CalcInsideRect(pgraphics, rectangle, bHorz);
 
@@ -1887,7 +1891,7 @@ index simple_toolbar::WrapToolBar(::draw2d::graphics_pointer & pgraphics, index 
          if (str.has_char())
          {
 
-            size_f64 size = pgraphics->GetTextExtent(str);
+            size_f64 size = pgraphics->get_text_extent(str);
 
             dx = (index)  (size.cx + EXTRA_TEXT_CX);
 

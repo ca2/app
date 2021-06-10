@@ -100,7 +100,7 @@ namespace user
       bool                                         m_bShowControlBox;
       
       
-      __pointer(::windowing::menu)                 m_pmenushared;
+      __pointer(::windowing::menu) m_pmenu;
       string_array                                 m_straMenuParent;
       string_array                                 m_straMenuName;
       string_array                                 m_straMenuId;
@@ -136,7 +136,7 @@ namespace user
       void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
 
 
-      virtual void display_previous_restore();
+      ::e_status display_previous_restore() override;
       void display_system_minimize() override;
 
 

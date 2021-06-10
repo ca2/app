@@ -78,7 +78,7 @@ namespace core
       //::user::interaction *                                 m_puiLastLButtonDown;
 
 
-      //::write_text::font_enum_item_array                        m_fontenumitema;
+      //::write_text::font_enumeration_item_array                        m_fontenumitema;
 
       ////index                                               m_iEdge;
 

@@ -12,6 +12,15 @@ list(APPEND library_source
         framework.h)
 
 
+list(APPEND library_references
+   acme
+   apex
+   aqua
+   aura
+   )
+
+
+
 add_executable(app_just_message_box ${library_source})
 
 target_precompile_headers(app_just_message_box PRIVATE framework.h)
@@ -34,7 +43,7 @@ elseif(LINUX)
     #endif()
 
     target_link_options(app_just_message_box PRIVATE -Wl,-rpath=\$ORIGIN)
-    target_link_libraries(app_just_message_box PRIVATE acme apex aqua aura)
+    target_link_libraries(app_just_message_box PRIVATE ${library_references})
     target_link_options(app_just_message_box PRIVATE -Wl,-z,defs)
     message("PKGCONFIG_LIBRARIES is " ${PKGCONFIG_LIBRARIES})
     add_dependencies(app_just_message_box draw2d_cairo)
@@ -42,6 +51,8 @@ endif()
 
 
 add_dependencies(app_just_message_box ${app_common_dependencies})
+add_dependencies(app_just_message_box ${default_write_text})
+add_dependencies(app_just_message_box ${default_draw2d})
 
 
 target_include_directories(app_just_message_box PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../..)

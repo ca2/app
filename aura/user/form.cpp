@@ -117,7 +117,8 @@ namespace user
       __pointer(::message::create) pcreate(pmessage);
 
       pcreate->previous();
-
+      
+      add_control_event_handler(this);
 
    }
 

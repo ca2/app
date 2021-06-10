@@ -33,14 +33,10 @@ namespace subject
 
 #endif
 
-      //virtual ::e_status run() override;
-
+      virtual ::subject::subject * subject(const ::id& id, const ::action_context& actioncontext = ::action_context());
 
       ::subject::subject_pointer fork_subject(const ::id &id);
 
-      ::subject::subject * subject(const ::id &id);
-
-      virtual ::subject::subject * start_subject_handling(const ::id &id);
       virtual void process_subject(const ::id & id);
       virtual void process_subject(const ::id & id, const ::payload & payload);
       virtual void process_subject(const ::id & id, const ::action_context &actioncontext);

@@ -595,7 +595,7 @@ template<class TYPE, class ARG_TYPE, class ALLOCATOR >
 //
 //      dumpcontext << "\n";
 //
-//      dump_elements<TYPE>(dumpcontext,get_data(), (::count_cast) this->m_nSize);
+//      dump_elements<TYPE>(dumpcontext,get_data(), this->m_nSize);
 //
 //   }
 //

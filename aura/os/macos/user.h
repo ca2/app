@@ -7,15 +7,15 @@
 
 #pragma once
 
-#ifdef __OBJC__
-
-//#include "mm_oswindow.h"
-
-#else
-
-#include "oswindow_data.h"
-
-#endif
+//#ifdef __OBJC__
+//
+////#include "mm_oswindow.h"
+//
+//#else
+//
+//#include "oswindow_data.h"
+//
+//#endif
 
 #include "windowing.h"
 

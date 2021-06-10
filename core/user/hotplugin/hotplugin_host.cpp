@@ -600,7 +600,7 @@ namespace hotplugin
    //bool host::get_client_rect(RECTANGLE_I64 * prectangle)
    //{
 
-   //   ::copy(prectangle,m_rectClient);
+   //   ::copy(prectangle,m_rectangleClient);
 
    //   return true;
 

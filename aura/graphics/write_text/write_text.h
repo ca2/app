@@ -13,7 +13,7 @@ namespace write_text
 
 
 
-      __pointer(class font_department)       m_pfontdepartment;
+      __pointer(class fonts)           m_pfonts;
 
 
 
@@ -21,14 +21,20 @@ namespace write_text
       virtual ~write_text();
 
       
-      class font_department * fonts();
+      class fonts * fonts();
 
 
       virtual ::e_status finalize() override;
       virtual ::e_status term() override;
 
 
-      //virtual double font_similarity(const char * pszSystem, const char * pszUser);
+      virtual ::e_status handle_font_enumeration(::subject::subject* psubject);
+
+      
+      virtual font_pointer point_font(const char * pszFontName, double dFontSize, int iFontWeight = e_font_weight_normal);
+
+
+      virtual font_pointer create_font();
 
 
    };

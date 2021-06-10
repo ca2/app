@@ -60,14 +60,12 @@ namespace user
 
       ::user::impact::install_message_routing(pchannel);
 
-      install_simple_ui_default_mouse_handling(pchannel);
+      install_click_default_mouse_handling(pchannel);
 
       MESSAGE_LINK(e_message_create, pchannel, this, &menu_view::on_message_create);
       MESSAGE_LINK(e_message_destroy, pchannel, this, &menu_view::_001OnDestroy);
 
    }
-
-
 
 
    bool menu_view::on_click(const ::user::item & item)
@@ -253,11 +251,11 @@ namespace user
 
       y += 10;
 
-      ::rectangle_i32 rectClient;
+      ::rectangle_i32 rectangleClient;
 
-      get_client_rect(rectClient);
+      get_client_rect(rectangleClient);
 
-      int w = rectClient.width() - x * 2;
+      int w = rectangleClient.width() - x * 2;
 
       int k = 0;
 
@@ -367,18 +365,18 @@ namespace user
 
       pimage1 = m_pimageMem;
 
-      ::rectangle_i32 rectClient;
+      ::rectangle_i32 rectangleClient;
 
-      get_client_rect(rectClient);
+      get_client_rect(rectangleClient);
 
-      if (rectClient.area() <= 0)
+      if (rectangleClient.area() <= 0)
       {
 
          return;
 
       }
 
-      pimage1->create(rectClient.size());
+      pimage1->create(rectangleClient.size());
 
       ::draw2d::graphics_pointer pgraphics = pimage1->get_graphics();
 
@@ -612,7 +610,7 @@ namespace user
 
       }
 
-      pgraphicsParam->stretch(rectClient, pimage1->get_graphics());
+      pgraphicsParam->stretch(rectangleClient, pimage1->get_graphics());
 
    }
 
@@ -628,11 +626,11 @@ namespace user
    void menu_view::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::rectangle_i32 rectClient;
+      ::rectangle_i32 rectangleClient;
 
-      get_client_rect(rectClient);
+      get_client_rect(rectangleClient);
 
-      if (rectClient.area() <= 0)
+      if (rectangleClient.area() <= 0)
          return;
 
    }
@@ -660,7 +658,7 @@ namespace user
 
       int iCommand;
 
-      auto papplication = get_application();
+//      auto papplication = get_application();
 
       xml::node * pnodeMain = m_pxmldoc->get_child_at("menubar", 0, 1);
 

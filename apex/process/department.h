@@ -54,13 +54,17 @@ namespace process
          bool                             m_bInitFailure;
          bool                             m_bPotentialTimeout;
          bool *                           m_pbPotentialTimeout;
-         __pointer(process_thread)               m_pthread;
+         __pointer(process_thread)        m_pthread;
          exit_status                      m_exitstatus;
          bool                             m_bElevated;
 
 
-         process_processor(const string & strCmdLine, const ::duration & dur, bool * pbPotentialTimeout = nullptr, string * pstrRead = nullptr, bool bElevated = false);
+         process_processor();
          virtual ~process_processor();
+         
+         
+         ::e_status process(const string & strCmdLine, const ::duration & dur, bool * pbPotentialTimeout = nullptr, string * pstrRead = nullptr, bool bElevated = false);
+         
 
       };
 

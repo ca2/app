@@ -30,9 +30,9 @@ namespace filemanager
 
 
 
-      ::rectangle_i32 rectClient;
-      get_client_rect(rectClient);
-      pgraphics->fill_rectangle(rectClient, rgb(200, 200, 190));
+      ::rectangle_i32 rectangleClient;
+      get_client_rect(rectangleClient);
+      pgraphics->fill_rectangle(rectangleClient, rgb(200, 200, 190));
 
       if(filemanager_document() == nullptr)
          return;

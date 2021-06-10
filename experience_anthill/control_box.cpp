@@ -42,9 +42,9 @@ namespace experience
 
          }
 
-         ::rectangle_i32 rectClient = get_client_rect();
+         ::rectangle_i32 rectangleClient = get_client_rect();
 
-         if (rectClient.is_empty())
+         if (rectangleClient.is_empty())
          {
       
             return;
@@ -71,7 +71,7 @@ namespace experience
          if (m_colorBackground.is_ok())
          {
 
-            pgraphics->fill_rectangle(rectClient, m_colorBackground);
+            pgraphics->fill_rectangle(rectangleClient, m_colorBackground);
 
          }
 

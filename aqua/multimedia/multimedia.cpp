@@ -160,30 +160,30 @@ namespace aqua
 } // namespace aqua
 
 
-static PFUNCTION_GET_NEW_MULTIMEDIA g_pgetnewmultimedia = nullptr;
-
-
-CLASS_DECL_AQUA void set_get_new_multimedia(PFUNCTION_GET_NEW_MULTIMEDIA pgetnewmultimedia)
-{
-
-   g_pgetnewmultimedia = pgetnewmultimedia;
-
-}
-
-
-CLASS_DECL_AQUA ::aqua::multimedia * get_new_multimedia()
-{
-
-   if ((iptr) g_pgetnewmultimedia < 65536)
-   {
-
-      return nullptr;
-
-   }
-
-   return g_pgetnewmultimedia();
-
-}
+//static PFUNCTION_GET_NEW_MULTIMEDIA g_pgetnewmultimedia = nullptr;
+//
+//
+//CLASS_DECL_AQUA void set_get_new_multimedia(PFUNCTION_GET_NEW_MULTIMEDIA pgetnewmultimedia)
+//{
+//
+//   g_pgetnewmultimedia = pgetnewmultimedia;
+//
+//}
+//
+//
+//CLASS_DECL_AQUA ::aqua::multimedia * get_new_multimedia()
+//{
+//
+//   if ((iptr) g_pgetnewmultimedia < 65536)
+//   {
+//
+//      return nullptr;
+//
+//   }
+//
+//   return g_pgetnewmultimedia();
+//
+//}
 
 
 //CLASS_DECL_AQUA ::aqua::multimedia * get_context_multimedia(::object * pobject)

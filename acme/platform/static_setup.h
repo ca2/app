@@ -26,8 +26,9 @@ public:
       flag_system = 1,
       flag_session = 2,
       flag_application = 4,
-      flag_library = 8,
-      flag_object_user = 16,
+      flag_multimedia = 8,
+      flag_library = 16,
+      flag_object_user = 32,
       flag_do_not_install = 4096,
 
    };

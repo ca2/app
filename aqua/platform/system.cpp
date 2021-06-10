@@ -198,51 +198,103 @@ namespace aqua
    }
 
 
-   void system::defer_multimedia()
+   ::e_status system::defer_multimedia()
    {
 
       if (m_pmultimedia)
       {
 
-         return;
+         return success;
 
       }
 
-      string strName;
+      auto psystem = get_system();
 
-      auto pszName = ::multimedia_get_library_name();
+      synchronous_lock synchronouslock(&psystem->m_mutexLibrary);
 
-      if (::is_set(pszName) && !strcmp(pszName, "veriwell_multimedia"))
+      try
       {
 
-         strName = "veriwell_multimedia";
+         auto psetup = ::static_setup::get_first(::static_setup::flag_multimedia);
+
+         if (psetup)
+         {
+
+            auto pmultimedia = psetup->create_new_object();
+
+            if (!pmultimedia)
+            {
+
+               return error_no_factory;
+
+            }
+
+            auto estatus = __compose(m_pmultimedia, pmultimedia);
+
+            if (!estatus)
+            {
+
+               return estatus;
+
+            }
+
+         }
 
       }
-      else
+      catch (...)
       {
 
-         strName = "multimedia";
+         return error_exception;
 
       }
 
-      auto plibrary = get_library(strName);
+      auto estatus = m_pmultimedia->initialize_multimedia(this);
 
-      if (plibrary)
+      if (!estatus)
       {
 
-         auto pgetnewmultimedia = plibrary->get<PFUNCTION_GET_NEW_MULTIMEDIA>("get_new_multimedia");
-
-         __compose(m_pmultimedia, ::move_transfer(pgetnewmultimedia()));
-
-         m_pmultimedia->initialize_multimedia(this);
+         return estatus;
 
       }
-      else
-      {
 
-         __compose(m_pmultimedia);
+      return estatus;
+      
 
-      }
+      //string strName;
+
+      //auto pszName = ::multimedia_get_library_name();
+
+      //if (::is_set(pszName) && !strcmp(pszName, "veriwell_multimedia"))
+      //{
+
+      //   strName = "veriwell_multimedia";
+
+      //}
+      //else
+      //{
+
+      //   strName = "multimedia";
+
+      //}
+
+      //auto plibrary = get_library(strName);
+
+      //if (plibrary)
+      //{
+
+//         auto pgetnewmultimedia = plibrary->get<PFUNCTION_GET_NEW_MULTIMEDIA>("get_new_multimedia");
+
+  //       __compose(m_pmultimedia, ::move_transfer(pgetnewmultimedia()));
+
+//    m_pmultimedia->initialize_multimedia(this);
+
+      //}
+      //else
+      //{
+
+      //   __compose(m_pmultimedia);
+
+      //}
 
    }
 

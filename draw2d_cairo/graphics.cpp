@@ -1836,7 +1836,7 @@ size_f64 graphics::GetOutputTabbedTextExtent(const string & str, count nTabPosit
 //}
 
 
-bool graphics::get_text_metrics(::write_text::text_metric * lpMetrics)
+::e_status graphics::get_text_metrics(::write_text::text_metric * lpMetrics)
 {
 
     synchronous_lock synchronouslock(cairo_mutex());
@@ -3935,10 +3935,10 @@ size_f64 graphics::get_text_extent(const char * lpszString, strsize nCount)
 }
 
 
-size_f64 graphics::get_text_extent(const string & str)
+size_f64 graphics::get_text_extent(const block & block)
 {
 
-    return get_text_extent(str, str.get_length());
+    return get_text_extent((const char *) block.get_data(), block.get_size());
 
 }
 
@@ -4285,7 +4285,7 @@ bool graphics::fill_rectangle(const ::rectangle_f64 & rectangle, const ::color::
 //}
 
 
-bool graphics::TextOutRaw(double x, double y, const block & block)
+::e_status graphics::TextOutRaw(double x, double y, const block & block)
 {
 
     synchronous_lock ml(cairo_mutex());

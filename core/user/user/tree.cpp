@@ -9,14 +9,13 @@
 namespace user
 {
 
+
    tree::tree()
    {
 
       user_tree_common_construct();
 
    }
-
-
 
 
    tree::~tree()
@@ -180,8 +179,6 @@ namespace user
 
          tickStart.Now();
 
-
-
          ::user::interaction::_001OnDraw(pgraphics);
 
          auto tickElapsed = tickStart.elapsed();
@@ -270,11 +267,6 @@ namespace user
             }
          }
 
-         //auto pointOffset = get_viewport_offset();
-
-         //pgraphics->OffsetViewportOrg((i32)-pointOffset.x,(i32)-(pointOffset.y % _001GetItemHeight()));
-         //pgraphics->OffsetViewportOrg(-pointOffset.x, -pointOffset.y);
-
          ::user::tree_draw_item drawitemdata;
 
          drawitemdata.m_pdc = pgraphics;
@@ -353,7 +345,6 @@ namespace user
 
       }
 
-
    }
 
 
@@ -365,8 +356,6 @@ namespace user
       millis.Now();
 
       ::rectangle_i32 rectangle;
-
-
 
       __pointer(tree) ptree = this;
 

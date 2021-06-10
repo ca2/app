@@ -210,7 +210,7 @@ namespace introjection
    void compiler::prepare_compile_and_link_environment()
    {
 
-      auto papplication = get_application();
+      //auto papplication = get_application();
 
       auto pcontext = get_context();
 
@@ -448,7 +448,7 @@ namespace introjection
    void compiler::prepare1(const char * lpcszSource,const char * lpcszDest)
    {
 
-      auto papplication = get_application();
+      //auto papplication = get_application();
 
 #ifdef WINDOWS
       //sleep(15000_ms);

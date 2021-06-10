@@ -2923,7 +2923,7 @@ ch_else:
 
       ::file::listing stra;
 
-      auto papplication = get_application();
+      //auto papplication = get_application();
 
       auto pcontext = m_pcontext;
 
@@ -3203,7 +3203,7 @@ ch_else:
 
       ::file::listing straFile;
 
-      auto papplication = get_application();
+      //auto papplication = get_application();
 
       auto pcontext = m_pcontext;
 

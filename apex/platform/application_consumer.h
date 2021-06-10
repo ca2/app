@@ -130,7 +130,7 @@ public:
    }                                                                                      
       
       
-   virtual void on_layout(::draw2d::graphics_pointer& pgraphics)
+   void on_layout(::draw2d::graphics_pointer& pgraphics) override
    {
 
       BASE1::on_layout(pgraphics);

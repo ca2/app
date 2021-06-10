@@ -51,8 +51,10 @@ namespace process
    {
 
       string strRead;
-
-      process_processor proc(pszCmdLine, dur, pbPotentialTimeout, &strRead);
+      
+      auto pprocessor = __create_new < process_processor >();
+      
+      pprocessor->process(pszCmdLine, dur, pbPotentialTimeout, &strRead);
 
       return strRead;
 
@@ -63,9 +65,13 @@ namespace process
    exit_status department::retry(const char * pszCmdLine,const ::duration & dur,::e_display edisplay, bool * pbPotentialTimeout)
    {
 
-      process_processor proc(pszCmdLine, dur, pbPotentialTimeout);
+      //process_processor proc(pszCmdLine, dur, pbPotentialTimeout);
+      
+      auto pprocessor = __create_new < process_processor >();
+      
+      pprocessor->process(pszCmdLine, dur, pbPotentialTimeout);
 
-      return proc.m_exitstatus;
+      return pprocessor->m_exitstatus;
 
    }
 
@@ -73,9 +79,11 @@ namespace process
    exit_status department::synch(const char * pszCmdLine, ::e_display edisplay, const ::duration & dur, bool * pbPotentialTimeout)
    {
 
-      process_processor proc(pszCmdLine, dur, pbPotentialTimeout);
+      auto pprocessor = __create_new < process_processor >();
+      
+      pprocessor->process(pszCmdLine, dur, pbPotentialTimeout);
 
-      return proc.m_exitstatus;
+      return pprocessor->m_exitstatus;
 
    }
 
@@ -109,9 +117,15 @@ namespace process
    exit_status department::elevated_synch(const char * pszCmdLine,::e_display edisplay,const ::duration & dur,bool * pbPotentialTimeout)
    {
 
-      process_processor proc(pszCmdLine,dur,pbPotentialTimeout, nullptr, true);
+//      process_processor proc(pszCmdLine,dur,pbPotentialTimeout, nullptr, true);
+//
+//      return proc.m_exitstatus;
+      
+      auto pprocessor = __create_new < process_processor >();
+      
+      pprocessor->process(pszCmdLine, dur, pbPotentialTimeout, nullptr, true);
 
-      return proc.m_exitstatus;
+      return pprocessor->m_exitstatus;
 
    }
 
@@ -129,7 +143,7 @@ namespace process
 
       m_strCmdLine = strCmdLine;
       
-      m_pprocess.create();
+      m_pprocess.create(this);
 
       m_pstrRead = pstrRead;
 
@@ -154,7 +168,7 @@ namespace process
    }
 
 
-   ::e_status     department::process_thread::run()
+   ::e_status department::process_thread::run()
    {
 
       if(m_bElevated)
@@ -316,18 +330,41 @@ namespace process
    }
 
 
-   department::process_processor::process_processor(const string & strCmdLine,const duration & dur,bool * pbPotentialTimeout,string * pstrRead,bool bElevated)
+   department::process_processor::process_processor()
    {
-
+    
       m_bInitFailure = false;
 
       m_bPotentialTimeout = false;
+
+      m_pbPotentialTimeout = nullptr;
+
+      m_bElevated = false;
+      
+   }
+
+
+   department::process_processor::~process_processor()
+   {
+
+      if(m_pbPotentialTimeout != nullptr)
+      {
+
+         *m_pbPotentialTimeout = m_bPotentialTimeout;
+
+      }
+
+   }
+
+
+   ::e_status department::process_processor::process(const string & strCmdLine,const duration & dur,bool * pbPotentialTimeout,string * pstrRead,bool bElevated)
+   {
 
       m_pbPotentialTimeout = pbPotentialTimeout;
 
       m_bElevated = bElevated;
 
-      m_pthread = new process_thread;
+      m_pthread = __create_new < process_thread > ();
 
       m_pthread->construct_process_thread(strCmdLine, dur, &m_bPotentialTimeout, pstrRead, bElevated);
 
@@ -354,31 +391,18 @@ namespace process
          m_pthread.release();
 
       }
-//      else
-//      {
-//
-//         m_evReady.ResetEvent();
-//
-//         m_pthread->begin();
-//
-//         m_evReady.wait();
-//
-//      }
+   //      else
+   //      {
+   //
+   //         m_evReady.ResetEvent();
+   //
+   //         m_pthread->begin();
+   //
+   //         m_evReady.wait();
+   //
+   //      }
 
    }
-
-   department::process_processor::~process_processor()
-   {
-
-      if(m_pbPotentialTimeout != nullptr)
-      {
-
-         *m_pbPotentialTimeout = m_bPotentialTimeout;
-
-      }
-
-   }
-
 
 
 } // namespace process

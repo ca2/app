@@ -9,7 +9,8 @@ public:
 
    __pointer(::html::element)                m_pelementLButtonDown;
    __pointer(::html::element)                m_pelementHover;
-   __pointer_array(::html::element)       m_elementaMouseMove;
+   __pointer_array(::html::element)          m_elementaMouseMove;
+   __pointer(::html_data)                    m_phtmldata;
 
 
    html_form();
@@ -38,6 +39,9 @@ public:
    ::html_data * get_html_data();
 
    //::html_document * get_document();
+
+
+   virtual ::e_status create_html_data();
 
 
    DECLARE_MESSAGE_HANDLER(on_message_create);

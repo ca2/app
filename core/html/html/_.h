@@ -35,6 +35,8 @@ namespace html
 
    class element;
 
+   class data;
+
 } // namespace html
 
 

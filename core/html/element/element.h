@@ -65,9 +65,9 @@ namespace html
       DECLARE_MESSAGE_HANDLER(OnLButtonUp);
 
 
-      virtual void delete_implementation(html_data * pdocument);
+      virtual void delete_implementation(html_data * phtmldata);
 
-      void destroy(html_data * pdocument);
+      void destroy(html_data * phtmldata);
 
       //virtual void nextstyle(::user::style_context * pcontext) override;
 
@@ -75,16 +75,16 @@ namespace html
       element * get_element_by_name(id id);
       element * get_element_by_id(id id);
 
-      virtual element * hit_test(html_data * pdocument, const ::point_f32 & point);
-      virtual element * bound_hit_test(html_data * pdocument, const ::point_f32 & point);
-      virtual element * bound_hit_test(html_data * pdocument, const ::point_f32 & point, double & dMin);
+      virtual element * hit_test(html_data * phtmldata, const ::point_f32 & point);
+      virtual element * bound_hit_test(html_data * phtmldata, const ::point_f32 & point);
+      virtual element * bound_hit_test(html_data * phtmldata, const ::point_f32 & point, double & dMin);
 
 
-      virtual void implement(html_data * pdocument);
-      virtual void on_layout(html_data * pdocument);
+      virtual void implement(html_data * phtmldata);
+      virtual void on_layout(html_data * phtmldata);
 
-      virtual void _001OnDraw(html_data * pdocument);
-      virtual void load(html_data * pdocument, base * pusermessage);
+      virtual void _001OnDraw(html_data * phtmldata);
+      virtual void load(html_data * phtmldata, base * pusermessage);
 
       //virtual bool get_color(color32_t & cr, ::user::e_color ecolor, ::user::style_context * pcontext) override;
       //virtual bool get_font(::write_text::font_pointer & spfont, ::user::e_font efont, ::user::style_context * pcontext) override;
@@ -95,8 +95,8 @@ namespace html
       tag * get_tag();
 
 
-      virtual void implement_phase1(html_data * pdocument);
-      virtual void implement_phase2(html_data * pdocument);
+      virtual void implement_phase1(html_data * phtmldata);
+      virtual void implement_phase2(html_data * phtmldata);
 
       virtual void layout_phase0(html_data * pdata); // cx minimum/maximum
       virtual void layout_phase1(html_data * pdata); // cxy
@@ -107,8 +107,8 @@ namespace html
 
 
    protected:
-      virtual bool parse(html_data * pdocument, const char * & psz);
-      virtual void parse_attributes(html_data * pdocument, const char * & psz);
+      virtual bool parse(html_data * phtmldata, const char * & psz);
+      virtual void parse_attributes(html_data * phtmldata, const char * & psz);
 
 
    };

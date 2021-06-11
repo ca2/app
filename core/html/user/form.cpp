@@ -541,6 +541,13 @@ void html_form::set_need_load_form_data()
 
    auto phtmldata = get_html_data();
 
+   if (::is_null(phtmldata))
+   {
+
+      return error_failed;
+
+   }
+
    auto estatus = phtmldata->open_html(str);
 
    if(::failed(estatus))
@@ -609,49 +616,57 @@ void html_form::_001SetText(const string & str, const ::action_context & context
 //}
 
 
-::html_data * html_form::get_html_data()
+::html_data* html_form::get_html_data()
 {
 
-   __pointer(html_document) pdocument = get_document();
-
-   if (::is_null(pdocument))
+   if (!m_phtmldata)
    {
 
-      return nullptr;
+      create_html_data();
 
    }
 
+   return m_phtmldata;
 
-//   pdata = __new(html_data);
-//
-//   pdata->initialize(this);
-//
-//   pdata->m_pcoredata = new ::html::core_data;
-//
-//   pdata->m_pcoredata->initialize_html_data(pdata);
-//
-//   pdata->m_pimplHtml = ::move(pdata->m_pcoredata);
-//
-//   pdata->::form_data::m_pimpl = pdata->m_pimplHtml;
-//
-//   pdata->m_pcoredata->m_puserinteraction = this;
-//
-//   pdata->m_pcoredata->m_pform = this;
-//
-//   pdata->m_pcoredata->m_pcallback = this;
-//
-//   m_phtmldata = pdata;
+}
 
-   auto phtmldata = pdocument->get_html_data();
 
-   if(::is_null(phtmldata))
+::e_status html_form::create_html_data()
+{
+
+   auto estatus = __construct_new(m_phtmldata);
+
+   if (!estatus)
    {
 
-      return nullptr;
+      return estatus;
+
+   }
+      
+   estatus = m_phtmldata->__compose_new(m_phtmldata->m_pcompositeCoreData);
+
+   if (!estatus)
+   {
+
+      return estatus;
 
    }
 
-   return phtmldata;
+   m_phtmldata->m_pcoredata = m_phtmldata->m_pcompositeCoreData;
+
+   m_phtmldata->m_pcoredata->initialize_html_data(m_phtmldata);
+
+   m_phtmldata->m_pimplHtml = m_phtmldata->m_pcoredata;
+
+   m_phtmldata->::form_data::m_pimpl = m_phtmldata->m_pimplHtml;
+
+   m_phtmldata->m_pcoredata->m_puserinteraction = this;
+
+   m_phtmldata->m_pcoredata->m_pform = this;
+
+   m_phtmldata->m_pcoredata->m_pcallback = this;
+
+   return estatus;
 
 }
 

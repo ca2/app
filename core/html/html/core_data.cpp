@@ -35,8 +35,6 @@ namespace html
       defer_create_mutex();
 
       m_pcoredata = this;
-
-      ///m_pelement->m_pdata = this;
       m_pcookies = nullptr;
       m_bEdit = false;
       m_puserinteraction = nullptr;

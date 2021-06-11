@@ -8,8 +8,9 @@ public:
 
 
    __pointer(::html_data)              m_pimplHtml;
-   __pointer(::html::core_data)        m_pcoredata;
    __pointer(::html_document)          m_pdocument;
+   ::html::core_data *                 m_pcoredata;
+   __composite(::html::core_data)      m_pcompositeCoreData;
 
 
    html_data();

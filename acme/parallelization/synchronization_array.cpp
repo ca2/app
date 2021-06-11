@@ -236,60 +236,62 @@ synchronization_result synchronization_array::wait(const duration & duration, bo
 
    }
 
-   auto start = ::millis::now();
+//   auto start = ::millis::now();
 
    bool FoundExternal=false;
 
    ::synchronization_result result;
 
-   ::duration durationWaitNow;
+//   ::duration durationWaitNow;
 
-   do
-   {
+//   do
+//   {
 
-      if(duration.is_infinite())
+//      if(duration.is_infinite())
+//      {
+//
+//         durationWaitNow.Infinite();
+//
+//      }
+//      else
+//      {
+//
+//         durationWaitNow = start.elapsed() - duration;
+//
+//         if (durationWaitNow <= ::duration(0))
+//         {
+//
+//            result = e_synchronization_result_timed_out;
+//
+//            break;
+//
+//         }
+//
+//      }
+
+//      do
       {
 
-         durationWaitNow.Infinite();
-
-      }
-      else
-      {
-
-         durationWaitNow = start.elapsed() - duration;
-
-         if (durationWaitNow.m_secs.m_i <= 0)
-         {
-
-            result = e_synchronization_result_timed_out;
-
-            break;
-
-         }
-
-      }
-
-      do
-      {
+         auto osduration = __os(duration);
 
          if (uWakeMask)
          {
 
-            result = ::MsgWaitForMultipleObjectsEx((::u32) synchronization_object_count(), synchronization_object_data(),  __os(durationWaitNow), QS_ALLEVENTS, bWaitForAll ? MWMO_WAITALL : 0);
+            result = ::MsgWaitForMultipleObjectsEx((::u32) synchronization_object_count(), synchronization_object_data(), osduration, QS_ALLEVENTS, bWaitForAll ? MWMO_WAITALL : 0);
 
          }
          else
          {
 
-            result = ::WaitForMultipleObjectsEx((::u32) synchronization_object_count(), synchronization_object_data(), bWaitForAll, __os(durationWaitNow), true);
+            result = ::WaitForMultipleObjectsEx((::u32) synchronization_object_count(), synchronization_object_data(), bWaitForAll, osduration, true);
 
          }
 
       }
-      while (result == e_synchronization_result_io_completion);
+//      while (result == e_synchronization_result_io_completion);
 
-   }
-   while (result == e_synchronization_result_timed_out);
+//   }
+//   while (result == e_synchronization_result_timed_out);
 
    return result;
 

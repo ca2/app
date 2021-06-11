@@ -465,7 +465,9 @@ void html_form::soft_reload()
 void html_form::set_need_load_form_data()
 {
 
-   if (!m_phtmldata->m_pcoredata->m_bImplemented)
+   auto phtmldata = get_html_data();
+
+   if (!phtmldata->m_pcoredata->m_bImplemented)
    {
 
       m_bNeedLoadFormData = true;
@@ -570,17 +572,13 @@ void html_form::_001SetText(const string & str, const ::action_context & context
 
    bool bFocus = has_keyboard_focus() || is_descendant(puserinteraction, true);
 
-   __pointer(::html_data) phtmldata;
-
-   phtmldata = __new(::html_data);
+   auto phtmldata = get_html_data();
 
    phtmldata->m_pcoredata->m_pform = this;
 
    phtmldata->load(str);
 
    phtmldata->implement_and_layout(this);
-
-   m_phtmldata = phtmldata;
 
    if(bFocus)
    {
@@ -614,36 +612,46 @@ void html_form::_001SetText(const string & str, const ::action_context & context
 ::html_data * html_form::get_html_data()
 {
 
-   auto pdata = m_phtmldata;
+   __pointer(html_document) pdocument = get_document();
 
-   if (pdata)
+   if (::is_null(pdocument))
    {
 
-      return pdata;
+      return nullptr;
 
    }
 
-   pdata = __new(html_data);
 
-   pdata->initialize(this);
+//   pdata = __new(html_data);
+//
+//   pdata->initialize(this);
+//
+//   pdata->m_pcoredata = new ::html::core_data;
+//
+//   pdata->m_pcoredata->initialize_html_data(pdata);
+//
+//   pdata->m_pimplHtml = ::move(pdata->m_pcoredata);
+//
+//   pdata->::form_data::m_pimpl = pdata->m_pimplHtml;
+//
+//   pdata->m_pcoredata->m_puserinteraction = this;
+//
+//   pdata->m_pcoredata->m_pform = this;
+//
+//   pdata->m_pcoredata->m_pcallback = this;
+//
+//   m_phtmldata = pdata;
 
-   pdata->m_pcoredata = new ::html::core_data;
+   auto phtmldata = pdocument->get_html_data();
 
-   pdata->m_pcoredata->initialize_html_data(pdata);
+   if(::is_null(phtmldata))
+   {
 
-   pdata->m_pimplHtml = ::move(pdata->m_pcoredata);
+      return nullptr;
 
-   pdata->::form_data::m_pimpl = pdata->m_pimplHtml;
+   }
 
-   pdata->m_pcoredata->m_puserinteraction = this;
-
-   pdata->m_pcoredata->m_pform = this;
-
-   pdata->m_pcoredata->m_pcallback = this;
-
-   m_phtmldata = pdata;
-
-   return pdata;
+   return phtmldata;
 
 }
 
@@ -762,7 +770,7 @@ void html_form::on_subject(::subject::subject * psubject, ::subject::context * p
       if (psubject->id() == id_document_complete)
       {
 
-         m_phtmldata = get_html_data();
+         //m_phtmldata = get_html_data();
 
       }
 

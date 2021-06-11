@@ -442,38 +442,38 @@ namespace dynamic_source
       //}
 
 
-      try
-      {
-         pinstance.release();
-      }
-      catch (const ::exception::exception&)
-      {
-         TRACE("Error: exception at script_manager::handle destroy pinstance");
-      }
-      catch (...)
-      {
-         TRACE("Error: Exception at script_manager::handle destroy pinstance");
-      }
+      //try
+      //{
+      //   pinstance.release();
+      //}
+      //catch (const ::exception::exception&)
+      //{
+      //   TRACE("Error: exception at script_manager::handle destroy pinstance");
+      //}
+      //catch (...)
+      //{
+      //   TRACE("Error: Exception at script_manager::handle destroy pinstance");
+      //}
 
-      auto pmain2 = pmain.m_p;
+      //auto pmain2 = pmain.m_p;
 
-      pmain2->finalize();
+      //pmain2->finalize();
 
-      if (pmain2->m_countReference > 0)
-      {
+      //if (pmain2->m_countReference > 0)
+      //{
 
-         pmain.m_p = nullptr;
+      //   pmain.m_p = nullptr;
 
-         auto c = pmain2->release();
+      //   auto c = pmain2->release();
 
-         if (c > 0)
-         {
+      //   if (c > 0)
+      //   {
 
-            __check_pending_releases(pmain2);
+      //      __check_pending_releases(pmain2);
 
-         }
+      //   }
 
-      }
+      //}
 
 
 

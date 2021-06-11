@@ -257,6 +257,8 @@ namespace introjection
 
          }
 
+         __pointer(application) papplication = get_application();
+
          m_strVCVersion = papplication->get_visual_studio_build();
 
       }
@@ -282,6 +284,8 @@ namespace introjection
             }
 
          }
+
+         __pointer(application) papplication = get_application();
 
          m_strVCVersion = papplication->get_visual_studio_build();
 
@@ -452,6 +456,8 @@ namespace introjection
 
 #ifdef WINDOWS
       //sleep(15000_ms);
+
+      __pointer(application) papplication = get_application();
 
       string strBuildCmd = m_strEnv;
 

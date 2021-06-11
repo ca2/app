@@ -7,11 +7,10 @@ class CLASS_DECL_CORE html_form :
 public:
 
 
-   __pointer(::html::element)          m_pelementLButtonDown;
-   __pointer(::html::element)          m_pelementHover;
-   __pointer_array(::html::element)    m_elementaMouseMove;
-   __pointer(::html_data)              m_phtmldata;
-   
+   __pointer(::html::element)                m_pelementLButtonDown;
+   __pointer(::html::element)                m_pelementHover;
+   __pointer_array(::html::element)       m_elementaMouseMove;
+
 
    html_form();
    virtual ~html_form();

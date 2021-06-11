@@ -80,11 +80,11 @@ void html_document::dump(dump_context & dumpcontext) const
 
    pdata->m_pdocument = this;
 
-   pdata->m_pcoredata = new ::html::core_data;
+   pdata->m_pcoredata = __new(::html::core_data);
 
    pdata->m_pcoredata->initialize_html_data(pdata);
 
-   pdata->m_pimplHtml = ::move(pdata->m_pcoredata);
+   pdata->m_pimplHtml = pdata->m_pcoredata;
 
    pdata->::form_data::m_pimpl = pdata->m_pimplHtml;
 

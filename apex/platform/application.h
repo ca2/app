@@ -44,6 +44,7 @@
       ::text::text                                    m_textAppTitle;
       string                                          m_strAppId;
       string                                          m_strBaseSupportId;
+      string                                          m_strDatabaseAppId;
       string                                          m_strRoot;
       string                                          m_strDomain;
       string                                          m_strLibraryName;

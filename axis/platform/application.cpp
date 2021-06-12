@@ -1194,11 +1194,18 @@ namespace axis
       if (m_bInitializeDataCentral)
       {
 
+         if (m_strDatabaseAppId.is_empty())
+         {
+
+            m_strDatabaseAppId = m_strAppId;
+
+         }
+
          ::file::path pathDatabase;
 
          auto pcontext = get_context();
 
-         ::file::path pathFolder = pcontext->m_papexcontext->dir().appdata();
+         ::file::path pathFolder = pcontext->m_papexcontext->dir().appdata(m_strDatabaseAppId);
 
          if (is_system())
          {
@@ -1935,7 +1942,7 @@ namespace axis
    ::database::key application::calc_data_key()
    {
 
-      return ::database::key("app://" + m_strAppName, is_local_data());
+      return ::database::key("app://" + m_strDatabaseAppId, is_local_data());
 
    }
 

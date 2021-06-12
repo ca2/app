@@ -827,6 +827,25 @@ namespace userex
 
       m_pdocAppOptions = puser->create_child_form(this, this, pimpactdata->m_pplaceholder, strAppOptions);
 
+      //auto pform = m_pdocAppOptions->get_typed_view<::user::form>();
+
+      //if (pform)
+      //{
+
+      //   if (pform->m_puserinteractionpointeraChild)
+      //   {
+
+      //      for (auto& p : pform->m_puserinteractionpointeraChild->interactiona())
+      //      {
+
+      //         p->add_control_event_handler(this);
+
+      //      }
+
+      //   }
+
+      //}
+
       return true;
 
    }

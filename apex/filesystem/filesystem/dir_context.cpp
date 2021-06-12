@@ -2140,14 +2140,27 @@ ret:
 }
 
 
-::file::path dir_context::appdata()
+::file::path dir_context::appdata(const string & strAppId)
 {
 
-   //__throw(error_interface_only, "this is an interface");
+   if (strAppId.is_empty())
+   {
 
-   __pointer(::apex::system) psystem = get_system();
+      __pointer(::apex::system) psystem = get_system();
 
-   return psystem->m_pdirsystem->m_pathAppData;
+      //__throw(error_interface_only, "this is an interface");
+
+      return psystem->m_pdirsystem->m_pathAppData;
+
+   }
+   else
+   {
+
+      string strAppFolder = _002Underscore(strAppId);
+
+      return m_psystem->m_pacmedir->home() / "application" / strAppFolder;
+
+   }
 
 }
 

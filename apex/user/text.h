@@ -11,7 +11,8 @@ namespace user
    public:
 
 
-      property *     m_ppropertyText;
+      //property *     m_ppropertyText;
+      linked_property      m_propertyText;
 
 
       text();
@@ -50,9 +51,9 @@ namespace user
       virtual void insert_text(string str, bool bForceNewStep, const ::action_context& context);
 
 
-      inline string strtext() const { return m_ppropertyText->m_str; }
-      inline string & strtext() { return m_ppropertyText->m_str; }
-      inline string as_string() const { return m_ppropertyText->get_string(); }
+      inline string strtext() const { return m_propertyText->get_string(); }
+      inline string & strtext() { return m_propertyText->operator string &(); }
+      inline string as_string() const { return m_propertyText->get_string(); }
 
       
       virtual bool edit_undo();

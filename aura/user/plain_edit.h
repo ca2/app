@@ -245,12 +245,13 @@ namespace user
       inline bool is_caret_on() const { return m_millisFocusStart.on_off(m_millisCaretPeriod); }
 
 
-      virtual void get_text_composition_area(::rectangle_i32 & r) override;
-      virtual void edit_on_text(string str) override;
-      virtual void edit_on_sel(strsize iSelBeg, strsize iSelEnd) override;
-      virtual void on_text_composition(string str) override;
-      virtual void on_text_commit(string str) override;
-      virtual void on_text_composition_done() override;
+      void get_text_composition_area(::rectangle_i32 & r) override;
+      void edit_on_text(string str) override;
+      void edit_on_sel(strsize iSelBeg, strsize iSelEnd) override;
+      void on_text_composition(string str) override;
+      void on_text_commit(string str) override;
+      void on_text_composition_done() override;
+      void clear_ime_composition() override;
 
 
       virtual void InputConnectionBeginBatchEdit() override;

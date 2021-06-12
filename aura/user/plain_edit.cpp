@@ -909,16 +909,25 @@ namespace user
 
       }
 
-//      m_ppropertyText = fetch_property(m_id, true);
-//
-//      add_change_notification(m_ppropertyText);
-//
-//      if(m_ppropertyText && !m_ppropertyText->is_empty())
-//      {
-//
-//         _001SetText(m_ppropertyText->get_string(), ::e_source_initialize);
-//
-//      }
+      m_propertyText = fetch_property(m_id, true);
+
+      if(m_propertyText && !m_propertyText->is_empty())
+      {
+
+         _001SetText(m_propertyText->get_string(), ::e_source_initialize);
+
+      }
+
+      //m_ppropertyText = fetch_property(m_id, true);
+
+      //add_change_notification(m_ppropertyText);
+
+      //if(m_ppropertyText && !m_ppropertyText->is_empty())
+      //{
+
+      //   _001SetText(m_ppropertyText->get_string(), ::e_source_initialize);
+
+      //}
 
    }
 
@@ -1930,6 +1939,10 @@ namespace user
 
                   });
 
+               set_need_redraw();
+
+               post_redraw();
+
             }
 
             m_itemHover = e_element_client;
@@ -2053,15 +2066,6 @@ namespace user
       pmouse->m_lresult = 1;
 
       on_reset_focus_start_tick();
-
-   }
-
-
-
-
-   void debug_func(const string & str)
-   {
-
 
    }
 
@@ -4536,18 +4540,14 @@ finished_update:
 
 #ifdef WINDOWS_DESKTOP
 
-                  if (get_ime_composition().has_char())
-                  {
+                  //edit_undo();
 
-                     edit_undo();
-
-                     clear_ime_composition();
-
-                  }
+                  //clear_ime_composition();
+                  on_text_composition_done();
 
 #endif
 
-                  return;
+                  //return;
 
                }
 
@@ -5071,6 +5071,10 @@ finished_update:
 
             });
 
+         set_need_redraw();
+
+         post_redraw();
+
       }
 
    }
@@ -5180,7 +5184,7 @@ finished_update:
 
          _001GetText(strText);
 
-         ::output_debug_string("Current Text: " + strText + "\n");
+         ::output_debug_string("\nplain_edit::on_text_composition (m_pitemComposing != nullptr) Current Text: " + strText + "\n");
 
       }
       else
@@ -5275,6 +5279,16 @@ finished_update:
       set_need_redraw();
 
       post_redraw();
+
+   }
+
+
+   void plain_edit::clear_ime_composition()
+   {
+
+      __release(m_pitemComposing);
+
+      text_composition_composite::clear_ime_composition();
 
    }
 
@@ -6105,12 +6119,12 @@ finished_update:
       if(context.is_user_source())
       {
 
-         if(::is_set(m_ppropertyText))
+         if(::is_set(m_propertyText))
          {
 
             plain_edit_get_text(strtext());
 
-            get_application()->process_subject(m_ppropertyText->m_id, context);
+            get_application()->deliver(m_propertyText->m_id);
 
          }
 
@@ -6702,6 +6716,10 @@ finished_update:
 
 
          });
+
+      set_need_redraw();
+
+      post_redraw();
 
    }
 

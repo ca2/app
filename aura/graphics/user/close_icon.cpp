@@ -1,10 +1,11 @@
-#pragma once
+#include "framework.h"
+
 
 namespace user
 {
 
 
-   inline void draw_close_icon(::draw2d::graphics_pointer& pgraphics, ::user::interaction * puserinteraction,  ::user::item* pitem)
+   void draw_close_icon(::draw2d::graphics_pointer& pgraphics, ::user::interaction * puserinteraction,  ::user::item* pitem)
    {
 
       pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);

@@ -1,11 +1,11 @@
-#pragma once
+#include "framework.h"
 
 
 namespace user
 {
 
 
-   inline void draw_close_button(::draw2d::graphics_pointer& pgraphics, ::user::interaction * puserinteraction,  ::user::item* pitem)
+   void draw_close_button(::draw2d::graphics_pointer& pgraphics, ::user::interaction * puserinteraction,  ::user::item* pitem)
    {
 
       pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
@@ -16,11 +16,11 @@ namespace user
 
       auto pstyle = puserinteraction->get_style(pgraphics);
 
-      ::rectangle_f64 rectangle_f64(pitem->m_rectangle);
+      ::rectangle_f64 rectangle(pitem->m_rectangle);
 
       auto color = puserinteraction->get_color(pstyle, ::user::e_element_background);
 
-      ppen->create_solid(rectangle_f64.minimum_dimension() / 10.0, color);
+      ppen->create_solid(rectangle.minimum_dimension() / 10.0, color);
 
       pbrush->create_solid(color);
 
@@ -41,7 +41,7 @@ namespace user
 
       pgraphics->set_smooth_mode(::draw2d::smooth_mode_none);
 
-      pgraphics->fill_rectangle(rectangle_f64, color);
+      pgraphics->fill_rectangle(rectangle, color);
 
       if (color.get_luminance() <= 0.5)
       {
@@ -60,13 +60,13 @@ namespace user
 
       }
 
-      rectangle_f64.deflate(rectangle_f64.minimum_dimension() / 5.0);
+      rectangle.deflate(rectangle.minimum_dimension() / 5.0);
 
       pgraphics->set(ppen);
 
       pgraphics->set_smooth_mode(::draw2d::smooth_mode_high);
 
-      pgraphics->draw_stock_icon(rectangle_f64, stock_icon_close);
+      pgraphics->draw_stock_icon(rectangle, stock_icon_close);
 
    }
 

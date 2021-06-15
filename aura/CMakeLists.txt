@@ -168,9 +168,9 @@ list(APPEND aura_source
    graphics/graphics/window_buffer.h
    graphics/graphics/window_dc.h
    graphics/user/close_button.cpp
+   graphics/user/close_button.h
    graphics/user/close_icon.cpp
-        graphics/user/close_button.h
-        graphics/user/close_icon.h
+   graphics/user/close_icon.h
    graphics/write_text/_.h
    graphics/write_text/bounding_rect.h
    graphics/write_text/contains.h
@@ -461,31 +461,31 @@ if (WIN32)
       #node/windows/base/implementation.h
       #node/windows/base/print_job.cpp
       #node/windows/base/print_job.h
-      node/windows/_.h
-      node/windows/_node_windows.h
-      node/windows/_node_windows_private.h
-      node/windows/_windows.h
-      node/windows/application.cpp
-      node/windows/buffer.h
-      node/windows/copydesk.cpp
-      node/windows/copydesk.h
-      node/windows/factory_exchange.cpp
-      node/windows/factory_exchange.h
-      node/windows/graphics_buffer.cpp
-      node/windows/interaction_impl.cpp
-      node/windows/interaction_impl.h
-      node/windows/interaction_impl_message_bypass.cpp
-      node/windows/shell_open.cpp
-      node/windows/shell_open.h
-      node/windows/system_interaction.cpp
-      node/windows/system_interaction.h
-      node/windows/thread.cpp
-      node/windows/timer.cpp
-      node/windows/trace.cpp
-      node/windows/user.h
-      node/windows/user_frame.cpp
-      node/windows/windows_desktop.cpp
-      node/windows_common/application.cpp
+      #node/windows/_.h
+      #node/windows/_node_windows.h
+      #node/windows/_node_windows_private.h
+      #node/windows/_windows.h
+      #node/windows/application.cpp
+      #node/windows/buffer.h
+      #node/windows/copydesk.cpp
+      #node/windows/copydesk.h
+      #node/windows/factory_exchange.cpp
+      #node/windows/factory_exchange.h
+      #node/windows/graphics_buffer.cpp
+      #node/windows/interaction_impl.cpp
+      #node/windows/interaction_impl.h
+      #node/windows/interaction_impl_message_bypass.cpp
+      #node/windows/shell_open.cpp
+      #node/windows/shell_open.h
+      #node/windows/system_interaction.cpp
+      #node/windows/system_interaction.h
+      #node/windows/thread.cpp
+      #node/windows/timer.cpp
+      #node/windows/trace.cpp
+      #node/windows/user.h
+      #node/windows/user_frame.cpp
+      #node/windows/windows_desktop.cpp
+      #node/windows_common/application.cpp
       os/windows/-ehrror.cpp
       os/windows/_.h
       os/windows/_c.h
@@ -494,17 +494,17 @@ if (WIN32)
       os/windows/_windows_impl.h
       os/windows/application.cpp
       os/windows/aura.cpp
-      os/windows/d2d1_1.h
+      #os/windows/d2d1_1.h
       os/windows/dpi.cpp
       os/windows/gdi.cpp
       os/windows/gdi_icon.cpp
       os/windows/gdiplus.h
       os/windows/graphics.cpp
       os/windows/graphics.h
-      os/windows/imm_client.cpp
-      os/windows/imm_client.h
-      os/windows/imm_context.cpp
-      os/windows/imm_context.h
+      #os/windows/imm_client.cpp
+      #os/windows/imm_client.h
+      #os/windows/imm_context.cpp
+      #os/windows/imm_context.h
       os/windows/implementation.h
       #os/windows/interaction_debug.cpp
       os/windows/internal.cpp
@@ -536,8 +536,8 @@ if (WIN32)
       os/windows_common/_unicode_c.h
       os/windows_common/bstring.h
       os/windows_common/cotaskptr.h
-      os/windows_common/draw2d_direct2d_global.cpp
-      os/windows_common/draw2d_direct2d_global.h
+      #os/windows_common/draw2d_direct2d_global.cpp
+      #os/windows_common/draw2d_direct2d_global.h
       os/windows_common/file.h
       os/windows_common/graphics.h
       os/windows_common/multithreading.h

@@ -487,6 +487,10 @@
 		9A449B1C2477397E0002A827 /* AuraWindowApp.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9A2481382452C48300F23D28 /* AuraWindowApp.mm */; };
 		9A449B1D2477397E0002A827 /* AuraWindowFrameView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9A2481292452C48300F23D28 /* AuraWindowFrameView.mm */; };
 		9A449B3B247745FA0002A827 /* _apple.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9A247D002452C47E00F23D28 /* _apple.mm */; };
+		9A46D33326784C8D000B22D0 /* close_icon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A46D32D26784C8D000B22D0 /* close_icon.cpp */; };
+		9A46D33426784C8D000B22D0 /* close_button.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A46D32E26784C8D000B22D0 /* close_button.h */; };
+		9A46D33526784C8D000B22D0 /* close_icon.h in Sources */ = {isa = PBXBuildFile; fileRef = 9A46D32F26784C8D000B22D0 /* close_icon.h */; };
+		9A46D33626784C8D000B22D0 /* close_button.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A46D33026784C8D000B22D0 /* close_button.cpp */; };
 		9A4E5CA52519319500CC6817 /* form.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A4E5CA12519319500CC6817 /* form.h */; };
 		9A4E5CA62519319500CC6817 /* form.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4E5CA22519319500CC6817 /* form.cpp */; };
 		9A4E5CA72519319500CC6817 /* form_callback.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A4E5CA32519319500CC6817 /* form_callback.h */; };
@@ -1254,6 +1258,10 @@
 		9A41730720004E7A0056265A /* openssl.pc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = openssl.pc; sourceTree = "<group>"; };
 		9A440A772654F780000C490B /* menu_command.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = menu_command.h; sourceTree = "<group>"; };
 		9A440A782654F780000C490B /* menu_command.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = menu_command.cpp; sourceTree = "<group>"; };
+		9A46D32D26784C8D000B22D0 /* close_icon.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = close_icon.cpp; sourceTree = "<group>"; };
+		9A46D32E26784C8D000B22D0 /* close_button.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = close_button.h; sourceTree = "<group>"; };
+		9A46D32F26784C8D000B22D0 /* close_icon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = close_icon.h; sourceTree = "<group>"; };
+		9A46D33026784C8D000B22D0 /* close_button.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = close_button.cpp; sourceTree = "<group>"; };
 		9A4E5CA12519319500CC6817 /* form.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = form.h; sourceTree = "<group>"; };
 		9A4E5CA22519319500CC6817 /* form.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = form.cpp; sourceTree = "<group>"; };
 		9A4E5CA32519319500CC6817 /* form_callback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = form_callback.h; sourceTree = "<group>"; };
@@ -1981,6 +1989,7 @@
 				9A2A52FA1F1FEDFD001AB0F8 /* draw2d */,
 				9A2A531C1F1FEDFD001AB0F8 /* draw3d */,
 				9A1E1D5822F0AF69004243B8 /* graphics */,
+				9A46D32C26784C8D000B22D0 /* user */,
 				9A8FCD6F2651AFAB00C0D8A1 /* write_text */,
 			);
 			path = graphics;
@@ -2252,6 +2261,17 @@
 				9A41730720004E7A0056265A /* openssl.pc */,
 			);
 			path = pkgconfig;
+			sourceTree = "<group>";
+		};
+		9A46D32C26784C8D000B22D0 /* user */ = {
+			isa = PBXGroup;
+			children = (
+				9A46D33026784C8D000B22D0 /* close_button.cpp */,
+				9A46D32E26784C8D000B22D0 /* close_button.h */,
+				9A46D32D26784C8D000B22D0 /* close_icon.cpp */,
+				9A46D32F26784C8D000B22D0 /* close_icon.h */,
+			);
+			path = user;
 			sourceTree = "<group>";
 		};
 		9A4E846F1D1FD3A7008A419B /* Products */ = {
@@ -2745,6 +2765,7 @@
 				9A2487242452C49200F23D28 /* interaction_impl.h in Headers */,
 				9AD116F424F5147800177261 /* window_map.h in Headers */,
 				9A41732A20004E7A0056265A /* md2.h in Headers */,
+				9A46D33426784C8D000B22D0 /* close_button.h in Headers */,
 				9A2483C02452C48900F23D28 /* _m.h in Headers */,
 				9A3764AF2409BF0C002D15D3 /* icon.h in Headers */,
 				9A41730B20004E7A0056265A /* asn1t.h in Headers */,
@@ -3321,6 +3342,7 @@
 				9A3764D52409BF0C002D15D3 /* glyph_set.cpp in Sources */,
 				9A24834B2452C48800F23D28 /* graphics.cpp in Sources */,
 				9AC2CEE22653455600CC8096 /* xrender.cpp in Sources */,
+				9A46D33626784C8D000B22D0 /* close_button.cpp in Sources */,
 				9A24832D2452C48700F23D28 /* cross_win.cpp in Sources */,
 				9AC2CEE72653455600CC8096 /* icon.cpp in Sources */,
 				9AC31C9524853D7400F18145 /* keyboard.cpp in Sources */,
@@ -3442,6 +3464,7 @@
 				9A3764D22409BF0C002D15D3 /* image_pointer_array.cpp in Sources */,
 				9AD1173724F5147900177261 /* _.cpp in Sources */,
 				9A3764E42409BF10002D15D3 /* ortho.cpp in Sources */,
+				9A46D33526784C8D000B22D0 /* close_icon.h in Sources */,
 				9A268CC224CDD8A000C94D85 /* user.cpp in Sources */,
 				9AC2CEA12653452D00CC8096 /* color_filter.cpp in Sources */,
 				9A2483312452C48700F23D28 /* winpr_keycode.cpp in Sources */,
@@ -3453,6 +3476,7 @@
 				9AD1172924F5147900177261 /* main_window.cpp in Sources */,
 				9A8FCD882651AFAB00C0D8A1 /* font_list.cpp in Sources */,
 				9A4E5CA62519319500CC6817 /* form.cpp in Sources */,
+				9A46D33326784C8D000B22D0 /* close_icon.cpp in Sources */,
 				9A2489E32453417F00F23D28 /* _.cpp in Sources */,
 				9A3764C12409BF0C002D15D3 /* object.cpp in Sources */,
 				9A4E5D762519428C00CC6817 /* application_system_run.cpp in Sources */,

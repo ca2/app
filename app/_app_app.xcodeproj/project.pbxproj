@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9A413D94266EDED900C3FF0E /* libcrypto.1.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A413D7D266EDED800C3FF0E /* libcrypto.1.1.dylib */; };
-		9A413D95266EDED900C3FF0E /* libssl.1.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A413D93266EDED900C3FF0E /* libssl.1.1.dylib */; };
 		9A413DF7266EDFB000C3FF0E /* libcrypto.1.1.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A413D7D266EDED800C3FF0E /* libcrypto.1.1.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9A413DF8266EDFB300C3FF0E /* libssl.1.1.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A413D93266EDED900C3FF0E /* libssl.1.1.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9A5D737A265555AF00D5C39E /* libdraw2d_quartz2d.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9AC2D06626540D5300CC8096 /* libdraw2d_quartz2d.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
@@ -36,6 +34,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 070B8EE91B6E53F900D26137;
 			remoteInfo = "Hello Multiverse!!";
+		};
+		9A46D31C2678453B000B22D0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A7ECB0F2651A5B900D5BA45 /* app_app.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9A48898624EB48DE00119EC4;
+			remoteInfo = app_app;
 		};
 		9A5D7360265554D600D5C39E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -348,9 +353,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9AC2D1172654165C00CC8096 /* libapex.dylib in Frameworks */,
-				9A413D95266EDED900C3FF0E /* libssl.1.1.dylib in Frameworks */,
 				9A8FCD9A2651C10200C0D8A1 /* libacme.dylib in Frameworks */,
-				9A413D94266EDED900C3FF0E /* libcrypto.1.1.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -407,6 +410,14 @@
 			children = (
 			);
 			name = Library;
+			sourceTree = "<group>";
+		};
+		9A46D3122678453B000B22D0 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9A46D31D2678453B000B22D0 /* libapp_app.dylib */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		9A694C6A26548A97005D1D62 /* Products */ = {
@@ -696,6 +707,10 @@
 					ProjectRef = 9A7ECB5A2651A60900D5BA45 /* apex_posix.xcodeproj */;
 				},
 				{
+					ProductGroup = 9A46D3122678453B000B22D0 /* Products */;
+					ProjectRef = 9A7ECB0F2651A5B900D5BA45 /* app_app.xcodeproj */;
+				},
+				{
 					ProductGroup = 9A7ECB612651A60A00D5BA45 /* Products */;
 					ProjectRef = 9A7ECB602651A60A00D5BA45 /* aqua.xcodeproj */;
 				},
@@ -741,6 +756,13 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		9A46D31D2678453B000B22D0 /* libapp_app.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libapp_app.dylib;
+			remoteRef = 9A46D31C2678453B000B22D0 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		9A5D7379265554D600D5C39E /* libwindowing_macos.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";

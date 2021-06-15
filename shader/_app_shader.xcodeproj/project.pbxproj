@@ -43,6 +43,13 @@
 			remoteGlobalIDString = 070B8EE91B6E53F900D26137;
 			remoteInfo = "Hello Multiverse!!";
 		};
+		9A46D2C22678453B000B22D0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A7ECB092651A5AB00D5BA45 /* app_shader.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9A4889B624EB494600119EC4;
+			remoteInfo = app_shader;
+		};
 		9A6A475E2660E531004ED97A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9AC2D0F626540F9700CC8096 /* node_macos.xcodeproj */;
@@ -421,6 +428,14 @@
 			name = Library;
 			sourceTree = "<group>";
 		};
+		9A46D2B52678453B000B22D0 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9A46D2C32678453B000B22D0 /* libapp_shader.dylib */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		9A6A47612660E578004ED97A /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -705,6 +720,10 @@
 					ProjectRef = 9A7ECBA82651A61800D5BA45 /* apex_posix.xcodeproj */;
 				},
 				{
+					ProductGroup = 9A46D2B52678453B000B22D0 /* Products */;
+					ProjectRef = 9A7ECB092651A5AB00D5BA45 /* app_shader.xcodeproj */;
+				},
+				{
 					ProductGroup = 9A7ECBC42651A61800D5BA45 /* Products */;
 					ProjectRef = 9A7ECBC32651A61800D5BA45 /* aqua.xcodeproj */;
 				},
@@ -750,6 +769,13 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		9A46D2C32678453B000B22D0 /* libapp_shader.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libapp_shader.dylib;
+			remoteRef = 9A46D2C22678453B000B22D0 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		9A6A475F2660E531004ED97A /* libnode_macos.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";

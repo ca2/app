@@ -595,7 +595,7 @@ namespace draw2d
 
       virtual bool color_blend_3dRect(const rectangle_i32& rectParam, const ::color::color& colorTopLeft, const ::opacity & opacityTopLeft, const ::color::color& color, const ::opacity& opacityBottomRight);
 
-      virtual bool color_blend(const ::rectangle_i32& rectangle, const ::color::color& color, const ::opacity & opacity);
+      //virtual bool color_blend(const ::rectangle_i32& rectangle, const ::color::color& color, const ::opacity & opacity);
 
 //      virtual bool color_blend(image_list * pilBlend, image_list * pil, const ::color::color& cr, const ::opacity& opacity);
 

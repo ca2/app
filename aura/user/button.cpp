@@ -944,7 +944,7 @@ namespace user
       rectangle.deflate(1,1,1,1);
       pgraphics->color_blend_3dRect(rectangle,colorExt2TL,200,colorExt2BR,200);
       rectangle.deflate(1,1,1,1);
-      pgraphics->color_blend(rectangle,cr,200);
+      pgraphics->fill_rectangle(rectangle,::color::color(cr,200));
       rectangle.deflate(1,1,1,1);
 
       i32 x1 = rectangle.left;

@@ -589,7 +589,7 @@ namespace user
       if (get_translucency(pstyle) >= e_translucency_present)
       {
 
-         pgraphics->color_blend(rectangleClient, crBk, 127);
+         pgraphics->fill_rectangle(rectangleClient, ::color::color(crBk, 0.5));
 
       }
       else

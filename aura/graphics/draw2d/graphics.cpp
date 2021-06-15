@@ -2182,14 +2182,14 @@ namespace draw2d
    }
 
 
-   bool graphics::color_blend(const ::rectangle_i32 & rectangle, const ::color::color& color, const ::opacity& opacity)
-   {
-
-      set_alpha_mode(alpha_mode_blend);
-
-      return fill_rectangle(rectangle, alpha(opacity, color));
-
-   }
+//   bool graphics::color_blend(const ::rectangle_i32 & rectangle, const ::color::color& color, const ::opacity& opacity)
+//   {
+//
+//      set_alpha_mode(alpha_mode_blend);
+//
+//      return fill_rectangle(rectangle, alpha(opacity, color));
+//
+//   }
 
 
    //void graphics::fill_rectangle(const ::rectangle_f64 & rectangle, const ::color::color& color)

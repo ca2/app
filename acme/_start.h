@@ -87,7 +87,7 @@
 #endif
 
 
-//#include "app/acme/version.h"
+#include <atomic>
 
 
 #include "__standard_type.h"

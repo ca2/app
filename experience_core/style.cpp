@@ -828,12 +828,12 @@ namespace experience
 
             string strType = pinteraction->type_c_str();
 
-            if (strType.contains("form"))
-            {
-
-               output_debug_string("form");
-
-            }
+//            if (strType.contains("form"))
+//            {
+//
+//               output_debug_string("form");
+//
+//            }
 
             auto econtroltype = pinteraction->get_control_type();
 

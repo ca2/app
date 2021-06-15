@@ -248,7 +248,7 @@ SizingNone:;
                   //class imaging & imaging = psystem->imaging();
 
                   //imaging.color_blend(
-                     pgraphics->color_blend(rectangle, colorMoveableBorder, 127);
+                     pgraphics->fill_rectangle(rectangle, colorMoveableBorder & opacity(127));
 
                }
                /*else if(m_estyle == StyleLightBlue)

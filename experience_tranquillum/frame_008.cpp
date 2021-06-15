@@ -277,10 +277,10 @@ SizingNone:
 
                   //class imaging & imaging = psystem->imaging();
                   //imaging.color_blend(
-                     pgraphics->color_blend(
+                     pgraphics->fill_rectangle(
                                       rectangle,
-                                      crMoveableBorder,
-                                      0.5);
+                                      ::color::color(crMoveableBorder,
+                                      0.5));
                }
                else
                {
@@ -290,10 +290,10 @@ SizingNone:
                   //class imaging & imaging = psystem->imaging();
                   //imaging.color_blend(pgraphics,
 
-                  pgraphics->color_blend(
+                  pgraphics->fill_rectangle(
                                       rectangle,
-                                      crMoveableBorder,
-                                      127);
+                                      ::color::color(crMoveableBorder,
+                                      127));
 
                   ::rectangle_i32 rectClientB = rectA;
 

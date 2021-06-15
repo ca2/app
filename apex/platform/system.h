@@ -991,7 +991,7 @@ namespace apex
       
       void dump_command_line_and_environment_variables_to_file();
 
-      void system_int_update(int iUpdate, int iPayload) override;
+      void system_id_update(::i64 iUpdate, ::i64 iPayload) override;
 
 
       void on_subject(::subject::subject * psubject) override;

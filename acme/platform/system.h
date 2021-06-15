@@ -420,9 +420,8 @@ public:
 
    virtual ::e_status get_public_internet_domain_extension_list(string_array& stra);
 
-   virtual void system_int_update(int iUpdate, int iPayload);
+   virtual void system_id_update(::i64 iUpdate, ::i64 iPayload);
 
-   
    virtual ::e_status node_will_finish_launching();
    
    virtual ::e_status on_open_untitled_file();

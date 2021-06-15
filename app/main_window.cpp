@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "aura/graphics/snippet/close_button.h"
+#include "aura/graphics/user/close_button.h"
 
 #define STEPPY_DEBUG 0
 

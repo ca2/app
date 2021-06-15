@@ -1203,7 +1203,7 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
    }
 
 
-   void system::system_int_update(int iUpdate, int iPayload)
+   void system::system_id_update(::i64 iId, ::i64 iPayload)
    {
 
 
@@ -1286,12 +1286,12 @@ CLASS_DECL_ACME void acme_system_term()
 }
 
 
-void system_int_update(void * pSystem, int iUpdate, int iParam)
+void system_id_update(void * pSystem, ::i64 iUpdate, ::i64 iParam)
 {
    
    auto psystem = (class ::system *) pSystem;
    
-   psystem->system_int_update(iUpdate, iParam);
+   psystem->system_id_update(iUpdate, iParam);
    
 }
 

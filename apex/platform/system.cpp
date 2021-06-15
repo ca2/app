@@ -5408,10 +5408,10 @@ namespace apex
    }
 
 
-   void system::system_int_update(int iUpdate, int iPayload)
+   void system::system_id_update(::i64 iUpdate, ::i64 iPayload)
    {
 
-      process_subject(iUpdate, iPayload);
+      process_subject((e_id) iUpdate, iPayload);
 
    }
 
@@ -5917,11 +5917,11 @@ namespace apex
 //
 
 
-void int_system_update(void* pSystem, int iUpdate, int iPayload)
+void system_id_update(void* pSystem, ::i64 iUpdate, ::i64 iPayload)
 {
 
    auto psystem = (class ::system *) pSystem;
 
-   psystem->system_int_update(iUpdate, iPayload);
+   psystem->system_id_update(iUpdate, iPayload);
 
 }

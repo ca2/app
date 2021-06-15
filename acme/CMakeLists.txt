@@ -1349,13 +1349,13 @@ if (WIN32)
       os/windows/exception_engine.cpp
       os/windows/extract_icon.cpp
       os/windows/file.cpp
-      os/windows/gdiplus.cpp
+      #os/windows/gdiplus.cpp
       os/windows/internal.cpp
       os/windows/itemidlist.cpp
       os/windows/language.cpp
       os/windows/library.cpp
-      os/windows/list_serial_ports.cpp
-      os/windows/local_memory_map.cpp
+      #os/windows/list_serial_ports.cpp
+      #os/windows/local_memory_map.cpp
       os/windows/lock.cpp
       os/windows/main.cpp
       os/windows/message_loop.cpp
@@ -1368,24 +1368,24 @@ if (WIN32)
       os/windows/user.cpp
       os/windows/util.cpp
       os/windows/windowing.cpp
-      node/windows/base/factory_exchange.h
-      node/windows/base/implementation.h
-      node/windows/base/print_job.h
-      node/windows/base/_windows.h
-      node/windows/console.h
-      node/windows/exception.h
-      node/windows/factory_exchange.h
-      node/windows/file.h
-      node/windows/file_find.h
-      node/windows/pipe.h
-      node/windows/registry.h
-      node/windows/serial.h
-      node/windows/uac_tools.h
-      node/windows/user.h
-      node/windows/_.h
-      node/windows/_node_windows.h
-      node/windows/_node_windows_private.h
-      node/windows/_windows.h
+      #node/windows/base/factory_exchange.h
+      #node/windows/base/implementation.h
+      #node/windows/base/print_job.h
+      #node/windows/base/_windows.h
+      #node/windows/console.h
+      #node/windows/exception.h
+      #node/windows/factory_exchange.h
+      #node/windows/file.h
+      #node/windows/file_find.h
+      #node/windows/pipe.h
+      #node/windows/registry.h
+      #node/windows/serial.h
+      #node/windows/uac_tools.h
+      #node/windows/user.h
+      #node/windows/_.h
+      #node/windows/_node_windows.h
+      #node/windows/_node_windows_private.h
+      #node/windows/_windows.h
       )
 else ()
 
@@ -1456,9 +1456,9 @@ if (WIN32 OR UWP)
       os/windows_common/com.cpp
       os/windows_common/debug.cpp
       os/windows_common/file.cpp
-      os/windows_common/file_c.cpp
+      #os/windows_common/file_c.cpp
       os/windows_common/graphics.cpp
-      os/windows_common/net.cpp
+      #os/windows_common/net.cpp
       os/windows_common/parallelization.cpp
       os/windows_common/time.cpp
       os/windows_common/unicode.cpp)

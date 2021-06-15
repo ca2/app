@@ -547,38 +547,38 @@ list(APPEND apex_source
 if (WIN32)
 
    list(APPEND apex_source
-      node/windows/_.h
-      node/windows/_node_windows.h
-      node/windows/_node_windows_private.h
-      node/windows/_windows.h
-      node/windows/a.h
-      node/windows/application.cpp
-      node/windows/crypto.cpp
-      node/windows/crypto.h
-      node/windows/dir_context.cpp
-      node/windows/dir_context.h
-      node/windows/dir_system.cpp
-      node/windows/dir_system.h
-      node/windows/factory_exchange.cpp
-      node/windows/factory_exchange.h
-      node/windows/file_context.cpp
-      node/windows/file_context.h
-      #node/windows/file_os_watcher.cpp
-      #node/windows/file_os_watcher.h
-      node/windows/file_system.cpp
-      node/windows/file_system.h
-      node/windows/folder_watch.h
-      node/windows/ip_enum.cpp
-      node/windows/ip_enum.h
-      #node/windows/os_context.cpp
-      #node/windows/os_context.h
-      node/windows/process.cpp
-      node/windows/process.h
-      node/windows/thread.cpp
-      node/windows/thread.h
-      node/windows/timer.cpp
-      node/windows/trace.cpp
-      node/windows_common/application.cpp
+      #node/windows/_.h
+      #node/windows/_node_windows.h
+      #node/windows/_node_windows_private.h
+      #node/windows/_windows.h
+      #node/windows/a.h
+      #node/windows/application.cpp
+      #node/windows/crypto.cpp
+      #node/windows/crypto.h
+      #node/windows/dir_context.cpp
+      #node/windows/dir_context.h
+      #node/windows/dir_system.cpp
+      #node/windows/dir_system.h
+      #node/windows/factory_exchange.cpp
+      #node/windows/factory_exchange.h
+      #node/windows/file_context.cpp
+      #node/windows/file_context.h
+      ##node/windows/file_os_watcher.cpp
+      ##node/windows/file_os_watcher.h
+      #node/windows/file_system.cpp
+      #node/windows/file_system.h
+      #node/windows/folder_watch.h
+      #node/windows/ip_enum.cpp
+      #node/windows/ip_enum.h
+      ##node/windows/os_context.cpp
+      ##node/windows/os_context.h
+      #node/windows/process.cpp
+      #node/windows/process.h
+      #node/windows/thread.cpp
+      #node/windows/thread.h
+      #node/windows/timer.cpp
+      #node/windows/trace.cpp
+      #node/windows_common/application.cpp
       os/windows/_.cpp
       os/windows/_.h
       os/windows/_windows.h
@@ -586,12 +586,12 @@ if (WIN32)
       os/windows/application_system_run.cpp
       os/windows/dpi.cpp
       os/windows/gdi.cpp
-      os/windows/interprocess_communication.cpp
-      os/windows/launcher.cpp
-      os/windows/library.cpp
+      #os/windows/interprocess_communication.cpp
+      #os/windows/launcher.cpp
+      #os/windows/library.cpp
       os/windows/main.cpp
       os/windows/menu.cpp
-      os/windows/shell_launcher.cpp
+      #os/windows/shell_launcher.cpp
       os/windows/thread.cpp
       os/windows/user.cpp
       os/windows/windowing.cpp
@@ -599,13 +599,13 @@ if (WIN32)
       os/windows_common/_.h
       os/windows_common/_windows_common.h
       os/windows_common/file.cpp
-      os/win32/_.h
-      os/win32/dialog.cpp
-      os/win32/dialog.h
-      os/win32/font.cpp
-      os/win32/font.h
-      os/win32/window.cpp
-      os/win32/window.h
+      #os/win32/_.h
+      #os/win32/dialog.cpp
+      #os/win32/dialog.h
+      #os/win32/font.cpp
+      #os/win32/font.h
+      #os/win32/window.cpp
+      #os/win32/window.h
       )
 else ()
 

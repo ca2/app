@@ -1,7 +1,7 @@
 #include "framework.h"
 #include <math.h>
 #include "acme/const/id.h"
-#include "aura/graphics/snippet/close_icon.h"
+#include "aura/graphics/user/close_icon.h"
 
 
 namespace app_shader
@@ -161,7 +161,7 @@ namespace app_shader
 
                     string strDate = pdatetime->international().get_gmt_date_time(INTERNATIONAL_DATE_TIME_FORMAT_FOR_FILE);
 
-                    auto papplication = get_application();
+                    //auto papplication = get_application();
 
                     auto pcontext = m_pcontext;
 

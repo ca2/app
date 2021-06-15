@@ -206,10 +206,10 @@ namespace draw2d
    //bool path::line::get_bounding_rectangle(RECTANGLE_F64* prectangle) const
    //{
 
-   //   prectangle->left = minimum(m_pointBeg.x, m_pointEnd.x);
-   //   prectangle->right = maximum(m_pointBeg.x, m_pointEnd.x);
-   //   prectangle->top = minimum(m_pointBeg.y, m_pointEnd.y);
-   //   prectangle->bottom = maximum(m_pointBeg.y, m_pointEnd.y);
+   //   prectangle->left = minimum(m_pointBegin.x, m_pointEnd.x);
+   //   prectangle->right = maximum(m_pointBegin.x, m_pointEnd.x);
+   //   prectangle->top = minimum(m_pointBegin.y, m_pointEnd.y);
+   //   prectangle->bottom = maximum(m_pointBegin.y, m_pointEnd.y);
 
    //   return true;
 
@@ -558,11 +558,11 @@ namespace draw2d
       arc.m_angleEnd2 = t - 90_degrees;
       arc.m_angleRotation = 0.0;
       ///arc.m_dAngle = (arc.m_angleEnd - arc.m_angleBeg) * g_dPi / 180.0;
-      arc.m_pointBeg = arc.m_pointCenter + arc_point(arc.m_angleBeg, arc.m_sizeRadius);
+      arc.m_pointBegin = arc.m_pointCenter + arc_point(arc.m_angleBeg, arc.m_sizeRadius);
       arc.m_pointEnd = arc.m_pointCenter + arc_point(arc.m_angleEnd2, arc.m_sizeRadius);
 
-      //arc.m_pointBeg.x = arc.m_pointCenter.x + arc.m_dRadiusX * cos(arc.m_angleBeg);
-      //arc.m_pointBeg.y = arc.m_pointCenter.y +arc.m_dRadiusY * sin(arc.m_angleBeg);
+      //arc.m_pointBegin.x = arc.m_pointCenter.x + arc.m_dRadiusX * cos(arc.m_angleBeg);
+      //arc.m_pointBegin.y = arc.m_pointCenter.y +arc.m_dRadiusY * sin(arc.m_angleBeg);
       //arc.m_pointEnd.x = arc.m_pointCenter.x + arc.m_dRadiusX * cos(arc.m_angleEnd);
       //arc.m_pointEnd.y = arc.m_pointCenter.y + arc.m_dRadiusY * sin(arc.m_angleEnd);
 
@@ -570,7 +570,7 @@ namespace draw2d
 
       m_bHasPoint = true;
 
-      m_pointBeg = arc.m_pointBeg;
+      m_pointBegin = arc.m_pointBegin;
 
       m_pointEnd = arc.m_pointEnd;
 
@@ -597,9 +597,9 @@ namespace draw2d
       ::arc& arc = parc->m_shape;
 
       ::angle t = angle + 90_degrees;
-      arc.m_pointBeg.x = point.x + w / 2.0;
-      double a = (point.x - arc.m_pointBeg.x) / cos(t);
-      double x = point.x - arc.m_pointBeg.x;
+      arc.m_pointBegin.x = point.x + w / 2.0;
+      double a = (point.x - arc.m_pointBegin.x) / cos(t);
+      double x = point.x - arc.m_pointBegin.x;
       double b = 0;
       //double y = b * b  *w / (4.0* tan(dAngle));
       double y = 0;
@@ -613,14 +613,14 @@ namespace draw2d
       arc.m_angleExt = arc.m_angleEnd2 - arc.m_angleBeg;
       arc.m_angleRotation = arc.m_angleEnd2 - arc.m_angleBeg;
 
-      arc.m_pointBeg = arc.m_pointCenter + arc_point(arc.m_angleBeg, arc.m_sizeRadius);
+      arc.m_pointBegin = arc.m_pointCenter + arc_point(arc.m_angleBeg, arc.m_sizeRadius);
       arc.m_pointEnd = arc.m_pointCenter + arc_point(arc.m_angleEnd2, arc.m_sizeRadius);
 
       m_shapea.add_item(parc);
 
       m_bHasPoint = true;
 
-      m_pointBeg = arc.m_pointBeg;
+      m_pointBegin = arc.m_pointBegin;
 
       m_pointEnd = arc.m_pointEnd;
 
@@ -653,14 +653,14 @@ namespace draw2d
       arc.m_angleExt        = angleExt;
       arc.m_angleEnd2       = angleBeg + angleExt;
       arc.m_angleRotation   = 0_degrees;
-      arc.m_pointBeg        = arc.m_pointCenter + arc_point(arc.m_angleBeg, arc.m_sizeRadius);
+      arc.m_pointBegin        = arc.m_pointCenter + arc_point(arc.m_angleBeg, arc.m_sizeRadius);
       arc.m_pointEnd        = arc.m_pointCenter + arc_point(arc.m_angleEnd2, arc.m_sizeRadius);
 
       m_shapea.add(parc);
 
       m_bHasPoint = true;
 
-      m_pointBeg = arc.m_pointBeg;
+      m_pointBegin = arc.m_pointBegin;
 
       m_pointEnd = arc.m_pointEnd;
 
@@ -723,9 +723,9 @@ namespace draw2d
 
    //   auto pline = __new(line);
 
-   //   pline->m_pointBeg.x = x;
+   //   pline->m_pointBegin.x = x;
 
-   //   pline->m_pointBeg.y = y;
+   //   pline->m_pointBegin.y = y;
 
    //   pline->m_pointEnd.x = x2;
 
@@ -735,7 +735,7 @@ namespace draw2d
 
    //   m_bHasPoint = true;
 
-   //   m_pointBeg = pline->m_pointBeg;
+   //   m_pointBegin = pline->m_pointBegin;
 
    //   m_pointEnd = pline->m_pointEnd;
 
@@ -834,7 +834,7 @@ namespace draw2d
 
       m_shapea.add(pline);
 
-      m_pointBeg = line.m_p1;
+      m_pointBegin = line.m_p1;
 
       m_pointEnd = line.m_p2;
 
@@ -856,7 +856,7 @@ namespace draw2d
 
       m_shapea.add(pline);
 
-      m_pointBeg = line.m_p1;
+      m_pointBegin = line.m_p1;
 
       m_pointEnd = line.m_p2;
 

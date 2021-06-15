@@ -237,8 +237,6 @@ namespace experience
 
                      iCurrentTab = iPane;
 
-                     // output_debug_string("test");
-
                   }
 
                   path->add_line(rectBorder.left,rectangleClient.bottom,rectBorder.left,rectBorder.top);
@@ -248,8 +246,6 @@ namespace experience
                   path->add_line(rectBorder.right,rectBorder.top + (rectBorder.right - rectangleClient.right));
 
                   path->add_line(rectBorder.right - 1,rectangleClient.bottom);
-
-                  //path->end_figure(false);
 
                   ppane->m_brushFillSel->CreateLinearGradientBrush(rectBorder.top_left(),rectBorder.bottom_left(),argb(230,235,235,230),argb(250,255,255,250));
 
@@ -283,8 +279,6 @@ namespace experience
                }
                else
                {
-
-                  //path->begin_figure(true, ::draw2d::fill_mode_winding);
 
                   path->add_line(rectBorder.left,rectangleClient.bottom,rectBorder.left,rectBorder.top);
 

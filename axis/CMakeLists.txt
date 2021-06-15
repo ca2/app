@@ -361,9 +361,9 @@ endif()
 if(MACOS)
 
     list(APPEND axis_source
-            node/macos/_.h
-            node/macos/factory_exchange.cpp
-            node/macos/factory_exchange.h
+            #node/macos/_.h
+            #node/macos/factory_exchange.cpp
+            #node/macos/factory_exchange.h
 
 
 
@@ -376,35 +376,35 @@ endif()
 if(APPLE)
     list(APPEND axis_source
 
-            os/apple/_.cpp
-            os/apple/_.h
-            os/apple/_apple.h
-            os/apple/_apple.mm
-            os/apple/_c_mm.h
-            os/apple/_mm.h
-            os/apple/_mm_common.h
-            os/apple/DDInvocationGrabber.h
-            os/apple/DDInvocationGrabber.mm
-            os/apple/debug.cpp
-            os/apple/debug.h
-            os/apple/exe_path.cpp
-            os/apple/graphics.cpp
-            os/apple/graphics.h
-            os/apple/image_gif.cpp
-            os/apple/main.cpp
-            os/apple/main.h
-            os/apple/multihreading.cpp
-            os/apple/ns_exception.cpp
-            os/apple/ns_exception.h
-            os/apple/NSObject+DDExtensions.h
-            os/apple/NSObject+DDExtensions.mm
-            os/apple/NSString+SymlinksAndAliases.h
-            os/apple/NSString+SymlinksAndAliases.mm
-            os/apple/process.cpp
-            os/apple/time.cpp
-            os/apple/time.h
-            os/apple/UncaughtExceptionHandler.h
-            os/apple/UncaughtExceptionHandler.mm
+            #os/apple/_.cpp
+            #os/apple/_.h
+            #os/apple/_apple.h
+            #os/apple/_apple.mm
+            #os/apple/_c_mm.h
+            #os/apple/_mm.h
+            #os/apple/_mm_common.h
+            #os/apple/DDInvocationGrabber.h
+            #os/apple/DDInvocationGrabber.mm
+            #os/apple/debug.cpp
+            #os/apple/debug.h
+            #os/apple/exe_path.cpp
+            #os/apple/graphics.cpp
+            #os/apple/graphics.h
+            #os/apple/image_gif.cpp
+            #os/apple/main.cpp
+            #os/apple/main.h
+            #os/apple/multihreading.cpp
+            #os/apple/ns_exception.cpp
+            #os/apple/ns_exception.h
+            #os/apple/NSObject+DDExtensions.h
+            #os/apple/NSObject+DDExtensions.mm
+            #os/apple/NSString+SymlinksAndAliases.h
+            #os/apple/NSString+SymlinksAndAliases.mm
+            #os/apple/process.cpp
+            #os/apple/time.cpp
+            #os/apple/time.h
+            #os/apple/UncaughtExceptionHandler.h
+            #os/apple/UncaughtExceptionHandler.mm
 
             )
 

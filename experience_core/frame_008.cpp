@@ -265,20 +265,22 @@ SizingNone:;
                   {
 
                      rectA.deflate(1,1,1,1);
+                     
                      Draw3dRectSide(pgraphics,rectA,eside,crMoveableBorderHilight,crMoveableBorderShadow);
 
                      rectA.deflate(1,1,1,1);
+                     
                      Draw3dRectSide(pgraphics,rectA,eside,crMoveableBorder,crMoveableBorder);
 
                      rectA.deflate(1,1,1,1);
+                     
                      Draw3dRectSide(pgraphics,rectA,eside,crMoveableBorder,crMoveableBorder);
 
                      ::rectangle_i32 rectangle;
+                     
                      GetBorderRect(rectangleClient,rectangle,eside);
-                     pgraphics->color_blend(
-                                         rectangle,
-                                         crMoveableBorder,
-                                         127);
+                     
+                     pgraphics->fill_rectangle(rectangle, ::color::color(crMoveableBorder,127));
 
                   }
 
@@ -287,21 +289,22 @@ SizingNone:;
                        || m_pframewindow->m_estyle == ::user::StyleTranslucidLightBlue
                        || m_pframewindow->m_estyle == ::user::StyleTranslucidLightGreen)
                {
+                  
                   ::rectangle_i32 rectangle;
+                  
                   GetBorderRect(rectangleClient, rectangle, eside);
-                  pgraphics->color_blend(
-                                      rectangle,
-                                      crMoveableBorder,
-                                      127);
+                  
+                  pgraphics->fill_rectangle(rectangle, ::color::color(crMoveableBorder, 127));
+                  
                }
                else
                {
+                  
                   ::rectangle_i32 rectangle;
+                  
                   GetBorderRect(rectangleClient, rectangle, eside);
-                  pgraphics->color_blend(
-                                      rectangle,
-                                      crMoveableBorder,
-                                      127);
+                  
+                  pgraphics->fill_rectangle(rectangle, ::color::color(crMoveableBorder,127));
 
                   ::rectangle_i32 rectClientB = rectA;
 

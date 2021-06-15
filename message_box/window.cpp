@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "aura/graphics/snippet/close_button.h"
+#include "aura/graphics/user/close_button.h"
 
 #define STEPPY_DEBUG 0
 
@@ -63,7 +63,7 @@ namespace app_message_box
 
       papplication->m_bInterprocessIntercommunication = false;
 
-      ::user::interaction * p = this;
+      //::user::interaction * p = this;
 
    }
 

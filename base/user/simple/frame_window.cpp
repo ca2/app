@@ -2537,7 +2537,7 @@ void simple_frame_window::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
               || psession->m_paurasession->savings().is_trying_to_save(::e_resource_blur_background))
       {
 
-         pgraphics->color_blend(rectangleClient,rgb(150,180,140),150);
+         pgraphics->fill_rectangle(rectangleClient, argb(150, 150,180,140));
 
       }
       else

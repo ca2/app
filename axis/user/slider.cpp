@@ -217,7 +217,7 @@ namespace user
 
       byte bAlpha1 = (byte) (128.0* get_alpha());
 
-      pgraphics->color_blend(rectangleClient, rgb(250,255,255), bAlpha1);
+      pgraphics->fill_rectangle(rectangleClient, argb(bAlpha1, 250,255,255));
 
       ::rectangle_i32 rectangle;
 

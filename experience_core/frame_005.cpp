@@ -294,10 +294,7 @@ SizingNone:;
                   ::rectangle_i32 rectangle;
                   GetBorderRect(rectangleClient, rectangle, eside);
 
-                  pgraphics->color_blend(
-                                      rectangle,
-                                      crMoveableBorder,
-                                      127);
+                  pgraphics->fill_rectangle(rectangle, ::color::color(crMoveableBorder, 127));
                }
                else
                {

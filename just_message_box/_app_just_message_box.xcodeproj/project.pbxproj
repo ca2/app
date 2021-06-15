@@ -10,6 +10,9 @@
 		070B8F041B6E53FA00D26137 /* Hello_Multiverse__Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 070B8F031B6E53FA00D26137 /* Hello_Multiverse__Tests.m */; };
 		9A413DF2266EDF7800C3FF0E /* libcrypto.1.1.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A413D96266EDEE500C3FF0E /* libcrypto.1.1.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9A413DF5266EDF7A00C3FF0E /* libssl.1.1.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A413DB1266EDEE500C3FF0E /* libssl.1.1.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		9A46D35E267859BC000B22D0 /* libacme.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC396FF25195DEB0036B92A /* libacme.dylib */; };
+		9A46D35F267859BC000B22D0 /* libapex.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC3970125195DEB0036B92A /* libapex.dylib */; };
+		9A46D360267859BC000B22D0 /* libapp_just_message_box_app.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A46D2E12678453B000B22D0 /* libapp_just_message_box_app.dylib */; };
 		9A6A480326611202004ED97A /* libdraw2d_quartz2d.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9AC2D08326540D6B00CC8096 /* libdraw2d_quartz2d.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9A6A480526611203004ED97A /* libwindowing_macos.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A6A47F226611202004ED97A /* libwindowing_macos.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9A6A480826611214004ED97A /* libnode_macos.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A6A47D726611129004ED97A /* libnode_macos.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
@@ -35,6 +38,20 @@
 			remoteGlobalIDString = 9A48898624EB48DE00119EC4;
 			remoteInfo = app_just_message_box;
 		};
+		9A46D361267859D9000B22D0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A6A47D826611133004ED97A /* app_just_message_box.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9A48898524EB48DE00119EC4;
+			remoteInfo = app_just_message_box;
+		};
+		9A46D363267859E2000B22D0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9AC2D0B426540F6700CC8096 /* node_macos.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9AC2D16E26542E1000CC8096;
+			remoteInfo = node_macos;
+		};
 		9A6A47D626611129004ED97A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9AC2D0B426540F6700CC8096 /* node_macos.xcodeproj */;
@@ -48,13 +65,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = A1CFD777154F5EAA007447E2;
 			remoteInfo = draw2d_quartz2d;
-		};
-		9A6A481326611372004ED97A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9A6A480C26611372004ED97A /* windowing_macos.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 9A440A1426548BE4000C490B;
-			remoteInfo = windowing_macos;
 		};
 		9A6A481626611373004ED97A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -120,7 +130,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		070B8EEA1B6E53F900D26137 /* app_message_box.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = app_message_box.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		070B8EEA1B6E53F900D26137 /* _app_just_message_box.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = _app_just_message_box.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		070B8EFD1B6E53FA00D26137 /* Hello Multiverse!!Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Hello Multiverse!!Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		070B8F021B6E53FA00D26137 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		070B8F031B6E53FA00D26137 /* Hello_Multiverse__Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Hello_Multiverse__Tests.m; sourceTree = "<group>"; };
@@ -157,6 +167,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A46D35E267859BC000B22D0 /* libacme.dylib in Frameworks */,
+				9A46D35F267859BC000B22D0 /* libapex.dylib in Frameworks */,
+				9A46D360267859BC000B22D0 /* libapp_just_message_box_app.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -190,7 +203,7 @@
 		070B8EEB1B6E53F900D26137 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				070B8EEA1B6E53F900D26137 /* app_message_box.app */,
+				070B8EEA1B6E53F900D26137 /* _app_just_message_box.app */,
 				070B8EFD1B6E53FA00D26137 /* Hello Multiverse!!Tests.xctest */,
 			);
 			name = Products;
@@ -319,13 +332,14 @@
 			buildRules = (
 			);
 			dependencies = (
+				9A46D364267859E2000B22D0 /* PBXTargetDependency */,
+				9A46D362267859D9000B22D0 /* PBXTargetDependency */,
 				9A6A482626611594004ED97A /* PBXTargetDependency */,
 				9A6A481226611372004ED97A /* PBXTargetDependency */,
-				9A6A481426611372004ED97A /* PBXTargetDependency */,
 			);
 			name = _app_just_message_box;
 			productName = "Hello Multiverse!!";
-			productReference = 070B8EEA1B6E53F900D26137 /* app_message_box.app */;
+			productReference = 070B8EEA1B6E53F900D26137 /* _app_just_message_box.app */;
 			productType = "com.apple.product-type.application";
 		};
 		070B8EFC1B6E53FA00D26137 /* Hello Multiverse!!Tests */ = {
@@ -506,15 +520,20 @@
 			target = 070B8EE91B6E53F900D26137 /* _app_just_message_box */;
 			targetProxy = 070B8EFE1B6E53FA00D26137 /* PBXContainerItemProxy */;
 		};
+		9A46D362267859D9000B22D0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = app_just_message_box;
+			targetProxy = 9A46D361267859D9000B22D0 /* PBXContainerItemProxy */;
+		};
+		9A46D364267859E2000B22D0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = node_macos;
+			targetProxy = 9A46D363267859E2000B22D0 /* PBXContainerItemProxy */;
+		};
 		9A6A481226611372004ED97A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = draw2d_quartz2d;
 			targetProxy = 9A6A481126611372004ED97A /* PBXContainerItemProxy */;
-		};
-		9A6A481426611372004ED97A /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = windowing_macos;
-			targetProxy = 9A6A481326611372004ED97A /* PBXContainerItemProxy */;
 		};
 		9A6A482626611594004ED97A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -680,9 +699,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/nsisExamples/Plugin/nsis",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_BUNDLE_IDENTIFIER = "app.just-message-box";
-				PRODUCT_NAME = app_message_box;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Debug;
@@ -701,9 +718,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/nsisExamples/Plugin/nsis",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_BUNDLE_IDENTIFIER = "app.just-message-box";
-				PRODUCT_NAME = app_message_box;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Release;

@@ -256,7 +256,7 @@ SizingNone:;
 
                   //auto psystem = m_psystem->m_paurasystem;
 
-                  pgraphics->color_blend( rectangle, crMoveableBorder, 127);
+                  pgraphics->fill_rectangle(rectangle, ::color::color(crMoveableBorder, 127));
 
                }
                /*else if(m_pframewindow->m_estyle == StyleLightBlue)
@@ -294,9 +294,7 @@ SizingNone:;
 
                   GetBorderRect(rectangleClient, rectangle, eside);
 
-
-
-                  pgraphics->color_blend( rectangle, crMoveableBorder, 127);
+                  pgraphics->fill_rectangle( rectangle, ::color::color(crMoveableBorder, 127));
 
                }
 

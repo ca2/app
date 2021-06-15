@@ -45,7 +45,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "070B8EE91B6E53F900D26137"
-            BuildableName = "app_message_box.app"
+            BuildableName = "_app_just_message_box.app"
             BlueprintName = "_app_just_message_box"
             ReferencedContainer = "container:_app_just_message_box.xcodeproj">
          </BuildableReference>

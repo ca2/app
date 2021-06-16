@@ -598,11 +598,17 @@ namespace user
          }
          else
          {
+            
             color32_t crTranslucid = rgb(0,0,0);
+            
             ::rectangle_i32 rectangle = pdrawitem->m_rectItem;
+         
             rectangle.inflate(8,0,8,-1);
-            pdrawitem->m_pgraphics->color_blend(rectangle,crTranslucid,127);
+            
+            pdrawitem->m_pgraphics->fill_rectangle(rectangle, ::color::color(crTranslucid, 127));
+            
          }
+         
       }
 
       pdrawitem->update_item_color();

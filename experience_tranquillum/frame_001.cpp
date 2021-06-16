@@ -239,7 +239,7 @@ SizingNone:;
 
                   GetBorderRect(rectangleClient, rectangle, eside);
 
-                  pgraphics->color_blend(rectangle, colorMoveableBorder, 127);
+                  pgraphics->fill_rectangle(rectangle, colorMoveableBorder & 127_opacity);
 
                }
                /*else if(m_estyle == StyleLightBlue)
@@ -282,7 +282,7 @@ SizingNone:;
                   //class imaging & imaging = psystem->imaging();
 
                   //imaging.color_blend(
-                     pgraphics->color_blend(rectangle, colorMoveableBorder, 127);
+                  pgraphics->fill_rectangle(rectangle, colorMoveableBorder & 127_opacity);
 
                }
 

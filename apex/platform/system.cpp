@@ -5757,8 +5757,6 @@ string get_bundle_app_library_name();
 
          ::output_debug_string("The application library for appid \"" + strAppId + "\" wasn't loaded.");
 
-         //return nullptr;
-
       }
 
    }

@@ -309,10 +309,10 @@ SizingNone:;
                   //class imaging & imaging = psystem->imaging();
                   //imaging.color_blend(
                      
-                     pgraphics->color_blend(
+                     pgraphics->fill_rectangle(
                                       rectangle,
-                                      crMoveableBorder,
-                                      127);
+                                      crMoveableBorder &
+                                      127_opacity);
                }
                else
                {

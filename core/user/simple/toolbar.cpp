@@ -735,7 +735,7 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
             if ((m_dwCtrlStyle & TBSTYLE_FLAT) == TBSTYLE_FLAT)
             {
 
-               pgraphics->color_blend(rectItem, rgb(255, 255, 250), 208);
+               pgraphics->fill_rectangle(rectItem, argb(208, 255, 255, 250));
 
                pgraphics->draw_3drect(rectItem, argb(255, 127, 127, 127), argb(255, 255, 255, 255));
 

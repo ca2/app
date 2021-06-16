@@ -256,10 +256,10 @@ SizingNone:;
 
                   //class imaging & imaging = psystem->imaging();
                   //imaging.color_blend(
-                     pgraphics->color_blend(
+                     pgraphics->fill_rectangle(
                                       rectangle,
-                                      colorMoveableBorder,
-                                      127);
+                                      colorMoveableBorder &
+                                      127_opacity);
                }
                else if (estyle == ::user::StyleLightBlue)
                {
@@ -291,10 +291,8 @@ SizingNone:;
 
                   //class imaging & imaging = psystem->imaging();
                   //imaging.color_blend(
-                  pgraphics->color_blend(
-                                      rectangle,
-                                      colorMoveableBorder,
-                                      127);
+                  pgraphics->fill_rectangle(rectangle, colorMoveableBorder &
+                                      127_opacity);
 
                   ::rectangle_i32 rectClientB = rectA;
 

@@ -215,22 +215,26 @@ namespace user
    void elastic_slider::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-
-
       ::rectangle_i32 rectangleClient;
+      
       get_client_rect(rectangleClient);
 
       byte bAlpha = (byte) (128.0 * get_alpha());
 
-      pgraphics->color_blend(rectangleClient, rgb(250, 255, 255), bAlpha);
+      pgraphics->fill_rectangle(rectangleClient, argb(bAlpha, 250, 255, 255));
 
       ::rectangle_i32 rectangle;
+      
       GetSliderRect(rectangle);
 
       pgraphics->draw_rectangle(rectangle,argb(bAlpha,255,255,255));
+      
       rectangle.deflate(1, 1);
+      
       pgraphics->draw_rectangle(rectangle,argb(bAlpha,255,255,0));
+      
       rectangle.deflate(1, 1);
+      
       pgraphics->draw_rectangle(rectangle,argb(bAlpha,255,255,255));
 
       if(m_bSlide)
@@ -263,10 +267,19 @@ namespace user
       get_client_rect(rectangleClient);
 
       i32 iWidth = 16;
+      
       rectangle.top = rectangleClient.top;
+      
       rectangle.bottom = rectangleClient.bottom;
+      
       rectangle.left = (::i32) minimum(rectangleClient.right, m_dPosition * (rectangleClient.width() - iWidth));
+      
       rectangle.right = (::i32) minimum(rectangleClient.right, m_dPosition * ((rectangleClient.width() - iWidth)) + iWidth);
+      
    }
 
+
 } // namespace user
+
+
+

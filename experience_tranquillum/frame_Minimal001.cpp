@@ -292,7 +292,7 @@ SizingNone:;
 
                   //imaging.color_blend(pgraphics, rectangle, colorMoveableBorder, 127);
 
-                  pgraphics->color_blend(rectangle, colorMoveableBorder, 127);
+                  pgraphics->fill_rectangle(rectangle, colorMoveableBorder & 127_opacity);
 
                }
 

@@ -142,7 +142,7 @@ namespace experience
       //}
 
 
-      void frame::ColorGlass(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle, const ::color::color & color, byte bAlpha)
+      void frame::ColorGlass(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle, const ::color::color & color, const ::opacity & opacity)
       {
 
          /*Gdiplus::Graphics g((HDC) pgraphics->get_os_data());
@@ -151,7 +151,7 @@ namespace experience
          g.FillRectangle(&solidBrush, prectangle->left, prectangle->top, prectangle->right - prectangle->left, prectangle->bottom - prectangle->top);*/
 
 
-         pgraphics->fill_rectangle(rectangle, color + opacity);
+         pgraphics->fill_rectangle(rectangle, color & opacity);
 
 
       }

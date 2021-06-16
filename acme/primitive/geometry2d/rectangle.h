@@ -18,7 +18,9 @@ public:
    rectangle_type() noexcept : rectangle_type((UNIT_TYPE)0) { }
    rectangle_type(enum_no_initialize) noexcept { }
    rectangle_type(::std::nullptr_t) noexcept : rectangle_type((UNIT_TYPE)0) {}
-   rectangle_type(UNIT_TYPE l, UNIT_TYPE t, UNIT_TYPE r, UNIT_TYPE b) noexcept { this->left = (UNIT_TYPE)l; this->top = (UNIT_TYPE)t; this->right = (UNIT_TYPE)r; this->bottom = (UNIT_TYPE)b; }
+   
+   template < primitive_number LEFT, primitive_number TOP, primitive_number RIGHT, primitive_number BOTTOM >
+   rectangle_type(LEFT left, TOP top, RIGHT right, BOTTOM bottom) noexcept { this->left = (UNIT_TYPE)left; this->top = (UNIT_TYPE)top; this->right = (UNIT_TYPE)right; this->bottom = (UNIT_TYPE)bottom; }
    rectangle_type(UNIT_TYPE x, UNIT_TYPE y) noexcept : rectangle_type(x, y, x, y) {}
    rectangle_type(UNIT_TYPE i) noexcept : rectangle_type(i, i) {}
 

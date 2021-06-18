@@ -480,7 +480,7 @@ namespace account
    bool credentials::check_ca2_hash()
    {
 
-      string strUrl("https://api.ca2.cc/account/check_hash");
+      string strUrl("https://api.ca2.software/account/check_hash");
 
       property_set set;
 

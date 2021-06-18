@@ -4134,13 +4134,13 @@ namespace aura
 //         if (strBrowser == "firefox")
 //         {
 //
-//            //strUrl = "https://ca2.cc/open_f___?url=" + url_encode(strUrl) + "&profile=" + url_encode(strProfile) + "&target=" + url_encode(strTarget);
+//            //strUrl = "https://ca2.software/open_f___?url=" + url_encode(strUrl) + "&profile=" + url_encode(strProfile) + "&target=" + url_encode(strTarget);
 //
 //         }
 //         else
 //         {
 //
-//            //strUrl = "https://ca2.cc/open_tab?url=" + url_encode(strUrl) + "&profile=" + url_encode(strProfile) + "&target=" + url_encode(strTarget);
+//            //strUrl = "https://ca2.software/open_tab?url=" + url_encode(strUrl) + "&profile=" + url_encode(strProfile) + "&target=" + url_encode(strTarget);
 //
 //         }
 //

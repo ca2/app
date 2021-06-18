@@ -4072,12 +4072,12 @@ void simple_frame_window::on_select_user_style()
 void simple_frame_window::call_notification_area_action(const char * pszId)
 {
 
-   string strId(pszId);
+   ::id id(pszId);
 
-   post_routine(__routine([this, strId]()
+   post_routine(__routine([this, id]()
    {
 
-      notification_area_action(strId);
+      command_handler(id);
 
    }));
 

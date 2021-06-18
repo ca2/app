@@ -113,7 +113,7 @@ namespace geo
 
          string str;
 
-         str = file.as_string("https://server.ca2.cc/city-list.json");
+         str = file.as_string("https://server.ca2.software/city-list.json");
 
          if (str.has_char())
          {
@@ -472,7 +472,7 @@ namespace geo
 
       __pointer(::axis::system) psystem = get_system();
 
-      string strGetUrl = "https://ca2.cc/api/account/openweather?request=" + psystem->url_encode(strUrl);
+      string strGetUrl = "https://ca2.software/api/account/openweather?request=" + psystem->url_encode(strUrl);
 
       auto pcontext = get_context();
 

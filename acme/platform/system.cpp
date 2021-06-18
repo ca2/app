@@ -960,7 +960,7 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
    ::e_status system::get_public_internet_domain_extension_list(string_array& stra)
    {
 
-   //         ::file::path pathPublicDomainExtensionList = "https://server.ca2.cc/public_internet_domain_extension_list.txt";
+   //         ::file::path pathPublicDomainExtensionList = "https://server.ca2.software/public_internet_domain_extension_list.txt";
 
    //    m_pcontext->m_papexcontext->file().load_lines(stra, pathPublicDomainExtensionList);
 

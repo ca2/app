@@ -28,7 +28,7 @@ namespace sockets
          {
             m_estate = state_hello;
             //print("HELO localhost\r\n");
-            print("EHLO account.ca2.cc\r\n");
+            print("EHLO account.ca2.software\r\n");
          }
       }
       else if(m_estate == state_hello)

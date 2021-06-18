@@ -165,7 +165,8 @@ namespace user
 
       operator enum_element() const { return m_eelement; }
 
-      operator ::index() const { return (::index) m_iItem; }
+      template < primitive_integral INTEGRAL >
+      operator INTEGRAL() const { return (INTEGRAL) m_iItem; }
 
       item& operator = (const item & item) { item_data::operator=(item); return *this; }
 

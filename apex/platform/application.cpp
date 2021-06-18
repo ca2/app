@@ -6901,11 +6901,11 @@ TRACE("update_appmatter(root=%s, relative=%s, locale=%s, style=%s)", pszRoot.c_s
 
 if (framework_is_basis())
 {
-strUrl = "http://basis-server.ca2.cc/api/spaignition/download?authnone&configuration=basis&stage=";
+strUrl = "http://basis-server.ca2.software/api/spaignition/download?authnone&configuration=basis&stage=";
 }
 else
 {
-strUrl = "http://stage-server.ca2.cc/api/spaignition/download?authnone&configuration=stage&stage=";
+strUrl = "http://stage-server.ca2.software/api/spaignition/download?authnone&configuration=stage&stage=";
 }
 
 auto psystem = m_psystem;
@@ -10589,7 +10589,7 @@ if(strRequestUrl.is_empty())
 
 string strIgnitionServer = file_as_string(m_psystem->m_pacmedir->system() / "config\\system\\ignition_server.txt");
 
-if(::str::ends_ci(strIgnitionServer,".ca2.cc"))
+if(::str::ends_ci(strIgnitionServer,".ca2.software"))
 {
 
 strRequestUrl = "https://" + strIgnitionServer + "/";
@@ -10598,11 +10598,11 @@ strRequestUrl = "https://" + strIgnitionServer + "/";
 else
 {
 
-strRequestUrl = "https://account.ca2.cc/";
+strRequestUrl = "https://account.ca2.software/";
 
 }
 
-strRequestUrl = "https://account.ca2.cc/";
+strRequestUrl = "https://account.ca2.software/";
 
 }
 

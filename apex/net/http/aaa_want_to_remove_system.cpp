@@ -102,12 +102,12 @@ namespace http
 
       string_array straRequestingServer;
 
-      straRequestingServer.add("ca2.cc");
+      straRequestingServer.add("ca2.software");
 
       if (!straRequestingServer.contains_ci(strHost))
       {
 
-         strHost = "ca2.cc";
+         strHost = "ca2.software";
 
       }
 

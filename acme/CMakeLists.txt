@@ -698,6 +698,7 @@ list(APPEND acme_source
    os/ansios/pmutex_lock.h
    os/ansios/pthread.cpp
    os/ansios/semun.h
+        os/apple/_.cpp
    #os/apple/DDInvocationGrabber.h
    #os/apple/NSObject+DDExtensions.h
    #os/apple/NSString+SymlinksAndAliases.h
@@ -708,9 +709,11 @@ list(APPEND acme_source
    #os/apple/_mm.h
    #os/apple/_mm_common.h
    #os/apple/debug.h
+        os/apple/exe_path.cpp
    #os/apple/graphics.h
    #os/apple/main.h
    #os/apple/ns_exception.h
+        os/apple/time.cpp
    #os/apple/time.h
    #os/chronometer.h
    os/file.h
@@ -1553,16 +1556,17 @@ if (MACOS)
       #node/macos/thread.cpp
       #node/macos/trace.cpp
       #node/macos/util.cpp
-      #os/macos/_.cpp
+      os/macos/_.cpp
       #os/macos/application_system_run.cpp
       #os/macos/clipboard.cpp
       #os/macos/cross_win.cpp
       #os/macos/cross_win_file.cpp
-      #os/macos/debug.cpp
-      #os/macos/exception_engine.cpp
+      os/macos/debug.cpp
+      os/macos/exception_engine.cpp
       #os/macos/file.cpp
       #os/macos/file.mm
       #os/macos/graphics.cpp
+      os/macos/library.cpp
       #os/macos/list_serial_ports.cpp
       #os/macos/lock.cpp
       #os/macos/MessageBoxA.cpp
@@ -1572,6 +1576,7 @@ if (MACOS)
       #os/macos/mmos.mm
       #os/macos/NSPasteboard++.mm
       #os/macos/os.cpp
+           os/macos/parallelization.cpp
       #os/macos/process.cpp
       #os/macos/process_pid.cpp
       #os/macos/time.cpp
@@ -1694,6 +1699,7 @@ if (APPLE)
 
 
    list(APPEND acme_source
+           asset/new.cpp
            #timer.mm
            #exception/mm.mm
            #os/cross/uwp/cross_metrowin_user.cpp
@@ -1859,6 +1865,13 @@ elseif (LINUX)
    target_link_libraries(acme PRIVATE z dl idn pthread ${PKGCONFIG_LIBRARIES})
    target_link_options(acme PRIVATE -Wl,-z,defs)
    message("PKGCONFIG_LIBRARIES is " ${PKGCONFIG_LIBRARIES})
+
+
+elseif (MACOS)
+
+
+    target_link_libraries(acme PRIVATE z iconv idn ${COCOA} ${IOKIT})
+
 
 
 endif ()

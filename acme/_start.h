@@ -87,7 +87,11 @@
 #endif
 
 
+#if defined(__cplusplus)
+
 #include <atomic>
+
+#endif
 
 
 #include "__standard_type.h"

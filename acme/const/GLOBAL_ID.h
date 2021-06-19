@@ -5,7 +5,7 @@ enum
 {
 
    // here it is proper just no-argument updates
-   INITIAL_UPDATE = 1'000'001,
+   INITIAL_UPDATE = 1000001,
    PRE_CLOSE_DOCUMENT_UPDATE,
    NEW_DOCUMENT_UPDATE,
    CLOSE_DOCUMENT_UPDATE,

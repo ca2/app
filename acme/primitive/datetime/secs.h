@@ -27,10 +27,10 @@ public:
 };
 
 
-inline secs operator "" _s(unsigned long long int u) { return (::i64) u; }
-
-
 #ifdef CPP20
+
+
+inline secs operator "" _s(unsigned long long int u) { return (::i64) u; }
 
 
 template < primitive_number NUMBER >

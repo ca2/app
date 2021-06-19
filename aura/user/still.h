@@ -11,6 +11,8 @@ namespace user
    public:
 
 
+
+      
       enum e_style
       {
 
@@ -31,8 +33,11 @@ namespace user
       ::e_align                           m_ealignText;
       e_style                             m_estyle;
       ::rectangle_i32                     m_rectText;
+      //::rectangle_i32                     m_rectTextBoundingBox;
       index                               m_iClick;
       e_stock_icon                        m_estockicon;
+
+      ::write_text::text_out_array        m_textouta;
 
       ::rectangle_i32                     m_rectCheckBox;
       string                              m_strLink;
@@ -100,6 +105,9 @@ namespace user
       virtual i32 BaseToolTipGetIndex();
 
       virtual void pre_translate_message(::message::message * pmessage) override;
+
+
+      void on_hit_test(::user::item& item) override;
 
 
       virtual void on_layout(::draw2d::graphics_pointer & pgraphics) override;

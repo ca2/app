@@ -38,7 +38,7 @@ namespace user
 
       virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics);
 
-      void get_slider_rect(::rect & rect);
+      void get_slider_rect(::rectangle & rectangle);
 
    };
 

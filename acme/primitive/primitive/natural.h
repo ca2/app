@@ -1,8 +1,6 @@
 #pragma once
 
 
-#include <atomic>
-
 enum e_zero_init
 {
 

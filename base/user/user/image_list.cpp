@@ -213,9 +213,9 @@ namespace user
 
          int xpad = m_iPad;
 
-         auto rectClient = get_client_rect();
+         auto rectangleClient = get_client_rect();
 
-         int cx = rectClient.width();
+         int cx = rectangleClient.width();
 
          int w = m_size.cx;
 
@@ -373,15 +373,15 @@ namespace user
 
       auto pstyle = get_style(pgraphics);
 
-      auto rectClient = get_client_rect();
+      auto rectangleClient = get_client_rect();
 
       pgraphics->set(get_font(pstyle));
 
-      rectClient.offset(m_pointScroll);
+      rectangleClient.offset(m_pointScroll);
 
-      pgraphics->fill_rectangle(rectClient, get_color(pstyle, e_element_background));
+      pgraphics->fill_rectangle(rectangleClient, get_color(pstyle, e_element_background));
 
-      pgraphics->draw_rectangle(rectClient, argb(255, 192, 192, 192));
+      pgraphics->draw_rectangle(rectangleClient, argb(255, 192, 192, 192));
 
       pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
@@ -586,7 +586,7 @@ namespace user
    void image_list::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::rectangle_i32 rectClient;
+      ::rectangle_i32 rectangleClient;
 
       ::rectangle_i32 rectTotal(0, 0, 0, 0);
 
@@ -632,7 +632,7 @@ namespace user
 
       //m_sizeTotal = rectTotal.size();
 
-      //m_scrolldataVertical.m_iPage = rectClient.height();
+      //m_scrolldataVertical.m_iPage = rectangleClient.height();
 
       ::user::box::on_layout(pgraphics);
 

@@ -489,17 +489,17 @@ bool simple_menu_bar::ReloadMenuBar()
 
 /*void simple_menu_bar::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 {
-   ::rectangle_i32 rectClient;
-   get_client_rect(rectClient);
+   ::rectangle_i32 rectangleClient;
+   get_client_rect(rectangleClient);
    class imaging & imaging = psystem->imaging();
    if(m_iHover >= -1)
    {
       imaging.color_blend(
          pgraphics,
-         rectClient.left,
-         rectClient.top,
-         rectClient.width(),
-         rectClient.height(),
+         rectangleClient.left,
+         rectangleClient.top,
+         rectangleClient.width(),
+         rectangleClient.height(),
          rgb(255, 255, 250),
          128);
    }
@@ -507,10 +507,10 @@ bool simple_menu_bar::ReloadMenuBar()
    {
       imaging.color_blend(
          pgraphics,
-         rectClient.left,
-         rectClient.top,
-         rectClient.width(),
-         rectClient.height(),
+         rectangleClient.left,
+         rectangleClient.top,
+         rectangleClient.width(),
+         rectangleClient.height(),
          rgb(230, 230, 225),
          56);
    }
@@ -597,9 +597,9 @@ index simple_menu_bar::_001HitTest(const POINT_I32 *ppoint)
 
          return iItem;
    }
-   ::rectangle_i32 rectClient;
-   get_client_rect(rectClient);
-   if(rectClient.contains(*ppoint))
+   ::rectangle_i32 rectangleClient;
+   get_client_rect(rectangleClient);
+   if(rectangleClient.contains(*ppoint))
 
       return -1;
    else

@@ -1,19 +1,17 @@
 #pragma once
 
 
-
 class CLASS_DECL_CORE html_form :
    virtual public ::user::form_view
 {
 public:
 
 
+   __pointer(::html::element)                m_pelementLButtonDown;
+   __pointer(::html::element)                m_pelementHover;
+   __pointer_array(::html::element)          m_elementaMouseMove;
+   __pointer(::html_data)                    m_phtmldata;
 
-   __pointer(::html::element)          m_pelementLButtonDown;
-   __pointer(::html::element)          m_pelementHover;
-   __pointer_array(::html::element)    m_elementaMouseMove;
-   __pointer(::html_data)              m_phtmldata;
-   
 
    html_form();
    virtual ~html_form();
@@ -40,8 +38,10 @@ public:
 
    ::html_data * get_html_data();
 
-   ::html_document * get_document();
+   //::html_document * get_document();
 
+
+   virtual ::e_status create_html_data();
 
 
    DECLARE_MESSAGE_HANDLER(on_message_create);
@@ -74,6 +74,8 @@ public:
    virtual void soft_reload() override;
 
    virtual void set_need_load_form_data() override;
+   
+   virtual void on_form_implemented();
 
 
 };

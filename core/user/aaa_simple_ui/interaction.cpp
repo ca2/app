@@ -581,11 +581,11 @@ namespace simple_ui
 //   void interaction::simple_ui_draw_frame_window_rect(::draw2d::graphics_pointer & pgraphics)
 //   {
 //
-//      ::rectangle_i32 rectClient;
+//      ::rectangle_i32 rectangleClient;
 //
-//      get_client_rect(rectClient);
+//      get_client_rect(rectangleClient);
 //
-//      rectClient.deflate(0,0,1,1);
+//      rectangleClient.deflate(0,0,1,1);
 //
 //      ::draw2d::brush_pointer b(e_create);
 //
@@ -599,7 +599,7 @@ namespace simple_ui
 //
 //      pgraphics->set(point);
 //
-//      pgraphics->rectangle(rectClient);
+//      pgraphics->rectangle(rectangleClient);
 //
 //   }
 //
@@ -933,9 +933,9 @@ namespace simple_ui
 //   //void interaction::on_hit_test(::user::item & item)
 //   //{
 //
-//   //   auto rectClient = get_client_rect();
+//   //   auto rectangleClient = get_client_rect();
 //
-//   //   if (!rectClient.contains(point))
+//   //   if (!rectangleClient.contains(point))
 //   //   {
 //
 //   //      return ::user::e_element_none;

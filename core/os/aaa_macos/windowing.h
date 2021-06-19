@@ -72,20 +72,20 @@ void ns_redraw_window(oswindow window);
 
 
 
-//void copy(CGRect & rect, const RECT32 * prect);
+//void copy(CGRect & rectangle, const RECT32 * prect);
 //
 //void copy(RECT32 * prect, const CGRect & rectSrc);
 //
-//void window_copy(CGRect & rect, const RECT32 * prect);
+//void window_copy(CGRect & rectangle, const RECT32 * prect);
 //
 //void window_copy(RECT32 * prect, const CGRect & rectSrc);
 //
 //#ifdef MM
-//void copy(NSRect & rect, const RECT32 * prect);
+//void copy(NSRect & rectangle, const RECT32 * prect);
 //
 //void copy(RECT32 * prect, const NSRect & rectSrc);
 //
-//void window_copy(NSRect & rect, const RECT32 * prect);
+//void window_copy(NSRect & rectangle, const RECT32 * prect);
 //
 //void window_copy(RECT32 * prect, const NSRect & rectSrc);
 //

@@ -113,7 +113,7 @@
       virtual ::file::path trash_that_is_not_trash(const ::file::path & psz);
 
       virtual ::file::path cache();
-      virtual ::file::path appdata();
+      virtual ::file::path appdata(const string & strAppId = "");
       virtual ::file::path commonappdata_root();
       virtual ::file::path commonappdata();
       virtual ::file::path element_commonappdata(const string & strElement);

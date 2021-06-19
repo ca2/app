@@ -448,11 +448,11 @@ namespace account
       */
 
 
-      ::rectangle_i32 rectClient;
+      ::rectangle_i32 rectangleClient;
 
-      get_client_rect(rectClient);
+      get_client_rect(rectangleClient);
 
-      m_plogin->layout().sketch() = rectClient;
+      m_plogin->layout().sketch() = rectangleClient;
 
       //m_plogin->on_layout(::draw2d::graphics_pointer & pgraphics);
 

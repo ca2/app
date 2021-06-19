@@ -717,7 +717,7 @@ const widechar * lpWindowName);*/
 
 
 /*
-* e_message_nccalcsize "window valid rect" return values
+* e_message_nccalcsize "window valid rectangle" return values
 */
 #define WVR_ALIGNTOP        0x0010
 #define WVR_ALIGNLEFT       0x0020
@@ -2284,7 +2284,7 @@ typedef struct tagNCCALCSIZE_PARAMS
 //#pragma endregion
 
 /*
- * e_message_nccalcsize "interaction_impl valid rect" return values
+ * e_message_nccalcsize "interaction_impl valid rectangle" return values
  */
 #define WVR_ALIGNTOP        0x0010
 #define WVR_ALIGNLEFT       0x0020
@@ -2785,7 +2785,7 @@ CLASS_DECL_AURA int_bool IsRectEmpty(LPCRECT32 lpcrect);
 
 //#ifdef cplusplus
 //
-//CLASS_DECL_AURA int_bool IsRectEmpty(const ::rect & rect);
+//CLASS_DECL_AURA int_bool IsRectEmpty(const ::rectangle & rectangle);
 //
 //#endif
 

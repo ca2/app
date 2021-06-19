@@ -2445,7 +2445,7 @@ file_result file_context::http_get_file(const ::payload &varFile, const ::file::
 #else
       pathCache.replace("://", "_/");
 #endif
-      pathCache = m_pcontext->m_papexcontext->dir().cache() / pathCache + ".local_copy";
+      pathCache = m_pcontext->m_papexcontext->dir().cache() / pathCache;
 
    }
 

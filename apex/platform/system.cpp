@@ -3781,6 +3781,16 @@ namespace apex
    }
 
 
+   ::e_status system::on_open_file(const char * pszFile)
+   {
+      
+      defer_accumulate_on_open_file({pszFile}, "");
+      
+      return ::success;
+      
+   }
+
+
    //LPWAVEOUT system::waveout_open(int iChannel, LPAUDIOFORMAT pformat, LPWAVEOUT_CALLBACK pcallback)
    //{
 
@@ -4174,13 +4184,13 @@ namespace apex
          if (strBrowser == "firefox")
          {
 
-            //strUrl = "https://ca2.cc/open_f___?url=" + psystem->url_encode(strUrl) + "&profile=" + psystem->url_encode(strProfile) + "&target=" + psystem->url_encode(strTarget);
+            //strUrl = "https://ca2.software/open_f___?url=" + psystem->url_encode(strUrl) + "&profile=" + psystem->url_encode(strProfile) + "&target=" + psystem->url_encode(strTarget);
 
          }
          else
          {
 
-            //strUrl = "https://ca2.cc/open_tab?url=" + psystem->url_encode(strUrl) + "&profile=" + psystem->url_encode(strProfile) + "&target=" + psystem->url_encode(strTarget);
+            //strUrl = "https://ca2.software/open_tab?url=" + psystem->url_encode(strUrl) + "&profile=" + psystem->url_encode(strProfile) + "&target=" + psystem->url_encode(strTarget);
 
          }
 
@@ -4534,7 +4544,7 @@ namespace apex
 
          auto pnode = psystem->node();
          
-         pnode->ns_launch_app(strApp, argv.get_data(), 0x00010000 | 0x00080000);
+         pnode->launch_app(strApp, argv.get_data(), 0x00010000 | 0x00080000);
 
 #elif defined(LINUX)
 
@@ -4782,7 +4792,9 @@ namespace apex
    __pointer(::subject::subject) system::new_subject(const MESSAGE& message)
    {
 
-      auto psubject = subject((::iptr) message.wParam);
+      auto id = (::iptr)message.wParam;
+
+      auto psubject = subject(id);
 
       psubject->m_pobjectTopic = (::object*) message.lParam.m_lparam;
 
@@ -5396,10 +5408,10 @@ namespace apex
    }
 
 
-   void system::system_int_update(int iUpdate, int iPayload)
+   void system::system_id_update(::i64 iUpdate, ::i64 iPayload)
    {
 
-      process_subject(iUpdate, iPayload);
+      process_subject((e_id) iUpdate, iPayload);
 
    }
 
@@ -5745,8 +5757,6 @@ string get_bundle_app_library_name();
 
          ::output_debug_string("The application library for appid \"" + strAppId + "\" wasn't loaded.");
 
-         //return nullptr;
-
       }
 
    }
@@ -5905,11 +5915,11 @@ namespace apex
 //
 
 
-void int_system_update(void* pSystem, int iUpdate, int iPayload)
+void system_id_update(void* pSystem, ::i64 iUpdate, ::i64 iPayload)
 {
 
    auto psystem = (class ::system *) pSystem;
 
-   psystem->system_int_update(iUpdate, iPayload);
+   psystem->system_id_update(iUpdate, iPayload);
 
 }

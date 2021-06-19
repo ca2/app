@@ -2,14 +2,6 @@ cmake_minimum_required(VERSION 3.17)
 project(aura CXX)
 
 
-add_compile_options("$<$<CONFIG:DEBUG>:-DDEBUG>")
-
-if (LINUX)
-   set(LINUX TRUE)
-elseif (WIN32)
-elseif (UWP)
-   set(WINDOWS_TSF TRUE)
-endif ()
 
 
 list(APPEND aura_source
@@ -175,16 +167,20 @@ list(APPEND aura_source
    graphics/graphics/window.h
    graphics/graphics/window_buffer.h
    graphics/graphics/window_dc.h
-   graphics/snippet/close_button.h
-   graphics/snippet/close_icon.h
+   graphics/user/close_button.cpp
+   graphics/user/close_button.h
+   graphics/user/close_icon.cpp
+   graphics/user/close_icon.h
    graphics/write_text/_.h
    graphics/write_text/bounding_rect.h
    graphics/write_text/contains.h
+   graphics/write_text/drawer.cpp
+   graphics/write_text/drawer.h
    graphics/write_text/draw_text.h
    graphics/write_text/font.cpp
    graphics/write_text/font.h
-   graphics/write_text/font_department.cpp
-   graphics/write_text/font_department.h
+   graphics/write_text/fonts.cpp
+   graphics/write_text/fonts.h
    graphics/write_text/font_enumeration.cpp
    graphics/write_text/font_enumeration.h
    graphics/write_text/font_list.cpp
@@ -192,7 +188,10 @@ list(APPEND aura_source
    graphics/write_text/text.h
    graphics/write_text/text_box.cpp
    graphics/write_text/text_box.h
+   graphics/write_text/text_out.cpp
    graphics/write_text/text_out.h
+   graphics/write_text/text_out_array.cpp
+   graphics/write_text/text_out_array.h
    graphics/write_text/write_text.cpp
    graphics/write_text/write_text.h
    graphics/_.h
@@ -462,31 +461,31 @@ if (WIN32)
       #node/windows/base/implementation.h
       #node/windows/base/print_job.cpp
       #node/windows/base/print_job.h
-      node/windows/_.h
-      node/windows/_node_windows.h
-      node/windows/_node_windows_private.h
-      node/windows/_windows.h
-      node/windows/application.cpp
-      node/windows/buffer.h
-      node/windows/copydesk.cpp
-      node/windows/copydesk.h
-      node/windows/factory_exchange.cpp
-      node/windows/factory_exchange.h
-      node/windows/graphics_buffer.cpp
-      node/windows/interaction_impl.cpp
-      node/windows/interaction_impl.h
-      node/windows/interaction_impl_message_bypass.cpp
-      node/windows/shell_open.cpp
-      node/windows/shell_open.h
-      node/windows/system_interaction.cpp
-      node/windows/system_interaction.h
-      node/windows/thread.cpp
-      node/windows/timer.cpp
-      node/windows/trace.cpp
-      node/windows/user.h
-      node/windows/user_frame.cpp
-      node/windows/windows_desktop.cpp
-      node/windows_common/application.cpp
+      #node/windows/_.h
+      #node/windows/_node_windows.h
+      #node/windows/_node_windows_private.h
+      #node/windows/_windows.h
+      #node/windows/application.cpp
+      #node/windows/buffer.h
+      #node/windows/copydesk.cpp
+      #node/windows/copydesk.h
+      #node/windows/factory_exchange.cpp
+      #node/windows/factory_exchange.h
+      #node/windows/graphics_buffer.cpp
+      #node/windows/interaction_impl.cpp
+      #node/windows/interaction_impl.h
+      #node/windows/interaction_impl_message_bypass.cpp
+      #node/windows/shell_open.cpp
+      #node/windows/shell_open.h
+      #node/windows/system_interaction.cpp
+      #node/windows/system_interaction.h
+      #node/windows/thread.cpp
+      #node/windows/timer.cpp
+      #node/windows/trace.cpp
+      #node/windows/user.h
+      #node/windows/user_frame.cpp
+      #node/windows/windows_desktop.cpp
+      #node/windows_common/application.cpp
       os/windows/-ehrror.cpp
       os/windows/_.h
       os/windows/_c.h
@@ -495,17 +494,17 @@ if (WIN32)
       os/windows/_windows_impl.h
       os/windows/application.cpp
       os/windows/aura.cpp
-      os/windows/d2d1_1.h
+      #os/windows/d2d1_1.h
       os/windows/dpi.cpp
       os/windows/gdi.cpp
       os/windows/gdi_icon.cpp
       os/windows/gdiplus.h
       os/windows/graphics.cpp
       os/windows/graphics.h
-      os/windows/imm_client.cpp
-      os/windows/imm_client.h
-      os/windows/imm_context.cpp
-      os/windows/imm_context.h
+      #os/windows/imm_client.cpp
+      #os/windows/imm_client.h
+      #os/windows/imm_context.cpp
+      #os/windows/imm_context.h
       os/windows/implementation.h
       #os/windows/interaction_debug.cpp
       os/windows/internal.cpp
@@ -537,8 +536,8 @@ if (WIN32)
       os/windows_common/_unicode_c.h
       os/windows_common/bstring.h
       os/windows_common/cotaskptr.h
-      os/windows_common/draw2d_direct2d_global.cpp
-      os/windows_common/draw2d_direct2d_global.h
+      #os/windows_common/draw2d_direct2d_global.cpp
+      #os/windows_common/draw2d_direct2d_global.h
       os/windows_common/file.h
       os/windows_common/graphics.h
       os/windows_common/multithreading.h
@@ -785,76 +784,76 @@ if (MACOS)
       node/macos/_mm.h
       node/macos/application.cpp
       node/macos/application.h
-      node/macos/copydesk.cpp
-      node/macos/copydesk.h
+      #node/macos/copydesk.cpp
+      #node/macos/copydesk.h
       node/macos/factory_exchange.cpp
       node/macos/factory_exchange.h
       node/macos/frame_window.cpp
-      node/macos/interaction_impl.cpp
-      node/macos/interaction_impl.h
-      node/macos/keyboard.cpp
-      node/macos/keyboard.h
-      node/macos/main.cpp
-      node/macos/mm.mm
-      node/macos/thread.cpp
-      node/macos/thread.h
-      node/macos/trace.cpp
-      node/macos/user.h
-      node/macos/util.cpp
-      os/macos/_.h
-      os/macos/_c.h
-      os/macos/_macos.h
-      os/macos/_mm.h
-      os/macos/application_system_run.cpp
-      os/macos/aura.cpp
-      os/macos/clipboard.cpp
-      os/macos/cross_win.cpp
-      os/macos/cross_win_file.cpp
-      os/macos/cross_win_gdi.h
-      os/macos/debug.cpp
-      os/macos/exception_engine.cpp
-      os/macos/exception_engine.h
-      os/macos/file.cpp
-      os/macos/file.h
-      os/macos/file.mm
-      os/macos/graphics.cpp
-      os/macos/graphics_mm.h
-      os/macos/internal.h
-      os/macos/keyboard.cpp
-      os/macos/language.cpp
-      os/macos/launcher.cpp
-      os/macos/library.cpp
-      os/macos/list_serial_ports.cpp
-      os/macos/lock.cpp
-      os/macos/macos.h
-      os/macos/main.h
-      os/macos/message_loop.cpp
-      os/macos/MessageBoxA.cpp
-      os/macos/mm.mm
-      os/macos/mm_base_user.mm
-      os/macos/mm_graphics.mm
-      os/macos/mm_oswindow.h
-      os/macos/mm_user.mm
-      os/macos/multithreading.cpp
-      os/macos/multithreading.h
-      os/macos/NSPasteboard++.mm
-      os/macos/os.cpp
-      os/macos/os.h
-      os/macos/oswindow_data.cpp
-      os/macos/oswindow_data.h
+      #node/macos/interaction_impl.cpp
+      #node/macos/interaction_impl.h
+      #node/macos/keyboard.cpp
+      #node/macos/keyboard.h
+      #node/macos/main.cpp
+      #node/macos/mm.mm
+      #node/macos/thread.cpp
+      #node/macos/thread.h
+      #node/macos/trace.cpp
+      #node/macos/user.h
+      #node/macos/util.cpp
+      #os/macos/_.h
+      #os/macos/_c.h
+      #os/macos/_macos.h
+      #os/macos/_mm.h
+      #os/macos/application_system_run.cpp
+      #os/macos/aura.cpp
+      #os/macos/clipboard.cpp
+      #os/macos/cross_win.cpp
+      #os/macos/cross_win_file.cpp
+      #os/macos/cross_win_gdi.h
+      #os/macos/debug.cpp
+      #os/macos/exception_engine.cpp
+      #os/macos/exception_engine.h
+      #os/macos/file.cpp
+      #os/macos/file.h
+      #os/macos/file.mm
+      #os/macos/graphics.cpp
+      #os/macos/graphics_mm.h
+      #os/macos/internal.h
+      #os/macos/keyboard.cpp
+      #os/macos/language.cpp
+      #os/macos/launcher.cpp
+      #os/macos/library.cpp
+      #os/macos/list_serial_ports.cpp
+      #os/macos/lock.cpp
+      #os/macos/macos.h
+      #os/macos/main.h
+      #os/macos/message_loop.cpp
+      #os/macos/MessageBoxA.cpp
+      #os/macos/mm.mm
+      #os/macos/mm_base_user.mm
+      #os/macos/mm_graphics.mm
+      #os/macos/mm_oswindow.h
+      #os/macos/mm_user.mm
+      #os/macos/multithreading.cpp
+      #os/macos/multithreading.h
+      #os/macos/NSPasteboard++.mm
+      #os/macos/os.cpp
+      #os/macos/os.h
+      #os/macos/oswindow_data.cpp
+      #os/macos/oswindow_data.h
 #      os/macos/process.cpp
 #      os/macos/process_c.h
 #      os/macos/process_pid.cpp
-      os/macos/simple_app.cpp
-      os/macos/time.cpp
-      os/macos/user.cpp
-      os/macos/user.h
-      os/macos/win_base.cpp
-      os/macos/window_impl.h
-      os/macos/windowing.cpp
-      os/macos/windowing.h
-      os/macos/windowing_c.h
-      os/macos/winpr_keycode.cpp
+      #os/macos/simple_app.cpp
+      #os/macos/time.cpp
+      #os/macos/user.cpp
+      #os/macos/user.h
+      #os/macos/win_base.cpp
+      #os/macos/window_impl.h
+      #os/macos/windowing.cpp
+      #os/macos/windowing.h
+      #os/macos/windowing_c.h
+      #os/macos/winpr_keycode.cpp
       )
 endif ()
 
@@ -1149,7 +1148,7 @@ else ()
 endif ()
 
 
-add_library(aura SHARED ${aura_source})
+add_library(aura SHARED ${aura_source} user/_menu.h)
 
 
 target_precompile_headers(aura PRIVATE framework.h)

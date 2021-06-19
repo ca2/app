@@ -123,7 +123,7 @@ namespace user
       for (int iTitle = 0; iTitle < straTitle.get_count(); iTitle++)
       {
 
-         dc.GetTextExtent(pgraphics, straTitle[iTitle], m_sizeaText[iTitle]);
+         dc.get_text_extent(pgraphics, straTitle[iTitle], m_sizeaText[iTitle]);
 
       }
 

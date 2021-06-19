@@ -189,9 +189,9 @@ namespace user
 
       }
 
-      auto rectClient = get_client_rect();
+      auto rectangleClient = get_client_rect();
 
-      if (rectClient.is_empty())
+      if (rectangleClient.is_empty())
       {
 
          return;
@@ -202,7 +202,7 @@ namespace user
 
       puiChild->start_layout();
 
-      puiChild->place(rectClient);
+      puiChild->place(rectangleClient);
 
       puiChild->layout().sketch().set_modified();
 

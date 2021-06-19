@@ -136,13 +136,13 @@ namespace user
 
       __keep(pgraphics->m_pdrawcontext, &drawcontext);
 
-      ::rectangle_i32 rectClient;
+      ::rectangle_i32 rectangleClient;
 
-      get_client_rect(rectClient);
+      get_client_rect(rectangleClient);
 
-      int w = rectClient.width();
+      int w = rectangleClient.width();
 
-      int h = rectClient.height();
+      int h = rectangleClient.height();
 
       if (w <= 0 || h <= 0)
       {
@@ -155,7 +155,7 @@ namespace user
 
       ::draw2d::savedc savedc(pgraphics);
 
-      pgraphics->OffsetViewportOrg(rectClient.left, rectClient.top);
+      pgraphics->OffsetViewportOrg(rectangleClient.left, rectangleClient.top);
 
       ::rectangle_i32 rectCheckBox;
 
@@ -170,7 +170,7 @@ namespace user
          rectCheckBox.right = iSize;
          rectCheckBox.bottom = iSize;
 
-         rectText = rectClient;
+         rectText = rectangleClient;
 
          rectText.left = rectCheckBox.right + 4;
 
@@ -267,13 +267,13 @@ namespace user
 
       __keep(pgraphics->m_pdrawcontext, &drawcontext);
 
-      ::rectangle_i32 rectClient;
+      ::rectangle_i32 rectangleClient;
 
-      get_client_rect(rectClient);
+      get_client_rect(rectangleClient);
 
-      int w = rectClient.width();
+      int w = rectangleClient.width();
 
-      int h = rectClient.height();
+      int h = rectangleClient.height();
 
       w--;
 
@@ -327,7 +327,7 @@ namespace user
 
       ::rectangle_i32 rectL(1, 1, h-2, h-2);
 
-      auto rectR = rectangle_dimension(h-2, 1, h-2, h-2);
+      auto rectR = rectangle_i32_dimension(h-2, 1, h-2, h-2);
 
       ppath->add_arc(rectL, -90_degree, -180_degree);
 
@@ -495,11 +495,11 @@ namespace user
    void check_box::_001OnDrawRedGreenCircle(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::rectangle_i32 rectClient;
+      ::rectangle_i32 rectangleClient;
 
-      get_client_rect(rectClient);
+      get_client_rect(rectangleClient);
 
-      int iMin = maximum(rectClient.min_dim() -1, 1);
+      int iMin = maximum(rectangleClient.min_dim() -1, 1);
 
       ::rectangle_i32 rectCheckBox;
       rectCheckBox.left = 1;
@@ -557,7 +557,7 @@ namespace user
       //      pgraphics->line_to(13, 6);
       //   }
       //}
-      //pgraphics->OffsetViewportOrg(-rectClient.left, -rectClient.top);
+      //pgraphics->OffsetViewportOrg(-rectangleClient.left, -rectangleClient.top);
 
    }
 

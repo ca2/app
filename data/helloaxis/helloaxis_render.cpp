@@ -86,7 +86,7 @@ namespace helloaxis
       m_dMinRadius = 0.0;
       m_dMaxRadius = 0.0;
 
-      m_rectClient.null();
+      m_rectangleClient.null();
 
 
       m_bVoidTransfer = false;
@@ -414,19 +414,19 @@ namespace helloaxis
 
       ::get_task()->m_bThreadToolsForIncreasedFps = true;
 
-      ::rectangle_i32 rectClient;
+      ::rectangle_i32 rectangleClient;
 
-      rectClient.left = 0;
+      rectangleClient.left = 0;
 
-      rectClient.top = 0;
+      rectangleClient.top = 0;
 
-      rectClient.right = m_cx;
+      rectangleClient.right = m_cx;
 
-      rectClient.bottom = m_cy;
+      rectangleClient.bottom = m_cy;
 
       //pgraphics->set_alpha_mode(::draw2d::alpha_mode_set);
 
-      //pgraphics->FillSolidRect(rectClient,argb(0, 0, 0, 0));
+      //pgraphics->FillSolidRect(rectangleClient,argb(0, 0, 0, 0));
 
       //      i32 iCount = 30;
 
@@ -474,7 +474,7 @@ namespace helloaxis
 
       pgraphics->set_font(m_font);
 
-      size = pgraphics->GetTextExtent(strHelloAxis);
+      size = pgraphics->get_text_extent(strHelloAxis);
 
       m_cxTarget = int (size.cx * 1.2);
       m_cyTarget = int (size.cy * 1.2);
@@ -598,7 +598,7 @@ namespace helloaxis
                                          , m_pimageTemplate2->m_size,
                                          m_pimageTemplate2->get_graphics(), ::point_i32(), byte (128 + (255 - 128) * r));
 
-      //pgraphics->from(rectClient.top_left(),m_pimageTemplate, ::point_i32(), rectClient>si);
+      //pgraphics->from(rectangleClient.top_left(),m_pimageTemplate, ::point_i32(), rectangleClient>si);
 
       pgraphics->set_font(m_font);
 
@@ -663,17 +663,17 @@ namespace helloaxis
       if (m_pimageWork->area() <= 0)
          return;
 
-      ::rectangle_i32 rectClient;
+      ::rectangle_i32 rectangleClient;
 
-      rectClient.left = 0;
+      rectangleClient.left = 0;
 
-      rectClient.top = 0;
+      rectangleClient.top = 0;
 
-      rectClient.right = m_cx;
+      rectangleClient.right = m_cx;
 
-      rectClient.bottom = m_cy;
+      rectangleClient.bottom = m_cy;
 
-      if (rectClient.area() <= 0)
+      if (rectangleClient.area() <= 0)
          return;
 
       //      i32 iCount = 30;
@@ -745,7 +745,7 @@ namespace helloaxis
 
       string strHelloAxis = get_helloaxis();
 
-      ::size_i32 size = pgraphics->GetTextExtent(strHelloAxis);
+      ::size_i32 size = pgraphics->get_text_extent(strHelloAxis);
 
       m_cxTarget = int(size.cx * 1.2);
       m_cyTarget = int(size.cy * 1.2);
@@ -819,7 +819,7 @@ namespace helloaxis
 
          pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-         pgraphics->BitBlt(rectClient, m_pimageTint->get_graphics());
+         pgraphics->BitBlt(rectangleClient, m_pimageTint->get_graphics());
 
       }
 
@@ -985,7 +985,7 @@ namespace helloaxis
 
 #endif
 
-      if (strHelloAxis == get_helloaxis() && m_cx == m_rectClient.width() && m_cy == m_rectClient.height())
+      if (strHelloAxis == get_helloaxis() && m_cx == m_rectangleClient.width() && m_cy == m_rectangleClient.height())
       {
 
          m_bFirstDone = true;
@@ -998,12 +998,12 @@ namespace helloaxis
    void render::_006OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::rectangle_i32 rectClient;
+      ::rectangle_i32 rectangleClient;
 
-      rectClient.left = 0;
-      rectClient.top = 0;
-      rectClient.right = m_cx;
-      rectClient.bottom = m_cy;
+      rectangleClient.left = 0;
+      rectangleClient.top = 0;
+      rectangleClient.right = m_cx;
+      rectangleClient.bottom = m_cy;
 
       pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
       int period = 5000;
@@ -1157,7 +1157,7 @@ auto m_tick23 = ::millis::now();
 
                pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
-               ::size_i32 size = pgraphics->GetTextExtent(strHelloAxis);
+               ::size_i32 size = pgraphics->get_text_extent(strHelloAxis);
 
                double ratey = fHeight * 0.84 / size.cy;
 
@@ -1187,7 +1187,7 @@ auto m_tick23 = ::millis::now();
 
             pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
-            ::size_i32 size = pgraphics->GetTextExtent(strHelloAxis);
+            ::size_i32 size = pgraphics->get_text_extent(strHelloAxis);
 
             pgraphics->text_out((m_cx - size.cx) / 2, (m_cy - size.cy) / 2, strHelloAxis);
 
@@ -1409,7 +1409,7 @@ auto m_tick23 = ::millis::now();
 
       pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
-      ::size_i32 size = pgraphics->GetTextExtent(strHelloAxis);
+      ::size_i32 size = pgraphics->get_text_extent(strHelloAxis);
 
       double ratey = fHeight * 0.84 / size.cy;
 
@@ -1423,7 +1423,7 @@ auto m_tick23 = ::millis::now();
 
       pgraphics->set_font(m_font);
 
-      size = pgraphics->GetTextExtent(strHelloAxis);
+      size = pgraphics->get_text_extent(strHelloAxis);
 
       ::draw2d::path_pointer path(e_create);
 

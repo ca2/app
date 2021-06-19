@@ -299,6 +299,41 @@ namespace draw2d
    }
 
 
+   ::draw2d::graphics_pointer draw2d::create_graphics()
+   {
+
+      auto pgraphics = __create< ::draw2d::graphics>();
+
+      return ::move(pgraphics);
+
+   }
+
+
+   ::draw2d::graphics_pointer draw2d::create_memory_graphics()
+   {
+
+      auto pgraphics = create_graphics();
+
+      if (!pgraphics)
+      {
+
+         return nullptr;
+
+      }
+
+      if (!pgraphics->create_memory_graphics())
+      {
+
+         return nullptr;
+
+      }
+
+      return pgraphics;
+
+   }
+
+
+
    // should not call axis class implementation because draw2d::draw2d is inside a n-furcation of user::draw2d
    ::e_status draw2d::term_instance()
    {
@@ -988,12 +1023,12 @@ breakFilter2:
    }
 
 
-//   void draw2d::enum_draw2d_fonts(::write_text::font_enum_item_array& itema)
+//   void draw2d::enum_draw2d_fonts(::write_text::font_enumeration_item_array& itema)
 //   {
 //
 //      critical_section_lock synchronouslock(::aura::g_pcsFont);
 //
-//      __pointer(::write_text::font_enum_item) pitem;
+//      __pointer(::write_text::font_enumeration_item) pitem;
 //
 //      double dAndroid = 4.4;
 //
@@ -1062,7 +1097,7 @@ breakFilter2:
 //
 //                        path /= strFile;
 //
-//                        pitem = __new(::write_text::font_enum_item);
+//                        pitem = __new(::write_text::font_enumeration_item);
 //
 //                        if (::file_exists(path))
 //                        {
@@ -1108,7 +1143,7 @@ breakFilter2:
 //            for (auto& path : patha)
 //            {
 //
-//               pitem = __new(::write_text::font_enum_item);
+//               pitem = __new(::write_text::font_enumeration_item);
 //
 //               pitem->m_strFile = path;
 //
@@ -1139,7 +1174,7 @@ breakFilter2:
 //
 //#ifdef pnode->font_name(e_font_mono)
 //
-//         pitem = __new(::write_text::font_enum_item);
+//         pitem = __new(::write_text::font_enumeration_item);
 //
 //         pitem->m_strFile = pnode->font_name(e_font_mono);
 //
@@ -1152,7 +1187,7 @@ breakFilter2:
 //
 //#ifdef pnode->font_name(e_font_sans)
 //
-//         pitem = __new(::write_text::font_enum_item);
+//         pitem = __new(::write_text::font_enumeration_item);
 //
 //         pitem->m_strFile = pnode->font_name(e_font_sans);
 //
@@ -1165,7 +1200,7 @@ breakFilter2:
 //
 //#ifdef pnode->font_name(e_font_serif)
 //
-//         pitem = __new(::write_text::font_enum_item);
+//         pitem = __new(::write_text::font_enumeration_item);
 //
 //         pitem->m_strFile = pnode->font_name(e_font_serif);
 //
@@ -1178,7 +1213,7 @@ breakFilter2:
 //
 //#ifdef pnode->font_name(e_font_sans_ex)
 //
-//         pitem = __new(::write_text::font_enum_item);
+//         pitem = __new(::write_text::font_enumeration_item);
 //
 //         pitem->m_strFile = pnode->font_name(e_font_sans_ex);
 //
@@ -1191,7 +1226,7 @@ breakFilter2:
 //
 //#ifdef pnode->font_name(e_font_serif_ex)
 //
-//         pitem = __new(::write_text::font_enum_item);
+//         pitem = __new(::write_text::font_enumeration_item);
 //
 //         pitem->m_strFile = pnode->font_name(e_font_serif_ex);
 //
@@ -1204,7 +1239,7 @@ breakFilter2:
 //
 //#ifdef pnode->font_name(e_font_sans_fx)
 //
-//         pitem = __new(::write_text::font_enum_item);
+//         pitem = __new(::write_text::font_enumeration_item);
 //
 //         pitem->m_strFile = pnode->font_name(e_font_sans_fx);
 //
@@ -1217,7 +1252,7 @@ breakFilter2:
 //
 //#ifdef pnode->font_name(e_font_serif_fx)
 //
-//         pitem = __new(::write_text::font_enum_item);
+//         pitem = __new(::write_text::font_enumeration_item);
 //
 //         pitem->m_strFile = pnode->font_name(e_font_serif_fx);
 //
@@ -1230,7 +1265,7 @@ breakFilter2:
 //
 //#ifdef FONT_SANS_FX2
 //
-//         pitem = __new(::write_text::font_enum_item);
+//         pitem = __new(::write_text::font_enumeration_item);
 //
 //         pitem->m_strFile = FONT_SANS_FX2;
 //

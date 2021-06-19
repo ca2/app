@@ -6,7 +6,7 @@ namespace userfs
 
 
    class CLASS_DECL_CORE document :
-      virtual public ::user::document
+      virtual public ::form_document
    {
    public:
 

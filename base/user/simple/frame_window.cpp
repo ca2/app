@@ -2290,11 +2290,11 @@ void simple_frame_window::_001OnDeferPaintLayeredWindowBackground(::draw2d::grap
          || psession->m_paurasession->savings().is_trying_to_save(::e_resource_translucent_background))
    {
 
-      ::rectangle_i32 rectClient;
+      ::rectangle_i32 rectangleClient;
 
-      get_client_rect(rectClient);
+      get_client_rect(rectangleClient);
 
-      pgraphics->fill_rectangle(rectClient, rgb(0, 0, 0));
+      pgraphics->fill_rectangle(rectangleClient, rgb(0, 0, 0));
 
    }
    else
@@ -2343,11 +2343,11 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics_pointer & pgraphicsParam
 
    windowing_output_debug_string("\nsimple_frame_window::_001OnDraw B");
 
-   ::rectangle_i32 rectClient;
+   ::rectangle_i32 rectangleClient;
 
-   get_window_rect(rectClient);
+   get_window_rect(rectangleClient);
 
-   rectClient -= rectClient.top_left();
+   rectangleClient -= rectangleClient.top_left();
 
    bool bDib = false;
 
@@ -2362,7 +2362,7 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics_pointer & pgraphicsParam
 
    }
 
-   if(rectClient.area() > 0 && dAlpha > 0.0 && dAlpha < 1.0 && m_bTransparent)
+   if(rectangleClient.area() > 0 && dAlpha > 0.0 && dAlpha < 1.0 && m_bTransparent)
    {
 
       auto estatus = __defer_construct(m_pimageAlpha);
@@ -2370,7 +2370,7 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics_pointer & pgraphicsParam
       if (estatus)
       {
 
-         estatus = m_pimageAlpha->create(rectClient.size());
+         estatus = m_pimageAlpha->create(rectangleClient.size());
 
          if (estatus)
          {
@@ -2488,7 +2488,7 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics_pointer & pgraphicsParam
 
       image_drawing imagedrawing;
       
-      imagedrawing.set(rectClient.size(), pgraphics);
+      imagedrawing.set(rectangleClient.size(), pgraphics);
 
       imagedrawing.opacity(dAlpha);
 
@@ -2519,25 +2519,25 @@ void simple_frame_window::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 
 //      class imaging & imaging = psystem->imaging();
 
-      ::rectangle_i32 rectClient;
+      ::rectangle_i32 rectangleClient;
 
-      get_client_rect(rectClient);
+      get_client_rect(rectangleClient);
 
-      //rectClient.offset(rectClient.top_left());
+      //rectangleClient.offset(rectangleClient.top_left());
 
       auto psession = get_session();
 
       if(psession->m_paurasession->savings().is_trying_to_save(::e_resource_translucent_background))
       {
 
-         //pgraphics->fill_rectangle(rectClient, rgb(150, 220, 140));
+         //pgraphics->fill_rectangle(rectangleClient, rgb(150, 220, 140));
 
       }
       else if(psession->m_paurasession->savings().is_trying_to_save(::e_resource_processing)
               || psession->m_paurasession->savings().is_trying_to_save(::e_resource_blur_background))
       {
 
-         pgraphics->color_blend(rectClient,rgb(150,180,140),150);
+         pgraphics->fill_rectangle(rectangleClient, argb(150, 150,180,140));
 
       }
       else
@@ -2547,23 +2547,23 @@ void simple_frame_window::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 
          //printf("simplefrmwnd : " + string(type_name()) + " : ifndef LINUX");
 
-         if(rectClient.size() != m_pimageBk->size())
+         if(rectangleClient.size() != m_pimageBk->size())
          {
-            m_pimageBk->create(rectClient.size());
+            m_pimageBk->create(rectangleClient.size());
             m_pimageBk->fill(0,200,200,190);
             //HMODULE hmodule = ::LoadLibrary("ca2performance.dll");
             //::draw2d::fastblur *( *pfnNew )(__pointer(::aura::application)) = (::draw2d::fastblur *(*)(__pointer(::aura::application))) ::GetProcAddress(hmodule, "new_fastblur");
             //m_pimageBlur->create(this);
-            //m_fastblur.initialize(rectClient.size(),2);
+            //m_fastblur.initialize(rectangleClient.size(),2);
 
-            m_pimageBlur->create(rectClient.size());
+            m_pimageBlur->create(rectangleClient.size());
 
          }
 
          if(m_pimageBlur->is_ok())
          {
 
-            ::rectangle_f64 rectDst(rectClient.size());
+            ::rectangle_f64 rectDst(rectangleClient.size());
 
             m_pimageBlur->g()->draw(rectDst, pgraphics);
 
@@ -2571,13 +2571,13 @@ void simple_frame_window::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 
             image_drawing imagedrawing;
             
-            imagedrawing.set(rectClient.size(), m_pimageBk);
+            imagedrawing.set(rectangleClient.size(), m_pimageBk);
 
             imagedrawing.opacity(49);
 
             m_pimageBlur->draw(imagedrawing);
 
-            pgraphics->stretch(rectClient, m_pimageBlur);
+            pgraphics->stretch(rectangleClient, m_pimageBlur);
 
          }
 
@@ -4072,12 +4072,12 @@ void simple_frame_window::on_select_user_style()
 void simple_frame_window::call_notification_area_action(const char * pszId)
 {
 
-   string strId(pszId);
+   ::id id(pszId);
 
-   post_routine(__routine([this, strId]()
+   post_routine(__routine([this, id]()
    {
 
-      notification_area_action(strId);
+      command_handler(id);
 
    }));
 

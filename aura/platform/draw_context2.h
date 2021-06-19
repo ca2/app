@@ -79,7 +79,7 @@ namespace aura
    public:
 
       ::draw2d::graphics_pointer    m_pgraphics;
-      ::rectangle_i32               m_rectClient;
+      ::rectangle_i32               m_rectangleClient;
       ::rectangle_i32               m_rectangleWindow;
       bool                          m_bListItemHover;
       bool                          m_bListSubItemHover;

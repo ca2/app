@@ -349,9 +349,9 @@ namespace user
 
       }
 
-      auto rectClient = get_child_rect();
+      auto rectangleClient = get_child_rect();
 
-      return get_impact_data(id, rectClient, bCallOnCreateView);
+      return get_impact_data(id, rectangleClient, bCallOnCreateView);
 
    }*/
 

@@ -2041,11 +2041,13 @@ namespace core
 
          m_mapimpactsystem[FONTSEL_IMPACT] = ptemplate;
 
-         auto psystem = m_psystem->m_paurasystem;
+         //auto psystem = m_psystem->m_paurasystem;
 
-         auto pdraw2d = psystem->draw2d();
+         //auto pdraw2d = psystem->draw2d();
 
-         pdraw2d->write_text()->fonts();
+         //pdraw2d->write_text()->fonts();
+
+
 
          //fork([&]()
          //{

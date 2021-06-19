@@ -202,7 +202,7 @@ namespace experience
             void frame_Minimal001::draw_border_side(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectClientParam, enum_border eside)
             {
                
-               ::rectangle_i32 rectClient(rectClientParam);
+               ::rectangle_i32 rectangleClient(rectClientParam);
 
                if (eside != e_border_top)
                {
@@ -247,14 +247,14 @@ namespace experience
 
 //               enum_dock edock = m_pframewindow->dock_manager()->GetDockState();
 
-               //::rectangle_i32 rectA(rectClient);
+               //::rectangle_i32 rectA(rectangleClient);
 
                if(is_translucid())
                {
 
                   ::rectangle_i32 rectangle;
 
-                  GetBorderRect(rectClient, rectangle, eside);
+                  GetBorderRect(rectangleClient, rectangle, eside);
 
 
 
@@ -266,7 +266,7 @@ namespace experience
 
                   ::rectangle_i32 rectangle;
 
-                  GetBorderRect(rectClient, rectangle, eside);
+                  GetBorderRect(rectangleClient, rectangle, eside);
 
 
 
@@ -288,13 +288,13 @@ namespace experience
                else
                {
 
-                  ::rectangle_i32 rectClient(rectClientParam);
+                  ::rectangle_i32 rectangleClient(rectClientParam);
 
-                  rectClient.deflate(2, 2, 2, 2);
+                  rectangleClient.deflate(2, 2, 2, 2);
 
                   ::rectangle_i32 rectangle;
 
-                  GetBorderRect(rectClient, rectangle, eside);
+                  GetBorderRect(rectangleClient, rectangle, eside);
 
 
 
@@ -345,7 +345,7 @@ namespace experience
             }
 
 
-            void frame_Minimal001::DrawBorder(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectClient)
+            void frame_Minimal001::DrawBorder(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangleClient)
             {
 
                auto pmovemanager = m_pframewindow->move_manager();
@@ -364,37 +364,37 @@ namespace experience
                if(eborder & e_border_top)
                {
 
-                  draw_border_side(pgraphics, rectClient, e_border_top);
+                  draw_border_side(pgraphics, rectangleClient, e_border_top);
 
                }
 
                if(eborder & e_border_right)
                {
 
-                  draw_border_side(pgraphics, rectClient, e_border_right);
+                  draw_border_side(pgraphics, rectangleClient, e_border_right);
 
                }
 
                if(eborder & e_border_bottom)
                {
 
-                  draw_border_side(pgraphics, rectClient, e_border_bottom);
+                  draw_border_side(pgraphics, rectangleClient, e_border_bottom);
 
                }
 
                if(eborder & e_border_left)
                {
 
-                  draw_border_side(pgraphics, rectClient, e_border_left);
+                  draw_border_side(pgraphics, rectangleClient, e_border_left);
 
                }
 
             }
 
-            void frame_Minimal001::GetBorderRect(const ::rectangle_i32 & rectClient, RECTANGLE_I32 * lprect, enum_border eside)
+            void frame_Minimal001::GetBorderRect(const ::rectangle_i32 & rectangleClient, RECTANGLE_I32 * lprect, enum_border eside)
             {
 
-               ::rectangle_i32 rectBig(rectClient);
+               ::rectangle_i32 rectBig(rectangleClient);
 
                ::rectangle_i32 rectSmall;
 
@@ -442,22 +442,22 @@ namespace experience
             }
 
 
-            void frame_Minimal001::DrawGrip(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectClient, enum_grip egrip)
+            void frame_Minimal001::DrawGrip(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangleClient, enum_grip egrip)
             {
 
                return;
 
                
 
-//               ::rectangle_i32 rectC(rectClient);
+//               ::rectangle_i32 rectC(rectangleClient);
 //
-//               ::rectangle_i32 rectClient(rectClient);
+//               ::rectangle_i32 rectangleClient(rectangleClient);
 //
-//               rectClient.right--;
+//               rectangleClient.right--;
 //
-//               rectClient.bottom--;
+//               rectangleClient.bottom--;
 //
-//               ::rectangle_i32 rectClientB(rectClient);
+//               ::rectangle_i32 rectClientB(rectangleClient);
 //
 //               ::rectangle_i32 rectA;
 //
@@ -467,7 +467,7 @@ namespace experience
 //
 //               ::point_i32 pointC;
 //
-//               ::rectangle_i32 rectangle(rectClient);
+//               ::rectangle_i32 rectangle(rectangleClient);
 //
 //               switch(egrip)
 //               {
@@ -475,7 +475,7 @@ namespace experience
 //               {
 //                                  pgraphics->set(m_penHilight1);
 //
-//                                  rectA = rectClient;
+//                                  rectA = rectangleClient;
 //
 //                                  rectA.top++;
 //                                  rectA.left++;
@@ -496,7 +496,7 @@ namespace experience
 //
 //                                  // Most external rectangle_i32
 //
-//                                  rectA = rectClient;
+//                                  rectA = rectangleClient;
 //
 //                                  pointA = rectA.top_left();
 //                                  pointA.y += 15;
@@ -509,7 +509,7 @@ namespace experience
 //
 //                                  // Midle Rectangle
 //
-//                                  rectA = rectClient;
+//                                  rectA = rectangleClient;
 //
 //                                  rectA.top += 2;
 //                                  rectA.left += 2;
@@ -527,7 +527,7 @@ namespace experience
 //
 //                                  pgraphics->set(m_penShadow1);
 //
-//                                  rectA = rectClient;
+//                                  rectA = rectangleClient;
 //
 //                                  rectA.top++;
 //                                  rectA.left++;
@@ -551,7 +551,7 @@ namespace experience
 //
 //                                  pgraphics->set(m_penDkShadow1);
 //
-//                                  rectA = rectClient;
+//                                  rectA = rectangleClient;
 //
 //                                  rectA.top += 4;
 //                                  rectA.left += 4;
@@ -613,7 +613,7 @@ namespace experience
 //               {
 //                                   pgraphics->set(m_penHilight1);
 //
-//                                   rectA = rectClient;
+//                                   rectA = rectangleClient;
 //
 //                                   rectA.top++;
 //                                   rectA.left++;
@@ -641,7 +641,7 @@ namespace experience
 //
 //                                   // Most external rectangle_i32
 //
-//                                   rectA = rectClient;
+//                                   rectA = rectangleClient;
 //
 //                                   pointA = rectA.top_right();
 //                                   pointA.x -= 16;
@@ -665,7 +665,7 @@ namespace experience
 //
 //                                   // Midle Rectangle
 //
-//                                   rectA = rectClient;
+//                                   rectA = rectangleClient;
 //
 //                                   rectA.top += 2;
 //                                   rectA.left += 2;
@@ -683,7 +683,7 @@ namespace experience
 //
 //                                   pgraphics->set(m_penShadow1);
 //
-//                                   rectA = rectClient;
+//                                   rectA = rectangleClient;
 //
 //                                   rectA.top++;
 //                                   rectA.left++;
@@ -709,7 +709,7 @@ namespace experience
 //
 //                                   pgraphics->set(m_penDkShadow1);
 //
-//                                   rectA = rectClient;
+//                                   rectA = rectangleClient;
 //
 //                                   pointB = rectA.top_right();
 //                                   pointC = rectA.top_right();
@@ -776,7 +776,7 @@ namespace experience
 //
 //                                     pgraphics->set(m_penHilight1);
 //
-//                                     rectA = rectClient;
+//                                     rectA = rectangleClient;
 //
 //                                     rectA.left++;
 //                                     rectA.bottom--;
@@ -788,7 +788,7 @@ namespace experience
 //                                     pgraphics->MoveTo(pointB);
 //                                     pgraphics->LineTo(pointA);
 //
-//                                     rectA = rectClient;
+//                                     rectA = rectangleClient;
 //
 //                                     rectA.left += 3;
 //                                     rectA.bottom -= 3;
@@ -804,7 +804,7 @@ namespace experience
 //
 //                                     // Most external rectangle_i32 0
 //
-//                                     rectA = rectClient;
+//                                     rectA = rectangleClient;
 //
 //                                     pointA = rectA.bottom_left();
 //                                     pointA.y -= 15;
@@ -827,7 +827,7 @@ namespace experience
 //
 //                                     // Midle Rectangle 2
 //
-//                                     rectA = rectClient;
+//                                     rectA = rectangleClient;
 //
 //                                     rectA.top += 2;
 //                                     rectA.left += 2;
@@ -845,7 +845,7 @@ namespace experience
 //
 //                                     pgraphics->set(m_penShadow1);
 //
-//                                     rectA = rectClient;
+//                                     rectA = rectangleClient;
 //
 //                                     rectA.left += 2;
 //                                     rectA.bottom--;
@@ -856,7 +856,7 @@ namespace experience
 //                                     pgraphics->MoveTo(pointB);
 //                                     pgraphics->LineTo(pointC);
 //
-//                                     rectA = rectClient;
+//                                     rectA = rectangleClient;
 //
 //                                     rectA.left += 3;
 //                                     rectA.bottom -= 2;
@@ -869,7 +869,7 @@ namespace experience
 //
 //                                     pgraphics->set(m_penDkShadow1);
 //
-//                                     rectA = rectClient;
+//                                     rectA = rectangleClient;
 //
 //                                     pointB = rectA.bottom_left();
 //                                     pointB.x++;
@@ -936,7 +936,7 @@ namespace experience
 //               {
 //                                      pgraphics->set(m_penHilight1);
 //
-//                                      rectA = rectClient;
+//                                      rectA = rectangleClient;
 //
 //                                      rectA.top++;
 //                                      rectA.left++;
@@ -959,7 +959,7 @@ namespace experience
 //
 //                                      pgraphics->set(m_penFace1);
 //
-//                                      rectA = rectClient;
+//                                      rectA = rectangleClient;
 //
 //                                      // Most internal rectangle_i32
 //
@@ -979,7 +979,7 @@ namespace experience
 //
 //                                      // Midle Rectangle
 //
-//                                      rectA = rectClient;
+//                                      rectA = rectangleClient;
 //
 //                                      rectA.top += 2;
 //                                      rectA.left += 2;
@@ -996,7 +996,7 @@ namespace experience
 //                                      pgraphics->LineTo(pointC);
 //                                      pgraphics->set(m_penShadow1);
 //
-//                                      rectA = rectClient;
+//                                      rectA = rectangleClient;
 //
 //                                      rectA.top++;
 //                                      rectA.left++;
@@ -1014,7 +1014,7 @@ namespace experience
 //
 //                                      pgraphics->set(m_penDkShadow1);
 //
-//                                      rectA = rectClient;
+//                                      rectA = rectangleClient;
 //
 //                                      pointA = rectA.bottom_right();
 //                                      pointA.y -= 15;
@@ -1176,7 +1176,7 @@ namespace experience
 
             }
 
-            void frame_Minimal001::DrawGripSet(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectClient)
+            void frame_Minimal001::DrawGripSet(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangleClient)
             {
 
                auto psizenager = m_pframewindow->size_manager();
@@ -1185,35 +1185,35 @@ namespace experience
 
                if(egrip & e_grip_top)
                {
-                  DrawGrip(pgraphics, rectClient, e_grip_top);
+                  DrawGrip(pgraphics, rectangleClient, e_grip_top);
                }
                if(egrip & e_grip_top_right)
                {
-                  DrawGrip(pgraphics, rectClient, e_grip_top_right);
+                  DrawGrip(pgraphics, rectangleClient, e_grip_top_right);
                }
                if(egrip & e_grip_right)
                {
-                  DrawGrip(pgraphics, rectClient, e_grip_right);
+                  DrawGrip(pgraphics, rectangleClient, e_grip_right);
                }
                if(egrip & e_grip_bottom_right)
                {
-                  DrawGrip(pgraphics, rectClient, e_grip_bottom_right);
+                  DrawGrip(pgraphics, rectangleClient, e_grip_bottom_right);
                }
                if(egrip & e_grip_bottom)
                {
-                  DrawGrip(pgraphics, rectClient, e_grip_bottom);
+                  DrawGrip(pgraphics, rectangleClient, e_grip_bottom);
                }
                if(egrip & e_grip_bottom_left)
                {
-                  DrawGrip(pgraphics, rectClient, e_grip_bottom_left);
+                  DrawGrip(pgraphics, rectangleClient, e_grip_bottom_left);
                }
                if(egrip & e_grip_left)
                {
-                  DrawGrip(pgraphics, rectClient, e_grip_left);
+                  DrawGrip(pgraphics, rectangleClient, e_grip_left);
                }
                if(egrip & e_grip_top_left)
                {
-                  DrawGrip(pgraphics, rectClient, e_grip_top_left);
+                  DrawGrip(pgraphics, rectangleClient, e_grip_top_left);
                }
 
             }

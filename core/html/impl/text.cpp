@@ -168,7 +168,7 @@ namespace html
 
          }
 
-         ::size_f32 size = pgraphics->GetTextExtent(strMax);
+         ::size_f32 size = pgraphics->get_text_extent(strMax);
 
          m_cxMax = (float) size.cx;
 
@@ -259,7 +259,7 @@ namespace html
             if (!isspace(uch))
             {
 
-               size = pgraphics->GetTextExtent(m_straWordSpace[i]);
+               size = pgraphics->get_text_extent(m_straWordSpace[i]);
 
                if (size.cx > m_cxMin)
                {
@@ -429,7 +429,7 @@ namespace html
 
             }
 
-            sizeText = pgraphics->GetTextExtent(strLine);
+            sizeText = pgraphics->get_text_extent(strLine);
 
             if ((x + sizeText.cx) > pointBound.x + sizeContent.cx)
             {
@@ -445,7 +445,7 @@ namespace html
                else if (iLastSpace > 0)
                {
 
-                  sizeText = pgraphics->GetTextExtent(strLine.Left(iLastSpace));
+                  sizeText = pgraphics->get_text_extent(strLine.Left(iLastSpace));
 
                   ::write_text::text_metric textmetric;
 
@@ -480,7 +480,7 @@ namespace html
          if (strLine.get_length() > 0)
          {
 
-            sizeText = pgraphics->GetTextExtent(strLine);
+            sizeText = pgraphics->get_text_extent(strLine);
 
             ::write_text::text_metric textmetric;
 
@@ -775,7 +775,7 @@ namespace html
          strsize iSelStart;
          strsize iSelEnd;
          ::size_f32 size3;
-         draw2d::graphics_extension(pdata->m_pcoredata->get_application()).GetTextExtent(pgraphics, unitext("gGYIﾍ"), size3);
+         draw2d::graphics_extension(pdata->m_pcoredata->get_application()).get_text_extent(pgraphics, unitext("gGYIﾍ"), size3);
          i32 maxcy = size3.cy;
 
          _001GetViewSel(iSelStart, iSelEnd);
@@ -855,12 +855,12 @@ namespace html
                   pgraphics->set(brushText);
                   //pgraphics->SetBkColor(crBkSel);
                   pgraphics->text_out(left,y,strExtent1);
-                  ::size_f32 size1 = pgraphics->GetTextExtent(strExtent1);
+                  ::size_f32 size1 = pgraphics->get_text_extent(strExtent1);
 
                   brushBackground->create_solid(crBkSel);
                   //pgraphics->SetBkMode(OPAQUE);
                   pgraphics->set(brushBackground);
-                  ::size_f32 size2 = pgraphics->GetTextExtent(strExtent2);
+                  ::size_f32 size2 = pgraphics->get_text_extent(strExtent2);
                   pgraphics->fill_solid_rect_dim((i32)(left + size1.cx),(i32)y,size2.cx,size2.cy,crBkSel);
 
                   //pgraphics->set_text_color(crSel);
@@ -1191,7 +1191,7 @@ namespace html
 
                   }
 
-                  size = pgraphics->GetTextExtent(string(pszStart, pszEnd - pszStart));
+                  size = pgraphics->get_text_extent(string(pszStart, pszEnd - pszStart));
 
                   if(*pszEnd == '\0')
                   {

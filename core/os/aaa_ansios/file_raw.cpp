@@ -145,7 +145,7 @@
 //
 //   string str;
 //
-//   FILE * file = ::fopen_dup(path, "r", _SH_DENYNO);
+//   FILE * file = FILE_open(path, "r", _SH_DENYNO);
 //
 //   if (file == nullptr)
 //   {
@@ -223,7 +223,7 @@
 //
 //   ::dir::mk(path.folder());
 //
-//   FILE * file = ::fopen_dup(path, "a+", _SH_DENYWR);
+//   FILE * file = FILE_open(path, "a+", _SH_DENYWR);
 //
 //   if (file == nullptr)
 //   {
@@ -308,7 +308,7 @@
 //
 //      pathTime += ".time";
 //
-//      FILE * file2 = ::fopen_dup(pathTime, "w", _SH_DENYWR);
+//      FILE * file2 = FILE_open(pathTime, "w", _SH_DENYWR);
 //
 //      if (iPosStart > 0)
 //      {

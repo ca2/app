@@ -59,12 +59,12 @@ void html_form::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 
    //pgraphics->fill_solid_rect_dim(5, 5, 100, 100, argb(255, 255, 255, 0));
 
-   ::html_data * sphtmldata = nullptr;
+   ::html_data * phtmldata = nullptr;
 
    try
    {
 
-      sphtmldata = get_html_data();
+      phtmldata = get_html_data();
 
    }
    catch(...)
@@ -72,10 +72,10 @@ void html_form::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 
    }
 
-   if(sphtmldata != nullptr)
+   if(phtmldata != nullptr)
    {
 
-      sphtmldata->_001OnDraw(pgraphics);
+      phtmldata->_001OnDraw(pgraphics);
 
    }
 
@@ -115,18 +115,20 @@ void html_form::_001DrawChildren(::draw2d::graphics_pointer & pgraphics)
 
 void html_form::_001OnImageLoaded(::message::message * pmessage)
 {
+   
    UNREFERENCED_PARAMETER(pmessage);
+   
    if(get_html_data() != nullptr)
    {
 
-      ::rectangle_i32 rectClient;
+      ::rectangle_i32 rectangleClient;
 
-      get_client_rect(rectClient);
+      get_client_rect(rectangleClient);
 
-      if(rectClient.area() > 0)
+      if(rectangleClient.area() > 0)
       {
 
-         get_html_data()->m_pcoredata->m_box = rectClient;
+         get_html_data()->m_pcoredata->m_box = rectangleClient;
 
          synchronous_lock lock(get_html_data()->mutex());
 
@@ -174,11 +176,11 @@ void html_form::install_message_routing(::channel * pchannel)
 void html_form::GetClientBox(::rectangle_f32 & box)
 {
 
-   ::rectangle_i32 rectClient;
+   ::rectangle_i32 rectangleClient;
 
-   get_client_rect(rectClient);
+   get_client_rect(rectangleClient);
 
-   box = rectClient;
+   box = rectangleClient;
 
 }
 
@@ -211,7 +213,6 @@ void html_form::on_layout(::draw2d::graphics_pointer & pgraphics)
       update_data(false);
 
    }
-
 
 }
 
@@ -246,8 +247,7 @@ void html_form::on_message_left_button_down(::message::message * pmessage)
 
    _001ScreenToClient(point);
 
-   if(get_html_data() != nullptr
-      && get_html_data()->m_pcoredata != nullptr)
+   if(get_html_data() != nullptr && get_html_data()->m_pcoredata != nullptr)
    {
 
       m_pelementLButtonDown = get_html_data()->m_pcoredata->m_pelement->hit_test(get_html_data(), point);
@@ -396,6 +396,7 @@ void html_form::on_message_left_button_up(::message::message * pmessage)
       m_pelementLButtonDown->OnLButtonUp(&htmlmessage);
 
    }
+   
 }
 
 
@@ -405,7 +406,7 @@ void html_form::_001OnDestroy(::message::message * pmessage)
    if (get_document() != nullptr)
    {
 
-      ::html_data * pdata = get_document()->get_html_data();
+      ::html_data * pdata = get_html_data();
 
       if (pdata != nullptr)
       {
@@ -464,7 +465,9 @@ void html_form::soft_reload()
 void html_form::set_need_load_form_data()
 {
 
-   if (!m_phtmldata->m_pcoredata->m_bImplemented)
+   auto phtmldata = get_html_data();
+
+   if (!phtmldata->m_pcoredata->m_bImplemented)
    {
 
       m_bNeedLoadFormData = true;
@@ -538,6 +541,13 @@ void html_form::set_need_load_form_data()
 
    auto phtmldata = get_html_data();
 
+   if (::is_null(phtmldata))
+   {
+
+      return error_failed;
+
+   }
+
    auto estatus = phtmldata->open_html(str);
 
    if(::failed(estatus))
@@ -569,17 +579,13 @@ void html_form::_001SetText(const string & str, const ::action_context & context
 
    bool bFocus = has_keyboard_focus() || is_descendant(puserinteraction, true);
 
-   __pointer(::html_data) sphtmldata;
+   auto phtmldata = get_html_data();
 
-   sphtmldata = __new(::html_data);
+   phtmldata->m_pcoredata->m_pform = this;
 
-   sphtmldata->m_pcoredata->m_pform = this;
+   phtmldata->load(str);
 
-   sphtmldata->load(str);
-
-   sphtmldata->implement_and_layout(this);
-
-   m_phtmldata = sphtmldata;
+   phtmldata->implement_and_layout(this);
 
    if(bFocus)
    {
@@ -602,59 +608,83 @@ void html_form::_001SetText(const string & str, const ::action_context & context
 }
 
 
-html_document * html_form::get_document()
+//html_document * html_form::get_document()
+//{
+//
+//   return dynamic_cast <html_document*> (::user::impact::get_document());
+//
+//}
+
+
+::html_data* html_form::get_html_data()
 {
 
-   return dynamic_cast <html_document*> (::user::impact::get_document());
+   if (!m_phtmldata)
+   {
+
+      create_html_data();
+
+   }
+
+   return m_phtmldata;
 
 }
 
 
-::html_data * html_form::get_html_data()
+::e_status html_form::create_html_data()
 {
 
-   auto pdata = m_phtmldata;
+   auto estatus = __construct_new(m_phtmldata);
 
-   if (pdata)
+   if (!estatus)
    {
 
-      return pdata;
+      return estatus;
+
+   }
+      
+   estatus = m_phtmldata->__compose_new(m_phtmldata->m_pcompositeCoreData);
+
+   if (!estatus)
+   {
+
+      return estatus;
 
    }
 
-   pdata = __new(html_data);
+   m_phtmldata->m_pcoredata = m_phtmldata->m_pcompositeCoreData;
 
-   pdata->initialize(this);
+   m_phtmldata->m_pcoredata->initialize_html_data(m_phtmldata);
 
-   pdata->m_pcoredata = new ::html::core_data;
+   m_phtmldata->m_pimplHtml = m_phtmldata->m_pcoredata;
 
-   pdata->m_pcoredata->initialize_html_data(pdata);
+   m_phtmldata->::form_data::m_pimpl = m_phtmldata->m_pimplHtml;
 
-   pdata->m_pimplHtml = ::move(pdata->m_pcoredata);
+   m_phtmldata->m_pcoredata->m_puserinteraction = this;
 
-   pdata->::form_data::m_pimpl = pdata->m_pimplHtml;
+   m_phtmldata->m_pcoredata->m_pform = this;
 
-   pdata->m_pcoredata->m_puserinteraction = this;
+   m_phtmldata->m_pcoredata->m_pcallback = this;
 
-   pdata->m_pcoredata->m_pform = this;
-
-   pdata->m_pcoredata->m_pcallback = this;
-
-   m_phtmldata = pdata;
-
-   return pdata;
+   return estatus;
 
 }
 
 
 void html_form::_001OnKeyDown(::message::message * pmessage)
 {
+   
    __pointer(::message::key) pkey(pmessage);
+   
    if(pkey->m_ekey == ::user::e_key_tab)
    {
+      
       pkey->m_bRet = true;
+      
       return;
+      
    }
+   
 }
 
 
@@ -662,12 +692,20 @@ void html_form::defer_implement()
 {
 
    if(get_html_data() == nullptr)
+   {
+
       return;
+      
+   }
 
    GetClientBox(get_html_data()->m_pcoredata->m_box);
 
    if(get_html_data()->m_pcoredata->m_box.area() <= 0.f)
+   {
+
       return;
+      
+   }
 
    auto pimage = create_image({ 50,  50 });
 
@@ -678,7 +716,6 @@ void html_form::defer_implement()
    ::draw2d::graphics_pointer pgraphics = pimage->g();
 
    get_html_data()->implement(pgraphics);
-
 
 }
 
@@ -748,7 +785,7 @@ void html_form::on_subject(::subject::subject * psubject, ::subject::context * p
       if (psubject->id() == id_document_complete)
       {
 
-         m_phtmldata = get_document()->get_html_data();
+         //m_phtmldata = get_html_data();
 
       }
 
@@ -856,7 +893,6 @@ void html_form_view::on_subject(::subject::subject * psubject, ::subject::contex
 }
 
 
-
 void html_view::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
 {
 
@@ -882,7 +918,7 @@ void html_view::on_subject(::subject::subject * psubject, ::subject::context * p
             get_html_data()->implement(this);
 
          }
-
+         
          on_document_complete(psubject->payload(id_url));
 
          set_need_layout();
@@ -894,4 +930,21 @@ void html_view::on_subject(::subject::subject * psubject, ::subject::context * p
    }
 
 }
+
+
+void html_form::on_form_implemented()
+{
+   
+   auto pdocument = get_document();
+   
+   if(::is_set(pdocument))
+   {
+      
+      pdocument->call_routine("load");
+      
+   }
+   
+}
+
+
 

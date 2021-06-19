@@ -227,34 +227,34 @@ bool dir_system::update_module_path()
 //}
 
 
-::file::path dir_system::application_installer_folder(const ::file::path& pathExe, string strAppId, const char* pszPlatform, const char* pszConfiguration, const char* pszLocale, const char* pszSchema)
-{
-
-   return "";
-
-}
-
-
-::file::path dir_system::get_application_path(string strAppId, const char* pszPlatform, const char* pszConfiguration)
-{
-
-   return "";
-
-}
+//::file::path dir_system::application_installer_folder(const ::file::path& pathExe, string strAppId, const char* pszPlatform, const char* pszConfiguration, const char* pszLocale, const char* pszSchema)
+//{
+//
+//   return "";
+//
+//}
 
 
-::file::path dir_system::get_last_run_application_path_file(string strAppId)
-{
+//::file::path dir_system::get_application_path(string strAppId, const char* pszPlatform, const char* pszConfiguration)
+//{
+//
+//   return "";
+//
+//}
 
-   return "";
 
-}
+// ::file::path dir_system::get_last_run_application_path_file(string strAppId)
+// {
+
+//    return "";
+
+// }
 
 
-::file::path dir_system::get_last_run_application_path(string strAppId)
-{
+// ::file::path dir_system::get_last_run_application_path(string strAppId)
+// {
 
-   return "";
+//    return "";
 
-}
+// }
 

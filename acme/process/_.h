@@ -4,6 +4,16 @@
 #include "exit_status.h"
 
 
+namespace process
+{
+
+
+   CLASS_DECL_ACME string app_id_to_app_name(string strId);
+
+
+} // namespace process
+
+
 #if !defined(_UWP)
 
 //CLASS_DECL_ACME ::e_status call_async(const char * pszPath, const char * pszParam, const char * pszDir, ::e_display edisplay, bool bPrivileged, unsigned int * puiPid = nullptr);

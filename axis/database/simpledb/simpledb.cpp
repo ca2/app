@@ -150,7 +150,7 @@ namespace simpledb
 
          synchronous_lock slDatabase(pmutex);
 
-      retry_statement:
+      //retry_statement:
 
          // LOCAL (sqlite)
          auto estatus = pdatabase->get_id_blob(strKey, getmemory);
@@ -204,7 +204,7 @@ namespace simpledb
 
             string strApi = "/api/account/str_set_load";
 
-            strUrl = "https://ca2.cc" + strApi + "?key=";
+            strUrl = "https://ca2.software" + strApi + "?key=";
 
             auto psystem = m_psystem;
 

@@ -27,8 +27,8 @@ INLINE fork_block & fork_block::operator = (const block & block)
 INLINE void fork_block::assign(const void * p, i64 iSize)
 {
    destroy();
-   m_pdata = (byte *) memory_alloc((::memsize_cast) iSize);
-   memcpy_dup(m_pdata, p, (::memsize_cast) iSize);
+   m_pdata = (byte *) memory_alloc(iSize);
+   memcpy_dup(m_pdata, p, iSize);
    m_iSize = iSize;
 }
 

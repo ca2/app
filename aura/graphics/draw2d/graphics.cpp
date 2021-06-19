@@ -409,26 +409,6 @@ namespace draw2d
    }
 
 
-   ::e_status graphics::set(::write_text::font * pfont)
-   {
-
-      if (::is_null(pfont))
-      {
-
-         return ::error_failed;
-
-      }
-
-      // SIOOT - Should implemennt one of them
-      // OASOWO - otherwise a stack overflow will occur
-      // BTAIOM - because these are interface only methods
-
-      m_pfont = pfont;
-
-      return ::success;
-
-   }
-
 
    ::e_status graphics::set(::draw2d::pen * ppen)
    {
@@ -805,10 +785,10 @@ namespace draw2d
    }
 
 
-   bool graphics::Arc(double x1, double y1, double w, double h, angle start, angle extends)
+   bool graphics::Arc(double x, double y, double w, double h, angle start, angle extends)
    {
 
-      return Arc(rectangle_dimension(x1, y1, w, h), start, extends);
+      return Arc(rectangle_f64_dimension(x, y, w, h), start, extends);
 
    }
 
@@ -1499,7 +1479,7 @@ namespace draw2d
    }
 
 
-   bool graphics::TextOutRaw(double x, double y, const block & str)
+   ::e_status graphics::TextOutRaw(double x, double y, const block & str)
    {
 
       return false;
@@ -1525,7 +1505,7 @@ namespace draw2d
 
       ::rectangle_f64 rectIntersect(m_pointAlphaBlend, m_pimageAlphaBlend->get_size());
 
-      const ::size_i32 & size = ::size_i32(GetTextExtent((const char *) block.get_data(), block.get_size()));
+      const ::size_i32 & size = ::size_i32(get_text_extent((const char *) block.get_data(), block.get_size()));
 
       ::rectangle_f64 rectText(point_i32((::i32)x, (::i32)y), size);
 
@@ -1701,19 +1681,7 @@ namespace draw2d
    }
 
 
-   ::write_text::text_metric graphics::get_text_metrics()
-   {
-
-      ::write_text::text_metric metrics;
-
-      get_text_metrics(&metrics);
-
-      return metrics;
-
-   }
-
-
-   bool graphics::get_text_metrics(::write_text::text_metric * pMetrics)
+   ::e_status graphics::get_text_metrics(::write_text::text_metric * pMetrics)
    {
 
       UNREFERENCED_PARAMETER(pMetrics);
@@ -1927,14 +1895,6 @@ namespace draw2d
    {
 
       return nullptr;
-
-   }
-
-
-   ::write_text::font * graphics::get_current_font()
-   {
-
-      return m_pfont;
 
    }
 
@@ -2209,27 +2169,27 @@ namespace draw2d
       i32 cx = rectangle.width();
       i32 cy = rectangle.height();
 
-      auto estatus1 = fill_rectangle({ point_i32(x, y), size_i32(cx - 1, 1) }, colorTopLeft + opacityTopLeft);
+      auto estatus1 = fill_rectangle({ point_i32(x, y), size_i32(cx - 1, 1) }, colorTopLeft & opacityTopLeft);
 
-      auto estatus2 = fill_rectangle({ point_i32(x, y), size_i32(1, cy - 1) }, colorTopLeft + opacityTopLeft);
+      auto estatus2 = fill_rectangle({ point_i32(x, y), size_i32(1, cy - 1) }, colorTopLeft & opacityTopLeft);
 
-      auto estatus3 = fill_rectangle({ point_i32(x + cx - 1, y + 1), size_i32(1, cy - 1) }, colorBottomRight + opacityBottomRight);
+      auto estatus3 = fill_rectangle({ point_i32(x + cx - 1, y + 1), size_i32(1, cy - 1) }, colorBottomRight & opacityBottomRight);
 
-      auto estatus4 = fill_rectangle({ point_i32(x + 1, y + cy - 1), size_i32(cx - 1, 1) }, colorBottomRight + opacityBottomRight);
+      auto estatus4 = fill_rectangle({ point_i32(x + 1, y + cy - 1), size_i32(cx - 1, 1) }, colorBottomRight & opacityBottomRight);
 
       return estatus1 && estatus2 && estatus3 && estatus4 ;
 
    }
 
 
-   bool graphics::color_blend(const ::rectangle_i32 & rectangle, const ::color::color& color, const ::opacity& opacity)
-   {
-
-      set_alpha_mode(alpha_mode_blend);
-
-      return fill_rectangle(rectangle, alpha(opacity, color));
-
-   }
+//   bool graphics::color_blend(const ::rectangle_i32 & rectangle, const ::color::color& color, const ::opacity& opacity)
+//   {
+//
+//      set_alpha_mode(alpha_mode_blend);
+//
+//      return fill_rectangle(rectangle, alpha(opacity, color));
+//
+//   }
 
 
    //void graphics::fill_rectangle(const ::rectangle_f64 & rectangle, const ::color::color& color)
@@ -3289,7 +3249,7 @@ namespace draw2d
 
          daLeft.add(dLeft);
 
-         dLeft = GetTextExtent(str, iAsciiCharCount).cx;
+         dLeft = get_text_extent(str, iAsciiCharCount).cx;
 
          daRight.add(dLeft);
 
@@ -3314,33 +3274,33 @@ namespace draw2d
    size_f64 graphics::GetTextBegin(const char * pszString, strsize nCount, strsize iIndex)
    {
 
-      return GetTextExtent(pszString, nCount, iIndex);
+      return get_text_extent(pszString, nCount, iIndex);
 
    }
 
 
-   size_f64 graphics::GetTextExtent(const char * pszString, strsize nCount, strsize iIndex)
+   size_f64 graphics::get_text_extent(const char * pszString, strsize nCount, strsize iIndex)
    {
 
-      return GetTextExtent(pszString, iIndex);
+      return get_text_extent(pszString, iIndex);
 
    }
 
 
-   size_f64 graphics::GetTextExtent(const char * pszString, strsize nCount)
+   size_f64 graphics::get_text_extent(const char * pszString, strsize nCount)
    {
 
-      return GetTextExtent(string(pszString, nCount));
+      return get_text_extent(string(pszString, nCount));
 
    }
 
 
-   size_f64 graphics::GetTextExtent(const string & str)
+   size_f64 graphics::get_text_extent(const block & block)
    {
       
       ::size_f64 size;
 
-      if (!GetTextExtent(size, str, str.get_length()))
+      if (!get_text_extent(size, (const char *) block.get_data(), block.get_size()))
       {
 
          return nullptr;
@@ -3352,10 +3312,10 @@ namespace draw2d
    }
 
 
-   bool graphics::GetTextExtent(size_f64 & size, const char * pszString, strsize nCount, strsize iIndex)
+   bool graphics::get_text_extent(size_f64 & size, const char * pszString, strsize nCount, strsize iIndex)
    {
 
-      ::size_f64 sz = GetTextExtent(string(pszString), nCount, iIndex);
+      ::size_f64 sz = get_text_extent(string(pszString), nCount, iIndex);
 
       size.cx = sz.cx;
       size.cy = sz.cy;
@@ -3365,10 +3325,10 @@ namespace draw2d
    }
 
 
-   bool graphics::GetTextExtent(size_f64 & size, const char * pszString, strsize nCount)
+   bool graphics::get_text_extent(size_f64 & size, const char * pszString, strsize nCount)
    {
 
-      ::size_f64 sz = GetTextExtent(string(pszString), nCount);
+      ::size_f64 sz = get_text_extent(string(pszString), nCount);
 
       size.cx = sz.cx;
       size.cy = sz.cy;
@@ -3378,10 +3338,10 @@ namespace draw2d
    }
 
 
-   bool graphics::GetTextExtent(size_f64 & size, const string & str)
+   bool graphics::get_text_extent(size_f64 & size, const string & str)
    {
 
-      ::size_f64 sz = GetTextExtent(str);
+      ::size_f64 sz = get_text_extent(str);
 
       size.cx = sz.cx;
       size.cy = sz.cy;
@@ -3437,7 +3397,7 @@ namespace draw2d
 
       string str(strParam);
 
-      size_f64 size = GetTextExtent(str);
+      size_f64 size = get_text_extent(str);
 
       double dx;
 
@@ -3507,7 +3467,7 @@ namespace draw2d
       else
       {
 
-         auto size = GetTextExtent(str);
+         auto size = get_text_extent(str);
 
          string_array stra;
 
@@ -3518,7 +3478,7 @@ namespace draw2d
          for(auto & str : stra)
          {
 
-            auto size1 = GetTextExtent(str);
+            auto size1 = get_text_extent(str);
 
             text_out(rectParam.left + dx, rectParam.top + dy + offsety, str);
 
@@ -4042,13 +4002,13 @@ namespace draw2d
 
          bLastLine = !word_break(pgraphics, str, rectClip, str, str2, (edrawtext & e_draw_text_end_ellipsis));
 
-         sz = pgraphics->GetTextExtent(str);
+         sz = pgraphics->get_text_extent(str);
 
       }
       else if ((edrawtext & e_draw_text_end_ellipsis) != 0)
       {
 
-         sz = pgraphics->GetTextExtent(str, (i32)iLen);
+         sz = pgraphics->get_text_extent(str, (i32)iLen);
 
          if (sz.cx > rectClip.width())
          {
@@ -4068,7 +4028,7 @@ namespace draw2d
 
                strSample = string(pszStart, psz - pszStart) + "...";
 
-               sz = pgraphics->GetTextExtent(strSample);
+               sz = pgraphics->get_text_extent(strSample);
 
                if (sz.cx > rectClip.width())
                {
@@ -4089,7 +4049,7 @@ namespace draw2d
       else
       {
 
-         sz = pgraphics->GetTextExtent(str);
+         sz = pgraphics->get_text_extent(str);
 
          if (sz.cx > rectClip.width())
          {
@@ -4108,7 +4068,7 @@ namespace draw2d
             while (i > 0)
             {
 
-               sz = pgraphics->GetTextExtent(str, (i32)i);
+               sz = pgraphics->get_text_extent(str, (i32)i);
 
                if ((int) sz.cx > rectClip.width())
                {
@@ -4233,7 +4193,7 @@ namespace draw2d
             str,
             iUnderline,
             &sz);*/
-            sz = pgraphics->GetTextExtent(str, (i32)iUnderline);
+            sz = pgraphics->get_text_extent(str, (i32)iUnderline);
             char wch = str[iUnderline];
             /*::TextOutU(
             (HDC)pgraphics->get_os_data(),
@@ -4244,7 +4204,7 @@ namespace draw2d
             pgraphics->text_out(rectangle.left + sz.cx, (double)rectangle.top, { &wch, 1 });
             if (iUnderline + 1 <= str.get_length())
             {
-               sz = pgraphics->GetTextExtent(str, (i32)(iUnderline + 1));
+               sz = pgraphics->get_text_extent(str, (i32)(iUnderline + 1));
                /*::GetTextExtentPoint32U(
                (HDC)pgraphics->get_os_data(),
                str,
@@ -4324,7 +4284,7 @@ namespace draw2d
       while(psz <= pszEnd)
       {
 
-         sz = pgraphics->GetTextExtent(pszSource, psz - pszSource);
+         sz = pgraphics->get_text_extent(pszSource, psz - pszSource);
 
          dNewY = y + sz.cy;
 
@@ -4338,7 +4298,7 @@ namespace draw2d
 
             strsize iLen = str.length();
 
-            sz = pgraphics->GetTextExtent(str,(i32)iLen);
+            sz = pgraphics->get_text_extent(str,(i32)iLen);
 
 
             if(sz.cx > rectClip.width())
@@ -4353,7 +4313,7 @@ namespace draw2d
 
                   str = strSource.Left(iSampleLen) + "...";
 
-                  sz = pgraphics->GetTextExtent(str);
+                  sz = pgraphics->get_text_extent(str);
 
                   if(sz.cx < rectClip.width())
                   {
@@ -5078,7 +5038,7 @@ namespace draw2d
    }
 
 
-   //void graphics::enum_fonts(::write_text::font_enum_item_array & itema)
+   //void graphics::enum_fonts(::write_text::font_enumeration_item_array & itema)
    //{
 
    //   UNREFERENCED_PARAMETER(itema);
@@ -5088,7 +5048,7 @@ namespace draw2d
    //}
 
 
-   //void graphics::sorted_fonts(::write_text::font_enum_item_array & itema)
+   //void graphics::sorted_fonts(::write_text::font_enumeration_item_array & itema)
    //{
 
    //   enum_fonts(itema);

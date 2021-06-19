@@ -6,7 +6,7 @@ struct memory_template
 {
 
    BLOCK_TYPE * get_data() const { return (BLOCK_TYPE *)this; }
-   memsize get_size() const { return (memsize_cast) sizeof(BLOCK_TYPE); }
+   memsize get_size() const { return sizeof(BLOCK_TYPE); }
    memsize size() const { return (memsize) sizeof(BLOCK_TYPE); }
 
    inline BLOCK_TYPE & operator = (const block & block);

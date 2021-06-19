@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 
 
 image_list::image_list()
@@ -169,7 +169,7 @@ bool image_list::color_blend(image_list* pimagelistSource, const ::color::color&
 
    copy_from(pimagelistSource);
 
-   m_pimage->g()->fill_rectangle(m_pimage->rectangle(), color + opacity);
+   m_pimage->g()->fill_rectangle(m_pimage->rectangle(), color & opacity);
 
    return true;
 

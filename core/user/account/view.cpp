@@ -120,9 +120,9 @@ namespace account
       int h;
       int w;
 
-      ::rectangle_i32 rectClient;
+      ::rectangle_i32 rectangleClient;
 
-      get_client_rect(rectClient);
+      get_client_rect(rectangleClient);
 
       /*
       if (m_bSelfLayout)
@@ -131,8 +131,8 @@ namespace account
 
       double dwh = (double)stdw / (double)stdh;
 
-      int availw = (int) (rectClient.width() * (1.0 - 0.14));
-      int availh = (int) (rectClient.height() * (1.0 - 0.14));
+      int availw = (int) (rectangleClient.width() * (1.0 - 0.14));
+      int availh = (int) (rectangleClient.height() * (1.0 - 0.14));
 
       double davailwh;
 
@@ -161,24 +161,24 @@ namespace account
 
       }
 
-      rectClient.left = (rectClient.width() - w) / 2;
-      rectClient.top = (rectClient.height() - h) / 3;
-      rectClient.right = rectClient.left + w;
-      rectClient.bottom = rectClient.top + h;
+      rectangleClient.left = (rectangleClient.width() - w) / 2;
+      rectangleClient.top = (rectangleClient.height() - h) / 3;
+      rectangleClient.right = rectangleClient.left + w;
+      rectangleClient.bottom = rectangleClient.top + h;
 
-      SetPlacement(rectClient);
+      SetPlacement(rectangleClient);
 
       }
       else
       {
 
-      get_client_rect(rectClient);
+      get_client_rect(rectangleClient);
 
       }*/
 
-      w = (int)(rectClient.width());
+      w = (int)(rectangleClient.width());
 
-      h = (int)(rectClient.height());
+      h = (int)(rectangleClient.height());
 
       m_dRateX = (double)w / (double)stdw;
 
@@ -189,7 +189,7 @@ namespace account
       double ry = m_dRateY;
 
       i32 x1 = (int)(49 * rx);
-      i32 w2 = (int)((rectClient.width() - 49 * 2 * rx));
+      i32 w2 = (int)((rectangleClient.width() - 49 * 2 * rx));
       i32 h1 = (int)(23 * ry);
       i32 pad = (int)(5 * ry);
 
@@ -317,9 +317,9 @@ namespace account
 
          ::write_text::font_pointer f(e_create);
 
-         /*f->create_pixel_font(pnode->font_name(e_font_sans_ex), (i32)height(rectClient) * 0.7);
+         /*f->create_pixel_font(pnode->font_name(e_font_sans_ex), (i32)height(rectangleClient) * 0.7);
 
-         float fMargin = (height(rectClient) * ((1.0f - 0.7f) / 2.0f));*/
+         float fMargin = (height(rectangleClient) * ((1.0f - 0.7f) / 2.0f));*/
 
          auto psystem = m_psystem->m_paurasystem;
 
@@ -454,7 +454,7 @@ namespace account
    //   return 0;
 
    //   login_thread thread;
-   //   thread.m_strRequestingServer = "account.ca2.cc";
+   //   thread.m_strRequestingServer = "account.ca2.software";
    //   thread.m_strUsername = "";
    //   thread.m_strPassword = "";
    //   thread.run();

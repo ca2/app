@@ -42,6 +42,6 @@
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>ca2_command_line</key>
-	<string>app : app=app-core/helloworld client_only hello_bk="http://server.ca2.cc/image/os/ios.jpg"</string>
+	<string>app : app=app-core/helloworld client_only hello_bk="http://server.ca2.software/image/os/ios.jpg"</string>
 </dict>
 </plist>

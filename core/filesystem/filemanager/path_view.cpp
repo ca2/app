@@ -161,11 +161,11 @@ namespace filemanager
       //if ((crBackground & argb(255, 0, 0, 0)) != 0)
       //{
 
-      //   ::rectangle_i32 rectClient;
+      //   ::rectangle_i32 rectangleClient;
 
-      //   get_client_rect(rectClient);
+      //   get_client_rect(rectangleClient);
 
-      //   pgraphics->fill_rectangle(rectClient, argb(255, 255, 255, 255));
+      //   pgraphics->fill_rectangle(rectangleClient, argb(255, 255, 255, 255));
 
       ::user::plain_edit::_001OnDraw(pgraphics);
 

@@ -87,7 +87,11 @@
 #endif
 
 
-//#include "app/acme/version.h"
+#if defined(__cplusplus)
+
+#include <atomic>
+
+#endif
 
 
 #include "__standard_type.h"
@@ -113,19 +117,8 @@ typedef i64 filesize;
 #endif
 
 
-#if defined(__cplusplus)
-
-inline bool __found(::i32 i) { return i >= 0; }
-inline bool __not_found(::i32 i) { return i < 0; }
-inline bool __found(::i64 i) { return i >= 0; }
-inline bool __not_found(::i64 i) { return i < 0; }
-
-#else
-
 #define __found_index(i) ((i) >= 0)
 #define __not_found_index(i) ((i) < 0)
-
-#endif
 
 
 #if defined(DEBUG)

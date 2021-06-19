@@ -6168,3 +6168,63 @@ void number_operator_payload_test()
 
 
 #endif
+
+
+#if defined(__APPLE__) || defined(ANDROID) || defined(RASPBIAN) || defined(WINDOWS)
+
+
+payload::operator long &()
+{
+   
+   if(m_etype == e_type_i64)
+   {
+      
+      return (long &) m_i64;
+      
+   }
+   else if(m_etype == e_type_pi64)
+   {
+      
+      return (long &)*m_pi64;
+      
+   }
+   else
+   {
+   
+      set_type(e_type_i64);
+   
+      return (long &) m_i64;
+      
+   }
+
+}
+
+
+payload::operator unsigned long &()
+{
+
+   if(m_etype == e_type_u64)
+   {
+      
+      return (unsigned long &) m_u64;
+      
+   }
+   else if(m_etype == e_type_pu64)
+   {
+      
+      return (unsigned long &)*m_pu64;
+      
+   }
+   else
+   {
+   
+      set_type(e_type_u64);
+   
+      return (unsigned long &) m_u64;
+      
+   }
+
+}
+
+
+#endif

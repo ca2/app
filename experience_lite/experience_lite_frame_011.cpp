@@ -333,7 +333,7 @@ SizingNone:;
                //    CVMSApp * pApp = (CVMSApp *) System;
                //::aura::savings & savings = psession->savings();
 
-               auto rectClient = pframewindow->get_client_rect();
+               auto rectangleClient = pframewindow->get_client_rect();
 
                string str;
 
@@ -472,19 +472,19 @@ SizingNone:;
 
                const i32 size = 16;
 
-               ::rectangle_i32 rectClient(lpcrectClient);
-               //            ::rectangle_i32 rectClientB(rectClient);
+               ::rectangle_i32 rectangleClient(lpcrectClient);
+               //            ::rectangle_i32 rectClientB(rectangleClient);
                ::rectangle_i32 rectA;
                point_i32 ptA;
                point_i32 ptB;
                point_i32 ptC;
-               //            ::rectangle_i32 rectangle(rectClient);
+               //            ::rectangle_i32 rectangle(rectangleClient);
                switch (egrip)
                {
                case e_grip_top_left:
                {
 
-                  rectA = rectClient;
+                  rectA = rectangleClient;
 
                   rectA.right = 4;
                   rectA.bottom = size;
@@ -500,7 +500,7 @@ SizingNone:;
                break;
                case e_grip_top_right:
                {
-                  rectA = rectClient;
+                  rectA = rectangleClient;
 
                   rectA.left = rectA.right - 4;
                   rectA.bottom = size;
@@ -515,7 +515,7 @@ SizingNone:;
                break;
                case e_grip_bottom_left:
                {
-                  rectA = rectClient;
+                  rectA = rectangleClient;
 
                   rectA.right = 4;
                   rectA.top = rectA.bottom - size;
@@ -530,7 +530,7 @@ SizingNone:;
                break;
                case e_grip_bottom_right:
                {
-                  rectA = rectClient;
+                  rectA = rectangleClient;
 
                   rectA.left = rectA.right - 4;
                   rectA.top = rectA.bottom - size;
@@ -545,7 +545,7 @@ SizingNone:;
                break;
                case e_grip_top:
                {
-                  rectA = rectClient;
+                  rectA = rectangleClient;
 
                   rectA.left = rectA.left + rectA.width() / 2 - size / 2;
                   rectA.right = rectA.left + size;
@@ -557,7 +557,7 @@ SizingNone:;
                break;
                case e_grip_bottom:
                {
-                  rectA = rectClient;
+                  rectA = rectangleClient;
 
                   rectA.left = rectA.left + rectA.width() / 2 - size / 2;
                   rectA.right = rectA.left + size;
@@ -568,7 +568,7 @@ SizingNone:;
                break;
                case e_grip_left:
                {
-                  rectA = rectClient;
+                  rectA = rectangleClient;
 
                   rectA.right = 4;
                   rectA.top = rectA.top + rectA.height() / 2 - size / 2;
@@ -579,7 +579,7 @@ SizingNone:;
                break;
                case e_grip_right:
                {
-                  rectA = rectClient;
+                  rectA = rectangleClient;
 
                   rectA.left = rectA.right - 4;
                   rectA.top = rectA.top + rectA.height() / 2 - size / 2;

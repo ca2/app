@@ -322,7 +322,11 @@ namespace user
       if(m_usertreea.has_element())
       {
 
-         auto pgraphics = m_usertreea.first()->create_memory_graphics();
+         auto psystem = m_psystem->m_paurasystem;
+
+         auto pdraw2d = psystem->draw2d();
+
+         auto pgraphics = pdraw2d->create_memory_graphics();
 
          for(index i = 0; i < m_usertreea.get_count(); i++)
          {

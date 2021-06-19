@@ -112,7 +112,7 @@ namespace linux
 //      const char * pszWindowName,
 
 //      ::u32 dwStyle,
-//      const ::rect & rect,
+//      const ::rectangle & rectangle,
 //      ::user::interaction * pParentWnd,
 //      id id,
 //      ::create * pContext = nullptr) override;
@@ -135,7 +135,7 @@ namespace linux
 
       virtual bool DestroyWindow() override;
 
-      // special pre-creation and ::user::interaction_impl rect adjustment hooks
+      // special pre-creation and ::user::interaction_impl rectangle adjustment hooks
       virtual bool pre_create_window(::user::system * pusersystem) override;
 
       // Advanced: virtual AdjustWindowRect
@@ -199,7 +199,7 @@ namespace linux
       //virtual bool layout().is_full_screen();
       //void MoveWindow(i32 x, i32 y, i32 nWidth, i32 nHeight,
         //              bool bRepaint = true);
-      //void MoveWindow(const ::rect & rect, bool bRepaint = true);
+      //void MoveWindow(const ::rectangle & rectangle, bool bRepaint = true);
 
 //      i32 SetWindowRgn(HRGN hRgn, bool bRedraw);
 //      i32 GetWindowRgn(HRGN hRgn);
@@ -267,10 +267,10 @@ namespace linux
 //
 //      virtual i32 GetUpdateRgn(::draw2d::region* pRgn, bool bErase = false);
 //      virtual void Invalidate(bool bErase = true);
-//      virtual void InvalidateRect(const ::rect & rect, bool bErase = true);
+//      virtual void InvalidateRect(const ::rectangle & rectangle, bool bErase = true);
 //
 //      virtual void InvalidateRgn(::draw2d::region* pRgn, bool bErase = true);
-//      virtual void ValidateRect(const ::rect & rect);
+//      virtual void ValidateRect(const ::rectangle & rectangle);
 //
 //      virtual void ValidateRgn(::draw2d::region* pRgn);
       //virtual bool display(::e_display edisplay) override;
@@ -294,7 +294,7 @@ namespace linux
       //virtual ::draw2d::graphics * GetDCEx(::draw2d::region* prgnClip, ::u32 flags);
       //virtual bool LockWindowUpdate();
       //virtual void UnlockWindowUpdate();
-//      virtual bool RedrawWindow(const ::rect& rectUpdate = nullptr,
+//      virtual bool RedrawWindow(const ::rectangle& rectUpdate = nullptr,
 //                                ::draw2d::region* prgnUpdate = nullptr,
 //                                ::u32 flags = RDW_INVALIDATE | RDW_ERASE);
       // xxx      virtual bool EnableScrollBar(i32 nSBFlags, ::u32 nArrowFlags = ESB_ENABLE_BOTH);
@@ -304,7 +304,7 @@ namespace linux
 //
 //      //virtual bool DrawAnimatedRects(i32 idAni, const LPRECTprcFrom, const LPRECTlprcTo);
 //
-//      virtual bool DrawCaption(::draw2d::graphics_pointer & pgraphics, const rect & prc, ::u32 uFlags);
+//      virtual bool DrawCaption(::draw2d::graphics_pointer & pgraphics, const rectangle & prc, ::u32 uFlags);
 //
 //
 //#if(WINVER >= 0x0500)

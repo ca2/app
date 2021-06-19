@@ -256,20 +256,20 @@ CTFontRef CreateFontConvertedToFamily(CTFontRef iFont, CFStringRef iFamily)
 
 
 
-//void FillSolidRect_dup(HDC hdc, const ::rect & rect, color32_t clr)
+//void FillSolidRect_dup(HDC hdc, const ::rectangle & rectangle, color32_t clr)
 
 //{
 //   CGColorRef color = cg_create_color(clr);
-//   CGRect rect;
-//   rect.origin.x = prect->left;
+//   CGRect rectangle;
+//   rectangle.origin.x = prect->left;
 
-//   rect.origin.y = prect->top;
+//   rectangle.origin.y = prect->top;
 
-//   rect.size.width = prect->right - prect->left;
+//   rectangle.size.width = prect->right - prect->left;
 
-//   rect.size.height = prect->bottom - prect->top;
+//   rectangle.size.height = prect->bottom - prect->top;
 
-//   CGContextFillRect(hdc->m_cgcontext, rect);
+//   CGContextFillRect(hdc->m_cgcontext, rectangle);
 //   cg_release_color(color);
 //}
 
@@ -347,9 +347,9 @@ bool GetImagePixelData(unsigned int * pcr, int cx, int cy, int iScan, CGImageRef
 
    }
 
-   CGRect rect = {{0,0},{(CGFloat)cx,(CGFloat)cy}};
+   CGRect rectangle = {{0,0},{(CGFloat)cx,(CGFloat)cy}};
 
-   CGContextDrawImage(cgctx, rect, inImage);
+   CGContextDrawImage(cgctx, rectangle, inImage);
 
    void *data = CGBitmapContextGetData (cgctx);
 

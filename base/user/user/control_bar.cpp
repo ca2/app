@@ -510,13 +510,13 @@ namespace user
    {
       // get interaction_impl DC that is clipped to the non-client area
       /* trans   CWindowDC spgraphics(this);
-         ::rectangle_i32 rectClient;
-         get_client_rect(rectClient);
+         ::rectangle_i32 rectangleClient;
+         get_client_rect(rectangleClient);
          ::rectangle_i32 rectWindow;
          get_window_rect(rectWindow);
          _001ScreenToClient(rectWindow);
-         rectClient.offset(-rectWindow.left, -rectWindow.top);
-         spgraphics->ExcludeClipRect(rectClient);
+         rectangleClient.offset(-rectWindow.left, -rectWindow.top);
+         spgraphics->ExcludeClipRect(rectangleClient);
 
          // draw borders in non-client area
          rectWindow.offset(-rectWindow.left, -rectWindow.top);
@@ -534,16 +534,16 @@ namespace user
    {
 
       // get interaction_impl DC that is clipped to the non-client area
-      ::rectangle_i32 rectClient;
-      get_client_rect(rectClient);
+      ::rectangle_i32 rectangleClient;
+      get_client_rect(rectangleClient);
       ::rectangle_i32 rectWindow;
       get_window_rect(rectWindow);
       _001ScreenToClient(rectWindow);
-      rectClient.offset(-rectWindow.left, -rectWindow.top);
+      rectangleClient.offset(-rectWindow.left, -rectWindow.top);
       
       //pgraphics->exclude_clip();
       
-      //pgraphics->ExcludeClipRect(rectClient);
+      //pgraphics->ExcludeClipRect(rectangleClient);
 
       // draw borders in non-client area
       rectWindow.offset(-rectWindow.left, -rectWindow.top);
@@ -782,13 +782,29 @@ namespace user
          u32 dwMode = playout->bStretch ? LM_STRETCH : 0;
 
          if ((m_dwStyle & CBRS_SIZE_DYNAMIC) && m_dwStyle & CBRS_FLOATING)
-            dwMode |= LM_HORZ | LM_MRUWIDTH;
-         else if (uStyle & CBRS_ORIENT_HORZ)
-            dwMode |= LM_HORZ | LM_HORZDOCK;
-         else
-            dwMode |=  LM_VERTDOCK;
+         {
 
-         auto pgraphics = create_memory_graphics();
+            dwMode |= LM_HORZ | LM_MRUWIDTH;
+
+         }
+         else if (uStyle & CBRS_ORIENT_HORZ)
+         {
+
+            dwMode |= LM_HORZ | LM_HORZDOCK;
+
+         }
+         else
+         {
+
+            dwMode |= LM_VERTDOCK;
+
+         }
+
+         auto psystem = m_psystem->m_paurasystem;
+
+         auto pdraw2d = psystem->draw2d();
+
+         auto pgraphics = pdraw2d->create_memory_graphics();
 
          ::size_i32 size = CalcDynamicLayout(pgraphics, -1, dwMode);
 

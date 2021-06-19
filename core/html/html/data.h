@@ -8,20 +8,20 @@ public:
 
 
    __pointer(::html_data)              m_pimplHtml;
+   __pointer(::html_document)          m_pdocument;
    ::html::core_data *                 m_pcoredata;
-   ::html_document *                   m_pdocument;
-
+   __composite(::html::core_data)      m_pcompositeCoreData;
 
 
    html_data();
-   virtual ~html_data();
+   ~html_data() override;
 
 
    virtual ::e_status initialize_html_data(::html_data * phtmldata);
 
 
-   virtual i64 add_ref(OBJ_REF_DBG_PARAMS);
-   virtual i64 dec_ref(OBJ_REF_DBG_PARAMS);
+   i64 add_ref(OBJ_REF_DBG_PARAMS) override;
+   i64 dec_ref(OBJ_REF_DBG_PARAMS) override;
 
 
    virtual bool open_document(const ::payload & varFile);

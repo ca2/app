@@ -44,6 +44,6 @@
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>ca2_command_line</key>
-	<string>app : app=app-core/simple_drawing client_only hello_bk="http://server.ca2.cc/image/os/non_existent_file(ios).jpg"</string>
+	<string>app : app=app-core/simple_drawing client_only hello_bk="http://server.ca2.software/image/os/non_existent_file(ios).jpg"</string>
 </dict>
 </plist>

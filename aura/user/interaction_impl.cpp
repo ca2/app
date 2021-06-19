@@ -628,7 +628,7 @@ namespace user
 
       }
 
-      //m_puserinteraction->place(rectangle_dimension(
+      //m_puserinteraction->place(rectangle_i32_dimension(
       //                      pusersystem->m_createstruct.x,
       //                      pusersystem->m_createstruct.y,
       //                      pusersystem->m_createstruct.cx,
@@ -1595,12 +1595,12 @@ namespace user
 
       string strType = m_puserinteraction->type_name();
 
-      if (strType.contains("main_frame"))
-      {
-
-         output_debug_string("main_frame");
-
-      }
+//      if (strType.contains("main_frame"))
+//      {
+//
+//         output_debug_string("main_frame");
+//
+//      }
 
       ::user::primitive_impl::PostNcDestroy();
 
@@ -3799,9 +3799,6 @@ namespace user
    }
 
 
-
-
-
    void interaction_impl::_001UpdateBuffer()
    {
 
@@ -5223,7 +5220,7 @@ namespace user
 
          ::point_i32 pointBottomRight = pointOutput + sizeOutput;
 
-         output_debug_string("SetWindowPos bottom_right " + __str(pointBottomRight.x) + ", " + __str(pointBottomRight.y) + "\n");
+         //output_debug_string("SetWindowPos bottom_right " + __str(pointBottomRight.x) + ", " + __str(pointBottomRight.y) + "\n");
 
 //#if !defined(_UWP) && !defined(ANDROID)
 

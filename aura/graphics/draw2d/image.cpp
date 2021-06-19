@@ -306,7 +306,7 @@ bool image::create_isotropic(::image * pimage)
 
       pimage->g()->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
 
-      pimage->g()->stretch(::rectangle_dimension(0, 0, cx, cy), get_graphics(), ::rectangle_dimension(0, 0, width(), height()));
+      pimage->g()->stretch(::rectangle_i32_dimension(0, 0, cx, cy), get_graphics(), ::rectangle_i32_dimension(0, 0, width(), height()));
 
    }
 
@@ -408,11 +408,11 @@ bool image::destroy()
 //
 //   //}
 //
-//   return get_graphics()->draw(::rectangle_dimension(0, 0,
+//   return get_graphics()->draw(rectangle_i32_dimension(0, 0,
 //                                     width(),
 //                                     height()),
 //                                     pimage->g(),
-//                                     ::rectangle_dimension(0, 0,
+//                                     rectangle_i32_dimension(0, 0,
 //                                     pimage->width(),
 //                                     pimage->height()));
 //
@@ -6432,7 +6432,7 @@ bool image::_set_mipmap(::draw2d::e_mipmap emipmap)
          else
          {
 
-            get_graphics()->stretch(::rectangle_dimension((i32)x, (i32)y, (i32)cx, (i32)cy ), pimage->g(), ::rectangle_dimension(0, 0, (i32)cx, (i32)cy ));
+            get_graphics()->stretch(::rectangle_i32_dimension((i32)x, (i32)y, (i32)cx, (i32)cy ), pimage->g(), ::rectangle_i32_dimension(0, 0, (i32)cx, (i32)cy ));
 
          }
 
@@ -6504,7 +6504,7 @@ bool image::_set_mipmap(::draw2d::e_mipmap emipmap)
             else
             {
 
-               get_graphics()->stretch(::rectangle_dimension( x, y, dx, dy ), pimage->get_graphics(), ::rectangle_dimension( 0, 0, pimage->width(), pimage->height() ));
+               get_graphics()->stretch(::rectangle_i32_dimension( x, y, dx, dy ), pimage->get_graphics(), ::rectangle_i32_dimension( 0, 0, pimage->width(), pimage->height() ));
 
             }
 
@@ -8427,7 +8427,7 @@ bool image::create_circle(::image * pimage, int diameter)
 
       get_graphics()->set_alpha_mode(::draw2d::alpha_mode_set);
 
-      get_graphics()->stretch(rectangle_dimension(0, 0, diameter, diameter), pimage->g(), rectangle_dimension(0, 0, pimage->width(), pimage->height()));
+      get_graphics()->stretch(rectangle_i32_dimension(0, 0, diameter, diameter), pimage->g(), rectangle_i32_dimension(0, 0, pimage->width(), pimage->height()));
 
    }
 
@@ -8494,7 +8494,7 @@ bool image::create_framed_square(::image * pimage, int inner, int outer, color32
 
    fill(cr);
 
-   get_graphics()->stretch(::rectangle_dimension(outer, outer, inner, inner), pimage->g(), ::rectangle_dimension(0, 0, pimage->width(), pimage->height()));
+   get_graphics()->stretch(::rectangle_i32_dimension(outer, outer, inner, inner), pimage->g(), ::rectangle_i32_dimension(0, 0, pimage->width(), pimage->height()));
 
    return true;
 

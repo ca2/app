@@ -57,7 +57,7 @@ enum_synchronization_result MsgWaitForMultipleObjectsEx(::u32 dwSize, HSYNC * sy
    timespec delay;
 
    delay.tv_sec = 0;
-   delay.tv_nsec = 1000000;
+   delay.tv_nsec = 10'000'000;
 
    if (bWaitForAll)
    {
@@ -147,14 +147,7 @@ enum_synchronization_result MsgWaitForMultipleObjectsEx(::u32 dwSize, HSYNC * sy
          for (i = 0; comparison::lt(i, dwSize); i++)
          {
 
-            if (tickTimeout != (::u32)U32_INFINITE_TIMEOUT && start.elapsed() >= tickTimeout)
-            {
-
-               return e_synchronization_result_timed_out;
-
-            }
-
-            if (synca[i]->lock(millis(0)))
+            if (synca[i]->lock(0_ms))
             {
 
                return (enum_synchronization_result)(e_synchronization_result_signaled_base + i);
@@ -164,6 +157,13 @@ enum_synchronization_result MsgWaitForMultipleObjectsEx(::u32 dwSize, HSYNC * sy
          }
 
          nanosleep(&delay, nullptr);
+
+         if (tickTimeout != (::u32)U32_INFINITE_TIMEOUT && start.elapsed() >= tickTimeout)
+         {
+
+            return e_synchronization_result_timed_out;
+
+         }
 
       }
 

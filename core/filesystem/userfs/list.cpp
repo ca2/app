@@ -34,14 +34,12 @@ namespace userfs
    {
 
       ::user::form_list_view::install_message_routing(pchannel);
+
       MESSAGE_LINK(e_message_hscroll, pchannel, this, &list::_001OnHScroll);
       MESSAGE_LINK(e_message_vscroll, pchannel, this, &list::_001OnVScroll);
       MESSAGE_LINK(e_message_show_window, pchannel, this, &list::_001OnShowWindow);
       MESSAGE_LINK(e_message_create, pchannel, this, &list::on_message_create);
       MESSAGE_LINK(e_message_left_button_double_click, pchannel, this, &list::_001OnLButtonDblClk);
-//#ifdef WINDOWS_DESKTOP
-//      MESSAGE_LINK(WM_CANCELMODE, pchannel, this, &list::_001OnCancelMode);
-//#endif
 
    }
 
@@ -51,10 +49,12 @@ namespace userfs
 
       pmessage->previous();
 
-      if(pmessage->m_bRet)
+      if (pmessage->m_bRet)
+      {
+
          return;
 
-      //puser->shell()->on_update_sizes_interest();
+      }
 
       set_impact_title("File Manager");
       

@@ -480,9 +480,9 @@ comptr < IWICImagingFactory > wic_get_imaging_factory();
 
             }
 
-            ::rect rect = pframea->element_at(uFrameIndex - 1)->m_rect;
+            ::rectangle rectangle = pframea->element_at(uFrameIndex - 1)->m_rect;
 
-            pimageCompose->g()->fill_rectangle(rect, crBack);
+            pimageCompose->g()->fill_rectangle(rectangle, crBack);
 
          }
 
@@ -492,7 +492,7 @@ comptr < IWICImagingFactory > wic_get_imaging_factory();
 
             pimageCompose->set_alpha_mode(::draw2d::alpha_mode_set);
 
-            pimageCompose->g()->fill_rectangle(pframea->rect(), 0);
+            pimageCompose->g()->fill_rectangle(pframea->rectangle(), 0);
 
          }*/
 

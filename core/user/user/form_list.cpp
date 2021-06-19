@@ -350,6 +350,13 @@ namespace user
 
       ::user::list_column * pcolumn = m_columna.get_by_subitem(iSubItem);
 
+      if (!pcolumn || pcolumn->m_id.is_empty())
+      {
+
+         return nullptr;
+
+      }
+
       auto pinteraction = get_child_by_id(pcolumn->m_id);
 
       return pinteraction;
@@ -1244,12 +1251,12 @@ break_click:;
 //      _001ClientToScreen(rectControl);
 //      rectangle_i64 rectForm;
 //      get_window_rect(rectForm);
-//      rectangle_i64 rectClient;
-//      rectClient.top = rectForm.top;
-//      rectClient.bottom = rectForm.bottom;
-//      rectClient.left = rectControl.left;
-//      rectClient.right = rectControl.right;
-//      return rectClient.contains(point) != false;
+//      rectangle_i64 rectangleClient;
+//      rectangleClient.top = rectForm.top;
+//      rectangleClient.bottom = rectForm.bottom;
+//      rectangleClient.left = rectControl.left;
+//      rectangleClient.right = rectControl.right;
+//      return rectangleClient.contains(point) != false;
    }
 
 
@@ -2194,9 +2201,9 @@ break_click:;
          if (pinteraction)
          {
 
-            pdrawitem->m_rectClient = pdrawitem->m_rectSubItem;
+            pdrawitem->m_rectangleClient = pdrawitem->m_rectSubItem;
 
-            pdrawitem->m_rectangleWindow = pdrawitem->m_rectClient;
+            pdrawitem->m_rectangleWindow = pdrawitem->m_rectangleClient;
 
             _001ClientToScreen(pdrawitem->m_rectangleWindow);
 
@@ -2206,10 +2213,10 @@ break_click:;
 
             //_001ScreenToClient(rectWindow);
 
-            //if (rectWindow != pdrawitem->m_rectClient)
+            //if (rectWindow != pdrawitem->m_rectangleClient)
             {
 
-               // pinteraction->set_window_position(0, pdrawitem->m_rectClient, SWP_HIDEWINDOW | SWP_NOZORDER);
+               // pinteraction->set_window_position(0, pdrawitem->m_rectangleClient, SWP_HIDEWINDOW | SWP_NOZORDER);
 
             }
 
@@ -2279,7 +2286,7 @@ ok_control:;
             ::draw2d::savedc savedc(pdrawitem->m_pgraphics);
 
             on_viewport_offset(pdrawitem->m_pgraphics);
-            pdrawitem->m_pgraphics->OffsetViewportOrg(pdrawitem->m_rectClient.left, pdrawitem->m_rectClient.top);
+            pdrawitem->m_pgraphics->OffsetViewportOrg(pdrawitem->m_rectangleClient.left, pdrawitem->m_rectangleClient.top);
 
             __keep(pinteraction->m_pdrawcontext, pdrawitem);
 

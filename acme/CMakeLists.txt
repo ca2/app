@@ -480,7 +480,7 @@ list(APPEND acme_source
    console.h
    const/GLOBAL_ID.h
    const/_const.h
-   const/charset.h
+   const/character_set.h
    const/check.h
    const/context.h
    const/future.h
@@ -698,6 +698,7 @@ list(APPEND acme_source
    os/ansios/pmutex_lock.h
    os/ansios/pthread.cpp
    os/ansios/semun.h
+        os/apple/_.cpp
    #os/apple/DDInvocationGrabber.h
    #os/apple/NSObject+DDExtensions.h
    #os/apple/NSString+SymlinksAndAliases.h
@@ -708,9 +709,11 @@ list(APPEND acme_source
    #os/apple/_mm.h
    #os/apple/_mm_common.h
    #os/apple/debug.h
+        os/apple/exe_path.cpp
    #os/apple/graphics.h
    #os/apple/main.h
    #os/apple/ns_exception.h
+        os/apple/time.cpp
    #os/apple/time.h
    #os/chronometer.h
    os/file.h
@@ -1349,13 +1352,13 @@ if (WIN32)
       os/windows/exception_engine.cpp
       os/windows/extract_icon.cpp
       os/windows/file.cpp
-      os/windows/gdiplus.cpp
+      #os/windows/gdiplus.cpp
       os/windows/internal.cpp
       os/windows/itemidlist.cpp
       os/windows/language.cpp
       os/windows/library.cpp
-      os/windows/list_serial_ports.cpp
-      os/windows/local_memory_map.cpp
+      #os/windows/list_serial_ports.cpp
+      #os/windows/local_memory_map.cpp
       os/windows/lock.cpp
       os/windows/main.cpp
       os/windows/message_loop.cpp
@@ -1368,24 +1371,24 @@ if (WIN32)
       os/windows/user.cpp
       os/windows/util.cpp
       os/windows/windowing.cpp
-      node/windows/base/factory_exchange.h
-      node/windows/base/implementation.h
-      node/windows/base/print_job.h
-      node/windows/base/_windows.h
-      node/windows/console.h
-      node/windows/exception.h
-      node/windows/factory_exchange.h
-      node/windows/file.h
-      node/windows/file_find.h
-      node/windows/pipe.h
-      node/windows/registry.h
-      node/windows/serial.h
-      node/windows/uac_tools.h
-      node/windows/user.h
-      node/windows/_.h
-      node/windows/_node_windows.h
-      node/windows/_node_windows_private.h
-      node/windows/_windows.h
+      #node/windows/base/factory_exchange.h
+      #node/windows/base/implementation.h
+      #node/windows/base/print_job.h
+      #node/windows/base/_windows.h
+      #node/windows/console.h
+      #node/windows/exception.h
+      #node/windows/factory_exchange.h
+      #node/windows/file.h
+      #node/windows/file_find.h
+      #node/windows/pipe.h
+      #node/windows/registry.h
+      #node/windows/serial.h
+      #node/windows/uac_tools.h
+      #node/windows/user.h
+      #node/windows/_.h
+      #node/windows/_node_windows.h
+      #node/windows/_node_windows_private.h
+      #node/windows/_windows.h
       )
 else ()
 
@@ -1456,9 +1459,9 @@ if (WIN32 OR UWP)
       os/windows_common/com.cpp
       os/windows_common/debug.cpp
       os/windows_common/file.cpp
-      os/windows_common/file_c.cpp
+      #os/windows_common/file_c.cpp
       os/windows_common/graphics.cpp
-      os/windows_common/net.cpp
+      #os/windows_common/net.cpp
       os/windows_common/parallelization.cpp
       os/windows_common/time.cpp
       os/windows_common/unicode.cpp)
@@ -1545,71 +1548,74 @@ if (MACOS)
    list(APPEND acme_source
       os/cross/uwp/cross_metrowin_user.cpp
       os/cross/uwp/metrowin_user.cpp
-      node/macos/application.cpp
-      node/macos/factory_exchange.cpp
-      node/macos/file.cpp
-      node/macos/main.cpp
-      node/macos/stdio_file.cpp
-      node/macos/thread.cpp
-      node/macos/trace.cpp
-      node/macos/util.cpp
+      #node/macos/application.cpp
+      #node/macos/factory_exchange.cpp
+      #node/macos/file.cpp
+      #node/macos/main.cpp
+      #node/macos/stdio_file.cpp
+      #node/macos/thread.cpp
+      #node/macos/trace.cpp
+      #node/macos/util.cpp
       os/macos/_.cpp
-      os/macos/application_system_run.cpp
-      os/macos/clipboard.cpp
-      os/macos/cross_win.cpp
-      os/macos/cross_win_file.cpp
+      #os/macos/application_system_run.cpp
+      #os/macos/clipboard.cpp
+      #os/macos/cross_win.cpp
+      #os/macos/cross_win_file.cpp
       os/macos/debug.cpp
       os/macos/exception_engine.cpp
-      os/macos/file.cpp
-      os/macos/file.mm
-      os/macos/graphics.cpp
-      os/macos/list_serial_ports.cpp
-      os/macos/lock.cpp
-      os/macos/MessageBoxA.cpp
-      os/macos/mm.mm
-      os/macos/mm_graphics.mm
-      os/macos/mm_user.mm
-      os/macos/mmos.mm
-      os/macos/NSPasteboard++.mm
-      os/macos/os.cpp
-      os/macos/process.cpp
-      os/macos/process_pid.cpp
-      os/macos/time.cpp
-      os/macos/user.cpp
-      os/macos/win_base.cpp
-      os/macos/windowing.cpp
-      os/macos/winpr_keycode.cpp)
+      #os/macos/file.cpp
+      #os/macos/file.mm
+      #os/macos/graphics.cpp
+      os/macos/library.cpp
+      #os/macos/list_serial_ports.cpp
+      #os/macos/lock.cpp
+      #os/macos/MessageBoxA.cpp
+      #os/macos/mm.mm
+      #os/macos/mm_graphics.mm
+      #os/macos/mm_user.mm
+      #os/macos/mmos.mm
+      #os/macos/NSPasteboard++.mm
+      #os/macos/os.cpp
+           os/macos/parallelization.cpp
+      #os/macos/process.cpp
+      #os/macos/process_pid.cpp
+      #os/macos/time.cpp
+      #os/macos/user.cpp
+      #os/macos/win_base.cpp
+      #os/macos/windowing.cpp
+      #os/macos/winpr_keycode.cpp
+           )
 
 
    list(APPEND acme_source
-      node/macos/application.h
-      node/macos/factory_exchange.h
-      node/macos/file.h
-      node/macos/stdio_file.h
-      node/macos/thread.h
-      node/macos/user.h
-      node/macos/_.h
-      node/macos/_macos.h
-      node/macos/_mm.h
-      os/macos/cross_win_gdi.h
-      os/macos/exception_engine.h
-      os/macos/file.h
-      os/macos/graphics_mm.h
-      os/macos/internal.h
-      os/macos/macos.h
-      os/macos/main.h
-      os/macos/mmos.h
-      os/macos/mm_oswindow.h
-      os/macos/os.h
-      os/macos/process_c.h
-      os/macos/user.h
-      os/macos/windowing.h
-      os/macos/windowing_c.h
-      os/macos/window_impl.h
-      os/macos/_.h
-      os/macos/_c.h
-      os/macos/_macos.h
-      os/macos/_mm.h
+      #node/macos/application.h
+           #node/macos/factory_exchange.h
+           #node/macos/file.h
+           #node/macos/stdio_file.h
+           #node/macos/thread.h
+           #node/macos/user.h
+           #node/macos/_.h
+           #node/macos/_macos.h
+           #node/macos/_mm.h
+           #os/macos/cross_win_gdi.h
+           #os/macos/exception_engine.h
+           #os/macos/file.h
+           #os/macos/graphics_mm.h
+           #os/macos/internal.h
+           #os/macos/macos.h
+           #os/macos/main.h
+           #os/macos/mmos.h
+           #os/macos/mm_oswindow.h
+           #os/macos/os.h
+           #os/macos/process_c.h
+           #os/macos/user.h
+           #os/macos/windowing.h
+           #os/macos/windowing_c.h
+           #os/macos/window_impl.h
+           #os/macos/_.h
+           #os/macos/_c.h
+           #os/macos/_macos.h
+           #os/macos/_mm.h
       )
 
 endif ()
@@ -1693,26 +1699,28 @@ if (APPLE)
 
 
    list(APPEND acme_source
-      timer.mm
-      exception/mm.mm
-      os/cross/uwp/cross_metrowin_user.cpp
-      os/cross/uwp/metrowin_user.cpp
-      node/apple/apple_timer.cpp
-      os/apple/_.cpp
-      os/apple/_apple.mm
-      os/apple/DDInvocationGrabber.mm
-      os/apple/debug.cpp
-      os/apple/exe_path.cpp
-      os/apple/graphics.cpp
-      os/apple/image_gif.cpp
-      os/apple/main.cpp
-      os/apple/parallelization.cpp
-      os/apple/ns_exception.cpp
-      os/apple/NSObject+DDExtensions.mm
-      os/apple/NSString+SymlinksAndAliases.mm
-      os/apple/process.cpp
-      os/apple/time.cpp
-      os/apple/UncaughtExceptionHandler.mm)
+           asset/new.cpp
+           #timer.mm
+           #exception/mm.mm
+           #os/cross/uwp/cross_metrowin_user.cpp
+           #os/cross/uwp/metrowin_user.cpp
+           #node/apple/apple_timer.cpp
+           #os/apple/_.cpp
+           #os/apple/_apple.mm
+           #os/apple/DDInvocationGrabber.mm
+           #os/apple/debug.cpp
+           #os/apple/exe_path.cpp
+           #os/apple/graphics.cpp
+           #os/apple/image_gif.cpp
+           #os/apple/main.cpp
+           #os/apple/parallelization.cpp
+           #os/apple/ns_exception.cpp
+           #os/apple/NSObject+DDExtensions.mm
+           #os/apple/NSString+SymlinksAndAliases.mm
+           #os/apple/process.cpp
+           #os/apple/time.cpp
+           #os/apple/UncaughtExceptionHandler.mm
+           )
 endif ()
 
 
@@ -1828,7 +1836,7 @@ if (LINUX)
 endif ()
 
 
-add_library(acme SHARED ${acme_source} ../scripting/_scripting.h)
+add_library(acme SHARED ${acme_source})
 
 
 target_precompile_headers(acme PRIVATE framework.h)
@@ -1857,6 +1865,13 @@ elseif (LINUX)
    target_link_libraries(acme PRIVATE z dl idn pthread ${PKGCONFIG_LIBRARIES})
    target_link_options(acme PRIVATE -Wl,-z,defs)
    message("PKGCONFIG_LIBRARIES is " ${PKGCONFIG_LIBRARIES})
+
+
+elseif (MACOS)
+
+
+    target_link_libraries(acme PRIVATE z iconv idn ${COCOA} ${IOKIT})
+
 
 
 endif ()

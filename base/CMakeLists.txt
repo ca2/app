@@ -254,10 +254,10 @@ if(APPLE)
 
     list(APPEND base_source
 
-            user/user/notify_icon.mm
-            user/user/notify_icon_mm.h
-            user/user/notify_icon_mm_bridge.h
-            user/user/notify_icon_mm_bridge.mm
+            #user/user/notify_icon.mm
+            #user/user/notify_icon_mm.h
+            #user/user/notify_icon_mm_bridge.h
+            #user/user/notify_icon_mm_bridge.mm
 
             )
 

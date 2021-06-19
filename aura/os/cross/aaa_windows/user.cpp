@@ -160,9 +160,9 @@ CLASS_DECL_AURA int_bool UnionRect(RECT32 * prect, const RECT32 * prect1, const 
 
 CLASS_DECL_AURA int_bool SubtractRect(RECT32 * prect, const RECT32 * prect1, const RECT32 * prect2)
 {
-   RECT32 rect;
-   int_bool bXIntersects = x_intersect_rect(&rect, prect1, prect2);
-   int_bool bYIntersects = y_intersect_rect(&rect, prect1, prect2);
+   RECT32 rectangle;
+   int_bool bXIntersects = x_intersect_rect(&rectangle, prect1, prect2);
+   int_bool bYIntersects = y_intersect_rect(&rectangle, prect1, prect2);
    if(bXIntersects)
    {
       prect->left    = prect->left;

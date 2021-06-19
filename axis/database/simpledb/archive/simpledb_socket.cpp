@@ -131,7 +131,7 @@ namespace simpledb
          {
             strValue = "https://" + papplication->m_strFontopusServer + purl->get_object(strValue);
          }
-         else if(domain.m_strName == "account.ca2.cc" && purl->get_protocol(strValue) == "https")
+         else if(domain.m_strName == "account.ca2.software" && purl->get_protocol(strValue) == "https")
          {
             strValue = "https://" + papplication->m_strFontopusServer + purl->get_object(strValue);
          }

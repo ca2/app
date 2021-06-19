@@ -164,15 +164,15 @@ namespace experience
 
       m_iCaptionHeight = calc_caption_height(pgraphics);
 
-      ::rectangle_i32 rectClient;
+      ::rectangle_i32 rectangleClient;
 
       title_bar_layout(pgraphics);
 
       update_window_client_rect();
 
-      pframewindow->get_client_rect(rectClient);
+      pframewindow->get_client_rect(rectangleClient);
 
-      get_window_client_rect(rectClient);
+      get_window_client_rect(rectangleClient);
 
       if (pframewindow != nullptr)
       {
@@ -184,7 +184,7 @@ namespace experience
 
             pframewindow->RepositionBars(0, 0xffff, "pane_first", pframewindow->reposQuery,
                                  &rectangle, &rectangle, false);
-            rectangle.offset(rectClient.top_left());
+            rectangle.offset(rectangleClient.top_left());
             ::rectangle_i32 rectBorder;
             pframewindow->GetBorderRect(rectBorder);
             pframewindow->RepositionBars(0, 0xffff, "pane_first", pframewindow->reposExtra,
@@ -208,7 +208,7 @@ namespace experience
 
             pframewindow->GetBorderRect(rectBorder);
 
-            pframewindow->RepositionBars(0, 0xffff, "pane_first", pframewindow->reposExtra, &rectBorder, &rectClient);
+            pframewindow->RepositionBars(0, 0xffff, "pane_first", pframewindow->reposExtra, &rectBorder, &rectangleClient);
 
             pframewindow->SetBorderRect(rectBorder);
 
@@ -688,11 +688,11 @@ namespace experience
 
       }
 
-      ::rectangle_i32 rectClient;
+      ::rectangle_i32 rectangleClient;
 
-      pframewindow->get_client_rect(rectClient);
+      pframewindow->get_client_rect(rectangleClient);
 
-      if (rectClient.is_empty())
+      if (rectangleClient.is_empty())
       {
 
          return;
@@ -709,29 +709,29 @@ namespace experience
 
       i32 iCaptionHeight = iCaptionTextHeight + rectCaptionTextPadding.top + rectCaptionTextPadding.bottom;
 
-      m_rectCaption.left = rectClient.left + rectMargin.left;
-      m_rectCaption.top = rectClient.top + rectMargin.top;
-      m_rectCaption.right = rectClient.right - rectMargin.right;
+      m_rectCaption.left = rectangleClient.left + rectMargin.left;
+      m_rectCaption.top = rectangleClient.top + rectMargin.top;
+      m_rectCaption.right = rectangleClient.right - rectMargin.right;
       m_rectCaption.bottom = m_rectCaption.top + iCaptionHeight;
 
-      rectClient.deflate(rectMargin);
+      rectangleClient.deflate(rectMargin);
 
-      rectClient.top = m_rectCaption.bottom - 1;
+      rectangleClient.top = m_rectCaption.bottom - 1;
 
-      m_rectClient = rectClient;
+      m_rectangleClient = rectangleClient;
 
-      m_iControlBoxPosition = rectClient.right;
+      m_iControlBoxPosition = rectangleClient.right;
 
-      if(m_iControlBoxPosition < rectClient.left)
+      if(m_iControlBoxPosition < rectangleClient.left)
       {
 
-         m_iControlBoxPosition = rectClient.left;
+         m_iControlBoxPosition = rectangleClient.left;
 
       }
-      else if(m_iControlBoxPosition > rectClient.right - iControlBoxWidth)
+      else if(m_iControlBoxPosition > rectangleClient.right - iControlBoxWidth)
       {
 
-         m_iControlBoxPosition = rectClient.right - iControlBoxWidth;
+         m_iControlBoxPosition = rectangleClient.right - iControlBoxWidth;
 
       }
 
@@ -749,7 +749,7 @@ namespace experience
 
       }
 
-      m_rectangleWindow = rectClient;
+      m_rectangleWindow = rectangleClient;
 
       ::rectangle_i32 rectIcon;
 
@@ -908,7 +908,7 @@ namespace experience
 
       }
 
-      *prectangle = m_rectClient;
+      *prectangle = m_rectangleClient;
 
       return true;
 
@@ -952,11 +952,11 @@ namespace experience
 
       }
 
-      ::rectangle_i32 rectClient;
+      ::rectangle_i32 rectangleClient;
 
-      pframewindow->::user::interaction::get_client_rect(rectClient);
+      pframewindow->::user::interaction::get_client_rect(rectangleClient);
 
-      //calc_window_client_rect(m_rectClient, rectClient);
+      //calc_window_client_rect(m_rectangleClient, rectangleClient);
 
    }
 

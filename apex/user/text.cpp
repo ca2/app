@@ -8,8 +8,6 @@ namespace user
    text::text()
    {
 
-      m_ppropertyText = nullptr;
-
    }
 
 

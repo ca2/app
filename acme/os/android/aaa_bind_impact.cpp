@@ -249,14 +249,14 @@
 //
 //   set_context(env);
 //
-//   ::rect rect;
+//   ::rectangle rectangle;
 //
-//   rect.left = 0;
-//   rect.top = 0;
-//   rect.right = g_posremote->getWidth();
-//   rect.bottom = g_posremote->getHeight();
+//   rectangle.left = 0;
+//   rectangle.top = 0;
+//   rectangle.right = g_posremote->getWidth();
+//   rectangle.bottom = g_posremote->getHeight();
 //
-//   SetMainScreenRect(rect);
+//   SetMainScreenRect(rectangle);
 //
 //   ::point p;
 //

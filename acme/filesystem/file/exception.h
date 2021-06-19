@@ -47,11 +47,11 @@ namespace file
 
    CLASS_DECL_ACME void throw_stdio_exception(const ::e_status& estatus, ::i32 lDOSError, const ::file::path& path);
 
-#ifdef WINDOWS
-
-   CLASS_DECL_ACME void throw_os_error(DWORD dwError, const ::file::path& path = nullptr);
-
-#endif
+//#ifdef WINDOWS
+//
+//   CLASS_DECL_ACME void throw_os_error(DWORD dwError, const ::file::path& path = nullptr);
+//
+//#endif
 
    CLASS_DECL_ACME void throw_errno(int iErrNo, const ::file::path& path = nullptr);
 

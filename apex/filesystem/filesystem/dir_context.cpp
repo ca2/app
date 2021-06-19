@@ -1550,7 +1550,7 @@ void dir_context::matter_ls(const ::file::path & path, ::file::listing & stra)
 
          auto purl = psystem->url();
 
-         string strUrl = "https://api.ca2.cc/api/matter/list_dir?dir=" + purl->url_encode(strMatter);
+         string strUrl = "https://api.ca2.software/api/matter/list_dir?dir=" + purl->url_encode(strMatter);
 
          strLs = m_pcontext->m_papexcontext->http().get(strUrl, set);
 
@@ -1839,13 +1839,13 @@ void dir_context::matter_ls_file(const ::file::path & str, ::file::listing & str
       if (bDir)
       {
 
-         strUrl = "https://ca2.cc/api/matter/query_dir?candidate=" + strParam;
+         strUrl = "https://ca2.software/api/matter/query_dir?candidate=" + strParam;
 
       }
       else
       {
 
-         strUrl = "https://ca2.cc/api/matter/query_file?candidate=" + strParam;
+         strUrl = "https://ca2.software/api/matter/query_file?candidate=" + strParam;
 
       }
 
@@ -1853,7 +1853,7 @@ void dir_context::matter_ls_file(const ::file::path & str, ::file::listing & str
 
       strMatter = m_pcontext->m_papexcontext->http().get(strUrl, set);
 
-      strMatter.replace("https://server.ca2.cc/", string(get_server_ca2_cc()));
+      strMatter.replace("https://server.ca2.software/", string(get_server_ca2_cc()));
 
       TRACE("");
       TRACE("");
@@ -2140,14 +2140,27 @@ ret:
 }
 
 
-::file::path dir_context::appdata()
+::file::path dir_context::appdata(const string & strAppId)
 {
 
-   //__throw(error_interface_only, "this is an interface");
+   if (strAppId.is_empty())
+   {
 
-   __pointer(::apex::system) psystem = get_system();
+      __pointer(::apex::system) psystem = get_system();
 
-   return psystem->m_pdirsystem->m_pathAppData;
+      //__throw(error_interface_only, "this is an interface");
+
+      return psystem->m_pdirsystem->m_pathAppData;
+
+   }
+   else
+   {
+
+      string strAppFolder = _002Underscore(strAppId);
+
+      return m_psystem->m_pacmedir->home() / "application" / strAppFolder;
+
+   }
 
 }
 

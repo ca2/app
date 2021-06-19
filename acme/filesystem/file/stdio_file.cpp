@@ -18,7 +18,7 @@ stdio_file::~stdio_file()
    if(m_pfile != nullptr)
    {
 
-      fclose_dup(m_pfile);
+      FILE_close(m_pfile);
 
    }
 
@@ -89,7 +89,7 @@ stdio_file::~stdio_file()
 
    }
 
-   m_pfile = fopen_dup(pszFileName, str, _SH_DENYNO);
+   m_pfile = FILE_open(pszFileName, str, _SH_DENYNO);
 
    if (m_pfile == nullptr)
    {
@@ -123,7 +123,7 @@ filesize stdio_file::seek(filesize lOff,::file::e_seek eseek)
 
    }
 
-   return fseek_dup(m_pfile,lOff,nFrom);
+   return FILE_seek(m_pfile, lOff, nFrom);
 
 }
 
@@ -131,7 +131,7 @@ filesize stdio_file::seek(filesize lOff,::file::e_seek eseek)
 filesize stdio_file::get_position() const
 {
 
-   return ftell_dup(m_pfile);
+   return FILE_tell(m_pfile);
 
 }
 
@@ -139,7 +139,7 @@ filesize stdio_file::get_position() const
 void stdio_file::flush()
 {
 
-   fflush_dup(m_pfile);
+   FILE_flush(m_pfile);
 
 }
 
@@ -147,7 +147,7 @@ void stdio_file::flush()
 void stdio_file::close()
 {
 
-   fclose_dup(m_pfile);
+   FILE_close(m_pfile);
 
 }
 
@@ -155,14 +155,14 @@ void stdio_file::close()
 memsize stdio_file::read(void * pdata, memsize nCount)
 {
 
-   auto size = fread_dup(pdata, 1, nCount, m_pfile);
+   auto size = FILE_read(pdata, 1, nCount, m_pfile);
 
-   int iEof = feof(m_pfile);
+   int iEof = FILE_eof(m_pfile);
 
    if (!iEof)
    {
 
-      int iError = ferror(m_pfile);
+      int iError = FILE_error(m_pfile);
 
       if (iError > 0)
       {
@@ -180,11 +180,44 @@ memsize stdio_file::read(void * pdata, memsize nCount)
 }
 
 
+int stdio_file::get_character()
+{
+
+   int iChar = ::FILE_getc(m_pfile);
+
+   return iChar;
+
+}
+
+
+
+int stdio_file::peek_character()
+{
+
+   int iChar = FILE_getc(m_pfile);
+
+   FILE_ungetc(iChar, m_pfile);
+
+   return iChar;
+
+}
+
+
+int stdio_file::put_character_back(int iChar)
+{
+
+   int iCharRet = FILE_ungetc(iChar, m_pfile);
+
+   return iCharRet;
+
+}
+
+
 
 void stdio_file::write(const void * pdata,memsize nCount)
-
 {
-   fwrite_dup(pdata,nCount, 1, m_pfile);
+
+   FILE_write(pdata,nCount, 1, m_pfile);
 
 }
 

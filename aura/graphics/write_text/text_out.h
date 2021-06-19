@@ -12,8 +12,13 @@ namespace write_text
 
 
       point_f64                        m_point;
+      size_f64                         m_size;
 
-      text_out() {  }
+      text_out();
+      ~text_out() override;
+
+
+      virtual bool hit_test(const ::point_f64& point);
 
 
    };

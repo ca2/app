@@ -11,8 +11,21 @@ typedef u32 uptr;
 #elif OSBIT == 64
 
 
+#ifdef __APPLE__
+
+
+typedef long iptr;
+typedef unsigned long uptr;
+
+
+#else
+
+
 typedef i64 iptr;
 typedef u64 uptr;
+
+
+#endif
 
 
 #else

@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #include "acme/primitive/comparison/equals.h"
@@ -2588,7 +2588,14 @@ inline __transport(TYPE) object::__create_new()
    if (p)
    {
 
-      p->initialize(this);
+      auto estatus = p->initialize(this);
+      
+      if(!estatus)
+      {
+         
+         return estatus;
+         
+      }
 
    }
 

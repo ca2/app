@@ -34,7 +34,7 @@
 
                m_colorCaptionText = argb(255, 255, 255, 255);
 
-               m_rectClient = ::rectangle_i32();
+               m_rectangleClient = ::rectangle_i32();
 
                //               m_iMargin = 7;
 
@@ -81,18 +81,18 @@
 
                //class imaging & imaging = psystem->imaging();
 
-               ::rectangle_i32 rectClient(lprect);
+               ::rectangle_i32 rectangleClient(lprect);
 
                ::rectangle_i32 rectInflate;
 
-               if (rectClient.area() <= 0)
+               if (rectangleClient.area() <= 0)
                   return;
 
 
 
                i32 iInflate = 5; // raio 2 pixels + centro 1 pixel
 
-               rectInflate = rectClient;
+               rectInflate = rectangleClient;
                rectInflate.inflate(iInflate, iInflate);
 
                //__pointer(::user::interaction) puserinteractionDesktop = psystem->get_desktop_window();
@@ -105,21 +105,21 @@
 
                ::image_pointer pimage2;
 
-/*               pimage1 = create_image({rectClient.width() + iInflate * 2,  rectClient.height() + iInflate * 2});
+/*               pimage1 = create_image({rectangleClient.width() + iInflate * 2,  rectangleClient.height() + iInflate * 2});
 
-/*               pimage2 = create_image({rectClient.width() + iInflate * 2,  rectClient.height() + iInflate * 2});
-               ::rectangle_i32 rectWindow = rectClient;
+/*               pimage2 = create_image({rectangleClient.width() + iInflate * 2,  rectangleClient.height() + iInflate * 2});
+               ::rectangle_i32 rectWindow = rectangleClient;
                pframewindow->_001ClientToScreen(rectWindow);
-/*               //pimage = create_image({rectClient.width(),  rectClient.height()});
-               //bool b = pimage2->get_graphics()->BitBlt(0, 0, rectClient.width() + iInflate * 2, rectClient.height() + iInflate * 2, pgraphics, rectClient.left - iInflate, rectClient.top - iInflate);
-               pimage2->get_graphics()->BitBlt(0, 0, rectClient.width() + iInflate * 2, rectClient.height() + iInflate * 2, pgraphics, rectClient.left - iInflate, rectClient.top - iInflate);
-               //bool b = ::BitBlt(dc2, 0, 0, rectClient.width() + iInflate * 2, rectClient.height() + iInflate * 2, hdcScreen, rectClient.left - iInflate, rectClient.top - iInflate);
+/*               //pimage = create_image({rectangleClient.width(),  rectangleClient.height()});
+               //bool b = pimage2->get_graphics()->BitBlt(0, 0, rectangleClient.width() + iInflate * 2, rectangleClient.height() + iInflate * 2, pgraphics, rectangleClient.left - iInflate, rectangleClient.top - iInflate);
+               pimage2->get_graphics()->BitBlt(0, 0, rectangleClient.width() + iInflate * 2, rectangleClient.height() + iInflate * 2, pgraphics, rectangleClient.left - iInflate, rectangleClient.top - iInflate);
+               //bool b = ::BitBlt(dc2, 0, 0, rectangleClient.width() + iInflate * 2, rectangleClient.height() + iInflate * 2, hdcScreen, rectangleClient.left - iInflate, rectangleClient.top - iInflate);
 
-               m_blur1.blur(pimage1, 2, ::rectangle_i32(size(rectClient.width() + iInflate * 2, rectClient.height() + iInflate * 2)));
+               m_blur1.blur(pimage1, 2, ::rectangle_i32(size(rectangleClient.width() + iInflate * 2, rectangleClient.height() + iInflate * 2)));
 
-               //spgraphics->Draw3dRect(rectClient, 127 << 24, 127 << 24);
-               //rectClient.deflate(1, 1);
-               //spgraphics->Draw3dRect(rectClient, 64 << 24, 64 << 24);
+               //spgraphics->Draw3dRect(rectangleClient, 127 << 24, 127 << 24);
+               //rectangleClient.deflate(1, 1);
+               //spgraphics->Draw3dRect(rectangleClient, 64 << 24, 64 << 24);
                /*b = imaging.bitmap_blend(pgraphics, lprect->left, lprect->top,
                rectWindow.width(),
                rectWindow.height(),
@@ -140,7 +140,7 @@
                rectWindow.height(),
                bf);*/
 
-               pgraphics->BitBlt(rectClient.left, rectClient.top, rectClient.width(), rectClient.height(), pimage1->g(), iInflate, iInflate);
+               pgraphics->BitBlt(rectangleClient.left, rectangleClient.top, rectangleClient.width(), rectangleClient.height(), pimage1->g(), iInflate, iInflate);
 
             }
 
@@ -664,7 +664,7 @@
 
                   }
 
-                  //class font_department & fonts = pdraw2d->fonts();
+                  //class fonts & fonts = pdraw2d->fonts();
 
                   string wstrWindowText;
 

@@ -261,10 +261,10 @@ namespace draw2d_cairo
 
 
 
-   ::e_char_set font::calc_char_set(::draw2d::graphics * pgraphics)
+   ::enum_character_set font::calculate_character_set(::draw2d::graphics * pgraphics)
    {
 
-      return ::write_text::font::calc_char_set(pgraphics);
+      return ::write_text::font::calculate_character_set(pgraphics);
 
    }
 

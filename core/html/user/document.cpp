@@ -13,15 +13,17 @@ html_document::html_document()
 bool html_document::on_new_document()
 {
 
-   get_html_data()->m_pcoredata->m_pform = get_typed_view < ::html_form >();
+   auto phtmlform = get_typed_view < ::html_form >();
 
-   if (::is_set(get_html_data()->m_pcoredata->m_pform))
+   auto phtmldata = phtmlform->get_html_data();
+
+   if (::is_set(phtmlform) && ::is_set(phtmldata))
    {
 
-      if (get_html_data()->m_pcoredata->m_pform->m_pathDefaultDocument.has_char())
+      if (phtmlform->m_pathDefaultDocument.has_char())
       {
 
-         return on_open_document(get_html_data()->m_pcoredata->m_pform->m_pathDefaultDocument);
+         return phtmldata->open_document(phtmlform->m_pathDefaultDocument);
 
       }
 
@@ -64,39 +66,39 @@ void html_document::dump(dump_context & dumpcontext) const
 
 
 
-::e_status html_document::create_html_data()
-{
-
-   auto estatus = __compose_new(m_phtmldata);
-
-   if (!estatus)
-   {
-
-      return estatus;
-
-   }
-
-   auto pdata = get_html_data();
-
-   pdata->m_pdocument = this;
-
-   pdata->m_pcoredata = new ::html::core_data;
-
-   pdata->m_pcoredata->initialize_html_data(pdata);
-
-   pdata->m_pimplHtml = ::move(pdata->m_pcoredata);
-
-   pdata->::form_data::m_pimpl = pdata->m_pimplHtml;
-
-   set_data("html", pdata);
-
-   pdata->m_pcoredata->m_puserinteraction = get_typed_view < ::user::form_view >();
-
-   pdata->m_pcoredata->m_pcallback = this;
-
-   return ::success;
-
-}
+//::e_status html_document::create_html_data()
+//{
+//
+//   auto estatus = __compose_new(m_phtmldata);
+//
+//   if (!estatus)
+//   {
+//
+//      return estatus;
+//
+//   }
+//
+//   auto pdata = get_html_data();
+//
+//   pdata->m_pdocument = this;
+//
+//   pdata->m_pcoredata = __new(::html::core_data);
+//
+//   pdata->m_pcoredata->initialize_html_data(pdata);
+//
+//   pdata->m_pimplHtml = pdata->m_pcoredata;
+//
+//   pdata->::form_data::m_pimpl = pdata->m_pimplHtml;
+//
+//   set_data("html", pdata);
+//
+//   pdata->m_pcoredata->m_puserinteraction = get_typed_view < ::user::form_view >();
+//
+//   pdata->m_pcoredata->m_pcallback = this;
+//
+//   return ::success;
+//
+//}
 
 
 void html_document::data_on_after_change(::message::message * pmessage)
@@ -201,16 +203,11 @@ bool html_document::on_open_document(const ::payload & varFile)
 
    }
 
-   if (!get_html_data())
-   {
+   auto phtmldata = get_html_data();
 
-      create_html_data();
+   phtmldata->m_pcoredata->m_pform = phtmlform;
 
-   }
-
-   get_html_data()->m_pcoredata->m_pform = phtmlform;
-
-   if (::is_null(get_html_data()->m_pcoredata->m_pform))
+   if (::is_null(phtmldata->m_pcoredata->m_pform))
    {
 
       return false;
@@ -231,16 +228,14 @@ bool html_document::on_open_document(const ::payload & varFile)
 
    }
 
-
-
-   if(!get_html_data()->open_document(varFile))
+   if(!phtmldata->open_document(varFile))
    {
 
       return false;
 
    }
 
-   set_path_name(get_html_data()->m_pcoredata->m_strPathName);
+   set_path_name(phtmldata->m_pcoredata->m_strPathName);
 
    auto psubject = fork_subject(id_document_complete);
 
@@ -302,7 +297,25 @@ void html_document::soft_reload()
 ::html_data * html_document::get_html_data()
 {
 
-   return m_phtmldata;
+   auto phtmlform = get_typed_view < ::html_form >();
+
+   if (::is_null(phtmlform))
+   {
+
+      return nullptr;
+
+   }
+
+   auto phtmldata = phtmlform->get_html_data();
+
+   if (::is_null(phtmldata))
+   {
+
+      return nullptr;
+
+   }
+
+   return phtmldata;
 
    //auto pdata = m_datamap.get < ::html_data >();
 
@@ -315,6 +328,25 @@ void html_document::soft_reload()
 
 
 }
+
+
+//
+//::html_data * html_document::get_html_data()
+//{
+//
+//   return m_phtmldata;
+//
+//   //auto pdata = m_datamap.get < ::html_data >();
+//
+//   //if (pdata.is_set())
+//   //{
+//
+//   //   return pdata;
+//
+//   //}
+//
+//
+//}
 
 
 void html_document::on_command_probe(::message::command * pcommand)

@@ -321,13 +321,13 @@ namespace console
 
       bool bCaretOn = m_millisCaretStart.on_off(m_millisCaretPeriod);
 
-      auto rectClient = get_client_rect();
+      auto rectangleClient = get_client_rect();
 
-      m_sizeChar = pgraphics.GetTextExtent("M");
+      m_sizeChar = pgraphics.get_text_extent("M");
       
-      m_sizeChar = m_sizeChar.maximum(pgraphics.GetTextExtent("p"));
+      m_sizeChar = m_sizeChar.maximum(pgraphics.get_text_extent("p"));
 
-      pgraphics->fill_rectangle(rectClient,argb(dwAlpha,0,0,0));
+      pgraphics->fill_rectangle(rectangleClient,argb(dwAlpha,0,0,0));
 
       pgraphics->set_text_color(crTopic);
 

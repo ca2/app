@@ -144,9 +144,9 @@ namespace experience
 
       //get_parent()->get_client_rect(rectParent);
 
-      //::rectangle_i32 rectClient;
+      //::rectangle_i32 rectangleClient;
 
-      //get_client_rect(rectClient);
+      //get_client_rect(rectangleClient);
 
       //::rectangle_i32 rectWindow;
 
@@ -584,11 +584,11 @@ namespace experience
 
       reset_layout(pgraphics);
 
-      ::rectangle_i32 rectClient;
+      ::rectangle_i32 rectangleClient;
 
-      get_client_rect(rectClient);
+      get_client_rect(rectangleClient);
 
-      int iWidth = rectClient.width();
+      int iWidth = rectangleClient.width();
 
 
       rectangle.left = iWidth;
@@ -664,6 +664,8 @@ namespace experience
       pbutton->m_pcontrolbox = this;
 
       pbutton->m_ebutton = ebutton;
+
+      pbutton->add_control_event_handler(m_pframewindow);
 
       // if(ebutton == e_button_dock)
       // {
@@ -1118,11 +1120,11 @@ namespace experience
    void control_box::_001OnSize(::message::message * pmessage)
    {
 
-      ::rectangle_i32 rectClient;
+      ::rectangle_i32 rectangleClient;
 
-      get_client_rect(rectClient);
+      get_client_rect(rectangleClient);
 
-      output_debug_string("rectClient");
+      output_debug_string("rectangleClient");
 
    }
 
@@ -1154,21 +1156,21 @@ namespace experience
 
          ::aura::draw_context * pdrawcontext = pgraphics->::aura::simple_chain < ::aura::draw_context >::get_last();
 
-         ::rectangle_i32 rectClient;
+         ::rectangle_i32 rectangleClient;
 
          bool bFirst = true;
 
          if (pdrawcontext != nullptr)
          {
 
-            rectClient = pdrawcontext->m_rectangleWindow;
+            rectangleClient = pdrawcontext->m_rectangleWindow;
 
-            _001ScreenToClient(rectClient);
+            _001ScreenToClient(rectangleClient);
 
-            rectClient.bottom++;
-            rectClient.right++;
+            rectangleClient.bottom++;
+            rectangleClient.right++;
 
-            rectClip = rectClient;
+            rectClip = rectangleClient;
 
             bFirst = false;
 

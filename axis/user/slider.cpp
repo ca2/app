@@ -211,13 +211,13 @@ namespace user
 
       }
 
-      ::rectangle_i32 rectClient;
+      ::rectangle_i32 rectangleClient;
 
-      get_client_rect(rectClient);
+      get_client_rect(rectangleClient);
 
       byte bAlpha1 = (byte) (128.0* get_alpha());
 
-      pgraphics->color_blend(rectClient, rgb(250,255,255), bAlpha1);
+      pgraphics->fill_rectangle(rectangleClient, argb(bAlpha1, 250,255,255));
 
       ::rectangle_i32 rectangle;
 
@@ -245,16 +245,16 @@ namespace user
    void slider::get_slider_rect(::rectangle_i32 & rectangle)
    {
 
-      ::rectangle_i32 rectClient;
+      ::rectangle_i32 rectangleClient;
 
-      get_client_rect(rectClient);
+      get_client_rect(rectangleClient);
 
       i32 iWidth = 16;
 
-      rectangle.top = rectClient.top;
-      rectangle.bottom = rectClient.bottom;
-      rectangle.left = (::i32)minimum(rectClient.right,m_dRate * (rectClient.width() - iWidth));
-      rectangle.right = (::i32)minimum(rectClient.right,m_dRate * ((rectClient.width() - iWidth)) + iWidth);
+      rectangle.top = rectangleClient.top;
+      rectangle.bottom = rectangleClient.bottom;
+      rectangle.left = (::i32)minimum(rectangleClient.right,m_dRate * (rectangleClient.width() - iWidth));
+      rectangle.right = (::i32)minimum(rectangleClient.right,m_dRate * ((rectangleClient.width() - iWidth)) + iWidth);
 
 
    }

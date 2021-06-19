@@ -1,6 +1,51 @@
 #include "framework.h"
 
 
+template < typename PREDICATE >
+class subject_delivery_receiver :
+   virtual public ::matter
+{
+public:
+
+
+   PREDICATE m_predicate;
+
+
+   subject_delivery_receiver(PREDICATE predicate) : m_predicate(predicate) { }
+   virtual ~subject_delivery_receiver() {}
+   //method(const ::matter_pointer & pmatter) : matter_pointer(pmatter) { }
+   //method(const ::method & method) : matter_pointer(method) { }
+
+
+   //inline ::e_status operator()() const;
+
+   void on_subject(::subject::subject*psubject, ::subject::context*pcontext) override
+   {
+
+      m_predicate(psubject, pcontext);
+
+   }
+
+   //template < typename PRED >
+   //void pred(PRED pred);
+
+   //inline method & operator = (const ::method & method) { m_pmatter = method.m_pmatter; return *this; }
+   //method & operator = (const ::payload & payload);
+
+
+};
+
+
+template < typename PREDICATE >
+::matter_pointer __subject_delivery_receiver(PREDICATE predicate)
+{
+
+   return __new(subject_delivery_receiver<PREDICATE>(predicate));
+
+}
+
+
+
 namespace database
 {
 
@@ -18,27 +63,40 @@ namespace database
 
       ::id id(idParam);
 
-      auto pproperty = fetch_property(id);
+      auto linkedproperty = fetch_property(id);
 
       ::payload payload;
 
       if(data_get(id, payload))
       {
 
-         pproperty->convert(payload);
+         linkedproperty->convert(payload);
 
       }
 
-      auto idProcedure = translate_property_id(id);
+      //auto idProcedure = translate_property_id(id);
 
-      ::add_routine(get_application()->m_routinemap[idProcedure], [this, id]()
+      //auto linkedproperty = fetch_property(id);
+
+      auto psubject = get_application()->subject(linkedproperty->m_id);
+
+      psubject->add(__subject_delivery_receiver([this, id, linkedproperty](::subject::subject * psubject, ::subject::context * pcontext)
+
+      //connect(id, [id, linkedproperty](::message::message* pmessage)
          {
 
-            auto pproperty = fetch_property(id);
+            data_set(id, (const ::payload&)*linkedproperty.m_pproperty);
 
-            data_set(id, (const ::payload &) *pproperty);
+         }));
 
-         });
+      //::add_routine(get_application()->m_routinemap[idProcedure], [this, id]()
+      //   {
+
+      //      auto pproperty = fetch_property(id);
+
+      //      data_set(id, (const ::payload &) *pproperty);
+
+      //   });
 
    }
 

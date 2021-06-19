@@ -434,6 +434,7 @@ inline operator ::e ## ENUMTYPE() const { return e ## ENUMTYPE(); }
 
 #if defined(__APPLE__) || defined(ANDROID) || defined(RASPBIAN) || defined(WINDOWS)
    operator long() const;
+   operator unsigned long() const;
 #endif
    operator ::i8() const;
    operator ::u8() const;
@@ -473,6 +474,10 @@ inline operator ::e ## ENUMTYPE() const { return e ## ENUMTYPE(); }
 
 
    inline operator bool &();
+#if defined(__APPLE__) || defined(ANDROID) || defined(RASPBIAN) || defined(WINDOWS)
+   operator long &();
+   operator unsigned long & ();
+#endif
    inline operator ::i8 & ();
    inline operator ::u8 & ();
    inline operator ::i16 & () ;
@@ -1002,6 +1007,7 @@ inline bool payload::get_bool(bool bDefault) const
 }
 
 
+<<<<<<< HEAD
 #if defined(__APPLE__) || defined(ANDROID) || defined(RASPBIAN) || defined(WINDOWS)
 
 
@@ -1026,6 +1032,10 @@ inline payload::operator unsigned long &()
 
 
 #endif
+=======
+
+
+>>>>>>> origin/basis
 
 
 // returns 0 for unknown conversions
@@ -1067,6 +1077,7 @@ inline payload::operator ::u32() const
    return u32();
 }
 
+
 // returns 0 for unknown conversions
 inline payload::operator ::i64() const
 {
@@ -1078,6 +1089,9 @@ inline payload::operator ::u64() const
 {
    return u64();
 }
+
+
+
 
 
 // returns 0.0 for unknown conversions?
@@ -1189,6 +1203,19 @@ inline payload::operator long() const
    return i64();
 
 }
+
+
+
+// returns 0 for unknown conversions
+inline payload::operator unsigned long() const
+{
+#if LONG_IS_32BIT
+   return u32();
+#else
+   return u64();
+#endif
+}
+
 
 #elif defined(ANDROID)
 

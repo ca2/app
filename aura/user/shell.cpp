@@ -846,7 +846,7 @@ namespace user
 
          auto pimage = m_pil[iSize]->get_image(iImage);
          
-         pimage->g()->color_blend(pimage->rectangle(), rgb(255, 255, 240), 64);
+         pimage->g()->fill_rectangle(pimage->rectangle(), ::color::color(255, 255, 240, 64));
 
          m_pilHover[iSize]->add_image(pimage, 0, 0, iImage);
 

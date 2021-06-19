@@ -3038,11 +3038,11 @@ namespace user
 
       auto pstyle = get_style(pgraphics);
 
-      ::rectangle_i32 rectClient;
+      ::rectangle_i32 rectangleClient;
 
-      get_window_rect(rectClient);
+      get_window_rect(rectangleClient);
 
-      rectClient -= rectClient.top_left();
+      rectangleClient -= rectangleClient.top_left();
 
       if(pstyle)
       {

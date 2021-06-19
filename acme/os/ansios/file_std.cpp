@@ -3,12 +3,7 @@
 #include <stdio.h>
 
 
-
-
-
-
-
-FILE *fopen_dup(const char *path, const char *attr, int iShare)
+FILE * FILE_open(const char *path, const char *attr, int iShare)
 {
 
 #if defined(WINDOWS)
@@ -28,46 +23,47 @@ FILE *fopen_dup(const char *path, const char *attr, int iShare)
 }
 
 
-
-i32 fclose_dup(FILE *fp)
+i32 FILE_close(FILE *fp)
 {
-
 
    return fclose(fp);
+
 }
 
-i32 feof_dup(FILE *fp)
-{
 
+i32 FILE_eof(FILE *fp)
+{
 
    return feof(fp);
 
-
 }
 
-i32 fflush_dup(FILE * fp)
+
+i32 FILE_flush(FILE * fp)
 {
 
    return fflush(fp);
 
 }
 
-filesize fseek_dup(FILE *fp, filesize offset, i32 origin)
+
+filesize FILE_seek(FILE *fp, filesize offset, i32 origin)
 {
 
    return fseek(fp, (long) (offset), origin);
 
 }
 
-filesize ftell_dup(FILE *fp)
+
+filesize FILE_tell(FILE *fp)
 {
 
-
    return ftell(fp);
+
 }
 
 
-filesize fread_dup(void *buffer, memsize size, memsize count, FILE *str)
+filesize FILE_read(void *buffer, memsize size, memsize count, FILE *str)
 {
 
    return fread(buffer, (size_t) size, (size_t) count, str);
@@ -75,7 +71,7 @@ filesize fread_dup(void *buffer, memsize size, memsize count, FILE *str)
 }
 
 
-filesize fwrite_dup(const void *buffer, memsize size, memsize count, FILE *str)
+filesize FILE_write(const void *buffer, memsize size, memsize count, FILE *str)
 {
 
    return fwrite(buffer, (size_t) size, (size_t) count, str);
@@ -83,7 +79,7 @@ filesize fwrite_dup(const void *buffer, memsize size, memsize count, FILE *str)
 }
 
 
-char * fgets_dup(char * str, strsize n, FILE *s)
+char * FILE_gets(char * str, strsize n, FILE *s)
 {
 
    return fgets(str, (int) n, s);
@@ -91,10 +87,12 @@ char * fgets_dup(char * str, strsize n, FILE *s)
 }
 
 
-i32 fgetc_dup(FILE * s)
+i32 FILE_getc(FILE * s)
 {
 
-   if (s == 0 || feof_dup(s))
+   return ::getc(s);
+
+   /*if (s == 0 || FILE_eof(s))
    {
 
       return EOF;
@@ -103,29 +101,32 @@ i32 fgetc_dup(FILE * s)
 
    uchar c;
 
-   fread_dup(&c, 1, sizeof(uchar), s);
+   FILE_read(&c, 1, sizeof(uchar), s);
 
-   return (i32)c;
+   return (i32)c;*/
 }
 
 
-i32 ungetc_dup(i32 c, FILE *s)
+i32 FILE_ungetc(i32 c, FILE *s)
 {
 
-   if (s == 0)
-   {
+   return ::ungetc(c, s);
 
-      return EOF;
+   //if (s == 0)
+   //{
 
-   }
+   //   return EOF;
 
-   fseek_dup(s, -1, SEEK_CUR);
+   //}
 
-   return (i32)c;
+   //FILE_seek(s, -1, SEEK_CUR);
+
+   //return (i32)c;
+
 }
 
 
-i32 ferror_dup(FILE *fp)
+i32 FILE_error(FILE *fp)
 {
 
    return ferror(fp);

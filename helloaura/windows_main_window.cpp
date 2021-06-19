@@ -187,7 +187,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, const ::id & id, WPARAM wParam, LPARAM lPara
 /*      if (pimage->is_set() && pimage->m_pcolorref != nullptr)
       {
 
-/*         pimage->get_graphics()->FillSolidRect(prender->m_rectClient, argb(255, 255, 255, 255));
+/*         pimage->get_graphics()->FillSolidRect(prender->m_rectangleClient, argb(255, 255, 255, 255));
 
 /*         prender->_006OnDraw(pimage->get_graphics());
 
@@ -204,14 +204,14 @@ LRESULT CALLBACK WndProc(HWND hWnd, const ::id & id, WPARAM wParam, LPARAM lPara
    case e_message_size:
    {
 
-      ::get_client_rect(hWnd, prender->m_rectClient);
+      ::get_client_rect(hWnd, prender->m_rectangleClient);
 
       prender->m_pimageWindow->alloc(prender->create_new, this);
 
       if (prender->m_pimageWindow->is_set())
       {
 
-/*         prender->m_pimageWindow = create_image(prender->m_rectClient->size());
+/*         prender->m_pimageWindow = create_image(prender->m_rectangleClient->size());
 
       }
 

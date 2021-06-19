@@ -10,6 +10,7 @@ namespace html
    class form;
    class box;
    class element;
+   class data;
 
 }
 

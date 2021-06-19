@@ -53,13 +53,13 @@ namespace http
 
       string strServer = purl->get_root(pszUrl);
 
-      if (strServer == "server.ca2.cc")
+      if (strServer == "server.ca2.software")
       {
 
          set["raw_http"] = true;
 
       }
-      else if (!strServer.ends_ci("ca2.cc") && strServer != "ca2.cc")
+      else if (!strServer.ends_ci("ca2.software") && strServer != "ca2.software")
       {
 
          set["raw_http"] = true;
@@ -96,7 +96,7 @@ namespace http
    string context::api_get(const char * pszUrl, property_set & set)
    {
 
-      ::file::path url("https://api.ca2.cc/");
+      ::file::path url("https://api.ca2.software/");
 
       url /= pszUrl;
 
@@ -583,12 +583,12 @@ namespace http
 
       string_array straRequestingServer;
 
-      straRequestingServer.add("ca2.cc");
+      straRequestingServer.add("ca2.software");
 
       if (!straRequestingServer.contains_ci(strHost))
       {
 
-         strHost = "ca2.cc";
+         strHost = "ca2.software";
 
       }
 

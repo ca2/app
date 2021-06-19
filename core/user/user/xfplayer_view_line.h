@@ -63,7 +63,7 @@ public:
    ::write_text::font_pointer                    m_fontLink;
    color32_t                         m_cr;
    color32_t                         m_colorOutline;
-   ::rectangle_i32                           m_rectClient;
+   ::rectangle_i32                           m_rectangleClient;
    double                           m_floatRateX;
    //LOGFONTW                          m_logfont;
 
@@ -97,10 +97,10 @@ public:
    color32_t                         m_colorLyricRight;
 
    xfplayer_view_line();
-   xfplayer_view_line(const xfplayer_view_line & line);
-   xfplayer_view_line(xfplayer_view_linea * pContainer);
+   //xfplayer_view_line(const xfplayer_view_line & line);
    virtual ~xfplayer_view_line();
 
+   virtual ::e_status initialize_xfplayer_view_line(xfplayer_view_linea * pContainer);
 
    void set_blend(double d);
    ::write_text::font * GetFont();

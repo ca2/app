@@ -2318,9 +2318,9 @@ namespace ios
    void interaction_impl::_001DeferPaintLayeredWindowBackground(HDC hdc)
    {
 
-//      ::rectangle_i32 rectClient;
+//      ::rectangle_i32 rectangleClient;
 //
-//      get_client_rect(rectClient);
+//      get_client_rect(rectangleClient);
 //
 //      ::rectangle_i32 rectUpdate;
 //      
@@ -3242,13 +3242,13 @@ namespace ios
       {
          oswindow = (::oswindow) get_handle();
       }
-      ::rectangle_i32 rectClient;
-      //oswindow.get_client_rect(rectClient);
-      rectClient.left = 0;
-      rectClient.top = 0;
-      rectClient.right = 500;
-      rectClient.bottom = 500;
-      //      (dynamic_cast < ::draw2d_quartz2d::graphics * >(g.m_p))->attach(cairo_create(cairo_xlib_surface_create(oswindow.display(), oswindow.user::interaction(), DefaultVisual(oswindow.display(), 0), rectClient.width(), rectClient.height())));
+      ::rectangle_i32 rectangleClient;
+      //oswindow.get_client_rect(rectangleClient);
+      rectangleClient.left = 0;
+      rectangleClient.top = 0;
+      rectangleClient.right = 500;
+      rectangleClient.bottom = 500;
+      //      (dynamic_cast < ::draw2d_quartz2d::graphics * >(g.m_p))->attach(cairo_create(cairo_xlib_surface_create(oswindow.display(), oswindow.user::interaction(), DefaultVisual(oswindow.display(), 0), rectangleClient.width(), rectangleClient.height())));
       return g.detach();
    }
 

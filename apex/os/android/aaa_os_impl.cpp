@@ -196,16 +196,16 @@ void android_apex_main()
 
    }
 
-   ::rect rect;
+   ::rectangle rectangle;
 
-   rect.left = 0;
-   rect.top = 0;
-   rect.right = premote->getWidth();
-   rect.bottom = premote->getHeight();
+   rectangle.left = 0;
+   rectangle.top = 0;
+   rectangle.right = premote->getWidth();
+   rectangle.bottom = premote->getHeight();
 
-   ::apex::get_system()->get_session()->defer_initialize_host_window(rect);
+   ::apex::get_system()->get_session()->defer_initialize_host_window(rectangle);
 
-   SetMainScreenRect(rect);
+   SetMainScreenRect(rectangle);
 
 }
 

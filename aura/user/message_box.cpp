@@ -300,7 +300,7 @@ namespace user
 
       ::draw2d::graphics_pointer pgraphics;
 
-      pgraphics.create();
+      pgraphics.create(this);
 
       pgraphics->create_memory_graphics();
 

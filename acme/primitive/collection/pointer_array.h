@@ -155,7 +155,7 @@ public:
    inline ::index add_item(T * p OBJ_REF_DBG_COMMA_PARAMS)
    {
 
-      ::index nIndex = (::index_cast) __count(this->m_nSize);
+      ::index nIndex = this->m_nSize;
 
       this->allocate(nIndex + 1);
 
@@ -284,7 +284,7 @@ public:
       for(::index i = iStart; i <= inCountLastOut; i++)
       {
 
-         auto& pointer = this->operator[]((iptr_cast)i);
+         auto& pointer = this->operator[](i);
 
          if (pointer && pointer.m_p == p)
          {

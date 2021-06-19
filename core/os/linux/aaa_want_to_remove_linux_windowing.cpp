@@ -657,27 +657,27 @@ int_bool is_window_occluded(oswindow oswindow)
 
    }
 
-   ::rect rect;
+   ::rectangle rectangle;
 
-   x11_get_window_rect(display, oswindow->window(), rect);
+   x11_get_window_rect(display, oswindow->window(), rectangle);
 
    //r = oswindow->m_pimpl->m_puserinteraction->get_window_rect();
 
    string strTopic = x11_get_name(display, oswindow->window());
 
-   ::rect rectTest;
+   ::rectangle rectTest;
 
    for(iFind++; iFind < windowa.get_size(); iFind++)
    {
 
       string strItem = x11_get_name(display, windowa[iFind]);
 
-      ::rect rectHigher;
+      ::rectangle rectHigher;
 
       if(x11_get_window_rect(display, windowa[iFind], rectHigher))
       {
 
-         if(rectTest.intersect(rectHigher, rect))
+         if(rectTest.intersect(rectHigher, rectangle))
          {
 
             return true;
@@ -1330,7 +1330,7 @@ void message_box_paint(::draw2d::graphics_pointer & pgraphics, string_array & st
 
    synchronous_lock synchronouslock(g_pmutexX);
 
-   pgraphics->fill_rectangle(::rect(*psize), rgb(84, 90, 80));
+   pgraphics->fill_rectangle(::rectangle(*psize), rgb(84, 90, 80));
 
    draw2d::brush_pointer pen(e_create_new, pgraphics);
 
@@ -3443,11 +3443,11 @@ int_bool GetCursorPos(POINT32 * ppointCursor)
 
 
 
-void wm_full_screen(oswindow w, const ::rect & rect)
+void wm_full_screen(oswindow w, const ::rectangle & rectangle)
 
 {
 
-   w->full_screen(rect);
+   w->full_screen(rectangle);
 
 
 }

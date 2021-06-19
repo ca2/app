@@ -37,6 +37,8 @@ DECLARE_ENUMERATION(e_draw_text, enum_draw_text);
 
 #include "text_out.h"
 
+#include "text_out_array.h"
+
 #include "draw_text.h"
 
 
@@ -75,19 +77,17 @@ inline ___shape* __new_shape(const ::write_text::draw_text& drawtext)
 
 #include "font.h"
 
-//#include "text_box.h"
-
 #include "font_enumeration.h"
 
-#include "font_department.h"
+#include "fonts.h"
 
-//#include "aura/user/item.h"
+#include "text_box.h"
 
-//#include "font_list.h"
+#include "font_list_item.h"
+
+#include "font_list_data.h"
 
 #include "write_text.h"
-
-
 
 
 

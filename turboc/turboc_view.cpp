@@ -181,11 +181,11 @@ namespace turboc
 /*   void view::_006OnDraw(::image * pimage)
    {
 
-      ::rectangle_i32 rectClient;
+      ::rectangle_i32 rectangleClient;
 
-      GetClientRect(rectClient);
+      GetClientRect(rectangleClient);
 
-/*      pgraphics->BitBlt(rectClient,papplication->m_pcontext->m_pimage->g());
+/*      pgraphics->BitBlt(rectangleClient,papplication->m_pcontext->m_pimage->g());
 
 
       if(papplication->m_etype == application::type_mili)
@@ -207,7 +207,7 @@ namespace turboc
 
             pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
-            ::size_i32 size = pgraphics->GetTextExtent(strHelloMultiverse);
+            ::size_i32 size = pgraphics->get_text_extent(strHelloMultiverse);
 
             double ratey = fHeight * 0.84 / size.cy;
 
@@ -221,7 +221,7 @@ namespace turboc
 
             //pgraphics->set_font(m_font);
 
-            //size = pgraphics->GetTextExtent(strHelloMultiverse);
+            //size = pgraphics->get_text_extent(strHelloMultiverse);
 
             //::draw2d::path_pointer path(this_create);
 
@@ -260,7 +260,7 @@ namespace turboc
 
          pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
-         ::size_i32 size = pgraphics->GetTextExtent(strHelloMultiverse);
+         ::size_i32 size = pgraphics->get_text_extent(strHelloMultiverse);
 
          pgraphics->text_out((m_cx - size.cx) / 2,(m_cy - size.cy) / 2,strHelloMultiverse);
 
@@ -345,11 +345,11 @@ namespace turboc
 
          byte uchAlpha = maximum(0,minimum(255,(m_millisLastOk.elapsed()) * 255 / m_millisAnime));
 
-         ::rectangle_i32 rectClient;
+         ::rectangle_i32 rectangleClient;
 
-         GetClientRect(rectClient);
+         GetClientRect(rectangleClient);
 
-         //pgraphics->FillSolidRect(rectClient,0);
+         //pgraphics->FillSolidRect(rectangleClient,0);
 
 /*         pdraw2d->imaging().bitmap_blend(pgraphics,::point_i32(),pimage->get_size(),pimage->g(),::point_i32(),uchAlpha);
 
@@ -373,14 +373,14 @@ namespace turboc
    void view::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::rectangle_i32 rectClient;
+      ::rectangle_i32 rectangleClient;
 
-      GetClientRect(rectClient);
+      GetClientRect(rectangleClient);
 
-      if(rectClient.area() <= 0)
+      if(rectangleClient.area() <= 0)
          return;
 
-/*      m_pimagePost = create_image(rectClient->size());
+/*      m_pimagePost = create_image(rectangleClient->size());
 
       m_pimagePost->Fill(0,0,0,0);
 
@@ -431,7 +431,7 @@ namespace turboc
 
       pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
-      ::size_i32 size = pgraphics->GetTextExtent(strHelloMultiverse);
+      ::size_i32 size = pgraphics->get_text_extent(strHelloMultiverse);
 
       double ratey = fHeight * 0.84 / size.cy;
 
@@ -445,7 +445,7 @@ namespace turboc
 
       pgraphics->set_font(m_font);
 
-      size = pgraphics->GetTextExtent(strHelloMultiverse);
+      size = pgraphics->get_text_extent(strHelloMultiverse);
 
       ::draw2d::path_pointer path(this_create);
 
@@ -744,16 +744,16 @@ namespace turboc
    void view::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::rectangle_i32 rectClient;
+      ::rectangle_i32 rectangleClient;
 
-      GetClientRect(rectClient);
+      GetClientRect(rectangleClient);
 
-      if(rectClient.area() <= 0)
+      if(rectangleClient.area() <= 0)
          return;
 
-      m_cx = rectClient.width();
+      m_cx = rectangleClient.width();
 
-      m_cy = rectClient.height();
+      m_cy = rectangleClient.height();
 
       ::draw2d::graphics_pointer g(this_create);
 

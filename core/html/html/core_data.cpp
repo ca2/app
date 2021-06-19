@@ -35,8 +35,6 @@ namespace html
       defer_create_mutex();
 
       m_pcoredata = this;
-
-      ///m_pelement->m_pdata = this;
       m_pcookies = nullptr;
       m_bEdit = false;
       m_puserinteraction = nullptr;
@@ -328,9 +326,11 @@ namespace html
       }
 
       MESSAGE_LINK(e_message_key_down, m_puserinteraction, this, &core_data::_001OnKeyDown);
-
+      
       m_bImplemented = true;
-
+      
+      m_pform->on_form_implemented();
+      
    }
 
 

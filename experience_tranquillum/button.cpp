@@ -46,11 +46,11 @@ namespace experience
 
          }
 
-         ::rectangle_i32 rectClient;
+         ::rectangle_i32 rectangleClient;
 
-         ::user::interaction::get_client_rect(rectClient);
+         ::user::interaction::get_client_rect(rectangleClient);
 
-         if (rectClient.area() <= 0)
+         if (rectangleClient.area() <= 0)
             return;
 
          color32_t crText;
@@ -98,7 +98,7 @@ namespace experience
 
          }
 
-         ::rectangle_i32 rectEllipse(rectClient);
+         ::rectangle_i32 rectEllipse(rectangleClient);
 
          //auto rW = get_window_rect();
 
@@ -106,7 +106,7 @@ namespace experience
 
          pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-         pgraphics->fill_rectangle(rectClient, pgraphics->m_pbrush->m_color);
+         pgraphics->fill_rectangle(rectangleClient, pgraphics->m_pbrush->m_color);
 
          //pgraphics->FillEllipse(rectEllipse);
 
@@ -123,7 +123,7 @@ namespace experience
 
             pgraphics->set_text_color(crText);
 
-            pgraphics->draw_text(str, rectClient, e_align_center, e_draw_text_single_line);
+            pgraphics->draw_text(str, rectangleClient, e_align_center, e_draw_text_single_line);
 
          }
          else
@@ -187,11 +187,11 @@ namespace experience
       void button::on_layout(::draw2d::graphics_pointer & pgraphics)
       {
 
-         ::rectangle_i32 rectClient;
+         ::rectangle_i32 rectangleClient;
 
-         get_client_rect(rectClient);
+         get_client_rect(rectangleClient);
 
-         m_spregion->create_oval(rectClient);
+         m_spregion->create_ellipse(rectangleClient);
 
       }
 

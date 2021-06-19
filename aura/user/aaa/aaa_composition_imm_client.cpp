@@ -8,7 +8,7 @@
 #ifdef WINDOWS_DESKTOP
 
 
-void aaa_composition_imm_client::get_ime_composition_area(::rect & r)
+void aaa_composition_imm_client::get_ime_composition_area(::rectangle & r)
 {
 
 

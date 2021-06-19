@@ -1,7 +1,7 @@
 #pragma once
 
 
-// ifs - implementation of file system interface - file.ca2.cc
+// ifs - implementation of file system interface - file.ca2.software
 
 class CLASS_DECL_APEX ifs :
    virtual public ::fs::data

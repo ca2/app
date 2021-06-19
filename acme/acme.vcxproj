@@ -1104,6 +1104,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClCompile Include="const\idpool.cpp" />
     <ClCompile Include="exception\engine.cpp" />
     <ClCompile Include="exception\extended_status.cpp" />
+    <ClCompile Include="exception\file.cpp" />
     <ClCompile Include="exception\hresult.cpp" />
     <ClCompile Include="exception\aaa_not_installed.cpp" />
     <ClCompile Include="exception\parsing.cpp" />
@@ -1658,6 +1659,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClCompile Include="process\exit_status.cpp" />
     <ClCompile Include="process\main.cpp" />
     <ClCompile Include="process\pipe.cpp" />
+    <ClCompile Include="process\_.cpp" />
     <ClCompile Include="regular_expression\context.cpp" />
     <ClCompile Include="regular_expression\regular_expression.cpp" />
     <ClCompile Include="regular_expression\topic.cpp" />
@@ -1686,7 +1688,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClInclude Include="const\button_state.h" />
     <ClInclude Include="const\code_page.h" />
     <ClInclude Include="const\future.h" />
-    <ClInclude Include="const\charset.h" />
+    <ClInclude Include="const\character_set.h" />
     <ClInclude Include="const\check.h" />
     <ClInclude Include="const\context.h" />
     <ClInclude Include="const\GLOBAL_ID.h" />
@@ -1735,6 +1737,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClInclude Include="exception\aaa_want_to_remove_memory_state.h" />
     <ClInclude Include="exception\extended_status.h" />
     <ClInclude Include="exception\extended_transport.h" />
+    <ClInclude Include="exception\file.h" />
     <ClInclude Include="exception\hresult.h" />
     <ClInclude Include="exception\parsing.h" />
     <ClInclude Include="exception\callstack.h" />
@@ -1775,6 +1778,8 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClInclude Include="graphics\draw2d\_.h" />
     <ClInclude Include="graphics\draw2d\_const.h" />
     <ClInclude Include="id.h" />
+    <ClInclude Include="include\_c.h" />
+    <ClInclude Include="include\_no_templates.h" />
     <ClInclude Include="inline\application_common.h" />
     <ClInclude Include="inline\console.h" />
     <ClInclude Include="inline\console_common.h" />

@@ -617,9 +617,9 @@ namespace os
 /*      if (m_pimage->is_set() && m_pimage->g() != nullptr)
       {
 
-         ::rectangle_i32 rectClient = rectWindow;
+         ::rectangle_i32 rectangleClient = rectWindow;
 
-         rectClient -= rectWindow.top_left();
+         rectangleClient -= rectWindow.top_left();
 
          ::rectangle_i32 rectangle;
 
@@ -629,7 +629,7 @@ namespace os
 
 /*         m_pimage->g()->SetViewportOrg(0, 0);
 
-/*         m_pimage->g()->FillSolidRect(&rectClient, argb(255, 255, 255, 255));
+/*         m_pimage->g()->FillSolidRect(&rectangleClient, argb(255, 255, 255, 255));
 
 /*         draw(m_pimage->g());
 

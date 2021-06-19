@@ -244,25 +244,25 @@ namespace userstack
    void view::GetAreaThumbRect(RECTANGLE_I32 * lprect, i32 iArea)
    {
       
-      ::rectangle_i32 rectClient = get_client_rect();
+      ::rectangle_i32 rectangleClient = get_client_rect();
       
       if(iArea == m_iV)
       {
-         lprect->bottom = rectClient.bottom;
+         lprect->bottom = rectangleClient.bottom;
          lprect->top = lprect->bottom - m_iVH;
          lprect->left = 1;
          lprect->right = lprect->left + m_iVW;
       }
       else if(iArea == m_i_veriwell)
       {
-         lprect->bottom = rectClient.bottom;
+         lprect->bottom = rectangleClient.bottom;
          lprect->top = lprect->bottom - m_i_veriwell_h;
          lprect->left = 1 + m_iVW + 5;
          lprect->right = lprect->left + m_i_veriwell_w;
       }
       else if(iArea == m_i_winactionarea)
       {
-         lprect->bottom = rectClient.bottom;
+         lprect->bottom = rectangleClient.bottom;
          lprect->top = lprect->bottom - m_i_winactionarea_h;
          lprect->left = 1 + m_iVW + 5 + m_i_veriwell_w + 5;
          lprect->right = lprect->left + m_i_winactionarea_w;
@@ -362,18 +362,18 @@ namespace userstack
 
    /*void view::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
-      ::rectangle_i32 rectClient;
-      get_client_rect(rectClient);
+      ::rectangle_i32 rectangleClient;
+      get_client_rect(rectangleClient);
       if(m_ppaneview != nullptr)
       {
-         m_ppaneview->set_window_position(e_zorder_top, rectClient.top, rectClient.left, rectClient.width(), rectClient.height(), SWP_SHOWWINDOW);
+         m_ppaneview->set_window_position(e_zorder_top, rectangleClient.top, rectangleClient.left, rectangleClient.width(), rectangleClient.height(), SWP_SHOWWINDOW);
       }
       else
       {
          user::interaction * pinteraction = get_top_child();
          if(pinteraction != nullptr)
          {
-            pinteraction->set_window_position(e_zorder_top, rectClient.top, rectClient.left, rectClient.width(), rectClient.height(), SWP_SHOWWINDOW);
+            pinteraction->set_window_position(e_zorder_top, rectangleClient.top, rectangleClient.left, rectangleClient.width(), rectangleClient.height(), SWP_SHOWWINDOW);
          }
       }
       ::user::show < ::user::interaction >::on_layout(pgraphics);

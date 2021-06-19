@@ -615,21 +615,21 @@ namespace user
 
          ::aura::draw_context * pdrawcontext = pgraphics->::aura::simple_chain < ::aura::draw_context >::get_last();
 
-         ::rectangle_i32 rectClient;
+         ::rectangle_i32 rectangleClient;
 
          bool bFirst = true;
 
          if (pdrawcontext != nullptr)
          {
 
-            rectClient = pdrawcontext->m_rectangleWindow;
+            rectangleClient = pdrawcontext->m_rectangleWindow;
 
-            _001ScreenToClient(rectClient);
+            _001ScreenToClient(rectangleClient);
 
-            rectClient.bottom++;
-            rectClient.right++;
+            rectangleClient.bottom++;
+            rectangleClient.right++;
 
-            rectClip = rectClient;
+            rectClip = rectangleClient;
 
             bFirst = false;
 
@@ -703,11 +703,11 @@ namespace user
    {
 
 
-      ::rectangle_i32 rectClient;
+      ::rectangle_i32 rectangleClient;
 
-      get_client_rect(rectClient);
+      get_client_rect(rectangleClient);
 
-      ::rectangle_i32 rectUpdate(rectClient);
+      ::rectangle_i32 rectUpdate(rectangleClient);
 
       ::rectangle_f64 rectClipBox;
 
@@ -718,7 +718,7 @@ namespace user
       if(rectClipBox.is_empty())
       {
          
-         rectClipBox = rectClient;
+         rectClipBox = rectangleClient;
 
       }
 

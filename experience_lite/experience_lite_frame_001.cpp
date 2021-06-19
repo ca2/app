@@ -269,13 +269,13 @@ SizingNone:;
                else
                {
 
-                  ::rectangle_i32 rectClient(lpcrectClient);
+                  ::rectangle_i32 rectangleClient(lpcrectClient);
 
-                  rectClient.deflate(2, 2, 2, 2);
+                  rectangleClient.deflate(2, 2, 2, 2);
 
                   ::rectangle_i32 rectangle;
 
-                  GetBorderRect(rectClient, rectangle, eside);
+                  GetBorderRect(rectangleClient, rectangle, eside);
 
 
 
@@ -432,13 +432,13 @@ SizingNone:;
 
                ::rectangle_i32 rectC(lpcrectClient);
 
-               ::rectangle_i32 rectClient(lpcrectClient);
+               ::rectangle_i32 rectangleClient(lpcrectClient);
 
-               rectClient.right--;
+               rectangleClient.right--;
 
-               rectClient.bottom--;
+               rectangleClient.bottom--;
 
-               ::rectangle_i32 rectClientB(rectClient);
+               ::rectangle_i32 rectClientB(rectangleClient);
 
                ::rectangle_i32 rectA;
 
@@ -448,7 +448,7 @@ SizingNone:;
 
                point_i32 ptC;
 
-               ::rectangle_i32 rectangle(rectClient);
+               ::rectangle_i32 rectangle(rectangleClient);
 
 
 
@@ -458,7 +458,7 @@ SizingNone:;
                {
                   pgraphics->SelectObject(m_penHilight1);
 
-                  rectA = rectClient;
+                  rectA = rectangleClient;
 
                   rectA.top++;
                   rectA.left++;
@@ -479,7 +479,7 @@ SizingNone:;
 
                   // Most external rectangle_i32
 
-                  rectA = rectClient;
+                  rectA = rectangleClient;
 
                   ptA = rectA.top_left();
                   ptA.y += 15;
@@ -492,7 +492,7 @@ SizingNone:;
 
                   // Midle Rectangle
 
-                  rectA = rectClient;
+                  rectA = rectangleClient;
 
                   rectA.top += 2;
                   rectA.left += 2;
@@ -510,7 +510,7 @@ SizingNone:;
 
                   pgraphics->SelectObject(m_penShadow1);
 
-                  rectA = rectClient;
+                  rectA = rectangleClient;
 
                   rectA.top++;
                   rectA.left++;
@@ -534,7 +534,7 @@ SizingNone:;
 
                   pgraphics->SelectObject(m_penDkShadow1);
 
-                  rectA = rectClient;
+                  rectA = rectangleClient;
 
                   rectA.top += 4;
                   rectA.left += 4;
@@ -596,7 +596,7 @@ SizingNone:;
                {
                   pgraphics->SelectObject(m_penHilight1);
 
-                  rectA = rectClient;
+                  rectA = rectangleClient;
 
                   rectA.top++;
                   rectA.left++;
@@ -624,7 +624,7 @@ SizingNone:;
 
                   // Most external rectangle_i32
 
-                  rectA = rectClient;
+                  rectA = rectangleClient;
 
                   ptA = rectA.top_right();
                   ptA.x -= 16;
@@ -648,7 +648,7 @@ SizingNone:;
 
                   // Midle Rectangle
 
-                  rectA = rectClient;
+                  rectA = rectangleClient;
 
                   rectA.top += 2;
                   rectA.left += 2;
@@ -666,7 +666,7 @@ SizingNone:;
 
                   pgraphics->SelectObject(m_penShadow1);
 
-                  rectA = rectClient;
+                  rectA = rectangleClient;
 
                   rectA.top++;
                   rectA.left++;
@@ -692,7 +692,7 @@ SizingNone:;
 
                   pgraphics->SelectObject(m_penDkShadow1);
 
-                  rectA = rectClient;
+                  rectA = rectangleClient;
 
                   ptB = rectA.top_right();
                   ptC = rectA.top_right();
@@ -759,7 +759,7 @@ SizingNone:;
 
                   pgraphics->SelectObject(m_penHilight1);
 
-                  rectA = rectClient;
+                  rectA = rectangleClient;
 
                   rectA.left++;
                   rectA.bottom--;
@@ -771,7 +771,7 @@ SizingNone:;
                   pgraphics->move_to(ptB);
                   pgraphics->line_to(ptA);
 
-                  rectA = rectClient;
+                  rectA = rectangleClient;
 
                   rectA.left += 3;
                   rectA.bottom -= 3;
@@ -787,7 +787,7 @@ SizingNone:;
 
                   // Most external rectangle_i32 0
 
-                  rectA = rectClient;
+                  rectA = rectangleClient;
 
                   ptA = rectA.bottom_left();
                   ptA.y -= 15;
@@ -810,7 +810,7 @@ SizingNone:;
 
                   // Midle Rectangle 2
 
-                  rectA = rectClient;
+                  rectA = rectangleClient;
 
                   rectA.top += 2;
                   rectA.left += 2;
@@ -828,7 +828,7 @@ SizingNone:;
 
                   pgraphics->SelectObject(m_penShadow1);
 
-                  rectA = rectClient;
+                  rectA = rectangleClient;
 
                   rectA.left += 2;
                   rectA.bottom--;
@@ -839,7 +839,7 @@ SizingNone:;
                   pgraphics->move_to(ptB);
                   pgraphics->line_to(ptC);
 
-                  rectA = rectClient;
+                  rectA = rectangleClient;
 
                   rectA.left += 3;
                   rectA.bottom -= 2;
@@ -852,7 +852,7 @@ SizingNone:;
 
                   pgraphics->SelectObject(m_penDkShadow1);
 
-                  rectA = rectClient;
+                  rectA = rectangleClient;
 
                   ptB = rectA.bottom_left();
                   ptB.x++;
@@ -919,7 +919,7 @@ SizingNone:;
                {
                   pgraphics->SelectObject(m_penHilight1);
 
-                  rectA = rectClient;
+                  rectA = rectangleClient;
 
                   rectA.top++;
                   rectA.left++;
@@ -942,7 +942,7 @@ SizingNone:;
 
                   pgraphics->SelectObject(m_penFace1);
 
-                  rectA = rectClient;
+                  rectA = rectangleClient;
 
                   // Most internal rectangle_i32
 
@@ -962,7 +962,7 @@ SizingNone:;
 
                   // Midle Rectangle
 
-                  rectA = rectClient;
+                  rectA = rectangleClient;
 
                   rectA.top += 2;
                   rectA.left += 2;
@@ -979,7 +979,7 @@ SizingNone:;
                   pgraphics->line_to(ptC);
                   pgraphics->SelectObject(m_penShadow1);
 
-                  rectA = rectClient;
+                  rectA = rectangleClient;
 
                   rectA.top++;
                   rectA.left++;
@@ -997,7 +997,7 @@ SizingNone:;
 
                   pgraphics->SelectObject(m_penDkShadow1);
 
-                  rectA = rectClient;
+                  rectA = rectangleClient;
 
                   ptA = rectA.bottom_right();
                   ptA.y -= 15;

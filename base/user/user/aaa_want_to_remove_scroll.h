@@ -45,7 +45,7 @@ namespace user
 
       virtual void on_change_view_size() override;
       virtual void on_change_viewport_offset() override;
-      virtual void create_x_scroll_bar(const ::rect & rect);
+      virtual void create_x_scroll_bar(const ::rectangle & rectangle);
       virtual void layout_scroll_bar() override;
       virtual void _001DeferCreateXScrollBar();
       virtual void _001OnDeferCreateXScrollBar();
@@ -111,7 +111,7 @@ namespace user
       virtual void on_change_view_size() override;
       virtual void on_change_viewport_offset() override;
       virtual i32 get_wheel_scroll_delta();
-      virtual void create_y_scroll_bar(const ::rect & rect);
+      virtual void create_y_scroll_bar(const ::rectangle & rectangle);
       virtual void layout_scroll_bar() override;
       virtual void _001DeferCreateYScrollBar();
       virtual void _001OnDeferCreateYScrollBar();

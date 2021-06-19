@@ -405,13 +405,13 @@ namespace uwp
       }
    }
 
-   //Rect impact::ScaleRect(Rect rect, double scale)
+   //Rect impact::ScaleRect(Rect rectangle, double scale)
    //{
-   //   rect.X *= scale;
-   //   rect.Y *= scale;
-   //   rect.Width *= scale;
-   //   rect.Height *= scale;
-   //   return rect;
+   //   rectangle.X *= scale;
+   //   rectangle.Y *= scale;
+   //   rectangle.Width *= scale;
+   //   rectangle.Height *= scale;
+   //   return rectangle;
    //}
 
 

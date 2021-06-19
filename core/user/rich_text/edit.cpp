@@ -431,9 +431,9 @@ namespace user
 
             point -= rectWindow.top_left();
 
-            auto rectClient = get_client_rect();
+            auto rectangleClient = get_client_rect();
 
-            return rectClient.contains(::point_i32(point));
+            return rectangleClient.contains(::point_i32(point));
 
          }
 
@@ -453,9 +453,9 @@ namespace user
       void edit::on_layout(::draw2d::graphics_pointer & pgraphics)
       {
 
-         auto rectClient = get_client_rect();
+         auto rectangleClient = get_client_rect();
 
-         if (rectClient.is_empty())
+         if (rectangleClient.is_empty())
          {
 
             return;

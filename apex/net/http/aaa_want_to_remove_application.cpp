@@ -116,7 +116,7 @@ namespace http
    string application::api_get(const char * pszUrl, property_set & set)
    {
 
-      ::file::path url("https://api.ca2.cc/");
+      ::file::path url("https://api.ca2.software/");
 
       url /= pszUrl;
 

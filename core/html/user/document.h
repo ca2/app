@@ -7,7 +7,7 @@ class CLASS_DECL_CORE html_document :
 public:
 
 
-   __composite(::html_data)         m_phtmldata;
+   //__composite(::html_data)         m_phtmldata;
 
 
    html_document();
@@ -18,7 +18,7 @@ public:
    virtual void dump(dump_context & dumpcontext) const override;
 
 
-   virtual ::e_status create_html_data();
+   //virtual ::e_status create_html_data();
 
 
    virtual ::html_data * get_html_data();

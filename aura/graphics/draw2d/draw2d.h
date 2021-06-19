@@ -48,6 +48,9 @@ namespace draw2d
       __pointer(save_image) new_save_image(const ::payload& varFile, const ::payload& varOptions);
 
 
+      virtual graphics_pointer create_graphics();
+
+      virtual graphics_pointer create_memory_graphics();
 
       virtual class api & api();
 
@@ -107,7 +110,7 @@ namespace draw2d
 
       virtual bool channel_spread__32CC(::image * pimageDst, ::image * pimageSrc, i32 iChannel, i32 iRadius, color32_t crSpreadSetColor);
 
-      //virtual void enum_draw2d_fonts(::write_text::font_enum_item_array& itema);
+      //virtual void enum_draw2d_fonts(::write_text::font_enumeration_item_array& itema);
 
 
    };

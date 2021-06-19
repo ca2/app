@@ -6,8 +6,7 @@ const i32 xfplayer_view_line::AlignLeft = 1;
 const i32 xfplayer_view_line::AlignRight = 2;
 
 
-xfplayer_view_line::xfplayer_view_line() :
-   m_font(e_create)
+xfplayer_view_line::xfplayer_view_line()
 {
 
    m_bColonPrefix = false;
@@ -37,11 +36,19 @@ xfplayer_view_line::xfplayer_view_line() :
 }
 
 
-xfplayer_view_line::xfplayer_view_line(xfplayer_view_linea * pContainer) :
-   m_font(e_create)
+::e_status xfplayer_view_line::initialize_xfplayer_view_line(xfplayer_view_linea * pContainer)
 {
 
-   initialize(pContainer);
+   auto estatus = initialize(pContainer);
+   
+   if(!estatus)
+   {
+      
+      return estatus;
+      
+   }
+   
+   m_font.create(this);
 
    m_pContainer = pContainer;
    m_bEnhancedEmboss = true;
@@ -62,19 +69,22 @@ xfplayer_view_line::xfplayer_view_line(xfplayer_view_linea * pContainer) :
    m_dAnimateProgress = 0;
    m_dAnimateProgressIncrement = 1.0;
    m_iIndex = 0;
+   
+   return estatus;
+   
 }
 
 
-xfplayer_view_line::xfplayer_view_line(const xfplayer_view_line & line) :
-
-   m_font(e_create)
-{
-
-   initialize((object *) &line);
-
-   operator = (line);
-
-}
+//xfplayer_view_line::xfplayer_view_line(const xfplayer_view_line & line)
+//{
+//
+//   initialize((object *) &line);
+//   
+//   m_font.create(this);
+//
+//   operator = (line);
+//
+//}
 
 
 xfplayer_view_line::~xfplayer_view_line()
@@ -201,7 +211,7 @@ bool xfplayer_view_line::_001OnDraw(::draw2d::graphics_pointer & pgraphics, bool
 
    }
 
-   if (bRecalcLayout || m_rectClient != rectangle)
+   if (bRecalcLayout || m_rectangleClient != rectangle)
    {
 
       m_bCacheEmboss = false;
@@ -228,17 +238,17 @@ bool xfplayer_view_line::_001OnDraw(::draw2d::graphics_pointer & pgraphics, bool
                break;
             if (iLink >= m_iaLinkStart.get_size())
             {
-               const ::size_i32 & size = pgraphics->GetTextExtent(strFinal.Left(iChar));
+               const ::size_i32 & size = pgraphics->get_text_extent(strFinal.Left(iChar));
                embossed_text_out(pgraphics, strFinal.Mid(iChar), rectTextOut.left + size.cx, rectTextOut.top, 0, m_cr, m_colorOutline, strFinal.get_length() - iChar, dBlend);
                break;
             }
             else if (m_iaLinkStart[iLink] > iChar)
             {
-               const ::size_i32 & size = pgraphics->GetTextExtent(strFinal.Left(iChar));
+               const ::size_i32 & size = pgraphics->get_text_extent(strFinal.Left(iChar));
                embossed_text_out(pgraphics, strFinal.Mid(iChar), rectTextOut.left + size.cx, rectTextOut.top, 0, m_cr, m_colorOutline, m_iaLinkStart[iLink], dBlend);
             }
             pgraphics->set(m_fontLink);
-            const ::size_i32 & size = pgraphics->GetTextExtent(strFinal.Left(m_iaLinkStart[iLink]));
+            const ::size_i32 & size = pgraphics->get_text_extent(strFinal.Left(m_iaLinkStart[iLink]));
 
             embossed_text_out(pgraphics, strFinal.Mid(m_iaLinkStart[iLink]), rectTextOut.left + size.cx, rectTextOut.top, 0, m_cr, m_colorOutline, m_iaLinkEnd[iLink] - m_iaLinkStart[iLink] + 1, dBlend);
             iChar = m_iaLinkEnd[iLink] + 1;
@@ -282,8 +292,8 @@ bool xfplayer_view_line::_001OnDraw(::draw2d::graphics_pointer & pgraphics, bool
                ::rectangle_i32 rectPlacement;
                GetPlacement(rectPlacement);
                ::rectangle_i32 rectangle = rectPlacement;
-               size_i32 size1 = pgraphics->GetTextExtent(strFinal.Left(iStart));
-               size_i32 size2 = pgraphics->GetTextExtent(strFinal.Left(iEnd + 1));
+               size_i32 size1 = pgraphics->get_text_extent(strFinal.Left(iStart));
+               size_i32 size2 = pgraphics->get_text_extent(strFinal.Left(iEnd + 1));
                rectangle.left = rectPlacement.left + size1.cx;
                rectangle.right = rectPlacement.left + size2.cx;
                ::image_pointer pimage;
@@ -706,9 +716,9 @@ void xfplayer_view_line::CalcCharsPositions(::draw2d::graphics_pointer & pgraphi
 
    i32 i;
    ::size_i32 size;
-   ::rectangle_i32 rectClient(rectangle);
+   ::rectangle_i32 rectangleClient(rectangle);
 
-   m_rectClient = rectClient;
+   m_rectangleClient = rectangleClient;
    ::rectangle_i32 rectPlacement;
    GetPlacement(rectPlacement);
 
@@ -720,12 +730,12 @@ void xfplayer_view_line::CalcCharsPositions(::draw2d::graphics_pointer & pgraphi
 
    pgraphics->set(m_font);
 
-   size = pgraphics->GetTextExtent(strMain);
+   size = pgraphics->get_text_extent(strMain);
 
-   if ((size.cx * 1.2) > rectClient.width())
+   if ((size.cx * 1.2) > rectangleClient.width())
    {
 
-      m_floatRateX = (double) rectClient.width() / ((double) size.cx * 1.2);
+      m_floatRateX = (double) rectangleClient.width() / ((double) size.cx * 1.2);
 
    }
    else
@@ -778,7 +788,7 @@ void xfplayer_view_line::CalcCharsPositions(::draw2d::graphics_pointer & pgraphi
       m_iaPosition[0] = 0;
       for (i = 1; i <= m_strPrefix.get_length(); i++)
       {
-         m_dcextension.GetTextExtent(
+         m_dcextension.get_text_extent(
          pgraphics,
          m_strPrefix,
          i,
@@ -786,7 +796,7 @@ void xfplayer_view_line::CalcCharsPositions(::draw2d::graphics_pointer & pgraphi
          m_iaPosition.add(size.cx);
       }
       int iSize = size.cx;
-      m_dcextension.GetTextExtent(
+      m_dcextension.get_text_extent(
       pgraphics,
       " ",
       1,
@@ -799,7 +809,7 @@ void xfplayer_view_line::CalcCharsPositions(::draw2d::graphics_pointer & pgraphi
       for (i = 1; i <= m_strRoot.get_length(); i++)
       {
 
-         m_dcextension.GetTextExtent(
+         m_dcextension.get_text_extent(
          pgraphics,
          m_strRoot,
          i,
@@ -820,7 +830,7 @@ void xfplayer_view_line::CalcCharsPositions(::draw2d::graphics_pointer & pgraphi
       for (i = 1; i <= m_str.get_length(); i++)
       {
 
-         m_dcextension.GetTextExtent(
+         m_dcextension.get_text_extent(
          pgraphics,
          m_str,
          i,
@@ -898,9 +908,9 @@ void xfplayer_view_line::CalcCharsPositions(::draw2d::graphics_pointer & pgraphi
    pdcForeground->set(pFont->GetFont());
    i32 i, iLeft, iRight, iMaxExtent;
    ::size_i32 size;
-   ::rectangle_i32 rectClient(rectangle);
+   ::rectangle_i32 rectangleClient(rectangle);
 
-   m_rectClient = rectClient;
+   m_rectangleClient = rectangleClient;
    ::write_text::font * pfont = pFont;
    ::draw2d::graphics_pointer & pgraphics = pdcForeground;
    ASSERT(pfont != nullptr);
@@ -913,11 +923,11 @@ void xfplayer_view_line::CalcCharsPositions(::draw2d::graphics_pointer & pgraphi
       strMain.get_length(),
       &size);
    pgraphics->set(pfont->GetFont());
-   if(size.cx > rectClient.width())
+   if(size.cx > rectangleClient.width())
    {
       m_floatRateX =
          (float)
-         rectClient.width()/
+         rectangleClient.width()/
          size.cx;
    }
    else
@@ -1390,7 +1400,7 @@ void xfplayer_view_line::embossed_text_out(::draw2d::graphics_pointer & pgraphic
 
          ::size_i32 size;
 
-         size = pgraphics->GetTextExtent(m_strPrefix);
+         size = pgraphics->get_text_extent(m_strPrefix);
 
          auto psystem = m_psystem->m_pcoresystem;
 
@@ -1489,7 +1499,7 @@ void xfplayer_view_line::CacheEmboss(::draw2d::graphics_pointer & pgraphics, con
 
    pgraphics->set(m_font);
 
-   m_dcextension.GetTextExtent(pgraphics, pcsz, iLen, size);
+   m_dcextension.get_text_extent(pgraphics, pcsz, iLen, size);
 
    size.cx += (::i32)(2 * (maximum(2.0, m_floatRateX * 8.0)));
    size.cy += (::i32)(2 * (maximum(2.0, m_floatRateX * 8.0)));
@@ -1522,7 +1532,7 @@ void xfplayer_view_line::CacheEmboss(::draw2d::graphics_pointer & pgraphics, con
    {
 
       pdcCache->set(m_fontPrefix);
-      const ::size_i32 & size = pdcCache->GetTextExtent(m_strPrefix);
+      const ::size_i32 & size = pdcCache->get_text_extent(m_strPrefix);
       m_dcextension.text_out(pdcCache, (i32)(i32)((maximum(2.0, m_floatRateX * 4.0)) / 2), (i32)1 * (i32)((maximum(2.0, m_floatRateX * 4.0)) / 2) + m_rectangle.height() - size.cy, m_strPrefix, m_strPrefix.get_length(), s);
       pdcCache->set(m_font);
 

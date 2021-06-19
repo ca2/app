@@ -427,11 +427,11 @@ namespace user
 
       string strDisplay;
 
-      //::rect rectNormal;
+      //::rectangle rectNormal;
 
       //get_rect_normal(rectNormal);
 
-      ::rect rectMainMonitor;
+      ::rectangle rectMainMonitor;
 
       psession->get_main_monitor(rectMainMonitor);
 

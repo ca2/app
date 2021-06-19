@@ -1824,6 +1824,14 @@ __transport(::application) app_core::new_application(const char* pszAppId)
          }
 
          papp = plibrary->new_application(strAppId);
+         
+         if (!papp)
+         {
+
+            ::output_debug_string("\n\n::apex::session::get_new_application\n...but this new found library:\n\n   -->  " + strLibrary + "  <--\n\ncannot instantiate application with following AppId:\n\n   -->  "+strAppId+"  <--\n\nIs it missing application factory?\n\n\n");
+
+         }
+
 
          ::e_status estatus;
 

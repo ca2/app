@@ -171,7 +171,7 @@ namespace user
    }
 
 
-   void primitive_impl::RepositionBars(::u32 nIDFirst, ::u32 nIDLast, id idLeft, ::u32 nFlags, RECTANGLE_I32 * prectParam, const rectangle_i32 & rectClient, bool bStretch)
+   void primitive_impl::RepositionBars(::u32 nIDFirst, ::u32 nIDLast, id idLeft, ::u32 nFlags, RECTANGLE_I32 * prectParam, const rectangle_i32 & rectangleClient, bool bStretch)
    {
 
       if (!_is_window())
@@ -195,10 +195,10 @@ namespace user
 
       sizeparentparams.sizeTotal.cx = sizeparentparams.sizeTotal.cy = 0;
 
-      if (rectClient != nullptr)
+      if (rectangleClient != nullptr)
       {
 
-         sizeparentparams.rectangle = rectClient;
+         sizeparentparams.rectangle = rectangleClient;
 
       }
       else

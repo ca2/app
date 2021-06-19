@@ -38,9 +38,9 @@ namespace experience
 
          }
 
-         auto rectClient = get_client_rect();
+         auto rectangleClient = get_client_rect();
 
-         if (rectClient.is_empty())
+         if (rectangleClient.is_empty())
          {
 
             return;
@@ -64,7 +64,7 @@ namespace experience
 
          }
 
-         pgraphics->fill_rectangle(rectClient, crBackground);
+         pgraphics->fill_rectangle(rectangleClient, crBackground);
 
       }
 

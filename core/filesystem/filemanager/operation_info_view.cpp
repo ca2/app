@@ -59,13 +59,13 @@ namespace filemanager
       rectProgress.right--;
       rectProgress.top++;
       rectProgress.bottom--;*/
-      ::rectangle_i32 rectClient;
-      get_client_rect(rectClient);
+      ::rectangle_i32 rectangleClient;
+      get_client_rect(rectangleClient);
       i32 iLineCount = 23;
-      double dBarHeight = (double)rectClient.height() / (double)iLineCount;
+      double dBarHeight = (double)rectangleClient.height() / (double)iLineCount;
       double dTop = 0.0;
       ::rectangle_i32 rectProgress;
-      rectProgress = rectClient;
+      rectProgress = rectangleClient;
       //rectProgress.left += 23;
       //rectProgress.right -= 23;
       rectProgress.top += (::i32)dTop;

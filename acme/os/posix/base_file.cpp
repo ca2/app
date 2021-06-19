@@ -146,7 +146,7 @@ int_bool file_put_contents(const char * path, const char * contents, ::count len
 
    wstring wstr(path);
 
-   FILE * file = fopen_dup(path, "w+", _SH_DENYWR);
+   FILE * file = FILE_open(path, "w+", _SH_DENYWR);
 
    if (file == nullptr)
    {
@@ -676,7 +676,7 @@ string file_first_line_dup(const string & strPath)
 
    string line;
 
-   FILE * file = fopen_dup(strPath, "r", _SH_DENYNO);
+   FILE * file = FILE_open(strPath, "r", _SH_DENYNO);
 
    if (file == nullptr)
    {

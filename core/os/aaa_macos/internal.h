@@ -35,9 +35,9 @@ typedef struct tagRECT
    ::i32    top;
    ::i32    right;
    ::i32    bottom;
-} const rect &, *PRECT, *NPRECT, *RECT32 *;
+} const rectangle &, *PRECT, *NPRECT, *RECT32 *;
 
-typedef const rect & * const rect &;
+typedef const rectangle & * const rectangle &;
 
 
 
@@ -82,5 +82,5 @@ int_bool cg_release_color(CGColorRef colorref);
 
 
 
-int_bool set_nswindow_frame(oswindow hwnd, const ::rect & rect, int iDisplay);
+int_bool set_nswindow_frame(oswindow hwnd, const ::rectangle & rectangle, int iDisplay);
 int_bool move_nswindow(oswindow hwnd, int x, int y);

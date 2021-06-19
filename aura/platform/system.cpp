@@ -4134,13 +4134,13 @@ namespace aura
 //         if (strBrowser == "firefox")
 //         {
 //
-//            //strUrl = "https://ca2.cc/open_f___?url=" + url_encode(strUrl) + "&profile=" + url_encode(strProfile) + "&target=" + url_encode(strTarget);
+//            //strUrl = "https://ca2.software/open_f___?url=" + url_encode(strUrl) + "&profile=" + url_encode(strProfile) + "&target=" + url_encode(strTarget);
 //
 //         }
 //         else
 //         {
 //
-//            //strUrl = "https://ca2.cc/open_tab?url=" + url_encode(strUrl) + "&profile=" + url_encode(strProfile) + "&target=" + url_encode(strTarget);
+//            //strUrl = "https://ca2.software/open_tab?url=" + url_encode(strUrl) + "&profile=" + url_encode(strProfile) + "&target=" + url_encode(strTarget);
 //
 //         }
 //
@@ -6527,7 +6527,7 @@ namespace aura
          if (psubject->m_id == id_font_enumeration)
          {
 
-            draw2d()->write_text()->fonts()->defer_create_font_enumeration(psubject);
+            draw2d()->write_text()->handle_font_enumeration(psubject);
 
          }
          else if (psubject->m_id == id_os_dark_mode)

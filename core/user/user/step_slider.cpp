@@ -103,12 +103,12 @@ namespace user
       if(m_scalar.is_null())
          return;
 
-      ::rectangle_i32 rectClient;
-      get_client_rect(rectClient);
+      ::rectangle_i32 rectangleClient;
+      get_client_rect(rectangleClient);
 
       byte bAlpha = (byte) (128.0 * get_alpha());
 
-      pgraphics->color_blend(rectClient, rgb(150, 200, 255), bAlpha);
+      pgraphics->fill_rectangle(rectangleClient, argb(bAlpha, 150, 200, 255));
 
       i64 iMin = m_scalar.minimum();
       i64 iMax = m_scalar.maximum();
@@ -117,55 +117,58 @@ namespace user
       ::rectangle_i32 rectangle;
       for(i64 i = iMin; i <= iMax; i++)
       {
-         GetStepRect(rectangle, i, iMin, iMax, rectClient);
+         GetStepRect(rectangle, i, iMin, iMax, rectangleClient);
          if(i == iVal)
          {
+            
             if(m_itemHover.item_index() == i)
             {
 
-               pgraphics->color_blend(rectangle, rgb(255, 255, 240), bAlpha);
+               pgraphics->fill_rectangle(rectangle, argb(bAlpha, 255, 255, 240));
 
             }
             else
             {
-               pgraphics->color_blend(
-                  rectangle,
-                  rgb(255, 255, 150),
-                  bAlpha);
+               
+               pgraphics->fill_rectangle(rectangle, argb(bAlpha, 255, 255, 150));
+               
             }
+            
          }
          else
          {
+         
             if(m_itemHover.item_index() == i)
             {
-               pgraphics->color_blend(
-                  rectangle,
-                  rgb(255, 180, 180),
-                  bAlpha);
+               
+               pgraphics->fill_rectangle(rectangle, argb(bAlpha, 255, 180, 180));
+               
             }
             else
             {
-               pgraphics->color_blend(
-                  rectangle,
-                  rgb(100, 100, 255),
-                  bAlpha);
+               
+               pgraphics->fill_rectangle(rectangle, argb(bAlpha, 100, 100, 255));
+               
             }
+            
          }
+         
       }
+      
    }
 
 
-   void step_slider::GetStepHoverRect(RECTANGLE_I32 * prectangle, i64 iStep, i64 iMin, i64 iMax, const ::rectangle_i32 & rectClient)
+   void step_slider::GetStepHoverRect(RECTANGLE_I32 * prectangle, i64 iStep, i64 iMin, i64 iMax, const ::rectangle_i32 & rectangleClient)
    {
 
       if((iMax - iMin) == 0)
          return;
 
-      prectangle->top = rectClient.top;
+      prectangle->top = rectangleClient.top;
 
-      prectangle->bottom = rectClient.bottom;
+      prectangle->bottom = rectangleClient.bottom;
 
-      double dWidth = ((double)rectClient.width()) / (iMax - iMin);
+      double dWidth = ((double)rectangleClient.width()) / (iMax - iMin);
 
       prectangle->left = (::i32) (dWidth * (iStep - iMin));
 
@@ -176,13 +179,13 @@ namespace user
    }
 
 
-   void step_slider::GetStepRect(RECTANGLE_I32 * prectangle, i64 iStep, i64 iMin, i64 iMax, const ::rectangle_i32 & rectClient)
+   void step_slider::GetStepRect(RECTANGLE_I32 * prectangle, i64 iStep, i64 iMin, i64 iMax, const ::rectangle_i32 & rectangleClient)
    {
 
       if((iMax - iMin) == 0)
          return;
 
-      GetStepHoverRect(prectangle, iStep, iMin, iMax, rectClient);
+      GetStepHoverRect(prectangle, iStep, iMin, iMax, rectangleClient);
 
       i32 halfm = (prectangle->right - prectangle->left - 2) / 2;
 
@@ -197,11 +200,11 @@ namespace user
    void step_slider::on_hit_test(::user::item & item)
    {
 
-      ::rectangle_i32 rectClient;
+      ::rectangle_i32 rectangleClient;
 
-      get_client_rect(rectClient);
+      get_client_rect(rectangleClient);
 
-      if (rectClient.width() == 0)
+      if (rectangleClient.width() == 0)
       {
 
          item = ::user::e_element_none;
@@ -216,7 +219,7 @@ namespace user
 
       iMax = m_scalar.maximum();
 
-      item = (index) (iMin + (((item.m_pointHitTest.x - rectClient.left) * (iMax - iMin)) / rectClient.width()));
+      item = (index) (iMin + (((item.m_pointHitTest.x - rectangleClient.left) * (iMax - iMin)) / rectangleClient.width()));
 
    }
 
@@ -236,11 +239,11 @@ namespace user
 
       set_need_redraw();
 
-      ::rectangle_i32 rectClient;
+      ::rectangle_i32 rectangleClient;
 
-      get_client_rect(rectClient);
+      get_client_rect(rectangleClient);
 
-      m_itemHover = rectClient.contains(pointCursor) != false;
+      m_itemHover = rectangleClient.contains(pointCursor) != false;
 
    }
 

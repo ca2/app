@@ -21,7 +21,7 @@ namespace process
 //
 //   CLASS_DECL_APEX bool set_priority(::e_priority epriority);
 //
-      CLASS_DECL_APEX string app_id_to_app_name(string strId);
+      
 
 
 } // namespace process

@@ -807,7 +807,7 @@ template < class Type, class RawType >
 inline ::count string_array_base < Type, RawType >::get_size() const
 {
 
-   return (::count_cast) this->m_nSize;
+   return this->m_nSize;
 
 }
 
@@ -816,7 +816,7 @@ template < class Type, class RawType >
 inline ::count string_array_base < Type, RawType >::get_count() const
 {
 
-   return (::count_cast) this->m_nSize;
+   return this->m_nSize;
 
 }
 
@@ -877,9 +877,9 @@ string_array_base < Type, RawType >::~string_array_base()
 //    // ASSERT_VALID(this);
 //   ASSERT(this != &src);   // cannot append to itself
 //
-//   ::count nOldSize = (::count_cast) this->m_nSize;
+//   ::count nOldSize = this->m_nSize;
 //
-//   ::count nAddSize = (::count_cast) src.m_nSize;
+//   ::count nAddSize = src.m_nSize;
 //
 //   this->set_size(nOldSize + nAddSize);
 //
@@ -927,7 +927,7 @@ void string_array_base < Type, RawType >::copy(const string_array_base < Type, R
 
    // // ASSERT_VALID(this);
 
-   auto nSrcSize = (::count_cast) src.m_nSize;
+   auto nSrcSize = src.m_nSize;
 
    this->set_size(nSrcSize);
 
@@ -1407,7 +1407,7 @@ template < typename Type, typename RawType >
 Type & string_array_base < Type, RawType >::add_get(const Type & newElement)
 {
 
-   ::index nIndex = (::index_cast) this->m_nSize;
+   ::index nIndex = this->m_nSize;
 
    return set_at_grow(nIndex, newElement);
 

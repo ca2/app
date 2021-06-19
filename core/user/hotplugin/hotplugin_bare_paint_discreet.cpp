@@ -46,11 +46,11 @@ namespace hotplugin
 
       pgraphics->SelectObject(brush);
 
-      ::rectangle_i32 rectClient;
+      ::rectangle_i32 rectangleClient;
 
-      get_client_rect(rectClient);
+      get_client_rect(rectangleClient);
 
-      pgraphics->rectangle(rectClient);
+      pgraphics->rectangle(rectangleClient);
 
 
 
@@ -293,21 +293,21 @@ namespace hotplugin
       {
          get_progress_color(uchR, uchG, uchB, dRate, 0);
          br->create_solid(argb(bA, uchR, uchG, uchB));
-         rect2 = rectangle_dimension(rectParam.left + cx / iRate, rectParam.top + (cy - iBarHeight) / 2, iProgressCount, 5);
+         rect2 = rectangle_i32_dimension(rectParam.left + cx / iRate, rectParam.top + (cy - iBarHeight) / 2, iProgressCount, 5);
 
          pgraphics->fill_rectangle(rect2, br);
       }
       {
          get_progress_color(uchR, uchG, uchB, dRate, 1);
          br->create_solid(argb(bA, uchR, uchG, uchB));
-         rect2 = rectangle_dimension(rectParam.left + cx / iRate, rectParam.top + (cy - iBarHeight) / 2 + 5, iProgressCount, 5);
+         rect2 = rectangle_i32_dimension(rectParam.left + cx / iRate, rectParam.top + (cy - iBarHeight) / 2 + 5, iProgressCount, 5);
 
          pgraphics->fill_rectangle(rect2, br);
       }
       {
          get_progress_color(uchR, uchG, uchB, dRate, 2);
          br->create_solid(argb(bA, uchR, uchG, uchB));
-         rect2 = rectangle_dimension(rectParam.left + cx / iRate, rectParam.top + (cy - iBarHeight) / 2 + 10, iProgressCount, 13);
+         rect2 = rectangle_i32_dimension(rectParam.left + cx / iRate, rectParam.top + (cy - iBarHeight) / 2 + 10, iProgressCount, 13);
 
          pgraphics->fill_rectangle(rect2, br);
       }

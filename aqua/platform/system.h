@@ -44,7 +44,7 @@ namespace aqua
 
       virtual ::e_status defer_audio() override;
 
-      virtual void defer_multimedia();
+      virtual ::e_status defer_multimedia();
 
       virtual ::aqua::multimedia* defer_get_multimedia();
 

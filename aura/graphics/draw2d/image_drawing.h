@@ -190,7 +190,7 @@ public:
 
       m_rectDst.set(rectDst);
 
-      m_rectSrc.set(pointSrc, concreteSize);
+      m_rectSrc.set(pointSrc, rectDst.size());
 
    }
 

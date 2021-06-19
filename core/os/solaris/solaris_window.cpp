@@ -794,7 +794,7 @@ public:
          if(bEmpty)
             str = "L";
 
-         SIZE_I32 sizeItem = g->GetTextExtent(str);
+         SIZE_I32 sizeItem = g->get_text_extent(str);
 
          int x = bTab ? 25 : 0;
 

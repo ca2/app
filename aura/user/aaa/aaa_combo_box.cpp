@@ -92,9 +92,9 @@ namespace user
 
       }
 
-      ::rect rectClient;
+      ::rectangle rectangleClient;
 
-      get_client_rect(rectClient);
+      get_client_rect(rectangleClient);
       //::user::e_::color::color colorText = color_text;
 
       ::color::color colorText(0, 0, 0, 255);
@@ -146,7 +146,7 @@ namespace user
 
       //}
 
-      ::rect rectText;
+      ::rectangle rectText;
 
       get_element_rect(rectText, e_element_text);
 
@@ -162,7 +162,7 @@ namespace user
    void combo_box::get_simple_drop_down_open_arrow_polygon(point_array& pointa)
    {
 
-      ::rect rectDropDown;
+      ::rectangle rectDropDown;
 
       get_element_rect(rectDropDown, e_element_drop_down);
 
@@ -184,9 +184,9 @@ namespace user
    void combo_box::_001OnDrawCombo(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::rect rectClient;
+      ::rectangle rectangleClient;
 
-      get_client_rect(rectClient);
+      get_client_rect(rectangleClient);
 
       ::draw2d::brush_pointer br(e_create);
 
@@ -207,11 +207,11 @@ namespace user
 
       pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-      ::rect rectDropDown;
+      ::rectangle rectDropDown;
 
       get_element_rect(rectDropDown, e_element_drop_down);
 
-      ::rect rectDropIn(rectDropDown);
+      ::rectangle rectDropIn(rectDropDown);
 
       //::user::e_::color::color colorDropDown = color_button_background_disabled;
       ::color::color colorDropDown = ::color::color(127, 127, 127, 255);
@@ -456,7 +456,7 @@ namespace user
    void combo_box::on_hit_test(::user::item & item)
    {
 
-      ::rect rectElement;
+      ::rectangle rectElement;
 
       if(get_element_rect(rectElement, e_element_drop_down))
       {
@@ -472,9 +472,9 @@ namespace user
 
       }
 
-      auto rectClient = get_client_rect();
+      auto rectangleClient = get_client_rect();
 
-      if (rectClient.contains(item.m_pointHitTest))
+      if (rectangleClient.contains(item.m_pointHitTest))
       {
 
          item = e_element_text;
@@ -514,7 +514,7 @@ namespace user
       if (is_drop_down())
       {
 
-         ::rect rectWindow;
+         ::rectangle rectWindow;
 
          get_window_rect(rectWindow);
 
@@ -743,7 +743,7 @@ namespace user
 
          m_plist->query_full_size(pgraphics, m_sizeFull);
 
-         ::rect rectWindow;
+         ::rectangle rectWindow;
 
          get_window_rect(rectWindow);
 
@@ -794,11 +794,11 @@ namespace user
 
       }
 
-      ::rect rectClient;
+      ::rectangle rectangleClient;
 
-      get_client_rect(rectClient);
+      get_client_rect(rectangleClient);
 
-      m_plist->m_iItemHeight = minimum(24, rectClient.height());
+      m_plist->m_iItemHeight = minimum(24, rectangleClient.height());
 
    }
 
@@ -877,11 +877,11 @@ namespace user
 
       /*      ::write_text::font_pointer fontxyz(e_create);
 
-            ::rect rectClient;
+            ::rectangle rectangleClient;
 
-            get_client_rect(rectClient);
+            get_client_rect(rectangleClient);
 
-            fontxyz->m_dFontSize = rectClient.height() * 0.4;
+            fontxyz->m_dFontSize = rectangleClient.height() * 0.4;
             fontxyz->m_eunitFontSize = ::draw2d::unit_pixel;
             fontxyz->m_bUpdated = false;
 

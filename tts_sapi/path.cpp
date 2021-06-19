@@ -560,7 +560,7 @@ namespace draw2d_gdiplus
       //if (!m_bHasPath && m_bHasPointInternal)
       //{
 
-      //   internal_add_line(parc->m_pointBeg.x, parc->m_pointBeg.y);
+      //   internal_add_line(parc->m_pointBegin.x, parc->m_pointBegin.y);
 
       //}
 

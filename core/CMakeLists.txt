@@ -597,8 +597,8 @@ if (WIN32)
       node/windows/_.h
       node/windows/_node_windows.h
       node/windows/_windows.h
-      node/windows/shell.cpp
-      node/windows/shell.h
+      #node/windows/shell.cpp
+      #node/windows/shell.h
       node/windows_common/application.cpp
       os/windows/_windows_impl.h
       os/windows_common/_.h

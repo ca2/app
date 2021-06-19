@@ -471,6 +471,17 @@ namespace userex
          
          m_pfontview->m_pview->add_control_event_handler(this);
 
+         auto psession = get_session();
+
+         __pointer(::user::interaction) pview = psession->get_bound_ui(FONTSEL_IMPACT);
+
+         if(pview)
+         {
+
+            m_pfontview->m_pview->add_control_event_handler(pview);
+
+         }
+
       }
       else if (is_color_sel(pimpactdata->m_id))
       {
@@ -492,6 +503,17 @@ namespace userex
          pimpactdata->m_puserinteraction = pdocument->m_pviewTopic;
          
          m_pcolorview->add_control_event_handler(this);
+
+         auto psession = get_session();
+
+         __pointer(::user::interaction) pview = psession->get_bound_ui(COLORSEL_IMPACT);
+
+         if(pview)
+         {
+
+            m_pcolorview->add_control_event_handler(pview);
+
+         }
 
       }
       else if(is_filemanager(pimpactdata->m_id))
@@ -804,6 +826,25 @@ namespace userex
       auto puser = user();
 
       m_pdocAppOptions = puser->create_child_form(this, this, pimpactdata->m_pplaceholder, strAppOptions);
+
+      //auto pform = m_pdocAppOptions->get_typed_view<::user::form>();
+
+      //if (pform)
+      //{
+
+      //   if (pform->m_puserinteractionpointeraChild)
+      //   {
+
+      //      for (auto& p : pform->m_puserinteractionpointeraChild->interactiona())
+      //      {
+
+      //         p->add_control_event_handler(this);
+
+      //      }
+
+      //   }
+
+      //}
 
       return true;
 

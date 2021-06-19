@@ -40,7 +40,7 @@ namespace account
       bool                 m_bShiftKey;
 
       bool                 m_bDrag;
-      ::rect               m_rectDesktop;
+      ::rectangle               m_rectDesktop;
 
       manual_reset_event   m_eventReady;
 
@@ -113,9 +113,9 @@ namespace account
    void account::draw_auth_box(simple_graphics & g)
    {
 
-      ::rect rect;
+      ::rectangle rectangle;
 
-      get_client_rect(rect);
+      get_client_rect(rectangle);
 
       g.set_alpha_mode(draw2d::alpha_mode_blend);
 
@@ -133,24 +133,24 @@ namespace account
       point pc[4];
 
 
-      pa[0].x = rect.left;
-      pa[0].y = rect.top;
-      pa[1].x = rect.right - rect.width() / 10;
-      pa[1].y = rect.top + rect.height() / 10;
-      pa[2].x = rect.right - rect.width() / 8;
-      pa[2].y = rect.bottom - rect.height() / 10;
-      pa[3].x = rect.left;
-      pa[3].y = rect.bottom;
+      pa[0].x = rectangle.left;
+      pa[0].y = rectangle.top;
+      pa[1].x = rectangle.right - rectangle.width() / 10;
+      pa[1].y = rectangle.top + rectangle.height() / 10;
+      pa[2].x = rectangle.right - rectangle.width() / 8;
+      pa[2].y = rectangle.bottom - rectangle.height() / 10;
+      pa[3].x = rectangle.left;
+      pa[3].y = rectangle.bottom;
 
 
-      pb[0].x = rect.left + rect.width() / 6;
-      pb[0].y = rect.top + rect.height() / 6;
-      pb[1].x = rect.right - rect.width() / 6;
-      pb[1].y = rect.top + rect.height() / 6;
-      pb[2].x = rect.right - rect.width() / 5;
-      pb[2].y = rect.bottom - rect.height() / 4;
-      pb[3].x = rect.left + rect.width() / 5;
-      pb[3].y = rect.bottom - rect.height() / 4;
+      pb[0].x = rectangle.left + rectangle.width() / 6;
+      pb[0].y = rectangle.top + rectangle.height() / 6;
+      pb[1].x = rectangle.right - rectangle.width() / 6;
+      pb[1].y = rectangle.top + rectangle.height() / 6;
+      pb[2].x = rectangle.right - rectangle.width() / 5;
+      pb[2].y = rectangle.bottom - rectangle.height() / 4;
+      pb[3].x = rectangle.left + rectangle.width() / 5;
+      pb[3].y = rectangle.bottom - rectangle.height() / 4;
 
       {
 
@@ -314,7 +314,7 @@ namespace account
    void account::draw_pestana(simple_graphics & g)
    {
 
-      ::rect rectWindow;
+      ::rectangle rectWindow;
 
       get_window_rect(rectWindow);
 
@@ -448,7 +448,7 @@ namespace account
    bool account::prepare_window(bool bShow)
    {
 
-      rect & rectDesktop = m_rectDesktop;
+      rectangle & rectDesktop = m_rectDesktop;
 
       CGRect rectFontopus;
 
@@ -571,7 +571,7 @@ namespace account
          return true;
 
 
-      ::rect rectLogin;
+      ::rectangle rectLogin;
 
       m_login.get_window_rect(rectLogin);
 
@@ -585,7 +585,7 @@ namespace account
 
 
             {
-      ::rect rectWindow;
+      ::rectangle rectWindow;
       m_login.get_window_rect(&rectWindow);
       POINT32 pointCursor;
       ::GetCursorPos(&pointCursor);
@@ -638,7 +638,7 @@ namespace account
    void account::draw_dark_glass(simple_graphics & g)
    {
 
-      ::rect rectWindow;
+      ::rectangle rectWindow;
 
       get_window_rect(rectWindow);
 
@@ -663,7 +663,7 @@ namespace account
    void account::draw_fuzzy_color_spread(simple_graphics & g)
    {
 
-      ::rect rectWindow;
+      ::rectangle rectWindow;
 
       get_window_rect(rectWindow);
 

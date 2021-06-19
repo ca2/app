@@ -89,17 +89,17 @@ namespace user
 
       pgraphics->reset_clip();
 
-      ::rectangle_i32 rectClient;
+      ::rectangle_i32 rectangleClient;
 
-      get_client_rect(rectClient);
+      get_client_rect(rectangleClient);
 
       ::draw2d::path_pointer path(e_create);
 
-      path->set_current_point(rectClient.left, rectClient.bottom);
+      path->set_current_point(rectangleClient.left, rectangleClient.bottom);
 
       ::rectangle_i32 rectBody;
 
-      rectBody = rectClient;
+      rectBody = rectangleClient;
 
       rectBody.left += 16;
       rectBody.bottom -= 16;
@@ -167,7 +167,7 @@ namespace user
       for(auto strLine : stra)
       {
 
-         sizeLine = g->GetTextExtent(strLine);
+         sizeLine = g->get_text_extent(strLine);
 
          size.cx = maximum(size.cx,sizeLine.cx);
 

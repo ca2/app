@@ -768,7 +768,9 @@ namespace user
 
       u32 uStyle = RecalcDelayShow(playout);
 
-      if (is_this_visible() && (uStyle & CBRS_ALIGN_ANY) != 0)
+      bool bIsThisVisible = is_this_visible(e_layout_sketch);
+
+      if (bIsThisVisible && (uStyle & CBRS_ALIGN_ANY) != 0)
       {
          
          // align the control bar

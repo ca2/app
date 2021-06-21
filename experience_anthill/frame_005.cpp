@@ -297,10 +297,10 @@ SizingNone:;
                   ::rectangle_i32 rectangle;
                   GetBorderRect(rectangleClient, rectangle, eside);
 
-                  pgraphics->color_blend(
+                  pgraphics->fill_rectangle(
                                       rectangle,
-                                      colorMoveableBorder,
-                                      127);
+                                      colorMoveableBorder &
+                                      127_opacity);
                }
                else
                {

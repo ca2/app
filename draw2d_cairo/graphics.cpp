@@ -7,6 +7,9 @@
 
 #define DEBUG_WINDOWS_C_ANDROID_FONTS 0
 
+
+#define __expand_rgba(color) color.dr(), color.dg(), color.db(), color.da()
+
 // https://www.codeproject.com/Articles/2293/Retrieving-Font-Name-from-TTF-File
 // Philip Patrick
 // Team Leader Varonis
@@ -4627,9 +4630,9 @@ bool graphics::_set(::draw2d::brush * pbrush, double x, double y)
 
       cairo_pattern_t * ppattern = cairo_pattern_create_radial(pbrush->m_point.x - x, pbrush->m_point.y - y, 0, pbrush->m_point2.x - x, pbrush->m_point2.y - y, maximum(pbrush->m_size.cx, pbrush->m_size.cy));
 
-      cairo_pattern_add_color_stop_rgba(ppattern, 0., colorref_get_r_value(pbrush->m_color1) / 255.0, colorref_get_g_value(pbrush->m_color1) / 255.0, colorref_get_b_value(pbrush->m_color1) / 255.0, colorref_get_a_value(pbrush->m_color1) / 255.0);
+      cairo_pattern_add_color_stop_rgba(ppattern, 0., __expand_rgba(pbrush->m_color1));
 
-      cairo_pattern_add_color_stop_rgba(ppattern, 1., colorref_get_r_value(pbrush->m_color2) / 255.0, colorref_get_g_value(pbrush->m_color2) / 255.0, colorref_get_b_value(pbrush->m_color2) / 255.0, colorref_get_a_value(pbrush->m_color2) / 255.0);
+      cairo_pattern_add_color_stop_rgba(ppattern, 1., __expand_rgba(pbrush->m_color1));
 
       cairo_set_source(m_pdc, ppattern);
 
@@ -4755,7 +4758,7 @@ bool graphics::_set(::draw2d::pen * ppen)
    else
    {
 
-      cairo_set_source_rgba(m_pdc, colorref_get_r_value(ppen->m_color) / 255.0, colorref_get_g_value(ppen->m_color) / 255.0, colorref_get_b_value(ppen->m_color) / 255.0, colorref_get_a_value(ppen->m_color) / 255.0);
+      cairo_set_source_rgba(m_pdc, __expand_rgba(ppen->m_color));
 
    }
 

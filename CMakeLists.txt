@@ -6880,8 +6880,8 @@ add_executable(app
         axis/user/check_box.h
         axis/user/combo_box.cpp
         axis/user/combo_box.h
-        axis/user/combo_list.cpp
-        axis/user/combo_list.h
+        axis/user/list_box.cpp
+        axis/user/list_box.h
         axis/user/simple_ui_draw.cpp
         axis/user/simple_ui_draw.h
         axis/user/slider.cpp

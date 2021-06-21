@@ -23,6 +23,8 @@ struct CLASS_DECL_ACME block :
    block(const string & str) : ::block(str.c_str(), str.get_length()) {}
    block(const string & str, ::strsize s) : ::block((const void *)str.c_str(), (::i64)( s >= 0 ? s : str.get_length() + s + 1)) {}
    block(const char * psz, ::strsize s = -1) : ::block((const void *)psz, (::i64) (s >= 0 ? s : strlen(psz) + s + 1)) {}
+   template < primitive_integral INTEGRAL >
+   block(const INTEGRAL & integral) : ::block((const void*)&integral, sizeof(integral)) {}
 
 
    block & operator = (const block & block) { if (this != &block) { m_pdata = block.m_pdata; m_iSize = block.m_iSize; } return *this; }

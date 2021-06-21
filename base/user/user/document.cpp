@@ -716,19 +716,19 @@ namespace user
       //   }
 
       // store the path fully qualified
-      ::file::path strFullPath;
+      ::file::path pathFull;
       //      psystem->file_system().FullPath(strFullPath, strPathName);
-      strFullPath = strPathName;
+      pathFull = strPathName;
 
       auto pcontext = get_context();
 
-      m_path = pcontext->m_papexcontext->defer_process_path(m_path);
+      m_path = pcontext->m_papexcontext->defer_process_path(pathFull);
       //m_filepathEx = strFullPath;
       //!m_strPathName.is_empty());       // must be set to something
       m_bEmbedded = false;
 
       // set the document_interface title based on path name
-      set_title(strFullPath.title());
+      set_title(pathFull.title());
 
       //string strPathName;
       //::str::international::Utf8ToAcp(strPathName, m_wstrPathName);

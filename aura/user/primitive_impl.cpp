@@ -351,10 +351,10 @@ namespace user
 
       string strType = ::str::demangle(m_puserinteraction->type_name());
 
-      if (strType.contains("combo_list"))
+      if (strType.contains("list_box"))
       {
 
-         output_debug_string("combo_list");
+         output_debug_string("list_box");
 
       }
 

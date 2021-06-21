@@ -3817,10 +3817,10 @@ namespace user
 
       string strType = ::str::demangle(m_puserinteraction->type_name());
 
-      if (strType.contains("combo_list"))
+      if (strType.contains("list_box"))
       {
 
-         output_debug_string("combo_list");
+         output_debug_string("list_box");
 
       }
 
@@ -4078,14 +4078,14 @@ namespace user
 
       string strType = m_puserinteraction->type_c_str();
 
-      if(strType.contains_ci("combo_list"))
+      if(strType.contains_ci("list_box"))
       {
 
          auto edisplay = m_puserinteraction->layout().state(e_layout_design).display();
 
          bool bGraphicsSet = m_pgraphics.is_set();
 
-         output_debug_string("_001UpdateScreen combo_list");
+         output_debug_string("_001UpdateScreen list_box");
 
       }
 

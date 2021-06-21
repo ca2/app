@@ -4169,3 +4169,30 @@ template < typename BRANCHING_OBJECT, typename BRANCHING_METHOD >
    return psignalization->m_estatus;
 
 }
+
+
+
+inline byte* memory_base::find(const ::block& block, ::index iStart) const
+{
+
+   return (byte*)memmem(get_data() + iStart, get_size() - iStart, (byte*)block.get_data(), block.get_size());
+
+}
+
+
+inline ::index memory_base::find_index(const ::block& block, ::index iStart) const
+{
+
+   auto p = find(block, iStart);
+
+   if (!p)
+   {
+
+      return -1;
+
+   }
+
+   return ((byte*)p) - get_data();
+
+}
+

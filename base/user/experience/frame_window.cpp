@@ -1154,10 +1154,10 @@ namespace experience
       {
 
       }
-      else if(base_class < ::user::combo_list >::bases(pActive))
+      else if(base_class < ::user::list_box >::bases(pActive))
       {
 
-         ::user::combo_list * plist = dynamic_cast <::user::combo_list *> (pActive.m_p);
+         ::user::list_box * plist = dynamic_cast <::user::list_box *> (pActive.m_p);
 
          if(plist != nullptr && plist->m_bComboList)
          {

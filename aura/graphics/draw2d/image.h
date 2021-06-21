@@ -121,6 +121,7 @@ public:
 
    virtual bool flip_vertical(::image * pimage);
    virtual bool flip_horizontal(::image * pimage);
+   virtual bool flip_horizontal();
    virtual bool flipx(::image * pimage);
    virtual bool flipy(::image * pimage);
    virtual ::image * flipx();

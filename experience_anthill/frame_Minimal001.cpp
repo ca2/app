@@ -215,11 +215,11 @@ namespace experience
 
                auto pframewindow = m_pframewindow;
 
-               color32_t    crMoveableBorder;
+               ::color::color    crMoveableBorder;
 
-               color32_t    crMoveableBorderHilight;
+               ::color::color    crMoveableBorderHilight;
 
-               color32_t    crMoveableBorderShadow;
+               ::color::color    crMoveableBorderShadow;
 
                if(pframewindow->m_fActive)
                {
@@ -258,7 +258,7 @@ namespace experience
 
 
 
-                  pgraphics->color_blend( rectangle, crMoveableBorder, 127);
+                  pgraphics->fill_rectangle( rectangle, crMoveableBorder & 127_opacity);
 
                }
                /*else if(m_estyle == StyleLightBlue)
@@ -270,7 +270,7 @@ namespace experience
 
 
 
-                  pgraphics->color_blend( rectangle, crMoveableBorder, 127);
+                  pgraphics->fill_rectangle( rectangle, crMoveableBorder, 127);
 
 
 
@@ -298,7 +298,7 @@ namespace experience
 
 
 
-                  pgraphics->color_blend( rectangle, crMoveableBorder, 127);
+                  pgraphics->fill_rectangle( rectangle, crMoveableBorder & 127_opacity);
 
                }
 

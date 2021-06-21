@@ -22,9 +22,9 @@ public:
    virtual ::e_status update_module_path();
 
 
-   virtual ::file::path get_last_run_application_path_file(string strAppId);
-   virtual ::file::path get_last_run_application_path(string strAppId);
-   virtual bool set_last_run_application_path(string strAppId);
+   //virtual ::file::path get_last_run_application_path_file(string strAppId);
+   //virtual ::file::path get_last_run_application_path(string strAppId);
+   //virtual bool set_last_run_application_path(string strAppId);
 
 
 };

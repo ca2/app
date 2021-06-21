@@ -75,7 +75,7 @@ namespace user
          if (item.is_set())
          {
 
-            AddString(item->m_strName, item->m_strName);
+            add_string(item->m_strName, item->m_strName);
 
          }
 

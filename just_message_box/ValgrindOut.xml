@@ -42097,7 +42097,7 @@
     <frame>
       <ip>0x12253882</ip>
       <obj>/xcore/time/x64/basis/libcore.so</obj>
-      <fn>alloc_factory&lt;user::combo_list, user::combo_list&gt;::~alloc_factory()</fn>
+      <fn>alloc_factory&lt;user::list_box, user::list_box&gt;::~alloc_factory()</fn>
       <dir>/xcore/app/aura/../aura/</dir>
       <file>aura_class.h</file>
       <line>36</line>

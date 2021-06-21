@@ -3451,10 +3451,10 @@ namespace user
          //output_debug_string("combo_box");
 
       }
-      else if (strType.contains_ci("combo_list"))
+      else if (strType.contains_ci("list_box"))
       {
 
-         output_debug_string("combo_list");
+         output_debug_string("list_box");
 
       }
       sketch_to_design(pgraphics, bUpdateBuffer, bUpdateWindow);
@@ -7975,10 +7975,10 @@ namespace user
 
       strType = type_name();
 
-      if (strType.contains_ci("combo_list"))
+      if (strType.contains_ci("list_box"))
       {
 
-         ::output_debug_string("combo_list");
+         ::output_debug_string("list_box");
 
       }
 
@@ -9119,10 +9119,10 @@ namespace user
 
       string strType = type_name();
 
-      if (strType.contains("combo_list"))
+      if (strType.contains("list_box"))
       {
 
-         ::output_debug_string("combo_list");
+         ::output_debug_string("list_box");
 
       }
 
@@ -10369,6 +10369,7 @@ namespace user
 
    }
 
+   
 
    bool interaction::create_message_queue(const char * lpszName)
    {
@@ -13266,6 +13267,8 @@ restart:
    {
 
       __pointer(::message::show_window) pshowwindow(pmessage);
+      string strType = type_c_str();
+      output_debug_string(strType);
 //SW_OTHERUNZOOM
 //4
 //The window is being uncovered because a maximize window was restored or minimized.
@@ -14738,10 +14741,10 @@ restart:
 
       string strType = type_name();
 
-      if (strType.contains_ci("combo_list"))
+      if (strType.contains_ci("list_box"))
       {
 
-         output_debug_string("prodevian_redraw combo_list");
+         output_debug_string("prodevian_redraw list_box");
 
       }
 

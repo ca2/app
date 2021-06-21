@@ -9,7 +9,7 @@ namespace user
 
 
    class CLASS_DECL_CORE font_list :
-      virtual public combo_list
+      virtual public list_box
    {
    public:
 

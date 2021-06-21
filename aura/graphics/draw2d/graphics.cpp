@@ -752,7 +752,16 @@ namespace draw2d
    bool graphics::fill_rectangle(const ::rectangle_f64 & rectangle)
    {
 
-      return false;
+      auto bOk = fill_rectangle(rectangle, m_pbrush);
+
+      if (!bOk)
+      {
+
+         return false;
+
+      }
+
+      return true;
 
    }
 

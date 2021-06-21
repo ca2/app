@@ -2536,7 +2536,7 @@
     <ClCompile Include="user\user\combo_box.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\user\combo_list.cpp">
+    <ClCompile Include="user\user\list_box.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
     <ClCompile Include="user\user\composition_imm_client.cpp">

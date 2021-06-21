@@ -462,6 +462,8 @@ class pointer_array;
 #define __pointer_array(TYPE) ::pointer_array < TYPE >
 #define __address_array(TYPE) ::comparable_array < TYPE * >
 
+#include <type_traits>
+
 class matter;
 
 template < typename T >

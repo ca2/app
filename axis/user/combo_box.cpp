@@ -18,8 +18,8 @@ namespace user
    {
 
       m_econtroltype          = e_control_type_combo_box;
-      m_bCaseSensitiveMatch   = false;
-      m_typeComboList         = __type(::user::combo_list);
+      //m_bCaseSensitiveMatch   = false;
+      m_typeComboList         = __type(::user::list_box);
       m_estyle                = style_simply;
       m_bEdit                 = true;
       m_edatamode             = data_mode_opaque;
@@ -459,7 +459,8 @@ namespace user
    index combo_box::_001GetListCount() const
    {
 
-      return m_straList.get_count();
+      //return m_straList.get_count();
+      return m_plist->_001GetListCount();
 
    }
 
@@ -825,7 +826,7 @@ namespace user
       if(m_plist == nullptr)
       {
 
-         auto plist = __id_create < combo_list >(m_typeComboList);
+         auto plist = __id_create < list_box >(m_typeComboList);
 
          m_plist = plist;
 
@@ -1173,19 +1174,17 @@ namespace user
    }
 
 
-   index combo_box::DeleteString(index nIndex)
+   index combo_box::delete_string(index nIndex)
    {
 
-      //ASSERT(is_window());
+      auto iIndex = m_plist->delete_string(nIndex);
 
-      //return (index) send_message( CB_DELETESTRING, nIndex, 0);
-
-      return -1;
+      return iIndex;
 
    }
 
-   index combo_box::InsertString(index nIndex, const char * pszString)
 
+   index combo_box::insert_string(index nIndex, const char * pszString)
    {
 
       //ASSERT(is_window());
@@ -1198,17 +1197,10 @@ namespace user
    }
 
 
-   void combo_box::ResetContent()
+   void combo_box::reset_content()
    {
 
-      synchronous_lock synchronouslock(mutex());
-
-      m_straList.erase_all();
-
-      m_straValue.erase_all();
-
-      m_itemCurrent = -1;
-      m_itemHover = -1;
+      m_plist->reset_content();
 
    }
 
@@ -1482,23 +1474,26 @@ namespace user
    }
 
 
-
-
-
    bool combo_box::_001GetListText(index iSel,string & str) const
    {
 
-      str.Empty();
+      return m_plist->_001GetListText(iSel, str);
 
-      if (iSel < 0)
-         return false;
+      //str.Empty();
 
-      if (iSel >= m_straList.get_count())
-         return false;
+      //if (iSel < 0)
+      //{
 
-      str = m_straList[iSel];
+      //   return false;
 
-      return true;
+      //}
+
+      //if (iSel >= m_straList.get_count())
+      //   return false;
+
+      //str = m_straList[iSel];
+
+      //return true;
 
    }
 
@@ -1506,6 +1501,7 @@ namespace user
    index combo_box::_001FindListText(const string & str) const
    {
 
+      return m_plist->_001FindListText(str);
 
       //index combo_box::_001FindListText(const string & str) const
       //{
@@ -1541,59 +1537,56 @@ namespace user
       //}
 
 
-      if(m_bCaseSensitiveMatch)
-      {
-         return m_straList.find_first(str);
-      }
-      else
-      {
-         return m_straList.find_first_ci(str);
-      }
+      //if(m_bCaseSensitiveMatch)
+      //{
+      //   return m_straList.find_first(str);
+      //}
+      //else
+      //{
+      //   return m_straList.find_first_ci(str);
+      //}
 
    }
 
 
-
-
-
-
-
-   index combo_box::AddString(const char * pszString,uptr dwItemData)
-
+   index combo_box::add_string(const char * pszString,uptr dwItemData)
    {
 
       synchronous_lock synchronouslock(mutex());
 
       ASSERT(m_edatamode == data_mode_opaque);
 
-      if(m_edatamode != data_mode_opaque)
+      if (m_edatamode != data_mode_opaque)
+      {
+
          return -1;
 
-      m_straList.add(pszString);
+      }
 
+      return m_plist->add_string(pszString, dwItemData);
 
-      m_straValue.add(__str(dwItemData));
+      //auto iIndex = m_plist->add_string(pszString, dwItemData);
 
-      return m_straList.get_upper_bound();
+      //return iIndex;
 
    }
 
 
-   index combo_box::AddString(const char * pszString,const string & strValue)
-
+   index combo_box::add_string(const char * pszString,const string & strValue)
    {
 
       ASSERT(m_edatamode == data_mode_string);
 
-      if(m_edatamode != data_mode_string)
+      if (m_edatamode != data_mode_string)
+      {
+
          return -1;
 
-      m_straList.add(pszString);
+      }
 
+      auto iIndex = m_plist->add_string(pszString, strValue);
 
-      m_straValue.add(strValue);
-
-      return m_straList.get_upper_bound();
+      return iIndex;
 
    }
 
@@ -1604,6 +1597,7 @@ namespace user
       return ::user::plain_edit::m_itemHover.is_set() || is_drop_down();
 
    }
+
 
    bool combo_box::has_text_input()
    {
@@ -1616,16 +1610,7 @@ namespace user
    void combo_box::set_current_item_by_string_value(const string & strValue, const ::action_context & context)
    {
 
-      index iSel = m_straValue.find_first(strValue);
-
-      if (iSel < 0)
-      {
-
-         return;
-
-      }
-
-      set_current_item(iSel,context);
+      m_plist->set_current_item_by_string_value(strValue, context);
 
    }
 
@@ -1633,16 +1618,7 @@ namespace user
    void combo_box::set_current_item_by_data(uptr u, const ::action_context & context)
    {
 
-      index iSel = m_straValue.find_first(__str(u));
-
-      if (iSel < 0)
-      {
-
-         return;
-
-      }
-
-      set_current_item(iSel,context);
+      m_plist->set_current_item_by_data(u, context);
 
    }
 
@@ -1650,18 +1626,7 @@ namespace user
    string combo_box::get_current_item_string_value()
    {
 
-      index iSel = current_item();
-
-      if (iSel < 0)
-      {
-
-         return "";
-
-      }
-
-      string str = m_straValue[iSel];
-
-      return str;
+      return m_plist->get_current_item_string_value();
 
    }
 

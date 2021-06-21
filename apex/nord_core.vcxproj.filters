@@ -676,7 +676,7 @@
     <ClCompile Include="user\user\composition_imm_client.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\user\combo_list.cpp">
+    <ClCompile Include="user\user\list_box.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
     <ClCompile Include="user\user\combo_box.cpp">
@@ -1191,7 +1191,7 @@
     <ClInclude Include="user\user\combo_box.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
-    <ClInclude Include="user\user\combo_list.h">
+    <ClInclude Include="user\user\list_box.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
     <ClInclude Include="user\user\composition_imm_client.h">

@@ -180,10 +180,10 @@ namespace user
 
       ::task_set_name("prodevian," + strType);
 
-      if (strType.contains_ci("combo_list"))
+      if (strType.contains_ci("list_box"))
       {
 
-         output_debug_string("combo_list");
+         output_debug_string("list_box");
 
       }
 
@@ -408,10 +408,10 @@ bool prodevian::prodevian_iteration()
 
          }
 
-         if (strType.contains_ci("combo_list"))
+         if (strType.contains_ci("list_box"))
          {
 
-            output_debug_string("combo_list");
+            output_debug_string("list_box");
 
          }
 
@@ -1162,10 +1162,10 @@ bool prodevian::prodevian_iteration()
 
          string strType = m_puserinteraction->type_c_str();
 
-         if(strType.contains_ci("combo_list"))
+         if(strType.contains_ci("list_box"))
          {
 
-            output_debug_string("We're on the combo_list update_screen");
+            output_debug_string("We're on the list_box update_screen");
 
          }
 

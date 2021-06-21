@@ -40,7 +40,7 @@ namespace user
    void font_list::install_message_routing(::channel * pchannel)
    {
 
-      ::user::combo_list::install_message_routing(pchannel);
+      ::user::list_box::install_message_routing(pchannel);
 
       MESSAGE_LINK(e_message_create, pchannel, this, &font_list::on_message_create);
       MESSAGE_LINK(e_message_left_button_down, pchannel, this, &font_list::on_message_left_button_down);
@@ -133,7 +133,7 @@ namespace user
    void font_list::_001OnTimer(::timer * ptimer)
    {
 
-      ::user::combo_list::_001OnTimer(ptimer);
+      ::user::list_box::_001OnTimer(ptimer);
 
    }
 
@@ -249,7 +249,7 @@ namespace user
    void font_list::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
    {
 
-      combo_list::on_subject(psubject, pcontext);
+      list_box::on_subject(psubject, pcontext);
 
    }
 
@@ -265,7 +265,7 @@ namespace user
    void font_list::_001OnClip(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::user::combo_list::_001OnClip(pgraphics);
+      ::user::list_box::_001OnClip(pgraphics);
 
    }
 
@@ -636,7 +636,7 @@ namespace user
       else
       {
 
-         ::user::combo_list::_001EnsureVisible(iItem);
+         ::user::list_box::_001EnsureVisible(iItem);
 
       }
 

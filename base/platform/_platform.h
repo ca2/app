@@ -110,7 +110,7 @@ namespace user
    class split_view;
 
    class combo_box;
-   class combo_list;
+   class list_box;
 
 
 } // namespace user

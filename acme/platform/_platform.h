@@ -99,7 +99,7 @@ class image_list;
 //   class form_callback;
 //
 //   class combo_box;
-//   class combo_list;
+//   class list_box;
 //
 //
 //} // namespace user

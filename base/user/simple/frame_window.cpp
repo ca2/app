@@ -2755,11 +2755,19 @@ bool simple_frame_window::LoadToolBar(::type type, id idToolBar, const char * ps
 
    AddControlBar(ptoolbar);
 
-   ptoolbar->set_need_layout();
-
    ptoolbar->payload("matter_annotation") = strMatter;
 
+   ptoolbar->set_need_layout();
+
+   ptoolbar->set_need_redraw();
+
+   ptoolbar->post_redraw();
+
    set_need_layout();
+
+   set_need_redraw();
+
+   post_redraw();
 
    return true;
 

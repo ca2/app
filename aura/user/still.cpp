@@ -562,24 +562,35 @@ namespace user
 
       get_client_rect(rectangleClient);
 
-      color32_t crBk;
+      ::color::color colorBackground;
+
       if (!is_window_enabled())
       {
-         // Backround Disabled
-         crBk = argb(255, 192, 192, 192);
+         
+         // Still Disabled Background
+         colorBackground = argb(255, 192, 192, 192);
+
       }
       else if (is_left_button_pressed())
       {
-         // Backround Pressed
-         crBk = argb(255, 192, 192, 250);
+         
+         // Still Pressed Background
+         colorBackground = argb(255, 192, 192, 250);
+
       }
       else if (m_itemHover.is_set())
       {
-         crBk = argb(255, 220, 220, 250);
+
+         // Still Mouse Over Background
+         colorBackground = argb(255, 220, 220, 250);
+
       }
       else
       {
-         crBk = argb(255, 127, 127, 250);
+
+         // Still Normal Background
+         colorBackground = argb(255, 127, 127, 250);
+
       }
 
       auto pstyle = get_style(pgraphics);
@@ -589,33 +600,41 @@ namespace user
       if (get_translucency(pstyle) >= e_translucency_present)
       {
 
-         pgraphics->fill_rectangle(rectangleClient, ::color::color(crBk, 0.5));
+         pgraphics->fill_rectangle(rectangleClient, colorBackground & 0.5_opacity);
 
       }
       else
       {
 
-         pgraphics->fill_rectangle(rectangleClient, crBk);
+         pgraphics->fill_rectangle(rectangleClient, colorBackground);
 
       }
 
+      ::color::color colorBorder;
 
-      color32_t crBorder;
       if (!is_window_enabled())
       {
-         crBorder = argb(255, 127, 127, 127);
+
+         colorBorder = argb(255, 127, 127, 127);
+
       }
       else if (is_left_button_pressed())
       {
-         crBorder = argb(255, 255, 255, 255);
+         
+         colorBorder = argb(255, 255, 255, 255);
+
       }
       else if (m_itemHover.is_set())
       {
-         crBorder = argb(255, 100, 100, 200);
+         
+         colorBorder = argb(255, 100, 100, 200);
+
       }
       else
       {
-         crBorder = argb(255, 10, 10, 100);
+         
+         colorBorder = argb(255, 10, 10, 100);
+
       }
 
       auto rectangle = get_border(pstyle);
@@ -623,16 +642,18 @@ namespace user
       if (rectangle.is_ok())
       {
 
-         pgraphics->draw_rectangle(rectangleClient, crBorder);
+         pgraphics->draw_rectangle(rectangleClient, colorBorder);
 
       }
 
-      //      pgraphics->SetBkMode(TRANSPARENT);
-
       rectangleClient.left += 3;
+
       rectangleClient.top += 3;
+
       ::rectangle_i32 rectText = m_rectText;
+
       //      string str = ::str::international::utf8_to_unicode(str);
+
       if (m_pimage->is_ok())
       {
          ::rectangle_i32 rectDib;

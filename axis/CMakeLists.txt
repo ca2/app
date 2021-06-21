@@ -243,8 +243,8 @@ list(APPEND axis_source
         #user/check_box.h
         user/combo_box.cpp
         user/combo_box.h
-        user/combo_list.cpp
-        user/combo_list.h
+        user/list_box.cpp
+        user/list_box.h
         user/simple_ui_draw.cpp
         user/simple_ui_draw.h
         user/slider.cpp

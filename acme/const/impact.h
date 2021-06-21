@@ -41,6 +41,7 @@ enum e_impact : ::i64
    impact_local_computer_list,
    impact_cloud_computer_list,
    impact_simple_drawing,
+   impact_simple_change_grub_default_entry,
    impact_simple_form,
    impact_visual_click,
    impact_chronometer,

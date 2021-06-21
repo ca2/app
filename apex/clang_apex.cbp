@@ -2707,8 +2707,8 @@
 		<Unit filename="user/user/color_combo_box.h" />
 		<Unit filename="user/user/combo_box.cpp" />
 		<Unit filename="user/user/combo_box.h" />
-		<Unit filename="user/user/combo_list.cpp" />
-		<Unit filename="user/user/combo_list.h" />
+		<Unit filename="user/user/list_box.cpp" />
+		<Unit filename="user/user/list_box.h" />
 		<Unit filename="user/user/command.cpp" />
 		<Unit filename="user/user/command.h" />
 		<Unit filename="user/user/composition_imm_client.cpp" />

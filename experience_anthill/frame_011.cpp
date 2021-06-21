@@ -253,10 +253,10 @@ SizingNone:;
                   ::rectangle_i32 rectangle;
                   GetBorderRect(rectangleClient, rectangle, eside);
 
-                  pgraphics->color_blend(
+                  pgraphics->fill_rectangle(
                                       rectangle,
-                                      colorMoveableBorder,
-                                      127);
+                                      colorMoveableBorder &
+                                      127_opacity);
                }
                else if (estyle == ::user::StyleLightBlue)
                {
@@ -275,7 +275,7 @@ SizingNone:;
                   //::rectangle_i32 rectangle;
                   //GetBorderRect(rectangleClient,rectangle,eside);
                   //class imaging & imaging = psystem->imaging();
-                  //imaging.color_blend(pgraphics,
+                  //imaging.fill_rectangle(pgraphics,
                   //   rectangle,
                   //   crMoveableBorder,
                   //   127);
@@ -285,10 +285,9 @@ SizingNone:;
                   ::rectangle_i32 rectangle;
                   GetBorderRect(rectangleClient, rectangle, eside);
 
-                  pgraphics->color_blend(
+                  pgraphics->fill_rectangle(
                                       rectangle,
-                                      colorMoveableBorder,
-                                      127);
+                                      colorMoveableBorder & 127_opacity);
 
                   ::rectangle_i32 rectClientB = rectA;
 

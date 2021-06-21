@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   class combo_list;
+   class list_box;
 
 
    class CLASS_DECL_AXIS combo_box :
@@ -33,9 +33,8 @@ namespace user
 
       ::size_i32                     m_sizeFull;
       string                     m_strText;
-      bool                       m_bCaseSensitiveMatch;
       ::millis                     m_millisShowComboList;
-      __pointer(combo_list)             m_plist;
+      __pointer(list_box)             m_plist;
 
       ::type                   m_typeComboList;
 
@@ -43,8 +42,6 @@ namespace user
 
       bool                       m_bEdit;
       e_data_mode                m_edatamode;
-      string_array                    m_straList;
-      string_array                    m_straValue;
 
 
       combo_box();
@@ -180,15 +177,15 @@ namespace user
       void ShowDropDown(bool bShowIt = true);
 
       // manipulating listbox items
-      virtual index AddString(const char * pszString, uptr dwItemData = 0);
-      virtual index AddString(const char* pszString, const string& strValue);
+      virtual index add_string(const char * pszString, uptr dwItemData = 0);
+      virtual index add_string(const char* pszString, const string& strValue);
 
 
 
-      index DeleteString(index nIndex);
-      index InsertString(index nIndex, const char * pszString);
+      virtual index delete_string(index nIndex);
+      virtual index insert_string(index nIndex, const char * pszString);
 
-      void ResetContent();
+      virtual void reset_content();
       index Dir(index attr, const char * pszWildCard);
 
 

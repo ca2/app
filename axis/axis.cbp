@@ -670,8 +670,8 @@
 		<Unit filename="user/check_box.h" />
 		<Unit filename="user/combo_box.cpp" />
 		<Unit filename="user/combo_box.h" />
-		<Unit filename="user/combo_list.cpp" />
-		<Unit filename="user/combo_list.h" />
+		<Unit filename="user/list_box.cpp" />
+		<Unit filename="user/list_box.h" />
 		<Unit filename="user/simple_ui_draw.cpp" />
 		<Unit filename="user/simple_ui_draw.h" />
 		<Unit filename="user/slider.cpp" />

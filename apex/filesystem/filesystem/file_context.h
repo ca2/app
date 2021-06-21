@@ -276,6 +276,18 @@ public:
    }
 
 
+   ::e_status set(const ::payload & varFile, const ::memory_base & memory)
+   {
+
+      auto writer = get_writer(varFile);
+
+      writer->write(memory.get_data(), memory.get_size());
+
+      return writer.m_estatus;
+
+   }
+
+
    template < class OBJECT >
    ::e_status as(OBJECT & a, const ::payload & varFile)
    {

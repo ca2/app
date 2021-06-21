@@ -2102,10 +2102,17 @@ bool image::flip_vertical(::image * pimage)
 }
 
 
-bool image::flip_horizontal(::image * pimage)
+bool image::flip_horizontal(::image * pimageSource)
 {
 
-   if (!create(pimage->size()))
+   if (pimageSource == this)
+   {
+
+      return flip_horizontal();
+
+   }
+
+   if (!create(pimageSource->size()))
    {
 
       return false;
@@ -2116,21 +2123,55 @@ bool image::flip_horizontal(::image * pimage)
 
    int dsw = m_iScan / 4;
 
-   int ssw = pimage->m_iScan / 4;
+   int ssw = pimageSource->m_iScan / 4;
 
    int w = width();
 
+   int h = height();
+
    auto pcolorref = colorref();
 
-   auto pcolorrefSrc = pimage->colorref();
+   auto pcolorrefSource = pimageSource->colorref();
 
-   for (index y = 0; y < pimage->height(); y++)
+   for (index y = 0; y < h; y++)
    {
 
       for (index x = 0; x < w; x++)
       {
 
-         pcolorref[y * dsw + x] = pcolorrefSrc[y * ssw + w - x - 1];
+         pcolorref[y * dsw + x] = pcolorrefSource[y * ssw + w - x - 1];
+
+      }
+
+   }
+
+   return true;
+
+}
+
+
+bool image::flip_horizontal()
+{
+
+   int half = -1;
+
+   int sw = m_iScan / 4;
+
+   int w = width();
+
+   int halfw = w / 2;
+
+   int h = height();
+
+   auto pcolorref = colorref();
+
+   for (index y = 0; y < h; y++)
+   {
+
+      for (index x = 0; x < halfw; x++)
+      {
+
+         __swap(pcolorref[y * sw + x], pcolorref[y * sw + w - x - 1]);
 
       }
 

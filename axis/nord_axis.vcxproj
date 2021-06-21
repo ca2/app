@@ -270,7 +270,7 @@
     <ClCompile Include="user\button.cpp" />
     <ClCompile Include="user\check_box.cpp" />
     <ClCompile Include="user\combo_box.cpp" />
-    <ClCompile Include="user\combo_list.cpp" />
+    <ClCompile Include="user\list_box.cpp" />
     <ClCompile Include="user\simple_ui_draw.cpp" />
     <ClCompile Include="user\slider.cpp" />
     <ClCompile Include="user\still.cpp" />

@@ -7,7 +7,7 @@ namespace user
 {
 
 
-   combo_list::combo_list()
+   list_box::list_box()
    {
 
       user_combo_list_common_construct();
@@ -15,13 +15,13 @@ namespace user
    }
 
 
-   combo_list::~combo_list()
+   list_box::~list_box()
    {
 
    }
 
 
-   void combo_list::user_combo_list_common_construct()
+   void list_box::user_combo_list_common_construct()
    {
 
       defer_create_mutex();
@@ -49,31 +49,31 @@ namespace user
    }
 
 
-   void combo_list::install_message_routing(::channel * pchannel)
+   void list_box::install_message_routing(::channel * pchannel)
    {
 
       ::user::scroll_base::install_message_routing(pchannel);
 
       install_simple_ui_default_mouse_handling(pchannel);
 
-      MESSAGE_LINK(e_message_set_focus, pchannel, this, &combo_list::_001OnSetFocus);
-      MESSAGE_LINK(e_message_kill_focus, pchannel, this, &combo_list::_001OnKillFocus);
-      MESSAGE_LINK(e_message_close, pchannel, this, &combo_list::_001OnClose);
-      MESSAGE_LINK(e_message_mouse_activate, pchannel, this, &combo_list::_001OnMouseActivate);
-      MESSAGE_LINK(e_message_key_down, pchannel, this, &combo_list::_001OnKeyDown);
-      MESSAGE_LINK(e_message_key_up, pchannel, this, &combo_list::_001OnKeyUp);
-      MESSAGE_LINK(e_message_left_button_down, pchannel, this, &combo_list::on_message_left_button_down);
-      MESSAGE_LINK(e_message_non_client_left_button_down, pchannel, this, &combo_list::on_message_left_button_down);
-      MESSAGE_LINK(e_message_left_button_up, pchannel, this, &combo_list::on_message_left_button_up);
-      MESSAGE_LINK(e_message_middle_button_down, pchannel, this, &combo_list::on_message_middle_button_down);
-      MESSAGE_LINK(e_message_right_button_down, pchannel, this, &combo_list::on_message_right_button_down);
-      MESSAGE_LINK(e_message_mouse_move, pchannel, this, &combo_list::on_message_mouse_move);
-      MESSAGE_LINK(e_message_show_window, pchannel, this, &combo_list::_001OnShowWindow);
+      MESSAGE_LINK(e_message_set_focus, pchannel, this, &list_box::_001OnSetFocus);
+      MESSAGE_LINK(e_message_kill_focus, pchannel, this, &list_box::_001OnKillFocus);
+      MESSAGE_LINK(e_message_close, pchannel, this, &list_box::_001OnClose);
+      MESSAGE_LINK(e_message_mouse_activate, pchannel, this, &list_box::_001OnMouseActivate);
+      MESSAGE_LINK(e_message_key_down, pchannel, this, &list_box::_001OnKeyDown);
+      MESSAGE_LINK(e_message_key_up, pchannel, this, &list_box::_001OnKeyUp);
+      MESSAGE_LINK(e_message_left_button_down, pchannel, this, &list_box::on_message_left_button_down);
+      MESSAGE_LINK(e_message_non_client_left_button_down, pchannel, this, &list_box::on_message_left_button_down);
+      MESSAGE_LINK(e_message_left_button_up, pchannel, this, &list_box::on_message_left_button_up);
+      MESSAGE_LINK(e_message_middle_button_down, pchannel, this, &list_box::on_message_middle_button_down);
+      MESSAGE_LINK(e_message_right_button_down, pchannel, this, &list_box::on_message_right_button_down);
+      MESSAGE_LINK(e_message_mouse_move, pchannel, this, &list_box::on_message_mouse_move);
+      MESSAGE_LINK(e_message_show_window, pchannel, this, &list_box::_001OnShowWindow);
 
    }
 
 
-   void combo_list::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void list_box::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
       ::draw2d::savedc savedc(pgraphics);
@@ -96,7 +96,7 @@ namespace user
    }
 
 
-   void combo_list::_001OnDrawComboList(::draw2d::graphics_pointer & pgraphics)
+   void list_box::_001OnDrawComboList(::draw2d::graphics_pointer & pgraphics)
    {
 
       ::count iListItemCount = m_pcombo->_001GetListCount();
@@ -246,7 +246,7 @@ namespace user
    }
 
 
-   ::write_text::font_pointer combo_list::get_font(style *pstyle, enum_element eelement, estate estate) const
+   ::write_text::font_pointer list_box::get_font(style *pstyle, enum_element eelement, estate estate) const
    {
 
       if (m_pcombo)
@@ -288,7 +288,7 @@ namespace user
    }
 
 
-   void combo_list::query_full_size(::draw2d::graphics_pointer& pgraphics, LPSIZE32 psize)
+   void list_box::query_full_size(::draw2d::graphics_pointer& pgraphics, LPSIZE32 psize)
    {
 
       synchronous_lock synchronouslock(mutex());
@@ -375,13 +375,13 @@ namespace user
    }
 
 
-   void combo_list::on_change_combo_sel(index iSel)
+   void list_box::on_change_combo_sel(index iSel)
    {
 
    }
 
 
-   i32 combo_list::_001GetItemHeight() const
+   i32 list_box::_001GetItemHeight() const
    {
 
       return m_iItemHeight + m_iPadding * 2;
@@ -389,7 +389,7 @@ namespace user
    }
 
 
-   void combo_list::_001EnsureVisible(index iItem)
+   void list_box::_001EnsureVisible(index iItem)
    {
 
       if (m_pscrollbarVertical != nullptr
@@ -410,7 +410,7 @@ namespace user
    }
 
 
-   void combo_list::_001OnTimer(::timer* ptimer)
+   void list_box::_001OnTimer(::timer* ptimer)
    {
    
       if (ptimer->m_etimer == e_timer_kill_focus)
@@ -438,7 +438,7 @@ namespace user
    
    }
 
-   bool combo_list::keyboard_focus_is_focusable()
+   bool list_box::keyboard_focus_is_focusable()
    {
 
       return true;
@@ -446,7 +446,7 @@ namespace user
    }
 
 
-   bool combo_list::keyboard_focus_OnKillFocus(oswindow oswindowNew)
+   bool list_box::keyboard_focus_OnKillFocus(oswindow oswindowNew)
    {
 
       if (is_window_visible(::user::e_layout_sketch))
@@ -472,7 +472,7 @@ namespace user
    }
 
 
-   bool combo_list::pre_create_window(::user::system * pusersystem)
+   bool list_box::pre_create_window(::user::system * pusersystem)
    {
 
       if (pusersystem->m_createstruct.style & WS_BORDER)
@@ -491,7 +491,7 @@ namespace user
    }
 
 
-   void combo_list::_001OnShowWindow(::message::message * pmessage)
+   void list_box::_001OnShowWindow(::message::message * pmessage)
    {
 
       __pointer(::message::show_window) pshowwindow(pmessage);
@@ -509,14 +509,14 @@ namespace user
       else
       {
 
-         output_debug_string("combo_list hide");
+         output_debug_string("list_box hide");
 
       }
 
    }
 
 
-   void combo_list::_001OnKillFocus(::message::message * pmessage)
+   void list_box::_001OnKillFocus(::message::message * pmessage)
    {
 
       if (m_pcombo)
@@ -571,7 +571,7 @@ namespace user
    }
 
 
-   void combo_list::_001OnSetFocus(::message::message * pmessage)
+   void list_box::_001OnSetFocus(::message::message * pmessage)
    {
 
       if (m_pcombo)
@@ -587,7 +587,7 @@ namespace user
 
 
 
-   void combo_list::_001OnActivate(::message::message * pmessage)
+   void list_box::_001OnActivate(::message::message * pmessage)
    {
 
       __pointer(::message::activate) pactivate(pmessage);
@@ -639,7 +639,7 @@ namespace user
    }
 
 
-   void combo_list::_001OnMouseActivate(::message::message * pmessage)
+   void list_box::_001OnMouseActivate(::message::message * pmessage)
    {
 
       __pointer(::message::mouse_activate) pactivate(pmessage);
@@ -652,7 +652,7 @@ namespace user
    }
 
 
-   void combo_list::_001OnKeyDown(::message::message * pmessage)
+   void list_box::_001OnKeyDown(::message::message * pmessage)
    {
 
       __pointer(::message::key) pkey(pmessage);
@@ -712,7 +712,7 @@ namespace user
    }
 
 
-   void combo_list::_001OnKeyUp(::message::message * pmessage)
+   void list_box::_001OnKeyUp(::message::message * pmessage)
    {
 
       UNREFERENCED_PARAMETER(pmessage);
@@ -720,7 +720,7 @@ namespace user
    }
 
 
-   void combo_list::on_message_left_button_down(::message::message * pmessage)
+   void list_box::on_message_left_button_down(::message::message * pmessage)
    {
 
       __pointer(::message::mouse) pmouse(pmessage);
@@ -747,7 +747,7 @@ namespace user
    }
 
 
-   void combo_list::on_message_left_button_up(::message::message * pmessage)
+   void list_box::on_message_left_button_up(::message::message * pmessage)
    {
 
       __pointer(::message::mouse) pmouse(pmessage);
@@ -800,7 +800,7 @@ namespace user
    }
 
 
-   void combo_list::on_message_middle_button_down(::message::message * pmessage)
+   void list_box::on_message_middle_button_down(::message::message * pmessage)
    {
 
       __pointer(::message::mouse) pmouse(pmessage);
@@ -827,7 +827,7 @@ namespace user
    }
 
 
-   void combo_list::on_message_right_button_down(::message::message * pmessage)
+   void list_box::on_message_right_button_down(::message::message * pmessage)
    {
 
       __pointer(::message::mouse) pmouse(pmessage);
@@ -854,7 +854,7 @@ namespace user
    }
 
 
-   void combo_list::on_message_mouse_move(::message::message * pmessage)
+   void list_box::on_message_mouse_move(::message::message * pmessage)
    {
 
       UNREFERENCED_PARAMETER(pmessage);
@@ -878,7 +878,7 @@ namespace user
    }
 
 
-   void combo_list::_001OnClose(::message::message * pmessage)
+   void list_box::_001OnClose(::message::message * pmessage)
    {
 
       pmessage->m_bRet = true;
@@ -890,7 +890,7 @@ namespace user
    }
 
 
-   item combo_list::current_item()
+   item list_box::current_item()
    {
 
       return m_pcombo->current_item();
@@ -898,7 +898,7 @@ namespace user
    }
 
 
-   item combo_list::hover_item()
+   item list_box::hover_item()
    {
 
       return ::user::interaction::hover_item();
@@ -906,7 +906,7 @@ namespace user
    }
 
 
-   void combo_list::on_hit_test(::user::item & item)
+   void list_box::on_hit_test(::user::item & item)
    {
 
       if (m_pcombo == nullptr)
@@ -970,7 +970,7 @@ namespace user
    }
 
 
-   bool combo_list::has_pending_graphical_update()
+   bool list_box::has_pending_graphical_update()
    {
 
       return m_bNeedRedraw;
@@ -978,7 +978,7 @@ namespace user
    }
 
 
-   void combo_list::on_drop_down(const ::rectangle & rectWindow, const ::size & sizeFull)
+   void list_box::on_drop_down(const ::rectangle & rectWindow, const ::size & sizeFull)
    {
 
       ::rectangle rectMonitor;
@@ -1048,7 +1048,7 @@ namespace user
       if (!is_window())
       {
 
-         ::user::system createstruct(0, nullptr, "combo_list");
+         ::user::system createstruct(0, nullptr, "list_box");
 
          pusersystem->m_createstruct.set_rect(::rectangle(rectList).inflate(m_iBorder));
 
@@ -1084,7 +1084,7 @@ namespace user
    }
 
 
-   void combo_list::_on_show_window()
+   void list_box::_on_show_window()
    {
 
       ::user::interaction::_on_show_window();

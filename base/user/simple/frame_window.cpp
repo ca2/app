@@ -2804,9 +2804,9 @@ void simple_frame_window::defer_create_notification_icon()
          if(estatus)
          {
 
-            const char * pszAppName = papplication->m_strAppName;
+            //const char * pszAppName = papplication->m_strAppName;
 
-            m_piconNotify->load_app_tray_icon(pszAppName);
+            m_piconNotify->load_app_tray_icon("notify_icon");
 
          }
 

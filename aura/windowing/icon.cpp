@@ -47,17 +47,17 @@ namespace windowing
    }
 
 
-   ::e_status icon::load_file(string strPath)
+   ::e_status icon::load_file(const string & strPath)
    {
 
       __throw(error_interface_only);
 
-      return false;
+      return error_interface_only;
 
    }
 
 
-   ::e_status icon::load_matter(string strMatter)
+   ::e_status icon::load_matter(const string & strMatter)
    {
 
       auto pcontext = get_context();
@@ -67,41 +67,21 @@ namespace windowing
       if (!load_file(strPath))
       {
 
-         return false;
+         return ::error_io;
 
       }
 
-//      on_update_icon();
-
-      return true;
+      return ::success;
 
    }
 
 
-   ::e_status icon::load_app_tray_icon(string strApp)
+   ::e_status icon::load_app_tray_icon(const string & strApp)
    {
 
-#ifdef WINDOWS_DESKTOP
+      __throw(error_interface_only);
 
-      string strMatter = "main/icon.ico";
-
-      if (!load_matter(strMatter))
-      {
-
-         return false;
-
-      }
-
-      return true;
-
-#else
-
-      //m_strAppTrayIcon = strApp;
-
-      return true;
-
-#endif
-
+      return error_interface_only;
 
    }
 

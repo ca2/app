@@ -3,11 +3,14 @@
 #include "acme/const/timer.h"
 
 
+#define DEBUG_LIST_ITEM_DRAWING 0
+
+
 namespace user
 {
 
 
-   combo_list::combo_list()
+   list_box::list_box()
    {
 
       user_combo_list_common_construct();
@@ -15,13 +18,13 @@ namespace user
    }
 
 
-   combo_list::~combo_list()
+   list_box::~list_box()
    {
 
    }
 
 
-   void combo_list::user_combo_list_common_construct()
+   void list_box::user_combo_list_common_construct()
    {
 
       defer_create_mutex();
@@ -51,33 +54,33 @@ namespace user
    }
 
 
-   void combo_list::install_message_routing(::channel * pchannel)
+   void list_box::install_message_routing(::channel * pchannel)
    {
 
       ::user::scroll_base::install_message_routing(pchannel);
 
       install_click_default_mouse_handling(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &combo_list::on_message_create);
-      MESSAGE_LINK(e_message_destroy, pchannel, this, &combo_list::_001OnDestroy);
-      MESSAGE_LINK(e_message_set_focus, pchannel, this, &combo_list::_001OnSetFocus);
-      MESSAGE_LINK(e_message_kill_focus, pchannel, this, &combo_list::_001OnKillFocus);
-      MESSAGE_LINK(e_message_close, pchannel, this, &combo_list::_001OnClose);
-      MESSAGE_LINK(e_message_mouse_activate, pchannel, this, &combo_list::_001OnMouseActivate);
-      MESSAGE_LINK(e_message_key_down, pchannel, this, &combo_list::_001OnKeyDown);
-      MESSAGE_LINK(e_message_key_up, pchannel, this, &combo_list::_001OnKeyUp);
-      MESSAGE_LINK(e_message_left_button_down, pchannel, this, &combo_list::on_message_left_button_down);
-      MESSAGE_LINK(e_message_non_client_left_button_down, pchannel, this, &combo_list::on_message_left_button_down);
-      MESSAGE_LINK(e_message_left_button_up, pchannel, this, &combo_list::on_message_left_button_up);
-      MESSAGE_LINK(e_message_middle_button_down, pchannel, this, &combo_list::on_message_middle_button_down);
-      MESSAGE_LINK(e_message_right_button_down, pchannel, this, &combo_list::on_message_right_button_down);
-      MESSAGE_LINK(e_message_mouse_move, pchannel, this, &combo_list::on_message_mouse_move);
-      MESSAGE_LINK(e_message_show_window, pchannel, this, &combo_list::_001OnShowWindow);
+      MESSAGE_LINK(e_message_create, pchannel, this, &list_box::on_message_create);
+      MESSAGE_LINK(e_message_destroy, pchannel, this, &list_box::_001OnDestroy);
+      MESSAGE_LINK(e_message_set_focus, pchannel, this, &list_box::_001OnSetFocus);
+      MESSAGE_LINK(e_message_kill_focus, pchannel, this, &list_box::_001OnKillFocus);
+      MESSAGE_LINK(e_message_close, pchannel, this, &list_box::_001OnClose);
+      MESSAGE_LINK(e_message_mouse_activate, pchannel, this, &list_box::_001OnMouseActivate);
+      MESSAGE_LINK(e_message_key_down, pchannel, this, &list_box::_001OnKeyDown);
+      MESSAGE_LINK(e_message_key_up, pchannel, this, &list_box::_001OnKeyUp);
+      MESSAGE_LINK(e_message_left_button_down, pchannel, this, &list_box::on_message_left_button_down);
+      MESSAGE_LINK(e_message_non_client_left_button_down, pchannel, this, &list_box::on_message_left_button_down);
+      MESSAGE_LINK(e_message_left_button_up, pchannel, this, &list_box::on_message_left_button_up);
+      MESSAGE_LINK(e_message_middle_button_down, pchannel, this, &list_box::on_message_middle_button_down);
+      MESSAGE_LINK(e_message_right_button_down, pchannel, this, &list_box::on_message_right_button_down);
+      MESSAGE_LINK(e_message_mouse_move, pchannel, this, &list_box::on_message_mouse_move);
+      MESSAGE_LINK(e_message_show_window, pchannel, this, &list_box::_001OnShowWindow);
 
    }
 
 
-   void combo_list::on_message_create(::message::message * pmessage)
+   void list_box::on_message_create(::message::message * pmessage)
    {
 
       pmessage->previous();
@@ -85,7 +88,7 @@ namespace user
    }
 
 
-   bool combo_list::on_set_owner(::user::primitive * pprimitive)
+   bool list_box::on_set_owner(::user::primitive * pprimitive)
    {
 
       auto puserinteractionOwner = pprimitive->get_owner();
@@ -118,7 +121,168 @@ namespace user
    }
 
 
-   void combo_list::_001OnDestroy(::message::message * pmessage)
+   bool list_box::_001GetListText(index iSel, string& str) const
+   {
+
+      str.Empty();
+
+      if (iSel < 0)
+      {
+
+         return false;
+
+      }
+
+      if (iSel >= m_straList.get_count())
+         return false;
+
+      str = m_straList[iSel];
+
+      return true;
+
+   }
+
+
+   index list_box::_001FindListText(const string& str) const
+   {
+
+
+      //index combo_box::_001FindListText(const string & str) const
+      //{
+
+      //   ::count ca = _001GetListCount();
+
+      //   string strItem;
+
+      //   for(index i = 0; i < ca; i++)
+      //   {
+
+      //      _001GetListText(i,strItem);
+
+      //      if(m_bCaseSensitiveMatch)
+      //      {
+
+      //         if(str.compare(strItem) == 0)
+      //            return i;
+
+      //      }
+      //      else
+      //      {
+
+      //         if(str.compare_ci(strItem) == 0)
+      //            return i;
+
+      //      }
+
+      //   }
+
+      //   return -1;
+
+      //}
+
+      if (m_bCaseSensitiveMatch)
+      {
+
+         return m_straList.find_first(str);
+
+      }
+      else
+      {
+
+         return m_straList.find_first_ci(str);
+
+      }
+
+   }
+
+
+   index list_box::_001GetListCount() const
+   {
+
+      return m_straList.get_count();
+
+   }
+
+
+   index list_box::add_string(const char* pszString, uptr dwItemData)
+   {
+
+      m_straList.add(pszString);
+
+      m_straValue.add(__str(dwItemData));
+
+      return m_straList.get_upper_bound();
+
+   }
+
+
+   index list_box::add_string(const char* pszString, const string& strValue)
+   {
+
+      m_straList.add(pszString);
+
+      m_straValue.add(strValue);
+
+      return m_straList.get_upper_bound();
+
+   }
+
+
+   index list_box::delete_string(index iIndex)
+   {
+
+      if (iIndex < 0 || iIndex >= _001GetListCount())
+      {
+
+         return -1;
+
+      }
+
+      m_straList.erase_at(iIndex);
+
+      m_straValue.erase_at(iIndex);
+
+      return iIndex;
+
+   }
+
+
+   index list_box::insert_string(index iIndex, const char* pszString)
+   {
+
+      if (iIndex < 0)
+      {
+
+         return -1;
+
+      }
+
+      m_straList.insert_at(iIndex, pszString);
+
+      m_straValue.insert_at(iIndex, "");
+
+      return iIndex;
+
+   }
+
+
+   void list_box::reset_content()
+   {
+
+      synchronous_lock synchronouslock(mutex());
+
+      m_straList.erase_all();
+
+      m_straValue.erase_all();
+
+      m_itemCurrent = -1;
+
+      m_itemHover = -1;
+
+   }
+
+
+   void list_box::_001OnDestroy(::message::message * pmessage)
    {
 
       auto puserinteractionOwner = get_owner();
@@ -151,17 +315,17 @@ namespace user
    }
 
 
-   void combo_list::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void list_box::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
       ::draw2d::savedc savedc(pgraphics);
 
-      if (m_pcombo == nullptr)
-      {
+      //if (m_pcombo == nullptr)
+      //{
 
-         return;
+      //   return;
 
-      }
+      //}
 
       ::rectangle_f64 rectClipBox;
 
@@ -174,10 +338,10 @@ namespace user
    }
 
 
-   void combo_list::_001OnDrawComboList(::draw2d::graphics_pointer & pgraphics)
+   void list_box::_001OnDrawComboList(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::count iListItemCount = m_pcombo->_001GetListCount();
+      ::count iListItemCount = _001GetListCount();
 
       string strItem;
 
@@ -201,7 +365,7 @@ namespace user
 
       rectItem.bottom = rectangleClient.top;
 
-      if (m_pcombo->m_bEdit)
+      if (m_pcombo && m_pcombo->m_bEdit)
       {
 
          rectItem.bottom += _001GetItemHeight();
@@ -237,14 +401,22 @@ namespace user
 
          status < ::color::color > colorText;
 
+#if DEBUG_LIST_ITEM_DRAWING
+
          string strDebug;
+
+#endif
 
          ::user::e_state estate = ::user::e_state_none;
 
          if (itemHover == iItem)
          {
 
+#if DEBUG_LIST_ITEM_DRAWING
+
             strDebug += "hover;";
+
+#endif
 
             estate += ::user::e_state_hover;
 
@@ -253,7 +425,11 @@ namespace user
          if (iItem == iCurSel)
          {
 
+#if DEBUG_LIST_ITEM_DRAWING
+
             strDebug += "selected;";
+
+#endif
 
             estate += ::user::e_state_selected;
 
@@ -271,7 +447,7 @@ namespace user
 
          pgraphics->fill_rectangle(rectItem);
 
-         m_pcombo->_001GetListText(iItem, strItem);
+         _001GetListText(iItem, strItem);
 
          pgraphics->set(br);
 
@@ -279,7 +455,8 @@ namespace user
 
          rectText.deflate(m_iPadding);
 
-#ifdef _DEBUG
+#if DEBUG_LIST_ITEM_DRAWING
+
 
          strItem += strDebug;
 
@@ -304,7 +481,7 @@ namespace user
    }
 
 
-   ::write_text::font_pointer combo_list::get_font(style *pstyle, enum_element eelement, ::user::enum_state estate) const
+   ::write_text::font_pointer list_box::get_font(style *pstyle, enum_element eelement, ::user::enum_state estate) const
    {
 
       if (m_pcombo)
@@ -326,7 +503,7 @@ namespace user
    }
 
 
-   void combo_list::query_full_size(::draw2d::graphics_pointer& pgraphics, SIZE_I32 * psize)
+   void list_box::query_full_size(::draw2d::graphics_pointer& pgraphics, SIZE_I32 * psize)
    {
 
       synchronous_lock synchronouslock(mutex());
@@ -343,12 +520,12 @@ namespace user
 
       m_dItemHeight = 0.;
 
-      ::count cListCount = m_pcombo->_001GetListCount();
+      ::count cListCount = _001GetListCount();
 
       for (index i = 0; i < cListCount; i++)
       {
 
-         m_pcombo->_001GetListText(i, strItem);
+         _001GetListText(i, strItem);
 
          size = pgraphics->get_text_extent(strItem);
 
@@ -381,7 +558,7 @@ namespace user
 
       int iAddUp = 0;
 
-      if (m_pcombo->m_bEdit)
+      if (m_pcombo && m_pcombo->m_bEdit)
       {
 
          iAddUp = 1;
@@ -402,11 +579,11 @@ namespace user
 
       }
 
-      psize->cy = (::i32)(_001GetItemHeight() * (m_pcombo->_001GetListCount() + iAddUp));
+      psize->cy = (::i32)(_001GetItemHeight() * (_001GetListCount() + iAddUp));
 
       psize->cx += m_iBorder * 2;
 
-      auto rectComboClient = m_pcombo->get_client_rect();
+      //auto rectComboClient = get_client_rect();
 
       //psize->cx = maximum(psize->cx, rectComboClient.width());
       //psize->cx = maximum(psize->cx, rectComboClient.width());
@@ -414,13 +591,13 @@ namespace user
    }
 
 
-   void combo_list::on_change_combo_sel(index iSel)
+   void list_box::on_change_combo_sel(index iSel)
    {
 
    }
 
 
-   i32 combo_list::_001GetItemHeight() const
+   i32 list_box::_001GetItemHeight() const
    {
 
       return (::i32)(m_dItemHeight + m_iPadding * 2);
@@ -428,7 +605,7 @@ namespace user
    }
 
 
-   void combo_list::_001EnsureVisible(index iItem)
+   void list_box::_001EnsureVisible(index iItem)
    {
 
       if (m_pscrollbarVertical != nullptr
@@ -449,7 +626,7 @@ namespace user
    }
 
 
-   void combo_list::_001OnTimer(::timer* ptimer)
+   void list_box::_001OnTimer(::timer* ptimer)
    {
    
       if (ptimer->m_etimer == e_timer_kill_focus)
@@ -478,7 +655,15 @@ namespace user
    }
 
 
-   bool combo_list::keyboard_focus_is_focusable() const
+   void list_box::on_layout(::draw2d::graphics_pointer& pgraphics)
+   {
+
+      query_full_size(pgraphics, m_sizeFull);
+
+   }
+
+
+   bool list_box::keyboard_focus_is_focusable() const
    {
 
       return true;
@@ -486,7 +671,7 @@ namespace user
    }
 
 
-   bool combo_list::keyboard_focus_OnKillFocus(oswindow oswindowNew)
+   bool list_box::keyboard_focus_OnKillFocus(oswindow oswindowNew)
    {
 
       if (is_window_visible(::user::e_layout_sketch))
@@ -512,7 +697,7 @@ namespace user
    }
 
 
-   bool combo_list::pre_create_window(::user::system * pusersystem)
+   bool list_box::pre_create_window(::user::system * pusersystem)
    {
 
 //#ifdef WINDOWS_DESKTOP
@@ -539,7 +724,7 @@ namespace user
    }
 
 
-   void combo_list::_001OnShowWindow(::message::message * pmessage)
+   void list_box::_001OnShowWindow(::message::message * pmessage)
    {
 
       __pointer(::message::show_window) pshowwindow(pmessage);
@@ -557,14 +742,14 @@ namespace user
       else
       {
 
-         output_debug_string("combo_list hide");
+         output_debug_string("list_box hide");
 
       }
 
    }
 
 
-   void combo_list::_001OnKillFocus(::message::message * pmessage)
+   void list_box::_001OnKillFocus(::message::message * pmessage)
    {
 
       if (m_pcombo)
@@ -626,7 +811,7 @@ namespace user
    }
 
 
-   void combo_list::_001OnSetFocus(::message::message * pmessage)
+   void list_box::_001OnSetFocus(::message::message * pmessage)
    {
 
       if (m_pcombo)
@@ -642,7 +827,7 @@ namespace user
 
 
 
-   void combo_list::_001OnActivate(::message::message * pmessage)
+   void list_box::_001OnActivate(::message::message * pmessage)
    {
 
       __pointer(::message::activate) pactivate(pmessage);
@@ -700,7 +885,7 @@ namespace user
    }
 
 
-   void combo_list::_001OnMouseActivate(::message::message * pmessage)
+   void list_box::_001OnMouseActivate(::message::message * pmessage)
    {
 
       __pointer(::message::mouse_activate) pactivate(pmessage);
@@ -713,7 +898,7 @@ namespace user
    }
 
 
-   void combo_list::_001OnKeyDown(::message::message * pmessage)
+   void list_box::_001OnKeyDown(::message::message * pmessage)
    {
 
       __pointer(::message::key) pkey(pmessage);
@@ -773,7 +958,7 @@ namespace user
    }
 
 
-   void combo_list::_001OnKeyUp(::message::message * pmessage)
+   void list_box::_001OnKeyUp(::message::message * pmessage)
    {
 
       UNREFERENCED_PARAMETER(pmessage);
@@ -781,7 +966,7 @@ namespace user
    }
 
 
-   void combo_list::on_message_left_button_down(::message::message * pmessage)
+   void list_box::on_message_left_button_down(::message::message * pmessage)
    {
 
       __pointer(::message::mouse) pmouse(pmessage);
@@ -810,7 +995,7 @@ namespace user
    }
 
 
-   void combo_list::on_message_left_button_up(::message::message * pmessage)
+   void list_box::on_message_left_button_up(::message::message * pmessage)
    {
 
       __pointer(::message::mouse) pmouse(pmessage);
@@ -836,6 +1021,8 @@ namespace user
 
          if (itemHit == m_itemLButtonDown)
          {
+
+            m_itemCurrent = itemHit;
 
             if (::is_set(m_pcombo))
             {
@@ -863,6 +1050,10 @@ namespace user
                   
             }
 
+            set_need_redraw();
+
+            post_redraw();
+
          }
 
       }
@@ -874,7 +1065,7 @@ namespace user
    }
 
 
-   void combo_list::on_message_middle_button_down(::message::message * pmessage)
+   void list_box::on_message_middle_button_down(::message::message * pmessage)
    {
 
       __pointer(::message::mouse) pmouse(pmessage);
@@ -901,7 +1092,7 @@ namespace user
    }
 
 
-   void combo_list::on_message_right_button_down(::message::message * pmessage)
+   void list_box::on_message_right_button_down(::message::message * pmessage)
    {
 
       __pointer(::message::mouse) pmouse(pmessage);
@@ -928,7 +1119,7 @@ namespace user
    }
 
 
-   void combo_list::on_message_mouse_move(::message::message * pmessage)
+   void list_box::on_message_mouse_move(::message::message * pmessage)
    {
 
       UNREFERENCED_PARAMETER(pmessage);
@@ -952,7 +1143,7 @@ namespace user
    }
 
 
-   void combo_list::_001OnClose(::message::message * pmessage)
+   void list_box::_001OnClose(::message::message * pmessage)
    {
 
       pmessage->m_bRet = true;
@@ -964,15 +1155,16 @@ namespace user
    }
 
 
-   item combo_list::current_item()
+   item list_box::current_item()
    {
 
-      return m_pcombo->current_item();
+      //return m_pcombo->current_item();
+      return ::user::interaction::current_item();
 
    }
 
 
-   item combo_list::hover_item()
+   item list_box::hover_item()
    {
 
       return ::user::interaction::hover_item();
@@ -980,19 +1172,19 @@ namespace user
    }
 
 
-   void combo_list::on_hit_test(::user::item & item)
+   void list_box::on_hit_test(::user::item & item)
    {
 
-      if (m_pcombo == nullptr)
+      /*if (m_pcombo == nullptr)
       {
 
          item = ::user::e_element_none;
 
          return;
 
-      }
+      }*/
 
-      ::count iItemCount = m_pcombo->_001GetListCount();
+      ::count iItemCount = _001GetListCount();
 
       auto rectangleClient = get_client_rect();
 
@@ -1000,7 +1192,7 @@ namespace user
 
       int iAddUp = 0;
 
-      if (m_pcombo->m_bEdit)
+      if (m_pcombo && m_pcombo->m_bEdit)
       {
 
          iAddUp = 1;
@@ -1044,7 +1236,7 @@ namespace user
    }
 
 
-   bool combo_list::has_pending_graphical_update()
+   bool list_box::has_pending_graphical_update()
    {
 
       return m_bNeedRedraw;
@@ -1052,7 +1244,7 @@ namespace user
    }
 
 
-   void combo_list::on_drop_down(const ::rectangle_i32 & rectWindow, const ::size_i32 & sizeFull)
+   void list_box::on_drop_down(const ::rectangle_i32 & rectWindow, const ::size_i32 & sizeFull)
    {
 
       ::rectangle_i32 rectMonitor;
@@ -1139,7 +1331,7 @@ namespace user
       if (!is_window())
       {
 
-         //auto pusersystem = __new(::user::system(0, nullptr, "combo_list", i >= 0 ? 0 : WS_CHILD));
+         //auto pusersystem = __new(::user::system(0, nullptr, "list_box", i >= 0 ? 0 : WS_CHILD));
 
          m_puserinteractionOwner = m_pcombo;
 
@@ -1186,7 +1378,60 @@ namespace user
    }
 
 
-   void combo_list::_on_show_window()
+   void list_box::set_current_item_by_string_value(const string& strValue, const ::action_context& context)
+   {
+
+      index iSel = m_straValue.find_first(strValue);
+
+      if (iSel < 0)
+      {
+
+         return;
+
+      }
+
+      set_current_item(iSel, context);
+
+   }
+
+
+   void list_box::set_current_item_by_data(uptr u, const ::action_context& context)
+   {
+
+      index iSel = m_straValue.find_first(__str(u));
+
+      if (iSel < 0)
+      {
+
+         return;
+
+      }
+
+      set_current_item(iSel, context);
+
+   }
+
+
+   string list_box::get_current_item_string_value()
+   {
+
+      index iSel = current_item();
+
+      if (iSel < 0)
+      {
+
+         return "";
+
+      }
+
+      string str = m_straValue[iSel];
+
+      return str;
+
+   }
+
+
+   void list_box::_on_show_window()
    {
 
       ::user::interaction::_on_show_window();

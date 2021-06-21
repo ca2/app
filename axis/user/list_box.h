@@ -5,29 +5,34 @@ namespace user
 {
 
 
-   class CLASS_DECL_AXIS combo_list :
+   class CLASS_DECL_AXIS list_box :
       virtual public ::user::scroll_base
    {
    public:
 
 
-      ::millis                              m_millisKillFocus;
+      bool                                m_bCaseSensitiveMatch;
+      ::millis                            m_millisKillFocus;
       bool                                m_bPendingKillFocusHiding;
       bool                                m_bMovingComboBox;
       bool                                m_bComboList;
       __pointer(combo_box)                m_pcombo;
       int                                 m_iBorder;
       int                                 m_iPadding;
+      ::size_i32                          m_sizeFull;
       int                                 m_iMinListItemCount;
       ::user::item                        m_itemLButtonDown;
       //::user::frame_window *            m_puiDeactivateTogether;
       ::user::interaction *               m_puiDeactivateTogether;
+      string_array                    m_straList;
+      string_array                    m_straValue;
+
 
       millis                                m_millisLastVisibilityChange;
 
 
-      combo_list();
-      virtual ~combo_list();
+      list_box();
+      virtual ~list_box();
 
 
       void user_combo_list_common_construct();
@@ -47,11 +52,13 @@ namespace user
 
       virtual void on_change_combo_sel(index iSel);
 
-      bool pre_create_window(::user::system * pusersystem) override;
+      virtual bool pre_create_window(::user::system * pusersystem) override;
 
       virtual void _001EnsureVisible(index iItem);
 
       virtual void _001OnTimer(::timer* ptimer) override;
+
+       void on_layout(::draw2d::graphics_pointer & pgraphics) override;
 
       DECLARE_MESSAGE_HANDLER(on_message_create);
       DECLARE_MESSAGE_HANDLER(_001OnDestroy);
@@ -91,6 +98,28 @@ namespace user
 
 
       virtual bool on_set_owner(::user::primitive * pprimitive) override;
+      
+
+      virtual void set_current_item_by_data(uptr u, const ::action_context& action_context);
+      virtual void set_current_item_by_string_value(const string& strValue, const ::action_context& action_context);
+      virtual string get_current_item_string_value();
+
+
+      virtual bool _001GetListText(index iSel, string& str) const;
+      virtual index _001FindListText(const string& str) const;
+      virtual count _001GetListCount() const;
+
+
+      
+      virtual index add_string(const char* pszString, uptr dwItemData = 0);
+      virtual index add_string(const char* pszString, const string& strValue);
+
+      
+      virtual index delete_string(index nIndex);
+      virtual index insert_string(index nIndex, const char* pszString);
+
+
+      virtual void reset_content();
 
 
    };

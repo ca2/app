@@ -1436,43 +1436,48 @@ namespace user
 
       ::user::interaction::_on_show_window();
 
-      if (is_screen_visible(layout().sketch().display()))
+      if (m_pcombo)
       {
 
+         if (is_screen_visible(layout().sketch().display()))
          {
 
-            auto psession = get_session();
-
-            synchronous_lock synchronouslock(psession->mutex());
-
-            auto pinteraction = __create_new < ::user::interaction >();
-
-            auto puser = psession->user();
-
-            puser->m_uiptraToolWindow.add(pinteraction);
-
-         }
-
-         set_keyboard_focus();
-
-      }
-      else
-      {
-
-         {
-
-            auto psession = get_session();
-
-            synchronous_lock synchronouslock(psession->mutex());
-
-            auto puser = psession->user();
-
-            ::index iFind = puser->m_uiptraToolWindow.predicate_find_first([this](auto& p) {return p.get() == this; });
-
-            if (__found(iFind))
             {
 
-               puser->m_uiptraToolWindow.erase_at(iFind);
+               auto psession = get_session();
+
+               synchronous_lock synchronouslock(psession->mutex());
+
+               auto pinteraction = __create_new < ::user::interaction >();
+
+               auto puser = psession->user();
+
+               puser->m_uiptraToolWindow.add(pinteraction);
+
+            }
+
+            set_keyboard_focus();
+
+         }
+         else
+         {
+
+            {
+
+               auto psession = get_session();
+
+               synchronous_lock synchronouslock(psession->mutex());
+
+               auto puser = psession->user();
+
+               ::index iFind = puser->m_uiptraToolWindow.predicate_find_first([this](auto& p) {return p.get() == this; });
+
+               if (__found(iFind))
+               {
+
+                  puser->m_uiptraToolWindow.erase_at(iFind);
+
+               }
 
             }
 

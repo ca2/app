@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.17)
 project(base CXX)
 
 
-list(APPEND base_source
+list(APPEND library_source
         const/charset.h
         const/GLOBAL_ID.h
         const/idpool.cpp
@@ -264,14 +264,10 @@ if(APPLE)
 endif()
 
 
-if (MSVC)
-    set(LIBCXX_TARGETING_MSVC ON)
-else()
-    set(LIBCXX_TARGETING_MSVC OFF)
-endif()
 
 
-add_library(base SHARED ${base_source})
+
+add_library(base SHARED ${library_source})
 
 
 target_precompile_headers(base PRIVATE framework.h)
@@ -295,30 +291,12 @@ elseif(LINUX)
 endif()
 
 
-target_link_directories(base PRIVATE ${LIBRARY_OUTPUT_PATH})
-target_link_directories(base PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/storage-${PLATFORM_NAME}/library/x64/basis)
-target_link_directories(base PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/storage-${PLATFORM_NAME}/third/library/x64/basis)
-
-
-target_include_directories(base PRIVATE .)
+target_include_directories(base PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../..)
+target_include_directories(base PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/..)
 target_include_directories(base PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
-target_include_directories(base PRIVATE $ENV{HOME}/__config)
-target_include_directories(base PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../source)
-target_include_directories(base PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive)
-target_include_directories(base PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../source)
-target_include_directories(base PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../source/app)
-target_include_directories(base PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../source/app/_include)
-target_include_directories(base PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../source/include)
-target_include_directories(base PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/platform-${PLATFORM_NAME})
-target_include_directories(base PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/platform-${PLATFORM_NAME}/_include)
-target_include_directories(base PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/third-${PLATFORM_NAME}/include)
-target_include_directories(base PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/third-${PLATFORM_NAME}/third/include)
-target_include_directories(base PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/third-${PLATFORM_NAME}/third/include/include)
 
 
 target_compile_definitions(base PRIVATE _BASE_LIBRARY)
-target_compile_definitions(base PRIVATE UNICODE)
-target_compile_definitions(base PRIVATE _UNICODE)
 
 
 

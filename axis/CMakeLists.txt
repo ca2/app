@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.17)
 project(axis CXX)
 
 
-list(APPEND axis_source
+list(APPEND library_source
         account/_.h
         account/_account.h
         account/account.cpp
@@ -638,7 +638,7 @@ list(APPEND library_references
    aura)
 
 
-add_library(axis SHARED ${axis_source})
+add_library(axis SHARED ${library_source})
 
 
 target_precompile_headers(axis PRIVATE framework.h)

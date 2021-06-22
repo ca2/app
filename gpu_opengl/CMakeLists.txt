@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.17)
 project(gpu_opengl CXX)
 
 
-list(APPEND gpu_opengl_source
+list(APPEND library_source
         _.cpp
         _.h
         buffer.cpp
@@ -68,7 +68,7 @@ if(LINUX)
 
 endif()
 
-add_library(gpu_opengl SHARED ${gpu_opengl_source})
+add_library(gpu_opengl SHARED ${library_source})
 
 target_precompile_headers(gpu_opengl PRIVATE framework.h)
 

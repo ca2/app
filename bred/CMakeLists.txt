@@ -2,7 +2,10 @@ cmake_minimum_required(VERSION 3.17)
 project(bred CXX)
 
 
-list(APPEND bred_source
+set(LIBRARY_NAME bred)
+
+
+list(APPEND library_source
         const/idpool.cpp
         const/idpool.h
         include/_.h
@@ -45,7 +48,7 @@ list(APPEND library_references
    base)
 
 
-add_library(bred SHARED ${bred_source})
+add_library(bred SHARED ${library_source})
 
 
 target_precompile_headers(bred PRIVATE framework.h)
@@ -73,20 +76,9 @@ target_link_directories(bred PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archiv
 target_link_directories(bred PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/storage-${PLATFORM_NAME}/third/library/x64/basis)
 
 
-target_include_directories(bred PRIVATE .)
-target_include_directories(bred PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
-target_include_directories(bred PRIVATE $ENV{HOME}/__config)
-target_include_directories(bred PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../source)
-target_include_directories(bred PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive)
-target_include_directories(bred PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../source)
-target_include_directories(bred PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../source/app)
-target_include_directories(bred PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../source/app/_include)
-target_include_directories(bred PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../source/include)
-target_include_directories(bred PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/platform-${PLATFORM_NAME})
-target_include_directories(bred PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/platform-${PLATFORM_NAME}/_include)
-target_include_directories(bred PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/third-${PLATFORM_NAME}/include)
-target_include_directories(bred PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/third-${PLATFORM_NAME}/third/include)
-target_include_directories(bred PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/third-${PLATFORM_NAME}/third/include/include)
+target_include_directories(${LIBRARY_NAME} PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../..)
+target_include_directories(${LIBRARY_NAME} PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/..)
+target_include_directories(${LIBRARY_NAME} PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 
 
 target_compile_definitions(bred PRIVATE _BRED_LIBRARY)

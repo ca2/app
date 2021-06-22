@@ -2,9 +2,7 @@ cmake_minimum_required(VERSION 3.17)
 project(aura CXX)
 
 
-
-
-list(APPEND aura_source
+list(APPEND library_source
    asset/cube_new.inl
    asset/new.inl
    axispolicy/_.h
@@ -304,6 +302,7 @@ list(APPEND aura_source
    user/_experience_const.h
    user/_impl.h
    user/_interaction_impl.h
+   user/_menu.h
    user/_prelude.h
    user/_user.h
    user/box.cpp
@@ -1148,7 +1147,7 @@ else ()
 endif ()
 
 
-add_library(aura SHARED ${aura_source} user/_menu.h)
+add_library(aura SHARED ${library_source})
 
 
 target_precompile_headers(aura PRIVATE framework.h)

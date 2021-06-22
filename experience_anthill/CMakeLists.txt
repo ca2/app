@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.17)
 project(experience_anthill CXX)
 
 
-list(APPEND experience_anthill_source
+list(APPEND library_source
         _.cpp
         _.h
         #aaa_want_to_erase_experience_anthill_style.cpp
@@ -41,7 +41,7 @@ list(APPEND library_references
 
 
 
-add_library(experience_anthill SHARED ${experience_anthill_source})
+add_library(experience_anthill SHARED ${library_source})
 
 
 target_precompile_headers(experience_anthill PRIVATE framework.h)

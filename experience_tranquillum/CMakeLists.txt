@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.17)
 project(experience_tranquillum CXX)
 
 
-list(APPEND experience_tranquillum_source
+list(APPEND library_source
         #_.cpp
         _.h
         #aaa_want_to_erase_experience_tranquillum_style.cpp
@@ -44,7 +44,7 @@ list(APPEND library_references
    base)
 
 
-add_library(experience_tranquillum SHARED ${experience_tranquillum_source})
+add_library(experience_tranquillum SHARED ${library_source})
 
 
 target_precompile_headers(experience_tranquillum PRIVATE framework.h)

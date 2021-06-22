@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.17)
 project(imaging_freeimage CXX)
 
 
-list(APPEND imaging_freeimage_source
+list(APPEND library_source
         _.cpp
         _.h
         context_image.cpp
@@ -19,7 +19,7 @@ list(APPEND imaging_freeimage_source
         saving.cpp)
 
 
-add_library(imaging_freeimage SHARED ${imaging_freeimage_source})
+add_library(imaging_freeimage SHARED ${library_source})
 
 
 target_precompile_headers(imaging_freeimage PRIVATE framework.h)

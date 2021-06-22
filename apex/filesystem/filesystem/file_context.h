@@ -144,6 +144,17 @@ public:
    virtual bool as_memory(const ::payload & varFile, memory_base & mem);
 
 
+   inline string_array lines(const ::payload & varFile)
+   {
+
+       string_array straLines;
+
+       lines(straLines, varFile);
+
+       return ::move(straLines);
+
+   }
+
    virtual void lines(string_array & stra, const ::payload & varFile);
    virtual void put_lines(const ::payload & varFile, const string_array & stra);
    virtual void put_lines_utf8(const ::payload & varFile, const string_array & stra);

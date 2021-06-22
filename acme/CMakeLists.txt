@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.17)
 project(acme CXX)
 
 
-list(APPEND acme_source
+list(APPEND library_source
    compress/zip/api.cpp
    compress/zip/file.cpp
    compress/zip/in_file.cpp
@@ -438,7 +438,7 @@ list(APPEND acme_source
    update.h)
 
 
-list(APPEND acme_source
+list(APPEND library_source
    "os/ios/window_boot 2.h"
    #exception/debug.h
    #node/android/buffer.h
@@ -698,24 +698,6 @@ list(APPEND acme_source
    os/ansios/pmutex_lock.h
    os/ansios/pthread.cpp
    os/ansios/semun.h
-        os/apple/_.cpp
-   #os/apple/DDInvocationGrabber.h
-   #os/apple/NSObject+DDExtensions.h
-   #os/apple/NSString+SymlinksAndAliases.h
-   #os/apple/UncaughtExceptionHandler.h
-   #os/apple/_.h
-   #os/apple/_apple.h
-   #os/apple/_c_mm.h
-   #os/apple/_mm.h
-   #os/apple/_mm_common.h
-   #os/apple/debug.h
-        os/apple/exe_path.cpp
-   #os/apple/graphics.h
-   #os/apple/main.h
-   #os/apple/ns_exception.h
-        os/apple/time.cpp
-   #os/apple/time.h
-   #os/chronometer.h
    os/file.h
    os/graphics.h
    os/ios/_.h
@@ -1280,7 +1262,7 @@ list(APPEND acme_source
 
 
 if (UWP)
-   list(APPEND acme_source
+   list(APPEND library_source
       exception/winrt/engine_winrt.cpp
       node/uwp/error.cpp
       node/uwp/factory_exchange.cpp
@@ -1311,7 +1293,7 @@ if (UWP)
       os/uwp/time.cpp
       os/uwp/user.cpp)
 
-   list(APPEND acme_source
+   list(APPEND library_source
       node/uwp/exception.h
       node/uwp/factory_exchange.h
       node/uwp/file.h
@@ -1327,7 +1309,7 @@ endif ()
 
 if (WIN32)
 
-   list(APPEND acme_source
+   list(APPEND library_source
 #      node/windows/console.cpp
 #      node/windows/factory_exchange.cpp
 #      node/windows/file.cpp
@@ -1392,7 +1374,7 @@ if (WIN32)
       )
 else ()
 
-   list(APPEND acme_source
+   list(APPEND library_source
       #node/posix/file_memory_map.cpp
       #node/posix/file_memory_map.h
       os/ansios/dir.cpp
@@ -1451,7 +1433,7 @@ endif ()
 
 if (WIN32 OR UWP)
 
-   list(APPEND acme_source
+   list(APPEND library_source
       os/windows_common/_dll.cpp
       os/windows_common/aura.cpp
       os/windows_common/base.cpp
@@ -1470,7 +1452,7 @@ endif ()
 
 
 if (LINUX)
-   list(APPEND acme_source
+   list(APPEND library_source
       #node/linux/console.cpp
       node/linux/dumpinit.cpp
       node/linux/error.cpp
@@ -1514,7 +1496,7 @@ if (LINUX)
       )
 
 
-   list(APPEND acme_source
+   list(APPEND library_source
       node/linux/application.h
       #node/linux/console.h
       node/linux/factory_exchange.h
@@ -1545,7 +1527,7 @@ endif ()
 
 
 if (MACOS)
-   list(APPEND acme_source
+   list(APPEND library_source
       os/cross/uwp/cross_metrowin_user.cpp
       os/cross/uwp/metrowin_user.cpp
       #node/macos/application.cpp
@@ -1587,7 +1569,7 @@ if (MACOS)
            )
 
 
-   list(APPEND acme_source
+   list(APPEND library_source
       #node/macos/application.h
            #node/macos/factory_exchange.h
            #node/macos/file.h
@@ -1622,7 +1604,7 @@ endif ()
 
 
 if (IOS)
-   list(APPEND acme_source
+   list(APPEND library_source
       os/cross/uwp/cross_metrowin_user.cpp
       os/cross/uwp/metrowin_user.cpp
       node/ios/exception.cpp
@@ -1674,7 +1656,7 @@ if (IOS)
       )
 
 
-   list(APPEND acme_source
+   list(APPEND library_source
       node/ios/factory_exchange.h
       node/ios/file.h
       node/ios/implementation.h
@@ -1698,8 +1680,26 @@ endif ()
 if (APPLE)
 
 
-   list(APPEND acme_source
+   list(APPEND library_source
            asset/new.cpp
+           os/apple/_.cpp
+           #os/apple/DDInvocationGrabber.h
+           #os/apple/NSObject+DDExtensions.h
+           #os/apple/NSString+SymlinksAndAliases.h
+           #os/apple/UncaughtExceptionHandler.h
+           #os/apple/_.h
+           #os/apple/_apple.h
+           #os/apple/_c_mm.h
+           #os/apple/_mm.h
+           #os/apple/_mm_common.h
+           #os/apple/debug.h
+           os/apple/exe_path.cpp
+           #os/apple/graphics.h
+           #os/apple/main.h
+           #os/apple/ns_exception.h
+           os/apple/time.cpp
+           #os/apple/time.h
+           #os/chronometer.h
            #timer.mm
            #exception/mm.mm
            #os/cross/uwp/cross_metrowin_user.cpp
@@ -1727,7 +1727,7 @@ endif ()
 if (ANDROID)
 
 
-   list(APPEND acme_source
+   list(APPEND library_source
       os/cross/uwp/cross_metrowin_user.cpp
       os/cross/uwp/metrowin_user.cpp
       node/android/android.cpp
@@ -1773,7 +1773,7 @@ endif ()
 if (SOLARIS)
 
 
-   list(APPEND acme_source
+   list(APPEND library_source
       os/solaris/solaris.cpp
       os/solaris/solaris_cairo_keep.cpp
       os/solaris/solaris_cross_win_file.cpp
@@ -1804,7 +1804,7 @@ endif ()
 if (LINUX OR APPLE OR SOLARIS)
 
 
-   list(APPEND acme_source
+   list(APPEND library_source
       #node/node_serial.cpp
       os/posix/base_file.cpp
       os/posix/local_memory_map.cpp
@@ -1817,7 +1817,7 @@ if (LINUX OR APPLE OR SOLARIS)
       os/winpr_scancode.cpp
       )
 
-   list(APPEND acme_source
+   list(APPEND library_source
       node/posix/_posix.h
       )
 
@@ -1828,7 +1828,7 @@ endif ()
 if (LINUX)
 
 
-   list(APPEND acme_source
+   list(APPEND library_source
       os/ansios/binreloc.cpp
            )
 
@@ -1836,7 +1836,7 @@ if (LINUX)
 endif ()
 
 
-add_library(acme SHARED ${acme_source})
+add_library(acme SHARED ${library_source})
 
 
 target_precompile_headers(acme PRIVATE framework.h)

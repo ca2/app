@@ -35,7 +35,7 @@ namespace windowing
 
 
       virtual ::e_status load_matter(const string & strPath);
-      virtual ::e_status load_app_tray_icon(const string & strPath);
+      virtual ::e_status load_app_tray_icon(const string & strTrayIconName);
       virtual ::e_status load_file(const string & strPath);
 
 

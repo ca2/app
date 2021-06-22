@@ -3910,6 +3910,33 @@ void simple_frame_window::OnNotifyIconLButtonDown(::u32 uNotifyIcon)
 }
 
 
+::e_status simple_frame_window::command_handler(const ::id & id)
+{
+
+   if(id == "notify_icon_topic")
+   {
+
+      _001OnNotifyIconTopic(nullptr);
+
+      return ::success;
+
+   }
+
+   auto estatus = ::experience::frame_window::command_handler(id);
+
+   if(!estatus)
+   {
+
+      return estatus;
+
+   }
+
+   return estatus;
+
+
+}
+
+
 void simple_frame_window::_001OnNotifyIconTopic(::message::message * pmessage)
 {
 
@@ -3920,7 +3947,12 @@ void simple_frame_window::_001OnNotifyIconTopic(::message::message * pmessage)
 
    }
 
-   pmessage->m_bRet = true;
+   if(pmessage)
+   {
+
+      pmessage->m_bRet = true;
+
+   }
 
 }
 

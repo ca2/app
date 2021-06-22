@@ -236,7 +236,7 @@ list(APPEND library_source
 
 if(WIN32)
 
-    list(APPEND base_source
+    list(APPEND library_source
         node/windows/frame_window.cpp
         )
 
@@ -244,7 +244,7 @@ endif()
 
 if(LINUX)
 
-    list(APPEND base_source
+    list(APPEND library_source
             node/linux/frame_window.cpp
             )
 
@@ -252,7 +252,7 @@ endif()
 
 if(APPLE)
 
-    list(APPEND base_source
+    list(APPEND library_source
 
             #user/user/notify_icon.mm
             #user/user/notify_icon_mm.h

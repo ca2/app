@@ -76,12 +76,12 @@ namespace windowing
    }
 
 
-   ::e_status icon::load_app_tray_icon(const string & strApp)
+   ::e_status icon::load_app_tray_icon(const string & strTrayIconName)
    {
 
-      __throw(error_interface_only);
+        m_strTrayIconName = strTrayIconName;
 
-      return error_interface_only;
+        return ::success;
 
    }
 

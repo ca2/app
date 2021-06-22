@@ -22,7 +22,7 @@ list(APPEND library_source
         shader.h)
 
 if(WIN32)
-    list(APPEND gpu_opengl_source
+    list(APPEND library_source
             context_win32.cpp
             context_win32.h
             )
@@ -31,7 +31,7 @@ endif()
 
 
 if(LINUX)
-    list(APPEND gpu_opengl_source
+    list(APPEND library_source
             context_egl.cpp
             context_egl.h
             context_glx.cpp
@@ -42,7 +42,7 @@ if(LINUX)
 
 
 if(APPLE)
-    list(APPEND gpu_opengl_source
+    list(APPEND library_source
             context_cgl.cpp
             context_cgl.h
             context_fbo.cpp

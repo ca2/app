@@ -283,12 +283,12 @@ list(APPEND library_source
 
 if(WIN32)
 
-    list(APPEND axis_source
+    list(APPEND library_source
 
     )
     else()
 
-    list(APPEND axis_source
+    list(APPEND library_source
 
 
 
@@ -300,7 +300,7 @@ endif()
 
 if(IOS)
 
-    list(APPEND axis_source
+    list(APPEND library_source
         os/ios/_.h
         os/ios/_c.h
         os/ios/_ios.h
@@ -360,7 +360,7 @@ endif()
 
 if(MACOS)
 
-    list(APPEND axis_source
+    list(APPEND library_source
             #node/macos/_.h
             #node/macos/factory_exchange.cpp
             #node/macos/factory_exchange.h
@@ -374,7 +374,7 @@ if(MACOS)
 endif()
 
 if(APPLE)
-    list(APPEND axis_source
+    list(APPEND library_source
 
             #os/apple/_.cpp
             #os/apple/_.h
@@ -413,7 +413,7 @@ endif()
 
 if(ANDROID)
 
-    list(APPEND axis_source
+    list(APPEND library_source
         node/android/Kerr/kerr.h
         node/android/Kerr/LocalMemory.h
         node/android/_.h
@@ -512,7 +512,7 @@ endif()
 
 if(SOLARIS)
 
-list(APPEND axis_source
+list(APPEND library_source
     os/solaris/linux_internal.h
     os/solaris/solaris.cpp
     os/solaris/solaris.h
@@ -561,7 +561,7 @@ endif()
 
 if(UWP)
 
-    list(APPEND axis_source
+    list(APPEND library_source
         os/uwp/_.h
         os/uwp/_os_metrowin.cpp
         os/uwp/_uwp.h
@@ -608,7 +608,7 @@ if(UWP)
         )
 else()
 
-    list(APPEND axis_source
+    list(APPEND library_source
 
 
 
@@ -619,14 +619,14 @@ endif()
 
 if(LINUX)
 
-    list(APPEND axis_source)
+    list(APPEND library_source)
 
 endif()
 
 
 if(LINUX OR APPLE OR SOLARIS)
 
-    list(APPEND axis_source)
+    list(APPEND library_source)
 
 endif()
 

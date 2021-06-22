@@ -13914,6 +13914,15 @@ restart:
    }
 
 
+
+   bool interaction::has_translucency() const
+   {
+
+      return true;
+
+   }
+
+
    double interaction::get_alpha()
    {
 

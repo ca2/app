@@ -1679,6 +1679,8 @@ namespace user
 
       virtual bool frame_is_transparent();
 
+      virtual bool has_translucency() const;
+
       virtual double get_alpha();
 
       virtual string get_class_name() override;

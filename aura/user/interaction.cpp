@@ -11613,6 +11613,22 @@ restart:
    }
 
 
+   // <3ThomasBorregaardSørensen__!!
+   ::e_status interaction::command_handler(const ::id & id)
+   {
+
+      if (m_pmaterialCommandHandler)
+      {
+
+         return m_pmaterialCommandHandler->command_handler(id);
+
+      }
+
+      return ::error_failed;
+
+   }
+
+
    bool interaction::has_command_handler(::message::command * pcommand)
    {
 
@@ -13473,8 +13489,6 @@ restart:
    }
 
 
-
-
    void interaction::keyboard_focus_OnKeyDown(::message::message * pmessage)
    {
 
@@ -15160,55 +15174,63 @@ restart:
                else
                {
                
-                  
                   ::id id = translate_property_id(m_id);
                   
-                if(has_control_event_handler())
-               {
+                  if(has_control_event_handler())
+                  {
 
-                  ::user::control_event ev;
+                     ::user::control_event ev;
 
-                  ev.m_puie = this;
+                     ev.m_puie = this;
 
-                  ev.m_id = id;
+                     ev.m_id = id;
 
-                  ev.m_eevent = ::user::e_event_button_clicked;
+                     ev.m_eevent = ::user::e_event_button_clicked;
 
-                  ev.m_pmessage = pmouse;
+                     ev.m_pmessage = pmouse;
 
-                  ev.m_item = item;
+                     ev.m_item = item;
 
-                  ev.m_actioncontext.add(::e_source_user);
+                     ev.m_actioncontext.add(::e_source_user);
 
-                  route_control_event(&ev);
+                     route_control_event(&ev);
 
-                  TRACE("interaction::on_message_left_button_up route_btn_clked=%d", (int) ev.m_bRet);
+                     TRACE("interaction::on_message_left_button_up route_btn_clked=%d", (int) ev.m_bRet);
 
-                  pmessage->m_bRet = ev.m_bRet;
+                     pmessage->m_bRet = ev.m_bRet;
                   
-               }
+                  }
 
-               if (!pmessage->m_bRet)
-               {
+                  if (!pmessage->m_bRet)
+                  {
 
-                  ::message::command command(id);
+                     auto estatus = command_handler(id);
 
-                  command.m_puiOther = this;
+                     pmessage->m_bRet = estatus.succeeded();
 
-                  route_command_message(&command);
+                  }
 
-                  TRACE("interaction::on_message_left_button_up route_cmd_msg=%d", (int) command.m_bRet);
+                  if (!pmessage->m_bRet)
+                  {
 
-                  pmessage->m_bRet = command.m_bRet;
+                     ::message::command command(id);
 
-               }
+                     command.m_puiOther = this;
 
-               if (pmessage->m_bRet)
-               {
+                     route_command_message(&command);
 
-                  pmouse->m_lresult = 1;
+                     TRACE("interaction::on_message_left_button_up route_cmd_msg=%d", (int) command.m_bRet);
 
-               }
+                     pmessage->m_bRet = command.m_bRet;
+
+                  }
+
+                  if (pmessage->m_bRet)
+                  {
+
+                     pmouse->m_lresult = 1;
+
+                  }
                
 //               if(!pmessage->m_bRet)
 //               {

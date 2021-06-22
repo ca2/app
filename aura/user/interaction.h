@@ -184,6 +184,9 @@ namespace user
       ewindowflag                                  m_ewindowflag;
       bool                                         m_bDerivedHeight;
 
+      // <3ThomasBorreggardSørensen_!!
+      __pointer(::material_object)                 m_pmaterialCommandHandler;
+
       ::user::interaction::e_updown                m_eupdown;
 
       ::user::interaction_layout                   m_layout;
@@ -1493,6 +1496,10 @@ namespace user
          return nullptr;
       }
 #endif
+
+      // <3ThomasBorregaardSørensen__!!
+      ::e_status command_handler(const ::id& id) override;
+
       virtual bool has_command_handler(::message::command* pcommand) override;
 
 

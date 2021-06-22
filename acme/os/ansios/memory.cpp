@@ -117,10 +117,7 @@ void* reverse_memmem(const void* l, size_t l_len, const void* s, size_t s_len)
 }
 
 
-
-
-
-void* reverse_byte_not_in_block(const void* l, int l_len, const void* s, size_t s_len)
+void* reverse_byte_not_in_block(const void* l, size_t l_len, const void* s, size_t s_len)
 {
 
    char* cur, * last, *curByte;

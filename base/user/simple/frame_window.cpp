@@ -879,14 +879,22 @@ void simple_frame_window::on_message_create(::message::message * pmessage)
 
    auto textAppTitle = papplication->m_textAppTitle;
 
-   if (textAppTitle.get_text().is_empty())
+   string strAppTitle;
+
+   if (textAppTitle.get_text().has_char())
+   {
+
+      strAppTitle = textAppTitle.get_text();
+
+   }
+   else
    {
 
       string_array stra;
 
       stra.explode("/", papplication->m_strAppId);
 
-      string strAppTitle = stra.slice(1).implode(" ");
+      strAppTitle = stra.slice(1).implode(" ");
 
       strAppTitle.replace("_", " ");
 
@@ -904,7 +912,7 @@ void simple_frame_window::on_message_create(::message::message * pmessage)
 
          index iNotifyIconItem = 0;
 
-         notify_icon_insert_item(iNotifyIconItem, textAppTitle.get_text(), "notify_icon_topic");
+         notify_icon_insert_item(iNotifyIconItem, strAppTitle, "notify_icon_topic");
 
          auto c = papplication->applicationmenu().get_count();
 

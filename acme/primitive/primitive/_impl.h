@@ -4196,3 +4196,55 @@ inline ::index memory_base::find_index(const ::block& block, ::index iStart) con
 
 }
 
+
+inline byte* memory_base::reverse_find(const ::block& block, ::index iStart) const
+{
+
+   return (byte*)reverse_memmem(get_data() + iStart, get_size() - iStart, (byte*)block.get_data(), block.get_size());
+
+}
+
+
+inline ::index memory_base::reverse_find_index(const ::block& block, ::index iStart) const
+{
+
+   auto p = reverse_find(block, iStart);
+
+   if (!p)
+   {
+
+      return -1;
+
+   }
+
+   return ((byte*)p) - get_data();
+
+}
+
+
+inline byte* memory_base::reverse_find_byte_not_in_block(const ::block& block, ::index iStart) const
+{
+
+   return (byte*)reverse_byte_not_in_block(get_data() + iStart, get_size() - iStart, (byte*)block.get_data(), block.get_size());
+
+}
+
+
+inline ::index memory_base::reverse_find_index_of_byte_not_in_block(const ::block& block, ::index iStart) const
+{
+
+   auto p = reverse_find_byte_not_in_block(block, iStart);
+
+   if (!p)
+   {
+
+      return -1;
+
+   }
+
+   return ((byte*)p) - get_data();
+
+}
+
+
+

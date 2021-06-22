@@ -263,6 +263,10 @@ public:
 
    inline byte * find(const block& block, ::index iStart = 0) const;
    inline ::index find_index(const block& block, ::index iStart = 0) const;
+   inline byte* reverse_find(const block& block, ::index iStart = 0) const;
+   inline ::index reverse_find_index(const block& block, ::index iStart = 0) const;
+   inline byte* reverse_find_byte_not_in_block(const block& block, ::index iStart = 0) const;
+   inline ::index reverse_find_index_of_byte_not_in_block(const block& block, ::index iStart = 0) const;
 
    byte * find_line_prefix(const ::block& blockPrefix, ::index iStart = 0);
    ::index find_line_prefix_index(const ::block& blockPrefix, ::index iStart = 0);

@@ -11,8 +11,8 @@ namespace aqua
    public:
 
 
-      ::multimedia::multimedia *                         m_pmultimedia;
-      ::veriwell::multimedia::multimedia *               m_pveriwellmultimedia;
+      ::multimedia::multimedia *                m_pmultimediaThis;
+      ::veriwell::multimedia::multimedia *      m_pveriwellmultimediaThis;
 
 
 #ifdef WINDOWS

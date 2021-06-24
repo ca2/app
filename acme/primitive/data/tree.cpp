@@ -710,6 +710,12 @@ namespace data
    }
 
 
+   void tree::subject_handler(::subject::subject * psubject)
+   {
+
+   }
+
+
    void tree::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
    {
 

@@ -591,11 +591,11 @@ namespace user
          if (m_pcomboFamily->m_itemCurrent.is_set())
          {
 
-            auto pcombolist = m_pcomboFamily->m_plist;
+            auto pcombolistbox = m_pcomboFamily->m_plistbox;
 
             auto itemCurrent = m_pcomboFamily->m_itemCurrent;
 
-            __pointer(::user::font_list) pfontlist = pcombolist;
+            __pointer(::user::font_list) pfontlist = pcombolistbox;
 
             auto pfontenumerationitema = pfontlist->m_pfontlist->m_pfontenumerationitema;
 
@@ -667,7 +667,11 @@ namespace user
       else
       {
 
-         index iIndex = m_pcomboFamily->m_plist.cast <::user::font_list>()->m_pfontlist->find_name(m_formata[0]->m_strFontFamily);
+         auto pcombolistbox = m_pcomboFamily->m_plistbox;
+
+         __pointer(::user::font_list) pfontlist = pcombolistbox;
+
+         index iIndex = pfontlist->m_pfontlist->find_name(m_formata[0]->m_strFontFamily);
 
          m_pcomboFamily->set_current_item(iIndex, ::e_source_sync);
 

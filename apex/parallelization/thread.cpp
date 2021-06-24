@@ -4131,11 +4131,11 @@ void thread::message_handler(::message::message * pmessage)
          //if(msg.lParam)
          {
 
-            __pointer(::apex::system) psystem = get_system();
+            auto psystem = m_psystem->m_papexsystem;
 
             auto psubject = psystem->new_subject(message);
 
-            process(psubject);
+            handle_subject(psubject);
 
          }
          //else

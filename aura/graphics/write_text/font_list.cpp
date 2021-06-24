@@ -534,12 +534,12 @@ namespace write_text
    }
 
 
-   void font_list::on_subject(::subject::subject * psubject)
-   {
-
-      ::subject::manager::on_subject(psubject);
-
-   }
+//   void font_list::on_subject(::subject::subject * psubject)
+//   {
+//
+//      ::subject::manager::on_subject(psubject);
+//
+//   }
 
 
    void font_list::on_subject(::subject::subject * psubject, ::subject::context * pcontext)

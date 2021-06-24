@@ -929,6 +929,8 @@ namespace user
 
       //}
 
+      add_control_event_handler(this);
+
    }
 
 
@@ -6124,7 +6126,11 @@ finished_update:
 
             plain_edit_get_text(strtext());
 
-            get_application()->deliver(m_propertyText->m_id);
+            auto papplication = get_application();
+
+            auto psubject = papplication->subject(m_propertyText->m_id);
+
+            papplication->handle_subject(psubject);
 
          }
 

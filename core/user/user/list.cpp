@@ -7177,27 +7177,41 @@ namespace user
    }
 
 
-   void list::set_current_item(const ::user::item & item, const ::action_context & context)
+   ::e_status list::set_current_item(const ::user::item & item, const ::action_context & context)
    {
 
-      m_rangeSelection.clear();
+      auto iCurrentSelection = m_rangeSelection.get_current_item();
 
-      if (!item.is_set())
+      if(iCurrentSelection >= 0)
       {
 
-         return;
+         if (item == iCurrentSelection)
+         {
+
+            return ::success;
+
+         }
 
       }
 
-      item_range itemrange;
+      m_rangeSelection.clear();
 
-      itemrange.set_lower_bound(item);
+      if (item.is_set())
+      {
 
-      itemrange.set_upper_bound(item);
+         item_range itemrange;
 
-      m_rangeSelection.add_item(itemrange);
+         itemrange.set_lower_bound(item);
+
+         itemrange.set_upper_bound(item);
+
+         m_rangeSelection.add_item(itemrange);
+
+      }
 
       _001OnSelectionChange();
+
+      return ::success;
 
    }
 

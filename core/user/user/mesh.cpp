@@ -5373,25 +5373,25 @@ namespace user
    }
 
 
-   void mesh::set_current_item(const ::user::item & item, const ::action_context & context)
+   ::e_status mesh::set_current_item(const ::user::item & item, const ::action_context & context)
    {
 
       m_rangeSelection.clear();
 
-      if (!item.is_set())
+      if (item.is_set())
       {
 
-         return;
+         item_range itemrange;
+
+         itemrange.set_lower_bound(item);
+
+         itemrange.set_upper_bound(item);
+
+         _001AddSelection(itemrange);
 
       }
 
-      item_range itemrange;
-
-      itemrange.set_lower_bound(item);
-
-      itemrange.set_upper_bound(item);
-
-      _001AddSelection(itemrange);
+      return ::success;
 
    }
 

@@ -31,17 +31,17 @@ namespace user
       };
 
 
-      ::size_i32                     m_sizeFull;
-      string                     m_strText;
-      ::millis                     m_millisShowComboList;
-      __pointer(list_box)             m_plist;
+      ::size_i32                    m_sizeFull;
+      //string                        m_strText;
+      ::millis                      m_millisShowComboList;
+      __pointer(list_box)           m_plistbox;
 
-      ::type                   m_typeComboList;
+      ::type                        m_typeListBox;
 
-      e_style                    m_estyle;
+      e_style                       m_estyle;
 
-      bool                       m_bEdit;
-      e_data_mode                m_edatamode;
+      bool                          m_bEdit;
+      e_data_mode                   m_edatamode;
 
 
       combo_box();
@@ -59,7 +59,6 @@ namespace user
 
       virtual void _000OnDraw(::draw2d::graphics_pointer & pgraphics) override;
       virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
-      //virtual void _001OnDrawVerisimple(::draw2d::graphics_pointer & pgraphics);
       virtual void _001OnDrawCombo(::draw2d::graphics_pointer & pgraphics);
       virtual void _001OnDrawStaticText(::draw2d::graphics_pointer & pgraphics);
 
@@ -67,15 +66,8 @@ namespace user
 
       virtual void get_simple_drop_down_open_arrow_polygon(point_f64_array& pointa) override;
 
-      virtual void set_current_item(const ::user::item & item, const ::action_context & action_context) override;
-
       virtual bool has_action_hover();
 
-      virtual void set_current_item_by_data(uptr u, const ::action_context & action_context);
-      
-      virtual void set_current_item_by_string_value(const string & strValue, const ::action_context & action_context);
-      
-      virtual string get_current_item_string_value();
 
 
 
@@ -113,7 +105,7 @@ namespace user
       void on_kill_keyboard_focus() override;
 
 
-      virtual void defer_create_combo_list();
+      virtual void defer_create_list_box();
 
       virtual bool has_text_input() override;
       virtual bool is_drop_down();
@@ -131,8 +123,15 @@ namespace user
       //virtual bool create_interaction(::user::interaction * puiParent, const ::id & id) override;
 
       //::count get_count();
-      //index current_item();
-      //index set_current_item(index nSelect);
+      //::user::item current_item() override;
+      ::e_status set_current_item(const ::user::item & item, const ::action_context & actioncontext) override;
+
+
+      virtual string get_current_item_string_value();
+      virtual void set_current_item_by_data(uptr u, const ::action_context & action_context);
+      virtual void set_current_item_by_string_value(const string & strValue, const ::action_context & action_context);
+
+
 //      LCID GetLocale();
   //    LCID SetLocale(LCID nNewLocale);
       index GetTopIndex();

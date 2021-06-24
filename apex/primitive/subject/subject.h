@@ -11,24 +11,24 @@ namespace subject
    public:
 
 
-      bool                                m_bNewSubject : 1;
+      //bool                                m_bNewSubject : 1;
       __pointer(::subject::manager)       m_pmanager;
-      ::subject::matter_context           m_mattercontext;
-      ::user::enum_key                    m_ekey;
-      ::payload                           m_payload;
-      ::i64                               m_iUpdateSerial;
-      bool                                m_bModified;
-      ::millis                            m_millisSleep;
+      ::subject::matter_context              m_mattercontext;
+      ::user::enum_key                       m_ekey;
+      ::payload                              m_payload;
+      ::i64                                  m_iUpdateSerial;
+      bool                                   m_bModified;
+      ::millis                               m_millisSleep;
 
-      enum_subject                        m_esubject;
-      __pointer(::matter)                 m_pmatter;
-      __pointer(::property_object)        m_pobjectTopic;
-      ::action_context                    m_actioncontext;
-      __pointer(::property_object)        m_psender;
-      __pointer(::user::primitive)        m_puserprimitive; // user::interaction
-      __pointer(::property_object)        m_pcontrolevent; // user::control_event
-      __pointer(::file::item)             m_pfileitem;
-      bool                                m_bRet;
+      enum_subject                           m_esubject;
+      __pointer(::matter)               m_pmatter;
+      __pointer(::property_object)      m_pobjectTopic;
+      ::action_context                       m_actioncontext;
+      __pointer(::property_object)      m_psender;
+      __pointer(::user::primitive)      m_puserprimitive; // user::interaction
+      __pointer(::property_object)      m_pcontrolevent; // user::control_event
+      __pointer(::file::item)           m_pfileitem;
+      bool                                   m_bRet;
 
 
       subject(::subject::manager * phandler, const ::id & id);
@@ -46,17 +46,16 @@ namespace subject
       virtual ::e_status step() override;
       virtual ::e_status run() override;
 
-      virtual void deliver(const ::action_context & actioncontext);
 
-      virtual void deliver();
+      virtual void notify();
 
-      virtual void add(::matter * pmatter, bool bForkWhenNotify = false);
+      virtual void add_listener(::matter * pmatter, bool bForkWhenNotify = false);
 
-      virtual void erase(::matter * pmatter);
+      virtual void erase_listener(::matter * pmatter);
 
       void set_modified();
 
-      virtual ::subject::context * context(::matter * pmatter);
+      virtual ::subject::context * listener_context(::matter * pmatter);
 
       void post_destroy_all();
 

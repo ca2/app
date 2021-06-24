@@ -994,7 +994,7 @@ namespace apex
       void system_id_update(::i64 iUpdate, ::i64 iPayload) override;
 
 
-      void on_subject(::subject::subject * psubject) override;
+      void subject_handler(::subject::subject * psubject) override;
       void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
 
       // virtual void on_command_create(::create* pcreate);

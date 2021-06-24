@@ -48,7 +48,7 @@ namespace user
 
 
       list();
-      virtual ~list();
+      ~list() override;
 
 
       inline ::core::application* get_application() const { return m_pcontext ? m_pcontext->m_pcoreapplication : nullptr; }
@@ -58,7 +58,7 @@ namespace user
 
 
 
-      virtual i32 _001CalcItemWidth(::draw2d::graphics_pointer & pgraphics, index iItem, index iSubItem) override;
+      i32 _001CalcItemWidth(::draw2d::graphics_pointer & pgraphics, index iItem, index iSubItem) override;
       virtual i32 _001CalcItemWidth(::draw2d::graphics_pointer & pgraphics, ::write_text::font * pfont, index iItem, index iSubItem);
       virtual i32 _001CalcItemHeight(::user::style * pstyle, int iBaseHeight);
       virtual ::e_align get_draw_text_align(EView eview);
@@ -75,109 +75,109 @@ namespace user
       __pointer(list_column) new_list_column();
 
 
-      virtual void on_hover_select_timer() override;
+      void on_hover_select_timer() override;
 
 
-      virtual void install_message_routing(::channel * pchannel) override;
+      void install_message_routing(::channel * pchannel) override;
 
       //mesh_data * GetDataInterface();
       using mesh::update_hover;
-      virtual bool update_hover(const ::point_i32& point, bool bAvoidRedraw = true) override;
+      bool update_hover(const ::point_i32& point, bool bAvoidRedraw = true) override;
       //::write_text::font * _001GetFont();
       //::write_text::font * _001GetFontHover();
       //::draw2d::pen * _001GetPenFocused();
       //::draw2d::pen * _001GetPenHighlight();
-      virtual void PreSubClassWindow() override;
-      virtual void _OnDraw(::draw2d::graphics_pointer & pgraphics) override;
+      void PreSubClassWindow() override;
+      void _OnDraw(::draw2d::graphics_pointer & pgraphics) override;
       void _001MaximizeColumnWidth(::draw2d::graphics_pointer& pgraphics, index iColumn) override;
       //virtual i32 _001CalcItemWidth(::draw2d::graphics_pointer& pgraphics, index iItem, index iSubItem) override;
-      virtual i32 _001CalcColumnWidth(::draw2d::graphics_pointer& pgraphics, index iColumn) override;
+      i32 _001CalcColumnWidth(::draw2d::graphics_pointer& pgraphics, index iColumn) override;
       virtual i32 _001CalcListWidth(::draw2d::graphics_pointer& pgraphics);
-      virtual void _001OnSort() override;
+      void _001OnSort() override;
 
 
       inline ::user::list_column_array & column_array() { return m_columna; }
 
-      virtual void _001OnBeforeDeleteRange(range & range) override;
-      virtual void _001OnDeleteRange(range & range) override;
-      virtual void _001DeleteRange(range & range) override;
+      void _001OnBeforeDeleteRange(range & range) override;
+      void _001OnDeleteRange(range & range) override;
+      void _001DeleteRange(range & range) override;
 
       // Sort
-      virtual index _001Compare(index iItem1, index iItem2) override;
-      virtual index _002Compare(index iItem1, index iItem2, index iSubItem) override;
-      virtual index _001DisplayCompare(index iDisplayItem1, index iDisplayItem2) override;
+      index _001Compare(index iItem1, index iItem2) override;
+      index _002Compare(index iItem1, index iItem2, index iSubItem) override;
+      index _001DisplayCompare(index iDisplayItem1, index iDisplayItem2) override;
 
 
-      virtual bool is_valid_display_item(index iDisplayItem) override;
-      virtual bool is_valid_strict_item(index iStrictItem) override;
+      bool is_valid_display_item(index iDisplayItem) override;
+      bool is_valid_strict_item(index iStrictItem) override;
 
 
-      virtual ::size_i32 get_item_size() override;
+      ::size_i32 get_item_size() override;
 
-      virtual void _001OnSort(index iSubItem) override;
+      void _001OnSort(index iSubItem) override;
       virtual void _001OnListHeaderItemClick(index iHeaderItem);
       virtual void _001OnListHeaderItemDblClk(index iHeaderItem);
-      virtual void Filter1(string & str) override;
-      virtual bool Filter1Step() override;
+      void Filter1(string & str) override;
+      bool Filter1Step() override;
 
 
-      virtual index _001CalcDisplayTopIndex() override;
-      virtual count _001CalcDisplayItemCount() override;
-      virtual i32 _001GetGroupHeight(index iGroup) override;
+      index _001CalcDisplayTopIndex() override;
+      count _001CalcDisplayItemCount() override;
+      i32 _001GetGroupHeight(index iGroup) override;
 
 
-      virtual void FilterInclude(int_array & array) override;
-      virtual void FilterInclude(index iItem) override;
-      virtual void FilterExcludeAll() override;
-      virtual void FilterClose() override;
-      virtual void FilterApply() override;
-      virtual void FilterBegin() override;
-      virtual index _001StrictToDisplay(index iStrict) override;
-      virtual index _001DisplayToStrict(index iDisplay) override;
-      virtual void _001Select(index iItem, index iSubItem) override;
-      virtual void _001Highlight(index iItem, bool bRedraw) override;
-      virtual void _001RemoveSelection() override;
-      virtual bool _001OnRemoveItem(index iItem) override;
-      virtual bool _001RemoveItem(index iItem, bool bRedraw = true) override;
-      virtual void _001EnsureVisible(index iItem, ::e_align ealign = e_align_vertical_center, bool bRedraw = true);
-      virtual void _001EnsureVisible(index iItem, range & rangeRedraw) override;
-      virtual void _001ItemScroll(index iItem, bool bRedraw = true) override;
+      void FilterInclude(int_array & array) override;
+      void FilterInclude(index iItem) override;
+      void FilterExcludeAll() override;
+      void FilterClose() override;
+      void FilterApply() override;
+      void FilterBegin() override;
+      index _001StrictToDisplay(index iStrict) override;
+      index _001DisplayToStrict(index iDisplay) override;
+      void _001Select(index iItem, index iSubItem) override;
+      void _001Highlight(index iItem, bool bRedraw) override;
+      void _001RemoveSelection() override;
+      bool _001OnRemoveItem(index iItem) override;
+      bool _001RemoveItem(index iItem, bool bRedraw = true) override;
+      void _001EnsureVisible(index iItem, ::e_align ealign = e_align_vertical_center, bool bRedraw = true);
+      void _001EnsureVisible(index iItem, range & rangeRedraw) override;
+      void _001ItemScroll(index iItem, bool bRedraw = true) override;
       virtual index config_id_index(const ::database::key & key);
-      virtual index _001ConfigIdToSubItem(const ::database::key & key) override;
-      virtual bool _001HasConfigId(const ::database::key & key) override;
-      virtual void _001GetSelection(::database::key & key, ::database::selection & selection) override;
+      index _001ConfigIdToSubItem(const ::database::key & key) override;
+      bool _001HasConfigId(const ::database::key & key) override;
+      void _001GetSelection(::database::key & key, ::database::selection & selection) override;
 
       virtual void _001SetSingleColumnMode(bool bHeaderCtrl);
       //virtual bool _001InsertColumn(::user::list_column * pcolumn);
       //virtual void _001OnAfterNewColumns();
-      virtual void SetDataInterface(mesh_data * pinterface) override;
-      virtual void CacheHint() override;
+      void SetDataInterface(mesh_data * pinterface) override;
+      void CacheHint() override;
       //void SetCacheInterface(mesh_cache_interface * pinterface);
       //void AddMessageHandling(::channel * pchannel);
-      virtual void _001ShowTopText(bool bShow = true) override;
-      virtual void _001LayoutTopText(::draw2d::graphics_pointer& pgraphics) override;
-      virtual void _001SetTopText(const widechar * pcwsz) override;
+      void _001ShowTopText(bool bShow = true) override;
+      void _001LayoutTopText(::draw2d::graphics_pointer& pgraphics) override;
+      void _001SetTopText(const widechar * pcwsz) override;
 
-      virtual bool DIDDXHeaderLayout(bool bSave) override;
+      bool DIDDXHeaderLayout(bool bSave) override;
 
 
-      virtual void data_get_DisplayToStrict() override;
-      virtual void data_set_DisplayToStrict() override;
-      virtual id data_get_current_sort_id() override;
-      virtual id data_get_sort_id(EView eview) override;
+      void data_get_DisplayToStrict() override;
+      void data_set_DisplayToStrict() override;
+      id data_get_current_sort_id() override;
+      id data_get_sort_id(EView eview) override;
       virtual id data_get_current_list_layout_id();
 
-      virtual bool query_drop(index iDisplayDrop, index iDisplayDrag) override;
-      virtual bool do_drop(index iDisplayDrop, index iDisplayDrag) override;
-      virtual bool defer_drop(index iDisplayDrop, index iDisplayDrag) override;
+      bool query_drop(index iDisplayDrop, index iDisplayDrag) override;
+      bool do_drop(index iDisplayDrop, index iDisplayDrag) override;
+      bool defer_drop(index iDisplayDrop, index iDisplayDrag) override;
 
 
 
       virtual bool CreateHeaderCtrl();
 
-      virtual void _001OnNcDraw(::draw2d::graphics_pointer & pgraphics) override;
+      void _001OnNcDraw(::draw2d::graphics_pointer & pgraphics) override;
 
-      virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
+      void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
       virtual void _001DrawGroups(draw_list_item * pdrawitem, index iGroupFirst, index iGroupLast, index iItemFirst, index iItemLast);
 
@@ -197,9 +197,9 @@ namespace user
 
       //virtual void _001SearchGetItemText(list_item * pitem);
 
-      virtual ::count _001GetGroupItemCount(index iGroup) override;
+      ::count _001GetGroupItemCount(index iGroup) override;
 
-      virtual ::count _001GetGroupMetaItemCount(index iGroup) override;
+      ::count _001GetGroupMetaItemCount(index iGroup) override;
 
       //virtual void _001GetGroupText(list_item * pitem);
 
@@ -211,16 +211,16 @@ namespace user
 
 
       virtual __pointer(::user::list_header) create_list_header();
-      virtual __pointer(::user::mesh_data) create_mesh_data() override;
+      __pointer(::user::mesh_data) create_mesh_data() override;
 
-      virtual void on_layout(::draw2d::graphics_pointer & pgraphics) override;
+      void on_layout(::draw2d::graphics_pointer & pgraphics) override;
 
-      virtual bool _001OnUpdateItemCount(u32 dwFlags = 0) override;
+      bool _001OnUpdateItemCount(u32 dwFlags = 0) override;
 
-      virtual void on_change_view_size(::draw2d::graphics_pointer & pgraphics) override;
+      void on_change_view_size(::draw2d::graphics_pointer & pgraphics) override;
 
 
-      virtual void _001OnInitialize() override;
+      void _001OnInitialize() override;
 
 
       //virtual __pointer(list_column) new_column();
@@ -235,49 +235,49 @@ namespace user
 
       virtual void _001OnColumnChange();
 
-      virtual bool _001SetColumnWidth(index iColumn, i32 iWidth) override;
+      bool _001SetColumnWidth(index iColumn, i32 iWidth) override;
 
       virtual void _001GetColumnWidth(draw_list_item * pdrawitem);
 
-      virtual index _001MapSubItemToOrder(index iSubItem) override;
+      index _001MapSubItemToOrder(index iSubItem) override;
 
-      virtual index _001MapOrderToSubItem(index iOrder) override;
+      index _001MapOrderToSubItem(index iOrder) override;
 
-      virtual index _001MapOrderToColumn(index iOrder) override;
+      index _001MapOrderToColumn(index iOrder) override;
 
-      virtual index _001MapColumnToOrder(index iColumn) override;
+      index _001MapColumnToOrder(index iColumn) override;
 
-      virtual index _001MapSubItemToColumn(index iSubItem) override;
+      index _001MapSubItemToColumn(index iSubItem) override;
 
-      virtual index _001MapColumnToSubItem(index iColumn) override;
+      index _001MapColumnToSubItem(index iColumn) override;
 
       void _001DeleteColumn(index iColumn);
 
 
-      virtual ::count _001GetItemCount() override;
-      virtual ::count _001GetGroupCount() override;
+      ::count _001GetItemCount() override;
+      ::count _001GetGroupCount() override;
 
 
-      virtual bool _001HitTest_(const ::point_i32 & point, index & iItem, index & iSubItem, index & iListItem, ::user::mesh::enum_element & eelement) override;
-      virtual bool _001HitTest_(const ::point_i32 & point, index & iItem, index & iSubItem) override;
-      virtual bool _001HitTest_(const ::point_i32 & point, index & iItemParam) override;
+      bool _001HitTest_(const ::point_i32 & point, index & iItem, index & iSubItem, index & iListItem, ::user::mesh::enum_element & eelement) override;
+      bool _001HitTest_(const ::point_i32 & point, index & iItem, index & iSubItem) override;
+      bool _001HitTest_(const ::point_i32 & point, index & iItemParam) override;
 
 
-      virtual bool _001DisplayHitTest(const ::point_i32 & point, index & iItem, index & iSubItem, index & iListItem, ::user::mesh::enum_element & eelement) override;
-      virtual bool _001DisplayHitTest(const ::point_i32 & point, index & iItem, index & iSubItem) override;
-      virtual bool _001DisplayHitTest(const ::point_i32 & point, index & iItemParam) override;
+      bool _001DisplayHitTest(const ::point_i32 & point, index & iItem, index & iSubItem, index & iListItem, ::user::mesh::enum_element & eelement) override;
+      bool _001DisplayHitTest(const ::point_i32 & point, index & iItem, index & iSubItem) override;
+      bool _001DisplayHitTest(const ::point_i32 & point, index & iItemParam) override;
 
 
-      virtual void _001OnAfterSort() override;
+      void _001OnAfterSort() override;
 
 
       virtual void LayoutHeaderCtrl();
 
-      virtual void auto_arrange(bool bAutoArrange = true) override;
+      void auto_arrange(bool bAutoArrange = true) override;
 
-      virtual bool get_auto_arrange() override;
+      bool get_auto_arrange() override;
 
-      virtual void on_create_draw_item() override;
+      void on_create_draw_item() override;
 
       DECLARE_MESSAGE_HANDLER(_001OnSize);
       DECLARE_MESSAGE_HANDLER(on_message_mouse_leave);
@@ -288,29 +288,29 @@ namespace user
       DECLARE_MESSAGE_HANDLER(on_message_right_button_down);
       DECLARE_MESSAGE_HANDLER(_001OnKeyDown);
       DECLARE_MESSAGE_HANDLER(on_message_create);
-      virtual void _001OnTimer(::timer * ptimer) override;
+      void _001OnTimer(::timer * ptimer) override;
 
       DECLARE_MESSAGE_HANDLER(_001OnUpdateListViewAutoArrange);
 
       DECLARE_MESSAGE_HANDLER(_001OnListViewAutoArrange);
 
 
-      virtual bool on_click(const ::user::item & item) override;
-      virtual bool on_right_click(const ::user::item & item) override;
+      bool on_click(const ::user::item & item) override;
+      bool on_right_click(const ::user::item & item) override;
 
-      virtual void _001GetSelection(range & selection) override;
+      void _001GetSelection(range & selection) override;
       virtual index _001GetCurItem();
 
       virtual void _001SelectItem(index iItem);
 
-      virtual bool _001IsEditing() override;
+      bool _001IsEditing() override;
 
 
-      virtual ::count _001GetSelectedItemCount() override;
+      ::count _001GetSelectedItemCount() override;
       virtual ::count _001GetSelectedItems(index_array & ia);
 
 
-      virtual id _001GetColumnTextId(index iColumn) override;
+      id _001GetColumnTextId(index iColumn) override;
 
       virtual void HeaderCtrlLayout();
 
@@ -320,19 +320,19 @@ namespace user
 
 
 
-      virtual bool _001OnHeaderCtrlEndTrack(wparam wparam, lparam lparam) override;
+      bool _001OnHeaderCtrlEndTrack(wparam wparam, lparam lparam) override;
 
 
-      virtual bool _001OnHeaderCtrlTrack(wparam wparam, lparam lparam) override;
+      bool _001OnHeaderCtrlTrack(wparam wparam, lparam lparam) override;
 
 
-      virtual void _001ShowSubItem(index iSubItem, bool bShow = true) override;
-      virtual void DISaveOrder() override;
+      void _001ShowSubItem(index iSubItem, bool bShow = true) override;
+      void DISaveOrder() override;
 
-      virtual void DILoadOrder() override;
+      void DILoadOrder() override;
 
 
-      virtual void _001OnSelectionChange() override;
+      void _001OnSelectionChange() override;
 
       virtual void _001UpdateColumns();
 
@@ -342,21 +342,21 @@ namespace user
 
       virtual void _001CreateImageList(list_column * pcolumn);
 
-      virtual bool _001IsItemVisible(index iItem) override;
+      bool _001IsItemVisible(index iItem) override;
 
       virtual void _001ClearSelection();
 
-      virtual void _001SetSelection(const range & range) override;
+      void _001SetSelection(const range & range) override;
 
-      virtual void _001AddSelection(const item_range & itemrange) override;
+      void _001AddSelection(const item_range & itemrange) override;
 
-      virtual void set_current_item(const ::user::item & item, const ::action_context & action_context) override;
-      virtual ::user::item current_item() override;
+      ::e_status set_current_item(const ::user::item & item, const ::action_context & action_context) override;
+      ::user::item current_item() override;
 
-      virtual void set_current_item(const index_array & iaSel, const ::action_context & action_context) override;
-      virtual void get_cur_sel(index_array & iaSel) override;
+      void set_current_item(const index_array & iaSel, const ::action_context & action_context) override;
+      void get_cur_sel(index_array & iaSel) override;
 
-      virtual void _001SetHighlightRange(range & range) override;
+      void _001SetHighlightRange(range & range) override;
 
       //void _001SetView(EView eview, bool bLayout = true);
 

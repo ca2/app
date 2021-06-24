@@ -887,7 +887,7 @@ namespace user
 
          auto psubject = pdocument->subject(id_initial_update);
 
-         pview->process(psubject);
+         pdocument->handle_subject(psubject);
 
       }
 

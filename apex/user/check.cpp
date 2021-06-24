@@ -45,7 +45,9 @@ namespace user
 
          m_propertyCheck->echeck() = echeck;
 
-         get_application()->process_subject(m_propertyCheck->m_id);
+         auto psubject = get_application()->subject(m_propertyCheck->m_id);
+
+         get_application()->handle_subject(psubject);
 
       }
 

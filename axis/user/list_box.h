@@ -21,7 +21,7 @@ namespace user
       int                                 m_iPadding;
       ::size_i32                          m_sizeFull;
       int                                 m_iMinListItemCount;
-      ::user::item                        m_itemLButtonDown;
+      //::user::item                        m_itemLButtonDown;
       //::user::frame_window *            m_puiDeactivateTogether;
       ::user::interaction *               m_puiDeactivateTogether;
       string_array                    m_straList;
@@ -70,8 +70,8 @@ namespace user
       DECLARE_MESSAGE_HANDLER(_001OnMouseActivate);
       DECLARE_MESSAGE_HANDLER(_001OnKeyDown);
       DECLARE_MESSAGE_HANDLER(_001OnKeyUp);
-      DECLARE_MESSAGE_HANDLER(on_message_left_button_down);
-      DECLARE_MESSAGE_HANDLER(on_message_left_button_up);
+      //DECLARE_MESSAGE_HANDLER(on_message_left_button_down);
+      //DECLARE_MESSAGE_HANDLER(on_message_left_button_up);
       DECLARE_MESSAGE_HANDLER(on_message_middle_button_down);
       DECLARE_MESSAGE_HANDLER(on_message_right_button_down);
       DECLARE_MESSAGE_HANDLER(on_message_mouse_move);
@@ -98,8 +98,9 @@ namespace user
 
 
       virtual bool on_set_owner(::user::primitive * pprimitive) override;
-      
 
+
+      ::e_status set_current_item(const ::user::item & item, const ::action_context & context) override;
       virtual void set_current_item_by_data(uptr u, const ::action_context& action_context);
       virtual void set_current_item_by_string_value(const string& strValue, const ::action_context& action_context);
       virtual string get_current_item_string_value();
@@ -120,6 +121,9 @@ namespace user
 
 
       virtual void reset_content();
+
+
+      void on_control_event(::user::control_event * pevent) override;
 
 
    };

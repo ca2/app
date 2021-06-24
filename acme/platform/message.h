@@ -1,8 +1,28 @@
 //
-// Created by camilo on 6/23/21.
+// Created by camilo on 6/23/21 08:19 BRT <3ThomasBS_!!
 //
+#pragma once
 
-#ifndef BASIS_MESSAGE_H
-#define BASIS_MESSAGE_H
 
-#endif //BASIS_MESSAGE_H
+namespace acme
+{
+
+
+   class CLASS_DECL_ACME message :
+      virtual public ::object
+   {
+   public:
+
+
+      wparam         m_wparam;
+      lparam         m_lparam;
+      lresult        m_lresult;
+
+
+   };
+
+
+} // namespace acme
+
+
+

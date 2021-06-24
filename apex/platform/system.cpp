@@ -5411,12 +5411,61 @@ namespace apex
    void system::system_id_update(::i64 iUpdate, ::i64 iPayload)
    {
 
-      process_subject((e_id) iUpdate, iPayload);
+      auto psubject = subject((e_id) iUpdate);
+
+      psubject->m_payload = iPayload;
+
+      handle_subject(psubject);
 
    }
 
 
-   void system::on_subject(::subject::subject * psubject)
+   void system::subject_handler(::subject::subject * psubject)
+   {
+
+      if (psubject->id() == id_os_dark_mode)
+      {
+
+         auto pnode = node();
+
+         if (pnode)
+         {
+
+            pnode->os_calc_user_dark_mode();
+
+         }
+
+      }
+      else if (psubject->id() == id_os_user_theme)
+      {
+
+         auto pnode = node();
+
+         //string strTheme = ::user::_os_get_user_theme();
+
+         string strTheme = pnode->os_get_user_theme();
+
+         if (strTheme != m_strOsUserTheme)
+         {
+
+            m_strOsUserTheme = strTheme;
+
+            //psubject->m_esubject = e_subject_process;
+
+         }
+         else
+         {
+
+            psubject->m_esubject = e_subject_not_modified;
+
+         }
+
+      }
+
+   }
+
+
+   void system::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
    {
 
       if (psubject->id() == id_open_hyperlink)
@@ -5443,108 +5492,51 @@ namespace apex
          }
 
       }
-      if (psubject->m_esubject == e_subject_prepare)
-      {
-
-         if (psubject->id() == id_os_dark_mode)
-         {
-
-            auto pnode = node();
-
-            if (pnode)
-            {
-
-               pnode->os_calc_user_dark_mode();
-
-            }
-
-         }
-         else if (psubject->id() == id_os_user_theme)
-         {
-
-            auto pnode = node();
-
-            //string strTheme = ::user::_os_get_user_theme();
-
-            string strTheme = pnode->os_get_user_theme();
-
-            if (strTheme != m_strOsUserTheme)
-            {
-
-               m_strOsUserTheme = strTheme;
-
-               psubject->m_esubject = e_subject_process;
-
-            }
-            else
-            {
-
-               psubject->m_esubject = e_subject_not_modified;
-
-            }
-
-         }
-
-      }
-
-      if (psubject->m_esubject == e_subject_process)
-      {
-
-         if (psubject->id() == id_os_user_theme)
-         {
-
-            //::user::_os_process_user_theme(m_strOsUserTheme);
-
-         }
-
-         psubject->m_esubject = e_subject_deliver;
-
-      }
 
 
-      ::subject::manager::on_subject(psubject);
+      ::subject::manager::on_subject(psubject, pcontext);
 
    }
 
 
-   void system::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
-   {
-
-      ::system::on_subject(psubject, pcontext);
-
-      //::update updateSetting(pupdate);
-
-      //fork([this, updateSetting]
-      //     ()
-      //     {
-
-      //        ::update update(updateSetting);
-
-      //        __pointer(::user::interaction) pinteraction;
-
-      //        __pointer(::apex::session) psession = m_psession;
-
-      //        if(psession == nullptr)
-      //        {
-
-      //           return;
-
-      //        }
-
-      //        int iFrame = 0;
-
-      //        while(psession->get_frame(pinteraction))
-      //        {
-
-      //           iFrame++;
-
-      //           pinteraction->apply(psubject);
-
-      //        }
-
-      //     });
-
-   }
+//   void system::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+//   {
+//
+//      ::system::on_subject(psubject, pcontext);
+//
+//      //::update updateSetting(pupdate);
+//
+//      //fork([this, updateSetting]
+//      //     ()
+//      //     {
+//
+//      //        ::update update(updateSetting);
+//
+//      //        __pointer(::user::interaction) pinteraction;
+//
+//      //        __pointer(::apex::session) psession = m_psession;
+//
+//      //        if(psession == nullptr)
+//      //        {
+//
+//      //           return;
+//
+//      //        }
+//
+//      //        int iFrame = 0;
+//
+//      //        while(psession->get_frame(pinteraction))
+//      //        {
+//
+//      //           iFrame++;
+//
+//      //           pinteraction->apply(psubject);
+//
+//      //        }
+//
+//      //     });
+//
+//   }
 
 
    ::e_status system::finalize()

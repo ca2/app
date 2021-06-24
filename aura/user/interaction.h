@@ -184,7 +184,7 @@ namespace user
       ewindowflag                                  m_ewindowflag;
       bool                                         m_bDerivedHeight;
 
-      // <3ThomasBorreggardSørensen_!!
+      // <3ThomasBorreggardSï¿½rensen_!!
       __pointer(::material_object)                 m_pmaterialCommandHandler;
 
       ::user::interaction::e_updown                m_eupdown;
@@ -768,7 +768,7 @@ namespace user
       virtual bool is_left_button_pressed() const;
 
 
-      virtual void set_current_item(const ::user::item & item, const ::action_context & action_context);
+      virtual ::e_status set_current_item(const ::user::item & item, const ::action_context & action_context);
       virtual ::user::item current_item();
 
 
@@ -1497,7 +1497,7 @@ namespace user
       }
 #endif
 
-      // <3ThomasBorregaardSørensen__!!
+      // <3ThomasBorregaardSï¿½rensen__!!
       ::e_status command_handler(const ::id& id) override;
 
       virtual bool has_command_handler(::message::command* pcommand) override;

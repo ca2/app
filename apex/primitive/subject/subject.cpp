@@ -68,7 +68,7 @@ namespace subject
 
       }
 
-      m_pmanager->process(this);
+      m_pmanager->handle_subject(this);
 
       return ::success;
 
@@ -90,7 +90,7 @@ namespace subject
 
          }
 
-         m_pmanager->process(this);
+         m_pmanager->handle_subject(this);
 
          // fetch updated polling time
          auto iPollMillis = poll_time();
@@ -118,7 +118,7 @@ namespace subject
    }
 
 
-   void subject::deliver()
+   void subject::notify()
    {
 
       synchronous_lock synchronouslock(mutex());
@@ -155,7 +155,7 @@ namespace subject
    }
 
 
-   ::subject::context * subject::context(::matter * pmatter)
+   ::subject::context * subject::listener_context(::matter * pmatter)
    {
 
       synchronous_lock synchronouslock(mutex());
@@ -178,7 +178,7 @@ namespace subject
    void subject::subject_common_construct()
    {
 
-      m_esubject = e_subject_prepare;
+      m_esubject = e_subject_handle;
       m_bRet = false;
 
    }
@@ -238,24 +238,28 @@ namespace subject
    }
 
 
-   void subject::deliver(const ::action_context & actioncontext)
-   {
+//   void subject::notify()
+//   {
+//
+//      m_esubject = e_subject_deliver;
+//
+//      //m_actioncontext = actioncontext;
+//
+//      for (auto & mattercontext : m_mattercontext)
+//      {
+//
+//         auto & pmatter = mattercontext.m_element1;
+//
+//         auto & pcontext = mattercontext.m_element2;
+//
+//         pmatter->on_subject(this, pcontext);
+//
+//      }
+//
+//   }
 
-      for (auto & mattercontext : m_mattercontext)
-      {
 
-         auto & pmatter = mattercontext.m_element1;
-
-         auto & pcontext = mattercontext.m_element2;
-
-         pmatter->on_subject(this, pcontext);
-
-      }
-
-   }
-
-
-   void subject::add(::matter * pmatter, bool bForkWhenNotify)
+   void subject::add_listener(::matter * pmatter, bool bForkWhenNotify)
    {
 
       synchronous_lock synchronouslock(mutex());
@@ -292,12 +296,12 @@ namespace subject
 
       pcontext->m_bFork = bForkWhenNotify;
 
-      pmatter->on_subject(this, pcontext);
+      //pmatter->on_subject(this, pcontext);
 
    }
 
 
-   void subject::erase(::matter * pmatter)
+   void subject::erase_listener(::matter * pmatter)
    {
 
       synchronous_lock synchronouslock(mutex());

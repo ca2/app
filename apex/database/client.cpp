@@ -2,7 +2,7 @@
 
 
 template < typename PREDICATE >
-class subject_delivery_receiver :
+class subject_listener :
    virtual public ::matter
 {
 public:
@@ -11,8 +11,8 @@ public:
    PREDICATE m_predicate;
 
 
-   subject_delivery_receiver(PREDICATE predicate) : m_predicate(predicate) { }
-   virtual ~subject_delivery_receiver() {}
+   subject_listener(PREDICATE predicate) : m_predicate(predicate) { }
+   virtual ~subject_listener() {}
    //method(const ::matter_pointer & pmatter) : matter_pointer(pmatter) { }
    //method(const ::method & method) : matter_pointer(method) { }
 
@@ -37,10 +37,10 @@ public:
 
 
 template < typename PREDICATE >
-::matter_pointer __subject_delivery_receiver(PREDICATE predicate)
+::matter_pointer __subject_listener(PREDICATE predicate)
 {
 
-   return __new(subject_delivery_receiver<PREDICATE>(predicate));
+   return __new(subject_listener<PREDICATE>(predicate));
 
 }
 
@@ -80,7 +80,7 @@ namespace database
 
       auto psubject = get_application()->subject(linkedproperty->m_id);
 
-      psubject->add(__subject_delivery_receiver([this, id, linkedproperty](::subject::subject * psubject, ::subject::context * pcontext)
+      psubject->add_listener(__subject_listener([this, id, linkedproperty](::subject::subject * psubject, ::subject::context * pcontext)
 
       //connect(id, [id, linkedproperty](::message::message* pmessage)
          {

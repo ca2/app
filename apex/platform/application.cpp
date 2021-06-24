@@ -5095,6 +5095,13 @@ m_pcontext->m_papexcontext->os().file_open(strFile);
 }
 
 
+void application::subject_handler(::subject::subject * psubject)
+{
+
+
+}
+
+
 void application::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
 {
 

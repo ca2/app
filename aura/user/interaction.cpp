@@ -3457,6 +3457,7 @@ namespace user
          output_debug_string("list_box");
 
       }
+
       sketch_to_design(pgraphics, bUpdateBuffer, bUpdateWindow);
 
       process_graphics_call_queue(pgraphics);
@@ -4220,7 +4221,9 @@ namespace user
 
       auto psystem = m_psystem->m_paurasystem;
 
-      psystem->delivery_for(id_os_dark_mode, this);
+      auto psubject = psystem->subject(id_os_dark_mode);
+
+      psubject->add_listener(this);
 
       on_create_user_interaction();
 
@@ -9781,6 +9784,12 @@ namespace user
          output_debug_string("combo_box");
 
       }
+      else if (strType.contains("list_box"))
+      {
+
+         output_debug_string("list_box");
+
+      }
 
       __keep(m_bUpdatingVisual);
 
@@ -11613,7 +11622,7 @@ restart:
    }
 
 
-   // <3ThomasBorregaardSørensen__!!
+   // <3ThomasBorregaardSï¿½rensen__!!
    ::e_status interaction::command_handler(const ::id & id)
    {
 
@@ -13753,10 +13762,40 @@ restart:
    }
 
 
-   void interaction::set_current_item(const ::user::item & item, const ::action_context & context)
+   ::e_status interaction::set_current_item(const ::user::item & item, const ::action_context & context)
    {
 
+      if (m_itemCurrent == item)
+      {
+
+         return ::success_none;
+
+      }
+
       m_itemCurrent = item;
+
+      if(has_control_event_handler())
+      {
+
+         ::user::control_event ev;
+
+         ev.m_puie = this;
+
+         ev.m_id = m_id;
+
+         ev.m_eevent = ::user::e_event_after_change_cur_sel;
+
+         ev.m_item = item;
+
+         ev.m_actioncontext = context;
+
+         route_control_event(&ev);
+
+         set_need_redraw();
+
+      }
+
+      return success;
 
    }
 
@@ -15400,9 +15439,6 @@ restart:
          }
 
       }
-
-
-
 
    }
 

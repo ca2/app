@@ -1836,7 +1836,7 @@ if (LINUX)
 endif ()
 
 
-add_library(acme SHARED ${library_source})
+add_library(acme SHARED ${library_source} platform/message.h)
 
 
 target_precompile_headers(acme PRIVATE framework.h)

@@ -3,7 +3,8 @@
 
 #define APPLICATION_CONSUMER_BODY                                                      \
                                                                                        \
-void assert_valid() const override                                             \
+                                                                                       \
+void assert_valid() const override                                                     \
 {                                                                                      \
                                                                                        \
    BASE1::assert_valid();                                                              \
@@ -17,7 +18,7 @@ void assert_valid() const override                                             \
 }                                                                                      \
                                                                                        \
                                                                                        \
-void dump(dump_context& dumpcontext) const override                            \
+void dump(dump_context & dumpcontext) const override                                   \
 {                                                                                      \
                                                                                        \
    BASE1::dump(dumpcontext);                                                           \
@@ -31,7 +32,7 @@ void dump(dump_context& dumpcontext) const override                            \
 }                                                                                      \
                                                                                        \
                                                                                        \
-::e_status on_initialize_object() override                                     \
+::e_status on_initialize_object() override                                             \
 {                                                                                      \
                                                                                        \
    m_papplication = m_pcontext ? m_pcontext->m_papexapplication : nullptr;             \
@@ -49,7 +50,21 @@ void dump(dump_context& dumpcontext) const override                            \
 }                                                                                      \
                                                                                        \
                                                                                        \
-void on_subject(::subject::subject* psubject, ::subject::context* pcontext) override   \
+void subject_handler(::subject::subject* psubject) override                            \
+{                                                                                      \
+                                                                                       \
+   BASE1::subject_handler(psubject);                                                   \
+                                                                                       \
+   BASE2::subject_handler(psubject);                                                   \
+                                                                                       \
+   BASE3::subject_handler(psubject);                                                   \
+                                                                                       \
+   BASE4::subject_handler(psubject);                                                   \
+                                                                                       \
+}                                                                                      \
+                                                                                       \
+                                                                                       \
+void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override \
 {                                                                                      \
                                                                                        \
    BASE1::on_subject(psubject, pcontext);                                              \

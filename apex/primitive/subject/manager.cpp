@@ -46,17 +46,11 @@ namespace subject
 
          psubject->initialize(this);
 
-         psubject->m_actioncontext = actioncontext;
-
-         psubject->m_bNewSubject = true;
+         //psubject->m_bNewSubject = true;
 
          auto psystem = m_psystem;
 
          psubject->m_millisSleep = psystem->get_update_poll_time(id);
-
-         synchronouslock.unlock();
-
-         process(psubject);
 
          auto pnode = psystem->node();
 
@@ -72,26 +66,35 @@ namespace subject
          }
 
       }
-      else if (psubject->m_bNewSubject)
-      {
 
-         psubject->m_bNewSubject = false;
+      psubject->m_actioncontext = actioncontext;
 
-      }
+      synchronouslock.unlock();
+
+      //handle_subject(psubject);
+
+
+//      }
+//      else if (psubject->m_bNewSubject)
+//      {
+//
+//         psubject->m_bNewSubject = false;
+//
+//      }
 
       return psubject;
 
    }
 
 
-   ::subject::subject_pointer manager::fork_subject(const ::id & id)
-   {
-
-      auto psubject = this->subject(id);
-
-      return psubject;
-
-   }
+//   ::subject::subject_pointer manager::fork_subject(const ::id & id)
+//   {
+//
+//      auto psubject = this->subject(id);
+//
+//      return psubject;
+//
+//   }
 
 
    void manager::erase_from_any_source(::matter* pmatter)
@@ -102,143 +105,164 @@ namespace subject
    }
 
 
-   void manager::deliver(const ::id &id)
+//   void manager::deliver(const ::id &id)
+//   {
+//
+//      auto psubject = subject(id);
+//
+//      if(psubject)
+//      {
+//
+//         psubject->deliver();
+//
+//      }
+//
+//   }
+
+
+//   void manager::deliver(const ::id &id, const ::action_context &actioncontext)
+//   {
+//
+//      aut
+//
+//      subject(id)->deliver();
+//
+//   }
+
+
+//   void manager::process_subject(const ::id &id)
+//   {
+//
+//      auto psubject = subject(id);
+//
+//      if (psubject->m_bNewSubject)
+//      {
+//
+//         return;
+//
+//      }
+//
+//      process(psubject);
+//
+//   }
+
+
+//   void manager::process_subject(const ::id &id, const ::action_context &actioncontext)
+//   {
+//
+//      auto psubject = subject(id);
+//
+//      psubject->m_actioncontext = actioncontext;
+//
+//      process(psubject);
+//
+//   }
+
+   
+   void manager::handle_subject(::subject::subject * psubject)
    {
 
-      auto psubject = subject(id);
+      psubject->m_esubject = e_subject_handle;
 
-      if(psubject)
-      {
+      subject_handler(psubject);
 
-         psubject->deliver();
-
-      }
-
-   }
-
-
-   void manager::deliver(const ::id &id, const ::action_context &actioncontext)
-   {
-
-      subject(id)->deliver(actioncontext);
-
-   }
-
-
-   void manager::process_subject(const ::id &id)
-   {
-
-      auto psubject = subject(id);
-
-      if (psubject->m_bNewSubject)
+      if(psubject->m_esubject == e_subject_not_modified)
       {
 
          return;
 
       }
 
-      process(psubject);
+      psubject->m_esubject = e_subject_notify;
+
+      psubject->notify();
+
+      //::subject::context context;
+
+      //on_subject(psubject, &context);
 
    }
 
 
-   void manager::process_subject(const ::id &id, const ::action_context &actioncontext)
-   {
-
-      auto psubject = subject(id);
-
-      psubject->m_actioncontext = actioncontext;
-
-      process(psubject);
-
-   }
-
-   
-   void manager::process(::subject::subject * psubject)
-   {
-
-      psubject->m_esubject = e_subject_prepare;
-
-      on_subject(psubject);
-
-   }
-
-
-   void manager::on_subject(::subject::subject * psubject)
-   {
-
-      if (psubject->m_esubject == e_subject_prepare)
-      {
-
-         //on_subject(psubject);
-
-      }
-
-      if (psubject->m_esubject == e_subject_process)
-      {
-
-         //on_subject(psubject);
-
-      }
-
-      if (psubject->m_esubject == e_subject_deliver)
-      {
-
-         psubject->deliver();
-
-      }
-
-   }
+//   void manager::subject_handler(::subject::subject * psubject)
+//   {
+//
+////      if (psubject->m_esubject == e_subject_prepare)
+////      {
+////
+////         //on_subject(psubject);
+////
+////         psubject->m_esubject = e_subject_process;
+////
+////      }
+////
+////      if (psubject->m_esubject == e_subject_process)
+////      {
+////
+////         //on_subject(psubject);
+////
+////         psubject->m_esubject = e_subject_deliver;
+////
+////      }
+////
+////      if (psubject->m_esubject == e_subject_deliver)
+////      {
+////
+////         psubject->deliver();
+////
+////      }
+//
+//   }
 
 
-   void manager::process_subject(const ::id &id, const ::payload & payload)
-   {
-
-      auto psubject = subject(id);
-
-      psubject->m_payload = payload;
-
-      process(psubject);
-
-   }
-
-
-   void manager::set_modified(const ::id &id)
-   {
-
-      auto psubject = subject(id);
-
-      if (::is_set(psubject))
-      {
-
-         psubject->set_modified();
-
-      }
-
-   }
+//   void manager::process_subject(const ::id &id, const ::payload & payload)
+//   {
+//
+//      auto psubject = subject(id);
+//
+//      psubject->m_payload = payload;
+//
+//      process(psubject);
+//
+//   }
 
 
-   void manager::delivery_for(const ::id &id, ::matter *pmatter, bool bForkWhenNotify)
-   {
+//   void manager::set_modified(const ::id &id)
+//   {
+//
+//      auto psubject = subject(id);
+//
+//      if (::is_set(psubject))
+//      {
+//
+//         psubject->set_modified();
+//
+//      }
+//
+//   }
 
-      auto psubject = subject(id);
 
-      if (::is_set(psubject))
-      {
+//   void manager::delivery_for(const ::id &id, ::matter *pmatter, bool bForkWhenNotify)
+//   {
+//
+//      auto psubject = subject(id);
+//
+//      if (::is_set(psubject))
+//      {
+//
+//         psubject->add(pmatter, bForkWhenNotify);
+//
+//      }
+//
+//   }
 
-         psubject->add(pmatter, bForkWhenNotify);
 
-      }
-
-   }
-
-
-   void manager::erase_subject(const ::id &id, ::matter *pmatter)
-   {
-
-      subject(id)->erase(pmatter);
-
-   }
+//   void manager::erase_subject(const ::id &id, ::matter *pmatter)
+//   {
+//
+//      subject(id)->erase(pmatter);
+//
+//   }
 
 
    //subject_pointer manager::subject(const ::id &id, ::matter *pmatter)

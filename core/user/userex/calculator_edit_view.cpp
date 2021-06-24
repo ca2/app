@@ -63,9 +63,11 @@ namespace calculator
 
       pmessage->previous();
 
-      auto psubject = subject(id_after_change_text);
+      auto pplaineditview = this;
 
-      psubject->add(this);
+      auto psubject = pplaineditview->subject(id_after_change_text);
+
+      psubject->add_listener(this);
 
    }
 
@@ -374,9 +376,11 @@ namespace calculator
    void plain_edit_view::plain_edit_on_after_change_text(::draw2d::graphics_pointer& pgraphics, const ::action_context& context)
    {
 
-      auto psubject = subject(id_after_change_text);
+      auto pplaineditview = this;
 
-      psubject->deliver(context);
+      auto psubject = pplaineditview->subject(id_after_change_text);
+
+      psubject->notify();
 
       plain_edit::plain_edit_on_after_change_text(pgraphics, context);
 

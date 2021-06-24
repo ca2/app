@@ -884,7 +884,7 @@ void html_form_view::on_subject(::subject::subject * psubject, ::subject::contex
 
          psubject->payload(id_form) = this;
 
-         m_pcallback->process(psubject);
+         m_pcallback->on_subject(psubject, pcontext);
 
       }
 

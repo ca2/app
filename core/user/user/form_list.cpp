@@ -526,10 +526,10 @@ namespace user
                      pcombobox->_001ToggleDropDown();
 
                   }
-                  else if(pcombobox->m_plist != nullptr)
+                  else if(pcombobox->m_plistbox != nullptr)
                   {
 
-                     __keep(pcombobox->m_plist->m_bMovingComboBox);
+                     __keep(pcombobox->m_plistbox->m_bMovingComboBox);
 
                      pcombobox->_001ShowDropDown();
 
@@ -831,9 +831,11 @@ break_click:;
 
          _001SetItemText(&item);
 
-         auto psubject = fork_subject(id_control_saved);
+         auto pformlist = this;
 
-         process(psubject);
+         auto psubject = pformlist->subject(id_control_saved);
+
+         pformlist->handle_subject(psubject);
 
          return true;
 
@@ -903,9 +905,11 @@ break_click:;
 
          _001SetItemText(&item);
 
-         auto psubject = fork_subject(id_control_saved);
+         auto pformlist = this;
 
-         process(psubject);
+         auto psubject = pformlist->subject(id_control_saved);
+
+         pformlist->handle_subject(psubject);
 
          if (pinteraction->has_function(::user::e_control_function_duplicate_on_check_box))
          {

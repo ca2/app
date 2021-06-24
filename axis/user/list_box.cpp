@@ -69,9 +69,9 @@ namespace user
       MESSAGE_LINK(e_message_mouse_activate, pchannel, this, &list_box::_001OnMouseActivate);
       MESSAGE_LINK(e_message_key_down, pchannel, this, &list_box::_001OnKeyDown);
       MESSAGE_LINK(e_message_key_up, pchannel, this, &list_box::_001OnKeyUp);
-      MESSAGE_LINK(e_message_left_button_down, pchannel, this, &list_box::on_message_left_button_down);
-      MESSAGE_LINK(e_message_non_client_left_button_down, pchannel, this, &list_box::on_message_left_button_down);
-      MESSAGE_LINK(e_message_left_button_up, pchannel, this, &list_box::on_message_left_button_up);
+      //MESSAGE_LINK(e_message_left_button_down, pchannel, this, &list_box::on_message_left_button_down);
+      MESSAGE_LINK(e_message_non_client_left_button_down, pchannel, (::user::interaction *)this, &interaction::on_message_left_button_down);
+      //MESSAGE_LINK(e_message_left_button_up, pchannel, this, &list_box::on_message_left_button_up);
       MESSAGE_LINK(e_message_middle_button_down, pchannel, this, &list_box::on_message_middle_button_down);
       MESSAGE_LINK(e_message_right_button_down, pchannel, this, &list_box::on_message_right_button_down);
       MESSAGE_LINK(e_message_mouse_move, pchannel, this, &list_box::on_message_mouse_move);
@@ -84,6 +84,8 @@ namespace user
    {
 
       pmessage->previous();
+
+      add_control_event_handler(this);
 
    }
 
@@ -282,6 +284,51 @@ namespace user
    }
 
 
+   void list_box::on_control_event(::user::control_event * pevent)
+   {
+
+      if(pevent->m_eevent == ::user::e_event_button_clicked)
+      {
+
+         if(pevent->m_puie == this)
+         {
+
+            ::id id = translate_property_id(m_id);
+
+            if(has_control_event_handler())
+            {
+
+               ::user::control_event ev;
+
+               ev.m_puie = this;
+
+               ev.m_id = id;
+
+               ev.m_eevent = ::user::e_event_after_change_cur_sel;
+
+               ev.m_pmessage = pevent->m_pmessage;
+
+               ev.m_item = pevent->m_item;
+
+               ev.m_actioncontext = pevent->m_actioncontext;
+
+               route_control_event(&ev);
+
+               pevent->m_bRet = ev.m_bRet;
+
+               set_need_redraw();
+
+            }
+
+            return;
+
+         }
+
+      }
+
+   }
+
+
    void list_box::_001OnDestroy(::message::message * pmessage)
    {
 
@@ -349,15 +396,21 @@ namespace user
 
       layout().get_client_rect(rectangleClient, ::user::e_layout_design);
 
+      status < ::color::color > colorBackground;
+
+      status < ::color::color > colorText;
+
+      auto pstyle = get_style(pgraphics);
+
+      colorBackground = get_color(pstyle, ::user::e_element_background);
+
       ::draw2d::brush_pointer brBk(e_create);
 
-      brBk->create_solid(argb(230, 255, 255, 255));
+      brBk->create_solid(colorBackground);
 
       pgraphics->set(brBk);
 
       pgraphics->fill_rectangle(rectangleClient);
-
-      auto pstyle = get_style(pgraphics);
 
       ::rectangle_i32 rectItem;
 
@@ -386,7 +439,7 @@ namespace user
 
       auto itemHover = hover_item();
 
-      index iCurSel = current_item();
+      auto itemCurrent = current_item();
 
       ::draw2d::brush_pointer br(e_create);
 
@@ -396,10 +449,6 @@ namespace user
          rectItem.top = rectItem.bottom;
 
          rectItem.bottom = rectItem.top + _001GetItemHeight();
-
-         status < ::color::color > colorBackground;
-
-         status < ::color::color > colorText;
 
 #if DEBUG_LIST_ITEM_DRAWING
 
@@ -422,7 +471,7 @@ namespace user
 
          }
 
-         if (iItem == iCurSel)
+         if (itemCurrent == iItem)
          {
 
 #if DEBUG_LIST_ITEM_DRAWING
@@ -966,103 +1015,103 @@ namespace user
    }
 
 
-   void list_box::on_message_left_button_down(::message::message * pmessage)
-   {
-
-      __pointer(::message::mouse) pmouse(pmessage);
-
-      auto point = screen_to_client(pmouse->m_point, e_layout_sketch);
-
-      auto rectangleClient = get_client_rect();
-
-      auto psession = get_session();
-
-      psession->user()->set_mouse_focus_LButtonDown(this);
-
-      m_itemLButtonDown = -1;
-
-      if (rectangleClient.contains(point))
-      {
-
-         m_itemLButtonDown = hit_test(pmouse);
-
-         set_mouse_capture();
-
-      }
-
-      pmessage->m_bRet = true;
-
-   }
-
-
-   void list_box::on_message_left_button_up(::message::message * pmessage)
-   {
-
-      __pointer(::message::mouse) pmouse(pmessage);
-
-      auto point = screen_to_client(pmouse->m_point, e_layout_sketch);
-
-      auto rectangleClient = get_client_rect();
-
-      auto psession = get_session();
-
-      psession->user()->set_mouse_focus_LButtonDown(this);
-
-      auto puser = psession->user();
-
-      auto pwindowing = puser->windowing();
-
-      pwindowing->release_mouse_capture();
-
-      if (rectangleClient.contains(point))
-      {
-
-         auto itemHit = hit_test(pmouse);
-
-         if (itemHit == m_itemLButtonDown)
-         {
-
-            m_itemCurrent = itemHit;
-
-            if (::is_set(m_pcombo))
-            {
-
-               m_pcombo->_001ShowDropDown(false);
-
-            }
-            
-            if(has_control_event_handler())
-            {
-
-               ::user::control_event ev;
-
-               ev.m_puie = this;
-
-               ev.m_id = m_id;
-
-               ev.m_eevent = ::user::e_event_after_change_cur_sel;
-
-               ev.m_actioncontext = ::e_source_user;
-
-               ev.m_item = itemHit;
-
-               route_control_event(&ev);
-                  
-            }
-
-            set_need_redraw();
-
-            post_redraw();
-
-         }
-
-      }
+//   void list_box::on_message_left_button_down(::message::message * pmessage)
+//   {
+//
+//      __pointer(::message::mouse) pmouse(pmessage);
+//
+//      auto point = screen_to_client(pmouse->m_point, e_layout_sketch);
+//
+//      auto rectangleClient = get_client_rect();
+//
+//      auto psession = get_session();
+//
+//      psession->user()->set_mouse_focus_LButtonDown(this);
+//
+//      m_itemLButtonDown = -1;
+//
+//      if (rectangleClient.contains(point))
+//      {
+//
+//         m_itemLButtonDown = hit_test(pmouse);
+//
+//         set_mouse_capture();
+//
+//      }
+//
+//      pmessage->m_bRet = true;
+//
+//   }
 
 
-
-      pmouse->m_bRet = true;
-
-   }
+//   void list_box::on_message_left_button_up(::message::message * pmessage)
+//   {
+//
+//      __pointer(::message::mouse) pmouse(pmessage);
+//
+//      auto point = screen_to_client(pmouse->m_point, e_layout_sketch);
+//
+//      auto rectangleClient = get_client_rect();
+//
+//      auto psession = get_session();
+//
+//      psession->user()->set_mouse_focus_LButtonDown(this);
+//
+//      auto puser = psession->user();
+//
+//      auto pwindowing = puser->windowing();
+//
+//      pwindowing->release_mouse_capture();
+//
+//      if (rectangleClient.contains(point))
+//      {
+//
+//         auto itemHit = hit_test(pmouse);
+//
+//         if (itemHit == m_itemLButtonDown)
+//         {
+//
+//            m_itemCurrent = itemHit;
+//
+//            if (::is_set(m_pcombo))
+//            {
+//
+//               m_pcombo->_001ShowDropDown(false);
+//
+//            }
+//
+//            if(has_control_event_handler())
+//            {
+//
+//               ::user::control_event ev;
+//
+//               ev.m_puie = this;
+//
+//               ev.m_id = m_id;
+//
+//               ev.m_eevent = ::user::e_event_after_change_cur_sel;
+//
+//               ev.m_actioncontext = ::e_source_user;
+//
+//               ev.m_item = itemHit;
+//
+//               route_control_event(&ev);
+//
+//            }
+//
+//            set_need_redraw();
+//
+//            post_redraw();
+//
+//         }
+//
+//      }
+//
+//
+//
+//      pmouse->m_bRet = true;
+//
+//   }
 
 
    void list_box::on_message_middle_button_down(::message::message * pmessage)
@@ -1158,7 +1207,6 @@ namespace user
    item list_box::current_item()
    {
 
-      //return m_pcombo->current_item();
       return ::user::interaction::current_item();
 
    }
@@ -1331,8 +1379,6 @@ namespace user
       if (!is_window())
       {
 
-         //auto pusersystem = __new(::user::system(0, nullptr, "list_box", i >= 0 ? 0 : WS_CHILD));
-
          m_puserinteractionOwner = m_pcombo;
 
          order_top_most();
@@ -1346,10 +1392,9 @@ namespace user
          place(::rectangle_i32(rectList).inflate(m_iBorder));
 
          if (!create_interaction(i >= 0 ? nullptr : m_pcombo->get_parent()))
-         //if(!create_host())
          {
 
-            m_pcombo->m_plist.release();
+            m_pcombo->m_plistbox.release();
 
             __throw(error_resource);
 
@@ -1378,10 +1423,47 @@ namespace user
    }
 
 
-   void list_box::set_current_item_by_string_value(const string& strValue, const ::action_context& context)
+   ::e_status list_box::set_current_item(const ::user::item & item, const ::action_context & context)
    {
 
-      index iSel = m_straValue.find_first(strValue);
+      if(m_pcombo)
+      {
+
+         auto estatus = m_pcombo->set_current_item(item, context);
+
+         if(!estatus)
+         {
+
+            return estatus;
+
+         }
+
+         return estatus;
+
+      }
+      else
+      {
+
+         auto estatus = ::user::scroll_base::set_current_item(item, context);
+
+         if(!estatus)
+         {
+
+            return estatus;
+
+         }
+
+         return estatus;
+
+      }
+
+   }
+
+
+   void list_box::set_current_item_by_data(uptr u, const ::action_context& context)
+   {
+
+      index iSel = m_straValue.find_first(__str(u));
 
       if (iSel < 0)
       {
@@ -1395,10 +1477,10 @@ namespace user
    }
 
 
-   void list_box::set_current_item_by_data(uptr u, const ::action_context& context)
+   void list_box::set_current_item_by_string_value(const string& strValue, const ::action_context& context)
    {
 
-      index iSel = m_straValue.find_first(__str(u));
+      index iSel = m_straValue.find_first(strValue);
 
       if (iSel < 0)
       {
@@ -1488,9 +1570,7 @@ namespace user
    }
 
 
-
 } // namespace user
-
 
 
 

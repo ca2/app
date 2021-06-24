@@ -251,7 +251,7 @@ namespace experience
 
       auto psubject = subject(id_user_style_change);
 
-      psubject->add(pframe);
+      psubject->add_listener(pframe);
 
       set_user_style(pszStyle);
 

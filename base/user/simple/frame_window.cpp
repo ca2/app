@@ -581,7 +581,7 @@ void simple_frame_window::_001OnDestroy(::message::message * pmessage)
 
                auto psubject = m_puserstyle->subject(id_user_style_change);
 
-               psubject->add(pframe);
+               psubject->add_listener(pframe);
 
                return pframe;
 
@@ -601,7 +601,7 @@ void simple_frame_window::_001OnDestroy(::message::message * pmessage)
 
    auto psubject = subject(id_user_style_change);
 
-   psubject->add(pframe);
+   psubject->add_listener(pframe);
 
    if (strStyle.has_char())
    {

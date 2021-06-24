@@ -955,9 +955,15 @@ void matter::to_string(const class string_exchange & str) const
 }
 
 
-void matter::on_subject(::subject::subject * psubject, ::subject::context * pcontext) 
+void matter::subject_handler(::subject::subject * psubject)
 {
 
+
+}
+
+
+void matter::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+{
 
 
 }

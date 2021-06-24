@@ -6518,32 +6518,36 @@ namespace aura
 
 
 
-   void system::on_subject(::subject::subject * psubject)
+//   void system::on_subject(::subject::subject * psubject)
+//   {
+//
+//
+//      ::aqua::system::on_subject(psubject);
+//
+//   }
+
+
+   void system::subject_handler(::subject::subject * psubject)
    {
 
-      if (psubject->m_esubject == e_subject_prepare)
+      if (psubject->m_id == id_font_enumeration)
       {
 
-         if (psubject->m_id == id_font_enumeration)
-         {
+         draw2d()->write_text()->handle_font_enumeration(psubject);
 
-            draw2d()->write_text()->handle_font_enumeration(psubject);
-
-         }
-         else if (psubject->m_id == id_os_dark_mode)
-         {
+      }
+      else if (psubject->m_id == id_os_dark_mode)
+      {
 
 #ifdef _UWP
 
-            ::user::os_set_dark_mode_colors();
+         ::user::os_set_dark_mode_colors();
 
 #endif
 
-         }
-
       }
-    
-      ::aqua::system::on_subject(psubject);
+
+      ::aqua::system::subject_handler(psubject);
 
    }
 
@@ -6554,8 +6558,6 @@ namespace aura
       ::aqua::system::on_subject(psubject, pcontext);
 
    }
-
-
 
 
    ::e_status system::initialize_estamira()

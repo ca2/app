@@ -1145,7 +1145,7 @@ namespace user
 
          ev.m_eevent = ::user::e_event_key_down;
 
-         ev.m_pmessage = pmessage;
+         ev.m_actioncontext.m_pmessage = pmessage;
 
          ev.m_actioncontext = ::e_source_user;
 

@@ -1668,8 +1668,6 @@ namespace user
          if(pevent->m_puie == m_plistbox)
          {
 
-            pevent->m_actioncontext.m_pmessage = pevent->m_pmessage;
-
             set_current_item(pevent->m_item, pevent->m_actioncontext);
 
 //            if(m_plistbox)

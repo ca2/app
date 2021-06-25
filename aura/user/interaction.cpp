@@ -13793,6 +13793,8 @@ restart:
 
          set_need_redraw();
 
+         post_redraw();
+
       }
 
       return success;
@@ -15226,9 +15228,9 @@ restart:
 
                      ev.m_eevent = ::user::e_event_button_clicked;
 
-                     ev.m_pmessage = pmouse;
-
                      ev.m_item = item;
+
+                     ev.m_actioncontext.m_pmessage = pmouse;
 
                      ev.m_actioncontext.add(::e_source_user);
 

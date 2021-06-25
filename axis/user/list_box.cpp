@@ -293,30 +293,16 @@ namespace user
          if(pevent->m_puie == this)
          {
 
-            ::id id = translate_property_id(m_id);
-
-            if(has_control_event_handler())
+            if (m_pcombo)
             {
 
-               ::user::control_event ev;
+               m_pcombo->set_current_item(pevent->m_item, pevent->m_actioncontext);
 
-               ev.m_puie = this;
+            }
+            else
+            {
 
-               ev.m_id = id;
-
-               ev.m_eevent = ::user::e_event_after_change_cur_sel;
-
-               ev.m_pmessage = pevent->m_pmessage;
-
-               ev.m_item = pevent->m_item;
-
-               ev.m_actioncontext = pevent->m_actioncontext;
-
-               route_control_event(&ev);
-
-               pevent->m_bRet = ev.m_bRet;
-
-               set_need_redraw();
+               set_current_item(pevent->m_item, pevent->m_actioncontext);
 
             }
 

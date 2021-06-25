@@ -26,7 +26,6 @@ namespace user
       u32                              m_uiFlags;
       bool                             m_bRet;
       bool                             m_bOk;
-      ::message::message *             m_pmessage;
       ::datetime::time                 m_timeOuterBeg;
       ::datetime::time                 m_timeOuterEnd;
       ::datetime::time                 m_timeBeg;

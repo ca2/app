@@ -203,7 +203,7 @@ list(APPEND library_source
    #platform/regex.cpp
    platform/serial.cpp
    platform/simple_trace.cpp
-   platform/sprintf.cpp
+   #platform/sprintf.cpp
    platform/static_setup.cpp
    platform/static_setup.h
    platform/static_start.cpp
@@ -899,7 +899,7 @@ list(APPEND library_source
    platform/simple_app.h
    platform/simple_trace.cpp
    platform/simple_trace.h
-   platform/sprintf.h
+   #platform/sprintf.h
    platform/static_start.h
    platform/static_start_internal.h
    platform/status.h
@@ -1326,7 +1326,7 @@ if (WIN32)
       os/windows/ansi_file.cpp
       os/windows/api.cpp
       os/windows/application.cpp
-      os/windows/application_system_run.cpp
+      #os/windows/application_system_run.cpp
       #os/windows/callstack.cpp
       os/windows/debug.cpp
       os/windows/dir.cpp

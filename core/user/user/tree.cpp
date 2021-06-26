@@ -213,12 +213,14 @@ namespace user
 
          auto pwindowing = puser->windowing();
 
-         auto pointCursor = pwindowing->get_cursor_position();
+         auto pointCursor = _001ScreenToClient(pwindowing->get_cursor_position());
 
          ::u32 dwHoverIn = 384;
+
          ::u32 dwHoverOut = 1284;
-         screen_to_client(&pointCursor);
+
          bool bTreeHover = rectangleClient.contains(pointCursor);
+
          if(bTreeHover)
          {
             if(!m_bHoverStart)

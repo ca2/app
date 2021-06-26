@@ -273,14 +273,23 @@ public:
  {
  rectangle_type rectangle(this); rectangle.offset(-point.x, -point.y); return rectangle;
  }
- rectangle_type operator+(const SIZE_TYPE& size) const noexcept
+
+ template < primitive_size SIZE >
+ rectangle_type operator+(const SIZE& size) const noexcept
  {
- rectangle_type rectangle(this); rectangle.offset(size.cx, size.cy); return rectangle;
+
+      rectangle_type rectangle(this); rectangle.offset(size.cx, size.cy); return rectangle;
+
  }
- rectangle_type operator-(const SIZE_TYPE& size) const noexcept
- {
- rectangle_type rectangle(this); rectangle.offset(-size.cx, -size.cy); return rectangle;
- }
+
+   template < primitive_size SIZE >
+   rectangle_type operator-(const SIZE & size) const noexcept
+   {
+
+      rectangle_type rectangle(this); rectangle.offset(-size.cx, -size.cy); return rectangle;
+
+   }
+
  rectangle_type operator+(const rectangle_type & rectAdd) const noexcept
  {
  rectangle_type rectangle(this); rectangle.inflate(rectAdd); return rectangle;

@@ -238,9 +238,7 @@ namespace userex
 
             __keep_on(&pframewindow->m_uiUserInteractionFlags, ::user::interaction_wfi_up_down_loading);
 
-            __keep(pframewindow->m_bLockWindowUpdate);
-
-            __keep(ptabview->get_parent_frame()->m_bLockWindowUpdate);
+            ::user::lock_sketch_to_design lockSketchToDesign(pframewindow);
 
             pframewindow->m_bSizeEnable = false;
 
@@ -361,10 +359,6 @@ namespace userex
          fork([pframewindow, this]()
          {
 
-            bool bTemp = false;
-
-            bool* pbLockWindowUpdate = &bTemp;
-
             __pointer(simple_frame_window) pframewindowTab;
 
             if (m_ptemplateTab != nullptr)
@@ -379,12 +373,6 @@ namespace userex
 
                   pframewindowTab = ptabview->get_parent_frame();
 
-                  if (pframewindowTab)
-                  {
-
-                     pbLockWindowUpdate = &pframewindowTab->m_bLockWindowUpdate;
-
-                  }
 
                }
 
@@ -392,9 +380,7 @@ namespace userex
 
             {
 
-               __keep(pbLockWindowUpdate);
-
-               __keep(pframewindow->m_bLockWindowUpdate);
+               ::user::lock_sketch_to_design lockSketchToDesign(pframewindow);
 
                __keep_on(&pframewindow->m_uiUserInteractionFlags, ::user::interaction_wfi_up_down_loading);
 

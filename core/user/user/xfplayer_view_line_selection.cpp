@@ -460,7 +460,7 @@ bool XfplayerViewLineSelection::OnLButtonDown(xfplayer_view_line & viewline, ::u
    
    UNREFERENCED_PARAMETER(user);
 
-   auto point1 = viewline.get_interaction()->screen_to_client(point);
+   auto point1 = viewline.get_interaction()->_001ScreenToClient(point);
 
    bool bInside;
 
@@ -514,7 +514,7 @@ bool XfplayerViewLineSelection::OnMouseMove(xfplayer_view_line & viewline, ::u32
 
    bool bInside;
 
-   auto point1 = viewline.get_interaction()->screen_to_client(point);
+   auto point1 = viewline.get_interaction()->_001ScreenToClient(point);
 
    index iLine;
 
@@ -599,8 +599,8 @@ bool XfplayerViewLineSelection::OnLButtonUp(xfplayer_view_line & viewline, ::u32
 
    bool bInside;
 
-   ::point_i32 point1(point);
-   viewline.get_interaction()->screen_to_client(&point1);
+   ::point_i32 point1 = viewline.get_interaction()->_001ScreenToClient(point);
+
    index iLine;
    strsize iChar;
 

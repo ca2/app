@@ -430,40 +430,57 @@ namespace user
 
    void list_header::on_message_left_button_down(::message::message * pmessage)
    {
+
       __pointer(::message::mouse) pmouse(pmessage);
-      auto pointCursor = pmouse->m_point;
-      screen_to_client(&pointCursor);
+
+      auto pointCursor = _001ScreenToClient(pmouse->m_point);
+
       if(hit_test(pointCursor, m_eelementLButtonDown, m_iItemLButtonDown))
       {
+
          m_bLButtonDown = true;
+
       }
 
       pmouse->m_bRet = false;
+
    }
+
 
    void list_header::on_message_left_button_up(::message::message * pmessage)
    {
+
       __pointer(::message::mouse) pmouse(pmessage);
+
       list * plist = m_plistctrlinterface;
-      auto pointCursor = pmouse->m_point;
-      screen_to_client(&pointCursor);
+
+      auto pointCursor = _001ScreenToClient(pmouse->m_point);
+
       if(m_bLButtonDown)
       {
+
          m_bLButtonDown = false;
+
          enum_element eelement;
+
          index iItem;
+
          if(hit_test(pointCursor, eelement, iItem))
          {
-            if(m_eelementLButtonDown == element_item_Box
-                  && eelement == element_item_Box)
+
+            if(m_eelementLButtonDown == element_item_Box && eelement == element_item_Box)
             {
+
                if(iItem == m_iItemLButtonDown)
                {
+
                   // This is a single click in a header item
                   plist->_001OnListHeaderItemClick(iItem);
+
                }
                else // iItem != m_iItemLButtonDown
                {
+
                   // The header item has been dragged
 
                   index iKeyA = plist->m_columna.order_index(iItem);
@@ -477,6 +494,7 @@ namespace user
                   plist->set_need_redraw();
                   set_need_redraw();
                }
+
             }
             else if(m_eelementLButtonDown == ElementDivider)
             {
@@ -499,11 +517,15 @@ namespace user
 
    void list_header::on_message_mouse_move(::message::message * pmessage)
    {
+
       __pointer(::message::mouse) pmouse(pmessage);
-      auto pointCursor = pmouse->m_point;
-      screen_to_client(&pointCursor);
+
+      auto pointCursor = _001ScreenToClient(pmouse->m_point);
+
       list * plist = m_plistctrlinterface;
+
       enum_element eelement;
+
       index iItem;
 
       auto psession = get_session();
@@ -583,12 +605,17 @@ namespace user
 
    void list_header::_001OnLButtonDblClk(::message::message * pmessage)
    {
+
       __pointer(::message::mouse) pmouse(pmessage);
-      auto pointCursor = pmouse->m_point;
-      screen_to_client(&pointCursor);
+
+      auto pointCursor = _001ScreenToClient(pmouse->m_point);
+
       list * plist = m_plistctrlinterface;
+
       enum_element eelement;
+
       index iItem;
+
       if(hit_test(
             pointCursor,
             eelement,

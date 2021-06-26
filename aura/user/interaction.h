@@ -1894,11 +1894,11 @@ namespace user
 
 
       template < typename OFFSETABLE, typename SOURCE >
-      inline void _screen_to_client(OFFSETABLE& o, const SOURCE & s, enum_layout elayout = e_layout_design) const { o = s + ::size_i32(get_parent_accumulated_scroll(elayout)) - ::size_i32(screen_origin(elayout)); }
+      inline void _screen_to_client(OFFSETABLE& o, const SOURCE & s, enum_layout elayout = e_layout_design) const { o = s + (::size_i32(get_parent_accumulated_scroll(elayout)) - ::size_i32(screen_origin(elayout))); }
 
 
       template < typename OFFSETABLE, typename SOURCE >
-      inline void _client_to_screen(OFFSETABLE& o, const SOURCE & s, enum_layout elayout = e_layout_design) const { o = s + screen_origin(elayout) - ::size_i32(get_parent_accumulated_scroll(elayout)); }
+      inline void _client_to_screen(OFFSETABLE& o, const SOURCE & s, enum_layout elayout = e_layout_design) const { o = s + (::size_i32(screen_origin(elayout)) - ::size_i32(get_parent_accumulated_scroll(elayout))); }
 
 
       template < typename OFFSETABLE, typename SOURCE >
@@ -1906,15 +1906,15 @@ namespace user
 
 
       template < typename OFFSETABLE, typename SOURCE >
-      inline void _client_to_parent(OFFSETABLE& o, const SOURCE & s, enum_layout elayout = e_layout_design) const { o = s + layout().origin(elayout); }
+      inline void _client_to_parent(OFFSETABLE& o, const SOURCE & s, enum_layout elayout = e_layout_design) const { o = s + ::size_i32(layout().origin(elayout)); }
 
 
       template < typename OFFSETABLE, typename SOURCE >
-      inline void _host_to_client(OFFSETABLE& o, const SOURCE & s, enum_layout elayout = e_layout_design) const { o = s + get_parent_accumulated_scroll(elayout) - host_origin(elayout); }
+      inline void _host_to_client(OFFSETABLE& o, const SOURCE & s, enum_layout elayout = e_layout_design) const { o = s + (::size_i32(get_parent_accumulated_scroll(elayout)) - ::size_i32(host_origin(elayout))); }
 
 
       template < typename OFFSETABLE, typename SOURCE >
-      inline void _client_to_host(OFFSETABLE& o, const SOURCE & s, enum_layout elayout = e_layout_design) const { o = s + host_origin(elayout) - get_parent_accumulated_scroll(elayout); }
+      inline void _client_to_host(OFFSETABLE& o, const SOURCE & s, enum_layout elayout = e_layout_design) const { o = s + (::size_i32(host_origin(elayout)) - ::size_i32(get_parent_accumulated_scroll(elayout))); }
 
 
 

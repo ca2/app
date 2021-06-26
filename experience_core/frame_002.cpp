@@ -55,7 +55,7 @@ namespace experience
       {
          e_hittest etest = hittest_client;
          {
-            //      m_pframewindow->_001ScreenToClient(point);
+            //      m_pframewindow->screen_to_client(point);
             ::rectangle_i32 rectEvent;
             m_pframewindow->get_window_rect(rectEvent);
             ::rectangle_i32 rectangle;

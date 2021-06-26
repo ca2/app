@@ -4124,20 +4124,20 @@ namespace draw2d_opengl
 
    }
    /*
-   void window::_001ScreenToClient(RECTANGLE_I32 * prectangle)
+   void window::screen_to_client(RECTANGLE_I32 * prectangle)
    {
    ASSERT(::IsWindow(m_hdc));
-   ::_001ScreenToClient(m_hdc, (POINT_I32 *)rectangle_i32);
-   ::_001ScreenToClient(m_hdc, ((POINT_I32 *)rectangle_i32)+1);
+   ::screen_to_client(m_hdc, (POINT_I32 *)rectangle_i32);
+   ::screen_to_client(m_hdc, ((POINT_I32 *)rectangle_i32)+1);
    if (GetExStyle() & WS_EX_LAYOUTRTL)
    rectangle_i32::swap_left_right(rectangle);
    }
 
-   void window::_001ClientToScreen(RECTANGLE_I32 * prectangle)
+   void window::client_to_screen(RECTANGLE_I32 * prectangle)
    {
    ASSERT(::IsWindow(m_hdc));
-   ::_001ClientToScreen(m_hdc, (POINT_I32 *)rectangle_i32);
-   ::_001ClientToScreen(m_hdc, ((POINT_I32 *)rectangle_i32)+1);
+   ::client_to_screen(m_hdc, (POINT_I32 *)rectangle_i32);
+   ::client_to_screen(m_hdc, ((POINT_I32 *)rectangle_i32)+1);
    if (GetExStyle() & WS_EX_LAYOUTRTL)
    rectangle_i32::swap_left_right(rectangle);
    }*/

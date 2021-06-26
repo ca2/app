@@ -117,7 +117,7 @@ namespace experience
                      {
                      const ::point_i32 & point(LOWORD(lparam), HIWORD(lparam));
 
-                     pframewindow->_001ClientToScreen(&point);
+                     pframewindow->client_to_screen(&point);
                      pmenu->track_popup_menu(
                      point.x, point.y,
                      pframewindow);

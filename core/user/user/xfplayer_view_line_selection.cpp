@@ -600,7 +600,7 @@ bool XfplayerViewLineSelection::OnLButtonUp(xfplayer_view_line & viewline, ::u32
    bool bInside;
 
    ::point_i32 point1(point);
-   viewline.get_interaction()->_001ScreenToClient(&point1);
+   viewline.get_interaction()->screen_to_client(&point1);
    index iLine;
    strsize iChar;
 
@@ -689,7 +689,7 @@ bool XfplayerViewLineSelection::OnTimer(xfplayer_view_line & viewline, ::u32 use
 
          auto pointCursor = pwindowing->get_cursor_position();
 
-         viewline.get_interaction()->_001ScreenToClient(pointCursor);
+         viewline.get_interaction()->screen_to_client(pointCursor);
 
          viewline.update_hover(pointCursor);
 

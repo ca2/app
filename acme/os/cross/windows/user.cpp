@@ -757,7 +757,7 @@ CLASS_DECL_ACME int_bool IsRectEmpty(const RECTANGLE_I32 * prectangle)
 //}
 
 //
-//int_bool WINAPI _001ClientToScreen(::::windowing::window * pwindow, POINT_I32 * ppoint)
+//int_bool WINAPI client_to_screen(::::windowing::window * pwindow, POINT_I32 * ppoint)
 //{
 //
 //   if(::is_null(oswindow))
@@ -767,12 +767,12 @@ CLASS_DECL_ACME int_bool IsRectEmpty(const RECTANGLE_I32 * prectangle)
 //
 //   }
 //
-//   return oswindow->_001ClientToScreen(ppoint);
+//   return oswindow->client_to_screen(ppoint);
 //
 //}
 
 
-//int_bool WINAPI _001ScreenToClient(::::windowing::window * pwindow, POINT_I32 * ppoint)
+//int_bool WINAPI screen_to_client(::::windowing::window * pwindow, POINT_I32 * ppoint)
 //{
 //
 //   if(::is_null(oswindow))
@@ -782,7 +782,7 @@ CLASS_DECL_ACME int_bool IsRectEmpty(const RECTANGLE_I32 * prectangle)
 //
 //   }
 //
-//   return oswindow->_001ScreenToClient(ppoint);
+//   return oswindow->screen_to_client(ppoint);
 //
 //}
 

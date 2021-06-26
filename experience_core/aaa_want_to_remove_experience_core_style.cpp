@@ -717,13 +717,13 @@ namespace experience_lite
 
          point pt1 = rectTrack.top_left() + pbar->m_pointTrackOffset;
 
-         pbar->ClientToScreen(pt1);
+         pbar->client_to_screen(pt1);
 
          point pt2;
 
          psession->get_cursor_position(&pt2);
 
-         pbar->ClientToScreen(pt1);
+         pbar->client_to_screen(pt1);
 
          //      prop("tracking_window").cast < trw >()->pt1 = pt1;
 

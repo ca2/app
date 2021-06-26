@@ -292,9 +292,7 @@ namespace user
 //         i32   fwKeys = (i32) pMsg->wParam;        // key flags
 
 
-         auto point = pointCursor;
-
-         _001ScreenToClient(&point);
+         auto point = _001ScreenToClient(pointCursor);
 
          //if((fwKeys & MK_LBUTTON) > 0 && (m_iState == stateDragging) && (iIndex == m_iIndex))
          //{

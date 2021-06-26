@@ -86,7 +86,9 @@ void simple_scroll_bar::on_message_mouse_move(::message::message * pmessage)
 
    __pointer(::message::mouse) pmouse(pmessage);
 
-   ::point_i32 point = screen_to_client(pmouse->m_point);
+   ::point_i32 point;
+
+   _screen_to_client(point, pmouse->m_point);
 
    if(m_bTracking)
    {
@@ -265,7 +267,7 @@ void simple_scroll_bar::on_message_left_button_up(::message::message * pmessage)
          if (bWasTracking)
          {
 
-            auto point = screen_to_client(pmouse->m_point);
+            auto point = _001ScreenToClient(pmouse->m_point);
 
             point -= m_sizeTrackOffset;
 
@@ -786,7 +788,7 @@ void simple_scroll_bar::_001OnTimer(::timer * ptimer)
 
    auto pointCursor = pwindowing->get_cursor_position();
 
-   _001ScreenToClient(pointCursor);
+   screen_to_client(pointCursor);
 
    if(ptimer->m_uEvent == (uptr) this)
    {
@@ -1236,7 +1238,7 @@ void simple_scroll_bar::_001OnClip(::draw2d::graphics_pointer & pgraphics)
 
       //   rectangleClient = pdrawcontext->m_rectangleWindow;
 
-      //   _001ScreenToClient(rectangleClient);
+      //   screen_to_client(rectangleClient);
 
       //   rectangleClient.bottom++;
       //   rectangleClient.right++;
@@ -1274,9 +1276,9 @@ void simple_scroll_bar::_001OnClip(::draw2d::graphics_pointer & pgraphics)
 
             }
 
-            pinteraction->_001ClientToScreen(rectFocus);
+            pinteraction->client_to_screen(rectFocus);
 
-            _001ScreenToClient(rectFocus);
+            screen_to_client(rectFocus);
             
             m_pshapeaClip->add_item(__new(rectangle_shape(rectFocus)));
 
@@ -1459,13 +1461,13 @@ void simple_scroll_bar::_001OnVerisimpleDraw(::draw2d::graphics_pointer & pgraph
 
    //   const ::point_i32 & point1 = rectTrack.top_left() + m_sizeTrackOffset;
 
-   //   _001ClientToScreen(point1);
+   //   client_to_screen(point1);
 
    //   ::point_i32 point2;
 
    //   psession->get_cursor_position(&point2);
 
-   //   _001ClientToScreen(point1);
+   //   client_to_screen(point1);
 
    //   if ((bool)prop("tracking_fade_in"))
    //   {

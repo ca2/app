@@ -638,39 +638,37 @@ namespace experience
 
       }
 
-      m_pframewindow->start_layout();
-
-      if(m_pframewindow->layout().is_zoomed())
       {
 
-         m_pframewindow->display(e_display_restore);
+         ::user::lock_sketch_to_design lockSketchToDesign(m_pframewindow);
 
-      }
+         if (m_pframewindow->layout().is_zoomed())
+         {
 
-      ::rectangle_i32 rectBefore;
+            m_pframewindow->display(e_display_restore);
 
-      pframewindow->get_window_rect(rectBefore);
+         }
 
-      ::rectangle_i32 rectAfter = rectWindow;
+         ::rectangle_i32 rectBefore;
 
-      ::rectangle_i32 rectParentClient = rectAfter;
+         pframewindow->get_window_rect(rectBefore);
 
-      if(m_pframewindow->get_parent() != nullptr)
-      {
+         ::rectangle_i32 rectAfter = rectWindow;
 
-         m_pframewindow->get_parent()->_001ScreenToClient(rectParentClient);
+         ::rectangle_i32 rectParentClient = rectAfter;
 
-      }
+         if (m_pframewindow->get_parent() != nullptr)
+         {
 
-      ::rectangle_i32 rectTotal;
+            m_pframewindow->get_parent()->screen_to_client(rectParentClient);
 
-      rectTotal.unite(rectBefore, rectAfter);
+         }
 
-      m_pframewindow->m_rectPending.unite(rectBefore, rectAfter);
+         ::rectangle_i32 rectTotal;
 
-      {
+         rectTotal.unite(rectBefore, rectAfter);
 
-         synchronous_lock synchronouslock(pframewindow->mutex());
+         m_pframewindow->m_rectPending.unite(rectBefore, rectAfter);
 
          pframewindow->place(rectParentClient);
 
@@ -682,9 +680,9 @@ namespace experience
 
          pframewindow->set_need_redraw();
 
-         pframewindow->post_redraw();
-
       }
+
+      pframewindow->post_redraw();
 
    }
 

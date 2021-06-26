@@ -164,14 +164,14 @@ namespace ios
       //using ::user::interaction_impl::get_client_rect;
       //virtual bool get_client_rect(RECTANGLE_I64 * lpRect) override;
 
-      //virtual bool _001ClientToScreen(RECTANGLE_I32 * lprect) override;
-      //virtual bool _001ClientToScreen(POINT_I32 * lppoint) override;
-      //virtual bool _001ClientToScreen(RECTANGLE_I64 * lprect) override;
-      //virtual bool _001ClientToScreen(POINT_I64 * lppoint) override;
-      //virtual bool _001ScreenToClient(RECTANGLE_I32 * lprect) override;
-      //virtual bool _001ScreenToClient(POINT_I32 * lppoint) override;
-      //virtual bool _001ScreenToClient(RECTANGLE_I64 * lprect) override;
-      //virtual bool _001ScreenToClient(POINT_I64 * lppoint) override;
+      //virtual bool client_to_screen(RECTANGLE_I32 * lprect) override;
+      //virtual bool client_to_screen(POINT_I32 * lppoint) override;
+      //virtual bool client_to_screen(RECTANGLE_I64 * lprect) override;
+      //virtual bool client_to_screen(POINT_I64 * lppoint) override;
+      //virtual bool screen_to_client(RECTANGLE_I32 * lprect) override;
+      //virtual bool screen_to_client(POINT_I32 * lppoint) override;
+      //virtual bool screen_to_client(RECTANGLE_I64 * lprect) override;
+      //virtual bool screen_to_client(POINT_I64 * lppoint) override;
 
       virtual bool GetWindowPlacement(WINDOWPLACEMENT* lpuserinteractionpl);
       virtual bool SetWindowPlacement(const WINDOWPLACEMENT* lpuserinteractionpl);

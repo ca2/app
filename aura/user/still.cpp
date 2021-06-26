@@ -149,7 +149,7 @@ namespace user
 
    //   ::point_i32 point = pmouse->m_point;
 
-   //   _001ScreenToClient(point);
+   //   screen_to_client(point);
 
    //   if (hit_test(point, eelement) >= 0)
    //   {
@@ -179,7 +179,7 @@ namespace user
 
    //   ::point_i32 point = pmouse->m_point;
 
-   //   _001ScreenToClient(point);
+   //   screen_to_client(point);
 
    //   if (hit_test(point, eelement) >= 0)
    //   {
@@ -213,7 +213,7 @@ namespace user
 
    //   //::point_i32 point = pmouse->m_point;
 
-   //   //_001ScreenToClient(point);
+   //   //screen_to_client(point);
 
    //   //if (hit_test(point, eelement) >= 0 && psession->m_puiLastLButtonDown == this)
    //   //{
@@ -414,7 +414,7 @@ namespace user
          rectangle.right = ::i32(size.cx * 1.6);
          rectangle.bottom = ::i32(size.cy * 1.4);
 
-         layout().sketch() = rectangle.size();
+         layout().sketch().size() = rectangle.size();
 
       }
       else if (m_estyle == style_image)
@@ -422,7 +422,7 @@ namespace user
 
          auto size = m_pimage->size();
 
-         layout().sketch() = size;
+         layout().sketch().size() = size;
 
       }
       else
@@ -430,7 +430,7 @@ namespace user
 
          auto sizeTotal = _001CalculateAdjustedFittingSize(pgraphics);
 
-         layout().sketch() = sizeTotal;
+         layout().sketch().size() = sizeTotal;
 
       }
 

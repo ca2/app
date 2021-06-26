@@ -940,19 +940,19 @@ namespace hotplugin
 
    }
 
-   //bool plugin::_001ClientToScreen(POINT_I32 * ppt)
+   //bool plugin::client_to_screen(POINT_I32 * ppt)
    //{
 
-   //   ::user::interaction::_001ClientToScreen(ppt);
+   //   ::user::interaction::client_to_screen(ppt);
 
    //   return true;
 
    //}
 
-   //bool plugin::_001ScreenToClient(POINT_I32 * ppt)
+   //bool plugin::screen_to_client(POINT_I32 * ppt)
    //{
 
-   //   ::user::interaction::_001ScreenToClient(ppt);
+   //   ::user::interaction::screen_to_client(ppt);
 
    //   return true;
 

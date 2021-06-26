@@ -175,7 +175,7 @@ namespace html
 
          //::const ::point_f32 & point = pmouse->m_point;
 
-         //phtml->m_puserinteraction->_001ScreenToClient(&::point_f32);
+         //phtml->m_puserinteraction->screen_to_client(&::point_f32);
 
          //bool bHover = hit_test(phtml->m_pdata, ::point_f32) != 0;
 

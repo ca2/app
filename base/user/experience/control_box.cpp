@@ -46,7 +46,6 @@ namespace experience
 
       __pointer(::message::mouse) pmouse(pmessage);
 
-
       if (m_pframewindow != nullptr
             && m_pframewindow->m_pframe != nullptr
             && m_pframewindow->m_pframe->is_control_box_moveable())
@@ -56,7 +55,7 @@ namespace experience
 
          m_pointDrag = pmouse->m_point;
 
-         _001ScreenToClient(&m_pointDrag);
+         screen_to_client(m_pointDrag);
 
          set_mouse_capture();
 
@@ -79,7 +78,7 @@ namespace experience
 
          ::point_i32 point = pmouse->m_point;
 
-         m_pframewindow->_001ScreenToClient(point);
+         m_pframewindow->screen_to_client(point);
 
          drag(point);
 
@@ -115,7 +114,7 @@ namespace experience
 
             ::point_i32 point = pmouse->m_point;
 
-            m_pframewindow->_001ScreenToClient(point);
+            m_pframewindow->screen_to_client(point);
 
             drag(point);
 
@@ -152,7 +151,7 @@ namespace experience
 
       //get_window_rect(rectWindow);
 
-      //get_parent()->_001ScreenToClient(rectWindow);
+      //get_parent()->screen_to_client(rectWindow);
 
       //m_pframewindow->m_pframe->m_iControlBoxRight = rectParent.right - x - rectWindow.width();
 
@@ -164,7 +163,7 @@ namespace experience
 
       //::point_i32 pointScreen(point);
 
-      //get_parent()->_001ClientToScreen(pointScreen);
+      //get_parent()->client_to_screen(pointScreen);
 
       //m_pframewindow->m_pframe->m_iControlBoxRight = rectParent.right - point.x - rectWindow.width();
 
@@ -574,13 +573,13 @@ namespace experience
 
       ::rectangle_i32 rectParent(rectWindow);
 
-      m_pframewindow->_001ScreenToClient(rectParent);
+      m_pframewindow->screen_to_client(rectParent);
 
       ::rectangle_i32 rectangle;
 
       get_window_rect(rectangle);
 
-      m_pframewindow->_001ScreenToClient(rectangle);
+      m_pframewindow->screen_to_client(rectangle);
 
       reset_layout(pgraphics);
 
@@ -1092,7 +1091,7 @@ namespace experience
 
       get_window_rect(rectangle);
 
-      m_pframewindow->_001ScreenToClient(rectangle);
+      m_pframewindow->screen_to_client(rectangle);
 
       m_pframewindow->m_pframe->m_bControlBoxAlignRight = rectangle.center().x > (rectWindow.width() / 2);
 
@@ -1165,7 +1164,7 @@ namespace experience
 
             rectangleClient = pdrawcontext->m_rectangleWindow;
 
-            _001ScreenToClient(rectangleClient);
+            screen_to_client(rectangleClient);
 
             rectangleClient.bottom++;
             rectangleClient.right++;
@@ -1190,7 +1189,7 @@ namespace experience
 
                pinteraction->get_window_rect(rectFocus);
 
-               _001ScreenToClient(rectFocus);
+               screen_to_client(rectFocus);
 
                m_pshapeaClip->add_item(__new(rectangle_shape(rectFocus)));
 

@@ -323,7 +323,7 @@ namespace browser
 
       ::point_i32 point = pmouse->m_point;
 
-      _001ScreenToClient(point);
+      screen_to_client(point);
 
       event.x = point.x;
       event.y = point.y;
@@ -875,7 +875,7 @@ namespace browser
 
       ::rectangle_i32 rectangleClient = get_client_rect();
 
-      _001ClientToScreen(rectangleClient);
+      client_to_screen(rectangleClient);
 
       rectangle.Set(rectangleClient.left, rectangleClient.top, rectangleClient.width(), rectangleClient.height());
 

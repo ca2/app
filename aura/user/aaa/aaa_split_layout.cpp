@@ -283,7 +283,7 @@ namespace user
 
          auto point = pointCursor;
 
-         _001ScreenToClient(&point);
+         screen_to_client(&point);
 
          if((fwKeys & MK_LBUTTON) > 0 && (m_iState == stateDragging) && (iIndex == m_iIndex))
          {

@@ -461,7 +461,7 @@ namespace user
 
             ::rectangle_i32 rectTab(get_data()->m_rectTab);
 
-            _001ClientToScreen(rectTab);
+            client_to_screen(rectTab);
 
             auto psession = get_session();
 
@@ -1586,7 +1586,7 @@ namespace user
 
       pholder->get_window_rect(rectWindow);
 
-      _001ScreenToClient(rectWindow);
+      screen_to_client(rectWindow);
 
       if(bDisplay && iPane == _001GetSel())
       {
@@ -3493,7 +3493,7 @@ namespace user
 
    //         ::rectangle_i32 rectTabScreen(get_data()->m_rectTab);
 
-   //         _001ClientToScreen(rectTabScreen);
+   //         client_to_screen(rectTabScreen);
 
    //         if ((pmouse->m_id == e_message_left_button_down || pmouse->m_id == e_message_left_button_up) && rectTabScreen.contains(pmouse->m_point))
    //         {

@@ -419,7 +419,7 @@ namespace user
 
       auto pointCursor = pwindowing->get_cursor_position();
 
-      _001ScreenToClient(&pointCursor, ::user::e_layout_design);
+      screen_to_client(pointCursor, ::user::e_layout_design);
 
       pgraphics->set_font(this, ::user::e_element_none);
 
@@ -880,33 +880,7 @@ namespace user
 
          auto pointCursor = pwindowing->get_cursor_position();
 
-         m_pcombo->_001ScreenToClient(&pointCursor, ::user::e_layout_sketch);
-
-         //if(m_pcombo->hit_test(pointCursor) != e_element_drop_down)
-         //{
-
-         //   m_pcombo->_001ShowDropDown(false);
-
-         //}
-
-
-
-
-         //if(pActive != m_puiDeactivateTogether)
-         //{
-
-         //   ::experience::frame_window * pset = m_puiDeactivateTogetherSet;
-
-         //   if(pset != nullptr)
-         //   {
-
-         //      pset->SetActiveFlag(false);
-
-         //   }
-
-         //}
-
-
+         m_pcombo->screen_to_client(pointCursor, ::user::e_layout_sketch);
 
       }
       else
@@ -1107,7 +1081,7 @@ namespace user
 
       auto point = pmouse->m_point;
 
-      _001ScreenToClient(point, e_layout_sketch);
+      screen_to_client(point, e_layout_sketch);
 
       auto rectangleClient = get_client_rect();
 
@@ -1134,7 +1108,7 @@ namespace user
 
       auto point = pmouse->m_point;
 
-      _001ScreenToClient(point, e_layout_sketch);
+      screen_to_client(point, e_layout_sketch);
 
       auto rectangleClient = get_client_rect();
 
@@ -1281,128 +1255,134 @@ namespace user
    void list_box::on_drop_down(const ::rectangle_i32 & rectWindow, const ::size_i32 & sizeFull)
    {
 
-      ::rectangle_i32 rectMonitor;
-
-      auto psession = get_session();
-
-      auto puser = psession->user();
-
-      auto pwindowing = puser->windowing();
-
-      auto pdisplay = pwindowing->display();
-
-      ::index i = pdisplay->get_best_monitor(rectMonitor, rectWindow);
-
-      ::rectangle_i32 rectList;
-
-      rectList.left = rectWindow.left;
-      rectList.right = rectWindow.left + maximum(rectWindow.width(), sizeFull.cx);
-      rectList.top = rectWindow.bottom;
-      rectList.bottom = rectWindow.bottom + sizeFull.cy;
-
-      if (i < 0)
       {
 
-         m_pcombo->get_parent()->get_window_rect(rectMonitor);
+         lock_sketch_to_design lockSketchToDesign(this);
 
-      }
+         ::rectangle_i32 rectMonitor;
 
-      if (rectList.bottom > rectMonitor.bottom - m_iBorder)
-      {
+         auto psession = get_session();
 
-         rectList.bottom = rectMonitor.bottom - m_iBorder;
+         auto puser = psession->user();
 
-         ::rectangle_i32 rectListOver;
+         auto pwindowing = puser->windowing();
 
-         rectListOver.left = rectList.left;
-         rectListOver.right = rectList.right;
-         rectListOver.bottom = rectWindow.top;
-         rectListOver.top = rectWindow.top - sizeFull.cy;
+         auto pdisplay = pwindowing->display();
 
-         if (rectListOver.top < rectMonitor.top + m_iBorder)
+         ::index i = pdisplay->get_best_monitor(rectMonitor, rectWindow);
+
+         ::rectangle_i32 rectList;
+
+         rectList.left = rectWindow.left;
+         rectList.right = rectWindow.left + maximum(rectWindow.width(), sizeFull.cx);
+         rectList.top = rectWindow.bottom;
+         rectList.bottom = rectWindow.bottom + sizeFull.cy;
+
+         if (i < 0)
          {
 
-            rectListOver.move_to(rectListOver.left, rectMonitor.top);
+            m_pcombo->get_parent()->get_window_rect(rectMonitor);
 
          }
 
-         rectList = rectListOver;
+         if (rectList.bottom > rectMonitor.bottom - m_iBorder)
+         {
 
-      }
+            rectList.bottom = rectMonitor.bottom - m_iBorder;
 
-      if (rectList.right > rectMonitor.right - m_iBorder)
-      {
+            ::rectangle_i32 rectListOver;
 
-         rectList.offset(rectMonitor.right - (rectList.right - m_iBorder), 0);
+            rectListOver.left = rectList.left;
+            rectListOver.right = rectList.right;
+            rectListOver.bottom = rectWindow.top;
+            rectListOver.top = rectWindow.top - sizeFull.cy;
 
-      }
+            if (rectListOver.top < rectMonitor.top + m_iBorder)
+            {
 
-      if (rectList.left < rectMonitor.left)
-      {
+               rectListOver.move_to(rectListOver.left, rectMonitor.top);
 
-         rectList.move_left_to(0);
+            }
 
-      }
+            rectList = rectListOver;
 
-      m_pcombo->m_itemHover = current_item();
+         }
 
-      if (!m_pcombo->m_itemHover.is_set())
-      {
+         if (rectList.right > rectMonitor.right - m_iBorder)
+         {
 
-         m_pcombo->m_itemHover = 0;
+            rectList.offset(rectMonitor.right - (rectList.right - m_iBorder), 0);
 
-      }
+         }
 
-      _001EnsureVisible(m_pcombo->m_itemHover);
+         if (rectList.left < rectMonitor.left)
+         {
 
-      if (i < 0)
-      {
+            rectList.move_left_to(0);
 
-         m_pcombo->get_parent()->_001ScreenToClient(rectList);
+         }
 
-      }
+         m_pcombo->m_itemHover = current_item();
 
-      if (!is_window())
-      {
+         if (!m_pcombo->m_itemHover.is_set())
+         {
 
-         m_puserinteractionOwner = m_pcombo;
+            m_pcombo->m_itemHover = 0;
+
+         }
+
+         _001EnsureVisible(m_pcombo->m_itemHover);
+
+         if (i < 0)
+         {
+
+            m_pcombo->get_parent()->screen_to_client(rectList);
+
+         }
+
+         if (!is_window())
+         {
+
+            m_puserinteractionOwner = m_pcombo;
+
+            order_top_most();
+
+            set_tool_window();
+
+            m_bTransparent = true;
+
+            display();
+
+            place(::rectangle_i32(rectList).inflate(m_iBorder));
+
+            if (!create_interaction(i >= 0 ? nullptr : m_pcombo->get_parent()))
+            {
+
+               m_pcombo->m_plistbox.release();
+
+               __throw(error_resource);
+
+            }
+
+            set_owner(m_pcombo);
+
+         }
+         else
+         {
+
+            place(::rectangle_i32(rectList).inflate(m_iBorder));
+
+         }
 
          order_top_most();
 
-         set_tool_window();
+         display(e_display_normal);
 
-         m_bTransparent = true;
+         set_need_layout();
 
-         display();
-
-         place(::rectangle_i32(rectList).inflate(m_iBorder));
-
-         if (!create_interaction(i >= 0 ? nullptr : m_pcombo->get_parent()))
-         {
-
-            m_pcombo->m_plistbox.release();
-
-            __throw(error_resource);
-
-         }
-
-         set_owner(m_pcombo);
+         set_need_redraw();
 
       }
-      else
-      {
-
-         place(::rectangle_i32(rectList).inflate(m_iBorder));
-
-      }
-
-      order_top_most();
-
-      display(e_display_normal);
-
-      set_need_redraw();
-
-      set_layout_ready();
 
       post_redraw();
 

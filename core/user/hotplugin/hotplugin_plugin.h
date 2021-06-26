@@ -87,11 +87,11 @@ namespace hotplugin
       virtual oswindow         get_host_window();
 
       /*
-      using ::user::interaction::_001ClientToScreen;
-      virtual bool _001ClientToScreen(POINT_I32 * ppt) override;
+      using ::user::interaction::client_to_screen;
+      virtual bool client_to_screen(POINT_I32 * ppt) override;
 
-      using ::user::interaction::_001ScreenToClient;
-      virtual bool _001ScreenToClient(POINT_I32 * ppt) override;
+      using ::user::interaction::screen_to_client;
+      virtual bool screen_to_client(POINT_I32 * ppt) override;
 
       using ::user::interaction::get_window_rect;
       virtual bool get_window_rect(RECTANGLE_I64 * prectangle) override;

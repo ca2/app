@@ -59,7 +59,7 @@ namespace user
 
       //auto point(pmouse->m_point);
 
-      //_001ScreenToClient(point);
+      //screen_to_client(point);
 
       //if(rectangle.contains(point))
       //{
@@ -138,7 +138,7 @@ namespace user
 
       auto point = psession->get_cursor_position();
 
-      _001ScreenToClient(point, e_layout_design);
+      screen_to_client(point, e_layout_design);
 
       ::rectangle rectangle;
 
@@ -226,7 +226,7 @@ namespace user
       //{
       //   pgraphics->move_to(rectangle.center());
       //   auto point = psession->get_cursor_position();
-      //   _001ScreenToClient(point);
+      //   screen_to_client(point);
       //   pgraphics->line_to(point);
       //}
    }

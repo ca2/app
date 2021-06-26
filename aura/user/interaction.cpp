@@ -143,7 +143,7 @@ namespace user
 
       m_bNeedLayout = false;
 
-      m_bLockWindowUpdate = false;
+      m_bLockSketchToDesign = false;
 
       m_bRedrawing = false;
 
@@ -163,8 +163,6 @@ namespace user
 
       m_bRectOk = false;
 
-      m_bLayoutEnable = true;
-
       m_bMessageWindow = false;
 
       m_bVoidPaint = false;
@@ -174,8 +172,6 @@ namespace user
       m_bSaveWindowRect = false;
 
       m_bEnableSaveWindowRect2 = false;
-
-      m_bLockWindowUpdate = false;
 
       m_bDefaultWalkPreTranslateParentTree = false;
 
@@ -806,25 +802,7 @@ namespace user
 
          m_bReposition = true;
 
-         layout().sketch().set_modified();
-
       }
-
-      //synchronous_lock slChildren(::user::mutex_children());
-
-//      if (m_puserinteractionpointeraChild)
-//      {
-//
-//         auto puserinteractionpointeraChild = m_puserinteractionpointeraChild;
-//
-//         for (auto & pinteraction : puserinteractionpointeraChild->interactiona())
-//         {
-//
-//            pinteraction->set_reposition();
-//
-//         }
-//
-//      }
 
    }
 
@@ -833,8 +811,6 @@ namespace user
    {
 
       m_bNeedLayout = true;
-
-      layout().sketch().set_modified();
 
    }
 
@@ -893,13 +869,6 @@ namespace user
    void interaction::post_redraw(bool bAscendants)
    {
 
-      if (m_bLockWindowUpdate)
-      {
-
-         return;
-
-      }
-
       auto *pinteraction = get_host_window();
 
       if (::is_null(pinteraction))
@@ -920,8 +889,6 @@ namespace user
            || edisplaySketch != edisplayWindow
            || pinteraction == psession->get_user_interaction_host()))
       {
-
-         pinteraction->layout().sketch().set_ready();
 
          pinteraction->m_pimpl->post_redraw();
 
@@ -1243,7 +1210,7 @@ namespace user
 
          }
 
-         auto rectRequest = layout().sketch().screen_rect();
+         auto rectRequest = this->screen_rect();
 
          //auto pusersystem = __new(::user::system);
 
@@ -1545,50 +1512,26 @@ namespace user
    }
 
 
-   void interaction::start_layout()
+   bool interaction::is_sketch_to_design_locked() const
    {
 
-      layout().sketch().set_ready(false);
-
-   }
-
-
-   void interaction::set_layout_ready()
-   {
-
-      layout().sketch().set_ready();
-
-   }
-
-
-   bool interaction::is_layout_modified() const
-   {
-
-      return layout().sketch().is_modified();
-
-   }
-
-
-   bool interaction::is_layout_ready() const
-   {
-
-      if (!layout().sketch().is_ready())
-      {
-
-         return false;
-
-      }
-
-      auto pparent = get_parent();
-
-      if (::is_null(pparent))
+      if(m_bLockSketchToDesign)
       {
 
          return true;
 
       }
 
-      return pparent->is_layout_ready();
+      auto pparent = get_parent();
+
+      if(::is_null(pparent))
+      {
+
+         return false;
+
+      }
+
+      return pparent->is_sketch_to_design_locked();
 
    }
 
@@ -1740,13 +1683,13 @@ namespace user
 
          }
 
-         layout().sketch() = edisplay;
+         layout().sketch().display() = edisplay;
 
       }
       else
       {
 
-         layout().sketch() = edisplay;
+         layout().sketch().display() = edisplay;
 
       }
 
@@ -2621,7 +2564,7 @@ namespace user
 
             rectangleClient = pdrawcontext->m_rectangleWindow;
 
-            _001ScreenToClient(rectangleClient, e_layout_design);
+            screen_to_client(rectangleClient, e_layout_design);
 
             rectangleClient.bottom++;
             rectangleClient.right++;
@@ -2646,9 +2589,9 @@ namespace user
 
                pinteraction->get_client_rect(rectangleClient);
 
-               pinteraction->_001ClientToHost(rectangleClient);
+               pinteraction->client_to_host(rectangleClient);
 
-               _001HostToClient(rectangleClient);
+               host_to_client(rectangleClient);
 
                m_pshapeaClip->add_item(__new(rectangle_shape(::rectangle_f64(rectangleClient))));
 
@@ -3342,7 +3285,7 @@ namespace user
 
                auto pointCursor = pwindowing->get_cursor_position();
 
-               _001ScreenToClient(pointCursor, e_layout_design);
+               screen_to_client(pointCursor, e_layout_design);
 
                auto * pcursor = pwindowing->get_cursor();
 
@@ -3458,11 +3401,16 @@ namespace user
 
       }
 
-      sketch_to_design(pgraphics, bUpdateBuffer, bUpdateWindow);
+      if(!is_sketch_to_design_locked())
+      {
+
+         sketch_to_design(pgraphics, bUpdateBuffer, bUpdateWindow);
+
+      }
 
       process_graphics_call_queue(pgraphics);
 
-      if (!is_this_visible(e_layout_design) || m_bLockWindowUpdate)
+      if (!is_this_visible(e_layout_design))
       {
 
          if(strType.contains_ci("experience"))
@@ -3475,13 +3423,7 @@ namespace user
 
                strTag = "";
 
-               if(m_bLockWindowUpdate)
-               {
-
-                  output_debug_string("m_bLockWindowUpdate true\n");
-
-               }
-               else if(strTag == "button_close")
+               if(strTag == "button_close")
                {
 
                   output_debug_string("button_close not visible\n");
@@ -4810,6 +4752,20 @@ namespace user
    }
 
 
+   rectangle_i32 interaction::screen_rect() const
+   {
+
+      ::rectangle_i32 rectangle;
+
+      get_client_rect(rectangle);
+
+      client_to_screen(rectangle);
+
+      return rectangle;
+
+   }
+
+
    void interaction::_001OnKeyDown(::message::message * pmessage)
    {
       //if(psession->get_keyboard_focus() != this
@@ -4961,7 +4917,7 @@ namespace user
 
          puserinteractionParent = puserinteractionSearchChildren;
 
-         pointClient = puserinteractionParent->parent_to_client(pointClient);
+         puserinteractionParent->parent_to_client(pointClient);
 
          if(ansi_str(puserinteractionParent->type_c_str(), "button"))
          {
@@ -5555,7 +5511,7 @@ namespace user
 
          __pointer(interaction_impl) pimplNew;
 
-         auto rectangle_i32(layout().sketch().screen_rect());
+         auto rectangle_i32(this->screen_rect());
 
         /* auto psession = get_session();
 
@@ -7309,46 +7265,7 @@ namespace user
 
       layout().sketch() = zorder;
 
-      auto pparent = get_parent();
-
-      if (::is_set(pparent))
-      {
-
-         pparent->layout().sketch().set_modified();
-
-      }
-
    }
-
-
-   //bool interaction::layout().is_full_screen()
-   //{
-
-   //   if (m_pimpl.is_null())
-   //   {
-
-   //      return false;
-
-   //   }
-
-   //   return m_pimpl->layout().is_full_screen();
-
-   //}
-
-
-   //bool interaction::layout().is_iconic()
-   //{
-
-   //   if (m_pimpl == nullptr)
-   //   {
-
-   //      return false;
-
-   //   }
-
-   //   return m_pimpl->layout().is_iconic();
-
-   //}
 
 
    void interaction::_001OnAfterAppearance()
@@ -7356,6 +7273,7 @@ namespace user
 
 
    }
+
 
    bool interaction::should_save_window_rect()
    {
@@ -7448,7 +7366,7 @@ namespace user
          else
          {
 
-            sketch_prepare_window_full_screen(layout().sketch().screen_rect());
+            sketch_prepare_window_full_screen(this->screen_rect());
 
          }
 
@@ -7691,8 +7609,6 @@ namespace user
 
       #endif
 
-      //::point_i32 point = process_state().m_point;
-
       ::point_i32 point = layout().sketch().origin();
 
       ::point_i32 pointScreen;
@@ -7701,59 +7617,45 @@ namespace user
 
       const char* pszType = this->type_c_str();
 
-      auto p = this;
-
-      while(p)
+      if(string(pszType).contains("list_box"))
       {
 
-         auto pParent = p->get_parent();
+         output_debug_string("list_box reposition");
 
-         if(pParent != nullptr)
-         {
+      }
+      else if(string(pszType).contains("_001"))
+      {
 
-            pointHost += p->layout().sketch().origin();
-
-         }
-
-         pointScreen += p->layout().sketch().origin();
-
-         if(pParent && p->m_bParentScroll)
-         {
-
-            pointScreen += pParent->m_pointScroll;
-
-         }
-
-         p = pParent;
+         output_debug_string("_001 reposition");
 
       }
 
-      ::point_i32 screenOriginSketchBefore = layout().sketch().screen_origin();
 
-      ::point_i32 screenOriginDesignBefore = layout().design().screen_origin();
+      ::point_i32 screenOriginSketchBefore = layout().sketch().origin();
 
-      bool bRepositionThis =
-         layout().sketch().screen_origin() != pointScreen ||
-         layout().design().screen_origin() != pointScreen;
+      ::point_i32 screenOriginDesignBefore = layout().design().origin();
 
-      if(bRepositionThis)
-      {
-
-         layout().sketch().screen_origin() = pointScreen;
-
-         layout().design().screen_origin() = pointScreen;
-
-         layout().sketch().host_origin() = pointHost;
-
-         layout().design().host_origin() = pointHost;
-
-      }
+      bool bRepositionThis = true;
+//         layout().sketch().origin() != point ||
+//         layout().design().origin() != pointScreen;
+//
+//      if(bRepositionThis)
+//      {
+//
+//         screen_origin() = pointScreen;
+//
+//         layout().design().screen_origin() = pointScreen;
+//
+//         layout().sketch().host_origin() = pointHost;
+//
+//         layout().design().host_origin() = pointHost;
+//
+//      }
 
       if(string(type_name()).contains_ci("tap"))
       {
 
-         INFO("tap prodevian_reposition (%d, %d)", layout().sketch().screen_origin().x, layout().sketch().screen_origin().y);
-
+         INFO("tap prodevian_reposition (%d, %d)", this->screen_origin().x, this->screen_origin().y);
       }
 
       if(bRepositionThis)
@@ -9732,32 +9634,6 @@ namespace user
 
       bUpdateWindow = false;
 
-      {
-
-         bool bLayoutReady = is_layout_ready();
-
-         if (!bLayoutReady)
-         {
-
-            //output_debug_string("LAYOUT NOT READY\n");
-
-            return;
-
-         }
-
-         bool bLayoutModified = is_layout_modified();
-
-         if (!bLayoutModified)
-         {
-
-            //output_debug_string("LAYOUT NOT MODIFIED\n");
-
-            return;
-
-         }
-
-      }
-
       string strType = type_name();
 
       if (strType.contains("veriwell_keyboard") && strType.contains("main_frame"))
@@ -9867,7 +9743,7 @@ namespace user
 
             sizeSketch.cy = iDerivedHeight;
 
-            layout().sketch() = sizeSketch;
+            layout().sketch().size() = sizeSketch;
 
          }
 
@@ -9877,17 +9753,10 @@ namespace user
 
       m_bNeedLayout = false;
 
-      // mark sketch up-to-date
-      // ensure no modifications are left ("overwriting")
-      // (it may leave sketch machine requests not considered)
-      // (so all changes should be recorded to
-      // local variables above (at sketch_to_design function preparation))
-      //layout().design() = layout().sketch();
-
       if (bLayout)
       {
          
-         layout().design().copy_layout(layout().sketch());
+         layout().design().copy_size(layout().sketch());
 
       }
 
@@ -9926,13 +9795,7 @@ namespace user
 
       layout().design() = layout().sketch().appearance();
 
-      layout().sketch().clear_ephemeral();
-
-      layout().sketch().set_modified(false);
-
-      layout().design().set_modified();
-
-      //layout().sketch().set_ready(false);
+      layout().sketch().clear_activation();
 
       if (bDisplay || bAppearance)
       {
@@ -10132,13 +9995,6 @@ namespace user
 
    void interaction::_001UpdateWindow()
    {
-
-      if (m_bLockWindowUpdate)
-      {
-
-         return;
-
-      }
 
       if (m_pimpl == nullptr)
       {
@@ -11693,7 +11549,7 @@ restart:
 
    //   ::point_i32 point = pmouse->m_point;
 
-   //   _001ScreenToClient(point);
+   //   screen_to_client(point);
 
    //   return track_popup_menu(pitem, iFlags, point);
 
@@ -11707,7 +11563,7 @@ restart:
 
    //   auto point = pmouse->m_point;
 
-   //   _001ScreenToClient(point);
+   //   screen_to_client(point);
 
    //   return track_popup_xml_menu_text(strXml, iFlags, point);
 
@@ -11998,7 +11854,7 @@ restart:
    void interaction::move_to(const ::point_i32& point)
    {
 
-      layout().sketch() = point;
+      layout().sketch().origin() = point;
 
    }
 
@@ -12006,7 +11862,7 @@ restart:
    void interaction::set_size(const ::size_i32& size)
    {
 
-      layout().sketch() = size;
+      layout().sketch().size() = size;
 
    }
 
@@ -12105,11 +11961,14 @@ restart:
    ::rectangle_i32 interaction::get_window_rect(enum_layout elayout) const
    {
 
-      auto rectangle = layout().get_window_rect(elayout);
+      auto rectangle = get_client_rect(elayout);
 
-      ::point_i32 pointParentOffset = get_parent_viewport_offset();
 
-      ::offset(rectangle, -pointParentOffset.x, -pointParentOffset.y);
+      client_to_screen(rectangle);
+
+      //::point_i32 pointParentOffset = get_parent_viewport_offset();
+
+      //::offset(rectangle, -pointParentOffset.x, -pointParentOffset.y);
 
       return rectangle;
 
@@ -12119,7 +11978,7 @@ restart:
    void interaction::sketch_prepare_window_minimize(::e_activation eactivation)
    {
 
-      auto rectRequest = layout().sketch().screen_rect();
+      auto rectRequest = this->screen_rect();
 
       good_iconify(nullptr, rectRequest, true, eactivation, layout().sketch().zorder());
 
@@ -12129,7 +11988,7 @@ restart:
    void interaction::sketch_prepare_window_maximize()
    {
 
-      ::rectangle_i32 rectRequest = layout().window().screen_rect();
+      ::rectangle_i32 rectRequest = this->screen_rect();
 
       best_workspace(nullptr, rectRequest, true, layout().sketch().activation(), layout().sketch().zorder());
 
@@ -12150,7 +12009,7 @@ restart:
       else
       {
 
-         rectRequest = layout().window().screen_rect();
+         rectRequest = this->screen_rect();
 
       }
 
@@ -12162,7 +12021,7 @@ restart:
    void interaction::sketch_prepare_window_restore(edisplay edisplay)
    {
 
-      auto rectRequest = layout().window().screen_rect();
+      auto rectRequest = this->screen_rect();
 
       good_restore(nullptr, rectRequest, true, layout().sketch().activation(), layout().sketch().zorder(), edisplay);
 
@@ -12177,7 +12036,7 @@ restart:
       if (is_docking_appearance(edisplay))
       {
 
-         auto rectRequest = layout().sketch().screen_rect();
+         auto rectRequest = this->screen_rect();
 
          make_zoneing(nullptr, rectRequest, true, &edisplay, layout().sketch().activation(), layout().sketch().zorder());
 
@@ -12523,7 +12382,7 @@ restart:
       if (rectRestore.is_null())
       {
 
-         rectRestore = layout().window().screen_rect();
+         rectRestore = this->screen_rect();
 
       }
 
@@ -12667,7 +12526,7 @@ restart:
       if (rectRequest.is_empty())
       {
 
-         return pdisplay->_get_best_zoneing(&edisplay, prectangle, layout().design().screen_rect(), bPreserveSize);
+         return pdisplay->_get_best_zoneing(&edisplay, prectangle, this->screen_rect(), bPreserveSize);
 
       }
       else
@@ -12795,34 +12654,32 @@ restart:
       if (bSet)
       {
 
-         if (rectNew.is_set() && iMatchingMonitor >= 0)
          {
 
-            start_layout();
+            lock_sketch_to_design lockSketchToDesign(this);
 
             order(zorderParam);
 
-            place(rectNew);
+            if (rectNew.is_set() && iMatchingMonitor >= 0)
+            {
+
+               place(rectNew);
+
+            }
+            else
+            {
+
+               place(rectWindow);
+
+            }
 
             display(e_display_normal, eactivation);
 
-            set_layout_ready();
-
-            //SetWindowDisplayChanged();
+            set_need_redraw();
 
          }
-         else
-         {
 
-            order(zorderParam);
-
-            place(rectWindow);
-
-            display(e_display_normal, eactivation);
-
-            //SetWindowDisplayChanged();
-
-         }
+         post_redraw();
 
       }
 
@@ -14215,7 +14072,7 @@ restart:
 
    //            //#if !defined(LINUX)
    //            //
-   //            //            get_wnd()->_001ScreenToClient(pointCurrent);
+   //            //            get_wnd()->screen_to_client(pointCurrent);
    //            //
    //            //#endif
 
@@ -14301,7 +14158,7 @@ restart:
 //
 //#if !defined(LINUX)
 //
-//      get_wnd()->_001ScreenToClient(pointCurrent);
+//      get_wnd()->screen_to_client(pointCurrent);
 //
 //#endif
 //
@@ -15407,6 +15264,8 @@ restart:
 
             move_to(point);
 
+            set_reposition();
+
             set_need_redraw();
 
             post_redraw();
@@ -15582,7 +15441,7 @@ restart:
 
       item.m_pointScreen = point;
 
-      item.m_pointClient = screen_to_client(item.m_pointScreen);
+      _screen_to_client(item.m_pointClient, item.m_pointScreen);
 
       item.m_pointHitTest = item.m_pointClient + m_pointScroll;
 
@@ -15927,6 +15786,57 @@ restart:
       }
 
       return m_pimpl->_001GetTopLeftWeightedOccludedOpaqueRate();
+
+   }
+
+
+   point_i32 interaction::screen_origin(enum_layout elayout) const
+   {
+
+      auto puserinteraction = this;
+
+      ::point_i32 point;
+
+      while(puserinteraction)
+      {
+
+         point += puserinteraction->layout().origin(elayout);
+
+         puserinteraction = puserinteraction->get_parent();
+
+      }
+
+      return point;
+
+   }
+
+
+   point_i32 interaction::host_origin(enum_layout elayout) const
+   {
+
+      auto puserinteraction = this;
+
+      ::point_i32 point;
+
+      while(puserinteraction)
+      {
+
+         auto pparent = puserinteraction->get_parent();
+
+         if(!pparent)
+         {
+
+            break;
+
+         }
+
+         point += puserinteraction->layout().origin(elayout);
+
+         puserinteraction = pparent;
+
+      }
+
+      return point;
 
    }
 

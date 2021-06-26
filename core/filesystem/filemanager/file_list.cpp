@@ -149,7 +149,7 @@ namespace filemanager
 
       auto point = pcontextmenu->m_point;
 
-      ::user::list::_001ScreenToClient(point);
+      ::user::list::screen_to_client(point);
 
       if (_001HitTest_(point, iItem))
       {

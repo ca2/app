@@ -642,7 +642,7 @@ namespace user
       if (get_parent() != nullptr)
       {
 
-         get_parent()->_001ScreenToClient(m_pointTrack);
+         get_parent()->screen_to_client(m_pointTrack);
 
       }
 
@@ -1583,7 +1583,7 @@ namespace user
    }
 
 
-   // <3ThomasBorregaardSørensen__!!
+   // <3ThomasBorregaardSï¿½rensen__!!
    ::e_status menu::command_handler(const ::id& id)
    {
 

@@ -162,9 +162,7 @@ namespace user
 
       synchronous_lock synchronouslock(mutex());
 
-      auto point = pmouse->m_point;
-
-      m_pparent->_001ScreenToClient(&point);
+      auto point = m_pparent->_001ScreenToClient(pmouse->m_point);
 
       if(m_iIndex >= 0 && m_iIndex < m_pparent->m_splitbara.get_count() && !m_pparent->m_splitpanecompositea[m_iIndex]->m_bFixedSize)
       {

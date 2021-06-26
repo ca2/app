@@ -198,7 +198,7 @@ namespace user
 //
 //      ::rectangle_i32 rectangle;
 //
-//      rectangle.set(pinteraction->layout().sketch().screen_rect());
+//      rectangle.set(pinteraction->screen_rect());
 //
 //      pusersystem->set_rect(&rectangle);
 //

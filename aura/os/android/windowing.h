@@ -141,8 +141,8 @@ struct CLASS_DECL_AURA oswindow_data
    bool show_window(const ::e_display & edisplay, const ::e_activation & eactivation = e_activation_default);
    iptr get_window_long_ptr(i32 nIndex);
    iptr set_window_long_ptr(i32 nIndex, iptr l);
-   bool _001ClientToScreen(POINT_I32 * lppoint);
-   bool _001ScreenToClient(POINT_I32 * lppoint);
+   bool client_to_screen(POINT_I32 * lppoint);
+   bool screen_to_client(POINT_I32 * lppoint);
 
 
 

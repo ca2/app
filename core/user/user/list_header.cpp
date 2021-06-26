@@ -432,7 +432,7 @@ namespace user
    {
       __pointer(::message::mouse) pmouse(pmessage);
       auto pointCursor = pmouse->m_point;
-      _001ScreenToClient(&pointCursor);
+      screen_to_client(&pointCursor);
       if(hit_test(pointCursor, m_eelementLButtonDown, m_iItemLButtonDown))
       {
          m_bLButtonDown = true;
@@ -446,7 +446,7 @@ namespace user
       __pointer(::message::mouse) pmouse(pmessage);
       list * plist = m_plistctrlinterface;
       auto pointCursor = pmouse->m_point;
-      _001ScreenToClient(&pointCursor);
+      screen_to_client(&pointCursor);
       if(m_bLButtonDown)
       {
          m_bLButtonDown = false;
@@ -501,7 +501,7 @@ namespace user
    {
       __pointer(::message::mouse) pmouse(pmessage);
       auto pointCursor = pmouse->m_point;
-      _001ScreenToClient(&pointCursor);
+      screen_to_client(&pointCursor);
       list * plist = m_plistctrlinterface;
       enum_element eelement;
       index iItem;
@@ -585,7 +585,7 @@ namespace user
    {
       __pointer(::message::mouse) pmouse(pmessage);
       auto pointCursor = pmouse->m_point;
-      _001ScreenToClient(&pointCursor);
+      screen_to_client(&pointCursor);
       list * plist = m_plistctrlinterface;
       enum_element eelement;
       index iItem;
@@ -624,7 +624,7 @@ namespace user
 
             rectangleClient = pdrawcontext->m_rectangleWindow;
 
-            _001ScreenToClient(rectangleClient);
+            screen_to_client(rectangleClient);
 
             rectangleClient.bottom++;
             rectangleClient.right++;
@@ -664,9 +664,9 @@ namespace user
 
                }
 
-               pinteraction->_001ClientToScreen(rectFocus);
+               pinteraction->client_to_screen(rectFocus);
 
-               _001ScreenToClient(rectFocus);
+               screen_to_client(rectFocus);
 
                rectFocus.bottom++;
 

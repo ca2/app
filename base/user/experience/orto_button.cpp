@@ -154,7 +154,7 @@ namespace experience
 
    //      ::rectangle_i32 rectangleClient;
    //      ::user::interaction::get_client_rect(rectangleClient);
-   //      ::user::interaction::_001ClientToScreen(rectangleClient);
+   //      ::user::interaction::client_to_screen(rectangleClient);
 
    //      if (rectangleClient.contains(pointCursor))
    //      {
@@ -195,7 +195,7 @@ namespace experience
          pointCursor = pwindowing->get_cursor_position();
          ::rectangle_i32 rectangleClient;
          ::user::interaction::get_client_rect(rectangleClient);
-         ::user::interaction::_001ClientToScreen(rectangleClient);
+         ::user::interaction::client_to_screen(rectangleClient);
 
          if(rectangleClient.is_empty().contains(pointCursor))
          {

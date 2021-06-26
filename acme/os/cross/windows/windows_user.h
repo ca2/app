@@ -34,8 +34,8 @@ int_bool IsChild(oswindow oswindowParent, oswindow oswindowcandidateChildOrDesce
 //int_bool show_window(oswindow oswindow, const ::e_display & edisplay, const ::e_activation & eactivation = e_activation_default);
 //::i32 GetWindowLongA(oswindow oswindow, int nIndex);
 //::i32 SetWindowLongA(oswindow oswindow, int nIndex, ::i32 l);
-int_bool _001ClientToScreen(oswindow oswindow, POINT_I32 * lppoint);
-int_bool _001ScreenToClient(oswindow oswindow, POINT_I32 * lppoint);
+int_bool client_to_screen(oswindow oswindow, POINT_I32 * lppoint);
+int_bool screen_to_client(oswindow oswindow, POINT_I32 * lppoint);
 int_bool IsIconic(oswindow oswindow);
 int_bool IsWindowVisible(oswindow oswindow);
 //#define GetWindowLong GetWindowLongA

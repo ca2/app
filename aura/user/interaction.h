@@ -127,58 +127,22 @@ namespace user
 
       };
 
-      bool              m_bExtendOnParent : 1;
-      bool              m_bExtendOnParentIfClientOnly : 1;
+      bool                                         m_bExtendOnParent : 1;
+      bool                                         m_bExtendOnParentIfClientOnly : 1;
 
-      bool              m_bToolWindow : 1;
-      bool              m_bMessageWindow : 1;
-      bool              m_bCompositedFrameWindow : 1;
+      bool                                         m_bToolWindow : 1;
+      bool                                         m_bMessageWindow : 1;
+      bool                                         m_bCompositedFrameWindow : 1;
 
-      bool              m_bEdgeGestureDisableTouchWhenFullscreen : 1;
-      bool              m_bVisible : 1;
+      bool                                         m_bEdgeGestureDisableTouchWhenFullscreen : 1;
+      bool                                         m_bVisible : 1;
 
-      bool              m_bMouseHoverOnCapture : 1;
-      //bool              m_bTrackMouseLeave : 1;
-      bool              m_bMouseHover : 1;
-      bool              m_bClickDefaultMouseHandling : 1;
-      bool              m_bHoverDefaultMouseHandling : 1;
-      //bool              m_bSimpleUIDefaultMouseHandlingMouseCaptureOnLeftButtonDown : 1;
+      bool                                         m_bMouseHoverOnCapture : 1;
+      bool                                         m_bMouseHover : 1;
+      bool                                         m_bClickDefaultMouseHandling : 1;
+      bool                                         m_bHoverDefaultMouseHandling : 1;
+      bool                                         m_bLockSketchToDesign : 1;
 
-
-            //bool              m_bIsWindow : 1;
-            //bool              m_bEnable : 1;
-            //bool              m_bFocus : 1;
-            //bool              m_bActive : 1;
-            //bool              m_bRedrawInQueue : 1;
-            //bool              m_bVisualChanged : 1;
-            //bool              m_bAutoProdevianOnShow : 1;
-            //bool              m_bOnShowWindowVisible : 1;
-            //bool              m_bOnShowWindowScreenVisible : 1;
-            //bool              m_bSatelliteWindow : 1;
-            //bool              m_bGraphical : 1;
-            //bool              m_bDisableWindowPlacementSnapping : 1;
-            //bool              m_bEmbeddedProdevian : 1;
-            //bool              m_bArbitraryPositioning : 1;
-            //bool              m_bDesktopWindow : 1;
-            //bool              m_bDockWindow : 1;
-            //bool              m_bLoadWindowRectOnImpl : 1;
-            //bool              m_bWindowCreated : 1;
-            //bool              m_bUpdown : 1;
-            //bool              m_bPostponeVisualUpdate : 1;
-            //bool              m_bMiniaturizable : 1;
-            //bool              m_bAutoStoreWindowRect : 1;
-            //bool              m_bPendingSaveWindowRect : 1;
-            //bool              m_bLoadingWindowRect : 1;
-            //bool              m_bMainFrame : 1;
-            //bool              m_bDestroying : 1;
-            //bool              m_bNotVisible : 1;
-            //bool              m_bSatelliteWindowIfChild : 1;
-            //bool              m_bEmbeddedProdevianIfChild : 1;
-
-      //   }
-      //   i64    m_iaFlags[2];
-
-      //};
 
       oswindow                                     m_oswindow;
       ewindowflag                                  m_ewindowflag;
@@ -292,8 +256,6 @@ namespace user
       bool                                         m_bMoveWindow;
       bool                                         m_bVoidPaint;
       bool                                         m_bRedrawing;
-      bool                                         m_bLockWindowUpdate;
-      bool                                         m_bLayoutEnable;
       bool                                         m_bRedrawOnVisible;
       bool                                         m_bSaveWindowRect;
       bool                                         m_bEnableSaveWindowRect2;
@@ -667,15 +629,7 @@ namespace user
       virtual void show_window();
 
 
-
-
-
-      virtual void start_layout();
-      virtual void set_layout_ready();
-
-
-      virtual bool is_layout_modified() const;
-      virtual bool is_layout_ready() const;
+      virtual bool is_sketch_to_design_locked() const;
 
 
       virtual bool display(::e_display edisplay = e_display_default, ::e_activation eactivation = ::e_activation_default) override;
@@ -1324,7 +1278,9 @@ namespace user
 
       virtual bool _001IsPointInside(const ::point_i32 & point) override;
 
-      inline bool _001IsPointInsideInline(const ::point_i32 & point) { return layout().sketch().screen_rect().contains(point); }
+      virtual rectangle_i32 screen_rect() const;
+
+      inline bool _001IsPointInsideInline(const ::point_i32 & point) { return screen_rect().contains(point); }
       inline bool _001IsClientPointInsideInline(const ::point_i32 & point) { return layout().sketch().client_rect().contains(point); }
       inline bool _001IsParentClientPointInsideInline(const ::point_i32 & point) { return layout().sketch().parent_client_rect().contains(point); }
 
@@ -1933,73 +1889,87 @@ namespace user
 
       virtual double _001GetTopLeftWeightedOccludedOpaqueRate() override;
 
+      virtual point_i32 screen_origin(enum_layout elayout = e_layout_design) const;
+      virtual point_i32 host_origin(enum_layout elayout = e_layout_design) const;
 
 
-      template < typename SIZE_SHIFTABLE >
-      inline auto screen_to_client(const SIZE_SHIFTABLE& o, enum_layout elayout = e_layout_design) { return o - ::size_i32(layout().screen_origin(elayout)) + ::size_i32(get_parent_accumulated_scroll(elayout)); }
+      template < typename OFFSETABLE, typename SOURCE >
+      inline void _screen_to_client(OFFSETABLE& o, const SOURCE & s, enum_layout elayout = e_layout_design) const { o = s + ::size_i32(get_parent_accumulated_scroll(elayout)) - ::size_i32(screen_origin(elayout)); }
 
 
-      template < typename POINT_SHIFTABLE >
-      inline auto client_to_screen(const POINT_SHIFTABLE& o, enum_layout elayout = e_layout_design) { return o + layout().screen_origin(elayout) - ::size_i32(get_parent_accumulated_scroll(elayout)); }
+      template < typename OFFSETABLE, typename SOURCE >
+      inline void _client_to_screen(OFFSETABLE& o, const SOURCE & s, enum_layout elayout = e_layout_design) const { o = s + screen_origin(elayout) - ::size_i32(get_parent_accumulated_scroll(elayout)); }
 
 
-      template < typename SIZE_SHIFTABLE >
-      inline auto parent_to_client(const SIZE_SHIFTABLE& o, enum_layout elayout = e_layout_design) { return o - ::size_i32(layout().origin(elayout)); }
+      template < typename OFFSETABLE, typename SOURCE >
+      inline void _parent_to_client(OFFSETABLE& o, const SOURCE & s, enum_layout elayout = e_layout_design) const { o = s - ::size_i32(layout().origin(elayout)); }
 
 
-      template < typename POINT_SHIFTABLE >
-      inline auto client_to_parent(const POINT_SHIFTABLE& o, enum_layout elayout = e_layout_design) { return o + layout().origin(elayout); }
+      template < typename OFFSETABLE, typename SOURCE >
+      inline void _client_to_parent(OFFSETABLE& o, const SOURCE & s, enum_layout elayout = e_layout_design) const { o = s + layout().origin(elayout); }
 
 
-      template < typename POINT_OFFSETABLE >
-      inline void _001ScreenToClient(POINT_OFFSETABLE& o, enum_layout elayout = e_layout_design) { o -= layout().screen_origin(elayout); o += get_parent_accumulated_scroll(elayout); }
-      template < typename POINT_OFFSETABLE >
-      inline void _001ScreenToClient(POINT_OFFSETABLE* po, enum_layout elayout = e_layout_design) { _001ScreenToClient(*po, elayout); }
+      template < typename OFFSETABLE, typename SOURCE >
+      inline void _host_to_client(OFFSETABLE& o, const SOURCE & s, enum_layout elayout = e_layout_design) const { o = s + get_parent_accumulated_scroll(elayout) - host_origin(elayout); }
 
 
-      template < typename POINT_OFFSETABLE >
-      inline void _001ClientToScreen(POINT_OFFSETABLE& o, enum_layout elayout = e_layout_design) { o += layout().screen_origin(elayout); o -= get_parent_accumulated_scroll(elayout); }
-      template < typename POINT_OFFSETABLE >
-      inline void _001ClientToScreen(POINT_OFFSETABLE* po, enum_layout elayout = e_layout_design) { _001ClientToScreen(*po, elayout); }
+      template < typename OFFSETABLE, typename SOURCE >
+      inline void _client_to_host(OFFSETABLE& o, const SOURCE & s, enum_layout elayout = e_layout_design) const { o = s + host_origin(elayout) - get_parent_accumulated_scroll(elayout); }
 
 
-      template < typename POINT_OFFSETABLE >
-      inline void _001HostToClient(POINT_OFFSETABLE& o, enum_layout elayout = e_layout_design) { o -= layout().host_origin(elayout); o += get_parent_accumulated_scroll(elayout); }
-      template < typename POINT_OFFSETABLE >
-      inline void _001HostToClient(POINT_OFFSETABLE* po, enum_layout elayout = e_layout_design) { _001HostToClient(*po, elayout); }
 
 
-      template < typename POINT_OFFSETABLE >
-      inline void _001ClientToHost(POINT_OFFSETABLE& o, enum_layout elayout = e_layout_design) { o += layout().host_origin(elayout); o -= get_parent_accumulated_scroll(elayout); }
-      template < typename POINT_OFFSETABLE >
-      inline void _001ClientToHost(POINT_OFFSETABLE* po, enum_layout elayout = e_layout_design) { _001ClientToHost(*po, elayout); }
+
+      template < typename OFFSETABLE >
+      inline void screen_to_client(OFFSETABLE& o, enum_layout elayout = e_layout_design) const { _screen_to_client(o, o); }
 
 
-      template < typename POINT_OFFSETABLE >
-      inline void _001ParentToClient(POINT_OFFSETABLE& o, enum_layout elayout = e_layout_design) { o -= layout().origin(elayout); }
-      template < typename POINT_OFFSETABLE >
-      inline void _001ParentToClient(POINT_OFFSETABLE* po, enum_layout elayout = e_layout_design) { _001ParentToClient(*po, elayout); }
+      template < typename OFFSETABLE >
+      inline void client_to_screen(OFFSETABLE& o, enum_layout elayout = e_layout_design) const { _client_to_screen(o, o); }
 
 
-      template < typename POINT_OFFSETABLE >
-      inline void _001ClientToParent(POINT_OFFSETABLE& o, enum_layout elayout = e_layout_design) { o += layout().origin(elayout); }
-      template < typename POINT_OFFSETABLE >
-      inline void _001ClientToParent(POINT_OFFSETABLE* po, enum_layout elayout = e_layout_design) { _001ClientToParent(*po, elayout); }
-
-      inline void ScreenToClient(RECTANGLE_I32* prectangle, enum_layout elayout = e_layout_design) { ::rect_sub(prectangle, layout().screen_origin(elayout)); }
-      inline void ScreenToClient(POINT_I32* ppoint, enum_layout elayout = e_layout_design) { ::point_sub(ppoint, layout().screen_origin(elayout)); }
+      template < typename OFFSETABLE >
+      inline void parent_to_client(OFFSETABLE& o, enum_layout elayout = e_layout_design) const { _parent_to_client(o, o); }
 
 
-      inline void ClientToScreen(RECTANGLE_I32* prectangle, enum_layout elayout = e_layout_design) { ::rect_add(prectangle, layout().screen_origin(elayout)); }
-      inline void ClientToScreen(POINT_I32* ppoint, enum_layout elayout = e_layout_design) { ::point_add(ppoint, layout().screen_origin(elayout)); }
+      template < typename OFFSETABLE >
+      inline void client_to_parent(OFFSETABLE& o, enum_layout elayout = e_layout_design) const { _client_to_parent(o, o); }
 
 
-      inline void ParentToClient(RECTANGLE_I32* prectangle, enum_layout elayout = e_layout_design) { ::rect_sub(prectangle, layout().origin(elayout)); }
-      inline void ParentToClient(POINT_I32* ppoint, enum_layout elayout = e_layout_design) { ::point_sub(ppoint, layout().origin(elayout)); }
+      template < typename OFFSETABLE >
+      inline void host_to_client(OFFSETABLE& o, enum_layout elayout = e_layout_design) const { _host_to_client(o, o); }
 
 
-      inline void ClientToParent(RECTANGLE_I32* prectangle, enum_layout elayout = e_layout_design) { ::rect_add(prectangle, layout().origin(elayout)); }
-      inline void ClientToParent(POINT_I32* ppoint, enum_layout elayout = e_layout_design) { ::point_add(ppoint, layout().origin(elayout)); }
+      template < typename OFFSETABLE >
+      inline void client_to_host(OFFSETABLE& o, enum_layout elayout = e_layout_design) const { _client_to_host(o, o); }
+
+
+
+
+
+
+      template < typename GEOMETRY >
+      inline GEOMETRY _001ScreenToClient(const GEOMETRY& s, enum_layout elayout = e_layout_design) const { GEOMETRY g; _screen_to_client(g, s); return g; }
+
+
+      template < typename GEOMETRY >
+      inline GEOMETRY _001ClientToScreen(const GEOMETRY& s, enum_layout elayout = e_layout_design) const { GEOMETRY g; _client_to_screen(g, s); return g; }
+
+
+      template < typename GEOMETRY >
+      inline GEOMETRY _001ParentToClient(const GEOMETRY& s, enum_layout elayout = e_layout_design) const { GEOMETRY g; _parent_to_client(g, s); return g; }
+
+
+      template < typename GEOMETRY >
+      inline GEOMETRY _001ClientToParent(const GEOMETRY& s, enum_layout elayout = e_layout_design) const { GEOMETRY g; _client_to_parent(g, s); return g; }
+
+
+      template < typename GEOMETRY >
+      inline GEOMETRY _001HostToClient(const GEOMETRY& s, enum_layout elayout = e_layout_design) const { GEOMETRY g; _host_to_clien(g, s); return g; }
+
+
+      template < typename GEOMETRY >
+      inline GEOMETRY _001ClientToHost(const GEOMETRY& s, enum_layout elayout = e_layout_design) const { GEOMETRY g; _client_to_host(g, s); return g; }
 
 
    };
@@ -2043,20 +2013,26 @@ namespace user
    }
 
 
+   class lock_sketch_to_design
+   {
+   public:
+
+      ::user::interaction * m_puserinteraction;
+
+      lock_sketch_to_design(::user::interaction * puserinteraction) :
+      m_puserinteraction(puserinteraction)
+      {
+         m_puserinteraction->m_bLockSketchToDesign = true;
+
+      }
+      ~lock_sketch_to_design()
+      {
+
+         m_puserinteraction->m_bLockSketchToDesign = false;
+
+      }
+
+   };
+
+
 } // namespace user
-
-
-// e_timer_ui works correctly when timer is originated from SetTimer call
-//inline ::user::interaction * e_timer_ui(::timer * ptimer)
-//{
-//
-//   return (::user::interaction *) ptimer->m_pvoidData;
-//
-//}
-
-
-
-//CLASS_DECL_AURA::user::interaction* oswindow_interaction(::windowing::window * pwindow);
-
-
-

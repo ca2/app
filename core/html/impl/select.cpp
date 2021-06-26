@@ -208,7 +208,7 @@ namespace html
 
          //m_pcombo->get_window_rect(rectWindow);
 
-         //m_pcombo->_001ScreenToClient(rectWindow);
+         //m_pcombo->screen_to_client(rectWindow);
 
          //::draw2d::savedc savedc(pgraphics);
 

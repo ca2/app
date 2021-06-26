@@ -84,11 +84,11 @@ namespace os
       void viewport_client_to_screen(POINT_I32 * ppt);
       void viewport_screen_to_client(POINT_I32 * ppt);
 
-      void _001ClientToScreen(POINT_I32 * ppt);
-      void _001ScreenToClient(POINT_I32 * ppt);
+      void client_to_screen(POINT_I32 * ppt);
+      void screen_to_client(POINT_I32 * ppt);
 
-      void _001ClientToScreen(RECTANGLE_I32 * prectangle);
-      void _001ScreenToClient(RECTANGLE_I32 * prectangle);
+      void client_to_screen(RECTANGLE_I32 * prectangle);
+      void screen_to_client(RECTANGLE_I32 * prectangle);
 
       void get_window_rect(RECTANGLE_I32 * prectangle);
 

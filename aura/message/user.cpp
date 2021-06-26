@@ -361,7 +361,7 @@ namespace message
 //
 //      m_bTranslated = true; // not in root coordinates
 //
-//      ::ClientToScreen(m_oswindow, &m_point);
+//      ::client_to_screen(m_oswindow, &m_point);
 
 #else
 

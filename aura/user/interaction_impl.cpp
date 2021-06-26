@@ -3886,7 +3886,7 @@ namespace user
          if(m_puserinteraction)
          {
 
-            auto r = m_puserinteraction->layout().design().screen_rect();
+            auto r = m_puserinteraction->screen_rect();
 
             if (m_puserinteraction->m_bSetFinish)
             {
@@ -4276,7 +4276,7 @@ namespace user
 
       pinteraction->get_window_rect(rectOld);
 
-      puiParent->_001ScreenToClient(rectOld);
+      puiParent->screen_to_client(rectOld);
 
       pinteraction->place(rectangle);
 
@@ -4977,13 +4977,6 @@ namespace user
       // Request / Incoming changes / Prepare Internal Buffer
       auto & stateOutput = m_puserinteraction->layout().design();
 
-      if (!stateOutput.is_modified())
-      {
-
-         return;
-
-      }
-
       // Current/Previous Window State
       auto & stateWindow = m_puserinteraction->layout().window();
 
@@ -5304,9 +5297,9 @@ namespace user
 
       m_puserinteraction->layout().window() = m_puserinteraction->layout().design();
 
-      m_puserinteraction->layout().design().clear_ephemeral();
+      m_puserinteraction->layout().design().clear_activation();
 
-      m_puserinteraction->layout().design() = edisplayOutput;
+      m_puserinteraction->layout().design().display() = edisplayOutput;
 
       ::windowing::window * pwindowFocus = nullptr;
 
@@ -5558,33 +5551,32 @@ namespace user
 //
 //         m_puserinteraction->layout().sketch().origin() = pmove->m_point;
 //
-//         m_puserinteraction->layout().sketch().screen_origin() = pmove->m_point;
+//         m_puserinteraction->screen_origin() = pmove->m_point;
 //
 //      }
 
          //m_pwindow->m_point = pmove->m_point;
 
-         m_puserinteraction->layout().window().origin() = pmove->m_point;
+         auto & layout = m_puserinteraction->layout();
 
-         m_puserinteraction->layout().window().screen_origin() = pmove->m_point;
+         auto & sketch_origin = layout.sketch().origin();
 
-         if ((m_puserinteraction->layout().sketch().origin()
-         != m_puserinteraction->layout().window().origin())
-         ||
-            (m_puserinteraction->layout().sketch().screen_origin()
-             != m_puserinteraction->layout().window().screen_origin()))
-      {
+         auto & window_origin = layout.window().origin();
 
-         m_puserinteraction->layout().sketch().origin() = m_puserinteraction->layout().window().origin();
-         m_puserinteraction->layout().design().origin() = m_puserinteraction->layout().window().origin();
-         m_puserinteraction->layout().sketch().screen_origin() = m_puserinteraction->layout().window().screen_origin();
-         m_puserinteraction->layout().design().screen_origin() = m_puserinteraction->layout().window().screen_origin();
+         window_origin = pmove->m_point;
 
-         m_puserinteraction->set_reposition();
+         if(window_origin != sketch_origin)
+         {
 
-         m_puserinteraction->set_need_redraw();
+            sketch_origin = window_origin;
 
-         m_puserinteraction->post_redraw();
+            m_puserinteraction->set_reposition();
+
+            m_puserinteraction->set_need_redraw();
+
+            m_puserinteraction->post_redraw();
+
+         }
 
          //if (m_puserinteraction->layout().is_moving())
          //{
@@ -5608,7 +5600,7 @@ namespace user
 
          //m_puserinteraction->post_redraw();
 
-      }
+      //}
 
    }
 
@@ -5948,7 +5940,7 @@ namespace user
 
       ::rectangle_i32 rectangle(lpcrect);
 
-      m_puserinteraction->ScreenToClient(rectangle);
+      m_puserinteraction->screen_to_client(rectangle);
 
       return rectangle.area() - m_pgraphics->get_screen_image()->get_rgba_area(colorTransparent, rectangle);
 
@@ -5960,7 +5952,7 @@ namespace user
 
       ::rectangle_i32 rectangle(lpcrect);
 
-      m_puserinteraction->ScreenToClient(rectangle);
+      m_puserinteraction->screen_to_client(rectangle);
 
       return m_pgraphics->_001GetTopLeftWeightedOpaqueArea(rectangle);
 

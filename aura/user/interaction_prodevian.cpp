@@ -980,7 +980,7 @@ bool prodevian::prodevian_iteration()
 
          }
 
-         if (!m_puserinteraction->m_bLockWindowUpdate)
+
          {
 
             synchronouslock.unlock();
@@ -991,7 +991,12 @@ bool prodevian::prodevian_iteration()
 
             auto pgraphics = pdraw2d->create_memory_graphics();
 
-            m_puserinteraction->sketch_to_design(pgraphics, bUpdateBuffer, bUpdateWindow);
+            if (!m_puserinteraction->is_sketch_to_design_locked())
+            {
+
+               m_puserinteraction->sketch_to_design(pgraphics, bUpdateBuffer, bUpdateWindow);
+
+            }
 
             synchronouslock.lock();
 
@@ -1255,7 +1260,6 @@ bool prodevian::prodevian_iteration()
       }
 
    }
-
 
 
    void prodevian::set_prodevian_fps(double dProdevianFps)

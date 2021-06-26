@@ -1896,13 +1896,6 @@ void simple_frame_window::_001OnActivate(::message::message * pmessage)
 bool simple_frame_window::LoadFrame(const char * pszMatter, u32 dwDefaultStyle, ::user::interaction * puiParent, ::user::system * pusersystem)
 {
 
-   //if (m_pdescriptor.is_null())
-   //{
-
-   //   m_pdescriptor.create(this);
-
-   //}
-
    m_id = pusersystem->m_id.to_string() + "::frame";
 
    UNREFERENCED_PARAMETER(puiParent);
@@ -1911,15 +1904,12 @@ bool simple_frame_window::LoadFrame(const char * pszMatter, u32 dwDefaultStyle, 
 
    auto papplication = get_application();
 
-
    if (puiParent == nullptr)
    {
 
       puiParent = papplication->get_request_parent_ui(this, pusersystem);
 
    }
-
-   //dwDefaultStyle &= ~WS_VISIBLE;
 
    ::rectangle_i32 rectFrame;
 
@@ -1932,23 +1922,7 @@ bool simple_frame_window::LoadFrame(const char * pszMatter, u32 dwDefaultStyle, 
 
    }
 
-   if(puiParent == nullptr)
-   {
-
-      m_bLayoutEnable = false;
-
-      INFO("simple_frame_window::LoadFrame m_bLayoutEnable false");
-
-   }
-
-   //auto pusersystem = __new(::user::system(0L, nullptr, m_strFrameTitle, dwDefaultStyle, rectFrame, pcreate));
-
-   //if (!pre_create_window(pusersystem))
-   //{
-
-   //   return false;
-
-   //}
+   m_bLockSketchToDesign = true;
 
    if(puiParent == nullptr || wfi_is_up_down())
    {
@@ -1971,7 +1945,7 @@ bool simple_frame_window::LoadFrame(const char * pszMatter, u32 dwDefaultStyle, 
 
          WindowDataLoadWindowRect(bForceRestore, bInitialFramePosition);
 
-         rectFrame = layout().sketch().screen_rect();
+         rectFrame = screen_rect();
 
          INFO("simple_frame_window::LoadFrame rectFrame (l=%d, t=%d) (w=%d, h=%d)", rectFrame.left, rectFrame.top, rectFrame.width(), rectFrame.height());
          INFO("simple_frame_window::LoadFrame edisplay=%s", __cstr(layout().sketch().display().eflag()));
@@ -2019,7 +1993,7 @@ bool simple_frame_window::LoadFrame(const char * pszMatter, u32 dwDefaultStyle, 
 
       }
 
-      rectFrame = layout().sketch().screen_rect();
+      rectFrame = screen_rect();
 
       //pusersystem->set_rect(rectFrame);
 
@@ -2172,7 +2146,7 @@ void simple_frame_window::InitialFramePosition(bool bForceRestore)
 
    try
    {
-      if(m_bFrameMoveEnable)
+      if (m_bFrameMoveEnable)
       {
 
          bool bHostTopLevel = is_host_top_level();
@@ -2189,37 +2163,37 @@ void simple_frame_window::InitialFramePosition(bool bForceRestore)
             display(e_display_full_screen);
 
          }
-         else if(papplication->has_property("wfi_maximize") && is_top_level_window())
+         else if (papplication->has_property("wfi_maximize") && is_top_level_window())
          {
 
             display(e_display_zoomed);
 
          }
-         //else if(papplication->has_property("client_only"))
-         //{
+            //else if(papplication->has_property("client_only"))
+            //{
 
-         //   if(is_frame_experience_enabled())
-         //   {
+            //   if(is_frame_experience_enabled())
+            //   {
 
-         //      display(e_display_full_screen);
+            //      display(e_display_full_screen);
 
-         //   }
-         //   else
-         //   {
+            //   }
+            //   else
+            //   {
 
-         //      //best_monitor(nullptr,nullptr,true);
+            //      //best_monitor(nullptr,nullptr,true);
 
-         //      display(e_display_zoomed);
+            //      display(e_display_zoomed);
 
-         //   }
+            //   }
 
-         //}
+            //}
          else
          {
 
             m_bInitialFramePosition = true;
 
-            WindowDataLoadWindowRect(bForceRestore,true);
+            WindowDataLoadWindowRect(bForceRestore, true);
 
          }
 
@@ -2232,31 +2206,18 @@ void simple_frame_window::InitialFramePosition(bool bForceRestore)
       //on_frame_position();
 
    }
-   catch(...)
+   catch (...)
    {
 
    }
 
-   m_bLayoutEnable = true;
+   set_need_layout();
 
-   //set_need_redraw();
+   set_need_redraw();
 
-   output_debug_string("\nm_bLayoutEnable true");
+   m_bLockSketchToDesign = false;
 
-   if (get_parent() == nullptr || is_host_top_level())
-   {
-
-      set_need_layout();
-
-      set_need_redraw();
-
-      set_layout_ready();
-
-      post_redraw();
-
-      output_debug_string("\nframe_window::POST_READRAW\n");
-
-   }
+   post_redraw();
 
 }
 

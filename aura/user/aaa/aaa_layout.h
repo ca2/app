@@ -130,8 +130,8 @@ namespace user
       //inline ::size client_size() { return m_sizeClient; }
       //inline ::size window_size() { return m_sizeScreen; }
 
-      //inline void _001ScreenToClient(RECT32* prect) { ::rect_sub(prect, client_screen_top_left()); }
-      //inline void _001ClientToScreen(RECT32* prect) { ::rect_add(prect, client_screen_top_left()); }
+      //inline void screen_to_client(RECT32* prect) { ::rect_sub(prect, client_screen_top_left()); }
+      //inline void client_to_screen(RECT32* prect) { ::rect_add(prect, client_screen_top_left()); }
 
       //inline void get_client_rect(RECT32* prect) { ::set_rect_point_size(prect, m_pointClient, client_size()); }
       //inline void get_window_rect(RECT32* prect) { ::set_rect_point_size(prect, m_pointScreenWindow, window_size()); }
@@ -347,15 +347,15 @@ namespace user
 
 
       template < typename POINT_OFFSETABLE >
-      inline void _001ScreenToClient(POINT_OFFSETABLE & o) { o -= screen_top_left(); o+= get_parent_accumulated_scroll(); }
+      inline void screen_to_client(POINT_OFFSETABLE & o) { o -= screen_top_left(); o+= get_parent_accumulated_scroll(); }
       template < typename POINT_OFFSETABLE >
-      inline void _001ScreenToClient(POINT_OFFSETABLE * po) { _001ScreenToClient(*po); }
+      inline void screen_to_client(POINT_OFFSETABLE * po) { screen_to_client(*po); }
 
 
       template < typename POINT_OFFSETABLE >
-      inline void _001ClientToScreen(POINT_OFFSETABLE & o) { o += screen_top_left(); o -= get_parent_accumulated_scroll(); }
+      inline void client_to_screen(POINT_OFFSETABLE & o) { o += screen_top_left(); o -= get_parent_accumulated_scroll(); }
       template < typename POINT_OFFSETABLE >
-      inline void _001ClientToScreen(POINT_OFFSETABLE * po) { _001ClientToScreen(*po); }
+      inline void client_to_screen(POINT_OFFSETABLE * po) { client_to_screen(*po); }
 
 
       template < typename POINT_OFFSETABLE >
@@ -369,12 +369,12 @@ namespace user
       template < typename POINT_OFFSETABLE >
       inline void _001ClientToParent(POINT_OFFSETABLE* po) { _001ClientToParent(*po); }
 
-      inline void ScreenToClient(RECT32* prect) { ::rect_sub(prect, screen_top_left()); }
-      inline void ScreenToClient(POINT32 * ppoint) { ::point_sub(ppoint, screen_top_left()); }
+      inline void screen_to_client(RECT32* prect) { ::rect_sub(prect, screen_top_left()); }
+      inline void screen_to_client(POINT32 * ppoint) { ::point_sub(ppoint, screen_top_left()); }
 
 
-      inline void ClientToScreen(RECT32* prect) { ::rect_add(prect, screen_top_left()); }
-      inline void ClientToScreen(POINT32* ppoint) { ::point_add(ppoint, screen_top_left()); }
+      inline void client_to_screen(RECT32* prect) { ::rect_add(prect, screen_top_left()); }
+      inline void client_to_screen(POINT32* ppoint) { ::point_add(ppoint, screen_top_left()); }
 
 
       inline void ParentToClient(RECT32* prect) { ::rect_sub(prect, top_left()); }

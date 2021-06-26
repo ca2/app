@@ -1138,7 +1138,7 @@ namespace user
    bool primitive_impl::get_rect_normal(RECTANGLE_I32 * prectangle)
    {
 
-      m_puserinteraction->layout().sketch().screen_rect(prectangle);
+      *prectangle = m_puserinteraction->screen_rect();
 
       return true;
 

@@ -1956,7 +1956,7 @@ namespace linux
 //                  {
 //                     ::rectangle rectangle;
 //                     ::get_window_rect(hWndChild, &rectangle);
-//                     _001ScreenToClient(&rectangle);
+//                     screen_to_client(&rectangle);
 //                     ::set_window_position(hWndChild, nullptr,
 //                        rectangle.left+xAmount, rectangle.top+yAmount, 0, 0,
 //                        SWP_NOSIZE|SWP_NOACTIVATE|SWP_NOZORDER);
@@ -2476,7 +2476,7 @@ namespace linux
 ////      SetViewportOrgEx(hdc, 0, 0, nullptr);
 //      ::rectangle rectPaint;
 //      rectPaint = rectUpdate;
-//      m_puserinteraction->_001ScreenToClient(rectPaint);
+//      m_puserinteraction->screen_to_client(rectPaint);
 //      user::oswindow_array wndaApp;
 //
 //
@@ -2642,7 +2642,7 @@ namespace linux
 //   }
 //
 //
-//   bool interaction_impl::_001ClientToScreen(RECT32 * prect)
+//   bool interaction_impl::client_to_screen(RECT32 * prect)
 
 //   {
 //
@@ -2669,7 +2669,7 @@ namespace linux
 //   }
 //
 //
-//   bool interaction_impl::_001ClientToScreen(POINT32 * ppoint)
+//   bool interaction_impl::client_to_screen(POINT32 * ppoint)
 
 //   {
 //
@@ -2692,7 +2692,7 @@ namespace linux
 //   }
 //
 //
-//   bool interaction_impl::_001ClientToScreen(RECT64 * prect)
+//   bool interaction_impl::client_to_screen(RECT64 * prect)
 
 //   {
 //
@@ -2719,7 +2719,7 @@ namespace linux
 //   }
 //
 //
-//   bool interaction_impl::_001ClientToScreen(POINT64 * ppoint)
+//   bool interaction_impl::client_to_screen(POINT64 * ppoint)
 
 //   {
 //
@@ -2742,7 +2742,7 @@ namespace linux
 //   }
 //
 //
-//   bool interaction_impl::_001ScreenToClient(RECT32 * prect)
+//   bool interaction_impl::screen_to_client(RECT32 * prect)
 
 //   {
 //
@@ -2769,7 +2769,7 @@ namespace linux
 //   }
 //
 //
-//   bool interaction_impl::_001ScreenToClient(POINT32 * ppoint)
+//   bool interaction_impl::screen_to_client(POINT32 * ppoint)
 
 //   {
 //
@@ -2792,7 +2792,7 @@ namespace linux
 //   }
 //
 //
-//   bool interaction_impl::_001ScreenToClient(RECT64 * prect)
+//   bool interaction_impl::screen_to_client(RECT64 * prect)
 
 //   {
 //
@@ -2819,7 +2819,7 @@ namespace linux
 //   }
 //
 //
-//   bool interaction_impl::_001ScreenToClient(POINT64 * ppoint)
+//   bool interaction_impl::screen_to_client(POINT64 * ppoint)
 
 //   {
 //

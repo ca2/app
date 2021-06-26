@@ -752,7 +752,7 @@ LONG_PTR WINAPI SetWindowLongPtrA(::oswindow oswindow, int nIndex, LONG_PTR l)
 }
 
 
-int_bool WINAPI _001ClientToScreen(::oswindow oswindow, POINT32 * ppoint)
+int_bool WINAPI client_to_screen(::oswindow oswindow, POINT32 * ppoint)
 {
 
    if(::is_null(oswindow))
@@ -762,12 +762,12 @@ int_bool WINAPI _001ClientToScreen(::oswindow oswindow, POINT32 * ppoint)
 
    }
 
-   return oswindow->_001ClientToScreen(ppoint);
+   return oswindow->client_to_screen(ppoint);
 
 }
 
 
-int_bool WINAPI _001ScreenToClient(::oswindow oswindow, POINT32 * ppoint)
+int_bool WINAPI screen_to_client(::oswindow oswindow, POINT32 * ppoint)
 {
 
    if(::is_null(oswindow))
@@ -777,7 +777,7 @@ int_bool WINAPI _001ScreenToClient(::oswindow oswindow, POINT32 * ppoint)
 
    }
 
-   return oswindow->_001ScreenToClient(ppoint);
+   return oswindow->screen_to_client(ppoint);
 
 }
 

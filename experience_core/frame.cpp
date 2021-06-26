@@ -97,7 +97,7 @@ namespace experience
 
                ::rectangle_i32 rectWindow = rectangleClient;
 
-               pframewindow->_001ClientToScreen(rectWindow);
+               pframewindow->client_to_screen(rectWindow);
 
                ::point_i32 pointInflate(iInflate, iInflate);
 

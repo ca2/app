@@ -635,7 +635,7 @@ namespace filemanager
 
             ::point_i32 point = pcontextmenu->GetPoint();
 
-            _001ScreenToClient(point);
+            screen_to_client(point);
 
             /*    if(_001HitTest_(point, iItem))
             {

@@ -226,21 +226,21 @@ namespace linux
 
       //virtual ::point client_screen_top_left() override;
 
-//      virtual bool _001ClientToScreen(RECT32 * prect);
+//      virtual bool client_to_screen(RECT32 * prect);
 
-//      virtual bool _001ClientToScreen(POINT32 * ppoint);
+//      virtual bool client_to_screen(POINT32 * ppoint);
 
-//      virtual bool _001ClientToScreen(RECT64 * prect);
+//      virtual bool client_to_screen(RECT64 * prect);
 
-//      virtual bool _001ClientToScreen(POINT64 * ppoint);
+//      virtual bool client_to_screen(POINT64 * ppoint);
 
-//      virtual bool _001ScreenToClient(RECT32 * prect);
+//      virtual bool screen_to_client(RECT32 * prect);
 
-//      virtual bool _001ScreenToClient(POINT32 * ppoint);
+//      virtual bool screen_to_client(POINT32 * ppoint);
 
-//      virtual bool _001ScreenToClient(RECT64 * prect);
+//      virtual bool screen_to_client(RECT64 * prect);
 
-//      virtual bool _001ScreenToClient(POINT64 * ppoint);
+//      virtual bool screen_to_client(POINT64 * ppoint);
 
 
       virtual bool GetWindowPlacement(WINDOWPLACEMENT* puserinteractionpl);

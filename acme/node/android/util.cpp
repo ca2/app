@@ -52,7 +52,7 @@ oswindow CLASS_DECL_lnx _AfxChildWindowFromPoint(oswindow hWnd, POINT_I32 pt)
    ASSERT(hWnd != nullptr);
 
    // check child windows
-   ::_001ClientToScreen(hWnd, &pt);
+   ::client_to_screen(hWnd, &pt);
    oswindow hWndChild = ::GetWindow(hWnd, GW_CHILD);
    for (; hWndChild != nullptr; hWndChild = ::GetWindow(hWndChild, GW_HWNDNEXT))
    {

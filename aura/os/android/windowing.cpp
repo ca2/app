@@ -570,7 +570,7 @@ iptr oswindow_data::set_window_long_ptr(i32 nIndex, iptr l)
 }
 
 
-bool oswindow_data::_001ClientToScreen(POINT_I32 * pp)
+bool oswindow_data::client_to_screen(POINT_I32 * pp)
 {
 
    return true;
@@ -578,7 +578,7 @@ bool oswindow_data::_001ClientToScreen(POINT_I32 * pp)
 }
 
 
-bool oswindow_data::_001ScreenToClient(POINT_I32 * pp)
+bool oswindow_data::screen_to_client(POINT_I32 * pp)
 {
 
    return true;

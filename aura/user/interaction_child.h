@@ -115,29 +115,29 @@ namespace user
 
       //virtual point_i32 client_screen_top_left() override;
 
-      //virtual bool _001ClientToScreen(RECTANGLE_F64 * prectangle) override;
+      //virtual bool client_to_screen(RECTANGLE_F64 * prectangle) override;
 
-      //virtual bool _001ClientToScreen(RECTANGLE_I32 * prectangle) override;
+      //virtual bool client_to_screen(RECTANGLE_I32 * prectangle) override;
 
-      //virtual bool _001ClientToScreen(RECTANGLE_I64 * prectangle) override;
+      //virtual bool client_to_screen(RECTANGLE_I64 * prectangle) override;
 
-      //virtual bool _001ClientToScreen(POINT_F64 * ppoint) override;
+      //virtual bool client_to_screen(POINT_F64 * ppoint) override;
 
-      //virtual bool _001ClientToScreen(POINT_I32 * ppoint) override;
+      //virtual bool client_to_screen(POINT_I32 * ppoint) override;
 
-      //virtual bool _001ClientToScreen(POINT_I64 * ppoint) override;
+      //virtual bool client_to_screen(POINT_I64 * ppoint) override;
 
-      //virtual bool _001ScreenToClient(RECTANGLE_F64 * prectangle) override;
+      //virtual bool screen_to_client(RECTANGLE_F64 * prectangle) override;
 
-      //virtual bool _001ScreenToClient(RECTANGLE_I32 * prectangle) override;
+      //virtual bool screen_to_client(RECTANGLE_I32 * prectangle) override;
 
-      //virtual bool _001ScreenToClient(RECTANGLE_I64 * prectangle) override;
+      //virtual bool screen_to_client(RECTANGLE_I64 * prectangle) override;
 
-      //virtual bool _001ScreenToClient(POINT_F64 * ppoint) override;
+      //virtual bool screen_to_client(POINT_F64 * ppoint) override;
 
-      //virtual bool _001ScreenToClient(POINT_I32 * ppoint) override;
+      //virtual bool screen_to_client(POINT_I32 * ppoint) override;
 
-      //virtual bool _001ScreenToClient(POINT_I64 * ppoint) override;
+      //virtual bool screen_to_client(POINT_I64 * ppoint) override;
 
 
       virtual bool keyboard_focus_OnKillFocus(oswindow oswindowNew) override;

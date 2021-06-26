@@ -540,8 +540,8 @@ int imm_client::on_text_composition_message(int iMessage)
       //rectangle.left = x;
       //rectangle.top = y;
       //rectangle.bottom = y2;
-      //_001ClientToScreen(rectangle);
-      //get_wnd()->_001ScreenToClient(rectangle);
+      //client_to_screen(rectangle);
+      //get_wnd()->screen_to_client(rectangle);
 
 
       //SetCaretPos(rectangle.left, rectangle.top);

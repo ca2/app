@@ -73,7 +73,7 @@ namespace user
       
       auto point = pmouse->m_point;
 
-      _001ScreenToClient(point);
+      screen_to_client(point);
 
       if(rectangle.contains(point))
       {
@@ -145,7 +145,7 @@ namespace user
 
       auto pointCursor = pwindowing->get_cursor_position();
 
-      _001ScreenToClient(pointCursor);
+      screen_to_client(pointCursor);
 
       CalcTension(pointCursor);
 
@@ -250,7 +250,7 @@ namespace user
 
          auto pointCursor = pwindowing->get_cursor_position();
 
-         _001ScreenToClient(pointCursor);
+         screen_to_client(pointCursor);
 
          pgraphics->line_to(pointCursor);
 

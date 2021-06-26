@@ -3849,7 +3849,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
 
                   ::size_i32 size(e.xconfigure.width, e.xconfigure.height);
 
-                  auto pointWindow = pinteraction->layout().window().screen_origin();
+                  auto pointWindow = pinteraction->screen_origin();
 
                   auto sizeWindow = pinteraction->layout().window().size();
 
@@ -3893,9 +3893,9 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
 
                      pinteraction->layout().window().origin() = point;
 
-                     pinteraction->layout().sketch().screen_origin() = point;
+                     pinteraction->screen_origin() = point;
 
-                     pinteraction->layout().window().screen_origin() = point;
+                     pinteraction->screen_origin() = point;
 
                      pinteraction->set_reposition(true);
 

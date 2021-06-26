@@ -109,7 +109,7 @@
 
 /*               pimage2 = create_image({rectangleClient.width() + iInflate * 2,  rectangleClient.height() + iInflate * 2});
                ::rectangle_i32 rectWindow = rectangleClient;
-               pframewindow->_001ClientToScreen(rectWindow);
+               pframewindow->client_to_screen(rectWindow);
 /*               //pimage = create_image({rectangleClient.width(),  rectangleClient.height()});
                //bool b = pimage2->get_graphics()->BitBlt(0, 0, rectangleClient.width() + iInflate * 2, rectangleClient.height() + iInflate * 2, pgraphics, rectangleClient.left - iInflate, rectangleClient.top - iInflate);
                pimage2->get_graphics()->BitBlt(0, 0, rectangleClient.width() + iInflate * 2, rectangleClient.height() + iInflate * 2, pgraphics, rectangleClient.left - iInflate, rectangleClient.top - iInflate);

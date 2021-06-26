@@ -223,7 +223,7 @@ namespace user
 
    //   ::point point = pmouse->m_point;
 
-   //   _001ScreenToClient(point);
+   //   screen_to_client(point);
 
    //   if (hit_test(point, eelement) >= 0)
    //   {
@@ -253,7 +253,7 @@ namespace user
 
    //   ::point point = pmouse->m_point;
 
-   //   _001ScreenToClient(point);
+   //   screen_to_client(point);
 
    //   if (hit_test(point, eelement) >= 0)
    //   {
@@ -287,7 +287,7 @@ namespace user
 
    //   //::point point = pmouse->m_point;
 
-   //   //_001ScreenToClient(point);
+   //   //screen_to_client(point);
 
    //   //if (hit_test(point, eelement) >= 0 && psession->m_puiLastLButtonDown == this)
    //   //{

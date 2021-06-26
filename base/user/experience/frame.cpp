@@ -1080,7 +1080,7 @@ namespace experience
 
       bool bPreserveSize;
 
-      rectRequest = m_pframewindow->layout().sketch().screen_rect();
+      rectRequest = m_pframewindow->screen_rect();
 
       bool bMoving = m_pframewindow->move_manager()->window_is_moving();
 
@@ -1159,13 +1159,13 @@ namespace experience
                if (m_pframewindow->move_manager()->consider_move())
                {
 
-                  m_pframewindow->layout().sketch() = m_pframewindow->move_manager()->m_pointMove;
+                  m_pframewindow->layout().sketch().origin() = m_pframewindow->move_manager()->m_pointMove;
 
                }
 
             }
 
-            m_pframewindow->layout().sketch() = rectangle.size();
+            m_pframewindow->layout().sketch().size() = rectangle.size();
 
          }
          else
@@ -1184,7 +1184,7 @@ namespace experience
 
          m_pframewindow->m_windowrectangle.m_iWorkspace = iWorkspace;
 
-         m_pframewindow->layout().sketch() = edisplay;
+         m_pframewindow->layout().sketch().display() = edisplay;
 
       }
       else if (is_docking_appearance(edisplay))
@@ -1219,7 +1219,7 @@ namespace experience
 
       size.ensure_at_least(sizeMin);
 
-      m_pframewindow->layout().sketch() = size;
+      m_pframewindow->layout().sketch().size() = size;
 
    }
 

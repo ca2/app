@@ -361,8 +361,6 @@ namespace user
 
             layout().sketch() = edisplay;
 
-            layout().sketch().set_ready();
-
          }
          else if (!bForceRestore && is_docking_appearance(edisplay))
          {
@@ -377,8 +375,6 @@ namespace user
             layout().sketch() = windowrectangle.m_rectangleSnapped;
 
             layout().sketch() = edisplay;
-
-            layout().sketch().set_ready();
 
          }
          else
@@ -518,7 +514,13 @@ namespace user
       get_wnd()->post_routine(__routine([this, edisplay]()
       {
 
-         good_restore(NULL, layout().sketch().screen_rect(), true, layout().sketch().activation(), layout().sketch().zorder(), edisplay);
+         auto screen_rect = this->screen_rect();
+
+         auto activation = layout().sketch().activation();
+
+         auto zorder = layout().sketch().zorder();
+
+         good_restore(NULL, screen_rect, true, activation, zorder, edisplay);
 
       }));
 

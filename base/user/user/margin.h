@@ -48,11 +48,11 @@ namespace user
 
       }
 
-//      void _001ScreenToClient(RECTANGLE_I32 * prectangle)
+//      void screen_to_client(RECTANGLE_I32 * prectangle)
 
       //    {
 
-      //     BASE::_001ScreenToClient(prectangle);
+      //     BASE::screen_to_client(prectangle);
 
 
       /*prectangle->left   -= m_rectMargin.left;

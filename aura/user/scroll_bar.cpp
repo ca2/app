@@ -223,7 +223,7 @@ namespace user
 
             rectangleClient = pdrawcontext->m_rectangleWindow;
 
-            _001ScreenToClient(rectangleClient, e_layout_design);
+            screen_to_client(rectangleClient, e_layout_design);
 
             rectangleClient.bottom++;
             rectangleClient.right++;
@@ -252,7 +252,7 @@ namespace user
 
                rectFocus.offset(rectangleClient.top_left());
 
-               _001ScreenToClient(rectFocus, e_layout_design);
+               screen_to_client(rectFocus, e_layout_design);
 
                rectFocus.bottom++;
                rectFocus.right++;

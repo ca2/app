@@ -1418,7 +1418,7 @@ namespace experience
 
             ::point_i32 point1 = rectTrack.top_left() + pbar->m_sizeTrackOffset;
 
-            pbar->_001ClientToScreen(point1);
+            pbar->client_to_screen(point1);
 
             //auto psession = get_session();
 
@@ -1428,7 +1428,7 @@ namespace experience
 
             //auto pointCursor = pwindowing->get_cursor_position();
 
-            pbar->_001ClientToScreen(point1);
+            pbar->client_to_screen(point1);
 
             //      prop("tracking_window").cast < trw >()->point1 = point1;
 

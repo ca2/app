@@ -477,22 +477,14 @@ namespace user
 
       sketch() = ::rectangle_i32(p, s);
 
-      sketch().screen_origin() = p;
-
       design() = sketch();
 
       if (is_top_level())
       {
 
-         //bitmap() = sketch();
-
-         //window() = bitmap();
-
          window() = design();
 
-         window().set_ready();
-
-         window().clear_ephemeral();
+         window().clear_activation();
 
       }
 

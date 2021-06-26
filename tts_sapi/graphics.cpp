@@ -4892,26 +4892,26 @@ namespace draw2d_gdiplus
 
    }
    /*
-   void window::ScreenToClient(RECT * prectangle)
+   void window::screen_to_client(RECT * prectangle)
 
    {
    ASSERT(::IsWindow(get_handle1()));
-   ::ScreenToClient(get_handle1(), (LPPOINT)prectangle);
+   ::screen_to_client(get_handle1(), (LPPOINT)prectangle);
 
-   ::ScreenToClient(get_handle1(), ((LPPOINT)prectangle)+1);
+   ::screen_to_client(get_handle1(), ((LPPOINT)prectangle)+1);
 
    if (GetExStyle() & WS_EX_LAYOUTRTL)
    rectangle_i32::swap_left_right(prectangle);
 
    }
 
-   void window::ClientToScreen(RECT * prectangle)
+   void window::client_to_screen(RECT * prectangle)
 
    {
    ASSERT(::IsWindow(get_handle1()));
-   ::ClientToScreen(get_handle1(), (LPPOINT)prectangle);
+   ::client_to_screen(get_handle1(), (LPPOINT)prectangle);
 
-   ::ClientToScreen(get_handle1(), ((LPPOINT)prectangle)+1);
+   ::client_to_screen(get_handle1(), ((LPPOINT)prectangle)+1);
 
    if (GetExStyle() & WS_EX_LAYOUTRTL)
    rectangle_i32::swap_left_right(prectangle);

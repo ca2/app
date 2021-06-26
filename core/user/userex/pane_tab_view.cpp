@@ -99,7 +99,7 @@ namespace userex
          pinteraction->get_window_rect(prectangle);
 
 
-         _001ScreenToClient(prectangle);
+         screen_to_client(prectangle);
 
 
       }
@@ -134,7 +134,7 @@ namespace userex
 
          pinteraction->get_window_rect(prectangle);
 
-         _001ScreenToClient(prectangle);
+         screen_to_client(prectangle);
 
       }
 

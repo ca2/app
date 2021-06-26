@@ -788,9 +788,9 @@ namespace user
 
                ::point_i32 point((long)(left + x1), (long)y);
 
-               _001ClientToScreen(point);
+               client_to_screen(point);
 
-               get_wnd()->_001ScreenToClient(point);
+               get_wnd()->screen_to_client(point);
 
                ::SetCaretPos(point.x, point.y);
 
@@ -810,9 +810,9 @@ namespace user
 
                ::point_i32 point((long)(left + x1), (long) y);
 
-               _001ClientToScreen(point);
+               client_to_screen(point);
 
-               get_wnd()->_001ScreenToClient(point);
+               get_wnd()->screen_to_client(point);
 
                ::SetCaretPos(point.x, point.y);
 
@@ -947,7 +947,7 @@ namespace user
 
       ::point_i32 point = pmouse->m_point;
 
-      _001ScreenToClient(point);
+      screen_to_client(point);
 
       m_bRMouseDown = true;
 
@@ -991,7 +991,7 @@ namespace user
 
       ::point_i32 point = pmouse->m_point;
 
-      _001ScreenToClient(point);
+      screen_to_client(point);
 
       //{
 
@@ -1055,7 +1055,7 @@ namespace user
 
             auto pointCursor = pwindowing->get_cursor_position();
 
-            _001ScreenToClient(pointCursor);
+            screen_to_client(pointCursor);
 
             ::rectangle_i32 rectActiveClient;
 
@@ -1913,7 +1913,7 @@ namespace user
 
             ::point_i32 point = pmouse->m_point;
 
-            _001ScreenToClient(point);
+            screen_to_client(point);
 
             if (m_pointLastCursor != point)
             {
@@ -1978,7 +1978,7 @@ namespace user
 
           ::point_i32 point = pmouse->m_point;
 
-         _001ScreenToClient(point);
+         screen_to_client(point);
 
          {
 
@@ -2048,7 +2048,7 @@ namespace user
 
          ::point_i32 point = pmouse->m_point;
 
-         _001ScreenToClient(point);
+         screen_to_client(point);
 
          queue_graphics_call([this, point](::draw2d::graphics_pointer & pgraphics)
             {
@@ -5113,9 +5113,9 @@ finished_update:
 
       rectangle.bottom = (::i32)y2;
 
-      _001ClientToScreen(rectangle);
+      client_to_screen(rectangle);
 
-      get_wnd()->_001ScreenToClient(rectangle);
+      get_wnd()->screen_to_client(rectangle);
 
    }
 
@@ -6349,9 +6349,9 @@ finished_update:
 //
 //         ::point_i32 pointCaret = layout().design().origin();
 //
-//         _001ClientToScreen(pointCaret);
+//         client_to_screen(pointCaret);
 //
-//         ::ScreenToClient(hwnd, pointCaret);
+//         ::screen_to_client(hwnd, pointCaret);
 //
 //         ::SetCaretPos(pointCaret.x, pointCaret.y);
 //

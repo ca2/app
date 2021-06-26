@@ -36,7 +36,7 @@ bool oswindow_data::show_window(enum_display edisplay)
 }
 
 
-bool oswindow_data::_001ClientToScreen(POINT_I32 *lppoint)
+bool oswindow_data::client_to_screen(POINT_I32 *lppoint)
 {
 
    RECTANGLE_I32 rectangle_i32;
@@ -52,7 +52,7 @@ bool oswindow_data::_001ClientToScreen(POINT_I32 *lppoint)
 }
 
 
-bool oswindow_data::_001ScreenToClient(POINT_I32 *lppoint)
+bool oswindow_data::screen_to_client(POINT_I32 *lppoint)
 {
    
    RECTANGLE_I32 rectangle_i32;

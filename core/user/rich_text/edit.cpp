@@ -411,7 +411,7 @@ namespace user
 
             point_f64 point(pointParam);
 
-            _001ScreenToClient(point);
+            screen_to_client(point);
 
             ::rectangle_i32 rWindow;
             
@@ -421,7 +421,7 @@ namespace user
 
             __copy(rectWindow, rWindow);
             
-            get_parent()->_001ScreenToClient(rectWindow);
+            get_parent()->screen_to_client(rectWindow);
 
             copy(rectWindow, rectWindow);
 
@@ -517,7 +517,7 @@ namespace user
 
             ev.m_eevent = ::user::e_event_key_down;
 
-            ev.m_pmessage = pmessage;
+            ev.m_actioncontext.m_pmessage = pmessage;
 
             ev.m_actioncontext = ::e_source_user;
 

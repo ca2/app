@@ -122,7 +122,7 @@ namespace html
 
          //::rectangle_i32 rectWindow;
          //m_pbutton->get_window_rect(rectWindow);
-         //m_pbutton->GetWindow()->_001ScreenToClient(rectWindow);
+         //m_pbutton->GetWindow()->screen_to_client(rectWindow);
          //auto pointPreviousViewportOrg = pgraphics->GetViewportOrg();
          //pgraphics->OffsetViewportOrg((i32) m_box.left, (i32) m_box.top);
          m_pbutton->_000CallOnDraw(pgraphics);

@@ -203,14 +203,14 @@ namespace uwp
       //using ::user::interaction_impl::get_client_rect;
       //virtual bool get_client_rect(RECT64 * lpRect);
 
-      //virtual bool _001ClientToScreen(RECTANGLE_I32 * lprect);
-      //virtual bool _001ClientToScreen(POINT32 * lppoint);
-      //virtual bool _001ClientToScreen(RECT64 * lprect);
-      //virtual bool _001ClientToScreen(POINT64 * lppoint);
-      //virtual bool _001ScreenToClient(RECTANGLE_I32 * lprect);
-      //virtual bool _001ScreenToClient(POINT32 * lppoint);
-      //virtual bool _001ScreenToClient(RECT64 * lprect);
-      //virtual bool _001ScreenToClient(POINT64 * lppoint);
+      //virtual bool client_to_screen(RECTANGLE_I32 * lprect);
+      //virtual bool client_to_screen(POINT32 * lppoint);
+      //virtual bool client_to_screen(RECT64 * lprect);
+      //virtual bool client_to_screen(POINT64 * lppoint);
+      //virtual bool screen_to_client(RECTANGLE_I32 * lprect);
+      //virtual bool screen_to_client(POINT32 * lppoint);
+      //virtual bool screen_to_client(RECT64 * lprect);
+      //virtual bool screen_to_client(POINT64 * lppoint);
 
       //      virtual bool GetWindowPlacement(WINDOWPLACEMENT* lpuserinteractionpl);
       //    virtual bool SetWindowPlacement(const WINDOWPLACEMENT* lpuserinteractionpl);

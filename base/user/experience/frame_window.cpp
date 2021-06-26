@@ -1633,7 +1633,7 @@ namespace experience
       if (!_001OnBeforeAppearance())
       {
 
-         layout().sketch() = layout().design().display();
+         layout().sketch().display() = layout().design().display();
 
          return false;
 
@@ -1740,7 +1740,7 @@ namespace experience
          else
          {
 
-            rectangle = layout().sketch().screen_rect();
+            rectangle = screen_rect();
 
          }
 
@@ -2226,7 +2226,7 @@ namespace experience
 
       calculate_broad_and_compact_restore();
 
-      auto rectRequest = layout().sketch().screen_rect();
+      auto rectRequest = screen_rect();
 
       edisplay edisplay = layout().sketch().display();
 

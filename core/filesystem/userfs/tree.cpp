@@ -114,7 +114,7 @@ namespace userfs
       //   i32 iItem;
       //   HRESULT hr;
 //         auto point = pcontextmenu->GetPoint();
-//      ::user::tree::_001ScreenToClient(&point);
+//      ::user::tree::screen_to_client(&point);
       /*     if(_001HitTest_(point, iItem))
          {
          CSimpleMenu menu(CBaseMenuCentral::GetMenuCentral());

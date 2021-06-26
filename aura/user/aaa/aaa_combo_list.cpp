@@ -132,7 +132,7 @@ namespace user
 
       auto pointCursor = psession->get_cursor_position();
 
-      _001ScreenToClient(&pointCursor, ::user::e_layout_design);
+      screen_to_client(&pointCursor, ::user::e_layout_design);
 
       pgraphics->set_font(this, ::user::e_element_none);
 
@@ -599,7 +599,7 @@ namespace user
 
          auto pointCursor = psession->get_cursor_position();
 
-         m_pcombo->_001ScreenToClient(&pointCursor, ::user::e_layout_sketch);
+         m_pcombo->screen_to_client(&pointCursor, ::user::e_layout_sketch);
 
          //if(m_pcombo->hit_test(pointCursor) != e_element_drop_down)
          //{
@@ -807,7 +807,7 @@ namespace user
 
       auto point = pmouse->m_point;
 
-      _001ScreenToClient(point, e_layout_sketch);
+      screen_to_client(point, e_layout_sketch);
 
       auto rectangleClient = get_client_rect();
 
@@ -834,7 +834,7 @@ namespace user
 
       auto point = pmouse->m_point;
 
-      _001ScreenToClient(point, e_layout_sketch);
+      screen_to_client(point, e_layout_sketch);
 
       auto rectangleClient = get_client_rect();
 

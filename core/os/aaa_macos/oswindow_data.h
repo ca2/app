@@ -99,9 +99,9 @@ public:
    bool show_window(int iShow);
    iptr get_window_long_ptr(iptr nIndex);
    iptr set_window_long_ptr(iptr nIndex, iptr l);
-   bool _001ClientToScreen(POINT32 * ppoint);
+   bool client_to_screen(POINT32 * ppoint);
 
-   bool _001ScreenToClient(POINT32 * ppoint);
+   bool screen_to_client(POINT32 * ppoint);
 
 
 
@@ -153,17 +153,17 @@ bool oswindow_erase(nswindow window);
 //   return (i32) window->set_window_long(nIndex, l);
 //}
 //
-//inline int _001ClientToScreen(::oswindow window, POINT32 * ppoint)
+//inline int client_to_screen(::oswindow window, POINT32 * ppoint)
 
 //{
-//   return window->_001ClientToScreen(ppoint);
+//   return window->client_to_screen(ppoint);
 
 //}
 //
-//inline int _001ScreenToClient(::oswindow window, POINT32 * ppoint)
+//inline int screen_to_client(::oswindow window, POINT32 * ppoint)
 
 //{
-//   return window->_001ScreenToClient(ppoint);
+//   return window->screen_to_client(ppoint);
 
 //}
 //

@@ -251,7 +251,7 @@ namespace user
 
       BASE_VIEW::on_layout(pgraphics);
 
-      if (m_pform)
+      if (m_pform && m_pform != this)
       {
 
          auto rectangleClient = get_client_rect();

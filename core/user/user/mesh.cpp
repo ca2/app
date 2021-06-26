@@ -2525,7 +2525,7 @@ namespace user
 
       ::point_i32 point = pmouse->m_point;
 
-      _001ScreenToClient(point);
+      screen_to_client(point);
 
       pmouse->previous(); // give chance to child control
 
@@ -2641,7 +2641,7 @@ namespace user
 
       ::point_i32 point = pmouse->m_point;
 
-      _001ScreenToClient(point);
+      screen_to_client(point);
 
       if(dynamic_cast < list * >(this) == nullptr)
       {
@@ -2856,7 +2856,7 @@ namespace user
 
       ::point_i32 point = pmouse->m_point;
 
-      _001ScreenToClient(point);
+      screen_to_client(point);
 
       auto psession = get_session();
 
@@ -2959,7 +2959,7 @@ namespace user
 
       ::point_i32 point = pmouse->m_point;
 
-      _001ScreenToClient(point);
+      screen_to_client(point);
 
       if(!has_keyboard_focus())
       {
@@ -3010,7 +3010,7 @@ namespace user
 
       ::point_i32 point = pmouse->m_point;
 
-      _001ScreenToClient(point);
+      screen_to_client(point);
 
       if (!has_keyboard_focus())
       {
@@ -3382,7 +3382,7 @@ namespace user
 
       auto pointCursor = pwindowing->get_cursor_position();
 
-      _001ScreenToClient(pointCursor);
+      screen_to_client(pointCursor);
 
       try
       {
@@ -4852,7 +4852,7 @@ namespace user
       
       auto pointClient = point;
 
-      _001ScreenToClient(pointClient);
+      screen_to_client(pointClient);
 
       bool bAnyHoverChange = false;
 

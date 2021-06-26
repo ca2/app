@@ -956,7 +956,7 @@ namespace user
 //
 //                     GetItemRect(i, &rectangle);
 //
-//                     _001ClientToScreen(&rectangle);
+//                     client_to_screen(&rectangle);
 //
 //                     pControl[nControlCount].rectOldPos = rectangle;
 //

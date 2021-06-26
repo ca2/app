@@ -115,9 +115,11 @@ enum enum_subject
 {
 
    e_subject_not_modified,
-   e_subject_prepare,
-   e_subject_process,
-   e_subject_deliver,
+   //e_subject_prepare,
+   //e_subject_process,
+   //e_subject_deliver,
+   e_subject_handle,
+   e_subject_notify,
 
 };
 

@@ -18,13 +18,6 @@ namespace user
       
       m_eappearance = eappearance;
       
-      if(m_eappearance)
-      {
-         
-         set_modified();
-         
-      }
-      
       return *this;
    
    }
@@ -34,13 +27,6 @@ namespace user
    {
       
       m_eappearance |= eappearance;
-      
-      if (m_eappearance)
-      {
-         
-         set_modified();
-         
-      }
       
       return *this;
       
@@ -52,13 +38,6 @@ namespace user
       
       m_eappearance -= eappearance;
       
-      if (m_eappearance)
-      {
-         
-         set_modified();
-         
-      }
-      
       return *this;
       
    }
@@ -68,13 +47,6 @@ namespace user
    {
       
       m_eappearance ^= eappearance;
-      
-      if (m_eappearance)
-      {
-         
-         set_modified();
-         
-      }
       
       return *this;
       

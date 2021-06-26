@@ -152,7 +152,9 @@ namespace userex
       if (context.is_user_source())
       {
 
-         auto psubject = subject(id_after_change_text);
+         auto ptopeditview = this;
+
+         auto psubject = ptopeditview->subject(id_after_change_text);
 
          psubject->m_psender = this;
 

@@ -1158,7 +1158,7 @@ void var_stream::write_only(TYPE & t)
   else
   {
 
-     ::payload() = t;
+     m_pvar->operator =(t);
 
   }
 

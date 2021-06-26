@@ -2,9 +2,10 @@ cmake_minimum_required(VERSION 3.17)
 project(draw2d_cairo CXX)
 
 
-list(APPEND draw2d_cairo_source
+list(APPEND library_source
         _.cpp
         _.h
+        _impl.h
         bitmap.cpp
         bitmap.h
         brush.cpp
@@ -37,7 +38,7 @@ list(APPEND draw2d_cairo_source
         region.h)
 
 
-add_library(draw2d_cairo SHARED ${draw2d_cairo_source} _impl.h)
+add_library(draw2d_cairo SHARED ${library_source})
 
 
 target_precompile_headers(draw2d_cairo PRIVATE framework.h)

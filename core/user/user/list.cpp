@@ -3329,7 +3329,7 @@ namespace user
 
       auto point = pmouse->m_point;
 
-      _001ScreenToClient(point);
+      screen_to_client(point);
 
       synchronous_lock synchronouslock(mutex());
 
@@ -3522,7 +3522,7 @@ namespace user
 
       auto point = pmouse->m_point;
 
-      _001ScreenToClient(point);
+      screen_to_client(point);
 
       synchronous_lock synchronouslock(mutex());
 
@@ -3813,7 +3813,7 @@ namespace user
 
                auto point = pmouse->m_point;
 
-               _001ScreenToClient(point);
+               screen_to_client(point);
 
                draw_list_item item(this);
 
@@ -3876,7 +3876,7 @@ namespace user
 
       auto point = pmouse->m_point;
 
-      _001ScreenToClient(point);
+      screen_to_client(point);
 
       auto psession = get_session();
 
@@ -4085,7 +4085,7 @@ namespace user
 
       auto point = pmouse->m_point;
 
-      _001ScreenToClient(point);
+      screen_to_client(point);
 
       synchronous_lock synchronouslock(mutex());
 
@@ -4351,7 +4351,7 @@ namespace user
 
       auto point = pmouse->m_point;
 
-      _001ScreenToClient(point);
+      screen_to_client(point);
 
       index iDisplayItem = -1;
 
@@ -6677,7 +6677,7 @@ namespace user
 
       auto pointClient = point;
 
-      _001ScreenToClient(pointClient);
+      screen_to_client(pointClient);
 
       bool bAnyHoverChange = false;
 
@@ -7177,27 +7177,41 @@ namespace user
    }
 
 
-   void list::set_current_item(const ::user::item & item, const ::action_context & context)
+   ::e_status list::set_current_item(const ::user::item & item, const ::action_context & context)
    {
 
-      m_rangeSelection.clear();
+      auto iCurrentSelection = m_rangeSelection.get_current_item();
 
-      if (!item.is_set())
+      if(iCurrentSelection >= 0)
       {
 
-         return;
+         if (item == iCurrentSelection)
+         {
+
+            return ::success;
+
+         }
 
       }
 
-      item_range itemrange;
+      m_rangeSelection.clear();
 
-      itemrange.set_lower_bound(item);
+      if (item.is_set())
+      {
 
-      itemrange.set_upper_bound(item);
+         item_range itemrange;
 
-      m_rangeSelection.add_item(itemrange);
+         itemrange.set_lower_bound(item);
+
+         itemrange.set_upper_bound(item);
+
+         m_rangeSelection.add_item(itemrange);
+
+      }
 
       _001OnSelectionChange();
+
+      return ::success;
 
    }
 
@@ -7739,9 +7753,9 @@ namespace user
 //
 //            m_plistheader->get_client_rect(rectClientHeader);
 //
-//            m_plistheader->_001ClientToScreen(rectClientHeader);
+//            m_plistheader->client_to_screen(rectClientHeader);
 //
-//            _001ScreenToClient(rectClientHeader);
+//            screen_to_client(rectClientHeader);
 //
 //            rectangleClient.top = rectClientHeader.bottom;
 //
@@ -7839,9 +7853,9 @@ namespace user
 
       //   m_plistheader->get_client_rect(rectangleClient);
 
-      //   m_plistheader->_001ClientToScreen(rectangleClient);
+      //   m_plistheader->client_to_screen(rectangleClient);
 
-      //   _001ScreenToClient(rectangleClient);
+      //   screen_to_client(rectangleClient);
 
       //   prectangle->top += rectangleClient.bottom;
 

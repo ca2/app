@@ -82,7 +82,7 @@
             {
                e_hittest etest = hittest_client;
                {
-                  //      m_pframewindow->GetEventWindow()->_001ScreenToClient(point);
+                  //      m_pframewindow->GetEventWindow()->screen_to_client(point);
                   ::rectangle_i32 rectEvent;
                   m_pframewindow->get_window_rect(rectEvent);
                   ::rectangle_i32 rectangle;
@@ -309,10 +309,10 @@ SizingNone:;
                   //class imaging & imaging = psystem->imaging();
                   //imaging.color_blend(
                      
-                     pgraphics->color_blend(
+                     pgraphics->fill_rectangle(
                                       rectangle,
-                                      crMoveableBorder,
-                                      127);
+                                      crMoveableBorder &
+                                      127_opacity);
                }
                else
                {

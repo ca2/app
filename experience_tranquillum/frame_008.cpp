@@ -60,7 +60,7 @@
             {
                e_hittest etest = hittest_client;
                {
-                  //      m_pframewindow->GetEventWindow()->_001ScreenToClient(point);
+                  //      m_pframewindow->GetEventWindow()->screen_to_client(point);
                   ::rectangle_i32 rectEvent;
                   m_pframewindow->get_window_rect(rectEvent);
                   ::rectangle_i32 rectangle;

@@ -217,7 +217,7 @@ namespace user
    void menu_view::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
    {
 
-      ::user::impact::process(psubject);
+      ::user::impact::on_subject(psubject, pcontext);
 
       if (psubject->id() == id_after_change_text)
       {

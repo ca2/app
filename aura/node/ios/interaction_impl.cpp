@@ -1604,7 +1604,7 @@ namespace ios
 //       {
 //       ::rectangle_i32 rectangle;
 //       ::get_window_rect(hWndChild, &rectangle);
-//       _001ScreenToClient(&rectangle);
+//       screen_to_client(&rectangle);
 //       ::set_window_position(hWndChild, nullptr,
 //       rectangle.left+xAmount, rectangle.top+yAmount, 0, 0,
 //       SWP_NOSIZE|SWP_NOACTIVATE|SWP_NOZORDER);
@@ -2286,7 +2286,7 @@ namespace ios
 //      
 //      rectPaint = rectUpdate;
 //      
-//      _001ScreenToClient(rectPaint);
+//      screen_to_client(rectPaint);
 //      
 //      user::oswindow_array wndaApp;
 //
@@ -2597,7 +2597,7 @@ namespace ios
 //   }
 
 
-//   bool interaction_impl::_001ClientToScreen(RECTANGLE_I32 * lprect)
+//   bool interaction_impl::client_to_screen(RECTANGLE_I32 * lprect)
 //   {
 //
 //      ::rectangle_i64 rectWindow;
@@ -2619,7 +2619,7 @@ namespace ios
 //   }
 
 
-//   bool interaction_impl::_001ClientToScreen(POINT_I32 * lppoint)
+//   bool interaction_impl::client_to_screen(POINT_I32 * lppoint)
 //   {
 //
 //      ::rectangle_i64 rectWindow;
@@ -2639,7 +2639,7 @@ namespace ios
 //   }
 //
 //
-//   bool interaction_impl::_001ClientToScreen(RECTANGLE_I64 * lprect)
+//   bool interaction_impl::client_to_screen(RECTANGLE_I64 * lprect)
 //   {
 //
 //      ::rectangle_i32 rectWindow;
@@ -2661,7 +2661,7 @@ namespace ios
 //   }
 
 
-//   bool interaction_impl::_001ClientToScreen(POINT_I64 * lppoint)
+//   bool interaction_impl::client_to_screen(POINT_I64 * lppoint)
 //   {
 //
 //      ::rectangle_i64 rectWindow;
@@ -2680,7 +2680,7 @@ namespace ios
 //   }
 //
 //
-//   bool interaction_impl::_001ScreenToClient(RECTANGLE_I32 * lprect)
+//   bool interaction_impl::screen_to_client(RECTANGLE_I32 * lprect)
 //   {
 //
 //      ::rectangle_i64 rectWindow;
@@ -2702,7 +2702,7 @@ namespace ios
 //   }
 
 
-//   bool interaction_impl::_001ScreenToClient(POINT_I32 * lppoint)
+//   bool interaction_impl::screen_to_client(POINT_I32 * lppoint)
 //   {
 //
 //      ::rectangle_i64 rectWindow;
@@ -2723,7 +2723,7 @@ namespace ios
 //   }
 //
 //
-//   bool interaction_impl::_001ScreenToClient(RECTANGLE_I64 * lprect)
+//   bool interaction_impl::screen_to_client(RECTANGLE_I64 * lprect)
 //   {
 //
 //      ::rectangle_i64 rectWindow;
@@ -2745,7 +2745,7 @@ namespace ios
 //
 //   }
 //
-//   bool interaction_impl::_001ScreenToClient(POINT_I64 * lppoint)
+//   bool interaction_impl::screen_to_client(POINT_I64 * lppoint)
 //   {
 //
 //      ::rectangle_i64 rectWindow;

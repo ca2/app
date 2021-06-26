@@ -37,8 +37,8 @@ int_bool IsChild(oswindow oswindowParent, oswindow oswindowcandidateChildOrDesce
 int_bool show_window(oswindow oswindow, i32 iShow);
 ::i32 GetWindowLongA(oswindow oswindow, int nIndex);
 ::i32 SetWindowLongA(oswindow oswindow, int nIndex, ::i32 l);
-int_bool _001ClientToScreen(oswindow oswindow, POINT32 * lppoint);
-int_bool _001ScreenToClient(oswindow oswindow, POINT32 * lppoint);
+int_bool client_to_screen(oswindow oswindow, POINT32 * lppoint);
+int_bool screen_to_client(oswindow oswindow, POINT32 * lppoint);
 int_bool IsIconic(oswindow oswindow);
 int_bool IsWindowVisible(oswindow oswindow);
 #define GetWindowLong GetWindowLongA

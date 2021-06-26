@@ -1,27 +1,8 @@
 cmake_minimum_required(VERSION 3.17)
-project(draw2d_gdiplus CXX)
-
-set(CMAKE_CXX_STANDARD 14)
-set(CMAKE_CXX_EXTENSIONS OFF)
+project(tts_sapi CXX)
 
 
-message(STATUS "CMAKE_SYSTEM_NAME is ${CMAKE_SYSTEM_NAME}")
-
-
-if(${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
-    set(LINUX TRUE)
-    set(PLATFORM_NAME "linux")
-    include(FindPkgConfig)
-elseif(WIN32)
-    set(PLATFORM_NAME "windows")
-endif()
-
-
-set(LIBRARY_OUTPUT_PATH ${CMAKE_CURRENT_SOURCE_DIR}/../../../time-${PLATFORM_NAME}/cmake)
-set(EXECUTABLE_OUTPUT_PATH ${CMAKE_CURRENT_SOURCE_DIR}/../../../time-${PLATFORM_NAME}/cmake)
-
-
-list(APPEND draw2d_gdiplus_source
+list(APPEND library_source
         _.cpp
         _.h
         bitmap.cpp
@@ -57,46 +38,30 @@ else()
 endif()
 
 
-add_library(draw2d_gdiplus SHARED ${draw2d_gdiplus_source})
+add_library(tts_sapi SHARED ${library_source})
 
-target_precompile_headers(draw2d_gdiplus PRIVATE framework.h)
+target_precompile_headers(tts_sapi PRIVATE framework.h)
 
-set_target_properties(draw2d_gdiplus PROPERTIES LINKER_LANGUAGE CXX)
+set_target_properties(tts_sapi PROPERTIES LINKER_LANGUAGE CXX)
 
 if (MSVC)
-    target_compile_options(draw2d_gdiplus PRIVATE "/MD$<$<CONFIG:Debug>:d>")
-    target_link_options(draw2d_gdiplus PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
-    target_link_options(draw2d_gdiplus PRIVATE "/IMPLIB:${LIBRARY_OUTPUT_PATH}/draw2d_gdiplus.lib")
-    target_link_options(draw2d_gdiplus PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/draw2d_gdiplus.def")
-    target_link_libraries(draw2d_gdiplus PRIVATE acme apex aqua aura Gdiplus)
+    target_compile_options(tts_sapi PRIVATE "/MD$<$<CONFIG:Debug>:d>")
+    target_link_options(tts_sapi PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
+    target_link_options(tts_sapi PRIVATE "/IMPLIB:${LIBRARY_OUTPUT_PATH}/tts_sapi.lib")
+    target_link_options(tts_sapi PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/tts_sapi.def")
+    target_link_libraries(tts_sapi PRIVATE acme apex aqua aura Gdiplus)
 elseif(LINUX)
-    target_compile_options(draw2d_gdiplus PRIVATE ${PKGCONFIG_CFLAGS})
-    target_link_options(draw2d_gdiplus PRIVATE -Wl,-rpath=\$ORIGIN)
-    target_link_libraries(draw2d_gdiplus PRIVATE ${PKGCONFIG_LIBRARIES})
-    target_link_options(draw2d_gdiplus PRIVATE -Wl,-z,defs)
+    target_compile_options(tts_sapi PRIVATE ${PKGCONFIG_CFLAGS})
+    target_link_options(tts_sapi PRIVATE -Wl,-rpath=\$ORIGIN)
+    target_link_libraries(tts_sapi PRIVATE ${PKGCONFIG_LIBRARIES})
+    target_link_options(tts_sapi PRIVATE -Wl,-z,defs)
     message("PKGCONFIG_LIBRARIES is " ${PKGCONFIG_LIBRARIES})
 endif()
 
-target_link_directories(draw2d_gdiplus PRIVATE ${LIBRARY_OUTPUT_PATH})
-target_link_directories(draw2d_gdiplus PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/storage-${PLATFORM_NAME}/library/x64/basis)
-target_link_directories(draw2d_gdiplus PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/storage-${PLATFORM_NAME}/third/library/x64/basis)
+
+target_include_directories(tts_sapi PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../..)
+target_include_directories(tts_sapi PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/..)
+target_include_directories(tts_sapi PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 
 
-target_include_directories(draw2d_gdiplus PRIVATE $ENV{HOME}/__config)
-target_include_directories(draw2d_gdiplus PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../..)
-target_include_directories(draw2d_gdiplus PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/..)
-target_include_directories(draw2d_gdiplus PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../source)
-target_include_directories(draw2d_gdiplus PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../source/app)
-target_include_directories(draw2d_gdiplus PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../source/app/_include)
-target_include_directories(draw2d_gdiplus PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../source/include)
-target_include_directories(draw2d_gdiplus PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/platform-${PLATFORM_NAME})
-target_include_directories(draw2d_gdiplus PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/platform-${PLATFORM_NAME}/_include)
-target_include_directories(draw2d_gdiplus PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/third-${PLATFORM_NAME}/include)
-target_include_directories(draw2d_gdiplus PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/third-${PLATFORM_NAME}/third/include)
-target_include_directories(draw2d_gdiplus PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/third-${PLATFORM_NAME}/third/include/include)
-target_include_directories(draw2d_gdiplus PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
-
-
-target_compile_definitions(draw2d_gdiplus PRIVATE _DRAW2D_GDIPLUS_LIBRARY)
-target_compile_definitions(draw2d_gdiplus PRIVATE UNICODE)
-target_compile_definitions(draw2d_gdiplus PRIVATE _UNICODE)
+target_compile_definitions(tts_sapi PRIVATE _TTS_SAPI_LIBRARY)

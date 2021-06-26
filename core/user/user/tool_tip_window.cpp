@@ -51,7 +51,7 @@ namespace user
             {
                m_point = pointCursor;
                m_iEventTool = ptool->BaseToolTipGetIndex();
-               //ptool->BaseToolTipGetWnd()->_001ScreenToClient(&m_point);
+               //ptool->BaseToolTipGetWnd()->screen_to_client(&m_point);
                KillTimer(e_timer_show_delayed);
                HideTip();
                SetTimer(e_timer_show_delayed, 500, nullptr);
@@ -141,7 +141,7 @@ namespace user
          }
          ::rectangle_i32 rectToolScreen;
          ptool->BaseToolTipGetRect(rectToolScreen);
-         ptool->BaseToolTipGetWnd()->_001ClientToScreen(rectToolScreen);
+         ptool->BaseToolTipGetWnd()->client_to_screen(rectToolScreen);
          CalcRect(pgraphics, rectangle, rectToolScreen, m_strTip);
 
          ::rectangle_i32 rectScreen;
@@ -496,7 +496,7 @@ namespace user
       get_client_rect(rectangleClient);
       ::rectangle_i32 rectWindow;
       get_window_rect(rectWindow);
-      _001ScreenToClient(rectWindow);
+      screen_to_client(rectWindow);
       rectangleClient.offset(-rectWindow.top_left());
       const ::point_i32 & pointa[6];
 

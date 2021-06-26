@@ -59,7 +59,7 @@ namespace experience
 
       auto pointMove = m_pointWindowOrigin + (pmouse->m_point - (m_pointWindowOrigin + dock_origin() + m_pointCursorDockOrigin));
 
-      m_pframewindow->_001ScreenToClient(pointDock);
+      m_pframewindow->screen_to_client(pointDock);
 
       point = __point(pointCursor - pointDock);
 
@@ -178,7 +178,7 @@ namespace experience
 
       enum_display edisplayOld = m_pframewindow->layout().sketch().display();
 
-      ::rectangle_i32 rectScreenOld = m_pframewindow->layout().sketch().screen_rect();
+      ::rectangle_i32 rectScreenOld = m_pframewindow->screen_rect();
 
       if (rectCenter.contains_x(pointCursor.x))
       {
@@ -370,11 +370,11 @@ namespace experience
 
       auto pointCursor = pmouse->m_point;
 
-      auto rectWindow = m_pframewindow->layout().sketch().screen_rect();
+      auto rectWindow = m_pframewindow->screen_rect();
 
       auto pointDockOrigin = pointCursor;
 
-      pbutton->ScreenToClient(pointDockOrigin);
+      pbutton->screen_to_client(pointDockOrigin);
 
       m_pointCursorDockOrigin = pointDockOrigin;
 

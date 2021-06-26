@@ -105,6 +105,8 @@ namespace acme
       
       virtual ::e_status _will_finish_launching();
 
+      virtual ::e_status reboot();
+
 
       virtual void install_crash_dump_reporting(const string& strModuleNameWithTheExeExtension);
 

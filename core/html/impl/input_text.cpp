@@ -157,7 +157,7 @@ namespace html
 
          //m_pedit->get_window_rect(rectWindow);
 
-         //m_pedit->get_wnd()->_001ScreenToClient(rectWindow);
+         //m_pedit->get_wnd()->screen_to_client(rectWindow);
 
          //::draw2d::savedc savedc(pgraphics);
 

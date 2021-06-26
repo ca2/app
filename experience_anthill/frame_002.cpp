@@ -65,7 +65,7 @@ namespace experience
             {
                e_hittest etest = hittest_client;
                {
-                  //      m_pframewindow->GetEventWindow()->_001ScreenToClient(point);
+                  //      m_pframewindow->GetEventWindow()->screen_to_client(point);
                   ::rectangle_i32 rectEvent;
                   m_pframewindow->get_window_rect(rectEvent);
                   ::rectangle_i32 rectangle;
@@ -255,10 +255,9 @@ SizingNone:;
                   ::rectangle_i32 rectangle;
                   GetBorderRect(rectangleClient, rectangle, eside);
 
-                  pgraphics->color_blend(
+                  pgraphics->fill_rectangle(
                                       rectangle,
-                                      colorMoveableBorder,
-                                      127);
+                                      colorMoveableBorder & 127_opacity );
                }
                else if(estyle == ::user::StyleLightBlue)
                {
@@ -277,10 +276,9 @@ SizingNone:;
                   ::rectangle_i32 rectangle;
                   GetBorderRect(rectangleClient, rectangle, eside);
 
-                  pgraphics->color_blend(
+                  pgraphics->fill_rectangle(
                                       rectangle,
-                                      colorMoveableBorder,
-                                      127);
+                                      colorMoveableBorder & 127_opacity);
                }
                else
                {
@@ -288,10 +286,10 @@ SizingNone:;
                   rectangleClient.deflate(1, 1);
                   GetBorderRect(rectangleClient, rectangle, eside);
 
-                  pgraphics->color_blend(
+                  pgraphics->fill_rectangle(
                                       rectangle,
-                                      colorMoveableBorder,
-                                      200);
+                                      colorMoveableBorder &
+                                      200_opacity);
 
                   GetBorderRect(rectangleClient, rectangle, eside);
 

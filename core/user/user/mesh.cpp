@@ -598,11 +598,17 @@ namespace user
          }
          else
          {
+            
             color32_t crTranslucid = rgb(0,0,0);
+            
             ::rectangle_i32 rectangle = pdrawitem->m_rectItem;
+         
             rectangle.inflate(8,0,8,-1);
-            pdrawitem->m_pgraphics->color_blend(rectangle,crTranslucid,127);
+            
+            pdrawitem->m_pgraphics->fill_rectangle(rectangle, ::color::color(crTranslucid, 127));
+            
          }
+         
       }
 
       pdrawitem->update_item_color();
@@ -2519,7 +2525,7 @@ namespace user
 
       ::point_i32 point = pmouse->m_point;
 
-      _001ScreenToClient(point);
+      screen_to_client(point);
 
       pmouse->previous(); // give chance to child control
 
@@ -2635,7 +2641,7 @@ namespace user
 
       ::point_i32 point = pmouse->m_point;
 
-      _001ScreenToClient(point);
+      screen_to_client(point);
 
       if(dynamic_cast < list * >(this) == nullptr)
       {
@@ -2850,7 +2856,7 @@ namespace user
 
       ::point_i32 point = pmouse->m_point;
 
-      _001ScreenToClient(point);
+      screen_to_client(point);
 
       auto psession = get_session();
 
@@ -2953,7 +2959,7 @@ namespace user
 
       ::point_i32 point = pmouse->m_point;
 
-      _001ScreenToClient(point);
+      screen_to_client(point);
 
       if(!has_keyboard_focus())
       {
@@ -3004,7 +3010,7 @@ namespace user
 
       ::point_i32 point = pmouse->m_point;
 
-      _001ScreenToClient(point);
+      screen_to_client(point);
 
       if (!has_keyboard_focus())
       {
@@ -3376,7 +3382,7 @@ namespace user
 
       auto pointCursor = pwindowing->get_cursor_position();
 
-      _001ScreenToClient(pointCursor);
+      screen_to_client(pointCursor);
 
       try
       {
@@ -4846,7 +4852,7 @@ namespace user
       
       auto pointClient = point;
 
-      _001ScreenToClient(pointClient);
+      screen_to_client(pointClient);
 
       bool bAnyHoverChange = false;
 
@@ -5367,25 +5373,25 @@ namespace user
    }
 
 
-   void mesh::set_current_item(const ::user::item & item, const ::action_context & context)
+   ::e_status mesh::set_current_item(const ::user::item & item, const ::action_context & context)
    {
 
       m_rangeSelection.clear();
 
-      if (!item.is_set())
+      if (item.is_set())
       {
 
-         return;
+         item_range itemrange;
+
+         itemrange.set_lower_bound(item);
+
+         itemrange.set_upper_bound(item);
+
+         _001AddSelection(itemrange);
 
       }
 
-      item_range itemrange;
-
-      itemrange.set_lower_bound(item);
-
-      itemrange.set_upper_bound(item);
-
-      _001AddSelection(itemrange);
+      return ::success;
 
    }
 

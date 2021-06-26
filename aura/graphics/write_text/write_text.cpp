@@ -38,7 +38,9 @@ namespace write_text
 
          auto psystem = m_psystem->m_paurasystem;
 
-         psystem->process_subject(id_font_enumeration);
+         auto psubject = psystem->subject(id_font_enumeration);
+
+         psystem->handle_subject(psubject);
 
       }
 

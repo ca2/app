@@ -261,6 +261,17 @@ public:
 
    inline void set_char_at_grow(strsize iChar, char ch);
 
+   inline byte * find(const block& block, ::index iStart = 0) const;
+   inline ::index find_index(const block& block, ::index iStart = 0) const;
+   inline byte* reverse_find(const block& block, ::index iStart = 0) const;
+   inline ::index reverse_find_index(const block& block, ::index iStart = 0) const;
+   inline byte* reverse_find_byte_not_in_block(const block& block, ::index iStart = 0) const;
+   inline ::index reverse_find_index_of_byte_not_in_block(const block& block, ::index iStart = 0) const;
+
+   byte * find_line_prefix(const ::block& blockPrefix, ::index iStart = 0);
+   ::index find_line_prefix_index(const ::block& blockPrefix, ::index iStart = 0);
+   ::e_status patch_line_suffix(const ::block & blockPrefix, const block& blockSuffix, ::index iStart = 0);
+
 
 #if defined(_UWP) && defined(__cplusplus_winrt)
 
@@ -390,9 +401,6 @@ inline void memory_base::set_char_at_grow(strsize iChar, char ch)
    ((char*)get_data())[iChar] = ch;
 
 }
-
-
-
 
 
 

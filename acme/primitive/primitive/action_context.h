@@ -9,8 +9,11 @@ class CLASS_DECL_ACME action_context :
 public:
 
 
-   e_source                            m_esource;
-   __pointer_array(::matter)           m_objecta;
+   bool                                   m_bRet : 1;
+   e_source                               m_esource;
+   __pointer_array(::matter)        m_objecta;
+   __pointer(::acme::message)       m_pmessage;
+
 
 
    action_context() { }

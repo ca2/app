@@ -41,20 +41,16 @@ namespace write_text
    }
 
 
-   void font_enumeration::on_subject(::subject::subject * psubject)
+   void font_enumeration::subject_handler(::subject::subject * psubject)
    {
 
-      if (psubject->m_esubject == e_subject_prepare)
+      if (psubject->id() == id_font_enumeration)
       {
 
-         if (psubject->id() == id_font_enumeration)
-         {
-
-            check_need_update(psubject);
-
-         }
+         check_need_update(psubject);
 
       }
+
 
    }
 
@@ -70,7 +66,7 @@ namespace write_text
          auto psubject = psystem->subject(id_os_font_change);
 
          update();
-         
+
          psubject->set_modified();
 
       }
@@ -221,7 +217,7 @@ namespace write_text
 
       psubject->set_modified();
 
-      psubject->m_esubject = e_subject_deliver;
+      //psubject->m_esubject = e_subject_handle;
 
    }
 

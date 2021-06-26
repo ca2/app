@@ -32,6 +32,11 @@ public:
    template < typename TYPE >
    inline bool is() const { return cast < TYPE >(); }
 
+   
+   
+   // <3TBS_!! handle -> command_handler <3TBS_(I need to suck you)!!
+   virtual ::e_status command_handler(const ::id & id);
+
 
 
 //   __transport(task) branch(

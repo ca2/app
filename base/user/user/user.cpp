@@ -1007,7 +1007,7 @@ namespace base
 
       ::point_i32 point = pmouse->m_point;
 
-      pinteraction->_001ScreenToClient(point);
+      pinteraction->screen_to_client(point);
 
       return track_popup_menu(pinteraction, pitem, iFlags, point);
 
@@ -1021,7 +1021,7 @@ namespace base
 
       auto point = pmouse->m_point;
 
-      pinteraction->_001ScreenToClient(point);
+      pinteraction->screen_to_client(point);
 
       return track_popup_xml_menu(pinteraction, strXml, iFlags, point);
 

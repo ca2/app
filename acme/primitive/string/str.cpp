@@ -3589,7 +3589,11 @@ skip:
 
       string strResult;
 
-      strsize iFind = str.find('\"');
+      strsize iFind1 = str.find('\"');
+
+      strsize iFind2 = str.find('\'');
+
+      strsize iFind = minimum_non_negative(iFind1, iFind2);
 
       if(iFind < 0)
       {
@@ -3599,6 +3603,8 @@ skip:
       }
       else
       {
+
+         char chSeparator = str[iFind];
 
          strsize i = 0;
 
@@ -3627,7 +3633,7 @@ skip:
 
             iFind++;
 
-            strsize iFind2 = str.find('\"',iFind);
+            strsize iFind2 = str.find(chSeparator,iFind);
 
             if(iFind2 < 0)
             {

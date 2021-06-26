@@ -367,7 +367,7 @@ namespace user
       //   {
       //      pdrawitem->m_rectangleClient = pdrawitem.m_rectSubItem;
       //      pdrawitem->m_rectangleWindow = pdrawitem.m_rectangleClient;
-      //      _001ClientToScreen(pdrawitem->m_rectangleWindow);
+      //      client_to_screen(pdrawitem->m_rectangleWindow);
       //      control_keep controlkeep(this,pdrawitem->m_iItem,pdrawitem->m_iSubItem);
       //      pinteraction->_003CallCustomDraw(pdrawitem->m_pgraphics,pdrawitem);
       //   }
@@ -435,7 +435,7 @@ namespace user
 //      item.m_iListItem = -1;
 //      //_001GetElementRect(&item, ::user::mesh::element_sub_item);
 //      rectControl = item.m_rectSubItem;
-//      _001ClientToScreen(rectControl);
+//      client_to_screen(rectControl);
 //      rectangle_i64 rectForm;
 //      get_window_rect(rectForm);
 //      rectangle_i64 rectangleClient;
@@ -483,7 +483,7 @@ namespace user
 
    //   //::point_i32 point = pmouse->m_point;
 
-   //   //_001ScreenToClient(point);
+   //   //screen_to_client(point);
 
    //   //if(pmouse->m_id == e_message_left_button_down)
    //   //{
@@ -645,7 +645,7 @@ namespace user
    {
       control_get_client_rect(pinteraction,prectangle);
 
-      _001ClientToScreen(prectangle);
+      client_to_screen(prectangle);
 
    }
 

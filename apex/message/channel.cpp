@@ -549,7 +549,13 @@ bool channel::_add_handler(const ::id & id, ::object * preceiver, void * phandle
 void channel::on_property_changed(property * pproperty, const ::action_context& actioncontext)
 {
 
-   process_subject(pproperty->m_id, actioncontext);
+   auto psubject = subject(pproperty->m_id);
+
+   psubject->m_actioncontext = actioncontext;
+
+   handle_subject(psubject);
+
+   //process_subject(pproperty->m_id, actioncontext);
 
 }
 

@@ -577,7 +577,7 @@ bool oswindow_data::show_window(i32 nCmdShow)
 }
 
 
-bool oswindow_data::_001ClientToScreen(POINT_I32 * pp)
+bool oswindow_data::client_to_screen(POINT_I32 * pp)
 {
 
    return true;
@@ -585,7 +585,7 @@ bool oswindow_data::_001ClientToScreen(POINT_I32 * pp)
 }
 
 
-bool oswindow_data::_001ScreenToClient(POINT_I32 * pp)
+bool oswindow_data::screen_to_client(POINT_I32 * pp)
 {
 
    return true;

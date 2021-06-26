@@ -251,9 +251,9 @@ public:
    bool show_window(int iShow);
    LONG_PTR get_window_long_ptr(i32 nIndex);
    LONG_PTR set_window_long_ptr(i32 nIndex, LONG_PTR l);
-   bool _001ClientToScreen(POINT32 * ppoint);
+   bool client_to_screen(POINT32 * ppoint);
 
-   bool _001ScreenToClient(POINT32 * ppoint);
+   bool screen_to_client(POINT32 * ppoint);
 
 
    Atom intern_atom(const char * pszAtomName, bool bCreate);

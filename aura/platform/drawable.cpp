@@ -92,7 +92,7 @@ namespace aura
 
    //   __copy(prectangle, get_window_rect64());
 
-   //   _001ScreenToClient(prectangle);
+   //   screen_to_client(prectangle);
 
    //   return true;
 
@@ -104,7 +104,7 @@ namespace aura
 
    //   __copy(prectangle, get_client_rect64());
 
-   //   _001ClientToScreen(prectangle);
+   //   client_to_screen(prectangle);
 
    //   return true;
 

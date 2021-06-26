@@ -50,7 +50,7 @@ bool oswindow_data::show_window(int iShow)
 }
 
 
-bool oswindow_data::_001ClientToScreen(POINT32 *lppoint)
+bool oswindow_data::client_to_screen(POINT32 *lppoint)
 {
 
    RECT32 rectangle;
@@ -66,7 +66,7 @@ bool oswindow_data::_001ClientToScreen(POINT32 *lppoint)
 }
 
 
-bool oswindow_data::_001ScreenToClient(POINT32 *lppoint)
+bool oswindow_data::screen_to_client(POINT32 *lppoint)
 {
    
    RECT32 rectangle;

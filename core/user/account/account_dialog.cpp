@@ -295,7 +295,7 @@ namespace account
       if (puiParent != nullptr)
       {
 
-         puiParent->_001ScreenToClient(rectFontopus);
+         puiParent->screen_to_client(rectFontopus);
 
       }
 
@@ -528,7 +528,7 @@ namespace account
 
       m_pointLButtonDownPos = m_pointLButtonDown;
 
-      _001ScreenToClient(m_pointLButtonDownPos);
+      screen_to_client(m_pointLButtonDownPos);
 
       set_mouse_capture();
 

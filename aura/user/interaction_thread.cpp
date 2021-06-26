@@ -410,7 +410,6 @@ namespace user
 
          }
 
-
          if(m_message.m_id == e_message_left_button_down)
          {
 
@@ -895,10 +894,7 @@ namespace user
 
                break;
 
-
-
             }
-
 
          }
 

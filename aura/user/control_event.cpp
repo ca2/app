@@ -13,8 +13,6 @@ namespace user
 
       m_bRet         = false;
 
-      m_pmessage     = nullptr;
-
       m_puie         = nullptr;
 
       m_ptab         = nullptr;

@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.17)
 project(experience_core CXX)
 
 
-list(APPEND experience_core_source
+list(APPEND library_source
         _.cpp
         _.h
         #aaa_want_to_erase_experience_core_style.cpp
@@ -36,7 +36,7 @@ list(APPEND experience_core_source
         style.h)
 
 
-add_library(experience_core SHARED ${experience_core_source})
+add_library(experience_core SHARED ${library_source})
 
 
 target_precompile_headers(experience_core PRIVATE framework.h)

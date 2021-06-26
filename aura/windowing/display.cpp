@@ -1386,7 +1386,7 @@ namespace windowing
 
          ::rectangle_i32 rectangle;
 
-         pinteraction->layout().sketch().screen_rect(rectangle);
+         rectangle = pinteraction->screen_rect();
 
          return get_best_workspace(nullptr, rectangle);
 

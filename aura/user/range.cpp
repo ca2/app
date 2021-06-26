@@ -341,6 +341,36 @@ namespace user
       return *this;
    }
 
+   ::index range::get_current_item()
+   {
+
+      if(m_itemrangea.get_count() != 1)
+      {
+
+         return -1;
+
+      }
+
+      auto & itemrange = m_itemrangea[0];
+
+      if(itemrange.m_iLowerBound != itemrange.m_iUpperBound)
+      {
+
+         return -1;
+
+      }
+
+      if(itemrange.m_iLowerBound < 0)
+      {
+
+         return -1;
+
+      }
+
+      return itemrange.m_iLowerBound;
+
+   }
+
 
    ::count range::get_item_count() const
    {

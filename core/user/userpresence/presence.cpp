@@ -69,12 +69,12 @@ namespace userpresence
 
       string strHost = pcontext->m_papexcontext->file().as_string(pcontext->m_papexcontext->dir().appdata() / "database\\text\\last_good_known_account_com.txt");
       string_array straRequestingServer;
-      straRequestingServer.add("api.ca2.cc");
-      straRequestingServer.add("eu-api.ca2.cc");
-      straRequestingServer.add("asia-api.ca2.cc");
+      straRequestingServer.add("api.ca2.software");
+      straRequestingServer.add("eu-api.ca2.software");
+      straRequestingServer.add("asia-api.ca2.software");
       if(!straRequestingServer.contains_ci(strHost))
       {
-         strHost = "api.ca2.cc";
+         strHost = "api.ca2.software";
       }
 
       string strUrl = "https://" + strHost + "/i2com/pulse_user_presence";

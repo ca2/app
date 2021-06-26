@@ -514,7 +514,7 @@ namespace user
          get_client_rect(rectangleClient);
          ::rectangle_i32 rectWindow;
          get_window_rect(rectWindow);
-         _001ScreenToClient(rectWindow);
+         screen_to_client(rectWindow);
          rectangleClient.offset(-rectWindow.left, -rectWindow.top);
          spgraphics->ExcludeClipRect(rectangleClient);
 
@@ -538,7 +538,7 @@ namespace user
       get_client_rect(rectangleClient);
       ::rectangle_i32 rectWindow;
       get_window_rect(rectWindow);
-      _001ScreenToClient(rectWindow);
+      screen_to_client(rectWindow);
       rectangleClient.offset(-rectWindow.left, -rectWindow.top);
       
       //pgraphics->exclude_clip();
@@ -601,7 +601,7 @@ namespace user
       {
          // start the drag
          ASSERT(m_pDockContext != nullptr);
-         //_001ClientToScreen(&pmouse->m_point);
+         //client_to_screen(&pmouse->m_point);
          //      m_pDockContext->StartDrag(pmouse->m_point);
       }
       else
@@ -768,7 +768,9 @@ namespace user
 
       u32 uStyle = RecalcDelayShow(playout);
 
-      if (is_this_visible() && (uStyle & CBRS_ALIGN_ANY) != 0)
+      bool bIsThisVisible = is_this_visible(e_layout_sketch);
+
+      if (bIsThisVisible && (uStyle & CBRS_ALIGN_ANY) != 0)
       {
          
          // align the control bar

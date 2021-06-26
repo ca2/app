@@ -1864,6 +1864,140 @@ memsize memory_base::length() const
 }
 
 
+byte* memory_base::find_line_prefix(const ::block& blockPrefix, ::index iStart)
+{
+
+   auto iFind = find_line_prefix_index(blockPrefix, iStart);
+
+   if (iFind < 0)
+   {
+
+      return nullptr;
+
+   }
+
+   return get_data() + iFind;
+
+}
+
+
+::index memory_base::find_line_prefix_index(const ::block& blockPrefix, ::index iStart)
+{
+
+   if (is_empty())
+   {
+
+      return -1;
+
+   }
+
+   ::index iFind;
+
+   ::count cFindLength;
+
+   if (memcmp(get_data() + iStart, blockPrefix.get_data(), blockPrefix.get_size()) == 0)
+   {
+
+      iFind = iStart;
+
+      cFindLength = blockPrefix.get_size();
+
+   }
+   else
+   {
+
+      memory memoryFind;
+
+      memoryFind.set_size(blockPrefix.get_size() + 1);
+
+      memoryFind[0] = '\n';
+
+      memcpy(memoryFind.get_data() + 1, blockPrefix.get_data(), blockPrefix.get_size());
+
+      iFind = find_index(memoryFind, iStart + 1);
+
+      if (iFind < 0)
+      {
+
+         return -1;
+
+      }
+
+      cFindLength = memoryFind.get_length();
+
+   }
+
+   return iFind + cFindLength;
+
+}
+
+
+::e_status memory_base::patch_line_suffix(const ::block& blockPrefix, const block& blockSuffix, ::index iStart )
+{
+
+   iStart = find_line_prefix_index(blockPrefix, iStart);
+
+   if (iStart < 0)
+   {
+
+      return error_not_found;
+
+   }
+
+   auto iFindEol = find_index('\n', iStart);
+
+   if (iFindEol < 0)
+   {
+
+      iFindEol = get_size();
+
+   }
+
+   auto iOldLen = iFindEol - iStart;
+
+   auto iNewLen = blockSuffix.get_size();
+
+   auto iOldSize = get_size();
+
+   auto iNewSize = iOldSize - iOldLen + iNewLen;
+
+   set_size(iNewSize);
+
+   auto pdata = (byte*)get_data();
+
+   if (iNewLen != iOldLen)
+   {
+
+      auto ptarget = pdata + iStart + iNewLen;
+
+      auto psource = pdata + iStart + iOldLen;
+
+      auto c = abs(iNewLen - iOldLen);
+
+      memmove(ptarget, psource, iOldSize - iStart - iNewLen);
+
+   }
+
+   if (iNewLen > 0)
+   {
+
+      auto ptarget = pdata + iStart;
+
+      auto psource = (const char *) blockSuffix.get_data();
+
+      auto c = blockSuffix.get_size();
+
+      memcpy(ptarget, psource, c);
+
+      output_debug_string(" ");
+
+   }
+
+   return ::success;
+
+}
+
+
 namespace papaya
 {
 

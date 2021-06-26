@@ -2,20 +2,7 @@ cmake_minimum_required(VERSION 3.17)
 project(experience_lite CXX)
 
 
-add_compile_options("$<$<CONFIG:DEBUG>:-DDEBUG>")
-
-
-if(LINUX)
-elseif(WIN32)
-elseif(UWP)
-endif()
-
-
-set(LIBRARY_OUTPUT_PATH ${CMAKE_CURRENT_SOURCE_DIR}/../../../time-${PLATFORM_NAME}/cmake)
-set(EXECUTABLE_OUTPUT_PATH ${CMAKE_CURRENT_SOURCE_DIR}/../../../time-${PLATFORM_NAME}/cmake)
-
-
-list(APPEND experience_lite_source
+list(APPEND library_source
         _.cpp
         _.h
         #aaa_want_to_erase_experience_lite_style.cpp
@@ -60,7 +47,7 @@ else()
 endif()
 
 
-add_library(experience_lite SHARED ${experience_lite_source})
+add_library(experience_lite SHARED ${library_source})
 
 
 target_precompile_headers(experience_lite PRIVATE framework.h)
@@ -85,28 +72,13 @@ elseif(LINUX)
 endif()
 
 
-target_link_directories(experience_lite PRIVATE ${LIBRARY_OUTPUT_PATH})
-target_link_directories(experience_lite PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/storage-${PLATFORM_NAME}/library/x64/basis)
-target_link_directories(experience_lite PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/storage-${PLATFORM_NAME}/third/library/x64/basis)
 
-
-target_include_directories(experience_lite PRIVATE .)
+target_include_directories(experience_lite PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../..)
+target_include_directories(experience_lite PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/..)
 target_include_directories(experience_lite PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
-target_include_directories(experience_lite PRIVATE $ENV{HOME}/__config)
-target_include_directories(experience_lite PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../source)
-target_include_directories(experience_lite PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive)
-target_include_directories(experience_lite PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../source)
-target_include_directories(experience_lite PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../source/app)
-target_include_directories(experience_lite PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../source/app/_include)
-target_include_directories(experience_lite PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../source/include)
-target_include_directories(experience_lite PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/platform-${PLATFORM_NAME})
-target_include_directories(experience_lite PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/platform-${PLATFORM_NAME}/_include)
-target_include_directories(experience_lite PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/third-${PLATFORM_NAME}/include)
-target_include_directories(experience_lite PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/third-${PLATFORM_NAME}/third/include)
-target_include_directories(experience_lite PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/third-${PLATFORM_NAME}/third/include/include)
 
 
-target_compile_definitions(experience_lite PRIVATE _APP_EXPERIENCE_CORE_LIBRARY)
+target_compile_definitions(experience_lite PRIVATE _APP_EXPERIENCE_LITE_LIBRARY)
 target_compile_definitions(experience_lite PRIVATE UNICODE)
 target_compile_definitions(experience_lite PRIVATE _UNICODE)
 

@@ -160,14 +160,17 @@ namespace filemanager
 
    }
 
+
    void folder_selection_list_view::browse_sync(const ::action_context & context)
    {
 
-      auto psubject = fork_subject(id_synchronize_folder_selection);
+      auto pdocument = get_document();
+
+      auto psubject = pdocument->subject(id_synchronize_folder_selection);
 
       psubject->m_actioncontext = context + ::e_source_selection;
 
-      get_document()->update_all_views(psubject);
+      pdocument->update_all_views(psubject);
 
    }
 

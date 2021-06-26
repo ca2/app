@@ -1044,12 +1044,9 @@ namespace user
 
       }
 
-      if (puiParent == nullptr)
-      {
+      m_bLockSketchToDesign = true;
 
-         m_bLayoutEnable = false;
-
-      }
+      layout().sketch().display() = e_display_none;
 
       output_debug_string("\nm_bLayoutEnable false");
 
@@ -1192,7 +1189,7 @@ namespace user
       if (bMakeVisible)
       {
 
-         m_bLayoutEnable = true;
+         m_bLockSketchToDesign = false;
 
          // send initial update to all views (and other controls) in the frame
          send_message_to_descendants(e_message_system_update, INITIAL_UPDATE, (lparam)0, true, true);
@@ -1218,11 +1215,16 @@ namespace user
 
       }
 
-      m_bLayoutEnable = true;
+      m_bLockSketchToDesign = false;
 
       // update frame counts and frame title (may already have been visible)
       if (pDoc != nullptr)
+      {
+
          pDoc->update_frame_counts();
+
+      }
+
       on_update_frame_title(true);
 
       //if (get_parent() != nullptr
@@ -2615,133 +2617,59 @@ namespace user
 
       }
 
-      // =set_window_position(TOP)
-      //BringToTop(e_display_normal);
-
       if (edisplay != e_display_default)
       {
-         // show the interaction_impl as specified
-         display(edisplay);
 
-         layout().sketch().set_modified();
+         lock_sketch_to_design lockSketchToDesign(this);
+
+         display(edisplay);
 
          set_need_layout();
 
          set_need_redraw();
 
-         set_layout_ready();
-
-         post_redraw();
-
-         // and finally, bring to top after showing
-         //BringToTop(edisplay);
       }
 
-      //_001UpdateWindow();
+      post_redraw();
 
    }
-
-
-   //void frame_window::BringToTop(edisplay edisplay)
-   //{
-
-   //   ::user::interaction::BringToTop(edisplay);
-
-   //}
-
-
-   /////////////////////////////////////////////////////////////////////////////
-   // frame_window Diagnostics
-
-
-
-   //void frame_window::dump(dump_context & dumpcontext) const
-   //{
-   //   ::user::frame_window::dump(dumpcontext);
-
-   //   dumpcontext << "m_hAccelTable = " << (void *)m_hAccelTable;
-   //   dumpcontext << "\nm_nWindow = " << m_nWindow;
-   //   dumpcontext << "\nm_nIDHelp = " << m_strMatterHelp;
-   //   dumpcontext << "\nm_nIDTracking = " << m_nIDTracking;
-   //   dumpcontext << "\nm_nIDLastMessage = " << m_nIDLastMessage;
-   //   if (m_pviewActive != nullptr)
-   //      dumpcontext << "\nwith active ::user::impact: " << m_pviewActive.m_p;
-   //   else
-   //      dumpcontext << "\nno active ::user::impact";
-
-   //   dumpcontext << "\n";
-   //}
 
 
    bool frame_window::IsTracking() const
    {
-      /*   return m_nIDTracking != 0 &&
-      m_nIDTracking != __IDS_HELPMODEMESSAGE &&
-      m_nIDTracking != __IDS_IDLEMESSAGE;*/
+
       return false;
+
    }
-
-
-   //bool frame_window::display(i32 edisplay)
-   //{
-
-   //   return interaction::display(nCmdShow);
-
-   //}
 
 
    void frame_window::_001OnSysCommand(::message::message * pmessage)
    {
 
-#ifdef WINDOWS
-
-      //__pointer(::user::message) pusermessage(pmessage);
-
-      //if (get_parent() == nullptr)
-      //{
-
-      //   if (pusermessage->m_wparam == SC_RESTORE)
-      //   {
-
-      //      display(e_display_restore);
-
-      //      set_need_layout();
-
-      //      set_reposition();
-
-      //      set_need_redraw();
-
-      //      post_redraw();
-
-      //      pusermessage->m_bRet = true;
-
-      //      pusermessage->m_lresult = 0;
-
-      //   }
-
-      //}
-
-#else
-
-      ::exception::throw_not_implemented();
-
-#endif
-
    }
 
 
-   // frame_window
    void frame_window::DelayUpdateFrameTitle()
    {
+
       m_nIdleFlags |= idleTitle;
+
    }
+
+
    void frame_window::DelayRecalcLayout(bool bNotify)
    {
+
       m_nIdleFlags |= (idleLayout | (bNotify ? idleNotify : 0));
-   };
+
+   }
+
+
    bool frame_window::InModalState() const
    {
+
       return m_cModalStack != 0;
+
    }
 
 
@@ -2757,25 +2685,15 @@ namespace user
 
    void frame_window::common_construct()
    {
-      // trans ASSERT(get_handle() == nullptr);
 
       m_sizeMinimum.cx = 0;
       m_sizeMinimum.cy = 0;
       m_nWindow = -1;                 // unknown interaction_impl ID
       m_bAutoMenuEnable = true;       // auto enable on by default
-//      m_lpfnCloseProc = nullptr;
-//#ifdef WINDOWS_DESKTOP
-//      m_hMenuDefault = nullptr;
-//      m_hAccelTable = nullptr;
-//#endif
-      //m_nIDHelp = 0;
       m_nIDTracking = 0;
       m_nIDLastMessage = 0;
 
       m_cModalStack = 0;              // initialize modality support
-//#ifdef WINDOWS_DESKTOP
-//      m_hMenuAlt = nullptr;
-//#endif
       m_nIdleFlags = 0;               // no idle work at start
       m_rectBorder.Null();
       m_dwPromptContext = 0;
@@ -2786,12 +2704,8 @@ namespace user
       m_nShowDelay = -1;              // no delay pending
 
       AddFrameWnd();
+
    }
-
-
-
-
-
 
 
    void frame_window::RemoveControlBar(::user::control_bar *pBar)
@@ -2799,19 +2713,6 @@ namespace user
       m_barptra.erase(pBar);
 
    }
-
-
-   /////////////////////////////////////////////////////////////////////////////
-   // frame_window command/message routing
-
-
-
-
-
-
-
-   /////////////////////////////////////////////////////////////////////////////
-   // default frame processing
 
 
    // query end session for main frame will attempt to close it all down
@@ -2823,119 +2724,28 @@ namespace user
    }
 
 
-   /////////////////////////////////////////////////////////////////////////////
-   // Special ::user::impact swapping/activation
-
    void frame_window::_001OnSetFocus(::message::message * pmessage)
    {
-      UNREFERENCED_PARAMETER(pmessage);
-      //if (m_pviewActive != nullptr)
-      // m_pviewActive->SetFocus();
-   }
 
+      UNREFERENCED_PARAMETER(pmessage);
+
+   }
 
 
    void frame_window::OnUpdateControlBarMenu(::message::command * pcommand)
    {
-
-      /*      ASSERT(ID_VIEW_STATUS_BAR == "status_bar");
-      ASSERT(ID_VIEW_TOOLBAR == __IDW_TOOLBAR);
-      ASSERT(ID_VIEW_REBAR == __IDW_REBAR);*/
-
-      //pcommand->ContinueRouting();
 
    }
 
 
    bool frame_window::OnBarCheck(::u32 nID)
    {
+
       UNREFERENCED_PARAMETER(nID);
-      /*ASSERT(ID_VIEW_STATUS_BAR == "status_bar");
-      ASSERT(ID_VIEW_TOOLBAR == __IDW_TOOLBAR);
-      ASSERT(ID_VIEW_REBAR == __IDW_REBAR);*/
 
       return false;
+
    }
-
-
-   /////////////////////////////////////////////////////////////////////////////
-   // Setting title of frame interaction_impl - UISG standard
-
-
-
-   //void frame_window::DelayUpdateFrameMenu(HMENU hMenuAlt)
-   //{
-   //   m_hMenuAlt = hMenuAlt;
-   //   m_nIdleFlags |= idleMenu;
-   //}
-
-   //void frame_window::OnIdleUpdateCmdUI(::message::message * pmessage)
-   //{
-   //   // update menu if necessary
-   //   if(m_nIdleFlags & idleMenu)
-   //   {
-   //      m_nIdleFlags &= ~idleMenu;
-   //      OnUpdateFrameMenu(m_hMenuAlt);
-   //   }
-
-   //   // update title if necessary
-   //   if(m_nIdleFlags & idleTitle)
-   //      on_update_frame_title(true);
-
-   //   // recalc on_layout if necessary
-   //   if(m_nIdleFlags & idleLayout)
-   //   {
-   //      on_layout(::draw2d::graphics_pointer & pgraphics);
-   //      UpdateWindow();
-   //   }
-
-   //   // set the current message string if necessary
-   //   if(m_nIDTracking != m_nIDLastMessage)
-   //   {
-   //      SetMessageText(m_nIDTracking);
-   //      ASSERT(m_nIDTracking == m_nIDLastMessage);
-   //   }
-   //   m_nIdleFlags = 0;
-
-   //   for(auto & bar : m_barptra.refa())
-   //   {
-   //      bar._001OnIdleUpdateCmdUI(pmessage);
-   //   }
-   //}
-
-
-//    void frame_window::_001OnIdleUpdateCmdUI(::message::message * pmessage)
-//    {
-//       UNREFERENCED_PARAMETER(pmessage);
-//       // update menu if necessary
-//       if (m_nIdleFlags & idleMenu)
-//          OnUpdateFrameMenu(m_hMenuAlt);
-
-//       // update title if necessary
-//       if (m_nIdleFlags & idleTitle)
-//          on_update_frame_title(true);
-
-//       // recalc on_layout if necessary
-//       if (m_nIdleFlags & idleLayout)
-//       {
-//          on_layout(::draw2d::graphics_pointer & pgraphics);
-//          UpdateWindow();
-//       }
-
-//       // set the current message string if necessary
-//       if (m_nIDTracking != m_nIDLastMessage)
-//       {
-//          SetMessageText(m_nIDTracking);
-//          ASSERT(m_nIDTracking == m_nIDLastMessage);
-//       }
-
-//       for(auto & bar : m_barptra.refa())
-//       {
-//          bar._001OnIdleUpdateCmdUI(pmessage);
-//       }
-
-//       m_nIdleFlags = 0;
-//    }
 
 
    void frame_window::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
@@ -2959,42 +2769,12 @@ namespace user
    }
 
 
-
-
-
-
-
-
-
-   // in this file for is_kind_of library granularity (is_kind_of references these)
-   //// IMPLEMENT_DYNCREATE(frame_window, ::user::interaction)
-   //// IMPLEMENT_DYNAMIC(::user::impact, ::user::interaction)
-   //// IMPLEMENT_DYNAMIC(::user::control_bar, ::user::interaction)
-
-   /////////////////////////////////////////////////////////////////////////////
-
-
-
-   /////////////////////////////////////////////////////////////////////////////
-   // frame_window (here for library granularity)
-
-
-
    __pointer(::user::interaction) frame_window::WindowDataGetWnd()
    {
+
       return this;
+
    }
-
-
-   // dwDockBarMap
-   /*const u32 frame_window::dwDockBarMap[4][2] =
-   {
-   { __IDW_DOCKBAR_TOP,      CBRS_TOP    },
-   { __IDW_DOCKBAR_BOTTOM,   CBRS_BOTTOM },
-   { __IDW_DOCKBAR_LEFT,     CBRS_LEFT   },
-   { __IDW_DOCKBAR_RIGHT,    CBRS_RIGHT  },
-   };*/
-
 
 
    void frame_window::on_control_event(::user::control_event * pevent)

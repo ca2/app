@@ -1163,6 +1163,89 @@ namespace experience
             }
 
          }
+         else if (eelement == ::user::e_element_item_background)
+         {
+
+            if (estate & ::user::e_state_hover)
+            {
+
+               if (estate & ::user::e_state_selected)
+               {
+
+                  if (m_pnode->is_app_dark_mode())
+                  {
+
+                     return __acolor(255, 150, 150, 150);
+
+                  }
+                  else
+                  {
+
+                     return __acolor(255, 160, 160, 160);
+
+                  }
+
+               }
+               else
+               {
+
+                  if (m_pnode->is_app_dark_mode())
+                  {
+
+                     return __acolor(255, 110, 110, 110);
+
+                  }
+                  else
+                  {
+
+                     return __acolor(255, 200, 200, 200);
+
+                  }
+
+               }
+
+            }
+            else
+            {
+
+               if (estate & ::user::e_state_selected)
+               {
+
+                  if (m_pnode->is_app_dark_mode())
+                  {
+
+                     return __acolor(255, 130, 130, 130);
+
+                  }
+                  else
+                  {
+
+                     return __acolor(255, 180, 180, 180);
+
+                  }
+
+               }
+               else
+               {
+
+                  if (m_pnode->is_app_dark_mode())
+                  {
+
+                     return __acolor(255, 80, 80, 80);
+
+                  }
+                  else
+                  {
+
+                     return __acolor(255, 255, 255, 255);
+
+                  }
+
+               }
+
+            }
+
+         }
          else if (eelement == ::user::e_element_text)
          {
 
@@ -1225,7 +1308,7 @@ namespace experience
                if (m_pnode->is_app_dark_mode())
                {
 
-                  return __acolor(255, 230, 230, 230);
+                  return __acolor(255, 50, 50, 50);
 
                }
                else
@@ -1335,7 +1418,7 @@ namespace experience
 
             ::point_i32 point1 = rectTrack.top_left() + pbar->m_sizeTrackOffset;
 
-            pbar->_001ClientToScreen(point1);
+            pbar->client_to_screen(point1);
 
             //auto psession = get_session();
 
@@ -1345,7 +1428,7 @@ namespace experience
 
             //auto pointCursor = pwindowing->get_cursor_position();
 
-            pbar->_001ClientToScreen(point1);
+            pbar->client_to_screen(point1);
 
             //      prop("tracking_window").cast < trw >()->point1 = point1;
 

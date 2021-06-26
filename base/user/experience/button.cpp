@@ -78,7 +78,7 @@ namespace experience
 
             rectangleClient = pdrawcontext->m_rectangleWindow;
 
-            _001ScreenToClient(rectangleClient);
+            screen_to_client(rectangleClient);
 
             rectangleClient.bottom++;
             rectangleClient.right++;
@@ -105,9 +105,9 @@ namespace experience
 
                pinteraction->get_client_rect(rectFocus);
 
-               pinteraction->_001ClientToHost(rectFocus);
+               pinteraction->client_to_host(rectFocus);
 
-               _001HostToClient(rectFocus);
+               host_to_client(rectFocus);
 
                m_pshapeaClip->add_item(__new(rectangle_shape(rectFocus)));
                

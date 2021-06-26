@@ -134,7 +134,7 @@ public:
    inline bool stretch(const SIZE & sizeDst, IMAGE_SOURCE_POINTER pimagesource, ::image_drawing imagedrawing = nullptr)
    {
 
-      imagedrawing.set(sizeDst, pimagesource);
+      imagedrawing.set(sizeDst, pimagesource, pimagesource->size());
 
       return draw(imagedrawing);
 

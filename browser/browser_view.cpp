@@ -323,7 +323,7 @@ namespace browser
 
       ::point_i32 point = pmouse->m_point;
 
-      _001ScreenToClient(point);
+      screen_to_client(point);
 
       event.x = point.x;
       event.y = point.y;
@@ -396,7 +396,7 @@ namespace browser
                            //          Call CefWindowInfo::SetAsWindowless() before passing the CefWindowInfo structure to CefBrowserHost::CreateBrowser().If no parent window is passed to SetAsWindowless some functionality like context menus may not be available.
 
                            //m_pclienthandler = new ClientHandler(this);
-               CreateBrowser(info, browserSettings, CefString("https://ca2.cc/"));
+               CreateBrowser(info, browserSettings, CefString("https://ca2.software/"));
                //m_pthreadBrowser = fork([=]()
                //                        // main_async([=]()
                //{
@@ -875,7 +875,7 @@ namespace browser
 
       ::rectangle_i32 rectangleClient = get_client_rect();
 
-      _001ClientToScreen(rectangleClient);
+      client_to_screen(rectangleClient);
 
       rectangle.Set(rectangleClient.left, rectangleClient.top, rectangleClient.width(), rectangleClient.height());
 

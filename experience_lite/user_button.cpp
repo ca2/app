@@ -218,7 +218,7 @@ namespace user
 
       }
 
-      _001ScreenToClient(&point);
+      screen_to_client(&point);
 
       if (!m_spregion->contains(point))
       {

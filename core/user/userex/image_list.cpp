@@ -233,7 +233,7 @@ namespace userex
 
    //   const ::point_i32 & point = pmouse->m_point;
 
-   //   _001ScreenToClient(point);
+   //   screen_to_client(point);
 
    //   int iMenuSel;
 
@@ -260,7 +260,7 @@ namespace userex
 
    //   const ::point_i32 & point = pmouse->m_point;
 
-   //   _001ScreenToClient(point);
+   //   screen_to_client(point);
 
    //   int iMenuHover;
 

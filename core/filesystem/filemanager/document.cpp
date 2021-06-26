@@ -1191,7 +1191,7 @@ namespace filemanager
 
       {
 
-         auto psubject = fork_subject(id_create_bars);
+         auto psubject = subject(id_create_bars);
 
          psubject->payload(id_document) = this;
 
@@ -1311,7 +1311,7 @@ namespace filemanager
    void document::GetActiveViewSelection(::file::item_array & itema)
    {
 
-      auto psubject = fork_subject(id_get_active_view_selection);
+      auto psubject = subject(id_get_active_view_selection);
 
       update_all_views(psubject);
 
@@ -1329,21 +1329,23 @@ namespace filemanager
 
       m_emode = ::userfs::mode_saving;
 
+      auto pdocumentFilemanager = this;
+
       {
 
-         auto psubject = fork_subject(id_topic_start);
+         auto psubject = pdocumentFilemanager->subject(id_topic_start);
 
-         psubject->payload(id_document) = this;
+         psubject->payload(id_document) = pdocumentFilemanager;
 
-         update_all_views(psubject);
+         pdocumentFilemanager->update_all_views(psubject);
 
       }
 
       {
 
-         auto psubject = subject(id_create_bars);
+         auto psubject = pdocumentFilemanager->subject(id_create_bars);
 
-         update_all_views(psubject);
+         pdocumentFilemanager->update_all_views(psubject);
 
       }
 
@@ -1359,21 +1361,23 @@ namespace filemanager
 
       m_emode = ::userfs::mode_import;
 
+      auto pdocumentFilemanager = this;
+
       {
 
-         auto psubject = fork_subject(id_topic_start);
+         auto psubject = pdocumentFilemanager->subject(id_topic_start);
 
-         psubject->payload(id_document) = this;
+         psubject->payload(id_document) = pdocumentFilemanager;
 
-         update_all_views(psubject);
+         pdocumentFilemanager->update_all_views(psubject);
 
       }
 
       {
 
-         auto psubject = subject(id_create_bars);
+         auto psubject = pdocumentFilemanager->subject(id_create_bars);
 
-         update_all_views(psubject);
+         pdocumentFilemanager->update_all_views(psubject);
 
       }
 
@@ -1389,21 +1393,23 @@ namespace filemanager
 
       m_emode = ::userfs::mode_export;
 
+      auto pdocumentFilemanager = this;
+
       {
 
-         auto psubject = fork_subject(id_topic_start);
+         auto psubject = pdocumentFilemanager->subject(id_topic_start);
 
-         psubject->payload(id_document) = this;
+         psubject->payload(id_document) = pdocumentFilemanager;
 
-         update_all_views(psubject);
+         pdocumentFilemanager->update_all_views(psubject);
 
       }
 
       {
 
-         auto psubject = subject(id_create_bars);
+         auto psubject = pdocumentFilemanager->subject(id_create_bars);
 
-         update_all_views(psubject);
+         pdocumentFilemanager->update_all_views(psubject);
 
       }
 

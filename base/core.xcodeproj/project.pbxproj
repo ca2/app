@@ -412,7 +412,7 @@
 		9A92E6B2240B63FB00660EFD /* toolbar.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A92E563240B63FA00660EFD /* toolbar.h */; };
 		9A92E6B3240B63FB00660EFD /* form_list.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A92E564240B63FA00660EFD /* form_list.cpp */; };
 		9A92E6B4240B63FB00660EFD /* shell_macos.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A92E565240B63FA00660EFD /* shell_macos.cpp */; };
-		9A92E6B6240B63FB00660EFD /* combo_list.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A92E567240B63FA00660EFD /* combo_list.cpp */; };
+		9A92E6B6240B63FB00660EFD /* list_box.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A92E567240B63FA00660EFD /* list_box.cpp */; };
 		9A92E6BA240B63FB00660EFD /* color_combo_box.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A92E56C240B63FA00660EFD /* color_combo_box.h */; };
 		9A92E6BB240B63FB00660EFD /* slider.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A92E56D240B63FA00660EFD /* slider.cpp */; };
 		9A92E6BC240B63FB00660EFD /* tool_tip_tool.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A92E56E240B63FA00660EFD /* tool_tip_tool.h */; };
@@ -428,7 +428,7 @@
 		9A92E6C6240B63FB00660EFD /* step_slider.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A92E578240B63FA00660EFD /* step_slider.cpp */; };
 		9A92E6C7240B63FB00660EFD /* tab.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A92E579240B63FA00660EFD /* tab.h */; };
 		9A92E6C8240B63FB00660EFD /* split_view.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A92E57A240B63FA00660EFD /* split_view.cpp */; };
-		9A92E6C9240B63FB00660EFD /* combo_list.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A92E57B240B63FA00660EFD /* combo_list.h */; };
+		9A92E6C9240B63FB00660EFD /* list_box.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A92E57B240B63FA00660EFD /* list_box.h */; };
 		9A92E6CA240B63FB00660EFD /* form_window.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A92E57C240B63FA00660EFD /* form_window.cpp */; };
 		9A92E6CB240B63FB00660EFD /* form_document.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A92E57D240B63FA00660EFD /* form_document.cpp */; };
 		9A92E6CC240B63FB00660EFD /* notify_icon.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9A92E57E240B63FA00660EFD /* notify_icon.mm */; };
@@ -1136,7 +1136,7 @@
 		9A92E563240B63FA00660EFD /* toolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = toolbar.h; sourceTree = "<group>"; };
 		9A92E564240B63FA00660EFD /* form_list.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = form_list.cpp; sourceTree = "<group>"; };
 		9A92E565240B63FA00660EFD /* shell_macos.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = shell_macos.cpp; sourceTree = "<group>"; };
-		9A92E567240B63FA00660EFD /* combo_list.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = combo_list.cpp; sourceTree = "<group>"; };
+		9A92E567240B63FA00660EFD /* list_box.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = list_box.cpp; sourceTree = "<group>"; };
 		9A92E56C240B63FA00660EFD /* color_combo_box.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = color_combo_box.h; sourceTree = "<group>"; };
 		9A92E56D240B63FA00660EFD /* slider.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = slider.cpp; sourceTree = "<group>"; };
 		9A92E56E240B63FA00660EFD /* tool_tip_tool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tool_tip_tool.h; sourceTree = "<group>"; };
@@ -1152,7 +1152,7 @@
 		9A92E578240B63FA00660EFD /* step_slider.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = step_slider.cpp; sourceTree = "<group>"; };
 		9A92E579240B63FA00660EFD /* tab.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tab.h; sourceTree = "<group>"; };
 		9A92E57A240B63FA00660EFD /* split_view.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = split_view.cpp; sourceTree = "<group>"; };
-		9A92E57B240B63FA00660EFD /* combo_list.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = combo_list.h; sourceTree = "<group>"; };
+		9A92E57B240B63FA00660EFD /* list_box.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = list_box.h; sourceTree = "<group>"; };
 		9A92E57C240B63FA00660EFD /* form_window.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = form_window.cpp; sourceTree = "<group>"; };
 		9A92E57D240B63FA00660EFD /* form_document.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = form_document.cpp; sourceTree = "<group>"; };
 		9A92E57E240B63FA00660EFD /* notify_icon.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = notify_icon.mm; sourceTree = "<group>"; };
@@ -1903,8 +1903,8 @@
 				9A92E56C240B63FA00660EFD /* color_combo_box.h */,
 				9A92E512240B63FA00660EFD /* combo_box.cpp */,
 				9A92E531240B63FA00660EFD /* combo_box.h */,
-				9A92E567240B63FA00660EFD /* combo_list.cpp */,
-				9A92E57B240B63FA00660EFD /* combo_list.h */,
+				9A92E567240B63FA00660EFD /* list_box.cpp */,
+				9A92E57B240B63FA00660EFD /* list_box.h */,
 				9A92E537240B63FA00660EFD /* control_property.cpp */,
 				9A92E580240B63FA00660EFD /* control_property.h */,
 				9A92E547240B63FA00660EFD /* data_exchange.cpp */,
@@ -2477,7 +2477,7 @@
 				9A85615B22A9447200D61251 /* input_button.h in Headers */,
 				9A8561B222A9447200D61251 /* font.h in Headers */,
 				9A92E749240B63FB00660EFD /* view.h in Headers */,
-				9A92E6C9240B63FB00660EFD /* combo_list.h in Headers */,
+				9A92E6C9240B63FB00660EFD /* list_box.h in Headers */,
 				9A92E65F240B63FB00660EFD /* notify_icon_mm_bridge.h in Headers */,
 				9A92E63C240B63FA00660EFD /* form_window.h in Headers */,
 				9A92E71E240B63FB00660EFD /* form_frame.h in Headers */,
@@ -3025,7 +3025,7 @@
 				9A92E6F4240B63FB00660EFD /* menu_bar.cpp in Sources */,
 				9A92E64C240B63FA00660EFD /* margin.cpp in Sources */,
 				9A92E6F1240B63FB00660EFD /* list_view.cpp in Sources */,
-				9A92E6B6240B63FB00660EFD /* combo_list.cpp in Sources */,
+				9A92E6B6240B63FB00660EFD /* list_box.cpp in Sources */,
 				9A92E707240B63FB00660EFD /* central.cpp in Sources */,
 				9A68561C2432F8C80002FE94 /* simple_view.cpp in Sources */,
 				9A92E65E240B63FB00660EFD /* network_configuration.cpp in Sources */,

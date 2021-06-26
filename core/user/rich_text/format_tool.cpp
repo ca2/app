@@ -141,29 +141,29 @@ namespace user
 
       m_pcomboSize->m_bEdit = true;
 
-      m_pcomboSize->AddString("6", "6");
-      m_pcomboSize->AddString("6.5", "6.5");
-      m_pcomboSize->AddString("7", "7");
-      m_pcomboSize->AddString("7.5", "7.5");
-      m_pcomboSize->AddString("8", "8");
-      m_pcomboSize->AddString("8.5", "8.5");
-      m_pcomboSize->AddString("9", "9");
-      m_pcomboSize->AddString("10", "10");
-      m_pcomboSize->AddString("11", "11");
-      m_pcomboSize->AddString("12", "12");
-      m_pcomboSize->AddString("14", "14");
-      m_pcomboSize->AddString("16", "16");
-      m_pcomboSize->AddString("18", "18");
-      m_pcomboSize->AddString("21", "21");
-      m_pcomboSize->AddString("24", "24");
-      m_pcomboSize->AddString("32", "32");
-      m_pcomboSize->AddString("36", "36");
-      m_pcomboSize->AddString("42", "42");
-      m_pcomboSize->AddString("48", "48");
-      m_pcomboSize->AddString("56", "56");
-      m_pcomboSize->AddString("64", "64");
-      m_pcomboSize->AddString("72", "72");
-      m_pcomboSize->AddString("144", "144");
+      m_pcomboSize->add_string("6", "6");
+      m_pcomboSize->add_string("6.5", "6.5");
+      m_pcomboSize->add_string("7", "7");
+      m_pcomboSize->add_string("7.5", "7.5");
+      m_pcomboSize->add_string("8", "8");
+      m_pcomboSize->add_string("8.5", "8.5");
+      m_pcomboSize->add_string("9", "9");
+      m_pcomboSize->add_string("10", "10");
+      m_pcomboSize->add_string("11", "11");
+      m_pcomboSize->add_string("12", "12");
+      m_pcomboSize->add_string("14", "14");
+      m_pcomboSize->add_string("16", "16");
+      m_pcomboSize->add_string("18", "18");
+      m_pcomboSize->add_string("21", "21");
+      m_pcomboSize->add_string("24", "24");
+      m_pcomboSize->add_string("32", "32");
+      m_pcomboSize->add_string("36", "36");
+      m_pcomboSize->add_string("42", "42");
+      m_pcomboSize->add_string("48", "48");
+      m_pcomboSize->add_string("56", "56");
+      m_pcomboSize->add_string("64", "64");
+      m_pcomboSize->add_string("72", "72");
+      m_pcomboSize->add_string("144", "144");
 
       m_pbuttonForeground->create_control(this, "font_foreground");
       m_pbuttonForeground->LoadBitmaps("matter://fontformat/font-foreground12.png");
@@ -591,11 +591,11 @@ namespace user
          if (m_pcomboFamily->m_itemCurrent.is_set())
          {
 
-            auto pcombolist = m_pcomboFamily->m_plist;
+            auto pcombolistbox = m_pcomboFamily->m_plistbox;
 
             auto itemCurrent = m_pcomboFamily->m_itemCurrent;
 
-            __pointer(::user::font_list) pfontlist = pcombolist;
+            __pointer(::user::font_list) pfontlist = pcombolistbox;
 
             auto pfontenumerationitema = pfontlist->m_pfontlist->m_pfontenumerationitema;
 
@@ -667,7 +667,11 @@ namespace user
       else
       {
 
-         index iIndex = m_pcomboFamily->m_plist.cast <::user::font_list>()->m_pfontlist->find_name(m_formata[0]->m_strFontFamily);
+         auto pcombolistbox = m_pcomboFamily->m_plistbox;
+
+         __pointer(::user::font_list) pfontlist = pcombolistbox;
+
+         index iIndex = pfontlist->m_pfontlist->find_name(m_formata[0]->m_strFontFamily);
 
          m_pcomboFamily->set_current_item(iIndex, ::e_source_sync);
 

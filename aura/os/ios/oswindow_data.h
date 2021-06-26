@@ -101,8 +101,8 @@ public:
    bool show_window(i32 nCmdShow);
    iptr get_window_long_ptr(iptr nIndex);
    iptr set_window_long_ptr(iptr nIndex, iptr l);
-   bool _001ClientToScreen(POINT_I32 * lppoint);
-   bool _001ScreenToClient(POINT_I32 * lppoint);
+   bool client_to_screen(POINT_I32 * lppoint);
+   bool screen_to_client(POINT_I32 * lppoint);
 
    bool is_null() const
    {

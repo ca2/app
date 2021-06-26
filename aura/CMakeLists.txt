@@ -2,9 +2,7 @@ cmake_minimum_required(VERSION 3.17)
 project(aura CXX)
 
 
-
-
-list(APPEND aura_source
+list(APPEND library_source
    asset/cube_new.inl
    asset/new.inl
    axispolicy/_.h
@@ -304,6 +302,7 @@ list(APPEND aura_source
    user/_experience_const.h
    user/_impl.h
    user/_interaction_impl.h
+   user/_menu.h
    user/_prelude.h
    user/_user.h
    user/box.cpp
@@ -454,7 +453,7 @@ list(APPEND aura_source
 
 if (WIN32)
 
-   list(APPEND aura_source
+   list(APPEND library_source
       #node/windows/base/_windows.h
       #node/windows/base/factory_exchange.cpp
       #node/windows/base/factory_exchange.h
@@ -547,7 +546,7 @@ if (WIN32)
 
 else ()
 
-   list(APPEND aura_source
+   list(APPEND library_source
       os/cross/windows/windowing.h
       os/cross/_.h
       os/cross/cross.h
@@ -556,7 +555,7 @@ else ()
 endif ()
 
 if (WINDOWS_TSF)
-   list(APPEND aura_source
+   list(APPEND library_source
       user/windows_tsf/afxres.h
       user/windows_tsf/context_owner_composition_sink.cpp
       user/windows_tsf/dataobj.cpp
@@ -583,7 +582,7 @@ endif ()
 
 
 if (UWP)
-   list(APPEND aura_source
+   list(APPEND library_source
       node/uwp/net/net_address.h
       node/uwp/_.h
       node/uwp/_uwp.h
@@ -637,7 +636,7 @@ if (UWP)
 
 else ()
 
-   list(APPEND aura_source
+   list(APPEND library_source
       os/cross/uwp/cross_metrowin_user.cpp
       os/cross/uwp/metrowin_user.cpp
       )
@@ -677,7 +676,7 @@ list(APPEND windowing_source
 
 if (LINUX)
 
-   list(APPEND aura_source
+   list(APPEND library_source
       node/linux/_.h
       node/linux/_linux.h
       node/linux/application.cpp
@@ -769,7 +768,7 @@ endif ()
 
 
 if (LINUX OR APPLE OR SOLARIS)
-   list(APPEND aura_source
+   list(APPEND library_source
       node/posix/_posix.h
       node/posix/application.cpp
       )
@@ -778,7 +777,7 @@ endif ()
 
 
 if (MACOS)
-   list(APPEND aura_source
+   list(APPEND library_source
       node/macos/_.h
       node/macos/_macos.h
       node/macos/_mm.h
@@ -859,7 +858,7 @@ endif ()
 
 
 if (IOS)
-   list(APPEND aura_source
+   list(APPEND library_source
       ios_aura/ios_aura.h
       ios_aura/ios_aura.m
       node/ios/_.h
@@ -962,7 +961,7 @@ if (IOS)
 endif ()
 
 if (SOLARIS)
-   list(APPEND aura_source
+   list(APPEND library_source
       os/solaris/linux_internal.h
       os/solaris/solaris.cpp
       os/solaris/solaris.h
@@ -1006,7 +1005,7 @@ if (SOLARIS)
 endif ()
 
 if (ANDROID)
-   list(APPEND aura_source
+   list(APPEND library_source
       node/android/Kerr/kerr.h
       node/android/Kerr/LocalMemory.h
       node/android/_.h
@@ -1099,7 +1098,7 @@ endif ()
 
 if (APPLE)
 
-   list(APPEND aura_source
+   list(APPEND library_source
       timer.mm
       node/apple/apple_timer.cpp
 #      node/apple/process.cpp
@@ -1133,7 +1132,7 @@ endif ()
 
 if (MACOS)
 
-   list(APPEND aura_source
+   list(APPEND library_source
       ios_aura/ios_aura.h
       ios_aura/ios_aura.m
       )
@@ -1148,7 +1147,7 @@ else ()
 endif ()
 
 
-add_library(aura SHARED ${aura_source} user/_menu.h)
+add_library(aura SHARED ${library_source})
 
 
 target_precompile_headers(aura PRIVATE framework.h)

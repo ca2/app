@@ -141,8 +141,8 @@ struct CLASS_DECL_CORE oswindow_data
    bool show_window(::e_display edisplay);
    LONG_PTR get_window_long_ptr(i32 nIndex);
    LONG_PTR set_window_long_ptr(i32 nIndex, LONG_PTR l);
-   bool _001ClientToScreen(POINT32 * lppoint);
-   bool _001ScreenToClient(POINT32 * lppoint);
+   bool client_to_screen(POINT32 * lppoint);
+   bool screen_to_client(POINT32 * lppoint);
 
 
 

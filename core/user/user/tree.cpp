@@ -217,7 +217,7 @@ namespace user
 
          ::u32 dwHoverIn = 384;
          ::u32 dwHoverOut = 1284;
-         _001ScreenToClient(&pointCursor);
+         screen_to_client(&pointCursor);
          bool bTreeHover = rectangleClient.contains(pointCursor);
          if(bTreeHover)
          {
@@ -611,7 +611,7 @@ namespace user
 
       ::user::enum_tree_element eelement;
 
-      _001ScreenToClient(point);
+      screen_to_client(point);
 
       pitem = _001HitTest(point, eelement);
 
@@ -650,7 +650,7 @@ namespace user
 
       ::user::enum_tree_element eelement;
 
-      _001ScreenToClient(point);
+      screen_to_client(point);
 
       pitem = _001HitTest(point, eelement);
 
@@ -695,7 +695,7 @@ namespace user
 
       ::user::enum_tree_element eelement;
 
-      _001ScreenToClient(point);
+      screen_to_client(point);
 
       pitem = _001HitTest(point, eelement);
 
@@ -1279,7 +1279,7 @@ namespace user
    void tree::update_tree_hover(point_i32 point)
    {
 
-      _001ScreenToClient(point);
+      screen_to_client(point);
 
       ::user::enum_tree_element eelement;
 

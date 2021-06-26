@@ -897,7 +897,7 @@ namespace user
       for(auto & ptemplate : templateptra.ptra())
       {
 
-         ptemplate->process(psubject);
+         ptemplate->on_subject(psubject, pcontext);
 
       }
 

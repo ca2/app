@@ -272,7 +272,7 @@ namespace user
 //
 //      r.Align(e_align_center, rectangleMonitor);
 //
-//      if (r != layout().sketch().screen_rect())
+//      if (r != screen_rect())
 //      {
 //
 //         place(r);
@@ -360,7 +360,7 @@ namespace user
 
       r.offset_y((rectangleMonitor.height() - r.height()) * 2 / 5);
 
-      if (r != layout().sketch().screen_rect())
+      if (r != this->screen_rect())
       {
 
          place(r);

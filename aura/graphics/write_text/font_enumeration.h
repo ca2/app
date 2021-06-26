@@ -27,8 +27,8 @@ namespace write_text
       virtual ::e_status initialize(::object * pobject) override;
 
 
-      virtual void on_subject(::subject::subject * psubject) override;
-      virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
+      void subject_handler(::subject::subject * psubject) override;
+      void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
 
 
       virtual void check_need_update(::subject::subject * psubject);

@@ -234,9 +234,11 @@ namespace apex
    void node::on_os_dark_mode_change()
    {
 
-      __pointer(::apex::system) psystem = get_system();
+      auto psystem = m_psystem->m_papexsystem;
 
-      psystem->deliver(id_os_dark_mode);
+      auto psubject = psystem->subject(id_os_dark_mode);
+
+      psubject->notify();
 
    }
 

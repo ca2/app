@@ -1990,7 +1990,7 @@ namespace draw2d
 
          r2.bottom = rectangle.bottom;
 
-         add_line(r2.right, r2.top);
+         //add_line(r2.right, r2.top);
 
       }
 

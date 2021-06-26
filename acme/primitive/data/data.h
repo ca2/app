@@ -44,7 +44,8 @@ namespace data
       virtual ::count get_data_bound_view_count() const;
       virtual ::user::primitive * get_data_bound_view(index iInteraction);
 
-      virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
+      void subject_handler(::subject::subject * psubject) override;
+      void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
 
       virtual void on_update_data(i32 iHint);
 

@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   class combo_list;
+   class list_box;
 
 
    class CLASS_DECL_AURA combo_box :
@@ -37,7 +37,7 @@ namespace user
       string                     m_strText;
       bool                       m_bCaseSensitiveMatch;
 
-      __pointer(combo_list)             m_plist;
+      __pointer(list_box)             m_plist;
 
       ::type                   m_typeComboList;
 

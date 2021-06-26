@@ -923,7 +923,7 @@
     <ClInclude Include="user\combo_box.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
-    <ClInclude Include="user\combo_list.h">
+    <ClInclude Include="user\list_box.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
     <ClInclude Include="user\simple_ui_draw.h">
@@ -1246,7 +1246,7 @@
     <ClCompile Include="user\still.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\combo_list.cpp">
+    <ClCompile Include="user\list_box.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
   </ItemGroup>

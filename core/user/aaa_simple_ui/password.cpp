@@ -137,7 +137,7 @@ namespace simple_ui
 
       rectangleClient.deflate(2,2);
 
-      //_001ClientToScreen(rectangleClient);
+      //client_to_screen(rectangleClient);
       rgn->create_rect(rectangleClient);
 
       double left = rectangleClient.left;

@@ -1494,7 +1494,7 @@ namespace android
       //      {
       //         ::rectangle_i32 rectangle;
       //         ::get_window_rect(oswindow_Child,&rectangle);
-      //         _001ScreenToClient(&rectangle);
+      //         screen_to_client(&rectangle);
       //         ::set_window_position(oswindow_Child,nullptr,rectangle.left + xAmount,rectangle.top + yAmount,0,0,SWP_NOSIZE | SWP_NOACTIVATE | SWP_NOZORDER);
       //      }
       //   }
@@ -1953,7 +1953,7 @@ namespace android
       //      SetViewportOrgEx(hdc, 0, 0, nullptr);
       ::rectangle_i32 rectPaint;
       rectPaint = rectUpdate;
-      m_puserinteraction->_001ScreenToClient(rectPaint);
+      m_puserinteraction->screen_to_client(rectPaint);
       user::oswindow_array wndaApp;
 
 
@@ -2473,7 +2473,7 @@ namespace android
    //}
 
 
-   //bool interaction_impl::_001ClientToScreen(RECTANGLE_I32 * lprect)
+   //bool interaction_impl::client_to_screen(RECTANGLE_I32 * lprect)
    //{
 
    //   ::rectangle_i64 rectWindow;
@@ -2495,7 +2495,7 @@ namespace android
    //}
 
 
-   //bool interaction_impl::_001ClientToScreen(POINT_I32 * lppoint)
+   //bool interaction_impl::client_to_screen(POINT_I32 * lppoint)
    //{
 
    //   ::rectangle_i64 rectWindow;
@@ -2515,7 +2515,7 @@ namespace android
    //}
 
 
-   //bool interaction_impl::_001ClientToScreen(RECTANGLE_I64 * lprect)
+   //bool interaction_impl::client_to_screen(RECTANGLE_I64 * lprect)
    //{
 
    //   ::rectangle_i32 rectWindow;
@@ -2537,7 +2537,7 @@ namespace android
    //}
 
 
-   //bool interaction_impl::_001ClientToScreen(POINT_I64 * lppoint)
+   //bool interaction_impl::client_to_screen(POINT_I64 * lppoint)
    //{
 
    //   ::rectangle_i64 rectWindow;
@@ -2557,7 +2557,7 @@ namespace android
    //}
 
 
-   //bool interaction_impl::_001ScreenToClient(RECTANGLE_I32 * lprect)
+   //bool interaction_impl::screen_to_client(RECTANGLE_I32 * lprect)
    //{
 
    //   ::rectangle_i64 rectWindow;
@@ -2579,7 +2579,7 @@ namespace android
    //}
 
 
-   //bool interaction_impl::_001ScreenToClient(POINT_I32 * lppoint)
+   //bool interaction_impl::screen_to_client(POINT_I32 * lppoint)
    //{
 
    //   ::rectangle_i64 rectWindow;
@@ -2599,7 +2599,7 @@ namespace android
    //}
 
 
-   //bool interaction_impl::_001ScreenToClient(RECTANGLE_I64 * lprect)
+   //bool interaction_impl::screen_to_client(RECTANGLE_I64 * lprect)
    //{
 
    //   ::rectangle_i64 rectWindow;
@@ -2621,7 +2621,7 @@ namespace android
    //}
 
 
-   //bool interaction_impl::_001ScreenToClient(POINT_I64 * lppoint)
+   //bool interaction_impl::screen_to_client(POINT_I64 * lppoint)
    //{
 
    //   ::rectangle_i64 rectWindow;
@@ -4540,7 +4540,7 @@ namespace android
 
       /*      rectangle_i64 rectWindow;
       get_window_rect(rectWindow);
-      get_wnd()->_001ScreenToClient(rectWindow);
+      get_wnd()->screen_to_client(rectWindow);
       pgraphics->SetViewportOrg(point_i32(rectWindow.top_left()));
       pgraphics->SelectClipRgn(nullptr);
       */

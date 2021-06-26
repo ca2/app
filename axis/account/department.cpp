@@ -121,21 +121,21 @@ namespace account
 
       auto purl = psystem->url();
 
-      if (purl->get_server(pathUrl).lowered() == "server.ca2.cc")
+      if (purl->get_server(pathUrl).lowered() == "server.ca2.software")
       {
 
          return false;
 
       }
 
-      if(::str::find_ci("/matter.ca2.cc/", pathUrl) >= 0)
+      if(::str::find_ci("/matter.ca2.software/", pathUrl) >= 0)
       {
 
          return false;
 
       }
 
-      if(::str::find_ci("-matter.ca2.cc/", pathUrl) >= 0)
+      if(::str::find_ci("-matter.ca2.software/", pathUrl) >= 0)
       {
 
          return false;
@@ -207,13 +207,13 @@ namespace account
 //
 //      string strGetFontopus;
 //
-//      if(::str::ends(strRequestingServer,".ca2.cc"))
+//      if(::str::ends(strRequestingServer,".ca2.software"))
 //      {
-//         strGetFontopus = "https://ca2.cc/get_account_login";
+//         strGetFontopus = "https://ca2.software/get_account_login";
 //      }
 //      else
 //      {
-//         strGetFontopus = "https://ca2.cc/get_account_login";
+//         strGetFontopus = "https://ca2.software/get_account_login";
 //      }
 //
 //      //      ::aura::application * papp = get_application();
@@ -227,8 +227,8 @@ namespace account
 //      if(domainFontopus.m_strRadix != "ca2" && domainFontopus.m_strRadix != "account")
 //         return "";
 //
-//      if(strRequestingServer == "ca2.cc")
-//         return "ca2.cc";
+//      if(strRequestingServer == "ca2.software")
+//         return "ca2.software";
 //
 //      ::u32 dwGetFontopusEnd= ::millis::now();
 //
@@ -334,7 +334,7 @@ namespace account
    ::file::path department::get_default_url()
    {
 
-      return "https://ca2.cc/";
+      return "https://ca2.software/";
 
    }
 

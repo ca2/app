@@ -1,10 +1,6 @@
 #pragma once
 
 
-using lresult = iptr;
-
-
-
 namespace message
 {
 
@@ -19,7 +15,7 @@ namespace message
 
 
    class CLASS_DECL_APEX message :
-      virtual public object
+      virtual public ::acme::message
    {
    public:
 
@@ -27,9 +23,6 @@ namespace message
       handler_item_array *          m_phandlera;
       __pointer(channel)            m_pchannel;
       oswindow                      m_oswindow;
-      wparam                        m_wparam;
-      lparam                        m_lparam;
-      lresult                       m_lresult;
       enumeration < enum_flag >     m_eflagMessage;
       index                         m_iRouteIndex;
       index                         m_iParam;

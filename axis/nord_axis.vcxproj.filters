@@ -214,7 +214,7 @@
     <ClCompile Include="user\combo_box.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\combo_list.cpp">
+    <ClCompile Include="user\list_box.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
     <ClCompile Include="user\simple_ui_draw.cpp">

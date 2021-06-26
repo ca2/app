@@ -193,7 +193,7 @@ LONG_PTR oswindow_data::set_window_long_ptr(int nIndex, LONG_PTR l)
 }
 
 
-bool oswindow_data::_001ClientToScreen(POINT_I32 * lppoint)
+bool oswindow_data::client_to_screen(POINT_I32 * lppoint)
 {
    if (m_pimpl == nullptr || m_pimpl->m_puserinteraction == nullptr)
    {
@@ -202,11 +202,11 @@ bool oswindow_data::_001ClientToScreen(POINT_I32 * lppoint)
 
    }
 
-   m_pimpl->m_puserinteraction->_001ClientToScreen(lppoint);
+   m_pimpl->m_puserinteraction->client_to_screen(lppoint);
    return true;
 }
 
-bool oswindow_data::_001ScreenToClient(POINT_I32 * lppoint)
+bool oswindow_data::screen_to_client(POINT_I32 * lppoint)
 {
    if (m_pimpl == nullptr || m_pimpl->m_puserinteraction == nullptr)
    {
@@ -215,7 +215,7 @@ bool oswindow_data::_001ScreenToClient(POINT_I32 * lppoint)
 
    }
 
-   m_pimpl->m_puserinteraction->_001ScreenToClient(lppoint);
+   m_pimpl->m_puserinteraction->screen_to_client(lppoint);
    return true;
 }
 

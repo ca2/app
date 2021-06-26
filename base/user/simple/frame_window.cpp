@@ -581,7 +581,7 @@ void simple_frame_window::_001OnDestroy(::message::message * pmessage)
 
                auto psubject = m_puserstyle->subject(id_user_style_change);
 
-               psubject->add(pframe);
+               psubject->add_listener(pframe);
 
                return pframe;
 
@@ -601,7 +601,7 @@ void simple_frame_window::_001OnDestroy(::message::message * pmessage)
 
    auto psubject = subject(id_user_style_change);
 
-   psubject->add(pframe);
+   psubject->add_listener(pframe);
 
    if (strStyle.has_char())
    {
@@ -879,14 +879,22 @@ void simple_frame_window::on_message_create(::message::message * pmessage)
 
    auto textAppTitle = papplication->m_textAppTitle;
 
-   if (textAppTitle.get_text().is_empty())
+   string strAppTitle;
+
+   if (textAppTitle.get_text().has_char())
+   {
+
+      strAppTitle = textAppTitle.get_text();
+
+   }
+   else
    {
 
       string_array stra;
 
       stra.explode("/", papplication->m_strAppId);
 
-      string strAppTitle = stra.slice(1).implode(" ");
+      strAppTitle = stra.slice(1).implode(" ");
 
       strAppTitle.replace("_", " ");
 
@@ -904,7 +912,7 @@ void simple_frame_window::on_message_create(::message::message * pmessage)
 
          index iNotifyIconItem = 0;
 
-         notify_icon_insert_item(iNotifyIconItem, textAppTitle.get_text(), "notify_icon_topic");
+         notify_icon_insert_item(iNotifyIconItem, strAppTitle, "notify_icon_topic");
 
          auto c = papplication->applicationmenu().get_count();
 
@@ -1888,13 +1896,6 @@ void simple_frame_window::_001OnActivate(::message::message * pmessage)
 bool simple_frame_window::LoadFrame(const char * pszMatter, u32 dwDefaultStyle, ::user::interaction * puiParent, ::user::system * pusersystem)
 {
 
-   //if (m_pdescriptor.is_null())
-   //{
-
-   //   m_pdescriptor.create(this);
-
-   //}
-
    m_id = pusersystem->m_id.to_string() + "::frame";
 
    UNREFERENCED_PARAMETER(puiParent);
@@ -1903,15 +1904,12 @@ bool simple_frame_window::LoadFrame(const char * pszMatter, u32 dwDefaultStyle, 
 
    auto papplication = get_application();
 
-
    if (puiParent == nullptr)
    {
 
       puiParent = papplication->get_request_parent_ui(this, pusersystem);
 
    }
-
-   //dwDefaultStyle &= ~WS_VISIBLE;
 
    ::rectangle_i32 rectFrame;
 
@@ -1924,23 +1922,7 @@ bool simple_frame_window::LoadFrame(const char * pszMatter, u32 dwDefaultStyle, 
 
    }
 
-   if(puiParent == nullptr)
-   {
-
-      m_bLayoutEnable = false;
-
-      INFO("simple_frame_window::LoadFrame m_bLayoutEnable false");
-
-   }
-
-   //auto pusersystem = __new(::user::system(0L, nullptr, m_strFrameTitle, dwDefaultStyle, rectFrame, pcreate));
-
-   //if (!pre_create_window(pusersystem))
-   //{
-
-   //   return false;
-
-   //}
+   m_bLockSketchToDesign = true;
 
    if(puiParent == nullptr || wfi_is_up_down())
    {
@@ -1963,7 +1945,7 @@ bool simple_frame_window::LoadFrame(const char * pszMatter, u32 dwDefaultStyle, 
 
          WindowDataLoadWindowRect(bForceRestore, bInitialFramePosition);
 
-         rectFrame = layout().sketch().screen_rect();
+         rectFrame = screen_rect();
 
          INFO("simple_frame_window::LoadFrame rectFrame (l=%d, t=%d) (w=%d, h=%d)", rectFrame.left, rectFrame.top, rectFrame.width(), rectFrame.height());
          INFO("simple_frame_window::LoadFrame edisplay=%s", __cstr(layout().sketch().display().eflag()));
@@ -2011,7 +1993,7 @@ bool simple_frame_window::LoadFrame(const char * pszMatter, u32 dwDefaultStyle, 
 
       }
 
-      rectFrame = layout().sketch().screen_rect();
+      rectFrame = screen_rect();
 
       //pusersystem->set_rect(rectFrame);
 
@@ -2031,7 +2013,7 @@ bool simple_frame_window::LoadFrame(const char * pszMatter, u32 dwDefaultStyle, 
 
          set_need_layout();
 
-         layout().sketch() = e_display_none;
+         layout().sketch().display() = e_display_none;
 
          INFO("simple_frame_window::LoadFrame DISPLAY_NONE");
 
@@ -2164,7 +2146,7 @@ void simple_frame_window::InitialFramePosition(bool bForceRestore)
 
    try
    {
-      if(m_bFrameMoveEnable)
+      if (m_bFrameMoveEnable)
       {
 
          bool bHostTopLevel = is_host_top_level();
@@ -2181,37 +2163,37 @@ void simple_frame_window::InitialFramePosition(bool bForceRestore)
             display(e_display_full_screen);
 
          }
-         else if(papplication->has_property("wfi_maximize") && is_top_level_window())
+         else if (papplication->has_property("wfi_maximize") && is_top_level_window())
          {
 
             display(e_display_zoomed);
 
          }
-         //else if(papplication->has_property("client_only"))
-         //{
+            //else if(papplication->has_property("client_only"))
+            //{
 
-         //   if(is_frame_experience_enabled())
-         //   {
+            //   if(is_frame_experience_enabled())
+            //   {
 
-         //      display(e_display_full_screen);
+            //      display(e_display_full_screen);
 
-         //   }
-         //   else
-         //   {
+            //   }
+            //   else
+            //   {
 
-         //      //best_monitor(nullptr,nullptr,true);
+            //      //best_monitor(nullptr,nullptr,true);
 
-         //      display(e_display_zoomed);
+            //      display(e_display_zoomed);
 
-         //   }
+            //   }
 
-         //}
+            //}
          else
          {
 
             m_bInitialFramePosition = true;
 
-            WindowDataLoadWindowRect(bForceRestore,true);
+            WindowDataLoadWindowRect(bForceRestore, true);
 
          }
 
@@ -2224,31 +2206,18 @@ void simple_frame_window::InitialFramePosition(bool bForceRestore)
       //on_frame_position();
 
    }
-   catch(...)
+   catch (...)
    {
 
    }
 
-   m_bLayoutEnable = true;
+   set_need_layout();
 
-   //set_need_redraw();
+   set_need_redraw();
 
-   output_debug_string("\nm_bLayoutEnable true");
+   m_bLockSketchToDesign = false;
 
-   if (get_parent() == nullptr || is_host_top_level())
-   {
-
-      set_need_layout();
-
-      set_need_redraw();
-
-      set_layout_ready();
-
-      post_redraw();
-
-      output_debug_string("\nframe_window::POST_READRAW\n");
-
-   }
+   post_redraw();
 
 }
 
@@ -2755,11 +2724,19 @@ bool simple_frame_window::LoadToolBar(::type type, id idToolBar, const char * ps
 
    AddControlBar(ptoolbar);
 
-   ptoolbar->set_need_layout();
-
    ptoolbar->payload("matter_annotation") = strMatter;
 
+   ptoolbar->set_need_layout();
+
+   ptoolbar->set_need_redraw();
+
+   ptoolbar->post_redraw();
+
    set_need_layout();
+
+   set_need_redraw();
+
+   post_redraw();
 
    return true;
 
@@ -2796,9 +2773,9 @@ void simple_frame_window::defer_create_notification_icon()
          if(estatus)
          {
 
-            const char * pszAppName = papplication->m_strAppName;
+            //const char * pszAppName = papplication->m_strAppName;
 
-            m_piconNotify->load_app_tray_icon(pszAppName);
+            m_piconNotify->load_app_tray_icon("notify_icon");
 
          }
 
@@ -3902,6 +3879,33 @@ void simple_frame_window::OnNotifyIconLButtonDown(::u32 uNotifyIcon)
 }
 
 
+::e_status simple_frame_window::command_handler(const ::id & id)
+{
+
+   if(id == "notify_icon_topic")
+   {
+
+      _001OnNotifyIconTopic(nullptr);
+
+      return ::success;
+
+   }
+
+   auto estatus = ::experience::frame_window::command_handler(id);
+
+   if(!estatus)
+   {
+
+      return estatus;
+
+   }
+
+   return estatus;
+
+
+}
+
+
 void simple_frame_window::_001OnNotifyIconTopic(::message::message * pmessage)
 {
 
@@ -3912,7 +3916,12 @@ void simple_frame_window::_001OnNotifyIconTopic(::message::message * pmessage)
 
    }
 
-   pmessage->m_bRet = true;
+   if(pmessage)
+   {
+
+      pmessage->m_bRet = true;
+
+   }
 
 }
 
@@ -4072,12 +4081,12 @@ void simple_frame_window::on_select_user_style()
 void simple_frame_window::call_notification_area_action(const char * pszId)
 {
 
-   string strId(pszId);
+   ::id id(pszId);
 
-   post_routine(__routine([this, strId]()
+   post_routine(__routine([this, id]()
    {
 
-      notification_area_action(strId);
+      command_handler(id);
 
    }));
 

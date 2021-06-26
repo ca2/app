@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   class CLASS_DECL_AURA combo_list :
+   class CLASS_DECL_AURA list_box :
       virtual public ::user::scroll_base
    {
    public:
@@ -26,8 +26,8 @@ namespace user
       millis                                m_millisLastVisibilityChange;
 
 
-      combo_list();
-      virtual ~combo_list();
+      list_box();
+      virtual ~list_box();
 
 
       void user_combo_list_common_construct();

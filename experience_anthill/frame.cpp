@@ -97,7 +97,7 @@ namespace experience
 
                pimage2 = create_image({rectangleClient.width() + iInflate * 2,  rectangleClient.height() + iInflate * 2});
                ::rectangle_i32 rectWindow = rectangleClient;
-               pframewindow->_001ClientToScreen(rectWindow);
+               pframewindow->client_to_screen(rectWindow);
                //pimage = create_image({rectangleClient.width(),  rectangleClient.height()});
                //bool b = pimage2->get_graphics()->BitBlt(0, 0, rectangleClient.width() + iInflate * 2, rectangleClient.height() + iInflate * 2, pgraphics, rectangleClient.left - iInflate, rectangleClient.top - iInflate);
                pimage2->get_graphics()->draw(
@@ -148,7 +148,7 @@ namespace experience
             //}
 
 
-            void frame::ColorGlass(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle, color32_t cr, byte bAlpha)
+            void frame::ColorGlass(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle, const ::color::color& color, const ::opacity& opacity)
             {
 
                /*Gdiplus::Graphics g((HDC) pgraphics->get_os_data());
@@ -156,7 +156,7 @@ namespace experience
                Gdiplus::SolidBrush solidBrush(Gdiplus::Color(bAlpha, colorref_get_r_value(cr), colorref_get_g_value(cr), colorref_get_b_value(cr)));
                g.FillRectangle(&solidBrush, lprect->left, lprect->top, lprect->right - lprect->left, lprect->bottom - lprect->top);*/
 
-               pgraphics->color_blend(rectangle, cr, bAlpha);
+               pgraphics->fill_rectangle(rectangle, color & opacity);
 
             }
 

@@ -52,7 +52,7 @@
  ASSERT(hWnd != nullptr);
 
  // check child windows
- ::_001ClientToScreen(hWnd, &point);
+ ::client_to_screen(hWnd, &point);
  oswindow hWndChild = ::GetWindow(hWnd, GW_CHILD);
  for (; hWndChild != nullptr; hWndChild = ::GetWindow(hWndChild, GW_HWNDNEXT))
  {

@@ -171,7 +171,7 @@ namespace userstack
                ::rectangle_i32 rectangleClient;
                get_client_rect(rectangleClient);
                ::point_i32 point = pmouse->m_point;
-               _001ScreenToClient(point);
+               screen_to_client(point);
                if(rectangleClient.contains(point))
                {
                   get_wnd()->set_capture();

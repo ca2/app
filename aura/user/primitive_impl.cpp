@@ -351,10 +351,10 @@ namespace user
 
       string strType = ::str::demangle(m_puserinteraction->type_name());
 
-      if (strType.contains("combo_list"))
+      if (strType.contains("list_box"))
       {
 
-         output_debug_string("combo_list");
+         output_debug_string("list_box");
 
       }
 
@@ -1138,7 +1138,7 @@ namespace user
    bool primitive_impl::get_rect_normal(RECTANGLE_I32 * prectangle)
    {
 
-      m_puserinteraction->layout().sketch().screen_rect(prectangle);
+      *prectangle = m_puserinteraction->screen_rect();
 
       return true;
 

@@ -506,9 +506,9 @@ namespace user
 
       virtual void _001AddSelection(const item_range & itemrange);
 
-      virtual void set_current_item(const item & item, const ::action_context & action_context) override;
+      ::e_status set_current_item(const item & item, const ::action_context & action_context) override;
 
-      virtual item current_item() override;
+      item current_item() override;
 
       virtual void set_current_item(const index_array & iaSel, const ::action_context & action_context);
 

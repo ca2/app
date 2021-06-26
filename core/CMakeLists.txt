@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.17)
 project(core CXX)
 
 
-list(APPEND core_source
+list(APPEND library_source
    asset/cube_new.cpp
    #asset/new.cpp
    axispolicy/_.h
@@ -1048,7 +1048,7 @@ list(APPEND library_references
    )
 
 
-add_library(core SHARED ${core_source})
+add_library(core SHARED ${library_source})
 
 
 target_precompile_headers(core PRIVATE framework.h)

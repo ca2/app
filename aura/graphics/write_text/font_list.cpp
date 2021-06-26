@@ -235,7 +235,7 @@ namespace write_text
 
       auto pointCursor = pwindowing->get_cursor_position();
 
-      m_puserinteraction->_001ScreenToClient(pointCursor);
+      m_puserinteraction->screen_to_client(pointCursor);
 
       pointCursor += m_puserinteraction->get_viewport_offset();
 
@@ -534,12 +534,12 @@ namespace write_text
    }
 
 
-   void font_list::on_subject(::subject::subject * psubject)
-   {
-
-      ::subject::manager::on_subject(psubject);
-
-   }
+//   void font_list::on_subject(::subject::subject * psubject)
+//   {
+//
+//      ::subject::manager::on_subject(psubject);
+//
+//   }
 
 
    void font_list::on_subject(::subject::subject * psubject, ::subject::context * pcontext)

@@ -35,23 +35,26 @@ namespace subject
 
       virtual ::subject::subject * subject(const ::id& id, const ::action_context& actioncontext = ::action_context());
 
-      ::subject::subject_pointer fork_subject(const ::id &id);
+      //::subject::subject_pointer fork_subject(const ::id &id);
 
-      virtual void process_subject(const ::id & id);
-      virtual void process_subject(const ::id & id, const ::payload & payload);
-      virtual void process_subject(const ::id & id, const ::action_context &actioncontext);
-      virtual void process(::subject::subject * psubject);
+      //virtual void process_subject(const ::id & id);
+      //virtual void process_subject(const ::id & id, const ::payload & payload);
+      //virtual void process_subject(const ::id & id, const ::action_context &actioncontext);
 
-      using ::property_object::on_subject;
-      virtual void on_subject(::subject::subject * psubject);
+      // <3ThomasBorregaardSørensen handle...!!
+      virtual void handle_subject(::subject::subject * psubject);
+
+
+      //using ::property_object::on_subject;
+      //void subject_handler(::subject::subject * psubject) override;
       //virtual void on_subject(::subject::subject * psubject);
 
-      virtual void deliver(const ::id &id);
-      virtual void deliver(const ::id &id, const ::action_context &actioncontext);
+      //virtual void deliver(const ::id &id);
+      //virtual void deliver(const ::id &id, const ::action_context &actioncontext);
 
-      virtual void set_modified(const ::id &id);
-      virtual void delivery_for(const ::id &id, ::matter *pmatter, bool bForkWhenNotify = false);
-      virtual void erase_subject(const ::id &id, ::matter *pmatter);
+      //virtual void set_modified(const ::id &id);
+      //virtual void delivery_for(const ::id &id, ::matter *pmatter, bool bForkWhenNotify = false);
+      //virtual void erase_subject(const ::id &id, ::matter *pmatter);
       //static handler_pointer fork_handler(const ::id &id, ::matter *pmatter = nullptr);
       //subject_pointer subject(const ::id &id, ::matter *pmatter = nullptr);
 

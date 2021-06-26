@@ -162,10 +162,10 @@
 		9AE64576252A5BF100BED5B8 /* slider.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE6401A252A5BEB00BED5B8 /* slider.h */; };
 		9AE64577252A5BF100BED5B8 /* user.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE6401B252A5BEB00BED5B8 /* user.h */; };
 		9AE64579252A5BF100BED5B8 /* user.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE6401D252A5BEB00BED5B8 /* user.cpp */; };
-		9AE6457A252A5BF100BED5B8 /* combo_list.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE6401E252A5BEB00BED5B8 /* combo_list.cpp */; };
+		9AE6457A252A5BF100BED5B8 /* list_box.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE6401E252A5BEB00BED5B8 /* list_box.cpp */; };
 		9AE6457B252A5BF100BED5B8 /* slider.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE6401F252A5BEB00BED5B8 /* slider.cpp */; };
 		9AE6457C252A5BF100BED5B8 /* simple_ui_draw.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE64020252A5BEB00BED5B8 /* simple_ui_draw.h */; };
-		9AE6457D252A5BF100BED5B8 /* combo_list.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE64021252A5BEB00BED5B8 /* combo_list.h */; };
+		9AE6457D252A5BF100BED5B8 /* list_box.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE64021252A5BEB00BED5B8 /* list_box.h */; };
 		9AE6457E252A5BF100BED5B8 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE64022252A5BEB00BED5B8 /* _.h */; };
 		9AE64581252A5BF100BED5B8 /* parser_exception.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE6402A252A5BEB00BED5B8 /* parser_exception.cpp */; };
 		9AE64582252A5BF100BED5B8 /* parser.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE6402B252A5BEB00BED5B8 /* parser.h */; };
@@ -477,10 +477,10 @@
 		9AE6401A252A5BEB00BED5B8 /* slider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = slider.h; sourceTree = "<group>"; };
 		9AE6401B252A5BEB00BED5B8 /* user.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = user.h; sourceTree = "<group>"; };
 		9AE6401D252A5BEB00BED5B8 /* user.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = user.cpp; sourceTree = "<group>"; };
-		9AE6401E252A5BEB00BED5B8 /* combo_list.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = combo_list.cpp; sourceTree = "<group>"; };
+		9AE6401E252A5BEB00BED5B8 /* list_box.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = list_box.cpp; sourceTree = "<group>"; };
 		9AE6401F252A5BEB00BED5B8 /* slider.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = slider.cpp; sourceTree = "<group>"; };
 		9AE64020252A5BEB00BED5B8 /* simple_ui_draw.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = simple_ui_draw.h; sourceTree = "<group>"; };
-		9AE64021252A5BEB00BED5B8 /* combo_list.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = combo_list.h; sourceTree = "<group>"; };
+		9AE64021252A5BEB00BED5B8 /* list_box.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = list_box.h; sourceTree = "<group>"; };
 		9AE64022252A5BEB00BED5B8 /* _.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
 		9AE6402A252A5BEB00BED5B8 /* parser_exception.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = parser_exception.cpp; sourceTree = "<group>"; };
 		9AE6402B252A5BEB00BED5B8 /* parser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = parser.h; sourceTree = "<group>"; };
@@ -971,10 +971,10 @@
 				9AE6401A252A5BEB00BED5B8 /* slider.h */,
 				9AE6401B252A5BEB00BED5B8 /* user.h */,
 				9AE6401D252A5BEB00BED5B8 /* user.cpp */,
-				9AE6401E252A5BEB00BED5B8 /* combo_list.cpp */,
+				9AE6401E252A5BEB00BED5B8 /* list_box.cpp */,
 				9AE6401F252A5BEB00BED5B8 /* slider.cpp */,
 				9AE64020252A5BEB00BED5B8 /* simple_ui_draw.h */,
-				9AE64021252A5BEB00BED5B8 /* combo_list.h */,
+				9AE64021252A5BEB00BED5B8 /* list_box.h */,
 				9AE64022252A5BEB00BED5B8 /* _.h */,
 			);
 			path = user;
@@ -1340,7 +1340,7 @@
 				9AE6491F252A5BF700BED5B8 /* usera.h in Headers */,
 				9AE6491B252A5BF700BED5B8 /* contact_list.h in Headers */,
 				9AE644A0252A5BF000BED5B8 /* server.h in Headers */,
-				9AE6457D252A5BF100BED5B8 /* combo_list.h in Headers */,
+				9AE6457D252A5BF100BED5B8 /* list_box.h in Headers */,
 				9AE644E6252A5BF000BED5B8 /* _.h in Headers */,
 				9AE64469252A5BEF00BED5B8 /* database.h in Headers */,
 				9AE64566252A5BF100BED5B8 /* html.h in Headers */,
@@ -1460,7 +1460,7 @@
 				9A00E5E6266136E500517464 /* result.cpp in Sources */,
 				9AE64468252A5BEF00BED5B8 /* database.cpp in Sources */,
 				9AE6491A252A5BF700BED5B8 /* usera.cpp in Sources */,
-				9AE6457A252A5BF100BED5B8 /* combo_list.cpp in Sources */,
+				9AE6457A252A5BF100BED5B8 /* list_box.cpp in Sources */,
 				9AE6456B252A5BF100BED5B8 /* style.cpp in Sources */,
 				9AE6456C252A5BF100BED5B8 /* combo_box.cpp in Sources */,
 				9AE6492E252A5BF700BED5B8 /* storage_client.cpp in Sources */,

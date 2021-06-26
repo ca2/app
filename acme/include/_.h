@@ -462,6 +462,8 @@ class pointer_array;
 #define __pointer_array(TYPE) ::pointer_array < TYPE >
 #define __address_array(TYPE) ::comparable_array < TYPE * >
 
+#include <type_traits>
+
 class matter;
 
 template < typename T >
@@ -3398,16 +3400,17 @@ namespace draw2d
 
 #define OPTIONAL_BASE_BODY                                                          \
 public:                                                                             \
-   virtual ::e_status on_initialize_object() override { return ::success; }         \
-   virtual void assert_valid() const override {}                                    \
-   virtual void dump(dump_context&) const override {}                               \
-   virtual void on_subject(::subject::subject*, ::subject::context*) override {}    \
+   ::e_status on_initialize_object() override { return ::success; }         \
+   void assert_valid() const override {}                                    \
+   void dump(dump_context&) const override {}                               \
+   void subject_handler(::subject::subject*) override {}    \
+   void on_subject(::subject::subject*, ::subject::context*) override {} \
 
 
 #define OPTIONAL_INTERACTION_BODY                                                   \
    OPTIONAL_BASE_BODY                                                               \
-   virtual void install_message_routing(::channel*) override {}                     \
-   virtual void on_layout(::draw2d::graphics_pointer&) {}                           
+   void install_message_routing(::channel*) override {}                     \
+   void on_layout(::draw2d::graphics_pointer&) {}
 
 
 class optional_base1 : virtual public ::object { OPTIONAL_BASE_BODY };
@@ -3617,7 +3620,11 @@ inline void dump_elements(dump_context &dumpcontext, const TYPE *pElements, ::co
 DECLARE_ENUMERATION(e_source, enum_source);
 
 
+using lresult = iptr;
+
+
 #include "acme/const/context.h"
+#include "acme/platform/message.h"
 #include "acme/primitive/primitive/action_context.h"
 
 

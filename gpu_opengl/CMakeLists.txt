@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.17)
 project(gpu_opengl CXX)
 
 
-list(APPEND gpu_opengl_source
+list(APPEND library_source
         _.cpp
         _.h
         buffer.cpp
@@ -22,7 +22,7 @@ list(APPEND gpu_opengl_source
         shader.h)
 
 if(WIN32)
-    list(APPEND gpu_opengl_source
+    list(APPEND library_source
             context_win32.cpp
             context_win32.h
             )
@@ -31,7 +31,7 @@ endif()
 
 
 if(LINUX)
-    list(APPEND gpu_opengl_source
+    list(APPEND library_source
             context_egl.cpp
             context_egl.h
             context_glx.cpp
@@ -42,7 +42,7 @@ if(LINUX)
 
 
 if(APPLE)
-    list(APPEND gpu_opengl_source
+    list(APPEND library_source
             context_cgl.cpp
             context_cgl.h
             context_fbo.cpp
@@ -68,7 +68,7 @@ if(LINUX)
 
 endif()
 
-add_library(gpu_opengl SHARED ${gpu_opengl_source})
+add_library(gpu_opengl SHARED ${library_source})
 
 target_precompile_headers(gpu_opengl PRIVATE framework.h)
 

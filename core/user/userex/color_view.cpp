@@ -823,7 +823,7 @@ namespace userex
 
       ::point_i32 point = pmouse->m_point;
 
-      _001ScreenToClient(point);
+      screen_to_client(point);
 
       on_mouse(point);
 
@@ -843,7 +843,7 @@ namespace userex
       
       ::point_i32 point = pmouse->m_point;
       
-      _001ScreenToClient(point);
+      screen_to_client(point);
 
       on_mouse(point);
 
@@ -889,7 +889,7 @@ namespace userex
 
          ::point_i32 point = pmouse->m_point;
 
-         _001ScreenToClient(point);
+         screen_to_client(point);
 
          on_mouse(point);
 

@@ -180,10 +180,10 @@ namespace user
 
       ::task_set_name("prodevian," + strType);
 
-      if (strType.contains_ci("combo_list"))
+      if (strType.contains_ci("list_box"))
       {
 
-         output_debug_string("combo_list");
+         output_debug_string("list_box");
 
       }
 
@@ -408,10 +408,10 @@ bool prodevian::prodevian_iteration()
 
          }
 
-         if (strType.contains_ci("combo_list"))
+         if (strType.contains_ci("list_box"))
          {
 
-            output_debug_string("combo_list");
+            output_debug_string("list_box");
 
          }
 
@@ -980,7 +980,7 @@ bool prodevian::prodevian_iteration()
 
          }
 
-         if (!m_puserinteraction->m_bLockWindowUpdate)
+
          {
 
             synchronouslock.unlock();
@@ -991,7 +991,12 @@ bool prodevian::prodevian_iteration()
 
             auto pgraphics = pdraw2d->create_memory_graphics();
 
-            m_puserinteraction->sketch_to_design(pgraphics, bUpdateBuffer, bUpdateWindow);
+            if (!m_puserinteraction->is_sketch_to_design_locked())
+            {
+
+               m_puserinteraction->sketch_to_design(pgraphics, bUpdateBuffer, bUpdateWindow);
+
+            }
 
             synchronouslock.lock();
 
@@ -1162,10 +1167,10 @@ bool prodevian::prodevian_iteration()
 
          string strType = m_puserinteraction->type_c_str();
 
-         if(strType.contains_ci("combo_list"))
+         if(strType.contains_ci("list_box"))
          {
 
-            output_debug_string("We're on the combo_list update_screen");
+            output_debug_string("We're on the list_box update_screen");
 
          }
 
@@ -1255,7 +1260,6 @@ bool prodevian::prodevian_iteration()
       }
 
    }
-
 
 
    void prodevian::set_prodevian_fps(double dProdevianFps)

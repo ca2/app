@@ -56,9 +56,9 @@ namespace account
 
       virtual bool prepare_window(bool bShow);
 
-      virtual void _001ClientToScreen(POINT_I32 * ppt);
+      virtual void client_to_screen(POINT_I32 * ppt);
 
-      virtual void _001ScreenToClient(POINT_I32 * ppt);
+      virtual void screen_to_client(POINT_I32 * ppt);
 
       virtual void get_window_rect(RECTANGLE_I32 * prectangle);
 
@@ -535,20 +535,20 @@ namespace account
 
 
 
-   void account::_001ClientToScreen(POINT_I32 * ppt)
+   void account::client_to_screen(POINT_I32 * ppt)
    {
-      ::_001ClientToScreen(m_oswindow, ppt);
+      ::client_to_screen(m_oswindow, ppt);
    }
 
-   void account::_001ScreenToClient(POINT_I32 * ppt)
+   void account::screen_to_client(POINT_I32 * ppt)
    {
-      ::_001ScreenToClient(m_oswindow, ppt);
+      ::screen_to_client(m_oswindow, ppt);
    }
 
    bool account::on_lbutton_down(i32 x, i32 y)
    {
 
-      ::_001ClientToScreen(m_oswindow, &m_pointLButtonDown);
+      ::client_to_screen(m_oswindow, &m_pointLButtonDown);
 
       if (m_login.on_lbutton_down(x, y))
          return true;

@@ -54,7 +54,7 @@ oswindow CLASS_DECL_AURA __child_window_from_point(oswindow hWnd, POINT_I32 poin
    ASSERT(hWnd != nullptr);
 
    // check child windows
-   ::_001ClientToScreen(hWnd, &point);
+   ::client_to_screen(hWnd, &point);
    oswindow hWndChild = ::GetWindow(hWnd, GW_CHILD);
    for (; hWndChild != nullptr; hWndChild = ::GetWindow(hWndChild, GW_HWNDNEXT))
    {

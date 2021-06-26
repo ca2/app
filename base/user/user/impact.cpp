@@ -140,17 +140,23 @@ namespace user
       }
 
       if(pmessagecreate->previous())
+      {
+
          return;
+
+      }
 
       {
 
          ::user::control_event ev;
 
-         ev.m_puie      = this;
+         ev.m_puie                        = this;
 
-         ev.m_eevent    = ::user::e_event_on_create_impact;
+         ev.m_eevent                      = ::user::e_event_on_create_impact;
 
-         ev.m_pmessage  = pmessage;
+         ev.m_actioncontext.m_pmessage    = pmessage;
+
+         ev.m_actioncontext.add(e_source_initialize);
 
          on_control_event(&ev);
 
@@ -887,7 +893,7 @@ namespace user
 
          auto psubject = pdocument->subject(id_initial_update);
 
-         pview->process(psubject);
+         pdocument->handle_subject(psubject);
 
       }
 

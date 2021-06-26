@@ -98,8 +98,8 @@ struct CLASS_DECL_AURA oswindow_data
    bool ShowWindow(int nCmdShow);
    ::i32 get_window_long(i32 nIndex);
    ::i32 set_window_long(i32 nIndex, ::i32 l);
-   bool ClientToScreen(POINT32 * lppoint);
-   bool ScreenToClient(POINT32 * lppoint);
+   bool client_to_screen(POINT32 * lppoint);
+   bool screen_to_client(POINT32 * lppoint);
 
 
 

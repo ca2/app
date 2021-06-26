@@ -47,7 +47,7 @@ namespace experience
             {
                e_hittest etest = hittest_client;
                {
-                  //      m_pframewindow->GetEventWindow()->_001ScreenToClient(point);
+                  //      m_pframewindow->GetEventWindow()->screen_to_client(point);
                   ::rectangle_i32 rectEvent;
                   m_pframewindow->get_window_rect(rectEvent);
                   ::rectangle_i32 rectangle;
@@ -199,11 +199,11 @@ SizingNone:;
 
                auto pframewindow = m_pframewindow;
 
-               color32_t    crMoveableBorder;
+               ::color::color    crMoveableBorder;
 
-               color32_t    crMoveableBorderHilight;
+               ::color::color    crMoveableBorderHilight;
 
-               color32_t    crMoveableBorderShadow;
+               ::color::color    crMoveableBorderShadow;
 
                if(pframewindow->m_fActive)
                {
@@ -242,9 +242,7 @@ SizingNone:;
 
                   GetBorderRect(rectangleClient, rectangle, eside);
 
-
-
-                  pgraphics->color_blend( rectangle, crMoveableBorder, 127);
+                  pgraphics->fill_rectangle( rectangle, crMoveableBorder & 127_opacity);
 
                }
                /*else if(m_estyle == StyleLightBlue)
@@ -256,7 +254,7 @@ SizingNone:;
 
 
 
-                  pgraphics->color_blend( rectangle, crMoveableBorder, 127);
+                  pgraphics->fill_rectangle( rectangle, crMoveableBorder, 127);
 
 
 
@@ -284,7 +282,7 @@ SizingNone:;
 
 
 
-                  pgraphics->color_blend( rectangle, crMoveableBorder, 127);
+                  pgraphics->fill_rectangle( rectangle, crMoveableBorder & 127_opacity);
 
                }
 

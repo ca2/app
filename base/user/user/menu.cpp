@@ -387,6 +387,8 @@ namespace user
 
          m_pmenuitem->m_puserinteractionHost = puiNotify;
 
+         m_pmaterialCommandHandler = puiNotify;
+
       }
       else if (m_puiMenuNotify == nullptr)
       {
@@ -640,7 +642,7 @@ namespace user
       if (get_parent() != nullptr)
       {
 
-         get_parent()->_001ScreenToClient(m_pointTrack);
+         get_parent()->screen_to_client(m_pointTrack);
 
       }
 
@@ -947,9 +949,11 @@ namespace user
                   if (puiTarget != nullptr)
                   {
 
-                     ::message::command command(pevent->m_puie->m_id);
+                     //::message::command command(pevent->m_puie->m_id);
 
-                     puiTarget->_001SendCommand(&command);
+                     //puiTarget->_001SendCommand(&command);
+
+                     puiTarget->command_handler(pevent->m_puie->m_id);
 
                   }
 
@@ -1374,7 +1378,7 @@ namespace user
          }
 
          //DestroyWindow();
-         set_finish();
+         finish();
 
       }
 
@@ -1572,9 +1576,39 @@ namespace user
 
       }
 
+      pinteraction->m_pmaterialCommandHandler = this;
+
       return pinteraction;
 
    }
+
+
+   // <3ThomasBorregaardS�rensen__!!
+   ::e_status menu::command_handler(const ::id& id)
+   {
+
+      if (m_pmaterialCommandHandler)
+      {
+
+         defer_close();
+
+         auto estatus = m_pmaterialCommandHandler->command_handler(id);
+
+         if (!estatus)
+         {
+
+            return estatus;
+
+         }
+
+         return estatus;
+
+      }
+
+      return ::error_failed;
+
+   }
+
 
 
 } // namespace user

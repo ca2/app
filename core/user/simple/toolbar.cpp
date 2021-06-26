@@ -735,7 +735,7 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
             if ((m_dwCtrlStyle & TBSTYLE_FLAT) == TBSTYLE_FLAT)
             {
 
-               pgraphics->color_blend(rectItem, rgb(255, 255, 250), 208);
+               pgraphics->fill_rectangle(rectItem, argb(208, 255, 255, 250));
 
                pgraphics->draw_3drect(rectItem, argb(255, 127, 127, 127), argb(255, 255, 255, 255));
 
@@ -1233,7 +1233,7 @@ void simple_toolbar::on_layout(::draw2d::graphics_pointer & pgraphics)
 //
 //   ::point_i32 point = pmouse->m_point;
 //
-//   _001ScreenToClient(point);
+//   screen_to_client(point);
 //
 //   if (m_bDockTrack)
 //   {
@@ -1294,7 +1294,7 @@ void simple_toolbar::on_layout(::draw2d::graphics_pointer & pgraphics)
 //
 //   auto point = pmouse->m_point;
 //
-//   _001ScreenToClient(point);
+//   screen_to_client(point);
 //
 //   if (m_bDockTrack)
 //   {
@@ -1386,7 +1386,7 @@ void simple_toolbar::on_hit_test(::user::item & item)
 
    get_window_rect(rectWindow);
 
-   _001ScreenToClient(rectWindow);
+   screen_to_client(rectWindow);
 
    if (rectWindow.contains(item.m_pointHitTest))
    {
@@ -1448,7 +1448,7 @@ void simple_toolbar::on_hit_test(::user::item & item)
 //
 //   auto point = psession->get_cursor_position();
 //
-//   _001ScreenToClient(point);
+//   screen_to_client(point);
 //
 //   _001Hover(point, bRedraw);
 //
@@ -2267,7 +2267,7 @@ size_i32 simple_toolbar::CalcLayout(::draw2d::graphics_pointer & pgraphics, u32 
 
                   _001GetItemRect(i, &rectangle);
 
-                  _001ClientToScreen(rectangle);
+                  client_to_screen(rectangle);
 
                   pControl[nControlCount].rectOldPos = rectangle;
 

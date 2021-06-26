@@ -245,7 +245,7 @@ void html_form::on_message_left_button_down(::message::message * pmessage)
 
    point = pmouse->m_point;
 
-   _001ScreenToClient(point);
+   screen_to_client(point);
 
    if(get_html_data() != nullptr && get_html_data()->m_pcoredata != nullptr)
    {
@@ -291,7 +291,7 @@ void html_form::on_message_mouse_move(::message::message * pmessage)
 
    ::point_i32 point(pmouse->m_point);
 
-   _001ScreenToClient(point);
+   screen_to_client(point);
 
    synchronous_lock synchronouslock(mutex());
 
@@ -370,7 +370,7 @@ void html_form::on_message_left_button_up(::message::message * pmessage)
 
    ::point_i32 point(pmouse->m_point);
 
-   _001ScreenToClient(point);
+   screen_to_client(point);
 
    html::element * pelement = nullptr;
 
@@ -884,7 +884,7 @@ void html_form_view::on_subject(::subject::subject * psubject, ::subject::contex
 
          psubject->payload(id_form) = this;
 
-         m_pcallback->process(psubject);
+         m_pcallback->on_subject(psubject, pcontext);
 
       }
 

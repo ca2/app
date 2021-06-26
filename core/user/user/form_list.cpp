@@ -526,10 +526,10 @@ namespace user
                      pcombobox->_001ToggleDropDown();
 
                   }
-                  else if(pcombobox->m_plist != nullptr)
+                  else if(pcombobox->m_plistbox != nullptr)
                   {
 
-                     __keep(pcombobox->m_plist->m_bMovingComboBox);
+                     __keep(pcombobox->m_plistbox->m_bMovingComboBox);
 
                      pcombobox->_001ShowDropDown();
 
@@ -831,9 +831,11 @@ break_click:;
 
          _001SetItemText(&item);
 
-         auto psubject = fork_subject(id_control_saved);
+         auto pformlist = this;
 
-         process(psubject);
+         auto psubject = pformlist->subject(id_control_saved);
+
+         pformlist->handle_subject(psubject);
 
          return true;
 
@@ -903,9 +905,11 @@ break_click:;
 
          _001SetItemText(&item);
 
-         auto psubject = fork_subject(id_control_saved);
+         auto pformlist = this;
 
-         process(psubject);
+         auto psubject = pformlist->subject(id_control_saved);
+
+         pformlist->handle_subject(psubject);
 
          if (pinteraction->has_function(::user::e_control_function_duplicate_on_check_box))
          {
@@ -1248,7 +1252,7 @@ break_click:;
 //      item.m_iListItem = -1;
 //      //_001GetElementRect(&item, ::user::mesh::element_sub_item);
 //      rectControl = item.m_rectSubItem;
-//      _001ClientToScreen(rectControl);
+//      client_to_screen(rectControl);
 //      rectangle_i64 rectForm;
 //      get_window_rect(rectForm);
 //      rectangle_i64 rectangleClient;
@@ -1307,7 +1311,7 @@ break_click:;
 //
 //      auto point = pmouse->m_point;
 //
-//      _001ScreenToClient(point);
+//      screen_to_client(point);
 //
 //      if (pmouse->m_id == e_message_left_button_down)
 //      {
@@ -1427,7 +1431,7 @@ break_click:;
 //
 //
 //      //::point_i32 point = pmouse->m_point;
-//      //_001ScreenToClient(point);
+//      //screen_to_client(point);
 //      ///*      if(emessage == e_message_left_button_down)
 //      //      {
 //      //      i32 iItem;
@@ -1583,7 +1587,7 @@ break_click:;
       control_get_client_rect(pinteraction,prectangle);
 
 
-      _001ClientToScreen(prectangle);
+      client_to_screen(prectangle);
 
 
    }
@@ -1951,7 +1955,7 @@ break_click:;
       else if (pevent->m_eevent == ::user::e_event_key_down)
       {
 
-         SCAST_PTR(::message::key, pkey, pevent->m_pmessage);
+         SCAST_PTR(::message::key, pkey, pevent->m_actioncontext.m_pmessage.m_p);
 
          if (pkey->m_ekey == e_key_down || pkey->m_ekey == e_key_up
                || pkey->m_ekey == e_key_left || pkey->m_ekey == e_key_right)
@@ -2108,7 +2112,7 @@ break_click:;
 
          auto rScreen = pdrawitem->m_rectSubItem;
 
-         _001ClientToScreen(rScreen);
+         client_to_screen(rScreen);
 
          auto psession = get_session();
 
@@ -2205,13 +2209,13 @@ break_click:;
 
             pdrawitem->m_rectangleWindow = pdrawitem->m_rectangleClient;
 
-            _001ClientToScreen(pdrawitem->m_rectangleWindow);
+            client_to_screen(pdrawitem->m_rectangleWindow);
 
             //::rectangle_i32 rectWindow;
 
             //pinteraction->get_window_rect(rectWindow);
 
-            //_001ScreenToClient(rectWindow);
+            //screen_to_client(rectWindow);
 
             //if (rectWindow != pdrawitem->m_rectangleClient)
             {

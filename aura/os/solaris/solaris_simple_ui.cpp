@@ -496,16 +496,16 @@ namespace os
    }
 
 
-   void simple_ui::_001ClientToScreen(POINT_I32 * ppt)
+   void simple_ui::client_to_screen(POINT_I32 * ppt)
    {
-      //::_001ClientToScreen(m_window, ppt);
-      ::user::interaction::_001ClientToScreen(ppt);
+      //::client_to_screen(m_window, ppt);
+      ::user::interaction::client_to_screen(ppt);
    }
 
-   void simple_ui::_001ScreenToClient(POINT_I32 * ppt)
+   void simple_ui::screen_to_client(POINT_I32 * ppt)
    {
-      //::_001ScreenToClient(m_window, ppt);
-      ::user::interaction::_001ScreenToClient(ppt);
+      //::screen_to_client(m_window, ppt);
+      ::user::interaction::screen_to_client(ppt);
    }
 
    bool simple_ui::on_key_down(u32 uiKey)

@@ -19,7 +19,7 @@ namespace user
 
       m_edatamode = data_mode_string;
 
-      m_typeComboList = __type(::user::font_list);
+      m_typeListBox = __type(::user::font_list);
 
       m_bEdit = false;
 
@@ -55,19 +55,17 @@ namespace user
 
       //create_rect(::user::rect_edit_padding, r, ::draw2d::unit_pixel);
 
-      defer_create_combo_list();
+      defer_create_list_box();
 
-      __pointer(::user::font_list) plist = m_plist;
+      __pointer(::user::font_list) pfontlist = m_plistbox;
 
-      plist->set_font_list_type(::write_text::font_list::type_single_column);
+      pfontlist->set_font_list_type(::write_text::font_list::type_single_column);
 
       set_need_layout();
 
-      ::user::font_list& list = *m_plist.cast < ::user::font_list>();
+      synchronous_lock synchronouslock(pfontlist->mutex());
 
-      synchronous_lock synchronouslock(list.mutex());
-
-      auto pfontenumerationitema = list.m_pfontlist->m_pfontenumerationitema;
+      auto pfontenumerationitema = pfontlist->m_pfontlist->m_pfontenumerationitema;
 
       for (auto& item : pfontenumerationitema->ptra())
       {
@@ -75,7 +73,7 @@ namespace user
          if (item.is_set())
          {
 
-            AddString(item->m_strName, item->m_strName);
+            add_string(item->m_strName, item->m_strName);
 
          }
 

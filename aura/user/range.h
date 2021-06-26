@@ -94,6 +94,7 @@ namespace user
       void clear();
       void add_item(const item_range& itemrange);
       item_range& ItemAt(index iIndex);
+      ::index get_current_item();
       ::count get_item_count() const;
       ::count get_items(index_array& ia) const;
       ::count get_item_indexes(index_array& ia) const;

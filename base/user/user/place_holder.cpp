@@ -198,23 +198,23 @@ namespace user
 
       }
 
-      auto puiChild = puserinteractionpointeraChild->first_interaction();
+      {
 
-      puiChild->start_layout();
+         auto puiChild = puserinteractionpointeraChild->first_interaction();
 
-      puiChild->place(rectangleClient);
+         lock_sketch_to_design lockSketchToDesign(puiChild);
 
-      puiChild->layout().sketch().set_modified();
+         puiChild->place(rectangleClient);
 
-      puiChild->display();
+         puiChild->display();
 
-      puiChild->set_reposition();
+         puiChild->set_reposition();
 
-      puiChild->set_need_layout();
+         puiChild->set_need_layout();
 
-      puiChild->set_need_redraw();
+         puiChild->set_need_redraw();
 
-      puiChild->set_layout_ready();
+      }
 
    }
 

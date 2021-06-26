@@ -251,7 +251,7 @@ namespace experience
 
       auto psubject = subject(id_user_style_change);
 
-      psubject->add(pframe);
+      psubject->add_listener(pframe);
 
       set_user_style(pszStyle);
 
@@ -1154,10 +1154,10 @@ namespace experience
       {
 
       }
-      else if(base_class < ::user::combo_list >::bases(pActive))
+      else if(base_class < ::user::list_box >::bases(pActive))
       {
 
-         ::user::combo_list * plist = dynamic_cast <::user::combo_list *> (pActive.m_p);
+         ::user::list_box * plist = dynamic_cast <::user::list_box *> (pActive.m_p);
 
          if(plist != nullptr && plist->m_bComboList)
          {
@@ -1633,7 +1633,7 @@ namespace experience
       if (!_001OnBeforeAppearance())
       {
 
-         layout().sketch() = layout().design().display();
+         layout().sketch().display() = layout().design().display();
 
          return false;
 
@@ -1740,7 +1740,7 @@ namespace experience
          else
          {
 
-            rectangle = layout().sketch().screen_rect();
+            rectangle = screen_rect();
 
          }
 
@@ -2226,7 +2226,7 @@ namespace experience
 
       calculate_broad_and_compact_restore();
 
-      auto rectRequest = layout().sketch().screen_rect();
+      auto rectRequest = screen_rect();
 
       edisplay edisplay = layout().sketch().display();
 

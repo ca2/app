@@ -1263,7 +1263,9 @@ namespace axis
          if (papp.is_set())
          {
 
-            papp->process_subject(id_change_user);
+            auto psubject = papp->subject(id_change_user);
+
+            papp->handle_subject(psubject);
 
          }
 

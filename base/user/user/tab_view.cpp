@@ -371,17 +371,7 @@ namespace user
 
       m_pdroptargetwindow->initialize_tab_drop_target_window(this, (i32)pchannel->get_data()->m_iClickTab);
 
-      ::rectangle_i32 rectangle;
-
-      rectangle = pchannel->get_data()->m_rectTabClient;
-
-      pchannel->_001ClientToScreen(&rectangle);
-
-      //auto pusersystem = __new(::user::system (WS_EX_LAYERED, nullptr, nullptr, 0, rectangle));
-
-      //m_pdroptargetwindow->create_window_ex(pusersystem);
-
-      //m_pdroptargetwindow->create_window_ex(pusersystem);
+      auto rectangle = pchannel->_001ClientToScreen(pchannel->get_data()->m_rectTabClient);
 
       m_pdroptargetwindow->m_bTransparent = true;
 
@@ -1109,9 +1099,7 @@ namespace user
 
       auto pwindowing = puser->windowing();
 
-      auto pointCursor = pwindowing->get_cursor_position();
-
-      _001ScreenToClient(&pointCursor);
+      auto pointCursor = _001ScreenToClient(pwindowing->get_cursor_position());
 
       enum_position epositionDrag = m_ptab->DragHitTest(pointCursor);
 
@@ -1172,7 +1160,7 @@ namespace user
 
       auto point(pmouse->m_point);
 
-      _001ScreenToClient(point);
+      screen_to_client(point);
 
       enum_position eposition = m_ptab->DragHitTest(point);
 

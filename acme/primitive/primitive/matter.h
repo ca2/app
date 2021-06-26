@@ -309,7 +309,8 @@ public:
    virtual ::synchronization_result sync_wait();
    virtual ::synchronization_result sync_wait(const ::duration & duration);
 
-
+   // <3ThomasBorregaardSørensen__!! likes handler concept...
+   virtual void subject_handler(::subject::subject * psubject);
    virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext);
 
 

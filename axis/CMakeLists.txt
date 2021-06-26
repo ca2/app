@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.17)
 project(axis CXX)
 
 
-list(APPEND axis_source
+list(APPEND library_source
         account/_.h
         account/_account.h
         account/account.cpp
@@ -243,8 +243,8 @@ list(APPEND axis_source
         #user/check_box.h
         user/combo_box.cpp
         user/combo_box.h
-        user/combo_list.cpp
-        user/combo_list.h
+        user/list_box.cpp
+        user/list_box.h
         user/simple_ui_draw.cpp
         user/simple_ui_draw.h
         user/slider.cpp
@@ -283,12 +283,12 @@ list(APPEND axis_source
 
 if(WIN32)
 
-    list(APPEND axis_source
+    list(APPEND library_source
 
     )
     else()
 
-    list(APPEND axis_source
+    list(APPEND library_source
 
 
 
@@ -300,7 +300,7 @@ endif()
 
 if(IOS)
 
-    list(APPEND axis_source
+    list(APPEND library_source
         os/ios/_.h
         os/ios/_c.h
         os/ios/_ios.h
@@ -360,7 +360,7 @@ endif()
 
 if(MACOS)
 
-    list(APPEND axis_source
+    list(APPEND library_source
             #node/macos/_.h
             #node/macos/factory_exchange.cpp
             #node/macos/factory_exchange.h
@@ -374,7 +374,7 @@ if(MACOS)
 endif()
 
 if(APPLE)
-    list(APPEND axis_source
+    list(APPEND library_source
 
             #os/apple/_.cpp
             #os/apple/_.h
@@ -413,7 +413,7 @@ endif()
 
 if(ANDROID)
 
-    list(APPEND axis_source
+    list(APPEND library_source
         node/android/Kerr/kerr.h
         node/android/Kerr/LocalMemory.h
         node/android/_.h
@@ -512,7 +512,7 @@ endif()
 
 if(SOLARIS)
 
-list(APPEND axis_source
+list(APPEND library_source
     os/solaris/linux_internal.h
     os/solaris/solaris.cpp
     os/solaris/solaris.h
@@ -561,7 +561,7 @@ endif()
 
 if(UWP)
 
-    list(APPEND axis_source
+    list(APPEND library_source
         os/uwp/_.h
         os/uwp/_os_metrowin.cpp
         os/uwp/_uwp.h
@@ -608,7 +608,7 @@ if(UWP)
         )
 else()
 
-    list(APPEND axis_source
+    list(APPEND library_source
 
 
 
@@ -619,14 +619,14 @@ endif()
 
 if(LINUX)
 
-    list(APPEND axis_source)
+    list(APPEND library_source)
 
 endif()
 
 
 if(LINUX OR APPLE OR SOLARIS)
 
-    list(APPEND axis_source)
+    list(APPEND library_source)
 
 endif()
 
@@ -638,7 +638,7 @@ list(APPEND library_references
    aura)
 
 
-add_library(axis SHARED ${axis_source})
+add_library(axis SHARED ${library_source})
 
 
 target_precompile_headers(axis PRIVATE framework.h)

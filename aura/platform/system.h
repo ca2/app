@@ -984,9 +984,9 @@ namespace aura
       //virtual ::user::interaction_impl * impl_from_handle(void * pdata) override;
       //virtual ::user::interaction * ui_from_handle(void * pdata) override;
 
-      virtual void on_subject(::subject::subject * psubject) override;
+      void subject_handler(::subject::subject * psubject) override;
 
-      virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
+      void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
 
       virtual ::e_status initialize_estamira();
 

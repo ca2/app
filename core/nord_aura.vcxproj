@@ -1127,7 +1127,7 @@
     <ClCompile Include="user\user\check_box.cpp" />
     <ClCompile Include="user\user\color_combo_box.cpp" />
     <ClCompile Include="user\user\combo_box.cpp" />
-    <ClCompile Include="user\user\combo_list.cpp" />
+    <ClCompile Include="user\user\list_box.cpp" />
     <ClCompile Include="user\user\command.cpp" />
     <ClCompile Include="user\user\composition_imm_client.cpp" />
     <ClCompile Include="user\user\control.cpp" />

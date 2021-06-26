@@ -135,7 +135,7 @@ namespace netserver
 
             domain.create(purl->get_server(straValue[i]));
 
-            if (domain.m_strName == "ca2.cc")
+            if (domain.m_strName == "ca2.software")
             {
 
                //straValue[i] = "https://" + papplication->m_strFontopusServer + purl->get_object(straValue[i]);

@@ -504,7 +504,7 @@
     <ClInclude Include="user\combo_box.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
-    <ClInclude Include="user\combo_list.h">
+    <ClInclude Include="user\list_box.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
     <ClInclude Include="user\still.h">
@@ -740,9 +740,6 @@
     <ClCompile Include="user\combo_box.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\combo_list.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
     <ClCompile Include="user\slider.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
@@ -775,6 +772,9 @@
     </ClCompile>
     <ClCompile Include="database\database\transaction.cpp">
       <Filter>Source Files\database\database</Filter>
+    </ClCompile>
+    <ClCompile Include="user\list_box.cpp">
+      <Filter>Source Files\user</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

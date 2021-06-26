@@ -36,7 +36,7 @@ HWND CLASS_DECL_ACME __child_window_from_point(HWND hwnd, const ::point_i32 & po
    ASSERT(hwnd != nullptr);
    ::point_i32 point(pointParam);
    // check child windows
-   ::ClientToScreen(hwnd, (POINT *) &point);
+   ::client_to_screen(hwnd, (POINT *) &point);
    HWND oswindow_Child = ::GetWindow(hwnd, GW_CHILD);
    for (; oswindow_Child != nullptr; oswindow_Child = ::GetWindow(oswindow_Child, GW_HWNDNEXT))
    {

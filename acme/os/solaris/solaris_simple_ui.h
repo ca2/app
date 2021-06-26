@@ -59,11 +59,11 @@ namespace os
       virtual bool prepare_window(const RECTANGLE_I32 * lprect);
 
 
-      using ::user::interaction::_001ClientToScreen;
-      virtual void _001ClientToScreen(POINT_I32 * ppt);
+      using ::user::interaction::client_to_screen;
+      virtual void client_to_screen(POINT_I32 * ppt);
 
-      using ::user::interaction::_001ScreenToClient;
-      virtual void _001ScreenToClient(POINT_I32 * ppt);
+      using ::user::interaction::screen_to_client;
+      virtual void screen_to_client(POINT_I32 * ppt);
 
       virtual void get_window_rect(RECTANGLE_I32 * prectangle);
       virtual void get_client_rect(RECTANGLE_I32 * prectangle);

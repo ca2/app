@@ -89,7 +89,12 @@ namespace user
 
       pcreate->m_estatus = error_failed;
 
-      pcreate->m_pcommandline->m_varQuery["document"] = (::object *)nullptr;
+      if(pcreate->m_pcommandline)
+      {
+
+         pcreate->m_pcommandline->m_varQuery["document"] = (::object *) nullptr;
+
+      }
 
       bool bMakeVisible = pcreate->m_bMakeVisible;
 

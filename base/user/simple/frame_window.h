@@ -153,6 +153,8 @@ public:
    virtual void _001OnClip(::draw2d::graphics_pointer & pgraphics) override;
 
 
+   ::e_status command_handler(const ::id & id) override;
+
 
    virtual bool _001CanEnterScreenSaver() override;
 

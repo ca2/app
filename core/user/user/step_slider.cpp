@@ -108,7 +108,7 @@ namespace user
 
       byte bAlpha = (byte) (128.0 * get_alpha());
 
-      pgraphics->color_blend(rectangleClient, rgb(150, 200, 255), bAlpha);
+      pgraphics->fill_rectangle(rectangleClient, argb(bAlpha, 150, 200, 255));
 
       i64 iMin = m_scalar.minimum();
       i64 iMax = m_scalar.maximum();
@@ -120,38 +120,41 @@ namespace user
          GetStepRect(rectangle, i, iMin, iMax, rectangleClient);
          if(i == iVal)
          {
+            
             if(m_itemHover.item_index() == i)
             {
 
-               pgraphics->color_blend(rectangle, rgb(255, 255, 240), bAlpha);
+               pgraphics->fill_rectangle(rectangle, argb(bAlpha, 255, 255, 240));
 
             }
             else
             {
-               pgraphics->color_blend(
-                  rectangle,
-                  rgb(255, 255, 150),
-                  bAlpha);
+               
+               pgraphics->fill_rectangle(rectangle, argb(bAlpha, 255, 255, 150));
+               
             }
+            
          }
          else
          {
+         
             if(m_itemHover.item_index() == i)
             {
-               pgraphics->color_blend(
-                  rectangle,
-                  rgb(255, 180, 180),
-                  bAlpha);
+               
+               pgraphics->fill_rectangle(rectangle, argb(bAlpha, 255, 180, 180));
+               
             }
             else
             {
-               pgraphics->color_blend(
-                  rectangle,
-                  rgb(100, 100, 255),
-                  bAlpha);
+               
+               pgraphics->fill_rectangle(rectangle, argb(bAlpha, 100, 100, 255));
+               
             }
+            
          }
+         
       }
+      
    }
 
 

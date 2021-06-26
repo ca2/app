@@ -47,32 +47,12 @@ add_dependencies(app_shader ${default_gpu})
 add_dependencies(app_shader ${default_draw2d})
 
 
-
-target_link_directories(app_shader PRIVATE ${LIBRARY_OUTPUT_PATH})
-target_link_directories(app_shader PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/storage-${PLATFORM_NAME}/library/x64/basis)
-target_link_directories(app_shader PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/storage-${PLATFORM_NAME}/third/library/x64/basis)
-
-
-target_include_directories(app_shader PRIVATE .)
+target_include_directories(app_shader PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../..)
+target_include_directories(app_shader PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/..)
 target_include_directories(app_shader PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
-target_include_directories(app_shader PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive)
-target_include_directories(app_shader PRIVATE $ENV{HOME}/__config)
-target_include_directories(app_shader PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../source)
-target_include_directories(app_shader PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../source/inc)
-target_include_directories(app_shader PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../source/include)
-target_include_directories(app_shader PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../source/app/_include)
-target_include_directories(app_shader PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../source/app)
-target_include_directories(app_shader PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/platform-${PLATFORM_NAME})
-target_include_directories(app_shader PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/platform-${PLATFORM_NAME}/_include)
-target_include_directories(app_shader PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/third-${PLATFORM_NAME}/include)
-target_include_directories(app_shader PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/third-${PLATFORM_NAME}/third/include)
-target_include_directories(app_shader PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/third-${PLATFORM_NAME}/third/include/include)
-target_include_directories(app_shader PRIVATE $ENV{HOME}/__sensitive)
 
 
 target_compile_definitions(app_shader PRIVATE _APP_SHADER_LIBRARY)
-target_compile_definitions(app_shader PRIVATE UNICODE)
-target_compile_definitions(app_shader PRIVATE _UNICODE)
 
 
 

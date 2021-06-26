@@ -215,7 +215,7 @@ namespace account
 
       auto tickAuthBeg = ::millis::now();
 
-      string strAuthUrl("https://ca2.cc/api/account/auth3");
+      string strAuthUrl("https://ca2.software/api/account/auth3");
 
       string strDeferRegistration;
 
@@ -322,7 +322,7 @@ namespace account
 
       string strGetFontopus;
 
-      strGetFontopus = "https://ca2.cc/get_account_login";
+      strGetFontopus = "https://ca2.software/get_account_login";
 
       auto pcontext = get_context();
 
@@ -487,7 +487,7 @@ namespace account
 //
 //   string strGetFontopus;
 //
-//   strGetFontopus = "http://ca2.cc/get_account_login";
+//   strGetFontopus = "http://ca2.software/get_account_login";
 //
 //   purl->set_param(strGetFontopus,strGetFontopus,"lang",psession->get_locale());
 //
@@ -596,7 +596,7 @@ namespace account
 //
 //         m_mapFontopusServer.set_at(straSomeBrothersAndSisters[i], strFontopusServer);
 //
-//         strX.replace("-api.ca2.cc", "-account.ca2.cc");
+//         strX.replace("-api.ca2.software", "-account.ca2.software");
 //
 //         m_mapSomeBrothersAndSisters[strFontopusServer].add_unique(strX);
 //

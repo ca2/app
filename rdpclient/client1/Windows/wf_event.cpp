@@ -180,7 +180,7 @@ void wf_event_focus_in(wfContext* wfc)
 
 	/* send pointer position if the cursor is currently inside our client area */
 	GetCursorPos(&pt);
-	_001ScreenToClient(wfc->hwnd, &pt);
+	screen_to_client(wfc->hwnd, &pt);
 	get_client_rect(wfc->hwnd, &rc);
 
 	if (point.x >= rc.left && point.x < rc.right && point.y >= rc.top && point.y < rc.bottom)

@@ -68,7 +68,7 @@ namespace write_text
 
       virtual ::e_status initialize_font_list(::user::interaction * puserinteraction);
 
-      virtual void on_subject(::subject::subject * psubject) override;
+      //virtual void on_subject(::subject::subject * psubject) override;
 
       virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
 

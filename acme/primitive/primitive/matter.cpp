@@ -279,6 +279,15 @@ i64 matter::release(OBJ_REF_DBG_PARAMS_DEF)
 }
 
 
+//::e_status matter::command_handler(const char * pszCommand)
+//{
+//   
+//   return ::success_none;
+//
+//}
+
+
+
 void matter::set_mutex(synchronization_object* psync)
 {
 
@@ -946,9 +955,15 @@ void matter::to_string(const class string_exchange & str) const
 }
 
 
-void matter::on_subject(::subject::subject * psubject, ::subject::context * pcontext) 
+void matter::subject_handler(::subject::subject * psubject)
 {
 
+
+}
+
+
+void matter::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+{
 
 
 }

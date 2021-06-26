@@ -216,6 +216,17 @@ namespace acme
 
    }
 
+
+   ::e_status node::reboot()
+   {
+
+      __throw(error_interface_only);
+
+      return error_interface_only;
+
+   }
+
+
 #ifdef LINUX
 
 

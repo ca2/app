@@ -248,7 +248,7 @@ namespace account
       rectFontopus.bottom = rectFontopus.top + h;
 
       if(puiParent != nullptr)
-         puiParent->_001ScreenToClient(rectFontopus);
+         puiParent->screen_to_client(rectFontopus);
 
       if((rectFontopus.width() < 300 || rectFontopus.height() < 300) && puiParent != nullptr)
       {
@@ -437,7 +437,7 @@ namespace account
 
 
             if(get_parent() != nullptr)
-               get_parent()->_001ScreenToClient(rectFontopus);
+               get_parent()->screen_to_client(rectFontopus);
 
 
             set_window_position(e_zorder_top,rectFontopus,SWP_SHOWWINDOW);
@@ -480,7 +480,7 @@ namespace account
 
       //auto pointOffset = m_pointLButtonDown;
 
-      //_001ScreenToClient(pointOffset);
+      //screen_to_client(pointOffset);
 
       //m_sizeLButtonDownOffset = pointOffset;
 

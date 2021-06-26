@@ -351,7 +351,7 @@ namespace user
       if (get_translucency(pstyle) >= e_translucency_present)
       {
 
-         pgraphics->fill_rectangle(rectangleClient, ::color::color(crBk)+ ::opacity(127));
+         pgraphics->fill_rectangle(rectangleClient, ::color::color(crBk) & 127_opacity);
 
       }
       else
@@ -448,14 +448,24 @@ namespace user
       {
 
          ::user::control_event ev;
+
          ev.m_puie = this;
+
          ev.m_eevent = ::user::e_event_button_clicked;
-         ev.m_pmessage = pmessage;
+
+         ev.m_actioncontext.m_pmessage = pkey;
+
+         ev.m_actioncontext.add(e_source_user);
+
          on_control_event(&ev);
+
          pmessage->m_bRet = ev.m_bRet;
+
          if (pmessage->m_bRet)
          {
+
             pkey->m_lresult = 1;
+
          }
 
       }

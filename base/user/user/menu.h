@@ -133,6 +133,9 @@ namespace user
 
       virtual __pointer(::user::menu_interaction) create_menu_button(::draw2d::graphics_pointer & pgraphics, ::user::menu_item * pitem);
 
+      // <3ThomasBorregaardSørensen__!!
+      ::e_status command_handler(const ::id& id) override;
+
 
    };
 

@@ -627,7 +627,7 @@ namespace user
 
 
 //#include "combo_box.h"
-//#include "combo_list.h"
+//#include "list_box.h"
 
 
 //#include "check_box.h"
@@ -752,7 +752,7 @@ namespace user
 
 
 //#include "combo_box.h"
-//#include "combo_list.h"
+//#include "list_box.h"
 
 
 #ifdef LINUX

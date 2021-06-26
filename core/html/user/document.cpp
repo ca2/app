@@ -237,11 +237,13 @@ bool html_document::on_open_document(const ::payload & varFile)
 
    set_path_name(phtmldata->m_pcoredata->m_strPathName);
 
-   auto psubject = fork_subject(id_document_complete);
+   auto phtmldocument = this;
+
+   auto psubject = phtmldocument->subject(id_document_complete);
 
    psubject->payload(id_url) = varFile;
 
-   update_all_views(psubject);
+   phtmldocument->update_all_views(psubject);
 
    //data_set({ "LastOpenedFile", true }, get_file_path());
 

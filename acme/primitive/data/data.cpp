@@ -104,6 +104,19 @@ namespace data
    }
 
 
+   void data::subject_handler(::subject::subject * psubject)
+   {
+
+      //if (m_pdatacontainerbase)
+      //{
+
+      //   m_pdatacontainerbase->process(psubject);
+
+      //}
+
+   }
+
+
    void data::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
    {
 

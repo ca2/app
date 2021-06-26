@@ -72,16 +72,16 @@ namespace sockets
       
       strHost = m_request.header("host");
 
-      if (::str::ends_eat_ci(strHost, ".test.ca2.cc"))
+      if (::str::ends_eat_ci(strHost, ".test.ca2.software"))
       {
 
-         m_request.header("host") = strHost + ".ca2.cc";
+         m_request.header("host") = strHost + ".ca2.software";
 
       }
-      else if (strHost == "test.ca2.cc")
+      else if (strHost == "test.ca2.software")
       {
 
-         m_request.header("host") = "ca2.cc";
+         m_request.header("host") = "ca2.software";
 
       }
 
@@ -93,7 +93,7 @@ namespace sockets
 
       string strTest(strHost);
 
-      if (::str::ends_eat_ci(strTest, ".ca2.cc"))
+      if (::str::ends_eat_ci(strTest, ".ca2.software"))
       {
 
          if (strTest.find('.') > 0)
@@ -405,10 +405,10 @@ namespace sockets
       
       strOrigin = inheader("origin");
 
-      if (strOrigin.ends_ci("/ca2.cc") && strOrigin.ends_ci(".ca2.cc"))
+      if (strOrigin.ends_ci("/ca2.software") && strOrigin.ends_ci(".ca2.software"))
       {
 
-         //string strOrigin = "*.ca2.cc";
+         //string strOrigin = "*.ca2.software";
 
          if (strExtension == "ttf")
          {

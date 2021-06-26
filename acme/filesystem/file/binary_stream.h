@@ -235,6 +235,7 @@ public:
    virtual void write(u64 u) override { raw_write(u); }
 #if defined(__APPLE__) || defined(ANDROID) || defined(RASPBIAN)
    virtual void write(unsigned long u) override { raw_write(u); }
+   virtual void write(long l) override { raw_write(l); }
    //inline void write (long long ll);
 #endif
    virtual void write(float f) override { raw_write(f); }
@@ -280,7 +281,7 @@ public:
    virtual void read(u64 & u) override { raw_read(u); }
 #if defined(__APPLE__) || defined(ANDROID) || defined(RASPBIAN)
    virtual void read(unsigned long & u) override { raw_read(u); }
-   //inline void read (long long & u);
+   virtual void read(long & l) override { raw_read(l); }
 #endif
    virtual void read(float & f) override { raw_read(f); }
    virtual void read(double & d) override { raw_read(d); }

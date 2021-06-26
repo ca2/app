@@ -214,18 +214,26 @@ namespace userex
       return plist;
 
    }
-   
-   void group_image_list_view::set_current_item(const ::user::item & item, const ::action_context & context)
+
+
+   ::e_status group_image_list_view::set_current_item(const ::user::item & item, const ::action_context & context)
    {
 
-      ::user::impact::set_current_item(item, context);
+      auto estatus = ::user::impact::set_current_item(item, context);
+
+      if(estatus != success)
+      {
+
+         return estatus;
+
+      }
 
       auto pgroup = m_groupa[item];
 
       if (!pgroup)
       {
 
-         return;
+         return error_not_found;
 
       }
 
@@ -253,6 +261,8 @@ namespace userex
       set_need_layout();
 
       set_need_redraw();*/
+
+      return ::success;
 
    }
 

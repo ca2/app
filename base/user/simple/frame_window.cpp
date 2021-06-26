@@ -2013,7 +2013,7 @@ bool simple_frame_window::LoadFrame(const char * pszMatter, u32 dwDefaultStyle, 
 
          set_need_layout();
 
-         layout().sketch() = e_display_none;
+         layout().sketch().display() = e_display_none;
 
          INFO("simple_frame_window::LoadFrame DISPLAY_NONE");
 

@@ -1046,6 +1046,8 @@ namespace user
 
       m_bLockSketchToDesign = true;
 
+      layout().sketch().display() = e_display_none;
+
       output_debug_string("\nm_bLayoutEnable false");
 
       //auto pusersystem = __new(::user::system (0L, nullptr, m_strFrameTitle, dwDefaultStyle, rectFrame, pcreate));
@@ -1217,7 +1219,12 @@ namespace user
 
       // update frame counts and frame title (may already have been visible)
       if (pDoc != nullptr)
+      {
+
          pDoc->update_frame_counts();
+
+      }
+
       on_update_frame_title(true);
 
       //if (get_parent() != nullptr

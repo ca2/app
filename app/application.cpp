@@ -56,41 +56,17 @@ namespace app_app
    void application::on_request(::create * pcreate)
    {
 
-      //return;
-
-      //sleep(0.5_s);
-
       __compose_new(m_pmainwindow);
 
-      //add_object(m_pmainwindow);
-
-      //rectangle_i32 rectWindow;
-
-      //bool bOk = m_pmainwindow->_001InitialFramePosition(rectWindow, );
       m_pmainwindow->display(e_display_normal);
 
       m_pmainwindow->create_main_window();
 
+      m_pmainwindow->set_need_layout();
 
-//      if (bOk)
-  //    {
+      m_pmainwindow->set_need_redraw();
 
-         m_pmainwindow->start_layout();
-
-
-    //     m_pmainwindow->place(rectWindow);
-
-         m_pmainwindow->set_need_layout();
-
-         m_pmainwindow->set_need_redraw();
-
-         m_pmainwindow->set_layout_ready();
-
-         m_pmainwindow->post_redraw();
-
-      //}
-
-
+      m_pmainwindow->post_redraw();
 
    }
 

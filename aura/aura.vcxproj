@@ -1114,6 +1114,8 @@
     <ClCompile Include="graphics\draw2d\image_drawing.cpp" />
     <ClCompile Include="graphics\draw2d\task_tool.cpp" />
     <ClCompile Include="graphics\graphics\monitor.cpp" />
+    <ClCompile Include="graphics\user\close_button.cpp" />
+    <ClCompile Include="graphics\user\close_icon.cpp" />
     <ClCompile Include="graphics\write_text\drawer.cpp" />
     <ClCompile Include="graphics\write_text\font.cpp" />
     <ClCompile Include="graphics\write_text\fonts.cpp" />
@@ -1375,6 +1377,8 @@
     <ClInclude Include="graphics\draw2d\image_drawing.h" />
     <ClInclude Include="graphics\draw2d\image_source.h" />
     <ClInclude Include="graphics\draw2d\_draw2d.h" />
+    <ClInclude Include="graphics\user\close_button.h" />
+    <ClInclude Include="graphics\user\close_icon.h" />
     <ClInclude Include="graphics\write_text\bounding_rect.h" />
     <ClInclude Include="graphics\write_text\contains.h" />
     <ClInclude Include="graphics\write_text\drawer.h" />

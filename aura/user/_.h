@@ -38,6 +38,10 @@ namespace user
 //   (__PMSG)(__PMSGW)(void (__MSG_CALLwindow::*)())&memberFxn },
 
 
+#include "aura/graphics/user/close_button.h"
+#include "aura/graphics/user/close_icon.h"
+
+
 #include "aura/platform/drawable.h"
 //#include "aura/user/check.h"
 //#include "aura/user/text.h"

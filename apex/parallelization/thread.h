@@ -35,7 +35,7 @@ public:
 
 
 
-
+   bool                                               m_bBranchHandling : 1;
    __composite(message_queue)                         m_pmq;
    bool                                               m_bClosedMq;
 
@@ -280,6 +280,10 @@ public:
       return send_routine(routine, durationTimeout);
 
    }
+
+   virtual void post(const ::routine& routine);
+
+   DECLARE_MESSAGE_HANDLER(on_message_branch);
 
 
    //virtual bool final_handle_exceptionconst ::exception::exception & e;

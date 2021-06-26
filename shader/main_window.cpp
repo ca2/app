@@ -238,47 +238,51 @@ namespace app_shader
    void main_window::update_shader(int iShader)
    {
 
-      start_layout();
-
-      auto prender = __create_new < render >();
-
-      if (!prender)
       {
 
-         return;
+         ::user::lock_sketch_to_design lockSketchToDesign(this);
+
+         auto prender = __create_new < render >();
+
+         if (!prender)
+         {
+
+            return;
+
+         }
+
+         prender->m_pinteraction = this;
+
+         string strText;
+
+         if (iShader == 0)
+         {
+
+            prender->m_strShaderPrefix = "default";
+
+         }
+         else
+         {
+
+            prender->m_strShaderPrefix.Format("%d", iShader);
+
+         }
+
+         prender->update_shader();
+
+         {
+
+            synchronous_lock synchronouslock(mutex());
+
+            m_rendera.set_at_grow(iShader, prender);
+
+         }
+
+         set_need_layout();
 
       }
 
-      prender->m_pinteraction = this;
-
-      string strText;
-
-      if(iShader == 0)
-      {
-
-         prender->m_strShaderPrefix = "default";
-
-      }
-      else
-      {
-
-         prender->m_strShaderPrefix.Format("%d", iShader);
-
-      }
-
-      prender->update_shader();
-
-      {
-
-         synchronous_lock synchronouslock(mutex());
-
-         m_rendera.set_at_grow(iShader, prender);
-
-      }
-
-      set_layout_ready();
-
-      set_need_layout();
+      post_redraw();
 
    }
 

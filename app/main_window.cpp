@@ -42,30 +42,16 @@ namespace app_app
 
 #endif
 
-
-//#ifdef WINDOWS_DESKTOP
-
-  //    ModifyStyle(WS_CAPTION, 0);
-
-//#endif
-
-  //    ModifyStyleEx(0, WS_EX_LAYERED);
-
-      //auto & app = App(this);
-
       auto papplication = get_application();
 
       papplication->m_bInterprocessIntercommunication = false;
-
-      //::user::interaction * p = this;
 
    }
 
 
    void main_window::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
-      //return;
-
+      
       m_iCloseButtonDraw = 0;
 
       ::rectangle_i32 rectangleClient;
@@ -84,8 +70,6 @@ namespace app_app
       pgraphics->set_smooth_mode(::draw2d::smooth_mode_none);
 
       pgraphics->fill_rectangle(rectangleClient, argb(127, 255, 255, 255));
-
-      //return;
 
       double dBase = (double) rectangleClient.minimum_signed_absolute_dimension() / 17.0;
 

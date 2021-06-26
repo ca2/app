@@ -203,6 +203,7 @@ e_message_queue_sentinel =    0x0379,
 //#define WM_APPEXIT         WM_APP + 1444
 
    e_message_system = WM_APP + 1024,
+   e_message_branch,
    e_message_system_command,
    e_message_system_command_probe,
    e_message_system_has_command_handler,

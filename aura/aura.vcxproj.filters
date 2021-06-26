@@ -120,9 +120,6 @@
     <Filter Include="Header Files\os\windows_common">
       <UniqueIdentifier>{49b9ae46-cb10-4690-9725-d1574f0d77f7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\graphics\snippet">
-      <UniqueIdentifier>{ad399215-4a4d-4878-8874-f04f3315e0da}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\message">
       <UniqueIdentifier>{6bcece9f-6b7a-4095-a5db-8f0905864702}</UniqueIdentifier>
     </Filter>
@@ -158,6 +155,12 @@
     </Filter>
     <Filter Include="Source Files\graphics\write_text">
       <UniqueIdentifier>{9c7fbf2d-65a8-4085-8fc1-26598744d146}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\graphics\user">
+      <UniqueIdentifier>{a52aa32c-8f7e-49e3-b7e4-78a433431da5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\graphics\user">
+      <UniqueIdentifier>{fe2a712a-f741-4216-9474-353b7d33f177}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -1034,6 +1037,12 @@
     <ClInclude Include="graphics\write_text\drawer.h">
       <Filter>Header Files\graphics\draw2d</Filter>
     </ClInclude>
+    <ClInclude Include="graphics\user\close_button.h">
+      <Filter>Header Files\graphics\user</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\user\close_icon.h">
+      <Filter>Header Files\graphics\user</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="graphics\draw2d\apple\image_gif.cpp">
@@ -1572,6 +1581,12 @@
     </ClCompile>
     <ClCompile Include="graphics\write_text\text_out.cpp">
       <Filter>Source Files\graphics\write_text</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\user\close_button.cpp">
+      <Filter>Source Files\graphics\user</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\user\close_icon.cpp">
+      <Filter>Source Files\graphics\user</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

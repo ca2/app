@@ -98,6 +98,8 @@ thread::file_info::~file_info()
 thread::thread()
 {
 
+   m_bBranchHandling = false;
+
    m_bMessageThread = true;
        
    //set_layer(LAYERED_THREAD, this);
@@ -796,6 +798,38 @@ bool thread::pump_runnable()
    }
 
    return false;
+
+}
+
+
+void thread::post(const ::routine& routine)
+{
+
+   if (!m_bBranchHandling)
+   {
+
+      m_bBranchHandling = true;
+
+      MESSAGE_LINK(e_message_branch, this, this, &::thread::on_message_branch);
+
+   }
+
+   post_message(e_message_branch, 0, routine.m_p);
+
+}
+
+ 
+void thread::on_message_branch(::message::message* pmessage)
+{
+
+   ::routine routine(pmessage->m_lparam);
+
+   if (pmessage->m_wparam == 0)
+   {
+
+      routine();
+
+   }
 
 }
 

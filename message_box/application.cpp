@@ -56,39 +56,17 @@ namespace app_message_box
    void application::on_request(::create * pcreate)
    {
 
-      //return;
-
-      //sleep(0.5_s);
-
       __compose_new(m_pwindow);
 
-      //rectangle_i32 rectWindow;
-
-      //bool bOk = m_pwindow->_001InitialFramePosition(rectWindow, );
       m_pwindow->display(e_display_normal);
 
       m_pwindow->create_main_window();
 
+      m_pwindow->set_need_layout();
 
-//      if (bOk)
-  //    {
+      m_pwindow->set_need_redraw();
 
-         m_pwindow->start_layout();
-
-
-    //     m_pwindow->place(rectWindow);
-
-         m_pwindow->set_need_layout();
-
-         m_pwindow->set_need_redraw();
-
-         m_pwindow->set_layout_ready();
-
-         m_pwindow->post_redraw();
-
-      //}
-
-
+      m_pwindow->post_redraw();
 
    }
 

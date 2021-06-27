@@ -239,7 +239,7 @@ inline ::draw2d::graphics* image::g() const
 }
 
 
-inline ::color::color* image::colorref()
+inline ::color32_t * image::colorref()
 {
 
    return m_pcolorref1;
@@ -247,16 +247,15 @@ inline ::color::color* image::colorref()
 }
 
 
-inline const ::color::color* image::colorref() const
+inline const ::color32_t * image::colorref() const
 {
-
 
    return m_pcolorref1;
 
 }
 
 
-inline image::operator ::color::color* ()
+inline image::operator ::color32_t * ()
 {
 
    return colorref();
@@ -264,7 +263,7 @@ inline image::operator ::color::color* ()
 }
 
 
-inline image::operator const ::color::color* () const
+inline image::operator const ::color32_t * () const
 {
 
    return colorref();
@@ -272,7 +271,7 @@ inline image::operator const ::color::color* () const
 }
 
 
-inline ::pixmap* image::pixmap()
+inline ::pixmap * image::pixmap()
 {
 
    return this;
@@ -280,7 +279,7 @@ inline ::pixmap* image::pixmap()
 }
 
 
-inline const ::pixmap* image::pixmap() const
+inline const ::pixmap * image::pixmap() const
 {
 
    return this;
@@ -304,7 +303,7 @@ inline image::operator const ::pixmap* () const
 }
 
 
-inline ::image_extension* image::extension()
+inline ::image_extension * image::extension()
 {
 
    return m_pextension;
@@ -312,7 +311,7 @@ inline ::image_extension* image::extension()
 }
 
 
-inline const ::image_extension* image::extension() const
+inline const ::image_extension * image::extension() const
 {
 
    return m_pextension;
@@ -347,16 +346,16 @@ namespace draw2d
 {
 
 
-   inline ::color::color get_pixel(const ::color::color * pdata, int iScan, int iHeight, int x, int y)
+   inline ::color::color get_pixel(const ::color32_t * pdata, int iScan, int iHeight, int x, int y)
    {
 
 #ifdef APPLEOS
 
-      return ((::color::color *)&((u8 *)pdata)[iScan * (iHeight - y - 1)])[x];
+      return ((::color32_t *)&((u8 *)pdata)[iScan * (iHeight - y - 1)])[x];
 
 #else
 
-      return ((::color::color *)&((u8 *)pdata)[iScan * y])[x];
+      return ((::color32_t *)&((u8 *)pdata)[iScan * y])[x];
 
 #endif
 

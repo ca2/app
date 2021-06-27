@@ -38,7 +38,7 @@ bool draw2d_gif_antialias_8bit(image & imageCompose, image_frame_array * pimagep
 //
 //   double dTransparent = 4.0;
 //
-//   int w = pointer->m_pimage->m_iScan / sizeof(::color::color);
+//   int w = pointer->m_pimage->m_iScan / sizeof(::color32_t);
 //
 //   int i = 0;
 //

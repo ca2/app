@@ -20,11 +20,11 @@ struct pixmap
    struct image_header        m_header;
 #endif
 
-   i32                        m_iScan;
-   ::color::color *                 m_pcolorref1;
-   ::point_i32                    m_point;
-   ::color::color *                 m_pcolorrefRaw;
-   ::size_i32                     m_sizeRaw;
+   i32                           m_iScan;
+   ::color32_t *                 m_pcolorref1;
+   ::point_i32                   m_point;
+   ::color32_t *                 m_pcolorrefRaw;
+   ::size_i32                    m_sizeRaw;
 
 
 #ifdef __cplusplus
@@ -51,7 +51,7 @@ struct pixmap
       }
 
 
-      void init(const ::size_i32 & size, ::color::color * pcolorref, i32 iScan)
+      void init(const ::size_i32 & size, ::color32_t * pcolorref, i32 iScan)
       {
 
          m_size = size;
@@ -71,8 +71,8 @@ struct pixmap
 
       int scan_size() const { return m_iScan; }
 
-      inline ::color::color * colorref() { return m_pcolorref1; }
-      inline ::color::color * colorref() const { return m_pcolorref1; }
+      inline ::color32_t * colorref() { return m_pcolorref1; }
+      inline ::color32_t * colorref() const { return m_pcolorref1; }
 
       inline operator pixmap * () { return this; }
       inline operator const pixmap * () const { return this; }
@@ -171,8 +171,8 @@ struct pixmap
    //
    //   }
    //
-   //   inline ::color::color* colorref() { return m_pbitmapMap->colorref(); }
-   //   inline const ::color::color* colorref() const { return m_pbitmapMap->colorref(); }
+   //   inline ::color32_t* colorref() { return m_pbitmapMap->colorref(); }
+   //   inline const ::color32_t* colorref() const { return m_pbitmapMap->colorref(); }
    //
    //   inline operator bitmap* () { return m_pbitmapMap; }
    //   inline operator const bitmap* () const { return m_pbitmapMap; }
@@ -296,7 +296,7 @@ struct pixmap
 #ifdef __cplusplus
 
 
-inline void copy_colorref(::color::color * pcolorrefDst, const ::size_i32 & size, int iStrideDst, const ::pixmap * ppixmapSrc)
+inline void copy_colorref(::color32_t * pcolorrefDst, const ::size_i32 & size, int iStrideDst, const ::pixmap * ppixmapSrc)
 {
 
    copy_colorref(pcolorrefDst, size, iStrideDst, ppixmapSrc->colorref(), ppixmapSrc->scan_size());

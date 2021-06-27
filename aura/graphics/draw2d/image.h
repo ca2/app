@@ -56,7 +56,7 @@ public:
 
    virtual bool on_load_image();
    virtual bool on_exif_orientation();
-   virtual void fast_copy(::color::color * pcolor32FullImage);
+   virtual void fast_copy(::color32_t * pcolor32FullImage);
 
    inline ::size_i32 get_size() const;
 
@@ -169,10 +169,10 @@ public:
    virtual bool tint(::image * pimage, const ::color::color & color);
    virtual bool set_rgb_pre_alpha(i32 R, i32 G, i32 B, i32 A);
    virtual bool rgb_from(::image * pimage);
-   virtual bool paint_rgb(::color::color color);
+   virtual bool paint_rgb(const ::color::color & color);
 
-   virtual ::i64 get_rgba_area(const ::color::color & color32) const;
-   virtual ::i64 get_rgba_area(const ::color::color & color32, const RECTANGLE_I32 * lpcrect) const;
+   virtual ::i64 get_rgba_area(const ::color::color & color) const;
+   virtual ::i64 get_rgba_area(const ::color::color & color, const RECTANGLE_I32 * lpcrect) const;
    virtual ::i64 _001GetTopLeftWeightedOpaqueArea(int iAlphaMin) const;
    virtual ::i64 _001GetTopLeftWeightedOpaqueArea(int iAlphaMin, const RECTANGLE_I32 * lpcrect) const;
 
@@ -189,18 +189,18 @@ public:
    byte a2, byte r2, byte g2, byte b2, // border colors
    i32 x, i32 y, i32 iRadius);
 
-   virtual bool gradient_fill(::color::color clr1, ::color::color clr2, const point_i32 & point1, const point_i32 & point2);
-   virtual bool gradient_horizontal_fill(::color::color clr1, ::color::color clr2, int start, int end);
-   virtual bool gradient_vertical_fill(::color::color clr1, ::color::color clr2, int start, int end);
-   virtual bool gradient_horizontal_fill(::color::color clr1, ::color::color clr2);
-   virtual bool gradient_vertical_fill(::color::color clr1, ::color::color clr2);
+   virtual bool gradient_fill(const ::color::color & clr1, const ::color::color& clr2, const point_i32 & point1, const point_i32 & point2);
+   virtual bool gradient_horizontal_fill(const ::color::color& clr1, const ::color::color& clr2, int start, int end);
+   virtual bool gradient_vertical_fill(const ::color::color& clr1, const ::color::color& clr2, int start, int end);
+   virtual bool gradient_horizontal_fill(const ::color::color& clr1, const ::color::color& clr2);
+   virtual bool gradient_vertical_fill(const ::color::color& clr1, const ::color::color& clr2);
 
 
    virtual u32 GetPixel(i32 x, i32 y);
    virtual u32 GetPixel(const ::point_i32 & point) { return GetPixel(point.x, point.y); }
-   virtual bool Mask(::color::color crMask, ::color::color crInMask, ::color::color crOutMask);
+   virtual bool Mask(::color32_t crMask, ::color32_t crInMask, ::color32_t crOutMask);
    virtual bool channel_mask(byte uchFind, byte uchSet, byte uchUnset, ::color::enum_channel echannel);
-   virtual bool transparent_color(::color::color color);
+   virtual bool transparent_color(const ::color::color & color);
 
 
    virtual bool create_thumbnail(const char * pszPath);
@@ -269,7 +269,7 @@ public:
    virtual bool fill_channel(i32 C, ::color::enum_channel echannel);
    virtual bool white_fill_channel(i32 C, ::color::enum_channel echannel);
    virtual bool fill_byte(uchar uch);
-   virtual bool fill(::color::color level);
+   virtual bool fill(::color32_t level);
    virtual bool fill(i32 A, i32 R, i32 G, i32 B);
    //      virtual bool Fill(i32 R, i32 G, i32 B);
    //virtual bool set_rgb(i32 R, i32 G, i32 B);
@@ -363,7 +363,7 @@ public:
 
    //static void static_initialize();
 
-   inline ::i32 scan_area() { return scan_area_in_bytes() / sizeof(::color::color); }
+   inline ::i32 scan_area() { return scan_area_in_bytes() / sizeof(::color32_t); }
    inline ::i32 scan_area_in_bytes() { return m_iScan * m_size.cy; }
 
 
@@ -394,22 +394,22 @@ public:
    inline bool is_empty() const;
 
 
-   inline ::color::color * get_data();
+   inline ::color32_t * get_data();
 
 
-   inline const ::color::color * get_data() const;
+   inline const ::color32_t * get_data() const;
 
 
-   inline ::color::color * colorref();
+   inline ::color32_t * colorref();
 
 
-   inline const ::color::color * colorref() const;
+   inline const ::color32_t* colorref() const;
 
 
-   inline operator ::color::color * ();
+   inline operator ::color32_t* ();
 
 
-   inline operator const ::color::color * () const;
+   inline operator const ::color32_t* () const;
 
 
    inline ::pixmap * pixmap();

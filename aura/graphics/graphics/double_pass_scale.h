@@ -46,15 +46,15 @@ public:
    //::u32        uNewWidth,
    //::u32        uNewHeight);
 
-   ::color::color * Scale (
-   ::color::color   *pDstImage,
-   ::u32        uNewWidth,
-   ::u32        uNewHeight,
-   ::u32        uNewScan,
-   ::color::color   *pOrigImage,
-   ::u32        uOrigWidth,
-   ::u32        uOrigHeight,
-   ::u32        uOrigScan
+   ::color32_t *  Scale (
+   ::color32_t *  pDstImage,
+   ::u32          uNewWidth,
+   ::u32          uNewHeight,
+   ::u32          uNewScan,
+   ::color32_t *  pOrigImage,
+   ::u32          uOrigWidth,
+   ::u32          uOrigHeight,
+   ::u32          uOrigScan
    );
 
 private:
@@ -426,15 +426,14 @@ VertScale ( ::color::color           *pSrc,
 //}
 
 template <class FilterClass>
-::color::color *
+::color32_t *
 C2PassScale<FilterClass>::
 Scale (
-
-::color::color   *pDstImage,
+::color32_t *pDstImage,
 ::u32        uNewWidth,
 ::u32        uNewHeight,
-::u32 uNewScan,
-::color::color   *pOrigImage,
+::u32        uNewScan,
+::color32_t *pOrigImage,
 ::u32        uOrigWidth,
 ::u32        uOrigHeight,
 ::u32 uOrigScan)
@@ -445,15 +444,15 @@ Scale (
 
    acme::malloc < ::color::color * > pTemp;
 
-   pTemp.alloc(sizeof(::color::color) * uNewWidth * uOrigHeight);
+   pTemp.alloc(sizeof(::color32_t) * uNewWidth * uOrigHeight);
 
    {
 
       ::acme::malloc < ::color::color * > pOrig;
 
-      pOrig.alloc(sizeof(::color::color) * uOrigWidth * uOrigHeight);
+      pOrig.alloc(sizeof(::color32_t) * uOrigWidth * uOrigHeight);
 
-      ::copy_colorref(pOrig, uOrigWidth, uOrigHeight, uOrigWidth * sizeof(::color::color), pOrigImage, uOrigScan);
+      ::copy_colorref(pOrig, uOrigWidth, uOrigHeight, uOrigWidth * sizeof(::color32_t), pOrigImage, uOrigScan);
 
 
       HorizScale(pOrig,
@@ -476,7 +475,7 @@ Scale (
 
       ::acme::malloc < ::color::color * > pDest;
 
-      pDest.alloc(sizeof(::color::color) * uNewWidth * uNewHeight);
+      pDest.alloc(sizeof(::color32_t) * uNewWidth * uNewHeight);
       // Scale temporary image vertically into result image
       VertScale(pTemp,
                 uNewWidth,
@@ -492,7 +491,7 @@ Scale (
 
       }
 
-      ::copy_colorref(pDstImage, uNewWidth, uNewHeight, uNewScan, pDest, uNewWidth * sizeof(::color::color));
+      ::copy_colorref(pDstImage, uNewWidth, uNewHeight, uNewScan, pDest, uNewWidth * sizeof(::color32_t));
 
    }
 

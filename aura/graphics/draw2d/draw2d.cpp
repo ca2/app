@@ -365,8 +365,8 @@ namespace draw2d
    ::write_text::font * pfont,
    const ::e_align & ealign,
    const ::e_draw_text & edrawtext,
-   ::color::color crText,
-   ::color::color crGlow,
+   const ::color::color & colorText,
+   const ::color::color & colorGlow,
    int iSpreadRadius,
    int iBlurRadius,
    int iBlur,
@@ -395,7 +395,7 @@ namespace draw2d
       pred,
       blur,
       imageBlur,
-      crGlow,
+      colorGlow,
       iSpreadRadius,
       iBlurRadius,
       iBlur,
@@ -405,7 +405,9 @@ namespace draw2d
       auto bA = colorfilter.opacity().get_alpha();
 
       ::draw2d::brush_pointer pbrushText(e_create);
-      pbrushText->create_solid((crText & 0x00ffffffu) | (bA << 24));
+
+      pbrushText->create_solid(colorText & ::opacity(bA));
+
       pgraphics->set(pbrushText);
       pgraphics->set(pfont);
       pgraphics->_DrawText(strText, *rectangle, ealign, edrawtext);

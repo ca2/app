@@ -51,7 +51,7 @@ public:
 
    void alpha_spread__24CC(byte * pbDest, i32 xDest, i32 yDest, i32 wDest, i32 cx, i32 cy, byte * pbSrc, i32 ySrc, i32 xSrc, i32 wSrc, byte bMin, i32 iRadius);
 
-   bool spread__32CC(::image * ppimageDst, ::image * pimageSrc, i32 iRadius, ::color32_t color32);
+   bool spread__32CC(::image * ppimageDst, ::image * pimageSrc, i32 iRadius, const ::color::color & colorSpreadSetColor);
 
 
    bool channel_spread(

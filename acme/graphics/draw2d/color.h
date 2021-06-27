@@ -261,6 +261,15 @@ namespace color
       }
 
 
+      color& operator &=(color32_t color32)
+      {
+
+         u32 &= color32;
+
+         return *this;
+
+      }
+
       color operator &(const ::opacity & opacity) const
       {
 
@@ -272,6 +281,17 @@ namespace color
 
       }
 
+
+      color operator &(color32_t color32) const
+      {
+
+         color color(*this);
+
+         color.u32 &= color32;
+
+         return color;
+
+      }
 
    };
 

@@ -32,7 +32,7 @@ namespace draw2d
       1,
       32,
       nullptr,
-      rectangle.width() * sizeof(::color::color));
+      rectangle.width() * sizeof(::color32_t));
 
       /*#define argb(a, rectangle,g,b)          ((::color::color)(((byte)(rectangle)|((::u16)((byte)(g))<<8))|(((u32)(byte)(b))<<16)|((u32)(byte)(a))<<24)))
          set(m_bitmapBlend);

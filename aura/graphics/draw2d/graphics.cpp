@@ -4709,7 +4709,7 @@ namespace draw2d
 
          auto scan = pimage->scan_size();
 
-         auto wscan = scan / sizeof(::color::color);
+         auto wscan = scan / sizeof(::color32_t);
 
          for (double dx = 0; dx < w; dx += dStep)
          {

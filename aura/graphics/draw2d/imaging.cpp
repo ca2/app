@@ -4923,17 +4923,7 @@ i32 iRadius,
 }
 
 
-
-
-
-
-
-
-
-
-
-
-bool imaging::spread__32CC(::image * pimageDst, ::image * pimageSrc,i32 iRadius,::color::color crSpreadSetColor)
+bool imaging::spread__32CC(::image * pimageDst, ::image * pimageSrc,i32 iRadius, const ::color::color& colorSpreadSetColor)
 {
 
    if (iRadius <= 1)
@@ -5085,232 +5075,273 @@ bool imaging::spread__32CC(::image * pimageDst, ::image * pimageSrc,i32 iRadius,
    i32 xLowerBound[4];
    i32 xUpperBound[4];
 
-
    // top
    xLowerBound[0] = 0;
+   
    xUpperBound[0] = cx - 1;
+
    yLowerBound[0] = 0;
+
    yUpperBound[0] = iFilterHalfH - 1;
 
    // left
    xLowerBound[1] = 0;
+
    xUpperBound[1] = iFilterHalfW - 1;
+
    yLowerBound[1] = iFilterHalfH;
+
    yUpperBound[1] = cy - iFilterHalfH - 1;
 
    // right
    xLowerBound[2] = cx - iFilterHalfW;
+   
    xUpperBound[2] = cx - 1;
+   
    yLowerBound[2] = iFilterHalfH;
+
    yUpperBound[2] = cy - iFilterHalfH - 1;
 
    // bottom
    xLowerBound[3] = 0;
+   
    xUpperBound[3] = cx - 1;
+
    yLowerBound[3] = cy - iFilterHalfH;
+
    yUpperBound[3] = cy - 1;
 
    i32 xL;
+
    i32 xU;
+
    i32 yL;
+
    i32 yU;
 
-
    i32 xMax = cx - 1;
+
    i32 yMax = cy - 1;
 
    // limits due the filter
    i32 xMaxFilterBound = xMax - iFilterHalfW;
+
    i32 yMaxFilterBound = yMax - iFilterHalfH;
 
    i32 xFilterMax = iFilterW - 1;
+
    i32 yFilterMax = iFilterH - 1;
 
    for(i = 0; i < 4; i++)
    {
+
       xL = xLowerBound[i];
+
       xU = xUpperBound[i];
+
       yL = yLowerBound[i];
+
       yU = yUpperBound[i];
 
       y1 = yL;
+
       y2 = y1 - iFilterHalfH;
+
       for(; y1 <= yU;)
       {
+
          if(y1 < iFilterHalfH)
          {
+
             iFilterYLowerBound = iFilterHalfH - y1;
+
          }
          else
          {
+
             iFilterYLowerBound = 0;
+
          }
+
          if(y1 > yMaxFilterBound)
          {
+
             iFilterYUpperBound = yFilterMax - (y1 - yMaxFilterBound);
+
          }
          else
          {
+
             iFilterYUpperBound = yFilterMax;
+
          }
 
          pSource = pSrc + wSrc * y2;
 
-
-
-
          x1 = xL;
+
          x2 = (x1 - iFilterHalfW) * 4;
+
          pDestination = pDst + (wDst  * y1) + x1 * 4;
 
-
-
-
-         if(*((u32 *)pDestination) != crSpreadSetColor)
-
-
+         if(*((u32 *)pDestination) != colorSpreadSetColor)
          {
+
             for(; x1 <= xU; x1++)
             {
+
                if(x1 < iFilterHalfH)
                {
+
                   iFilterXLowerBound = iFilterHalfH - x1;
+
                }
                else
                {
+
                   iFilterXLowerBound = 0;
+
                }
+
                if(x1 > xMaxFilterBound)
                {
+
                   iFilterXUpperBound = xFilterMax - (x1 - xMaxFilterBound);
+
                }
                else
                {
+
                   iFilterXUpperBound = xFilterMax;
+
                }
 
-               pSource1 = pSource ;
+               pSource1 = pSource;
 
-
-
-
-
-               if (*((u32 *)pDestination) != crSpreadSetColor)
-
-
+               if (*((u32 *)pDestination) != colorSpreadSetColor)
                {
+
                   for (i32 yFilter = iFilterYLowerBound; yFilter < iFilterYUpperBound; yFilter++)
                   {
-                     pSource2 = pSource1 + (wSrc * yFilter);
 
+                     pSource2 = pSource1 + (wSrc * yFilter);
 
                      pFilter = pFilterData + yFilter * iFilterW + iFilterXLowerBound;
 
                      for (i32 xFilter = iFilterXLowerBound; xFilter < iFilterXUpperBound; xFilter++)
                      {
+
                         if (*pFilter >= 1)
-
                         {
+
                            if (*((u32 *)pSource2))
-
-
                            {
-                              *((u32 *)pDestination) = crSpreadSetColor;
 
+                              *((u32 *)pDestination) = colorSpreadSetColor;
 
                               goto breakFilter;
+
                            }
+
                         }
+
                         pFilter++;
 
                         pSource2 += 4;
 
-
                      }
+
                   }
+
                }
-breakFilter:
+
+            breakFilter:
+
                pDestination += 4;
 
-
                x2 += 4;
+
             }
+
          }
+
          y1++;
+
          y2++;
+
       }
+
    }
 
    iFilterYLowerBound = 0;
+   
    iFilterYUpperBound = iFilterW - 1;
+   
    iFilterXLowerBound = 0;
+   
    iFilterXUpperBound = iFilterH - 1;
 
    i32 iFilterHalfWidth = iFilterW / 2;
+
    i32 iFilterHalfWidthBytes = iFilterHalfWidth * 4;
 
    yL = iFilterHalfWidth;
+   
    yU = maxy1 - iFilterHalfWidth;
+   
    xL = iFilterHalfWidthBytes;
+   
    xU = max3x1 - iFilterHalfWidthBytes;
 
    y1 = yL;
+
    y2 = yL - iFilterHalfWidth;
-
-
 
    divisor = (iFilterYUpperBound - iFilterYLowerBound + 1) * (iFilterXUpperBound - iFilterXLowerBound + 1);
 
-
    for(; y1 < yU;)
    {
+
       pSource = pSrc + (wSrc * y2);
 
-
-
-
       x1 = xL;
+
       x2 = xL - iFilterHalfWidthBytes;
+
       pDestination = pDst + (wDst  * y1) + x1;
-
-
-
 
       for(; x1 < xU;)
       {
+
          pSource1 = pSource + x2;
-
-
-
 
          pFilter = pFilterData;
 
-
          if(*((u32 *)pDestination) != 0xffffffff)
-
-
          {
+
             for(i32 yFilter = iFilterYLowerBound; yFilter <= iFilterYUpperBound; yFilter++)
             {
-               pSource2 = pSource1 + (wSrc * yFilter);
 
+               pSource2 = pSource1 + (wSrc * yFilter);
 
                pFilter = pFilterData + yFilter * iFilterW + iFilterXLowerBound;
 
                for(i32 xFilter = iFilterXLowerBound; xFilter <= iFilterXUpperBound; xFilter++)
                {
+
                   if(*pFilter >= 1)
-
                   {
+
                      if(pSource2[0] > 0)
-
-
                      {
-                        *((u32 *)pDestination) = crSpreadSetColor;
 
+                        *((u32 *)pDestination) = colorSpreadSetColor;
 
                         goto breakFilter2;
+
                      }
+
                   }
                   pFilter++;
 

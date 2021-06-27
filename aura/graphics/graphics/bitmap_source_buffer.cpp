@@ -119,7 +119,7 @@ namespace graphics
 
          i64 * p = (i64 *)pdata;
 
-         int iScan = (int)(ppixmap->width() * sizeof(::color::color));
+         int iScan = (int)(ppixmap->width() * sizeof(::color32_t));
 
          *p++ = ppixmap->width();
          *p++ = ppixmap->height();

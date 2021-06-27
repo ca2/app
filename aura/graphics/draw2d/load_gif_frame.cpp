@@ -286,7 +286,7 @@ bool draw2d_gif_draw_frame(image * pimageCanvas, image_frame_array * pframea, im
 
    auto colorref = pframe->m_pimage->colorref();
 
-   int w = pframe->m_pimage->scan_size() / sizeof(::color::color);
+   int w = pframe->m_pimage->scan_size() / sizeof(::color32_t);
 
    for (index y = 0; y < pframe->m_rectangle.height(); y++)
    {

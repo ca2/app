@@ -188,7 +188,7 @@ namespace visual
 
       ::u32 uScan;
 
-      uScan = pimage->scan_size() / sizeof(::color::color);
+      uScan = pimage->scan_size() / sizeof(::color32_t);
 
       ::color::color * pline;
 
@@ -229,7 +229,7 @@ namespace visual
 
       //dS = 1.0 - ((double)j / dh);
 
-      uScan = pimage->scan_size() / sizeof(::color::color);
+      uScan = pimage->scan_size() / sizeof(::color32_t);
 
       ::color::color * pline;
 

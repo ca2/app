@@ -18,7 +18,7 @@ namespace draw2d
 {
 
 
-    inline ::color::color get_pixel(const ::color::color * pcolorref, int iScan, int iHeight, int x, int y);
+    inline ::color::color get_pixel(const ::color32_t * pcolorref, int iScan, int iHeight, int x, int y);
 
 
 } // namespace draw2d

@@ -87,7 +87,7 @@ namespace user
 
 
 
-::color::color argb_swap_rb(::color32_t color32)
+::color32_t argb_swap_rb(::color32_t color32)
 {
 
    return argb(

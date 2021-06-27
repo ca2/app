@@ -153,6 +153,7 @@ namespace visual
 
    }
 
+
    ::color::color color_with_shade_of_grey(int i, int j, double dw, double dh)
    {
 
@@ -190,7 +191,7 @@ namespace visual
 
       uScan = pimage->scan_size() / sizeof(::color32_t);
 
-      ::color::color * pline;
+      ::color32_t * pline;
 
       for (index i = 0; i < w; i++)
       {
@@ -222,16 +223,15 @@ namespace visual
 
       ::color::color color;
 
-      double dh = (double) h;
+      auto dh = (double) h;
 
       ::u32 uScan;
-
 
       //dS = 1.0 - ((double)j / dh);
 
       uScan = pimage->scan_size() / sizeof(::color32_t);
 
-      ::color::color * pline;
+      ::color32_t * pline;
 
       double dR, dG, dB;
 
@@ -486,7 +486,7 @@ namespace userex
    }
 
 
-   void color_view::set_color(::color::color color)
+   void color_view::set_color(const ::color::color & color)
    {
 
       m_bMouseColorBeam = false;

@@ -12,7 +12,7 @@ namespace userex
 
 
       bool                             m_bMouseColorBeam;
-      ::point_i32                          m_pointMouseColorBeam;
+      ::point_i32                      m_pointMouseColorBeam;
       bool                             m_bCompact;
       bool                             m_bLButtonPressed;
       ::user::plain_edit_view          m_editRed;
@@ -61,7 +61,8 @@ namespace userex
       virtual void rebuild_luminance();
 
       virtual ::color::color get_color();
-      virtual void set_color(::color::color color);
+      virtual void set_color(const ::color::color &color);
+
 
    };
 

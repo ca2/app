@@ -329,7 +329,7 @@ restart:
                            if (xDistanceToBoundary8 > 0)
                            {
 
-                              while (x < xBoundary8 && !(((::color::color *)psrc3)[x] & 0xff000000))
+                              while (x < xBoundary8 && !(((::color32_t *)psrc3)[x] & 0xff000000))
                               {
 
                                  x++;

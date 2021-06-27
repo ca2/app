@@ -194,7 +194,7 @@ namespace account
 
       draw.simple_ui_draw_frame_window_rect(r, pgraphics);
 
-      ::color::color colorOut, colorIn, colorBorderOut, colorBorderIn, color, colorBk;
+      ::color::color colorOut, colorIn, colorBorderOut, colorBorderIn, color, colorBackground;
 
       //       if (is_hover() || m_bDown || m_bMouseMove)
       /*       {
@@ -270,7 +270,7 @@ namespace account
 
 #endif
 
-      colorBk = colorOut.get_blend(colorIn, 0.5);
+      colorBackground = colorOut.get_blend(colorIn, 0.5);
 
       double rx = m_dRateX;
 

@@ -207,9 +207,6 @@
     <Filter Include="Header Files\parallelization">
       <UniqueIdentifier>{3b04ff9f-5bd9-45cc-afe3-93cb56f5f110}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\parallelization">
-      <UniqueIdentifier>{f5fb0b8d-82f2-4a87-b245-1747ef8e70a3}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\primitive\subject">
       <UniqueIdentifier>{1a2d4232-9fa8-4440-ab96-12e082c99368}</UniqueIdentifier>
     </Filter>
@@ -218,6 +215,9 @@
     </Filter>
     <Filter Include="Header Files\inline\implement">
       <UniqueIdentifier>{78f8d54c-d7ac-45af-8d44-3331413b29d7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\primitive\parallelization">
+      <UniqueIdentifier>{f5fb0b8d-82f2-4a87-b245-1747ef8e70a3}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -1850,19 +1850,19 @@
       <Filter>Source Files\net\sockets\http</Filter>
     </ClCompile>
     <ClCompile Include="parallelization\_.cpp">
-      <Filter>Source Files\parallelization</Filter>
+      <Filter>Source Files\primitive\parallelization</Filter>
     </ClCompile>
     <ClCompile Include="parallelization\handler.cpp">
-      <Filter>Source Files\parallelization</Filter>
+      <Filter>Source Files\primitive\parallelization</Filter>
     </ClCompile>
     <ClCompile Include="parallelization\thread.cpp">
-      <Filter>Source Files\parallelization</Filter>
+      <Filter>Source Files\primitive\parallelization</Filter>
     </ClCompile>
     <ClCompile Include="parallelization\thread_os.cpp">
-      <Filter>Source Files\parallelization</Filter>
+      <Filter>Source Files\primitive\parallelization</Filter>
     </ClCompile>
     <ClCompile Include="parallelization\threading.cpp">
-      <Filter>Source Files\parallelization</Filter>
+      <Filter>Source Files\primitive\parallelization</Filter>
     </ClCompile>
     <ClCompile Include="os\windows\application_system_run.cpp">
       <Filter>Source Files\os\windows</Filter>
@@ -1904,10 +1904,10 @@
       <Filter>Source Files\net</Filter>
     </ClCompile>
     <ClCompile Include="parallelization\service.cpp">
-      <Filter>Source Files\parallelization</Filter>
+      <Filter>Source Files\primitive\parallelization</Filter>
     </ClCompile>
     <ClCompile Include="parallelization\service_handler.cpp">
-      <Filter>Source Files\parallelization</Filter>
+      <Filter>Source Files\primitive\parallelization</Filter>
     </ClCompile>
     <ClCompile Include="platform\launcher.cpp">
       <Filter>Source Files\platform</Filter>

@@ -190,10 +190,10 @@ namespace user
       virtual e_folder get_folder_type(::object * pobject, const widechar * pcszPath);
       virtual e_folder get_folder_type(::object * pobject, const char * pcszPath);
 
-      int add_hover_image(int iSize, int iIndex, ::color::color crBk);
+      int add_hover_image(int iSize, int iIndex, const ::color::color & colorBackground);
 
 
-      virtual i32 add_icon_path(::file::path path, ::color::color crBk, int iImage);
+      virtual i32 add_icon_path(::file::path path, const ::color::color& colorBackground, int iImage);
 
 
       virtual ::e_status finish() override;

@@ -5061,7 +5061,7 @@ bool imaging::spread__32CC(::image * pimageDst, ::image * pimageSrc,i32 iRadius,
 
    i32 max3x1 = maxx1 * 4;
 
-   ::copy_colorref((::color::color *)pDst, cx,cy,pimageDst->scan_size(),(::color::color *)pSrc,pimageSrc->scan_size());
+   ::copy_colorref((::color32_t*)pDst, cx,cy,pimageDst->scan_size(),(::color32_t *)pSrc,pimageSrc->scan_size());
 
 
    i32 iFilterXLowerBound;

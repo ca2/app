@@ -703,7 +703,11 @@ namespace write_text
                pfontlistdata->m_rectangleClient == m_rectangleClient))
          {
 
-            set_modified(id_font_list_layout);
+            auto pfontlist = this;
+
+            auto psubject = pfontlist->subject(id_font_list_layout);
+
+            pfontlist->handle_subject(psubject);
 
             return;
 
@@ -715,7 +719,11 @@ namespace write_text
             if (pfontlistdata->m_iUpdateId == m_pfontenumeration->m_iUpdateId)
             {
 
-               set_modified(id_font_list_layout);
+               auto pfontlist = this;
+
+               auto psubject = pfontlist->subject(id_font_list_layout);
+
+               pfontlist->handle_subject(psubject);
 
                return;
 
@@ -746,7 +754,11 @@ namespace write_text
             && pfontlistdata->m_iUpdateId == m_pfontenumeration->m_iUpdateId)
          {
 
-            set_modified(id_font_list_layout);
+            auto pfontlist = this;
+
+            auto psubject = pfontlist->subject(id_font_list_layout);
+
+            pfontlist->handle_subject(psubject);
 
             return;
 

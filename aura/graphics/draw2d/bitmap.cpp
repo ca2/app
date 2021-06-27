@@ -426,7 +426,7 @@ void vertical_swap_copy_colorref_swap_red_blue(::color32_t * pcolorrefDst, int c
 }
 
 
-void copy_colorref(::color32_t * pcolorrefDst, int cxParam, int cyParam, int iStrideDst, const ::color::color * pcolorrefSrc, int iStrideSrc)
+void copy_colorref(::color32_t * pcolorrefDst, int cxParam, int cyParam, int iStrideDst, const ::color32_t * pcolorrefSrc, int iStrideSrc)
 {
 
    try
@@ -494,7 +494,7 @@ void copy_colorref(::color32_t * pcolorrefDst, int cxParam, int cyParam, int iSt
 }
 
 
-void copy_colorref_swap_red_blue(::color::color * pcolorrefDst, int cxParam,int cyParam,int iStrideDst, const ::color::color * pcolorrefSrc,int iStrideSrc)
+void copy_colorref_swap_red_blue(::color32_t * pcolorrefDst, int cxParam,int cyParam,int iStrideDst, const ::color::color * pcolorrefSrc,int iStrideSrc)
 {
 
    try
@@ -569,7 +569,7 @@ void copy_colorref_swap_red_blue(::color::color * pcolorrefDst, int cxParam,int 
 }
 
 
-void _001ProperCopyColorref(::color::color * pcolorrefDst, int cxParam,int cyParam,int iStrideDst,const ::color::color * pcolorrefSrc,int iStrideSrc)
+void _001ProperCopyColorref(::color32_t * pcolorrefDst, int cxParam,int cyParam,int iStrideDst,const ::color32_t * pcolorrefSrc,int iStrideSrc)
 {
 
 #ifdef WINDOWS_DESKTOP
@@ -586,7 +586,7 @@ void _001ProperCopyColorref(::color::color * pcolorrefDst, int cxParam,int cyPar
 }
 
 
-void copy_colorref(::color::color * pcolorrefDst, int xParam, int yParam, int cxParam,int cyParam, int iStrideDst, const ::color::color * pcolorrefSrc,int iStrideSrc)
+void copy_colorref(::color32_t * pcolorrefDst, int xParam, int yParam, int cxParam,int cyParam, int iStrideDst, const ::color32_t * pcolorrefSrc,int iStrideSrc)
 {
 
    try
@@ -602,7 +602,6 @@ void copy_colorref(::color::color * pcolorrefDst, int xParam, int yParam, int cx
    int wsrc = iStrideSrc / sizeof(::color32_t);
    int wdst = iStrideDst / sizeof(::color32_t);
    int cw = cxParam * sizeof(::color32_t);
-
 
    auto psrc = &pcolorrefSrc[xParam + yParam * iStrideSrc / sizeof(::color32_t)];
    auto pdst = &pcolorrefDst[xParam + yParam * iStrideDst / sizeof(::color32_t)];

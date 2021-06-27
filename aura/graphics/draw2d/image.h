@@ -189,11 +189,12 @@ public:
    byte a2, byte r2, byte g2, byte b2, // border colors
    i32 x, i32 y, i32 iRadius);
 
-   virtual bool gradient_fill(const ::color::color & clr1, const ::color::color& clr2, const point_i32 & point1, const point_i32 & point2);
-   virtual bool gradient_horizontal_fill(const ::color::color& clr1, const ::color::color& clr2, int start, int end);
-   virtual bool gradient_vertical_fill(const ::color::color& clr1, const ::color::color& clr2, int start, int end);
-   virtual bool gradient_horizontal_fill(const ::color::color& clr1, const ::color::color& clr2);
-   virtual bool gradient_vertical_fill(const ::color::color& clr1, const ::color::color& clr2);
+
+   virtual bool gradient_fill(::color32_t clr1, ::color32_t clr2, const point_i32 & point1, const point_i32 & point2);
+   virtual bool gradient_horizontal_fill(::color32_t clr1, ::color32_t clr2, int start, int end);
+   virtual bool gradient_vertical_fill(::color32_t clr1, ::color32_t clr2, int start, int end);
+   virtual bool gradient_horizontal_fill(::color32_t clr1, ::color32_t clr2);
+   virtual bool gradient_vertical_fill(::color32_t clr1, ::color32_t clr2);
 
 
    virtual u32 GetPixel(i32 x, i32 y);

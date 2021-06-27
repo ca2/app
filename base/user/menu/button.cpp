@@ -136,13 +136,11 @@ namespace user
    ::color::color menu_button::_001GetButtonBackgroundColor()
    {
 
-      ::color::color crBackground = ::user::button::_001GetButtonBackgroundColor();
+      auto colorBackground = ::user::button::_001GetButtonBackgroundColor();
 
-      crBackground &= 0x00ffffff;
+      colorBackground.alpha = 200;
 
-      crBackground = crBackground | argb(200, 0, 0, 0);
-
-      return crBackground;
+      return colorBackground;
 
    }
 

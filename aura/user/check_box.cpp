@@ -396,7 +396,7 @@ namespace user
 
          }
 
-         br1->m_color = (br1->m_color.operator ::color::color() & 0xffffff) | ((byte(255.0 * dRate)) << 24);
+         br1->m_color = (br1->m_color.u32 & 0xffffff) | ((byte(255.0 * dRate)) << 24);
 
          br1->set_modified();
 

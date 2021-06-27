@@ -748,7 +748,7 @@ namespace user
    }
 
 
-   i32 shell::add_icon_path(::file::path path, ::color::color crBk, int iImage)
+   i32 shell::add_icon_path(::file::path path, const ::color::color& colorBackground, int iImage)
    {
 
       return -1;
@@ -836,12 +836,12 @@ namespace user
 
    //}
 
-   int shell::add_hover_image(int iSize, int iImage, ::color::color crBk)
+   int shell::add_hover_image(int iSize, int iImage, const ::color::color& colorBackground)
    {
 
       synchronous_lock synchronouslock(m_pilHover[iSize]->mutex());
 
-      if (crBk == 0)
+      if (colorBackground.is_transparent())
       {
 
          auto pimage = m_pil[iSize]->get_image(iImage);
@@ -863,16 +863,21 @@ namespace user
          {
 
             ::image_pointer pimage(this);
+
             pimage->create({ iSize, iSize });
-            pimage->fill(255, colorref_get_r_value(crBk), colorref_get_g_value(crBk), colorref_get_b_value(crBk));
+
+            pimage->fill(255, colorBackground.red, colorBackground.green, colorBackground.blue);
+
             pimage->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_blend);
 
             ::draw2d::graphics_pointer pgraphics = pimage->get_graphics();
 
             m_pilHover[iSize]->draw(pgraphics, iImage, nullptr, 0);
+
             m_pilHover[iSize]->m_pimage->g()->set_alpha_mode(::draw2d::alpha_mode_set);
 
             auto rectDraw = ::rectangle_f64(::point_f64(iImage * 48, 0), ::size_f64(48, 48));
+
             m_pilHover[iSize]->m_pimage->g()->draw(rectDraw, pimage->get_graphics());
 
             m_pilHover[iSize]->m_pimage->g()->set_alpha_mode(::draw2d::alpha_mode_blend);
@@ -880,14 +885,17 @@ namespace user
          }
 
          {
+
             ::image_pointer d = m_pilHover[iSize]->m_pimage;
-            //size_i32 s = m_pil[iSize]->m_pimage->get_size();
+
             ::image_pointer pimage(this);
+
             pimage->create(d->size());
-            pimage->fill(255, colorref_get_r_value(crBk), colorref_get_g_value(crBk), colorref_get_b_value(crBk));
+
+            pimage->fill(255, colorBackground.red, colorBackground.green, colorBackground.blue);
             pimage->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_blend);
             pimage->get_graphics()->stretch(d->size(), d);
-            pimage->get_graphics()->fill_rectangle(d->size(), argb(123, colorref_get_r_value(crBk), colorref_get_g_value(crBk), colorref_get_b_value(crBk)));
+            pimage->get_graphics()->fill_rectangle(d->size(), argb(123, colorBackground.red, colorBackground.green, colorBackground.blue));
             m_pil[iSize]->m_pimage->g()->set_alpha_mode(::draw2d::alpha_mode_set);
             m_pil[iSize]->m_pimage->g()->draw(d->rectangle(), pimage->get_graphics());
             m_pil[iSize]->m_pimage->g()->set_alpha_mode(::draw2d::alpha_mode_blend);

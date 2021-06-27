@@ -1467,7 +1467,12 @@ void simple_frame_window::_001OnToggleTransparentFrame(::message::message * pmes
 
    post_redraw();
 
-   pmessage->m_bRet = true;
+   if (pmessage)
+   {
+    
+      pmessage->m_bRet = true;
+
+   }
 
 }
 
@@ -3886,6 +3891,14 @@ void simple_frame_window::OnNotifyIconLButtonDown(::u32 uNotifyIcon)
    {
 
       _001OnNotifyIconTopic(nullptr);
+
+      return ::success;
+
+   }
+   else if (id == "transparent_frame")
+   {
+
+      _001OnToggleTransparentFrame(nullptr);
 
       return ::success;
 

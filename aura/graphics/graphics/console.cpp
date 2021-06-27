@@ -86,7 +86,7 @@ namespace graphics
    }
 
 
-   color32_t console::console_dos_color(enum_dos_color edoscolor)
+   ::color::color console::console_dos_color(enum_dos_color edoscolor)
    {
 
       switch (edoscolor)
@@ -276,7 +276,7 @@ namespace graphics
 
       }
 
-      color32_t crScreen = console_dos_color(m_edoscolor);
+      ::color::color crScreen = console_dos_color(m_edoscolor);
 
       m_pimage->fill(crScreen);
 

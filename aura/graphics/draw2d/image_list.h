@@ -37,7 +37,7 @@ public:
    bool create(i32 cx, i32 cy);
    bool create(i32 cx, i32 cy, ::u32 nFlags, i32 nInitial, i32 nGrow);
    bool realize(::draw2d::graphics * pgraphics) const;
-   //bool create(const char * pszBitmapID, i32 cx, i32 nGrow, color32_t crMask);
+   //bool create(const char * pszBitmapID, i32 cx, i32 nGrow, ::color::color crMask);
 
 
    i32 reserve_image(int iItem = -1);

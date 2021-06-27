@@ -731,7 +731,7 @@ CLASS_DECL_ACME int throw_assert_exception(const char *pszFileName, int iLineNum
 #define IMAGE_B_BYTE_INDEX 0
 
 
-#define IMAGE_ARGB(a, r, g, b)         ((color32_t)((low_byte(b)|((::u16)(low_byte(g))<<8))|(((u32)low_byte(r))<<16)|(((u32)low_byte(a))<<24)))
+#define IMAGE_ARGB(a, r, g, b)         ((::color::color)((low_byte(b)|((::u16)(low_byte(g))<<8))|(((u32)low_byte(r))<<16)|(((u32)low_byte(a))<<24)))
 
 
 #define image_r_value(rgb)    (low_byte((rgb)>>16))
@@ -749,7 +749,7 @@ CLASS_DECL_ACME int throw_assert_exception(const char *pszFileName, int iLineNum
 #define IMAGE_B_BYTE_INDEX 2
 
 
-#define IMAGE_ARGB(a, r, g, b)         ((color32_t)((low_byte(r)|((::u16)(low_byte(g))<<8))|(((u32)low_byte(b))<<16)|(((u32)low_byte(a))<<24)))
+#define IMAGE_ARGB(a, r, g, b)         ((::color::color)((low_byte(r)|((::u16)(low_byte(g))<<8))|(((u32)low_byte(b))<<16)|(((u32)low_byte(a))<<24)))
 
 
 #define image_r_value(rgb)    (low_byte((rgb)))
@@ -768,7 +768,7 @@ CLASS_DECL_ACME int throw_assert_exception(const char *pszFileName, int iLineNum
 #define colorref_get_g_value(rgb)    (low_byte((rgb)>>8))
 #define colorref_get_b_value(rgb)    (low_byte((rgb)>>16))
 #define colorref_get_a_value(rgb)    (low_byte((rgb)>>24))
-//#define RGBA(r, g, b, a)         ((color32_t)((low_byte(r)|((::u16)(low_byte(g))<<8))|(((u32)low_byte(b))<<16)|(((u32)low_byte(a))<<24)))
+//#define RGBA(r, g, b, a)         ((::color::color)((low_byte(r)|((::u16)(low_byte(g))<<8))|(((u32)low_byte(b))<<16)|(((u32)low_byte(a))<<24)))
 //#define argb(a, r, g, b)      RGBA(r, g, b, a)
 
 

@@ -608,7 +608,7 @@ namespace turboc
 /*         pimage->g()->StretchBlt(0,0,pimage->width() / iMult,pimage->height() / iMult,pimage->g(),0,0,pimage->width(),pimage->height());
 /*         pimage->g()->StretchBlt(0,0,pimage->width(),pimage->height(),pimage->g(),0,0,pimage->width() / iMult,pimage->height() / iMult);
 
-         color32_t cr;
+         color32_t color32;
 
          byte a,r,g,b,rm,gm,bm;
 
@@ -620,11 +620,11 @@ namespace turboc
          {
             for(int j = 0; j < w; j+=3)
             {
-/*               cr = pimage->get_data()[i * pimage->width() + j];
-               a = colorref_get_a_value(cr);
-               r = colorref_get_r_value(cr);
-               g = colorref_get_g_value(cr);
-               b = colorref_get_b_value(cr);
+/*               color32 = pimage->get_data()[i * pimage->width() + j];
+               a = colorref_get_a_value(color32);
+               r = colorref_get_r_value(color32);
+               g = colorref_get_g_value(color32);
+               b = colorref_get_b_value(color32);
                rm = (g + b) / 4;
                gm = (r + b) / 4;
                bm = (r + g) / 4;

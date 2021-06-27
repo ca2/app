@@ -27,11 +27,11 @@ namespace simple_ui
       status < ::color::color > crBk;
       status < ::color::color > crBkSel;
       status < ::color::color > crSel;
-      status < ::color::color > cr;
+      status < ::color::color > color32;
 
       auto pstyle = get_style(pgraphics);
 
-      cr          = get_color(pstyle, ::user::e_element_text);
+      color32          = get_color(pstyle, ::user::e_element_text);
       crBk        = get_color(pstyle, ::user::e_element_background);
       crSel       = get_color(pstyle, ::user::e_element_text, ::user::e_state_selected);
       crBkSel     = get_color(pstyle, ::user::e_element_background, ::user::e_state_selected);
@@ -228,7 +228,7 @@ namespace simple_ui
          ::str::fill(strExtent2,'*');
          ::str::fill(strExtent3,'*');
 
-         brushText->create_solid(cr);
+         brushText->create_solid(color32);
          pgraphics->set(brushText);
          pgraphics->text_out(left,y,strExtent1);
 
@@ -250,7 +250,7 @@ namespace simple_ui
             pgraphics->text_out(left + size1.cx,y,strExtent2);
          }
 
-         brushText->create_solid(cr);
+         brushText->create_solid(color32);
          pgraphics->set(brushText);
          pgraphics->text_out(left + size1.cx + size2.cx,y,strExtent3);
 

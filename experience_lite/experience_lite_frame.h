@@ -73,7 +73,7 @@
 
                virtual bool is_translucid_style(e_style estyle);
 
-               virtual void set_moveable_border_color(color32_t cr);
+               virtual void set_moveable_border_color(color32_t color32);
 
                virtual void set_button_color_schema_001(color32_t crMoveableBorder);
 
@@ -103,7 +103,7 @@
 
                virtual void Glass(::draw2d::graphics_pointer & pgraphics, const RECTANGLE_I32 & lprect);
 
-               virtual void ColorGlass(::draw2d::graphics_pointer & pgraphics, const RECTANGLE_I32 & lprect, color32_t cr, byte bAlpha);
+               virtual void ColorGlass(::draw2d::graphics_pointer & pgraphics, const RECTANGLE_I32 & lprect, color32_t color32, byte bAlpha);
 
                //virtual ::user::front_end_schema * get_user_front_end_schema();
 

@@ -891,7 +891,7 @@ namespace core
 #ifdef WINDOWS_DESKTOP
 
       //CHOOSECOLOR cc;
-      //color32_t crCustColors[16];
+      //::color::color crCustColors[16];
 
       //// init-int this array did not affect the mouse problem
       //// ::u32 idx ;

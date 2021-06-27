@@ -74,7 +74,7 @@ namespace draw2d
 //   }
 
 
-//   ::u32 palette::GetNearestPaletteIndex(color32_t crColor) const
+//   ::u32 palette::GetNearestPaletteIndex(::color::color crColor) const
 //   {
 //
 //      UNREFERENCED_PARAMETER(crColor);

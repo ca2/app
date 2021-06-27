@@ -12,7 +12,7 @@ struct image_header
 {
 
    e_image_type               m_etype;
-   color32_t                  m_cr;
+   ::color::color                  m_cr;
    ::size_i32                     m_size;
 
 

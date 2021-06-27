@@ -33,7 +33,7 @@ namespace draw2d
 
       //virtual void AnimatePalette(::u32 nStartIndex, ::u32 nNumEntries, LPPALETTEENTRY pPaletteColors);
 
-      //virtual ::u32 GetNearestPaletteIndex(color32_t crColor) const;
+      //virtual ::u32 GetNearestPaletteIndex(::color::color crColor) const;
       //virtual bool ResizePalette(::u32 nNumEntries);
 
 

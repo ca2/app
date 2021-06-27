@@ -151,7 +151,7 @@ namespace user
 
          color32_t crBk;
 
-         color32_t cr;
+         color32_t color32;
 
          string strDebug;
 
@@ -165,11 +165,11 @@ namespace user
 
                //crBk = _001GetColor(::user::color_list_item_background_selected_hover);
 
-               //cr = _001GetColor(::user::color_list_item_text_selected_hover);
+               //color32 = _001GetColor(::user::color_list_item_text_selected_hover);
 
                crBk = argb(255, 120, 190, 220);
 
-               cr = argb(255, 255, 255, 255);
+               color32 = argb(255, 255, 255, 255);
 
                strDebug += "sel;";
 
@@ -179,7 +179,7 @@ namespace user
 
                crBk = argb(255, 235, 245, 255);
 
-               cr = argb(255, 0, 0, 0);
+               color32 = argb(255, 0, 0, 0);
 
             }
 
@@ -191,7 +191,7 @@ namespace user
 
             crBk = argb(255, 120, 150, 190);
 
-            cr = argb(255, 255, 255, 255);
+            color32 = argb(255, 255, 255, 255);
 
          }
          else
@@ -199,13 +199,13 @@ namespace user
 
             crBk = argb(255, 255, 255, 255);
 
-            cr = argb(255, 0, 0, 0);
+            color32 = argb(255, 0, 0, 0);
 
          }
 
          brBk->create_solid(crBk);
 
-         br->create_solid(cr);
+         br->create_solid(color32);
 
          pgraphics->set(brBk);
 

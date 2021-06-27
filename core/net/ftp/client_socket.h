@@ -11,7 +11,7 @@
 // The implementation of the logon-sequence (with firewall support) was published
 // in an article on Codeguru by Phil Anderson.
 // The code for the parsing of the different FTP LIST responses is taken from
-// D. J. Bernstein (http://cr.yp.to/ftpparse.html). I only wrapped the c-code in
+// D. J. Bernstein (http://color32.yp.to/ftpparse.html). I only wrapped the c-code in
 // a class.
 // I have tested the code on Windows and Linux (Kubuntu).
 //

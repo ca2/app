@@ -95,14 +95,14 @@ namespace uwp
 
       auto colorBackground = m_frameworkview->m_puisettings->GetColorValue(Windows::UI::ViewManagement::UIColorType::Background);
 
-      D2D1_COLOR_F cr = {};
+      D2D1_COLOR_F color32 = {};
 
-      cr.a = 1.0f;
-      cr.r = colorBackground.R / 255.f;
-      cr.g = colorBackground.G / 255.f;
-      cr.b = colorBackground.B / 255.f;
+      color32.a = 1.0f;
+      color32.r = colorBackground.R / 255.f;
+      color32.g = colorBackground.G / 255.f;
+      color32.b = colorBackground.B / 255.f;
 
-      pdevicecontext->Clear(cr);
+      pdevicecontext->Clear(color32);
 
       pdevicecontext->SetTransform(D2D1::Matrix3x2F::Identity());
 

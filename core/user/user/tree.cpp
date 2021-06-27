@@ -454,7 +454,7 @@ namespace user
 
          //   class imaging & imaging = psystem->imaging();
 
-         //   color32_t crTranslucid = rgb(0, 0, 0);
+         //   ::color::color crTranslucid = rgb(0, 0, 0);
 
          //   imaging.color_blend(data.m_pdc,    rectUnion.left, rectUnion.top,
          //   rectUnion.width(), rectUnion.height(),

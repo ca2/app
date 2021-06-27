@@ -925,9 +925,9 @@ namespace user
       ::rectangle_i32 rect1, rect2;
       rect1 = rectangle;
       rect2 = rectangle;
-      //   color32_t clr = afxData.bWin4 ? afxData.clrBtnShadow : afxData.clrWindowFrame;
-//      color32_t clr = afxData.clrBtnShadow;
-      color32_t clr;
+      //   ::color::color clr = afxData.bWin4 ? afxData.clrBtnShadow : afxData.clrWindowFrame;
+//      ::color::color clr = afxData.clrBtnShadow;
+      ::color::color clr;
       clr = rgb(128, 128, 123);
 
 

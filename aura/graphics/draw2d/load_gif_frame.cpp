@@ -43,7 +43,7 @@ bool draw2d_gif_draw_frame(::image * pimageCanvas, image_frame_array * pframea, 
 //
 //   pframe->m_pimage->map();
 //
-//   //color32_t crBack = 0;
+//   //::color::color crBack = 0;
 //
 //   if (uFrameIndex <= 0 && transparentIndex >= 0)
 //   {
@@ -64,7 +64,7 @@ bool draw2d_gif_draw_frame(::image * pimageCanvas, image_frame_array * pframea, 
 //
 //   //      pimageCanvas.get_graphics()->set_alpha_mode(::draw2d::alpha_mode_set);
 //
-//   //      color32_t crBack = pframea->m_colorBack;
+//   //      ::color::color crBack = pframea->m_colorBack;
 //
 //   //      byte bAlpha = colorref_get_a_value(crBack);
 //
@@ -230,7 +230,7 @@ bool draw2d_gif_draw_frame(::image * pimageCanvas, image_frame_array * pframea, 
 //
 //         pimageCanvas->g()->set_alpha_mode(::draw2d::alpha_mode_set);
 //
-//         color32_t crBack = pframea->m_colorBack;
+//         ::color::color crBack = pframea->m_colorBack;
 //
 //         byte bAlpha = colorref_get_a_value(crBack);
 //
@@ -286,7 +286,7 @@ bool draw2d_gif_draw_frame(image * pimageCanvas, image_frame_array * pframea, im
 
    auto colorref = pframe->m_pimage->colorref();
 
-   int w = pframe->m_pimage->scan_size() / sizeof(color32_t);
+   int w = pframe->m_pimage->scan_size() / sizeof(::color::color);
 
    for (index y = 0; y < pframe->m_rectangle.height(); y++)
    {
@@ -314,27 +314,27 @@ bool draw2d_gif_draw_frame(image * pimageCanvas, image_frame_array * pframea, im
 
          }
 
-         color32_t cr = cra[iIndex];
+         ::color32_t color32 = cra[iIndex];
 
-         byte bA = colorref_get_a_value(cr);
+         byte bA = colorref_get_a_value(color32);
 
 //#if defined(__APPLE__) || (defined(ANDROID) && defined(__arm__))
 //#if defined(__APPLE__) || defined(ANDROID)
 // ANDROID -> // LITTLE_LIT_LIGHT_LITE_LITLE_ENDIANS!!!!!!!!!!
 //#if defined(__APPLE__) || defined(ANDROID)
 //
-//         //byte bR = colorref_get_r_value(cr);
-//         //byte bG = colorref_get_g_value(cr);
-//         //byte bB = colorref_get_b_value(cr);
+//         //byte bR = colorref_get_r_value(color32);
+//         //byte bG = colorref_get_g_value(color32);
+//         //byte bB = colorref_get_b_value(color32);
 //
 //         //pframe->m_pimage->m_pcolorref[y*w + x] = argb(bA, bB, bG, bR);
 //
-//         pframe->m_pimage->m_pcolorref[y*w + x] = ((cr << 16) & 0xff0000) | ((cr >> 16) & 0xff) | (cr & 0xff00ff00);
+//         pframe->m_pimage->m_pcolorref[y*w + x] = ((color32 << 16) & 0xff0000) | ((color32 >> 16) & 0xff) | (color32 & 0xff00ff00);
 //
 //#else
-         byte bR = colorref_get_r_value(cr);
-         byte bG = colorref_get_g_value(cr);
-         byte bB = colorref_get_b_value(cr);
+         byte bR = colorref_get_r_value(color32);
+         byte bG = colorref_get_g_value(color32);
+         byte bB = colorref_get_b_value(color32);
          if (bA != 255)
          {
 

@@ -61,8 +61,8 @@ i32                 y,
 const char *            pcsz,
 
 size_t                  cb,
-color32_t                crText,
-color32_t                crShadow,
+::color::color                crText,
+::color::color                crShadow,
 i32                 cx,
 i32                 cy)
 {
@@ -79,17 +79,17 @@ i32                 cy)
     ** system color for that one.
     */
 
-   //   color32_t                crOld;
+   //   ::color::color                crOld;
    //   ::u32                    uMode;
    SIZE_F64                   sizeText;
    ::rectangle_i32                  rectText;
 
    auto psession = get_session();
 
-//   if(crShadow == (color32_t)-1)
+//   if(crShadow == (::color::color)-1)
 //      crShadow = crButtonShadow;
 //
-//   if(crText == (color32_t)-1)
+//   if(crText == (::color::color)-1)
 //      crText = psession->get_default_color(COLOR_BTNTEXT);
 
    /* setup the DC, saving off the old values
@@ -228,7 +228,7 @@ i32                 cy)
 //   i32 y,
 //   i32 cx,
 //   i32 cy,
-//   color32_t crAlpha)
+//   ::color::color crAlpha)
 //{
 //   UNREFERENCED_PARAMETER(pgraphics);
 //   UNREFERENCED_PARAMETER(x);
@@ -250,7 +250,7 @@ i32                 cy)
 //   ::draw2d::bitmap * pitmapMask,
 
 //   const ::rectangle_i32 & rectangle,
-//   color32_t crTransparent)
+//   ::color::color crTransparent)
 //{
 //
 //   return GrayVRCP(
@@ -296,7 +296,7 @@ bool imaging::CreateHueImageList(
 ::draw2d::graphics * pgraphics,
 __pointer(::image_list) pilGray,
 __pointer(::image_list) pilParam,
-color32_t crHue,
+::color::color crHue,
 double dCompress)
 {
 __pointer(::image_list) pil = pilGray;
@@ -345,7 +345,7 @@ bool imaging::change_hue(image_list * pilHue, image_list * pil, const ::color::c
 
 
 //
-//bool imaging::color_blend(::image * pimage, const ::color::color& cr, byte bAlpha)
+//bool imaging::color_blend(::image * pimage, const ::color::color& color32, byte bAlpha)
 //{
 //
 //   try
@@ -367,7 +367,7 @@ bool imaging::change_hue(image_list * pilHue, image_list * pil, const ::color::c
 //
 //      }
 //
-//      color_blend(pimage->g(), nullptr, pimage->size(), cr, bAlpha);
+//      color_blend(pimage->g(), nullptr, pimage->size(), color32, bAlpha);
 //
 //      return true;
 //
@@ -420,21 +420,21 @@ return pil;
 //   i32 y,
 //   i32 cx,
 //   i32 cy,
-//   color32_t crAlpha)
+//   ::color::color crAlpha)
 //{
 //
 //   return false;
 //
 ////   UNREFERENCED_PARAMETER(crAlpha);
-////   //color32_t cr3dface = psession->get_default_color(COLOR_3DFACE);
+////   //::color::color cr3dface = psession->get_default_color(COLOR_3DFACE);
 ////
 ////#ifdef WINDOWS_DESKTOP
 ////
-////   color32_t cr3dshadow = psession->get_default_color(COLOR_3DSHADOW);
+////   ::color::color cr3dshadow = psession->get_default_color(COLOR_3DSHADOW);
 ////
 ////#else
 ////
-////   color32_t cr3dshadow = argb(255,127,127,127);
+////   ::color::color cr3dshadow = argb(255,127,127,127);
 ////
 ////#endif
 ////
@@ -448,11 +448,11 @@ return pil;
 ////
 ////#ifdef WINDOWS_DESKTOP
 ////
-////   color32_t cr3dhighlight = psession->get_default_color(COLOR_3DHILIGHT);
+////   ::color::color cr3dhighlight = psession->get_default_color(COLOR_3DHILIGHT);
 ////
 ////#else
 ////
-////   color32_t cr3dhighlight = argb(255,192,192,192);
+////   ::color::color cr3dhighlight = argb(255,192,192,192);
 ////
 ////#endif
 ////
@@ -609,9 +609,9 @@ return pil;
 ////
 ////   byte br,bg,bb;
 ////
-////   //   color32_t crBtnFace = crButtonFace;
-////   //   color32_t crBtnShad = crButtonShadow;
-////   //   color32_t crWndBack = psession->get_default_color(COLOR_WINDOW);
+////   //   ::color::color crBtnFace = crButtonFace;
+////   //   ::color::color crBtnShad = crButtonShadow;
+////   //   ::color::color crWndBack = psession->get_default_color(COLOR_WINDOW);
 ////
 ////   //   byte bRBtnFace = ::red(crBtnFace);
 ////   //   byte bGBtnFace = ::green(crBtnFace);
@@ -1956,7 +1956,7 @@ return true;
 
 
 
-bool imaging::clip_color_blend(::draw2d::graphics * pgraphics, const rectangle_i32 & rectParam, color32_t cr, byte alpha)
+bool imaging::clip_color_blend(::draw2d::graphics * pgraphics, const rectangle_i32 & rectParam, ::color32_t color32, byte alpha)
 {
 
    ::rectangle_i32 rectangle(rectParam);
@@ -1965,15 +1965,15 @@ bool imaging::clip_color_blend(::draw2d::graphics * pgraphics, const rectangle_i
           pgraphics,
           rectangle.origin(),
           rectangle.size(),
-          cr,
+          color32,
           alpha);
 }
 
 
-bool imaging::clip_color_blend(::draw2d::graphics * pgraphics,const ::point_i32 & point,const ::size_i32 & size,color32_t cr,byte bA)
+bool imaging::clip_color_blend(::draw2d::graphics * pgraphics,const ::point_i32 & point,const ::size_i32 & size,::color32_t color32,byte bA)
 {
 
-   pgraphics->fill_rectangle(rectangle_i32(size), argb(bA,colorref_get_r_value(cr),colorref_get_g_value(cr),colorref_get_b_value(cr)));
+   pgraphics->fill_rectangle(rectangle_i32(size), argb(bA,colorref_get_r_value(color32),colorref_get_g_value(color32),colorref_get_b_value(color32)));
 
    return true;
 
@@ -1988,36 +1988,36 @@ bool imaging::clip_color_blend(::draw2d::graphics * pgraphics,const ::point_i32 
 }
 
 
-//bool imaging::color_blend(::draw2d::graphics * pgraphics, const ::rectangle_i64 & rectangle, color32_t cr, byte alpha)
+//bool imaging::color_blend(::draw2d::graphics * pgraphics, const ::rectangle_i64 & rectangle, ::color32_t color32, byte alpha)
 //{
 //
-//   return color_blend(pgraphics,(const ::rectangle_i32 &)rectangle,cr,alpha);
+//   return color_blend(pgraphics,(const ::rectangle_i32 &)rectangle,color32,alpha);
 //
 //}
 
 
-//bool imaging::color_blend(::draw2d::graphics * pgraphics, const ::rectangle_i32 & rectangle, color32_t cr, byte alpha)
+//bool imaging::color_blend(::draw2d::graphics * pgraphics, const ::rectangle_i32 & rectangle, ::color32_t color32, byte alpha)
 //{
 //
-//   return color_blend(pgraphics, rectangle.origin(), rectangle.size(), cr, alpha);
+//   return color_blend(pgraphics, rectangle.origin(), rectangle.size(), color32, alpha);
 //
 //}
 
 
-//bool imaging::color_blend(::draw2d::graphics * pgraphics,i32 x,i32 y,i32 cx,i32 cy,color32_t cr,byte bA)
+//bool imaging::color_blend(::draw2d::graphics * pgraphics,i32 x,i32 y,i32 cx,i32 cy,::color32_t color32,byte bA)
 //{
 //
-//   return color_blend(pgraphics,point_i32(x,y),size_i32(cx,cy),cr,bA);
+//   return color_blend(pgraphics,point_i32(x,y),size_i32(cx,cy),color32,bA);
 //
 //}
 
 
-//bool imaging::color_blend(::draw2d::graphics * pgraphics,const ::point_i32 & point,const ::size_i32 & size,color32_t cr,byte bA)
+//bool imaging::color_blend(::draw2d::graphics * pgraphics,const ::point_i32 & point,const ::size_i32 & size,::color32_t color32,byte bA)
 //{
 //
 //   pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 //
-//   pgraphics->fill_rectangle(rectangle_i32(point, size), (cr & 0x00ffffff) | (bA << 24));
+//   pgraphics->fill_rectangle(rectangle_i32(point, size), (color32 & 0x00ffffff) | (bA << 24));
 //
 //   return true;
 //
@@ -4130,7 +4130,7 @@ i32 y1,
 i32 w1,
 i32 cx,
 i32 cy,
-color32_t cr,
+::color32_t color32,
 byte * pCParam,
 
 i32 x3,
@@ -4143,9 +4143,9 @@ i32 w3)
    y1 *= w1;
    y3 *= w3;
 
-   byte bR = ::red(cr);
-   byte bG = ::green(cr);
-   byte bB = ::blue(cr);
+   byte bR = ::red(color32);
+   byte bG = ::green(color32);
+   byte bB = ::blue(color32);
 
    pAParam = (byte *)pAParam + y1 + x1;
 
@@ -4780,7 +4780,7 @@ const ::size_i32 & size,
 ::draw2d::graphics * pdcSrc,
 const ::point_i32 & pointSrc,
 i32 iChannel,i32 iRadius,
-color32_t cr)
+::color32_t color32)
 {
 
    if(size.is_empty())
@@ -4821,7 +4821,7 @@ color32_t cr)
          pimageDst,
          pimageSrc,
          iChannel,
-         iRadius, cr))
+         iRadius, color32))
    {
 
       return false;
@@ -4868,7 +4868,7 @@ const ::size_i32 & size,
 ::draw2d::graphics * pdcSrc,
 const ::point_i32 & pointSrc,
 i32 iRadius,
-color32_t cr)
+::color32_t color32)
 {
 
    if(size.is_empty())
@@ -4904,7 +4904,7 @@ color32_t cr)
    if (!spread__32CC(
          pimageDst,
          pimageSrc,
-         iRadius, cr))
+         iRadius, color32))
    {
 
       return false;
@@ -4933,7 +4933,7 @@ color32_t cr)
 
 
 
-bool imaging::spread__32CC(::image * pimageDst, ::image * pimageSrc,i32 iRadius,color32_t crSpreadSetColor)
+bool imaging::spread__32CC(::image * pimageDst, ::image * pimageSrc,i32 iRadius,::color::color crSpreadSetColor)
 {
 
    if (iRadius <= 1)
@@ -5071,7 +5071,7 @@ bool imaging::spread__32CC(::image * pimageDst, ::image * pimageSrc,i32 iRadius,
 
    i32 max3x1 = maxx1 * 4;
 
-   ::copy_colorref((color32_t *)pDst, cx,cy,pimageDst->scan_size(),(color32_t *)pSrc,pimageSrc->scan_size());
+   ::copy_colorref((::color::color *)pDst, cx,cy,pimageDst->scan_size(),(::color::color *)pSrc,pimageSrc->scan_size());
 
 
    i32 iFilterXLowerBound;
@@ -6669,7 +6669,7 @@ i32 iAlpha)
 
 
 // dCompress de 0 a 1
-bool imaging::HueVRCP(::image * pimage,color32_t crHue,double dCompress)
+bool imaging::HueVRCP(::image * pimage,::color::color crHue,double dCompress)
 {
 
    pimage->map();
@@ -6683,7 +6683,7 @@ bool imaging::HueVRCP(::image * pimage,color32_t crHue,double dCompress)
 
    }
 
-   color32_t cra[256];
+   ::color::color cra[256];
 
    ::color::color color;
 
@@ -6755,7 +6755,7 @@ bool imaging::HueVRCP(::image * pimage,color32_t crHue,double dCompress)
 //}
 
 
-void imaging::AlphaTextOut(::draw2d::graphics *pgraphics,i32 left,i32 top,const char * pcsz,i32 len,color32_t cr,double dBlend)
+void imaging::AlphaTextOut(::draw2d::graphics *pgraphics,i32 left,i32 top,const char * pcsz,i32 len,::color32_t color32,double dBlend)
 {
 
    string str(pcsz,len);
@@ -6772,7 +6772,7 @@ void imaging::AlphaTextOut(::draw2d::graphics *pgraphics,i32 left,i32 top,const 
    if(dBlend >= 1.0)
    {
 
-      brushText->create_solid(cr);
+      brushText->create_solid(color32);
 
       pgraphics->set(brushText);
 
@@ -6782,7 +6782,7 @@ void imaging::AlphaTextOut(::draw2d::graphics *pgraphics,i32 left,i32 top,const 
 
    }
 
-   brushText->create_solid(argb((byte)(255 * dBlend),colorref_get_r_value(cr),colorref_get_g_value(cr),colorref_get_b_value(cr)));
+   brushText->create_solid(argb((byte)(255 * dBlend),colorref_get_r_value(color32),colorref_get_g_value(color32),colorref_get_b_value(color32)));
 
    pgraphics->set(brushText);
 

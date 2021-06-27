@@ -2431,7 +2431,7 @@ namespace aura
       if (eelement == ::user::e_element_background)
       {
 
-         color32_t crBk;
+         ::color::color crBk;
 
          __pointer(::aura::system) psystem = get_system();
 
@@ -2454,7 +2454,7 @@ namespace aura
       else if (eelement == ::user::e_element_face)
       {
 
-         color32_t crBk;
+         ::color::color crBk;
 
          __pointer(::aura::system) psystem = get_system();
 
@@ -2477,7 +2477,7 @@ namespace aura
       else if (eelement == ::user::e_element_text)
       {
 
-         color32_t crText;
+         ::color::color crText;
 
          __pointer(::aura::system) psystem = get_system();
 

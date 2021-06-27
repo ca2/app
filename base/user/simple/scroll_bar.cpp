@@ -1561,17 +1561,17 @@ void simple_scroll_bar::_001OnVerisimpleDraw(::draw2d::graphics_pointer & pgraph
 
    //}
 
-   color32_t cr = scrollbar_color(pstyle, ::user::e_element_scrollbar_rectA);
+   ::color32_t color32 = scrollbar_color(pstyle, ::user::e_element_scrollbar_rectA);
 
-   m_brushDraw->create_solid(cr);
+   m_brushDraw->create_solid(color32);
 
    pgraphics->set(m_brushDraw);
 
    pgraphics->fill_rectangle(m_rectA);
 
-   cr = scrollbar_color(pstyle, ::user::e_element_scrollbar_rectB);
+   color32 = scrollbar_color(pstyle, ::user::e_element_scrollbar_rectB);
 
-   m_brushDraw->create_solid(cr);
+   m_brushDraw->create_solid(color32);
 
    pgraphics->set(m_brushDraw);
 
@@ -1584,9 +1584,9 @@ void simple_scroll_bar::_001OnVerisimpleDraw(::draw2d::graphics_pointer & pgraph
 
       GetPageARect(rectangleClient, rectTrack, rectangle, pgraphics);
 
-      cr = scrollbar_color(pstyle, ::user::e_element_scrollbar_pageA);
+      color32 = scrollbar_color(pstyle, ::user::e_element_scrollbar_pageA);
 
-      m_brushDraw->create_solid(cr);
+      m_brushDraw->create_solid(color32);
 
       pgraphics->set(m_brushDraw);
 
@@ -1598,9 +1598,9 @@ void simple_scroll_bar::_001OnVerisimpleDraw(::draw2d::graphics_pointer & pgraph
 
       GetPageBRect(rectangleClient, rectTrack, rectangle, pgraphics);
 
-      cr = scrollbar_color(pstyle, ::user::e_element_scrollbar_pageB);
+      color32 = scrollbar_color(pstyle, ::user::e_element_scrollbar_pageB);
 
-      m_brushDraw->create_solid(cr);
+      m_brushDraw->create_solid(color32);
 
       pgraphics->set(m_brushDraw);
 
@@ -1616,17 +1616,17 @@ void simple_scroll_bar::_001OnVerisimpleDraw(::draw2d::graphics_pointer & pgraph
 
    penArrow->m_elinejoin = ::draw2d::e_line_join_round;
 
-   cr = scrollbar_draw_color(pstyle, ::user::e_element_scrollbar_rectA);
+   color32 = scrollbar_draw_color(pstyle, ::user::e_element_scrollbar_rectA);
 
-   penArrow->create_solid(1.0, cr);
+   penArrow->create_solid(1.0, color32);
 
    pgraphics->set(penArrow);
 
    pgraphics->polyline(m_ptaA, 3);
 
-   cr = scrollbar_draw_color(pstyle, ::user::e_element_scrollbar_rectB);
+   color32 = scrollbar_draw_color(pstyle, ::user::e_element_scrollbar_rectB);
 
-   penArrow->create_solid(1.0, cr);
+   penArrow->create_solid(1.0, color32);
 
    pgraphics->set(penArrow);
 

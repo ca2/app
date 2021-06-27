@@ -51,7 +51,7 @@ public:
 
    void alpha_spread__24CC(byte * pbDest, i32 xDest, i32 yDest, i32 wDest, i32 cx, i32 cy, byte * pbSrc, i32 ySrc, i32 xSrc, i32 wSrc, byte bMin, i32 iRadius);
 
-   bool spread__32CC(::image * ppimageDst, ::image * pimageSrc, i32 iRadius, color32_t cr);
+   bool spread__32CC(::image * ppimageDst, ::image * pimageSrc, i32 iRadius, ::color32_t color32);
 
 
    bool channel_spread(
@@ -71,7 +71,7 @@ public:
    const ::point_i32 & pointSrc,
    i32 iChannel,
    i32 iRadius,
-   color32_t cr);
+   ::color32_t color32);
 
    bool spread(
    ::draw2d::graphics * pgraphics,
@@ -88,7 +88,7 @@ public:
    ::draw2d::graphics * pdcSrc,
    const ::point_i32 & pointSrc,
    i32 iRadius,
-   color32_t cr);
+   ::color32_t color32);
 
    bool true_blend(::draw2d::graphics * pgraphics, const ::rectangle_i32 & rectangle, ::draw2d::graphics * pdcColorAlpha, const ::point_i32 & pointAlpha, ::image * pimageWork = nullptr, ::image * pimageWork2 = nullptr, ::image * pimageWork3 = nullptr);
 
@@ -104,7 +104,7 @@ public:
    i32 w1,
    i32 cx,
    i32 cy,
-   color32_t cr,
+   ::color32_t color32,
    byte * pbC,
 
    i32 x3,
@@ -114,12 +114,12 @@ public:
 
 
 
-   bool clip_color_blend(::draw2d::graphics * pgraphics, const ::point_i32 & point, const ::size_i32 & size, color32_t cr, byte alpha);
-   bool clip_color_blend(::draw2d::graphics * pgraphics, const ::rectangle_i32 & rectangle, color32_t cr, byte alpha);
+   bool clip_color_blend(::draw2d::graphics * pgraphics, const ::point_i32 & point, const ::size_i32 & size, ::color32_t color32, byte alpha);
+   bool clip_color_blend(::draw2d::graphics * pgraphics, const ::rectangle_i32 & rectangle, ::color32_t color32, byte alpha);
 
    /*
-      bool clip_color_blend(::draw2d::graphics * pgraphics, const ::point_i32 & point, const ::size_i32 & size, color32_t cr, byte alpha, ::draw2d::region * prgnClip);
-      bool clip_color_blend(::draw2d::graphics * pgraphics, const ::rectangle_i32 & rectangle, color32_t cr, byte alpha, ::draw2d::region * prgnClip);
+      bool clip_color_blend(::draw2d::graphics * pgraphics, const ::point_i32 & point, const ::size_i32 & size, ::color32_t color32, byte alpha, ::draw2d::region * prgnClip);
+      bool clip_color_blend(::draw2d::graphics * pgraphics, const ::rectangle_i32 & rectangle, ::color32_t color32, byte alpha, ::draw2d::region * prgnClip);
    */
 
    ::e_status trait(::image * pimage, ::i64 iTrait);
@@ -141,7 +141,7 @@ public:
    i32 cx,
    i32 cy);
 
-   void AlphaTextOut(::draw2d::graphics * pgraphics, i32 left, i32 top, const char * pcsz, i32 len, color32_t cr, double dBlend);
+   void AlphaTextOut(::draw2d::graphics * pgraphics, i32 left, i32 top, const char * pcsz, i32 len, ::color32_t color32, double dBlend);
 
 
    /*
@@ -203,16 +203,16 @@ public:
 //      i32 y,
 //      i32 cx,
 //      i32 cy,
-//      color32_t crTransparent);
+//      ::color::color crTransparent);
 
-   bool HueVRCP(::image * pimage, color32_t crHue, double dCompress);
+   bool HueVRCP(::image * pimage, ::color::color crHue, double dCompress);
 
 //   bool GrayVRCP(
 //      ::draw2d::graphics * pgraphics,
 //      ::draw2d::bitmap * pbitmap,
 //      ::draw2d::bitmap * pbitmapMask,
 //      const ::rectangle_i32 & rectangle,
-//      color32_t crTransparent);
+//      ::color::color crTransparent);
 //
 //   bool GrayVRCP(
 //      ::draw2d::graphics * pgraphics,
@@ -220,7 +220,7 @@ public:
 //      i32 y,
 //      i32 cx,
 //      i32 cy,
-//      color32_t crAlpha);
+//      ::color::color crAlpha);
 
    bool change_hue(image_list * pilHue, image_list * pil, const ::color::color & crHue, double dCompress);
 
@@ -311,8 +311,8 @@ public:
    const char *            pcsz,
 
    size_t                  cb,
-   color32_t                crText,
-   color32_t                crShadow,
+   ::color::color                crText,
+   ::color::color                crShadow,
    i32                 cx,
    i32                 cy);
 

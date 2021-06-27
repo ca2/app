@@ -7,16 +7,16 @@
 
 //#if defined(APPLEOS)
 //#define ARGB_COLORREF(A, R, G, B) argb(A, R, G, B)
-//#define COLORREF_get_a_value(cr) colorref_get_a_value(cr)
-//#define COLORREF_get_r_value(cr) colorref_get_r_value(cr)
-//#define COLORREF_get_g_value(cr) colorref_get_g_value(cr)
-//#define COLORREF_get_b_value(cr) colorref_get_b_value(cr)
+//#define COLORREF_get_a_value(color32) colorref_get_a_value(color32)
+//#define COLORREF_get_r_value(color32) colorref_get_r_value(color32)
+//#define COLORREF_get_g_value(color32) colorref_get_g_value(color32)
+//#define COLORREF_get_b_value(color32) colorref_get_b_value(color32)
 //#else
 //#define ARGB_COLORREF(A, R, G, B) argb(A, B, G, R)
-//#define COLORREF_get_a_value(cr) colorref_get_a_value(cr)
-//#define COLORREF_get_r_value(cr) colorref_get_b_value(cr)
-//#define COLORREF_get_g_value(cr) colorref_get_g_value(cr)
-//#define COLORREF_get_b_value(cr) colorref_get_r_value(cr)
+//#define COLORREF_get_a_value(color32) colorref_get_a_value(color32)
+//#define COLORREF_get_r_value(color32) colorref_get_b_value(color32)
+//#define COLORREF_get_g_value(color32) colorref_get_g_value(color32)
+//#define COLORREF_get_b_value(color32) colorref_get_r_value(color32)
 //#endif
 
 
@@ -27,7 +27,7 @@ namespace flag
    void dk(::draw2d::graphics_pointer & pgraphics, double x, double y, double w, double h)
    {
 
-      color32_t crDenmarkRoed = argb(255, 200, 16, 46);
+      ::color::color crDenmarkRoed = argb(255, 200, 16, 46);
 
       double dx = w / 90.0;
 
@@ -52,7 +52,7 @@ namespace visual
 {
 
 
-   color32_t image_color_with_shade_of_grey(int i, int j, double dw, double dh)
+   ::color::color image_color_with_shade_of_grey(int i, int j, double dw, double dh)
    {
 
       double dR, dG, dB;
@@ -153,22 +153,22 @@ namespace visual
 
    }
 
-   color32_t color_with_shade_of_grey(int i, int j, double dw, double dh)
+   ::color::color color_with_shade_of_grey(int i, int j, double dw, double dh)
    {
 
-      auto cr = image_color_with_shade_of_grey(i, j, dw, dh);
+      auto color32 = image_color_with_shade_of_grey(i, j, dw, dh);
 
-      int a = image_a_value(cr);
+      int a = image_a_value(color32);
 
-      int r = image_r_value(cr);
+      int r = image_r_value(color32);
 
-      int g = image_g_value(cr);
+      int g = image_g_value(color32);
 
-      int b = image_b_value(cr);
+      int b = image_b_value(color32);
 
-      cr = argb(a, r, g, b);
+      color32 = argb(a, r, g, b);
 
-      return cr;
+      return color32;
 
    }
 
@@ -188,9 +188,9 @@ namespace visual
 
       ::u32 uScan;
 
-      uScan = pimage->scan_size() / sizeof(color32_t);
+      uScan = pimage->scan_size() / sizeof(::color::color);
 
-      color32_t * pline;
+      ::color::color * pline;
 
       for (index i = 0; i < w; i++)
       {
@@ -229,9 +229,9 @@ namespace visual
 
       //dS = 1.0 - ((double)j / dh);
 
-      uScan = pimage->scan_size() / sizeof(color32_t);
+      uScan = pimage->scan_size() / sizeof(::color::color);
 
-      color32_t * pline;
+      ::color::color * pline;
 
       double dR, dG, dB;
 
@@ -334,11 +334,11 @@ namespace visual
          //m_uchB = (byte)primitive_color_round(m_dB * 255.0);
 
          pline = pimage->get_data() + uScan * j;
-         color32_t cr = IMAGE_ARGB(255, byte(_dR*255.0), byte(_dG*255.0), byte(_dB*255.0));
+         ::color32_t color32 = IMAGE_ARGB(255, byte(_dR*255.0), byte(_dG*255.0), byte(_dB*255.0));
          for (index i = 0; i < w; i++)
          {
 
-            *pline = cr;
+            *pline = color32;
 
             pline ++;
 
@@ -541,11 +541,11 @@ namespace userex
 
          m_bMouseColorBeam = true;
 
-         color32_t cr = visual::color_with_shade_of_grey(
+         ::color32_t color32 = visual::color_with_shade_of_grey(
             x, y,
             iColorsWidth, m_rectColors.height());
 
-         ::color::color color(cr);
+         ::color::color color(color32);
 
          ::color::hls hls;
 

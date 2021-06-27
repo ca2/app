@@ -393,23 +393,23 @@ inline ::e_status __preserve_construct(::image_pointer & pimage, const ::size_i3
 
 
 
-inline void copy_colorref(color32_t * pcolorrefDst, const ::size_i32 & size, int iStrideDst, const color32_t * pcolorrefSrc, int iStrideSrc)
+inline void copy_colorref(::color::color * pcolorrefDst, const ::size_i32 & size, int iStrideDst, const ::color::color * pcolorrefSrc, int iStrideSrc)
 {
    return copy_colorref(pcolorrefDst, size.cx, size.cy, iStrideDst, pcolorrefSrc, iStrideSrc);
 }
 
 
-inline CLASS_DECL_AURA void copy_colorref(color32_t * pcolorrefDst, const ::point_i32 & point, const ::size_i32 & size, int iStrideDst, const color32_t * pcolorrefSrc, int iStrideSrc)
+inline CLASS_DECL_AURA void copy_colorref(::color::color * pcolorrefDst, const ::point_i32 & point, const ::size_i32 & size, int iStrideDst, const ::color::color * pcolorrefSrc, int iStrideSrc)
 {
 
    byte * pDst = (byte *) pcolorrefDst;
 
-   return copy_colorref((color32_t *) pDst + point.x * sizeof(color32_t) + point.y * iStrideDst, size.cx, size.cy, iStrideDst, pcolorrefSrc, iStrideSrc);
+   return copy_colorref((::color::color *) pDst + point.x * sizeof(::color::color) + point.y * iStrideDst, size.cx, size.cy, iStrideDst, pcolorrefSrc, iStrideSrc);
 
 }
 
 
-inline CLASS_DECL_AURA void copy_colorref(color32_t * pcolorrefDst, const ::rectangle_i32 & rectangle, int iStrideDst, const color32_t * pcolorrefSrc, int iStrideSrc)
+inline CLASS_DECL_AURA void copy_colorref(::color::color * pcolorrefDst, const ::rectangle_i32 & rectangle, int iStrideDst, const ::color::color * pcolorrefSrc, int iStrideSrc)
 {
 
    return copy_colorref(pcolorrefDst, rectangle.top_left(), rectangle.size(), iStrideDst, pcolorrefSrc, iStrideSrc);
@@ -417,10 +417,10 @@ inline CLASS_DECL_AURA void copy_colorref(color32_t * pcolorrefDst, const ::rect
 }
 
 
-inline color32_t * image::get_data() { return m_pcolorref1; }
+inline ::color::color * image::get_data() { return m_pcolorref1; }
 
 
-const color32_t * image::get_data() const
+const ::color::color * image::get_data() const
 {
 
    map();

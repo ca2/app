@@ -39,7 +39,7 @@
                virtual e_hittest _001HitTest(const ::point_i32 & point) override;
                color32_t get_border_main_body_color() override;
 
-               virtual bool get_color(color32_t & cr, ::user::e_color ecolor, ::user::style_context * pcontext) override;
+               virtual bool get_color(color32_t & color32, ::user::e_color ecolor, ::user::style_context * pcontext) override;
 
 
             };

@@ -167,7 +167,7 @@ namespace user
 
       //::rectangle_i32 rectangle;
 
-      //color32_t cr = argb(190, 92, 92, 80);
+      //::color32_t color32 = argb(190, 92, 92, 80);
 
       //for(i = 0; i < get_pane_count(); i++)
       //{
@@ -180,7 +180,7 @@ namespace user
       //      rectangle.top,
       //      rectangle.width(),
       //      m_cyBorder,
-      //      cr);
+      //      color32);
 
       //   // Right
       //   pgraphics->fill_rectangle(
@@ -188,7 +188,7 @@ namespace user
       //      rectangle.top,
       //      m_cxBorder,
       //      rectangle.height(),
-      //      cr);
+      //      color32);
 
       //   // Bottom
       //   pgraphics->fill_rectangle(
@@ -196,7 +196,7 @@ namespace user
       //      rectangle.bottom - m_cyBorder,
       //      rectangle.width(),
       //      m_cyBorder,
-      //      cr);
+      //      color32);
 
       //   // Left
       //   pgraphics->fill_rectangle(
@@ -204,7 +204,7 @@ namespace user
       //      rectangle.top,
       //      m_cxBorder,
       //      rectangle.height(),
-      //      cr);
+      //      color32);
 
       //}
 

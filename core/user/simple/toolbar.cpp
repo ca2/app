@@ -337,8 +337,8 @@ void simple_toolbar::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 //   }
 //
 //   // Desenha chanfro
-//   color32_t cr = m_pimageDraft->GetPixel(0, 0);
-//   pgraphics->SetPixel(0, 0, cr);
+//   ::color32_t color32 = m_pimageDraft->GetPixel(0, 0);
+//   pgraphics->SetPixel(0, 0, color32);
 //   pgraphics->SetPixel(0, 1, m_pimageDraft->GetPixel(0, 1));
 //   pgraphics->SetPixel(0, 2, m_pimageDraft->GetPixel(0, 2));
 //   pgraphics->SetPixel(0, 3, m_pimageDraft->GetPixel(0, 3));

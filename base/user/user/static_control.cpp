@@ -146,7 +146,7 @@ namespace user
 
 
 
-      color32_t crText = argb(255, 0, 0, 0);
+      ::color::color crText = argb(255, 0, 0, 0);
 
       if(m_bHover)
       {

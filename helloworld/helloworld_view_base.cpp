@@ -289,7 +289,7 @@ auto m_millisRoll = ::millis::now();
             }
 
 
-            color32_t cr;
+            color32_t color32;
 
             byte a, r, g, b, rm, gm, bm;
 
@@ -326,11 +326,11 @@ auto m_millisRoll = ::millis::now();
                   i1 = i * rstride + j;
                   i2 = i1 + rstride;
                   i3 = i2 + rstride;
-                  cr = pdata[i1];
-                  a = colorref_get_a_value(cr);
-                  r = colorref_get_r_value(cr);
-                  g = colorref_get_g_value(cr);
-                  b = colorref_get_b_value(cr);
+                  color32 = pdata[i1];
+                  a = colorref_get_a_value(color32);
+                  r = colorref_get_r_value(color32);
+                  g = colorref_get_g_value(color32);
+                  b = colorref_get_b_value(color32);
                   rm = (g + b) / 4;
                   gm = (r + b) / 4;
                   bm = (r + g) / 4;

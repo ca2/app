@@ -36,7 +36,7 @@ namespace draw2d
             u8 * psrcTransparency = m_psrcTransparency; // Stacie, Dylan, Tectuma (Kevin) and Matt contribution
 #define DIB_BLEND_ZERO_BLOCK_SIZE_EIGHTH 64
 #define DIB_BLEND_ZERO_BLOCK_SIZE 256
-            color32_t craZero[DIB_BLEND_ZERO_BLOCK_SIZE];
+            ::color::color craZero[DIB_BLEND_ZERO_BLOCK_SIZE];
 
             __zero(craZero);
 
@@ -70,7 +70,7 @@ namespace draw2d
                      {
                         if (x1 >= 0)
                         {
-                           ::memcpy_dup(&((color32_t *)pdst3)[x1], &((color32_t *)psrc3)[x1], (x - x1) * sizeof(color32_t));
+                           ::memcpy_dup(&((::color::color *)pdst3)[x1], &((::color::color *)psrc3)[x1], (x - x1) * sizeof(::color::color));
                            x1 = -1;
                         }
 
@@ -105,7 +105,7 @@ namespace draw2d
                         {
                            if (x1 >= 0)
                            {
-                              ::memcpy_dup(&((color32_t *)pdst3)[x1], &((color32_t *)psrc3)[x1], (x - x1) * sizeof(color32_t));
+                              ::memcpy_dup(&((::color::color *)pdst3)[x1], &((::color::color *)psrc3)[x1], (x - x1) * sizeof(::color::color));
                               x1 = -1;
                            }
                            byte bA2 = (byte)~(byte)psrc2[3];
@@ -125,7 +125,7 @@ namespace draw2d
                   }
                   if (x1 >= 0)
                   {
-                     ::memcpy_dup(&((color32_t *)pdst3)[x1], &((color32_t *)psrc3)[x1], (x - x1) * sizeof(color32_t));
+                     ::memcpy_dup(&((::color::color *)pdst3)[x1], &((::color::color *)psrc3)[x1], (x - x1) * sizeof(::color::color));
                      x1 = -1;
                   }
                   //pdst2 += xEnd;
@@ -167,7 +167,7 @@ restart:
                      {
                         if (x1 >= 0)
                         {
-                           ::memcpy_dup(&((color32_t *)pdst3)[x1], &((color32_t *)psrc3)[x1], (x - x1) * sizeof(color32_t));
+                           ::memcpy_dup(&((::color::color *)pdst3)[x1], &((::color::color *)psrc3)[x1], (x - x1) * sizeof(::color::color));
                            x1 = -1;
                         }
 
@@ -329,7 +329,7 @@ restart:
                            if (xDistanceToBoundary8 > 0)
                            {
 
-                              while (x < xBoundary8 && !(((color32_t *)psrc3)[x] & 0xff000000))
+                              while (x < xBoundary8 && !(((::color::color *)psrc3)[x] & 0xff000000))
                               {
 
                                  x++;
@@ -341,7 +341,7 @@ restart:
                                  break;
                               }
 
-                              if (((color32_t *)psrc3)[x] & 0xff000000)
+                              if (((::color::color *)psrc3)[x] & 0xff000000)
                               {
 
                                  pdst2 = &pdst3[x << 2];
@@ -370,7 +370,7 @@ restart:
 
                               xEnd8 = minimum(xEnd, xBoundary1);
                               while (x + DIB_BLEND_ZERO_BLOCK_SIZE_EIGHTH <= xEnd8
-                                     && __memcmp(&(((color32_t *)psrc3)[x]), craZero, DIB_BLEND_ZERO_BLOCK_SIZE_EIGHTH * 4) == 0)
+                                     && __memcmp(&(((::color::color *)psrc3)[x]), craZero, DIB_BLEND_ZERO_BLOCK_SIZE_EIGHTH * 4) == 0)
                               {
 
                                  x += DIB_BLEND_ZERO_BLOCK_SIZE_EIGHTH;
@@ -384,7 +384,7 @@ restart:
 
                               }
 
-                              if (((color32_t *)psrc3)[x] & 0xff000000)
+                              if (((::color::color *)psrc3)[x] & 0xff000000)
                               {
 
                                  pdst2 = &pdst3[x << 2];
@@ -409,7 +409,7 @@ restart:
                            {
 
                               while (x + DIB_BLEND_ZERO_BLOCK_SIZE <= xEnd
-                                     && __memcmp(&(((color32_t *)psrc3)[x]), craZero, sizeof(craZero)) == 0)
+                                     && __memcmp(&(((::color::color *)psrc3)[x]), craZero, sizeof(craZero)) == 0)
                               {
 
                                  x += DIB_BLEND_ZERO_BLOCK_SIZE;
@@ -423,7 +423,7 @@ restart:
 
                               }
 
-                              if (((color32_t *)psrc3)[x] & 0xff000000)
+                              if (((::color::color *)psrc3)[x] & 0xff000000)
                               {
 
                                  pdst2 = &pdst3[x << 2];
@@ -438,7 +438,7 @@ restart:
 
                            }
 
-                           while (x < xEnd && !(((color32_t *)psrc3)[x] & 0xff000000))
+                           while (x < xEnd && !(((::color::color *)psrc3)[x] & 0xff000000))
                            {
 
                               x++;
@@ -454,7 +454,7 @@ restart:
 
                            psrc2 = &psrc3[x << 2];
 
-                           if (((color32_t *)psrc3)[x] & 0xff000000)
+                           if (((::color::color *)psrc3)[x] & 0xff000000)
                            {
 
                               goto restart;
@@ -489,7 +489,7 @@ restart:
                         {
                            if (x1 >= 0)
                            {
-                              ::memcpy_dup(&((color32_t *)pdst3)[x1], &((color32_t *)psrc3)[x1], (x - x1) * sizeof(color32_t));
+                              ::memcpy_dup(&((::color::color *)pdst3)[x1], &((::color::color *)psrc3)[x1], (x - x1) * sizeof(::color::color));
                               x1 = -1;
                            }
                            bA2 = (byte)~bA2;
@@ -509,7 +509,7 @@ restart:
                   }
                   if (x1 >= 0)
                   {
-                     ::memcpy_dup(&((color32_t *)pdst3)[x1], &((color32_t *)psrc3)[x1], (x - x1) * sizeof(color32_t));
+                     ::memcpy_dup(&((::color::color *)pdst3)[x1], &((::color::color *)psrc3)[x1], (x - x1) * sizeof(::color::color));
                      x1 = -1;
                   }
                   //pdst2 += xEnd;

@@ -80,7 +80,7 @@ namespace user
 
       //virtual ::user::plain_edit_internal * get_plain_edit_internal();
 
-      virtual color32_t get_style_moveable_border_color(enum_style estyle);
+      virtual ::color::color get_style_moveable_border_color(enum_style estyle);
 
       template < typename CONTROL_STYLE >
       void get(__pointer(CONTROL_STYLE) & pcontrolstyleImpl, ::draw2d::graphics_pointer & pgraphics, ::user::interaction * pinteraction);
@@ -135,7 +135,7 @@ namespace user
       //virtual bool set(::user::interaction * pinteraction, e_font efont = font_default);
 
 
-      //virtual color32_t           _001GetColor(e_color ecolor, color32_t crDefault = 0);
+      //virtual ::color::color           _001GetColor(e_color ecolor, ::color::color crDefault = 0);
       //virtual ::write_text::font_pointer  _001GetFont(e_font efont, ::write_text::font * pfont = nullptr);
       //virtual enum_translucency     _001GetTranslucency(enum_element eelement = e_element_none, enum_translucency etranslucencyDefault = e_translucency_undefined);
       //virtual bool               _001GetFlag(::user::enum_flag eflag, bool bDefault = false);

@@ -37,7 +37,7 @@ namespace html
 
 
 
-   color32_t style::parse_color(const char * psz)
+   ::color::color style::parse_color(const char * psz)
    {
 
       ::color::color color;
@@ -454,21 +454,21 @@ namespace html
       index iTopW          = -1;
       index iRightW        = -1;
       index iBottomW       = -1;
-      color32_t cr              = 0;
-      color32_t crLeft          = 0;
-      color32_t crTop           = 0;
-      color32_t crRight         = 0;
-      color32_t crBottom        = 0;
-      color32_t crW             = 0;
-      color32_t crLeftW         = 0;
-      color32_t crTopW          = 0;
-      color32_t crRightW        = 0;
-      color32_t crBottomW       = 0;
+      ::color32_t color32              = 0;
+      ::color::color crLeft          = 0;
+      ::color::color crTop           = 0;
+      ::color::color crRight         = 0;
+      ::color::color crBottom        = 0;
+      ::color::color crW             = 0;
+      ::color::color crLeftW         = 0;
+      ::color::color crTopW          = 0;
+      ::color::color crRightW        = 0;
+      ::color::color crBottomW       = 0;
 
-      if(m_propertyset.has_property(idName) && parse_border_color(m_propertyset[idName], cr))
+      if(m_propertyset.has_property(idName) && parse_border_color(m_propertyset[idName], color32))
          pstyle = this;
       else
-         pstyle = pdata->m_pcoredata->m_stylesheeta.rfind_border_color(etag, strClass, strSubClass, idName, cr);
+         pstyle = pdata->m_pcoredata->m_stylesheeta.rfind_border_color(etag, strClass, strSubClass, idName, color32);
       if(pstyle != nullptr)
          i = pstyle->m_propertyset.find_index(idName);
 
@@ -559,7 +559,7 @@ namespace html
 
       const style *     pstyle1           = nullptr;
       index               i1                 = -1;
-      ::payload               var1                 = (u32) cr;
+      ::payload               var1                 = (u32) color32;
       pdata->m_pcoredata->m_stylesheeta.greater(pstyle1, i1, var1, pstyle, i, var1, pstyleW, iW, (u32 &) crW);
 
 
@@ -600,7 +600,7 @@ namespace html
    }
 
 
-   bool style::get_color(id idName, const string & strSubClass, html_data * pdata, const ::html::element * pelement, color32_t & cr)
+   bool style::get_color(id idName, const string & strSubClass, html_data * pdata, const ::html::element * pelement, ::color::color & color32)
    {
 
       e_tag etag = pelement->m_etag;
@@ -618,16 +618,16 @@ namespace html
             if(pelement->m_pparent != nullptr && ansi_compare_ci(idName, "background-color"))
             {
 
-               if(pelement->m_pparent->m_pstyle->get_color(idName, strSubClass, pdata, pelement->m_pparent, cr))
+               if(pelement->m_pparent->m_pstyle->get_color(idName, strSubClass, pdata, pelement->m_pparent, color32))
                {
                   return true;
                }
             }
             return false;
          }
-         return pstyle->get_color(idName, strSubClass, pdata, pelement, cr);
+         return pstyle->get_color(idName, strSubClass, pdata, pelement, color32);
       }
-      cr = parse_color(m_propertyset[idName]);
+      color32 = parse_color(m_propertyset[idName]);
       return true;
    }
 
@@ -917,7 +917,7 @@ namespace html
    }
 
 
-   bool style::matches_border_color(e_tag etag, const string & strClass, const string & strSubClass, id idName, color32_t & cr)
+   bool style::matches_border_color(e_tag etag, const string & strClass, const string & strSubClass, id idName, ::color::color & color32)
    {
 
       if (etag != tag_none && m_etag != tag_none)
@@ -972,7 +972,7 @@ namespace html
 
       }
 
-      if (!parse_border_color(m_propertyset[i].get_string(), cr))
+      if (!parse_border_color(m_propertyset[i].get_string(), color32))
       {
 
          return false;
@@ -1151,7 +1151,7 @@ namespace html
       return true;
    }
 
-   bool style::parse_border_color(const char * pszParam, color32_t & cr)
+   bool style::parse_border_color(const char * pszParam, ::color::color & color32)
    {
 
       if(pszParam == nullptr)
@@ -1167,12 +1167,12 @@ namespace html
       // todo ::str::find_cssci would find red between spaces but not concatenated
       if(str.find_ci("magenta") >= 0)
       {
-         cr = argb(255, 255, 0, 255);
+         color32 = argb(255, 255, 0, 255);
          return true;
       }
       else if(str.find_ci("green") >= 0)
       {
-         cr = argb(255, 0, 255, 0);
+         color32 = argb(255, 0, 255, 0);
          return true;
       }
 
@@ -1215,7 +1215,7 @@ namespace html
             i32 B = (i32) ::str::consume_natural(psz, 255);
             ::str::consume_spaces(psz, 0);
             ::str::consume(psz, ")");
-            cr = argb(255, R, G, B);
+            color32 = argb(255, R, G, B);
             return true;
          }
          catch(...)
@@ -1228,7 +1228,7 @@ namespace html
          try
          {
             ::str::consume_hex(psz);
-            cr = parse_color(pszStart - 1);
+            color32 = parse_color(pszStart - 1);
             return true;
          }
          catch(...)

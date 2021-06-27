@@ -599,7 +599,7 @@ namespace user
          else
          {
             
-            color32_t crTranslucid = rgb(0,0,0);
+            ::color::color crTranslucid = rgb(0,0,0);
             
             ::rectangle_i32 rectangle = pdrawitem->m_rectItem;
          

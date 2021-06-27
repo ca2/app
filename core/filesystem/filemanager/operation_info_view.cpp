@@ -21,22 +21,22 @@ namespace filemanager
       double dSoft = 184.6;
       i32 iRight = ileft + cx;
       i32 iMaxW = iRight - iW;
-      color32_t cr;
+      ::color32_t color32;
       for(x = ileft; x < iMaxW; x+=iW)
       {
-         cr = rgb(
+         color32 = rgb(
               255 - iDeltaVermelho - iDeltaDark,
               (byte)(255 - (iDeltaV2 / 2.0) + (i32)(sin((double)x / dSoft + dAnimation)  *(iDeltaV2 / 2.0))) - iDeltaV1 - iDeltaDark,
               255 - iDeltaAzul - 23 - iDeltaDark);
-         pgraphics->fill_rectangle(::rectd_dim(x,iTop,iW,cy), cr);
+         pgraphics->fill_rectangle(::rectd_dim(x,iTop,iW,cy), color32);
       }
       if(x < iRight)
       {
-         cr = rgb(
+         color32 = rgb(
               255 - iDeltaVermelho - iDeltaDark,
               (byte)(255 - (iDeltaV2 / 2.0) + (i32)(sin((double)x / dSoft + dAnimation)  *(iDeltaV2 / 2.0))) - iDeltaV1 - iDeltaDark,
               255 - iDeltaAzul - 23 - iDeltaDark);
-         pgraphics->fill_rectangle(::rectd_dim(x,iTop,iRight - x,cy), cr);
+         pgraphics->fill_rectangle(::rectd_dim(x,iTop,iRight - x,cy), color32);
       }
    }
 

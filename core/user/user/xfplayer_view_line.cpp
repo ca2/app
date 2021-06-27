@@ -394,7 +394,7 @@ bool xfplayer_view_line::_001OnDraw(::draw2d::graphics_pointer & pgraphics, bool
 }
 
 
-bool xfplayer_view_line::_001OnDraw(::draw2d::graphics_pointer & pgraphics, bool bDraw, const ::rectangle_i32 & rectangle, rectangle_i32_array & rectaModified, ::count * count, bool bRecalcLayout, color32_t crColor, ::draw2d::pen_pointer sppen)
+bool xfplayer_view_line::_001OnDraw(::draw2d::graphics_pointer & pgraphics, bool bDraw, const ::rectangle_i32 & rectangle, rectangle_i32_array & rectaModified, ::count * count, bool bRecalcLayout, ::color::color crColor, ::draw2d::pen_pointer sppen)
 {
 
    single_lock synchronouslock(m_pContainer->mutex());
@@ -1139,12 +1139,12 @@ void xfplayer_view_line::SetEmbossPen(::draw2d::pen *pPen)
 
 }
 
-void xfplayer_view_line::SetForegroundColor(color32_t cr)
+void xfplayer_view_line::SetForegroundColor(::color32_t color32)
 {
 
    single_lock synchronouslock(m_pContainer->mutex());
 
-   m_colorForeground = cr;
+   m_colorForeground = color32;
 }
 
 /*ref_array <  ::write_text::font > * xfplayer_view_line::GetFonts()
@@ -1202,7 +1202,7 @@ i32 xfplayer_view_line::SetLyricPens(::draw2d::pen * ppenLeft, ::draw2d::pen * p
    return true;
 }
 
-i32 xfplayer_view_line::SetLyricColors(color32_t crLeft, color32_t crRight)
+i32 xfplayer_view_line::SetLyricColors(::color::color crLeft, ::color::color crRight)
 {
 
    single_lock synchronouslock(m_pContainer->mutex());
@@ -1308,7 +1308,7 @@ bool xfplayer_view_line::IsVisible()
 }
 
 
-void xfplayer_view_line::embossed_text_out(::draw2d::graphics_pointer & pgraphics, const char * pcsz, i32 iLeft, i32 iTop, i32 iWidth, color32_t cr, color32_t crOutline, strsize iLen, double dBlend)
+void xfplayer_view_line::embossed_text_out(::draw2d::graphics_pointer & pgraphics, const char * pcsz, i32 iLeft, i32 iTop, i32 iWidth, ::color32_t color32, ::color::color crOutline, strsize iLen, double dBlend)
 
 {
 
@@ -1322,7 +1322,7 @@ void xfplayer_view_line::embossed_text_out(::draw2d::graphics_pointer & pgraphic
    iLeft,
    iTop,
    iWidth,
-   cr,
+   color32,
    crOutline,
    iLen,
    dBlend);
@@ -1330,7 +1330,7 @@ void xfplayer_view_line::embossed_text_out(::draw2d::graphics_pointer & pgraphic
 }
 
 
-void xfplayer_view_line::embossed_text_out(::draw2d::graphics_pointer & pgraphics, ::image * pimageCache, const char * pcsz, i32 iLeft, i32 iTop, i32 iWidth, color32_t cr, color32_t crOutline, strsize iLen, double dBlend)
+void xfplayer_view_line::embossed_text_out(::draw2d::graphics_pointer & pgraphics, ::image * pimageCache, const char * pcsz, i32 iLeft, i32 iTop, i32 iWidth, ::color32_t color32, ::color::color crOutline, strsize iLen, double dBlend)
 {
 
    single_lock synchronouslock(m_pContainer->mutex());
@@ -1359,7 +1359,7 @@ void xfplayer_view_line::embossed_text_out(::draw2d::graphics_pointer & pgraphic
 
       ::draw2d::brush_pointer brushText(e_create);
 
-      brushText->create_solid(cr);
+      brushText->create_solid(color32);
 
       pgraphics->set(brushText);
 
@@ -1404,7 +1404,7 @@ void xfplayer_view_line::embossed_text_out(::draw2d::graphics_pointer & pgraphic
 
          auto psystem = m_psystem->m_pcoresystem;
 
-         psystem->imaging().AlphaTextOut(pgraphics, iLeft, iTop + m_rectangle.height() - size.cy, m_strPrefix, (i32)m_strPrefix.get_length(), cr, dBlend);
+         psystem->imaging().AlphaTextOut(pgraphics, iLeft, iTop + m_rectangle.height() - size.cy, m_strPrefix, (i32)m_strPrefix.get_length(), color32, dBlend);
 
          pgraphics->set(m_font);
 
@@ -1423,7 +1423,7 @@ void xfplayer_view_line::embossed_text_out(::draw2d::graphics_pointer & pgraphic
 
          }
 
-         psystem->imaging().AlphaTextOut(pgraphics, iLeft + iOffset, iTop, m_strRoot, (i32)m_strRoot.get_length(), cr, dBlend);
+         psystem->imaging().AlphaTextOut(pgraphics, iLeft + iOffset, iTop, m_strRoot, (i32)m_strRoot.get_length(), color32, dBlend);
 
 
 
@@ -1435,7 +1435,7 @@ void xfplayer_view_line::embossed_text_out(::draw2d::graphics_pointer & pgraphic
 
          auto psystem = m_psystem->m_pcoresystem;
 
-         psystem->imaging().AlphaTextOut(pgraphics, iLeft, iTop, pcsz, (i32)iLen, cr, dBlend);
+         psystem->imaging().AlphaTextOut(pgraphics, iLeft, iTop, pcsz, (i32)iLen, color32, dBlend);
 
 
       }
@@ -1448,12 +1448,12 @@ void xfplayer_view_line::embossed_text_out(::draw2d::graphics_pointer & pgraphic
 
 
 
-void xfplayer_view_line::SetColors(color32_t cr, color32_t crOutline)
+void xfplayer_view_line::SetColors(::color32_t color32, ::color::color crOutline)
 {
 
    single_lock synchronouslock(m_pContainer->mutex());
 
-   m_cr = cr;
+   m_cr = color32;
    m_colorOutline = crOutline;
 }
 

@@ -40,7 +40,7 @@ namespace user
 
       virtual bool keyboard_focus_is_focusable() const override;
 
-      virtual color32_t _001GetButtonBackgroundColor() override;
+      virtual ::color::color _001GetButtonBackgroundColor() override;
 
 
    };

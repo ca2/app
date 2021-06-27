@@ -314,7 +314,7 @@ namespace user
 
       get_client_rect(rectangleClient);
 
-      color32_t crBk;
+      ::color::color crBk;
 
       if (!is_window_enabled())
       {
@@ -361,7 +361,7 @@ namespace user
 
       }
 
-      color32_t crBorder;
+      ::color::color crBorder;
 
       if (!is_window_enabled())
       {
@@ -473,10 +473,10 @@ namespace user
    }
 
 
-   color32_t button::get_button_text_color()
+   ::color::color button::get_button_text_color()
    {
 
-      color32_t crText;
+      ::color::color crText;
 
       if (!is_window_enabled())
       {
@@ -508,10 +508,10 @@ namespace user
    }
 
 
-   color32_t button::_001GetButtonBackgroundColor()
+   ::color::color button::_001GetButtonBackgroundColor()
    {
 
-      color32_t crBackground;
+      ::color::color crBackground;
 
       if (!is_window_enabled())
       {
@@ -558,7 +558,7 @@ namespace user
 
       get_client_rect(rectangleClient);
 
-      color32_t crBackground = _001GetButtonBackgroundColor();
+      ::color::color crBackground = _001GetButtonBackgroundColor();
 
       if(get_echeck() == ::check_checked)
       {
@@ -625,7 +625,7 @@ namespace user
          if (strText.has_char())
          {
 
-            color32_t crText = get_button_text_color();
+            ::color::color crText = get_button_text_color();
 
             pgraphics->set_text_color(crText);
 
@@ -676,7 +676,7 @@ namespace user
       else
       {
 
-         color32_t crText = get_button_text_color();
+         ::color::color crText = get_button_text_color();
 
          pgraphics->set_text_color(crText);
 
@@ -896,7 +896,7 @@ namespace user
 
       auto color = get_color(pstyle, e_element_background);
 
-      status < ::color::color > cr;
+      status < ::color::color > color32;
 
       if(echeck() == ::check_checked)
       {
@@ -912,17 +912,17 @@ namespace user
 
       }
 
-      cr = color;
+      color32 = color;
 
       class ::color::color colorExt1TL;
       class ::color::color colorExt2TL;
       class ::color::color colorExt1BR;
       class ::color::color colorExt2BR;
 
-      colorExt1TL.set_rgb(cr);
-      colorExt2TL.set_rgb(cr);
-      colorExt1BR.set_rgb(cr);
-      colorExt2BR.set_rgb(cr);
+      colorExt1TL.set_rgb(color32);
+      colorExt2TL.set_rgb(color32);
+      colorExt1BR.set_rgb(color32);
+      colorExt2BR.set_rgb(color32);
 
       if(echeck() == ::check_checked)
       {
@@ -954,7 +954,7 @@ namespace user
       rectangle.deflate(1,1,1,1);
       pgraphics->color_blend_3dRect(rectangle,colorExt2TL,200,colorExt2BR,200);
       rectangle.deflate(1,1,1,1);
-      pgraphics->fill_rectangle(rectangle,::color::color(cr,200));
+      pgraphics->fill_rectangle(rectangle,::color::color(color32,200));
       rectangle.deflate(1,1,1,1);
 
       i32 x1 = rectangle.left;

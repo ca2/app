@@ -31,10 +31,10 @@ color::color::color(const ::color::color & color)
 }
 
 
-color::color::color(color32_t cr)
+color::color::color(color32_t color32)
 {
 
-   operator = (cr);
+   operator = (color32);
 
 }
 
@@ -544,31 +544,31 @@ color::operator color32_t() const
 }
 
 
-void color::set_rgb(color32_t cr)
+void color::set_rgb(color32_t color32)
 {
 
-   m_iR = colorref_get_r_value(cr);
-   m_iG = colorref_get_g_value(cr);
-   m_iB = colorref_get_b_value(cr);
+   m_iR = colorref_get_r_value(color32);
+   m_iG = colorref_get_g_value(color32);
+   m_iB = colorref_get_b_value(color32);
 
 }
 
 
-void color::set_argb(color32_t cr)
+void color::set_argb(color32_t color32)
 {
 
-   m_iR = colorref_get_r_value(cr);
-   m_iG = colorref_get_g_value(cr);
-   m_iB = colorref_get_b_value(cr);
-   m_iA = colorref_get_a_value(cr);
+   m_iR = colorref_get_r_value(color32);
+   m_iG = colorref_get_g_value(color32);
+   m_iB = colorref_get_b_value(color32);
+   m_iA = colorref_get_a_value(color32);
 
 }
 
 
-void color::set_COLORREF(color32_t cr)
+void color::set_COLORREF(color32_t color32)
 {
 
-   set_argb(cr);
+   set_argb(color32);
 
 }
 
@@ -863,10 +863,10 @@ u32 CColor::get_rgb()
 }
 
 
-::color::color & color::operator = (color32_t cr)
+::color::color & color::operator = (color32_t color32)
 {
 
-   set_argb(cr);
+   set_argb(color32);
 
    return *this;
 
@@ -988,10 +988,10 @@ bool color::parse_color(const char * psz)
 }
 
 
-CLASS_DECL_AURA color32_t alpha_color(byte bAlpha, color32_t cr)
+CLASS_DECL_AURA color32_t alpha_color(byte bAlpha, color32_t color32)
 {
 
-   return (cr & 0xffffff) | ((bAlpha & 0xff) << 24);
+   return (color32 & 0xffffff) | ((bAlpha & 0xff) << 24);
 
 }
 
@@ -1005,50 +1005,50 @@ CLASS_DECL_AURA color32_t alpha_color(byte bAlpha, enum_color ecolor)
 CLASS_DECL_AURA color32_t pure_color(enum_color ecolor)
 {
 
-   color32_t cr;
+   color32_t color32;
 
    switch (ecolor)
    {
    case e_color_black:
-      cr = rgb(0, 0, 0);
+      color32 = rgb(0, 0, 0);
       break;
    case e_color_red:
-      cr = rgb(255, 0, 0);
+      color32 = rgb(255, 0, 0);
       break;
    case e_color_green:
-      cr = rgb(0, 255, 0);
+      color32 = rgb(0, 255, 0);
       break;
    case e_color_blue:
-      cr = rgb(0, 0, 255);
+      color32 = rgb(0, 0, 255);
       break;
    case e_color_white:
-      cr = rgb(255, 255, 255);
+      color32 = rgb(255, 255, 255);
       break;
    case e_color_yellow:
-      cr = rgb(255, 255, 0);
+      color32 = rgb(255, 255, 0);
       break;
    case e_color_magenta:
-      cr = rgb(255, 0, 255);
+      color32 = rgb(255, 0, 255);
       break;
    case e_color_cyan:
-      cr = rgb(0, 255, 255);
+      color32 = rgb(0, 255, 255);
       break;
    case e_color_gray:
-      cr = rgb(127, 127, 127);
+      color32 = rgb(127, 127, 127);
    default:
-      cr = 0;
+      color32 = 0;
       break;
    };
 
-   return cr;
+   return color32;
 
 
 }
 
-CLASS_DECL_AURA color32_t opaque_color(color32_t cr)
+CLASS_DECL_AURA color32_t opaque_color(color32_t color32)
 {
 
-   return alpha_color(255, cr);
+   return alpha_color(255, color32);
 
 }
 

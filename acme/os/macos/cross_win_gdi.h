@@ -10,7 +10,7 @@
 // HDC CreateCompatibleDC(HDC hdc);
 // HBITMAP WINAPI CreateDIBSection(HDC hdc, const BITMAPINFO *pbmi, ::u32 usage, void **ppvBits, HANDLE hSection, ::u32 offset);
 
-// int_bool SetTextColor(HDC hdc, color32_t cr);
+// int_bool SetTextColor(HDC hdc, color32_t color32);
 // int_bool SetBkMode(HDC hdc, int iMode);
 // int_bool DeleteDC(HDC hdc);
 // int_bool AlphaBlend(HDC hdcDest, int xoriginDest, int yoriginDest, int wDest, int hDest, HDC hdcSrc, int xoriginSrc, int yoriginSrc, int wSrc, int hSrc, BLENDFUNCTION ftn);

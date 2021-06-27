@@ -18,10 +18,10 @@ namespace html
       };
 
 
-      color32_t    crLeft;
-      color32_t    crTop;
-      color32_t    crRight;
-      color32_t    crBottom;
+      ::color::color    crLeft;
+      ::color::color    crTop;
+      ::color::color    crRight;
+      ::color::color    crBottom;
       
       e_style     styleLeft;
       e_style     styleTop;

@@ -55,7 +55,7 @@
 
                virtual void on_style_change_001_and_002(::draw2d::graphics_pointer & pgraphics);
 
-               //virtual color32_t get_style_moveable_border_color(::user::enum_style estyle);
+               //virtual ::color::color get_style_moveable_border_color(::user::enum_style estyle);
 
                void OnMove(__pointer(::user::interaction) pframewindow) override;
 

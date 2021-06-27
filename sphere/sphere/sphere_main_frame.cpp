@@ -34,7 +34,7 @@ namespace sphere
    //}
 
 
-   //bool main_frame::get_color(color32_t & cr, ::user::e_color ecolor, ::user::style_context * pcontext)
+   //bool main_frame::get_color(color32_t & color32, ::user::e_color ecolor, ::user::style_context * pcontext)
    //{
 
    //   bool bOk = true;
@@ -42,25 +42,25 @@ namespace sphere
    //   if (ecolor == ::user::color_text || ecolor == ::user::color_edit_text)
    //   {
 
-   //      cr = papplication->get_theme_fg_color();
+   //      color32 = papplication->get_theme_fg_color();
 
    //   }
    //   else if (ecolor == ::user::color_text_selected)
    //   {
 
-   //      cr = argb(255, 255, 255, 255);
+   //      color32 = argb(255, 255, 255, 255);
 
    //   }
    //   else if (ecolor == ::user::color_text_highlight)
    //   {
 
-   //      cr = argb(255, 55, 105, 255);
+   //      color32 = argb(255, 55, 105, 255);
 
    //   }
    //   else if (ecolor == ::user::color_text_selected_highlight)
    //   {
 
-   //      cr = argb(255, 102, 153, 255);
+   //      color32 = argb(255, 102, 153, 255);
 
    //   }
    //   else if (ecolor == ::user::color_background
@@ -69,7 +69,7 @@ namespace sphere
    //   {
 
 
-   //      cr = papplication->get_theme_bg_color();
+   //      color32 = papplication->get_theme_bg_color();
 
    //   }
    //   else if (ecolor == ::user::color_background_selected)
@@ -78,13 +78,13 @@ namespace sphere
    //      if (_001IsTranslucent())
    //      {
 
-   //         cr = argb(190, 0, 0, 127);
+   //         color32 = argb(190, 0, 0, 127);
 
    //      }
    //      else
    //      {
 
-   //         cr = argb(255, 0, 0, 127);
+   //         color32 = argb(255, 0, 0, 127);
 
    //      }
 
@@ -95,13 +95,13 @@ namespace sphere
    //      if (_001IsTranslucent())
    //      {
 
-   //         cr = argb(190, 0, 0, 127);
+   //         color32 = argb(190, 0, 0, 127);
 
    //      }
    //      else
    //      {
 
-   //         cr = argb(255, 0, 0, 127);
+   //         color32 = argb(255, 0, 0, 127);
 
    //      }
 
@@ -109,19 +109,19 @@ namespace sphere
    //   else if (ecolor == ::user::color_border)
    //   {
 
-   //      cr = argb(255, 90, 90, 80);
+   //      color32 = argb(255, 90, 90, 80);
 
    //   }
    //   else if (ecolor == ::user::color_border_hover)
    //   {
 
-   //      cr = argb(255, 90, 190, 80);
+   //      color32 = argb(255, 90, 190, 80);
 
    //   }
    //   else if (ecolor == ::user::color_text_hover)
    //   {
 
-   //      cr = argb(255, 90, 184, 255);
+   //      color32 = argb(255, 90, 184, 255);
 
    //   }
    //   else

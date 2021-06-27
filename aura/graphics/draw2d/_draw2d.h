@@ -113,7 +113,7 @@ namespace draw2d
    class graphics;
 
 
-   inline color32_t get_pixel(const pixmap * ppixmap, int x, int y);
+   inline ::color::color get_pixel(const pixmap * ppixmap, int x, int y);
 
 
 } // namespace draw2d

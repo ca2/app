@@ -220,7 +220,7 @@ namespace user
 
          pgraphics->set_font(this, ::user::e_element_none);
 
-         color32_t crText;
+         ::color::color crText;
 
          if (drawcontext.m_bListItemHover)
          {
@@ -379,7 +379,7 @@ namespace user
 
          }
 
-         color32_t cr = argb(255, 255, 255, 255);
+         ::color32_t color32 = argb(255, 255, 255, 255);
 
          ::draw2d::brush_pointer br(e_create);
 
@@ -396,7 +396,7 @@ namespace user
 
          }
 
-         br1->m_color = (br1->m_color.operator color32_t() & 0xffffff) | ((byte(255.0 * dRate)) << 24);
+         br1->m_color = (br1->m_color.operator ::color::color() & 0xffffff) | ((byte(255.0 * dRate)) << 24);
 
          br1->set_modified();
 
@@ -410,9 +410,9 @@ namespace user
          pgraphics->path(ppath);
 
          br->create_solid(argb(255,
-                               (byte)((double) colorref_get_r_value(cr) * dRate),
-                               (byte)((double) colorref_get_g_value(cr) * dRate),
-                               (byte)((double) colorref_get_b_value(cr) * dRate)));
+                               (byte)((double) colorref_get_r_value(color32) * dRate),
+                               (byte)((double) colorref_get_g_value(color32) * dRate),
+                               (byte)((double) colorref_get_b_value(color32) * dRate)));
 
          ::scroll_x(rectEllipse, dRate, rectangle);
 
@@ -424,7 +424,7 @@ namespace user
 
          byte bAlphaP1 = (byte) (255.0 * (1.0 - dRate));
 
-         color32_t crP1 = argb(bAlphaP1, 0, 0, 0);
+         ::color::color crP1 = argb(bAlphaP1, 0, 0, 0);
 
          ppen->create_solid(2.0, crP1);
 
@@ -507,8 +507,8 @@ namespace user
       rectCheckBox.right = iMin + 1;
       rectCheckBox.bottom = iMin + 1;
 
-      color32_t crPen = argb(255, 0, 0, 0);
-      color32_t crBrush;
+      ::color::color crPen = argb(255, 0, 0, 0);
+      ::color::color crBrush;
 
       if (echeck() == ::check_checked)
       {

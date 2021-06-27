@@ -59,7 +59,7 @@ namespace draw2d_opengl
       virtual bool AttachPrinter(HDC hdc);
       virtual HDC DetachPrinter();
       using draw2d::graphics::fill_rectangle;
-      void fill_rectangle(const rectangle_f64& rectangle, color32_t cr);
+      void fill_rectangle(const rectangle_f64& rectangle, color32_t color32);
 
 
       virtual void SetAttribDC(HDC hDC);  // set the Attribute DC

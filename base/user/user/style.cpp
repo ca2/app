@@ -258,7 +258,7 @@ namespace base
 //
 //
 //
-//   //virtual color32_t           _001GetColor(::user::interaction * pinteraction, e_color ecolor, color32_t crDefault = 0);
+//   //virtual ::color::color           _001GetColor(::user::interaction * pinteraction, e_color ecolor, ::color::color crDefault = 0);
 //   //virtual ::write_text::font_pointer  _001GetFont(::user::interaction * pinteraction, e_font efont, ::write_text::font * pfont = nullptr);
 //   //virtual enum_translucency     _001GetTranslucency(::user::interaction * pinteraction, enum_element eelement = e_element_none, enum_translucency etranslucencyDefault = e_translucency_undefined);
 //   //virtual bool               _001GetFlag(::user::interaction * pinteraction, ::user::enum_flag eflag, bool bDefault = false);
@@ -288,7 +288,7 @@ namespace base
 //   //virtual ::draw2d::graphics * style_get_graphics();
 //
 //
-//   //virtual bool userstyle_color(color32_t & cr, e_color ecolor, ::user::interaction * pinteraction);
+//   //virtual bool userstyle_color(::color::color & color32, e_color ecolor, ::user::interaction * pinteraction);
 //   //virtual bool userstyle_font(::write_text::font_pointer & sp, e_font efont, ::user::interaction * pinteraction);
 //   //virtual bool userstyle_translucency(enum_translucency & etranslucency, enum_element eelement, ::user::interaction * pinteraction);
 //   //virtual bool userstyle_flag(bool & bSet, ::user::enum_flag eflag, ::user::interaction * pinteraction);
@@ -297,7 +297,7 @@ namespace base
 //   //virtual bool userstyle_double(double & d, ::user::e_double edouble, ::user::interaction * pinteraction);
 //
 //
-//   //virtual bool style_color(color32_t & cr, e_color ecolor, ::user::interaction * pinteraction);
+//   //virtual bool style_color(::color::color & color32, e_color ecolor, ::user::interaction * pinteraction);
 //   //virtual bool style_font(::write_text::font_pointer & sp, e_font efont, ::user::interaction * pinteraction);
 //   //virtual bool style_translucency(enum_translucency & etranslucency, enum_element eelement, ::user::interaction * pinteraction);
 //   //virtual bool style_flag(bool & bSet, ::user::enum_flag eflag, ::user::interaction * pinteraction);

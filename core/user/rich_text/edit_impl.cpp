@@ -702,7 +702,7 @@ namespace user
 
          //   pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-         //   color32_t crBackground = _001GetColor(::user::color_background, argb(128, 255, 255, 255));
+         //   ::color::color crBackground = _001GetColor(::user::color_background, argb(128, 255, 255, 255));
 
          //   //if (colorref_get_r_value(crBackground) != 255)
          //   //{
@@ -726,7 +726,7 @@ namespace user
 
          //   pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-         //   color32_t crBackground = _001GetColor(m_ecolorBackground, argb(200, 255, 255, 255));
+         //   ::color::color crBackground = _001GetColor(m_ecolorBackground, argb(200, 255, 255, 255));
 
          //   //if (colorref_get_r_value(crBackground) != 255)
          //   //{

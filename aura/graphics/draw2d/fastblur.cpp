@@ -1581,7 +1581,7 @@ auto tick2 = ::millis::now();
             }
 
             i32 asum, rsum, gsum, bsum, x, y, i, yp, yi, yw;
-            i32 s = stride / sizeof(color32_t);
+            i32 s = stride / sizeof(::color::color);
             i32 wm = w - 1;
             i32 hm = h - 1;
             i32 div = radius + radius + 1;

@@ -25,11 +25,11 @@ namespace draw2d
       bool text_out(::draw2d::graphics_pointer & pgraphics, i32 x, i32 y, const char * pcwsz, strsize iCount,size_i32 & s);
 
 
-      //void FillSolidRect(HDC hdc, const RECTANGLE_I64 * prectangle, color32_t clr);
+      //void FillSolidRect(HDC hdc, const RECTANGLE_I64 * prectangle, ::color::color clr);
 
-      //void FillSolidRect(HDC hdc, const ::rectangle_i32 & rectangle, color32_t clr);
+      //void FillSolidRect(HDC hdc, const ::rectangle_i32 & rectangle, ::color::color clr);
 
-      //void FillSolidRect(HDC hdc, i32 x, i32 y, i32 cx, i32 cy, color32_t clr);
+      //void FillSolidRect(HDC hdc, i32 x, i32 y, i32 cx, i32 cy, ::color::color clr);
 
       //static i32 _FindPrefixV1(const unichar * pcsz);
 

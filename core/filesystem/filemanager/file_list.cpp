@@ -1887,38 +1887,38 @@ namespace filemanager
    }
 
 
-   //color32_t file_list::get_background_color()
+   //::color::color file_list::get_background_color()
    //{
 
    //   if (filemanager_data() != nullptr && filemanager_data()->is_topic())
    //   {
    //      return argb(255, 255, 255, 255);
-   //      //color32_t cr;
+   //      //::color32_t color32;
    //      //if (filemanager_document()->m_emode == document::mode_saving)
    //      //{
 
-   //      //   cr = argb(255, 255, 210, 180);
+   //      //   color32 = argb(255, 255, 210, 180);
 
    //      //}
    //      //else if (filemanager_document()->m_emode == document::mode_import)
    //      //{
 
-   //      //   cr = argb(255, 180, 210, 255);
+   //      //   color32 = argb(255, 180, 210, 255);
 
    //      //}
    //      //else if (filemanager_document()->m_emode == document::mode_export)
    //      //{
 
-   //      //   cr = argb(255, 255, 250, 210);
+   //      //   color32 = argb(255, 255, 250, 210);
 
    //      //}
    //      //else
    //      //{
 
-   //      //   cr = argb(190, 210, 255, 180);
+   //      //   color32 = argb(190, 210, 255, 180);
 
    //      //}
-   //      //return cr;
+   //      //return color32;
    //   }
    //   else
    //   {

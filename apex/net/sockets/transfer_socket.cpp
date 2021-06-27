@@ -507,7 +507,7 @@ namespace sockets
 
    //   do
    //   {
-   //      // look for lf (assume preceded by cr)
+   //      // look for lf (assume preceded by color32)
    //      if ((pch2 = (char *)memchr(pch1, '\n', nBytesThisTime)) != nullptr)
    //      {
    //         ASSERT((pch2) > m_pReadBuf);

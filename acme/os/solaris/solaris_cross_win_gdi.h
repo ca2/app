@@ -9,7 +9,7 @@ int_bool Rectangle(HDC hdc, i32 x1, i32 y1, i32 x2, i32 y2);
 int_bool DeleteObject(HGDIOBJ hgdiobj);
 HDC CreateCompatibleDC(HDC hdc);
 //HBITMAP WINAPI CreateDIBSection(HDC hdc, const BITMAPINFO *lpbmi, ::u32 usage, void **ppvBits, HANDLE hSection, ::u32 offset);
-int_bool SetTextColor(HDC hdc, color32_t cr);
+int_bool SetTextColor(HDC hdc, color32_t color32);
 int_bool SetBkMode(HDC hdc, i32 iMode);
 int_bool DeleteDC(HDC hdc);
 int_bool AlphaBlend(HDC hdcDest, i32 xoriginDest, i32 yoriginDest, i32 wDest, i32 hDest, HDC hdcSrc, i32 xoriginSrc, i32 yoriginSrc, i32 wSrc, i32 hSrc, BLENDFUNCTION ftn);

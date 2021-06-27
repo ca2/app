@@ -34,13 +34,13 @@ unsigned
 getpixel (int x, int y)
 {
     unsigned RetVal = 0;
-   color32_t cr = TcPixmaps[TcVisualPage]->GetPixel(x,y);
+   color32_t color32 = TcPixmaps[TcVisualPage]->GetPixel(x,y);
 
     gint i, maxi, ClosestS, s;
 
-    int r = colorref_get_r_value(cr);
-    int g = colorref_get_g_value(cr);
-    int b = colorref_get_b_value(cr);
+    int r = colorref_get_r_value(color32);
+    int g = colorref_get_g_value(color32);
+    int b = colorref_get_b_value(color32);
 
         ClosestS = 1000000;
         maxi = getmaxcolor ();

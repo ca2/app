@@ -40,10 +40,10 @@ namespace experience
       //     ::draw2d::brush * pbrushFocus = nullptr,
       //     ::draw2d::brush * pbrushDisabled = nullptr);
       //void SetTextColors(
-      //     color32_t cr,
-      //     color32_t crSel,
-      //     color32_t crFocus,
-      //     color32_t crDisabled);
+      //     ::color32_t color32,
+      //     ::color::color crSel,
+      //     ::color::color crFocus,
+      //     ::color::color crDisabled);
 
 
       virtual void on_layout(::draw2d::graphics_pointer & pgraphics);

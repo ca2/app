@@ -117,7 +117,7 @@ namespace user
    //}
 
 
-   color32_t style::get_style_moveable_border_color(enum_style estyle)
+   ::color::color style::get_style_moveable_border_color(enum_style estyle)
    {
 
       switch (estyle)
@@ -660,7 +660,7 @@ namespace user
    //}
 
 
-   //bool style::create_color(e_color ecolor, color32_t cr)
+   //bool style::create_color(e_color ecolor, ::color32_t color32)
    //{
 
    //   if (userstyle()->m_mapColor.is_null())
@@ -670,7 +670,7 @@ namespace user
 
    //   }
 
-   //   (*userstyle()->m_mapColor)[ecolor] = cr;
+   //   (*userstyle()->m_mapColor)[ecolor] = color32;
 
    //   return true;
 
@@ -703,10 +703,10 @@ namespace user
   // }
 
 
-   //bool style::create_opaque_color(e_color ecolor, color32_t cr)
+   //bool style::create_opaque_color(e_color ecolor, ::color32_t color32)
    //{
 
-   //   if (!create_color(ecolor, opaque_color(cr)))
+   //   if (!create_color(ecolor, opaque_color(color32)))
    //   {
 
    //      return false;
@@ -953,7 +953,7 @@ namespace user
       if (eelement == ::user::e_element_background)
       {
 
-         color32_t crBk;
+         ::color::color crBk;
 
          __pointer(::aura::system) psystem = get_system();
 
@@ -976,7 +976,7 @@ namespace user
       else if (eelement == ::user::e_element_face)
       {
 
-         color32_t crBk;
+         ::color::color crBk;
 
          __pointer(::aura::system) psystem = get_system();
 
@@ -999,7 +999,7 @@ namespace user
       else if (eelement == ::user::e_element_text)
       {
 
-         color32_t crText;
+         ::color::color crText;
 
          __pointer(::aura::system) psystem = get_system();
 

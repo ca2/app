@@ -171,8 +171,12 @@ public:
 
       ::count iCompare = this->get_size() - a.get_size();
 
-      if(iCompare != 0)
+      if (iCompare != 0)
+      {
+
          return ::papaya::sgn(iCompare);
+
+      }
 
       TYPE t;
       for(index i = 0; i < this->get_size(); i++)
@@ -180,8 +184,12 @@ public:
 
          t = this->element_at(i) - a[i];
 
-         if(t != 0)
+         if (t != 0)
+         {
+
             return ::papaya::sgn(t);
+
+         }
 
       }
 
@@ -193,8 +201,11 @@ public:
    using comparable_raw_array < TYPE >::operator =;
    numeric_array & operator = (const numeric_array & a)
    {
+
       BASE_ARRAY::operator = (a);
+
       return *this;
+
    }
 
 

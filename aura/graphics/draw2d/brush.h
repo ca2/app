@@ -94,7 +94,7 @@ namespace draw2d
    //   }
 
    //   // create_solid
-   //   brush_pointer(const ::allocer & allocer, color32_t crColor) :
+   //   brush_pointer(const ::allocer & allocer, ::color::color crColor) :
    //      pointer < brush > (allocer)
    //   {
    //      m_p->create_solid(crColor);
@@ -102,7 +102,7 @@ namespace draw2d
 
    //   /*
    //         // CreateHatchBrush
-   //         brush_pointer(::object * pobject, i32 nIndex, color32_t crColor) :
+   //         brush_pointer(::object * pobject, i32 nIndex, ::color::color crColor) :
    //            pointer < brush > (pobject)
    //         {
    //            m_p->construct(nIndex, crColor);

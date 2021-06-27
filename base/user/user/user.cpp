@@ -1526,13 +1526,13 @@ namespace base
 //
 //
 //
-//color32_t argb_swap_rb(color32_t cr)
+//::color::color argb_swap_rb(::color32_t color32)
 //{
 //   return argb(
-//      colorref_get_a_value(cr),
-//      colorref_get_b_value(cr),
-//      colorref_get_g_value(cr),
-//      colorref_get_r_value(cr));
+//      colorref_get_a_value(color32),
+//      colorref_get_b_value(color32),
+//      colorref_get_g_value(color32),
+//      colorref_get_r_value(color32));
 //}
 
 

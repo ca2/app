@@ -9,9 +9,9 @@
 //
 //   return true;
 //
-////   color32_t cr;
+////   ::color32_t color32;
 ////
-////   color32_t crBack = 0;
+////   ::color::color crBack = 0;
 ////
 ////   ::count cTransparent = 0;
 ////
@@ -77,7 +77,7 @@
 ////            else
 ////            {
 ////
-////               cr = cra[iIndex];
+////               color32 = cra[iIndex];
 ////
 ////               bTransparent = false;
 ////
@@ -90,7 +90,7 @@
 ////            if (iNextIndex == transparentIndex)
 ////            {
 ////
-////               cr = cra[iIndex];
+////               color32 = cra[iIndex];
 ////
 ////               bTransparent = true;
 ////
@@ -104,11 +104,11 @@
 ////
 ////         }
 ////
-////         iR += colorref_get_r_value(cr);
+////         iR += colorref_get_r_value(color32);
 ////
-////         iG += colorref_get_g_value(cr);
+////         iG += colorref_get_g_value(color32);
 ////
-////         iB += colorref_get_b_value(cr);
+////         iB += colorref_get_b_value(color32);
 ////
 ////         c++;
 ////
@@ -156,7 +156,7 @@
 ////            else
 ////            {
 ////
-////               cr = cra[iIndex];
+////               color32 = cra[iIndex];
 ////
 ////               bTransparent = false;
 ////
@@ -169,7 +169,7 @@
 ////            if (iNextIndex == transparentIndex)
 ////            {
 ////
-////               cr = cra[iIndex];
+////               color32 = cra[iIndex];
 ////
 ////               bTransparent = true;
 ////
@@ -183,11 +183,11 @@
 ////
 ////         }
 ////
-////         iR += colorref_get_r_value(cr);
+////         iR += colorref_get_r_value(color32);
 ////
-////         iG += colorref_get_g_value(cr);
+////         iG += colorref_get_g_value(color32);
 ////
-////         iB += colorref_get_b_value(cr);
+////         iB += colorref_get_b_value(color32);
 ////
 ////         c++;
 ////

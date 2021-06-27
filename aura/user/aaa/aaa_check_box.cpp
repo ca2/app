@@ -362,7 +362,7 @@ namespace user
 
          }
 
-         color32_t cr = argb(255, 255, 255, 255);
+         color32_t color32 = argb(255, 255, 255, 255);
 
          ::draw2d::brush_pointer br(e_create);
 
@@ -391,9 +391,9 @@ namespace user
          pgraphics->path(point);
 
          br->create_solid(argb(255,
-                               (byte)((double) colorref_get_r_value(cr) * dRate),
-                               (byte)((double) colorref_get_g_value(cr) * dRate),
-                               (byte)((double) colorref_get_b_value(cr) * dRate)));
+                               (byte)((double) colorref_get_r_value(color32) * dRate),
+                               (byte)((double) colorref_get_g_value(color32) * dRate),
+                               (byte)((double) colorref_get_b_value(color32) * dRate)));
 
          ::scroll_x(rectEllipse, dRate, rectangle);
 

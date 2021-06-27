@@ -67,7 +67,7 @@ namespace userfs
 
       virtual void _017OpenFolder(__pointer(::file::item) pitem, const ::action_context & action_context);
 
-      virtual color32_t get_background_color();
+      virtual ::color::color get_background_color();
 
       void TakeAnimationSnapshot();
       virtual void StartAnimation(::user::interaction * pinteraction);

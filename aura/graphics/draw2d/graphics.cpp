@@ -461,7 +461,7 @@ namespace draw2d
    }
 
 
-   //color32_t graphics::GetNearestColor(const ::color::color & colorColor)
+   //::color::color graphics::GetNearestColor(const ::color::color & colorColor)
    //{
 
    //   UNREFERENCED_PARAMETER(crColor);
@@ -4709,7 +4709,7 @@ namespace draw2d
 
          auto scan = pimage->scan_size();
 
-         auto wscan = scan / sizeof(color32_t);
+         auto wscan = scan / sizeof(::color::color);
 
          for (double dx = 0; dx < w; dx += dStep)
          {

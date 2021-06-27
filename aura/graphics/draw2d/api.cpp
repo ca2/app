@@ -169,8 +169,8 @@ namespace draw2d
    i32            iLeft,
    i32            iTop,
    i32            iWidth,
-   color32_t       crText,
-   color32_t       crOutline,
+   ::color::color       crText,
+   ::color::color       crOutline,
    i32            iLen)
    {
       ::rectangle_i32 clipRect;

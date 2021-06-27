@@ -631,10 +631,10 @@ SizingNone:
             //}
 
 
-            //bool frame_008::get_color(color32_t & cr, ::user::e_color ecolor, ::user::style_context * pstyle)
+            //bool frame_008::get_color(color32_t & color32, ::user::e_color ecolor, ::user::style_context * pstyle)
             //{
 
-            //   return frame::get_color(cr, ecolor, pstyle);
+            //   return frame::get_color(color32, ecolor, pstyle);
 
             //}
 

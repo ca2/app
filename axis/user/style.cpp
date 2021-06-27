@@ -606,7 +606,7 @@ namespace axis
    //}
 
 
-   //bool style::create_color(e_color ecolor, color32_t cr)
+   //bool style::create_color(e_color ecolor, ::color32_t color32)
    //{
 
    //   if (userstyle()->m_mapColor.is_null())
@@ -616,7 +616,7 @@ namespace axis
 
    //   }
 
-   //   (*userstyle()->m_mapColor)[ecolor] = cr;
+   //   (*userstyle()->m_mapColor)[ecolor] = color32;
 
    //   return true;
 
@@ -649,10 +649,10 @@ namespace axis
   // }
 
 
-   //bool style::create_opaque_color(e_color ecolor, color32_t cr)
+   //bool style::create_opaque_color(e_color ecolor, ::color32_t color32)
    //{
 
-   //   if (!create_color(ecolor, opaque_color(cr)))
+   //   if (!create_color(ecolor, opaque_color(color32)))
    //   {
 
    //      return false;
@@ -1210,7 +1210,7 @@ namespace axis
       //}
 
 
-      //bool style::create_color(e_color ecolor, color32_t cr)
+      //bool style::create_color(e_color ecolor, ::color32_t color32)
       //{
 
       //   if (userstyle()->m_mapColor.is_null())
@@ -1220,7 +1220,7 @@ namespace axis
 
       //   }
 
-      //   (*userstyle()->m_mapColor)[ecolor] = cr;
+      //   (*userstyle()->m_mapColor)[ecolor] = color32;
 
       //   return true;
 
@@ -1253,10 +1253,10 @@ namespace axis
      // }
 
 
-      //bool style::create_opaque_color(e_color ecolor, color32_t cr)
+      //bool style::create_opaque_color(e_color ecolor, ::color32_t color32)
       //{
 
-      //   if (!create_color(ecolor, opaque_color(cr)))
+      //   if (!create_color(ecolor, opaque_color(color32)))
       //   {
 
       //      return false;

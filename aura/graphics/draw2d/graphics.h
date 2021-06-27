@@ -263,7 +263,7 @@ namespace draw2d
 
 
       // color and color Palette Functions
-      //virtual color32_t GetNearestColor(const ::color::color & color);
+      //virtual ::color::color GetNearestColor(const ::color::color & color);
       //virtual ::draw2d::palette* SelectPalette(::draw2d::palette* pPalette, bool bForceBackground);
       //virtual ::u32 RealizePalette();
       //virtual void UpdateColors();
@@ -305,11 +305,11 @@ namespace draw2d
 
 //#if (_WIN32_WINNT >= 0x0500)
 //
-//      virtual color32_t GetDCBrushColor();
-//      virtual color32_t SetDCBrushColor(const ::color::color & color);
+//      virtual ::color::color GetDCBrushColor();
+//      virtual ::color::color SetDCBrushColor(const ::color::color & color);
 //
-//      virtual color32_t GetDCPenColor();
-//      virtual color32_t SetDCPenColor(const ::color::color & color);
+//      virtual ::color::color GetDCPenColor();
+//      virtual ::color::color SetDCPenColor(const ::color::color & color);
 //
 //#endif
 
@@ -597,7 +597,7 @@ namespace draw2d
 
       //virtual bool color_blend(const ::rectangle_i32& rectangle, const ::color::color& color, const ::opacity & opacity);
 
-//      virtual bool color_blend(image_list * pilBlend, image_list * pil, const ::color::color& cr, const ::opacity& opacity);
+//      virtual bool color_blend(image_list * pilBlend, image_list * pil, const ::color::color& color32, const ::opacity& opacity);
 
 //      template < image_source_pointer IMAGE_SOURCE_POINTER >
 //      bool color_blend(IMAGE_SOURCE_POINTER pimagesource, const ::color::color& color, const ::opacity& opacity)

@@ -67,7 +67,7 @@ namespace experience
 
          }
 
-         color32_t crText = argb(255, 255, 255, 255);
+         ::color::color crText = argb(255, 255, 255, 255);
 
          pgraphics->set_smooth_mode(::draw2d::smooth_mode_anti_alias_8x4);
 

@@ -47,7 +47,7 @@ public:
 
 CLASS_DECL_ACME color32_t make_colorref(i32 a, i32 r, i32 g, i32 b);
 
-CLASS_DECL_ACME color32_t argb_swap_rb(color32_t cr);
+CLASS_DECL_ACME color32_t argb_swap_rb(color32_t color32);
 
 
 typedef struct tagWINRGBQUAD {

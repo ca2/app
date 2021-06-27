@@ -60,7 +60,7 @@ namespace html
    }
 
 
-   style * style_sheet_array::rfind_border_color(e_tag etag, const string & strClass, const string & strSubClass, id idName, color32_t & cr)
+   style * style_sheet_array::rfind_border_color(e_tag etag, const string & strClass, const string & strSubClass, id idName, ::color::color & color32)
    {
 
       style * pstyle = nullptr;
@@ -72,7 +72,7 @@ namespace html
 
          style_sheet & sheet = *this->element_at(i);
 
-         pstyle = sheet.rfind_border_color(etag, strClass, strSubClass, idName, cr);
+         pstyle = sheet.rfind_border_color(etag, strClass, strSubClass, idName, color32);
 
          if(pstyle != nullptr)
             break;

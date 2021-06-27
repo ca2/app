@@ -13,8 +13,8 @@ public:
    ::index              m_iLoop;
    int                  m_iTransparentIndex;
    bool                 m_bTransparent;
-   color32_t             m_colorTransparent;
-   color32_t             m_colorBack;
+   ::color::color             m_colorTransparent;
+   ::color::color             m_colorBack;
    byte                 m_backgroundIndex;
    ::size_i32               m_sizeLogical;
    ::size_i32               m_size;

@@ -50,10 +50,10 @@ inline byte clampAndConvert(double v)
 
 
 template < class VALUE, typename ARG_VALUE = typename argument_of < VALUE >::type >
-using colorrefmap = map < color32_t, VALUE, typename argument_of < color32_t >::type, ARG_VALUE >;
+using colorrefmap = map < ::color::color, VALUE, typename argument_of < ::color::color >::type, ARG_VALUE >;
 
 
-using colorref_set = ::set < color32_t >;
+using colorref_set = ::set < ::color::color >;
 
 
 

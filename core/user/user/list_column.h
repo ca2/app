@@ -25,7 +25,7 @@ namespace user
       index                       m_iOrder;
       id                                  m_uiText;
       ::u32                                m_uiSmallBitmap;
-      color32_t                            m_colorSmallMask;
+      ::color::color                            m_colorSmallMask;
       i32                                 m_iSmallImageWidth;
       index                       m_iSubItem;
       index                       m_iColumn;

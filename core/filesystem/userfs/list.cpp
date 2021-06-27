@@ -838,7 +838,7 @@ namespace userfs
    }
 
 
-   //color32_t list::get_background_color()
+   //::color::color list::get_background_color()
    //{
 
    //   return rgb(255, 255, 255);

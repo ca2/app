@@ -45,15 +45,15 @@ bool macos1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const 
 
 //
 //
-//CGColorRef cg_create_color(color32_t cr)
+//CGColorRef cg_create_color(color32_t color32)
 //{
 //
 //   // Create a color and add it as an attribute to the string.
 //   CGColorSpaceRef rgbColorSpace = CGColorSpaceCreateDeviceRGB();
-//   CGFloat components[] = { colorref_get_r_value(cr) / 255.0,
-//                            colorref_get_g_value(cr) / 255.0,
-//                            colorref_get_b_value(cr) / 255.0,
-//                            colorref_get_a_value(cr) / 255.0
+//   CGFloat components[] = { colorref_get_r_value(color32) / 255.0,
+//                            colorref_get_g_value(color32) / 255.0,
+//                            colorref_get_b_value(color32) / 255.0,
+//                            colorref_get_a_value(color32) / 255.0
 //                          };
 //
 //   CGColorRef color = CGColorCreate(rgbColorSpace, components);
@@ -137,7 +137,7 @@ bool macos1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const 
 //   return true;
 //}
 
-HBRUSH CreateSolidBrush(color32_t cr)
+HBRUSH CreateSolidBrush(color32_t color32)
 {
    return nullptr;
 }
@@ -610,15 +610,15 @@ bool mm1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const cha
 
 
 
-//CGColorRef cg_create_color(color32_t cr)
+//CGColorRef cg_create_color(color32_t color32)
 //{
 //
 //   // Create a color and add it as an attribute to the string.
 //   CGColorSpaceRef rgbColorSpace = CGColorSpaceCreateDeviceRGB();
-//   CGFloat components[] = { colorref_get_r_value(cr) / 255.0,
-//      colorref_get_g_value(cr) / 255.0,
-//      colorref_get_b_value(cr) / 255.0,
-//      colorref_get_a_value(cr) / 255.0};
+//   CGFloat components[] = { colorref_get_r_value(color32) / 255.0,
+//      colorref_get_g_value(color32) / 255.0,
+//      colorref_get_b_value(color32) / 255.0,
+//      colorref_get_a_value(color32) / 255.0};
 //
 //   CGColorRef color = CGColorCreate(rgbColorSpace, components);
 //
@@ -893,7 +893,7 @@ int_bool get_client_rect(oswindow hwnd, RECT32 * prect)
 //    return true;
 // }
 
-// HBRUSH CreateSolidBrush(color32_t cr)
+// HBRUSH CreateSolidBrush(color32_t color32)
 // {
 //     return nullptr;
 // }

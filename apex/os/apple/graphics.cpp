@@ -11,15 +11,15 @@
 
 
 
-CGColorRef cg_create_color(color32_t cr)
+CGColorRef cg_create_color(color32_t color32)
 {
 
    // Create a color and add it as an attribute to the string.
    CGColorSpaceRef rgbColorSpace = CGColorSpaceCreateDeviceRGB();
-   CGFloat components[] = { colorref_get_r_value(cr) / 255.0,
-                            colorref_get_g_value(cr) / 255.0,
-                            colorref_get_b_value(cr) / 255.0,
-                            colorref_get_a_value(cr) / 255.0
+   CGFloat components[] = { colorref_get_r_value(color32) / 255.0,
+                            colorref_get_g_value(color32) / 255.0,
+                            colorref_get_b_value(color32) / 255.0,
+                            colorref_get_a_value(color32) / 255.0
                           };
 
    CGColorRef color = CGColorCreate(rgbColorSpace, components);

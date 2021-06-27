@@ -89,11 +89,11 @@ public:
 
    /**
     * Returns the color value of the attribute
-    * @return a color32_t representing the color
+    * @return a ::color::color representing the color
     * @since 1.0
     * @author Gurmeet S. Kochar
     */
-   color32_t getColorValue(::lite_html_reader * preader) const;
+   ::color::color getColorValue(::lite_html_reader * preader) const;
 
    /**
     * Returns the rgb value of the attribute in hexadecimal format

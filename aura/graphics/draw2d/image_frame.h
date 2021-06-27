@@ -12,7 +12,7 @@ public:
    millis                          m_tick;
    index                         m_iFrame;
    ::draw2d::e_disposal          m_edisposal;
-   color32_t                      m_colorTransparent;
+   ::color::color                      m_colorTransparent;
    bool                          m_bTransparent;
    bool                          m_bLocalPalette;
 

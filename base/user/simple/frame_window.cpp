@@ -4041,14 +4041,14 @@ bool simple_frame_window::window_is_notify_icon_enabled()
 }
 
 
-//bool simple_frame_window::get_color(color32_t & cr, ::user::e_color ecolor, ::user::interaction * pinteraction)
+//bool simple_frame_window::get_color(::color::color & color32, ::user::e_color ecolor, ::user::interaction * pinteraction)
 //{
 //
 //   if (m_pframe != nullptr)
 //   {
 //
 //
-//      if (m_pframe->get_color(cr, ecolor, pinteraction))
+//      if (m_pframe->get_color(color32, ecolor, pinteraction))
 //      {
 //
 //         return true;
@@ -4057,7 +4057,7 @@ bool simple_frame_window::window_is_notify_icon_enabled()
 //
 //   }
 //
-//   return ::user::frame_window::get_color(cr, ecolor, pinteraction);
+//   return ::user::frame_window::get_color(color32, ecolor, pinteraction);
 //
 //}
 //

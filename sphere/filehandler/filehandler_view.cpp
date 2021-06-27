@@ -118,44 +118,44 @@ namespace filehandler
 
 
 
-      color32_t cr;
+      color32_t color32;
       __pointer(::aura::application) papp = pview->get_application();
       
       bool bHover = pview->m_itemHover == m_iIndex;
 
-      cr = bHover ? argb(255, 230, 255, 230) : argb(255, 200, 255, 200);
+      color32 = bHover ? argb(255, 230, 255, 230) : argb(255, 200, 255, 200);
       if(!Sess(papp).savings().is_trying_to_save(::e_resource_processing)
             && !Sess(papp).savings().is_trying_to_save(::e_resource_display_bandwidth)
             && !Sess(papp).savings().is_trying_to_save(::e_resource_memory))
       {
          class imaging & imaging = App(papp).imaging();
-         imaging.color_blend(pgraphics, m_rectItem, cr, 127);
+         imaging.color_blend(pgraphics, m_rectItem, color32, 127);
       }
       else
       {
-         pgraphics->fill_rectangle(m_rectItem, cr);
+         pgraphics->fill_rectangle(m_rectItem, color32);
       }
-      cr = bHover ? argb(255, 150, 255, 150) : argb(255, 50, 255, 50);
-      pgraphics->fill_rectangle(m_rectStatusImage, cr);
+      color32 = bHover ? argb(255, 150, 255, 150) : argb(255, 50, 255, 50);
+      pgraphics->fill_rectangle(m_rectStatusImage, color32);
       color32_t cr1;
       color32_t cr2;
       if(bHover)
       {
-         cr = argb(255, 0, 100, 0);
+         color32 = argb(255, 0, 100, 0);
          cr1 = argb(255, 120, 255, 150);
          cr2 = argb(255, 23, 200, 33);
       }
       else
       {
-         cr = argb(255, 40, 40, 40);
+         color32 = argb(255, 40, 40, 40);
          cr1 = argb(255, 100, 100, 100);
          cr2 = argb(255, 10, 10, 10);
       }
       pgraphics->draw3d_rect(m_rectItem, cr1, cr2);
-      cr |= 0xff000000;
+      color32 |= 0xff000000;
       ::draw2d::brush_pointer brushText(e_create);
-      brushText->create_solid(cr);
-      //pgraphics->set_color(cr);
+      brushText->create_solid(color32);
+      //pgraphics->set_color(color32);
       pgraphics->draw_text(m_strApp, m_rectName, e_align_bottom_left);
    }
 

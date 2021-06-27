@@ -44,7 +44,7 @@ namespace html
 
          virtual void delete_implementation(html_data * pdocument);
 
-         virtual bool get_color(color32_t & cr);
+         virtual bool get_color(::color::color & color32);
          virtual bool has_link();
          virtual string link();
 

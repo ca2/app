@@ -761,17 +761,17 @@ namespace html
             }
 
 
-            //color32_t cr;
+            //::color32_t color32;
 
             pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
             //if (m_pelemental->m_pstyle->get_alpha("", pdata, m_pelemental, d))
             //{
 
-            //   if (m_pelemental->get_color(cr, ::user::color_background, pdata->m_pcoredata->m_pform))
+            //   if (m_pelemental->get_color(color32, ::user::color_background, pdata->m_pcoredata->m_pform))
             //   {
 
-            //      App(pdata->get_application()).imaging().color_blend(pgraphics, rectangle, cr, maximum(0, minimum(255, (byte)(d * 255))));
+            //      App(pdata->get_application()).imaging().color_blend(pgraphics, rectangle, color32, maximum(0, minimum(255, (byte)(d * 255))));
 
             //   }
 
@@ -783,10 +783,10 @@ namespace html
 //
 ////               auto pstyle
 //
-//               if(m_pelemental->get_color(cr,::user::color_background, &style))
+//               if(m_pelemental->get_color(color32,::user::color_background, &style))
 //               {
 //
-//                  pgraphics->fill_rectangle(rectangle, cr);
+//                  pgraphics->fill_rectangle(rectangle, color32);
 //
 //               }
 //
@@ -918,10 +918,10 @@ namespace html
       }
 
 
-      bool element::get_color(color32_t & cr)
+      bool element::get_color(::color::color & color32)
       {
 
-         cr = argb(255, 0, 0, 0);
+         color32 = argb(255, 0, 0, 0);
 
          return true;
 

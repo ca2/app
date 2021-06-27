@@ -12,9 +12,9 @@ bool draw2d_gif_antialias_8bit(image & imageCompose, image_frame_array * pimagep
 
    return true;
 
-//   color32_t cr;
+//   ::color32_t color32;
 //
-//   color32_t crBack = imagea.m_colorTransparent;
+//   ::color::color crBack = imagea.m_colorTransparent;
 //
 //   double dA1 = colorref_get_a_value(crBack);
 //
@@ -38,7 +38,7 @@ bool draw2d_gif_antialias_8bit(image & imageCompose, image_frame_array * pimagep
 //
 //   double dTransparent = 4.0;
 //
-//   int w = pointer->m_pimage->m_iScan / sizeof(color32_t);
+//   int w = pointer->m_pimage->m_iScan / sizeof(::color::color);
 //
 //   int i = 0;
 //
@@ -63,15 +63,15 @@ bool draw2d_gif_antialias_8bit(image & imageCompose, image_frame_array * pimagep
 //
 //            index iPixel = y * w + x;
 //
-//            cr = pointer->m_pimage->m_pcolorref[iPixel];
+//            color32 = pointer->m_pimage->m_pcolorref[iPixel];
 //
-//            double dA = colorref_get_a_value(cr);
+//            double dA = colorref_get_a_value(color32);
 //
-//            double dR = colorref_get_r_value(cr);
+//            double dR = colorref_get_r_value(color32);
 //
-//            double dG = colorref_get_g_value(cr);
+//            double dG = colorref_get_g_value(color32);
 //
-//            double dB = colorref_get_b_value(cr);
+//            double dB = colorref_get_b_value(color32);
 //
 //            if (dA <= dTransparent)
 //            {
@@ -143,15 +143,15 @@ bool draw2d_gif_antialias_8bit(image & imageCompose, image_frame_array * pimagep
 //
 //            index iPixel = y * w + x;
 //
-//            cr = pointer->m_pimage->m_pcolorref[iPixel];
+//            color32 = pointer->m_pimage->m_pcolorref[iPixel];
 //
-//            double dA = colorref_get_a_value(cr);
+//            double dA = colorref_get_a_value(color32);
 //
-//            double dR = colorref_get_r_value(cr);
+//            double dR = colorref_get_r_value(color32);
 //
-//            double dG = colorref_get_g_value(cr);
+//            double dG = colorref_get_g_value(color32);
 //
-//            double dB = colorref_get_b_value(cr);
+//            double dB = colorref_get_b_value(color32);
 //
 //            if (dA <= dTransparent)
 //            {
@@ -227,15 +227,15 @@ bool draw2d_gif_antialias_8bit(image & imageCompose, image_frame_array * pimagep
 //
 //            index iPixel = y * w + x;
 //
-//            cr = pointer->m_pimage->m_pcolorref[iPixel];
+//            color32 = pointer->m_pimage->m_pcolorref[iPixel];
 //
-//            double dA = colorref_get_a_value(cr);
+//            double dA = colorref_get_a_value(color32);
 //
-//            double dR = colorref_get_r_value(cr);
+//            double dR = colorref_get_r_value(color32);
 //
-//            double dG = colorref_get_g_value(cr);
+//            double dG = colorref_get_g_value(color32);
 //
-//            double dB = colorref_get_b_value(cr);
+//            double dB = colorref_get_b_value(color32);
 //
 //            if (dA <= dTransparent)
 //            {
@@ -306,15 +306,15 @@ bool draw2d_gif_antialias_8bit(image & imageCompose, image_frame_array * pimagep
 //
 //            index iPixel = y * w + x;
 //
-//            cr = pointer->m_pimage->m_pcolorref[iPixel];
+//            color32 = pointer->m_pimage->m_pcolorref[iPixel];
 //
-//            double dA = colorref_get_a_value(cr);
+//            double dA = colorref_get_a_value(color32);
 //
-//            double dR = colorref_get_r_value(cr);
+//            double dR = colorref_get_r_value(color32);
 //
-//            double dG = colorref_get_g_value(cr);
+//            double dG = colorref_get_g_value(color32);
 //
-//            double dB = colorref_get_b_value(cr);
+//            double dB = colorref_get_b_value(color32);
 //
 //            if (dA <= dTransparent)
 //            {
@@ -394,15 +394,15 @@ bool draw2d_gif_antialias_8bit(image & imageCompose, image_frame_array * pimagep
 //
 //            index iPixel = (y + x) * w + x;
 //
-//            cr = pointer->m_pimage->m_pcolorref[iPixel];
+//            color32 = pointer->m_pimage->m_pcolorref[iPixel];
 //
-//            double dA = colorref_get_a_value(cr);
+//            double dA = colorref_get_a_value(color32);
 //
-//            double dR = colorref_get_r_value(cr);
+//            double dR = colorref_get_r_value(color32);
 //
-//            double dG = colorref_get_g_value(cr);
+//            double dG = colorref_get_g_value(color32);
 //
-//            double dB = colorref_get_b_value(cr);
+//            double dB = colorref_get_b_value(color32);
 //
 //            if (dA <= dTransparent)
 //            {
@@ -473,15 +473,15 @@ bool draw2d_gif_antialias_8bit(image & imageCompose, image_frame_array * pimagep
 //
 //            index iPixel = (y + x) * w + x;
 //
-//            cr = pointer->m_pimage->m_pcolorref[iPixel];
+//            color32 = pointer->m_pimage->m_pcolorref[iPixel];
 //
-//            double dA = colorref_get_a_value(cr);
+//            double dA = colorref_get_a_value(color32);
 //
-//            double dR = colorref_get_r_value(cr);
+//            double dR = colorref_get_r_value(color32);
 //
-//            double dG = colorref_get_g_value(cr);
+//            double dG = colorref_get_g_value(color32);
 //
-//            double dB = colorref_get_b_value(cr);
+//            double dB = colorref_get_b_value(color32);
 //
 //            if (dA <= dTransparent)
 //            {
@@ -560,15 +560,15 @@ bool draw2d_gif_antialias_8bit(image & imageCompose, image_frame_array * pimagep
 //
 //            index iPixel = (y - x) * w + x;
 //
-//            cr = pointer->m_pimage->m_pcolorref[iPixel];
+//            color32 = pointer->m_pimage->m_pcolorref[iPixel];
 //
-//            double dA = colorref_get_a_value(cr);
+//            double dA = colorref_get_a_value(color32);
 //
-//            double dR = colorref_get_r_value(cr);
+//            double dR = colorref_get_r_value(color32);
 //
-//            double dG = colorref_get_g_value(cr);
+//            double dG = colorref_get_g_value(color32);
 //
-//            double dB = colorref_get_b_value(cr);
+//            double dB = colorref_get_b_value(color32);
 //
 //            if (dA <= dTransparent)
 //            {
@@ -639,15 +639,15 @@ bool draw2d_gif_antialias_8bit(image & imageCompose, image_frame_array * pimagep
 //
 //            index iPixel = (y - x) * w + x;
 //
-//            cr = pointer->m_pimage->m_pcolorref[iPixel];
+//            color32 = pointer->m_pimage->m_pcolorref[iPixel];
 //
-//            double dA = colorref_get_a_value(cr);
+//            double dA = colorref_get_a_value(color32);
 //
-//            double dR = colorref_get_r_value(cr);
+//            double dR = colorref_get_r_value(color32);
 //
-//            double dG = colorref_get_g_value(cr);
+//            double dG = colorref_get_g_value(color32);
 //
-//            double dB = colorref_get_b_value(cr);
+//            double dB = colorref_get_b_value(color32);
 //
 //            if (dA <= dTransparent)
 //            {
@@ -727,15 +727,15 @@ bool draw2d_gif_antialias_8bit(image & imageCompose, image_frame_array * pimagep
 //
 //            index iPixel = y * w + x + (y - pointer->m_pimage->height() + 1);
 //
-//            cr = pointer->m_pimage->m_pcolorref[iPixel];
+//            color32 = pointer->m_pimage->m_pcolorref[iPixel];
 //
-//            double dA = colorref_get_a_value(cr);
+//            double dA = colorref_get_a_value(color32);
 //
-//            double dR = colorref_get_r_value(cr);
+//            double dR = colorref_get_r_value(color32);
 //
-//            double dG = colorref_get_g_value(cr);
+//            double dG = colorref_get_g_value(color32);
 //
-//            double dB = colorref_get_b_value(cr);
+//            double dB = colorref_get_b_value(color32);
 //
 //            if (dA <= dTransparent)
 //            {
@@ -806,15 +806,15 @@ bool draw2d_gif_antialias_8bit(image & imageCompose, image_frame_array * pimagep
 //
 //            index iPixel = y * w + x + (y - pointer->m_pimage->height() + 1);
 //
-//            cr = pointer->m_pimage->m_pcolorref[iPixel];
+//            color32 = pointer->m_pimage->m_pcolorref[iPixel];
 //
-//            double dA = colorref_get_a_value(cr);
+//            double dA = colorref_get_a_value(color32);
 //
-//            double dR = colorref_get_r_value(cr);
+//            double dR = colorref_get_r_value(color32);
 //
-//            double dG = colorref_get_g_value(cr);
+//            double dG = colorref_get_g_value(color32);
 //
-//            double dB = colorref_get_b_value(cr);
+//            double dB = colorref_get_b_value(color32);
 //
 //            if (dA <= dTransparent)
 //            {
@@ -892,15 +892,15 @@ bool draw2d_gif_antialias_8bit(image & imageCompose, image_frame_array * pimagep
 //
 //            index iPixel = y * w + x + y;
 //
-//            cr = pointer->m_pimage->m_pcolorref[iPixel];
+//            color32 = pointer->m_pimage->m_pcolorref[iPixel];
 //
-//            double dA = colorref_get_a_value(cr);
+//            double dA = colorref_get_a_value(color32);
 //
-//            double dR = colorref_get_r_value(cr);
+//            double dR = colorref_get_r_value(color32);
 //
-//            double dG = colorref_get_g_value(cr);
+//            double dG = colorref_get_g_value(color32);
 //
-//            double dB = colorref_get_b_value(cr);
+//            double dB = colorref_get_b_value(color32);
 //
 //            if (dA <= dTransparent)
 //            {
@@ -971,15 +971,15 @@ bool draw2d_gif_antialias_8bit(image & imageCompose, image_frame_array * pimagep
 //
 //            index iPixel = y * w + x + y;
 //
-//            cr = pointer->m_pimage->m_pcolorref[iPixel];
+//            color32 = pointer->m_pimage->m_pcolorref[iPixel];
 //
-//            double dA = colorref_get_a_value(cr);
+//            double dA = colorref_get_a_value(color32);
 //
-//            double dR = colorref_get_r_value(cr);
+//            double dR = colorref_get_r_value(color32);
 //
-//            double dG = colorref_get_g_value(cr);
+//            double dG = colorref_get_g_value(color32);
 //
-//            double dB = colorref_get_b_value(cr);
+//            double dB = colorref_get_b_value(color32);
 //
 //            if (dA <= dTransparent)
 //            {

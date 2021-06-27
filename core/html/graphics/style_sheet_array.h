@@ -16,7 +16,7 @@ namespace html
 
       style * rfind(e_tag etag, const string & strClass, const string & strSubClass, id idName);
       style * rfind_border_width(e_tag etag, const string & strClass, const string & strSubClass, id idName, float & f);
-      style * rfind_border_color(e_tag etag, const string & strClass, const string & strSubClass, id idName, color32_t & cr);
+      style * rfind_border_color(e_tag etag, const string & strClass, const string & strSubClass, id idName, ::color::color & color32);
 
       style * greater(style * pstyle1, style * pstyle2);
       const style * greater(const style * pstyle1, const style * pstyle2) const;

@@ -32,9 +32,9 @@ namespace user
       ::data::tree_item *                       m_pitemFirstVisible;
       index                                     m_iFirstVisibleItemProperIndex;
       i32                                       m_iCurrentViewWidth;
-      //color32_t                               m_colorTextSelected;
-      //color32_t                               m_colorTextHighlight;
-      //color32_t                               m_colorTextSelectedHighlight;
+      //::color::color                               m_colorTextSelected;
+      //::color::color                               m_colorTextHighlight;
+      //::color::color                               m_colorTextSelectedHighlight;
       u32_array                                 m_dwaItemState;
       __pointer(::image_list)                   m_pimagelist;
       index                                     m_iImageCollapse;

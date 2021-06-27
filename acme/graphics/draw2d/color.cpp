@@ -36,10 +36,10 @@ namespace color
    //}
 
 
-   //color::color::color(color32_t cr)
+   //color::color::color(::color32_t color32)
    //{
    //
-   //   operator = (cr);
+   //   operator = (color32);
    //
    //}
 
@@ -551,39 +551,32 @@ namespace color
    //}
 
 
-   color::operator color32_t() const
+
+   void color::set_rgb(::color32_t color32)
    {
 
-      return get_rgba();
+      red      = colorref_get_r_value(color32);
+      green    = colorref_get_g_value(color32);
+      blue     = colorref_get_b_value(color32);
 
    }
 
 
-   void color::set_rgb(color32_t cr)
+   void color::set_argb(::color32_t color32)
    {
 
-      red      = colorref_get_r_value(cr);
-      green    = colorref_get_g_value(cr);
-      blue     = colorref_get_b_value(cr);
+      red      = colorref_get_r_value(color32);
+      green    = colorref_get_g_value(color32);
+      blue     = colorref_get_b_value(color32);
+      alpha    = colorref_get_a_value(color32);
 
    }
 
 
-   void color::set_argb(color32_t cr)
+   void color::set_COLORREF(::color32_t color32)
    {
 
-      red      = colorref_get_r_value(cr);
-      green    = colorref_get_g_value(cr);
-      blue     = colorref_get_b_value(cr);
-      alpha    = colorref_get_a_value(cr);
-
-   }
-
-
-   void color::set_COLORREF(color32_t cr)
-   {
-
-      set_argb(cr);
+      set_argb(color32);
 
    }
 
@@ -951,10 +944,10 @@ namespace color
    }
 
 
-   ::color::color & color::operator = (color32_t cr)
+   ::color::color & color::operator = (::color32_t color32)
    {
 
-      u32 = cr;
+      u32 = color32;
 
       return *this;
 
@@ -1117,14 +1110,14 @@ namespace color
 
 
 
-CLASS_DECL_ACME color32_t alpha_color(byte bAlpha, color32_t cr)
+CLASS_DECL_ACME ::color::color alpha_color(byte bAlpha, ::color32_t color32)
 {
 
-   return (cr & 0xffffff) | ((bAlpha & 0xff) << 24);
+   return (color32 & 0xffffff) | ((bAlpha & 0xff) << 24);
 
 }
 
-CLASS_DECL_ACME color32_t alpha_color(byte bAlpha, enum_color ecolor)
+CLASS_DECL_ACME ::color::color alpha_color(byte bAlpha, enum_color ecolor)
 {
 
    return alpha_color(bAlpha, pure_color(ecolor));
@@ -1132,58 +1125,58 @@ CLASS_DECL_ACME color32_t alpha_color(byte bAlpha, enum_color ecolor)
 }
 
 
-CLASS_DECL_ACME color32_t pure_color(enum_color ecolor)
+CLASS_DECL_ACME ::color::color pure_color(enum_color ecolor)
 {
 
-   color32_t cr;
+   ::color32_t color32;
 
    switch (ecolor)
    {
    case e_color_black:
-      cr = argb(255, 0, 0, 0);
+      color32 = argb(255, 0, 0, 0);
       break;
    case e_color_red:
-      cr = argb(255, 255, 0, 0);
+      color32 = argb(255, 255, 0, 0);
       break;
    case e_color_green:
-      cr = argb(255, 0, 255, 0);
+      color32 = argb(255, 0, 255, 0);
       break;
    case e_color_blue:
-      cr = argb(255, 0, 0, 255);
+      color32 = argb(255, 0, 0, 255);
       break;
    case e_color_white:
-      cr = argb(255, 255, 255, 255);
+      color32 = argb(255, 255, 255, 255);
       break;
    case e_color_yellow:
-      cr = argb(255, 255, 255, 0);
+      color32 = argb(255, 255, 255, 0);
       break;
    case e_color_magenta:
-      cr = argb(255, 255, 0, 255);
+      color32 = argb(255, 255, 0, 255);
       break;
    case e_color_cyan:
-      cr = argb(255, 0, 255, 255);
+      color32 = argb(255, 0, 255, 255);
       break;
    case e_color_gray:
-      cr = argb(255, 127, 127, 127);
+      color32 = argb(255, 127, 127, 127);
    default:
-      cr = 0;
+      color32 = 0;
       break;
    };
 
-   return cr;
+   return color32;
 
 }
 
 
-CLASS_DECL_ACME color32_t opaque_color(color32_t cr)
+CLASS_DECL_ACME ::color::color opaque_color(::color32_t color32)
 {
 
-   return alpha_color(255, cr);
+   return alpha_color(255, color32);
 
 }
 
 
-CLASS_DECL_ACME color32_t opaque_color(enum_color ecolor)
+CLASS_DECL_ACME ::color::color opaque_color(enum_color ecolor)
 {
 
    return opaque_color(pure_color(ecolor));

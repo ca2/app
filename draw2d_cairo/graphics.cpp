@@ -5645,18 +5645,18 @@ void * graphics::detach()
 }
 
 
-bool graphics::_set_os_color(color32_t cr)
+bool graphics::_set_os_color(color32_t color32)
 {
 
     synchronous_lock ml(cairo_mutex());
 
-    auto r = colorref_get_r_value(cr);
+    auto r = colorref_get_r_value(color32);
 
-    auto g = colorref_get_g_value(cr);
+    auto g = colorref_get_g_value(color32);
 
-    auto b = colorref_get_b_value(cr);
+    auto b = colorref_get_b_value(color32);
 
-    auto a = colorref_get_a_value(cr);
+    auto a = colorref_get_a_value(color32);
 
     cairo_set_source_rgba(m_pdc, r / 255.0, g / 255.0, b / 255.0, a / 255.0);
 

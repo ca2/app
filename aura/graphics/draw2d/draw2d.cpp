@@ -365,8 +365,8 @@ namespace draw2d
    ::write_text::font * pfont,
    const ::e_align & ealign,
    const ::e_draw_text & edrawtext,
-   color32_t crText,
-   color32_t crGlow,
+   ::color::color crText,
+   ::color::color crGlow,
    int iSpreadRadius,
    int iBlurRadius,
    int iBlur,
@@ -731,7 +731,7 @@ breakFilter:
    }
 
 
-   bool draw2d::channel_spread__32CC(::image * pimageDst, ::image * pimageSrc, i32 iChannel, i32 iRadius, color32_t crSpreadSetColor)
+   bool draw2d::channel_spread__32CC(::image * pimageDst, ::image * pimageSrc, i32 iChannel, i32 iRadius, ::color::color crSpreadSetColor)
    {
 
       pimageDst->map();

@@ -104,7 +104,7 @@ namespace filemanager
       //virtual void file_size_add_request(bool bClear);
 
 
-      //virtual color32_t get_background_color() override;
+      //virtual ::color::color get_background_color() override;
       bool add_fs_item(::file::path pathUser, ::file::path pathFinal, string strName);
       virtual void browse_sync(const ::action_context & action_context) override;
 

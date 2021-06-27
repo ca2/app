@@ -476,14 +476,14 @@ namespace user
 
 //#if(_WIN32_WINNT >= 0x0500)
 //
-//      virtual bool SetLayeredWindowAttributes(color32_t crKey,byte bAlpha,u32 dwFlags);
-//      virtual bool UpdateLayeredWindow(::draw2d::graphics * pDCDst,POINT_I32 *pptDst,SIZE_I32 *psize,::draw2d::graphics * pDCSrc,POINT_I32 *pptSrc,color32_t crKey,BLENDFUNCTION *pblend,u32 dwFlags);
+//      virtual bool SetLayeredWindowAttributes(::color::color crKey,byte bAlpha,u32 dwFlags);
+//      virtual bool UpdateLayeredWindow(::draw2d::graphics * pDCDst,POINT_I32 *pptDst,SIZE_I32 *psize,::draw2d::graphics * pDCSrc,POINT_I32 *pptSrc,::color::color crKey,BLENDFUNCTION *pblend,u32 dwFlags);
 //
 //#endif   // _WIN32_WINNT >= 0x0500
 
 #if(_WIN32_WINNT >= 0x0501)
 
-      virtual bool GetLayeredWindowAttributes(color32_t *pcrKey,byte *pbAlpha,u32 *pdwFlags) const;
+      virtual bool GetLayeredWindowAttributes(::color::color *pcrKey,byte *pbAlpha,u32 *pdwFlags) const;
 
 #endif   // _WIN32_WINNT >= 0x0501
 

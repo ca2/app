@@ -923,13 +923,13 @@ namespace experience_lite
 
 
 
-   bool user_style::get_color(color32_t & cr, ::user::e_color ecolor)
+   bool user_style::get_color(color32_t & color32, ::user::e_color ecolor)
    {
 
       if (ecolor == ::user::color_background)
       {
 
-         cr = 0;
+         color32 = 0;
 
          return true;
 
@@ -937,7 +937,7 @@ namespace experience_lite
       else if (ecolor == ::user::color_background_hover)
       {
 
-         cr = argb(120, 110, 100, 200);
+         color32 = argb(120, 110, 100, 200);
 
          return true;
 
@@ -945,7 +945,7 @@ namespace experience_lite
       else if (ecolor == ::user::color_split_layout_background)
       {
 
-         cr = argb(0, 0, 0, 0);
+         color32 = argb(0, 0, 0, 0);
 
          return true;
 
@@ -953,7 +953,7 @@ namespace experience_lite
       else if (ecolor == ::user::color_list_background)
       {
 
-         cr = argb(80, 255, 255, 255);
+         color32 = argb(80, 255, 255, 255);
 
          return true;
 
@@ -961,7 +961,7 @@ namespace experience_lite
       else if (ecolor == ::user::color_edit_background)
       {
 
-         cr = argb(80, 255, 255, 255);
+         color32 = argb(80, 255, 255, 255);
 
          return true;
 
@@ -969,7 +969,7 @@ namespace experience_lite
       else if (ecolor == ::user::color_edit_background_selected)
       {
 
-         cr = argb(120, 0, 0, 0);
+         color32 = argb(120, 0, 0, 0);
 
          return true;
 
@@ -977,7 +977,7 @@ namespace experience_lite
       else if (ecolor == ::user::color_text)
       {
 
-         cr = argb(255, 0, 0, 0);
+         color32 = argb(255, 0, 0, 0);
 
          return true;
 
@@ -985,7 +985,7 @@ namespace experience_lite
       else if (ecolor == ::user::color_text_selected)
       {
 
-         cr = argb(255, 255, 255, 255);
+         color32 = argb(255, 255, 255, 255);
 
          return true;
 
@@ -993,7 +993,7 @@ namespace experience_lite
       else if (ecolor == ::user::color_text_highlight)
       {
 
-         cr = argb(255, 50, 150, 150);
+         color32 = argb(255, 50, 150, 150);
 
          return true;
 
@@ -1001,7 +1001,7 @@ namespace experience_lite
       else if (ecolor == ::user::color_text_selected_highlight)
       {
 
-         cr = argb(255, 20, 90, 100);
+         color32 = argb(255, 20, 90, 100);
 
          return true;
 
@@ -1009,7 +1009,7 @@ namespace experience_lite
       else if (ecolor == ::user::color_edit_text)
       {
 
-         cr = argb(255, 0, 0, 0);
+         color32 = argb(255, 0, 0, 0);
 
          return true;
 
@@ -1017,7 +1017,7 @@ namespace experience_lite
       else if (ecolor == ::user::color_edit_text_selected)
       {
 
-         cr = argb(255, 0, 0, 0);
+         color32 = argb(255, 0, 0, 0);
 
          return true;
 
@@ -1025,7 +1025,7 @@ namespace experience_lite
       else if (ecolor == ::user::color_tree_background)
       {
 
-         cr = argb(80, 255, 255, 255);
+         color32 = argb(80, 255, 255, 255);
 
          return true;
 
@@ -1033,7 +1033,7 @@ namespace experience_lite
       else if (ecolor == ::user::color_view_background)
       {
 
-         cr = argb(80, 255, 255, 255);
+         color32 = argb(80, 255, 255, 255);
 
          return true;
 
@@ -1041,7 +1041,7 @@ namespace experience_lite
       else if (ecolor == ::user::color_scrollbar_background)
       {
 
-         cr = argb(80, 255, 255, 255);
+         color32 = argb(80, 255, 255, 255);
 
          return true;
 
@@ -1049,7 +1049,7 @@ namespace experience_lite
       else if (ecolor == ::user::color_background_selected)
       {
 
-         cr = argb(255, 155, 185, 255);
+         color32 = argb(255, 155, 185, 255);
 
          return true;
 
@@ -1057,7 +1057,7 @@ namespace experience_lite
       else if (ecolor == ::user::color_list_header)
       {
 
-         cr = argb(255, 255, 255, 255);
+         color32 = argb(255, 255, 255, 255);
 
          return true;
 
@@ -1065,7 +1065,7 @@ namespace experience_lite
       else if (ecolor == ::user::color_list_header_background)
       {
 
-         cr = argb(255, 0x58, 0x5C, 0x5D);
+         color32 = argb(255, 0x58, 0x5C, 0x5D);
 
          return true;
 
@@ -1073,7 +1073,7 @@ namespace experience_lite
       else if (ecolor == ::user::color_list_item_background)
       {
 
-         cr = argb(30, 0, 0, 0);
+         color32 = argb(30, 0, 0, 0);
 
          return true;
 
@@ -1081,7 +1081,7 @@ namespace experience_lite
       else if (ecolor == ::user::color_list_header_separator)
       {
 
-         cr = 0;
+         color32 = 0;
 
          return true;
 
@@ -1089,7 +1089,7 @@ namespace experience_lite
       else if (ecolor == ::user::color_toolbar_background)
       {
 
-         cr = argb(80, 0xF3, 0XF5, 0xF5);
+         color32 = argb(80, 0xF3, 0XF5, 0xF5);
 
          return true;
 
@@ -1098,7 +1098,7 @@ namespace experience_lite
       else if (ecolor == ::user::color_button_background_disabled)
       {
 
-         cr = argb(255, 128, 128, 128);
+         color32 = argb(255, 128, 128, 128);
 
          return true;
 
@@ -1107,7 +1107,7 @@ namespace experience_lite
       else if (ecolor == ::user::color_button_background_hover)
       {
 
-         cr = argb(255, 0x55, 0x99, 0xC2);
+         color32 = argb(255, 0x55, 0x99, 0xC2);
 
          return true;
 
@@ -1115,21 +1115,21 @@ namespace experience_lite
       else if (ecolor == ::user::color_button_background)
       {
 
-         cr = argb(255, 0x30, 0x75, 0xA0);
+         color32 = argb(255, 0x30, 0x75, 0xA0);
 
          return true;
       }
       else if (ecolor == ::user::color_button_background_press)
       {
 
-         cr = argb(255, 0x07, 0x6D, 0x91);
+         color32 = argb(255, 0x07, 0x6D, 0x91);
 
          return true;
       }
       else if (ecolor == ::user::color_button_text_disabled)
       {
 
-         cr = argb(255, 0x80, 0x80, 0x80);
+         color32 = argb(255, 0x80, 0x80, 0x80);
 
          return true;
 
@@ -1137,7 +1137,7 @@ namespace experience_lite
       else if (ecolor == ::user::color_button_text_hover)
       {
 
-         cr = argb(255, 255, 255, 255);
+         color32 = argb(255, 255, 255, 255);
 
          return true;
 
@@ -1145,7 +1145,7 @@ namespace experience_lite
       else if (ecolor == ::user::color_button_text)
       {
 
-         cr = argb(255, 255, 255, 255);
+         color32 = argb(255, 255, 255, 255);
 
          return true;
 
@@ -1153,13 +1153,13 @@ namespace experience_lite
       else if (ecolor == ::user::color_button_text_press)
       {
 
-         cr = argb(255, 255, 255, 255);
+         color32 = argb(255, 255, 255, 255);
 
          return true;
 
       }
 
-      bool bOk = m_mapColor.lookup(ecolor, cr);
+      bool bOk = m_mapColor.lookup(ecolor, color32);
 
       if (!bOk)
       {

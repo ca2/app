@@ -57,14 +57,14 @@ namespace opengl
    }
 
    
-   inline void color(color32_t cr)
+   inline void color(color32_t color32)
    {
 
       ::opengl::color::color(
-         colorref_get_r_value(cr),
-         colorref_get_g_value(cr),
-         colorref_get_b_value(cr),
-         colorref_get_a_value(cr));
+         colorref_get_r_value(color32),
+         colorref_get_g_value(color32),
+         colorref_get_b_value(color32),
+         colorref_get_a_value(color32));
 
    }
 

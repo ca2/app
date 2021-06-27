@@ -336,7 +336,7 @@ namespace user
       virtual void clipboard_copy();
       virtual void clipboard_paste();
 
-      virtual bool get_line_color(color32_t & crOverride, const string & strLine);
+      virtual bool get_line_color(::color::color & crOverride, const string & strLine);
 
       virtual void pre_translate_message(::message::message * pmessage) override;
 

@@ -119,13 +119,13 @@ namespace graphics
 
          i64 * p = (i64 *)pdata;
 
-         int iScan = (int)(ppixmap->width() * sizeof(color32_t));
+         int iScan = (int)(ppixmap->width() * sizeof(::color::color));
 
          *p++ = ppixmap->width();
          *p++ = ppixmap->height();
          *p++ = iScan;
 
-         ::copy_colorref((color32_t *)p, ppixmap->size(), iScan, ppixmap);
+         ::copy_colorref((::color::color *)p, ppixmap->size(), iScan, ppixmap);
 
       }
       catch (...)

@@ -61,8 +61,8 @@ public:
    ::write_text::font_pointer                    m_font;
    ::write_text::font_pointer                    m_fontPrefix;
    ::write_text::font_pointer                    m_fontLink;
-   color32_t                         m_cr;
-   color32_t                         m_colorOutline;
+   ::color::color                         m_cr;
+   ::color::color                         m_colorOutline;
    ::rectangle_i32                           m_rectangleClient;
    double                           m_floatRateX;
    //LOGFONTW                          m_logfont;
@@ -89,12 +89,12 @@ public:
    double                           m_dAnimateProgressIncrement;
    i32                              m_iTextEffect;
    ::draw2d::pen *                      m_lpPenEmboss;
-   color32_t                         m_colorForeground;
+   ::color::color                         m_colorForeground;
    ::draw2d::pen *                      m_ppenLyricLeft;
    ::draw2d::pen *                      m_ppenLyricRight;
    ::size_i32                             m_sizeLyricMargin;
-   color32_t                         m_colorLyricLeft;
-   color32_t                         m_colorLyricRight;
+   ::color::color                         m_colorLyricLeft;
+   ::color::color                         m_colorLyricRight;
 
    xfplayer_view_line();
    //xfplayer_view_line(const xfplayer_view_line & line);
@@ -125,7 +125,7 @@ public:
    void CalcCharsPositions(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle);
 
 
-   void SetColors(color32_t cr, color32_t crOutline);
+   void SetColors(::color32_t color32, ::color::color crOutline);
 
    void embossed_text_out(
    ::draw2d::graphics_pointer & pgraphics,
@@ -134,8 +134,8 @@ public:
    i32 left,
    i32 top,
    i32 ignore1,
-   color32_t cr,
-   color32_t crOutline,
+   ::color32_t color32,
+   ::color::color crOutline,
    strsize iLen,
    double dBlend);
 
@@ -147,8 +147,8 @@ public:
    i32 iLeft,
    i32 iTop,
    i32 iWidth,
-   color32_t cr,
-   color32_t crOutline,
+   ::color32_t color32,
+   ::color::color crOutline,
    strsize iLen,
    double dBlend);
 
@@ -166,14 +166,14 @@ public:
    //void AddVmsFont(::write_text::font * pfont);
    //i32 GetVmsFontCount();
    void SetPlacement(const ::rectangle_i32 & rectangle);
-   i32 SetLyricColors(color32_t crLeft, color32_t crRight);
+   i32 SetLyricColors(::color::color crLeft, ::color::color crRight);
    i32 SetLyricPens(::draw2d::pen * ppenLeft, ::draw2d::pen * ppenRight);
    void SetRenderCriticalSection(critical_section *pcs);
    void SetAnimateIncrement(double dIncrement);
    i32 MapToFontEffect(i32 iLineEffect);
 
 
-   void SetForegroundColor(color32_t cr);
+   void SetForegroundColor(::color32_t color32);
    void SetEmbossPen(::draw2d::pen * pPen);
 
    void SetTextEffect(i32 iTextEffect);
@@ -204,7 +204,7 @@ public:
 
    bool _001OnDraw(::draw2d::graphics_pointer & pgraphics, bool bDraw, const ::rectangle_i32 & rectangle, rectangle_i32_array & rectaModified, bool bRecalcLayout);
 
-   bool _001OnDraw(::draw2d::graphics_pointer & pgraphics, bool bDraw, const ::rectangle_i32 & rectangle, rectangle_i32_array & rectaModified, strsize * count, bool bRecalcLayout, color32_t crColor, ::draw2d::pen_pointer sppen);
+   bool _001OnDraw(::draw2d::graphics_pointer & pgraphics, bool bDraw, const ::rectangle_i32 & rectangle, rectangle_i32_array & rectaModified, strsize * count, bool bRecalcLayout, ::color::color crColor, ::draw2d::pen_pointer sppen);
 
 
    DECLARE_MESSAGE_HANDLER(OnMouseMove);

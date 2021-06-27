@@ -210,7 +210,7 @@ namespace user
       //virtual bool OnChildNotify(::user::message * pusermessage) override;
 
 
-      //virtual color32_t get_action_hover_border_color() override;
+      //virtual ::color::color get_action_hover_border_color() override;
 
 
 

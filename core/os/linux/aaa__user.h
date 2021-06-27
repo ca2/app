@@ -65,7 +65,7 @@ void unmapped_net_state_raw(Display * d, Window w, ...);
 
 #ifdef __cplusplus
 
-void set_xcolor(XColor & color, color32_t cr);
+void set_xcolor(XColor & color, color32_t color32);
 
 #endif
 

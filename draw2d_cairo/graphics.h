@@ -6,7 +6,7 @@ typedef FN_CAIRO_TEXT * PFN_CAIRO_TEXT;
 
 #if defined(USE_PANGO)
 
-typedef void FN_PANGO_TEXT(cairo_t *cr, PangoLayout *layout);
+typedef void FN_PANGO_TEXT(cairo_t *color32, PangoLayout *layout);
 typedef FN_PANGO_TEXT * PFN_PANGO_TEXT;
 
 #endif
@@ -513,7 +513,7 @@ namespace draw2d_cairo
 
 
       // platform-specific or platform-internals
-      bool _set_os_color(color32_t cr);
+      bool _set_os_color(color32_t color32);
       bool _set(::draw2d::brush * pbrush, double x = 0.0, double y = 0.0);
       bool _set(::draw2d::pen * ppen);
 #if !defined(USE_PANGO)

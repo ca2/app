@@ -125,7 +125,7 @@ namespace draw2d_opengl
 
       BITMAP bm;
       ::draw2d::graphics_pointer graphicsMem, graphicsMask;
-      color32_t cr;
+      color32_t color32;
       ::draw2d::bitmap_pointer bmpMask(pobject);
       ::draw2d::bitmap *pOldMask, *pOldMem;
       const ::u32   CP_ROP = 0xE20746;
@@ -148,7 +148,7 @@ namespace draw2d_opengl
                return;
 
             // Make the upper left corner pixel the "transparent" pixel
-            cr = graphicsMem->SetBkColor(graphicsMem->GetPixel(0, 0));
+            color32 = graphicsMem->SetBkColor(graphicsMem->GetPixel(0, 0));
             graphicsMask->BitBlt(0, 0, bm.bmWidth, bm.bmHeight, graphicsMem, 0, 0);
             // Make white pixels transparent too
             graphicsMem->SetBkColor(rgb(255, 255, 255));
@@ -168,7 +168,7 @@ namespace draw2d_opengl
 
                graphicsMem->SelectObject(spbr);
 
-               graphicsMem->SetBkColor(cr);
+               graphicsMem->SetBkColor(color32);
             }
             graphicsMask->SelectObject(pOldMask);
             graphicsMem->SelectObject(pOldMem);
@@ -183,7 +183,7 @@ namespace draw2d_opengl
 
       BITMAP bm;
       ::draw2d::graphics_pointer graphicsMem, graphicsMask;
-      color32_t cr;
+      color32_t color32;
       ::draw2d::bitmap_pointer bmpMask(pobject);
       ::draw2d::bitmap *pOldMask, *pOldMem;
       const ::u32   CP_ROP = 0xE20746;
@@ -202,7 +202,7 @@ namespace draw2d_opengl
          if(!pOldMem || !pOldMask)
             return;
 
-         cr = graphicsMem->SetBkColor(graphicsMem->GetPixel(0, 0));
+         color32 = graphicsMem->SetBkColor(graphicsMem->GetPixel(0, 0));
          graphicsMask->BitBlt(0, 0, bm.bmWidth, bm.bmHeight, graphicsMem, 0, 0);
          graphicsMem->SetBkColor(rgb(255, 255, 255));
          graphicsMask->BitBlt(0, 0, bm.bmWidth, bm.bmHeight, graphicsMem, 0, 0, NOTSRCERASE);
@@ -219,7 +219,7 @@ namespace draw2d_opengl
 
          pgraphics->SelectObject(spbr);
 
-         pgraphics->SetBkColor(cr);
+         pgraphics->SetBkColor(color32);
          graphicsMask->SelectObject(pOldMask);
       }
    }
@@ -231,7 +231,7 @@ namespace draw2d_opengl
 
       BITMAP bm;
       ::draw2d::graphics_pointer graphicsSrc, graphicsMask, graphicsDest;
-      color32_t cr;
+      color32_t color32;
       ::draw2d::bitmap_pointer bmpMask(pobject);
       ::draw2d::bitmap *pOldMask, *pOldSrc;
       ::draw2d::brush brChecker;
@@ -262,12 +262,12 @@ namespace draw2d_opengl
                   return;
 
                // Make the upper left corner pixel of the source a "transparent" color
-               cr = graphicsSrc->SetBkColor(graphicsSrc->GetPixel(0, 0));
+               color32 = graphicsSrc->SetBkColor(graphicsSrc->GetPixel(0, 0));
                graphicsMask->BitBlt(0, 0, bm.bmWidth, bm.bmHeight, graphicsSrc, 0, 0);
                // Make white pixels of the source "transparent" too
                graphicsSrc->SetBkColor(rgb(255, 255, 255));
                graphicsMask->BitBlt(0, 0, bm.bmWidth, bm.bmHeight, graphicsSrc, 0, 0, SRCPAINT);
-               graphicsSrc->SetBkColor(cr);
+               graphicsSrc->SetBkColor(color32);
 
                // Checker the background with white and crBackground
                pDest = graphicsDest->SelectObject(pDest);
@@ -300,7 +300,7 @@ namespace draw2d_opengl
 
       BITMAP bm;
       ::draw2d::graphics_pointer graphicsSrc, graphicsMask;
-      color32_t cr;
+      color32_t color32;
       ::draw2d::bitmap_pointer bmpMask(pobject);
       ::draw2d::bitmap *pOldMask, *pOldSrc;
       ::draw2d::brush brChecker;
@@ -326,12 +326,12 @@ namespace draw2d_opengl
             return;
 
          // Make the upper left corner pixel of the source a "transparent" color
-         cr = graphicsSrc->SetBkColor(graphicsSrc->GetPixel(0, 0));
+         color32 = graphicsSrc->SetBkColor(graphicsSrc->GetPixel(0, 0));
          graphicsMask->BitBlt(0, 0, bm.bmWidth, bm.bmHeight, graphicsSrc, 0, 0);
          // Make white pixels of the source "transparent" too
          graphicsSrc->SetBkColor(rgb(255, 255, 255));
          graphicsMask->BitBlt(0, 0, bm.bmWidth, bm.bmHeight, graphicsSrc, 0, 0, SRCPAINT);
-         graphicsSrc->SetBkColor(cr);
+         graphicsSrc->SetBkColor(color32);
 
          // Checker the background with white and crBackground
          cr1 = pgraphics->SetTextColor(cr1);

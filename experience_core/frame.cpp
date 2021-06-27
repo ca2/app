@@ -122,10 +122,10 @@ namespace experience
             }
 
 
-            void frame::ColorGlass(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle, const ::color::color & cr, byte bAlpha)
+            void frame::ColorGlass(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle, const ::color::color & color32, byte bAlpha)
             {
 
-               pgraphics->fill_rectangle(rectangle, ::color::color(cr, bAlpha));
+               pgraphics->fill_rectangle(rectangle, ::color::color(color32, bAlpha));
 
             }
 
@@ -337,7 +337,7 @@ namespace experience
 
 //               defer_create_user_schema(schema_button);
 
-//               color32_t crBase = crMoveableBorder;
+//               ::color::color crBase = crMoveableBorder;
 //
 //               color ca;
 //
@@ -443,7 +443,7 @@ namespace experience
             }
 
 
-            //color32_t frame::get_style_moveable_border_color(::user::enum_style estyle)
+            //::color::color frame::get_style_moveable_border_color(::user::enum_style estyle)
             //{
             //   switch(m_pframewindow->m_estyle)
             //   {

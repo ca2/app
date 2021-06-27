@@ -343,40 +343,40 @@ namespace filemanager
    }
 
 
-   color32_t folder_list::get_background_color()
+   ::color::color folder_list::get_background_color()
    {
 
       if (filemanager_data()->is_topic())
       {
 
-         color32_t cr = 0;
+         ::color32_t color32 = 0;
 
          if (filemanager_document()->m_emode == ::userfs::mode_saving)
          {
 
-            cr = argb(190, 255, 180, 90);
+            color32 = argb(190, 255, 180, 90);
 
          }
          else if (filemanager_document()->m_emode == ::userfs::mode_import)
          {
 
-            cr = argb(190, 90, 177, 255);
+            color32 = argb(190, 90, 177, 255);
 
          }
          else if (filemanager_document()->m_emode == ::userfs::mode_export)
          {
 
-            cr = argb(190, 255, 255, 177);
+            color32 = argb(190, 255, 255, 177);
 
          }
          else if (filemanager_document()->m_emode == ::userfs::mode_import)
          {
 
-            cr = argb(190, 180, 255, 90);
+            color32 = argb(190, 180, 255, 90);
 
          }
 
-         return cr;
+         return color32;
 
       }
       else

@@ -30,7 +30,7 @@ namespace user
       ::draw2d::fastblur                     m_blur;
       index_map < ::image_pointer >          m_mapBlur;
       index_map < string >                   m_mapText;
-      index_map < color32_t >                 m_mapBackColor;
+      index_map < ::color::color >                 m_mapBackColor;
       ::draw2d::fastblur                     m_blurIcon;
       index_map < ::image_pointer >          m_mapIconBlur;
       double                                 m_dIconSaturation;

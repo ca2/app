@@ -22,7 +22,7 @@ bool nanosvg(::image * pimage, NSVGimage * psvgimage)
 
    int h = (int)pimage->height();
 
-   color32_t * pdata = nullptr;
+   ::color::color * pdata = nullptr;
 
    int iScan = 0;
 

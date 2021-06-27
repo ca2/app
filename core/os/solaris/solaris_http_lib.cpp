@@ -22,7 +22,7 @@
  *
  * Revision 3.2  1996/04/24  13:56:08  dl
  * added proxy support through m_strProxyServer & m_iHttpProxyPort
- * some httpd *needs* cr+lf so provide them
+ * some httpd *needs* color32+lf so provide them
  * simplification + cleanup
  *
  * Revision 3.1  1996/04/18  13:53:13  dl

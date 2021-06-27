@@ -133,10 +133,10 @@ namespace user
    }
 
 
-   color32_t menu_button::_001GetButtonBackgroundColor()
+   ::color::color menu_button::_001GetButtonBackgroundColor()
    {
 
-      color32_t crBackground = ::user::button::_001GetButtonBackgroundColor();
+      ::color::color crBackground = ::user::button::_001GetButtonBackgroundColor();
 
       crBackground &= 0x00ffffff;
 

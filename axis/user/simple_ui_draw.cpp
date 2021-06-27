@@ -377,9 +377,9 @@ namespace simple_ui
 
       pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-      color32_t crOut;
+      ::color::color crOut;
 
-      color32_t crIn;
+      ::color::color crIn;
 
       /*   if (eschema == ::hotplugin::plugin::schema_darker)
          {

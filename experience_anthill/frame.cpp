@@ -153,7 +153,7 @@ namespace experience
 
                /*Gdiplus::Graphics g((HDC) pgraphics->get_os_data());
                g.SetCompositingMode(Gdiplus::CompositingModeSourceOver);
-               Gdiplus::SolidBrush solidBrush(Gdiplus::Color(bAlpha, colorref_get_r_value(cr), colorref_get_g_value(cr), colorref_get_b_value(cr)));
+               Gdiplus::SolidBrush solidBrush(Gdiplus::Color(bAlpha, colorref_get_r_value(color32), colorref_get_g_value(color32), colorref_get_b_value(color32)));
                g.FillRectangle(&solidBrush, lprect->left, lprect->top, lprect->right - lprect->left, lprect->bottom - lprect->top);*/
 
                pgraphics->fill_rectangle(rectangle, color & opacity);

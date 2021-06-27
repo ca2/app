@@ -194,7 +194,7 @@ namespace account
 
       draw.simple_ui_draw_frame_window_rect(r, pgraphics);
 
-      color32_t crOut, crIn, crBorderOut, crBorderIn, cr, crBk;
+      ::color::color crOut, crIn, crBorderOut, crBorderIn, color32, crBk;
 
       //       if (is_hover() || m_bDown || m_bMouseMove)
       /*       {
@@ -260,13 +260,13 @@ namespace account
 
 #if CA2_PLATFORM_VERSION == CA2_BASIS
 
-      //cr = argb(223, 90, 50, 80);
-      cr = argb(255, 90, 50, 80);
+      //color32 = argb(223, 90, 50, 80);
+      color32 = argb(255, 90, 50, 80);
 
 #else
 
-      //cr = argb(223, 49, 90, 23);
-      cr = argb(255, 49, 90, 23);
+      //color32 = argb(223, 49, 90, 23);
+      color32 = argb(255, 49, 90, 23);
 
 #endif
 
@@ -318,7 +318,7 @@ namespace account
       else if (m_picon95)
       {
 
-         pgraphics->draw_ca2_border2((int)(49 * rx), (int)(49 * ry) - 11, (int)((91 + 2 + 2) * ry), 1, 1, crBk, cr, crBorderOut, crBorderIn);
+         pgraphics->draw_ca2_border2((int)(49 * rx), (int)(49 * ry) - 11, (int)((91 + 2 + 2) * ry), 1, 1, crBk, color32, crBorderOut, crBorderIn);
 
          pgraphics->draw(::rectangle_i32(::point_i32((int)(49 * rx) + 2, (int)(49 * ry) + 2 - 11), ::size_i32((int)((91 + 2 + 2) * ry), (int)((91 + 2 + 2) * ry))), m_picon95);
 
@@ -326,7 +326,7 @@ namespace account
       else
       {
 
-         pgraphics->draw_ca2_with_border2((int)(49 * rx), (int)(49 * ry) - 23, (int)((91 + 2 + 2) * ry), 1, 1, crBk, cr, crBorderOut, crBorderIn);
+         pgraphics->draw_ca2_with_border2((int)(49 * rx), (int)(49 * ry) - 23, (int)((91 + 2 + 2) * ry), 1, 1, crBk, color32, crBorderOut, crBorderIn);
 
       }
 

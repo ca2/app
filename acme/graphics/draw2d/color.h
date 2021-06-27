@@ -37,10 +37,10 @@ inline string _hex_color(const COLOR32 & c)
 inline bool operator == (const COLOR32 & color1, const COLOR32 & color2) { return color1.u32 == color2.u32; }
 
 
-auto inline red(color32_t rgba) { return ((byte)(rgba & 0xff)); }
-auto inline green(color32_t rgba) { return ((byte)((rgba >> 8) & 0xff)); }
-auto inline blue(color32_t rgba) { return ((byte)((rgba >> 16) & 0xff)); }
-auto inline alpha(color32_t rgba) { return ((byte)((rgba >> 24) & 0xff)); }
+auto inline red(::color32_t rgba) { return ((byte)(rgba & 0xff)); }
+auto inline green(::color32_t rgba) { return ((byte)((rgba >> 8) & 0xff)); }
+auto inline blue(::color32_t rgba) { return ((byte)((rgba >> 16) & 0xff)); }
+auto inline alpha(::color32_t rgba) { return ((byte)((rgba >> 24) & 0xff)); }
 
 
 namespace color
@@ -85,7 +85,7 @@ namespace color
       color() {}
       color(e_zero_init) { red = green = blue = alpha = 0; }
       color(byte r, byte g, byte b, byte a = 255) { red = r; green = g; blue = b; alpha = a; }
-      color(color32_t cr) { u32 = cr; }
+      color(::color32_t color32) { u32 = color32; }
       color(const ::color::color & color) { u32 = color.u32; }
       color(const ::color::color& color, const opacity& opacity) { u32 = color.u32; alpha = opacity.get_alpha(); }
 
@@ -116,7 +116,7 @@ namespace color
       color(enum_color ecolor, byte A = 255);
       color(const hls & hls, byte A = 255);
       //color(const COLOR32 & color32, int flags = 0) { this->u32 = color32.u32;  m_flags = flags; }
-      //color(color32_t cr, int flags = 0) { this->u32 = cr;  m_flags = flags; }
+      //color(::color32_t color32, int flags = 0) { this->u32 = color32;  m_flags = flags; }
       //color(byte R, byte G, byte B, byte A = 255);
 
 
@@ -134,8 +134,8 @@ namespace color
       void hue_rate(double dRateL);
       void lightness_rate(double dRateL);
       void saturation_rate(double dRateL);
-      void set_rgb(color32_t cr);
-      void set_argb(color32_t cr);
+      void set_rgb(::color32_t color32);
+      void set_argb(::color32_t color32);
       void set_bgr(::u32 dw);
       void get_hls(double & dHue, double & dLightness, double & dSaturation) const;
 
@@ -178,25 +178,26 @@ namespace color
 
       void make_black_and_white();
 
-      operator color32_t() const;
+      operator ::color32_t() const { return u32; }
+      operator ::color32_t& () { return u32; }
 
       color & operator = (const ::color::color & color);
-      color & operator = (color32_t cr);
+      color & operator = (::color32_t color32);
       color & operator = (enum_color ecolor);
       color & operator = (const hls & hls);
 
       bool parse_color(const char * psz);
 
-      void set_COLORREF(color32_t cr);
+      void set_COLORREF(::color32_t color32);
 
       void hue_offset(double dRadians);
 
 
       inline static bool similar_color_component(double d1, double d2) { return fabs(d2 - d1) < (1.0 / 255.0); }
 
-      bool operator == (const ::color::color & color) const { return memcmp(this, &color, sizeof(color)) == 0; }
-      bool operator == (color32_t cr) const { return this->operator color32_t() == cr; }
-      bool operator == (enum_color ecolor) const { return this->operator color32_t() == ::color::color(ecolor).operator color32_t(); }
+      bool operator == (const ::color::color& color) const { return u32 == color.u32; }
+      bool operator == (::color32_t color32) const { return u32 == color32; }
+      bool operator == (enum_color ecolor) const { return u32 == ::color::color(ecolor).u32; }
       bool operator == (const hls & hls) const
       {
 
@@ -207,7 +208,7 @@ namespace color
             && similar_color_component(hlsThis.m_dS, hls.m_dS);
       }
       bool operator != (const ::color::color & color) const { return !operator == (color); }
-      bool operator != (color32_t cr) const { return !operator == (cr); }
+      bool operator != (::color32_t color32) const { return !operator == (color32); }
       bool operator != (enum_color ecolor) const { return !operator == (ecolor); }
       bool operator != (const hls & hls) const { return !operator == (hls); }
 
@@ -249,17 +250,6 @@ namespace color
       double get_saturation() const { return get_hls().m_dS; }
       double get_hue() const { return get_hls().m_dH; }
 
-//      color operator +(const ::opacity& opacity) const
-//      {
-//
-//         color color(*this);
-//
-//         color.alpha = opacity.get_alpha();
-//
-//         return color;
-//
-//      }
-
       
       color & operator &=(const ::opacity & opacity)
       {
@@ -276,7 +266,7 @@ namespace color
 
          color color(*this);
 
-         color &= opacity.get_alpha();
+         color &= opacity;
 
          return color;
 
@@ -306,11 +296,11 @@ namespace color
 #define LOBYTE(w)           ((byte)(((dword_ptr)(w)) & 0xff))
 
 
-CLASS_DECL_ACME color32_t alpha_color(byte bAlpha, color32_t cr);
-CLASS_DECL_ACME color32_t alpha_color(byte bAlpha, enum_color ecolor);
-CLASS_DECL_ACME color32_t opaque_color(color32_t cr);
-CLASS_DECL_ACME color32_t pure_color(enum_color ecolor);
-CLASS_DECL_ACME color32_t opaque_color(enum_color ecolor);
+CLASS_DECL_ACME ::color::color alpha_color(byte bAlpha, ::color32_t color);
+CLASS_DECL_ACME ::color::color alpha_color(byte bAlpha, enum_color ecolor);
+CLASS_DECL_ACME ::color::color opaque_color(::color32_t color32);
+CLASS_DECL_ACME ::color::color pure_color(enum_color ecolor);
+CLASS_DECL_ACME ::color::color opaque_color(enum_color ecolor);
 
 
 #define rgb_get_r_value(rgb)      (LOBYTE(rgb))

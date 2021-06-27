@@ -55,7 +55,7 @@ namespace draw2d_opengl
       void SetIconMask(::draw2d::icon * picon, i32 cx, i32 cy);
 
 
-      //bool color_blend(color32_t cr, byte bAlpha);
+      //bool color_blend(color32_t color32, byte bAlpha);
       //bool Blend(imagepimage, ::image::image * pimageA, i32 A);
       //void BitBlt(::image::image * pimage, i32 op);
       //color32_t GetAverageColor();
@@ -68,8 +68,8 @@ namespace draw2d_opengl
       //void xor(::image::image * pimage);
 
       //void ToAlpha(i32 i);
-      //void ToAlphaAndFill(i32 i, color32_t cr);
-      //void GrayToARGB(color32_t cr);
+      //void ToAlphaAndFill(i32 i, color32_t color32);
+      //void GrayToARGB(color32_t color32);
 
       //void from_alpha();
       //void mult_alpha(::image::image * pimageWork, bool bPreserveAlpha = true);

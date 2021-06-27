@@ -40,26 +40,26 @@ namespace windows
       virtual i32 impl_get_file_image(const image_key & key) override;
 
 
-      i32 get_file_image(image_key key, const itemidlist & pidlAbsolute, const itemidlist & pidlChild, const unichar * pcszExtra, color32_t crBk);
+      i32 get_file_image(image_key key, const itemidlist & pidlAbsolute, const itemidlist & pidlChild, const unichar * pcszExtra, ::color::color crBk);
 
       i32 get_image_by_file_extension(image_key & key);
 
 
-      i32 add_icon_set(SHFILEINFOW * pinfo16, SHFILEINFOW * pinfo48, color32_t crBk, bool & bUsedImageList16, bool & bUsedImageList48, int iImage);
-      i32 add_icon_info(int iSize, SHFILEINFOW * pinfo16, SHFILEINFOW * pinfo48, color32_t crBk, bool & bUsedImageList16, bool & bUsedImageList48, int iImage);
+      i32 add_icon_set(SHFILEINFOW * pinfo16, SHFILEINFOW * pinfo48, ::color::color crBk, bool & bUsedImageList16, bool & bUsedImageList48, int iImage);
+      i32 add_icon_info(int iSize, SHFILEINFOW * pinfo16, SHFILEINFOW * pinfo48, ::color::color crBk, bool & bUsedImageList16, bool & bUsedImageList48, int iImage);
 
 
-      i32 get_file_image(image_key key, const unichar * pcszExtra, color32_t crBk);
+      i32 get_file_image(image_key key, const unichar * pcszExtra, ::color::color crBk);
 
 
 
-///         virtual i32 get_extension_image(const string & strExtension, e_file_attribute eattribute, e_icon eicon, color32_t crBk = 0) override;
+///         virtual i32 get_extension_image(const string & strExtension, e_file_attribute eattribute, e_icon eicon, ::color::color crBk = 0) override;
 
-      i32 add_icon(int iSize, HICON hicon, color32_t crBk, int iImage);
+      i32 add_icon(int iSize, HICON hicon, ::color::color crBk, int iImage);
 
-      i32 add_icon_path(::file::path path, color32_t crBk, int iImage);
+      i32 add_icon_path(::file::path path, ::color::color crBk, int iImage);
 
-      i32 add_system_icon(int iSize, IImageList * plist, SHFILEINFOW * pinfo, color32_t crBck, bool & bUsedImageList, int iImage);
+      i32 add_system_icon(int iSize, IImageList * plist, SHFILEINFOW * pinfo, ::color::color crBck, bool & bUsedImageList, int iImage);
 
 
       virtual ::user::shell::e_folder get_folder_type(::object * pobject, const unichar * pcszPath) override;
@@ -68,12 +68,12 @@ namespace windows
 
 
 
-      virtual void set_image_ico(string strIconLocation, i32 & iImage, color32_t crBk);
-      virtual void set_image_resource(string strIconLocation, i32 & iImage, const image_key & imagekey, color32_t crBk);
+      virtual void set_image_ico(string strIconLocation, i32 & iImage, ::color::color crBk);
+      virtual void set_image_resource(string strIconLocation, i32 & iImage, const image_key & imagekey, ::color::color crBk);
 
       virtual ::e_status finish(::property_object * pobject) override;
 
-      //int shell::add_hover_image(int iSize, int iImage, color32_t crBk)
+      //int shell::add_hover_image(int iSize, int iImage, ::color::color crBk)
 
    };
 

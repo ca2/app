@@ -399,7 +399,7 @@ namespace userfs
 
 
 
-   color32_t tree::get_background_color()
+   ::color::color tree::get_background_color()
    {
       if (get_document() == nullptr)
       {

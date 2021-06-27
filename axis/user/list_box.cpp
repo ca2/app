@@ -501,7 +501,7 @@ namespace user
 
       }
 
-      color32_t crBorder = argb(255, 0, 0, 0);
+      ::color::color crBorder = argb(255, 0, 0, 0);
 
       ::draw2d::pen_pointer pen(e_create);
 

@@ -140,7 +140,7 @@ public:
    virtual bool fork_blend(const ::point & pointDst, ::image * pimageAlf, const ::point & pointAlf, const ::size & size, byte bA) override;
    virtual bool bitmap_blend(::draw2d::graphics_pointer & pgraphics, const ::rectangle & rectangle) override;
 
-   virtual bool color_blend(color32_t cr, byte bAlpha) override;
+   virtual bool color_blend(color32_t color32, byte bAlpha) override;
    virtual bool BitBlt(::image * pimage, i32 op) override;
    virtual bool BitBlt(int cxParam, int cyParam, ::image * pimage, i32 op) override;
    virtual i32 cos(i32 i, i32 iAngle) override;
@@ -165,8 +165,8 @@ public:
    virtual bool do_xor(::image * pimage) override;
 
    virtual bool ToAlpha(i32 i) override;
-   virtual bool ToAlphaAndFill(i32 i, color32_t cr) override;
-   virtual bool GrayToARGB(color32_t cr) override;
+   virtual bool ToAlphaAndFill(i32 i, color32_t color32) override;
+   virtual bool GrayToARGB(color32_t color32) override;
 
    virtual bool from_alpha() override;
    virtual bool mult_alpha(::image * pimageWork, bool bPreserveAlpha = true) override;
@@ -198,7 +198,7 @@ public:
    virtual bool rotate270flipx() override;
 
 
-   virtual bool set_rgb(color32_t cr) override;
+   virtual bool set_rgb(color32_t color32) override;
    virtual bool set_rgb(i32 R, i32 G, i32 B) override;
    virtual bool tint(::image * pimage, const rgb & rgb) override;
    virtual bool set_rgb_pre_alpha(i32 R, i32 G, i32 B, i32 A) override;
@@ -325,7 +325,7 @@ public:
    virtual bool copy(::image * pimage, i32 x, i32 y) override;
    virtual bool PasteRect(::image * pimage, i32 x, i32 y) override;
 
-   virtual bool fill_rectangle(const ::rectangle & rectangle, color32_t cr) override;
+   virtual bool fill_rectangle(const ::rectangle & rectangle, color32_t color32) override;
 
    virtual bool fill_rectangle(const ::rectangle & rectangle, i32 R, i32 G, i32 B) override;
 
@@ -357,7 +357,7 @@ public:
 
 
    virtual bool create_circle(::image * pimage, int diameter) override;
-   virtual bool create_framed_square(::image * pimage, int inner, int outer, color32_t cr) override;
+   virtual bool create_framed_square(::image * pimage, int inner, int outer, color32_t color32) override;
 
 
    virtual bool invert_rgb(const ::rectangle & rectangle) override;

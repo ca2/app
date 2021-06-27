@@ -157,15 +157,15 @@
             //}
 
 
-            void frame::ColorGlass(::draw2d::graphics_pointer & pgraphics, const RECTANGLE_I32 & lprect, color32_t cr, byte bAlpha)
+            void frame::ColorGlass(::draw2d::graphics_pointer & pgraphics, const RECTANGLE_I32 & lprect, color32_t color32, byte bAlpha)
             {
 
                /*Gdiplus::Graphics g((HDC) pgraphics->get_os_data());
                g.SetCompositingMode(Gdiplus::CompositingModeSourceOver);
-               Gdiplus::SolidBrush solidBrush(Gdiplus::Color(bAlpha, colorref_get_r_value(cr), colorref_get_g_value(cr), colorref_get_b_value(cr)));
+               Gdiplus::SolidBrush solidBrush(Gdiplus::Color(bAlpha, colorref_get_r_value(color32), colorref_get_g_value(color32), colorref_get_b_value(color32)));
                g.FillRectangle(&solidBrush, lprect->left, lprect->top, lprect->right - lprect->left, lprect->bottom - lprect->top);*/
 
-               pgraphics->color_blend(lprect, cr, bAlpha);
+               pgraphics->color_blend(lprect, color32, bAlpha);
 
             }
 
@@ -288,21 +288,21 @@
             }
 
 
-            void frame::set_moveable_border_color(color32_t cr)
+            void frame::set_moveable_border_color(color32_t color32)
             {
-               m_colorMoveableBorder = cr;
+               m_colorMoveableBorder = color32;
 
                ::color::color color;
 
-               color.set_rgb(cr);
+               color.set_rgb(color32);
                color.hls_rate(0.0, 0.5, 0.0);
                m_colorMoveableBorderHilight = color.get_rgb() | (0xff << 24);
 
-               color.set_rgb(cr);
+               color.set_rgb(color32);
                color.hls_rate(0.0, -0.3, 0.0);
                m_colorMoveableBorderShadow = color.get_rgb() | (0xff << 24);
 
-               color.set_rgb(cr);
+               color.set_rgb(color32);
                color.hls_rate(8.0, -0.8, 0.0);
                m_colorMoveableBorderDkShadow = color.get_rgb() | (0xff << 24);
 

@@ -80,7 +80,7 @@ namespace filemanager
       virtual count _001GetItemCount() override;
       virtual void _001InsertColumns() override;
 
-      virtual color32_t get_background_color();
+      virtual ::color::color get_background_color();
 
    };
 

@@ -169,7 +169,7 @@ namespace html
    }
 
 
-   style * style_sheet::rfind_border_color(e_tag etag, const string & strClass, const string & strSubClass, id idName, color32_t & cr)
+   style * style_sheet::rfind_border_color(e_tag etag, const string & strClass, const string & strSubClass, id idName, ::color::color & color32)
    {
 
       for(index i = m_stylea.get_upper_bound(); i >= 0; i--)
@@ -177,7 +177,7 @@ namespace html
 
          class style & style = *m_stylea.element_at(i);
 
-         if(style.matches_border_color(etag, strClass, strSubClass, idName, cr))
+         if(style.matches_border_color(etag, strClass, strSubClass, idName, color32))
             return &style;
 
       }
@@ -187,10 +187,10 @@ namespace html
    }
 
 
-   const style * style_sheet::rfind_border_color(e_tag etag, const string & strClass, const string & strSubClass, id idName, color32_t & cr) const
+   const style * style_sheet::rfind_border_color(e_tag etag, const string & strClass, const string & strSubClass, id idName, ::color::color & color32) const
    {
 
-      return ((style_sheet *) this)->rfind_border_color(etag, strClass, strSubClass, idName, cr);
+      return ((style_sheet *) this)->rfind_border_color(etag, strClass, strSubClass, idName, color32);
 
    }
 

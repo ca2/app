@@ -408,14 +408,14 @@ namespace draw2d_opengl
    //}
 
 
-   //void image::ToAlphaAndFill(i32 i, color32_t cr)
+   //void image::ToAlphaAndFill(i32 i, color32_t color32)
    //{
    //   byte *dst=(byte*)m_pcolorref;
    //   i64 size = area();
 
-   //   byte uchB = ::blue(cr);
-   //   byte uchG = ::green(cr);
-   //   byte uchR = ::red(cr);
+   //   byte uchB = ::blue(color32);
+   //   byte uchG = ::green(color32);
+   //   byte uchR = ::red(color32);
 
    //   while ( size-- )
    //   {
@@ -427,14 +427,14 @@ namespace draw2d_opengl
    //   }
    //}
 
-   //void image::GrayToARGB(color32_t cr)
+   //void image::GrayToARGB(color32_t color32)
    //{
    //   byte *dst=(byte*)m_pcolorref;
    //   i64 size = area();
 
-   //   ::u32 dwB = ::blue(cr);
-   //   ::u32 dwG = ::green(cr);
-   //   ::u32 dwR = ::red(cr);
+   //   ::u32 dwB = ::blue(color32);
+   //   ::u32 dwG = ::green(color32);
+   //   ::u32 dwR = ::red(color32);
 
    //   while (size-- > 0)
    //   {
@@ -633,15 +633,15 @@ namespace draw2d_opengl
    //   ::memcpy_dup ( m_pcolorref, pimage->get_data(), (size_t) area() * sizeof(color32_t) );
    //}
 
-   //bool image::color_blend(color32_t cr, byte bAlpha)
+   //bool image::color_blend(color32_t color32, byte bAlpha)
    //{
 
    //   byte *dst=(byte*)m_pcolorref;
    //   i64 size = area();
 
-   //   ::u32 dwB = ::blue(cr);
-   //   ::u32 dwG = ::green(cr);
-   //   ::u32 dwR = ::red(cr);
+   //   ::u32 dwB = ::blue(color32);
+   //   ::u32 dwG = ::green(color32);
+   //   ::u32 dwR = ::red(color32);
    //
    //   ::u32 dwB_ = dwB << 8;
    //   ::u32 dwG_ = dwG << 8;

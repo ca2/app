@@ -153,7 +153,7 @@ namespace draw3d
                ca.set_hls(fmod(__double(::get_millis()) + dPeriod / 2,dPeriod) / dPeriod,0.84 - r / 2.0,1.0 - r);
             }
 
-            color32_t clr = ca.get_rgb();
+            ::color::color clr = ca.get_rgb();
 
 
             pen->create_solid((1.05 - r) * 10.0,argb((int)(dA * (255.0 - r * 200.0)),ca.red,ca.green,ca.blue));
@@ -314,7 +314,7 @@ namespace draw3d
                ca.set_hls(fmod(__double(::get_millis()) + dPeriod / 2,dPeriod) / dPeriod,0.84 - r / 2.0,1.0 - r);
             }
 
-            color32_t clr = ca.get_rgb();
+            ::color::color clr = ca.get_rgb();
 
 
             /*pen->create_solid((1.05 - r) * 10.0,argb((int)(dA * (255.0 - r * 200.0)),ca.m_iR,ca.m_iG,ca.m_iB));

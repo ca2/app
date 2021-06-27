@@ -1674,13 +1674,13 @@ namespace html
    }
 
 
-   //bool element::get_color(color32_t & cr, ::user::e_color ecolor, ::user::style_context * pcontext)
+   //bool element::get_color(::color::color & color32, ::user::e_color ecolor, ::user::style_context * pcontext)
    //{
 
    //   if(ecolor == ::user::color_text)
    //   {
 
-   //      if (m_pstyle->get_color("color", "", m_pdata, this, cr))
+   //      if (m_pstyle->get_color("color", "", m_pdata, this, color32))
    //      {
 
    //         return true;
@@ -1691,7 +1691,7 @@ namespace html
    //   else if(ecolor == ::user::color_background)
    //   {
 
-   //      if (m_pstyle->get_color("background-color", "", m_pdata, this, cr))
+   //      if (m_pstyle->get_color("background-color", "", m_pdata, this, color32))
    //      {
 
    //         return true;
@@ -1700,14 +1700,14 @@ namespace html
 
    //   }
 
-   //   if (m_pparent != nullptr && m_pparent->get_color(cr, ecolor, pcontext))
+   //   if (m_pparent != nullptr && m_pparent->get_color(color32, ecolor, pcontext))
    //   {
 
    //      return true;
 
    //   }
 
-   //   return m_pdata->m_pcoredata->m_pform->get_color(cr, ecolor, pcontext);
+   //   return m_pdata->m_pcoredata->m_pform->get_color(color32, ecolor, pcontext);
 
    //}
 
@@ -1715,15 +1715,15 @@ namespace html
    ::color::color element::get_color(::user::style * pstyle, ::css::enum_color ecolor)
    {
 
-      color32_t cr;
+      ::color32_t color32;
 
       if(ecolor == ::css::color_text)
       {
 
-         if (m_pstyle->get_color("color", "", m_pdata, this, cr))
+         if (m_pstyle->get_color("color", "", m_pdata, this, color32))
          {
 
-            return cr;
+            return color32;
 
          }
 
@@ -1733,10 +1733,10 @@ namespace html
       else if(ecolor == ::css::color_background)
       {
 
-         if (m_pstyle->get_color("background-color", "", m_pdata, this, cr))
+         if (m_pstyle->get_color("background-color", "", m_pdata, this, color32))
          {
 
-            return cr;
+            return color32;
 
          }
 
@@ -1751,7 +1751,7 @@ namespace html
 
       return ::color::color();
 
-      //return m_pdata->m_pcoredata->m_pform->get_color(cr, ecolor);
+      //return m_pdata->m_pcoredata->m_pform->get_color(color32, ecolor);
 
    }
 

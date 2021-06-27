@@ -370,7 +370,7 @@ namespace core
 
       //virtual __pointer(::user::menu_interaction) create_menu_button(::user::style_pointer & pstyle, ::user::menu_item * pitem) override;
 
-      //virtual color32_t get_default_color(u64 u);
+      //virtual ::color::color get_default_color(u64 u);
 
       ////virtual ::size_i32 get_window_minimum_size();
 

@@ -98,8 +98,8 @@ namespace user
 //#endif
       u32 GetExtendedStyle();
       u32 SetExtendedStyle(u32 dwExStyle);
-      color32_t GetInsertMarkColor();
-      color32_t SetInsertMarkColor(color32_t clrNew);
+      ::color::color GetInsertMarkColor();
+      ::color::color SetInsertMarkColor(::color::color clrNew);
 
    // Operations
    public:

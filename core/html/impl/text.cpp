@@ -635,9 +635,9 @@ namespace html
 
          ::draw2d::graphics_pointer & pgraphics = pdata->m_pcoredata->m_pgraphics;
 
-         color32_t crBkSel = rgb(120, 240, 150);
+         ::color::color crBkSel = rgb(120, 240, 150);
 
-         color32_t crSel = rgb(10, 30, 20);
+         ::color::color crSel = rgb(10, 30, 20);
 
          e_tag etag = m_pelemental->m_etag;
 
@@ -663,50 +663,50 @@ namespace html
 
             pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-            color32_t cr = 0;
+            ::color32_t color32 = 0;
 
             double d;
 
             if (m_pelemental->m_pstyle->get_alpha("", pdata, m_pelemental, d))
             {
-               if(m_bHover && m_pelemental->m_pstyle->get_color("background-color", "hover", pdata, m_pelemental, cr))
+               if(m_bHover && m_pelemental->m_pstyle->get_color("background-color", "hover", pdata, m_pelemental, color32))
                {
                   App(pdata->get_application()).imaging().color_blend(
                   pgraphics,
                   rectangle,
-                  cr,
+                  color32,
                   maximum(0, minimum(255, (byte)(d * 255))));
                }
-               else if(has_link() && m_pelemental->m_pstyle->get_color("background-color", "link", pdata, m_pelemental, cr))
+               else if(has_link() && m_pelemental->m_pstyle->get_color("background-color", "link", pdata, m_pelemental, color32))
                {
                   App(pdata->get_application()).imaging().color_blend(
                   pgraphics,
                   rectangle,
-                  cr,
+                  color32,
                   maximum(0, minimum(255, (byte)(d * 255))));
                }
-               else if (m_pelemental->m_pstyle->get_color("background-color", "", pdata, m_pelemental, cr))
+               else if (m_pelemental->m_pstyle->get_color("background-color", "", pdata, m_pelemental, color32))
                {
                   App(pdata->get_application()).imaging().color_blend(
                   pgraphics,
                   rectangle,
-                  cr,
+                  color32,
                   maximum(0, minimum(255, (byte)(d * 255))));
                }
             }
             else
             {
-               if(m_bHover && m_pelemental->m_pstyle->get_color("background-color", "hover", pdata, m_pelemental, cr))
+               if(m_bHover && m_pelemental->m_pstyle->get_color("background-color", "hover", pdata, m_pelemental, color32))
                {
-                  pgraphics->fill_rectangle(rectangle, cr);
+                  pgraphics->fill_rectangle(rectangle, color32);
                }
-               else if(has_link() && m_pelemental->m_pstyle->get_color("background-color", "link", pdata, m_pelemental, cr))
+               else if(has_link() && m_pelemental->m_pstyle->get_color("background-color", "link", pdata, m_pelemental, color32))
                {
-                  pgraphics->fill_rectangle(rectangle, cr);
+                  pgraphics->fill_rectangle(rectangle, color32);
                }
-               else if (m_pelemental->m_pstyle->get_color("background-color", "", pdata, m_pelemental, cr))
+               else if (m_pelemental->m_pstyle->get_color("background-color", "", pdata, m_pelemental, color32))
                {
-                  pgraphics->fill_rectangle(rectangle, cr);
+                  pgraphics->fill_rectangle(rectangle, color32);
                }
             }
          }
@@ -716,29 +716,29 @@ namespace html
          ::html::impl::element::_001OnDraw(pdata);
 
 
-         color32_t cr = 0;
+         ::color32_t color32 = 0;
          bool bOpaque;
-         color32_t crBkColor;
-         if(m_bHover && m_pelemental->m_pstyle->get_color("background-color", "hover", pdata, m_pelemental, cr))
+         ::color::color crBkColor;
+         if(m_bHover && m_pelemental->m_pstyle->get_color("background-color", "hover", pdata, m_pelemental, color32))
          {
             bOpaque = true;
             //pgraphics->SetBkMode(OPAQUE);
-            //pgraphics->SetBkColor(cr);
-            crBkColor = cr;
+            //pgraphics->SetBkColor(color32);
+            crBkColor = color32;
          }
-         else if(has_link() && m_pelemental->m_pstyle->get_color("background-color", "link", pdata, m_pelemental, cr))
+         else if(has_link() && m_pelemental->m_pstyle->get_color("background-color", "link", pdata, m_pelemental, color32))
          {
             bOpaque = true;
             //pgraphics->SetBkMode(OPAQUE);
-            //pgraphics->SetBkColor(cr);
-            crBkColor = cr;
+            //pgraphics->SetBkColor(color32);
+            crBkColor = color32;
          }
-         else if (m_pelemental->m_pstyle->get_color("background-color", "", pdata, m_pelemental, cr))
+         else if (m_pelemental->m_pstyle->get_color("background-color", "", pdata, m_pelemental, color32))
          {
             bOpaque = true;
             //pgraphics->SetBkMode(OPAQUE);
-            //pgraphics->SetBkColor(cr);
-            crBkColor = cr;
+            //pgraphics->SetBkColor(color32);
+            crBkColor = color32;
          }
          else
          {
@@ -748,21 +748,21 @@ namespace html
 
          ::draw2d::brush_pointer brushText(e_create);
 
-         if(m_bHover && m_pelemental->m_pstyle->get_color("color", "hover", pdata, m_pelemental, cr))
+         if(m_bHover && m_pelemental->m_pstyle->get_color("color", "hover", pdata, m_pelemental, color32))
          {
-            brushText->create_solid(cr);
+            brushText->create_solid(color32);
          }
-         else if(has_link() && m_pelemental->m_pstyle->get_color("color", "link", pdata, m_pelemental, cr))
+         else if(has_link() && m_pelemental->m_pstyle->get_color("color", "link", pdata, m_pelemental, color32))
          {
-            brushText->create_solid(cr);
+            brushText->create_solid(color32);
          }
          else if(has_link())
          {
             brushText->create_solid(argb(255, 127, 127, 255));
          }
-         else if(m_pelemental->m_pstyle->get_color("color", "", pdata, m_pelemental, cr))
+         else if(m_pelemental->m_pstyle->get_color("color", "", pdata, m_pelemental, color32))
          {
-            brushText->create_solid(cr);
+            brushText->create_solid(color32);
          }
          else
          {
@@ -819,7 +819,7 @@ namespace html
 
          if(!pdata->m_pcoredata->m_bEdit)
          {
-//            brushText->create_solid(cr);
+//            brushText->create_solid(color32);
             pgraphics->set(brushText);
          }
 
@@ -851,7 +851,7 @@ namespace html
                   strExtent2.replace("\t","   ");
                   strExtent3.replace("\t","   ");
                   //pgraphics->SetBkMode(TRANSPARENT);
-                  brushText->create_solid(cr);
+                  brushText->create_solid(color32);
                   pgraphics->set(brushText);
                   //pgraphics->SetBkColor(crBkSel);
                   pgraphics->text_out(left,y,strExtent1);
@@ -868,8 +868,8 @@ namespace html
                   pgraphics->set(brushText);
                   pgraphics->text_out(left + size1.cx,y,strExtent2);
 
-                  //            pgraphics->set_text_color(cr);
-                  brushText->create_solid(cr);
+                  //            pgraphics->set_text_color(color32);
+                  brushText->create_solid(color32);
                   pgraphics->set(brushText);
                   //pgraphics->SetBkColor(rgb(120, 240, 180));
                   //          pgraphics->SetBkMode(TRANSPARENT);
@@ -961,19 +961,19 @@ namespace html
       }
 
 
-      bool text::get_color(color32_t & cr)
+      bool text::get_color(::color::color & color32)
       {
 
          if(has_link())
          {
 
-            cr =  argb(255, 127, 127, 255);
+            color32 =  argb(255, 127, 127, 255);
 
          }
          else
          {
 
-            cr = argb(255, 0, 0, 0);
+            color32 = argb(255, 0, 0, 0);
 
          }
 

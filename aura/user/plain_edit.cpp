@@ -370,7 +370,7 @@ namespace user
       status < ::color::color > crBk;
       status < ::color::color > crBkSel;
       status < ::color::color > crSel;
-      status < ::color::color > cr;
+      status < ::color::color > color32;
 
       ::rectangle_f64 rectangleClient = get_client_rect();
 
@@ -393,7 +393,7 @@ namespace user
 
       }
 
-      cr = get_color(pstyle, e_element_text);
+      color32 = get_color(pstyle, e_element_text);
       crBk = get_color(pstyle, e_element_background);
       crSel = get_color(pstyle, e_element_text, e_state_selected);
       crBkSel = get_color(pstyle, e_element_background, e_state_selected);
@@ -537,7 +537,7 @@ namespace user
 
          {
 
-            color32_t crOverride = argb(255, 0, 0, 0);
+            ::color::color crOverride = argb(255, 0, 0, 0);
 
             bool bOverride = false;
 
@@ -6193,7 +6193,7 @@ finished_update:
    }
 
 
-   bool plain_edit::get_line_color(color32_t & cr, const string & strLine)
+   bool plain_edit::get_line_color(::color::color & color32, const string & strLine)
    {
 
       return false;

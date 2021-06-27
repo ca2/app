@@ -88,7 +88,7 @@ namespace graphics
 //
 //            pimage->map();
 //
-//            pimage->m_iScan = sizeWindow.width() * sizeof(color32_t);
+//            pimage->m_iScan = sizeWindow.width() * sizeof(::color::color);
 //
 //            pimage->m_size = sizeWindow;
 //

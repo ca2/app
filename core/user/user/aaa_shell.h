@@ -52,12 +52,12 @@ namespace user
          string                        m_strExtension;
 
          //oswindow                      m_oswindow;
-         color32_t                      m_cr;
+         ::color::color                      m_cr;
 
 
          image_key();
          image_key(const image_key& imagekey);
-         image_key(const string& strPath, const string& strShellThemePrefix, e_file_attribute eattribute, e_icon eicon, color32_t crBk = 0);
+         image_key(const string& strPath, const string& strShellThemePrefix, e_file_attribute eattribute, e_icon eicon, ::color::color crBk = 0);
          virtual ~image_key();
 
 
@@ -165,8 +165,8 @@ namespace user
       virtual void on_add_default_file_image();
 
 
-      virtual i32 get_file_extension_image(const string & strExtension, e_file_attribute eattribute, e_icon eicon, color32_t crBk = 0);
-      virtual i32 get_file_image(const string & strPath, e_file_attribute eattribute, e_icon eicon, color32_t crBk = 0);
+      virtual i32 get_file_extension_image(const string & strExtension, e_file_attribute eattribute, e_icon eicon, ::color::color crBk = 0);
+      virtual i32 get_file_image(const string & strPath, e_file_attribute eattribute, e_icon eicon, ::color::color crBk = 0);
       virtual i32 create_file_icon_image(const string & strPath, e_file_attribute eattribute, e_icon eicon, string strIcoLocation);
 
 
@@ -185,10 +185,10 @@ namespace user
       virtual e_folder get_folder_type(::object * pobject, const widechar * pcszPath);
       virtual e_folder get_folder_type(::object * pobject, const char * pcszPath);
 
-      int add_hover_image(int iSize, int iIndex, color32_t crBk);
+      int add_hover_image(int iSize, int iIndex, ::color::color crBk);
 
 
-      virtual i32 add_icon_path(::file::path path, color32_t crBk, int iImage);
+      virtual i32 add_icon_path(::file::path path, ::color::color crBk, int iImage);
 
 
       virtual ::e_status finish(::property_object * pobject) override;

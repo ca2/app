@@ -94,7 +94,7 @@ namespace user
 
       virtual void _001OnButtonDrawNormal(::draw2d::graphics_pointer & pgraphics);
 
-      virtual color32_t _001GetButtonBackgroundColor();
+      virtual ::color::color _001GetButtonBackgroundColor();
 
       virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
       virtual void _002OnDraw(::draw2d::graphics_pointer & pgraphics);
@@ -141,7 +141,7 @@ namespace user
       virtual void set_stock_icon(e_stock_icon eicon) override;
       virtual e_stock_icon get_stock_icon() override;
 
-      virtual color32_t get_button_text_color();
+      virtual ::color::color get_button_text_color();
 
 
       virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;

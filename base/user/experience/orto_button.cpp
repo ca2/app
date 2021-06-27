@@ -44,7 +44,7 @@ namespace experience
 
       }
 
-      color32_t crText;
+      ::color::color crText;
 
       if (!is_window_enabled())
       {

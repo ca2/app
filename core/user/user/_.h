@@ -43,7 +43,7 @@ namespace user
    class list_item;
    class list_column;
 
-   //CLASS_DECL_CORE color32_t get_system_app_background_color();
+   //CLASS_DECL_CORE ::color::color get_system_app_background_color();
 
    //CLASS_DECL_CORE bool is_system_dark_mode();
 

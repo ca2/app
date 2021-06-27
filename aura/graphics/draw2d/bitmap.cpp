@@ -276,17 +276,17 @@ void vertical_swap(pixmap * ppixmap)
    if (iStride <= 0)
    {
 
-      iStride = ppixmap->width() * sizeof(color32_t);
+      iStride = ppixmap->width() * sizeof(::color::color);
 
    }
 
-   int w = iStride / sizeof(color32_t);
+   int w = iStride / sizeof(::color::color);
 
    int h = ppixmap->height();
 
-   int wBytes = ppixmap->width() * sizeof(color32_t);
+   int wBytes = ppixmap->width() * sizeof(::color::color);
 
-   color32_t * pdata = ppixmap->colorref();
+   ::color::color * pdata = ppixmap->colorref();
 
    u8 * pline1 = (u8 *) pdata;
 
@@ -326,7 +326,7 @@ void vertical_swap(pixmap * ppixmap)
 }
 
 
-void vertical_swap_copy_colorref(color32_t * pcolorrefDst, int cxParam,int cyParam,int iStrideDst,const color32_t * pcolorrefSrc,int iStrideSrc)
+void vertical_swap_copy_colorref(::color::color * pcolorrefDst, int cxParam,int cyParam,int iStrideDst,const ::color::color * pcolorrefSrc,int iStrideSrc)
 {
 
    try
@@ -335,18 +335,18 @@ void vertical_swap_copy_colorref(color32_t * pcolorrefDst, int cxParam,int cyPar
    if(iStrideSrc <= 0)
    {
 
-      iStrideSrc = cxParam * sizeof(color32_t);
+      iStrideSrc = cxParam * sizeof(::color::color);
 
    }
 
 
-   int wsrc = iStrideSrc / sizeof(color32_t);
-   int wdst = iStrideDst / sizeof(color32_t);
-   int cw = cxParam * sizeof(color32_t);
+   int wsrc = iStrideSrc / sizeof(::color::color);
+   int wdst = iStrideDst / sizeof(::color::color);
+   int cw = cxParam * sizeof(::color::color);
 
 
    auto * psrc = pcolorrefSrc;
-   auto * pdst = (color32_t * )((u8 *) (pcolorrefDst) + iStrideDst * (cyParam - 1));
+   auto * pdst = (::color::color * )((u8 *) (pcolorrefDst) + iStrideDst * (cyParam - 1));
 
    for(int i = 0; i < cyParam; i++)
    {
@@ -371,7 +371,7 @@ void vertical_swap_copy_colorref(color32_t * pcolorrefDst, int cxParam,int cyPar
 }
 
 
-void vertical_swap_copy_colorref_swap_red_blue(color32_t * pcolorrefDst, int cxParam,int cyParam,int iStrideDst, const color32_t * pcolorrefSrc,int iStrideSrc)
+void vertical_swap_copy_colorref_swap_red_blue(::color::color * pcolorrefDst, int cxParam,int cyParam,int iStrideDst, const ::color::color * pcolorrefSrc,int iStrideSrc)
 {
 
    try
@@ -381,16 +381,16 @@ void vertical_swap_copy_colorref_swap_red_blue(color32_t * pcolorrefDst, int cxP
    if(iStrideSrc <= 0)
    {
 
-      iStrideSrc = cxParam * sizeof(color32_t);
+      iStrideSrc = cxParam * sizeof(::color::color);
 
    }
 
-   int wsrc = iStrideSrc / sizeof(color32_t);
-   int wdst = iStrideDst / sizeof(color32_t);
-   int cw = cxParam * sizeof(color32_t);
+   int wsrc = iStrideSrc / sizeof(::color::color);
+   int wdst = iStrideDst / sizeof(::color::color);
+   int cw = cxParam * sizeof(::color::color);
 
    auto * psrc = pcolorrefSrc;
-   auto * pdst = (color32_t * )((u8 *) (pcolorrefDst) + iStrideDst * (cyParam - 1));
+   auto * pdst = (::color::color * )((u8 *) (pcolorrefDst) + iStrideDst * (cyParam - 1));
 
    for(int i = 0; i < cyParam; i++)
    {
@@ -407,9 +407,9 @@ void vertical_swap_copy_colorref_swap_red_blue(color32_t * pcolorrefDst, int cxP
          pd[2] = ps[0];
          pd[3] = ps[3];
 
-         pd += sizeof(color32_t);
+         pd += sizeof(::color::color);
 
-         ps += sizeof(color32_t);
+         ps += sizeof(::color::color);
 
       }
 
@@ -430,7 +430,7 @@ void vertical_swap_copy_colorref_swap_red_blue(color32_t * pcolorrefDst, int cxP
 }
 
 
-void copy_colorref(color32_t * pcolorrefDst, int cxParam, int cyParam, int iStrideDst, const color32_t * pcolorrefSrc, int iStrideSrc)
+void copy_colorref(::color::color * pcolorrefDst, int cxParam, int cyParam, int iStrideDst, const ::color::color * pcolorrefSrc, int iStrideSrc)
 {
 
    try
@@ -454,7 +454,7 @@ void copy_colorref(color32_t * pcolorrefDst, int cxParam, int cyParam, int iStri
       if (iStrideSrc <= 0)
       {
 
-         iStrideSrc = cxParam * sizeof(color32_t);
+         iStrideSrc = cxParam * sizeof(::color::color);
 
       }
 
@@ -467,9 +467,9 @@ void copy_colorref(color32_t * pcolorrefDst, int cxParam, int cyParam, int iStri
       else
       {
 
-         int wsrc = iStrideSrc / sizeof(color32_t);
-         int wdst = iStrideDst / sizeof(color32_t);
-         int cw = cxParam * sizeof(color32_t);
+         int wsrc = iStrideSrc / sizeof(::color::color);
+         int wdst = iStrideDst / sizeof(::color::color);
+         int cw = cxParam * sizeof(::color::color);
 
 
          auto psrc = pcolorrefSrc;
@@ -498,7 +498,7 @@ void copy_colorref(color32_t * pcolorrefDst, int cxParam, int cyParam, int iStri
 }
 
 
-void copy_colorref_swap_red_blue(color32_t * pcolorrefDst, int cxParam,int cyParam,int iStrideDst, const color32_t * pcolorrefSrc,int iStrideSrc)
+void copy_colorref_swap_red_blue(::color::color * pcolorrefDst, int cxParam,int cyParam,int iStrideDst, const ::color::color * pcolorrefSrc,int iStrideSrc)
 {
 
    try
@@ -521,13 +521,13 @@ void copy_colorref_swap_red_blue(color32_t * pcolorrefDst, int cxParam,int cyPar
    if(iStrideSrc <= 0)
    {
 
-      iStrideSrc = cxParam * sizeof(color32_t);
+      iStrideSrc = cxParam * sizeof(::color::color);
 
    }
 
-   int wsrc = iStrideSrc / sizeof(color32_t);
-   int wdst = iStrideDst / sizeof(color32_t);
-   int cw = cxParam * sizeof(color32_t);
+   int wsrc = iStrideSrc / sizeof(::color::color);
+   int wdst = iStrideDst / sizeof(::color::color);
+   int cw = cxParam * sizeof(::color::color);
 
 
    auto * psrc = pcolorrefSrc;
@@ -549,9 +549,9 @@ void copy_colorref_swap_red_blue(color32_t * pcolorrefDst, int cxParam,int cyPar
          pd[2] = ps[0];
          pd[3] = ps[3];
 
-         pd += sizeof(color32_t);
+         pd += sizeof(::color::color);
 
-         ps += sizeof(color32_t);
+         ps += sizeof(::color::color);
 
       }
 
@@ -573,7 +573,7 @@ void copy_colorref_swap_red_blue(color32_t * pcolorrefDst, int cxParam,int cyPar
 }
 
 
-void _001ProperCopyColorref(color32_t * pcolorrefDst, int cxParam,int cyParam,int iStrideDst,const color32_t * pcolorrefSrc,int iStrideSrc)
+void _001ProperCopyColorref(::color::color * pcolorrefDst, int cxParam,int cyParam,int iStrideDst,const ::color::color * pcolorrefSrc,int iStrideSrc)
 {
 
 #ifdef WINDOWS_DESKTOP
@@ -590,7 +590,7 @@ void _001ProperCopyColorref(color32_t * pcolorrefDst, int cxParam,int cyParam,in
 }
 
 
-void copy_colorref(color32_t * pcolorrefDst, int xParam, int yParam, int cxParam,int cyParam, int iStrideDst, const color32_t * pcolorrefSrc,int iStrideSrc)
+void copy_colorref(::color::color * pcolorrefDst, int xParam, int yParam, int cxParam,int cyParam, int iStrideDst, const ::color::color * pcolorrefSrc,int iStrideSrc)
 {
 
    try
@@ -599,17 +599,17 @@ void copy_colorref(color32_t * pcolorrefDst, int xParam, int yParam, int cxParam
    if(iStrideSrc <= 0)
    {
 
-      iStrideSrc = cxParam * sizeof(color32_t);
+      iStrideSrc = cxParam * sizeof(::color::color);
 
    }
 
-   int wsrc = iStrideSrc / sizeof(color32_t);
-   int wdst = iStrideDst / sizeof(color32_t);
-   int cw = cxParam * sizeof(color32_t);
+   int wsrc = iStrideSrc / sizeof(::color::color);
+   int wdst = iStrideDst / sizeof(::color::color);
+   int cw = cxParam * sizeof(::color::color);
 
 
-   auto psrc = &pcolorrefSrc[xParam + yParam * iStrideSrc / sizeof(color32_t)];
-   auto pdst = &pcolorrefDst[xParam + yParam * iStrideDst / sizeof(color32_t)];
+   auto psrc = &pcolorrefSrc[xParam + yParam * iStrideSrc / sizeof(::color::color)];
+   auto pdst = &pcolorrefDst[xParam + yParam * iStrideDst / sizeof(::color::color)];
 
    for(int i = 0; i < cyParam; i++)
    {

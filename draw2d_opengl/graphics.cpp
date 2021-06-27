@@ -4853,7 +4853,7 @@ namespace draw2d_opengl
    }
 
 
-   void graphics::fill_rectangle(const rectangle_f64& rectangle, color32_t cr)
+   void graphics::fill_rectangle(const rectangle_f64& rectangle, color32_t color32)
    {
 
       try
@@ -4876,7 +4876,7 @@ namespace draw2d_opengl
 
          glBegin(GL_QUADS);
 
-         ::opengl::color::color(cr);
+         ::opengl::color::color(color32);
 
          ::opengl::vertex2f(rectangle);
 
@@ -5150,7 +5150,7 @@ namespace draw2d_opengl
 //   }
 
 
-   //void graphics::fill_rectangle(const rectangle_f64& rectangle, color32_t cr)
+   //void graphics::fill_rectangle(const rectangle_f64& rectangle, color32_t color32)
    //{
 
 

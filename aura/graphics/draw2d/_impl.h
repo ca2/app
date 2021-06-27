@@ -7,7 +7,7 @@
 #pragma once
 
 
-inline color32_t get_pixel(const pixmap* ppixmap, int x, int y)
+inline ::color::color get_pixel(const pixmap* ppixmap, int x, int y)
 {
 
    return ::draw2d::get_pixel(ppixmap->colorref(), ppixmap->scan_size(), ppixmap->height(), x, y);
@@ -15,7 +15,7 @@ inline color32_t get_pixel(const pixmap* ppixmap, int x, int y)
 }
 
 
-inline color32_t pixmap::get_pixel(int x, int y) const
+inline ::color::color pixmap::get_pixel(int x, int y) const
 {
 
    return ::get_pixel(this, x, y);
@@ -130,7 +130,7 @@ inline ::rectangle_i32 image::rectangle(const ::point_i32& point) const
 }
 
 
-inline color32_t image::pixel(int x, int y) const
+inline ::color::color image::pixel(int x, int y) const
 {
 
    if (::is_null(this) || x < 0 || y < 0 || x>= m_size.cx || y >= m_size.cy)
@@ -239,7 +239,7 @@ inline ::draw2d::graphics* image::g() const
 }
 
 
-inline color32_t* image::colorref()
+inline ::color::color* image::colorref()
 {
 
    return m_pcolorref1;
@@ -247,7 +247,7 @@ inline color32_t* image::colorref()
 }
 
 
-inline const color32_t* image::colorref() const
+inline const ::color::color* image::colorref() const
 {
 
 
@@ -256,7 +256,7 @@ inline const color32_t* image::colorref() const
 }
 
 
-inline image::operator color32_t* ()
+inline image::operator ::color::color* ()
 {
 
    return colorref();
@@ -264,7 +264,7 @@ inline image::operator color32_t* ()
 }
 
 
-inline image::operator const color32_t* () const
+inline image::operator const ::color::color* () const
 {
 
    return colorref();
@@ -347,16 +347,16 @@ namespace draw2d
 {
 
 
-   inline color32_t get_pixel(const color32_t * pdata, int iScan, int iHeight, int x, int y)
+   inline ::color::color get_pixel(const ::color::color * pdata, int iScan, int iHeight, int x, int y)
    {
 
 #ifdef APPLEOS
 
-      return ((color32_t *)&((u8 *)pdata)[iScan * (iHeight - y - 1)])[x];
+      return ((::color::color *)&((u8 *)pdata)[iScan * (iHeight - y - 1)])[x];
 
 #else
 
-      return ((color32_t *)&((u8 *)pdata)[iScan * y])[x];
+      return ((::color::color *)&((u8 *)pdata)[iScan * y])[x];
 
 #endif
 
@@ -370,7 +370,7 @@ namespace draw2d
       PRED pred,
       ::draw2d::fastblur & blur,
       ::image_pointer & pimageBlur,
-      color32_t crGlow,
+      ::color::color crGlow,
       int iSpreadRadius,
       int iBlurRadius,
       int iBlur,

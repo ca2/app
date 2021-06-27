@@ -409,7 +409,7 @@ namespace user
       return false;
    }
 
-   //bool interaction_impl::SetLayeredWindowAttributes(color32_t crKey,byte bAlpha,u32 dwFlags)
+   //bool interaction_impl::SetLayeredWindowAttributes(::color::color crKey,byte bAlpha,u32 dwFlags)
    //{
    //   UNREFERENCED_PARAMETER(crKey);
    //   UNREFERENCED_PARAMETER(bAlpha);
@@ -419,7 +419,7 @@ namespace user
    //}
 
    //bool interaction_impl::UpdateLayeredWindow(::draw2d::graphics * pDCDst,POINT_I32 * pptDst,SIZE_I32 * psize,
-   //      ::draw2d::graphics * pDCSrc,POINT_I32 * pptSrc,color32_t crKey,BLENDFUNCTION * pblend,u32 dwFlags)
+   //      ::draw2d::graphics * pDCSrc,POINT_I32 * pptSrc,::color::color crKey,BLENDFUNCTION * pblend,u32 dwFlags)
    //{
    //   UNREFERENCED_PARAMETER(pDCDst);
    //   UNREFERENCED_PARAMETER(pptDst);
@@ -434,7 +434,7 @@ namespace user
    //   return false;
    //}
 
-   bool interaction_impl::GetLayeredWindowAttributes(color32_t * pcrKey,byte * pbAlpha,u32 * pdwFlags) const
+   bool interaction_impl::GetLayeredWindowAttributes(::color::color * pcrKey,byte * pbAlpha,u32 * pdwFlags) const
    {
       UNREFERENCED_PARAMETER(pcrKey);
       UNREFERENCED_PARAMETER(pbAlpha);

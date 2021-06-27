@@ -86,7 +86,7 @@ namespace html
       virtual void _001OnDraw(html_data * phtmldata);
       virtual void load(html_data * phtmldata, base * pusermessage);
 
-      //virtual bool get_color(color32_t & cr, ::user::e_color ecolor, ::user::style_context * pcontext) override;
+      //virtual bool get_color(::color::color & color32, ::user::e_color ecolor, ::user::style_context * pcontext) override;
       //virtual bool get_font(::write_text::font_pointer & spfont, ::user::e_font efont, ::user::style_context * pcontext) override;
 
       virtual ::color::color get_color(::user::style * pstyle, ::css::enum_color ecolor);

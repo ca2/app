@@ -778,12 +778,12 @@ namespace user
    }
 
 
-   color32_t toolbar_control::GetInsertMarkColor()
+   ::color::color toolbar_control::GetInsertMarkColor()
    {
 
 //#ifdef WINDOWS_DESKTOP
 //
-//   ASSERT(is_window()); return (color32_t) send_message( TB_GETINSERTMARKCOLOR);
+//   ASSERT(is_window()); return (::color::color) send_message( TB_GETINSERTMARKCOLOR);
 //
 //#else
 //
@@ -796,12 +796,12 @@ namespace user
    }
 
 
-   color32_t toolbar_control::SetInsertMarkColor(color32_t clrNew)
+   ::color::color toolbar_control::SetInsertMarkColor(::color::color clrNew)
    {
 
 //#ifdef WINDOWS_DESKTOP
 //
-//   ASSERT(is_window()); return (color32_t) send_message( TB_SETINSERTMARKCOLOR, 0, (LPARAM) clrNew);
+//   ASSERT(is_window()); return (::color::color) send_message( TB_SETINSERTMARKCOLOR, 0, (LPARAM) clrNew);
 //
 //#else
 //

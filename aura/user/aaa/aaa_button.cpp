@@ -892,7 +892,7 @@ namespace user
 
       auto color = get_color(pstyle, e_element_background);
 
-      color32_t cr;
+      color32_t color32;
 
       if(echeck() == ::check_checked)
       {
@@ -908,17 +908,17 @@ namespace user
 
       }
 
-      cr = color;
+      color32 = color;
 
       class ::color::color colorExt1TL;
       class ::color::color colorExt2TL;
       class ::color::color colorExt1BR;
       class ::color::color colorExt2BR;
 
-      colorExt1TL.set_rgb(cr);
-      colorExt2TL.set_rgb(cr);
-      colorExt1BR.set_rgb(cr);
-      colorExt2BR.set_rgb(cr);
+      colorExt1TL.set_rgb(color32);
+      colorExt2TL.set_rgb(color32);
+      colorExt1BR.set_rgb(color32);
+      colorExt2BR.set_rgb(color32);
 
       if(echeck() == ::check_checked)
       {
@@ -950,7 +950,7 @@ namespace user
       rectangle.deflate(1,1,1,1);
       pgraphics->color_blend_3dRect(rectangle,colorExt2TL,200,colorExt2BR,200);
       rectangle.deflate(1,1,1,1);
-      imaging.color_blend(pgraphics,rectangle.left,rectangle.top,rectangle.width(),rectangle.height(),cr,200);
+      imaging.color_blend(pgraphics,rectangle.left,rectangle.top,rectangle.width(),rectangle.height(),color32,200);
       rectangle.deflate(1,1,1,1);
 
       i32 x1 = rectangle.left;

@@ -4,8 +4,8 @@
 //
 // ftpparse.c, ftpparse.h: library for parsing FTP LIST responses
 // 20001223
-// D. J. Bernstein, djb@cr.yp.to
-// http://cr.yp.to/ftpparse.html
+// D. J. Bernstein, djb@color32.yp.to
+// http://color32.yp.to/ftpparse.html
 //
 // Commercial use is fine, if you let me know what programs you're using this in.
 //

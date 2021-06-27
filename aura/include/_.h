@@ -258,7 +258,7 @@ CLASS_DECL_AURA void aura_ref();
 //#define IMAGE_B_BYTE_INDEX 0
 //
 //
-//#define IMAGE_ARGB(a, r, g, b)         ((color32_t)((low_byte(b)|((::u16)(low_byte(g))<<8))|(((u32)low_byte(r))<<16)|(((u32)low_byte(a))<<24)))
+//#define IMAGE_ARGB(a, r, g, b)         ((::color::color)((low_byte(b)|((::u16)(low_byte(g))<<8))|(((u32)low_byte(r))<<16)|(((u32)low_byte(a))<<24)))
 //
 //
 //#define image_r_value(rgb)    (low_byte((rgb)>>16))
@@ -276,7 +276,7 @@ CLASS_DECL_AURA void aura_ref();
 //#define IMAGE_B_BYTE_INDEX 2
 //
 //
-//#define IMAGE_ARGB(a, r, g, b)         ((color32_t)((low_byte(r)|((::u16)(low_byte(g))<<8))|(((u32)low_byte(b))<<16)|(((u32)low_byte(a))<<24)))
+//#define IMAGE_ARGB(a, r, g, b)         ((::color::color)((low_byte(r)|((::u16)(low_byte(g))<<8))|(((u32)low_byte(b))<<16)|(((u32)low_byte(a))<<24)))
 //
 //
 //#define image_r_value(rgb)    (low_byte((rgb)))
@@ -295,7 +295,7 @@ CLASS_DECL_AURA void aura_ref();
 //#define colorref_get_g_value(rgb)    (low_byte((rgb)>>8))
 //#define colorref_get_b_value(rgb)    (low_byte((rgb)>>16))
 //#define colorref_get_a_value(rgb)    (low_byte((rgb)>>24))
-//#define RGBA(r, g, b, a)         ((color32_t)((low_byte(r)|((::u16)(low_byte(g))<<8))|(((u32)low_byte(b))<<16)|(((u32)low_byte(a))<<24)))
+//#define RGBA(r, g, b, a)         ((::color::color)((low_byte(r)|((::u16)(low_byte(g))<<8))|(((u32)low_byte(b))<<16)|(((u32)low_byte(a))<<24)))
 //#define argb(a, r, g, b)      RGBA(r, g, b, a)
 //
 //
@@ -1398,14 +1398,14 @@ namespace write_text
 ////   class scroll_data;
 ////
 ////
-////   //using color_map = map < e_color, e_color, color32_t, color32_t >;
+////   //using color_map = map < e_color, e_color, ::color::color, ::color::color >;
 ////   //using font_map = map < e_font, e_font, ::write_text::font_pointer >;
 ////   using eflag = flags < enum_flag >;
 ////   //using flag_map = map < enum_flag, enum_flag, bool, bool >;
 ////   //using rect_map = ::map < e_rect, e_rect, style_rect >;
 ////   //using i32_map = ::map < e_int, e_int, int, int >;
 ////   //using double_map = ::map < e_double, e_double, double, double >;
-////   //using color_map = map < e_color, e_color, color32_t, color32_t >;
+////   //using color_map = map < e_color, e_color, ::color::color, ::color::color >;
 ////   //using eelement = base_enum < enum_element >;
 ////   //using translucency_map = ::map < enum_element, enum_element, enum_translucency, enum_translucency >;
 ////

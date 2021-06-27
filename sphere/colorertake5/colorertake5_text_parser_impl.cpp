@@ -293,13 +293,13 @@ namespace colorertake5
          if (lowlen < gx+kwlen)
             kwlen = lowlen-gx;
 
-         i32 cr;
+         i32 color32;
          if (node->kwList->matchCase)
-            cr = node->kwList->kwList[pos].keyword.compare(string(&((const char*)str)[gx], kwlen));
+            color32 = node->kwList->kwList[pos].keyword.compare(string(&((const char*)str)[gx], kwlen));
          else
-            cr = node->kwList->kwList[pos].keyword.compare_ci(string(&((const char*)str)[gx], kwlen));
+            color32 = node->kwList->kwList[pos].keyword.compare_ci(string(&((const char*)str)[gx], kwlen));
 
-         if (cr == 0 && right-left == 1)
+         if (color32 == 0 && right-left == 1)
          {
             bool badbound = false;
             if (!node->kwList->kwList[pos].isSymbol)
@@ -336,10 +336,10 @@ namespace colorertake5
             break;
          };
 
-         if (cr == 1)
+         if (color32 == 1)
             right = pos;
 
-         if (cr == 0 || cr == -1)
+         if (color32 == 0 || color32 == -1)
             left = pos;
 
       };

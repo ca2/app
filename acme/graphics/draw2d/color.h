@@ -241,6 +241,17 @@ namespace color
 
       }
 
+      ::color::color get_blend(const ::color::color& color, double dRate) const
+      {
+
+         ::color::color colorResult(*this);
+
+         colorResult.blend(color, dRate);
+
+         return colorResult;
+         
+      }
+
       double get_a_rate() const { return da(); }
       double get_r_rate() const { return dr(); }
       double get_g_rate() const { return dg(); }

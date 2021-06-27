@@ -454,7 +454,7 @@ namespace html
       index iTopW          = -1;
       index iRightW        = -1;
       index iBottomW       = -1;
-      ::color32_t color32              = 0;
+      ::color::color color              = 0;
       ::color::color crLeft          = 0;
       ::color::color crTop           = 0;
       ::color::color crRight         = 0;
@@ -465,10 +465,10 @@ namespace html
       ::color::color crRightW        = 0;
       ::color::color crBottomW       = 0;
 
-      if(m_propertyset.has_property(idName) && parse_border_color(m_propertyset[idName], color32))
+      if(m_propertyset.has_property(idName) && parse_border_color(m_propertyset[idName], color))
          pstyle = this;
       else
-         pstyle = pdata->m_pcoredata->m_stylesheeta.rfind_border_color(etag, strClass, strSubClass, idName, color32);
+         pstyle = pdata->m_pcoredata->m_stylesheeta.rfind_border_color(etag, strClass, strSubClass, idName, color);
       if(pstyle != nullptr)
          i = pstyle->m_propertyset.find_index(idName);
 
@@ -559,7 +559,7 @@ namespace html
 
       const style *     pstyle1           = nullptr;
       index               i1                 = -1;
-      ::payload               var1                 = (u32) color32;
+      ::payload var1 = color;
       pdata->m_pcoredata->m_stylesheeta.greater(pstyle1, i1, var1, pstyle, i, var1, pstyleW, iW, (u32 &) crW);
 
 

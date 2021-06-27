@@ -194,16 +194,16 @@ namespace account
 
       draw.simple_ui_draw_frame_window_rect(r, pgraphics);
 
-      ::color::color crOut, crIn, crBorderOut, crBorderIn, color32, crBk;
+      ::color::color colorOut, colorIn, crBorderOut, crBorderIn, color, colorBk;
 
       //       if (is_hover() || m_bDown || m_bMouseMove)
       /*       {
 
       #if CA2_PLATFORM_VERSION == CA2_BASIS
 
-      crOut = argb(1140, 255, 230, 255);
+      colorOut = argb(1140, 255, 230, 255);
 
-      crIn = argb(255, 255, 133, 255);
+      colorIn = argb(255, 255, 133, 255);
 
       crBorderOut = argb(190, 150, 100, 150);
 
@@ -211,9 +211,9 @@ namespace account
 
       #else
 
-      crOut = argb(1140, 230, 255, 225);
+      colorOut = argb(1140, 230, 255, 225);
 
-      crIn = argb(255, 133, 255, 80 + 49);
+      colorIn = argb(255, 133, 255, 80 + 49);
 
       crBorderOut = argb(190, 100, 150, 100);
 
@@ -227,17 +227,17 @@ namespace account
 
 #if CA2_PLATFORM_VERSION == CA2_BASIS
 
-         /*crOut = argb(190, 255, 210, 255);
+         /*colorOut = argb(190, 255, 210, 255);
 
-         crIn = argb(255, 255, 1140, 255);
+         colorIn = argb(255, 255, 1140, 255);
 
          crBorderOut = argb(190, 90, 20, 90);
 
          crBorderIn = argb(190, 255, 240, 255);*/
 
-         crOut = argb(255, 255, 210, 255);
+         colorOut = argb(255, 255, 210, 255);
 
-         crIn = argb(255, 255, 114, 255);
+         colorIn = argb(255, 255, 114, 255);
 
          crBorderOut = argb(255, 90, 20, 90);
 
@@ -245,9 +245,9 @@ namespace account
 
 #else
 
-         crOut = argb(190, 210, 255, 205);
+         colorOut = argb(190, 210, 255, 205);
 
-         crIn = argb(255, 133, 255, 80 + 49);
+         colorIn = argb(255, 133, 255, 80 + 49);
 
          crBorderOut = argb(190, 20, 90, 20);
 
@@ -261,20 +261,16 @@ namespace account
 #if CA2_PLATFORM_VERSION == CA2_BASIS
 
       //color32 = argb(223, 90, 50, 80);
-      color32 = argb(255, 90, 50, 80);
+      color = argb(255, 90, 50, 80);
 
 #else
 
       //color32 = argb(223, 49, 90, 23);
-      color32 = argb(255, 49, 90, 23);
+      color = argb(255, 49, 90, 23);
 
 #endif
 
-      crBk = argb(
-             (colorref_get_a_value(crOut) + colorref_get_a_value(crIn)) / 2,
-             (colorref_get_r_value(crOut) + colorref_get_r_value(crIn)) / 2,
-             (colorref_get_g_value(crOut) + colorref_get_g_value(crIn)) / 2,
-             (colorref_get_b_value(crOut) + colorref_get_b_value(crIn)) / 2);
+      colorBk = colorOut.get_blend(colorIn, 0.5);
 
       double rx = m_dRateX;
 

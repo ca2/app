@@ -1715,15 +1715,15 @@ namespace html
    ::color::color element::get_color(::user::style * pstyle, ::css::enum_color ecolor)
    {
 
-      ::color32_t color32;
+      ::color::color color;
 
       if(ecolor == ::css::color_text)
       {
 
-         if (m_pstyle->get_color("color", "", m_pdata, this, color32))
+         if (m_pstyle->get_color("color", "", m_pdata, this, color))
          {
 
-            return color32;
+            return color;
 
          }
 
@@ -1733,10 +1733,10 @@ namespace html
       else if(ecolor == ::css::color_background)
       {
 
-         if (m_pstyle->get_color("background-color", "", m_pdata, this, color32))
+         if (m_pstyle->get_color("background-color", "", m_pdata, this, color))
          {
 
-            return color32;
+            return color;
 
          }
 

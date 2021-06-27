@@ -54,7 +54,7 @@ namespace html
       bool get_border_color(id idName, const string & strSubClass, html_data * pdata, ::html::element * pelemental, border & border);
       // todo
       // bool get_border_style(id idName, const string & strSubClass, const html_data * pdata, ::html::element * pelemental, ::color::color & color32);
-      bool get_color(id idName, const string & strSubClass, html_data * pdata, const ::html::element * pelemental, ::color::color & color32);
+      bool get_color(id idName, const string & strSubClass, html_data * pdata, const ::html::element * pelemental, ::color::color & color);
       bool get_text(id idName, const string & strSubClass, html_data * pdata, const ::html::element * pelemental, string & str);
       bool get_alpha(const string & strSubClass, html_data * pdata, const ::html::element * pelemental, double & d);
 

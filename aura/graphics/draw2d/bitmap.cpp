@@ -324,7 +324,7 @@ void vertical_swap(pixmap * ppixmap)
 }
 
 
-void vertical_swap_copy_colorref(::color32_t * pcolorrefDst, int cxParam,int cyParam,int iStrideDst,const ::color::color * pcolorrefSrc,int iStrideSrc)
+void vertical_swap_copy_colorref(::color32_t * pcolorrefDst, int cxParam,int cyParam,int iStrideDst, const ::color32_t * pcolorrefSrc,int iStrideSrc)
 {
 
    try
@@ -342,7 +342,7 @@ void vertical_swap_copy_colorref(::color32_t * pcolorrefDst, int cxParam,int cyP
    int cw = cxParam * sizeof(::color32_t);
 
    auto * psrc = pcolorrefSrc;
-   auto * pdst = (::color::color * )((u8 *) (pcolorrefDst) + iStrideDst * (cyParam - 1));
+   auto * pdst = (::color32_t * )((u8 *) (pcolorrefDst) + iStrideDst * (cyParam - 1));
 
    for(int i = 0; i < cyParam; i++)
    {
@@ -367,7 +367,7 @@ void vertical_swap_copy_colorref(::color32_t * pcolorrefDst, int cxParam,int cyP
 }
 
 
-void vertical_swap_copy_colorref_swap_red_blue(::color32_t * pcolorrefDst, int cxParam,int cyParam,int iStrideDst, const ::color::color * pcolorrefSrc,int iStrideSrc)
+void vertical_swap_copy_colorref_swap_red_blue(::color32_t * pcolorrefDst, int cxParam,int cyParam,int iStrideDst, const ::color32_t * pcolorrefSrc,int iStrideSrc)
 {
 
    try
@@ -386,7 +386,7 @@ void vertical_swap_copy_colorref_swap_red_blue(::color32_t * pcolorrefDst, int c
    int cw = cxParam * sizeof(::color32_t);
 
    auto * psrc = pcolorrefSrc;
-   auto * pdst = (::color::color * )((u8 *) (pcolorrefDst) + iStrideDst * (cyParam - 1));
+   auto * pdst = (::color32_t * )((u8 *) (pcolorrefDst) + iStrideDst * (cyParam - 1));
 
    for(int i = 0; i < cyParam; i++)
    {
@@ -494,7 +494,7 @@ void copy_colorref(::color32_t * pcolorrefDst, int cxParam, int cyParam, int iSt
 }
 
 
-void copy_colorref_swap_red_blue(::color32_t * pcolorrefDst, int cxParam,int cyParam,int iStrideDst, const ::color::color * pcolorrefSrc,int iStrideSrc)
+void copy_colorref_swap_red_blue(::color32_t * pcolorrefDst, int cxParam,int cyParam,int iStrideDst, const ::color32_t * pcolorrefSrc,int iStrideSrc)
 {
 
    try

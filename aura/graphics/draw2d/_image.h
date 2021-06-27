@@ -3,8 +3,8 @@
 
 
 CLASS_DECL_AURA void vertical_swap(pixmap * ppixmap);
-CLASS_DECL_AURA void vertical_swap_copy_colorref(::color::color * pcolorrefDst, int cx, int cy, int iStrideDst, const ::color::color * pcolorrefSrc, int iStrideSrc = -1);
-CLASS_DECL_AURA void vertical_swap_copy_colorref_swap_red_blue(::color::color * pcolorrefDst, int cx, int cy, int iStrideDst, const ::color::color * pcolorrefSrc, int iStrideSrc = -1);
+CLASS_DECL_AURA void vertical_swap_copy_colorref(::color32_t * pcolorrefDst, int cx, int cy, int iStrideDst, const ::color32_t * pcolorrefSrc, int iStrideSrc = -1);
+CLASS_DECL_AURA void vertical_swap_copy_colorref_swap_red_blue(::color32_t * pcolorrefDst, int cx, int cy, int iStrideDst, const ::color32_t * pcolorrefSrc, int iStrideSrc = -1);
 CLASS_DECL_AURA void copy_colorref(::color32_t * pcolorrefDst, int cx, int cy, int iStrideDst, const ::color32_t * pcolorrefSrc, int iStrideSrc = -1);
 CLASS_DECL_AURA void copy_colorref(::color32_t * pcolorrefDst, int x, int y, int cx, int cy, int iStrideDst, const ::color32_t * pcolorrefSrc, int iStrideSrc = -1);
 inline void copy_colorref(::color32_t * pcolorrefDst, const ::size_i32 & size, int iStrideDst, const ::color32_t * pcolorrefSrc, int iStrideSrc = -1);

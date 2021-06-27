@@ -225,30 +225,30 @@ namespace account
 
 
 
-      ::color::color crOut, crIn, crBorderOut, crBorderIn, color32, crBk;
+      ::color::color colorOut, colorIn, colorBorderOut, colorBorderIn, color, colorBackground;
 
       //       if (is_hover() || m_bDown || m_bMouseMove)
       /*       {
 
       #if CA2_PLATFORM_VERSION == CA2_BASIS
 
-      crOut = argb(1140, 255, 230, 255);
+      colorOut = argb(1140, 255, 230, 255);
 
-      crIn = argb(255, 255, 133, 255);
+      colorIn = argb(255, 255, 133, 255);
 
-      crBorderOut = argb(190, 150, 100, 150);
+      colorBorderOut = argb(190, 150, 100, 150);
 
-      crBorderIn = argb(190, 255, 240, 255);
+      colorBorderIn = argb(190, 255, 240, 255);
 
       #else
 
-      crOut = argb(1140, 230, 255, 225);
+      colorOut = argb(1140, 230, 255, 225);
 
-      crIn = argb(255, 133, 255, 80 + 49);
+      colorIn = argb(255, 133, 255, 80 + 49);
 
-      crBorderOut = argb(190, 100, 150, 100);
+      colorBorderOut = argb(190, 100, 150, 100);
 
-      crBorderIn = argb(190, 240, 255, 235);
+      colorBorderIn = argb(190, 240, 255, 235);
 
       #endif
 
@@ -258,31 +258,31 @@ namespace account
 
 #if CA2_PLATFORM_VERSION == CA2_BASIS
 
-         /*crOut = argb(190, 255, 210, 255);
+         /*colorOut = argb(190, 255, 210, 255);
 
-         crIn = argb(255, 255, 1140, 255);
+         colorIn = argb(255, 255, 1140, 255);
 
-         crBorderOut = argb(190, 90, 20, 90);
+         colorBorderOut = argb(190, 90, 20, 90);
 
-         crBorderIn = argb(190, 255, 240, 255);*/
+         colorBorderIn = argb(190, 255, 240, 255);*/
 
-         crOut = argb(255, 255, 210, 255);
+         colorOut = argb(255, 255, 210, 255);
 
-         crIn = argb(255, 255, 114, 255);
+         colorIn = argb(255, 255, 114, 255);
 
-         crBorderOut = argb(255, 90, 20, 90);
+         colorBorderOut = argb(255, 90, 20, 90);
 
-         crBorderIn = argb(255, 255, 255, 255);
+         colorBorderIn = argb(255, 255, 255, 255);
 
 #else
 
-         crOut = argb(190, 210, 255, 205);
+         colorOut = argb(190, 210, 255, 205);
 
-         crIn = argb(255, 133, 255, 80 + 49);
+         colorIn = argb(255, 133, 255, 80 + 49);
 
-         crBorderOut = argb(190, 20, 90, 20);
+         colorBorderOut = argb(190, 20, 90, 20);
 
-         crBorderIn = argb(190, 240, 255, 235);
+         colorBorderIn = argb(190, 240, 255, 235);
 
 #endif
 
@@ -291,21 +291,17 @@ namespace account
 
 #if CA2_PLATFORM_VERSION == CA2_BASIS
 
-      //color32 = argb(223, 90, 50, 80);
-      color32 = argb(255, 90, 50, 80);
+      //color = argb(223, 90, 50, 80);
+      color = argb(255, 90, 50, 80);
 
 #else
 
-      //color32 = argb(223, 49, 90, 23);
-      color32 = argb(255, 49, 90, 23);
+      //color = argb(223, 49, 90, 23);
+      color = argb(255, 49, 90, 23);
 
 #endif
 
-      crBk = argb(
-             (colorref_get_a_value(crOut) + colorref_get_a_value(crIn)) / 2,
-             (colorref_get_r_value(crOut) + colorref_get_r_value(crIn)) / 2,
-             (colorref_get_g_value(crOut) + colorref_get_g_value(crIn)) / 2,
-             (colorref_get_b_value(crOut) + colorref_get_b_value(crIn)) / 2);
+      colorBackground = colorOut.get_blend(colorIn, 0.5);
 
       double rx = m_dRateX;
 
@@ -313,6 +309,7 @@ namespace account
 
       if (m_bCred && m_strCred.has_char())
       {
+
          float fHeight = 18.0;
 
          ::write_text::font_pointer f(e_create);
@@ -327,16 +324,17 @@ namespace account
 
          f->create_point_font(pnode->font_name(e_font_sans_ex), fHeight * 1.0);
 
-
          pgraphics->set(f);
 
-         pgraphics->set_text_color(crBorderOut);
+         pgraphics->set_text_color(colorBorderOut);
+
          pgraphics->text_out((int)(49 * rx), (int)(49 * ry), m_strCred);
+
       }
       else if (m_picon95)
       {
 
-         pgraphics->draw_ca2_border2((int)(49 * rx), (int)(49 * ry) - 11, (int)((91 + 2 + 2) * ry), 1, 1, crBk, color32, crBorderOut, crBorderIn);
+         pgraphics->draw_ca2_border2((int)(49 * rx), (int)(49 * ry) - 11, (int)((91 + 2 + 2) * ry), 1, 1, colorBackground, color, colorBorderOut, colorBorderIn);
 
          pgraphics->draw(::rectangle_i32(::point_i32((int)(49 * rx) + 2, (int)(49 * ry) + 2 - 11), ::size_i32((int)((91 + 2 + 2) * ry), (int)((91 + 2 + 2) * ry))), m_picon95);
 
@@ -344,10 +342,9 @@ namespace account
       else
       {
 
-         pgraphics->draw_ca2_with_border2((int)(49 * rx), (int)(49 * ry) - 23, (int)((91 + 2 + 2) * ry), 1, 1, crBk, color32, crBorderOut, crBorderIn);
+         pgraphics->draw_ca2_with_border2((int)(49 * rx), (int)(49 * ry) - 23, (int)((91 + 2 + 2) * ry), 1, 1, colorBackground, color, colorBorderOut, colorBorderIn);
 
       }
-
 
    }
 

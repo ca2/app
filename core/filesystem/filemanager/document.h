@@ -31,18 +31,8 @@ namespace filemanager
       inline ::core::application* get_application() const { return m_pcontext ? m_pcontext->m_pcoreapplication : nullptr; }
       inline ::core::session* get_session() const { return m_pcontext ? m_pcontext->m_pcoresession : nullptr; }
       inline ::core::system* get_system() const { return m_psystem ? m_psystem->m_pcoresystem : nullptr; }
-      inline ::core::user* user() const { return get_session() ? get_session()->user() : nullptr; }
 
-      //virtual i64 add_ref(OBJ_REF_DBG_PARAMS) override
-      //{
-      //   return ::object::add_ref(OBJ_REF_DBG_ARGS);
-      //}
-
-      //virtual i64 dec_ref(OBJ_REF_DBG_PARAMS) override
-      //{
-      //   return ::object::dec_ref(OBJ_REF_DBG_ARGS);
-      //}
-
+      
       virtual void assert_valid() const override;
       virtual void dump(dump_context & dumpcontext) const override;
 

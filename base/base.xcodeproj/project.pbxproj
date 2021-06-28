@@ -796,18 +796,18 @@
 		9AD11D3624F51D4600177261 /* menu */ = {
 			isa = PBXGroup;
 			children = (
-				9AD11D3724F51D4600177261 /* central.h */,
-				9AD11D3824F51D4600177261 /* button.cpp */,
-				9AD11D3924F51D4600177261 /* menu_view.cpp */,
-				9AD11D3A24F51D4600177261 /* list_view.h */,
-				9AD11D3B24F51D4600177261 /* central.cpp */,
+				9AD11D4224F51D4600177261 /* _.h */,
 				9AD11D3C24F51D4600177261 /* _menu.h */,
+				9AD11D3824F51D4600177261 /* button.cpp */,
+				9AD11D3F24F51D4600177261 /* button.h */,
+				9AD11D3B24F51D4600177261 /* central.cpp */,
+				9AD11D3724F51D4600177261 /* central.h */,
+				9AD11D4024F51D4600177261 /* list_view.cpp */,
+				9AD11D3A24F51D4600177261 /* list_view.h */,
 				9AD11D3D24F51D4600177261 /* list_window.cpp */,
 				9AD11D3E24F51D4600177261 /* list_window.h */,
-				9AD11D3F24F51D4600177261 /* button.h */,
-				9AD11D4024F51D4600177261 /* list_view.cpp */,
+				9AD11D3924F51D4600177261 /* menu_view.cpp */,
 				9AD11D4124F51D4600177261 /* menu_view.h */,
-				9AD11D4224F51D4600177261 /* _.h */,
 			);
 			path = menu;
 			sourceTree = "<group>";
@@ -1233,7 +1233,7 @@
 				GCC_C_LANGUAGE_STANDARD = c11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = YES;
+				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1254,7 +1254,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(WorkspaceDir)/archive",
-					"$(WorkspaceDir)/archive/storage-$(PLATFORM_MODIFIER)/library/$(CONFIGURATION)",
+					"$(WorkspaceDir)/archive/storage-$(PLATFORM_MODIFIER)/library/x64/$(CONFIGURATION)",
 					"$(WorkspaceDir)/time/$(PLATFORM_MODIFIER)",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
@@ -1334,7 +1334,7 @@
 				EXECUTABLE_PREFIX = lib;
 				GCC_C_LANGUAGE_STANDARD = c11;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = YES;
+				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = framework.h;
@@ -1352,10 +1352,8 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(WorkspaceDir)/archive",
-					"$(WorkspaceDir)/archive/platform-$(PLATFORM_MODIFIER)/storage-$(PLATFORM_MODIFIER)/library/$(CONFIGURATION)",
+					"$(WorkspaceDir)/archive//storage-$(PLATFORM_MODIFIER)/library/x64/$(CONFIGURATION)",
 					"$(WorkspaceDir)/archive",
-					"$(WorkspaceDir)/archive/platform-$(PLATFORM_MODIFIER)/storage-$(PLATFORM_MODIFIER)/third/library/$(CONFIGURATION)",
-					"$(WorkspaceDir)/time/$(PLATFORM_MODIFIER)",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MTL_ENABLE_DEBUG_INFO = NO;

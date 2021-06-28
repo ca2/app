@@ -879,7 +879,7 @@ namespace windowing
    }
 
 
-   ::e_status window::show_window(const ::e_display &edisplay, const ::e_activation &eactivationi)
+   ::e_status window::show_window(const ::e_display &edisplay, const ::e_activation &eactivation)
    {
 
       windowing_output_debug_string("\n::window::show_window 1");

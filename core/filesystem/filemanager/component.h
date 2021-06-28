@@ -28,22 +28,6 @@ namespace filemanager
 
 
       inline ::core::session* get_session() const;
-      inline ::core::user* user() const;
-
-      //virtual i64 add_ref(OBJ_REF_DBG_PARAMS) override
-      //{
-
-      //   return ::acme::department::add_ref(OBJ_REF_DBG_ARGS);
-
-      //}
-
-
-      /*     virtual i64 dec_ref(OBJ_REF_DBG_PARAMS) override
-           {
-
-              return ::acme::department::dec_ref(OBJ_REF_DBG_ARGS);
-
-           }*/
 
 
       virtual ::e_status initialize_filemanager_component(::object * pobject);

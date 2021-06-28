@@ -81,9 +81,11 @@ bool dialog::show(const char * pszMatter)
 
    varArgs["window_frame"] = true;
 
-   __pointer(::core::session) psession = get_session();
-
-   auto puser = psession->user();
+   auto pcontext = m_pcontext;
+   
+   auto psession = pcontext->m_pcoresession;
+   
+   auto puser = psession->m_puser->m_pcoreuser;
 
    m_pdocument = puser->create_form(this, this, psession->get_user_interaction_host(), payload, varArgs);
 

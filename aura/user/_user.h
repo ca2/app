@@ -231,6 +231,16 @@ namespace user
 //#include "aura/primitive/primitive/form_property_set.h"
 
 
+namespace user
+{
+   
+   
+   class notify_icon;
+
+   
+} // namespace user
+
+
 #include "graphics_call.h"
 
 

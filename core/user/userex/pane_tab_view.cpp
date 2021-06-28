@@ -441,7 +441,11 @@ namespace userex
 
          pimpactdata->m_eflag.add(::user::e_flag_modifier_impact);
 
-         auto puser = user();
+         auto pcontext = m_pcontext;
+         
+         auto psession = pcontext->m_pcoresession;
+         
+         auto puser = psession->m_puser->m_pcoreuser;
 
          puser->will_use_view_hint(FONTSEL_IMPACT);
 
@@ -471,8 +475,6 @@ namespace userex
          
          m_pfontview->m_pview->add_control_event_handler(this);
 
-         auto psession = get_session();
-
          __pointer(::user::interaction) pview = psession->get_bound_ui(FONTSEL_IMPACT);
 
          if(pview)
@@ -488,7 +490,11 @@ namespace userex
 
          pimpactdata->m_eflag.add(::user::e_flag_modifier_impact);
 
-         auto puser = user();
+         auto pcontext = m_pcontext;
+         
+         auto psession = pcontext->m_pcoresession;
+         
+         auto puser = psession->m_puser->m_pcoreuser;
 
          puser->will_use_view_hint(COLORSEL_IMPACT);
 
@@ -503,8 +509,6 @@ namespace userex
          pimpactdata->m_puserinteraction = pdocument->m_pviewTopic;
          
          m_pcolorview->add_control_event_handler(this);
-
-         auto psession = get_session();
 
          __pointer(::user::interaction) pview = psession->get_bound_ui(COLORSEL_IMPACT);
 
@@ -523,10 +527,14 @@ namespace userex
 
          auto pfilemanagerdata = cast < ::filemanager::data >("data." + pimpactdata->m_id.str());
 
+         auto pcontext = m_pcontext;
+         
+         auto psession = pcontext->m_paurasession;
+         
+         auto puser = psession->m_puser->m_pcoreuser;
+
          if (pfilemanagerdata.is_null())
          {
-
-            auto puser = user();
 
             pfilemanagerdata = puser->filemanager(pimpactdata->m_id);
 
@@ -588,8 +596,6 @@ namespace userex
             pfilemanagerdata->m_pcreate->finish_initialization();
 
          }
-
-         auto puser = user();
 
          puser->filemanager(pimpactdata->m_id)->open();
 
@@ -667,7 +673,11 @@ namespace userex
          if (::str::begins_ci(pimpactdata->m_id.m_psz, "form_"))
          {
 
-            auto puser = user();
+            auto pcontext = m_pcontext;
+            
+            auto psession = pcontext->m_pcoresession;
+            
+            auto puser = psession->m_puser->m_pcoreuser;
 
             __pointer(form_document) pdocument = puser->create_child_form(this, this, pimpactdata->m_pplaceholder);
 
@@ -823,7 +833,11 @@ namespace userex
 
       payload("app_options_title") = get_pane_by_id(pimpactdata->m_id)->get_title();
 
-      auto puser = user();
+      auto pcontext = m_pcontext;
+      
+      auto psession = pcontext->m_pcoresession;
+      
+      auto puser = psession->m_puser->m_pcoreuser;
 
       m_pdocAppOptions = puser->create_child_form(this, this, pimpactdata->m_pplaceholder, strAppOptions);
 

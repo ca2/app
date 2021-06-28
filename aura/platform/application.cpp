@@ -1541,6 +1541,10 @@ namespace aura
          return estatus;
 
       }
+      
+      auto psubject = m_psystem->m_papexsystem->subject(id_app_activated);
+      
+      psubject->add_listener(this);
 
       return true;
 
@@ -8574,28 +8578,26 @@ namespace aura
    //   }
 
 
-      //void application::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
-      //{
+      void application::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+      {
 
-      //   ::aura::application::on_subject(psubject, pcontext);
+         ::aqua::application::on_subject(psubject, pcontext);
 
-      //   if (pupdate->m_bRet)
-      //   {
-      //
-      //      return;
+         //::user::form_callback::on_subject(psubject, pcontext);
 
-      //   }
-      //
-      //   ::user::form_callback::on_subject(psubject, pcontext);
+         if(psubject->m_id == id_app_activated)
+         {
+            
+            if(m_puserinteractionMain)
+            {
+               
+               m_puserinteractionMain->frame_toggle_restore();
+               
+            }
+            
+         }
 
-      //   if (pupdate->m_bRet)
-      //   {
-
-      //      return;
-
-      //   }
-
-      //}
+      }
 
 
    //::e_status application::process_init()

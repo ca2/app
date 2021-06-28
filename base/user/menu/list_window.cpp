@@ -56,8 +56,6 @@ namespace user
    void menu_list_window::on_message_create(::message::message * pmessage)
    {
 
-      //descriptor().set_control_type(e_control_type_menu);
-
       UNREFERENCED_PARAMETER(pmessage);
 
    }
@@ -262,7 +260,6 @@ namespace user
          }
 
          prectangle->top = prectangle->bottom + 2;
-
 
       }
 

@@ -157,19 +157,9 @@ namespace visual
    ::color::color color_with_shade_of_grey(int i, int j, double dw, double dh)
    {
 
-      auto color32 = image_color_with_shade_of_grey(i, j, dw, dh);
+      auto color = image_color_with_shade_of_grey(i, dh - j - 1, dw, dh);
 
-      int a = image_a_value(color32);
-
-      int r = image_r_value(color32);
-
-      int g = image_g_value(color32);
-
-      int b = image_b_value(color32);
-
-      color32 = argb(a, r, g, b);
-
-      return color32;
+      return color;
 
    }
 

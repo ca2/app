@@ -513,7 +513,11 @@ namespace filemanager
    void document::defer_check_manager_id(string strManagerId)
    {
 
-      auto puser = user();
+      auto pcontext = m_pcontext;
+      
+      auto psession = pcontext->m_pcoresession;
+      
+      auto puser = psession->m_puser->m_pcoreuser;
 
       if(puser->m_pathFilemanagerProject.has_char())
       {
@@ -702,7 +706,11 @@ namespace filemanager
       if (context.is_user_source())
       {
 
-         auto puser = user();
+         auto pcontext = m_pcontext;
+         
+         auto psession = pcontext->m_pcoresession;
+         
+         auto puser = psession->m_puser->m_pcoreuser;
 
          auto pfilemanagerdata = filemanager_data();
 
@@ -714,8 +722,6 @@ namespace filemanager
          }
          else
          {
-
-            auto puser = user();
 
             puser->filemanager_save_project();
 
@@ -794,7 +800,11 @@ namespace filemanager
 
       pcreate->finish_initialization();
 
-      auto puser = user();
+      auto pcontext = m_pcontext;
+      
+      auto psession = pcontext->m_pcoresession;
+      
+      auto puser = psession->m_puser->m_pcoreuser;
 
       puser->add_filemanager("", pcreate);
 
@@ -836,7 +846,11 @@ namespace filemanager
 
       }
 
-      auto puser = user();
+      auto pcontext = m_pcontext;
+      
+      auto psession = pcontext->m_pcoresession;
+      
+      auto puser = psession->m_puser->m_pcoreuser;
 
       puser->erase_filemanager(pdocument.m_p);
 
@@ -1423,11 +1437,15 @@ namespace filemanager
       ::user::document::on_create(pcreate);
 
       m_pfilemanagerdata = pcreate->cast < ::filemanager::data >("filemanager::data");
+      
+      auto pcontext = m_pcontext;
+      
+      auto psession = pcontext->m_pcoresession;
+      
+      auto puser = psession->m_puser->m_pcoreuser;
 
       if (m_pfilemanagerdata.is_null())
       {
-
-         auto puser = user();
 
          m_pfilemanagerdata = puser->filemanager(FILEMANAGER_IMPACT);
 

@@ -22,15 +22,6 @@ namespace core
    }
 
 
-   inline ::core::user* application::user() const
-   {
-      
-      return get_session() ? get_session()->user() : nullptr; 
-   
-   }
-
-
-
    template < typename CORE_OBJECT >
    inline ::core::application* core < CORE_OBJECT >::get_application() const 
    {

@@ -253,9 +253,11 @@ namespace hi5
          if (pimpactdata->m_id == "twitter_authorization")
          {
 
-            __pointer(::core::session) psession = get_session();
-
-            auto puser = psession->user();
+            auto pcontext = m_pcontext;
+            
+            auto psession = pcontext->m_pcoresession;
+            
+            auto puser = psession->m_puser->m_pcoreuser;
 
             m_pdocAuth = puser->create_child_form(this, this, pimpactdata->m_pplaceholder);
 

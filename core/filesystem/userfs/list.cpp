@@ -675,7 +675,11 @@ namespace userfs
       if (i == 0)
       {
 
-         auto puser = user();
+         auto pcontext = m_pcontext;
+         
+         auto psession = pcontext->m_pcoresession;
+         
+         auto puser = psession->m_puser->m_pcoreuser;
 
          return puser->shell()->GetImageList(16);
 

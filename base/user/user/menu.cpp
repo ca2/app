@@ -1577,6 +1577,8 @@ namespace user
       }
 
       pinteraction->m_pmaterialCommandHandler = this;
+      
+      pinteraction->add_control_event_handler(this);
 
       return pinteraction;
 

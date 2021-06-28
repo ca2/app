@@ -236,62 +236,50 @@ void simple_scroll_bar::on_message_left_button_up(::message::message * pmessage)
 
    }
 
-   m_itemCurrent = ::user::e_element_none;
-
-   KillTimer(((uptr)this));
-
-   KillTimer(((uptr)this)+1);
-
    auto psession = get_session();
 
    auto puser = psession->user();
 
    auto pwindowing = puser->windowing();
 
-   auto puserinteractionCapture = puser->get_mouse_capture(m_pthreadUserInteraction);
-   
-   if(puserinteractionCapture)
+   pwindowing->release_mouse_capture();
+
+   KillTimer(((uptr)this));
+
+   KillTimer(((uptr)this)+1);
+
+   KillTimer(43212345);
+
+   bool bWasTracking = m_bTracking;
+
+   m_bTracking = false;
+
+   if (bWasTracking)
    {
-      
-      auto pcapture = puserinteractionCapture->cast < simple_scroll_bar >();
 
-      if ((pcapture != nullptr && pcapture == this) || m_bTracking)
-      {
+      auto point = _001ScreenToClient(pmouse->m_point);
 
-         KillTimer(43212345);
+      point -= m_sizeTrackOffset;
 
-         bool bWasTracking = m_bTracking;
+      auto psystem = m_psystem->m_paurasystem;
 
-         m_bTracking = false;
+      auto pdraw2d = psystem->draw2d();
 
-         if (bWasTracking)
-         {
+      auto pgraphics = pdraw2d->create_memory_graphics();
 
-            auto point = _001ScreenToClient(pmouse->m_point);
-
-            point -= m_sizeTrackOffset;
-
-            auto psystem = m_psystem->m_paurasystem;
-
-            auto pdraw2d = psystem->draw2d();
-
-            auto pgraphics = pdraw2d->create_memory_graphics();
-
-            SetTrackingPos(point, pgraphics);
-
-         }
-         
-      }
-
-      pwindowing->release_mouse_capture();
-
-      pmouse->m_bRet = false;
+      SetTrackingPos(point, pgraphics);
 
       post_scroll_message(e_scroll_command_thumb_position);
 
       set_need_redraw();
-
+      
+      post_redraw();
+   
    }
+         
+   m_itemCurrent = ::user::e_element_none;
+
+   pmouse->m_bRet = true;
 
 }
 

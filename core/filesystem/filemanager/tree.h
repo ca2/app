@@ -53,8 +53,6 @@ namespace filemanager
       inline ::core::application* get_application() const { return m_pcontext ? m_pcontext->m_pcoreapplication : nullptr; }
       inline ::core::session* get_session() const { return m_pcontext ? m_pcontext->m_pcoresession : nullptr; }
       inline ::core::system* get_system() const { return m_psystem ? m_psystem->m_pcoresystem : nullptr; }
-      inline ::core::user* user() const { return get_session() ? get_session()->user() : nullptr; }
-
 
 
       virtual ::e_status initialize_filemanager_tree(document * pdocument);

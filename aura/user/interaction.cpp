@@ -4922,7 +4922,7 @@ namespace user
          if(ansi_str(puserinteractionParent->type_c_str(), "button"))
          {
 
-            output_debug_string("button");
+//            output_debug_string("button");
 
          }
 
@@ -12045,7 +12045,7 @@ restart:
    }
 
    
-::e_status interaction::frame_experience_restore()
+   ::e_status interaction::frame_experience_restore()
    {
    
       return ::error_interface_only;
@@ -12053,13 +12053,32 @@ restart:
    }
 
 
+   ::user::notify_icon * interaction::notify_icon()
+   {
+      
+      return nullptr;
+      
+   }
+
+
    ::e_status interaction::frame_toggle_restore()
    {
+      
+      bool bWindowVisible = is_window_visible();
+      
+      double dOccludedOpaqueRate = _001GetTopLeftWeightedOccludedOpaqueRate();
+      
+      bool bIconic = layout().is_iconic();
 
-      if (!is_window_visible() || _001GetTopLeftWeightedOccludedOpaqueRate() > 0.025 || layout().is_iconic())
+      if (!bWindowVisible || dOccludedOpaqueRate > 0.025 || bIconic)
       {
+         
+         if(notify_icon())
+         {
 
-         set_tool_window(false);
+            set_tool_window(false);
+            
+         }
 
          if (!is_window_screen_visible())
          {
@@ -12079,10 +12098,21 @@ restart:
       }
       else
       {
+         
+         if(notify_icon())
+         {
 
-         set_tool_window();
+            set_tool_window();
+            
+            hide();
 
-         hide();
+         }
+         else
+         {
+          
+            display(e_display_iconic);
+            
+         }
 
       }
 
@@ -13149,8 +13179,16 @@ restart:
    {
 
       __pointer(::message::show_window) pshowwindow(pmessage);
+      
       string strType = type_c_str();
-      output_debug_string(strType);
+      
+      if(strType.contains("main_frame"))
+      {
+      
+         output_debug_string("main_frame interaction::_001OnShowWindow\n");
+         
+      }
+      
 //SW_OTHERUNZOOM
 //4
 //The window is being uncovered because a maximize window was restored or minimized.
@@ -15286,7 +15324,7 @@ restart:
          if(string(type_c_str()).contains_ci("button"))
          {
 
-            output_debug_string("button");
+            //output_debug_string("button");
 
          }
 

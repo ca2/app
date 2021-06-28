@@ -108,6 +108,14 @@ simple_frame_window::~simple_frame_window()
 }
 
 
+::user::notify_icon * simple_frame_window::notify_icon()
+{
+   
+   return m_pnotifyicon;
+   
+}
+
+
 ::user::enum_translucency simple_frame_window::get_translucency(::user::style* pstyle) const
 {
 
@@ -2768,7 +2776,7 @@ void simple_frame_window::defer_create_notification_icon()
 
       }
 
-      auto papplication = get_application();
+      //auto papplication = get_application();
 
       if (!m_piconNotify)
       {

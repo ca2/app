@@ -13,6 +13,7 @@ namespace graphics
    public:
 
 
+      ::string_stream                     m_cout;
       ::image_pointer                     m_pimage;
       ::size_i32                          m_sizeTile;
       ::size_i32                          m_sizeWindow;
@@ -38,6 +39,9 @@ namespace graphics
 
       virtual void assert_valid() const override;
       virtual void dump(dump_context & dump) const override;
+
+
+      ::string_stream & cout() override;
 
       
       virtual ::draw2d::pen_pointer & get_pen2(enum_dos_color edoscolor);

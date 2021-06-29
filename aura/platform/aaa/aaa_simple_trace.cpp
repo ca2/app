@@ -177,7 +177,7 @@ simple_trace::simple_trace()
 
 #ifdef DEBUG
 
-   INFO("Starting Simple Alog");
+   //INFO("Starting Simple Alog");
 
 #endif
 

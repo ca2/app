@@ -583,6 +583,8 @@ void channel::default_toggle_check_handling(const ::id & id)
 
          linkedproperty.notify_property_changed(pmessage->m_actioncontext);
 
+         pmessage->m_bRet = true;
+
       });
 
 }

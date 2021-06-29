@@ -42,12 +42,14 @@ namespace console
 
       
 
-      ::string_stream   cout;
-      int m_iTextColor;
+      int               m_iTextColor;
 
 
       console();
       virtual ~console();
+
+
+      virtual ::string_stream & cout() = 0;
 
 
       virtual void redirect_io();
@@ -64,20 +66,19 @@ namespace console
 
 
 
-   class CLASS_DECL_ACME console_composite:
+   class CLASS_DECL_ACME console_client:
       virtual public console
    {
    public:
 
 
-      __pointer(console)  m_pconsole;
+
+      console_client();
+      virtual ~console_client();
 
 
-      console_composite();
-      virtual ~console_composite();
-
-
-      virtual void set_console(console* pconsole);
+      virtual console * get_console();
+      string_stream & cout() override;
 
 
       virtual void redirect_io();

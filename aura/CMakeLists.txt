@@ -1147,7 +1147,7 @@ else ()
 endif ()
 
 
-add_library(aura SHARED ${library_source})
+add_library(aura SHARED ${library_source} user/control_event_listener.h)
 
 
 target_precompile_headers(aura PRIVATE framework.h)

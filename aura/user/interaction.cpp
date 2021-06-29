@@ -8947,21 +8947,21 @@ namespace user
 //   }
 
 
-   void interaction::add_control_event_handler(::user::interaction * puserinteraction, bool bPriority)
+   void interaction::add_control_event_handler(::user::callback * pusercallback, bool bPriority)
    {
       
-      __defer_construct_new(m_puserinteractionaControlEventHandler);
+      __defer_construct_new(m_pusercallbackaControlEventHandler);
       
       if(bPriority)
       {
-      
-         m_puserinteractionaControlEventHandler->insert_at(0,puserinteraction);
+
+         m_pusercallbackaControlEventHandler->insert_at(0, pusercallback);
          
       }
       else
       {
-       
-         m_puserinteractionaControlEventHandler->add(puserinteraction);
+
+         m_pusercallbackaControlEventHandler->add(pusercallback);
          
       }
       
@@ -8971,13 +8971,13 @@ namespace user
    void interaction::route_control_event(control_event * pevent)
    {
       
-      for(auto & puserinteraction : *m_puserinteractionaControlEventHandler)
+      for(auto & pusercallback : *m_pusercallbackaControlEventHandler)
       {
          
          try
          {
-            
-            puserinteraction->on_control_event(pevent);
+
+            pusercallback->on_control_event(pevent);
             
          }
          catch(...)

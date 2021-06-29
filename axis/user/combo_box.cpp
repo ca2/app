@@ -814,8 +814,6 @@ namespace user
 
          m_plistbox->m_pcombo = this;
 
-         m_plistbox->add_control_event_handler(this);
-
       }
 
       ::rectangle_i32 rectangleClient;

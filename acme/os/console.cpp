@@ -37,81 +37,91 @@ namespace console
    }
 
 
-   console_composite::console_composite()
+   console_client::console_client()
    {
 
    }
 
 
-   console_composite::~console_composite()
+   console_client::~console_client()
    {
 
    }
 
 
-   void console_composite::redirect_io()
+   void console_client::redirect_io()
    {
 
-      m_pconsole->redirect_io();
+      get_console()->redirect_io();
 
    }
 
 
-   void console_composite::set_console(console* pconsole)
+   console * console_client::get_console()
    {
 
-      m_pconsole = pconsole;
+      //get_console() = pconsole;
 
-      cout.m_p = pconsole->cout.m_p;
+      //cout.m_p = pconsole->cout.m_p;
+
+      return nullptr;
 
    }
 
 
-   void console_composite::SetWindowSize(int iHeight, int iWidth)
+   string_stream & console_client::cout()
    {
 
-      m_pconsole->SetWindowSize(iHeight, iWidth);
+      return get_console()->cout();
 
    }
 
 
-   void console_composite::SetCursorVisibility(bool show)
+   void console_client::SetWindowSize(int iHeight, int iWidth)
    {
 
-      m_pconsole->SetCursorVisibility(show);
+      get_console()->SetWindowSize(iHeight, iWidth);
 
    }
 
 
-   void console_composite::SetCursorPosition(int y, int x)
+   void console_client::SetCursorVisibility(bool show)
    {
 
-      m_pconsole->SetCursorPosition(y, x);
+      get_console()->SetCursorVisibility(show);
 
    }
 
 
-   void console_composite::SetTextColor(int color)
+   void console_client::SetCursorPosition(int y, int x)
+   {
+
+      get_console()->SetCursorPosition(y, x);
+
+   }
+
+
+   void console_client::SetTextColor(int color)
    {
       m_iTextColor = color;
 
-      m_pconsole->SetTextColor(color);
+      get_console()->SetTextColor(color);
 
    }
 
 
-   void console_composite::SetScreenColor(enum_dos_color edoscolor, int iLineStart, int iLineCount)
+   void console_client::SetScreenColor(enum_dos_color edoscolor, int iLineStart, int iLineCount)
    {
 
-      m_pconsole->SetScreenColor(edoscolor, iLineStart, iLineCount);
+      get_console()->SetScreenColor(edoscolor, iLineStart, iLineCount);
 
    }
 
 
-   void console_composite::write(const char * psz)
+   void console_client::write(const char * psz)
    {
 
-      m_pconsole->write(psz);
+      get_console()->write(psz);
 
    }
 

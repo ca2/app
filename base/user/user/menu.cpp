@@ -19,7 +19,6 @@ namespace user
       m_ewindowflag += e_window_flag_arbitrary_positioning;
 
       m_bCloseButton = true;
-            m_ewindowflag += e_window_flag_arbitrary_positioning;
 
       //m_econtroltype = e_control_type_menu;
       m_bCloseButton = true;
@@ -926,8 +925,7 @@ namespace user
       if (pevent->m_eevent == ::user::e_event_button_clicked)
       {
 
-         if (m_pitemClose.is_set()
-               && pevent->m_puie == m_pitemClose->m_puserinteraction)
+         if (m_pitemClose.is_set() && pevent->m_puie == m_pitemClose->m_puserinteraction)
          {
 
             defer_close();
@@ -984,10 +982,10 @@ namespace user
 
                   }
 
-                  
-
                }
+
             }
+
          }
 
       }

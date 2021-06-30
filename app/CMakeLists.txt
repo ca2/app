@@ -37,7 +37,7 @@ if (MSVC)
 
 elseif(LINUX)
 
-    target_link_options(app_app PRIVATE -Wl,-rpath=\$ORIGIN)
+    #target_link_options(app_app PRIVATE -Wl,-rpath=$ORIGIN)
     target_link_libraries(app_app PRIVATE ${library_references})
     target_link_options(app_app PRIVATE -Wl,-z,defs)
     message("PKGCONFIG_LIBRARIES is " ${PKGCONFIG_LIBRARIES})

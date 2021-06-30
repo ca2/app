@@ -61,7 +61,7 @@ if (MSVC)
 elseif(LINUX)
 
     target_compile_options(experience_anthill PRIVATE -fpermissive)
-    target_link_options(experience_anthill PRIVATE -Wl,-rpath=\$ORIGIN)
+    #target_link_options(experience_anthill PRIVATE -Wl,-rpath=$ORIGIN)
     target_link_libraries(experience_anthill PRIVATE ${PKGCONFIG_LIBRARIES} ${library_references})
     target_link_options(experience_anthill PRIVATE -Wl,-z,defs)
 

@@ -1069,7 +1069,7 @@ if (MSVC)
 elseif (LINUX)
 
    target_compile_options(core PRIVATE -fpermissive)
-   target_link_options(core PRIVATE -Wl,-rpath=\$ORIGIN)
+   #target_link_options(core PRIVATE -Wl,-rpath=$ORIGIN)
    target_link_libraries(core PRIVATE ${PKGCONFIG_LIBRARIES})
    target_link_libraries(core PRIVATE ${library_references})
    target_link_options(core PRIVATE -Wl,-z,defs)

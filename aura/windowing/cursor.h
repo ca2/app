@@ -16,21 +16,27 @@ namespace windowing
 
       enum_cursor                         m_ecursor;
       ::size_i32                          m_szHotspotOffset;
-      __pointer(::draw2d::cursor)         m_pcursor;
-      bool                                m_bLoadSystemDefaultCursorHint;
+      __pointer(::draw2d::cursor)    m_pcursor;
+      image_pointer                       m_pimage;
+      ::file::path                        m_path;
+      //bool                                m_bLoadSystemDefaultCursorHint;
 
 
       cursor();
       virtual ~cursor();
 
 
-      virtual ::e_status load_system_default_cursor_hint();
+      virtual ::e_status set_cursor(enum_cursor ecursor);
 
-      virtual ::e_status create_from_image(const ::image * pimage, ::i32 xHotspot, ::i32 yHotspot);
+//      virtual ::e_status load_system_default_cursor_hint();
 
-      virtual ::e_status load_default_cursor(enum_cursor ecursor);
+      virtual ::e_status set_image(const ::image * pimage, ::i32 xHotspot, ::i32 yHotspot);
+
+      virtual ::e_status set_file_path(const ::file::path & path);
 
       virtual ::file::path get_file_path() const;
+
+      virtual ::e_status _create_os_cursor();
 
       //virtual ::e_status set_cursor_file(const ::file::path& pathParam, bool bFromCache);
 

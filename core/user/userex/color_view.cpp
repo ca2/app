@@ -52,12 +52,12 @@ namespace visual
 {
 
 
-   ::color::color image_color_with_shade_of_grey(int i, int j, double dw, double dh)
+   void image_color_with_shade_of_grey(byte & r, byte & g, byte & b, int i, int j, int w, int h)
    {
 
       double dR, dG, dB;
 
-      double dH = (double)i / (double)dw;
+      double dH = (double)i / (double)w;
 
       dH *= 6.0;
 
@@ -126,10 +126,10 @@ namespace visual
 
       double dL = 0.5;
 
-      double dS = 1.0 - ((double)j / dh);
-#if defined(APPLEOS)
-      dS = 1.0 - dS;
-#endif
+      double dS = 1.0 - ((double)(IMAGE_Y(j, h)) / (double) h);
+//#if defined(APPLEOS)
+//      dS = 1.0 - dS;
+//#endif
 
       double dCMin;
       double dCAdd;
@@ -149,17 +149,17 @@ namespace visual
       double _dG = (dCMin + dG * dCAdd);
       double _dB = (dCMin + dB * dCAdd);
 
-      return IMAGE_ARGB(255, byte(_dR * 255.0), byte(_dG * 255.0), byte(_dB * 255.0));
+      r = byte(_dR * 255.0);
+      g = byte(_dG * 255.0);
+      b = byte(_dB * 255.0);
 
    }
 
 
-   ::color::color color_with_shade_of_grey(int i, int j, double dw, double dh)
+   void color_with_shade_of_grey(::color::color & color, int i, int j, double dw, double dh)
    {
 
-      auto color = image_color_with_shade_of_grey(i, dh - j - 1, dw, dh);
-
-      return color;
+      image_color_with_shade_of_grey(color.red, color.green, color.blue, i, j, dw, dh);
 
    }
 
@@ -173,25 +173,25 @@ namespace visual
 
       ::count h = pimage->height();
 
-      double dw = (double) w;
+      ::u32 uScan = pimage->scan_size();
 
-      double dh = (double) h;
-
-      ::u32 uScan;
-
-      uScan = pimage->scan_size() / sizeof(::color32_t);
-
-      ::color32_t * pline;
+      ::byte * pline;
 
       for (index i = 0; i < w; i++)
       {
 
-         pline = pimage->get_data() + i;
+         pline = (byte *) (pimage->get_data() + i);
 
          for (index j = 0; j < h; j++)
          {
 
-            *pline = image_color_with_shade_of_grey((int) i, (int) j, dw, dh);
+            image_color_with_shade_of_grey(
+               pline[IMAGE_R_BYTE_INDEX],
+               pline[IMAGE_G_BYTE_INDEX],
+               pline[IMAGE_B_BYTE_INDEX],
+               (int) i, (int) j, w, h);
+
+            pline[IMAGE_A_BYTE_INDEX] = 255;
 
             pline+=uScan;
 
@@ -531,11 +531,11 @@ namespace userex
 
          m_bMouseColorBeam = true;
 
-         ::color32_t color32 = visual::color_with_shade_of_grey(
+         ::color::color color;
+
+         visual::color_with_shade_of_grey(color,
             x, y,
             iColorsWidth, m_rectColors.height());
-
-         ::color::color color(color32);
 
          ::color::hls hls;
 

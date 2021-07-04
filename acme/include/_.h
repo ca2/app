@@ -722,6 +722,21 @@ CLASS_DECL_ACME int throw_assert_exception(const char *pszFileName, int iLineNum
 #define low_byte(w)              ((byte)((w) & 0xff))
 
 
+#ifdef __APPLE__
+
+
+#define IMAGE_Y(y, h) ((h) - (y) - 1)
+
+
+#else
+
+
+#define IMAGE_Y(y, h) (y)
+
+
+#endif
+
+
 #if defined(WINDOWS) || defined(LINUX) || defined(__i386__)
 
 

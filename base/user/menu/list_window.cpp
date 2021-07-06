@@ -121,7 +121,17 @@ namespace user
 
          }
 
-         auto size = pgraphics->get_text_extent(pitem->m_puserinteraction->get_window_text());
+         pgraphics->set_font(pitem->m_puserinteraction, ::user::e_element_none);
+
+         string strWindowText = pitem->m_puserinteraction->get_window_text();
+
+         const char * pszWindowText = strWindowText.c_str();
+
+         auto size = pgraphics->get_text_extent(strWindowText);
+
+         size.cy = size.cy * 5 / 4;
+
+         size.cx = size.cx * 5 / 4;
 
          size.cx += pitem->m_iLevel * g_base_menu_indent;
 
@@ -173,7 +183,7 @@ namespace user
 
       pgraphics->set_font(this, ::user::e_element_none);
 
-      const ::size_i32 & size = pgraphics->get_text_extent("XXXMMM");
+      const ::size_i32 & size = pgraphics->get_text_extent("XXXMMMgggppp");
 
       i32 iMaxHeight = size.cy;
 
@@ -183,9 +193,9 @@ namespace user
 
       calc_size(m_pmenuitem, pgraphics, iMaxWidth, iMaxHeight);
 
-      m_dItemHeight = iMaxHeight + 6 + 2;
+      m_dItemHeight = iMaxHeight * 3 / 2;
 
-      m_size.cx = iMaxWidth + 4;
+      m_size.cx = iMaxWidth * 7 / 4;
 
       m_size.cy = (::i32) (m_dHeaderHeight + pitem->m_iSeparatorCount * 3 + pitem->m_iFullHeightItemCount * m_dItemHeight + 4);
 

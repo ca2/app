@@ -29,16 +29,10 @@ namespace user
    button::~button()
    {
 
-      //if (m_pmenuitemThis.is_set())
-      //{
-
-      //   m_pmenuitemThis->m_puserinteraction = nullptr;
-      //   //m_pmenuitemThis->m_pmenu = nullptr;
-
-      //}
-
       ::acme::del(m_pbitmap);
+
       ::acme::del(m_plist);
+
       set_button_style(style_none);
 
    }
@@ -51,19 +45,15 @@ namespace user
 
       m_bMouseHoverOnCapture = true;
 
-      //m_bSimpleUIDefaultMouseHandlingMouseCaptureOnLeftButtonDown = true;
-
-      //m_erectMargin = rect_button_margin;
-      //m_erectBorder = rect_button_border;
-      //m_erectPadding = rect_button_padding;
-      //m_eintTextAlign = int_button_draw_text_flags;
-
       m_estockicon = stock_icon_none;
+
       m_estyle = style_none;
+
       m_pbitmap = nullptr;
+
       m_plist = nullptr;
+
       m_iClick = 0;
-      //m_bIdBound = true;
 
       m_bClickDefaultMouseHandling = true;
 
@@ -263,14 +253,7 @@ namespace user
 
       }
 
-//      m_propertyCheck = fetch_property(m_id, true);
-//
-//      if (m_ppropertyCheck)
-//      {
-//
-//         add_update_notification(m_ppropertyCheck);
-//
-//      }
+      m_propertyCheck = fetch_property(m_id, true);
 
    }
 
@@ -560,37 +543,44 @@ namespace user
 
       ::color::color crBackground = _001GetButtonBackgroundColor();
 
-      if(get_echeck() == ::check_checked)
+      auto & propertyCheck = m_propertyCheck;
+
+      auto echeck = get_echeck();
+
+      if(echeck == ::check_checked)
       {
+
+         ::rectangle_i32 rectPush(rectangleClient);
 
          ::color::color colorBack(crBackground);
 
-         colorBack.hls_rate(0.0, -0.1, 0.0);
+         colorBack.hls_rate(0.0, -0.2, 0.0);
 
-         if (colorref_get_a_value(crBackground) > 0)
-         {
-
-            pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
-
-            pgraphics->fill_rectangle(rectangleClient, colorBack);
-
-         }
+         rectPush.deflate(0, 0, 1, 1);
 
          ::color::color colorTopLeft(colorBack);
 
          ::color::color colorBottomRight(colorBack);
 
-         colorTopLeft.hls_rate(0.0, -0.2, 0.0);
+         colorTopLeft.hls_rate(0.0, -0.65, 0.0);
 
-         colorBottomRight.hls_rate(0.0, 0.2, 0.0);
+         colorBottomRight.hls_rate(0.0, 0.75, 0.0);
 
-         ::rectangle_i32 rectPush(rectangleClient);
+         pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
          pgraphics->draw_3drect(rectPush, colorTopLeft, colorBottomRight);
 
          rectPush.deflate(1, 1);
 
          pgraphics->draw_3drect(rectPush, colorTopLeft, colorBottomRight);
+
+         rectPush.deflate(1, 1);
+
+         pgraphics->draw_3drect(rectPush, colorTopLeft, colorBottomRight);
+
+         rectPush.deflate(1, 1, 0, 1);
+
+         pgraphics->fill_rectangle(rectPush, colorBack);
 
       }
       else

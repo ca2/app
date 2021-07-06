@@ -586,14 +586,14 @@ template < class c_derived >
 inline i64 release(c_derived *& pca OBJ_REF_DBG_COMMA_PARAMS_DEF)
 {
 
-   if (::is_null(pca))
+   c_derived * ptr = pca;
+
+   if (::is_null(ptr))
    {
 
       return -1;
 
    }
-
-   c_derived * ptr = pca;
 
 #ifdef DEBUG
 

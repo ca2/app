@@ -267,7 +267,7 @@ i32 image_list::add(::draw2d::icon * picon, int iItem)
 
    iItem = reserve_image(iItem);
 
-   auto rectangle = ::rectd_dim(iItem * m_size.cx, 0, m_size.cx, m_size.cy);
+   auto rectangle = ::rectangle_f64_dimension(iItem * m_size.cx, 0, m_size.cx, m_size.cy);
    
    m_pimage->g()->set_alpha_mode(::draw2d::alpha_mode_set);
 
@@ -309,7 +309,7 @@ i32 image_list::add(::windowing::icon * picon, int iItem)
 
    iItem = reserve_image(iItem);
 
-   auto rectangle = ::rectd_dim(iItem * m_size.cx, 0, m_size.cx, m_size.cy);
+   auto rectangle = ::rectangle_f64_dimension(iItem * m_size.cx, 0, m_size.cx, m_size.cy);
 
    m_pimage->g()->set_alpha_mode(::draw2d::alpha_mode_set);
 
@@ -439,7 +439,7 @@ i32 image_list::add_image(::image * pimage, int x, int y, int iItem)
 
    m_pimage->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_set);
 
-   auto rectangle = rectd_dim(iItem * m_size.cx, 0, m_size.cx, m_size.cy);
+   auto rectangle = rectangle_f64_dimension(iItem * m_size.cx, 0, m_size.cx, m_size.cy);
 
    m_pimage->get_graphics()->fill_rectangle(rectangle, argb(0, 0, 0, 0));
 

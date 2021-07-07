@@ -33,15 +33,15 @@ namespace flag
 
       double dy = h / 70.0;
 
-      pgraphics->fill_rectangle(::rectd_dim(x + 0, y + 0, 90.0 * dx, 70.0 * dy), argb(255, 255, 255, 255));
+      pgraphics->fill_rectangle(::rectangle_f64_dimension(x + 0, y + 0, 90.0 * dx, 70.0 * dy), argb(255, 255, 255, 255));
 
-      pgraphics->fill_rectangle(::rectd_dim(x + 0, y + 0, 30.0 * dx, 30.0 * dy), crDenmarkRoed);
+      pgraphics->fill_rectangle(::rectangle_f64_dimension(x + 0, y + 0, 30.0 * dx, 30.0 * dy), crDenmarkRoed);
 
-      pgraphics->fill_rectangle(::rectd_dim(x + 40.0 * dx, y, 50 * dx, 30 * dy), crDenmarkRoed);
+      pgraphics->fill_rectangle(::rectangle_f64_dimension(x + 40.0 * dx, y, 50 * dx, 30 * dy), crDenmarkRoed);
 
-      pgraphics->fill_rectangle(::rectd_dim(x + 0, y + 40.0 * dy, 30.0 * dx, 30.0 * dy), crDenmarkRoed);
+      pgraphics->fill_rectangle(::rectangle_f64_dimension(x + 0, y + 40.0 * dy, 30.0 * dx, 30.0 * dy), crDenmarkRoed);
 
-      pgraphics->fill_rectangle(::rectd_dim(x + 40.0 * dx, y + 40.0 * dy, 50.0 * dx, 30.0 * dy), crDenmarkRoed);
+      pgraphics->fill_rectangle(::rectangle_f64_dimension(x + 40.0 * dx, y + 40.0 * dy, 50.0 * dx, 30.0 * dy), crDenmarkRoed);
 
    }
 

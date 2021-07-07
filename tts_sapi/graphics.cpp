@@ -2078,7 +2078,7 @@ namespace draw2d_gdiplus
       else
       {
 
-         fill_rectangle(::rectd_dim(point.x, point.y, 1, 1), color);
+         fill_rectangle(::rectangle_f64_dimension(point.x, point.y, 1, 1), color);
 
       }
 
@@ -2108,7 +2108,7 @@ namespace draw2d_gdiplus
       else
       {
 
-         fill_rectangle(::rectd_dim(point.x, point.y, 1, 1), colorChange);
+         fill_rectangle(::rectangle_f64_dimension(point.x, point.y, 1, 1), colorChange);
 
       }
 

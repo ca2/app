@@ -2215,7 +2215,7 @@ namespace draw2d
       if (eborder & e_border_top)
       {
 
-         if (!fill_rectangle(rectd_dim(rectangle.left, rectangle.top, rectangle.width(), 1.0), colorTopLeft))
+         if (!fill_rectangle(rectangle_f64_dimension(rectangle.left, rectangle.top, rectangle.width(), 1.0), colorTopLeft))
          {
 
             return false;
@@ -2227,7 +2227,7 @@ namespace draw2d
       if (eborder & e_border_left)
       {
 
-         if (!fill_rectangle(rectd_dim(
+         if (!fill_rectangle(rectangle_f64_dimension(
             rectangle.left, 
             rectangle.top + (eborder & e_border_top ? 1.0 : 0), 1.0, rectangle.height()), colorTopLeft))
          {
@@ -2241,7 +2241,7 @@ namespace draw2d
       if (eborder & e_border_bottom)
       {
 
-         if (!fill_rectangle(rectd_dim(
+         if (!fill_rectangle(rectangle_f64_dimension(
             rectangle.left + (eborder & e_border_left ? 1.0 : 0),
             rectangle.bottom - 1.0, 
             rectangle.width() - (eborder & e_border_left ? 1.0 : 0),
@@ -2258,7 +2258,7 @@ namespace draw2d
       {
 
          if (!fill_rectangle(
-            ::rectd_dim(
+            ::rectangle_f64_dimension(
                rectangle.right, 
                //rectangle.top + (eborder & e_border_top ? 1.0 : 0),
                rectangle.top,

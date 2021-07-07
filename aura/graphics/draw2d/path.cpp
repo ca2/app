@@ -1809,7 +1809,7 @@ namespace draw2d
       if (iDiameter > rectangle.height())	iDiameter = rectangle.height();
 
       // define a corner
-      auto Corner = rectd_dim(rectangle.left, rectangle.top, iDiameter, iDiameter);
+      auto Corner = rectangle_f64_dimension(rectangle.left, rectangle.top, iDiameter, iDiameter);
 
       // begin path
       //path.m_ppath->Reset();
@@ -1871,7 +1871,7 @@ namespace draw2d
       if (iDiameter > rectangle.height())	iDiameter = rectangle.height();
 
       // define a corner
-      auto Corner = rectd_dim(rectangle.left, rectangle.top, iDiameter, iDiameter);
+      auto Corner = rectangle_f64_dimension(rectangle.left, rectangle.top, iDiameter, iDiameter);
 
       // begin path
       //path.m_ppath->Reset();

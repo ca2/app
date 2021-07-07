@@ -227,7 +227,12 @@ inline ___pointer < T > & ___pointer < T > ::reset (T * pNew OBJ_REF_DBG_COMMA_P
 
       }
 
-      ::release(pOld OBJ_REF_DBG_COMMA_ARGS);
+      if(::is_set(pOld))
+      {
+
+         ::release(pOld OBJ_REF_DBG_COMMA_ARGS);
+
+      }
 
    }
 

@@ -454,39 +454,43 @@ namespace user
 
          auto & ptabpanecomposite = tabpanecompositea[iPane];
 
-         ptabpanecomposite->m_pimpactdata = pimpactdata;
-
-         if(pimpactdata->m_pplaceholder != nullptr)
+         if(ptabpanecomposite->m_pimpactdata != pimpactdata)
          {
 
-            get_data()->m_tabpanecompositea[iPane]->m_pplaceholder = pimpactdata->m_pplaceholder;
+            ptabpanecomposite->m_pimpactdata = pimpactdata;
 
-         }
-         else if(pimpactdata->m_puserinteraction != nullptr)
-         {
-
-            if(pane_holder(iPane) == nullptr)
+            if (pimpactdata->m_pplaceholder != nullptr)
             {
 
-               get_data()->m_tabpanecompositea[iPane]->m_pplaceholder = place_hold(pimpactdata->m_puserinteraction,get_data()->m_rectTabClient);
+               get_data()->m_tabpanecompositea[iPane]->m_pplaceholder = pimpactdata->m_pplaceholder;
 
-            }
-            else
+            } else if (pimpactdata->m_puserinteraction != nullptr)
             {
 
-               //synchronous_lock synchronouslock(mutex_children());
+               if (pane_holder(iPane) == nullptr)
+               {
 
-               get_data()->m_tabpanecompositea[iPane]->m_pplaceholder->m_puserinteractionpointeraChild.release();
+                  get_data()->m_tabpanecompositea[iPane]->m_pplaceholder = place_hold(pimpactdata->m_puserinteraction,
+                                                                                      get_data()->m_rectTabClient);
 
-               get_data()->m_tabpanecompositea[iPane]->m_pplaceholder->place_hold(pimpactdata->m_puserinteraction);
+               } else
+               {
+
+                  //synchronous_lock synchronouslock(mutex_children());
+
+                  get_data()->m_tabpanecompositea[iPane]->m_pplaceholder->m_puserinteractionpointeraChild.release();
+
+                  get_data()->m_tabpanecompositea[iPane]->m_pplaceholder->place_hold(pimpactdata->m_puserinteraction);
+
+               }
+
+            } else
+            {
+
+               get_data()->m_tabpanecompositea[iPane]->m_pplaceholder = get_new_place_holder(
+                  get_data()->m_rectTabClient);
 
             }
-
-         }
-         else
-         {
-
-            get_data()->m_tabpanecompositea[iPane]->m_pplaceholder = get_new_place_holder(get_data()->m_rectTabClient);
 
          }
 

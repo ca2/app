@@ -359,34 +359,34 @@ namespace user
    ::user::impact_data * impact_host::get_impact_data(const id& id,bool bCallOnCreateView)
    {
 
-      ::user::impact_data * pdata = m_impactdatamap[id];
+      auto & pimpactdata = m_impactdatamap[id];
 
-      if (pdata != nullptr)
+      if (pimpactdata != nullptr)
       {
 
-         return pdata;
+         return pimpactdata;
 
       }
 
       if (!bCallOnCreateView)
       {
 
-         pdata = allocate_impact_data(id, "");
+         pimpactdata = allocate_impact_data(id, "");
 
-         return pdata;
+         return pimpactdata;
 
       }
 
-      pdata = create_impact(id, "");
+      pimpactdata = create_impact(id, "");
 
-      if (pdata == nullptr)
+      if (pimpactdata == nullptr)
       {
 
          return nullptr;
 
       }
 
-      return pdata;
+      return pimpactdata;
 
    }
 

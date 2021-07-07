@@ -1243,12 +1243,6 @@ namespace color
          m_dS = payload["saturation"];
 
       }
-      else
-      {
-
-         __throw(error_wrong_type);
-
-      }
 
       return *this;
 

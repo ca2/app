@@ -315,6 +315,8 @@ namespace userex
 
       }
 
+      ppane->m_pimpactdata = pimpactdata;
+
       ppane->m_pplaceholder = pimpactdata->m_pplaceholder;
 
       if (ppane->m_pplaceholder == nullptr)
@@ -324,7 +326,7 @@ namespace userex
 
       }
 
-      pimpactdata->m_pimpactdata = (void *)ppane;
+      pimpactdata->m_pimpactdata = (void *)pimpactdata;
 
       if (matches_restorable_tab(pimpactdata->m_id, pimpactdata->m_pplaceholder))
       {

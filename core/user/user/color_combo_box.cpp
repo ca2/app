@@ -101,7 +101,11 @@ namespace user
             if(bNew)
             {
 
-               auto puser = user();
+               auto pcontext = m_pcontext;
+               
+               auto psession = pcontext->m_pcoresession;
+               
+               auto puser = psession->m_puser->m_pcoreuser;
 
                puser->will_use_view_hint(COLORSEL_IMPACT);
 
@@ -110,8 +114,6 @@ namespace user
                m_pview = m_pdocument->get_typed_view < ::userex::color_view >();
 
                m_pview->m_bCompact = true;
-
-               auto psession = get_session();
 
                psession->set_bound_ui(COLORSEL_IMPACT, this);
 

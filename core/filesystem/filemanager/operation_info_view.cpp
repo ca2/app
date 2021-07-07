@@ -28,7 +28,7 @@ namespace filemanager
               255 - iDeltaVermelho - iDeltaDark,
               (byte)(255 - (iDeltaV2 / 2.0) + (i32)(sin((double)x / dSoft + dAnimation)  *(iDeltaV2 / 2.0))) - iDeltaV1 - iDeltaDark,
               255 - iDeltaAzul - 23 - iDeltaDark);
-         pgraphics->fill_rectangle(::rectd_dim(x,iTop,iW,cy), color32);
+         pgraphics->fill_rectangle(::rectangle_f64_dimension(x,iTop,iW,cy), color32);
       }
       if(x < iRight)
       {
@@ -36,7 +36,7 @@ namespace filemanager
               255 - iDeltaVermelho - iDeltaDark,
               (byte)(255 - (iDeltaV2 / 2.0) + (i32)(sin((double)x / dSoft + dAnimation)  *(iDeltaV2 / 2.0))) - iDeltaV1 - iDeltaDark,
               255 - iDeltaAzul - 23 - iDeltaDark);
-         pgraphics->fill_rectangle(::rectd_dim(x,iTop,iRight - x,cy), color32);
+         pgraphics->fill_rectangle(::rectangle_f64_dimension(x,iTop,iRight - x,cy), color32);
       }
    }
 

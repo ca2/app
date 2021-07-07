@@ -1229,9 +1229,20 @@ namespace color
    ::color::hls & hls::operator =(const ::payload & payload)
    {
 
-      m_dH = payload["hue"];
-      m_dL = payload["lightness"];
-      m_dS = payload["saturation"];
+      if(payload.m_etype == e_type_hls)
+      {
+
+         return operator=(payload.m_hls);
+
+      }
+      else if(payload.m_etype == e_type_propset)
+      {
+
+         m_dH = payload["hue"];
+         m_dL = payload["lightness"];
+         m_dS = payload["saturation"];
+
+      }
 
       return *this;
 

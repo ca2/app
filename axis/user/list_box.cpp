@@ -298,6 +298,8 @@ namespace user
 
                m_pcombo->set_current_item(pevent->m_item, pevent->m_actioncontext);
 
+               m_pcombo->ShowDropDown(false);
+
             }
             else
             {

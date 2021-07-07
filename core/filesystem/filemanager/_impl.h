@@ -14,15 +14,6 @@ namespace filemanager
    }
 
    
-   inline ::core::user* component::user() const 
-   {
-      
-      return get_session()->user(); 
-   
-   }
-
-
-
 } // namespace filemanager
 
 

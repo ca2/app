@@ -16,7 +16,7 @@ namespace core
 
 
       inline ::core::system* get_system() const;
-      inline ::core::user* user() const;
+      //inline ::core::user* user() const;
 
 
       void common_construct();
@@ -24,8 +24,6 @@ namespace core
 
       virtual ::e_status initialize(::object * pobject) override;
 
-
-      inline ::core::user* user();
 
       virtual void on_instantiate_application(::application* papp) override;
 

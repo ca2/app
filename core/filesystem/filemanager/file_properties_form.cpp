@@ -123,9 +123,11 @@ namespace filemanager
       case 1:
       {
 
-         __pointer(::core::session) psession = get_session();
-
-         auto puser = psession->user();
+         auto pcontext = m_pcontext;
+         
+         auto psession = pcontext->m_pcoresession;
+         
+         auto puser = psession->m_puser->m_pcoreuser;
 
          m_pdocGeneral = puser->create_form(this, this, m_ptabview);
 

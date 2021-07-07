@@ -141,7 +141,7 @@ namespace windowing
 
       __construct(pcursor);
 
-      pcursor->m_ecursor = ecursor;
+      pcursor->set_cursor(ecursor);
 
       m_cursormap.set_at(ecursor, pcursor);
 
@@ -170,18 +170,20 @@ namespace windowing
       if (psystem->m_bImaging)
       {
 
-         auto psession = get_session();
+         pcursor->set_file_path(path);
 
-         auto puser = psession->user();
+         //auto psession = get_session();
 
-         auto pwindowing = puser->windowing();
+         //auto puser = psession->user();
 
-         if (!pwindowing->load_cursor(pcursor, path, true, bFromCache))
-         {
+         //auto pwindowing = puser->windowing();
 
-            pcursor->load_system_default_cursor_hint();
+         //if (!pwindowing->load_cursor(pcursor, path, true, bFromCache))
+         //{
 
-         }
+            //pcursor->load_system_default_cursor_hint();
+
+         //}
 
       }
 
@@ -596,14 +598,21 @@ namespace windowing
 
       cursor * pcursor = get_cursor(ecursor);
 
-      if (pcursor->load_system_default_cursor_hint())
+//      if (pcursor->load_system_default_cursor_hint())
+//      {
+//
+//         return pcursor;
+//
+//      }
+
+      if(!pcursor)
       {
 
-         return pcursor;
+         return nullptr;
 
       }
 
-      return nullptr;
+      return pcursor;
 
    }
 

@@ -1116,7 +1116,7 @@ namespace draw2d
       //inline bool rectdangle_coord(double x1, double y1, double x2, double y2) { return rectdangle(::rectangle_f64(x1, y1, x2, y2)); }
       //inline bool rectdangle_coord(double x1, double y1, double x2, double y2); // { return rectdangle(rectangle_f64(x1, y1, x2, y2)); }
 
-      //inline bool rectdangle_dim(double x, double y, i32 cx, i32 cy) { return rectdangle(rectd_dim(x, y, cx, cy)); }
+      //inline bool rectdangle_dim(double x, double y, i32 cx, i32 cy) { return rectdangle(rectangle_f64_dimension(x, y, cx, cy)); }
       //inline bool rectdangle_dim(double x, double y, double cx, double cy); // { return rectdangle(rectdd_dim(x, y, cx, cy)); }
 
       //inline bool draw_rect_coord(double x1, double y1, double x2, double y2) { return draw_rectangle(::rectangle_f64(x1, y1, x2, y2)); }
@@ -1124,8 +1124,8 @@ namespace draw2d
       //inline bool draw_rect_coord(double x1, double y1, double x2, double y2); // { return draw_rectangle(rectangle_f64(x1, y1, x2, y2)); }
       //inline bool draw_rect_coord(double x1, double y1, double x2, double y2, ::draw2d::pen * ppen); // { return draw_rectangle(rectangle_f64(x1, y1, x2, y2), ppen); }
 
-      //inline bool draw_rect_dim(double x, double y, i32 cx, i32 cy) { return draw_rectangle(rectd_dim(x, y, cx, cy)); }
-      //inline bool draw_rect_dim(double x, double y, i32 cx, i32 cy, ::draw2d::pen * ppen) { return draw_rectangle(rectd_dim(x, y, cx, cy), ppen); }
+      //inline bool draw_rect_dim(double x, double y, i32 cx, i32 cy) { return draw_rectangle(rectangle_f64_dimension(x, y, cx, cy)); }
+      //inline bool draw_rect_dim(double x, double y, i32 cx, i32 cy, ::draw2d::pen * ppen) { return draw_rectangle(rectangle_f64_dimension(x, y, cx, cy), ppen); }
       //inline bool draw_rect_dim(double x, double y, double cx, double cy); // { return draw_rectangle(rectdd_dim(x, y, cx, cy)); }
       //inline bool draw_rect_dim(double x, double y, double cx, double cy, ::draw2d::pen * ppen); // { return draw_rectangle(rectdd_dim(x, y, cx, cy), ppen); }
 
@@ -1134,8 +1134,8 @@ namespace draw2d
       //inline bool fill_rect_coord(double x1, double y1, double x2, double y2); // { return fill_rectangle(rectangle_f64(x1, y1, x2, y2)); }
       //inline bool fill_rect_coord(double x1, double y1, double x2, double y2, ::draw2d::brush * pbrush); // { return fill_rectangle(rectangle_f64(x1, y1, x2, y2), pbrush); }
 
-      //inline bool fill_rect_dim(double x, double y, i32 cx, i32 cy) { return fill_rectangle(rectd_dim(x, y, cx, cy)); }
-      //inline bool fill_rect_dim(double x, double y, i32 cx, i32 cy, ::draw2d::brush * pbrush) { return fill_rectangle(rectd_dim(x, y, cx, cy), pbrush); }
+      //inline bool fill_rect_dim(double x, double y, i32 cx, i32 cy) { return fill_rectangle(rectangle_f64_dimension(x, y, cx, cy)); }
+      //inline bool fill_rect_dim(double x, double y, i32 cx, i32 cy, ::draw2d::brush * pbrush) { return fill_rectangle(rectangle_f64_dimension(x, y, cx, cy), pbrush); }
       //inline bool fill_rect_dim(double x, double y, double cx, double cy); // { return fill_rectangle(rectdd_dim(x, y, cx, cy)); }
       //inline bool fill_rect_dim(double x, double y, double cx, double cy, ::draw2d::brush * pbrush); // { return fill_rectangle(rectdd_dim(x, y, cx, cy), pbrush); }
 
@@ -1146,16 +1146,16 @@ namespace draw2d
       //inline bool fill_polygon(point_i32_array & pointa) { return fill_polygon(pointa.get_data(), pointa.get_count()); }
       inline bool fill_polygon(point_f64_array & pointa) { return fill_polygon(pointa.get_data(), pointa.get_count()); }
 
-      //inline void fill_solid_rect_dim(double x, double y, i32 cx, i32 cy, const ::color::color & color) { return fill_rectangle(rectd_dim(x, y, cx, cy), color); }
+      //inline void fill_solid_rect_dim(double x, double y, i32 cx, i32 cy, const ::color::color & color) { return fill_rectangle(rectangle_f64_dimension(x, y, cx, cy), color); }
       //inline void fill_solid_rect_dim(double x, double y, double cx, double cy, const ::color::color & color); // { return fill_rectangle(rectdd_dim(x, y, cx, cy), color); }
 
       //inline void fill_solid_rectd_coord(double x1, double y1, double x2, double y2, const ::color::color & color) { return fill_rectangle(::rectangle_f64(x1, y1, x2, y2), color); }
       //inline void fill_solid_rectd_coord(double x1, double y1, double x2, double y2, const ::color::color & color) { return fill_rectangle(rectangle_f64(x1, y1, x2, y2), color); }
 
-      //inline void draw_3drect_dim(double x, double y, i32 cx, i32 cy, const ::color::color& colorTopLeft, const ::color::color& colorBottomLeft) { return draw_3drect(rectd_dim(x, y, cx, cy), colorTopLeft, colorBottomLeft); }
-      //inline void draw_3drect_dim(double x, double y, double cx, double cy, const ::color::color& colorTopLeft, const ::color::color& colorBottomLeft) { return draw_3drect(rectd_dim(x, y, cx, cy), colorTopLeft, colorBottomLeft); }
-      //inline void draw_rect_dim(double x, double y, i32 cx, i32 cy, const ::color::color& color) { return draw_rectangle(rectd_dim(x, y, cx, cy), color); }
-      //inline void draw_rect_dim(double x, double y, double cx, double cy, const ::color::color& color) { return draw_rectangle(rectd_dim(x, y, cx, cy), color); }
+      //inline void draw_3drect_dim(double x, double y, i32 cx, i32 cy, const ::color::color& colorTopLeft, const ::color::color& colorBottomLeft) { return draw_3drect(rectangle_f64_dimension(x, y, cx, cy), colorTopLeft, colorBottomLeft); }
+      //inline void draw_3drect_dim(double x, double y, double cx, double cy, const ::color::color& colorTopLeft, const ::color::color& colorBottomLeft) { return draw_3drect(rectangle_f64_dimension(x, y, cx, cy), colorTopLeft, colorBottomLeft); }
+      //inline void draw_rect_dim(double x, double y, i32 cx, i32 cy, const ::color::color& color) { return draw_rectangle(rectangle_f64_dimension(x, y, cx, cy), color); }
+      //inline void draw_rect_dim(double x, double y, double cx, double cy, const ::color::color& color) { return draw_rectangle(rectangle_f64_dimension(x, y, cx, cy), color); }
 
       //inline void draw_3drect_coord(double x1, double y1, double x2, double y2, const ::color::color& colorTopLeft, const ::color::color& colorBottomLeft) { return draw_3drect(::rectangle_f64(x1, y1, x2, y2), colorTopLeft, colorBottomLeft); }
       //inline void draw_3drect_coord(double x1, double y1, double x2, double y2, const ::color::color& colorTopLeft, const ::color::color& colorBottomLeft) { return draw_3drect(rectangle_f64(x1, y1, x2, y2), colorTopLeft, colorBottomLeft); }

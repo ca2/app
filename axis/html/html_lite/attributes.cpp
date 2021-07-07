@@ -509,7 +509,7 @@ string LiteHTMLElemAttr::getColorHexValue(::lite_html_reader * preader) const
       ::color::color crTemp = getColorValue(preader);
 
       if (crTemp != 0xffffffff)
-         strColorHex.Format("#%06x", crTemp);
+         strColorHex.Format("#%06x", crTemp.u32);
 
    }
 

@@ -284,8 +284,11 @@
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = framework.h;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -300,10 +303,10 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(WorkspaceDir)/archive",
-					"$(WorkspaceDir)/archive/storage-$(PLATFORM_MODIFIER)/library/$(CONFIGURATION)",
+					"$(WorkspaceDir)/archive/storage-$(PLATFORM_MODIFIER)/library/x64/$(CONFIGURATION)",
 					"$(WorkspaceDir)/time/$(PLATFORM_MODIFIER)",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 11.3;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -375,7 +378,10 @@
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = framework.h;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -386,12 +392,10 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(WorkspaceDir)/archive",
-					"$(WorkspaceDir)/archive/platform-$(PLATFORM_MODIFIER)/storage-$(PLATFORM_MODIFIER)/library/$(CONFIGURATION)",
+					"$(WorkspaceDir)/archive//storage-$(PLATFORM_MODIFIER)/library/x64/$(CONFIGURATION)",
 					"$(WorkspaceDir)/archive",
-					"$(WorkspaceDir)/archive/platform-$(PLATFORM_MODIFIER)/storage-$(PLATFORM_MODIFIER)/third/library/$(CONFIGURATION)",
-					"$(WorkspaceDir)/time/$(PLATFORM_MODIFIER)",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 11.3;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PLATFORM_MODIFIER = macos;

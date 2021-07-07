@@ -66,25 +66,35 @@ namespace draw2d
       __memset(m_iHeightField1,0,(m_iWidth*m_iHeight)*sizeof(i32));
       __memset(m_iHeightField2,0,(m_iWidth*m_iHeight)*sizeof(i32));
    }
-   void water_routine::to(::color::color * pSrcImage, ::color::color * pTargetImage)
+
+
+   void water_routine::to(::color32_t * pSrcImage, ::color32_t * pTargetImage)
    {
+      
       // Yes they have to be the same size...(for now)
       if(m_bDrawWithLight == false)
       {
+         
          DrawWaterNoLight(m_iHpage,pSrcImage,pTargetImage);
+         
       }
       else
       {
+         
          DrawWaterWithLight(m_iHpage,m_iLightModifier,pSrcImage,pTargetImage);
+         
       }
+      
       CalcWater(m_iHpage,m_density);
-
 
       m_iHpage ^= 1;
 
    }
+
+
    void water_routine::CalcWater(i32 npage, i32 density)
    {
+      
       i32 newh;
       i32 count = m_iWidth + 1;
       i32 *newptr;
@@ -93,13 +103,17 @@ namespace draw2d
       // set up the pointers
       if(npage == 0)
       {
+         
          newptr = &m_iHeightField1[0];
          oldptr = &m_iHeightField2[0];
+         
       }
       else
       {
+         
          newptr = &m_iHeightField2[0];
          oldptr = &m_iHeightField1[0];
+         
       }
 
       i32 x, y;
@@ -109,6 +123,7 @@ namespace draw2d
 
       for (y = (m_iHeight-1)*m_iWidth; count < y; count += 2)
       {
+         
          for (x = count+m_iWidth-2; count < x; count++)
          {
 
@@ -125,7 +140,6 @@ namespace draw2d
                              ) >> 2 )
                             - newptr[count];
 
-
             newptr[count] =  newh - (newh >> density);
             /*
             // This is the "sludge" method...
@@ -141,11 +155,17 @@ namespace draw2d
 
                   newptr[count] = (newh-(newh>>6)) >> density;
             */
+            
          }
+         
       }
+      
    }
+
+
    void water_routine::SmoothWater(i32 npage)
    {
+      
       i32 newh;
       i32 count = m_iWidth + 1;
 
@@ -155,15 +175,18 @@ namespace draw2d
       // set up the pointers
       if(npage == 0)
       {
+         
          newptr = &m_iHeightField1[0];
          oldptr = &m_iHeightField2[0];
+         
       }
       else
       {
+         
          newptr = &m_iHeightField2[0];
          oldptr = &m_iHeightField1[0];
+         
       }
-
 
       i32 x, y;
 
@@ -172,6 +195,7 @@ namespace draw2d
 
       for(y=1; y<m_iHeight-1; y++)
       {
+         
          for(x=1; x<m_iWidth-1; x++)
          {
             // This does the eight-pixel method.  It looks much better.
@@ -464,8 +488,9 @@ namespace draw2d
       }
    }
 
-   void water_routine::DrawWaterNoLight(i32 page, ::color::color * pSrcImage, ::color::color * pTargetImage)
+   void water_routine::DrawWaterNoLight(i32 page, ::color32_t * pSrcImage, ::color32_t * pTargetImage)
    {
+      
       UNREFERENCED_PARAMETER(page);
       //  i32 ox, oy;
       i32 dx, dy;
@@ -504,8 +529,9 @@ namespace draw2d
       }
    }
 
-   void water_routine::DrawWaterWithLight(i32 page, i32 LightModifier,::color::color * pSrcImage, ::color::color * pTargetImage)
+   void water_routine::DrawWaterWithLight(i32 page, i32 LightModifier,::color32_t * pSrcImage, ::color32_t * pTargetImage)
    {
+      
       UNREFERENCED_PARAMETER(page);
       UNREFERENCED_PARAMETER(LightModifier);
       //  i32 ox, oy;
@@ -555,8 +581,11 @@ namespace draw2d
       }
 
    }
-   inline ::color::color water_routine::GetShiftedColor(::color::color color,i32 shift)
+
+
+   inline ::color32_t water_routine::GetShiftedColor(::color32_t color,i32 shift)
    {
+      
       long R;
       long G;
       long B;

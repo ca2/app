@@ -185,7 +185,7 @@ namespace user
       string                                    m_strStyle;
       property_set                              m_setStyle;
 
-      __pointer(__pointer_array(::user::interaction))      m_puserinteractionaControlEventHandler;
+      __pointer(__pointer_array(::user::callback))      m_pusercallbackaControlEventHandler;
 
 
 
@@ -656,6 +656,8 @@ namespace user
 
       virtual ::e_status frame_experience_restore();
       
+      virtual ::user::notify_icon * notify_icon();
+      
       virtual ::e_status frame_toggle_restore();
       
       virtual ::e_status display_previous_restore();
@@ -916,12 +918,12 @@ namespace user
       inline bool has_control_event_handler() const
       {
          
-         return m_puserinteractionaControlEventHandler &&
-         m_puserinteractionaControlEventHandler->has_element();
+         return m_pusercallbackaControlEventHandler &&
+         m_pusercallbackaControlEventHandler->has_element();
          
       }
       
-      void add_control_event_handler(::user::interaction * puserinteraction, bool bPriority = false);
+      void add_control_event_handler(::user::callback * pusercallback, bool bPriority = false);
       
       virtual void route_control_event(::user::control_event* pevent);
 

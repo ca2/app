@@ -607,7 +607,11 @@ namespace userex
 
       ::id id = idView;
 
-      auto puser = user();
+      auto pcontext = m_pcontext;
+      
+      auto psession = pcontext->m_pcoresession;
+      
+      auto puser = psession->m_puser->m_pcoreuser;
 
       ::user::impact_system * pimpactsystem = puser->m_mapimpactsystem[idView];
 
@@ -690,7 +694,11 @@ namespace userex
 
       papplication->data_set("frame::" + idView.to_string() + ".visible", bShow);
 
-      auto puser = user();
+      auto pcontext = m_pcontext;
+      
+      auto psession = pcontext->m_pcoresession;
+      
+      auto puser = psession->m_puser->m_pcoreuser;
 
       puser->will_use_view_hint(idView);
 

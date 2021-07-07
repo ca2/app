@@ -762,7 +762,7 @@ namespace aura
 
       //virtual string get_app_user_friendly_task_bar_name() override;
 
-      //virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
+      void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
 
       //virtual bool compress_ungz(::file::file * pfileUncompressed, ::file::file * pfileCompressed);
 

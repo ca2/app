@@ -10,7 +10,7 @@ namespace windowing
    cursor::cursor()
    {
 
-      load_system_default_cursor_hint();
+      //load_system_default_cursor_hint();
 
    }
 
@@ -22,32 +22,46 @@ namespace windowing
    }
 
 
-   ::e_status cursor::load_system_default_cursor_hint()
+   ::e_status cursor::set_cursor(enum_cursor ecursor)
    {
 
-      m_bLoadSystemDefaultCursorHint = true;
+      m_ecursor = ecursor;
 
       return ::success;
 
    }
 
+
+//   ::e_status cursor::load_system_default_cursor_hint()
+//   {
+//
+//      m_bLoadSystemDefaultCursorHint = true;
+//
+//      return ::success;
+//
+//   }
+
    
-   ::e_status cursor::create_from_image(const ::image * pimage, ::i32 xHotspot, ::i32 yHotspot)
+   ::e_status cursor::set_image(const ::image * pimage, ::i32 xHotspot, ::i32 yHotspot)
    {
 
-      __throw(error_interface_only);
+      m_pimage = pimage;
+
+      m_szHotspotOffset.cx = xHotspot;
+
+      m_szHotspotOffset.cy = yHotspot;
       
-      return error_interface_only;
+      return ::success;
 
    }
 
    
-   ::e_status cursor::load_default_cursor(enum_cursor ecursor)
+   ::e_status cursor::set_file_path(const ::file::path & path)
    {
 
-      __throw(error_interface_only);
+      m_path = path;
 
-      return error_interface_only;
+      return ::success;
 
    }
 
@@ -56,6 +70,16 @@ namespace windowing
    {
 
       return "";
+
+   }
+
+
+   ::e_status cursor::_create_os_cursor()
+   {
+
+      __throw(error_interface_only);
+
+      return error_interface_only;
 
    }
 

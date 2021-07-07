@@ -27,7 +27,7 @@ namespace aqua
 
       virtual void _001OnFranceExit() override;
 
-      virtual void game_on_create();
+      virtual void game_on_create(::aqua::game * pgame);
 
 
 

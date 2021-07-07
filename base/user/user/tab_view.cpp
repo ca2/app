@@ -428,11 +428,15 @@ namespace user
    void tab_view::on_change_cur_sel()
    {
 
-      id id = tab_id(_001GetSel());
+      index iPane = _001GetSel();
+
+      id id = tab_id(iPane);
 
       ::id idSplit;
 
-      ::rectangle_i32 rectTabClient = get_data()->m_rectTabClient;
+      auto ptabdata = get_data();
+
+      ::rectangle_i32 rectTabClient = ptabdata->m_rectTabClient;
 
       ::user::impact_data * pimpactdata = get_impact_data(id, rectTabClient);
 
@@ -443,68 +447,67 @@ namespace user
 
       }
 
-      index iPane = ::user::tab::id_pane(id);
-
       if(iPane >= 0)
       {
 
-         auto pdata = get_data();
-
-         auto& tabpanecompositea = pdata->m_tabpanecompositea;
+         auto& tabpanecompositea = ptabdata->m_tabpanecompositea;
 
          auto & ptabpanecomposite = tabpanecompositea[iPane];
 
-         ptabpanecomposite->m_pimpactdata = pimpactdata;
-
-         if(pimpactdata->m_pplaceholder != nullptr)
+         if(ptabpanecomposite->m_pimpactdata != pimpactdata)
          {
 
-            get_data()->m_tabpanecompositea[iPane]->m_pplaceholder = pimpactdata->m_pplaceholder;
+            ptabpanecomposite->m_pimpactdata = pimpactdata;
 
-         }
-         else if(pimpactdata->m_puserinteraction != nullptr)
-         {
-
-            if(pane_holder(iPane) == nullptr)
+            if (pimpactdata->m_pplaceholder != nullptr)
             {
 
-               get_data()->m_tabpanecompositea[iPane]->m_pplaceholder = place_hold(pimpactdata->m_puserinteraction,get_data()->m_rectTabClient);
+               get_data()->m_tabpanecompositea[iPane]->m_pplaceholder = pimpactdata->m_pplaceholder;
+
+            }
+            else if (pimpactdata->m_puserinteraction != nullptr)
+            {
+
+               if (pane_holder(iPane) == nullptr)
+               {
+
+                  get_data()->m_tabpanecompositea[iPane]->m_pplaceholder = place_hold(pimpactdata->m_puserinteraction, get_data()->m_rectTabClient);
+
+               }
+               else
+               {
+
+                  get_data()->m_tabpanecompositea[iPane]->m_pplaceholder->m_puserinteractionpointeraChild.release();
+
+                  get_data()->m_tabpanecompositea[iPane]->m_pplaceholder->place_hold(pimpactdata->m_puserinteraction);
+
+               }
 
             }
             else
             {
 
-               //synchronous_lock synchronouslock(mutex_children());
-
-               get_data()->m_tabpanecompositea[iPane]->m_pplaceholder->m_puserinteractionpointeraChild.release();
-
-               get_data()->m_tabpanecompositea[iPane]->m_pplaceholder->place_hold(pimpactdata->m_puserinteraction);
+               get_data()->m_tabpanecompositea[iPane]->m_pplaceholder = get_new_place_holder(get_data()->m_rectTabClient);
 
             }
 
-         }
-         else
-         {
-
-            get_data()->m_tabpanecompositea[iPane]->m_pplaceholder = get_new_place_holder(get_data()->m_rectTabClient);
-
-         }
-
-      }
-
-      {
-
-         synchronous_lock synchronouslock(mutex());
-
-         if (pimpactdata->m_idTitle.has_char())
-         {
-
-            index iPane = tab_pane(_001GetSel());
-
-            if (iPane >= 0 && get_data()->m_tabpanecompositea[iPane]->m_id == pimpactdata->m_id)
             {
 
-               get_data()->m_tabpanecompositea[iPane]->set_title(pimpactdata->m_idTitle);
+               synchronous_lock synchronouslock(mutex());
+
+               if (pimpactdata->m_idTitle.has_char())
+               {
+
+                  index iPane = tab_pane(_001GetSel());
+
+                  if (iPane >= 0 && get_data()->m_tabpanecompositea[iPane]->m_id == pimpactdata->m_id)
+                  {
+
+                     get_data()->m_tabpanecompositea[iPane]->set_title(pimpactdata->m_idTitle);
+
+                  }
+
+               }
 
             }
 
@@ -533,10 +536,6 @@ namespace user
       if (m_pimpactdata->m_puserinteraction == nullptr)
       {
 
-//         synchronous_lock synchronouslock(mutex_children());
-
-
-
          auto puserinteractionpointeraChild = m_pimpactdata->m_pplaceholder->m_puserinteractionpointeraChild;
 
          if (puserinteractionpointeraChild && puserinteractionpointeraChild->has_interaction())
@@ -548,11 +547,11 @@ namespace user
 
       }
 
-      if (m_pimpactdataOld
-         && m_pimpactdataOld->m_eflag & ::user::e_flag_hide_on_kill_focus)
+      if (m_pimpactdataOld && m_pimpactdataOld->m_eflag & ::user::e_flag_hide_on_kill_focus)
       {
 
          output_debug_string("::user::e_flag_hide_on_kill_focus");
+
          m_pimpactdataOld->m_pplaceholder->hide();
 
       }
@@ -604,7 +603,6 @@ namespace user
          }
 
       }
-
 
       ::rectangle_i32 rectangleClient;
 

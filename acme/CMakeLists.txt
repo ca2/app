@@ -1861,7 +1861,7 @@ elseif (LINUX)
    pkg_check_modules(PKGCONFIG freetype2)
    target_compile_options(acme PRIVATE -fpermissive)
    target_compile_options(acme PRIVATE ${PKGCONFIG_CFLAGS})
-   target_link_options(acme PRIVATE -Wl,-rpath=\$ORIGIN)
+   #target_link_options(acme PRIVATE -L . -Wl,-rpath .)
    target_link_libraries(acme PRIVATE z dl idn pthread ${PKGCONFIG_LIBRARIES})
    target_link_options(acme PRIVATE -Wl,-z,defs)
    message("PKGCONFIG_LIBRARIES is " ${PKGCONFIG_LIBRARIES})
@@ -1871,7 +1871,6 @@ elseif (MACOS)
 
 
     target_link_libraries(acme PRIVATE z iconv idn ${COCOA} ${IOKIT})
-
 
 
 endif ()

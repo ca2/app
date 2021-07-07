@@ -163,7 +163,11 @@ namespace filemanager
          else
          {
 
-            auto puser = user();
+            auto pcontext = m_pcontext;
+            
+            auto psession = pcontext->m_pcoresession;
+            
+            auto puser = psession->m_puser->m_pcoreuser;
 
             puser->track_popup_xml_menu(this, filemanager_data()->m_strXmlPopup, 0, pcontextmenu->m_point);
 
@@ -173,7 +177,11 @@ namespace filemanager
       else
       {
 
-         auto puser = user();
+         auto pcontext = m_pcontext;
+         
+         auto psession = pcontext->m_pcoresession;
+         
+         auto puser = psession->m_puser->m_pcoreuser;
 
          puser->track_popup_xml_menu(this, filemanager_data()->m_strPopup, 0, pcontextmenu->m_point);
 
@@ -1296,7 +1304,12 @@ namespace filemanager
          pcolumn->m_uiText = "";
          pcolumn->m_datakey = "FILE_MANAGER_ID_FILE_NAME";
          pcolumn->m_bEditOnSecondClick = false;
-         auto puser = user();
+
+         auto pcontext = m_pcontext;
+         
+         auto psession = pcontext->m_pcoresession;
+         
+         auto puser = psession->m_puser->m_pcoreuser;
 
          pcolumn->m_pil = puser->shell()->GetImageList(filemanager_data()->m_iIconSize);
          pcolumn->m_pilHover = puser->shell()->GetImageListHover(filemanager_data()->m_iIconSize);
@@ -1355,11 +1368,15 @@ namespace filemanager
          pcolumn->m_bEditOnSecondClick = true;
          int iIconSize = filemanager_data()->m_iIconSize;
 
-         auto puser = user(); 
+         auto pcontext = m_pcontext;
+         
+         auto psession = pcontext->m_pcoresession;
+         
+         auto puser = psession->m_puser->m_pcoreuser;
 
          pcolumn->m_pil = puser->shell()->GetImageList(iIconSize);
-         pcolumn->m_pilHover = puser->shell()->GetImageListHover(iIconSize);
 
+         pcolumn->m_pilHover = puser->shell()->GetImageListHover(iIconSize);
 
       }
 
@@ -1764,7 +1781,11 @@ namespace filemanager
       if (i == 0)
       {
 
-         auto puser = user();
+         auto pcontext = m_pcontext;
+         
+         auto psession = pcontext->m_pcoresession;
+         
+         auto puser = psession->m_puser->m_pcoreuser;
 
          return puser->shell()->GetImageList(filemanager_data()->m_iIconSize);
 

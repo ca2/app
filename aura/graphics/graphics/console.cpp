@@ -127,7 +127,8 @@ namespace graphics
       m_sizeTile(sizeTile)
    {
 
-      cout.m_p = this;
+      m_cout.m_p = this;
+
       m_x = 0;
       m_y = 0;
       m_iBorder = 23;
@@ -138,6 +139,14 @@ namespace graphics
    console::~console()
    {
 
+
+   }
+
+
+   string_stream & console::cout()
+   {
+
+      return m_cout;
 
    }
 

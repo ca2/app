@@ -67,7 +67,7 @@ elseif(LINUX)
 
 
     target_compile_options(programming PRIVATE -fpermissive)
-    target_link_options(programming PRIVATE -Wl,-rpath=\$ORIGIN)
+    #target_link_options(programming PRIVATE -Wl,-rpath=$ORIGIN)
     target_link_libraries(programming PRIVATE dl ${library_references})
     target_link_options(programming PRIVATE -Wl,-z,defs)
 

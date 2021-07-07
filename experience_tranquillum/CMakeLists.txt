@@ -64,7 +64,7 @@ if (MSVC)
 elseif(LINUX)
 
     target_compile_options(experience_tranquillum PRIVATE -fpermissive)
-    target_link_options(experience_tranquillum PRIVATE -Wl,-rpath=\$ORIGIN)
+    #target_link_options(experience_tranquillum PRIVATE -Wl,-rpath=$ORIGIN)
     target_link_libraries(experience_tranquillum PRIVATE ${PKGCONFIG_LIBRARIES} ${library_references})
     target_link_options(experience_tranquillum PRIVATE -Wl,-z,defs)
 

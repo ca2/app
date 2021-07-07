@@ -4742,8 +4742,11 @@ end:
 
 void payload::parse_json(const char * & pszJson)
 {
+
    parse_json(pszJson, pszJson + strlen(pszJson) - 1);
+
 }
+
 
 namespace str
 {
@@ -4940,27 +4943,74 @@ const char * payload::parse_json(const string & strJson)
 
 }
 
+
 void payload::parse_json(const char *& pszJson, const char * pszEnd)
 {
+
    ::str::consume_spaces(pszJson, 0, pszEnd);
+
    if (*pszJson == '{')
    {
+
       propset().parse_json(pszJson, pszEnd);
+
    }
    else if (*pszJson == '\"')
    {
-      operator = (::str::consume_quoted_value_ex(pszJson, pszEnd));
+
+      string str = ::str::consume_quoted_value_ex(pszJson, pszEnd);
+
+      if(str.begins_eat_ci("hls://"))
+      {
+
+         string_array stra;
+
+         stra.explode(":", str);
+
+         if(stra.get_count() == 3)
+         {
+
+            double dH = atof(stra[0]);
+
+            double dL = atof(stra[1]);
+
+            double dS = atof(stra[2]);
+
+            if(dH >= 0.0 && dH <= 1.0
+            && dL >= 0.0 && dL <= 1.0
+            && dS >= 0.0 && dS <= 1.0)
+            {
+
+               set_type(e_type_hls);
+
+               m_hls = {dH, dL, dS};
+
+               return;
+
+            }
+
+         }
+
+      }
+
+      operator=(str);
+
    }
    else if (ansi_char_is_digit(*pszJson) || *pszJson == '-' || *pszJson == '.')
    {
+
       consume_number(pszJson, pszEnd);
+
    }
    else if (*pszJson == '[')
    {
+
       vara().parse_json(pszJson, pszEnd);
+
    }
    else if (*pszJson == ']')
    {
+
       ::output_debug_string("");
 
       //pszJson++;
@@ -4968,13 +5018,19 @@ void payload::parse_json(const char *& pszJson, const char * pszEnd)
    }
    else if (*pszJson == '\0')
    {
+
       ::output_debug_string("");
+
    }
    else
    {
+
       consume_identifier(pszJson, pszEnd);
+
    }
+
 }
+
 
 ::enum_type payload::find_json_child(const char *& pszJson, const char * pszEnd, const ::payload & varChild)
 {
@@ -5357,6 +5413,18 @@ string & payload::get_json(string & str, bool bNewLine) const
    {
 
       return vara().get_json(str, bNewLine);
+
+   }
+   else if (get_type() == ::e_type_hls)
+   {
+
+      string strHls;
+
+      strHls.Format("\"hls://%f:%f:%f\"", m_hls.m_dH, m_hls.m_dL, m_hls.m_dS);
+
+      str += strHls;
+
+      return str;
 
    }
    else if (is_numeric())

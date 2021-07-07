@@ -2091,16 +2091,25 @@ namespace user
    __pointer(::user::mesh_data) mesh::create_mesh_data()
    {
 
-      auto puser = user();
+      auto pcontext = m_pcontext;
+      
+      auto psession = pcontext->m_paurasession;
+      
+      auto puser = psession->m_puser->m_pcoreuser;
 
       return puser->default_create_mesh_data(this);
 
    }
 
+
    __pointer(::user::list_header) list::create_list_header()
    {
 
-      auto puser = user();
+      auto pcontext = m_pcontext;
+      
+      auto psession = pcontext->m_paurasession;
+      
+      auto puser = psession->m_puser->m_pcoreuser;
 
       return puser->default_create_list_header(this);
 
@@ -2110,7 +2119,11 @@ namespace user
    __pointer(::user::mesh_data) list::create_mesh_data()
    {
 
-      auto puser = user();
+      auto pcontext = m_pcontext;
+      
+      auto psession = pcontext->m_paurasession;
+      
+      auto puser = psession->m_puser->m_pcoreuser;
 
       return puser->default_create_list_data(this);
 

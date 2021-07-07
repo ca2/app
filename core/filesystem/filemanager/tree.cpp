@@ -407,7 +407,12 @@ namespace filemanager
 
                   list_erase_all(ptreeitem);
 
-                  list_erase(ptreeitem->m_pparent, ptreeitem);
+                  if(::is_set(ptreeitem->m_pparent))
+                  {
+
+                     list_erase(ptreeitem->m_pparent, ptreeitem);
+
+                  }
 
                }
 

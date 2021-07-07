@@ -36,7 +36,7 @@ elseif(LINUX)
     #   add_dependencies(app_message_box node_kde windowing_xcb)
     #endif()
 
-    target_link_options(app_message_box PRIVATE -Wl,-rpath=\$ORIGIN)
+    #target_link_options(app_message_box PRIVATE -Wl,-rpath=$ORIGIN)
     target_link_libraries(app_message_box PRIVATE acme apex aqua aura)
     target_link_options(app_message_box PRIVATE -Wl,-z,defs)
     message("PKGCONFIG_LIBRARIES is " ${PKGCONFIG_LIBRARIES})

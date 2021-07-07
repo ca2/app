@@ -61,7 +61,11 @@ namespace filemanager
 
          pcreate->m_puserprimitiveParent = pimpactdata->m_pplaceholder;
 
-         auto puser = user();
+         auto pcontext = m_pcontext;
+         
+         auto psession = pcontext->m_paurasession;
+         
+         auto puser = psession->m_puser->m_pcoreuser;
 
          puser->m_pdocumenttemplateForm->do_request(pcreate);
 
@@ -117,7 +121,11 @@ namespace filemanager
 
          pcreate->m_puserprimitiveParent = this;
 
-         auto puser = user();
+         auto pcontext = m_pcontext;
+         
+         auto psession = pcontext->m_paurasession;
+         
+         auto puser = psession->m_puser->m_pcoreuser;
 
          puser->m_pdocumenttemplateOperation->do_request(pcreate);
 

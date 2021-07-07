@@ -252,7 +252,7 @@ namespace user
 
       ::rectangle_i32 splitRect;
       CalcSplitBarRect(iIndex, &splitRect);
-      ::point_i32 pointCursor = pMsg->pt;
+      //::point_i32 pointCursor = pMsg->pt;
 
       if(pMsg->m_id == e_message_left_button_down)
       {
@@ -292,7 +292,7 @@ namespace user
 //         i32   fwKeys = (i32) pMsg->wParam;        // key flags
 
 
-         auto point = _001ScreenToClient(pointCursor);
+         //auto point = _001ScreenToClient(pointCursor);
 
          //if((fwKeys & MK_LBUTTON) > 0 && (m_iState == stateDragging) && (iIndex == m_iIndex))
          //{

@@ -1764,23 +1764,18 @@ namespace user
       if(item.m_iItem >= 0 && iClickTab == item.m_iItem && m_itemClick == item)
       {
 
-         fork([this, item]()
+         if (item == e_element_close_tab_button)
          {
 
-            if (item == e_element_close_tab_button)
-            {
+            _001OnTabClose(item.m_iItem);
 
-               _001OnTabClose(item.m_iItem);
+         }
+         else
+         {
 
-            }
-            else
-            {
+            _001OnTabClick(item.m_iItem);
 
-               _001OnTabClick(item.m_iItem);
-
-            }
-
-         });
+         }
 
          set_need_redraw();
 

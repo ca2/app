@@ -21,6 +21,7 @@ namespace user
 
    }
 
+
    menu_list_view::~menu_list_view()
    {
 
@@ -29,17 +30,18 @@ namespace user
 
    void menu_list_view::assert_valid() const
    {
+      
       impact::assert_valid();
+      
    }
 
 
    void menu_list_view::dump(dump_context & dumpcontext) const
    {
+      
       impact::dump(dumpcontext);
+      
    }
-
-
-
 
 
    bool menu_list_view::pre_create_window(::user::system * pusersystem)
@@ -74,25 +76,6 @@ namespace user
    }
 
 
-   //bool menu_list_view::add_menu(::xml::node * pnode, ::user::interaction * puiNotify, ::u32 uCallbackMessage)
-   //{
-
-   //   destroy_menu();
-
-   //   m_bAutoClose = false;
-
-   //   if (!menu_list_window::add_menu(pnode))
-   //      return false;
-
-   //   //menu_fill(get_parent_frame(), this);
-
-   //   m_puiMenuNotify = puiNotify;
-
-   //   return true;
-
-   //}
-
-
    void menu_list_view::PostNcDestroy()
    {
 
@@ -100,6 +83,8 @@ namespace user
 
    }
 
+
 } // namespace user
+
 
 

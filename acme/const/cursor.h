@@ -5,6 +5,7 @@
 //  Created by Camilo Sasuke on 28/05/21 01:53 BRT <3ThomasBS_!!
 //  Copyright © 2021 Camilo Sasuke Tsumanuma. All rights reserved.
 //
+#pragma once
 
 
 enum enum_cursor

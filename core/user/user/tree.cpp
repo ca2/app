@@ -605,7 +605,7 @@ namespace user
 
       __pointer(::message::mouse) pmouse(pmessage);
 
-      pmouse->previous();
+      //pmouse->previous();
 
       auto point = pmouse->m_point;
 

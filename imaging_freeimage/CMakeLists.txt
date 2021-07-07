@@ -42,7 +42,7 @@ elseif(LINUX)
 
 
     target_compile_options(imaging_freeimage PRIVATE -fpermissive)
-    target_link_options(imaging_freeimage PRIVATE -Wl,-rpath=\$ORIGIN)
+    #target_link_options(imaging_freeimage PRIVATE -Wl,-rpath=$ORIGIN)
     target_link_libraries(imaging_freeimage PRIVATE freeimage)
     target_link_libraries(imaging_freeimage PRIVATE acme apex aqua aura)
     target_link_options(imaging_freeimage PRIVATE -Wl,-z,defs)

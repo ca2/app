@@ -1725,7 +1725,7 @@ namespace user
                               }
 
                               pgraphics->fill_rectangle(
-                                 ::rectd_dim(l,
+                                 ::rectangle_f64_dimension(l,
                                  pboxBeg->m_rectBox.top,
                                  r,
                                  pboxEnd->m_rectBox.bottom),

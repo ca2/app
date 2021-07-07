@@ -1147,7 +1147,7 @@ else ()
 endif ()
 
 
-add_library(aura SHARED ${library_source})
+add_library(aura SHARED ${library_source} user/control_event_listener.h)
 
 
 target_precompile_headers(aura PRIVATE framework.h)
@@ -1165,7 +1165,7 @@ if (MSVC)
 elseif (LINUX)
    target_compile_options(aura PRIVATE -fpermissive)
    target_compile_options(aura PRIVATE ${PKGCONFIG_CFLAGS})
-   target_link_options(aura PRIVATE -Wl,-rpath=\$ORIGIN)
+   #target_link_options(aura PRIVATE -Wl,-rpath=$ORIGIN)
    target_link_libraries(aura PRIVATE dl pthread)
    target_link_libraries(aura PRIVATE ${PKGCONFIG_LIBRARIES})
    target_link_libraries(aura PRIVATE acme apex aqua)

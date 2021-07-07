@@ -39,6 +39,9 @@ public:
 
 
    virtual ::e_status initialize(::object * pobject) override;
+   
+   
+   ::user::notify_icon * notify_icon() override;
 
 
    virtual ::user::enum_translucency get_translucency(::user::style* pstyle) const override;

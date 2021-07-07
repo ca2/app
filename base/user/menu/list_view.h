@@ -22,17 +22,19 @@ namespace user
 
       virtual bool pre_create_window(::user::system * pusersystem) override;
 
-      //virtual void GuieProc(::message::message * pmessage);
-
       virtual void route_command_message(::message::command * pcommand) override;
-
-      //bool add_menu(::xml::node * pnode, ::user::interaction * puiNotify, ::u32 uCallbackMessage);
 
       virtual void assert_valid() const override;
       virtual void dump(dump_context & dumpcontext) const override;
 
+
       virtual void PostNcDestroy() override;
+
 
    };
 
+
 } // namespace user
+
+
+

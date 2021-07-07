@@ -24,9 +24,11 @@ namespace usernet
    bool network_configuration::initialize(__pointer(::user::interaction) puiParent)
    {
 
-      __pointer(::core::session) psession = get_session();
-
-      auto puser = psession->user();
+      auto pcontext = m_pcontext;
+      
+      auto psession = pcontext->m_pcoresession;
+      
+      auto puser = psession->m_puser->m_pcoreuser;
 
       m_pdocument = puser->create_form(this, this, puiParent);
 
@@ -49,9 +51,11 @@ namespace usernet
    bool network_configuration::initialize_child(__pointer(::user::interaction) puiParent)
    {
 
-      __pointer(::core::session) psession = get_session();
-
-      auto puser = psession->user();
+      auto pcontext = m_pcontext;
+      
+      auto psession = pcontext->m_pcoresession;
+      
+      auto puser = psession->m_puser->m_pcoreuser;
 
       puser->create_child_form(this, this, puiParent);
 

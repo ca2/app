@@ -42,7 +42,7 @@ elseif(LINUX)
     #   add_dependencies(app_just_message_box node_kde windowing_xcb)
     #endif()
 
-    target_link_options(app_just_message_box PRIVATE -Wl,-rpath=\$ORIGIN)
+    #target_link_options(app_just_message_box PRIVATE -Wl,-rpath=$ORIGIN)
     target_link_libraries(app_just_message_box PRIVATE ${library_references})
     target_link_options(app_just_message_box PRIVATE -Wl,-z,defs)
     message("PKGCONFIG_LIBRARIES is " ${PKGCONFIG_LIBRARIES})

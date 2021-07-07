@@ -36,7 +36,7 @@ if (MSVC)
     target_link_libraries(app_shader PRIVATE ${library_references})
 
 elseif(LINUX)
-    target_link_options(app_shader PRIVATE -Wl,-rpath=\$ORIGIN)
+    #target_link_options(app_shader PRIVATE -Wl,-rpath=$ORIGIN)
     target_link_libraries(app_shader PRIVATE ${library_references})
     target_link_options(app_shader PRIVATE -Wl,-z,defs)
 

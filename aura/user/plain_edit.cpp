@@ -689,7 +689,7 @@ namespace user
             {
 
                pgraphics->fill_rectangle(
-               ::rectd_dim((double)((double)left + x1),
+               ::rectangle_f64_dimension((double)((double)left + x1),
                (double)y,
                (double)minimum(x2-x1, (double)rectangleClient.right - ((double)left + x1)),
                (double)minimum((double)m_dLineHeight, (double)rectangleClient.bottom - y)),
@@ -703,7 +703,7 @@ namespace user
             {
 
                pgraphics->fill_rectangle(
-                  ::rectd_dim((double)((double)left + compose1),
+                  ::rectangle_f64_dimension((double)((double)left + compose1),
                   (double)y,
                   (double)minimum(compose2 - compose1, (double)rectangleClient.right - ((double)left + compose1)),
                   (double)minimum((double)m_dLineHeight, (double)rectangleClient.bottom - y)),

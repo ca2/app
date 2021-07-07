@@ -670,11 +670,8 @@ namespace user
    {
 
       pmessage->previous();
-      
+
       m_propertyCheck = fetch_property(m_id, true);
-
-      ///add_update_notification(m_ppropertyCheck);
-
 
    }
 

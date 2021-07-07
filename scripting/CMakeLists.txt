@@ -48,7 +48,7 @@ elseif(LINUX)
 
 
     target_compile_options(scripting PRIVATE -fpermissive)
-    target_link_options(scripting PRIVATE -Wl,-rpath=\$ORIGIN)
+    #target_link_options(scripting PRIVATE -Wl,-rpath=$ORIGIN)
     target_link_libraries(scripting PRIVATE ${library_references})
     target_link_options(scripting PRIVATE -Wl,-z,defs)
 

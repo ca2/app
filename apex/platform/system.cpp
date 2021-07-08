@@ -5042,7 +5042,7 @@ namespace apex
 
    //   auto estatus = plibrary->initialize(this);
 
-   //   if (estatus)
+   //   if(estatus.succeeded())
    //   {
 
    //      bLibraryOk = true;

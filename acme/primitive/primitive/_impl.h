@@ -1342,7 +1342,7 @@ inline __pointer(T) & ___pointer < T >::create(OBJECT * pobject, bool bCreate)
 //
 //   auto estatus = ::__construct_new(p);
 //
-//   if (estatus)
+//   if(estatus.succeeded())
 //   {
 //
 //      estatus = p->initialize(this);
@@ -2946,7 +2946,7 @@ inline ::e_status object::__construct_new(__pointer(TYPE)& p)
 
    auto estatus = ::__construct_new(p);
 
-   if (estatus)
+   if(estatus.succeeded())
    {
 
       estatus = p->initialize(this);

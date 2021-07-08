@@ -11,7 +11,7 @@ inline int_bool address_overlaps(const void * pszDst, const void * pszSrc, strsi
 
 }
 
-inline ansichar * ansi_dup(const ansichar * psz) { return strdup(psz); }
+inline ansichar * ansi_dup(const ansichar * psz) { return _strdup(psz); }
 
 inline strsize ansi_len(const ansichar * psz) { return strlen(psz); }
 

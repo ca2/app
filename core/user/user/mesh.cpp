@@ -3145,11 +3145,16 @@ namespace user
       return m_rangeSelection.get_item_count();
    }
 
-   id mesh::_001GetColumnTextId(index iColumn)
+
+   string mesh::_001GetColumnText(index iColumn)
    {
+
       UNREFERENCED_PARAMETER(iColumn);
-      return -1;
+      
+      return "";
+
    }
+
 
    void mesh::_001OnLButtonDblClk(::message::message * pmessage)
    {

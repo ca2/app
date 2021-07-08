@@ -1242,7 +1242,7 @@ namespace aura
 
          estatus = do_factory_exchange("draw2d", strLibrary);
 
-         if (estatus)
+         if(estatus.succeeded())
          {
 
             return ::success;
@@ -1270,7 +1270,7 @@ namespace aura
 
       estatus = do_factory_exchange("draw2d", strLibrary);
 
-      if (estatus)
+      if(estatus.succeeded())
       {
 
          return ::success;
@@ -1286,7 +1286,7 @@ namespace aura
 
          estatus = do_factory_exchange("draw2d", "gdiplus");
 
-         if (estatus)
+         if(estatus.succeeded())
          {
 
             return ::success;
@@ -1301,7 +1301,7 @@ namespace aura
 
          estatus = do_factory_exchange("draw2d", "direct2d");
 
-         if (estatus)
+         if(estatus.succeeded())
          {
 
             return ::success;
@@ -1319,7 +1319,7 @@ namespace aura
 
          estatus = do_factory_exchange("draw2d", "cairo");
 
-         if (estatus)
+         if(estatus.succeeded())
          {
 
             return ::success;
@@ -1388,7 +1388,7 @@ namespace aura
 
          estatus = do_factory_exchange("imaging", strLibrary);
 
-         if (estatus)
+         if(estatus.succeeded())
          {
 
             return true;
@@ -1420,7 +1420,7 @@ namespace aura
 
       estatus = do_factory_exchange("imaging", strLibrary);
 
-      if (estatus)
+      if(estatus.succeeded())
       {
 
          return true;
@@ -1434,7 +1434,7 @@ namespace aura
 
          estatus = do_factory_exchange("imaging", "wic");
 
-         if (estatus)
+         if(estatus.succeeded())
          {
 
             return true;
@@ -1450,7 +1450,7 @@ namespace aura
 
          estatus = do_factory_exchange("imaging", "freeimage");
 
-         if (estatus)
+         if(estatus.succeeded())
          {
 
             return true;
@@ -6101,7 +6101,7 @@ namespace aura
 
    //   auto estatus = plibrary->initialize(this);
 
-   //   if (estatus)
+   //   if(estatus.succeeded())
    //   {
 
    //      bLibraryOk = true;

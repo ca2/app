@@ -179,7 +179,7 @@ bool task_group::add_predicate(::predicate_holder_base * ppred)
 
       auto estatusTask = m_taska[i]->set_ready_to_start();
 
-      if (estatusTask)
+      if(estatusTask.succeeded())
       {
 
          cSuccess++;

@@ -765,7 +765,7 @@ namespace android
 //
 //         ::dir::ls(patha, "/system/fonts");
 //
-//         if (estatus)
+//         if(estatus.succeeded())
 //         {
 //
 //            for (auto& path : patha)

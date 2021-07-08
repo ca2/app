@@ -481,7 +481,7 @@ namespace user
 
       virtual ::count _001GetSelectedItemCount();
 
-      virtual id _001GetColumnTextId(index iColumn);
+      virtual string _001GetColumnText(index iColumn);
 
       virtual bool _001OnHeaderCtrlEndTrack(wparam wparam,lparam lparam);
 

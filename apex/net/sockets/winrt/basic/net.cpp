@@ -35,7 +35,7 @@ namespace sockets
 
       auto estatus = ::object::initialize(pobject);
 
-      if (estatus)
+      if(estatus.succeeded())
       {
 
          return estatus;

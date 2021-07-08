@@ -89,7 +89,8 @@ namespace user
 
       //m_bFocus = false;
 
-      m_bParentScroll = true;
+      m_bParentScrollX = true;
+      m_bParentScrollY = true;
 
       m_bUserInteractionSetFinish = false;
 
@@ -2514,10 +2515,17 @@ namespace user
       while(::is_set(pChild) && ::is_set(pChild->get_parent()))
       {
 
-         if(pChild->m_bParentScroll)
+         if(pChild->m_bParentScrollX)
          {
 
-            pointScroll += pChild->get_parent()->m_pointScroll;
+            pointScroll.x += pChild->get_parent()->m_pointScroll.x;
+
+         }
+
+         if (pChild->m_bParentScrollY)
+         {
+
+            pointScroll.y += pChild->get_parent()->m_pointScroll.y;
 
          }
 
@@ -2970,7 +2978,9 @@ namespace user
 
       point_i32 pointScroll = m_pointScroll;
 
-      bool bParentScroll = false;
+      bool bParentScrollX = false;
+
+      bool bParentScrollY = false;
 
       try {
 
@@ -3005,20 +3015,37 @@ namespace user
                      if (!pointScroll.is_null())
                      {
 
-                        if (!bParentScroll && pinteraction->m_bParentScroll)
+                        if (!bParentScrollX && pinteraction->m_bParentScrollX)
                         {
 
-                           pgraphics->OffsetViewportOrg(-pointScroll.x, -pointScroll.y);
+                           pgraphics->OffsetViewportOrg(-pointScroll.x, 0);
 
-                           bParentScroll = true;
+                           bParentScrollX = true;
 
                         }
-                        else if (bParentScroll && !pinteraction->m_bParentScroll)
+                        else if (bParentScrollX && !pinteraction->m_bParentScrollX)
                         {
 
-                           pgraphics->OffsetViewportOrg(pointScroll.x, pointScroll.y);
+                           pgraphics->OffsetViewportOrg(pointScroll.x, 0);
 
-                           bParentScroll = false;
+                           bParentScrollX = false;
+
+                        }
+
+                        if (!bParentScrollY && pinteraction->m_bParentScrollY)
+                        {
+
+                           pgraphics->OffsetViewportOrg(0, -pointScroll.y);
+
+                           bParentScrollY = true;
+
+                        }
+                        else if (bParentScrollY && !pinteraction->m_bParentScrollY)
+                        {
+
+                           pgraphics->OffsetViewportOrg(0, pointScroll.y);
+
+                           bParentScrollY = false;
 
                         }
 
@@ -3078,10 +3105,17 @@ namespace user
 
       //pgraphics->OffsetViewportOrg(pointScroll.x, pointScroll.y);
 
-      if (bParentScroll && !pointScroll.is_null())
+      if (bParentScrollX && pointScroll.x)
       {
 
-         pgraphics->OffsetViewportOrg(pointScroll.x, pointScroll.y);
+         pgraphics->OffsetViewportOrg(pointScroll.x, 0);
+
+      }
+
+      if (bParentScrollY && pointScroll.y)
+      {
+
+         pgraphics->OffsetViewportOrg(0, pointScroll.y);
 
       }
 
@@ -13010,6 +13044,8 @@ restart:
    {
 
       //set_need_redraw();
+
+      set_reposition();
 
    }
 

@@ -309,7 +309,7 @@ namespace user
       virtual ::count _001GetSelectedItems(index_array & ia);
 
 
-      id _001GetColumnTextId(index iColumn) override;
+      string _001GetColumnText(index iColumn) override;
 
       virtual void HeaderCtrlLayout();
 

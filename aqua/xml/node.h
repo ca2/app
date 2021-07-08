@@ -123,7 +123,8 @@ namespace xml
       node *                  GetChildByAllAttr(const char * lpszName, string_array & straName, string_array & straAttrValue);
 
       node * get_child_at( index iIndex);
-      node *                  get_child_at(const char * lpszName, index iIndex, index iDepth = 0);
+      node * get_child_at(const char * lpszName, index iIndex, index iDepth = 0);
+      node * get_child_at_grow(const char* lpszName, index iIndex);
       ::count get_child_attr_value(string_array & stra, const char * lpszName, const char * pszAttrName, index iDepth = 1);
       ::count erase_child_with_attr(const char * lpszName, const char * pszAttrName, index iIndex, ::count iCount = 1, index iDepth = 1);
 

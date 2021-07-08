@@ -329,7 +329,7 @@ inline ::e_status __construct(::image_pointer & pimage, ::image * pimageSource)
 
    auto estatus = __construct(pimage);
 
-   if (estatus)
+   if(estatus.succeeded())
    {
 
       if (!pimage->copy_from(pimageSource))

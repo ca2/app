@@ -1232,7 +1232,7 @@ namespace filemanager
 
       }
 
-
+      auto pcontext = m_pcontext->m_papexcontext;
 
       if (filemanager_data()->m_bIconView)
       {
@@ -1282,9 +1282,7 @@ namespace filemanager
             pcolumn->m_id = id;
             pcolumn->m_bCustomDraw = true;
             pcolumn->m_bEditOnSecondClick = true;
-            pcolumn->m_uiText = "";
             pcolumn->m_pil = pcallback->GetActionButtonImageList(i);
-
 
          }
 
@@ -1301,7 +1299,6 @@ namespace filemanager
          pcolumn->m_sizeIcon.cx = filemanager_data()->m_iIconSize;
          pcolumn->m_sizeIcon.cy = filemanager_data()->m_iIconSize;
          //pcolumn->m_iControl = -1;
-         pcolumn->m_uiText = "";
          pcolumn->m_datakey = "FILE_MANAGER_ID_FILE_NAME";
          pcolumn->m_bEditOnSecondClick = false;
 
@@ -1363,7 +1360,7 @@ namespace filemanager
          //pcolumn->m_bIcon                = true;
          pcolumn->m_sizeIcon.cx = filemanager_data()->m_iIconSize;
          pcolumn->m_sizeIcon.cy = filemanager_data()->m_iIconSize;
-         pcolumn->m_uiText = "Name";
+         pcolumn->m_text = pcontext->__text("file:Name");
          pcolumn->m_datakey = "FILE_MANAGER_ID_FILE_NAME";
          pcolumn->m_bEditOnSecondClick = true;
          int iIconSize = filemanager_data()->m_iIconSize;
@@ -1394,7 +1391,7 @@ namespace filemanager
 
          fs_list()->m_iSizeSubItem = m_iSizeSubItem;
 
-         pcolumn->m_uiText = "Size";
+         pcolumn->m_text = pcontext->__text("file:Size");
 
          pcolumn->m_sizeIcon.cx = 0;
 

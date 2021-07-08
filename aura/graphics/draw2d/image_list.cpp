@@ -572,7 +572,7 @@ void image_list::copy_from(const ::image_list * plist)
 }
 
 
-bool image_list::get_image_info(i32 nImage, info * pinfo) const
+::e_status image_list::get_image_info(i32 nImage, info * pinfo) const
 {
 
    try
@@ -580,41 +580,39 @@ bool image_list::get_image_info(i32 nImage, info * pinfo) const
 
       ASSERT(pinfo != nullptr);
 
-      bool bOk = true;
-
       if(nImage < 0 || nImage >= get_image_count())
       {
 
-         bOk = false;
-
-         nImage = 0;
+         return error_index_out_of_bounds;
 
       }
 
-      if(bOk && m_pimage->is_null())
+      if(::is_null(m_pimage))
       {
 
-         bOk = false;
+         return error_null_pointer;
 
       }
 
-      if(bOk && m_pimage->get_bitmap().is_null())
+      if (!m_pimage->is_ok())
       {
 
-         bOk = false;
+         return error_null_pointer;
 
       }
 
-      pinfo->m_rectangle.left      = nImage * m_size.cx;
-      pinfo->m_rectangle.right     = pinfo->m_rectangle.left + m_size.cx;
-      pinfo->m_rectangle.top       = 0;
-      pinfo->m_rectangle.bottom    = m_size.cy;
+      pinfo->m_rectangle.left       = nImage * m_size.cx;
+      pinfo->m_rectangle.right      = pinfo->m_rectangle.left + m_size.cx;
+      pinfo->m_rectangle.top        = 0;
+      pinfo->m_rectangle.bottom     = m_size.cy;
 
-      ((image_list*)this)->__construct(pinfo->m_pimage);
+      pinfo->m_pimage               = m_pimage;
 
-      pinfo->m_pimage->copy_from(m_pimage);
+      //auto estatus = ((image_list*)this)->__construct(pinfo->m_pimage);
 
-      return bOk;
+      //pinfo->m_pimage->copy_from(m_pimage);
+
+      return ::success;
 
    }
    catch(...)
@@ -622,7 +620,7 @@ bool image_list::get_image_info(i32 nImage, info * pinfo) const
 
    }
 
-   return false;
+   return error_exception;
 
 }
 

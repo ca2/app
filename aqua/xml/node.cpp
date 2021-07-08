@@ -2245,6 +2245,53 @@ namespace xml
 
    }
 
+
+
+   node* node::get_child_at_grow(const char* lpszName, index iIndex)
+   {
+
+      if (iIndex < 0)
+      {
+
+         return nullptr;
+
+      }
+
+      for (i32 i = 0; i < m_nodea.get_size(); i++)
+      {
+
+         if (m_nodea[i]->m_strName == lpszName)
+         {
+
+            if (iIndex <= 0)
+            {
+
+               return m_nodea.element_at(i)->get_xml_node();
+
+            }
+
+            iIndex--;
+
+         }
+
+      }
+
+      node* pchild = nullptr;
+
+      do
+      {
+
+         pchild = add_child(lpszName);
+
+         iIndex--;
+
+      } while (iIndex > 0);
+
+      return pchild;
+
+   }
+
+
    // iDepth
    // -1 recursive
    // 0 nothing

@@ -1166,7 +1166,7 @@ void object::delete_this()
 //
 //         synchronouslock.lock();
 //
-//         if (estatusComposite == ::error_pending)
+//         if(estatusComposite == ::error_pending.succeeded())
 //         {
 //
 //            if (strTypeName.contains_ci("application"))
@@ -1236,7 +1236,7 @@ void object::delete_this()
 
          auto estatusItem = pmatter->set_finish();
 
-         if (estatusItem == error_pending)
+         if(estatusItem == error_pending)
          {
 
             estatus = error_pending;
@@ -1255,7 +1255,7 @@ void object::delete_this()
 
    //      auto estatusItem = pobject->finish();
 
-   //      if (estatusItem == error_pending)
+   //      if(estatusItem == error_pending.succeeded())
    //      {
 
    //         estatus = error_pending;
@@ -1288,7 +1288,7 @@ void object::delete_this()
 
          auto estatusItem = pmatter->finish();
 
-         if (estatusItem == error_pending)
+         if(estatusItem == error_pending)
          {
 
             estatus = error_pending;

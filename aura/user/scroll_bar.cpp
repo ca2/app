@@ -9,7 +9,8 @@ namespace user
    scroll_bar::scroll_bar()
    {
 
-      m_bParentScroll = false;
+      m_bParentScrollX = false;
+      m_bParentScrollY = false;
 
       m_scrollinfo.nMin    = 0;
       m_scrollinfo.nMax    = 100;

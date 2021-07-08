@@ -1595,7 +1595,7 @@ typedef FN_GET_STRING * PFN_GET_STRING;
 
    //::e_status estatus = system_proc();
 
-   //if(estatus)
+   //if(estatus.succeeded())
    //{
 
    //   system_main();

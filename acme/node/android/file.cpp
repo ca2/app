@@ -244,7 +244,7 @@ namespace android
 
          auto estatusLast = ::get_last_status();
 
-         if(estatusLast != error_not_found && estatusLast != error_path_not_found)
+         if(estatusLast != error_not_found && estatusLast != error_path_not_found.succeeded())
          {
 
             /*         if (pException != nullptr)

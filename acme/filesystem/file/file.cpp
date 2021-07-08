@@ -126,7 +126,7 @@ namespace file
    filesize file::set_position(filesize offset)
    {
 
-      return seek(offset, seek_current);
+      return seek(offset, ::file::seek_begin);
 
    }
 

@@ -73,7 +73,7 @@ namespace acme
          if (::str::begins(ptextdata->m_id.m_psz, "text://"))
          {
 
-            auto psz = ansi_chr(ptextdata->m_id.m_psz + 7, ':');
+            auto psz = ansi_rchr(ptextdata->m_id.m_psz + 7, '/');
 
             if (psz)
             {

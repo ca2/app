@@ -341,7 +341,7 @@ namespace android
          try
          {
 
-         /*   if(estatusLast == 0x0000057e)
+         /*   if(estatusLast == 0x0000057e.succeeded())
             {
 
                TRACE("Cannot create a top-level child interaction_impl.");

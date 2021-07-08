@@ -349,7 +349,7 @@ namespace extended
 
        auto estatusExit = get_greatest_exception_on_range(error_exit_start, error_exit_end);
 
-       if (estatusExit == error_not_found)
+       if(estatusExit == error_not_found)
        {
 
           return false;

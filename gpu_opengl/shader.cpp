@@ -136,7 +136,7 @@ namespace opengl
 
       ::e_status estatus = program_compile_errors(m_uId, strSummary);
 
-      if (estatus)
+      if(estatus.succeeded())
       {
 
          return estatus;

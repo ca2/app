@@ -12,6 +12,7 @@ namespace user
       m_bLButtonDown = false;
       m_bHover = false;
       m_iImageSpacing = 4;
+      m_bParentScrollY = false;
       //m_ecolorBackground = color_list_header_background;
       m_flagNonClient.erase(::user::interaction::non_client_background);
       m_flagNonClient.erase(::user::interaction::non_client_focus_rect);
@@ -66,22 +67,30 @@ namespace user
 
       auto papplication = get_application();
 
-      str = papplication->load_string(plist->_001GetColumnTextId(ItemToColumnKey(iColumn)));
-      //m_font->create_point_font("Verdana", 10.0);
+      str = plist->_001GetColumnText(ItemToColumnKey(iColumn));
 
       if (str.has_char())
       {
 
          auto pstyle = get_style(pdrawitem->m_pgraphics);
 
-         pdrawitem->m_pgraphics->set(get_font(pstyle));
-         //      pgraphics->SetBkMode(TRANSPARENT);
+         auto pfont = get_font(pstyle);
 
-         pgraphics->set_text_color(get_color(pstyle, ::user::e_element_text));
+         //pfont->m_strFontFamilyName = "Arial";
+
+         //pfont->m_bUpdated2 = false;
+
+         pdrawitem->m_pgraphics->set(pfont);
+
+         auto color = get_color(pstyle, ::user::e_element_text);
+
+         pgraphics->set_text_color(color);
          
          ::e_align ealign = plist->get_draw_text_align(plist->m_eview);
          
          ::e_draw_text edrawtext = plist->get_draw_text_flags(plist->m_eview);
+
+         //rectColumn.bottom += rectColumn.height() * 2;
 
          pgraphics->draw_text(str, rectColumn, ealign, edrawtext);
 
@@ -635,92 +644,166 @@ namespace user
    void list_header::_001OnClip(::draw2d::graphics_pointer & pgraphics)
    {
 
-      try
-      {
+      ::user::box::_001OnClip(pgraphics);
 
-         ::rectangle_i32 rectClip;
+      return;
 
-         ::aura::draw_context * pdrawcontext = pgraphics->::aura::simple_chain < ::aura::draw_context >::get_last();
+      //try
+      //{
 
-         ::rectangle_i32 rectangleClient;
+      //   ::rectangle_i32 rectClip;
 
-         bool bFirst = true;
+      //   ::aura::draw_context* pdrawcontext = pgraphics->::aura::simple_chain < ::aura::draw_context >::get_last();
 
-         if (pdrawcontext != nullptr)
-         {
+      //   ::rectangle_i32 rectangleClient;
 
-            rectangleClient = pdrawcontext->m_rectangleWindow;
+      //   bool bFirst = true;
 
-            screen_to_client(rectangleClient);
+      //   string strType = type_name();
 
-            rectangleClient.bottom++;
-            rectangleClient.right++;
+      //   if (strType.contains_ci("control_box"))
+      //   {
 
-            rectClip = rectangleClient;
+      //      output_debug_string("control box on clip");
 
-            bFirst = false;
+      //   }
 
-         }
-         
-         if(!m_pshapeaClip)
-         {
+      //   if (pdrawcontext != nullptr)
+      //   {
 
-            __construct_new(m_pshapeaClip);
-            
-            ::user::interaction * pinteraction = this;
+      //      rectangleClient = pdrawcontext->m_rectangleWindow;
 
-            ::rectangle_i32 rectFocus;
+      //      screen_to_client(rectangleClient, e_layout_design);
 
-            ::rectangle_i32 rectIntersect;
+      //      rectangleClient.bottom++;
+      //      rectangleClient.right++;
 
-            index i = 0;
+      //      rectClip = rectangleClient;
 
-            while (pinteraction != nullptr)
-            {
+      //      bFirst = false;
 
-               if (i == 1)
-               {
-                  // guess list client rectangle_i32 doesn't include header?
-                  pinteraction->::user::interaction::get_client_rect(rectFocus);
+      //   }
 
-               }
-               else
-               {
+      //   ::user::interaction* pinteraction = this;
 
-                  pinteraction->get_client_rect(rectFocus);
+      //   if (!m_pshapeaClip)
+      //   {
 
-               }
+      //      __construct_new(m_pshapeaClip);
 
-               pinteraction->client_to_screen(rectFocus);
+      //      ::rectangle_i32 rectIntersect;
 
-               screen_to_client(rectFocus);
+      //      while (pinteraction != nullptr)
+      //      {
 
-               rectFocus.bottom++;
+      //         pinteraction->get_client_rect(rectangleClient);
 
-               rectFocus.right++;
+      //         pinteraction->client_to_host(rectangleClient);
 
-               m_pshapeaClip->add_item(__new(rectangle_shape(rectIntersect)));
+      //         host_to_client(rectangleClient);
 
-               m_pshapeaClip->add_item(__new(intersect_clip_shape));
+      //         m_pshapeaClip->add_item(__new(rectangle_shape(::rectangle_f64(rectangleClient))));
 
-               i++;
+      //         m_pshapeaClip->add_item(__new(intersect_clip_shape()));
 
-               pinteraction = pinteraction->get_parent();
+      //         pinteraction = pinteraction->get_parent();
 
-            }
-            
-         }
-         
-         pgraphics->add_shapes(*m_pshapeaClip);
+      //      }
+
+      //   }
+
+      //   pgraphics->reset_clip();
+
+      //   pgraphics->m_pointAddShapeTranslate = m_pointScroll;
+
+      //   pgraphics->add_shapes(*m_pshapeaClip);
+
+      //   //try
+      ////{
+
+      ////   ::rectangle_i32 rectClip;
+
+      ////   ::aura::draw_context * pdrawcontext = pgraphics->::aura::simple_chain < ::aura::draw_context >::get_last();
+
+      ////   ::rectangle_i32 rectangleClient;
+
+      ////   bool bFirst = true;
+
+      ////   if (pdrawcontext != nullptr)
+      ////   {
+
+      ////      rectangleClient = pdrawcontext->m_rectangleWindow;
+
+      ////      screen_to_client(rectangleClient);
+
+      ////      rectangleClient.bottom++;
+      ////      rectangleClient.right++;
+
+      ////      rectClip = rectangleClient;
+
+      ////      bFirst = false;
+
+      ////   }
+      ////   
+      ////   if(!m_pshapeaClip)
+      ////   {
+
+      ////      __construct_new(m_pshapeaClip);
+      ////      
+      ////      ::user::interaction * pinteraction = this;
+
+      ////      ::rectangle_i32 rectFocus;
+
+      ////      ::rectangle_i32 rectIntersect;
+
+      ////      index i = 0;
+
+      ////      while (pinteraction != nullptr)
+      ////      {
+
+      ////         if (i == 1)
+      ////         {
+      ////            // guess list client rectangle_i32 doesn't include header?
+      ////            pinteraction->::user::interaction::get_client_rect(rectFocus);
+
+      ////         }
+      ////         else
+      ////         {
+
+      ////            pinteraction->get_client_rect(rectFocus);
+
+      ////         }
+
+      ////         pinteraction->client_to_screen(rectFocus);
+
+      ////         screen_to_client(rectFocus);
+
+      ////         rectFocus.bottom++;
+
+      ////         rectFocus.right++;
+
+      ////         m_pshapeaClip->add_item(__new(rectangle_shape(rectIntersect)));
+
+      ////         m_pshapeaClip->add_item(__new(intersect_clip_shape));
+
+      ////         i++;
+
+      ////         pinteraction = pinteraction->get_parent();
+
+      ////      }
+      ////      
+      ////   }
+      ////   
+      ////   pgraphics->add_shapes(*m_pshapeaClip);
 
 
-      }
-      catch (...)
-      {
+      //}
+      //catch (...)
+      //{
 
-         __throw(::exception::exception("no more a window"));
+      //   __throw(::exception::exception("no more a window"));
 
-      }
+      //}
 
 
    }

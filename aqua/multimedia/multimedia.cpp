@@ -112,18 +112,6 @@ namespace aqua
    ::e_status multimedia::get_file_information(::file::file* pfile, ::multimedia::information& information)
    {
 
-      /*
-
-      property_set set = id3_set(file);
-
-      m_strName = set["name"];
-
-      m_strAlbum = set["album"];
-
-      m_strArtist = set["artist"];
-
-      */
-
       return ::error_failed;
 
    }

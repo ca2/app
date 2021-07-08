@@ -423,7 +423,7 @@ context_image::~context_image()
 
       auto estatus = _load_image(pimage, path, true);
 
-      if (estatus)
+      if(estatus.succeeded())
       {
 
          return estatus;

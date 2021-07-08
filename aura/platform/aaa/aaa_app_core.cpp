@@ -1616,7 +1616,7 @@ string merge_colon_args(const array < string_array > & str2a)
 
    //::e_status estatus = system_proc();
 
-   //if(estatus)
+   //if(estatus.succeeded())
    //{
 
    //   system_main();

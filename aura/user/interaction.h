@@ -142,6 +142,9 @@ namespace user
       bool                                         m_bClickDefaultMouseHandling : 1;
       bool                                         m_bHoverDefaultMouseHandling : 1;
       bool                                         m_bLockSketchToDesign : 1;
+      bool                                         m_bParentScrollX : 1;
+      bool                                         m_bParentScrollY : 1;
+
 
 
       oswindow                                     m_oswindow;
@@ -278,7 +281,6 @@ namespace user
       bool                                         m_bCursorInside;
       __pointer(::windowing::cursor)               m_pcursor;
       bool                                         m_bRectOk;
-      bool                                         m_bParentScroll;
       string                                       m_strWindowText;
       bool                                         m_bModal;
       id                                           m_idModalResult; // for return values from interaction_impl::RunModalLoop
@@ -1919,6 +1921,13 @@ namespace user
       inline void _client_to_host(OFFSETABLE& o, const SOURCE & s, enum_layout elayout = e_layout_design) const { o = s + (::size_i32(host_origin(elayout)) - ::size_i32(get_parent_accumulated_scroll(elayout))); }
 
 
+      //template < typename OFFSETABLE, typename SOURCE >
+      //inline void _host_to_client_no_scroll(OFFSETABLE& o, const SOURCE& s, enum_layout elayout = e_layout_design) const { o = s - ::size_i32(host_origin(elayout)); }
+
+
+      //template < typename OFFSETABLE, typename SOURCE >
+      //inline void _client_to_host_no_scroll(OFFSETABLE& o, const SOURCE& s, enum_layout elayout = e_layout_design) const { o = s + ::size_i32(host_origin(elayout)); }
+
 
 
 
@@ -1946,6 +1955,13 @@ namespace user
       inline void client_to_host(OFFSETABLE& o, enum_layout elayout = e_layout_design) const { _client_to_host(o, o); }
 
 
+      //template < typename OFFSETABLE >
+      //inline void host_to_client_no_scroll(OFFSETABLE& o, enum_layout elayout = e_layout_design) const { _host_to_client_no_scroll(o, o); }
+
+
+      //template < typename OFFSETABLE >
+      //inline void client_to_host_no_scroll(OFFSETABLE& o, enum_layout elayout = e_layout_design) const { _client_to_host_no_scroll(o, o); }
+
 
 
 
@@ -1967,11 +1983,19 @@ namespace user
 
 
       template < typename GEOMETRY >
-      inline GEOMETRY _001HostToClient(const GEOMETRY& s, enum_layout elayout = e_layout_design) const { GEOMETRY g; _host_to_clien(g, s); return g; }
+      inline GEOMETRY _001HostToClient(const GEOMETRY& s, enum_layout elayout = e_layout_design) const { GEOMETRY g; _host_to_client(g, s); return g; }
 
 
       template < typename GEOMETRY >
       inline GEOMETRY _001ClientToHost(const GEOMETRY& s, enum_layout elayout = e_layout_design) const { GEOMETRY g; _client_to_host(g, s); return g; }
+
+
+      //template < typename GEOMETRY >
+      //inline GEOMETRY _001HostToClientNoScroll(const GEOMETRY& s, enum_layout elayout = e_layout_design) const { GEOMETRY g; _host_to_client_no_scroll(g, s); return g; }
+
+
+      //template < typename GEOMETRY >
+      //inline GEOMETRY _001ClientToHostNoScroll(const GEOMETRY& s, enum_layout elayout = e_layout_design) const { GEOMETRY g; _client_to_host_no_scroll(g, s); return g; }
 
 
    };

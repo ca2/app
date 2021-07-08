@@ -82,7 +82,7 @@ public:
 
    void copy_from(const image_list * plist);
 
-   bool get_image_info(i32 nImage, info * pinfo) const;
+   ::e_status get_image_info(i32 nImage, info * pinfo) const;
 
    void erase_all();
 

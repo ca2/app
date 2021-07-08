@@ -28,7 +28,7 @@
 #ifndef _ID3LIB_READER_DECORATORS_H_
 #define _ID3LIB_READER_DECORATORS_H_
 
-#include "readers.h"
+#include <id3/readers.h>
 #include "io_helpers.h"
 #include "id3/utils.h" // has <config.h> "id3/id3lib_streams.h" "id3/globals.h" "id3/id3lib_strings.h"
 

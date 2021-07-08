@@ -426,7 +426,7 @@ namespace user
                //
                auto estatus = __construct(pimage);
 
-               if (estatus)
+               if(estatus.succeeded())
                {
 
                   estatus = pimage->create({ 1, 1 });
@@ -445,7 +445,7 @@ namespace user
 
                         estatus = __construct(pimage);
 
-                        if (estatus)
+                        if(estatus.succeeded())
                         {
 
                            estatus = pimage->create({ (int)ceil(s.cx), (int)ceil(s.cy) });

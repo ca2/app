@@ -568,7 +568,7 @@ namespace experience
 
 //      m_pmovemanager->SetSWPFlags(SWP_SHOWWINDOW);
 
-      if (estatusMoveManager)
+      if(estatusMoveManager.succeeded())
       {
 
          if (!m_pmovemanager->set_frame_window(this))
@@ -580,7 +580,7 @@ namespace experience
 
       }
 
-      if (estatusDockManager)
+      if(estatusDockManager.succeeded())
       {
 
          if (!m_pdockmanager->set_frame_window(this))
@@ -592,7 +592,7 @@ namespace experience
 
       }
 
-      if (estatusSizeManager)
+      if(estatusSizeManager.succeeded())
       {
 
          if (!m_psizemanager->set_frame_window(this))
@@ -604,7 +604,7 @@ namespace experience
 
       }
 
-      if (estatusMenuManager)
+      if(estatusMenuManager.succeeded())
       {
 
          if (!m_pmenumanager->set_frame_window(this))

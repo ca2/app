@@ -1009,7 +1009,7 @@ namespace draw2d_cairo
 //
 //         ::dir::ls(patha, "/system/fonts");
 //
-//         if (estatus)
+//         if(estatus.succeeded())
 //         {
 //
 //            for (auto& path : patha)
@@ -1256,7 +1256,7 @@ namespace draw2d_cairo
 //
 //         estatus = psystem->do_factory_exchange("write_text", strLibrary);
 //
-//         if (estatus)
+//         if(estatus.succeeded())
 //         {
 //
 //            return ::success;
@@ -1284,7 +1284,7 @@ namespace draw2d_cairo
 //
 //      estatus = psystem->do_factory_exchange("write_text", strLibrary);
 //
-//      if (estatus)
+//      if(estatus.succeeded())
 //      {
 //
 //         return ::success;
@@ -1300,7 +1300,7 @@ namespace draw2d_cairo
 //
 //         estatus = psystem->do_factory_exchange("write_text", "gdiplus");
 //
-//         if (estatus)
+//         if(estatus.succeeded())
 //         {
 //
 //            return ::success;
@@ -1315,7 +1315,7 @@ namespace draw2d_cairo
 //
 //         estatus = psystem->do_factory_exchange("write_text", "direct2d");
 //
-//         if (estatus)
+//         if(estatus.succeeded())
 //         {
 //
 //            return ::success;
@@ -1333,7 +1333,7 @@ namespace draw2d_cairo
 //
 //         estatus = psystem->do_factory_exchange("write_text", "cairo");
 //
-//         if (estatus)
+//         if(estatus.succeeded())
 //         {
 //
 //            return ::success;

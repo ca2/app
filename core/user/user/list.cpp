@@ -1500,7 +1500,7 @@ namespace user
             list_column * pcolumn = m_columna.get_visible(iColumn);
 
             //hditem.mask = HDI_WIDTH | HDI_TEXT | HDI_LPARAM | HDI_ORDER;
-            //str.load_string(_001GetColumnTextId(iColumn));
+            //str.load_string(_001GetColumnText(iColumn));
             //hditem.pszText = (char *) (const char *) str;
             //hditem.pszText = LPSTR_TEXTCALLBACK;
             //hditem.cchTextMax = str.get_length();
@@ -4325,7 +4325,7 @@ namespace user
    }
 
 
-   id list::_001GetColumnTextId(index iColumn)
+   string list::_001GetColumnText(index iColumn)
    {
 
       list_column * pcolumn = m_columna.get_visible(iColumn);
@@ -4337,7 +4337,7 @@ namespace user
 
       }
 
-      return pcolumn->m_uiText;
+      return pcolumn->m_text.get_text();
 
    }
 
@@ -4422,7 +4422,7 @@ namespace user
       auto pointOffset = get_viewport_offset();
 
       m_plistheader->order_top();
-      m_plistheader->move_to(-pointOffset.x, 0);
+      //m_plistheader->move_to(-pointOffset.x, 0);
       m_plistheader->display();
 
    }

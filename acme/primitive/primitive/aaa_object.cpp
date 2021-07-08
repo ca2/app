@@ -1048,7 +1048,7 @@ void object::copy_from(const object & o)
 
          synchronouslock.lock();
 
-         if (estatusComposite == ::error_pending)
+         if(estatusComposite == ::error_pending.succeeded())
          {
 
             if (strTypeName.contains_ci("application"))

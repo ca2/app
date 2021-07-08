@@ -2349,12 +2349,12 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics_pointer & pgraphicsParam
 
       auto estatus = __defer_construct(m_pimageAlpha);
 
-      if (estatus)
+      if(estatus.succeeded())
       {
 
          estatus = m_pimageAlpha->create(rectangleClient.size());
 
-         if (estatus)
+         if(estatus.succeeded())
          {
 
             m_pimageAlpha->fill(0, 0, 0, 0);
@@ -2783,7 +2783,7 @@ void simple_frame_window::defer_create_notification_icon()
 
          auto estatus = __construct(m_piconNotify);
 
-         if(estatus)
+         if(estatus.succeeded())
          {
 
             //const char * pszAppName = papplication->m_strAppName;

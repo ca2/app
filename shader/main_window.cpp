@@ -47,8 +47,8 @@ namespace app_shader
 
       ::user::main_window::install_message_routing(psender);
       MESSAGE_LINK(e_message_create,psender,this,&main_window::on_message_create);
-      MESSAGE_LINK(e_message_destroy, psender, this, &main_window::_001OnDestroy);
-      MESSAGE_LINK(e_message_key_down, psender, this, &main_window::_001OnKeyDown);
+      MESSAGE_LINK(e_message_destroy, psender, this, &main_window::on_message_destroy);
+      MESSAGE_LINK(e_message_key_down, psender, this, &main_window::on_message_key_down);
 
    }
 
@@ -80,13 +80,13 @@ namespace app_shader
    }
 
 
-   void main_window::_001OnDestroy(::message::message * pmessage)
+   void main_window::on_message_destroy(::message::message * pmessage)
    {
 
    }
 
 
-   void main_window::_001OnKeyDown(::message::message* pmessage)
+   void main_window::on_message_key_down(::message::message* pmessage)
    {
 
       __pointer(::message::key) pkey(pmessage);

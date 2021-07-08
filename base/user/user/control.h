@@ -90,7 +90,7 @@ namespace user
    //   DECLARE_MESSAGE_HANDLER(on_message_create);
    //   //DECLARE_MESSAGE_HANDLER(on_message_mouse_move);
    //   //DECLARE_MESSAGE_HANDLER(on_message_mouse_leave);
-   //   DECLARE_MESSAGE_HANDLER(_001OnKeyDown);
+   //   DECLARE_MESSAGE_HANDLER(on_message_key_down);
    //   DECLARE_MESSAGE_HANDLER(_001OnEnable);
    //   DECLARE_MESSAGE_HANDLER(_001OnSetFocus);
    //   DECLARE_MESSAGE_HANDLER(_001OnKillFocus);

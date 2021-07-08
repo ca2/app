@@ -37,8 +37,8 @@ namespace user
    void status_bar::install_message_routing(::channel * pchannel)
    {
       MESSAGE_LINK(e_message_nchittest, pchannel, this, &status_bar::_001OnNcHitTest);
-      MESSAGE_LINK(e_message_nccalcsize, pchannel, this, &status_bar::_001OnNcCalcSize);
-      MESSAGE_LINK(e_message_size, pchannel, this, &status_bar::_001OnSize);
+      MESSAGE_LINK(e_message_nccalcsize, pchannel, this, &status_bar::on_message_non_client_calculate_size);
+      MESSAGE_LINK(e_message_size, pchannel, this, &status_bar::on_message_size);
       MESSAGE_LINK(e_message_window_position_changing, pchannel, this, &status_bar::_001OnWindowPosChanging);
 //#ifdef WINDOWS_DESKTOP
 //      MESSAGE_LINK(WM_SETTEXT, pchannel, this, &status_bar::_001OnSetText);
@@ -547,7 +547,7 @@ namespace user
    }
 
 
-   void status_bar::_001OnNcCalcSize(::message::message * pmessage)
+   void status_bar::on_message_non_client_calculate_size(::message::message * pmessage)
    {
 //
 //#ifdef WINDOWS_DESKTOP
@@ -643,7 +643,7 @@ namespace user
    }
 
 
-   void status_bar::_001OnSize(::message::message * pmessage)
+   void status_bar::on_message_size(::message::message * pmessage)
    {
       ASSERT_VALID(this);
       ASSERT(is_window());

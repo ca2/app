@@ -65,8 +65,8 @@ public:
    DECLARE_MESSAGE_HANDLER(_001OnHScroll);
    void _001OnTimer(::timer * ptimer) override;
    DECLARE_MESSAGE_HANDLER(on_message_create);
-   DECLARE_MESSAGE_HANDLER(_001OnShowWindow);
-   DECLARE_MESSAGE_HANDLER(_001OnDestroy);
+   DECLARE_MESSAGE_HANDLER(on_message_show_window);
+   DECLARE_MESSAGE_HANDLER(on_message_destroy);
    //LRESULT OnEconoModeChange(WPARAM wParam, LPARAM lParam);
 
    void draw_mac_thumb_simple(::draw2d::graphics_pointer & pgraphics,const ::rectangle_i32 & rectDraw,const ::rectangle_i32 & lpcrectClip,byte uchAlpha);

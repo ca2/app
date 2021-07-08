@@ -1466,7 +1466,11 @@ namespace user
       index nOffset;
 
       if (_001GetItemHeight() == 0)
+      {
+
          return 0;
+
+      }
 
       if (!m_ptree)
       {
@@ -1491,31 +1495,35 @@ namespace user
 
       auto iIndent = _001GetIndentation();
 
-      ::draw2d::graphics_pointer g(e_create);
+      auto psystem = m_psystem->m_paurasystem;
 
-      g->CreateCompatibleDC(nullptr);
+      auto pdraw2d = psystem->draw2d();
+
+      auto pgraphics = pdraw2d->create_memory_graphics();
+
+      pgraphics->CreateCompatibleDC(nullptr);
 
       //::write_text::font_pointer font(e_create);
-
-
       //font->operator=(*pdraw2d->fonts().GetListCtrlFont());
       //font->set_bold();
       //g->set_font(font);
 
-      g->set_font(this, ::user::e_element_none);
-
+      pgraphics->set_font(this, ::user::e_element_none);
 
       ::size_i32 size;
-      size = g->get_text_extent(unitext("Ág"));
+
+      size = pgraphics->get_text_extent(unitext("Ág"));
 
       int iItemHeight = 1;
 
       if (size.cy > iItemHeight)
       {
+
          iItemHeight = maximum(size.cy, iItemHeight);
+
       }
 
-      auto pstyle = get_style(g);
+      auto pstyle = get_style(pgraphics);
 
       m_dItemHeight = (i32) (iItemHeight * get_double(pstyle, ::user::e_double_tree_item_height_rate, ::user::e_state_none, 1.0));
 
@@ -1523,36 +1531,54 @@ namespace user
 
       __pointer_array(::data::tree_item) spitema;
 
-         pitem = m_ptree->get_base_item();
-         iLevel = 0;
+      pitem = m_ptree->get_base_item();
+      
+      iLevel = 0;
 
-         for (;;)
+      for (;;)
+      {
+
+         pitem = pitem->get_item(::data::TreeNavigationProperForward, &iLevel);
+
+         if (pitem == nullptr)
          {
-            pitem = pitem->get_item(::data::TreeNavigationProperForward, &iLevel);
-            if (pitem == nullptr)
-               break;
-            if (spitema.find_first(pitem)>= 0)
-            {
 
-               //output_debug_string("what!?!");
+            break;
 
-               break;
+         }
 
-            }
-            spitema.add(pitem);
-            if (nOffset <= 0)
-            {
-               break;
-            }
-            nOffset--;
-            string strText = pitem->get_text();
-            size_f64 s = g->get_text_extent(strText);
-            iWidth = (i32)(48 + s.cx + iIndent * (iLevel + 1));
-            if (iWidth > iMaxWidth)
-            {
-               iMaxWidth = iWidth;
-            }
+         if (spitema.find_first(pitem)>= 0)
+         {
 
+            //output_debug_string("what!?!");
+
+            break;
+
+         }
+
+         spitema.add(pitem);
+
+         if (nOffset <= 0)
+         {
+
+            break;
+
+         }
+
+         nOffset--;
+
+         string strText = pitem->get_text();
+
+         size_f64 s = pgraphics->get_text_extent(strText);
+
+         iWidth = (i32)(48 + s.cx + iIndent * (iLevel + 1));
+
+         if (iWidth > iMaxWidth)
+         {
+
+            iMaxWidth = iWidth;
+
+         }
 
       }
 

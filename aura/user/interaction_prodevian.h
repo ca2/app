@@ -63,7 +63,7 @@ namespace user
       bool                                      m_bUpdatingScreen;
 
 
-      bool                                      m_bUpdateBufferUpdateWindowPending;
+      //bool                                      m_bUpdateBufferUpdateWindowPending;
 
 
 

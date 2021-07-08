@@ -602,7 +602,7 @@ namespace experience
    }
 
 
-   //bool frame::_001OnSize(u32 nType,i32 cx,i32 cy)
+   //bool frame::on_message_size(u32 nType,i32 cx,i32 cy)
    //{
 
    //   UNREFERENCED_PARAMETER(cx);
@@ -613,7 +613,7 @@ namespace experience
    //}
 
 
-/*       bool frame::_001OnMove(i32 x, i32 y)
+/*       bool frame::on_message_move(i32 x, i32 y)
    {
 
       UNREFERENCED_PARAMETER(x);

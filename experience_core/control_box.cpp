@@ -69,7 +69,7 @@ namespace experience
       }
 
 
-      void control_box::_001OnShowWindow(::message::message * pmessage)
+      void control_box::on_message_show_window(::message::message * pmessage)
       {
 
          UNREFERENCED_PARAMETER(pmessage);
@@ -106,7 +106,7 @@ namespace experience
 
          ::experience::control_box::install_message_routing(pframewindow);
 
-         MESSAGE_LINK(e_message_show_window, pframewindow, this, &control_box::_001OnShowWindow);
+         MESSAGE_LINK(e_message_show_window, pframewindow, this, &control_box::on_message_show_window);
          MESSAGE_LINK(e_message_left_button_down, pframewindow, this, &control_box::on_message_left_button_down);
          MESSAGE_LINK(e_message_left_button_up, pframewindow, this, &control_box::on_message_left_button_up);
 

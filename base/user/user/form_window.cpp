@@ -1326,8 +1326,8 @@ namespace user
       MESSAGE_LINK(e_message_create, pchannel, this, &form_window::on_message_create);
       MESSAGE_LINK(e_message_pos_create, pchannel, this, &form_window::_000OnPosCreate);
       MESSAGE_LINK(e_message_language, pchannel, this, &form_window::_001OnAppLanguage);
-      //MESSAGE_LINK(e_message_key_down, pchannel, this, &::user::interaction::_001OnKeyDown);
-      //MESSAGE_LINK(e_message_key_up, pchannel, this, &::user::interaction::_001OnKeyUp);
+      //MESSAGE_LINK(e_message_key_down, pchannel, this, &::user::interaction::on_message_key_down);
+      //MESSAGE_LINK(e_message_key_up, pchannel, this, &::user::interaction::on_message_key_up);
 
    }
 

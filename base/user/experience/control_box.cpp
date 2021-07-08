@@ -178,7 +178,7 @@ namespace experience
    }
 
 
-   void control_box::_001OnShowWindow(::message::message * pmessage)
+   void control_box::on_message_show_window(::message::message * pmessage)
    {
 
       __pointer(::message::show_window) pshow(pmessage);
@@ -388,13 +388,13 @@ namespace experience
 
       ::user::interaction::install_message_routing(pframewindow);
 
-      MESSAGE_LINK(e_message_show_window, pframewindow, this, &control_box::_001OnShowWindow);
+      MESSAGE_LINK(e_message_show_window, pframewindow, this, &control_box::on_message_show_window);
       MESSAGE_LINK(e_message_create, pframewindow, this, &control_box::on_message_create);
       MESSAGE_LINK(e_message_mouse_move, pframewindow, this, &control_box::on_message_mouse_move);
       MESSAGE_LINK(e_message_left_button_down, pframewindow, this, &control_box::on_message_left_button_down);
       MESSAGE_LINK(e_message_left_button_up, pframewindow, this, &control_box::on_message_left_button_up);
-      MESSAGE_LINK(e_message_move, pframewindow, this, &control_box::_001OnMove);
-      MESSAGE_LINK(e_message_size, pframewindow, this, &control_box::_001OnSize);
+      MESSAGE_LINK(e_message_move, pframewindow, this, &control_box::on_message_move);
+      MESSAGE_LINK(e_message_size, pframewindow, this, &control_box::on_message_size);
 
    }
 
@@ -1080,7 +1080,7 @@ namespace experience
    }
 
 
-   void control_box::_001OnMove(::message::message * pmessage)
+   void control_box::on_message_move(::message::message * pmessage)
    {
 
       ::rectangle_i32 rectWindow;
@@ -1116,7 +1116,7 @@ namespace experience
    }
 
 
-   void control_box::_001OnSize(::message::message * pmessage)
+   void control_box::on_message_size(::message::message * pmessage)
    {
 
       ::rectangle_i32 rectangleClient;

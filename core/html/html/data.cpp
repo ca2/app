@@ -106,7 +106,7 @@ void html_data::implement(::draw2d::graphics_pointer & pgraphics)
 }
 
 
-void html_data::_001OnKeyDown(::message::message * pmessage)
+void html_data::on_message_key_down(::message::message * pmessage)
 {
 
    __pointer(::message::key) pkey(pmessage);

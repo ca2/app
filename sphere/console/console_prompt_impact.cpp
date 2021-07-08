@@ -35,9 +35,9 @@ namespace console
       ::user::impact::install_message_routing(pchannel);
 
       MESSAGE_LINK(e_message_create,pchannel,this,&prompt_impact::on_message_create);
-      MESSAGE_LINK(e_message_key_down,pchannel,this,&prompt_impact::_001OnKeyDown);
-      MESSAGE_LINK(e_message_key_up,pchannel,this,&prompt_impact::_001OnKeyUp);
-      MESSAGE_LINK(e_message_show_window,pchannel,this,&prompt_impact::_001OnShowWindow);
+      MESSAGE_LINK(e_message_key_down,pchannel,this,&prompt_impact::on_message_key_down);
+      MESSAGE_LINK(e_message_key_up,pchannel,this,&prompt_impact::on_message_key_up);
+      MESSAGE_LINK(e_message_show_window,pchannel,this,&prompt_impact::on_message_show_window);
 
    }
 
@@ -52,7 +52,7 @@ namespace console
    }
 
 
-   void prompt_impact::_001OnShowWindow(::message::message * pmessage)
+   void prompt_impact::on_message_show_window(::message::message * pmessage)
    {
       __pointer(::message::show_window) pshowwindow(pmessage);
       if(pshowwindow->m_bShow)
@@ -110,7 +110,7 @@ namespace console
    }
 
 
-   void prompt_impact::_001OnKeyDown(::message::message * pmessage)
+   void prompt_impact::on_message_key_down(::message::message * pmessage)
    {
 
       __pointer(::message::key) pkey(pmessage);
@@ -135,9 +135,9 @@ namespace console
          interpret_command();
 
       }
-      else if(key.m_ekey == ::user::e_key_shift || key.m_ekey == ::user::e_key_lshift || key.m_ekey == ::user::e_key_rshift
-              || key.m_ekey == ::user::e_key_control || key.m_ekey == ::user::e_key_lcontrol || key.m_ekey == ::user::e_key_rcontrol
-              || key.m_ekey == ::user::e_key_alt || key.m_ekey == ::user::e_key_lalt || key.m_ekey == ::user::e_key_ralt
+      else if(key.m_ekey == ::user::e_key_shift || key.m_ekey == ::user::e_key_left_shift || key.m_ekey == ::user::e_key_right_shift
+              || key.m_ekey == ::user::e_key_control || key.m_ekey == ::user::e_key_left_control || key.m_ekey == ::user::e_key_right_control
+              || key.m_ekey == ::user::e_key_alt || key.m_ekey == ::user::e_key_left_alt || key.m_ekey == ::user::e_key_right_alt
              )
       {
 
@@ -251,7 +251,7 @@ namespace console
    }
 
 
-   void prompt_impact::_001OnKeyUp(::message::message * pmessage)
+   void prompt_impact::on_message_key_up(::message::message * pmessage)
    {
 
       UNREFERENCED_PARAMETER(pmessage);

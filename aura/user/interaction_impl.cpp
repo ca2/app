@@ -928,12 +928,12 @@ namespace user
 
 
 //#ifndef LINUX
-         MESSAGE_LINK(e_message_move, pchannel, this, &interaction_impl::_001OnMove);
-         MESSAGE_LINK(e_message_size, pchannel, this, &interaction_impl::_001OnSize);
+         MESSAGE_LINK(e_message_move, pchannel, this, &interaction_impl::on_message_move);
+         MESSAGE_LINK(e_message_size, pchannel, this, &interaction_impl::on_message_size);
 //#endif
 
 
-         MESSAGE_LINK(e_message_show_window, pchannel, this, &interaction_impl::_001OnShowWindow);
+         MESSAGE_LINK(e_message_show_window, pchannel, this, &interaction_impl::on_message_show_window);
          MESSAGE_LINK(e_message_kill_focus, pchannel, this, &interaction_impl::_001OnKillFocus);
          MESSAGE_LINK(e_message_set_focus, pchannel, this, &interaction_impl::_001OnSetFocus);
 
@@ -1444,7 +1444,7 @@ namespace user
 
 //#endif
 
-      MESSAGE_LINK(e_message_destroy, pchannel, this, &interaction_impl::_001OnDestroy);
+      MESSAGE_LINK(e_message_destroy, pchannel, this, &interaction_impl::on_message_destroy);
 
       prio_install_message_routing(pchannel);
 
@@ -1553,7 +1553,7 @@ namespace user
    }
 
 
-   void interaction_impl::_001OnDestroy(::message::message * pmessage)
+   void interaction_impl::on_message_destroy(::message::message * pmessage)
    {
 
       if (m_puserinteraction && ::str::demangle(m_puserinteraction->type_name()).contains("notify_icon"))
@@ -3581,7 +3581,7 @@ namespace user
    }
 
 
-   void interaction_impl::_001OnShowWindow(::message::message * pmessage)
+   void interaction_impl::on_message_show_window(::message::message * pmessage)
    {
 
       __pointer(::message::show_window) pshowwindow(pmessage);
@@ -3589,7 +3589,7 @@ namespace user
       if (pshowwindow->m_bShow)
       {
 
-         INFO("user::interaction_impl::_001OnShowWindow bShow = true");
+         INFO("user::interaction_impl::on_message_show_window bShow = true");
 
          if (m_puserinteraction->layout().design().display() != ::e_display_iconic)
          {
@@ -5503,7 +5503,7 @@ namespace user
    }
 
 
-   void interaction_impl::_001OnMove(::message::message * pmessage)
+   void interaction_impl::on_message_move(::message::message * pmessage)
    {
 
       if(m_bEatMoveEvent)
@@ -5581,7 +5581,7 @@ namespace user
          //if (m_puserinteraction->layout().is_moving())
          //{
 
-           // INFO("\nWindow is Moving :: _001OnMove");
+           // INFO("\nWindow is Moving :: on_message_move");
 
          //}
 
@@ -5605,7 +5605,7 @@ namespace user
    }
 
 
-   void interaction_impl::_001OnSize(::message::message * pmessage)
+   void interaction_impl::on_message_size(::message::message * pmessage)
    {
 
       if(m_bEatSizeEvent)
@@ -5682,7 +5682,7 @@ namespace user
          //if (m_puserinteraction->layout().is_moving())
          //{
 
-         // INFO("\nWindow is Moving :: _001OnMove");
+         // INFO("\nWindow is Moving :: on_message_move");
 
          //}
 
@@ -5728,19 +5728,6 @@ namespace user
          m_puserinteraction->destroy_window();
 
          output_debug_string("destroy_window");
-
-      }
-
-   }
-
-
-   void interaction_impl::on_message_destroy(::message::message* pmessage)
-   {
-
-      if(m_pprodevian)
-      {
-
-         m_pprodevian->finish();
 
       }
 

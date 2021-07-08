@@ -37,7 +37,7 @@ namespace userfs
 
       MESSAGE_LINK(e_message_hscroll, pchannel, this, &list::_001OnHScroll);
       MESSAGE_LINK(e_message_vscroll, pchannel, this, &list::_001OnVScroll);
-      MESSAGE_LINK(e_message_show_window, pchannel, this, &list::_001OnShowWindow);
+      MESSAGE_LINK(e_message_show_window, pchannel, this, &list::on_message_show_window);
       MESSAGE_LINK(e_message_create, pchannel, this, &list::on_message_create);
       MESSAGE_LINK(e_message_left_button_double_click, pchannel, this, &list::_001OnLButtonDblClk);
 
@@ -724,7 +724,7 @@ namespace userfs
       pmessage->m_bRet = true;
    }
 
-   void list::_001OnShowWindow(::message::message * pmessage)
+   void list::on_message_show_window(::message::message * pmessage)
    {
       UNREFERENCED_PARAMETER(pmessage);
       //      __pointer(::message::show_window) pshow(pmessage);

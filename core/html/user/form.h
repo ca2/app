@@ -50,8 +50,8 @@ public:
    DECLARE_MESSAGE_HANDLER(on_message_mouse_leave);
    DECLARE_MESSAGE_HANDLER(on_message_left_button_up);
    DECLARE_MESSAGE_HANDLER(_001OnImageLoaded);
-   DECLARE_MESSAGE_HANDLER(_001OnKeyDown);
-   DECLARE_MESSAGE_HANDLER(_001OnDestroy);
+   DECLARE_MESSAGE_HANDLER(on_message_key_down);
+   DECLARE_MESSAGE_HANDLER(on_message_destroy);
 
 
 

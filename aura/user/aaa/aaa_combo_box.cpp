@@ -64,12 +64,12 @@ namespace user
       MESSAGE_LINK(e_message_left_button_down, pchannel, this, &combo_box::on_message_left_button_down);
       MESSAGE_LINK(e_message_left_button_up, pchannel, this, &combo_box::on_message_left_button_up);
       MESSAGE_LINK(e_message_left_button_double_click, pchannel, this, &combo_box::_001OnLButtonDblClk);
-      MESSAGE_LINK(e_message_key_down,pchannel,this,&combo_box::_001OnKeyDown);
-      MESSAGE_LINK(e_message_key_up,pchannel,this,&combo_box::_001OnKeyUp);
+      MESSAGE_LINK(e_message_key_down,pchannel,this,&combo_box::on_message_key_down);
+      MESSAGE_LINK(e_message_key_up,pchannel,this,&combo_box::on_message_key_up);
       MESSAGE_LINK(e_message_set_focus,pchannel,this,&combo_box::_001OnSetFocus);
       MESSAGE_LINK(e_message_kill_focus, pchannel, this, &combo_box::_001OnKillFocus);
-      MESSAGE_LINK(e_message_show_window, pchannel, this, &combo_box::_001OnShowWindow);
-      MESSAGE_LINK(e_message_move, pchannel, this, &combo_box::_001OnMove);
+      MESSAGE_LINK(e_message_show_window, pchannel, this, &combo_box::on_message_show_window);
+      MESSAGE_LINK(e_message_move, pchannel, this, &combo_box::on_message_move);
 
    }
 
@@ -488,7 +488,7 @@ namespace user
    }
 
 
-   void combo_box::_001OnShowWindow(::message::message * pmessage)
+   void combo_box::on_message_show_window(::message::message * pmessage)
    {
 
       __pointer(::message::show_window) pshowwindow(pmessage);
@@ -508,7 +508,7 @@ namespace user
    }
 
 
-   void combo_box::_001OnMove(::message::message * pmessage)
+   void combo_box::on_message_move(::message::message * pmessage)
    {
 
       if (is_drop_down())
@@ -525,7 +525,7 @@ namespace user
    }
 
 
-   void combo_box::_001OnKeyDown(::message::message * pmessage)
+   void combo_box::on_message_key_down(::message::message * pmessage)
    {
 
       __pointer(::message::key) pkey(pmessage);
@@ -545,7 +545,7 @@ namespace user
    }
 
 
-   void combo_box::_001OnKeyUp(::message::message * pmessage)
+   void combo_box::on_message_key_up(::message::message * pmessage)
    {
 
       UNREFERENCED_PARAMETER(pmessage);

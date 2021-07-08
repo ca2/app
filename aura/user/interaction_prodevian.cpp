@@ -28,7 +28,7 @@ namespace user
    prodevian::prodevian()
    {
 
-      m_bUpdateBufferUpdateWindowPending = false;
+      //m_bUpdateBufferUpdateWindowPending = false;
 
       m_bRedraw = false;
       m_bUpdateBuffer = false;
@@ -535,14 +535,14 @@ bool prodevian::prodevian_iteration()
 
    m_message.wParam &= ~1;
 
-   if (!m_bUpdateBufferUpdateWindowPending)
-   {
+   //if (m_bUpdateBufferUpdateWindowPending)
+   //{
 
       prodevian_update_buffer(bRedraw);
 
-   }
+   //}
 
-   m_bUpdateBufferUpdateWindowPending = false;
+   //m_bUpdateBufferUpdateWindowPending = false;
 
    m_nanosNow = get_nanos();
 
@@ -867,7 +867,7 @@ bool prodevian::prodevian_iteration()
 
       update_buffer(m_bUpdateBuffer, m_bUpdateScreen, m_bUpdateWindow, bRedraw);
 
-      m_bUpdateBufferUpdateWindowPending = m_bUpdateWindow;
+      //m_bUpdateBufferUpdateWindowPending = m_bUpdateWindow;
 
       return true;
 
@@ -985,11 +985,7 @@ bool prodevian::prodevian_iteration()
 
             synchronouslock.unlock();
 
-            auto psystem = m_psystem->m_paurasystem;
-
-            auto pdraw2d = psystem->draw2d();
-
-            auto pgraphics = pdraw2d->create_memory_graphics();
+            ::draw2d::graphics_pointer pgraphics;
 
             if (!m_puserinteraction->is_sketch_to_design_locked())
             {

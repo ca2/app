@@ -277,7 +277,7 @@ namespace user
 
       void _001OnTimer(::timer * ptimer) override;
       DECLARE_MESSAGE_HANDLER(on_message_create);
-      DECLARE_MESSAGE_HANDLER(_001OnDestroy);
+      DECLARE_MESSAGE_HANDLER(on_message_destroy);
       DECLARE_MESSAGE_HANDLER(_001OnCtlColor);
       DECLARE_MESSAGE_HANDLER(_001OnWindowPosChanging);
       DECLARE_MESSAGE_HANDLER(_001OnSizeParent);
@@ -287,7 +287,7 @@ namespace user
       DECLARE_MESSAGE_HANDLER(_001OnMouseActivate);
       DECLARE_MESSAGE_HANDLER(on_message_mouse_move);
       DECLARE_MESSAGE_HANDLER(on_message_left_button_up);
-      //DECLARE_MESSAGE_HANDLER(_001OnShowWindow);
+      //DECLARE_MESSAGE_HANDLER(on_message_show_window);
       //DECLARE_MESSAGE_HANDLER(_001OnCancelMode);
 
       //   DECLARE_MESSAGE_HANDLER(_001OnPaint);

@@ -78,7 +78,7 @@ namespace user
 
       ::user::mesh::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_size, pchannel, this, &list::_001OnSize);
+      MESSAGE_LINK(e_message_size, pchannel, this, &list::on_message_size);
       MESSAGE_LINK(e_message_vscroll, pchannel, this, &list::_001OnVScroll);
       MESSAGE_LINK(e_message_hscroll, pchannel, this, &list::_001OnHScroll);
       MESSAGE_LINK(e_message_mouse_leave, pchannel, this, &list::on_message_mouse_leave);
@@ -90,7 +90,7 @@ namespace user
 
       MESSAGE_LINK(e_message_mouse_move, pchannel, this, &list::on_message_mouse_move);
 
-      MESSAGE_LINK(e_message_key_down, pchannel, this, &list::_001OnKeyDown);
+      MESSAGE_LINK(e_message_key_down, pchannel, this, &list::on_message_key_down);
 
       MESSAGE_LINK(e_message_create, pchannel, this, &list::on_message_create);
       //      //MESSAGE_LINK(e_message_timer,           pchannel, this, &list::_001OnTimer);
@@ -899,7 +899,7 @@ namespace user
    }
 
 
-   void list::_001OnSize(::message::message * pmessage)
+   void list::on_message_size(::message::message * pmessage)
    {
 
       UNREFERENCED_PARAMETER(pmessage);
@@ -3210,7 +3210,7 @@ namespace user
    }
 
 
-   void list::_001OnKeyDown(::message::message * pmessage)
+   void list::on_message_key_down(::message::message * pmessage)
    {
 
       __pointer(::message::key) pkey(pmessage);

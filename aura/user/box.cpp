@@ -64,8 +64,8 @@ namespace user
       //scroll::install_message_routing(pchannel);
 
       MESSAGE_LINK(e_message_create, pchannel, this, &box::on_message_create);
-      MESSAGE_LINK(e_message_size, pchannel, this, &box::_001OnSize);
-      MESSAGE_LINK(e_message_show_window, pchannel, this, &box::_001OnShowWindow);
+      MESSAGE_LINK(e_message_size, pchannel, this, &box::on_message_size);
+      MESSAGE_LINK(e_message_show_window, pchannel, this, &box::on_message_show_window);
 
    }
 
@@ -83,7 +83,7 @@ namespace user
    }
 
 
-   void box::_001OnSize(::message::message * pmessage)
+   void box::on_message_size(::message::message * pmessage)
    {
 
       pmessage->previous();
@@ -91,7 +91,7 @@ namespace user
    }
 
 
-   void box::_001OnShowWindow(::message::message * pmessage)
+   void box::on_message_show_window(::message::message * pmessage)
    {
 
       UNREFERENCED_PARAMETER(pmessage);

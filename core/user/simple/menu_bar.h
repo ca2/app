@@ -99,8 +99,8 @@ protected:
    //DECLARE_MESSAGE_HANDLER(on_message_mouse_move);
    //DECLARE_MESSAGE_HANDLER(_001OnNcMouseMove);
    DECLARE_MESSAGE_HANDLER(on_message_create);
-   DECLARE_MESSAGE_HANDLER(_001OnKeyDown);
-   DECLARE_MESSAGE_HANDLER(_001OnDestroy);
+   DECLARE_MESSAGE_HANDLER(on_message_key_down);
+   DECLARE_MESSAGE_HANDLER(on_message_destroy);
    DECLARE_MESSAGE_HANDLER(_001OnMenuChar);
    //DECLARE_MESSAGE_HANDLER(on_message_left_button_down);
    //DECLARE_MESSAGE_HANDLER(_001OnAppLanguage);

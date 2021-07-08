@@ -26,17 +26,17 @@ namespace prompt
 
       ::user::impact::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_destroy, pchannel, this, &view::_001OnDestroy);
-      MESSAGE_LINK(e_message_size, pchannel, this, &view::_001OnSize);
+      MESSAGE_LINK(e_message_destroy, pchannel, this, &view::on_message_destroy);
+      MESSAGE_LINK(e_message_size, pchannel, this, &view::on_message_size);
       MESSAGE_LINK(e_message_paint, pchannel, this, &view::_001OnPaint);
       MESSAGE_LINK(e_message_create, pchannel, this, &view::on_message_create);
       MESSAGE_LINK(e_message_context_menu, pchannel, this, &view::_001OnContextMenu);
-      MESSAGE_LINK(e_message_set_cursor, pchannel, this, &view::_001OnSetCursor);
+      MESSAGE_LINK(e_message_set_cursor, pchannel, this, &view::on_message_set_cursor);
 
       //   MESSAGE_LINK(e_message_left_button_down, pchannel, this, &::user::interaction::on_message_left_button_down);
       //MESSAGE_LINK(e_message_left_button_up, pchannel, this, &::user::interaction::on_message_left_button_up);
-      //MESSAGE_LINK(e_message_key_down, pchannel, this, &::user::interaction::_001OnKeyDown);
-      //MESSAGE_LINK(e_message_key_up, pchannel, this, &::user::interaction::_001OnKeyUp);
+      //MESSAGE_LINK(e_message_key_down, pchannel, this, &::user::interaction::on_message_key_down);
+      //MESSAGE_LINK(e_message_key_up, pchannel, this, &::user::interaction::on_message_key_up);
 
       MESSAGE_LINK(e_message_left_button_down, pchannel, this, &view::on_message_left_button_down);
       MESSAGE_LINK(e_message_left_button_up, pchannel, this, &view::on_message_left_button_up);
@@ -44,7 +44,7 @@ namespace prompt
 //
 
       MESSAGE_LINK(MessageOp, pchannel, this, &view::_001OnOp);
-      MESSAGE_LINK(e_message_show_window, pchannel, this, &view::_001OnShowWindow);
+      MESSAGE_LINK(e_message_show_window, pchannel, this, &view::on_message_show_window);
 
 
 
@@ -109,12 +109,12 @@ namespace prompt
    }
 
 
-   void view::_001OnDestroy(::message::message * pmessage)
+   void view::on_message_destroy(::message::message * pmessage)
    {
-      ::user::impact::_001OnDestroy(pmessage);
+      ::user::impact::on_message_destroy(pmessage);
    }
 
-   void view::_001OnSize(::message::message * pmessage)
+   void view::on_message_size(::message::message * pmessage)
    {
 
       UNREFERENCED_PARAMETER(pmessage);
@@ -186,7 +186,7 @@ namespace prompt
       }
    }
 
-   void view::_001OnSetCursor(::message::message * pmessage)
+   void view::on_message_set_cursor(::message::message * pmessage)
    {
 
       __pointer(::message::mouse) pmouse(pmessage);
@@ -286,7 +286,7 @@ namespace prompt
       strDateTime.Format("%s %s %s", strDate.c_str(), strWeekDay.c_str(), strTime.c_str());
    }
 
-   void view::_001OnShowWindow(::message::message * pmessage)
+   void view::on_message_show_window(::message::message * pmessage)
    {
       //   __pointer(::message::show_window) pshowwindow(pmessage);
       UNREFERENCED_PARAMETER(pmessage);

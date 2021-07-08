@@ -49,7 +49,7 @@ namespace userex
       ::user::split_view::install_message_routing(pchannel);
 
       MESSAGE_LINK(e_message_create, pchannel, this, &font_view::on_message_create);
-      MESSAGE_LINK(e_message_show_window, pchannel, this, &font_view::_001OnShowWindow);
+      MESSAGE_LINK(e_message_show_window, pchannel, this, &font_view::on_message_show_window);
 
    }
 
@@ -66,7 +66,7 @@ namespace userex
    }
 
    
-   void font_view::_001OnShowWindow(::message::message* /* pmessage */)
+   void font_view::on_message_show_window(::message::message* /* pmessage */)
    {
 
    }

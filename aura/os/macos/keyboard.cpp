@@ -94,17 +94,17 @@ namespace user
       case kVK_Delete:
          return ::user::e_key_back;
       case kVK_Shift:
-         return ::user::e_key_lshift;
+         return ::user::e_key_left_shift;
       case kVK_RightShift:
-         return ::user::e_key_rshift;
+         return ::user::e_key_right_shift;
       case kVK_Control:
-         return ::user::e_key_lcontrol;
+         return ::user::e_key_left_control;
       case kVK_RightControl:
-         return ::user::e_key_rcontrol;
+         return ::user::e_key_right_control;
       case kVK_Option:
-         return ::user::e_key_lalt;
+         return ::user::e_key_left_alt;
       case kVK_RightOption:
-         return ::user::e_key_ralt;
+         return ::user::e_key_right_alt;
       case kVK_ForwardDelete:
          return ::user::e_key_delete;
       case kVK_Return:
@@ -128,9 +128,9 @@ namespace user
       case kVK_End:
          return ::user::e_key_end;
       case kVK_Command:
-         return ::user::e_key_lcommand;
+         return ::user::e_key_left_command;
       case kVK_RightCommand:
-         return ::user::e_key_rcommand;
+         return ::user::e_key_right_command;
 
 
       }

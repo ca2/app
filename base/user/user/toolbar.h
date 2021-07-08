@@ -166,7 +166,7 @@ namespace user
       virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics);
 
       DECLARE_MESSAGE_HANDLER(_001OnNcHitTest);
-      DECLARE_MESSAGE_HANDLER(_001OnNcCalcSize);
+      DECLARE_MESSAGE_HANDLER(on_message_non_client_calculate_size);
       DECLARE_MESSAGE_HANDLER(_001OnWindowPosChanging);
       DECLARE_MESSAGE_HANDLER(_001OnSysColorChange);
       DECLARE_MESSAGE_HANDLER(_001OnSetButtonSize);

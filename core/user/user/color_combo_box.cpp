@@ -32,7 +32,7 @@ namespace user
       MESSAGE_LINK(e_message_left_button_up, psender, this, &::user::color_combo_box::on_message_left_button_up);
       MESSAGE_LINK(e_message_mouse_move, psender, this, &::user::color_combo_box::on_message_mouse_move);
       MESSAGE_LINK(e_message_mouse_leave, psender, this, &::user::color_combo_box::on_message_mouse_leave);
-      MESSAGE_LINK(e_message_show_window, psender, this, &::user::color_combo_box::_001OnShowWindow);
+      MESSAGE_LINK(e_message_show_window, psender, this, &::user::color_combo_box::on_message_show_window);
 
    }
 
@@ -223,7 +223,7 @@ namespace user
    }
 
 
-   void color_combo_box::_001OnShowWindow(::message::message * pmessage)
+   void color_combo_box::on_message_show_window(::message::message * pmessage)
    {
 
       __pointer(::message::show_window) pshowwindow(pmessage);

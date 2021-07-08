@@ -42,7 +42,7 @@ namespace user
       //MESSAGE_LINK(e_message_middle_button_up, pchannel, this, &still::on_message_middle_button_up);
       //MESSAGE_LINK(e_message_mouse_move, pchannel, this, &still::on_message_mouse_move);
       //MESSAGE_LINK(e_message_mouse_leave, pchannel, this, &still::on_message_mouse_leave);
-      MESSAGE_LINK(e_message_key_down, pchannel, this, &still::_001OnKeyDown);
+      MESSAGE_LINK(e_message_key_down, pchannel, this, &still::on_message_key_down);
 
    }
 
@@ -774,7 +774,7 @@ namespace user
    }
 
 
-   void still::_001OnKeyDown(::message::message * pmessage)
+   void still::on_message_key_down(::message::message * pmessage)
    {
 
       __pointer(::message::key) pkey(pmessage);

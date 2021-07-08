@@ -363,7 +363,7 @@ namespace uwp
    {
       last_install_message_routing(pchannel);
       //m_pbuffer->InstallMessageHandling(pinterface);
-      MESSAGE_LINK(e_message_destroy, pchannel, this,&interaction_impl::_001OnDestroy);
+      MESSAGE_LINK(e_message_destroy, pchannel, this,&interaction_impl::on_message_destroy);
       MESSAGE_LINK(e_message_paint, pchannel, this,&interaction_impl::_001OnPaint);
       MESSAGE_LINK(WM_PRINT, pchannel, this,&interaction_impl::_001OnPrint);
       if(m_puserinteraction != nullptr)
@@ -371,22 +371,22 @@ namespace uwp
          m_puserinteraction->install_message_routing(pchannel);
       }
       MESSAGE_LINK(e_message_create, pchannel, this,&interaction_impl::on_message_create);
-      MESSAGE_LINK(e_message_set_cursor, pchannel, this,&interaction_impl::_001OnSetCursor);
+      MESSAGE_LINK(e_message_set_cursor, pchannel, this,&interaction_impl::on_message_set_cursor);
       //MESSAGE_LINK(e_message_erase_background, pchannel, this,&interaction_impl::_001OnEraseBkgnd);
-      MESSAGE_LINK(e_message_move, pchannel, this,&interaction_impl::_001OnMove);
-      MESSAGE_LINK(e_message_size, pchannel, this,&interaction_impl::_001OnSize);
+      MESSAGE_LINK(e_message_move, pchannel, this,&interaction_impl::on_message_move);
+      MESSAGE_LINK(e_message_size, pchannel, this,&interaction_impl::on_message_size);
       MESSAGE_LINK(e_message_set_focus, pchannel, this, &interaction_impl::_001OnSetFocus);
       MESSAGE_LINK(e_message_kill_focus, pchannel, this, &interaction_impl::_001OnKillFocus);
-      //MESSAGE_LINK(e_message_show_window, pchannel, this,&interaction_impl::_001OnShowWindow);
+      //MESSAGE_LINK(e_message_show_window, pchannel, this,&interaction_impl::on_message_show_window);
 //      MESSAGE_LINK(ca2m_PRODEVIAN_SYNCH, pchannel, this,&interaction_impl::_001OnProdevianSynch);
       prio_install_message_routing(pchannel);
    }
 
-   void interaction_impl::_001OnMove(::message::message * pmessage)
+   void interaction_impl::on_message_move(::message::message * pmessage)
    {
    }
 
-   void interaction_impl::_001OnSize(::message::message * pmessage)
+   void interaction_impl::on_message_size(::message::message * pmessage)
    {
 
 
@@ -418,7 +418,7 @@ namespace uwp
    }
 
 
-   void interaction_impl::_001OnDestroy(::message::message * pmessage)
+   void interaction_impl::on_message_destroy(::message::message * pmessage)
    {
       
       UNREFERENCED_PARAMETER(pmessage);
@@ -4702,7 +4702,7 @@ return true;
 
    }
 
-   void interaction_impl::_001OnSetCursor(::message::message * pmessage)
+   void interaction_impl::on_message_set_cursor(::message::message * pmessage)
    {
 
       __throw(todo);

@@ -24,12 +24,12 @@ namespace calculator
 
       ::user::impact::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_destroy, pchannel, this, &view::_001OnDestroy);
-      MESSAGE_LINK(e_message_size, pchannel, this, &view::_001OnSize);
+      MESSAGE_LINK(e_message_destroy, pchannel, this, &view::on_message_destroy);
+      MESSAGE_LINK(e_message_size, pchannel, this, &view::on_message_size);
       MESSAGE_LINK(e_message_paint, pchannel, this, &view::_001OnPaint);
       MESSAGE_LINK(e_message_create, pchannel, this, &view::on_message_create);
       MESSAGE_LINK(e_message_context_menu, pchannel, this, &view::_001OnContextMenu);
-      MESSAGE_LINK(e_message_set_cursor, pchannel, this, &view::_001OnSetCursor);
+      MESSAGE_LINK(e_message_set_cursor, pchannel, this, &view::on_message_set_cursor);
 
 
    }
@@ -83,15 +83,15 @@ namespace calculator
    }
 
 
-   void view::_001OnDestroy(::message::message * pmessage)
+   void view::on_message_destroy(::message::message * pmessage)
    {
 
-      ::user::impact::_001OnDestroy(pmessage);
+      ::user::impact::on_message_destroy(pmessage);
 
    }
 
 
-   void view::_001OnSize(::message::message * pmessage)
+   void view::on_message_size(::message::message * pmessage)
    {
 
       UNREFERENCED_PARAMETER(pmessage);
@@ -167,7 +167,7 @@ namespace calculator
 
 
 
-   void view::_001OnSetCursor(::message::message * pmessage)
+   void view::on_message_set_cursor(::message::message * pmessage)
    {
 
       __pointer(::message::mouse) pmouse(pmessage);

@@ -54,7 +54,7 @@ namespace user
       MESSAGE_LINK(e_message_left_button_double_click, pchannel, this, &control_bar::_001OnLButtonDblClk);
       MESSAGE_LINK(e_message_mouse_activate, pchannel, this, &control_bar::_001OnMouseActivate);
       MESSAGE_LINK(e_message_create, pchannel, this, &control_bar::on_message_create);
-      MESSAGE_LINK(e_message_destroy, pchannel, this, &control_bar::_001OnDestroy);
+      MESSAGE_LINK(e_message_destroy, pchannel, this, &control_bar::on_message_destroy);
       MESSAGE_LINK(WM_HELPHITTEST, pchannel, this, &control_bar::_001OnHelpHitTest);
    }
 
@@ -243,7 +243,7 @@ namespace user
 #ifdef WINDOWS_DESKTOP
       auto psession = get_session();
 
-      if (psession->is_key_pressed(::user::e_key_lbutton))
+      if (psession->is_key_pressed(::user::e_key_left_button))
          return;
 #else
       __throw(todo);
@@ -451,7 +451,7 @@ namespace user
    }
 
 
-   void control_bar::_001OnDestroy(::message::message * pmessage)
+   void control_bar::on_message_destroy(::message::message * pmessage)
    {
 
       UNREFERENCED_PARAMETER(pmessage);

@@ -45,8 +45,8 @@ namespace user
       MESSAGE_LINK(e_message_create, pchannel, this, &font_list::on_message_create);
       MESSAGE_LINK(e_message_left_button_down, pchannel, this, &font_list::on_message_left_button_down);
       MESSAGE_LINK(e_message_mouse_move, pchannel, this, &font_list::on_message_mouse_move);
-      MESSAGE_LINK(e_message_close, pchannel, this, &font_list::_001OnClose);
-      MESSAGE_LINK(e_message_show_window, pchannel, this, &font_list::_001OnShowWindow);
+      MESSAGE_LINK(e_message_close, pchannel, this, &font_list::on_message_close);
+      MESSAGE_LINK(e_message_show_window, pchannel, this, &font_list::on_message_show_window);
 
    }
 
@@ -562,7 +562,7 @@ namespace user
    }
 
 
-   void font_list::_001OnClose(::message::message * pmessage)
+   void font_list::on_message_close(::message::message * pmessage)
    {
 
       pmessage->m_bRet = true;
@@ -572,7 +572,7 @@ namespace user
    }
 
 
-   void font_list::_001OnShowWindow(::message::message * pmessage)
+   void font_list::on_message_show_window(::message::message * pmessage)
    {
 
       __pointer(::message::show_window) pshowwindow(pmessage);

@@ -92,10 +92,10 @@ namespace user
       DECLARE_MESSAGE_HANDLER(on_message_left_button_down);
       DECLARE_MESSAGE_HANDLER(on_message_left_button_up);
       DECLARE_MESSAGE_HANDLER(_001OnLButtonDblClk);
-      DECLARE_MESSAGE_HANDLER(_001OnKeyDown);
-      DECLARE_MESSAGE_HANDLER(_001OnKeyUp);
-      DECLARE_MESSAGE_HANDLER(_001OnShowWindow);
-      DECLARE_MESSAGE_HANDLER(_001OnMove);
+      DECLARE_MESSAGE_HANDLER(on_message_key_down);
+      DECLARE_MESSAGE_HANDLER(on_message_key_up);
+      DECLARE_MESSAGE_HANDLER(on_message_show_window);
+      DECLARE_MESSAGE_HANDLER(on_message_move);
 
       virtual void _001ShowDropDown(bool bShow = true);
       virtual void _001ToggleDropDown();

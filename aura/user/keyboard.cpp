@@ -94,20 +94,20 @@ namespace user
       SET_ENUM_TEXT(e_key_comma);
       SET_ENUM_TEXT(e_key_dot);
       SET_ENUM_TEXT(e_key_shift);
-      SET_ENUM_TEXT(e_key_lshift);
-      SET_ENUM_TEXT(e_key_rshift);
+      SET_ENUM_TEXT(e_key_left_shift);
+      SET_ENUM_TEXT(e_key_right_shift);
       SET_ENUM_TEXT(e_key_control);
-      SET_ENUM_TEXT(e_key_lcontrol);
-      SET_ENUM_TEXT(e_key_rcontrol);
+      SET_ENUM_TEXT(e_key_left_control);
+      SET_ENUM_TEXT(e_key_right_control);
       SET_ENUM_TEXT(e_key_alt);
-      SET_ENUM_TEXT(e_key_lalt);
-      SET_ENUM_TEXT(e_key_ralt);
+      SET_ENUM_TEXT(e_key_left_alt);
+      SET_ENUM_TEXT(e_key_right_alt);
       SET_ENUM_TEXT(e_key_command);
-      SET_ENUM_TEXT(e_key_lcommand);
-      SET_ENUM_TEXT(e_key_rcommand);
-      SET_ENUM_TEXT(e_key_lbutton);
-      SET_ENUM_TEXT(e_key_mbutton);
-      SET_ENUM_TEXT(e_key_rbutton);
+      SET_ENUM_TEXT(e_key_left_command);
+      SET_ENUM_TEXT(e_key_right_command);
+      SET_ENUM_TEXT(e_key_left_button);
+      SET_ENUM_TEXT(e_key_middle_button);
+      SET_ENUM_TEXT(e_key_right_button);
       SET_ENUM_TEXT(e_key_back);
       SET_ENUM_TEXT(e_key_delete);
       SET_ENUM_TEXT(e_key_space);
@@ -444,7 +444,7 @@ namespace user
    //   {
    //      pkey->m_iCode |= 0x80000000;
    //   }
-   //   if(psession->is_key_pressed(::user::e_key_ralt))
+   //   if(psession->is_key_pressed(::user::e_key_right_alt))
    //   {
    //      pkey->m_iCode |= 0x40000000;
    //   }
@@ -471,7 +471,7 @@ namespace user
    //   {
    //      iCode |= 0x80000000;
    //   }
-   //   if(psession->is_key_pressed(::user::e_key_ralt))
+   //   if(psession->is_key_pressed(::user::e_key_right_alt))
    //   {
    //      iCode |= 0x40000000;
    //   }

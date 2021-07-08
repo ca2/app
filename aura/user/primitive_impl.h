@@ -259,8 +259,8 @@ namespace user
       //virtual bool display(::display edisplay) override;
 
       DECLARE_MESSAGE_HANDLER(_001OnPrioCreate);
-      DECLARE_MESSAGE_HANDLER(_001OnShowWindow);
-      DECLARE_MESSAGE_HANDLER(_001OnDestroy);
+      DECLARE_MESSAGE_HANDLER(on_message_show_window);
+      DECLARE_MESSAGE_HANDLER(on_message_destroy);
       DECLARE_MESSAGE_HANDLER(_001OnNcDestroy);
 
       virtual void show_task(bool bShow);

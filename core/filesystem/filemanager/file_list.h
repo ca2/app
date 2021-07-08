@@ -58,7 +58,7 @@ namespace filemanager
       DECLARE_MESSAGE_HANDLER(_001OnUpdateOpenWith);
       DECLARE_MESSAGE_HANDLER(_001OnEditCopy);
       DECLARE_MESSAGE_HANDLER(_001OnUpdateEditCopy);
-      DECLARE_MESSAGE_HANDLER(_001OnShowWindow);
+      DECLARE_MESSAGE_HANDLER(on_message_show_window);
 
       DECLARE_MESSAGE_HANDLER(_001OnSetFocus);
       DECLARE_MESSAGE_HANDLER(_001OnKillFocus);

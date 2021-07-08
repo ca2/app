@@ -158,8 +158,8 @@ void html_form::install_message_routing(::channel * pchannel)
 
    //MESSAGE_LINK(e_message_left_button_down, pchannel, this, &::user::interaction::on_message_left_button_down);
    //MESSAGE_LINK(e_message_left_button_up, pchannel, this, &::user::interaction::on_message_left_button_up);
-   MESSAGE_LINK(e_message_key_down, pchannel, this, &::html_form::_001OnKeyDown);
-   //MESSAGE_LINK(e_message_key_up, pchannel, this, &::user::interaction::_001OnKeyUp);
+   MESSAGE_LINK(e_message_key_down, pchannel, this, &::html_form::on_message_key_down);
+   //MESSAGE_LINK(e_message_key_up, pchannel, this, &::user::interaction::on_message_key_up);
 
    MESSAGE_LINK(e_message_left_button_down, pchannel, this, &html_form::on_message_left_button_down);
    MESSAGE_LINK(e_message_mouse_move, pchannel, this, &html_form::on_message_mouse_move);
@@ -168,7 +168,7 @@ void html_form::install_message_routing(::channel * pchannel)
 
    MESSAGE_LINK(html::message_on_image_loaded, pchannel, this, &html_form::_001OnImageLoaded);
 
-   MESSAGE_LINK(e_message_create, pchannel, this, &html_form::_001OnDestroy);
+   MESSAGE_LINK(e_message_create, pchannel, this, &html_form::on_message_destroy);
 
 }
 
@@ -259,9 +259,9 @@ void html_form::on_message_left_button_down(::message::message * pmessage)
 
       ::html::message htmlmessage;
 
-      htmlmessage.m_pdata = get_html_data();
+      htmlmessage.m_phtmldata = get_html_data();
 
-      htmlmessage.m_psignal = pmouse;
+      htmlmessage.m_pmessage = pmouse;
 
       htmlmessage.m_pchannel = pmouse->m_pchannel;
 
@@ -295,7 +295,7 @@ void html_form::on_message_mouse_move(::message::message * pmessage)
 
    synchronous_lock synchronouslock(mutex());
 
-   if(::is_set(get_html_data()))
+   if(::is_set(get_html_data()) && ::is_set(get_html_data()->m_pcoredata))
    {
 
       synchronous_lock synchronouslock(get_html_data()->mutex());
@@ -326,9 +326,9 @@ void html_form::on_message_mouse_move(::message::message * pmessage)
 
          ::html::message htmlmessage;
 
-         htmlmessage.m_pdata = get_html_data();
+         htmlmessage.m_phtmldata = get_html_data();
 
-         htmlmessage.m_psignal = pmouse;
+         htmlmessage.m_pmessage = pmouse;
 
          htmlmessage.m_puserinteraction = this;
 
@@ -387,9 +387,9 @@ void html_form::on_message_left_button_up(::message::message * pmessage)
 
       ::html::message htmlmessage;
 
-      htmlmessage.m_pdata = get_html_data();
+      htmlmessage.m_phtmldata = get_html_data();
 
-      htmlmessage.m_psignal = pmouse;
+      htmlmessage.m_pmessage = pmouse;
 
       htmlmessage.m_pchannel = pmouse->m_pchannel;
 
@@ -400,7 +400,7 @@ void html_form::on_message_left_button_up(::message::message * pmessage)
 }
 
 
-void html_form::_001OnDestroy(::message::message * pmessage)
+void html_form::on_message_destroy(::message::message * pmessage)
 {
 
    if (get_document() != nullptr)
@@ -671,7 +671,7 @@ void html_form::_001SetText(const string & str, const ::action_context & context
 }
 
 
-void html_form::_001OnKeyDown(::message::message * pmessage)
+void html_form::on_message_key_down(::message::message * pmessage)
 {
    
    __pointer(::message::key) pkey(pmessage);

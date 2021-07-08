@@ -1505,7 +1505,7 @@ namespace user
 
 
 
-   void primitive_impl::_001OnShowWindow(::message::message * pmessage)
+   void primitive_impl::on_message_show_window(::message::message * pmessage)
    {
 
       __pointer(::message::show_window) pshowwindow(pmessage);
@@ -1531,7 +1531,7 @@ namespace user
    }
 
 
-   void primitive_impl::_001OnDestroy(::message::message * pmessage)
+   void primitive_impl::on_message_destroy(::message::message * pmessage)
    {
 
       //synchronous_lock synchronouslock(mutex());
@@ -1583,8 +1583,8 @@ namespace user
       //}
 
       //g_p->set_at((iptr)this, ::str::demangle(m_puserinteraction->type_name()) + "xxx" + type_name());
-      MESSAGE_LINK(e_message_show_window, pchannel, this, &primitive_impl::_001OnShowWindow);
-      MESSAGE_LINK(e_message_destroy, pchannel, this, &primitive_impl::_001OnDestroy);
+      MESSAGE_LINK(e_message_show_window, pchannel, this, &primitive_impl::on_message_show_window);
+      MESSAGE_LINK(e_message_destroy, pchannel, this, &primitive_impl::on_message_destroy);
       MESSAGE_LINK(e_message_ncdestroy, pchannel, this, &primitive_impl::_001OnNcDestroy);
       MESSAGE_LINK(e_message_create, pchannel, this, &primitive_impl::_001OnPrioCreate);
 

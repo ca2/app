@@ -194,7 +194,7 @@ namespace prompt
    }
 
 
-   void frame::_001OnClose(::message::message * pmessage)
+   void frame::on_message_close(::message::message * pmessage)
    {
       
       pmessage->m_bRet = true;
@@ -210,10 +210,10 @@ namespace prompt
    {
       simple_frame_window::install_message_routing(pchannel);
       MESSAGE_LINK(e_message_create, pchannel, this, &frame::on_message_create);
-      MESSAGE_LINK(e_message_close, pchannel, this, &frame::_001OnClose);
+      MESSAGE_LINK(e_message_close, pchannel, this, &frame::on_message_close);
 //
-      MESSAGE_LINK(e_message_move, pchannel, this, &frame::_001OnMove);
-      MESSAGE_LINK(e_message_show_window, pchannel, this, &frame::_001OnShowWindow);
+      MESSAGE_LINK(e_message_move, pchannel, this, &frame::on_message_move);
+      MESSAGE_LINK(e_message_show_window, pchannel, this, &frame::on_message_show_window);
       MESSAGE_LINK(WM_APP + 2000, pchannel, this, &frame::_001OnApp2000);
    }
 
@@ -266,7 +266,7 @@ namespace prompt
 
    }
 
-   void frame::_001OnMove(::message::message * pmessage)
+   void frame::on_message_move(::message::message * pmessage)
    {
       UNREFERENCED_PARAMETER(pmessage);
       /*if(m_pframewindow->move_manager()->IsMoving())
@@ -320,7 +320,7 @@ namespace prompt
       }*/
    }
 
-   void frame::_001OnShowWindow(::message::message * pmessage)
+   void frame::on_message_show_window(::message::message * pmessage)
    {
       __pointer(::message::show_window) pshowwindow(pmessage);
 

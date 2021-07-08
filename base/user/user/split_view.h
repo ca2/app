@@ -30,8 +30,8 @@ namespace user
       virtual void on_create_split_impact();
 
       DECLARE_MESSAGE_HANDLER(on_message_create);
-      DECLARE_MESSAGE_HANDLER(_001OnSize);
-      DECLARE_MESSAGE_HANDLER(_001OnShowWindow);
+      DECLARE_MESSAGE_HANDLER(on_message_size);
+      DECLARE_MESSAGE_HANDLER(on_message_show_window);
 
       template < class VIEW >
       inline __pointer(VIEW) create_pane_view(index iPane, id id = ::id(), ::user::interaction * pviewLast = nullptr);

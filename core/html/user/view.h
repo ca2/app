@@ -36,10 +36,10 @@ public:
    virtual bool pre_create_window(::user::system * pusersystem) override;
    virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
 
-   DECLARE_MESSAGE_HANDLER(_001OnDestroy);
+   DECLARE_MESSAGE_HANDLER(on_message_destroy);
    DECLARE_MESSAGE_HANDLER(on_message_create);
    DECLARE_MESSAGE_HANDLER(_001OnContextMenu);
-   DECLARE_MESSAGE_HANDLER(_001OnSetCursor);
+   DECLARE_MESSAGE_HANDLER(on_message_set_cursor);
 
 };
 

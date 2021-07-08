@@ -42,7 +42,7 @@ namespace prompt
 
 
       DECLARE_MESSAGE_HANDLER(on_message_create);
-      DECLARE_MESSAGE_HANDLER(_001OnSize);
+      DECLARE_MESSAGE_HANDLER(on_message_size);
    };
 
 

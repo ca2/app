@@ -38,8 +38,8 @@ void simple_menu_bar::install_message_routing(::channel * pchannel)
    //MESSAGE_LINK(e_message_mouse_move, pchannel, this, &simple_menu_bar::on_message_mouse_move);
    //MESSAGE_LINK(e_message_non_client_mouse_move, pchannel, this, &simple_menu_bar::_001OnNcMouseMove);
    MESSAGE_LINK(e_message_create, pchannel, this, &simple_menu_bar::on_message_create);
-   MESSAGE_LINK(e_message_key_down, pchannel, this, &simple_menu_bar::_001OnKeyDown);
-   MESSAGE_LINK(e_message_destroy, pchannel, this, &simple_menu_bar::_001OnDestroy);
+   MESSAGE_LINK(e_message_key_down, pchannel, this, &simple_menu_bar::on_message_key_down);
+   MESSAGE_LINK(e_message_destroy, pchannel, this, &simple_menu_bar::on_message_destroy);
 
 //#ifdef WINDOWS_DESKTOP
 //
@@ -319,7 +319,7 @@ bool simple_menu_bar::_track_popup_menu(const ::point_i32 & point)
 
 }
 
-void simple_menu_bar::_001OnKeyDown(::message::message * pmessage)
+void simple_menu_bar::on_message_key_down(::message::message * pmessage)
 {
    // TODO: add your message handler code here and/or call default
 
@@ -358,7 +358,7 @@ bool simple_menu_bar::CalcSize(CToolBarCtrl & tbc, size_i32 & size)
 
 
 
-void simple_menu_bar::_001OnDestroy(::message::message * pmessage)
+void simple_menu_bar::on_message_destroy(::message::message * pmessage)
 {
    pmessage->previous();
 

@@ -2555,7 +2555,7 @@ namespace user
       MESSAGE_LINK(e_message_mouse_move, pchannel, this, &tab::on_message_mouse_move);
       MESSAGE_LINK(e_message_mouse_leave, pchannel, this, &tab::on_message_mouse_leave);
       MESSAGE_LINK(e_message_create, pchannel, this, &tab::on_message_create);
-      MESSAGE_LINK(e_message_show_window, pchannel, this, &tab::_001OnShowWindow);
+      MESSAGE_LINK(e_message_show_window, pchannel, this, &tab::on_message_show_window);
       MESSAGE_LINK(e_message_language, pchannel, this, &tab::_001OnAppLanguage);
       MESSAGE_LINK(message_start_tab_drag, pchannel, this,&tab::_001OnStartTabDrag);
 
@@ -3926,7 +3926,7 @@ namespace user
    }
 
 
-   void tab::_001OnShowWindow(::message::message * pmessage)
+   void tab::on_message_show_window(::message::message * pmessage)
    {
 
       UNREFERENCED_PARAMETER(pmessage);

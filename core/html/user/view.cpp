@@ -23,10 +23,10 @@ void html_view::install_message_routing(::channel * pchannel)
 
    html_form::install_message_routing(pchannel);
 
-   MESSAGE_LINK(e_message_destroy, pchannel, this, &html_view::_001OnDestroy);
+   MESSAGE_LINK(e_message_destroy, pchannel, this, &html_view::on_message_destroy);
    MESSAGE_LINK(e_message_create, pchannel, this, &html_view::on_message_create);
    MESSAGE_LINK(e_message_context_menu, pchannel, this, &html_view::_001OnContextMenu);
-   MESSAGE_LINK(e_message_set_cursor, pchannel, this, &html_view::_001OnSetCursor);
+   MESSAGE_LINK(e_message_set_cursor, pchannel, this, &html_view::on_message_set_cursor);
 
 }
 
@@ -61,10 +61,10 @@ bool html_view::pre_create_window(::user::system * pusersystem)
 }
 
 
-void html_view::_001OnDestroy(::message::message * pmessage)
+void html_view::on_message_destroy(::message::message * pmessage)
 {
 
-   ::user::impact::_001OnDestroy(pmessage);
+   ::user::impact::on_message_destroy(pmessage);
 
 }
 
@@ -92,7 +92,7 @@ void html_view::_001OnContextMenu(::message::message * pmessage)
 }
 
 
-void html_view::_001OnSetCursor(::message::message * pmessage)
+void html_view::on_message_set_cursor(::message::message * pmessage)
 {
 
    __pointer(::message::set_cursor) psetcursor(pmessage);

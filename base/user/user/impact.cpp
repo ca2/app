@@ -28,14 +28,14 @@ namespace user
       MESSAGE_LINK(e_message_left_button_up, pchannel, this, &impact::on_message_left_button_up);
       MESSAGE_LINK(e_message_mouse_move, pchannel, this, &impact::on_message_mouse_move);
       MESSAGE_LINK(e_message_create, pchannel, this, &impact::on_message_create);
-      MESSAGE_LINK(e_message_destroy, pchannel, this, &impact::_001OnDestroy);
+      MESSAGE_LINK(e_message_destroy, pchannel, this, &impact::on_message_destroy);
       //      MESSAGE_LINK(e_message_left_button_down    , pchannel, this, &impact::on_message_right_button_down);
       MESSAGE_LINK(e_message_middle_button_down, pchannel, this, &impact::on_message_middle_button_down);
       MESSAGE_LINK(e_message_right_button_down, pchannel, this, &impact::on_message_right_button_down);
 
 
       MESSAGE_LINK(e_message_mouse_activate, pchannel, this, &impact::_001OnMouseActivate);
-      //      MESSAGE_LINK(e_message_destroy        , pchannel, this, &impact::_001OnDestroy);
+      //      MESSAGE_LINK(e_message_destroy        , pchannel, this, &impact::on_message_destroy);
       //    MESSAGE_LINK(e_message_create        , pchannel, this, &impact::on_message_create);
 
       // Standard commands for split pane
@@ -174,7 +174,7 @@ namespace user
    }
 
 
-   void impact::_001OnDestroy(::message::message * pmessage)
+   void impact::on_message_destroy(::message::message * pmessage)
    {
 
       UNREFERENCED_PARAMETER(pmessage);

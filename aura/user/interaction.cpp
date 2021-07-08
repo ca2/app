@@ -98,11 +98,13 @@ namespace user
 
       m_bOverdraw = false;
 
-      //m_bTrackMouseLeave = false;
+      m_bEditDefaultHandling = false;
 
       m_bClickDefaultMouseHandling = false;
       
       m_bHoverDefaultMouseHandling = false;
+
+      m_bKeyboardMultipleSelectionDefaultHandling = false;
 
       m_iIndex = -1;
 
@@ -1449,8 +1451,8 @@ namespace user
    {
 
       MESSAGE_LINK(e_message_create, pchannel, this, &interaction::on_message_create);
-      MESSAGE_LINK(e_message_destroy, pchannel, this, &interaction::_001OnDestroy);
-      MESSAGE_LINK(e_message_post_user, pchannel, this, &interaction::_001OnPostUser);
+      MESSAGE_LINK(e_message_destroy, pchannel, this, &interaction::on_message_destroy);
+      MESSAGE_LINK(e_message_post_user, pchannel, this, &interaction::on_message_user_post);
       MESSAGE_LINK(e_message_text_composition, pchannel, this, &interaction::_001OnTextComposition);
 
       primitive::install_message_routing(pchannel);
@@ -1464,21 +1466,36 @@ namespace user
       else
       {
 
-         MESSAGE_LINK(e_message_close, pchannel, this, &interaction::_001OnClose);
-         MESSAGE_LINK(e_message_size, pchannel, this, &interaction::_001OnSize);
-         MESSAGE_LINK(e_message_move, pchannel, this, &interaction::_001OnMove);
-         MESSAGE_LINK(e_message_nccalcsize, pchannel, this, &interaction::_001OnNcCalcSize);
-         MESSAGE_LINK(e_message_show_window, pchannel, this, &interaction::_001OnShowWindow);
-         MESSAGE_LINK(e_message_display_change, pchannel, this, &interaction::_001OnDisplayChange);
+         if (m_bEditDefaultHandling)
+         {
+
+            connect_command("edit_delete", &interaction::_001OnEditDelete);
+
+         }
+
+         MESSAGE_LINK(e_message_close, pchannel, this, &interaction::on_message_close);
+         MESSAGE_LINK(e_message_size, pchannel, this, &interaction::on_message_size);
+         MESSAGE_LINK(e_message_move, pchannel, this, &interaction::on_message_move);
+         MESSAGE_LINK(e_message_nccalcsize, pchannel, this, &interaction::on_message_non_client_calculate_size);
+         MESSAGE_LINK(e_message_show_window, pchannel, this, &interaction::on_message_show_window);
+         MESSAGE_LINK(e_message_display_change, pchannel, this, &interaction::on_message_display_change);
          MESSAGE_LINK(e_message_left_button_down, pchannel, this, &::user::interaction::on_message_left_button_down);
-         MESSAGE_LINK(e_message_set_cursor, pchannel, this, &::user::interaction::_001OnSetCursor);
-         MESSAGE_LINK(e_message_key_down, pchannel, this, &::user::interaction::_001OnKeyDown);
+         MESSAGE_LINK(e_message_set_cursor, pchannel, this, &::user::interaction::on_message_set_cursor);
+
+         if (m_bEditDefaultHandling || m_bKeyboardMultipleSelectionDefaultHandling)
+         {
+
+            MESSAGE_LINK(e_message_key_down, pchannel, this, &::user::interaction::on_message_key_down);
+            MESSAGE_LINK(e_message_key_up, pchannel, this, &::user::interaction::on_message_key_up);
+
+         }
+
          MESSAGE_LINK(e_message_enable, pchannel, this, &::user::interaction::_001OnEnable);
 
       }
 
       //MESSAGE_LINK(e_message_command, pchannel, this, &interaction::_001OnCommand);
-      MESSAGE_LINK(e_message_simple_command, pchannel, this, &interaction::_001OnSimpleCommand);
+      MESSAGE_LINK(e_message_simple_command, pchannel, this, &interaction::on_message_simple_command);
 
       if (m_bClickDefaultMouseHandling)
       {
@@ -1505,7 +1522,7 @@ namespace user
 
    }
 
-   void interaction::_001OnNcCalcSize(::message::message * pmessage)
+   void interaction::on_message_non_client_calculate_size(::message::message * pmessage)
    {
 
       pmessage->m_bRet = true; // avoid any Microsoft-Window-concept-of-non-client-area
@@ -1737,7 +1754,7 @@ namespace user
    }
 
 
-   void interaction::_001OnDestroy(::message::message * pmessage)
+   void interaction::on_message_destroy(::message::message * pmessage)
    {
 
       m_ewindowflag += e_window_flag_destroying;
@@ -1765,7 +1782,7 @@ namespace user
       if (strType.contains("main_frame"))
       {
 
-         output_debug_string("main_frame _001OnDestroy");
+         output_debug_string("main_frame on_message_destroy");
 
       }
 
@@ -1778,7 +1795,7 @@ namespace user
    }
 
 
-   void interaction::_001OnPostUser(::message::message * pmessage)
+   void interaction::on_message_user_post(::message::message * pmessage)
    {
 
       if (pmessage->m_wparam == 1)
@@ -2396,7 +2413,7 @@ namespace user
    }
 
 
-   void interaction::_001OnSize(::message::message * pmessage)
+   void interaction::on_message_size(::message::message * pmessage)
    {
 
       __pointer(::message::size) psize(pmessage);
@@ -2406,13 +2423,13 @@ namespace user
       if (psize->m_nType == SIZE_MINIMIZED)
       {
 
-         TRACE("::user::interaction::_001OnSize SIZE_MINIMIZED - ignoring event");
+         TRACE("::user::interaction::on_message_size SIZE_MINIMIZED - ignoring event");
 
       }
       else if (m_pimpl->m_bIgnoreSizeEvent)
       {
 
-         TRACE("::user::interaction::_001OnSize instructed to m_bIgnoreSizeEvent");
+         TRACE("::user::interaction::on_message_size instructed to m_bIgnoreSizeEvent");
 
       }
 
@@ -2458,7 +2475,7 @@ namespace user
    }
 
 
-   void interaction::_001OnMove(::message::message * pmessage)
+   void interaction::on_message_move(::message::message * pmessage)
    {
 
       pmessage->previous();
@@ -4100,7 +4117,7 @@ namespace user
    }
 
 
-   void interaction::_001OnDisplayChange(::message::message* pmessage)
+   void interaction::on_message_display_change(::message::message* pmessage)
    {
 
       _001InitialFramePosition();
@@ -4800,8 +4817,48 @@ namespace user
    }
 
 
-   void interaction::_001OnKeyDown(::message::message * pmessage)
+   void interaction::on_message_key_down(::message::message * pmessage)
    {
+
+      if (m_bEditDefaultHandling || m_bKeyboardMultipleSelectionDefaultHandling)
+      {
+
+         __pointer(::message::key) pkey(pmessage);
+
+         if (pkey)
+         {
+
+            if (m_bEditDefaultHandling && pkey->m_ekey == ::user::e_key_delete)
+            {
+
+               auto pcommand = __new(::message::command("edit_delete"));
+
+               pcommand->initialize(this);
+
+               route_command_message(pcommand);
+
+               pkey->m_bRet = pcommand->m_bRet;
+
+            }
+            else if (m_bKeyboardMultipleSelectionDefaultHandling && 
+               (
+                  pkey->m_ekey == ::user::e_key_shift
+                ||  pkey->m_ekey == ::user::e_key_left_shift
+                ||  pkey->m_ekey == ::user::e_key_right_shift
+                ||  pkey->m_ekey == ::user::e_key_control
+                  || pkey->m_ekey == ::user::e_key_left_control
+                  || pkey->m_ekey == ::user::e_key_right_control
+                  ))
+            {
+
+               pkey->m_bRet = true;
+
+            }
+
+         }
+
+      }
+
       //if(psession->get_keyboard_focus() != this
       //   && psession->get_keyboard_focus() != nullptr)
       //{
@@ -4809,8 +4866,44 @@ namespace user
       //}
    }
 
-   void interaction::_001OnKeyUp(::message::message * pmessage)
+
+   void interaction::on_message_key_up(::message::message * pmessage)
    {
+
+
+      if (m_bEditDefaultHandling || m_bKeyboardMultipleSelectionDefaultHandling)
+      {
+
+         auto pkey = pmessage->m_pkey;
+
+         if (pkey)
+         {
+
+            if (m_bEditDefaultHandling && pkey->m_ekey == ::user::e_key_delete)
+            {
+
+               pkey->m_bRet = true;
+
+            }
+            else if (m_bKeyboardMultipleSelectionDefaultHandling &&
+               (
+                  pkey->m_ekey == ::user::e_key_shift
+                  || pkey->m_ekey == ::user::e_key_left_shift
+                  || pkey->m_ekey == ::user::e_key_right_shift
+                  || pkey->m_ekey == ::user::e_key_control
+                  || pkey->m_ekey == ::user::e_key_left_control
+                  || pkey->m_ekey == ::user::e_key_right_control
+                  ))
+            {
+
+               pkey->m_bRet = true;
+
+            }
+
+         }
+
+      }
+
       //if(psession->get_keyboard_focus() != this
       ///&& psession->get_keyboard_focus() != nullptr)
       //{
@@ -4818,7 +4911,7 @@ namespace user
       //}
    }
 
-   void interaction::_001OnChar(::message::message * pmessage)
+   void interaction::on_message_character(::message::message * pmessage)
    {
       //if(psession->get_keyboard_focus() != this
       // && psession->get_keyboard_focus() != nullptr)
@@ -4995,56 +5088,56 @@ namespace user
    }
 
 
-   void interaction::_002OnLButtonDown(::message::message * pmessage)
-   {
-      UNREFERENCED_PARAMETER(pmessage);
-   }
+   //void interaction::_002OnLButtonDown(::message::message * pmessage)
+   //{
+   //   UNREFERENCED_PARAMETER(pmessage);
+   //}
 
-   void interaction::_002OnLButtonUp(::message::message * pmessage)
-   {
-      UNREFERENCED_PARAMETER(pmessage);
-   }
+   //void interaction::_002OnLButtonUp(::message::message * pmessage)
+   //{
+   //   UNREFERENCED_PARAMETER(pmessage);
+   //}
 
-   void interaction::_002OnMouseMove(::message::message * pmessage)
-   {
-      UNREFERENCED_PARAMETER(pmessage);
-   }
+   //void interaction::_002OnMouseMove(::message::message * pmessage)
+   //{
+   //   UNREFERENCED_PARAMETER(pmessage);
+   //}
 
-   void interaction::_002OnMouseEnter(::message::message * pmessage)
-   {
-      UNREFERENCED_PARAMETER(pmessage);
-   }
+   //void interaction::_002OnMouseEnter(::message::message * pmessage)
+   //{
+   //   UNREFERENCED_PARAMETER(pmessage);
+   //}
 
-   void interaction::_002OnMouseLeave(::message::message * pmessage)
-   {
+   //void interaction::_002OnMouseLeave(::message::message * pmessage)
+   //{
 
-      UNREFERENCED_PARAMETER(pmessage);
+   //   UNREFERENCED_PARAMETER(pmessage);
 
-   }
-
-
-   void interaction::_002OnKeyDown(::message::message * pmessage)
-   {
-
-      UNREFERENCED_PARAMETER(pmessage);
-
-   }
+   //}
 
 
-   void interaction::_002OnKeyUp(::message::message * pmessage)
-   {
+   //void interaction::_002OnKeyDown(::message::message * pmessage)
+   //{
 
-      UNREFERENCED_PARAMETER(pmessage);
+   //   UNREFERENCED_PARAMETER(pmessage);
 
-   }
+   //}
 
 
-   void interaction::_002OnTimer(::message::message * pmessage)
-   {
+   //void interaction::_002OnKeyUp(::message::message * pmessage)
+   //{
 
-      UNREFERENCED_PARAMETER(pmessage);
+   //   UNREFERENCED_PARAMETER(pmessage);
 
-   }
+   //}
+
+
+   //void interaction::_002OnTimer(::message::message * pmessage)
+   //{
+
+   //   UNREFERENCED_PARAMETER(pmessage);
+
+   //}
 
 
    lresult interaction::send(::message::message * pmessage)
@@ -7733,6 +7826,17 @@ namespace user
       }
 
       m_pshapeaClip.release();
+
+      if (!pgraphics)
+      {
+
+         auto psystem = m_psystem->m_paurasystem;
+
+         auto pdraw2d = psystem->draw2d();
+
+         pgraphics = pdraw2d->create_memory_graphics();
+
+      }
 
       m_pimpl->on_layout(pgraphics);
 
@@ -10545,7 +10649,7 @@ namespace user
    //}
 
 
-   void interaction::_001OnMouseEnter(::message::message * pmessage)
+   void interaction::on_message_mouse_enter(::message::message * pmessage)
    {
 
       pmessage->m_bRet = false;
@@ -10553,7 +10657,7 @@ namespace user
    }
 
 
-   void interaction::_001OnSetCursor(::message::message* pmessage)
+   void interaction::on_message_set_cursor(::message::message* pmessage)
    {
 
       auto pcursor = get_mouse_cursor();
@@ -11207,7 +11311,7 @@ restart:
    }
 
 
-   void interaction::_001OnClose(::message::message * pmessage)
+   void interaction::on_message_close(::message::message * pmessage)
    {
 
       pmessage->m_bRet = true;
@@ -11305,7 +11409,7 @@ restart:
    //}
 
 
-   void interaction::_001OnSimpleCommand(::message::message * pmessage)
+   void interaction::on_message_simple_command(::message::message * pmessage)
    {
 
       SCAST_MSG(simple_command);
@@ -11315,7 +11419,7 @@ restart:
    }
 
 
-   void interaction::_001OnNeedLoadFormData(::message::message * pmessage)
+   void interaction::on_message_need_load_form_data(::message::message * pmessage)
    {
 
       m_bNeedLoadFormData = false;
@@ -11329,7 +11433,7 @@ restart:
    }
 
 
-   void interaction::_001OnNeedSaveFormData(::message::message * pmessage)
+   void interaction::on_message_need_save_form_data(::message::message * pmessage)
    {
 
       m_bNeedSaveFormData = false;
@@ -13211,7 +13315,7 @@ restart:
 
 //}
 
-   void interaction::_001OnShowWindow(::message::message * pmessage)
+   void interaction::on_message_show_window(::message::message * pmessage)
    {
 
       __pointer(::message::show_window) pshowwindow(pmessage);
@@ -13221,7 +13325,7 @@ restart:
       if(strType.contains("main_frame"))
       {
       
-         output_debug_string("main_frame interaction::_001OnShowWindow\n");
+         output_debug_string("main_frame interaction::on_message_show_window\n");
          
       }
       
@@ -14279,6 +14383,22 @@ restart:
    }
 
 
+   ::e_status interaction::is_edit_delete_enabled()
+   {
+
+      return ::success_none;
+
+   }
+
+
+   ::e_status interaction::on_edit_delete(const ::action_context& actioncontext)
+   {
+
+      return ::success_none;
+
+   }
+
+
    bool interaction::on_click(const ::user::item & item)
    {
 
@@ -14803,8 +14923,8 @@ restart:
    void interaction::install_update_data_message_routing(::channel * pchannel)
    {
 
-      MESSAGE_LINK(e_message_need_load_form_data, pchannel, this, &interaction::_001OnNeedLoadFormData);
-      MESSAGE_LINK(e_message_need_save_form_data, pchannel, this, &interaction::_001OnNeedSaveFormData);
+      MESSAGE_LINK(e_message_need_load_form_data, pchannel, this, &interaction::on_message_need_load_form_data);
+      MESSAGE_LINK(e_message_need_save_form_data, pchannel, this, &interaction::on_message_need_save_form_data);
 
    }
 
@@ -16653,6 +16773,35 @@ restart:
       {
 
          m_puiLabel->enable_window(penable->get_enable());
+
+      }
+
+   }
+
+
+   void interaction::_001OnUpdateEditDelete(::message::message* pmessage)
+   {
+
+      __pointer(::message::command) pcommand(pmessage);
+
+      auto estatus = is_edit_delete_enabled();
+
+      pcommand->enable(estatus == ::success);
+      
+      pmessage->m_bRet = true;
+
+   }
+
+
+   void interaction::_001OnEditDelete(::message::message* pmessage)
+   {
+
+      auto estatus = on_edit_delete(pmessage ? pmessage->m_actioncontext : action_context(::e_source_user));
+
+      if (::is_set(pmessage))
+      {
+
+         pmessage->m_bRet = estatus == success;
 
       }
 

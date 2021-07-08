@@ -30,12 +30,12 @@ namespace calculator
 
       ::user::document * get_document();
 
-      DECLARE_MESSAGE_HANDLER(_001OnDestroy);
-      DECLARE_MESSAGE_HANDLER(_001OnSize);
+      DECLARE_MESSAGE_HANDLER(on_message_destroy);
+      DECLARE_MESSAGE_HANDLER(on_message_size);
       DECLARE_MESSAGE_HANDLER(_001OnPaint);
       DECLARE_MESSAGE_HANDLER(on_message_create);
       DECLARE_MESSAGE_HANDLER(_001OnContextMenu);
-      DECLARE_MESSAGE_HANDLER(_001OnSetCursor);
+      DECLARE_MESSAGE_HANDLER(on_message_set_cursor);
       DECLARE_MESSAGE_HANDLER(_001OnUpdateViewEncoding);
       DECLARE_MESSAGE_HANDLER(_001OnViewEncoding);
       DECLARE_MESSAGE_HANDLER(_001OnWavePlayerEvent);

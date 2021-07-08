@@ -38,7 +38,7 @@ namespace user
    void form_list::install_message_routing(::channel *pchannel)
    {
 
-      MESSAGE_LINK(e_message_key_down,pchannel,this,&form_list::_001OnKeyDown);
+      MESSAGE_LINK(e_message_key_down,pchannel,this,&form_list::on_message_key_down);
 
       form_mesh::install_message_routing(pchannel);
 
@@ -1168,7 +1168,7 @@ break_click:;
    }
 
 
-   void form_list::_001OnKeyDown(::message::message * pmessage)
+   void form_list::on_message_key_down(::message::message * pmessage)
    {
       __pointer(::message::key) pkey(pmessage);
 

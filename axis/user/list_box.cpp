@@ -62,20 +62,20 @@ namespace user
       install_click_default_mouse_handling(pchannel);
 
       MESSAGE_LINK(e_message_create, pchannel, this, &list_box::on_message_create);
-      MESSAGE_LINK(e_message_destroy, pchannel, this, &list_box::_001OnDestroy);
+      MESSAGE_LINK(e_message_destroy, pchannel, this, &list_box::on_message_destroy);
       MESSAGE_LINK(e_message_set_focus, pchannel, this, &list_box::_001OnSetFocus);
       MESSAGE_LINK(e_message_kill_focus, pchannel, this, &list_box::_001OnKillFocus);
-      MESSAGE_LINK(e_message_close, pchannel, this, &list_box::_001OnClose);
+      MESSAGE_LINK(e_message_close, pchannel, this, &list_box::on_message_close);
       MESSAGE_LINK(e_message_mouse_activate, pchannel, this, &list_box::_001OnMouseActivate);
-      MESSAGE_LINK(e_message_key_down, pchannel, this, &list_box::_001OnKeyDown);
-      MESSAGE_LINK(e_message_key_up, pchannel, this, &list_box::_001OnKeyUp);
+      MESSAGE_LINK(e_message_key_down, pchannel, this, &list_box::on_message_key_down);
+      MESSAGE_LINK(e_message_key_up, pchannel, this, &list_box::on_message_key_up);
       //MESSAGE_LINK(e_message_left_button_down, pchannel, this, &list_box::on_message_left_button_down);
       MESSAGE_LINK(e_message_non_client_left_button_down, pchannel, (::user::interaction *)this, &interaction::on_message_left_button_down);
       //MESSAGE_LINK(e_message_left_button_up, pchannel, this, &list_box::on_message_left_button_up);
       MESSAGE_LINK(e_message_middle_button_down, pchannel, this, &list_box::on_message_middle_button_down);
       MESSAGE_LINK(e_message_right_button_down, pchannel, this, &list_box::on_message_right_button_down);
       MESSAGE_LINK(e_message_mouse_move, pchannel, this, &list_box::on_message_mouse_move);
-      MESSAGE_LINK(e_message_show_window, pchannel, this, &list_box::_001OnShowWindow);
+      MESSAGE_LINK(e_message_show_window, pchannel, this, &list_box::on_message_show_window);
 
    }
 
@@ -317,7 +317,7 @@ namespace user
    }
 
 
-   void list_box::_001OnDestroy(::message::message * pmessage)
+   void list_box::on_message_destroy(::message::message * pmessage)
    {
 
       auto puserinteractionOwner = get_owner();
@@ -761,7 +761,7 @@ namespace user
    }
 
 
-   void list_box::_001OnShowWindow(::message::message * pmessage)
+   void list_box::on_message_show_window(::message::message * pmessage)
    {
 
       __pointer(::message::show_window) pshowwindow(pmessage);
@@ -909,7 +909,7 @@ namespace user
    }
 
 
-   void list_box::_001OnKeyDown(::message::message * pmessage)
+   void list_box::on_message_key_down(::message::message * pmessage)
    {
 
       __pointer(::message::key) pkey(pmessage);
@@ -969,7 +969,7 @@ namespace user
    }
 
 
-   void list_box::_001OnKeyUp(::message::message * pmessage)
+   void list_box::on_message_key_up(::message::message * pmessage)
    {
 
       UNREFERENCED_PARAMETER(pmessage);
@@ -1154,7 +1154,7 @@ namespace user
    }
 
 
-   void list_box::_001OnClose(::message::message * pmessage)
+   void list_box::on_message_close(::message::message * pmessage)
    {
 
       pmessage->m_bRet = true;

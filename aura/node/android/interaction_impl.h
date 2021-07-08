@@ -47,8 +47,8 @@ namespace android
 
       void _002OnDraw(::image * pimage);
 
-      DECLARE_MESSAGE_HANDLER(_001OnSize);
-      DECLARE_MESSAGE_HANDLER(_001OnShowWindow);
+      DECLARE_MESSAGE_HANDLER(on_message_size);
+      DECLARE_MESSAGE_HANDLER(on_message_show_window);
       DECLARE_MESSAGE_HANDLER(_001OnProdevianSynch);
 
       //void OnWindowPosChanging(WINDOWPOS* lpuserinteractionpos);
@@ -357,7 +357,7 @@ namespace android
       virtual bool SubclassWindow(oswindow hWnd);
       //HBRUSH OnCtlColor(::draw2d::graphics_pointer & pgraphics,::user::interaction * pwindow,::u32 nCtlColor);
 
-      DECLARE_MESSAGE_HANDLER(_001OnDestroy);
+      DECLARE_MESSAGE_HANDLER(on_message_destroy);
       void OnEnable(bool bEnable);
       void OnEndSession(bool bEnding);
       bool OnEraseBkgnd(::draw2d::graphics_pointer & pgraphics);
@@ -388,7 +388,7 @@ namespace android
       //void OnNcCalcSize(bool bCalcValidRects,NCCALCSIZE_PARAMS* lpncsp);
       bool OnNcCreate(::user::system * lpCreateStruct);
 
-      DECLARE_MESSAGE_HANDLER(_001OnNcCalcSize);
+      DECLARE_MESSAGE_HANDLER(on_message_non_client_calculate_size);
       LRESULT OnNcHitTest(::point_i32 point);
       void OnNcLButtonDblClk(::u32 nHitTest, const ::point_i32 & point);
       void OnNcLButtonDown(::u32 nHitTest, const ::point_i32 & point);
@@ -440,7 +440,7 @@ namespace android
       void OnRButtonDblClk(::u32 nFlags, const ::point_i32 & point);
       void OnRButtonDown(::u32 nFlags, const ::point_i32 & point);
       void OnRButtonUp(::u32 nFlags, const ::point_i32 & point);
-      DECLARE_MESSAGE_HANDLER(_001OnSetCursor);
+      DECLARE_MESSAGE_HANDLER(on_message_set_cursor);
       void OnTimer(uptr uEvent);
 
       // Initialization message handler member functions

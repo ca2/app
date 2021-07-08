@@ -51,9 +51,9 @@ namespace prompt
       DECLARE_MESSAGE_HANDLER(on_message_create);
       void _001OnTimer(::timer * ptimer);
 
-      DECLARE_MESSAGE_HANDLER(_001OnClose);
-      DECLARE_MESSAGE_HANDLER(_001OnMove);
-      DECLARE_MESSAGE_HANDLER(_001OnShowWindow);
+      DECLARE_MESSAGE_HANDLER(on_message_close);
+      DECLARE_MESSAGE_HANDLER(on_message_move);
+      DECLARE_MESSAGE_HANDLER(on_message_show_window);
       DECLARE_MESSAGE_HANDLER(_001OnApp2000);
 
 

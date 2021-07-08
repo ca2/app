@@ -43,7 +43,7 @@ namespace user
 
 
       DECLARE_MESSAGE_HANDLER(on_message_create);
-      DECLARE_MESSAGE_HANDLER(_001OnDestroy);
+      DECLARE_MESSAGE_HANDLER(on_message_destroy);
 
       //virtual class impact_data * new_impact_data(impact_creator * pimpactcreator, id id);
 

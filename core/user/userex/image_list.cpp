@@ -218,7 +218,7 @@ namespace userex
       ::user::image_list_view::install_message_routing(pchannel);
 
       MESSAGE_LINK(e_message_create, pchannel, this, &image_list_view::on_message_create);
-      MESSAGE_LINK(e_message_destroy, pchannel, this, &image_list_view::_001OnDestroy);
+      MESSAGE_LINK(e_message_destroy, pchannel, this, &image_list_view::on_message_destroy);
 //      MESSAGE_LINK(e_message_left_button_down, pchannel, this, &image_list_view::on_message_left_button_down);
       //    MESSAGE_LINK(e_message_mouse_move, pchannel, this, &image_list_view::on_message_mouse_move);
       //  MESSAGE_LINK(e_message_mouse_leave, pchannel, this, &image_list_view::on_message_mouse_leave);
@@ -323,7 +323,7 @@ namespace userex
    }
 
 
-   void image_list_view::_001OnDestroy(::message::message * pmessage)
+   void image_list_view::on_message_destroy(::message::message * pmessage)
    {
 
    }

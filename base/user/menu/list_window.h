@@ -24,8 +24,8 @@ namespace user
       virtual void install_message_routing(::channel * pchannel) override;
 
       DECLARE_MESSAGE_HANDLER(on_message_create);
-      DECLARE_MESSAGE_HANDLER(_001OnDestroy);
-      DECLARE_MESSAGE_HANDLER(_001OnClose);
+      DECLARE_MESSAGE_HANDLER(on_message_destroy);
+      DECLARE_MESSAGE_HANDLER(on_message_close);
       
       void _001OnTimer(::timer * ptimer) override;
 

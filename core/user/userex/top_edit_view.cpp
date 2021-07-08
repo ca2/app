@@ -31,7 +31,7 @@ namespace userex
       ::user::show < ::user::plain_edit >::install_message_routing(pchannel);
 
       MESSAGE_LINK(e_message_create, pchannel, this, &top_edit_view::on_message_create);
-      MESSAGE_LINK(e_message_key_down, pchannel, this, &top_edit_view::_001OnKeyDown);
+      MESSAGE_LINK(e_message_key_down, pchannel, this, &top_edit_view::on_message_key_down);
 
    }
 
@@ -70,7 +70,7 @@ namespace userex
    }
 
 
-   void top_edit_view::_001OnKeyDown(::message::message * pmessage)
+   void top_edit_view::on_message_key_down(::message::message * pmessage)
    {
 
       __pointer(::message::key) pkey(pmessage);

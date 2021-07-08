@@ -56,7 +56,7 @@ namespace helloworld
       virtual void on_layout(::draw2d::graphics_pointer & pgraphics);
 
       DECLARE_MESSAGE_HANDLER(on_message_create);
-      DECLARE_MESSAGE_HANDLER(_001OnDestroy);
+      DECLARE_MESSAGE_HANDLER(on_message_destroy);
 
       virtual string get_helloworld();
 

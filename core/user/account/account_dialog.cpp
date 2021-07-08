@@ -68,11 +68,11 @@ namespace account
       ::user::interaction::install_message_routing(pchannel);
 
       MESSAGE_LINK(e_message_create,pchannel,this,&dialog::on_message_create);
-      MESSAGE_LINK(e_message_char,pchannel,this,&dialog::_001OnChar);
+      MESSAGE_LINK(e_message_char,pchannel,this,&dialog::on_message_character);
       MESSAGE_LINK(e_message_left_button_down,pchannel,this,&dialog::on_message_left_button_down);
       MESSAGE_LINK(e_message_left_button_up,pchannel,this,&dialog::on_message_left_button_up);
       MESSAGE_LINK(e_message_mouse_move,pchannel,this,&dialog::on_message_mouse_move);
-      MESSAGE_LINK(e_message_show_window, pchannel, this, &dialog::_001OnShowWindow);
+      MESSAGE_LINK(e_message_show_window, pchannel, this, &dialog::on_message_show_window);
 
    }
 
@@ -117,7 +117,7 @@ namespace account
    }
 
 
-   void dialog::_001OnChar(::message::message * pmessage)
+   void dialog::on_message_character(::message::message * pmessage)
    {
 
       __pointer(::message::key) pkey(pmessage);
@@ -613,7 +613,7 @@ namespace account
    }
 
 
-   void dialog::_001OnShowWindow(::message::message * pmessage)
+   void dialog::on_message_show_window(::message::message * pmessage)
    {
 
       __pointer(::message::show_window) pshowwindow(pmessage);

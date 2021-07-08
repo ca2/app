@@ -37,7 +37,7 @@ namespace simple_ui
       ::user::interaction::install_message_routing(pchannel);
 
       MESSAGE_LINK(e_message_create, pchannel, this, &tap::on_message_create);
-      MESSAGE_LINK(e_message_key_down, pchannel, this, &tap::_001OnKeyDown);
+      MESSAGE_LINK(e_message_key_down, pchannel, this, &tap::on_message_key_down);
       MESSAGE_LINK(e_message_left_button_down, pchannel, this, &tap::on_message_left_button_down);
       MESSAGE_LINK(e_message_left_button_up, pchannel, this, &tap::on_message_left_button_up);
       MESSAGE_LINK(e_message_mouse_move, pchannel, this, &tap::on_message_mouse_move);
@@ -486,7 +486,7 @@ namespace simple_ui
    }
 
 
-   void tap::_001OnKeyDown(::message::message * pmessage)
+   void tap::on_message_key_down(::message::message * pmessage)
    {
 
       __pointer(::message::key) pkey(pmessage);

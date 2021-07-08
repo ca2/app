@@ -69,9 +69,9 @@ namespace linux
       virtual void on_control_event(::user::control_event * pevent) override;
 
       DECLARE_MESSAGE_HANDLER(_001OnEraseBkgnd);
-      DECLARE_MESSAGE_HANDLER(_001OnMove);
-      DECLARE_MESSAGE_HANDLER(_001OnSize);
-      DECLARE_MESSAGE_HANDLER(_001OnShowWindow);
+      DECLARE_MESSAGE_HANDLER(on_message_move);
+      DECLARE_MESSAGE_HANDLER(on_message_size);
+      DECLARE_MESSAGE_HANDLER(on_message_show_window);
       //DECLARE_MESSAGE_HANDLER(_001OnProdevianSynch);
 
 
@@ -469,10 +469,10 @@ namespace linux
 
 
       DECLARE_MESSAGE_HANDLER(on_message_create);
-      DECLARE_MESSAGE_HANDLER(_001OnDestroy);
+      DECLARE_MESSAGE_HANDLER(on_message_destroy);
       DECLARE_MESSAGE_HANDLER(_001OnPaint);
       DECLARE_MESSAGE_HANDLER(_001OnPrint);
-      DECLARE_MESSAGE_HANDLER(_001OnSetCursor);
+      DECLARE_MESSAGE_HANDLER(on_message_set_cursor);
 
 
 

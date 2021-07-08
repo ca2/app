@@ -146,7 +146,7 @@ namespace experience
       DECLARE_MESSAGE_HANDLER(_001OnActivate);
       //DECLARE_MESSAGE_HANDLER(_001OnCommand);
       DECLARE_MESSAGE_HANDLER(_001OnSysCommand);
-      DECLARE_MESSAGE_HANDLER(_001OnSize);
+      DECLARE_MESSAGE_HANDLER(on_message_size);
 
       virtual bool _001CanEnterScreenSaver() override;
 

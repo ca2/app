@@ -17,7 +17,7 @@ namespace user
          virtual void install_edit_window_message_routing(channel * pchannel);
 
          DECLARE_MESSAGE_HANDLER(on_message_create);
-         DECLARE_MESSAGE_HANDLER(_001OnDestroy);
+         DECLARE_MESSAGE_HANDLER(on_message_destroy);
          DECLARE_MESSAGE_HANDLER(_001OnSetFocus);
          DECLARE_MESSAGE_HANDLER(_001OnKillFocus);
 

@@ -89,12 +89,12 @@ namespace user
 
       DECLARE_MESSAGE_HANDLER(on_message_left_button_down);
       DECLARE_MESSAGE_HANDLER(on_message_create);
-      DECLARE_MESSAGE_HANDLER(_001OnDestroy);
+      DECLARE_MESSAGE_HANDLER(on_message_destroy);
       DECLARE_MESSAGE_HANDLER(_001OnNcActivate);
-      DECLARE_MESSAGE_HANDLER(_001OnNcCalcSize);
+      DECLARE_MESSAGE_HANDLER(on_message_non_client_calculate_size);
       DECLARE_MESSAGE_HANDLER(_001OnEnable);
-      DECLARE_MESSAGE_HANDLER(_001OnShowWindow);
-      DECLARE_MESSAGE_HANDLER(_001OnClose);
+      DECLARE_MESSAGE_HANDLER(on_message_show_window);
+      DECLARE_MESSAGE_HANDLER(on_message_close);
       DECLARE_MESSAGE_HANDLER(_001OnMouseActivate);
       DECLARE_MESSAGE_HANDLER(_001OnActivate);
       DECLARE_MESSAGE_HANDLER(_001OnNcCreate);
@@ -133,7 +133,7 @@ namespace user
 
       virtual __pointer(::user::menu_interaction) create_menu_button(::draw2d::graphics_pointer & pgraphics, ::user::menu_item * pitem);
 
-      // <3ThomasBorregaardSørensen__!!
+      // <3ThomasBorregaardSï¿½rensen__!!
       ::e_status command_handler(const ::id& id) override;
 
 

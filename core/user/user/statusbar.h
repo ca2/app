@@ -100,8 +100,8 @@ namespace user
       virtual bool OnChildNotify(::message::message * pmessage) override;
 
       DECLARE_MESSAGE_HANDLER(_001OnNcHitTest);
-      DECLARE_MESSAGE_HANDLER(_001OnNcCalcSize);
-      DECLARE_MESSAGE_HANDLER(_001OnSize);
+      DECLARE_MESSAGE_HANDLER(on_message_non_client_calculate_size);
+      DECLARE_MESSAGE_HANDLER(on_message_size);
       DECLARE_MESSAGE_HANDLER(_001OnWindowPosChanging);
       DECLARE_MESSAGE_HANDLER(_001OnSetText);
       DECLARE_MESSAGE_HANDLER(_001OnGetText);

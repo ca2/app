@@ -57,7 +57,7 @@ namespace user
       ::user::interaction::install_message_routing(pchannel);
 
       MESSAGE_LINK(e_message_create, pchannel, this, &impact_host::on_message_create);
-      MESSAGE_LINK(e_message_destroy, pchannel, this, &impact_host::_001OnDestroy);
+      MESSAGE_LINK(e_message_destroy, pchannel, this, &impact_host::on_message_destroy);
 
    }
 
@@ -68,7 +68,7 @@ namespace user
    }
 
 
-   void impact_host::_001OnDestroy(::message::message * pmessage)
+   void impact_host::on_message_destroy(::message::message * pmessage)
    {
 
       m_impactdatamap.erase_all();

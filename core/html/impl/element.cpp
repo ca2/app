@@ -121,7 +121,7 @@ namespace html
          
          __pointer(::html::message) phtml(pmessage);
          
-         SCAST_PTR(::message::mouse, pmouse, phtml->m_psignal);
+         __pointer(::message::mouse) pmouse = phtml->m_pmessage;
          
          if (has_link())
          {
@@ -134,12 +134,13 @@ namespace html
 
       }
 
+
       void element::OnMouseMove(::message::message * pmessage)
       {
 
          __pointer(::html::message) phtml(pmessage);
 
-         SCAST_PTR(::message::mouse, pmouse, phtml->m_psignal);
+         __pointer(::message::mouse) pmouse = phtml->m_pmessage;
 
          if (!m_bHoverEvaluated)
          {
@@ -147,7 +148,11 @@ namespace html
             bool bHasHover = true;
 
             if (bHasHover && !has_link())
+            {
+
                bHasHover = false;
+
+            }
 
             if (bHasHover)
             {
@@ -156,7 +161,7 @@ namespace html
 
                string strClass = m_pelemental->m_strClass;
 
-               style * pstyle = phtml->m_pdata->m_pcoredata->m_stylesheeta.rfind(etag, strClass, "hover", "");
+               style * pstyle = phtml->m_phtmldata->m_pcoredata->m_stylesheeta.rfind(etag, strClass, "hover", "");
 
                if (pstyle == nullptr)
                {
@@ -205,21 +210,26 @@ namespace html
 
       }
 
+
       void element::OnLButtonUp(::message::message * pmessage)
       {
+         
          __pointer(::html::message) phtml(pmessage);
+
          if (has_link())
          {
-            phtml->m_pdata->open_link(link());
+
+            phtml->m_phtmldata->open_link(link());
+
          }
+
       }
+
 
       void element::implement_phase1(html_data * pdata, ::html::element * pelemental)
       {
 
          UNREFERENCED_PARAMETER(pdata);
-
-//         e_tag etag = pelemental->m_etag;
 
          m_pelemental = pelemental;
 

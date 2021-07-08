@@ -47,8 +47,8 @@ namespace user
       menu::install_message_routing(pchannel);
 
       MESSAGE_LINK(e_message_create, pchannel, this, &menu_list_window::on_message_create);
-      MESSAGE_LINK(e_message_destroy, pchannel, this, &menu_list_window::_001OnDestroy);
-      MESSAGE_LINK(e_message_close, pchannel, this, &menu_list_window::_001OnClose);
+      MESSAGE_LINK(e_message_destroy, pchannel, this, &menu_list_window::on_message_destroy);
+      MESSAGE_LINK(e_message_close, pchannel, this, &menu_list_window::on_message_close);
 
    }
 
@@ -61,7 +61,7 @@ namespace user
    }
 
 
-   void menu_list_window::_001OnClose(::message::message * pmessage)
+   void menu_list_window::on_message_close(::message::message * pmessage)
    {
 
       UNREFERENCED_PARAMETER(pmessage);
@@ -69,7 +69,7 @@ namespace user
    }
 
 
-   void menu_list_window::_001OnDestroy(::message::message * pmessage)
+   void menu_list_window::on_message_destroy(::message::message * pmessage)
    {
 
       UNREFERENCED_PARAMETER(pmessage);

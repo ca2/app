@@ -95,7 +95,7 @@ namespace user
       virtual bool initialize_split_layout();
 
       DECLARE_MESSAGE_HANDLER(on_message_create);
-      DECLARE_MESSAGE_HANDLER(_001OnShowWindow);
+      DECLARE_MESSAGE_HANDLER(on_message_show_window);
 
       virtual void draw_control_background(::draw2d::graphics_pointer & pgraphics) override;
 

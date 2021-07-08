@@ -140,10 +140,10 @@ void simple_frame_window::install_message_routing(::channel * pchannel)
 //#ifdef WINDOWS_DESKTOP
    //MESSAGE_LINK(WM_DDE_INITIATE, pchannel, this, &simple_frame_window::_001OnDdeInitiate);
 //#endif
-   MESSAGE_LINK(e_message_destroy, pchannel, this, &simple_frame_window::_001OnDestroy);
-   MESSAGE_LINK(e_message_close, pchannel, this, &simple_frame_window::_001OnClose);
-   MESSAGE_LINK(e_message_size, pchannel, this, &simple_frame_window::_001OnSize);
-   MESSAGE_LINK(e_message_move, pchannel, this, &simple_frame_window::_001OnMove);
+   MESSAGE_LINK(e_message_destroy, pchannel, this, &simple_frame_window::on_message_destroy);
+   MESSAGE_LINK(e_message_close, pchannel, this, &simple_frame_window::on_message_close);
+   MESSAGE_LINK(e_message_size, pchannel, this, &simple_frame_window::on_message_size);
+   MESSAGE_LINK(e_message_move, pchannel, this, &simple_frame_window::on_message_move);
 
 #ifdef WINDOWS_DESKTOP
 
@@ -152,8 +152,8 @@ void simple_frame_window::install_message_routing(::channel * pchannel)
 #endif
 
    MESSAGE_LINK(e_message_mouse_move, pchannel, this, &simple_frame_window::on_message_mouse_move);
-   MESSAGE_LINK(e_message_display_change, pchannel, this, &simple_frame_window::_001OnDisplayChange);
-   MESSAGE_LINK(e_message_show_window, pchannel, this, &simple_frame_window::_001OnShowWindow);
+   MESSAGE_LINK(e_message_display_change, pchannel, this, &simple_frame_window::on_message_display_change);
+   MESSAGE_LINK(e_message_show_window, pchannel, this, &simple_frame_window::on_message_show_window);
    MESSAGE_LINK(e_message_mouse_activate, pchannel, this, &simple_frame_window::_001OnMouseActivate);
    MESSAGE_LINK(e_message_nchittest, pchannel, this, &simple_frame_window::_001OnNcHitTest);
 
@@ -512,7 +512,7 @@ __pointer(::user::interaction) simple_frame_window::WindowDataGetWnd()
 }
 
 
-void simple_frame_window::_001OnDestroy(::message::message * pmessage)
+void simple_frame_window::on_message_destroy(::message::message * pmessage)
 {
 
    pmessage->previous();
@@ -980,7 +980,7 @@ void simple_frame_window::_on_show_window()
 }
 
 
-void simple_frame_window::_001OnShowWindow(::message::message * pmessage)
+void simple_frame_window::on_message_show_window(::message::message * pmessage)
 {
 
    __pointer(::message::show_window) pshow(pmessage);
@@ -988,7 +988,7 @@ void simple_frame_window::_001OnShowWindow(::message::message * pmessage)
    if(pshow->m_bShow)
    {
 
-      output_debug_string("\nsimple_frame_window::_001OnShowWindow true " + string(typeid(*this).name()));
+      output_debug_string("\nsimple_frame_window::on_message_show_window true " + string(typeid(*this).name()));
 
       defer_set_icon();
 
@@ -996,7 +996,7 @@ void simple_frame_window::_001OnShowWindow(::message::message * pmessage)
    else
    {
 
-      output_debug_string("\nsimple_frame_window::_001OnShowWindow false " + string(typeid(*this).name()));
+      output_debug_string("\nsimple_frame_window::on_message_show_window false " + string(typeid(*this).name()));
 
    }
 
@@ -1017,7 +1017,7 @@ void simple_frame_window::_001OnShowWindow(::message::message * pmessage)
 }
 
 
-void simple_frame_window::_001OnDisplayChange(::message::message * pmessage)
+void simple_frame_window::on_message_display_change(::message::message * pmessage)
 {
 
    __pointer(::user::message) pusermessage(pmessage);
@@ -1066,7 +1066,7 @@ void simple_frame_window::_001OnUpdateNotifyIcon(::message::message * pmessage)
 }
 
 
-void simple_frame_window::_001OnSize(::message::message * pmessage)
+void simple_frame_window::on_message_size(::message::message * pmessage)
 {
 
    UNREFERENCED_PARAMETER(pmessage);
@@ -1083,7 +1083,7 @@ void simple_frame_window::_001OnSize(::message::message * pmessage)
 }
 
 
-void simple_frame_window::_001OnMove(::message::message * pmessage)
+void simple_frame_window::on_message_move(::message::message * pmessage)
 {
 
    UNREFERENCED_PARAMETER(pmessage);
@@ -1598,7 +1598,7 @@ void simple_frame_window::_001OnAppExit(::message::message * pmessage)
 }
 
 
-void simple_frame_window::_001OnClose(::message::message * pmessage)
+void simple_frame_window::on_message_close(::message::message * pmessage)
 {
 
    if (wfi_is_up_down())

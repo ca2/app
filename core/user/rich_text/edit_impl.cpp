@@ -105,14 +105,14 @@ namespace user
          ::user::interaction::install_message_routing(pchannel);
 
          MESSAGE_LINK(e_message_create, pchannel, this, &edit_impl::on_message_create);
-         MESSAGE_LINK(e_message_destroy, pchannel, this, &edit_impl::_001OnDestroy);
-         MESSAGE_LINK(e_message_show_window, pchannel, this, &edit_impl::_001OnShowWindow);
+         MESSAGE_LINK(e_message_destroy, pchannel, this, &edit_impl::on_message_destroy);
+         MESSAGE_LINK(e_message_show_window, pchannel, this, &edit_impl::on_message_show_window);
          MESSAGE_LINK(e_message_left_button_down, pchannel, this, &edit_impl::on_message_left_button_down);
          MESSAGE_LINK(e_message_left_button_up, pchannel, this, &edit_impl::on_message_left_button_up);
          MESSAGE_LINK(e_message_mouse_move, pchannel, this, &edit_impl::on_message_mouse_move);
          MESSAGE_LINK(e_message_mouse_leave, pchannel, this, &edit_impl::on_message_mouse_leave);
-         MESSAGE_LINK(e_message_key_down, pchannel, this, &edit_impl::_001OnKeyDown);
-         MESSAGE_LINK(e_message_key_up, pchannel, this, &edit_impl::_001OnKeyUp);
+         MESSAGE_LINK(e_message_key_down, pchannel, this, &edit_impl::on_message_key_down);
+         MESSAGE_LINK(e_message_key_up, pchannel, this, &edit_impl::on_message_key_up);
          //MESSAGE_LINK(e_message_set_focus, pchannel, this, &edit_impl::_001OnSetFocus);
          //MESSAGE_LINK(e_message_kill_focus, pchannel, this, &edit_impl::_001OnKillFocus);
 
@@ -167,13 +167,13 @@ namespace user
       }
 
 
-      void edit_impl::_001OnDestroy(::message::message * pmessage)
+      void edit_impl::on_message_destroy(::message::message * pmessage)
       {
 
       }
 
 
-      void edit_impl::_001OnShowWindow(::message::message * pmessage)
+      void edit_impl::on_message_show_window(::message::message * pmessage)
       {
 
          __pointer(::message::show_window) pshowwindow(pmessage);
@@ -992,12 +992,12 @@ namespace user
 
          }
 
-         _001OnChar(pmessage);
+         on_message_character(pmessage);
 
       }
 
 
-      void edit_impl::_001OnKeyDown(::message::message * pmessage)
+      void edit_impl::on_message_key_down(::message::message * pmessage)
       {
 
          //synchronous_lock synchronouslock(mutex());
@@ -1182,7 +1182,7 @@ namespace user
       }
 
 
-      void edit_impl::_001OnKeyUp(::message::message * pmessage)
+      void edit_impl::on_message_key_up(::message::message * pmessage)
       {
 
          __pointer(::message::key) pkey(pmessage);
@@ -1255,9 +1255,9 @@ namespace user
 
          auto psession = get_session();
 
-         if (key.m_ekey == ::user::e_key_shift || key.m_ekey == ::user::e_key_lshift || key.m_ekey == ::user::e_key_rshift
-               || key.m_ekey == ::user::e_key_control || key.m_ekey == ::user::e_key_lcontrol || key.m_ekey == ::user::e_key_rcontrol
-               || key.m_ekey == ::user::e_key_alt || key.m_ekey == ::user::e_key_lalt || key.m_ekey == ::user::e_key_ralt
+         if (key.m_ekey == ::user::e_key_shift || key.m_ekey == ::user::e_key_left_shift || key.m_ekey == ::user::e_key_right_shift
+               || key.m_ekey == ::user::e_key_control || key.m_ekey == ::user::e_key_left_control || key.m_ekey == ::user::e_key_right_control
+               || key.m_ekey == ::user::e_key_alt || key.m_ekey == ::user::e_key_left_alt || key.m_ekey == ::user::e_key_right_alt
             )
          {
 
@@ -1269,7 +1269,7 @@ namespace user
                || key.m_ekey == ::user::e_key_left || key.m_ekey == ::user::e_key_down)
          {
 
-            _001OnChar(&key);
+            on_message_character(&key);
 
             return;
 
@@ -1295,7 +1295,7 @@ namespace user
 
          }
 
-         _001OnChar(&key);
+         on_message_character(&key);
 
       }
 
@@ -1354,7 +1354,7 @@ namespace user
       }
 
 
-      void edit_impl::_001OnChar(::message::message * pmessage)
+      void edit_impl::on_message_character(::message::message * pmessage)
       {
 
             __pointer(::message::key) pkey(pmessage);

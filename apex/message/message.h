@@ -14,10 +14,18 @@ namespace message
    };
 
 
+   class key;
+   class mouse;
+
+
    class CLASS_DECL_APEX message :
       virtual public ::acme::message
    {
    public:
+
+
+      ::message::key *              m_pkey;
+      ::message::mouse *            m_pmouse;
 
 
       handler_item_array *          m_phandlera;
@@ -39,6 +47,9 @@ namespace message
 
       inline void common_construct()
       {
+
+         m_pkey = nullptr;
+         m_pmouse = nullptr;
 
          m_phandlera = nullptr;
          m_pchannel = nullptr;

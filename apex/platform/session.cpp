@@ -1097,10 +1097,10 @@ namespace apex
          m_pmapKeyPressed->lookup(::user::e_key_shift, bPressed);
          if (bPressed)
             goto ret;
-         m_pmapKeyPressed->lookup(::user::e_key_lshift, bPressed);
+         m_pmapKeyPressed->lookup(::user::e_key_left_shift, bPressed);
          if (bPressed)
             goto ret;
-         m_pmapKeyPressed->lookup(::user::e_key_rshift, bPressed);
+         m_pmapKeyPressed->lookup(::user::e_key_right_shift, bPressed);
          if (bPressed)
             goto ret;
       }
@@ -1109,10 +1109,10 @@ namespace apex
          m_pmapKeyPressed->lookup(::user::e_key_command, bPressed);
          if (bPressed)
             goto ret;
-         m_pmapKeyPressed->lookup(::user::e_key_lcommand, bPressed);
+         m_pmapKeyPressed->lookup(::user::e_key_left_command, bPressed);
          if (bPressed)
             goto ret;
-         m_pmapKeyPressed->lookup(::user::e_key_rcommand, bPressed);
+         m_pmapKeyPressed->lookup(::user::e_key_right_command, bPressed);
          if (bPressed)
             goto ret;
       }
@@ -1121,10 +1121,10 @@ namespace apex
          m_pmapKeyPressed->lookup(::user::e_key_control, bPressed);
          if (bPressed)
             goto ret;
-         m_pmapKeyPressed->lookup(::user::e_key_lcontrol, bPressed);
+         m_pmapKeyPressed->lookup(::user::e_key_left_control, bPressed);
          if (bPressed)
             goto ret;
-         m_pmapKeyPressed->lookup(::user::e_key_rcontrol, bPressed);
+         m_pmapKeyPressed->lookup(::user::e_key_right_control, bPressed);
          if (bPressed)
             goto ret;
       }
@@ -1133,10 +1133,10 @@ namespace apex
          m_pmapKeyPressed->lookup(::user::e_key_alt, bPressed);
          if (bPressed)
             goto ret;
-         m_pmapKeyPressed->lookup(::user::e_key_lalt, bPressed);
+         m_pmapKeyPressed->lookup(::user::e_key_left_alt, bPressed);
          if (bPressed)
             goto ret;
-         m_pmapKeyPressed->lookup(::user::e_key_ralt, bPressed);
+         m_pmapKeyPressed->lookup(::user::e_key_right_alt, bPressed);
          if (bPressed)
             goto ret;
       }
@@ -1613,15 +1613,15 @@ namespace apex
 
    //   if (emouse == ::user::e_mouse_left_button)
    //   {
-   //      return psession->is_key_pressed(::user::e_key_lbutton);
+   //      return psession->is_key_pressed(::user::e_key_left_button);
    //   }
    //   else if (emouse == ::user::e_mouse_right_button)
    //   {
-   //      return psession->is_key_pressed(::user::e_key_rbutton);
+   //      return psession->is_key_pressed(::user::e_key_right_button);
    //   }
    //   else if (emouse == ::user::e_mouse_middle_button)
    //   {
-   //      return psession->is_key_pressed(::user::e_key_mbutton);
+   //      return psession->is_key_pressed(::user::e_key_middle_button);
    //   }
    //   else
    //   {

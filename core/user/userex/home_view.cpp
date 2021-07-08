@@ -62,7 +62,7 @@ namespace userex
       MESSAGE_LINK(e_message_mouse_move, pchannel, this, &home_view::on_message_mouse_move);
       MESSAGE_LINK(e_message_left_button_down, pchannel, this, &home_view::on_message_left_button_down);
       MESSAGE_LINK(e_message_left_button_up, pchannel, this, &home_view::on_message_left_button_up);
-      MESSAGE_LINK(e_message_show_window, pchannel, this, &home_view::_001OnShowWindow);
+      MESSAGE_LINK(e_message_show_window, pchannel, this, &home_view::on_message_show_window);
 
    }
 
@@ -118,7 +118,7 @@ namespace userex
    }
 
 
-   void home_view::_001OnShowWindow(::message::message * pmessage)
+   void home_view::on_message_show_window(::message::message * pmessage)
    {
 
       UNREFERENCED_PARAMETER(pmessage);

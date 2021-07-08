@@ -247,11 +247,11 @@ namespace user
       MESSAGE_LINK(e_message_right_button_up, pchannel, this, &plain_edit::on_message_right_button_up);
       MESSAGE_LINK(e_message_mouse_move, pchannel, this, &plain_edit::on_message_mouse_move);
       MESSAGE_LINK(e_message_mouse_leave, pchannel, this, &plain_edit::on_message_mouse_leave);
-      MESSAGE_LINK(e_message_key_down, pchannel, this, &plain_edit::_001OnKeyDown);
-      MESSAGE_LINK(e_message_key_up, pchannel, this, &plain_edit::_001OnKeyUp);
+      MESSAGE_LINK(e_message_key_down, pchannel, this, &plain_edit::on_message_key_down);
+      MESSAGE_LINK(e_message_key_up, pchannel, this, &plain_edit::on_message_key_up);
       MESSAGE_LINK(e_message_uni_char, pchannel, this, &plain_edit::_001OnUniChar);
 
-      MESSAGE_LINK(e_message_size, pchannel, this, &::user::plain_edit::_001OnSize);
+      MESSAGE_LINK(e_message_size, pchannel, this, &::user::plain_edit::on_message_size);
 
       //MESSAGE_LINK(e_message_set_focus, pchannel, this, &::user::plain_edit::_001OnSetFocus);
       //MESSAGE_LINK(e_message_kill_focus, pchannel, this, &::user::plain_edit::_001OnKillFocus);
@@ -321,7 +321,7 @@ namespace user
    }
 
 
-   void plain_edit::_001OnDestroy(::message::message * pmessage)
+   void plain_edit::on_message_destroy(::message::message * pmessage)
    {
 
 
@@ -1026,7 +1026,7 @@ namespace user
    }
 
 
-   void plain_edit::_001OnSetCursor(::message::message * pmessage)
+   void plain_edit::on_message_set_cursor(::message::message * pmessage)
    {
 
       pmessage->previous();
@@ -1130,12 +1130,12 @@ namespace user
    }
 
 
-   void plain_edit::_001OnKeyDown(::message::message * pmessage)
+   void plain_edit::on_message_key_down(::message::message * pmessage)
    {
 
       auto psession = get_session();
 
-      INFO("_001OnKeyDown (1)");
+      INFO("on_message_key_down (1)");
 
       {
 
@@ -1160,7 +1160,7 @@ namespace user
 
       }
 
-      INFO("_001OnKeyDown (2)");
+      INFO("on_message_key_down (2)");
 
       __pointer(::message::key) pkey(pmessage);
 
@@ -1359,7 +1359,7 @@ namespace user
 
       }
 
-      INFO("_001OnKeyDown (3)");
+      INFO("on_message_key_down (3)");
 
       m_pmessagekeyLast = pkey;
 
@@ -1370,7 +1370,7 @@ namespace user
    }
 
 
-   void plain_edit::_001OnKeyUp(::message::message * pmessage)
+   void plain_edit::on_message_key_up(::message::message * pmessage)
    {
 
       __pointer(::message::key) pkey(pmessage);
@@ -1416,9 +1416,9 @@ namespace user
 
       ::message::key & key = *pkey;
 
-      if (key.m_ekey == ::user::e_key_shift || key.m_ekey == ::user::e_key_lshift || key.m_ekey == ::user::e_key_rshift
-            || key.m_ekey == ::user::e_key_control || key.m_ekey == ::user::e_key_lcontrol || key.m_ekey == ::user::e_key_rcontrol
-            || key.m_ekey == ::user::e_key_alt || key.m_ekey == ::user::e_key_lalt || key.m_ekey == ::user::e_key_ralt
+      if (key.m_ekey == ::user::e_key_shift || key.m_ekey == ::user::e_key_left_shift || key.m_ekey == ::user::e_key_right_shift
+            || key.m_ekey == ::user::e_key_control || key.m_ekey == ::user::e_key_left_control || key.m_ekey == ::user::e_key_right_control
+            || key.m_ekey == ::user::e_key_alt || key.m_ekey == ::user::e_key_left_alt || key.m_ekey == ::user::e_key_right_alt
          )
       {
 
@@ -1430,7 +1430,7 @@ namespace user
             || key.m_ekey == ::user::e_key_left || key.m_ekey == ::user::e_key_down)
       {
 
-         _001OnChar(&key);
+         on_message_character(&key);
 
          return;
 
@@ -1460,7 +1460,7 @@ namespace user
 
       INFO("key_to_char (1)");
 
-      _001OnChar(&key);
+      on_message_character(&key);
 
    }
 
@@ -4355,7 +4355,7 @@ finished_update:
    }
 
 
-   void plain_edit::_001OnChar(::message::message * pmessage)
+   void plain_edit::on_message_character(::message::message * pmessage)
    {
 
       ::draw2d::graphics_pointer pgraphics;
@@ -4373,7 +4373,7 @@ finished_update:
          if (pmessage->m_bRet)
             return;
 
-         INFO("plain_edit::_001OnChar (1)");
+         INFO("plain_edit::on_message_character (1)");
 
          __pointer(::message::key) pkey(pmessage);
 
@@ -4535,7 +4535,7 @@ finished_update:
             else if (pkey->m_ekey == ::user::e_key_back)
             {
 
-               INFO("plain_edit::_001OnChar (key_back)");
+               INFO("plain_edit::on_message_character (key_back)");
 
                if (is_text_composition_active())
                {
@@ -6094,7 +6094,7 @@ finished_update:
    void plain_edit::keyboard_focus_OnKeyDown(::message::message * pmessage)
    {
 
-      _001OnKeyDown(pmessage);
+      on_message_key_down(pmessage);
 
    }
 
@@ -6102,7 +6102,7 @@ finished_update:
    void plain_edit::keyboard_focus_OnKeyUp(::message::message * pmessage)
    {
 
-      _001OnKeyUp(pmessage);
+      on_message_key_up(pmessage);
 
    }
 
@@ -6110,7 +6110,7 @@ finished_update:
    void plain_edit::keyboard_focus_OnChar(::message::message * pmessage)
    {
 
-      _001OnChar(pmessage);
+      on_message_character(pmessage);
 
    }
 
@@ -6533,24 +6533,27 @@ finished_update:
    }
 
 
-   void plain_edit::_001OnUpdateEditDelete(::message::message * pmessage)
+   ::e_status plain_edit::is_edit_delete_enabled()
    {
-
-      __pointer(::message::command) pcommand(pmessage);
 
       string str;
 
       _001GetSelText(str);
 
-      pcommand->enable(str.has_char());
+      if(!str.has_char())
+      {
+
+         return ::success_none;
+
+      }
+
+      return ::success;
 
    }
 
 
-   void plain_edit::_001OnEditDelete(::message::message * pmessage)
+   ::e_status plain_edit::on_edit_delete(const ::action_context & actioncontext)
    {
-
-      UNREFERENCED_PARAMETER(pmessage);
 
       ::draw2d::graphics_pointer pgraphics;
 
@@ -6561,13 +6564,12 @@ finished_update:
 
       }
 
-      pmessage->m_bRet = true;
+      return ::success;
 
    }
 
 
-
-   void plain_edit::_001OnSize(::message::message * pmessage)
+   void plain_edit::on_message_size(::message::message * pmessage)
    {
 
       UNREFERENCED_PARAMETER(pmessage);

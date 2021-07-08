@@ -335,28 +335,28 @@ uptr virtualkey_to_char(::Windows::::acme::get_system()::VirtualKey e)
       return ::user::e_key_shift;
    case ::Windows::::acme::get_system()::VirtualKey::LeftShift:
       bSpecialKey = true;
-      return ::user::e_key_lshift;
+      return ::user::e_key_left_shift;
    case ::Windows::::acme::get_system()::VirtualKey::RightShift:
       bSpecialKey = true;
-      return ::user::e_key_rshift;
+      return ::user::e_key_right_shift;
    case ::Windows::::acme::get_system()::VirtualKey::Control:
       bSpecialKey = true;
       return ::user::e_key_control;
    case ::Windows::::acme::get_system()::VirtualKey::LeftControl:
       bSpecialKey = true;
-      return ::user::e_key_lcontrol;
+      return ::user::e_key_left_control;
    case ::Windows::::acme::get_system()::VirtualKey::RightControl:
       bSpecialKey = true;
-      return ::user::e_key_rcontrol;
+      return ::user::e_key_right_control;
    case ::Windows::::acme::get_system()::VirtualKey::Menu:
       bSpecialKey = true;
       return ::user::e_key_alt;
    case ::Windows::::acme::get_system()::VirtualKey::LeftMenu:
       bSpecialKey = true;
-      return ::user::e_key_lalt;
+      return ::user::e_key_left_alt;
    case ::Windows::::acme::get_system()::VirtualKey::RightMenu:
       bSpecialKey = true;
-      return ::user::e_key_ralt;
+      return ::user::e_key_right_alt;
    case ::Windows::::acme::get_system()::VirtualKey::Tab:
       bSpecialKey = true;
       return ::user::e_key_tab;
@@ -413,9 +413,9 @@ uptr virtualkey_to_char(::Windows::::acme::get_system()::VirtualKey e)
    case ::Windows::::acme::get_system()::VirtualKey::Space:
       return ::user::e_key_space;
    case ::Windows::::acme::get_system()::VirtualKey::LeftWindows:
-      return ::user::e_key_lcommand;
+      return ::user::e_key_left_command;
    case ::Windows::::acme::get_system()::VirtualKey::RightWindows:
-      return ::user::e_key_rcommand;
+      return ::user::e_key_right_command;
    case ::Windows::::acme::get_system()::VirtualKey::CapitalLock:
       return ::user::e_key_capslock;
    default:

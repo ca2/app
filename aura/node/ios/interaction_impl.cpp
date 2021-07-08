@@ -633,10 +633,10 @@ namespace ios
             if (!m_puserinteraction->m_bMessageWindow)
             {
 
-      //         MESSAGE_LINK(e_message_set_cursor, pchannel, this, &interaction_impl::_001OnSetCursor);
+      //         MESSAGE_LINK(e_message_set_cursor, pchannel, this, &interaction_impl::on_message_set_cursor);
       //         MESSAGE_LINK(e_message_erase_background, pchannel, this,&interaction_impl::_001OnEraseBkgnd);
-               //         MESSAGE_LINK(e_message_nccalcsize, pchannel, this,&interaction_impl::_001OnNcCalcSize);
-      //         MESSAGE_LINK(e_message_size, pchannel, this, &interaction_impl::_001OnSize);
+               //         MESSAGE_LINK(e_message_nccalcsize, pchannel, this,&interaction_impl::on_message_non_client_calculate_size);
+      //         MESSAGE_LINK(e_message_size, pchannel, this, &interaction_impl::on_message_size);
                //         MESSAGE_LINK(e_message_window_position_changing, pchannel, this,&interaction_impl::_001OnWindowPosChanging);
                //         MESSAGE_LINK(e_message_window_position_changed, pchannel, this,&interaction_impl::_001OnWindowPosChanged);
                //         MESSAGE_LINK(WM_GETMINMAXINFO, pchannel, this,&interaction_impl::_001OnGetMinMaxInfo);
@@ -645,11 +645,11 @@ namespace ios
                //MESSAGE_LINK(ca2m_PRODEVIAN_SYNCH, pchannel, this,&interaction_impl::_001OnProdevianSynch);
             }
             prio_install_message_routing(pchannel);
-            MESSAGE_LINK(e_message_destroy, pchannel, this, &interaction_impl::_001OnDestroy);
+            MESSAGE_LINK(e_message_destroy, pchannel, this, &interaction_impl::on_message_destroy);
 
             //      ::user::interaction_impl::install_message_routing(pchannel);
             //      //m_pbuffer->InstallMessageHandling(pinterface);
-            //      MESSAGE_LINK(e_message_destroy           , pchannel, this, &interaction_impl::_001OnDestroy);
+            //      MESSAGE_LINK(e_message_destroy           , pchannel, this, &interaction_impl::on_message_destroy);
             //      MESSAGE_LINK(e_message_paint             , pchannel, this, &interaction_impl::_001OnPaint);
             //      MESSAGE_LINK(WM_PRINT             , pchannel, this, &interaction_impl::_001OnPrint);
             //      if(m_puserinteraction != nullptr)
@@ -657,11 +657,11 @@ namespace ios
             //         m_puserinteraction->install_message_routing(pchannel);
             //      }
             //      MESSAGE_LINK(e_message_create            , pchannel, this, &interaction_impl::on_message_create);
-            //      MESSAGE_LINK(e_message_set_cursor         , pchannel, this, &interaction_impl::_001OnSetCursor);
+            //      MESSAGE_LINK(e_message_set_cursor         , pchannel, this, &interaction_impl::on_message_set_cursor);
             //      MESSAGE_LINK(e_message_erase_background        , pchannel, this, &interaction_impl::_001OnEraseBkgnd);
-            //      MESSAGE_LINK(e_message_move              , pchannel, this, &interaction_impl::_001OnMove);
-            //      MESSAGE_LINK(e_message_size              , pchannel, this, &interaction_impl::_001OnSize);
-            MESSAGE_LINK(e_message_show_window, pchannel, this, &interaction_impl::_001OnShowWindow);
+            //      MESSAGE_LINK(e_message_move              , pchannel, this, &interaction_impl::on_message_move);
+            //      MESSAGE_LINK(e_message_size              , pchannel, this, &interaction_impl::on_message_size);
+            MESSAGE_LINK(e_message_show_window, pchannel, this, &interaction_impl::on_message_show_window);
             //      MESSAGE_LINK(ca2m_PRODEVIAN_SYNCH , pchannel, this, &interaction_impl::_001OnProdevianSynch);
             ////      //MESSAGE_LINK(e_message_timer             , pchannel, this, &interaction_impl::_001OnTimer);
 
@@ -669,7 +669,7 @@ namespace ios
 
 //      ::user::interaction_impl::install_message_routing(pchannel);
 //      //m_pbuffer->InstallMessageHandling(pinterface);
-//      MESSAGE_LINK(e_message_destroy, pchannel, this, &interaction_impl::_001OnDestroy);
+//      MESSAGE_LINK(e_message_destroy, pchannel, this, &interaction_impl::on_message_destroy);
 //      MESSAGE_LINK(e_message_paint, pchannel, this, &interaction_impl::_001OnPaint);
 //      MESSAGE_LINK(WM_PRINT, pchannel, this, &interaction_impl::_001OnPrint);
 //
@@ -681,13 +681,13 @@ namespace ios
 //      }
 //
 //      MESSAGE_LINK(e_message_create, pchannel, this, &interaction_impl::on_message_create);
-//      MESSAGE_LINK(e_message_set_cursor, pchannel, this, &interaction_impl::_001OnSetCursor);
+//      MESSAGE_LINK(e_message_set_cursor, pchannel, this, &interaction_impl::on_message_set_cursor);
 //      MESSAGE_LINK(e_message_erase_background, pchannel, this, &interaction_impl::_001OnEraseBkgnd);
-//      MESSAGE_LINK(e_message_move, pchannel, this, &interaction_impl::_001OnMove);
-//      MESSAGE_LINK(e_message_size, pchannel, this, &interaction_impl::_001OnSize);
+//      MESSAGE_LINK(e_message_move, pchannel, this, &interaction_impl::on_message_move);
+//      MESSAGE_LINK(e_message_size, pchannel, this, &interaction_impl::on_message_size);
 //      MESSAGE_LINK(e_message_set_focus, pchannel, this, &interaction_impl::_001OnSetFocus);
 //      MESSAGE_LINK(e_message_kill_focus, pchannel, this, &interaction_impl::_001OnKillFocus);
-////      MESSAGE_LINK(e_message_show_window        , pchannel, this, &interaction_impl::_001OnShowWindow);
+////      MESSAGE_LINK(e_message_show_window        , pchannel, this, &interaction_impl::on_message_show_window);
 ////      MESSAGE_LINK(ca2m_PRODEVIAN_SYNCH , pchannel, this, &interaction_impl::_001OnProdevianSynch);
 //      //      //MESSAGE_LINK(e_message_timer             , pchannel, this, &interaction_impl::_001OnTimer);
 //
@@ -696,14 +696,14 @@ namespace ios
    }
 
 
-   void interaction_impl::_001OnMove(::message::message * pmessage)
+   void interaction_impl::on_message_move(::message::message * pmessage)
    {
       UNREFERENCED_PARAMETER(pmessage);
 
    }
 
 
-   void interaction_impl::_001OnSize(::message::message * pmessage)
+   void interaction_impl::on_message_size(::message::message * pmessage)
    {
       
       UNREFERENCED_PARAMETER(pmessage);
@@ -723,7 +723,7 @@ namespace ios
 
 
 
-   void interaction_impl::_001OnDestroy(::message::message * pmessage)
+   void interaction_impl::on_message_destroy(::message::message * pmessage)
    {
 
       UNREFERENCED_PARAMETER(pmessage);
@@ -2188,7 +2188,7 @@ namespace ios
    }
 
 
-   void interaction_impl::_001OnShowWindow(::message::message * pmessage)
+   void interaction_impl::on_message_show_window(::message::message * pmessage)
    {
 
       UNREFERENCED_PARAMETER(pmessage);
@@ -4230,7 +4230,7 @@ namespace ios
       
    }
 
-   void interaction_impl::_001OnSetCursor(::message::message * pmessage)
+   void interaction_impl::on_message_set_cursor(::message::message * pmessage)
    {
       __pointer(::user::message) pusermessage(pmessage);
       if(psession->get_cursor() != nullptr
@@ -5273,7 +5273,7 @@ namespace ios
          else if(strText[0] >= 'A' && strText[0] <= 'Z')
          {
 
-            pkey->m_ekey = ::user::e_key_lshift;
+            pkey->m_ekey = ::user::e_key_left_shift;
 
             spbase = pkey;
 
@@ -5291,7 +5291,7 @@ namespace ios
 
             on_host_message_handler(spbase);
 
-            pkey->m_ekey = ::user::e_key_lshift;
+            pkey->m_ekey = ::user::e_key_left_shift;
 
             on_host_message_handler(spbase);
 

@@ -114,7 +114,7 @@ namespace user
       ::user::interaction::install_message_routing(pchannel);
 
       MESSAGE_LINK(e_message_create    , pchannel, this, &button::on_message_create);
-      MESSAGE_LINK(e_message_key_down   , pchannel, this, &button::_001OnKeyDown);
+      MESSAGE_LINK(e_message_key_down   , pchannel, this, &button::on_message_key_down);
 
       install_click_default_mouse_handling(pchannel);
       
@@ -420,7 +420,7 @@ namespace user
    }
 
 
-   void button::_001OnKeyDown(::message::message * pmessage)
+   void button::on_message_key_down(::message::message * pmessage)
    {
 
       __pointer(::message::key) pkey(pmessage);

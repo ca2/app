@@ -47,9 +47,9 @@ namespace console
       virtual bool keyboard_focus_is_focusable();
 
       DECLARE_MESSAGE_HANDLER(on_message_create);
-      DECLARE_MESSAGE_HANDLER(_001OnKeyDown);
-      DECLARE_MESSAGE_HANDLER(_001OnKeyUp);
-      DECLARE_MESSAGE_HANDLER(_001OnShowWindow);
+      DECLARE_MESSAGE_HANDLER(on_message_key_down);
+      DECLARE_MESSAGE_HANDLER(on_message_key_up);
+      DECLARE_MESSAGE_HANDLER(on_message_show_window);
 
       virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics);
 

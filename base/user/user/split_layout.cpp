@@ -37,7 +37,7 @@ namespace user
       place_holder_container::install_message_routing(pchannel);
 
       MESSAGE_LINK(e_message_create, pchannel, this, &split_layout::on_message_create);
-      MESSAGE_LINK(e_message_show_window, pchannel, this, &split_layout::_001OnShowWindow);
+      MESSAGE_LINK(e_message_show_window, pchannel, this, &split_layout::on_message_show_window);
 
    }
 
@@ -50,7 +50,7 @@ namespace user
    }
 
 
-   void split_layout::_001OnShowWindow(::message::message * pmessage)
+   void split_layout::on_message_show_window(::message::message * pmessage)
    {
 
       UNREFERENCED_PARAMETER(pmessage);

@@ -19,8 +19,8 @@ void html_form_view::install_message_routing(::channel * pchannel)
 
    ::user::form_view::install_message_routing(pchannel);
 
-   //MESSAGE_LINK(e_message_destroy, pchannel, this, &html_form_view::_001OnDestroy);
-   //MESSAGE_LINK(e_message_size, pchannel, this, &html_form_view::_001OnSize);
+   //MESSAGE_LINK(e_message_destroy, pchannel, this, &html_form_view::on_message_destroy);
+   //MESSAGE_LINK(e_message_size, pchannel, this, &html_form_view::on_message_size);
 
    //MESSAGE_LINK(WM_USER + 177     , this, this, &html_form_view::_001OnTabClick);
    //connect_command(ID_FILE_PRINT, ::user::form_view::OnFilePrint)
@@ -28,13 +28,13 @@ void html_form_view::install_message_routing(::channel * pchannel)
    //connect_command(ID_FILE_PRINT_PREVIEW, ::user::form_view::OnFilePrintPreview)
    //MESSAGE_LINK(e_message_left_button_down, pchannel, this, &::user::interaction::on_message_left_button_down);
    //MESSAGE_LINK(e_message_left_button_up, pchannel, this, &::user::interaction::on_message_left_button_up);
-   //MESSAGE_LINK(e_message_key_down, pchannel, this, &::user::interaction::_001OnKeyDown);
-   //MESSAGE_LINK(e_message_key_up, pchannel, this, &::user::interaction::_001OnKeyUp);
+   //MESSAGE_LINK(e_message_key_down, pchannel, this, &::user::interaction::on_message_key_down);
+   //MESSAGE_LINK(e_message_key_up, pchannel, this, &::user::interaction::on_message_key_up);
 
    //MESSAGE_LINK(e_message_left_button_down, pchannel, this, &html_form_view::on_message_left_button_down);
    //MESSAGE_LINK(e_message_mouse_move, pchannel, this, &html_form_view::on_message_mouse_move);
    //MESSAGE_LINK(e_message_left_button_up, pchannel, this, &html_form_view::on_message_left_button_up);
-   //MESSAGE_LINK(e_message_key_down, pchannel, this, &html_form_view::_001OnKeyDown);
+   //MESSAGE_LINK(e_message_key_down, pchannel, this, &html_form_view::on_message_key_down);
    MESSAGE_LINK(e_message_set_focus, pchannel, this, &html_form_view::_001OnSetFocus);
    MESSAGE_LINK(e_message_kill_focus, pchannel, this, &html_form_view::_001OnKillFocus);
    //MESSAGE_LINK(e_message_create, pchannel, this, &html_form_view::on_message_create);

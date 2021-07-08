@@ -73,7 +73,7 @@ namespace user
       ::user::control_bar::install_message_routing(pchannel);
 
       MESSAGE_LINK(e_message_nchittest, pchannel, this, &toolbar::_001OnNcHitTest);
-      MESSAGE_LINK(e_message_nccalcsize, pchannel, this, &toolbar::_001OnNcCalcSize);
+      MESSAGE_LINK(e_message_nccalcsize, pchannel, this, &toolbar::on_message_non_client_calculate_size);
 //#ifdef WINDOWS_DESKTOP
 //      MESSAGE_LINK(TB_SETBITMAPSIZE, pchannel, this, &toolbar::_001OnSetBitmapSize);
 //      MESSAGE_LINK(TB_SETBUTTONSIZE, pchannel, this, &toolbar::_001OnSetButtonSize);
@@ -1262,7 +1262,7 @@ return { 0,0 };
    }
 
 
-   void toolbar::_001OnNcCalcSize(::message::message * pmessage)
+   void toolbar::on_message_non_client_calculate_size(::message::message * pmessage)
    {
 
 #ifdef WINDOWS_DESKTOP

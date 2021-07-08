@@ -141,6 +141,8 @@ namespace user
       bool                                         m_bMouseHover : 1;
       bool                                         m_bClickDefaultMouseHandling : 1;
       bool                                         m_bHoverDefaultMouseHandling : 1;
+      bool                                         m_bEditDefaultHandling : 1;
+      bool                                         m_bKeyboardMultipleSelectionDefaultHandling : 1;
       bool                                         m_bLockSketchToDesign : 1;
       bool                                         m_bParentScrollX : 1;
       bool                                         m_bParentScrollY : 1;
@@ -1242,40 +1244,40 @@ namespace user
 
 
       DECLARE_MESSAGE_HANDLER(on_message_left_button_down);
-      DECLARE_MESSAGE_HANDLER(_001OnShowWindow);
+      DECLARE_MESSAGE_HANDLER(on_message_show_window);
       DECLARE_MESSAGE_HANDLER(on_message_mouse_move);
-      DECLARE_MESSAGE_HANDLER(_001OnMouseEnter);
-      DECLARE_MESSAGE_HANDLER(_001OnSetCursor);
+      DECLARE_MESSAGE_HANDLER(on_message_mouse_enter);
+      DECLARE_MESSAGE_HANDLER(on_message_set_cursor);
       DECLARE_MESSAGE_HANDLER(on_message_mouse_leave);
-      DECLARE_MESSAGE_HANDLER(_001OnKeyDown);
-      DECLARE_MESSAGE_HANDLER(_001OnKeyUp);
+      DECLARE_MESSAGE_HANDLER(on_message_key_down);
+      DECLARE_MESSAGE_HANDLER(on_message_key_up);
 
 
       virtual void _001OnTimer(::timer* ptimer) override;
       virtual bool on_timer(::timer* ptimer) override;
-      DECLARE_MESSAGE_HANDLER(_001OnChar);
-      DECLARE_MESSAGE_HANDLER(_001OnDestroy);
-      DECLARE_MESSAGE_HANDLER(_001OnPostUser);
-      DECLARE_MESSAGE_HANDLER(_001OnSize);
-      DECLARE_MESSAGE_HANDLER(_001OnMove);
+      DECLARE_MESSAGE_HANDLER(on_message_character);
+      DECLARE_MESSAGE_HANDLER(on_message_destroy);
+      DECLARE_MESSAGE_HANDLER(on_message_user_post);
+      DECLARE_MESSAGE_HANDLER(on_message_size);
+      DECLARE_MESSAGE_HANDLER(on_message_move);
       DECLARE_MESSAGE_HANDLER(on_message_create);
-      DECLARE_MESSAGE_HANDLER(_001OnNcCalcSize);
-      DECLARE_MESSAGE_HANDLER(_001OnClose);
+      DECLARE_MESSAGE_HANDLER(on_message_non_client_calculate_size);
+      DECLARE_MESSAGE_HANDLER(on_message_close);
       //DECLARE_MESSAGE_HANDLER(_001OnCommand);
-      DECLARE_MESSAGE_HANDLER(_001OnSimpleCommand);
-      DECLARE_MESSAGE_HANDLER(_001OnNeedLoadFormData);
-      DECLARE_MESSAGE_HANDLER(_001OnNeedSaveFormData);
-      DECLARE_MESSAGE_HANDLER(_001OnDisplayChange);
+      DECLARE_MESSAGE_HANDLER(on_message_simple_command);
+      DECLARE_MESSAGE_HANDLER(on_message_need_load_form_data);
+      DECLARE_MESSAGE_HANDLER(on_message_need_save_form_data);
+      DECLARE_MESSAGE_HANDLER(on_message_display_change);
 
 
-      virtual DECLARE_MESSAGE_HANDLER(_002OnLButtonDown);
-      virtual DECLARE_MESSAGE_HANDLER(_002OnLButtonUp);
-      virtual DECLARE_MESSAGE_HANDLER(_002OnMouseMove);
-      virtual DECLARE_MESSAGE_HANDLER(_002OnMouseEnter);
-      virtual DECLARE_MESSAGE_HANDLER(_002OnMouseLeave);
-      virtual DECLARE_MESSAGE_HANDLER(_002OnKeyDown);
-      virtual DECLARE_MESSAGE_HANDLER(_002OnKeyUp);
-      virtual DECLARE_MESSAGE_HANDLER(_002OnTimer);
+      //virtual DECLARE_MESSAGE_HANDLER(_002OnLButtonDown);
+      //virtual DECLARE_MESSAGE_HANDLER(_002OnLButtonUp);
+      //virtual DECLARE_MESSAGE_HANDLER(_002OnMouseMove);
+      //virtual DECLARE_MESSAGE_HANDLER(_002OnMouseEnter);
+      //virtual DECLARE_MESSAGE_HANDLER(_002OnMouseLeave);
+      //virtual DECLARE_MESSAGE_HANDLER(_002OnKeyDown);
+      //virtual DECLARE_MESSAGE_HANDLER(_002OnKeyUp);
+      //virtual DECLARE_MESSAGE_HANDLER(_002OnTimer);
 
       DECLARE_MESSAGE_HANDLER(_001OnTextComposition);
 
@@ -1686,6 +1688,8 @@ namespace user
       virtual void _001OnDeiconify(edisplay edisplay);
 
 
+      virtual ::e_status is_edit_delete_enabled();
+      virtual ::e_status on_edit_delete(const ::action_context& action_context);
 
 
       virtual bool on_click(const ::user::item & item);
@@ -1799,8 +1803,10 @@ namespace user
       //DECLARE_MESSAGE_HANDLER(on_message_create);
       //DECLARE_MESSAGE_HANDLER(on_message_mouse_move);
       //DECLARE_MESSAGE_HANDLER(on_message_mouse_leave);
-      //DECLARE_MESSAGE_HANDLER(_001OnKeyDown);
+      //DECLARE_MESSAGE_HANDLER(on_message_key_down);
       DECLARE_MESSAGE_HANDLER(_001OnEnable);
+      DECLARE_MESSAGE_HANDLER(_001OnUpdateEditDelete);
+      DECLARE_MESSAGE_HANDLER(_001OnEditDelete);
       //DECLARE_MESSAGE_HANDLER(_001OnSetFocus);
       //DECLARE_MESSAGE_HANDLER(_001OnKillFocus);
       //virtual void route_control_event(::user::control_event* pevent) override;

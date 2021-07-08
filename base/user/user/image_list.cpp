@@ -110,7 +110,7 @@ namespace user
       install_click_default_mouse_handling(pchannel);
 
       MESSAGE_LINK(e_message_create, pchannel, this, &image_list::on_message_create);
-      MESSAGE_LINK(e_message_destroy, pchannel, this, &image_list::_001OnDestroy);
+      MESSAGE_LINK(e_message_destroy, pchannel, this, &image_list::on_message_destroy);
 
    }
 
@@ -188,7 +188,7 @@ namespace user
    }
 
 
-   void image_list::_001OnDestroy(::message::message * pmessage)
+   void image_list::on_message_destroy(::message::message * pmessage)
    {
 
    }
@@ -675,7 +675,7 @@ namespace user
       ::user::image_list::install_message_routing(pchannel);
 
       MESSAGE_LINK(e_message_create, pchannel, this, &image_list_view::on_message_create);
-      MESSAGE_LINK(e_message_destroy, pchannel, this, &image_list_view::_001OnDestroy);
+      MESSAGE_LINK(e_message_destroy, pchannel, this, &image_list_view::on_message_destroy);
 
    }
 
@@ -690,7 +690,7 @@ namespace user
    }
 
 
-   void image_list_view::_001OnDestroy(::message::message * pmessage)
+   void image_list_view::on_message_destroy(::message::message * pmessage)
    {
 
    }

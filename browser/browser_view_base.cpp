@@ -47,7 +47,7 @@ namespace browser
       ::user::impact::install_message_routing(pchannel);
 
       MESSAGE_LINK(e_message_create, pchannel, this, &impact_base::on_message_create);
-      MESSAGE_LINK(e_message_destroy, pchannel, this, &impact_base::_001OnDestroy);
+      MESSAGE_LINK(e_message_destroy, pchannel, this, &impact_base::on_message_destroy);
       MESSAGE_LINK(e_message_left_button_down, pchannel, this, &impact_base::on_message_left_button_down);
 
    }
@@ -68,7 +68,7 @@ auto m_millisRoll = ::millis::now();
    }
 
 
-   void impact_base::_001OnDestroy(::message::message * pmessage)
+   void impact_base::on_message_destroy(::message::message * pmessage)
    {
 
    }

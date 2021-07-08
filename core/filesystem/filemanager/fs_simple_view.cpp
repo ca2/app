@@ -37,7 +37,7 @@ namespace filemanager
 
             ::user::split_view::install_message_routing(pchannel);
 
-            MESSAGE_LINK(e_message_destroy, pchannel, this, &::filemanager::fs::simple::view::_001OnDestroy);
+            MESSAGE_LINK(e_message_destroy, pchannel, this, &::filemanager::fs::simple::view::on_message_destroy);
 
          }
 
@@ -54,7 +54,7 @@ namespace filemanager
          }
 
 
-         void view::_001OnDestroy(::message::message * pmessage)
+         void view::on_message_destroy(::message::message * pmessage)
          {
 
             __release(m_ptree);

@@ -606,7 +606,7 @@ namespace user
    }
 
 
-   void check_box::_001OnKeyDown(::message::message * pmessage)
+   void check_box::on_message_key_down(::message::message * pmessage)
    {
 
       UNREFERENCED_PARAMETER(pmessage);
@@ -614,7 +614,7 @@ namespace user
    }
 
 
-   void check_box::_001OnKeyUp(::message::message * pmessage)
+   void check_box::on_message_key_up(::message::message * pmessage)
    {
 
       __pointer(::message::key) pkey(pmessage);

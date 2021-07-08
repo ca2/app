@@ -33,7 +33,7 @@ public:
    virtual void install_message_routing(::channel * pchannel) override;
 
 
-   DECLARE_MESSAGE_HANDLER(_001OnKeyDown);
+   DECLARE_MESSAGE_HANDLER(on_message_key_down);
    DECLARE_MESSAGE_HANDLER(_011OnChar);
    DECLARE_MESSAGE_HANDLER(_001OnIme);
    DECLARE_MESSAGE_HANDLER(_001OnSetFocus);

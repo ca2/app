@@ -43,7 +43,7 @@ namespace filemanager
             simple_list_view::install_message_routing(pchannel);
             MESSAGE_LINK(e_message_left_button_double_click, pchannel, this, &list_view::_001OnLButtonDblClk);
 //            //MESSAGE_LINK(e_message_timer, pchannel, this, &list_view::_001OnTimer);
-            MESSAGE_LINK(e_message_size, pchannel, this, &list_view::_001OnSize);
+            MESSAGE_LINK(e_message_size, pchannel, this, &list_view::on_message_size);
 #ifdef WINDOWS_DESKTOP
             MESSAGE_LINK(e_message_context_menu, pchannel, this, &list_view::_001OnContextMenu);
 #endif
@@ -536,7 +536,7 @@ namespace filemanager
             m_iDisplayItemCount  = -1;
          }
 
-         void list_view::_001OnSize(::message::message * pmessage)
+         void list_view::on_message_size(::message::message * pmessage)
          {
             UNREFERENCED_PARAMETER(pmessage);
             //m_buildhelper.m_iDisplayItemCount = _001GetDisplayItemCount();

@@ -1075,7 +1075,7 @@ namespace html
             else
             {
 
-               m_pedit->_002OnLButtonDown(phtml->m_psignal);
+               m_pedit->route_message(phtml->m_pmessage);
 
             }
 
@@ -1107,7 +1107,7 @@ namespace html
             else
             {
 
-               m_pedit->_002OnLButtonUp(phtml->m_psignal);
+               m_pedit->route_message(phtml->m_pmessage);
 
             }
 
@@ -1132,7 +1132,7 @@ namespace html
 
             __pointer(::html::message) phtml(pmessage);
 
-            m_pedit->_002OnMouseMove(phtml->m_psignal);
+            m_pedit->route_message(phtml->m_pmessage);
 
          }
 

@@ -35,7 +35,7 @@ namespace simple_ui
 //
 //      ::user::interaction::install_message_routing(pchannel);
 //
-//      MESSAGE_LINK(e_message_show_window, pchannel, this, &::user::interaction::_001OnShowWindow);
+//      MESSAGE_LINK(e_message_show_window, pchannel, this, &::user::interaction::on_message_show_window);
 //
 //   }
 //   
@@ -53,7 +53,7 @@ namespace simple_ui
 //   }
 //
 //
-//   void interaction::_001OnShowWindow(::message::message * pmessage)
+//   void interaction::on_message_show_window(::message::message * pmessage)
 //   {
 //
 //      UNREFERENCED_PARAMETER(pmessage);

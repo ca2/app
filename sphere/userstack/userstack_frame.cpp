@@ -59,7 +59,7 @@ namespace userstack
    void frame::install_message_routing(::channel * pchannel)
    {
       simple_frame_window::install_message_routing(pchannel);
-      //MESSAGE_LINK(e_message_close,          pchannel, this, &frame::_001OnClose);
+      //MESSAGE_LINK(e_message_close,          pchannel, this, &frame::on_message_close);
 //      //MESSAGE_LINK(e_message_timer,          pchannel, this, &frame::_001OnTimer);
       MESSAGE_LINK(e_message_create,         pchannel, this, &frame::on_message_create);
       MESSAGE_LINK(WM_APP + 1,        pchannel, this, &frame::_001OnApp1);

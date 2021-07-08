@@ -60,7 +60,7 @@ namespace filemanager
       ::user::split_view::install_message_routing(pchannel);
       MESSAGE_LINK(e_message_create,pchannel,this,&operation_view::on_message_create);
       MESSAGE_LINK(MessageMainPost,pchannel,this,&operation_view::_001OnMainPostMessage);
-      MESSAGE_LINK(e_message_destroy,pchannel,this,&operation_view::_001OnDestroy);
+      MESSAGE_LINK(e_message_destroy,pchannel,this,&operation_view::on_message_destroy);
    }
 
    __pointer(operation_document) operation_view::get_document()
@@ -83,7 +83,7 @@ namespace filemanager
       }
    }
 
-   void operation_view::_001OnDestroy(::message::message *pmessage)
+   void operation_view::on_message_destroy(::message::message *pmessage)
    {
       UNREFERENCED_PARAMETER(pmessage);
    }

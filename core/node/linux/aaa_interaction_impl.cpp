@@ -694,15 +694,15 @@ namespace linux
 
       if(!m_puserinteraction->m_bMessageWindow)
       {
-         MESSAGE_LINK(e_message_set_cursor, pchannel, this,&interaction_impl::_001OnSetCursor);
+         MESSAGE_LINK(e_message_set_cursor, pchannel, this,&interaction_impl::on_message_set_cursor);
          //MESSAGE_LINK(e_message_erase_background, pchannel, this,&interaction_impl::_001OnEraseBkgnd);
-         //MESSAGE_LINK(e_message_size, pchannel, this,&interaction_impl::_001OnSize);
-         //MESSAGE_LINK(e_message_nccalcsize, pchannel, this,&interaction_impl::_001OnNcCalcSize);
+         //MESSAGE_LINK(e_message_size, pchannel, this,&interaction_impl::on_message_size);
+         //MESSAGE_LINK(e_message_nccalcsize, pchannel, this,&interaction_impl::on_message_non_client_calculate_size);
 
          // linux
-         MESSAGE_LINK(e_message_move, pchannel, this, &interaction_impl::_001OnMove);
-         MESSAGE_LINK(e_message_size, pchannel, this, &interaction_impl::_001OnSize);
-         MESSAGE_LINK(e_message_show_window, pchannel, this, &interaction_impl::_001OnShowWindow);
+         MESSAGE_LINK(e_message_move, pchannel, this, &interaction_impl::on_message_move);
+         MESSAGE_LINK(e_message_size, pchannel, this, &interaction_impl::on_message_size);
+         MESSAGE_LINK(e_message_show_window, pchannel, this, &interaction_impl::on_message_show_window);
 
          //MESSAGE_LINK(e_message_window_position_changing, pchannel, this,&interaction_impl::_001OnWindowPosChanging);
          //MESSAGE_LINK(e_message_window_position_changed, pchannel, this,&interaction_impl::_001OnWindowPosChanged);
@@ -713,7 +713,7 @@ namespace linux
          ::user::interaction_impl::prio_install_message_routing(pchannel);
       }
 
-      MESSAGE_LINK(e_message_destroy, pchannel, this,&interaction_impl::_001OnDestroy);
+      MESSAGE_LINK(e_message_destroy, pchannel, this,&interaction_impl::on_message_destroy);
 
    }
 
@@ -807,7 +807,7 @@ namespace linux
    }
 
 
-   void interaction_impl::_001OnMove(::message::message * pmessage)
+   void interaction_impl::on_message_move(::message::message * pmessage)
    {
 
       __pointer(::message::size) psize(pmessage);
@@ -846,7 +846,7 @@ namespace linux
    }
 
 
-   void interaction_impl::_001OnSize(::message::message * pmessage)
+   void interaction_impl::on_message_size(::message::message * pmessage)
    {
 
       if (m_bDestroyImplOnly)
@@ -883,7 +883,7 @@ namespace linux
    }
 
 
-   void interaction_impl::_001OnShowWindow(::message::message * pmessage)
+   void interaction_impl::on_message_show_window(::message::message * pmessage)
    {
 
       __pointer(::message::show_window) pshowwindow(pmessage);
@@ -898,7 +898,7 @@ namespace linux
       if(pshowwindow->m_bShow)
       {
 
-         INFO("linux::interaction_impl::_001OnShowWindow VISIBLE edisplay=%s", __cstr(m_puserinteraction->ui_state().m_edisplay3.m_eenum));
+         INFO("linux::interaction_impl::on_message_show_window VISIBLE edisplay=%s", __cstr(m_puserinteraction->ui_state().m_edisplay3.m_eenum));
 
          m_puserinteraction->ModifyStyle(0, WS_VISIBLE);
 
@@ -963,7 +963,7 @@ namespace linux
    }
 
 
-   void interaction_impl::_001OnDestroy(::message::message * pmessage)
+   void interaction_impl::on_message_destroy(::message::message * pmessage)
    {
 
       UNREFERENCED_PARAMETER(pmessage);
@@ -4376,7 +4376,7 @@ namespace linux
 //
 //   }
 //
-   void interaction_impl::_001OnSetCursor(::message::message * pmessage)
+   void interaction_impl::on_message_set_cursor(::message::message * pmessage)
    {
       __pointer(::user::message) pusermessage(pmessage);
       if(psession->get_cursor() != nullptr

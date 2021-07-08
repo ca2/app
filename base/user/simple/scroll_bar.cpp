@@ -41,8 +41,8 @@ void simple_scroll_bar::install_message_routing(::channel * pchannel)
 {
    ::user::interaction::install_message_routing(pchannel);
    MESSAGE_LINK(e_message_create, pchannel, this, &simple_scroll_bar::on_message_create);
-   MESSAGE_LINK(e_message_destroy, pchannel, this, &simple_scroll_bar::_001OnDestroy);
-   MESSAGE_LINK(e_message_show_window, pchannel, this, &simple_scroll_bar::_001OnShowWindow);
+   MESSAGE_LINK(e_message_destroy, pchannel, this, &simple_scroll_bar::on_message_destroy);
+   MESSAGE_LINK(e_message_show_window, pchannel, this, &simple_scroll_bar::on_message_show_window);
    MESSAGE_LINK(e_message_mouse_move, pchannel, this, &simple_scroll_bar::on_message_mouse_move);
    MESSAGE_LINK(e_message_left_button_down, pchannel, this, &simple_scroll_bar::on_message_left_button_down);
    MESSAGE_LINK(e_message_left_button_up, pchannel, this, &simple_scroll_bar::on_message_left_button_up);
@@ -1623,7 +1623,7 @@ void simple_scroll_bar::_001OnVerisimpleDraw(::draw2d::graphics_pointer & pgraph
 }
 
 
-void simple_scroll_bar::_001OnShowWindow(::message::message * pmessage)
+void simple_scroll_bar::on_message_show_window(::message::message * pmessage)
 {
    __pointer(::message::show_window) pshowwindow(pmessage);
    pshowwindow->m_bRet = false;
@@ -1631,7 +1631,7 @@ void simple_scroll_bar::_001OnShowWindow(::message::message * pmessage)
    // xxx   TwiOnShowWindow(bShow, nStatus);
 }
 
-void simple_scroll_bar::_001OnDestroy(::message::message * pmessage)
+void simple_scroll_bar::on_message_destroy(::message::message * pmessage)
 {
    UNREFERENCED_PARAMETER(pmessage);
 }

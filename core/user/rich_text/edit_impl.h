@@ -101,15 +101,15 @@ namespace user
          virtual ::user::rich_text::data * get_rich_text_data() override;
 
          DECLARE_MESSAGE_HANDLER(on_message_create);
-         DECLARE_MESSAGE_HANDLER(_001OnDestroy);
-         DECLARE_MESSAGE_HANDLER(_001OnShowWindow);
+         DECLARE_MESSAGE_HANDLER(on_message_destroy);
+         DECLARE_MESSAGE_HANDLER(on_message_show_window);
          DECLARE_MESSAGE_HANDLER(on_message_left_button_down);
          DECLARE_MESSAGE_HANDLER(on_message_left_button_up);
          DECLARE_MESSAGE_HANDLER(on_message_mouse_move);
          DECLARE_MESSAGE_HANDLER(on_message_mouse_leave);
-         DECLARE_MESSAGE_HANDLER(_001OnChar);
-         DECLARE_MESSAGE_HANDLER(_001OnKeyDown);
-         DECLARE_MESSAGE_HANDLER(_001OnKeyUp);
+         DECLARE_MESSAGE_HANDLER(on_message_character);
+         DECLARE_MESSAGE_HANDLER(on_message_key_down);
+         DECLARE_MESSAGE_HANDLER(on_message_key_up);
          // DECLARE_MESSAGE_HANDLER(_001OnSetFocus);
          //DECLARE_MESSAGE_HANDLER(_001OnKillFocus);
 

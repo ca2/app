@@ -1757,7 +1757,7 @@ void simple_tool_command::SetText(const char *, const ::action_context & context
 //}
 
 
-void simple_toolbar::_001OnNcCalcSize(::message::message * pmessage)
+void simple_toolbar::on_message_non_client_calculate_size(::message::message * pmessage)
 {
 
 #if defined(WINDOWS_DESKTOP) //|| defined(LINUX)

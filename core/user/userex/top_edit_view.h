@@ -24,7 +24,7 @@ namespace userex
       virtual void install_message_routing(::channel * pchannel) override;
 
       DECLARE_MESSAGE_HANDLER(on_message_create);
-      DECLARE_MESSAGE_HANDLER(_001OnKeyDown);
+      DECLARE_MESSAGE_HANDLER(on_message_key_down);
 
       virtual ::write_text::font_pointer get_font(::user::style* pstyle, ::user::enum_element eelement, ::user::enum_state estate = ::user::e_state_none) const override;
 

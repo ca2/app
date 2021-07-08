@@ -325,7 +325,7 @@ namespace html
 
       }
 
-      MESSAGE_LINK(e_message_key_down, m_puserinteraction, this, &core_data::_001OnKeyDown);
+      MESSAGE_LINK(e_message_key_down, m_puserinteraction, this, &core_data::on_message_key_down);
       
       m_bImplemented = true;
       
@@ -334,7 +334,7 @@ namespace html
    }
 
 
-   void core_data::_001OnKeyDown(::message::message * pmessage)
+   void core_data::on_message_key_down(::message::message * pmessage)
    {
 
       __pointer(::message::key) pkey(pmessage);

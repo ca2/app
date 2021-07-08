@@ -29,8 +29,8 @@ namespace user
 
       
       DECLARE_MESSAGE_HANDLER(on_message_create);
-      DECLARE_MESSAGE_HANDLER(_001OnSize);
-      DECLARE_MESSAGE_HANDLER(_001OnShowWindow);
+      DECLARE_MESSAGE_HANDLER(on_message_size);
+      DECLARE_MESSAGE_HANDLER(on_message_show_window);
 
 
       virtual::e_display window_stored_display() const override;

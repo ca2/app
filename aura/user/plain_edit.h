@@ -290,9 +290,9 @@ namespace user
       DECLARE_MESSAGE_HANDLER(on_message_right_button_up);
       DECLARE_MESSAGE_HANDLER(on_message_mouse_move);
       DECLARE_MESSAGE_HANDLER(on_message_mouse_leave);
-      DECLARE_MESSAGE_HANDLER(_001OnKeyDown);
-      DECLARE_MESSAGE_HANDLER(_001OnKeyUp);
-      DECLARE_MESSAGE_HANDLER(_001OnChar);
+      DECLARE_MESSAGE_HANDLER(on_message_key_down);
+      DECLARE_MESSAGE_HANDLER(on_message_key_up);
+      DECLARE_MESSAGE_HANDLER(on_message_character);
       DECLARE_MESSAGE_HANDLER(_001OnUniChar);
 
       //DECLARE_MESSAGE_HANDLER(_001OnSetFocus);
@@ -305,10 +305,12 @@ namespace user
       DECLARE_MESSAGE_HANDLER(_001OnEditCopy);
       DECLARE_MESSAGE_HANDLER(_001OnUpdateEditPaste);
       DECLARE_MESSAGE_HANDLER(_001OnEditPaste);
-      DECLARE_MESSAGE_HANDLER(_001OnUpdateEditDelete);
-      DECLARE_MESSAGE_HANDLER(_001OnEditDelete);
+      //DECLARE_MESSAGE_HANDLER(_001OnUpdateEditDelete);
+      //DECLARE_MESSAGE_HANDLER(_001OnEditDelete);
 
       
+      ::e_status is_edit_delete_enabled() override;
+      ::e_status on_edit_delete(const ::action_context & actioncontext) override;
 
 
       virtual DECLARE_MESSAGE_HANDLER(_009OnChar);
@@ -438,13 +440,13 @@ namespace user
       bool CanRedo();
       ::count GetRedoBranchCount();
 
-      DECLARE_MESSAGE_HANDLER(_001OnDestroy);
+      DECLARE_MESSAGE_HANDLER(on_message_destroy);
       void VirtualOnSize(::draw2d::graphics_pointer & pgraphics);
       DECLARE_MESSAGE_HANDLER(_001OnPaint);
       DECLARE_MESSAGE_HANDLER(on_message_create);
       DECLARE_MESSAGE_HANDLER(_001OnContextMenu);
-      DECLARE_MESSAGE_HANDLER(_001OnSetCursor);
-      DECLARE_MESSAGE_HANDLER(_001OnSize);
+      DECLARE_MESSAGE_HANDLER(on_message_set_cursor);
+      DECLARE_MESSAGE_HANDLER(on_message_size);
       DECLARE_MESSAGE_HANDLER(_001OnVScroll);
       DECLARE_MESSAGE_HANDLER(_001OnHScroll);
 

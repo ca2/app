@@ -263,9 +263,9 @@ namespace user
 
       last_install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_destroy, pchannel, this, &interaction_child::_001OnDestroy);
+      MESSAGE_LINK(e_message_destroy, pchannel, this, &interaction_child::on_message_destroy);
 
-      MESSAGE_LINK(e_message_show_window, pchannel, this, &interaction_child::_001OnShowWindow);
+      MESSAGE_LINK(e_message_show_window, pchannel, this, &interaction_child::on_message_show_window);
 
       m_puserinteraction->install_message_routing(pchannel);
 
@@ -274,7 +274,7 @@ namespace user
    }
 
 
-   void interaction_child::_001OnShowWindow(::message::message * pmessage)
+   void interaction_child::on_message_show_window(::message::message * pmessage)
    {
 
       __pointer(::message::show_window) pshowwindow(pmessage);
@@ -575,7 +575,7 @@ namespace user
    }
 
 
-   void interaction_child::_001OnDestroy(::message::message * pmessage)
+   void interaction_child::on_message_destroy(::message::message * pmessage)
    {
 
       m_bCreate = false;

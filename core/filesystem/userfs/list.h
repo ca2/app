@@ -90,7 +90,7 @@ namespace userfs
       DECLARE_MESSAGE_HANDLER(_001OnVScroll);
       DECLARE_MESSAGE_HANDLER(_001OnFileRename);
       DECLARE_MESSAGE_HANDLER(_001OnUpdateFileRename);
-      DECLARE_MESSAGE_HANDLER(_001OnShowWindow);
+      DECLARE_MESSAGE_HANDLER(on_message_show_window);
       DECLARE_MESSAGE_HANDLER(on_message_create);
       DECLARE_MESSAGE_HANDLER(_001OnLButtonDblClk);
       DECLARE_MESSAGE_HANDLER(_001OnCancelMode);

@@ -24,8 +24,8 @@ namespace simple_ui
 
       ::user::plain_edit::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_key_down, pchannel, this, &edit_box::_001OnKeyDown);
-      MESSAGE_LINK(e_message_key_up, pchannel, this, &edit_box::_001OnKeyDown);
+      MESSAGE_LINK(e_message_key_down, pchannel, this, &edit_box::on_message_key_down);
+      MESSAGE_LINK(e_message_key_up, pchannel, this, &edit_box::on_message_key_down);
       MESSAGE_LINK(e_message_left_button_down, pchannel, this, &edit_box::on_message_left_button_down);
       MESSAGE_LINK(e_message_left_button_up, pchannel, this, &edit_box::on_message_left_button_up);
 
@@ -109,7 +109,7 @@ namespace simple_ui
    }
 
 
-   void edit_box::_001OnKeyDown(::message::message * pmessage)
+   void edit_box::on_message_key_down(::message::message * pmessage)
    {
       //pmessage->previous();
       //pmessage->m_bRet = true;

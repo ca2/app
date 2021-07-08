@@ -29,8 +29,8 @@ namespace user
 
       MESSAGE_LINK(e_message_create, pchannel, this, &split_view::on_message_create);
 
-      //MESSAGE_LINK(e_message_size, pchannel, this, &split_view::_001OnSize);
-      //MESSAGE_LINK(e_message_show_window, pchannel, this, &split_view::_001OnShowWindow);
+      //MESSAGE_LINK(e_message_size, pchannel, this, &split_view::on_message_size);
+      //MESSAGE_LINK(e_message_show_window, pchannel, this, &split_view::on_message_show_window);
 
    }
 
@@ -118,7 +118,7 @@ namespace user
    }
 
 
-   void split_view::_001OnSize(::message::message * pmessage)
+   void split_view::on_message_size(::message::message * pmessage)
    {
       __pointer(::message::size) psize(pmessage);
       psize->previous();
@@ -211,7 +211,7 @@ namespace user
    }
 
 
-   void split_view::_001OnShowWindow(::message::message * pmessage)
+   void split_view::on_message_show_window(::message::message * pmessage)
    {
       __pointer(::message::show_window) pshowwindow(pmessage);
       pshowwindow->previous();

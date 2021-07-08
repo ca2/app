@@ -99,9 +99,9 @@ namespace uwp
 
 
       //DECLARE_MESSAGE_HANDLER(_001OnEraseBkgnd);
-      DECLARE_MESSAGE_HANDLER(_001OnMove);
-      DECLARE_MESSAGE_HANDLER(_001OnSize);
-      // DECLARE_MESSAGE_HANDLER(_001OnShowWindow);
+      DECLARE_MESSAGE_HANDLER(on_message_move);
+      DECLARE_MESSAGE_HANDLER(on_message_size);
+      // DECLARE_MESSAGE_HANDLER(on_message_show_window);
       DECLARE_MESSAGE_HANDLER(_001OnProdevianSynch);
 
       DECLARE_MESSAGE_HANDLER(_001OnSetFocus);
@@ -454,7 +454,7 @@ namespace uwp
 
       HBRUSH OnCtlColor(::draw2d::graphics_pointer & pgraphics, ::user::interaction_impl * pWnd, ::u32 nCtlColor);
 
-      DECLARE_MESSAGE_HANDLER(_001OnDestroy);
+      DECLARE_MESSAGE_HANDLER(on_message_destroy);
       void OnEnable(bool bEnable);
       void OnEndSession(bool bEnding);
       void OnEnterIdle(::u32 nWhy, ::user::interaction_impl * pWho);
@@ -540,7 +540,7 @@ namespace uwp
       void OnRButtonDblClk(::u32 nFlags, const ::point_i32 & point);
       void OnRButtonDown(::u32 nFlags, const ::point_i32 & point);
       void OnRButtonUp(::u32 nFlags, const ::point_i32 & point);
-      DECLARE_MESSAGE_HANDLER(_001OnSetCursor);
+      DECLARE_MESSAGE_HANDLER(on_message_set_cursor);
       void OnTimer(uptr uEvent);
 
       // Initialization message handler member functions

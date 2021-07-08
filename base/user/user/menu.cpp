@@ -77,12 +77,12 @@ namespace user
       ::user::interaction::install_message_routing(pchannel);
 
       MESSAGE_LINK(e_message_create, pchannel, this, &menu::on_message_create);
-      MESSAGE_LINK(e_message_destroy, pchannel, this, &menu::_001OnDestroy);
+      MESSAGE_LINK(e_message_destroy, pchannel, this, &menu::on_message_destroy);
       MESSAGE_LINK(e_message_ncactivate, pchannel, this, &menu::_001OnNcActivate);
-      MESSAGE_LINK(e_message_nccalcsize, pchannel, this, &menu::_001OnNcCalcSize);
+      MESSAGE_LINK(e_message_nccalcsize, pchannel, this, &menu::on_message_non_client_calculate_size);
       MESSAGE_LINK(e_message_enable, pchannel, this, &menu::_001OnEnable);
-      MESSAGE_LINK(e_message_show_window, pchannel, this, &menu::_001OnShowWindow);
-      MESSAGE_LINK(e_message_close, pchannel, this, &menu::_001OnClose);
+      MESSAGE_LINK(e_message_show_window, pchannel, this, &menu::on_message_show_window);
+      MESSAGE_LINK(e_message_close, pchannel, this, &menu::on_message_close);
       MESSAGE_LINK(e_message_mouse_activate, pchannel, this, &menu::_001OnMouseActivate);
       MESSAGE_LINK(e_message_activate, pchannel, this, &menu::_001OnActivate);
       MESSAGE_LINK(e_message_nccreate, pchannel, this, &menu::_001OnNcCreate);
@@ -267,7 +267,7 @@ namespace user
    }
 
 
-   void menu::_001OnShowWindow(::message::message * pmessage)
+   void menu::on_message_show_window(::message::message * pmessage)
    {
 
       __pointer(::message::show_window) pshow(pmessage);
@@ -275,20 +275,20 @@ namespace user
       if (pshow->m_bShow)
       {
 
-         TRACE("menu::_001OnShowWindow bShow = %d", pshow->m_bShow);
+         TRACE("menu::on_message_show_window bShow = %d", pshow->m_bShow);
 
       }
       else
       {
 
-         TRACE("menu::_001OnShowWindow bShow = %d", pshow->m_bShow);
+         TRACE("menu::on_message_show_window bShow = %d", pshow->m_bShow);
 
       }
 
    }
 
 
-   void menu::_001OnDestroy(::message::message * pmessage)
+   void menu::on_message_destroy(::message::message * pmessage)
    {
 
       if (m_pmenuParent != nullptr)
@@ -1325,7 +1325,7 @@ namespace user
    }
 
 
-   void menu::_001OnNcCalcSize(::message::message * pmessage)
+   void menu::on_message_non_client_calculate_size(::message::message * pmessage)
    {
 
       ///__pointer(::user::message) pusermessage(pmessage);
@@ -1362,7 +1362,7 @@ namespace user
    }
 
 
-   void menu::_001OnClose(::message::message * pmessage)
+   void menu::on_message_close(::message::message * pmessage)
    {
 
       if (!m_bInline)

@@ -48,7 +48,7 @@
 //      //
 //      //#endif
 //      //
-//      MESSAGE_LINK(e_message_key_down, pchannel, this, &::user::interaction::_001OnKeyDown);
+//      MESSAGE_LINK(e_message_key_down, pchannel, this, &::user::interaction::on_message_key_down);
 //
 //      MESSAGE_LINK(e_message_enable, pchannel, this, &::user::interaction::_001OnEnable);
 //      MESSAGE_LINK(e_message_set_focus, pchannel, this, &::user::interaction::_001OnSetFocus);
@@ -955,7 +955,7 @@
 //   }
 //
 //
-//   void control::_001OnKeyDown(::message::message * pmessage)
+//   void control::on_message_key_down(::message::message * pmessage)
 //   {
 //
 //      UNREFERENCED_PARAMETER(pmessage);

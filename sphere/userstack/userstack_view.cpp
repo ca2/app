@@ -38,11 +38,11 @@ namespace userstack
 
       ::user::impact::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_destroy, pchannel, this, &view::_001OnDestroy);
+      MESSAGE_LINK(e_message_destroy, pchannel, this, &view::on_message_destroy);
       MESSAGE_LINK(e_message_paint, pchannel, this, &view::_001OnPaint);
       MESSAGE_LINK(e_message_create, pchannel, this, &view::on_message_create);
       MESSAGE_LINK(e_message_context_menu, pchannel, this, &view::_001OnContextMenu);
-      MESSAGE_LINK(e_message_set_cursor, pchannel, this, &view::_001OnSetCursor);
+      MESSAGE_LINK(e_message_set_cursor, pchannel, this, &view::on_message_set_cursor);
       MESSAGE_LINK(e_message_left_button_up, pchannel, this, &view::on_message_left_button_up);
 
 //
@@ -99,9 +99,9 @@ namespace userstack
    }
 
 
-   void view::_001OnDestroy(::message::message * pmessage)
+   void view::on_message_destroy(::message::message * pmessage)
    {
-      ::user::impact::_001OnDestroy(pmessage);
+      ::user::impact::on_message_destroy(pmessage);
 
    }
 
@@ -190,7 +190,7 @@ namespace userstack
       }
    }
 
-   void view::_001OnSetCursor(::message::message * pmessage)
+   void view::on_message_set_cursor(::message::message * pmessage)
    {
 
       __pointer(::message::mouse) pmouse(pmessage);

@@ -16,9 +16,9 @@ public:
    virtual void dump(dump_context & dumpcontext) const;
 
 
-   DECLARE_MESSAGE_HANDLER(_001OnSize);
+   DECLARE_MESSAGE_HANDLER(on_message_size);
    DECLARE_MESSAGE_HANDLER(on_message_create);
-   DECLARE_MESSAGE_HANDLER(_001OnDestroy);
+   DECLARE_MESSAGE_HANDLER(on_message_destroy);
 
    void on_layout(::draw2d::graphics_pointer & pgraphics);
 

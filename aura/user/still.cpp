@@ -31,7 +31,7 @@ namespace user
       ::user::interaction::install_message_routing(pchannel);
 
       MESSAGE_LINK(e_message_create, pchannel, this, &still::on_message_create);
-      MESSAGE_LINK(e_message_key_down, pchannel, this, &still::_001OnKeyDown);
+      MESSAGE_LINK(e_message_key_down, pchannel, this, &still::on_message_key_down);
 
    }
 
@@ -712,7 +712,7 @@ namespace user
    }
 
 
-   void still::_001OnKeyDown(::message::message * pmessage)
+   void still::on_message_key_down(::message::message * pmessage)
    {
 
       __pointer(::message::key) pkey(pmessage);

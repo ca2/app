@@ -52,12 +52,12 @@ namespace visual
 {
 
 
-   void image_color_with_shade_of_grey(byte & r, byte & g, byte & b, int i, int j, int w, int h)
+   void image_color_with_shade_of_grey(byte & r, byte & g, byte & b, double i, double j, double w, double h)
    {
 
       double dR, dG, dB;
 
-      double dH = (double)i / (double)w;
+      double dH = i / w;
 
       dH *= 6.0;
 
@@ -126,7 +126,7 @@ namespace visual
 
       double dL = 0.5;
 
-      double dS = 1.0 - ((double)(IMAGE_Y(j, h)) / (double) h);
+      double dS = 1.0 - IMAGE_Y(j, h) / h;
 //#if defined(APPLEOS)
 //      dS = 1.0 - dS;
 //#endif
@@ -156,7 +156,7 @@ namespace visual
    }
 
 
-   void color_with_shade_of_grey(::color::color & color, int i, int j, double dw, double dh)
+   void color_with_shade_of_grey(::color::color & color, double i, double j, double dw, double dh)
    {
 
       image_color_with_shade_of_grey(color.red, color.green, color.blue, i, j, dw, dh);
@@ -189,7 +189,7 @@ namespace visual
                pline[IMAGE_R_BYTE_INDEX],
                pline[IMAGE_G_BYTE_INDEX],
                pline[IMAGE_B_BYTE_INDEX],
-               (int) i, (int) j, w, h);
+               (double) i, (double) j, (double) w, (double) h);
 
             pline[IMAGE_A_BYTE_INDEX] = 255;
 
@@ -391,7 +391,7 @@ namespace userex
       MESSAGE_LINK(e_message_mouse_move, pchannel, this, &color_view::on_message_mouse_move);
       MESSAGE_LINK(e_message_left_button_down, pchannel, this, &color_view::on_message_left_button_down);
       MESSAGE_LINK(e_message_left_button_up, pchannel, this, &color_view::on_message_left_button_up);
-      MESSAGE_LINK(e_message_show_window, pchannel, this, &color_view::_001OnShowWindow);
+      MESSAGE_LINK(e_message_show_window, pchannel, this, &color_view::on_message_show_window);
 
       m_pimageTemplate = create_image({2048,  2048});
 
@@ -453,7 +453,7 @@ namespace userex
    }
 
 
-   void color_view::_001OnShowWindow(::message::message * pmessage)
+   void color_view::on_message_show_window(::message::message * pmessage)
    {
 
       UNREFERENCED_PARAMETER(pmessage);

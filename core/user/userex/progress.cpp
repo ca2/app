@@ -297,7 +297,7 @@ namespace userex
    }
 
 
-   void progress_view::_001OnDestroy(::message::message * pmessage)
+   void progress_view::on_message_destroy(::message::message * pmessage)
    {
 
       pmessage->previous();

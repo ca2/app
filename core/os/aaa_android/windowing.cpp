@@ -1279,10 +1279,10 @@ int translate_android_key_message(::message::key * pkey, int keyCode, int iUni)
       pkey->m_ekey = ::user::e_key_delete;
       break;
    case 59:
-      pkey->m_ekey = ::user::e_key_lshift;
+      pkey->m_ekey = ::user::e_key_left_shift;
       break;
    case 60:
-      pkey->m_ekey = ::user::e_key_rshift;
+      pkey->m_ekey = ::user::e_key_right_shift;
       break;
    case 66:
       pkey->m_ekey = ::user::e_key_return;

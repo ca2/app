@@ -89,13 +89,13 @@ namespace experience
                if (!m_bFullScreenOnMaximize)
                {
 
-                  if (pkey->m_ekey == ::user::e_key_alt || pkey->m_ekey == ::user::e_key_lalt || pkey->m_ekey == ::user::e_key_ralt)
+                  if (pkey->m_ekey == ::user::e_key_alt || pkey->m_ekey == ::user::e_key_left_alt || pkey->m_ekey == ::user::e_key_right_alt)
                   {
 
                      m_bFullScreenAlt = false;
 
                   }
-                  else if (pkey->m_ekey == ::user::e_key_control || pkey->m_ekey == ::user::e_key_lcontrol || pkey->m_ekey == ::user::e_key_rcontrol)
+                  else if (pkey->m_ekey == ::user::e_key_control || pkey->m_ekey == ::user::e_key_left_control || pkey->m_ekey == ::user::e_key_right_control)
                   {
 
                      m_bFullScreenCtrl = false;
@@ -142,7 +142,7 @@ namespace experience
                {
 
                }
-               else if (pkey->m_ekey == ::user::e_key_alt || pkey->m_ekey == ::user::e_key_lalt || pkey->m_ekey == ::user::e_key_ralt)
+               else if (pkey->m_ekey == ::user::e_key_alt || pkey->m_ekey == ::user::e_key_left_alt || pkey->m_ekey == ::user::e_key_right_alt)
                {
 
                   auto psession = get_session();
@@ -173,7 +173,7 @@ namespace experience
                   m_bFullScreenAlt = false;
 
                }
-               else if (pkey->m_ekey == ::user::e_key_control || pkey->m_ekey == ::user::e_key_lcontrol || pkey->m_ekey == ::user::e_key_rcontrol)
+               else if (pkey->m_ekey == ::user::e_key_control || pkey->m_ekey == ::user::e_key_left_control || pkey->m_ekey == ::user::e_key_right_control)
                {
 
                   if (layout().is_full_screen() && psession->is_key_pressed(::user::e_key_alt) && !m_bFullScreenAlt && !m_bFullScreenCtrl)
@@ -1216,12 +1216,12 @@ namespace experience
 
 //#endif
 
-      MESSAGE_LINK(e_message_size, pchannel, this, &frame_window::_001OnSize);
+      MESSAGE_LINK(e_message_size, pchannel, this, &frame_window::on_message_size);
 
    }
 
 
-   void frame_window::_001OnSize(::message::message* pmessage)
+   void frame_window::on_message_size(::message::message* pmessage)
    {
 
    }

@@ -41,7 +41,7 @@ void imm_client::install_message_routing(::channel * pchannel)
    MESSAGE_LINK(e_message_char, pchannel, this, &::imm_client::_011OnChar);
    MESSAGE_LINK(WM_IME_CHAR, pchannel, this, &::imm_client::_011OnChar);
 
-   MESSAGE_LINK(e_message_key_down, pchannel, this, &::imm_client::_001OnKeyDown);
+   MESSAGE_LINK(e_message_key_down, pchannel, this, &::imm_client::on_message_key_down);
 
 
 }
@@ -445,7 +445,7 @@ void imm_client::_001OnIme(::message::message * pmessage)
 }
 
 
-void imm_client::_001OnKeyDown(::message::message * pmessage)
+void imm_client::on_message_key_down(::message::message * pmessage)
 {
 
 #ifdef WINDOWS_DESKTOP

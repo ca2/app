@@ -42,6 +42,8 @@ namespace user
       m_iDisplayItemFocus = -1;
       m_iDisplayItemHover = -1;
       m_iSubItemHover = -2;
+      m_bEditDefaultHandling = true;
+      m_bKeyboardMultipleSelectionDefaultHandling = true;
       m_bSortEnable              = true;
       m_bFilter1                 = false;
       m_nColumnCount             = 1;
@@ -120,7 +122,7 @@ namespace user
 
       bool bList = dynamic_cast <list *> (this) != nullptr;
 
-      MESSAGE_LINK(e_message_size, pchannel, this,&mesh::_001OnSize);
+      MESSAGE_LINK(e_message_size, pchannel, this,&mesh::on_message_size);
       MESSAGE_LINK(e_message_vscroll, pchannel, this,&mesh::_001OnVScroll);
       MESSAGE_LINK(e_message_hscroll, pchannel, this,&mesh::_001OnHScroll);
       MESSAGE_LINK(e_message_mouse_leave, pchannel, this,&mesh::on_message_mouse_leave);
@@ -136,7 +138,7 @@ namespace user
 
       MESSAGE_LINK(e_message_mouse_move, pchannel, this,&mesh::on_message_mouse_move);
 
-      MESSAGE_LINK(e_message_key_down, pchannel, this,&mesh::_001OnKeyDown);
+      MESSAGE_LINK(e_message_key_down, pchannel, this,&mesh::on_message_key_down);
 
       MESSAGE_LINK(e_message_create, pchannel, this,&mesh::on_message_create);
 
@@ -802,7 +804,7 @@ namespace user
    set_need_layout();
    }*/
 
-   void mesh::_001OnSize(::message::message * pmessage)
+   void mesh::on_message_size(::message::message * pmessage)
    {
       UNREFERENCED_PARAMETER(pmessage);
       //__pointer(::message::size) psize(pmessage);
@@ -2410,7 +2412,7 @@ namespace user
 
 
 
-   void mesh::_001OnKeyDown(::message::message * pmessage)
+   void mesh::on_message_key_down(::message::message * pmessage)
    {
 
       __pointer(::message::key) pkey(pmessage);
@@ -3402,10 +3404,10 @@ namespace user
 
                m_iItemEnter = -1;
 
-               bool bLShiftKeyDown = psession->is_key_pressed(::user::e_key_lshift);
-               bool bRShiftKeyDown = psession->is_key_pressed(::user::e_key_rshift);
-               bool bLControlKeyDown = psession->is_key_pressed(::user::e_key_lcontrol);
-               bool bRControlKeyDown = psession->is_key_pressed(::user::e_key_rcontrol);
+               bool bLShiftKeyDown = psession->is_key_pressed(::user::e_key_left_shift);
+               bool bRShiftKeyDown = psession->is_key_pressed(::user::e_key_right_shift);
+               bool bLControlKeyDown = psession->is_key_pressed(::user::e_key_left_control);
+               bool bRControlKeyDown = psession->is_key_pressed(::user::e_key_right_control);
                bool bShiftKeyDown = bLShiftKeyDown || bRShiftKeyDown;
                bool bControlKeyDown = bLControlKeyDown || bRControlKeyDown;
 
@@ -3502,6 +3504,13 @@ namespace user
                   _001SetSelection(range);
 
                }
+
+            }
+
+            if (get_keyboard_focus() != this)
+            {
+
+               set_keyboard_focus();
 
             }
 

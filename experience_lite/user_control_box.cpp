@@ -64,7 +64,7 @@ void MetaControlBox::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 }
 
 
-void MetaControlBox::_001OnShowWindow(::message::message * pmessage)
+void MetaControlBox::on_message_show_window(::message::message * pmessage)
 {
 
    UNREFERENCED_PARAMETER(pmessage);
@@ -102,10 +102,10 @@ void MetaControlBox::install_message_routing(::channel * pchannel)
 
    ::experience::control_box::install_message_routing(pchannel);
 
-   MESSAGE_LINK(e_message_show_window, pchannel, this, &MetaControlBox::_001OnShowWindow);
+   MESSAGE_LINK(e_message_show_window, pchannel, this, &MetaControlBox::on_message_show_window);
    MESSAGE_LINK(e_message_left_button_down, pchannel, this, &MetaControlBox::on_message_left_button_down);
    MESSAGE_LINK(e_message_left_button_up, pchannel, this, &MetaControlBox::on_message_left_button_up);
-//   MESSAGE_LINK(e_message_size, pchannel, this, &MetaControlBox::_001OnSize);
+//   MESSAGE_LINK(e_message_size, pchannel, this, &MetaControlBox::on_message_size);
 //   //MESSAGE_LINK(e_message_timer, pchannel, this, &MetaControlBox::_001OnTimer);
 
 }

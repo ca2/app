@@ -76,7 +76,7 @@ namespace user
 
       //virtual void on_hit_test(::user::item & item) override;
 
-      DECLARE_MESSAGE_HANDLER(_001OnKeyDown);
+      DECLARE_MESSAGE_HANDLER(on_message_key_down);
       //DECLARE_MESSAGE_HANDLER(on_message_left_button_down);
       //DECLARE_MESSAGE_HANDLER(on_message_left_button_up);
       //DECLARE_MESSAGE_HANDLER(on_message_middle_button_down);

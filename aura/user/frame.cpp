@@ -34,7 +34,7 @@ namespace user
 
       connect_command("app_exit", &frame::_001OnAppExit);
 
-      //MESSAGE_LINK(e_message_set_cursor, pchannel, this, &window::_001OnSetCursor);
+      //MESSAGE_LINK(e_message_set_cursor, pchannel, this, &window::on_message_set_cursor);
       MESSAGE_LINK(WM_APPEXIT, pchannel, this, &frame::_001OnAppExit);
 
 //#ifdef WINDOWS_DESKTOP

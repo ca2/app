@@ -651,7 +651,7 @@ namespace user
 
          peventStartedUser = __new(manual_reset_event());
 
-         m_puserthread->m_pevStarted = peventStartedUser;
+         m_puserthread->m_peventStarted = peventStartedUser;
 
       }
 
@@ -674,7 +674,7 @@ namespace user
 
             peventStartedProdevian = __new(manual_reset_event());
 
-            m_pprodevian->m_pevStarted = peventStartedProdevian;
+            m_pprodevian->m_peventStarted = peventStartedProdevian;
 
             if (!m_pprodevian->branch())
             {

@@ -15,6 +15,13 @@
 
 #define new ACME_NEW
 
+
+multiple_lock::multiple_lock()
+{
+
+}
+
+
 multiple_lock::multiple_lock(const synchronization_array & synchronizationa,bool bInitialLock)
 {
 

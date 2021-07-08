@@ -1448,12 +1448,12 @@ namespace axis
       try
       {
 
-         if(::is_set(m_pappParent))
-         {
+         //if(::is_set(m_pappParent))
+         //{
 
-            m_pappParent->app_erase(this);
+         //   m_pappParent->app_erase(this);
 
-         }
+         //}
 
          if(::is_set(get_session()))
          {
@@ -1791,10 +1791,10 @@ namespace axis
 
          thread * pthread = this;
 
-         if (pthread != nullptr && pthread->m_pevReady != nullptr)
+         if (pthread != nullptr && pthread->m_peventReady != nullptr)
          {
 
-            pthread->m_pevReady->SetEvent();
+            pthread->m_peventReady->SetEvent();
 
          }
 

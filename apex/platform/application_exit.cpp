@@ -6,7 +6,7 @@
 application_exit::application_exit()
 {
 
-   m_bProcessingApplicationExitRequest = true;
+   m_bProcessingApplicationExitRequest = false;
 
 }
 

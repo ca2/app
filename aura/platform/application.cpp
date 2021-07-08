@@ -132,7 +132,7 @@ namespace aura
 
       //m_bAgreeExit = true;
       //m_bAgreeExitOk = true;
-      m_bFranceExit = true;
+      //m_bFranceExit = true;
 
       m_bLicense = false;
 
@@ -465,7 +465,7 @@ namespace aura
       else if (pcreate->m_ecommand == ::command_request_exit)
       {
 
-         request_exit();
+         request_exit_application();
 
          return;
 
@@ -2168,12 +2168,12 @@ retry_license:
       try
       {
 
-         if(::is_set(m_pappParent))
-         {
+         //if(::is_set(m_pappParent))
+         //{
 
-            m_pappParent->app_erase(this);
+         //   m_pappParent->app_erase(this);
 
-         }
+         //}
 
          if(::is_set(get_session()))
          {

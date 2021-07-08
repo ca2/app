@@ -52,6 +52,7 @@ namespace filemanager
       //connect_command("spafy2", &file_list::_001OnSpafy2);
       connect_command_probe("file_rename", &file_list::_001OnUpdateFileRename);
       connect_command("file_rename", &file_list::_001OnFileRename);
+      connect_command("file_open", &file_list::_001OnFileOpen);
 
    }
 
@@ -502,6 +503,16 @@ namespace filemanager
          _001PlaceControl(pinteraction, iEditItem);
 
       }
+
+   }
+
+
+   void file_list::_001OnFileOpen(::message::message* pmessage)
+   {
+
+      UNREFERENCED_PARAMETER(pmessage);
+
+      _017OpenSelected(true, ::e_source_user);
 
    }
 

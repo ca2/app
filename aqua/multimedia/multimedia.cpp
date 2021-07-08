@@ -84,10 +84,10 @@ namespace aqua
    }
 
 
-
-   void multimedia::_001OnFranceExit()
+   ::e_status multimedia::exit_application()
    {
 
+      return ::success;
 
    }
 

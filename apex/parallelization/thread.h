@@ -53,10 +53,11 @@ public:
    static bool                                        s_bAllocReady;
 
 
-   __pointer(manual_reset_event)                      m_pevent;
-   __pointer(manual_reset_event)                      m_pevStarted;
-   __pointer(manual_reset_event)                      m_pevSync;
-   __pointer(manual_reset_event)                      m_pevReady;
+   __pointer(manual_reset_event)                      m_peventInitialization;
+   __pointer(manual_reset_event)                      m_peventStarted;
+   __pointer(manual_reset_event)                      m_peventSync;
+   __pointer(manual_reset_event)                      m_peventReady;
+   __pointer(manual_reset_event)                      m_peventFinished;
 
    e_id                                               m_idContextReference;
 

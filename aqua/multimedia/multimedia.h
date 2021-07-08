@@ -34,7 +34,7 @@ namespace aqua
 
       virtual __pointer(::user::controller) defer_create_view(::object* pobject, const string & strView, ::user::interaction* puiParent, ewindowflag ewindowflag = e_window_flag_none, const ::id& id = nullptr);
 
-      virtual void _001OnFranceExit();
+      virtual ::e_status exit_application();
 
       virtual void on_command(::message::command* pcommand);
 

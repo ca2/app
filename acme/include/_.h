@@ -1632,9 +1632,10 @@ enum enum_command
 
    command_none,
    command_default,
-   command_on_agree_exit,
-   command_france_exit,
-   command_check_exit,
+   command_request_exit,
+   //command_on_agree_exit,
+   //command_france_exit,
+   //command_check_exit,
    command_protocol
 
 };

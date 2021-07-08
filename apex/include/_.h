@@ -1030,6 +1030,7 @@ namespace zip
 
 #include "apex/platform/application_menu.h"
 #include "apex/platform/application_array.h"
+#include "apex/platform/application_exit.h"
 #include "apex/platform/application_container.h"
 
 

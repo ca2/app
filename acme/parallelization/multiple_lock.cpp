@@ -15,7 +15,7 @@
 
 #define new ACME_NEW
 
-multi_lock::multi_lock(const synchronization_array & synchronizationa,bool bInitialLock)
+multiple_lock::multiple_lock(const synchronization_array & synchronizationa,bool bInitialLock)
 {
 
    ASSERT(synchronizationa.synchronization_object_count() > 0 && synchronizationa.synchronization_object_count() <= MAXIMUM_WAIT_OBJECTS);
@@ -46,7 +46,7 @@ multi_lock::multi_lock(const synchronization_array & synchronizationa,bool bInit
 }
 
 
-multi_lock::multi_lock(::count c, const synchronization_array & synchronizationa, bool bInitialLock)
+multiple_lock::multiple_lock(::count c, const synchronization_array & synchronizationa, bool bInitialLock)
 {
 
    ASSERT(synchronizationa.has_synchronization_object() && c > 0 && c <= synchronizationa.synchronization_object_count() && c <= MAXIMUM_WAIT_OBJECTS);
@@ -72,7 +72,7 @@ multi_lock::multi_lock(::count c, const synchronization_array & synchronizationa
 }
 
 
-multi_lock::~multi_lock()
+multiple_lock::~multiple_lock()
 {
 
    unlock();
@@ -80,7 +80,7 @@ multi_lock::~multi_lock()
 }
 
 
-synchronization_result multi_lock::lock(const duration & duration, bool bWaitForAll, u32 dwWakeMask)
+synchronization_result multiple_lock::lock(const duration & duration, bool bWaitForAll, u32 dwWakeMask)
 {
 
    if (m_synchronizationa.has_no_synchronization_object())
@@ -147,7 +147,7 @@ synchronization_result multi_lock::lock(const duration & duration, bool bWaitFor
 }
 
 
-bool multi_lock::unlock()
+bool multiple_lock::unlock()
 {
 
    for (index i=0; i < m_synchronizationa.synchronization_object_count(); i++)
@@ -167,7 +167,7 @@ bool multi_lock::unlock()
 }
 
 
-bool multi_lock::unlock(::i32 lCount, ::i32 * pPrevCount /* =nullptr */)
+bool multiple_lock::unlock(::i32 lCount, ::i32 * pPrevCount /* =nullptr */)
 {
 
    bool bGotOne = false;
@@ -203,7 +203,7 @@ bool multi_lock::unlock(::i32 lCount, ::i32 * pPrevCount /* =nullptr */)
 }
 
 
-bool multi_lock::IsLocked(index dwObject)
+bool multiple_lock::IsLocked(index dwObject)
 {
 
    ASSERT(dwObject < m_synchronizationa.size());

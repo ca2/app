@@ -71,15 +71,12 @@ namespace user
 
       papplication->_001TryCloseApplication();
 
-//      DestroyWindow();
-
       if (pmessage != nullptr)
       {
 
          pmessage->m_bRet = true;
 
       }
-
 
    }
 

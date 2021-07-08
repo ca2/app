@@ -130,8 +130,8 @@ namespace aura
       //m_pevAppBeg = nullptr;
       //m_pevAppEnd = nullptr;
 
-      m_bAgreeExit = true;
-      m_bAgreeExitOk = true;
+      //m_bAgreeExit = true;
+      //m_bAgreeExitOk = true;
       m_bFranceExit = true;
 
       m_bLicense = false;
@@ -452,20 +452,20 @@ namespace aura
 
 
       }
-      else if (pcreate->m_ecommand == ::command_on_agree_exit)
+      //else if (pcreate->m_ecommand == ::command_on_agree_exit)
+      //{
+
+      //   m_bAgreeExit = _001OnAgreeExit();
+
+      //   m_bAgreeExitOk = true;
+
+      //   return;
+
+      //}
+      else if (pcreate->m_ecommand == ::command_request_exit)
       {
 
-         m_bAgreeExit = _001OnAgreeExit();
-
-         m_bAgreeExitOk = true;
-
-         return;
-
-      }
-      else if (pcreate->m_ecommand == ::command_france_exit)
-      {
-
-         _001FranceExit();
+         request_exit();
 
          return;
 
@@ -3188,13 +3188,13 @@ retry_license:
    //}
 
 
-   //void application::_001OnFranceExit()
+   //void application::france_exit()
    //{
 
    //   //if (psystem->m_pmultimedia)
    //   //{
 
-   //   //   psystem->m_pmultimedia->_001OnFranceExit();
+   //   //   psystem->m_pmultimedia->france_exit();
 
    //   //}
 
@@ -3209,7 +3209,7 @@ retry_license:
    //void application::_001FranceExit()
    //{
 
-   //   _001OnFranceExit();
+   //   france_exit();
 
    //   m_bFranceExit = true;
 
@@ -8353,10 +8353,10 @@ namespace aura
    //}
 
 
-   //void application::_001OnFranceExit()
+   //void application::france_exit()
    //{
 
-   //   ::aura::application::_001OnFranceExit();
+   //   ::aura::application::france_exit();
 
    //}
 

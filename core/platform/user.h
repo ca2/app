@@ -730,7 +730,7 @@
 //
 //      DECLARE_MESSAGE_HANDLER(_001OnAppExit);
 //      virtual bool _001OnAgreeExit();
-//      virtual void _001OnFranceExit();
+//      virtual void france_exit();
 //      virtual void _001FranceExit();
 //
 //
@@ -1329,7 +1329,7 @@
 //      virtual void erase_document_template(::user::impact_system* pimpactsystem);
 //
 //      //virtual bool _001OnAgreeExit() override;
-//      //virtual void _001OnFranceExit() override;
+//      //virtual void france_exit() override;
 //
 //      virtual void prepare_form(id id, ::form_document* pdocument);
 //

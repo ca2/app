@@ -25,7 +25,7 @@ namespace aqua
       virtual ::e_status initialize(::object * pobject) override;
       //virtual __pointer(progress_control) show_progress(::user::interaction* puiParent, const char* pszTitle, ::count iProgressCount);
 
-      virtual void _001OnFranceExit() override;
+      ::e_status exit_application() override;
 
       virtual void game_on_create(::aqua::game * pgame);
 

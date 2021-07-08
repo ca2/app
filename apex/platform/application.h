@@ -11,9 +11,9 @@
       // apex commented
       //virtual public ::user::callback,
       virtual public int_scalar_source,
-      //virtual public ::account::interactive,
-      virtual public ::application_container,
-      virtual public ::database::client
+      //virtual public ::account::interactive
+      virtual public ::database::client,
+      virtual public ::application_exit
       //,
       //virtual public ::user::form_callback,
 //      virtual public ::user::impact_creator,
@@ -21,6 +21,7 @@
       //, virtual public ::user::document_manager_container
    {
    public:
+
 
       //::aqua::application* m_paquaapplication;
       //::aura::application* m_pauraapplication;
@@ -39,7 +40,7 @@
       // 2020-07-23: now at ::application
       __composite(::user::language_map)               m_puserlanguagemap;
 
-      __reference(::application)                m_pappParent;
+      //__reference(::application)                m_pappParent;
       string                                          m_strAppName;
       ::text::text                                    m_textAppTitle;
       string                                          m_strAppId;
@@ -82,9 +83,10 @@
 
       reference_addressa                              m_objectptraEventHook;
 
-      bool                                            m_bAgreeExit;
-      bool                                            m_bAgreeExitOk;
-      bool                                            m_bFranceExit;
+      //bool                                            m_bAgreeExit;
+      //bool                                            m_bAgreeExitOk;
+      //bool                                            m_bFranceExit;
+      
 
       bool                                            m_bInterprocessIntercommunication;
       __composite(interprocess_intercommunication)    m_pinterprocessintercommunication;
@@ -284,7 +286,7 @@
 
       //virtual void SetCurrentHandles() override;
 
-      virtual ::e_status france_exit();
+      //virtual ::e_status france_exit();
 
 
       virtual ::e_status process_exception(const ::exception::exception & e) override;
@@ -748,9 +750,15 @@
 
 
       DECLARE_MESSAGE_HANDLER(_001OnAppExit);
-      virtual bool _001OnAgreeExit();
-      virtual void _001OnFranceExit();
-      virtual void _001FranceExit();
+      //virtual bool _001OnAgreeExit();
+
+
+      //virtual ::e_status request_exit_application();
+      //virtual ::e_status can_exit_application();
+      virtual ::e_status exit_application();
+
+
+      //virtual void _001FranceExit();
 
 
       //virtual string lstr(const ::id & id, string strDefault = "") override;
@@ -1236,7 +1244,7 @@
 
 
 
-      virtual __pointer(::application) create_platform(::apex::session* psession) override;
+      virtual __pointer(::application) create_platform(::apex::session* psession);
 
 
 
@@ -1351,7 +1359,7 @@
       //user virtual void erase_document_template(::user::impact_system* pimpactsystem);
 
       //virtual bool _001OnAgreeExit() override;
-      //virtual void _001OnFranceExit() override;
+      //virtual void france_exit() override;
 
       // apex commented
       //virtual void prepare_form(id id, ::form_document* pdocument);

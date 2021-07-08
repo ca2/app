@@ -44,17 +44,33 @@ namespace aqua
    }
 
 
-   void application::_001OnFranceExit()
+   ::e_status application::exit_application()
    {
 
       if (get_system()->m_pmultimedia)
       {
 
-         get_system()->m_pmultimedia->_001OnFranceExit();
+         auto estatus = get_system()->m_pmultimedia->exit_application();
+
+         if (!estatus)
+         {
+
+            return estatus;
+
+         }
 
       }
 
-      ::application::_001OnFranceExit();
+      auto estatus = ::application::exit_application();
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return estatus;
 
    }
 

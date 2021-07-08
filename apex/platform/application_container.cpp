@@ -61,26 +61,92 @@ void application_container::app_erase(::application * papp)
 }
 
 
-void application_container::request_exit()
+//::e_status application_container::request_exit_application()
+//{
+//
+//   if (m_bProcessingApplicationExitRequest)
+//   {
+//
+//      return ::success_scheduled;
+//
+//   }
+//
+//   m_bProcessingApplicationExitRequest = true;
+//
+//   fork([this]()
+//      {
+//
+//         try
+//         {
+//
+//            exit_application();
+//
+//         }
+//         catch (...)
+//         {
+//
+//         }
+//
+//         m_bProcessingApplicationExitRequest = false;
+//
+//      });
+//
+//   return ::success;
+//
+//}
+
+
+::e_status application_container::exit_application()
 {
 
-   fork([this]()
+   auto applicationa = m_applicationa;
+
+   for (auto & papp : applicationa)
+   {
+
+      try
       {
 
-         auto applicationa = m_applicationa;
+         auto estatus = papp->can_exit_application();
 
-         for (auto & papp : applicationa)
+         if(!estatus)
          {
+
+            return estatus;
+
+         }
+
+      }
+      catch (...)
+      {
+
+      }
+
+   }
+
+   multiple_lock multiplelock;
+
+   for (auto & papp : applicationa)
+   {
+
+      __construct_new(papp->m_peventFinished);
+
+      multiplelock.m_synchronizationa.add(papp->m_peventFinished);
+
+   }
+
+   for (auto & papp : applicationa)
+   {
+
+      fork([papp]()
+         {
+
+            papp->m_bProcessingApplicationExitRequest = true;
 
             try
             {
 
-               if (!papp->_001OnAgreeExit())
-               {
-
-                  return;
-
-               }
+               papp->exit_application();
 
             }
             catch (...)
@@ -88,65 +154,56 @@ void application_container::request_exit()
 
             }
 
-         }
+            papp->m_bProcessingApplicationExitRequest = false;
 
-         for (auto & papp : applicationa)
-         {
 
-            papp->m_bFranceExit = false;
+         });
 
-         }
+   }
 
-         for (auto & papp : applicationa)
-         {
+   multiplelock.lock();
 
-            fork([papp]()
-               {
+   //int i = 50;
 
-                  papp->_001FranceExit();
+   //while (i > 0 && applicationa.get_size() > 0)
+   //{
 
-               });
+   //   for (index j = 0; j < applicationa.get_size(); )
+   //   {
 
-         }
+   //      auto pappItem = applicationa[j];
 
-         int i = 50;
+   //      if (!pappItem || pappItem->m_bFranceExit)
+   //      {
 
-         while (i > 0 && applicationa.get_size() > 0)
-         {
+   //         applicationa.erase_at(j);
 
-            for (index j = 0; j < applicationa.get_size(); )
-            {
+   //      }
+   //      else
+   //      {
 
-               auto pappItem = applicationa[j];
+   //         TRACE("Waiting France Exit of %s", typeid(pappItem.m_p).name());
 
-               if (!pappItem || pappItem->m_bFranceExit)
-               {
+   //         j++;
 
-                  applicationa.erase_at(j);
+   //      }
 
-               }
-               else
-               {
+   //   }
 
-                  TRACE("Waiting France Exit of %s", typeid(pappItem.m_p).name());
+   //   task_sleep(500_ms);
 
-                  j++;
+   //   i--;
 
-               }
+   //}
 
-            }
 
-            task_sleep(500_ms);
 
-            i--;
+   finalize();
 
-         }
-
-         finalize();
-
-      });
+   return ::success;
 
 }
+
 
 application_array & application_container::applicationa()
 {

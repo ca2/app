@@ -1331,6 +1331,9 @@
     <ClInclude Include="crypto\crypto_initializer.h">
       <Filter>Header Files\crypto</Filter>
     </ClInclude>
+    <ClInclude Include="platform\application_exit.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="filesystem\file\set.cpp">
@@ -1926,6 +1929,9 @@
     </ClCompile>
     <ClCompile Include="crypto\crypto_initializer.cpp">
       <Filter>Source Files\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\application_exit.cpp">
+      <Filter>Source Files\platform</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

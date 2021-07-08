@@ -122,6 +122,7 @@ application::application(const char * pszAppId) :
 m_strAppId(::is_set(pszAppId) ? pszAppId : "")
 {
 
+   //m_bProcessingApplicationExitRequest = false;
    m_papexapplication = this;
    ::object::m_pcontext = this;
    m_pcontext = this;
@@ -172,9 +173,9 @@ m_eexclusiveinstance = ExclusiveInstanceNone;
 //m_pevAppBeg = nullptr;
 //m_pevAppEnd = nullptr;
 
-m_bAgreeExit = true;
-m_bAgreeExitOk = true;
-m_bFranceExit = true;
+//m_bAgreeExit = true;
+//m_bAgreeExitOk = true;
+//m_bFranceExit = true;
 
 m_bLicense = false;
 
@@ -344,13 +345,11 @@ pnode->set_application_menu(m_papplicationmenu, this);
 ::e_status application::finalize()
 {
 
-::application_container::m_applicationa.erase_all();
+   __unbind(this, m_puserlanguagemap OBJ_REF_DBG_COMMA_THIS);
 
-__unbind(this, m_puserlanguagemap OBJ_REF_DBG_COMMA_THIS);
+   auto estatus = ::apex::context::finalize();
 
-auto estatus = ::apex::context::finalize();
-
-return estatus;
+   return estatus;
 
 }
 
@@ -358,7 +357,7 @@ return estatus;
 ::object * application::parent_property_set_holder() const
 {
 
-return nullptr;
+   return nullptr;
 
 }
 
@@ -1531,14 +1530,12 @@ return get_temp_file_name_template(strRet, lpszName, pszExtension, nullptr);
 }
 
 
-::e_status application::france_exit()
+::e_status application::exit_application()
 {
 
-_001TryCloseApplication();
+   _001TryCloseApplication();
 
-//return finish();
-
-return ::success;
+   return ::success;
 
 }
 
@@ -1546,7 +1543,7 @@ return ::success;
 ::e_status application::process_exception(const ::exception::exception & e)
 {
 
-return ::thread::process_exception(e);
+   return ::thread::process_exception(e);
 
 }
 
@@ -3867,12 +3864,12 @@ release_exclusive();
 try
 {
 
-if(::is_set(m_pappParent))
-{
-
-m_pappParent->app_erase(this);
-
-}
+//if(::is_set(m_pappParent))
+//{
+//
+//m_pappParent->app_erase(this);
+//
+//}
 
 if(::is_set(get_session()))
 {
@@ -4968,24 +4965,26 @@ return !is_session() && !is_system();
 //}
 
 
-void application::_001OnFranceExit()
-{
+//::e_status application::france_exit()
+//{
+//
+//   HideApplication();
+//
+//   finish();
+//
+//   return ::success;
+//
+//}
 
-HideApplication();
 
-finish();
-
-}
-
-
-void application::_001FranceExit()
-{
-
-_001OnFranceExit();
-
-m_bFranceExit = true;
-
-}
+//void application::_001FranceExit()
+//{
+//
+//france_exit();
+//
+//m_bFranceExit = true;
+//
+//}
 
 
 //void application::dispatch_user_message(::user::message * pusermessage)
@@ -5687,9 +5686,9 @@ return ::thread::post_message(id, wparam, lparam);
 void application::_001OnAppExit(::message::message * pmessage)
 {
 
-pmessage->m_bRet = true;
+   pmessage->m_bRet = true;      
 
-_001TryCloseApplication();
+   _001TryCloseApplication();
 
 }
 
@@ -6347,62 +6346,62 @@ string strType = type_name();
 
 //}
 
-if (::is_set(m_pappParent))
-{
+//if (::is_set(m_pappParent))
+//{
+//
+//m_pappParent->add_reference(this);
+//
+//}
 
-m_pappParent->add_reference(this);
+   resume_on_exception:
 
-}
+   try
+   {
 
-resume_on_exception:
+      m_estatus = run();
 
-try
-{
+   }
+   catch (const ::exception::exception & e)
+   {
 
-m_estatus = run();
+      if (handle_exception(e))
+      {
 
-}
-catch (const ::exception::exception & e)
-{
+         goto resume_on_exception;
 
-if (handle_exception(e))
-{
+      }
 
-   goto resume_on_exception;
+      m_estatus = e.m_estatus;
 
-}
+      }
 
-m_estatus = e.m_estatus;
+   }
+   catch (const ::exception::exception &)
+   {
 
-}
+   }
 
-}
-catch (const ::exception::exception &)
-{
+   try
+   {
 
-}
+      thread * pthread = this;
 
-try
-{
+      if (pthread != nullptr && pthread->m_peventReady != nullptr)
+      {
 
-thread * pthread = this;
+         pthread->m_peventReady->SetEvent();
 
-if (pthread != nullptr && pthread->m_pevReady != nullptr)
-{
+      }
 
-pthread->m_pevReady->SetEvent();
+   }
+   catch (...)
+   {
 
-}
+      m_result.add(error_failed);
+   
+   }
 
-}
-catch (...)
-{
-
-m_result.add(error_failed);
-
-}
-
-return m_estatus;
+   return m_estatus;
 
 }
 
@@ -10186,25 +10185,25 @@ return __new(::apex::session);
 //}
 
 
-bool application::_001OnAgreeExit()
-{
+//bool application::_001OnAgreeExit()
+//{
+//
+//if (!save_all_modified())
+//{
+//
+//return false;
+//
+//}
+//
+//return true;
+//
+//}
+//
 
-if (!save_all_modified())
-{
-
-return false;
-
-}
-
-return true;
-
-}
-
-
-//void application::_001OnFranceExit()
+//void application::france_exit()
 //{
 
-//   ::application::_001OnFranceExit();
+//   ::application::france_exit();
 
 //}
 

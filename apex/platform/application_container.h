@@ -1,11 +1,11 @@
 #pragma once
 
 
-
 class CLASS_DECL_APEX application_container :
-   virtual public ::object
+   virtual public ::application_exit
 {
 public:
+
 
 
    application_array                m_applicationa;
@@ -30,7 +30,9 @@ public:
    virtual __pointer(::application) create_platform(::apex::session * psession);
    virtual __pointer(::application) start_application(const char * pszAppId, ::create * pcreate, const string & strLocale, const string & strSchema);
 
-   virtual void request_exit();
+
+   virtual ::e_status exit_application();
+
 
    application_array & applicationa();
 

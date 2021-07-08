@@ -148,8 +148,6 @@ thread::thread()
 
    m_bReady = false;
 
-   m_pevReady = nullptr;
-
    m_bZipIsDir2 = true;
 
    m_pslUser = nullptr;
@@ -1872,12 +1870,12 @@ u32 __thread_entry(void * p);
    if (::succeeded(estatusStart))
    {
 
-      if (m_pevStarted.is_set())
+      if (m_peventStarted.is_set())
       {
 
-         m_pevStarted->set_event();
+         m_peventStarted->set_event();
 
-         m_pevStarted.release();
+         m_peventStarted.release();
 
       }
 
@@ -1888,10 +1886,10 @@ u32 __thread_entry(void * p);
       try
       {
 
-         if (m_pevReady)
+         if (m_peventReady)
          {
 
-            m_pevReady->SetEvent();
+            m_peventReady->SetEvent();
 
          }
 
@@ -2391,7 +2389,7 @@ e_status thread::begin_thread(bool bSynchInitialization, ::e_priority epriority,
    if (bSynchInitialization)
    {
 
-      m_pevent = __new(manual_reset_event());
+      m_peventInitialization = __new(manual_reset_event());
 
    }
 
@@ -2424,10 +2422,10 @@ e_status thread::begin_thread(bool bSynchInitialization, ::e_priority epriority,
 
 #endif
 
-   if (m_pevent)
+   if (m_peventInitialization)
    {
 
-      m_pevent->wait();
+      m_peventInitialization->wait();
 
       ::e_status estatus = get_result_status();
 
@@ -3205,10 +3203,10 @@ bool thread::send_message(const ::id & id, wparam wparam, lparam lparam, ::durat
 
    m_estatus = on_thread_init();
 
-   if (m_pevent)
+   if (m_peventInitialization)
    {
 
-      m_pevent->set_event();
+      m_peventInitialization->set_event();
 
    }
    
@@ -3236,10 +3234,10 @@ bool thread::send_message(const ::id & id, wparam wparam, lparam lparam, ::durat
       if(!estatus)
       {
 
-         if (m_pevStarted)
+         if (m_peventStarted)
          {
 
-            m_pevStarted.release();
+            m_peventStarted.release();
 
          }
 

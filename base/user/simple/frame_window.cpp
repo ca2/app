@@ -1585,7 +1585,7 @@ void simple_frame_window::_001OnAppExit(::message::message * pmessage)
 
    auto papplication = get_application();
 
-   papplication->france_exit();
+   papplication->request_exit();
 
    if (pmessage != nullptr)
    {

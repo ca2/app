@@ -62,6 +62,7 @@ namespace filemanager
 
       DECLARE_MESSAGE_HANDLER(_001OnSetFocus);
       DECLARE_MESSAGE_HANDLER(_001OnKillFocus);
+      DECLARE_MESSAGE_HANDLER(_001OnFileOpen);
 
 
 

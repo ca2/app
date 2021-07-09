@@ -53,7 +53,7 @@ inline ansichar ansi_tolower(ansichar ch) { return tolower(ch); }
 
 inline ansichar ansi_toupper(ansichar ch) { return toupper(ch); }
 
-#ifdef WINDOWS
+#ifdef WINDOWSw
 
 inline ansichar * ansi_lwr(ansichar * psz) { return _strlwr(psz); }
 

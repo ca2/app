@@ -49,9 +49,9 @@ namespace gpu
 
       //virtual shader * create_shader(const char* pszVertex, enum_shader eshader);
 
-      //static ::e_status shader_compile_errors(GL::u32 shader, enum_shader eshader, string & strSummary);
+      //static ::e_status shader_compile_errors(GLuint shader, enum_shader eshader, string & strSummary);
 
-      //static ::e_status program_compile_errors(GL::u32 program, string & strSummary);
+      //static ::e_status program_compile_errors(GLuint program, string & strSummary);
 
 
    };

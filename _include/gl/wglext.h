@@ -570,12 +570,12 @@ typedef HGLRC (WINAPI * PFNWGLCREATECONTEXTATTRIBSARBPROC) (HDC hDC, HGLRC hShar
 #define WGL_EXT_display_color_table 1
 #ifdef WGL_WGLEXT_PROTOTYPES
 extern GLboolean WINAPI wglCreateDisplayColorTableEXT (GLushort id);
-extern GLboolean WINAPI wglLoadDisplayColorTableEXT (const GLushort *table, GL::u32 length);
+extern GLboolean WINAPI wglLoadDisplayColorTableEXT (const GLushort *table, GLuint length);
 extern GLboolean WINAPI wglBindDisplayColorTableEXT (GLushort id);
 extern VOID WINAPI wglDestroyDisplayColorTableEXT (GLushort id);
 #endif /* WGL_WGLEXT_PROTOTYPES */
 typedef GLboolean (WINAPI * PFNWGLCREATEDISPLAYCOLORTABLEEXTPROC) (GLushort id);
-typedef GLboolean (WINAPI * PFNWGLLOADDISPLAYCOLORTABLEEXTPROC) (const GLushort *table, GL::u32 length);
+typedef GLboolean (WINAPI * PFNWGLLOADDISPLAYCOLORTABLEEXTPROC) (const GLushort *table, GLuint length);
 typedef GLboolean (WINAPI * PFNWGLBINDDISPLAYCOLORTABLEEXTPROC) (GLushort id);
 typedef VOID (WINAPI * PFNWGLDESTROYDISPLAYCOLORTABLEEXTPROC) (GLushort id);
 #endif
@@ -829,18 +829,18 @@ typedef BOOL (WINAPI * PFNWGLGETVIDEOINFONVPROC) (HPVIDEODEV hpVideoDevice, unsi
 #ifndef WGL_NV_swap_group
 #define WGL_NV_swap_group 1
 #ifdef WGL_WGLEXT_PROTOTYPES
-extern BOOL WINAPI wglJoinSwapGroupNV (HDC hDC, GL::u32 group);
-extern BOOL WINAPI wglBindSwapBarrierNV (GL::u32 group, GL::u32 barrier);
-extern BOOL WINAPI wglQuerySwapGroupNV (HDC hDC, GL::u32 *group, GL::u32 *barrier);
-extern BOOL WINAPI wglQueryMaxSwapGroupsNV (HDC hDC, GL::u32 *maxGroups, GL::u32 *maxBarriers);
-extern BOOL WINAPI wglQueryFrameCountNV (HDC hDC, GL::u32 *count);
+extern BOOL WINAPI wglJoinSwapGroupNV (HDC hDC, GLuint group);
+extern BOOL WINAPI wglBindSwapBarrierNV (GLuint group, GLuint barrier);
+extern BOOL WINAPI wglQuerySwapGroupNV (HDC hDC, GLuint *group, GLuint *barrier);
+extern BOOL WINAPI wglQueryMaxSwapGroupsNV (HDC hDC, GLuint *maxGroups, GLuint *maxBarriers);
+extern BOOL WINAPI wglQueryFrameCountNV (HDC hDC, GLuint *count);
 extern BOOL WINAPI wglResetFrameCountNV (HDC hDC);
 #endif /* WGL_WGLEXT_PROTOTYPES */
-typedef BOOL (WINAPI * PFNWGLJOINSWAPGROUPNVPROC) (HDC hDC, GL::u32 group);
-typedef BOOL (WINAPI * PFNWGLBINDSWAPBARRIERNVPROC) (GL::u32 group, GL::u32 barrier);
-typedef BOOL (WINAPI * PFNWGLQUERYSWAPGROUPNVPROC) (HDC hDC, GL::u32 *group, GL::u32 *barrier);
-typedef BOOL (WINAPI * PFNWGLQUERYMAXSWAPGROUPSNVPROC) (HDC hDC, GL::u32 *maxGroups, GL::u32 *maxBarriers);
-typedef BOOL (WINAPI * PFNWGLQUERYFRAMECOUNTNVPROC) (HDC hDC, GL::u32 *count);
+typedef BOOL (WINAPI * PFNWGLJOINSWAPGROUPNVPROC) (HDC hDC, GLuint group);
+typedef BOOL (WINAPI * PFNWGLBINDSWAPBARRIERNVPROC) (GLuint group, GLuint barrier);
+typedef BOOL (WINAPI * PFNWGLQUERYSWAPGROUPNVPROC) (HDC hDC, GLuint *group, GLuint *barrier);
+typedef BOOL (WINAPI * PFNWGLQUERYMAXSWAPGROUPSNVPROC) (HDC hDC, GLuint *maxGroups, GLuint *maxBarriers);
+typedef BOOL (WINAPI * PFNWGLQUERYFRAMECOUNTNVPROC) (HDC hDC, GLuint *count);
 typedef BOOL (WINAPI * PFNWGLRESETFRAMECOUNTNVPROC) (HDC hDC);
 #endif
 
@@ -903,9 +903,9 @@ typedef BOOL (WINAPI * PFNWGLRELEASEVIDEOCAPTUREDEVICENVPROC) (HDC hDc, HVIDEOIN
 /*#ifndef WGL_NV_copy_image
 /*#define WGL_NV_copy_image 1
 #ifdef WGL_WGLEXT_PROTOTYPES
-extern BOOL WINAPI wglCopyImageSubDataNV (HGLRC hSrcRC, GL::u32 srcName, GLenum srcTarget, GLint srcLevel, GLint srcX, GLint srcY, GLint srcZ, HGLRC hDstRC, GL::u32 dstName, GLenum dstTarget, GLint dstLevel, GLint dstX, GLint dstY, GLint dstZ, GLsizei width, GLsizei height, GLsizei depth);
+extern BOOL WINAPI wglCopyImageSubDataNV (HGLRC hSrcRC, GLuint srcName, GLenum srcTarget, GLint srcLevel, GLint srcX, GLint srcY, GLint srcZ, HGLRC hDstRC, GLuint dstName, GLenum dstTarget, GLint dstLevel, GLint dstX, GLint dstY, GLint dstZ, GLsizei width, GLsizei height, GLsizei depth);
 #endif /* WGL_WGLEXT_PROTOTYPES */
-typedef BOOL (WINAPI * PFNWGLCOPYIMAGESUBDATANVPROC) (HGLRC hSrcRC, GL::u32 srcName, GLenum srcTarget, GLint srcLevel, GLint srcX, GLint srcY, GLint srcZ, HGLRC hDstRC, GL::u32 dstName, GLenum dstTarget, GLint dstLevel, GLint dstX, GLint dstY, GLint dstZ, GLsizei width, GLsizei height, GLsizei depth);
+typedef BOOL (WINAPI * PFNWGLCOPYIMAGESUBDATANVPROC) (HGLRC hSrcRC, GLuint srcName, GLenum srcTarget, GLint srcLevel, GLint srcX, GLint srcY, GLint srcZ, HGLRC hDstRC, GLuint dstName, GLenum dstTarget, GLint dstLevel, GLint dstX, GLint dstY, GLint dstZ, GLsizei width, GLsizei height, GLsizei depth);
 #endif
 
 #ifndef WGL_NV_multisample_coverage
@@ -918,7 +918,7 @@ typedef BOOL (WINAPI * PFNWGLCOPYIMAGESUBDATANVPROC) (HGLRC hSrcRC, GL::u32 srcN
 extern BOOL WINAPI wglDXSetResourceShareHandleNV (void *dxObject, HANDLE shareHandle);
 extern HANDLE WINAPI wglDXOpenDeviceNV (void *dxDevice);
 extern BOOL WINAPI wglDXCloseDeviceNV (HANDLE hDevice);
-extern HANDLE WINAPI wglDXRegisterObjectNV (HANDLE hDevice, void *dxObject, GL::u32 name, GLenum type, GLenum access);
+extern HANDLE WINAPI wglDXRegisterObjectNV (HANDLE hDevice, void *dxObject, GLuint name, GLenum type, GLenum access);
 extern BOOL WINAPI wglDXUnregisterObjectNV (HANDLE hDevice, HANDLE hObject);
 extern BOOL WINAPI wglDXObjectAccessNV (HANDLE hObject, GLenum access);
 extern BOOL WINAPI wglDXLockObjectsNV (HANDLE hDevice, GLint count, HANDLE *hObjects);
@@ -927,7 +927,7 @@ extern BOOL WINAPI wglDXUnlockObjectsNV (HANDLE hDevice, GLint count, HANDLE *hO
 typedef BOOL (WINAPI * PFNWGLDXSETRESOURCESHAREHANDLENVPROC) (void *dxObject, HANDLE shareHandle);
 typedef HANDLE (WINAPI * PFNWGLDXOPENDEVICENVPROC) (void *dxDevice);
 typedef BOOL (WINAPI * PFNWGLDXCLOSEDEVICENVPROC) (HANDLE hDevice);
-typedef HANDLE (WINAPI * PFNWGLDXREGISTEROBJECTNVPROC) (HANDLE hDevice, void *dxObject, GL::u32 name, GLenum type, GLenum access);
+typedef HANDLE (WINAPI * PFNWGLDXREGISTEROBJECTNVPROC) (HANDLE hDevice, void *dxObject, GLuint name, GLenum type, GLenum access);
 typedef BOOL (WINAPI * PFNWGLDXUNREGISTEROBJECTNVPROC) (HANDLE hDevice, HANDLE hObject);
 typedef BOOL (WINAPI * PFNWGLDXOBJECTACCESSNVPROC) (HANDLE hObject, GLenum access);
 typedef BOOL (WINAPI * PFNWGLDXLOCKOBJECTSNVPROC) (HANDLE hDevice, GLint count, HANDLE *hObjects);

@@ -12,7 +12,7 @@ namespace windows
       static const ::u32 kFileTimeStartYear = 1601;
       static const ::u32 kDosTimeStartYear = 1980;
       static const ::u32 kUnixTimeStartYear = 1970;
-      static const ::u3264_t kUnixTimeStartValue = ((::u3264_t)kNumTimeQuantumsInSecond) *  60 * 60 * 24 * (89 + 365 * (kUnixTimeStartYear - kFileTimeStartYear));
+      static const uint64_t kUnixTimeStartValue = ((uint64_t)kNumTimeQuantumsInSecond) *  60 * 60 * 24 * (89 + 365 * (kUnixTimeStartYear - kFileTimeStartYear));
 
       bool DosTimeToFileTime(::u32 dosTime, FILETIME &ft)
       {
@@ -23,7 +23,7 @@ namespace windows
 
          ft.dwLowDateTime = 0;
          ft.dwHighDateTime = 0;
-         ::u3264_t res;
+         uint64_t res;
          if (!GetSecondsSince1601(kDosTimeStartYear + (dosTime >> 25), (dosTime >> 21) & 0xF, (dosTime >> 16) & 0x1F,
             (dosTime >> 11) & 0x1F, (dosTime >> 5) & 0x3F, (dosTime & 0x1F) * 2, res))
             return false;
@@ -56,7 +56,7 @@ namespace windows
 #else
 
          ::u32 year, mon, day, hour, minimum, sec;
-         ::u3264_t v64 = ft.dwLowDateTime | ((::u3264_t)ft.dwHighDateTime << 32);
+         uint64_t v64 = ft.dwLowDateTime | ((uint64_t)ft.dwHighDateTime << 32);
          byte ms[] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
          ::u32 temp;
          ::u32 v;
@@ -117,14 +117,14 @@ namespace windows
 
       void UnixTimeToFileTime(::u32 unixTime, FILETIME &ft)
       {
-         ::u3264_t v = kUnixTimeStartValue + ((::u3264_t)unixTime) * kNumTimeQuantumsInSecond;
+         uint64_t v = kUnixTimeStartValue + ((uint64_t)unixTime) * kNumTimeQuantumsInSecond;
          ft.dwLowDateTime = (::u32)v;
          ft.dwHighDateTime = (::u32)(v >> 32);
       }
 
       bool FileTimeToUnixTime(const FILETIME &ft, ::u32 &unixTime)
       {
-         ::u3264_t winTime = (((::u3264_t)ft.dwHighDateTime) << 32) + ft.dwLowDateTime;
+         uint64_t winTime = (((uint64_t)ft.dwHighDateTime) << 32) + ft.dwLowDateTime;
          if (winTime < kUnixTimeStartValue)
          {
             unixTime = 0;
@@ -141,7 +141,7 @@ namespace windows
       }
 
       bool GetSecondsSince1601(::u32 year, ::u32 month, ::u32 day,
-         ::u32 hour, ::u32 minimum, ::u32 sec, ::u3264_t &resSeconds)
+         ::u32 hour, ::u32 minimum, ::u32 sec, uint64_t &resSeconds)
       {
          resSeconds = 0;
          if (year < kFileTimeStartYear || year >= 10000 || month < 1 || month > 12 ||
@@ -156,7 +156,7 @@ namespace windows
          for (::u32 i = 0; i < month; i++)
             numDays += ms[i];
          numDays += day - 1;
-         resSeconds = ((::u3264_t)(numDays * 24 + hour) * 60 + minimum) * 60 + sec;
+         resSeconds = ((uint64_t)(numDays * 24 + hour) * 60 + minimum) * 60 + sec;
          return true;
       }
 

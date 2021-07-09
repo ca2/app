@@ -1,6 +1,6 @@
 #pragma once
 
-#include "platform/pnglibconf.h"
+#include "operating_system/pnglibconf.h"
 
 
 

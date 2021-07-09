@@ -47,7 +47,7 @@ extern "C" {
 typedef ::u64 sp_::u3264;
 #else
 #include <stdint.h>
-typedef ::u3264_t sp_::u3264;
+typedef uint64_t sp_::u3264;
 #endif
 
 /* General types */

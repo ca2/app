@@ -10,7 +10,7 @@ typedef int64_t   i64;
 typedef  ::u328_t  u8;
 typedef ::u3216_t  u16;
 typedef ::u32  u32;
-typedef ::u3264_t  u64;
+typedef uint64_t  u64;
 
 
 #ifdef __cplusplus

@@ -99,7 +99,7 @@ namespace draw2d_opengl
 
 
       bool                 m_bTexture;
-      GL::u32               m_texture;
+      GLuint               m_texture;
       memory               m_memIn;
       memory               m_memOut;
 

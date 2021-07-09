@@ -254,7 +254,7 @@ memsize file_as_memory(const char * path, void * p, memsize s)
 
 
 
-::u3264_t file_length_dup(const char * path)
+uint64_t file_length_dup(const char * path)
 {
 
    struct stat st;

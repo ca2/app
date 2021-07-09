@@ -121,7 +121,7 @@ int32_t ferror_dup(FILE *fp)
 }
 
 
-::u3264_t FILE_get_size(FILE * fp)
+uint64_t FILE_get_size(FILE * fp)
 {
 
    auto pos = ftell(fp);
@@ -137,7 +137,7 @@ int32_t ferror_dup(FILE *fp)
 }
 
 
-::u3264_t FILE_get_size(FILE *str)
+uint64_t FILE_get_size(FILE *str)
 {
 
 

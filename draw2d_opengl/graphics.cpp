@@ -4761,7 +4761,7 @@ namespace draw2d_opengl
       //      continue;
       //   }
       //   // Generate texture
-      //   GL::u32 texture;
+      //   GLuint texture;
       //   glGenTextures(1, &texture);
       //   glBindTexture(GL_TEXTURE_2D, texture);
       //   glTexImage2D(

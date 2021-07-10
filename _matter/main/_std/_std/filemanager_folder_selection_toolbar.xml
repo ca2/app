@@ -1,0 +1,6 @@
+<toolbar>
+<button id="levelup">Level Up</button>
+<button id="edit_remove">Remove</button>
+<button id="edit_add">Add</button>
+<button id="file_create_folder">Create Folder</button>
+</toolbar>

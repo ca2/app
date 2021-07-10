@@ -14,7 +14,7 @@ namespace data
 
 
       __pointer_array(tree)                    m_treea;
-      __pointer(tree_item)                m_proot;
+      //__pointer(tree_item)                m_proot;
       bool                                m_bFill;
       index_array                         m_iaLevelNext;
 
@@ -61,7 +61,7 @@ namespace data
       void sort_children(PRED pred)
       {
 
-         tree_sort(m_proot, pred);
+         tree_sort(this, pred);
 
       }
 
@@ -69,7 +69,7 @@ namespace data
       virtual tree_item * _get_proper_item(index iIndex, index * piLevel, index * piCount = nullptr);
       virtual tree_item* get_proper_item(index iIndex, index* piLevel) override;
       virtual index get_proper_item_index(tree_item * pitemParam, index * piLevel, index * piCount = nullptr);
-      virtual ::count get_proper_item_count() override;
+//      virtual ::count get_proper_item_count() override;
 
       virtual void update_levels();
 

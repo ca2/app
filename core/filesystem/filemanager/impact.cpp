@@ -104,7 +104,7 @@ void filemanager_impact::browse_sync(const ::action_context & context)
 }
 
 
-void filemanager_impact::knowledge(const string & pathUser, const ::action_context & context)
+void filemanager_impact::knowledge(const ::file::path & pathUser, const ::action_context & context)
 {
 
    UNREFERENCED_PARAMETER(pathUser);
@@ -239,9 +239,13 @@ void filemanager_impact::on_subject(::subject::subject * psubject, ::subject::co
 
       __pointer(::core::application) papplication = get_application();
 
-      if (psubject->m_pfileitem &&
-         (::is_set(filemanager_item())
-            && papplication->is_equal_file_path(psubject->m_pfileitem->m_filepathFinal, filemanager_item()->m_filepathFinal)))
+      auto pfileitem = psubject->m_pfileitem;
+
+      auto bFileManagerItemSet = ::is_set(filemanager_item());
+
+      bool bEqualFilePath = bFileManagerItemSet && papplication->is_equal_file_path(psubject->m_pfileitem->m_filepathFinal, filemanager_item()->m_filepathFinal);
+
+      if (pfileitem && (bFileManagerItemSet && bEqualFilePath))
       {
 
 #define DBG_LOOP  1

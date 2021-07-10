@@ -30,7 +30,7 @@ public:
 
 
    virtual void browse_sync(const ::action_context & action_context);
-   virtual void knowledge(const string & pathUser, const ::action_context & action_context);
+   virtual void knowledge(const ::file::path & pathUser, const ::action_context & action_context);
 
    //string calc_parent_data_key();
 

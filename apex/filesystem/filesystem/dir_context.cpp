@@ -830,7 +830,7 @@ bool dir_context::is(const ::file::path & pathParam)
    else
    {
 
-      path = pathParam;
+      path = m_pcontext->m_papexcontext->defer_process_path(pathParam);
 
    }
 

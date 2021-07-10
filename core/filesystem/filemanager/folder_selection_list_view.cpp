@@ -5,7 +5,6 @@
 #include "core/user/user/_tree.h"
 
 
-
 namespace filemanager
 {
 
@@ -56,15 +55,23 @@ namespace filemanager
       }
 
       auto ptree = filemanager_document()->__create_new < tree >();
-      m_ptree = ptree;
-
-      if(m_ptree == nullptr)
+      
+      if(ptree == nullptr)
       {
 
          message_box("Could not create folder tree");
+      
       }
+      else
+      {
 
-      m_pusertree->merge(m_ptree, true);
+         m_ptree = ptree;
+
+         ptree->m_pdocument = get_document();
+
+         m_pusertree->merge(m_ptree, true);
+
+      }
 
       m_plistview = create_view < folder_list_view >(get_document(), get_pane_holder(1));
 
@@ -76,8 +83,6 @@ namespace filemanager
       }
 
    }
-
-
 
 
    void folder_selection_list_view::FolderAdd()
@@ -103,6 +108,7 @@ namespace filemanager
       }
 
    }
+
 
    void folder_selection_list_view::FolderRemove()
    {
@@ -152,6 +158,7 @@ namespace filemanager
       }
 
    }
+
 
    data * folder_selection_list_view::filemanager_data()
    {

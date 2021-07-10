@@ -81,6 +81,14 @@ namespace filemanager
    }
 
 
+   void tree::knowledge(const ::file::path& pathUser, const ::action_context& context)
+   {
+
+      knowledge(pathUser, context, false);
+
+   }
+
+
    void tree::knowledge(const ::file::path & pathUser, const ::action_context & context,bool bOnlyParent)
    {
 
@@ -265,7 +273,9 @@ namespace filemanager
 
          __pointer_array(::data::tree_item) childrenNew;
 
-         for(index i = 0; i < listingUser.get_count(); i++)
+         auto cListingUser = listingUser.get_count();
+
+         for(index i = 0; i < cListingUser; i++)
          {
 
             ::file::path pathUser = listingUser[i];

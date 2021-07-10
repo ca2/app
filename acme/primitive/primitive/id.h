@@ -38,36 +38,33 @@ public:
    enum enum_type : ::i64
    {
 
+      e_type_empty = -2,
 
-      e_type_empty = -1,
+      e_type_null = -1,
 
-      e_type_null = 0,
-
-      e_type_integer = 1,
+      e_type_integer = 0,
       e_type_id,
       e_type_factory,
       e_type_task_tool,
       e_type_timer,
       e_type_message,
       e_type_property,
-
-      e_type_command = 1 << 16,
-      e_type_command_integer = e_type_command,
-
-      e_type_command_probe = 1 << 20,
-      e_type_command_probe_integer = e_type_command_probe,
-
-      e_type_has_command_handler = 1 << 24,
-      e_type_has_command_handler_integer = e_type_has_command_handler,
-
-      e_type_update = 1 << 28,
-      e_type_update_integer = e_type_update,
+      e_type_command,
+      e_type_command_probe,
+      e_type_has_command_handler,
+      e_type_update,
 
       e_type_text = 1ull << 32,
-      e_type_command_text = e_type_text | e_type_command,
-      e_type_update_text = e_type_text | e_type_update,
-      e_type_has_command_handler_text = e_type_text | e_type_has_command_handler,
-      e_type_command_probe_text = e_type_text | e_type_command_probe_integer,
+      e_type_id_text = e_type_id | e_type_text,
+      e_type_factory_text = e_type_factory | e_type_text,
+      e_type_task_tool_text = e_type_task_tool | e_type_text,
+      e_type_timer_text = e_type_timer | e_type_text,
+      e_type_message_text = e_type_message | e_type_text,
+      e_type_property_text = e_type_property | e_type_text,
+      e_type_command_text = e_type_command | e_type_text,
+      e_type_command_probe_text = e_type_command_probe | e_type_text,
+      e_type_has_command_handler_text = e_type_has_command_handler | e_type_text,
+      e_type_update_text = e_type_update | e_type_text,
 
 
    };
@@ -154,7 +151,7 @@ public:
    enum_type primitive_type() const
    {
 
-      if(m_etype <= 0)
+      if(m_etype < 0)
       {
 
          return m_etype;
@@ -179,7 +176,7 @@ public:
    enum_type compounded_type(enum_type etype) const
    {
 
-      return (enum_type)((m_iType & ~0xffff0000) | (int) etype);
+      return m_iType < 0 ? m_etype : (enum_type)((m_iType & ~0xffffffffll) | (int) etype);
 
    }
 
@@ -320,7 +317,7 @@ public:
 
 
    inline bool is_text() const { return m_etype >= e_type_text; }
-   inline bool is_integer() const { return m_etype > 0 && m_etype < e_type_text; }
+   inline bool is_integer() const { return m_etype >= 0 && m_etype < e_type_text; }
 
 
    inline id & operator +=(const char * psz);
@@ -336,13 +333,12 @@ public:
 inline id::id()
 {
 
-   m_all = {};
+   m_etype = e_type_null;
 
 }
 
 
-inline id::id(enum_type etype) :
-   ::id()
+inline id::id(enum_type etype)
 {
 
    if(etype == e_type_null)
@@ -361,6 +357,8 @@ inline id::id(enum_type etype) :
    {
 
       m_etype = e_type_integer;
+
+      m_i = 0;
 
    }
    else if(etype == e_type_text)

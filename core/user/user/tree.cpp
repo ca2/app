@@ -2022,6 +2022,8 @@ namespace user
 
       }
 
+      ptree->m_usertreea.add_unique(this);
+
       __pointer(::user::impact) pview = this;
 
       if(pview.is_set())

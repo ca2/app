@@ -31,9 +31,8 @@ namespace userex
       m_pcolorview = nullptr;
 
       m_pfilemanager = nullptr;
+
       m_pfilemanagerTabbed = nullptr;
-
-
 
    }
 
@@ -599,9 +598,9 @@ namespace userex
 
          }
 
-         puser->filemanager(pimpactdata->m_id)->open();
+         pfilemanagerdata->open();
 
-         __pointer(::filemanager::document) pdocument = puser->filemanager(pimpactdata->m_id)->m_pdocument;
+         __pointer(::filemanager::document) pdocument = pfilemanagerdata->m_pdocument;
 
          if(pdocument != nullptr)
          {

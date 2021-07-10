@@ -220,7 +220,9 @@ namespace filemanager
          m_pdocument = dynamic_cast < ::filemanager::document * >
                        (m_pdocumenttemplate->open_document_file(pappOnBehalfOf, e_type_empty,
                              bMakeVisible,
-                             puiParent));
+                             puiParent,
+                          ewindowflag(),
+                          m_id));
 
       }
 
@@ -271,7 +273,7 @@ namespace filemanager
 
       auto pcontext = m_pcontext;
 
-      if (papplication->data_get({true, "last_browse_folder"}, strPath))
+      if (papplication->data_get({m_datakey.m_bLocalData, m_datakey.m_strDataKey+".last_browse_folder"}, strPath))
       {
 
          if (strPath == "machinefs://")
@@ -281,9 +283,9 @@ namespace filemanager
 
             string strId;
 
-            strId = "last_browse_folder." + __str(idMachine);
+            strId = m_datakey.m_strDataKey +".last_browse_folder." + __str(idMachine);
 
-            if (!papplication->data_get({ true, strId }, strPath))
+            if (!papplication->data_get({ m_datakey.m_bLocalData, strId }, strPath))
             {
 
                strPath.empty();
@@ -316,7 +318,7 @@ namespace filemanager
 
       }
 
-      return "";
+      return strPath;
 
    }
 
@@ -354,21 +356,21 @@ namespace filemanager
          || ::str::begins(path, astr.FsProtocol))
       {
 
-         papplication->data_set({ true, "last_browse_folder" }, strPath);
+         papplication->data_set({ m_datakey.m_bLocalData, m_datakey.m_strDataKey +".last_browse_folder" }, strPath);
 
       }
       else
       {
 
-         papplication->data_set({ true, "last_browse_folder" }, "machinefs://");
+         papplication->data_set({ m_datakey.m_bLocalData, m_datakey.m_strDataKey + ".last_browse_folder" }, "machinefs://");
 
          auto idMachine = get_local_machine_id();
 
          string strId;
 
-         strId = "last_browse_folder." + __str(idMachine);
+         strId = m_datakey.m_strDataKey+".last_browse_folder." + __str(idMachine);
 
-         papplication->data_set({ true, strId }, strPath);
+         papplication->data_set({ m_datakey.m_bLocalData, strId }, strPath);
 
       }
 

@@ -93,7 +93,8 @@ namespace filemanager
 
 
       virtual void browse_sync(const ::action_context & action_context) override;
-      virtual void knowledge(const ::file::path & pathUser, const ::action_context & action_context,bool bOnlyParent = false);
+      virtual void knowledge(const ::file::path & pathUser, const ::action_context & action_context,bool bOnlyParent);
+      virtual void knowledge(const ::file::path& pathUser, const ::action_context& action_context) override;
       //virtual void filemanager_tree_insert(const ::file::path & strPath,::file::listing & listingUser, ::file::listing & listingFinal, const ::action_context & action_context,bool bOnlyParent = false, bool bVoidTreeDataChangeEvent = true);
       void _017EnsureVisible(const ::file::path & pathUser, const ::action_context & action_context);
 

@@ -1290,6 +1290,8 @@ namespace user
    void interaction_impl::_on_mouse_move_step(const ::point_i32 & pointCursor, bool bMouseLeave)
    {
 
+      synchronous_lock synchronouslock(mutex());
+
       for(::index i = 0; i < m_userinteractionaMouseHover.get_count(); )
       {
 
@@ -1316,7 +1318,11 @@ namespace user
 
             ///pinteraction->m_bTrackMouseLeave = false;
 
+            synchronouslock.unlock();
+
             pinteraction->post_message(e_message_mouse_leave);
+
+            synchronouslock.lock();
 
          }
 

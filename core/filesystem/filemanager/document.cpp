@@ -424,7 +424,11 @@ namespace filemanager
    {
 
       if (filemanager_item()->m_filepathUser.is_empty())
+      {
+
          return;
+
+      }
 
       string strParent = filemanager_item()->m_filepathUser.up();
 
@@ -750,7 +754,7 @@ namespace filemanager
       if (pfilemanagerdata != nullptr)
       {
 
-         if (pcommand->m_id == pfilemanagerdata->m_strLevelUp)
+         if (pcommand->m_id == "levelup")
          {
 
             FileManagerOneLevelUp(::e_source_user);
@@ -1447,7 +1451,7 @@ namespace filemanager
       if (m_pfilemanagerdata.is_null())
       {
 
-         m_pfilemanagerdata = puser->filemanager(FILEMANAGER_IMPACT);
+         m_pfilemanagerdata = puser->filemanager(pcreate->m_id);
 
       }
       ASSERT(m_pfilemanagerdata.is_set());

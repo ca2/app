@@ -147,7 +147,7 @@ namespace user
 
       ASSERT_VALID(pFrame);
 
-      if(pcreate->m_pcommandline->m_varFile.is_empty())
+      if(!pcreate->has_file())
       {
          // create a new ::user::document - with default ::user::document name
          set_default_title(pdocument);
@@ -197,7 +197,12 @@ namespace user
 
       InitialUpdateFrame(pFrame, pdocument, bMakeVisible);
 
-      pcreate->m_pcommandline->m_varQuery["document"] = pdocument;
+      if (pcreate->m_pcommandline)
+      {
+
+         pcreate->m_pcommandline->m_varQuery["document"] = pdocument;
+
+      }
 
       pcreate->m_estatus = ::success;
 

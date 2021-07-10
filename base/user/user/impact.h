@@ -19,8 +19,8 @@ namespace user
 
       string                              m_strImpactTitle;
       id                                  m_idCreator;
-      __reference(::user::document)       m_pdocument;
-      __reference(::user::interaction)    m_puserinteractionImpactNotify;
+      __pointer(::user::document)         m_pdocument;
+      __pointer(::user::interaction)      m_puserinteractionImpactNotify;
 
 
       impact();

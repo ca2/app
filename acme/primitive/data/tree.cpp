@@ -13,20 +13,20 @@ namespace data
 
       m_bFill = false;
 
-      m_proot = __new(tree_item);
+      //m_proot = __new(tree_item);
 
-      if (m_proot == nullptr)
-      {
+      //if (m_proot == nullptr)
+      //{
 
-         __throw(error_no_memory);
+      //   __throw(error_no_memory);
 
-      }
+      //}
 
-      m_proot->m_dwState |= ::data::tree_item_state_expandable;
+      m_dwState |= ::data::tree_item_state_expandable;
 
-      m_proot->m_dwState |= ::data::tree_item_state_expanded;
+      m_dwState |= ::data::tree_item_state_expanded;
 
-      m_proot->m_ptree = this;
+      m_ptree = this;
 
 
    }
@@ -63,7 +63,7 @@ namespace data
 
       }
 
-      __pointer(::data::tree_item) pitem = m_proot;
+      __pointer(::data::tree_item) pitem = this;
 
       for(; pitem != nullptr; pitem = pitem->get_item(TreeNavigationExpandedForward))
       {
@@ -106,8 +106,15 @@ namespace data
 
    bool tree::contains(const tree_item * pitemParam)
    {
+
+      if (pitemParam == this)
+      {
+
+         return true;
+
+      }
       
-      ::data::tree_item * pitem = m_proot;
+      ::data::tree_item * pitem = this;
 
       for(; pitem != nullptr; pitem = pitem->get_item(TreeNavigationExpandedForward))
       {
@@ -189,7 +196,7 @@ namespace data
 
       }
 
-      auto pitem = m_proot.get();
+      __pointer(::data::tree_item) pitem = this;
 
       while(pitem && iIndex >= 0)
       {
@@ -229,7 +236,7 @@ namespace data
 
       }
 
-      auto pitem = m_proot.get();
+      __pointer(::data::tree_item) pitem = this;
 
       while (pitem && iIndex >= 0)
       {
@@ -305,20 +312,20 @@ namespace data
    }
 
 
-   ::count tree::get_proper_item_count()
-   {
+   //::count tree::get_proper_item_count()
+   //{
 
-      synchronous_lock synchronouslock(mutex());
+   //   synchronous_lock synchronouslock(mutex());
 
-      return get_base_item()->get_proper_item_count();
+   //   return get_base_item()->get_proper_item_count();
 
-   }
+   //}
 
 
    ::data::tree_item * tree::get_base_item()
    {
 
-      return m_proot;
+      return this;
 
    }
 
@@ -326,7 +333,7 @@ namespace data
    const ::data::tree_item * tree::get_base_item() const
    {
 
-      return m_proot;
+      return this;
 
    }
 
@@ -399,22 +406,39 @@ namespace data
 
       }
 
-
       synchronous_lock synchronouslock(mutex());
 
-      if(pitemNew == nullptr)
+      if (pitemNew == nullptr)
+      {
+
          return false;
-      if(!contains(pitemRelative))
+
+      }
+
+      if (!contains(pitemRelative))
+      {
+
          return false;
-      if(erelativeNewItem == RelativeParent)
+
+      }
+
+      if (erelativeNewItem == RelativeParent)
+      {
+
          return false;
+
+      }
 
       if(erelativeNewItem == RelativeLastSibling)
       {
-         if(pitemRelative == m_proot)
+         
+         if(pitemRelative == this)
          {
+
             erelativeNewItem = RelativeFirstChild;
+
          }
+
       }
 
       bool bOk = false;
@@ -510,12 +534,7 @@ namespace data
    void tree::erase_all()
    {
 
-      if (m_proot)
-      {
-
-         m_proot->erase_tree_item_descendants();
-
-      }
+      erase_tree_item_descendants();
 
    }
 
@@ -718,6 +737,13 @@ namespace data
 
    void tree::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
    {
+
+      for (auto& ptree : m_treea)
+      {
+
+         ptree->on_subject(psubject, pcontext);
+
+      }
 
    }
 

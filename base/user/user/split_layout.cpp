@@ -494,6 +494,13 @@ namespace user
 
       ::count iSplitBarCount = get_split_count();
 
+      if (iSplitBarCount < 0)
+      {
+
+         return;
+
+      }
+
       split_pane * pcomponent;
 
       __pointer(::user::interaction) puserinteraction;

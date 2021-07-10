@@ -226,12 +226,12 @@ namespace user
 
       }
 
-      estatus = __refer(m_pdocument, pdocument);
+      m_pdocument =  pdocument;
 
-      if (!estatus)
+      if (!m_pdocument && pdocument)
       {
 
-         return estatus;
+         return error_wrong_type;
 
       }
 
@@ -680,25 +680,28 @@ namespace user
          dumpcontext << "with no ::user::document\n";
    }
 
+
    void impact::assert_valid() const
    {
+      
       ::user::interaction::assert_valid();
+
    }
 
 
    ::e_status impact::set_notify_user_interaction(::user::interaction* puserinteractionNotify)
    {
 
-      auto estatus = __refer(m_puserinteractionImpactNotify, puserinteractionNotify);
+      m_puserinteractionImpactNotify = puserinteractionNotify;
 
-      if (!estatus)
+      if (!m_puserinteractionImpactNotify && puserinteractionNotify)
       {
 
-         return estatus;
+         return error_wrong_type;
 
       }
 
-      return estatus;
+      return ::success;
 
    }
 

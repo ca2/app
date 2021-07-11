@@ -33,45 +33,19 @@ namespace filemanager
    void folder_list_view::initialize(string strDataKeyModifier,bool bRecursive)
    {
 
-      //set_data_key_modifier(strDataKeyModifier);
-
       m_bRecursive = bRecursive;
 
       _001UpdateColumns();
 
       _001OnUpdateItemCount();
 
-      if(bRecursive)
-      {
+      m_pfolderlistdata = __create_new < folder_list_data > ();
 
-         auto pdata = __create_new < folder_list_data > ();
+      SetDataInterface(m_pfolderlistdata);
 
-         SetDataInterface(pdata);
+      m_pfolderlistdata->set_data_key_modifier(strDataKeyModifier);
 
-         pdata->set_data_key_modifier(strDataKeyModifier);
-
-      }
-      else
-      {
-
-         auto pdata = __create_new < databaseuser::data_key_mesh_data > ();
-
-         SetDataInterface(pdata);
-
-         pdata->set_data_key_modifier(strDataKeyModifier);
-
-         auto papplication = get_application();
-
-         pdata->initialize_data_client(papplication->dataserver());
-
-      }
-
-      fork([&]()
-      {
-
-         _001OnUpdateItemCount();
-
-      });
+      _001OnUpdateItemCount();
 
    }
 
@@ -112,16 +86,21 @@ namespace filemanager
    bool folder_list_view::add_unique(const string_array & stra)
    {
 
-      if(m_bRecursive)
-         __throw(::exception::exception("incorrect usage of this class object"));
+      if (stra.get_size() == 0)
+      {
 
-      if(stra.get_size() == 0)
          return true;
 
-      __pointer(databaseuser::data_key_mesh_data) pdata = m_pmeshdata.cast <databaseuser::data_key_mesh_data >();
+      }
 
-      if(!pdata->add_unique(stra))
+      auto pfolderlistdata = m_pfolderlistdata;
+
+      if (!pfolderlistdata->add_unique(stra))
+      {
+
          return false;
+
+      }
 
       _001OnUpdateItemCount();
 
@@ -133,15 +112,16 @@ namespace filemanager
    bool folder_list_view::add_unique(const string_array & stra, int_array & baRecursive)
    {
 
-      if(!m_bRecursive)
-         __throw(::exception::exception("incorrect usage of this class object"));
+      if (stra.get_size() == 0)
+      {
 
-      if(stra.get_size() == 0)
          return true;
 
-      auto pdata = m_pmeshdata.cast <folder_list_data> ();
+      }
 
-      if (!pdata->add_unique(stra, baRecursive))
+      auto pfolderlistdata = m_pfolderlistdata;
+
+      if (!pfolderlistdata->add_unique(stra, baRecursive))
       {
 
          return false;
@@ -165,21 +145,10 @@ namespace filemanager
 
       }
 
-      if(m_bRecursive)
+      if(m_pfolderlistdata)
       {
 
-         __pointer(folder_list_data) pdata = m_pmeshdata.cast <folder_list_data >();
-
-         if(!pdata->erase(stra))
-            return false;
-
-      }
-      else
-      {
-
-         auto pdata = m_psimplemeshdata.cast <databaseuser::data_key_mesh_data > ();
-
-         if (!pdata->erase(stra))
+         if (!m_pfolderlistdata->erase(stra))
          {
 
             return false;
@@ -198,20 +167,13 @@ namespace filemanager
    void folder_list_view::GetSel(string_array & stra)
    {
 
-      if(m_bRecursive)
+      if (m_pfolderlistdata)
       {
 
-         __pointer(folder_list_data) pdata = m_pmeshdata.cast <folder_list_data >();
-         pdata->GetSel(this,stra);
+         m_pfolderlistdata->GetSel(this, stra);
 
       }
-      else
-      {
 
-         __pointer(databaseuser::data_key_mesh_data) pdata = m_psimplemeshdata.cast <databaseuser::data_key_mesh_data >();
-         pdata->GetSel(this,stra);
-
-      }
 
    }
 
@@ -244,16 +206,14 @@ namespace filemanager
       if (puserinteraction->m_id == "check_recursive")
       {
 
-         __pointer(folder_list_data) pfolderlistdata = m_pmeshdata.cast <folder_list_data >();
-
-         if (pfolderlistdata)
+         if (m_pfolderlistdata)
          {
 
             bool bCheck = puserinteraction->bcheck();
 
             bool iItem = puserinteraction->m_iItem;
 
-            pfolderlistdata->set_recursive(iItem, bCheck);
+            m_pfolderlistdata->set_recursive(iItem, bCheck);
 
          }
 
@@ -268,14 +228,12 @@ namespace filemanager
       if (puserinteraction->m_id == "check_recursive")
       {
 
-         __pointer(folder_list_data) pfolderlistdata = m_pmeshdata.cast <folder_list_data >();
-
-         if (pfolderlistdata)
+         if (m_pfolderlistdata)
          {
 
             auto iItem = puserinteraction->m_iItem;
 
-            bool bCheck = pfolderlistdata->get_recursive(iItem);
+            bool bCheck = m_pfolderlistdata->get_recursive(iItem);
 
             puserinteraction->_001SetCheck(bCheck, ::e_source_sync);
 

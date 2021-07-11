@@ -28,6 +28,7 @@ namespace filemanager
 
       virtual count _001GetItemCount() override;
 
+      virtual bool add_unique(const string_array& stra);
       virtual bool add_unique(const string_array & stra, i32_array & iaRecursive);
       virtual bool erase(const string_array & stra);
 

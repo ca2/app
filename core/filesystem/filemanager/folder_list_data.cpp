@@ -157,6 +157,39 @@ namespace filemanager
    }
 
 
+   bool folder_list_data::add_unique(const string_array& stra)
+   {
+
+      synchronous_lock synchronouslock(mutex());
+
+      string_array straFolderPath;
+
+      data_get(::id(), straFolderPath);
+
+      for (i32 i = 0; i < stra.get_count(); i++)
+      {
+
+         if (!straFolderPath.contains(stra[i]))
+         {
+
+            straFolderPath.add(stra[i]);
+
+         }
+
+      }
+
+      if (!data_set(::id(), straFolderPath))
+      {
+
+         return false;
+
+      }
+
+      return true;
+
+   }
+
+
    bool folder_list_data::add_unique(const string_array & stra, i32_array & baRecursive)
    {
 
@@ -176,30 +209,20 @@ namespace filemanager
          if(!straFolderPath.contains(stra[i]))
          {
 
-            straFolderPath.add(stra[i]);
+            auto iNew = straFolderPath.add(stra[i]);
+
+            bool bRecursive = false;
 
             if(i <= baRecursive.get_upper_bound())
             {
 
-               iaRecursive.add(baRecursive[i]);
+               bRecursive = baRecursive[i];
 
             }
 
+            iaRecursive.set_at_grow(iNew, bRecursive);
+
          }
-
-      }
-
-      while(iaRecursive.get_size() < straFolderPath.get_size())
-      {
-
-         iaRecursive.add(true); // default bred, broad, expansive
-
-      }
-
-      while(iaRecursive.get_size() > straFolderPath.get_size())
-      {
-
-         iaRecursive.erase_last();
 
       }
 

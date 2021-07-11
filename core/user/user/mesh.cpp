@@ -130,7 +130,7 @@ namespace user
       {
          MESSAGE_LINK(e_message_left_button_down, pchannel, this, &mesh::on_message_left_button_down);
          MESSAGE_LINK(e_message_left_button_up, pchannel, this, &mesh::on_message_left_button_up);
-         MESSAGE_LINK(e_message_left_button_double_click, pchannel, this, &mesh::_001OnLButtonDblClk);
+         MESSAGE_LINK(e_message_left_button_double_click, pchannel, this, &mesh::on_message_left_button_double_click);
       }
       MESSAGE_LINK(e_message_right_button_down, pchannel, this,&mesh::on_message_right_button_down);
       MESSAGE_LINK(e_message_right_button_down, pchannel, this, &mesh::on_message_right_button_up);
@@ -3172,7 +3172,7 @@ namespace user
    }
 
 
-   void mesh::_001OnLButtonDblClk(::message::message * pmessage)
+   void mesh::on_message_left_button_double_click(::message::message * pmessage)
    {
 
       __pointer(::message::mouse) pmouse(pmessage);

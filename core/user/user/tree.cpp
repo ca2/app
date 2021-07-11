@@ -572,7 +572,7 @@ namespace user
       pmessage->m_bRet = true;
    }
 
-   void tree::_001OnLButtonDblClk(::message::message * pmessage)
+   void tree::on_message_left_button_double_click(::message::message * pmessage)
    {
 
       __pointer(::message::mouse) pmouse(pmessage);
@@ -834,7 +834,7 @@ namespace user
       ::user::scroll_base::install_message_routing(pchannel);
 
       MESSAGE_LINK(e_message_create, pchannel, this, &tree::on_message_create);
-      MESSAGE_LINK(e_message_left_button_double_click, pchannel, this, &tree::_001OnLButtonDblClk);
+      MESSAGE_LINK(e_message_left_button_double_click, pchannel, this, &tree::on_message_left_button_double_click);
       MESSAGE_LINK(e_message_left_button_up, pchannel, this, &tree::on_message_left_button_up);
       MESSAGE_LINK(e_message_left_button_down, pchannel, this, &tree::on_message_left_button_down);
       MESSAGE_LINK(e_message_right_button_up, pchannel, this, &tree::on_message_right_button_up);

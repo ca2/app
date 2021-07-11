@@ -65,7 +65,7 @@ namespace user
       MESSAGE_LINK(e_message_mouse_leave, pchannel, this, &combo_box::on_message_mouse_leave);
       MESSAGE_LINK(e_message_left_button_down, pchannel, this, &combo_box::on_message_left_button_down);
       MESSAGE_LINK(e_message_left_button_up, pchannel, this, &combo_box::on_message_left_button_up);
-      MESSAGE_LINK(e_message_left_button_double_click, pchannel, this, &combo_box::_001OnLButtonDblClk);
+      MESSAGE_LINK(e_message_left_button_double_click, pchannel, this, &combo_box::on_message_left_button_double_click);
       MESSAGE_LINK(e_message_key_down,pchannel,this,&combo_box::on_message_key_down);
       MESSAGE_LINK(e_message_key_up,pchannel,this,&combo_box::on_message_key_up);
       //MESSAGE_LINK(e_message_set_focus,pchannel,this,&combo_box::_001OnSetFocus);
@@ -1645,7 +1645,7 @@ namespace user
    //}
 
 
-   void combo_box::_001OnLButtonDblClk(::message::message * pmessage)
+   void combo_box::on_message_left_button_double_click(::message::message * pmessage)
    {
 
       //output_debug_string("\nCOMBO_BOX: DOUBLE CLICK\n");

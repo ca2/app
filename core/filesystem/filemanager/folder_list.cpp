@@ -24,7 +24,7 @@ namespace filemanager
 
       ::user::impact::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_left_button_double_click, pchannel, this, &folder_list::_001OnLButtonDblClk);
+      MESSAGE_LINK(e_message_left_button_double_click, pchannel, this, &folder_list::on_message_left_button_double_click);
 
 //#ifdef WINDOWS_DESKTOP
 //      MESSAGE_LINK(WM_CANCELMODE, pchannel, this, &folder_list::_001OnCancelMode);
@@ -50,7 +50,7 @@ namespace filemanager
 
 
 
-   void folder_list::_001OnLButtonDblClk(::message::message * pmessage)
+   void folder_list::on_message_left_button_double_click(::message::message * pmessage)
    {
 
       __pointer(::message::mouse) pmouse(pmessage);

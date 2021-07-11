@@ -62,7 +62,7 @@ namespace filemanager
 
 
 
-      DECLARE_MESSAGE_HANDLER(_001OnLButtonDblClk);
+      DECLARE_MESSAGE_HANDLER(on_message_left_button_double_click);
       DECLARE_MESSAGE_HANDLER(_001OnCancelMode);
 
 

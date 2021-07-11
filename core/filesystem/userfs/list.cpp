@@ -39,7 +39,7 @@ namespace userfs
       MESSAGE_LINK(e_message_vscroll, pchannel, this, &list::_001OnVScroll);
       MESSAGE_LINK(e_message_show_window, pchannel, this, &list::on_message_show_window);
       MESSAGE_LINK(e_message_create, pchannel, this, &list::on_message_create);
-      MESSAGE_LINK(e_message_left_button_double_click, pchannel, this, &list::_001OnLButtonDblClk);
+      MESSAGE_LINK(e_message_left_button_double_click, pchannel, this, &list::on_message_left_button_double_click);
 
    }
 
@@ -159,7 +159,7 @@ namespace userfs
 
    }
 
-   void list::_001OnLButtonDblClk(::message::message * pmessage)
+   void list::on_message_left_button_double_click(::message::message * pmessage)
    {
       UNREFERENCED_PARAMETER(pmessage);
 //      __pointer(::message::mouse) pmouse(pmessage);

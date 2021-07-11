@@ -43,7 +43,7 @@ namespace filemanager
          void list_view::install_message_routing(::channel * pchannel)
          {
             simple_list_view::install_message_routing(pchannel);
-            MESSAGE_LINK(e_message_left_button_double_click, pchannel, this, &list_view::_001OnLButtonDblClk);
+            MESSAGE_LINK(e_message_left_button_double_click, pchannel, this, &list_view::on_message_left_button_double_click);
 //            //MESSAGE_LINK(e_message_timer, pchannel, this, &list_view::_001OnTimer);
             MESSAGE_LINK(e_message_size, pchannel, this, &list_view::on_message_size);
 #ifdef WINDOWS_DESKTOP
@@ -223,7 +223,7 @@ namespace filemanager
          }
 
 
-         void list_view::_001OnLButtonDblClk(::message::message * pmessage)
+         void list_view::on_message_left_button_double_click(::message::message * pmessage)
          {
 
             __pointer(::message::mouse) pmouse(pmessage);

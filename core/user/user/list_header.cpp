@@ -433,7 +433,7 @@ namespace user
       ::user::box::install_message_routing(pchannel);
       MESSAGE_LINK(e_message_left_button_down, pchannel, this, &list_header::on_message_left_button_down);
       MESSAGE_LINK(e_message_left_button_up, pchannel, this, &list_header::on_message_left_button_up);
-      MESSAGE_LINK(e_message_left_button_double_click, pchannel, this, &list_header::_001OnLButtonDblClk);
+      MESSAGE_LINK(e_message_left_button_double_click, pchannel, this, &list_header::on_message_left_button_double_click);
       MESSAGE_LINK(e_message_mouse_move, pchannel, this, &list_header::on_message_mouse_move);
    }
 
@@ -612,7 +612,7 @@ namespace user
    }
 
 
-   void list_header::_001OnLButtonDblClk(::message::message * pmessage)
+   void list_header::on_message_left_button_double_click(::message::message * pmessage)
    {
 
       __pointer(::message::mouse) pmouse(pmessage);

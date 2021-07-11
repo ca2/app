@@ -93,7 +93,7 @@ namespace userfs
    {
 
       MESSAGE_LINK(e_message_create, pchannel, this, &tree::on_message_create);
-      MESSAGE_LINK(e_message_left_button_double_click, pchannel, this, &tree::_001OnLButtonDblClk);
+      MESSAGE_LINK(e_message_left_button_double_click, pchannel, this, &tree::on_message_left_button_double_click);
       MESSAGE_LINK(e_message_context_menu, pchannel, this, &tree::_001OnContextMenu);
 
    }
@@ -101,7 +101,7 @@ namespace userfs
 
 
 
-   void tree::_001OnLButtonDblClk(::message::message * pmessage)
+   void tree::on_message_left_button_double_click(::message::message * pmessage)
    {
       UNREFERENCED_PARAMETER(pmessage);
    }

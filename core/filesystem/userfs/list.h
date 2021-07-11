@@ -92,7 +92,7 @@ namespace userfs
       DECLARE_MESSAGE_HANDLER(_001OnUpdateFileRename);
       DECLARE_MESSAGE_HANDLER(on_message_show_window);
       DECLARE_MESSAGE_HANDLER(on_message_create);
-      DECLARE_MESSAGE_HANDLER(_001OnLButtonDblClk);
+      DECLARE_MESSAGE_HANDLER(on_message_left_button_double_click);
       DECLARE_MESSAGE_HANDLER(_001OnCancelMode);
 
 

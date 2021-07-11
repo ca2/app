@@ -152,7 +152,7 @@ namespace filemanager
 
             virtual bool on_click(const ::user::item & item) override;
 
-            DECLARE_MESSAGE_HANDLER(_001OnLButtonDblClk);
+            DECLARE_MESSAGE_HANDLER(on_message_left_button_double_click);
             void _001OnTimer(::timer * ptimer) override;
             DECLARE_MESSAGE_HANDLER(on_message_size);
             DECLARE_MESSAGE_HANDLER(_001OnContextMenu);

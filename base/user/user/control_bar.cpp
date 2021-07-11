@@ -51,7 +51,7 @@ namespace user
       MESSAGE_LINK(e_message_mouse_move, pchannel, this, &control_bar::on_message_mouse_move);
       MESSAGE_LINK(e_message_left_button_down, pchannel, this, &control_bar::on_message_left_button_down);
       MESSAGE_LINK(e_message_left_button_up, pchannel, this, &control_bar::on_message_left_button_up);
-      MESSAGE_LINK(e_message_left_button_double_click, pchannel, this, &control_bar::_001OnLButtonDblClk);
+      MESSAGE_LINK(e_message_left_button_double_click, pchannel, this, &control_bar::on_message_left_button_double_click);
       MESSAGE_LINK(e_message_mouse_activate, pchannel, this, &control_bar::_001OnMouseActivate);
       MESSAGE_LINK(e_message_create, pchannel, this, &control_bar::on_message_create);
       MESSAGE_LINK(e_message_destroy, pchannel, this, &control_bar::on_message_destroy);
@@ -630,7 +630,7 @@ namespace user
       pmouse->previous();
    }
 
-   void control_bar::_001OnLButtonDblClk(::message::message * pmessage)
+   void control_bar::on_message_left_button_double_click(::message::message * pmessage)
    {
       __pointer(::message::mouse) pmouse(pmessage);
       pmouse->previous();

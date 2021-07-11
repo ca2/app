@@ -91,7 +91,7 @@ namespace userfs
 
       virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
 
-      DECLARE_MESSAGE_HANDLER(_001OnLButtonDblClk);
+      DECLARE_MESSAGE_HANDLER(on_message_left_button_double_click);
       DECLARE_MESSAGE_HANDLER(_001OnContextMenu);
       DECLARE_MESSAGE_HANDLER(on_message_create);
       DECLARE_MESSAGE_HANDLER(_001OnShellCommand);

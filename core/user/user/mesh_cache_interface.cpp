@@ -30,4 +30,13 @@ namespace user
    }
 
 
+   void mesh_cache_interface::_001Invalidate()
+   {
+
+   }
+
+
 } // namespace user
+
+
+

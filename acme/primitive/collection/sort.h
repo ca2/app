@@ -28,8 +28,6 @@ namespace sort
 {
 
 
-
-
    template < typename T1, typename T2 >
    inline void sort_non_negative(T1 & t1, T2 & t2)
    {
@@ -1613,92 +1611,154 @@ break_mid_loop:
    } // namespace array
 
 
-   class compare_interface
-   {
-   public:
-      
-      
-      typedef ::index (compare_interface::*_FUNCTION_COMPARE)(index, index);
-
-
-   };
 
    // Sort "array" according to "fCompare" function
    // of "pCompare" interface
 
 
-   template < class NUMERIC_ARRAY >
+   template < class NUMERIC_ARRAY, class COMPARE_INTERFACE >
    void quick_sort(
-   NUMERIC_ARRAY & ar,
-   compare_interface * pinterface,
-   compare_interface::_FUNCTION_COMPARE fCompare)
+   NUMERIC_ARRAY & numerica,
+   COMPARE_INTERFACE * pinterface,
+   ::index(COMPARE_INTERFACE:: * fCompare)(index, index))
    {
+
       index_array stackLowerBound;
+
       index_array stackUpperBound;
+
       iptr iLowerBound;
+
       iptr iUpperBound;
+
       iptr iLPos, iUPos, iMPos;
 
-      ///compare_interface * pinterface = (compare_interface *) pCompare;
-
-      if(ar.get_size() >= 2)
+      if(numerica.get_size() >= 2)
       {
+
          stackLowerBound.push(0);
-         stackUpperBound.push(ar.get_size() - 1);
+
+         stackUpperBound.push(numerica.get_size() - 1);
+
          while(true)
          {
+
             iLowerBound = stackLowerBound.pop();
+
             iUpperBound = stackUpperBound.pop();
+
             iLPos = iLowerBound;
+
             iMPos = iLowerBound;
+
             iUPos = iUpperBound;
+
             while(true)
             {
+
                while(true)
                {
-                  if(iMPos == iUPos)
+
+                  if (iMPos == iUPos)
+                  {
+
                      break;
-                  if((pinterface->*fCompare)(ar[iMPos], ar[iUPos]) <= 0)
+
+                  }
+
+                  if ((pinterface->*fCompare)(numerica[iMPos], numerica[iUPos]) <= 0)
+                  {
+
                      iUPos--;
+
+                  }
                   else
                   {
-                     ar.__swap(iMPos, iUPos);
+
+                     numerica.__swap(iMPos, iUPos);
+
                      break;
+
                   }
+
                }
-               if(iMPos == iUPos)
+
+               if (iMPos == iUPos)
+               {
+
                   break;
+
+               }
+
                iMPos = iUPos;
+
                while(true)
                {
-                  if(iMPos == iLPos)
+                  
+                  if (iMPos == iLPos)
+                  {
+
                      break;
-                  if((pinterface->*fCompare)(ar[iLPos], ar[iMPos]) <= 0)
+
+                  }
+                  
+                  if ((pinterface->*fCompare)(numerica[iLPos], numerica[iMPos]) <= 0)
+                  {
+
                      iLPos++;
+
+                  }
                   else
                   {
-                     ar.__swap(iLPos, iMPos);
+
+                     numerica.__swap(iLPos, iMPos);
+
                      break;
+
                   }
+
                }
-               if(iMPos == iLPos)
+               
+               if (iMPos == iLPos)
+               {
+
                   break;
+
+               }
+
                iMPos = iLPos;
+
             }
+
             if(iLowerBound < iMPos - 1)
             {
+
                stackLowerBound.push(iLowerBound);
+
                stackUpperBound.push(iMPos - 1);
+
             }
+
             if(iMPos + 1 < iUpperBound)
             {
+
                stackLowerBound.push(iMPos + 1);
+
                stackUpperBound.push(iUpperBound);
+
             }
-            if(stackLowerBound.get_size() == 0)
+
+            if (stackLowerBound.get_size() == 0)
+            {
+
                break;
+
+            }
+
          }
+
       }
+
    }
 
 
@@ -1716,9 +1776,11 @@ break_mid_loop:
       typedef typename comparable_list < TYPE, ARG_TYPE, ARRAY_TYPE >::node node;
 
       ::raw_array < node * > stackLowerBound;
+
       ::raw_array < node * > stackUpperBound;
 
       node * iLowerBound;
+
       node * iUpperBound;
       node * iLPos, * iUPos, * iMPos;
 

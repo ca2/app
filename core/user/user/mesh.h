@@ -6,8 +6,7 @@ namespace user
 
 
    class CLASS_DECL_CORE mesh :
-      virtual public ::user::scroll_base,
-      virtual public ::sort::compare_interface
+      virtual public ::user::scroll_base
    {
    protected:
 

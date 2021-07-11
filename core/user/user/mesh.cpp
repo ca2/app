@@ -4592,7 +4592,7 @@ namespace user
       if(m_eview != impact_icon)
       {
 
-         ::sort::quick_sort(m_pmeshlayout->m_iaDisplayToStrict,this,(::sort::compare_interface::_FUNCTION_COMPARE) &::user::mesh::_001Compare);
+         ::sort::quick_sort(m_pmeshlayout->m_iaDisplayToStrict,this,&::user::mesh::_001Compare);
 
       }
       else
@@ -4815,11 +4815,10 @@ namespace user
          if(m_iTopDisplayIndex >= iLow && m_iTopDisplayIndex < (iLow + _001GetGroupItemCount(m_iTopGroup)))
             break;
       }
+
       m_nDisplayCount = _001CalcDisplayItemCount();
 
-//      HeaderCtrlLayout();
-
-      CacheHint();
+      cache_hint();
 
       auto psession = get_session();
 
@@ -5143,17 +5142,24 @@ namespace user
       }
 
       m_iTopDisplayIndex = _001CalcDisplayTopIndex();
+      
       index iLow = 0;
+
       for(m_iTopGroup = 0; m_iTopGroup < m_nGroupCount; m_iTopGroup++)
       {
-         if(m_iTopDisplayIndex >= iLow && m_iTopDisplayIndex < (iLow + _001GetGroupItemCount(m_iTopGroup)))
+
+         if (m_iTopDisplayIndex >= iLow && m_iTopDisplayIndex < (iLow + _001GetGroupItemCount(m_iTopGroup)))
+         {
+
             break;
+
+         }
+
       }
+
       m_nDisplayCount = _001CalcDisplayItemCount();
 
-//      HeaderCtrlLayout();
-
-      CacheHint();
+      cache_hint();
 
    }
 
@@ -5720,18 +5726,32 @@ namespace user
 
    void mesh::_001GetGroupText(mesh_item * pitem)
    {
+      
       pitem->m_bOk = false;
-      if(m_pcache != nullptr)
+
+      if(::is_set(m_pmeshcache))
       {
-         m_pcache->_001GetGroupText(pitem);
-         if(pitem->m_bOk)
+
+         m_pmeshcache->_001GetGroupText(pitem);
+
+         if (pitem->m_bOk)
+         {
+
             return;
+
+         }
+
       }
-      if(m_pmeshdata != nullptr)
+
+      if(::is_set(m_pmeshdata))
       {
+
          m_pmeshdata->_001GetGroupText(pitem);
+
       }
+
    }
+
 
    void mesh::_001GetGroupImage(mesh_item * pitem)
    {
@@ -5786,7 +5806,7 @@ namespace user
       if(pmeshdata.is_null())
          return;
 
-      SetDataInterface(pmeshdata);
+      set_data_interface(pmeshdata);
 
    }
 

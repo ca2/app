@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "core/user/user/_user.h"
 #include "acme/const/timer.h"
+#include "acme/primitive/collection/sort.h"
 
 
 #define DBLCLKMS 500_ms
@@ -5563,26 +5564,26 @@ namespace user
 
       synchronous_lock synchronouslock(mutex());
 
-      if (m_pcache.is_set())
+      if (m_pmeshcache.is_set())
       {
 
          auto iItemCount = m_nDisplayCount;
 
          auto iItemFirst = m_iTopDisplayIndex;
 
-         m_pcache->_001CacheHint(this, iItemFirst, iItemCount);
+         m_pmeshcache->_001CacheHint(this, iItemFirst, iItemCount);
 
       }
 
    }
 
 
-   void list::SetDataInterface(::user::mesh_data *pchannel)
+   void list::set_data_interface(::user::mesh_data * pmeshdata)
    {
 
-      mesh::SetDataInterface(pchannel);
+      mesh::set_data_interface(pmeshdata);
 
-      m_psimplelistdata = m_pmeshdata;
+      m_psimplelistdata = pmeshdata;
 
    }
 
@@ -6384,16 +6385,23 @@ namespace user
 
    void list::_001OnSort()
    {
+
       if (!m_bSortEnable)
+      {
+
          return;
+
+      }
+
       if (m_eview != impact_icon)
       {
-         ::sort::quick_sort(m_pmeshlayout->m_iaDisplayToStrict, this, (::sort::compare_interface::_FUNCTION_COMPARE) &::user::mesh::_001Compare);
+
+         ::sort::quick_sort(m_pmeshlayout->m_iaDisplayToStrict, this, &::user::mesh::_001Compare);
+
       }
-      else
-      {
-      }
+
    }
+
 
    void list::_001OnSort(index iSubItem)
    {
@@ -6618,7 +6626,7 @@ namespace user
 
       HeaderCtrlLayout();
 
-      CacheHint();
+      cache_hint();
 
       auto psession = get_session();
 
@@ -6841,7 +6849,7 @@ namespace user
 
       HeaderCtrlLayout();
 
-      CacheHint();
+      cache_hint();
 
    }
 
@@ -7712,7 +7720,7 @@ namespace user
 
       }
 
-      SetDataInterface(plistdata);
+      set_data_interface(plistdata);
 
    }
 

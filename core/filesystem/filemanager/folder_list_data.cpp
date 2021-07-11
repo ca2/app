@@ -37,32 +37,52 @@ namespace filemanager
 
       if(pitem->m_iSubItem == 0)
       {
+
          string_array stra;
+
          if(!data_get(::id(), stra))
          {
+
             pitem->m_bOk = false;
+
             return;
+
          }
+
          pitem->m_strText = stra[pitem->m_iItem];
+
       }
       else if(pitem->m_iSubItem == 1)
       {
 
          int_array ia;
 
-         data_get("recursive", ia);
-
-         bool b = ia[pitem->m_iItem];
-
-         if(b)
+         if (!data_get("recursive", ia))
          {
+
+            pitem->m_bOk = false;
+
+            return;
+
+         }
+
+         bool bRecursive = ia[pitem->m_iItem] != false;
+
+         if(bRecursive)
+         {
+
             pitem->m_strText = "Recursive";
+
          }
          else
          {
+
             pitem->m_strText.Empty();
+
          }
+
       }
+
       pitem->m_bOk = true;
    }
 

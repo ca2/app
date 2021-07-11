@@ -13,6 +13,25 @@ namespace aura
    }
 
 
+   void draw_context::get_client_rect(RECTANGLE_I32* lprectangle)
+   {
+
+      if (m_pdrawcontextNext)
+      {
+
+         m_pdrawcontextNext->get_client_rect(lprectangle);
+
+      }
+      else
+      {
+
+         *lprectangle = m_rectangleClient;
+
+      }
+
+   }
+
+
    bool draw_context::is_control_selected()
    {
 

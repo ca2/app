@@ -91,6 +91,8 @@ namespace aura
       draw_context();
 
 
+      virtual void get_client_rect(RECTANGLE_I32* lprect);
+
       virtual bool is_control_selected();
       virtual bool is_control_hover();
 

@@ -12270,6 +12270,26 @@ restart:
    
    }
 
+   
+   void interaction::get_client_rect(RECTANGLE_I32* lprect, enum_layout elayout) const
+   {
+
+      if (m_pdrawcontext)
+      {
+
+         m_pdrawcontext->get_client_rect(lprect);
+
+      }
+      else
+      {
+
+         layout().state(elayout).client_rect(lprect);
+
+      }
+   
+   }
+
+
    index interaction::best_monitor(RECTANGLE_I32 * prectangle, const ::rectangle_i32 & rectangle, bool bSet, ::e_activation eactivation, ::zorder zorderParam)
    {
 

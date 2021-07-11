@@ -132,6 +132,8 @@ namespace user
 
       ::aura::draw_context drawcontext;
 
+      drawcontext.m_pdrawcontextNext = m_pdrawcontext;
+
       drawcontext.m_bListItemHover = hover_item().is_set();
 
       __keep(pgraphics->m_pdrawcontext, &drawcontext);

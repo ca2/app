@@ -968,7 +968,7 @@ void binary_stream::read_var_body(::payload & payload, enum_type etype)
    case e_type_inta:
    {
 
-      __exchange_save_array(*this, payload.inta());
+      __exchange_load_array(*this, payload.inta());
 
    }
    break;

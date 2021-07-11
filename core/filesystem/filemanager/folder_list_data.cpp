@@ -93,32 +93,6 @@ namespace filemanager
 
          pitem->m_bOk = false; 
 
-         //i32_array ia;
-
-         //if (!data_get("recursive", ia))
-         //{
-
-         //   pitem->m_bOk = false;
-
-         //   return;
-
-         //}
-
-         //bool bRecursive = ia[pitem->m_iItem] != false;
-
-         //if(bRecursive)
-         //{
-
-         //   pitem->m_strText = "Recursive";
-
-         //}
-         //else
-         //{
-
-         //   pitem->m_strText.Empty();
-
-         //}
-
       }
 
    }
@@ -188,25 +162,26 @@ namespace filemanager
 
       synchronous_lock synchronouslock(mutex());
 
-      string_array straData;
+      string_array straFolderPath;
 
-      data_get(::id(), straData);
+      data_get(::id(), straFolderPath);
 
-      i32_array iaData;
-      data_get("recursive", iaData);
+      i32_array iaRecursive;
+
+      data_get("recursive", iaRecursive);
 
       for(i32 i = 0; i < stra.get_count(); i++)
       {
 
-         if(!straData.contains(stra[i]))
+         if(!straFolderPath.contains(stra[i]))
          {
 
-            straData.add(stra[i]);
+            straFolderPath.add(stra[i]);
 
             if(i <= baRecursive.get_upper_bound())
             {
 
-               iaData.add(baRecursive[i]);
+               iaRecursive.add(baRecursive[i]);
 
             }
 
@@ -214,21 +189,21 @@ namespace filemanager
 
       }
 
-      while(iaData.get_size() < straData.get_size())
+      while(iaRecursive.get_size() < straFolderPath.get_size())
       {
 
-         iaData.add(true); // default bred, broad, expansive
+         iaRecursive.add(true); // default bred, broad, expansive
 
       }
 
-      while(iaData.get_size() > straData.get_size())
+      while(iaRecursive.get_size() > straFolderPath.get_size())
       {
 
-         iaData.erase_last();
+         iaRecursive.erase_last();
 
       }
 
-      if (!data_set(::id(), straData))
+      if (!data_set(::id(), straFolderPath))
       {
 
          return false;
@@ -238,7 +213,7 @@ namespace filemanager
       try
       {
 
-         data_set("recursive", iaData);
+         data_set("recursive", iaRecursive);
 
       }
       catch(...)
@@ -258,33 +233,33 @@ namespace filemanager
 
       synchronous_lock synchronouslock(mutex());
 
-      string_array straData;
+      string_array straFolderPath;
 
-      if (!data_get(::id(), straData))
+      if (!data_get(::id(), straFolderPath))
       {
 
          return true;
 
       }
 
-      i32_array iaData;
+      i32_array iaRecursive;
 
-      data_get("recursive", iaData);
+      data_get("recursive", iaRecursive);
 
       index iFind;
 
       for(i32 i = 0; i < stra.get_count(); i++)
       {
 
-         while((iFind = straData.find_first(stra[i])) >= 0)
+         while((iFind = straFolderPath.find_first(stra[i])) >= 0)
          {
 
-            straData.erase_at(iFind);
+            straFolderPath.erase_at(iFind);
 
-            if(iFind < iaData.get_size())
+            if(iFind < iaRecursive.get_size())
             {
 
-               iaData.erase_at(iFind);
+               iaRecursive.erase_at(iFind);
 
             }
 
@@ -292,21 +267,21 @@ namespace filemanager
 
       }
 
-      while(iaData.get_size() < straData.get_size())
+      while(iaRecursive.get_size() < straFolderPath.get_size())
       {
 
-         iaData.add(true); // default bred, broad, expansive
+         iaRecursive.add(true); // default bred, broad, expansive
 
       }
 
-      while(iaData.get_size() > straData.get_size())
+      while(iaRecursive.get_size() > straFolderPath.get_size())
       {
 
-         iaData.erase_last();
+         iaRecursive.erase_last();
 
       }
 
-      if (!data_set(::id(), straData))
+      if (!data_set(::id(), straFolderPath))
       {
 
          return false;
@@ -316,7 +291,7 @@ namespace filemanager
       try
       {
 
-         data_set("recursive", iaData);
+         data_set("recursive", iaRecursive);
 
       }
       catch(...)
@@ -334,27 +309,25 @@ namespace filemanager
 
       synchronous_lock synchronouslock(mutex());
 
-      i32_array iaData;
+      i32_array iaRecursive;
 
       try
       {
 
-         data_get("recursive", iaData);
+         data_get("recursive", iaRecursive);
 
       }
       catch (...)
       {
 
-         return false;
-
       }
 
-      iaData.set_at_grow(iItem, bRecursive ? 1 : 0);
+      iaRecursive.set_at_grow(iItem, bRecursive ? 1 : 0);
 
       try
       {
 
-         data_set("recursive", iaData);
+         data_set("recursive", iaRecursive);
 
       }
       catch (...)
@@ -374,12 +347,12 @@ namespace filemanager
 
       synchronous_lock synchronouslock(mutex());
 
-      i32_array iaData;
+      i32_array iaRecursive;
 
       try
       {
 
-         data_get("recursive", iaData);
+         data_get("recursive", iaRecursive);
 
       }
       catch (...)
@@ -389,18 +362,19 @@ namespace filemanager
 
       }
 
-      if(iItem < 0 || iItem >= iaData.get_size())
+      if(iItem < 0 || iItem >= iaRecursive.get_size())
       {
       
          return false;
       
       }
 
-      auto iData = iaData[iItem];
+      auto iData = iaRecursive[iItem];
 
       return iData != 0 ? true : false;
 
    }
+
 
 } // namespace filemanager
 

@@ -796,7 +796,7 @@ list(APPEND library_source
    os/windows_common/comptr.h
    os/windows_common/cotaskptr.h
    os/windows_common/file.h
-   os/windows_common/graphics.h
+   #os/windows_common/graphics.h
    os/windows_common/new_api.h
    os/windows_common/parallelization.h
    os/windows_common/variant.h
@@ -1442,7 +1442,7 @@ if (WIN32 OR UWP)
       os/windows_common/debug.cpp
       os/windows_common/file.cpp
       #os/windows_common/file_c.cpp
-      os/windows_common/graphics.cpp
+      #os/windows_common/graphics.cpp
       #os/windows_common/net.cpp
       os/windows_common/parallelization.cpp
       os/windows_common/time.cpp

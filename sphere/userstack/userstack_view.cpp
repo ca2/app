@@ -41,7 +41,7 @@ namespace userstack
       MESSAGE_LINK(e_message_destroy, pchannel, this, &view::on_message_destroy);
       MESSAGE_LINK(e_message_paint, pchannel, this, &view::_001OnPaint);
       MESSAGE_LINK(e_message_create, pchannel, this, &view::on_message_create);
-      MESSAGE_LINK(e_message_context_menu, pchannel, this, &view::_001OnContextMenu);
+      MESSAGE_LINK(e_message_context_menu, pchannel, this, &view::on_message_context_menu);
       MESSAGE_LINK(e_message_set_cursor, pchannel, this, &view::on_message_set_cursor);
       MESSAGE_LINK(e_message_left_button_up, pchannel, this, &view::on_message_left_button_up);
 
@@ -175,7 +175,7 @@ namespace userstack
 
    }
 
-   void view::_001OnContextMenu(::message::message * pmessage)
+   void view::on_message_context_menu(::message::message * pmessage)
    {
 //      __pointer(::message::context_menu) pcontextmenu(pmessage);
 //      ::point_i32 point = pcontextmenu->GetPoint();

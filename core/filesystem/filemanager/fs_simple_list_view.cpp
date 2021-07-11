@@ -47,7 +47,7 @@ namespace filemanager
 //            //MESSAGE_LINK(e_message_timer, pchannel, this, &list_view::_001OnTimer);
             MESSAGE_LINK(e_message_size, pchannel, this, &list_view::on_message_size);
 #ifdef WINDOWS_DESKTOP
-            MESSAGE_LINK(e_message_context_menu, pchannel, this, &list_view::_001OnContextMenu);
+            MESSAGE_LINK(e_message_context_menu, pchannel, this, &list_view::on_message_context_menu);
 #endif
             MESSAGE_LINK(e_message_erase_background, pchannel, this, &list_view::_001OnEraseBkgnd);
             MESSAGE_LINK(WM_USER + 1217, pchannel, this, &list_view::_001OnFillTaskResponse);
@@ -637,7 +637,7 @@ namespace filemanager
 
          }
 
-         void list_view::_001OnContextMenu(::message::message * pmessage)
+         void list_view::on_message_context_menu(::message::message * pmessage)
          {
 
             __pointer(::message::context_menu) pcontextmenu(pmessage);

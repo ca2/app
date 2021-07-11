@@ -105,7 +105,7 @@ namespace filemanager
       virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
 
 
-      DECLARE_MESSAGE_HANDLER(_001OnContextMenu);
+      DECLARE_MESSAGE_HANDLER(on_message_context_menu);
       DECLARE_MESSAGE_HANDLER(on_message_create);
       DECLARE_MESSAGE_HANDLER(_001OnShellCommand);
 

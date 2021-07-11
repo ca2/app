@@ -934,7 +934,7 @@ namespace user
    }
 
 
-   void plain_edit::_001OnContextMenu(::message::message * pmessage)
+   void plain_edit::on_message_context_menu(::message::message * pmessage)
    {
 
    }

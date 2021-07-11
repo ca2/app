@@ -532,7 +532,7 @@ namespace filemanager
       ::userfs::tree::install_message_routing(pchannel);
 
       MESSAGE_LINK(MessageMainPost, pchannel,  this,  &tree::_001OnMainPostMessage);
-      MESSAGE_LINK(e_message_context_menu, pchannel, this, &tree::_001OnContextMenu);
+      MESSAGE_LINK(e_message_context_menu, pchannel, this, &tree::on_message_context_menu);
       MESSAGE_LINK(e_message_create, pchannel, this, &tree::on_message_create);
 
    }
@@ -729,7 +729,7 @@ namespace filemanager
 
 
 
-   void tree::_001OnContextMenu(::message::message * pmessage)
+   void tree::on_message_context_menu(::message::message * pmessage)
    {
 
    }

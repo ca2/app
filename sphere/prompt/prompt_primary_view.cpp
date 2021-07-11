@@ -37,7 +37,7 @@ namespace prompt
    {
 
       BASE::install_message_routing(pchannel);
-      MESSAGE_LINK(e_message_context_menu, pchannel, this, &primary_view::_001OnContextMenu);
+      MESSAGE_LINK(e_message_context_menu, pchannel, this, &primary_view::on_message_context_menu);
 
    }
 
@@ -247,7 +247,7 @@ namespace prompt
    }
 
 
-   void primary_view::_001OnContextMenu(::message::message * pmessage)
+   void primary_view::on_message_context_menu(::message::message * pmessage)
    {
 
       __pointer(::message::context_menu) pcontextmenu(pmessage);

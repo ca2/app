@@ -30,7 +30,7 @@ namespace prompt
       MESSAGE_LINK(e_message_size, pchannel, this, &view::on_message_size);
       MESSAGE_LINK(e_message_paint, pchannel, this, &view::_001OnPaint);
       MESSAGE_LINK(e_message_create, pchannel, this, &view::on_message_create);
-      MESSAGE_LINK(e_message_context_menu, pchannel, this, &view::_001OnContextMenu);
+      MESSAGE_LINK(e_message_context_menu, pchannel, this, &view::on_message_context_menu);
       MESSAGE_LINK(e_message_set_cursor, pchannel, this, &view::on_message_set_cursor);
 
       //   MESSAGE_LINK(e_message_left_button_down, pchannel, this, &::user::interaction::on_message_left_button_down);
@@ -169,7 +169,7 @@ namespace prompt
    }
 
 
-   void view::_001OnContextMenu(::message::message * pmessage)
+   void view::on_message_context_menu(::message::message * pmessage)
    {
 //      __pointer(::message::context_menu) pcontextmenu(pmessage);
 //      ::point_i32 point = pcontextmenu->GetPoint();

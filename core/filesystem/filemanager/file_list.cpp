@@ -36,7 +36,7 @@ namespace filemanager
 
       MESSAGE_LINK(e_message_hscroll, pchannel, this, &file_list::_001OnHScroll);
       MESSAGE_LINK(e_message_vscroll, pchannel, this, &file_list::_001OnVScroll);
-      MESSAGE_LINK(e_message_right_button_up, pchannel, this, &file_list::_001OnContextMenu);
+      MESSAGE_LINK(e_message_right_button_up, pchannel, this, &file_list::on_message_context_menu);
       MESSAGE_LINK(e_message_show_window, pchannel, this, &file_list::on_message_show_window);
       MESSAGE_LINK(e_message_set_focus, pchannel, this, &file_list::_001OnSetFocus);
       MESSAGE_LINK(e_message_kill_focus, pchannel, this, &file_list::_001OnKillFocus);
@@ -139,7 +139,7 @@ namespace filemanager
    }
 
 
-   void file_list::_001OnContextMenu(::message::message * pmessage)
+   void file_list::on_message_context_menu(::message::message * pmessage)
    {
 
       __pointer(::message::mouse) pcontextmenu(pmessage);

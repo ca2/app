@@ -38,7 +38,7 @@ public:
 
    DECLARE_MESSAGE_HANDLER(on_message_destroy);
    DECLARE_MESSAGE_HANDLER(on_message_create);
-   DECLARE_MESSAGE_HANDLER(_001OnContextMenu);
+   DECLARE_MESSAGE_HANDLER(on_message_context_menu);
    DECLARE_MESSAGE_HANDLER(on_message_set_cursor);
 
 };

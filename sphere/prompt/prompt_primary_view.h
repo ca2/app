@@ -33,7 +33,7 @@ namespace prompt
       DECLARE_MESSAGE_HANDLER(_001OnEditCopy);
       DECLARE_MESSAGE_HANDLER(_001OnUpdateEditPaste);
       DECLARE_MESSAGE_HANDLER(_001OnEditPaste);
-      DECLARE_MESSAGE_HANDLER(_001OnContextMenu);
+      DECLARE_MESSAGE_HANDLER(on_message_context_menu);
 
 
    };

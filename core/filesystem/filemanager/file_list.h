@@ -72,7 +72,7 @@ namespace filemanager
 
 
       DECLARE_MESSAGE_HANDLER(on_message_left_button_up);
-      DECLARE_MESSAGE_HANDLER(_001OnContextMenu);
+      DECLARE_MESSAGE_HANDLER(on_message_context_menu);
 
       DECLARE_MESSAGE_HANDLER(_001OnShellCommand);
       DECLARE_MESSAGE_HANDLER(_001OnFileManagerItemCommand);

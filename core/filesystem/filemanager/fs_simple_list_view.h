@@ -155,7 +155,7 @@ namespace filemanager
             DECLARE_MESSAGE_HANDLER(on_message_left_button_double_click);
             void _001OnTimer(::timer * ptimer) override;
             DECLARE_MESSAGE_HANDLER(on_message_size);
-            DECLARE_MESSAGE_HANDLER(_001OnContextMenu);
+            DECLARE_MESSAGE_HANDLER(on_message_context_menu);
             DECLARE_MESSAGE_HANDLER(_001OnEraseBkgnd);
             DECLARE_MESSAGE_HANDLER(_001OnFillTaskResponse);
 

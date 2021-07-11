@@ -85,39 +85,41 @@ namespace filemanager
 
          pitem->m_strText = stra[pitem->m_iItem];
 
+         pitem->m_bOk = true;
+
       }
       else if(pitem->m_iSubItem == 1)
       {
 
-         i32_array ia;
+         pitem->m_bOk = false; 
 
-         if (!data_get("recursive", ia))
-         {
+         //i32_array ia;
 
-            pitem->m_bOk = false;
+         //if (!data_get("recursive", ia))
+         //{
 
-            return;
+         //   pitem->m_bOk = false;
 
-         }
+         //   return;
 
-         bool bRecursive = ia[pitem->m_iItem] != false;
+         //}
 
-         if(bRecursive)
-         {
+         //bool bRecursive = ia[pitem->m_iItem] != false;
 
-            pitem->m_strText = "Recursive";
+         //if(bRecursive)
+         //{
 
-         }
-         else
-         {
+         //   pitem->m_strText = "Recursive";
 
-            pitem->m_strText.Empty();
+         //}
+         //else
+         //{
 
-         }
+         //   pitem->m_strText.Empty();
+
+         //}
 
       }
-
-      pitem->m_bOk = true;
 
    }
 

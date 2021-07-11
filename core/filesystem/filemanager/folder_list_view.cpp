@@ -262,7 +262,7 @@ namespace filemanager
    }
 
 
-   void folder_list_view::on_check_save(::user::interaction* puserinteraction)
+   void folder_list_view::on_check_load(::user::interaction* puserinteraction)
    {
 
       if (puserinteraction->m_id == "check_recursive")
@@ -273,9 +273,11 @@ namespace filemanager
          if (pfolderlistdata)
          {
 
-            bool bCheck = pfolderlistdata->get_recursive(bCheck);
+            auto iItem = puserinteraction->m_iItem;
 
-            puserinteraction->_001SetCheck(bCheck);
+            bool bCheck = pfolderlistdata->get_recursive(iItem);
+
+            puserinteraction->_001SetCheck(bCheck, ::e_source_user);
 
          }
 

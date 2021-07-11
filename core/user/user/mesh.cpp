@@ -757,6 +757,7 @@ namespace user
       pitem->m_bOk = false;
    }
 
+
    void mesh::_001SetItemText(::user::mesh_item * pitem)
    {
 
@@ -764,19 +765,33 @@ namespace user
 
    }
 
+
    void mesh::_001GetItemText(::user::mesh_item * pitem)
    {
+      
       pitem->m_bOk = false;
+
       if(m_pcache != nullptr)
       {
+         
          m_pcache->_001GetItemText(pitem);
-         if(pitem->m_bOk)
+
+         if (pitem->m_bOk)
+         {
+
             return;
+
+         }
+
       }
+
       if(m_pmeshdata != nullptr)
       {
+
          m_pmeshdata->_001GetItemText(pitem);
+
       }
+
    }
 
    // Purpose:

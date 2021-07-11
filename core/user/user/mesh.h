@@ -7,7 +7,7 @@ namespace user
 
    class CLASS_DECL_CORE mesh :
       virtual public ::user::scroll_base,
-      public ::sort::compare_interface
+      virtual public ::sort::compare_interface
    {
    protected:
 
@@ -145,7 +145,7 @@ namespace user
 
 
       bool                             m_bSortEnable;
-      __pointer(mesh_cache_interface)  m_pcache;
+      __pointer(mesh_cache_interface)  m_pmeshcache;
 
       draw2d::graphics_extension       m_dcextension;
 
@@ -326,9 +326,9 @@ namespace user
       virtual bool _001HasConfigId(const ::database::key & key);
       virtual void _001GetSelection(::database::key & key,::database::selection & selection);
 
-      virtual void SetDataInterface(mesh_data * pinterface);
-      virtual void CacheHint();
-      virtual void SetCacheInterface(mesh_cache_interface * pinterface);
+      virtual void set_data_interface(mesh_data * pinterface);
+      virtual void cache_hint();
+      virtual void set_cache_interface(mesh_cache_interface * pinterface);
       virtual void _001ShowTopText(bool bShow = true);
       virtual void _001LayoutTopText(::draw2d::graphics_pointer & pgraphics);
       virtual void _001SetTopText(const widechar * pcwsz);

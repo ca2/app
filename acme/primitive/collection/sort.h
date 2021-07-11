@@ -1613,69 +1613,14 @@ break_mid_loop:
    } // namespace array
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
    class compare_interface
    {
    public:
-      typedef iptr (compare_interface::*_FUNCTION_Compare)(iptr, iptr);
+      
+      
+      typedef ::index (compare_interface::*_FUNCTION_COMPARE)(index, index);
+
+
    };
 
    // Sort "array" according to "fCompare" function
@@ -1686,7 +1631,7 @@ break_mid_loop:
    void quick_sort(
    NUMERIC_ARRAY & ar,
    compare_interface * pinterface,
-   compare_interface::_FUNCTION_Compare fCompare)
+   compare_interface::_FUNCTION_COMPARE fCompare)
    {
       index_array stackLowerBound;
       index_array stackUpperBound;

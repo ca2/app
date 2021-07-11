@@ -41,9 +41,9 @@ namespace filemanager
 
       m_pfolderlistdata = __create_new < folder_list_data > ();
 
-      SetDataInterface(m_pfolderlistdata);
-
       m_pfolderlistdata->set_data_key_modifier(strDataKeyModifier);
+
+      set_data_interface(m_pfolderlistdata);
 
       _001OnUpdateItemCount();
 

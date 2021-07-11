@@ -1086,7 +1086,7 @@ namespace user
 
       }
 
-      CacheHint();
+      cache_hint();
 
       set_need_layout();
 
@@ -5558,7 +5558,7 @@ namespace user
 
 
 
-   void list::CacheHint()
+   void list::cache_hint()
    {
 
       synchronous_lock synchronouslock(mutex());
@@ -6388,7 +6388,7 @@ namespace user
          return;
       if (m_eview != impact_icon)
       {
-         ::sort::quick_sort(m_pmeshlayout->m_iaDisplayToStrict, this, (::sort::compare_interface::_FUNCTION_Compare) &::user::mesh::_001Compare);
+         ::sort::quick_sort(m_pmeshlayout->m_iaDisplayToStrict, this, (::sort::compare_interface::_FUNCTION_COMPARE) &::user::mesh::_001Compare);
       }
       else
       {

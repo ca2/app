@@ -17,8 +17,8 @@ namespace filemanager
       typedef ::user::show < ::user::list > BASE;
 
 
-      ::user::list_cache               m_listcache;
-      millis m_millisLast123Update;
+      __pointer(::user::list_cache)       m_puserlistcache;
+      millis                              m_millisLastUpdate;
 
 
       operation_list_view();

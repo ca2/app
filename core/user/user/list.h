@@ -149,8 +149,8 @@ namespace user
       virtual void _001SetSingleColumnMode(bool bHeaderCtrl);
       //virtual bool _001InsertColumn(::user::list_column * pcolumn);
       //virtual void _001OnAfterNewColumns();
-      void SetDataInterface(mesh_data * pinterface) override;
-      void CacheHint() override;
+      void set_data_interface(mesh_data * pinterface) override;
+      void cache_hint() override;
       //void SetCacheInterface(mesh_cache_interface * pinterface);
       //void AddMessageHandling(::channel * pchannel);
       void _001ShowTopText(bool bShow = true) override;

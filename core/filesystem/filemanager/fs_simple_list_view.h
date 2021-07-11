@@ -101,7 +101,7 @@ namespace filemanager
             };
 
 
-            ::user::list_cache                              m_cache;
+            __pointer(::user::list_cache)                   m_puserlistcache;
             bool                                            m_bKickActive;
 
             __pointer(::image_list)                           m_pil;

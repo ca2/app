@@ -20,9 +20,11 @@ namespace filemanager
 
             m_bKickActive = false;
 
-            SetCacheInterface(&m_cache);
+            auto estatus = __construct_new(m_puserlistcache);
 
-            m_pil = __new(::image_list);
+            set_cache_interface(m_puserlistcache);
+
+            m_pil = __create_new< ::image_list>();
 
             m_pil->create(16, 16, 0, 0, 0);
 
@@ -329,7 +331,7 @@ namespace filemanager
             /*            critical_section_lock synchronouslock(get_document()->m_pcsAlbum1);
                         get_document()->m_pdsAlbum1->query(strSql);*/
 
-            m_cache._001Invalidate(this);
+            m_puserlistcache->_001Invalidate(this);
 
             set_need_redraw();
 
@@ -572,7 +574,7 @@ namespace filemanager
             if(pusermessage->m_wparam == 0)
             {
 
-               m_cache._001Invalidate(this);
+               m_puserlistcache->_001Invalidate(this);
 
                _001OnUpdateItemCount();
 
@@ -594,17 +596,24 @@ namespace filemanager
             else if(pusermessage->m_wparam == 1)
             {
 
-               m_cache._001Invalidate(this);
+               m_puserlistcache->_001Invalidate(this);
+
                set_need_redraw();
+
             }
             else if(pusermessage->m_wparam == 2)
             {
+               
                _001OnUpdateItemCount();
+
             }
             else if(pusermessage->m_wparam == 3)
             {
-               m_cache._001Invalidate(this);
+               
+               m_puserlistcache->_001Invalidate(this);
+
             }
+
          }
 
          void list_view::start_build(i32 iItem)

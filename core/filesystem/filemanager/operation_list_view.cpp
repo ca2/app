@@ -8,12 +8,14 @@ namespace filemanager
 
    operation_list_view::operation_list_view()
    {
-      m_millisLast123Update= ::millis::now();
-      m_pcache = &m_listcache;
+
+      m_millisLastUpdate.Now();
+
    }
 
    void operation_list_view::install_message_routing(::channel * pchannel)
    {
+
       ::user::impact::install_message_routing(pchannel);
       ::user::list::install_message_routing(pchannel);
 //      //MESSAGE_LINK(e_message_timer,pchannel,this,&operation_list_view::_001OnTimer);
@@ -86,39 +88,61 @@ namespace filemanager
 
    void operation_list_view::on_message_create(::message::message * pmessage)
    {
+
       pmessage->previous();
+
+      auto estatus = __defer_construct_new(m_puserlistcache);
+
+      m_pmeshcache = m_puserlistcache;
+
       SetTimer(123,500,nullptr);
+
    }
+
    void operation_list_view::_001OnTimer(::timer * ptimer)
    {
       BASE::_001OnTimer(ptimer);
       if(ptimer->m_uEvent == 123)
       {
-         /*if(m_millisLast123Update.elapsed() > 500)
+         /*if(m_millisLastUpdate.elapsed() > 500)
          {
-         m_millisLast123Update= ::millis::now();
+         m_millisLastUpdate= ::millis::now();
          _001OnUpdateItemCount();
          m_cache._001Invalidate();
          }*/
       }
+
    }
+
 
    void operation_list_view::OnFileOperationStep(i32 iOperation,bool bFinal)
    {
+
       UNREFERENCED_PARAMETER(iOperation);
-      if(bFinal || m_millisLast123Update.elapsed() > 184)
+
+      if(bFinal || m_millisLastUpdate.elapsed() > 200)
       {
-         m_millisLast123Update= ::millis::now();
+
+         m_millisLastUpdate= ::millis::now();
+
          _001OnUpdateItemCount();
-         m_listcache._001Invalidate(this);
+
+         m_puserlistcache->_001Invalidate(this);
+
          ::count iItem = 0;
+
          for(i32 i = 0; i < get_document()->m_thread.m_iOperation; i++)
          {
+
             iItem += get_document()->m_thread.m_fileoperationa.get_size();
+
          }
+
          if(get_document()->m_thread.m_iOperation < get_document()->m_thread.m_fileoperationa.get_size())
          {
+
             iItem += get_document()->m_thread.m_fileoperationa[get_document()->m_thread.m_iOperation]->m_iFile;
+
          }
 
          _001ItemScroll(iItem);

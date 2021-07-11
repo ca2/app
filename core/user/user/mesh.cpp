@@ -47,9 +47,8 @@ namespace user
       m_bSortEnable              = true;
       m_bFilter1                 = false;
       m_nColumnCount             = 1;
-      m_iTimerHoverSelect = 0;
+      m_iTimerHoverSelect        = 0;
 
-      m_pcache                   = nullptr;
       m_bTopText                 = false;
 
       m_bEmboss                  = true;
@@ -771,10 +770,10 @@ namespace user
       
       pitem->m_bOk = false;
 
-      if(m_pcache != nullptr)
+      if(::is_set(m_pmeshcache))
       {
          
-         m_pcache->_001GetItemText(pitem);
+         m_pmeshcache->_001GetItemText(pitem);
 
          if (pitem->m_bOk)
          {
@@ -1005,7 +1004,7 @@ namespace user
          FilterApply();
       }
 
-      CacheHint();
+      cache_hint();
 
       auto psystem = m_psystem->m_paurasystem;
 
@@ -3833,32 +3832,32 @@ namespace user
    }
 
 
-
-
-   void mesh::SetCacheInterface(mesh_cache_interface * pinterface)
+   void mesh::set_cache_interface(mesh_cache_interface * pinterface)
    {
-      m_pcache = pinterface;
+      
+      m_pmeshcache = pinterface;
+
    }
 
 
-   void mesh::CacheHint()
+   void mesh::cache_hint()
    {
 
-      if(m_pcache != nullptr)
+      if(m_pmeshcache != nullptr)
       {
 
          index iItemCount = m_nDisplayCount;
 
          index iItemFirst = m_iTopDisplayIndex;
 
-         m_pcache->_001CacheHint(this, iItemFirst, iItemCount);
+         m_pmeshcache->_001CacheHint(this, iItemFirst, iItemCount);
 
       }
 
    }
 
 
-   void mesh::SetDataInterface(::user::mesh_data *pinterface)
+   void mesh::set_data_interface(::user::mesh_data *pinterface)
    {
 
       m_pmeshdata = pinterface;
@@ -4593,7 +4592,7 @@ namespace user
       if(m_eview != impact_icon)
       {
 
-         ::sort::quick_sort(m_pmeshlayout->m_iaDisplayToStrict,this,(::sort::compare_interface::_FUNCTION_Compare) &::user::mesh::_001Compare);
+         ::sort::quick_sort(m_pmeshlayout->m_iaDisplayToStrict,this,(::sort::compare_interface::_FUNCTION_COMPARE) &::user::mesh::_001Compare);
 
       }
       else

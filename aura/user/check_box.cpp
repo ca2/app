@@ -37,6 +37,16 @@ namespace user
    }
 
 
+   ::matter* check_box::clone() const
+   {
+
+      auto pcheckbox = __new(::user::check_box);
+
+      return pcheckbox;
+
+   }
+
+
    void check_box::_001SetCheck(::enum_check echeck, const ::action_context & context)
    {
 

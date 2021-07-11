@@ -41,6 +41,7 @@ namespace user
       check_box(e_style estyle = style_normal);
       virtual ~check_box();
 
+      ::matter* clone() const override;
 
       virtual enum_element get_default_element() const override;
 

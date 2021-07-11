@@ -4937,41 +4937,69 @@ namespace user
    }
 
 
-   ::user::interaction * interaction::get_child_by_name(const char * lpszName, i32 iLevel)
+   ::user::interaction * interaction::get_child_by_name(const string & strName, ::index iItem, i32 iLevel)
    {
+
       __pointer(interaction) pinteraction = top_child();
+
       while (pinteraction != nullptr)
       {
-         if (pinteraction->m_strName == lpszName)
+
+         if (pinteraction->m_strName == strName)
          {
-            return pinteraction;
+
+            if (iItem < 0 || iItem == pinteraction->m_iItem)
+            {
+
+               return pinteraction;
+
+            }
+
          }
+
          pinteraction = pinteraction->under_sibling();
+
       }
+
       __pointer(interaction) pchild;
+
       if (iLevel > 0 || iLevel == -1)
       {
+
          if (iLevel > 0)
          {
+
             iLevel--;
+
          }
+
          __pointer(interaction) pinteraction = top_child();
+
          while (pinteraction != nullptr)
          {
-            pchild = pinteraction->get_child_by_name(lpszName, iLevel);
+            
+            pchild = pinteraction->get_child_by_name(strName, iItem, iLevel);
+
             if (pchild != nullptr)
+            {
+
                return pchild;
+
+            }
+
             pinteraction = pinteraction->under_sibling();
+
          }
+
       }
+
       return nullptr;
+
    }
 
 
-   ::user::interaction * interaction::get_child_by_id(id id, i32 iLevel)
+   ::user::interaction * interaction::get_child_by_id(const id & id, index iItem, i32 iLevel)
    {
-
-      //synchronous_lock synchronouslock(::user::mutex_children());
 
       auto puserinteractionpointeraChild = m_puserinteractionpointeraChild;
 
@@ -4990,7 +5018,12 @@ namespace user
          if (pinteraction->GetDlgCtrlId() == id)
          {
 
-            return pinteraction;
+            if (iItem < 0 || iItem == pinteraction->m_iItem)
+            {
+
+               return pinteraction;
+
+            }
 
          }
 
@@ -5014,7 +5047,7 @@ namespace user
 
          auto pinteraction = puserinteractionpointeraChild->get_interaction(i);
 
-         ::user::interaction * puiChild = pinteraction->get_child_by_id(id, iLevel);
+         ::user::interaction * puiChild = pinteraction->get_child_by_id(id, iItem, iLevel);
 
          if (::is_set(puiChild))
          {

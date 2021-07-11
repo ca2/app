@@ -2127,6 +2127,13 @@ break_click:;
 
          pinteraction = pinteractionTemplate->clone();
 
+         if (::is_set(pinteraction))
+         {
+
+            pinteraction->child_child(this);
+
+         }
+
       }
 
       pinteraction->m_id = pcolumn->m_id;

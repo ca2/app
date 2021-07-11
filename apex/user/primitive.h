@@ -402,8 +402,8 @@ namespace user
 
       virtual void OnLinkClick(const char * psz,const char * pszTarget = nullptr);
 
-      ::user::interaction * get_child_by_name(const char * lpszName,i32 iLevel = -1);
-      ::user::interaction * get_child_by_id(id id,i32 iLevel = -1);
+      virtual ::user::interaction * get_child_by_name(const string & strName, ::index iItem = -1, i32 iLevel = -1);
+      virtual ::user::interaction * get_child_by_id(const ::id & id, ::index iItem = -1, i32 iLevel = -1);
 
 
       virtual ::user::interaction * get_wnd() const;

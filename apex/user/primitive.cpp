@@ -1000,7 +1000,7 @@ namespace user
    }
 
 
-   ::user::interaction * primitive::get_child_by_name(const char * lpszName,i32 iLevel)
+   ::user::interaction * primitive::get_child_by_name(const string & strName, ::index iItem, i32 iLevel)
    {
 
       ::exception::throw_interface_only();
@@ -1010,7 +1010,7 @@ namespace user
    }
 
 
-   ::user::interaction * primitive::get_child_by_id(id id,i32 iLevel)
+   ::user::interaction * primitive::get_child_by_id(const id & id, ::index iItem, i32 iLevel)
    {
 
       ::exception::throw_interface_only();

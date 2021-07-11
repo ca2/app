@@ -6,8 +6,8 @@ namespace filemanager
 
 
    class CLASS_DECL_CORE folder_list_data :
-      public ::user::list_data,
-      public ::database::client
+      virtual public ::user::list_data,
+      virtual protected ::database::client
    {
    public:
 
@@ -20,22 +20,20 @@ namespace filemanager
       virtual void dump(dump_context & dumpcontext) const override;
 
 
+      ::e_status on_initialize_object() override;
+
+      using ::database::client::set_data_key_modifier;
+
       virtual void _001GetItemText(::user::mesh_item * pitem) override;
 
       virtual count _001GetItemCount() override;
 
-      bool add_unique(const string_array & stra, i32_array & iaRecursive);
-      bool erase(const string_array & stra);
+      virtual bool add_unique(const string_array & stra, i32_array & iaRecursive);
+      virtual bool erase(const string_array & stra);
 
-      void GetSel(::user::list * plist , string_array & stra);
+      virtual void GetSel(::user::list * plist , string_array & stra);
 
-
-   private:
-
-
-      folder_list_data(const folder_list_data & )
-      {
-      }
+      virtual bool set_recursive(::index iItem, bool bRecursive);
 
 
    };

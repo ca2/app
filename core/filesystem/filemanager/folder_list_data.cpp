@@ -34,6 +34,36 @@ namespace filemanager
    }
 
 
+   ::e_status folder_list_data::on_initialize_object()
+   {
+
+      auto estatus = ::user::list_data::on_initialize_object();
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      estatus = ::database::client::on_initialize_object();
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      auto papplication = get_application();
+
+      initialize_data_client(papplication->dataserver());
+
+      return estatus;
+
+   }
+
+
    void folder_list_data::_001GetItemText(::user::mesh_item * pitem)
    {
 
@@ -88,11 +118,14 @@ namespace filemanager
       }
 
       pitem->m_bOk = true;
+
    }
 
 
    void folder_list_data::GetSel(::user::list * plist, string_array & stra)
    {
+
+      synchronous_lock synchronouslock(mutex());
 
       string_array wstraTotal;
 
@@ -132,6 +165,8 @@ namespace filemanager
    ::count folder_list_data::_001GetItemCount()
    {
 
+      synchronous_lock synchronouslock(mutex());
+
       string_array straTotal;
 
       if (!data_get(::id(), straTotal))
@@ -148,6 +183,8 @@ namespace filemanager
 
    bool folder_list_data::add_unique(const string_array & stra, i32_array & baRecursive)
    {
+
+      synchronous_lock synchronouslock(mutex());
 
       string_array straData;
 
@@ -199,7 +236,7 @@ namespace filemanager
       try
       {
 
-         data_get("recursive", iaData);
+         data_set("recursive", iaData);
 
       }
       catch(...)
@@ -216,6 +253,8 @@ namespace filemanager
 
    bool folder_list_data::erase(const string_array & stra)
    {
+
+      synchronous_lock synchronouslock(mutex());
 
       string_array straData;
 
@@ -281,6 +320,46 @@ namespace filemanager
       catch(...)
       {
          return false;
+      }
+
+      return true;
+
+   }
+
+
+   bool folder_list_data::set_recursive(::index iItem, bool bRecursive)
+   {
+
+      synchronous_lock synchronouslock(mutex());
+
+      i32_array iaData;
+
+      try
+      {
+
+         data_get("recursive", iaData);
+
+      }
+      catch (...)
+      {
+
+         return false;
+
+      }
+
+      iaData.set_at_grow(iItem, bRecursive ? 1 : 0);
+
+      try
+      {
+
+         data_set("recursive", iaData);
+
+      }
+      catch (...)
+      {
+
+         return false;
+
       }
 
       return true;

@@ -2274,7 +2274,7 @@ break_click:;
       // trigger control creation
          auto pinteraction = _001GetControl(pdrawitem->item_index(), pdrawitem->subitem_index());
 
-          if (pinteraction)
+         if (pinteraction)
          {
 //
 //            //pdrawitem->m_rectangleClient = pdrawitem->m_rectSubItem;
@@ -2298,6 +2298,13 @@ break_click:;
             {
 
                // pinteraction->set_window_position(0, pdrawitem->m_rectangleClient, SWP_HIDEWINDOW | SWP_NOZORDER);
+
+            }
+
+            if (pinteraction->has_function(::user::e_control_function_check_box))
+            {
+
+               on_get_check(pinteraction);
 
             }
 

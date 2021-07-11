@@ -50,10 +50,6 @@ namespace filemanager
 
          pdata->set_data_key_modifier(strDataKeyModifier);
 
-         auto papplication = get_application();
-
-         pdata->initialize_data_client(papplication->dataserver());
-
       }
       else
       {
@@ -242,7 +238,7 @@ namespace filemanager
    }
 
 
-   void folder_list_view::on_check_change(::user::interaction* puserinteraction)
+   void folder_list_view::on_check_save(::user::interaction* puserinteraction)
    {
 
       if (puserinteraction->m_id == "check_recursive")
@@ -253,46 +249,16 @@ namespace filemanager
          if (pfolderlistdata)
          {
 
-            synchronous_lock synchronouslock(pfolderlistdata->mutex());
-
             bool bCheck = puserinteraction->bcheck();
 
-            auto iItem = puserinteraction->m_iItem;
+            bool iItem = puserinteraction->m_iItem;
 
-            i32_array iaData;
-
-            try
-            {
-
-               pfolderlistdata->data_get("recursive", iaData);
-
-            }
-            catch (...)
-            {
-
-               return;
-
-            }
-
-            iaData.element_at_grow(iItem, bCheck ? 1 : 0);
-
-            try
-            {
-
-               pfolderlistdata->data_set("recursive", iaData);
-
-            }
-            catch (...)
-            {
-
-               return;
-
-            }
+            pfolderlistdata->set_recursive(iItem, bCheck);
 
          }
 
       }
-
+      
    }
 
 

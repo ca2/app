@@ -32,7 +32,8 @@ namespace user
 
       virtual ::user::interaction* get_control(::user::list_column * pcolumn, ::index iItem);
 
-      virtual void on_check_change(::user::interaction* puserinteraction);
+      virtual void on_check_save(::user::interaction* puserinteraction);
+      virtual void on_check_load(::user::interaction* puserinteraction);
 
       //void _000OnMouse(::message::mouse * pmouse) override;
 

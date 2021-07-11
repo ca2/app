@@ -367,6 +367,39 @@ namespace filemanager
    }
 
 
+   bool folder_list_data::get_recursive(::index iItem)
+   {
+
+      synchronous_lock synchronouslock(mutex());
+
+      i32_array iaData;
+
+      try
+      {
+
+         data_get("recursive", iaData);
+
+      }
+      catch (...)
+      {
+
+         return false;
+
+      }
+
+      if(iItem < 0 || iItem >= iaData.get_size())
+      {
+      
+         return false;
+      
+      }
+
+      auto iData = iaData[iItem];
+
+      return iData != 0 ? true : false;
+
+   }
+
 } // namespace filemanager
 
 

@@ -1880,7 +1880,7 @@ break_click:;
          if (::is_set(pcolumn))
          {
 
-            on_check_change(puserinteraction);
+            on_check_save(puserinteraction);
 
          }
 
@@ -2168,7 +2168,13 @@ break_click:;
    }
 
 
-   void form_list::on_check_change(::user::interaction* puserinteraction)
+   void form_list::on_check_save(::user::interaction* puserinteraction)
+   {
+
+   }
+
+
+   void form_list::on_check_load(::user::interaction* puserinteraction)
    {
 
 
@@ -2304,7 +2310,7 @@ break_click:;
             if (pinteraction->has_function(::user::e_control_function_check_box))
             {
 
-               on_get_check(pinteraction);
+               on_check_load(pinteraction);
 
             }
 

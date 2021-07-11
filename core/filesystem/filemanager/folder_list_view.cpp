@@ -262,6 +262,28 @@ namespace filemanager
    }
 
 
+   void folder_list_view::on_check_save(::user::interaction* puserinteraction)
+   {
+
+      if (puserinteraction->m_id == "check_recursive")
+      {
+
+         __pointer(folder_list_data) pfolderlistdata = m_pmeshdata.cast <folder_list_data >();
+
+         if (pfolderlistdata)
+         {
+
+            bool bCheck = pfolderlistdata->get_recursive(bCheck);
+
+            puserinteraction->_001SetCheck(bCheck);
+
+         }
+
+      }
+
+   }
+
+
 } // namespace filemanager
 
 

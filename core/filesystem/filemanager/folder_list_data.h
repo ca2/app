@@ -35,6 +35,8 @@ namespace filemanager
 
       virtual bool set_recursive(::index iItem, bool bRecursive);
 
+      virtual bool get_recursive(::index iItem);
+
 
    };
 

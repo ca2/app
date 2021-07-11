@@ -2153,6 +2153,8 @@ break_click:;
 
             pinteraction->add_control_event_handler(this);
 
+            pinteraction->m_flagsfunction = pinteractionTemplate->m_flagsfunction;
+
          }
 
       }

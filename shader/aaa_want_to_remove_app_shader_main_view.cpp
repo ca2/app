@@ -147,7 +147,7 @@ namespace simple_shader
       if(pevent->m_eevent == ::user::e_event_button_clicked)
       {
 
-         if(pevent->m_puie->m_id == "simple_shader_toggle")
+         if(pevent->m_puserinteraction->m_id == "simple_shader_toggle")
          {
 
             m_pview->on_layout(::draw2d::graphics_pointer & pgraphics);

@@ -99,7 +99,7 @@ namespace helloworld
       if(pevent->m_eevent == ::user::e_event_button_clicked)
       {
 
-         if(pevent->m_puie->m_id == "switcher_toggle")
+         if(pevent->m_puserinteraction->m_id == "switcher_toggle")
          {
 
             __pointer(view) pview = m_pview;
@@ -109,7 +109,7 @@ namespace helloworld
             return true;
 
          }
-         else if(pevent->m_puie->m_id == "helloworld_toggle")
+         else if(pevent->m_puserinteraction->m_id == "helloworld_toggle")
          {
 
             m_pview->m_prender->m_bLite = !m_pview->m_prender->m_bLite;

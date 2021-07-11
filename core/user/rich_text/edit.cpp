@@ -513,7 +513,7 @@ namespace user
 
             ::user::control_event ev;
 
-            ev.m_puie = this;
+            ev.m_puserinteraction = this;
 
             ev.m_eevent = ::user::e_event_key_down;
 
@@ -575,7 +575,7 @@ namespace user
 
             ::user::control_event ev;
 
-            ev.m_puie = this;
+            ev.m_puserinteraction = this;
 
             ev.m_eevent = ::user::e_event_escape;
 

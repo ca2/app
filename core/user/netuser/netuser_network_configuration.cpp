@@ -115,7 +115,7 @@ namespace usernet
       if(pevent->m_eevent == ::user::e_event_button_clicked)
       {
 
-         if(pevent->m_puie->m_id == "submit")
+         if(pevent->m_puserinteraction->m_id == "submit")
          {
 
             auto pinteraction = m_pview->get_child_by_name("server");

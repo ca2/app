@@ -340,7 +340,7 @@ namespace userex
       else if (pevent->m_eevent == ::user::e_event_button_clicked)
       {
 
-         if (pevent->m_puie->m_id == m_id)
+         if (pevent->m_puserinteraction->m_id == m_id)
          {
 
             show_menu();

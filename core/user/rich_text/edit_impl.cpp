@@ -920,7 +920,7 @@ namespace user
 
             auto pformattool = get_format_tool(false);
 
-            if (pevent->m_puie == pformattool)
+            if (pevent->m_puserinteraction == pformattool)
             {
 
                if (pformattool->m_eattribute & attribute_align)
@@ -1006,7 +1006,7 @@ namespace user
 
             ::user::control_event ev;
 
-            ev.m_puie = this;
+            ev.m_puserinteraction = this;
 
             ev.m_eevent = ::user::e_event_key_down;
 
@@ -1068,7 +1068,7 @@ namespace user
 
             ::user::control_event ev;
 
-            ev.m_puie = this;
+            ev.m_puserinteraction = this;
 
             ev.m_eevent = ::user::e_event_escape;
 
@@ -1948,7 +1948,7 @@ namespace user
 
          ev.m_id = m_id;
 
-         ev.m_puie = this;
+         ev.m_puserinteraction = this;
 
          on_control_event(&ev);
 

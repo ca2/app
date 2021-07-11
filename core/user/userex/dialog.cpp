@@ -42,13 +42,13 @@ dialog::~dialog()
 void dialog::on_control_event(::user::control_event * pevent)
 {
 
-   if(::is_set(pevent->m_puie) && m_pform == nullptr)
+   if(::is_set(pevent->m_puserinteraction) && m_pform == nullptr)
    {
 
       if(pevent->m_eevent == ::user::e_event_create)
       {
 
-         m_pform = pevent->m_puie;
+         m_pform = pevent->m_puserinteraction;
 
       }
 

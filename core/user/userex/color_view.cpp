@@ -556,7 +556,7 @@ namespace userex
 
             ev.m_id = m_idView;
 
-            ev.m_puie = this;
+            ev.m_puserinteraction = this;
 
             ev.m_actioncontext = ::e_source_user;
 
@@ -585,7 +585,7 @@ namespace userex
 
             ev.m_id = m_idView;
 
-            ev.m_puie = this;
+            ev.m_puserinteraction = this;
 
             ev.m_actioncontext = ::e_source_user;
 
@@ -858,7 +858,7 @@ namespace userex
 
          ev.m_id = m_idView;
 
-         ev.m_puie = this;
+         ev.m_puserinteraction = this;
 
          ev.m_actioncontext = ::e_source_user;
 

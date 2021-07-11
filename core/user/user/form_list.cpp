@@ -79,7 +79,7 @@ namespace user
 
                ::user::control_event ev;
 
-               ev.m_puie = pinteraction;
+               ev.m_puserinteraction = pinteraction;
 
                ev.m_eevent = ::user::e_event_button_clicked;
 
@@ -168,7 +168,7 @@ namespace user
 
                ::user::control_event ev;
 
-               ev.m_puie = pinteraction;
+               ev.m_puserinteraction = pinteraction;
 
                ev.m_eevent = ::user::e_event_button_clicked;
 
@@ -1868,10 +1868,29 @@ break_click:;
    void form_list::on_control_event(::user::control_event * pevent)
    {
 
-      if (pevent->m_eevent == ::user::e_event_after_change_cur_sel)
+      if (pevent->m_eevent == ::user::e_event_button_clicked)
       {
 
-         if (m_pcontrolEdit == pevent->m_puie)
+         auto puserinteraction = pevent->m_puserinteraction;
+
+         auto iSubItem = puserinteraction->m_iSubItem;
+
+         auto pcolumn = m_columna.get_by_subitem(iSubItem);
+
+         if (::is_set(pcolumn))
+         {
+
+            auto bcheck = puserinteraction->get_bcheck();
+
+            on_check_change(puserinteraction);
+
+         }
+
+      }
+      else if (pevent->m_eevent == ::user::e_event_after_change_cur_sel)
+      {
+
+         if (m_pcontrolEdit == pevent->m_puserinteraction)
          {
 
             if (m_pcontrolEdit->has_function(::user::e_control_function_data_selection))
@@ -2125,12 +2144,16 @@ break_click:;
       if (pinteraction.is_null())
       {
 
-         pinteraction = pinteractionTemplate->clone();
+         pinteraction = move_transfer(pinteractionTemplate->clone());
 
          if (::is_set(pinteraction))
          {
 
-            pinteraction->child_child(this);
+            pinteraction->initialize(this);
+
+            pinteraction->create_child(this);
+
+            pinteraction->add_control_event_handler(this);
 
          }
 
@@ -2140,7 +2163,16 @@ break_click:;
 
       pinteraction->m_iItem = iItem;
 
+      pinteraction->m_iSubItem = pcolumn->m_iSubItem;
+
       return pinteraction;
+
+   }
+
+
+   void form_list::on_check_change(::user::interaction* puserinteraction)
+   {
+
 
    }
 
@@ -2240,17 +2272,23 @@ break_click:;
 
       //if (pdrawitem->m_pcolumn->m_bCustomDraw)
       {
-
+//
+      // trigger control creation
          auto pinteraction = _001GetControl(pdrawitem->item_index(), pdrawitem->subitem_index());
 
-         if (pinteraction)
+          if (pinteraction)
          {
+//
+//            //pdrawitem->m_rectangleClient = pdrawitem->m_rectSubItem;
+//
+//            //pdrawitem->m_rectangleWindow = pdrawitem->m_rectangleClient;
+//
+            pinteraction->place(pdrawitem->m_rectSubItem);
 
-            pdrawitem->m_rectangleClient = pdrawitem->m_rectSubItem;
+            pinteraction->display();
 
-            pdrawitem->m_rectangleWindow = pdrawitem->m_rectangleClient;
-
-            client_to_screen(pdrawitem->m_rectangleWindow);
+//
+            //client_to_screen(pdrawitem->m_rectangleWindow);
 
             //::rectangle_i32 rectWindow;
 
@@ -2327,19 +2365,18 @@ break_click:;
 
             }
 ok_control:;
-
-            ::draw2d::savedc savedc(pdrawitem->m_pgraphics);
-
-            on_viewport_offset(pdrawitem->m_pgraphics);
-            pdrawitem->m_pgraphics->OffsetViewportOrg(pdrawitem->m_rectangleClient.left, pdrawitem->m_rectangleClient.top);
-
-            __keep(pinteraction->m_pdrawcontext, pdrawitem);
-
-            pinteraction->_001OnDraw(pdrawitem->m_pgraphics);
-
-            //pinteraction->_003CallCustomDraw(pdrawitem->m_pgraphics,pdrawitem);
-            //pdrawitem->m_pgraphics->SelectClipRgn(nullptr);
-            //_001OnClip(pdrawitem->m_pgraphics);
+//
+//            ::draw2d::savedc savedc(pdrawitem->m_pgraphics);
+//
+//            on_viewport_offset(pdrawitem->m_pgraphics);
+//
+//            __keep(pinteraction->m_pdrawcontext, pdrawitem);
+//
+//            pinteraction->_001OnDraw(pdrawitem->m_pgraphics);
+//
+//            //pinteraction->_003CallCustomDraw(pdrawitem->m_pgraphics,pdrawitem);
+//            //pdrawitem->m_pgraphics->SelectClipRgn(nullptr);
+//            //_001OnClip(pdrawitem->m_pgraphics);
          }
       }
 

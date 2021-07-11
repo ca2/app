@@ -84,7 +84,7 @@ void menu_view::_001OnTimer(::timer * ptimer)
       
       ev.m_etimer = ptimer->m_etimer;
 
-      ev.m_puie = this;
+      ev.m_puserinteraction = this;
 
       auto papplication = get_application();
 

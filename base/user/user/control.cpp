@@ -69,7 +69,7 @@
 //
 //      ::user::control_event ev;
 //
-//      ev.m_puie = this;
+//      ev.m_puserinteraction = this;
 //
 //      ev.m_eevent = ::user::e_event_create;
 //
@@ -479,7 +479,7 @@
 //
 //      ::user::control_event ev;
 //
-//      ev.m_puie = this;
+//      ev.m_puserinteraction = this;
 //
 //      ev.m_eevent = ::user::e_event_set_focus;
 //
@@ -497,7 +497,7 @@
 //
 //      ::user::control_event ev;
 //
-//      ev.m_puie = this;
+//      ev.m_puserinteraction = this;
 //
 //      ev.m_id = m_id;
 //
@@ -850,7 +850,7 @@
 //
 //   //   ev.m_id = m_id;
 //
-//   //   ev.m_puie = this;
+//   //   ev.m_puserinteraction = this;
 //
 //   //   ev.m_eevent = e_event_mouse_leave;
 //

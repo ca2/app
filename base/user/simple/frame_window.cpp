@@ -2327,9 +2327,7 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics_pointer & pgraphicsParam
 
    ::rectangle_i32 rectangleClient;
 
-   get_window_rect(rectangleClient);
-
-   rectangleClient -= rectangleClient.top_left();
+   get_client_rect(rectangleClient);
 
    bool bDib = false;
 

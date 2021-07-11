@@ -35,6 +35,8 @@ namespace filemanager
       bool erase(const string_array & stra);
 
 
+      void on_check_change(::user::interaction* puserinteraction) override;
+
       virtual void GetSel(string_array & stra);
 
       virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;

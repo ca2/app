@@ -287,7 +287,7 @@ namespace user
          if (pevent->m_eevent == ::user::e_event_button_clicked)
          {
 
-            if (pevent->m_puie->m_id == "font_bold")
+            if (pevent->m_puserinteraction->m_id == "font_bold")
             {
 
                m_pbuttonBold->_001ToggleCheck(::e_source_user);
@@ -299,7 +299,7 @@ namespace user
                pevent->Ret();
 
             }
-            else if (pevent->m_puie->m_id == "font_italic")
+            else if (pevent->m_puserinteraction->m_id == "font_italic")
             {
 
                m_pbuttonItalic->_001ToggleCheck(::e_source_user);
@@ -311,7 +311,7 @@ namespace user
                pevent->Ret();
 
             }
-            else if (pevent->m_puie->m_id == "font_underline")
+            else if (pevent->m_puserinteraction->m_id == "font_underline")
             {
 
                m_pbuttonUnderline->_001ToggleCheck(::e_source_user);
@@ -323,7 +323,7 @@ namespace user
                pevent->Ret();
 
             }
-            else if (pevent->m_puie->m_id == "font_subscript")
+            else if (pevent->m_puserinteraction->m_id == "font_subscript")
             {
 
                m_pbuttonSubscript->_001ToggleCheck(::e_source_user);
@@ -342,7 +342,7 @@ namespace user
                pevent->Ret();
 
             }
-            else if (pevent->m_puie->m_id == "font_superscript")
+            else if (pevent->m_puserinteraction->m_id == "font_superscript")
             {
 
                m_pbuttonSuperscript->_001ToggleCheck(::e_source_user);
@@ -362,7 +362,7 @@ namespace user
 
             }
 
-            else if (pevent->m_puie->m_id == "e_align_left")
+            else if (pevent->m_puserinteraction->m_id == "e_align_left")
             {
 
                m_pbuttonAlignLeft->_001SetCheck(::check_checked, ::e_source_user);
@@ -388,7 +388,7 @@ namespace user
                pevent->Ret();
 
             }
-            else if (pevent->m_puie->m_id == "e_align_center")
+            else if (pevent->m_puserinteraction->m_id == "e_align_center")
             {
 
                m_pbuttonAlignCenter->_001SetCheck(::check_checked, ::e_source_user);
@@ -414,7 +414,7 @@ namespace user
                pevent->Ret();
 
             }
-            else if (pevent->m_puie->m_id == "e_align_right")
+            else if (pevent->m_puserinteraction->m_id == "e_align_right")
             {
 
                m_pbuttonAlignRight->_001SetCheck(::check_checked, ::e_source_user);
@@ -440,7 +440,7 @@ namespace user
                pevent->Ret();
 
             }
-            else if (pevent->m_puie->m_id == "font_foreground")
+            else if (pevent->m_puserinteraction->m_id == "font_foreground")
             {
 
                fork([&]()
@@ -454,7 +454,7 @@ namespace user
          else if (pevent->m_eevent == ::user::e_event_after_change_text)
          {
 
-            if (pevent->m_puie->m_id == "combo_size")
+            if (pevent->m_puserinteraction->m_id == "combo_size")
             {
 
                m_eattribute |= ::user::rich_text::attribute_size;
@@ -469,7 +469,7 @@ namespace user
          else if (pevent->m_eevent == ::user::e_event_enter_key)
          {
 
-            if (pevent->m_puie->m_id == "combo_size")
+            if (pevent->m_puserinteraction->m_id == "combo_size")
             {
 
                m_eattribute |= ::user::rich_text::attribute_size;
@@ -484,7 +484,7 @@ namespace user
          else if (pevent->m_eevent == ::user::e_event_after_change_cur_sel)
          {
 
-            if (pevent->m_puie->m_id == "combo_family")
+            if (pevent->m_puserinteraction->m_id == "combo_family")
             {
 
                m_eattribute |= ::user::rich_text::attribute_family;
@@ -495,7 +495,7 @@ namespace user
 
 
             }
-            else if (pevent->m_puie->m_id == "combo_size")
+            else if (pevent->m_puserinteraction->m_id == "combo_size")
             {
 
                m_eattribute |= ::user::rich_text::attribute_size;
@@ -657,7 +657,7 @@ namespace user
 
          ev.m_eevent = ::user::e_event_after_change_cur_sel;
 
-         ev.m_puie = this;
+         ev.m_puserinteraction = this;
 
          ev.m_id = m_id;
 

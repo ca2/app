@@ -1162,9 +1162,7 @@ namespace experience
          if (pdrawcontext != nullptr)
          {
 
-            rectangleClient = pdrawcontext->m_rectangleWindow;
-
-            screen_to_client(rectangleClient);
+            get_client_rect(rectangleClient);
 
             rectangleClient.bottom++;
             rectangleClient.right++;

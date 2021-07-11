@@ -78,7 +78,7 @@ namespace simple_ui
 //
 //      ::user::control_event ev;
 //
-//      ev.m_puie = this;
+//      ev.m_puserinteraction = this;
 //
 //      ev.m_eevent = eevent;
 //
@@ -237,7 +237,7 @@ namespace simple_ui
 //
 //            ::user::control_event ev;
 //
-//            ev.m_puie = this;
+//            ev.m_puserinteraction = this;
 //
 //            ev.m_id = m_id;
 //
@@ -319,7 +319,7 @@ namespace simple_ui
 //
 //            ::user::control_event ev;
 //
-//            ev.m_puie = this;
+//            ev.m_puserinteraction = this;
 //
 //            ev.m_eevent = ::user::e_event_mouse_enter;
 //
@@ -331,7 +331,7 @@ namespace simple_ui
 //
 //            ::user::control_event ev;
 //
-//            ev.m_puie = this;
+//            ev.m_puserinteraction = this;
 //
 //            ev.m_eevent = ::user::e_event_mouse_leave;
 //
@@ -362,7 +362,7 @@ namespace simple_ui
 //
 //         ::user::control_event ev;
 //
-//         ev.m_puie = this;
+//         ev.m_puserinteraction = this;
 //
 //         ev.m_eevent = ::user::e_event_mouse_leave;
 //

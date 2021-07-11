@@ -1141,7 +1141,7 @@ namespace user
 
          ::user::control_event ev;
 
-         ev.m_puie = this;
+         ev.m_puserinteraction = this;
 
          ev.m_eevent = ::user::e_event_key_down;
 
@@ -1183,7 +1183,7 @@ namespace user
 
             ::user::control_event ev;
 
-            ev.m_puie = this;
+            ev.m_puserinteraction = this;
 
             ev.m_eevent = ::user::e_event_enter_key;
 
@@ -1226,7 +1226,7 @@ namespace user
 
             ::user::control_event ev;
 
-            ev.m_puie = this;
+            ev.m_puserinteraction = this;
 
             ev.m_eevent = ::user::e_event_tab_key;
 
@@ -1261,7 +1261,7 @@ namespace user
 
          ::user::control_event ev;
 
-         ev.m_puie = this;
+         ev.m_puserinteraction = this;
 
          ev.m_eevent = ::user::e_event_escape;
 
@@ -6153,7 +6153,7 @@ finished_update:
 
          ::user::control_event ev;
 
-         ev.m_puie = this;
+         ev.m_puserinteraction = this;
 
          ev.m_id = m_id;
 
@@ -6224,7 +6224,7 @@ finished_update:
 
          ::user::control_event ev;
 
-         ev.m_puie = this;
+         ev.m_puserinteraction = this;
 
          ev.m_eevent = ::user::e_event_enter_key;
 

@@ -1362,7 +1362,7 @@ namespace user
 
       ::user::control_event ev;
 
-      ev.m_puie = this;
+      ev.m_puserinteraction = this;
 
       ev.m_eevent = ::user::e_event_set_focus;
 
@@ -1401,7 +1401,7 @@ namespace user
 
       ::user::control_event ev;
 
-      ev.m_puie = this;
+      ev.m_puserinteraction = this;
 
       ev.m_id = m_id;
 
@@ -2587,9 +2587,7 @@ namespace user
          if (pdrawcontext != nullptr)
          {
 
-            rectangleClient = pdrawcontext->m_rectangleWindow;
-
-            screen_to_client(rectangleClient, e_layout_design);
+            get_client_rect(rectangleClient);
 
             rectangleClient.bottom++;
             rectangleClient.right++;
@@ -3731,18 +3729,7 @@ namespace user
 
       ::rectangle_i32 rectangleClient;
 
-      if (pdrawcontext != nullptr)
-      {
-
-         rectangleClient = pdrawcontext->m_rectangleClient;
-
-      }
-      else
-      {
-
-         get_client_rect(rectangleClient);
-
-      }
+      get_client_rect(rectangleClient);
 
       auto pstyle = get_style(pgraphics);
 
@@ -4245,7 +4232,7 @@ namespace user
 
       ::user::control_event ev;
 
-      ev.m_puie = this;
+      ev.m_puserinteraction = this;
 
       ev.m_eevent = ::user::e_event_create;
 
@@ -5436,7 +5423,7 @@ namespace user
 
    //   //      ::user::control_event ev;
 
-   //   //      ev.m_puie         = this;
+   //   //      ev.m_puserinteraction         = this;
 
    //   //      ev.m_eevent       = ::user::e_event_tab_key;
 
@@ -12307,19 +12294,8 @@ restart:
    void interaction::get_client_rect(RECTANGLE_I32* lprect, enum_layout elayout) const
    {
 
-      if (m_pdrawcontext)
-      {
+      layout().state(elayout).client_rect(lprect);
 
-         m_pdrawcontext->get_client_rect(lprect);
-
-      }
-      else
-      {
-
-         layout().state(elayout).client_rect(lprect);
-
-      }
-   
    }
 
 
@@ -13596,7 +13572,7 @@ restart:
 
          control_event ev;
 
-         ev.m_puie = dynamic_cast <::user::interaction *> (this);
+         ev.m_puserinteraction = dynamic_cast <::user::interaction *> (this);
          ev.m_eevent = ::user::e_event_tab_key;
          ev.m_actioncontext = ::e_source_user;
 
@@ -13867,7 +13843,7 @@ restart:
 
          ::user::control_event ev;
 
-         ev.m_puie = this;
+         ev.m_puserinteraction = this;
 
          ev.m_id = m_id;
 
@@ -15011,7 +14987,7 @@ restart:
 //
 //      ::user::control_event ev;
 //
-//      ev.m_puie = this;
+//      ev.m_puserinteraction = this;
 //
 //      ev.m_id = m_id;
 //
@@ -15326,7 +15302,7 @@ restart:
 
                      ::user::control_event ev;
 
-                     ev.m_puie = this;
+                     ev.m_puserinteraction = this;
 
                      ev.m_id = id;
 

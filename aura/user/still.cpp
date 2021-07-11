@@ -233,7 +233,7 @@ namespace user
 
    //   //      ::user::control_event ev;
 
-   //   //      ev.m_puie = this;
+   //   //      ev.m_puserinteraction = this;
 
    //   //      ev.m_eevent = ::user::e_event_button_clicked;
 
@@ -295,7 +295,7 @@ namespace user
    //   //   if (iOldHover == -1)
    //   //   {
    //   //      ::user::control_event ev;
-   //   //      ev.m_puie = this;
+   //   //      ev.m_puserinteraction = this;
    //   //      ev.m_eevent = ::user::e_event_mouse_enter;
    //   //      get_parent()->send_message(
    //   //      e_message_event, 0, (LPARAM)&ev);
@@ -304,7 +304,7 @@ namespace user
    //   //   else if (iHover == -1)
    //   //   {
    //   //      ::user::control_event ev;
-   //   //      ev.m_puie = this;
+   //   //      ev.m_puserinteraction = this;
    //   //      ev.m_eevent = ::user::e_event_mouse_leave;
    //   //      get_parent()->send_message(
    //   //      e_message_event, 0, (LPARAM)&ev);
@@ -326,7 +326,7 @@ namespace user
    //   //{
    //   //   set_need_redraw();
    //   //   ::user::control_event ev;
-   //   //   ev.m_puie = this;
+   //   //   ev.m_puserinteraction = this;
    //   //   ev.m_eevent = ::user::e_event_mouse_leave;
    //   //   if (get_parent() != nullptr)
    //   //   {
@@ -724,7 +724,7 @@ namespace user
 
          ::user::control_event ev;
 
-         ev.m_puie = this;
+         ev.m_puserinteraction = this;
 
          ev.m_eevent = ::user::e_event_button_clicked;
 

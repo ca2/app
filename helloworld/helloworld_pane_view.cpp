@@ -300,13 +300,13 @@ namespace helloworld
    void pane_view::on_control_event(::user::control_event * pevent)
    {
 
-      if(m_pdocMenu != nullptr && dynamic_cast < ::user::impact * > (pview) == m_pdocMenu->get_view(0) && pevent->m_puie != nullptr)
+      if(m_pdocMenu != nullptr && dynamic_cast < ::user::impact * > (pview) == m_pdocMenu->get_view(0) && pevent->m_puserinteraction != nullptr)
       {
 
          if(pevent->m_eevent == ::user::e_event_after_change_text)
          {
 
-            if(m_prollfps != nullptr && pevent->m_puie->m_id == "roll_fps" && !pevent->m_context.is_source(::e_source_initialize)
+            if(m_prollfps != nullptr && pevent->m_puserinteraction->m_id == "roll_fps" && !pevent->m_context.is_source(::e_source_initialize)
                   && !pevent->m_context.is_source(::e_source_database))
             {
 
@@ -354,7 +354,7 @@ namespace helloworld
                }
 
             }
-            //else if(pevent->m_puie->m_id == "roll_spf" && !pevent->m_context.is_source(::e_source_initialize))
+            //else if(pevent->m_puserinteraction->m_id == "roll_spf" && !pevent->m_context.is_source(::e_source_initialize))
             //{
 
             //   try
@@ -381,16 +381,16 @@ namespace helloworld
 
 
          }
-         else if (pevent->m_eevent == ::user::e_event_set_check && pevent->m_puie != nullptr)
+         else if (pevent->m_eevent == ::user::e_event_set_check && pevent->m_puserinteraction != nullptr)
          {
 
-            string strCheck = pevent->m_puie->m_id;
+            string strCheck = pevent->m_puserinteraction->m_id;
 
 
             if (::str::begins_eat_ci(strCheck, "bilbo"))
             {
 
-               if (pevent->m_puie != nullptr && !pevent->m_context.is_source(::e_source_initialize)
+               if (pevent->m_puserinteraction != nullptr && !pevent->m_context.is_source(::e_source_initialize)
                      && !pevent->m_context.is_source(::e_source_sync))
                {
 
@@ -399,7 +399,7 @@ namespace helloworld
                   if (m_pviewLastBilbo != nullptr)
                   {
 
-                     m_pviewLastBilbo->m_prender->m_bilboa[iCheck - 1].m_bNew = pevent->m_puie->_001GetCheck() == ::check_checked;
+                     m_pviewLastBilbo->m_prender->m_bilboa[iCheck - 1].m_bNew = pevent->m_puserinteraction->_001GetCheck() == ::check_checked;
 
                      m_pviewLastBilbo->m_prender->defer_update_bilbo();
 
@@ -411,24 +411,24 @@ namespace helloworld
 
          }
 
-         //if(pevent->m_puie->m_id == "clockverse")
+         //if(pevent->m_puserinteraction->m_id == "clockverse")
          //   {
-         //      papplication->set_binding_clockverse_country_time_zone_set_on_hover(pevent->m_puie->_001GetCheck() == ::check_checked);
+         //      papplication->set_binding_clockverse_country_time_zone_set_on_hover(pevent->m_puserinteraction->_001GetCheck() == ::check_checked);
          //      return true;
          //   }
-         //   else if(pevent->m_puie->m_id == "clockverse_auto")
+         //   else if(pevent->m_puserinteraction->m_id == "clockverse_auto")
          //   {
-         //      papplication->set_auto_launch_clockverse_on_hover(pevent->m_puie->_001GetCheck() == ::check_checked);
+         //      papplication->set_auto_launch_clockverse_on_hover(pevent->m_puserinteraction->_001GetCheck() == ::check_checked);
          //      return true;
          //   }
-         //   else if(pevent->m_puie->m_id == "flag")
+         //   else if(pevent->m_puserinteraction->m_id == "flag")
          //   {
-         //      papplication->set_binding_flag_country_ca2_domain_image_on_hover(pevent->m_puie->_001GetCheck() == ::check_checked);
+         //      papplication->set_binding_flag_country_ca2_domain_image_on_hover(pevent->m_puserinteraction->_001GetCheck() == ::check_checked);
          //      return true;
          //   }
-         //   else if(pevent->m_puie->m_id == "flag_auto")
+         //   else if(pevent->m_puserinteraction->m_id == "flag_auto")
          //   {
-         //      papplication->set_auto_launch_flag_on_hover(pevent->m_puie->_001GetCheck() == ::check_checked);
+         //      papplication->set_auto_launch_flag_on_hover(pevent->m_puserinteraction->_001GetCheck() == ::check_checked);
          //      return true;
          //   }
          //}

@@ -38,7 +38,7 @@ namespace userex
       
       dialog::on_control_event(pevent);
       
-      if(pevent->m_puie == m_pform)
+      if(pevent->m_puserinteraction == m_pform)
       {
       
          if(pevent->m_eevent == ::user::e_event_create)
@@ -72,7 +72,7 @@ namespace userex
       else if(pevent->m_eevent == ::user::e_event_button_clicked)
       {
 
-         m_idResponse = pevent->m_puie->m_id;
+         m_idResponse = pevent->m_puserinteraction->m_id;
 
          EndModalLoop(m_idResponse);
 

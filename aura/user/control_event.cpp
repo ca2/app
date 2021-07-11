@@ -9,13 +9,13 @@ namespace user
    control_event::control_event()
    {
 
-      m_bOk          = true;
+      m_bOk                = true;
 
-      m_bRet         = false;
+      m_bRet               = false;
 
-      m_puie         = nullptr;
+      m_puserinteraction   = nullptr;
 
-      m_ptab         = nullptr;
+      m_ptab               = nullptr;
 
    }
 
@@ -28,14 +28,16 @@ namespace user
    ::user::interaction * control_event::get_form()
    {
 
-      if (::is_null(m_puie))
+      auto puserinteraction = m_puserinteraction;
+
+      if (::is_null(puserinteraction))
       {
 
          return nullptr;
 
       }
 
-      return m_puie->get_form();
+      return puserinteraction->get_form();
 
    }
 
@@ -43,14 +45,16 @@ namespace user
    ::user::interaction * control_event::get_parent_form()
    {
 
-      if (::is_null(m_puie))
+      auto puserinteraction = m_puserinteraction;
+
+      if (::is_null(puserinteraction))
       {
 
          return nullptr;
 
       }
 
-      return m_puie->get_parent_form();
+      return puserinteraction->get_parent_form();
 
    }
 
@@ -83,7 +87,7 @@ namespace user
    //impact * control_event::get_view()
    //{
 
-   //   return dynamic_cast <::user::impact *> (m_puie);
+   //   return dynamic_cast <::user::impact *> (m_puserinteraction);
 
    //}
 

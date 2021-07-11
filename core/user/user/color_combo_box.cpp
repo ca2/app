@@ -172,10 +172,10 @@ namespace user
    void color_combo_box::on_control_event(::user::control_event * pevent)
    {
 
-      if(pevent->m_puie == m_pview)
+      if(pevent->m_puserinteraction == m_pview)
       {
 
-         pevent->m_puie = this;
+         pevent->m_puserinteraction = this;
 
          pevent->m_id = m_id;
 

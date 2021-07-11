@@ -813,7 +813,7 @@ namespace user
 
          ::user::control_event ev;
 
-         ev.m_puie = this;
+         ev.m_puserinteraction = this;
 
          ev.m_id = m_id;
 
@@ -1674,7 +1674,7 @@ namespace user
       if(pevent->m_eevent == ::user::e_event_after_change_cur_sel)
       {
 
-         if(pevent->m_puie == m_plist)
+         if(pevent->m_puserinteraction == m_plist)
          {
 
             if (pevent->m_item == e_element_item)

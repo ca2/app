@@ -40,7 +40,7 @@ namespace user
    ::matter* check_box::clone() const
    {
 
-      auto pcheckbox = __new(::user::check_box);
+      auto pcheckbox = new ::user::check_box;
 
       return pcheckbox;
 
@@ -69,7 +69,7 @@ namespace user
 
             ::user::control_event ev;
 
-            ev.m_puie = this;
+            ev.m_puserinteraction = this;
 
             ev.m_id = m_id;
 

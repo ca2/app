@@ -641,7 +641,7 @@ namespace experience
       if (pevent->m_eevent == ::user::e_event_button_clicked && m_pframe != nullptr)
       {
 
-         ::id id = pevent->m_puie->GetDlgCtrlId();
+         ::id id = pevent->m_puserinteraction->GetDlgCtrlId();
 
          string str(__str(id));
 
@@ -2064,7 +2064,7 @@ namespace experience
 //
 //         //::rectangle_i32 rectWindow;
 //
-//         //pevent->m_puie->get_window_rect(rectWindow);
+//         //pevent->m_puserinteraction->get_window_rect(rectWindow);
 //
 //         ///dock_manager()->m_pointCursorOrigin = rectWindow.center();
 //

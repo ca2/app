@@ -279,7 +279,7 @@ namespace app_message_box
       if (pevent->m_eevent == ::user::e_event_button_clicked)
       {
 
-         if (pevent->m_puie == m_pbuttonShowMessageBox
+         if (pevent->m_puserinteraction == m_pbuttonShowMessageBox
             && pevent->m_actioncontext.is_user_source())
          {
 

@@ -290,7 +290,7 @@ namespace user
       if(pevent->m_eevent == ::user::e_event_button_clicked)
       {
 
-         if(pevent->m_puie == this)
+         if(pevent->m_puserinteraction == this)
          {
 
             if (m_pcombo)
@@ -1047,7 +1047,7 @@ namespace user
 //
 //               ::user::control_event ev;
 //
-//               ev.m_puie = this;
+//               ev.m_puserinteraction = this;
 //
 //               ev.m_id = m_id;
 //

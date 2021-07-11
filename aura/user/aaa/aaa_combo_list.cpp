@@ -777,7 +777,7 @@ namespace user
 
             ::user::control_event ev;
 
-            ev.m_puie = this;
+            ev.m_puserinteraction = this;
 
             ev.m_id = m_id;
 

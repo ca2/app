@@ -1663,7 +1663,9 @@ namespace user
       if(pevent->m_eevent == ::user::e_event_after_change_cur_sel)
       {
 
-         if(pevent->m_puie == m_plistbox)
+         auto puserinteraction = pevent->m_puserinteraction;
+
+         if(puserinteraction == m_plistbox)
          {
 
             set_current_item(pevent->m_item, pevent->m_actioncontext);
@@ -1680,7 +1682,7 @@ namespace user
 //
 //               ::user::control_event ev;
 //
-//               ev.m_puie = this;
+//               ev.m_puserinteraction = this;
 //
 //               ev.m_id = id;
 //

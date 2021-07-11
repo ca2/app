@@ -242,6 +242,60 @@ namespace filemanager
    }
 
 
+   void folder_list_view::on_check_change(::user::interaction* puserinteraction)
+   {
+
+      if (puserinteraction->m_id == "check_recursive")
+      {
+
+         __pointer(folder_list_data) pfolderlistdata = m_pmeshdata.cast <folder_list_data >();
+
+         if (pfolderlistdata)
+         {
+
+            bool bCheck = puserinteraction->bcheck();
+
+            auto iItem = puserinteraction->m_iItem;
+
+            i32_array iaData;
+
+            try
+            {
+
+               pfolderlistdata->data_get("recursive", iaData);
+
+            }
+            catch (...)
+            {
+
+               return;
+
+            }
+
+            iaData.element_at_grow(iItem, bCheck ? 1 : 0);
+
+            try
+            {
+
+               pfolderlistdata->data_set("recursive", iaData);
+
+            }
+            catch (...)
+            {
+
+               return;
+
+            }
+
+         }
+
+
+
+      }
+
+   }
+
+
 } // namespace filemanager
 
 

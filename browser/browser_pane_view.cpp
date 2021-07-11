@@ -338,13 +338,13 @@ namespace browser
    void pane_view::on_control_event(::user::control_event * pevent)
    {
 
-      if(m_pdocMenu != nullptr && dynamic_cast < ::user::impact * > (pevent->get_form()) == m_pdocMenu->get_view(0) && pevent->m_puie != nullptr)
+      if(m_pdocMenu != nullptr && dynamic_cast < ::user::impact * > (pevent->get_form()) == m_pdocMenu->get_view(0) && pevent->m_puserinteraction != nullptr)
       {
 
          if(pevent->m_eevent == ::user::e_event_after_change_text)
          {
 
-            if(m_prollfps != nullptr && pevent->m_puie->m_id == "roll_fps" && !pevent->m_context.is(::e_source_initialize)
+            if(m_prollfps != nullptr && pevent->m_puserinteraction->m_id == "roll_fps" && !pevent->m_context.is(::e_source_initialize)
                   && !pevent->m_context.is(::e_source_database))
             {
 
@@ -396,7 +396,7 @@ namespace browser
 
 
             }
-            //else if(pevent->m_puie->m_id == "roll_spf" && !pevent->m_context.is_source(::e_source_initialize))
+            //else if(pevent->m_puserinteraction->m_id == "roll_spf" && !pevent->m_context.is_source(::e_source_initialize))
             //{
 
             //   try
@@ -423,22 +423,22 @@ namespace browser
 
 
          }
-         else if (pevent->m_eevent == ::user::e_event_set_check && pevent->m_puie != nullptr)
+         else if (pevent->m_eevent == ::user::e_event_set_check && pevent->m_puserinteraction != nullptr)
          {
 
-            string strCheck = pevent->m_puie->m_id;
+            string strCheck = pevent->m_puserinteraction->m_id;
 
 
             if (::str::begins_eat_ci(strCheck, "slide"))
             {
 
-               if (pevent->m_puie != nullptr && !pevent->m_context.is(::e_source_initialize)
+               if (pevent->m_puserinteraction != nullptr && !pevent->m_context.is(::e_source_initialize)
                      && !pevent->m_context.is(::e_source_sync))
                {
 
                   int iCheck = atoi(strCheck);
 
-                  __pointer(::user::check) pcheck = pevent->m_puie;
+                  __pointer(::user::check) pcheck = pevent->m_puserinteraction;
 
                   if (m_pviewLastBilbo != nullptr && pcheck.is_set())
                   {
@@ -466,7 +466,7 @@ namespace browser
       else
       {
 
-         if (m_pfontview != nullptr && pevent->m_puie == m_pfontview->m_pview)
+         if (m_pfontview != nullptr && pevent->m_puserinteraction == m_pfontview->m_pview)
          {
 
             if (pevent->m_eevent == ::user::e_event_after_change_cur_sel)
@@ -505,7 +505,7 @@ namespace browser
             }
 
          }
-         else if (pevent->m_puie == m_pcolorview)
+         else if (pevent->m_puserinteraction == m_pcolorview)
          {
 
 

@@ -432,7 +432,7 @@ namespace user
 
          ::user::control_event ev;
 
-         ev.m_puie = this;
+         ev.m_puserinteraction = this;
 
          ev.m_eevent = ::user::e_event_button_clicked;
 
@@ -1130,26 +1130,36 @@ namespace user
       bool bItemHover;
       bool bSubItemHover;
 
-
-
       ::aura::draw_context * pdrawcontext = pgraphics->::aura::simple_chain < ::aura::draw_context >::get_last();
 
       if(pdrawcontext != nullptr)
       {
-         rectangleClient     = pdrawcontext->m_rectangleClient;
+
          bItemHover     = pdrawcontext->m_bListItemHover;
+
          bSubItemHover  = pdrawcontext->m_bListSubItemHover;
+
       }
       else
       {
-         if(get_form() != nullptr)
+
+         if (get_form() != nullptr)
+         {
+
             return;
-         get_client_rect(rectangleClient);
+
+         }
+
          bItemHover     = m_itemHover.is_set();
+
          bSubItemHover  = bItemHover;
+
       }
 
+      get_client_rect(rectangleClient);
+
       ::point_i32 point = rectangleClient.top_left();
+
       point += ::size_i32(1, 1);
 
       if(bSubItemHover)

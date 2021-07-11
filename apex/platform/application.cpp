@@ -10799,12 +10799,12 @@ __throw(todo, "interaction");
 //   if (pevent->m_eevent == ::user::e_event_initialize_control)
 //   {
 
-//      if (pevent->m_puie->m_id == __id(system_startup_checkbox))
+//      if (pevent->m_puserinteraction->m_id == __id(system_startup_checkbox))
 //      {
 
 //         try
 //         {
-//            __pointer(::user::check) pcheck = pevent->m_puie;
+//            __pointer(::user::check) pcheck = pevent->m_puserinteraction;
 
 //            if (pcheck.is_set())
 //            {
@@ -10826,14 +10826,14 @@ __throw(todo, "interaction");
 //   else if (pevent->m_eevent == ::user::e_event_set_check)
 //   {
 
-//      if (pevent->m_puie->m_id == __id(system_startup_checkbox)
+//      if (pevent->m_puserinteraction->m_id == __id(system_startup_checkbox)
 //         && pevent->m_actioncontext.is_user_source())
 //      {
 
 //         try
 //         {
 
-//            __pointer(::user::check) pcheck = pevent->m_puie;
+//            __pointer(::user::check) pcheck = pevent->m_puserinteraction;
 
 //            if (pcheck.is_set())
 //            {

@@ -174,7 +174,7 @@ namespace user
 
             ::user::control_event ev;
 
-            ev.m_puie = this;
+            ev.m_puserinteraction = this;
 
             ev.m_eevent = ::user::e_event_after_change_cur_sel;
 
@@ -227,7 +227,7 @@ namespace user
 
             ::user::control_event ev;
 
-            ev.m_puie = this;
+            ev.m_puserinteraction = this;
 
             ev.m_eevent = ::user::e_event_after_change_cur_hover;
 

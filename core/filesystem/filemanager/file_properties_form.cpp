@@ -181,7 +181,7 @@ namespace filemanager
       if(pevent->m_eevent == ::user::e_event_button_clicked)
       {
 
-         if(pevent->m_puie->m_id == "submit")
+         if(pevent->m_puserinteraction->m_id == "submit")
          {
 
          }

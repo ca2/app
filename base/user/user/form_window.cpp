@@ -867,7 +867,7 @@ namespace user
 
       ::user::control_event ev;
 
-      ev.m_puie         = pinteraction;
+      ev.m_puserinteraction         = pinteraction;
       ev.m_actioncontext = ::e_source_database;
       ev.m_eevent       = ::user::e_event_initialize_control;
       ev.m_uiEvent      = 0;
@@ -1111,7 +1111,7 @@ namespace user
       if(pevent->m_eevent == ::user::e_event_tab_key)
       {
 
-         __pointer(::user::primitive) pfocus = pevent->m_puie->keyboard_get_next_focusable();
+         __pointer(::user::primitive) pfocus = pevent->m_puserinteraction->keyboard_get_next_focusable();
 
          if(pfocus != nullptr)
          {
@@ -1124,7 +1124,7 @@ namespace user
       else if(pevent->m_eevent == ::user::e_event_button_clicked)
       {
 
-         __pointer(interaction) pinteraction = pevent->m_puie;
+         __pointer(interaction) pinteraction = pevent->m_puserinteraction;
 
          if (!pinteraction)
          {
@@ -1153,7 +1153,7 @@ namespace user
       else if(pevent->m_eevent == ::user::e_event_set_check && pevent->m_actioncontext.is_user_source())
       {
 
-         __pointer(interaction) pinteraction = pevent->m_puie;
+         __pointer(interaction) pinteraction = pevent->m_puserinteraction;
 
          if (!pinteraction)
          {
@@ -1169,7 +1169,7 @@ namespace user
 
             //pinteraction->data_get(pdescriptor->m_datakey, ia);
 
-            __pointer(check) pcheck = pevent->m_puie;
+            __pointer(check) pcheck = pevent->m_puserinteraction;
 
             if(pcheck->echeck() == ::check_checked)
             {

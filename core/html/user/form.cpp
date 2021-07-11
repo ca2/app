@@ -203,7 +203,7 @@ void html_form::on_layout(::draw2d::graphics_pointer & pgraphics)
 
    ev.m_eevent = ::user::e_event_layout;
 
-   ev.m_puie = this;
+   ev.m_puserinteraction = this;
 
    on_control_event(&ev);
 

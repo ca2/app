@@ -79,8 +79,8 @@ namespace aura
    public:
 
       ::draw2d::graphics_pointer    m_pgraphics;
-      ::rectangle_i32               m_rectangleClient;
-      ::rectangle_i32               m_rectangleWindow;
+      //::rectangle_i32               m_rectangleClient;
+      //::rectangle_i32               m_rectangleWindow;
       bool                          m_bListItemHover;
       bool                          m_bListSubItemHover;
       bool                          m_bListItemSelected;
@@ -90,8 +90,6 @@ namespace aura
 
       draw_context();
 
-
-      virtual void get_client_rect(RECTANGLE_I32* lprect);
 
       virtual bool is_control_selected();
       virtual bool is_control_hover();

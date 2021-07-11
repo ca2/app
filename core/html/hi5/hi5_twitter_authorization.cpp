@@ -298,7 +298,7 @@ namespace hi5
          if(pevent->m_eevent == ::user::e_event_button_clicked || pevent->m_eevent == ::user::e_event_enter_key)
          {
 
-            if(pevent->m_puie->m_id == "submit" || pevent->m_eevent == ::user::e_event_enter_key)
+            if(pevent->m_puserinteraction->m_id == "submit" || pevent->m_eevent == ::user::e_event_enter_key)
             {
 
                auto pinteraction = m_pviewAuth->get_child_by_name("pin");

@@ -158,7 +158,7 @@ namespace user
 
       event.m_item      = item;
 
-      event.m_puie      = this;
+      event.m_puserinteraction      = this;
 
       event.m_id        = m_id;
 
@@ -772,7 +772,7 @@ namespace user
 
          ::user::control_event ev;
 
-         ev.m_puie = this;
+         ev.m_puserinteraction = this;
 
          ev.m_id = m_id;
 

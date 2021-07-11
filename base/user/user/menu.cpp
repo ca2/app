@@ -925,7 +925,7 @@ namespace user
       if (pevent->m_eevent == ::user::e_event_button_clicked)
       {
 
-         if (m_pitemClose.is_set() && pevent->m_puie == m_pitemClose->m_puserinteraction)
+         if (m_pitemClose.is_set() && pevent->m_puserinteraction == m_pitemClose->m_puserinteraction)
          {
 
             defer_close();
@@ -934,12 +934,12 @@ namespace user
          else
          {
 
-            __pointer(::user::menu_item) pitem = pevent->m_puie->m_pmenuitem;
+            __pointer(::user::menu_item) pitem = pevent->m_puserinteraction->m_pmenuitem;
 
             if (pitem != nullptr && !pitem->m_bPopup)
             {
 
-               if (pevent->m_puie->m_id.begins(astr.ingSysCommand))
+               if (pevent->m_puserinteraction->m_id.begins(astr.ingSysCommand))
                {
 
                   ::user::interaction * puiTarget = get_target_window();
@@ -947,11 +947,11 @@ namespace user
                   if (puiTarget != nullptr)
                   {
 
-                     //::message::command command(pevent->m_puie->m_id);
+                     //::message::command command(pevent->m_puserinteraction->m_id);
 
                      //puiTarget->_001SendCommand(&command);
 
-                     puiTarget->command_handler(pevent->m_puie->m_id);
+                     puiTarget->command_handler(pevent->m_puserinteraction->m_id);
 
                   }
 
@@ -961,7 +961,7 @@ namespace user
 
                   ::user::interaction * puiNotify = m_puiMenuNotify;
 
-                  id idCommand = pevent->m_puie->m_id;
+                  id idCommand = pevent->m_puserinteraction->m_id;
 
                   idCommand = translate_property_id(idCommand);
 
@@ -993,18 +993,18 @@ namespace user
 //      {
 //
 //         if (m_pitemClose.is_set()
-//               && pevent->m_puie != m_pitemClose->m_puserinteraction)
+//               && pevent->m_puserinteraction != m_pitemClose->m_puserinteraction)
 //         {
 //
 //            if (!m_bInline)
 //            {
 //
-//               if (pevent->m_puie->m_pmenuitem != m_pmenuitemSub)
+//               if (pevent->m_puserinteraction->m_pmenuitem != m_pmenuitemSub)
 //               {
 //
 //                  {
 //
-//                     __pointer(::user::menu_item) pitem = pevent->m_puie->m_pmenuitem;
+//                     __pointer(::user::menu_item) pitem = pevent->m_puserinteraction->m_pmenuitem;
 //
 //                     if (pitem)
 //                     {
@@ -1033,7 +1033,7 @@ namespace user
 //
 //                           ::rectangle_i32 rectangle;
 //
-//                           pevent->m_puie->get_window_rect(rectangle);
+//                           pevent->m_puserinteraction->get_window_rect(rectangle);
 //
 //                           m_psubmenu->update_position(rectangle.top_right());
 //
@@ -1079,7 +1079,7 @@ namespace user
 //      }
 //      else if (pevent->m_eevent == ::user::e_event_mouse_leave)
 //      {
-//         if (pevent->m_puie->m_id == m_idTimerMenu)
+//         if (pevent->m_puserinteraction->m_id == m_idTimerMenu)
 //         {
 //            KillTimer(e_timer_menu);
 //            m_idTimerMenu.is_empty();

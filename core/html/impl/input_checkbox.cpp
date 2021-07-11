@@ -123,7 +123,7 @@ namespace html
 
             ::user::control_event ev;
 
-            ev.m_puie = m_pcheckbox;
+            ev.m_puserinteraction = m_pcheckbox;
             ev.m_actioncontext = ::action_context(::e_source_data) +  ::e_source_load;
             ev.m_eevent = ::user::e_event_initialize_control;
             ev.m_uiEvent = 0;

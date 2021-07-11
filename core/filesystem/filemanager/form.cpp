@@ -20,7 +20,7 @@ namespace filemanager
       if(pevent->m_eevent == ::user::e_event_button_clicked)
       {
 
-         if(pevent->m_puie->m_id == "lfs")
+         if(pevent->m_puserinteraction->m_id == "lfs")
          {
 
             auto psubject = subject(BROWSE_ID);
@@ -34,7 +34,7 @@ namespace filemanager
             pinteraction->_001SetText(filemanager_item()->m_filepathUser,::e_source_user);
 
          }
-         else if(pevent->m_puie->m_id == "ftp")
+         else if(pevent->m_puserinteraction->m_id == "ftp")
          {
 
             auto psubject = subject(id_browse);
@@ -44,7 +44,7 @@ namespace filemanager
             get_document()->update_all_views(psubject);
 
          }
-         else if(pevent->m_puie->m_id == "submit")
+         else if(pevent->m_puserinteraction->m_id == "submit")
          {
             if(m_strPath == "filemanager_add_location_lfs.xhtml")
             {

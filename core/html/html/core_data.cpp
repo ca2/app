@@ -315,7 +315,7 @@ namespace html
 
             event.m_eevent = ::user::e_event_initialize_control;
 
-            event.m_puie = pinteraction;
+            event.m_puserinteraction = pinteraction;
 
             event.m_id = pinteraction->m_id;
 
@@ -392,7 +392,7 @@ namespace html
       if (m_pcallback != nullptr)
       {
          ::user::control_event ev;
-         ev.m_puie = m_puserinteraction;
+         ev.m_puserinteraction = m_puserinteraction;
          ev.m_eevent = ::user::e_event_form_initialize;
          m_puserinteraction->on_control_event(&ev);
 

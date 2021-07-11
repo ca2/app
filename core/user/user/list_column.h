@@ -84,8 +84,6 @@ namespace user
       ::index        column_index() const { return (::index) m_iColumn; }
       ::index        order() const { return (::index) m_iOrder; }
 
-      ::user::interaction * get_control();
-
    };
 
 

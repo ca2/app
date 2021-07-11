@@ -122,37 +122,37 @@ namespace user
    }
 
 
-   ::user::interaction * list_column::get_control()
-   {
+   //::user::interaction * list_column::get_control()
+   //{
 
-      if (!m_pcontainer)
-      {
+   //   if (!m_pcontainer)
+   //   {
 
-         return nullptr;
+   //      return nullptr;
 
-      }
+   //   }
 
-      auto plist = m_pcontainer->m_plist;
+   //   auto plist = m_pcontainer->m_plist;
 
-      if (!plist)
-      {
+   //   if (!plist)
+   //   {
 
-         return nullptr;
+   //      return nullptr;
 
-      }
+   //   }
 
-      auto puserinteraction = plist->get_child_by_id(m_id);
+   //   auto puserinteraction = plist->get_child_by_id(m_id);
 
-      if (!puserinteraction)
-      {
+   //   if (!puserinteraction)
+   //   {
 
-         return nullptr;
+   //      return nullptr;
 
-      }
+   //   }
 
-      return puserinteraction;
+   //   return puserinteraction;
 
-   }
+   //}
 
 
 } // namespace user

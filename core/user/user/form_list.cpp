@@ -357,9 +357,9 @@ namespace user
 
       }
 
-      auto pinteraction = get_child_by_id(pcolumn->m_id);
+      auto pcontrol = get_control(pcolumn, iItem);
 
-      return pinteraction;
+      return pcontrol;
 
    }
 
@@ -1617,7 +1617,7 @@ break_click:;
 
          auto pcolumn = m_columna.get_visible(iColumn);
 
-         auto puserinteraction = pcolumn->get_control();
+         auto puserinteraction = get_control(pcolumn, iItem);
 
          if (pcolumn->m_id
                && puserinteraction != nullptr
@@ -1642,7 +1642,7 @@ break_click:;
 
             auto pcolumn = m_columna.get_visible(iColumn);
 
-            auto puserinteraction = pcolumn->get_control();
+            auto puserinteraction = get_control(pcolumn, iItem);
 
             if (puserinteraction != nullptr && _001IsSubItemEnabled(iItem, pcolumn->m_iSubItem))
             {
@@ -1703,7 +1703,7 @@ break_click:;
 
          auto pcolumn = m_columna.get_visible(iColumn);
 
-         auto puserinteraction = pcolumn->get_control();
+         auto puserinteraction = get_control(pcolumn, iItem);
 
          if (puserinteraction != nullptr && _001IsSubItemEnabled(iItem, pcolumn->m_iSubItem))
          {
@@ -1726,7 +1726,7 @@ break_click:;
 
             auto pcolumn = m_columna.get_visible(iColumn);
 
-            auto puserinteraction = pcolumn->get_control();
+            auto puserinteraction = get_control(pcolumn, iItem);
 
             if (puserinteraction != nullptr && _001IsSubItemEnabled(iItem, pcolumn->m_iSubItem))
             {
@@ -2100,6 +2100,40 @@ break_click:;
    {
 
       return ::user::list::_001HitTest_(point,iItem,iSubItem);
+
+   }
+
+
+   ::user::interaction* form_list::get_control(::user::list_column* pcolumn, ::index iItem)
+   {
+
+      auto pinteractionTemplate = get_child_by_id(pcolumn->m_id);
+
+      if (::is_null(pinteractionTemplate))
+      {
+
+         return nullptr;
+
+      }
+
+      auto & control_map = m_mapControl[pcolumn->m_iSubItem];
+
+      ::index iIndex = iItem - m_iTopDisplayIndex;
+
+      auto & pinteraction = control_map.element_at_grow(iIndex);
+
+      if (pinteraction.is_null())
+      {
+
+         pinteraction = pinteractionTemplate->clone();
+
+      }
+
+      pinteraction->m_id = pcolumn->m_id;
+
+      pinteraction->m_iItem = iItem;
+
+      return pinteraction;
 
    }
 

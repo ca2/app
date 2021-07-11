@@ -12,6 +12,9 @@ namespace user
    public:
 
 
+      index_map < __pointer_array(::user::interaction) > m_mapControl;
+
+
       form_list();
       virtual ~form_list();
 
@@ -25,6 +28,11 @@ namespace user
 
       using ::user::list::_001HitTest_;
       virtual bool _001HitTest_(const ::point_i32 & point, index&iItem, index&iSubItem) override;
+
+
+      virtual ::user::interaction* get_control(::user::list_column * pcolumn, ::index iItem);
+
+
 
       //void _000OnMouse(::message::mouse * pmouse) override;
 

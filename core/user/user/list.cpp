@@ -6396,7 +6396,7 @@ namespace user
       if (m_eview != impact_icon)
       {
 
-         ::sort::quick_sort(m_pmeshlayout->m_iaDisplayToStrict, this, &::user::mesh::_001Compare);
+         ::sort::quick_sort(m_pmeshlayout->m_iaDisplayToStrict, this, &list::_001Compare);
 
       }
 

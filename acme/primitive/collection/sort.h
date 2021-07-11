@@ -1616,7 +1616,7 @@ break_mid_loop:
    // of "pCompare" interface
 
 
-   template < class NUMERIC_ARRAY, class COMPARE_INTERFACE >
+   template < typename NUMERIC_ARRAY, typename COMPARE_INTERFACE >
    void quick_sort(
    NUMERIC_ARRAY & numerica,
    COMPARE_INTERFACE * pinterface,

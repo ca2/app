@@ -1868,7 +1868,7 @@ break_click:;
    void form_list::on_control_event(::user::control_event * pevent)
    {
 
-      if (pevent->m_eevent == ::user::e_event_button_clicked)
+      if (pevent->m_eevent == ::user::e_event_set_check)
       {
 
          auto puserinteraction = pevent->m_puserinteraction;
@@ -1879,8 +1879,6 @@ break_click:;
 
          if (::is_set(pcolumn))
          {
-
-            auto bcheck = puserinteraction->get_bcheck();
 
             on_check_change(puserinteraction);
 

@@ -253,6 +253,8 @@ namespace filemanager
          if (pfolderlistdata)
          {
 
+            synchronous_lock synchronouslock(pfolderlistdata->mutex());
+
             bool bCheck = puserinteraction->bcheck();
 
             auto iItem = puserinteraction->m_iItem;
@@ -288,8 +290,6 @@ namespace filemanager
             }
 
          }
-
-
 
       }
 

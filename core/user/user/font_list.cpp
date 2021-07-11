@@ -587,7 +587,9 @@ namespace user
 
             auto psystem = m_psystem->m_paurasystem;
 
-            psystem->set_modified(id_font_enumeration);
+            auto psubject = psystem->subject(id_font_enumeration);
+
+            psystem->handle_subject(psubject);
 
             //fork([this]()
   //             {

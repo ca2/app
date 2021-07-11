@@ -9,6 +9,8 @@ namespace filemanager
    folder_list_data::folder_list_data()
    {
 
+      defer_create_mutex();
+
    }
 
 
@@ -35,6 +37,8 @@ namespace filemanager
    void folder_list_data::_001GetItemText(::user::mesh_item * pitem)
    {
 
+      synchronous_lock synchronouslock(mutex());
+
       if(pitem->m_iSubItem == 0)
       {
 
@@ -55,7 +59,7 @@ namespace filemanager
       else if(pitem->m_iSubItem == 1)
       {
 
-         int_array ia;
+         i32_array ia;
 
          if (!data_get("recursive", ia))
          {
@@ -142,14 +146,14 @@ namespace filemanager
    }
 
 
-   bool folder_list_data::add_unique(const string_array & stra, int_array & baRecursive)
+   bool folder_list_data::add_unique(const string_array & stra, i32_array & baRecursive)
    {
 
       string_array straData;
 
       data_get(::id(), straData);
 
-      int_array iaData;
+      i32_array iaData;
       data_get("recursive", iaData);
 
       for(i32 i = 0; i < stra.get_count(); i++)
@@ -222,7 +226,7 @@ namespace filemanager
 
       }
 
-      int_array iaData;
+      i32_array iaData;
 
       data_get("recursive", iaData);
 

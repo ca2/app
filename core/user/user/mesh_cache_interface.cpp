@@ -30,7 +30,7 @@ namespace user
    }
 
 
-   void mesh_cache_interface::_001Invalidate()
+   void mesh_cache_interface::_001Invalidate(mesh * pmesh)
    {
 
    }

@@ -15,9 +15,15 @@ ca2 is an all-purpose multi-platform framework and set of libraries written in C
 #### Audio Playback
 #### MIDI Playback
 
-## How to build for Windows
+## How to build simple solution for Windows
 
-### https://ca2.io/windows/
+### https://repository.ca2.software/simple/windows/
+
+## How to build a project for Windows
+
+### https://repository.ca2.software/windows/
+
+
 
 (c)st<3t(b)s
 

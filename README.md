@@ -1,4 +1,4 @@
-# https://ca2.io/
+# https://repository.ca2.software/
 
 ca2 is an all-purpose multi-platform framework and set of libraries written in C++ language to help developers create awesome apps for users.
 

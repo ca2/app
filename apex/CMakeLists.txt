@@ -326,8 +326,8 @@ list(APPEND apex_source
    os/ansios/ansios_file.h
    os/ansios/base.cpp
    # os/ansios/callstack.h
-   os/ansios/datetime.cpp
-   os/ansios/datetime_c.h
+   #os/ansios/datetime.cpp
+   #os/ansios/datetime_c.h
    # os/ansios/exception_engine.cpp
    # os/ansios/exception_engine.h
    os/ansios/file.cpp
@@ -344,7 +344,7 @@ list(APPEND apex_source
    os/_impl.h
    os/_os2.h
    os/apex.h
-   os/argcargv.cpp
+   #os/argcargv.cpp
    os/binreloc.h
    os/cross.h
    os/debug.cpp
@@ -410,6 +410,8 @@ list(APPEND apex_source
    platform/application_consumer.h
    platform/application_container.cpp
    platform/application_container.h
+   platform/application_exit.cpp
+   platform/application_exit.h
    platform/application_heap.h
    platform/application_impl.h
    platform/application_menu.cpp

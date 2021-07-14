@@ -15,13 +15,13 @@ namespace aqua
       ::veriwell::multimedia::multimedia *      m_pveriwellmultimediaThis;
 
 
-#ifdef WINDOWS
-      __composite(::windows::media_foundation)           m_pmediafoundation;
-#endif
+//#ifdef WINDOWS
+//      __composite(::windows::media_foundation)           m_pmediafoundation;
+//#endif
 
       
       multimedia();
-      virtual ~multimedia();
+      ~multimedia() override;
 
 
       virtual ::e_status initialize_multimedia(::object * pobject);
@@ -43,9 +43,9 @@ namespace aqua
 
       virtual ::e_status get_file_information(::file::file* pfile, ::multimedia::information& information);
 
-#ifdef WINDOWS
-    ::windows::media_foundation * mediafoundation();
-#endif
+//#ifdef WINDOWS
+//    ::windows::media_foundation * mediafoundation();
+//#endif
 
 
    };

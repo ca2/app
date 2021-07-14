@@ -132,8 +132,8 @@ list(APPEND library_source
    graphics/draw2d/region.h
    graphics/draw2d/task_tool.cpp
    graphics/draw2d/task_tool.h
-   graphics/draw2d/ttf_util.cpp
-   graphics/draw2d/ttf_util.h
+   #graphics/draw2d/ttf_util.cpp
+   #graphics/draw2d/ttf_util.h
    graphics/draw2d/water_routine.h
    graphics/draw3d/_.h
    graphics/draw3d/ortho.cpp
@@ -248,7 +248,7 @@ list(APPEND library_source
    os/_impl.h
    os/_os2.h
    os/_user.h
-   os/argcargv.cpp
+   #os/argcargv.cpp
    #os/binreloc.cpp
    #os/binreloc.h
    os/chronometer.h
@@ -485,18 +485,18 @@ if (WIN32)
       #node/windows/user_frame.cpp
       #node/windows/windows_desktop.cpp
       #node/windows_common/application.cpp
-      os/windows/-ehrror.cpp
+      #os/windows/-ehrror.cpp
       os/windows/_.h
       os/windows/_c.h
       os/windows/_user.h
       os/windows/_windows.h
       os/windows/_windows_impl.h
-      os/windows/application.cpp
+      #os/windows/application.cpp
       os/windows/aura.cpp
       #os/windows/d2d1_1.h
       os/windows/dpi.cpp
       os/windows/gdi.cpp
-      os/windows/gdi_icon.cpp
+      #os/windows/gdi_icon.cpp
       os/windows/gdiplus.h
       os/windows/graphics.cpp
       os/windows/graphics.h
@@ -506,26 +506,26 @@ if (WIN32)
       #os/windows/imm_context.h
       os/windows/implementation.h
       #os/windows/interaction_debug.cpp
-      os/windows/internal.cpp
-      os/windows/internal.h
+      #os/windows/internal.cpp
+      #os/windows/internal.h
       #os/windows/ipc.cpp
-      os/windows/itemidlist.cpp
-      os/windows/itemidlist.h
-      os/windows/language.cpp
+      #os/windows/itemidlist.cpp
+      #os/windows/itemidlist.h
+      #os/windows/language.cpp
       #os/windows/launcher.cpp
-      os/windows/library.cpp
-      os/windows/lock.cpp
+      #os/windows/library.cpp
+      #os/windows/lock.cpp
       os/windows/main.cpp
-      os/windows/message_loop.cpp
+      #os/windows/message_loop.cpp
       os/windows/monitor.cpp
-      os/windows/opengl_buffer.h
-      os/windows/port_forward.h
-      os/windows/print_job.h
-      os/windows/printer.cpp
-      os/windows/printer.h
-      os/windows/top_level_enum.h
-      os/windows/window_opengl.cpp
-      os/windows/window_opengl.h
+      #os/windows/opengl_buffer.h
+      #os/windows/port_forward.h
+      #os/windows/print_job.h
+      #os/windows/printer.cpp
+      #os/windows/printer.h
+      #os/windows/top_level_enum.h
+      #os/windows/window_opengl.cpp
+      #os/windows/window_opengl.h
       os/windows/windowing.cpp
       os/windows/windowing.h
       os/windows_common/_.h

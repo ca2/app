@@ -21,7 +21,7 @@ list(APPEND library_source
    #exception/archive_exception.cpp
    #exception/base.cpp
    exception/callstack.cpp
-   #exception/cancel.cpp
+   exception/cancel.cpp
    exception/const.cpp
    exception/debug.cpp
    exception/dump.cpp
@@ -58,6 +58,8 @@ list(APPEND library_source
    #exception/temporary.cpp
    exception/throw.cpp
    #exception/todo.cpp
+   exception/translator.cpp
+   exception/translator.h
    #exception/user.cpp
    #exception/void_implementation.cpp
    #exception/wtf.cpp
@@ -199,6 +201,8 @@ list(APPEND library_source
    platform/obj_ref_dbg.cpp
    platform/obj_typ_ctr.cpp
    platform/printf.cpp
+   platform/predicate_holder.cpp
+   platform/predicate_holder.h
    platform/profiler.cpp
    #platform/regex.cpp
    platform/serial.cpp
@@ -1323,6 +1327,9 @@ if (WIN32)
 #      node/windows/windows.cpp
 #      node/windows/windows_desktop.cpp
       os/windows/_.cpp
+      os/windows/_ansi.cpp
+      os/windows/_wd16.cpp
+      os/windows/_wd32.cpp
       os/windows/ansi_file.cpp
       os/windows/api.cpp
       os/windows/application.cpp

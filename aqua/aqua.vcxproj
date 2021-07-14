@@ -81,7 +81,6 @@
     <ClInclude Include="multimedia\_c.h" />
     <ClInclude Include="node\windows\system.h" />
     <ClInclude Include="node\windows\_windows.h" />
-    <ClInclude Include="node\windows_common\media_foundation.h" />
     <ClInclude Include="os\_.h" />
     <ClInclude Include="platform\application.h" />
     <ClInclude Include="platform\session.h" />
@@ -144,7 +143,6 @@
     <ClCompile Include="multimedia\file_application.cpp" />
     <ClCompile Include="multimedia\multimedia.cpp" />
     <ClCompile Include="node\windows\system.cpp" />
-    <ClCompile Include="node\windows_common\media_foundation.cpp" />
     <ClCompile Include="os\windows\audio.cpp" />
     <ClCompile Include="platform\application.cpp" />
     <ClCompile Include="platform\session.cpp" />

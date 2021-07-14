@@ -1,7 +1,7 @@
 #include "framework.h"
-#ifdef WINDOWS
-#include "aqua/node/windows_common/media_foundation.h"
-#endif
+//#ifdef WINDOWS
+//#include "aqua/node/windows_common/media_foundation.h"
+//#endif
 
 
 namespace aqua
@@ -37,18 +37,18 @@ namespace aqua
 
       }
 
-#ifdef WINDOWS
-
-      estatus = __compose_new(m_pmediafoundation);
-
-      if (!estatus)
-      {
-
-         return estatus;
-
-      }
-
-#endif
+//#ifdef WINDOWS
+//
+//      estatus = __compose_new(m_pmediafoundation);
+//
+//      if (!estatus)
+//      {
+//
+//         return estatus;
+//
+//      }
+//
+//#endif
 
       return estatus;
 
@@ -117,32 +117,32 @@ namespace aqua
    }
 
 
-#ifdef WINDOWS
-
-
-   ::windows::media_foundation * multimedia::mediafoundation()
-   {
-
-      if (!m_pmediafoundation)
-      {
-
-         auto estatus = __compose(m_pmediafoundation);
-
-         if (!estatus)
-         {
-
-            return nullptr;
-
-         }
-
-      }
-
-      return m_pmediafoundation;
-
-   }
-
-
-#endif
+//#ifdef WINDOWS
+//
+//
+//   ::windows::media_foundation * multimedia::mediafoundation()
+//   {
+//
+//      if (!m_pmediafoundation)
+//      {
+//
+//         auto estatus = __compose(m_pmediafoundation);
+//
+//         if (!estatus)
+//         {
+//
+//            return nullptr;
+//
+//         }
+//
+//      }
+//
+//      return m_pmediafoundation;
+//
+//   }
+//
+//
+//#endif
 
 
 } // namespace aqua

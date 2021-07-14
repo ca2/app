@@ -2182,6 +2182,43 @@ bool image::flip_horizontal()
 }
 
 
+bool image::flip_vertical()
+{
+
+   int half = -1;
+
+   int sw = m_iScan / 4;
+
+   int h = height();
+
+   int halfh = h / 2;
+
+   int w = width();
+
+   auto pcolorref = colorref();
+
+   memory line;
+
+   line.set_size(m_iScan);
+
+   for (index y = 0; y < halfh; y++)
+   {
+
+      auto plineFirstHalf = pcolorref + (y * sw);
+
+      auto plineSecondHalf = pcolorref + ((h - y - 1) * sw);
+
+      memcpy(line.get_data(), plineFirstHalf, m_iScan);
+      memcpy(plineFirstHalf, plineSecondHalf, m_iScan);
+      memcpy(plineSecondHalf, line.get_data(), m_iScan);
+
+   }
+
+   return true;
+
+}
+
+
 bool image::flipx(::image* pimage)
 {
 

@@ -60,6 +60,16 @@ namespace user
    }
 
 
+   ::matter* button::clone() const
+   {
+
+      auto pcheckbox = new ::user::button;
+
+      return pcheckbox;
+
+   }
+
+
    ::write_text::font_pointer button::get_font(style * pstyle, enum_element eelement, ::user::enum_state estate) const
    {
 

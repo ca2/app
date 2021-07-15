@@ -73,6 +73,9 @@ namespace user
 
       void user_button_construct();
 
+
+      ::matter* clone() const override;
+
       //virtual bool create_interaction(::user::interaction * pinteractionParent, const ::id & id) override;
 
 

@@ -31,6 +31,8 @@ namespace user
 
       m_bTransparent = true;
 
+      m_bHoverDefaultMouseHandling = true;
+
       m_bPendingKillFocusHiding = false;
 
       m_ewindowflag += e_window_flag_satellite_window;

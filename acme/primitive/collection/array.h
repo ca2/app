@@ -155,6 +155,65 @@ public:
 
    }
 
+   template < typename PREDICATE >
+   ::index predicate_index_index(::index iPredicateIndex, PREDICATE predicate)
+   {
+
+      if (iPredicateIndex < 0)
+      {
+
+         return -1;
+
+      }
+
+      for (::index iIndex = 0; iIndex < this->get_size(); iIndex++)
+      {
+
+         auto & element = element_at(iIndex);
+
+         if (predicate(element))
+         {
+
+            if (iPredicateIndex <= 0)
+            {
+
+               return iIndex;
+
+            }
+
+            iPredicateIndex--;
+
+         }
+
+      }
+
+      return -1;
+
+   }
+
+   template < typename PREDICATE >
+   ::index index_predicate_index(::index iIndex, PREDICATE predicate)
+   {
+
+      ::index iPredicateIndex = -1;
+
+      for (::index i = 0; i <= iIndex && i < this->get_size(); iIndex++)
+      {
+
+         auto& element = element_at(iIndex);
+
+         if (predicate(element))
+         {
+
+            iPredicateIndex++;
+
+         }
+
+      }
+
+      return iPredicateIndex;
+
+   }
 
    template < typename PRED >
    bool predicate_add_unique(TYPE t, PRED pred)

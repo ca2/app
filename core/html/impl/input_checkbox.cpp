@@ -138,7 +138,7 @@ namespace html
       bool input_checkbox::layout_phase1(html_data * pdata)
       {
 
-         m_box.set_size(23, 23);
+         m_box.set_size(26, 26);
 
          return true;
 
@@ -150,7 +150,11 @@ namespace html
 
          element::layout_phase3(pdata);
 
-         m_pcheckbox->place(m_box);
+         auto rect = m_box;
+
+         rect.deflate(5, 5);
+
+         m_pcheckbox->place(rect);
 
          m_pcheckbox->display(::e_display_normal);
 

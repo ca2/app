@@ -22,7 +22,8 @@ namespace html
          ::rectangle_f32                 m_padding;
          border                  m_border;
          ::rectangle_f32                 m_margin;
-
+         int                        m_iLayoutChildLineStartIndex;
+         int                        m_iLayoutChildIndex;
 
          enum_position              m_eposition;
          flags < enum_flag >        m_flags;

@@ -592,9 +592,13 @@ namespace html
          else
          {
 
-            phtmldata->m_pcoredata->m_layoutstate1.m_cya.last() = maximum(phtmldata->m_pcoredata->m_layoutstate1.m_cya.last(), phtmldata->m_pcoredata->m_layoutstate1.m_cy);
+            int newLastCy = maximum(phtmldata->m_pcoredata->m_layoutstate1.m_cya.last(), phtmldata->m_pcoredata->m_layoutstate1.m_cy);
 
-            phtmldata->m_pcoredata->m_layoutstate1.m_cxa.last() += m_pimpl->m_box.width() + m_pimpl->get_extra_content_width();
+            int addLastCx = m_pimpl->m_box.width() + m_pimpl->get_extra_content_width();
+
+            phtmldata->m_pcoredata->m_layoutstate1.m_cya.last() = newLastCy;
+
+            phtmldata->m_pcoredata->m_layoutstate1.m_cxa.last() += addLastCx;
 
          }
 
@@ -723,12 +727,25 @@ namespace html
 
          phtmldata->m_pcoredata->m_layoutstate3.m_x = pointContent.x;
 
-         i32 i;
+         m_pimpl->m_iLayoutChildLineStartIndex = 0;
 
-         for (i = 0; i < m_elementalptra.get_size(); i++)
+         for (m_pimpl->m_iLayoutChildIndex = 0;
+            m_pimpl->m_iLayoutChildIndex < m_elementalptra.get_size();
+            m_pimpl->m_iLayoutChildIndex++)
          {
 
-            m_elementalptra[i]->layout_phase3(phtmldata);
+            auto pelemental = m_elementalptra[m_pimpl->m_iLayoutChildIndex];
+
+            pelemental->layout_phase3(phtmldata);
+
+            if (pelemental->m_etag == tag_br
+               || pelemental->m_pstyle->m_edisplay == display_block
+               || pelemental->m_pstyle->m_edisplay == display_table)
+            {
+
+               m_pimpl->m_iLayoutChildLineStartIndex = m_pimpl->m_iLayoutChildIndex + 1;
+
+            }
 
          }
 

@@ -689,14 +689,36 @@ namespace html
          if (etag == tag_br)
          {
 
-            pdata->m_pcoredata->m_layoutstate3.m_y += height();
+            //auto h = height();
 
-            //pdata->m_pcoredata->m_layoutstate3.m_y += pdata->m_pcoredata->m_layoutstate3.m_cya.last();
+            //pdata->m_pcoredata->m_layoutstate3.m_y += h;
+
+            auto lastCy = pdata->m_pcoredata->m_layoutstate3.m_cya.last();
 
             pdata->m_pcoredata->m_layoutstate3.m_x = pdata->m_pcoredata->m_layoutstate3.m_xParent.last();
 
             pdata->m_pcoredata->m_layoutstate3.m_cya.last() = 0;
 
+            auto pparent = m_pelemental->m_pparent;
+
+            // assume all elements in the line 
+            // wrapped by this <br> tag will be
+            // base-line-aligned.
+             
+            for (auto i = pparent->m_pimpl->m_iLayoutChildLineStartIndex; i < pparent->m_pimpl->m_iLayoutChildIndex; i++)
+            {
+
+               auto pelemental = pparent->m_elementalptra[i];
+
+               auto h = pelemental->m_pimpl->m_box.height();
+
+               auto offsetY = lastCy - h;
+
+               pelemental->m_pimpl->m_box.offset_y(offsetY);
+
+            }
+
+            pdata->m_pcoredata->m_layoutstate3.m_y += lastCy;
 
             return;
 
@@ -729,7 +751,9 @@ namespace html
 
          pdata->m_pcoredata->m_layoutstate3.m_cx = width();
 
-         pdata->m_pcoredata->m_layoutstate3.m_cya.last() = maximum(pdata->m_pcoredata->m_layoutstate3.m_cya.last(), height());
+         auto lastCy = maximum(pdata->m_pcoredata->m_layoutstate3.m_cya.last(), height());
+
+         pdata->m_pcoredata->m_layoutstate3.m_cya.last() = lastCy;
 
 
       }

@@ -29,7 +29,7 @@ namespace user
    void tab_callback::_001OnTabClick(tab * ptab, ::index iTab)
    {
 
-      ptab->_001SelectTab(iTab);
+      ptab->set_current_tab_by_index(iTab);
 
    }
 

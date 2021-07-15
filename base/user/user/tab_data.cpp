@@ -37,12 +37,15 @@ namespace user
 
    }
 
+
    tab_data::~tab_data()
    {
+
+
    }
 
 
-   tab_pane * tab_data::get_pane_by_id(id id)
+   tab_pane * tab_data::get_tab_by_id(id id)
    {
 
       return m_tabpanecompositea.get_by_id(id);
@@ -58,7 +61,7 @@ namespace user
    }
 
 
-
 } // namespace base
+
 
 

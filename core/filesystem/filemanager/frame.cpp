@@ -62,7 +62,7 @@ namespace filemanager
       if (ptabview != nullptr)
       {
          get_window_text(str);
-         ptabview->SetTitleById(m_idTab, str);
+         ptabview->set_title_by_id(m_idTab, str);
       }
 
    }

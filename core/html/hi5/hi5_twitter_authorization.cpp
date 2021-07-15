@@ -111,7 +111,7 @@ namespace hi5
          __pointer(user::tab_view) pview = m_pdocument->get_typed_view < user::tab_view >();
          m_ptabview = pview;
          pview->create_impact("twitter_authorization", "ca2open", this);
-         pview->set_cur_tab_by_id("twitter_authorization");
+         pview->set_current_tab_by_id("twitter_authorization");
       }
 
 

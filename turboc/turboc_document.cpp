@@ -67,7 +67,7 @@ namespace turboc
       else if(get_typed_view < pane_view >() != NULL)
       {
 
-         get_typed_view < pane_view >()->set_cur_tab_by_id(MAIN_IMPACT);
+         get_typed_view < pane_view >()->set_current_tab_by_id(MAIN_IMPACT);
       }
 
       return true;

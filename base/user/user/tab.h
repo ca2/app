@@ -72,13 +72,13 @@ namespace user
 
 
       tab();
-      virtual ~tab();
+      ~tab() override;
 
 
-      virtual void install_message_routing(::channel * pchannel) override;
+      void install_message_routing(::channel * pchannel) override;
 
 
-      virtual enum_element get_default_element() const override;
+      enum_element get_default_element() const override;
 
       DECLARE_MESSAGE_HANDLER(on_message_left_button_down);
       DECLARE_MESSAGE_HANDLER(on_message_left_button_up);
@@ -97,11 +97,11 @@ namespace user
       virtual void on_change_cur_sel();
 
       virtual void  _001SetVertical(bool bSet = true);
-      virtual void _001SelectTab(::index iTab);
+      // virtual void set_current_tab_by_index(::index iTab);
       virtual void _001CloseTab(::index iTab);
 
 
-      virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
+      void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
 
       virtual void rotate();
 
@@ -111,33 +111,35 @@ namespace user
       virtual ::user::interaction * pane_window(::index iTab);
       virtual ::user::place_holder * pane_holder(::index iTab);
 
-      //virtual void _000OnMouse(::message::mouse * pmouse) override;
-
       virtual ::user::interaction * get_view_uie();
 
       virtual void _001SetTabCallback(tab_callback * pcallback);
       virtual bool _001IsAddTab(::index iTab);
       virtual void _001OnDropTab(::index iTab, enum_position eposition);
-      virtual bool set_cur_tab_by_id(id id, ::create * pcreate = nullptr);
-
-      virtual id get_cur_tab_id();
-      virtual id get_current_id();
 
 
-      virtual void get_child_rect(RECTANGLE_I32 * prectangle) override;
+      virtual id get_current_tab_id();
+      virtual bool set_current_tab_by_id(id id, ::create* pcreate = nullptr);
+
+
+      virtual ::index get_current_tab_index();
+      virtual void set_current_tab_by_index(::index iSel);
+
+
+      virtual ::count get_tab_count();
+      virtual ::count get_visible_tab_count();
+
+
+      void get_child_rect(RECTANGLE_I32 * prectangle) override;
 
 
       virtual void _001OnRemoveTab(tab_pane * ptab);
 
-      virtual ::index _001GetSel();
-      virtual void _001SetSel(::index iSel);
-
-      virtual ::count _001GetPaneCount();
 
       virtual void _001OnTabClick(::index iTab);
       virtual void _001OnTabClose(::index iTab);
       virtual ::user::interaction * GetNotifyWnd();
-      virtual void on_hit_test(::user::item & item) override;
+      void on_hit_test(::user::item & item) override;
       virtual enum_position DragHitTest(const ::point_i32 & point);
       virtual void GetDragRect(RECTANGLE_I32 * prectangle, enum_position eposition);
 
@@ -146,7 +148,7 @@ namespace user
 
       virtual void get_title(int iPane,string_array & stra);
 
-      virtual void on_layout(::draw2d::graphics_pointer & pgraphics) override;
+      void on_layout(::draw2d::graphics_pointer & pgraphics) override;
       virtual void layout_pane(index iPane, bool bDisplay = false);
 
       virtual void GetTabClientRect(RECTANGLE_I32 * prectangle);
@@ -171,38 +173,34 @@ namespace user
 
 
       virtual bool set_title(::index iTab, const char * psz);
-      virtual bool SetTitleById(id id, const char * psz);
+      virtual bool set_title_by_id(id id, const char * psz);
 
-      virtual ::count get_tab_count();
-      virtual ::count get_pane_count();
 
       virtual index find_child_pane(::user::interaction * pinteraction);
       virtual void defer_erase_child_pane(::user::interaction * pinteraction);
 
-      virtual void on_erase_child(::user::interaction * pinteraction) override;
-      virtual void on_erase_place_holder_child(::user::interaction * pinteraction) override;
+      void on_erase_child(::user::interaction * pinteraction) override;
+      void on_erase_place_holder_child(::user::interaction * pinteraction) override;
 
-      virtual void on_hide_child(::user::interaction * pinteraction) override;
-      virtual void on_hide_place_holder_child(::user::interaction * pinteraction) override;
+      void on_hide_child(::user::interaction * pinteraction) override;
+      void on_hide_place_holder_child(::user::interaction * pinteraction) override;
 
-      virtual ::index id_tab(id id);
-      virtual id tab_id(::index iTab);
-      virtual ::index id_pane(id id);
-      virtual id pane_id(::index iPane);
+      virtual ::index id_tab_index(id id);
+      virtual id tab_index_id(::index iTab);
+      //virtual ::index id_pane(id id);
+      //virtual id pane_id(::index iPane);
 
-      virtual ::index tab_pane(index iTab);
-      virtual ::index pane_tab(index iPane);
+      //virtual ::index tab_pane(index iTab);
+      //virtual ::index pane_tab(index iPane);
 
 
-      virtual ::user::tab_pane * get_pane(::index iPane);
       virtual ::user::tab_pane * get_tab(::index iTab);
 
 
-      virtual ::user::tab_pane * get_pane_by_id(id id);
-      virtual ::user::tab_pane * create_pane_by_id(id id);
-      virtual ::index create_tab_by_id(id id);
+      virtual ::user::tab_pane * get_tab_by_id(id id);
+      virtual ::user::tab_pane* create_tab_by_id(id id);
 
-      virtual void on_change_pane_count(::array < ::user::tab_pane * > array = ::array < ::user::tab_pane * >());
+      virtual void on_change_tab_count(::array < ::user::tab_pane * > array = ::array < ::user::tab_pane * >());
 
       virtual void get_text_id(string_array & stra);
 
@@ -226,21 +224,23 @@ namespace user
       virtual void on_create_tabs();
 
 
-      virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
+      void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
 
       virtual void _001OnDrawStandard(::draw2d::graphics_pointer & pgraphics);
       virtual void _001OnDrawSchema01(::draw2d::graphics_pointer & pgraphics);
 
-      virtual void _001OnTimer(::timer * ptimer) override;
+      void _001OnTimer(::timer * ptimer) override;
 
       virtual bool defer_handle_auto_hide_tabs(bool bLayout = true);
 
       virtual bool has_tab_scrolling() const;
 
+
    };
 
 
 } // namespace user
+
 
 

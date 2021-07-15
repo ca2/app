@@ -73,7 +73,7 @@ namespace filemanager
 
       pview->create_impact(2, "advanced", this);
 
-      pview->set_cur_tab_by_id(1);
+      pview->set_current_tab_by_id(1);
 
       return pview->get_parent_frame();
 

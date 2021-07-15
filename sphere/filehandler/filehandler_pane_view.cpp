@@ -175,7 +175,7 @@ namespace filehandler
    void pane_view::_001OnMenuMessage(::message::message * pmessage)
    {
       UNREFERENCED_PARAMETER(pmessage);
-      set_cur_tab_by_id(m_pimpactdataOld->m_id);
+      set_current_tab_by_id(m_pimpactdataOld->m_id);
    }
 
    void pane_view::install_message_routing(::channel * pchannel)

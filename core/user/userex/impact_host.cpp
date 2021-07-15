@@ -281,7 +281,7 @@ namespace userex
                INFO("");
 
 
-               ptabview->set_cur_tab_by_id(id);
+               ptabview->set_current_tab_by_id(id);
 
                pframewindow->set_need_layout();
 

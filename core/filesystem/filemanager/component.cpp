@@ -673,7 +673,7 @@ namespace filemanager
 
       //   ::file::path pathFolder = filemanager_project_entry(strManagerId, varFile, get_application());
 
-      //   ptabview->set_cur_tab_by_id("verifile://" + pathFolder);
+      //   ptabview->set_current_tab_by_id("verifile://" + pathFolder);
 
       //}
 
@@ -874,7 +874,7 @@ namespace filemanager
 //            if (ptabview->get_tab_count() <= 0)
 //            {
 
-//               ptabview->set_cur_tab_by_id("verifile://" + pathFolder);
+//               ptabview->set_current_tab_by_id("verifile://" + pathFolder);
 
 //            }
 //            else
@@ -897,7 +897,7 @@ namespace filemanager
 //         if (ptabview->get_tab_count() <= 0)
 //         {
 
-//            ptabview->set_cur_tab_by_id("0");
+//            ptabview->set_current_tab_by_id("0");
 
 //         }
 

@@ -1175,7 +1175,7 @@ namespace aura
       //      //if(get_document()->get_typed_view < ::bergedge::pane_view >() != nullptr)
       //      //{
 
-      //      //   get_document()->get_typed_view < ::bergedge::pane_view >()->set_cur_tab_by_id("app:" + strAppName);
+      //      //   get_document()->get_typed_view < ::bergedge::pane_view >()->set_current_tab_by_id("app:" + strAppName);
 
       //      //   puiParent = get_document()->get_typed_view < ::bergedge::pane_view >()->get_tab_holder(get_document()->get_typed_view < ::bergedge::pane_view >()->get_tab_by_id("app:" + strAppName));
 

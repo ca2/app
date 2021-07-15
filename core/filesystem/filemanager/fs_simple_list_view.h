@@ -118,11 +118,11 @@ namespace filemanager
 
 
             list_view();
-            virtual ~list_view();
+            ~list_view() override;
 
 
-            virtual void assert_valid() const override;
-            virtual void dump(dump_context & dumpcontext) const override;
+            void assert_valid() const override;
+            void dump(dump_context & dumpcontext) const override;
 
 
             void install_message_routing(::channel * pchannel) override;
@@ -152,6 +152,7 @@ namespace filemanager
 
             virtual bool on_click(const ::user::item & item) override;
 
+            DECLARE_MESSAGE_HANDLER(on_message_create);
             DECLARE_MESSAGE_HANDLER(on_message_left_button_double_click);
             void _001OnTimer(::timer * ptimer) override;
             DECLARE_MESSAGE_HANDLER(on_message_size);

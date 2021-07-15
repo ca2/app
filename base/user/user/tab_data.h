@@ -47,9 +47,9 @@ namespace user
 
 
       tab_data();
-      virtual ~tab_data();
+      ~tab_data() override;
 
-      virtual tab_pane * get_pane_by_id(id id);
+      virtual tab_pane * get_tab_by_id(id id);
 
       ::count get_visible_tab_count();
 

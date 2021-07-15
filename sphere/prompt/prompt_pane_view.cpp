@@ -51,7 +51,7 @@ namespace prompt
       add_tab("options", impact_configuration);
       add_tab("File Manager", FILEMANAGER_IMPACT);
 
-      set_cur_tab_by_id(impact_primary_command);
+      set_current_tab_by_id(impact_primary_command);
 
    }
 
@@ -279,7 +279,7 @@ namespace prompt
 
       UNREFERENCED_PARAMETER(pmessage);
 
-      set_cur_tab_by_id(m_pimpactdataOld->m_id);
+      set_current_tab_by_id(m_pimpactdataOld->m_id);
 
    }
 
@@ -324,7 +324,7 @@ namespace prompt
 
       }
 
-      set_cur_tab_by_id(idNew);
+      set_current_tab_by_id(idNew);
 
    }
 

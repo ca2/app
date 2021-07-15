@@ -41,7 +41,7 @@ namespace user
       DECLARE_MESSAGE_HANDLER(_001OnSetFocus);
 
 
-      virtual void on_change_pane_count(::array < ::user::tab_pane * > array = ::array < ::user::tab_pane * >()) override;
+      virtual void on_change_tab_count(::array < ::user::tab_pane * > array = ::array < ::user::tab_pane * >()) override;
 
       virtual void on_erase_child(::user::interaction* pinteraction) override;
 
@@ -79,7 +79,7 @@ namespace user
 
       virtual void rotate() override;
 
-      virtual ::index create_tab_by_id(id id) override;
+      virtual ::user::tab_pane * create_tab_by_id(id id) override;
 
       virtual void _001OnShowTab(::user::tab * ptab) override;
 

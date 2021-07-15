@@ -288,7 +288,7 @@ namespace filemanager
             //if (m_viewmap.get_count() == 0)
             //{
 
-            //   set_cur_tab_by_id(0);
+            //   set_current_tab_by_id(0);
 
             //}
 
@@ -339,19 +339,19 @@ namespace filemanager
       if (psubject->id() == id_add_location)
       {
 
-         set_cur_tab_by_id("add_location");
+         set_current_tab_by_id("add_location");
 
       }
       else if (psubject->id() == id_replace_name)
       {
 
-         set_cur_tab_by_id("replace_name");
+         set_current_tab_by_id("replace_name");
 
       }
       else if (psubject->id() == id_new_folder)
       {
 
-         set_cur_tab_by_id("new_folder");
+         set_current_tab_by_id("new_folder");
 
       }
 

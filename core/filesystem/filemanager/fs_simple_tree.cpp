@@ -76,12 +76,12 @@ namespace filemanager
 
             string str;
 
-            xml::document doc;
+            auto pxmldocument = __create_new < ::xml::document >();
 
-            if(doc.load(pszSource))
+            if(pxmldocument->load(pszSource))
             {
 
-               str  = doc.get_xml();
+               str  = pxmldocument->get_xml();
 
             }
             else
@@ -93,7 +93,7 @@ namespace filemanager
 
             }
 
-            m_iParentFolder = doc.root()->attribute("id");
+            m_iParentFolder = pxmldocument->root()->attribute("id");
 
             __pointer(::data::tree_item) ptreeitemParent;
 
@@ -116,7 +116,7 @@ namespace filemanager
             // Result: Person, Person, Person
             index iNode = 0;
 
-            __pointer(::xml::node) pnodeFolder = doc.root()->get_child("folder");
+            auto pnodeFolder = pxmldocument->root()->get_child("folder");
 
 
             //         xml::node::array childs(this);
@@ -139,7 +139,7 @@ namespace filemanager
                if (iNewItem < 0)
                {
 
-                  pfolder = __new(folder);
+                  pfolder = __create_new<folder>();
 
                   m_foldera.add(pfolder);
 

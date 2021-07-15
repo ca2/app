@@ -65,8 +65,8 @@ namespace helloworld
       set_tab("Open", FILEMANAGER_IMPACT);
 #endif
 
-      //set_cur_tab_by_id(GCOM_IMPACT);
-      set_cur_tab_by_id(::helloworld::PaneViewHelloWorld);
+      //set_current_tab_by_id(GCOM_IMPACT);
+      set_current_tab_by_id(::helloworld::PaneViewHelloWorld);
 
 
 

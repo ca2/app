@@ -69,14 +69,14 @@ namespace userstack
 
          add_tab(strId, "app:" + strId);
 
-         set_cur_tab_by_id("app:" + papplication->m_varTopicQuery["app"].stra()[i]);
+         set_current_tab_by_id("app:" + papplication->m_varTopicQuery["app"].stra()[i]);
 
       }
 
       for (i32 i = 0; i < papplication->m_varTopicQuery["app/sphere/userstack"]["tab"].stra().get_count(); i++)
       {
 
-         set_cur_tab_by_id("app:" + papplication->m_varTopicQuery["app/sphere/userstack"]["tab"].stra()[i]);
+         set_current_tab_by_id("app:" + papplication->m_varTopicQuery["app/sphere/userstack"]["tab"].stra()[i]);
 
       }
 
@@ -251,7 +251,7 @@ namespace userstack
    void pane_view::_001OnMenuMessage(::message::message * pmessage)
    {
       UNREFERENCED_PARAMETER(pmessage);
-      set_cur_tab_by_id(m_pimpactdataOld->m_id);
+      set_current_tab_by_id(m_pimpactdataOld->m_id);
    }
 
    void pane_view::install_message_routing(::channel * pchannel)
@@ -522,7 +522,7 @@ namespace userstack
    {
       UNREFERENCED_PARAMETER(pdata);
       m_itema = itema;
-      //set_cur_tab_by_id(::bergedge::impact_properties);
+      //set_current_tab_by_id(::bergedge::impact_properties);
    }
 
 

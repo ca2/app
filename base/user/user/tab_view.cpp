@@ -146,39 +146,67 @@ namespace user
 
    void tab_view::rotate()
    {
-      index iSel = _001GetSel();
 
-      if(iSel < 0)
-         iSel = 0;
+      index iIndex = get_current_tab_index();
+
+      if (iIndex < 0)
+      {
+
+         iIndex = 0;
+
+      }
       else
-         iSel++;
+      {
 
-      if(iSel >= _001GetPaneCount())
-         iSel = 0;
+         iIndex++;
 
-      if(iSel >= _001GetPaneCount())
+      }
+
+      if (iIndex >= get_tab_count())
+      {
+
+         iIndex = 0;
+
+      }
+
+      if (iIndex >= get_tab_count())
+      {
+
          return;
 
-      _001SetSel(iSel);
+      }
+
+      set_current_tab_by_id(iIndex);
 
    }
+
 
    void tab_view::_001OnMenuMessage(::message::message * pmessage)
    {
+      
       __pointer(::user::message) pusermessage(pmessage);
+
       if(pusermessage->m_wparam == 0 && pusermessage->m_lparam == 0)
       {
-         set_cur_tab_by_id(m_pimpactdataOld->m_id);
+
+         set_current_tab_by_id(m_pimpactdataOld->m_id);
+
       }
+
    }
+
 
    void tab_view::install_message_routing(::channel * pchannel)
    {
+
       impact::install_message_routing(pchannel);
+
       ::user::tab::install_message_routing(pchannel);
+
       MESSAGE_LINK(e_message_create, pchannel, this, &tab_view::on_message_create);
       MESSAGE_LINK(WM_USER + 1122, pchannel, this, &tab_view::_001OnMenuMessage);
       MESSAGE_LINK(e_message_set_focus, pchannel, this, &tab_view::_001OnSetFocus);
+
    }
 
 
@@ -251,15 +279,15 @@ namespace user
       if (eposition != e_position_none)
       {
 
-         id id1 = ::user::tab::tab_id(::user::tab::_001GetSel());
+         id id1 = ::user::tab::tab_index_id(::user::tab::get_current_tab_index());
 
-         id id2 = ::user::tab::tab_id(iTab);
+         id id2 = ::user::tab::tab_index_id(iTab);
 
          id id3 = payload(id1).get_string() + "->:<-" + payload(id2).get_string();
 
-         ::user::tab_pane * ppane1 = get_pane_by_id(id1);
+         ::user::tab_pane * ppane1 = get_tab_by_id(id1);
 
-         ::user::tab_pane * ppane2 = get_pane_by_id(id2);
+         ::user::tab_pane * ppane2 = get_tab_by_id(id2);
 
          string strName1 = ppane1->get_title();
 
@@ -323,7 +351,7 @@ namespace user
 
          erase_tab_by_id(id2);
 
-         set_cur_tab_by_id(id3);
+         set_current_tab_by_id(id3);
 
       }
 
@@ -346,10 +374,10 @@ namespace user
 
       }
 
-      if(get_impact_data(::user::tab::tab_id(iTab)) != nullptr)
+      if(get_impact_data(::user::tab::tab_index_id(iTab)) != nullptr)
       {
 
-         return get_impact_data(::user::tab::tab_id(iTab))->m_puserinteraction;
+         return get_impact_data(::user::tab::tab_index_id(iTab))->m_puserinteraction;
 
       }
       else
@@ -365,7 +393,7 @@ namespace user
    void tab_view::_001DropTargetWindowInitialize(::user::tab * pchannel)
    {
 
-      create_tab_by_id(::user::tab::tab_id(pchannel->get_data()->m_iClickTab));
+      create_tab_by_id(::user::tab::tab_index_id(pchannel->get_data()->m_iClickTab));
 
       m_pdroptargetwindow = __new(tab_drop_target_window());
 
@@ -428,9 +456,9 @@ namespace user
    void tab_view::on_change_cur_sel()
    {
 
-      index iPane = _001GetSel();
+      index iTab = get_current_tab_index();
 
-      id id = tab_id(iPane);
+      id id = tab_index_id(iTab);
 
       ::id idSplit;
 
@@ -447,12 +475,12 @@ namespace user
 
       }
 
-      if(iPane >= 0)
+      if(iTab >= 0)
       {
 
          auto& tabpanecompositea = ptabdata->m_tabpanecompositea;
 
-         auto & ptabpanecomposite = tabpanecompositea[iPane];
+         auto & ptabpanecomposite = tabpanecompositea[iTab];
 
          if(ptabpanecomposite->m_pimpactdata != pimpactdata)
          {
@@ -462,24 +490,24 @@ namespace user
             if (pimpactdata->m_pplaceholder != nullptr)
             {
 
-               get_data()->m_tabpanecompositea[iPane]->m_pplaceholder = pimpactdata->m_pplaceholder;
+               get_data()->m_tabpanecompositea[iTab]->m_pplaceholder = pimpactdata->m_pplaceholder;
 
             }
             else if (pimpactdata->m_puserinteraction != nullptr)
             {
 
-               if (pane_holder(iPane) == nullptr)
+               if (pane_holder(iTab) == nullptr)
                {
 
-                  get_data()->m_tabpanecompositea[iPane]->m_pplaceholder = place_hold(pimpactdata->m_puserinteraction, get_data()->m_rectTabClient);
+                  get_data()->m_tabpanecompositea[iTab]->m_pplaceholder = place_hold(pimpactdata->m_puserinteraction, get_data()->m_rectTabClient);
 
                }
                else
                {
 
-                  get_data()->m_tabpanecompositea[iPane]->m_pplaceholder->m_puserinteractionpointeraChild.release();
+                  get_data()->m_tabpanecompositea[iTab]->m_pplaceholder->m_puserinteractionpointeraChild.release();
 
-                  get_data()->m_tabpanecompositea[iPane]->m_pplaceholder->place_hold(pimpactdata->m_puserinteraction);
+                  get_data()->m_tabpanecompositea[iTab]->m_pplaceholder->place_hold(pimpactdata->m_puserinteraction);
 
                }
 
@@ -487,7 +515,7 @@ namespace user
             else
             {
 
-               get_data()->m_tabpanecompositea[iPane]->m_pplaceholder = get_new_place_holder(get_data()->m_rectTabClient);
+               get_data()->m_tabpanecompositea[iTab]->m_pplaceholder = get_new_place_holder(get_data()->m_rectTabClient);
 
             }
 
@@ -498,12 +526,12 @@ namespace user
                if (pimpactdata->m_idTitle.has_char())
                {
 
-                  index iPane = tab_pane(_001GetSel());
+                  index iTab = get_current_tab_index();
 
-                  if (iPane >= 0 && get_data()->m_tabpanecompositea[iPane]->m_id == pimpactdata->m_id)
+                  if (iTab >= 0 && get_data()->m_tabpanecompositea[iTab]->m_id == pimpactdata->m_id)
                   {
 
-                     get_data()->m_tabpanecompositea[iPane]->set_title(pimpactdata->m_idTitle);
+                     get_data()->m_tabpanecompositea[iTab]->set_title(pimpactdata->m_idTitle);
 
                   }
 
@@ -657,36 +685,36 @@ namespace user
    }
 
 
-   ::index tab_view::create_tab_by_id(id id)
+   ::user::tab_pane * tab_view::create_tab_by_id(id id)
    {
 
       if (get_impact_data(id, get_data()->m_rectTabClient) == nullptr)
       {
 
-         return -1;
+         return nullptr;
 
       }
 
-      index iTab = id_tab(id);
+      index iTab = id_tab_index(id);
 
       if (iTab < 0)
       {
 
-         return -1;
+         return nullptr;
 
       }
 
-      return iTab;
+      return get_data()->m_tabpanecompositea[iTab];
 
    }
 
 
-   void tab_view::on_change_pane_count(::array < ::user::tab_pane * > array)
+   void tab_view::on_change_tab_count(::array < ::user::tab_pane * > array)
    {
 
-      ::user::tab::on_change_pane_count(array);
+      ::user::tab::on_change_tab_count(array);
 
-      if (m_bCloseDocumentIfNoTabs && get_pane_count() <= 0)
+      if (m_bCloseDocumentIfNoTabs && get_tab_count() <= 0)
       {
 
          if (get_document() != nullptr)
@@ -762,7 +790,7 @@ namespace user
 
    //      }
 
-   //      ::user::tab_pane * ppane = get_pane_by_id(id);
+   //      ::user::tab_pane * ppane = get_tab_by_id(id);
 
    //      if (ppane != nullptr)
    //      {
@@ -945,7 +973,7 @@ namespace user
 
       //}
 
-      ::user::tab_pane* ppane = get_pane_by_id(pimpactdata->m_id);
+      ::user::tab_pane* ppane = get_tab_by_id(pimpactdata->m_id);
 
       if (!ppane)
       {
@@ -957,7 +985,7 @@ namespace user
 
          }
 
-         ppane = get_pane_by_id(pimpactdata->m_id);
+         ppane = get_tab_by_id(pimpactdata->m_id);
 
       }
 
@@ -979,7 +1007,7 @@ namespace user
 
       }
 
-      on_change_pane_count();
+      on_change_tab_count();
 
       return true;
 

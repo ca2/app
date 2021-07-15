@@ -105,7 +105,7 @@ namespace browser
       else if(get_typed_view < ::userex::pane_tab_view >() != nullptr)
       {
 
-         get_typed_view < ::userex::pane_tab_view >()->set_cur_tab_by_id(MAIN_IMPACT);
+         get_typed_view < ::userex::pane_tab_view >()->set_current_tab_by_id(MAIN_IMPACT);
 
       }
 

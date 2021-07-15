@@ -73,7 +73,7 @@ namespace filemanager
 //      pview->get_parent_frame()->display();
 //
 //#endif
-      pview->set_cur_tab_by_id(1);
+      pview->set_current_tab_by_id(1);
       pview->get_parent_frame()->set_need_redraw();
       pview->get_parent_frame()->RunModalLoop();
       varFile = pdocument->m_strTopic;
@@ -1307,7 +1307,7 @@ namespace filemanager
       //   if (bSwitch)
       //   {
 
-      //      ptabview->set_cur_tab_by_id("filemanager::operation");
+      //      ptabview->set_current_tab_by_id("filemanager::operation");
 
       //   }
       //   else

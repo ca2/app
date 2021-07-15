@@ -681,7 +681,7 @@ namespace sphere
          {
             if(get_document() != nullptr && get_document()->get_typed_view < pane_view >() != nullptr)
             {
-               get_document()->get_typed_view < pane_view >()->set_cur_tab_by_id("app:" + App(m_papplicationCurrent).m_strAppName);
+               get_document()->get_typed_view < pane_view >()->set_current_tab_by_id("app:" + App(m_papplicationCurrent).m_strAppName);
             }
             App(m_papplicationCurrent).do_request(pcreate);
             if(pcreate->m_pcommandline->m_varQuery["document"].cast < ::user::document > () == nullptr)
@@ -716,7 +716,7 @@ namespace sphere
                && (!pcreate->m_papplicationbias.is_set() || pcreate->m_papplicationbias->m_puserinteractionParent == nullptr))
             {
                //message_box(nullptr, "request3", "request3", e_message_box_icon_exclamation);
-               get_document()->get_typed_view < pane_view >()->set_cur_tab_by_id("app:" + pcreate->m_pcommandline->m_strApp);
+               get_document()->get_typed_view < pane_view >()->set_current_tab_by_id("app:" + pcreate->m_pcommandline->m_strApp);
                App(m_papplicationCurrent).do_request(pcreate);
             }
             else

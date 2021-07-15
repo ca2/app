@@ -71,7 +71,7 @@ namespace browser
       set_tab("Open", FILEMANAGER_IMPACT);
 #endif
 
-      set_cur_tab_by_id(MAIN_IMPACT);
+      set_current_tab_by_id(MAIN_IMPACT);
 
    }
 

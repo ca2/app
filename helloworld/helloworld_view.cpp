@@ -254,7 +254,7 @@ namespace helloworld
       if(rectangleClient.area() <= 0)
          return;
 
-      bool bHover = GetTypedParent < pane_view >()->m_pviewLast == this && GetTypedParent < pane_view >()->get_cur_tab_id() == FONTSEL_IMPACT;
+      bool bHover = GetTypedParent < pane_view >()->m_pviewLast == this && GetTypedParent < pane_view >()->get_current_tab_id() == FONTSEL_IMPACT;
 
       if(m_prender->m_cx == rectangleClient.width()
             && m_prender->m_cy == rectangleClient.height()

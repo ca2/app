@@ -723,7 +723,7 @@ namespace userex
    void pane_tab_view::FileManagerSaveAs(::user::document * pdocument)
    {
 
-      set_cur_tab_by_id(impact_filemanager_main);
+      set_current_tab_by_id(impact_filemanager_main);
 
       filemanager_document()->FileManagerSaveAs(pdocument);
 
@@ -733,7 +733,7 @@ namespace userex
    void pane_tab_view::TabbedFileManagerSaveAs(::user::document * pdocument)
    {
 
-      set_cur_tab_by_id("tabbed_file_manager");
+      set_current_tab_by_id("tabbed_file_manager");
 
       tabbed_filemanager_manager()->FileManagerSaveAs(pdocument);
 
@@ -761,7 +761,7 @@ namespace userex
 
       pcredentials->m_estatus = error_credentials;
 
-      set_cur_tab_by_id("account");
+      set_current_tab_by_id("account");
 
       __pointer(::account::view) pview = get_view();
 
@@ -803,7 +803,7 @@ namespace userex
          if (m_pimpactdataOld != nullptr)
          {
 
-            set_cur_tab_by_id(m_pimpactdataOld->m_id);
+            set_current_tab_by_id(m_pimpactdataOld->m_id);
 
             pevent->m_bRet = true;
 

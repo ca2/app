@@ -20,25 +20,14 @@ namespace filemanager
 
             m_bKickActive = false;
 
-            auto estatus = __construct_new(m_puserlistcache);
-
-            set_cache_interface(m_puserlistcache);
-
-            m_pil = __create_new< ::image_list>();
-
-            m_pil->create(16, 16, 0, 0, 0);
-
-            m_iIconFolder = m_pil->add_matter_icon("mplite/vmskarlib_folder_normal.ico");
-
-            m_iIconArtist = m_pil->add_matter_icon("mplite/vmskarlib_artist_normal.ico");
-
-            m_iIconSong = m_pil->add_matter_icon("mplite/vmskarlib_song_normal.ico");
-
          }
+
 
          list_view::~list_view()
          {
+
          }
+
 
          void list_view::install_message_routing(::channel * pchannel)
          {
@@ -67,6 +56,32 @@ namespace filemanager
             simple_list_view::dump(dumpcontext);
          }
 
+
+         void list_view::on_message_create(::message::message* pmessage)
+         {
+
+            if (!pmessage->previous())
+            {
+
+               return;
+
+            }
+
+            auto estatus = __construct_new(m_puserlistcache);
+
+            set_cache_interface(m_puserlistcache);
+
+            m_pil = __create_new< ::image_list>();
+
+            m_pil->create(16, 16, 0, 0, 0);
+
+            m_iIconFolder = m_pil->add_matter_icon("mplite/vmskarlib_folder_normal.ico");
+
+            m_iIconArtist = m_pil->add_matter_icon("mplite/vmskarlib_artist_normal.ico");
+
+            m_iIconSong = m_pil->add_matter_icon("mplite/vmskarlib_song_normal.ico");
+
+         }
 
 
          void list_view::_001InsertColumns()
@@ -681,24 +696,26 @@ namespace filemanager
 
             string str;
 
-            xml::document doc;
+            auto pxmldocument = __create_new < xml::document >();
 
-            if(doc.load(pszSource))
-
+            if(pxmldocument->load(pszSource))
             {
-               str  = doc.get_xml();
+
+               str  = pxmldocument->get_xml();
+
             }
             else
             {
+
                message_box("error"); // simple parsing error check
+
                return;
+
             }
 
+            m_iParentFolder = pxmldocument->root()->attribute("id");
 
-            m_iParentFolder = doc.root()->attribute("id");
-
-            __pointer(::xml::node) pnodeFolder = doc.root()->get_child("folder");
-
+            auto pnodeFolder = pxmldocument->root()->get_child("folder");
 
             xml::node::array childs;
 
@@ -709,9 +726,12 @@ namespace filemanager
             index iNode = 0;
             for(i32 i = 0 ; i < pnodeFolder->get_children_count(); i++)
             {
-               __pointer(::xml::node) pnodeItem = pnodeFolder->child_at(i);
+
+               auto pnodeItem = pnodeFolder->child_at(i);
+
                if(pnodeItem->get_name() == "folder")
                {
+
                   item.m_iParent = m_iParentFolder;
                   item.m_iFolder = pnodeItem->attribute("id");
                   item.m_strTitle = pnodeItem->attribute("name");
@@ -749,11 +769,11 @@ namespace filemanager
                }
             }
 
-            __pointer(::xml::node) pnodeFile = doc.get_child("file");
+            auto pnodeFile = pxmldocument->get_child("file");
 
             for(i32 i = 0; i < pnodeFile->get_children_count(); i++)
             {
-               __pointer(::xml::node) pnodeItem = pnodeFile->child_at(i);
+               auto pnodeItem = pnodeFile->child_at(i);
                if(pnodeItem->get_name() == "file")
                {
                   wstrType = pnodeItem->attribute("type");

@@ -90,27 +90,27 @@ namespace user
    }
 
 
-   bool tab::set_title(::index iTab, const char * pcsz)
+   bool tab::set_title(::index iIndex, const char * pcsz)
 
    {
 
       synchronous_lock synchronouslock(mutex());
 
-      if (iTab < 0)
+      if (iIndex < 0)
       {
 
          return false;
 
       }
 
-      if (iTab >= get_data()->m_tabpanecompositea.get_size())
+      if (iIndex >= get_data()->m_tabpanecompositea.get_size())
       {
 
          return false;
 
       }
 
-      get_data()->m_tabpanecompositea[iTab]->set_title(pcsz);
+      get_data()->m_tabpanecompositea[iIndex]->set_title(pcsz);
 
 
       return true;
@@ -121,16 +121,16 @@ namespace user
    bool tab::set_title_by_id(id id, const char * pcsz)
    {
 
-      auto iTab = id_tab_index(id);
+      auto iIndex = id_index(id);
 
-      if (iTab < 0)
+      if (iIndex < 0)
       {
 
          return false;
 
       }
 
-      get_data()->m_tabpanecompositea[iTab]->set_title(pcsz);
+      get_data()->m_tabpanecompositea[iIndex]->set_title(pcsz);
 
       return true;
 
@@ -294,12 +294,12 @@ namespace user
    }
 
 
-   void tab::erase_tab(::index iTab, bool bVisible)
+   void tab::erase_tab(::index iIndex, bool bVisible)
    {
 
       synchronous_lock synchronouslock(mutex());
 
-      if (iTab < 0 || iTab >= get_data()->m_tabpanecompositea.get_size())
+      if (iIndex < 0 || iIndex >= get_data()->m_tabpanecompositea.get_size())
       {
 
          return;
@@ -309,18 +309,18 @@ namespace user
       if(bVisible)
       {
 
-         for(i32 i = 0; iTab >= 0 && i < get_data()->m_tabpanecompositea.get_count(); i++)
+         for(i32 i = 0; iIndex >= 0 && i < get_data()->m_tabpanecompositea.get_count(); i++)
          {
 
             if(get_data()->m_tabpanecompositea[i]->m_bTabPaneVisible)
             {
 
-               if(iTab <= 0)
+               if(iIndex <= 0)
                {
 
-                  auto ppane = get_data()->m_tabpanecompositea[iTab];
+                  auto ppane = get_data()->m_tabpanecompositea[iIndex];
 
-                  get_data()->m_tabpanecompositea.erase_at(iTab);
+                  get_data()->m_tabpanecompositea.erase_at(iIndex);
 
                   _001OnRemoveTab(ppane);
 
@@ -332,7 +332,7 @@ namespace user
                else
                {
 
-                  iTab--;
+                  iIndex--;
 
                }
 
@@ -344,9 +344,9 @@ namespace user
       else
       {
 
-         auto ppane = get_data()->m_tabpanecompositea[iTab];
+         auto ppane = get_data()->m_tabpanecompositea[iIndex];
 
-         get_data()->m_tabpanecompositea.erase_at(iTab);
+         get_data()->m_tabpanecompositea.erase_at(iIndex);
 
          _001OnRemoveTab(ppane);
 
@@ -643,16 +643,16 @@ namespace user
 
       auto pstyle = get_style(pgraphics);
 
-      ::index iTab = 0;
+      ::index iIndex = 0;
 
       ::draw2d::brush_pointer brushText(e_create);
 
       ::draw2d::pen_pointer penBorder(e_create);
 
-      for (; iTab < get_data()->m_tabpanecompositea.get_size(); iTab++)
+      for (; iIndex < get_data()->m_tabpanecompositea.get_size(); iIndex++)
       {
 
-         auto ppane = get_data()->m_tabpanecompositea[iTab].get();
+         auto ppane = get_data()->m_tabpanecompositea[iIndex].get();
 
          if (!ppane->m_bTabPaneVisible)
          {
@@ -661,23 +661,23 @@ namespace user
 
          }
 
-         iTab++;
+         iIndex++;
 
-         if (!get_element_rect(iTab, rectangle, ::user::e_element_tab))
+         if (!get_element_rect(iIndex, rectangle, ::user::e_element_tab))
          {
 
             continue;
 
          }
 
-         if (!get_element_rect(iTab, rectBorder, ::user::e_element_border))
+         if (!get_element_rect(iIndex, rectBorder, ::user::e_element_border))
          {
 
             continue;
 
          }
 
-         if (!get_element_rect(iTab, rectangleClient, ::user::e_element_client))
+         if (!get_element_rect(iIndex, rectangleClient, ::user::e_element_client))
          {
 
             continue;
@@ -687,7 +687,7 @@ namespace user
          if (get_data()->m_bVertical)
          {
 
-            if (get_element_rect(iTab, rectIcon, ::user::e_element_icon))
+            if (get_element_rect(iIndex, rectIcon, ::user::e_element_icon))
             {
 
                pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
@@ -738,7 +738,7 @@ namespace user
 
                   path->close_figure();
 
-                  if (m_itemHover == iTab && m_itemHover != ::user::e_element_close_tab_button && !m_itemHover.in_range(::user::e_element_split, 100))
+                  if (m_itemHover == iIndex && m_itemHover != ::user::e_element_close_tab_button && !m_itemHover.in_range(::user::e_element_split, 100))
                   {
 
                      ppane->m_brushFillHover->CreateLinearGradientBrush(rectBorder.top_left(), rectBorder.bottom_left(), argb(230, 215, 215, 210), argb(250, 235, 235, 230));
@@ -787,7 +787,7 @@ namespace user
          else
          {
 
-            if (get_element_rect(iTab, rectIcon, ::user::e_element_icon))
+            if (get_element_rect(iIndex, rectIcon, ::user::e_element_icon))
             {
 
                pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
@@ -844,7 +844,7 @@ namespace user
 
                   path->close_figure();
 
-                  if (m_itemHover == iTab  && m_itemHover != ::user::e_element_close_tab_button && !m_itemHover.in_range(::user::e_element_split, 100))
+                  if (m_itemHover == iIndex  && m_itemHover != ::user::e_element_close_tab_button && !m_itemHover.in_range(::user::e_element_split, 100))
                   {
 
                      ppane->m_brushFillHover->CreateLinearGradientBrush(rectBorder.top_left(), rectBorder.bottom_left(), argb(230, 215, 215, 210), argb(250, 235, 235, 230));
@@ -894,7 +894,7 @@ namespace user
 
             __pointer(::base::style) pbasestyle = pstyle;
 
-            if (pbasestyle && get_element_rect(iTab, rectText, ::user::e_element_text))
+            if (pbasestyle && get_element_rect(iIndex, rectText, ::user::e_element_text))
             {
 
                pbasestyle->_001OnTabPaneDrawTitle(*ppane, this, pgraphics, rectText, brushText);
@@ -906,12 +906,12 @@ namespace user
          if (true)
          {
 
-            if (get_element_rect(iTab, rectClose, ::user::e_element_close_tab_button))
+            if (get_element_rect(iIndex, rectClose, ::user::e_element_close_tab_button))
             {
 
                pgraphics->set(get_font(pstyle, e_element_close_tab_button));
 
-               if (m_itemHover == iTab && m_itemHover == ::user::e_element_close_tab_button)
+               if (m_itemHover == iIndex && m_itemHover == ::user::e_element_close_tab_button)
                {
 
                   brushText = get_data()->m_brushCloseHover;
@@ -963,10 +963,10 @@ namespace user
 
       ::draw2d::brush_pointer brushText(e_create);
 
-      for(i32 iTab = 0; iTab < get_data()->m_tabpanecompositea.get_size(); iTab++)
+      for(i32 iIndex = 0; iIndex < get_data()->m_tabpanecompositea.get_size(); iIndex++)
       {
 
-         auto ppane = get_data()->m_tabpanecompositea[iTab].get();
+         auto ppane = get_data()->m_tabpanecompositea[iIndex].get();
 
          if (!ppane->m_bTabPaneVisible)
          {
@@ -1006,7 +1006,7 @@ namespace user
 
             }
 
-            if(get_data()->m_idaSel.contains(iTab))
+            if(get_data()->m_idaSel.contains(iIndex))
             {
 
                ::draw2d::pen_pointer pen(e_create);
@@ -1182,10 +1182,10 @@ namespace user
    }
 
 
-   void tab::get_title(int iTab, string_array & stra)
+   void tab::get_title(int iIndex, string_array & stra)
    {
 
-      auto ppane = get_data()->m_tabpanecompositea[iTab].get();
+      auto ppane = get_data()->m_tabpanecompositea[iIndex].get();
 
       stra = ppane->m_straTitle;
 
@@ -1298,10 +1298,10 @@ namespace user
 
          i32 cy;
 
-         for(i32 iTab = 0; iTab < get_data()->m_tabpanecompositea.get_size(); iTab++)
+         for(i32 iIndex = 0; iIndex < get_data()->m_tabpanecompositea.get_size(); iIndex++)
          {
 
-            auto ppane = get_data()->m_tabpanecompositea[iTab].get();
+            auto ppane = get_data()->m_tabpanecompositea[iIndex].get();
 
             if (!ppane->m_bTabPaneVisible)
             {
@@ -1407,10 +1407,10 @@ namespace user
 
          i32 ixAdd;
 
-         for(i32 iTab = 0; iTab < get_data()->m_tabpanecompositea.get_size(); iTab++)
+         for(i32 iIndex = 0; iIndex < get_data()->m_tabpanecompositea.get_size(); iIndex++)
          {
 
-            auto ppane = get_data()->m_tabpanecompositea[iTab].get();
+            auto ppane = get_data()->m_tabpanecompositea[iIndex].get();
 
             if (!ppane->m_bTabPaneVisible)
             {
@@ -1483,10 +1483,10 @@ namespace user
 
          get_data()->m_iTabHeight = iTabHeight;
 
-         for (i32 iTab = 0; iTab < get_data()->m_tabpanecompositea.get_size(); iTab++)
+         for (i32 iIndex = 0; iIndex < get_data()->m_tabpanecompositea.get_size(); iIndex++)
          {
 
-            auto ppane = get_data()->m_tabpanecompositea[iTab].get();
+            auto ppane = get_data()->m_tabpanecompositea[iIndex].get();
 
             ppane->m_size.cy = iTabHeight;
 
@@ -1521,13 +1521,13 @@ namespace user
       }
 
 
-      for(i32 iTab = 0; iTab < get_data()->m_tabpanecompositea.get_size(); iTab++)
+      for(i32 iIndex = 0; iIndex < get_data()->m_tabpanecompositea.get_size(); iIndex++)
       {
 
-         if(iTab != get_current_tab_index())
+         if(iIndex != get_current_tab_index())
          {
 
-            layout_pane(iTab);
+            layout_pane(iIndex);
 
          }
 
@@ -1557,10 +1557,10 @@ namespace user
    }
 
 
-   void tab::layout_pane(index iTab, bool bDisplay)
+   void tab::layout_pane(index iIndex, bool bDisplay)
    {
 
-      auto ppane = get_tab(iTab);
+      auto ppane = get_tab(iIndex);
 
       if (::is_null(ppane))
       {
@@ -1597,7 +1597,7 @@ namespace user
 
       screen_to_client(rectWindow);
 
-      if(bDisplay && iTab == get_current_tab_index())
+      if(bDisplay && iIndex == get_current_tab_index())
       {
 
          pholder->order(e_zorder_top);
@@ -1884,7 +1884,7 @@ namespace user
    }
 
 
-   bool tab::get_element_rect(::index iTab, RECTANGLE_I32 * prectangle, enum_element eelement)
+   bool tab::get_element_rect(::index iIndex, RECTANGLE_I32 * prectangle, enum_element eelement)
    {
 
       point_i32 ptOffset(0,0);
@@ -2009,19 +2009,19 @@ namespace user
 
       }
 
-      if (iTab < 0)
+      if (iIndex < 0)
       {
 
          return false;
 
       }
 
-      auto ptabpane = get_tab(iTab);
+      auto ptabpane = get_tab(iIndex);
 
       if(eelement == e_element_border)
       {
 
-         if (!get_element_rect(iTab, prectangle, e_element_tab))
+         if (!get_element_rect(iIndex, prectangle, e_element_tab))
 
          {
 
@@ -2040,7 +2040,7 @@ namespace user
       if(eelement == e_element_client)
       {
 
-         if (!get_element_rect(iTab, prectangle, e_element_border))
+         if (!get_element_rect(iIndex, prectangle, e_element_border))
          {
 
             return false;
@@ -2058,23 +2058,23 @@ namespace user
       if(eelement == e_element_icon)
       {
 
-         if (::not_ok(get_data()->m_tabpanecompositea[iTab]->m_pimage))
+         if (::not_ok(get_data()->m_tabpanecompositea[iIndex]->m_pimage))
          {
 
             return false;
 
          }
 
-         if (!get_element_rect(iTab, prectangle, e_element_client))
+         if (!get_element_rect(iIndex, prectangle, e_element_client))
          {
 
             return false;
 
          }
 
-         prectangle->right = prectangle->left + get_data()->m_tabpanecompositea[iTab]->m_pimage->width();
+         prectangle->right = prectangle->left + get_data()->m_tabpanecompositea[iIndex]->m_pimage->width();
 
-         prectangle->bottom = prectangle->top + get_data()->m_tabpanecompositea[iTab]->m_pimage->height();
+         prectangle->bottom = prectangle->top + get_data()->m_tabpanecompositea[iIndex]->m_pimage->height();
 
          //::OffsetRect(prectangle, ptOffset.x, ptOffset.y);
 
@@ -2084,22 +2084,22 @@ namespace user
       else if(eelement == e_element_text)
       {
 
-         if (!get_element_rect(iTab, prectangle, e_element_client))
+         if (!get_element_rect(iIndex, prectangle, e_element_client))
          {
 
             return false;
 
          }
 
-         if(::is_ok(get_data()->m_tabpanecompositea[iTab]->m_pimage))
+         if(::is_ok(get_data()->m_tabpanecompositea[iIndex]->m_pimage))
          {
 
-            prectangle->left += get_data()->m_tabpanecompositea[iTab]->m_pimage->width() + 2;
+            prectangle->left += get_data()->m_tabpanecompositea[iIndex]->m_pimage->width() + 2;
 
 
          }
 
-         if(!get_data()->m_tabpanecompositea[iTab]->m_bPermanent)
+         if(!get_data()->m_tabpanecompositea[iIndex]->m_bPermanent)
          {
 
             prectangle->right -= 2 + 16 + 2;
@@ -2116,14 +2116,14 @@ namespace user
       else if(eelement == e_element_close_tab_button)
       {
 
-         if (iTab < 0)
+         if (iIndex < 0)
          {
 
             return false;
 
          }
 
-         if (get_data()->m_tabpanecompositea[iTab]->m_bPermanent)
+         if (get_data()->m_tabpanecompositea[iIndex]->m_bPermanent)
          {
 
             return false;
@@ -2137,7 +2137,7 @@ namespace user
 
          }
 
-         if (!get_element_rect(iTab, prectangle, e_element_client))
+         if (!get_element_rect(iIndex, prectangle, e_element_client))
          {
 
             return false;
@@ -2176,7 +2176,7 @@ namespace user
 
          prectangle->left   = rectangle.left;
 
-         prectangle->top    = (::i32) (rectangle.top +  iTab * get_data()->m_iTabHeight);
+         prectangle->top    = (::i32) (rectangle.top +  iIndex * get_data()->m_iTabHeight);
 
          prectangle->right  = rectangle.right;
 
@@ -2186,7 +2186,7 @@ namespace user
       else
       {
 
-         auto ppane = get_data()->m_tabpanecompositea[iTab].get();
+         auto ppane = get_data()->m_tabpanecompositea[iIndex].get();
 
          prectangle->left = ppane->m_point.x;
 
@@ -2224,14 +2224,14 @@ namespace user
    index tab::find_child_pane(::user::interaction * pinteraction)
    {
 
-      index iTab = get_data()->m_tabpanecompositea.predicate_find_first([=](auto & pane)
+      index iIndex = get_data()->m_tabpanecompositea.predicate_find_first([=](auto & pane)
       {
 
          return pane->m_pplaceholder && pane->m_pplaceholder->is_ascendant_of(pinteraction, true);
 
       });
 
-      return iTab;
+      return iIndex;
 
    }
 
@@ -2241,12 +2241,12 @@ namespace user
 
       synchronous_lock synchronouslock(mutex());
 
-      index iTab = find_child_pane(pinteraction);
+      index iIndex = find_child_pane(pinteraction);
 
-      if (iTab >= 0)
+      if (iIndex >= 0)
       {
 
-         erase_tab(iTab, false);
+         erase_tab(iIndex, false);
 
       }
 
@@ -2348,17 +2348,17 @@ namespace user
 
       ::rectangle_i32 rectangle;
 
-      for(i32 iTab = 0; iTab < get_data()->m_tabpanecompositea.get_size(); iTab++)
+      for(i32 iIndex = 0; iIndex < get_data()->m_tabpanecompositea.get_size(); iIndex++)
       {
 
-         auto ppane = get_data()->m_tabpanecompositea[iTab].get();
+         auto ppane = get_data()->m_tabpanecompositea[iIndex].get();
 
          if(ppane->m_straTitle.get_size() > 1)
          {
 
             ::rectangle_i32 rectText;
 
-            if(get_element_rect(iTab, rectText, e_element_text))
+            if(get_element_rect(iIndex, rectText, e_element_text))
             {
 
                if(rectText.contains(item.m_pointHitTest))
@@ -2374,7 +2374,7 @@ namespace user
                      if(rectText.contains(item.m_pointHitTest))
                      {
 
-                        item = { (enum_element)((int)e_element_split + iTitle), iTab };
+                        item = { (enum_element)((int)e_element_split + iTitle), iIndex };
 
                         return;
 
@@ -2390,13 +2390,13 @@ namespace user
 
          }
 
-         if(get_element_rect(iTab, rectangle, e_element_close_tab_button) )
+         if(get_element_rect(iIndex, rectangle, e_element_close_tab_button) )
          {
 
             if(rectangle.contains(item.m_pointHitTest))
             {
 
-               item = { e_element_close_tab_button, iTab };
+               item = { e_element_close_tab_button, iIndex };
 
                return;
 
@@ -2404,13 +2404,13 @@ namespace user
 
          }
 
-         if(get_element_rect(iTab, rectangle, e_element_tab))
+         if(get_element_rect(iIndex, rectangle, e_element_tab))
          {
 
             if(rectangle.contains(item.m_pointHitTest))
             {
 
-               item = { e_element_tab, iTab };
+               item = { e_element_tab, iIndex };
 
                return;
 
@@ -2576,24 +2576,162 @@ namespace user
    void tab::set_current_tab_by_index(::index iIndex)
    {
 
+      synchronous_lock lock(get_data()->mutex());
+
+      get_data()->m_idaSel.erase_all();
+
+      id idTab = index_id(iIndex);
+
+      if (!idTab.is_empty())
       {
 
-         synchronous_lock lock(get_data()->mutex());
-
-         get_data()->m_idaSel.erase_all();
-
-         id idTab = tab_index_id(iIndex);
-
-         if (!idTab.is_empty())
-         {
-
-            get_data()->m_idaSel.add(idTab);
-
-         }
+         get_data()->m_idaSel.add(idTab);
 
       }
 
       on_change_cur_sel();
+
+   }
+
+
+   ::index tab::tab_index(::user::tab_pane* ptabpaneFind)
+   {
+
+      if (::is_null(ptabpaneFind))
+      {
+
+         return -1;
+
+      }
+
+      auto pdata = get_data();
+
+      synchronous_lock lock(pdata->mutex());
+
+      return pdata->m_tabpanecompositea.predicate_find_first([ptabpaneFind](auto& ptabpane)
+         {
+
+            return ptabpane == ptabpaneFind;
+
+         });
+
+   }
+
+
+   ::index tab::visible_index_index(::index iVisibleIndex)
+   {
+
+      if (iVisibleIndex < 0)
+      {
+
+         return -1;
+
+      }
+
+      auto pdata = get_data();
+
+      synchronous_lock lock(pdata->mutex());
+
+      return pdata->m_tabpanecompositea.predicate_index_index(iVisibleIndex, [](auto & ptabpane)
+         {
+
+            return ptabpane->m_bTabPaneVisible;
+
+         });
+
+   }
+
+
+   ::index tab::index_visible_index(::index iIndex)
+   {
+
+      if (iIndex < 0)
+      {
+
+         return -1;
+
+      }
+
+      auto pdata = get_data();
+
+      synchronous_lock lock(pdata->mutex());
+
+      return pdata->m_tabpanecompositea.index_predicate_index(iIndex, [](auto& ptabpane)
+         {
+
+            return ptabpane->m_bTabPaneVisible;
+
+         });
+
+   }
+
+
+   ::index tab::id_index(const ::id& id)
+   {
+
+      auto pdata = get_data();
+
+      synchronous_lock lock(pdata->mutex());
+
+      return pdata->m_tabpanecompositea.predicate_find_first([id](auto& ptabpane)
+         {
+
+            return ptabpane->m_id == id;
+
+         });
+
+
+   }
+
+
+   ::id tab::index_id(::index iIndex)
+   {
+
+      auto pdata = get_data();
+
+      synchronous_lock lock(pdata->mutex());
+
+      if (iIndex < 0 || iIndex >= pdata->m_tabpanecompositea.get_count())
+      {
+
+         return -1;
+
+      }
+
+      auto ppane = pdata->m_tabpanecompositea[iIndex];
+
+      if (!ppane)
+      {
+
+         return -1;
+
+      }
+
+      return ppane->m_id;
+
+   }
+
+   
+   ::index tab::id_visible_index(const ::id& id)
+   {
+
+      auto iIndex = id_index(id);
+
+      auto iVisibleIndex = index_visible_index(iIndex);
+
+      return iVisibleIndex;
+
+   }
+
+
+   ::id tab::visible_index_id(::index iVisibleIndex)
+   {
+
+      auto iIndex = visible_index_index(iVisibleIndex);
+
+      auto id = index_id(iIndex);
+
+      return id;
 
    }
 
@@ -2629,7 +2767,7 @@ namespace user
       if(get_data()->m_idaSel.get_size() == 1)
       {
 
-         return id_tab_index(get_data()->m_idaSel[0]);
+         return id_index(get_data()->m_idaSel[0]);
 
       }
       else
@@ -2642,13 +2780,32 @@ namespace user
    }
 
 
-   bool tab::_001IsAddTab(::index iTab)
+   ::index tab::get_current_visible_tab_index()
+   {
+
+      auto iIndex = get_current_tab_index();
+
+      if (iIndex)
+      {
+
+         return -1;
+
+      }
+
+      auto iVisibleIndex = index_visible_index(iIndex);
+
+      return iVisibleIndex;
+
+   }
+
+
+   bool tab::_001IsAddTab(::index iIndex)
    {
 
       if(get_data()->m_pcallback != nullptr)
       {
 
-         return get_data()->m_pcallback->_001IsAddTab(this, iTab);
+         return get_data()->m_pcallback->_001IsAddTab(this, iIndex);
 
       }
       else
@@ -2661,38 +2818,38 @@ namespace user
    }
 
 
-   void tab::_001OnTabClick(::index iTab)
+   void tab::_001OnTabClick(::index iIndex)
    {
 
       if(get_data()->m_pcallback != nullptr)
       {
 
-         get_data()->m_pcallback->_001OnTabClick(this, iTab);
+         get_data()->m_pcallback->_001OnTabClick(this, iIndex);
 
       }
       else
       {
 
-         set_current_tab_by_index(iTab);
+         set_current_tab_by_index(iIndex);
 
       }
 
    }
 
 
-   void tab::_001OnTabClose(::index iTab)
+   void tab::_001OnTabClose(::index iIndex)
    {
 
       if(get_data()->m_pcallback != nullptr)
       {
 
-         get_data()->m_pcallback->_001OnTabClose(this, iTab);
+         get_data()->m_pcallback->_001OnTabClose(this, iIndex);
 
       }
       else
       {
 
-         _001CloseTab(iTab);
+         _001CloseTab(iIndex);
 
       }
 
@@ -2720,10 +2877,10 @@ namespace user
    }
 
 
-   bool tab::show_pane(::index iTab, bool bShow)
+   bool tab::show_pane(::index iIndex, bool bShow)
    {
 
-      auto ppane = get_tab(iTab);
+      auto ppane = get_tab(iIndex);
 
       if (ppane == nullptr)
       {
@@ -2741,17 +2898,17 @@ namespace user
    }
 
 
-   bool tab::hide_tab(::index iTab)
+   bool tab::hide_tab(::index iIndex)
    {
 
-      if (iTab < 0)
+      if (iIndex < 0)
       {
 
          return false;
 
       }
 
-      if (!show_pane(iTab, false))
+      if (!show_pane(iIndex, false))
       {
 
          return false;
@@ -2763,10 +2920,10 @@ namespace user
    }
 
 
-   ::user::interaction * tab::tab_window(::index iTab)
+   ::user::interaction * tab::tab_window(::index iIndex)
    {
 
-      __pointer(place_holder) pholder = tab_holder(iTab);
+      __pointer(place_holder) pholder = tab_holder(iIndex);
 
       if (pholder.is_null())
       {
@@ -2780,10 +2937,10 @@ namespace user
    }
 
 
-   ::user::place_holder * tab::tab_holder(::index iTab)
+   ::user::place_holder * tab::tab_holder(::index iIndex)
    {
 
-      auto ppane = get_tab(iTab);
+      auto ppane = get_tab(iIndex);
 
       if (ppane == nullptr)
       {
@@ -2797,10 +2954,10 @@ namespace user
    }
 
 
-   ::user::interaction * tab::pane_window(::index iTab)
+   ::user::interaction * tab::pane_window(::index iIndex)
    {
 
-      __pointer(place_holder) pholder = pane_holder(iTab);
+      __pointer(place_holder) pholder = pane_holder(iIndex);
 
       if (pholder.is_null())
       {
@@ -2814,10 +2971,10 @@ namespace user
    }
 
 
-   ::user::place_holder * tab::pane_holder(::index iTab)
+   ::user::place_holder * tab::pane_holder(::index iIndex)
    {
 
-      auto ppane = get_tab(iTab);
+      auto ppane = get_tab(iIndex);
 
       if (ppane == nullptr)
       {
@@ -2831,52 +2988,71 @@ namespace user
    }
 
 
-   ::user::tab_pane * tab::get_tab(::index iTab)
+   ::user::tab_pane * tab::get_tab(::index iIndex)
    {
 
-      if (iTab < 0)
+      if (iIndex < 0)
       {
 
          return nullptr;
 
       }
 
-      if (iTab >= get_data()->m_tabpanecompositea.get_count())
+      if (iIndex >= get_data()->m_tabpanecompositea.get_count())
       {
 
          return nullptr;
 
       }
 
-      return get_data()->m_tabpanecompositea.element_at(iTab);
+      return get_data()->m_tabpanecompositea.element_at(iIndex);
 
    }
 
 
-   //::user::tab_pane * tab::get_tab(::index iTab)
+   ::user::tab_pane* tab::get_visible_tab(::index iVisibleIndex)
+   {
+
+      auto iIndex = visible_index_index(iVisibleIndex);
+
+      if (iIndex < 0)
+      {
+
+         return nullptr;
+
+      }
+
+      auto ptabpane = get_tab(iIndex);
+
+      return ptabpane;
+
+   }
+
+
+   //::user::tab_pane * tab::get_tab(::index iIndex)
    //{
 
-   //   index iTab = get_pane(iTab);
+   //   index iIndex = get_pane(iIndex);
 
-   //   if(iTab < 0)
+   //   if(iIndex < 0)
    //   {
 
    //      return nullptr;
 
    //   }
 
-   //   return get_data()->m_tabpanecompositea.element_at(iTab);
+   //   return get_data()->m_tabpanecompositea.element_at(iIndex);
 
    //}
 
 
-//   void tab::set_current_tab_by_index(::index iTab)
+//   void tab::set_current_tab_by_index(::index iIndex)
 //   {
 ////      if(get_tab_holder(get_current_tab_index()) != nullptr)
 //      //    {
 //      //     get_tab_holder(get_current_tab_index())->display(e_display_none);
 //      // }
-//      set_current_tab_by_index(iTab);
+//      set_current_tab_by_index(iIndex);
 //      // if(get_tab_holder(get_current_tab_index()) != nullptr)
 //      //{
 //      // get_tab_holder(get_current_tab_index())->display(e_display_normal);
@@ -2923,70 +3099,70 @@ namespace user
    id tab::get_current_tab_id()
    {
 
-      return tab_index_id(get_current_tab_index());
+      return index_id(get_current_tab_index());
 
    }
 
 
-   ::index tab::id_tab_index(id id)
-   {
+   //::index tab::id_index(id id)
+   //{
 
-      index iTab = -1;
+   //   index iIndex = -1;
 
-      for(::index iTab = 0; iTab < get_data()->m_tabpanecompositea.get_size(); iTab++)
-      {
+   //   for(::index iIndex = 0; iIndex < get_data()->m_tabpanecompositea.get_size(); iIndex++)
+   //   {
 
-         if (get_data()->m_tabpanecompositea[iTab]->m_bTabPaneVisible)
-         {
+   //      if (get_data()->m_tabpanecompositea[iIndex]->m_bTabPaneVisible)
+   //      {
 
-            iTab++;
+   //         iIndex++;
 
-         }
+   //      }
 
-         if (get_data()->m_tabpanecompositea[iTab]->m_id == id)
-         {
+   //      if (get_data()->m_tabpanecompositea[iIndex]->m_id == id)
+   //      {
 
-            return iTab;
+   //         return iIndex;
 
-         }
+   //      }
 
-      }
+   //   }
 
-      return -1;
+   //   return -1;
 
-   }
+   //}
 
 
 
-   id tab::tab_index_id(::index iTab)
-   {
+   //id tab::index_id(::index iIndex)
+   //{
 
-      for(i32 iTab = 0; iTab < get_data()->m_tabpanecompositea.get_count(); iTab++)
-      {
+   //   for(i32 iIndex = 0; iIndex < get_data()->m_tabpanecompositea.get_count(); iIndex++)
+   //   {
 
-         if(get_data()->m_tabpanecompositea[iTab]->m_bTabPaneVisible)
-         {
+   //      if(get_data()->m_tabpanecompositea[iIndex]->m_bTabPaneVisible)
+   //      {
 
-            if(iTab <= 0)
-            {
+   //         if(iIndex <= 0)
+   //         {
 
-               return get_data()->m_tabpanecompositea[iTab]->m_id;
+   //            return get_data()->m_tabpanecompositea[iIndex]->m_id;
 
-            }
-            else
-            {
+   //         }
+   //         else
+   //         {
 
-               iTab--;
+   //            iIndex--;
 
-            }
+   //         }
 
-         }
+   //      }
 
-      }
+   //   }
 
-      return id();
+   //   return id();
 
-   }
+   //}
 
 
 
@@ -3006,9 +3182,9 @@ namespace user
 
          }
 
-         ::index iTab = id_tab_index(id);
+         ::index iIndex = id_index(id);
 
-         if(iTab == -1)
+         if(iIndex == -1)
          {
 
             auto ptabpane = create_tab_by_id(id);
@@ -3022,7 +3198,7 @@ namespace user
 
          }
 
-         set_current_tab_by_index(iTab);
+         set_current_tab_by_index(iIndex);
 
       }
       catch (::exit_exception * pexception)
@@ -3157,13 +3333,13 @@ namespace user
 
 
 
-   void tab::_001OnDropTab(::index iTab, enum_position eposition)
+   void tab::_001OnDropTab(::index iIndex, enum_position eposition)
    {
 
       if(get_data()->m_pcallback != nullptr)
       {
 
-         get_data()->m_pcallback->_001OnDropTab(iTab, eposition);
+         get_data()->m_pcallback->_001OnDropTab(iIndex, eposition);
 
       }
 
@@ -3470,16 +3646,16 @@ namespace user
 
       }
 
-      index iTab = id_tab_index(id);
+      index iIndex = id_index(id);
 
-      if (iTab < 0)
+      if (iIndex < 0)
       {
 
          return nullptr;
 
       }
 
-      auto ppaneTab = get_tab(iTab);
+      auto ppaneTab = get_tab(iIndex);
 
       return ppaneTab;
 
@@ -3790,10 +3966,10 @@ namespace user
    }
 
 
-   void tab::_001CloseTab(::index iTab)
+   void tab::_001CloseTab(::index iIndex)
    {
 
-      erase_tab_by_id(tab_index_id(iTab));
+      erase_tab_by_id(index_id(iIndex));
 
    }
 

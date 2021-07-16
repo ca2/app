@@ -65,7 +65,7 @@ namespace userex
 
       virtual bool on_place_hold(::user::interaction * pinteraction, ::user::place_holder * pholder) override;
 
-      virtual ::index create_tab_by_id(id id) override;
+      virtual ::user::tab_pane * create_tab_by_id(id id) override;
 
       virtual void on_create_impact(::user::impact_data * pimpactdata) override;
 

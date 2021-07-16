@@ -123,8 +123,19 @@ namespace user
 
 
       virtual ::index get_current_tab_index();
+      virtual ::index get_current_visible_tab_index();
       virtual void set_current_tab_by_index(::index iSel);
 
+      virtual ::index tab_index(::user::tab_pane* ptabpane);
+
+      virtual ::index visible_index_index(::index iVisibleIndex);
+      virtual ::index index_visible_index(::index iIndex);
+
+      virtual ::index id_index(const ::id & id);
+      virtual ::id index_id(::index iIndex);
+
+      virtual ::index id_visible_index(const ::id& id);
+      virtual ::id visible_index_id(::index iIndex);
 
       virtual ::count get_tab_count();
       virtual ::count get_visible_tab_count();
@@ -185,8 +196,8 @@ namespace user
       void on_hide_child(::user::interaction * pinteraction) override;
       void on_hide_place_holder_child(::user::interaction * pinteraction) override;
 
-      virtual ::index id_tab_index(id id);
-      virtual id tab_index_id(::index iTab);
+      //virtual ::index id_tab_index(id id);
+      //virtual id tab_index_id(::index iTab);
       //virtual ::index id_pane(id id);
       //virtual id pane_id(::index iPane);
 
@@ -195,6 +206,7 @@ namespace user
 
 
       virtual ::user::tab_pane * get_tab(::index iTab);
+      virtual ::user::tab_pane * get_visible_tab(::index iVisibleTab);
 
 
       virtual ::user::tab_pane * get_tab_by_id(id id);

@@ -452,7 +452,7 @@ namespace userex
 
                auto pframewindowTab = ptabview->GetTypedParent < simple_frame_window >();
 
-               bool bShow = ptabview->get_pane_count() >= 1;
+               bool bShow = ptabview->get_tab_count() >= 1;
 
                if(!bShow)
                {

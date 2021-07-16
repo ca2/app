@@ -775,7 +775,7 @@ namespace experience
          for(i32 iPane = 0; iPane < ptab->get_data()->m_tabpanecompositea.get_size(); iPane++)
          {
 
-            if(iPane != ptab->_001GetSel())
+            if(iPane != ptab->get_current_tab_id())
             {
 
                ptab->layout_pane(iPane);
@@ -784,7 +784,7 @@ namespace experience
 
          }
 
-         ptab->layout_pane(ptab->_001GetSel(), ptab->is_this_visible());
+         ptab->layout_pane(ptab->get_current_tab_index(), ptab->is_this_visible());
 
          ::rectangle_i32 rcClient;
 

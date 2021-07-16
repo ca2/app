@@ -17,6 +17,7 @@ namespace user
    public:
 
 
+      ::index                             m_iIndex;
       tab * m_ptab;
       ::draw2d::brush_pointer             m_brushFill;
       ::draw2d::brush_pointer             m_brushFillSel;

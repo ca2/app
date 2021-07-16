@@ -279,9 +279,9 @@ namespace user
       if (eposition != e_position_none)
       {
 
-         id id1 = ::user::tab::tab_index_id(::user::tab::get_current_tab_index());
+         id id1 = ::user::tab::index_id(::user::tab::get_current_tab_index());
 
-         id id2 = ::user::tab::tab_index_id(iTab);
+         id id2 = ::user::tab::index_id(iTab);
 
          id id3 = payload(id1).get_string() + "->:<-" + payload(id2).get_string();
 
@@ -374,10 +374,10 @@ namespace user
 
       }
 
-      if(get_impact_data(::user::tab::tab_index_id(iTab)) != nullptr)
+      if(get_impact_data(::user::tab::index_id(iTab)) != nullptr)
       {
 
-         return get_impact_data(::user::tab::tab_index_id(iTab))->m_puserinteraction;
+         return get_impact_data(::user::tab::index_id(iTab))->m_puserinteraction;
 
       }
       else
@@ -393,7 +393,7 @@ namespace user
    void tab_view::_001DropTargetWindowInitialize(::user::tab * pchannel)
    {
 
-      create_tab_by_id(::user::tab::tab_index_id(pchannel->get_data()->m_iClickTab));
+      create_tab_by_id(::user::tab::index_id(pchannel->get_data()->m_iClickTab));
 
       m_pdroptargetwindow = __new(tab_drop_target_window());
 
@@ -458,7 +458,7 @@ namespace user
 
       index iTab = get_current_tab_index();
 
-      id id = tab_index_id(iTab);
+      id id = index_id(iTab);
 
       ::id idSplit;
 
@@ -695,7 +695,7 @@ namespace user
 
       }
 
-      index iTab = id_tab_index(id);
+      index iTab = id_index(id);
 
       if (iTab < 0)
       {
@@ -973,9 +973,9 @@ namespace user
 
       //}
 
-      ::user::tab_pane* ppane = get_tab_by_id(pimpactdata->m_id);
+      auto ptabpane = get_tab_by_id(pimpactdata->m_id);
 
-      if (!ppane)
+      if (!ptabpane)
       {
 
          if (!add_tab(pimpactdata->m_idTitle, pimpactdata->m_id))
@@ -985,12 +985,14 @@ namespace user
 
          }
 
-         ppane = get_tab_by_id(pimpactdata->m_id);
+         ptabpane = get_tab_by_id(pimpactdata->m_id);
 
       }
 
-      if (ppane != nullptr)
+      if (ptabpane != nullptr)
       {
+
+         pimpactdata->m_iIndex = ptabpane->m_iIndex;
 
          if (!pimpactdata->m_pplaceholder)
          {
@@ -1001,9 +1003,9 @@ namespace user
 
          }
 
-         ppane->m_pplaceholder = pimpactdata->m_pplaceholder;
+         ptabpane->m_pplaceholder = pimpactdata->m_pplaceholder;
 
-         ppane->m_pimpactdata = pimpactdata;
+         ptabpane->m_pimpactdata = pimpactdata;
 
       }
 

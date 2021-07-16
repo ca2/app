@@ -15,6 +15,8 @@ struct CLASS_DECL_ACME block :
 {
 
    block(enum_no_initialize) {}
+   template < typename TYPE >
+   block(const TYPE typea[]) { m_pdata = (byte*)typea; m_iSize = sizeof(typea); }
    block(const void * pdata = nullptr, i64 iSize = 0) { m_pdata = (byte *) pdata; m_iSize = iSize; }
    block(const memory_base & memory);
    block(const memory_base * pmemory);

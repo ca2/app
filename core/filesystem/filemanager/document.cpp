@@ -469,10 +469,10 @@ namespace filemanager
       if (ptabview.is_set())
       {
 
-         for (index i = 0; i < ptabview->get_pane_count(); i++)
+         for (index i = 0; i < ptabview->get_tab_count(); i++)
          {
 
-            ::user::tab_pane * ptabpane = ptabview->get_pane(i);
+            ::user::tab_pane * ptabpane = ptabview->get_tab(i);
 
             if (ptabpane != nullptr && ptabpane->m_pplaceholder != nullptr)
             {

@@ -280,9 +280,9 @@ namespace userex
    bool pane_tab_view::on_after_create_impact_data(::user::impact_data * pimpactdata)
    {
 
-      ::index iPane = id_pane(pimpactdata->m_id);
+      ::index iVisibleIndex = id_visible_index(pimpactdata->m_id);
 
-      if (iPane < 0)
+      if (iVisibleIndex < 0)
       {
 
          __keep(m_bDisableSavingRestorableTabs, true);
@@ -294,9 +294,9 @@ namespace userex
 
          }
 
-         iPane = id_pane(pimpactdata->m_id);
+         iVisibleIndex = id_visible_index(pimpactdata->m_id);
 
-         if (iPane < 0)
+         if (iVisibleIndex < 0)
          {
 
             return false;
@@ -305,20 +305,20 @@ namespace userex
 
       }
 
-      auto ppane = get_data()->m_tabpanecompositea[iPane].get();
+      auto ptabpane = get_visible_tab(iVisibleIndex);
 
-      if (ppane == nullptr)
+      if (ptabpane == nullptr)
       {
 
          return false;
 
       }
 
-      ppane->m_pimpactdata = pimpactdata;
+      ptabpane->m_pimpactdata = pimpactdata;
 
-      ppane->m_pplaceholder = pimpactdata->m_pplaceholder;
+      ptabpane->m_pplaceholder = pimpactdata->m_pplaceholder;
 
-      if (ppane->m_pplaceholder == nullptr)
+      if (ptabpane->m_pplaceholder == nullptr)
       {
 
          return false;
@@ -382,7 +382,7 @@ namespace userex
    }
 
 
-   ::index pane_tab_view::create_tab_by_id(id id)
+   ::user::tab_pane * pane_tab_view::create_tab_by_id(id id)
    {
 
       ::user::impact_data * pimpactdata = get_impact_data(id, get_data()->m_rectTabClient);
@@ -390,20 +390,22 @@ namespace userex
       if(pimpactdata == nullptr)
       {
 
-         return -1;
+         return nullptr;
 
       }
 
-      index iTab = id_tab(pimpactdata->m_id);
+      index iIndex = id_index(pimpactdata->m_id);
 
-      if (iTab < 0)
+      if (iIndex < 0)
       {
 
-         return -1;
+         return nullptr;
 
       }
 
-      return iTab;
+      auto ptabpane = get_tab(iIndex);
+
+      return ptabpane;
 
    }
 
@@ -832,7 +834,7 @@ namespace userex
 
       }
 
-      payload("app_options_title") = get_pane_by_id(pimpactdata->m_id)->get_title();
+      payload("app_options_title") = get_tab_by_id(pimpactdata->m_id)->get_title();
 
       auto pcontext = m_pcontext;
       

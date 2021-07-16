@@ -15,6 +15,7 @@ namespace user
 
 
       ::i64                            m_iId;
+      ::index                          m_iIndex;
       id                               m_id;
       __pointer(interaction)           m_puserinteraction;
       __pointer(place_holder)          m_pplaceholder;

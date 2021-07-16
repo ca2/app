@@ -169,7 +169,7 @@ public:
       for (::index iIndex = 0; iIndex < this->get_size(); iIndex++)
       {
 
-         auto & element = element_at(iIndex);
+         auto & element = this->element_at(iIndex);
 
          if (predicate(element))
          {
@@ -197,10 +197,12 @@ public:
 
       ::index iPredicateIndex = -1;
 
-      for (::index i = 0; i <= iIndex && i < this->get_size(); iIndex++)
+      ::index i = 0;
+
+      for (; i <= iIndex && i < this->get_size(); i++)
       {
 
-         auto& element = element_at(iIndex);
+         auto& element = this->element_at(i);
 
          if (predicate(element))
          {
@@ -208,6 +210,13 @@ public:
             iPredicateIndex++;
 
          }
+
+      }
+
+      if (i != iIndex)
+      {
+
+         return -1;
 
       }
 

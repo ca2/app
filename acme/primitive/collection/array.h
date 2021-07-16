@@ -169,7 +169,7 @@ public:
       for (::index iIndex = 0; iIndex < this->get_size(); iIndex++)
       {
 
-         auto & element = element_at(iIndex);
+         auto & element = this->element_at(iIndex);
 
          if (predicate(element))
          {

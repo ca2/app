@@ -413,7 +413,7 @@ namespace account
          return;
       }
 
-      m_pbuttonClose->m_estockicon = stock_icon_close;
+      m_pbuttonClose->set_stock_icon(e_stock_icon_close);
 
       //m_pstillUser->set_window_text("e-mail:");
       //m_pstillPassword->set_window_text("password:");

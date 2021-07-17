@@ -68,23 +68,24 @@ enum e_rotate_flip
    rotate_270_flip_xy = rotate_90_flip_none
 };
 
-enum e_stock_icon
+enum enum_stock_icon
 {
 
-   stock_icon_none,
-   stock_icon_control_box_begin,
-   stock_icon_close = stock_icon_control_box_begin, // button_close
-   stock_icon_level_up, // button_up
-   stock_icon_level_down, // button_down
-   stock_icon_iconify, // button_minimize
-   stock_icon_restore, // button_restore
-   stock_icon_zoom, // button_maximize
-   stock_icon_notify, // button_notify_icon
-   stock_icon_transparent_frame, // button_transparent_frame
-   stock_icon_dock, // button_dock
-   stock_icon_control_box_end = stock_icon_dock
+   e_stock_icon_none,
+   e_stock_icon_control_box_begin,
+   e_stock_icon_close = e_stock_icon_control_box_begin, // button_close
+   e_stock_icon_level_up, // button_up
+   e_stock_icon_level_down, // button_down
+   e_stock_icon_iconify, // button_minimize
+   e_stock_icon_restore, // button_restore
+   e_stock_icon_zoom, // button_maximize
+   e_stock_icon_notify, // button_notify_icon
+   e_stock_icon_transparent_frame, // button_transparent_frame
+   e_stock_icon_dock, // button_dock
+   e_stock_icon_control_box_end = e_stock_icon_dock
 
 };
+
 
 enum enum_color
 {

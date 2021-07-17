@@ -69,7 +69,7 @@ namespace user
 
       pgraphics->set_smooth_mode(::draw2d::smooth_mode_high);
 
-      pgraphics->draw_stock_icon(rectangle, stock_icon_close);
+      pgraphics->draw_stock_icon(rectangle, e_stock_icon_close);
 
    }
 

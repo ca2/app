@@ -351,6 +351,18 @@ namespace user
    void menu_button::on_calc_size(calc_size * pcalcsize)
    {
 
+      if (m_estockicon != e_stock_icon_none)
+      {
+
+         pcalcsize->m_size.cx = 24;
+
+         pcalcsize->m_size.cy = 24;
+
+
+         return;
+
+      }
+
       auto pstyle = get_style(pcalcsize->m_pgraphics);
 
       pcalcsize->m_pgraphics->set_font(this, ::user::e_element_none);

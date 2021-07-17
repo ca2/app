@@ -33,15 +33,13 @@ namespace user
       ::e_align                           m_ealignText;
       e_style                             m_estyle;
       ::rectangle_i32                     m_rectText;
-      //::rectangle_i32                     m_rectTextBoundingBox;
       index                               m_iClick;
-      e_stock_icon                        m_estockicon;
+      enum_stock_icon                     m_estockicon;
 
       ::write_text::text_out_array        m_textouta;
 
       ::rectangle_i32                     m_rectCheckBox;
       string                              m_strLink;
-      //::write_text::font_pointer        m_pfont;
       
 
       still();
@@ -110,14 +108,12 @@ namespace user
       void on_hit_test(::user::item& item) override;
 
 
-      virtual void on_layout(::draw2d::graphics_pointer & pgraphics) override;
+      void on_layout(::draw2d::graphics_pointer & pgraphics) override;
 
 
-      virtual void set_stock_icon(e_stock_icon eicon) override;
-      virtual e_stock_icon get_stock_icon() override;
+      void set_stock_icon(enum_stock_icon eicon) override;
+      enum_stock_icon get_stock_icon() override;
 
-
-      
 
    };
 

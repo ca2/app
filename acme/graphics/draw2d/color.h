@@ -124,9 +124,10 @@ namespace color
 
 
       bool is_opaque() const { return alpha == 255; }
-      bool is_translucent() const { return  alpha < 255; }
+      bool is_translucent() const { return  alpha > 0 && alpha < 255; }
       bool is_transparent() const { return  alpha == 0; }
       bool non_transparent() const { return  alpha > 0; }
+      bool has_opacity() const { return non_transparent(); }
 
 
       void hls_mult(double dRateH, double dRateL, double dRateS);

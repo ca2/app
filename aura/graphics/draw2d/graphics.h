@@ -1036,7 +1036,7 @@ namespace draw2d
       //bool draw_round_bottom_right(const ::rectangle_f64 & rectangle, const ::color::color & color, i32 radius, i32 width, const ::e_border & eborder = e_border_all);
 
 
-      bool draw_stock_icon(const ::rectangle_f64 & rectangle_f64, e_stock_icon eicon);
+      bool draw_stock_icon(const ::rectangle_f64 & rectangle_f64, enum_stock_icon estockicon);
 
 
       //=============================================================================

@@ -57,11 +57,10 @@ namespace user
       ::e_align                           m_ealignText;
       ::e_draw_text                       m_edrawtext;
       e_style                             m_estyle;
-      //::enum_check                    m_echeck;
-      ::rectangle_i32                              m_rectText;
+      ::rectangle_i32                     m_rectText;
       index                               m_iClick;
-      e_stock_icon                        m_estockicon;
-      ::rectangle_i32                              m_rectCheckBox;
+      enum_stock_icon                     m_estockicon;
+      ::rectangle_i32                     m_rectCheckBox;
       bitmap *                            m_pbitmap;
       list *                              m_plist;
 
@@ -138,11 +137,11 @@ namespace user
       virtual void pre_translate_message(::message::message * pmessage) override;
 
 
-      virtual void on_layout(::draw2d::graphics_pointer & pgraphics) override;
+      void on_layout(::draw2d::graphics_pointer & pgraphics) override;
 
 
-      virtual void set_stock_icon(e_stock_icon eicon) override;
-      virtual e_stock_icon get_stock_icon() override;
+      void set_stock_icon(enum_stock_icon eicon) override;
+      enum_stock_icon get_stock_icon() override;
 
       virtual ::color::color get_button_text_color();
 

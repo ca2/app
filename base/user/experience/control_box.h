@@ -119,7 +119,7 @@ namespace experience
       virtual void update_control_box_buttons();
       virtual bool create_button(enum_button ebutton);
       virtual bool get_control_box_button_caption(enum_button ebutton, string & str) const;
-      virtual e_stock_icon get_control_box_button_stock_icon(enum_button ebutton);
+      virtual enum_stock_icon get_control_box_button_stock_icon(enum_button ebutton);
       virtual ::e_status set_control_box_button_id(enum_button ebutton, id id);
       virtual id get_control_box_button_id(enum_button ebutton) const;
       virtual string get_control_box_button_tag(enum_button ebutton) const;

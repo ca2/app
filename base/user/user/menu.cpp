@@ -541,7 +541,20 @@ namespace user
 
          }
 
-         m_pitemClose->m_puserinteraction->set_window_text("r");
+         __pointer(::user::button) pbutton = m_pitemClose->m_puserinteraction;
+
+         if (pbutton)
+         {
+
+            pbutton->set_stock_icon(e_stock_icon_close);
+
+         }
+         else
+         {
+
+            m_pitemClose->m_puserinteraction->set_window_text("x");
+
+         }
 
       }
 

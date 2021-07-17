@@ -809,10 +809,10 @@ namespace experience
    }
 
 
-   e_stock_icon control_box::get_control_box_button_stock_icon(enum_button ebutton)
+   enum_stock_icon control_box::get_control_box_button_stock_icon(enum_button ebutton)
    {
 
-      return (e_stock_icon)((int) ebutton - (int)e_button_begin + (int) stock_icon_control_box_begin);
+      return (enum_stock_icon)((int) ebutton - (int)e_button_begin + (int) e_stock_icon_control_box_begin);
 
    }
 

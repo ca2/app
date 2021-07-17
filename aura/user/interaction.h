@@ -1847,8 +1847,8 @@ namespace user
       virtual ::e_status hide_software_keyboard(::user::primitive * pprimitive) override;
 
 
-      virtual void set_stock_icon(e_stock_icon eicon);
-      virtual e_stock_icon get_stock_icon();
+      virtual void set_stock_icon(enum_stock_icon eicon);
+      virtual enum_stock_icon get_stock_icon();
 
 
       virtual void post_routine(const ::routine & routine);

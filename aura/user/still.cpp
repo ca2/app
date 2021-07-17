@@ -9,7 +9,7 @@ namespace user
    still::still()
    {
 
-      m_estockicon = stock_icon_none;
+      m_estockicon = e_stock_icon_none;
       m_estyle = style_none;
       m_iClick = 0;
 
@@ -70,7 +70,7 @@ namespace user
 
          rectangleClient.deflate(rectPadding);
 
-         if (m_estockicon != stock_icon_none)
+         if (m_estockicon != e_stock_icon_none)
          {
 
             ::draw2d::pen_pointer pen(e_create);
@@ -990,15 +990,15 @@ namespace user
 
 
 
-   void still::set_stock_icon(e_stock_icon eicon)
+   void still::set_stock_icon(enum_stock_icon estockicon)
    {
 
-      m_estockicon = eicon;
+      m_estockicon = estockicon;
 
    }
 
 
-   e_stock_icon still::get_stock_icon()
+   enum_stock_icon still::get_stock_icon()
    {
 
       return m_estockicon;

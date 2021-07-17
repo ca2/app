@@ -77,7 +77,7 @@ namespace experience
 
       }
 
-      if (m_estockicon == stock_icon_none)
+      if (m_estockicon == e_stock_icon_none)
       {
 
          string str;

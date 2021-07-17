@@ -45,7 +45,7 @@ namespace user
 
       m_bMouseHoverOnCapture = true;
 
-      m_estockicon = stock_icon_none;
+      m_estockicon = e_stock_icon_none;
 
       m_estyle = style_none;
 
@@ -220,6 +220,12 @@ namespace user
          ::size_i32 sizeTotal = m_pbitmap->m_pimage->size();
 
          set_size(sizeTotal);
+
+      }
+      else if (m_estockicon != e_stock_icon_none)
+      {
+
+         set_size({24, 24});
 
       }
       else
@@ -486,7 +492,7 @@ namespace user
       else if (m_itemHover.is_set())
       {
 
-         crText = argb(255, 0, 0, 0);
+         crText = argb(255, 80, 80, 80);
 
       }
       else
@@ -551,7 +557,11 @@ namespace user
 
       get_client_rect(rectangleClient);
 
-      ::color::color crBackground = _001GetButtonBackgroundColor();
+      auto pstyle = get_style(pgraphics);
+
+      auto colorBackground = get_color(pstyle, ::user::e_element_background, get_state());
+
+      //::color::color crBackground = _001GetButtonBackgroundColor();
 
       auto & propertyCheck = m_propertyCheck;
 
@@ -562,7 +572,7 @@ namespace user
 
          ::rectangle_i32 rectPush(rectangleClient);
 
-         ::color::color colorBack(crBackground);
+         ::color::color colorBack(colorBackground);
 
          colorBack.hls_rate(0.0, -0.2, 0.0);
 
@@ -596,7 +606,7 @@ namespace user
       else
       {
 
-         if (colorref_get_a_value(crBackground) > 0)
+         if (colorBackground.is_translucent())
          {
 
             pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
@@ -615,7 +625,7 @@ namespace user
 
       ::rectangle_i32 rectText(prectText);
 
-      if (m_estockicon == stock_icon_none)
+      if (m_estockicon == e_stock_icon_none)
       {
 
          string strText;
@@ -690,7 +700,7 @@ namespace user
 
          ::rectangle_i32 rectIcon(rectText);
 
-         rectIcon.deflate(rectIcon.width() / 4, rectIcon.height() / 4);
+         rectIcon.deflate(rectIcon.width() / 16, rectIcon.height() / 16);
 
          pgraphics->draw_stock_icon(rectIcon, m_estockicon);
 
@@ -979,8 +989,12 @@ namespace user
    void button::set_button_style(e_style estyle)
    {
 
-      if(m_estyle == estyle)
+      if (m_estyle == estyle)
+      {
+
          return;
+
+      }
 
       on_exit_button_style(m_estyle);
 
@@ -1282,15 +1296,15 @@ namespace user
    }
 
 
-   void button::set_stock_icon(e_stock_icon eicon)
+   void button::set_stock_icon(enum_stock_icon estockicon)
    {
 
-      m_estockicon = eicon;
+      m_estockicon = estockicon;
 
    }
 
 
-   e_stock_icon button::get_stock_icon()
+   enum_stock_icon button::get_stock_icon()
    {
 
       return m_estockicon;

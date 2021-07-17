@@ -14571,7 +14571,7 @@ restart:
 
 
 
-   void interaction::set_stock_icon(e_stock_icon eicon)
+   void interaction::set_stock_icon(enum_stock_icon estockicon)
    {
 
       __throw(error_interface_only);
@@ -14579,10 +14579,10 @@ restart:
    }
 
 
-   e_stock_icon interaction::get_stock_icon()
+   enum_stock_icon interaction::get_stock_icon()
    {
 
-      return stock_icon_none;
+      return e_stock_icon_none;
 
    }
 

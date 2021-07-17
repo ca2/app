@@ -4458,12 +4458,12 @@ namespace draw2d
 
 
 
-   bool graphics::draw_stock_icon(const ::rectangle_f64 & rectParam, e_stock_icon eicon)
+   bool graphics::draw_stock_icon(const ::rectangle_f64 & rectParam, enum_stock_icon estockicon)
    {
 
       ::rectangle_f64 rectangle(rectParam);
 
-      if(eicon == stock_icon_close)
+      if(estockicon == e_stock_icon_close)
       {
 
          rectangle.deflate(rectangle.width() / 7.0, rectangle.height() / 7.0);
@@ -4476,7 +4476,7 @@ namespace draw2d
          line_to(rectangle.top_right());
 
       }
-      else if(eicon == stock_icon_zoom)
+      else if(estockicon == e_stock_icon_zoom)
       {
 
          rectangle.deflate(0, rectangle.height() / 7.0);
@@ -4495,7 +4495,7 @@ namespace draw2d
          //line_to(rectangle.top_right() + ::size_i32(0,(::i32)(pen->m_dWidth*2.0)));
 
       }
-      else if(eicon == stock_icon_restore)
+      else if(estockicon == e_stock_icon_restore)
       {
 
          rectangle.deflate(0, rectangle.height() / 7.0);
@@ -4539,7 +4539,7 @@ namespace draw2d
          line_to(point_f64(rect1.right,(int)(rect2.top - (m_ppen->m_dWidth))));
 
       }
-      else if(eicon == stock_icon_iconify)
+      else if(estockicon == e_stock_icon_iconify)
       {
 
 
@@ -4558,11 +4558,11 @@ namespace draw2d
          line_to(rectangle.bottom_right());
 
       }
-      else if(eicon == stock_icon_transparent_frame)
+      else if(estockicon == e_stock_icon_transparent_frame)
       {
 
       }
-      else if(eicon == stock_icon_dock)
+      else if(estockicon == e_stock_icon_dock)
       {
 
          rectangle.deflate(rectangle.height() / 8.0, rectangle.height() / 8.0);
@@ -4582,7 +4582,7 @@ namespace draw2d
          draw_ellipse(rect2);
 
       }
-      else if (eicon == stock_icon_notify)
+      else if (estockicon == e_stock_icon_notify)
       {
 
          rectangle.deflate(rectangle.height() / 2.0, rectangle.height() / 2.0);
@@ -4602,7 +4602,7 @@ namespace draw2d
          draw_ellipse(rect2);
 
       }
-      else if (eicon == stock_icon_level_up)
+      else if (estockicon == e_stock_icon_level_up)
       {
 
          rectangle.deflate(rectangle.height() / 3.0, rectangle.height() / 3.0);
@@ -4618,7 +4618,7 @@ namespace draw2d
          polygon(pointa);
 
       }
-      else if (eicon == stock_icon_level_down)
+      else if (estockicon == e_stock_icon_level_down)
       {
 
          rectangle.deflate(rectangle.height() / 3.0, rectangle.height() / 3.0);

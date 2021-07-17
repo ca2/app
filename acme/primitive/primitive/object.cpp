@@ -914,26 +914,28 @@ void object::system(const char* pszProjectName)
 }
 
 
-::e_status object::set_finish()
-{
+//::e_status object::set_finish()
+//{
+//
+//// if "this" gets invalid while a member functions of "this" object
+//// is running, something is wrong ? or !!!!
+//// Yes, someone destroyed it while someone was running a "this" member function.
+//// And the caller that called "this" object's member function,
+//// wasn't holding proper reference to "this" member.
+//// So actually, I cannot make assumption that something is alive
+//// running a member of such an object, that doesn't hold proper
+//// reference for the duration of execution of a function.
+//// __pointer(::object) pobjectHold = this;
+//
+//   set_finish_bit();
+//
+//   set_finish_composites();
+//
+//   return ::success;
+//
+//}
 
-// if "this" gets invalid while a member functions of "this" object
-// is running, something is wrong ? or !!!!
-// Yes, someone destroyed it while someone was running a "this" member function.
-// And the caller that called "this" object's member function,
-// wasn't holding proper reference to "this" member.
-// So actually, I cannot make assumption that something is alive
-// running a member of such an object, that doesn't hold proper
-// reference for the duration of execution of a function.
-// __pointer(::object) pobjectHold = this;
 
-   set_finish_bit();
-
-   set_finish_composites();
-
-   return ::success;
-
-}
 
 
 ::e_status object::finalize()
@@ -1008,6 +1010,132 @@ void object::system(const char* pszProjectName)
    //   }
 
    //}
+
+   return ::success;
+
+}
+
+
+void object::add_child_task(::object* pobjectTask)
+{
+
+   synchronous_lock synchronouslock(mutex());
+
+   m_objectaChildrenTask.add(pobjectTask);
+
+}
+
+
+
+bool object::check_children_task()
+{
+
+   if (m_bCheckingChildrenTask)
+   {
+
+      return m_objectaChildrenTask.has_element();
+
+   }
+
+   if (!m_bSetFinish)
+   {
+
+      return m_objectaChildrenTask.has_element();
+
+   }
+
+   m_bCheckingChildrenTask = true;
+
+   try
+   {
+
+      synchronous_lock lock(mutex());
+
+      for (int iChildTask = 0; iChildTask < m_objectaChildrenTask.get_size(); )
+      {
+
+         auto ptaskChild = m_objectaChildrenTask[iChildTask];
+
+         if (ptaskChild->m_bTaskTerminated || !ptaskChild->m_bTaskStarted)
+         {
+
+            m_objectaChildrenTask.erase_at(iChildTask);
+
+         }
+         else
+         {
+
+            ptaskChild->set_finish();
+
+            iChildTask++;
+
+         }
+
+      }
+
+   }
+   catch (...)
+   {
+
+
+   }
+
+   if (m_objectaChildrenTask.has_element())
+   {
+
+      m_bCheckingChildrenTask = false;
+
+      return true;
+
+   }
+
+   post_quit();
+
+   m_bCheckingChildrenTask = false;
+
+   return false;
+
+}
+
+
+//::e_status object::finish()
+//{
+//
+//
+//   ::object::finish();
+//
+//   return ::success;
+//
+//}
+//
+
+::e_status object::finish()
+{
+
+   set_finish();
+
+   synchronous_lock lock(mutex());
+
+   while (check_children_task())
+   {
+
+      sleep(100_ms);
+
+   }
+
+   //::object::finish();
+
+   return ::success;
+
+}
+
+
+::e_status object::set_finish()
+{
+
+   m_bSetFinish = true;
+
+   kick_idle();
 
    return ::success;
 
@@ -1970,7 +2098,7 @@ void object::task_erase(::task* ptask)
 
       }
 
-      synchronous_lock slChild(ptask->mutex());
+      //synchronous_lock slChild(ptask->mutex());
 
       //if (!m_pcompositea->contains(ptask) && ptask->thread_parent() != this)
       //{
@@ -1979,7 +2107,7 @@ void object::task_erase(::task* ptask)
 
       //}
 
-      ptask->m_pobjectParent.release();
+      //ptask->m_pobjectParent.release();
 
       //auto ptaska = _task_array();
 

@@ -647,6 +647,8 @@ namespace user
 
          m_puserthread->initialize_user_thread(this);
 
+         m_puserthread->add_child_task(m_puserinteraction);
+
          m_puserinteraction->__refer(m_puserinteraction->m_pthreadUserInteraction, m_puserthread OBJ_REF_DBG_COMMA_THIS_NOTE(__FUNCTION__));
 
          peventStartedUser = __new(manual_reset_event());

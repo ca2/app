@@ -1569,7 +1569,7 @@ void thread::task_erase(::task * ptask)
 
       //}
 
-      ptask->m_pobjectParent.release();
+      ///ptask->m_pobjectParent.release();
 
       //m_pcompositea->erase(ptask);
 
@@ -1707,6 +1707,13 @@ void thread::task_erase(::task * ptask)
 
 bool thread::task_get_run() const
 {
+
+   if (((::thread *) this)->check_children_task())
+   {
+
+      return true;
+
+   }
 
    if (m_bMessageThread)
    {
@@ -3469,230 +3476,218 @@ int_bool thread::peek_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilte
 }
 
 
-::e_status thread::finish()
-{
-
-   auto estatus = ::object::set_finish();
-
-   if (!estatus)
-   {
-
-      return estatus;
-
-   }
-
-   kick_idle();
-
-   return estatus;
-
-   //set_finish_bit();
-
-   //auto estatus = channel::set_finish();
-
-   //if (!estatus)
-   //{
-
-   //   return false;
-
-   //}
-
-   //if (task_active())
-   //{
-
-   //   if (::is_set(pcontextobjectFinish))
-   //   {
-
-   //      notify_array().add_unique(pcontextobjectFinish);
-
-   //   }
-
-   //   post_quit();
-
-   //   return error_pending;
-
-   //}
-
-   //return success;
-
-//   auto estatus = set_finish_composites();
-//
-//   if (estatus == error_pending)
-//   {
-//
-//      return error_pending;
-//
-//   }
-//
-//   if (!finish_bit())
-//   {
-//
-//      m_bitFinishing = true;
-//
-//      set_finish_bit();
-//
-//   }
-//
-//   if (m_bitFinishing)
-//   {
-//
-//      string strTypeName = type_name();
-//
-//#ifdef ANDROID
-//
-//      demangle(strTypeName);
-//
-//#endif
-//
-//      if (strTypeName == "user::shell")
-//      {
-//
-//         output_debug_string("user::shell::finish");
-//
-//      }
-//      else if (strTypeName == "apex::system")
-//      {
-//
-//         output_debug_string("apex::system::finish");
-//
-//      }
-//
-//      estatus = set_finish_composites();
-//
-//      if (strTypeName.contains_ci("app_app::window"))
-//      {
-//
-//         output_debug_string("set_finish at app_window");
-//
-//      }
-//
-//      //if (m_ptaska)
-//      //{
-//
-//      //task_set_finish:
-//
-//      //   ::count countTask = m_ptaska->get_count();
-//
-//      //   for (::index iTask = 0; m_ptaska && iTask < countTask; iTask++)
-//      //   {
-//
-//      //      auto & ptask = m_ptaska->element_at(iTask);
-//
-//      //      synchronouslock.unlock();
-//
-//      //      auto estatus = ptask->finish();
-//
-//      //      if (estatus == ::error_pending)
-//      //      {
-//
-//      //         bStillFinishingTasks = true;
-//
-//      //      }
-//
-//      //      synchronouslock.lock();
-//
-//      //      if (countTask != m_ptaska->get_count())
-//      //      {
-//
-//      //         goto task_set_finish;
-//
-//      //      }
-//
-//      //   }
-//
-//      //}
-//
-//      //if (bStillFinishingComposites || bStillFinishingTasks)
-//
-//      if (estatus == ::error_pending)
-//      {
-//
-//         if (m_pcompositea)
-//         {
-//
-//            auto compositea = *m_pcompositea;
-//
-//            string strWaiting;
-//
-//            for (auto & pcomposite : compositea)
-//            {
-//
-//               try
-//               {
-//
-//                  string strThreadType;
-//
-//                  strThreadType = pcomposite->type_name();
-//
-//                  strWaiting += strThreadType;
-//
-//                  strWaiting += "\r\n";
-//
-//                  pcomposite->finish();
-//
-//               }
-//               catch (...)
-//               {
-//
-//               }
-//
-//            }
-//
-//            if (strWaiting.has_char())
-//            {
-//
-//               TRACE("The thread %s is waiting for the following threads to finish:\r\n%s", type_name(), strWaiting.c_str());
-//
-//            }
-//
-//         }
-//
-//         kick_idle();
-//
-//      }
-//      else
-//      {
-//
-//
-//         string strType = type_name();
-//
-//         if (strType.contains_ci("session"))
-//         {
-//
-//            auto bShouldRun = task_get_run();
-//
-//            if (!bShouldRun)
-//            {
-//
-//               output_debug_string("session_shouldn't_run?");
-//
-//            }
-//
-//         }
-//         else if (strType.contains_ci("application"))
-//         {
-//
-//            auto bShouldRun = task_get_run();
-//
-//            if (!bShouldRun)
-//            {
-//
-//               output_debug_string("application_shouldn't_run?");
-//
-//            }
-//
-//
-//         }
-//
-//         m_bitFinishing = false;
-//
-//      }
+//::e_status thread::finish()
+//{
+//
+//
+//   //set_finish_bit();
+//
+//   //auto estatus = channel::set_finish();
+//
+//   //if (!estatus)
+//   //{
+//
+//   //   return false;
+//
+//   //}
+//
+//   //if (task_active())
+//   //{
+//
+//   //   if (::is_set(pcontextobjectFinish))
+//   //   {
+//
+//   //      notify_array().add_unique(pcontextobjectFinish);
+//
+//   //   }
+//
+//   //   post_quit();
+//
+//   //   return error_pending;
+//
+//   //}
+//
+//   //return success;
+//
+////   auto estatus = set_finish_composites();
+////
+////   if (estatus == error_pending)
+////   {
+////
+////      return error_pending;
+////
+////   }
+////
+////   if (!finish_bit())
+////   {
+////
+////      m_bitFinishing = true;
+////
+////      set_finish_bit();
+////
+////   }
+////
+////   if (m_bitFinishing)
+////   {
+////
+////      string strTypeName = type_name();
+////
+////#ifdef ANDROID
+////
+////      demangle(strTypeName);
+////
+////#endif
+////
+////      if (strTypeName == "user::shell")
+////      {
+////
+////         output_debug_string("user::shell::finish");
+////
+////      }
+////      else if (strTypeName == "apex::system")
+////      {
+////
+////         output_debug_string("apex::system::finish");
+////
+////      }
+////
+////      estatus = set_finish_composites();
+////
+////      if (strTypeName.contains_ci("app_app::window"))
+////      {
+////
+////         output_debug_string("set_finish at app_window");
+////
+////      }
+////
+////      //if (m_ptaska)
+////      //{
+////
+////      //task_set_finish:
+////
+////      //   ::count countTask = m_ptaska->get_count();
+////
+////      //   for (::index iTask = 0; m_ptaska && iTask < countTask; iTask++)
+////      //   {
+////
+////      //      auto & ptask = m_ptaska->element_at(iTask);
+////
+////      //      synchronouslock.unlock();
+////
+////      //      auto estatus = ptask->finish();
+////
+////      //      if (estatus == ::error_pending)
+////      //      {
+////
+////      //         bStillFinishingTasks = true;
+////
+////      //      }
+////
+////      //      synchronouslock.lock();
+////
+////      //      if (countTask != m_ptaska->get_count())
+////      //      {
+////
+////      //         goto task_set_finish;
+////
+////      //      }
+////
+////      //   }
+////
+////      //}
+////
+////      //if (bStillFinishingComposites || bStillFinishingTasks)
+////
+////      if (estatus == ::error_pending)
+////      {
+////
+////         if (m_pcompositea)
+////         {
+////
+////            auto compositea = *m_pcompositea;
+////
+////            string strWaiting;
+////
+////            for (auto & pcomposite : compositea)
+////            {
+////
+////               try
+////               {
+////
+////                  string strThreadType;
+////
+////                  strThreadType = pcomposite->type_name();
+////
+////                  strWaiting += strThreadType;
+////
+////                  strWaiting += "\r\n";
+////
+////                  pcomposite->finish();
+////
+////               }
+////               catch (...)
+////               {
+////
+////               }
+////
+////            }
+////
+////            if (strWaiting.has_char())
+////            {
+////
+////               TRACE("The thread %s is waiting for the following threads to finish:\r\n%s", type_name(), strWaiting.c_str());
+////
+////            }
+////
+////         }
+////
+////         kick_idle();
+////
+////      }
+////      else
+////      {
+////
+////
+////         string strType = type_name();
+////
+////         if (strType.contains_ci("session"))
+////         {
+////
+////            auto bShouldRun = task_get_run();
+////
+////            if (!bShouldRun)
+////            {
+////
+////               output_debug_string("session_shouldn't_run?");
+////
+////            }
+////
+////         }
+////         else if (strType.contains_ci("application"))
+////         {
+////
+////            auto bShouldRun = task_get_run();
+////
+////            if (!bShouldRun)
+////            {
+////
+////               output_debug_string("application_shouldn't_run?");
+////
+////            }
+////
+////
+////         }
+////
+////         m_bitFinishing = false;
+////
+////      }
+////
+////}
+////
+////   return estatus;
+////
 //
 //}
-//
-//   return estatus;
-//
-
-}
 
 
 void thread::update_task_ready_to_quit()
@@ -3837,6 +3832,13 @@ int_bool thread::get_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilter
 
          while(iRet = ::PeekMessage(&msg, __hwnd(oswindow), wMsgFilterMin, wMsgFilterMax, TRUE))
          {
+
+            if (msg.message == e_message_quit)
+            {
+
+               break;
+
+            }
 
             sleep(100_ms);
 
@@ -4827,3 +4829,36 @@ void thread::delete_this()
 }
 
 
+
+
+::e_status thread::finish()
+{
+
+   auto estatus = set_finish();
+
+   if (!estatus)
+   {
+
+      return estatus;
+
+   }
+
+   if (::get_task() == this)
+   {
+
+      return ::success;
+
+   }
+
+   while (check_children_task())
+   {
+
+      sleep(100_ms);
+
+      kick_idle();
+
+   }
+
+   return ::success;
+
+}

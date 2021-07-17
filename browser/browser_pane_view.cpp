@@ -103,10 +103,12 @@ namespace browser
 
       stra.explode("->:<-",strId);
 
-      if (get_pane_by_id(MENU_IMPACT) != nullptr && get_pane_by_id(MENU_IMPACT)->m_pholder != nullptr)
+      auto ptabpaneMenu = get_tab_by_id(MENU_IMPACT);
+
+      if (ptabpaneMenu != nullptr && ptabpaneMenu->m_pholder != nullptr)
       {
 
-         get_pane_by_id(MENU_IMPACT)->m_pholder->hide();
+         ptabpaneMenu->m_pholder->hide();
 
       }
 
@@ -143,10 +145,12 @@ namespace browser
 
          if(get_view_id() == MENU_IMPACT)
          {
-
-            m_pviewLast = dynamic_cast < impact_base * > (get_pane_by_id(MENU_IMPACT)->m_pholder->get_child_by_id("browser_gcom"));
+            
+            auto ptabpaneMenu = get_tab_by_id(MENU_IMPACT);
+            
+            m_pviewLast = dynamic_cast < impact_base * > (ptabpaneMenu->m_pholder->get_child_by_id("browser_gcom"));
             m_pviewdataTopic = m_pimpactdata;
-            m_strTopicTitle = get_pane_by_id(MENU_IMPACT)->m_straTitle.implode(" ");
+            m_strTopicTitle = ptabpaneMenu->m_straTitle.implode(" ");
 
          }
          else if(get_view_id() == MAIN_IMPACT)

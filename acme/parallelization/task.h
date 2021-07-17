@@ -20,7 +20,6 @@ public:
    bool                                            m_bMessageThread : 1;
    bool                                            m_bTaskToolsForIncreasedFps : 1;
 
-
    ::u64                                           m_uThreadAffinityMask;
 
 
@@ -28,7 +27,6 @@ public:
    itask_t                                         m_itask;
    string                                          m_strTaskName;
    string                                          m_strTaskTag;
-   __pointer(::property_object)                    m_pobjectParent;
 
    __pointer(::matter)                             m_pmatter;
    __pointer(manual_reset_event)                   m_pevSleep;
@@ -122,7 +120,7 @@ public:
 //      u32 dwCreateFlags = 0);
 
 
-   virtual ::property_object * thread_parent();
+   //virtual ::property_object * thread_parent();
 
 
    virtual bool is_thread() const override;
@@ -136,6 +134,7 @@ public:
 
 
    virtual ::e_status stop_task();
+
 
    //virtual bool task_set_name(const char* pszThreadName);
 

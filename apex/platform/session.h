@@ -130,6 +130,9 @@ namespace apex
 
       virtual ::e_status     initialize(::object * pobject) override;
 
+
+      void install_message_routing(::channel* pchannel) override;
+
       //inline ::userpresence::department & userpresence() { return *m_puserpresence; }
 
       virtual bool is_session() const override;
@@ -171,6 +174,7 @@ namespace apex
 
       virtual void term_session();
 
+      DECLARE_MESSAGE_HANDLER(on_message_erase_application);
 
       inline class ::fs::data * fs() { return m_pfsdata; }
 
@@ -359,7 +363,7 @@ namespace apex
 
       //virtual ::e_status initialize(::object * pobject) override;
 
-      virtual void install_message_routing(::channel* pchannel) override;
+      //virtual void install_message_routing(::channel* pchannel) override;
 
       //virtual ::e_status userex_process_init();
       //virtual ::e_status userex_init1();

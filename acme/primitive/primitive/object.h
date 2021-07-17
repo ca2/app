@@ -42,19 +42,25 @@ namespace aura
 class CLASS_DECL_ACME object :
    virtual public property_object
 {
+protected:
+
+
+   __pointer_array(::object)                             m_objectaChildrenTask;
+
+
 public:
 
 
-   //__pointer(::thread)                                m_pthread;
-   //__pointer(::application)                     m_papplication;
-   //__pointer(::apex::session)                         m_psession;
-   //__pointer(class ::system)                          m_psystem;
-   __pointer(::acme::context)                           m_pcontext;
+   //__pointer(::thread)                                 m_pthread;
+   //__pointer(::application)                            m_papplication;
+   //__pointer(::apex::session)                          m_psession;
+   //__pointer(class ::system)                           m_psystem;
+   __pointer(::acme::context)                            m_pcontext;
 
 
-   //__pointer(__pointer_array(::object))                 m_pobjecta;
-   __pointer(__pointer_array(::matter))                 m_pcompositea;
-   __pointer(__pointer_array(::matter))                 m_preferencea;
+   //__pointer(__pointer_array(::object))                m_pobjecta;
+   __pointer(__pointer_array(::matter))                  m_pcompositea;
+   __pointer(__pointer_array(::matter))                  m_preferencea;
 
 
 
@@ -150,6 +156,14 @@ public:
    virtual ::e_status initialize(::object * pobject) override;
    virtual ::e_status set_finish() override;
    virtual ::e_status finalize() override;
+
+   virtual void add_child_task(::object* pobjectTask);
+
+   virtual bool check_children_task();
+
+   virtual ::e_status finish();
+
+   //virtual ::e_status set_finish();
 
 
    virtual bool is_thread() const override;

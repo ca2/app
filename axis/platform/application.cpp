@@ -1455,12 +1455,12 @@ namespace axis
 
          //}
 
-         if(::is_set(get_session()))
-         {
+         //if(::is_set(get_session()))
+         //{
 
-            get_session()->app_erase(this);
+         //   get_session()->app_erase(this);
 
-         }
+         //}
 
          //if(::is_set(get_context_system()))
          //{

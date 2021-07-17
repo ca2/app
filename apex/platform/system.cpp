@@ -531,6 +531,16 @@ namespace apex
    }
 
 
+   void system::install_message_routing(::channel* pchannel)
+   {
+
+      ::apex::context::install_message_routing(pchannel);
+
+      MESSAGE_LINK(e_message_erase_session, pchannel, this, &system::on_message_erase_session);
+
+   }
+
+
    //::apex::audio * system::defer_get_audio()
    //{
 
@@ -691,7 +701,7 @@ namespace apex
    }
 
 
-   void system::session_add(index iEdge, ::apex::session * psession)
+   void system::add_session(index iEdge, ::apex::session * psession)
    {
 
       if (!::is_set(psession))
@@ -715,7 +725,7 @@ namespace apex
    }
 
 
-   void system::session_erase(index iEdge)
+   void system::erase_session(index iEdge)
    {
 
       m_sessionmap.erase_key(iEdge);
@@ -2236,6 +2246,16 @@ namespace apex
    }
 
 
+   void system::on_message_erase_session(::message::message * pmessage)
+   {
+
+      auto iEdge = pmessage->m_wparam;
+
+      erase_session(iEdge);
+
+   }
+
+
    ::acme::library * system::lib(const char * psz)
    {
 
@@ -3150,7 +3170,7 @@ namespace apex
 
       }
 
-      session_add(iEdge, psession);
+      add_session(iEdge, psession);
 
       return ::success;
 
@@ -5541,6 +5561,8 @@ namespace apex
 
    ::e_status system::finalize()
    {
+
+      auto estatus = ::thread::finalize();
 
       ::app_core::finalize();
 

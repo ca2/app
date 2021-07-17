@@ -112,7 +112,7 @@ namespace experience
 
          //pgraphics->DrawEllipse(rectEllipse);
 
-         if (m_estockicon == stock_icon_none)
+         if (m_estockicon == e_stock_icon_none)
          {
 
             string str;
@@ -171,7 +171,7 @@ namespace experience
          if (pshowwindow->m_bShow)
          {
 
-            if (m_estockicon == stock_icon_restore)
+            if (m_estockicon == e_stock_icon_restore)
             {
 
                output_debug_string("restore button is being shown");

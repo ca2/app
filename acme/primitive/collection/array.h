@@ -213,7 +213,7 @@ public:
 
       }
 
-      if (i != iIndex)
+      if (i <= iIndex)
       {
 
          return -1;

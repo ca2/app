@@ -225,8 +225,9 @@ namespace apex
       void common_construct();
 
 
-      virtual ::e_status initialize(::object * pobject) override;
+      ::e_status initialize(::object * pobject) override;
 
+      void install_message_routing(::channel * pchannel) override;
 
       virtual void system_construct(int argc, char** argv, char** envp) override;
       virtual void system_construct(int argc, wchar_t** argv, wchar_t** envp) override;
@@ -269,6 +270,10 @@ namespace apex
       virtual ::e_status system_main() override;
 
       virtual void term();
+
+
+      DECLARE_MESSAGE_HANDLER(on_message_erase_session);
+
 
       virtual string get_application_server_name();
 
@@ -575,8 +580,8 @@ namespace apex
 
 
       virtual void on_add_session(::apex::session* psession);
-      virtual void session_add(index iEdge, ::apex::session * psession);
-      virtual void session_erase(index iEdge);
+      virtual void add_session(index iEdge, ::apex::session * psession);
+      virtual void erase_session(index iEdge);
 
 
 

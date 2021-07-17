@@ -45,6 +45,10 @@ public:
          bool        m_bSetFinish : 1;
          bool        m_bFinishing : 1;
          bool        m_bProcessed : 1;
+         bool        m_bTaskStarted : 1;
+         bool        m_bTaskTerminated : 1;
+         bool        m_bCheckingChildrenTask : 1;
+
 
       };
 

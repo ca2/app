@@ -22,7 +22,7 @@ application_container::~application_container()
 }
 
 
-void application_container::app_add(::application * papp)
+void application_container::add_application(::application * papp)
 {
 
    if (!::is_set(papp))
@@ -46,7 +46,7 @@ void application_container::app_add(::application * papp)
 }
 
 
-void application_container::app_erase(::application * papp)
+void application_container::erase_application(::application * papp)
 {
 
    m_applicationa.erase(papp);
@@ -591,7 +591,7 @@ __pointer(::application) application_container::start_application(const char * p
 
    }
 
-   app_add(papp);
+   add_application(papp);
 
    return papp;
 

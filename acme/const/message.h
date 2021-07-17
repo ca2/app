@@ -236,6 +236,8 @@ e_message_queue_sentinel =    0x0379,
    e_message_auratype_key_up,
    e_message_auraclick_mouse,
    e_message_update_device_list,
+   e_message_erase_application,
+   e_message_erase_session,
 
 
 

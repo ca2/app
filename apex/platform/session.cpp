@@ -143,6 +143,16 @@ namespace apex
    }
 
 
+   void session::install_message_routing(::channel* pchannel)
+   {
+
+      ::apex::context::install_message_routing(pchannel);
+
+      MESSAGE_LINK(e_message_erase_application, pchannel, this, &session::on_message_erase_application);
+
+   }
+
+
    void session::locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const string & strLocale, const string & strSchema)
    {
 
@@ -521,6 +531,16 @@ namespace apex
 
    }
 
+
+   void session::on_message_erase_application(::message::message* pmessage)
+   {
+
+      auto papplication = pmessage->m_lparam.cast <::application>();
+
+      erase_application(papplication);
+
+   }
+
    //::e_status session::init()
    //{
 
@@ -564,7 +584,8 @@ namespace apex
 
       __pointer(::apex::system) psystem = get_system();
 
-      psystem->session_erase(m_iEdge);
+      psystem->post_message(e_message_erase_session, m_iEdge);
+      //psystem->session_erase(m_iEdge);
 
    }
 
@@ -1526,15 +1547,15 @@ namespace apex
    //}
 
 
-   void session::install_message_routing(::channel* pchannel)
-   {
+   //void session::install_message_routing(::channel* pchannel)
+   //{
 
-      ::thread::install_message_routing(pchannel);
+   //   ::thread::install_message_routing(pchannel);
 
-   //   //apex::application::install_message_routing(pchannel);
-   //   apex::session::install_message_routing(pchannel);
+   ////   //apex::application::install_message_routing(pchannel);
+   ////   apex::session::install_message_routing(pchannel);
 
-   }
+   //}
 
 
    void session::_001OnFileNew()

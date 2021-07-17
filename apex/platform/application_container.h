@@ -38,8 +38,8 @@ public:
 
    application_array get_applicationa();
 
-   virtual void app_add(::application * papp);
-   virtual void app_erase(::application * papp);
+   virtual void add_application(::application * papp);
+   virtual void erase_application(::application * papp);
 
 
    __pointer(::application) assert_running(const char * pszAppId, const string & strLocale, const string & strSchema);

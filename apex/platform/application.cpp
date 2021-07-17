@@ -3874,7 +3874,7 @@ try
 if(::is_set(get_session()))
 {
 
-get_session()->app_erase(this);
+   get_session()->post_message(e_message_erase_application, 0, (::application *) this);
 
 }
 

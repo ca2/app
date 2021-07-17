@@ -15,6 +15,19 @@
 task::task()
 {
 
+   auto ptaskParent = ::get_task();
+
+   if (ptaskParent)
+   {
+
+      ptaskParent->add_child_task(this);
+
+   }
+
+   m_bSetFinish = false;
+   m_bTaskTerminated = false;
+   m_bTaskStarted = false;
+   m_bCheckingChildrenTask = false;
    //m_pthread = nullptr;
    m_bMessageThread = false;
    m_bCoInitialize = false;
@@ -149,6 +162,11 @@ bool task::is_running() const
 }
 
 
+
+
+
+
+
 ::e_status task::stop_task()
 {
 
@@ -162,13 +180,6 @@ bool task::is_running() const
 
 }
 
-
-::property_object * task::thread_parent()
-{
-
-   return m_pobjectParent;
-
-}
 
 
 bool task::is_thread() const
@@ -196,6 +207,10 @@ void* task::s_os_task(void* p)
       pthread->release(OBJ_REF_DBG_P_FUNCTION_LINE(pthread));
 
       pthread->main();
+
+      pthread->m_bTaskTerminated = true;
+
+      //pthread->m_ptaskParent.release();
 
 #if OBJ_REF_DBG
 
@@ -615,6 +630,8 @@ bool task::has_message() const
 #ifdef WINDOWS
 
    DWORD dwThread = 0;
+
+   m_bTaskStarted = true;
 
    m_htask = ::CreateThread(PARAM_SEC_ATTRS, nStackSize, (LPTHREAD_START_ROUTINE) &::task::s_os_task, (LPVOID)(task*)this, uCreateFlags, &dwThread);
 

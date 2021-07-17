@@ -611,7 +611,7 @@ namespace user
 
             pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-            pgraphics->fill_rectangle(rectangleClient, crBackground);
+            pgraphics->fill_rectangle(rectangleClient, colorBackground);
 
          }
 

@@ -6978,6 +6978,8 @@ namespace aura
    ::e_status system::finalize()
    {
 
+      auto estatus = ::aqua::system::finalize();
+
       if (m_pdraw2d)
       {
 
@@ -6986,8 +6988,6 @@ namespace aura
          m_pdraw2d.release();
 
       }
-
-      auto estatus = ::aqua::system::finalize();
 
       return estatus;
 

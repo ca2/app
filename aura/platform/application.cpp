@@ -2178,7 +2178,7 @@ retry_license:
          if(::is_set(get_session()))
          {
 
-            get_session()->app_erase(this);
+            get_session()->post_message(e_message_erase_application, 0, this);
 
          }
 
@@ -9103,7 +9103,12 @@ namespace aura
          for (auto& pframe : m_puiptraFrame->interactiona())
          {
 
-            pframe->finish();
+            if (::is_set(pframe))
+            {
+
+               pframe->finish();
+
+            }
 
          }
 

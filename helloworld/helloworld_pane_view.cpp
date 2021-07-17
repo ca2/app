@@ -101,10 +101,12 @@ namespace helloworld
 
       stra.explode("->:<-",strId);
 
-      if (get_pane_by_id(MENU_IMPACT)->m_pholder != nullptr)
+      auto ptabpaneMenu = get_tab_by_id(MENU_IMPACT);
+
+      if (ptabpaneMenu->m_pholder != nullptr)
       {
 
-         get_pane_by_id(MENU_IMPACT)->m_pholder->ShowWindow(SW_HIDE);
+         ptabpaneMenu->m_pholder->ShowWindow(SW_HIDE);
 
       }
 

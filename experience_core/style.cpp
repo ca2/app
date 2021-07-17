@@ -1291,13 +1291,36 @@ namespace experience
                if (m_pnode->is_app_dark_mode())
                {
 
-                  return __acolor(127, 80, 80, 80);
+                  if (estate & ::user::e_state_hover)
+                  {
+
+                     return __acolor(127, 120, 120, 120);
+
+                  }
+                  else
+                  {
+
+                     return __acolor(127, 80, 80, 80);
+
+                  }
 
                }
                else
                {
 
-                  return __acolor(127, 210, 210, 210);
+                  if (estate & ::user::e_state_hover)
+                  {
+
+                     return __acolor(127, 230, 230, 230);
+
+                  }
+                  else
+                  {
+
+                     return __acolor(127, 210, 210, 210);
+
+                  }
+
 
                }
 

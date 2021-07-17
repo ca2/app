@@ -120,24 +120,24 @@ namespace browser
 
 
 
-         if(get_pane_by_id(FILEMANAGER_IMPACT) != nullptr && get_pane_by_id(FILEMANAGER_IMPACT)->m_pholder != nullptr)
+         if(ptabpaneFileManager != nullptr && ptabpaneFileManager->m_pholder != nullptr)
          {
 
-            get_pane_by_id(FILEMANAGER_IMPACT)->m_pholder->hide();
+            ptabpaneFileManager->m_pholder->hide();
 
          }
 
-         if (get_pane_by_id(FONTSEL_IMPACT) != nullptr && get_pane_by_id(FONTSEL_IMPACT)->m_pholder != nullptr)
+         if (ptabpaneFontSel != nullptr && ptabpaneFontSel->m_pholder != nullptr)
          {
 
-            get_pane_by_id(FONTSEL_IMPACT)->m_pholder->hide();
+            ptabpaneFontSel->m_pholder->hide();
 
          }
 
-         if (get_pane_by_id(COLORSEL_IMPACT) != nullptr && get_pane_by_id(COLORSEL_IMPACT)->m_pholder != nullptr)
+         if (ptabpaneColorSel != nullptr && ptabpaneColorSel->m_pholder != nullptr)
          {
 
-            get_pane_by_id(COLORSEL_IMPACT)->m_pholder->hide();
+            ptabpaneColorSel->m_pholder->hide();
 
          }
 
@@ -247,7 +247,7 @@ namespace browser
       else if (get_view_id() == FONTSEL_IMPACT)
       {
 
-         __pointer(::user::font_list_view) pfontview = get_pane_by_id(FONTSEL_IMPACT)->m_pholder->get_child_by_id("font_list_view");
+         __pointer(::user::font_list_view) pfontview = ptabpaneFontSel->m_pholder->get_child_by_id("font_list_view");
 
          if (m_pviewLastBilbo != nullptr && pfontview.is_set())
          {
@@ -272,7 +272,7 @@ namespace browser
       if (m_pimpactdataOld != nullptr && m_pimpactdataOld->m_id == FONTSEL_IMPACT)
       {
 
-         __pointer(::user::font_list_view) pfontview = get_pane_by_id(FONTSEL_IMPACT)->m_pholder->get_child_by_id("font_list_view");
+         __pointer(::user::font_list_view) pfontview = ptabpaneFontSel->m_pholder->get_child_by_id("font_list_view");
 
          if (m_pviewLastBilbo != nullptr && pfontview.is_set())
          {

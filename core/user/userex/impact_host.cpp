@@ -753,8 +753,8 @@ namespace userex
    void impact_host::toggle_view(::id idView)
    {
 
-      post_routine(__routine([this, idView]()
-         {
+      //post_routine(__routine([this, idView]()
+         //{
 
             bool bShow = false;
 
@@ -777,7 +777,8 @@ namespace userex
 
             }
 
-         }));
+         //}
+         //));
 
    }
 

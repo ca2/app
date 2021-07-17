@@ -116,17 +116,17 @@ namespace helloworld
 
 
 
-         if(get_pane_by_id(FILEMANAGER_IMPACT) != nullptr && get_pane_by_id(FILEMANAGER_IMPACT)->m_pholder != nullptr)
+         if(ptabpaneFileManager != nullptr && ptabpaneFileManager->m_pholder != nullptr)
          {
 
-            get_pane_by_id(FILEMANAGER_IMPACT)->m_pholder->ShowWindow(SW_HIDE);
+            ptabpaneFileManager->m_pholder->ShowWindow(SW_HIDE);
 
          }
 
-         if (get_pane_by_id(FONTSEL_IMPACT) != nullptr && get_pane_by_id(FONTSEL_IMPACT)->m_pholder != nullptr)
+         if (ptabpaneFontSel != nullptr && ptabpaneFontSel->m_pholder != nullptr)
          {
 
-            get_pane_by_id(FONTSEL_IMPACT)->m_pholder->ShowWindow(SW_HIDE);
+            ptabpaneFontSel->m_pholder->ShowWindow(SW_HIDE);
 
          }
 
@@ -211,7 +211,7 @@ namespace helloworld
       else if (get_view_id() == FONTSEL_IMPACT)
       {
 
-         __pointer(::user::font_list_view) pfontview = get_pane_by_id(FONTSEL_IMPACT)->m_pholder->get_child_by_id("font_list_view");
+         __pointer(::user::font_list_view) pfontview = ptabpaneFontSel->m_pholder->get_child_by_id("font_list_view");
 
          if (m_pviewLast != nullptr && pfontview.is_set())
          {

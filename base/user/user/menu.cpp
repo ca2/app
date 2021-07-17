@@ -277,6 +277,29 @@ namespace user
 
          TRACE("menu::on_message_show_window bShow = %d", pshow->m_bShow);
 
+         if (m_puserinteractionParent)
+         {
+
+            post_routine(__routine([this]()
+            {
+
+               get_window()->set_foreground_window();
+
+               post_routine(__routine([this]()
+                  {
+
+                     get_window()->set_active_window();
+
+                     get_window()->bring_to_front();
+
+                     get_window()->set_window_position(e_zorder_top_most, 0, 0, 0, 0, 0);
+
+                  }));
+
+            }));
+
+         }
+
       }
       else
       {

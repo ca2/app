@@ -255,6 +255,10 @@ namespace experience
 
       set_user_style(pszStyle);
 
+      auto pframewindow = this;
+
+      pframewindow->handle_subject(psubject);
+
       return pframe;
 
    }

@@ -587,7 +587,7 @@ void simple_frame_window::on_message_destroy(::message::message * pmessage)
             if(::is_set(pframe))
             {
 
-               auto psubject = m_puserstyle->subject(id_user_style_change);
+               auto psubject = subject(id_user_style_change);
 
                psubject->add_listener(pframe);
 

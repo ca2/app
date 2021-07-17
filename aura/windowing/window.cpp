@@ -938,6 +938,17 @@ namespace windowing
 
    }
 
+
+   ::e_status window::bring_to_front()
+   {
+
+      __throw(error_interface_only);
+
+      return ::error_interface_only;
+
+   }
+
+
    bool window::client_to_screen(POINT_I32 *ppoint)
    {
 

@@ -3165,11 +3165,7 @@ namespace user
    //}
 
 
-
-
-
-
-   bool tab::set_current_tab_by_id(id id, ::create * pcreate)
+   bool tab::set_current_tab_by_id(const ::id & id, ::create * pcreate)
    {
 
       try
@@ -3231,6 +3227,24 @@ namespace user
 
    }
 
+
+   ::user::tab_pane* tab::get_current_tab()
+   {
+
+      auto id = get_current_tab_id();
+
+      auto ptabpane = get_tab_by_id(id);
+
+      if (::is_null(ptabpane))
+      {
+
+         return nullptr;
+
+      }
+
+      return ptabpane;
+
+   }
 
 
    enum_position tab::DragHitTest(const ::point_i32 & point)

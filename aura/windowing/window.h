@@ -59,6 +59,8 @@ namespace windowing
 
       virtual ::e_status set_active_window();
 
+      virtual ::e_status bring_to_front();
+
 
       virtual bool has_mouse_capture() const;
       virtual bool has_keyboard_focus() const;

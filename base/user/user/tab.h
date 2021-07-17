@@ -119,7 +119,10 @@ namespace user
 
 
       virtual id get_current_tab_id();
-      virtual bool set_current_tab_by_id(id id, ::create* pcreate = nullptr);
+      virtual bool set_current_tab_by_id(const ::id & id, ::create* pcreate = nullptr);
+
+
+      virtual ::user::tab_pane * get_current_tab();
 
 
       virtual ::index get_current_tab_index();

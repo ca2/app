@@ -205,7 +205,15 @@ void simple_log::__tracea(enum_trace_level elevel, const char * pszFunction, con
 {
 
    //__simple_tracea(elevel, pszFunction, pszFile, iLine, psz);
-   printf("%c %s %d %s", trace_level_char(elevel), pszFunction, iLine, psz);
+
+   string str;
+   
+   str.Format("%c %s %d %s\n", trace_level_char(elevel), pszFunction, iLine, psz);
+
+   //output_debug_string(str);
+
+   output_debug_string(psz);
+
 
 }
 

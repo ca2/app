@@ -649,6 +649,7 @@ void matter::delete_this()
 void matter::__tracea(enum_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz) const
 {
 
+   m_psystem->__tracea(elevel, pszFunction, pszFile, iLine, psz);
 
 }
 

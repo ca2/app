@@ -51,6 +51,13 @@ namespace text
       bool locale_schema::add_locale_variant(id idLocale, id idSchema)
       {
 
+         if (idLocale.is_empty() || idSchema.is_empty())
+         {
+
+            return false;
+
+         }
+
          if(m_idLocale.is_empty())
          {
             m_idLocale = idLocale;

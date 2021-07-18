@@ -223,6 +223,9 @@ public:
    virtual ::e_status open_url(string strUrl, string strProfile, string strTarget);
 
 
+   void __tracea(enum_trace_level elevel, const char* pszFunction, const char* pszFile, int iLine, const char* psz) const override;
+
+
    //virtual ::e_status main_user_async(const ::routine & routine, ::e_priority epriority = priority_normal);
 
    //virtual ::e_status main_user_sync(const ::routine & routine, const ::duration & duration = one_minute(), e_priority epriority = priority_normal);

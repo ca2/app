@@ -433,6 +433,13 @@ namespace url
 
       const char * pszQuery = strchr(pszUrl, '?');
 
+      if (::is_null(strParam))
+      {
+
+         strParam = "";
+
+      }
+
       string strKey = url_encode(pszKey);
       string strValue = url_encode(strParam);
 

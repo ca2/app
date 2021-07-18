@@ -5,7 +5,7 @@
 #include "acme/memory/plex_heap_impl1.h"
 #include "acme/primitive/primitive/malloc.h"
 #include "acme/astr.h"
-#include "acme/platform/simple_trace.h"
+#include "acme/platform/simple_log.h"
 #include "static_start_internal.h"
 
 
@@ -104,8 +104,6 @@ void finalize_global_message_queue();
 #endif
 
 
-CLASS_DECL_ACME void trace_category_static_init();
-CLASS_DECL_ACME void trace_category_static_term();
 
 
 extern thread_local ::task_pointer t_pthread;
@@ -178,11 +176,11 @@ namespace acme
 
    bool g_bOutputDebugString;
 
-   critical_section * g_pcsTrace;
+   //critical_section * g_pcsTrace;
 
-   ::matter * g_ptrace;
+   //::matter * g_ptrace;
 
-   simple_trace * g_psimpletrace;
+   //simple_trace * g_psimpletrace;
 
    //critical_section* g_pcsTrace;
 
@@ -348,11 +346,11 @@ namespace acme
 
       g_bOutputDebugString = true;
 
-      g_pcsTrace = nullptr;
+      //g_pcsTrace = nullptr;
 
-      g_ptrace = nullptr;
+      //g_ptrace = nullptr;
 
-      g_psimpletrace = nullptr;
+      //g_psimpletrace = nullptr;
 
       //g_pcsTrace = nullptr;
 
@@ -591,13 +589,12 @@ namespace acme
 
 #endif
 
-      trace_category_static_init();
 
-      g_pcsTrace = new critical_section;
+      //g_pcsTrace = new critical_section;
 
-      g_psimpletrace = new simple_trace;
+      //g_psimpletrace = new simple_trace;
 
-      g_ptrace = g_psimpletrace;
+      //g_ptrace = g_psimpletrace;
 
 
       // acme commented
@@ -857,7 +854,7 @@ namespace acme
       // acme commented
       //g_ptrace = g_psimpletrace;
 
-      g_ptrace = g_psimpletrace;
+      //g_ptrace = g_psimpletrace;
 
       //::acme::del(g_pmapRTL);
 
@@ -957,11 +954,11 @@ namespace acme
 
       //::acme::del(g_pcsTrace);
       
-      ::acme::del(g_psimpletrace);
+      //::acme::del(g_psimpletrace);
 
-      ::acme::del(g_pcsTrace);
+      //::acme::del(g_pcsTrace);
 
-      trace_category_static_term();
+      //trace_category_static_term();
 
 #ifdef ANDROID
 

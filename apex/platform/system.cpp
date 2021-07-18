@@ -1579,7 +1579,9 @@ namespace apex
 //
 //      }
 
-      if (!m_ptrace->process_init())
+      estatus = m_ptracelog->process_init();
+
+      if(!estatus)
       {
 
          WARN("failed to process_init ::apex::log trace");
@@ -2611,7 +2613,7 @@ namespace apex
    i32 system::_debug_logging_report(i32 iReportType, const char * pszFileName, i32 iLineNumber, const char * pszModuleName, const char * pszFormat,va_list list)
    {
 
-      if(!m_ptrace || !m_ptrace->m_bExtendedLog)
+      if(!m_ptracelog || !m_ptracelog->m_bExtendedLog)
       {
 
          return ::apex::SimpleDebugReport(iReportType,pszFileName,iLineNumber,pszModuleName,pszFormat,list);
@@ -2671,10 +2673,10 @@ namespace apex
 
       strPrint.replace("%","%%");
 
-      if(m_ptrace)
+      if(m_ptracelog)
       {
 
-         m_ptrace->print(strPrint);
+         m_ptracelog->print(strPrint);
 
       }
 
@@ -2796,12 +2798,12 @@ namespace apex
    //}
 
 
-   ::apex::log & system::log()
-   {
+   //::apex::log & system::log()
+   //{
 
-      return *m_ptrace;
+   //   return *m_ptracelog;
 
-   }
+   //}
 
 
 
@@ -2858,30 +2860,30 @@ namespace apex
    ::e_status system::initialize_log(const char * pszId)
    {
 
-      if (m_ptrace)
+      if (m_ptracelog)
       {
 
          return ::success_none;
 
       }
 
-      auto estatus = __compose_new(m_ptrace);
+      m_ptracelog = __create_new < ::apex::log >();
 
-      if (!estatus)
+      if (!m_ptracelog)
       {
 
-         return estatus;
+         return error_no_memory;
 
       }
 
-      m_ptrace->set_extended_log();
+      m_ptracelog->set_extended_log();
 
-      estatus = m_ptrace->initialize_apex_log(e_trace_level_warning, pszId);
+      auto estatus = m_ptracelog->initialize_log(e_trace_level_warning, pszId);
 
       if(!estatus)
       {
 
-         __release(m_ptrace);
+         __release(m_ptracelog);
 
          return estatus;
 
@@ -4030,7 +4032,7 @@ namespace apex
    //void system::__tracea(::matter * pobject, enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz)
    //{
 
-   //   if (m_ptrace.is_null())
+   //   if (m_ptracelog.is_null())
    //   {
 
    //      __simple_tracea(trace_object(pobject), elevel, pszFunction, pszFile, iLine, psz);
@@ -4116,7 +4118,7 @@ namespace apex
    void system::__tracea(enum_trace_level elevel, const char* pszFunction, const char* pszFile, int iLine, const char* psz) const
    {
 
-      return m_ptrace->__tracea(elevel, pszFunction, pszFile, iLine, psz);
+      return m_ptracelog->__tracea(elevel, pszFunction, pszFile, iLine, psz);
 
    }
 

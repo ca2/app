@@ -1112,13 +1112,7 @@
     <ClInclude Include="framework_c.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="platform\_defer.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
     <ClInclude Include="platform\_features.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\all.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
     <ClInclude Include="platform\aura_aura.h">
@@ -1142,9 +1136,6 @@
     <ClInclude Include="platform\common.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
-    <ClInclude Include="platform\console_application.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
     <ClInclude Include="platform\const.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
@@ -1158,9 +1149,6 @@
       <Filter>Header Files\platform</Filter>
     </ClInclude>
     <ClInclude Include="platform\display.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\draw_context2.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
     <ClInclude Include="platform\enum.h">
@@ -1188,9 +1176,6 @@
       <Filter>Header Files\platform</Filter>
     </ClInclude>
     <ClInclude Include="platform\hyperlink.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\international.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
     <ClInclude Include="platform\keep.h">
@@ -1223,16 +1208,10 @@
     <ClInclude Include="platform\number.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
-    <ClInclude Include="platform\process_data.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
     <ClInclude Include="platform\restore.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
     <ClInclude Include="platform\serial.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\shell_launcher.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
     <ClInclude Include="platform\simple_app.h">
@@ -1242,9 +1221,6 @@
       <Filter>Header Files\platform</Filter>
     </ClInclude>
     <ClInclude Include="platform\status.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\millis.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
     <ClInclude Include="platform\trace_category.h">
@@ -1306,12 +1282,6 @@
     </ClInclude>
     <ClInclude Include="primitive\primitive\var.h">
       <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="net\_net_impl.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="node\opengl\opengl.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="astr.h">
       <Filter>Header Files</Filter>
@@ -1694,7 +1664,7 @@
     <ClInclude Include="platform\trace.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
-    <ClInclude Include="platform\simple_trace.h">
+    <ClInclude Include="platform\simple_log.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
     <ClInclude Include="user\_style.h">
@@ -2012,9 +1982,6 @@
     <ClInclude Include="platform\predicate_function_pointer.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
-    <ClInclude Include="platform\predicate_handler.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
     <ClInclude Include="platform\predicate_holder.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
@@ -2031,9 +1998,6 @@
       <Filter>Header Files\platform</Filter>
     </ClInclude>
     <ClInclude Include="platform\routine_array.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\sprintf.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
     <ClInclude Include="platform\string_exchange.h">
@@ -2447,9 +2411,6 @@
     <ClInclude Include="parallelization\cleanup_task.h">
       <Filter>Header Files\parallelization</Filter>
     </ClInclude>
-    <ClInclude Include="text.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="primitive\primitive\text.h">
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
@@ -2518,12 +2479,6 @@
     </ClInclude>
     <ClInclude Include="primitive\datetime\department.h">
       <Filter>Header Files\primitive\datetime</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\str_context.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\international_locale_schema.h">
-      <Filter>Header Files\platform</Filter>
     </ClInclude>
     <ClInclude Include="user\ewindowflag.h">
       <Filter>Header Files\user</Filter>
@@ -2779,6 +2734,9 @@
     </ClInclude>
     <ClInclude Include="include\_c.h">
       <Filter>Header Files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\log.h">
+      <Filter>Header Files\platform</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -3951,6 +3909,9 @@
     </ClCompile>
     <ClCompile Include="exception\file.cpp">
       <Filter>Source Files\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\log.cpp">
+      <Filter>Source Files\platform</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

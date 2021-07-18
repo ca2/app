@@ -2,7 +2,7 @@
 #include "trace_category.h"
 
 
-CLASS_DECL_ACME void trace_category_static_init();
+CLASS_DECL_ACME void trace_category_static_init(class ::system * psystem);
 CLASS_DECL_ACME void trace_category_static_term();
 
 
@@ -10,7 +10,7 @@ CLASS_DECL_ACME void trace_category_static_term();
 __pointer_array(trace_category) * trace_category::s_ptracecategorya = nullptr;
 
 
-void trace_category_static_init()
+void trace_category_static_init(class ::system * psystem)
 {
 
    trace_category::s_ptracecategorya = new __pointer_array(trace_category);
@@ -72,6 +72,8 @@ void trace_category_static_init()
       const char * pszCategory = *p;
 
       auto pcategory = __new(trace_category(etracecategory, pszCategory));
+
+      pcategory->initialize(psystem);
 
       trace_category::s_ptracecategorya->add(pcategory);
 

@@ -61,7 +61,6 @@ namespace apex
       //__composite(class ::account::user_set)             m_puserset;
 
       __composite_array(service)                         m_servicecompositea;
-      __composite(class ::apex::log)                     m_ptrace;
 
       // apex commented
       //__composite(math::math)                            m_pmath;
@@ -134,6 +133,8 @@ namespace apex
       int                                                m_iCommandLineDelay;
       ::task_pointer                                m_pthreadCommandLine;
 
+
+      //__pointer(::trace::log)                            m_ptracelog;
 
       bool                                               m_bSystemSynchronizedCursor;
       bool                                               m_bSystemSynchronizedScreen;
@@ -469,7 +470,6 @@ namespace apex
 
       //using acme::system::process;
 
-      class ::apex::log                            &  log();
       class ::machine_event_central                &  machine_event_central();
       inline ::parallelization::threading           *  threading() { return m_pthreading; }
 

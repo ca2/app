@@ -89,46 +89,6 @@ namespace sockets
    SSLInitializer::SSLInitializer()
    {
 
-//#if defined(_UWP)
-//
-//      OPENSSL_Applink();
-//
-//#endif
-
-      INFO("SSLInitializer::SSLInitializer .1");
-
-#if OPENSSL_API_COMPAT < 0x10100000L
-
-
-      SSL_load_error_strings();
-      SSL_library_init();
-#else
-
-      //OPENSSL_init_ssl(OPENSSL_INIT_SSL_DEFAULT, nullptr);
-
-#endif
-
-      INFO("SSLInitializer::SSLInitializer .2");
-
-
-      //ENGINE_load_openssl();
-      //ENGINE_load_dynamic();
-#ifndef OPENSSL_NO_STATIC_ENGINE
-      //ENGINE_load_4758cca();
-      //ENGINE_load_aep();
-      //ENGINE_load_atalla();
-      //ENGINE_load_chil();
-      //ENGINE_load_cswift();
-      ////ENGINE_load_gmp();
-      //ENGINE_load_nuron();
-      //ENGINE_load_sureware();
-      //ENGINE_load_ubsec();
-#endif
-      //ENGINE_load_cryptodev();
-      //ENGINE_load_builtin_engines();
-
-
-
    }
 
 
@@ -168,6 +128,61 @@ namespace sockets
       //DeleteRandFile();
       // %! delete mutexes
 
+
+   }
+
+
+   ::e_status SSLInitializer::initialize(::object* pobject)
+   {
+
+      auto estatus = ::object::initialize(pobject);
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      //#if defined(_UWP)
+//
+//      OPENSSL_Applink();
+//
+//#endif
+
+      INFO("SSLInitializer::SSLInitializer .1");
+
+#if OPENSSL_API_COMPAT < 0x10100000L
+
+
+      SSL_load_error_strings();
+      SSL_library_init();
+#else
+
+      //OPENSSL_init_ssl(OPENSSL_INIT_SSL_DEFAULT, nullptr);
+
+#endif
+
+      INFO("SSLInitializer::SSLInitializer .2");
+
+
+      //ENGINE_load_openssl();
+      //ENGINE_load_dynamic();
+#ifndef OPENSSL_NO_STATIC_ENGINE
+      //ENGINE_load_4758cca();
+      //ENGINE_load_aep();
+      //ENGINE_load_atalla();
+      //ENGINE_load_chil();
+      //ENGINE_load_cswift();
+      ////ENGINE_load_gmp();
+      //ENGINE_load_nuron();
+      //ENGINE_load_sureware();
+      //ENGINE_load_ubsec();
+#endif
+      //ENGINE_load_cryptodev();
+      //ENGINE_load_builtin_engines();
+
+      return ::success;
 
    }
 

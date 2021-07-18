@@ -283,6 +283,13 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
    }
 
 
+   void system::__tracea(enum_trace_level elevel, const char* pszFunction, const char* pszFile, int iLine, const char* psz) const
+   {
+
+      ::output_debug_string(psz);
+
+   }
+
    //   ::e_status system::main_user_async(const ::routine & routine, ::e_priority epriority)
    //   {
    //

@@ -4113,6 +4113,14 @@ namespace apex
    }
 
 
+   void system::__tracea(enum_trace_level elevel, const char* pszFunction, const char* pszFile, int iLine, const char* psz) const
+   {
+
+      return m_ptrace->__tracea(elevel, pszFunction, pszFile, iLine, psz);
+
+   }
+
+
    ::e_status system::browser(string strUrl, string strBrowser, string strProfile, string strTarget)
    {
 

@@ -369,7 +369,7 @@ public:
    virtual ::e_status verb();
 
 
-   __pointer(::thread) calc_parent();
+   ::task_pointer calc_parent();
 
 
    //virtual bool register_dependent_thread(::thread * pthread);
@@ -404,7 +404,7 @@ public:
    virtual void task_erase(::task * ptask) override;
    //virtual void wait_quit(::duration durationTimeout) override;
 
-   virtual bool kick_thread();
+   bool kick_thread() override;
 
    //virtual void defer_add_thread_run_wait(synchronization_array & soa);
 

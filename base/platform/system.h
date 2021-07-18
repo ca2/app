@@ -139,7 +139,7 @@ namespace base
 //      string_array                                            m_straCommandLineExtra;
 //      millis                                               m_millisCommandLineLast;
 //      int                                                m_iCommandLineDelay;
-//      __pointer(::thread)                                m_pthreadCommandLine;
+//      ::task_pointer                                m_pthreadCommandLine;
 //
 //
 //      bool                                               m_bSystemSynchronizedCursor;

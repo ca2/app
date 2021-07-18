@@ -2,7 +2,7 @@
 #include "acme/platform/profiler.h"
 
 
-extern __pointer(::thread) g_pthreadXlib;
+extern ::task_pointer g_pthreadXlib;
 extern itask_t g_ithreadXlib;
 
 

@@ -47,7 +47,7 @@ CLASS_DECL_APEX string __apex_get_text(string str);
 
 
 
-//extern thread_local __pointer(::thread) t_pthread;
+//extern thread_local ::task_pointer t_pthread;
 
 
 #undef new

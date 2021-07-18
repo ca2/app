@@ -147,7 +147,7 @@ namespace apex
    {
 
       ::apex::context::install_message_routing(pchannel);
-
+      
       MESSAGE_LINK(e_message_erase_application, pchannel, this, &session::on_message_erase_application);
 
    }

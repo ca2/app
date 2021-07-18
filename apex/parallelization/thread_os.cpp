@@ -99,7 +99,7 @@
 //}
 
 
-//thread_local __pointer(::thread) t_pthread;
+//thread_local ::task_pointer t_pthread;
 //
 //
 //::thread* get_task()

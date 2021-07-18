@@ -268,7 +268,7 @@ namespace parallelization
 //   bool post_quit_and_wait(::thread * pthreadParam, const duration & duration)
 //   {
 //
-//      __pointer(::thread) pthread;
+//      ::task_pointer pthread;
 //
 //      try
 //      {
@@ -1008,7 +1008,7 @@ void thread_ptra::wait(const duration& duration, synchronous_lock& synchronouslo
 
 
 
-__pointer(::thread) thread::calc_parent()
+::task_pointer thread::calc_parent()
 {
 
    //if (::is_null(pthread))
@@ -1025,32 +1025,32 @@ __pointer(::thread) thread::calc_parent()
 
    //}
 
-   auto pthreadContext = get_thread();
+   //auto pthreadContext = get_thread();
 
-   if (::is_set(pthreadContext))
-   {
+   //if (::is_set(pthreadContext))
+   //{
 
-      if (pthreadContext->finish_bit() || !pthreadContext->m_bLastingThread)
-      {
+   //   if (pthreadContext->finish_bit() || !pthreadContext->m_bLastingThread)
+   //   {
 
-         pthreadContext = pthreadContext->calc_parent();
+   //      pthreadContext = pthreadContext->calc_parent();
 
-         if (::is_set(pthreadContext))
-         {
+   //      if (::is_set(pthreadContext))
+   //      {
 
-            return pthreadContext;
+   //         return pthreadContext;
 
-         }
+   //      }
 
-      }
-      else
-      {
+   //   }
+   //   else
+   //   {
 
-         return pthreadContext;
+   //      return pthreadContext;
 
-      }
+   //   }
 
-   }
+   //}
 
    auto papplicationContext = get_application();
 

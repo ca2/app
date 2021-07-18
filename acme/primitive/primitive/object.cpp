@@ -1051,6 +1051,19 @@ bool object::check_children_task()
 
       synchronous_lock lock(mutex());
 
+      for (int iChildTask = 0; iChildTask < m_objectaChildrenTask.get_size(); iChildTask++)
+      {
+
+         auto ptaskChild = m_objectaChildrenTask[iChildTask];
+
+         lock.unlock();
+
+         ptaskChild->set_finish();
+
+         lock.lock();
+
+      }
+
       for (int iChildTask = 0; iChildTask < m_objectaChildrenTask.get_size(); )
       {
 
@@ -1064,8 +1077,6 @@ bool object::check_children_task()
          }
          else
          {
-
-            ptaskChild->set_finish();
 
             iChildTask++;
 
@@ -1109,7 +1120,8 @@ bool object::check_children_task()
 //}
 //
 
-::e_status object::finish()
+
+::e_status object::finish_children()
 {
 
    set_finish();
@@ -1123,7 +1135,16 @@ bool object::check_children_task()
 
    }
 
-   //::object::finish();
+   return ::success;
+
+}
+
+
+
+::e_status object::finish()
+{
+
+   finish_children();
 
    return ::success;
 

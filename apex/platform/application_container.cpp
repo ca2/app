@@ -49,7 +49,11 @@ void application_container::add_application(::application * papp)
 void application_container::erase_application(::application * papp)
 {
 
+   auto iSizeBefore = m_applicationa.get_size();
+
    m_applicationa.erase(papp);
+
+   auto iSizeAfter = m_applicationa.get_size();
 
    if (m_applicationa.is_empty() && m_bFinalizeIfNoApplication)
    {
@@ -522,7 +526,8 @@ __pointer(::application) application_container::start_application(const char * p
 
    psystem->merge_accumulated_on_open_file(pcreate);
 
-   papp->do_request(pcreate);
+   //papp->do_request(pcreate);
+   papp->post_object(e_message_system, e_system_message_create, pcreate);
 
    //         while (task_get_run())
    //         {

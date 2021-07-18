@@ -485,10 +485,12 @@ void application::process_command_line(command_line* pcommandline)
 void application::install_message_routing(::channel * pchannel)
 {
 
-::thread::install_message_routing(pchannel);
+   ::thread::install_message_routing(pchannel);
 
-connect_command("app_exit", this, &application::_001OnAppExit);
-connect_command("switch_context_theme", this, &application::_001OnSwitchContextTheme);
+   MESSAGE_LINK(e_message_close, pchannel, this, &application::_001OnClose);
+
+   connect_command("app_exit", this, &application::_001OnAppExit);
+   connect_command("switch_context_theme", this, &application::_001OnSwitchContextTheme);
 
 }
 
@@ -3366,6 +3368,14 @@ void application::process_term()
 {
 
 
+   if (::is_set(get_session()))
+   {
+
+      get_session()->post_message(e_message_erase_application, 0, this);
+
+   }
+
+
 try
 {
 
@@ -3847,124 +3857,106 @@ catch(...)
 void application::term_application()
 {
 
+   try
+   {
 
-try
-{
+      close(::apex::e_end_app);
 
-close(::apex::e_end_app);
+   }
+   catch (...)
+   {
 
-}
-catch (...)
-{
+   }
 
-}
+   release_exclusive();
 
-release_exclusive();
+   try
+   {
 
-try
-{
+      try
+      {
 
-//if(::is_set(m_pappParent))
-//{
-//
-//m_pappParent->app_erase(this);
-//
-//}
+         __unbind(this, m_pinterprocessintercommunication OBJ_REF_DBG_COMMA_THIS);
 
-if(::is_set(get_session()))
-{
+      }
+      catch (...)
+      {
 
-   get_session()->post_message(e_message_erase_application, 0, (::application *) this);
+      }
 
-}
+      try
+      {
 
-try
-{
-
-__unbind(this, m_pinterprocessintercommunication OBJ_REF_DBG_COMMA_THIS);
-
-}
-catch (...)
-{
-
-}
-
-try
-{
-
-term();
-
-}
-catch(...)
-{
+         term();
+   
+      }
+      catch(...)
+      {
 
 
-}
+      }
 
-try
-{
+      try
+      {
 
-term3();
+         term3();
 
-}
-catch(...)
-{
-
-
-}
-
-try
-{
-
-term2();
-
-}
-catch(...)
-{
+      }
+      catch(...)
+      {
 
 
-}
+      }
 
-try
-{
+      try
+      {
 
-term1();
+         term2();
 
-}
-catch(...)
-{
+      }
+      catch(...)
+      {
 
+
+      }
+
+      try
+      {
+
+         term1();
+
+      }
+      catch(...)
+      {
+
+
+      }
+
+
+   }
+   catch (...)
+   {
+
+   }
 
 }
-
-
-}
-catch (...)
-{
-
-}
-
-
-}
-
-
 
 
 __pointer(::acme::exclusive) application::get_exclusive(string strId ARG_SEC_ATTRS)
 {
 
-auto & pexclusive = m_mapExclusive[strId];
+   auto & pexclusive = m_mapExclusive[strId];
 
-if(!pexclusive)
-{
+   if(!pexclusive)
+   {
 
-auto pexclusiveNew = __new(::acme::exclusive(strId ADD_PARAM_SEC_ATTRS));
+      auto pexclusiveNew = __new(::acme::exclusive(strId ADD_PARAM_SEC_ATTRS));
 
-__m_own(this, pexclusive, pexclusiveNew OBJ_REF_DBG_COMMA_THIS_NOTE("::application::get_exclusive") );
+      __m_own(this, pexclusive, pexclusiveNew OBJ_REF_DBG_COMMA_THIS_NOTE("::application::get_exclusive") );
 
-}
+   }
 
-return pexclusive;
+   return pexclusive;
 
 }
 
@@ -3972,16 +3964,16 @@ return pexclusive;
 bool application::exclusive_fails(string strId ARG_SEC_ATTRS)
 {
 
-auto pexclusive = get_exclusive(strId ADD_PARAM_SEC_ATTRS);
+   auto pexclusive = get_exclusive(strId ADD_PARAM_SEC_ATTRS);
 
-if(!pexclusive)
-{
+   if(!pexclusive)
+   {
 
-return false;
+      return false;
 
-}
+   }
 
-return pexclusive->exclusive_fails();
+   return pexclusive->exclusive_fails();
 
 }
 
@@ -3991,99 +3983,136 @@ bool application::check_exclusive(bool & bHandled)
 
 #ifdef _UWP
 
-return true;
+   return true;
 
 #endif
 
-bool bSetOk;
+   bool bSetOk;
 
-bool bResourceException = false;
+   bool bResourceException = false;
 
-#ifdef WINDOWS_DESKTOP
+   #ifdef WINDOWS_DESKTOP
 
-LPSECURITY_ATTRIBUTES psa = nullptr;
+   LPSECURITY_ATTRIBUTES psa = nullptr;
 
-bSetOk = false;
+   bSetOk = false;
 
-SECURITY_ATTRIBUTES MutexAttributes;
-ZeroMemory(&MutexAttributes, sizeof(MutexAttributes));
-MutexAttributes.nLength = sizeof(MutexAttributes);
-MutexAttributes.bInheritHandle = false; // object uninheritable
-// declare and initialize a security descriptor
-SECURITY_DESCRIPTOR SD;
-bool bInitOk = InitializeSecurityDescriptor(&SD, SECURITY_DESCRIPTOR_REVISION) != false;
-if (bInitOk)
-{
-// give the security descriptor a Null Dacl
-// done using the  "true, (PACL)nullptr" here
-bSetOk = SetSecurityDescriptorDacl(&SD,
-                                true,
-                                (PACL)nullptr,
-                                false) != false;
-}
+   SECURITY_ATTRIBUTES MutexAttributes;
+   ZeroMemory(&MutexAttributes, sizeof(MutexAttributes));
+   MutexAttributes.nLength = sizeof(MutexAttributes);
+   MutexAttributes.bInheritHandle = false; // object uninheritable
+   // declare and initialize a security descriptor
+   SECURITY_DESCRIPTOR SD;
+   bool bInitOk = InitializeSecurityDescriptor(&SD, SECURITY_DESCRIPTOR_REVISION) != false;
+   if (bInitOk)
+   {
+   // give the security descriptor a Null Dacl
+   // done using the  "true, (PACL)nullptr" here
+   bSetOk = SetSecurityDescriptorDacl(&SD,
+                                   true,
+                                   (PACL)nullptr,
+                                   false) != false;
+   }
 
-if (bSetOk)
-{
-
-MutexAttributes.lpSecurityDescriptor = &SD;
-
-
-psa = &MutexAttributes;
-
-
-}
-
-#else
-
-bSetOk = true;
-
-#endif
-
-
-if (bSetOk)
-{
-
-bool bGlobalExclusiveFail = exclusive_fails(get_global_mutex_name() INSERT_PARAM_SEC_ATTRS(&MutexAttributes));
-
-if(bGlobalExclusiveFail && m_eexclusiveinstance == ExclusiveInstanceGlobal)
-{
-
-TRACE("A instance of the application:<br><br> - " + string(m_strAppName) + "<br><br>seems to be already running at the same machine<br>Only one instance of this application can run globally: at the same machine.<br><br>Exiting this new instance.");
-
-try
-{
-
-   if(!on_exclusive_instance_conflict(bHandled, ExclusiveInstanceGlobal, ""))
+   if (bSetOk)
    {
 
-      return false;
+   MutexAttributes.lpSecurityDescriptor = &SD;
+
+
+   psa = &MutexAttributes;
+
 
    }
 
-}
-catch(...)
-{
+   #else
 
-   return false;
+   bSetOk = true;
 
-}
+   #endif
 
-}
 
-if (m_eexclusiveinstance == ExclusiveInstanceGlobalId)
-{
+      if (bSetOk)
+      {
 
-bool bGlobalIdExclusiveFail = exclusive_fails(get_global_id_mutex_name() INSERT_PARAM_SEC_ATTRS(&MutexAttributes));
+      bool bGlobalExclusiveFail = exclusive_fails(get_global_mutex_name() INSERT_PARAM_SEC_ATTRS(&MutexAttributes));
 
-if (bGlobalIdExclusiveFail)
-{
+      if(bGlobalExclusiveFail && m_eexclusiveinstance == ExclusiveInstanceGlobal)
+      {
 
-   TRACE("A instance of the application:<br><br>-" + string(m_strAppName) + "with the id \"" + get_local_mutex_id() + "\" <br><br>seems to be already running at the same machine<br>Only one instance of this application can run globally: at the same machine with the same id.<br><br>Exiting this new instance.");
+      TRACE("A instance of the application:<br><br> - " + string(m_strAppName) + "<br><br>seems to be already running at the same machine<br>Only one instance of this application can run globally: at the same machine.<br><br>Exiting this new instance.");
 
-   try
-   {
+      try
+      {
 
-      if(!on_exclusive_instance_conflict(bHandled, ExclusiveInstanceGlobalId, get_global_mutex_id()))
+         if(!on_exclusive_instance_conflict(bHandled, ExclusiveInstanceGlobal, ""))
+         {
+
+            return false;
+
+         }
+
+      }
+      catch(...)
+      {
+
+         return false;
+
+      }
+
+      }
+
+      if (m_eexclusiveinstance == ExclusiveInstanceGlobalId)
+      {
+
+      bool bGlobalIdExclusiveFail = exclusive_fails(get_global_id_mutex_name() INSERT_PARAM_SEC_ATTRS(&MutexAttributes));
+
+      if (bGlobalIdExclusiveFail)
+      {
+
+         TRACE("A instance of the application:<br><br>-" + string(m_strAppName) + "with the id \"" + get_local_mutex_id() + "\" <br><br>seems to be already running at the same machine<br>Only one instance of this application can run globally: at the same machine with the same id.<br><br>Exiting this new instance.");
+
+         try
+         {
+
+            if(!on_exclusive_instance_conflict(bHandled, ExclusiveInstanceGlobalId, get_global_mutex_id()))
+            {
+
+               return false;
+
+            }
+
+         }
+         catch(...)
+         {
+
+            return false;
+
+         }
+
+      }
+
+      }
+
+      bool bLocalExclusiveFail = exclusive_fails(get_local_mutex_name()  INSERT_PARAM_SEC_ATTRS(&MutexAttributes));
+
+      if (bLocalExclusiveFail && m_eexclusiveinstance == ExclusiveInstanceLocal)
+      {
+
+      try
+      {
+
+         TRACE("A instance of the application:<br><br>-" + string(m_strAppName) + "<br><br>seems to be already running at the same account.<br>Only one instance of this application can run locally: at the same account.<br><br>Exiting this new instance.");
+
+         if(!on_exclusive_instance_conflict(bHandled, ExclusiveInstanceLocal, ""))
+         {
+
+            return false;
+
+         }
+
+      }
+      catch (...)
       {
 
          return false;
@@ -4091,59 +4120,30 @@ if (bGlobalIdExclusiveFail)
       }
 
    }
-   catch(...)
+
+   if (m_eexclusiveinstance == ExclusiveInstanceLocalId)
    {
 
-      return false;
+   bool bLocalIdExclusiveFail = exclusive_fails(get_local_id_mutex_name() INSERT_PARAM_SEC_ATTRS(&MutexAttributes));
 
-   }
-
-}
-
-}
-
-bool bLocalExclusiveFail = exclusive_fails(get_local_mutex_name()  INSERT_PARAM_SEC_ATTRS(&MutexAttributes));
-
-if (bLocalExclusiveFail && m_eexclusiveinstance == ExclusiveInstanceLocal)
-{
-
-try
-{
-
-   TRACE("A instance of the application:<br><br>-" + string(m_strAppName) + "<br><br>seems to be already running at the same account.<br>Only one instance of this application can run locally: at the same account.<br><br>Exiting this new instance.");
-
-   if(!on_exclusive_instance_conflict(bHandled, ExclusiveInstanceLocal, ""))
+   if (bLocalIdExclusiveFail)
    {
 
-      return false;
+      try
+      {
 
-   }
+         // Should in some way activate the other instance
+         TRACE("A instance of the application:<br><br>           - " + string(m_strAppName) + "with the id \"" + get_local_mutex_id() + "\" <br><br>seems to be already running at the same account.<br>Only one instance of this application can run locally: at the same ac::count with the same id.<br><br>Exiting this new instance.");
 
-}
-catch (...)
-{
+         if(!on_exclusive_instance_conflict(bHandled, ExclusiveInstanceLocalId, get_local_mutex_id()))
+         {
 
-   return false;
+            return false;
 
-}
+         }
 
-}
-
-if (m_eexclusiveinstance == ExclusiveInstanceLocalId)
-{
-
-bool bLocalIdExclusiveFail = exclusive_fails(get_local_id_mutex_name() INSERT_PARAM_SEC_ATTRS(&MutexAttributes));
-
-if (bLocalIdExclusiveFail)
-{
-
-   try
-   {
-
-      // Should in some way activate the other instance
-      TRACE("A instance of the application:<br><br>           - " + string(m_strAppName) + "with the id \"" + get_local_mutex_id() + "\" <br><br>seems to be already running at the same account.<br>Only one instance of this application can run locally: at the same ac::count with the same id.<br><br>Exiting this new instance.");
-
-      if(!on_exclusive_instance_conflict(bHandled, ExclusiveInstanceLocalId, get_local_mutex_id()))
+      }
+      catch (...)
       {
 
          return false;
@@ -4151,16 +4151,8 @@ if (bLocalIdExclusiveFail)
       }
 
    }
-   catch (...)
-   {
-
-      return false;
 
    }
-
-}
-
-}
 
 }
 
@@ -5693,6 +5685,16 @@ void application::_001OnAppExit(::message::message * pmessage)
 }
 
 
+void application::_001OnClose(::message::message* pmessage)
+{
+
+   pmessage->m_bRet = true;
+
+   _001CloseApplication();
+
+}
+
+
 bool application::is_equal_file_path(const ::file::path & path1Param, const ::file::path & path2Param)
 {
 
@@ -6402,6 +6404,23 @@ string strType = type_name();
    }
 
    return m_estatus;
+
+}
+
+
+::e_status application::finish()
+{
+
+   auto estatus = ::apex::context::finish();
+
+   if (!estatus)
+   {
+
+      return estatus;
+
+   }
+
+   return estatus;
 
 }
 

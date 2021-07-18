@@ -314,7 +314,7 @@ namespace user
       __reference(::thread)                        m_pthreadUserInteraction;
       __pointer(::user::interaction)               m_puserinteractionParent;
       __pointer(::user::interaction)               m_pupdowntarget;
-      __pointer(::thread)                          m_pthreadModal;
+      ::task_pointer                               m_ptaskModal;
       __pointer(interaction)                       m_puserinteractionOwner;
 
       // ownership

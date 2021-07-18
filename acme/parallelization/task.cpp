@@ -145,6 +145,14 @@ bool task::is_running() const
 }
 
 
+bool task::kick_thread()
+{
+
+   return false;
+
+}
+
+
 ::e_status task::main()
 {
 

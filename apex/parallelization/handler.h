@@ -10,7 +10,7 @@ public:
 
    bool                             m_bSingleThread;
    bool                             m_bUseDedicatedThread;
-   __pointer(::thread)              m_pthread;
+   ::task_pointer              m_pthread;
    ::routine_array                  m_routinea;
    __pointer(manual_reset_event)    m_pevTaskOnQueue;
    int                              m_iAliveCount;

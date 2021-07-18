@@ -1911,6 +1911,8 @@ u32 __thread_entry(void * p);
    if (::succeeded(estatusOs))
    {
 
+      finish_children();
+
       __thread_term();
 
       osthread_term();

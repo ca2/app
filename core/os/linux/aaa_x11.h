@@ -2,7 +2,7 @@
 #include "aura/platform/profiler2.h"
 
 
-extern __pointer(::thread) g_pthreadXlib;
+extern ::task_pointer g_pthreadXlib;
 extern itask_t g_ithreadXlib;
 
 

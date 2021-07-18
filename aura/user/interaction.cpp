@@ -6995,7 +6995,7 @@ namespace user
       __release(m_pthreadUserInteraction);
       m_puserinteractionParent.release();
       m_pupdowntarget.release();
-      m_pthreadModal.release();
+      m_ptaskModal.release();
       m_puserinteractionOwner.release();
 
       return ::success;
@@ -8922,7 +8922,7 @@ namespace user
 
       __keep(m_bModal);
 
-      __keep_current_thread(m_pthreadModal);
+      __keep_current_thread(m_ptaskModal);
 
       while(true)
       {
@@ -8992,10 +8992,10 @@ namespace user
 
       post_message(e_message_close);
 
-      if(::is_set(m_pthreadModal))
+      if(::is_set(m_ptaskModal))
       {
 
-         m_pthreadModal->kick_thread();
+         m_ptaskModal->kick_thread();
 
       }
 

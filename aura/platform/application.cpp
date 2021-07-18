@@ -2175,12 +2175,12 @@ retry_license:
 
          //}
 
-         if(::is_set(get_session()))
-         {
+         //if(::is_set(get_session()))
+         //{
 
-            get_session()->post_message(e_message_erase_application, 0, this);
+         //   get_session()->post_message(e_message_erase_application, 0, this);
 
-         }
+         //}
 
 
          try
@@ -3810,7 +3810,9 @@ retry_license:
             if (m_puiptraFrame->has_no_interaction())
             {
 
-               ::application::_001CloseApplication();
+               synchronouslock.unlock();
+
+               get_application()->post_message(e_message_close);
 
             }
 

@@ -75,15 +75,15 @@ public:
 
 
    template < typename T >
-   T * cast() const
+   __pointer(T) cast() const
    {
 
-      return (T *) m_lparam;
+      return *this;
 
    }
 
    template < typename T >
-   T scast() const
+   T raw_cast() const
    {
 
       return (T) m_lparam;

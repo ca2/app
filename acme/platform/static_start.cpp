@@ -108,7 +108,7 @@ CLASS_DECL_ACME void trace_category_static_init();
 CLASS_DECL_ACME void trace_category_static_term();
 
 
-extern thread_local __pointer(::thread) t_pthread;
+extern thread_local ::task_pointer t_pthread;
 
 
 namespace acme

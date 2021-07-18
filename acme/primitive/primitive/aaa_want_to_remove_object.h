@@ -173,9 +173,9 @@ public:
    inline ::thread * defer_fork(const char * pszTag, PRED pred);
 
    template < typename PRED >
-   inline __pointer(::thread) & defer_fork(__pointer(::thread) & pthread, PRED pred);
+   inline ::task_pointer & defer_fork(::task_pointer & pthread, PRED pred);
 
-   inline __pointer(::thread) & defer_fork(__pointer(::thread) & pthread)
+   inline ::task_pointer & defer_fork(::task_pointer & pthread)
    {
 
       return defer_fork(pthread,
@@ -191,7 +191,7 @@ public:
    
 
    template < typename PRED >
-   inline __pointer(::thread) & fork(__pointer(::thread) & pthread, PRED pred, const char * pszTag = nullptr, int iCallStackAddUp = 0);
+   inline ::task_pointer & fork(::task_pointer & pthread, PRED pred, const char * pszTag = nullptr, int iCallStackAddUp = 0);
 
    template < typename PRED >
    inline ::thread * fork(PRED pred, const char * pszTag, int iCallStackAddUp = 0);

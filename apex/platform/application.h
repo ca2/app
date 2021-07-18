@@ -249,6 +249,8 @@
       //virtual ::e_status     main() override;
       virtual ::e_status     on_run();
 
+      ::e_status     finish() override;
+
       virtual ::e_status application_pre_run();
       //virtual bool initial_check_directrix() override;
       virtual ::e_status os_native_bergedge_start();
@@ -750,6 +752,7 @@
 
 
       DECLARE_MESSAGE_HANDLER(_001OnAppExit);
+      DECLARE_MESSAGE_HANDLER(_001OnClose);
       //virtual bool _001OnAgreeExit();
 
 

@@ -25,7 +25,7 @@ namespace linux
       i32                           m_iScreen;
       bool                          m_bEnabled;
 
-      //__pointer(::thread)                  m_pthreadDraw;
+      //::task_pointer                  m_pthreadDraw;
       ::rect64                      m_rectLastPos;
       millis m_millisLastPos;
 

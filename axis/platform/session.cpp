@@ -774,7 +774,7 @@ namespace axis
    void session::install_message_routing(::channel* pchannel)
    {
 
-      ::thread::install_message_routing(pchannel);
+      ::aura::session::install_message_routing(pchannel);
 
    //   //aura::application::install_message_routing(pchannel);
    //   aura::session::install_message_routing(pchannel);

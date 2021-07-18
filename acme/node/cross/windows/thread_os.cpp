@@ -99,7 +99,7 @@ CLASS_DECL_ACME PPROC_SIMPLE g_axisontermthread = nullptr;
 //}
 
 
-//thread_local __pointer(::thread) t_pthread;
+//thread_local ::task_pointer t_pthread;
 
 
 //::thread* get_task()

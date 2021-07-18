@@ -110,7 +110,7 @@ CLASS_DECL_ACME bool task_get_run();
 //
 //   ////CLASS_DECL_ACME bool wait_threads(::duration duration, __pointer_array(::thread) threadaExcept = __pointer_array(::thread)());
 //
-//   //CLASS_DECL_ACME __pointer(::thread) calc_parent(::thread * pthread);
+//   //CLASS_DECL_ACME ::task_pointer calc_parent(::thread * pthread);
 //
 //   //CLASS_DECL_ACME void __node_on_init_thread(thread * pthread);
 //   //CLASS_DECL_ACME void __node_on_term_thread(thread * pthread);

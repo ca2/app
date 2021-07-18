@@ -143,7 +143,7 @@ namespace user
       void set_stock_icon(enum_stock_icon eicon) override;
       enum_stock_icon get_stock_icon() override;
 
-      virtual ::color::color get_button_text_color();
+      //virtual ::color::color get_button_text_color();
 
 
       virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;

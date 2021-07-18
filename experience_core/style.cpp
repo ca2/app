@@ -946,13 +946,13 @@ namespace experience
                   if (m_pnode->is_app_dark_mode())
                   {
 
-                     return ::color::color(80, 80, 80, 127);
+                     return argb(180, 80, 80, 80);
 
                   }
                   else
                   {
 
-                     return ::color::color(255, 255, 255, 127);
+                     return argb(127, 255, 255, 255);
 
                   }
                }

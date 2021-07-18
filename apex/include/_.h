@@ -581,7 +581,7 @@ class thread;
 class thread;
 
 
-using thread_pointer = __pointer(::thread);
+using thread_pointer = ::task_pointer;
 using thread_array = __pointer_array(thread);
 
 

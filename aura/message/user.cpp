@@ -203,7 +203,7 @@ namespace message
 
          auto pwindowing = puser->m_pwindowing;
 
-         m_pWndOther = __interaction(pwindowing->window(lparam.cast < oswindow_t >()));
+         m_pWndOther = __interaction(pwindowing->window(lparam.raw_cast < ::oswindow >()));
 
       }
 

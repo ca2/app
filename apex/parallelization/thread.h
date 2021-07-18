@@ -284,7 +284,7 @@ public:
 
    }
 
-   virtual void post(const ::routine& routine);
+   virtual ::e_status post(const ::routine& routine);
 
    DECLARE_MESSAGE_HANDLER(on_message_branch);
 

@@ -54,6 +54,9 @@ public:
    virtual ::task * get_task() override;
    virtual const char * get_task_tag() override;
 
+   
+   void add_child_task(::object* pobjectTask) override;
+
 
    //virtual object * calc_parent_thread();
 

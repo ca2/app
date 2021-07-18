@@ -15,12 +15,12 @@
 task::task()
 {
 
-   auto ptaskParent = ::get_task();
+   m_pobjectParentTask = ::get_task();
 
-   if (ptaskParent)
+   if (m_pobjectParentTask)
    {
 
-      ptaskParent->add_child_task(this);
+      m_pobjectParentTask->add_child_task(this);
 
    }
 
@@ -75,6 +75,29 @@ const char * task::get_task_tag()
 {
 
    return m_strTaskTag;
+
+}
+
+
+void task::add_child_task(::object* pobjectTask)
+{
+
+   if (m_pobjectParentTask)
+   {
+
+      // tasks tend to be ephemeral
+      // let a parent that maybe more stable
+      // to have the pobjectTask as child
+
+      m_pobjectParentTask->add_child_task(pobjectTask);
+
+   }
+   else
+   {
+
+      ::object::add_child_task(pobjectTask);
+
+   }
 
 }
 

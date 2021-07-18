@@ -45,6 +45,7 @@ class CLASS_DECL_ACME object :
 protected:
 
 
+   __pointer(::object)                                   m_pobjectParentTask;
    __pointer_array(::object)                             m_objectaChildrenTask;
 
 

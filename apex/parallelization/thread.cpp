@@ -800,7 +800,7 @@ bool thread::pump_runnable()
 }
 
 
-void thread::post(const ::routine& routine)
+::e_status thread::post(const ::routine& routine)
 {
 
    if (!m_bBranchHandling)
@@ -813,6 +813,8 @@ void thread::post(const ::routine& routine)
    }
 
    post_message(e_message_branch, 0, routine.m_p);
+
+   return ::success;
 
 }
 

@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "simple_log.h"
 
 
 simple_log::simple_log()

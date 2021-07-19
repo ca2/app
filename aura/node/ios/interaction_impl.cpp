@@ -4808,12 +4808,12 @@ namespace ios
 
 
 
-   void interaction_impl::_001OnEraseBkgnd(::message::message * pmessage)
-   {
-      __pointer(::message::erase_bkgnd) perasebkgnd(pmessage);
-      perasebkgnd->m_bRet = true;
-      perasebkgnd->set_result(true);
-   }
+   // void interaction_impl::_001OnEraseBkgnd(::message::message * pmessage)
+   // {
+   //    __pointer(::message::erase_bkgnd) perasebkgnd(pmessage);
+   //    perasebkgnd->m_bRet = true;
+   //    perasebkgnd->set_result(true);
+   // }
 
 
    void interaction_impl::_001BaseWndInterfaceMap()

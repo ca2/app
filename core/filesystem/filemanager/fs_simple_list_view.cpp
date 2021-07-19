@@ -38,7 +38,7 @@ namespace filemanager
 #ifdef WINDOWS_DESKTOP
             MESSAGE_LINK(e_message_context_menu, pchannel, this, &list_view::on_message_context_menu);
 #endif
-            MESSAGE_LINK(e_message_erase_background, pchannel, this, &list_view::_001OnEraseBkgnd);
+            //MESSAGE_LINK(e_message_erase_background, pchannel, this, &list_view::_001OnEraseBkgnd);
             MESSAGE_LINK(WM_USER + 1217, pchannel, this, &list_view::_001OnFillTaskResponse);
 
          }
@@ -819,12 +819,12 @@ namespace filemanager
             //             m_etype == ItemTypeArtist;
          }
 
-         void list_view::_001OnEraseBkgnd(::message::message * pmessage)
-         {
-            __pointer(::message::erase_bkgnd) perasebkgnd(pmessage);
-            perasebkgnd->m_bRet = true;
-            perasebkgnd->set_result(true);
-         }
+         // void list_view::_001OnEraseBkgnd(::message::message * pmessage)
+         // {
+         //    __pointer(::message::erase_bkgnd) perasebkgnd(pmessage);
+         //    perasebkgnd->m_bRet = true;
+         //    perasebkgnd->set_result(true);
+         // }
 
          ::count list_view::_001GetItemCount()
          {

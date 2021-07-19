@@ -214,7 +214,7 @@ namespace user
 
          UNREFERENCED_PARAMETER(pmessage);
          
-         //__pointer(::message::mouse) pmouse(pmessage);
+         //auto pmouse = pmessage->m_pmouse;
 
       }
 
@@ -224,7 +224,7 @@ namespace user
 
          UNREFERENCED_PARAMETER(pmessage);
          
-         //__pointer(::message::mouse) pmouse(pmessage);
+         //auto pmouse = pmessage->m_pmouse;
 
       }
 
@@ -234,7 +234,7 @@ namespace user
 
          UNREFERENCED_PARAMETER(pmessage);
          
-         //__pointer(::message::mouse) pmouse(pmessage);
+         //auto pmouse = pmessage->m_pmouse;
 
       }
 

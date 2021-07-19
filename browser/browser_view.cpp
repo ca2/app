@@ -302,7 +302,7 @@ namespace browser
    void view::on_message_left_button_down(::message::message * pmessage)
    {
 
-      __pointer(::message::mouse) pmouse(pmessage);
+      auto pmouse = pmessage->m_pmouse;
 
       pmessage->previous();
 
@@ -313,7 +313,7 @@ namespace browser
    void view::_001OnMouse(::message::message * pmessage)
    {
 
-      __pointer(::message::mouse) pmouse(pmessage);
+      auto pmouse = pmessage->m_pmouse;
 
       pmessage->previous();
 

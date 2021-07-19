@@ -189,7 +189,7 @@ namespace prompt
    // void view::on_message_set_cursor(::message::message * pmessage)
    // {
 
-   //    __pointer(::message::mouse) pmouse(pmessage);
+   //    auto pmouse = pmessage->m_pmouse;
 
    //    pmouse->m_ecursor = cursor_arrow;
 
@@ -208,14 +208,14 @@ namespace prompt
 
    void view::on_message_left_button_down(::message::message * pmessage)
    {
-      //   __pointer(::message::mouse) pmouse(pmessage);
+      //   auto pmouse = pmessage->m_pmouse;
       UNREFERENCED_PARAMETER(pmessage);
 
    }
 
    void view::on_message_left_button_up(::message::message * pmessage)
    {
-      //__pointer(::message::mouse) pmouse(pmessage);
+      //auto pmouse = pmessage->m_pmouse;
       UNREFERENCED_PARAMETER(pmessage);
       KillTimer(5432180);
 
@@ -224,7 +224,7 @@ namespace prompt
 
    void view::on_message_right_button_up(::message::message * pmessage)
    {
-      //__pointer(::message::mouse) pmouse(pmessage);
+      //auto pmouse = pmessage->m_pmouse;
       UNREFERENCED_PARAMETER(pmessage);
 
    }

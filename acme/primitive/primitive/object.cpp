@@ -1026,7 +1026,6 @@ void object::add_child_task(::object* pobjectTask)
 }
 
 
-
 bool object::check_children_task()
 {
 
@@ -1088,7 +1087,6 @@ bool object::check_children_task()
    catch (...)
    {
 
-
    }
 
    if (m_objectaChildrenTask.has_element())
@@ -1100,7 +1098,16 @@ bool object::check_children_task()
 
    }
 
-   post_quit();
+   try
+   {
+
+      post_quit();
+
+   }
+   catch (...)
+   {
+
+   }
 
    m_bCheckingChildrenTask = false;
 
@@ -1125,8 +1132,6 @@ bool object::check_children_task()
 {
 
    set_finish();
-
-   synchronous_lock lock(mutex());
 
    while (check_children_task())
    {

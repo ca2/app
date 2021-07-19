@@ -943,7 +943,7 @@ namespace user
    void plain_edit::on_message_right_button_down(::message::message * pmessage)
    {
 
-      __pointer(::message::mouse) pmouse(pmessage);
+      auto pmouse = pmessage->m_pmouse;
 
       ::point_i32 point = pmouse->m_point;
 
@@ -987,7 +987,7 @@ namespace user
    void plain_edit::on_message_right_button_up(::message::message * pmessage)
    {
 
-      __pointer(::message::mouse) pmouse(pmessage);
+      auto pmouse = pmessage->m_pmouse;
 
       ::point_i32 point = pmouse->m_point;
 
@@ -1894,7 +1894,7 @@ namespace user
       if (plain_edit_is_enabled())
       {
 
-         __pointer(::message::mouse) pmouse(pmessage);
+         auto pmouse = pmessage->m_pmouse;
 
          auto psession = get_session();
 
@@ -1969,7 +1969,7 @@ namespace user
    void plain_edit::on_message_left_button_down(::message::message * pmessage)
    {
 
-      __pointer(::message::mouse) pmouse(pmessage);
+      auto pmouse = pmessage->m_pmouse;
 
       if (plain_edit_is_enabled())
       {
@@ -2033,7 +2033,7 @@ namespace user
    void plain_edit::on_message_left_button_up(::message::message * pmessage)
    {
 
-      __pointer(::message::mouse) pmouse(pmessage);
+      auto pmouse = pmessage->m_pmouse;
 
       auto psession = get_session();
 

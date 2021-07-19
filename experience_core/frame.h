@@ -35,7 +35,7 @@
                ::draw2d::pen_pointer               m_penHollow3;
                ::draw2d::pen_pointer               m_penHollow4;
                ::draw2d::pen_pointer               m_penHollow5;
-
+               ::size_i32                          m_sizeIcon;
 
                frame();
                virtual ~frame();

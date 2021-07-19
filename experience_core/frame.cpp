@@ -17,6 +17,12 @@ namespace experience
                m_penDkShadow1(e_create)
             {
 
+               m_pointWindowIcon.x = 5;
+
+               m_sizeIcon.cx = 32;
+
+               m_sizeIcon.cy = 32;
+
                m_colorCaptionText = argb(255, 0, 0, 0);
 
                m_rectangleClient.set(0, 0, 0, 0);
@@ -251,16 +257,28 @@ namespace experience
                switch(eelement)
                {
                case ElementTopLeftIcon:
+               {
 
-                  if(m_pframewindow == nullptr || m_pframewindow->m_picon == nullptr)
+                  auto pdrawicon = m_pframewindow->get_draw_icon();
+
+                  if (m_pframewindow == nullptr || pdrawicon == nullptr)
+                  {
+
                      return false;
+
+                  }
 
                   lprect->left = m_pointWindowIcon.x;
                   lprect->top = m_pointWindowIcon.y;
-                  lprect->right = lprect->left + m_pframewindow->m_picon->get_size().cx;
-                  lprect->bottom = lprect->top + m_pframewindow->m_picon->get_size().cy;
+                  lprect->right = lprect->left + m_sizeIcon.cx;
+                  lprect->bottom = lprect->top + m_sizeIcon.cy;
+
+                  //lprect->right = lprect->left + pdrawicon->get_size().cx;
+                  //lprect->bottom = lprect->top + pdrawicon->get_size().cy;
 
                   return true;
+
+               }
 
                case ElementMoveGripMinimal:
 
@@ -602,12 +620,12 @@ namespace experience
                   if(get_element_rect(rectIcon,ElementTopLeftIcon))
                   {
 
-                     ::draw2d::icon * picon = m_pframewindow->m_picon;
+                     auto pdrawicon = m_pframewindow->get_draw_icon();
 
-                     if(picon != nullptr)
+                     if(::is_set(pdrawicon))
                      {
 
-                        pgraphics->draw(rectIcon,picon);
+                        pgraphics->draw(rectIcon, pdrawicon);
 
                      }
 
@@ -686,14 +704,14 @@ namespace experience
                   if(get_element_rect(rectIcon, ElementTopLeftIcon))
                   {
 
-                     ::draw2d::icon * picon = m_pframewindow->m_picon;
+                     auto pdrawicon = m_pframewindow->get_draw_icon();
 
-                     if(picon != nullptr)
+                     if(is_set(pdrawicon))
                      {
 
                         pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-                        pgraphics->draw(rectIcon, picon);
+                        pgraphics->draw(rectIcon, pdrawicon);
 
                      }
 

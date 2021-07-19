@@ -188,7 +188,7 @@ namespace experience
          {
          case ElementTopLeftIcon:
 
-            if (m_pframewindow == nullptr || m_pframewindow->m_picon == nullptr)
+            if (m_pframewindow == nullptr || m_pframewindow->get_draw_icon() == nullptr)
             {
 
                return false;
@@ -577,16 +577,16 @@ namespace experience
             if (get_element_rect(rectIcon, ElementTopLeftIcon))
             {
 
-               ::draw2d::icon * picon = m_pframewindow->m_picon;
+               auto pdrawicon = m_pframewindow->get_draw_icon();
 
-               if (picon != nullptr)
+               if (pdrawicon != nullptr)
                {
 
-                  ::rectangle_f64 rectDst(picon->get_smaller_size(rectIcon.size()));
+                  ::rectangle_f64 rectDst(pdrawicon->get_smaller_size(rectIcon.size()));
 
                   rectDst.CenterOf(rectIcon);
 
-                  pgraphics->draw(rectDst, picon);
+                  pgraphics->draw(rectDst, pdrawicon);
 
                }
 
@@ -764,7 +764,7 @@ namespace experience
             if (get_element_rect(rectIcon, ElementTopLeftIcon))
             {
 
-               ::draw2d::icon * picon = m_pframewindow->m_picon;
+               ::draw2d::icon * picon = m_pframewindow->m_pdrawicon;
 
                if (picon != nullptr)
                {

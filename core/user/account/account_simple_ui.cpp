@@ -462,7 +462,7 @@ namespace account
    void main_window::on_message_left_button_down(::message::message * pmessage)
    {
 
-      __pointer(::message::mouse) pmouse(pmessage);
+      auto pmouse = pmessage->m_pmouse;
 
       if (pmessage->previous())
       {
@@ -496,7 +496,7 @@ namespace account
 
       //m_bLButtonDown = false;
 
-      //__pointer(::message::mouse) pmouse(pmessage);
+      //auto pmouse = pmessage->m_pmouse;
 
       //if (pmouse->previous())
       //{
@@ -523,7 +523,7 @@ namespace account
    void main_window::on_message_mouse_move(::message::message * pmessage)
    {
 
-      __pointer(::message::mouse) pmouse(pmessage);
+      auto pmouse = pmessage->m_pmouse;
 
       //if (m_bLButtonDown)
       //{

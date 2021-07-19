@@ -71,7 +71,7 @@ namespace simple_ui
    void tap::on_message_left_button_down(::message::message * pmessage)
    {
 
-      __pointer(::message::mouse) pmouse(pmessage);
+      auto pmouse = pmessage->m_pmouse;
 
       pmouse->m_bRet = true;
 
@@ -96,7 +96,7 @@ namespace simple_ui
    void tap::on_message_left_button_up(::message::message * pmessage)
    {
 
-      __pointer(::message::mouse) pmouse(pmessage);
+      auto pmouse = pmessage->m_pmouse;
 
       pmouse->m_bRet = true;
 
@@ -115,7 +115,7 @@ namespace simple_ui
    void tap::on_message_mouse_move(::message::message * pmessage)
    {
 
-      __pointer(::message::mouse) pmouse(pmessage);
+      auto pmouse = pmessage->m_pmouse;
 
       INFO("simple_ui::tap::on_message_mouse_move");
 

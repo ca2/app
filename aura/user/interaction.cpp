@@ -11703,7 +11703,7 @@ restart:
    //bool interaction::track_popup_menu(::user::menu_item * pitem, i32 iFlags, ::message::message * pmessage)
    //{
 
-   //   __pointer(::message::mouse) pmouse(pmessage);
+   //   auto pmouse = pmessage->m_pmouse;
 
    //   ::point_i32 point = pmouse->m_point;
 
@@ -11717,7 +11717,7 @@ restart:
    //__pointer(::user::menu) interaction::track_popup_xml_menu_text(string strXml, i32 iFlags, ::message::message * pmessage)
    //{
 
-   //   __pointer(::message::mouse) pmouse(pmessage);
+   //   auto pmouse = pmessage->m_pmouse;
 
    //   auto point = pmouse->m_point;
 
@@ -11732,7 +11732,7 @@ restart:
    //__pointer(::user::menu) interaction::track_popup_xml_matter_menu(const char * pszMatter, i32 iFlags, ::message::message * pmessage)
    //{
 
-   //   __pointer(::message::mouse) pmouse(pmessage);
+   //   auto pmouse = pmessage->m_pmouse;
 
    //   ::point_i32 point = pmouse->m_point;
 
@@ -15048,7 +15048,7 @@ restart:
       
       string strType = this->type_c_str();
 
-      __pointer(::message::mouse) pmouse(pmessage);
+      auto pmouse = pmessage->m_pmouse;
 
       if (!is_window_enabled())
       {
@@ -15208,7 +15208,7 @@ restart:
    void interaction::on_message_left_button_up(::message::message* pmessage)
    {
 
-      __pointer(::message::mouse) pmouse(pmessage);
+      auto pmouse = pmessage->m_pmouse;
 
       if (!is_window_enabled())
       {
@@ -15402,7 +15402,7 @@ restart:
    void interaction::on_message_middle_button_down(::message::message* pmessage)
    {
 
-      __pointer(::message::mouse) pmouse(pmessage);
+      auto pmouse = pmessage->m_pmouse;
 
       pmessage->previous();
 
@@ -15426,7 +15426,7 @@ restart:
    void interaction::on_message_middle_button_up(::message::message* pmessage)
    {
 
-      __pointer(::message::mouse) pmouse(pmessage);
+      auto pmouse = pmessage->m_pmouse;
 
       pmessage->previous();
 
@@ -15452,7 +15452,7 @@ restart:
    void interaction::on_message_mouse_move(::message::message* pmessage)
    {
 
-      __pointer(::message::mouse) pmouse(pmessage);
+      auto pmouse = pmessage->m_pmouse;
 
       if (!is_window_enabled())
       {

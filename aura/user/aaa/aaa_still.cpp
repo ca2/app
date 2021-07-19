@@ -189,7 +189,7 @@ namespace user
    //void still::on_message_left_button_down(::message::message * pmessage)
    //{
 
-   //   __pointer(::message::mouse) pmouse(pmessage);
+   //   auto pmouse = pmessage->m_pmouse;
 
    //   pmessage->previous();
 
@@ -215,7 +215,7 @@ namespace user
    //void still::on_message_middle_button_down(::message::message * pmessage)
    //{
 
-   //   __pointer(::message::mouse) pmouse(pmessage);
+   //   auto pmouse = pmessage->m_pmouse;
 
    //   pmessage->previous();
 
@@ -245,7 +245,7 @@ namespace user
    //void still::on_message_middle_button_up(::message::message * pmessage)
    //{
 
-   //   __pointer(::message::mouse) pmouse(pmessage);
+   //   auto pmouse = pmessage->m_pmouse;
 
    //   pmessage->previous();
 
@@ -281,7 +281,7 @@ namespace user
    //void still::on_message_left_button_up(::message::message * pmessage)
    //{
 
-   //   //__pointer(::message::mouse) pmouse(pmessage);
+   //   //auto pmouse = pmessage->m_pmouse;
 
    //   //enum_element eelement;
 
@@ -347,7 +347,7 @@ namespace user
    //void still::on_message_mouse_move(::message::message * pmessage)
    //{
 
-   //   //__pointer(::message::mouse) pmouse(pmessage);
+   //   //auto pmouse = pmessage->m_pmouse;
 
    //   //enum_element eelement;
 

@@ -170,7 +170,7 @@ namespace calculator
    // void view::on_message_set_cursor(::message::message * pmessage)
    // {
 
-   //    __pointer(::message::mouse) pmouse(pmessage);
+   //    auto pmouse = pmessage->m_pmouse;
 
    //    pmouse->m_ecursor = cursor_arrow;
 

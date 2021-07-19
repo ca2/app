@@ -594,7 +594,7 @@ namespace user
 
    void control_bar::on_message_left_button_down(::message::message * pmessage)
    {
-      __pointer(::message::mouse) pmouse(pmessage);
+      auto pmouse = pmessage->m_pmouse;
       // only start dragging if clicked in "void" space
       if (m_pDockBar != nullptr )
          //!m_pDockContext->m_bTracking  && OnToolHitTest(pmouse->m_point, nullptr) == -1)
@@ -612,7 +612,7 @@ namespace user
 
    void control_bar::on_message_left_button_up(::message::message * pmessage)
    {
-      __pointer(::message::mouse) pmouse(pmessage);
+      auto pmouse = pmessage->m_pmouse;
       if(m_bDockTrack)
       {
          //      m_pDockContext->OnBarLButtonUp(pmouse->m_nFlags, pmouse->m_point);
@@ -622,7 +622,7 @@ namespace user
 
    void control_bar::on_message_mouse_move(::message::message * pmessage)
    {
-      __pointer(::message::mouse) pmouse(pmessage);
+      auto pmouse = pmessage->m_pmouse;
       if(m_bDockTrack)
       {
          //      m_pDockContext->OnBarMouseMove(pmouse->m_nFlags, pmouse->m_point);
@@ -632,7 +632,7 @@ namespace user
 
    void control_bar::on_message_left_button_double_click(::message::message * pmessage)
    {
-      __pointer(::message::mouse) pmouse(pmessage);
+      auto pmouse = pmessage->m_pmouse;
       pmouse->previous();
    }
 

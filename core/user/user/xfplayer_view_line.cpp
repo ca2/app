@@ -1730,7 +1730,7 @@ void xfplayer_view_line::OnMouseMove(::message::message * pmessage)
 
    single_lock synchronouslock(m_pContainer->mutex());
 
-   __pointer(::message::mouse) pmouse(pmessage);
+   auto pmouse = pmessage->m_pmouse;
    strsize iChar;
    if (CalcChar(pmouse->m_point, iChar))
    {
@@ -1862,7 +1862,7 @@ void xfplayer_view_line::OnLButtonDown(::message::message * pmessage)
 
    single_lock synchronouslock(m_pContainer->mutex());
 
-   __pointer(::message::mouse) pmouse(pmessage);
+   auto pmouse = pmessage->m_pmouse;
 
    if (GetSelection().OnLButtonDown(*this, (::u32)pmouse->m_nFlags, pmouse->m_point))
    {
@@ -1881,7 +1881,7 @@ void xfplayer_view_line::OnLButtonUp(::message::message * pmessage)
 
    single_lock synchronouslock(m_pContainer->mutex());
 
-   __pointer(::message::mouse) pmouse(pmessage);
+   auto pmouse = pmessage->m_pmouse;
 
    strsize iChar;
 

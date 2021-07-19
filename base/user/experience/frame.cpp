@@ -755,12 +755,12 @@ namespace experience
 
       bool bIcon = get_element_rect(rectIcon, ElementTopLeftIcon);
 
-      if (bIcon)
-      {
+      //if (bIcon)
+      //{
 
-         m_pointWindowIcon.x = rectIcon.left;
+      //   m_pointWindowIcon.x = rectIcon.left;
 
-      }
+      //}
 
       //m_pointMoveGripMinimal.x = m_pointWindowIcon.x - 2;
 

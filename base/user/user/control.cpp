@@ -807,7 +807,7 @@
 //   //   if (is_window_enabled())
 //   //   {
 //
-//   //      __pointer(::message::mouse) pmouse(pmessage);
+//   //      auto pmouse = pmessage->m_pmouse;
 //
 //   //      auto point = screen_to_client(pmouse->m_point);
 //

@@ -61,7 +61,7 @@ namespace user
    void step_slider::on_message_left_button_down(::message::message * pmessage)
    {
 
-      __pointer(::message::mouse) pmouse(pmessage);
+      auto pmouse = pmessage->m_pmouse;
 
       m_itemLButtonDown = hit_test(pmouse);
 
@@ -71,7 +71,7 @@ namespace user
    void step_slider::on_message_left_button_up(::message::message * pmessage)
    {
 
-      __pointer(::message::mouse) pmouse(pmessage);
+      auto pmouse = pmessage->m_pmouse;
 
       auto item = hit_test(pmouse);
 
@@ -88,7 +88,7 @@ namespace user
    void step_slider::on_message_mouse_move(::message::message * pmessage)
    {
       UNREFERENCED_PARAMETER(pmessage);
-//      __pointer(::message::mouse) pmouse(pmessage);
+//      auto pmouse = pmessage->m_pmouse;
       SetTimer(1, 200, nullptr);
       m_itemHover = true;
       update_hover();

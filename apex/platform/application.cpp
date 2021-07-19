@@ -4753,40 +4753,40 @@ stra.add_unique(::file::path(strMatterLocator) / strLs);
 void application::locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const string & strLocale, const string & strSchema)
 {
 
-if (straMatterLocator.has_elements())
-{
+   if (straMatterLocator.has_elements())
+   {
 
-stra.add_unique(::file::path(straMatterLocator.first()) / get_locale_schema_dir("map", "map"));
+      stra.add_unique(::file::path(straMatterLocator.first()) / get_locale_schema_dir("map", "map"));
 
-}
+   }
 
-matter_locator_locale_schema_matter(stra, straMatterLocator, strLocale, strSchema);
+   matter_locator_locale_schema_matter(stra, straMatterLocator, strLocale, strSchema);
 
-auto psession = get_session();
+   auto psession = get_session();
 
-auto ptextcontext = psession->text_context();
+   auto ptextcontext = psession->text_context();
 
-for (i32 i = 0; i < ptextcontext->localeschema().m_idaLocale.get_count(); i++)
-{
+   for (i32 i = 0; i < ptextcontext->localeschema().m_idaLocale.get_count(); i++)
+   {
 
-string strLocale = ptextcontext->localeschema().m_idaLocale[i];
+      string strLocale = ptextcontext->localeschema().m_idaLocale[i];
 
-string strSchema = ptextcontext->localeschema().m_idaSchema[i];
+      string strSchema = ptextcontext->localeschema().m_idaSchema[i];
 
-matter_locator_locale_schema_matter(stra, straMatterLocator, strLocale, strSchema);
+      matter_locator_locale_schema_matter(stra, straMatterLocator, strLocale, strSchema);
 
-}
+   }
 
-matter_locator_locale_schema_matter(stra, straMatterLocator, "en", "en");
+   matter_locator_locale_schema_matter(stra, straMatterLocator, "en", "en");
 
-matter_locator_locale_schema_matter(stra, straMatterLocator, "_std", "_std");
+   matter_locator_locale_schema_matter(stra, straMatterLocator, "_std", "_std");
 
-if (straMatterLocator.has_elements())
-{
+   if (straMatterLocator.has_elements())
+   {
 
-stra.add_unique(::file::path(straMatterLocator.first()) / get_locale_schema_dir("404", "404"));
+      stra.add_unique(::file::path(straMatterLocator.first()) / get_locale_schema_dir("404", "404"));
 
-}
+   }
 
 }
 

@@ -3324,7 +3324,7 @@ namespace user
    void list::on_message_mouse_move(::message::message * pmessage)
    {
 
-      __pointer(::message::mouse) pmouse(pmessage);
+      auto pmouse = pmessage->m_pmouse;
 
       pmouse->m_lresult = 1;
 
@@ -3515,7 +3515,7 @@ namespace user
    void list::on_message_left_button_down(::message::message * pmessage)
    {
 
-      __pointer(::message::mouse) pmouse(pmessage);
+      auto pmouse = pmessage->m_pmouse;
 
       set_mouse_capture();
 
@@ -3873,7 +3873,7 @@ namespace user
    void list::on_message_left_button_up(::message::message * pmessage)
    {
 
-      __pointer(::message::mouse) pmouse(pmessage);
+      auto pmouse = pmessage->m_pmouse;
 
       auto point = pmouse->m_point;
 
@@ -4078,7 +4078,7 @@ namespace user
    void list::on_message_right_button_down(::message::message * pmessage)
    {
 
-      __pointer(::message::mouse) pmouse(pmessage);
+      auto pmouse = pmessage->m_pmouse;
 
       pmouse->previous();
 
@@ -4346,7 +4346,7 @@ namespace user
    void list::on_message_left_button_double_click(::message::message * pmessage)
    {
 
-      __pointer(::message::mouse) pmouse(pmessage);
+      auto pmouse = pmessage->m_pmouse;
 
       m_iClick = 2;
 

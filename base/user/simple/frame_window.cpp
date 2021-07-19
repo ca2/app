@@ -990,7 +990,7 @@ void simple_frame_window::on_message_show_window(::message::message * pmessage)
 
       output_debug_string("\nsimple_frame_window::on_message_show_window true " + string(typeid(*this).name()));
 
-      defer_set_icon();
+      //defer_set_icon();
 
    }
    else

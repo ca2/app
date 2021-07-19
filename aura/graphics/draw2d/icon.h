@@ -17,7 +17,7 @@ namespace draw2d
 
       friend class ::windowing::icon;
 
-      __pointer(::windowing::icon)              m_picon;
+      __pointer(::windowing::icon)              m_pwindowingicon;
       __pointer(size_image)                     m_pimagemap;
       array < concrete < ::size_i32 > >         m_sizea;
       // Sizes of Readily Available Icons in Increasing Sorting Order
@@ -35,7 +35,7 @@ namespace draw2d
       virtual ::e_status initialize(::object * pobject) override;
 
 
-      virtual void initialize_with_windowing_icon(::windowing::icon * picon);
+      virtual ::e_status initialize_with_windowing_icon(::windowing::icon * picon);
 
 
       virtual windowing::icon * get_windowing_icon();

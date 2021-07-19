@@ -299,7 +299,7 @@ namespace user
       void edit_impl::on_message_left_button_down(::message::message * pmessage)
       {
 
-         __pointer(::message::mouse) pmouse(pmessage);
+         auto pmouse = pmessage->m_pmouse;
 
          if (!is_text_editable())
          {
@@ -390,7 +390,7 @@ namespace user
       void edit_impl::on_message_left_button_up(::message::message* pmessage)
       {
 
-         __pointer(::message::mouse) pmouse(pmessage);
+         auto pmouse = pmessage->m_pmouse;
 
          auto psession = get_session();
 
@@ -442,7 +442,7 @@ namespace user
       void edit_impl::on_message_mouse_move(::message::message* pmessage)
       {
 
-         __pointer(::message::mouse) pmouse(pmessage);
+         auto pmouse = pmessage->m_pmouse;
 
          if (!is_text_editable())
          {

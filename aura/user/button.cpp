@@ -680,6 +680,8 @@ namespace user
 
             edrawtext = e_draw_text_single_line;
 
+            pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+
             pgraphics->draw_text(strText, rectText, ealign, edrawtext);
 
          }

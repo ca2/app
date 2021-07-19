@@ -42,8 +42,6 @@ namespace experience
       bool                                         m_fActive;
       bool                                         m_bUseNc;
 
-      __composite(::draw2d::icon)                  m_pdrawicon;
-
       comparable_array < enum_button >             m_ebuttonaHide;
       i32                                          m_iIndex;
       bool                                         m_bFullScreenOnZoom;
@@ -85,8 +83,6 @@ namespace experience
       void route_command_message(::message::command* pcommand) override;
 
 
-      ::windowing::icon * get_windowing_icon();
-      ::draw2d::icon * get_draw_icon();
 
       //virtual void wfi_dock_on_button_down(::user::control_event * pevent);
 

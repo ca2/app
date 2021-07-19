@@ -254,7 +254,7 @@ public:
 
    virtual void show_task(bool bShow);
 
-   virtual void defer_set_icon();
+   //virtual void defer_set_icon();
 
    using ::user::frame_window::get_color;
 

@@ -2483,7 +2483,87 @@ namespace user
    }
 
 
-   ::e_status interaction::set_icon(::windowing::icon * picon)
+   void interaction::defer_set_icon()
+   {
+
+#if defined(CUBE)
+
+      return;
+
+#endif
+
+      auto pwindowingicon = get_windowing_icon();
+
+      if (get_parent() == nullptr
+         //&& m_bWindowFrame
+         && ::is_null(pwindowingicon)
+         )
+      {
+
+         ::file::path strMatter = get_window_default_matter();
+
+         //http://www.cplusplus.com/forum/general/28470/
+         //blackcoder41 (1426)  Sep 12, 2010 at 2:43pm
+         //hIconSm = (HICON)LoadImage(nullptr, "menu_two.ico", IMAGE_ICON, 16, 16, LR_LOADFROMFILE);
+
+         string_array straMatter;
+
+         if (strMatter.name(0) == "system")
+         {
+
+            straMatter.add("main");
+
+            straMatter.add(strMatter);
+
+         }
+         else
+         {
+
+            straMatter.add(strMatter);
+
+            straMatter.add("main");
+
+         }
+
+         //      auto p
+         //
+         //      defer_set_icon();
+
+         auto psession = get_session();
+
+         auto puser = psession->user();
+
+         auto pwindowing = puser->windowing();
+
+         //auto& image = app.image();
+
+         auto pcontext = m_pcontext->m_papexcontext;
+
+         ::file::path pathIcon = pcontext->dir().matter("matter://main/icon.ico");
+
+         auto picon = pwindowing->load_icon(pathIcon);
+
+         //      HICON hicon = load_icon(get_application(), straMatter, "icon.ico", 16, 16);
+
+         set_windowing_icon(picon);
+
+         //if (m_bWindowFrame)
+         //{
+
+         //   //hicon = load_icon(get_application(), straMatter, "icon.ico", 24, 24);
+
+         //   //__compose(m_picon, papplication->load_icon("matter://icon.ico"));
+
+         //   //__compose(m_picon, m_picon->);
+
+         //}
+
+      }
+
+   }
+
+
+   ::e_status interaction::set_windowing_icon(::windowing::icon * picon)
    {
 
       if(::is_null(m_pimpl2))
@@ -2505,6 +2585,43 @@ namespace user
       return estatus;
 
    }
+
+
+   ::windowing::icon* interaction::get_windowing_icon()
+   {
+
+      auto pwindow = get_window();
+
+      if (::is_null(pwindow))
+      {
+
+         return nullptr;
+
+      }
+
+      auto picon = pwindow->get_icon();
+
+      if (::is_null(picon))
+      {
+
+         return nullptr;
+
+      }
+
+      return picon;
+
+   }
+
+
+   ::draw2d::icon* interaction::get_draw_icon()
+   {
+
+      __throw(error_interface_only);
+
+      return nullptr;
+
+   }
+
 
 
    void interaction::set_viewport_org(::draw2d::graphics_pointer & pgraphics)

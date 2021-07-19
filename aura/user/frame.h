@@ -80,7 +80,7 @@ namespace user
 
 
    class CLASS_DECL_AURA frame:
-      virtual public box
+      virtual public ::user::box
    {
    public:
 
@@ -88,6 +88,8 @@ namespace user
       bool                                         m_bSnapToBars : 1;
       bool                                         m_bAddToTitle : 1;
       bool                                         m_bPrefixTitle : 1;
+
+      __composite(::draw2d::icon)                  m_pdrawicon;
 
       enum_style                                   m_estyle;
       string                                       m_strStyle;
@@ -122,6 +124,11 @@ namespace user
 
       virtual void set_frame_title(const string& strFrameTitle);
       virtual string get_frame_title() const;
+
+     
+      //::windowing::icon* get_windowing_icon() override;
+      ::draw2d::icon* get_draw_icon() override;
+
 
       
       virtual bool is_translucid_user_style(enum_style estyle);

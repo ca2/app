@@ -174,6 +174,51 @@ namespace user
 
    }
 
+
+
+
+   ::draw2d::icon* frame::get_draw_icon()
+   {
+
+      if (::is_set(m_pdrawicon))
+      {
+
+         return m_pdrawicon;
+
+      }
+
+      auto pwindowingicon = get_windowing_icon();
+
+      if (::is_null(pwindowingicon))
+      {
+
+         return nullptr;
+
+      }
+
+      auto estatus = __compose(m_pdrawicon);
+
+      if (!estatus)
+      {
+
+         return nullptr;
+
+      }
+
+      estatus = m_pdrawicon->initialize_with_windowing_icon(pwindowingicon);
+
+      if (!estatus)
+      {
+
+         return nullptr;
+
+      }
+
+      return m_pdrawicon;
+
+   }
+
+
    
    ::color::color frame::get_moveable_border_color()
    {

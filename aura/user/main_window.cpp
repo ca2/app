@@ -37,6 +37,8 @@ namespace user
    void main_window::on_create_user_interaction()
    {
 
+      defer_set_icon();
+
       add_user_item({ ::user::e_element_close_button, ::user::e_event_close_app });
 
    }

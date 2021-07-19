@@ -150,7 +150,7 @@ namespace simple_ui
 
       rectDraw = rectangle;
 
-      pgraphics->set_alpha_mode(draw2d::alpha_mode_blend);
+      pgraphics->set_alpha_mode(draw2d::e_alpha_mode_blend);
 
       int iCount = rectDraw.height();
       ::draw2d::pen_pointer ppen(e_create);
@@ -178,7 +178,7 @@ namespace simple_ui
 
       ::rectangle_i32 rectDraw = rectangle;
 
-      pgraphics->set_alpha_mode(draw2d::alpha_mode_blend);
+      pgraphics->set_alpha_mode(draw2d::e_alpha_mode_blend);
 
       // front
       point_f64 pa[4];
@@ -375,7 +375,7 @@ namespace simple_ui
    void draw::simple_ui_draw_back_01_old(const ::rectangle_i32 & rectangle, ::draw2d::graphics_pointer& pgraphics)
    {
 
-      pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
       ::color::color crOut;
 
@@ -434,7 +434,7 @@ namespace simple_ui
 
       pgraphics->rectangle(m_rectangle);*/
 
-      //pgraphics->set_alpha_mode(::draw2d::alpha_mode_set);
+      //pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
       //pgraphics->fill_rectangle(rectangle,argb(0,0,0,0));
 

@@ -199,13 +199,13 @@ namespace user
       else
       {
 
-         pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+         pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
          _001OnDrawStaticText(pgraphics);
 
       }
 
-      pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
       ::rectangle rectDropDown;
 

@@ -771,7 +771,11 @@ namespace user
 
       }
 
+      auto& edisplayOld = m_puserinteraction->layout().window().m_edisplay;
+
       bool bWasVisible = m_puserinteraction->layout().window().is_visible();
+
+      auto& edisplayNew = m_puserinteraction->layout().sketch().m_edisplay;
 
       bool bNewVisible = m_puserinteraction->layout().sketch().is_visible();
 

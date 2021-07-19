@@ -519,7 +519,7 @@ namespace android
       if(!m_puserinteraction->m_bMessageWindow)
       {
 
-         MESSAGE_LINK(e_message_set_cursor, pchannel, this,&interaction_impl::on_message_set_cursor);
+         //MESSAGE_LINK(e_message_set_cursor, pchannel, this,&interaction_impl::on_message_set_cursor);
 
          //MESSAGE_LINK(e_message_erase_background, pchannel, this,&interaction_impl::_001OnEraseBkgnd);
 
@@ -4006,20 +4006,20 @@ namespace android
 
    }
 
-   void interaction_impl::on_message_set_cursor(::message::message * pmessage)
-   {
-      __pointer(::user::message) pusermessage(pmessage);
-      if (psession->get_cursor() != nullptr
-            && psession->get_cursor()->m_ecursor != ::cursor_system)
-      {
+   // void interaction_impl::on_message_set_cursor(::message::message * pmessage)
+   // {
+   //    __pointer(::user::message) pusermessage(pmessage);
+   //    if (psession->get_cursor() != nullptr
+   //          && psession->get_cursor()->m_ecursor != ::cursor_system)
+   //    {
 
-         __throw(error_not_implemented);
-         //         ::SetCursor(nullptr);
-      }
-      pusermessage->set_lresult(1);
-      pusermessage->m_bRet = true;
-      //(bool)Default();
-   }
+   //       __throw(error_not_implemented);
+   //       //         ::SetCursor(nullptr);
+   //    }
+   //    pusermessage->set_lresult(1);
+   //    pusermessage->m_bRet = true;
+   //    //(bool)Default();
+   // }
 
 
 

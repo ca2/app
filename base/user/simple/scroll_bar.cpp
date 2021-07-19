@@ -1353,7 +1353,7 @@ void simple_scroll_bar::_001OnVerisimpleDraw(::draw2d::graphics_pointer & pgraph
    if (crBackground.is_translucent())
    {
 
-      pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
       auto psession = get_session();
 
@@ -1713,7 +1713,7 @@ void simple_scroll_bar::draw_mac_thumb_dots(::draw2d::graphics_pointer & pgraphi
 
       }
 
-      m_pimageDots->g()->set_alpha_mode(::draw2d::alpha_mode_blend);
+      m_pimageDots->g()->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
       double iDiv2 = iDiv / 2;
 
@@ -1751,7 +1751,7 @@ void simple_scroll_bar::draw_mac_thumb_dots(::draw2d::graphics_pointer & pgraphi
 
    }
 
-   pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+   pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
    pgraphics->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
 

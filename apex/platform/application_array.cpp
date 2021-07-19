@@ -121,12 +121,12 @@ restart:
 
    }
 
-   if (papp->safe_is_running())
-   {
+   //if (papp->safe_is_running())
+   //{
 
-      return papp;
+   //   return papp;
 
-   }
+   //}
 
    //try
    //{

@@ -5582,13 +5582,13 @@ namespace user
       //   draw2d::icon * picon;
       //   if(m_pcolumn->m_mapIcon.lookup((i32)m_iImage,picon))
       //   {
-      //      m_pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+      //      m_pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
       //      return m_pgraphics->DrawIcon(m_rectImage.top_left(),picon) != false;
       //   }
       //}
       //else
       //{
-      //   m_pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+      //   m_pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
       //   return get_image_list()->draw(m_pgraphics,(i32)m_iImage,m_rectImage.top_left(),m_rectImage.size(),point_i32(0,0),0);
       //}
       return false;

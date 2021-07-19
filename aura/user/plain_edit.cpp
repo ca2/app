@@ -495,7 +495,7 @@ namespace user
 
       index i = 0;
 
-      pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
       pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
@@ -1026,12 +1026,12 @@ namespace user
    }
 
 
-   void plain_edit::on_message_set_cursor(::message::message * pmessage)
-   {
+   //void plain_edit::on_message_set_cursor(::message::message * pmessage)
+   //{
 
-      pmessage->previous();
+   //   pmessage->previous();
 
-   }
+   //}
 
 
    void plain_edit::_001OnTimer(::timer * ptimer)

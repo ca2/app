@@ -193,9 +193,9 @@ namespace draw2d
    enum enum_alpha_mode
    {
 
-      alpha_mode_none,
-      alpha_mode_set,
-      alpha_mode_blend
+      e_alpha_mode_none,
+      e_alpha_mode_set,
+      e_alpha_mode_blend
 
    };
 

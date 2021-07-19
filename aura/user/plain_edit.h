@@ -445,7 +445,7 @@ namespace user
       DECLARE_MESSAGE_HANDLER(_001OnPaint);
       DECLARE_MESSAGE_HANDLER(on_message_create);
       DECLARE_MESSAGE_HANDLER(on_message_context_menu);
-      DECLARE_MESSAGE_HANDLER(on_message_set_cursor);
+      ////DECLARE_MESSAGE_HANDLER(on_message_set_cursor);
       DECLARE_MESSAGE_HANDLER(on_message_size);
       DECLARE_MESSAGE_HANDLER(_001OnVScroll);
       DECLARE_MESSAGE_HANDLER(_001OnHScroll);

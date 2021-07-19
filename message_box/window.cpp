@@ -85,7 +85,7 @@ namespace app_message_box
 
       }
 
-      pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
       pgraphics->set_smooth_mode(::draw2d::smooth_mode_none);
 

@@ -700,7 +700,7 @@ namespace user
          //else if (_001IsTranslucent())
          //{
 
-         //   pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+         //   pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
          //   ::color::color crBackground = _001GetColor(::user::color_background, argb(128, 255, 255, 255));
 
@@ -724,7 +724,7 @@ namespace user
          //else
          //{
 
-         //   pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+         //   pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
          //   ::color::color crBackground = _001GetColor(m_ecolorBackground, argb(200, 255, 255, 255));
 

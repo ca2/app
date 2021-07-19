@@ -3844,16 +3844,14 @@ int_bool thread::get_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilter
 
             }
 
-            sleep(100_ms);
-
-            update_task_ready_to_quit();
-
             if (!task_get_run())
             {
 
                return false;
 
             }
+
+            update_task_ready_to_quit();
 
          }
 
@@ -3986,6 +3984,14 @@ void thread::dump(dump_context & dumpcontext) const
 {
 
    channel::dump(dumpcontext);
+
+}
+
+
+void thread::add_child_task(::object* pobjectTask)
+{
+
+   ::object::add_child_task(pobjectTask);
 
 }
 

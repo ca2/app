@@ -269,7 +269,7 @@ i32 image_list::add(::draw2d::icon * picon, int iItem)
 
    auto rectangle = ::rectangle_f64_dimension(iItem * m_size.cx, 0, m_size.cx, m_size.cy);
    
-   m_pimage->g()->set_alpha_mode(::draw2d::alpha_mode_set);
+   m_pimage->g()->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
    m_pimage->g()->fill_rectangle(rectangle, 0);
 
@@ -311,7 +311,7 @@ i32 image_list::add(::windowing::icon * picon, int iItem)
 
    auto rectangle = ::rectangle_f64_dimension(iItem * m_size.cx, 0, m_size.cx, m_size.cy);
 
-   m_pimage->g()->set_alpha_mode(::draw2d::alpha_mode_set);
+   m_pimage->g()->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
    m_pimage->g()->fill_rectangle(rectangle, 0);
 
@@ -410,7 +410,7 @@ i32 image_list::add_file(::payload varFile, int iItem)
 
          }
 
-         m_pimage->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_set);
+         m_pimage->get_graphics()->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
          m_pimage->draw(
             ::rectangle_f64(::point_i32(iItem * m_size.cx, 0),  m_size ),
@@ -437,13 +437,13 @@ i32 image_list::add_image(::image * pimage, int x, int y, int iItem)
 
    }
 
-   m_pimage->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_set);
+   m_pimage->get_graphics()->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
    auto rectangle = rectangle_f64_dimension(iItem * m_size.cx, 0, m_size.cx, m_size.cy);
 
    m_pimage->get_graphics()->fill_rectangle(rectangle, argb(0, 0, 0, 0));
 
-   m_pimage->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_blend);
+   m_pimage->get_graphics()->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
    m_pimage->get_graphics()->draw(
       ::rectangle_f64(::point_f64(iItem * m_size.cx, 0), m_size), pimage, ::point_f64((double) x, (double) y));

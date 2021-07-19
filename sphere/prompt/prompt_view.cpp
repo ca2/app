@@ -31,7 +31,7 @@ namespace prompt
       MESSAGE_LINK(e_message_paint, pchannel, this, &view::_001OnPaint);
       MESSAGE_LINK(e_message_create, pchannel, this, &view::on_message_create);
       MESSAGE_LINK(e_message_context_menu, pchannel, this, &view::on_message_context_menu);
-      MESSAGE_LINK(e_message_set_cursor, pchannel, this, &view::on_message_set_cursor);
+      //MESSAGE_LINK(e_message_set_cursor, pchannel, this, &view::on_message_set_cursor);
 
       //   MESSAGE_LINK(e_message_left_button_down, pchannel, this, &::user::interaction::on_message_left_button_down);
       //MESSAGE_LINK(e_message_left_button_up, pchannel, this, &::user::interaction::on_message_left_button_up);
@@ -186,16 +186,16 @@ namespace prompt
       }
    }
 
-   void view::on_message_set_cursor(::message::message * pmessage)
-   {
+   // void view::on_message_set_cursor(::message::message * pmessage)
+   // {
 
-      __pointer(::message::mouse) pmouse(pmessage);
+   //    __pointer(::message::mouse) pmouse(pmessage);
 
-      pmouse->m_ecursor = cursor_arrow;
+   //    pmouse->m_ecursor = cursor_arrow;
 
-      pmessage->previous();
+   //    pmessage->previous();
 
-   }
+   // }
 
 
    ::user::document * view::get_document()

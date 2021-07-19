@@ -138,7 +138,7 @@ namespace experience
       DECLARE_MESSAGE_HANDLER(on_message_left_button_down);
       DECLARE_MESSAGE_HANDLER(on_message_mouse_move);
       DECLARE_MESSAGE_HANDLER(on_message_left_button_up);
-      DECLARE_MESSAGE_HANDLER(on_message_set_cursor);
+      ////DECLARE_MESSAGE_HANDLER(on_message_set_cursor);
       DECLARE_MESSAGE_HANDLER(_001OnNcLButtonDown);
       DECLARE_MESSAGE_HANDLER(_001OnNcMouseMove);
       DECLARE_MESSAGE_HANDLER(_001OnNcLButtonUp);

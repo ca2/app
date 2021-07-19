@@ -4023,11 +4023,6 @@ namespace apex
 
 
 
-   void system::on_initial_frame_position(::user::frame * pframe)
-   {
-
-   }
-
 
    //void system::__tracea(::matter * pobject, enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz)
    //{
@@ -4982,20 +4977,6 @@ namespace apex
 
    }
 
-
-   void system::on_graphics_ready()
-   {
-
-      //::apex::system::on_graphics_ready();
-
-      //if (psession->userex()->shell()->m_bPendingUpdate)
-      //{
-
-      //   psession->userex()->shell()->on_update_sizes_interest();
-
-      //}
-
-   }
 
 
 #ifdef LINUX

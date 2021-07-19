@@ -789,7 +789,7 @@ namespace userex
 
       r2 = m_pimageLuminance->rectangle();
 
-      pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
       pgraphics->stretch(rectLum1, m_pimageLuminance->g(), r2);
 

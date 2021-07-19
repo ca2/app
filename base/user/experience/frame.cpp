@@ -391,113 +391,113 @@ namespace experience
    }
 
 
-   bool frame::on_message_set_cursor(::message::set_cursor * psetcursor)
-   {
-
-      auto psession = get_session();
-
-      psession->m_pointCursor = psetcursor->m_point;
-
-      if (!m_pframewindow->layout().is_zoomed() && !m_pframewindow->layout().is_full_screen())
-      {
-
-         if (!m_pframewindow->move_manager()->window_is_moving()
-            && !m_pframewindow->size_manager()->window_is_sizing())
-         {
-
-            if (m_pframewindow->dock_manager()->window_is_docking())
-            {
-
-               __pointer(::message::set_cursor) psetcursorHold = psetcursor;
-
-               //m_pframewindow->prodevian_predicate([this, pmouseHold->()
-               //{
-
-//                  m_pframewindow->dock_manager()->on_message_mouse_move(pmouseHold);
-
-               //});
-
-               return true;
-
-            }
-            else
-            {
-
-               //               if (m_pframewindow->dock_manager()->on_message_mouse_move(pmouse))
-               //               {
-               //
-               //                  return true;
-               //
-               //               }
-
-            }
-
-         }
-
-         if (!m_pframewindow->size_manager()->window_is_sizing())
-         {
-
-            if (m_pframewindow->move_manager()->window_is_moving())
-            {
-
-               __pointer(::message::set_cursor) psetcursorHold = psetcursor;
-
-               //m_pframewindow->prodevian_predicate([this, pmouseHold->()
-               //{
-
-               m_pframewindow->move_manager()->on_message_set_cursor(psetcursorHold);
-
-               //});
-
-               return true;
-
-            }
-            else
-            {
-
-               if (m_pframewindow->move_manager()->on_message_set_cursor(psetcursor))
-               {
-
-                  return true;
-
-               }
-
-            }
-
-         }
-
-         if (m_pframewindow->size_manager()->window_is_sizing())
-         {
-
-            __pointer(::message::set_cursor) psetcursorHold = psetcursor;
-
-            //m_pframewindow->prodevian_predicate([this, pmouseHold->()
-            //{
-
-            m_pframewindow->size_manager()->on_message_set_cursor(psetcursorHold);
-
-            //});
-
-            return true;
-
-         }
-         else
-         {
-
-            if (m_pframewindow->size_manager()->on_message_set_cursor(psetcursor))
-            {
-
-               return true;
-
-            }
-
-         }
-
-      }
-
-      return false;
-
-   }
+//   bool frame::on_message_set_cursor(::message::set_cursor * psetcursor)
+//   {
+//
+//      auto psession = get_session();
+//
+//      psession->m_pointCursor = psetcursor->m_point;
+//
+//      if (!m_pframewindow->layout().is_zoomed() && !m_pframewindow->layout().is_full_screen())
+//      {
+//
+//         if (!m_pframewindow->move_manager()->window_is_moving()
+//            && !m_pframewindow->size_manager()->window_is_sizing())
+//         {
+//
+//            if (m_pframewindow->dock_manager()->window_is_docking())
+//            {
+//
+//               __pointer(::message::set_cursor) psetcursorHold = psetcursor;
+//
+//               //m_pframewindow->prodevian_predicate([this, pmouseHold->()
+//               //{
+//
+////                  m_pframewindow->dock_manager()->on_message_mouse_move(pmouseHold);
+//
+//               //});
+//
+//               return true;
+//
+//            }
+//            else
+//            {
+//
+//               //               if (m_pframewindow->dock_manager()->on_message_mouse_move(pmouse))
+//               //               {
+//               //
+//               //                  return true;
+//               //
+//               //               }
+//
+//            }
+//
+//         }
+//
+//         if (!m_pframewindow->size_manager()->window_is_sizing())
+//         {
+//
+//            if (m_pframewindow->move_manager()->window_is_moving())
+//            {
+//
+//               __pointer(::message::set_cursor) psetcursorHold = psetcursor;
+//
+//               //m_pframewindow->prodevian_predicate([this, pmouseHold->()
+//               //{
+//
+//               m_pframewindow->move_manager()->on_message_set_cursor(psetcursorHold);
+//
+//               //});
+//
+//               return true;
+//
+//            }
+//            else
+//            {
+//
+//               if (m_pframewindow->move_manager()->on_message_set_cursor(psetcursor))
+//               {
+//
+//                  return true;
+//
+//               }
+//
+//            }
+//
+//         }
+//
+//         if (m_pframewindow->size_manager()->window_is_sizing())
+//         {
+//
+//            __pointer(::message::set_cursor) psetcursorHold = psetcursor;
+//
+//            //m_pframewindow->prodevian_predicate([this, pmouseHold->()
+//            //{
+//
+//            m_pframewindow->size_manager()->on_message_set_cursor(psetcursorHold);
+//
+//            //});
+//
+//            return true;
+//
+//         }
+//         else
+//         {
+//
+//            if (m_pframewindow->size_manager()->on_message_set_cursor(psetcursor))
+//            {
+//
+//               return true;
+//
+//            }
+//
+//         }
+//
+//      }
+//
+//      return false;
+//
+//   }
 
 
    bool frame::_001OnNcLButtonDown(::message::mouse * pmouse)

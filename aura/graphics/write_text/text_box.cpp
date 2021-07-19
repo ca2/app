@@ -86,11 +86,11 @@ namespace write_text
 
       auto uBackgroundColor = plist->m_uaBackgroundColor[iColorIndex][iBox];
 
-      m_pimage->g()->set_alpha_mode(::draw2d::alpha_mode_set);
+      m_pimage->g()->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
       m_pimage->g()->fill_rectangle(::rectangle_i32(m_size), uBackgroundColor);
 
-      m_pimage->g()->set_alpha_mode(::draw2d::alpha_mode_blend);
+      m_pimage->g()->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
       m_pimage->g()->set(m_pfont);
 

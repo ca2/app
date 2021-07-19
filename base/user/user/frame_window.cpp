@@ -2861,7 +2861,7 @@ namespace user
 
 #if TEST
 
-         pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+         pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
          pgraphics->fill_solid_rect_dim(0, 0, 100, 100, argb(128, 255, 0, 0));
 

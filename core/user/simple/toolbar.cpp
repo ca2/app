@@ -242,7 +242,7 @@ void simple_toolbar::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 
    get_client_rect(rectangleClient);
 
-   pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+   pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
    auto pstyle = get_style(pgraphics);
 
@@ -675,7 +675,7 @@ void simple_toolbar::_001DrawItem(::draw2d::graphics_pointer & pgraphics, index 
 void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgraphics, index iItem)
 {
 
-   pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+   pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
    ::rectangle_i32 rectItem;
 

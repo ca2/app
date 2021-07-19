@@ -2341,7 +2341,7 @@ namespace draw2d_opengl
       
       pimage->unmap();
 
-      m_pgraphics->set_alpha_mode(::draw2d::alpha_mode_set);
+      m_pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
       //((plusplus::Graphics * ) m_pgraphics->get_os_data())->DrawImage(((plusplus::Bitmap *)pimage->get_bitmap()->get_os_data()), rectDest, rectSource, plusplus::UnitPixel);
 

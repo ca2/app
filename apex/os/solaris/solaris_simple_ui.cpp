@@ -625,7 +625,7 @@ namespace os
 
          rectangle = rectWindow;
 
-/*         m_pimage->g()->set_alpha_mode(draw2d::alpha_mode_set);
+/*         m_pimage->g()->set_alpha_mode(draw2d::e_alpha_mode_set);
 
 /*         m_pimage->g()->SetViewportOrg(0, 0);
 

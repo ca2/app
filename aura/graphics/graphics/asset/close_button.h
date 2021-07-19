@@ -8,7 +8,7 @@ namespace user
    inline void draw_close_button(::draw2d::graphics_pointer& pgraphics, ::user::interaction * puserinteraction,  ::user::item* pitem)
    {
 
-      pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
       ::draw2d::pen_pointer ppen(e_create);
 

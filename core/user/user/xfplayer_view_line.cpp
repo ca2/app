@@ -301,7 +301,7 @@ bool xfplayer_view_line::_001OnDraw(::draw2d::graphics_pointer & pgraphics, bool
                {
                   pimage = create_image(rectangle.size());
                   pimage->fill(255, 255, 255, 255);
-                  pimage->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_blend);
+                  pimage->get_graphics()->set_alpha_mode(::draw2d::e_alpha_mode_blend);
                   pgraphics->flush();
 
                   //const ::point_i32 & point = pgraphics->GetViewportOrg();
@@ -1383,7 +1383,7 @@ void xfplayer_view_line::embossed_text_out(::draw2d::graphics_pointer & pgraphic
 
       }
 
-      pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
       ::point_i32 point;
 
@@ -1516,9 +1516,9 @@ void xfplayer_view_line::CacheEmboss(::draw2d::graphics_pointer & pgraphics, con
 
    pdcCache->set(m_font);
 
-   pdcCache->set_alpha_mode(::draw2d::alpha_mode_set);
+   pdcCache->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
-   pdcCache->set_alpha_mode(::draw2d::alpha_mode_blend);
+   pdcCache->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
    draw2d::brush_pointer brushText(e_create);
 
@@ -1555,7 +1555,7 @@ void xfplayer_view_line::CacheEmboss(::draw2d::graphics_pointer & pgraphics, con
 
    psystem->imaging().channel_spread_set_color(pdcCache, nullptr, size, pdcCache, nullptr, 0, i32(maximum(1.0, m_floatRateX * 2.0 + 2)), argb(23, 23, 20, 23));
 
-   pdcCache->set_alpha_mode(::draw2d::alpha_mode_blend);
+   pdcCache->set_alpha_mode(::draw2d::e_alpha_mode_blend);
    psystem->imaging().channel_alpha_gray_blur(pdcCache, nullptr, size, pdcCache, nullptr, 0, i32(maximum(1.0, m_floatRateX * 2.5)));
    psystem->imaging().channel_alpha_gray_blur(pdcCache, nullptr, size, pdcCache, nullptr, 0, i32(maximum(1.0, m_floatRateX * 2.5)));
 

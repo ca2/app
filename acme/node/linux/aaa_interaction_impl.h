@@ -351,7 +351,7 @@ namespace linux
       DECLARE_MESSAGE_HANDLER(on_message_destroy);
       DECLARE_MESSAGE_HANDLER(_001OnPaint);
       DECLARE_MESSAGE_HANDLER(_001OnPrint);
-      DECLARE_MESSAGE_HANDLER(on_message_set_cursor);
+      ////DECLARE_MESSAGE_HANDLER(on_message_set_cursor);
 
 
 

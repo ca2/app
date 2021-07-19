@@ -834,7 +834,7 @@ namespace user
 
       rectUpdate.intersect(rectUpdate, rectClipBox);
 
-      pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
       auto pstyle = get_style(pgraphics);
 

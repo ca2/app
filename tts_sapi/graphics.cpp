@@ -1397,7 +1397,7 @@ namespace draw2d_gdiplus
 //         //      && m_pimage->m_bMapped)
 //         //{
 //
-//         //   if (m_ealphamode == ::draw2d::alpha_mode_blend)
+//         //   if (m_ealphamode == ::draw2d::e_alpha_mode_blend)
 //         //   {
 //
 //         //      //single_lock synchronouslock(::get_thread_toolset(::thread::tool_draw2d)->mutex());
@@ -3176,7 +3176,7 @@ namespace draw2d_gdiplus
       //if (!bAvoidProcFork && bThreadToolsForIncreasedFps && nDestWidth == nSrcWidth && nDestHeight == nSrcHeight)
       //{
 
-      //   if (m_ealphamode == ::draw2d::alpha_mode_blend)
+      //   if (m_ealphamode == ::draw2d::e_alpha_mode_blend)
       //   {
 
       //      auto cProcessor = get_processor_count();
@@ -6293,7 +6293,7 @@ namespace draw2d_gdiplus
 
       ::draw2d::savedc k(this);
 
-      set_alpha_mode(::draw2d::alpha_mode_blend);
+      set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
       //if (m_ewritetextrendering != m_pfont->m_ewritetextrendering)
       {
@@ -6716,13 +6716,13 @@ namespace draw2d_gdiplus
 
          }
 
-         if(ealphamode == ::draw2d::alpha_mode_blend)
+         if(ealphamode == ::draw2d::e_alpha_mode_blend)
          {
 
             m_pgraphics->SetCompositingMode(Gdiplus::CompositingModeSourceOver);
 
          }
-         else if(ealphamode == ::draw2d::alpha_mode_set)
+         else if(ealphamode == ::draw2d::e_alpha_mode_set)
          {
 
             m_pgraphics->SetCompositingMode(Gdiplus::CompositingModeSourceCopy);
@@ -7161,7 +7161,7 @@ namespace draw2d_gdiplus
 
             pimage1->get_graphics()->set(get_current_brush());
 
-            pimage1->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_set);
+            pimage1->get_graphics()->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
             pimage1->get_graphics()->text_out(0, 0, block);
 
@@ -7270,7 +7270,7 @@ namespace draw2d_gdiplus
 
    //            }
 
-   //            pimage1->g()->set_alpha_mode(::draw2d::alpha_mode_set);
+   //            pimage1->g()->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
    //            if (!pimage1->from(nullptr, pgraphicsSrc, ::point_i32(xSrc, ySrc), rectBlt.::size_f64()))
    //               return false;

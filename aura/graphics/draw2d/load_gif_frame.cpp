@@ -62,7 +62,7 @@ bool draw2d_gif_draw_frame(::image * pimageCanvas, image_frame_array * pframea, 
 //   //   if (uFrameIndex > 0 && pframea->element_at(uFrameIndex - 1)->m_edisposal == image_frame::disposal_background)
 //   //   {
 //
-//   //      pimageCanvas.get_graphics()->set_alpha_mode(::draw2d::alpha_mode_set);
+//   //      pimageCanvas.get_graphics()->set_alpha_mode(::draw2d::e_alpha_mode_set);
 //
 //   //      ::color::color crBack = pframea->m_colorBack;
 //
@@ -89,7 +89,7 @@ bool draw2d_gif_draw_frame(::image * pimageCanvas, image_frame_array * pframea, 
 //
 //   //   }
 //
-//   //   pimageCanvas.get_graphics()->set_alpha_mode(::draw2d::alpha_mode_blend);
+//   //   pimageCanvas.get_graphics()->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 //
 //   //   ::const ::point_i32 & point = pframe->m_rectangle.top_left();
 //
@@ -163,7 +163,7 @@ bool draw2d_gif_draw_frame(::image * pimageCanvas, image_frame_array * pframea, 
 //
 //   //   pframe->m_pimage = create_image(pframea->m_size);
 //
-//   //   pframe->m_pimage->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_set);
+//   //   pframe->m_pimage->get_graphics()->set_alpha_mode(::draw2d::e_alpha_mode_set);
 //
 //   //   pframe->m_pimage->get_graphics()->BitBlt(nullptr, pframea->m_size, pimageCanvas.get_graphics(), point_i32(5, 5));
 //
@@ -206,7 +206,7 @@ bool draw2d_gif_draw_frame(::image * pimageCanvas, image_frame_array * pframea, 
 //
 //   //   //   d->create(pframea->m_size);
 //
-//   //   //   d->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_set);
+//   //   //   d->get_graphics()->set_alpha_mode(::draw2d::e_alpha_mode_set);
 //
 //   //   //   d->get_graphics()->BitBlt(nullptr, pframea->m_size, f.get_graphics(), point_i32(5, 5));
 //
@@ -228,7 +228,7 @@ bool draw2d_gif_draw_frame(::image * pimageCanvas, image_frame_array * pframea, 
 //      if (uFrameIndex > 0 && pframea->element_at(uFrameIndex - 1)->m_edisposal == ::draw2d::disposal_background)
 //      {
 //
-//         pimageCanvas->g()->set_alpha_mode(::draw2d::alpha_mode_set);
+//         pimageCanvas->g()->set_alpha_mode(::draw2d::e_alpha_mode_set);
 //
 //         ::color::color crBack = pframea->m_colorBack;
 //
@@ -253,7 +253,7 @@ bool draw2d_gif_draw_frame(::image * pimageCanvas, image_frame_array * pframea, 
 //
 //      }
 //
-//      //pimageCanvas.get_graphics()->set_alpha_mode(::draw2d::alpha_mode_blend);
+//      //pimageCanvas.get_graphics()->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 //
 //      ::point_i32 point = pframe->m_rectangle.top_left();
 //

@@ -18,7 +18,7 @@ namespace html
          if (m_pelemental->m_pbase->get_type() == ::html::base::type_tag)
          {
 
-            pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+            pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
             
             if (m_pimage)
             {

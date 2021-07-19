@@ -44,15 +44,15 @@ public:
 
 
    task();
-   virtual ~task();
+   ~task() override;
 
 
-   virtual string get_tag() const override;
-   virtual string task_get_name() const;
+   string get_tag() const override;
+   string task_get_name() const;
 
 
-   virtual ::task * get_task() override;
-   virtual const char * get_task_tag() override;
+   ::task * get_task() override;
+   const char * get_task_tag() override;
 
    
    void add_child_task(::object* pobjectTask) override;

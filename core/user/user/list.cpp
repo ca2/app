@@ -183,7 +183,7 @@ namespace user
 
       auto pointOffset = get_viewport_offset();
 
-      pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
       if (m_bTopText)
       {
@@ -340,7 +340,7 @@ namespace user
 
             __sort(y1, y2);
 
-            pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+            pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
             
             pgraphics->fill_rectangle(::rectangle_f64(x1, y1, x2, y2), argb(90, 250, 250, 255));
 
@@ -638,7 +638,7 @@ namespace user
          if (!pdrawitem->m_plist->m_bMorePlain)
          {
 
-            pdrawitem->m_pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+            pdrawitem->m_pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
             pdrawitem->m_pgraphics->draw_rectangle(pdrawitem->m_rectItem, argb(80, 235, 235, 255));
 
@@ -794,7 +794,7 @@ namespace user
 
             }
 
-            pdrawitem->m_pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+            pdrawitem->m_pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
             color.alpha = 90;
 
@@ -7364,7 +7364,7 @@ namespace user
          draw2d::icon * picon;
          if (m_pcolumn->m_mapIcon.lookup((i32)m_iImage, picon))
          {
-            m_pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+            m_pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
             return m_pgraphics->draw(m_rectImage, picon) != false;
          }
       }
@@ -7411,7 +7411,7 @@ namespace user
 
                }
 
-               pimage->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_set);
+               pimage->get_graphics()->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
                pimage->get_graphics()->fill_rectangle(pimage->size(), 0);
 
@@ -7457,7 +7457,7 @@ namespace user
 
             }
 
-            m_pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+            m_pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
             ::rectangle_i32 rectDib(m_rectImage.top_left() - size_i32(m_plist->m_iIconBlurRadius *iRate, m_plist->m_iIconBlurRadius * iRate),
                       m_rectImage.size() + size_i32(m_plist->m_iIconBlurRadius *iRate * 2, m_plist->m_iIconBlurRadius * iRate * 2));
@@ -7477,7 +7477,7 @@ namespace user
 
                rectangle.offset(-m_rectImage.top_left());
 
-               //m_plist->m_pimageTime->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_set);
+               //m_plist->m_pimageTime->get_graphics()->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
                //m_plist->m_pimageTime->get_graphics()->fill_rectangle(r, 0);
 
@@ -7485,7 +7485,7 @@ namespace user
 
                rect2.offset(-m_plist->m_rectSpot.top_left());
 
-               m_plist->m_pimageTime->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_set);
+               m_plist->m_pimageTime->get_graphics()->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
                get_image_list()->draw(m_plist->m_pimageTime->get_graphics(), (i32)m_iImage,
                                       rect2.top_left(),
@@ -7499,7 +7499,7 @@ namespace user
 
                //m_plist->m_pimageTime->mult_alpha(rect2->top_left(), rect2->size());
 
-               m_pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+               m_pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
                m_pgraphics->draw(rectI, m_plist->m_pimageTime->get_graphics(),rect2.top_left());
 
@@ -7511,13 +7511,13 @@ namespace user
          //if(m_plist->m_bMorePlain)
          //{
 
-         //   m_pgraphics->set_alpha_mode(::draw2d::alpha_mode_set);
+         //   m_pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_set);
          //   return m_pgraphics->BitBlt(m_rectImage.left, m_rectImage.top, m_rectImage.width(), m_rectImage.height(),get_image_list()->m_pimage->g(), m_iImage * m_rectImage->width());
 
          //}
          else
          {
-            m_pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+            m_pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
             return get_image_list()->draw(m_pgraphics, (i32)m_iImage, m_rectImage.top_left(), m_rectImage.size(), ::point_i32(), 0);
          }
       }

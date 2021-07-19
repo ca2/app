@@ -32,10 +32,10 @@ namespace user
 
       ::user::interaction::install_message_routing(pchannel);
 
-      connect_command("app_exit", &frame::_001OnAppExit);
+      connect_command("app_exit", &frame::on_message_app_exit);
 
       //MESSAGE_LINK(e_message_set_cursor, pchannel, this, &window::on_message_set_cursor);
-      MESSAGE_LINK(WM_APPEXIT, pchannel, this, &frame::_001OnAppExit);
+      MESSAGE_LINK(WM_APPEXIT, pchannel, this, &frame::on_message_app_exit);
 
 //#ifdef WINDOWS_DESKTOP
 //
@@ -53,7 +53,7 @@ namespace user
 
    
 
-   void frame::_001OnAppExit(::message::message* pmessage)
+   void frame::on_message_app_exit(::message::message* pmessage)
    {
 
       __pointer(::user::message) pusermessage(pmessage);

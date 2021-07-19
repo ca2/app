@@ -81,9 +81,7 @@ namespace aura
 
 
 
-   application::application(const char * pszAppId) :
-      ::application(pszAppId)//,
-      //m_semCompiler(64, 64)
+   application::application()
    {
 
       m_pauraapplication = this;
@@ -358,7 +356,7 @@ namespace aura
 
       ::application::install_message_routing(pchannel);
 
-      //connect_command("app_exit", &application::_001OnAppExit);
+      //connect_command("app_exit", &application::on_message_app_exit);
       connect_command("switch_context_theme", &application::_001OnSwitchContextTheme);
 
    }
@@ -1643,16 +1641,16 @@ namespace aura
 
       }
 
-      try
-      {
+      //try
+      //{
 
-         TermApplication();
+      //   TermApplication();
 
-      }
-      catch (...)
-      {
+      //}
+      //catch (...)
+      //{
 
-      }
+      //}
 
 
 
@@ -4028,7 +4026,7 @@ retry_license:
       if (pinteraction != nullptr)
       {
 
-         return pinteraction->get_message(pmsg->m_id, pmsg->wParam, pmsg->lParam, pmsg->pt);
+         return pinteraction->get_message(pmsg->m_id, pmsg->wParam, pmsg->lParam);
 
       }
 
@@ -4041,7 +4039,7 @@ retry_license:
 
       }
 
-      pusermessage->set(pmsg->oswindow, pwindow, pmsg->m_id, pmsg->wParam, pmsg->lParam, pmsg->pt);
+      pusermessage->set(pmsg->oswindow, pwindow, pmsg->m_id, pmsg->wParam, pmsg->lParam);
 
       return pusermessage;
 
@@ -4124,7 +4122,7 @@ retry_license:
    //}
 
 
-   //void application::_001OnAppExit(::message::message * pmessage)
+   //void application::on_message_app_exit(::message::message * pmessage)
    //{
 
    //   pmessage->m_bRet = true;
@@ -5740,10 +5738,10 @@ namespace aura
 {
 
 
-   const char application::gen_FileSection[] = "Recent File List";
-   const char application::gen_FileEntry[] = "File%d";
-   const char application::gen_PreviewSection[] = "Settings";
-   const char application::gen_PreviewEntry[] = "PreviewPages";
+   //const char application::gen_FileSection[] = "Recent File List";
+   //const char application::gen_FileEntry[] = "File%d";
+   //const char application::gen_PreviewSection[] = "Settings";
+   //const char application::gen_PreviewEntry[] = "PreviewPages";
 
 
    //application::application()
@@ -5883,12 +5881,12 @@ namespace aura
    //}
 
 
-   u32 application::guess_code_page(const string& str)
-   {
+   //u32 application::guess_code_page(const string& str)
+   //{
 
-      return 0;
+   //   return 0;
 
-   }
+   //}
 
 
    //lresult application::GetPaintMsgProc(i32 nCode, wparam wParam, lparam lParam)
@@ -5915,31 +5913,31 @@ namespace aura
    }
 
 
-#ifdef WINDOWS
-
-   bool application::OnMessageWindowMessage(MESSAGE * pmsg)
-
-   {
-
-      UNREFERENCED_PARAMETER(pmsg);
-
-
-      return false;
-
-   }
-
-#elif defined(LINUX)
-
-   bool application::OnX11WindowMessage(void* pXevent) // XEvent *
-   {
-
-      UNREFERENCED_PARAMETER(pXevent);
-
-      return false;
-
-   }
-
-#endif
+//#ifdef WINDOWS
+//
+//
+//   bool application::OnMessageWindowMessage(MESSAGE * pmsg)
+//   {
+//
+//      UNREFERENCED_PARAMETER(pmsg);
+//
+//
+//      return false;
+//
+//   }
+//
+//#elif defined(LINUX)
+//
+//   bool application::OnX11WindowMessage(void* pXevent) // XEvent *
+//   {
+//
+//      UNREFERENCED_PARAMETER(pXevent);
+//
+//      return false;
+//
+//   }
+//
+//#endif
 
    void application::OnUpdateRecentFileMenu(::message::command* pcommand)
    {
@@ -5949,18 +5947,18 @@ namespace aura
    }
 
 
-   bool application::GetResourceData(::u32 nID, const char* pcszType, memory& storage)
+   //bool application::GetResourceData(::u32 nID, const char* pcszType, memory& storage)
 
-   {
+   //{
 
-      UNREFERENCED_PARAMETER(nID);
-      UNREFERENCED_PARAMETER(pcszType);
+   //   UNREFERENCED_PARAMETER(nID);
+   //   UNREFERENCED_PARAMETER(pcszType);
 
-      UNREFERENCED_PARAMETER(storage);
+   //   UNREFERENCED_PARAMETER(storage);
 
-      return false;
+   //   return false;
 
-   }
+   //}
 
 
 //#ifdef WINDOWS_DESKTOP
@@ -5983,18 +5981,18 @@ namespace aura
 //
 //#endif
 
-   /////////////////////////////////////////////////////////////////////////////
-   // WinApp UI related functions
-
-   void application::EnableModelessEx(bool bEnable)
-   {
-      UNREFERENCED_PARAMETER(bEnable);
-#ifdef ___NO_OLE_SUPPORT
-      UNUSED(bEnable);
-#endif
-
-
-   }
+//   /////////////////////////////////////////////////////////////////////////////
+//   // WinApp UI related functions
+//
+//   void application::EnableModelessEx(bool bEnable)
+//   {
+//      UNREFERENCED_PARAMETER(bEnable);
+//#ifdef ___NO_OLE_SUPPORT
+//      UNUSED(bEnable);
+//#endif
+//
+//
+//   }
 
 
 
@@ -7074,12 +7072,12 @@ namespace aura
    }
 
 
-   i32 application::get_open_document_count()
-   {
-      //ENSURE(m_pdocmanager != nullptr);
-      //  return document_manager()->get_open_document_count();
-      return 0;
-   }
+   //i32 application::get_open_document_count()
+   //{
+   //   //ENSURE(m_pdocmanager != nullptr);
+   //   //  return document_manager()->get_open_document_count();
+   //   return 0;
+   //}
 
 
    // This is aura API library.
@@ -7741,25 +7739,25 @@ namespace aura
    //}
 
 
-   bool application::base_support()
-   {
+   //bool application::base_support()
+   //{
 
-      //if(!application::base_support())
-      // return false;
+   //   //if(!application::base_support())
+   //   // return false;
 
-      if (m_strBaseSupportId.is_empty())
-      {
+   //   if (m_strBaseSupportId.is_empty())
+   //   {
 
-         property_set propertyset;
+   //      property_set propertyset;
 
-         dialog_box("err\\developer\\base_support\\support_id_not_specified.xml", propertyset);
+   //      dialog_box("err\\developer\\base_support\\support_id_not_specified.xml", propertyset);
 
-         return false;
+   //      return false;
 
-      }
+   //   }
 
-      return true;
-   }
+   //   return true;
+   //}
 
 
    //string application::sync_message_box(const string & pszMatter, property_set & propertyset)
@@ -7863,39 +7861,39 @@ namespace aura
    //}
 
 
-   void application::EnableShellOpen()
-   {
+//   void application::EnableShellOpen()
+//   {
+////
+////#ifdef WINDOWS_DESKTOP
+////
+////      ASSERT(m_atomApp == 0 && m_atomSystemTopic == 0); // do once
+////
+////      if (m_atomApp != 0 || m_atomSystemTopic != 0)
+////      {
+////
+////         return;
+////
+////      }
+////
+////      // Win95 & Win98 sends a WM_DDE_INITIATE with an atom that points to the
+////      // i16 file name so we need to use the i16 file name.
+////      string strShortName;
+////
+////      strShortName = file().module();
+////
+////      // strip out path
+////      //string strFileName = ::PathFindFileName(strShortName);
+////      // strip out extension
+////      //char * pszFileName = strFileName.GetBuffer();
+////      //::PathRemoveExtension(pszFileName);
+////      //strFileName.ReleaseBuffer();
+////
+////      //      m_atomApp = ::GlobalAddAtom(strFileName);
+////      //    m_atomSystemTopic = ::GlobalAddAtom("system");
+////
+////#endif
 //
-//#ifdef WINDOWS_DESKTOP
-//
-//      ASSERT(m_atomApp == 0 && m_atomSystemTopic == 0); // do once
-//
-//      if (m_atomApp != 0 || m_atomSystemTopic != 0)
-//      {
-//
-//         return;
-//
-//      }
-//
-//      // Win95 & Win98 sends a WM_DDE_INITIATE with an atom that points to the
-//      // i16 file name so we need to use the i16 file name.
-//      string strShortName;
-//
-//      strShortName = file().module();
-//
-//      // strip out path
-//      //string strFileName = ::PathFindFileName(strShortName);
-//      // strip out extension
-//      //char * pszFileName = strFileName.GetBuffer();
-//      //::PathRemoveExtension(pszFileName);
-//      //strFileName.ReleaseBuffer();
-//
-//      //      m_atomApp = ::GlobalAddAtom(strFileName);
-//      //    m_atomSystemTopic = ::GlobalAddAtom("system");
-//
-//#endif
-
-   }
+//   }
 
 
 
@@ -8389,7 +8387,7 @@ namespace aura
    }
 
 
-   bool application::_001CanCloseApplication()
+   bool application::can_close_application()
    {
 
       return true;
@@ -9196,6 +9194,23 @@ namespace aura
    //   return false;
 
    //}
+
+   //void application::on_initial_frame_position(::user::frame* pframe)
+   //{
+
+   //   __pointer(::apex::system) psystem = get_system();
+
+   //   psystem->on_initial_frame_position(pframe);
+
+   //}
+
+
+
+   //void application::on_graphics_ready()
+   //{
+
+   //}
+
 
 } // namespace aura
 

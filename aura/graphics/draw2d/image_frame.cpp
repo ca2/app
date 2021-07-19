@@ -60,7 +60,7 @@ void image_frame::_001Process(::image * pimageCompose, ::image * pimageFrame, im
 
          //pimageCompose->map();
 
-         //pimageCompose->g()->set_alpha_mode(::draw2d::alpha_mode_set);
+         //pimageCompose->g()->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
          pimageCompose->copy(pimageFrame, 0);
 
@@ -70,7 +70,7 @@ void image_frame::_001Process(::image * pimageCompose, ::image * pimageFrame, im
 
          //pimageCompose->map();
 
-         //pimageCompose->g()->set_alpha_mode(::draw2d::alpha_mode_blend);
+         //pimageCompose->g()->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
          //pimageCompose->g()->draw(pimageFrame);
          pimageCompose->precision_blend(point, pimageFrame, nullptr, size);
@@ -82,7 +82,7 @@ void image_frame::_001Process(::image * pimageCompose, ::image * pimageFrame, im
    else if (m_edisposal == ::draw2d::disposal_background)
    {
 
-      pimageCompose->g()->set_alpha_mode(::draw2d::alpha_mode_set);
+      pimageCompose->g()->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
       ::color::color crBack = pframea->m_colorBack;
 
@@ -111,7 +111,7 @@ void image_frame::_001Process(::image * pimageCompose, ::image * pimageFrame, im
    /*     if (uFrameIndex <= 0)
         {
 
-           pimageCompose->set_alpha_mode(::draw2d::alpha_mode_set);
+           pimageCompose->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
            pimageCompose->g()->fill_rectangle(pframea->rectangle(), 0);
 

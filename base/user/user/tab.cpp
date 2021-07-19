@@ -639,7 +639,7 @@ namespace user
 
       pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias_grid_fit);
 
-      pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
       auto pstyle = get_style(pgraphics);
 
@@ -690,7 +690,7 @@ namespace user
             if (get_element_rect(iIndex, rectIcon, ::user::e_element_icon))
             {
 
-               pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+               pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
                ppane->m_pimage->bitmap_blend(pgraphics, rectIcon);
 
@@ -790,7 +790,7 @@ namespace user
             if (get_element_rect(iIndex, rectIcon, ::user::e_element_icon))
             {
 
-               pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+               pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
                ppane->m_pimage->bitmap_blend(pgraphics, rectIcon);
 
@@ -953,11 +953,11 @@ namespace user
 
       pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias_grid_fit);
 
-      pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
       pgraphics->fill_rectangle(get_data()->m_rectTab, argb(0xc0, 250, 255, 255));
 
-      pgraphics->set_alpha_mode(::draw2d::alpha_mode_set);
+      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
       ::index iVisiblePane = 0;
 
@@ -1000,7 +1000,7 @@ namespace user
             if(get_element_rect(iVisiblePane, rectIcon, e_element_icon))
             {
 
-               pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+               pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
                ppane->m_pimage->bitmap_blend(pgraphics, rectIcon);
 
@@ -1075,7 +1075,7 @@ namespace user
             if(get_element_rect(iVisiblePane, rectIcon, e_element_icon))
             {
 
-               pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+               pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
                ppane->m_pimage->bitmap_blend(pgraphics, rectIcon);
 

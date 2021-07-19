@@ -42,7 +42,7 @@ namespace userstack
       MESSAGE_LINK(e_message_paint, pchannel, this, &view::_001OnPaint);
       MESSAGE_LINK(e_message_create, pchannel, this, &view::on_message_create);
       MESSAGE_LINK(e_message_context_menu, pchannel, this, &view::on_message_context_menu);
-      MESSAGE_LINK(e_message_set_cursor, pchannel, this, &view::on_message_set_cursor);
+      //MESSAGE_LINK(e_message_set_cursor, pchannel, this, &view::on_message_set_cursor);
       MESSAGE_LINK(e_message_left_button_up, pchannel, this, &view::on_message_left_button_up);
 
 //

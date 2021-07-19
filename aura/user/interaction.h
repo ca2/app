@@ -520,7 +520,7 @@ namespace user
       }
 
       
-      __pointer(::message::message) get_message(const ::id & id, wparam wparam, lparam lparam, const ::point_i32 & point) override;
+      __pointer(::message::message) get_message(const ::id & id, wparam wparam, lparam lparam) override;
 
 
       inline ::user::style * get_style(::user::style * pstyle) const
@@ -1247,7 +1247,7 @@ namespace user
       DECLARE_MESSAGE_HANDLER(on_message_show_window);
       DECLARE_MESSAGE_HANDLER(on_message_mouse_move);
       DECLARE_MESSAGE_HANDLER(on_message_mouse_enter);
-      DECLARE_MESSAGE_HANDLER(on_message_set_cursor);
+      ////DECLARE_MESSAGE_HANDLER(on_message_set_cursor);
       DECLARE_MESSAGE_HANDLER(on_message_mouse_leave);
       DECLARE_MESSAGE_HANDLER(on_message_key_down);
       DECLARE_MESSAGE_HANDLER(on_message_key_up);

@@ -542,7 +542,7 @@ namespace uwp
       void OnRButtonDblClk(::u32 nFlags, const ::point & point);
       void OnRButtonDown(::u32 nFlags, const ::point & point);
       void OnRButtonUp(::u32 nFlags, const ::point & point);
-      DECLARE_MESSAGE_HANDLER(on_message_set_cursor);
+      ////DECLARE_MESSAGE_HANDLER(on_message_set_cursor);
       void OnTimer(uptr uEvent);
 
       // Initialization message handler member functions

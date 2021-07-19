@@ -202,7 +202,7 @@ namespace user
 
          get_client_rect(rectangleClient);
 
-         //pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+         //pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
          //pgraphics->fill_rectangle(rectangleClient, m_colorTreeBackground);
 
@@ -371,7 +371,7 @@ namespace user
 
       bool bHover       = ptree->is_hover(pitem);
 
-      data.m_pdc->set_alpha_mode(::draw2d::alpha_mode_blend);
+      data.m_pdc->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
       if(m_uchHoverAlpha > 0)
       {

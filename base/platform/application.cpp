@@ -6,8 +6,7 @@ namespace base
 {
 
 
-   application::application(const char * pszAppId) :
-      ::axis::application(pszAppId)
+   application::application()
    {
 
       m_pbaseapplication = this;
@@ -15,7 +14,7 @@ namespace base
    }
 
 
-   ::e_status     application::initialize(::object * pobject)
+   ::e_status application::initialize(::object * pobject)
    {
 
       auto estatus = ::axis::application::initialize(pobject);
@@ -46,6 +45,7 @@ namespace base
 
    }
 
+
    void application::assert_valid() const
    {
 
@@ -62,7 +62,6 @@ namespace base
    }
 
 
-
    ::user::document *application::place_hold(::user::interaction * pinteraction)
    {
 
@@ -70,8 +69,10 @@ namespace base
 
    }
 
+
    void application::on_create_split_view(::user::split_view* psplit)
    {
+
 
    }
 
@@ -80,19 +81,15 @@ namespace base
    {
 
 
-
    }
 
 
-
-
-   ::e_status     application::create_impact_system()
+   ::e_status application::create_impact_system()
    {
 
       return ::success;
 
    }
-
 
 
    void application::on_create_impact(::user::impact_data* pimpactdata)
@@ -134,17 +131,9 @@ namespace base
 
    }
 
+
    __pointer(::user::document) application::defer_create_view(string strView, ::user::interaction* puiParent, ewindowflag ewindowflag, const ::id& id)
    {
-
-      //auto pcontroller = ::aura::application::defer_create_view(strView, puiParent, ewindowflag, id);
-
-      //if (pcontroller)
-      //{
-
-      //   return pcontroller;
-
-      //}
 
       return nullptr;
 
@@ -181,6 +170,7 @@ namespace base
       do_request(pcreate);
 
    }
+
 
 } // namespace base
 

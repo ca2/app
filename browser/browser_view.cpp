@@ -696,7 +696,7 @@ namespace browser
 
          rectImage.FitOnCenterOf(rectWork);
 
-         m_pimagePost->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_set);
+         m_pimagePost->get_graphics()->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
          if (m_prender->m_pimageImageStretched->is_null()
                || m_prender->m_pimageImageStretched->get_size() != rectImage->size()

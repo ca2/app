@@ -205,7 +205,7 @@ namespace simple_ui
 
       {
 
-         pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+         pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
          ::draw2d::brush_pointer br(e_create);
 
@@ -239,7 +239,7 @@ namespace simple_ui
 
 
 
-         pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+         pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
          color32_t crOut;
 
@@ -362,7 +362,7 @@ namespace simple_ui
          if(m_estockicon != stock_icon_none)
          {
 
-            //pgraphics->set_alpha_mode(::draw2d::alpha_mode_set);
+            //pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
             ::draw2d::brush_pointer br(e_create);
 
@@ -427,7 +427,7 @@ namespace simple_ui
 
       ::datetime::time timeNow = ::datetime::time::get_current_time();
 
-      pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
       color32_t crText;
 

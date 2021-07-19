@@ -198,7 +198,7 @@ namespace turboc
 
 /*         m_pimage->g()->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
-/*         m_pimage->g()->set_alpha_mode(::draw2d::alpha_mode_blend);
+/*         m_pimage->g()->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
          brushText->create_solid(argb(255,255,255,255));
 
@@ -237,7 +237,7 @@ namespace turboc
 
          pgraphics->set_interpolation_mode(e_interpolation_mode_high_quality_bicubic);
 
-         pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+         pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
 /*         pgraphics->BitBlt(rectangleClient,m_pimage->g());
 

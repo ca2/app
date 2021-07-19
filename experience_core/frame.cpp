@@ -496,7 +496,7 @@ namespace experience
                i32 cx = rectangle.width();
                i32 cy = rectangle.height();
 
-               pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+               pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
                ::draw2d::pen_pointer pen;
 
@@ -691,7 +691,7 @@ namespace experience
                      if(picon != nullptr)
                      {
 
-                        pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+                        pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
                         pgraphics->draw(rectIcon, picon);
 

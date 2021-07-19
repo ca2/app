@@ -1480,7 +1480,7 @@ namespace user
          MESSAGE_LINK(e_message_show_window, pchannel, this, &interaction::on_message_show_window);
          MESSAGE_LINK(e_message_display_change, pchannel, this, &interaction::on_message_display_change);
          MESSAGE_LINK(e_message_left_button_down, pchannel, this, &::user::interaction::on_message_left_button_down);
-         MESSAGE_LINK(e_message_set_cursor, pchannel, this, &::user::interaction::on_message_set_cursor);
+         //MESSAGE_LINK(e_message_set_cursor, pchannel, this, &::user::interaction::on_message_set_cursor);
 
          if (m_bEditDefaultHandling || m_bKeyboardMultipleSelectionDefaultHandling)
          {
@@ -2216,16 +2216,16 @@ namespace user
 
       auto puserinteraction = get_wnd();
 
-#ifdef WINDOWS_DESKTOP
-
-      if (puserinteraction == this)
-      {
-
-         ::KillTimer((HWND)get_oswindow(), e_timer_transparent_mouse_event);
-
-      }
-
-#endif
+//#ifdef WINDOWS_DESKTOP
+//
+//      if (puserinteraction == this)
+//      {
+//
+//         ::KillTimer((HWND)get_oswindow(), e_timer_transparent_mouse_event);
+//
+//      }
+//
+//#endif
 
       if (puserinteraction == this)
       {
@@ -3162,11 +3162,11 @@ namespace user
 
    //#ifdef _UWP
 
-     // pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+     // pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
    //#else
 
-      //pgraphics->set_alpha_mode(::draw2d::alpha_mode_set);
+      //pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
    //#endif
 
@@ -3252,7 +3252,7 @@ namespace user
 
          pgraphics->SelectClipRgn(nullptr);
 
-         pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+         pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
          pgraphics->fill_rectangle(rectHint, argb(128, __random(128, 255), __random(128, 255), __random(128, 255)));
 
@@ -3341,7 +3341,7 @@ namespace user
                if (pcursor != nullptr && pgraphics != nullptr)
                {
 
-                  pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+                  pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
                   //pgraphics->draw(pointCursor, pcursor);
 
@@ -3744,7 +3744,7 @@ namespace user
       else if (get_translucency(pstyle) >= e_translucency_present)
       {
 
-         pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+         pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
          auto colorBackground = get_color(pstyle, e_element_background);
 
@@ -3772,7 +3772,7 @@ namespace user
       else
       {
 
-         pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+         pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
          auto colorBackground = get_color(pstyle, e_element_background);
 
@@ -3828,7 +3828,7 @@ namespace user
    }
 
 
-   __pointer(::message::message) interaction::get_message(const ::id & id, wparam wparam, lparam lparam, const ::point_i32& point)
+   __pointer(::message::message) interaction::get_message(const ::id & id, wparam wparam, lparam lparam)
    {
    
       __pointer(::message::message) pmessage;
@@ -3983,7 +3983,7 @@ namespace user
 
       }
    
-      pmessage->set(get_oswindow(), get_window(), id, wparam, lparam, point);
+      pmessage->set(get_oswindow(), get_window(), id, wparam, lparam);
    
       return pmessage;
    
@@ -10677,29 +10677,29 @@ namespace user
    }
 
 
-   void interaction::on_message_set_cursor(::message::message* pmessage)
-   {
+   //void interaction::on_message_set_cursor(::message::message* pmessage)
+   //{
 
-      auto pcursor = get_mouse_cursor();
+   //   //auto pcursor = get_mouse_cursor();
 
-      if (pcursor)
-      {
+   //   //if (pcursor)
+   //   //{
 
-         __pointer(::message::set_cursor) psetcursor = pmessage;
+   //   //   __pointer(::message::set_cursor) psetcursor = pmessage;
 
 
-         if (psetcursor)
-         {
+   //   //   if (psetcursor)
+   //   //   {
 
-            psetcursor->m_pcursor = pcursor;
+   //   //      //psetcursor->m_pcursor = pcursor;
 
-            psetcursor->m_bRet = true;
+   //   //      psetcursor->m_bRet = true;
 
-         }
+   //   //   }
 
-      }
+   //   //}
 
-   }
+   //}
 
 
 

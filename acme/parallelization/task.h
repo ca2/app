@@ -132,6 +132,10 @@ public:
    virtual bool task_active() const;
    virtual bool is_running() const override;
 
+   bool check_children_task() override;
+
+   virtual void update_task_ready_to_quit();
+
    virtual bool kick_thread();
 
    virtual ::e_status main();

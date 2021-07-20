@@ -147,7 +147,7 @@ public:
    //virtual ::e_status set_finish_composites(::property_object* ppropertyobjectFinish) override;
 
 
-   virtual void update_task_ready_to_quit();
+   void update_task_ready_to_quit() override;
 
 
    void add_waiting_event(event * pevent);

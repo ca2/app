@@ -168,6 +168,31 @@ bool task::is_running() const
 }
 
 
+bool task::check_children_task()
+{
+
+   auto b = ::object::check_children_task();
+
+   if (m_bSetFinish)
+   {
+
+      update_task_ready_to_quit();
+
+   }
+
+   return b;
+
+}
+
+
+void task::update_task_ready_to_quit()
+{
+
+
+}
+
+
+
 bool task::kick_thread()
 {
 

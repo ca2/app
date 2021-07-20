@@ -631,12 +631,12 @@ namespace user
 
       m_imagemap.set_at(imagekeyStore, 0x80000001); // mark as "calculating image"
 
-      return _get_file_image(imagekey);
+      return schedule_get_file_image(imagekey);
 
    }
 
 
-   i32 shell::_get_file_image(const image_key & imagekey)
+   i32 shell::schedule_get_file_image(const image_key & imagekey)
    {
 
       {
@@ -698,6 +698,14 @@ namespace user
    }
 
 
+   i32 shell::_get_file_image(const image_key& imagekey)
+   {
+
+      return -1;
+
+   }
+
+
    ::e_status shell::thread::run()
    {
 
@@ -718,7 +726,7 @@ namespace user
          try
          {
 
-            int iImage = m_pshell->impl_get_file_image(imagekey);
+            int iImage = m_pshell->_get_file_image(imagekey);
 
             synchronous_lock synchronouslock(m_pshell->mutex());
 

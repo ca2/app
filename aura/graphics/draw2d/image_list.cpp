@@ -323,6 +323,23 @@ i32 image_list::add(::windowing::icon * picon, int iItem)
 
    auto pdraw2dicon = __create < ::draw2d::icon >();
 
+   pdraw2dicon->initialize_with_windowing_icon(picon);
+
+   //auto pimageDebug = create_image(m_rectImage.size());
+//{
+
+//   auto ret = get_image_list()->draw(pimageDebug->g(), (i32)m_iImage, { 0,0 }, m_rectImage.size(), ::point_i32(), 0);
+//   auto pcolorref = pimageDebug->get_data();
+//   output_debug_string("imageDebug");
+
+//}
+
+   if (iItem == 14)
+   {
+
+      output_debug_string("14 16");
+
+   }
    m_pimage->get_graphics()->draw(rectDst, pdraw2dicon);
 
    return iItem;

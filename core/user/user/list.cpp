@@ -7518,7 +7518,18 @@ namespace user
          else
          {
             m_pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
-            return get_image_list()->draw(m_pgraphics, (i32)m_iImage, m_rectImage.top_left(), m_rectImage.size(), ::point_i32(), 0);
+            auto ret = get_image_list()->draw(m_pgraphics, (i32)m_iImage, m_rectImage.top_left(), m_rectImage.size(), ::point_i32(), 0);
+
+            //auto pimageDebug = create_image(m_rectImage.size());
+            //{
+
+            //   auto ret = get_image_list()->draw(pimageDebug->g(), (i32)m_iImage, { 0,0 }, m_rectImage.size(), ::point_i32(), 0);
+            //   auto pcolorref = pimageDebug->get_data();
+            //   output_debug_string("imageDebug");
+
+            //}
+
+            return ret;
          }
       }
       return false;

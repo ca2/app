@@ -63,7 +63,22 @@ namespace draw2d
 
 
       // inline concrete < ::size_i32 > size_i32(const ::size_f64 & sizeDst, const ::size_f64 & sizeSrc, enum_image_selection eimageselection) const { return get_image(sizeDst)->size_i32(sizeDst, sizeSrc, eimageselection); }
-      inline concrete < ::size_i32 > size(const ::size_f64 & sizeDst, enum_image_selection eimageselection) const { return get_image(sizeDst)->size(sizeDst, eimageselection); }
+      inline concrete < ::size_i32 > size(const ::size_f64 & sizeDst, enum_image_selection eimageselection) const
+      { 
+
+         auto pimage = get_image(sizeDst);
+
+         if (!pimage)
+         {
+
+            return sizeDst;
+
+         }
+
+         return pimage->size(sizeDst, eimageselection); 
+      
+      }
+
       inline concrete < ::size_i32 > size() const { return get_image(::size_f64())->size(); }
 
          

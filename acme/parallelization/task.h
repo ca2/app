@@ -80,7 +80,7 @@ public:
    //virtual void add_notify(::matter* pmatter);
    //virtual void erase_notify(::matter* pmatter);
 
-   virtual ::e_status post(const ::routine& routine);
+   ::e_status post(const ::routine& routine) override;
 
    virtual ::e_status run_posted_routines();
 

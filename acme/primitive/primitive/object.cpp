@@ -657,6 +657,17 @@ void object::child_post_quit_and_wait(const char* pszTag, const duration& durati
 
 }
 
+
+::e_status object::post(const ::routine& routine)
+{
+
+   __throw(error_interface_only);
+
+   return error_interface_only;
+
+}
+
+
 void object::defer_update_object_id()
 {
 

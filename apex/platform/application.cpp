@@ -1522,7 +1522,7 @@ return get_temp_file_name_template(strRet, lpszName, pszExtension, nullptr);
 ::e_status application::exit_application()
 {
 
-   _001TryCloseApplication();
+   try_close_application();
 
    return ::success;
 

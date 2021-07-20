@@ -175,6 +175,10 @@ public:
    virtual void child_post_quit(const char* pszTag);
    virtual void child_post_quit_and_wait(const char* pszTag, const duration& duration);
 
+
+   virtual ::e_status post(const ::routine& routine);
+
+
    //virtual ::e_status finalize();
 
    //virtual ::e_status finish(::property_object* pcontextobjectRootFinishingInitiator = nullptr) override;

@@ -284,13 +284,23 @@ void* task::s_os_task(void* p)
    try
    {
 
-      ::task* pthread = (::task*) p;
+      ::task* pthread = (::task*)p;
 
       ::set_task(pthread OBJ_REF_DBG_COMMA_P_FUNCTION_LINE(pthread));
 
       pthread->release(OBJ_REF_DBG_P_FUNCTION_LINE(pthread));
 
-      pthread->main();
+      try
+      {
+
+         pthread->main();
+
+
+      }
+      catch (...)
+      {
+
+      }
 
       pthread->m_bTaskTerminated = true;
 
@@ -367,14 +377,19 @@ void task::unregister_task()
 
    synchronous_lock synchronouslock(mutex());
 
-   while (auto routine = m_routineaPost.pick_first())
+   if (m_routineaPost.has_element())
    {
 
-      synchronouslock.unlock();
+      while (auto routine = m_routineaPost.pick_first())
+      {
 
-      auto estatus = routine();
+         synchronouslock.unlock();
 
-      synchronouslock.lock();
+         auto estatus = routine();
+
+         synchronouslock.lock();
+
+      }
 
    }
 

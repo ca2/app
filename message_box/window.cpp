@@ -321,7 +321,7 @@ namespace app_message_box
                papplication->_001TryCloseApplication();
 
             }
-            else
+            else if (future->m_edialogresult == e_dialog_result_cancel)
             {
 
                show_message_box();

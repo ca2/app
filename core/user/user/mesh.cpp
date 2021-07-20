@@ -2429,7 +2429,7 @@ namespace user
    void mesh::on_message_key_down(::message::message * pmessage)
    {
 
-      __pointer(::message::key) pkey(pmessage);
+      auto pkey = pmessage->m_pkey;
 
       if (pkey->previous()) // give chance to child
       {

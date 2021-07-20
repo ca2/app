@@ -1162,7 +1162,7 @@ namespace user
 
       INFO("on_message_key_down (2)");
 
-      __pointer(::message::key) pkey(pmessage);
+      auto pkey = pmessage->m_pkey;
 
       if (pkey->m_ekey == ::user::e_key_return)
       {
@@ -1373,7 +1373,7 @@ namespace user
    void plain_edit::on_message_key_up(::message::message * pmessage)
    {
 
-      __pointer(::message::key) pkey(pmessage);
+      auto pkey = pmessage->m_pkey;
 
       auto psession = get_session();
 
@@ -4375,7 +4375,7 @@ finished_update:
 
          INFO("plain_edit::on_message_character (1)");
 
-         __pointer(::message::key) pkey(pmessage);
+         auto pkey = pmessage->m_pkey;
 
          string strChar;
 
@@ -5538,7 +5538,7 @@ finished_update:
 
       synchronous_lock synchronouslock(mutex());
 
-      __pointer(::message::key) pkey(pmessage);
+      auto pkey = pmessage->m_pkey;
 
       if (pkey->m_ekey == ::user::e_key_delete)
       {

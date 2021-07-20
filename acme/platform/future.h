@@ -50,7 +50,7 @@ public:
    TRANSPORT                              m_transport;
    __pointer(manual_reset_event)          m_pevent;
    __pointer(receptor)                    m_preceptor;
-
+   ::task_pointer                         m_ptask;
 
 
    future();

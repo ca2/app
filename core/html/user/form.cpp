@@ -674,7 +674,7 @@ void html_form::_001SetText(const string & str, const ::action_context & context
 void html_form::on_message_key_down(::message::message * pmessage)
 {
    
-   __pointer(::message::key) pkey(pmessage);
+   auto pkey = pmessage->m_pkey;
    
    if(pkey->m_ekey == ::user::e_key_tab)
    {

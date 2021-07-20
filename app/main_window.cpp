@@ -215,7 +215,11 @@ namespace app_app
 
          }
 
+         return;
+
       }
+      
+      ::user::interaction::_001DrawItem(pgraphics, pitem);
 
    }
 

@@ -127,7 +127,7 @@ namespace account
    void main_window::on_message_character(::message::message * pmessage)
    {
 
-      __pointer(::message::key) pkey(pmessage);
+      auto pkey = pmessage->m_pkey;
 
       if(pkey->m_ekey == ::user::e_key_return)
       {

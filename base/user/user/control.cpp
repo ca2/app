@@ -959,7 +959,7 @@
 //   {
 //
 //      UNREFERENCED_PARAMETER(pmessage);
-//      //      __pointer(::message::key) pkey(pmessage);
+//      //      auto pkey = pmessage->m_pkey;
 //
 //
 //   }

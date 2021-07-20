@@ -68,5 +68,13 @@ namespace user
    }
 
 
+   void draw_switch_icon(::draw2d::graphics_pointer& pgraphics, ::user::interaction* puserinteraction, ::user::item* pitem)
+   {
+
+      draw_switch_button(pgraphics, puserinteraction, pitem);
+
+   }
+
+
 } // namespace user
 

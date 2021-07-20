@@ -41,6 +41,7 @@ public:
    __pointer(counter<::i32>)                       m_pcounter;
    ::task_pointer                                  m_ptask;
    ::routine                                       m_routineNext;
+   ::routine_array                                 m_routineaPost;
 
 
    task();
@@ -79,6 +80,9 @@ public:
    //virtual void add_notify(::matter* pmatter);
    //virtual void erase_notify(::matter* pmatter);
 
+   virtual ::e_status post(const ::routine& routine);
+
+   virtual ::e_status run_posted_routines();
 
    virtual ::e_status task_caller_on_init();
 
@@ -140,6 +144,7 @@ public:
 
    virtual ::e_status main();
 
+   ::e_status run() override;
 
    virtual ::e_status stop_task();
 

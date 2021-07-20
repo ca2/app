@@ -33,6 +33,7 @@ namespace app_shader
       DECLARE_MESSAGE_HANDLER(on_message_create);
       DECLARE_MESSAGE_HANDLER(on_message_destroy);
       DECLARE_MESSAGE_HANDLER(on_message_key_down);
+      DECLARE_MESSAGE_HANDLER(on_message_switch);
 
       virtual bool keyboard_focus_is_focusable() const override;
 
@@ -41,6 +42,8 @@ namespace app_shader
       virtual void update_shader(int iShader);
 
       virtual bool on_click(const ::user::item& item) override;
+
+      virtual void switch_shader();
 
 
    };

@@ -90,6 +90,7 @@ namespace user
       virtual void dump(dump_context & dc) const override;
 
 
+
       virtual void install_message_routing(::channel * pchannel) override;
 
       virtual ::id get_topic_view_id();

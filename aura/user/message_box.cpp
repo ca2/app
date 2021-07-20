@@ -19,6 +19,12 @@ namespace user
 
       common_construct();
 
+      enable_drag_move();
+
+      m_bClickDefaultMouseHandling = true;
+
+      m_bHoverDefaultMouseHandling = true;
+
    }
 
 
@@ -109,7 +115,7 @@ namespace user
    void message_box::install_message_routing(::channel * pchannel)
    {
 
-      main_window::install_message_routing(pchannel);
+      ::user::interaction::install_message_routing(pchannel);
 
       MESSAGE_LINK(e_message_create, pchannel, this, &message_box::on_message_create);
 
@@ -119,7 +125,7 @@ namespace user
    i64 message_box::add_ref(OBJ_REF_DBG_PARAMS_DEF)
    {
 
-      return main_window::add_ref(OBJ_REF_DBG_ARGS);
+      return ::user::interaction::add_ref(OBJ_REF_DBG_ARGS);
 
    }
 
@@ -127,7 +133,7 @@ namespace user
    i64 message_box::dec_ref(OBJ_REF_DBG_PARAMS_DEF)
    {
 
-      return main_window::dec_ref(OBJ_REF_DBG_ARGS);
+      return ::user::interaction::dec_ref(OBJ_REF_DBG_ARGS);
 
    }
 
@@ -135,7 +141,7 @@ namespace user
    i64 message_box::release(OBJ_REF_DBG_PARAMS_DEF)
    {
 
-      return main_window::release(OBJ_REF_DBG_ARGS);
+      return ::user::interaction::release(OBJ_REF_DBG_ARGS);
 
    }
 

@@ -113,7 +113,7 @@ namespace console
    void prompt_impact::on_message_key_down(::message::message * pmessage)
    {
 
-      __pointer(::message::key) pkey(pmessage);
+      auto pkey = pmessage->m_pkey;
 
       m_millisCaretStart.Now();
 

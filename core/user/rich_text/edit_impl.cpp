@@ -1025,7 +1025,7 @@ namespace user
 
          }
 
-         __pointer(::message::key) pkey(pmessage);
+         auto pkey = pmessage->m_pkey;
 
          auto psession = get_session();
 
@@ -1185,7 +1185,7 @@ namespace user
       void edit_impl::on_message_key_up(::message::message * pmessage)
       {
 
-         __pointer(::message::key) pkey(pmessage);
+         auto pkey = pmessage->m_pkey;
 
          auto psession = get_session();
 
@@ -1357,7 +1357,7 @@ namespace user
       void edit_impl::on_message_character(::message::message * pmessage)
       {
 
-            __pointer(::message::key) pkey(pmessage);
+            auto pkey = pmessage->m_pkey;
 
             string strChar;
 

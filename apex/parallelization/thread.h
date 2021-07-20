@@ -284,7 +284,7 @@ public:
 
    }
 
-   virtual ::e_status post(const ::routine& routine);
+   ::e_status post(const ::routine& routine) override;
 
    DECLARE_MESSAGE_HANDLER(on_message_branch);
 

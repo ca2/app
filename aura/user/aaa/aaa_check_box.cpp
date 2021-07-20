@@ -600,7 +600,7 @@ namespace user
    void check_box::on_message_key_up(::message::message * pmessage)
    {
 
-      __pointer(::message::key) pkey(pmessage);
+      auto pkey = pmessage->m_pkey;
 
       if(pkey->m_ekey == ::user::e_key_space)
       {

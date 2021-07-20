@@ -1081,7 +1081,7 @@ namespace android
             pmessage->m_id == e_message_sys_char)
       {
 
-         __pointer(::message::key) pkey(pmessage);
+         auto pkey = pmessage->m_pkey;
 
          auto psession = get_session();
 

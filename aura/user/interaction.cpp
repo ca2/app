@@ -1250,7 +1250,7 @@ namespace user
          __pointer(::aura::application) papplication = get_application();
 
          //psession->erase_frame(this); // no more a top level frame if it were one
-         papplication->erase_frame(this); // no more a top level frame if it were one
+         papplication->erase_user_interaction(this); // no more a top level frame if it were one
 
          m_pimpl = pimplNew;
 
@@ -2320,7 +2320,7 @@ namespace user
 
                __pointer(::aura::application) papplication = get_application();
 
-               papplication->erase_frame(this); // guess this may be a frame, it doesn't hurt to erase if this is not there
+               papplication->erase_user_interaction(this); // guess this may be a frame, it doesn't hurt to erase if this is not there
 
             }
             catch (...)
@@ -2336,7 +2336,7 @@ namespace user
 
                   __pointer(::aura::application) papplication = get_application();
 
-                  papplication->erase_frame(this); // guess this may be a frame, it doesn't hurt to erase if this is not there
+                  papplication->erase_user_interaction(this); // guess this may be a frame, it doesn't hurt to erase if this is not there
 
                }
                catch (...)
@@ -4381,7 +4381,7 @@ namespace user
 
             __pointer(::aura::application) papplication = get_application();
 
-            papplication->add_frame(this);
+            papplication->add_user_interaction(this);
 
          }
 
@@ -4927,7 +4927,7 @@ namespace user
       if (m_bEditDefaultHandling || m_bKeyboardMultipleSelectionDefaultHandling)
       {
 
-         __pointer(::message::key) pkey(pmessage);
+         auto pkey = pmessage->m_pkey;
 
          if (pkey)
          {
@@ -5533,7 +5533,7 @@ namespace user
    //   //if(pmessage->m_id == e_message_key_down)
    //   //{
 
-   //   //   __pointer(::message::key) pkey(pmessage);
+   //   //   auto pkey = pmessage->m_pkey;
 
    //   //   if(pkey->m_ekey == ::user::e_key_tab)
    //   //   {
@@ -8659,6 +8659,29 @@ namespace user
 
       }
 
+      {
+
+         auto pitem = get_user_item(::user::e_element_switch_button);
+
+         if (pitem)
+         {
+
+            if (pitem->m_rectangle.is_null())
+            {
+
+               get_client_rect(pitem->m_rectangle);
+
+               pitem->m_rectangle.left = pitem->m_rectangle.right - 48;
+
+               pitem->m_rectangle.top = pitem->m_rectangle.bottom - 48;
+
+            }
+
+         }
+
+      }
+
+
    }
 
 
@@ -11471,14 +11494,16 @@ restart:
 
                post_redraw();
 
-               fork([this]()
-                  {
+               //fork([this]()
+                 // {
 
                      auto papplication = get_application();
 
-                     papplication->_001TryCloseApplication();
+                     papplication->post_message(e_message_close, 1);
 
-                  });
+                    // papplication->_001TryCloseApplication();
+
+                  //});
 
                return;
 
@@ -13682,7 +13707,7 @@ restart:
    void interaction::keyboard_focus_OnKeyDown(::message::message * pmessage)
    {
 
-      __pointer(::message::key) pkey(pmessage);
+      auto pkey = pmessage->m_pkey;
 
       if (pkey->m_ekey == ::user::e_key_tab)
       {
@@ -14553,6 +14578,14 @@ restart:
       {
 
          post_message(e_message_close);
+
+         return true;
+
+      }
+      else if (item == ::user::e_element_switch_button)
+      {
+
+         post_message(e_message_switch);
 
          return true;
 
@@ -15987,8 +16020,37 @@ restart:
    void interaction::_001DrawItem(::draw2d::graphics_pointer& pgraphics, ::user::item * pitem)
    {
 
-      UNREFERENCED_PARAMETER(pgraphics);
-      UNREFERENCED_PARAMETER(pitem);
+      if (::is_null(pitem))
+      {
+
+         return;
+
+      }
+
+      if (pitem->m_eelement == ::user::e_element_close_icon)
+      {
+
+         ::user::draw_close_icon(pgraphics, this, pitem);
+
+      }
+      else if (pitem->m_eelement == ::user::e_element_switch_icon)
+      {
+
+         ::user::draw_switch_icon(pgraphics, this, pitem);
+
+      }
+      else if (pitem->m_eelement == ::user::e_element_close_button)
+      {
+
+         ::user::draw_close_button(pgraphics, this, pitem);
+
+      }
+      else if (pitem->m_eelement == ::user::e_element_switch_button)
+      {
+
+         ::user::draw_switch_button(pgraphics, this, pitem);
+
+      }
 
    }
 

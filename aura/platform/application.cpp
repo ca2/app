@@ -194,7 +194,16 @@ namespace aura
 
       }
 
-      estatus = __compose_new(m_puiptraFrame);
+      estatus = __compose_new(m_puserinteractiona);
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      estatus = __compose_new(m_puserinteractionaFrame);
 
       if (!estatus)
       {
@@ -280,15 +289,39 @@ namespace aura
    void application::enumerate_composite(matter_array& a)
    {
 
-      auto puiptraFrame = m_puiptraFrame.get();
+      auto puserinteractiona = m_puserinteractiona.get();
 
-      if (puiptraFrame)
+      if (puserinteractiona)
       {
 
-         for (auto& pframe : puiptraFrame->interactiona())
+         for (auto& puserinteraction : puserinteractiona->interactiona())
          {
 
-            a.add_non_null(pframe);
+            if (::is_set(puserinteraction))
+            {
+
+               a.add_unique(puserinteraction);
+
+            }
+
+         }
+
+      }
+
+      auto puserinteractionaFrame = m_puserinteractionaFrame.get();
+
+      if (puserinteractionaFrame)
+      {
+
+         for (auto& puserinteraction : puserinteractionaFrame->interactiona())
+         {
+
+            if (::is_set(puserinteraction))
+            {
+
+               a.add_unique(puserinteraction);
+
+            }
 
          }
 
@@ -3700,14 +3733,14 @@ retry_license:
 
       //synchronous_lock slChildren(::user::mutex_children2());
 
-      auto puiptraFrame = m_puiptraFrame;
+      auto puserinteractionFrame = m_puserinteractionaFrame;
 
-      return puiptraFrame->get_child(pinteraction);
+      return puserinteractionFrame->get_child(pinteraction);
 
    }
 
 
-   void application::add_frame(::user::interaction * puserinteraction)
+   void application::add_user_interaction(::user::interaction * puserinteraction)
    {
 
       __pointer(::aura::session) psession = get_session();
@@ -3735,10 +3768,17 @@ retry_license:
 
       synchronous_lock synchronouslock(&m_mutexFrame); // recursive lock (on m_framea.add(puserinteraction)) but m_puiMain is "cared" by m_frame.m_mutex
 
-      if (m_puiptraFrame->add_unique_interaction(puserinteraction))
+      if (m_puserinteractiona->add_unique_interaction(puserinteraction))
       {
 
-         TRACE("::base::application::add_frame ::user::interaction = 0x%" PRIxPTR " (%s) app=%s", puserinteraction, typeid(*puserinteraction).name(), typeid(*this).name());
+         if (puserinteraction->is_frame_window())
+         {
+
+            m_puserinteractionaFrame->add_unique_interaction(puserinteraction);
+
+         }
+
+         TRACE("::base::application::add_user_interaction ::user::interaction = 0x%" PRIxPTR " (%s) app=%s", puserinteraction, typeid(*puserinteraction).name(), typeid(*this).name());
 
          if (!(puserinteraction->m_ewindowflag & e_window_flag_satellite_window))
          {
@@ -3778,7 +3818,7 @@ retry_license:
    }
 
 
-   void application::erase_frame(::user::interaction * puserinteraction)
+   void application::erase_user_interaction(::user::interaction * puserinteraction)
    {
 
       synchronous_lock synchronouslock(&m_mutexFrame); // recursive lock (on m_framea.erase(puserinteraction)) but m_puiMain is "cared" by m_frame.m_mutex
@@ -3790,12 +3830,24 @@ retry_license:
 
       }
 
-      if (m_puiptraFrame != nullptr)
+      if (m_puserinteractiona != nullptr)
       {
 
-         auto oldInteractionCount = m_puiptraFrame->interaction_count();
+         if (m_puserinteractiona->erase_interaction(puserinteraction) > 0)
+         {
 
-         if (m_puiptraFrame->erase_interaction(puserinteraction) > 0)
+            TRACE("::base::application::erase_user_interaction ::user::interaction = 0x%016x (%s) app=%s", puserinteraction, typeid(*puserinteraction).name(), typeid(*this).name());
+
+         }
+
+      }
+
+      if (m_puserinteractionaFrame != nullptr)
+      {
+
+         auto oldInteractionCount = m_puserinteractionaFrame->interaction_count();
+
+         if (m_puserinteractionaFrame->erase_interaction(puserinteraction) > 0)
          {
 
             TRACE("::base::application::erase_frame ::user::interaction = 0x%016x (%s) app=%s", puserinteraction, typeid(*puserinteraction).name(), typeid(*this).name());
@@ -3805,7 +3857,7 @@ retry_license:
          if (oldInteractionCount > 0)
          {
 
-            if (m_puiptraFrame->has_no_interaction())
+            if (m_puserinteractionaFrame->has_no_interaction())
             {
 
                synchronouslock.unlock();
@@ -8263,7 +8315,7 @@ namespace aura
    i32 application::GetVisibleFrameCount()
    {
 
-      auto uia = *m_puiptraFrame;
+      auto uia = *m_puserinteractionaFrame;
 
       i32 iCount = 0;
 
@@ -9097,10 +9149,10 @@ namespace aura
    void application::_001CloseApplication()
    {
 
-      if (m_puiptraFrame && m_puiptraFrame->has_interaction())
+      if (m_puserinteractionaFrame && m_puserinteractionaFrame->has_interaction())
       {
 
-         for (auto& pframe : m_puiptraFrame->interactiona())
+         for (auto& pframe : m_puserinteractionaFrame->interactiona())
          {
 
             if (::is_set(pframe))

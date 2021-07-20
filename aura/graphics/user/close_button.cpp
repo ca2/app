@@ -74,6 +74,43 @@ namespace user
    }
 
 
+   void draw_switch_button(::draw2d::graphics_pointer& pgraphics, ::user::interaction* puserinteraction, ::user::item* pitem)
+   {
+
+      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+
+      ::draw2d::brush_pointer pbrush(e_create);
+
+      auto pstyle = puserinteraction->get_style(pgraphics);
+
+      ::rectangle_f64 rectangle(pitem->m_rectangle);
+
+      auto color = puserinteraction->get_color(pstyle, ::user::e_element_background);
+
+      pbrush->create_solid(color);
+
+      pgraphics->set(pbrush);
+
+      if (puserinteraction->m_itemHover == ::user::e_element_switch_button)
+      {
+
+         color.alpha = 180;
+
+      }
+      else
+      {
+
+         color.alpha = 127;
+
+      }
+
+      pgraphics->set_smooth_mode(::draw2d::smooth_mode_none);
+
+      pgraphics->fill_rectangle(rectangle, color);
+
+   }
+
+
 } // namespace user
 
 

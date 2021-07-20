@@ -655,7 +655,7 @@ namespace user
    void list_box::on_message_key_down(::message::message * pmessage)
    {
 
-      __pointer(::message::key) pkey(pmessage);
+      auto pkey = pmessage->m_pkey;
 
       if (pkey->m_ekey == ::user::e_key_escape)
       {

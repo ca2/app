@@ -71,8 +71,9 @@ namespace aura
       //__pointer(::interprocess_intercommunication)    m_pinterprocessintercommunication;
       //__pointer(service_base)                         m_pservice;
 
-      ::mutex                                         m_mutexFrame;
-      __composite(::user::interaction_array)            m_puiptraFrame;
+      ::mutex                                           m_mutexFrame;
+      __composite(::user::interaction_array)            m_puserinteractiona;
+      __composite(::user::interaction_array)            m_puserinteractionaFrame;
 
       //e_thread                                        m_ethreadClose;
 
@@ -800,8 +801,8 @@ namespace aura
       virtual __pointer(::user::message) get_user_message(MESSAGE * pmsg);
 
       virtual bool get_frame(__pointer(::user::interaction) & pinteraction);
-      virtual void add_frame(::user::interaction * puserinteraction);
-      virtual void erase_frame(::user::interaction * puserinteraction);
+      virtual void add_user_interaction(::user::interaction * puserinteraction);
+      virtual void erase_user_interaction(::user::interaction * puserinteraction);
 
       virtual bool send_message_to_windows(const ::id & id, wparam wparam, lparam lparam) override; // with tbs in <3
 

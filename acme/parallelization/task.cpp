@@ -207,17 +207,45 @@ bool task::kick_thread()
    if (m_pmatter != this)
    {
 
-      return m_pmatter->run();
+      run_posted_routines();
+
+      auto estatus = m_pmatter->run();
+
+      run_posted_routines();
+
+      return estatus;
 
    }
 
    auto estatus = run();
+
+   if (!estatus)
+   {
+
+      return estatus;
+
+   }
 
    return estatus;
 
 }
 
 
+::e_status task::run()
+{
+
+   auto estatus = run_posted_routines();
+
+   if (!estatus)
+   {
+
+      return estatus;
+
+   }
+
+   return estatus;
+
+}
 
 
 
@@ -318,6 +346,39 @@ void task::unregister_task()
    auto psystem = m_psystem;
 
    psystem->unset_task(m_itask, this);
+
+}
+
+
+::e_status task::post(const ::routine& routine)
+{
+
+   synchronous_lock synchronouslock(mutex());
+
+   m_routineaPost.add(routine);
+
+   return ::success;
+
+}
+
+
+::e_status task::run_posted_routines()
+{
+
+   synchronous_lock synchronouslock(mutex());
+
+   while (auto routine = m_routineaPost.pick_first())
+   {
+
+      synchronouslock.unlock();
+
+      auto estatus = routine();
+
+      synchronouslock.lock();
+
+   }
+
+   return ::success;
 
 }
 

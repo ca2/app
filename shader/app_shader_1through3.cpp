@@ -168,7 +168,7 @@ namespace simple_shader
 
       //rectText.Align(e_align_center, rectangle);
 
-      //pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+      //pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
       //if (m_iDrawing == 1)
       //{

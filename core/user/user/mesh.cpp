@@ -2429,7 +2429,7 @@ namespace user
    void mesh::on_message_key_down(::message::message * pmessage)
    {
 
-      __pointer(::message::key) pkey(pmessage);
+      auto pkey = pmessage->m_pkey;
 
       if (pkey->previous()) // give chance to child
       {
@@ -2535,7 +2535,7 @@ namespace user
    void mesh::on_message_mouse_move(::message::message * pmessage)
    {
 
-      __pointer(::message::mouse) pmouse(pmessage);
+      auto pmouse = pmessage->m_pmouse;
 
       pmouse->m_lresult = 1;
 
@@ -2645,7 +2645,7 @@ namespace user
    void mesh::on_message_left_button_down(::message::message * pmessage)
    {
 
-      __pointer(::message::mouse) pmouse(pmessage);
+      auto pmouse = pmessage->m_pmouse;
 
       pmouse->previous(); // give chance to child control and to base views
 
@@ -2868,7 +2868,7 @@ namespace user
    void mesh::on_message_left_button_up(::message::message * pmessage)
    {
 
-      __pointer(::message::mouse) pmouse(pmessage);
+      auto pmouse = pmessage->m_pmouse;
 
       ::point_i32 point = pmouse->m_point;
 
@@ -2969,7 +2969,7 @@ namespace user
    void mesh::on_message_right_button_down(::message::message * pmessage)
    {
 
-      __pointer(::message::mouse) pmouse(pmessage);
+      auto pmouse = pmessage->m_pmouse;
 
       pmouse->previous();
 
@@ -3020,7 +3020,7 @@ namespace user
    void mesh::on_message_right_button_up(::message::message * pmessage)
    {
 
-      __pointer(::message::mouse) pmouse(pmessage);
+      auto pmouse = pmessage->m_pmouse;
 
       pmouse->previous();
 
@@ -3175,7 +3175,7 @@ namespace user
    void mesh::on_message_left_button_double_click(::message::message * pmessage)
    {
 
-      __pointer(::message::mouse) pmouse(pmessage);
+      auto pmouse = pmessage->m_pmouse;
 
       m_iClick = 2;
 
@@ -5582,13 +5582,13 @@ namespace user
       //   draw2d::icon * picon;
       //   if(m_pcolumn->m_mapIcon.lookup((i32)m_iImage,picon))
       //   {
-      //      m_pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+      //      m_pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
       //      return m_pgraphics->DrawIcon(m_rectImage.top_left(),picon) != false;
       //   }
       //}
       //else
       //{
-      //   m_pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+      //   m_pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
       //   return get_image_list()->draw(m_pgraphics,(i32)m_iImage,m_rectImage.top_left(),m_rectImage.size(),point_i32(0,0),0);
       //}
       return false;

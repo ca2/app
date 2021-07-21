@@ -495,7 +495,7 @@ namespace user
 
       index i = 0;
 
-      pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
       pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
@@ -943,7 +943,7 @@ namespace user
    void plain_edit::on_message_right_button_down(::message::message * pmessage)
    {
 
-      __pointer(::message::mouse) pmouse(pmessage);
+      auto pmouse = pmessage->m_pmouse;
 
       ::point_i32 point = pmouse->m_point;
 
@@ -987,7 +987,7 @@ namespace user
    void plain_edit::on_message_right_button_up(::message::message * pmessage)
    {
 
-      __pointer(::message::mouse) pmouse(pmessage);
+      auto pmouse = pmessage->m_pmouse;
 
       ::point_i32 point = pmouse->m_point;
 
@@ -1026,12 +1026,12 @@ namespace user
    }
 
 
-   void plain_edit::on_message_set_cursor(::message::message * pmessage)
-   {
+   //void plain_edit::on_message_set_cursor(::message::message * pmessage)
+   //{
 
-      pmessage->previous();
+   //   pmessage->previous();
 
-   }
+   //}
 
 
    void plain_edit::_001OnTimer(::timer * ptimer)
@@ -1162,7 +1162,7 @@ namespace user
 
       INFO("on_message_key_down (2)");
 
-      __pointer(::message::key) pkey(pmessage);
+      auto pkey = pmessage->m_pkey;
 
       if (pkey->m_ekey == ::user::e_key_return)
       {
@@ -1373,7 +1373,7 @@ namespace user
    void plain_edit::on_message_key_up(::message::message * pmessage)
    {
 
-      __pointer(::message::key) pkey(pmessage);
+      auto pkey = pmessage->m_pkey;
 
       auto psession = get_session();
 
@@ -1894,7 +1894,7 @@ namespace user
       if (plain_edit_is_enabled())
       {
 
-         __pointer(::message::mouse) pmouse(pmessage);
+         auto pmouse = pmessage->m_pmouse;
 
          auto psession = get_session();
 
@@ -1969,7 +1969,7 @@ namespace user
    void plain_edit::on_message_left_button_down(::message::message * pmessage)
    {
 
-      __pointer(::message::mouse) pmouse(pmessage);
+      auto pmouse = pmessage->m_pmouse;
 
       if (plain_edit_is_enabled())
       {
@@ -2033,7 +2033,7 @@ namespace user
    void plain_edit::on_message_left_button_up(::message::message * pmessage)
    {
 
-      __pointer(::message::mouse) pmouse(pmessage);
+      auto pmouse = pmessage->m_pmouse;
 
       auto psession = get_session();
 
@@ -4375,7 +4375,7 @@ finished_update:
 
          INFO("plain_edit::on_message_character (1)");
 
-         __pointer(::message::key) pkey(pmessage);
+         auto pkey = pmessage->m_pkey;
 
          string strChar;
 
@@ -5538,7 +5538,7 @@ finished_update:
 
       synchronous_lock synchronouslock(mutex());
 
-      __pointer(::message::key) pkey(pmessage);
+      auto pkey = pmessage->m_pkey;
 
       if (pkey->m_ekey == ::user::e_key_delete)
       {

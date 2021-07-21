@@ -43,7 +43,7 @@ namespace aura
    }
 
 
-   __pointer(::object) sound_track_player::sound_plugin(const char* psz, bool bForceCreate)
+   __pointer(::object) sound_track_player::sound_plugin(const char* psz, bool bForceCreate, bool bLoop)
    {
 
       return nullptr;

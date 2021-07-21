@@ -510,7 +510,7 @@ namespace user
 
                pgraphics->text_out(rectangle.left + 10, rectangle.top + 5, strItem);
 
-               pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+               pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
                ::image_pointer pimage1;
 

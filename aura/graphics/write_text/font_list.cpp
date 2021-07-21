@@ -41,13 +41,21 @@ namespace write_text
 
       defer_create_mutex();
 
-      m_uaForegroundColor.add(argb(255, 80, 80, 80));
-      m_uaForegroundColor.add(argb(255, 45, 45, 45));
-      m_uaForegroundColor.add(argb(255, 255, 255, 255));
+      m_uaForegroundColor[0][0] = argb(255, 80, 80, 80);
+      m_uaForegroundColor[0][1] = argb(255, 45, 45, 45);
+      m_uaForegroundColor[0][2] = argb(255, 255, 255, 255);
 
-      m_uaBackgroundColor.add(argb(0, 0, 0, 0));
-      m_uaBackgroundColor.add(argb(128, 128, 200, 152));
-      m_uaBackgroundColor.add(argb(128, 80, 80, 80));
+      m_uaBackgroundColor[0][0] = argb(0, 0, 0, 0);
+      m_uaBackgroundColor[0][1] = argb(128, 128, 200, 152);
+      m_uaBackgroundColor[0][2] = argb(128, 80, 80, 80);
+
+      m_uaForegroundColor[1][0] = argb(255, 210, 210, 210);
+      m_uaForegroundColor[1][1] = argb(128, 40, 40, 40);
+      m_uaForegroundColor[1][2] = argb(128, 80, 80, 80);
+
+      m_uaBackgroundColor[1][0] = argb(0, 0, 0, 0);
+      m_uaBackgroundColor[1][1] = argb(127, 255, 255, 255);
+      m_uaBackgroundColor[1][2] = argb(127, 230, 230, 230);
 
       m_etype = type_single_column;
 
@@ -82,7 +90,7 @@ namespace write_text
 
       synchronous_lock synchronouslock(mutex());
 
-      pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
       ::rectangle_i32 rectangleClient = m_puserinteraction->get_client_rect();
 
@@ -126,7 +134,7 @@ namespace write_text
 
          text_box * pbox = &pitem->m_box[BOX];
 
-         if (!pbox->m_bInit)
+         if (!pbox->is_layout_ok(this))
          {
 
             continue;
@@ -140,7 +148,7 @@ namespace write_text
 
          }
 
-         if (!pbox->m_bOk)
+         if (!pbox->is_drawing_ok(this))
          {
 
             pbox->update(this, BOX, pitem->m_strSample);
@@ -161,14 +169,14 @@ namespace write_text
 
             text_box* pbox = &pitem->m_box[BOX_SEL];
 
-            if (!pbox->m_bInit)
+            if (!pbox->is_layout_ok(this))
             {
 
                update_extents(pfontlistdata, pitem, pgraphics, BOX_SEL);
 
             }
 
-            if (!pbox->m_bOk)
+            if (!pbox->is_drawing_ok(this))
             {
 
                pbox->update(this, BOX_SEL, pitem->m_strSample);
@@ -191,14 +199,14 @@ namespace write_text
 
             text_box* pbox = &pitem->m_box[BOX_HOVER];
 
-            if (!pbox->m_bInit)
+            if (!pbox->is_layout_ok(this))
             {
 
                update_extents(pfontlistdata, pitem, pgraphics, BOX_HOVER);
 
             }
 
-            if (!pbox->m_bOk)
+            if (!pbox->is_drawing_ok(this))
             {
 
                pbox->update(this, BOX_HOVER, pitem->m_strSample);
@@ -219,7 +227,7 @@ namespace write_text
 
       synchronous_lock synchronouslock(mutex());
 
-      pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
       auto pfontlistdata = m_pfontlistdata;
 
@@ -265,7 +273,7 @@ namespace write_text
 
          rectangle.right = rectangle.left + m_size.cx;
 
-         if (!pbox->m_bOk)
+         if (!pbox->is_drawing_ok(this))
          {
 
             pbox->update(this, iBox, pfontlistdata->element_at(i)->m_strSample);
@@ -369,7 +377,7 @@ namespace write_text
 
       }
 
-      if (!pbox->m_bInit)
+      if (!pbox->is_layout_ok(this))
       {
 
          synchronouslock.unlock();
@@ -506,9 +514,9 @@ namespace write_text
 
          pbox->m_size = s;
 
-         pbox->m_bOk = false;
+         pbox->set_text_box_ok(false);
 
-         pbox->m_bInit = true;
+         pbox->set_text_box_init();
 
       }
 
@@ -528,6 +536,14 @@ namespace write_text
       }
 
       m_puserinteraction = puserinteraction;
+
+      auto psystem = m_psystem->m_papexsystem;
+
+      auto psubject = psystem->subject(id_os_dark_mode);
+
+      psubject->add_listener(this);
+
+      on_subject(psubject, psubject->m_mattercontext[this]);
 
       return estatus;
 
@@ -587,6 +603,16 @@ namespace write_text
          m_puserinteraction->set_need_redraw();
 
          m_puserinteraction->post_redraw();
+
+      }
+      else if (eid == id_os_dark_mode)
+      {
+
+         auto psystem = m_psystem;
+
+         auto pnode = psystem->node();
+
+         m_bDarkMode = pnode->is_app_dark_mode();
 
       }
 

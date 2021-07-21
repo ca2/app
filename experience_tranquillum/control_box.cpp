@@ -49,7 +49,7 @@ namespace experience
          if (rectangleClient.area() <= 0)
             return;
 
-         pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+         pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
          ::color::color crBackground;
 

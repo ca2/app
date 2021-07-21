@@ -5217,7 +5217,7 @@ void defer_term_ui()
 void x11_thread(osdisplay_data * pdisplaydata);
 
 
-__pointer(::thread) g_pthreadXlib;
+::task_pointer g_pthreadXlib;
 
 
 itask_t g_ithreadXlib;

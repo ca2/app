@@ -2159,7 +2159,7 @@ namespace aura
    void session::install_message_routing(::channel* pchannel)
    {
 
-      ::thread::install_message_routing(pchannel);
+      ::apex::session::install_message_routing(pchannel);
 
    //   //aura::application::install_message_routing(pchannel);
    //   aura::session::install_message_routing(pchannel);
@@ -2378,23 +2378,19 @@ namespace aura
    }
 
 
-   //__pointer(::apex::session) session::get_session()
-   //{
-
-   //   return this;
-
-   //}
-
-
-
-
-
-
    ::e_status     session::main()
    {
 
-      //return ::aura::session::main();
-      return ::thread::main();
+      auto estatus = ::aqua::session::main();
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return estatus;
 
    }
 

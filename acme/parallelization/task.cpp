@@ -15,12 +15,12 @@
 task::task()
 {
 
-   auto ptaskParent = ::get_task();
+   m_pobjectParentTask = ::get_task();
 
-   if (ptaskParent)
+   if (m_pobjectParentTask)
    {
 
-      ptaskParent->add_child_task(this);
+      m_pobjectParentTask->add_child_task(this);
 
    }
 
@@ -75,6 +75,29 @@ const char * task::get_task_tag()
 {
 
    return m_strTaskTag;
+
+}
+
+
+void task::add_child_task(::object* pobjectTask)
+{
+
+   if (m_pobjectParentTask)
+   {
+
+      // tasks tend to be ephemeral
+      // let a parent that maybe more stable
+      // to have the pobjectTask as child
+
+      m_pobjectParentTask->add_child_task(pobjectTask);
+
+   }
+   else
+   {
+
+      ::object::add_child_task(pobjectTask);
+
+   }
 
 }
 
@@ -145,23 +168,84 @@ bool task::is_running() const
 }
 
 
+bool task::check_children_task()
+{
+
+   auto b = ::object::check_children_task();
+
+   if (m_bSetFinish)
+   {
+
+      update_task_ready_to_quit();
+
+   }
+
+   return b;
+
+}
+
+
+void task::update_task_ready_to_quit()
+{
+
+
+}
+
+
+
+bool task::kick_thread()
+{
+
+   return false;
+
+}
+
+
 ::e_status task::main()
 {
 
    if (m_pmatter != this)
    {
 
-      return m_pmatter->run();
+      run_posted_routines();
+
+      auto estatus = m_pmatter->run();
+
+      run_posted_routines();
+
+      return estatus;
 
    }
 
    auto estatus = run();
+
+   if (!estatus)
+   {
+
+      return estatus;
+
+   }
 
    return estatus;
 
 }
 
 
+::e_status task::run()
+{
+
+   auto estatus = run_posted_routines();
+
+   if (!estatus)
+   {
+
+      return estatus;
+
+   }
+
+   return estatus;
+
+}
 
 
 
@@ -200,13 +284,23 @@ void* task::s_os_task(void* p)
    try
    {
 
-      ::task* pthread = (::task*) p;
+      ::task* pthread = (::task*)p;
 
       ::set_task(pthread OBJ_REF_DBG_COMMA_P_FUNCTION_LINE(pthread));
 
       pthread->release(OBJ_REF_DBG_P_FUNCTION_LINE(pthread));
 
-      pthread->main();
+      try
+      {
+
+         pthread->main();
+
+
+      }
+      catch (...)
+      {
+
+      }
 
       pthread->m_bTaskTerminated = true;
 
@@ -262,6 +356,44 @@ void task::unregister_task()
    auto psystem = m_psystem;
 
    psystem->unset_task(m_itask, this);
+
+}
+
+
+::e_status task::post(const ::routine& routine)
+{
+
+   synchronous_lock synchronouslock(mutex());
+
+   m_routineaPost.add(routine);
+
+   return ::success;
+
+}
+
+
+::e_status task::run_posted_routines()
+{
+
+   synchronous_lock synchronouslock(mutex());
+
+   if (m_routineaPost.has_element())
+   {
+
+      while (auto routine = m_routineaPost.pick_first())
+      {
+
+         synchronouslock.unlock();
+
+         auto estatus = routine();
+
+         synchronouslock.lock();
+
+      }
+
+   }
+
+   return ::success;
 
 }
 

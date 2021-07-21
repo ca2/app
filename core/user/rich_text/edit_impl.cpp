@@ -299,7 +299,7 @@ namespace user
       void edit_impl::on_message_left_button_down(::message::message * pmessage)
       {
 
-         __pointer(::message::mouse) pmouse(pmessage);
+         auto pmouse = pmessage->m_pmouse;
 
          if (!is_text_editable())
          {
@@ -390,7 +390,7 @@ namespace user
       void edit_impl::on_message_left_button_up(::message::message* pmessage)
       {
 
-         __pointer(::message::mouse) pmouse(pmessage);
+         auto pmouse = pmessage->m_pmouse;
 
          auto psession = get_session();
 
@@ -442,7 +442,7 @@ namespace user
       void edit_impl::on_message_mouse_move(::message::message* pmessage)
       {
 
-         __pointer(::message::mouse) pmouse(pmessage);
+         auto pmouse = pmessage->m_pmouse;
 
          if (!is_text_editable())
          {
@@ -700,7 +700,7 @@ namespace user
          //else if (_001IsTranslucent())
          //{
 
-         //   pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+         //   pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
          //   ::color::color crBackground = _001GetColor(::user::color_background, argb(128, 255, 255, 255));
 
@@ -724,7 +724,7 @@ namespace user
          //else
          //{
 
-         //   pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+         //   pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
          //   ::color::color crBackground = _001GetColor(m_ecolorBackground, argb(200, 255, 255, 255));
 
@@ -1025,7 +1025,7 @@ namespace user
 
          }
 
-         __pointer(::message::key) pkey(pmessage);
+         auto pkey = pmessage->m_pkey;
 
          auto psession = get_session();
 
@@ -1185,7 +1185,7 @@ namespace user
       void edit_impl::on_message_key_up(::message::message * pmessage)
       {
 
-         __pointer(::message::key) pkey(pmessage);
+         auto pkey = pmessage->m_pkey;
 
          auto psession = get_session();
 
@@ -1357,7 +1357,7 @@ namespace user
       void edit_impl::on_message_character(::message::message * pmessage)
       {
 
-            __pointer(::message::key) pkey(pmessage);
+            auto pkey = pmessage->m_pkey;
 
             string strChar;
 

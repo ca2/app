@@ -37,7 +37,7 @@ namespace experience
       bool on_message_mouse_move(::message::mouse * pmouse);
       bool on_message_left_button_up(::message::mouse * pmouse);
 
-      bool on_message_set_cursor(::message::set_cursor * psetcursor);
+      //bool on_message_set_cursor(::message::set_cursor * psetcursor);
 
 
       void NotifyFramework(e_hittest emode);

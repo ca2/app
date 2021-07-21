@@ -302,7 +302,7 @@ namespace browser
    void view::on_message_left_button_down(::message::message * pmessage)
    {
 
-      __pointer(::message::mouse) pmouse(pmessage);
+      auto pmouse = pmessage->m_pmouse;
 
       pmessage->previous();
 
@@ -313,7 +313,7 @@ namespace browser
    void view::_001OnMouse(::message::message * pmessage)
    {
 
-      __pointer(::message::mouse) pmouse(pmessage);
+      auto pmouse = pmessage->m_pmouse;
 
       pmessage->previous();
 
@@ -696,7 +696,7 @@ namespace browser
 
          rectImage.FitOnCenterOf(rectWork);
 
-         m_pimagePost->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_set);
+         m_pimagePost->get_graphics()->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
          if (m_prender->m_pimageImageStretched->is_null()
                || m_prender->m_pimageImageStretched->get_size() != rectImage->size()

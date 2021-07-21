@@ -455,7 +455,7 @@ namespace user
    void button::on_message_key_down(::message::message * pmessage)
    {
 
-      __pointer(::message::key) pkey(pmessage);
+      auto pkey = pmessage->m_pkey;
 
       ::user::enum_key iKey = pkey->m_ekey;
 
@@ -575,7 +575,7 @@ namespace user
          if (colorref_get_a_value(crBackground) > 0)
          {
 
-            pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+            pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
             pgraphics->fill_rectangle(rectangleClient, colorBack);
 
@@ -604,7 +604,7 @@ namespace user
          if (colorref_get_a_value(crBackground) > 0)
          {
 
-            pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+            pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
             pgraphics->fill_rectangle(rectangleClient, crBackground);
 
@@ -799,7 +799,7 @@ namespace user
 
          pgraphics->set_interpolation_mode(e_interpolation_mode_high_quality_bicubic);
 
-         pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+         pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
          pgraphics->draw(rectAspect, pimage->g(), ::rectangle(pimage->get_size()));
 
@@ -863,7 +863,7 @@ namespace user
 
             pgraphics->set_interpolation_mode(e_interpolation_mode_high_quality_bicubic);
 
-            pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+            pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
             pgraphics->draw(rectAspect, pimage->g(), ::rectangle(pimage->get_size()));
 

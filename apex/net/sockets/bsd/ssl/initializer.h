@@ -58,7 +58,11 @@ namespace sockets
       /**
          erase random file
       */
-      ~SSLInitializer();
+      ~SSLInitializer() override;
+
+      
+      ::e_status initialize(::object* pobject) override;
+
 
       void DeleteRandFile();
 

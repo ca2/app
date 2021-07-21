@@ -176,7 +176,7 @@ public:
    DECLARE_MESSAGE_HANDLER(_001OnToggleTransparentFrame);
    DECLARE_MESSAGE_HANDLER(_001OnUpdateToggleTransparentFrame);
    DECLARE_MESSAGE_HANDLER(_001OnGetMinMaxInfo);
-   DECLARE_MESSAGE_HANDLER(_001OnAppExit);
+   DECLARE_MESSAGE_HANDLER(on_message_app_exit);
    DECLARE_MESSAGE_HANDLER(_001OnNotifyIconTopic);
    DECLARE_MESSAGE_HANDLER(_001OnMouseActivate);
    DECLARE_MESSAGE_HANDLER(_001OnActivate);
@@ -254,7 +254,7 @@ public:
 
    virtual void show_task(bool bShow);
 
-   virtual void defer_set_icon();
+   //virtual void defer_set_icon();
 
    using ::user::frame_window::get_color;
 

@@ -439,7 +439,7 @@ namespace user
    void button::on_message_key_down(::message::message * pmessage)
    {
 
-      __pointer(::message::key) pkey(pmessage);
+      auto pkey = pmessage->m_pkey;
 
       ::user::enum_key iKey = pkey->m_ekey;
 
@@ -472,39 +472,39 @@ namespace user
    }
 
 
-   ::color::color button::get_button_text_color()
-   {
+   //::color::color button::get_button_text_color()
+   //{
 
-      ::color::color crText;
+   //   ::color::color crText;
 
-      if (!is_window_enabled())
-      {
+   //   if (!is_window_enabled())
+   //   {
 
-         crText = argb(255, 0, 0, 0);
+   //      crText = argb(255, 0, 0, 0);
 
-      }
-      else if (is_left_button_pressed() || get_echeck() == ::check_checked)
-      {
+   //   }
+   //   else if (is_left_button_pressed() || get_echeck() == ::check_checked)
+   //   {
 
-         crText = argb(255, 0, 0, 0);
+   //      crText = argb(255, 0, 0, 0);
 
-      }
-      else if (m_itemHover.is_set())
-      {
+   //   }
+   //   else if (m_itemHover.is_set())
+   //   {
 
-         crText = argb(255, 80, 80, 80);
+   //      crText = argb(255, 80, 80, 80);
 
-      }
-      else
-      {
+   //   }
+   //   else
+   //   {
 
-         crText = argb(255, 0, 0, 0);
+   //      crText = argb(255, 0, 0, 0);
 
-      }
+   //   }
 
-      return crText;
+   //   return crText;
 
-   }
+   //}
 
 
    ::color::color button::_001GetButtonBackgroundColor()
@@ -586,7 +586,7 @@ namespace user
 
          colorBottomRight.hls_rate(0.0, 0.75, 0.0);
 
-         pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+         pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
          pgraphics->draw_3drect(rectPush, colorTopLeft, colorBottomRight);
 
@@ -609,7 +609,7 @@ namespace user
          if (colorBackground.is_translucent())
          {
 
-            pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+            pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
             pgraphics->fill_rectangle(rectangleClient, colorBackground);
 
@@ -635,9 +635,11 @@ namespace user
          if (strText.has_char())
          {
 
-            ::color::color crText = get_button_text_color();
+            auto pstyle = get_style(pgraphics);
 
-            pgraphics->set_text_color(crText);
+            ::color::color colorText = get_color(pstyle, e_element_text, get_state());
+
+            pgraphics->set_text_color(colorText);
 
             ::e_align ealign;
             ::e_draw_text edrawtext;
@@ -678,6 +680,8 @@ namespace user
 
             edrawtext = e_draw_text_single_line;
 
+            pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+
             pgraphics->draw_text(strText, rectText, ealign, edrawtext);
 
          }
@@ -686,15 +690,15 @@ namespace user
       else
       {
 
-         ::color::color crText = get_button_text_color();
+         auto pstyle = get_style(pgraphics);
 
-         pgraphics->set_text_color(crText);
+         ::color::color colorText = get_color(pstyle, e_element_text, get_state());
+
+         pgraphics->set_text_color(colorText);
 
          ::draw2d::pen_pointer pen(e_create);
 
-         pen->m_color = crText;
-
-         pen->m_dWidth = 1.0;
+         pen->create_solid(1.0, colorText);
 
          pgraphics->set(pen);
 
@@ -811,7 +815,7 @@ namespace user
 
          pgraphics->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
 
-         pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+         pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
          pgraphics->stretch(rectAspect, pimage->g(), ::rectangle_i32(pimage->get_size()));
 
@@ -877,7 +881,7 @@ namespace user
 
             pgraphics->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
 
-            pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+            pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
             pgraphics->stretch(rectAspect, pimage->g(), ::rectangle_i32(pimage->get_size()));
 

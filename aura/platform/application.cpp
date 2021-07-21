@@ -81,9 +81,7 @@ namespace aura
 
 
 
-   application::application(const char * pszAppId) :
-      ::application(pszAppId)//,
-      //m_semCompiler(64, 64)
+   application::application()
    {
 
       m_pauraapplication = this;
@@ -196,7 +194,16 @@ namespace aura
 
       }
 
-      estatus = __compose_new(m_puiptraFrame);
+      estatus = __compose_new(m_puserinteractiona);
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      estatus = __compose_new(m_puserinteractionaFrame);
 
       if (!estatus)
       {
@@ -282,15 +289,39 @@ namespace aura
    void application::enumerate_composite(matter_array& a)
    {
 
-      auto puiptraFrame = m_puiptraFrame.get();
+      auto puserinteractiona = m_puserinteractiona.get();
 
-      if (puiptraFrame)
+      if (puserinteractiona)
       {
 
-         for (auto& pframe : puiptraFrame->interactiona())
+         for (auto& puserinteraction : puserinteractiona->interactiona())
          {
 
-            a.add_non_null(pframe);
+            if (::is_set(puserinteraction))
+            {
+
+               a.add_unique(puserinteraction);
+
+            }
+
+         }
+
+      }
+
+      auto puserinteractionaFrame = m_puserinteractionaFrame.get();
+
+      if (puserinteractionaFrame)
+      {
+
+         for (auto& puserinteraction : puserinteractionaFrame->interactiona())
+         {
+
+            if (::is_set(puserinteraction))
+            {
+
+               a.add_unique(puserinteraction);
+
+            }
 
          }
 
@@ -358,7 +389,7 @@ namespace aura
 
       ::application::install_message_routing(pchannel);
 
-      //connect_command("app_exit", &application::_001OnAppExit);
+      //connect_command("app_exit", &application::on_message_app_exit);
       connect_command("switch_context_theme", &application::_001OnSwitchContextTheme);
 
    }
@@ -1643,16 +1674,16 @@ namespace aura
 
       }
 
-      try
-      {
+      //try
+      //{
 
-         TermApplication();
+      //   TermApplication();
 
-      }
-      catch (...)
-      {
+      //}
+      //catch (...)
+      //{
 
-      }
+      //}
 
 
 
@@ -2175,12 +2206,12 @@ retry_license:
 
          //}
 
-         if(::is_set(get_session()))
-         {
+         //if(::is_set(get_session()))
+         //{
 
-            get_session()->post_message(e_message_erase_application, 0, this);
+         //   get_session()->post_message(e_message_erase_application, 0, this);
 
-         }
+         //}
 
 
          try
@@ -3702,14 +3733,14 @@ retry_license:
 
       //synchronous_lock slChildren(::user::mutex_children2());
 
-      auto puiptraFrame = m_puiptraFrame;
+      auto puserinteractionFrame = m_puserinteractionaFrame;
 
-      return puiptraFrame->get_child(pinteraction);
+      return puserinteractionFrame->get_child(pinteraction);
 
    }
 
 
-   void application::add_frame(::user::interaction * puserinteraction)
+   void application::add_user_interaction(::user::interaction * puserinteraction)
    {
 
       __pointer(::aura::session) psession = get_session();
@@ -3737,10 +3768,17 @@ retry_license:
 
       synchronous_lock synchronouslock(&m_mutexFrame); // recursive lock (on m_framea.add(puserinteraction)) but m_puiMain is "cared" by m_frame.m_mutex
 
-      if (m_puiptraFrame->add_unique_interaction(puserinteraction))
+      if (m_puserinteractiona->add_unique_interaction(puserinteraction))
       {
 
-         TRACE("::base::application::add_frame ::user::interaction = 0x%" PRIxPTR " (%s) app=%s", puserinteraction, typeid(*puserinteraction).name(), typeid(*this).name());
+         if (puserinteraction->is_frame_window())
+         {
+
+            m_puserinteractionaFrame->add_unique_interaction(puserinteraction);
+
+         }
+
+         TRACE("::base::application::add_user_interaction ::user::interaction = 0x%" PRIxPTR " (%s) app=%s", puserinteraction, typeid(*puserinteraction).name(), typeid(*this).name());
 
          if (!(puserinteraction->m_ewindowflag & e_window_flag_satellite_window))
          {
@@ -3780,7 +3818,7 @@ retry_license:
    }
 
 
-   void application::erase_frame(::user::interaction * puserinteraction)
+   void application::erase_user_interaction(::user::interaction * puserinteraction)
    {
 
       synchronous_lock synchronouslock(&m_mutexFrame); // recursive lock (on m_framea.erase(puserinteraction)) but m_puiMain is "cared" by m_frame.m_mutex
@@ -3792,12 +3830,24 @@ retry_license:
 
       }
 
-      if (m_puiptraFrame != nullptr)
+      if (m_puserinteractiona != nullptr)
       {
 
-         auto oldInteractionCount = m_puiptraFrame->interaction_count();
+         if (m_puserinteractiona->erase_interaction(puserinteraction) > 0)
+         {
 
-         if (m_puiptraFrame->erase_interaction(puserinteraction) > 0)
+            TRACE("::base::application::erase_user_interaction ::user::interaction = 0x%016x (%s) app=%s", puserinteraction, typeid(*puserinteraction).name(), typeid(*this).name());
+
+         }
+
+      }
+
+      if (m_puserinteractionaFrame != nullptr)
+      {
+
+         auto oldInteractionCount = m_puserinteractionaFrame->interaction_count();
+
+         if (m_puserinteractionaFrame->erase_interaction(puserinteraction) > 0)
          {
 
             TRACE("::base::application::erase_frame ::user::interaction = 0x%016x (%s) app=%s", puserinteraction, typeid(*puserinteraction).name(), typeid(*this).name());
@@ -3807,10 +3857,12 @@ retry_license:
          if (oldInteractionCount > 0)
          {
 
-            if (m_puiptraFrame->has_no_interaction())
+            if (m_puserinteractionaFrame->has_no_interaction())
             {
 
-               ::application::_001CloseApplication();
+               synchronouslock.unlock();
+
+               get_application()->post_message(e_message_close);
 
             }
 
@@ -4026,7 +4078,7 @@ retry_license:
       if (pinteraction != nullptr)
       {
 
-         return pinteraction->get_message(pmsg->m_id, pmsg->wParam, pmsg->lParam, pmsg->pt);
+         return pinteraction->get_message(pmsg->m_id, pmsg->wParam, pmsg->lParam);
 
       }
 
@@ -4039,7 +4091,7 @@ retry_license:
 
       }
 
-      pusermessage->set(pmsg->oswindow, pwindow, pmsg->m_id, pmsg->wParam, pmsg->lParam, pmsg->pt);
+      pusermessage->set(pmsg->oswindow, pwindow, pmsg->m_id, pmsg->wParam, pmsg->lParam);
 
       return pusermessage;
 
@@ -4122,7 +4174,7 @@ retry_license:
    //}
 
 
-   //void application::_001OnAppExit(::message::message * pmessage)
+   //void application::on_message_app_exit(::message::message * pmessage)
    //{
 
    //   pmessage->m_bRet = true;
@@ -5738,10 +5790,10 @@ namespace aura
 {
 
 
-   const char application::gen_FileSection[] = "Recent File List";
-   const char application::gen_FileEntry[] = "File%d";
-   const char application::gen_PreviewSection[] = "Settings";
-   const char application::gen_PreviewEntry[] = "PreviewPages";
+   //const char application::gen_FileSection[] = "Recent File List";
+   //const char application::gen_FileEntry[] = "File%d";
+   //const char application::gen_PreviewSection[] = "Settings";
+   //const char application::gen_PreviewEntry[] = "PreviewPages";
 
 
    //application::application()
@@ -5881,12 +5933,12 @@ namespace aura
    //}
 
 
-   u32 application::guess_code_page(const string& str)
-   {
+   //u32 application::guess_code_page(const string& str)
+   //{
 
-      return 0;
+   //   return 0;
 
-   }
+   //}
 
 
    //lresult application::GetPaintMsgProc(i32 nCode, wparam wParam, lparam lParam)
@@ -5913,31 +5965,31 @@ namespace aura
    }
 
 
-#ifdef WINDOWS
-
-   bool application::OnMessageWindowMessage(MESSAGE * pmsg)
-
-   {
-
-      UNREFERENCED_PARAMETER(pmsg);
-
-
-      return false;
-
-   }
-
-#elif defined(LINUX)
-
-   bool application::OnX11WindowMessage(void* pXevent) // XEvent *
-   {
-
-      UNREFERENCED_PARAMETER(pXevent);
-
-      return false;
-
-   }
-
-#endif
+//#ifdef WINDOWS
+//
+//
+//   bool application::OnMessageWindowMessage(MESSAGE * pmsg)
+//   {
+//
+//      UNREFERENCED_PARAMETER(pmsg);
+//
+//
+//      return false;
+//
+//   }
+//
+//#elif defined(LINUX)
+//
+//   bool application::OnX11WindowMessage(void* pXevent) // XEvent *
+//   {
+//
+//      UNREFERENCED_PARAMETER(pXevent);
+//
+//      return false;
+//
+//   }
+//
+//#endif
 
    void application::OnUpdateRecentFileMenu(::message::command* pcommand)
    {
@@ -5947,18 +5999,18 @@ namespace aura
    }
 
 
-   bool application::GetResourceData(::u32 nID, const char* pcszType, memory& storage)
+   //bool application::GetResourceData(::u32 nID, const char* pcszType, memory& storage)
 
-   {
+   //{
 
-      UNREFERENCED_PARAMETER(nID);
-      UNREFERENCED_PARAMETER(pcszType);
+   //   UNREFERENCED_PARAMETER(nID);
+   //   UNREFERENCED_PARAMETER(pcszType);
 
-      UNREFERENCED_PARAMETER(storage);
+   //   UNREFERENCED_PARAMETER(storage);
 
-      return false;
+   //   return false;
 
-   }
+   //}
 
 
 //#ifdef WINDOWS_DESKTOP
@@ -5981,18 +6033,18 @@ namespace aura
 //
 //#endif
 
-   /////////////////////////////////////////////////////////////////////////////
-   // WinApp UI related functions
-
-   void application::EnableModelessEx(bool bEnable)
-   {
-      UNREFERENCED_PARAMETER(bEnable);
-#ifdef ___NO_OLE_SUPPORT
-      UNUSED(bEnable);
-#endif
-
-
-   }
+//   /////////////////////////////////////////////////////////////////////////////
+//   // WinApp UI related functions
+//
+//   void application::EnableModelessEx(bool bEnable)
+//   {
+//      UNREFERENCED_PARAMETER(bEnable);
+//#ifdef ___NO_OLE_SUPPORT
+//      UNUSED(bEnable);
+//#endif
+//
+//
+//   }
 
 
 
@@ -7072,12 +7124,12 @@ namespace aura
    }
 
 
-   i32 application::get_open_document_count()
-   {
-      //ENSURE(m_pdocmanager != nullptr);
-      //  return document_manager()->get_open_document_count();
-      return 0;
-   }
+   //i32 application::get_open_document_count()
+   //{
+   //   //ENSURE(m_pdocmanager != nullptr);
+   //   //  return document_manager()->get_open_document_count();
+   //   return 0;
+   //}
 
 
    // This is aura API library.
@@ -7739,25 +7791,25 @@ namespace aura
    //}
 
 
-   bool application::base_support()
-   {
+   //bool application::base_support()
+   //{
 
-      //if(!application::base_support())
-      // return false;
+   //   //if(!application::base_support())
+   //   // return false;
 
-      if (m_strBaseSupportId.is_empty())
-      {
+   //   if (m_strBaseSupportId.is_empty())
+   //   {
 
-         property_set propertyset;
+   //      property_set propertyset;
 
-         dialog_box("err\\developer\\base_support\\support_id_not_specified.xml", propertyset);
+   //      dialog_box("err\\developer\\base_support\\support_id_not_specified.xml", propertyset);
 
-         return false;
+   //      return false;
 
-      }
+   //   }
 
-      return true;
-   }
+   //   return true;
+   //}
 
 
    //string application::sync_message_box(const string & pszMatter, property_set & propertyset)
@@ -7861,39 +7913,39 @@ namespace aura
    //}
 
 
-   void application::EnableShellOpen()
-   {
+//   void application::EnableShellOpen()
+//   {
+////
+////#ifdef WINDOWS_DESKTOP
+////
+////      ASSERT(m_atomApp == 0 && m_atomSystemTopic == 0); // do once
+////
+////      if (m_atomApp != 0 || m_atomSystemTopic != 0)
+////      {
+////
+////         return;
+////
+////      }
+////
+////      // Win95 & Win98 sends a WM_DDE_INITIATE with an atom that points to the
+////      // i16 file name so we need to use the i16 file name.
+////      string strShortName;
+////
+////      strShortName = file().module();
+////
+////      // strip out path
+////      //string strFileName = ::PathFindFileName(strShortName);
+////      // strip out extension
+////      //char * pszFileName = strFileName.GetBuffer();
+////      //::PathRemoveExtension(pszFileName);
+////      //strFileName.ReleaseBuffer();
+////
+////      //      m_atomApp = ::GlobalAddAtom(strFileName);
+////      //    m_atomSystemTopic = ::GlobalAddAtom("system");
+////
+////#endif
 //
-//#ifdef WINDOWS_DESKTOP
-//
-//      ASSERT(m_atomApp == 0 && m_atomSystemTopic == 0); // do once
-//
-//      if (m_atomApp != 0 || m_atomSystemTopic != 0)
-//      {
-//
-//         return;
-//
-//      }
-//
-//      // Win95 & Win98 sends a WM_DDE_INITIATE with an atom that points to the
-//      // i16 file name so we need to use the i16 file name.
-//      string strShortName;
-//
-//      strShortName = file().module();
-//
-//      // strip out path
-//      //string strFileName = ::PathFindFileName(strShortName);
-//      // strip out extension
-//      //char * pszFileName = strFileName.GetBuffer();
-//      //::PathRemoveExtension(pszFileName);
-//      //strFileName.ReleaseBuffer();
-//
-//      //      m_atomApp = ::GlobalAddAtom(strFileName);
-//      //    m_atomSystemTopic = ::GlobalAddAtom("system");
-//
-//#endif
-
-   }
+//   }
 
 
 
@@ -8263,7 +8315,7 @@ namespace aura
    i32 application::GetVisibleFrameCount()
    {
 
-      auto uia = *m_puiptraFrame;
+      auto uia = *m_puserinteractionaFrame;
 
       i32 iCount = 0;
 
@@ -8387,7 +8439,7 @@ namespace aura
    }
 
 
-   bool application::_001CanCloseApplication()
+   bool application::can_close_application()
    {
 
       return true;
@@ -9097,10 +9149,10 @@ namespace aura
    void application::_001CloseApplication()
    {
 
-      if (m_puiptraFrame && m_puiptraFrame->has_interaction())
+      if (m_puserinteractionaFrame && m_puserinteractionaFrame->has_interaction())
       {
 
-         for (auto& pframe : m_puiptraFrame->interactiona())
+         for (auto& pframe : m_puserinteractionaFrame->interactiona())
          {
 
             if (::is_set(pframe))
@@ -9194,6 +9246,23 @@ namespace aura
    //   return false;
 
    //}
+
+   //void application::on_initial_frame_position(::user::frame* pframe)
+   //{
+
+   //   __pointer(::apex::system) psystem = get_system();
+
+   //   psystem->on_initial_frame_position(pframe);
+
+   //}
+
+
+
+   //void application::on_graphics_ready()
+   //{
+
+   //}
+
 
 } // namespace aura
 

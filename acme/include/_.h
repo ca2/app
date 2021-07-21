@@ -4457,6 +4457,9 @@ class wcsdup_array;
 #include "acme/regular_expression/_regular_expression.h"
 
 
+#include "acme/platform/log.h"
+
+
 #include "acme/platform/system.h"
 
 

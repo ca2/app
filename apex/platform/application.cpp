@@ -118,8 +118,7 @@ CLASS_DECL_APEX int ui_open_url(const char * psz);
 //{
 
 
-application::application(const char * pszAppId) :
-m_strAppId(::is_set(pszAppId) ? pszAppId : "")
+application::application()
 {
 
    //m_bProcessingApplicationExitRequest = false;
@@ -485,10 +484,12 @@ void application::process_command_line(command_line* pcommandline)
 void application::install_message_routing(::channel * pchannel)
 {
 
-::thread::install_message_routing(pchannel);
+   ::thread::install_message_routing(pchannel);
 
-connect_command("app_exit", this, &application::_001OnAppExit);
-connect_command("switch_context_theme", this, &application::_001OnSwitchContextTheme);
+   MESSAGE_LINK(e_message_close, pchannel, this, &application::on_message_close);
+
+   connect_command("app_exit", this, &application::on_message_app_exit);
+   connect_command("switch_context_theme", this, &application::_001OnSwitchContextTheme);
 
 }
 
@@ -1460,24 +1461,12 @@ return nullptr;
 //}
 
 
+void application::_001CloseApplication()
+{
 
+   post_message(e_message_close, 0, 0);
 
-
-//void application::_001CloseApplication()
-//{
-
-//   __throw(todo);
-
-//}
-
-
-
-
-
-
-
-
-
+}
 
 
 
@@ -1533,7 +1522,7 @@ return get_temp_file_name_template(strRet, lpszName, pszExtension, nullptr);
 ::e_status application::exit_application()
 {
 
-   _001TryCloseApplication();
+   try_close_application();
 
    return ::success;
 
@@ -2419,11 +2408,11 @@ void application::term_instance()
 }
 
 
-void application::TermApplication()
-{
-
-
-}
+//void application::TermApplication()
+//{
+//
+//
+//}
 
 
 ::e_status application::application_pre_run()
@@ -2455,41 +2444,41 @@ if (!is_system() && is_true("SessionSynchronizedInput"))
 
 m_millisHeartBeat.Now();
 
-try
-{
-
-if (!InitApplication())
-{
-
-return false;
-
-}
-
-}
-catch (::exit_exception * pe)
-{
-
-throw pe;
-
-}
-catch (const ::exception::exception * pe)
-{
-
-//thisexc << 1 << m_iErrorCode;
-
-::acme::del(pe);
-
-return false;
-
-}
-catch (...)
-{
-
-//thisexcall << 1 << m_iErrorCode;
-
-return false;
-
-}
+//try
+//{
+//
+//if (!InitApplication())
+//{
+//
+//return false;
+//
+//}
+//
+//}
+//catch (::exit_exception * pe)
+//{
+//
+//throw pe;
+//
+//}
+//catch (const ::exception::exception * pe)
+//{
+//
+////thisexc << 1 << m_iErrorCode;
+//
+//::acme::del(pe);
+//
+//return false;
+//
+//}
+//catch (...)
+//{
+//
+////thisexcall << 1 << m_iErrorCode;
+//
+//return false;
+//
+//}
 
 m_millisHeartBeat.Now();
 
@@ -2671,58 +2660,58 @@ catch (...)
 
 }
 
-try
-{
+//try
+//{
+//
+//TermApplication();
+//
+//}
+//catch (...)
+//{
+//
+//}
 
-TermApplication();
 
-}
-catch (...)
-{
-
-}
-
-
-
-}
-
-bool application::InitApplication()
-{
-
-LoadSysPolicies();
-
-return true;
 
 }
+
+//bool application::InitApplication()
+//{
+//
+//   LoadSysPolicies();
+//
+//return true;
+//
+//}
 
 
 
 bool application::do_install()
 {
 
-__pointer(::apex::system) psystem = get_system();
+   __pointer(::apex::system) psystem = get_system();
 
-if (!on_install())
-{
+   if (!on_install())
+   {
 
-::output_debug_string("Failed at on_install : " + m_strAppId + "\n\n");
+      ::output_debug_string("Failed at on_install : " + m_strAppId + "\n\n");
 
-psystem->m_result.add(error_failed);
+      psystem->m_result.add(error_failed);
 
-return false;
+      return false;
 
-}
+   }
 
-string strBuild = m_strBuild;
+   string strBuild = m_strBuild;
 
-string strAppId = m_strAppId;
+   string strAppId = m_strAppId;
 
-//xxdebug_box("on_install1", strAppId, 0);
+   //xxdebug_box("on_install1", strAppId, 0);
 
-system_add_app_install(strAppId, strBuild);
+   system_add_app_install(strAppId, strBuild);
 
 
-return true;
+   return true;
 
 }
 
@@ -3050,33 +3039,33 @@ return ::thread::run();
 }
 
 
-bool application::safe_is_running()
-{
-
-bool bRunning = false;
-
-try
-{
-
-if (is_running())
-{
-
-bRunning = true;
-
-}
-
-}
-catch (...)
-{
-
-bRunning = false;
-
-}
-
-
-return bRunning;
-
-}
+//bool application::safe_is_running()
+//{
+//
+//bool bRunning = false;
+//
+//try
+//{
+//
+//if (is_running())
+//{
+//
+//bRunning = true;
+//
+//}
+//
+//}
+//catch (...)
+//{
+//
+//bRunning = false;
+//
+//}
+//
+//
+//return bRunning;
+//
+//}
 
 
 //service * application::get_service()
@@ -3364,6 +3353,14 @@ return true;
 
 void application::process_term()
 {
+
+
+   if (::is_set(get_session()))
+   {
+
+      get_session()->post_message(e_message_erase_application, 0, this);
+
+   }
 
 
 try
@@ -3847,124 +3844,106 @@ catch(...)
 void application::term_application()
 {
 
+   try
+   {
 
-try
-{
+      close(::apex::e_end_app);
 
-close(::apex::e_end_app);
+   }
+   catch (...)
+   {
 
-}
-catch (...)
-{
+   }
 
-}
+   release_exclusive();
 
-release_exclusive();
+   try
+   {
 
-try
-{
+      try
+      {
 
-//if(::is_set(m_pappParent))
-//{
-//
-//m_pappParent->app_erase(this);
-//
-//}
+         __unbind(this, m_pinterprocessintercommunication OBJ_REF_DBG_COMMA_THIS);
 
-if(::is_set(get_session()))
-{
+      }
+      catch (...)
+      {
 
-   get_session()->post_message(e_message_erase_application, 0, (::application *) this);
+      }
 
-}
+      try
+      {
 
-try
-{
-
-__unbind(this, m_pinterprocessintercommunication OBJ_REF_DBG_COMMA_THIS);
-
-}
-catch (...)
-{
-
-}
-
-try
-{
-
-term();
-
-}
-catch(...)
-{
+         term();
+   
+      }
+      catch(...)
+      {
 
 
-}
+      }
 
-try
-{
+      try
+      {
 
-term3();
+         term3();
 
-}
-catch(...)
-{
-
-
-}
-
-try
-{
-
-term2();
-
-}
-catch(...)
-{
+      }
+      catch(...)
+      {
 
 
-}
+      }
 
-try
-{
+      try
+      {
 
-term1();
+         term2();
 
-}
-catch(...)
-{
+      }
+      catch(...)
+      {
 
+
+      }
+
+      try
+      {
+
+         term1();
+
+      }
+      catch(...)
+      {
+
+
+      }
+
+
+   }
+   catch (...)
+   {
+
+   }
 
 }
-
-
-}
-catch (...)
-{
-
-}
-
-
-}
-
-
 
 
 __pointer(::acme::exclusive) application::get_exclusive(string strId ARG_SEC_ATTRS)
 {
 
-auto & pexclusive = m_mapExclusive[strId];
+   auto & pexclusive = m_mapExclusive[strId];
 
-if(!pexclusive)
-{
+   if(!pexclusive)
+   {
 
-auto pexclusiveNew = __new(::acme::exclusive(strId ADD_PARAM_SEC_ATTRS));
+      auto pexclusiveNew = __new(::acme::exclusive(strId ADD_PARAM_SEC_ATTRS));
 
-__m_own(this, pexclusive, pexclusiveNew OBJ_REF_DBG_COMMA_THIS_NOTE("::application::get_exclusive") );
+      __m_own(this, pexclusive, pexclusiveNew OBJ_REF_DBG_COMMA_THIS_NOTE("::application::get_exclusive") );
 
-}
+   }
 
-return pexclusive;
+   return pexclusive;
 
 }
 
@@ -3972,16 +3951,16 @@ return pexclusive;
 bool application::exclusive_fails(string strId ARG_SEC_ATTRS)
 {
 
-auto pexclusive = get_exclusive(strId ADD_PARAM_SEC_ATTRS);
+   auto pexclusive = get_exclusive(strId ADD_PARAM_SEC_ATTRS);
 
-if(!pexclusive)
-{
+   if(!pexclusive)
+   {
 
-return false;
+      return false;
 
-}
+   }
 
-return pexclusive->exclusive_fails();
+   return pexclusive->exclusive_fails();
 
 }
 
@@ -3991,99 +3970,136 @@ bool application::check_exclusive(bool & bHandled)
 
 #ifdef _UWP
 
-return true;
+   return true;
 
 #endif
 
-bool bSetOk;
+   bool bSetOk;
 
-bool bResourceException = false;
+   bool bResourceException = false;
 
-#ifdef WINDOWS_DESKTOP
+   #ifdef WINDOWS_DESKTOP
 
-LPSECURITY_ATTRIBUTES psa = nullptr;
+   LPSECURITY_ATTRIBUTES psa = nullptr;
 
-bSetOk = false;
+   bSetOk = false;
 
-SECURITY_ATTRIBUTES MutexAttributes;
-ZeroMemory(&MutexAttributes, sizeof(MutexAttributes));
-MutexAttributes.nLength = sizeof(MutexAttributes);
-MutexAttributes.bInheritHandle = false; // object uninheritable
-// declare and initialize a security descriptor
-SECURITY_DESCRIPTOR SD;
-bool bInitOk = InitializeSecurityDescriptor(&SD, SECURITY_DESCRIPTOR_REVISION) != false;
-if (bInitOk)
-{
-// give the security descriptor a Null Dacl
-// done using the  "true, (PACL)nullptr" here
-bSetOk = SetSecurityDescriptorDacl(&SD,
-                                true,
-                                (PACL)nullptr,
-                                false) != false;
-}
+   SECURITY_ATTRIBUTES MutexAttributes;
+   ZeroMemory(&MutexAttributes, sizeof(MutexAttributes));
+   MutexAttributes.nLength = sizeof(MutexAttributes);
+   MutexAttributes.bInheritHandle = false; // object uninheritable
+   // declare and initialize a security descriptor
+   SECURITY_DESCRIPTOR SD;
+   bool bInitOk = InitializeSecurityDescriptor(&SD, SECURITY_DESCRIPTOR_REVISION) != false;
+   if (bInitOk)
+   {
+   // give the security descriptor a Null Dacl
+   // done using the  "true, (PACL)nullptr" here
+   bSetOk = SetSecurityDescriptorDacl(&SD,
+                                   true,
+                                   (PACL)nullptr,
+                                   false) != false;
+   }
 
-if (bSetOk)
-{
-
-MutexAttributes.lpSecurityDescriptor = &SD;
-
-
-psa = &MutexAttributes;
-
-
-}
-
-#else
-
-bSetOk = true;
-
-#endif
-
-
-if (bSetOk)
-{
-
-bool bGlobalExclusiveFail = exclusive_fails(get_global_mutex_name() INSERT_PARAM_SEC_ATTRS(&MutexAttributes));
-
-if(bGlobalExclusiveFail && m_eexclusiveinstance == ExclusiveInstanceGlobal)
-{
-
-TRACE("A instance of the application:<br><br> - " + string(m_strAppName) + "<br><br>seems to be already running at the same machine<br>Only one instance of this application can run globally: at the same machine.<br><br>Exiting this new instance.");
-
-try
-{
-
-   if(!on_exclusive_instance_conflict(bHandled, ExclusiveInstanceGlobal, ""))
+   if (bSetOk)
    {
 
-      return false;
+   MutexAttributes.lpSecurityDescriptor = &SD;
+
+
+   psa = &MutexAttributes;
+
 
    }
 
-}
-catch(...)
-{
+   #else
 
-   return false;
+   bSetOk = true;
 
-}
+   #endif
 
-}
 
-if (m_eexclusiveinstance == ExclusiveInstanceGlobalId)
-{
+      if (bSetOk)
+      {
 
-bool bGlobalIdExclusiveFail = exclusive_fails(get_global_id_mutex_name() INSERT_PARAM_SEC_ATTRS(&MutexAttributes));
+      bool bGlobalExclusiveFail = exclusive_fails(get_global_mutex_name() INSERT_PARAM_SEC_ATTRS(&MutexAttributes));
 
-if (bGlobalIdExclusiveFail)
-{
+      if(bGlobalExclusiveFail && m_eexclusiveinstance == ExclusiveInstanceGlobal)
+      {
 
-   TRACE("A instance of the application:<br><br>-" + string(m_strAppName) + "with the id \"" + get_local_mutex_id() + "\" <br><br>seems to be already running at the same machine<br>Only one instance of this application can run globally: at the same machine with the same id.<br><br>Exiting this new instance.");
+      TRACE("A instance of the application:<br><br> - " + string(m_strAppName) + "<br><br>seems to be already running at the same machine<br>Only one instance of this application can run globally: at the same machine.<br><br>Exiting this new instance.");
 
-   try
-   {
+      try
+      {
 
-      if(!on_exclusive_instance_conflict(bHandled, ExclusiveInstanceGlobalId, get_global_mutex_id()))
+         if(!on_exclusive_instance_conflict(bHandled, ExclusiveInstanceGlobal, ""))
+         {
+
+            return false;
+
+         }
+
+      }
+      catch(...)
+      {
+
+         return false;
+
+      }
+
+      }
+
+      if (m_eexclusiveinstance == ExclusiveInstanceGlobalId)
+      {
+
+      bool bGlobalIdExclusiveFail = exclusive_fails(get_global_id_mutex_name() INSERT_PARAM_SEC_ATTRS(&MutexAttributes));
+
+      if (bGlobalIdExclusiveFail)
+      {
+
+         TRACE("A instance of the application:<br><br>-" + string(m_strAppName) + "with the id \"" + get_local_mutex_id() + "\" <br><br>seems to be already running at the same machine<br>Only one instance of this application can run globally: at the same machine with the same id.<br><br>Exiting this new instance.");
+
+         try
+         {
+
+            if(!on_exclusive_instance_conflict(bHandled, ExclusiveInstanceGlobalId, get_global_mutex_id()))
+            {
+
+               return false;
+
+            }
+
+         }
+         catch(...)
+         {
+
+            return false;
+
+         }
+
+      }
+
+      }
+
+      bool bLocalExclusiveFail = exclusive_fails(get_local_mutex_name()  INSERT_PARAM_SEC_ATTRS(&MutexAttributes));
+
+      if (bLocalExclusiveFail && m_eexclusiveinstance == ExclusiveInstanceLocal)
+      {
+
+      try
+      {
+
+         TRACE("A instance of the application:<br><br>-" + string(m_strAppName) + "<br><br>seems to be already running at the same account.<br>Only one instance of this application can run locally: at the same account.<br><br>Exiting this new instance.");
+
+         if(!on_exclusive_instance_conflict(bHandled, ExclusiveInstanceLocal, ""))
+         {
+
+            return false;
+
+         }
+
+      }
+      catch (...)
       {
 
          return false;
@@ -4091,59 +4107,30 @@ if (bGlobalIdExclusiveFail)
       }
 
    }
-   catch(...)
+
+   if (m_eexclusiveinstance == ExclusiveInstanceLocalId)
    {
 
-      return false;
+   bool bLocalIdExclusiveFail = exclusive_fails(get_local_id_mutex_name() INSERT_PARAM_SEC_ATTRS(&MutexAttributes));
 
-   }
-
-}
-
-}
-
-bool bLocalExclusiveFail = exclusive_fails(get_local_mutex_name()  INSERT_PARAM_SEC_ATTRS(&MutexAttributes));
-
-if (bLocalExclusiveFail && m_eexclusiveinstance == ExclusiveInstanceLocal)
-{
-
-try
-{
-
-   TRACE("A instance of the application:<br><br>-" + string(m_strAppName) + "<br><br>seems to be already running at the same account.<br>Only one instance of this application can run locally: at the same account.<br><br>Exiting this new instance.");
-
-   if(!on_exclusive_instance_conflict(bHandled, ExclusiveInstanceLocal, ""))
+   if (bLocalIdExclusiveFail)
    {
 
-      return false;
+      try
+      {
 
-   }
+         // Should in some way activate the other instance
+         TRACE("A instance of the application:<br><br>           - " + string(m_strAppName) + "with the id \"" + get_local_mutex_id() + "\" <br><br>seems to be already running at the same account.<br>Only one instance of this application can run locally: at the same ac::count with the same id.<br><br>Exiting this new instance.");
 
-}
-catch (...)
-{
+         if(!on_exclusive_instance_conflict(bHandled, ExclusiveInstanceLocalId, get_local_mutex_id()))
+         {
 
-   return false;
+            return false;
 
-}
+         }
 
-}
-
-if (m_eexclusiveinstance == ExclusiveInstanceLocalId)
-{
-
-bool bLocalIdExclusiveFail = exclusive_fails(get_local_id_mutex_name() INSERT_PARAM_SEC_ATTRS(&MutexAttributes));
-
-if (bLocalIdExclusiveFail)
-{
-
-   try
-   {
-
-      // Should in some way activate the other instance
-      TRACE("A instance of the application:<br><br>           - " + string(m_strAppName) + "with the id \"" + get_local_mutex_id() + "\" <br><br>seems to be already running at the same account.<br>Only one instance of this application can run locally: at the same ac::count with the same id.<br><br>Exiting this new instance.");
-
-      if(!on_exclusive_instance_conflict(bHandled, ExclusiveInstanceLocalId, get_local_mutex_id()))
+      }
+      catch (...)
       {
 
          return false;
@@ -4151,16 +4138,8 @@ if (bLocalIdExclusiveFail)
       }
 
    }
-   catch (...)
-   {
-
-      return false;
 
    }
-
-}
-
-}
 
 }
 
@@ -4774,40 +4753,40 @@ stra.add_unique(::file::path(strMatterLocator) / strLs);
 void application::locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const string & strLocale, const string & strSchema)
 {
 
-if (straMatterLocator.has_elements())
-{
+   if (straMatterLocator.has_elements())
+   {
 
-stra.add_unique(::file::path(straMatterLocator.first()) / get_locale_schema_dir("map", "map"));
+      stra.add_unique(::file::path(straMatterLocator.first()) / get_locale_schema_dir("map", "map"));
 
-}
+   }
 
-matter_locator_locale_schema_matter(stra, straMatterLocator, strLocale, strSchema);
+   matter_locator_locale_schema_matter(stra, straMatterLocator, strLocale, strSchema);
 
-auto psession = get_session();
+   auto psession = get_session();
 
-auto ptextcontext = psession->text_context();
+   auto ptextcontext = psession->text_context();
 
-for (i32 i = 0; i < ptextcontext->localeschema().m_idaLocale.get_count(); i++)
-{
+   for (i32 i = 0; i < ptextcontext->localeschema().m_idaLocale.get_count(); i++)
+   {
 
-string strLocale = ptextcontext->localeschema().m_idaLocale[i];
+      string strLocale = ptextcontext->localeschema().m_idaLocale[i];
 
-string strSchema = ptextcontext->localeschema().m_idaSchema[i];
+      string strSchema = ptextcontext->localeschema().m_idaSchema[i];
 
-matter_locator_locale_schema_matter(stra, straMatterLocator, strLocale, strSchema);
+      matter_locator_locale_schema_matter(stra, straMatterLocator, strLocale, strSchema);
 
-}
+   }
 
-matter_locator_locale_schema_matter(stra, straMatterLocator, "en", "en");
+   matter_locator_locale_schema_matter(stra, straMatterLocator, "en", "en");
 
-matter_locator_locale_schema_matter(stra, straMatterLocator, "_std", "_std");
+   matter_locator_locale_schema_matter(stra, straMatterLocator, "_std", "_std");
 
-if (straMatterLocator.has_elements())
-{
+   if (straMatterLocator.has_elements())
+   {
 
-stra.add_unique(::file::path(straMatterLocator.first()) / get_locale_schema_dir("404", "404"));
+      stra.add_unique(::file::path(straMatterLocator.first()) / get_locale_schema_dir("404", "404"));
 
-}
+   }
 
 }
 
@@ -5683,7 +5662,7 @@ return ::thread::post_message(id, wparam, lparam);
 //}
 
 
-void application::_001OnAppExit(::message::message * pmessage)
+void application::on_message_app_exit(::message::message * pmessage)
 {
 
    pmessage->m_bRet = true;      
@@ -5693,22 +5672,48 @@ void application::_001OnAppExit(::message::message * pmessage)
 }
 
 
+void application::on_message_close(::message::message* pmessage)
+{
+
+   pmessage->m_bRet = true;
+
+   if (pmessage->m_wparam == 1)
+   {
+
+      if (!try_close_application())
+      {
+
+         pmessage->m_lresult = -1;
+
+      }
+
+   }
+   else
+   {
+
+      close_application();
+
+   }
+
+}
+
+
 bool application::is_equal_file_path(const ::file::path & path1Param, const ::file::path & path2Param)
 {
 
-::file::path path1;
+   ::file::path path1;
 
-::file::path path2;
+   ::file::path path2;
 
-path1 = m_pcontext->m_papexcontext->defer_process_path(path1Param);
+   path1 = m_pcontext->m_papexcontext->defer_process_path(path1Param);
 
-path2 = m_pcontext->m_papexcontext->defer_process_path(path2Param);
+   path2 = m_pcontext->m_papexcontext->defer_process_path(path2Param);
 
-path1 = node_full_file_path(path1);
+   path1 = node_full_file_path(path1);
 
-path2 = node_full_file_path(path2);
+   path2 = node_full_file_path(path2);
 
-return strcmp(path1, path2) == 0;
+   return strcmp(path1, path2) == 0;
 
 }
 
@@ -5776,20 +5781,7 @@ return m_psystem->m_pacmedir->config() / m_strAppName;
 //}
 
 
-void application::on_initial_frame_position(::user::frame * pframe)
-{
 
-__pointer(::apex::system) psystem = get_system();
-
-psystem->on_initial_frame_position(pframe);
-
-}
-
-
-void application::on_graphics_ready()
-{
-
-}
 
 
 //__pointer(::user::document) application::defer_create_view(string strView, ::user::interaction * puiParent, ewindowflag ewindowflag, const ::id & id)
@@ -6234,7 +6226,7 @@ return nullptr;
 ::e_status application::verb()
 {
 
-return true;
+   return true;
 
 }
 
@@ -6250,25 +6242,36 @@ return true;
 void application::_001TryCloseApplication()
 {
 
-if (_001CanCloseApplication())
+   post_message(e_message_close, 1, 0);
+
+}
+
+
+bool application::try_close_application()
 {
 
-_001CloseApplication();
+   if (!can_close_application())
+   {
+
+      return false;
+
+   }
+
+   close_application();
+
+   return true;
 
 }
 
-}
-
-
-bool application::_001CanCloseApplication()
+bool application::can_close_application()
 {
 
-return true;
+   return true;
 
 }
 
 
-void application::_001CloseApplication()
+void application::close_application()
 {
 
 #ifdef _UWP
@@ -6402,6 +6405,23 @@ string strType = type_name();
    }
 
    return m_estatus;
+
+}
+
+
+::e_status application::finish()
+{
+
+   auto estatus = ::apex::context::finish();
+
+   if (!estatus)
+   {
+
+      return estatus;
+
+   }
+
+   return estatus;
 
 }
 
@@ -7576,10 +7596,10 @@ return m_datakey.m_bLocalData;
 
 
 
-const char application::gen_FileSection[] = "Recent File List";
-const char application::gen_FileEntry[] = "File%d";
-const char application::gen_PreviewSection[] = "Settings";
-const char application::gen_PreviewEntry[] = "PreviewPages";
+//const char application::gen_FileSection[] = "Recent File List";
+//const char application::gen_FileEntry[] = "File%d";
+//const char application::gen_PreviewSection[] = "Settings";
+//const char application::gen_PreviewEntry[] = "PreviewPages";
 
 
 //application::application()
@@ -7669,12 +7689,12 @@ const char application::gen_PreviewEntry[] = "PreviewPages";
 //}
 
 
-u32 application::guess_code_page(const string& str)
-{
-
-return 0;
-
-}
+//u32 application::guess_code_page(const string& str)
+//{
+//
+//return 0;
+//
+//}
 
 
 //LRESULT application::GetPaintMsgProc(i32 nCode, WPARAM wParam, LPARAM lParam)
@@ -7689,64 +7709,64 @@ return 0;
 //}
 
 
-bool application::CreateFileFromRawResource(::u32 nID, const char* pcszType, const char* pcszFilePath)
-{
-
-UNREFERENCED_PARAMETER(nID);
-UNREFERENCED_PARAMETER(pcszType);
-UNREFERENCED_PARAMETER(pcszFilePath);
-
-return false;
-
-}
-
-
-#ifdef WINDOWS
-
-bool application::OnMessageWindowMessage(MESSAGE * pmsg)
-
-{
-
-UNREFERENCED_PARAMETER(pmsg);
+//bool application::CreateFileFromRawResource(::u32 nID, const char* pcszType, const char* pcszFilePath)
+//{
+//
+//UNREFERENCED_PARAMETER(nID);
+//UNREFERENCED_PARAMETER(pcszType);
+//UNREFERENCED_PARAMETER(pcszFilePath);
+//
+//return false;
+//
+//}
 
 
-return false;
-
-}
-
-#elif defined(LINUX)
-
-bool application::OnX11WindowMessage(void* pXevent) // XEvent *
-{
-
-UNREFERENCED_PARAMETER(pXevent);
-
-return false;
-
-}
-
-#endif
-
-void application::OnUpdateRecentFileMenu(::message::command* pcommand)
-{
-
-UNREFERENCED_PARAMETER(pcommand);
-
-}
-
-
-bool application::GetResourceData(::u32 nID, const char* pcszType, memory& storage)
-
-{
-
-UNREFERENCED_PARAMETER(nID);
-UNREFERENCED_PARAMETER(pcszType);
-
-UNREFERENCED_PARAMETER(storage);
-
-return false;
-
-}
+//#ifdef WINDOWS
+//
+//bool application::OnMessageWindowMessage(MESSAGE * pmsg)
+//
+//{
+//
+//UNREFERENCED_PARAMETER(pmsg);
+//
+//
+//return false;
+//
+//}
+//
+//#elif defined(LINUX)
+//
+//bool application::OnX11WindowMessage(void* pXevent) // XEvent *
+//{
+//
+//UNREFERENCED_PARAMETER(pXevent);
+//
+//return false;
+//
+//}
+//
+//#endif
+//
+//void application::OnUpdateRecentFileMenu(::message::command* pcommand)
+//{
+//
+//UNREFERENCED_PARAMETER(pcommand);
+//
+//}
+//
+//
+//bool application::GetResourceData(::u32 nID, const char* pcszType, memory& storage)
+//
+//{
+//
+//UNREFERENCED_PARAMETER(nID);
+//UNREFERENCED_PARAMETER(pcszType);
+//
+//UNREFERENCED_PARAMETER(storage);
+//
+//return false;
+//
+//}
 
 
 //#ifdef WINDOWS_DESKTOP
@@ -7769,18 +7789,18 @@ return false;
 //
 //#endif
 
-/////////////////////////////////////////////////////////////////////////////
-// WinApp UI related functions
-
-void application::EnableModelessEx(bool bEnable)
-{
-UNREFERENCED_PARAMETER(bEnable);
-#ifdef ___NO_OLE_SUPPORT
-UNUSED(bEnable);
-#endif
-
-
-}
+///////////////////////////////////////////////////////////////////////////////
+//// WinApp UI related functions
+//
+//void application::EnableModelessEx(bool bEnable)
+//{
+//UNREFERENCED_PARAMETER(bEnable);
+//#ifdef ___NO_OLE_SUPPORT
+//UNUSED(bEnable);
+//#endif
+//
+//
+//}
 
 
 
@@ -8104,137 +8124,137 @@ extern "C" IMAGE_DOS_HEADER __ImageBase;
 */
 
 
-bool application::LoadSysPolicies()
-{
-return _LoadSysPolicies();
-}
-
-// This function is not exception safe - will leak a registry key if exceptions are thrown from some places
-// To reduce risk of leaks, I've declared the whole function noexcept. This despite the fact that its callers have
-// no dependency on non-throwing.
-bool application::_LoadSysPolicies() noexcept
-{
-
-#ifdef WINDOWS_DESKTOP
-
-HKEY hkPolicy = nullptr;
-::u32 dwValue = 0;
-::u32 dwDataLen = sizeof(dwValue);
-::u32 dwType = 0;
-
-//// clear current policy settings.
-//m_dwPolicies = ___SYSPOLICY_NOTINITIALIZED;
-
-//static __system_policy_data rgExplorerData[] =
+//bool application::LoadSysPolicies()
 //{
-//   {"NoRun",___SYSPOLICY_NORUN},
-//   {"NoDrives",___SYSPOLICY_NODRIVES},
-//   {"RestrictRun",___SYSPOLICY_RESTRICTRUN},
-//   {"NoNetConnectDisconnect",___SYSPOLICY_NONETCONNECTDISCONNECTD},
-//   {"NoRecentDocsHistory",___SYSPOLICY_NORECENTDOCHISTORY},
-//   {"NoClose",___SYSPOLICY_NOCLOSE},
-//   {nullptr,0}
-//};
-
-//static __system_policy_data rgNetworkData[] =
-//{
-//   {"NoEntireNetwork",___SYSPOLICY_NOENTIRENETWORK},
-//   {nullptr,0}
-//};
-
-//static __system_policy_data rgComDlgData[] =
-//{
-//   {"NoPlacesBar",___SYSPOLICY_NOPLACESBAR},
-//   {"NoBackButton",___SYSPOLICY_NOBACKBUTTON},
-//   {"NoFileMru",___SYSPOLICY_NOFILEMRU},
-//   {nullptr,0}
-//};
-
-//static __system_policies rgPolicies[] =
-//{
-//   {  "Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\Explorer",
-//      rgExplorerData
-//   },
-//   {  "Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\Network",
-//      rgNetworkData
-//   },
-//   {  "Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\Comdlg32",
-//      rgComDlgData
-//   },
-//   {nullptr,0}
-//};
-
-//__system_policies *pPolicies = rgPolicies;
-//__system_policy_data *pData = nullptr;
-
-//while (pPolicies->szPolicyKey != nullptr)
-//{
-
-//   if (ERROR_SUCCESS == ::RegOpenKeyEx(
-//            HKEY_CURRENT_USER,
-//            pPolicies->szPolicyKey,
-//            0,
-//            KEY_QUERY_VALUE,
-//            &hkPolicy
-//         ))
-//   {
-//      pData = pPolicies->pData;
-//      while (pData->szPolicyName)
-//      {
-//         if (ERROR_SUCCESS == ::RegQueryValueEx(
-//                  hkPolicy,
-//                  pData->szPolicyName,
-//                  nullptr,
-//                  &dwType,
-//                  (byte*)&dwValue,
-//                  &dwDataLen))
-//         {
-//            if (dwType == REG_DWORD)
-//            {
-//               if (dwValue != 0)
-//                  m_dwPolicies |= pData->dwID;
-//               else
-//                  m_dwPolicies &= ~pData->dwID;
-//            }
-//         }
-//         dwValue = 0;
-//         dwDataLen = sizeof(dwValue);
-//         dwType = 0;
-//         pData++;
-//      }
-//      ::RegCloseKey(hkPolicy);
-//      hkPolicy = nullptr;
-//   }
-//   pPolicies++;
-//};
-
-#endif
-
-return true;
-
-
-}
-
-bool application::GetSysPolicyValue(u32 dwPolicyID, bool* pbValue)
-{
-if (!pbValue)
-return false; // bad pointer
-*pbValue = (m_dwPolicies & dwPolicyID) != 0;
-return true;
-}
-
-//bool application::InitApplication()
-//{
-
-
-//   LoadSysPolicies();
-
-//   return true;
-
-
+//return _LoadSysPolicies();
 //}
 
-
+//// This function is not exception safe - will leak a registry key if exceptions are thrown from some places
+//// To reduce risk of leaks, I've declared the whole function noexcept. This despite the fact that its callers have
+//// no dependency on non-throwing.
+//bool application::_LoadSysPolicies() noexcept
+//{
+//
+//#ifdef WINDOWS_DESKTOP
+//
+//HKEY hkPolicy = nullptr;
+//::u32 dwValue = 0;
+//::u32 dwDataLen = sizeof(dwValue);
+//::u32 dwType = 0;
+//
+////// clear current policy settings.
+////m_dwPolicies = ___SYSPOLICY_NOTINITIALIZED;
+//
+////static __system_policy_data rgExplorerData[] =
+////{
+////   {"NoRun",___SYSPOLICY_NORUN},
+////   {"NoDrives",___SYSPOLICY_NODRIVES},
+////   {"RestrictRun",___SYSPOLICY_RESTRICTRUN},
+////   {"NoNetConnectDisconnect",___SYSPOLICY_NONETCONNECTDISCONNECTD},
+////   {"NoRecentDocsHistory",___SYSPOLICY_NORECENTDOCHISTORY},
+////   {"NoClose",___SYSPOLICY_NOCLOSE},
+////   {nullptr,0}
+////};
+//
+////static __system_policy_data rgNetworkData[] =
+////{
+////   {"NoEntireNetwork",___SYSPOLICY_NOENTIRENETWORK},
+////   {nullptr,0}
+////};
+//
+////static __system_policy_data rgComDlgData[] =
+////{
+////   {"NoPlacesBar",___SYSPOLICY_NOPLACESBAR},
+////   {"NoBackButton",___SYSPOLICY_NOBACKBUTTON},
+////   {"NoFileMru",___SYSPOLICY_NOFILEMRU},
+////   {nullptr,0}
+////};
+//
+////static __system_policies rgPolicies[] =
+////{
+////   {  "Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\Explorer",
+////      rgExplorerData
+////   },
+////   {  "Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\Network",
+////      rgNetworkData
+////   },
+////   {  "Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\Comdlg32",
+////      rgComDlgData
+////   },
+////   {nullptr,0}
+////};
+//
+////__system_policies *pPolicies = rgPolicies;
+////__system_policy_data *pData = nullptr;
+//
+////while (pPolicies->szPolicyKey != nullptr)
+////{
+//
+////   if (ERROR_SUCCESS == ::RegOpenKeyEx(
+////            HKEY_CURRENT_USER,
+////            pPolicies->szPolicyKey,
+////            0,
+////            KEY_QUERY_VALUE,
+////            &hkPolicy
+////         ))
+////   {
+////      pData = pPolicies->pData;
+////      while (pData->szPolicyName)
+////      {
+////         if (ERROR_SUCCESS == ::RegQueryValueEx(
+////                  hkPolicy,
+////                  pData->szPolicyName,
+////                  nullptr,
+////                  &dwType,
+////                  (byte*)&dwValue,
+////                  &dwDataLen))
+////         {
+////            if (dwType == REG_DWORD)
+////            {
+////               if (dwValue != 0)
+////                  m_dwPolicies |= pData->dwID;
+////               else
+////                  m_dwPolicies &= ~pData->dwID;
+////            }
+////         }
+////         dwValue = 0;
+////         dwDataLen = sizeof(dwValue);
+////         dwType = 0;
+////         pData++;
+////      }
+////      ::RegCloseKey(hkPolicy);
+////      hkPolicy = nullptr;
+////   }
+////   pPolicies++;
+////};
+//
+//#endif
+//
+//return true;
+//
+//
+//}
+//
+//bool application::GetSysPolicyValue(u32 dwPolicyID, bool* pbValue)
+//{
+//if (!pbValue)
+//return false; // bad pointer
+//*pbValue = (m_dwPolicies & dwPolicyID) != 0;
+//return true;
+//}
+//
+////bool application::InitApplication()
+////{
+//
+//
+////   LoadSysPolicies();
+//
+////   return true;
+//
+//
+////}
+//
+//
 
 /*   void application::LoadStdProfileSettings(::u32 nMaxMRU)
 {
@@ -8373,17 +8393,17 @@ m_bShowSplash = !m_bRunEmbedded && !m_bRunAutomated;
 }
 */
 
-/////////////////////////////////////////////////////////////////////////////
-// App termination
-
-void application::SaveStdProfileSettings()
-{
-ASSERT_VALID(this);
-
-
-//      if (m_nNumPreviewPages != 0)
-//       WriteProfileInt(gen_PreviewSection, gen_PreviewEntry, m_nNumPreviewPages);
-}
+///////////////////////////////////////////////////////////////////////////////
+//// App termination
+//
+//void application::SaveStdProfileSettings()
+//{
+//ASSERT_VALID(this);
+//
+//
+////      if (m_nNumPreviewPages != 0)
+////       WriteProfileInt(gen_PreviewSection, gen_PreviewEntry, m_nNumPreviewPages);
+//}
 
 
 //
@@ -8447,22 +8467,22 @@ ASSERT_VALID(this);
 
 
 
-/////////////////////////////////////////////////////////////////////////////
-// application idle processing
-
-void application::DevModeChange(char * pDeviceName)
-
-{
-UNREFERENCED_PARAMETER(pDeviceName);
-
-
-//#ifdef WINDOWS
-//      if (m_hDevNames == nullptr)
-//         return;
+///////////////////////////////////////////////////////////////////////////////
+//// application idle processing
 //
-//#endif
-
-}
+//void application::DevModeChange(char * pDeviceName)
+//
+//{
+//UNREFERENCED_PARAMETER(pDeviceName);
+//
+//
+////#ifdef WINDOWS
+////      if (m_hDevNames == nullptr)
+////         return;
+////
+////#endif
+//
+//}
 
 
 //bool application::process_exception(const ::exception::exception & e)
@@ -8573,96 +8593,96 @@ __format_strings(rString, nIDS, rgpsz, 2);
 
 /////////////////////////////////////////////////////////////////////////////
 
-
-/////////////////////////////////////////////////////////////////////////////
-// Basic Help support (for backward compatibility to apex API 2.0)
-
-void application::OnHelp()  // use context to derive help context
-{
-if (m_dwPromptContext != 0)
-{
-// do not call WinHelp when the error is failing to lauch help
-//         if (m_dwPromptContext != HID_BASE_PROMPT+__IDP_FAILED_TO_LAUNCH_HELP)
-//          WinHelpInternal(m_dwPromptContext);
-return;
-}
-
-// otherwise, use window::OnHelp implementation
-/* trans ::user::interaction_impl * pwindow = psystem->m_puiMain;
-ENSURE_VALID(pwindow);
-if (!pwindow->is_frame_window())
-pwindow->OnHelp();
-else
-((pwindow))->OnHelp();*/
-}
-
-
-void application::OnHelpIndex()
-{
 //
-//#ifdef WINDOWS_DESKTOP
+///////////////////////////////////////////////////////////////////////////////
+//// Basic Help support (for backward compatibility to apex API 2.0)
 //
-//      WinHelpInternal(0L, HELP_INDEX);
+//void application::OnHelp()  // use context to derive help context
+//{
+//if (m_dwPromptContext != 0)
+//{
+//// do not call WinHelp when the error is failing to lauch help
+////         if (m_dwPromptContext != HID_BASE_PROMPT+__IDP_FAILED_TO_LAUNCH_HELP)
+////          WinHelpInternal(m_dwPromptContext);
+//return;
+//}
 //
-//#endif
-//
-}
-
-
-void application::OnHelpFinder()
-{
-
-//#ifdef WINDOWS_DESKTOP
-//
-//      WinHelpInternal(0L, HELP_FINDER);
-//
-//#endif
-
-}
-
-
-void application::OnHelpUsing()
-{
-
-//#ifdef WINDOWS_DESKTOP
-//
-//      WinHelpInternal(0L, HELP_HELPONHELP);
-//
-//#endif
-//
-}
-
-
-/////////////////////////////////////////////////////////////////////////////
-// Context Help Mode support (backward compatibility to apex API 2.0)
-
-void application::OnContextHelp()
-{
-// just use frame_window::OnContextHelp implementation
-/* trans   m_bHelpMode = HELP_ACTIVE;
-__pointer(::user::frame_window) pMainWnd = (psystem->m_puiMain);
-ENSURE_VALID(pMainWnd);
-ENSURE(pMainWnd->is_frame_window());
-pMainWnd->OnContextHelp();
-m_bHelpMode = pMainWnd->m_bHelpMode;
-pMainWnd->PostMessage(WM_KICKIDLE); // trigger idle task */
-}
-
-/////////////////////////////////////////////////////////////////////////////
-
-
-// This is apex API library.
+//// otherwise, use window::OnHelp implementation
+///* trans ::user::interaction_impl * pwindow = psystem->m_puiMain;
+//ENSURE_VALID(pwindow);
+//if (!pwindow->is_frame_window())
+//pwindow->OnHelp();
+//else
+//((pwindow))->OnHelp();*/
+//}
 //
 //
+//void application::OnHelpIndex()
+//{
+////
+////#ifdef WINDOWS_DESKTOP
+////
+////      WinHelpInternal(0L, HELP_INDEX);
+////
+////#endif
+////
+//}
+//
+//
+//void application::OnHelpFinder()
+//{
+//
+////#ifdef WINDOWS_DESKTOP
+////
+////      WinHelpInternal(0L, HELP_FINDER);
+////
+////#endif
+//
+//}
+//
+//
+//void application::OnHelpUsing()
+//{
+//
+////#ifdef WINDOWS_DESKTOP
+////
+////      WinHelpInternal(0L, HELP_HELPONHELP);
+////
+////#endif
+////
+//}
+//
+//
+///////////////////////////////////////////////////////////////////////////////
+//// Context Help Mode support (backward compatibility to apex API 2.0)
+//
+//void application::OnContextHelp()
+//{
+//// just use frame_window::OnContextHelp implementation
+///* trans   m_bHelpMode = HELP_ACTIVE;
+//__pointer(::user::frame_window) pMainWnd = (psystem->m_puiMain);
+//ENSURE_VALID(pMainWnd);
+//ENSURE(pMainWnd->is_frame_window());
+//pMainWnd->OnContextHelp();
+//m_bHelpMode = pMainWnd->m_bHelpMode;
+//pMainWnd->PostMessage(WM_KICKIDLE); // trigger idle task */
+//}
+//
+///////////////////////////////////////////////////////////////////////////////
+//
+//
+//// This is apex API library.
+////
+////
+////
+////
+////
+////
+////
+////
 //
 //
 //
-//
-//
-//
-
-
-
 
 /////////////////////////////////////////////////////////////////////////////
 // WinApp support for printing
@@ -8682,15 +8702,15 @@ pPrintDlg->hDevMode = m_hDevMode;
 return true;
 }*/
 
-void application::UpdatePrinterSelection(bool bForceDefaults)
-{
-UNREFERENCED_PARAMETER(bForceDefaults);
-}
+//void application::UpdatePrinterSelection(bool bForceDefaults)
+//{
+//UNREFERENCED_PARAMETER(bForceDefaults);
+//}
 
 
-void application::OnFilePrintSetup()
-{
-}
+//void application::OnFilePrintSetup()
+//{
+//}
 
 
 //#ifdef WINDOWS
@@ -8706,11 +8726,11 @@ void application::OnFilePrintSetup()
 //
 //#endif
 
-::draw2d::graphics* application::CreatePrinterDC()
-{
-::exception::throw_not_implemented();
-return nullptr;
-}
+//::draw2d::graphics* application::CreatePrinterDC()
+//{
+//::exception::throw_not_implemented();
+//return nullptr;
+//}
 
 /////////////////////////////////////////////////////////////////////////////
 
@@ -8726,21 +8746,21 @@ return nullptr;
 //
 
 
-
-/////////////////////////////////////////////////////////////////////////////
-// application User Interface Extensions
-
-void application::OnAppExit()
-{
-
-// same as double-clicking on main window close box
-
-//ASSERT(m_puserinteractionMain != nullptr);
-
-//m_puserinteractionMain->m_puiThis->send_message(e_message_close);
-
-}
-
+//
+///////////////////////////////////////////////////////////////////////////////
+//// application User Interface Extensions
+//
+//void application::OnAppExit()
+//{
+//
+//// same as double-clicking on main window close box
+//
+////ASSERT(m_puserinteractionMain != nullptr);
+//
+////m_puserinteractionMain->m_puiThis->send_message(e_message_close);
+//
+//}
+//
 
 //void application::HideApplication()
 //{
@@ -8800,38 +8820,36 @@ return true;
 //      return false;
 //   }
 
-
-
-void application::EnableModeless(bool bEnable)
-{
-DoEnableModeless(bEnable);
-}
-
-void application::DoEnableModeless(bool bEnable)
-{
-UNREFERENCED_PARAMETER(bEnable);
-#ifdef ___NO_OLE_SUPPORT
-UNUSED(bEnable);
-#endif
-
-// no-op if main window is nullptr or not a frame_window
-/*   __pointer(::user::interaction) pMainWnd = psystem->m_puiMain;
-if (pMainWnd == nullptr || !pMainWnd->is_frame_window())
-return;*/
-
-#ifndef ___NO_OLE_SUPPORT
-// check if notify hook installed
-/*xxx
-ASSERT_KINDOF(frame_window, pMainWnd);
-__pointer(::user::frame_window) pFrameWnd = (__pointer(::user::frame_window))pMainWnd;
-if (pFrameWnd->m_pNotifyHook != nullptr)
-pFrameWnd->m_pNotifyHook->OnEnableModeless(bEnable);
-*/
-#endif
-}
-
-
-
+//
+//
+//void application::EnableModeless(bool bEnable)
+//{
+//DoEnableModeless(bEnable);
+//}
+//
+//void application::DoEnableModeless(bool bEnable)
+//{
+//UNREFERENCED_PARAMETER(bEnable);
+//#ifdef ___NO_OLE_SUPPORT
+//UNUSED(bEnable);
+//#endif
+//
+//// no-op if main window is nullptr or not a frame_window
+///*   __pointer(::user::interaction) pMainWnd = psystem->m_puiMain;
+//if (pMainWnd == nullptr || !pMainWnd->is_frame_window())
+//return;*/
+//
+//#ifndef ___NO_OLE_SUPPORT
+//// check if notify hook installed
+///*xxx
+//ASSERT_KINDOF(frame_window, pMainWnd);
+//__pointer(::user::frame_window) pFrameWnd = (__pointer(::user::frame_window))pMainWnd;
+//if (pFrameWnd->m_pNotifyHook != nullptr)
+//pFrameWnd->m_pNotifyHook->OnEnableModeless(bEnable);
+//*/
+//#endif
+//}
+//
 
 
 
@@ -8841,26 +8859,28 @@ pFrameWnd->m_pNotifyHook->OnEnableModeless(bEnable);
 
 
 
-void application::RegisterShellFileTypes(bool bCompat)
-{
-//ENSURE(m_pdocmanager != nullptr);
-//      document_manager()->RegisterShellFileTypes(bCompat);
-}
-
-void application::UnregisterShellFileTypes()
-{
-//ENSURE(m_pdocmanager != nullptr);
-//    document_manager()->UnregisterShellFileTypes();
-}
-
-
-i32 application::get_open_document_count()
-{
-//ENSURE(m_pdocmanager != nullptr);
-//  return document_manager()->get_open_document_count();
-return 0;
-}
-
+//
+//
+//void application::RegisterShellFileTypes(bool bCompat)
+//{
+////ENSURE(m_pdocmanager != nullptr);
+////      document_manager()->RegisterShellFileTypes(bCompat);
+//}
+//
+//void application::UnregisterShellFileTypes()
+//{
+////ENSURE(m_pdocmanager != nullptr);
+////    document_manager()->UnregisterShellFileTypes();
+//}
+//
+//
+//i32 application::get_open_document_count()
+//{
+////ENSURE(m_pdocmanager != nullptr);
+////  return document_manager()->get_open_document_count();
+//return 0;
+//}
+//
 
 // This is apex API library.
 //
@@ -8872,36 +8892,36 @@ return 0;
 //
 //
 
-/////////////////////////////////////////////////////////////////////////////
-// application Settings Helpers
-
-
-void application::SetRegistryKey(const char* pszRegistryKey)
-
-{
-//ASSERT(m_pszRegistryKey == nullptr);
-//ASSERT(pszRegistryKey != nullptr);
-
-//ASSERT(m_strAppName.has_char());
-
-////bool bEnable = __enable_memory_tracking(false);
-//free((void *)m_pszRegistryKey);
-//m_pszRegistryKey = strdup(pszRegistryKey);
-
-//free((void *)m_pszProfileName);
-//m_pszProfileName = strdup(m_strAppName);
-////__enable_memory_tracking(bEnable);
-}
-
-void application::SetRegistryKey(::u32 nIDRegistryKey)
-{
-//UNREFERENCED_PARAMETER(nIDRegistryKey);
-//ASSERT(m_pszRegistryKey == nullptr);
-//::exception::throw_not_implemented();
-///*char szRegistryKey[256];
-//VERIFY(::apex::LoadString(nIDRegistryKey, szRegistryKey));
-//SetRegistryKey(szRegistryKey);*/
-}
+///////////////////////////////////////////////////////////////////////////////
+//// application Settings Helpers
+//
+//
+//void application::SetRegistryKey(const char* pszRegistryKey)
+//
+//{
+////ASSERT(m_pszRegistryKey == nullptr);
+////ASSERT(pszRegistryKey != nullptr);
+//
+////ASSERT(m_strAppName.has_char());
+//
+//////bool bEnable = __enable_memory_tracking(false);
+////free((void *)m_pszRegistryKey);
+////m_pszRegistryKey = strdup(pszRegistryKey);
+//
+////free((void *)m_pszProfileName);
+////m_pszProfileName = strdup(m_strAppName);
+//////__enable_memory_tracking(bEnable);
+//}
+//
+//void application::SetRegistryKey(::u32 nIDRegistryKey)
+//{
+////UNREFERENCED_PARAMETER(nIDRegistryKey);
+////ASSERT(m_pszRegistryKey == nullptr);
+////::exception::throw_not_implemented();
+/////*char szRegistryKey[256];
+////VERIFY(::apex::LoadString(nIDRegistryKey, szRegistryKey));
+////SetRegistryKey(szRegistryKey);*/
+//}
 
 
 //#ifdef WINDOWS_DESKTOP
@@ -9533,26 +9553,26 @@ pmessage->m_bRet = true;
 
 //}
 
-
-bool application::base_support()
-{
-
-//if(!application::base_support())
-// return false;
-
-if (m_strBaseSupportId.is_empty())
-{
-
-property_set propertyset;
-
-dialog_box("err\\developer\\base_support\\support_id_not_specified.xml", propertyset);
-
-return false;
-
-}
-
-return true;
-}
+//
+//bool application::base_support()
+//{
+//
+////if(!application::base_support())
+//// return false;
+//
+//if (m_strBaseSupportId.is_empty())
+//{
+//
+//property_set propertyset;
+//
+//dialog_box("err\\developer\\base_support\\support_id_not_specified.xml", propertyset);
+//
+//return false;
+//
+//}
+//
+//return true;
+//}
 
 
 //string application::sync_message_box(const string & pszMatter, property_set & propertyset)
@@ -9637,40 +9657,40 @@ return thread::pre_translate_message(pmessage);
 
 //}
 
-
-void application::EnableShellOpen()
-{
-
-//#ifdef WINDOWS
 //
-//      ASSERT(m_atomApp == 0 && m_atomSystemTopic == 0); // do once
+//void application::EnableShellOpen()
+//{
 //
-//      if (m_atomApp != 0 || m_atomSystemTopic != 0)
-//      {
+////#ifdef WINDOWS
+////
+////      ASSERT(m_atomApp == 0 && m_atomSystemTopic == 0); // do once
+////
+////      if (m_atomApp != 0 || m_atomSystemTopic != 0)
+////      {
+////
+////         return;
+////
+////      }
+////
+////      // Win95 & Win98 sends a WM_DDE_INITIATE with an atom that points to the
+////      // i16 file name so we need to use the i16 file name.
+////      string strShortName;
+////
+////      strShortName = m_pcontext->m_papexcontext->file().module();
+////
+////      // strip out path
+////      //string strFileName = ::PathFindFileName(strShortName);
+////      // strip out extension
+////      //char * pszFileName = strFileName.GetBuffer();
+////      //::PathRemoveExtension(pszFileName);
+////      //strFileName.ReleaseBuffer();
+////
+////      //      m_atomApp = ::GlobalAddAtom(strFileName);
+////      //    m_atomSystemTopic = ::GlobalAddAtom("system");
+////
+////#endif
 //
-//         return;
-//
-//      }
-//
-//      // Win95 & Win98 sends a WM_DDE_INITIATE with an atom that points to the
-//      // i16 file name so we need to use the i16 file name.
-//      string strShortName;
-//
-//      strShortName = m_pcontext->m_papexcontext->file().module();
-//
-//      // strip out path
-//      //string strFileName = ::PathFindFileName(strShortName);
-//      // strip out extension
-//      //char * pszFileName = strFileName.GetBuffer();
-//      //::PathRemoveExtension(pszFileName);
-//      //strFileName.ReleaseBuffer();
-//
-//      //      m_atomApp = ::GlobalAddAtom(strFileName);
-//      //    m_atomSystemTopic = ::GlobalAddAtom("system");
-//
-//#endif
-
-}
+//}
 
 
 //__pointer(::user::interaction) application::uie_from_point(const ::point_i32& point)
@@ -10172,167 +10192,31 @@ void application::data_on_after_change(::database::client* pclient, const ::data
 __pointer(::application) application::create_platform(::apex::session* psession)
 {
 
-return __new(::apex::session);
+   return __new(::apex::session);
 
 }
-
-
-//void application::on_change_cur_sel(::user::tab* ptab)
-//{
-
-
-
-//}
-
-
-//bool application::_001OnAgreeExit()
-//{
-//
-//if (!save_all_modified())
-//{
-//
-//return false;
-//
-//}
-//
-//return true;
-//
-//}
-//
-
-//void application::france_exit()
-//{
-
-//   ::application::france_exit();
-
-//}
-
-
-//void application::prepare_form(id id, ::form_document* pdocument)
-//{
-
-
-
-//}
 
 
 void application::report_error(const ::exception::exception & e, int iMessageFlags, const char* pszTopic)
 {
 
-string strMessage;
+   string strMessage;
 
-strMessage += pszTopic;
+   strMessage += pszTopic;
 
-strMessage += " : ";
+   strMessage += " : ";
 
-strMessage += e.get_message();
+   strMessage += e.get_message();
 
-__throw(todo, "interaction");
-
-//m_puserinteractionMain->message_box(strMessage + ::enum_message_box(iMessageFlags));
+   __throw(todo, "interaction");
 
 }
-
-
-bool application::on_close_frame_window(::user::frame* pframe)
-{
-
-__throw(todo, "interaction");
-
-//if (pframe->m_bCloseApplicationIfLastVisibleFrame)
-//{
-
-//   if (GetVisibleTopLevelFrameCountExcept(pframe) <= 0)
-//   {
-
-//      pframe->DestroyWindow();
-
-//      _001CloseApplication();
-
-//   }
-//   else
-//   {
-
-//      pframe->hide();
-
-//   }
-
-//}
-//else
-//{
-
-//   pframe->DestroyWindow();
-
-//}
-
-return true;
-
-}
-
-
-//::type application::control_type_from_id(const ::id& id, ::user::enum_control_type& econtroltype)
-//{
-
-//   string str(id);
-
-//   if (str.begins_ci("combo_"))
-//   {
-
-//      econtroltype = ::user::e_control_type_combo_box;
-
-//      return __type(::user::combo_box);
-
-//   }
-//   else if (str.begins_ci("check_") || str.begins_ci("checkbox_"))
-//   {
-
-//      econtroltype = ::user::e_control_type_check_box;
-
-//      return __type(::user::check_box);
-
-//   }
-//   else if (str.begins_ci("still_"))
-//   {
-
-//      econtroltype = ::user::e_control_type_static;
-
-//      return __type(::user::still);
-
-//   }
-//   else if (str.begins_ci("label_"))
-//   {
-
-//      econtroltype = ::user::e_control_type_static;
-
-//      return __type(::user::still);
-
-//   }
-//   else if (str.begins_ci("edit_"))
-//   {
-
-//      econtroltype = ::user::e_control_type_edit_plain_text;
-
-//      return __type(::user::plain_edit);
-
-//   }
-//   else if (str.begins_ci("button_"))
-//   {
-
-//      econtroltype = ::user::e_control_type_button;
-
-//      return __type(::user::button);
-
-//   }
-
-//   return ::application::control_type_from_id(id, econtroltype);
-
-//}
 
 
 string application::get_theme()
 {
 
-return "";
+   return "";
 
 }
 
@@ -10340,164 +10224,28 @@ return "";
 ::e_status application::initialize_contextualized_theme()
 {
 
-return ::success;
+   return ::success;
 
 }
-
-
-//void application::on_change_theme()
-//{
-
-
-//}
 
 
 void application::_001OnSwitchContextTheme(::message::message* pmessage)
 {
 
-if (pmessage != nullptr)
-{
+   if (pmessage != nullptr)
+   {
 
-pmessage->m_bRet = true;
+      pmessage->m_bRet = true;
 
-}
-
-//if (!m_ptheme)
-//{
-
-//   return;
-
-//}
-
-//if (m_bContextTheme)
-//{
-
-//   m_ptheme->switch_context_theme();
-
-//}
+   }
 
 }
-
-
-//application::application()
-//{
-
-//   create_factory < ::user::user >();
-
-//   //m_bBaseProcessInitialize         = false;
-//   //m_bBaseProcessInitializeResult   = false;
-
-//   //m_bBaseInitialize1               = false;
-//   //m_bBaseInitialize1Result         = false;
-
-//   //m_bBaseInitialize                = false;
-//   //m_bBaseInitializeResult          = false;
-
-//   //m_bBaseInitializeInstance        = false;
-//   //m_bBaseInitializeInstanceResult  = false;
-
-
-
-
-//}
-
-//application::~application()
-//{
-
-//}
-
-
-//::e_status application::initialize(::object * pobject)
-//{
-
-//   auto estatus = ::application::initialize(pobject);
-
-//   if (!estatus)
-//   {
-
-//      return estatus;
-
-//   }
-
-//   return estatus;
-
-//}
-
-//   void application::install_message_routing(::channel * pchannel)
-//   {
-//
-//
-//
-//   }
-
-
-//void application::task(::machine * pchange)
-//{
-
-//   ::application::task(ptask);
-
-//   if (ptask->m_bRet)
-//   {
-//
-//      return;
-
-//   }
-//
-//   ::user::form_callback::task(ptask);
-
-//   if (ptask->m_bRet)
-//   {
-
-//      return;
-
-//   }
-
-//}
-
-
-//::e_status application::process_init()
-//{
-
-//   if (::application::process_init())
-//   {
-
-//      return true;
-
-//   }
-
-//   return true;
-
-//}
-
-
-//::e_status application::init_instance()
-//{
-
-//   if (!::application::init_instance())
-//   {
-
-//      return false;
-
-//   }
-
-//   auto estatus = create_impact_system();
-
-//   if (failed(estatus))
-//   {
-
-//      return false;
-
-//   }
-
-//   return true;
-
-//}
 
 
 ::e_status     application::create_impact_system()
 {
 
-return ::success;
+   return ::success;
 
 }
 
@@ -10505,386 +10253,16 @@ return ::success;
 void application::process_message_filter(i32 code, ::message::message* pmessage)
 {
 
-//if (pmessage == nullptr)
-//   return;   // not handled
-
-//__pointer(::user::message) pusermessage(pmessage);
-
-//__pointer(::user::frame_window) pTopFrameWnd;
-////::user::interaction * pMainWnd;
-//::user::interaction* pMsgWnd;
-//switch (code)
-//{
-//   //case MSGF_DDEMGR:
-//   // Unlike other WH_MSGFILTER codes, MSGF_DDEMGR should
-//   //  never call the next hook.
-//   // By returning false, the message will be dispatched
-//   //  instead (the default behavior).
-//   //return;
-
-//case MSGF_MENU:
-
-//   pMsgWnd = dynamic_cast <::user::interaction*> (pusermessage->m_puserinteraction);
-
-//   if (pMsgWnd != nullptr)
-//   {
-//      pTopFrameWnd = pMsgWnd->top_level_frame();
-//      if (pTopFrameWnd != nullptr && pTopFrameWnd->IsTracking() &&
-//         pTopFrameWnd->m_bHelpMode)
-//      {
-//         //pMainWnd = __get_main_window();
-//         //if((m_puiMain != nullptr) && (IsEnterKey(pusermessage) || IsButtonUp(pusermessage)))
-//         //{
-//         //   //                  pMainWnd->SendMessage(e_message_command, ID_HELP);
-//         //   pusermessage->m_bRet = true;
-//         //   return;
-//         //}
-//      }
-//   }
-//   // fall through...
-
-//case MSGF_DIALOGBOX:    // handles message boxes as well.
-//   //pMainWnd = __get_main_window();
-//   if (code == MSGF_DIALOGBOX && m_puiActive != nullptr &&
-//      pusermessage->m_id >= e_message_key_first && pusermessage->m_id <= e_message_key_last)
-//   {
-//   }
-//   break;
-//}
-//// default to not handled
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*string application::get_cred(const string & strRequestUrlParam,const ::rectangle_i32 & rectangle,string & strUsername,string & strPassword,string strToken,string strTitle,bool bInteractive)
-{
-
-string str = ::account::get_cred(this,strUsername,strPassword,strToken);
-
-if(str == "ok" && strUsername.has_char() && strPassword.has_char())
-return "ok";
-
-if(!bInteractive)
-return "failed";
-
-__pointer(::account::simple_ui) pinteraction;
-
-string strRequestUrl(strRequestUrlParam);
-
-if(strRequestUrl.is_empty())
-{
-
-string strIgnitionServer = file_as_string(m_psystem->m_pacmedir->system() / "config\\system\\ignition_server.txt");
-
-if(::str::ends_ci(strIgnitionServer,".ca2.software"))
-{
-
-strRequestUrl = "https://" + strIgnitionServer + "/";
-
-}
-else
-{
-
-strRequestUrl = "https://account.ca2.software/";
-
-}
-
-strRequestUrl = "https://account.ca2.software/";
-
-}
-
-pinteraction = __new(::account::simple_ui(this,strRequestUrl));
-
-pinteraction->m_login.m_peditUser->set_window_text(strUsername);
-
-pinteraction->m_login.m_ppassword->set_window_text("");
-
-string strResult = pinteraction->get_cred(rectangle,strUsername,strPassword,strToken,strTitle);
-
-pinteraction->DestroyWindow();
-
-::account::set_cred(this,strToken,strUsername,strPassword);
-
-return strResult;
-
-}*/
-
-
-//__pointer(::user::user) application::create_user()
-//{
-
-//   return __new(::user::user);
-
-//}
 
 
 ::e_status application::on_thread_on_idle(::thread* pthread, ::i32 lCount)
 {
 
-__throw(todo, "interaction");
-//if (lCount <= 0)
-//{
-
-//   __pointer(::user::interaction) pinteraction;
-
-//   while (get_frame(pinteraction))
-//   {
-//      //::user::interaction * pinteraction = (::user::interaction *) pimpl->m_spuiptra->element_at(i)->m_pvoidUserInteraction;
-//      bool bOk = false;
-//      try
-//      {
-
-//         bOk = pinteraction != nullptr && pinteraction->is_window_visible();
-//      }
-//      catch (...)
-//      {
-//      }
-//      if (!bOk)
-//      {
-//         //   try
-//         //   {
-//         //      get_application()->erase_frame(pinteraction);
-//         //   }
-//         //   catch(...)
-//         //   {
-//         //   }
-//         //   try
-//         //   {
-//         //      psession->erase_frame(pinteraction);
-//         //   }
-//         //   catch(...)
-//         //   {
-//         //   }
-//         //   try
-//         //   {
-//         //      psystem->erase_frame(pinteraction);
-//         //   }
-//         //   catch(...)
-//         //   {
-//         //   }
-//      }
-//      else
-//      {
-//         //               synchronouslock.unlock();
-//         try
-//         {
-//            pinteraction->send_message(WM_IDLEUPDATECMDUI, (WPARAM)true);
-//         }
-//         catch (...)
-//         {
-
-//         }
-//         //             synchronouslock.lock();
-//      }
-//   }
-
-
-//}
-//else if (lCount >= 0)
-//{
-//}
-
-//return lCount < 0;  // nothing more to do if lCount >= 0
+   __throw(todo, "interaction");
 
 }
-
-
-
-
-
-//void application::on_create_impact(::user::impact_data* pimpactdata)
-//{
-
-
-//}
-
-
-//::e_status application::process_message()
-//{
-
-//   return ::thread::process_message();
-
-//}
-
-
-//void application::SetCurrentHandles()
-//{
-
-//   ::application::SetCurrentHandles();
-
-//}
-
-
-//void application::term_application()
-//{
-
-//   try
-//   {
-
-//      apex::application::term_application();
-
-//   }
-//   catch (...)
-//   {
-
-//   }
-
-//}
-
-
-//::draw2d::icon* application::set_icon(object* pobject, ::draw2d::icon* picon, bool bBigIcon)
-//{
-
-//   ::draw2d::icon* piconOld = get_icon(pobject, bBigIcon);
-
-//   if (bBigIcon)
-//   {
-
-//      pobject->payload("big_icon") = (__pointer(object)) picon;
-
-//   }
-//   else
-//   {
-
-//      pobject->payload("small_icon") = (__pointer(object)) picon;
-
-//   }
-
-//   return piconOld;
-
-//}
-
-
-//::draw2d::icon* application::get_icon(object* pobject, bool bBigIcon) const
-//{
-
-//   if (bBigIcon)
-//   {
-
-//      return const_cast <object*> (pobject)->cast < ::draw2d::icon >("big_icon");
-
-//   }
-//   else
-//   {
-
-//      return const_cast <object*> (pobject)->cast < ::draw2d::icon >("small_icon");
-
-//   }
-
-//}
-
-
-//void application::on_control_event(::user::control_event* pevent)
-//{
-
-//   if (pevent->m_eevent == ::user::e_event_initialize_control)
-//   {
-
-//      if (pevent->m_puserinteraction->m_id == __id(system_startup_checkbox))
-//      {
-
-//         try
-//         {
-//            __pointer(::user::check) pcheck = pevent->m_puserinteraction;
-
-//            if (pcheck.is_set())
-//            {
-
-//               pcheck->_001SetCheck(
-//                  m_pcontext->m_papexcontext->os().is_user_auto_start(get_executable_appid()),
-//                  ::e_source_initialize);
-
-//            }
-//         }
-//         catch (...)
-//         {
-
-//         }
-
-//      }
-
-//   }
-//   else if (pevent->m_eevent == ::user::e_event_set_check)
-//   {
-
-//      if (pevent->m_puserinteraction->m_id == __id(system_startup_checkbox)
-//         && pevent->m_actioncontext.is_user_source())
-//      {
-
-//         try
-//         {
-
-//            __pointer(::user::check) pcheck = pevent->m_puserinteraction;
-
-//            if (pcheck.is_set())
-//            {
-
-//               m_pcontext->m_papexcontext->os().register_user_auto_start(
-//                  get_executable_appid(),
-//                  get_executable_path(),
-//                  pcheck->echeck() == ::check_checked);
-
-//            }
-
-//            pevent->m_bRet = true;
-
-//            return;
-
-//         }
-//         catch (...)
-//         {
-
-//         }
-
-//      }
-
-//   }
-
-//}
-
-
-//::user::interaction* application::create_menu_interaction()
-//{
-
-//   return __new(::user::button);
-
-//}
-
-
-//__pointer(::user::document) application::defer_create_view(string strView, ::user::interaction* puiParent, ewindowflag ewindowflag, const ::id& id)
-//{
-
-//   auto pcontroller = ::application::defer_create_view(strView, puiParent, ewindowflag, id);
-
-//   if (pcontroller)
-//   {
-
-//      return pcontroller;
-
-//   }
-
-//   return nullptr;
-
-//}
 
 
 void application::on_song_added(const string& str)
@@ -10893,39 +10271,16 @@ void application::on_song_added(const string& str)
 }
 
 
-//::type application::control_type_from_id(const ::id& id, ::user::enum_control_type& econtroltype)
-//{
-
-//
-//}
-
-
-//::form_property_set * application::get_form_property_set()
-//{
-
-//   auto pset = ::user::form_callback::get_form_property_set();
-
-//   if (::is_set(pset))
-//   {
-
-//      return pset;
-
-//   }
-
-//   return this;
-
-//}
-
 string application::get_visual_studio_build()
 {
 
-::file::path path = m_psystem->m_pacmedir->config() / "programming/vs_build.txt";
+   ::file::path path = m_psystem->m_pacmedir->config() / "programming/vs_build.txt";
 
-string strBuild = m_pcontext->m_papexcontext->file().as_string(path);
+   string strBuild = m_pcontext->m_papexcontext->file().as_string(path);
 
-strBuild.trim();
+   strBuild.trim();
 
-return strBuild;
+   return strBuild;
 
 }
 
@@ -10933,21 +10288,21 @@ return strBuild;
 string application::as_string(const ::payload & payload)
 {
 
-auto path = payload.get_file_path();
+   auto path = payload.get_file_path();
 
-if(path.has_char())
-{
+   if(path.has_char())
+   {
 
-if (::is_url(path) || ::file_exists(path))
-{
+      if (::is_url(path) || ::file_exists(path))
+      {
 
-return file().as_string(path);
+         return file().as_string(path);
 
-}
+      }
 
-}
+   }
 
-return payload.get_string();
+   return payload.get_string();
 
 }
 
@@ -10955,11 +10310,11 @@ return payload.get_string();
 string application::sound_path(const char* psz)
 {
 
-string strFileName = string(psz) + string(".wav");
+   string strFileName = string(psz) + string(".wav");
 
-string strFilePath = dir().matter(strFileName);
+   string strFilePath = dir().matter(strFileName);
 
-return strFilePath;
+   return strFilePath;
 
 }
 
@@ -10967,104 +10322,79 @@ return strFilePath;
 string application::get_default_playlist_path()
 {
 
-return "playlist/default";
+   return "playlist/default";
 
 }
-
-
-//bool application::do_prompt_file_name(::payload& varFile, string nIDSTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system* ptemplate, ::user::document* pdocument)
-//{
-
-//   __throw(todo("core and os"));
-
-//   return false;
-
-//}
-
-
 
 
 void application::close(::apex::enum_end eend)
 {
 
-if (eend == ::apex::e_end_close)
-{
+   if (eend == ::apex::e_end_close)
+   {
 
-return;
+      return;
 
-}
+   }
 
-m_ethreadClose = thread_application;
+   m_ethreadClose = thread_application;
 
-//if (get_session())
-//{
+   if (eend == ::apex::e_end_app)
+   {
 
-//   if (psession->m_pdocmanager)
-//   {
+      finish();
 
-//      psession->m_pdocmanager->close_all_documents(true);
+      return;
 
-//   }
+   }
 
-//}
+   if (eend == ::apex::e_end_session)
+   {
 
-if (eend == ::apex::e_end_app)
-{
+      try
+      {
 
-finish();
+         if (get_session())
+         {
 
-return;
+            auto psession = get_session();
 
-}
+            psession->finish();
 
-if (eend == ::apex::e_end_session)
-{
+         }
 
-try
-{
+      }
+      catch (...)
+      {
 
-if (get_session())
-{
+      }
 
-   auto psession = get_session();
+      return;
 
-   psession->finish();
+   }
 
-}
+   if (eend == ::apex::e_end_system)
+   {
 
-}
-catch (...)
-{
+      try
+      {
 
-}
+         __pointer(::apex::system) psystem = get_system();
 
-return;
+         if (psystem)
+         {
 
-}
+            psystem->finish();
 
+         }
 
-if (eend == ::apex::e_end_system)
-{
+      }
+      catch (...)
+      {
 
-try
-{
+      }
 
-__pointer(::apex::system) psystem = get_system();
-
-if (psystem)
-{
-
-   psystem->finish();
-
-}
-
-}
-catch (...)
-{
-
-}
-
-}
+   }
 
 }
 
@@ -11072,31 +10402,21 @@ catch (...)
 __pointer(::extended::future < ::conversation >) application::message_box(const char * pszMessage, const char * pszTitle, const ::e_message_box & emessagebox)
 {
 
-__pointer(::apex::system) psystem = get_system();
+   __pointer(::apex::system) psystem = get_system();
 
-return psystem->_message_box(this, pszMessage, pszTitle, emessagebox);
+   return psystem->_message_box(this, pszMessage, pszTitle, emessagebox);
 
 }
-
-
-//::enum_dialog_result application::message_box_timeout(const char * pszMessage, const char * pszTitle, const ::duration & durationTimeout, const ::e_message_box & emessagebox, const ::future & process)
-//{
-
-//   auto estatus = psystem->message_box_timeout(pszMessage, pszTitle, durationTimeout, emessagebox, process);
-
-//   return estatus;
-
-//}
 
 
 string application::get_version()
 {
 
-auto psystem = m_psystem->m_papexsystem;
+   auto psystem = m_psystem->m_papexsystem;
 
-auto papex = psystem->m_papexnode;
+   auto papex = psystem->m_papexnode;
 
-return papex->get_version();
+   return papex->get_version();
 
 }
 
@@ -11104,11 +10424,11 @@ return papex->get_version();
 ::e_status application::_001InitializeShellOpen()
 {
 
-auto psystem = m_psystem->m_papexsystem;
+   auto psystem = m_psystem->m_papexsystem;
 
-auto papex = psystem->m_papexnode;
+   auto papex = psystem->m_papexnode;
 
-return papex->_001InitializeShellOpen();
+   return papex->_001InitializeShellOpen();
 
 }
 
@@ -11119,21 +10439,18 @@ return papex->_001InitializeShellOpen();
 string application::get_wm_class() const
 {
 
-string strWMClass = m_strAppId;
+   string strWMClass = m_strAppId;
 
-strWMClass.replace("/", ".");
+   strWMClass.replace("/", ".");
 
-strWMClass.replace("_", "-");
+   strWMClass.replace("_", "-");
 
-return strWMClass;
+   return strWMClass;
 
 }
 
 
 #endif
-
-
-//} // namespace apex
 
 
 void application_on_menu_action(void * pApplication, const char * pszCommand)
@@ -11154,3 +10471,6 @@ void * application_system(void * pApplication)
    return papplication->m_psystem;
    
 }
+
+
+

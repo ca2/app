@@ -789,7 +789,7 @@ namespace userex
 
       r2 = m_pimageLuminance->rectangle();
 
-      pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
       pgraphics->stretch(rectLum1, m_pimageLuminance->g(), r2);
 
@@ -809,7 +809,7 @@ namespace userex
    void color_view::on_message_left_button_down(::message::message * pmessage)
    {
       
-      __pointer(::message::mouse) pmouse(pmessage);
+      auto pmouse = pmessage->m_pmouse;
 
       ::point_i32 point = pmouse->m_point;
 
@@ -829,7 +829,7 @@ namespace userex
    void color_view::on_message_left_button_up(::message::message * pmessage)
    {
 
-      __pointer(::message::mouse) pmouse(pmessage);
+      auto pmouse = pmessage->m_pmouse;
       
       ::point_i32 point = pmouse->m_point;
       
@@ -872,7 +872,7 @@ namespace userex
    void color_view::on_message_mouse_move(::message::message * pmessage)
    {
       
-      __pointer(::message::mouse) pmouse(pmessage);
+      auto pmouse = pmessage->m_pmouse;
 
       if (m_bLButtonPressed)
       {

@@ -153,7 +153,7 @@ namespace parallelization
    //}
 
 
-   //CLASS_DECL_ACME __pointer(::thread) calc_parent(::thread * pthread)
+   //CLASS_DECL_ACME ::task_pointer calc_parent(::thread * pthread)
    //{
 
    //   if (::is_null(pthread))
@@ -331,7 +331,7 @@ namespace parallelization
    //bool post_quit_and_wait(::thread * pthreadParam, const duration & duration)
    //{
 
-   //   __pointer(::thread) pthread;
+   //   ::task_pointer pthread;
 
    //   try
    //   {

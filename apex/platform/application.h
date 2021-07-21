@@ -170,8 +170,8 @@
       __composite(::service_handler) m_pservicehanlder;
 
 
-      application(const char * pszAppId = nullptr);
-      virtual ~application();
+      application();
+      ~application() override;
 
 
       virtual ::e_status initialize(::object * pobject) override;
@@ -249,6 +249,8 @@
       //virtual ::e_status     main() override;
       virtual ::e_status     on_run();
 
+      ::e_status     finish() override;
+
       virtual ::e_status application_pre_run();
       //virtual bool initial_check_directrix() override;
       virtual ::e_status os_native_bergedge_start();
@@ -265,7 +267,7 @@
 
 
 
-      virtual bool InitApplication();
+      //virtual bool InitApplication();
 
 
       virtual bool do_install();
@@ -332,10 +334,15 @@
 
       virtual void _001TryCloseApplication();
 
-      virtual bool _001CanCloseApplication();
-
       virtual void _001CloseApplication();
 
+
+
+      virtual bool try_close_application();
+
+      virtual bool can_close_application();
+
+      virtual void close_application();
 
       virtual string get_license_id();
 
@@ -347,22 +354,6 @@
 
 
 
-//#ifdef WINDOWS
-//      virtual void TermThread(HINSTANCE hInstTerm);
-//#endif
-
-      //virtual void set_env_var(const string & payload, const string & value) override;
-
-      // apex commented
-      //virtual ::draw2d::printer * get_printer(const char * pszDeviceName);
-
-      // apex commented
-      //virtual ::draw2d::icon * set_icon(object * pobject, ::draw2d::icon * picon, bool bBigIcon);
-
-      // apex commented
-      //virtual ::draw2d::icon * get_icon(object * pobject, bool bBigIcon) const;
-
-
 
       virtual string get_mutex_name_gen();
 
@@ -372,47 +363,8 @@
       virtual ::e_status hotplugin_host_starter_start_sync(const char * pszCommandLine, ::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin = nullptr);
       virtual ::e_status hotplugin_host_host_starter_start_sync(const char * pszCommandLine, ::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin = nullptr);
 
-      //virtual void on_update_view(::user::impact * pview, ::user::impact * pviewSender, LPARAM lHint, object * pHint);
-
-      // apex commented
-      //virtual void on_control_event(::user::control_event* pevent) override;
-      //virtual void on_notify_control_event(::user::control_event* pevent);
-      //virtual void route_control_event(::user::control_event* pevent);
-
-
-
-      //user virtual bool on_open_document(::user::document * pdocument, ::payload varFile);
-      //user virtual bool on_save_document(::user::document * pdocument, ::payload varFile);
-
-
-
-      //inline ::html::html * html() { return puser->m_phtml; }
-
-      //virtual ::html::html * create_html();
-
-      //virtual string http_get(const string & strUrl, ::property_set & set) override;
-
-      //virtual bool compress_ungz(const ::stream & os, const ::stream & is) override;
-
-      ///virtual bool compress_ungz(memory_base & mem) override;
-      //virtual bool compress_gz(const ::stream& os, const ::stream& is, int iLevel = 6) override;
-
-      //virtual bool compress_gz(::file::file * pfileOut, ::file::file * pfileIn, int iLevel = 6) override;
-
 
       virtual bool is_local_data() override;
-
-
-      //application();
-      //virtual ~application();
-
-
-      //virtual void locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const string & strLocale, const string & strSchema);
-      //virtual string get_locale_schema_dir();
-
-
-      //virtual ::e_status initialize(::object * pobject) override;
-
 
       application_menu & applicationmenu();
 
@@ -615,7 +567,7 @@
       virtual void application_pos_run();
 
       //virtual bool InitApplication();
-      virtual void TermApplication();
+      //virtual void TermApplication();
 
       //virtual bool on_install();
       //virtual bool on_uninstall();
@@ -688,18 +640,18 @@
 
 
 
-      bool safe_is_running();
+      //bool safe_is_running();
 
 
       //virtual void on_request(::create * pcreate) override;
 
       // name by Mummi (Japanese -> Guddo : from English : Good, ca2 interpretation : Goods).
       // get/set serializables to user directory
-      template < typename TYPE >
-      bool gudo_get(const string & strKey, TYPE & t);
+      //template < typename TYPE >
+      //bool gudo_get(const string & strKey, TYPE & t);
 
-      template < typename TYPE >
-      bool gudo_set(const string & strKey, const TYPE & t);
+      //template < typename TYPE >
+      //bool gudo_set(const string & strKey, const TYPE & t);
 
 
       //virtual bool assert_user_logged_in();
@@ -749,7 +701,8 @@
       virtual bool is_application() const override;
 
 
-      DECLARE_MESSAGE_HANDLER(_001OnAppExit);
+      DECLARE_MESSAGE_HANDLER(on_message_app_exit);
+      DECLARE_MESSAGE_HANDLER(on_message_close);
       //virtual bool _001OnAgreeExit();
 
 
@@ -863,9 +816,9 @@
 //
 //      virtual ::account::user * noninteractive_get_user(::file::path pathUrl = nullptr);
 
-      virtual void on_initial_frame_position(::user::frame * pframe);
+      //virtual void on_initial_frame_position(::user::frame * pframe);
 
-      virtual void on_graphics_ready();
+      //virtual void on_graphics_ready();
 
       //virtual ::type user_default_controltype_to_typeinfo(::user::enum_control_type econtroltype);
       // apex commented
@@ -909,7 +862,7 @@
       //virtual ::application * get_application() const override;
 
 
-      virtual u32 guess_code_page(const string& str);
+      //virtual u32 guess_code_page(const string& str);
 
       //virtual i32 _sync_message_box(::user::primitive* puiOwner, const char* pszMessage, const char* pszTitle, ::u32 fuStyle) override;
 
@@ -920,7 +873,7 @@
       //virtual void install_message_routing(::channel* pchannel) override;
 
 
-      virtual void EnableShellOpen();
+      //virtual void EnableShellOpen();
 
 
 
@@ -935,7 +888,7 @@
       //virtual ::type control_type_from_id(const ::id& id, ::user::enum_control_type& econtroltype) override;
 
 
-      virtual bool base_support();
+      // virtual bool base_support();
 
       //virtual string sync_message_box(const string & pszMatter,property_set & propertyset) override;
 
@@ -961,25 +914,25 @@
       virtual bool on_idle(::i32 lCount); // return true if more idle processing
       virtual void process_window_procedure_exception(const ::exception::exception & e, ::message::message* pmessage) override;
 
-      void EnableModelessEx(bool bEnable);
+//      void EnableModelessEx(bool bEnable);
+////#ifdef WINDOWS
+////      HENHMETAFILE LoadEnhMetaFile(::u32 uResource);
+////#endif
+//      bool GetResourceData(::u32 nID, const char* lcszType, memory& storage);
+
 //#ifdef WINDOWS
-//      HENHMETAFILE LoadEnhMetaFile(::u32 uResource);
+//      virtual bool OnMessageWindowMessage(MESSAGE * pmsg);
+//
+//#elif defined(LINUX)
+//      virtual bool OnX11WindowMessage(void* pev);
 //#endif
-      bool GetResourceData(::u32 nID, const char* lcszType, memory& storage);
 
-#ifdef WINDOWS
-      virtual bool OnMessageWindowMessage(MESSAGE * pmsg);
-
-#elif defined(LINUX)
-      virtual bool OnX11WindowMessage(void* pev);
-#endif
-
-      bool CreateFileFromRawResource(::u32 nID, const char* lcszType, const char* pcszFilePath);
+      //bool CreateFileFromRawResource(::u32 nID, const char* lcszType, const char* pcszFilePath);
 
       //virtual LRESULT GetPaintMsgProc(i32 nCode, WPARAM wParam, LPARAM lParam);
 
 
-      void OnUpdateRecentFileMenu(::message::command* pcommand);
+      //void OnUpdateRecentFileMenu(::message::command* pcommand);
 
       //virtual void send_app_language_changed();
       virtual void route_command_message(::message::command * pcommand) override;
@@ -989,7 +942,7 @@
       //virtual ::enum_dialog_result message_box_timeout(const char * pszMessage, const char * pszTitle = nullptr, const ::duration & durationTimeout = ::duration::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, const ::future & process = ::future()) override;
 
 
-      void EnableHtmlHelp();
+      //void EnableHtmlHelp();
 
 
       //virtual i32 sync_message_box_timeout(::user::primitive * puiOwner,::payload payload, const char * pszTitle, ::duration durationTimeout,::u32 fuStyle = e_message_box_ok) override;
@@ -1017,15 +970,15 @@
 
       // set regsitry key name to be used by application's
       // profile member functions; prevents writing to an INI spfile->
-      void SetRegistryKey(const char* pszRegistryKey);
+      //void SetRegistryKey(const char* pszRegistryKey);
 
-      void SetRegistryKey(::u32 nIDRegistryKey);
+      //void SetRegistryKey(::u32 nIDRegistryKey);
 
 
-      void RegisterShellFileTypes(bool bCompat = false);
+      //void RegisterShellFileTypes(bool bCompat = false);
 
-      // call after all doc templates are registered
-      void UnregisterShellFileTypes();
+      //// call after all doc templates are registered
+      //void UnregisterShellFileTypes();
 
 //
 //#ifdef WINDOWS
@@ -1034,16 +987,16 @@
 //#endif
 
       // create a DC for the system default printer.
-      ::draw2d::graphics* CreatePrinterDC();
+      //::draw2d::graphics* CreatePrinterDC();
 
 
       //   bool GetPrinterDeviceDefaults(PRINTDLG* pPrintDlg);
 
       // run this cast as an embedded object.
-      bool RunEmbedded();
+      //bool RunEmbedded();
 
       // run this cast as an OLE automation server.
-      bool RunAutomated();
+      //bool RunAutomated();
 
       // Parse the command line for stock options and commands.
       //   void ParseCommandLine(CCommandLineInfo& rCmdInfo);
@@ -1080,38 +1033,38 @@
       void on_file_open();
 
       // map to the following to enable print setup
-      void OnFilePrintSetup();
+      //void OnFilePrintSetup();
 
-      // map to the following to enable help
-      void OnContextHelp();   // shift-F1
-      void OnHelp();          // F1 (uses current action_context)
-      void OnHelpIndex();     // ID_HELP_INDEX
-      void OnHelpFinder();    // ID_HELP_FINDER, ID_DEFAULT_HELP
-      void OnHelpUsing();     // ID_HELP_USING
+      //// map to the following to enable help
+      //void OnContextHelp();   // shift-F1
+      //void OnHelp();          // F1 (uses current action_context)
+      //void OnHelpIndex();     // ID_HELP_INDEX
+      //void OnHelpFinder();    // ID_HELP_FINDER, ID_DEFAULT_HELP
+      //void OnHelpUsing();     // ID_HELP_USING
 
       // Implementation
 
-      void UpdatePrinterSelection(bool bForceDefaults);
-      void SaveStdProfileSettings();  // save options to .INI file
+      //void UpdatePrinterSelection(bool bForceDefaults);
+      //void SaveStdProfileSettings();  // save options to .INI file
 
 
 
-      void DevModeChange(char * pDeviceName);
+      //void DevModeChange(char * pDeviceName);
 
 
       // Finds number of opened document items owned by templates
       // registered with the doc manager.
-      i32 get_open_document_count();
+      //i32 get_open_document_count();
 
       //virtual bool do_prompt_file_name(::payload& varFile, string strTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system* ptemplate, ::user::document* pdocument) override;
 
-      void EnableModeless(bool bEnable); // to disable OLE in-place dialogs
+      //void EnableModeless(bool bEnable); // to disable OLE in-place dialogs
 
 
       // helper for message boxes; can work when no application can be found
       //static i32 ShowAppMessageBox(__pointer(application)pApp,const char * pszPrompt,::u32 nType,::u32 nIDPrompt);
 
-      static void DoEnableModeless(bool bEnable); // to disable OLE in-place dialogs
+      //static void DoEnableModeless(bool bEnable); // to disable OLE in-place dialogs
 
 //#ifdef WINDOWS_DESKTOP
 //      // helpers for registration
@@ -1120,15 +1073,15 @@
 //      HKEY GetAppRegistryKey();
 //#endif
 
-      void OnAppExit();
-      // psystem Policy Settings
-      virtual bool LoadSysPolicies(); // Override to load policies other than the system policies that apex API loads.
-      bool GetSysPolicyValue(u32 dwPolicyID, bool* pbValue); // returns the policy's setting in the out parameter
-      bool _LoadSysPolicies() noexcept; // Implementation helper
-      static const char gen_FileSection[];
-      static const char gen_FileEntry[];
-      static const char gen_PreviewSection[];
-      static const char gen_PreviewEntry[];
+      //void OnAppExit();
+      //// psystem Policy Settings
+      //virtual bool LoadSysPolicies(); // Override to load policies other than the system policies that apex API loads.
+      //bool GetSysPolicyValue(u32 dwPolicyID, bool* pbValue); // returns the policy's setting in the out parameter
+      //bool _LoadSysPolicies() noexcept; // Implementation helper
+      //static const char gen_FileSection[];
+      //static const char gen_FileEntry[];
+      //static const char gen_PreviewSection[];
+      //static const char gen_PreviewEntry[];
 
 
 
@@ -1368,75 +1321,8 @@
       virtual void report_error(const ::exception::exception & e, int iMessageFlags, const char* pszTopic);
 
 
-      virtual bool on_close_frame_window(::user::frame* pframe);
+      virtual ::e_status create_impact_system();
 
-
-      //application();
-      //virtual ~application();
-
-
-      //virtual ::e_status     initialize(::object * pobject) override;
-
-
-      //virtual void install_message_routing(::channel * pchannel) override;
-
-      //virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
-
-      //virtual ::e_status process_init() override;
-
-      //virtual ::e_status init_instance() override;
-
-      virtual ::e_status     create_impact_system();
-
-      //virtual ::type user_default_controltype_to_typeinfo(::user::enum_control_type econtroltype) override;
-      //virtual ::type control_type_from_id(const ::id& id, ::user::enum_control_type& econtroltype) override;
-
-
-      //virtual void on_create_impact(::user::impact_data* pimpactdata) override;
-      //void process_message_filter(i32 code, ::message::message* pmessage) override;
-
-
-
-      //virtual __pointer(::user::user) create_user();
-
-      //virtual bool on_thread_on_idle(::thread* pthread, ::i32 lCount) override;
-
-
-
-//#ifdef WINDOWS_DESKTOP
-//      virtual ::e_status process_message(::layered * pwindow);     // route message
-//#else
-//      virtual ::e_status process_message();     // route message
-//#endif
-
-      //i32 hotplugin_host_host_starter_start_sync(const char* pszCommandLine, ::application* papp, ::hotplugin::host* phost, ::hotplugin::plugin* pplugin) override;
-
-
-      //virtual ::form_property_set * get_form_property_set() override;
-
-
-
-      //using ::application::on_control_event;
-      //using ::user::form_callback::on_control_event;
-
-
-      //virtual void erase_document_template(::user::impact_system* pimpactsystem);
-
-      //virtual void term_application() override;
-
-      //virtual void SetCurrentHandles() override;
-
-      //virtual ::draw2d::icon* set_icon(object* pobject, ::draw2d::icon* picon, bool bBigIcon) override;
-
-      //virtual ::draw2d::icon* get_icon(object* pobject, bool bBigIcon) const override;
-
-      //virtual void on_control_event(::user::control_event* pevent) override;
-
-      //virtual ::user::interaction* create_menu_interaction();
-
-//      virtual __pointer(::user::document) defer_create_view(string strView, ::user::interaction* puiParent, ewindowflag ewindowflag = e_window_flag_none, const ::id& id = nullptr) override;
-
-      // multimedia
 
       virtual void on_song_added(const string& str);
 

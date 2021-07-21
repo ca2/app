@@ -180,7 +180,7 @@ namespace browser
       //To resize the browser call CefBrowserHost::WasResized().This will result in a call to GetViewRect() to retrieve the new size_i32 followed by a call to OnPaint().
       //Call the CefBrowserHost::SendXXX() methods to notify the browser of mouse, keyboard and focus events.
       //Call CefBrowserHost::CloseBrowser() to destroy browser.
-      __pointer(::thread) m_pthreadBrowser;
+      ::task_pointer m_pthreadBrowser;
       string                  m_strServer;
       ::image_pointer        m_pimageAi1;
       ::image_pointer        m_pimageAi2;

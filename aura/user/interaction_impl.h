@@ -92,7 +92,7 @@ namespace user
       double                                    m_dNominalFps;
       double                                    m_dOutputFps;
       bool                                      m_bLockWindowUpdate;
-      point_i32                                 m_pointCursor;
+      point_i32                                 m_pointMouseMove;
       bool                                      m_bOkToUpdateScreen;
       ::size_i32                                m_sizeDrawn;
       reference_addressa                        m_ptraRedraw;

@@ -581,7 +581,7 @@ class thread;
 class thread;
 
 
-using thread_pointer = __pointer(::thread);
+using thread_pointer = ::task_pointer;
 using thread_array = __pointer_array(thread);
 
 
@@ -738,7 +738,7 @@ class cotaskptr;
 class type;
 
 
-#include "apex/platform/definition.h"
+//#include "apex/platform/definition.h"
 
 
 class thread_parameter;
@@ -838,7 +838,7 @@ namespace core
 #include "apex/platform/display.h"
 
 
-#include "apex/platform/library_object_allocator.h"
+//#include "apex/platform/library_object_allocator.h"
 
 
 #include "apex/platform/library.h"
@@ -904,7 +904,7 @@ namespace core
 #include "apex/platform/thread_set.h"
 
 
-#include "apex/platform/simple_log.h"
+//#include "apex/platform/simple_log.h"
 
 
 //#include "apex/platform/department.h"
@@ -996,7 +996,7 @@ namespace file
 
 #include "apex/filesystem/file/set.h"
 
-#include "apex/platform/net.h"
+//#include "apex/platform/net.h"
 
 #include "apex/platform/command_line.h"
 
@@ -1049,7 +1049,7 @@ using interprocess_task_map = id_map < __pointer(interprocess_task) >;
 
 #include "apex/platform/interprocess_intercommunication.h"
 
-#include "apex/platform/hyperlink.h"
+//#include "apex/platform/hyperlink.h"
 
 #include "apex/platform/context.h"
 
@@ -1112,7 +1112,7 @@ namespace user
 
 #include "apex/message/_.h"
 
-#include "apex/platform/context_thread.h"
+//#include "apex/platform/context_thread.h"
 
 #include "apex/platform/application.h"
 
@@ -1192,7 +1192,7 @@ namespace xml
 #include "apex/platform/async.h"
 
 
-#include "apex/platform/international.h"
+//#include "apex/platform/international.h"
 
 
 #define return_(y, x) {y = x; return;}
@@ -1223,7 +1223,7 @@ namespace mathematics
 } // namespace mathematics
 
 
-#include "apex/platform/error.h"
+//#include "apex/platform/error.h"
 
 
 #include "apex/compress/_.h"
@@ -1265,10 +1265,10 @@ namespace mathematics
 #endif
 
 
-#include "apex/platform/_system_smart_pointer_impl.h"
-#include "apex/platform/_system_object_impl.h"
-#include "apex/platform/_system_id_impl.h"
-#include "apex/platform/_system_var_impl.h"
+//#include "apex/platform/_system_smart_pointer_impl.h"
+//#include "apex/platform/_system_object_impl.h"
+//#include "apex/platform/_system_id_impl.h"
+//#include "apex/platform/_system_var_impl.h"
 
 
 #include "apex/filesystem/_impl.h"

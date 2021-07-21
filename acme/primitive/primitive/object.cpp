@@ -657,6 +657,17 @@ void object::child_post_quit_and_wait(const char* pszTag, const duration& durati
 
 }
 
+
+::e_status object::post(const ::routine& routine)
+{
+
+   __throw(error_interface_only);
+
+   return error_interface_only;
+
+}
+
+
 void object::defer_update_object_id()
 {
 
@@ -1026,7 +1037,6 @@ void object::add_child_task(::object* pobjectTask)
 }
 
 
-
 bool object::check_children_task()
 {
 
@@ -1051,6 +1061,19 @@ bool object::check_children_task()
 
       synchronous_lock lock(mutex());
 
+      for (int iChildTask = 0; iChildTask < m_objectaChildrenTask.get_size(); iChildTask++)
+      {
+
+         auto ptaskChild = m_objectaChildrenTask[iChildTask];
+
+         lock.unlock();
+
+         ptaskChild->set_finish();
+
+         lock.lock();
+
+      }
+
       for (int iChildTask = 0; iChildTask < m_objectaChildrenTask.get_size(); )
       {
 
@@ -1065,8 +1088,6 @@ bool object::check_children_task()
          else
          {
 
-            ptaskChild->set_finish();
-
             iChildTask++;
 
          }
@@ -1076,7 +1097,6 @@ bool object::check_children_task()
    }
    catch (...)
    {
-
 
    }
 
@@ -1089,13 +1109,23 @@ bool object::check_children_task()
 
    }
 
-   post_quit();
+   try
+   {
+
+      post_quit();
+
+   }
+   catch (...)
+   {
+
+   }
 
    m_bCheckingChildrenTask = false;
 
    return false;
 
 }
+
 
 
 //::e_status object::finish()
@@ -1109,21 +1139,29 @@ bool object::check_children_task()
 //}
 //
 
-::e_status object::finish()
+
+::e_status object::finish_children()
 {
 
    set_finish();
 
-   synchronous_lock lock(mutex());
-
    while (check_children_task())
    {
 
-      sleep(100_ms);
+      ::sleep(100_ms);
 
    }
 
-   //::object::finish();
+   return ::success;
+
+}
+
+
+
+::e_status object::finish()
+{
+
+   finish_children();
 
    return ::success;
 

@@ -237,7 +237,7 @@ namespace filehandler
    void view::on_message_left_button_up(::message::message * pmessage)
    {
 
-      __pointer(::message::mouse) pmouse(pmessage);
+      auto pmouse = pmessage->m_pmouse;
 
       auto point = screen_to_client(pmouse->m_point);
 

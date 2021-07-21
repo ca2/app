@@ -62,6 +62,13 @@ namespace text
       inline bool locale_schema::_add_locale_variant(id idLocale, id idStyle)
       {
 
+         if (::is_null(idLocale.m_psz))
+         {
+
+            return false;
+
+         }
+
          return _add_locale_variant(idLocale.m_psz, strlen(idLocale.m_psz), idStyle);
 
       }

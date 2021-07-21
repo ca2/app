@@ -708,6 +708,8 @@ template < typename RESULT, typename TRANSPORT >
 future < RESULT, TRANSPORT > ::future()
 {
 
+   m_ptask = ::get_task();
+
    m_pevent = nullptr;
 
 }
@@ -766,7 +768,12 @@ void future < RESULT, TRANSPORT > ::set_status(const ::e_status& estatus)
       if (m_preceptor)
       {
 
-         m_preceptor->get(*this);
+         m_ptask->post(__routine([this]()
+            {
+
+               m_preceptor->get(*this);
+
+            }));
 
       }
 

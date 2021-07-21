@@ -1009,13 +1009,13 @@ namespace user
       if (m_puserinteraction)
       {
 
-         pmessage = m_puserinteraction->get_message(id, wparam, lparam, point);
+         pmessage = m_puserinteraction->get_message(id, wparam, lparam);
 
       }
       else
       {
 
-         pmessage = get_message(id, wparam, lparam, point);
+         pmessage = get_message(id, wparam, lparam);
 
       }
 

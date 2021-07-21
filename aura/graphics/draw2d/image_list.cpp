@@ -269,7 +269,7 @@ i32 image_list::add(::draw2d::icon * picon, int iItem)
 
    auto rectangle = ::rectangle_f64_dimension(iItem * m_size.cx, 0, m_size.cx, m_size.cy);
    
-   m_pimage->g()->set_alpha_mode(::draw2d::alpha_mode_set);
+   m_pimage->g()->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
    m_pimage->g()->fill_rectangle(rectangle, 0);
 
@@ -311,7 +311,7 @@ i32 image_list::add(::windowing::icon * picon, int iItem)
 
    auto rectangle = ::rectangle_f64_dimension(iItem * m_size.cx, 0, m_size.cx, m_size.cy);
 
-   m_pimage->g()->set_alpha_mode(::draw2d::alpha_mode_set);
+   m_pimage->g()->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
    m_pimage->g()->fill_rectangle(rectangle, 0);
 
@@ -323,6 +323,23 @@ i32 image_list::add(::windowing::icon * picon, int iItem)
 
    auto pdraw2dicon = __create < ::draw2d::icon >();
 
+   pdraw2dicon->initialize_with_windowing_icon(picon);
+
+   //auto pimageDebug = create_image(m_rectImage.size());
+//{
+
+//   auto ret = get_image_list()->draw(pimageDebug->g(), (i32)m_iImage, { 0,0 }, m_rectImage.size(), ::point_i32(), 0);
+//   auto pcolorref = pimageDebug->get_data();
+//   output_debug_string("imageDebug");
+
+//}
+
+   if (iItem == 14)
+   {
+
+      output_debug_string("14 16");
+
+   }
    m_pimage->get_graphics()->draw(rectDst, pdraw2dicon);
 
    return iItem;
@@ -410,7 +427,7 @@ i32 image_list::add_file(::payload varFile, int iItem)
 
          }
 
-         m_pimage->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_set);
+         m_pimage->get_graphics()->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
          m_pimage->draw(
             ::rectangle_f64(::point_i32(iItem * m_size.cx, 0),  m_size ),
@@ -437,13 +454,13 @@ i32 image_list::add_image(::image * pimage, int x, int y, int iItem)
 
    }
 
-   m_pimage->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_set);
+   m_pimage->get_graphics()->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
    auto rectangle = rectangle_f64_dimension(iItem * m_size.cx, 0, m_size.cx, m_size.cy);
 
    m_pimage->get_graphics()->fill_rectangle(rectangle, argb(0, 0, 0, 0));
 
-   m_pimage->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_blend);
+   m_pimage->get_graphics()->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
    m_pimage->get_graphics()->draw(
       ::rectangle_f64(::point_f64(iItem * m_size.cx, 0), m_size), pimage, ::point_f64((double) x, (double) y));

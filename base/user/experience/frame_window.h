@@ -42,8 +42,6 @@ namespace experience
       bool                                         m_fActive;
       bool                                         m_bUseNc;
 
-      __composite(::draw2d::icon)                  m_picon;
-
       comparable_array < enum_button >             m_ebuttonaHide;
       i32                                          m_iIndex;
       bool                                         m_bFullScreenOnZoom;
@@ -83,6 +81,7 @@ namespace experience
 
       void on_command_message(::message::command* pcommand) override;
       void route_command_message(::message::command* pcommand) override;
+
 
 
       //virtual void wfi_dock_on_button_down(::user::control_event * pevent);
@@ -138,7 +137,7 @@ namespace experience
       DECLARE_MESSAGE_HANDLER(on_message_left_button_down);
       DECLARE_MESSAGE_HANDLER(on_message_mouse_move);
       DECLARE_MESSAGE_HANDLER(on_message_left_button_up);
-      DECLARE_MESSAGE_HANDLER(on_message_set_cursor);
+      ////DECLARE_MESSAGE_HANDLER(on_message_set_cursor);
       DECLARE_MESSAGE_HANDLER(_001OnNcLButtonDown);
       DECLARE_MESSAGE_HANDLER(_001OnNcMouseMove);
       DECLARE_MESSAGE_HANDLER(_001OnNcLButtonUp);

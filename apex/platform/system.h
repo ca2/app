@@ -61,7 +61,6 @@ namespace apex
       //__composite(class ::account::user_set)             m_puserset;
 
       __composite_array(service)                         m_servicecompositea;
-      __composite(class ::apex::log)                     m_ptrace;
 
       // apex commented
       //__composite(math::math)                            m_pmath;
@@ -132,8 +131,10 @@ namespace apex
       string_array                                            m_straCommandLineExtra;
       millis                                               m_millisCommandLineLast;
       int                                                m_iCommandLineDelay;
-      __pointer(::thread)                                m_pthreadCommandLine;
+      ::task_pointer                                m_pthreadCommandLine;
 
+
+      //__pointer(::trace::log)                            m_ptracelog;
 
       bool                                               m_bSystemSynchronizedCursor;
       bool                                               m_bSystemSynchronizedScreen;
@@ -469,7 +470,6 @@ namespace apex
 
       //using acme::system::process;
 
-      class ::apex::log                            &  log();
       class ::machine_event_central                &  machine_event_central();
       inline ::parallelization::threading           *  threading() { return m_pthreading; }
 
@@ -776,15 +776,15 @@ namespace apex
       //virtual void on_event(::u64 u, ::object * pobject) override;
 
 
-      virtual void on_initial_frame_position(::user::frame * pframe);
+      //virtual void on_initial_frame_position(::user::frame * pframe);
 
-      virtual void on_graphics_ready();
+      //virtual void on_graphics_ready();
 
       virtual void process_machine_event_data(machine_event_data * pdata);
 
 
 
-      // virtual void __tracea(enum_trace_level elevel, const char* pszFunction, const char* pszFile, i32 iLine, const char* psz) const override;
+      void __tracea(enum_trace_level elevel, const char* pszFunction, const char* pszFile, int iLine, const char* psz) const override;
 
 
       virtual string get_user_language();

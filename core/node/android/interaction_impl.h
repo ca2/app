@@ -444,7 +444,7 @@ namespace android
       void OnRButtonDblClk(::u32 nFlags, const ::point_i32 & point);
       void OnRButtonDown(::u32 nFlags, const ::point_i32 & point);
       void OnRButtonUp(::u32 nFlags, const ::point_i32 & point);
-      DECLARE_MESSAGE_HANDLER(on_message_set_cursor);
+      //DECLARE_MESSAGE_HANDLER(on_message_set_cursor);
       void OnTimer(uptr uEvent);
 
       // Initialization message handler member functions

@@ -73,7 +73,7 @@ namespace userex
    void top_edit_view::on_message_key_down(::message::message * pmessage)
    {
 
-      __pointer(::message::key) pkey(pmessage);
+      auto pkey = pmessage->m_pkey;
 
       auto psubject = subject(id_key_down);
 

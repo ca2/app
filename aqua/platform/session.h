@@ -12,14 +12,15 @@ namespace aqua
 
 
       session();
-      virtual ~session();
+      ~session() override;
 
       void common_construct();
 
 
-      virtual ::e_status initialize(::object * pobject) override;
+      ::e_status initialize(::object * pobject) override;
 
-      virtual void on_instantiate_application(::application* papp) override;
+      void on_instantiate_application(::application* papp) override;
+
 
    };
 

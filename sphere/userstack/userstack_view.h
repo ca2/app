@@ -76,7 +76,7 @@ namespace userstack
       DECLARE_MESSAGE_HANDLER(_001OnPaint);
       DECLARE_MESSAGE_HANDLER(on_message_create);
       DECLARE_MESSAGE_HANDLER(on_message_context_menu);
-      DECLARE_MESSAGE_HANDLER(on_message_set_cursor);
+      //DECLARE_MESSAGE_HANDLER(on_message_set_cursor);
       void _001OnTimer(::timer * ptimer) override;
       DECLARE_MESSAGE_HANDLER(on_message_left_button_up);
 

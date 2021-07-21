@@ -18,7 +18,7 @@ class CLASS_DECL_APEX object :
 public:
 
 
-   //__pointer(::thread)                                m_pthread;
+   //::task_pointer                                m_pthread;
    //__pointer(::application)                     m_papplication;
    //__pointer(::apex::session)                         m_psession;
    //__pointer(class ::system)                          m_psystem;

@@ -150,7 +150,7 @@ public:
    void set(const RECTANGLE & rectDst, IMAGE_SOURCE_POINTER pimagesource)
    {
 
-      auto concreteSize = pimagesource->size();
+      auto concreteSize = pimagesource->size(rectDst.size(), e_image_selection_default);
 
       auto sizeDst = ::size_i32(rectDst);
 

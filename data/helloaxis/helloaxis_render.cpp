@@ -424,7 +424,7 @@ namespace helloaxis
 
       rectangleClient.bottom = m_cy;
 
-      //pgraphics->set_alpha_mode(::draw2d::alpha_mode_set);
+      //pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
       //pgraphics->FillSolidRect(rectangleClient,argb(0, 0, 0, 0));
 
@@ -510,7 +510,7 @@ namespace helloaxis
 
 /*                  m_pimage->g()->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
-/*                  m_pimage->g()->set_alpha_mode(::draw2d::alpha_mode_blend);
+/*                  m_pimage->g()->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
                   brushText->create_solid(argb(255, 255, 255, 255));
 
@@ -591,7 +591,7 @@ namespace helloaxis
 
       pgraphics->set_interpolation_mode(e_interpolation_mode_high_quality_bicubic);
 
-      pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
       psystem->imaging().bitmap_blend(pgraphics,
                                          point_i32((m_cx - m_pimageTemplate2->width()) / 2, (m_cy - m_pimageTemplate2->height()) / 2)
@@ -776,7 +776,7 @@ namespace helloaxis
 
 /*            m_pimage->g()->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
-/*            m_pimage->g()->set_alpha_mode(::draw2d::alpha_mode_blend);
+/*            m_pimage->g()->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
             brushText->create_solid(argb(255, 255, 255, 255));
 
@@ -817,7 +817,7 @@ namespace helloaxis
 
          pgraphics->set_interpolation_mode(e_interpolation_mode_high_quality_bicubic);
 
-         pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+         pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
          pgraphics->BitBlt(rectangleClient, m_pimageTint->get_graphics());
 
@@ -1005,7 +1005,7 @@ namespace helloaxis
       rectangleClient.right = m_cx;
       rectangleClient.bottom = m_cy;
 
-      pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
       int period = 5000;
       int border = 2500;
       int t;
@@ -1183,7 +1183,7 @@ auto m_tick23 = ::millis::now();
 
             pgraphics->set_font(m_font);
 
-            pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+            pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
             pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
@@ -1231,7 +1231,7 @@ auto m_tick23 = ::millis::now();
 
          }
 
-         pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+         pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
          pgraphics->BitBlt(::point_i32(), size_i32(m_cx, m_cy), m_pimageFast->get_graphics());
 
@@ -1265,7 +1265,7 @@ auto m_tick23 = ::millis::now();
 /*      if (pimage->area() <= 0)
          return;
 
-      pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
       if (m_millisLastOk.elapsed() < m_millisAnime)
       {
@@ -1439,11 +1439,11 @@ auto m_tick23 = ::millis::now();
 
       penW->create_solid(3.0, argb(84, 255, 255, 255));
 
-      pgraphics->set_alpha_mode(::draw2d::alpha_mode_set);
+      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
       //      pgraphics->FillSolidRect((m_cx - size.cx) / 2,(m_cy - size.cy) / 2, 100, 100, argb(255,255,200,240));
 
-      pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
       pgraphics->draw_path(path, penW);
       pgraphics->draw_path(path, pen);

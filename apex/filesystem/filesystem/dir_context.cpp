@@ -1697,64 +1697,69 @@ void dir_context::matter_ls_file(const ::file::path & str, ::file::listing & str
 
    __pointer(::apex::system) psystem = get_system();
 
-   if(psystem->m_pdirsystem->m_pathLocalAppMatterCacheFolder.has_char())
+   if (psystem->m_pdirsystem->m_bMatterFromHttpCache)
    {
 
-      ::file::path pathLs0 = straMatterLocator.first();
-
-      pathLs0 /= m_pcontext->m_papexcontext->get_locale_schema_dir();
-
-      pathCache = psystem->m_pdirsystem->m_pathLocalAppMatterCacheFolder / pathLs0 / patha[0] + ".map_question";
-
-      TRACE("cache map path: %s", pathCache.c_str());
-
-      path = m_pcontext->m_papexcontext->file().as_string(pathCache);
-
-      if (::str::begins_eat_ci(path, "itdoesntexist."))
+      if (psystem->m_pdirsystem->m_pathLocalAppMatterCacheFolder.has_char())
       {
 
-         millis t = ansi_to_i64(path);
+         ::file::path pathLs0 = straMatterLocator.first();
 
-         auto elapsed = t.elapsed();
+         pathLs0 /= m_pcontext->m_papexcontext->get_locale_schema_dir();
 
-         if (elapsed < 5_s)
+         pathCache = psystem->m_pdirsystem->m_pathLocalAppMatterCacheFolder / pathLs0 / patha[0] + ".map_question";
+
+         TRACE("cache map path: %s", pathCache.c_str());
+
+         path = m_pcontext->m_papexcontext->file().as_string(pathCache);
+
+         if (::str::begins_eat_ci(path, "itdoesntexist."))
          {
 
-            if (false)
+            millis t = ansi_to_i64(path);
+
+            auto elapsed = t.elapsed();
+
+            if (elapsed < 5_s)
             {
 
-               return "itdoesntexist";
+               if (false)
+               {
+
+                  return "itdoesntexist";
+
+               }
 
             }
 
+            path.Empty();
+
          }
 
-         path.Empty();
-
-      }
-
-      if (!(patha[0] & ::file::e_flag_bypass_cache) && path.has_char())
-      {
-
-         string strFinal(path);
-
-         if (strFinal.begins_ci("appmatter://"))
+         if (!(patha[0] & ::file::e_flag_bypass_cache) && path.has_char())
          {
 
-            strFinal = psystem->m_pdirsystem->m_pathLocalAppMatterFolder / strFinal.Mid(12);
+            string strFinal(path);
+
+            if (strFinal.begins_ci("appmatter://"))
+            {
+
+               strFinal = psystem->m_pdirsystem->m_pathLocalAppMatterFolder / strFinal.Mid(12);
+
+            }
+
+            if (::is_file_or_dir_dup(strFinal, nullptr))
+            {
+
+               TRACE("!!Cache Hit: %s", strFinal.c_str());
+
+               return path;
+
+            }
+
+            TRACE("...Cache Miss: %s", strFinal.c_str());
 
          }
-
-         if (::is_file_or_dir_dup(strFinal, nullptr))
-         {
-
-            TRACE("!!Cache Hit: %s", strFinal.c_str());
-
-            return path;
-
-         }
-
-         TRACE("...Cache Miss: %s", strFinal.c_str());
 
       }
 

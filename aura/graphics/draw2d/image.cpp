@@ -4098,10 +4098,10 @@ bool image::fill_rectangle(const ::rectangle_i32& rectangle, color32_t cr)
 
       ::draw2d::enum_alpha_mode emodeOld = get_graphics()->m_ealphamode;
 
-      if (get_graphics()->m_ealphamode != ::draw2d::alpha_mode_set)
+      if (get_graphics()->m_ealphamode != ::draw2d::e_alpha_mode_set)
       {
 
-         get_graphics()->set_alpha_mode(::draw2d::alpha_mode_set);
+         get_graphics()->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
       }
 
@@ -5843,16 +5843,16 @@ bool image::fill_byte(uchar uch)
 
       auto ealphamode = g()->m_ealphamode;
 
-      if (ealphamode != ::draw2d::alpha_mode_set)
+      if (ealphamode != ::draw2d::e_alpha_mode_set)
       {
 
-         g()->set_alpha_mode(::draw2d::alpha_mode_set);
+         g()->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
       }
 
       g()->fill_rectangle(::rectangle_f64(m_size), color);
 
-      if (ealphamode != ::draw2d::alpha_mode_set)
+      if (ealphamode != ::draw2d::e_alpha_mode_set)
       {
 
          g()->set_alpha_mode(ealphamode);
@@ -5909,7 +5909,7 @@ bool image::fill(color32_t cr)
    else if (get_graphics() != nullptr)
    {
 
-      get_graphics()->set_alpha_mode(::draw2d::alpha_mode_set);
+      get_graphics()->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
       get_graphics()->fill_rectangle(rectangle(), cr);
 
@@ -8544,7 +8544,7 @@ bool image::create_circle(::image* pimage, int diameter)
    else
    {
 
-      get_graphics()->set_alpha_mode(::draw2d::alpha_mode_set);
+      get_graphics()->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
       get_graphics()->stretch(rectangle_i32_dimension(0, 0, diameter, diameter), pimage->g(), rectangle_i32_dimension(0, 0, pimage->width(), pimage->height()));
 

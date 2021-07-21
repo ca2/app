@@ -30,7 +30,7 @@ application_exit::~application_exit()
 
    m_bProcessingApplicationExitRequest = true;
 
-   fork([this]()
+   post(__routine([this]()
       {
 
          try
@@ -46,7 +46,7 @@ application_exit::~application_exit()
 
          m_bProcessingApplicationExitRequest = false;
 
-      });
+      }));
 
    return ::success;
 

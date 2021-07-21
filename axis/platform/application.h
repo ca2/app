@@ -27,8 +27,8 @@ namespace axis
 
 
 
-      application(const char * pszAppId = nullptr);
-      virtual ~application();
+      application();
+      ~application() override;
 
 
       virtual ::e_status initialize(::object * pobject) override;
@@ -89,7 +89,7 @@ namespace axis
 
 
 
-      virtual bool InitApplication() override;
+      //virtual bool InitApplication() override;
 
 
       virtual ::e_status process_init() override;

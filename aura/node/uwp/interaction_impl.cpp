@@ -371,7 +371,7 @@ namespace uwp
          m_puserinteraction->install_message_routing(pchannel);
       }
       MESSAGE_LINK(e_message_create, pchannel, this,&interaction_impl::on_message_create);
-      MESSAGE_LINK(e_message_set_cursor, pchannel, this,&interaction_impl::on_message_set_cursor);
+      //MESSAGE_LINK(e_message_set_cursor, pchannel, this,&interaction_impl::on_message_set_cursor);
       //MESSAGE_LINK(e_message_erase_background, pchannel, this,&interaction_impl::_001OnEraseBkgnd);
       MESSAGE_LINK(e_message_move, pchannel, this,&interaction_impl::on_message_move);
       MESSAGE_LINK(e_message_size, pchannel, this,&interaction_impl::on_message_size);
@@ -4702,22 +4702,22 @@ return true;
 
    }
 
-   void interaction_impl::on_message_set_cursor(::message::message * pmessage)
-   {
+   // void interaction_impl::on_message_set_cursor(::message::message * pmessage)
+   // {
 
-      __throw(todo);
+   //    __throw(todo);
 
-      //__pointer(::user::message) pusermessage(pmessage);
-      //if(::aura::get_system()->get_cursor() != nullptr
-      //   && ::aura::get_system()->get_cursor()->m_ecursor != cursor_system)
-      //{
-      //   ::SetCursor(nullptr);
-      //}
-      //pusermessage->set_lresult(1);
-      //pusermessage->m_bRet = true;
-      ////(bool)Default();
+   //    //__pointer(::user::message) pusermessage(pmessage);
+   //    //if(::aura::get_system()->get_cursor() != nullptr
+   //    //   && ::aura::get_system()->get_cursor()->m_ecursor != cursor_system)
+   //    //{
+   //    //   ::SetCursor(nullptr);
+   //    //}
+   //    //pusermessage->set_lresult(1);
+   //    //pusermessage->m_bRet = true;
+   //    ////(bool)Default();
 
-   }
+   // }
 
    void interaction_impl::OnShowWindow(bool,::u32)
    {

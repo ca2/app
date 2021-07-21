@@ -121,7 +121,7 @@ namespace experience
 
          rectEllipse.deflate(0, 0, 2, 2);
 
-         pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+         pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
          pgraphics->fill_ellipse(rectEllipse);
 

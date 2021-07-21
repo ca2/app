@@ -51,7 +51,7 @@ namespace apex
    }
 
 
-   ::e_status log::initialize_apex_log(enum_trace_level etracelevelMin, const ::id & id)
+   ::e_status log::initialize_log(enum_trace_level etracelevelMin, const ::id & id)
    {
 
       auto estatus = __compose_new(m_ptrace);
@@ -283,15 +283,6 @@ namespace apex
       return 0;
    }
 
-   void log::set_extended_log(bool bSet)
-   {
-      m_bExtendedLog = bSet;
-   }
-
-   bool log::get_extended_log()
-   {
-      return m_bExtendedLog;
-   }
 
 
    void log::success(const char * psz)
@@ -631,18 +622,20 @@ namespace apex
 
 
 
-   void log::print(const char * pszFormat, ...)
-   {
+   //void log::print(const char * pszFormat, ...)
+   //{
 
-      va_list valist;
+   //   //::trace::log::print_v(pszFormat, valist);
 
-      va_start(valist, pszFormat);
+   //   va_list valist;
 
-      __tracef(e_trace_level_information, nullptr, nullptr, -1, pszFormat, valist);
+   //   va_start(valist, pszFormat);
 
-      va_end(valist);
+   //   print_v(pszFormat, valist);
 
-   }
+   //   va_end(valist);
+
+   //}
 
 
    //::e_status log::initialize_apex_log(enum_trace_level etracelevelMin, const char * pszId)
@@ -660,7 +653,7 @@ namespace apex
    //}
 
 
-   bool log::process_init()
+   ::e_status log::process_init()
    {
 
       __pointer(::apex::system) psystem = get_system();

@@ -6,8 +6,7 @@ namespace user
 
 
    class CLASS_DECL_BASE frame_window :
-      virtual public ::user::frame,
-      virtual public ::user::box
+      virtual public ::user::main_window
    {
    public:
 
@@ -89,6 +88,7 @@ namespace user
 
       virtual void assert_valid() const override;
       virtual void dump(dump_context & dc) const override;
+
 
 
       virtual void install_message_routing(::channel * pchannel) override;

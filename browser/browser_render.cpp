@@ -514,7 +514,7 @@ namespace browser
 
 /*                  m_pimage->g()->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
-/*                  m_pimage->g()->set_alpha_mode(::draw2d::alpha_mode_blend);
+/*                  m_pimage->g()->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
                   brushText->create_solid(argb(255, 255, 255, 255));
 
@@ -607,7 +607,7 @@ namespace browser
 
       pgraphics->set_interpolation_mode(e_interpolation_mode_high_quality_bicubic);
 
-      pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
       psystem->imaging().bitmap_blend(pgraphics,
                                          point_i32((m_cx - m_pimageTemplate2->width()) / 2, (m_cy - m_pimageTemplate2->height()) / 2)
@@ -801,7 +801,7 @@ namespace browser
 
 /*            m_pimage->g()->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
-/*            m_pimage->g()->set_alpha_mode(::draw2d::alpha_mode_blend);
+/*            m_pimage->g()->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
             brushText->create_solid(argb(255, 255, 255, 255));
 
@@ -842,7 +842,7 @@ namespace browser
 
          pgraphics->set_interpolation_mode(e_interpolation_mode_high_quality_bicubic);
 
-         pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+         pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
          pgraphics->draw(rectangleClient, m_pimageTint->get_graphics());
 
@@ -1041,7 +1041,7 @@ namespace browser
       rectangleClient.right = m_cx;
       rectangleClient.bottom = m_cy;
 
-      pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
       millis tickPeriod = m_millisSlidePeriod;
       millis tickRampUp = tickPeriod / 2;
       millis tickSlide = 0;
@@ -1111,7 +1111,7 @@ namespace browser
 
             pgraphics->set_font(m_font);
 
-            pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+            pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
             pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
@@ -1166,7 +1166,7 @@ namespace browser
          if (m_pimageFast->is_ok())
          {
 
-            pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+            pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
             pgraphics->draw(::point_i32(), size_i32(m_cx, m_cy), m_pimageFast->get_graphics());
 
@@ -1200,7 +1200,7 @@ namespace browser
 /*      if (pimage->area() <= 0)
          return;
 
-      pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
       if (m_millisLastOk.elapsed() < m_millisAnime)
       {
@@ -1371,9 +1371,9 @@ namespace browser
 
       penW->create_solid(3.0, argb(84, 255, 255, 255));
 
-      pgraphics->set_alpha_mode(::draw2d::alpha_mode_set);
+      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
-      pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
       pgraphics->draw_path(path, penW);
 

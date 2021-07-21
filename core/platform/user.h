@@ -728,7 +728,7 @@
 //      virtual bool is_application() const override;
 //
 //
-//      DECLARE_MESSAGE_HANDLER(_001OnAppExit);
+//      DECLARE_MESSAGE_HANDLER(on_message_app_exit);
 //      virtual bool _001OnAgreeExit();
 //      virtual void france_exit();
 //      virtual void _001FranceExit();

@@ -1250,7 +1250,7 @@ namespace user
          __pointer(::aura::application) papplication = get_application();
 
          //psession->erase_frame(this); // no more a top level frame if it were one
-         papplication->erase_frame(this); // no more a top level frame if it were one
+         papplication->erase_user_interaction(this); // no more a top level frame if it were one
 
          m_pimpl = pimplNew;
 
@@ -1480,7 +1480,7 @@ namespace user
          MESSAGE_LINK(e_message_show_window, pchannel, this, &interaction::on_message_show_window);
          MESSAGE_LINK(e_message_display_change, pchannel, this, &interaction::on_message_display_change);
          MESSAGE_LINK(e_message_left_button_down, pchannel, this, &::user::interaction::on_message_left_button_down);
-         MESSAGE_LINK(e_message_set_cursor, pchannel, this, &::user::interaction::on_message_set_cursor);
+         //MESSAGE_LINK(e_message_set_cursor, pchannel, this, &::user::interaction::on_message_set_cursor);
 
          if (m_bEditDefaultHandling || m_bKeyboardMultipleSelectionDefaultHandling)
          {
@@ -2216,16 +2216,16 @@ namespace user
 
       auto puserinteraction = get_wnd();
 
-#ifdef WINDOWS_DESKTOP
-
-      if (puserinteraction == this)
-      {
-
-         ::KillTimer((HWND)get_oswindow(), e_timer_transparent_mouse_event);
-
-      }
-
-#endif
+//#ifdef WINDOWS_DESKTOP
+//
+//      if (puserinteraction == this)
+//      {
+//
+//         ::KillTimer((HWND)get_oswindow(), e_timer_transparent_mouse_event);
+//
+//      }
+//
+//#endif
 
       if (puserinteraction == this)
       {
@@ -2320,7 +2320,7 @@ namespace user
 
                __pointer(::aura::application) papplication = get_application();
 
-               papplication->erase_frame(this); // guess this may be a frame, it doesn't hurt to erase if this is not there
+               papplication->erase_user_interaction(this); // guess this may be a frame, it doesn't hurt to erase if this is not there
 
             }
             catch (...)
@@ -2336,7 +2336,7 @@ namespace user
 
                   __pointer(::aura::application) papplication = get_application();
 
-                  papplication->erase_frame(this); // guess this may be a frame, it doesn't hurt to erase if this is not there
+                  papplication->erase_user_interaction(this); // guess this may be a frame, it doesn't hurt to erase if this is not there
 
                }
                catch (...)
@@ -2483,7 +2483,87 @@ namespace user
    }
 
 
-   ::e_status interaction::set_icon(::windowing::icon * picon)
+   void interaction::defer_set_icon()
+   {
+
+#if defined(CUBE)
+
+      return;
+
+#endif
+
+      auto pwindowingicon = get_windowing_icon();
+
+      if (get_parent() == nullptr
+         //&& m_bWindowFrame
+         && ::is_null(pwindowingicon)
+         )
+      {
+
+         ::file::path strMatter = get_window_default_matter();
+
+         //http://www.cplusplus.com/forum/general/28470/
+         //blackcoder41 (1426)  Sep 12, 2010 at 2:43pm
+         //hIconSm = (HICON)LoadImage(nullptr, "menu_two.ico", IMAGE_ICON, 16, 16, LR_LOADFROMFILE);
+
+         string_array straMatter;
+
+         if (strMatter.name(0) == "system")
+         {
+
+            straMatter.add("main");
+
+            straMatter.add(strMatter);
+
+         }
+         else
+         {
+
+            straMatter.add(strMatter);
+
+            straMatter.add("main");
+
+         }
+
+         //      auto p
+         //
+         //      defer_set_icon();
+
+         auto psession = get_session();
+
+         auto puser = psession->user();
+
+         auto pwindowing = puser->windowing();
+
+         //auto& image = app.image();
+
+         auto pcontext = m_pcontext->m_papexcontext;
+
+         ::file::path pathIcon = pcontext->dir().matter("matter://main/icon.ico");
+
+         auto picon = pwindowing->load_icon(pathIcon);
+
+         //      HICON hicon = load_icon(get_application(), straMatter, "icon.ico", 16, 16);
+
+         set_windowing_icon(picon);
+
+         //if (m_bWindowFrame)
+         //{
+
+         //   //hicon = load_icon(get_application(), straMatter, "icon.ico", 24, 24);
+
+         //   //__compose(m_picon, papplication->load_icon("matter://icon.ico"));
+
+         //   //__compose(m_picon, m_picon->);
+
+         //}
+
+      }
+
+   }
+
+
+   ::e_status interaction::set_windowing_icon(::windowing::icon * picon)
    {
 
       if(::is_null(m_pimpl2))
@@ -2505,6 +2585,43 @@ namespace user
       return estatus;
 
    }
+
+
+   ::windowing::icon* interaction::get_windowing_icon()
+   {
+
+      auto pwindow = get_window();
+
+      if (::is_null(pwindow))
+      {
+
+         return nullptr;
+
+      }
+
+      auto picon = pwindow->get_icon();
+
+      if (::is_null(picon))
+      {
+
+         return nullptr;
+
+      }
+
+      return picon;
+
+   }
+
+
+   ::draw2d::icon* interaction::get_draw_icon()
+   {
+
+      __throw(error_interface_only);
+
+      return nullptr;
+
+   }
+
 
 
    void interaction::set_viewport_org(::draw2d::graphics_pointer & pgraphics)
@@ -3162,11 +3279,11 @@ namespace user
 
    //#ifdef _UWP
 
-     // pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+     // pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
    //#else
 
-      //pgraphics->set_alpha_mode(::draw2d::alpha_mode_set);
+      //pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
    //#endif
 
@@ -3252,7 +3369,7 @@ namespace user
 
          pgraphics->SelectClipRgn(nullptr);
 
-         pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+         pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
          pgraphics->fill_rectangle(rectHint, argb(128, __random(128, 255), __random(128, 255), __random(128, 255)));
 
@@ -3341,7 +3458,7 @@ namespace user
                if (pcursor != nullptr && pgraphics != nullptr)
                {
 
-                  pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+                  pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
                   //pgraphics->draw(pointCursor, pcursor);
 
@@ -3744,7 +3861,7 @@ namespace user
       else if (get_translucency(pstyle) >= e_translucency_present)
       {
 
-         pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+         pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
          auto colorBackground = get_color(pstyle, e_element_background);
 
@@ -3772,7 +3889,7 @@ namespace user
       else
       {
 
-         pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+         pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
          auto colorBackground = get_color(pstyle, e_element_background);
 
@@ -3828,7 +3945,7 @@ namespace user
    }
 
 
-   __pointer(::message::message) interaction::get_message(const ::id & id, wparam wparam, lparam lparam, const ::point_i32& point)
+   __pointer(::message::message) interaction::get_message(const ::id & id, wparam wparam, lparam lparam)
    {
    
       __pointer(::message::message) pmessage;
@@ -3983,7 +4100,7 @@ namespace user
 
       }
    
-      pmessage->set(get_oswindow(), get_window(), id, wparam, lparam, point);
+      pmessage->set(get_oswindow(), get_window(), id, wparam, lparam);
    
       return pmessage;
    
@@ -4264,7 +4381,7 @@ namespace user
 
             __pointer(::aura::application) papplication = get_application();
 
-            papplication->add_frame(this);
+            papplication->add_user_interaction(this);
 
          }
 
@@ -4810,7 +4927,7 @@ namespace user
       if (m_bEditDefaultHandling || m_bKeyboardMultipleSelectionDefaultHandling)
       {
 
-         __pointer(::message::key) pkey(pmessage);
+         auto pkey = pmessage->m_pkey;
 
          if (pkey)
          {
@@ -5416,7 +5533,7 @@ namespace user
    //   //if(pmessage->m_id == e_message_key_down)
    //   //{
 
-   //   //   __pointer(::message::key) pkey(pmessage);
+   //   //   auto pkey = pmessage->m_pkey;
 
    //   //   if(pkey->m_ekey == ::user::e_key_tab)
    //   //   {
@@ -6995,7 +7112,7 @@ namespace user
       __release(m_pthreadUserInteraction);
       m_puserinteractionParent.release();
       m_pupdowntarget.release();
-      m_pthreadModal.release();
+      m_ptaskModal.release();
       m_puserinteractionOwner.release();
 
       return ::success;
@@ -8542,6 +8659,29 @@ namespace user
 
       }
 
+      {
+
+         auto pitem = get_user_item(::user::e_element_switch_button);
+
+         if (pitem)
+         {
+
+            if (pitem->m_rectangle.is_null())
+            {
+
+               get_client_rect(pitem->m_rectangle);
+
+               pitem->m_rectangle.left = pitem->m_rectangle.right - 48;
+
+               pitem->m_rectangle.top = pitem->m_rectangle.bottom - 48;
+
+            }
+
+         }
+
+      }
+
+
    }
 
 
@@ -8922,7 +9062,7 @@ namespace user
 
       __keep(m_bModal);
 
-      __keep_current_thread(m_pthreadModal);
+      __keep_current_thread(m_ptaskModal);
 
       while(true)
       {
@@ -8992,10 +9132,10 @@ namespace user
 
       post_message(e_message_close);
 
-      if(::is_set(m_pthreadModal))
+      if(::is_set(m_ptaskModal))
       {
 
-         m_pthreadModal->kick_thread();
+         m_ptaskModal->kick_thread();
 
       }
 
@@ -10677,29 +10817,29 @@ namespace user
    }
 
 
-   void interaction::on_message_set_cursor(::message::message* pmessage)
-   {
+   //void interaction::on_message_set_cursor(::message::message* pmessage)
+   //{
 
-      auto pcursor = get_mouse_cursor();
+   //   //auto pcursor = get_mouse_cursor();
 
-      if (pcursor)
-      {
+   //   //if (pcursor)
+   //   //{
 
-         __pointer(::message::set_cursor) psetcursor = pmessage;
+   //   //   __pointer(::message::set_cursor) psetcursor = pmessage;
 
 
-         if (psetcursor)
-         {
+   //   //   if (psetcursor)
+   //   //   {
 
-            psetcursor->m_pcursor = pcursor;
+   //   //      //psetcursor->m_pcursor = pcursor;
 
-            psetcursor->m_bRet = true;
+   //   //      psetcursor->m_bRet = true;
 
-         }
+   //   //   }
 
-      }
+   //   //}
 
-   }
+   //}
 
 
 
@@ -11354,14 +11494,16 @@ restart:
 
                post_redraw();
 
-               fork([this]()
-                  {
+               //fork([this]()
+                 // {
 
                      auto papplication = get_application();
 
-                     papplication->_001TryCloseApplication();
+                     papplication->post_message(e_message_close, 1);
 
-                  });
+                    // papplication->_001TryCloseApplication();
+
+                  //});
 
                return;
 
@@ -11703,7 +11845,7 @@ restart:
    //bool interaction::track_popup_menu(::user::menu_item * pitem, i32 iFlags, ::message::message * pmessage)
    //{
 
-   //   __pointer(::message::mouse) pmouse(pmessage);
+   //   auto pmouse = pmessage->m_pmouse;
 
    //   ::point_i32 point = pmouse->m_point;
 
@@ -11717,7 +11859,7 @@ restart:
    //__pointer(::user::menu) interaction::track_popup_xml_menu_text(string strXml, i32 iFlags, ::message::message * pmessage)
    //{
 
-   //   __pointer(::message::mouse) pmouse(pmessage);
+   //   auto pmouse = pmessage->m_pmouse;
 
    //   auto point = pmouse->m_point;
 
@@ -11732,7 +11874,7 @@ restart:
    //__pointer(::user::menu) interaction::track_popup_xml_matter_menu(const char * pszMatter, i32 iFlags, ::message::message * pmessage)
    //{
 
-   //   __pointer(::message::mouse) pmouse(pmessage);
+   //   auto pmouse = pmessage->m_pmouse;
 
    //   ::point_i32 point = pmouse->m_point;
 
@@ -13565,7 +13707,7 @@ restart:
    void interaction::keyboard_focus_OnKeyDown(::message::message * pmessage)
    {
 
-      __pointer(::message::key) pkey(pmessage);
+      auto pkey = pmessage->m_pkey;
 
       if (pkey->m_ekey == ::user::e_key_tab)
       {
@@ -14440,6 +14582,14 @@ restart:
          return true;
 
       }
+      else if (item == ::user::e_element_switch_button)
+      {
+
+         post_message(e_message_switch);
+
+         return true;
+
+      }
 
       return false;
 
@@ -15048,7 +15198,7 @@ restart:
       
       string strType = this->type_c_str();
 
-      __pointer(::message::mouse) pmouse(pmessage);
+      auto pmouse = pmessage->m_pmouse;
 
       if (!is_window_enabled())
       {
@@ -15208,7 +15358,7 @@ restart:
    void interaction::on_message_left_button_up(::message::message* pmessage)
    {
 
-      __pointer(::message::mouse) pmouse(pmessage);
+      auto pmouse = pmessage->m_pmouse;
 
       if (!is_window_enabled())
       {
@@ -15402,7 +15552,7 @@ restart:
    void interaction::on_message_middle_button_down(::message::message* pmessage)
    {
 
-      __pointer(::message::mouse) pmouse(pmessage);
+      auto pmouse = pmessage->m_pmouse;
 
       pmessage->previous();
 
@@ -15426,7 +15576,7 @@ restart:
    void interaction::on_message_middle_button_up(::message::message* pmessage)
    {
 
-      __pointer(::message::mouse) pmouse(pmessage);
+      auto pmouse = pmessage->m_pmouse;
 
       pmessage->previous();
 
@@ -15452,7 +15602,7 @@ restart:
    void interaction::on_message_mouse_move(::message::message* pmessage)
    {
 
-      __pointer(::message::mouse) pmouse(pmessage);
+      auto pmouse = pmessage->m_pmouse;
 
       if (!is_window_enabled())
       {
@@ -15870,8 +16020,37 @@ restart:
    void interaction::_001DrawItem(::draw2d::graphics_pointer& pgraphics, ::user::item * pitem)
    {
 
-      UNREFERENCED_PARAMETER(pgraphics);
-      UNREFERENCED_PARAMETER(pitem);
+      if (::is_null(pitem))
+      {
+
+         return;
+
+      }
+
+      if (pitem->m_eelement == ::user::e_element_close_icon)
+      {
+
+         ::user::draw_close_icon(pgraphics, this, pitem);
+
+      }
+      else if (pitem->m_eelement == ::user::e_element_switch_icon)
+      {
+
+         ::user::draw_switch_icon(pgraphics, this, pitem);
+
+      }
+      else if (pitem->m_eelement == ::user::e_element_close_button)
+      {
+
+         ::user::draw_close_button(pgraphics, this, pitem);
+
+      }
+      else if (pitem->m_eelement == ::user::e_element_switch_button)
+      {
+
+         ::user::draw_switch_button(pgraphics, this, pitem);
+
+      }
 
    }
 

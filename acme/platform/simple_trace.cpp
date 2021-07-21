@@ -6,7 +6,7 @@
 #include <sys/types.h>
 #include <unistd.h>
 #endif
-#include "simple_trace.h"
+#include "simple_log.h"
 #include "trace.h"
 
 
@@ -181,7 +181,7 @@ CLASS_DECL_ACME void __trace(enum_trace_level elevel, const char * pszTag, const
 
 
 
-simple_trace::simple_trace()
+simple_log::simple_log()
 {
 
 #ifdef DEBUG
@@ -193,7 +193,7 @@ simple_trace::simple_trace()
 }
 
 
-simple_trace::~simple_trace()
+simple_log::~simple_log()
 {
 
    //INFO("Ending Simple Alog");
@@ -201,11 +201,19 @@ simple_trace::~simple_trace()
 }
 
 
-void simple_trace::__tracea(enum_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz) const
+void simple_log::__tracea(enum_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz) const
 {
 
    //__simple_tracea(elevel, pszFunction, pszFile, iLine, psz);
-   printf("%c %s %d %s", trace_level_char(elevel), pszFunction, iLine, psz);
+
+   string str;
+   
+   str.Format("%c %s %d %s\n", trace_level_char(elevel), pszFunction, iLine, psz);
+
+   //output_debug_string(str);
+
+   output_debug_string(psz);
+
 
 }
 

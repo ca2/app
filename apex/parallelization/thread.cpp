@@ -800,7 +800,7 @@ bool thread::pump_runnable()
 }
 
 
-void thread::post(const ::routine& routine)
+::e_status thread::post(const ::routine& routine)
 {
 
    if (!m_bBranchHandling)
@@ -813,6 +813,8 @@ void thread::post(const ::routine& routine)
    }
 
    post_message(e_message_branch, 0, routine.m_p);
+
+   return ::success;
 
 }
 
@@ -1910,6 +1912,8 @@ u32 __thread_entry(void * p);
 
    if (::succeeded(estatusOs))
    {
+
+      finish_children();
 
       __thread_term();
 
@@ -3840,16 +3844,14 @@ int_bool thread::get_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilter
 
             }
 
-            sleep(100_ms);
-
-            update_task_ready_to_quit();
-
             if (!task_get_run())
             {
 
                return false;
 
             }
+
+            update_task_ready_to_quit();
 
          }
 
@@ -3982,6 +3984,14 @@ void thread::dump(dump_context & dumpcontext) const
 {
 
    channel::dump(dumpcontext);
+
+}
+
+
+void thread::add_child_task(::object* pobjectTask)
+{
+
+   ::object::add_child_task(pobjectTask);
 
 }
 

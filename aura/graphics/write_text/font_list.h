@@ -40,8 +40,8 @@ namespace write_text
       __pointer(font_list_data)                 m_pfontlistdata;
 
 
-      u32_array                                 m_uaBackgroundColor;
-      u32_array                                 m_uaForegroundColor;
+      ::color::color                            m_uaBackgroundColor[2][3];
+      ::color::color                            m_uaForegroundColor[2][3];
       __pointer(::user::interaction)            m_puserinteraction;
 
 
@@ -53,13 +53,14 @@ namespace write_text
       ::rectangle_i32                           m_rectMargin;
       int                                       m_iBaseSizeLayout;
       millis                                    m_millisLastLayout;
-      __pointer(::thread)                       m_pthreadLayout;
+      ::task_pointer                            m_pthreadLayout;
       bool                                      m_bLayoutWideStillIntersect;
       int_array                                 m_iaSize;
 
       int                                       m_iSelUpdateId;
       ::index                                   m_iSel;
       ::index                                   m_iHover;
+      bool                                      m_bDarkMode;
 
 
       font_list();

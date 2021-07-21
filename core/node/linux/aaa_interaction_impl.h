@@ -22,7 +22,7 @@ namespace linux
       i32                           m_iScreen;
       bool                          m_bEnabled;
 
-      //__pointer(::thread)         m_pthreadDraw;
+      //::task_pointer         m_pthreadDraw;
       ::rect64                      m_rectLastPos;
       millis                        m_millisLastPos;
 
@@ -472,7 +472,7 @@ namespace linux
       DECLARE_MESSAGE_HANDLER(on_message_destroy);
       DECLARE_MESSAGE_HANDLER(_001OnPaint);
       DECLARE_MESSAGE_HANDLER(_001OnPrint);
-      DECLARE_MESSAGE_HANDLER(on_message_set_cursor);
+      ////DECLARE_MESSAGE_HANDLER(on_message_set_cursor);
 
 
 

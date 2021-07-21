@@ -418,7 +418,7 @@ namespace experience
 
       pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias_grid_fit);
 
-      pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
       ::rectangle_i32 rcTab;
 
@@ -497,7 +497,7 @@ namespace experience
             if(ptab->get_element_rect(iTab,rectIcon, ::user::e_element_icon))
             {
 
-               pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+               pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
                ppane->m_pimage->bitmap_blend(pgraphics,rectIcon);
 
             }
@@ -625,7 +625,7 @@ namespace experience
             if(ptab->get_element_rect(iTab,rectIcon, ::user::e_element_icon))
             {
 
-               pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+               pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
                ppane->m_pimage->bitmap_blend(pgraphics,rectIcon);
 
@@ -888,7 +888,7 @@ namespace experience
                rectEmp = rectText;
                rectEmp.deflate(1,1);
                ::draw2d::enum_alpha_mode emode = pgraphics->m_ealphamode;
-               pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+               pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
                if(ptab->m_itemHover == (::user::enum_element)(::user::e_element_split + i))
                {
 
@@ -1260,7 +1260,7 @@ namespace experience
    void style::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgraphics, ::index iItem, ::user::toolbar * ptoolbar)
    {
 
-      pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
       ::rectangle_i32 rectItem;
 
@@ -1564,7 +1564,7 @@ namespace experience
 
       auto pstyle = ptoolbar->get_style(pgraphics);
 
-      pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
       ::rectangle_i32 rectItem;
 

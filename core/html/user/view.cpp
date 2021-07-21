@@ -26,7 +26,7 @@ void html_view::install_message_routing(::channel * pchannel)
    MESSAGE_LINK(e_message_destroy, pchannel, this, &html_view::on_message_destroy);
    MESSAGE_LINK(e_message_create, pchannel, this, &html_view::on_message_create);
    MESSAGE_LINK(e_message_context_menu, pchannel, this, &html_view::on_message_context_menu);
-   MESSAGE_LINK(e_message_set_cursor, pchannel, this, &html_view::on_message_set_cursor);
+   //MESSAGE_LINK(e_message_set_cursor, pchannel, this, &html_view::on_message_set_cursor);
 
 }
 
@@ -92,26 +92,26 @@ void html_view::on_message_context_menu(::message::message * pmessage)
 }
 
 
-void html_view::on_message_set_cursor(::message::message * pmessage)
-{
-
-   __pointer(::message::set_cursor) psetcursor(pmessage);
-
-   auto psession = get_session();
-
-   auto puser = psession->user();
-
-   auto pwindowing = puser->windowing();
-
-   auto pcursor = pwindowing->get_cursor(e_cursor_arrow);
-
-   psetcursor->m_pcursor = pcursor;
-
-   pmessage->m_lresult = 1;
-
-   pmessage->m_bRet = true;
-
-}
+//void html_view::on_message_set_cursor(::message::message * pmessage)
+//{
+//
+//   __pointer(::message::set_cursor) psetcursor(pmessage);
+//
+//   auto psession = get_session();
+//
+//   auto puser = psession->user();
+//
+//   auto pwindowing = puser->windowing();
+//
+//   auto pcursor = pwindowing->get_cursor(e_cursor_arrow);
+//
+//   psetcursor->m_pcursor = pcursor;
+//
+//   pmessage->m_lresult = 1;
+//
+//   pmessage->m_bRet = true;
+//
+//}
 
 
 string html_view::GetLocationURL()

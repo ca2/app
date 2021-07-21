@@ -108,7 +108,7 @@ namespace simple_ui
    void top::on_message_left_button_down(::message::message * pmessage)
    {
 
-      __pointer(::message::mouse) pmouse(pmessage);
+      auto pmouse = pmessage->m_pmouse;
 
       if (pmessage->previous())
          return;
@@ -134,7 +134,7 @@ namespace simple_ui
 
       m_bLButtonDown = false;
 
-      __pointer(::message::mouse) pmouse(pmessage);
+      auto pmouse = pmessage->m_pmouse;
 
       if (pmouse->previous())
       {
@@ -161,7 +161,7 @@ namespace simple_ui
    void top::on_message_mouse_move(::message::message * pmessage)
    {
 
-      __pointer(::message::mouse) pmouse(pmessage);
+      auto pmouse = pmessage->m_pmouse;
 
       if (m_bLButtonDown)
       {

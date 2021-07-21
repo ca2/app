@@ -42,7 +42,7 @@ namespace userstack
       MESSAGE_LINK(e_message_paint, pchannel, this, &view::_001OnPaint);
       MESSAGE_LINK(e_message_create, pchannel, this, &view::on_message_create);
       MESSAGE_LINK(e_message_context_menu, pchannel, this, &view::on_message_context_menu);
-      MESSAGE_LINK(e_message_set_cursor, pchannel, this, &view::on_message_set_cursor);
+      //MESSAGE_LINK(e_message_set_cursor, pchannel, this, &view::on_message_set_cursor);
       MESSAGE_LINK(e_message_left_button_up, pchannel, this, &view::on_message_left_button_up);
 
 //
@@ -193,7 +193,7 @@ namespace userstack
    void view::on_message_set_cursor(::message::message * pmessage)
    {
 
-      __pointer(::message::mouse) pmouse(pmessage);
+      auto pmouse = pmessage->m_pmouse;
 
       pmouse->m_ecursor = cursor_arrow;
 
@@ -272,7 +272,7 @@ namespace userstack
 
    void view::on_message_left_button_up(::message::message * pmessage)
    {
-      __pointer(::message::mouse) pmouse(pmessage);
+      auto pmouse = pmessage->m_pmouse;
       pmouse->m_lresult = 1;
       KillTimer(5432180);
       auto point = pmouse->m_point;

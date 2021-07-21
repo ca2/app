@@ -21,6 +21,9 @@ namespace app_app
       virtual ~main_window();
 
 
+      //bool is_frame_window() override;
+
+
       virtual void on_create_user_interaction() override;
 
       virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;

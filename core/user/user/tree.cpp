@@ -202,7 +202,7 @@ namespace user
 
          get_client_rect(rectangleClient);
 
-         //pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+         //pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
          //pgraphics->fill_rectangle(rectangleClient, m_colorTreeBackground);
 
@@ -371,7 +371,7 @@ namespace user
 
       bool bHover       = ptree->is_hover(pitem);
 
-      data.m_pdc->set_alpha_mode(::draw2d::alpha_mode_blend);
+      data.m_pdc->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
       if(m_uchHoverAlpha > 0)
       {
@@ -549,7 +549,7 @@ namespace user
    void tree::on_message_mouse_move(::message::message * pmessage)
    {
 
-      __pointer(::message::mouse) pmouse(pmessage);
+      auto pmouse = pmessage->m_pmouse;
 
       //if (!m_bTrackMouseLeave)
       {
@@ -575,7 +575,7 @@ namespace user
    void tree::on_message_left_button_double_click(::message::message * pmessage)
    {
 
-      __pointer(::message::mouse) pmouse(pmessage);
+      auto pmouse = pmessage->m_pmouse;
 
       //on_click(item);
 
@@ -603,7 +603,7 @@ namespace user
    void tree::on_message_left_button_down(::message::message * pmessage)
    {
 
-      __pointer(::message::mouse) pmouse(pmessage);
+      auto pmouse = pmessage->m_pmouse;
 
       //pmouse->previous();
 
@@ -629,7 +629,7 @@ namespace user
    void tree::on_message_left_button_up(::message::message * pmessage)
    {
 
-      __pointer(::message::mouse) pmouse(pmessage);
+      auto pmouse = pmessage->m_pmouse;
 
       m_uiLButtonUpFlags = (::u32) pmouse->m_nFlags;
 
@@ -719,7 +719,7 @@ namespace user
    void tree::on_message_right_button_down(::message::message * pmessage)
    {
 
-      __pointer(::message::mouse) pmouse(pmessage);
+      auto pmouse = pmessage->m_pmouse;
 
       pmouse->previous();
 
@@ -733,7 +733,7 @@ namespace user
    void tree::on_message_right_button_up(::message::message * pmessage)
    {
 
-      __pointer(::message::mouse) pmouse(pmessage);
+      auto pmouse = pmessage->m_pmouse;
 
       perform_right_click(pmouse->m_nFlags, pmouse->m_point);
 

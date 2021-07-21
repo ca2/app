@@ -29,8 +29,8 @@ namespace base
       //__pointer(::aura::application_menu)       m_papplicationmenu;
 
 
-      application(const char * pszAppId = nullptr);
-      virtual ~application();
+      application();
+      ~application() override;
 
 
       virtual ::e_status initialize(::object * pobject) override;
@@ -610,7 +610,7 @@ namespace base
 //      virtual bool is_application() const override;
 //
 //
-//      DECLARE_MESSAGE_HANDLER(_001OnAppExit);
+//      DECLARE_MESSAGE_HANDLER(on_message_app_exit);
 //      virtual bool _001OnAgreeExit();
 //      virtual void france_exit();
 //      virtual void _001FranceExit();

@@ -11,8 +11,6 @@ namespace app_shader
    main_window::main_window()
    {
 
-      m_pdragmove.release();
-
       m_bTransparent = true;
 
       m_iShader = 0;
@@ -49,13 +47,14 @@ namespace app_shader
       MESSAGE_LINK(e_message_create,psender,this,&main_window::on_message_create);
       MESSAGE_LINK(e_message_destroy, psender, this, &main_window::on_message_destroy);
       MESSAGE_LINK(e_message_key_down, psender, this, &main_window::on_message_key_down);
+      MESSAGE_LINK(e_message_switch, psender, this, &main_window::on_message_switch);
 
    }
 
 
 
 
-   void main_window::on_message_create(::message::message * pmessage)
+   void main_window::on_message_create(::message::message* pmessage)
    {
 
       __pointer(::message::create) pcreate(pmessage);
@@ -69,9 +68,23 @@ namespace app_shader
 
       }
 
-      auto pitem = get_user_item(::user::e_element_close_button);
+      {
 
-      *pitem = ::user::e_element_close_icon;
+         auto pitem = get_user_item(::user::e_element_close_button);
+
+         *pitem = ::user::e_element_close_icon;
+
+      }
+
+      {
+
+         add_user_item({ ::user::e_element_switch_button, ::user::e_event_close_app });
+
+         auto pitem = get_user_item(::user::e_element_switch_button);
+
+         *pitem = ::user::e_element_switch_button;
+
+      }
 
       get_top_level()->set_prodevian();
 
@@ -89,7 +102,7 @@ namespace app_shader
    void main_window::on_message_key_down(::message::message* pmessage)
    {
 
-      __pointer(::message::key) pkey(pmessage);
+      auto pkey = pmessage->m_pkey;
 
       if (pkey->m_ekey == ::user::e_key_s)
       {
@@ -98,6 +111,17 @@ namespace app_shader
 
       }
 
+
+   }
+
+
+
+   void main_window::on_message_switch(::message::message* pmessage)
+   {
+
+      switch_shader();
+
+      pmessage->m_bRet = true;
 
    }
 
@@ -217,19 +241,6 @@ namespace app_shader
 
       }
 
-      int iNewShader = m_iShader + 1;
-
-      if (iNewShader > 14)
-      {
-
-         iNewShader = 0;
-
-      }
-
-      update_shader(iNewShader);
-
-      m_iShader = iNewShader;
-
       return true;
 
    }
@@ -290,22 +301,29 @@ namespace app_shader
    void main_window::_001DrawItem(::draw2d::graphics_pointer& pgraphics, ::user::item* pitem)
    {
 
-      if (::is_null(pitem))
-      {
-
-         return;
-
-      }
-
-      if (pitem->m_eelement == ::user::e_element_close_icon)
-      {
-
-         ::user::draw_close_icon(pgraphics, this, pitem);
-
-      }
+      ::user::interaction::_001DrawItem(pgraphics, pitem);
 
    }
 
+
+   void main_window::switch_shader()
+   {
+
+      int iNewShader = m_iShader + 1;
+
+      if (iNewShader > 14)
+      {
+
+         iNewShader = 0;
+
+      }
+
+      update_shader(iNewShader);
+
+      m_iShader = iNewShader;
+
+
+   }
 
 
 } // namespace app_shader

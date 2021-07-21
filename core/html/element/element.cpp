@@ -592,9 +592,9 @@ namespace html
          else
          {
 
-            int newLastCy = maximum(phtmldata->m_pcoredata->m_layoutstate1.m_cya.last(), phtmldata->m_pcoredata->m_layoutstate1.m_cy);
+            auto newLastCy = maximum(phtmldata->m_pcoredata->m_layoutstate1.m_cya.last(), phtmldata->m_pcoredata->m_layoutstate1.m_cy);
 
-            int addLastCx = m_pimpl->m_box.width() + m_pimpl->get_extra_content_width();
+            auto addLastCx = m_pimpl->m_box.width() + m_pimpl->get_extra_content_width();
 
             phtmldata->m_pcoredata->m_layoutstate1.m_cya.last() = newLastCy;
 

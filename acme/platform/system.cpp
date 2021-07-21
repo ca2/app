@@ -3,7 +3,11 @@
 #include "node.h"
 #include "acme/filesystem/filesystem/acme_dir.h"
 #include "acme/filesystem/filesystem/acme_path.h"
+#include "simple_log.h"
 
+
+CLASS_DECL_ACME void trace_category_static_init(class ::system* psystem);
+CLASS_DECL_ACME void trace_category_static_term();
 
 class ::system * g_psystem = nullptr;
 
@@ -18,6 +22,12 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
 
    system::system()
    {
+
+      m_psystem = this;
+
+      trace_category_static_init(this);
+
+      m_ptracelog = __new(simple_log);
       
       m_bPostedInitialRequest = false;
 
@@ -25,7 +35,6 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
 
       //m_pcleanuptask->begin();
       create_factory<acme::idpool>();
-      m_psystem = this;
 
       //m_pacme = nullptr;
       //m_pacmedir = nullptr;
@@ -68,6 +77,8 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
          g_psystem = nullptr;
 
       }
+
+      trace_category_static_term();
 
    }
 
@@ -279,6 +290,23 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
    {
 
       return ::error_interface_only;
+
+   }
+
+
+   void system::__tracea(enum_trace_level elevel, const char* pszFunction, const char* pszFile, int iLine, const char* psz) const
+   {
+
+      if (!m_ptracelog)
+      {
+
+         ::output_debug_string(psz);
+
+         return;
+
+      }
+
+      m_ptracelog->__tracea(elevel, pszFunction, pszFile, iLine, psz);
 
    }
 

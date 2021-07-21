@@ -72,7 +72,7 @@ namespace net
       string_map < dns_cache_item >                      m_mapCache;
       string_map < __pointer(reverse_cache_item) >       m_mapReverseCache;
       array < __pointer(reverse_cache_item) >            m_reversecacheaRequest;
-      __pointer(::thread)                                m_pthreadReverse;
+      ::task_pointer                                m_pthreadReverse;
 
       address_department();
       virtual ~address_department();

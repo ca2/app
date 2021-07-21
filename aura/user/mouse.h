@@ -23,7 +23,6 @@ namespace user
       point_i32                           m_point;
       point_i32                           m_pointDesired;
       bool                                m_bTranslated;
-      //enum_cursor                       m_ecursor;
       __pointer(::windowing::cursor)      m_pcursor;
 
 

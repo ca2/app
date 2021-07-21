@@ -4274,20 +4274,20 @@ namespace ios
       
    }
 
-   void interaction_impl::on_message_set_cursor(::message::message * pmessage)
-   {
-      __pointer(::user::message) pusermessage(pmessage);
-      if(psession->get_cursor() != nullptr
-            && psession->get_cursor()->m_ecursor != cursor_system)
-      {
+   // void interaction_impl::on_message_set_cursor(::message::message * pmessage)
+   // {
+   //    __pointer(::user::message) pusermessage(pmessage);
+   //    if(psession->get_cursor() != nullptr
+   //          && psession->get_cursor()->m_ecursor != cursor_system)
+   //    {
 
-         __throw(error_not_implemented);
-         //         ::SetCursor(nullptr);
-      }
-      pusermessage->set_lresult(1);
-      pusermessage->m_bRet = true;
-      //(bool)Default();
-   }
+   //       __throw(error_not_implemented);
+   //       //         ::SetCursor(nullptr);
+   //    }
+   //    pusermessage->set_lresult(1);
+   //    pusermessage->m_bRet = true;
+   //    //(bool)Default();
+   // }
    void interaction_impl::OnShowWindow(bool, ::u32)
    {
       //Default();
@@ -4852,12 +4852,12 @@ namespace ios
 
 
 
-   void interaction_impl::_001OnEraseBkgnd(::message::message * pmessage)
-   {
-      __pointer(::message::erase_bkgnd) perasebkgnd(pmessage);
-      perasebkgnd->m_bRet = true;
-      perasebkgnd->set_result(true);
-   }
+   // void interaction_impl::_001OnEraseBkgnd(::message::message * pmessage)
+   // {
+   //    __pointer(::message::erase_bkgnd) perasebkgnd(pmessage);
+   //    perasebkgnd->m_bRet = true;
+   //    perasebkgnd->set_result(true);
+   // }
 
 
    void interaction_impl::_001BaseWndInterfaceMap()

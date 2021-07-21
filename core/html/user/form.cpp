@@ -239,7 +239,7 @@ void html_form::on_message_create(::message::message * pmessage)
 void html_form::on_message_left_button_down(::message::message * pmessage)
 {
 
-   __pointer(::message::mouse) pmouse(pmessage);
+   auto pmouse = pmessage->m_pmouse;
 
    ::point_i32 point;
 
@@ -285,7 +285,7 @@ void html_form::on_message_left_button_down(::message::message * pmessage)
 void html_form::on_message_mouse_move(::message::message * pmessage)
 {
 
-   __pointer(::message::mouse) pmouse(pmessage);
+   auto pmouse = pmessage->m_pmouse;
 
    track_mouse_hover();
 
@@ -366,7 +366,7 @@ void html_form::on_message_mouse_leave(::message::message * pmessage)
 void html_form::on_message_left_button_up(::message::message * pmessage)
 {
 
-   __pointer(::message::mouse) pmouse(pmessage);
+   auto pmouse = pmessage->m_pmouse;
 
    ::point_i32 point(pmouse->m_point);
 
@@ -674,7 +674,7 @@ void html_form::_001SetText(const string & str, const ::action_context & context
 void html_form::on_message_key_down(::message::message * pmessage)
 {
    
-   __pointer(::message::key) pkey(pmessage);
+   auto pkey = pmessage->m_pkey;
    
    if(pkey->m_ekey == ::user::e_key_tab)
    {

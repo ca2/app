@@ -82,7 +82,7 @@ namespace draw2d
    bool graphics::on_begin_draw()
    {
 
-      set_alpha_mode(::draw2d::alpha_mode_set);
+      set_alpha_mode(::draw2d::e_alpha_mode_set);
 
       set_text_rendering_hint(::write_text::e_rendering_anti_alias);
       ::color::color color(0, 0, 0, 0);
@@ -885,7 +885,7 @@ namespace draw2d
 
       auto ealphamode = m_ealphamode;
 
-      set_alpha_mode(alpha_mode_blend);
+      set_alpha_mode(e_alpha_mode_blend);
 
       bool bFill = fill_ellipse(rectangle);
 
@@ -1143,7 +1143,7 @@ namespace draw2d
    //bool graphics::draw(const ::point_f64 & point, cursor * pcursor)
    //{
    //
-   //   set_alpha_mode(::draw2d::alpha_mode_blend);
+   //   set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
    //   ::point_i32 pointDst(point_i32 - pcursor->m_szHotspotOffset);
 
@@ -1289,7 +1289,7 @@ namespace draw2d
 
    //   //         pimage1 = create_image(rectangle.size());
 
-   //   //         pimage1->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_set);
+   //   //         pimage1->get_graphics()->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
    //   //         if (!pimage1->from(nullptr, pgraphicsSrc, point, rectangle.size()))
    //   //            return false;
@@ -1532,7 +1532,7 @@ namespace draw2d
 
          pimage1->get_graphics()->set(get_current_brush());
 
-         pimage1->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_set);
+         pimage1->get_graphics()->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
          pimage1->get_graphics()->text_out(0, 0, block);
 
@@ -2194,7 +2194,7 @@ namespace draw2d
 //   bool graphics::color_blend(const ::rectangle_i32 & rectangle, const ::color::color& color, const ::opacity& opacity)
 //   {
 //
-//      set_alpha_mode(alpha_mode_blend);
+//      set_alpha_mode(e_alpha_mode_blend);
 //
 //      return fill_rectangle(rectangle, alpha(opacity, color));
 //
@@ -4783,7 +4783,7 @@ namespace draw2d
 
          }
 
-         set_alpha_mode(::draw2d::alpha_mode_blend);
+         set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
          auto rectDst = ::rectangle_f64(::point_f64(x1, h), pimage->size());
 

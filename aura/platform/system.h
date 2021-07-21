@@ -154,7 +154,7 @@ namespace aura
 //      string_array                                            m_straCommandLineExtra;
 //      millis                                               m_millisCommandLineLast;
 //      int                                                m_iCommandLineDelay;
-//      __pointer(::thread)                                m_pthreadCommandLine;
+//      ::task_pointer                                m_pthreadCommandLine;
 //
 //
 //      bool                                               m_bSystemSynchronizedCursor;
@@ -776,9 +776,9 @@ namespace aura
       //virtual void on_event(::u64 u, ::object * pobject) override;
 
 
-      virtual void on_initial_frame_position(::user::frame * pframe) override;
+      virtual void on_initial_frame_position(::user::frame * pframe);
 
-      virtual void on_graphics_ready() override;
+      virtual void on_graphics_ready();
 
       //virtual void process_machine_event_data(machine_event_data * pdata) override;
 

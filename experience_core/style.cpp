@@ -46,7 +46,7 @@ namespace experience
 
          pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias_grid_fit);
 
-         pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+         pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
          index iTab = -1;
 
@@ -107,7 +107,7 @@ namespace experience
                if(ptab->get_element_rect(iTab,rectIcon, ::user::e_element_icon))
                {
 
-                  pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+                  pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
                   ppane->m_pimage->bitmap_blend(pgraphics,rectIcon);
 
@@ -221,7 +221,7 @@ namespace experience
                if(ptab->get_element_rect(iTab,rectIcon, ::user::e_element_icon))
                {
 
-                  pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+                  pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
                   ppane->m_pimage->bitmap_blend(pgraphics,rectIcon);
 
@@ -419,7 +419,7 @@ namespace experience
          if(straTitle.get_count() <= 1)
          {
 
-            pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+            pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
             pgraphics->_DrawText(pane.get_title(), rectangle, e_align_bottom_left, e_draw_text_no_prefix);
 
@@ -461,7 +461,7 @@ namespace experience
 
                   ::draw2d::enum_alpha_mode emode = pgraphics->m_ealphamode;
 
-                  pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+                  pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
                   status < ::color::color > colorText;
 
@@ -946,13 +946,13 @@ namespace experience
                   if (m_pnode->is_app_dark_mode())
                   {
 
-                     return ::color::color(80, 80, 80, 127);
+                     return argb(180, 80, 80, 80);
 
                   }
                   else
                   {
 
-                     return ::color::color(255, 255, 255, 127);
+                     return argb(127, 255, 255, 255);
 
                   }
                }
@@ -1358,7 +1358,7 @@ namespace experience
          if (colorBackground.alpha != 0)
          {
 
-            pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+            pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
             auto psession = get_session();
 

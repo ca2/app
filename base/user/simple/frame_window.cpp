@@ -169,12 +169,12 @@ void simple_frame_window::install_message_routing(::channel * pchannel)
    connect_command("impact_full_screen", &simple_frame_window::_001OnViewFullScreen);
 
    connect_command("notify_icon_topic", &simple_frame_window::_001OnNotifyIconTopic);
-   connect_command("app_exit", &simple_frame_window::_001OnAppExit);
+   connect_command("app_exit", &simple_frame_window::on_message_app_exit);
 
 #ifdef WINDOWS_DESKTOP
 
 
-   MESSAGE_LINK(WM_APPEXIT, pchannel, this, &simple_frame_window::_001OnAppExit);
+   MESSAGE_LINK(WM_APPEXIT, pchannel, this, &simple_frame_window::on_message_app_exit);
    MESSAGE_LINK(e_message_activate_app, pchannel, this, &simple_frame_window::_001OnActivateApp);
 
 #endif
@@ -990,7 +990,7 @@ void simple_frame_window::on_message_show_window(::message::message * pmessage)
 
       output_debug_string("\nsimple_frame_window::on_message_show_window true " + string(typeid(*this).name()));
 
-      defer_set_icon();
+      //defer_set_icon();
 
    }
    else
@@ -1571,7 +1571,7 @@ bool simple_frame_window::GetCustomFrame()
 }
 
 
-void simple_frame_window::_001OnAppExit(::message::message * pmessage)
+void simple_frame_window::on_message_app_exit(::message::message * pmessage)
 {
 
    if (get_parent() != nullptr)
@@ -2464,7 +2464,7 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics_pointer & pgraphicsParam
    if(bDib)
    {
 
-      pgraphicsParam->set_alpha_mode(::draw2d::alpha_mode_blend);
+      pgraphicsParam->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
       image_drawing imagedrawing;
       

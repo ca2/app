@@ -30,7 +30,10 @@ public:
    __reference(::application)                   m_papplicationStartup;
    __reference(::application)                   m_papplicationMain;
 
-   __composite(::apex::system)                        m_psystemParent;
+   __composite(::apex::system)                  m_psystemParent;
+
+   __pointer(::trace::log)                      m_ptracelog;
+
 
    string_map < __pointer(::factory_map) >* m_pfactorymapsquare;
    __pointer(string_map < __pointer(::regular_expression::context) >)          m_pmapRegularExpressionContext;
@@ -89,7 +92,7 @@ public:
 
 
    system();
-   virtual ~system();
+   ~system() override;
 
 
    void os_construct();
@@ -114,6 +117,8 @@ public:
    inline ::text::table* texttable() { return m_ptexttable; }
 
    inline ::url::department* url() { return m_purldepartment; }
+
+   inline class ::trace::log& log() { return *m_ptracelog; }
 
    virtual ::e_status defer_audio();
 
@@ -221,6 +226,9 @@ public:
    virtual ::e_status open_profile_link(string strUrl, string strProfile, string strTarget);
    virtual ::e_status open_link(string strUrl, string strProfile, string strTarget);
    virtual ::e_status open_url(string strUrl, string strProfile, string strTarget);
+
+
+   void __tracea(enum_trace_level elevel, const char* pszFunction, const char* pszFile, int iLine, const char* psz) const override;
 
 
    //virtual ::e_status main_user_async(const ::routine & routine, ::e_priority epriority = priority_normal);

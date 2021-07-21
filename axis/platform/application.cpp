@@ -8,8 +8,7 @@ namespace axis
 {
 
 
-   application::application(const char * pszAppId) :
-      ::aura::application(pszAppId)
+   application::application()
    {
 
       m_paxisapplication = this;
@@ -656,21 +655,21 @@ namespace axis
    }
 
 
-   bool application::InitApplication()
-   {
+   //bool application::InitApplication()
+   //{
 
-      auto bOk = ::aura::application::InitApplication();
+   //   auto bOk = ::aura::application::InitApplication();
 
-      if (!bOk)
-      {
+   //   if (!bOk)
+   //   {
 
-         return false;
+   //      return false;
 
-      }
+   //   }
 
-      return true;
+   //   return true;
 
-   }
+   //}
 
 
 

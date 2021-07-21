@@ -108,7 +108,7 @@ namespace simple_ui
 //   void interaction::on_message_left_button_down(::message::message * pmessage)
 //   {
 //
-//      __pointer(::message::mouse) pmouse(pmessage);
+//      auto pmouse = pmessage->m_pmouse;
 //
 //      if (!is_window_enabled())
 //      {
@@ -154,7 +154,7 @@ namespace simple_ui
 //   void interaction::on_message_middle_button_down(::message::message * pmessage)
 //   {
 //
-//      __pointer(::message::mouse) pmouse(pmessage);
+//      auto pmouse = pmessage->m_pmouse;
 //
 //      pmessage->previous();
 //
@@ -178,7 +178,7 @@ namespace simple_ui
 //   void interaction::on_message_middle_button_up(::message::message * pmessage)
 //   {
 //
-//      __pointer(::message::mouse) pmouse(pmessage);
+//      auto pmouse = pmessage->m_pmouse;
 //
 //      pmessage->previous();
 //
@@ -202,7 +202,7 @@ namespace simple_ui
 //   void interaction::on_message_left_button_up(::message::message * pmessage)
 //   {
 //
-//      __pointer(::message::mouse) pmouse(pmessage);
+//      auto pmouse = pmessage->m_pmouse;
 //
 //      if (!is_window_enabled())
 //      {
@@ -285,7 +285,7 @@ namespace simple_ui
 //   void interaction::on_message_mouse_move(::message::message * pmessage)
 //   {
 //
-//      __pointer(::message::mouse) pmouse(pmessage);
+//      auto pmouse = pmessage->m_pmouse;
 //
 //      if (!is_window_enabled())
 //      {
@@ -465,7 +465,7 @@ namespace simple_ui
 //   void interaction::simple_ui_draw_back_01_old(::rectangle_i32 rectangle, ::draw2d::graphics_pointer & pgraphics)
 //   {
 //
-//      pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+//      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 //
 //      color32_t crOut;
 //
@@ -524,7 +524,7 @@ namespace simple_ui
 //
 //      pgraphics->rectangle(m_rectangle);*/
 //
-//      //pgraphics->set_alpha_mode(::draw2d::alpha_mode_set);
+//      //pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_set);
 //
 //      //pgraphics->fill_rectangle(rectangle,argb(0,0,0,0));
 //
@@ -705,7 +705,7 @@ namespace simple_ui
 //
 //      get_client_rect(rectWindow);
 //
-//      pgraphics->set_alpha_mode(draw2d::alpha_mode_blend);
+//      pgraphics->set_alpha_mode(draw2d::e_alpha_mode_blend);
 //
 //      int iCount = rectWindow.height();
 //      ::draw2d::pen_pointer point_i32(e_create);
@@ -735,7 +735,7 @@ namespace simple_ui
 //
 //      get_client_rect(rectangle);
 //
-//      pgraphics->set_alpha_mode(draw2d::alpha_mode_blend);
+//      pgraphics->set_alpha_mode(draw2d::e_alpha_mode_blend);
 //
 //      // front
 //      point_i32 pa[4];

@@ -973,7 +973,7 @@ inline void id::empty()
 inline void id::clear()
 {
 
-   m_all = {};
+   m_etype = e_type_null;
 
 }
 

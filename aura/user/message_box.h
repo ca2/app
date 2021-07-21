@@ -9,7 +9,7 @@ namespace user
 
 
    class message_box :
-      virtual public main_window
+      virtual public ::user::interaction
    {
    public:
 

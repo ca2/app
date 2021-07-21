@@ -233,7 +233,7 @@ namespace turboc
 
             //pgraphics->FillSolidRect(0,0,m_cx,m_cy,argb(0,0,0,0));
 
-            //pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+            //pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
             //pgraphics->draw_path(path,pen);
 
@@ -256,7 +256,7 @@ namespace turboc
 
          pgraphics->set_font(m_font);
 
-         pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+         pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
          pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
@@ -338,7 +338,7 @@ namespace turboc
 /*      if(pimage->area() <= 0)
          return;
 
-      pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
       if(m_millisLastOk.elapsed() < m_millisAnime)
       {
@@ -390,7 +390,7 @@ namespace turboc
 
       _001OnPostProcess(m_pimagePost);
 
-      pdcScreen->set_alpha_mode(::draw2d::alpha_mode_blend);
+      pdcScreen->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
       pdcScreen->from(::point_i32(),m_pimagePost->m_size,m_pimagePost.get_graphics(),::point_i32());
 
@@ -457,11 +457,11 @@ namespace turboc
 
       pen->create_solid(1.0,argb(255,84 / 2,84 / 2,77 / 2));
 
-      pgraphics->set_alpha_mode(::draw2d::alpha_mode_set);
+      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
       //pgraphics->FillSolidRect(0, 0, m_cx, m_cy, argb(0,0,0,0));
 
-      pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
       pgraphics->draw_path(path,pen);
       //pgraphics->FillSolidRect(00,00,100,100,argb(128,128,0,0));

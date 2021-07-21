@@ -137,11 +137,10 @@ namespace user
 
 
       shell();
-      virtual ~shell();
+      ~shell() override;
 
 
-
-      virtual ::e_status initialize(::object * pobject) override;
+      ::e_status initialize(::object * pobject) override;
       virtual void do_initialize();
 
 
@@ -177,10 +176,13 @@ namespace user
 
 
       virtual i32 get_file_image(const image_key & imagekey);
-      virtual i32 _get_file_image(const image_key & imagekey);
+      virtual i32 schedule_get_file_image(const image_key & imagekey);
 
 
-      virtual i32 impl_get_file_image(const image_key & imagekey) = 0;
+      virtual i32 _get_file_image(const image_key& imagekey);
+
+
+      //virtual i32 impl_get_file_image(const image_key & imagekey) = 0;
 
 
       ::image_list * GetImageList(int iSize);

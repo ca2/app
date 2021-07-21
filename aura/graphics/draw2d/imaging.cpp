@@ -2015,7 +2015,7 @@ bool imaging::clip_color_blend(::draw2d::graphics * pgraphics,const ::point_i32 
 //bool imaging::color_blend(::draw2d::graphics * pgraphics,const ::point_i32 & point,const ::size_i32 & size,::color32_t color32,byte bA)
 //{
 //
-//   pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+//   pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 //
 //   pgraphics->fill_rectangle(rectangle_i32(point, size), (color32 & 0x00ffffff) | (bA << 24));
 //
@@ -2916,7 +2916,7 @@ bool imaging::channel_gray_blur(::draw2d::graphics *pdcDst,const ::point_i32 & p
 
    }
 
-   pimageSrc->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_set);
+   pimageSrc->get_graphics()->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
    if (!pdcSrc->stretch(::rectangle_f64(size), pdcSrc, ::rectangle_f64(pointSrc, size)))
    {
@@ -2972,7 +2972,7 @@ bool imaging::channel_alpha_gray_blur(::draw2d::graphics * pdcDst, const ::point
 
    }
 
-   pimageSrc->g()->set_alpha_mode(::draw2d::alpha_mode_set);
+   pimageSrc->g()->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
    if (!pimageSrc->g()->stretch(::rectangle_f64(size), pdcSrc, ::rectangle_f64(pointSrc, size)))
    {
@@ -4098,7 +4098,7 @@ bool imaging::color_blend(::draw2d::graphics * pgraphics, const ::point_i32 & po
 //
 //      }
 //
-//      pimage->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_set);
+//      pimage->get_graphics()->set_alpha_mode(::draw2d::e_alpha_mode_set);
 //
 //      pimage->g()->stretch(::rectangle_f64(size), pdcColorAlpha, ::rectangle_f64(pointAlpha, size));
 //
@@ -4804,7 +4804,7 @@ i32 iChannel,i32 iRadius,
 
    }
 
-   pimageSrc->g()->set_alpha_mode(::draw2d::alpha_mode_set);
+   pimageSrc->g()->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
    if (!pimageSrc->g()->stretch(::rectangle_f64(size), pdcSrc, ::rectangle_f64(pointSrc, size)))
    {
@@ -4892,7 +4892,7 @@ i32 iRadius,
 
    }
 
-   pimageSrc->g()->set_alpha_mode(::draw2d::alpha_mode_set);
+   pimageSrc->g()->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
    if (!pimageSrc->g()->stretch(::rectangle_f64(size), pdcSrc, ::rectangle_i32(pointSrc, size)))
    {

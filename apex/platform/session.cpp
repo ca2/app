@@ -147,7 +147,7 @@ namespace apex
    {
 
       ::apex::context::install_message_routing(pchannel);
-
+      
       MESSAGE_LINK(e_message_erase_application, pchannel, this, &session::on_message_erase_application);
 
    }
@@ -2036,7 +2036,7 @@ namespace apex
    //            rectEmp = rectText;
    //            rectEmp.deflate(1, 1);
    //            ::draw2d::enum_alpha_mode emode = pgraphics->m_ealphamode;
-   //            pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+   //            pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
    //            if (ptab->m_itemHover == (::user::enum_element)(::user::e_element_split + i))
    //            {
    //               pgraphics->fill_rectangle(rectEmp, argb(128, 150, 184, 255));

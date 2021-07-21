@@ -4970,7 +4970,7 @@ void x11_thread(osdisplay_data * pdisplaydata);
 
 //pthread_t g_pthreadX11;
 
-__pointer(::thread) g_pthreadXlib;
+::task_pointer g_pthreadXlib;
 itask_t g_ithreadXlib;
 
 //void * x11_thread_proc(void * p)

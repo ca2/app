@@ -13,11 +13,11 @@
 
 
 
-#if defined(APPLEOS)
-
-CLASS_DECL_APEX void openURL(const string &url_str);
-
-#endif
+//#if defined(APPLEOS)
+//
+//CLASS_DECL_APEX void openURL(const string &url_str);
+//
+//#endif
 
 
 

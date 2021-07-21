@@ -45,13 +45,14 @@ class CLASS_DECL_ACME object :
 protected:
 
 
+   __pointer(::object)                                   m_pobjectParentTask;
    __pointer_array(::object)                             m_objectaChildrenTask;
 
 
 public:
 
 
-   //__pointer(::thread)                                 m_pthread;
+   //::task_pointer                                 m_pthread;
    //__pointer(::application)                            m_papplication;
    //__pointer(::apex::session)                          m_psession;
    //__pointer(class ::system)                           m_psystem;
@@ -161,6 +162,8 @@ public:
 
    virtual bool check_children_task();
 
+   virtual ::e_status finish_children();
+
    virtual ::e_status finish();
 
    //virtual ::e_status set_finish();
@@ -171,6 +174,10 @@ public:
    virtual bool is_running() const;
    virtual void child_post_quit(const char* pszTag);
    virtual void child_post_quit_and_wait(const char* pszTag, const duration& duration);
+
+
+   virtual ::e_status post(const ::routine& routine);
+
 
    //virtual ::e_status finalize();
 

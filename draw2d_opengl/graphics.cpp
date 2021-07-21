@@ -1459,7 +1459,7 @@ namespace draw2d_opengl
 
       //   m_pgraphics->SetInterpolationMode(plusplus::InterpolationModeHighQualityBicubic);
 
-      //   if(m_ealphamode == ::draw2d::alpha_mode_set)
+      //   if(m_ealphamode == ::draw2d::e_alpha_mode_set)
       //   {
 
       //      set_smooth_mode(::draw2d::smooth_mode_none);
@@ -5102,12 +5102,12 @@ namespace draw2d_opengl
          //   return;
 
          ::draw2d::graphics::set_alpha_mode(ealphamode);
-         if(m_ealphamode == ::draw2d::alpha_mode_blend)
+         if(m_ealphamode == ::draw2d::e_alpha_mode_blend)
          {
             glEnable(GL_BLEND);
             glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
          }
-         else if(m_ealphamode == ::draw2d::alpha_mode_set)
+         else if(m_ealphamode == ::draw2d::e_alpha_mode_set)
          {
             glEnable(GL_BLEND);
             glBlendFunc(GL_ONE, GL_ZERO);

@@ -1432,13 +1432,13 @@ bool graphics::_draw_raw(const ::rectangle_f64 & rectDst, ::image * pimage, cons
 
       cairo_set_source(m_pdc, ppattern);
 
-      if (m_ealphamode == ::draw2d::alpha_mode_blend)
+      if (m_ealphamode == ::draw2d::e_alpha_mode_blend)
       {
 
          cairo_set_operator(m_pdc, CAIRO_OPERATOR_OVER);
 
       }
-      else if (m_ealphamode == ::draw2d::alpha_mode_set)
+      else if (m_ealphamode == ::draw2d::e_alpha_mode_set)
       {
 
          cairo_set_operator(m_pdc, CAIRO_OPERATOR_SOURCE);
@@ -2789,13 +2789,13 @@ bool graphics::fill_path(::draw2d::path * ppath, ::draw2d::brush * pbrush)
 //
 //        cairo_set_source(m_pdc, ppattern);
 //
-//        if (m_ealphamode == ::draw2d::alpha_mode_blend)
+//        if (m_ealphamode == ::draw2d::e_alpha_mode_blend)
 //        {
 //
 //            cairo_set_operator(m_pdc, CAIRO_OPERATOR_OVER);
 //
 //        }
-//        else if (m_ealphamode == ::draw2d::alpha_mode_set)
+//        else if (m_ealphamode == ::draw2d::e_alpha_mode_set)
 //        {
 //
 //            cairo_set_operator(m_pdc, CAIRO_OPERATOR_SOURCE);
@@ -4399,13 +4399,13 @@ bool graphics::set_alpha_mode(::draw2d::enum_alpha_mode ealphamode)
 
         }
 
-        if (ealphamode == ::draw2d::alpha_mode_blend)
+        if (ealphamode == ::draw2d::e_alpha_mode_blend)
         {
 
             cairo_set_operator(m_pdc, CAIRO_OPERATOR_OVER);
 
         }
-        else if (ealphamode == ::draw2d::alpha_mode_set)
+        else if (ealphamode == ::draw2d::e_alpha_mode_set)
         {
 
             cairo_set_operator(m_pdc, CAIRO_OPERATOR_SOURCE);

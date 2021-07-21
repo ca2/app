@@ -797,7 +797,7 @@ namespace html
 
             //::color32_t color32;
 
-            pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+            pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
             //if (m_pelemental->m_pstyle->get_alpha("", pdata, m_pelemental, d))
             //{

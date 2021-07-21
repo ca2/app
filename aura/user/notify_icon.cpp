@@ -125,7 +125,38 @@ namespace user
    void notify_icon::call_notification_area_action(const char * pszId)
    {
 
-      m_plistener->call_notification_area_action(pszId);
+      ::id id(pszId);
+
+      auto pcommand = __new(::message::command(id));
+
+      route_command_message(pcommand);
+
+//      m_plistener->call_notification_area_action(pszId);
+
+   }
+
+
+   void notify_icon::on_command_message(::message::command* pcommand)
+   {
+
+      ::channel::on_command_message(pcommand);
+
+      //if (pcommand->m_id.is_text())
+      //{
+
+      //   string strId(pcommand->m_id);
+
+      //   call_notification_area_action(strId);
+
+      //}
+      //else
+      //{
+
+      //   WARN("notification area action id is number or enum?!?!");
+
+      //}
+
+//      pcommand->m_bRet = true;
 
    }
 

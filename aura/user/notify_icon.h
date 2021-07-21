@@ -12,7 +12,7 @@ namespace user
 #ifdef WINDOWS_DESKTOP
       virtual public ::user::interaction
 #else
-      virtual public ::object
+      virtual public ::channel
 #endif
    {
    public:
@@ -47,6 +47,10 @@ namespace user
       virtual ::e_status create_notify_icon(::u32 id, notify_icon_listener * plistener, ::windowing::icon * picon);
 
       ::e_status step() override;
+
+      
+      void on_command_message(::message::command * pcommand) override;
+
 
       virtual int _get_notification_area_action_count() ;
       virtual const char * _get_notification_area_action_name(int iIndex) ;

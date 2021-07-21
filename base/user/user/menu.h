@@ -18,7 +18,7 @@ namespace user
       __pointer(menu)                        m_pmenuParent;
       __pointer(menu_item)                   m_pmenuitem;
       __pointer(::user::interaction)         m_puserinteractionParent;
-      __pointer(::user::interaction)         m_puiMenuNotify;
+      __pointer(::channel)                   m_pchannelNotify;
 //#ifdef WINDOWS_DESKTOP
 //      HMENU                                  m_hmenu;
 //#endif
@@ -48,10 +48,10 @@ namespace user
 
       menu();
       menu(::user::menu_item * pitem);
-      virtual ~menu();
+      ~menu() override;
 
       //virtual void nextstyle(::user::style_context * pcontext) override;
-      virtual ::size_i32 get_window_minimum_size() override;
+      ::size_i32 get_window_minimum_size() override;
 
       //virtual i64 add_ref(OBJ_REF_DBG_PARAMS) override
       //{
@@ -67,7 +67,7 @@ namespace user
 
       //}
 
-      virtual ::user::interaction * get_target_window();
+      virtual ::channel * get_notify_channel();
 
       ::user::menu_item * GetSubMenu(i32 i);
 
@@ -79,9 +79,9 @@ namespace user
       virtual void update_position(const ::point_i32 & point);
       virtual void hints(int iFlags, const ::point_i32 & point);
 
-      virtual bool create_menu(::user::interaction * puiNotify = nullptr, ::user::interaction * puiParent = nullptr);
-      virtual bool create_inline_menu(::user::interaction * puiNotify = nullptr, ::user::interaction * puiParent = nullptr);
-      virtual bool track_popup_menu(::user::interaction * puiNotify = nullptr, ::user::interaction * puiParent = nullptr);
+      virtual bool create_menu(::channel * pchannelNotify = nullptr, ::user::interaction * puiParent = nullptr);
+      virtual bool create_inline_menu(::channel* pchannelNotify = nullptr, ::user::interaction * puiParent = nullptr);
+      virtual bool track_popup_menu(::channel* pchannelNotify = nullptr, ::user::interaction * puiParent = nullptr);
 
       void _001OnTimer(::timer * ptimer) override;
 

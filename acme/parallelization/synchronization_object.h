@@ -23,7 +23,7 @@ public:
 #else
    synchronization_object() { m_bOwner = true; }
 #endif
-   virtual ~synchronization_object();
+   ~synchronization_object() override;
 
 
    virtual bool lock();

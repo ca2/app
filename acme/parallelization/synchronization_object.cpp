@@ -168,7 +168,7 @@ void synchronization_object::acquire_ownership()
 }
 
 
-void synchronization_object::release_ownership()
+[[maybe_unused]] void synchronization_object::release_ownership()
 {
 
    m_bOwner = false;

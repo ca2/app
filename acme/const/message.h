@@ -47,12 +47,12 @@ enum enum_message : ::i64
    e_message_hscroll = 0x0114,
    e_message_vscroll = 0x0115,
 
-   e_message_nccreate    =                 0x0081,
-   e_message_ncdestroy    =                0x0082,
-   e_message_nccalcsize   =                0x0083,
-   e_message_nchittest     =               0x0084,
-   e_message_ncpaint      =                0x0085,
-   e_message_ncactivate   =                0x0086,
+   e_message_non_client_create    =                 0x0081,
+   e_message_non_client_destroy    =                0x0082,
+   e_message_non_client_calcsize   =                0x0083,
+   e_message_non_client_hittest     =               0x0084,
+   e_message_non_client_paint      =                0x0085,
+   e_message_non_client_activate   =                0x0086,
 
    e_message_measure_item     =             0x002C,
    e_message_window_position_changing    =        0x0046,

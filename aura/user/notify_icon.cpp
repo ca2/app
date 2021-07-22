@@ -136,6 +136,14 @@ namespace user
    }
 
 
+   void notify_icon::route_command_message(::message::command* pcommand)
+   {
+
+      ::channel::route_command_message(pcommand);
+
+   }
+
+
    void notify_icon::on_command_message(::message::command* pcommand)
    {
 

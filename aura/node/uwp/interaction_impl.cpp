@@ -428,10 +428,10 @@ namespace uwp
    }
 
 
-   void interaction_impl::PostNcDestroy()
+   void interaction_impl::post_non_client_destroy()
    {
 
-      ::user::interaction_impl::PostNcDestroy();
+      ::user::interaction_impl::post_non_client_destroy();
 
 #ifdef WINDOWS_DESKTOP
       
@@ -467,9 +467,9 @@ namespace uwp
    void interaction_impl::on_final_release()
    {
       if(get_handle() != nullptr)
-         DestroyWindow();    // will call PostNcDestroy
+         DestroyWindow();    // will call post_non_client_destroy
       else
-         PostNcDestroy();
+         post_non_client_destroy();
    }
 
    void interaction_impl::assert_valid() const
@@ -5865,7 +5865,7 @@ __activation_window_procedure(oswindow hWnd, ::u32 nMsg, WPARAM wParam, LPARAM l
                                              (short)LOWORD(lParam), HIWORD(lParam));
          break;
 
-      case e_message_ncdestroy:
+      case e_message_non_client_destroy:
          SetWindowLongPtr(hWnd, GWLP_WNDPROC, reinterpret_cast<iptr>(oldWndProc));
          RemoveProp(hWnd, gen_OldWndProc);
          GlobalDeleteAtom(GlobalFindAtom(gen_OldWndProc));

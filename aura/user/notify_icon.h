@@ -48,6 +48,9 @@ namespace user
 
       ::e_status step() override;
 
+
+      void route_command_message(::message::command* pcommand) override;
+
       
       void on_command_message(::message::command * pcommand) override;
 

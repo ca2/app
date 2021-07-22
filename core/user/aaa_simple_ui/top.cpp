@@ -30,7 +30,7 @@ namespace simple_ui
       MESSAGE_LINK(e_message_mouse_move,pchannel,this,&top::on_message_mouse_move);
 
       MESSAGE_LINK(e_message_activate, pchannel, this, &top::_001OnActivate);
-      MESSAGE_LINK(e_message_ncactivate, pchannel, this, &top::_001OnNcActivate);
+      MESSAGE_LINK(e_message_non_client_activate, pchannel, this, &top::_001OnNcActivate);
 
 //#ifdef WINDOWS_DESKTOP
 //

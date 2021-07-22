@@ -206,10 +206,10 @@ namespace user
    }
 
 
-   void impact::PostNcDestroy()
+   void impact::post_non_client_destroy()
    {
 
-      ::user::interaction::PostNcDestroy();
+      ::user::interaction::post_non_client_destroy();
 
    }
 
@@ -1319,7 +1319,7 @@ namespace user
    ASSERT(pContext != nullptr);
    ASSERT(pContext->m_typeNewView != nullptr);
 
-   // Note: can be a ::user::interaction with PostNcDestroy self cleanup
+   // Note: can be a ::user::interaction with post_non_client_destroy self cleanup
    __pointer(::user::interaction) pview =  (psystem->alloc(pContext->m_typeNewView));
    if (pview == nullptr)
    {
@@ -1356,7 +1356,7 @@ namespace user
    ASSERT(pContext != nullptr);
    ASSERT(pContext->m_typeNewView != nullptr);
 
-   // Note: can be a interaction_impl with PostNcDestroy self cleanup
+   // Note: can be a interaction_impl with post_non_client_destroy self cleanup
    ::user::interaction_impl * pview = (puserinteractionParent->psystem->alloc(pContext->m_typeNewView));
    if (pview == nullptr)
    {

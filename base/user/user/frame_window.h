@@ -230,7 +230,7 @@ namespace user
 
       virtual bool pre_create_window(::user::system * pusersystem) override;
       //virtual bool OnCommand(WPARAM wParam, LPARAM lParam);
-      virtual void PostNcDestroy() override;   // default to delete this.
+      virtual void post_non_client_destroy() override;   // default to delete this.
       i32 OnCreateHelper(::user::system * pusersystem);
 
       //void BringToTop(::e_display edisplay) override;

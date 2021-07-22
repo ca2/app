@@ -107,7 +107,7 @@ void simple_toolbar::install_message_routing(::channel * pchannel)
    //MESSAGE_LINK(e_message_mouse_move    , pchannel, this, &simple_toolbar::on_message_mouse_move);
    //MESSAGE_LINK(e_message_left_button_down  , pchannel, this, &simple_toolbar::on_message_left_button_down);
    //MESSAGE_LINK(e_message_left_button_up    , pchannel, this, &simple_toolbar::on_message_left_button_up);
-   //MESSAGE_LINK(e_message_nchittest    , pchannel, this, &simple_toolbar::_001OnNcHitTest);
+   //MESSAGE_LINK(e_message_non_client_hittest    , pchannel, this, &simple_toolbar::_001OnNcHitTest);
    //MESSAGE_LINK(e_message_mouse_leave   , pchannel, this, &simple_toolbar::on_message_mouse_leave);
 
    install_click_default_mouse_handling(pchannel);

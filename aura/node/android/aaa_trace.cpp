@@ -6,7 +6,7 @@ void __trace_message(const char * lpszPrefix, LPMESSAGE lpmsg)
    ENSURE_ARG(lpmsg != nullptr);
 
    if (lpmsg->message == e_message_mouse_move || lpmsg->message == e_message_non_client_mouse_move ||
-         lpmsg->message == e_message_nchittest || lpmsg->message == e_message_set_cursor ||
+         lpmsg->message == e_message_non_client_hittest || lpmsg->message == e_message_set_cursor ||
          lpmsg->message == WM_CTLCOLORBTN ||
          lpmsg->message == WM_CTLCOLORDLG ||
          lpmsg->message == WM_CTLCOLOREDIT ||

@@ -49,7 +49,7 @@ public:
          bool        m_bTaskTerminated : 1;
          bool        m_bCheckingChildrenTask : 1;
          bool        m_bCheckChildrenTaskPostQuit : 1;
-
+         bool        m_bTaskReady : 1;
 
       };
 

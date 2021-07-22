@@ -1595,7 +1595,7 @@ namespace user
 
 
 
-   void interaction_impl::PostNcDestroy()
+   void interaction_impl::post_non_client_destroy()
    {
 
       string strType = m_puserinteraction->type_name();
@@ -1607,7 +1607,7 @@ namespace user
 //
 //      }
 
-      ::user::primitive_impl::PostNcDestroy();
+      ::user::primitive_impl::post_non_client_destroy();
 
       detach();
 

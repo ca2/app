@@ -535,7 +535,7 @@ int_bool destroy_window(oswindow w)
       
       w->m_pimpl->m_puserinteraction->post_message(e_message_destroy);
       
-      w->m_pimpl->m_puserinteraction->post_message(e_message_ncdestroy);
+      w->m_pimpl->m_puserinteraction->post_message(e_message_non_client_destroy);
       
    }
    else
@@ -546,7 +546,7 @@ int_bool destroy_window(oswindow w)
 
          w->m_pimpl->call_message_handler(e_message_destroy, 0, 0);
                       
-         w->m_pimpl->call_message_handler(e_message_ncdestroy, 0, 0);
+         w->m_pimpl->call_message_handler(e_message_non_client_destroy, 0, 0);
                    
       });
       

@@ -78,14 +78,14 @@ namespace user
 
       MESSAGE_LINK(e_message_create, pchannel, this, &menu::on_message_create);
       MESSAGE_LINK(e_message_destroy, pchannel, this, &menu::on_message_destroy);
-      MESSAGE_LINK(e_message_ncactivate, pchannel, this, &menu::_001OnNcActivate);
-      MESSAGE_LINK(e_message_nccalcsize, pchannel, this, &menu::on_message_non_client_calculate_size);
+      MESSAGE_LINK(e_message_non_client_activate, pchannel, this, &menu::_001OnNcActivate);
+      MESSAGE_LINK(e_message_non_client_calcsize, pchannel, this, &menu::on_message_non_client_calculate_size);
       MESSAGE_LINK(e_message_enable, pchannel, this, &menu::_001OnEnable);
       MESSAGE_LINK(e_message_show_window, pchannel, this, &menu::on_message_show_window);
       MESSAGE_LINK(e_message_close, pchannel, this, &menu::on_message_close);
       MESSAGE_LINK(e_message_mouse_activate, pchannel, this, &menu::_001OnMouseActivate);
       MESSAGE_LINK(e_message_activate, pchannel, this, &menu::_001OnActivate);
-      MESSAGE_LINK(e_message_nccreate, pchannel, this, &menu::_001OnNcCreate);
+      MESSAGE_LINK(e_message_non_client_create, pchannel, this, &menu::_001OnNcCreate);
 
    }
 

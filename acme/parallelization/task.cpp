@@ -152,6 +152,16 @@ bool task::task_get_run() const
 }
 
 
+bool task::is_ready_to_quit() const
+{
+
+   bool bShouldContinue = task_get_run();
+
+   return !bShouldContinue && m_bTaskReady;
+
+}
+
+
 bool task::task_active() const
 {
 

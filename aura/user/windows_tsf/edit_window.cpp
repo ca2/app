@@ -427,14 +427,14 @@ namespace tsf
    //{
    //    edit_window *pThis = (edit_window*)GetWindowLongPtr(hWnd, THIS_POINTER_OFFSET);
    //
-   //    if((NULL == pThis) && (uMessage != e_message_nccreate))
+   //    if((NULL == pThis) && (uMessage != e_message_non_client_create))
    //    {
    //        return default_window_procedure(hWnd, uMessage, wParam, lParam);
    //    }
    //    
    //    switch (uMessage)
    //    {
-   //    case e_message_nccreate:
+   //    case e_message_non_client_create:
    //        {
    //            LPCREATESTRUCT lpcs = (LPCREATESTRUCT)lParam;
    //            pThis = (edit_window*)(lpcs->lpCreateParams);
@@ -444,11 +444,11 @@ namespace tsf
    //            pThis->m_hWnd = hWnd;
    //
    //            /*
-   //            AddRef() the object. Release() will be called in e_message_ncdestroy.
+   //            AddRef() the object. Release() will be called in e_message_non_client_destroy.
    //            Many owners will call Release during their e_message_destroy, but the 
    //            child window isn't destroyed until after the parent, so the object 
    //            gets deleted while the window still exists. Calling Release() 
-   //            ourselves in e_message_ncdestroy ensures the object exists for the entire
+   //            ourselves in e_message_non_client_destroy ensures the object exists for the entire
    //            life of the window.
    //            */
    //            pThis->AddRef();
@@ -475,7 +475,7 @@ namespace tsf
    //                                    GET_WM_COMMAND_CMD(wParam, lParam), 
    //                                    GET_WM_COMMAND_HWND(wParam, lParam));
    //
-   //    case e_message_ncdestroy:
+   //    case e_message_non_client_destroy:
    //        pThis->Release();
    //        
    //        pThis->m_hWnd = NULL;

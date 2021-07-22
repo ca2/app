@@ -605,8 +605,8 @@ namespace uwp
       LRESULT Default();
       virtual LRESULT DefWindowProc(::u32 message, WPARAM wParam, lparam lParam);
 
-      // for custom cleanup after e_message_ncdestroy
-      virtual void PostNcDestroy();
+      // for custom cleanup after e_message_non_client_destroy
+      virtual void post_non_client_destroy();
 
       // for notifications from parent
       virtual bool OnChildNotify(::u32 message, WPARAM wParam, LPARAM lParam, LRESULT* pResult);

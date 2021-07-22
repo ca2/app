@@ -107,7 +107,7 @@ namespace user
       virtual void route_command_message(::message::command * pcommand) override;
 
       virtual bool pre_create_window(::user::system * pusersystem) override;
-      virtual void PostNcDestroy() override;
+      virtual void post_non_client_destroy() override;
 
 
       DECLARE_MESSAGE_HANDLER(on_message_create);

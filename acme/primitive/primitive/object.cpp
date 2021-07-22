@@ -1109,14 +1109,21 @@ bool object::check_children_task()
 
    }
 
-   try
+   if(!m_bCheckChildrenTaskPostQuit)
    {
 
-      post_quit();
+      m_bCheckChildrenTaskPostQuit = true;
 
-   }
-   catch (...)
-   {
+      try
+      {
+
+         post_quit();
+
+      }
+      catch (...)
+      {
+
+      }
 
    }
 

@@ -3867,7 +3867,7 @@ void simple_frame_window::OnNotifyIconContextMenu(::u32 uNotifyIcon)
 
    string strXml = notification_area_get_xml_menu();
 
-   puser->track_popup_xml_menu(this, strXml, 0, pointCursor);
+   puser->track_popup_xml_menu(this, strXml, 0, pointCursor, size_i32(), m_pnotifyicon);
 
 }
 

@@ -6231,14 +6231,6 @@ return nullptr;
 }
 
 
-//void application::SetCurrentHandles()
-//{
-
-//   ::application::SetCurrentHandles();
-
-//}
-
-
 void application::_001TryCloseApplication()
 {
 

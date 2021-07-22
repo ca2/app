@@ -3565,9 +3565,6 @@
     <ClCompile Include="graphics\draw2d\os_font_name.cpp">
       <Filter>Source Files\graphics\draw2d</Filter>
     </ClCompile>
-    <ClCompile Include="platform\simple_trace.cpp">
-      <Filter>Source Files\platform</Filter>
-    </ClCompile>
     <ClCompile Include="platform\trace.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
@@ -3911,6 +3908,9 @@
       <Filter>Source Files\exception</Filter>
     </ClCompile>
     <ClCompile Include="platform\log.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\simple_log.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
   </ItemGroup>

@@ -11494,16 +11494,9 @@ restart:
 
                post_redraw();
 
-               //fork([this]()
-                 // {
+               auto papplication = get_application();
 
-                     auto papplication = get_application();
-
-                     papplication->post_message(e_message_close, 1);
-
-                    // papplication->_001TryCloseApplication();
-
-                  //});
+               papplication->_001TryCloseApplication();
 
                return;
 

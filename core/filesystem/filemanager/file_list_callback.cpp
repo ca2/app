@@ -39,7 +39,7 @@ namespace filemanager
       m_pimagelistSubItemHover->add_file("matter://filemanager/check_off_16.png");
       m_pimagelistSubItemHover->add_file("matter://filemanager/check_on_16.png");
 
-      __pointer(::core::system) psystem = get_system();
+      auto psystem = get_system()->m_pcoresystem;
 
       psystem->imaging().change_hue(
       m_pimagelistNormal,

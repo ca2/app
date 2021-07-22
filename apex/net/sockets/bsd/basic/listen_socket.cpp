@@ -311,7 +311,7 @@ namespace sockets
 
       tmp->initialize(this);
 
-      __pointer(::apex::system) psystem = get_system();
+      auto psystem = get_system()->m_papexsystem;
 
       auto lId = psystem->sockets().m_lListenSocket++;
 

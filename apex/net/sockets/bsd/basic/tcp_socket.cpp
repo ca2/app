@@ -1819,7 +1819,7 @@ namespace sockets
    void tcp_socket::InitializeContext(const string & context, const SSL_METHOD * pmethod)
    {
 
-      __pointer(::apex::system) psystem = get_system();
+      auto psystem = get_system()->m_papexsystem;
 
       ssl_client_context_map & clientcontextmap = psystem->sockets().m_clientcontextmap;
 
@@ -2029,7 +2029,7 @@ namespace sockets
          synchronous_lock synchronouslock(mutex());
          int i;
 
-         __pointer(::apex::system) psystem = get_system();
+         auto psystem = get_system()->m_papexsystem;
 
          int cnt = sizeof(psystem->sockets().m_baTicketKey) / SSL_SESSION_TICKET_KEY_SIZE;
          m_ticketkeya.set_size(cnt);

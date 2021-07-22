@@ -498,6 +498,8 @@ namespace ios
       m_puserinteraction->send_message(e_message_create, 0, (LPARAM) &cs);
 
       m_puserinteraction->m_ewindowflag |= e_window_flag_window_created;
+
+      m_puserinteraction->m_bTaskStarted = true;
       
       return true;
 

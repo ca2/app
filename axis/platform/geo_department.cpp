@@ -470,7 +470,7 @@ namespace geo
 
       string strUrl = "http://api.openweathermap.org/data/2.5/weather?id=" + __str(pcity->m_iId) + "&APPID=" + string(pszId);
 
-      __pointer(::axis::system) psystem = get_system();
+      auto psystem = get_system()->m_paxissystem;
 
       string strGetUrl = "https://ca2.software/api/account/openweather?request=" + psystem->url_encode(strUrl);
 
@@ -510,7 +510,7 @@ namespace geo
    bool  department::locality_sunset(string strCountry, string strLocality, int& iRise, int& iSet)
    {
 
-      __pointer(::axis::system) psystem = get_system();
+      auto psystem = get_system()->m_paxissystem;
 
       auto pcity = psystem->geo().openweather_find_city(strLocality + ", " + strCountry);
 
@@ -711,7 +711,7 @@ namespace geo
 
       //    double dLon;
 
-      __pointer(::axis::system) psystem = get_system();
+      auto psystem = get_system()->m_paxissystem;
 
       auto pcity = psystem->geo().openweather_find_city(strQ);
 

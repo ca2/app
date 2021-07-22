@@ -687,7 +687,7 @@ void application::call_request(::create * pcreate)
 
 do_request(pcreate);
 
-//__pointer(::apex::system) psystem = get_system();
+//auto psystem = get_system()->m_papexsystem;
 
 //if (pcreate->m_ecommand == ::command_protocol)
 //{
@@ -811,7 +811,7 @@ if (is_service())
 else
 {
 
-__pointer(::apex::system) psystem = get_system();
+auto psystem = get_system()->m_papexsystem;
 
 try
 {
@@ -2249,7 +2249,7 @@ if (str.has_char())
 
 data_pulse_change({ "ca2.savings", true }, nullptr);
 
-__pointer(::apex::system) psystem = get_system();
+auto psystem = get_system()->m_papexsystem;
 
 psystem->appa_load_string_table();
 
@@ -2391,7 +2391,7 @@ if (str.has_char())
 
 data_pulse_change({ "ca2.savings", true }, nullptr);
 
-__pointer(::apex::system) psystem = get_system();
+auto psystem = get_system()->m_papexsystem;
 
 psystem->appa_load_string_table();
 
@@ -2689,7 +2689,7 @@ catch (...)
 bool application::do_install()
 {
 
-   __pointer(::apex::system) psystem = get_system();
+   auto psystem = get_system()->m_papexsystem;
 
    if (!on_install())
    {
@@ -2723,7 +2723,7 @@ string strLicense = get_license_id();
 
 //::payload & varTopicQuey = psystem->m_varTopicQuery;
 
-__pointer(::apex::system) psystem = get_system();
+auto psystem = get_system()->m_papexsystem;
 
 bool bHasInstall = psystem->is_true("install");
 
@@ -2918,7 +2918,7 @@ strBuild = "0000-00-00 00:00:00";
 
 }
 
-__pointer(::apex::system) psystem = get_system();
+auto psystem = get_system()->m_papexsystem;
 
 synchronous_lock synchronouslock(psystem->m_pmutexSystemAppData);
 
@@ -3216,7 +3216,7 @@ add_matter_locator(this);
 
 //}
 
-__pointer(::apex::system) psystem = get_system();
+auto psystem = get_system()->m_papexsystem;
 
 if (!m_bAppHasInstallerChangedProtected)
 {
@@ -3385,7 +3385,7 @@ catch(...)
 
 }
 
-__pointer(::apex::system) psystem = get_system();
+auto psystem = get_system()->m_papexsystem;
 try
 {
 
@@ -3423,7 +3423,7 @@ catch(...)
 ::e_status application::init_application()
 {
 
-__pointer(::apex::system) psystem = get_system();
+auto psystem = get_system()->m_papexsystem;
 
 INFO("apex::application::init_application");
 
@@ -3543,7 +3543,7 @@ return estatus;
 
 }
 
-__pointer(::apex::system) psystem = get_system();
+auto psystem = get_system()->m_papexsystem;
 
 estatus = __own(this, m_puserlanguagemap, __new(::user::language_map) OBJ_REF_DBG_COMMA_THIS_NOTE("::application::init1") );
 
@@ -4271,14 +4271,14 @@ route_message(&message);
 
 string application::get_local_mutex_name()
 {
-__pointer(::apex::system) psystem = get_system();
+auto psystem = get_system()->m_papexsystem;
 return psystem->get_local_mutex_name(get_mutex_name_gen());
 }
 
 
 string application::get_local_id_mutex_name()
 {
-__pointer(::apex::system) psystem = get_system();
+auto psystem = get_system()->m_papexsystem;
 return psystem->get_local_id_mutex_name(get_mutex_name_gen(), get_local_mutex_id());
 
 }
@@ -4286,13 +4286,13 @@ return psystem->get_local_id_mutex_name(get_mutex_name_gen(), get_local_mutex_id
 
 string application::get_global_mutex_name()
 {
-__pointer(::apex::system) psystem = get_system();
+auto psystem = get_system()->m_papexsystem;
 return psystem->get_global_mutex_name(get_mutex_name_gen());
 }
 
 string application::get_global_id_mutex_name()
 {
-__pointer(::apex::system) psystem = get_system();
+auto psystem = get_system()->m_papexsystem;
 return psystem->get_global_id_mutex_name(get_mutex_name_gen(), get_global_mutex_id());
 }
 
@@ -4328,7 +4328,7 @@ bool bContinue = false;
 try
 {
 
-__pointer(::apex::system) psystem = get_system();
+auto psystem = get_system()->m_papexsystem;
 
 if (m_pinterprocessintercommunication)
 {
@@ -4387,7 +4387,7 @@ return bContinue;
 {
 
 bool bContinue = false;
-__pointer(::apex::system) psystem = get_system();
+auto psystem = get_system()->m_papexsystem;
 try
 {
 
@@ -5897,7 +5897,7 @@ bool application::on_start_application()
 
 string strAppId = m_strAppId;
 
-__pointer(::apex::system) psystem = get_system();
+auto psystem = get_system()->m_papexsystem;
 
 auto& file = psystem->file();
 
@@ -6870,7 +6870,7 @@ return is_alive();
 bool application::update_appmatter(__pointer(::sockets::http_session) & psession, const ::file::path & pszRoot, const string & pszRelative)
 {
 
-__pointer(::apex::system) psystem = get_system();
+auto psystem = get_system()->m_papexsystem;
 
 auto plocaleschema = __create_new < ::text::international::locale_schema >();
 
@@ -9746,7 +9746,7 @@ return thread::pre_translate_message(pmessage);
 bool application::on_run_install()
 {
 
-__pointer(::apex::system) psystem = get_system();
+auto psystem = get_system()->m_papexsystem;
 
 if (m_strId == "session" || m_strAppName == "session")
 {
@@ -10371,7 +10371,7 @@ void application::close(::apex::enum_end eend)
       try
       {
 
-         __pointer(::apex::system) psystem = get_system();
+         auto psystem = get_system()->m_papexsystem;
 
          if (psystem)
          {
@@ -10394,7 +10394,7 @@ void application::close(::apex::enum_end eend)
 __pointer(::extended::future < ::conversation >) application::message_box(const char * pszMessage, const char * pszTitle, const ::e_message_box & emessagebox)
 {
 
-   __pointer(::apex::system) psystem = get_system();
+   auto psystem = get_system()->m_papexsystem;
 
    return psystem->_message_box(this, pszMessage, pszTitle, emessagebox);
 

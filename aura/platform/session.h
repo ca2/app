@@ -38,7 +38,7 @@ namespace aura
       __composite(::user::user)                             m_puser;
       __composite(::user::style)                            m_puserstyleDefault;
 
-      __pointer(::aura::node)                               m_pnode;
+      //__pointer(::aura::node)                               m_pnode;
 
 
       session();

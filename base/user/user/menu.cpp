@@ -242,7 +242,7 @@ namespace user
 
       }
 
-      __pointer(::aqua::system) psystem = get_system();
+      auto psystem = get_system()->m_paquasystem;
 
       auto pxml = psystem->xml();
 

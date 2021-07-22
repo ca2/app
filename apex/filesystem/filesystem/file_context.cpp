@@ -259,7 +259,7 @@ bool file_context::is_file_or_dir(const ::file::path &path, ::payload *pvarQuery
 ::file::path file_context::module()
 {
 
-   __pointer(::apex::system) psystem = get_system();
+   auto psystem = get_system()->m_papexsystem;
 
    auto pfilesystem = psystem->m_pfilesystem;
 
@@ -271,7 +271,7 @@ bool file_context::is_file_or_dir(const ::file::path &path, ::payload *pvarQuery
 ::file::path file_context::ca2module()
 {
 
-   __pointer(::apex::system) psystem = get_system();
+   auto psystem = get_system()->m_papexsystem;
 
    return psystem->m_pfilesystem->m_pathCa2Module;
 
@@ -297,7 +297,7 @@ file_context::time(const ::file::path &psz, i32 iMaxLevel, const string &pszPref
                    bool bTryDelete)
 {
 
-   __pointer(::apex::system) psystem = get_system();
+   auto psystem = get_system()->m_papexsystem;
 
    synchronous_lock lockMachineEvent(psystem->mutex());
 
@@ -2049,7 +2049,7 @@ string file_context::get_hash(const ::payload &varFile, enum_hash ehash)
 
    mem.set_size(1024 * 256);
 
-   __pointer(::apex::system) psystem = get_system();
+   auto psystem = get_system()->m_papexsystem;
 
    auto pcrypto = psystem->crypto();
 
@@ -2126,7 +2126,7 @@ bool file_context::get_last_write_time(filetime_t *pfiletime, const string &strF
 ::e_status file_context::init_system()
 {
 
-   __pointer(::apex::system) psystem = get_system();
+   auto psystem = get_system()->m_papexsystem;
 
    auto estatus = psystem->m_pfilesystem->update_module_path();
 
@@ -3461,7 +3461,7 @@ bool file_context::touch(const ::file::path &path)
 ::e_status file_context::update_module_path()
 {
 
-   __pointer(::apex::system) psystem = get_system();
+   auto psystem = get_system()->m_papexsystem;
 
    auto estatus = psystem->m_pfilesystem->update_module_path();
 

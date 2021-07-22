@@ -413,12 +413,12 @@ namespace aura
 
       ::acme::del(g_pmutexImage);
 
-      if(m_pnode)
-      {
-
-         m_pnode->os_post_quit();
-
-      }
+//      if(m_pnode)
+//      {
+//
+//         m_pnode->os_post_quit();
+//
+//      }
 
    }
 

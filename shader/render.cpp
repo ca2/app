@@ -42,7 +42,7 @@ namespace app_shader
 
       //initialize_application_consumer();
 
-      __pointer(::aura::system) psystem = get_system();
+      auto psystem = get_system()->m_paurasystem;
 
       m_pcontext = psystem->get_gpu()->create_context();
 

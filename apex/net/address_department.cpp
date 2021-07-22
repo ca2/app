@@ -895,7 +895,7 @@ namespace net
       if (!m_pthreadReverse)
       {
 
-         __pointer(::apex::system) psystem = get_system();
+         auto psystem = get_system()->m_papexsystem;
 
          m_pthreadReverse = psystem->fork([this]()
             {

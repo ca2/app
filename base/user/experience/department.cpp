@@ -26,7 +26,7 @@ namespace experience
 
       string strBuild;
 
-      __pointer(::base::system) psystem = get_system();
+      auto psystem = get_system()->m_pbasesystem;
       
       strBuild = psystem->payload("build");
 

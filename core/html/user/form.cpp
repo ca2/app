@@ -38,7 +38,7 @@ html_form::~html_form()
 
    }
 
-   __pointer(::core::system) psystem = get_system();
+   auto psystem = get_system()->m_pcoresystem;
 
    estatus = psystem->defer_create_html();
 

@@ -119,7 +119,7 @@ namespace apex
 
       m_pcontext = this;
 
-      __pointer(::apex::system) psystem = get_system();
+      auto psystem = get_system()->m_papexsystem;
 
       if (psystem != nullptr)
       {
@@ -321,7 +321,7 @@ namespace apex
    ::color::color session::get_default_color(u64 u)
    {
 
-      __pointer(::apex::system) psystem = get_system();
+      auto psystem = get_system()->m_papexsystem;
 
       auto pnode = psystem->node();
 
@@ -582,7 +582,7 @@ namespace apex
    void session::process_term()
    {
 
-      __pointer(::apex::system) psystem = get_system();
+      auto psystem = get_system()->m_papexsystem;
 
       psystem->post_message(e_message_erase_session, m_iEdge);
       //psystem->session_erase(m_iEdge);
@@ -621,7 +621,7 @@ namespace apex
    bool session::on_get_task_name(string& strTaskName)
    {
 
-      __pointer(::apex::system) psystem = get_system();
+      auto psystem = get_system()->m_papexsystem;
 
       if (psystem->is_console_app())
       {
@@ -648,7 +648,7 @@ namespace apex
       //
       //}
 
-      __pointer(::apex::system) psystem = get_system();
+      auto psystem = get_system()->m_papexsystem;
 
       if (pcreate->m_ecommand == command_protocol)
       {
@@ -1347,7 +1347,7 @@ ret:
 
       INFO("apex::session::init2 .1");
 
-      __pointer(::apex::system) psystem = get_system();
+      auto psystem = get_system()->m_papexsystem;
 
       if (psystem->m_bUser)
       {

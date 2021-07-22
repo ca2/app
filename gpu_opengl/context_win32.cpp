@@ -33,7 +33,7 @@ namespace opengl
    ::e_status context_win32::_create_offscreen_buffer(const ::size_i32& size)
    {
 
-      __pointer(::aura::system) psystem = get_system();
+      auto psystem = get_system()->m_paurasystem;
 
       auto pgpu = psystem->get_gpu();
 

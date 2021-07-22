@@ -11,8 +11,8 @@ namespace subject
    public:
 
 
-      //bool                                m_bNewSubject : 1;
-      __pointer(::subject::manager)       m_pmanager;
+      //bool                                 m_bNewSubject : 1;
+      ::subject::manager *                   m_pmanager;
       ::subject::matter_context              m_mattercontext;
       ::user::enum_key                       m_ekey;
       ::payload                              m_payload;

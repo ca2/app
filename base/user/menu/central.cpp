@@ -60,7 +60,7 @@ namespace user
 
       spgraphics->CreateCompatibleDC(nullptr);
 
-      __pointer(::base::system) psystem = get_system();
+      auto psystem = get_system()->m_pbasesystem;
 
       class imaging & imaging = psystem->imaging();
 

@@ -7160,14 +7160,19 @@ namespace user
 
          }
 
-         if (::is_set(m_pthreadUserInteraction->m_puiptraThread))
+         if(::is_set(m_pthreadUserInteraction))
          {
 
-            m_pthreadUserInteraction->m_puiptraThread->erase(this);
+            if (::is_set(m_pthreadUserInteraction->m_puiptraThread))
+            {
+
+               m_pthreadUserInteraction->m_puiptraThread->erase(this);
+
+            }
+
+            __release(m_pthreadUserInteraction OBJ_REF_DBG_COMMA_THIS);
 
          }
-
-         __release(m_pthreadUserInteraction OBJ_REF_DBG_COMMA_THIS);
 
       }
 
@@ -15056,6 +15061,13 @@ restart:
 
    void interaction::prodevian_stop()
    {
+
+      if(!m_pimpl)
+      {
+
+         return;
+
+      }
 
       m_pimpl->prodevian_stop();
 

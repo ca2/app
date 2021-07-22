@@ -158,6 +158,28 @@ namespace apex
    }
 
 
+#ifdef DEBUG
+
+
+   i64 system::add_ref(OBJ_REF_DBG_PARAMS)
+   {
+
+      return ::system::add_ref(OBJ_REF_DBG_ARGS);
+
+   }
+
+
+   i64 system::dec_ref(OBJ_REF_DBG_PARAMS)
+   {
+
+      return ::system::dec_ref(OBJ_REF_DBG_ARGS);
+
+   }
+
+
+#endif
+
+
    ::e_status system::initialize(::object * pobject)
    {
 
@@ -768,7 +790,7 @@ namespace apex
    ::acme::library * system::get_library(const char * pszLibrary1, bool bOpenCa2)
    {
 
-      __pointer(::apex::system) psystem = get_system();
+      auto psystem = get_system()->m_papexsystem;
 
       synchronous_lock synchronouslock(&psystem->m_mutexLibrary);
 
@@ -2513,6 +2535,8 @@ namespace apex
 //      // ... always happen as the wish the program finishes when it is closed ...
       auto pnode = m_pnode;
 
+
+
       if(pnode)
       {
 
@@ -4045,7 +4069,7 @@ namespace apex
    string system::get_user_language()
    {
 
-      __pointer(::apex::system) psystem = get_system();
+      auto psystem = get_system()->m_papexsystem;
 
       return psystem->standalone_setting("current_language");
 
@@ -4055,7 +4079,7 @@ namespace apex
    bool system::set_user_language(::application * papp, index iSel)
    {
 
-      __pointer(::apex::system) psystem = get_system();
+      auto psystem = get_system()->m_papexsystem;
 
       if (iSel < 0 || iSel >= psystem->get_session()->get_current_application()->m_puserlanguagemap->m_straLang.get_count())
       {
@@ -4088,7 +4112,7 @@ namespace apex
    bool system::set_user_language(::application * papp, string strLang)
    {
 
-      __pointer(::apex::system) psystem = get_system();
+      auto psystem = get_system()->m_papexsystem;
 
       psystem->get_session()->get_current_application()->m_puserlanguagemap->set_language(papp, strLang);
 

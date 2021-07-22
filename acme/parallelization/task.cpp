@@ -12,6 +12,9 @@
 #endif
 
 
+CLASS_DECL_ACME void clear_message_queue(itask_t idthread);
+
+
 task::task()
 {
 
@@ -311,6 +314,8 @@ void* task::s_os_task(void* p)
       {
 
       }
+
+      clear_message_queue(pthread->m_itask);
 
       pthread->m_bTaskTerminated = true;
 
@@ -679,12 +684,12 @@ bool task::has_message() const
 
    }
 
-   if (::is_null(m_pmatter))
-   {
-
-      m_pmatter = this;
-
-   }
+//   if (::is_null(m_pmatter))
+//   {
+//
+//      m_pmatter = this;
+//
+//   }
 
 #ifdef __DEBUG
 

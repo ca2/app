@@ -295,7 +295,7 @@ __pointer(::application) application_container::instantiate_application(const ch
    else
    {
 
-      __pointer(::apex::system) psystem = get_system();
+      auto psystem = get_system()->m_papexsystem;
 
       if (psystem->m_papplicationStartup.is_set())
       {
@@ -466,7 +466,7 @@ __pointer(::application) application_container::start_application(const char * p
 
    ::file::path pathExe = m_psystem->m_pacmepath->app_module();
 
-   __pointer(::apex::system) psystem = get_system();
+   auto psystem = get_system()->m_papexsystem;
 
    if (!m_psystem->m_papexsystem->m_papexnode->is_application_installed(pathExe, strApp, strBuild, psystem->get_system_platform(),
       psystem->get_system_configuration(), strLocale, strSchema))

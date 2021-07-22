@@ -87,7 +87,7 @@ namespace message
 
 #ifdef __DEBUG
 
-      __pointer(::aura::system) psystem = get_system();
+      auto psystem = get_system()->m_paurasystem;
 
       psystem->log().print(pcszErrorMessage);
 

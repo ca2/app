@@ -154,7 +154,7 @@ context_image::~context_image()
    if (bCache)
    {
 
-      __pointer(::aura::system) psystem = get_system();
+      auto psystem = get_system()->m_paurasystem;
 
       pimage = psystem->get_cache_image(this, varFile);
 
@@ -198,7 +198,7 @@ context_image::~context_image()
    if (bCache)
    {
 
-      __pointer(::aura::system) psystem = get_system();
+      auto psystem = get_system()->m_paurasystem;
 
       pimage = psystem->matter_cache_image(this, strMatter);
 

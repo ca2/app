@@ -228,6 +228,8 @@ namespace uwp
 
       m_puserinteraction->m_ewindowflag |= ::e_window_flag_window_created;
 
+      m_puserinteraction->m_bTaskStarted = true;
+
       m_puserinteraction->m_layout.sketch().set_modified();
 
       return true;

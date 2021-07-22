@@ -2273,7 +2273,7 @@ __pointer(::extended::future < ::conversation >) object::message_box(const char*
 
    //auto edialogresult =
 
-   __pointer(::apex::system) psystem = get_system();
+   auto psystem = get_system()->m_papexsystem;
  
    auto presult = psystem->_message_box(this, pszMessage, pszTitle, emessagebox);
 

@@ -126,7 +126,7 @@ namespace aura
 
       m_pauracontext = this;
 
-      m_pnode = m_psystem->node();
+      //m_pnode = m_psystem->node();
 
       m_pimplPendingFocus2             = nullptr;
 
@@ -212,7 +212,7 @@ namespace aura
 
       //}
 
-      __pointer(::aura::system) psystem = get_system();
+      auto psystem = get_system()->m_paurasystem;
 
       if(psystem->m_bAvoidFirstResponder)
       {
@@ -260,7 +260,7 @@ namespace aura
    bool session::on_get_task_name(string& strThreadName)
    {
 
-      __pointer(::aura::system) psystem = get_system();
+      auto psystem = get_system()->m_paurasystem;
 
       if (psystem->is_console_app())
       {
@@ -1769,7 +1769,7 @@ ret:
 
       INFO(".2");
 
-      __pointer(::aura::system) psystem = get_system();
+      auto psystem = get_system()->m_paurasystem;
 
       if (psystem->m_bUser)
       {
@@ -2429,9 +2429,11 @@ namespace aura
 
          ::color::color crBk;
 
-         __pointer(::aura::system) psystem = get_system();
+         auto psystem = get_system()->m_paurasystem;
 
-         if (m_pnode && m_pnode->is_app_dark_mode())
+         auto pnode = psystem->node();
+
+         if (pnode && pnode->is_app_dark_mode())
          {
 
             crBk = argb(255, 0x40, 0x40, 0x40);
@@ -2452,9 +2454,11 @@ namespace aura
 
          ::color::color crBk;
 
-         __pointer(::aura::system) psystem = get_system();
+         auto psystem = get_system()->m_paurasystem;
 
-         if (m_pnode && m_pnode->is_app_dark_mode())
+         auto pnode = psystem->node();
+
+         if (pnode && pnode->is_app_dark_mode())
          {
 
             crBk = argb(255, 127, 127, 127);
@@ -2475,9 +2479,11 @@ namespace aura
 
          ::color::color crText;
 
-         __pointer(::aura::system) psystem = get_system();
+         auto psystem = get_system()->m_paurasystem;
 
-         if (m_pnode && m_pnode->is_app_dark_mode())
+         auto pnode = psystem->node();
+
+         if (pnode && pnode->is_app_dark_mode())
          {
 
             crText = argb(255, 255, 255, 255);

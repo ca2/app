@@ -45,8 +45,8 @@ class CLASS_DECL_ACME object :
 protected:
 
 
-   __pointer(::object)                                   m_pobjectParentTask;
-   __pointer_array(::object)                             m_objectaChildrenTask;
+   ::object *                                            m_pobjectParentTask;
+   __pointer_array(::object)                        m_objectaChildrenTask;
 
 
 public:
@@ -56,7 +56,7 @@ public:
    //__pointer(::application)                            m_papplication;
    //__pointer(::apex::session)                          m_psession;
    //__pointer(class ::system)                           m_psystem;
-   __pointer(::acme::context)                            m_pcontext;
+   ::acme::context *                                     m_pcontext;
 
 
    //__pointer(__pointer_array(::object))                m_pobjecta;
@@ -70,10 +70,10 @@ public:
 
 
    //object() : m_pmeta(nullptr) { }
-   object() { }
+   object() { m_pobjectParentTask = nullptr; m_pcontext = nullptr; }
    //object(::object * pobject);
-   object(enum_default_initialization) : ::object() {};
-   virtual ~object();
+   object(enum_default_initialization) : ::object() { m_pobjectParentTask = nullptr; m_pcontext = nullptr; };
+   ~object() override;
 
 
 #ifdef DEBUG

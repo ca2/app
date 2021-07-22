@@ -385,7 +385,7 @@ namespace sockets
             
             micro_duration microduration;
 
-            __pointer(::apex::system) psystem = get_system();
+            auto psystem = get_system()->m_papexsystem;
             
             psystem->get_time(&microduration);
 
@@ -467,7 +467,7 @@ namespace sockets
          
          micro_duration microduration;
 
-         __pointer(::apex::system) psystem = get_system();
+         auto psystem = get_system()->m_papexsystem;
          
          psystem->get_time(&microduration);
 
@@ -662,7 +662,7 @@ namespace sockets
       {
          ::memcpy_dup(&x.imr_multiaddr.s_addr, &addr, sizeof(addr));
 
-         __pointer(::apex::system) psystem = get_system();
+         auto psystem = get_system()->m_papexsystem;
 
          paddressdepartment->convert(addr,  local_if);
 

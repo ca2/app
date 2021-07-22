@@ -220,10 +220,22 @@ namespace apex
 
 
       system();
-      virtual ~system();
+      ~system() override;
 
 
       void common_construct();
+
+
+#ifdef DEBUG
+
+
+      i64 add_ref(OBJ_REF_DBG_PARAMS) override;
+
+
+      i64 dec_ref(OBJ_REF_DBG_PARAMS) override;
+
+
+#endif
 
 
       ::e_status initialize(::object * pobject) override;

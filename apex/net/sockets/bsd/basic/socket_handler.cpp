@@ -1187,7 +1187,7 @@ end_processing_adding:
                      if (psocket->Retain() && !psocket->Lost())
                      {
 
-                        __pointer(::apex::system) psystem = get_system();
+                        auto psystem = get_system()->m_papexsystem;
 
                         synchronous_lock synchronouslock(&psystem->sockets().m_mutexPool);
 
@@ -1678,7 +1678,7 @@ end_processing_adding:
    __pointer(base_socket_handler::pool_socket) socket_handler::FindConnection(i32 type, const string & protocol, const ::net::address & ad)
    {
 
-      __pointer(::apex::system) psystem = get_system();
+      auto psystem = get_system()->m_papexsystem;
 
       synchronous_lock synchronouslock(&psystem->sockets().m_mutexPool);
 

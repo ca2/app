@@ -974,7 +974,7 @@ void object::system(const char* pszProjectName)
 
 #endif
 
-   m_pcontext.release(OBJ_REF_DBG_THIS);
+   //m_pcontext.release(OBJ_REF_DBG_THIS);
 
    //m_pthread.release(OBJ_REF_DBG_THIS);
 
@@ -1404,7 +1404,11 @@ void object::delete_this()
    if (m_pcompositea)
    {
 
-      for (auto& pmatter : *m_pcompositea)
+      auto compositea = *m_pcompositea;
+
+      synchronouslock.unlock();
+
+      for (auto& pmatter : compositea)
       {
 
          auto estatusItem = pmatter->set_finish();
@@ -1456,7 +1460,11 @@ void object::delete_this()
    if (m_pcompositea)
    {
 
-      for (auto& pmatter : *m_pcompositea)
+      auto compositea = *m_pcompositea;
+
+      synchronouslock.unlock();
+
+      for (auto& pmatter : compositea)
       {
 
          auto estatusItem = pmatter->finish();

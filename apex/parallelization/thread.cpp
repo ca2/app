@@ -296,7 +296,7 @@ void thread::term_thread()
    case id_system:
    {
 
-      __pointer(::apex::system) psystem = get_system();
+      auto psystem = get_system()->m_papexsystem;
 
       if (psystem)
       {
@@ -2007,7 +2007,7 @@ u32 __thread_entry(void * p);
 
    }
 
-   __pointer(::apex::system) psystem = get_system();
+   auto psystem = get_system()->m_papexsystem;
 
    if (m_idContextReference == id_none && psystem && psystem != this)
    {
@@ -2220,7 +2220,7 @@ void thread::system_pre_translate_message(::message::message * pmessage)
    try
    {
 
-      __pointer(::apex::system) psystem = get_system();
+      auto psystem = get_system()->m_papexsystem;
 
       if(psystem != nullptr)
       {
@@ -3062,7 +3062,16 @@ bool thread::post_message(const ::id & id, wparam wparam, lparam lparam)
 
 #endif
 
-   return get_message_queue()->post_message(nullptr, id, wparam, lparam);
+   auto pmessagequeue = get_message_queue();
+
+   if(!pmessagequeue)
+   {
+
+      return false;
+
+   }
+
+   return pmessagequeue->post_message(nullptr, id, wparam, lparam);
 
 }
 
@@ -3425,6 +3434,13 @@ message_queue* thread::_get_mq()
    }
 
    auto pmq = ::get_message_queue(m_itask, true);
+
+   if(pmq->m_bQuit)
+   {
+
+      output_debug_string("WHAT?!?!WHAT?!?!WHAT?!?!BornQuitting?!?!");
+
+   }
 
    auto estatus = __compose(m_pmq, pmq);
 
@@ -3873,7 +3889,9 @@ int_bool thread::get_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilter
             if (is_ready_to_quit())
             {
 
-               return false;
+               bQuit = true;
+
+               break;
 
             }
 
@@ -3881,42 +3899,47 @@ int_bool thread::get_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilter
 
       }
 
-      iRet = ::GetMessage(&msg, __hwnd(oswindow), wMsgFilterMin, wMsgFilterMax);
-
-      //}
-
-      if (msg.message == e_message_quit)
+      if(!bQuit)
       {
 
-         ::output_debug_string("e_message_quit");
+         iRet = ::GetMessage(&msg, __hwnd(oswindow), wMsgFilterMin, wMsgFilterMax);
 
-      }
+         //}
 
-      __copy(pMsg, msg);
-
-      if (iRet == -1)
-      {
-
-         ::u32 dwLastError = ::GetLastError();
-
-         ::output_debug_string("Last Error : " + __str(dwLastError) + "\n");
-
-      }
-      else
-      {
-
-         bQuit = !iRet || pMsg->m_id == e_message_quit;
-
-         if (bQuit)
+         if (msg.message == e_message_quit)
          {
 
-            ::output_debug_string("received e_message_quit");
+            ::output_debug_string("e_message_quit");
+
+         }
+
+         __copy(pMsg, msg);
+
+         if (iRet == -1)
+         {
+
+            ::u32 dwLastError = ::GetLastError();
+
+            ::output_debug_string("Last Error : " + __str(dwLastError) + "\n");
 
          }
          else
          {
 
-            return true;
+            bQuit = !iRet || pMsg->m_id == e_message_quit;
+
+            if (bQuit)
+            {
+
+               ::output_debug_string("received e_message_quit");
+
+            }
+            else
+            {
+
+               return true;
+
+            }
 
          }
 
@@ -3928,30 +3951,45 @@ int_bool thread::get_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilter
 
    auto pmq = get_message_queue();
 
-   if (pmq->get_message(pMsg, oswindow, wMsgFilterMin, wMsgFilterMax))
+   ::duration duration;
+
+   if(m_bSetFinish)
    {
 
-      return true;
+      duration = 100_ms;
+
+   }
+   else
+   {
+
+      duration = duration::infinite();
+
+   }
+
+   int iRet;
+
+   while((iRet = pmq->get_message(pMsg, oswindow, wMsgFilterMin, wMsgFilterMax)) != 0)
+   {
+
+      if (iRet > 0)
+      {
+
+         return true;
+
+      }
+
+      if(is_ready_to_quit())
+      {
+
+         break;
+
+      }
 
    }
 
 #endif
 
-   if (bQuit)
-   {
-
-      if (!finish_bit())
-      {
-
-         finish();
-
-      }
-
-      return false;
-
-   }
-
-   return task_get_run();
+   return false;
 
 }
 
@@ -4882,14 +4920,14 @@ void thread::delete_this()
 
    }
 
-   while (check_children_task())
-   {
-
-      sleep(100_ms);
-
-      kick_idle();
-
-   }
+//   while (check_children_task())
+//   {
+//
+//      sleep(100_ms);
+//
+//      kick_idle();
+//
+//   }
 
    return ::success;
 

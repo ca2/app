@@ -32,7 +32,7 @@ namespace datetime
    void graphics::_001OnDraw(::draw2d::graphics * pgraphics)
    {
 
-      __pointer(::apex::system) psystem = get_system();
+      auto psystem = get_system()->m_papexsystem;
 
       auto pmathematics = ::mathematics::mathematics();
 

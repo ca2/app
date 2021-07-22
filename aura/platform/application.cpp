@@ -548,7 +548,7 @@ namespace aura
 
          }
 
-         __pointer(::aura::system) psystem = get_system();
+         auto psystem = get_system()->m_paurasystem;
 
          // Verry Sory for the per request overhead here for the needed information of only first request
          if (::is_set(psystem) && psystem->m_millisAfterApplicationFirstRequest == 0)
@@ -1693,7 +1693,7 @@ namespace aura
    bool application::do_install()
    {
 
-      __pointer(::aura::system) psystem = get_system();
+      auto psystem = get_system()->m_paurasystem;
 
 
 
@@ -1729,7 +1729,7 @@ namespace aura
 
       string strLicense = get_license_id();
 
-      __pointer(::aura::system) psystem = get_system();
+      auto psystem = get_system()->m_paurasystem;
 
       bool bHasInstall = psystem->is_true("install");
 
@@ -1818,7 +1818,7 @@ retry_license:
 
 #ifdef WINDOWS_DESKTOP
 
-         __pointer(::aura::system) psystem = get_system();
+         auto psystem = get_system()->m_paurasystem;
 
          string strModuleName = psystem->file().module();
 
@@ -2027,7 +2027,7 @@ retry_license:
 
       }
 
-      __pointer(::aura::system) psystem = get_system();
+      auto psystem = get_system()->m_paurasystem;
 
       if (psystem->m_bImaging)
       {
@@ -9250,7 +9250,7 @@ namespace aura
    //void application::on_initial_frame_position(::user::frame* pframe)
    //{
 
-   //   __pointer(::apex::system) psystem = get_system();
+   //   auto psystem = get_system()->m_papexsystem;
 
    //   psystem->on_initial_frame_position(pframe);
 

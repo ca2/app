@@ -380,7 +380,7 @@ typedef struct
 #ifndef NONCMESSAGES
 
 /*
-* e_message_nchittest and MOUSEHOOKSTRUCT Mouse Position Codes
+* e_message_non_client_hittest and MOUSEHOOKSTRUCT Mouse Position Codes
 */
 #define HTERROR             (-2)
 #define HTTRANSPARENT       (-1)
@@ -475,7 +475,7 @@ const widechar * lpString);
 //#define SWP_NOZORDER        0x0004
 //#define SWP_NOREDRAW        0x0008
 //#define SWP_NOACTIVATE      0x0010
-//#define SWP_FRAMECHANGED    0x0020  /* The frame changed: send e_message_nccalcsize */
+//#define SWP_FRAMECHANGED    0x0020  /* The frame changed: send e_message_non_client_calcsize */
 //#define SWP_SHOWWINDOW      0x0040
 //#define SWP_HIDEWINDOW      0x0080
 //#define SWP_NOCOPYBITS      0x0100
@@ -671,7 +671,7 @@ typedef struct tagDRAWTEXTPARAMS
 
 
 /*
-* e_message_nccalcsize "window valid rectangle_i32" return values
+* e_message_non_client_calcsize "window valid rectangle_i32" return values
 */
 #define WVR_ALIGNTOP        0x0010
 #define WVR_ALIGNLEFT       0x0020
@@ -1630,12 +1630,12 @@ typedef struct tagMDINEXTMENU
 #define WM_SETICON                      0x0080
 //#endif /* WINVER >= 0x0400 */
 
-#define e_message_nccreate                     0x0081
-#define e_message_ncdestroy                    0x0082
-#define e_message_nccalcsize                   0x0083
-#define e_message_nchittest                    0x0084
-#define e_message_ncpaint                      0x0085
-#define e_message_ncactivate                   0x0086
+#define e_message_non_client_create                     0x0081
+#define e_message_non_client_destroy                    0x0082
+#define e_message_non_client_calcsize                   0x0083
+#define e_message_non_client_hittest                    0x0084
+#define e_message_non_client_paint                      0x0085
+#define e_message_non_client_activate                   0x0086
 #define WM_GETDLGCODE                   0x0087
 //#ifndef _WIN32_WCE
 #define WM_SYNCPAINT                    0x0088
@@ -2050,7 +2050,7 @@ typedef struct
 //#ifndef NONCMESSAGES
 
 /*
- * e_message_nchittest and MOUSEHOOKSTRUCT Mouse Position Codes
+ * e_message_non_client_hittest and MOUSEHOOKSTRUCT Mouse Position Codes
  */
 #define HTERROR             (-2)
 #define HTTRANSPARENT       (-1)
@@ -2183,7 +2183,7 @@ typedef struct _tagWINDOWPOS
 
 
 /*
- * e_message_nccalcsize parameter structure
+ * e_message_non_client_calcsize parameter structure
  */
 typedef struct tagNCCALCSIZE_PARAMS
 {
@@ -2195,7 +2195,7 @@ typedef struct tagNCCALCSIZE_PARAMS
 //#pragma endregion
 
 /*
- * e_message_nccalcsize "interaction_impl valid rectangle_i32" return values
+ * e_message_non_client_calcsize "interaction_impl valid rectangle_i32" return values
  */
 #define WVR_ALIGNTOP        0x0010
 #define WVR_ALIGNLEFT       0x0020

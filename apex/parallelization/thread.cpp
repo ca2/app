@@ -3773,6 +3773,9 @@ void thread::update_task_ready_to_quit()
 //}
 
 
+
+
+
 int_bool thread::get_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax)
 {
 
@@ -3831,37 +3834,56 @@ int_bool thread::get_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilter
 
       int iRet = -1;
       
+      //if (m_bSetFinish)
+      //{
+
+      //   while(iRet = ::PeekMessage(&msg, __hwnd(oswindow), wMsgFilterMin, wMsgFilterMax, TRUE))
+      //   {
+
+      //      if (msg.message == e_message_quit)
+      //      {
+
+      //         break;
+
+      //      }
+
+      //      if (!task_get_run())
+      //      {
+
+      //         return false;
+
+      //      }
+
+      //      update_task_ready_to_quit();
+
+      //   }
+
+      //}
+      //else
+      //{
+
       if (m_bSetFinish)
       {
 
-         while(iRet = ::PeekMessage(&msg, __hwnd(oswindow), wMsgFilterMin, wMsgFilterMax, TRUE))
+         DWORD timeout = 100; // 100 milliseconds;
+
+         while (MsgWaitForMultipleObjects(0, NULL, FALSE, timeout, QS_ALLINPUT) != WAIT_OBJECT_0)
          {
 
-            if (msg.message == e_message_quit)
-            {
-
-               break;
-
-            }
-
-            if (!task_get_run())
+            if (is_ready_to_quit())
             {
 
                return false;
 
             }
 
-            update_task_ready_to_quit();
-
          }
 
       }
-      else
-      {
 
-         iRet = ::GetMessage(&msg, __hwnd(oswindow), wMsgFilterMin, wMsgFilterMax);
+      iRet = ::GetMessage(&msg, __hwnd(oswindow), wMsgFilterMin, wMsgFilterMax);
 
-      }
+      //}
 
       if (msg.message == e_message_quit)
       {

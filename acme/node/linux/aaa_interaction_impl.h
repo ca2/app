@@ -362,7 +362,7 @@ namespace linux
 
       virtual void default_window_procedure(::user::message * pusermessage);
 
-      virtual void PostNcDestroy() override;
+      virtual void post_non_client_destroy() override;
 
       virtual void on_final_release() override;
 

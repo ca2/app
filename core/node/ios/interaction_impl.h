@@ -583,7 +583,7 @@ namespace ios
 //      LRESULT Default() override;
   //    virtual LRESULT DefWindowProc(const ::id & id, WPARAM wParam, ::lparam lParam) override;
 
-      virtual void PostNcDestroy() override;
+      virtual void post_non_client_destroy() override;
 
       // for notifications from parent
       virtual bool OnChildNotify(const ::id & id, WPARAM wParam, LPARAM lParam, LRESULT* pResult);

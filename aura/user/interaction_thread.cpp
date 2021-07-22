@@ -872,6 +872,8 @@ namespace user
       if (m_bMessageThread)
       {
 
+         bool bWindowSetFinish = false;
+
          while (task_get_run())
          {
 
@@ -893,6 +895,32 @@ namespace user
                }
 
                break;
+
+            }
+
+            if (m_bSetFinish)
+            {
+
+               if (!bWindowSetFinish)
+               {
+
+                  bWindowSetFinish = true;
+
+                  if (m_pimpl)
+                  {
+
+                     auto puserinteraction = m_pimpl->m_puserinteraction;
+
+                     if (puserinteraction)
+                     {
+
+                        puserinteraction->destroy_window();
+
+                     }
+
+                  }
+
+               }
 
             }
 

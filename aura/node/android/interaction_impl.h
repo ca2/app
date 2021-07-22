@@ -505,7 +505,7 @@ namespace android
       LRESULT Default();
       virtual LRESULT DefWindowProc(const ::id & id,WPARAM wParam,lparam lParam);
 
-      virtual void PostNcDestroy() override;
+      virtual void post_non_client_destroy() override;
 
       // for notifications from parent
       //virtual bool OnChildNotify(::user::message * pusermessage);

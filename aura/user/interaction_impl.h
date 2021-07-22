@@ -626,7 +626,7 @@ namespace user
       virtual void default_window_procedure(::message::message * pmessage);
 
 
-      virtual void PostNcDestroy() override;
+      virtual void post_non_client_destroy() override;
       virtual bool OnChildNotify(::message::message * pusermessage) override;
       virtual bool ReflectChildNotify(::message::message * pusermessage);
       virtual bool CheckAutoCenter() override;

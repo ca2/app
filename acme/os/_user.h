@@ -58,7 +58,7 @@
 #define SWP_NOZORDER        0x0004
 #define SWP_NOREDRAW        0x0008
 #define SWP_NOACTIVATE      0x0010
-#define SWP_FRAMECHANGED    0x0020  /* The frame changed: send e_message_nccalcsize */
+#define SWP_FRAMECHANGED    0x0020  /* The frame changed: send e_message_non_client_calcsize */
 #define SWP_SHOWWINDOW      0x0040
 #define SWP_HIDEWINDOW      0x0080
 #define SWP_NOCOPYBITS      0x0100
@@ -85,7 +85,7 @@
 #define SWP_NOZORDER        0x0004
 #define SWP_NOREDRAW        0x0008
 #define SWP_NOACTIVATE      0x0010
-#define SWP_FRAMECHANGED    0x0020  /* The frame changed: send e_message_nccalcsize */
+#define SWP_FRAMECHANGED    0x0020  /* The frame changed: send e_message_non_client_calcsize */
 #define SWP_SHOWWINDOW      0x0040
 #define SWP_HIDEWINDOW      0x0080
 #define SWP_NOCOPYBITS      0x0100

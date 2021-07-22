@@ -155,7 +155,7 @@ void simple_frame_window::install_message_routing(::channel * pchannel)
    MESSAGE_LINK(e_message_display_change, pchannel, this, &simple_frame_window::on_message_display_change);
    MESSAGE_LINK(e_message_show_window, pchannel, this, &simple_frame_window::on_message_show_window);
    MESSAGE_LINK(e_message_mouse_activate, pchannel, this, &simple_frame_window::_001OnMouseActivate);
-   MESSAGE_LINK(e_message_nchittest, pchannel, this, &simple_frame_window::_001OnNcHitTest);
+   MESSAGE_LINK(e_message_non_client_hittest, pchannel, this, &simple_frame_window::_001OnNcHitTest);
 
    MESSAGE_LINK(e_message_key_down, pchannel, this, &simple_frame_window::_001OnKey);
    MESSAGE_LINK(e_message_sys_key_down, pchannel, this, &simple_frame_window::_001OnKey);
@@ -3109,14 +3109,14 @@ void simple_frame_window::route_command_message(::message::command * pcommand)
 //   //   if (bActivate && bEnabled && pParent != this)
 //   //   {
 //   //      // Excel will try to Activate itself when it receives a
-//   //      // e_message_ncactivate so we need to keep it from doing that here.
+//   //      // e_message_non_client_activate so we need to keep it from doing that here.
 //   //      //m_nFlags |= WF_KEEPMINIACTIVE;
-//   //      pParent->send_message(e_message_ncactivate, true);
+//   //      pParent->send_message(e_message_non_client_activate, true);
 //   //      //m_nFlags &= ~WF_KEEPMINIACTIVE;
 //   //   }
 //   //   else
 //   //   {
-//   //      pParent->send_message(e_message_ncactivate, false);
+//   //      pParent->send_message(e_message_non_client_activate, false);
 //   //   }
 //   //}
 //

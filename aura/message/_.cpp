@@ -84,7 +84,7 @@ namespace message
 //      case e_message_vscroll:
 //         return PrototypeScroll;
 //      case e_message_create:
-//      case e_message_nccreate:
+//      case e_message_non_client_create:
 //         return PrototypeCreate;
 //      case e_message_move:
 //         return PrototypeMove;
@@ -118,7 +118,7 @@ namespace message
 //      case e_message_mouse_wheel:
 //         return PrototypeMouseWheel;
 //#endif
-//      case e_message_ncactivate:
+//      case e_message_non_client_activate:
 //         return PrototypeNcActivate;
 //      case e_message_timer:
 //         return PrototypeTimer;
@@ -134,7 +134,7 @@ namespace message
 //      case e_message_uni_char:
 //#endif
 //         return PrototypeKey;
-//      case e_message_nchittest:
+//      case e_message_non_client_hittest:
 //         return PrototypeNcHitTest;
 //      case e_message_set_cursor:
 //         return PrototypeSetCursor;
@@ -160,7 +160,7 @@ namespace message
 //      case e_message_window_position_changing:
 //      case e_message_window_position_changed:
 //         return PrototypeWindowPos;
-//      case e_message_nccalcsize:
+//      case e_message_non_client_calcsize:
 //         return PrototypeNcCalcSize;
 //      case e_message_simple_command:
 //         return PrototypeSimpleCommand;

@@ -133,6 +133,8 @@ public:
    virtual bool is_thread() const override;
    virtual bool task_get_run() const override;
 
+   virtual bool is_ready_to_quit() const;
+
    virtual bool task_active() const;
    virtual bool is_running() const override;
 

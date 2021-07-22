@@ -195,9 +195,9 @@ namespace user
 
    }
 
-   void control_bar::PostNcDestroy()
+   void control_bar::post_non_client_destroy()
    {
-      ::user::interaction::PostNcDestroy();
+      ::user::interaction::post_non_client_destroy();
       //if (m_bAutoDelete)      // Automatic cleanup?
       // delete this;
    }

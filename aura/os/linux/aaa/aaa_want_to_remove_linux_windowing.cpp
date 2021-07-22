@@ -1210,7 +1210,7 @@ int_bool destroy_window(oswindow window)
 
          mq_erase_window_from_all_queues(window);
 
-         pinteraction->send_message(e_message_ncdestroy, 0, 0);
+         pinteraction->send_message(e_message_non_client_destroy, 0, 0);
 
       }
       else

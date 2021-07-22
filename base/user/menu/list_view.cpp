@@ -80,10 +80,10 @@ namespace user
    }
 
 
-   void menu_list_view::PostNcDestroy()
+   void menu_list_view::post_non_client_destroy()
    {
 
-      ::user::menu_list_window::PostNcDestroy();
+      ::user::menu_list_window::post_non_client_destroy();
 
    }
 

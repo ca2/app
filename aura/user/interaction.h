@@ -1385,7 +1385,7 @@ namespace user
 
       virtual void pre_subclass_window() override;
 
-      virtual void PostNcDestroy() override;
+      virtual void post_non_client_destroy() override;
 
 
       virtual void default_message_handler(::message::message * pmessage) override;

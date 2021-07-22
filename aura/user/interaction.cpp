@@ -1476,7 +1476,7 @@ namespace user
          MESSAGE_LINK(e_message_close, pchannel, this, &interaction::on_message_close);
          MESSAGE_LINK(e_message_size, pchannel, this, &interaction::on_message_size);
          MESSAGE_LINK(e_message_move, pchannel, this, &interaction::on_message_move);
-         MESSAGE_LINK(e_message_nccalcsize, pchannel, this, &interaction::on_message_non_client_calculate_size);
+         MESSAGE_LINK(e_message_non_client_calcsize, pchannel, this, &interaction::on_message_non_client_calculate_size);
          MESSAGE_LINK(e_message_show_window, pchannel, this, &interaction::on_message_show_window);
          MESSAGE_LINK(e_message_display_change, pchannel, this, &interaction::on_message_display_change);
          MESSAGE_LINK(e_message_left_button_down, pchannel, this, &::user::interaction::on_message_left_button_down);
@@ -7120,7 +7120,7 @@ namespace user
    }
 
 
-   void interaction::PostNcDestroy()
+   void interaction::post_non_client_destroy()
    {
 
       {
@@ -7140,6 +7140,10 @@ namespace user
 
       }
 
+      m_bTaskReady = true;
+
+      m_bTaskTerminated = true;
+
       if (::is_set(m_pthreadUserInteraction))
       {
 
@@ -7148,9 +7152,11 @@ namespace user
          if (pthread->m_pimpl == m_pimpl)
          {
 
-            pthread->m_pimpl.release();
+            pthread->set_finish();
 
-            pthread->finish();
+            //pthread->m_pimpl.release();
+
+            //pthread->finish();
 
          }
 
@@ -7172,13 +7178,13 @@ namespace user
       if (strType.contains("main_frame"))
       {
 
-         output_debug_string("main_frame PostNcDestroy");
+         output_debug_string("main_frame post_non_client_destroy");
 
       }
 
       ::channel::on_finish();
 
-      ::user::primitive::PostNcDestroy();
+      ::user::primitive::post_non_client_destroy();
 
       m_pimpl.release();
 

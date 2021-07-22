@@ -422,7 +422,7 @@ namespace draw2d_opengl
       }
       break;
 
-      case e_message_nchittest:
+      case e_message_non_client_hittest:
          return HTCAPTION;   // allows dragging of the window
 
       case e_message_timer:
@@ -472,7 +472,7 @@ namespace draw2d_opengl
 //               TranslateMessage(&msg);
 //               DispatchMessage(&msg);
 //
-//               if (msg.message == e_message_ncdestroy)
+//               if (msg.message == e_message_non_client_destroy)
 //                  break;
 //
 //            }

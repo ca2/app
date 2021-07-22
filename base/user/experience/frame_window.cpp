@@ -1214,7 +1214,7 @@ namespace experience
       MESSAGE_LINK(e_message_non_client_left_button_down,pchannel,this,&frame_window::_001OnNcLButtonDown);
       MESSAGE_LINK(e_message_non_client_left_button_up,pchannel,this,&frame_window::_001OnNcLButtonUp);
       MESSAGE_LINK(e_message_non_client_mouse_move,pchannel,this,&frame_window::_001OnNcMouseMove);
-      MESSAGE_LINK(e_message_nchittest,pchannel,this,&frame_window::_001OnNcHitTest);
+      MESSAGE_LINK(e_message_non_client_hittest,pchannel,this,&frame_window::_001OnNcHitTest);
       MESSAGE_LINK(e_message_activate,pchannel,this,&frame_window::_001OnActivate);
       //MESSAGE_LINK(e_message_command,pchannel,this,&frame_window::_001OnCommand);
 

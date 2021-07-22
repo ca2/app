@@ -3912,12 +3912,16 @@ void simple_frame_window::OnNotifyIconLButtonDown(::u32 uNotifyIcon)
 
    auto estatus = ::experience::frame_window::command_handler(id);
 
-   if(!estatus)
+   if(estatus)
    {
 
       return estatus;
 
    }
+
+   //::message::command command
+
+   //route_command_message()
 
    return estatus;
 

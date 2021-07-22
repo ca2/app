@@ -560,7 +560,7 @@ namespace user
 
                         }
 
-                        auto pmessage = puserinteraction->get_message(msg.m_id, msg.wParam, msg.lParam, msg.pt);
+                        auto pmessage = puserinteraction->get_message(msg.m_id, msg.wParam, msg.lParam);
 
                         if (pmessage)
                         {

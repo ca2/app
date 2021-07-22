@@ -188,10 +188,13 @@ list(APPEND library_source
    platform/hyperlink.cpp
    platform/library.cpp
    platform/library.h
+   platform/log.cpp
+   platform/log.h
    platform/logic.cpp
    platform/lparam.cpp
    platform/math.cpp
    platform/message_box.cpp
+   platform/message.h
    platform/muldiv64.cpp
    platform/nano_timer.cpp
    platform/nano_timer.h
@@ -206,7 +209,7 @@ list(APPEND library_source
    platform/profiler.cpp
    #platform/regex.cpp
    platform/serial.cpp
-   platform/simple_trace.cpp
+   #platform/simple_trace.cpp
    #platform/sprintf.cpp
    platform/static_setup.cpp
    platform/static_setup.h
@@ -854,7 +857,7 @@ list(APPEND library_source
    platform/_impl.h
    platform/_platform.h
    platform/acme_str_pool.h
-   platform/all.h
+   #platform/all.h
    platform/aura_aura.h
    #platform/aura_regex.h
    platform/auto.h
@@ -901,8 +904,8 @@ list(APPEND library_source
    platform/serial.h
    #platform/serial_impl.h
    platform/simple_app.h
-   platform/simple_trace.cpp
-   platform/simple_trace.h
+   platform/simple_log.cpp
+   platform/simple_log.h
    #platform/sprintf.h
    platform/static_start.h
    platform/static_start_internal.h
@@ -1843,7 +1846,7 @@ if (LINUX)
 endif ()
 
 
-add_library(acme SHARED ${library_source} platform/message.h)
+add_library(acme SHARED ${library_source})
 
 
 target_precompile_headers(acme PRIVATE framework.h)

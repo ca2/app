@@ -389,11 +389,11 @@ list(APPEND apex_source
    platform/_.cpp
    platform/_impl.h
    platform/_platform.h
-   platform/_system_id_impl.h
-   platform/_system_object_impl.h
-   platform/_system_smart_pointer_impl.h
-   platform/_system_var_impl.h
-   platform/all.h
+   #platform/_system_id_impl.h
+   #platform/_system_object_impl.h
+   #platform/_system_smart_pointer_impl.h
+   #platform/_system_var_impl.h
+   #platform/all.h
    platform/apex_aura.h
    platform/apex_main_data.cpp
    platform/apex_main_data.h
@@ -429,17 +429,17 @@ list(APPEND apex_source
    platform/context.cpp
    platform/context.h
    platform/context_thread.cpp
-   platform/context_thread.h
+   #platform/context_thread.h
    platform/create.cpp
    platform/create.h
    #platform/debug.cpp
    #platform/debug.h
-   platform/definition.h
+   #platform/definition.h
    platform/display.h
-   platform/error.h
+   #platform/error.h
    platform/history.cpp
    platform/history.h
-   platform/hyperlink.h
+   #platform/hyperlink.h
    platform/interprocess_call.cpp
    platform/interprocess_call.h
    platform/interprocess_communication.cpp
@@ -448,10 +448,10 @@ list(APPEND apex_source
    platform/interprocess_intercommunication.h
    platform/interprocess_task.cpp
    platform/interprocess_task.h
-   platform/keep.h
+   #platform/keep.h
    platform/launcher.cpp
    platform/launcher.h
-   platform/library_object_allocator.h
+   #platform/library_object_allocator.h
    platform/log.cpp
    platform/log.h
    platform/machine_event.cpp
@@ -462,7 +462,7 @@ list(APPEND apex_source
    platform/machine_event_data.h
    platform/message_box.h
    platform/net.cpp
-   platform/net.h
+   #platform/net.h
    platform/node.cpp
    platform/node.h
    platform/os_context.cpp
@@ -479,8 +479,8 @@ list(APPEND apex_source
    platform/shell_launcher.cpp
    platform/shell_launcher.h
    platform/simple_app.h
-   platform/simple_log.cpp
-   platform/simple_log.h
+   #platform/simple_log.cpp
+   #platform/simple_log.h
    platform/static_start.cpp
    platform/static_start.h
    platform/static_start_apex.cpp

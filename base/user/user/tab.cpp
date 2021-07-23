@@ -2487,7 +2487,7 @@ namespace user
 
       __construct_new(get_data()->m_pimagelist);
 
-      get_data()->m_pimagelist->create(16, 16, 0, 0, 0);
+      get_data()->m_pimagelist->create(16, 16, 0, 0, 16);
 
       auto pdraw2d = psystem->draw2d();
 

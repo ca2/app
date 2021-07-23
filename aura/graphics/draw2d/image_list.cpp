@@ -6,7 +6,7 @@ image_list::image_list()
 
    //defer_create_mutex();
    m_iSize = 0;
-   m_iGrow = 1;
+   m_iGrow = 16;
    m_size.cx = 0;
    m_size.cy = 0;
 
@@ -18,7 +18,7 @@ image_list::image_list(const image_list & imagelist)
 
    defer_create_mutex();
    m_iSize = 0;
-   m_iGrow = 1;
+   m_iGrow = imagelist.m_iGrow;
    m_size.cx = 0;
    m_size.cy = 0;
 
@@ -454,13 +454,15 @@ i32 image_list::add_image(::image * pimage, int x, int y, int iItem)
 
    }
 
+//   m_pimage->get_graphics()->set_alpha_mode(::draw2d::e_alpha_mode_set);
+//
+//   auto rectangle = rectangle_f64_dimension(iItem * m_size.cx, 0, m_size.cx, m_size.cy);
+//
+//   m_pimage->get_graphics()->fill_rectangle(rectangle, argb(0, 0, 0, 0));
+
    m_pimage->get_graphics()->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
-   auto rectangle = rectangle_f64_dimension(iItem * m_size.cx, 0, m_size.cx, m_size.cy);
-
-   m_pimage->get_graphics()->fill_rectangle(rectangle, argb(0, 0, 0, 0));
-
-   m_pimage->get_graphics()->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+   auto pdata = pimage->get_data();
 
    m_pimage->get_graphics()->draw(
       ::rectangle_f64(::point_f64(iItem * m_size.cx, 0), m_size), pimage, ::point_f64((double) x, (double) y));

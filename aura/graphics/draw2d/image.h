@@ -17,7 +17,7 @@ public:
 
 
    image();
-   virtual ~image();
+   ~image() override;
 
 
    virtual void defer_update_image();

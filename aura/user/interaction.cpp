@@ -4237,6 +4237,27 @@ namespace user
    }
 
 
+
+   bool interaction::is_branch_current() const
+   {
+
+      if(is_null(m_pthreadUserInteraction))
+      {
+
+         return false;
+
+      }
+
+      auto itaskCurrent = get_current_ithread();
+
+      auto itaskUserInteraction = m_pthreadUserInteraction->m_itask;
+
+      return itaskCurrent == itaskUserInteraction;
+
+
+   }
+
+
    ::user::item* interaction::get_user_item(const ::user::item& item)
    {
 
@@ -11374,8 +11395,9 @@ restart:
 
       }
 
-      if(get_session() != nullptr
-          && m_puserinteractionParent == get_session()->get_user_interaction_host())
+      auto psession = get_session();
+
+      if(::is_set(psession) && m_puserinteractionParent == psession->get_user_interaction_host())
       {
 
          return (::user::interaction *) this;
@@ -16016,12 +16038,12 @@ restart:
 
          iCount++;
 
-         if(iCount > 1)
-         {
-
-            output_debug_string("drawing 2nd, 3rd, nth item");
-
-         }
+//         if(iCount > 1)
+//         {
+//
+//            output_debug_string("drawing 2nd, 3rd, nth item");
+//
+//         }
 
       }
 

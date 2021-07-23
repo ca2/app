@@ -340,11 +340,16 @@ namespace user
 
 
       interaction();
-      virtual ~interaction();
+      ~interaction() override;
 
       void user_interaction_common_construct();
 
       virtual void on_create_user_interaction();
+
+
+      virtual bool is_branch_current() const;
+
+
 
       //class control_descriptor& descriptor();
       //const class control_descriptor& descriptor() const;

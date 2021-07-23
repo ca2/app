@@ -19,11 +19,14 @@ public:
 
 
    handler_manager(const string & strThreadName, bool bSingleThread, int iAliveCount = -1);
-   virtual ~handler_manager();
+   ~handler_manager() override;
 
 
    //virtual ::e_status set_finish_composites(::property_object * pcontextobjectFinish) override;
    virtual ::e_status finish_composites() override;
+
+
+   virtual bool is_branch_current() const;
 
 
    ::e_status handler_sync(const ::routine & routine);

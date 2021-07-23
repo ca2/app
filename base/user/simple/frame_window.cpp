@@ -918,17 +918,24 @@ void simple_frame_window::on_message_create(::message::message * pmessage)
       if (m_bDefaultNotifyIcon)
       {
 
+         auto psystem = m_psystem->m_papexsystem;
+
+         __defer_construct(m_pnotifyicon);
+
+         //m_pnotifyicon->m_puserinteraction = this;
+
          index iNotifyIconItem = 0;
 
-         notify_icon_insert_item(iNotifyIconItem, strAppTitle, "notify_icon_topic");
+         m_pnotifyicon->notify_icon_insert_item(iNotifyIconItem, strAppTitle, "notify_icon_topic");
 
          auto c = papplication->applicationmenu().get_count();
 
          for (auto i = 0; i < c; i++)
          {
+
             auto& item = papplication->applicationmenu()[i];
 
-            notify_icon_insert_item(iNotifyIconItem, item.m_strName, item.m_strId);
+            m_pnotifyicon->notify_icon_insert_item(iNotifyIconItem, item.m_strName, item.m_strId);
 
          }
 
@@ -937,15 +944,15 @@ void simple_frame_window::on_message_create(::message::message * pmessage)
             && m_pframe->get_control_box()->has_button(::experience::e_button_transparent_frame))
          {
 
-            notify_icon_insert_item(iNotifyIconItem, "separator");
+            m_pnotifyicon->notify_icon_insert_item(iNotifyIconItem, "separator");
 
-            notify_icon_insert_item(iNotifyIconItem, _("Transparent Frame"), "transparent_frame");
+            m_pnotifyicon->notify_icon_insert_item(iNotifyIconItem, _("Transparent Frame"), "transparent_frame");
 
          }
 
-         notify_icon_insert_item(iNotifyIconItem, "separator");
+         m_pnotifyicon->notify_icon_insert_item(iNotifyIconItem, "separator");
 
-         notify_icon_insert_item(iNotifyIconItem, _("Exit"), "app_exit");
+         m_pnotifyicon->notify_icon_insert_item(iNotifyIconItem, _("Exit"), "app_exit");
 
          post_message(e_message_update_notify_icon);
 
@@ -2767,12 +2774,12 @@ void simple_frame_window::defer_create_notification_icon()
    windowing()->windowing_branch(__routine([this]
    {
 
-      if (m_pnotifyicon)
-      {
-
-         m_pnotifyicon->destroy_notify_icon();
-
-      }
+//      if (m_pnotifyicon)
+//      {
+//
+//         m_pnotifyicon->destroy_notify_icon();
+//
+//      }
 
       //auto papplication = get_application();
 
@@ -2792,7 +2799,9 @@ void simple_frame_window::defer_create_notification_icon()
 
       }
 
-      __construct(m_pnotifyicon);
+      __defer_construct(m_pnotifyicon);
+
+      //m_pnotifyicon->m_puserinteraction = this;
 
       if (!m_pnotifyicon->create_notify_icon(1, this, m_piconNotify))
       {
@@ -3175,6 +3184,49 @@ void simple_frame_window::_001OnQueryEndSession(::message::message * pmessage)
 
 void simple_frame_window::on_control_event(::user::control_event * pevent)
 {
+
+#ifdef WINDOWS
+
+   if(pevent->m_puserinteraction == m_pnotifyicon)
+   {
+
+      if(pevent->m_eevent == ::user::e_event_context_menu)
+      {
+
+         ::u32 uNotifyIcon = pevent->m_id;
+
+         OnNotifyIconContextMenu(uNotifyIcon);
+
+      }
+      else if(pevent->m_eevent == ::user::e_event_left_button_double_click)
+      {
+
+         ::u32 uNotifyIcon = pevent->m_id;
+
+         OnNotifyIconLButtonDblClk(uNotifyIcon);
+
+      }
+      else if(pevent->m_eevent == ::user::e_event_left_button_down)
+      {
+
+         ::u32 uNotifyIcon = pevent->m_id;
+
+         OnNotifyIconLButtonDown(uNotifyIcon);
+
+      }
+      else if(pevent->m_eevent == ::user::e_event_button_clicked)
+      {
+
+         string strId(pevent->m_id);
+
+         call_area_notification_action(strId);
+
+      }
+
+   }
+
+
+#endif
 
    ::experience::frame_window::on_control_event(pevent);
 
@@ -4135,7 +4187,7 @@ string simple_frame_window::notification_area_get_xml_menu()
 
    pdocument->create_root("menu");
 
-   for (auto & pitem : m_notifyiconitema)
+   for (auto & pitem : m_pnotifyicon->m_notifyiconitema)
    {
 
       if (pitem->m_strId == "separator")

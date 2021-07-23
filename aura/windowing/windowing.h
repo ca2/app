@@ -56,10 +56,13 @@ namespace windowing
 
 
       windowing();
-      virtual ~windowing();
+      ~windowing() override;
 
 
       ::windowing::keyboard * keyboard();
+
+
+      virtual bool is_branch_current() const;
 
 
       inline ::aura::application* get_application() const;

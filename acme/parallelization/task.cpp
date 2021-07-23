@@ -105,6 +105,16 @@ void task::add_child_task(::object* pobjectTask)
 }
 
 
+bool task::is_current_task() const
+{
+
+   auto itaskCurrent = ::get_current_ithread();
+
+   return itaskCurrent == m_itask;
+
+}
+
+
 //::object * task::calc_parent_thread()
 //{
 //
@@ -217,7 +227,7 @@ bool task::kick_thread()
 ::e_status task::main()
 {
 
-   if (m_pmatter != this)
+   if (::is_set(m_pmatter) && m_pmatter != this)
    {
 
       run_posted_routines();

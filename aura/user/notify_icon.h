@@ -14,6 +14,7 @@ namespace user
 #else
       virtual public ::channel
 #endif
+      , virtual public ::user::notify_icon_listener
    {
    public:
 
@@ -26,10 +27,10 @@ namespace user
       };
 
 
-      ::u32                                           m_uiId;
-      bool                                            m_bCreated;
-      string                                          m_strId;
-      __pointer(notify_icon_listener)                 m_plistener;
+      bool                                               m_bCreated;
+      string                                             m_strId;
+      __pointer(::user::interaction)               m_puserinteractionNotify;
+      //__pointer(notify_icon_listener)                 m_plistener;
       __pointer_array(::user::interaction)         m_userinteractionaHidden;
       __pointer(::windowing::icon)                 m_piconCurrent;
 
@@ -44,7 +45,9 @@ namespace user
 
       virtual ::e_status modify_icon(::windowing::icon * picon);
 
-      virtual ::e_status create_notify_icon(::u32 id, notify_icon_listener * plistener, ::windowing::icon * picon);
+      //virtual ::e_status create_notify_icon(::u32 id, notify_icon_listener * plistener, ::windowing::icon * picon);
+
+      virtual ::e_status create_notify_icon(const ::id & id, ::user::interaction * puserinteractionNotify, ::windowing::icon * picon);
 
       ::e_status step() override;
 

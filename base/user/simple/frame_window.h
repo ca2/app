@@ -2,8 +2,7 @@
 
 
 class CLASS_DECL_BASE simple_frame_window :
-   virtual public ::experience::frame_window,
-   virtual public ::user::notify_icon_listener
+   virtual public ::experience::frame_window
 {
 public:
 
@@ -263,13 +262,13 @@ public:
 
    virtual void defer_create_notification_icon();
 
-   virtual void OnNotifyIconContextMenu(::u32 uNotifyIcon) override;
-   virtual void OnNotifyIconLButtonDblClk(::u32 uNotifyIcon) override;
-   virtual void OnNotifyIconLButtonDown(::u32 uNotifyIcon) override;
+   virtual void call_notification_area_action(const char * pszId);
+
+   virtual void OnNotifyIconContextMenu(::u32 uNotifyIcon);
+   virtual void OnNotifyIconLButtonDblClk(::u32 uNotifyIcon);
+   virtual void OnNotifyIconLButtonDown(::u32 uNotifyIcon);
 
    virtual void notification_area_action(const char * pszId);
-
-   virtual void call_notification_area_action(const char * pszId) override;
 
    virtual string notification_area_get_xml_menu();
 

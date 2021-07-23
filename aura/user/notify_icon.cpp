@@ -21,7 +21,7 @@ namespace user
    }
 
 
-   ::e_status notify_icon::create_notify_icon(::u32 uId, notify_icon_listener * plistener, ::windowing::icon * picon)
+   ::e_status notify_icon::create_notify_icon(const ::id & id, ::user::interaction * pinteractionNotify, ::windowing::icon * picon)
    {
       
       __throw(error_interface_only);
@@ -77,7 +77,8 @@ namespace user
    int notify_icon::_get_notification_area_action_count()
    {
 
-      return m_plistener->_get_notification_area_action_count();
+      //return m_plistener->_get_notification_area_action_count();
+      return m_notifyiconitema.get_count();
 
    }
 
@@ -85,7 +86,8 @@ namespace user
    const char * notify_icon::_get_notification_area_action_name(int iIndex)
    {
 
-      return m_plistener->_get_notification_area_action_name(iIndex);
+      //return m_plistener->_get_notification_area_action_name(iIndex);
+      return m_notifyiconitema[iIndex]->m_strName;
 
    }
 
@@ -93,7 +95,8 @@ namespace user
    const char * notify_icon::_get_notification_area_action_id(int iIndex)
    {
 
-      return m_plistener->_get_notification_area_action_id(iIndex);
+      //return m_plistener->_get_notification_area_action_id(iIndex);
+      return m_notifyiconitema[iIndex]->m_strId;
 
    }
 
@@ -101,7 +104,8 @@ namespace user
    const char * notify_icon::_get_notification_area_action_label(int iIndex)
    {
 
-      return m_plistener->_get_notification_area_action_label(iIndex);
+      //return m_plistener->_get_notification_area_action_label(iIndex);
+      return m_notifyiconitema[iIndex]->m_strLabel;
 
    }
 
@@ -109,7 +113,8 @@ namespace user
    const char * notify_icon::_get_notification_area_action_accelerator(int iIndex)
    {
 
-      return m_plistener->_get_notification_area_action_accelerator(iIndex);
+      //return m_plistener->_get_notification_area_action_accelerator(iIndex);
+      return m_notifyiconitema[iIndex]->m_strAccelerator;
 
    }
 
@@ -117,7 +122,8 @@ namespace user
    const char * notify_icon::_get_notification_area_action_description(int iIndex)
    {
 
-      return m_plistener->_get_notification_area_action_description(iIndex);
+      //return m_plistener->_get_notification_area_action_description(iIndex);
+      return m_notifyiconitema[iIndex]->m_strDescription;
 
    }
 
@@ -139,7 +145,9 @@ namespace user
    void notify_icon::route_command_message(::message::command* pcommand)
    {
 
-      ::channel::route_command_message(pcommand);
+      //::channel::route_command_message(pcommand);
+
+      m_puserinteractionNotify->route_command_message(pcommand);
 
    }
 

@@ -2905,6 +2905,42 @@ inline ::e_status object::__compose_new(__composite(TYPE)& p)
 
 
 template < typename TYPE >
+inline ::e_status object::__defer_construct(__pointer(TYPE)& p)
+{
+
+   ::e_status estatus = ::success_none;
+
+   if(::is_null(p))
+   {
+
+      estatus = __construct(p);
+
+   }
+
+   return estatus;
+
+}
+
+
+template < typename TYPE >
+inline ::e_status object::__defer_construct_new(__pointer(TYPE)& p)
+{
+
+   ::e_status estatus = ::success_none;
+
+   if(::is_null(p))
+   {
+
+      estatus = __construct_new(p);
+
+   }
+
+   return estatus;
+
+}
+
+
+template < typename TYPE >
 inline ::e_status object::__construct(__pointer(TYPE)& p)
 {
 
@@ -4128,6 +4164,13 @@ auto material_object::__sync_status_payload(const ::duration & duration, BRANCHI
 template < typename BRANCHING_OBJECT, typename BRANCHING_METHOD >
 ::e_status material_object::__sync_routine(const ::duration & duration, BRANCHING_OBJECT pbranching, BRANCHING_METHOD branching_method, ::routine routine)
 {
+
+   if(pbranching->is_branch_current())
+   {
+
+      return routine();
+
+   }
 
    auto psignalization = __new(::promise::signalization);
 

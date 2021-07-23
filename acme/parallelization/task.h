@@ -58,7 +58,7 @@ public:
    
    void add_child_task(::object* pobjectTask) override;
 
-
+   virtual bool is_current_task() const;
    //virtual object * calc_parent_thread();
 
    virtual bool task_set_name(const char* pszName);

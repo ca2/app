@@ -290,16 +290,22 @@ public:
    inline __transport(TYPE) __create_new();
 
 
-
-
    template < typename BASE_TYPE >
-   inline ::e_status __construct(__pointer(BASE_TYPE)& pusermessage);
-
-   template < typename BASE_TYPE >
-   inline ::e_status __id_construct(__pointer(BASE_TYPE)& pusermessage, const ::id& id);
+   inline ::e_status __defer_construct(__pointer(BASE_TYPE)& ptype);
 
    template < typename TYPE >
-   inline ::e_status __construct_new(__pointer(TYPE)& pusermessage);
+   inline ::e_status __defer_construct_new(__pointer(TYPE)& ptype);
+
+
+
+   template < typename BASE_TYPE >
+   inline ::e_status __construct(__pointer(BASE_TYPE)& ptype);
+
+   template < typename BASE_TYPE >
+   inline ::e_status __id_construct(__pointer(BASE_TYPE)& ptype, const ::id& id);
+
+   template < typename TYPE >
+   inline ::e_status __construct_new(__pointer(TYPE)& ptype);
 
    //template < typename BASE_TYPE >
    //inline ::e_status __release(__composite(BASE_TYPE) & pcomposite OBJ_REF_DBG_COMMA_PARAMS);
@@ -826,25 +832,25 @@ public:
    // for composition (ownership)
 
    template < typename BASE_TYPE >
-   inline ::e_status __compose(__composite(BASE_TYPE)& pusermessage);
+   inline ::e_status __compose(__composite(BASE_TYPE)& ptype);
 
    template < typename BASE_TYPE, typename SOURCE >
-   inline ::e_status __compose(__composite(BASE_TYPE)& pusermessage, const SOURCE* psource OBJ_REF_DBG_COMMA_PARAMS);
+   inline ::e_status __compose(__composite(BASE_TYPE)& ptype, const SOURCE* psource OBJ_REF_DBG_COMMA_PARAMS);
 
    template < typename BASE_TYPE, typename SOURCE >
-   inline ::e_status __compose(__composite(BASE_TYPE)& pusermessage, const __pointer(SOURCE)& psource OBJ_REF_DBG_COMMA_PARAMS);
+   inline ::e_status __compose(__composite(BASE_TYPE)& ptype, const __pointer(SOURCE)& psource OBJ_REF_DBG_COMMA_PARAMS);
 
    template < typename BASE_TYPE >
-   inline ::e_status __id_compose(__composite(BASE_TYPE)& pusermessage, const ::id& id);
+   inline ::e_status __id_compose(__composite(BASE_TYPE)& ptype, const ::id& id);
 
    template < typename BASE_TYPE >
-   inline ::e_status __raw_compose(__composite(BASE_TYPE)& pusermessage);
+   inline ::e_status __raw_compose(__composite(BASE_TYPE)& ptype);
 
    template < typename BASE_TYPE, typename SOURCE >
-   inline ::e_status __raw_compose(__composite(BASE_TYPE)& pusermessage, const SOURCE* psource);
+   inline ::e_status __raw_compose(__composite(BASE_TYPE)& ptype, const SOURCE* psource);
 
    template < typename BASE_TYPE, typename SOURCE >
-   inline ::e_status __raw_compose(__composite(BASE_TYPE)& pusermessage, const __pointer(SOURCE)& psource);
+   inline ::e_status __raw_compose(__composite(BASE_TYPE)& ptype, const __pointer(SOURCE)& psource);
 
    template < typename TYPE >
    inline ::e_status __raw_compose_new(__composite(TYPE)& ptype);
@@ -856,10 +862,10 @@ public:
 
 
    template < typename BASE_TYPE >
-   inline ::e_status __defer_compose(__composite(BASE_TYPE)& pusermessage) { return !pusermessage ? __compose(pusermessage) : ::e_status(::success); }
+   inline ::e_status __defer_compose(__composite(BASE_TYPE)& ptype) { return !ptype ? __compose(ptype) : ::e_status(::success); }
 
    template < typename BASE_TYPE >
-   inline ::e_status __defer_id_compose(__composite(BASE_TYPE)& pusermessage, const ::id& id) { return !pusermessage ? __id_compose(pusermessage) : ::e_status(::success); }
+   inline ::e_status __defer_id_compose(__composite(BASE_TYPE)& ptype, const ::id& id) { return !ptype ? __id_compose(ptype) : ::e_status(::success); }
 
    template < typename TYPE >
    inline ::e_status __defer_raw_compose_new(__composite(TYPE)& ptype) { return !ptype ? __raw_compose_new(ptype) : ::e_status(::success); }
@@ -870,13 +876,13 @@ public:
 
 
    //template < typename BASE_TYPE >
-   //inline ::e_status __construct(__pointer(BASE_TYPE)& pusermessage);
+   //inline ::e_status __construct(__pointer(BASE_TYPE)& ptype);
 
    //template < typename BASE_TYPE >
-   //inline ::e_status __id_construct(__pointer(BASE_TYPE)& pusermessage, const ::id& id);
+   //inline ::e_status __id_construct(__pointer(BASE_TYPE)& ptype, const ::id& id);
 
    //template < typename TYPE >
-   //inline ::e_status __construct_new(__pointer(TYPE)& pusermessage);
+   //inline ::e_status __construct_new(__pointer(TYPE)& ptype);
 
    template < typename BASE_TYPE >
    inline ::e_status __release(__composite(BASE_TYPE)& pcomposite OBJ_REF_DBG_COMMA_PARAMS);

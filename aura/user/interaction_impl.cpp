@@ -4097,7 +4097,7 @@ namespace user
       if (m_pgraphics.is_set() && m_puserinteraction->layout().is_this_screen_visible())
       {
 
-         CINFO(prodevian)("going to update_window (1)");
+         //CINFO(prodevian)("going to update_window (1)");
 
          m_pgraphics->update_window();
 

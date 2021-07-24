@@ -31,7 +31,16 @@ namespace datetime
       ::e_status calendar::initialize(::object * pobject)
       {
 
-         return ::success;
+         auto estatus = ::object::initialize(pobject);
+
+         if (!estatus)
+         {
+
+            return estatus;
+
+         }
+
+         return estatus;
 
       }
 

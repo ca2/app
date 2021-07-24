@@ -53,7 +53,7 @@ namespace dynamic_source
          if (!m_pmain)
          {
 
-            __note_assign(m_pmain, pinterface->m_pmain.get(), OBJECT_REF_DEBUG_COMMA_THIS_NOTE("scptiface:init:referer://"+ m_strNote));
+            __note_assign(m_pmain, pinterface->m_pmain.get(), OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS_NOTE("scptiface:init:referer://"+ m_strNote));
 
          }
 
@@ -79,9 +79,9 @@ namespace dynamic_source
 
       auto estatus = ::html::file::finalize();
 
-      m_pmain.release(OBJECT_REF_DEBUG_THIS);
-      m_pinstanceParent2.release(OBJECT_REF_DEBUG_THIS);
-      m_pscript2.release(OBJECT_REF_DEBUG_THIS);
+      m_pmain.release(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
+      m_pinstanceParent2.release(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
+      m_pscript2.release(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
 
       return estatus;
 

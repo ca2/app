@@ -24,9 +24,9 @@ namespace dynamic_source
 
 #ifdef DEBUG
 
-      virtual ::i64 add_ref(OBJECT_REF_DEBUG_PARAMS) override;
+      virtual ::i64 increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override;
 
-      virtual ::i64 dec_ref(OBJECT_REF_DEBUG_PARAMS) override;
+      virtual ::i64 decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override;
 
 #endif
 

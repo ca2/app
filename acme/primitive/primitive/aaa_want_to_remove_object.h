@@ -266,7 +266,7 @@ public:
 
 
 template < class c_derived >
-inline i64 add_ref(c_derived * pca)
+inline i64 increment_reference_count(c_derived * pca)
 {
 
    if (::is_null(pca))
@@ -276,7 +276,7 @@ inline i64 add_ref(c_derived * pca)
 
    }
 
-   return pca->add_ref(OBJECT_REF_DEBUG_ARGS);
+   return pca->increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
 
 }
 

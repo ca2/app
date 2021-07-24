@@ -40,13 +40,13 @@ namespace turboc
 
    }
 
-   i64 lite_view::add_ref()
+   i64 lite_view::increment_reference_count()
    {
-      return ::root::add_ref(OBJECT_REF_DEBUG_ARGS);
+      return ::root::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
    }
-   i64 lite_view::dec_ref()
+   i64 lite_view::decrement_reference_count()
    {
-      return ::root::dec_ref(OBJECT_REF_DEBUG_ARGS);
+      return ::root::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
    }
 
    void lite_view::on_message_create(signal_details * pmessage)

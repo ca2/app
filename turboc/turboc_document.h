@@ -21,9 +21,9 @@ namespace turboc
       virtual bool on_new_document();
       virtual bool on_open_document(const ::payload & varFile) override;
 
-      virtual i64 add_ref(OBJECT_REF_DEBUG_PARAMS);
+      virtual i64 increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS);
 
-      virtual i64 dec_ref(OBJECT_REF_DEBUG_PARAMS);
+      virtual i64 decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS);
 
 
    };

@@ -97,7 +97,7 @@ bool simple_printer_list_view::on_click(const ::user::item & itemClick)
    m_psimplemeshdata->_001GetItemText(&item);
    __pointer(::user::print_task) pprinttask;
    pprinttask.create(this);
-   pprinttask->add_ref(OBJECT_REF_DEBUG_THIS);
+   pprinttask->increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
 
    auto papplication = get_application();
 

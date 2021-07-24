@@ -222,7 +222,7 @@ namespace uwp
 
       m_puserinteraction->place(m_rectangle);
 
-      m_puserinteraction->add_ref(OBJECT_REF_DEBUG_THIS_FUNCTION_LINE);
+      m_puserinteraction->increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_THIS_FUNCTION_LINE);
 
       m_puserinteraction->m_ewindowflag |= ::e_window_flag_is_window;
 

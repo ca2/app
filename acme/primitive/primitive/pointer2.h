@@ -81,7 +81,7 @@ inline ___pointer < T > ::___pointer(const T * p) :
    m_p((T *) p)
 {
 
-   ::add_ref(m_p);
+   ::increment_reference_count(m_p);
 
 }
 
@@ -97,7 +97,7 @@ inline ___pointer < T > ::___pointer(const lparam& lparam)
    if (::is_null(m_p))
    {
 
-      ::release(p OBJECT_REF_DEBUG_COMMA_P_NOTE(nullptr, "pointer::pointer(LPARAM)"));
+      ::release(p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_P_NOTE(nullptr, "pointer::pointer(LPARAM)"));
 
    }
 
@@ -204,7 +204,7 @@ inline bool ___pointer < T > ::is_set() const
 
 
 template < class T >
-inline ___pointer < T > & ___pointer < T > ::reset (T * pNew OBJECT_REF_DEBUG_COMMA_PARAMS_DEF)
+inline ___pointer < T > & ___pointer < T > ::reset (T * pNew OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
 {
 
    if(m_p != pNew)
@@ -215,7 +215,7 @@ inline ___pointer < T > & ___pointer < T > ::reset (T * pNew OBJECT_REF_DEBUG_CO
       if(::is_set(pNew))
       {
 
-         pNew->add_ref(OBJECT_REF_DEBUG_ARGS);
+         pNew->increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
 
          m_p = pNew;
 
@@ -230,7 +230,7 @@ inline ___pointer < T > & ___pointer < T > ::reset (T * pNew OBJECT_REF_DEBUG_CO
       if(::is_set(pOld))
       {
 
-         ::release(pOld OBJECT_REF_DEBUG_COMMA_ARGS);
+         ::release(pOld OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
 
       }
 
@@ -288,10 +288,10 @@ inline T * ___pointer < T > ::detach()
 // cut and paste with very good capabilities of RealVNC for MacOS in OVH.fr/eu/pt cloud from Windows client.
 // slashes with ABNT 2 keyboard and even c cedilha working with RealVNC
 template < class T >
-inline i64 ___pointer <T>::release(OBJECT_REF_DEBUG_PARAMS_DEF)
+inline i64 ___pointer <T>::release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
 {
 
-   return ::release(m_p OBJECT_REF_DEBUG_COMMA_ARGS);
+   return ::release(m_p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
 
 }
 

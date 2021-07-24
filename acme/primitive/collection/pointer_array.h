@@ -152,14 +152,14 @@ public:
    }
 
 
-   inline ::index add_item(T * p OBJECT_REF_DEBUG_COMMA_PARAMS)
+   inline ::index add_item(T * p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS)
    {
 
       ::index nIndex = this->m_nSize;
 
       this->allocate(nIndex + 1);
 
-      this->last().reset(p OBJECT_REF_DEBUG_COMMA_ARGS);
+      this->last().reset(p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
 
       return nIndex;
 
@@ -196,7 +196,7 @@ public:
    }
 
 
-   bool add_unique(T * p OBJECT_REF_DEBUG_COMMA_PARAMS)
+   bool add_unique(T * p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS)
    {
 
       if (contains(p))
@@ -206,7 +206,7 @@ public:
 
       }
 
-      this->add_item(p OBJECT_REF_DEBUG_COMMA_ARGS);
+      this->add_item(p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
 
       return true;
 
@@ -379,15 +379,15 @@ public:
    }
 
    
-   ::count erase(T* p OBJECT_REF_DEBUG_COMMA_PARAMS)
+   ::count erase(T* p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS)
    {
 
-      return this->erase_item(p OBJECT_REF_DEBUG_COMMA_ARGS);
+      return this->erase_item(p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
 
    }
 
 
-   ::count erase_item(T * p OBJECT_REF_DEBUG_COMMA_PARAMS)
+   ::count erase_item(T * p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS)
    {
 
       ::count ca = 0;
@@ -774,7 +774,7 @@ public:
    }
 
 
-   ::count erase_all(OBJECT_REF_DEBUG_PARAMS)
+   ::count erase_all(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS)
    {
 
       for (::index i = 0; i < this->get_size(); i++)
@@ -794,7 +794,7 @@ public:
 
 #endif
 
-               p.release(OBJECT_REF_DEBUG_ARGS);
+               p.release(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
 
             }
 

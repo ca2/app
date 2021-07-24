@@ -367,7 +367,7 @@ namespace desktop_environment_xfce
 #define new ACME_NEW
 
 
-#include "acme/platform/obj_ref_debug.h"
+#include "acme/platform/object_reference_count_debug.h"
 
 
 namespace opengl
@@ -832,6 +832,7 @@ namespace dynamic_source
 
 // C-includes
 #include "acme/_c.h"
+#include "acme/memory/memory_allocate.h"
 #include "acme/memory/heap_c.h"
 
 

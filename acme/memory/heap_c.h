@@ -4,14 +4,10 @@
 #define ZEROED_ALLOC 1
 
 
-CLASS_DECL_ACME void *     unaligned_memory_alloc(memsize size);
-CLASS_DECL_ACME void *     unaligned_memory_allocate_debug(memsize nSize, i32 nBlockUse, const char * szFileName, i32 nLine);
 
 
-CLASS_DECL_ACME void *     aligned_memory_alloc(memsize size, memsize align = 0);
-CLASS_DECL_ACME void *     aligned_memory_allocate_debug(memsize nSize, i32 nBlockUse, const char * szFileName, i32 nLine, memsize align = 0);
 CLASS_DECL_ACME void *     memory_allocate_no_track(memsize size);
-CLASS_DECL_ACME void *     memory_calloc(memsize size, memsize bytes);
+
 
 
 CLASS_DECL_ACME void *     memory_allocate_debug(memsize nSize, i32 nBlockUse, const char * szFileName, i32 nLine);
@@ -20,23 +16,8 @@ CLASS_DECL_ACME void       memory_free_debug(void * p, i32 iBlockType);
 CLASS_DECL_ACME memsize    memory_size_debug(void* p, i32 iBlockType);
 
 
-CLASS_DECL_ACME void *     _memory_allocate_debug(memsize nSize, i32 nBlockUse, const char* szFileName, i32 nLine);
-CLASS_DECL_ACME void *     _memory_reallocate_debug(void* p, memsize nSize, i32 nBlockUse, const char* szFileName, i32 nLine);
-CLASS_DECL_ACME void       _memory_free_debug(void* p, i32 iBlockType);
-CLASS_DECL_ACME memsize    _memory_size_debug(void* p, i32 iBlockType);
 
 
-#if !defined(MCHECK) && !defined(__VLD) && !defined(__MCRTDBG)
-
-
-
-CLASS_DECL_ACME void *     _memory_alloc(memsize size);
-CLASS_DECL_ACME void *     _memory_realloc(void* p, memsize nSize);
-CLASS_DECL_ACME void       _memory_free(void* p);
-CLASS_DECL_ACME memsize    _memory_size(void* p);
-
-
-#endif
 
 
 #if MEMDLEAK

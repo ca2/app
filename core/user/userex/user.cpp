@@ -152,7 +152,7 @@ namespace core
 
       //}
 
-      //m_phtml->add_ref(OBJECT_REF_DEBUG_ARGS);
+      //m_phtml->increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
 
       //if(m_phtml == nullptr)
       //   return false;

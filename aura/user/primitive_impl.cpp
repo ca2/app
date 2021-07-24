@@ -1544,7 +1544,7 @@ namespace user
 
       //      m_ptimerarray->finalize();
 
-      //      m_ptimerarray.release(OBJECT_REF_DEBUG_THIS_NOTE(""));
+      //      m_ptimerarray.release(OBJECT_REFERENCE_COUNT_DEBUG_THIS_NOTE(""));
 
       //   }
 

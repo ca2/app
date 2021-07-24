@@ -57,18 +57,18 @@ namespace acme
 #ifdef DEBUG
 
 
-   i64 node::add_ref(OBJ_REF_DBG_PARAMS)
+   i64 node::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS)
    {
 
-      return ::object::add_ref(OBJ_REF_DBG_ARGS);
+      return ::object::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
 
    }
 
 
-   i64 node::dec_ref(OBJ_REF_DBG_PARAMS)
+   i64 node::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS)
    {
 
-      return ::object::dec_ref(OBJ_REF_DBG_ARGS);
+      return ::object::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
 
    }
 

@@ -1,15 +1,15 @@
 #pragma once
 
 
-#if OBJ_TYP_CTR
+#if OBJECT_TYPE_COUNTER
 
 class matter;
 
-void obj_type_ctr_inc(::matter* pobject);
-void obj_type_ctr_dec(::matter* pobject);
+void object_type_counter_increment(::matter* pobject);
+void object_type_counter_decrement(::matter* pobject);
 
-#define OBJ_TYP_CTR_INC obj_type_ctr_inc(this)
-#define OBJ_TYP_CTR_DEC obj_type_ctr_dec(this)
+#define OBJECT_TYPE_COUNTER_INCREMENT object_type_counter_increment(this)
+#define OBJECT_TYPE_COUNTER_DECREMENT object_type_counter_decrement(this)
 
 #else
 

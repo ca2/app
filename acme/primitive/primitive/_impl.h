@@ -1369,7 +1369,7 @@ inline __pointer(T) & ___pointer < T >::create(OBJECT * pobject, bool bCreate)
 //         if (m_pcompositea->erase(pcomposite) >= 0)
 //         {
 //
-//            pcomposite->release(OBJECT_REF_DEBUG_THIS);
+//            pcomposite->release(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
 //
 //            pcomposite.clear_member();
 //
@@ -1399,7 +1399,7 @@ inline __pointer(T) & ___pointer < T >::create(OBJECT * pobject, bool bCreate)
 //         if (m_preferencea->erase(preference.get()) >= 0)
 //         {
 //
-//            preference->release(OBJECT_REF_DEBUG_THIS);
+//            preference->release(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
 //
 //            preference.clear_member();
 //
@@ -1683,7 +1683,7 @@ inline stream & operator >> (stream & is, ___pointer < T > & sp)
 #ifndef DEBUG
 
 
-inline i64 matter::add_ref(OBJECT_REF_DEBUG_PARAMS_DEF)
+inline i64 matter::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
 {
 
    return m_countReference++;
@@ -1691,7 +1691,7 @@ inline i64 matter::add_ref(OBJECT_REF_DEBUG_PARAMS_DEF)
 }
 
 
-inline i64 matter::dec_ref(OBJECT_REF_DEBUG_PARAMS_DEF)
+inline i64 matter::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
 {
 
    return m_countReference--;
@@ -1699,10 +1699,10 @@ inline i64 matter::dec_ref(OBJECT_REF_DEBUG_PARAMS_DEF)
 }
 
 
-inline i64 matter::release(OBJECT_REF_DEBUG_PARAMS_DEF)
+inline i64 matter::release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
 {
 
-   i64 i = dec_ref(OBJECT_REF_DEBUG_ARGS);
+   i64 i = decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
 
    if (i == 0)
    {
@@ -2390,38 +2390,38 @@ inline ::payload operator + (::payload payload, const ::routine & routine)
 
 
 
-#if OBJECT_REF_DEBUG
+#if OBJECT_REFERENCE_COUNT_DEBUG
 
 
 template < typename TYPE, typename T >
-void ___assign(__pointer(TYPE) & ptr, T * p OBJECT_REF_DEBUG_COMMA_PARAMS_DEF)
+void ___assign(__pointer(TYPE) & ptr, T * p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
 {
    
    auto pold = ptr.m_p;
 
    ptr.m_p = p;
 
-   p->add_ref(OBJECT_REF_DEBUG_ARGS);
+   p->increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
 
-   ___release(pold OBJECT_REF_DEBUG_COMMA_ARGS);
+   ___release(pold OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
 
 }
 
 
 template < typename TYPE >
-void ___release(__pointer(TYPE) & ptr OBJECT_REF_DEBUG_COMMA_PARAMS_DEF)
+void ___release(__pointer(TYPE) & ptr OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
 {
    
-   ___release(ptr.m_p OBJECT_REF_DEBUG_COMMA_ARGS);
+   ___release(ptr.m_p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
 
 }
 
 
 template < typename TYPE >
-void ___release(TYPE * & p OBJECT_REF_DEBUG_COMMA_PARAMS_DEF)
+void ___release(TYPE * & p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
 {
 
-   release(p OBJECT_REF_DEBUG_COMMA_ARGS);
+   release(p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
 
 }
 
@@ -2714,7 +2714,7 @@ inline ::e_status object::__raw_compose(__composite(BASE_TYPE)& pusermessage)
 
 
 template < typename BASE_TYPE, typename SOURCE >
-inline ::e_status object::__compose(__composite(BASE_TYPE)& pcomposite, const SOURCE* psource OBJECT_REF_DEBUG_COMMA_PARAMS_DEF)
+inline ::e_status object::__compose(__composite(BASE_TYPE)& pcomposite, const SOURCE* psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
 {
 
    pcomposite = psource;
@@ -2735,7 +2735,7 @@ inline ::e_status object::__compose(__composite(BASE_TYPE)& pcomposite, const SO
 
    }
 
-   m_estatus = add_composite(pcomposite OBJECT_REF_DEBUG_COMMA_ARGS);
+   m_estatus = add_composite(pcomposite OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
 
    return m_estatus;
 
@@ -2762,10 +2762,10 @@ inline ::e_status object::__raw_compose(__composite(BASE_TYPE)& pusermessage, co
 
 
 template < typename BASE_TYPE, typename SOURCE >
-inline ::e_status object::__compose(__composite(BASE_TYPE)& pusermessage, const __pointer(SOURCE)& psource OBJECT_REF_DEBUG_COMMA_PARAMS_DEF)
+inline ::e_status object::__compose(__composite(BASE_TYPE)& pusermessage, const __pointer(SOURCE)& psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
 {
 
-   return __compose(pusermessage, psource.get() OBJECT_REF_DEBUG_COMMA_ARGS);
+   return __compose(pusermessage, psource.get() OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
 
 }
 
@@ -2888,7 +2888,7 @@ inline ::e_status object::__compose_new(__composite(TYPE)& p)
 
    p = ptypeNew;
 
-   estatus = add_composite(p OBJECT_REF_DEBUG_COMMA_P_FUNCTION_LINE(this));
+   estatus = add_composite(p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_P_FUNCTION_LINE(this));
 
    if (!estatus)
    {
@@ -2995,7 +2995,7 @@ inline ::e_status object::__construct_new(__pointer(TYPE)& p)
 
 
 template < typename BASE_TYPE >
-inline ::e_status object::__release(__composite(BASE_TYPE)& pcomposite OBJECT_REF_DEBUG_COMMA_PARAMS_DEF)
+inline ::e_status object::__release(__composite(BASE_TYPE)& pcomposite OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
 {
 
    if (pcomposite)
@@ -3023,7 +3023,7 @@ inline ::e_status object::__release(__composite(BASE_TYPE)& pcomposite OBJECT_RE
 
 
 template < typename BASE_TYPE >
-inline ::e_status object::__release(__reference(BASE_TYPE)& preference OBJECT_REF_DEBUG_COMMA_PARAMS_DEF)
+inline ::e_status object::__release(__reference(BASE_TYPE)& preference OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
 {
 
    if (preference)
@@ -3037,7 +3037,7 @@ inline ::e_status object::__release(__reference(BASE_TYPE)& preference OBJECT_RE
       //   if (m_preferencea->erase(preference.get()) >= 0)
       //   {
 
-            //preference->release(OBJECT_REF_DEBUG_ARGS);
+            //preference->release(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
 
             preference.clear_member();
 
@@ -3059,7 +3059,7 @@ inline ::e_status object::__release(__reference(BASE_TYPE)& preference OBJECT_RE
 
 
 template < typename SOURCE >
-inline ::e_status object::__release(__pointer(SOURCE)& psource OBJECT_REF_DEBUG_COMMA_PARAMS_DEF)
+inline ::e_status object::__release(__pointer(SOURCE)& psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
 {
 
    return release_reference(psource.m_p);
@@ -3071,34 +3071,34 @@ CLASS_DECL_ACME void object_on_add_composite(const matter* pusermessage);
 
 
 //template < typename BASE_TYPE >
-//inline ::e_status object::add_composite(__composite(BASE_TYPE)& pcomposite OBJECT_REF_DEBUG_COMMA_PARAMS_DEF)
+//inline ::e_status object::add_composite(__composite(BASE_TYPE)& pcomposite OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
 //{
 //
-//   return add_composite(pcomposite OBJECT_REF_DEBUG_COMMA_ARGS);
+//   return add_composite(pcomposite OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
 //
 //}
 
 
 template < typename BASE_TYPE, typename SOURCE >
-inline ::e_status object::__refer(__reference(BASE_TYPE)& preference, const __pointer(SOURCE)& psource  OBJECT_REF_DEBUG_COMMA_PARAMS_DEF)
+inline ::e_status object::__refer(__reference(BASE_TYPE)& preference, const __pointer(SOURCE)& psource  OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
 {
 
-   return __refer(preference, psource.get()  OBJECT_REF_DEBUG_COMMA_ARGS);
+   return __refer(preference, psource.get()  OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
 
 }
 
 
 template < typename BASE_TYPE, typename SOURCE >
-inline ::e_status object::__refer(__reference(BASE_TYPE)& preference, const ::primitive::member < SOURCE >& pmember OBJECT_REF_DEBUG_COMMA_PARAMS_DEF)
+inline ::e_status object::__refer(__reference(BASE_TYPE)& preference, const ::primitive::member < SOURCE >& pmember OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
 {
 
-   return __refer(preference, pmember.get()  OBJECT_REF_DEBUG_COMMA_ARGS);
+   return __refer(preference, pmember.get()  OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
 
 }
 
 
 template < typename BASE_TYPE, typename SOURCE >
-inline ::e_status object::__refer(__reference(BASE_TYPE)& preference, const SOURCE* psource OBJECT_REF_DEBUG_COMMA_PARAMS_DEF)
+inline ::e_status object::__refer(__reference(BASE_TYPE)& preference, const SOURCE* psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
 {
 
    preference = psource;
@@ -3110,31 +3110,31 @@ inline ::e_status object::__refer(__reference(BASE_TYPE)& preference, const SOUR
 
    }
 
-   return add_reference(preference OBJECT_REF_DEBUG_COMMA_ARGS);
+   return add_reference(preference OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
 
 }
 
 
 template < typename SOURCE >
-inline ::e_status object::add_reference(__pointer(SOURCE)& psource  OBJECT_REF_DEBUG_COMMA_PARAMS_DEF)
+inline ::e_status object::add_reference(__pointer(SOURCE)& psource  OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
 {
 
-   return add_reference(psource.get() OBJECT_REF_DEBUG_COMMA_ARGS);
+   return add_reference(psource.get() OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
 
 }
 
 
 template < typename SOURCE >
-inline ::e_status object::add_reference(__reference(SOURCE)& preference OBJECT_REF_DEBUG_COMMA_PARAMS_DEF)
+inline ::e_status object::add_reference(__reference(SOURCE)& preference OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
 {
 
-   return add_reference(preference.get() OBJECT_REF_DEBUG_COMMA_ARGS);
+   return add_reference(preference.get() OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
 
 }
 
 
 template < typename SOURCE >
-inline ::e_status object::add_reference(SOURCE* psource OBJECT_REF_DEBUG_COMMA_PARAMS_DEF)
+inline ::e_status object::add_reference(SOURCE* psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
 {
 
    ::matter* pmatter = psource;
@@ -3146,7 +3146,7 @@ inline ::e_status object::add_reference(SOURCE* psource OBJECT_REF_DEBUG_COMMA_P
 
    }
 
-   //return add_reference(pmatter OBJECT_REF_DEBUG_COMMA_ARGS);
+   //return add_reference(pmatter OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
 
    return ::success;
 

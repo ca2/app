@@ -1274,10 +1274,10 @@
     <ClInclude Include="platform\_generic_object_constructor_impl.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="platform\obj_ref_dbg.h">
+    <ClInclude Include="platform\object_reference_count_debug.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
-    <ClInclude Include="platform\obj_typ_ctr.h">
+    <ClInclude Include="platform\object_type_counter.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
     <ClInclude Include="primitive\primitive\var.h">
@@ -1484,7 +1484,7 @@
     <ClInclude Include="primitive\primitive\action.h">
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
-    <ClInclude Include="platform\obj_ref_dbg_impl.h">
+    <ClInclude Include="platform\object_reference_count_debug_impl.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
     <ClInclude Include="primitive\primitive\work.h">
@@ -2747,6 +2747,15 @@
     <ClInclude Include="memory\memory_allocate.h">
       <Filter>Header Files\memory</Filter>
     </ClInclude>
+    <ClInclude Include="memory\_memory_allocate.h">
+      <Filter>Header Files\memory</Filter>
+    </ClInclude>
+    <ClInclude Include="memory\unaligned_memory_allocate.h">
+      <Filter>Header Files\memory</Filter>
+    </ClInclude>
+    <ClInclude Include="memory\aligned_memory_allocate.h">
+      <Filter>Header Files\memory</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="primitive\primitive\application_bias.cpp">
@@ -3391,7 +3400,7 @@
     <ClCompile Include="filesystem\filesystem\path.cpp">
       <Filter>Source Files\filesystem\filesystem</Filter>
     </ClCompile>
-    <ClCompile Include="platform\obj_typ_ctr.cpp">
+    <ClCompile Include="platform\object_type_counter.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
     <ClCompile Include="platform\factory.cpp">
@@ -3460,7 +3469,7 @@
     <ClCompile Include="primitive\primitive\element_array.cpp">
       <Filter>Source Files\primitive\primitive</Filter>
     </ClCompile>
-    <ClCompile Include="platform\object_ref_debug.cpp">
+    <ClCompile Include="platform\object_reference_count_debug.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
     <ClCompile Include="platform\timer.cpp">
@@ -3927,7 +3936,7 @@
     </ClCompile>
     <ClCompile Include="platform\simple_log.cpp">
       <Filter>Source Files\platform</Filter>
-    </ClCompile>    
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="primitive\string\aaa_want_to_remove_str.inl">

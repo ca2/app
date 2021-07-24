@@ -42,9 +42,9 @@ namespace calculator
 
       bool keyboard_focus_is_focusable();
 
-      virtual i64 add_ref(OBJECT_REF_DEBUG_PARAMS);
+      virtual i64 increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS);
 
-      virtual i64 dec_ref(OBJECT_REF_DEBUG_PARAMS);
+      virtual i64 decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS);
 
    };
 

@@ -29,11 +29,13 @@
 
 #endif
 
-#include "acme/platform/obj_ref_debug.h"
+#include "acme/platform/object_reference_count_debug.h"
 
-#include "acme/platform/obj_typ_ctr.h"
+#include "acme/platform/object_type_counter.h"
 
 #include "acme/const/_const.h"
+
+#include "acme/memory/memory_allocate.h"
 
 #include "acme/memory/heap_c.h"
 

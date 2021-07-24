@@ -322,13 +322,13 @@ namespace calculator
    }
 
 
-   i64 plain_edit_view::add_ref()
+   i64 plain_edit_view::increment_reference_count()
    {
-      return ::object::add_ref(OBJECT_REF_DEBUG_ARGS);
+      return ::object::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
    }
-   i64 plain_edit_view::dec_ref()
+   i64 plain_edit_view::decrement_reference_count()
    {
-      return ::object::dec_ref(OBJECT_REF_DEBUG_ARGS);
+      return ::object::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
    }
 
 

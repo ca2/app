@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "apex/message.h"
 #include "acme/update.h"
-#if OBJECT_REF_DEBUG
+#if OBJECT_REFERENCE_COUNT_DEBUG
 #include "acme/platform/obj_ref_debug_impl.h"
 #endif
 
@@ -53,12 +53,12 @@ object::~object()
 }
 
 
-i64 object::add_ref(OBJECT_REF_DEBUG_PARAMS_DEF)
+i64 object::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
 {
 
    auto c = m_countReference++;
 
-#if OBJECT_REF_DEBUG
+#if OBJECT_REFERENCE_COUNT_DEBUG
 
    add_ref_history(pReferer, pszObjRefDbg);
 
@@ -69,12 +69,12 @@ i64 object::add_ref(OBJECT_REF_DEBUG_PARAMS_DEF)
 }
 
 
-i64 object::dec_ref(OBJECT_REF_DEBUG_PARAMS_DEF)
+i64 object::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
 {
 
    auto c = m_countReference--;
 
-#if OBJECT_REF_DEBUG
+#if OBJECT_REFERENCE_COUNT_DEBUG
 
    if (c > 0)
    {
@@ -90,10 +90,10 @@ i64 object::dec_ref(OBJECT_REF_DEBUG_PARAMS_DEF)
 }
 
 
-i64 object::release(OBJECT_REF_DEBUG_PARAMS_DEF)
+i64 object::release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
 {
 
-   i64 i = dec_ref(OBJECT_REF_DEBUG_ARGS);
+   i64 i = decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
 
    if (i == 0)
    {
@@ -130,14 +130,14 @@ void object::to_string(const class string_exchange & str) const
 }
 
 
-::e_status object::add_composite(::matter* pmatter OBJECT_REF_DEBUG_COMMA_PARAMS_DEF)
+::e_status object::add_composite(::matter* pmatter OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
 {
 
    synchronous_lock synchronouslock(mutex());
 
    m_pcompositea.defer_create_new();
 
-   if (m_pcompositea->add_unique(pmatter OBJECT_REF_DEBUG_COMMA_ARGS))
+   if (m_pcompositea->add_unique(pmatter OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS))
    {
 
 #ifdef DEBUG
@@ -153,14 +153,14 @@ void object::to_string(const class string_exchange & str) const
 }
 
 
-::e_status object::add_reference(::matter* pmatter OBJECT_REF_DEBUG_COMMA_PARAMS_DEF)
+::e_status object::add_reference(::matter* pmatter OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
 {
 
    synchronous_lock synchronouslock(mutex());
 
    m_preferencea.defer_create_new();
 
-   m_preferencea->add_unique(pmatter OBJECT_REF_DEBUG_COMMA_ARGS);
+   m_preferencea->add_unique(pmatter OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
 
    if (m_preferencea->get_upper_bound() == 8)
    {
@@ -179,7 +179,7 @@ void object::to_string(const class string_exchange & str) const
 }
 
 
-::e_status object::release_composite2(::matter * pmatter OBJECT_REF_DEBUG_COMMA_PARAMS_DEF)
+::e_status object::release_composite2(::matter * pmatter OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
 {
 
    if (::is_null(pmatter))
@@ -208,7 +208,7 @@ void object::to_string(const class string_exchange & str) const
 }
 
 
-::e_status object::finalize_composite(::matter* pmatter OBJECT_REF_DEBUG_COMMA_PARAMS_DEF)
+::e_status object::finalize_composite(::matter* pmatter OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
 {
 
    if (::is_null(pmatter))
@@ -250,7 +250,7 @@ void object::to_string(const class string_exchange & str) const
 }
 
 
-::e_status object::release_reference(::matter* pmatter  OBJECT_REF_DEBUG_COMMA_PARAMS_DEF)
+::e_status object::release_reference(::matter* pmatter  OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
 {
 
    if (::is_null(pmatter))
@@ -852,28 +852,28 @@ void object::on_finalize()
 
    manager::finalize();
 
-#if OBJ_TYP_CTR
+#if OBJECT_TYPE_COUNTER
 
-   if (m_eobject.is(e_object_obj_typ_ctr))
+   if (m_eobject.is(e_object_object_type_counter))
    {
 
-      m_eobject -= e_object_obj_typ_ctr;
+      m_eobject -= e_object_object_type_counter;
 
-      OBJ_TYP_CTR_DEC;
+      OBJECT_TYPE_COUNTER_DECREMENT;
 
    }
 
 #endif
 
-   m_pcontext.release(OBJECT_REF_DEBUG_THIS);
+   m_pcontext.release(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
 
-   m_pthread.release(OBJECT_REF_DEBUG_THIS);
+   m_pthread.release(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
 
-   m_papplication.release(OBJECT_REF_DEBUG_THIS);
+   m_papplication.release(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
 
-   m_psession.release(OBJECT_REF_DEBUG_THIS);
+   m_psession.release(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
 
-   //m_psystemContext.release(OBJECT_REF_DEBUG_THIS);
+   //m_psystemContext.release(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
 
    on_finalize();
 
@@ -931,7 +931,7 @@ void object::on_finish()
 
    //   }
 
-   //   //m_ptaska.release(OBJECT_REF_DEBUG_THIS);
+   //   //m_ptaska.release(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
 
    //}
 
@@ -971,7 +971,7 @@ void object::copy_from(const object & o)
    if (!o.m_pset)
    {
 
-      m_pset.release(OBJECT_REF_DEBUG_THIS);
+      m_pset.release(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
 
    }
    else
@@ -1325,14 +1325,14 @@ void object::release_references()
    if (m_pcompositea)
    {
 
-      m_pcompositea.release(OBJECT_REF_DEBUG_THIS);
+      m_pcompositea.release(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
 
    }
 
    if (m_preferencea)
    {
 
-      m_preferencea.release(OBJECT_REF_DEBUG_THIS);
+      m_preferencea.release(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
 
    }
 
@@ -2356,42 +2356,42 @@ __pointer(::extended::future < ::conversation >) object::message_box(const char*
 #ifdef DEBUG
 
 
-void object::set_context(::context* pcontext OBJECT_REF_DEBUG_COMMA_PARAMS_DEF)
+void object::set_context(::context* pcontext OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
 {
 
-   m_pcontext.reset(pcontext OBJECT_REF_DEBUG_COMMA_ARGS);
+   m_pcontext.reset(pcontext OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
 
 }
 
 
-void object::set_context_thread(::thread* pthread OBJECT_REF_DEBUG_COMMA_PARAMS_DEF)
+void object::set_context_thread(::thread* pthread OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
 {
 
-   m_pthread.reset(pthread OBJECT_REF_DEBUG_COMMA_ARGS);
+   m_pthread.reset(pthread OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
 
 }
 
 
-void object::set_context_app(::application* pappContext OBJECT_REF_DEBUG_COMMA_PARAMS_DEF)
+void object::set_context_app(::application* pappContext OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
 {
 
-   m_papplication.reset(pappContext OBJECT_REF_DEBUG_COMMA_ARGS);
+   m_papplication.reset(pappContext OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
 
 }
 
 
-void object::set_context_session(::apex::session* psessionContext OBJECT_REF_DEBUG_COMMA_PARAMS_DEF)
+void object::set_context_session(::apex::session* psessionContext OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
 {
 
-   m_psession.reset(psessionContext OBJECT_REF_DEBUG_COMMA_ARGS);
+   m_psession.reset(psessionContext OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
 
 }
 
 
-//void object::set_context_system(::apex::system* psystemContext OBJECT_REF_DEBUG_COMMA_PARAMS_DEF)
+//void object::set_context_system(::apex::system* psystemContext OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
 //{
 //
-//   m_psystemContext.reset(psystemContext OBJECT_REF_DEBUG_COMMA_ARGS);
+//   m_psystemContext.reset(psystemContext OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
 //
 //}
 

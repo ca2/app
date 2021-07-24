@@ -452,7 +452,7 @@ namespace linux
 
             m_puserinteraction->m_pimpl = this;
 
-            m_puserinteraction->add_ref(OBJECT_REF_DEBUG_P_NOTE(this, "native_create_window"));
+            m_puserinteraction->increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_P_NOTE(this, "native_create_window"));
 
             auto papp = get_application();
 

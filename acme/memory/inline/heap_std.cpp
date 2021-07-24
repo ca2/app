@@ -3,13 +3,19 @@
 #include "acme/platform/static_start_internal.h"
 
 
+#include "acme/memory/aligned_memory_allocate.h"
+
+
+#include "acme/memory/_memory_allocate.h"
+
+
 #if !defined(MCHECK) && !defined(_VLD) && !defined(__MCRTDBG) && !MEMDLEAK
 
 
 #include "acme/memory/heap_memory.h"
 
 
-void * aligned_memory_alloc(memsize size, memsize align)
+void * aligned_memory_allocate(memsize size, memsize align)
 {
 
    void * paligned;
@@ -61,14 +67,14 @@ void * aligned_memory_alloc(memsize size, memsize align)
 }
 
 
-void * unaligned_memory_alloc(memsize size)
+void * unaligned_memory_allocate(memsize size)
 {
 
    void * punaligned;
 
 #if defined(APPLEOS) || defined(LINUX)
 
-   punaligned = aligned_memory_alloc(size);
+   punaligned = aligned_memory_allocate(size);
 
 #else
 
@@ -167,7 +173,7 @@ void * unaligned_memory_allocate_debug(memsize size, i32 nBlockUse, const char *
 
 #if defined(APPLEOS) || defined(RASPBIAN)
 
-   punaligned = aligned_memory_alloc(size);
+   punaligned = aligned_memory_allocate(size);
 
 #else
 
@@ -222,11 +228,11 @@ void * _memory_allocate(memsize size)
 
 //#if defined(APPLEOS) || defined(RASPBIAN) || defined(WINDOWS)
 
-   return aligned_memory_alloc(size);
+   return aligned_memory_allocate(size);
 
 //#else
 
-//   return unaligned_memory_alloc(size);
+//   return unaligned_memory_allocate(size);
 
 //#endif
 
@@ -238,11 +244,11 @@ void * memory_allocate_no_track(memsize size)
 
 //#if defined(APPLEOS) || defined(RASPBIAN)
 
-   return aligned_memory_alloc(size);
+   return aligned_memory_allocate(size);
 
 //#else
 
-//   return unaligned_memory_alloc(size);
+//   return unaligned_memory_allocate(size);
 
 //#endif
 

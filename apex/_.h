@@ -202,7 +202,7 @@ namespace apex
 
 #endif
 
-//#include "apex/platform/obj_ref_debug.h"
+//#include "apex/platform/object_reference_count_debug.h"
 
 #include "apex/os/os.h"
 

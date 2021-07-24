@@ -22,8 +22,8 @@ namespace app_just_message_box
       virtual void on_request(::create * pcreate) override;
 
 #ifdef DEBUG
-      virtual int64_t add_ref(OBJECT_REF_DEBUG_PARAMS) override;
-      virtual int64_t dec_ref(OBJECT_REF_DEBUG_PARAMS) override;
+      virtual int64_t increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override;
+      virtual int64_t decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override;
 #endif
 
 

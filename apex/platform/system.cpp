@@ -161,18 +161,18 @@ namespace apex
 #ifdef DEBUG
 
 
-   i64 system::add_ref(OBJ_REF_DBG_PARAMS)
+   i64 system::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS)
    {
 
-      return ::system::add_ref(OBJ_REF_DBG_ARGS);
+      return ::system::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
 
    }
 
 
-   i64 system::dec_ref(OBJ_REF_DBG_PARAMS)
+   i64 system::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS)
    {
 
-      return ::system::dec_ref(OBJ_REF_DBG_ARGS);
+      return ::system::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
 
    }
 
@@ -2159,9 +2159,9 @@ namespace apex
 
       }
 
-#if OBJECT_REF_DEBUG
+#if OBJECT_REFERENCE_COUNT_DEBUG
 
-      release(OBJECT_REF_DEBUG_P_NOTE(this, nullptr));
+      release(OBJECT_REFERENCE_COUNT_DEBUG_P_NOTE(this, nullptr));
 
       try
       {

@@ -66,7 +66,7 @@ namespace std { enum class align_val_t : std::size_t {}; }
 //
 //   }
 //
-//   ((object *) p)->add_ref(OBJECT_REF_DEBUG_PTR(&g_lparamdbg));
+//   ((object *) p)->increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PTR(&g_lparamdbg));
 //
 //   m_lparam = (lparam)p;
 //
@@ -1019,7 +1019,7 @@ inline stream & operator >> (stream & s, ::datetime::time & time);
 
 
 //template < class c_derived >
-//inline i64 add_ref(c_derived * pca OBJECT_REF_DEBUG_COMMA_PARAMS_DEF)
+//inline i64 increment_reference_count(c_derived * pca OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
 //{
 //
 //   if (::is_null(pca))
@@ -1029,13 +1029,13 @@ inline stream & operator >> (stream & s, ::datetime::time & time);
 //
 //   }
 //
-//   return pca->add_ref(OBJECT_REF_DEBUG_ARGS);
+//   return pca->increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
 //
 //}
 
 
 //template < class c_derived, typename SOURCE >
-//inline i64 add_ref(c_derived * & pca, const SOURCE * psource)
+//inline i64 increment_reference_count(c_derived * & pca, const SOURCE * psource)
 //{
 //
 //   c_derived * pderived = dynamic_cast <c_derived *>((SOURCE *)psource);
@@ -1049,22 +1049,22 @@ inline stream & operator >> (stream & s, ::datetime::time & time);
 //
 //   pca = pderived;
 //
-//   return add_ref(pca);
+//   return increment_reference_count(pca);
 //
 //}
 
 
 //template < class c_derived, typename SOURCE >
-//inline i64 add_ref(c_derived *& pderived, const __pointer(SOURCE) & psource)
+//inline i64 increment_reference_count(c_derived *& pderived, const __pointer(SOURCE) & psource)
 //{
 //
-//   return add_ref(pderived, psource.m_p);
+//   return increment_reference_count(pderived, psource.m_p);
 //
 //}
 
 
 //template < class c_derived >
-//inline i64 release(c_derived *& pca OBJECT_REF_DEBUG_COMMA_PARAMS_DEF)
+//inline i64 release(c_derived *& pca OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
 //{
 //
 //   if (::is_null(pca))
@@ -1113,7 +1113,7 @@ inline stream & operator >> (stream & s, ::datetime::time & time);
 //   try
 //   {
 //
-//      return ptr->release(OBJECT_REF_DEBUG_ARGS);
+//      return ptr->release(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
 //
 //   }
 //   catch (...)
@@ -1147,28 +1147,28 @@ inline stream & operator >> (stream & s, ::datetime::time & time);
 
 
 //template < class COMPOSITE >
-//inline i64 release(__composite(COMPOSITE) & pcomposite OBJECT_REF_DEBUG_COMMA_PARAMS)
+//inline i64 release(__composite(COMPOSITE) & pcomposite OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS)
 //{
 //
-//   return release(pcomposite.m_p OBJECT_REF_DEBUG_COMMA_ARGS);
+//   return release(pcomposite.m_p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
 //
 //}
 
 
 //template < class TYPE >
-//inline i64 release(__pointer(TYPE) & pointer OBJECT_REF_DEBUG_COMMA_PARAMS)
+//inline i64 release(__pointer(TYPE) & pointer OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS)
 //{
 //
-//   return release(pointer.m_p OBJECT_REF_DEBUG_COMMA_ARGS);
+//   return release(pointer.m_p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
 //
 //}
 
 
 //template < class REFERENCE >
-//inline i64 release(__reference(REFERENCE) & preference OBJECT_REF_DEBUG_COMMA_PARAMS)
+//inline i64 release(__reference(REFERENCE) & preference OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS)
 //{
 //
-//   return release(preference.m_p OBJECT_REF_DEBUG_COMMA_ARGS);
+//   return release(preference.m_p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
 //
 //}
 

@@ -17,26 +17,26 @@ timer_task::~timer_task()
 #ifdef DEBUG
 
 
-i64 timer_task::add_ref(OBJECT_REF_DEBUG_PARAMS_DEF)
+i64 timer_task::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
 {
 
-   return task::add_ref(OBJECT_REF_DEBUG_ARGS);
+   return task::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
 
 }
 
 
-i64 timer_task::dec_ref(OBJECT_REF_DEBUG_PARAMS_DEF)
+i64 timer_task::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
 {
 
-   return task::dec_ref(OBJECT_REF_DEBUG_ARGS);
+   return task::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
 
 }
 
 
-i64 timer_task::release(OBJECT_REF_DEBUG_PARAMS_DEF)
+i64 timer_task::release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
 {
 
-   return task::release(OBJECT_REF_DEBUG_ARGS);
+   return task::release(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
 
 }
 
@@ -49,7 +49,7 @@ i64 timer_task::release(OBJECT_REF_DEBUG_PARAMS_DEF)
 
    m_bRunning = false;
 
-   m_ptimera.reset(ptimera OBJECT_REF_DEBUG_COMMA_THIS_FUNCTION_LINE);
+   m_ptimera.reset(ptimera OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS_FUNCTION_LINE);
 
    if (m_ptimera)
    {
@@ -279,7 +279,7 @@ bool timer_task::task_active() const
 
             m_ptimera->erase_timer(this);
 
-            m_ptimera.release(OBJECT_REF_DEBUG_THIS);
+            m_ptimera.release(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
 
          }
 

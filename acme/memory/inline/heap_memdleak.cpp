@@ -37,14 +37,14 @@ void memdleak_term();
 
 
 
-void * aligned_memory_alloc(size_t size, memsize align)
+void * aligned_memory_allocate(size_t size, memsize align)
 {
 
    void * p;
 
    throw_todo();
 
-   p = unaligned_memory_alloc(size);
+   p = unaligned_memory_allocate(size);
 
    //zero(p, size);
 
@@ -52,7 +52,7 @@ void * aligned_memory_alloc(size_t size, memsize align)
 
 }
 
-void * unaligned_memory_alloc(size_t size)
+void * unaligned_memory_allocate(size_t size)
 {
 
    void * p;
@@ -120,7 +120,7 @@ void * aligned_memory_allocate_debug(size_t size, i32 nBlockUse, const char * sz
 
    throw_todo();
 
-   p = unaligned_memory_alloc(size);
+   p = unaligned_memory_allocate(size);
 
 
    //zero(p, size);
@@ -136,9 +136,9 @@ void * unaligned_memory_allocate_debug(size_t size, i32 nBlockUse, const char * 
    void * p;
 
 
-   //p = unaligned_memory_alloc(size);
+   //p = unaligned_memory_allocate(size);
 
-   p = unaligned_memory_alloc(size);
+   p = unaligned_memory_allocate(size);
 
 
    //zero(p, size);
@@ -159,11 +159,11 @@ void * memory_allocate(memsize size)
 
 #if defined(APPLEOS)
 
-   return aligned_memory_alloc(size);
+   return aligned_memory_allocate(size);
 
 #else
 
-   return unaligned_memory_alloc(size);
+   return unaligned_memory_allocate(size);
 
 #endif
 
@@ -176,11 +176,11 @@ void * memory_allocate_no_track(size_t size)
 
 #if defined(APPLEOS)
 
-   return aligned_memory_alloc(size);
+   return aligned_memory_allocate(size);
 
 #else
 
-   return unaligned_memory_alloc(size);
+   return unaligned_memory_allocate(size);
 
 #endif
 

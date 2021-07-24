@@ -313,7 +313,7 @@ __pointer(::application) application_container::instantiate_application(const ch
 
          __refer(psystem->m_papplicationMain, psystem->m_papplicationStartup.get());
 
-         __unbind(psystem, m_papplicationStartup OBJECT_REF_DEBUG_COMMA_P_NOTE(psystem, ""));
+         __unbind(psystem, m_papplicationStartup OBJECT_REFERENCE_COUNT_DEBUG_COMMA_P_NOTE(psystem, ""));
 
       }
       else

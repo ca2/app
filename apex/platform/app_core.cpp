@@ -1741,7 +1741,7 @@ __transport(::application) app_core::new_application(const char* pszAppId)
 
       __pointer(::application) papexApplication = pmatterApp;
 
-      papp.reset(papexApplication OBJECT_REF_DEBUG_COMMA_THIS_FUNCTION_LINE);
+      papp.reset(papexApplication OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS_FUNCTION_LINE);
 
       if (papp)
       {

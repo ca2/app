@@ -4,7 +4,7 @@
 
 
 
-void * aligned_memory_alloc(size_t size, memsize align)
+void * aligned_memory_allocate(size_t size, memsize align)
 {
 
    throw_todo();
@@ -13,7 +13,7 @@ void * aligned_memory_alloc(size_t size, memsize align)
 
 }
 
-void * unaligned_memory_alloc(size_t size)
+void * unaligned_memory_allocate(size_t size)
 {
 
    return system_heap_alloc(size);

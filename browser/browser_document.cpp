@@ -114,17 +114,17 @@ namespace browser
    }
 
 
-   i64 document::add_ref()
+   i64 document::increment_reference_count()
    {
 
-      return  ::user::document::add_ref(OBJECT_REF_DEBUG_ARGS);
+      return  ::user::document::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
 
    }
 
-   i64 document::dec_ref()
+   i64 document::decrement_reference_count()
    {
 
-      return  ::user::document::dec_ref(OBJECT_REF_DEBUG_ARGS);
+      return  ::user::document::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
 
    }
 

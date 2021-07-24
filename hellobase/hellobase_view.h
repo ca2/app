@@ -33,13 +33,13 @@ namespace hellobase
       virtual void assert_valid() const;
       virtual void dump(dump_context & dumpcontext) const;
 
-      virtual i64 add_ref(OBJECT_REF_DEBUG_PARAMS)
+      virtual i64 increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS)
       {
-         return ::object::add_ref(OBJECT_REF_DEBUG_ARGS);
+         return ::object::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
       }
-      virtual i64 dec_ref(OBJECT_REF_DEBUG_PARAMS)
+      virtual i64 decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS)
       {
-         return ::object::dec_ref(OBJECT_REF_DEBUG_ARGS);
+         return ::object::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
       }
 
       virtual void install_message_routing(::channel * pchannel);

@@ -68,7 +68,7 @@ namespace user
 
          m_puserinteraction = pinteraction;
 
-         //__refer(m_pthreadUserImpl,  m_puserinteraction->m_pthreadUserInteraction  OBJECT_REF_DEBUG_COMMA_THIS_FUNCTION_LINE);
+         //__refer(m_pthreadUserImpl,  m_puserinteraction->m_pthreadUserInteraction  OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS_FUNCTION_LINE);
 
          m_puserinteraction->m_pimpl = this;
 
@@ -584,7 +584,7 @@ namespace user
 
       pmessage->previous();
 
-//      __release(m_pthreadUserImpl OBJECT_REF_DEBUG_COMMA_THIS);
+//      __release(m_pthreadUserImpl OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS);
 
 
    }

@@ -58,7 +58,7 @@ namespace sockets
 
       auto paddressdepartment = pobject->__create_new<class ::net::address_department>();
 
-      paddressdepartment->add_ref();
+      paddressdepartment->increment_reference_count();
 
       ::net::g_paddressdepartment = paddressdepartment;
 

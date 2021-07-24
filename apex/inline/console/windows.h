@@ -104,7 +104,7 @@ public:
 
       __refer(m_psystem->m_papexsystem->m_papplicationMain, m_psystem->m_papexsystem->m_papplicationStartup.get());
 
-      __unbind(m_psystem->m_papexsystem, m_papplicationStartup OBJECT_REF_DEBUG_COMMA_P_NOTE(m_psystem, ""));
+      __unbind(m_psystem->m_papexsystem, m_papplicationStartup OBJECT_REFERENCE_COUNT_DEBUG_COMMA_P_NOTE(m_psystem, ""));
 
    }
 

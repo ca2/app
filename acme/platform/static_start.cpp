@@ -116,7 +116,7 @@ namespace acme
    static element_address_array* g_pelementaddraReleaseOnEnd;
 
 
-#if OBJ_TYP_CTR
+#if OBJECT_TYPE_COUNTER
 
    map < const char*, const char*, ::i64, ::i64 >* g_pmapObjTypCtr;
 
@@ -126,7 +126,7 @@ namespace acme
    bool g_bAcme;
 
 
-#if OBJ_TYP_CTR
+#if OBJECT_TYPE_COUNTER
 
    int g_iObjTypCtrInit;
 
@@ -310,7 +310,7 @@ namespace acme
 
       g_bAcme = 0;
 
-#if OBJ_TYP_CTR
+#if OBJECT_TYPE_COUNTER
 
       g_pmapObjTypCtr = nullptr;
 
@@ -318,7 +318,7 @@ namespace acme
 
       g_bAcme = false;
 
-#if OBJ_TYP_CTR
+#if OBJECT_TYPE_COUNTER
 
       g_iObjTypCtrInit = 0;
 
@@ -583,7 +583,7 @@ namespace acme
 
 #endif
 
-#if OBJ_TYP_CTR
+#if OBJECT_TYPE_COUNTER
 
       g_pmapObjTypCtr = new map < const char*, const char*, ::i64, ::i64 >;
 
@@ -706,7 +706,7 @@ namespace acme
       //create_factory < ::context >();
 
 
-#if OBJ_TYP_CTR
+#if OBJECT_TYPE_COUNTER
       g_iObjTypCtrInit = 1;
 #endif
 
@@ -745,7 +745,7 @@ namespace acme
 
       //::acme::del(g_pcsFont);
 
-#if OBJ_TYP_CTR
+#if OBJECT_TYPE_COUNTER
       g_iObjTypCtrInit = 0;
 #endif
 
@@ -916,7 +916,7 @@ namespace acme
 
       //trace_category_static_term();
 
-#if OBJ_TYP_CTR
+#if OBJECT_TYPE_COUNTER
 
       ::acme::del(g_pmapObjTypCtr);
 

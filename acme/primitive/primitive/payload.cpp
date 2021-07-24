@@ -1038,34 +1038,34 @@ class ::payload & payload::operator = (const property * pproperty)
 
 }
 
-void payload::add_ref()
+void payload::increment_reference_count()
 {
 
    switch(m_etype)
    {
       case e_type_element:
-         m_p->add_ref();
+         m_p->increment_reference_count();
          break;
       case e_type_stra:
-         m_pstra->add_ref();
+         m_pstra->increment_reference_count();
          break;
       case e_type_inta:
-         m_pia->add_ref();
+         m_pia->increment_reference_count();
          break;
       case e_type_vara:
-         m_pvara->add_ref();
+         m_pvara->increment_reference_count();
          break;
       case e_type_propset:
-         m_pset->add_ref();
+         m_pset->increment_reference_count();
          break;
       case e_type_i64a:
-         m_p->add_ref();
+         m_p->increment_reference_count();
          break;
       case e_type_memory:
-         m_pmemory->add_ref();
+         m_pmemory->increment_reference_count();
          break;
       case e_type_path:
-         m_ppath->add_ref();
+         m_ppath->increment_reference_count();
          break;
       default:
          break;
@@ -1119,7 +1119,7 @@ class ::payload & payload::operator = (const class ::payload & payload)
       {
 
          m_p = payload.m_p; // raw copy, doesn't care for the right member
-         add_ref();
+         increment_reference_count();
 
       }
       else
@@ -2828,7 +2828,7 @@ string_array & payload::stra()
 
       m_pstra = __new(string_array());
 
-      ::add_ref(m_pstra);
+      ::increment_reference_count(m_pstra);
 
    }
 
@@ -2862,7 +2862,7 @@ int_array & payload::inta()
 
       m_pia = __new(int_array());
 
-      ::add_ref(m_pia);
+      ::increment_reference_count(m_pia);
 
    }
 

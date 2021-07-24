@@ -61,26 +61,26 @@ namespace user
 #ifdef DEBUG
 
 
-   i64 prodevian::add_ref(OBJECT_REF_DEBUG_PARAMS_DEF)
+   i64 prodevian::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
    {
 
-      return ::thread::add_ref(OBJECT_REF_DEBUG_ARGS);
+      return ::thread::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
 
    }
 
 
-   i64 prodevian::dec_ref(OBJECT_REF_DEBUG_PARAMS_DEF)
+   i64 prodevian::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
    {
 
-      return ::thread::dec_ref(OBJECT_REF_DEBUG_ARGS);
+      return ::thread::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
 
    }
 
 
-   i64 prodevian::release(OBJECT_REF_DEBUG_PARAMS_DEF)
+   i64 prodevian::release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
    {
 
-      return ::thread::release(OBJECT_REF_DEBUG_ARGS);
+      return ::thread::release(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
 
    }
 
@@ -298,7 +298,7 @@ void prodevian::term_thread()
 
    }
 
-   m_routineUpdateScreen.release(OBJECT_REF_DEBUG_THIS);
+   m_routineUpdateScreen.release(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
 
    if (m_routineWindowShow)
    {
@@ -307,7 +307,7 @@ void prodevian::term_thread()
 
    }
 
-   m_routineWindowShow.release(OBJECT_REF_DEBUG_THIS);
+   m_routineWindowShow.release(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
 
 }
 
@@ -317,9 +317,9 @@ void prodevian::term_thread()
 
    m_evUpdateScreen.SetEvent();
 
-   m_puserinteraction.release(OBJECT_REF_DEBUG_THIS);
+   m_puserinteraction.release(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
 
-   m_pimpl.release(OBJECT_REF_DEBUG_THIS);
+   m_pimpl.release(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
 
    m_synchronizationa.clear();
    

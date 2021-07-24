@@ -11,26 +11,26 @@ object::~object()
 #ifdef DEBUG
 
 
-i64 object::add_ref(OBJECT_REF_DEBUG_PARAMS)
+i64 object::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS)
 {
 
-   return property_object::add_ref(OBJECT_REF_DEBUG_ARGS);
+   return property_object::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
 
 }
 
 
-i64 object::dec_ref(OBJECT_REF_DEBUG_PARAMS)
+i64 object::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS)
 {
 
-   return property_object::dec_ref(OBJECT_REF_DEBUG_ARGS);
+   return property_object::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
 
 }
 
 
-i64 object::release(OBJECT_REF_DEBUG_PARAMS)
+i64 object::release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS)
 {
 
-   return property_object::release(OBJECT_REF_DEBUG_ARGS);
+   return property_object::release(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
 
 }
 
@@ -38,26 +38,26 @@ i64 object::release(OBJECT_REF_DEBUG_PARAMS)
 #else
 
 
-i64 object::add_ref(OBJECT_REF_DEBUG_PARAMS)
+i64 object::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS)
 {
 
-   return property_object::add_ref(OBJECT_REF_DEBUG_ARGS);
+   return property_object::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
 
 }
 
 
-i64 object::dec_ref(OBJECT_REF_DEBUG_PARAMS)
+i64 object::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS)
 {
 
-   return property_object::dec_ref(OBJECT_REF_DEBUG_ARGS);
+   return property_object::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
 
 }
 
 
-i64 object::release(OBJECT_REF_DEBUG_PARAMS)
+i64 object::release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS)
 {
 
-   return property_object::release(OBJECT_REF_DEBUG_ARGS);
+   return property_object::release(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
 
 }
 
@@ -151,20 +151,20 @@ void object::process_exit_status(const ::e_status& estatus)
    {
       auto estatus = ::success;
 
-#if OBJ_TYP_CTR
+#if OBJECT_TYPE_COUNTER
 
-      if (!m_eobject.is(e_object_obj_typ_ctr))
+      if (!m_eobject.is(e_object_object_type_counter))
       {
 
-         m_eobject += e_object_obj_typ_ctr;
+         m_eobject += e_object_object_type_counter;
 
-         OBJ_TYP_CTR_INC;
+         OBJECT_TYPE_COUNTER_INCREMENT;
 
       }
 
 #endif
 
-      //#if OBJECT_REF_DEBUG
+      //#if OBJECT_REFERENCE_COUNT_DEBUG
       //
       //   string strType = type_name();
       //
@@ -206,7 +206,7 @@ void object::process_exit_status(const ::e_status& estatus)
       //if (!psystem)
       //{
 
-      //   set_context_system(::::apex::get_system(pobject) OBJECT_REF_DEBUG_COMMA_THIS_FUNCTION_LINE);
+      //   set_context_system(::::apex::get_system(pobject) OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS_FUNCTION_LINE);
 
       //}
 
@@ -318,11 +318,11 @@ void object::process_exit_status(const ::e_status& estatus)
     }
 //
 //#ifdef DEBUG
-//    void set_context(::context* pcontext OBJECT_REF_DEBUG_COMMA_PARAMS);
-//    void set_context_thread(::thread* pthread OBJECT_REF_DEBUG_COMMA_PARAMS);
-//    void set_context_app(::application* pappContext OBJECT_REF_DEBUG_COMMA_PARAMS);
-//    void set_context_session(::apex::session* psessionContext OBJECT_REF_DEBUG_COMMA_PARAMS);
-//   // void set_context_system(::apex::system* psystemContext OBJECT_REF_DEBUG_COMMA_PARAMS);
+//    void set_context(::context* pcontext OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+//    void set_context_thread(::thread* pthread OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+//    void set_context_app(::application* pappContext OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+//    void set_context_session(::apex::session* psessionContext OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+//   // void set_context_system(::apex::system* psystemContext OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 //   // void set_context_user(::object * puserContext);
 //#else
 //   inline void set_context(::context* pcontext);
@@ -408,10 +408,10 @@ void object::process_exit_status(const ::e_status& estatus)
    //inline ::e_status __compose(__composite(BASE_TYPE)& pusermessage);
 
    //template < typename BASE_TYPE, typename SOURCE >
-   //inline ::e_status __compose(__composite(BASE_TYPE)& pusermessage, const SOURCE* psource OBJECT_REF_DEBUG_COMMA_PARAMS);
+   //inline ::e_status __compose(__composite(BASE_TYPE)& pusermessage, const SOURCE* psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 
    //template < typename BASE_TYPE, typename SOURCE >
-   //inline ::e_status __compose(__composite(BASE_TYPE)& pusermessage, const __pointer(SOURCE)& psource OBJECT_REF_DEBUG_COMMA_PARAMS);
+   //inline ::e_status __compose(__composite(BASE_TYPE)& pusermessage, const __pointer(SOURCE)& psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 
    //template < typename BASE_TYPE >
    //inline ::e_status __id_compose(__composite(BASE_TYPE)& pusermessage, const ::id& id);
@@ -459,44 +459,44 @@ void object::process_exit_status(const ::e_status& estatus)
    //inline ::e_status __construct_new(__pointer(TYPE)& pusermessage);
 
    //template < typename BASE_TYPE >
-   //inline ::e_status __release(__composite(BASE_TYPE)& pcomposite OBJECT_REF_DEBUG_COMMA_PARAMS);
+   //inline ::e_status __release(__composite(BASE_TYPE)& pcomposite OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 
    //template < typename BASE_TYPE >
-   //inline ::e_status __release(__reference(BASE_TYPE)& preference OBJECT_REF_DEBUG_COMMA_PARAMS);
+   //inline ::e_status __release(__reference(BASE_TYPE)& preference OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 
    //template < typename SOURCE >
-   //inline ::e_status release_reference(__pointer(SOURCE)& psource OBJECT_REF_DEBUG_COMMA_PARAMS);
+   //inline ::e_status release_reference(__pointer(SOURCE)& psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 
 
-   // ::e_status add_composite(::matter* pobject OBJECT_REF_DEBUG_COMMA_PARAMS) 
-   // ::e_status add_reference(::matter* pobject OBJECT_REF_DEBUG_COMMA_PARAMS) 
+   // ::e_status add_composite(::matter* pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) 
+   // ::e_status add_reference(::matter* pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) 
 
 
-   // ::e_status release_composite2(::matter* pobject OBJECT_REF_DEBUG_COMMA_PARAMS) 
-   // ::e_status finalize_composite(::matter* pobject OBJECT_REF_DEBUG_COMMA_PARAMS) 
-   // ::e_status release_reference(::matter* pobject OBJECT_REF_DEBUG_COMMA_PARAMS) 
+   // ::e_status release_composite2(::matter* pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) 
+   // ::e_status finalize_composite(::matter* pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) 
+   // ::e_status release_reference(::matter* pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) 
 
 
    //template < typename BASE_TYPE >
-   //inline ::e_status add_composite(__composite(BASE_TYPE)& pcomposite OBJECT_REF_DEBUG_COMMA_PARAMS);
+   //inline ::e_status add_composite(__composite(BASE_TYPE)& pcomposite OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 
    //template < typename BASE_TYPE, typename SOURCE >
-   //inline ::e_status __refer(__reference(BASE_TYPE)& preference, const SOURCE* psource OBJECT_REF_DEBUG_COMMA_PARAMS);
+   //inline ::e_status __refer(__reference(BASE_TYPE)& preference, const SOURCE* psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 
    //template < typename BASE_TYPE, typename SOURCE >
-   //inline ::e_status __refer(__reference(BASE_TYPE)& preference, const __pointer(SOURCE)& psource OBJECT_REF_DEBUG_COMMA_PARAMS);
+   //inline ::e_status __refer(__reference(BASE_TYPE)& preference, const __pointer(SOURCE)& psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 
    //template < typename BASE_TYPE, typename SOURCE >
-   //inline ::e_status __refer(__reference(BASE_TYPE)& preference, const ::primitive::member < SOURCE >& psource OBJECT_REF_DEBUG_COMMA_PARAMS);
+   //inline ::e_status __refer(__reference(BASE_TYPE)& preference, const ::primitive::member < SOURCE >& psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 
    //template < typename SOURCE >
-   //inline ::e_status add_reference(SOURCE* psource OBJECT_REF_DEBUG_COMMA_PARAMS);
+   //inline ::e_status add_reference(SOURCE* psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 
    //template < typename SOURCE >
-   //inline ::e_status add_reference(__pointer(SOURCE)& psource OBJECT_REF_DEBUG_COMMA_PARAMS);
+   //inline ::e_status add_reference(__pointer(SOURCE)& psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 
    //template < typename SOURCE >
-   //inline ::e_status add_reference(__reference(SOURCE)& psource OBJECT_REF_DEBUG_COMMA_PARAMS);
+   //inline ::e_status add_reference(__reference(SOURCE)& psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 
 void object::delete_this()
 {

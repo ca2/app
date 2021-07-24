@@ -727,18 +727,18 @@ restart:
       }
 
 
-      i64 locale_schema::add_ref(OBJECT_REF_DEBUG_PARAMS_DEF)
+      i64 locale_schema::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
       {
 
-         return matter::add_ref(OBJECT_REF_DEBUG_ARGS);
+         return matter::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
 
       }
 
 
-      i64 locale_schema::release(OBJECT_REF_DEBUG_PARAMS_DEF)
+      i64 locale_schema::release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
       {
 
-         return matter::release(OBJECT_REF_DEBUG_ARGS);
+         return matter::release(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
 
       }
 

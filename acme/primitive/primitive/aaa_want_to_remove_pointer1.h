@@ -4,7 +4,7 @@
 
 
 template < class root_derived >
-inline i64 add_ref(root_derived * pca);
+inline i64 increment_reference_count(root_derived * pca);
 
 template < class root_derived >
 inline i64 release(root_derived * & pca);
@@ -54,7 +54,7 @@ public:
 
       m_p = dynamic_cast < T * > ((T2 *) p);
 
-      ::add_ref(m_p);
+      ::increment_reference_count(m_p);
 
    }
 

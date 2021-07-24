@@ -78,7 +78,7 @@ namespace user
    {
 
       //return m_plistener->_get_notification_area_action_count();
-      return m_notifyiconitema.get_count();
+      return (int) m_notifyiconitema.get_count();
 
    }
 

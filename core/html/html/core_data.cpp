@@ -71,18 +71,18 @@ namespace html
 
    }
 
-   //i64 core_data::add_ref()
+   //i64 core_data::increment_reference_count()
    //{
 
-   //   return ::object::add_ref(OBJECT_REF_DEBUG_ARGS);
+   //   return ::object::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
 
    //}
 
 
-   //i64 core_data::dec_ref()
+   //i64 core_data::decrement_reference_count()
    //{
 
-   //   return ::object::dec_ref(OBJECT_REF_DEBUG_ARGS);
+   //   return ::object::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
 
    //}
 

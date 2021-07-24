@@ -185,9 +185,9 @@ namespace aura
 
 #endif
 
-//#include "aura/platform/obj_ref_debug.h"
+//#include "aura/platform/object_reference_count_debug.h"
 
-//#include "aura/platform/obj_typ_ctr.h"
+//#include "aura/platform/object_type_counter.h"
 
 //#include "aura/const/_const.h"
 

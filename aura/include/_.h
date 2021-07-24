@@ -169,7 +169,7 @@ CLASS_DECL_AURA void aura_ref();
 //#define new ACME_NEW
 //
 //
-//#include "aura/platform/obj_ref_debug.h"
+//#include "aura/platform/object_reference_count_debug.h"
 //
 //
 //namespace opengl

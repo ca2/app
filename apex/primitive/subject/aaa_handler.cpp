@@ -39,26 +39,26 @@ namespace subject
 #ifdef DEBUG
 
 
-   i64 handler::add_ref(OBJECT_REF_DEBUG_PARAMS_DEF)
+   i64 handler::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
    {
 
-      return ::object::add_ref(OBJECT_REF_DEBUG_ARGS);
+      return ::object::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
 
    }
 
 
-   i64 handler::dec_ref(OBJECT_REF_DEBUG_PARAMS_DEF)
+   i64 handler::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
    {
 
-      return ::object::dec_ref(OBJECT_REF_DEBUG_ARGS);
+      return ::object::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
 
    }
 
 
-   i64 handler::release(OBJECT_REF_DEBUG_PARAMS_DEF)
+   i64 handler::release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
    {
 
-      return ::object::release(OBJECT_REF_DEBUG_ARGS);
+      return ::object::release(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
 
    }
 

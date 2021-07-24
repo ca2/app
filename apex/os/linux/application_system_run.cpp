@@ -101,7 +101,7 @@ CLASS_DECL_APEX i32 ca2_main();
 //
 //   auto psystem = ::apex::get_system();
 //
-//   psystem->add_ref(OBJECT_REF_DEBUG_ARGS);
+//   psystem->increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
 //
 //   if (m_pmainstruct->m_bConsole)
 //   {

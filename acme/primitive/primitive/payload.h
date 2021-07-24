@@ -527,7 +527,7 @@ inline operator ::e ## ENUMTYPE() const { return e ## ENUMTYPE(); }
 
       m_pmemory = pmemory;
 
-      ::add_ref(m_pmemory);
+      ::increment_reference_count(m_pmemory);
 
       return *this;
 
@@ -549,7 +549,7 @@ inline operator ::e ## ENUMTYPE() const { return e ## ENUMTYPE(); }
    }
 
 
-   void add_ref();
+   void increment_reference_count();
 
 
 

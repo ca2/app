@@ -101,10 +101,10 @@ public:
 #ifdef DEBUG
 
 
-   i64 add_ref(OBJ_REF_DBG_PARAMS) override;
+   i64 increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override;
 
 
-   i64 dec_ref(OBJ_REF_DBG_PARAMS) override;
+   i64 decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override;
 
 
 #endif

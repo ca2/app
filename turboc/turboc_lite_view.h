@@ -28,9 +28,9 @@ namespace turboc
 
       DECLARE_MESSAGE_HANDLER(on_message_create);
 
-      virtual i64 add_ref(OBJECT_REF_DEBUG_PARAMS);
+      virtual i64 increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS);
 
-      virtual i64 dec_ref(OBJECT_REF_DEBUG_PARAMS);
+      virtual i64 decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS);
 
    };
 

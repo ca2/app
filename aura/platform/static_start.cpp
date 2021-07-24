@@ -67,7 +67,7 @@ namespace aura
 {
 
    // aura commented
-//#if OBJ_TYP_CTR
+//#if OBJECT_TYPE_COUNTER
 //
 //   map < const char*, const char*, ::i64, ::i64 >* g_pmapObjTypCtr;
 //
@@ -78,7 +78,7 @@ namespace aura
    bool g_bAura;
 
    // aura commented
-//#if OBJ_TYP_CTR
+//#if OBJECT_TYPE_COUNTER
 //
 //   int g_iObjTypCtrInit;
 //
@@ -263,7 +263,7 @@ namespace aura
 
       g_bAura = 0;
 
-#if OBJ_TYP_CTR
+#if OBJECT_TYPE_COUNTER
 
       g_pmapObjTypCtr = nullptr;
 
@@ -271,7 +271,7 @@ namespace aura
 
       g_bAura = false;
 
-#if OBJ_TYP_CTR
+#if OBJECT_TYPE_COUNTER
 
       g_iObjTypCtrInit = 0;
 
@@ -511,7 +511,7 @@ namespace aura
 //
 //#endif
 
-#if OBJ_TYP_CTR
+#if OBJECT_TYPE_COUNTER
 
       g_pmapObjTypCtr = new map < const char*, const char*, ::i64, ::i64 >;
 
@@ -628,7 +628,7 @@ namespace aura
       create_factory < ::aura::context >();
 
 
-#if OBJ_TYP_CTR
+#if OBJECT_TYPE_COUNTER
       g_iObjTypCtrInit = 1;
 #endif
 
@@ -668,7 +668,7 @@ namespace aura
 
       ::acme::del(g_pcsFont);
 
-#if OBJ_TYP_CTR
+#if OBJECT_TYPE_COUNTER
       g_iObjTypCtrInit = 0;
 #endif
 
@@ -814,7 +814,7 @@ namespace aura
 
       trace_category_static_term();
 
-#if OBJ_TYP_CTR
+#if OBJECT_TYPE_COUNTER
 
       ::acme::del(g_pmapObjTypCtr);
 

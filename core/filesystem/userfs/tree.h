@@ -33,13 +33,13 @@ namespace userfs
 
 
 #ifdef DEBUG
-      virtual i64 add_ref(OBJECT_REF_DEBUG_PARAMS) override;
-      virtual i64 dec_ref(OBJECT_REF_DEBUG_PARAMS) override;
-      virtual i64 release(OBJECT_REF_DEBUG_PARAMS) override;
+      virtual i64 increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override;
+      virtual i64 decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override;
+      virtual i64 release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override;
 #else
-      virtual i64 add_ref(OBJECT_REF_DEBUG_PARAMS);
-      virtual i64 dec_ref(OBJECT_REF_DEBUG_PARAMS);
-      virtual i64 release(OBJECT_REF_DEBUG_PARAMS);
+      virtual i64 increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS);
+      virtual i64 decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS);
+      virtual i64 release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS);
 #endif
 
 

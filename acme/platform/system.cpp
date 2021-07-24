@@ -209,7 +209,7 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
 
    //      m_pacmedir = pacmedir;
 
-   //    m_pacmedir->add_ref();
+   //    m_pacmedir->increment_reference_count();
 
       estatus = __compose(m_pacmepath);
 
@@ -374,7 +374,7 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
 
       synchronous_lock synchronouslock(&m_mutexTask);
 
-      m_taskmap[itask].reset(ptask OBJECT_REF_DEBUG_COMMA_THIS_FUNCTION_LINE);
+      m_taskmap[itask].reset(ptask OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS_FUNCTION_LINE);
 
       m_taskidmap[ptask] = itask;
 
@@ -386,9 +386,9 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
 
       synchronous_lock synchronouslock(&m_mutexTask);
 
-   #if OBJECT_REF_DEBUG
+   #if OBJECT_REFERENCE_COUNT_DEBUG
 
-      m_taskmap[itask].release(OBJECT_REF_DEBUG_THIS_FUNCTION_LINE);
+      m_taskmap[itask].release(OBJECT_REFERENCE_COUNT_DEBUG_THIS_FUNCTION_LINE);
 
    #endif
 
@@ -1234,18 +1234,18 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
 #ifdef DEBUG
 
 
-   i64 system::add_ref(OBJ_REF_DBG_PARAMS)
+   i64 system::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS)
    {
 
-      return ::object::add_ref(OBJ_REF_DBG_ARGS);
+      return ::object::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
 
    }
 
 
-   i64 system::dec_ref(OBJ_REF_DBG_PARAMS)
+   i64 system::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS)
    {
 
-      return ::object::dec_ref(OBJ_REF_DBG_ARGS);
+      return ::object::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
 
    }
 

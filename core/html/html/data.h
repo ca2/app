@@ -20,8 +20,8 @@ public:
    virtual ::e_status initialize_html_data(::html_data * phtmldata);
 
 
-   i64 add_ref(OBJECT_REF_DEBUG_PARAMS) override;
-   i64 dec_ref(OBJECT_REF_DEBUG_PARAMS) override;
+   i64 increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override;
+   i64 decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override;
 
 
    virtual bool open_document(const ::payload & varFile);

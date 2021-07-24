@@ -18,10 +18,10 @@ namespace factory
 
 
 template < class root_derived >
-inline i64 add_ref(root_derived * pca OBJECT_REF_DEBUG_COMMA_PARAMS);
+inline i64 increment_reference_count(root_derived * pca OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 
 template < class root_derived >
-inline i64 release(root_derived * & pca OBJECT_REF_DEBUG_COMMA_PARAMS);
+inline i64 release(root_derived * & pca OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 
 // ::ca::null_class back link to operational system oswindow.h
 //
@@ -110,7 +110,7 @@ public:
       if (m_p)
       {
 
-         ::add_ref(m_p);
+         ::increment_reference_count(m_p);
 
       }
 
@@ -134,7 +134,7 @@ public:
       if (m_p)
       {
 
-         ::add_ref(m_p);
+         ::increment_reference_count(m_p);
 
       }
 
@@ -309,7 +309,7 @@ public:
    }
 
 
-   inline i64 release(OBJECT_REF_DEBUG_PARAMS);
+   inline i64 release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS);
 
    inline T * detach();
 
@@ -409,7 +409,7 @@ public:
    }
 
 
-   inline ___pointer & reset(T * ptr OBJECT_REF_DEBUG_COMMA_PARAMS);
+   inline ___pointer & reset(T * ptr OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 
    inline bool operator ==(std::nullptr_t) const { return is_null(); }
 
@@ -653,13 +653,13 @@ inline __pointer(TYPE) & defer_clone(__pointer(TYPE) & p)
 
 
 template < class TYPE >
-inline ::i64 release(__pointer(TYPE)& pointer OBJECT_REF_DEBUG_COMMA_PARAMS);
+inline ::i64 release(__pointer(TYPE)& pointer OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 
 template < class TYPE >
-inline ::i64 __finalize(__pointer(TYPE)& pointer OBJECT_REF_DEBUG_COMMA_PARAMS);
+inline ::i64 __finalize(__pointer(TYPE)& pointer OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 
 template < class REFERENCE >
-inline ::i64 release(__reference(REFERENCE)& preference OBJECT_REF_DEBUG_COMMA_PARAMS);
+inline ::i64 release(__reference(REFERENCE)& preference OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 
 
 

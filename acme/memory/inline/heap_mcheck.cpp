@@ -14,7 +14,7 @@
 
 
 #if !defined(__VLD) && !defined(__MCRTDBG)
-void * aligned_memory_alloc(size_t size, memsize align)
+void * aligned_memory_allocate(size_t size, memsize align)
 {
 
    void * p;
@@ -29,7 +29,7 @@ void * aligned_memory_alloc(size_t size, memsize align)
 
    throw todo();
 
-   p = unaligned_memory_alloc(size);
+   p = unaligned_memory_allocate(size);
 
 #else
 
@@ -78,7 +78,7 @@ void * aligned_memory_alloc(size_t size, memsize align)
 
 }
 
-void * unaligned_memory_alloc(size_t size)
+void * unaligned_memory_allocate(size_t size)
 {
 
    void * p;
@@ -142,7 +142,7 @@ void * unaligned_memory_alloc(size_t size)
 
 #if defined(APPLEOS) || defined(LINUX)
 
-   p = aligned_memory_alloc(size);
+   p = aligned_memory_allocate(size);
 
 #else
 
@@ -187,7 +187,7 @@ void * aligned_memory_allocate_debug(size_t size, i32 nBlockUse, const char * sz
 
    throw_todo();
 
-   p = unaligned_memory_alloc(size);
+   p = unaligned_memory_allocate(size);
 
 #else
 
@@ -248,14 +248,14 @@ void * unaligned_memory_allocate_debug(size_t size, i32 nBlockUse, const char * 
 
 #elif MEMDLEAK
 
-   p = unaligned_memory_alloc(size);
+   p = unaligned_memory_allocate(size);
 
 #else
 
 
 #ifdef APPLEOS
 
-   p = aligned_memory_alloc(size);
+   p = aligned_memory_allocate(size);
 
 #else
 
@@ -303,11 +303,11 @@ void * memory_allocate(memsize size)
 
 #if defined(APPLEOS)
 
-   return aligned_memory_alloc(size);
+   return aligned_memory_allocate(size);
 
 #else
 
-   return unaligned_memory_alloc(size);
+   return unaligned_memory_allocate(size);
 
 #endif
 
@@ -329,11 +329,11 @@ void * memory_allocate_no_track(size_t size)
 
 #if defined(APPLEOS)
 
-   return aligned_memory_alloc(size);
+   return aligned_memory_allocate(size);
 
 #else
 
-   return unaligned_memory_alloc(size);
+   return unaligned_memory_allocate(size);
 
 #endif
 
@@ -705,14 +705,14 @@ size_t memory_size_debug(void * pmemory, i32 iBlockType)
 
 
 
-void * aligned_memory_alloc(size_t size, memsize align)
+void * aligned_memory_allocate(size_t size, memsize align)
 {
 
    return system_heap_alloc(size);
 
 }
 
-void * unaligned_memory_alloc(size_t size)
+void * unaligned_memory_allocate(size_t size)
 {
 
    return system_heap_alloc(size);

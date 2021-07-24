@@ -755,18 +755,18 @@ CLASS_DECL_ACME ::task * get_task()
 
 // }
 
-CLASS_DECL_ACME void set_task(task * ptask OBJECT_REF_DEBUG_COMMA_PARAMS_DEF)
+CLASS_DECL_ACME void set_task(task * ptask OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
 {
 
-   t_ptask.reset(ptask OBJECT_REF_DEBUG_COMMA_ARGS);
+   t_ptask.reset(ptask OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
 
 }
 
 
-CLASS_DECL_ACME void thread_release(OBJECT_REF_DEBUG_PARAMS_DEF)
+CLASS_DECL_ACME void thread_release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
 {
 
-   t_ptask.release(OBJECT_REF_DEBUG_ARGS);
+   t_ptask.release(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
 
 }
 

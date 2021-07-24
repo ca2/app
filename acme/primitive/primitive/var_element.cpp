@@ -60,7 +60,7 @@ enum_type set_element(::payload & payload, ::matter * pobject)
 
    m_etype = ::set_element(*this, pobject);
 
-   ::add_ref(pobject);
+   ::increment_reference_count(pobject);
 
    return m_etype;
 

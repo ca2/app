@@ -72,26 +72,26 @@ namespace windowing
    }
 
 
-   i64 simple_ui_display::add_ref(OBJECT_REF_DEBUG_PARAMS_DEF)
+   i64 simple_ui_display::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
    {
 
-      return hook::add_ref(OBJECT_REF_DEBUG_ARGS);
+      return hook::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
 
    }
 
 
-   i64 simple_ui_display::dec_ref(OBJECT_REF_DEBUG_PARAMS_DEF)
+   i64 simple_ui_display::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
    {
 
-      return hook::dec_ref(OBJECT_REF_DEBUG_ARGS);
+      return hook::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
 
    }
 
 
-   i64 simple_ui_display::release(OBJECT_REF_DEBUG_PARAMS_DEF)
+   i64 simple_ui_display::release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
    {
 
-      return hook::release(OBJECT_REF_DEBUG_ARGS);
+      return hook::release(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
 
    }
 

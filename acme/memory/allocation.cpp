@@ -165,7 +165,7 @@
 void * __cdecl operator new(size_t size, std::align_val_t alignment)
 {
    
-   return aligned_memory_alloc(size, (memsize) alignment);
+   return aligned_memory_allocate(size, (memsize) alignment);
 
 }
 

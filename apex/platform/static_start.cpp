@@ -237,7 +237,7 @@ namespace apex
 
       g_bApex = 0;
 
-#if OBJ_TYP_CTR
+#if OBJECT_TYPE_COUNTER
 
       g_pmapObjTypCtr = nullptr;
 
@@ -245,7 +245,7 @@ namespace apex
 
       g_bApex = false;
 
-#if OBJ_TYP_CTR
+#if OBJECT_TYPE_COUNTER
 
       g_iObjTypCtrInit = 0;
 
@@ -471,7 +471,7 @@ namespace apex
 //
 //#endif
 
-//#if OBJ_TYP_CTR
+//#if OBJECT_TYPE_COUNTER
 //
 //      g_pmapObjTypCtr = new map < const char*, const char*, ::i64, ::i64 >;
 //
@@ -574,7 +574,7 @@ namespace apex
       create_factory < ::apex::context, ::acme::context >();
 
 
-#if OBJ_TYP_CTR
+#if OBJECT_TYPE_COUNTER
       g_iObjTypCtrInit = 1;
 #endif
 
@@ -604,7 +604,7 @@ namespace apex
 
       //::acme::del(g_pcsFont);
 
-#if OBJ_TYP_CTR
+#if OBJECT_TYPE_COUNTER
       g_iObjTypCtrInit = 0;
 #endif
 
@@ -746,7 +746,7 @@ namespace apex
 
       //del(psystem->g_mutexLibrary);
 
-#if OBJ_TYP_CTR
+#if OBJECT_TYPE_COUNTER
 
       ::acme::del(g_pmapObjTypCtr);
 

@@ -15,7 +15,7 @@ namespace aura
 {
 
 
-//#if OBJ_TYP_CTR
+//#if OBJECT_TYPE_COUNTER
 //
 //   extern map < const char*, const char*, ::i64, ::i64 >* g_pmapObjTypCtr;
 //
@@ -33,7 +33,7 @@ namespace aura
    //extern critical_section* g_pcsRefDbg;
 
 
-//#if OBJ_TYP_CTR
+//#if OBJECT_TYPE_COUNTER
 //
 //   extern int g_iObjTypCtrInit;
 //

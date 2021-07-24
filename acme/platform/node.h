@@ -73,8 +73,8 @@ namespace acme
 
 
 
-      i64 add_ref(OBJ_REF_DBG_PARAMS) override;
-      i64 dec_ref(OBJ_REF_DBG_PARAMS) override;
+      i64 increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override;
+      i64 decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override;
 
 
       virtual ::e_status call_async(const char * pszPath, const char * pszParam, const char * pszDir, ::e_display edisplay, bool bPrivileged, unsigned int * puiPid = nullptr);

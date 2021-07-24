@@ -122,26 +122,26 @@ namespace user
    }
 
 
-   i64 message_box::add_ref(OBJ_REF_DBG_PARAMS_DEF)
+   i64 message_box::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
    {
 
-      return ::user::interaction::add_ref(OBJ_REF_DBG_ARGS);
+      return ::user::interaction::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
 
    }
 
 
-   i64 message_box::dec_ref(OBJ_REF_DBG_PARAMS_DEF)
+   i64 message_box::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
    {
 
-      return ::user::interaction::dec_ref(OBJ_REF_DBG_ARGS);
+      return ::user::interaction::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
 
    }
 
 
-   i64 message_box::release(OBJ_REF_DBG_PARAMS_DEF)
+   i64 message_box::release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
    {
 
-      return ::user::interaction::release(OBJ_REF_DBG_ARGS);
+      return ::user::interaction::release(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
 
    }
 

@@ -33,18 +33,18 @@ html_data::~html_data()
 }
 
 
-i64 html_data::add_ref(OBJECT_REF_DEBUG_PARAMS_DEF)
+i64 html_data::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
 {
 
-   return ::object::add_ref(OBJECT_REF_DEBUG_ARGS);
+   return ::object::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
 
 }
 
 
-i64 html_data::dec_ref(OBJECT_REF_DEBUG_PARAMS_DEF)
+i64 html_data::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
 {
 
-   return ::object::dec_ref(OBJECT_REF_DEBUG_ARGS);
+   return ::object::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
 
 }
 

@@ -162,7 +162,7 @@ namespace aura
       //m_ppaneviewMain = nullptr;
 
       // almost always forgotten, assumed, as exception, responsability of application to add first ref on constructor.
-      //::add_ref(this);
+      //::increment_reference_count(this);
 
       //srand((u32) ::get_nanos());
 
@@ -5807,7 +5807,7 @@ namespace aura
    //   m_ppaneviewMain = nullptr;
 
    //   // almost always forgotten, assumed, as exception, responsability of application to add first ref on constructor.
-   //   //::add_ref(this);
+   //   //::increment_reference_count(this);
 
    //   srand((u32) ::get_tick());
 

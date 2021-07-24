@@ -206,7 +206,7 @@ m_bInterprocessIntercommunication = false;
 //m_ppaneviewMain = nullptr;
 
 // almost always forgotten, assumed, as exception, responsability of application to add first ref on constructor.
-//::add_ref(this);
+//::increment_reference_count(this);
 
 srand((u32) ::_get_nanos());
 
@@ -239,7 +239,7 @@ return estatus;
 
 }
 
-///initialize(this OBJECT_REF_DEBUG_COMMA_THIS_FUNCTION_LINE);
+///initialize(this OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS_FUNCTION_LINE);
 
 //set_context_app(this);
 
@@ -344,7 +344,7 @@ pnode->set_application_menu(m_papplicationmenu, this);
 ::e_status application::finalize()
 {
 
-   __unbind(this, m_puserlanguagemap OBJECT_REF_DEBUG_COMMA_THIS);
+   __unbind(this, m_puserlanguagemap OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS);
 
    auto estatus = ::apex::context::finalize();
 
@@ -1975,7 +1975,7 @@ if (m_bInterprocessIntercommunication)
 try
 {
 
-__raw_compose(m_pinterprocessintercommunication, create_interprocess_intercommunication() OBJECT_REF_DEBUG_COMMA_THIS_NOTE("::application::init_instance"));
+__raw_compose(m_pinterprocessintercommunication, create_interprocess_intercommunication() OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS_NOTE("::application::init_instance"));
 
 }
 catch (...)
@@ -3545,7 +3545,7 @@ return estatus;
 
 auto psystem = get_system()->m_papexsystem;
 
-estatus = __own(this, m_puserlanguagemap, __new(::user::language_map) OBJECT_REF_DEBUG_COMMA_THIS_NOTE("::application::init1") );
+estatus = __own(this, m_puserlanguagemap, __new(::user::language_map) OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS_NOTE("::application::init1") );
 
 if (!estatus)
 {
@@ -3863,7 +3863,7 @@ void application::term_application()
       try
       {
 
-         __unbind(this, m_pinterprocessintercommunication OBJECT_REF_DEBUG_COMMA_THIS);
+         __unbind(this, m_pinterprocessintercommunication OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS);
 
       }
       catch (...)
@@ -3939,7 +3939,7 @@ __pointer(::acme::exclusive) application::get_exclusive(string strId ARG_SEC_ATT
 
       auto pexclusiveNew = __new(::acme::exclusive(strId ADD_PARAM_SEC_ATTRS));
 
-      __m_own(this, pexclusive, pexclusiveNew OBJECT_REF_DEBUG_COMMA_THIS_NOTE("::application::get_exclusive") );
+      __m_own(this, pexclusive, pexclusiveNew OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS_NOTE("::application::get_exclusive") );
 
    }
 
@@ -7605,7 +7605,7 @@ return m_datakey.m_bLocalData;
 //   m_ppaneviewMain = nullptr;
 
 //   // almost always forgotten, assumed, as exception, responsability of application to add first ref on constructor.
-//   //::add_ref(this);
+//   //::increment_reference_count(this);
 
 //   srand((u32) ::get_tick());
 

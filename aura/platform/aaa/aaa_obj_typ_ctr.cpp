@@ -1,6 +1,6 @@
 #include "framework.h"
 
-#if OBJ_TYP_CTR
+#if OBJECT_TYPE_COUNTER
 
 int g_iObjTypCtrInit = 0;
 i64 g_iObjTypCtr = 0;
@@ -9,7 +9,7 @@ critical_section g_csObjTypCtr;
 
 map < const char*, const char*, ::i64, ::i64 > * g_pmapObjTypCtr = nullptr;
 
-void obj_type_ctr_inc(::matter * pobject)
+void object_type_counter_increment(::matter * pobject)
 {
 
    if (!g_iObjTypCtrInit)
@@ -41,7 +41,7 @@ void obj_type_ctr_inc(::matter * pobject)
    atomic_increment(&g_iObjTypCtr);
 
 }
-void obj_type_ctr_dec(::matter* pobject)
+void object_type_counter_decrement(::matter* pobject)
 {
    if (!g_iObjTypCtrInit)
    {

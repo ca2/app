@@ -68,7 +68,7 @@ bool xdisplay::open(char * display_name, bool bInitialLock)
 
    }
 
-   m_pdata->add_ref(OBJECT_REF_DEBUG_P_NOTE(nullptr, "xdisplay::open"));
+   m_pdata->increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_P_NOTE(nullptr, "xdisplay::open"));
 
    m_bOwn = true;
 

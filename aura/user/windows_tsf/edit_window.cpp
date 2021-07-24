@@ -1766,7 +1766,7 @@ namespace tsf
 
    STDMETHODIMP_(::u32) edit_window::AddRef()
    {
-      return (::u32) add_ref(OBJECT_REF_DEBUG_THIS);
+      return (::u32) increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
    }
 
 
@@ -1786,7 +1786,7 @@ namespace tsf
    
        //return m_ObjRefCount;
 
-      return (::u32) release(OBJECT_REF_DEBUG_THIS);
+      return (::u32) release(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
    }
 
 

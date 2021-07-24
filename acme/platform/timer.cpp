@@ -47,7 +47,7 @@ timer::~timer()
 ::e_status timer::finalize()
 {
 
-   m_ptimercallback.release(OBJECT_REF_DEBUG_THIS);
+   m_ptimercallback.release(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
 
    return ::success;
 

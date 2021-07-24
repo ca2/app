@@ -446,18 +446,18 @@ namespace simple_ui
    }
 
 
-   //i64 message_box::add_ref()
+   //i64 message_box::increment_reference_count()
    //{
 
-   //   return simple_ui::top::add_ref(OBJECT_REF_DEBUG_ARGS);
+   //   return simple_ui::top::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
 
    //}
 
 
-   //i64 message_box::dec_ref()
+   //i64 message_box::decrement_reference_count()
    //{
 
-   //   return simple_ui::top::dec_ref(OBJECT_REF_DEBUG_ARGS);
+   //   return simple_ui::top::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
 
    //}
 

@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "acme/platform/obj_ref_debug.h"
+#include "acme/platform/object_reference_count_debug.h"
 
 
 namespace subject
@@ -21,7 +21,7 @@ namespace subject
    subject::~subject()
    {
 
-      m_pmatter.release(OBJECT_REF_DEBUG_THIS_FUNCTION_LINE);
+      m_pmatter.release(OBJECT_REFERENCE_COUNT_DEBUG_THIS_FUNCTION_LINE);
 
    }
 
@@ -29,26 +29,26 @@ namespace subject
 #ifdef DEBUG
 
 
-   i64 subject::add_ref(OBJECT_REF_DEBUG_PARAMS_DEF)
+   i64 subject::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
    {
 
-      return ::property_object::add_ref(OBJECT_REF_DEBUG_ARGS);
+      return ::property_object::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
 
    }
 
 
-   i64 subject::dec_ref(OBJECT_REF_DEBUG_PARAMS_DEF)
+   i64 subject::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
    {
 
-      return ::property_object::dec_ref(OBJECT_REF_DEBUG_ARGS);
+      return ::property_object::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
 
    }
 
 
-   i64 subject::release(OBJECT_REF_DEBUG_PARAMS_DEF)
+   i64 subject::release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
    {
 
-      return ::property_object::release(OBJECT_REF_DEBUG_ARGS);
+      return ::property_object::release(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
 
    }
 

@@ -87,9 +87,9 @@ namespace user
       void install_message_routing(::channel * pchannel) override;
 
 
-      i64 add_ref(OBJECT_REF_DEBUG_PARAMS) override;
-      i64 dec_ref(OBJECT_REF_DEBUG_PARAMS) override;
-      i64 release(OBJECT_REF_DEBUG_PARAMS) override;
+      i64 increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override;
+      i64 decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override;
+      i64 release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override;
 
 
       void common_construct();

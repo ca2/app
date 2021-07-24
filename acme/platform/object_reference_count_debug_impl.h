@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_ACME obj_ref_debug
+class CLASS_DECL_ACME object_reference_count_debug
 {
 public:
 
@@ -21,11 +21,10 @@ public:
    array < item >             m_itema;
 
 
-   obj_ref_debug();
-   virtual ~obj_ref_debug();
+   object_reference_count_debug();
+   virtual ~object_reference_count_debug();
 
 };
-
 
 
 

@@ -1,28 +1,29 @@
 #include "framework.h"
 #include "acme/platform/static_start.h"
-#include "obj_ref_debug_impl.h"
+#include "object_reference_count_debug_impl.h"
 
 
-extern lparam_debug g_lparamdbg;
+extern struct lparam_debug g_lparamdbg;
+
 
 bool g_bEnableObjRefDbg = true;
 
 //critical_section * g_pcsRefDbg = nullptr;
 
 
-obj_ref_debug::obj_ref_debug()
+object_reference_count_debug::object_reference_count_debug()
 {
 
 }
 
-obj_ref_debug::~obj_ref_debug()
+object_reference_count_debug::~object_reference_count_debug()
 {
 
 
 }
 
 
-void defer_delete(obj_ref_debug* p)
+void defer_delete(object_reference_count_debug* p)
 {
 
    if (::is_null(p))
@@ -53,7 +54,7 @@ string object_name(matter* p)
 
 }
 
-#if OBJECT_REF_DEBUG
+#if OBJECT_REFERENCE_COUNT_DEBUG
 
 void matter::add_ref_history(matter* p, const char* pszObjRefDbg)
 {
@@ -88,7 +89,7 @@ void matter::add_ref_history(matter* p, const char* pszObjRefDbg)
          if (m_pobjrefdbg == nullptr)
          {
 
-            m_pobjrefdbg = new obj_ref_debug;
+            m_pobjrefdbg = new object_reference_count_debug;
 
          }
 
@@ -221,10 +222,10 @@ void matter::check_pending_releases()
 #endif
 
 
-lparam_debug g_lparamdbg;
+struct lparam_debug g_lparamdbg;
 
 
-CLASS_DECL_ACME lparam_debug & lparam_debug()
+CLASS_DECL_ACME struct lparam_debug & lparam_debug()
 {
 
     return g_lparamdbg;

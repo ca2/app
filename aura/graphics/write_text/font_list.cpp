@@ -90,7 +90,7 @@ namespace write_text
 
       synchronous_lock synchronouslock(mutex());
 
-      pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
       ::rectangle_i32 rectangleClient = m_puserinteraction->get_client_rect();
 
@@ -227,7 +227,7 @@ namespace write_text
 
       synchronous_lock synchronouslock(mutex());
 
-      pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
       auto pfontlistdata = m_pfontlistdata;
 

@@ -383,7 +383,7 @@ namespace user
 
       pgraphics->draw_rectangle(rectangleClient, argb(255, 192, 192, 192));
 
-      pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
       ::count cCount = m_imagea.get_count();
 

@@ -599,7 +599,7 @@ namespace html
          else
          {
 
-            pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+            pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
             auto pstyle = m_pelemental->m_pdata->m_pcoredata->m_pform->get_style(pgraphics);
             
@@ -661,7 +661,7 @@ namespace html
 
             }
 
-            pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+            pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
             ::color32_t color32 = 0;
 

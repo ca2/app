@@ -298,7 +298,7 @@ namespace account
 
          float fMargin = (height(rectangleClient) * ((1.0f - 0.7f) / 2.0f));*/
 
-         __pointer(::core::system) psystem = get_system();
+         auto psystem = get_system()->m_pcoresystem;
 
          auto pnode = psystem->node();
 

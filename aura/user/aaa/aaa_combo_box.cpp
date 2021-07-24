@@ -199,13 +199,13 @@ namespace user
       else
       {
 
-         pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+         pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
          _001OnDrawStaticText(pgraphics);
 
       }
 
-      pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
       ::rectangle rectDropDown;
 
@@ -528,7 +528,7 @@ namespace user
    void combo_box::on_message_key_down(::message::message * pmessage)
    {
 
-      __pointer(::message::key) pkey(pmessage);
+      auto pkey = pmessage->m_pkey;
 
       if(pkey->m_ekey == ::user::e_key_down)
       {
@@ -564,7 +564,7 @@ namespace user
    void combo_box::on_message_mouse_move(::message::message * pmessage)
    {
 
-      __pointer(::message::mouse) pmouse(pmessage);
+      auto pmouse = pmessage->m_pmouse;
 
       pmouse->previous();
 
@@ -600,7 +600,7 @@ namespace user
    void combo_box::on_message_left_button_down(::message::message * pmessage)
    {
 
-      __pointer(::message::mouse) pmouse(pmessage);
+      auto pmouse = pmessage->m_pmouse;
 
       if (is_window_enabled())
       {
@@ -646,7 +646,7 @@ namespace user
    void combo_box::on_message_left_button_up(::message::message * pmessage)
    {
 
-      __pointer(::message::mouse) pmouse(pmessage);
+      auto pmouse = pmessage->m_pmouse;
 
       if (is_window_enabled())
       {

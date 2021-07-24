@@ -14,7 +14,7 @@ namespace draw3d
 
       array < locationd > locationa = pbox->vertices();
 
-      m_pdc->set_alpha_mode(::draw2d::alpha_mode_blend);
+      m_pdc->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
       ::draw2d::pen_pointer pen(e_create);
 
@@ -225,7 +225,7 @@ namespace draw3d
       array < locationd > locationa = pbox->vertices();
       array < int_array > f = pbox->faces();
 
-      m_pdc->set_alpha_mode(::draw2d::alpha_mode_blend);
+      m_pdc->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
       ::draw2d::pen_pointer pen(e_create);
 

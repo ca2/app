@@ -92,7 +92,7 @@ namespace user
    void static_control::on_message_left_button_down(::message::message * pmessage)
    {
 
-//      __pointer(::message::mouse) pmouse(pmessage);
+//      auto pmouse = pmessage->m_pmouse;
       UNREFERENCED_PARAMETER(pmessage);
 
       m_bLButtonDown = true;
@@ -103,7 +103,7 @@ namespace user
    void static_control::on_message_left_button_up(::message::message * pmessage)
    {
 
-//      __pointer(::message::mouse) pmouse(pmessage);
+//      auto pmouse = pmessage->m_pmouse;
       UNREFERENCED_PARAMETER(pmessage);
 
       if (m_bLButtonDown)
@@ -126,7 +126,7 @@ namespace user
    void static_control::on_message_mouse_move(::message::message * pmessage)
    {
 
-//      __pointer(::message::mouse) pmouse(pmessage);
+//      auto pmouse = pmessage->m_pmouse;
       UNREFERENCED_PARAMETER(pmessage);
    }
 

@@ -69,12 +69,12 @@ static const __MAP_MESSAGE allMessages[] =
    DEFINE_MESSAGE(WM_QUERYDRAGICON),
    DEFINE_MESSAGE(WM_COMPAREITEM),
    DEFINE_MESSAGE(WM_COMPACTING),
-   DEFINE_MESSAGE(e_message_nccreate),
-   DEFINE_MESSAGE(e_message_ncdestroy),
-   DEFINE_MESSAGE(e_message_nccalcsize),
-   DEFINE_MESSAGE(e_message_nchittest),
-   DEFINE_MESSAGE(e_message_ncpaint),
-   DEFINE_MESSAGE(e_message_ncactivate),
+   DEFINE_MESSAGE(e_message_non_client_create),
+   DEFINE_MESSAGE(e_message_non_client_destroy),
+   DEFINE_MESSAGE(e_message_non_client_calcsize),
+   DEFINE_MESSAGE(e_message_non_client_hittest),
+   DEFINE_MESSAGE(e_message_non_client_paint),
+   DEFINE_MESSAGE(e_message_non_client_activate),
    DEFINE_MESSAGE(WM_GETDLGCODE),
    DEFINE_MESSAGE(e_message_non_client_mouse_move),
    DEFINE_MESSAGE(e_message_non_client_left_button_down),
@@ -280,7 +280,7 @@ void __trace_message(const char * lpszPrefix, ::message::message * pmessage)
    __pointer(::user::message) pusermessage(pmessage);
 
    if (pusermessage->m_id == e_message_mouse_move || pusermessage->m_id == e_message_non_client_mouse_move ||
-         pusermessage->m_id == e_message_nchittest || pusermessage->m_id == e_message_set_cursor ||
+         pusermessage->m_id == e_message_non_client_hittest || pusermessage->m_id == e_message_set_cursor ||
          pusermessage->m_id == WM_CTLCOLORBTN ||
          pusermessage->m_id == WM_CTLCOLORDLG ||
          pusermessage->m_id == WM_CTLCOLOREDIT ||
@@ -363,7 +363,7 @@ void __trace_message(const char * lpszPrefix, LPMESSAGE lpmsg)
    ENSURE_ARG(lpmsg != nullptr);
 
    if (lpmsg->message == e_message_mouse_move || lpmsg->message == e_message_non_client_mouse_move ||
-         lpmsg->message == e_message_nchittest || lpmsg->message == e_message_set_cursor ||
+         lpmsg->message == e_message_non_client_hittest || lpmsg->message == e_message_set_cursor ||
          lpmsg->message == WM_CTLCOLORBTN ||
          lpmsg->message == WM_CTLCOLORDLG ||
          lpmsg->message == WM_CTLCOLOREDIT ||

@@ -108,8 +108,6 @@ namespace draw2d_cairo
 
       }
 
-      destroy();
-
       if (size.is_empty())
       {
 
@@ -117,20 +115,13 @@ namespace draw2d_cairo
 
       }
 
-      m_pbitmap.create();
+      auto pbitmap = ::__create < ::draw2d::bitmap >();
 
-      m_pgraphics.create();
+      auto pgraphics = ::__create < ::draw2d::graphics >();
 
-      if(m_pbitmap.is_null() || m_pgraphics.is_null())
+      if(pbitmap.is_null() || pgraphics.is_null())
       {
 
-         m_sizeRaw.cx = 0;
-         m_sizeRaw.cy = 0;
-         m_iScan = 0;
-         m_pcolorrefRaw = nullptr;
-         m_pcolorref1 = nullptr;
-         m_pbitmap.release();
-         m_pgraphics.release();
          return false;
 
       }
@@ -146,26 +137,36 @@ namespace draw2d_cairo
 
       i32 iScan = iGoodStride;
 
-      if(!m_pbitmap->create_bitmap(nullptr, size, (void **) &pcolorrefRaw, &iScan))
+      if(!pbitmap->create_bitmap(nullptr, size, (void **) &pcolorrefRaw, &iScan))
       {
 
-         m_sizeRaw.cx = 0;
-         m_sizeRaw.cy = 0;
-         m_iScan = 0;
-         m_pcolorrefRaw = nullptr;
-         m_pcolorref1 = nullptr;
-         m_pbitmap.release();
-         m_pgraphics.release();
          return false;
 
       }
 
-      if (m_pbitmap->get_os_data() == nullptr)
+      if(bPreserve)
       {
 
-         destroy();
+         if (::is_set(m_pcolorrefRaw))
+         {
+
+            copy_colorref(
+               pcolorrefRaw,
+               minimum(size.cx, m_size.cx),
+               minimum(size.cy, m_size.cy),
+               iScan,
+               m_pcolorrefRaw,
+               m_iScan);
+
+         }
 
       }
+
+      destroy();
+
+      m_pbitmap = pbitmap;
+
+      m_pgraphics = pgraphics;
 
       m_pgraphics->set(m_pbitmap);
       m_pgraphics->SetViewportOrg(m_point);

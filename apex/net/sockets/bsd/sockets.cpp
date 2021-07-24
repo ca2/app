@@ -218,7 +218,7 @@ namespace sockets
    string sockets::get_http_post_boundary()
    {
 
-      __pointer(::apex::system) psystem = get_system();
+      auto psystem = get_system()->m_papexsystem;
 
       single_lock lock(&m_mutexHttpPostBoundary, true);
 

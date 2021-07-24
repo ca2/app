@@ -78,7 +78,7 @@ public:
 
    __composite(class ::xml::xml)                      m_pxml;
 
-   __composite(class ::acme::node)                    m_pnode;
+   __pointer(class ::acme::node)                      m_pnode;
    __composite(class ::acme_dir)                      m_pacmedir;
    __composite(class ::acme_path)                     m_pacmepath;
    //__pointer(::parallelization::cleanup_task)         m_pcleanuptask;
@@ -96,6 +96,18 @@ public:
 
 
    void os_construct();
+
+
+#ifdef DEBUG
+
+
+   i64 add_ref(OBJ_REF_DBG_PARAMS) override;
+
+
+   i64 dec_ref(OBJ_REF_DBG_PARAMS) override;
+
+
+#endif
 
 
    inline ::acme::node* node() { return m_pnode; }

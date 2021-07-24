@@ -295,6 +295,8 @@ namespace imaging_freeimage
       if (::succeeded(estatus))
       {
 
+         auto pdata = pimage->get_data();
+
          return estatus;
 
       }

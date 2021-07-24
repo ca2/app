@@ -439,7 +439,7 @@ comptr < IWICImagingFactory > wic_get_imaging_factory();
 
                //pimageCompose->map();
 
-               //pimageCompose->g()->set_alpha_mode(::draw2d::alpha_mode_set);
+               //pimageCompose->g()->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
                pimageCompose->from(pimageFrame);
 
@@ -449,7 +449,7 @@ comptr < IWICImagingFactory > wic_get_imaging_factory();
 
                //pimageCompose->map();
 
-               //pimageCompose->g()->set_alpha_mode(::draw2d::alpha_mode_blend);
+               //pimageCompose->g()->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
                //pimageCompose->g()->draw(pimageFrame);
                pimageCompose->precision_blend(point, pimageFrame, nullptr, size);
@@ -461,7 +461,7 @@ comptr < IWICImagingFactory > wic_get_imaging_factory();
          else if (edisposal == ::draw2d::disposal_background)
          {
 
-            pimageCompose->g()->set_alpha_mode(::draw2d::alpha_mode_set);
+            pimageCompose->g()->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
             color32_t crBack = pframea->m_colorBack;
 
@@ -490,7 +490,7 @@ comptr < IWICImagingFactory > wic_get_imaging_factory();
     /*     if (uFrameIndex <= 0)
          {
 
-            pimageCompose->set_alpha_mode(::draw2d::alpha_mode_set);
+            pimageCompose->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
             pimageCompose->g()->fill_rectangle(pframea->rectangle(), 0);
 

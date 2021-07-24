@@ -811,7 +811,7 @@ i32 net::in6_addr_compare(in6_addr a,in6_addr b)
 //   if (!m_pthreadReverse)
 //   {
 //
-//      __pointer(::apex::system) psystem = get_system();
+//      auto psystem = get_system()->m_papexsystem;
 //
 //      m_pthreadReverse = psystem->fork([this]()
 //         {

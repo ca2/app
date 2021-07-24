@@ -536,7 +536,7 @@ namespace ios
       DECLARE_MESSAGE_HANDLER(_001OnPaint);
       DECLARE_MESSAGE_HANDLER(_001OnPrint);
       DECLARE_MESSAGE_HANDLER(_001OnCaptureChanged);
-      DECLARE_MESSAGE_HANDLER(on_message_set_cursor);
+      ////DECLARE_MESSAGE_HANDLER(on_message_set_cursor);
       DECLARE_MESSAGE_HANDLER(on_message_create);
       DECLARE_MESSAGE_HANDLER(_001OnSetFocus);
       DECLARE_MESSAGE_HANDLER(_001OnKillFocus);
@@ -566,7 +566,7 @@ namespace ios
 //      LRESULT Default() override;
   //    virtual LRESULT DefWindowProc(const ::id & id, WPARAM wParam, ::lparam lParam) override;
 
-      virtual void PostNcDestroy() override;
+      virtual void post_non_client_destroy() override;
 
       // for notifications from parent
       virtual bool OnChildNotify(const ::id & id, WPARAM wParam, LPARAM lParam, LRESULT* pResult);

@@ -701,9 +701,9 @@ namespace windowing
    ::e_status window::set_icon(::windowing::icon * picon)
    {
 
-      __throw(error_interface_only);
+      m_picon = picon;
 
-      return error_interface_only;
+      return ::success;
 
    }
     
@@ -711,9 +711,11 @@ namespace windowing
    __pointer(::windowing::icon) window::get_icon() const
    {
 
-      __throw(error_interface_only);
+      //__throw(error_interface_only);
 
-      return nullptr;
+      ///return nullptr;
+
+      return m_picon;
 
    }
 

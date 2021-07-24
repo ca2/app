@@ -94,7 +94,7 @@ static void TraceDDE(const char * pszPrefix, const MESSAGE* pMsg)
 //   __pointer(::user::message) pusermessage(pmessage);
 //
 //   if (pusermessage->m_id == e_message_mouse_move || pusermessage->m_id == e_message_non_client_mouse_move ||
-//      pusermessage->m_id == e_message_nchittest || pusermessage->m_id == e_message_set_cursor ||
+//      pusermessage->m_id == e_message_non_client_hittest || pusermessage->m_id == e_message_set_cursor ||
 //      pusermessage->m_id == WM_CTLCOLORBTN ||
 //      pusermessage->m_id == WM_CTLCOLORDLG ||
 //      pusermessage->m_id == WM_CTLCOLOREDIT ||
@@ -192,7 +192,7 @@ static void TraceDDE(const char * pszPrefix, const MESSAGE* pMsg)
 //
 //   if (pmsg->message == e_message_mouse_move || lpmsg->message == e_message_non_client_mouse_move ||
 
-//      pmsg->message == e_message_nchittest || lpmsg->message == e_message_set_cursor ||
+//      pmsg->message == e_message_non_client_hittest || lpmsg->message == e_message_set_cursor ||
 
 //      pmsg->message == WM_CTLCOLORBTN ||
 

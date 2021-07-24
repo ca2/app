@@ -439,7 +439,7 @@ namespace user
    void button::on_message_key_down(::message::message * pmessage)
    {
 
-      __pointer(::message::key) pkey(pmessage);
+      auto pkey = pmessage->m_pkey;
 
       ::user::enum_key iKey = pkey->m_ekey;
 
@@ -586,7 +586,7 @@ namespace user
 
          colorBottomRight.hls_rate(0.0, 0.75, 0.0);
 
-         pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+         pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
          pgraphics->draw_3drect(rectPush, colorTopLeft, colorBottomRight);
 
@@ -609,7 +609,7 @@ namespace user
          if (colorBackground.is_translucent())
          {
 
-            pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+            pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
             pgraphics->fill_rectangle(rectangleClient, colorBackground);
 
@@ -679,6 +679,8 @@ namespace user
             }
 
             edrawtext = e_draw_text_single_line;
+
+            pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
             pgraphics->draw_text(strText, rectText, ealign, edrawtext);
 
@@ -813,7 +815,7 @@ namespace user
 
          pgraphics->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
 
-         pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+         pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
          pgraphics->stretch(rectAspect, pimage->g(), ::rectangle_i32(pimage->get_size()));
 
@@ -879,7 +881,7 @@ namespace user
 
             pgraphics->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
 
-            pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+            pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
             pgraphics->stretch(rectAspect, pimage->g(), ::rectangle_i32(pimage->get_size()));
 

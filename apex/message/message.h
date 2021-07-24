@@ -74,7 +74,8 @@ namespace message
       bool previous(); // returns bRet
 
       virtual void set_lresult(lresult lresult);
-      virtual void set(oswindow oswindow, ::windowing::window * pwindow, const ::id & id, wparam wparam, ::lparam lparam, const ::point_i32 & point);
+      //virtual void set(oswindow oswindow, ::windowing::window * pwindow, const ::id & id, wparam wparam, ::lparam lparam, const ::point_i32 & point);
+      virtual void set(oswindow oswindow, ::windowing::window* pwindow, const ::id& id, wparam wparam, ::lparam lparam);
 
 
       ::u32 GetNotifyCode() const { return __hiword(m_wparam.m_number); }

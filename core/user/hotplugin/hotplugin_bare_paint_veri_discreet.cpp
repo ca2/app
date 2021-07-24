@@ -30,7 +30,7 @@ namespace hotplugin
 
 
 
-      pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
       int h = 33;
       int m = 49 * 2;
 

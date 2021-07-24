@@ -113,7 +113,7 @@ namespace console
    void prompt_impact::on_message_key_down(::message::message * pmessage)
    {
 
-      __pointer(::message::key) pkey(pmessage);
+      auto pkey = pmessage->m_pkey;
 
       m_millisCaretStart.Now();
 
@@ -293,7 +293,7 @@ namespace console
 
 
 
-      pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
       ::write_text::font_pointer f(e_create);
 
       f->create_pixel_font("Consolas",16.0);

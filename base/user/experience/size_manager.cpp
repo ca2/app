@@ -119,22 +119,18 @@ namespace experience
 //         //   return true;
 //      }
 
+      if (ehittest == hittest_none)
+      {
+
+         return false;
+
+      }
+
+      pmouse->m_bRet = true;
+
       __pointer(::base::session) psession = get_session();
 
-      if(ehittest != hittest_none)
-      {
-
-         m_pframewindow->set_mouse_capture();
-
-         pmouse->m_bRet = true;
-
-      }
-      else
-      {
-
-         //psession->user()->windowing()->release_mouse_capture();
-
-      }
+      m_pframewindow->set_mouse_capture();
 
       auto puser = psession->user();
 
@@ -146,26 +142,13 @@ namespace experience
 
       pmouse->m_pcursor = pcursor;
 
-      m_ehittestCursor = hittest_none;
-
       m_ehittestSizing = ehittest;
 
-      if(m_ehittestSizing == hittest_none)
-      {
+      m_pframewindow->on_start_layout_experience(e_layout_experience_sizing);
 
-         return false;
+      m_iPaintCount = 0;
 
-      }
-      else
-      {
-
-         m_pframewindow->on_start_layout_experience(e_layout_experience_sizing);
-
-         m_iPaintCount = 0;
-
-         return true;
-
-      }
+      return true;
 
    }
 
@@ -209,99 +192,131 @@ namespace experience
 
       }
 
-      m_ehittestCursor = _001HitTest(pmouse->m_point);
+      auto ehittestCursor = _001HitTest(pmouse->m_point);
 
-      if(m_ehittestCursor != hittest_none)
+      if (ehittestCursor == hittest_none)
       {
-         
-         auto ecursor = translate(m_ehittestCursor);
 
-         auto psession = get_session()->m_paurasession;
+         if (m_ehittestCursor != hittest_none)
+         {
 
-         auto puser = psession->user();
+            m_ehittestCursor = hittest_none;
 
-         auto pwindowing = puser->windowing();
-
-         auto pcursor = pwindowing->get_cursor(ecursor);
-
-         pmouse->m_pcursor = pcursor;
-
-         m_pframewindow->set_mouse_cursor(pcursor);
-
-         pmouse->m_lresult = 1;
-
-         pmouse->m_bRet = true;
-
-         return true;
-
-      }
-
-      return false;
-
-   }
-
-
-   bool size_manager::on_message_set_cursor(::message::set_cursor * psetcursor)
-   {
-
-      if (!m_pframewindow->is_sizing_enabled())
-      {
+         }
 
          return false;
 
       }
-
-      if (m_ehittestSizing != hittest_none)
+         
+      if (m_ehittestCursor != ehittestCursor)
       {
 
-         auto psession = get_session()->m_paurasession;
-
-         auto puser = psession->user();
-
-         auto pwindowing = puser->windowing();
-
-         auto ecursor = translate(m_ehittestSizing);
-
-         auto pcursor = pwindowing->get_cursor(ecursor);
-
-         psetcursor->m_pcursor = pcursor;
-
-         psetcursor->m_lresult = 1;
-
-         psetcursor->m_bRet = true;
-
-         return true;
+         m_ehittestCursor = ehittestCursor;
 
       }
 
-      m_ehittestCursor = _001HitTest(psetcursor->m_point);
+      auto ecursor = translate(m_ehittestCursor);
 
-      if (m_ehittestCursor != hittest_none)
-      {
+      auto psession = get_session()->m_paurasession;
 
-         auto ecursor = translate(m_ehittestCursor);
+      auto puser = psession->user();
 
-         auto psession = get_session()->m_paurasession;
+      auto pwindowing = puser->windowing();
 
-         auto puser = psession->user();
+      auto pcursor = pwindowing->get_cursor(ecursor);
 
-         auto pwindowing = puser->windowing();
+      pmouse->m_pcursor = pcursor;
 
-         auto pcursor = pwindowing->get_cursor(ecursor);
+      m_pframewindow->set_mouse_cursor(pcursor);
 
-         psetcursor->m_pcursor = pcursor;
+      pmouse->m_lresult = 1;
 
-         psetcursor->m_lresult = 1;
+      pmouse->m_bRet = true;
 
-         psetcursor->m_bRet = true;
-
-         return true;
-
-      }
-
-      return false;
+      return true;
 
    }
+
+
+   //bool size_manager::on_message_set_cursor(::message::set_cursor * psetcursor)
+   //{
+
+   //   if (!m_pframewindow->is_sizing_enabled())
+   //   {
+
+   //      return false;
+
+   //   }
+
+   //   if (m_ehittestSizing != hittest_none)
+   //   {
+
+   //      auto psession = get_session()->m_paurasession;
+
+   //      auto puser = psession->user();
+
+   //      auto pwindowing = puser->windowing();
+
+   //      auto ecursor = translate(m_ehittestSizing);
+
+   //      auto pcursor = pwindowing->get_cursor(ecursor);
+
+   //      psetcursor->m_pcursor = pcursor;
+
+   //      psetcursor->m_lresult = 1;
+
+   //      psetcursor->m_bRet = true;
+
+   //      return true;
+
+   //   }
+
+   //   auto ehittestCursor = _001HitTest(psetcursor->m_point);
+
+   //   if (ehittestCursor == hittest_none)
+   //   {
+
+   //      if (m_ehittestCursor != hittest_none)
+   //      {
+
+   //         ehittestCursor = hittest_none;
+
+   //      }
+
+   //   }
+   //   else
+   //   {
+
+   //      if (m_ehittestCursor != ehittestCursor)
+   //      {
+
+   //         ehittestCursor = ehittestCursor;
+
+   //      }
+
+   //      auto ecursor = translate(m_ehittestCursor);
+
+   //      auto psession = get_session()->m_paurasession;
+
+   //      auto puser = psession->user();
+
+   //      auto pwindowing = puser->windowing();
+
+   //      auto pcursor = pwindowing->get_cursor(ecursor);
+
+   //      psetcursor->m_pcursor = pcursor;
+
+   //      psetcursor->m_lresult = 1;
+
+   //      psetcursor->m_bRet = true;
+
+   //      return true;
+
+   //   }
+
+   //   return false;
+
+   //}
 
 
    bool size_manager::on_message_left_button_up(::message::mouse * pmouse)

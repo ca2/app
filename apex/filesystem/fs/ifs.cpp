@@ -20,7 +20,7 @@ bool ifs::fast_has_subdir(const ::file::path & path)
 
    dir_listing & dir = m_map[path];
 
-   __pointer(::apex::system) psystem = get_system();
+   auto psystem = get_system()->m_papexsystem;
 
    if(dir.m_millisLast.elapsed() < psystem->m_millisFileListingCache)
    {

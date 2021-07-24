@@ -177,14 +177,14 @@ LRESULT CALLBACK CTSFMainWnd::_WndProc( HWND hWnd,
 {
     CTSFMainWnd *pThis = (CTSFMainWnd*)GetWindowLongPtr(hWnd, THIS_POINTER_OFFSET);
 
-    if((NULL == pThis) && (uMessage != e_message_nccreate))
+    if((NULL == pThis) && (uMessage != e_message_non_client_create))
     {
         return default_window_procedure(hWnd, uMessage, wParam, lParam);
     }
     
     switch (uMessage)
     {
-    case e_message_nccreate:
+    case e_message_non_client_create:
         {
             LPCREATESTRUCT lpcs = (LPCREATESTRUCT)lParam;
             pThis = (CTSFMainWnd*)(lpcs->lpCreateParams);
@@ -221,7 +221,7 @@ LRESULT CALLBACK CTSFMainWnd::_WndProc( HWND hWnd,
                                     GET_WM_COMMAND_CMD(wParam, lParam), 
                                     GET_WM_COMMAND_HWND(wParam, lParam));
 
-    case e_message_ncdestroy:
+    case e_message_non_client_destroy:
         pThis->m_hWnd = NULL;
         break;
 

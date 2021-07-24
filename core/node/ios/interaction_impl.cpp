@@ -439,7 +439,7 @@ namespace ios
          if(!m_puserinteraction->pre_create_window(pusersystem))
          {
 
-            PostNcDestroy();
+            post_non_client_destroy();
 
             return false;
 
@@ -452,7 +452,7 @@ namespace ios
          if (!pre_create_window(pusersystem))
          {
 
-            PostNcDestroy();
+            post_non_client_destroy();
 
             return false;
 
@@ -634,7 +634,7 @@ namespace ios
 
       //         MESSAGE_LINK(e_message_set_cursor, pchannel, this, &interaction_impl::on_message_set_cursor);
       //         MESSAGE_LINK(e_message_erase_background, pchannel, this,&interaction_impl::_001OnEraseBkgnd);
-               //         MESSAGE_LINK(e_message_nccalcsize, pchannel, this,&interaction_impl::on_message_non_client_calculate_size);
+               //         MESSAGE_LINK(e_message_non_client_calcsize, pchannel, this,&interaction_impl::on_message_non_client_calculate_size);
       //         MESSAGE_LINK(e_message_size, pchannel, this, &interaction_impl::on_message_size);
                //         MESSAGE_LINK(e_message_window_position_changing, pchannel, this,&interaction_impl::_001OnWindowPosChanging);
                //         MESSAGE_LINK(e_message_window_position_changed, pchannel, this,&interaction_impl::_001OnWindowPosChanged);
@@ -732,7 +732,7 @@ namespace ios
    }
 
 
-   void interaction_impl::PostNcDestroy()
+   void interaction_impl::post_non_client_destroy()
    {
 
       single_lock synchronouslock(get_application() == nullptr ? nullptr : get_application()->mutex(), true);
@@ -759,7 +759,7 @@ namespace ios
 
       ASSERT(get_handle() == nullptr);
 
-      ::user::interaction_impl::PostNcDestroy();
+      ::user::interaction_impl::post_non_client_destroy();
 
    }
 
@@ -770,13 +770,13 @@ namespace ios
       if (get_handle() != nullptr)
       {
          
-         DestroyWindow();    // will call PostNcDestroy
+         DestroyWindow();    // will call post_non_client_destroy
          
       }
       else
       {
          
-         PostNcDestroy();
+         post_non_client_destroy();
          
       }
       
@@ -4274,20 +4274,20 @@ namespace ios
       
    }
 
-   void interaction_impl::on_message_set_cursor(::message::message * pmessage)
-   {
-      __pointer(::user::message) pusermessage(pmessage);
-      if(psession->get_cursor() != nullptr
-            && psession->get_cursor()->m_ecursor != cursor_system)
-      {
+   // void interaction_impl::on_message_set_cursor(::message::message * pmessage)
+   // {
+   //    __pointer(::user::message) pusermessage(pmessage);
+   //    if(psession->get_cursor() != nullptr
+   //          && psession->get_cursor()->m_ecursor != cursor_system)
+   //    {
 
-         __throw(error_not_implemented);
-         //         ::SetCursor(nullptr);
-      }
-      pusermessage->set_lresult(1);
-      pusermessage->m_bRet = true;
-      //(bool)Default();
-   }
+   //       __throw(error_not_implemented);
+   //       //         ::SetCursor(nullptr);
+   //    }
+   //    pusermessage->set_lresult(1);
+   //    pusermessage->m_bRet = true;
+   //    //(bool)Default();
+   // }
    void interaction_impl::OnShowWindow(bool, ::u32)
    {
       //Default();
@@ -4852,12 +4852,12 @@ namespace ios
 
 
 
-   void interaction_impl::_001OnEraseBkgnd(::message::message * pmessage)
-   {
-      __pointer(::message::erase_bkgnd) perasebkgnd(pmessage);
-      perasebkgnd->m_bRet = true;
-      perasebkgnd->set_result(true);
-   }
+   // void interaction_impl::_001OnEraseBkgnd(::message::message * pmessage)
+   // {
+   //    __pointer(::message::erase_bkgnd) perasebkgnd(pmessage);
+   //    perasebkgnd->m_bRet = true;
+   //    perasebkgnd->set_result(true);
+   // }
 
 
    void interaction_impl::_001BaseWndInterfaceMap()

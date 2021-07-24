@@ -657,6 +657,17 @@ void object::child_post_quit_and_wait(const char* pszTag, const duration& durati
 
 }
 
+
+::e_status object::post(const ::routine& routine)
+{
+
+   __throw(error_interface_only);
+
+   return error_interface_only;
+
+}
+
+
 void object::defer_update_object_id()
 {
 
@@ -963,15 +974,15 @@ void object::system(const char* pszProjectName)
 
 #endif
 
-   m_pcontext.release(OBJECT_REF_DEBUG_THIS);
+   //m_pcontext.release(OBJ_REF_DBG_THIS);
 
-   //m_pthread.release(OBJECT_REF_DEBUG_THIS);
+   //m_pthread.release(OBJ_REF_DBG_THIS);
 
-   //m_papplication.release(OBJECT_REF_DEBUG_THIS);
+   //m_papplication.release(OBJ_REF_DBG_THIS);
 
-   //m_psession.release(OBJECT_REF_DEBUG_THIS);
+   //m_psession.release(OBJ_REF_DBG_THIS);
 
-   //m_psystemContext.release(OBJECT_REF_DEBUG_THIS);
+   //m_psystemContext.release(OBJ_REF_DBG_THIS);
 
    //on_finalize();
 
@@ -1024,7 +1035,6 @@ void object::add_child_task(::object* pobjectTask)
    m_objectaChildrenTask.add(pobjectTask);
 
 }
-
 
 
 bool object::check_children_task()
@@ -1088,7 +1098,6 @@ bool object::check_children_task()
    catch (...)
    {
 
-
    }
 
    if (m_objectaChildrenTask.has_element())
@@ -1100,13 +1109,30 @@ bool object::check_children_task()
 
    }
 
-   post_quit();
+   if(!m_bCheckChildrenTaskPostQuit)
+   {
+
+      m_bCheckChildrenTaskPostQuit = true;
+
+      try
+      {
+
+         post_quit();
+
+      }
+      catch (...)
+      {
+
+      }
+
+   }
 
    m_bCheckingChildrenTask = false;
 
    return false;
 
 }
+
 
 
 //::e_status object::finish()
@@ -1126,12 +1152,10 @@ bool object::check_children_task()
 
    set_finish();
 
-   synchronous_lock lock(mutex());
-
    while (check_children_task())
    {
 
-      sleep(100_ms);
+      ::sleep(100_ms);
 
    }
 
@@ -1380,7 +1404,11 @@ void object::delete_this()
    if (m_pcompositea)
    {
 
-      for (auto& pmatter : *m_pcompositea)
+      auto compositea = *m_pcompositea;
+
+      synchronouslock.unlock();
+
+      for (auto& pmatter : compositea)
       {
 
          auto estatusItem = pmatter->set_finish();
@@ -1432,7 +1460,11 @@ void object::delete_this()
    if (m_pcompositea)
    {
 
-      for (auto& pmatter : *m_pcompositea)
+      auto compositea = *m_pcompositea;
+
+      synchronouslock.unlock();
+
+      for (auto& pmatter : compositea)
       {
 
          auto estatusItem = pmatter->finish();

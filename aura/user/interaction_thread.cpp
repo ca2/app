@@ -313,26 +313,26 @@ namespace user
    bool thread::pump_runnable()
    {
 
-      {
+      //{
 
-         synchronous_lock synchronouslock(mutex());
+      //   synchronous_lock synchronouslock(mutex());
 
-         if (m_messagebasea.has_elements())
-         {
+      //   if (m_messagebasea.has_elements())
+      //   {
 
-            auto pusermessage = m_messagebasea.first_pointer();
+      //      auto pusermessage = m_messagebasea.first_pointer();
 
-            m_messagebasea.erase_at(0);
+      //      m_messagebasea.erase_at(0);
 
-            synchronouslock.unlock();
+      //      synchronouslock.unlock();
 
-            m_pimpl->m_puserinteraction->message_handler(pusermessage);
+      //      m_pimpl->m_puserinteraction->message_handler(pusermessage);
 
-            return true;
+      //      return true;
 
-         }
+      //   }
 
-      }
+      //}
 
       return ::thread::pump_runnable();
 
@@ -560,7 +560,7 @@ namespace user
 
                         }
 
-                        auto pmessage = puserinteraction->get_message(msg.m_id, msg.wParam, msg.lParam, msg.pt);
+                        auto pmessage = puserinteraction->get_message(msg.m_id, msg.wParam, msg.lParam);
 
                         if (pmessage)
                         {
@@ -872,6 +872,8 @@ namespace user
       if (m_bMessageThread)
       {
 
+         bool bWindowSetFinish = false;
+
          while (task_get_run())
          {
 
@@ -893,6 +895,32 @@ namespace user
                }
 
                break;
+
+            }
+
+            if (m_bSetFinish)
+            {
+
+               if (!bWindowSetFinish)
+               {
+
+                  bWindowSetFinish = true;
+
+                  if (m_pimpl)
+                  {
+
+                     auto puserinteraction = m_pimpl->m_puserinteraction;
+
+                     if (puserinteraction)
+                     {
+
+                        puserinteraction->destroy_window();
+
+                     }
+
+                  }
+
+               }
 
             }
 

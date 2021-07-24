@@ -162,30 +162,30 @@ namespace user
    bool interaction_impl::has_pending_redraw_flags()
    {
 
-      if (m_bCursorRedraw)
-      {
+      //if (m_bCursorRedraw)
+      //{
 
-         auto psession = get_session();
+      //   auto psession = get_session();
 
-         auto puser = psession->user();
+      //   auto puser = psession->user();
 
-         auto pwindowing = puser->windowing();
+      //   auto pwindowing = puser->windowing();
 
-         auto pointCursor = pwindowing->get_cursor_position();
+      //   auto pointCursor = pwindowing->get_cursor_position();
 
-         if (m_pointCursor != pointCursor)
-         {
+      //   if (m_pointMouseMove != pointCursor)
+      //   {
 
-            if (_001IsPointInside(pointCursor))
-            {
+      //      if (_001IsPointInside(pointCursor))
+      //      {
 
-               return true;
+      //         return true;
 
-            }
+      //      }
 
-         }
+      //   }
 
-      }
+      //}
 
       return ::user::primitive::has_pending_redraw_flags();
 
@@ -1190,16 +1190,18 @@ namespace user
    bool interaction_impl::add_prodevian(::matter * pmatter)
    {
 
-      synchronous_lock synchronouslock(m_puserthread->mutex());
+      synchronous_lock synchronouslock(mutex());
 
-      if(!m_matteraProdevian.add_unique(pmatter))
+      auto bAdded = m_matteraProdevian.add_unique(pmatter);
+
+      if (bAdded)
       {
 
-         return false;
+         m_puserinteraction->set_need_redraw();
+
+         m_puserinteraction->post_redraw();
 
       }
-
-      m_puserinteraction->post_message(e_message_redraw, 1);
 
       return true;
 
@@ -1209,25 +1211,20 @@ namespace user
    bool interaction_impl::erase_prodevian(::matter * pmatter)
    {
 
-      if (!m_puserthread)
+      synchronous_lock synchronouslock(mutex());
+
+      bool bRemoved = m_matteraProdevian.erase(pmatter) > 0;
+
+      if (bRemoved)
       {
 
-         return false;
+         m_puserinteraction->set_need_redraw();
+
+         m_puserinteraction->post_redraw();
 
       }
 
-      synchronous_lock synchronouslock(m_puserthread->mutex());
-
-      bool bRemove = m_matteraProdevian.erase(pmatter) > 0;
-
-      if (bRemove)
-      {
-
-         m_puserinteraction->post_message(e_message_redraw, 1);
-
-      }
-
-      return bRemove;
+      return true;
 
    }
 
@@ -1598,7 +1595,7 @@ namespace user
 
 
 
-   void interaction_impl::PostNcDestroy()
+   void interaction_impl::post_non_client_destroy()
    {
 
       string strType = m_puserinteraction->type_name();
@@ -1610,7 +1607,7 @@ namespace user
 //
 //      }
 
-      ::user::primitive_impl::PostNcDestroy();
+      ::user::primitive_impl::post_non_client_destroy();
 
       detach();
 
@@ -2602,7 +2599,7 @@ namespace user
    lresult interaction_impl::send_message(const ::id & id, wparam wparam, lparam lparam, const ::point_i32& point)
    {
 
-      auto pmessage = m_puserinteraction->get_message(id, wparam, lparam, point);
+      auto pmessage = m_puserinteraction->get_message(id, wparam, lparam);
 
       if(m_puserinteraction->layout().is_moving())
       {
@@ -4100,7 +4097,7 @@ namespace user
       if (m_pgraphics.is_set() && m_puserinteraction->layout().is_this_screen_visible())
       {
 
-         CINFO(prodevian)("going to update_window (1)");
+         //CINFO(prodevian)("going to update_window (1)");
 
          m_pgraphics->update_window();
 
@@ -4864,18 +4861,18 @@ namespace user
    bool interaction_impl::post(::message::message * pmessage)
    {
 
-      if (m_puserthread)
-      {
+      //if (m_puserthread)
+      //{
 
-         synchronous_lock synchronouslock(m_puserthread->mutex());
+      //   synchronous_lock synchronouslock(m_puserthread->mutex());
 
-         m_puserthread->m_messagebasea.add(pmessage);
+      //   m_puserthread->m_messagebasea.add(pmessage);
 
-         m_puserthread->kick_idle();
+      //   m_puserthread->kick_idle();
 
-         return true;
+      //   return true;
 
-      }
+      //}
 
       m_puserinteraction->post_routine(__routine([this, pmessage]()
       {

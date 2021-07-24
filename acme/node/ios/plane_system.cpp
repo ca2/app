@@ -81,7 +81,7 @@
 //      if(!pimpl->m_puserinteraction->pre_create_window(pusersystem))
 //      {
 //
-//         pimpl->PostNcDestroy();
+//         pimpl->post_non_client_destroy();
 //
 //         return false;
 //
@@ -94,7 +94,7 @@
 //      if (!pimpl->pre_create_window(pusersystem))
 //      {
 //
-//         pimpl->PostNcDestroy();
+//         pimpl->post_non_client_destroy();
 //
 //         return false;
 //

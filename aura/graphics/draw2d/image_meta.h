@@ -42,7 +42,7 @@ public:
       m_bMapped = false;
       m_bReduced = false;
       m_dFontFactor = 1.0;
-      m_ealphamode = ::draw2d::alpha_mode_blend;
+      m_ealphamode = ::draw2d::e_alpha_mode_blend;
       m_bOwn = true;
       m_emipmap = ::draw2d::mipmap_none;
       m_iFrame = 0;

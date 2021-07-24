@@ -74,6 +74,13 @@ int_bool message_queue::post_message(const MESSAGE & message)
 
    }
 
+   if (message.m_id == e_message_quit)
+   {
+
+      ::output_debug_string("message_queue::post_message e_message_quit\n");
+
+   }
+
    synchronous_lock synchronouslock(mutex());
 
    m_messagea.add(message);
@@ -85,7 +92,7 @@ int_bool message_queue::post_message(const MESSAGE & message)
 }
 
 
-int_bool message_queue::get_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax)
+int_bool message_queue::get_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax, const ::duration & duration)
 {
 
    if (wMsgFilterMax == 0)
@@ -94,6 +101,8 @@ int_bool message_queue::get_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMs
       wMsgFilterMax = (::u32)-1;
 
    }
+
+   ::i64 iMessage = -1;
 
    synchronous_lock synchronouslock(mutex());
 
@@ -110,13 +119,20 @@ int_bool message_queue::get_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMs
 
             m_bQuit = true;
 
-            m_messagea.erase_at(i);
+            // 2021-07-22 15:03 BRT Changed from this
+            //m_messagea.erase_at(i);
 
-            continue;
+            // 2021-07-22 15:03 BRT ... to this
+            // 2021-07-22 15:03 BRT quit message would be last message and empty message queue?
+            m_messagea.erase_all();
+
+            break;
 
          }
 
-         if ((oswindow == nullptr || msg.oswindow == oswindow) && msg.m_id.i64() >= wMsgFilterMin && msg.m_id.i64() <= wMsgFilterMax)
+         iMessage = msg.m_id.i64();
+
+         if ((oswindow == nullptr || msg.oswindow == oswindow) && iMessage >= wMsgFilterMin && iMessage <= wMsgFilterMax)
          {
 
             *pMsg = msg;
@@ -159,7 +175,12 @@ int_bool message_queue::get_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMs
 
          synchronouslock.unlock();
 
-         m_eventNewMessage.wait();
+         if(!m_eventNewMessage.wait(duration).succeeded())
+         {
+
+            return -1;
+
+         }
 
          synchronouslock.lock();
 

@@ -65,7 +65,7 @@ namespace multimedia
 
       //m_plibrary.create(this);
 
-      __pointer(::aqua::system) psystem = get_system();
+      auto psystem = get_system()->m_paquasystem;
 
       m_plibrary = psystem->get_library(pszTitle);
 

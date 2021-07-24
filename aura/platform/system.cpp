@@ -413,12 +413,12 @@ namespace aura
 
       ::acme::del(g_pmutexImage);
 
-      if(m_pnode)
-      {
-
-         m_pnode->os_post_quit();
-
-      }
+//      if(m_pnode)
+//      {
+//
+//         m_pnode->os_post_quit();
+//
+//      }
 
    }
 
@@ -6992,6 +6992,27 @@ namespace aura
       return estatus;
 
    }
+
+
+   //void system::on_initial_frame_position(::user::frame* pframe)
+   //{
+
+   //}
+
+   //void system::on_graphics_ready()
+   //{
+
+   //   //::apex::system::on_graphics_ready();
+
+   //   //if (psession->userex()->shell()->m_bPendingUpdate)
+   //   //{
+
+   //   //   psession->userex()->shell()->on_update_sizes_interest();
+
+   //   //}
+
+   //}
+
 
 
    __namespace_system_factory(system);

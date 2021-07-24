@@ -75,7 +75,7 @@ namespace account
       
       path = path_prefix(strToken);
 
-      __pointer(::apex::system) psystem = get_system();
+      auto psystem = get_system()->m_papexsystem;
       
       path /= psystem->crypto()->md5(strToken + strKey);
       
@@ -93,7 +93,7 @@ namespace account
       
       dir::mk(path);
 
-      __pointer(::apex::system) psystem = get_system();
+      auto psystem = get_system()->m_papexsystem;
       
       path /= psystem->crypto()->md5(strToken + strKey);
       

@@ -819,7 +819,7 @@ bool dir_context::is(const ::file::path & pathParam)
 
    ::file::path path;
 
-   __pointer(::apex::system) psystem = get_system();
+   auto psystem = get_system()->m_papexsystem;
 
    if (pathParam.begins_ci("appmatter://"))
    {
@@ -1354,7 +1354,7 @@ bool dir_context::name_is(const ::file::path & strPath)
 
    synchronous_lock synchronouslock(mutex());
 
-   __pointer(::apex::system) psystem = get_system();
+   auto psystem = get_system()->m_papexsystem;
 
    return psystem->m_pdirsystem->m_pathInstall;
 
@@ -1366,7 +1366,7 @@ bool dir_context::name_is(const ::file::path & strPath)
 
    synchronous_lock synchronouslock(mutex());
 
-   __pointer(::apex::system) psystem = get_system();
+   auto psystem = get_system()->m_papexsystem;
 
    return psystem->m_pdirsystem->m_pathCa2Config;
 
@@ -1378,7 +1378,7 @@ bool dir_context::name_is(const ::file::path & strPath)
 
    synchronous_lock synchronouslock(mutex());
 
-   __pointer(::apex::system) psystem = get_system();
+   auto psystem = get_system()->m_papexsystem;
 
    return psystem->m_pdirsystem->m_pathHome;
 
@@ -1402,7 +1402,7 @@ bool dir_context::name_is(const ::file::path & strPath)
 
    synchronous_lock synchronouslock(mutex());
 
-   __pointer(::apex::system) psystem = get_system();
+   auto psystem = get_system()->m_papexsystem;
 
    return psystem->m_pdirsystem->m_pathModule;
 
@@ -1414,7 +1414,7 @@ bool dir_context::name_is(const ::file::path & strPath)
 
    synchronous_lock synchronouslock(mutex());
 
-   __pointer(::apex::system) psystem = get_system();
+   auto psystem = get_system()->m_papexsystem;
 
    return psystem->m_pdirsystem->m_pathCa2Module;
 
@@ -1480,7 +1480,7 @@ bool dir_context::rm(const ::file::path & path, bool bRecursive)
 void dir_context::matter_ls(const ::file::path & path, ::file::listing & stra)
 {
 
-   __pointer(::apex::system) psystem = get_system();
+   auto psystem = get_system()->m_papexsystem;
 
    synchronous_lock synchronouslock(psystem->m_pmutexMatter);
 
@@ -1602,7 +1602,7 @@ void dir_context::matter_ls_file(const ::file::path & str, ::file::listing & str
 
    ::file::path strDir = matter(str, true);
 
-   __pointer(::apex::system) psystem = get_system();
+   auto psystem = get_system()->m_papexsystem;
 
    if (psystem->m_pdirsystem->m_bMatterFromHttpCache)
    {
@@ -1695,66 +1695,71 @@ void dir_context::matter_ls_file(const ::file::path & str, ::file::listing & str
 
    }
 
-   __pointer(::apex::system) psystem = get_system();
+   auto psystem = get_system()->m_papexsystem;
 
-   if(psystem->m_pdirsystem->m_pathLocalAppMatterCacheFolder.has_char())
+   if (psystem->m_pdirsystem->m_bMatterFromHttpCache)
    {
 
-      ::file::path pathLs0 = straMatterLocator.first();
-
-      pathLs0 /= m_pcontext->m_papexcontext->get_locale_schema_dir();
-
-      pathCache = psystem->m_pdirsystem->m_pathLocalAppMatterCacheFolder / pathLs0 / patha[0] + ".map_question";
-
-      TRACE("cache map path: %s", pathCache.c_str());
-
-      path = m_pcontext->m_papexcontext->file().as_string(pathCache);
-
-      if (::str::begins_eat_ci(path, "itdoesntexist."))
+      if (psystem->m_pdirsystem->m_pathLocalAppMatterCacheFolder.has_char())
       {
 
-         millis t = ansi_to_i64(path);
+         ::file::path pathLs0 = straMatterLocator.first();
 
-         auto elapsed = t.elapsed();
+         pathLs0 /= m_pcontext->m_papexcontext->get_locale_schema_dir();
 
-         if (elapsed < 5_s)
+         pathCache = psystem->m_pdirsystem->m_pathLocalAppMatterCacheFolder / pathLs0 / patha[0] + ".map_question";
+
+         TRACE("cache map path: %s", pathCache.c_str());
+
+         path = m_pcontext->m_papexcontext->file().as_string(pathCache);
+
+         if (::str::begins_eat_ci(path, "itdoesntexist."))
          {
 
-            if (false)
+            millis t = ansi_to_i64(path);
+
+            auto elapsed = t.elapsed();
+
+            if (elapsed < 5_s)
             {
 
-               return "itdoesntexist";
+               if (false)
+               {
+
+                  return "itdoesntexist";
+
+               }
 
             }
 
+            path.Empty();
+
          }
 
-         path.Empty();
-
-      }
-
-      if (!(patha[0] & ::file::e_flag_bypass_cache) && path.has_char())
-      {
-
-         string strFinal(path);
-
-         if (strFinal.begins_ci("appmatter://"))
+         if (!(patha[0] & ::file::e_flag_bypass_cache) && path.has_char())
          {
 
-            strFinal = psystem->m_pdirsystem->m_pathLocalAppMatterFolder / strFinal.Mid(12);
+            string strFinal(path);
+
+            if (strFinal.begins_ci("appmatter://"))
+            {
+
+               strFinal = psystem->m_pdirsystem->m_pathLocalAppMatterFolder / strFinal.Mid(12);
+
+            }
+
+            if (::is_file_or_dir_dup(strFinal, nullptr))
+            {
+
+               TRACE("!!Cache Hit: %s", strFinal.c_str());
+
+               return path;
+
+            }
+
+            TRACE("...Cache Miss: %s", strFinal.c_str());
 
          }
-
-         if (::is_file_or_dir_dup(strFinal, nullptr))
-         {
-
-            TRACE("!!Cache Hit: %s", strFinal.c_str());
-
-            return path;
-
-         }
-
-         TRACE("...Cache Miss: %s", strFinal.c_str());
 
       }
 
@@ -1931,7 +1936,7 @@ ret:
 
       ::str::begins_eat_ci(strMatter, "appmatter://");
 
-      __pointer(::apex::system) psystem = get_system();
+      auto psystem = get_system()->m_papexsystem;
 
       ::file::path pathCache = psystem->m_pdirsystem->m_pathLocalAppMatterFolder / strMatter;
 
@@ -2052,7 +2057,7 @@ ret:
 
    }
 
-   __pointer(::apex::system) psystem = get_system();
+   auto psystem = get_system()->m_papexsystem;
 
    ::file::path point = psystem->local_get_matter_cache_path(
       ::file::path(strRepo) / "_matter" / strApp / "_std" / "_std" / pathRel);
@@ -2073,7 +2078,7 @@ ret:
 
    string strPlatform(pszPlatform);
 
-   __pointer(::apex::system) psystem = get_system();
+   auto psystem = get_system()->m_papexsystem;
 
    if (strPlatform.is_empty())
    {
@@ -2146,7 +2151,7 @@ ret:
    if (strAppId.is_empty())
    {
 
-      __pointer(::apex::system) psystem = get_system();
+      auto psystem = get_system()->m_papexsystem;
 
       //__throw(error_interface_only, "this is an interface");
 
@@ -2319,7 +2324,7 @@ bool dir_context::is_inside(const ::file::path & pszDir, const ::file::path & ps
 ::file::watcher & dir_context::watcher()
 {
 
-   __pointer(::apex::system) psystem = get_system();
+   auto psystem = get_system()->m_papexsystem;
 
    return *psystem->m_pdirsystem->m_pfilewatcher;
 
@@ -2491,7 +2496,7 @@ bool dir_context::is_inside(const ::file::path & pszDir, const ::file::path & ps
 ::file::path dir_context::standalone()
 {
 
-   __pointer(::apex::system) psystem = get_system();
+   auto psystem = get_system()->m_papexsystem;
 
    return m_psystem->m_pacmedir->roaming() / psystem->m_strStandalone;
 

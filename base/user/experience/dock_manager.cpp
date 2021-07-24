@@ -362,7 +362,7 @@ namespace experience
 
       }
 
-      __pointer(::message::mouse) pmouse(pmessage);
+      auto pmouse = pmessage->m_pmouse;
 
       auto pbutton = dock_button();
 
@@ -418,7 +418,7 @@ namespace experience
 
       }
 
-      __pointer(::message::mouse) pmouse(pmessage);
+      auto pmouse = pmessage->m_pmouse;
 
       if (pmouse->m_eflagMessage & ::message::flag_synthesized)
       {
@@ -448,7 +448,7 @@ namespace experience
 
       m_bDocking = false;
 
-      __pointer(::message::mouse) pmouse(pmessage);
+      auto pmouse = pmessage->m_pmouse;
 
       auto pbutton = dock_button();
 

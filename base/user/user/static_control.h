@@ -22,9 +22,9 @@ namespace user
 
       union
       {
-         ::draw2d::bitmap *             m_pbitmap;
-         ::draw2d::icon *           m_picon;
-         ::draw2d::cursor *         m_pcursor;
+         ::draw2d::bitmap *            m_pbitmap;
+         ::draw2d::icon *              m_picon;
+         ::draw2d::cursor *            m_pcursor;
       };
 
 

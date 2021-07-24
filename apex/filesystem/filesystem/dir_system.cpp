@@ -44,7 +44,7 @@ dir_system::~dir_system()
 
    }
 
-   __pointer(::apex::system) psystem = get_system();
+   auto psystem = get_system()->m_papexsystem;
 
    #if defined(__APPLE__) || (defined(DEBUG)) || defined(ANDROID) || defined(_UWP)
 
@@ -124,7 +124,7 @@ dir_system::~dir_system()
 
    ::file::path pathAppData;
 
-   //__pointer(::apex::system) psystem = get_system();
+   //auto psystem = get_system()->m_papexsystem;
 
    if (psystem->has_property("app_folder"))
    {
@@ -159,7 +159,7 @@ bool dir_system::update_module_path()
 
    //auto & context = Context;
 
-   __pointer(::apex::system) psystem = get_system();
+   auto psystem = get_system()->m_papexsystem;
 
    auto pfile = psystem->m_pfilesystem;
 

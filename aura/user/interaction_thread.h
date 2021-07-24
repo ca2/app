@@ -49,7 +49,7 @@ namespace user
       oswindow                               m_oswindow;
 
       manual_reset_event                     m_evApplyVisual;
-      __pointer_array(::message::message)    m_messagebasea;
+      //__pointer_array(::message::message)    m_messagebasea;
       __pointer(::windowing::windowing)      m_pwindowing;
 
 

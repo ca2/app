@@ -6,8 +6,7 @@ namespace user
 
 
    class CLASS_DECL_BASE frame_window :
-      virtual public ::user::frame,
-      virtual public ::user::box
+      virtual public ::user::main_window
    {
    public:
 
@@ -89,6 +88,7 @@ namespace user
 
       virtual void assert_valid() const override;
       virtual void dump(dump_context & dc) const override;
+
 
 
       virtual void install_message_routing(::channel * pchannel) override;
@@ -230,7 +230,7 @@ namespace user
 
       virtual bool pre_create_window(::user::system * pusersystem) override;
       //virtual bool OnCommand(WPARAM wParam, LPARAM lParam);
-      virtual void PostNcDestroy() override;   // default to delete this.
+      virtual void post_non_client_destroy() override;   // default to delete this.
       i32 OnCreateHelper(::user::system * pusersystem);
 
       //void BringToTop(::e_display edisplay) override;

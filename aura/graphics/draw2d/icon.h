@@ -17,7 +17,7 @@ namespace draw2d
 
       friend class ::windowing::icon;
 
-      __pointer(::windowing::icon)              m_picon;
+      __pointer(::windowing::icon)              m_pwindowingicon;
       __pointer(size_image)                     m_pimagemap;
       array < concrete < ::size_i32 > >         m_sizea;
       // Sizes of Readily Available Icons in Increasing Sorting Order
@@ -35,7 +35,7 @@ namespace draw2d
       virtual ::e_status initialize(::object * pobject) override;
 
 
-      virtual void initialize_with_windowing_icon(::windowing::icon * picon);
+      virtual ::e_status initialize_with_windowing_icon(::windowing::icon * picon);
 
 
       virtual windowing::icon * get_windowing_icon();
@@ -63,7 +63,22 @@ namespace draw2d
 
 
       // inline concrete < ::size_i32 > size_i32(const ::size_f64 & sizeDst, const ::size_f64 & sizeSrc, enum_image_selection eimageselection) const { return get_image(sizeDst)->size_i32(sizeDst, sizeSrc, eimageselection); }
-      inline concrete < ::size_i32 > size(const ::size_f64 & sizeDst, enum_image_selection eimageselection) const { return get_image(sizeDst)->size(sizeDst, eimageselection); }
+      inline concrete < ::size_i32 > size(const ::size_f64 & sizeDst, enum_image_selection eimageselection) const
+      { 
+
+         auto pimage = get_image(sizeDst);
+
+         if (!pimage)
+         {
+
+            return sizeDst;
+
+         }
+
+         return pimage->size(sizeDst, eimageselection); 
+      
+      }
+
       inline concrete < ::size_i32 > size() const { return get_image(::size_f64())->size(); }
 
          

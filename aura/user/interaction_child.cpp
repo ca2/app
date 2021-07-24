@@ -185,6 +185,8 @@ namespace user
 
       m_puserinteraction->m_ewindowflag |= e_window_flag_window_created;
 
+      m_puserinteraction->m_bTaskStarted = true;
+
       return true;
 
    }
@@ -771,7 +773,11 @@ namespace user
 
       }
 
+      auto& edisplayOld = m_puserinteraction->layout().window().m_edisplay;
+
       bool bWasVisible = m_puserinteraction->layout().window().is_visible();
+
+      auto& edisplayNew = m_puserinteraction->layout().sketch().m_edisplay;
 
       bool bNewVisible = m_puserinteraction->layout().sketch().is_visible();
 

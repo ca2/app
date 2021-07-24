@@ -75,7 +75,7 @@ namespace html
       }
 //      strsize iLen;
 
-      __pointer(::core::system) psystem = get_system();
+      auto psystem = get_system()->m_pcoresystem;
 
       auto pnode = psystem->node();
       string strName;

@@ -465,7 +465,7 @@ namespace user
 
       virtual void pre_subclass_window();
 
-      virtual void PostNcDestroy();
+      virtual void post_non_client_destroy();
 
 
       //virtual lresult default_window_procedure();

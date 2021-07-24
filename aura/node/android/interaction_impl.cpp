@@ -316,7 +316,7 @@ namespace android
          if (get_application() == nullptr)
          {
 
-            PostNcDestroy();
+            post_non_client_destroy();
 
             m_puserinteraction = nullptr;
 
@@ -365,7 +365,7 @@ namespace android
       if(m_oswindow == nullptr)
       {
 
-         PostNcDestroy();
+         post_non_client_destroy();
 
          m_puserinteraction = nullptr;
 
@@ -407,6 +407,8 @@ namespace android
       m_puserinteraction->m_pimpl = this;
 
       m_puserinteraction->m_ewindowflag |= e_window_flag_window_created;
+
+      m_puserinteraction->m_bTaskStarted = true;
 
       return true;
 
@@ -528,7 +530,7 @@ namespace android
       if(!m_puserinteraction->m_bMessageWindow)
       {
 
-         MESSAGE_LINK(e_message_set_cursor, pchannel, this,&interaction_impl::on_message_set_cursor);
+         //MESSAGE_LINK(e_message_set_cursor, pchannel, this,&interaction_impl::on_message_set_cursor);
 
          //MESSAGE_LINK(e_message_erase_background, pchannel, this,&interaction_impl::_001OnEraseBkgnd);
 
@@ -548,7 +550,7 @@ namespace android
 
       MESSAGE_LINK(e_message_destroy, pchannel, this,&interaction_impl::on_message_destroy);
 
-      MESSAGE_LINK(e_message_nccalcsize, pchannel, this,&interaction_impl::on_message_non_client_calculate_size);
+      MESSAGE_LINK(e_message_non_client_calcsize, pchannel, this,&interaction_impl::on_message_non_client_calculate_size);
 
    }
 
@@ -621,7 +623,7 @@ namespace android
    }
 
 
-   void interaction_impl::PostNcDestroy()
+   void interaction_impl::post_non_client_destroy()
    {
 
       single_lock synchronouslock(m_puserinteraction->get_application()->mutex(), true);
@@ -648,7 +650,7 @@ namespace android
 
       set_handle(nullptr);
 
-      ::user::interaction_impl::PostNcDestroy();
+      ::user::interaction_impl::post_non_client_destroy();
 
    }
 
@@ -656,9 +658,9 @@ namespace android
    void interaction_impl::on_final_release()
    {
       if(get_handle() != nullptr)
-         DestroyWindow();    // will call PostNcDestroy
+         DestroyWindow();    // will call post_non_client_destroy
       else
-         PostNcDestroy();
+         post_non_client_destroy();
    }
 
    void interaction_impl::assert_valid() const
@@ -1081,7 +1083,7 @@ namespace android
             pmessage->m_id == e_message_sys_char)
       {
 
-         __pointer(::message::key) pkey(pmessage);
+         auto pkey = pmessage->m_pkey;
 
          auto psession = get_session();
 
@@ -4025,24 +4027,24 @@ namespace android
    }
 
 
-   void interaction_impl::on_message_set_cursor(::message::message * pmessage)
-   {
+   // void interaction_impl::on_message_set_cursor(::message::message * pmessage)
+   // {
 
-      __pointer(::user::message) pusermessage(pmessage);
+   //    __pointer(::user::message) pusermessage(pmessage);
 
-      auto psession = get_session();
+   //    auto psession = get_session();
 
-      if (psession->get_cursor() != nullptr
-            && psession->get_cursor()->m_ecursor != ::cursor_system)
-      {
+   //    if (psession->get_cursor() != nullptr
+   //          && psession->get_cursor()->m_ecursor != ::cursor_system)
+   //    {
 
-         __throw(error_not_implemented);
-         //         ::SetCursor(nullptr);
-      }
-      pusermessage->set_lresult(1);
-      pusermessage->m_bRet = true;
-      //(bool)Default();
-   }
+   //       __throw(error_not_implemented);
+   //       //         ::SetCursor(nullptr);
+   //    }
+   //    pusermessage->set_lresult(1);
+   //    pusermessage->m_bRet = true;
+   //    //(bool)Default();
+   // }
 
 
 

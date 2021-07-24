@@ -1009,13 +1009,13 @@ namespace user
       if (m_puserinteraction)
       {
 
-         pmessage = m_puserinteraction->get_message(id, wparam, lparam, point);
+         pmessage = m_puserinteraction->get_message(id, wparam, lparam);
 
       }
       else
       {
 
-         pmessage = get_message(id, wparam, lparam, point);
+         pmessage = get_message(id, wparam, lparam);
 
       }
 
@@ -1300,7 +1300,7 @@ namespace user
       try
       {
 
-         send_message(e_message_ncdestroy);
+         send_message(e_message_non_client_destroy);
 
       }
       catch (...)
@@ -1438,7 +1438,7 @@ namespace user
    }
 
 
-   void primitive_impl::PostNcDestroy()
+   void primitive_impl::post_non_client_destroy()
    {
 
       __pointer(primitive_impl) pimpl = this;
@@ -1465,11 +1465,11 @@ namespace user
       if (!m_bDestroyImplOnly && m_puserinteraction)
       {
 
-         m_puserinteraction->PostNcDestroy();
+         m_puserinteraction->post_non_client_destroy();
 
       }
 
-      ::user::primitive::PostNcDestroy();
+      ::user::primitive::post_non_client_destroy();
 
 
 
@@ -1557,7 +1557,7 @@ namespace user
    }
 
 
-   void primitive_impl::_001OnNcDestroy(::message::message * pmessage)
+   void primitive_impl::on_message_non_client_destroy(::message::message * pmessage)
    {
 
       if (m_puserinteraction && ::str::demangle(m_puserinteraction->type_name()).contains("notify_icon"))
@@ -1567,7 +1567,7 @@ namespace user
 
       }
 
-      PostNcDestroy();
+      post_non_client_destroy();
 
    }
 
@@ -1585,7 +1585,7 @@ namespace user
       //g_p->set_at((iptr)this, ::str::demangle(m_puserinteraction->type_name()) + "xxx" + type_name());
       MESSAGE_LINK(e_message_show_window, pchannel, this, &primitive_impl::on_message_show_window);
       MESSAGE_LINK(e_message_destroy, pchannel, this, &primitive_impl::on_message_destroy);
-      MESSAGE_LINK(e_message_ncdestroy, pchannel, this, &primitive_impl::_001OnNcDestroy);
+      MESSAGE_LINK(e_message_non_client_destroy, pchannel, this, &primitive_impl::on_message_non_client_destroy);
       MESSAGE_LINK(e_message_create, pchannel, this, &primitive_impl::_001OnPrioCreate);
 
       if (m_puserinteraction && ::str::demangle(m_puserinteraction->type_name()).contains("notify_icon"))

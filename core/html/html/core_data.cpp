@@ -337,7 +337,7 @@ namespace html
    void core_data::on_message_key_down(::message::message * pmessage)
    {
 
-      __pointer(::message::key) pkey(pmessage);
+      auto pkey = pmessage->m_pkey;
 
       if (pkey->m_ekey == ::user::e_key_tab)
       {
@@ -557,7 +557,7 @@ namespace html
 
       string strUrl = process_url(pszUrl);
 
-      __pointer(::core::system) psystem = get_system();
+      auto psystem = get_system()->m_pcoresystem;
 
       auto pimage = psystem->get_image(this, strUrl);
 

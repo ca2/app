@@ -54,6 +54,28 @@ namespace acme
    }
 
 
+#ifdef DEBUG
+
+
+   i64 node::add_ref(OBJ_REF_DBG_PARAMS)
+   {
+
+      return ::object::add_ref(OBJ_REF_DBG_ARGS);
+
+   }
+
+
+   i64 node::dec_ref(OBJ_REF_DBG_PARAMS)
+   {
+
+      return ::object::dec_ref(OBJ_REF_DBG_ARGS);
+
+   }
+
+
+#endif
+
+
    ::e_status node::call_async(const char * pszPath, const char * pszParam, const char * pszDir, ::e_display edisplay, bool bPrivileged, unsigned int * puiPid)
    {
 

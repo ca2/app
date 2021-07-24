@@ -220,10 +220,22 @@ namespace apex
 
 
       system();
-      virtual ~system();
+      ~system() override;
 
 
       void common_construct();
+
+
+#ifdef DEBUG
+
+
+      i64 add_ref(OBJ_REF_DBG_PARAMS) override;
+
+
+      i64 dec_ref(OBJ_REF_DBG_PARAMS) override;
+
+
+#endif
 
 
       ::e_status initialize(::object * pobject) override;
@@ -776,9 +788,9 @@ namespace apex
       //virtual void on_event(::u64 u, ::object * pobject) override;
 
 
-      virtual void on_initial_frame_position(::user::frame * pframe);
+      //virtual void on_initial_frame_position(::user::frame * pframe);
 
-      virtual void on_graphics_ready();
+      //virtual void on_graphics_ready();
 
       virtual void process_machine_event_data(machine_event_data * pdata);
 

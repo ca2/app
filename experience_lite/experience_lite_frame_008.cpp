@@ -402,7 +402,7 @@ SizingNone:
                   //return;
                   ::rectangle_i32 rectA(lpcrectClient);
 
-                  pgraphics->set_alpha_mode(::draw2d::alpha_mode_set);
+                  pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
                   pgraphics->set_smooth_mode(::draw2d::smooth_mode_none);
 
@@ -420,7 +420,7 @@ SizingNone:
 
                      ::rectangle_i32 rectA(lpcrectClient);
 
-                     pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+                     pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
                      pgraphics->set_smooth_mode(::draw2d::smooth_mode_high);
 
@@ -439,7 +439,7 @@ SizingNone:
 
                      //rectA.deflate(9, 9, 9, 9);
 
-                     pgraphics->set_alpha_mode(::draw2d::alpha_mode_set);
+                     pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
                      pgraphics->set_smooth_mode(::draw2d::smooth_mode_none);
 

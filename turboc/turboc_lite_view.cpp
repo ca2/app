@@ -115,7 +115,7 @@ namespace turboc
 
       rectangleClient.bottom = m_cy;
 
-      //pgraphics->set_alpha_mode(::draw2d::alpha_mode_set);
+      //pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
       //pgraphics->FillSolidRect(rectangleClient,argb(0, 0, 0, 0));
 
@@ -187,7 +187,7 @@ namespace turboc
 
 /*            m_pimage->g()->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
-/*            m_pimage->g()->set_alpha_mode(::draw2d::alpha_mode_blend);
+/*            m_pimage->g()->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
             brushText->create_solid(argb(255,255,255,255));
 
@@ -259,7 +259,7 @@ namespace turboc
 
       pgraphics->set_interpolation_mode(e_interpolation_mode_high_quality_bicubic);
 
-      pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
       pdraw2d->imaging().bitmap_blend(pgraphics,::point_i32(),rectangleClient.size(),m_pimageTemplate->get_graphics(),::point_i32(),140 + 220 * r);
 

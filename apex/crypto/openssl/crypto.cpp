@@ -661,7 +661,7 @@ namespace crypto
       memory storage;
       key(storage);
 
-      //__pointer(::apex::system) psystem = get_system();
+      //auto psystem = get_system()->m_papexsystem;
 
       auto psystem = m_psystem;
 

@@ -155,7 +155,7 @@ void simple_frame_window::install_message_routing(::channel * pchannel)
    MESSAGE_LINK(e_message_display_change, pchannel, this, &simple_frame_window::on_message_display_change);
    MESSAGE_LINK(e_message_show_window, pchannel, this, &simple_frame_window::on_message_show_window);
    MESSAGE_LINK(e_message_mouse_activate, pchannel, this, &simple_frame_window::_001OnMouseActivate);
-   MESSAGE_LINK(e_message_nchittest, pchannel, this, &simple_frame_window::_001OnNcHitTest);
+   MESSAGE_LINK(e_message_non_client_hittest, pchannel, this, &simple_frame_window::_001OnNcHitTest);
 
    MESSAGE_LINK(e_message_key_down, pchannel, this, &simple_frame_window::_001OnKey);
    MESSAGE_LINK(e_message_sys_key_down, pchannel, this, &simple_frame_window::_001OnKey);
@@ -169,12 +169,12 @@ void simple_frame_window::install_message_routing(::channel * pchannel)
    connect_command("impact_full_screen", &simple_frame_window::_001OnViewFullScreen);
 
    connect_command("notify_icon_topic", &simple_frame_window::_001OnNotifyIconTopic);
-   connect_command("app_exit", &simple_frame_window::_001OnAppExit);
+   connect_command("app_exit", &simple_frame_window::on_message_app_exit);
 
 #ifdef WINDOWS_DESKTOP
 
 
-   MESSAGE_LINK(WM_APPEXIT, pchannel, this, &simple_frame_window::_001OnAppExit);
+   MESSAGE_LINK(WM_APPEXIT, pchannel, this, &simple_frame_window::on_message_app_exit);
    MESSAGE_LINK(e_message_activate_app, pchannel, this, &simple_frame_window::_001OnActivateApp);
 
 #endif
@@ -918,17 +918,24 @@ void simple_frame_window::on_message_create(::message::message * pmessage)
       if (m_bDefaultNotifyIcon)
       {
 
+         auto psystem = m_psystem->m_papexsystem;
+
+         __defer_construct(m_pnotifyicon);
+
+         //m_pnotifyicon->m_puserinteraction = this;
+
          index iNotifyIconItem = 0;
 
-         notify_icon_insert_item(iNotifyIconItem, strAppTitle, "notify_icon_topic");
+         m_pnotifyicon->notify_icon_insert_item(iNotifyIconItem, strAppTitle, "notify_icon_topic");
 
          auto c = papplication->applicationmenu().get_count();
 
          for (auto i = 0; i < c; i++)
          {
+
             auto& item = papplication->applicationmenu()[i];
 
-            notify_icon_insert_item(iNotifyIconItem, item.m_strName, item.m_strId);
+            m_pnotifyicon->notify_icon_insert_item(iNotifyIconItem, item.m_strName, item.m_strId);
 
          }
 
@@ -937,15 +944,15 @@ void simple_frame_window::on_message_create(::message::message * pmessage)
             && m_pframe->get_control_box()->has_button(::experience::e_button_transparent_frame))
          {
 
-            notify_icon_insert_item(iNotifyIconItem, "separator");
+            m_pnotifyicon->notify_icon_insert_item(iNotifyIconItem, "separator");
 
-            notify_icon_insert_item(iNotifyIconItem, _("Transparent Frame"), "transparent_frame");
+            m_pnotifyicon->notify_icon_insert_item(iNotifyIconItem, _("Transparent Frame"), "transparent_frame");
 
          }
 
-         notify_icon_insert_item(iNotifyIconItem, "separator");
+         m_pnotifyicon->notify_icon_insert_item(iNotifyIconItem, "separator");
 
-         notify_icon_insert_item(iNotifyIconItem, _("Exit"), "app_exit");
+         m_pnotifyicon->notify_icon_insert_item(iNotifyIconItem, _("Exit"), "app_exit");
 
          post_message(e_message_update_notify_icon);
 
@@ -990,7 +997,7 @@ void simple_frame_window::on_message_show_window(::message::message * pmessage)
 
       output_debug_string("\nsimple_frame_window::on_message_show_window true " + string(typeid(*this).name()));
 
-      defer_set_icon();
+      //defer_set_icon();
 
    }
    else
@@ -1571,7 +1578,7 @@ bool simple_frame_window::GetCustomFrame()
 }
 
 
-void simple_frame_window::_001OnAppExit(::message::message * pmessage)
+void simple_frame_window::on_message_app_exit(::message::message * pmessage)
 {
 
    if (get_parent() != nullptr)
@@ -2464,7 +2471,7 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics_pointer & pgraphicsParam
    if(bDib)
    {
 
-      pgraphicsParam->set_alpha_mode(::draw2d::alpha_mode_blend);
+      pgraphicsParam->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
       image_drawing imagedrawing;
       
@@ -2767,12 +2774,12 @@ void simple_frame_window::defer_create_notification_icon()
    windowing()->windowing_branch(__routine([this]
    {
 
-      if (m_pnotifyicon)
-      {
-
-         m_pnotifyicon->destroy_notify_icon();
-
-      }
+//      if (m_pnotifyicon)
+//      {
+//
+//         m_pnotifyicon->destroy_notify_icon();
+//
+//      }
 
       //auto papplication = get_application();
 
@@ -2792,7 +2799,9 @@ void simple_frame_window::defer_create_notification_icon()
 
       }
 
-      __construct(m_pnotifyicon);
+      __defer_construct(m_pnotifyicon);
+
+      //m_pnotifyicon->m_puserinteraction = this;
 
       if (!m_pnotifyicon->create_notify_icon(1, this, m_piconNotify))
       {
@@ -3109,14 +3118,14 @@ void simple_frame_window::route_command_message(::message::command * pcommand)
 //   //   if (bActivate && bEnabled && pParent != this)
 //   //   {
 //   //      // Excel will try to Activate itself when it receives a
-//   //      // e_message_ncactivate so we need to keep it from doing that here.
+//   //      // e_message_non_client_activate so we need to keep it from doing that here.
 //   //      //m_nFlags |= WF_KEEPMINIACTIVE;
-//   //      pParent->send_message(e_message_ncactivate, true);
+//   //      pParent->send_message(e_message_non_client_activate, true);
 //   //      //m_nFlags &= ~WF_KEEPMINIACTIVE;
 //   //   }
 //   //   else
 //   //   {
-//   //      pParent->send_message(e_message_ncactivate, false);
+//   //      pParent->send_message(e_message_non_client_activate, false);
 //   //   }
 //   //}
 //
@@ -3175,6 +3184,49 @@ void simple_frame_window::_001OnQueryEndSession(::message::message * pmessage)
 
 void simple_frame_window::on_control_event(::user::control_event * pevent)
 {
+
+#ifdef WINDOWS
+
+   if(pevent->m_puserinteraction == m_pnotifyicon)
+   {
+
+      if(pevent->m_eevent == ::user::e_event_context_menu)
+      {
+
+         ::u32 uNotifyIcon = pevent->m_id;
+
+         OnNotifyIconContextMenu(uNotifyIcon);
+
+      }
+      else if(pevent->m_eevent == ::user::e_event_left_button_double_click)
+      {
+
+         ::u32 uNotifyIcon = pevent->m_id;
+
+         OnNotifyIconLButtonDblClk(uNotifyIcon);
+
+      }
+      else if(pevent->m_eevent == ::user::e_event_left_button_down)
+      {
+
+         ::u32 uNotifyIcon = pevent->m_id;
+
+         OnNotifyIconLButtonDown(uNotifyIcon);
+
+      }
+      else if(pevent->m_eevent == ::user::e_event_button_clicked)
+      {
+
+         string strId(pevent->m_id);
+
+         call_area_notification_action(strId);
+
+      }
+
+   }
+
+
+#endif
 
    ::experience::frame_window::on_control_event(pevent);
 
@@ -3867,7 +3919,7 @@ void simple_frame_window::OnNotifyIconContextMenu(::u32 uNotifyIcon)
 
    string strXml = notification_area_get_xml_menu();
 
-   puser->track_popup_xml_menu(this, strXml, 0, pointCursor);
+   puser->track_popup_xml_menu(this, strXml, 0, pointCursor, size_i32(), m_pnotifyicon);
 
 }
 
@@ -3912,12 +3964,16 @@ void simple_frame_window::OnNotifyIconLButtonDown(::u32 uNotifyIcon)
 
    auto estatus = ::experience::frame_window::command_handler(id);
 
-   if(!estatus)
+   if(estatus)
    {
 
       return estatus;
 
    }
+
+   //::message::command command
+
+   //route_command_message()
 
    return estatus;
 
@@ -4131,7 +4187,7 @@ string simple_frame_window::notification_area_get_xml_menu()
 
    pdocument->create_root("menu");
 
-   for (auto & pitem : m_notifyiconitema)
+   for (auto & pitem : m_pnotifyicon->m_notifyiconitema)
    {
 
       if (pitem->m_strId == "separator")

@@ -340,11 +340,16 @@ namespace user
 
 
       interaction();
-      virtual ~interaction();
+      ~interaction() override;
 
       void user_interaction_common_construct();
 
       virtual void on_create_user_interaction();
+
+
+      virtual bool is_branch_current() const;
+
+
 
       //class control_descriptor& descriptor();
       //const class control_descriptor& descriptor() const;
@@ -520,7 +525,7 @@ namespace user
       }
 
       
-      __pointer(::message::message) get_message(const ::id & id, wparam wparam, lparam lparam, const ::point_i32 & point) override;
+      __pointer(::message::message) get_message(const ::id & id, wparam wparam, lparam lparam) override;
 
 
       inline ::user::style * get_style(::user::style * pstyle) const
@@ -1185,8 +1190,13 @@ namespace user
 
       virtual ::user::callback* get_user_callback();
 
+      virtual void defer_set_icon();
 
-      virtual ::e_status set_icon(::windowing::icon* picon);
+      virtual ::e_status set_windowing_icon(::windowing::icon* picon);
+
+      virtual ::windowing::icon* get_windowing_icon();
+      virtual ::draw2d::icon* get_draw_icon();
+
 
 
       //virtual ::e_status set_cursor(::windowing::cursor* pcursor);
@@ -1247,7 +1257,7 @@ namespace user
       DECLARE_MESSAGE_HANDLER(on_message_show_window);
       DECLARE_MESSAGE_HANDLER(on_message_mouse_move);
       DECLARE_MESSAGE_HANDLER(on_message_mouse_enter);
-      DECLARE_MESSAGE_HANDLER(on_message_set_cursor);
+      ////DECLARE_MESSAGE_HANDLER(on_message_set_cursor);
       DECLARE_MESSAGE_HANDLER(on_message_mouse_leave);
       DECLARE_MESSAGE_HANDLER(on_message_key_down);
       DECLARE_MESSAGE_HANDLER(on_message_key_up);
@@ -1380,7 +1390,7 @@ namespace user
 
       virtual void pre_subclass_window() override;
 
-      virtual void PostNcDestroy() override;
+      virtual void post_non_client_destroy() override;
 
 
       virtual void default_message_handler(::message::message * pmessage) override;

@@ -28,7 +28,7 @@ namespace user
       virtual void dump(dump_context & dumpcontext) const override;
 
 
-      virtual void PostNcDestroy() override;
+      virtual void post_non_client_destroy() override;
 
 
    };

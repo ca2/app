@@ -540,7 +540,7 @@ namespace uwp
       void OnRButtonDblClk(::u32 nFlags, const ::point_i32 & point);
       void OnRButtonDown(::u32 nFlags, const ::point_i32 & point);
       void OnRButtonUp(::u32 nFlags, const ::point_i32 & point);
-      DECLARE_MESSAGE_HANDLER(on_message_set_cursor);
+      ////DECLARE_MESSAGE_HANDLER(on_message_set_cursor);
       void OnTimer(uptr uEvent);
 
       // Initialization message handler member functions
@@ -605,8 +605,8 @@ namespace uwp
       LRESULT Default();
       virtual LRESULT DefWindowProc(::u32 message, WPARAM wParam, lparam lParam);
 
-      // for custom cleanup after e_message_ncdestroy
-      virtual void PostNcDestroy();
+      // for custom cleanup after e_message_non_client_destroy
+      virtual void post_non_client_destroy();
 
       // for notifications from parent
       virtual bool OnChildNotify(::u32 message, WPARAM wParam, LPARAM lParam, LRESULT* pResult);

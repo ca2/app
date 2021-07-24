@@ -506,7 +506,7 @@ CLASS_DECL_APEX void set_debug_pointer(void * p);
 
    //psystem = __move_transfer(apex_create_apex_system());
 
-   __pointer(::apex::system) psystem = get_system();
+   auto psystem = get_system()->m_papexsystem;
 
    if (!psystem)
    {
@@ -1777,7 +1777,7 @@ __transport(::application) app_core::new_application(const char* pszAppId)
 
          }
 
-         __pointer(::apex::system) psystem = get_system();
+         auto psystem = get_system()->m_papexsystem;
 
          auto plibrary = psystem->get_library(strLibrary);
 
@@ -1895,7 +1895,7 @@ __transport(::application) app_core::new_application(const char* pszAppId)
 
 #if !defined(ANDROID)
 
-   __pointer(::apex::system) psystem = get_system();
+   auto psystem = get_system()->m_papexsystem;
 
    if (!papp->is_service() || papp->is_user_service())
    {

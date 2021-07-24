@@ -26,6 +26,7 @@ namespace draw2d_cairo
       virtual bool _unmap() override;
 
 
+
       virtual ::draw2d::graphics * _get_graphics() const override;
       virtual ::draw2d::bitmap_pointer get_bitmap() const override;
       virtual ::draw2d::bitmap_pointer detach_bitmap() override;

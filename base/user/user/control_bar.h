@@ -258,7 +258,7 @@ namespace user
 
       virtual void pre_translate_message(::message::message * pmessage) override;
       virtual bool pre_create_window(::user::system * pusersystem) override;
-      virtual void PostNcDestroy() override;
+      virtual void post_non_client_destroy() override;
 
       virtual void DoPaint(::draw2d::graphics_pointer & pgraphics);
       void DrawBorders(::draw2d::graphics_pointer & pgraphics, ::rectangle_i32& rectangle);

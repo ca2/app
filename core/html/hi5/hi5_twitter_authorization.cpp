@@ -52,7 +52,7 @@ namespace hi5
          m_bAuth = bAuth;
          m_strForm = pszForm;
 
-         __pointer(::core::system) psystem = get_system();
+         auto psystem = get_system()->m_pcoresystem;
 
          m_ptemplatePane = new ::user::single_document_template(
             "system/auth",

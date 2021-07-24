@@ -44,7 +44,7 @@ namespace experience_lite
 
       pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias_grid_fit);
 
-      pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
       i32 iTab = -1;
 
@@ -75,7 +75,7 @@ namespace experience_lite
             if(ptab->get_element_rect(iTab,rectIcon, ::user::e_element_icon))
             {
 
-               pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+               pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 /*               pane.m_pimage->bitmap_blend(pgraphics,rectIcon);
 
             }
@@ -174,7 +174,7 @@ namespace experience_lite
             if(ptab->get_element_rect(iTab,rectIcon, ::user::e_element_icon))
             {
 
-               pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+               pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
 /*               pane.m_pimage->bitmap_blend(pgraphics,rectIcon);
 
@@ -356,7 +356,7 @@ namespace experience_lite
                rectEmp = rectText;
                rectEmp.deflate(1,1);
                ::draw2d::enum_alpha_mode emode = pgraphics->m_ealphamode;
-               pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+               pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
                if(ptab->m_eelementHover == (int)::user::e_element_split + i)
                {
                   pgraphics->FillSolidRect(rectEmp,argb(128,149,184,255));
@@ -646,7 +646,7 @@ namespace experience_lite
       if ((crBackground & argb(255, 0, 0, 0)) != 0)
       {
 
-         pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+         pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
          if (psession->savings().is_trying_to_save(::e_resource_processing))
          {

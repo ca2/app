@@ -1176,7 +1176,7 @@ namespace user
    void tab_drop_target_window::on_message_left_button_up(::message::message * pmessage)
    {
 
-      __pointer(::message::mouse) pmouse(pmessage);
+      auto pmouse = pmessage->m_pmouse;
 
       auto psession = get_session();
 

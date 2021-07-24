@@ -214,7 +214,7 @@ namespace apex
    ::e_status node::start_node()
    {
 
-      __pointer(::apex::system) psystem = get_system();
+      auto psystem = get_system()->m_papexsystem;
 
       auto estatus = psystem->on_start_system();
 

@@ -16,7 +16,6 @@ namespace user
       m_bInline = true;
       m_bAutoDelete = true;
       m_bOwnItem = false;
-      m_puiMenuNotify = nullptr;
       m_bAutoClose = true;
       m_bInline = true;
 
@@ -26,7 +25,6 @@ namespace user
    menu_list_window::menu_list_window(menu_item * pitem)
    {
 
-      m_puiMenuNotify      = nullptr;
       m_bAutoClose         = true;
       m_bAutoDelete        = true;
       m_bOwnItem           = false;

@@ -732,6 +732,14 @@ namespace windowing
    }
 
 
+   bool windowing::is_branch_current() const
+   {
+
+      return false;
+
+   }
+
+
    void windowing::_main_loop()
    {
 

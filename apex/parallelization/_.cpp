@@ -47,7 +47,7 @@ namespace parallelization
 
    //   //return s_piaThread2->contains(id);
 
-   //   __pointer(::apex::system) psystem = get_system();
+   //   auto psystem = get_system()->m_papexsystem;
 
    //   return psystem->get_task(id) != nullptr;
 
@@ -73,7 +73,7 @@ namespace parallelization
    //void thread_unregister(itask_t itask, ::task * ptask)
    //{
 
-   //   __pointer(::apex::system) psystem = get_system();
+   //   auto psystem = get_system()->m_papexsystem;
 
    //   psystem->unset_task(itask, ptask);
 
@@ -97,7 +97,7 @@ namespace parallelization
 
    //   }
 
-   //   __pointer(::apex::system) psystem = get_system();
+   //   auto psystem = get_system()->m_papexsystem;
 
    //   synchronous_lock synchronouslock(&psystem->m_mutexTask);
 
@@ -132,7 +132,7 @@ namespace parallelization
    void post_quit_to_all_threads(class ::system * psystem)
    {
 
-      //__pointer(::apex::system) psystem = get_system();
+      //auto psystem = get_system()->m_papexsystem;
 
       synchronous_lock synchronouslock(&psystem->m_mutexTask);
 
@@ -525,7 +525,7 @@ namespace apex
          try
          {
 
-            __pointer(::apex::system) psystem = get_system();
+            auto psystem = get_system()->m_papexsystem;
 
             if (::is_set(psystem))
             {

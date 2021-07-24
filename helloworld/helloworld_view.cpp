@@ -487,7 +487,7 @@ namespace helloworld
 
          rectImage.FitOnCenterOf(rectWork);
 
-         m_pimagePost->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_set);
+         m_pimagePost->get_graphics()->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
          m_pimagePost->get_graphics()->StretchBlt(rectImage.left, rectImage->top, rectImage->width(), rectImage->height(),
 /*                                                m_prender->m_pimagepimage->g(), 0, 0,

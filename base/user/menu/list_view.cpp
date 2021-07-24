@@ -55,12 +55,16 @@ namespace user
    void menu_list_view::route_command_message(::message::command * pcommand)
    {
 
-      if (m_puiMenuNotify != nullptr
-            && m_puiMenuNotify != this
-            && !m_puiMenuNotify->is_ascendant_of(this, true))
+      __pointer(::user::interaction) puserinteractionNotify;
+
+      if (::is_set(m_pchannelNotify)
+            && m_pchannelNotify != this
+            && (
+               !puserinteractionNotify
+               || !puserinteractionNotify->is_ascendant_of(this, true)))
       {
 
-         m_puiMenuNotify->route_command_message(pcommand);
+         m_pchannelNotify->route_command_message(pcommand);
 
          //if(pcommand->m_bRet)
          {
@@ -76,10 +80,10 @@ namespace user
    }
 
 
-   void menu_list_view::PostNcDestroy()
+   void menu_list_view::post_non_client_destroy()
    {
 
-      ::user::menu_list_window::PostNcDestroy();
+      ::user::menu_list_window::post_non_client_destroy();
 
    }
 

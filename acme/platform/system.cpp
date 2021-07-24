@@ -126,7 +126,7 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
 
       }
 
-      auto estatus = __compose(m_pnode);
+      auto estatus = __construct(m_pnode);
 
       if(!estatus)
       {
@@ -639,7 +639,7 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
 
       // Ex. "draw2d" (Component) and implementation: either "draw2dcairo", "cairo", "draw2d_cairo"
 
-      __pointer(class ::system) psystem = get_system();
+      auto psystem = get_system();
 
       synchronous_lock synchronouslock(&psystem->m_mutexLibrary);
 
@@ -747,7 +747,7 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
 
       ::str::begins_eat_ci(strImplementation, strComponent);
 
-      __pointer(class ::system) psystem = get_system();
+      auto psystem = get_system();
 
       synchronous_lock synchronouslock(&psystem->m_mutexContainerizedLibrary);
 
@@ -1229,6 +1229,28 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
 
 
    }
+
+
+#ifdef DEBUG
+
+
+   i64 system::add_ref(OBJ_REF_DBG_PARAMS)
+   {
+
+      return ::object::add_ref(OBJ_REF_DBG_ARGS);
+
+   }
+
+
+   i64 system::dec_ref(OBJ_REF_DBG_PARAMS)
+   {
+
+      return ::object::dec_ref(OBJ_REF_DBG_ARGS);
+
+   }
+
+
+#endif
 
 
    void system::system_id_update(::i64 iId, ::i64 iPayload)

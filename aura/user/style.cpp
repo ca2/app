@@ -58,7 +58,7 @@ namespace user
 
       auto psystem = get_system()->m_paurasystem;
 
-      m_pnode = psystem->node();
+      auto pnode = psystem->node();
       
       auto pdraw2d = psystem->draw2d();
       
@@ -67,7 +67,7 @@ namespace user
       if(pwritetext)
       {
 
-         m_pfont = pwritetext->point_font(m_pnode->font_name(e_font_sans_ui), 12.0);
+         m_pfont = pwritetext->point_font(pnode->font_name(e_font_sans_ui), 12.0);
          
       }
 
@@ -270,7 +270,7 @@ namespace user
 
       }
 
-      pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
       i32 iStyle = 1;
 
@@ -955,9 +955,11 @@ namespace user
 
          ::color::color crBk;
 
-         __pointer(::aura::system) psystem = get_system();
+         auto psystem = get_system()->m_paurasystem;
 
-         if (m_pnode && m_pnode->is_app_dark_mode())
+         auto pnode = psystem->node();
+
+         if (pnode && pnode->is_app_dark_mode())
          {
 
             crBk = argb(255, 0x40, 0x40, 0x40);
@@ -978,9 +980,11 @@ namespace user
 
          ::color::color crBk;
 
-         __pointer(::aura::system) psystem = get_system();
+         auto psystem = get_system()->m_paurasystem;
 
-         if (m_pnode && m_pnode->is_app_dark_mode())
+         auto pnode = psystem->node();
+
+         if (pnode && pnode->is_app_dark_mode())
          {
 
             crBk = argb(255, 127, 127, 127);
@@ -1001,9 +1005,11 @@ namespace user
 
          ::color::color crText;
 
-         __pointer(::aura::system) psystem = get_system();
+         auto psystem = get_system()->m_paurasystem;
 
-         if (m_pnode && m_pnode->is_app_dark_mode())
+         auto pnode = psystem->node();
+
+         if (pnode && pnode->is_app_dark_mode())
          {
 
             crText = argb(255, 255, 255, 255);

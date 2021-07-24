@@ -11,7 +11,7 @@ namespace user
    void draw_close_icon(::draw2d::graphics_pointer& pgraphics, ::user::interaction * puserinteraction,  ::user::item* pitem)
    {
 
-      pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
       ::draw2d::brush_pointer pbrush(e_create);
 
@@ -64,6 +64,14 @@ namespace user
       pgraphics->set(pbrush);
 
       pgraphics->fill_path(pitem->m_ppath);
+
+   }
+
+
+   void draw_switch_icon(::draw2d::graphics_pointer& pgraphics, ::user::interaction* puserinteraction, ::user::item* pitem)
+   {
+
+      draw_switch_button(pgraphics, puserinteraction, pitem);
 
    }
 

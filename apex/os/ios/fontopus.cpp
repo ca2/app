@@ -117,7 +117,7 @@ namespace account
 
       get_client_rect(rectangle);
 
-      g.set_alpha_mode(draw2d::alpha_mode_blend);
+      g.set_alpha_mode(draw2d::e_alpha_mode_blend);
 
       // front
       point_i32 pa[4];  //  0       1
@@ -318,7 +318,7 @@ namespace account
 
       get_window_rect(rectWindow);
 
-      g.set_alpha_mode(draw2d::alpha_mode_blend);
+      g.set_alpha_mode(draw2d::e_alpha_mode_blend);
 
       int iCount = rectWindow.height();
       simple_pen p;

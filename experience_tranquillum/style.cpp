@@ -580,7 +580,7 @@ namespace tranquillum
 
       pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias_grid_fit);
 
-      pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
       ::rectangle_i32 rcTab;
 
@@ -670,7 +670,7 @@ namespace tranquillum
             if (ptab->get_element_rect(iTab, rectIcon, ::user::e_element_icon))
             {
 
-               pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+               pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
                pane.m_pimage->bitmap_blend(pgraphics, rectIcon);
 
@@ -793,7 +793,7 @@ namespace tranquillum
             if (ptab->get_element_rect(iTab, rectIcon, ::user::e_element_icon))
             {
 
-               pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+               pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
                pane.m_pimage->bitmap_blend(pgraphics, rectIcon);
 
@@ -1021,7 +1021,7 @@ namespace tranquillum
                rectEmp = rectText;
                rectEmp.deflate(1,1);
                ::draw2d::enum_alpha_mode emode = pgraphics->m_ealphamode;
-               pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+               pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
                if(ptab->m_itemHover.m_iItem == ((int) ::user::e_element_split) + i)
                {
                   
@@ -1099,7 +1099,7 @@ namespace tranquillum
    //void style::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgraphics, index iItem, ::user::toolbar * ptoolbar)
    //{
 
-   //   pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+   //   pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
    //   ::rectangle_i32 rectItem;
 
@@ -1405,7 +1405,7 @@ namespace tranquillum
    //void style::_001DrawTranquillumToolbarItem(::draw2d::graphics_pointer & pgraphics, index iItem, ::user::toolbar * ptoolbar)
    //{
 
-   //   pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+   //   pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
    //   ::rectangle_i32 rectItem;
 

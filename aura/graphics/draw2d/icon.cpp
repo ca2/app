@@ -10,7 +10,6 @@ namespace draw2d
    icon::icon()
    {
 
-      m_picon = nullptr;
       m_bAutoDelete = true;
 
    }
@@ -29,7 +28,7 @@ namespace draw2d
       if (m_bAutoDelete)
       {
 
-         if (m_picon != nullptr)
+         if (::is_set(m_pwindowingicon))
          {
 
 #ifdef WINDOWS_DESKTOP
@@ -42,7 +41,7 @@ namespace draw2d
             //}
 
 
-            m_picon.release();
+            m_pwindowingicon.release();
             //::DestroyIcon((hicon)m_picon);
 
 #else
@@ -76,10 +75,14 @@ namespace draw2d
    }
 
 
-   void icon::initialize_with_windowing_icon(::windowing::icon * picon)
+   ::e_status icon::initialize_with_windowing_icon(::windowing::icon * pwindowingicon)
    {
 
-      m_picon = picon;
+      m_pwindowingicon = pwindowingicon;
+
+      on_update_icon();
+
+      return ::success;
 
    }
 
@@ -87,9 +90,10 @@ namespace draw2d
    windowing::icon * icon::get_windowing_icon()
    {
 
-      return m_picon;
+      return m_pwindowingicon;
 
    }
+
 
 
    string icon::get_tray_icon_name()
@@ -103,7 +107,7 @@ namespace draw2d
    void icon::on_update_icon()
    {
 
-      if (m_picon == nullptr)
+      if (!m_pwindowingicon)
       {
 
          return;
@@ -112,7 +116,7 @@ namespace draw2d
 
 //#ifdef WINDOWS_DESKTOP
 
-      m_picon->get_sizes(m_sizea);
+      m_pwindowingicon->get_sizes(m_sizea);
 
 //#else
 
@@ -168,14 +172,14 @@ namespace draw2d
 
       }
 
-      if (!m_picon)
+      if (!m_pwindowingicon)
       {
 
          return nullptr;
 
       }
 
-      pimage = m_picon->get_image(size);
+      pimage = m_pwindowingicon->get_image(size);
 
       if (!pimage)
       {

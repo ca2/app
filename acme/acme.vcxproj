@@ -1589,7 +1589,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClCompile Include="platform\profiler.cpp" />
     <ClCompile Include="platform\routine_array.cpp" />
     <ClCompile Include="platform\serial.cpp" />
-    <ClCompile Include="platform\simple_trace.cpp" />
+    <ClCompile Include="platform\simple_log.cpp" />
     <ClCompile Include="platform\static_setup.cpp" />
     <ClCompile Include="platform\static_start.cpp" />
     <ClCompile Include="platform\system.cpp" />

@@ -282,7 +282,7 @@ namespace user
 
          TRACE(trace_category_appmsg, e_trace_level_warning, "Warning: impact_system couldn't create a frame.\n");
 
-         // frame will be deleted in PostNcDestroy cleanup
+         // frame will be deleted in post_non_client_destroy cleanup
 
          return nullptr;
 

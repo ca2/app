@@ -21,7 +21,7 @@ enum enum_timer : ::i64
    e_timer_check_cached_credentials,
    e_timer_check_toggle_animation,
    e_timer_auto_save,
-   e_timer_transparent_mouse_event,
+   //e_timer_transparent_mouse_event,
    e_timer_redraw,
    e_timer_30s,
    e_timer_hover,

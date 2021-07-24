@@ -28,6 +28,7 @@ namespace windowing
       __pointer(::windowing::window)            m_pwindowParent;
       ::point_i32                               m_point;
       ::size_i32                                m_size;
+      __pointer(::windowing::icon)              m_picon;
       __pointer(::windowing::windowing)         m_pwindowing;
 
 

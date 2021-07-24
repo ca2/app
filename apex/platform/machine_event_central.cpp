@@ -106,7 +106,7 @@ bool machine_event_central::is_close_application()
 
    m_pmachineevent->read(&data);
 
-   __pointer(::apex::system) psystem = get_system();
+   auto psystem = get_system()->m_papexsystem;
 
    psystem->process_machine_event_data(&data);
 

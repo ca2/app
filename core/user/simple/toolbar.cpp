@@ -107,7 +107,7 @@ void simple_toolbar::install_message_routing(::channel * pchannel)
    //MESSAGE_LINK(e_message_mouse_move    , pchannel, this, &simple_toolbar::on_message_mouse_move);
    //MESSAGE_LINK(e_message_left_button_down  , pchannel, this, &simple_toolbar::on_message_left_button_down);
    //MESSAGE_LINK(e_message_left_button_up    , pchannel, this, &simple_toolbar::on_message_left_button_up);
-   //MESSAGE_LINK(e_message_nchittest    , pchannel, this, &simple_toolbar::_001OnNcHitTest);
+   //MESSAGE_LINK(e_message_non_client_hittest    , pchannel, this, &simple_toolbar::_001OnNcHitTest);
    //MESSAGE_LINK(e_message_mouse_leave   , pchannel, this, &simple_toolbar::on_message_mouse_leave);
 
    install_click_default_mouse_handling(pchannel);
@@ -242,7 +242,7 @@ void simple_toolbar::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 
    get_client_rect(rectangleClient);
 
-   pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+   pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
    auto pstyle = get_style(pgraphics);
 
@@ -675,7 +675,7 @@ void simple_toolbar::_001DrawItem(::draw2d::graphics_pointer & pgraphics, index 
 void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgraphics, index iItem)
 {
 
-   pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+   pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
    ::rectangle_i32 rectItem;
 
@@ -1229,7 +1229,7 @@ void simple_toolbar::on_layout(::draw2d::graphics_pointer & pgraphics)
 //void simple_toolbar::on_message_mouse_move(::message::message * pmessage)
 //{
 //
-//   __pointer(::message::mouse) pmouse(pmessage);
+//   auto pmouse = pmessage->m_pmouse;
 //
 //   ::point_i32 point = pmouse->m_point;
 //
@@ -1265,7 +1265,7 @@ void simple_toolbar::on_layout(::draw2d::graphics_pointer & pgraphics)
 //void simple_toolbar::on_message_left_button_down(::message::message * pmessage)
 //{
 //
-//   __pointer(::message::mouse) pmouse(pmessage);
+//   auto pmouse = pmessage->m_pmouse;
 //
 //   auto point = screen_to_client(pmouse->m_point);
 //
@@ -1290,7 +1290,7 @@ void simple_toolbar::on_layout(::draw2d::graphics_pointer & pgraphics)
 //void simple_toolbar::on_message_left_button_up(::message::message * pmessage)
 //{
 //
-//   __pointer(::message::mouse) pmouse(pmessage);
+//   auto pmouse = pmessage->m_pmouse;
 //
 //   auto point = pmouse->m_point;
 //

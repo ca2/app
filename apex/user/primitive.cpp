@@ -1841,7 +1841,7 @@ namespace user
    }
 
 
-   void primitive::PostNcDestroy()
+   void primitive::post_non_client_destroy()
    {
 
       finalize();
@@ -3760,7 +3760,7 @@ namespace user
    bool primitive::call_message_handler(const ::id & id, wparam wparam, lparam lparam, const ::point_i32 & point, lresult * plresult)
    {
 
-      auto pmessage = get_message(id, wparam, lparam, point);
+      auto pmessage = get_message(id, wparam, lparam);
 
       try
       {

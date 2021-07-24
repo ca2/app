@@ -41,20 +41,24 @@ public:
    __pointer(counter<::i32>)                       m_pcounter;
    ::task_pointer                                  m_ptask;
    ::routine                                       m_routineNext;
+   ::routine_array                                 m_routineaPost;
 
 
    task();
-   virtual ~task();
+   ~task() override;
 
 
-   virtual string get_tag() const override;
-   virtual string task_get_name() const;
+   string get_tag() const override;
+   string task_get_name() const;
 
 
-   virtual ::task * get_task() override;
-   virtual const char * get_task_tag() override;
+   ::task * get_task() override;
+   const char * get_task_tag() override;
 
+   
+   void add_child_task(::object* pobjectTask) override;
 
+   virtual bool is_current_task() const;
    //virtual object * calc_parent_thread();
 
    virtual bool task_set_name(const char* pszName);
@@ -76,6 +80,9 @@ public:
    //virtual void add_notify(::matter* pmatter);
    //virtual void erase_notify(::matter* pmatter);
 
+   ::e_status post(const ::routine& routine) override;
+
+   virtual ::e_status run_posted_routines();
 
    virtual ::e_status task_caller_on_init();
 
@@ -126,13 +133,20 @@ public:
    virtual bool is_thread() const override;
    virtual bool task_get_run() const override;
 
+   virtual bool is_ready_to_quit() const;
+
    virtual bool task_active() const;
    virtual bool is_running() const override;
+
+   bool check_children_task() override;
+
+   virtual void update_task_ready_to_quit();
 
    virtual bool kick_thread();
 
    virtual ::e_status main();
 
+   ::e_status run() override;
 
    virtual ::e_status stop_task();
 

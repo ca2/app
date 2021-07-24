@@ -280,6 +280,13 @@ public:
 
       auto writer = get_writer(varFile);
 
+      if(!writer)
+      {
+
+         return writer.m_estatus;
+
+      }
+
       *writer << a;
 
       return writer.m_estatus;

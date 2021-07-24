@@ -4,8 +4,6 @@
 class message_queue;
 
 
-namespace user { class frame;  }
-
 ///
 /// a thread must be always allocated in the heap
 ///
@@ -76,8 +74,6 @@ public:
 
    string                                             m_strDebugType;
 
-   address_array < ::user::frame * >                  m_frameptra;
-
    __pointer(::task_pool)                             m_ptaskpool;
 
    ::u32                                              m_nDisablePumpCount;
@@ -121,17 +117,21 @@ public:
 
 
    thread();
-   virtual ~thread();
+   ~thread() override;
 
    
 
 
-   virtual void assert_valid() const override;
-   virtual void dump(dump_context & dumpcontext) const override;
+   void assert_valid() const override;
+   void dump(dump_context & dumpcontext) const override;
 
    
    //using task::fork;
    //using channel::fork;
+
+   
+   void add_child_task(::object* pobjectTask) override;
+
 
    inline message_queue* get_message_queue() { return m_pmq ? m_pmq : _get_mq(); }
    message_queue* _get_mq();
@@ -147,7 +147,7 @@ public:
    //virtual ::e_status set_finish_composites(::property_object* ppropertyobjectFinish) override;
 
 
-   virtual void update_task_ready_to_quit();
+   void update_task_ready_to_quit() override;
 
 
    void add_waiting_event(event * pevent);
@@ -284,7 +284,7 @@ public:
 
    }
 
-   virtual void post(const ::routine& routine);
+   ::e_status post(const ::routine& routine) override;
 
    DECLARE_MESSAGE_HANDLER(on_message_branch);
 

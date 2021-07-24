@@ -949,7 +949,7 @@ namespace base
 
    //}
 
-   bool user::track_popup_menu(::user::interaction* pinteraction, ::user::menu_item * pitem, i32 iFlags)
+   bool user::track_popup_menu(::user::interaction* pinteraction, ::user::menu_item * pitem, i32 iFlags, ::channel* pchannelNotify)
    {
 
       ::point_i32 point;
@@ -962,12 +962,12 @@ namespace base
 
       auto pointCursor = pwindowing->get_cursor_position();
 
-      return track_popup_menu(pinteraction, pitem, iFlags, pointCursor);
+      return track_popup_menu(pinteraction, pitem, iFlags, pointCursor, pchannelNotify);
 
    }
 
 
-   __pointer(::user::menu) user::track_popup_xml_menu_text(::user::interaction* pinteraction, string strXml, i32 iFlags)
+   __pointer(::user::menu) user::track_popup_xml_menu_text(::user::interaction* pinteraction, string strXml, i32 iFlags, ::channel* pchannelNotify)
    {
 
       auto psession = get_session();
@@ -978,12 +978,12 @@ namespace base
 
       auto pointCursor = pwindowing->get_cursor_position();
 
-      return track_popup_xml_menu(pinteraction, strXml, iFlags, pointCursor);
+      return track_popup_xml_menu(pinteraction, strXml, iFlags, pointCursor, ::size_i32(), pchannelNotify);
 
    }
 
 
-   __pointer(::user::menu) user::track_popup_xml_matter_menu(::user::interaction* pinteraction, const char * pszMatter, i32 iFlags)
+   __pointer(::user::menu) user::track_popup_xml_matter_menu(::user::interaction* pinteraction, const char * pszMatter, i32 iFlags, ::channel* pchannelNotify)
    {
 
       auto psession = get_session();
@@ -994,61 +994,60 @@ namespace base
 
       auto pointCursor = pwindowing->get_cursor_position();
 
-      return track_popup_xml_matter_menu(pinteraction, pszMatter, iFlags, pointCursor);
+      return track_popup_xml_matter_menu(pinteraction, pszMatter, iFlags, pointCursor, pchannelNotify);
 
    }
 
 
 
-   bool user::track_popup_menu(::user::interaction* pinteraction, ::user::menu_item * pitem, i32 iFlags, ::message::message * pmessage)
+   bool user::track_popup_menu(::user::interaction* pinteraction, ::user::menu_item * pitem, i32 iFlags, ::message::message * pmessage, ::channel* pchannelNotify)
    {
 
-      __pointer(::message::mouse) pmouse(pmessage);
+      auto pmouse = pmessage->m_pmouse;
 
       ::point_i32 point = pmouse->m_point;
 
       pinteraction->screen_to_client(point);
 
-      return track_popup_menu(pinteraction, pitem, iFlags, point);
+      return track_popup_menu(pinteraction, pitem, iFlags, point, pchannelNotify);
 
    }
 
 
-   __pointer(::user::menu) user::track_popup_xml_menu_text(::user::interaction* pinteraction, string strXml, i32 iFlags, ::message::message * pmessage)
+   __pointer(::user::menu) user::track_popup_xml_menu_text(::user::interaction* pinteraction, string strXml, i32 iFlags, ::message::message * pmessage, ::channel* pchannelNotify)
    {
 
-      __pointer(::message::mouse) pmouse(pmessage);
+      auto pmouse = pmessage->m_pmouse;
 
       auto point = pmouse->m_point;
 
       pinteraction->screen_to_client(point);
 
-      return track_popup_xml_menu(pinteraction, strXml, iFlags, point);
-
+      return track_popup_xml_menu(pinteraction, strXml, iFlags, point, ::size_i32(), pchannelNotify);
 
    }
 
 
-   __pointer(::user::menu) user::track_popup_xml_matter_menu(::user::interaction* pinteraction, const char * pszMatter, i32 iFlags, ::message::message * pmessage)
+   __pointer(::user::menu) user::track_popup_xml_matter_menu(::user::interaction* pinteraction, const char * pszMatter, i32 iFlags, ::message::message * pmessage, ::channel* pchannelNotify)
    {
 
-      __pointer(::message::mouse) pmouse(pmessage);
+      auto pmouse = pmessage->m_pmouse;
 
       ::point_i32 point = pmouse->m_point;
 
-      return track_popup_xml_matter_menu(pinteraction, pszMatter, iFlags, point);
+      return track_popup_xml_matter_menu(pinteraction, pszMatter, iFlags, point, pchannelNotify);
 
    }
 
 
-   bool user::track_popup_menu(::user::interaction* pinteraction, ::user::menu_item * pitem, i32 iFlags, const ::point_i32 & point)
+   bool user::track_popup_menu(::user::interaction* pinteraction, ::user::menu_item * pitem, i32 iFlags, const ::point_i32 & point, ::channel* pchannelNotify)
    {
 
       __pointer(::user::menu) pmenu = __create <  ::user::menu  > ();
 
       pmenu->m_pmenuitem = pitem;
 
-      if (!pmenu->track_popup_menu(pinteraction, pinteraction))
+      if (!pmenu->track_popup_menu(pchannelNotify, pinteraction))
       {
 
          pmenu.release();
@@ -1062,7 +1061,7 @@ namespace base
    }
 
 
-   __pointer(::user::menu) user::track_popup_xml_menu(::user::interaction* pinteraction, const ::payload & varXml, i32 iFlags, const ::point_i32 & point, const ::size_i32 & sizeMinimum)
+   __pointer(::user::menu) user::track_popup_xml_menu(::user::interaction* pinteraction, const ::payload & varXml, i32 iFlags, const ::point_i32 & point, const ::size_i32 & sizeMinimum, ::channel* pchannelNotify)
    {
 
       __pointer(::user::menu) pmenu = pinteraction->__create <  ::user::menu  > ();
@@ -1080,7 +1079,7 @@ namespace base
 
       pmenu->hints(iFlags, point);
 
-      if (!pmenu->track_popup_menu(pinteraction, pinteraction))
+      if (!pmenu->track_popup_menu(pchannelNotify, pinteraction))
       {
 
          pmenu.release();
@@ -1094,14 +1093,14 @@ namespace base
    }
 
 
-   __pointer(::user::menu) user::track_popup_xml_matter_menu(::user::interaction* pinteraction, const char * pszMatter, i32 iFlags, const ::point_i32 & pointParam)
+   __pointer(::user::menu) user::track_popup_xml_matter_menu(::user::interaction* pinteraction, const char * pszMatter, i32 iFlags, const ::point_i32 & pointParam, ::channel * pchannelNotify)
    {
 
       string strMatterSource(pszMatter);
 
       ::point_i32 point(pointParam);
 
-      fork([this, strMatterSource, iFlags, point, pinteraction]()
+      fork([this, strMatterSource, iFlags, point, pinteraction, pchannelNotify]()
       {
 
          auto pmenu = __create <  ::user::menu  >();
@@ -1126,7 +1125,7 @@ namespace base
 
          pmenu->hints(iFlags, point);
 
-         if (!pmenu->track_popup_menu(pinteraction, pinteraction))
+         if (!pmenu->track_popup_menu(pchannelNotify, pinteraction))
          {
 
             pmenu.release();
@@ -1144,14 +1143,14 @@ namespace base
    }
 
 
-   __pointer(::user::menu) user::track_popup_xml_menu_file(::user::interaction * pinteraction, ::payload varXmlFile, i32 iFlags, const ::point_i32 & point, const ::size_i32 & sizeMinimum)
+   __pointer(::user::menu) user::track_popup_xml_menu_file(::user::interaction * pinteraction, ::payload varXmlFile, i32 iFlags, const ::point_i32 & point, const ::size_i32 & sizeMinimum, ::channel* pchannelNotify)
    {
 
       auto pcontext = get_context();
 
       string strXml = pcontext->m_papexcontext->file().as_string(varXmlFile);
 
-      return track_popup_xml_menu(pinteraction, strXml, iFlags, point, sizeMinimum);
+      return track_popup_xml_menu(pinteraction, strXml, iFlags, point, sizeMinimum, pchannelNotify);
 
       //__pointer(::user::menu) pmenu = alloc <  ::user::menu  > ();
 

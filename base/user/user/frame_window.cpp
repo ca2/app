@@ -180,7 +180,7 @@ namespace user
       MESSAGE_LINK(e_message_size, pchannel, this, &frame_window::on_message_size);
       MESSAGE_LINK(e_message_set_focus, pchannel, this, &frame_window::_001OnSetFocus);
       MESSAGE_LINK(e_message_activate, pchannel, this, &frame_window::_001OnActivate);
-      MESSAGE_LINK(e_message_ncactivate, pchannel, this, &frame_window::_001OnNcActivate);
+      MESSAGE_LINK(e_message_non_client_activate, pchannel, this, &frame_window::_001OnNcActivate);
 #ifdef WINDOWS_DESKTOP
       //MESSAGE_LINK(WM_SYSCOMMAND, pchannel, this, &frame_window::_001OnSysCommand);
       //MESSAGE_LINK(WM_QUERYENDSESSION, pchannel, this, &frame_window::_001OnQueryEndSession);
@@ -367,7 +367,7 @@ namespace user
    ON_WM_SIZE()
    ON_WM_ERASEBKGND()
    ON_WM_ACTIVATE()
-   ON_e_message_ncactivate()
+   ON_e_message_non_client_activate()
    ON_WM_DROPFILES()
    ON_WM_QUERYENDSESSION()
    ON_WM_ENDSESSION()
@@ -575,9 +575,9 @@ namespace user
       }*/
    }
 
-   void frame_window::PostNcDestroy()
+   void frame_window::post_non_client_destroy()
    {
-      ::user::interaction::PostNcDestroy();
+      ::user::interaction::post_non_client_destroy();
       // default for frame windows is to allocate them on the heap
       //  the default post-cleanup is to 'delete this'.
       // never explicitly call 'delete' on a frame_window, use DestroyWindow instead
@@ -837,10 +837,10 @@ namespace user
       //      send_message(e_message_activate, WA_ACTIVE);
       //}
 
-      //// force e_message_ncactivate because Windows may think it is unecessary
+      //// force e_message_non_client_activate because Windows may think it is unecessary
       //if (bEnable && (m_nFlags & WF_STAYACTIVE))
-      //   send_message(e_message_ncactivate, true);
-      //// force e_message_ncactivate for floating windows too
+      //   send_message(e_message_non_client_activate, true);
+      //// force e_message_non_client_activate for floating windows too
    }
 
 
@@ -2861,7 +2861,7 @@ namespace user
 
 #if TEST
 
-         pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+         pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
          pgraphics->fill_solid_rect_dim(0, 0, 100, 100, argb(128, 255, 0, 0));
 

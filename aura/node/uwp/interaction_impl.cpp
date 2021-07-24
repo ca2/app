@@ -228,6 +228,8 @@ namespace uwp
 
       m_puserinteraction->m_ewindowflag |= ::e_window_flag_window_created;
 
+      m_puserinteraction->m_bTaskStarted = true;
+
       m_puserinteraction->m_layout.sketch().set_modified();
 
       return true;
@@ -371,7 +373,7 @@ namespace uwp
          m_puserinteraction->install_message_routing(pchannel);
       }
       MESSAGE_LINK(e_message_create, pchannel, this,&interaction_impl::on_message_create);
-      MESSAGE_LINK(e_message_set_cursor, pchannel, this,&interaction_impl::on_message_set_cursor);
+      //MESSAGE_LINK(e_message_set_cursor, pchannel, this,&interaction_impl::on_message_set_cursor);
       //MESSAGE_LINK(e_message_erase_background, pchannel, this,&interaction_impl::_001OnEraseBkgnd);
       MESSAGE_LINK(e_message_move, pchannel, this,&interaction_impl::on_message_move);
       MESSAGE_LINK(e_message_size, pchannel, this,&interaction_impl::on_message_size);
@@ -428,10 +430,10 @@ namespace uwp
    }
 
 
-   void interaction_impl::PostNcDestroy()
+   void interaction_impl::post_non_client_destroy()
    {
 
-      ::user::interaction_impl::PostNcDestroy();
+      ::user::interaction_impl::post_non_client_destroy();
 
 #ifdef WINDOWS_DESKTOP
       
@@ -467,9 +469,9 @@ namespace uwp
    void interaction_impl::on_final_release()
    {
       if(get_handle() != nullptr)
-         DestroyWindow();    // will call PostNcDestroy
+         DestroyWindow();    // will call post_non_client_destroy
       else
-         PostNcDestroy();
+         post_non_client_destroy();
    }
 
    void interaction_impl::assert_valid() const
@@ -4702,22 +4704,22 @@ return true;
 
    }
 
-   void interaction_impl::on_message_set_cursor(::message::message * pmessage)
-   {
+   // void interaction_impl::on_message_set_cursor(::message::message * pmessage)
+   // {
 
-      __throw(todo);
+   //    __throw(todo);
 
-      //__pointer(::user::message) pusermessage(pmessage);
-      //if(::aura::get_system()->get_cursor() != nullptr
-      //   && ::aura::get_system()->get_cursor()->m_ecursor != cursor_system)
-      //{
-      //   ::SetCursor(nullptr);
-      //}
-      //pusermessage->set_lresult(1);
-      //pusermessage->m_bRet = true;
-      ////(bool)Default();
+   //    //__pointer(::user::message) pusermessage(pmessage);
+   //    //if(::aura::get_system()->get_cursor() != nullptr
+   //    //   && ::aura::get_system()->get_cursor()->m_ecursor != cursor_system)
+   //    //{
+   //    //   ::SetCursor(nullptr);
+   //    //}
+   //    //pusermessage->set_lresult(1);
+   //    //pusermessage->m_bRet = true;
+   //    ////(bool)Default();
 
-   }
+   // }
 
    void interaction_impl::OnShowWindow(bool,::u32)
    {
@@ -5865,7 +5867,7 @@ __activation_window_procedure(oswindow hWnd, ::u32 nMsg, WPARAM wParam, LPARAM l
                                              (short)LOWORD(lParam), HIWORD(lParam));
          break;
 
-      case e_message_ncdestroy:
+      case e_message_non_client_destroy:
          SetWindowLongPtr(hWnd, GWLP_WNDPROC, reinterpret_cast<iptr>(oldWndProc));
          RemoveProp(hWnd, gen_OldWndProc);
          GlobalDeleteAtom(GlobalFindAtom(gen_OldWndProc));

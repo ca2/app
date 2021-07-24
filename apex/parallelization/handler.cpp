@@ -77,6 +77,21 @@ handler_manager::~handler_manager()
 }
 
 
+bool handler_manager::is_branch_current() const
+{
+
+   if(::is_null(m_pthread))
+   {
+
+      return false;
+
+   }
+
+   return m_pthread->is_current_task();
+
+}
+
+
 ::e_status handler_manager::handler_branch(const ::routine & routine)
 {
 

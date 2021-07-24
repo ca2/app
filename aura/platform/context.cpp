@@ -364,7 +364,7 @@ namespace aura
 //   ::file::path context::side_get_matter_path(string strMatter)
 //   {
 //
-//      __pointer(::apex::system) psystem = get_system();
+//      auto psystem = get_system()->m_papexsystem;
 //
 //      auto pdirsystem = psystem->m_pdirsystem;
 //
@@ -387,7 +387,7 @@ namespace aura
 //      if (::str::begins_eat_ci((string&)path, "appmatter://"))
 //      {
 //
-//         __pointer(::apex::system) psystem = get_system();
+//         auto psystem = get_system()->m_papexsystem;
 //
 //         ::file::path pathCache = psystem->m_pdirsystem->m_pathLocalAppMatterFolder / path;
 //
@@ -457,7 +457,7 @@ namespace aura
 //
 //         }
 //
-//         //__pointer(::apex::system) psystem = get_system();
+//         //auto psystem = get_system()->m_papexsystem;
 //
 //         if (!psystem->m_pdirsystem->m_bMatterFromHttpCache)
 //         {
@@ -732,7 +732,7 @@ namespace aura
 //      else
 //      {
 //
-//         __pointer(::apex::system) psystem = get_system();
+//         auto psystem = get_system()->m_papexsystem;
 //
 //         if (psystem)
 //         {
@@ -764,7 +764,7 @@ namespace aura
 //      else
 //      {
 //
-//         __pointer(::apex::system) psystem = get_system();
+//         auto psystem = get_system()->m_papexsystem;
 //
 //         if (psystem)
 //         {

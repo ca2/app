@@ -30,7 +30,7 @@ namespace user
       m_bAutoDelete = true;
       m_bOwnItem = true;
       m_puserinteractionParent = nullptr;
-      m_puiMenuNotify = nullptr;
+      m_pchannelNotify = nullptr;
       m_pmenuParent = nullptr;
       m_psubmenu = nullptr;
       m_iHoverSubMenu = -1;
@@ -54,7 +54,7 @@ namespace user
       m_bPositionHint = false;
       m_iHoverSubMenu = -1;
       m_puserinteractionParent = nullptr;
-      m_puiMenuNotify = nullptr;
+      m_pchannelNotify = nullptr;
       m_pmenuParent = nullptr;
       m_psubmenu = nullptr;
       m_bAutoDelete = true;
@@ -78,14 +78,14 @@ namespace user
 
       MESSAGE_LINK(e_message_create, pchannel, this, &menu::on_message_create);
       MESSAGE_LINK(e_message_destroy, pchannel, this, &menu::on_message_destroy);
-      MESSAGE_LINK(e_message_ncactivate, pchannel, this, &menu::_001OnNcActivate);
-      MESSAGE_LINK(e_message_nccalcsize, pchannel, this, &menu::on_message_non_client_calculate_size);
+      MESSAGE_LINK(e_message_non_client_activate, pchannel, this, &menu::_001OnNcActivate);
+      MESSAGE_LINK(e_message_non_client_calcsize, pchannel, this, &menu::on_message_non_client_calculate_size);
       MESSAGE_LINK(e_message_enable, pchannel, this, &menu::_001OnEnable);
       MESSAGE_LINK(e_message_show_window, pchannel, this, &menu::on_message_show_window);
       MESSAGE_LINK(e_message_close, pchannel, this, &menu::on_message_close);
       MESSAGE_LINK(e_message_mouse_activate, pchannel, this, &menu::_001OnMouseActivate);
       MESSAGE_LINK(e_message_activate, pchannel, this, &menu::_001OnActivate);
-      MESSAGE_LINK(e_message_nccreate, pchannel, this, &menu::_001OnNcCreate);
+      MESSAGE_LINK(e_message_non_client_create, pchannel, this, &menu::_001OnNcCreate);
 
    }
 
@@ -242,7 +242,7 @@ namespace user
 
       }
 
-      __pointer(::aqua::system) psystem = get_system();
+      auto psystem = get_system()->m_paquasystem;
 
       auto pxml = psystem->xml();
 
@@ -363,7 +363,7 @@ namespace user
 
       //m_pmenuitem.release();
 
-      m_puiMenuNotify.release();
+      m_pchannelNotify.release();
 
       m_puserinteractionParent.release();
 
@@ -386,7 +386,7 @@ namespace user
    }
 
 
-   bool menu::create_menu(::user::interaction * puiNotify, ::user::interaction * puiParent)
+   bool menu::create_menu(::channel* pchannelNotify, ::user::interaction * puiParent)
    {
 
       if (m_pmenuitem.is_null())
@@ -398,80 +398,26 @@ namespace user
 
       m_puserinteractionParent = puiParent;
 
-      //m_pparent = puiParent;
+      m_puserinteractionParent->m_menua.add(this);
 
-      if (puiNotify != nullptr)
+      m_pmenuitem->m_puserinteractionHost = m_puserinteractionParent;
+
+      if (::is_null(pchannelNotify))
       {
 
-         m_puiMenuNotify = puiNotify;
-
-         m_puiMenuNotify->m_menua.add(this);
-
-         m_pmenuitem->m_puserinteractionHost = puiNotify;
-
-         m_pmaterialCommandHandler = puiNotify;
-
-      }
-      else if (m_puiMenuNotify == nullptr)
-      {
-
-         m_puiMenuNotify = m_puserinteractionParent;
+         pchannelNotify = m_puserinteractionParent;
 
       }
 
-      //::create * pcreate = nullptr;
+      m_pchannelNotify = pchannelNotify;
+
+      m_pmaterialCommandHandler = pchannelNotify;
 
       auto psystem = m_psystem->m_paurasystem;
 
       auto pdraw2d = psystem->draw2d();
 
       auto pgraphics = pdraw2d->create_memory_graphics();
-
-      //if (pstyle == nullptr)
-      //{
-
-      //   ::user::interaction * pinteraction = m_puserinteractionParent;
-
-      //   while (pinteraction != nullptr)
-      //   {
-
-      //      pstyle = pinteraction->pstyle;
-
-      //      if (pstyle != nullptr)
-      //      {
-
-      //         break;
-
-      //      }
-
-      //      pinteraction = pinteraction->get_parent();
-
-      //   }
-
-      //   if (pstyle == nullptr)
-      //   {
-
-      //      ::user::interaction * pinteraction = m_puiNotify;
-
-      //      while (pinteraction != nullptr)
-      //      {
-
-      //         pstyle = pinteraction->pstyle;
-
-      //         if (pstyle != nullptr)
-      //         {
-
-      //            break;
-
-      //         }
-
-      //         pinteraction = pinteraction->get_parent();
-
-      //      }
-
-      //   }
-
-      //}
 
       if (!is_window())
       {
@@ -501,7 +447,7 @@ namespace user
 
          }
 
-         if (puiNotify != nullptr)
+         if (pchannelNotify != nullptr)
          {
 
             //set_owner(puiNotify);
@@ -572,14 +518,14 @@ namespace user
    }
 
 
-   bool menu::create_inline_menu(::user::interaction * puiNotify, ::user::interaction * puiParent)
+   bool menu::create_inline_menu(::channel * pchannelNotify, ::user::interaction * puiParent)
    {
 
       m_bMenuOk = false;
 
       m_bInline = true;
 
-      if (!create_menu(puiNotify, puiParent))
+      if (!create_menu(pchannelNotify, puiParent))
       {
 
          return false;
@@ -612,10 +558,10 @@ namespace user
 
 
 
-   bool menu::track_popup_menu(::user::interaction * puiNotify, ::user::interaction * puiParent)
+   bool menu::track_popup_menu(::channel * pchannelNotify, ::user::interaction * puiParent)
    {
 
-      if (!create_menu(puiNotify, puiParent))
+      if (!create_menu(pchannelNotify, puiParent))
       {
 
          return false;
@@ -928,7 +874,6 @@ namespace user
    }
 
 
-
    void menu::defer_close()
    {
 
@@ -936,14 +881,7 @@ namespace user
 
       ev.m_eevent = ::user::e_event_context_menu_close;
 
-      ::user::interaction * puiTarget = get_target_window();
-
-      if (puiTarget != nullptr)
-      {
-
-         on_control_event(&ev);
-
-      }
+      on_control_event(&ev);
 
       if (!m_bInline && !ev.m_bRet)
       {
@@ -978,16 +916,16 @@ namespace user
                if (pevent->m_puserinteraction->m_id.begins(astr.ingSysCommand))
                {
 
-                  ::user::interaction * puiTarget = get_target_window();
+                  auto pchannelNotify = get_notify_channel();
 
-                  if (puiTarget != nullptr)
+                  if (::is_set(pchannelNotify))
                   {
 
                      //::message::command command(pevent->m_puserinteraction->m_id);
 
                      //puiTarget->_001SendCommand(&command);
 
-                     puiTarget->command_handler(pevent->m_puserinteraction->m_id);
+                     pchannelNotify->command_handler(pevent->m_puserinteraction->m_id);
 
                   }
 
@@ -995,7 +933,7 @@ namespace user
                else
                {
 
-                  ::user::interaction * puiNotify = m_puiMenuNotify;
+                  auto pchannelNotify = m_pchannelNotify;
 
                   id idCommand = pevent->m_puserinteraction->m_id;
 
@@ -1005,14 +943,14 @@ namespace user
 
                   // this may be destroyed by e_message_close above
 
-                  if (puiNotify != nullptr)
+                  if (::is_set(pchannelNotify))
                   {
 
                      ::message::command command(idCommand);
 
                      command.m_actioncontext = pevent->m_actioncontext;
 
-                     puiNotify->_001SendCommand(&command);
+                     pchannelNotify->_001SendCommand(&command);
 
                      pevent->m_bRet = command.m_bRet;
 
@@ -1073,7 +1011,7 @@ namespace user
 //
 //                           m_psubmenu->update_position(rectangle.top_right());
 //
-//                           m_psubmenu->track_popup_menu(m_puiMenuNotify);
+//                           m_psubmenu->track_popup_menu(m_pchannelNotify);
 //
 //                        }
 //                        else
@@ -1173,7 +1111,8 @@ namespace user
 
             m_psubmenu->update_position(rectangle.top_right());
 
-            m_psubmenu->track_popup_menu(this, m_puiMenuNotify);
+            m_psubmenu->track_popup_menu(m_pchannelNotify, this);
+
          }
 
          m_idTimerMenu.is_empty();
@@ -1462,26 +1401,28 @@ namespace user
    //}
 
 
-   ::user::interaction * menu::get_target_window()
+   ::channel * menu::get_notify_channel()
    {
 
-      ::user::interaction * puiTarget = m_puiMenuNotify;
+      return m_pchannelNotify;
 
-      if (puiTarget == nullptr)
-      {
+      //auto pchannelNotify = m_pchannelNotify;
 
-         return nullptr;
+      //if (::is_null(pchannelNotify))
+      //{
 
-      }
+      //   return nullptr;
 
-      if (dynamic_cast <::user::frame *> (puiTarget) == nullptr)
-      {
+      //}
 
-         puiTarget = puiTarget->get_parent_frame();
+      //if (dynamic_cast <::user::frame *> (puiTarget) == nullptr)
+      //{
 
-      }
+      //   puiTarget = puiTarget->get_parent_frame();
 
-      return puiTarget;
+      //}
+
+      //return puiTarget;
 
    }
 
@@ -1498,7 +1439,7 @@ namespace user
    void menu::update_command(menu_item * pitemParent)
    {
 
-      if (m_puiMenuNotify == nullptr)
+      if (m_pchannelNotify == nullptr)
       {
 
          return;
@@ -1534,7 +1475,7 @@ namespace user
 
          pmenucommand->m_puiOther = pitem->m_puserinteraction;
 
-         if (m_puiMenuNotify.is_null())
+         if (m_pchannelNotify.is_null())
          {
 
             return;
@@ -1544,7 +1485,7 @@ namespace user
          try
          {
 
-            m_puiMenuNotify->_001SendCommandProbe(pmenucommand);
+            m_pchannelNotify->_001SendCommandProbe(pmenucommand);
 
          }
          catch (...)

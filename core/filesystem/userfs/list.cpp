@@ -162,7 +162,7 @@ namespace userfs
    void list::on_message_left_button_double_click(::message::message * pmessage)
    {
       UNREFERENCED_PARAMETER(pmessage);
-//      __pointer(::message::mouse) pmouse(pmessage);
+//      auto pmouse = pmessage->m_pmouse;
       /*         index iItem;
             list_data * pdata = fslist();
             if(_001HitTest_(pmouse->m_point, iItem))

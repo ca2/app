@@ -50,7 +50,7 @@ namespace extended
 
 
       template < typename TYPE >
-      transport(transport && p) :
+      transport(transport < TYPE > && p) :
          ___pointer<T>(::move(p)),
          ::extended::status(::move(p))
       {

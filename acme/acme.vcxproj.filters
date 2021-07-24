@@ -3574,9 +3574,6 @@
     <ClCompile Include="graphics\draw2d\os_font_name.cpp">
       <Filter>Source Files\graphics\draw2d</Filter>
     </ClCompile>
-    <ClCompile Include="platform\simple_trace.cpp">
-      <Filter>Source Files\platform</Filter>
-    </ClCompile>
     <ClCompile Include="platform\trace.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
@@ -3928,6 +3925,9 @@
     <ClCompile Include="memory\memory_allocate.cpp">
       <Filter>Source Files\memory</Filter>
     </ClCompile>
+    <ClCompile Include="platform\simple_log.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>    
   </ItemGroup>
   <ItemGroup>
     <None Include="primitive\string\aaa_want_to_remove_str.inl">

@@ -29,7 +29,7 @@ namespace apex
 
       string strConfiguration(pszConfiguration);
 
-      __pointer(::apex::system) psystem = get_system();
+      auto psystem = get_system()->m_papexsystem;
 
       if (strConfiguration.is_empty())
       {
@@ -539,7 +539,7 @@ namespace apex
    ::file::path context::side_get_matter_path(string strMatter)
    {
 
-      __pointer(::apex::system) psystem = get_system();
+      auto psystem = get_system()->m_papexsystem;
 
       auto pdirsystem = psystem->m_pdirsystem;
 
@@ -562,7 +562,7 @@ namespace apex
       if (::str::begins_eat_ci((string &) path, "appmatter://"))
       {
 
-         __pointer(::apex::system) psystem = get_system();
+         auto psystem = get_system()->m_papexsystem;
 
          ::file::path pathCache = psystem->m_pdirsystem->m_pathLocalAppMatterFolder / path;
 
@@ -632,7 +632,7 @@ namespace apex
 
          }
 
-         //__pointer(::apex::system) psystem = get_system();
+         //auto psystem = get_system()->m_papexsystem;
 
          if (!psystem->m_pdirsystem->m_bMatterFromHttpCache)
          {
@@ -907,7 +907,7 @@ namespace apex
       else
       {
 
-         __pointer(::apex::system) psystem = get_system();
+         auto psystem = get_system()->m_papexsystem;
 
          if (psystem)
          {
@@ -939,7 +939,7 @@ namespace apex
       else
       {
 
-         __pointer(::apex::system) psystem = get_system();
+         auto psystem = get_system()->m_papexsystem;
 
          if (psystem)
          {

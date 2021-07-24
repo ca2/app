@@ -69,7 +69,12 @@ namespace acme
 
 
       node();
-      virtual ~node();
+      ~node() override;
+
+
+
+      i64 add_ref(OBJ_REF_DBG_PARAMS) override;
+      i64 dec_ref(OBJ_REF_DBG_PARAMS) override;
 
 
       virtual ::e_status call_async(const char * pszPath, const char * pszParam, const char * pszDir, ::e_display edisplay, bool bPrivileged, unsigned int * puiPid = nullptr);
@@ -95,7 +100,7 @@ namespace acme
   
       virtual ::e_status _launch_macos_app_args(const char * pszAppFolder, const char * pszArgs);
 
-      virtual ::e_status on_initialize_object() override;
+      ::e_status on_initialize_object() override;
 
       virtual void initialize_memory_counter();
 

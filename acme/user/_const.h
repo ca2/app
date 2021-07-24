@@ -285,6 +285,8 @@ namespace user
       e_element_button_shadow,
       e_element_button_dark_shadow,
       e_element_check,
+      e_element_switch_button,
+      e_element_switch_icon,
 
 
       e_element_split = 10'000,
@@ -352,6 +354,7 @@ namespace user
       e_event_load_form_data,
       e_event_save_form_data,
       e_event_close_app,
+      e_event_switch,
 
    };
 

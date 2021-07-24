@@ -76,7 +76,7 @@ namespace experience
          || pmessage->m_id == e_message_sys_key_up)
       {
 
-         __pointer(::message::key) pkey(pmessage);
+         auto pkey = pmessage->m_pkey;
 
          auto psession = get_session();
 
@@ -909,6 +909,10 @@ namespace experience
    }
 
 
+
+
+
+
    void frame_window::display_system_minimize()
    {
 
@@ -1210,7 +1214,7 @@ namespace experience
       MESSAGE_LINK(e_message_non_client_left_button_down,pchannel,this,&frame_window::_001OnNcLButtonDown);
       MESSAGE_LINK(e_message_non_client_left_button_up,pchannel,this,&frame_window::_001OnNcLButtonUp);
       MESSAGE_LINK(e_message_non_client_mouse_move,pchannel,this,&frame_window::_001OnNcMouseMove);
-      MESSAGE_LINK(e_message_nchittest,pchannel,this,&frame_window::_001OnNcHitTest);
+      MESSAGE_LINK(e_message_non_client_hittest,pchannel,this,&frame_window::_001OnNcHitTest);
       MESSAGE_LINK(e_message_activate,pchannel,this,&frame_window::_001OnActivate);
       //MESSAGE_LINK(e_message_command,pchannel,this,&frame_window::_001OnCommand);
 
@@ -1234,7 +1238,7 @@ namespace experience
    void frame_window::on_message_left_button_down(::message::message * pmessage)
    {
 
-      __pointer(::message::mouse) pmouse(pmessage);
+      auto pmouse = pmessage->m_pmouse;
 
       if(!is_frame_experience_enabled())
       {
@@ -1281,7 +1285,7 @@ namespace experience
    void frame_window::on_message_mouse_move(::message::message * pmessage)
    {
 
-      __pointer(::message::mouse) pmouse(pmessage);
+      auto pmouse = pmessage->m_pmouse;
 
       if(!is_frame_experience_enabled())
       {
@@ -1334,7 +1338,7 @@ namespace experience
    void frame_window::on_message_left_button_up(::message::message * pmessage)
    {
 
-      __pointer(::message::mouse) pmouse(pmessage);
+      auto pmouse = pmessage->m_pmouse;
 
       if(!is_frame_experience_enabled())
       {
@@ -1359,63 +1363,63 @@ namespace experience
    }
 
 
-   void frame_window::on_message_set_cursor(::message::message* pmessage)
-   {
+   //void frame_window::on_message_set_cursor(::message::message* pmessage)
+   //{
 
-      __pointer(::message::set_cursor) psetcursor(pmessage);
+   //   __pointer(::message::set_cursor) psetcursor(pmessage);
 
-      if (!is_frame_experience_enabled())
-      {
+   //   if (!is_frame_experience_enabled())
+   //   {
 
-         return;
+   //      return;
 
-      }
+   //   }
 
-      if (::is_set(m_pframe))
-      {
+   //   if (::is_set(m_pframe))
+   //   {
 
-         if (layout().m_eflag & ::user::interaction_layout::flag_apply_visual)
-         {
+   //      if (layout().m_eflag & ::user::interaction_layout::flag_apply_visual)
+   //      {
 
-            INFO("e_message_mouse_move during window move ignored!!");
+   //         INFO("e_message_mouse_move during window move ignored!!");
 
-         }
-         else if (psetcursor->m_eflagMessage & ::message::flag_synthesized)
-         {
+   //      }
+   //      else if (psetcursor->m_eflagMessage & ::message::flag_synthesized)
+   //      {
 
-            INFO("synthesized e_message_mouse_move ignored!!");
+   //         INFO("synthesized e_message_mouse_move ignored!!");
 
-         }
-         else
-         {
+   //      }
+   //      else
+   //      {
 
-            //INFO("e_message_mouse_move for experience::frame");
+   //         //INFO("e_message_mouse_move for experience::frame");
 
-            if (m_pframe->on_message_set_cursor(psetcursor))
-            {
+   //         //if (m_pframe->on_message_set_cursor(psetcursor))
+   //         //{
 
-               psetcursor->m_bRet = true;
+   //         //   psetcursor->m_bRet = true;
 
-            }
+   //         //}
 
-         }
+   //      }
 
-      }
+   //   }
 
-      if (psetcursor->m_bRet)
-      {
+   //   if (psetcursor->m_bRet)
+   //   {
 
-         psetcursor->m_lresult = 1;
+   //      psetcursor->m_lresult = 1;
 
-      }
+   //   }
 
-   }
+   //}
 
 
    void frame_window::_001OnNcLButtonDown(::message::message * pmessage)
    {
 
-      __pointer(::message::mouse) pmouse(pmessage);
+      auto pmouse = pmessage->m_pmouse;
 
       if(!is_frame_experience_enabled())
       {
@@ -1442,7 +1446,7 @@ namespace experience
    void frame_window::_001OnNcMouseMove(::message::message * pmessage)
    {
 
-      __pointer(::message::mouse) pmouse(pmessage);
+      auto pmouse = pmessage->m_pmouse;
 
       if(!is_frame_experience_enabled())
       {
@@ -1466,7 +1470,7 @@ namespace experience
 
    void frame_window::_001OnNcLButtonUp(::message::message * pmessage)
    {
-   __pointer(::message::mouse) pmouse(pmessage);
+   auto pmouse = pmessage->m_pmouse;
    if(!is_frame_experience_enabled())
    {
    pmouse->m_bRet = false;
@@ -2055,7 +2059,7 @@ namespace experience
 //      void frame_window::on_message_dock_button_left_button_down(::message::message *pmessage)
 //      {
 //
-//         __pointer(::message::mouse) pmouse(pmessage);
+//         auto pmouse = pmessage->m_pmouse;
 //
 //         if (!WfiOnStartDock())
 //         {

@@ -74,12 +74,12 @@ namespace user
    }
 
 
-   void message::set(oswindow oswindow, ::windowing::window * pwindow, const ::id & id, wparam wparam, ::lparam lparam, const ::point_i32 & point)
+   void message::set(oswindow oswindow, ::windowing::window * pwindow, const ::id & id, wparam wparam, ::lparam lparam)
    {
 
       m_pwindow = pwindow;
 
-      ::message::message::set(oswindow, pwindow, id, wparam, lparam, point);
+      ::message::message::set(oswindow, pwindow, id, wparam, lparam);
 
    }
 

@@ -340,7 +340,7 @@ namespace user
 
       br1->create_solid(argb(255, 90, 150, 255));
 
-      pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
       double dRate = m_millisAnimationStart.period_rate(m_millisAnimationPeriod);
 
@@ -600,7 +600,7 @@ namespace user
    void check_box::on_message_key_up(::message::message * pmessage)
    {
 
-      __pointer(::message::key) pkey(pmessage);
+      auto pkey = pmessage->m_pkey;
 
       if(pkey->m_ekey == ::user::e_key_space)
       {

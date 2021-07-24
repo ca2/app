@@ -34,12 +34,12 @@ else __msg_entry(e_message_window_position_changing)
 else __msg_entry(e_message_window_position_changed)
 else __msg_entry(e_message_context_menu)
 else __msg_entry(e_message_display_change)
-else __msg_entry(e_message_nccreate)
-else __msg_entry(e_message_ncdestroy)
-else __msg_entry(e_message_nccalcsize)
-else __msg_entry(e_message_nchittest)
-else __msg_entry(e_message_ncpaint)
-else __msg_entry(e_message_ncactivate)
+else __msg_entry(e_message_non_client_create)
+else __msg_entry(e_message_non_client_destroy)
+else __msg_entry(e_message_non_client_calcsize)
+else __msg_entry(e_message_non_client_hittest)
+else __msg_entry(e_message_non_client_paint)
+else __msg_entry(e_message_non_client_activate)
 else __msg_entry(e_message_non_client_mouse_move)//)//      0x00A0
 else __msg_entry(e_message_non_client_left_button_down)//)//      0x00A1
 else __msg_entry(e_message_non_client_left_button_up)//)//      0x00A2
@@ -162,7 +162,7 @@ return str;
 
    e_message_mouse_move,
    e_message_set_cursor,
-   e_message_nchittest,
+   e_message_non_client_hittest,
    e_message_non_client_mouse_move,
    (::u32)-1
 };
@@ -170,7 +170,7 @@ return str;
 ::u32 g_puiaMessageWindowDeactivating[] =
 {
    // 2019-06-28-00-28
-   e_message_ncactivate,
+   e_message_non_client_activate,
    e_message_activate,
    e_message_kill_focus,
 #ifdef WINDOWS
@@ -186,7 +186,7 @@ return str;
    // 2019-06-28-00-33
    e_message_window_position_changing,
    e_message_window_position_changed,
-   e_message_ncactivate,
+   e_message_non_client_activate,
    e_message_activate,
    e_message_set_focus,
 #ifdef WINDOWS
@@ -203,17 +203,17 @@ return str;
    // IME, Input Method Editor Client : ca2 Framework
    // Viagem da Mummi... : Yakissoba delicioso!!
    // 2019-06-27-22-36
-   e_message_nccreate,
-   e_message_nccalcsize,
+   e_message_non_client_create,
+   e_message_non_client_calcsize,
    e_message_create,
    e_message_size,
    e_message_move,
    e_message_show_window,
    e_message_window_position_changing,
-   e_message_ncactivate,
+   e_message_non_client_activate,
    e_message_activate,
    e_message_set_focus,
-   e_message_ncpaint,
+   e_message_non_client_paint,
    e_message_erase_background,
    e_message_window_position_changed,
    e_message_paint,

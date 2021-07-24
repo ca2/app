@@ -254,14 +254,14 @@ namespace user
 
       virtual bool post_message(const ::id & id, wparam wparam = 0, lparam lparam = 0) override;
 
-      virtual void PostNcDestroy() override;
+      virtual void post_non_client_destroy() override;
 
       //virtual bool display(::display edisplay) override;
 
       DECLARE_MESSAGE_HANDLER(_001OnPrioCreate);
       DECLARE_MESSAGE_HANDLER(on_message_show_window);
       DECLARE_MESSAGE_HANDLER(on_message_destroy);
-      DECLARE_MESSAGE_HANDLER(_001OnNcDestroy);
+      DECLARE_MESSAGE_HANDLER(on_message_non_client_destroy);
 
       virtual void show_task(bool bShow);
 

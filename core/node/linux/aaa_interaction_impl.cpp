@@ -694,10 +694,10 @@ namespace linux
 
       if(!m_puserinteraction->m_bMessageWindow)
       {
-         MESSAGE_LINK(e_message_set_cursor, pchannel, this,&interaction_impl::on_message_set_cursor);
+         //MESSAGE_LINK(e_message_set_cursor, pchannel, this,&interaction_impl::on_message_set_cursor);
          //MESSAGE_LINK(e_message_erase_background, pchannel, this,&interaction_impl::_001OnEraseBkgnd);
          //MESSAGE_LINK(e_message_size, pchannel, this,&interaction_impl::on_message_size);
-         //MESSAGE_LINK(e_message_nccalcsize, pchannel, this,&interaction_impl::on_message_non_client_calculate_size);
+         //MESSAGE_LINK(e_message_non_client_calcsize, pchannel, this,&interaction_impl::on_message_non_client_calculate_size);
 
          // linux
          MESSAGE_LINK(e_message_move, pchannel, this, &interaction_impl::on_message_move);
@@ -1009,7 +1009,7 @@ namespace linux
    }
 
 
-   void interaction_impl::PostNcDestroy()
+   void interaction_impl::post_non_client_destroy()
    {
 
       Detach();
@@ -1021,7 +1021,7 @@ namespace linux
 
       }
 
-      ::user::interaction_impl::PostNcDestroy();
+      ::user::interaction_impl::post_non_client_destroy();
 
    }
 
@@ -1038,7 +1038,7 @@ namespace linux
       else
       {
 
-         PostNcDestroy();
+         post_non_client_destroy();
 
       }
 
@@ -1128,7 +1128,7 @@ namespace linux
 
          send_message(e_message_destroy, 0, 0);
 
-         send_message(e_message_ncdestroy, 0, 0);
+         send_message(e_message_non_client_destroy, 0, 0);
 
          ::oswindow_erase_message_only_window(this);
 
@@ -4376,20 +4376,20 @@ namespace linux
 //
 //   }
 //
-   void interaction_impl::on_message_set_cursor(::message::message * pmessage)
-   {
-      __pointer(::user::message) pusermessage(pmessage);
-      if(psession->get_cursor() != nullptr
-            && psession->get_cursor()->m_ecursor != cursor_system)
-      {
+//    void interaction_impl::on_message_set_cursor(::message::message * pmessage)
+//    {
+//       __pointer(::user::message) pusermessage(pmessage);
+//       if(psession->get_cursor() != nullptr
+//             && psession->get_cursor()->m_ecursor != cursor_system)
+//       {
 
-         __throw(error_not_implemented);
-//         ::SetCursor(nullptr);
-      }
-      pusermessage->m_lresult  = 1;
-      pusermessage->m_bRet = true;
-      //(bool)Default();
-   }
+//          __throw(error_not_implemented);
+// //         ::SetCursor(nullptr);
+//       }
+//       pusermessage->m_lresult  = 1;
+//       pusermessage->m_bRet = true;
+//       //(bool)Default();
+//    }
 
 
 //   void interaction_impl::OnShowWindow(bool, ::u32)

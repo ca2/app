@@ -1185,7 +1185,7 @@ namespace user
 
          }
 
-         __release(m_pthreadUserInteraction OBJ_REF_DBG_COMMA_THIS);
+         __release(m_pthreadUserInteraction OBJECT_REF_DEBUG_COMMA_THIS);
 
       }
 
@@ -5642,7 +5642,7 @@ namespace user
 
       }
 
-      //__refer(m_pthreadUserInteraction, ::get_task() OBJ_REF_DBG_COMMA_THIS_FUNCTION_LINE);
+      //__refer(m_pthreadUserInteraction, ::get_task() OBJECT_REF_DEBUG_COMMA_THIS_FUNCTION_LINE);
 
       //if (m_pthreadUserInteraction)
       //{
@@ -5731,7 +5731,7 @@ namespace user
 
          //         }
 
-         //         __release(m_pthreadUserInteraction OBJ_REF_DBG_COMMA_THIS);
+         //         __release(m_pthreadUserInteraction OBJECT_REF_DEBUG_COMMA_THIS);
 
          //      }
 
@@ -5757,7 +5757,7 @@ namespace user
 
             }
 
-            __release(m_pthreadUserInteraction OBJ_REF_DBG_COMMA_THIS);
+            __release(m_pthreadUserInteraction OBJECT_REF_DEBUG_COMMA_THIS);
 
          }
 
@@ -5869,7 +5869,7 @@ namespace user
 
          //         }
 
-         //         __release(m_pthreadUserInteraction OBJ_REF_DBG_COMMA_THIS);
+         //         __release(m_pthreadUserInteraction OBJECT_REF_DEBUG_COMMA_THIS);
 
          //      }
 
@@ -5941,7 +5941,7 @@ namespace user
 
                   }
 
-                  __release(m_pthreadUserInteraction OBJ_REF_DBG_COMMA_THIS);
+                  __release(m_pthreadUserInteraction OBJECT_REF_DEBUG_COMMA_THIS);
 
                }
 
@@ -5967,7 +5967,7 @@ namespace user
 
             }
 
-            __release(m_pthreadUserInteraction OBJ_REF_DBG_COMMA_THIS);
+            __release(m_pthreadUserInteraction OBJECT_REF_DEBUG_COMMA_THIS);
 
          }
 
@@ -7044,7 +7044,7 @@ namespace user
 
          }
 
-         __release(m_pthreadUserInteraction OBJ_REF_DBG_COMMA_THIS);
+         __release(m_pthreadUserInteraction OBJECT_REF_DEBUG_COMMA_THIS);
 
       }
 
@@ -7144,7 +7144,7 @@ namespace user
       if (m_ewindowflag & e_window_flag_satellite_window)
       {
 
-         __refer(m_pthreadUserInteraction, m_puserinteractionOwner->m_pthreadUserInteraction OBJ_REF_DBG_COMMA_THIS_FUNCTION_LINE);
+         __refer(m_pthreadUserInteraction, m_puserinteractionOwner->m_pthreadUserInteraction OBJECT_REF_DEBUG_COMMA_THIS_FUNCTION_LINE);
 
       }
 
@@ -10335,11 +10335,11 @@ namespace user
 
                   }
 
-                  __release(m_pthreadUserInteraction OBJ_REF_DBG_COMMA_THIS);
+                  __release(m_pthreadUserInteraction OBJECT_REF_DEBUG_COMMA_THIS);
 
                }
 
-               __refer(m_pthreadUserInteraction, puiParent->get_wnd()->m_pthreadUserInteraction OBJ_REF_DBG_COMMA_THIS_FUNCTION_LINE);
+               __refer(m_pthreadUserInteraction, puiParent->get_wnd()->m_pthreadUserInteraction OBJECT_REF_DEBUG_COMMA_THIS_FUNCTION_LINE);
 
             }
 

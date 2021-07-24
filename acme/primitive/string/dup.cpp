@@ -54,7 +54,7 @@
 //   if (::is_null(src)) return nullptr;
 //   ::count iLen = ansi_length(src);
 //
-//   char * dup = (char *) memory_alloc(iLen + 1);
+//   char * dup = (char *) memory_allocate(iLen + 1);
 //
 //   ansi_copy(dup, src);
 //
@@ -65,7 +65,7 @@
 //char * ansi_count_copy(const char * src, ::count iLen)
 //{
 //   if (::is_null(src)) return nullptr;
-//   char * dup = (char *) memory_alloc(iLen + 1);
+//   char * dup = (char *) memory_allocate(iLen + 1);
 //   ansi_count_copy(dup, src, iLen);
 //   dup[iLen] = '\0';
 //   return dup;

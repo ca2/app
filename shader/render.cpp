@@ -61,18 +61,18 @@ namespace app_shader
 #ifdef _DEBUG
 
 
-   int64_t render::add_ref(OBJ_REF_DBG_PARAMS_DEF)
+   int64_t render::add_ref(OBJECT_REF_DEBUG_PARAMS_DEF)
    {
 
-      return ::object::add_ref(OBJ_REF_DBG_ARGS);
+      return ::object::add_ref(OBJECT_REF_DEBUG_ARGS);
 
    }
 
 
-   int64_t render::dec_ref(OBJ_REF_DBG_PARAMS_DEF)
+   int64_t render::dec_ref(OBJECT_REF_DEBUG_PARAMS_DEF)
    {
 
-      return ::object::dec_ref(OBJ_REF_DBG_ARGS);
+      return ::object::dec_ref(OBJECT_REF_DEBUG_ARGS);
 
    }
 

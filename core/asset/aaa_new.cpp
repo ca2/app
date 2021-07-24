@@ -5,7 +5,7 @@
 void* MEMORY_DECL operator new(size_t nSize)
 {
 
-   return memory_alloc(nSize);
+   return memory_allocate(nSize);
 
 }
 
@@ -14,7 +14,7 @@ void* MEMORY_DECL operator new(size_t nSize)
 void* MEMORY_DECL operator new(size_t nSize, const std::nothrow_t&) noexcept
 {
 
-   return memory_alloc(nSize);
+   return memory_allocate(nSize);
 
 }
 
@@ -50,7 +50,7 @@ void* MEMORY_DECL operator new[](size_t nSize) new_throw_spec
 void* MEMORY_DECL operator new[](size_t nSize, const std::nothrow_t&) noexcept
 {
 
-   return memory_alloc(nSize);
+   return memory_allocate(nSize);
 
 }
 
@@ -96,7 +96,7 @@ inline void MEMORY_DECL operator delete(void* p, void* palloc) del_throw_spec
 void* MEMORY_DECL operator new (size_t size, const c_class&)
 {
 
-   return memory_alloc(size);
+   return memory_allocate(size);
 
 }
 
@@ -104,7 +104,7 @@ void* MEMORY_DECL operator new (size_t size, const c_class&)
 void* MEMORY_DECL operator new[](size_t size, const c_class&)
 {
 
-   return memory_alloc(size);
+   return memory_allocate(size);
 
 }
 
@@ -161,7 +161,7 @@ void* MEMORY_DECL operator new(size_t nSize, i32 nType, const char* pszFileName,
 
 #else
 
-   return memory_alloc_dbg(nSize, nType, pszFileName, nLine);
+   return memory_allocate_debug(nSize, nType, pszFileName, nLine);
 
 #endif
 
@@ -171,7 +171,7 @@ void* MEMORY_DECL operator new(size_t nSize, i32 nType, const char* pszFileName,
 void MEMORY_DECL operator delete(void* p, i32 nType, const char* /* pszFileName */, i32 /* nLine */)
 {
 
-   memory_free_dbg(p, nType);
+   memory_free_debug(p, nType);
 
 }
 

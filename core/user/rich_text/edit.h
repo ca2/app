@@ -50,13 +50,13 @@ namespace user
          virtual void update_placement() override;
 
 
-         //virtual i64 add_ref(OBJ_REF_DBG_PARAMS) override
+         //virtual i64 add_ref(OBJECT_REF_DEBUG_PARAMS) override
          //{
-         //   return ::object::add_ref(OBJ_REF_DBG_ARGS);
+         //   return ::object::add_ref(OBJECT_REF_DEBUG_ARGS);
          //}
-         //virtual i64 dec_ref(OBJ_REF_DBG_PARAMS) override
+         //virtual i64 dec_ref(OBJECT_REF_DEBUG_PARAMS) override
          //{
-         //   return ::object::dec_ref(OBJ_REF_DBG_ARGS);
+         //   return ::object::dec_ref(OBJECT_REF_DEBUG_ARGS);
          //}
 
          virtual ::user::rich_text::data * get_rich_text_data();

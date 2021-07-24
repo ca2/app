@@ -15,7 +15,7 @@ blob::~blob()
 {
    if(m_pchData != nullptr)
    {
-      memory_free_dbg(m_pchData, 0);
+      memory_free_debug(m_pchData, 0);
       m_pchData = nullptr;
    }
 }
@@ -27,7 +27,7 @@ void blob::read(FILE * file)
    if(m_pchData != nullptr)
    {
 
-      memory_free_dbg(m_pchData, 0);
+      memory_free_debug(m_pchData, 0);
 
    }
 
@@ -42,7 +42,7 @@ void blob::read(FILE * file)
    else
    {
 
-      m_pchData = (char *) memory_alloc(m_sizet);
+      m_pchData = (char *) memory_allocate(m_sizet);
 
       size_t sRead = 0;
 

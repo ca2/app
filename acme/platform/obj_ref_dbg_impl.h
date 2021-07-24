@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_ACME obj_ref_dbg
+class CLASS_DECL_ACME obj_ref_debug
 {
 public:
 
@@ -21,8 +21,8 @@ public:
    array < item >             m_itema;
 
 
-   obj_ref_dbg();
-   virtual ~obj_ref_dbg();
+   obj_ref_debug();
+   virtual ~obj_ref_debug();
 
 };
 

@@ -33,18 +33,18 @@ html_data::~html_data()
 }
 
 
-i64 html_data::add_ref(OBJ_REF_DBG_PARAMS_DEF)
+i64 html_data::add_ref(OBJECT_REF_DEBUG_PARAMS_DEF)
 {
 
-   return ::object::add_ref(OBJ_REF_DBG_ARGS);
+   return ::object::add_ref(OBJECT_REF_DEBUG_ARGS);
 
 }
 
 
-i64 html_data::dec_ref(OBJ_REF_DBG_PARAMS_DEF)
+i64 html_data::dec_ref(OBJECT_REF_DEBUG_PARAMS_DEF)
 {
 
-   return ::object::dec_ref(OBJ_REF_DBG_ARGS);
+   return ::object::dec_ref(OBJECT_REF_DEBUG_ARGS);
 
 }
 

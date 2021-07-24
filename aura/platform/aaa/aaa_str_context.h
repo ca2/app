@@ -154,14 +154,14 @@
 //      textcontext();
 //      virtual ~textcontext();
 //
-//      virtual i64 add_ref(OBJ_REF_DBG_PARAMS)
+//      virtual i64 add_ref(OBJECT_REF_DEBUG_PARAMS)
 //      {
-//         return ::object::add_ref(OBJ_REF_DBG_ARGS);
+//         return ::object::add_ref(OBJECT_REF_DEBUG_ARGS);
 //      }
 //
-//      virtual i64 dec_ref(OBJ_REF_DBG_PARAMS)
+//      virtual i64 dec_ref(OBJECT_REF_DEBUG_PARAMS)
 //      {
-//         return ::object::dec_ref(OBJ_REF_DBG_ARGS);
+//         return ::object::dec_ref(OBJECT_REF_DEBUG_ARGS);
 //      }
 //
 //      inline void defer_ok(str * pstr)

@@ -85,7 +85,7 @@ inline wd32char * wd32_duplicate(const wd32char * psz)
 
    if (c_is_null(psz)) return nullptr;
 
-   auto pszDup = (wd32char *)memory_alloc(wd32_len(psz) + 1);
+   auto pszDup = (wd32char *)memory_allocate(wd32_len(psz) + 1);
 
    wd32_cpy(pszDup, psz);
 
@@ -101,7 +101,7 @@ inline wd32char * wd32_count_duplicate(const wd32char * psz, strsize len)
 
    if (len < 0) return nullptr;
 
-   auto pszDup = (wd32char *)memory_alloc(len + 1);
+   auto pszDup = (wd32char *)memory_allocate(len + 1);
 
    wd32_ncpy(pszDup, psz, len);
 
@@ -940,7 +940,7 @@ inline const wd32char * wd32_concatenate_and_duplicate(const wd32char * psz1, co
 
    strsize len = len1 + len2 + 1;
 
-   auto * psz = (wd32char *)memory_alloc(len);
+   auto * psz = (wd32char *)memory_allocate(len);
 
    *psz = '\0';
 

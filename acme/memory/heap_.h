@@ -20,7 +20,7 @@ namespace heap
       inline static void * alloc(memsize iSize,  const char * pszFile, int iLine)
       {
 
-         return system_heap_alloc_dbg(iSize, 725, pszFile, iLine);
+         return system_heap_alloc_debug(iSize, 725, pszFile, iLine);
 
       }
 #else
@@ -53,14 +53,14 @@ namespace heap
       inline static void * alloc(memsize iSize, const char * pszFile, int iLine)
       {
 
-         return memory_alloc_dbg(iSize, 724, pszFile, iLine);
+         return memory_allocate_debug(iSize, 724, pszFile, iLine);
 
       }
 #else
       inline static void * alloc(memsize iSize)
       {
 
-         return memory_alloc(iSize);
+         return memory_allocate(iSize);
 
       }
 #endif
@@ -128,13 +128,13 @@ namespace heap
 //         if(m_p == nullptr)
 //         {
 //
-//            m_p = memory_alloc(uiSize);
+//            m_p = memory_allocate(uiSize);
 //
 //         }
 //         else
 //         {
 //
-//            m_p = memory_realloc(m_p,uiSize);
+//            m_p = memory_reallocate(m_p,uiSize);
 //
 //         }
 //

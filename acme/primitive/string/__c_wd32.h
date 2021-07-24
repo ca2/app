@@ -20,8 +20,8 @@ inline wd32char *             wd32_concatenate(wd32char * dest, const wd32char *
 inline wd32char *             wd32_copy(wd32char * dest, const wd32char * cat);
 inline wd32char *             wd32_count_copy(wd32char * dest, const wd32char * cat, strsize iLen);
 inline strsize                wd32_length(const wd32char * cat);
-inline wd32char *             wd32_duplicate(const wd32char * src); // ATTENTION - memory_alloc
-inline wd32char *             wd32_count_duplicate(const wd32char * src, strsize srclen); // ATTENTION - memory_alloc 
+inline wd32char *             wd32_duplicate(const wd32char * src); // ATTENTION - memory_allocate
+inline wd32char *             wd32_count_duplicate(const wd32char * src, strsize srclen); // ATTENTION - memory_allocate 
 inline const wd32char *       wd32_find_string(const wd32char * src, const wd32char * find);
 inline const wd32char *       wd32_find_string_case_insensitive(const wd32char * src, const wd32char * find);
 inline const wd32char *       wd32_count_find_string(const wd32char * src, const wd32char * find, strsize iLen);

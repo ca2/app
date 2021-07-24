@@ -140,7 +140,7 @@ namespace acme
 
 
    template < typename POINTER >
-   class memory_alloc
+   class memory_allocate
    {
    public:
 
@@ -148,7 +148,7 @@ namespace acme
       POINTER     m_p;
       i64     m_iSize;
 
-      memory_alloc(void * p = nullptr)
+      memory_allocate(void * p = nullptr)
       {
 
          m_iSize = -1;
@@ -156,7 +156,7 @@ namespace acme
 
       }
 
-      memory_alloc(memsize s)
+      memory_allocate(memsize s)
       {
 
          m_iSize = 0;
@@ -166,7 +166,7 @@ namespace acme
 
       }
 
-      ~memory_alloc()
+      ~memory_allocate()
       {
 
          free();
@@ -184,13 +184,13 @@ namespace acme
          if (m_p != nullptr)
          {
 
-            m_p = (POINTER) ::memory_realloc(m_p, size);
+            m_p = (POINTER) ::memory_reallocate(m_p, size);
 
          }
          else
          {
 
-            m_p = (POINTER) ::memory_alloc(size);
+            m_p = (POINTER) ::memory_allocate(size);
 
          }
 
@@ -212,7 +212,7 @@ namespace acme
 
          m_iSize = c * sizeof(*m_p);
 
-         m_p = memory_alloc(m_iSize);
+         m_p = memory_allocate(m_iSize);
 
          if (m_p == nullptr)
          {
@@ -251,7 +251,7 @@ namespace acme
       }
 
       template < typename POINTER2 >
-      memory_alloc & operator = (POINTER2 p)
+      memory_allocate & operator = (POINTER2 p)
       {
 
          if ((POINTER)p == m_p)
@@ -279,7 +279,7 @@ namespace str
 
    
    template < typename POINTER >
-   inline void from(string & str, const ::acme::memory_alloc < POINTER > & memoryallocpointer);
+   inline void from(string & str, const ::acme::memory_allocate < POINTER > & memoryallocpointer);
 
 
 } // namespace str

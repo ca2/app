@@ -74,18 +74,18 @@ namespace app_message_box
 #ifdef _DEBUG
 
 
-   int64_t application::add_ref(OBJ_REF_DBG_PARAMS_DEF)
+   int64_t application::add_ref(OBJECT_REF_DEBUG_PARAMS_DEF)
    {
 
-      return ::object::add_ref(OBJ_REF_DBG_ARGS);
+      return ::object::add_ref(OBJECT_REF_DEBUG_ARGS);
 
    }
 
 
-   int64_t application::dec_ref(OBJ_REF_DBG_PARAMS_DEF)
+   int64_t application::dec_ref(OBJECT_REF_DEBUG_PARAMS_DEF)
    {
 
-      return ::object::dec_ref(OBJ_REF_DBG_ARGS);
+      return ::object::dec_ref(OBJECT_REF_DEBUG_ARGS);
 
    }
 

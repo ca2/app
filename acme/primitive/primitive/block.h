@@ -84,7 +84,7 @@ struct CLASS_DECL_ACME fork_block :
    public block
 {
 
-   fork_block(void * pdata = nullptr, memsize iSize = 0) : block(memory_alloc(iSize), iSize) { memcpy_dup(m_pdata, pdata, (size_t) iSize); }
+   fork_block(void * pdata = nullptr, memsize iSize = 0) : block(memory_allocate(iSize), iSize) { memcpy_dup(m_pdata, pdata, (size_t) iSize); }
    fork_block(const block & block) : fork_block(block.get_data(), block.get_size()) {}
    fork_block(block && block) : fork_block(block.get_data(), block.get_size()) { block.m_pdata = NULL; block.m_iSize = 0; }
    fork_block(const memory_base & memory);

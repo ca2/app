@@ -276,7 +276,7 @@ inline i64 add_ref(c_derived * pca)
 
    }
 
-   return pca->add_ref(OBJ_REF_DBG_ARGS);
+   return pca->add_ref(OBJECT_REF_DEBUG_ARGS);
 
 }
 

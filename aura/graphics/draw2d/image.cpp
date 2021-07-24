@@ -9351,7 +9351,7 @@ stream& image::read(::stream& stream)
 
    pimage->copy(this);
 
-   pimage->add_ref(OBJ_REF_DBG_THIS);
+   pimage->add_ref(OBJECT_REF_DEBUG_THIS);
 
    return pimage;
 

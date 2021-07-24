@@ -34,17 +34,17 @@
 //#include "acme/primitive/primitive/layered.h"
 
 
-#if OBJ_REF_DBG
+#if OBJECT_REF_DEBUG
 
 
 template < typename TYPE, typename T >
-void ___assign(__pointer(TYPE) & ptr, T * p OBJ_REF_DBG_COMMA_PARAMS);
+void ___assign(__pointer(TYPE) & ptr, T * p OBJECT_REF_DEBUG_COMMA_PARAMS);
 
 template < typename TYPE >
-void ___release(__pointer(TYPE) & ptr OBJ_REF_DBG_COMMA_PARAMS);
+void ___release(__pointer(TYPE) & ptr OBJECT_REF_DEBUG_COMMA_PARAMS);
 
 template < typename TYPE >
-void ___release(TYPE *& p OBJ_REF_DBG_COMMA_PARAMS);
+void ___release(TYPE *& p OBJECT_REF_DEBUG_COMMA_PARAMS);
 
 
 #endif

@@ -2137,9 +2137,9 @@ namespace apex
 
       }
 
-#if OBJ_REF_DBG
+#if OBJECT_REF_DEBUG
 
-      release(OBJ_REF_DBG_P_NOTE(this, nullptr));
+      release(OBJECT_REF_DEBUG_P_NOTE(this, nullptr));
 
       try
       {

@@ -31,9 +31,9 @@ namespace calculator
 
       bool keyboard_focus_is_focusable() override;
 
-      //virtual i64 add_ref(OBJ_REF_DBG_PARAMS) override;
+      //virtual i64 add_ref(OBJECT_REF_DEBUG_PARAMS) override;
 
-      //virtual i64 dec_ref(OBJ_REF_DBG_PARAMS) override;
+      //virtual i64 dec_ref(OBJECT_REF_DEBUG_PARAMS) override;
 
       virtual ::payload get_ex_value() override;
 

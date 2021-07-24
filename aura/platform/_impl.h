@@ -46,13 +46,13 @@ namespace std { enum class align_val_t : std::size_t {}; }
 //
 //}
 //
-//struct lparam_dbg :
+//struct lparam_debug :
 //   virtual matter
 //{
 //
 //};
 //
-//extern lparam_dbg g_lparamdbg;
+//extern lparam_debug g_lparamdbg;
 //
 //inline lparam::lparam(const ::object * p)
 //{
@@ -66,7 +66,7 @@ namespace std { enum class align_val_t : std::size_t {}; }
 //
 //   }
 //
-//   ((object *) p)->add_ref(OBJ_REF_DBG_PTR(&g_lparamdbg));
+//   ((object *) p)->add_ref(OBJECT_REF_DEBUG_PTR(&g_lparamdbg));
 //
 //   m_lparam = (lparam)p;
 //
@@ -461,7 +461,7 @@ namespace std { enum class align_val_t : std::size_t {}; }
 //      //   Details
 //
 //      // BRT 2015-02-18 19:08
-//      // catch all (...) here in acme::del ... but should erase try catch from all underlying calls (frees, memory_frees, memory_dbg_frees).
+//      // catch all (...) here in acme::del ... but should erase try catch from all underlying calls (frees, memory_frees, memory_debug_frees).
 //
 //      try
 //      {
@@ -1019,7 +1019,7 @@ inline stream & operator >> (stream & s, ::datetime::time & time);
 
 
 //template < class c_derived >
-//inline i64 add_ref(c_derived * pca OBJ_REF_DBG_COMMA_PARAMS_DEF)
+//inline i64 add_ref(c_derived * pca OBJECT_REF_DEBUG_COMMA_PARAMS_DEF)
 //{
 //
 //   if (::is_null(pca))
@@ -1029,7 +1029,7 @@ inline stream & operator >> (stream & s, ::datetime::time & time);
 //
 //   }
 //
-//   return pca->add_ref(OBJ_REF_DBG_ARGS);
+//   return pca->add_ref(OBJECT_REF_DEBUG_ARGS);
 //
 //}
 
@@ -1064,7 +1064,7 @@ inline stream & operator >> (stream & s, ::datetime::time & time);
 
 
 //template < class c_derived >
-//inline i64 release(c_derived *& pca OBJ_REF_DBG_COMMA_PARAMS_DEF)
+//inline i64 release(c_derived *& pca OBJECT_REF_DEBUG_COMMA_PARAMS_DEF)
 //{
 //
 //   if (::is_null(pca))
@@ -1113,7 +1113,7 @@ inline stream & operator >> (stream & s, ::datetime::time & time);
 //   try
 //   {
 //
-//      return ptr->release(OBJ_REF_DBG_ARGS);
+//      return ptr->release(OBJECT_REF_DEBUG_ARGS);
 //
 //   }
 //   catch (...)
@@ -1147,28 +1147,28 @@ inline stream & operator >> (stream & s, ::datetime::time & time);
 
 
 //template < class COMPOSITE >
-//inline i64 release(__composite(COMPOSITE) & pcomposite OBJ_REF_DBG_COMMA_PARAMS)
+//inline i64 release(__composite(COMPOSITE) & pcomposite OBJECT_REF_DEBUG_COMMA_PARAMS)
 //{
 //
-//   return release(pcomposite.m_p OBJ_REF_DBG_COMMA_ARGS);
+//   return release(pcomposite.m_p OBJECT_REF_DEBUG_COMMA_ARGS);
 //
 //}
 
 
 //template < class TYPE >
-//inline i64 release(__pointer(TYPE) & pointer OBJ_REF_DBG_COMMA_PARAMS)
+//inline i64 release(__pointer(TYPE) & pointer OBJECT_REF_DEBUG_COMMA_PARAMS)
 //{
 //
-//   return release(pointer.m_p OBJ_REF_DBG_COMMA_ARGS);
+//   return release(pointer.m_p OBJECT_REF_DEBUG_COMMA_ARGS);
 //
 //}
 
 
 //template < class REFERENCE >
-//inline i64 release(__reference(REFERENCE) & preference OBJ_REF_DBG_COMMA_PARAMS)
+//inline i64 release(__reference(REFERENCE) & preference OBJECT_REF_DEBUG_COMMA_PARAMS)
 //{
 //
-//   return release(preference.m_p OBJ_REF_DBG_COMMA_ARGS);
+//   return release(preference.m_p OBJECT_REF_DEBUG_COMMA_ARGS);
 //
 //}
 

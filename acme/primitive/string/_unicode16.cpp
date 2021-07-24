@@ -173,7 +173,7 @@ strsize ansi_to_wd16_len_len(const char* psz, strsize srclen)
 //
 //   strsize s = ansi_to_wd16_len_len(input, input_size);
 //
-//   wd16char* v = (wd16char*)memory_alloc(sizeof(wd16char) * (s + 1));
+//   wd16char* v = (wd16char*)memory_allocate(sizeof(wd16char) * (s + 1));
 //
 //   ansi_to_wd16(v, input, s);
 //
@@ -332,7 +332,7 @@ extern "C"
 
 //    strsize iLen = iLen1 + iLen2 + 1;
 
-//    char* psz = (char*)memory_alloc(iLen);
+//    char* psz = (char*)memory_allocate(iLen);
 
 //    strcpy(psz, "");
 
@@ -489,7 +489,7 @@ wd16char surrogate_to_utf16(wd16char _1st, wd16char _2nd)
 //
 //   strsize s = utf16_to_utf16_len(input, input_size);
 //
-//   wd16char* v = (wd16char*)memory_alloc(sizeof(wd16char) * (s + 1));
+//   wd16char* v = (wd16char*)memory_allocate(sizeof(wd16char) * (s + 1));
 //
 //   utf16_to_utf16(v, input, s);
 //
@@ -784,7 +784,7 @@ wd16char* ansi_to_wd16_dup(const char* input, strsize input_size)
 
    strsize s = ansi_to_wd16_len(input, input_size);
 
-   wd16char* v = (wd16char*)memory_alloc(sizeof(wd16char) * (s + 1));
+   wd16char* v = (wd16char*)memory_allocate(sizeof(wd16char) * (s + 1));
 
    ansi_to_wd16(v, input, s);
 

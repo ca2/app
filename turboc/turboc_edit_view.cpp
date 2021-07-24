@@ -64,11 +64,11 @@ namespace turboc
 
    i64 edit_view::add_ref()
    {
-      return ::root::add_ref(OBJ_REF_DBG_ARGS);
+      return ::root::add_ref(OBJECT_REF_DEBUG_ARGS);
    }
    i64 edit_view::dec_ref()
    {
-      return ::root::dec_ref(OBJ_REF_DBG_ARGS);
+      return ::root::dec_ref(OBJECT_REF_DEBUG_ARGS);
    }
 
 

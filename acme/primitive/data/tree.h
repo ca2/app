@@ -24,14 +24,14 @@ namespace data
 
       virtual void on_insert_tree(tree * ptree);
 
-      virtual i64 add_ref(OBJ_REF_DBG_PARAMS) override
+      virtual i64 add_ref(OBJECT_REF_DEBUG_PARAMS) override
       {
-         return ::matter::add_ref(OBJ_REF_DBG_ARGS);
+         return ::matter::add_ref(OBJECT_REF_DEBUG_ARGS);
       }
 
-      virtual i64 dec_ref(OBJ_REF_DBG_PARAMS) override
+      virtual i64 dec_ref(OBJECT_REF_DEBUG_PARAMS) override
       {
-         return ::matter::dec_ref(OBJ_REF_DBG_ARGS);
+         return ::matter::dec_ref(OBJECT_REF_DEBUG_ARGS);
       }
 
 

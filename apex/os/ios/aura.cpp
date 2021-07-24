@@ -248,7 +248,7 @@ CLASS_DECL_APEX bool __node_apex_pos_term()
 //   ios_apex_init()
 //   {
 //
-//      ace_set_alloc(&memory_alloc, &memory_realloc, &memory_free, &memory_size);
+//      ace_set_alloc(&memory_allocate, &memory_reallocate, &memory_free, &memory_size);
 //
 //   }
 //

@@ -722,14 +722,14 @@ restart:
 
       }
 
-      i64 locale_schema::add_ref(OBJ_REF_DBG_PARAMS_DEF)
+      i64 locale_schema::add_ref(OBJECT_REF_DEBUG_PARAMS_DEF)
       {
-         return matter::add_ref(OBJ_REF_DBG_ARGS);
+         return matter::add_ref(OBJECT_REF_DEBUG_ARGS);
       }
 
-      i64 locale_schema::release(OBJ_REF_DBG_PARAMS_DEF)
+      i64 locale_schema::release(OBJECT_REF_DEBUG_PARAMS_DEF)
       {
-         return matter::release(OBJ_REF_DBG_ARGS);
+         return matter::release(OBJECT_REF_DEBUG_ARGS);
       }
 
 

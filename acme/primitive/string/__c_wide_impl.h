@@ -83,7 +83,7 @@ inline widechar * wide_duplicate(const widechar * psz)
 
    if (c_is_null(psz)) return nullptr;
 
-   auto pszDup = (widechar *)memory_alloc(wcslen(psz) + 1);
+   auto pszDup = (widechar *)memory_allocate(wcslen(psz) + 1);
 
    wcscpy(pszDup, psz);
 
@@ -99,7 +99,7 @@ inline widechar * wide_count_duplicate(const widechar * psz, strsize len)
 
    if (len < 0) return nullptr;
 
-   auto pszDup = (widechar *)memory_alloc(len + 1);
+   auto pszDup = (widechar *)memory_allocate(len + 1);
 
    wcsncpy(pszDup, psz, len);
 
@@ -819,7 +819,7 @@ inline const widechar * wide_concatenate_and_duplicate(const widechar * psz1, co
 
    strsize len = len1 + len2 + 1;
 
-   auto * psz = (widechar *)memory_alloc(len);
+   auto * psz = (widechar *)memory_allocate(len);
 
    *psz = '\0';
 

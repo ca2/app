@@ -210,9 +210,9 @@ void* task::s_os_task(void* p)
 
       ::task* pthread = (::task*) p;
 
-      ::set_task(pthread OBJ_REF_DBG_COMMA_P_FUNCTION_LINE(pthread));
+      ::set_task(pthread OBJECT_REF_DEBUG_COMMA_P_FUNCTION_LINE(pthread));
 
-      pthread->release(OBJ_REF_DBG_P_FUNCTION_LINE(pthread));
+      pthread->release(OBJECT_REF_DEBUG_P_FUNCTION_LINE(pthread));
 
       pthread->main();
 
@@ -220,7 +220,7 @@ void* task::s_os_task(void* p)
 
       //pthread->m_ptaskParent.release();
 
-#if OBJ_REF_DBG
+#if OBJECT_REF_DEBUG
 
       if (pthread->m_countReference > 1)
       {
@@ -231,7 +231,7 @@ void* task::s_os_task(void* p)
 
 #endif
 
-      ::thread_release(OBJ_REF_DBG_P_NOTE(pthread, ""));
+      ::thread_release(OBJECT_REF_DEBUG_P_NOTE(pthread, ""));
 
    }
    catch (...)
@@ -279,7 +279,7 @@ void task::unregister_task()
 //
 //   synchronous_lock synchronouslock(mutex());
 //
-//   notify_array().add_item(pmatter OBJ_REF_DBG_COMMA_THIS_FUNCTION_LINE);
+//   notify_array().add_item(pmatter OBJECT_REF_DEBUG_COMMA_THIS_FUNCTION_LINE);
 //
 //}
 //
@@ -292,7 +292,7 @@ void task::unregister_task()
 //   if (m_pnotifya)
 //   {
 //
-//      m_pnotifya->erase_item(pmatter OBJ_REF_DBG_COMMA_THIS);
+//      m_pnotifya->erase_item(pmatter OBJECT_REF_DEBUG_COMMA_THIS);
 //
 //   }
 //
@@ -631,7 +631,7 @@ bool task::has_message() const
    //}
 
    // __task_procedure() should release this (pmatter)
-   add_ref(OBJ_REF_DBG_THIS_FUNCTION_LINE);
+   add_ref(OBJECT_REF_DEBUG_THIS_FUNCTION_LINE);
 
    m_bIsRunning = true;
 

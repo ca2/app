@@ -351,7 +351,7 @@ inline void fork_release(::object * pobjectParent, __pointer(T) & t)
 
       p = t.m_p;
 
-      p->add_ref(OBJ_REF_DBG_P_NOTE(pobjectParent, "fork_release"));
+      p->add_ref(OBJECT_REF_DEBUG_P_NOTE(pobjectParent, "fork_release"));
 
       t.release();
 

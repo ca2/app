@@ -42,7 +42,7 @@ dir_context::dir_context()
 
    //   ::file::dir_context::g_pthis = this;
 
-   //   add_ref(OBJ_REF_DBG_ARGS);
+   //   add_ref(OBJECT_REF_DEBUG_ARGS);
 
    //}
 

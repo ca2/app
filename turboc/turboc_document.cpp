@@ -78,14 +78,14 @@ namespace turboc
    i64 document::add_ref()
    {
 
-      return  ::aura::document::add_ref(OBJ_REF_DBG_ARGS);
+      return  ::aura::document::add_ref(OBJECT_REF_DEBUG_ARGS);
 
    }
 
    i64 document::dec_ref()
    {
 
-      return  ::aura::document::dec_ref(OBJ_REF_DBG_ARGS);
+      return  ::aura::document::dec_ref(OBJECT_REF_DEBUG_ARGS);
 
    }
 

@@ -97,9 +97,9 @@ public:
 
    void pre_finalize();
 
-   void * alloc_dbg(memsize nAllocSize, i32 nBlockUse, const char * szFileName, i32 iLine);
-   void * realloc_dbg(void * p, memsize nAllocSize, memsize nOldAllocSize, int align, i32 nBlockUse, const char * szFileName, i32 iLine);
-   void free_dbg(void * p, memsize nAllocSize);
+   void * alloc_debug(memsize nAllocSize, i32 nBlockUse, const char * szFileName, i32 iLine);
+   void * realloc_debug(void * p, memsize nAllocSize, memsize nOldAllocSize, int align, i32 nBlockUse, const char * szFileName, i32 iLine);
+   void free_debug(void * p, memsize nAllocSize);
 
    void * operator new(size_t s);
 

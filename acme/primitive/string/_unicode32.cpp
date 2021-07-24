@@ -216,7 +216,7 @@ wd32char* ansi_to_wd32_dup(const char* input, strsize input_size)
 
    strsize s = ansi_to_wd32_len(input, input_size);
 
-   wd32char* v = (wd32char*)memory_alloc(sizeof(wd32char) * (s + 1));
+   wd32char* v = (wd32char*)memory_allocate(sizeof(wd32char) * (s + 1));
 
    ansi_to_wd32(v, input, s);
 

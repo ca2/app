@@ -649,7 +649,7 @@ namespace user
 
          m_puserthread->add_child_task(m_puserinteraction);
 
-         m_puserinteraction->__refer(m_puserinteraction->m_pthreadUserInteraction, m_puserthread OBJ_REF_DBG_COMMA_THIS_NOTE(__FUNCTION__));
+         m_puserinteraction->__refer(m_puserinteraction->m_pthreadUserInteraction, m_puserthread OBJECT_REF_DEBUG_COMMA_THIS_NOTE(__FUNCTION__));
 
          peventStartedUser = __new(manual_reset_event());
 
@@ -837,7 +837,7 @@ namespace user
 
       //   send_message(e_message_size, 0, MAKELPARAM(pusersystem->m_createstruct.cx, pusersystem->m_createstruct.cy));
 
-      //   m_puserinteraction->add_ref(OBJ_REF_DBG_THIS_FUNCTION_LINE);
+      //   m_puserinteraction->add_ref(OBJECT_REF_DEBUG_THIS_FUNCTION_LINE);
 
       //   m_puserinteraction->m_ewindowflag |= ::e_window_flag_is_window;
 

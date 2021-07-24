@@ -1230,6 +1230,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="memory\memory_allocate.cpp" />
     <ClCompile Include="memory\os_alloc\bounds_check.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_basis|Win32'">true</ExcludedFromBuild>
@@ -1280,6 +1281,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     </ClCompile>
     <ClCompile Include="memory\plex.cpp" />
     <ClCompile Include="memory\plex_heap.cpp" />
+    <ClCompile Include="memory\string_memory_allocate.cpp" />
     <ClCompile Include="net\top_level_domain_list.cpp" />
     <ClCompile Include="net\url.cpp" />
     <ClCompile Include="net\url_department.cpp" />
@@ -1579,7 +1581,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClCompile Include="platform\nano_timer.cpp" />
     <ClCompile Include="platform\net.cpp" />
     <ClCompile Include="platform\node.cpp" />
-    <ClCompile Include="platform\obj_ref_dbg.cpp" />
+    <ClCompile Include="platform\object_ref_debug.cpp" />
     <ClCompile Include="platform\obj_typ_ctr.cpp" />
     <ClCompile Include="platform\predicate_function.cpp" />
     <ClCompile Include="platform\predicate_holder.cpp" />
@@ -1792,7 +1794,10 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClInclude Include="inline\_console_old.h" />
     <ClInclude Include="inline\_new_impl.h" />
     <ClInclude Include="memory\counter.h" />
+    <ClInclude Include="memory\memory_allocate.h" />
+    <ClInclude Include="memory\string_memory_allocate.h" />
     <ClInclude Include="memory\os_alloc.h" />
+    <ClInclude Include="memory\string_memory_allocator.h" />
     <ClInclude Include="memory\_impl.h" />
     <ClInclude Include="net\url.h" />
     <ClInclude Include="net\url_department.h" />

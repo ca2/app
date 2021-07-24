@@ -73,7 +73,7 @@ fork_block & fork_block::from_base64(const char * psz, strsize iSize)
 
    m_iSize = (iSize + 1) * 3 / 4;
 
-   m_pdata = (byte *) memory_alloc(m_iSize);
+   m_pdata = (byte *) memory_allocate(m_iSize);
 
    ::str::base64 base64;
 

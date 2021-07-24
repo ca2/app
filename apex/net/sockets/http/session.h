@@ -30,18 +30,18 @@ namespace sockets
 
 
 
-      virtual i64 add_ref(OBJ_REF_DBG_PARAMS) override
+      virtual i64 add_ref(OBJECT_REF_DEBUG_PARAMS) override
       {
 
-         return http_client_socket::add_ref(OBJ_REF_DBG_ARGS);
+         return http_client_socket::add_ref(OBJECT_REF_DEBUG_ARGS);
 
       }
 
 
-      virtual i64 dec_ref(OBJ_REF_DBG_PARAMS) override
+      virtual i64 dec_ref(OBJECT_REF_DEBUG_PARAMS) override
       {
 
-         return http_client_socket::dec_ref(OBJ_REF_DBG_ARGS);
+         return http_client_socket::dec_ref(OBJECT_REF_DEBUG_ARGS);
 
       }
 

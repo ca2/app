@@ -113,7 +113,7 @@ void * unaligned_memory_alloc(size_t size)
 }
 
 
-void * aligned_memory_alloc_dbg(size_t size, i32 nBlockUse, const char * szFileName, i32 nLine, memsize align)
+void * aligned_memory_allocate_debug(size_t size, i32 nBlockUse, const char * szFileName, i32 nLine, memsize align)
 {
 
    void * p;
@@ -130,7 +130,7 @@ void * aligned_memory_alloc_dbg(size_t size, i32 nBlockUse, const char * szFileN
 }
 
 
-void * unaligned_memory_alloc_dbg(size_t size, i32 nBlockUse, const char * szFileName, i32 nLine)
+void * unaligned_memory_allocate_debug(size_t size, i32 nBlockUse, const char * szFileName, i32 nLine)
 {
 
    void * p;
@@ -152,9 +152,9 @@ void * unaligned_memory_alloc_dbg(size_t size, i32 nBlockUse, const char * szFil
 
 
 
-#undef memory_alloc
+#undef memory_allocate
 
-void * memory_alloc(memsize size)
+void * memory_allocate(memsize size)
 {
 
 #if defined(APPLEOS)
@@ -170,7 +170,7 @@ void * memory_alloc(memsize size)
 }
 
 
-void * memory_alloc_no_track(size_t size)
+void * memory_allocate_no_track(size_t size)
 {
 
 
@@ -193,23 +193,23 @@ void * memory_alloc_no_track(size_t size)
 void * memory_calloc(size_t size, size_t bytes)
 {
 
-   return memory_alloc(size * bytes);
+   return memory_allocate(size * bytes);
 
 }
 
 
-void * memory_alloc_dbg(size_t nSize, i32 nBlockUse, const char * szFileName, i32 nLine)
+void * memory_allocate_debug(size_t nSize, i32 nBlockUse, const char * szFileName, i32 nLine)
 {
 
-   return unaligned_memory_alloc_dbg(nSize, nBlockUse, szFileName, nLine);
+   return unaligned_memory_allocate_debug(nSize, nBlockUse, szFileName, nLine);
 
 }
 
 
-void * memory_realloc(void * pmemory, size_t nSize)
+void * memory_reallocate(void * pmemory, size_t nSize)
 {
 
-   return memory_realloc_dbg(pmemory, nSize, 0, nullptr, -1);
+   return memory_reallocate_debug(pmemory, nSize, 0, nullptr, -1);
 
 }
 
@@ -217,7 +217,7 @@ void * memory_realloc(void * pmemory, size_t nSize)
 
 
 
-void * memory_realloc_dbg(void * pmemory, size_t size, i32 nBlockUse, const char * szFileName, i32 nLine)
+void * memory_reallocate_debug(void * pmemory, size_t size, i32 nBlockUse, const char * szFileName, i32 nLine)
 {
 
    size_t nAllocSize = size + sizeof(memdleak_block);
@@ -361,7 +361,7 @@ void * memory_realloc_dbg(void * pmemory, size_t size, i32 nBlockUse, const char
 void memory_free(void * pmemory)
 {
 
-   return memory_free_dbg(pmemory, 0);
+   return memory_free_debug(pmemory, 0);
 
 }
 
@@ -370,7 +370,7 @@ void memory_free(void * pmemory)
 
 
 
-void memory_free_dbg(void * pmemory, i32 iBlockType)
+void memory_free_debug(void * pmemory, i32 iBlockType)
 {
 
    memdleak_block * pblock = &((memdleak_block *)pmemory)[-1];
@@ -412,12 +412,12 @@ void memory_free_dbg(void * pmemory, i32 iBlockType)
 size_t memory_size(void * pmemory)
 {
 
-   return memory_size_dbg(pmemory, _NORMAL_BLOCK);
+   return memory_size_debug(pmemory, _NORMAL_BLOCK);
 
 }
 
 
-size_t memory_size_dbg(void * pmemory, i32 iBlockType)
+size_t memory_size_debug(void * pmemory, i32 iBlockType)
 {
 
 

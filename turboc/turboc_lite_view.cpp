@@ -42,11 +42,11 @@ namespace turboc
 
    i64 lite_view::add_ref()
    {
-      return ::root::add_ref(OBJ_REF_DBG_ARGS);
+      return ::root::add_ref(OBJECT_REF_DEBUG_ARGS);
    }
    i64 lite_view::dec_ref()
    {
-      return ::root::dec_ref(OBJ_REF_DBG_ARGS);
+      return ::root::dec_ref(OBJECT_REF_DEBUG_ARGS);
    }
 
    void lite_view::on_message_create(signal_details * pmessage)

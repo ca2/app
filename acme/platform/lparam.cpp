@@ -13,7 +13,7 @@ lparam::lparam(const ::matter * p)
 
    }
 
-   ((matter *) p)->add_ref(OBJ_REF_DBG_PTR(&lparam_debug()));
+   ((matter *) p)->add_ref(OBJECT_REF_DEBUG_PTR(&lparam_debug()));
 
    m_lparam = (iptr)(void *) p;
 

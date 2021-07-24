@@ -272,7 +272,7 @@ void thread::term_thread()
       if (papplication)
       {
 
-         papplication->release_reference(this OBJ_REF_DBG_COMMA_P_FUNCTION_LINE(papplication));
+         papplication->release_reference(this OBJECT_REF_DEBUG_COMMA_P_FUNCTION_LINE(papplication));
 
       }
 
@@ -287,7 +287,7 @@ void thread::term_thread()
       if (pcontextsession)
       {
 
-         pcontextsession->release_reference(this OBJ_REF_DBG_COMMA_P_FUNCTION_LINE(pcontextsession));
+         pcontextsession->release_reference(this OBJECT_REF_DEBUG_COMMA_P_FUNCTION_LINE(pcontextsession));
 
       }
 
@@ -301,7 +301,7 @@ void thread::term_thread()
       if (psystem)
       {
 
-         psystem->release_reference(this OBJ_REF_DBG_COMMA_P_FUNCTION_LINE(pcontextsystem));
+         psystem->release_reference(this OBJECT_REF_DEBUG_COMMA_P_FUNCTION_LINE(pcontextsystem));
 
       }
 
@@ -315,7 +315,7 @@ void thread::term_thread()
       if (pthread)
       {
 
-         pthread->release_reference(this OBJ_REF_DBG_COMMA_P_FUNCTION_LINE(pcontextthread));
+         pthread->release_reference(this OBJECT_REF_DEBUG_COMMA_P_FUNCTION_LINE(pcontextthread));
 
       }
 
@@ -333,7 +333,7 @@ void thread::term_thread()
    //if (this)
    //{
 
-     // this->release_reference(this OBJ_REF_DBG_COMMA_THIS);
+     // this->release_reference(this OBJECT_REF_DEBUG_COMMA_THIS);
 
    //}
 
@@ -348,14 +348,14 @@ void thread::term_thread()
    //if (psystem)
    //{
 
-   //   psystem->release_reference(this OBJ_REF_DBG_COMMA_THIS);
+   //   psystem->release_reference(this OBJECT_REF_DEBUG_COMMA_THIS);
 
    //}
 
    //if (get_context_thread())
    //{
 
-   //   get_context_thread()->release_reference(this OBJ_REF_DBG_COMMA_THIS);
+   //   get_context_thread()->release_reference(this OBJECT_REF_DEBUG_COMMA_THIS);
 
    //}
 
@@ -1526,7 +1526,7 @@ bool thread::post_quit_message(int nExitCode)
 //
 //      m_ptaska->add(ptask);
 //
-//      ptask->m_pthreadParent.reset(this OBJ_REF_DBG_COMMA_P_NOTE(ptask, "thread::thread_add"));
+//      ptask->m_pthreadParent.reset(this OBJECT_REF_DEBUG_COMMA_P_NOTE(ptask, "thread::thread_add"));
 //
 //      return true;
 //
@@ -1919,9 +1919,9 @@ u32 __thread_entry(void * p);
 
    }
 
-//#if OBJ_REF_DBG
+//#if OBJECT_REF_DEBUG
 //
-//   //release(OBJ_REF_DBG_P_NOTE(this, nullptr));
+//   //release(OBJECT_REF_DEBUG_P_NOTE(this, nullptr));
 //
 //   //try
 //   //{
@@ -1975,7 +1975,7 @@ u32 __thread_entry(void * p);
       try
       {
 
-         get_application()->add_reference(this OBJ_REF_DBG_COMMA_P_FUNCTION_LINE(get_application()));
+         get_application()->add_reference(this OBJECT_REF_DEBUG_COMMA_P_FUNCTION_LINE(get_application()));
 
          m_idContextReference = id_application;
 
@@ -1993,7 +1993,7 @@ u32 __thread_entry(void * p);
       try
       {
 
-         get_session()->add_reference(this OBJ_REF_DBG_COMMA_P_FUNCTION_LINE(get_session()));
+         get_session()->add_reference(this OBJECT_REF_DEBUG_COMMA_P_FUNCTION_LINE(get_session()));
 
          m_idContextReference = id_session;
 
@@ -2013,7 +2013,7 @@ u32 __thread_entry(void * p);
       try
       {
 
-         psystem->add_reference(this OBJ_REF_DBG_COMMA_P_FUNCTION_LINE(psystem));
+         psystem->add_reference(this OBJECT_REF_DEBUG_COMMA_P_FUNCTION_LINE(psystem));
 
          m_idContextReference = id_system;
 
@@ -2031,7 +2031,7 @@ u32 __thread_entry(void * p);
       try
       {
 
-         get_task()->add_reference(this OBJ_REF_DBG_COMMA_P_FUNCTION_LINE(get_context_thread()));
+         get_task()->add_reference(this OBJECT_REF_DEBUG_COMMA_P_FUNCTION_LINE(get_context_thread()));
 
          m_idContextReference = id_thread;
 
@@ -2391,7 +2391,7 @@ e_status thread::begin_thread(bool bSynchInitialization, ::e_priority epriority,
    if (::is_set(pobject) && pobject != this)
    {
 
-      pobject->add_composite(this OBJ_REF_DBG_COMMA_THIS_FUNCTION_LINE);
+      pobject->add_composite(this OBJECT_REF_DEBUG_COMMA_THIS_FUNCTION_LINE);
 
    }
 
@@ -2414,7 +2414,7 @@ e_status thread::begin_thread(bool bSynchInitialization, ::e_priority epriority,
 
       }
 
-      dec_ref(OBJ_REF_DBG_THIS);
+      dec_ref(OBJECT_REF_DEBUG_THIS);
 
       return estatus;
 
@@ -2759,7 +2759,7 @@ void thread::__os_finalize()
 
    {
 
-      ::set_task(this OBJ_REF_DBG_COMMA_THIS_FUNCTION_LINE);
+      ::set_task(this OBJECT_REF_DEBUG_COMMA_THIS_FUNCTION_LINE);
 
       processor_cache_oriented_set_thread_memory_pool(0); // set default handler cache oriented thread memory pool index to 0 ("zero") (The First One)
 
@@ -4723,7 +4723,7 @@ bool thread::pump_sleep(const millis & millis, synchronization_object * psync)
 //
 //      auto pthreadNew = __object(pobject)->__create_new < ::thread > ();
 //
-//      pthreadNew->add_ref(OBJ_REF_DBG_P_NOTE(pobject, nullptr));
+//      pthreadNew->add_ref(OBJECT_REF_DEBUG_P_NOTE(pobject, nullptr));
 //
 //      pthreadNew->clear_finish_bit();
 //

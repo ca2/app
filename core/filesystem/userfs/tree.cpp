@@ -23,12 +23,12 @@ namespace userfs
    }
 
 
-   i64 tree::add_ref(OBJ_REF_DBG_PARAMS_DEF)
+   i64 tree::add_ref(OBJECT_REF_DEBUG_PARAMS_DEF)
    {
 
       auto c = m_countReference++;
 
-#if OBJ_REF_DBG
+#if OBJECT_REF_DEBUG
 
       add_ref_history(pReferer, pszObjRefDbg);
 
@@ -39,12 +39,12 @@ namespace userfs
    }
 
 
-   i64 tree::dec_ref(OBJ_REF_DBG_PARAMS_DEF)
+   i64 tree::dec_ref(OBJECT_REF_DEBUG_PARAMS_DEF)
    {
 
       auto c = m_countReference--;
 
-#if OBJ_REF_DBG
+#if OBJECT_REF_DEBUG
 
       if (c > 0)
       {
@@ -60,10 +60,10 @@ namespace userfs
    }
 
 
-   i64 tree::release(OBJ_REF_DBG_PARAMS_DEF)
+   i64 tree::release(OBJECT_REF_DEBUG_PARAMS_DEF)
    {
 
-      i64 i = dec_ref(OBJ_REF_DBG_ARGS);
+      i64 i = dec_ref(OBJECT_REF_DEBUG_ARGS);
 
       if (i == 0)
       {

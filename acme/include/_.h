@@ -367,7 +367,7 @@ namespace desktop_environment_xfce
 #define new ACME_NEW
 
 
-#include "acme/platform/obj_ref_dbg.h"
+#include "acme/platform/obj_ref_debug.h"
 
 
 namespace opengl
@@ -2371,7 +2371,7 @@ namespace acme
       //   Details
 
       // BRT 2015-02-18 19:08
-      // catch all (...) here in acme::del ... but should erase try catch from all underlying calls (frees, memory_frees, memory_dbg_frees).
+      // catch all (...) here in acme::del ... but should erase try catch from all underlying calls (frees, memory_frees, memory_debug_frees).
 
       try
       {
@@ -2414,7 +2414,7 @@ namespace acme
       //   Details
 
       // BRT 2015-02-18 19:08
-      // catch all (...) here in acme::del ... but should erase try catch from all underlying calls (frees, memory_frees, memory_dbg_frees).
+      // catch all (...) here in acme::del ... but should erase try catch from all underlying calls (frees, memory_frees, memory_debug_frees).
 
       try
       {
@@ -2453,7 +2453,7 @@ namespace acme
       //   Details
 
       // BRT 2016-11-23 19:08
-      // catch all (...) here in acme::del ... but should erase try catch from all underlying calls (frees, memory_frees, memory_dbg_frees).
+      // catch all (...) here in acme::del ... but should erase try catch from all underlying calls (frees, memory_frees, memory_debug_frees).
 
       try
       {
@@ -2494,7 +2494,7 @@ namespace acme
       //   Details
 
       // BRT 2016-11-23 19:08
-      // catch all (...) here in acme::del ... but should erase try catch from all underlying calls (frees, memory_frees, memory_dbg_frees).
+      // catch all (...) here in acme::del ... but should erase try catch from all underlying calls (frees, memory_frees, memory_debug_frees).
 
       try
       {

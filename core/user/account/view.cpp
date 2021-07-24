@@ -435,7 +435,7 @@ namespace account
 
       //*m_pploginDeferTranslate = this;
 
-      //add_ref(OBJ_REF_DBG_ARGS);
+      //add_ref(OBJECT_REF_DEBUG_ARGS);
 
       //__begin_thread(get_application(),thread_proc_pre_login,get_application());
 

@@ -117,14 +117,14 @@ namespace browser
    i64 document::add_ref()
    {
 
-      return  ::user::document::add_ref(OBJ_REF_DBG_ARGS);
+      return  ::user::document::add_ref(OBJECT_REF_DEBUG_ARGS);
 
    }
 
    i64 document::dec_ref()
    {
 
-      return  ::user::document::dec_ref(OBJ_REF_DBG_ARGS);
+      return  ::user::document::dec_ref(OBJECT_REF_DEBUG_ARGS);
 
    }
 

@@ -7,7 +7,7 @@ namespace str
 
 
    template < typename POINTER >
-   inline void from(string & str, const ::acme::memory_alloc < POINTER > & memoryallocpointer)
+   inline void from(string & str, const ::acme::memory_allocate < POINTER > & memoryallocpointer)
    {
 
       from(str, memoryallocpointer.m_p);

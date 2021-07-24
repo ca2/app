@@ -34,7 +34,7 @@ typedef char PRBool;
 #define PR_TRUE  1
 #define nsnull   nullptr
 
-#define PR_MALLOC memory_alloc
+#define PR_MALLOC memory_allocate
 #define PR_FREEIF memory_free
 
 

@@ -313,7 +313,7 @@ namespace dynamic_source
          //if (::is_set(pinstance))
          //{
 
-         //   pinstance->set_context_thread(pthread OBJ_REF_DBG_COMMA_P_FUNCTION_LINE(pinstance));
+         //   pinstance->set_context_thread(pthread OBJECT_REF_DEBUG_COMMA_P_FUNCTION_LINE(pinstance));
 
          //}
 

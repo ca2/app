@@ -45,7 +45,7 @@ namespace acme
 
       ptimer->m_ptimercallback = this;
 
-      m_pcallback->add_composite(ptimer OBJ_REF_DBG_COMMA_THIS_FUNCTION_LINE);
+      m_pcallback->add_composite(ptimer OBJECT_REF_DEBUG_COMMA_THIS_FUNCTION_LINE);
 
       bool bOk = true;
 

@@ -184,6 +184,8 @@ CLASS_DECL_ACME void __trace(enum_trace_level elevel, const char * pszTag, const
 simple_log::simple_log()
 {
 
+   m_bReallySimple = true;
+
 #ifdef DEBUG
 
    //INFO("Starting Simple Alog");
@@ -204,16 +206,24 @@ simple_log::~simple_log()
 void simple_log::__tracea(enum_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz) const
 {
 
-   //__simple_tracea(elevel, pszFunction, pszFile, iLine, psz);
-
    string str;
-   
-   str.Format("%c %s %d %s\n", trace_level_char(elevel), pszFunction, iLine, psz);
 
-   //output_debug_string(str);
+   if (m_bReallySimple)
+   {
 
-   output_debug_string(psz);
+      str = psz;
 
+      str += "\n";
+
+   }
+   else
+   {
+
+      str.Format("%c %s %d %s\n", trace_level_char(elevel), pszFunction, iLine, psz);
+
+   }
+
+   ::output_debug_string(str);
 
 }
 

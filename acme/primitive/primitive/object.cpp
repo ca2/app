@@ -1,8 +1,8 @@
 #include "framework.h"
 #include "acme/const/message.h"
 #include "acme/update.h"
-#if OBJ_REF_DBG
-#include "acme/platform/obj_ref_dbg_impl.h"
+#if OBJECT_REF_DEBUG
+#include "acme/platform/obj_ref_debug_impl.h"
 #endif
 #include "acme/primitive/text/_.h"
 
@@ -14,12 +14,12 @@ object::~object()
 }
 
 
-i64 object::add_ref(OBJ_REF_DBG_PARAMS_DEF)
+i64 object::add_ref(OBJECT_REF_DEBUG_PARAMS_DEF)
 {
 
    auto c = m_countReference++;
 
-#if OBJ_REF_DBG
+#if OBJECT_REF_DEBUG
 
    add_ref_history(pReferer, pszObjRefDbg);
 
@@ -30,12 +30,12 @@ i64 object::add_ref(OBJ_REF_DBG_PARAMS_DEF)
 }
 
 
-i64 object::dec_ref(OBJ_REF_DBG_PARAMS_DEF)
+i64 object::dec_ref(OBJECT_REF_DEBUG_PARAMS_DEF)
 {
 
    auto c = --m_countReference;
 
-#if OBJ_REF_DBG
+#if OBJECT_REF_DEBUG
 
    if (c >= 0)
    {
@@ -51,10 +51,10 @@ i64 object::dec_ref(OBJ_REF_DBG_PARAMS_DEF)
 }
 
 
-i64 object::release(OBJ_REF_DBG_PARAMS_DEF)
+i64 object::release(OBJECT_REF_DEBUG_PARAMS_DEF)
 {
 
-   i64 i = dec_ref(OBJ_REF_DBG_ARGS);
+   i64 i = dec_ref(OBJECT_REF_DEBUG_ARGS);
 
    if (i == 0)
    {
@@ -91,14 +91,14 @@ void object::to_string(const class string_exchange& str) const
 }
 
 
-::e_status object::add_composite(::matter* pmatter OBJ_REF_DBG_COMMA_PARAMS_DEF)
+::e_status object::add_composite(::matter* pmatter OBJECT_REF_DEBUG_COMMA_PARAMS_DEF)
 {
 
    synchronous_lock synchronouslock(mutex());
 
    m_pcompositea.defer_create_new();
 
-   if (!m_pcompositea->add_unique(pmatter OBJ_REF_DBG_COMMA_ARGS))
+   if (!m_pcompositea->add_unique(pmatter OBJECT_REF_DEBUG_COMMA_ARGS))
    {
 
       return success_none;
@@ -116,14 +116,14 @@ void object::to_string(const class string_exchange& str) const
 }
 
 
-::e_status object::add_reference(::matter* pmatter OBJ_REF_DBG_COMMA_PARAMS_DEF)
+::e_status object::add_reference(::matter* pmatter OBJECT_REF_DEBUG_COMMA_PARAMS_DEF)
 {
 
    synchronous_lock synchronouslock(mutex());
 
    m_preferencea.defer_create_new();
 
-   m_preferencea->add_unique(pmatter OBJ_REF_DBG_COMMA_ARGS);
+   m_preferencea->add_unique(pmatter OBJECT_REF_DEBUG_COMMA_ARGS);
 
    if (m_preferencea->get_upper_bound() == 8)
    {
@@ -142,7 +142,7 @@ void object::to_string(const class string_exchange& str) const
 }
 
 
-//::e_status object::release_composite2(::matter* pmatter OBJ_REF_DBG_COMMA_PARAMS_DEF)
+//::e_status object::release_composite2(::matter* pmatter OBJECT_REF_DEBUG_COMMA_PARAMS_DEF)
 //{
 //
 //   if (::is_null(pmatter))
@@ -171,7 +171,7 @@ void object::to_string(const class string_exchange& str) const
 //}
 //
 //
-//::e_status object::finalize_composite(::matter* pmatter OBJ_REF_DBG_COMMA_PARAMS_DEF)
+//::e_status object::finalize_composite(::matter* pmatter OBJECT_REF_DEBUG_COMMA_PARAMS_DEF)
 //{
 //
 //   if (::is_null(pmatter))
@@ -213,7 +213,7 @@ void object::to_string(const class string_exchange& str) const
 //}
 //
 //
-//::e_status object::release_reference(::matter* pmatter  OBJ_REF_DBG_COMMA_PARAMS_DEF)
+//::e_status object::release_reference(::matter* pmatter  OBJECT_REF_DEBUG_COMMA_PARAMS_DEF)
 //{
 //
 //   if (::is_null(pmatter))
@@ -963,15 +963,15 @@ void object::system(const char* pszProjectName)
 
 #endif
 
-   m_pcontext.release(OBJ_REF_DBG_THIS);
+   m_pcontext.release(OBJECT_REF_DEBUG_THIS);
 
-   //m_pthread.release(OBJ_REF_DBG_THIS);
+   //m_pthread.release(OBJECT_REF_DEBUG_THIS);
 
-   //m_papplication.release(OBJ_REF_DBG_THIS);
+   //m_papplication.release(OBJECT_REF_DEBUG_THIS);
 
-   //m_psession.release(OBJ_REF_DBG_THIS);
+   //m_psession.release(OBJECT_REF_DEBUG_THIS);
 
-   //m_psystemContext.release(OBJ_REF_DBG_THIS);
+   //m_psystemContext.release(OBJECT_REF_DEBUG_THIS);
 
    //on_finalize();
 
@@ -1198,7 +1198,7 @@ bool object::check_children_task()
 //
 //      //   }
 //
-//      //   //m_ptaska.release(OBJ_REF_DBG_THIS);
+//      //   //m_ptaska.release(OBJECT_REF_DEBUG_THIS);
 //
 //      //}
 //
@@ -1238,7 +1238,7 @@ void object::delete_this()
 //   if (!o.m_pset)
 //   {
 //
-//      m_pset.release(OBJ_REF_DBG_THIS);
+//      m_pset.release(OBJECT_REF_DEBUG_THIS);
 //
 //   }
 //   else
@@ -1677,14 +1677,14 @@ void object::delete_this()
 //   if (m_pcompositea)
 //   {
 //
-//      m_pcompositea.release(OBJ_REF_DBG_THIS);
+//      m_pcompositea.release(OBJECT_REF_DEBUG_THIS);
 //
 //   }
 //
 //   if (m_preferencea)
 //   {
 //
-//      m_preferencea.release(OBJ_REF_DBG_THIS);
+//      m_preferencea.release(OBJECT_REF_DEBUG_THIS);
 //
 //   }
 //
@@ -2764,42 +2764,42 @@ __pointer(::extended::future < ::conversation >) object::message_box(const char*
 #ifdef DEBUG
 
 
-//void object::set_context(::context* pcontext OBJ_REF_DBG_COMMA_PARAMS_DEF)
+//void object::set_context(::context* pcontext OBJECT_REF_DEBUG_COMMA_PARAMS_DEF)
 //{
 //
-//   m_pcontext.reset(pcontext OBJ_REF_DBG_COMMA_ARGS);
+//   m_pcontext.reset(pcontext OBJECT_REF_DEBUG_COMMA_ARGS);
 //
 //}
 //
 //
-//void object::set_context_thread(::thread* pthread OBJ_REF_DBG_COMMA_PARAMS_DEF)
+//void object::set_context_thread(::thread* pthread OBJECT_REF_DEBUG_COMMA_PARAMS_DEF)
 //{
 //
-//   m_pthread.reset(pthread OBJ_REF_DBG_COMMA_ARGS);
+//   m_pthread.reset(pthread OBJECT_REF_DEBUG_COMMA_ARGS);
 //
 //}
 //
 //
-//void object::set_context_app(::application* pappContext OBJ_REF_DBG_COMMA_PARAMS_DEF)
+//void object::set_context_app(::application* pappContext OBJECT_REF_DEBUG_COMMA_PARAMS_DEF)
 //{
 //
-//   m_papplication.reset(pappContext OBJ_REF_DBG_COMMA_ARGS);
+//   m_papplication.reset(pappContext OBJECT_REF_DEBUG_COMMA_ARGS);
 //
 //}
 //
 //
-//void object::set_context_session(::apex::session* psessionContext OBJ_REF_DBG_COMMA_PARAMS_DEF)
+//void object::set_context_session(::apex::session* psessionContext OBJECT_REF_DEBUG_COMMA_PARAMS_DEF)
 //{
 //
-//   m_psession.reset(psessionContext OBJ_REF_DBG_COMMA_ARGS);
+//   m_psession.reset(psessionContext OBJECT_REF_DEBUG_COMMA_ARGS);
 //
 //}
 //
 //
-////void object::set_context_system(::apex::system* psystemContext OBJ_REF_DBG_COMMA_PARAMS_DEF)
+////void object::set_context_system(::apex::system* psystemContext OBJECT_REF_DEBUG_COMMA_PARAMS_DEF)
 ////{
 ////
-////   m_psystemContext.reset(psystemContext OBJ_REF_DBG_COMMA_ARGS);
+////   m_psystemContext.reset(psystemContext OBJECT_REF_DEBUG_COMMA_ARGS);
 ////
 ////}
 //
@@ -2833,26 +2833,26 @@ matter* object::get_taskpool_container()
 //#ifdef DEBUG
 //
 //
-//i64 object::add_ref(OBJ_REF_DBG_PARAMS)
+//i64 object::add_ref(OBJECT_REF_DEBUG_PARAMS)
 //{
 //
-//   return property_object::add_ref(OBJ_REF_DBG_ARGS);
+//   return property_object::add_ref(OBJECT_REF_DEBUG_ARGS);
 //
 //}
 //
 //
-//i64 object::dec_ref(OBJ_REF_DBG_PARAMS)
+//i64 object::dec_ref(OBJECT_REF_DEBUG_PARAMS)
 //{
 //
-//   return property_object::dec_ref(OBJ_REF_DBG_ARGS);
+//   return property_object::dec_ref(OBJECT_REF_DEBUG_ARGS);
 //
 //}
 //
 //
-//i64 object::release(OBJ_REF_DBG_PARAMS)
+//i64 object::release(OBJECT_REF_DEBUG_PARAMS)
 //{
 //
-//   return property_object::release(OBJ_REF_DBG_ARGS);
+//   return property_object::release(OBJECT_REF_DEBUG_ARGS);
 //
 //}
 //
@@ -2860,26 +2860,26 @@ matter* object::get_taskpool_container()
 //#else
 //
 //
-//i64 object::add_ref(OBJ_REF_DBG_PARAMS)
+//i64 object::add_ref(OBJECT_REF_DEBUG_PARAMS)
 //{
 //
-//   return property_object::add_ref(OBJ_REF_DBG_ARGS);
+//   return property_object::add_ref(OBJECT_REF_DEBUG_ARGS);
 //
 //}
 //
 //
-//i64 object::dec_ref(OBJ_REF_DBG_PARAMS)
+//i64 object::dec_ref(OBJECT_REF_DEBUG_PARAMS)
 //{
 //
-//   return property_object::dec_ref(OBJ_REF_DBG_ARGS);
+//   return property_object::dec_ref(OBJECT_REF_DEBUG_ARGS);
 //
 //}
 //
 //
-//i64 object::release(OBJ_REF_DBG_PARAMS)
+//i64 object::release(OBJECT_REF_DEBUG_PARAMS)
 //{
 //
-//   return property_object::release(OBJ_REF_DBG_ARGS);
+//   return property_object::release(OBJECT_REF_DEBUG_ARGS);
 //
 //}
 //
@@ -2987,7 +2987,7 @@ matter* object::get_taskpool_container()
 
 #endif
 
-   //#if OBJ_REF_DBG
+   //#if OBJECT_REF_DEBUG
    //
    //   string strType = type_name();
    //
@@ -3045,7 +3045,7 @@ matter* object::get_taskpool_container()
    //if (!psystem)
    //{
 
-   //   set_context_system(::::apex::get_system(pobject) OBJ_REF_DBG_COMMA_THIS_FUNCTION_LINE);
+   //   set_context_system(::::apex::get_system(pobject) OBJECT_REF_DEBUG_COMMA_THIS_FUNCTION_LINE);
 
    //}
 
@@ -3165,11 +3165,11 @@ matter* object::get_taskpool_container()
 //}
 ////
 //#ifdef DEBUG
-//    void set_context(::context* pcontext OBJ_REF_DBG_COMMA_PARAMS);
-//    void set_context_thread(::thread* pthread OBJ_REF_DBG_COMMA_PARAMS);
-//    void set_context_app(::application* pappContext OBJ_REF_DBG_COMMA_PARAMS);
-//    void set_context_session(::apex::session* psessionContext OBJ_REF_DBG_COMMA_PARAMS);
-//   // void set_context_system(::apex::system* psystemContext OBJ_REF_DBG_COMMA_PARAMS);
+//    void set_context(::context* pcontext OBJECT_REF_DEBUG_COMMA_PARAMS);
+//    void set_context_thread(::thread* pthread OBJECT_REF_DEBUG_COMMA_PARAMS);
+//    void set_context_app(::application* pappContext OBJECT_REF_DEBUG_COMMA_PARAMS);
+//    void set_context_session(::apex::session* psessionContext OBJECT_REF_DEBUG_COMMA_PARAMS);
+//   // void set_context_system(::apex::system* psystemContext OBJECT_REF_DEBUG_COMMA_PARAMS);
 //   // void set_context_user(::object * puserContext);
 //#else
 //   inline void set_context(::context* pcontext);
@@ -3255,10 +3255,10 @@ matter* object::get_taskpool_container()
 //inline ::e_status __compose(__composite(BASE_TYPE)& pusermessage);
 
 //template < typename BASE_TYPE, typename SOURCE >
-//inline ::e_status __compose(__composite(BASE_TYPE)& pusermessage, const SOURCE* psource OBJ_REF_DBG_COMMA_PARAMS);
+//inline ::e_status __compose(__composite(BASE_TYPE)& pusermessage, const SOURCE* psource OBJECT_REF_DEBUG_COMMA_PARAMS);
 
 //template < typename BASE_TYPE, typename SOURCE >
-//inline ::e_status __compose(__composite(BASE_TYPE)& pusermessage, const __pointer(SOURCE)& psource OBJ_REF_DBG_COMMA_PARAMS);
+//inline ::e_status __compose(__composite(BASE_TYPE)& pusermessage, const __pointer(SOURCE)& psource OBJECT_REF_DEBUG_COMMA_PARAMS);
 
 //template < typename BASE_TYPE >
 //inline ::e_status __id_compose(__composite(BASE_TYPE)& pusermessage, const ::id& id);
@@ -3306,44 +3306,44 @@ matter* object::get_taskpool_container()
 //inline ::e_status __construct_new(__pointer(TYPE)& pusermessage);
 
 //template < typename BASE_TYPE >
-//inline ::e_status __release(__composite(BASE_TYPE)& pcomposite OBJ_REF_DBG_COMMA_PARAMS);
+//inline ::e_status __release(__composite(BASE_TYPE)& pcomposite OBJECT_REF_DEBUG_COMMA_PARAMS);
 
 //template < typename BASE_TYPE >
-//inline ::e_status __release(__reference(BASE_TYPE)& preference OBJ_REF_DBG_COMMA_PARAMS);
+//inline ::e_status __release(__reference(BASE_TYPE)& preference OBJECT_REF_DEBUG_COMMA_PARAMS);
 
 //template < typename SOURCE >
-//inline ::e_status release_reference(__pointer(SOURCE)& psource OBJ_REF_DBG_COMMA_PARAMS);
+//inline ::e_status release_reference(__pointer(SOURCE)& psource OBJECT_REF_DEBUG_COMMA_PARAMS);
 
 
-// ::e_status add_composite(::matter* pobject OBJ_REF_DBG_COMMA_PARAMS) 
-// ::e_status add_reference(::matter* pobject OBJ_REF_DBG_COMMA_PARAMS) 
+// ::e_status add_composite(::matter* pobject OBJECT_REF_DEBUG_COMMA_PARAMS) 
+// ::e_status add_reference(::matter* pobject OBJECT_REF_DEBUG_COMMA_PARAMS) 
 
 
-// ::e_status release_composite2(::matter* pobject OBJ_REF_DBG_COMMA_PARAMS) 
-// ::e_status finalize_composite(::matter* pobject OBJ_REF_DBG_COMMA_PARAMS) 
-// ::e_status release_reference(::matter* pobject OBJ_REF_DBG_COMMA_PARAMS) 
+// ::e_status release_composite2(::matter* pobject OBJECT_REF_DEBUG_COMMA_PARAMS) 
+// ::e_status finalize_composite(::matter* pobject OBJECT_REF_DEBUG_COMMA_PARAMS) 
+// ::e_status release_reference(::matter* pobject OBJECT_REF_DEBUG_COMMA_PARAMS) 
 
 
 //template < typename BASE_TYPE >
-//inline ::e_status add_composite(__composite(BASE_TYPE)& pcomposite OBJ_REF_DBG_COMMA_PARAMS);
+//inline ::e_status add_composite(__composite(BASE_TYPE)& pcomposite OBJECT_REF_DEBUG_COMMA_PARAMS);
 
 //template < typename BASE_TYPE, typename SOURCE >
-//inline ::e_status __refer(__reference(BASE_TYPE)& preference, const SOURCE* psource OBJ_REF_DBG_COMMA_PARAMS);
+//inline ::e_status __refer(__reference(BASE_TYPE)& preference, const SOURCE* psource OBJECT_REF_DEBUG_COMMA_PARAMS);
 
 //template < typename BASE_TYPE, typename SOURCE >
-//inline ::e_status __refer(__reference(BASE_TYPE)& preference, const __pointer(SOURCE)& psource OBJ_REF_DBG_COMMA_PARAMS);
+//inline ::e_status __refer(__reference(BASE_TYPE)& preference, const __pointer(SOURCE)& psource OBJECT_REF_DEBUG_COMMA_PARAMS);
 
 //template < typename BASE_TYPE, typename SOURCE >
-//inline ::e_status __refer(__reference(BASE_TYPE)& preference, const ::primitive::member < SOURCE >& psource OBJ_REF_DBG_COMMA_PARAMS);
+//inline ::e_status __refer(__reference(BASE_TYPE)& preference, const ::primitive::member < SOURCE >& psource OBJECT_REF_DEBUG_COMMA_PARAMS);
 
 //template < typename SOURCE >
-//inline ::e_status add_reference(SOURCE* psource OBJ_REF_DBG_COMMA_PARAMS);
+//inline ::e_status add_reference(SOURCE* psource OBJECT_REF_DEBUG_COMMA_PARAMS);
 
 //template < typename SOURCE >
-//inline ::e_status add_reference(__pointer(SOURCE)& psource OBJ_REF_DBG_COMMA_PARAMS);
+//inline ::e_status add_reference(__pointer(SOURCE)& psource OBJECT_REF_DEBUG_COMMA_PARAMS);
 
 //template < typename SOURCE >
-//inline ::e_status add_reference(__reference(SOURCE)& psource OBJ_REF_DBG_COMMA_PARAMS);
+//inline ::e_status add_reference(__reference(SOURCE)& psource OBJECT_REF_DEBUG_COMMA_PARAMS);
 
 //void object::delete_this()
 //{

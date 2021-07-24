@@ -191,14 +191,14 @@ namespace helloworld
    i64 application::add_ref()
    {
 
-      return ::object::add_ref(OBJ_REF_DBG_ARGS);
+      return ::object::add_ref(OBJECT_REF_DEBUG_ARGS);
 
    }
 
    i64 application::dec_ref()
    {
 
-      return ::object::dec_ref(OBJ_REF_DBG_ARGS);
+      return ::object::dec_ref(OBJECT_REF_DEBUG_ARGS);
 
    }
 

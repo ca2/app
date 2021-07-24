@@ -527,7 +527,7 @@ public:
 
    void on_construct_element(TYPE * p) { ALLOCATOR::construct(p); }
    void on_construct_element(TYPE * p, ::count c) { ALLOCATOR::construct_count(p, c); }
-   void on_destruct_element(TYPE * p OBJ_REF_DBG_COMMA_PARAMS) { ALLOCATOR::destruct(p  OBJ_REF_DBG_COMMA_ARGS); }
+   void on_destruct_element(TYPE * p OBJECT_REF_DEBUG_COMMA_PARAMS) { ALLOCATOR::destruct(p  OBJECT_REF_DEBUG_COMMA_ARGS); }
    void on_copy_element(::index i, const TYPE * p) { ALLOCATOR::copy(&m_pData[i], p); }
 
 

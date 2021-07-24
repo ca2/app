@@ -11,7 +11,7 @@ namespace dynamic_source
 
       m_posdataNetnodeScriptMain = nullptr;
 
-      __note_assign(m_pmain, this, OBJ_REF_DBG_COMMA_THIS_NOTE("this is annotation"));
+      __note_assign(m_pmain, this, OBJECT_REF_DEBUG_COMMA_THIS_NOTE("this is annotation"));
 
    }
 
@@ -26,18 +26,18 @@ namespace dynamic_source
 #ifdef DEBUG
 
 
-   ::i64 script_main::add_ref(OBJ_REF_DBG_PARAMS_DEF)
+   ::i64 script_main::add_ref(OBJECT_REF_DEBUG_PARAMS_DEF)
    {
 
-      return script_interface::add_ref(OBJ_REF_DBG_ARGS);
+      return script_interface::add_ref(OBJECT_REF_DEBUG_ARGS);
 
    }
 
 
-   ::i64 script_main::dec_ref(OBJ_REF_DBG_PARAMS_DEF)
+   ::i64 script_main::dec_ref(OBJECT_REF_DEBUG_PARAMS_DEF)
    {
 
-      return script_interface::dec_ref(OBJ_REF_DBG_ARGS);
+      return script_interface::dec_ref(OBJECT_REF_DEBUG_ARGS);
 
    }
 

@@ -324,11 +324,11 @@ namespace calculator
 
    i64 plain_edit_view::add_ref()
    {
-      return ::object::add_ref(OBJ_REF_DBG_ARGS);
+      return ::object::add_ref(OBJECT_REF_DEBUG_ARGS);
    }
    i64 plain_edit_view::dec_ref()
    {
-      return ::object::dec_ref(OBJ_REF_DBG_ARGS);
+      return ::object::dec_ref(OBJECT_REF_DEBUG_ARGS);
    }
 
 

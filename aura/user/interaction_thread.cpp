@@ -92,26 +92,26 @@ namespace user
 #ifdef DEBUG
 
 
-   i64 thread::add_ref(OBJ_REF_DBG_PARAMS_DEF)
+   i64 thread::add_ref(OBJECT_REF_DEBUG_PARAMS_DEF)
    {
 
-      return ::thread::add_ref(OBJ_REF_DBG_ARGS);
+      return ::thread::add_ref(OBJECT_REF_DEBUG_ARGS);
 
    }
 
 
-   i64 thread::dec_ref(OBJ_REF_DBG_PARAMS_DEF)
+   i64 thread::dec_ref(OBJECT_REF_DEBUG_PARAMS_DEF)
    {
 
-      return ::thread::dec_ref(OBJ_REF_DBG_ARGS);
+      return ::thread::dec_ref(OBJECT_REF_DEBUG_ARGS);
 
    }
 
 
-   i64 thread::release(OBJ_REF_DBG_PARAMS_DEF)
+   i64 thread::release(OBJECT_REF_DEBUG_PARAMS_DEF)
    {
 
-      return ::thread::release(OBJ_REF_DBG_ARGS);
+      return ::thread::release(OBJECT_REF_DEBUG_ARGS);
 
    }
 

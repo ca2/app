@@ -87,7 +87,7 @@ inline wd16char * wd16_duplicate(const wd16char * psz)
 
    if (c_is_null(psz)) return nullptr;
 
-   auto pszDup = (wd16char *)memory_alloc(wd16_len(psz) + 1);
+   auto pszDup = (wd16char *)memory_allocate(wd16_len(psz) + 1);
 
    wd16_cpy(pszDup, psz);
 
@@ -103,7 +103,7 @@ inline wd16char * wd16_count_duplicate(const wd16char * psz, strsize len)
 
    if (len < 0) return nullptr;
 
-   auto pszDup = (wd16char *)memory_alloc(len + 1);
+   auto pszDup = (wd16char *)memory_allocate(len + 1);
 
    wd16_ncpy(pszDup, psz, len);
 
@@ -896,7 +896,7 @@ inline const wd16char * wd16_concatenate_and_duplicate(const wd16char * psz1, co
 
    strsize len = len1 + len2 + 1;
 
-   auto * psz = (wd16char *)memory_alloc(len);
+   auto * psz = (wd16char *)memory_allocate(len);
 
    *psz = '\0';
 
@@ -954,7 +954,7 @@ inline const wd16char * wd16_concatenate_and_duplicate(const wd16char * psz1, co
 //
 //   strsize len = len1 + len2 + 1;
 //
-//   auto * psz = (wd16char *)memory_alloc(len);
+//   auto * psz = (wd16char *)memory_allocate(len);
 //
 //   *psz = '\0';
 //
@@ -989,7 +989,7 @@ inline const wd16char * wd16_concatenate_and_duplicate(const wd16char * psz1, co
 //
 //   strsize len = len1 + len2 + 1;
 //
-//   auto * psz = (wd16char *)memory_alloc(len);
+//   auto * psz = (wd16char *)memory_allocate(len);
 //
 //   *psz = '\0';
 //
@@ -1024,7 +1024,7 @@ inline const wd16char * wd16_concatenate_and_duplicate(const wd16char * psz1, co
 //
 //   strsize len = len1 + len2 + 1;
 //
-//   auto * psz = (wd16char *)memory_alloc(len);
+//   auto * psz = (wd16char *)memory_allocate(len);
 //
 //   *psz = '\0';
 //

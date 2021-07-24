@@ -91,7 +91,7 @@ void sn_start_context()
 //
 //   auto psystem = get_context_system();
 //
-//   psystem->add_ref(OBJ_REF_DBG_ARGS);
+//   psystem->add_ref(OBJECT_REF_DEBUG_ARGS);
 //
 //   if (m_pmainstruct->m_bConsole)
 //   {

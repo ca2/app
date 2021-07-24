@@ -61,7 +61,7 @@ HANDLE dup_handle(HANDLE h)
 //   }
 //
 //   /* allocate memory to hold the command line */
-//   WCHAR * commandLineContents = (WCHAR *)memory_alloc(ustrCommandLine.Length + sizeof(WCHAR));
+//   WCHAR * commandLineContents = (WCHAR *)memory_allocate(ustrCommandLine.Length + sizeof(WCHAR));
 //   /* read the command line */
 //   if (!ReadProcessMemory(handleProcess, ustrCommandLine.Buffer, commandLineContents, ustrCommandLine.Length, nullptr))
 //   {
@@ -70,7 +70,7 @@ HANDLE dup_handle(HANDLE h)
 //   }
 //   commandLineContents[ustrCommandLine.Length / sizeof(WCHAR)] = L'\0';
 //   string str = ::str::international::unicode_to_utf8(commandLineContents);
-//   memory_free_dbg(commandLineContents, 0);
+//   memory_free_debug(commandLineContents, 0);
 //   return str;
 //}
 

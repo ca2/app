@@ -321,8 +321,8 @@ namespace parallelization
 CLASS_DECL_ACME::task* get_task();
 //CLASS_DECL_ACME ::thread* get_thread();
 //CLASS_DECL_ACME ::thread* get_task(itask_t idthread);
-CLASS_DECL_ACME void set_task(task * ptask OBJ_REF_DBG_COMMA_PARAMS);
-CLASS_DECL_ACME void thread_release(OBJ_REF_DBG_PARAMS);
+CLASS_DECL_ACME void set_task(task * ptask OBJECT_REF_DEBUG_COMMA_PARAMS);
+CLASS_DECL_ACME void thread_release(OBJECT_REF_DEBUG_PARAMS);
 
 
 //typedef bool task_sleep(millis millis, ::synchronization_object* psync);

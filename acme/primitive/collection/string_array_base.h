@@ -4504,13 +4504,13 @@ void string_array_base < Type, RawType > ::decode_v16(const Type& psz)
    //   {
    //      if(str == nullptr)
    //      {
-   //         str = (char *)memory_alloc(iSize);
+   //         str = (char *)memory_allocate(iSize);
    //      }
    //      else if(iSize < (ansi_length(str) + 1))
    //      {
    //         char * strOld = str;
    //         iSize += 1024;
-   //         char * strNew = (char *)memory_alloc(iSize);
+   //         char * strNew = (char *)memory_allocate(iSize);
    //         ansi_copy(strNew,strOld);
    //         str = strNew;
    //      }
@@ -4855,7 +4855,7 @@ template < class Type, class RawType >
 }
 
 
-/// expect strings allocated with malloc (sic, not memory_alloc) or strdup and array allocated with malloc (sic, not memory_alloc)
+/// expect strings allocated with malloc (sic, not memory_allocate) or strdup and array allocated with malloc (sic, not memory_allocate)
 template < class Type, class RawType >
 void string_array_base < Type, RawType > ::c_add(char ** ppsz, ::count c, bool bMemoryAlloc)
 {
@@ -4907,7 +4907,7 @@ void string_array_base < Type, RawType > ::c_add(char ** ppsz, ::count c, bool b
 
 
 
-/// expect strings allocated with malloc (sic, not memory_alloc) or strdup and array allocated with malloc (sic, not memory_alloc)
+/// expect strings allocated with malloc (sic, not memory_allocate) or strdup and array allocated with malloc (sic, not memory_allocate)
 template < class Type, class RawType >
 void string_array_base < Type, RawType > ::c_add(char ** ppszParam, bool bMemoryAlloc)
 {
@@ -4954,7 +4954,7 @@ void string_array_base < Type, RawType > ::c_add(char ** ppszParam, bool bMemory
 
 }
 
-/// expect strings allocated with malloc (sic, not memory_alloc) or wcsdup and array allocated with malloc (sic, not memory_alloc)
+/// expect strings allocated with malloc (sic, not memory_allocate) or wcsdup and array allocated with malloc (sic, not memory_allocate)
 template < class Type, class RawType >
 void string_array_base < Type, RawType > ::c_add(wchar_t ** ppwsz, ::count c, bool bMemoryAlloc)
 {
@@ -5002,7 +5002,7 @@ void string_array_base < Type, RawType > ::c_add(wchar_t ** ppwsz, ::count c, bo
 }
 
 
-/// expect strings allocated with malloc (sic, not memory_alloc) or wcsdup and array allocated with malloc (sic, not memory_alloc)
+/// expect strings allocated with malloc (sic, not memory_allocate) or wcsdup and array allocated with malloc (sic, not memory_allocate)
 template < class Type, class RawType >
 void string_array_base < Type, RawType > ::c_add(wchar_t ** ppwszParam, bool bMemoryAlloc)
 {

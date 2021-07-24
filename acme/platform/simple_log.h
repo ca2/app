@@ -13,6 +13,9 @@ class CLASS_DECL_ACME simple_log :
 public:
 
 
+   bool m_bReallySimple;
+
+
    simple_log();
    virtual ~simple_log();
 

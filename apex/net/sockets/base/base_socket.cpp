@@ -1031,14 +1031,14 @@ namespace sockets
 
       __refer(m_psocket, psocket);
 
-      //m_psocket->set_context_thread(this OBJ_REF_DBG_COMMA_P_FUNCTION_LINE(m_psocket));
+      //m_psocket->set_context_thread(this OBJECT_REF_DEBUG_COMMA_P_FUNCTION_LINE(m_psocket));
          
       __compose(m_phandler, __new(class socket_handler()));
 
 
       m_phandler->add(psocket);
 
-      //m_phandler->set_context_thread(this OBJ_REF_DBG_COMMA_P_FUNCTION_LINE(m_phandler));
+      //m_phandler->set_context_thread(this OBJECT_REF_DEBUG_COMMA_P_FUNCTION_LINE(m_phandler));
 
       begin_synch();
 
@@ -1091,18 +1091,18 @@ namespace sockets
 #ifdef DEBUG
 
 
-   ::i64 base_socket::socket_thread::add_ref(OBJ_REF_DBG_PARAMS_DEF)
+   ::i64 base_socket::socket_thread::add_ref(OBJECT_REF_DEBUG_PARAMS_DEF)
    {
 
-      return ::thread::add_ref(OBJ_REF_DBG_ARGS);
+      return ::thread::add_ref(OBJECT_REF_DEBUG_ARGS);
 
    }
 
 
-   ::i64 base_socket::socket_thread::dec_ref(OBJ_REF_DBG_PARAMS_DEF)
+   ::i64 base_socket::socket_thread::dec_ref(OBJECT_REF_DEBUG_PARAMS_DEF)
    {
 
-      return ::thread::dec_ref(OBJ_REF_DBG_ARGS);
+      return ::thread::dec_ref(OBJECT_REF_DEBUG_ARGS);
 
    }
 

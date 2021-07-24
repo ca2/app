@@ -27,9 +27,9 @@ namespace subject
 #ifdef DEBUG
 
 
-      i64 add_ref(OBJ_REF_DBG_PARAMS) override;
-      i64 dec_ref(OBJ_REF_DBG_PARAMS) override;
-      i64 release(OBJ_REF_DBG_PARAMS) override;
+      i64 add_ref(OBJECT_REF_DEBUG_PARAMS) override;
+      i64 dec_ref(OBJECT_REF_DEBUG_PARAMS) override;
+      i64 release(OBJECT_REF_DEBUG_PARAMS) override;
 
 #endif
 

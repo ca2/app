@@ -20,7 +20,7 @@ void tiny_array < TYPE > ::allocate(::i32 iCount)
       if (m_iAllocation <= 0)
       {
 
-         auto p = (TYPE *) memory_alloc(sizeof(TYPE) * iCount);
+         auto p = (TYPE *) memory_allocate(sizeof(TYPE) * iCount);
 
          ::zero(p, sizeof(TYPE) * iCount);
 
@@ -33,7 +33,7 @@ void tiny_array < TYPE > ::allocate(::i32 iCount)
       else if (iCount > m_iAllocation)
       {
 
-         auto p = (TYPE *) memory_realloc(m_p, sizeof(TYPE) * iCount);
+         auto p = (TYPE *) memory_reallocate(m_p, sizeof(TYPE) * iCount);
 
          ::zero(p + m_iCount, sizeof(TYPE) * (iCount - m_iAllocation));
 

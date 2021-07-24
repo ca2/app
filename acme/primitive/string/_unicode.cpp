@@ -108,7 +108,7 @@ wd32char* wd16_to_wd32(const wd16char * input, strsize input_size)
 
    strsize s = wd16_to_wd32_len(input, input_size);
 
-   wd32char* v = (wd32char*)memory_alloc(sizeof(wd32char) * (s + 1));
+   wd32char* v = (wd32char*)memory_allocate(sizeof(wd32char) * (s + 1));
 
    wd16_to_wd32(v, input, s);
 

@@ -24,8 +24,8 @@ namespace app_net
       virtual void on_request(::create * pcreate) override;
 
 #ifdef DEBUG
-      virtual int64_t add_ref(OBJ_REF_DBG_PARAMS) override;
-      virtual int64_t dec_ref(OBJ_REF_DBG_PARAMS) override;
+      virtual int64_t add_ref(OBJECT_REF_DEBUG_PARAMS) override;
+      virtual int64_t dec_ref(OBJECT_REF_DEBUG_PARAMS) override;
 #endif
 
    };

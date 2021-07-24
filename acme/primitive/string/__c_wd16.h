@@ -20,8 +20,8 @@ inline wd16char *             wd16_concatenate(wd16char * dest, const wd16char *
 inline wd16char *             wd16_copy(wd16char * dest, const wd16char * cat);
 inline wd16char *             wd16_count_copy(wd16char * dest, const wd16char * cat, strsize iLen);
 inline strsize                wd16_length(const wd16char * cat);
-inline wd16char *             wd16_duplicate(const wd16char * src); // ATTENTION - memory_alloc
-inline wd16char *             wd16_count_duplicate(const wd16char * src, strsize srclen); // ATTENTION - memory_alloc 
+inline wd16char *             wd16_duplicate(const wd16char * src); // ATTENTION - memory_allocate
+inline wd16char *             wd16_count_duplicate(const wd16char * src, strsize srclen); // ATTENTION - memory_allocate 
 inline const wd16char *       wd16_find_string(const wd16char * src, const wd16char * find);
 inline const wd16char *       wd16_find_string_case_insensitive(const wd16char * src, const wd16char * find);
 inline const wd16char *       wd16_count_find_string(const wd16char * src, const wd16char * find, strsize iLen);

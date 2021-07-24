@@ -2738,6 +2738,15 @@
     <ClInclude Include="platform\log.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
+    <ClInclude Include="memory\string_memory_allocate.h">
+      <Filter>Header Files\memory</Filter>
+    </ClInclude>
+    <ClInclude Include="memory\string_memory_allocator.h">
+      <Filter>Header Files\memory</Filter>
+    </ClInclude>
+    <ClInclude Include="memory\memory_allocate.h">
+      <Filter>Header Files\memory</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="primitive\primitive\application_bias.cpp">
@@ -3451,7 +3460,7 @@
     <ClCompile Include="primitive\primitive\element_array.cpp">
       <Filter>Source Files\primitive\primitive</Filter>
     </ClCompile>
-    <ClCompile Include="platform\obj_ref_dbg.cpp">
+    <ClCompile Include="platform\object_ref_debug.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
     <ClCompile Include="platform\timer.cpp">
@@ -3912,6 +3921,12 @@
     </ClCompile>
     <ClCompile Include="platform\log.cpp">
       <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="memory\string_memory_allocate.cpp">
+      <Filter>Source Files\memory</Filter>
+    </ClCompile>
+    <ClCompile Include="memory\memory_allocate.cpp">
+      <Filter>Source Files\memory</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

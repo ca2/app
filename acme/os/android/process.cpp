@@ -17,7 +17,7 @@ namespace acme
 
    char *   cmd_line;
 
-   cmd_line = (char *) memory_alloc(strlen(_cmd_line ) + 1 );
+   cmd_line = (char *) memory_allocate(strlen(_cmd_line ) + 1 );
 
    if (cmd_line == nullptr)
    {

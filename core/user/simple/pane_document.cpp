@@ -50,17 +50,17 @@ bool simple_pane_document::on_open_document(const ::payload & varFile)
 
 #ifdef DEBUG
 
-i64 simple_pane_document::add_ref(OBJ_REF_DBG_PARAMS_DEF)
+i64 simple_pane_document::add_ref(OBJECT_REF_DEBUG_PARAMS_DEF)
 {
 
-   return  ::user::document::add_ref(OBJ_REF_DBG_ARGS);
+   return  ::user::document::add_ref(OBJECT_REF_DEBUG_ARGS);
 
 }
 
-i64 simple_pane_document::dec_ref(OBJ_REF_DBG_PARAMS_DEF)
+i64 simple_pane_document::dec_ref(OBJECT_REF_DEBUG_PARAMS_DEF)
 {
 
-   return  ::user::document::dec_ref(OBJ_REF_DBG_ARGS);
+   return  ::user::document::dec_ref(OBJECT_REF_DEBUG_ARGS);
 
 }
 

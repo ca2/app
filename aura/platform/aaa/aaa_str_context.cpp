@@ -571,12 +571,12 @@
 //               {
 //                  if(m_szMerge == m_szAlloca || !m_bOwn)
 //                  {
-//                     m_szMerge = (char *)::memory_alloc(m_iMaxSize);
+//                     m_szMerge = (char *)::memory_allocate(m_iMaxSize);
 //                     ::memcpy_dup(m_szMerge,m_szAlloca,oldlen);
 //                  }
 //                  else
 //                  {
-//                     m_szMerge = (char *)::memory_realloc(m_szMerge,m_iMaxSize);
+//                     m_szMerge = (char *)::memory_reallocate(m_szMerge,m_iMaxSize);
 //                  }
 //                  m_bOwn = true;
 //               }

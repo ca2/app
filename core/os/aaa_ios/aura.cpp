@@ -248,7 +248,7 @@ CLASS_DECL_CORE bool __node_aura_pos_term()
 //   ios_aura_init()
 //   {
 //
-//      ace_set_alloc(&memory_alloc, &memory_realloc, &memory_free, &memory_size);
+//      ace_set_alloc(&memory_allocate, &memory_reallocate, &memory_free, &memory_size);
 //
 //   }
 //

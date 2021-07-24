@@ -27,7 +27,7 @@ const char * id_space::get_id(const char * psz)
 
    }
 
-   char * pszNew = (char *)memory_alloc(strlen(psz) + 1);
+   char * pszNew = (char *)memory_allocate(strlen(psz) + 1);
 
    if (pszNew == nullptr)
    {

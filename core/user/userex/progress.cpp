@@ -35,10 +35,10 @@ namespace userex
    }
 
 #ifdef DEBUG
-   i64 progress_control::dec_ref(OBJ_REF_DBG_PARAMS_DEF)
+   i64 progress_control::dec_ref(OBJECT_REF_DEBUG_PARAMS_DEF)
    {
 
-      i64 i = ::progress_control::dec_ref(OBJ_REF_DBG_ARGS);
+      i64 i = ::progress_control::dec_ref(OBJECT_REF_DEBUG_ARGS);
 
       //if (i == 1 && m_pthread.is_set())
       //{

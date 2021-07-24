@@ -374,7 +374,7 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
 
       synchronous_lock synchronouslock(&m_mutexTask);
 
-      m_taskmap[itask].reset(ptask OBJ_REF_DBG_COMMA_THIS_FUNCTION_LINE);
+      m_taskmap[itask].reset(ptask OBJECT_REF_DEBUG_COMMA_THIS_FUNCTION_LINE);
 
       m_taskidmap[ptask] = itask;
 
@@ -386,9 +386,9 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
 
       synchronous_lock synchronouslock(&m_mutexTask);
 
-   #if OBJ_REF_DBG
+   #if OBJECT_REF_DEBUG
 
-      m_taskmap[itask].release(OBJ_REF_DBG_THIS_FUNCTION_LINE);
+      m_taskmap[itask].release(OBJECT_REF_DEBUG_THIS_FUNCTION_LINE);
 
    #endif
 

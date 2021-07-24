@@ -72,26 +72,26 @@ namespace windowing
    }
 
 
-   i64 simple_ui_display::add_ref(OBJ_REF_DBG_PARAMS_DEF)
+   i64 simple_ui_display::add_ref(OBJECT_REF_DEBUG_PARAMS_DEF)
    {
 
-      return hook::add_ref(OBJ_REF_DBG_ARGS);
+      return hook::add_ref(OBJECT_REF_DEBUG_ARGS);
 
    }
 
 
-   i64 simple_ui_display::dec_ref(OBJ_REF_DBG_PARAMS_DEF)
+   i64 simple_ui_display::dec_ref(OBJECT_REF_DEBUG_PARAMS_DEF)
    {
 
-      return hook::dec_ref(OBJ_REF_DBG_ARGS);
+      return hook::dec_ref(OBJECT_REF_DEBUG_ARGS);
 
    }
 
 
-   i64 simple_ui_display::release(OBJ_REF_DBG_PARAMS_DEF)
+   i64 simple_ui_display::release(OBJECT_REF_DEBUG_PARAMS_DEF)
    {
 
-      return hook::release(OBJ_REF_DBG_ARGS);
+      return hook::release(OBJECT_REF_DEBUG_ARGS);
 
    }
 

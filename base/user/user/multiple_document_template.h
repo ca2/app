@@ -31,14 +31,14 @@ namespace user
       virtual void dump(dump_context &) const override;
       virtual void assert_valid() const override;
 
-      //virtual i64 add_ref(OBJ_REF_DBG_PARAMS) override
+      //virtual i64 add_ref(OBJECT_REF_DEBUG_PARAMS) override
       //{
-      //   return ::user::impact_system::add_ref(OBJ_REF_DBG_ARGS);
+      //   return ::user::impact_system::add_ref(OBJECT_REF_DEBUG_ARGS);
       //}
 
-      //virtual i64 dec_ref(OBJ_REF_DBG_PARAMS) override
+      //virtual i64 dec_ref(OBJECT_REF_DEBUG_PARAMS) override
       //{
-      //   return ::user::impact_system::dec_ref(OBJ_REF_DBG_ARGS);
+      //   return ::user::impact_system::dec_ref(OBJECT_REF_DEBUG_ARGS);
       //}
 
    };

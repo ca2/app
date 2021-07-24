@@ -14,7 +14,7 @@ int create_process(const char * _cmd_line, int * pprocessId)
    char *   exec_path_name;
    char *	cmd_line;
 
-   cmd_line = (char *) memory_alloc(strlen(_cmd_line ) + 1 );
+   cmd_line = (char *) memory_allocate(strlen(_cmd_line ) + 1 );
 
    if(cmd_line == nullptr)
       return 0;

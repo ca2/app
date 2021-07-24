@@ -3,10 +3,10 @@
 //#include "acme/primitive/primitive/layered.h"
 
 
-#if OBJ_REF_DBG
+#if OBJECT_REF_DEBUG
 
 
-void defer_delete(obj_ref_dbg* p);
+void defer_delete(obj_ref_debug* p);
 
 
 #endif
@@ -15,7 +15,7 @@ void defer_delete(obj_ref_dbg* p);
 matter::~matter()
 {
 
-#if OBJ_REF_DBG
+#if OBJECT_REF_DEBUG
 
    ::defer_delete(m_pobjrefdbg);
 
@@ -204,12 +204,12 @@ const char* matter::debug_note() const
 
 #ifdef _DEBUG
 
-i64 matter::add_ref(OBJ_REF_DBG_PARAMS_DEF)
+i64 matter::add_ref(OBJECT_REF_DEBUG_PARAMS_DEF)
 {
 
    auto c = ++m_countReference;
 
-#if OBJ_REF_DBG
+#if OBJECT_REF_DEBUG
 
    add_ref_history(pReferer, pszObjRefDbg);
 
@@ -220,12 +220,12 @@ i64 matter::add_ref(OBJ_REF_DBG_PARAMS_DEF)
 }
 
 
-i64 matter::dec_ref(OBJ_REF_DBG_PARAMS_DEF)
+i64 matter::dec_ref(OBJECT_REF_DEBUG_PARAMS_DEF)
 {
 
    auto c = --m_countReference;
 
-#if OBJ_REF_DBG
+#if OBJECT_REF_DEBUG
 
    if (c > 0)
    {
@@ -241,10 +241,10 @@ i64 matter::dec_ref(OBJ_REF_DBG_PARAMS_DEF)
 }
 
 
-i64 matter::release(OBJ_REF_DBG_PARAMS_DEF)
+i64 matter::release(OBJECT_REF_DEBUG_PARAMS_DEF)
 {
 
-   i64 i = dec_ref(OBJ_REF_DBG_ARGS);
+   i64 i = dec_ref(OBJECT_REF_DEBUG_ARGS);
 
    if (i == 0)
    {
@@ -526,7 +526,7 @@ void matter::on_future(const ::payload & payload)
 }
 
 
-::e_status matter::add_composite(::matter* pmatter OBJ_REF_DBG_COMMA_PARAMS_DEF)
+::e_status matter::add_composite(::matter* pmatter OBJECT_REF_DEBUG_COMMA_PARAMS_DEF)
 {
 
    //__throw(error_not_implemented);
@@ -540,7 +540,7 @@ void matter::on_future(const ::payload & payload)
 }
 
 
-::e_status matter::add_reference(::matter* pmatter OBJ_REF_DBG_COMMA_PARAMS_DEF)
+::e_status matter::add_reference(::matter* pmatter OBJECT_REF_DEBUG_COMMA_PARAMS_DEF)
 {
 
    return ::success_none;
@@ -548,7 +548,7 @@ void matter::on_future(const ::payload & payload)
 }
 
 
-::e_status matter::release_composite2(::matter * pmatter OBJ_REF_DBG_COMMA_PARAMS_DEF)
+::e_status matter::release_composite2(::matter * pmatter OBJECT_REF_DEBUG_COMMA_PARAMS_DEF)
 {
 
    return ::success_none;
@@ -556,7 +556,7 @@ void matter::on_future(const ::payload & payload)
 }
 
 
-::e_status matter::finalize_composite(::matter* pmatter OBJ_REF_DBG_COMMA_PARAMS_DEF)
+::e_status matter::finalize_composite(::matter* pmatter OBJECT_REF_DEBUG_COMMA_PARAMS_DEF)
 {
 
    return ::success_none;
@@ -564,7 +564,7 @@ void matter::on_future(const ::payload & payload)
 }
 
 
-::e_status matter::release_reference(::matter* pmatter OBJ_REF_DBG_COMMA_PARAMS_DEF)
+::e_status matter::release_reference(::matter* pmatter OBJECT_REF_DEBUG_COMMA_PARAMS_DEF)
 {
 
    return ::success_none;
@@ -867,9 +867,9 @@ bool matter::should_run_async() const
 //
 //   }
 //
-//#if OBJ_REF_DBG
+//#if OBJECT_REF_DEBUG
 //
-//   //release(OBJ_REF_DBG_P_NOTE(this, nullptr));
+//   //release(OBJECT_REF_DEBUG_P_NOTE(this, nullptr));
 //
 //   try
 //   {

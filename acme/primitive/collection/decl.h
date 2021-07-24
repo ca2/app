@@ -305,7 +305,7 @@ namespace constructor
 
 
 template < typename TYPE >
-inline void def_destruct(TYPE* pointer OBJ_REF_DBG_COMMA_PARAMS)
+inline void def_destruct(TYPE* pointer OBJECT_REF_DEBUG_COMMA_PARAMS)
 {
 
    pointer->~TYPE();
@@ -313,10 +313,10 @@ inline void def_destruct(TYPE* pointer OBJ_REF_DBG_COMMA_PARAMS)
 }
 
 template < typename TYPE >
-inline void def_destruct(__pointer(TYPE)* pointer OBJ_REF_DBG_COMMA_PARAMS)
+inline void def_destruct(__pointer(TYPE)* pointer OBJECT_REF_DEBUG_COMMA_PARAMS)
 {
 
-   pointer->release(OBJ_REF_DBG_ARGS);
+   pointer->release(OBJECT_REF_DEBUG_ARGS);
 
 }
 
@@ -329,16 +329,16 @@ namespace destructor
    {
    public:
 
-      inline static void destruct(TYPE * pointer OBJ_REF_DBG_COMMA_PARAMS)
+      inline static void destruct(TYPE * pointer OBJECT_REF_DEBUG_COMMA_PARAMS)
       {
 
-         def_destruct(pointer OBJ_REF_DBG_COMMA_ARGS);
+         def_destruct(pointer OBJECT_REF_DEBUG_COMMA_ARGS);
       }
-      inline static void destruct_count(TYPE * pointer, ::count c OBJ_REF_DBG_COMMA_PARAMS)
+      inline static void destruct_count(TYPE * pointer, ::count c OBJECT_REF_DEBUG_COMMA_PARAMS)
       {
          while (c > 0)
          {
-            def_destruct(pointer OBJ_REF_DBG_COMMA_ARGS);
+            def_destruct(pointer OBJECT_REF_DEBUG_COMMA_ARGS);
             pointer++;
             c--;
          }
@@ -355,11 +355,11 @@ namespace destructor
    {
    public:
 
-      inline static void destruct(TYPE * p OBJ_REF_DBG_COMMA_PARAMS)
+      inline static void destruct(TYPE * p OBJECT_REF_DEBUG_COMMA_PARAMS)
       {
          UNREFERENCED_PARAMETER(p);
       }
-      inline static void destruct_count(TYPE * p, ::count c OBJ_REF_DBG_COMMA_PARAMS)
+      inline static void destruct_count(TYPE * p, ::count c OBJECT_REF_DEBUG_COMMA_PARAMS)
       {
          UNREFERENCED_PARAMETER(p);
          UNREFERENCED_PARAMETER(c);
@@ -495,13 +495,13 @@ namespace allocator
 
       }
 
-      inline static void destruct(TYPE * p OBJ_REF_DBG_COMMA_PARAMS)
+      inline static void destruct(TYPE * p OBJECT_REF_DEBUG_COMMA_PARAMS)
       {
-         destructor::nodef < TYPE >::destruct(p OBJ_REF_DBG_COMMA_ARGS);
+         destructor::nodef < TYPE >::destruct(p OBJECT_REF_DEBUG_COMMA_ARGS);
       }
-      inline static void destruct_count(TYPE * p, ::count c OBJ_REF_DBG_COMMA_PARAMS)
+      inline static void destruct_count(TYPE * p, ::count c OBJECT_REF_DEBUG_COMMA_PARAMS)
       {
-         destructor::nodef < TYPE >::destruct_count(p, c OBJ_REF_DBG_COMMA_ARGS);
+         destructor::nodef < TYPE >::destruct_count(p, c OBJECT_REF_DEBUG_COMMA_ARGS);
       }
 
 
@@ -554,13 +554,13 @@ namespace allocator
          constructor::def< TYPE >::construct_count(p, c);
       }
 
-      inline static void destruct(TYPE * pointer OBJ_REF_DBG_COMMA_PARAMS)
+      inline static void destruct(TYPE * pointer OBJECT_REF_DEBUG_COMMA_PARAMS)
       {
-         destructor::def< TYPE>::destruct(pointer OBJ_REF_DBG_COMMA_ARGS);
+         destructor::def< TYPE>::destruct(pointer OBJECT_REF_DEBUG_COMMA_ARGS);
       }
-      inline static void destruct_count(TYPE * pointer, ::count c OBJ_REF_DBG_COMMA_PARAMS)
+      inline static void destruct_count(TYPE * pointer, ::count c OBJECT_REF_DEBUG_COMMA_PARAMS)
       {
-         destructor::def< TYPE>::destruct_count(pointer, c OBJ_REF_DBG_COMMA_ARGS);
+         destructor::def< TYPE>::destruct_count(pointer, c OBJECT_REF_DEBUG_COMMA_ARGS);
       }
 
 
@@ -624,13 +624,13 @@ namespace allocator
 
       }
 
-      inline static void destruct(TYPE * pointer OBJ_REF_DBG_COMMA_PARAMS)
+      inline static void destruct(TYPE * pointer OBJECT_REF_DEBUG_COMMA_PARAMS)
       {
-         destructor::nodef< TYPE>::destruct(pointer OBJ_REF_DBG_COMMA_ARGS);
+         destructor::nodef< TYPE>::destruct(pointer OBJECT_REF_DEBUG_COMMA_ARGS);
       }
-      inline static void destruct_count(TYPE * pointer, ::count c OBJ_REF_DBG_COMMA_PARAMS)
+      inline static void destruct_count(TYPE * pointer, ::count c OBJECT_REF_DEBUG_COMMA_PARAMS)
       {
-         destructor::nodef< TYPE>::destruct_count(pointer, c OBJ_REF_DBG_COMMA_ARGS);
+         destructor::nodef< TYPE>::destruct_count(pointer, c OBJECT_REF_DEBUG_COMMA_ARGS);
       }
 
 
@@ -694,13 +694,13 @@ namespace allocator
 
       }
 
-      inline static void destruct(TYPE * p OBJ_REF_DBG_COMMA_PARAMS)
+      inline static void destruct(TYPE * p OBJECT_REF_DEBUG_COMMA_PARAMS)
       {
-         destructor::nodef< TYPE>::destruct(p  OBJ_REF_DBG_COMMA_ARGS);
+         destructor::nodef< TYPE>::destruct(p  OBJECT_REF_DEBUG_COMMA_ARGS);
       }
-      inline static void destruct_count(TYPE * p, ::count c OBJ_REF_DBG_COMMA_PARAMS)
+      inline static void destruct_count(TYPE * p, ::count c OBJECT_REF_DEBUG_COMMA_PARAMS)
       {
-         destructor::nodef< TYPE>::destruct_count(p, c  OBJ_REF_DBG_COMMA_ARGS);
+         destructor::nodef< TYPE>::destruct_count(p, c  OBJECT_REF_DEBUG_COMMA_ARGS);
       }
 
 
@@ -763,13 +763,13 @@ namespace allocator
 
       }
 
-      inline static void destruct(TYPE * p OBJ_REF_DBG_COMMA_PARAMS)
+      inline static void destruct(TYPE * p OBJECT_REF_DEBUG_COMMA_PARAMS)
       {
-         destructor::def< TYPE>::destruct(p OBJ_REF_DBG_COMMA_ARGS);
+         destructor::def< TYPE>::destruct(p OBJECT_REF_DEBUG_COMMA_ARGS);
       }
-      inline static void destruct_count(TYPE * p, ::count c OBJ_REF_DBG_COMMA_PARAMS)
+      inline static void destruct_count(TYPE * p, ::count c OBJECT_REF_DEBUG_COMMA_PARAMS)
       {
-         destructor::def< TYPE>::destruct_count(p, c  OBJ_REF_DBG_COMMA_ARGS);
+         destructor::def< TYPE>::destruct_count(p, c  OBJECT_REF_DEBUG_COMMA_ARGS);
       }
 
 

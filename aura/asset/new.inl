@@ -1,14 +1,12 @@
 #undef new
 
 
-
 void* MEMORY_DECL operator new(size_t nSize)
 {
 
    return memory_alloc(nSize);
 
 }
-
 
 
 void* MEMORY_DECL operator new(size_t nSize, const std::nothrow_t&) noexcept

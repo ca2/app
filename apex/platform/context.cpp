@@ -1337,7 +1337,7 @@ namespace apex
 
       auto & pcreateNew = m_createaHistory.add_new();
 
-      __refer(pcreateNew, m_pcreate OBJ_REF_DBG_COMMA_THIS_FUNCTION_LINE);
+      __refer(pcreateNew, m_pcreate OBJECT_REF_DEBUG_COMMA_THIS_FUNCTION_LINE);
 
       m_pcreate->m_bNew = false;
 

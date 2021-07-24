@@ -82,13 +82,16 @@ enum e_byte_count
 };
 
 
+#include "acme/memory/string_memory_allocator.h"
+
+
 template < typename TYPE_CHAR >
 class natural_string_base :
-   public natural_pointer < string_meta_data < TYPE_CHAR > >
+   public natural_pointer < string_meta_data < TYPE_CHAR >, string_memory_allocator >
 {
 public:
 
-   using NATURAL_POINTER = natural_pointer < string_meta_data < TYPE_CHAR > >;
+   using NATURAL_POINTER = natural_pointer < string_meta_data < TYPE_CHAR >, string_memory_allocator >;
 
    using NATURAL_META_DATA = typename NATURAL_POINTER::NATURAL_META_DATA;
 

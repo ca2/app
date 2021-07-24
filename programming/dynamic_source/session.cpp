@@ -55,17 +55,17 @@ namespace dynamic_source
    }
 
 
-   i64 session::add_ref(OBJ_REF_DBG_PARAMS_DEF)
+   i64 session::add_ref(OBJECT_REF_DEBUG_PARAMS_DEF)
    {
 
-      return object::add_ref(OBJ_REF_DBG_ARGS);
+      return object::add_ref(OBJECT_REF_DEBUG_ARGS);
 
    }
 
-   i64 session::release(OBJ_REF_DBG_PARAMS_DEF)
+   i64 session::release(OBJECT_REF_DEBUG_PARAMS_DEF)
    {
 
-      return object::dec_ref(OBJ_REF_DBG_ARGS);
+      return object::dec_ref(OBJECT_REF_DEBUG_ARGS);
 
    }
 

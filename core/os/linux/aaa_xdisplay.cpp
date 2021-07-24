@@ -68,7 +68,7 @@ bool xdisplay::open(char * display_name, bool bInitialLock)
 
    }
 
-   m_pdata->add_ref(OBJ_REF_DBG_P_NOTE(nullptr, "xdisplay::open"));
+   m_pdata->add_ref(OBJECT_REF_DEBUG_P_NOTE(nullptr, "xdisplay::open"));
 
    m_bOwn = true;
 

@@ -3125,7 +3125,7 @@ skip:
       if (iNewBufferSize > iBufferSize)
       {
 
-         *ppsz = (char *) memory_alloc(iNewBufferSize+1);
+         *ppsz = (char *) memory_allocate(iNewBufferSize+1);
 
       }
 

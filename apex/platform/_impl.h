@@ -376,7 +376,7 @@ bool channel::add_handler(const ::id & id, RECEIVER* preceiver, void (RECEIVER::
 //
 //
 //template < class c_derived >
-//inline i64 add_ref(c_derived * pca OBJ_REF_DBG_COMMA_PARAMS_DEF)
+//inline i64 add_ref(c_derived * pca OBJECT_REF_DEBUG_COMMA_PARAMS_DEF)
 //{
 //
 //   if (::is_null(pca))
@@ -386,7 +386,7 @@ bool channel::add_handler(const ::id & id, RECEIVER* preceiver, void (RECEIVER::
 //
 //   }
 //
-//   return pca->add_ref(OBJ_REF_DBG_ARGS);
+//   return pca->add_ref(OBJECT_REF_DEBUG_ARGS);
 //
 //}
 //
@@ -421,7 +421,7 @@ bool channel::add_handler(const ::id & id, RECEIVER* preceiver, void (RECEIVER::
 //
 //
 //template < class c_derived >
-//inline i64 release(c_derived *& pca OBJ_REF_DBG_COMMA_PARAMS_DEF)
+//inline i64 release(c_derived *& pca OBJECT_REF_DEBUG_COMMA_PARAMS_DEF)
 //{
 //
 //   if (::is_null(pca))
@@ -470,7 +470,7 @@ bool channel::add_handler(const ::id & id, RECEIVER* preceiver, void (RECEIVER::
 //   try
 //   {
 //
-//      return ptr->release(OBJ_REF_DBG_ARGS);
+//      return ptr->release(OBJECT_REF_DEBUG_ARGS);
 //
 //   }
 //   catch (...)
@@ -504,28 +504,28 @@ bool channel::add_handler(const ::id & id, RECEIVER* preceiver, void (RECEIVER::
 //
 //
 //template < class COMPOSITE >
-//inline i64 release(__composite(COMPOSITE) & pcomposite OBJ_REF_DBG_COMMA_PARAMS)
+//inline i64 release(__composite(COMPOSITE) & pcomposite OBJECT_REF_DEBUG_COMMA_PARAMS)
 //{
 //
-//   return release(pcomposite.m_p OBJ_REF_DBG_COMMA_ARGS);
+//   return release(pcomposite.m_p OBJECT_REF_DEBUG_COMMA_ARGS);
 //
 //}
 //
 //
 //template < class TYPE >
-//inline i64 release(__pointer(TYPE) & pointer OBJ_REF_DBG_COMMA_PARAMS)
+//inline i64 release(__pointer(TYPE) & pointer OBJECT_REF_DEBUG_COMMA_PARAMS)
 //{
 //
-//   return release(pointer.m_p OBJ_REF_DBG_COMMA_ARGS);
+//   return release(pointer.m_p OBJECT_REF_DEBUG_COMMA_ARGS);
 //
 //}
 //
 //
 //template < class REFERENCE >
-//inline i64 release(__reference(REFERENCE) & preference OBJ_REF_DBG_COMMA_PARAMS)
+//inline i64 release(__reference(REFERENCE) & preference OBJECT_REF_DEBUG_COMMA_PARAMS)
 //{
 //
-//   return release(preference.m_p OBJ_REF_DBG_COMMA_ARGS);
+//   return release(preference.m_p OBJECT_REF_DEBUG_COMMA_ARGS);
 //
 //}
 //

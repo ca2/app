@@ -356,7 +356,7 @@ CLASS_DECL_ACME void process_get_os_priority(i32 * piOsPolicy, sched_param * ppa
 //
 //      char *   cmd_line;
 //
-//      cmd_line = (char *) memory_alloc(strlen(pszCmdLine ) + 1 );
+//      cmd_line = (char *) memory_allocate(strlen(pszCmdLine ) + 1 );
 //
 //      if(cmd_line == nullptr)
 //      {

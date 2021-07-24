@@ -355,7 +355,7 @@ void * unaligned_memory_alloc(memsize size)
 }
 
 
-void * aligned_memory_alloc_dbg(memsize size, i32 nBlockUse, const char * szFileName, i32 nLine, memsize align)
+void * aligned_memory_allocate_debug(memsize size, i32 nBlockUse, const char * szFileName, i32 nLine, memsize align)
 {
 
    void * p;
@@ -379,7 +379,7 @@ void * aligned_memory_alloc_dbg(memsize size, i32 nBlockUse, const char * szFile
    UNREFERENCED_PARAMETER(nLine);
 
    //TODO: to do the dbg version
-   //byte * p = (byte *) _system_heap_alloc_dbg(nSize + ALIGN_BYTE_COUNT + 32, nBlockUse, szFileName, nLine);
+   //byte * p = (byte *) _system_heap_alloc_debug(nSize + ALIGN_BYTE_COUNT + 32, nBlockUse, szFileName, nLine);
    if(g_pheap == nullptr)
    {
 
@@ -398,7 +398,7 @@ void * aligned_memory_alloc_dbg(memsize size, i32 nBlockUse, const char * szFile
    else
    {
 
-      void * pusermessage = g_pheap->alloc_dbg(heap_memory::aligned_provision_get_size(size), nBlockUse, szFileName, nLine);
+      void * pusermessage = g_pheap->alloc_debug(heap_memory::aligned_provision_get_size(size), nBlockUse, szFileName, nLine);
 
       if (pusermessage == nullptr)
       {
@@ -420,7 +420,7 @@ void * aligned_memory_alloc_dbg(memsize size, i32 nBlockUse, const char * szFile
 }
 
 
-void * unaligned_memory_alloc_dbg(memsize size, i32 nBlockUse, const char * szFileName, i32 nLine)
+void * unaligned_memory_allocate_debug(memsize size, i32 nBlockUse, const char * szFileName, i32 nLine)
 {
 
    void * p;
@@ -447,8 +447,8 @@ void * unaligned_memory_alloc_dbg(memsize size, i32 nBlockUse, const char * szFi
    UNREFERENCED_PARAMETER(nLine);
 
    //TODO: to do the dbg version
-   //byte * p = (byte *) _system_heap_alloc_dbg(nSize + ALIGN_BYTE_COUNT + 32, nBlockUse, szFileName, nLine);
-   void * pusermessage = g_pheap->alloc_dbg(heap_memory::unaligned_provision_get_size(size), nBlockUse, szFileName, nLine);
+   //byte * p = (byte *) _system_heap_alloc_debug(nSize + ALIGN_BYTE_COUNT + 32, nBlockUse, szFileName, nLine);
+   void * pusermessage = g_pheap->alloc_debug(heap_memory::unaligned_provision_get_size(size), nBlockUse, szFileName, nLine);
 
    if (pusermessage == nullptr)
    {
@@ -479,9 +479,9 @@ void * unaligned_memory_alloc_dbg(memsize size, i32 nBlockUse, const char * szFi
 
 #if !defined(MCHECK)
 
-#undef memory_alloc
+#undef memory_allocate
 
-void * memory_alloc(memsize size)
+void * memory_allocate(memsize size)
 {
 
 #if defined(APPLEOS)
@@ -496,17 +496,17 @@ void * memory_alloc(memsize size)
 
 }
 
-#undef memory_alloc
+#undef memory_allocate
 
 #endif
 
 
-void * memory_alloc_no_track(memsize size)
+void * memory_allocate_no_track(memsize size)
 {
 
 #if defined(MCHECK) || defined(__VLD) || defined(__MCRTDBG)
 
-   return memory_alloc(size);
+   return memory_allocate(size);
 
 #else
 
@@ -530,27 +530,27 @@ void * memory_alloc_no_track(memsize size)
 void * memory_calloc(memsize size, memsize bytes)
 {
 
-   return memory_alloc(size * bytes);
+   return memory_allocate(size * bytes);
 
 }
 
 
-void * memory_alloc_dbg(memsize nSize, i32 nBlockUse, const char * szFileName, i32 nLine)
+void * memory_allocate_debug(memsize nSize, i32 nBlockUse, const char * szFileName, i32 nLine)
 {
 #ifdef MCHECK
-   return memory_alloc(nSize);
+   return memory_allocate(nSize);
 #else
-   return unaligned_memory_alloc_dbg(nSize, nBlockUse, szFileName, nLine);
+   return unaligned_memory_allocate_debug(nSize, nBlockUse, szFileName, nLine);
 #endif
 
 }
 
 #if !defined(MCHECK) && !defined(__VLD) && !defined(__MCRTDBG)
 
-void * memory_realloc(void * pmemory, memsize nSize)
+void * memory_reallocate(void * pmemory, memsize nSize)
 {
 
-   return memory_realloc_dbg(pmemory, nSize, 0, nullptr, -1);
+   return memory_reallocate_debug(pmemory, nSize, 0, nullptr, -1);
 
 }
 #endif
@@ -560,7 +560,7 @@ void * memory_realloc(void * pmemory, memsize nSize)
 
 
 
-void * memory_realloc_dbg(void * pmemory, memsize size, i32 nBlockUse, const char * szFileName, i32 nLine)
+void * memory_reallocate_debug(void * pmemory, memsize size, i32 nBlockUse, const char * szFileName, i32 nLine)
 {
 
 #if defined(__VLD)
@@ -569,11 +569,11 @@ void * memory_realloc_dbg(void * pmemory, memsize size, i32 nBlockUse, const cha
 
 #elif defined(__MCRTDBG)
 
-   return _realloc_dbg(pmemory, size, _NORMAL_BLOCK, szFileName, nLine);
+   return _realloc_debug(pmemory, size, _NORMAL_BLOCK, szFileName, nLine);
 
 #elif defined(MCHECK)
 
-   return memory_realloc(pmemory, size);
+   return memory_reallocate(pmemory, size);
 
 #elif MEMDLEAK
    memsize nAllocSize = size + sizeof(memdleak_block);
@@ -645,7 +645,7 @@ void * memory_realloc_dbg(void * pmemory, memsize size, i32 nBlockUse, const cha
 #else
 
    if (pmemory == nullptr)
-      return memory_alloc_dbg(size, nBlockUse, szFileName, nLine);
+      return memory_allocate_debug(size, nBlockUse, szFileName, nLine);
 
    byte blockuse = heap_memory::heap_get_block_use(pmemory);
 
@@ -664,7 +664,7 @@ void * memory_realloc_dbg(void * pmemory, memsize size, i32 nBlockUse, const cha
 
       //TODO: to do the dbg version
 
-      pusermessage = g_pheap->realloc_dbg(heap_memory::base_get(pmemory),heap_memory::aligned_provision_get_size(size),heap_memory::aligned_provision_get_size(sizeOld),ALIGN_BYTE_COUNT,nBlockUse,szFileName,nLine);
+      pusermessage = g_pheap->realloc_debug(heap_memory::base_get(pmemory),heap_memory::aligned_provision_get_size(size),heap_memory::aligned_provision_get_size(sizeOld),ALIGN_BYTE_COUNT,nBlockUse,szFileName,nLine);
 
    }
    else if(blockuse == 128) // aligned
@@ -692,7 +692,7 @@ void * memory_realloc_dbg(void * pmemory, memsize size, i32 nBlockUse, const cha
 
       //TODO: to do the dbg version
 
-      pusermessage = g_pheap->realloc_dbg(heap_memory::base_get(pmemory),heap_memory::unaligned_provision_get_size(size),heap_memory::unaligned_provision_get_size(sizeOld),0,nBlockUse,szFileName,nLine);
+      pusermessage = g_pheap->realloc_debug(heap_memory::base_get(pmemory),heap_memory::unaligned_provision_get_size(size),heap_memory::unaligned_provision_get_size(sizeOld),0,nBlockUse,szFileName,nLine);
 
    }
    else
@@ -733,7 +733,7 @@ void * memory_realloc_dbg(void * pmemory, memsize size, i32 nBlockUse, const cha
 void memory_free(void * pmemory)
 {
 
-   return memory_free_dbg(pmemory, 0);
+   return memory_free_debug(pmemory, 0);
 
 }
 
@@ -743,7 +743,7 @@ void memory_free(void * pmemory)
 
 
 
-void memory_free_dbg(void * pmemory, i32 iBlockType)
+void memory_free_debug(void * pmemory, i32 iBlockType)
 {
 
 #if defined(__VLD) || defined(MCHECK) || defined(__MCRTDBG)
@@ -804,7 +804,7 @@ void memory_free_dbg(void * pmemory, i32 iBlockType)
 
       //TODO: to do the dbg version
 
-      g_pheap->free_dbg(pusermessage,heap_memory::aligned_provision_get_size(pheap->m_size));
+      g_pheap->free_debug(pusermessage,heap_memory::aligned_provision_get_size(pheap->m_size));
 
    }
    else if(pheap->m_blockuse == 128)
@@ -832,7 +832,7 @@ void memory_free_dbg(void * pmemory, i32 iBlockType)
 
       //TODO: to do the dbg version
 
-      g_pheap->free_dbg(pusermessage,heap_memory::unaligned_provision_get_size(pheap->m_size));
+      g_pheap->free_debug(pusermessage,heap_memory::unaligned_provision_get_size(pheap->m_size));
 
    }
    else
@@ -851,11 +851,11 @@ void memory_free_dbg(void * pmemory, i32 iBlockType)
 memsize memory_size(void * pmemory)
 {
 
-   return memory_size_dbg(pmemory, _NORMAL_BLOCK);
+   return memory_size_debug(pmemory, _NORMAL_BLOCK);
 
 }
 
-memsize memory_size_dbg(void * pmemory, i32 iBlockType)
+memsize memory_size_debug(void * pmemory, i32 iBlockType)
 {
 
 #if defined(__VLD) || defined(__MCRTDBG)
@@ -903,14 +903,14 @@ void * unaligned_memory_alloc(memsize size)
 }
 
 
-void * aligned_memory_alloc_dbg(memsize size, i32 nBlockUse, const char * szFileName, i32 nLine)
+void * aligned_memory_allocate_debug(memsize size, i32 nBlockUse, const char * szFileName, i32 nLine)
 {
 
    return system_heap_alloc(size);
 
 }
 
-void * unaligned_memory_alloc_dbg(memsize size, i32 nBlockUse, const char * szFileName, i32 nLine)
+void * unaligned_memory_allocate_debug(memsize size, i32 nBlockUse, const char * szFileName, i32 nLine)
 {
 
    return system_heap_alloc(size);
@@ -920,7 +920,7 @@ void * unaligned_memory_alloc_dbg(memsize size, i32 nBlockUse, const char * szFi
 
 
 
-void * memory_alloc(memsize size)
+void * memory_allocate(memsize size)
 {
 
    return system_heap_alloc(size);
@@ -936,7 +936,7 @@ void * memory_calloc(memsize size, memsize bytes)
 }
 
 
-void * memory_alloc_dbg(memsize nSize, i32 nBlockUse, const char * szFileName, i32 nLine)
+void * memory_allocate_debug(memsize nSize, i32 nBlockUse, const char * szFileName, i32 nLine)
 {
 
    return system_heap_alloc(nSize);
@@ -944,7 +944,7 @@ void * memory_alloc_dbg(memsize nSize, i32 nBlockUse, const char * szFileName, i
 }
 
 
-void * memory_realloc(void * p, memsize nSize)
+void * memory_reallocate(void * p, memsize nSize)
 {
 
    return system_heap_realloc(pvoid, nSize);
@@ -952,7 +952,7 @@ void * memory_realloc(void * p, memsize nSize)
 }
 
 
-void * memory_realloc_dbg(void * p, memsize size, i32 nBlockUse, const char * szFileName, i32 nLine)
+void * memory_reallocate_debug(void * p, memsize size, i32 nBlockUse, const char * szFileName, i32 nLine)
 {
 
 
@@ -978,7 +978,7 @@ memsize memsize(void * p)
 }
 
 
-void memory_free_dbg(void * p, i32 iBlockType)
+void memory_free_debug(void * p, i32 iBlockType)
 {
 
    memory_free(pvoid);
@@ -986,7 +986,7 @@ void memory_free_dbg(void * p, i32 iBlockType)
 }
 
 
-memsize memory_size_dbg(void * p, i32 iBlockType)
+memsize memory_size_debug(void * p, i32 iBlockType)
 {
 #ifdef WINDOWS
    return _msize(pvoid);

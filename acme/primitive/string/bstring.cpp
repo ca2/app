@@ -141,7 +141,7 @@
 //
 //         strsize sAlloc = s + minimum(maximum(s, 16), 1024);
 //
-//         bstring_data * pdata = (bstring_data *)memory_alloc(sizeof(bstring_data) + sAlloc);
+//         bstring_data * pdata = (bstring_data *)memory_allocate(sizeof(bstring_data) + sAlloc);
 //
 //         if (pdata == nullptr)
 //         {
@@ -176,7 +176,7 @@
 //
 //            strsize sAlloc = s + minimum(maximum(s, 16), 1024);
 //
-//            bstring_data * pdata = (bstring_data *)memory_realloc(get_bstring_data(), sizeof(bstring_data) + sAlloc);
+//            bstring_data * pdata = (bstring_data *)memory_reallocate(get_bstring_data(), sizeof(bstring_data) + sAlloc);
 //
 //            if (pdata == nullptr)
 //            {

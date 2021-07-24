@@ -117,7 +117,7 @@ void string_file::to_string(const class string_exchange & str) const
 //      m_iAlloc = iSize + 1024;
 //      if(m_psz == nullptr)
 //      {
-//         m_psz = (char *)memory_alloc(m_iAlloc);
+//         m_psz = (char *)memory_allocate(m_iAlloc);
 //         m_psz[0] = '\0';
 //      }
 //      else
@@ -126,7 +126,7 @@ void string_file::to_string(const class string_exchange & str) const
 //         {
 //            ::output_debug_string("strange string buffer usage");
 //         }
-//         m_psz = (char *)memory_realloc(m_psz,m_iAlloc);
+//         m_psz = (char *)memory_reallocate(m_psz,m_iAlloc);
 //      }
 //   }
 

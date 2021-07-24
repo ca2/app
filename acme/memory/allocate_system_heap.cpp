@@ -34,7 +34,7 @@ void * system_heap_alloc_normal(memsize size)
 }
 
 
-void * system_heap_alloc_dbg(memsize size, int nBlockUse, const char * pszFileName, int iLine)
+void * system_heap_alloc_debug(memsize size, int nBlockUse, const char * pszFileName, int iLine)
 {
 
 #if MEMDLEAK
@@ -88,7 +88,7 @@ memsize system_heap_alloc_size(void * p)
 
 #ifdef MEMDLEAK
 
-void * system_heap_realloc_dbg(void * p,  memsize size, i32 nBlockUse, const char * pszFileName, i32 iLine)
+void * system_heap_realloc_debug(void * p,  memsize size, i32 nBlockUse, const char * pszFileName, i32 iLine)
 {
 
 #if MEMDLEAK
@@ -173,7 +173,7 @@ void * system_heap_realloc_dbg(void * p,  memsize size, i32 nBlockUse, const cha
 
    return p;
 
-//   memsize * psize (memsize *) g_pheap->realloc_dbg(&((memsize *)pvoidOld)[-1], ((memsize *)pvoidOld)[-1], size + sizeof(memsize), nBlockUse, szFileName, iLine);
+//   memsize * psize (memsize *) g_pheap->realloc_debug(&((memsize *)pvoidOld)[-1], ((memsize *)pvoidOld)[-1], size + sizeof(memsize), nBlockUse, szFileName, iLine);
    // psize[0] = size + sizeof(memsize);
    //return &psize[1];
 

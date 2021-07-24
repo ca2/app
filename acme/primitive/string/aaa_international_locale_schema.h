@@ -52,8 +52,8 @@ namespace str
 
          locale_schema & operator = (const locale_schema & ls);
 
-         virtual i64 add_ref(OBJ_REF_DBG_PARAMS);
-         virtual i64 release(OBJ_REF_DBG_PARAMS);
+         virtual i64 add_ref(OBJECT_REF_DEBUG_PARAMS);
+         virtual i64 release(OBJECT_REF_DEBUG_PARAMS);
 
 
       };

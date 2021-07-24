@@ -449,7 +449,7 @@ namespace simple_ui
    //i64 message_box::add_ref()
    //{
 
-   //   return simple_ui::top::add_ref(OBJ_REF_DBG_ARGS);
+   //   return simple_ui::top::add_ref(OBJECT_REF_DEBUG_ARGS);
 
    //}
 
@@ -457,7 +457,7 @@ namespace simple_ui
    //i64 message_box::dec_ref()
    //{
 
-   //   return simple_ui::top::dec_ref(OBJ_REF_DBG_ARGS);
+   //   return simple_ui::top::dec_ref(OBJECT_REF_DEBUG_ARGS);
 
    //}
 

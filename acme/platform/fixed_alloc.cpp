@@ -254,7 +254,7 @@ void * fixed_alloc_array::_alloc(size_t nAllocSize)
    }
    else
    {
-      return memory_alloc(nAllocSize);
+      return memory_allocate(nAllocSize);
    }
 }
 
@@ -290,7 +290,7 @@ void * fixed_alloc_array::_realloc(void * pOld, size_t nOldAllocSize, size_t nNe
    //if(pallocOld == nullptr && pallocNew == nullptr)
    //{
 
-      //return ::memory_realloc(pOld, nNewAllocSize);
+      //return ::memory_reallocate(pOld, nNewAllocSize);
 
    //}
    //else if(pallocOld == pallocNew)
@@ -303,7 +303,7 @@ void * fixed_alloc_array::_realloc(void * pOld, size_t nOldAllocSize, size_t nNe
    else
    {
 
-      void * pNew = pallocNew == nullptr ? memory_alloc(nNewAllocSize) : pallocNew->Alloc();
+      void * pNew = pallocNew == nullptr ? memory_allocate(nNewAllocSize) : pallocNew->Alloc();
 
       if(pNew == nullptr)
          return nullptr;

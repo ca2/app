@@ -169,7 +169,7 @@ CLASS_DECL_AURA void aura_ref();
 //#define new ACME_NEW
 //
 //
-//#include "aura/platform/obj_ref_dbg.h"
+//#include "aura/platform/obj_ref_debug.h"
 //
 //
 //namespace opengl
@@ -1782,7 +1782,7 @@ class form_document;
 //      //   Details
 //
 //      // BRT 2015-02-18 19:08
-//      // catch all (...) here in acme::del ... but should erase try catch from all underlying calls (frees, memory_frees, memory_dbg_frees).
+//      // catch all (...) here in acme::del ... but should erase try catch from all underlying calls (frees, memory_frees, memory_debug_frees).
 //
 //      try
 //      {
@@ -1824,7 +1824,7 @@ class form_document;
 //      //   Details
 //
 //      // BRT 2015-02-18 19:08
-//      // catch all (...) here in acme::del ... but should erase try catch from all underlying calls (frees, memory_frees, memory_dbg_frees).
+//      // catch all (...) here in acme::del ... but should erase try catch from all underlying calls (frees, memory_frees, memory_debug_frees).
 //
 //      try
 //      {
@@ -1863,7 +1863,7 @@ class form_document;
 //      //   Details
 //
 //      // BRT 2016-11-23 19:08
-//      // catch all (...) here in acme::del ... but should erase try catch from all underlying calls (frees, memory_frees, memory_dbg_frees).
+//      // catch all (...) here in acme::del ... but should erase try catch from all underlying calls (frees, memory_frees, memory_debug_frees).
 //
 //      try
 //      {
@@ -1904,7 +1904,7 @@ class form_document;
 //      //   Details
 //
 //      // BRT 2016-11-23 19:08
-//      // catch all (...) here in acme::del ... but should erase try catch from all underlying calls (frees, memory_frees, memory_dbg_frees).
+//      // catch all (...) here in acme::del ... but should erase try catch from all underlying calls (frees, memory_frees, memory_debug_frees).
 //
 //      try
 //      {

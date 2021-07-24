@@ -73,7 +73,7 @@ namespace user
 
       }
 
-      //m_pdocmanager->add_ref(OBJ_REF_DBG_ARGS);
+      //m_pdocmanager->add_ref(OBJECT_REF_DEBUG_ARGS);
 
       document_manager()->add_document_template(ptemplate);
 

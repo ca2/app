@@ -97,7 +97,7 @@ inline ___pointer < T > ::___pointer(const lparam& lparam)
    if (::is_null(m_p))
    {
 
-      ::release(p OBJ_REF_DBG_COMMA_P_NOTE(nullptr, "pointer::pointer(LPARAM)"));
+      ::release(p OBJECT_REF_DEBUG_COMMA_P_NOTE(nullptr, "pointer::pointer(LPARAM)"));
 
    }
 
@@ -204,7 +204,7 @@ inline bool ___pointer < T > ::is_set() const
 
 
 template < class T >
-inline ___pointer < T > & ___pointer < T > ::reset (T * pNew OBJ_REF_DBG_COMMA_PARAMS_DEF)
+inline ___pointer < T > & ___pointer < T > ::reset (T * pNew OBJECT_REF_DEBUG_COMMA_PARAMS_DEF)
 {
 
    if(m_p != pNew)
@@ -215,7 +215,7 @@ inline ___pointer < T > & ___pointer < T > ::reset (T * pNew OBJ_REF_DBG_COMMA_P
       if(::is_set(pNew))
       {
 
-         pNew->add_ref(OBJ_REF_DBG_ARGS);
+         pNew->add_ref(OBJECT_REF_DEBUG_ARGS);
 
          m_p = pNew;
 
@@ -230,7 +230,7 @@ inline ___pointer < T > & ___pointer < T > ::reset (T * pNew OBJ_REF_DBG_COMMA_P
       if(::is_set(pOld))
       {
 
-         ::release(pOld OBJ_REF_DBG_COMMA_ARGS);
+         ::release(pOld OBJECT_REF_DEBUG_COMMA_ARGS);
 
       }
 
@@ -288,10 +288,10 @@ inline T * ___pointer < T > ::detach()
 // cut and paste with very good capabilities of RealVNC for MacOS in OVH.fr/eu/pt cloud from Windows client.
 // slashes with ABNT 2 keyboard and even c cedilha working with RealVNC
 template < class T >
-inline i64 ___pointer <T>::release(OBJ_REF_DBG_PARAMS_DEF)
+inline i64 ___pointer <T>::release(OBJECT_REF_DEBUG_PARAMS_DEF)
 {
 
-   return ::release(m_p OBJ_REF_DBG_COMMA_ARGS);
+   return ::release(m_p OBJECT_REF_DEBUG_COMMA_ARGS);
 
 }
 

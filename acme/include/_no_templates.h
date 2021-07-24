@@ -71,10 +71,10 @@ class system;
 //#include "acme/os/apple/_c_mm.h"
 
 
-#include "acme/platform/obj_ref_dbg.h"
+#include "acme/platform/obj_ref_debug.h"
 #include "acme/platform/obj_typ_ctr.h"
 #include "acme/const/_const.h"
-#include "acme/platform/obj_ref_dbg.h"
+#include "acme/platform/obj_ref_debug.h"
 #include "acme/primitive/primitive/uid.h"
 #include "acme/primitive/primitive/estatus.h"
 #include "acme/primitive/primitive/eobject.h"

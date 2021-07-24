@@ -4737,7 +4737,7 @@ namespace aura
 //
 //      synchronous_lock synchronouslock(&m_mutexTask);
 //
-//      m_threadmap[itask].reset(pthread OBJ_REF_DBG_COMMA_P_NOTE(this, "thread::thread_set"));
+//      m_threadmap[itask].reset(pthread OBJECT_REF_DEBUG_COMMA_P_NOTE(this, "thread::thread_set"));
 //
 //      m_threadidmap[pthread] = itask;
 //
@@ -4765,7 +4765,7 @@ namespace aura
 //
 //      synchronous_lock synchronouslock(&m_mutexTask);
 //
-//#if OBJ_REF_DBG
+//#if OBJECT_REF_DEBUG
 //
 //      m_threadmap[itask].release(this);
 //
@@ -5748,7 +5748,7 @@ namespace aura
 //
 //      //m_phtml = create_html();
 //
-//      //m_phtml->add_ref(OBJ_REF_DBG_ARGS);
+//      //m_phtml->add_ref(OBJECT_REF_DEBUG_ARGS);
 //
 //      //if(m_phtml == nullptr)
 //      //   return false;

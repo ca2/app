@@ -34,8 +34,8 @@ namespace app_shader
       virtual ::e_status initialize(::object * pobject) override;
 
 #ifdef DEBUG
-      virtual int64_t add_ref(OBJ_REF_DBG_PARAMS) override;
-      virtual int64_t dec_ref(OBJ_REF_DBG_PARAMS) override;
+      virtual int64_t add_ref(OBJECT_REF_DEBUG_PARAMS) override;
+      virtual int64_t dec_ref(OBJECT_REF_DEBUG_PARAMS) override;
 #endif
 
       virtual ::e_status update_shader();

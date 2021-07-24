@@ -12,7 +12,7 @@ public:
    void * alloc(int iSize)
    {
 
-      return memory_alloc(iSize);
+      return memory_allocate(iSize);
 
    }
 
@@ -70,7 +70,7 @@ public:
 
       int iSize = calc_cache_size();
 
-      void * p = memory_alloc(iSize * 2);
+      void * p = memory_allocate(iSize * 2);
 
       // TODO : better dynamically memory align
 
@@ -113,7 +113,7 @@ public:
       }
       else
       {
-         pb = (byte *) memory_alloc(c);
+         pb = (byte *) memory_allocate(c);
 
          // can use string because messed all with cache out hot hit !!/^`}{{ **!
          //::acme::application * papp = get_application();

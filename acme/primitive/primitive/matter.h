@@ -75,10 +75,10 @@ public:
    class ::system *                    m_psystem;
 
 
-//#if OBJ_REF_DBG
-//   inline matter() : m_pmutex(nullptr), m_pobjrefdbg(nullptr), m_countReference(0), m_uObject(0), m_psystem(nullptr) { add_ref(OBJ_REF_DBG_THIS OBJ_REF_DBG_COMMA_NOTE("Initial Reference")); }
-//   inline matter(const eobject& eobject) : m_pmutex(nullptr), m_pobjrefdbg(nullptr), m_countReference(0), m_eobject(eobject), m_uObject(0), m_psystem(nullptr) { add_ref(OBJ_REF_DBG_THIS OBJ_REF_DBG_COMMA_NOTE("Initial Reference (2)")); }
-//   inline matter(const matter& matter) : m_pmutex(nullptr), m_pobjrefdbg(nullptr), m_countReference(0), m_eobject(matter.m_eobject), m_uObject(0), m_psystem(nullptr) { if (matter.m_pmutex) defer_create_mutex(); add_ref(OBJ_REF_DBG_THIS OBJ_REF_DBG_COMMA_NOTE("Initial Reference (3)")); }
+//#if OBJECT_REF_DEBUG
+//   inline matter() : m_pmutex(nullptr), m_pobjrefdbg(nullptr), m_countReference(0), m_uObject(0), m_psystem(nullptr) { add_ref(OBJECT_REF_DEBUG_THIS OBJECT_REF_DEBUG_COMMA_NOTE("Initial Reference")); }
+//   inline matter(const eobject& eobject) : m_pmutex(nullptr), m_pobjrefdbg(nullptr), m_countReference(0), m_eobject(eobject), m_uObject(0), m_psystem(nullptr) { add_ref(OBJECT_REF_DEBUG_THIS OBJECT_REF_DEBUG_COMMA_NOTE("Initial Reference (2)")); }
+//   inline matter(const matter& matter) : m_pmutex(nullptr), m_pobjrefdbg(nullptr), m_countReference(0), m_eobject(matter.m_eobject), m_uObject(0), m_psystem(nullptr) { if (matter.m_pmutex) defer_create_mutex(); add_ref(OBJECT_REF_DEBUG_THIS OBJECT_REF_DEBUG_COMMA_NOTE("Initial Reference (3)")); }
 //   inline matter(matter&& matter) : m_pmutex(matter.m_pmutex), m_pobjrefdbg(matter.m_pobjrefdbg), m_countReference(matter.m_countReference), m_eobject(matter.m_eobject), m_uObject(0), m_psystem(nullptr) { matter.m_pmutex = nullptr; matter.m_pobjrefdbg = nullptr; }
 //#else
 //   inline matter() : m_pmutex(nullptr), m_countReference(1), m_uObject(0), m_psystem(nullptr) { }
@@ -87,10 +87,10 @@ public:
 //   inline matter(matter&& matter) : m_pmutex(matter.m_pmutex), m_countReference(matter.m_countReference), m_eobject(matter.m_eobject), m_uObject(0), m_psystem(nullptr) { matter.m_pmutex = nullptr; }
 //#endif
 
-#if OBJ_REF_DBG
-   inline matter() : m_pmutex(nullptr), m_pobjrefdbg(nullptr), m_countReference(0), m_uObject(0), m_psystem(nullptr) { add_ref(OBJ_REF_DBG_THIS OBJ_REF_DBG_COMMA_NOTE("Initial Reference")); }
-   inline matter(const eobject& eobject) : m_pmutex(nullptr), m_pobjrefdbg(nullptr), m_countReference(0), m_eobject(eobject), m_uObject(0), m_psystem(nullptr) { add_ref(OBJ_REF_DBG_THIS OBJ_REF_DBG_COMMA_NOTE("Initial Reference (2)")); }
-   inline matter(const matter& matter) : m_pmutex(nullptr), m_pobjrefdbg(nullptr), m_countReference(0), m_eobject(matter.m_eobject), m_uObject(0), m_psystem(nullptr) { if (matter.m_pmutex) defer_create_mutex(); add_ref(OBJ_REF_DBG_THIS OBJ_REF_DBG_COMMA_NOTE("Initial Reference (3)")); }
+#if OBJECT_REF_DEBUG
+   inline matter() : m_pmutex(nullptr), m_pobjrefdbg(nullptr), m_countReference(0), m_uObject(0), m_psystem(nullptr) { add_ref(OBJECT_REF_DEBUG_THIS OBJECT_REF_DEBUG_COMMA_NOTE("Initial Reference")); }
+   inline matter(const eobject& eobject) : m_pmutex(nullptr), m_pobjrefdbg(nullptr), m_countReference(0), m_eobject(eobject), m_uObject(0), m_psystem(nullptr) { add_ref(OBJECT_REF_DEBUG_THIS OBJECT_REF_DEBUG_COMMA_NOTE("Initial Reference (2)")); }
+   inline matter(const matter& matter) : m_pmutex(nullptr), m_pobjrefdbg(nullptr), m_countReference(0), m_eobject(matter.m_eobject), m_uObject(0), m_psystem(nullptr) { if (matter.m_pmutex) defer_create_mutex(); add_ref(OBJECT_REF_DEBUG_THIS OBJECT_REF_DEBUG_COMMA_NOTE("Initial Reference (3)")); }
    inline matter(matter&& matter) : m_pmutex(matter.m_pmutex), m_pobjrefdbg(matter.m_pobjrefdbg), m_countReference(matter.m_countReference), m_eobject(matter.m_eobject), m_uObject(0), m_psystem(nullptr) { matter.m_pmutex = nullptr; matter.m_pobjrefdbg = nullptr; }
 #else
    inline matter() : m_pmutex(nullptr), m_countReference(1), m_uObject(0), m_uError(0), m_psystem(nullptr) { }
@@ -106,9 +106,9 @@ public:
    virtual void dump(dump_context& dumpcontext) const;
 
 
-#if OBJ_REF_DBG
+#if OBJECT_REF_DEBUG
 
-   obj_ref_dbg* m_pobjrefdbg;
+   obj_ref_debug* m_pobjrefdbg;
 
    void add_ref_history(matter* p, const char* pszObjRefDbg);
    void dec_ref_history(matter* p, const char* pszObjRefDbgNotUsedCurrently);
@@ -174,13 +174,13 @@ public:
 #endif
 
 #ifdef DEBUG
-   virtual i64 add_ref(OBJ_REF_DBG_PARAMS);
-   virtual i64 dec_ref(OBJ_REF_DBG_PARAMS);
-   virtual i64 release(OBJ_REF_DBG_PARAMS);
+   virtual i64 add_ref(OBJECT_REF_DEBUG_PARAMS);
+   virtual i64 dec_ref(OBJECT_REF_DEBUG_PARAMS);
+   virtual i64 release(OBJECT_REF_DEBUG_PARAMS);
 #else
-   inline i64 add_ref(OBJ_REF_DBG_PARAMS);
-   inline i64 dec_ref(OBJ_REF_DBG_PARAMS);
-   inline i64 release(OBJ_REF_DBG_PARAMS);
+   inline i64 add_ref(OBJECT_REF_DEBUG_PARAMS);
+   inline i64 dec_ref(OBJECT_REF_DEBUG_PARAMS);
+   inline i64 release(OBJECT_REF_DEBUG_PARAMS);
 #endif
 
    
@@ -205,13 +205,13 @@ public:
    virtual ::e_status osthread_term();
 
 
-   virtual ::e_status add_composite(::matter* pobject OBJ_REF_DBG_COMMA_PARAMS);
-   virtual ::e_status add_reference(::matter* pobject OBJ_REF_DBG_COMMA_PARAMS);
+   virtual ::e_status add_composite(::matter* pobject OBJECT_REF_DEBUG_COMMA_PARAMS);
+   virtual ::e_status add_reference(::matter* pobject OBJECT_REF_DEBUG_COMMA_PARAMS);
 
 
-   virtual ::e_status release_composite2(::matter * pobject OBJ_REF_DBG_COMMA_PARAMS);
-   virtual ::e_status finalize_composite(::matter* pobject OBJ_REF_DBG_COMMA_PARAMS);
-   virtual ::e_status release_reference(::matter* pobject OBJ_REF_DBG_COMMA_PARAMS);
+   virtual ::e_status release_composite2(::matter * pobject OBJECT_REF_DEBUG_COMMA_PARAMS);
+   virtual ::e_status finalize_composite(::matter* pobject OBJECT_REF_DEBUG_COMMA_PARAMS);
+   virtual ::e_status release_reference(::matter* pobject OBJECT_REF_DEBUG_COMMA_PARAMS);
 
 
    virtual ::e_status set_generic_object_name(const char* pszName);

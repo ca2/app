@@ -84,7 +84,7 @@ inline ansichar * ansi_duplicate(const ansichar * psz)
 
    if (c_is_null(psz)) return nullptr;
 
-   auto pszDup = (ansichar *) memory_alloc(strlen(psz) + 1);
+   auto pszDup = (ansichar *) memory_allocate(strlen(psz) + 1);
 
    strcpy(pszDup, psz);
 
@@ -100,7 +100,7 @@ inline ansichar * ansi_count_duplicate(const ansichar * psz, strsize len)
 
    if (len < 0) return nullptr;
 
-   auto pszDup = (ansichar *)memory_alloc(len + 1);
+   auto pszDup = (ansichar *)memory_allocate(len + 1);
 
    strncpy(pszDup, psz, len);
 
@@ -996,7 +996,7 @@ inline const ansichar * ansi_concatenate_and_duplicate(const ansichar * psz1, co
 
    strsize len = len1 + len2 + 1;
 
-   auto * psz = (ansichar *)memory_alloc(len);
+   auto * psz = (ansichar *)memory_allocate(len);
 
    *psz = '\0';
 
@@ -1054,7 +1054,7 @@ inline const ansichar * ansi_concatenate_and_duplicate(const ansichar * psz1, co
 //
 //   strsize len = len1 + len2 + 1;
 //
-//   auto * psz = (ansichar *)memory_alloc(len);
+//   auto * psz = (ansichar *)memory_allocate(len);
 //
 //   *psz = '\0';
 //
@@ -1089,7 +1089,7 @@ inline const ansichar * ansi_concatenate_and_duplicate(const ansichar * psz1, co
 //
 //   strsize len = len1 + len2 + 1;
 //
-//   auto * psz = (ansichar *)memory_alloc(len);
+//   auto * psz = (ansichar *)memory_allocate(len);
 //
 //   *psz = '\0';
 //
@@ -1124,7 +1124,7 @@ inline const ansichar * ansi_concatenate_and_duplicate(const ansichar * psz1, co
 //
 //   strsize len = len1 + len2 + 1;
 //
-//   auto * psz = (ansichar *)memory_alloc(len);
+//   auto * psz = (ansichar *)memory_allocate(len);
 //
 //   *psz = '\0';
 //

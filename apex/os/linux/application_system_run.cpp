@@ -101,7 +101,7 @@ CLASS_DECL_APEX i32 ca2_main();
 //
 //   auto psystem = ::apex::get_system();
 //
-//   psystem->add_ref(OBJ_REF_DBG_ARGS);
+//   psystem->add_ref(OBJECT_REF_DEBUG_ARGS);
 //
 //   if (m_pmainstruct->m_bConsole)
 //   {

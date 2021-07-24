@@ -34,11 +34,11 @@ property_object::~property_object()
 
    ::material_object::finalize();
 
-   //m_pobject.release(OBJ_REF_DBG_THIS);
+   //m_pobject.release(OBJECT_REF_DEBUG_THIS);
 
-   m_pia.release(OBJ_REF_DBG_THIS);
+   m_pia.release(OBJECT_REF_DEBUG_THIS);
 
-   m_pset.release(OBJ_REF_DBG_THIS);
+   m_pset.release(OBJECT_REF_DEBUG_THIS);
 
    return ::success;
 
@@ -67,10 +67,10 @@ void property_object::notify_on_finish(::property_object * pcontextobjectFinish)
 }
 
 
-//void property_object::set_object(::object * pobject  OBJ_REF_DBG_COMMA_PARAMS_DEF)
+//void property_object::set_object(::object * pobject  OBJECT_REF_DEBUG_COMMA_PARAMS_DEF)
 //{
 //
-//   m_pobject.reset(pobject OBJ_REF_DBG_COMMA_ARGS);
+//   m_pobject.reset(pobject OBJECT_REF_DEBUG_COMMA_ARGS);
 //
 //}
 

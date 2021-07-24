@@ -378,26 +378,26 @@ namespace subject
 #ifdef DEBUG
 
 
-   i64 manager::add_ref(OBJ_REF_DBG_PARAMS_DEF)
+   i64 manager::add_ref(OBJECT_REF_DEBUG_PARAMS_DEF)
    {
 
-      return ::property_object::add_ref(OBJ_REF_DBG_ARGS);
+      return ::property_object::add_ref(OBJECT_REF_DEBUG_ARGS);
 
    }
 
 
-   i64 manager::dec_ref(OBJ_REF_DBG_PARAMS_DEF)
+   i64 manager::dec_ref(OBJECT_REF_DEBUG_PARAMS_DEF)
    {
 
-      return ::property_object::dec_ref(OBJ_REF_DBG_ARGS);
+      return ::property_object::dec_ref(OBJECT_REF_DEBUG_ARGS);
 
    }
 
 
-   i64 manager::release(OBJ_REF_DBG_PARAMS_DEF)
+   i64 manager::release(OBJECT_REF_DEBUG_PARAMS_DEF)
    {
 
-      return ::property_object::release(OBJ_REF_DBG_ARGS);
+      return ::property_object::release(OBJECT_REF_DEBUG_ARGS);
 
    }
 

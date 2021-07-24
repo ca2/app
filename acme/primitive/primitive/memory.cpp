@@ -238,7 +238,7 @@ byte * memory::impl_alloc(memsize dwAllocation)
    }
    else
    {
-      return (byte *)memory_alloc((size_t)dwAllocation);
+      return (byte *)memory_allocate((size_t)dwAllocation);
    }
 
 #else
@@ -248,22 +248,22 @@ byte * memory::impl_alloc(memsize dwAllocation)
       {
          if(m_bAligned)
          {
-            return (byte *)aligned_memory_alloc_dbg((size_t)dwAllocation, 723, "thread://" + demangle(typeid(*::get_task()).name()) + "="+ ::get_task()->m_strDebug + ", memory://" + m_strTag, m_iLine);
+            return (byte *)aligned_memory_allocate_debug((size_t)dwAllocation, 723, "thread://" + demangle(typeid(*::get_task()).name()) + "="+ ::get_task()->m_strDebug + ", memory://" + m_strTag, m_iLine);
          }
          else
          {
-            return (byte *)memory_alloc_dbg((size_t)dwAllocation, 723, "thread://" + demangle(typeid(*::get_task()).name()) + "="+ ::get_task()->m_strDebug + ", memory://"+m_strTag, m_iLine);
+            return (byte *)memory_allocate_debug((size_t)dwAllocation, 723, "thread://" + demangle(typeid(*::get_task()).name()) + "="+ ::get_task()->m_strDebug + ", memory://"+m_strTag, m_iLine);
          }
       }
       else
       {
          if(m_bAligned)
          {
-            return (byte *)aligned_memory_alloc_dbg((size_t)dwAllocation, 723, "thread://" + demangle(typeid(*::get_task()).name()) + ", memory://" + m_strTag, m_iLine);
+            return (byte *)aligned_memory_allocate_debug((size_t)dwAllocation, 723, "thread://" + demangle(typeid(*::get_task()).name()) + ", memory://" + m_strTag, m_iLine);
          }
          else
          {
-            return (byte *)memory_alloc_dbg((size_t)dwAllocation, 723, "thread://" + demangle(typeid(*::get_task()).name()) + ", memory://"+m_strTag, m_iLine);
+            return (byte *)memory_allocate_debug((size_t)dwAllocation, 723, "thread://" + demangle(typeid(*::get_task()).name()) + ", memory://"+m_strTag, m_iLine);
          }
       }
    }
@@ -271,11 +271,11 @@ byte * memory::impl_alloc(memsize dwAllocation)
    {
       if(m_bAligned)
       {
-         return (byte *)aligned_memory_alloc_dbg((size_t)dwAllocation, 723, m_strTag, m_iLine);
+         return (byte *)aligned_memory_allocate_debug((size_t)dwAllocation, 723, m_strTag, m_iLine);
       }
       else
       {
-         return (byte *)memory_alloc_dbg((size_t)dwAllocation, 723, m_strTag, m_iLine);
+         return (byte *)memory_allocate_debug((size_t)dwAllocation, 723, m_strTag, m_iLine);
       }
    }
    else
@@ -286,7 +286,7 @@ byte * memory::impl_alloc(memsize dwAllocation)
       }
       else
       {
-         return (byte *)memory_alloc((size_t)dwAllocation);
+         return (byte *)memory_allocate((size_t)dwAllocation);
       }
    }
 
@@ -302,7 +302,7 @@ byte * memory::impl_realloc(void * pdata, memsize dwAllocation)
    }
    else
    {
-      return (byte *)memory_realloc(pdata, (size_t)dwAllocation);
+      return (byte *)memory_reallocate(pdata, (size_t)dwAllocation);
    }
 
 }

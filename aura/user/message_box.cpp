@@ -116,26 +116,26 @@ namespace user
    }
 
 
-   i64 message_box::add_ref(OBJ_REF_DBG_PARAMS_DEF)
+   i64 message_box::add_ref(OBJECT_REF_DEBUG_PARAMS_DEF)
    {
 
-      return main_window::add_ref(OBJ_REF_DBG_ARGS);
+      return main_window::add_ref(OBJECT_REF_DEBUG_ARGS);
 
    }
 
 
-   i64 message_box::dec_ref(OBJ_REF_DBG_PARAMS_DEF)
+   i64 message_box::dec_ref(OBJECT_REF_DEBUG_PARAMS_DEF)
    {
 
-      return main_window::dec_ref(OBJ_REF_DBG_ARGS);
+      return main_window::dec_ref(OBJECT_REF_DEBUG_ARGS);
 
    }
 
 
-   i64 message_box::release(OBJ_REF_DBG_PARAMS_DEF)
+   i64 message_box::release(OBJECT_REF_DEBUG_PARAMS_DEF)
    {
 
-      return main_window::release(OBJ_REF_DBG_ARGS);
+      return main_window::release(OBJECT_REF_DEBUG_ARGS);
 
    }
 

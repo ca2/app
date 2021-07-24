@@ -315,7 +315,7 @@ int_bool file_is_equal_path_dup(const char * psz1,const char * psz2)
 //{
 //   i32 iLen;
 //   file_read_n_number_dup(hfile,pctx,iLen);
-//   char * lpsz = (char *)memory_alloc(iLen + 1);
+//   char * lpsz = (char *)memory_allocate(iLen + 1);
 //   ::u32 dwRead;
 //   ReadFile(hfile,lpsz,iLen,&dwRead,nullptr);
 //   if(pctx != nullptr)
@@ -324,7 +324,7 @@ int_bool file_is_equal_path_dup(const char * psz1,const char * psz2)
 //   }
 //   lpsz[iLen] = '\0';
 //   str = lpsz;
-//   memory_free_dbg(lpsz,0);
+//   memory_free_debug(lpsz,0);
 //}
 
 
@@ -358,13 +358,13 @@ string file_module_path_dup()
 //
 //   const i32 iImageSize = MAX_PATH * 8;
 //
-//   char * szImage = (char *)memory_alloc(iImageSize);
+//   char * szImage = (char *)memory_allocate(iImageSize);
 //
 //   GetModuleFileNameEx(hProcess,nullptr,szImage,iImageSize);
 //
 //   strImage = szImage;
 //
-//   memory_free_dbg(szImage,0);
+//   memory_free_debug(szImage,0);
 //
 //   bool bFound = false;
 //

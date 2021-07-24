@@ -421,13 +421,12 @@ namespace sockets
    void http_socket::SendResponse()
    {
 
-
-
-      //TRACE("\n");
-      //TRACE("SendResponse\n");
       string msg;
+      
       string strLine;
+      
       strLine = m_response.attr(__id(http_version)).get_string() + " " + m_response.attr(__id(http_status_code)) + " " + m_response.attr(__id(http_status));
+
       msg = strLine + "\r\n";
       
       string strHost;
@@ -436,10 +435,12 @@ namespace sockets
 
       if(strHost.has_char())
       {
+         
          msg += "Host: " + strHost + "\r\n";
+         
          TRACE("Host: %s", strHost.c_str());
-      }
 
+      }
 
       bool bContentLength = m_response.attr(__id(http_status_code)) != 304;
 
@@ -459,20 +460,32 @@ namespace sockets
 
          m_response.m_propertysetHeader.erase_by_name(__id(content_length));
 
-
       }
 
       for(auto & pproperty : m_response.m_propertysetHeader)
       {
 
          string strKey = pproperty->name();
+
          string_array & straValue = pproperty->stra();
-         if(!http_filter_response_header(strKey, straValue))
+
+         if (!http_filter_response_header(strKey, straValue))
+         {
+
             continue;
-         if(strKey.compare_ci("host") == 0)
+
+         }
+
+         if (strKey.compare_ci("host") == 0)
+         {
+
             continue;
+
+         }
+
          for (int j = 0; j < straValue.get_count(); j++)
          {
+
             string strValue = straValue[j];
             //         strLine = ;
             msg += strKey + ": " + strValue + "\r\n";
@@ -549,21 +562,30 @@ namespace sockets
 
    void http_socket::SendRequest()
    {
+
       string msg;
+
       string strLine;
-      //msg = m_request.attr(__id(http_method)).get_string() + " " + m_request.attr(__id(http_protocol)) + "://" +  m_request.m_propertysetHeader["host"] +  m_request.attr(__id(request_uri)).get_string() + " " + m_request.attr(__id(http_version)).get_string() + "\r\n";
+
       msg = m_request.attr("http_method").get_string() + " " + m_request.attr("request_uri").get_string() + " " + m_request.attr("http_version").get_string() + "\r\n";
-      //}
+
       if (m_request.m_propertysetHeader[__id(host)].get_string().has_char())
       {
+
          strLine = "Host: " + m_request.m_propertysetHeader[__id(host)];
+
          if(m_iProxyPort > 0 ||
                (m_iConnectPort != 80 && !IsSSL()) || (m_iConnectPort != 443 && IsSSL()))
          {
+
             strLine += ":";
+
             strLine += __str(m_iConnectPort);
+
          }
+
          msg += strLine + "\r\n";
+
       }
 
       for(auto & pproperty : m_request.m_propertysetHeader)

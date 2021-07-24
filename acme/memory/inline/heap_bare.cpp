@@ -21,7 +21,7 @@ void * unaligned_memory_alloc(size_t size)
 }
 
 
-void * aligned_memory_alloc_dbg(size_t size, i32 nBlockUse, const char * szFileName, i32 nLine, memsize align)
+void * aligned_memory_allocate_debug(size_t size, i32 nBlockUse, const char * szFileName, i32 nLine, memsize align)
 {
 
    throw_todo();
@@ -30,7 +30,7 @@ void * aligned_memory_alloc_dbg(size_t size, i32 nBlockUse, const char * szFileN
 
 }
 
-void * unaligned_memory_alloc_dbg(size_t size, i32 nBlockUse, const char * szFileName, i32 nLine)
+void * unaligned_memory_allocate_debug(size_t size, i32 nBlockUse, const char * szFileName, i32 nLine)
 {
 
    return system_heap_alloc(size);
@@ -40,7 +40,7 @@ void * unaligned_memory_alloc_dbg(size_t size, i32 nBlockUse, const char * szFil
 
 
 
-void * memory_alloc(memsize size)
+void * memory_allocate(memsize size)
 {
 
    return system_heap_alloc(size);
@@ -48,7 +48,7 @@ void * memory_alloc(memsize size)
 }
 
 
-void * memory_alloc_no_track(size_t size)
+void * memory_allocate_no_track(size_t size)
 {
 
    return system_heap_alloc(size);
@@ -63,7 +63,7 @@ void * memory_calloc(size_t size, size_t bytes)
 }
 
 
-void * memory_alloc_dbg(size_t nSize, i32 nBlockUse, const char * szFileName, i32 nLine)
+void * memory_allocate_debug(size_t nSize, i32 nBlockUse, const char * szFileName, i32 nLine)
 {
 
    return system_heap_alloc(nSize);
@@ -71,7 +71,7 @@ void * memory_alloc_dbg(size_t nSize, i32 nBlockUse, const char * szFileName, i3
 }
 
 
-void * memory_realloc(void * pvoid, size_t nSize)
+void * memory_reallocate(void * pvoid, size_t nSize)
 {
 
    return system_heap_realloc(pvoid, nSize);
@@ -79,7 +79,7 @@ void * memory_realloc(void * pvoid, size_t nSize)
 }
 
 
-void * memory_realloc_dbg(void * p, size_t size, i32 nBlockUse, const char * szFileName, i32 nLine)
+void * memory_reallocate_debug(void * p, size_t size, i32 nBlockUse, const char * szFileName, i32 nLine)
 {
 
 
@@ -114,7 +114,7 @@ memsize memory_size(void * p)
 }
 
 
-void memory_free_dbg(void * p, i32 iBlockType)
+void memory_free_debug(void * p, i32 iBlockType)
 {
 
    memory_free(p);
@@ -122,7 +122,7 @@ void memory_free_dbg(void * p, i32 iBlockType)
 }
 
 
-memsize memory_size_dbg(void * p, i32 iBlockType)
+memsize memory_size_debug(void * p, i32 iBlockType)
 {
 
 #ifdef WINDOWS

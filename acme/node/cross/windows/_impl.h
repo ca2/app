@@ -192,7 +192,7 @@ inline bool predicate_Sleep(int iTime, PRED pred)
 //
 //   m_psimpleobject = (matter *)psimpleobject;
 //
-//   m_psimpleobject->add_ref(OBJ_REF_DBG_ARGS);
+//   m_psimpleobject->add_ref(OBJECT_REF_DEBUG_ARGS);
 //
 //}
 

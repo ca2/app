@@ -19,8 +19,8 @@ inline ansichar *             ansi_concatenate(ansichar * psz, const ansichar * 
 inline ansichar *             ansi_copy(ansichar * psz, const ansichar * cpy);
 inline ansichar *             ansi_count_copy(ansichar * psz, const ansichar * cpy, strsize len);
 inline strsize                ansi_length(const ansichar * psz);
-inline ansichar *             ansi_duplicate(const ansichar * psz); // ATTENTION - memory_alloc
-inline ansichar *             ansi_count_duplicate(const ansichar * psz, strsize len); // ATTENTION - memory_alloc 
+inline ansichar *             ansi_duplicate(const ansichar * psz); // ATTENTION - memory_allocate
+inline ansichar *             ansi_count_duplicate(const ansichar * psz, strsize len); // ATTENTION - memory_allocate 
 inline const ansichar *       ansi_find_string(const ansichar * psz, const ansichar * find);
 inline const ansichar *       ansi_find_string_ci(const ansichar * psz, const ansichar * find);
 inline const ansichar *       ansi_count_find_string(const ansichar * psz, const ansichar * find, strsize len);

@@ -32,8 +32,8 @@ inline widechar *             wide_concatenate(widechar * dest, const widechar *
 inline widechar *             wide_copy(widechar * dest, const widechar * cat);
 inline widechar *             wide_count_copy(widechar * dest, const widechar * cat, strsize iLen);
 inline strsize                wide_length(const widechar * cat);
-inline widechar *             wide_duplicate(const widechar * src); // ATTENTION - memory_alloc
-inline widechar *             wide_count_duplicate(const widechar * src, strsize srclen); // ATTENTION - memory_alloc 
+inline widechar *             wide_duplicate(const widechar * src); // ATTENTION - memory_allocate
+inline widechar *             wide_count_duplicate(const widechar * src, strsize srclen); // ATTENTION - memory_allocate 
 inline const widechar *       wide_find_string(const widechar * src, const widechar * find);
 inline const widechar *       wide_find_string_case_insensitive(const widechar * src, const widechar * find);
 inline const widechar *       wide_count_find_string(const widechar * src, const widechar * find, strsize iLen);

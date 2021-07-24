@@ -66,7 +66,7 @@ namespace user
 
                ::user::control_event ev;
                ev.m_puserinteraction                  = pinteraction;
-               ev.m_eevent                = ::user::e_event_button_clicked;
+               ev.m_eevent                = ::user::e_event_click;
 
                m_itemControl              = item;
 

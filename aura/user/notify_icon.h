@@ -19,14 +19,6 @@ namespace user
    public:
 
 
-      enum e_message
-      {
-
-         MessageNotifyIcon = WM_USER + 100,
-
-      };
-
-
       bool                                               m_bCreated;
       string                                             m_strId;
       __pointer(::user::interaction)               m_puserinteractionNotify;

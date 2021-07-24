@@ -235,7 +235,7 @@ namespace user
 
    //   //      ev.m_puserinteraction = this;
 
-   //   //      ev.m_eevent = ::user::e_event_button_clicked;
+   //   //      ev.m_eevent = ::user::e_event_click;
 
    //   //      on_control_event(&ev);
 
@@ -726,7 +726,7 @@ namespace user
 
          ev.m_puserinteraction = this;
 
-         ev.m_eevent = ::user::e_event_button_clicked;
+         ev.m_eevent = ::user::e_event_click;
 
          ev.m_actioncontext.m_pmessage = pmessage;
 

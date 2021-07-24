@@ -1760,6 +1760,8 @@ __transport(::application) app_core::new_application(const char* pszAppId)
 
          papp = __create < ::application >();
 
+         papp->increment_reference_count();
+
       }
       else
       {

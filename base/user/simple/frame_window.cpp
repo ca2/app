@@ -3185,48 +3185,46 @@ void simple_frame_window::_001OnQueryEndSession(::message::message * pmessage)
 void simple_frame_window::on_control_event(::user::control_event * pevent)
 {
 
-#ifdef WINDOWS
-
    if(pevent->m_puserinteraction == m_pnotifyicon)
    {
 
       if(pevent->m_eevent == ::user::e_event_context_menu)
       {
 
-         ::u32 uNotifyIcon = pevent->m_id;
+         //OnNotifyIconContextMenu(pevent->m_id);
 
-         OnNotifyIconContextMenu(uNotifyIcon);
+         auto psession = get_session();
+
+         auto puser = psession->user();
+
+         auto pwindowing = puser->windowing();
+
+         auto pointCursor = pwindowing->get_cursor_position();
+
+         string strXml = notification_area_get_xml_menu();
+
+         puser->track_popup_xml_menu(this, strXml, 0, pointCursor, size_i32(), m_pnotifyicon);
 
       }
       else if(pevent->m_eevent == ::user::e_event_left_button_double_click)
       {
 
-         ::u32 uNotifyIcon = pevent->m_id;
-
-         OnNotifyIconLButtonDblClk(uNotifyIcon);
+         //OnNotifyIconLButtonDblClk(pevent->m_id);
 
       }
       else if(pevent->m_eevent == ::user::e_event_left_button_down)
       {
 
-         ::u32 uNotifyIcon = pevent->m_id;
+         //OnNotifyIconLButtonDown(pevent->m_id);
 
-         OnNotifyIconLButtonDown(uNotifyIcon);
-
-      }
-      else if(pevent->m_eevent == ::user::e_event_button_clicked)
-      {
-
-         string strId(pevent->m_id);
-
-         call_area_notification_action(strId);
+         default_notify_icon_topic();
 
       }
 
    }
 
 
-#endif
+//#endif
 
    ::experience::frame_window::on_control_event(pevent);
 
@@ -3906,40 +3904,30 @@ void simple_frame_window::_001OnTimer(::timer * ptimer)
 }
 
 
-void simple_frame_window::OnNotifyIconContextMenu(::u32 uNotifyIcon)
-{
-
-   auto psession = get_session();
-
-   auto puser = psession->user();
-
-   auto pwindowing = puser->windowing();
-
-   auto pointCursor = pwindowing->get_cursor_position();
-
-   string strXml = notification_area_get_xml_menu();
-
-   puser->track_popup_xml_menu(this, strXml, 0, pointCursor, size_i32(), m_pnotifyicon);
-
-}
+//void simple_frame_window::OnNotifyIconContextMenu(::u32 uNotifyIcon)
+//{
+//
+//}
 
 
-void simple_frame_window::OnNotifyIconLButtonDblClk(::u32 uNotifyIcon)
-{
 
-   UNREFERENCED_PARAMETER(uNotifyIcon);
-
-}
-
-
-void simple_frame_window::OnNotifyIconLButtonDown(::u32 uNotifyIcon)
-{
-
-   default_notify_icon_topic();
-
-   UNREFERENCED_PARAMETER(uNotifyIcon);
-
-}
+//
+//void simple_frame_window::OnNotifyIconLButtonDblClk(::u32 uNotifyIcon)
+//{
+//
+//   UNREFERENCED_PARAMETER(uNotifyIcon);
+//
+//}
+//
+//
+//void simple_frame_window::OnNotifyIconLButtonDown(::u32 uNotifyIcon)
+//{
+//
+//   default_notify_icon_topic();
+//
+//   UNREFERENCED_PARAMETER(uNotifyIcon);
+//
+//}
 
 
 ::e_status simple_frame_window::command_handler(const ::id & id)

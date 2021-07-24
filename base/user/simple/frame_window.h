@@ -228,7 +228,7 @@ public:
 
    void _001OnQueryEndSession(::message::message * pmessage);
 
-   virtual void on_control_event(::user::control_event * pevent) override;
+   void on_control_event(::user::control_event * pevent) override;
 
    virtual void route_command_message(::message::command * pcommand) override;
 
@@ -264,13 +264,14 @@ public:
 
    virtual void call_notification_area_action(const char * pszId);
 
-   virtual void OnNotifyIconContextMenu(::u32 uNotifyIcon);
-   virtual void OnNotifyIconLButtonDblClk(::u32 uNotifyIcon);
-   virtual void OnNotifyIconLButtonDown(::u32 uNotifyIcon);
+   //virtual void OnNotifyIconContextMenu(const ::id & idNotifyIcon);
+   //virtual void OnNotifyIconLButtonDblClk(const ::id& idNotifyIcon);
+   //virtual void OnNotifyIconLButtonDown(const ::id& idNotifyIcon);
 
    virtual void notification_area_action(const char * pszId);
 
    virtual string notification_area_get_xml_menu();
+
 
 
 };

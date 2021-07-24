@@ -295,7 +295,7 @@ namespace hi5
       void authorization::on_control_event( ::user::control_event * pevent)
       {
 
-         if(pevent->m_eevent == ::user::e_event_button_clicked || pevent->m_eevent == ::user::e_event_enter_key)
+         if(pevent->m_eevent == ::user::e_event_click || pevent->m_eevent == ::user::e_event_enter_key)
          {
 
             if(pevent->m_puserinteraction->m_id == "submit" || pevent->m_eevent == ::user::e_event_enter_key)

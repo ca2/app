@@ -642,7 +642,7 @@ namespace experience
    void frame_window::on_control_event(::user::control_event * pevent)
    {
 
-      if (pevent->m_eevent == ::user::e_event_button_clicked && m_pframe != nullptr)
+      if (pevent->m_eevent == ::user::e_event_click && m_pframe != nullptr)
       {
 
          ::id id = pevent->m_puserinteraction->GetDlgCtrlId();

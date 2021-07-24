@@ -17,8 +17,6 @@ namespace app_shader
 
       m_bUpdateShader = false;
 
-      m_strShaderPrefix = "default";
-
    }
 
 
@@ -116,27 +114,25 @@ namespace app_shader
 
       }
 
-      ::file::listing listing;
-
       //auto papplication = get_application();
 
-      auto pcontext = ::object::m_pcontext;
+      //auto pcontext = ::object::m_pcontext;
 
-      pcontext->m_papexcontext->dir().ls_pattern(listing, "dropbox://shader/simple shader/", { "*.frag" });
+      //pcontext->m_papexcontext->dir().ls_pattern(listing, "dropbox://shader/simple shader/", { "*.frag" });
 
-      for (auto& path : listing)
-      {
+      //for (auto& path : listing)
+      //{
 
-         if (path.name().begins_ci(pszPathPrefix))
-         {
+      //   if (path.name().begins_ci(pszPathPrefix))
+      //   {
 
-            m_strFragment = m_pcontext->load_fragment(path, m_eshadersource);
+      m_strFragment = m_pcontext->load_fragment(pszPathPrefix, m_eshadersource);
 
-            break;
+      //      break;
 
-         }
+      //   }
 
-      }
+      //}
 
    }
 
@@ -159,7 +155,7 @@ namespace app_shader
 
          m_bUpdateShader = false;
 
-         defer_load_fragment(m_strShaderPrefix);
+         defer_load_fragment(m_strShaderPath);
 
          _update_shader();
 

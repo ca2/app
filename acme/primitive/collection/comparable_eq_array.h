@@ -106,6 +106,29 @@ public:
    using BASE_ARRAY::operator +=;
 
 
+   TYPE get_next(ARG_TYPE t)
+   {
+
+      auto iFind = this->find_first(t);
+
+      if (this->is_empty())
+      {
+
+         return TYPE();
+
+      }
+
+      if (iFind < 0)
+      {
+
+         return this->first();
+
+      }
+
+      return this->operator % (iFind + 1);
+
+   }
+
 };
 
 //template < class TYPE, class ARG_TYPE, class ARRAY_TYPE>

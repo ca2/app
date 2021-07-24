@@ -38,10 +38,10 @@ namespace user
       virtual ~notify_icon_listener();
 
 
-      virtual void OnNotifyIconMessage(::u32 uNotifyIcon, ::u32 message);
-      virtual void OnNotifyIconContextMenu(::u32 uNotifyIcon);
-      virtual void OnNotifyIconLButtonDblClk(::u32 uNotifyIcon);
-      virtual void OnNotifyIconLButtonDown(::u32 uNotifyIcon);
+      //virtual void OnNotifyIconMessage(::u32 uNotifyIcon, ::u32 message);
+      //virtual void OnNotifyIconContextMenu(::u32 uNotifyIcon);
+      //virtual void OnNotifyIconLButtonDblClk(::u32 uNotifyIcon);
+      //virtual void OnNotifyIconLButtonDown(::u32 uNotifyIcon);
 
 
       virtual int _get_notification_area_action_count();

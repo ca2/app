@@ -1121,7 +1121,7 @@ namespace user
          }
 
       }
-      else if(pevent->m_eevent == ::user::e_event_button_clicked)
+      else if(pevent->m_eevent == ::user::e_event_click)
       {
 
          __pointer(interaction) pinteraction = pevent->m_puserinteraction;

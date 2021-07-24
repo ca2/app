@@ -12,7 +12,7 @@ void acme_system_term();
 CLASS_DECL_ACME void process_set_args(int argc, platform_char ** argv);
 
 #ifdef WINDOWS
-int main(int argc, platform_char ** argv)
+int wmain(int argc, wchar_t* argv[], wchar_t* envp[])
 #else
 int main(int argc, platform_char ** argv, platform_char ** envp)
 #endif
@@ -52,15 +52,15 @@ int main(int argc, platform_char ** argv, platform_char ** envp)
    //string strCommandLine(pCmdLine);
 
    {
-#ifdef WINDOWS
-
-      //wcsdup_array wcsdupa;
-
-      //auto envp = psystem->node()->_get_envp(wcsdupa);
-
-      platform_char** envp = nullptr;
-
-#endif
+//#ifdef WINDOWS
+//
+//      //wcsdup_array wcsdupa;
+//
+//      //auto envp = psystem->node()->_get_envp(wcsdupa);
+//
+//      platform_char** envp = nullptr;
+//
+//#endif
 
       psystem->system_construct(argc, argv, envp);
 

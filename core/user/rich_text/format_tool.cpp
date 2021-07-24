@@ -284,7 +284,7 @@ namespace user
       if (pevent->m_actioncontext.is_user_source())
       {
 
-         if (pevent->m_eevent == ::user::e_event_button_clicked)
+         if (pevent->m_eevent == ::user::e_event_click)
          {
 
             if (pevent->m_puserinteraction->m_id == "font_bold")

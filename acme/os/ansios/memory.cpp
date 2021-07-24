@@ -158,3 +158,24 @@ void* reverse_byte_not_in_block(const void* l, size_t l_len, const void* s, size
 
 
 
+
+
+CLASS_DECL_ACME::u32 __u32_hash(const char* psz)
+{
+
+   ::u32 u = 0;
+
+   //DUMMY // dummy implementation
+
+   while (*psz)
+   {
+
+      u += *psz;
+
+      psz++;
+
+   }
+
+   return u;
+
+}

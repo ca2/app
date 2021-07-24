@@ -11,7 +11,7 @@ namespace app_shader
    public:
 
 
-      string                              m_strShaderPrefix;
+      string                              m_strShaderPath;
       bool                                m_bUpdateShader;
       string                              m_strProjection;
       string                              m_strFragment;

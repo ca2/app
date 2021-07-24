@@ -18,56 +18,56 @@ namespace user
    }
 
 
-   void notify_icon_listener::OnNotifyIconMessage(::u32 uNotifyIcon, ::u32 message)
-   {
+   //void notify_icon_listener::OnNotifyIconMessage(::u32 uNotifyIcon, ::u32 message)
+   //{
 
-      switch(message)
-      {
-      case e_message_right_button_down:
+   //   switch(message)
+   //   {
+   //   case e_message_right_button_down:
 
-         OnNotifyIconContextMenu(uNotifyIcon);
+   //      OnNotifyIconContextMenu(uNotifyIcon);
 
-         break;
+   //      break;
 
-      case e_message_left_button_double_click:
+   //   case e_message_left_button_double_click:
 
-         OnNotifyIconLButtonDblClk(uNotifyIcon);
+   //      OnNotifyIconLButtonDblClk(uNotifyIcon);
 
-         break;
+   //      break;
 
-      case e_message_left_button_down:
+   //   case e_message_left_button_down:
 
-         OnNotifyIconLButtonDown(uNotifyIcon);
+   //      OnNotifyIconLButtonDown(uNotifyIcon);
 
-         break;
+   //      break;
 
-      }
+   //   }
 
-   }
-
-
-   void notify_icon_listener::OnNotifyIconContextMenu(::u32 uNotifyIcon)
-   {
-
-      UNREFERENCED_PARAMETER(uNotifyIcon);
-
-   }
+   //}
 
 
-   void notify_icon_listener::OnNotifyIconLButtonDblClk(::u32 uNotifyIcon)
-   {
+   //void notify_icon_listener::OnNotifyIconContextMenu(::u32 uNotifyIcon)
+   //{
 
-      UNREFERENCED_PARAMETER(uNotifyIcon);
+   //   UNREFERENCED_PARAMETER(uNotifyIcon);
 
-   }
+   //}
 
 
-   void notify_icon_listener::OnNotifyIconLButtonDown(::u32 uNotifyIcon)
-   {
+   //void notify_icon_listener::OnNotifyIconLButtonDblClk(::u32 uNotifyIcon)
+   //{
 
-      UNREFERENCED_PARAMETER(uNotifyIcon);
+   //   UNREFERENCED_PARAMETER(uNotifyIcon);
 
-   }
+   //}
+
+
+   //void notify_icon_listener::OnNotifyIconLButtonDown(::u32 uNotifyIcon)
+   //{
+
+   //   UNREFERENCED_PARAMETER(uNotifyIcon);
+
+   //}
 
 
    int notify_icon_listener::_get_notification_area_action_count()

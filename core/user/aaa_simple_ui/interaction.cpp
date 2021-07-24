@@ -241,7 +241,7 @@ namespace simple_ui
 //
 //            ev.m_id = m_id;
 //
-//            ev.m_eevent = ::user::e_event_button_clicked;
+//            ev.m_eevent = ::user::e_event_click;
 //
 //            ev.m_pmessage = pmouse->
 //

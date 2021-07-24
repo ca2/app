@@ -69,7 +69,7 @@ namespace userex
          }
          
       }
-      else if(pevent->m_eevent == ::user::e_event_button_clicked)
+      else if(pevent->m_eevent == ::user::e_event_click)
       {
 
          m_idResponse = pevent->m_puserinteraction->m_id;

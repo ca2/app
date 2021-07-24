@@ -14,7 +14,7 @@ namespace user
    public:
 
 
-      enum_event                          m_eevent;
+      enum_event                       m_eevent;
       ::user::interaction *            m_puserinteraction;
       ::user::interaction *            m_ptab;
       ::user::interaction *            m_pform;

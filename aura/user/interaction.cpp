@@ -15489,7 +15489,7 @@ restart:
 
                      ev.m_id = id;
 
-                     ev.m_eevent = ::user::e_event_button_clicked;
+                     ev.m_eevent = ::user::e_event_click;
 
                      ev.m_item = item;
 

@@ -273,6 +273,7 @@ e_message_queue_sentinel =    0x0379,
    e_message_text_composition,
 
    e_message_change_experience,
+   e_message_notify_icon,
 
    e_message_open_response,
    e_message_application_exit,

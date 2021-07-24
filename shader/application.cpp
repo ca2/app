@@ -108,6 +108,32 @@ namespace app_shader
 #endif
 
 
+   string application::get_next_shader_path(const string& strPath)
+   {
+
+      ::file::listing listing;
+
+      get_shader_listing(listing);
+
+      auto next = listing.get_next(strPath);
+
+      return next;
+
+   }
+
+
+   void application::get_shader_listing(::file::listing & listing)
+   {
+
+      auto pcontext = m_pcontext->m_papexcontext;
+
+      pcontext->dir().ls_pattern(listing, "dropbox://shader/simple shader/", { "*.frag" });
+
+      listing.sort();
+
+   }
+
+
 } // namespace app_shader
 
 

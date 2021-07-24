@@ -393,7 +393,7 @@ namespace user
    void message_box::on_control_event(::user::control_event * pevent)
    {
 
-      if (pevent->m_eevent == ::user::e_event_button_clicked)
+      if (pevent->m_eevent == ::user::e_event_click)
       {
 
          m_edialogresult = (enum_dialog_result) pevent->m_id.i64();

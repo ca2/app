@@ -10,7 +10,7 @@ void acme_system_term();
 
 CLASS_DECL_ACME void process_set_args(int argc, platform_char** argv);
 
-int main(int argc, platform_char** argv)
+int wmain(int argc, wchar_t* argv[], wchar_t* envp[])
 {
 
    ::e_status estatus = ::success;
@@ -49,7 +49,7 @@ int main(int argc, platform_char** argv)
 
       //auto envp = psystem->node()->_get_envp(wcsdupa);
 
-      platform_char** envp = nullptr;
+      // wchar** envp = nullptr;
 
       psystem->system_construct(argc, argv, envp);
 

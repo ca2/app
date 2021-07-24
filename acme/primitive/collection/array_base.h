@@ -876,6 +876,20 @@ public:
    }
 
 
+   inline TYPE& operator%(::index nIndex)
+   {
+
+      return this->operator[](nIndex% this->get_size());
+
+   }
+
+   inline const TYPE& operator%(::index nIndex) const
+   {
+
+      return this->operator[](nIndex% this->get_size());
+
+   }
+
 };
 
 
@@ -883,7 +897,7 @@ template < class TYPE, class ARG_TYPE, class ALLOCATOR = allocator::nodef < TYPE
 inline TYPE& operator%(::index nIndex, const array_base < TYPE, ARG_TYPE, ALLOCATOR > & a)
 {
 
-   return (TYPE &) a[nIndex % a.get_size()];
+   return (TYPE &) (a % nIndex);
 
 }
 

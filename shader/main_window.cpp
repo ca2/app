@@ -13,8 +13,6 @@ namespace app_shader
 
       m_bTransparent = true;
 
-      m_iShader = 0;
-
       m_flagNonClient.erase(non_client_background);
 
       m_flagNonClient.erase(non_client_focus_rect);
@@ -88,9 +86,11 @@ namespace app_shader
 
       get_top_level()->set_prodevian();
 
-      update_shader(0);
+      update_shader("");
 
    }
+
+
 
 
    void main_window::on_message_destroy(::message::message * pmessage)
@@ -154,7 +154,7 @@ namespace app_shader
 
       auto rectangleClient = layout().get_client_rect();
 
-      auto & prender = m_rendera.element_at_grow(m_iShader);
+      auto & prender = m_maprender[m_strCurrentShaderPath];
 
       if(::is_set(prender))
       {
@@ -215,7 +215,7 @@ namespace app_shader
 
       }
 
-      auto & prender = m_rendera.element_at_grow(m_iShader);
+      auto & prender = m_maprender[m_strCurrentShaderPath];
 
       if(::is_set(prender))
       {
@@ -246,7 +246,7 @@ namespace app_shader
    }
 
 
-   void main_window::update_shader(int iShader)
+   void main_window::update_shader(const ::string & strShaderPath)
    {
 
       {
@@ -266,18 +266,7 @@ namespace app_shader
 
          string strText;
 
-         if (iShader == 0)
-         {
-
-            prender->m_strShaderPrefix = "default";
-
-         }
-         else
-         {
-
-            prender->m_strShaderPrefix.Format("%d", iShader);
-
-         }
+         prender->m_strShaderPath = strShaderPath;
 
          prender->update_shader();
 
@@ -285,7 +274,7 @@ namespace app_shader
 
             synchronous_lock synchronouslock(mutex());
 
-            m_rendera.set_at_grow(iShader, prender);
+            m_maprender[strShaderPath] = prender;
 
          }
 
@@ -309,19 +298,20 @@ namespace app_shader
    void main_window::switch_shader()
    {
 
-      int iNewShader = m_iShader + 1;
+      auto papplication = get_application();
 
-      if (iNewShader > 14)
+      auto strNextShaderPath = papplication->get_next_shader_path(m_strCurrentShaderPath);
+
+      if (strNextShaderPath == m_strCurrentShaderPath)
       {
 
-         iNewShader = 0;
+         return;
 
       }
 
-      update_shader(iNewShader);
+      m_strCurrentShaderPath = strNextShaderPath;
 
-      m_iShader = iNewShader;
-
+      update_shader(strNextShaderPath);
 
    }
 

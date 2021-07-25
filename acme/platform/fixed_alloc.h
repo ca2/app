@@ -3,8 +3,12 @@
 
 
 
+namespace main_memory_allocate_heap
+{
+ 
+   struct plex;
 
-struct plex;
+}
 
 
 class CLASS_DECL_ACME fixed_alloc_no_sync
@@ -19,7 +23,7 @@ public:
 
    ::u32 m_nAllocSize;   // size_i32 of each block from Alloc
    ::u32 m_nBlockSize;   // number of blocks to get at a time
-   plex* m_pBlocks;   // linked list of blocks (is nBlocks*nAllocSize)
+   ::main_memory_allocate_heap::plex* m_pBlocks;   // linked list of blocks (is nBlocks*nAllocSize)
    node* m_pnodeFree;   // first free node (nullptr if no free nodes)
 
 

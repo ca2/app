@@ -3,6 +3,9 @@
 #include "acme/platform/static_start_internal.h"
 
 
+#undef new
+
+
 #ifdef LINUX
 #include <locale.h>
 #endif
@@ -1190,7 +1193,7 @@ property_set& property_set::operator = (const ::payload & payload)
    if (payload.m_etype == e_type_propset)
    {
 
-      ::papaya::array::copy((property_ptra&)*this, (const property_ptra&)payload.propset());
+      ::papaya::copy((property_ptra&)*this, (const property_ptra&)payload.propset());
 
    }
    else if (payload.m_etype == e_type_prop)
@@ -1219,7 +1222,7 @@ property_set & property_set::operator = (const property_set & set)
    if (&set != this)
    {
 
-      ::papaya::array::copy((property_ptra & )*this, (const property_ptra & ) set);
+      ::papaya::copy((property_ptra & )*this, (const property_ptra & ) set);
 
    }
 

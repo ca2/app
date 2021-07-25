@@ -1,14 +1,29 @@
 #include "framework.h"
 #include "acme/operating_system.h"
 #include "static_start.h"
-#include "acme/memory/plex_heap1.h"
-#include "acme/memory/plex_heap_impl1.h"
+//#include "acme/memory/plex_heap1.h"
+//#include "acme/memory/plex_heap_impl1.h"
 #include "acme/primitive/primitive/malloc.h"
 #include "acme/astr.h"
 #include "acme/platform/simple_log.h"
 #include "static_start_internal.h"
 
+namespace memory_allocate_heap
+{
 
+   void initialize();
+   void finalize();
+
+}
+
+
+namespace string_memory_allocate_heap
+{
+
+   void initialize();
+   void finalize();
+
+}
 #ifdef WINDOWS
 
 LARGE_INTEGER g_largeintegerFrequency;
@@ -564,7 +579,9 @@ namespace acme
 
 #ifndef __MCRTDBG
 
-      g_pheap = new plex_heap_alloc_array();
+      ::memory_allocate_heap::initialize();
+      ::string_memory_allocate_heap::initialize();
+
 
 #endif
 

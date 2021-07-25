@@ -1825,4 +1825,41 @@ payload & payload::operator += (const ::string & str)
 }
 
 
+::interlocked_count g_interlockedcountProperty;
+
+
+void on_property_construct2()
+{
+
+
+}
+
+
+void on_property_destruct2()
+{
+
+
+}
+
+
+void on_property_construct()
+{
+
+   g_interlockedcountProperty++;
+
+   on_property_construct2();
+
+}
+
+
+void on_property_destruct()
+{
+
+   g_interlockedcountProperty--;
+
+   on_property_destruct2();
+
+}
+
+
 

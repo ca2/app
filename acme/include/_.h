@@ -575,6 +575,10 @@ template < non_pointer NON_POINTER >
 inline bool __is_zero(const NON_POINTER & t);
 
 
+#define __PREFIX_UNDERSCORE(prefix,name) prefix##_##name
+#define __EVALUATE_MACRO(name) name
+
+
 typedef char ansichar;
 
 
@@ -3515,7 +3519,7 @@ inline bool is_callstack_enabled(e_callstack ecallstack) { return (i64) get_call
 
 
 #include "acme/memory/allocate.h"
-#include "acme/memory/plex.h"
+//#include "acme/memory/plex.h"
 
 
 #include "acme/primitive/primitive/id.h"

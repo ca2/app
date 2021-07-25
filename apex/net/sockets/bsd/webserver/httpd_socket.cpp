@@ -272,55 +272,55 @@ namespace sockets
 
       }
 
-      if (strCipherList.find("DH") >= 0)
-      {
+      //if (strCipherList.find("DH") >= 0)
+      //{
 
-         int_array ia;
+      //   int_array ia;
 
-         ia.add(512);
-         ia.add(1024);
-         ia.add(2048);
-         ia.add(4096);
+      //   ia.add(512);
+      //   ia.add(1024);
+      //   ia.add(2048);
+      //   ia.add(4096);
 
-         for (index i = 0; i < ia.get_count(); i++)
-         {
+      //   for (index i = 0; i < ia.get_count(); i++)
+      //   {
 
-            int keylength = ia[i];
+      //      int keylength = ia[i];
 
-            if (get_dh(keylength) == nullptr)
-            {
+      //      if (get_dh(keylength) == nullptr)
+      //      {
 
-               string strTitle = ::file::path(m_strCat).name();
+      //         string strTitle = ::file::path(m_strCat).name();
 
-               if (strTitle.find_ci(".") >= 0)
-               {
+      //         if (strTitle.find_ci(".") >= 0)
+      //         {
 
-                  strTitle = strTitle.Left(strTitle.reverse_find("."));
+      //            strTitle = strTitle.Left(strTitle.reverse_find("."));
 
-               }
+      //         }
 
-               string strFile = ::file::path(m_strCat).sibling(strTitle) + ".dh" + __str(keylength) + ".pem";
+      //         string strFile = ::file::path(m_strCat).sibling(strTitle) + ".dh" + __str(keylength) + ".pem";
 
-               FILE * paramfile = fopen(strFile, "r");
+      //         FILE * paramfile = fopen(strFile, "r");
 
-               if (paramfile)
-               {
+      //         if (paramfile)
+      //         {
 
-                  DH * pdh = PEM_read_DHparams(paramfile, nullptr, nullptr, nullptr);
+      //            DH * pdh = PEM_read_DHparams(paramfile, nullptr, nullptr, nullptr);
 
-                  set_dh(keylength, pdh);
+      //            set_dh(keylength, pdh);
 
-                  fclose(paramfile);
+      //            fclose(paramfile);
 
-               }
+      //         }
 
-            }
+      //      }
 
-         }
+      //   }
 
-         SSL_CTX_set_tmp_dh_callback(m_psslcontext->m_pclientcontext->m_psslcontext, &tmp_dh_callback);
+      //   SSL_CTX_set_tmp_dh_callback(m_psslcontext->m_pclientcontext->m_psslcontext, &tmp_dh_callback);
 
-      }
+      //}
 
 
       //int nid = OBJ_sn2nid(ECDHE_CURVE);
@@ -334,13 +334,13 @@ namespace sockets
 
       }
 
-      if (strCipherList.find("DH") >= 0)
-      {
+      //if (strCipherList.find("DH") >= 0)
+      //{
 
-         SSL_CTX_set_options(m_psslcontext->m_pclientcontext->m_psslcontext, SSL_CTX_get_options(m_psslcontext->m_pclientcontext->m_psslcontext) | SSL_OP_SINGLE_DH_USE | SSL_OP_CIPHER_SERVER_PREFERENCE);
+      //   SSL_CTX_set_options(m_psslcontext->m_pclientcontext->m_psslcontext, SSL_CTX_get_options(m_psslcontext->m_pclientcontext->m_psslcontext) | SSL_OP_SINGLE_DH_USE | SSL_OP_CIPHER_SERVER_PREFERENCE);
 
-      }
-      else
+      //}
+      //else
       {
 
          SSL_CTX_set_options(m_psslcontext->m_pclientcontext->m_psslcontext, SSL_CTX_get_options(m_psslcontext->m_pclientcontext->m_psslcontext) | SSL_OP_CIPHER_SERVER_PREFERENCE);

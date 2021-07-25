@@ -1,5 +1,6 @@
 #include "framework.h"
-#include "acme/memory/aligned_memory_allocate.h"
+#define HEAP_NAMESPACE_PREFIX main
+#include "acme/memory/_____heap_namespace.h"
 
 
 memory::memory(memory && memory) :
@@ -239,7 +240,7 @@ byte * memory::impl_alloc(memsize dwAllocation)
    if(m_bAligned)
    {
 
-      return (byte *)aligned_memory_allocate((size_t)dwAllocation);
+      return (byte *)::HEAP_NAMESPACE::aligned_memory_allocate((size_t)dwAllocation);
 
    }
    else

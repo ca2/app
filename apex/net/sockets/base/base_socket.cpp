@@ -1069,7 +1069,18 @@ namespace sockets
 
       phandler->SetSlave();
 
-      phandler->add(m_psocket);
+      if (phandler.get() != m_psocket->m_psockethandler.get())
+      {
+
+      //   ::output_debug_string("");
+
+      //}
+      //else
+      //{
+
+         phandler->add(m_psocket);
+
+      }
 
       m_psocket->SetSlaveHandler(phandler);
 

@@ -192,6 +192,7 @@ inline ::index property_set::find_index(const ::id & id, ::index i) const
 
 }
 
+#undef new
 
 inline property & property_set::get(const ::id & id)
 {
@@ -211,6 +212,7 @@ inline property & property_set::get(const ::id & id)
 
 }
 
+#define new ACME_NEW
 
 inline ::property * property_set::find(const ::id & id) const
 {
@@ -254,6 +256,9 @@ inline ::payload property_set::topic(const id & id)
 }
 
 
+#undef new
+
+
 inline ::payload & property_set::set(const ::id & id)
 {
 
@@ -272,6 +277,8 @@ inline ::payload & property_set::set(const ::id & id)
 
 }
 
+
+#define new ACME_NEW
 
 //inline property * payload::find_property(const ::id & id) const
 //{

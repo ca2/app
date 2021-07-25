@@ -113,9 +113,6 @@ namespace acme
 
    extern id_to_id * g_pmapRTL;
 
-   extern plex_heap_alloc_array * g_pheap;
-
-   extern critical_section * g_pmutexSystemHeap;
 
 #if defined(WINDOWS)
 

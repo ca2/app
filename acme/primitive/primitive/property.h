@@ -92,7 +92,7 @@ public:
    ~property() { on_property_destruct(); }
 
 
-   void* operator new(size_t size, const char * /* pszFileName */, int /* nLine */)
+   void* operator new(size_t size)
    {
 
       return property_memory_allocate(size);
@@ -100,7 +100,7 @@ public:
    }
 
 
-   void* operator new(size_t size)
+   void* operator new(size_t size, const char* /* pszFileName */, int /* nLine */)
    {
 
       return property_memory_allocate(size);

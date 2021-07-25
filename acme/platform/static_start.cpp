@@ -8,13 +8,17 @@
 #include "acme/platform/simple_log.h"
 #include "static_start_internal.h"
 
-namespace memory_allocate_heap
+
+namespace main_memory_allocate_heap
 {
 
+
    void initialize();
+
    void finalize();
 
-}
+
+} // namespace main_memory_allocate_heap
 
 
 namespace string_memory_allocate_heap
@@ -23,7 +27,25 @@ namespace string_memory_allocate_heap
    void initialize();
    void finalize();
 
-}
+} // namespace string_memory_allocate_heap
+
+namespace property_memory_allocate_heap
+{
+
+   void initialize();
+   void finalize();
+
+} // namespace property_memory_allocate_heap
+
+namespace array_memory_allocate_heap
+{
+
+   void initialize();
+   void finalize();
+
+} // namespace array_memory_allocate_heap
+
+
 #ifdef WINDOWS
 
 LARGE_INTEGER g_largeintegerFrequency;
@@ -579,8 +601,10 @@ namespace acme
 
 #ifndef __MCRTDBG
 
-      ::memory_allocate_heap::initialize();
+      ::main_memory_allocate_heap::initialize();
       ::string_memory_allocate_heap::initialize();
+      ::property_memory_allocate_heap::initialize();
+      ::array_memory_allocate_heap::initialize();
 
 
 #endif
@@ -993,11 +1017,16 @@ namespace acme
 
 #if !defined(__MCRTDBG) && !MEMDLEAK
 
-      auto pheap = g_pheap;
+      //auto pheap = g_pheap;
 
-      g_pheap = nullptr;
+      //g_pheap = nullptr;
 
-      ::acme::del(pheap);
+      //::acme::del(pheap);
+
+      ::array_memory_allocate_heap::finalize();
+      ::property_memory_allocate_heap::finalize();
+      ::string_memory_allocate_heap::finalize();
+      ::main_memory_allocate_heap::finalize();
 
 #endif
 

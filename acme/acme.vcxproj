@@ -1308,6 +1308,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="memory\property_memory_allocate.cpp" />
+    <ClCompile Include="memory\secondary_memory_allocate.cpp" />
     <ClCompile Include="memory\string_memory_allocate.cpp" />
     <ClCompile Include="net\top_level_domain_list.cpp" />
     <ClCompile Include="net\url.cpp" />
@@ -1822,6 +1823,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClInclude Include="inline\_console_old.h" />
     <ClInclude Include="inline\_new_impl.h" />
     <ClInclude Include="memory\property_memory_allocate.h" />
+    <ClInclude Include="memory\secondary_memory_allocate.h" />
     <ClInclude Include="memory\__aligned_memory_allocate.h" />
     <ClInclude Include="memory\counter.h" />
     <ClInclude Include="memory\memory_allocate.h" />

@@ -575,7 +575,8 @@ template < non_pointer NON_POINTER >
 inline bool __is_zero(const NON_POINTER & t);
 
 
-#define __PREFIX_UNDERSCORE(prefix,name) prefix##_##name
+#define ___PREFIX_UNDERSCORE(prefix,name) prefix##_##name
+#define __PREFIX_UNDERSCORE(prefix,name) ___PREFIX_UNDERSCORE(prefix,name)
 #define __EVALUATE_MACRO(name) name
 
 
@@ -837,6 +838,7 @@ namespace dynamic_source
 // C-includes
 #include "acme/_c.h"
 #include "acme/memory/memory_allocate.h"
+#include "acme/memory/secondary_memory_allocate.h"
 #include "acme/memory/heap_c.h"
 
 

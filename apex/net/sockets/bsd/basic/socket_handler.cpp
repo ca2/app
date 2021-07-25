@@ -22,6 +22,7 @@ namespace sockets
 {
 
 
+   ::interlocked_count g_interlockedcountSocketHandler;
 
 
    //socket_handler::socket_handler(::object * pobject, ::apex::log *plogger) :
@@ -52,6 +53,10 @@ namespace sockets
       m_countW = 0;
       m_countE = 0;
 
+      g_interlockedcountSocketHandler++;
+
+      ::output_debug_string("----socket_handler (count=" + __str(g_interlockedcountSocketHandler.operator long long()) + ")\n");
+
    }
 
 
@@ -59,6 +64,8 @@ namespace sockets
    {
 
       cleanup_handler();
+
+      g_interlockedcountSocketHandler--;
 
    }
 
@@ -547,6 +554,11 @@ end_processing_adding:
       }
       else
       {
+
+         //debug_print(" m_sockets : %d\n", m_sockets.size());
+         //debug_print(" m_add     : %d\n", m_add.size());
+         //debug_print(" m_delete  : %d\n", m_delete.size());
+
 
          if (m_b_use_mutex)
          {
@@ -1260,6 +1272,10 @@ end_processing_adding:
 
          if (m_sockets.lookup(socket, psocket))
          {
+
+            psocket->m_psockethandler.release();
+
+            psocket->m_phandlerSlave.release();
 
             if (psocket.cast < pool_socket >() == nullptr)
             {

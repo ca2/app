@@ -1,12 +1,12 @@
 #include "framework.h"
 #include "acme/operating_system.h"
  
-#include "plex_heap1.h"
+//#include "plex_heap1.h"
 
-#include "plex_heap_impl1.h"
+//#include "plex_heap_impl1.h"
 
 #include "align_byte_count.h"
-#include "acme/platform/static_start_internal.h"
+//#include "acme/platform/static_start_internal.h"
 
 
 #if !defined(MCHECK) && !defined(_VLD) && !defined(__MCRTDBG) && !MEMDLEAK
@@ -18,6 +18,10 @@
 #include "acme/platform/static_start.h"
 
 #undef new
+
+
+void on_plex_heap_alloc(plex_heap_alloc* palloc);
+void on_system_heap_alloc(memsize memsize);
 
 
 void * plex_heap_alloc_sync::operator new(size_t s)
@@ -239,10 +243,10 @@ plex_heap_alloc_array::~plex_heap_alloc_array()
 
    erase_all();
 
-   if(::acme::g_pheap == this)
+   if(g_pheap == this)
    {
 
-      ::acme::g_pheap = nullptr;
+      g_pheap = nullptr;
 
    }
 
@@ -461,10 +465,6 @@ void * plex_heap_alloc_array::_realloc(void * p, memsize size, memsize sizeOld, 
 
 
 
-CLASS_DECL_ACME void simple_debug_print(const char * psz);
-
-
-
 #define STR_HELPER(x) #x
 #define STR(x) STR_HELPER(x)
 #ifdef RASPBIAN
@@ -606,11 +606,15 @@ void * plex_heap_alloc_array::_alloc(memsize size)
    if (palloc != nullptr)
    {
 
+      ::HEAP_NAMESPACE::on_plex_heap_alloc(palloc);
+
       return palloc->Alloc();
 
    }
    else
    {
+
+      ::HEAP_NAMESPACE::on_system_heap_alloc(size);
 
       return ::system_heap_alloc(size);
 

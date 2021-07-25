@@ -1,10 +1,10 @@
 #include "framework.h"
 #include "acme/operating_system.h"
 
-#include "plex_heap1.h"
+//#include "plex_heap1.h"
 
-#include "plex_heap_impl1.h"
-#include "acme/platform/static_start.h"
+//#include "plex_heap_impl1.h"
+//#include "acme/platform/static_start.h"
 
 
 #undef new

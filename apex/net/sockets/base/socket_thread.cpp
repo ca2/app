@@ -89,6 +89,8 @@ namespace sockets
 
       __compose(m_phandler, __new(class socket_handler()));
 
+      psocket->m_psockethandler.release();
+
       m_phandler->add(psocket);
 
       m_phandler->SetSlave();

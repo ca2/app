@@ -647,7 +647,7 @@ namespace user
 
          m_puserthread->initialize_user_thread(this);
 
-         m_puserthread->add_child_task(m_puserinteraction);
+         m_puserthread->add_task(m_puserinteraction);
 
          m_puserinteraction->__refer(m_puserinteraction->m_pthreadUserInteraction, m_puserthread OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS_NOTE(__FUNCTION__));
 
@@ -1722,7 +1722,7 @@ namespace user
          if (m_pprodevian && m_pprodevian->task_active())
          {
 
-            m_pprodevian->finish();
+            m_pprodevian->destroy();
 
          }
          else
@@ -3807,7 +3807,7 @@ namespace user
    void interaction_impl::_001UpdateBuffer()
    {
 
-      if (!m_puserinteraction || m_bFinishing)
+      if (!m_puserinteraction || m_bDestroying)
       {
 
          return;
@@ -3847,7 +3847,7 @@ namespace user
 
          windowing_output_debug_string("\n_001UpdateBuffer : after on_begin_draw");
 
-         if (m_bFinishing)
+         if (m_bDestroying)
          {
 
             return;
@@ -4321,7 +4321,7 @@ namespace user
    ::e_status interaction_impl::set_finish(::object * pcontextobjectFinish)
    {
 
-      if(!m_bFinishing)
+      if(!m_bDestroying)
       {
 
          if (m_pgraphics)
@@ -4335,7 +4335,7 @@ namespace user
 
             slGraphics.unlock();
 
-            m_bFinishing = true;
+            m_bDestroying = true;
 
          }
 

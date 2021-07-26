@@ -205,9 +205,9 @@ namespace sockets
 
       m_psocket->m_psocketthread.release();
 
-      m_psocket->finish();
+      m_psocket->destroy();
 
-      m_psockethandler->finish();
+      m_psockethandler->destroy();
 
       return ::success;
 

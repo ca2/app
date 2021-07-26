@@ -675,7 +675,7 @@ namespace apex
          if (!papp)
          {
 
-            finish();
+            destroy();
 
          }
 
@@ -800,7 +800,7 @@ namespace apex
                      || psystem->has_property("uninstall"))
                {
 
-                  psystem->finish();
+                  psystem->destroy();
 
                }
                else
@@ -813,7 +813,7 @@ namespace apex
                   if (c == 1 && psystem->payload("app").at(0) == strApp)
                   {
 
-                     psystem->finish();
+                     psystem->destroy();
 
                   }
 

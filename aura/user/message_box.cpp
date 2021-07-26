@@ -400,7 +400,7 @@ namespace user
 
          ::extended::asynchronous <::conversation>::future()->set_status(::success);
 
-         finish();
+         destroy();
 
       }
 

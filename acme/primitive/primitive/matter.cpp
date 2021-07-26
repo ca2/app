@@ -98,7 +98,7 @@ void matter::dump(dump_context & dumpcontext) const
 
 
 //::e_status matter::set_finish_composites(::property_object * pcontextobjectFinish)
-::e_status matter::finish_composites()
+::e_status matter::destroy_composites()
 {
 
    return ::success;
@@ -120,7 +120,7 @@ void matter::dump(dump_context & dumpcontext) const
 
 
 //::e_status matter::finish(::property_object * pcontextobjectFinish)
-::e_status matter::finish()
+::e_status matter::destroy()
 {
 
    auto estatus = set_finish();
@@ -433,7 +433,7 @@ void matter::task_erase(::task* ptask)
 }
 
 
-void matter::notify_on_finish(::property_object * pobject)
+void matter::notify_on_destroy(::property_object * pobject)
 {
 
 }

@@ -41,10 +41,10 @@ context_image::~context_image()
 //}
 
 
-::e_status context_image::finish_composites()
+::e_status context_image::destroy_composites()
 {
 
-   return ::object::finish_composites();
+   return ::object::destroy_composites();
 
 }
 

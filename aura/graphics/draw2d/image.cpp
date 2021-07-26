@@ -380,7 +380,7 @@ bool image::create_isotropic(double_array& daRate, ::e_priority epriority)
 //}
 
 
-bool image::destroy()
+::e_status image::destroy()
 {
 
    m_sizeRaw.cx = 0;
@@ -393,7 +393,7 @@ bool image::destroy()
    pixmap::unmap();
    m_eobject = e_object_none;
 
-   return true;
+   return ::success;
 
 }
 

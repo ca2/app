@@ -40,10 +40,10 @@ public:
    virtual ::e_status finalize() override;
 
 
-   virtual void notify_on_finish(::property_object * pcontextobjectFinish) override;
+   virtual void notify_on_destroy(::property_object * pcontextobjectFinish) override;
 
 
-   virtual ::e_status finish() override;
+   ::e_status destroy() override;
 
 
    virtual ::e_status on_finish() override;

@@ -64,7 +64,7 @@ application_exit::~application_exit()
 ::e_status application_exit::exit_application()
 {
 
-   finish();
+   destroy();
 
    return ::success;
 

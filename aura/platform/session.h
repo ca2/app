@@ -64,7 +64,7 @@ namespace aura
       inline ::aura::system* get_system() const;
 
       //virtual ::e_status finish(::property_object * pcontextobjectFinish = nullptr) override;
-      virtual ::e_status finish() override;
+      ::e_status destroy() override;
 
       virtual ::e_status initialize(::object * pobject) override;
 

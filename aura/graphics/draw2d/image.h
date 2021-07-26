@@ -221,7 +221,7 @@ public:
 
    virtual bool host(const ::pixmap * ppixmap);
    virtual bool on_host_read_pixels(const ::pixmap * ppixmap);
-   virtual bool destroy();
+   ::e_status destroy() override;
    //virtual bool detach(::image * pimage);
 
    // realization is semantically const

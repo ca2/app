@@ -69,10 +69,19 @@ handler_manager::~handler_manager()
 }
 
 
-::e_status handler_manager::finish_composites()
+::e_status handler_manager::destroy_composites()
 {
 
-   return ::object::finish_composites();
+   auto estatus = ::object::destroy_composites();
+
+   if (!estatus)
+   {
+
+      return estatus;
+
+   }
+
+   return estatus;
 
 }
 

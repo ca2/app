@@ -159,8 +159,10 @@ void array_base < TYPE, ARG_TYPE, ALLOCATOR >::free_extra()
 
 
 template < class TYPE, class ARG_TYPE, class ALLOCATOR >
-void array_base < TYPE, ARG_TYPE, ALLOCATOR >::destroy()
+::e_status array_base < TYPE, ARG_TYPE, ALLOCATOR >::destroy()
 {
+
+   auto estatus = ::matter::destroy();
 
    if(m_pData != nullptr)
    {
@@ -174,6 +176,8 @@ void array_base < TYPE, ARG_TYPE, ALLOCATOR >::destroy()
       m_nMaxSize  = 0;
 
    }
+
+   return estatus;
 
 }
 

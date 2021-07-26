@@ -917,18 +917,18 @@ namespace user
    }
 
 
-   ::e_status shell::thread::finish()
+   ::e_status shell::thread::destroy()
    {
 
-      return ::thread::finish();
+      return ::thread::destroy();
 
    }
 
 
-   ::e_status shell::finish()
+   ::e_status shell::destroy()
    {
 
-      ::object::finish();
+      ::object::destroy();
 
       //task_erase_all();
 

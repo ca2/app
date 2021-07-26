@@ -98,10 +98,10 @@ namespace windowing
    }
 
 
-   ::e_status windowing::finish()
+   ::e_status windowing::destroy()
    {
 
-      auto estatus = ::acme::department::finish();
+      auto estatus = ::acme::department::destroy();
 
       if (!estatus)
       {

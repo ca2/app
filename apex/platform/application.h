@@ -177,8 +177,8 @@
       virtual ::e_status initialize(::object * pobject) override;
 
 
-      virtual void assert_valid() const override;
-      virtual void dump(dump_context & dumpcontext) const override;
+      void assert_valid() const override;
+      void dump(dump_context & dumpcontext) const override;
 
 
       virtual string __get_text(string str);
@@ -249,7 +249,7 @@
       //virtual ::e_status     main() override;
       virtual ::e_status     on_run();
 
-      ::e_status     finish() override;
+      ::e_status destroy() override;
 
       virtual ::e_status application_pre_run();
       //virtual bool initial_check_directrix() override;

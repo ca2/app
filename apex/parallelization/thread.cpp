@@ -1585,7 +1585,7 @@ void thread::task_erase(::task * ptask)
 
          }
 
-         finish();
+         destroy();
 
       }
 
@@ -1710,7 +1710,7 @@ void thread::task_erase(::task * ptask)
 bool thread::task_get_run() const
 {
 
-   if (((::thread *) this)->check_children_task())
+   if (((::thread *) this)->check_tasks_finished())
    {
 
       return true;
@@ -1744,7 +1744,7 @@ bool thread::task_get_run() const
 
       auto bSetFinish = m_bSetFinish || m_bTaskReadyToQuit;
 
-      auto bFinishing = m_bFinishing;
+      auto bDestroying = m_bDestroying;
 
       return !bSetFinish;
 
@@ -1913,7 +1913,7 @@ u32 __thread_entry(void * p);
    if (::succeeded(estatusOs))
    {
 
-      finish_children();
+      destroy_tasks();
 
       __thread_term();
 
@@ -3808,7 +3808,7 @@ int_bool thread::get_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilter
          if (!finish_bit())
          {
 
-            finish();
+            destroy();
 
          }
 
@@ -4048,10 +4048,10 @@ void thread::dump(dump_context & dumpcontext) const
 }
 
 
-void thread::add_child_task(::object* pobjectTask)
+void thread::add_task(::object* pobjectTask)
 {
 
-   ::object::add_child_task(pobjectTask);
+   ::object::add_task(pobjectTask);
 
 }
 
@@ -4901,7 +4901,7 @@ void thread::delete_this()
 
 
 
-::e_status thread::finish()
+::e_status thread::destroy()
 {
 
    auto estatus = set_finish();

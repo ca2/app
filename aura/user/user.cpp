@@ -479,10 +479,10 @@ namespace user
    }
 
 
-   ::e_status user::finish()
+   ::e_status user::destroy()
    {
 
-      auto estatus = ::acme::department::finish();
+      auto estatus = ::acme::department::destroy();
 
       if (!estatus)
       {
@@ -809,7 +809,7 @@ namespace aura
       if (eend == ::apex::e_end_app)
       {
 
-         finish();
+         destroy();
 
          return;
 
@@ -826,7 +826,7 @@ namespace aura
             if (psession)
             {
 
-               psession->finish();
+               psession->destroy();
 
             }
 
@@ -851,7 +851,7 @@ namespace aura
             if (psystem)
             {
 
-               psystem->finish();
+               psystem->destroy();
 
             }
 

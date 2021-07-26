@@ -7995,7 +7995,7 @@ namespace aura
       else
       {
 
-         get_system()->finish();
+         get_system()->destroy();
 
       }
 
@@ -8034,7 +8034,7 @@ namespace aura
          if (is_false("session_start"))
          {
 
-            get_system()->finish();
+            get_system()->destroy();
 
          }
 
@@ -8042,7 +8042,7 @@ namespace aura
       else
       {
 
-         get_system()->finish();
+         get_system()->destroy();
 
       }
 
@@ -9158,7 +9158,7 @@ namespace aura
             if (::is_set(pframe))
             {
 
-               pframe->finish();
+               pframe->destroy();
 
             }
 

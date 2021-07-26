@@ -895,34 +895,34 @@ void object::system(const char* pszProjectName)
 //}
 
 
-::e_status object::on_finish()
-{
-
-   m_bFinishing = true;
-
-   auto estatus = finish_composites();
-
-   if (estatus == error_pending)
-   {
-
-      //m_psystem->add_pending_finish(this);
-
-      return estatus;
-
-   }
-
-   estatus = finalize();
-
-   if (estatus == error_pending)
-   {
-
-      estatus = error_failed;
-
-   }
-
-   return estatus;
-
-}
+//::e_status object::on_finish()
+//{
+//
+//   m_bDestroying = true;
+//
+//   auto estatus = destroy_composites();
+//
+//   if (estatus == error_pending)
+//   {
+//
+//      //m_psystem->add_pending_finish(this);
+//
+//      return estatus;
+//
+//   }
+//
+//   estatus = finalize();
+//
+//   if (estatus == error_pending)
+//   {
+//
+//      estatus = error_failed;
+//
+//   }
+//
+//   return estatus;
+//
+//}
 
 
 //::e_status object::set_finish()
@@ -1027,7 +1027,7 @@ void object::system(const char* pszProjectName)
 }
 
 
-void object::add_child_task(::object* pobjectTask)
+void object::add_task(::object* pobjectTask)
 {
 
    synchronous_lock synchronouslock(mutex());
@@ -1037,7 +1037,7 @@ void object::add_child_task(::object* pobjectTask)
 }
 
 
-void object::erase_child_task(::object* pobjectTask)
+void object::erase_task(::object* pobjectTask)
 {
 
    synchronous_lock synchronouslock(mutex());
@@ -1047,7 +1047,7 @@ void object::erase_child_task(::object* pobjectTask)
 }
 
 
-bool object::check_children_task()
+bool object::check_tasks_finished()
 {
 
    if (m_bCheckingChildrenTask)
@@ -1157,12 +1157,12 @@ bool object::check_children_task()
 //
 
 
-::e_status object::finish_children()
+::e_status object::destroy_tasks()
 {
 
    set_finish();
 
-   while (check_children_task())
+   while (check_tasks_finished())
    {
 
       ::sleep(100_ms);
@@ -1175,10 +1175,14 @@ bool object::check_children_task()
 
 
 
-::e_status object::finish()
+::e_status object::destroy()
 {
 
-   finish_children();
+   auto estatus = destroy_tasks();
+
+   estatus = destroy_composites();
+
+   estatus = release_references();
 
    return ::success;
 
@@ -1402,70 +1406,70 @@ void object::delete_this()
 //}
 
 
-::e_status object::set_finish_composites()
+//::e_status object::destroy_composites()
+//{
+//
+//   ::e_status estatus = ::success;
+//
+//   synchronous_lock synchronouslock(mutex());
+//
+//   string strTypeName = type_name();
+//
+//   if (m_pcompositea)
+//   {
+//
+//      auto compositea = *m_pcompositea;
+//
+//      synchronouslock.unlock();
+//
+//      for (auto& pmatter : compositea)
+//      {
+//
+//         auto estatusItem = pmatter->set_finish();
+//
+//         if(estatusItem == error_pending)
+//         {
+//
+//            estatus = error_pending;
+//
+//         }
+//
+//      }
+//
+//   }
+//
+//   //if (m_pobjecta)
+//   //{
+//
+//   //   for (auto& pobject : *m_pobjecta)
+//   //   {
+//
+//   //      auto estatusItem = pobject->finish();
+//
+//   //      if(estatusItem == error_pending.succeeded())
+//   //      {
+//
+//   //         estatus = error_pending;
+//
+//   //      }
+//
+//   //   }
+//
+//   //}
+//
+//   return estatus;
+//
+//}
+
+
+::e_status object::destroy_composites()
 {
 
    ::e_status estatus = ::success;
 
-   synchronous_lock synchronouslock(mutex());
-
    string strTypeName = type_name();
 
-   if (m_pcompositea)
-   {
-
-      auto compositea = *m_pcompositea;
-
-      synchronouslock.unlock();
-
-      for (auto& pmatter : compositea)
-      {
-
-         auto estatusItem = pmatter->set_finish();
-
-         if(estatusItem == error_pending)
-         {
-
-            estatus = error_pending;
-
-         }
-
-      }
-
-   }
-
-   //if (m_pobjecta)
-   //{
-
-   //   for (auto& pobject : *m_pobjecta)
-   //   {
-
-   //      auto estatusItem = pobject->finish();
-
-   //      if(estatusItem == error_pending.succeeded())
-   //      {
-
-   //         estatus = error_pending;
-
-   //      }
-
-   //   }
-
-   //}
-
-   return estatus;
-
-}
-
-
-::e_status object::finish_composites()
-{
-
-   ::e_status estatus = ::success;
-
    synchronous_lock synchronouslock(mutex());
-
-   string strTypeName = type_name();
 
    if (m_pcompositea)
    {
@@ -1475,18 +1479,34 @@ void object::delete_this()
 
          synchronouslock.unlock();
 
-         auto estatusItem = pmatter->finish();
-
-         if(estatusItem == error_pending)
-         {
-
-            estatus = error_pending;
-
-         }
+         auto estatusItem = pmatter->destroy();
 
          synchronouslock.lock();
 
       }
+
+      m_pcompositea.release();
+
+   }
+
+   return estatus;
+
+}
+
+
+::e_status object::release_references()
+{
+
+   ::e_status estatus = ::success;
+
+   string strTypeName = type_name();
+
+   synchronous_lock synchronouslock(mutex());
+
+   if (m_preferencea)
+   {
+
+      m_preferencea.release();
 
    }
 
@@ -2192,7 +2212,7 @@ void object::task_erase(::task* ptask)
 
          }
 
-         finish();
+         destroy();
 
       }
       //else

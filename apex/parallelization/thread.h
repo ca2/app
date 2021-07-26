@@ -130,7 +130,7 @@ public:
    //using channel::fork;
 
    
-   void add_child_task(::object* pobjectTask) override;
+   void add_task(::object* pobjectTask) override;
 
 
    inline message_queue* get_message_queue() { return m_pmq ? m_pmq : _get_mq(); }
@@ -143,7 +143,7 @@ public:
    user_interaction_ptr_array & uiptra();
 
 
-   virtual ::e_status finish() override;
+   ::e_status destroy() override;
    //virtual ::e_status set_finish_composites(::property_object* ppropertyobjectFinish) override;
 
 

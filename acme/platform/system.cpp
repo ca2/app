@@ -1053,7 +1053,7 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
       if (estatus == error_exit_system)
       {
 
-         pobject->m_psystem->finish();
+         pobject->m_psystem->destroy();
 
       }
 

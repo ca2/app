@@ -930,7 +930,7 @@ end_processing_adding:
 
          auto pos = m_socketlistDetach.begin();
 
-         socket_pointer psocket;
+         socket_map::pair * ppairSocket = nullptr;
 
          bool bRemove = false;
 
@@ -949,11 +949,13 @@ end_processing_adding:
             bRemove = false;
 
             socket = *pos;
+            
+            ppairSocket = m_sockets.plookup(socket);
 
-            if (m_sockets.lookup(socket, psocket) && psocket)
+            if (ppairSocket && ppairSocket->m_psocket)
             {
 
-               if (psocket->IsDetach())
+               if (ppairSocket->m_psocket->IsDetach())
                {
 
                   if (socket != INVALID_SOCKET)
@@ -966,7 +968,7 @@ end_processing_adding:
                      try
                      {
 
-                        psocket->DetachSocket();
+                        ppairSocket->m_psocket->DetachSocket();
 
                      }
                      catch (...)
@@ -976,11 +978,13 @@ end_processing_adding:
 
                      // Adding the file descriptor to m_socketlistErase will now also erase the
                      // socket from the detach queue - tnx knightmad
-                     m_socketlistErase.add_tail(socket);
+                     //m_socketlistErase.add_tail(socket);
 
-                     m_socketlist.erase(socket);
+                     //m_socketlist.erase(socket);
 
-                     m_sockets.erase_key(socket);
+                     //m_sockets.erase_key(socket);
+
+                     erase_socket(socket);
 
                      bRemove = true;
 

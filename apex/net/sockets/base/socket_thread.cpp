@@ -209,6 +209,8 @@ namespace sockets
 
       m_psockethandler->destroy();
 
+      destroy();
+
       return ::success;
 
    }

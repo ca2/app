@@ -91,6 +91,8 @@ namespace sockets
 
       psocket->m_psockethandler.release();
 
+      psocket->__compose(psocket->m_psocketthread, this);
+
       m_phandler->add(psocket);
 
       m_phandler->SetSlave();

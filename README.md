@@ -4,8 +4,11 @@ ca2 is an all-purpose multi-platform framework and set of libraries written in C
 
 # Features
 
-#### User Interface
+#### User Interface - GUI Framework
 #### Graphics
+#### GDI+ and Direct2D for Windows
+#### Quartz2d for macOS and iOS
+#### cairo for any other
 #### Image Loading/Saving
 #### Theming
 #### Parallelization & Synchronization

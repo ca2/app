@@ -1,3 +1,4 @@
+// Moved by camilo on 2021-07-26 02:20 BRT <3ThomasBorregaardSørensen!!
 #pragma once
 
 
@@ -31,42 +32,6 @@ namespace sockets
       friend class base_socket_handler;
 
 
-      /** Detached base_socket run thread.
-      \ingroup internal */
-      class CLASS_DECL_APEX socket_thread:
-         virtual public ::thread
-      {
-      public:
-
-
-         __composite(socket_handler)    m_phandler;
-         __reference(base_socket)       m_psocket;
-
-
-         socket_thread();
-         virtual ~socket_thread();
-
-
-         virtual ::e_status initialize_socket_thread(base_socket * psocket);
-
-         virtual ::e_status init_thread() override;
-
-         virtual void term_thread() override;
-
-         base_socket * get_socket() const { return m_psocket; }
-
-         virtual ::e_status     run() override;
-
-#ifdef DEBUG
-
-         virtual ::i64 increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override;
-
-         virtual ::i64 decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override;
-
-#endif
-
-
-      };
 
 
       /** Data pass class from source to destination. */
@@ -116,7 +81,7 @@ namespace sockets
       time_t                  m_timeClose; ///< time in seconds when ordered to close
       int                     m_iBindPort;
       bool                    m_bDelete; ///< Delete by handler flag
-      bool                    m_bClose; ///< close and delete flag
+      bool                    m_bCloseAndDelete; ///< close and delete flag
       base_socket *           m_psocketParent; ///< Pointer to listen_socket class, valid for incoming sockets
       time_t                  m_timeTimeoutStart; ///< Set by SetTimeout
       time_t                  m_timeTimeoutLimit; ///< Defined by SetTimeout
@@ -144,8 +109,8 @@ namespace sockets
       port_t                           m_socks4_port; ///< socks4 server port number
       string                           m_socks4_userid; ///< socks4 server usedid
 
-      bool                             m_detach; ///< base_socket ordered to detach flag
-      bool                             m_detached; ///< base_socket has been detached
+      bool                             m_bDetach; ///< base_socket ordered to detach flag
+      bool                             m_bDetached; ///< base_socket has been detached
       __composite(socket_thread)       m_psocketthread; ///< detach base_socket thread class pointer
       __pointer(base_socket_handler)   m_phandlerSlave; ///< Actual sockethandler while detached
 

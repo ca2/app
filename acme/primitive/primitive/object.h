@@ -159,6 +159,7 @@ public:
    virtual ::e_status finalize() override;
 
    virtual void add_child_task(::object* pobjectTask);
+   virtual void erase_child_task(::object* pobjectTask);
 
    virtual bool check_children_task();
 

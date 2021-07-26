@@ -33,13 +33,13 @@ namespace sockets
       time_t                     m_tlast; ///< timeout control
 
       // state lists
-      socket_list                m_fds; ///< Active file descriptor list
-      socket_list                m_fds_erase; ///< File descriptors that are to be erased from m_sockets
-      socket_list                m_fds_callonconnect; ///< checklist CallOnConnect
-      socket_list                m_fds_detach; ///< checklist detach
-      socket_list                m_fds_timeout; ///< checklist timeout
-      socket_list                m_fds_retry; ///< checklist retry client connect
-      socket_list                m_fds_close; ///< checklist close and delete
+      socket_list                m_socketlist; ///< Active file descriptor list
+      socket_list                m_socketlistErase; ///< File descriptors that are to be erased from m_sockets
+      socket_list                m_socketlistCallOnConnect; ///< checklist CallOnConnect
+      socket_list                m_socketlistDetach; ///< checklist detach
+      socket_list                m_socketlistTimeout; ///< checklist timeout
+      socket_list                m_socketlistRetryClientConnect; ///< checklist retry client connect
+      socket_list                m_socketlistClose; ///< checklist close and delete
       in_addr                    m_socks4_host; ///< Socks4 server host ip
       port_t                     m_socks4_port; ///< Socks4 server port number
       string                     m_socks4_userid; ///< Socks4 userid
@@ -48,7 +48,7 @@ namespace sockets
       //::task_pointer        m_resolver; ///< Resolver thread pointer
       //port_t                     m_resolver_port; ///< Resolver listen port
       //socket_flag_map            m_resolve_q; ///< resolve queue
-      bool                       m_b_enable_pool; ///< Connection pool enabled if true
+      bool                       m_bEnablePool; ///< Connection pool enabled if true
       i32                        m_next_trigger_id; ///< Unique trigger id counter
       socket_map                 m_trigger_src; ///< mapping trigger id to source base_socket
       socket_socket_flag_map     m_trigger_dst; ///< mapping trigger id to destination sockets
@@ -56,8 +56,11 @@ namespace sockets
 
 
       socket_handler(::apex::log * plogger = nullptr);
-      virtual ~socket_handler();
+      ~socket_handler() override;
 
+
+      i64 increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override;
+      i64 decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override;
 
       void cleanup_handler();
 
@@ -99,7 +102,12 @@ namespace sockets
       bool OkToAccept(base_socket *point_i32) override;
 
       /** Called by base_socket when a base_socket changes state. */
-      void AddList(SOCKET s,list_t which_one,bool add) override;
+      socket_list& socketlist_get(enum_list elist) override;
+      void socketlist_modify(SOCKET s, enum_list elist, bool bAdd) override;
+      void socketlist_add(SOCKET s, enum_list elist) override;
+      void socketlist_erase(SOCKET s, enum_list elist) override;
+
+      void erase_socket(SOCKET s);
 
       // Connection pool
       /** find available open connection (used by connection pool). */

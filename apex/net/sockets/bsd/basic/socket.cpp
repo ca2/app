@@ -99,15 +99,17 @@ namespace sockets
 
       }
 
-      if(!is_null(socket_handler()))
+      if(::is_set(m_phandlerSlave))
       {
 
-         socket_handler()->set(m_socket, false, false, false); // erase from fd_set's
-         socket_handler()->AddList(m_socket, LIST_CALLONCONNECT, false);
-         socket_handler()->AddList(m_socket, LIST_DETACH, false);
-         socket_handler()->AddList(m_socket, LIST_TIMEOUT, false);
-         socket_handler()->AddList(m_socket, LIST_RETRY, false);
-         socket_handler()->AddList(m_socket, LIST_CLOSE, false);
+         m_phandlerSlave->erase_socket(m_socket);
+
+      }
+
+      if (::is_set(m_psockethandler))
+      {
+
+         m_psockethandler->erase_socket(m_socket);
 
       }
 

@@ -342,6 +342,22 @@ void* task::s_os_task(void* p)
 
 #endif
 
+      try
+      {
+
+         if (::is_set(pthread->m_pobjectParentTask))
+         {
+
+            pthread->m_pobjectParentTask->erase_child_task(pthread);
+
+         }
+
+      }
+      catch (...)
+      {
+
+      }
+
       ::thread_release(OBJECT_REFERENCE_COUNT_DEBUG_P_NOTE(pthread, ""));
 
    }

@@ -657,7 +657,7 @@ namespace sockets
                //   SetCloseAndDelete(true);
                //   SetFlushBeforeClose(false);
                //   SetLost();
-               //   SetShutdown(SHUT_WR);
+               //   SetShutdownStatus(SHUT_WR);
                //   //TRACE("tcp_socket::recv ssl disconnect(2)");
 
                //}
@@ -730,7 +730,7 @@ namespace sockets
                SetCloseAndDelete(true);
                SetFlushBeforeClose(false);
                SetLost();
-               SetShutdown(SHUT_WR);
+               SetShutdownStatus(SHUT_WR);
             }
 
          }
@@ -917,8 +917,9 @@ namespace sockets
             OnSocks4ConnectFailed();
             return;
          }
-         if(GetConnectionRetry() == -1 ||
-               (GetConnectionRetry() && GetConnectionRetries() < GetConnectionRetry()))
+
+         if(GetMaximumConnectionRetryCount() == -1 ||
+               (GetMaximumConnectionRetryCount() && GetConnectionRetryCount() < GetMaximumConnectionRetryCount()))
          {
             // even though the connection failed at once, only retry after
             // the connection timeout.
@@ -2122,7 +2123,7 @@ namespace sockets
 
       SetNonblocking(true);
 
-      if (!Lost() && IsConnected() && !(GetShutdown() & SHUT_WR))
+      if (!Lost() && IsConnected() && !(GetShutdownStatus() & SHUT_WR))
       {
 
          if (shutdown(GetSocket(), SHUT_WR) == -1)
@@ -2320,43 +2321,54 @@ namespace sockets
    }
 
 
-
    void tcp_socket::OnConnectTimeout()
    {
-
 
       FATAL(log_this, "connect",-1,"connect timeout");
 
       m_estatus = error_connection_timed_out;
+
       if(Socks4())
       {
+
          OnSocks4ConnectFailed();
          // retry direct connection
       }
-      else if(GetConnectionRetry() == -1 ||
-              (GetConnectionRetry() && GetConnectionRetries() < GetConnectionRetry()))
+      else if(GetMaximumConnectionRetryCount() == -1 ||
+              (GetMaximumConnectionRetryCount() && GetConnectionRetryCount() < GetMaximumConnectionRetryCount()))
       {
-         IncreaseConnectionRetries();
+
+         IncrementConnectionRetryCount();
+
          // ask socket via OnConnectRetry callback if we should continue trying
          if(OnConnectRetry())
          {
+
             SetRetryClientConnect();
+
          }
          else
          {
+
             SetCloseAndDelete(true);
+
             /// \todo state reason why connect failed
             OnConnectFailed();
+
          }
+
       }
       else
       {
+
          SetCloseAndDelete(true);
          /// \todo state reason why connect failed
          OnConnectFailed();
+
       }
-      //
+      
       SetConnecting(false);
+
    }
 
 
@@ -2381,9 +2393,9 @@ namespace sockets
             //m_estatus = status_failed;
          }
 
-         int iGetConnectionRetry = GetConnectionRetry();
+         int iGetConnectionRetry = GetMaximumConnectionRetryCount();
 
-         int iGetConnectionRetries = GetConnectionRetries();
+         int iGetConnectionRetries = GetConnectionRetryCount();
 
          if (Socks4())
          {

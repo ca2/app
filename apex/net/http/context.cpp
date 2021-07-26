@@ -2146,10 +2146,10 @@ namespace http
 
       }
 
-      if (set.has_property("connection_retry"))
+      if (set.has_property("maximum_connection_retry_count"))
       {
 
-         psocket->SetConnectionRetry(set["connection_retry"].i32());
+         psocket->SetMaximumConnectionRetryCount(set["maximum_connection_retry_count"].i32());
 
       }
       //else

@@ -266,11 +266,22 @@ typedef u16 port_t;
 #endif
 
 
+namespace sockets
+{
+
+
+   class socket_thread;
+
+
+} // namespace sockets
+
+
 
 #include "ssl/client_context.h"
 #include "ssl/client_context_map.h"
 #include "apex/net/address.h"
 #include "apex/net/sockets/base/base_socket.h"
+#include "apex/net/sockets/base/socket_thread.h"
 #include "apex/net/sockets/bsd/ssl/context.h"
 #include "basic/socket.h"
 #include "apex/net/sockets/base/base_socket_handler.h"

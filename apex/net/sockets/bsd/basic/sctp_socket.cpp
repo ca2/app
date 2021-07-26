@@ -362,7 +362,7 @@ namespace sockets
          }
 #endif
          if (GetConnectionRetry() == -1 ||
-               (GetConnectionRetry() && GetConnectionRetries() < GetConnectionRetry()) )
+               (GetConnectionRetry() && GetConnectionRetryCount() < GetConnectionRetry()) )
          {
             // even though the connection failed at once, only retry after
             // the connection timeout.
@@ -391,7 +391,7 @@ namespace sockets
       else
 #endif
          if (GetConnectionRetry() == -1 ||
-               (GetConnectionRetry() && GetConnectionRetries() < GetConnectionRetry()) )
+               (GetConnectionRetry() && GetConnectionRetryCount() < GetConnectionRetry()) )
          {
             IncreaseConnectionRetries();
             // ask socket via OnConnectRetry callback if we should continue trying
@@ -429,7 +429,7 @@ namespace sockets
 #endif
             if (GetConnectionRetry() == -1 ||
                   (GetConnectionRetry() &&
-                   GetConnectionRetries() < GetConnectionRetry() ))
+                   GetConnectionRetryCount() < GetConnectionRetry() ))
             {
                // even though the connection failed at once, only retry after
                // the connection timeout

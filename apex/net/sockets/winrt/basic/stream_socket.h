@@ -18,13 +18,13 @@
 
 
          bool m_bConnecting; ///< Flag indicating connection in progress
-         int m_connect_timeout; ///< Connection timeout (seconds)
-         bool m_flush_before_close; ///< Send all data before closing (default true)
-         int m_connection_retry; ///< Maximum connection retries (tcp)
-         int m_retries; ///< Actual number of connection retries (tcp)
-         bool m_call_on_connect; ///< OnConnect will be called next base_socket_handler cycle if true
-         bool m_b_retry_connect; ///< Try another connection attempt next base_socket_handler cycle
-         int m_shutdown; ///< Shutdown status
+         int m_secsConnectionTimeout; ///< Connection timeout (seconds)
+         bool m_bFlushBeforeClose; ///< Send all data before closing (default true)
+         int m_iMaximumConnectionRetryCount; ///< Maximum connection retries (tcp)
+         int m_iConnectionRetryCount; ///< Actual number of connection retries (tcp)
+         bool m_bCallOnConnect; ///< OnConnect will be called next base_socket_handler cycle if true
+         bool m_bRetryClientConnect; ///< Try another connection attempt next base_socket_handler cycle
+         int m_iShutdownStatus; ///< Shutdown status
 
 
          stream_socket();
@@ -72,7 +72,7 @@
          void IncreaseConnectionRetries();
 
          /** get number of actual connection retries (tcp only). */
-         int GetConnectionRetries();
+         int GetConnectionRetryCount();
 
          /** Reset actual connection retries (tcp only). */
          void ResetConnectionRetries();

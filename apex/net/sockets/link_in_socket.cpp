@@ -65,13 +65,13 @@ namespace sockets
       m_socket             = psocket->m_socket;
 
       m_bConnecting        = psocket->m_bConnecting; ///< Flag indicating connection in progress
-      m_connect_timeout    = psocket->m_connect_timeout; ///< Connection timeout (seconds)
-      m_flush_before_close = psocket->m_flush_before_close; ///< Send all data before closing (default true)
-      m_connection_retry   = psocket->m_connection_retry; ///< Maximum connection retries (tcp)
-      m_retries            = psocket->m_retries; ///< Actual number of connection retries (tcp)
-      m_call_on_connect    = psocket->m_call_on_connect; ///< OnConnect will be called next base_socket_handler cycle if true
-      m_b_retry_connect    = psocket->m_b_retry_connect; ///< Try another connection attempt next base_socket_handler cycle
-      m_shutdown           = psocket->m_shutdown; ///< Shutdown status
+      m_secsConnectionTimeout    = psocket->m_secsConnectionTimeout; ///< Connection timeout (seconds)
+      m_bFlushBeforeClose = psocket->m_bFlushBeforeClose; ///< Send all data before closing (default true)
+      m_iMaximumConnectionRetryCount   = psocket->m_iMaximumConnectionRetryCount; ///< Maximum connection retries (tcp)
+      m_iConnectionRetryCount            = psocket->m_iConnectionRetryCount; ///< Actual number of connection retries (tcp)
+      m_bCallOnConnect    = psocket->m_bCallOnConnect; ///< OnConnect will be called next base_socket_handler cycle if true
+      m_bRetryClientConnect    = psocket->m_bRetryClientConnect; ///< Try another connection attempt next base_socket_handler cycle
+      m_iShutdownStatus           = psocket->m_iShutdownStatus; ///< Shutdown status
 
       m_bSsl               = psocket->m_bSsl;
       m_bReconnect         = psocket->m_bReconnect;

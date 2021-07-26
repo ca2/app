@@ -1,7 +1,7 @@
-/** \file base_socket.cpp
-**   \date  2004-02-13
+/** \file socket_thread.cpp
+**   \date  2021-07-26
 **   \author grymse@alhem.net
-**/
+**/  
 /*
 Copyright (C) 2004-2007  Anders Hedstrom
 
@@ -63,7 +63,7 @@ namespace sockets
 
    base_socket::base_socket() :
       m_bDelete(false)
-      ,m_bClose(false)
+      ,m_bCloseAndDelete(false)
       ,m_timeCreate(time(nullptr))
       ,m_psocketParent(nullptr)
       ,m_bDisableRead(false)
@@ -81,8 +81,8 @@ namespace sockets
       //,m_socks4_host(h.GetSocks4Host())
       //,m_socks4_port(h.GetSocks4Port())
       //,m_socks4_userid(h.GetSocks4Userid())
-      ,m_detach(false)
-      ,m_detached(false)
+      ,m_bDetach(false)
+      ,m_bDetached(false)
       // Line protocol
       ,m_bLineProtocol(false)
       ,m_skip_c(false)
@@ -304,30 +304,38 @@ namespace sockets
    }
 
 
-   void base_socket::SetCloseAndDelete(bool x)
+   void base_socket::SetCloseAndDelete(bool bCloseAndDelete)
    {
-      if (x ^ m_bClose)
+
+      if (is_different(bCloseAndDelete, m_bCloseAndDelete))
       {
 
          if(socket_handler())
          {
 
-            socket_handler()->AddList(m_socket, LIST_CLOSE, x);
+            socket_handler()->socketlist_modify(m_socket, e_list_close, bCloseAndDelete);
 
          }
 
-         m_bClose = x;
-         if (x)
+         m_bCloseAndDelete = bCloseAndDelete;
+
+         if (bCloseAndDelete)
          {
+
             m_timeClose = time(nullptr);
+
          }
+
       }
+
    }
 
 
    bool base_socket::IsCloseAndDelete()
    {
-      return m_bClose;
+      
+      return m_bCloseAndDelete;
+
    }
 
 
@@ -939,7 +947,7 @@ namespace sockets
 
       }
 
-      if (m_detached)
+      if (m_bDetached)
       {
 
          return false;
@@ -958,11 +966,9 @@ namespace sockets
 
       SetDetached();
 
-      m_psockethandler.release();
+      auto psocketthread = __new(socket_thread);
 
-      __compose_new(m_psocketthread);
-
-      m_psocketthread->initialize_socket_thread(this);
+      psocketthread->start_socket_thread(this);
 
    }
 
@@ -973,28 +979,37 @@ namespace sockets
    }
 
 
-   void base_socket::SetDetach(bool x)
+   void base_socket::SetDetach(bool bDetach)
    {
-      socket_handler()->AddList(m_socket, LIST_DETACH, x);
-      m_detach = x;
+
+      socket_handler()->socketlist_modify(m_socket, e_list_detach, bDetach);
+
+      m_bDetach = bDetach;
+
    }
 
 
    bool base_socket::IsDetach()
    {
-      return m_detach;
+
+      return m_bDetach;
+
    }
 
 
    void base_socket::SetDetached(bool x)
    {
-      m_detached = x;
+      
+      m_bDetached = x;
+
    }
 
 
    const bool base_socket::IsDetached() const
    {
-      return m_detached;
+
+      return m_bDetached;
+
    }
 
 
@@ -1006,151 +1021,6 @@ namespace sockets
    }
 
    
-   ::index g_iSocketThread = 0;
-
-
-   base_socket::socket_thread::socket_thread()
-   {
-
-      ::output_debug_string(__str(g_iSocketThread++) + " - new socket_thread\n");
-
-   }
-
-
-   ::e_status base_socket::socket_thread::initialize_socket_thread(base_socket * psocket)
-   {
-
-      auto estatus = initialize(psocket);
-
-      if (!estatus)
-      {
-
-         return estatus;
-
-      }
-
-      __refer(m_psocket, psocket);
-
-      //m_psocket->set_context_thread(this OBJECT_REFERENCE_COUNT_DEBUG_COMMA_P_FUNCTION_LINE(m_psocket));
-         
-      __compose(m_phandler, __new(class socket_handler()));
-
-
-      m_phandler->add(psocket);
-
-      //m_phandler->set_context_thread(this OBJECT_REFERENCE_COUNT_DEBUG_COMMA_P_FUNCTION_LINE(m_phandler));
-
-      begin_synch();
-
-      return estatus;
-
-   }
-
-
-   base_socket::socket_thread::~socket_thread()
-   {
-
-      ::output_debug_string("--->>>>>base_socket::socket_thread::~SOCKET_thread\n");
-
-   }
-
-
-   ::e_status base_socket::socket_thread::init_thread()
-   {
-
-      if (!::thread::init_thread())
-      {
-
-         return false;
-
-      }
-
-      auto phandler = m_phandler;
-
-      phandler->SetSlave();
-
-      if (phandler.get() != m_psocket->m_psockethandler.get())
-      {
-
-      //   ::output_debug_string("");
-
-      //}
-      //else
-      //{
-
-         phandler->add(m_psocket);
-
-      }
-
-      m_psocket->SetSlaveHandler(phandler);
-
-      m_psocket->OnDetached();
-   
-      return true;
-
-   }
-
-
-   void base_socket::socket_thread::term_thread()
-   {
-
-      ::thread::term_thread();
-
-   }
-
-
-#ifdef DEBUG
-
-
-   ::i64 base_socket::socket_thread::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
-   {
-
-      return ::thread::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
-
-   }
-
-
-   ::i64 base_socket::socket_thread::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
-   {
-
-      return ::thread::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
-
-   }
-
-
-#endif
-
-
-   ::e_status base_socket::socket_thread::run()
-   {
-
-      auto phandler = m_phandler;
-
-      while (task_get_run() && phandler->get_count())
-      {
-
-         try
-         {
-
-            phandler->select(1, 0);
-
-         }
-         catch(...)
-         {
-
-            break;
-
-         }
-
-      }
-
-      //m_psocket->finalize();
-
-      //m_phandler->finalize();
-
-      return ::success;
-
-   }
 
 
 //   int base_socket::Resolve(const string & host,port_t port)
@@ -2509,7 +2379,7 @@ namespace sockets
       if (!secs)
       {
          
-         socket_handler()->AddList(m_socket, LIST_TIMEOUT, false);
+         socket_handler()->socketlist_erase(m_socket, e_list_timeout);
          
          return;
 

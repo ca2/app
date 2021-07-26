@@ -608,7 +608,7 @@ namespace sockets
             return;
          }
          if (GetConnectionRetry() == -1 ||
-               (GetConnectionRetry() && GetConnectionRetries() < GetConnectionRetry()) )
+               (GetConnectionRetry() && GetConnectionRetryCount() < GetConnectionRetry()) )
          {
             // even though the connection failed at once, only retry after
             // the connection timeout.
@@ -1466,7 +1466,7 @@ namespace sockets
          // retry direct connection
       }
       else if (GetConnectionRetry() == -1 ||
-               (GetConnectionRetry() && GetConnectionRetries() < GetConnectionRetry()) )
+               (GetConnectionRetry() && GetConnectionRetryCount() < GetConnectionRetry()) )
       {
          IncreaseConnectionRetries();
          // ask socket via OnConnectRetry callback if we should continue trying
@@ -1514,7 +1514,7 @@ namespace sockets
             OnSocks4ConnectFailed();
          else if (GetConnectionRetry() == -1 ||
                   (GetConnectionRetry() &&
-                   GetConnectionRetries() < GetConnectionRetry() ))
+                   GetConnectionRetryCount() < GetConnectionRetry() ))
          {
             // even though the connection failed at once, only retry after
             // the connection timeout

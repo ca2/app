@@ -1037,6 +1037,16 @@ void object::add_child_task(::object* pobjectTask)
 }
 
 
+void object::erase_child_task(::object* pobjectTask)
+{
+
+   synchronous_lock synchronouslock(mutex());
+
+   m_objectaChildrenTask.erase(pobjectTask);
+
+}
+
+
 bool object::check_children_task()
 {
 
@@ -1460,12 +1470,10 @@ void object::delete_this()
    if (m_pcompositea)
    {
 
-      auto compositea = *m_pcompositea;
-
-      synchronouslock.unlock();
-
-      for (auto& pmatter : compositea)
+      for (auto& pmatter : *m_pcompositea)
       {
+
+         synchronouslock.unlock();
 
          auto estatusItem = pmatter->finish();
 
@@ -1475,6 +1483,8 @@ void object::delete_this()
             estatus = error_pending;
 
          }
+
+         synchronouslock.lock();
 
       }
 

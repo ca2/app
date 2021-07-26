@@ -34,14 +34,14 @@ namespace sockets
 {
 
 
-   typedef enum
+   enum enum_list
    {
-      LIST_CALLONCONNECT = 0,
-      LIST_DETACH,
-      LIST_TIMEOUT,
-      LIST_RETRY,
-      LIST_CLOSE
-   } list_t;
+      e_list_call_on_connect,
+      e_list_detach,
+      e_list_timeout,
+      e_list_retry_client_connect,
+      e_list_close
+   };
 
 
    /** socket container class, event generator.
@@ -123,7 +123,12 @@ namespace sockets
       virtual bool OkToAccept(base_socket *point_i32) = 0;
 
       /** Called by socket when a socket changes state. */
-      virtual void AddList(SOCKET s,list_t which_one,bool add) = 0;
+      virtual socket_list& socketlist_get(enum_list elist) = 0;
+      virtual void socketlist_modify(SOCKET s, enum_list elist, bool bAdd) = 0;
+      virtual void socketlist_add(SOCKET s, enum_list elist) = 0;
+      virtual void socketlist_erase(SOCKET s, enum_list elist) = 0;
+
+      virtual void erase_socket(SOCKET s) = 0;
       // -------------------------------------------------------------------------
       // Connection pool
       // -------------------------------------------------------------------------

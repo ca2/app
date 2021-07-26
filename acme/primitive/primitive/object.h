@@ -187,9 +187,9 @@ public:
    //virtual ::e_status set_finish_composites(::property_object* pcontextobjectRootFinishingInitiator) override;
    virtual ::e_status on_finish() override;
 
-   virtual ::e_status set_finish_composites();
+   virtual ::e_status destroy();
 
-   virtual ::e_status finish_composites() override;
+   virtual ::e_status destroy_composites() override;
 
 
 

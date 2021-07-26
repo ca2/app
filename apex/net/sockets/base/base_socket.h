@@ -1,4 +1,4 @@
-// Moved by camilo on 2021-07-26 02:20 BRT <3ThomasBorregaardSørensen!!
+// Moved by camilo on 2021-07-26 02:20 BRT <3ThomasBorregaardSï¿½rensen!!
 #pragma once
 
 
@@ -111,7 +111,7 @@ namespace sockets
 
       bool                             m_bDetach; ///< base_socket ordered to detach flag
       bool                             m_bDetached; ///< base_socket has been detached
-      __composite(socket_thread)       m_psocketthread; ///< detach base_socket thread class pointer
+      __pointer(socket_thread)         m_psocketthread; ///< detach base_socket thread class pointer
       __pointer(base_socket_handler)   m_phandlerSlave; ///< Actual sockethandler while detached
 
 

@@ -83,24 +83,19 @@ namespace sockets
 
       }
 
-      __refer(m_psocket, psocket);
+      m_psocket = psocket;
 
-      //m_psocket->set_context_thread(this OBJECT_REFERENCE_COUNT_DEBUG_COMMA_P_FUNCTION_LINE(m_psocket));
-
-      __compose(m_phandler, __new(class socket_handler()));
+      m_psockethandler = __new(class socket_handler());
 
       psocket->m_psockethandler.release();
 
-      psocket->__compose(psocket->m_psocketthread, this);
+      psocket->m_psocketthread = this;
 
-      m_phandler->add(psocket);
+      m_psockethandler->add(psocket);
 
-      m_phandler->SetSlave();
+      m_psockethandler->SetSlave();
 
-      m_psocket->SetSlaveHandler(m_phandler);
-
-
-      //m_phandler->set_context_thread(this OBJECT_REFERENCE_COUNT_DEBUG_COMMA_P_FUNCTION_LINE(m_phandler));
+      m_psocket->SetSlaveHandler(m_psockethandler);
 
       branch();
 
@@ -184,13 +179,13 @@ namespace sockets
       try
       {
 
-         while (task_get_run() && m_phandler->get_count())
+         while (task_get_run() && m_psockethandler->get_count())
          {
 
             try
             {
 
-               m_phandler->select(1, 0);
+               m_psockethandler->select(1, 0);
 
             }
             catch (...)
@@ -208,9 +203,11 @@ namespace sockets
 
       }
 
+      m_psocket->m_psocketthread.release();
+
       m_psocket->finish();
 
-      m_phandler->finish();
+      m_psockethandler->finish();
 
       return ::success;
 

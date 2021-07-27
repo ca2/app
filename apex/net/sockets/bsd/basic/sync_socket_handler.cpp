@@ -25,7 +25,7 @@ namespace sockets
    }
 
 
-   void sync_socket_handler::handle(socket * psocket)
+   void sync_socket_handler::move(socket_map::association * passociation, socket_map * psocketmap)
    {
 
       if(m_psocket != nullptr)
@@ -35,11 +35,11 @@ namespace sockets
 
       }
 
-      m_psocket = psocket;
+      m_psocket = dynamic_cast < socket * > (passociation->m_psocket.m_p);
 
       m_psocket->m_pcallback = this;
 
-      m_phandler->add(m_psocket);
+      m_phandler->move(passociation, psocketmap);
 
    }
 

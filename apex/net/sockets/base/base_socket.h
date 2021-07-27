@@ -6,14 +6,6 @@ namespace sockets
 {
 
 
-   class base_socket_handler;
-
-   class base_socket;
-
-   using socket_pointer = __pointer(base_socket);
-
-   class socket_handler;
-
    /** \defgroup basic Basic sockets */
    /** base_socket base class.
    \ingroup basic */
@@ -112,7 +104,7 @@ namespace sockets
       bool                             m_bDetach; ///< base_socket ordered to detach flag
       bool                             m_bDetached; ///< base_socket has been detached
       __pointer(socket_thread)         m_psocketthread; ///< detach base_socket thread class pointer
-      __pointer(base_socket_handler)   m_phandlerSlave; ///< Actual sockethandler while detached
+      //__pointer(base_socket_handler)   m_phandlerSlave; ///< Actual sockethandler while detached
 
 
       // LineProtocol
@@ -689,11 +681,11 @@ namespace sockets
       const bool IsDetached() const;
       /** Order this base_socket to start its own thread and call OnDetached
       when ready for operation. */
-      bool detach();
+      bool prepare_for_detach();
       /** Store the slave sockethandler pointer. */
       void SetSlaveHandler(base_socket_handler *);
       /** create new thread for this base_socket to run detached in. */
-      void DetachSocket();
+      void DetachSocket(socket_map::association * passociation, socket_map * psocketmap);
       //@}
 
 
@@ -735,10 +727,6 @@ namespace sockets
 
    };
 
-
-   __declare_map(socket_flag_map, socket_flag, base_socket *, m_pbasesocket, bool, m_bFlag);
-   __declare_map(socket_socket_flag_map, socket_socket_flag, SOCKET, m_socket, socket_flag_map, m_pmap);
-   __declare_map(socket_map, socket_pointer_pair, SOCKET, m_socket, socket_pointer, m_psocket);
 
 
    typedef comparable_list < socket_pointer > socket_pointer_list;

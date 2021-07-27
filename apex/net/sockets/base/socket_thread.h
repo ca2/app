@@ -14,20 +14,20 @@ namespace sockets
 
 
       __pointer(socket_handler)        m_psockethandler;
-      __pointer(base_socket)           m_psocket;
+      //__pointer(base_socket)           m_psocket;
 
 
       socket_thread();
       ~socket_thread() override;
 
 
-      virtual ::e_status start_socket_thread(base_socket* psocket);
+      virtual ::e_status move(socket_map::association * passociation, socket_map * psocketmap = nullptr);
 
       //virtual ::e_status init_thread() override;
 
       //virtual void term_thread() override;
 
-      base_socket* get_socket() const { return m_psocket; }
+      base_socket* get_socket() const;
 
       ::e_status run() override;
 

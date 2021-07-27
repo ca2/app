@@ -17,8 +17,8 @@ namespace sockets
 
       __pointer(::apex::log)     m_splogger; ///< Registered log class, or nullptr
 
-      socket_map                 m_sockets; ///< Active sockets map
-      socket_map                 m_add; ///< Sockets to be added to sockets map
+      socket_map                 m_socketmap; ///< Active sockets map
+      socket_map                 m_socketmapAdd; ///< Sockets to be added to sockets map
       socket_pointer_list        m_delete; ///< Sockets to be deleted (failed when add)
       bool                       m_b_use_mutex; ///< ::mutex correctly initialized
       SOCKET                     m_maxsock; ///< Highest file descriptor + 1 in active sockets list
@@ -52,7 +52,7 @@ namespace sockets
       i32                        m_next_trigger_id; ///< Unique trigger id counter
       socket_map                 m_trigger_src; ///< mapping trigger id to source base_socket
       socket_socket_flag_map     m_trigger_dst; ///< mapping trigger id to destination sockets
-      bool                       m_slave; ///< Indicates that this is a base_socket_handler run in socket_thread
+      //bool                       m_slave; ///< Indicates that this is a base_socket_handler run in socket_thread
 
 
       socket_handler(::apex::log * plogger = nullptr);
@@ -72,7 +72,12 @@ namespace sockets
       //resolv_server * resolver();
 
       /** add base_socket instance to base_socket map. Removal is always automatic. */
-      virtual void add(base_socket *) override;
+      void restart_socket(SOCKET socket) override;
+
+      void add2(const socket_pointer & psocket) override;
+      void move2(socket_pointer && psocket) override;
+      void move(socket_map::association* passociation, socket_map* psocketmap = nullptr) override;
+      //void _move(socket_map::association* passociation, socket_map* psocketmap) override;
 
       virtual bool contains(base_socket *) override;
 
@@ -178,9 +183,9 @@ namespace sockets
       void Trigger(i32 id, base_socket::trigger_data & data, bool erase = true) override;
 
       /** Indicates that the handler runs under socket_thread. */
-      void SetSlave(bool x = true) override;
+      //void SetSlave(bool x = true) override;
       /** Indicates that the handler runs under socket_thread. */
-      bool IsSlave() override;
+      //bool IsSlave() override;
 
       /** Sanity check of those accursed lists. */
       void CheckSanity();

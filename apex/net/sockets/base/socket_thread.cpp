@@ -71,10 +71,10 @@ namespace sockets
    }
 
 
-   ::e_status socket_thread::start_socket_thread(base_socket* psocket)
+   ::e_status socket_thread::move(socket_map::association * passociation, socket_map * psocketmap)
    {
 
-      auto estatus = initialize(psocket);
+      auto estatus = initialize(passociation->m_psocket);
 
       if (!estatus)
       {
@@ -83,19 +83,17 @@ namespace sockets
 
       }
 
-      m_psocket = psocket;
-
       m_psockethandler = __new(class socket_handler());
 
-      psocket->m_psockethandler.release();
+      //psocket->m_psockethandler.release();
 
-      psocket->m_psocketthread = this;
+      passociation->m_psocket->m_psocketthread = this;
 
-      m_psockethandler->add(psocket);
+      //m_psockethandler->SetSlave();
 
-      m_psockethandler->SetSlave();
+      //m_psocket->SetSlaveHandler(m_psockethandler);
 
-      m_psocket->SetSlaveHandler(m_psockethandler);
+      m_psockethandler->move(passociation, psocketmap);
 
       branch();
 
@@ -157,6 +155,27 @@ namespace sockets
 
 #endif
 
+   base_socket* socket_thread::get_socket() const
+   {
+      if (::is_null(m_psockethandler))
+      {
+
+         return nullptr;
+
+      }
+
+      auto passociation = m_psockethandler->m_socketmap.m_passociationHead;
+
+      if (::is_null(passociation))
+      {
+
+         return nullptr;
+
+      }
+
+      return passociation->m_psocket;
+
+   }
 
    ::e_status socket_thread::run()
    {
@@ -173,8 +192,6 @@ namespace sockets
       //   phandler->add(m_psocket);
 
       //}
-
-      m_psocket->OnDetached();
 
       try
       {
@@ -203,9 +220,9 @@ namespace sockets
 
       }
 
-      m_psocket->m_psocketthread.release();
+      //m_psocket->m_psocketthread.release();
 
-      m_psocket->destroy();
+      //m_psocket->destroy();
 
       m_psockethandler->destroy();
 

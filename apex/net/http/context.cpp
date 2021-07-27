@@ -1458,7 +1458,7 @@ namespace http
 
          }
 
-         psession->m_psockethandler->add(psession);
+         psession->m_psockethandler->restart_socket(psession->GetSocket());
 
          i32 iIteration = 0;
 
@@ -2133,7 +2133,9 @@ namespace http
 
       }
 
-      psockethandler->add(psocket);
+      //auto passociation = psockethandler->new_association(psocket);
+
+      psockethandler->add2(psocket);
 
       i32 iIteration = 1;
 

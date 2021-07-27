@@ -48,7 +48,7 @@ namespace sockets
       
       __pointer(::sockets::socket_handler) phandler = psocket->socket_handler();
 
-      auto p = phandler->m_sockets.begin();
+      auto p = phandler->m_socketmap.begin();
 
       for (; p; p++)
       {
@@ -56,7 +56,7 @@ namespace sockets
          if(p->m_psocket == psocket)
          {
 
-            phandler->m_sockets.set_at(p->m_socket, this);
+            phandler->m_socketmap.set_at(p->m_socket, this);
 
          }
 

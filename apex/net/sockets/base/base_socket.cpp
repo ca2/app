@@ -358,12 +358,12 @@ namespace sockets
    base_socket_handler* base_socket::socket_handler() const
    {
 
-      if (IsDetached())
-      {
+      //if (IsDetached())
+      //{
 
-         return m_phandlerSlave.m_p;
+      //   return m_phandlerSlave.m_p;
 
-      }
+      //}
 
       return m_psockethandler;
 
@@ -930,7 +930,7 @@ namespace sockets
       return m_socks4_userid;
    }
 
-   bool base_socket::detach()
+   bool base_socket::prepare_for_detach()
    {
 
       if (!DeleteByHandler())
@@ -961,14 +961,14 @@ namespace sockets
    }
 
 
-   void base_socket::DetachSocket()
+   void base_socket::DetachSocket(socket_map::association * passociation, socket_map * psocketmap)
    {
 
       SetDetached();
 
       auto psocketthread = __new(socket_thread);
 
-      psocketthread->start_socket_thread(this);
+      psocketthread->move(passociation, psocketmap);
 
    }
 
@@ -981,8 +981,6 @@ namespace sockets
 
    void base_socket::SetDetach(bool bDetach)
    {
-
-      socket_handler()->socketlist_modify(m_socket, e_list_detach, bDetach);
 
       m_bDetach = bDetach;
 
@@ -1013,14 +1011,14 @@ namespace sockets
    }
 
 
-   void base_socket::SetSlaveHandler(base_socket_handler * phandler)
-   {
+   //void base_socket::SetSlaveHandler(base_socket_handler * phandler)
+   //{
 
-      m_phandlerSlave = phandler;
+   //   m_phandlerSlave = phandler;
 
-   }
+   //}
 
-   
+   //
 
 
 //   int base_socket::Resolve(const string & host,port_t port)

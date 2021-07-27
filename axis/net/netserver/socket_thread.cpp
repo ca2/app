@@ -116,7 +116,7 @@ namespace netserver
 
                }
 
-               m_psockethandler->add(m_plistensocket);
+               m_psockethandler->add2(m_plistensocket);
 
                while (m_psockethandler->get_count() > 0 && task_get_run())
                {

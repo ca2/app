@@ -307,7 +307,7 @@ namespace sockets
 
       }
 
-      __pointer(socket) tmp = create_listen_socket();
+      auto tmp = ::move(create_listen_socket());
 
       tmp->initialize(this);
 
@@ -345,11 +345,6 @@ namespace sockets
       tmp -> SetConnected(true);
       tmp -> Init();
       tmp -> SetDeleteByHandler(true);
-      socket_handler()->add(tmp);
-      if(m_bDetach)
-      {
-         tmp->detach();
-      }
       if (tmp -> IsSSL()) // SSL Enabled socket
       {
          // %! OnSSLAccept calls SSLNegotiate that can finish in this one call.
@@ -366,7 +361,19 @@ namespace sockets
       {
          tmp -> OnAccept();
       }
+      
+      if (m_bDetach)
+      {
+         
+         tmp->prepare_for_detach();
 
+      }
+
+//      auto passociation = m_psockethandler->new_association(tmp);
+
+      //socket_handler()->move(passociation);
+
+      socket_handler()->move2(::move(tmp));
 
    }
 

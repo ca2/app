@@ -99,12 +99,12 @@ namespace sockets
 
       }
 
-      if(::is_set(m_phandlerSlave))
-      {
+      //if(::is_set(m_phandlerSlave))
+      //{
 
-         m_phandlerSlave->erase_socket(m_socket);
+      //   m_phandlerSlave->erase_socket(m_socket);
 
-      }
+      //}
 
       if (::is_set(m_psockethandler))
       {

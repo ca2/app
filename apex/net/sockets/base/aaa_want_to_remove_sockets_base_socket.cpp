@@ -73,8 +73,8 @@ namespace sockets
       ,m_socks4_host(h.GetSocks4Host())
       ,m_socks4_port(h.GetSocks4Port())
       ,m_socks4_userid(h.GetSocks4Userid())
-      ,m_detach(false)
-      ,m_detached(false)
+      ,m_bDetach(false)
+      ,m_bDetached(false)
       // Line protocol
       ,m_bLineProtocol(false)
       ,m_skip_c(false)
@@ -841,7 +841,7 @@ namespace sockets
 
       }
 
-      if (m_detached)
+      if (m_bDetached)
       {
 
          return false;
@@ -876,25 +876,25 @@ namespace sockets
    void base_socket::SetDetach(bool x)
    {
       socket_handler()->AddList(m_socket, LIST_DETACH, x);
-      m_detach = x;
+      m_bDetach = x;
    }
 
 
    bool base_socket::IsDetach()
    {
-      return m_detach;
+      return m_bDetach;
    }
 
 
    void base_socket::SetDetached(bool x)
    {
-      m_detached = x;
+      m_bDetached = x;
    }
 
 
    const bool base_socket::IsDetached() const
    {
-      return m_detached;
+      return m_bDetached;
    }
 
 
@@ -2341,7 +2341,7 @@ namespace sockets
    }
 
 
-   void base_socket::OnTimeout()
+   void base_socket::on_timeout()
    {
 
       m_estatus = error_on_connection_timeout;
@@ -2349,7 +2349,7 @@ namespace sockets
    }
 
 
-   void base_socket::OnConnectTimeout()
+   void base_socket::on_connection_timeout()
    {
 
    }

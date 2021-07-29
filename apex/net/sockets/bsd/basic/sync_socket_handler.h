@@ -19,13 +19,13 @@ namespace sockets
 
 
          sync_socket_handler(::apex::log *log = nullptr);
-         virtual ~sync_socket_handler();
+         ~sync_socket_handler() override;
 
 
          using ::sockets::socket::callback::OnRawData;
          virtual void OnRawData(base_socket * psocket, void * pdata, memsize len) override;
 
-         void handle(socket * psocket);
+         virtual void move(socket_map::association * passociation, socket_map * psocketmap = nullptr);
 
          virtual void write(string & str);
          virtual void write(const void * pdata, i32 len);

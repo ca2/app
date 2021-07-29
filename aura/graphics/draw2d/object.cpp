@@ -146,11 +146,15 @@ namespace draw2d
    }
 
 
-   void object::destroy()
+   ::e_status object::destroy()
    {
+
+      return ::success;
 
    }
 
 
 } // namespace draw2d
+
+
 

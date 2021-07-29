@@ -13,7 +13,7 @@
 //   else if (payload.get_type() == ::type_pvar)
 //   {
 //
-//      operator = (*payload.m_pvar);
+//      operator = (*payload.m_ppayload);
 //
 //   }
 //   else if (payload.get_type() == ::type_prop)

@@ -94,18 +94,18 @@ namespace user
 
       virtual ::e_status process_user_message(::message::message * pmessage);
 
-      virtual ::e_status run() override;
+      ::e_status run() override;
 
-      virtual ::e_status finish() override;
+      ::e_status destroy() override;
 
-      virtual ::e_status finalize() override;
+      ::e_status finalize() override;
 
-      virtual bool task_get_run() const override;
+      bool task_get_run() const override;
 
       virtual void enumerate_composite(matter_array& a);
 
       //virtual ::e_status set_finish_composites(::property_object * pcontextobjectFinish) override;
-      virtual ::e_status finish_composites() override;
+      ::e_status destroy_composites() override;
 
       void start_window_visual();
 

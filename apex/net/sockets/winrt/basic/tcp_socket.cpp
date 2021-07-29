@@ -241,7 +241,7 @@ namespace sockets
 
 
 
-      SetConnecting(false);
+      set_connecting(false);
       SetSocks4(false);
 
       return true;
@@ -286,7 +286,7 @@ namespace sockets
                {
                   string sockshost;
                   psession->sockets().net().l2ip(GetSocks4Host(), sockshost);
-                  INFO(log_this, "open", 0, "Connecting to socks4 server @ " + sockshost + ":" + __str(GetSocks4Port()));
+                  INFO(log_this, "open", 0, "is_connecting to socks4 server @ " + sockshost + ":" + __str(GetSocks4Port()));
                }
                SetSocks4();
                n = connect(s, sa, sa);
@@ -309,7 +309,7 @@ namespace sockets
          #endif
                {
                   attach(s);
-                  SetConnecting( true ); // this flag will control fd_set's
+                  set_connecting( true ); // this flag will control fd_set's
                }
                else
                if (Socks4() && socket_handler()->Socks4TryDirect() ) // retry
@@ -323,7 +323,7 @@ namespace sockets
                   string strError = bsd_socket_error(iError);
                   INFO(log_this, "connect: failed, reconnect pending", iError, bsd_socket_error(iError));
                   attach(s);
-                  SetConnecting( true ); // this flag will control fd_set's
+                  set_connecting( true ); // this flag will control fd_set's
                }
                else
                {
@@ -342,7 +342,7 @@ namespace sockets
 
             // 'true' means connected or connecting(not yet connected)
             // 'false' means something failed
-            return true; //!Connecting();*/
+            return true; //!is_connecting();*/
    }
 
 
@@ -583,7 +583,7 @@ namespace sockets
 
    void tcp_socket::OnWrite()
    {
-      if (Connecting())
+      if (is_connecting())
       {
          int err = SoError();
 
@@ -591,7 +591,7 @@ namespace sockets
          if (!err) // ok
          {
             Set(!IsDisableRead(), false);
-            SetConnecting(false);
+            set_connecting(false);
             SetCallOnConnect();
             return;
          }
@@ -603,12 +603,12 @@ namespace sockets
          // failed
          if (Socks4())
          {
-            // %! leave 'Connecting' flag set?
+            // %! leave 'is_connecting' flag set?
             OnSocks4ConnectFailed();
             return;
          }
          if (GetConnectionRetry() == -1 ||
-               (GetConnectionRetry() && GetConnectionRetries() < GetConnectionRetry()) )
+               (GetConnectionRetry() && GetConnectionRetryCount() < GetConnectionRetry()) )
          {
             // even though the connection failed at once, only retry after
             // the connection timeout.
@@ -616,7 +616,7 @@ namespace sockets
             // false it's because of a connection error - not a timeout...
             return;
          }
-         SetConnecting(false);
+         set_connecting(false);
          SetCloseAndDelete( true );
          /// \todo state reason why connect failed
          OnConnectFailed();
@@ -773,13 +773,13 @@ namespace sockets
 
       const char * buf = (const char * ) pdata;
 
-      //if (!Ready() && !Connecting())
+      //if (!Ready() && !is_connecting())
       //{
       //   //log("SendBuf", -1, "Attempt to write to a non-ready socket" ); // warning
       //   if (GetSocket() == INVALID_SOCKET)
       //      INFO(log_this, "SendBuf", 0, " * GetSocket() == INVALID_SOCKET");
-      //   if (Connecting())
-      //      INFO(log_this, "SendBuf", 0, " * Connecting()");
+      //   if (is_connecting())
+      //      INFO(log_this, "SendBuf", 0, " * is_connecting()");
       //   if (IsCloseAndDelete())
       //      INFO(log_this, "SendBuf", 0, " * IsCloseAndDelete()");
       //   return;
@@ -864,7 +864,7 @@ namespace sockets
       WARN("OnSocks4ConnectFailed",0,"connection to socks4 server failed, trying direct connection");
       if (!socket_handler()->Socks4TryDirect())
       {
-         SetConnecting(false);
+         set_connecting(false);
          SetCloseAndDelete();
          OnConnectFailed(); // just in case
       }
@@ -914,7 +914,7 @@ namespace sockets
             case 92:
             case 93:
                FATAL(log_this, "OnSocks4Read",m_socks4_cd,"socks4 server reports connect failed");
-               SetConnecting(false);
+               set_connecting(false);
                SetCloseAndDelete();
                OnConnectFailed();
                break;
@@ -1453,7 +1453,7 @@ namespace sockets
 
 
 
-   void tcp_socket::OnConnectTimeout()
+   void tcp_socket::on_connection_timeout()
    {
       
       FATAL(log_this, "connect", -1, "connect timeout");
@@ -1466,7 +1466,7 @@ namespace sockets
          // retry direct connection
       }
       else if (GetConnectionRetry() == -1 ||
-               (GetConnectionRetry() && GetConnectionRetries() < GetConnectionRetry()) )
+               (GetConnectionRetry() && GetConnectionRetryCount() < GetConnectionRetry()) )
       {
          IncreaseConnectionRetries();
          // ask socket via OnConnectRetry callback if we should continue trying
@@ -1488,14 +1488,14 @@ namespace sockets
          OnConnectFailed();
       }
       //
-      SetConnecting(false);
+      set_connecting(false);
    }
 
 
 #ifdef _WIN32
    void tcp_socket::OnException()
    {
-      if (Connecting())
+      if (is_connecting())
       {
          
          int iError = this->socket_handler()->m_iSelectErrno;
@@ -1514,7 +1514,7 @@ namespace sockets
             OnSocks4ConnectFailed();
          else if (GetConnectionRetry() == -1 ||
                   (GetConnectionRetry() &&
-                   GetConnectionRetries() < GetConnectionRetry() ))
+                   GetConnectionRetryCount() < GetConnectionRetry() ))
          {
             // even though the connection failed at once, only retry after
             // the connection timeout
@@ -1523,7 +1523,7 @@ namespace sockets
          }
          else
          {
-            SetConnecting(false); // tnx snibbe
+            set_connecting(false); // tnx snibbe
             SetCloseAndDelete();
             OnConnectFailed();
          }

@@ -77,7 +77,7 @@ namespace database
       virtual ::payload query_table_item(const char* table, const char* item, const char* where, const ::payload & payload = ::payload());
       virtual __pointer(row_array) query_rows(const char * pszQuery);
       virtual __pointer(row) query_row(const char * pszQuery);
-      virtual __pointer(var_array) query_items(const char * pszQuery);
+      virtual __pointer(payload_array) query_items(const char * pszQuery);
       virtual ::payload query_item(const char * pszQuery, const ::payload & payloadDefault = ::payload());
       //virtual bool query_blob(get_memory getmemory, const char * pszQuery);
 
@@ -87,7 +87,7 @@ namespace database
 
       virtual bool query_rows(__pointer(row_array)& rows, const char* pszQuery);
       virtual bool query_row(__pointer(row)& rows, const char* pszQuery);
-      virtual bool query_items(__pointer(var_array)& items, const char* pszQuery);
+      virtual bool query_items(__pointer(payload_array)& items, const char* pszQuery);
       virtual bool query_item(::payload& item, const char* pszQuery);
       virtual bool query_blob(get_memory getmemory, const char* pszQuery);
 

@@ -264,7 +264,7 @@ namespace sqlite
    }
 
 
-   ___pointer<class var_array> database::query_row(const char * psz)
+   ___pointer<class payload_array> database::query_row(const char * psz)
    {
 
       return nullptr;
@@ -280,7 +280,7 @@ namespace sqlite
    }
 
 
-   __pointer(var_array) database::query_items(const char * psz)
+   __pointer(payload_array) database::query_items(const char * psz)
    {
 
       return nullptr;
@@ -319,7 +319,7 @@ namespace sqlite
    }
 
 
-   __pointer(__pointer_array(var_array)) database::query_rows(const char * psz)
+   __pointer(__pointer_array(payload_array)) database::query_rows(const char * psz)
    {
 
       return nullptr;

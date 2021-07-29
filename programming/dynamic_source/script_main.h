@@ -11,15 +11,14 @@ namespace dynamic_source
    public:
 
 
-      void *                              m_posdataNetnodeScriptMain;
+      ::netnode::script_main *            m_pnetnodescriptmain;
 
       __pointer(httpd_socket)             m_psocket2;
       __pointer(script_manager)           m_pmanager2;
 
 
-
       script_main();
-      virtual ~script_main();
+      ~script_main() override;
 
 
 #ifdef DEBUG
@@ -30,10 +29,10 @@ namespace dynamic_source
 
 #endif
 
-      virtual ::e_status initialize(::object * pobject) override;
+      ::e_status initialize(::object * pobject) override;
 
 
-      virtual ::e_status finalize() override;
+      ::e_status destroy() override;
 
       virtual bool main_initialize();
       virtual bool main_finalize();

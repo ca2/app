@@ -955,7 +955,7 @@ pcreate->m_pcommandline->m_eventReady.SetEvent();
 
 //   ::function_arg function;
 
-//   if (payload.get_type() != e_type_propset)
+//   if (payload.get_type() != e_type_property_set)
 //   {
 
 //      strMessage = payload;
@@ -2247,7 +2247,7 @@ if (str.has_char())
 
 }
 
-data_pulse_change({ "ca2.savings", true }, nullptr);
+//data_pulse_change({ "ca2.savings", true }, nullptr);
 
 auto psystem = get_system()->m_papexsystem;
 
@@ -2389,7 +2389,7 @@ if (str.has_char())
 
 }
 
-data_pulse_change({ "ca2.savings", true }, nullptr);
+//data_pulse_change({ "ca2.savings", true }, nullptr);
 
 auto psystem = get_system()->m_papexsystem;
 
@@ -6277,7 +6277,7 @@ Windows::UI::ViewManagement::ApplicationView::GetForCurrentView()->TryConsolidat
 
 #else
 
-finish();
+destroy();
 
 #endif
 
@@ -6401,10 +6401,10 @@ string strType = type_name();
 }
 
 
-::e_status application::finish()
+::e_status application::destroy()
 {
 
-   auto estatus = ::apex::context::finish();
+   auto estatus = ::apex::context::destroy();
 
    if (!estatus)
    {
@@ -9746,27 +9746,27 @@ return thread::pre_translate_message(pmessage);
 bool application::on_run_install()
 {
 
-auto psystem = get_system()->m_papexsystem;
+   auto psystem = get_system()->m_papexsystem;
 
-if (m_strId == "session" || m_strAppName == "session")
-{
+   if (m_strId == "session" || m_strAppName == "session")
+   {
 
-if (is_false("session_start"))
-{
+      if (is_false("session_start"))
+      {
 
-//::parallelization::finish(psystem);
+      //::parallelization::finish(psystem);
 
-}
+      }
 
-}
-else
-{
+   }
+   else
+   {
 
-psystem->finish();
+      psystem->destroy();
 
-}
+   }
 
-return true;
+   return true;
 
 }
 
@@ -10334,7 +10334,7 @@ void application::close(::apex::enum_end eend)
    if (eend == ::apex::e_end_app)
    {
 
-      finish();
+      destroy();
 
       return;
 
@@ -10351,7 +10351,7 @@ void application::close(::apex::enum_end eend)
 
             auto psession = get_session();
 
-            psession->finish();
+            psession->destroy();
 
          }
 
@@ -10376,7 +10376,7 @@ void application::close(::apex::enum_end eend)
          if (psystem)
          {
 
-            psystem->finish();
+            psystem->destroy();
 
          }
 

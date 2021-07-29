@@ -5,9 +5,6 @@ namespace dynamic_source
 {
 
 
-   class script_instance;
-
-
    class CLASS_DECL_APP_PROGRAMMING script_composite :
       virtual public script_interface
    {
@@ -18,12 +15,13 @@ namespace dynamic_source
 
 
       script_composite();
-      virtual ~script_composite();
+      ~script_composite() override;
 
 
       virtual ::e_status initialize(::object * pobject) override;
 
-      virtual ::e_status finalize() override;
+      virtual ::e_status destroy() override;
+
 
    };
 

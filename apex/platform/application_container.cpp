@@ -58,7 +58,7 @@ void application_container::erase_application(::application * papp)
    if (m_applicationa.is_empty() && m_bFinalizeIfNoApplication)
    {
 
-      finish();
+      destroy();
 
    }
 

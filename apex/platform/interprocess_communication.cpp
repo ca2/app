@@ -278,8 +278,10 @@ namespace interprocess_communication
       }
 
 
-      bool rx::destroy()
+      ::e_status rx::destroy()
       {
+
+         auto estatus = base::destroy();
 
          //if (m_oswindow != nullptr)
          //{
@@ -287,7 +289,7 @@ namespace interprocess_communication
          //   m_oswindow = nullptr;
          //}
 
-         return true;
+         return estatus;
 
       }
 

@@ -755,7 +755,7 @@ namespace apex
       if (m_sessionmap.is_empty() && m_bFinalizeIfNoSession)
       {
 
-         finish();
+         destroy();
 
       }
 
@@ -5614,13 +5614,13 @@ namespace apex
       if (estatus == error_exit_session)
       {
 
-         pobject->get_session()->finish();
+         pobject->get_session()->destroy();
       
       }
       else if (estatus == error_exit_application)
       {
 
-         pobject->get_session()->finish();
+         pobject->get_session()->destroy();
       
       }
       else

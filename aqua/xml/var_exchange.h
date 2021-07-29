@@ -13,7 +13,7 @@ namespace xml
    public:
    
 
-      ::payload * m_pvar;
+      ::payload * m_ppayload;
 
 
       var_exchange();

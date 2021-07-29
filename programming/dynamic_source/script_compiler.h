@@ -5,43 +5,6 @@ namespace dynamic_source
 {
 
 
-   class script;
-   class script_instance;
-
-   class library  :
-      virtual public ::object
-   {
-   public:
-
-      ::mutex                                     m_mutex;
-      string                                    m_strError;
-      ::string_stream                               m_memfileError;
-      ::string_stream                               m_memfileLibError;
-      ::file::listing                           m_straLibSourcePath;
-      ::file::patha                             m_straLibSourceRelPath;
-      ::file::patha                             m_straLibCppPath;
-      ::file::listing                           m_straLibIncludePath;
-      ::file::patha                             m_straLibIncludeRelPath;
-      ::file::patha                             m_straLibHppPath;
-      ::file::path                              m_strLibraryPath;
-
-      millis m_millisLastLibraryVersionCheck;
-      bool                                      m_bLastLibraryVersionCheck;
-      __pointer(::acme::library)                       m_plibraryLib;
-
-
-      raw_array < __time_t >                    m_ftaLibCreation;
-      raw_array < __time_t >                    m_ftaLibAccess;
-      raw_array < __time_t >                    m_ftaLibModified;
-
-      library(::object * pobject);
-      virtual ~library();
-
-      void load_library();
-      void unload_library();
-   };
-
-
    class CLASS_DECL_APP_PROGRAMMING script_compiler :
       virtual public ::object,
       virtual public ::file::listener

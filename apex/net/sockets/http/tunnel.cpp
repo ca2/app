@@ -231,7 +231,7 @@ namespace sockets
       if (!tcp_socket::open(host, port))
       {
 
-         if (!Connecting())
+         if (!is_connecting())
          {
 
             FATAL(log_this, "http_get_socket", -1, "connect() failed miserably");
@@ -274,7 +274,7 @@ namespace sockets
          if (!tcp_socket::open(get_connect_host(), get_connect_port()))
          {
 
-            if (!Connecting())
+            if (!is_connecting())
             {
 
                FATAL(log_this, "http_get_socket", -1, "connect() failed miserably");

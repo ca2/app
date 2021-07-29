@@ -1173,7 +1173,7 @@ namespace apex
       else
       {
 
-         m_varFile.vara().add(pcreate->m_pcommandline->m_varFile);
+         m_varFile.payloada().add(pcreate->m_pcommandline->m_varFile);
 
       }
 
@@ -1260,7 +1260,7 @@ namespace apex
    //   else
    //   {
 
-   //      m_varFile.vara().add(pcreate->m_pcommandline->m_varFile);
+   //      m_varFile.payloada().add(pcreate->m_pcommandline->m_varFile);
 
    //   }
 

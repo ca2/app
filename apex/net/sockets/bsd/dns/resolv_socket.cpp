@@ -202,7 +202,7 @@ namespace sockets
                }
             }
          }
-         if (!detach()) // detach failed?
+         if (!prepare_for_detach()) // detach failed?
          {
             SetCloseAndDelete();
          }

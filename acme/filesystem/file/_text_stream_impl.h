@@ -72,7 +72,7 @@ inline void text_stream::json_write(const TYPE & t)
 
    ::__exchange(s, (TYPE &) t);
 
-   strJson = s.m_pvar->get_json();
+   strJson = s.m_ppayload->get_json();
 
    string_write(strJson);
 
@@ -89,7 +89,7 @@ inline void text_stream::json_read(TYPE & t)
 
    string_read(strJson);
 
-   s.m_pvar->parse_json(strJson);
+   s.m_ppayload->parse_json(strJson);
 
    s.set_loading();
 

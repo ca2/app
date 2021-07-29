@@ -1,8 +1,13 @@
 #pragma once
 
+#undef new
 
 class property;
 class action_context;
+
+
+#include "acme/memory/property_memory_allocate.h"
+
 
 namespace xml
 {
@@ -61,6 +66,10 @@ namespace xml
 //using property = payload;
 
 
+void on_property_construct();
+void on_property_destruct();
+
+
 class CLASS_DECL_ACME property : public ::payload
 {
 public:
@@ -74,11 +83,46 @@ public:
 
    ::id              m_id;
 
-   property() {}
-   property(const ::id & id) : m_id(id) {}
-   property(const ::id & id, const ::payload & varValue) : m_id(id), ::payload(varValue) {}
-   property(const ::property & property) : m_id(property.m_id), ::payload(property) {}
-   property(::property && property) : m_id(::move(property.m_id)), ::payload(::move(property)) {}
+
+   property() { on_property_construct(); }
+   property(const ::id& id) : m_id(id) { on_property_construct(); }
+   property(const ::id& id, const ::payload& varValue) : m_id(id), ::payload(varValue) { on_property_construct(); }
+   property(const ::property& property) : m_id(property.m_id), ::payload(property) { on_property_construct(); }
+   property(::property&& property) : m_id(::move(property.m_id)), ::payload(::move(property)) { on_property_construct(); }
+   ~property() { on_property_destruct(); }
+
+
+   void* operator new(size_t size)
+   {
+
+      return property_memory_allocate(size);
+
+   }
+
+
+   void* operator new(size_t size, const char* /* pszFileName */, int /* nLine */)
+   {
+
+      return property_memory_allocate(size);
+
+   }
+
+
+   void operator delete(void * p)
+   {
+
+      return property_memory_free(p);
+
+   }
+
+
+   void operator delete(void * p, const char* /* pszFileName */, int /* nLine */)
+   {
+
+      return property_memory_free(p);
+
+   }
+
 
 
    using payload::operator =;
@@ -222,11 +266,11 @@ public:
 ////
 ////   string_array & stra();
 ////   int_array & inta();
-////   var_array & vara();
+////   payload_array & payloada();
 ////   property_set & propset();
 ////   const string_array & stra() const;
 ////   const int_array & inta() const;
-////   const var_array & vara() const;
+////   const payload_array & payloada() const;
 ////   const property_set & propset() const;
 ////   inline void get_string(char * psz) const;
 ////   strsize get_length() const;
@@ -248,7 +292,7 @@ public:
 ////
 ////   inline ::payload operator()(::index iIndex) const { return find_property(::id(iIndex)); }
 ////
-////   inline bool has_property(const ::id & id) const { return m_etype == e_type_propset ? has_property(id) : false; }
+////   inline bool has_property(const ::id & id) const { return m_etype == e_type_property_set ? has_property(id) : false; }
 ////
 ////   inline property & operator[](const id & id) { return get_property(id); }
 ////   inline ::payload operator[](const id & id) const { return find_property(id); }
@@ -842,9 +886,10 @@ CLASS_DECL_ACME void property_skip_json_value(const char *& pszJson, const char 
 
 
 #include "acme/primitive/collection/ptr_array.h"
+#include "acme/primitive/collection/auto_ptr_array.h"
 
 
-using property_ptra = ptr_array < ::property >;
+using property_ptra = auto_ptr_array < ::property >;
 
 //using property_map = map < ::id, const ::id &, payload, const ::payload &, ::property >;
 
@@ -887,4 +932,4 @@ using property_ptra = ptr_array < ::property >;
 //inline ::payload CLASS_DECL_ACME operator * (const ::payload & payload, const property& prop) { return operator * (payload, (const ::payload&)prop); }
 
 
-
+#define new ACME_NEW

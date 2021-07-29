@@ -218,7 +218,7 @@ namespace database
    }
 
 
-   bool composite::query_items(__pointer(var_array) & pvara, const char* pszQuery)
+   bool composite::query_items(__pointer(payload_array) & pvara, const char* pszQuery)
    {
 
       return m_pdatabase->query_items(pvara, pszQuery);

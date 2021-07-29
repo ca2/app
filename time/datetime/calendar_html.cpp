@@ -35,7 +35,16 @@ namespace datetime
    ::e_status visual::initialize(::object * pobject)
    {
 
-      return ::success;
+      auto estatus = ::datetime::calendar::calendar::initialize(pobject);
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return estatus;
 
    }
 

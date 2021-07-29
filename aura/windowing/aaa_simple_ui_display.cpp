@@ -162,7 +162,7 @@ namespace windowing
 //      }
 //      else auto pnode = ::aura::get_system()->node();
 
-               if (m_pnode->is_app_dark_mode())
+               if (is_dark_mode())
 //      {
 //
 //         XftColorAllocName(pdisplay, m_pvisual, m_colormap, "#555555", &m_colorBack);

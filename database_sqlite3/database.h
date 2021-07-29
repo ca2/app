@@ -89,14 +89,14 @@ namespace sqlite
       
       __pointer(::database::row) query_row(const char* pszQuery) override;
       
-      __pointer(::var_array) query_items(const char* pszQuery) override;
+      __pointer(::payload_array) query_items(const char* pszQuery) override;
       
       virtual ::payload query_item(const char* pszQuery);
       virtual bool memory_query_item(get_memory getmemory, const char* pszQuery);
 
       //virtual bool query_rows(__pointer(row_array) & rows, const char * pszQuery);
       //virtual bool query_row(__pointer(row) & rows, const char * pszQuery);
-      //virtual bool query_items(__pointer(var_array) & items, const char * pszQuery);
+      //virtual bool query_items(__pointer(payload_array) & items, const char * pszQuery);
       //virtual bool query_item(::payload & item, const char * pszQuery);
 
 

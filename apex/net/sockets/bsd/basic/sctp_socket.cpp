@@ -186,7 +186,7 @@ namespace sockets
 #endif
             {
                INFO(log_this, "connect: connection pending", Errno, bsd_socket_error(Errno));
-               SetConnecting( true ); // this flag will control fd_set's
+               set_connecting( true ); // this flag will control fd_set's
             }
             else
             {
@@ -235,7 +235,7 @@ namespace sockets
       }
       else
       {
-         SetConnecting();
+         set_connecting();
       }
       return n;
    }
@@ -337,7 +337,7 @@ namespace sockets
 
    void SctpSocket::OnWrite()
    {
-      if (Connecting())
+      if (is_connecting())
       {
          i32 err = SoError();
 
@@ -346,7 +346,7 @@ namespace sockets
          if (!err) // ok
          {
             set(!IsDisableRead(), false);
-            SetConnecting(false);
+            set_connecting(false);
             SetCallOnConnect();
             return;
          }
@@ -362,7 +362,7 @@ namespace sockets
          }
 #endif
          if (GetConnectionRetry() == -1 ||
-               (GetConnectionRetry() && GetConnectionRetries() < GetConnectionRetry()) )
+               (GetConnectionRetry() && GetConnectionRetryCount() < GetConnectionRetry()) )
          {
             // even though the connection failed at once, only retry after
             // the connection timeout.
@@ -370,7 +370,7 @@ namespace sockets
             // false it's because of a connection error - not a timeout...
             return;
          }
-         SetConnecting(false);
+         set_connecting(false);
          SetCloseAndDelete( true );
          /// \todo state reason why connect failed
          OnConnectFailed();
@@ -379,7 +379,7 @@ namespace sockets
    }
 
 
-   void SctpSocket::OnConnectTimeout()
+   void SctpSocket::on_connection_timeout()
    {
       FATAL(log_this, "connect", -1, "connect timeout");
 #ifdef ENABLE_SOCKS4
@@ -391,7 +391,7 @@ namespace sockets
       else
 #endif
          if (GetConnectionRetry() == -1 ||
-               (GetConnectionRetry() && GetConnectionRetries() < GetConnectionRetry()) )
+               (GetConnectionRetry() && GetConnectionRetryCount() < GetConnectionRetry()) )
          {
             IncreaseConnectionRetries();
             // ask socket via OnConnectRetry callback if we should continue trying
@@ -413,14 +413,14 @@ namespace sockets
             OnConnectFailed();
          }
       //
-      SetConnecting(false);
+      set_connecting(false);
    }
 
 
 #ifdef _WIN32
    void SctpSocket::OnException()
    {
-      if (Connecting())
+      if (is_connecting())
       {
 #ifdef ENABLE_SOCKS4
          if (Socks4())
@@ -429,7 +429,7 @@ namespace sockets
 #endif
             if (GetConnectionRetry() == -1 ||
                   (GetConnectionRetry() &&
-                   GetConnectionRetries() < GetConnectionRetry() ))
+                   GetConnectionRetryCount() < GetConnectionRetry() ))
             {
                // even though the connection failed at once, only retry after
                // the connection timeout
@@ -438,7 +438,7 @@ namespace sockets
             }
             else
             {
-               SetConnecting(false); // tnx snibbe
+               set_connecting(false); // tnx snibbe
                SetCloseAndDelete();
                OnConnectFailed();
             }

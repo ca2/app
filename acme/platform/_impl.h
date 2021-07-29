@@ -92,21 +92,6 @@ inline void CopyElements(TYPE* pDest, const TYPE* pSrc, ::count nCount)
 
 
 
-class CLASS_DECL_ACME c_class
-{
-public:
-
-
-   static c_class s_cclass;
-
-
-   c_class();
-   c_class(const c_class &);
-   virtual ~c_class();
-
-
-};
-
 
 //namespace acme
 //{
@@ -656,7 +641,7 @@ inline i64 release(__composite(COMPOSITE) & pcomposite OBJECT_REFERENCE_COUNT_DE
 }
 
 
-template < class TYPE >
+template < typename TYPE >
 inline i64 release(__pointer(TYPE) & pointer OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
 {
 
@@ -665,7 +650,7 @@ inline i64 release(__pointer(TYPE) & pointer OBJECT_REFERENCE_COUNT_DEBUG_COMMA_
 }
 
 
-template < class TYPE >
+template < typename TYPE >
 inline i64 __finalize(__pointer(TYPE)& pointer OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
 {
    

@@ -34,7 +34,7 @@ namespace net
 
       auto tickStart = ::millis::now();
 
-      phandler->add(psocket);
+      phandler->add2(psocket);
 
       while (true)
       {

@@ -13,7 +13,7 @@ namespace draw2d
 namespace aura
 {
 
-   template < class TYPE >
+   template < typename TYPE >
    class simple_chain :
       virtual public object
    {

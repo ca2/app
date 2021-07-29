@@ -279,7 +279,7 @@ namespace user
 
          m_estatus = error_failed;
 
-         finish();
+         destroy();
 
          return false;
 
@@ -732,10 +732,10 @@ namespace user
    }
 
 
-   ::e_status thread::finish_composites()
+   ::e_status thread::destroy_composites()
    {
 
-      auto estatus = ::channel::finish_composites();
+      auto estatus = ::channel::destroy_composites();
 
       return estatus;
 
@@ -1053,10 +1053,10 @@ namespace user
    }
 
 
-   ::e_status thread::finish()
+   ::e_status thread::destroy()
    {
 
-      return ::thread::finish();
+      return ::thread::destroy();
 
    }
 

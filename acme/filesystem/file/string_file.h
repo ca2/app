@@ -64,7 +64,7 @@
 
       virtual filesize get_position() const override;
 
-      void destroy();
+      ::e_status destroy() override;
       //void alloc(strsize iSize);
 
       //void alloc_up(strsize iAtLeast);

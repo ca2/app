@@ -266,11 +266,34 @@ typedef u16 port_t;
 #endif
 
 
+namespace sockets
+{
+
+
+   class socket_thread;
+
+   class base_socket_handler;
+
+   class base_socket;
+
+   using socket_pointer = __pointer(base_socket);
+
+   class socket_handler;
+
+   __declare_map(socket_flag_map, socket_flag, base_socket*, m_pbasesocket, bool, m_bFlag);
+   __declare_map(socket_socket_flag_map, socket_socket_flag, SOCKET, m_socket, socket_flag_map, m_pmap);
+   __declare_map(socket_map, socket_pointer_pair, SOCKET, m_socket, socket_pointer, m_psocket);
+
+
+} // namespace sockets
+
+
 
 #include "ssl/client_context.h"
 #include "ssl/client_context_map.h"
 #include "apex/net/address.h"
 #include "apex/net/sockets/base/base_socket.h"
+#include "apex/net/sockets/base/socket_thread.h"
 #include "apex/net/sockets/bsd/ssl/context.h"
 #include "basic/socket.h"
 #include "apex/net/sockets/base/base_socket_handler.h"

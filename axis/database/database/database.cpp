@@ -167,7 +167,7 @@ namespace database
    //}
 
 
-   //__pointer(var_array) database::query_items(const char * pszQuery)
+   //__pointer(payload_array) database::query_items(const char * pszQuery)
    //{
 
    //   auto pset = query_result(pszQuery, -1, 1);
@@ -179,7 +179,7 @@ namespace database
 
    //   }
 
-   //   auto pvara = __new(var_array);
+   //   auto pvara = __new(payload_array);
 
    //   for (index i = 0; i < pset->m_prowa->get_count(); i++)
    //   {
@@ -272,7 +272,7 @@ namespace database
    }
 
 
-   //bool database::query_items(__pointer(var_array) & pitems, const char * pszQuery)
+   //bool database::query_items(__pointer(payload_array) & pitems, const char * pszQuery)
    //{
 
    //   auto pset = query_result(pszQuery);
@@ -369,10 +369,10 @@ namespace database
    }
 
 
-   __pointer(var_array) database::query_items(const char* pszQuery)
+   __pointer(payload_array) database::query_items(const char* pszQuery)
    {
 
-      __pointer(var_array) pvara;
+      __pointer(payload_array) pvara;
 
 
       if (!query_items(pvara, pszQuery))
@@ -443,7 +443,7 @@ namespace database
    }
 
 
-   bool database::query_items(__pointer(var_array)& items, const char* pszQuery)
+   bool database::query_items(__pointer(payload_array)& items, const char* pszQuery)
    {
 
       return false;
@@ -464,7 +464,7 @@ namespace database
 
    //bool database::database(__pointer(row_array)& rows, const char* pszQuery);
    //bool database::query_row(__pointer(row)& rows, const char* pszQuery);
-   //bool database::query_items(__pointer(var_array)& items, const char* pszQuery);
+   //bool database::query_items(__pointer(payload_array)& items, const char* pszQuery);
    //bool database::uery_item(::payload& item, const char* pszQuery);
 
 

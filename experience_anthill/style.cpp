@@ -57,9 +57,7 @@ namespace experience
                if (eelement == ::user::e_element_background)
                {
 
-                  
-
-                  if (is_dark_mode())
+               if (is_dark_mode())
                   {
 
                      return __acolor(255, 0, 0, 0);
@@ -81,9 +79,7 @@ namespace experience
                if (eelement == ::user::e_element_background)
                {
 
-                  
-
-                  if (is_dark_mode())
+               if (is_dark_mode())
                   {
 
                      //return __acolor(255, 0x20, 0x45, 0x60);
@@ -108,9 +104,7 @@ namespace experience
                if (eelement == ::user::e_element_background)
                {
 
-                  
-
-                  if (is_dark_mode())
+               if (is_dark_mode())
                   {
 
                      return __acolor(255, 0, 0, 0);
@@ -168,9 +162,7 @@ namespace experience
             if (estate & ::user::e_state_selected)
             {
 
-               
-
-               if (is_dark_mode())
+                              if (is_dark_mode())
                {
 
                   return __acolor(255, 185, 185, 180);
@@ -188,7 +180,7 @@ namespace experience
             else
             {
 
-               if (is_dark_mode())
+                              if (is_dark_mode())
                {
 
                   return __acolor(255, 125, 125, 120);
@@ -210,7 +202,7 @@ namespace experience
             || eelement == ::user::e_element_tab_layout_background)
          {
 
-            if (is_dark_mode())
+                           if (is_dark_mode())
             {
 
                return __acolor(255, 0, 0, 0);
@@ -227,7 +219,7 @@ namespace experience
          else if (eelement == ::user::e_element_text)
          {
             
-            if (is_dark_mode())
+                           if (is_dark_mode())
             {
 
 

@@ -1529,16 +1529,12 @@ namespace aura
    //}
 
 
-
-
-   ::e_status session::finish()
+   ::e_status session::destroy()
    {
 
-      return ::aqua::session::finish();
+      return ::aqua::session::destroy();
 
    }
-
-
 
 
    bool session::is_key_pressed(::user::enum_key ekey)

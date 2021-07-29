@@ -30,7 +30,7 @@ namespace file
       //   }
       //}
 
-      template < class TYPE >
+      template < typename TYPE >
       void defer_alloc(TYPE & t)
       {
 

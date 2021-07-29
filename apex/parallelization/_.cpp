@@ -142,7 +142,7 @@ namespace parallelization
          try
          {
 
-            pair.element1()->finish();
+            pair.element1()->destroy();
 
          }
          catch (...)
@@ -894,7 +894,7 @@ namespace apex
 
 
 
-::e_status thread_ptra::finish()
+::e_status thread_ptra::destroy()
 {
 
    try
@@ -913,7 +913,7 @@ namespace apex
             /// this is quite dangerous
             //synchronous_lock slThread(pthread->mutex());
 
-            pthread->finish();
+            pthread->destroy();
 
          }
          catch (...)

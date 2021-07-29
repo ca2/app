@@ -79,7 +79,7 @@ namespace windowing
 
       virtual ::e_status finalize() override;
 
-      virtual ::e_status finish() override;
+      ::e_status destroy() override;
 
 
       virtual ::e_status start();

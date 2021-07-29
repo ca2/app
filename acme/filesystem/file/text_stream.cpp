@@ -464,8 +464,9 @@ void text_stream::read(string & str)
 
 void text_stream::read(property_set& set)
 {
-
+#undef new
    __exchange_load_array(*this, set);
+#define new ACME_NEW
 
 }
 
@@ -519,7 +520,7 @@ void text_stream::write(const void * psz, strsize s)
 //
 //   ::__exchange(s, t);
 //
-//   strJson = s.m_pvar->get_json();
+//   strJson = s.m_ppayload->get_json();
 //
 //   string_write(strJson);
 //
@@ -535,7 +536,7 @@ void text_stream::write(const void * psz, strsize s)
 //
 //   string_read(strJson);
 //
-//   s.m_pvar->parse_json(strJson);
+//   s.m_ppayload->parse_json(strJson);
 //
 //   s.set_loading();
 //

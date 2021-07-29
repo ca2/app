@@ -1155,6 +1155,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClInclude Include="inline\implement\windows.h" />
     <ClInclude Include="net\address_department.h" />
     <ClCompile Include="net\address_department.cpp" />
+    <ClCompile Include="net\sockets\base\socket_thread.cpp" />
     <ClCompile Include="net\sockets\bsd\basic\basic_net.cpp" />
     <ClCompile Include="net\sockets\http\http_base_socket.cpp" />
     <ClCompile Include="net\sockets\_system_sockets.cpp" />
@@ -1314,6 +1315,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClInclude Include="message\_.h" />
     <ClInclude Include="message\_impl.h" />
     <ClInclude Include="message\_message.h" />
+    <ClInclude Include="net\sockets\base\socket_thread.h" />
     <ClInclude Include="net\sockets\http\http_base_socket.h" />
     <ClInclude Include="net\sockets\_sockets.h" />
     <ClInclude Include="net\_net.h" />

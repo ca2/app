@@ -450,6 +450,8 @@ namespace dynamic_source
 
       }
 
+      pinstance->initialize(this);
+
       pinstance->m_strNote = m_strName;
 
       pinstance->m_pscript2 = this;

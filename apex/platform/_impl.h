@@ -512,7 +512,7 @@ bool channel::add_handler(const ::id & id, RECEIVER* preceiver, void (RECEIVER::
 //}
 //
 //
-//template < class TYPE >
+//template < typename TYPE >
 //inline i64 release(__pointer(TYPE) & pointer OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS)
 //{
 //

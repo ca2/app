@@ -5,7 +5,7 @@ namespace database
 {
 
    change_event::change_event() :
-      m_pvar(nullptr)
+      m_ppayload(nullptr)
    {
       m_pserver = nullptr;
       m_pupdate = nullptr;
@@ -13,7 +13,7 @@ namespace database
    }
 
    change_event::change_event(::payload & payload) :
-      m_pvar(&payload)
+      m_ppayload(&payload)
    {
       m_pserver = nullptr;
       m_pupdate = nullptr;

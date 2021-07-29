@@ -1,11 +1,12 @@
 #pragma once
 
 
-template < class TYPE >
+template < typename TYPE, enum_type t_etypePayload = e_type_element >
 class unique_number_sort_array;
 
 
-template < typename T > class numeric_array;
+template < typename TYPE, enum_type t_etypePayload = e_type_element > 
+class numeric_array;
 
 
 using i8_array = numeric_array < i8 >;

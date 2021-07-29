@@ -953,13 +953,13 @@
     <ClInclude Include="version\version.h">
       <Filter>Header Files\version</Filter>
     </ClInclude>
-    <ClInclude Include="memory\plex.h">
+    <ClInclude Include="memory\__plex.h">
       <Filter>Header Files\memory</Filter>
     </ClInclude>
-    <ClInclude Include="memory\plex_heap_impl1.h">
+    <ClInclude Include="memory\__plex_heap_impl.h">
       <Filter>Header Files\memory</Filter>
     </ClInclude>
-    <ClInclude Include="memory\plex_heap1.h">
+    <ClInclude Include="memory\__plex_heap.h">
       <Filter>Header Files\memory</Filter>
     </ClInclude>
     <ClInclude Include="memory\heap_.h">
@@ -2234,7 +2234,7 @@
     <ClInclude Include="primitive\collection\unique_array.h">
       <Filter>Header Files\primitive\collection</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\collection\var_array.h">
+    <ClInclude Include="primitive\collection\payload_array.h">
       <Filter>Header Files\primitive\collection</Filter>
     </ClInclude>
     <ClInclude Include="primitive\primitive\osdata_array.h">
@@ -2747,13 +2747,28 @@
     <ClInclude Include="memory\memory_allocate.h">
       <Filter>Header Files\memory</Filter>
     </ClInclude>
-    <ClInclude Include="memory\_memory_allocate.h">
+    <ClInclude Include="memory\__memory_allocate.h">
       <Filter>Header Files\memory</Filter>
     </ClInclude>
-    <ClInclude Include="memory\unaligned_memory_allocate.h">
+    <ClInclude Include="memory\__unaligned_memory_allocate.h">
       <Filter>Header Files\memory</Filter>
     </ClInclude>
-    <ClInclude Include="memory\aligned_memory_allocate.h">
+    <ClInclude Include="memory\__aligned_memory_allocate.h">
+      <Filter>Header Files\memory</Filter>
+    </ClInclude>
+    <ClInclude Include="memory\_____heap_namespace.h">
+      <Filter>Header Files\memory</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\c_class.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="memory\property_memory_allocate.h">
+      <Filter>Header Files\memory</Filter>
+    </ClInclude>
+    <ClInclude Include="memory\array_memory_allocate.h">
+      <Filter>Header Files\memory</Filter>
+    </ClInclude>
+    <ClInclude Include="memory\secondary_memory_allocate.h">
       <Filter>Header Files\memory</Filter>
     </ClInclude>
   </ItemGroup>
@@ -3043,7 +3058,7 @@
     <ClCompile Include="primitive\collection\stringl.cpp">
       <Filter>Source Files\primitive\collection</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\collection\var_array.cpp">
+    <ClCompile Include="primitive\collection\payload_array.cpp">
       <Filter>Source Files\primitive\collection</Filter>
     </ClCompile>
     <ClCompile Include="primitive\primitive\_.cpp">
@@ -3160,9 +3175,6 @@
     <ClCompile Include="os\windows\windowing.cpp">
       <Filter>Source Files\os\windows</Filter>
     </ClCompile>
-    <ClCompile Include="memory\plex.cpp">
-      <Filter>Source Files\memory</Filter>
-    </ClCompile>
     <ClCompile Include="memory\allocate_mid_big.cpp">
       <Filter>Source Files\memory</Filter>
     </ClCompile>
@@ -3176,9 +3188,6 @@
       <Filter>Source Files\memory</Filter>
     </ClCompile>
     <ClCompile Include="memory\allocation.cpp">
-      <Filter>Source Files\memory</Filter>
-    </ClCompile>
-    <ClCompile Include="memory\heap.cpp">
       <Filter>Source Files\memory</Filter>
     </ClCompile>
     <ClCompile Include="memory\inline\heap_bare.cpp">
@@ -3577,9 +3586,6 @@
     <ClCompile Include="primitive\datetime\secs.cpp">
       <Filter>Source Files\primitive\datetime</Filter>
     </ClCompile>
-    <ClCompile Include="memory\plex_heap.cpp">
-      <Filter>Source Files\memory</Filter>
-    </ClCompile>
     <ClCompile Include="graphics\draw2d\os_font_name.cpp">
       <Filter>Source Files\graphics\draw2d</Filter>
     </ClCompile>
@@ -3937,6 +3943,24 @@
     <ClCompile Include="platform\simple_log.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
+    <ClCompile Include="memory\inline\plex_heap.cpp">
+      <Filter>Source Files\memory\inline</Filter>
+    </ClCompile>
+    <ClCompile Include="memory\inline\plex.cpp">
+      <Filter>Source Files\memory\inline</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\c_class.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="memory\property_memory_allocate.cpp">
+      <Filter>Source Files\memory</Filter>
+    </ClCompile>
+    <ClCompile Include="memory\array_memory_allocate.cpp">
+      <Filter>Source Files\memory</Filter>
+    </ClCompile>
+    <ClCompile Include="memory\secondary_memory_allocate.cpp">
+      <Filter>Source Files\memory</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="primitive\string\aaa_want_to_remove_str.inl">
@@ -3980,6 +4004,12 @@
     </None>
     <None Include="exception\_.inl">
       <Filter>Header Files\exception</Filter>
+    </None>
+    <None Include="memory\namespace_heap.inl">
+      <Filter>Header Files\memory</Filter>
+    </None>
+    <None Include="memory\heap_namespace.inl">
+      <Filter>Header Files\memory</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

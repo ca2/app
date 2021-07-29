@@ -43,12 +43,6 @@ namespace user
    class list_item;
    class list_column;
 
-   //CLASS_DECL_CORE ::color::color get_system_app_background_color();
-
-   //CLASS_DECL_CORE bool is_system_dark_mode();
-
-   //CLASS_DECL_CORE bool is_app_dark_mode();
-
    class plain_text_set_sel_command;
    class plain_text_tree;
    class plain_text_command;
@@ -60,24 +54,8 @@ namespace user
 } // namespace user
 
 
-//namespace user
-//{
-//
-//
-//   CLASS_DECL_CORE void set_system_dark_mode(bool bDark);
-//   CLASS_DECL_CORE void set_app_dark_mode(bool bDark);
-//   CLASS_DECL_CORE bool is_system_dark_mode();
-//   CLASS_DECL_CORE bool is_app_dark_mode();
-//   CLASS_DECL_CORE void os_update_dark_mode();
-//
-//
-//} // namespace user
-
 
 inline ::user::primitive* __user_primitive(oswindow oswindow);
-
-
-
 
 
 #include "mesh_item.h"

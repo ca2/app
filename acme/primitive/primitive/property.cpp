@@ -282,9 +282,9 @@ string & property::get_http_post(string & str) const
 //   return inta();
 //}
 //
-//var_array & property::vara()
+//payload_array & property::payloada()
 //{
-//   return vara();
+//   return payloada();
 //}
 //
 //property_set & property::propset()
@@ -302,9 +302,9 @@ string & property::get_http_post(string & str) const
 //   return inta();
 //}
 //
-//const var_array & property::vara() const
+//const payload_array & property::payloada() const
 //{
-//   return vara();
+//   return payloada();
 //}
 //
 //const property_set & property::propset() const
@@ -351,13 +351,13 @@ string & property::get_http_post(string & str) const
 //{
 //   switch(m_etype)
 //   {
-//   case ::e_type_stra:
+//   case ::e_type_string_array:
 //      return const_cast<property *>(this)->stra().operator [](iIndex);
-//   case ::e_type_inta:
+//   case ::e_type_i32_array:
 //      return const_cast<property *>(this)->inta().operator [](iIndex);
 //   case ::type_vara:
-//      return const_cast<property *>(this)->vara().operator [](iIndex);
-//   case ::e_type_propset:
+//      return const_cast<property *>(this)->payloada().operator [](iIndex);
+//   case ::e_type_property_set:
 //      return const_cast<property *>(this)->propset().at(iIndex);
 //   default:
 //      if(const_cast<property *>(this)->get_count() == 1)
@@ -1821,6 +1821,43 @@ payload & payload::operator += (const ::string & str)
    operator=(*this + str);
 
    return *this;
+
+}
+
+
+::interlocked_count g_interlockedcountProperty;
+
+
+void on_property_construct2()
+{
+
+
+}
+
+
+void on_property_destruct2()
+{
+
+
+}
+
+
+void on_property_construct()
+{
+
+   g_interlockedcountProperty++;
+
+   on_property_construct2();
+
+}
+
+
+void on_property_destruct()
+{
+
+   g_interlockedcountProperty--;
+
+   on_property_destruct2();
 
 }
 

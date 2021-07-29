@@ -23,7 +23,7 @@ task::task()
    if (m_pobjectParentTask)
    {
 
-      m_pobjectParentTask->add_child_task(this);
+      m_pobjectParentTask->add_task(this);
 
    }
 
@@ -82,7 +82,7 @@ const char * task::get_task_tag()
 }
 
 
-void task::add_child_task(::object* pobjectTask)
+void task::add_task(::object* pobjectTask)
 {
 
    if (m_pobjectParentTask)
@@ -92,13 +92,13 @@ void task::add_child_task(::object* pobjectTask)
       // let a parent that maybe more stable
       // to have the pobjectTask as child
 
-      m_pobjectParentTask->add_child_task(pobjectTask);
+      m_pobjectParentTask->add_task(pobjectTask);
 
    }
    else
    {
 
-      ::object::add_child_task(pobjectTask);
+      ::object::add_task(pobjectTask);
 
    }
 
@@ -191,10 +191,10 @@ bool task::is_running() const
 }
 
 
-bool task::check_children_task()
+bool task::check_tasks_finished()
 {
 
-   auto b = ::object::check_children_task();
+   auto b = ::object::check_tasks_finished();
 
    if (m_bSetFinish)
    {
@@ -277,7 +277,7 @@ bool task::kick_thread()
 ::e_status task::stop_task()
 {
 
-   auto estatus = finish();
+   auto estatus = check_tasks_finished();
 
    // but it should wait for thread to finish...
 
@@ -307,16 +307,16 @@ void* task::s_os_task(void* p)
    try
    {
 
-      ::task* pthread = (::task*)p;
+      ::task* ptask = (::task*)p;
 
-      ::set_task(pthread OBJECT_REFERENCE_COUNT_DEBUG_COMMA_P_FUNCTION_LINE(pthread));
+      ::set_task(ptask OBJECT_REFERENCE_COUNT_DEBUG_COMMA_P_FUNCTION_LINE(ptask));
 
-      pthread->release(OBJECT_REFERENCE_COUNT_DEBUG_P_FUNCTION_LINE(pthread));
+      ptask->release(OBJECT_REFERENCE_COUNT_DEBUG_P_FUNCTION_LINE(ptask));
 
       try
       {
 
-         pthread->main();
+         ptask->main();
 
 
       }
@@ -325,24 +325,40 @@ void* task::s_os_task(void* p)
 
       }
 
-      clear_message_queue(pthread->m_itask);
+      clear_message_queue(ptask->m_itask);
 
-      pthread->m_bTaskTerminated = true;
+      ptask->m_bTaskTerminated = true;
 
-      //pthread->m_ptaskParent.release();
+      //ptask->m_ptaskParent.release();
 
 #if OBJECT_REFERENCE_COUNT_DEBUG
 
-      if (pthread->m_countReference > 1)
+      if (ptask->m_countReference > 1)
       {
 
-         __check_pending_releases(pthread);
+         __check_pending_releases(ptask);
 
       }
 
 #endif
 
-      ::thread_release(OBJECT_REFERENCE_COUNT_DEBUG_P_NOTE(pthread, ""));
+      try
+      {
+
+         if (::is_set(ptask->m_pobjectParentTask))
+         {
+
+            ptask->m_pobjectParentTask->erase_task(ptask);
+
+         }
+
+      }
+      catch (...)
+      {
+
+      }
+
+      ::thread_release(OBJECT_REFERENCE_COUNT_DEBUG_P_NOTE(ptask, ""));
 
    }
    catch (...)
@@ -897,13 +913,13 @@ CLASS_DECL_ACME bool __task_sleep(task* task)
 }
 
 
-CLASS_DECL_ACME bool __task_sleep(task* pthread, millis millis)
+CLASS_DECL_ACME bool __task_sleep(task* ptask, millis millis)
 {
 
    if (millis.m_i < 1000)
    {
 
-      if (!pthread->task_get_run())
+      if (!ptask->task_get_run())
       {
 
          return false;
@@ -912,7 +928,7 @@ CLASS_DECL_ACME bool __task_sleep(task* pthread, millis millis)
 
       sleep(millis);
 
-      return pthread->task_get_run();
+      return ptask->task_get_run();
 
    }
 
@@ -927,22 +943,22 @@ CLASS_DECL_ACME bool __task_sleep(task* pthread, millis millis)
 
       {
 
-         synchronous_lock synchronouslock(pthread->mutex());
+         synchronous_lock synchronouslock(ptask->mutex());
 
-         if (pthread->m_pevSleep.is_null())
+         if (ptask->m_pevSleep.is_null())
          {
 
-            pthread->m_pevSleep = __new(manual_reset_event());
+            ptask->m_pevSleep = __new(manual_reset_event());
 
-            pthread->m_pevSleep->ResetEvent();
+            ptask->m_pevSleep->ResetEvent();
 
          }
 
-         spev = pthread->m_pevSleep;
+         spev = ptask->m_pevSleep;
 
       }
 
-      if (!pthread->task_get_run())
+      if (!ptask->task_get_run())
       {
 
          return false;
@@ -952,9 +968,9 @@ CLASS_DECL_ACME bool __task_sleep(task* pthread, millis millis)
       //while(iTenths > 0)
       //{
 
-      pthread->m_pevSleep->wait(millis);
+      ptask->m_pevSleep->wait(millis);
 
-      if (!pthread->task_get_run())
+      if (!ptask->task_get_run())
       {
 
          return false;
@@ -971,18 +987,18 @@ CLASS_DECL_ACME bool __task_sleep(task* pthread, millis millis)
 
    }
 
-   return pthread->task_get_run();
+   return ptask->task_get_run();
 
 }
 
 
-CLASS_DECL_ACME bool __task_sleep(::task* pthread, synchronization_object* psync)
+CLASS_DECL_ACME bool __task_sleep(::task* ptask, synchronization_object* psync)
 {
 
    try
    {
 
-      while (pthread->task_get_run())
+      while (ptask->task_get_run())
       {
 
          if (psync->wait(100).succeeded())
@@ -1000,18 +1016,18 @@ CLASS_DECL_ACME bool __task_sleep(::task* pthread, synchronization_object* psync
 
    }
 
-   return pthread->task_get_run();
+   return ptask->task_get_run();
 
 }
 
 
-CLASS_DECL_ACME bool __task_sleep(task* pthread, millis millis, synchronization_object* psync)
+CLASS_DECL_ACME bool __task_sleep(task* ptask, millis millis, synchronization_object* psync)
 {
 
    if (millis.m_i < 1000)
    {
 
-      if (!pthread->task_get_run())
+      if (!ptask->task_get_run())
       {
 
          return false;
@@ -1020,7 +1036,7 @@ CLASS_DECL_ACME bool __task_sleep(task* pthread, millis millis, synchronization_
 
       psync->wait(millis);
 
-      return pthread->task_get_run();
+      return ptask->task_get_run();
 
    }
 
@@ -1033,9 +1049,9 @@ CLASS_DECL_ACME bool __task_sleep(task* pthread, millis millis, synchronization_
 
       {
 
-         pthread->m_pevSleep->wait(100);
+         ptask->m_pevSleep->wait(100);
 
-         if (!pthread->task_get_run())
+         if (!ptask->task_get_run())
          {
 
             return false;
@@ -1052,7 +1068,7 @@ CLASS_DECL_ACME bool __task_sleep(task* pthread, millis millis, synchronization_
 
    }
 
-   return pthread->task_get_run();
+   return ptask->task_get_run();
 
 }
 
@@ -1060,9 +1076,9 @@ CLASS_DECL_ACME bool __task_sleep(task* pthread, millis millis, synchronization_
 CLASS_DECL_ACME bool task_sleep(millis millis, synchronization_object* psync)
 {
 
-   auto pthread = ::get_task();
+   auto ptask = ::get_task();
 
-   if (::is_null(pthread))
+   if (::is_null(ptask))
    {
 
       if (::is_null(psync))
@@ -1108,13 +1124,13 @@ CLASS_DECL_ACME bool task_sleep(millis millis, synchronization_object* psync)
       if (__os(millis) == U32_INFINITE_TIMEOUT)
       {
 
-         return __task_sleep(pthread);
+         return __task_sleep(ptask);
 
       }
       else
       {
 
-         return __task_sleep(pthread, millis);
+         return __task_sleep(ptask, millis);
 
       }
 
@@ -1125,13 +1141,13 @@ CLASS_DECL_ACME bool task_sleep(millis millis, synchronization_object* psync)
       if (__os(millis) == U32_INFINITE_TIMEOUT)
       {
 
-         return __task_sleep(pthread, psync);
+         return __task_sleep(ptask, psync);
 
       }
       else
       {
 
-         return __task_sleep(pthread, millis, psync);
+         return __task_sleep(ptask, millis, psync);
 
       }
 

@@ -601,7 +601,7 @@ inline void to(long  & l, i32 iBase, const ansichar * psz)
 
       var_stream stream;
 
-      stream.m_pvar->parse_json(psz);
+      stream.m_ppayload->parse_json(psz);
 
       matter.exchange(stream);
 

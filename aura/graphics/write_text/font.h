@@ -106,7 +106,7 @@ namespace write_text
 
       font();
       font(const font & font);
-      virtual ~font();
+      ~font() override;
 
       virtual void dump(dump_context & dumpcontext) const override;
 
@@ -129,7 +129,7 @@ namespace write_text
       bool bStrikeOut = false,
       double dWidth = 1.0);
 
-      virtual void destroy() override;
+      ::e_status destroy() override;
 
       font & operator = (const font & font);
 

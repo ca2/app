@@ -1,12 +1,6 @@
 ﻿
 
-#include "acme/platform/static_start_internal.h"
-
-
-#include "acme/memory/aligned_memory_allocate.h"
-
-
-#include "acme/memory/_memory_allocate.h"
+//#include "acme/platform/static_start_internal.h"
 
 
 #if !defined(MCHECK) && !defined(_VLD) && !defined(__MCRTDBG) && !MEMDLEAK
@@ -24,7 +18,7 @@ void * aligned_memory_allocate(memsize size, memsize align)
 
    auto sizeProvision = heap_memory_aligned_provision_get_size(size, (int) align);
 
-   if(::acme::g_pheap == nullptr)
+   if(g_pheap == nullptr)
    {
 
       void * p = system_heap_alloc(sizeProvision);
@@ -49,7 +43,7 @@ void * aligned_memory_allocate(memsize size, memsize align)
 
       }
 
-      void * p = ::acme::g_pheap->_alloc(sizeProvision);
+      void * p = g_pheap->_alloc(sizeProvision);
 
       if (p == nullptr)
       {
@@ -80,7 +74,7 @@ void * unaligned_memory_allocate(memsize size)
 
    void * p = nullptr;
 
-   if (::acme::g_pheap == nullptr)
+   if (g_pheap == nullptr)
    {
 
       p = system_heap_alloc(size);
@@ -89,7 +83,7 @@ void * unaligned_memory_allocate(memsize size)
    else
    {
 
-      p = ::acme::g_pheap->_alloc(heap_memory_unaligned_provision_get_size(size));
+      p = g_pheap->_alloc(heap_memory_unaligned_provision_get_size(size));
 
    }
 
@@ -128,7 +122,7 @@ void * aligned_memory_allocate_debug(memsize size, i32 nBlockUse, const char * s
 
    //TODO: to do the dbg version
    //byte * p = (byte *) _system_heap_alloc_debug(nSize + ALIGN_BYTE_COUNT + 32, nBlockUse, szFileName, nLine);
-   if(::acme::g_pheap == nullptr)
+   if(g_pheap == nullptr)
    {
 
       void * p = system_heap_alloc(sizeProvision);
@@ -148,7 +142,7 @@ void * aligned_memory_allocate_debug(memsize size, i32 nBlockUse, const char * s
    else
    {
 
-      void * p = ::acme::g_pheap->alloc_debug(sizeProvision, nBlockUse, szFileName, nLine);
+      void * p = g_pheap->alloc_debug(sizeProvision, nBlockUse, szFileName, nLine);
 
       if (p == nullptr)
       {
@@ -186,7 +180,7 @@ void * unaligned_memory_allocate_debug(memsize size, i32 nBlockUse, const char *
 
    void * p = nullptr;
 
-   if (::acme::g_pheap == nullptr)
+   if (g_pheap == nullptr)
    {
 
       p = system_heap_alloc(heap_memory_unaligned_provision_get_size(size));
@@ -197,7 +191,7 @@ void * unaligned_memory_allocate_debug(memsize size, i32 nBlockUse, const char *
    else
    {
 
-      p = ::acme::g_pheap->alloc_debug(heap_memory_unaligned_provision_get_size(size), nBlockUse, szFileName, nLine);
+      p = g_pheap->alloc_debug(heap_memory_unaligned_provision_get_size(size), nBlockUse, szFileName, nLine);
 
       nBlockUse = 3;
 
@@ -302,7 +296,7 @@ void * _memory_reallocate_debug(void * pmemory, memsize size, i32 nBlockUse, con
    if(blockuse == 0) // aligned
    {
 
-      p = ::acme::g_pheap->_realloc(
+      p = g_pheap->_realloc(
          heap_memory_base_get(pmemory), 
          heap_memory_aligned_provision_get_size(size, align), 
          heap_memory_aligned_provision_get_size(sizeOld, align), 
@@ -314,7 +308,7 @@ void * _memory_reallocate_debug(void * pmemory, memsize size, i32 nBlockUse, con
 
       //TODO: to do the dbg version
 
-      p = ::acme::g_pheap->realloc_debug(heap_memory_base_get(pmemory), heap_memory_aligned_provision_get_size(size, align), heap_memory_aligned_provision_get_size(sizeOld,align), align, nBlockUse,szFileName,nLine);
+      p = g_pheap->realloc_debug(heap_memory_base_get(pmemory), heap_memory_aligned_provision_get_size(size, align), heap_memory_aligned_provision_get_size(sizeOld,align), align, nBlockUse,szFileName,nLine);
 
    }
    else if(blockuse == 128) // aligned
@@ -334,7 +328,7 @@ void * _memory_reallocate_debug(void * pmemory, memsize size, i32 nBlockUse, con
    else if(blockuse == 2) // unaligned
    {
 
-      p = ::acme::g_pheap->_realloc(heap_memory_base_get(pmemory), heap_memory_unaligned_provision_get_size(size), heap_memory_unaligned_provision_get_size(sizeOld),0);
+      p = g_pheap->_realloc(heap_memory_base_get(pmemory), heap_memory_unaligned_provision_get_size(size), heap_memory_unaligned_provision_get_size(sizeOld),0);
 
    }
    else if(blockuse == 3) // unaligned
@@ -342,7 +336,7 @@ void * _memory_reallocate_debug(void * pmemory, memsize size, i32 nBlockUse, con
 
       //TODO: to do the dbg version
 
-      p = ::acme::g_pheap->realloc_debug(heap_memory_base_get(pmemory), heap_memory_unaligned_provision_get_size(size), heap_memory_unaligned_provision_get_size(sizeOld),0,nBlockUse,szFileName,nLine);
+      p = g_pheap->realloc_debug(heap_memory_base_get(pmemory), heap_memory_unaligned_provision_get_size(size), heap_memory_unaligned_provision_get_size(sizeOld),0,nBlockUse,szFileName,nLine);
 
    }
    else
@@ -410,10 +404,10 @@ void _memory_free_debug(void * pmemory, i32 iBlockType)
 
       memsize iAlignedSize = heap_memory_aligned_provision_get_size(pheapmemory->m_size, pheapmemory->m_align);
 
-      if(::acme::g_pheap)
+      if(g_pheap)
       {
 
-         ::acme::g_pheap->_free(p, iAlignedSize);
+         g_pheap->_free(p, iAlignedSize);
 
       }
 
@@ -423,10 +417,10 @@ void _memory_free_debug(void * pmemory, i32 iBlockType)
 
       //TODO: to do the dbg version
 
-      if(::acme::g_pheap)
+      if(g_pheap)
       {
 
-         ::acme::g_pheap->free_debug(p, heap_memory_aligned_provision_get_size(pheapmemory->m_size, pheapmemory->m_align));
+         g_pheap->free_debug(p, heap_memory_aligned_provision_get_size(pheapmemory->m_size, pheapmemory->m_align));
 
       }
 
@@ -450,7 +444,7 @@ void _memory_free_debug(void * pmemory, i32 iBlockType)
 
       memsize iUnalignedSize = heap_memory_unaligned_provision_get_size(pheapmemory->m_size);
 
-      ::acme::g_pheap->_free(p, iUnalignedSize);
+      g_pheap->_free(p, iUnalignedSize);
 
    }
    else if(pheapmemory->m_blockuse == 3)
@@ -458,7 +452,7 @@ void _memory_free_debug(void * pmemory, i32 iBlockType)
 
       //TODO: to do the dbg version
 
-      ::acme::g_pheap->free_debug(p, heap_memory_unaligned_provision_get_size(pheapmemory->m_size));
+      g_pheap->free_debug(p, heap_memory_unaligned_provision_get_size(pheapmemory->m_size));
 
    }
    else

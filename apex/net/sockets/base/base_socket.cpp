@@ -1,7 +1,7 @@
-/** \file base_socket.cpp
-**   \date  2004-02-13
+/** \file socket_thread.cpp
+**   \date  2021-07-26
 **   \author grymse@alhem.net
-**/
+**/  
 /*
 Copyright (C) 2004-2007  Anders Hedstrom
 
@@ -63,7 +63,7 @@ namespace sockets
 
    base_socket::base_socket() :
       m_bDelete(false)
-      ,m_bClose(false)
+      ,m_bCloseAndDelete(false)
       ,m_timeCreate(time(nullptr))
       ,m_psocketParent(nullptr)
       ,m_bDisableRead(false)
@@ -81,8 +81,8 @@ namespace sockets
       //,m_socks4_host(h.GetSocks4Host())
       //,m_socks4_port(h.GetSocks4Port())
       //,m_socks4_userid(h.GetSocks4Userid())
-      ,m_detach(false)
-      ,m_detached(false)
+      ,m_bDetach(false)
+      ,m_bDetached(false)
       // Line protocol
       ,m_bLineProtocol(false)
       ,m_skip_c(false)
@@ -106,7 +106,8 @@ namespace sockets
       m_pcallback    = nullptr;
       m_bEnablePool  = true;
 
-      m_timeTimeoutLimit = 30;
+      m_timeConnectionMaximum = 30;
+      m_timeMaximum = 30;
 
    }
 
@@ -304,30 +305,38 @@ namespace sockets
    }
 
 
-   void base_socket::SetCloseAndDelete(bool x)
+   void base_socket::SetCloseAndDelete(bool bCloseAndDelete)
    {
-      if (x ^ m_bClose)
+
+      if (is_different(bCloseAndDelete, m_bCloseAndDelete))
       {
 
          if(socket_handler())
          {
 
-            socket_handler()->AddList(m_socket, LIST_CLOSE, x);
+            socket_handler()->socketlist_modify(m_socket, e_list_close, bCloseAndDelete);
 
          }
 
-         m_bClose = x;
-         if (x)
+         m_bCloseAndDelete = bCloseAndDelete;
+
+         if (bCloseAndDelete)
          {
+
             m_timeClose = time(nullptr);
+
          }
+
       }
+
    }
 
 
    bool base_socket::IsCloseAndDelete()
    {
-      return m_bClose;
+      
+      return m_bCloseAndDelete;
+
    }
 
 
@@ -350,12 +359,12 @@ namespace sockets
    base_socket_handler* base_socket::socket_handler() const
    {
 
-      if (IsDetached())
-      {
+      //if (IsDetached())
+      //{
 
-         return m_phandlerSlave.m_p;
+      //   return m_phandlerSlave.m_p;
 
-      }
+      //}
 
       return m_psockethandler;
 
@@ -922,7 +931,7 @@ namespace sockets
       return m_socks4_userid;
    }
 
-   bool base_socket::detach()
+   bool base_socket::prepare_for_detach()
    {
 
       if (!DeleteByHandler())
@@ -939,7 +948,7 @@ namespace sockets
 
       }
 
-      if (m_detached)
+      if (m_bDetached)
       {
 
          return false;
@@ -953,16 +962,14 @@ namespace sockets
    }
 
 
-   void base_socket::DetachSocket()
+   void base_socket::DetachSocket(socket_map::association * passociation, socket_map * psocketmap)
    {
 
       SetDetached();
 
-      m_psockethandler.release();
+      auto psocketthread = __new(socket_thread);
 
-      __compose_new(m_psocketthread);
-
-      m_psocketthread->initialize_socket_thread(this);
+      psocketthread->move(passociation, psocketmap);
 
    }
 
@@ -973,173 +980,46 @@ namespace sockets
    }
 
 
-   void base_socket::SetDetach(bool x)
+   void base_socket::SetDetach(bool bDetach)
    {
-      socket_handler()->AddList(m_socket, LIST_DETACH, x);
-      m_detach = x;
+
+      m_bDetach = bDetach;
+
    }
 
 
    bool base_socket::IsDetach()
    {
-      return m_detach;
+
+      return m_bDetach;
+
    }
 
 
    void base_socket::SetDetached(bool x)
    {
-      m_detached = x;
+      
+      m_bDetached = x;
+
    }
 
 
    const bool base_socket::IsDetached() const
    {
-      return m_detached;
-   }
 
-
-   void base_socket::SetSlaveHandler(base_socket_handler * phandler)
-   {
-
-      m_phandlerSlave = phandler;
-
-   }
-
-   
-   ::index g_iSocketThread = 0;
-
-
-   base_socket::socket_thread::socket_thread()
-   {
-
-      ::output_debug_string(__str(g_iSocketThread++) + " - new socket_thread\n");
+      return m_bDetached;
 
    }
 
 
-   ::e_status base_socket::socket_thread::initialize_socket_thread(base_socket * psocket)
-   {
+   //void base_socket::SetSlaveHandler(base_socket_handler * phandler)
+   //{
 
-      auto estatus = initialize(psocket);
+   //   m_phandlerSlave = phandler;
 
-      if (!estatus)
-      {
+   //}
 
-         return estatus;
-
-      }
-
-      __refer(m_psocket, psocket);
-
-      //m_psocket->set_context_thread(this OBJECT_REFERENCE_COUNT_DEBUG_COMMA_P_FUNCTION_LINE(m_psocket));
-         
-      __compose(m_phandler, __new(class socket_handler()));
-
-
-      m_phandler->add(psocket);
-
-      //m_phandler->set_context_thread(this OBJECT_REFERENCE_COUNT_DEBUG_COMMA_P_FUNCTION_LINE(m_phandler));
-
-      begin_synch();
-
-      return estatus;
-
-   }
-
-
-   base_socket::socket_thread::~socket_thread()
-   {
-
-      ::output_debug_string("--->>>>>base_socket::socket_thread::~SOCKET_thread\n");
-
-   }
-
-
-   ::e_status base_socket::socket_thread::init_thread()
-   {
-
-      if (!::thread::init_thread())
-      {
-
-         return false;
-
-      }
-
-      auto phandler = m_phandler;
-
-      phandler->SetSlave();
-
-      phandler->add(m_psocket);
-
-      m_psocket->SetSlaveHandler(phandler);
-
-      m_psocket->OnDetached();
-   
-      return true;
-
-   }
-
-
-   void base_socket::socket_thread::term_thread()
-   {
-
-      ::thread::term_thread();
-
-   }
-
-
-#ifdef DEBUG
-
-
-   ::i64 base_socket::socket_thread::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
-   {
-
-      return ::thread::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
-
-   }
-
-
-   ::i64 base_socket::socket_thread::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
-   {
-
-      return ::thread::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
-
-   }
-
-
-#endif
-
-
-   ::e_status base_socket::socket_thread::run()
-   {
-
-      auto phandler = m_phandler;
-
-      while (task_get_run() && phandler->get_count())
-      {
-
-         try
-         {
-
-            phandler->select(1, 0);
-
-         }
-         catch(...)
-         {
-
-            break;
-
-         }
-
-      }
-
-      //m_psocket->finalize();
-
-      //m_phandler->finalize();
-
-      return ::success;
-
-   }
+   //
 
 
 //   int base_socket::Resolve(const string & host,port_t port)
@@ -2492,26 +2372,39 @@ namespace sockets
    }
 
 
-   void base_socket::SetTimeout(time_t secs)
+   void base_socket::set_connection_start_time()
    {
       
-      if (!secs)
-      {
-         
-         socket_handler()->AddList(m_socket, LIST_TIMEOUT, false);
-         
-         return;
-
-      }
-      
-      m_timeTimeoutStart = time(nullptr);
-
-      m_timeTimeoutLimit = secs;
+      m_timeConnectionStart = time(nullptr);
 
    }
 
 
-   void base_socket::OnTimeout()
+   void base_socket::set_maximum_connection_time(time_t secs)
+   {
+
+      m_timeConnectionMaximum = secs;
+
+   }
+
+
+   void base_socket::set_start_time()
+   {
+
+      m_timeStart = time(nullptr);
+
+   }
+
+
+   void base_socket::set_maximum_time(time_t secs)
+   {
+
+      m_timeMaximum = secs;
+
+   }
+
+
+   void base_socket::on_timeout()
    {
 
       m_estatus = error_on_connection_timeout;
@@ -2519,19 +2412,41 @@ namespace sockets
    }
 
 
-   void base_socket::OnConnectTimeout()
+   void base_socket::on_connection_timeout()
    {
 
    }
 
 
-   bool base_socket::time_out(time_t tnow)
+   bool base_socket::has_timed_out()
    {
 
-      if (tnow - m_timeTimeoutStart > m_timeTimeoutLimit)
+      time_t tnow = ::time(nullptr);
+
+      if (is_connecting())
       {
 
-         return true;
+         auto tElapsed = tnow - m_timeConnectionStart;
+
+         if (tElapsed > m_timeConnectionMaximum)
+         {
+
+            return true;
+
+         }
+
+      }
+      else
+      {
+
+         auto tElapsed = tnow - m_timeStart;
+
+         if (tElapsed > m_timeMaximum)
+         {
+
+            return true;
+
+         }
 
       }
 

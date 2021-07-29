@@ -44,7 +44,7 @@ namespace sockets
    {
 
       //   trace_log log;
-      auto phanlder = __create_new < socket_handler > ();
+      auto phandler = __create_new < socket_handler > ();
 
       auto plistensocket = __create_new < listen_socket<resolv_socket> >();
 
@@ -55,14 +55,14 @@ namespace sockets
 
       }
 
-      phanlder->add(plistensocket);
+      phandler->add2(plistensocket);
 
       m_ready = true;
 
       while (!m_quit && task_get_run())
       {
 
-         phanlder->select(0, 500000);
+         phandler->select(0, 500000);
 
       }
 

@@ -2,9 +2,12 @@
 
 
 class CLASS_DECL_ACME payload_array :
-   public array < ::payload, const ::payload &, ::allocator::def < ::payload >, e_type_payloada >
+   public array < ::payload, const ::payload &, ::allocator::def < ::payload >, e_type_payload_array >
 {
 public:
+
+
+   using BASE_ARRAY = array < ::payload, const ::payload&, ::allocator::def < ::payload >, e_type_payload_array >;
 
 
    payload_array();
@@ -12,12 +15,12 @@ public:
    payload_array(const string_array & stra);
    payload_array(const int_array & inta);
    payload_array(const ::property_set & propset);
-   payload_array(const payload_array & vara);
-   virtual ~payload_array();
+   payload_array(const payload_array & payloada);
+   ~payload_array() override;
 
 
    index add(const ::payload & payload);
-   index add(const payload_array & vara);
+   index add(const payload_array & payloada);
    index add(const std::initializer_list < ::payload > & list)
    {
 
@@ -48,7 +51,7 @@ public:
    inline index add(i64 i) { return add((const ::payload &) i); }
    inline index add(u64 u) { return add((const ::payload &) u); }
 
-   ::count add_unique(const payload_array & vara);
+   ::count add_unique(const payload_array & payloada);
 
    string implode(const char * pszGlue) const;
 
@@ -75,21 +78,21 @@ public:
 
    ::count erase(const ::payload & payload, index find = 0, index last = -1, ::count countMin = 0, ::count countMax = -1);
 
-   ::count erase(const payload_array & vara);
+   ::count erase(const payload_array & payloada);
 
-   payload_array & operator -=(::payload payload);
-   payload_array & operator -=(payload_array vara);
-   payload_array operator -(::payload payload) const;
-   payload_array operator -(payload_array vara) const;
-   payload_array & operator +=(::payload payload);
-   payload_array & operator +=(payload_array vara);
-   payload_array operator +(::payload payload) const;
-   payload_array operator +(payload_array vara) const;
+   payload_array & operator -=(const ::payload & payload);
+   payload_array & operator -=(const payload_array & payloada);
+   payload_array operator -(const ::payload & payload) const;
+   payload_array operator -(const payload_array & payloada) const;
+   payload_array & operator +=(const ::payload & payload);
+   payload_array & operator +=(const payload_array & payloada);
+   payload_array operator +(const ::payload & payload) const;
+   payload_array operator +(const payload_array & payloada) const;
 
    payload_array & operator = (const string_array & stra);
    payload_array & operator = (const int_array & inta);
    payload_array & operator = (const ::property_set & propset);
-   payload_array & operator = (const payload_array & vara);
+   payload_array & operator = (const payload_array & payloada);
 
 
    void parse_json(const char * & pszJson);

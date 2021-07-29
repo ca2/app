@@ -34,9 +34,9 @@ payload_array::payload_array(const property_set & propset)
    operator = (propset);
 }
 
-payload_array::payload_array(const payload_array & vara)
+payload_array::payload_array(const payload_array & payloada)
 {
-   operator = (vara);
+   operator = (payloada);
 }
 
 payload_array::~payload_array()
@@ -55,33 +55,38 @@ index payload_array::add(const ::payload & payload)
 
    }
 
-   return ::array < class ::payload >::add(payload);
+   return BASE_ARRAY::add(payload);
 
 }
 
 
-::count payload_array::add(const payload_array & vara)
+::count payload_array::add(const payload_array & payloada)
 {
-   for(i32 i = 0; i < vara.get_size(); i++)
+
+   for(i32 i = 0; i < payloada.get_size(); i++)
    {
-      add(vara[i]);
+
+      add(payloada[i]);
+
    }
+
    return this->get_count();
+
 }
 
 
-::count payload_array::add_unique(const payload_array & vara)
+::count payload_array::add_unique(const payload_array & payloada)
 {
 
    ::count c = 0;
 
-   for(i32 i = 0; i < vara.get_size(); i++)
+   for(i32 i = 0; i < payloada.get_size(); i++)
    {
 
-      if(!contains(vara[i]))
+      if(!contains(payloada[i]))
       {
 
-         add(vara[i]);
+         add(payloada[i]);
 
          c++;
 
@@ -96,221 +101,380 @@ index payload_array::add(const ::payload & payload)
 
 string payload_array::implode(const char * pszGlue) const
 {
+
    string str;
+
    for(i32 i = 0; i < this->get_count(); i++)
    {
-      if(i > 0)
+
+      if (i > 0)
+      {
+
          str += pszGlue;
+
+      }
+
       str += this->element_at(i).get_string();
+
    }
+
    return str;
+
 }
+
 
 index payload_array::find_first(const char * psz, index find, index last) const
 {
-   if(find < 0)
+
+   if (find < 0)
+   {
+
       find += this->get_count();
-   if(last < 0)
+
+   }
+
+   if (last < 0)
+   {
+
       last += this->get_count();
+
+   }
+
    for(; find < this->get_count(); find++)
    {
-      if(this->element_at(find).get_string() == psz)
+
+      if (this->element_at(find).get_string() == psz)
+      {
+
          return find;
+
+      }
+
    }
+
    return -1;
+
 }
+
 
 index payload_array::find_first_ci(const char * psz, index find, index last) const
 {
-   if(find < 0)
+   
+   if (find < 0)
+   {
+
       find += this->get_count();
-   if(last < 0)
+
+   }
+   
+   if (last < 0)
+   {
+
       last += this->get_count();
+
+   }
+
    for(; find < this->get_count(); find++)
    {
-      if(this->element_at(find).get_string().compare_ci(psz) == 0)
+
+      if (this->element_at(find).get_string().compare_ci(psz) == 0)
+      {
+
          return find;
+
+      }
+
    }
+
    return -1;
+
 }
 
 
 index payload_array::find_first(const ::payload & payload, index find, index last) const
 {
-   if(find < 0)
-      find += this->get_count();
-   if(last < 0)
-      last += this->get_count();
-   for(; find < this->get_count(); find++)
+
+   if (find < 0)
    {
-      if(this->element_at(find) == payload)
-         return find;
+
+      find += this->get_count();
+
    }
+
+   if (last < 0)
+   {
+
+      last += this->get_count();
+
+   }
+
+   for (; find < this->get_count(); find++)
+   {
+
+      if (this->element_at(find) == payload)
+      {
+
+         return find;
+      }
+
+   }
+
    return -1;
+
 }
 
-bool payload_array::contains_ci(const char * pcsz, index find, index last, ::count countMin, ::count countMax) const
 
+bool payload_array::contains_ci(const char * pcsz, index find, index last, ::count countMin, ::count countMax) const
 {
+
    ::count count = 0;
    while((count < countMin || (countMax >= 0 && count <= countMax))
          && (find = find_first_ci(pcsz, find, last)) >= 0)
 
       count++;
    return count >= countMin && conditional(countMax >= 0, count <= countMax);
+
 }
+
 
 bool payload_array::contains(const char * pcsz, index find, index last, ::count countMin, ::count countMax) const
-
 {
+
    ::count count = 0;
+
    while((count < countMin || (countMax >= 0 && count <= countMax))
          && (find = find_first(pcsz, find, last)) >= 0)
-
       count++;
+
    return count >= countMin && conditional(countMax >= 0, count <= countMax);
+
 }
+
 
 bool payload_array::contains(const ::payload & payload, index find, index last, ::count countMin, ::count countMax) const
 {
+
    ::count count = 0;
+
    while((count < countMin || (countMax >= 0 && count <= countMax))
          && (find = find_first(payload, find, last)) >= 0)
       count++;
+
    return count >= countMin && conditional(countMax >= 0, count <= countMax);
+
 }
+
 
 ::count payload_array::erase_first_ci(const char * pcsz, index find, index last)
-
 {
-   if((find = find_first_ci(pcsz, find, last)) >= 0)
+
+   if ((find = find_first_ci(pcsz, find, last)) >= 0)
+   {
 
       erase_at(find);
+
+   }
+
    return find;
+
 }
+
 
 ::count payload_array::erase_first(const char * pcsz, index find, index last)
-
 {
-   if((find = find_first(pcsz, find, last)) >= 0)
+
+   if ((find = find_first(pcsz, find, last)) >= 0)
+   {
 
       erase_at(find);
+
+   }
+
    return find;
+
 }
+
 
 ::count payload_array::erase_first(const ::payload & payload, index find, index last)
 {
-   if((find = find_first(payload, find, last)) >= 0)
+
+   if ((find = find_first(payload, find, last)) >= 0)
+   {
+
       erase_at(find);
+
+   }
+
    return find;
+
 }
 
 
 ::count payload_array::erase_ci(const char * pcsz, index find, index last, ::count countMin, ::count countMax)
-
 {
-   ::count count = 0;
-   if(contains_ci(pcsz, find, last, countMin, countMax))
 
-      while(conditional(countMax >= 0, count < countMax)
-            && (find = erase_first_ci(pcsz, find, last)) >= 0)
+   ::count count = 0;
+
+   if (contains_ci(pcsz, find, last, countMin, countMax))
+   {
+    
+      while (conditional(countMax >= 0, count < countMax)
+         && (find = erase_first_ci(pcsz, find, last)) >= 0)
+      {
 
          count++;
+
+      }
+
+   }
+
    return count;
+
 }
 
 
 ::count payload_array::erase(const char * pcsz, index find, index last, ::count countMin, ::count countMax)
-
 {
-   ::count count = 0;
-   if(contains(pcsz, find, last, countMin, countMax))
 
-      while(conditional(countMax >= 0, count < countMax)
-            && (find = erase_first(pcsz, find, last)) >= 0)
+   ::count count = 0;
+
+   if (contains(pcsz, find, last, countMin, countMax))
+   {
+
+      while (conditional(countMax >= 0, count < countMax)
+         && (find = erase_first(pcsz, find, last)) >= 0)
+      {
 
          count++;
+
+      }
+
+   }
+
    return count;
+
 }
 
 
 ::count payload_array::erase(const ::payload & payload, index find, index last, ::count countMin, ::count countMax)
 {
+   
    ::count count = 0;
-   if(contains(payload, find, last, countMin, countMax))
-      while(conditional(countMax >= 0, count < countMax)
-            && (find = erase_first(payload, find, last)) >= 0)
-         count++;
-   return count;
-}
 
-::count payload_array::erase(const payload_array & vara)
-{
-   if(&vara == this)
+   if (contains(payload, find, last, countMin, countMax))
    {
-      return erase_all();
-   }
-   else
-   {
-      ::count count = 0;
-      for(index i = 0; i < vara.get_count(); i++)
+
+      while (conditional(countMax >= 0, count < countMax)
+         && (find = erase_first(payload, find, last)) >= 0)
       {
-         count += erase(vara[i]);
+
+         count++;
+
       }
-      return count;
+
    }
+
+   return count;
+
 }
 
-payload_array & payload_array::operator -=(::payload payload)
+
+::count payload_array::erase(const payload_array & payloada)
 {
+
+   if(&payloada == this)
+   {
+
+      return erase_all();
+
+   }
+
+   ::count count = 0;
+
+   for(index i = 0; i < payloada.get_count(); i++)
+   {
+
+      count += erase(payloada[i]);
+
+   }
+   
+   return count;
+
+}
+
+
+payload_array & payload_array::operator -=(const ::payload & payload)
+{
+
    erase(payload);
+
    return *this;
+
 }
 
-payload_array & payload_array::operator -=(payload_array vara)
+
+payload_array & payload_array::operator -=(const payload_array & payloada)
 {
-   erase(vara);
+
+   erase(payloada);
+
    return *this;
+
 }
 
-payload_array payload_array::operator -(::payload payload) const
+
+payload_array payload_array::operator -(const ::payload & payload) const
 {
-   payload_array vara(*this);
-   vara.erase(payload);
-   return vara;
+
+   payload_array payloada(*this);
+
+   payloada.erase(payload);
+
+   return payloada;
+
 }
 
-payload_array payload_array::operator -(payload_array varaParam) const
+
+payload_array payload_array::operator -(const payload_array & payloadaParam) const
 {
-   payload_array vara(*this);
-   vara.erase(varaParam);
-   return vara;
+
+   payload_array payloada(*this);
+
+   payloada.erase(payloadaParam);
+
+   return payloada;
+
 }
 
-payload_array & payload_array::operator +=(::payload payload)
+
+payload_array & payload_array::operator +=(const ::payload & payload)
 {
+
    add(payload);
+
+   return *this;
+
+}
+
+
+payload_array & payload_array::operator +=(const payload_array & payloada)
+{
+   add(payloada);
    return *this;
 }
 
-payload_array & payload_array::operator +=(payload_array vara)
+payload_array payload_array::operator +(const ::payload & payload) const
 {
-   add(vara);
-   return *this;
+   payload_array payloada(*this);
+   payloada.add(payload);
+   return payloada;
 }
 
-payload_array payload_array::operator +(::payload payload) const
+payload_array payload_array::operator +(const payload_array & payloadaParam) const
 {
-   payload_array vara(*this);
-   vara.add(payload);
-   return vara;
-}
-
-payload_array payload_array::operator +(payload_array varaParam) const
-{
-   payload_array vara(*this);
-   vara.add(varaParam);
-   return vara;
+   payload_array payloada(*this);
+   payloada.add(payloadaParam);
+   return payloada;
 }
 
 payload_array & payload_array::operator = (const string_array & stra)
@@ -353,14 +517,14 @@ payload_array & payload_array::operator = (const property_set & propset)
 }
 
 
-payload_array & payload_array::operator = (const payload_array & vara)
+payload_array & payload_array::operator = (const payload_array & payloada)
 {
-   if(this != &vara)
+   if(this != &payloada)
    {
       erase_all();
-      for(i32 i = 0; i < vara.get_count(); i++)
+      for(i32 i = 0; i < payloada.get_count(); i++)
       {
-         add(vara[i]);
+         add(payloada[i]);
       }
    }
    return *this;

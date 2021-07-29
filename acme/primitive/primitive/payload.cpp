@@ -2866,7 +2866,23 @@ string_array & payload::stra()
 
       auto pstra = new string_array();
 
-      pstra->add(*this);
+      try
+      {
+
+         auto c = array_get_count();
+
+         for (::index i = 0; i < c; i++)
+         {
+
+            pstra->add(at(i).to_string());
+
+         }
+
+      }
+      catch (...)
+      {
+
+      }
 
       set_type(e_type_string_array, false);
 

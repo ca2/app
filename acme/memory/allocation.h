@@ -8,22 +8,19 @@ extern "C" {
 
 #pragma pack(push, heap_memory, 1)
 
-   struct heap_padding
-   {
-
-      char m_sz[16];
-
-   };
+#define HEAP_PADDING_SIZE 0
 
    struct  heap_memory
    {
 
-
-      short                   m_back;
+      byte                    m_back;
       byte                    m_blockuse;
       byte                    m_align;
-      memsize                 m_size;
-      struct heap_padding     m_padding;
+      byte                    m_bytePool;
+#if HEAP_PADDING_SIZE > 0
+      //struct heap_padding     m_padding;
+      char                    m_szPadding[HEAP_PADDING_SIZE];
+#endif
 
    };
 

@@ -99,10 +99,10 @@ inline void __exchange_array(::stream & s, const ARRAY & array) { __exchange_arr
 
 inline void __exchange(::stream & s, const ::file::patha & patha) { __exchange_array(s, patha); }
 
-template < class TYPE, class ARG_TYPE, class ALLOCATOR >
-inline void __exchange(::stream & s, const ::array_base < TYPE, ARG_TYPE, ALLOCATOR > & array) { __exchange_array(s, (::array_base < TYPE, ARG_TYPE, ALLOCATOR > &)array); }
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
+inline void __exchange(::stream & s, const ::array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload > & array) { __exchange_array(s, (::array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload > &)array); }
 
-template < class TYPE, class ARG_TYPE, class ALLOCATOR >
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
 inline void __exchange(::stream & s, const ::raw_array < TYPE, ARG_TYPE, ALLOCATOR > & array) { __exchange_array(s, (::raw_array < TYPE, ARG_TYPE, ALLOCATOR > &)array); }
 
 template < class TYPE >
@@ -117,10 +117,10 @@ inline void __exchange_save_array(::stream & s, ARRAY & array);
 template < typename ARRAY >
 inline void __exchange_load_array(::stream & s, ARRAY & array);
 
-template < class TYPE, class ARG_TYPE, class ALLOCATOR >
-inline void __exchange(::stream & s, ::array_base < TYPE, ARG_TYPE, ALLOCATOR > & array);
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
+inline void __exchange(::stream & s, ::array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload > & array);
 
-template < class TYPE, class ARG_TYPE, class ALLOCATOR >
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
 inline void __exchange(::stream & s, ::raw_array < TYPE, ARG_TYPE, ALLOCATOR > & array);
 
 template < class TYPE >
@@ -879,7 +879,7 @@ namespace std
 //inline stream & operator <<(stream & s, const ::millis & millis);
 //
 ////template < class TYPE, class ARG_TYPE = const TYPE &, class ALLOCATOR = allocator::nodef < TYPE > >
-////inline stream & operator <<(stream & s, const ::array_base < TYPE, ARG_TYPE, ALLOCATOR > & a)
+////inline stream & operator <<(stream & s, const ::array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload > & a)
 ////{
 ////
 ////   ::count c = a.get_count();

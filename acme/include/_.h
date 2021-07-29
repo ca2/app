@@ -1021,13 +1021,22 @@ class matter;
 
 
 template<typename T>
-void __finalize_and_release(T &p)
+void __destroy_and_release(__pointer(T) & p)
 {
 
-   if (p)
+   if (::is_set(p))
    {
 
-      p->finalize();
+      try
+      {
+
+         p->finalize();
+
+      }
+      catch (...)
+      {
+
+      }
 
       p.release();
 
@@ -2014,7 +2023,7 @@ class property_set;
 class matter;
 
 
-class var_array;
+class payload_array;
 
 
 class property;
@@ -2201,7 +2210,7 @@ class fixed_alloc_no_sync;
 class critical_section;
 
 
-class var_array;
+class payload_array;
 
 
 class channel;
@@ -2249,11 +2258,11 @@ namespace datetime
 } // namespace datetime
 
 
-template<typename Type, typename RawType = Type>
+template<typename Type, typename RawType = Type, enum_type t_etypePayload = e_type_element >
 class string_array_base;
 
 
-typedef string_array_base<string> string_array;
+typedef string_array_base < string, string, e_type_string_array > string_array;
 
 
 namespace file
@@ -2684,10 +2693,10 @@ class matter;
 using argument = payload;
 
 
-class var_array;
+class payload_array;
 
 
-using arguments = var_array;
+using arguments = payload_array;
 
 
 CLASS_DECL_ACME bool __node_acme_pre_init();

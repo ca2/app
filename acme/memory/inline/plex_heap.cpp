@@ -875,6 +875,8 @@ void plex_heap_alloc_sync::NewBlock()
 
    ::u32 nAllocSize = m_nAllocSize;
 
+   ::HEAP_NAMESPACE::on_plex_new_block(nAllocSize);
+
    plex_heap * pnewblock = plex_heap::create(m_pBlocks, m_nBlockSize, nAllocSize);
 
    auto pnode = (node *) pnewblock->data();

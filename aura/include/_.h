@@ -1257,7 +1257,7 @@ using image_pointer_array = __pointer_array(::image);
 //class property_set;
 //class object;
 ////class base_edit;
-//class var_array;
+//class payload_array;
 //class property;
 //
 //
@@ -1537,7 +1537,7 @@ class form_document;
 //class factory_item_base;
 //class fixed_alloc_no_sync;
 //class critical_section;
-//class var_array;
+//class payload_array;
 //class thread;
 //class channel;
 //class critical_section;
@@ -2209,9 +2209,9 @@ namespace draw2d
 //
 //using argument = payload;
 //
-//class var_array;
+//class payload_array;
 //
-//using arguments = var_array;
+//using arguments = payload_array;
 //
 //class context;
 //

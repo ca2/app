@@ -6,7 +6,7 @@ namespace database
    typedef CLASS_DECL_APEX ref_array < client > client_ptra;
 
    class CLASS_DECL_APEX record :
-      public var_array
+      public payload_array
    {
    };
 

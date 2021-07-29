@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "acme/primitive/collection/var_array.h"
+#include "acme/primitive/collection/payload_array.h"
 #include "acme/primitive/primitive/property_set.h"
 #include "acme/primitive/primitive/memory.h"
 
@@ -91,7 +91,7 @@ template < class Type, class RawType >
 string_array_base < Type, RawType >  & string_array_base < Type, RawType > ::operator = (::payload varSrc)
 {
    this->erase_all();
-   if (varSrc.get_type() == ::e_type_stra)
+   if (varSrc.get_type() == ::e_type_string_array)
    {
       varSrc.get_array(*this);
    }

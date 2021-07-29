@@ -116,6 +116,8 @@ namespace netserver
 
                }
 
+               m_plistensocket->set_maximum_time(0);
+
                m_psockethandler->add2(m_plistensocket);
 
                while (m_psockethandler->get_count() > 0 && task_get_run())

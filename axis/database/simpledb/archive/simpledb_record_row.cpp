@@ -16,7 +16,7 @@ namespace simpledb
 
          if (m_straFields.get_size() <= 0)
          {
-            var_array vara = m_var.vara();
+            payload_array vara = m_var.vara();
             if (vara.get_count() != m_ptable->m_fielddefinition.get_count())
             {
                __throw(::exception::exception("no fields specified and values ::count is different from table '" + m_ptable->m_strName + "' field count"));

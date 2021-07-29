@@ -27,9 +27,9 @@ namespace str
 }
 
 
-template < typename Type, typename RawType >
+template < typename Type, typename RawType, enum_type t_etypePayload >
 class string_array_base :
-   public comparable_array < Type >
+   public comparable_array < Type, const Type &, comparable_eq_array < Type, const Type &, t_etypePayload > >
 {
 public:
 

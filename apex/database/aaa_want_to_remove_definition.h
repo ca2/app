@@ -97,7 +97,7 @@ virtual ::stream & read(::stream & stream) override;
    };
 
 
-   using row = var_array;
+   using row = payload_array;
 
    using row_array = __pointer_array(row);
 

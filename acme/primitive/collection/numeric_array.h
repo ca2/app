@@ -25,9 +25,9 @@ namespace str
 
 } // namespace ::text::table
 
-template < typename TYPE >
+template < typename TYPE, enum_type t_etypePayload = e_type_element >
 class numeric_array :
-   public comparable_raw_array < TYPE >
+   public comparable_raw_array < TYPE, TYPE, t_etypePayload >
 {
 public:
 

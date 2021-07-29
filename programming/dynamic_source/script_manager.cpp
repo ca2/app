@@ -56,7 +56,7 @@ namespace dynamic_source
    script_manager::script_manager()
    {
 
-      m_posdataNetnodeManager = nullptr;
+      m_pnetnodescriptmanager = nullptr;
 
       defer_create_mutex();
       
@@ -385,17 +385,22 @@ namespace dynamic_source
 
          try
          {
+
             pinstance->m_pmain->main_finalize();
+
          }
          catch(const ::exception::exception &)
          {
+
             TRACE("Error: exception at script_manager::handle main_finalize");
+
          }
          catch(...)
          {
-            TRACE("Error: Exception at script_manager::handle main_finalize");
-         }
 
+            TRACE("Error: Exception at script_manager::handle main_finalize");
+
+         }
 
       }
       //else
@@ -475,7 +480,34 @@ namespace dynamic_source
 
       //}
 
+      try
+      {
 
+         pmain->destroy();
+
+      }
+      catch (...)
+      {
+
+      }
+
+      try
+      {
+
+         pinstance->destroy();
+
+      }
+      catch (...)
+      {
+
+      }
+
+      if (::is_set(pthread))
+      {
+
+         pthread->m_pobjectScript.release();
+
+      }
 
    }
 
@@ -519,26 +551,28 @@ namespace dynamic_source
 
       {
 
-         //auto pmain = pinstanceParent->main();
+         auto pmain = pinstanceParent->main();
 
          pinstance = get(strName, pscript);
 
          if (pinstance && pinstanceParent && pscript)
          {
 
-            pimpl = ::__create < script_interface >();
+            pimpl = pmain;
 
-            pimpl->m_strNote = "impl://" + pinstance->m_strNote;
+            //pimpl = ::__create < script_interface >();
 
-            pimpl->initialize(pinstanceParent);
+            //pimpl->m_strNote = "impl://" + pinstance->m_strNote;
 
-            pimpl->m_pscript2 = pinstance->m_pscript2;
+            //pimpl->initialize(pinstanceParent);
 
-            pimpl->run_property("on_create");
-            
-            pimpl->call_routine(CREATE_ROUTINE);
+            //pimpl->m_pscript2 = pinstance->m_pscript2;
 
-            pimpl->init1();
+            //pimpl->run_property("on_create");
+            //
+            //pimpl->call_routine(CREATE_ROUTINE);
+
+            //pimpl->init1();
 
             pinstance->initialize(pimpl);
 
@@ -595,7 +629,7 @@ namespace dynamic_source
             try
             {
 
-               pinstance->finalize();
+               pinstance->destroy();
 
             }
 
@@ -614,7 +648,7 @@ namespace dynamic_source
          try
          {
 
-            pinstance->finalize();
+            pinstance->destroy();
 
          }
          catch (...)

@@ -14,7 +14,7 @@ namespace sockets
 
 
       bool m_bConnecting; ///< Flag indicating connection in progress
-      ::secs m_secsConnectionTimeout; ///< Connection timeout (seconds)
+      //::secs m_secsConnectionTimeout; ///< Connection timeout (seconds)
       bool m_bFlushBeforeClose; ///< Send all data before closing (default true)
       i32 m_iMaximumConnectionRetryCount; ///< Maximum connection retries (tcp)
       i32 m_iConnectionRetryCount; ///< Actual number of connection retries (tcp)
@@ -28,11 +28,11 @@ namespace sockets
 
 
       /** socket should Check Connect on next write event from select(). */
-      void SetConnecting(bool = true);
+      void set_connecting(bool bSet = true);
 
       /** Check connecting flag.
       \return true if the socket is still trying to connect */
-      bool Connecting();
+      bool is_connecting() override;
 
       /** Returns true when socket file descriptor is valid,
       socket connection is established, and socket is not about to
@@ -41,11 +41,11 @@ namespace sockets
 
       /** set timeout to use for connection attempt.
       \lparam x time_out in seconds */
-      void SetConnectTimeout(i32 x);
+      //void set_maximum_connection_time(i32 x);
 
       /** Return number of seconds to wait for a connection.
       \return Connection timeout (seconds) */
-      ::secs GetConnectTimeout();
+      //::secs GetConnectTimeout();
 
       /** set flush before close to make a tcp socket completely is_empty its
       output buffer before closing the connection. */

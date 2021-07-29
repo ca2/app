@@ -24,7 +24,7 @@ namespace aura
    }
 
 
-   void interprocess_communication::task::do_task(const string & strObject, const string & strMember, const var_array & vara)
+   void interprocess_communication::task::do_task(const string & strObject, const string & strMember, const payload_array & vara)
    {
 
       ::aura::ipc::tx & txc = m_pcall->m_pinterprocessintercommunication->tx(m_pcall->m_strApp, m_idPid);
@@ -91,7 +91,7 @@ namespace aura
    }
 
 
-   void interprocess_communication::call::add_args(const var_array & vara)
+   void interprocess_communication::call::add_args(const payload_array & vara)
    {
 
       ::papaya::array::add(m_varaArgs, vara);
@@ -523,7 +523,7 @@ started:
    }
 
 
-   string interprocess_communication::str_from_va(const var_array & vara)
+   string interprocess_communication::str_from_va(const payload_array & vara)
    {
 
       memory_stream stream;
@@ -588,7 +588,7 @@ started:
 
       string_array stra;
 
-      var_array vara;
+      payload_array vara;
 
       if(iFind >= 0 && iFind <= 3)
       {
@@ -708,7 +708,7 @@ started:
    }
 
 
-   void interprocess_communication::on_interprocess_call(::payload & payload, const string & strObject, const string & strMember, var_array & vara)
+   void interprocess_communication::on_interprocess_call(::payload & payload, const string & strObject, const string & strMember, payload_array & vara)
    {
 
       if(strObject == "application")

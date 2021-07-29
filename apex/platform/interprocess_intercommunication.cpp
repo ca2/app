@@ -326,7 +326,7 @@ string interprocess_intercommunication::key(const string &strApp, const ::id & i
 }
 
 
-string interprocess_intercommunication::str_from_va(const var_array & vara)
+string interprocess_intercommunication::str_from_va(const payload_array & vara)
 {
 
    memory_stream stream;
@@ -391,7 +391,7 @@ void interprocess_intercommunication::on_interprocess_receive(::interprocess_com
 
    string_array stra;
 
-   var_array vara;
+   payload_array vara;
 
    if(iFind >= 0 && iFind <= 3)
    {
@@ -511,7 +511,7 @@ __pointer(interprocess_call) interprocess_intercommunication::create_call(const 
 }
 
 
-void interprocess_intercommunication::on_interprocess_call(::payload & payload, const string & strObject, const string & strMember, var_array & vara)
+void interprocess_intercommunication::on_interprocess_call(::payload & payload, const string & strObject, const string & strMember, payload_array & vara)
 {
 
    if(strObject == "application")

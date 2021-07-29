@@ -29,12 +29,12 @@ property_object::~property_object()
 //}
 
 
-::e_status property_object::finalize()
+::e_status property_object::destroy()
 {
 
-   ::material_object::finalize();
+   auto estatus = ::material_object::destroy();
 
-   //m_pobject.release(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
+   m_pmapPropertyRoutine.release(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
 
    m_pia.release(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
 
@@ -76,16 +76,16 @@ void property_object::notify_on_destroy(::property_object * pcontextobjectFinish
 
 
 //::e_status property_object::finish(::property_object * pcontextobjectFinish)
-::e_status property_object::destroy()
-{
-
-   //return ::matter::finish(pcontextobjectFinish);
-
-   auto estatus = ::material_object::destroy();
-
-   return estatus;
-
-}
+//::e_status property_object::destroy()
+//{
+//
+//   //return ::matter::finish(pcontextobjectFinish);
+//
+//   auto estatus = ::material_object::destroy();
+//
+//   return estatus;
+//
+//}
 
 
 ::e_status property_object::on_finish()

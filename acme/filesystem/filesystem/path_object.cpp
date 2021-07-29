@@ -5,8 +5,55 @@ namespace file
 {
 
 
+   interlocked_count g_interlockedcountFilePathObject;
+
+
+   path_object::path_object() 
+   {
+   
+      g_interlockedcountFilePathObject++;
+
+      //::output_debug_string("----::file::path_object (count=" + __str(g_interlockedcountFilePathObject.operator long long()) + ")\n");
+
+   }
+
+
+   path_object::path_object(::matter*)
+   {
+
+      g_interlockedcountFilePathObject++;
+
+      //::output_debug_string("----::file::path_object (count=" + __str(g_interlockedcountFilePathObject.operator long long()) + ")\n");
+   
+   }
+
+
+   path_object::path_object(const ::file::path& path) :
+      ::file::path(path) 
+   {
+
+      g_interlockedcountFilePathObject++;
+
+      //::output_debug_string("----::file::path_object (count=" + __str(g_interlockedcountFilePathObject.operator long long()) + ")\n");
+   
+   }
+
+
+   path_object::path_object(::file::path&& path) :
+      ::file::path(::move(path)) 
+   {
+
+      g_interlockedcountFilePathObject++;
+
+      //::output_debug_string("----::file::path_object (count=" + __str(g_interlockedcountFilePathObject.operator long long()) + ")\n");
+   
+   }
+
+
    path_object::~path_object()
    {
+
+      g_interlockedcountFilePathObject--;
 
    }
 

@@ -65,7 +65,7 @@ namespace sockets
       m_socket             = psocket->m_socket;
 
       m_bConnecting        = psocket->m_bConnecting; ///< Flag indicating connection in progress
-      m_secsConnectionTimeout    = psocket->m_secsConnectionTimeout; ///< Connection timeout (seconds)
+      //m_secsConnectionTimeout    = psocket->m_secsConnectionTimeout; ///< Connection timeout (seconds)
       m_bFlushBeforeClose = psocket->m_bFlushBeforeClose; ///< Send all data before closing (default true)
       m_iMaximumConnectionRetryCount   = psocket->m_iMaximumConnectionRetryCount; ///< Maximum connection retries (tcp)
       m_iConnectionRetryCount            = psocket->m_iConnectionRetryCount; ///< Actual number of connection retries (tcp)

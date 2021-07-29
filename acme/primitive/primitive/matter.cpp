@@ -50,6 +50,14 @@ void matter::dump(dump_context & dumpcontext) const
 }
 
 
+::enum_type matter::get_payload_type()
+{ 
+   
+   return e_type_element; 
+
+}
+
+
 ::e_status matter::initialize_matter(::matter* pmatter)
 {
 

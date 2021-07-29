@@ -2261,9 +2261,9 @@ quick_sort(bool bAscendent)
 
 
 
-template < class TYPE, class ARG_TYPE, class ALLOCATOR >
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
 template < typename PRED >
-void array_base < TYPE, ARG_TYPE, ALLOCATOR >::predicate_sort(PRED pred)
+void array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::predicate_sort(PRED pred)
 {
 
    ::sort::array::predicate_sort(*this, pred);
@@ -2271,9 +2271,9 @@ void array_base < TYPE, ARG_TYPE, ALLOCATOR >::predicate_sort(PRED pred)
 }
 
 
-template < class TYPE, class ARG_TYPE, class ALLOCATOR >
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
 template < typename T, typename PRED >
-index array_base < TYPE, ARG_TYPE, ALLOCATOR >::predicate_binary_search(const T & t, PRED pred) const
+index array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::predicate_binary_search(const T & t, PRED pred) const
 {
 
    return ::sort::array::predicate_binary_search(*this, t, pred);

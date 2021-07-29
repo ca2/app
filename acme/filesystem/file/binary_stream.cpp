@@ -285,19 +285,19 @@ void binary_stream::write(const ::payload & payload)
    case e_type_bool:
       *this << payload.m_b;
       break;
-   case e_type_inta:
+   case e_type_i32_array:
       *this << payload.inta();
       break;
    case e_type_memory:
       *this << *payload.m_pmemory;
       break;
-   case e_type_stra:
+   case e_type_string_array:
       *this << *payload.m_pstra;
       break;
    case e_type_propset:
       *this << *payload.m_pset;
       break;
-   case e_type_i64a:
+   case e_type_i64_array:
       *this << *payload.m_pi64a;
       break;
    //case type_image:
@@ -965,7 +965,7 @@ void binary_stream::read_var_body(::payload & payload, enum_type etype)
 
    }
    break;
-   case e_type_inta:
+   case e_type_i32_array:
    {
 
       __exchange_load_array(*this, payload.inta());
@@ -979,7 +979,7 @@ void binary_stream::read_var_body(::payload & payload, enum_type etype)
 
    }
    break;
-   case e_type_stra:
+   case e_type_string_array:
    {
 
       __exchange_load_array(*this, payload.stra());
@@ -1010,7 +1010,7 @@ void binary_stream::read_var_body(::payload & payload, enum_type etype)
    case e_type_path:
    {
 
-      payload.set_element(::__load_object<::matter>(*this));
+      payload._set_element(::__load_object<::matter>(*this));
 
    }
    break;

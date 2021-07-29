@@ -89,12 +89,12 @@ public:
       ::matter *                 m_p;
       ::string_array *           m_pstra;
       ::int_array *              m_pia;
-      ::var_array *              m_pvara;
+      ::payload_array *              m_pvara;
       ::property_set *           m_pset;
       ::i64_array *              m_pi64a;
       ::memory *                 m_pmemory;
       ::file::path_object *      m_ppath;
-      ::routine                  m_routine;
+      ::matter *                 m_pmatterRoutine;
       ::i64                      m_all[2];
 
 
@@ -141,7 +141,7 @@ public:
    payload(const ::file::path & path);
    payload(const string_array & payload);
    payload(const int_array & payload);
-   payload(const var_array & payload);
+   payload(const payload_array & payload);
    payload(const property_set & set);
    payload(const payload & payload);
    payload(const property & prop);
@@ -214,7 +214,8 @@ public:
 
    void clear_data() { m_all[0] = 0; m_all[1] = 0; }
 
-   void set_type(enum_type enum_type,bool bConvert = true);
+
+   void set_type(enum_type enum_type, bool bConvert = true);
    enum_type get_type() const;
 
 
@@ -252,7 +253,8 @@ public:
 
    ::i64 release();
 
-   ::enum_type set_element(::matter * pobject);
+   void _set_matter(::matter * pmatter);
+   void _set_element(::matter* pmatter);
 
    bool is_element() const { return m_etype >= e_type_element && m_etype < e_type_last_element; }
 
@@ -338,7 +340,7 @@ inline operator ::e ## ENUMTYPE() const { return e ## ENUMTYPE(); }
    string_array &                        stra();
    int_array &                      inta();
    i64_array &                      int64a();
-   var_array &                      vara();
+   payload_array &                      vara();
    class duration &                 duration();
    property_set &                   propset();
    property &                       prop();
@@ -346,7 +348,7 @@ inline operator ::e ## ENUMTYPE() const { return e ## ENUMTYPE(); }
    const string_array &                  stra() const;
    const int_array &                inta() const;
    const i64_array &                int64a() const;
-   const var_array &                vara()  const;
+   const payload_array &                vara()  const;
    const property_set &             propset() const;
    const property &                 prop() const;
    const class duration &           duration() const;
@@ -499,7 +501,7 @@ inline operator ::e ## ENUMTYPE() const { return e ## ENUMTYPE(); }
    inline payload & operator = (const __composite(TYPE) & composite)
    {
 
-      set_element(composite.get());
+      _set_element(composite.get());
 
       return *this;
 
@@ -510,10 +512,10 @@ inline operator ::e ## ENUMTYPE() const { return e ## ENUMTYPE(); }
 
    inline payload & operator = (nullptr_t) { set_type(e_type_null, false); return *this; }
 
-   inline payload & operator = (::matter * p)
+   inline payload & operator = (::matter * pmatter)
    {
 
-      set_element(p);
+      _set_element(pmatter);
 
       return *this;
 
@@ -623,7 +625,7 @@ inline operator ::e ## ENUMTYPE() const { return e ## ENUMTYPE(); }
    payload & operator = (const int_array & ia);
    payload & operator = (const string_array & stra);
    payload & operator = (const class memory & memory);
-   payload & operator = (const var_array & vara);
+   payload & operator = (const payload_array & vara);
    payload & operator = (const property_set & propset);
    //payload & operator = (const pair_set_interface & propset);
    //payload & operator = (const str_str_interface & propset);

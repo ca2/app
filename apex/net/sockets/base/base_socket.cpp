@@ -106,7 +106,8 @@ namespace sockets
       m_pcallback    = nullptr;
       m_bEnablePool  = true;
 
-      m_timeTimeoutLimit = 30;
+      m_timeConnectionMaximum = 30;
+      m_timeMaximum = 30;
 
    }
 
@@ -2371,26 +2372,39 @@ namespace sockets
    }
 
 
-   void base_socket::SetTimeout(time_t secs)
+   void base_socket::set_connection_start_time()
    {
       
-      if (!secs)
-      {
-         
-         socket_handler()->socketlist_erase(m_socket, e_list_timeout);
-         
-         return;
-
-      }
-      
-      m_timeTimeoutStart = time(nullptr);
-
-      m_timeTimeoutLimit = secs;
+      m_timeConnectionStart = time(nullptr);
 
    }
 
 
-   void base_socket::OnTimeout()
+   void base_socket::set_maximum_connection_time(time_t secs)
+   {
+
+      m_timeConnectionMaximum = secs;
+
+   }
+
+
+   void base_socket::set_start_time()
+   {
+
+      m_timeStart = time(nullptr);
+
+   }
+
+
+   void base_socket::set_maximum_time(time_t secs)
+   {
+
+      m_timeMaximum = secs;
+
+   }
+
+
+   void base_socket::on_timeout()
    {
 
       m_estatus = error_on_connection_timeout;
@@ -2398,19 +2412,41 @@ namespace sockets
    }
 
 
-   void base_socket::OnConnectTimeout()
+   void base_socket::on_connection_timeout()
    {
 
    }
 
 
-   bool base_socket::time_out(time_t tnow)
+   bool base_socket::has_timed_out()
    {
 
-      if (tnow - m_timeTimeoutStart > m_timeTimeoutLimit)
+      time_t tnow = ::time(nullptr);
+
+      if (is_connecting())
       {
 
-         return true;
+         auto tElapsed = tnow - m_timeConnectionStart;
+
+         if (tElapsed > m_timeConnectionMaximum)
+         {
+
+            return true;
+
+         }
+
+      }
+      else
+      {
+
+         auto tElapsed = tnow - m_timeStart;
+
+         if (tElapsed > m_timeMaximum)
+         {
+
+            return true;
+
+         }
 
       }
 

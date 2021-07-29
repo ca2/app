@@ -277,7 +277,7 @@ template<class TYPE, class ARG_TYPE, class ALLOCATOR >
 raw_array < TYPE, ARG_TYPE, ALLOCATOR >::raw_array(const raw_array <TYPE, ARG_TYPE, ALLOCATOR> & a)// :
    // matter(a.get_application())
 {
-   ::array_base < TYPE, ARG_TYPE, ALLOCATOR >::operator = (a);
+   ::array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::operator = (a);
 }
 
 template<class TYPE, class ARG_TYPE, class ALLOCATOR >
@@ -521,7 +521,7 @@ raw_array < TYPE, ARG_TYPE, ALLOCATOR >::~raw_array()
 //}
 
 //template<class TYPE, class ARG_TYPE, class ALLOCATOR >
-//void array_base < TYPE, ARG_TYPE, ALLOCATOR >::set_at_grow(::index nIndex, ARG_TYPE newElement)
+//void array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::set_at_grow(::index nIndex, ARG_TYPE newElement)
 //{
 //   //ASSERT_VALID(this);
 //   //ASSERT(nIndex >= 0);
@@ -554,7 +554,7 @@ template<class TYPE, class ARG_TYPE, class ALLOCATOR >
 ::index raw_array < TYPE, ARG_TYPE, ALLOCATOR >::insert_at(::index nIndex, ARG_TYPE newElement, ::count nCount /*=1*/)
 {
 
-   return array_base < TYPE, ARG_TYPE, ALLOCATOR >::insert_at(nIndex, newElement,nCount);
+   return array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::insert_at(nIndex, newElement,nCount);
 
 }
 

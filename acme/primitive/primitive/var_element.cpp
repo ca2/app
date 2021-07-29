@@ -2,8 +2,8 @@
 
 /*
 e_type_element = 8000,
-e_type_stra,
-e_type_inta,
+e_type_string_array,
+e_type_i32_array,
 type_vara,
 e_type_propset,
 type_int64a,
@@ -15,8 +15,8 @@ __type_last_element,
 switch(m_etype)
 {
 case e_type_element:
-case e_type_stra:
-case e_type_inta:
+case e_type_string_array:
+case e_type_i32_array:
 case type_vara:
 case e_type_propset:
 case e_type_memory:
@@ -34,35 +34,63 @@ payload.P = dynamic_cast < TYPE * >(pobject); \
 if(::is_set(payload.m_pstra)) return ENUM_TYPE;
 
 
-enum_type set_element(::payload & payload, ::matter * pobject)
+enum_type set_element(::payload & payload, ::matter * pmatter)
 {
 
-   VAR_SET_ELEMENT(m_pstra    , ::string_array        , ::e_type_stra);
-   VAR_SET_ELEMENT(m_pia      , ::int_array           , ::e_type_inta);
-   VAR_SET_ELEMENT(m_pvara    , ::var_array           , ::e_type_vara);
-   VAR_SET_ELEMENT(m_pset     , ::property_set        , ::e_type_propset);
-   VAR_SET_ELEMENT(m_pi64a    , ::i64_array           , ::e_type_i64a);
-   VAR_SET_ELEMENT(m_pmemory  , ::memory              , ::e_type_memory);
-   VAR_SET_ELEMENT(m_ppath    , ::file::path_object   , ::e_type_path);
-   //VAR_SET_ELEMENT(m_pimage   , ::image               , ::type_image);
+   payload.m_etype = pmatter->get_payload_type();
 
-   payload.m_p = pobject;
+   switch (payload.m_etype)
+   {
+   case ::e_type_string_array:
+      payload.m_pstra = dynamic_cast <::string_array*>(pmatter);
+      break;
+   case ::e_type_i32_array:
+      payload.m_pia = dynamic_cast <::int_array*>(pmatter);
+      break;
+   case ::e_type_payload_array:
+      payload.m_pvara = dynamic_cast <payload_array*>(pmatter);
+      break;
+   case ::e_type_propset:
+      payload.m_pset = dynamic_cast <::property_set*>(pmatter);
+      break;
+   case ::e_type_i64_array:
+      payload.m_pi64a = dynamic_cast <::i64_array*>(pmatter);
+      break;
+   case ::e_type_memory:
+      payload.m_pmemory = dynamic_cast <::memory*>(pmatter);
+      break;
+   case ::e_type_path:
+      payload.m_ppath = dynamic_cast <::file::path_object*>(pmatter);
+      break;
+   default:
+      payload.m_p = pmatter;
+   }
 
-   return ::e_type_element;
+   return payload.m_etype;
 
 }
 
 
-::enum_type payload::set_element(::matter * pobject)
+void payload::_set_matter(::matter * pmatter)
+{
+
+   set_type(e_type_element, false);
+
+   m_p = pmatter;
+
+   ::increment_reference_count(pmatter);
+
+}
+
+
+void payload::_set_element(::matter* pmatter)
 {
 
    release();
 
-   m_etype = ::set_element(*this, pobject);
+   ::set_element(*this, false);
 
-   ::increment_reference_count(pobject);
-
-   return m_etype;
+   ::increment_reference_count(pmatter);
 
 }
 
@@ -88,22 +116,22 @@ enum_type set_element(::payload & payload, ::matter * pobject)
    {
    case e_type_element:
       return ::release(m_p);
-   case e_type_stra:
+   case e_type_string_array:
       return ::release(m_pstra);
-   case e_type_inta:
+   case e_type_i32_array:
       return ::release(m_pia);
-   case e_type_vara:
+   case e_type_payload_array:
       return ::release(m_pvara);
    case e_type_propset:
       return ::release(m_pset);
-   case e_type_i64a:
+   case e_type_i64_array:
       return ::release(m_pi64a);
    case e_type_memory:
       return ::release(m_pmemory);
    case e_type_path:
       return ::release(m_ppath);
-   //case type_image:
-   //   return ::release(m_pimage);
+   case e_type_routine:
+      return ::release(m_pmatterRoutine);
    default:
       return -1;
    };

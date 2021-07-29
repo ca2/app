@@ -29,7 +29,7 @@ namespace sockets
    }
 
 
-   void stream_socket::SetConnecting(bool x)
+   void stream_socket::set_connecting(bool x)
    {
       
       if (x != m_bConnecting)
@@ -55,7 +55,7 @@ namespace sockets
    }
 
 
-   bool stream_socket::Connecting()
+   bool stream_socket::is_connecting()
    {
       
       return m_bConnecting;
@@ -66,7 +66,7 @@ namespace sockets
    bool stream_socket::Ready()
    {
       
-      if (GetSocket() != INVALID_SOCKET && !Connecting() && !IsCloseAndDelete())
+      if (GetSocket() != INVALID_SOCKET && !is_connecting() && !IsCloseAndDelete())
       {
 
          return true;

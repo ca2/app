@@ -6,9 +6,9 @@
 // array is an array that call default constructors, copy constructs and destructors in elements
 
 
-template<class TYPE,class ARG_TYPE = const TYPE &,class ALLOCATOR = ::allocator::nodef < TYPE > >
+template <class TYPE, class ARG_TYPE = const TYPE &,class ALLOCATOR = ::allocator::nodef < TYPE >, enum_type t_etypePayload = e_type_element >
 class raw_array :
-   public array_base < TYPE, ARG_TYPE, ALLOCATOR >
+   public array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >
 {
 public:
 
@@ -16,7 +16,7 @@ public:
    typedef TYPE BASE_TYPE;
    typedef ARG_TYPE BASE_ARG_TYPE;
    typedef raw_array < TYPE,ARG_TYPE > BASE_ARRAY;
-   using ARRAY_BASE = array_base < TYPE, ARG_TYPE, ALLOCATOR >;
+   using ARRAY_BASE = array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >;
    typedef typename ARRAY_BASE::iterator iterator;
 
 
@@ -141,7 +141,7 @@ public:
    raw_array operator + (const raw_array & a) const;
 
 
-   using array_base < TYPE, ARG_TYPE, ALLOCATOR >::operator =;
+   using array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::operator =;
    inline raw_array & operator = (raw_array && a);
    inline raw_array & move(raw_array && a);
 

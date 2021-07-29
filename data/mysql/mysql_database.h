@@ -64,7 +64,7 @@ namespace mysql
       //virtual bool query_table_item(::payload& payload, const char* table, const char * item, const char * where) override;
       virtual bool query_item(::payload & payload, const char* pszSql) override;
       virtual bool query_blob(memory_base& memory, const char* pszSql);
-      virtual bool query_items(__pointer(var_array) & pvara, const char* pszSql) override;
+      virtual bool query_items(__pointer(payload_array) & pvara, const char* pszSql) override;
       virtual bool query_row(__pointer(::database::row) & prow, const char* pszSql) override;
       virtual bool query_rows(__pointer(::database::row_array) &prowarray, const char* pszSql) override;
 

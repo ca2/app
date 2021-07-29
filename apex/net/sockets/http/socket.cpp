@@ -222,7 +222,7 @@ namespace sockets
       if (m_bFirst)
       {
 
-#if 1
+#if 0
 
          INFO(line);
 

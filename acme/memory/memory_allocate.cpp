@@ -94,6 +94,13 @@ namespace HEAP_NAMESPACE
    }
 
 
+   void on_plex_new_block(::u32 nAllocSize)
+   {
+
+
+   }
+
+
    void on_plex_heap_alloc(plex_heap_alloc* palloc)
    {
 

@@ -11,12 +11,12 @@ namespace file
    {
    public:
 
-      path_object() {}
-      path_object(::matter*) {}
-      path_object(const ::file::path& path) : ::file::path(path) {}
-      path_object(::file::path&& path) : ::file::path(::move(path)) {}
+      path_object();
+      path_object(::matter*);
+      path_object(const ::file::path& path);
+      path_object(::file::path&& path);
 
-      virtual ~path_object();
+      ~path_object() override;
 
 
       virtual void exchange(::stream& s) override;

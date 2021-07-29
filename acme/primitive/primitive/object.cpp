@@ -1184,6 +1184,8 @@ bool object::check_tasks_finished()
 
    estatus = release_references();
 
+   estatus = property_object::destroy();
+
    return ::success;
 
 }

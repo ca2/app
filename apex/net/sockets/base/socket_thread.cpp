@@ -83,7 +83,7 @@ namespace sockets
 
       }
 
-      m_psockethandler = __new(class socket_handler());
+      m_psockethandler = ::move(__create_new < socket_handler > ());
 
       //psocket->m_psockethandler.release();
 

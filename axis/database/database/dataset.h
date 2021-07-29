@@ -138,11 +138,11 @@ namespace database
       virtual string get_sql(e_sql esql);
 
       virtual __pointer(row_array) query_rows(const char *query);
-      virtual __pointer(var_array) query_items(const char *query);
+      virtual __pointer(payload_array) query_items(const char *query);
       virtual ::payload query_item(const char *query);
 
       virtual bool query_rows(__pointer(row_array) & rows, const char *query);
-      virtual bool query_items(__pointer(var_array) & items, const char *query);
+      virtual bool query_items(__pointer(payload_array) & items, const char *query);
       virtual bool query_item(::payload & item, const char *query);
 
    };

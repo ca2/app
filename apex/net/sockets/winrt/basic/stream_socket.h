@@ -32,11 +32,11 @@
 
 
          /** socket should Check Connect on next write event from select(). */
-         void SetConnecting(bool = true);
+         void set_connecting(bool = true);
 
          /** Check connecting flag.
          \return true if the socket is still trying to connect */
-         bool Connecting();
+         bool is_connecting();
 
          /** Returns true when socket file descriptor is valid,
          socket connection is established, and socket is not about to

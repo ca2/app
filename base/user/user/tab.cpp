@@ -3726,7 +3726,7 @@ namespace user
       if (get_data()->m_matchanyRestore.m_itema.get_count() > 0)
       {
 
-         var_array vara;
+         payload_array vara;
 
          get_restore_tab(vara);
 
@@ -3898,7 +3898,7 @@ namespace user
 
    }
 
-   void tab::get_restore_tab(var_array & vara)
+   void tab::get_restore_tab(payload_array & vara)
    {
 
       ::payload varId;
@@ -3945,7 +3945,7 @@ namespace user
    }
 
 
-   ::count tab::open_tabs(const var_array & vara)
+   ::count tab::open_tabs(const payload_array & vara)
    {
 
       ::count c = 0;

@@ -141,7 +141,7 @@ namespace database
    }
 
 
-   __pointer(var_array) database::query_items(const char * pszQuery)
+   __pointer(payload_array) database::query_items(const char * pszQuery)
    {
 
       auto pset = query_result(pszQuery, -1, 1);
@@ -153,7 +153,7 @@ namespace database
 
       }
 
-      auto pvara = __new(var_array);
+      auto pvara = __new(payload_array);
 
       for (index i = 0; i < pset->m_prowa->get_count(); i++)
       {
@@ -246,7 +246,7 @@ namespace database
    }
 
 
-   //bool database::query_items(__pointer(var_array) & pitems, const char * pszQuery)
+   //bool database::query_items(__pointer(payload_array) & pitems, const char * pszQuery)
    //{
 
    //   auto pset = query_result(pszQuery);

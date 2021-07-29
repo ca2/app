@@ -1,32 +1,11 @@
 #pragma once
 
 
-namespace webserver
-{
-
-
-   class simage_accepta;
-   typedef __pointer_array(simage_accepta) simage_accepta_ptr_array;
-   class match_host;
-   typedef __pointer_array(match_host) match_host_array;
-   class ui_redir;
-   class account_database;
-   class way_database;
-
-
-} // namespace webserver
-
-
-
 namespace dynamic_source
 {
 
 
-   //CLASS_DECL_APP_PROGRAMMING script_instance * get_seed_instance();
-
-
    class CLASS_DECL_APP_PROGRAMMING script_manager :
-      //virtual public ::user::message_window_listener
       virtual public ::channel
    {
    public:
@@ -79,7 +58,7 @@ namespace dynamic_source
       };
 
 
-      void *                                                m_posdataNetnodeManager;
+      ::netnode::script_manager *                           m_pnetnodescriptmanager;
 
 
       __pointer_array(plugin_map_item)                      m_pluginmapitema;
@@ -158,7 +137,7 @@ namespace dynamic_source
 
 
       script_manager();
-      virtual ~script_manager();
+      ~script_manager() override;
 
       
       virtual ::e_status initialize(::object * pobject) override;
@@ -233,5 +212,6 @@ namespace dynamic_source
 
 
 } // namespace dynamic_source
+
 
 

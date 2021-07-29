@@ -172,7 +172,7 @@ namespace sockets
       bool open(const string &host,port_t port);
 
       /** Connect timeout callback. */
-      void OnConnectTimeout() override;
+      void on_connection_timeout() override;
 #ifdef _WIN32
       /** Connection failed reported as exception on win32 */
       void OnException();

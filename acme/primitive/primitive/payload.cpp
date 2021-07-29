@@ -229,7 +229,7 @@ payload::payload(const int_array & ia)
 }
 
 
-payload::payload(const var_array & payload)
+payload::payload(const payload_array & payload)
 {
 
    m_etype  = e_type_new;
@@ -307,9 +307,14 @@ payload::payload(const ::routine & routine)
 {
 
     m_etype = e_type_new;
+
     __zero(m_all);
-    set_type(e_type_routine);
-    m_routine = routine;
+
+    set_type(e_type_routine, false);
+
+    m_pmatterRoutine = routine.m_p;
+    
+    ::increment_reference_count(m_pmatterRoutine);
 
 }
 
@@ -422,6 +427,8 @@ payload::payload(const ::color::hls & hls)
 payload::~payload()
 {
 
+   release();
+
 }
 
 
@@ -497,8 +504,8 @@ class ::payload & payload::operator ++(::i32)
    {
    case e_type_new:
    case e_type_null:
-   case e_type_stra:
-   case e_type_inta:
+   case e_type_string_array:
+   case e_type_i32_array:
    case e_type_empty:
    case e_type_element:
    case e_type_path:
@@ -1046,19 +1053,19 @@ void payload::increment_reference_count()
       case e_type_element:
          m_p->increment_reference_count();
          break;
-      case e_type_stra:
+      case e_type_string_array:
          m_pstra->increment_reference_count();
          break;
-      case e_type_inta:
+      case e_type_i32_array:
          m_pia->increment_reference_count();
          break;
-      case e_type_vara:
+      case e_type_payload_array:
          m_pvara->increment_reference_count();
          break;
       case e_type_propset:
          m_pset->increment_reference_count();
          break;
-      case e_type_i64a:
+      case e_type_i64_array:
          m_p->increment_reference_count();
          break;
       case e_type_memory:
@@ -1225,7 +1232,7 @@ class ::payload & payload::operator = (const string_array & straParam)
    return *this;
 }
 
-class ::payload & payload::operator = (const var_array & varaParam)
+class ::payload & payload::operator = (const payload_array & varaParam)
 {
    vara() = varaParam;
    return *this;
@@ -1420,7 +1427,26 @@ class ::payload & payload::operator = (::duration * pduration)
 ::payload & payload::operator = (const block & block)
 {
 
-   set_element(__new(class ::memory(block)));
+   if(m_etype == e_type_pvar)
+   {
+
+      m_pvar->operator = (block);
+
+   }
+   else if(m_etype == e_type_memory)
+   {
+
+      *m_pmemory = block;
+
+   }
+   else
+   {
+
+      set_type(e_type_memory, false);
+
+      m_pmemory = new ::memory(block);
+
+   }
 
    return *this;
 
@@ -1577,15 +1603,15 @@ bool payload::is_empty() const
       // matter classes
    case e_type_element:
       return is_element_null();
-   case e_type_stra:
+   case e_type_string_array:
       return ::is_null(m_pstra) || m_pstra->is_empty();
-   case e_type_inta:
+   case e_type_i32_array:
       return ::is_null(m_pia) || m_pia->is_empty();
-   case e_type_vara:
+   case e_type_payload_array:
       return ::is_null(m_pvara) || m_pvara->is_empty();
    case e_type_propset:
       return ::is_null(m_pset) || m_pset->is_empty();
-   case e_type_i64a:
+   case e_type_i64_array:
       return ::is_null(m_pi64a) || m_pi64a->is_empty();
    case e_type_memory:
       return ::is_null(m_pmemory) || m_pmemory->is_empty();
@@ -1657,9 +1683,9 @@ bool payload::is_new_or_null() const
 
 ::i32 payload::compare_ci(const class ::payload & payload) const
 {
-   if(m_etype == ::e_type_inta)
+   if(m_etype == ::e_type_i32_array)
    {
-      if(payload.m_etype == ::e_type_inta)
+      if(payload.m_etype == ::e_type_i32_array)
       {
          //payload = var1.inta() - payload2.inta();
       }
@@ -1669,9 +1695,9 @@ bool payload::is_new_or_null() const
          //payload.inta().erase(payload2.i32());
       }
    }
-   else if(m_etype == ::e_type_stra)
+   else if(m_etype == ::e_type_string_array)
    {
-      if(payload.m_etype == ::e_type_stra)
+      if(payload.m_etype == ::e_type_string_array)
       {
          //payload = var1.stra() - payload2.stra();
       }
@@ -1681,9 +1707,9 @@ bool payload::is_new_or_null() const
          //payload.stra().erase(payload2.get_string());
       }
    }
-   else if(m_etype == ::e_type_vara)
+   else if(m_etype == ::e_type_payload_array)
    {
-      if(payload.m_etype == ::e_type_vara)
+      if(payload.m_etype == ::e_type_payload_array)
       {
          //   payload = var1.vara() - payload2.vara();
       }
@@ -1727,9 +1753,9 @@ bool payload::is_new_or_null() const
 
 ::i32 payload::compare(const class ::payload & payload) const
 {
-   if(m_etype == ::e_type_inta)
+   if(m_etype == ::e_type_i32_array)
    {
-      if(payload.m_etype == ::e_type_inta)
+      if(payload.m_etype == ::e_type_i32_array)
       {
          //payload = var1.inta() - payload2.inta();
       }
@@ -1739,9 +1765,9 @@ bool payload::is_new_or_null() const
          //payload.inta().erase(payload2.i32());
       }
    }
-   else if(m_etype == ::e_type_stra)
+   else if(m_etype == ::e_type_string_array)
    {
-      if(payload.m_etype == ::e_type_stra)
+      if(payload.m_etype == ::e_type_string_array)
       {
          //payload = var1.stra() - payload2.stra();
       }
@@ -1751,9 +1777,9 @@ bool payload::is_new_or_null() const
          //payload.stra().erase(payload2.get_string());
       }
    }
-   else if(m_etype == ::e_type_vara)
+   else if(m_etype == ::e_type_payload_array)
    {
-      if(payload.m_etype == ::e_type_vara)
+      if(payload.m_etype == ::e_type_payload_array)
       {
          //   payload = var1.vara() - payload2.vara();
       }
@@ -2146,7 +2172,7 @@ string payload::get_string(const char * pszOnNull) const
       {
          str = *m_pid;
       }
-      else if(m_etype == ::e_type_stra)
+      else if(m_etype == ::e_type_string_array)
       {
          str = stra().implode("");
       }
@@ -2529,7 +2555,7 @@ id & payload::get_ref_id(const char * pszOnNull)
 
    }
 
-   return m_routine;
+   return m_pmatterRoutine;
 
 }
 
@@ -2744,10 +2770,18 @@ double payload::get_double(double dDefault) const
 class ::memory & payload::memory()
 {
 
-   if(get_type() != e_type_memory)
+   if(m_etype != e_type_memory)
    {
 
-      set_element(create_memory());
+      set_type(e_type_memory, false);
+
+      m_pmemory = new memory();
+
+   }
+   else if(::is_null(m_pmemory))
+   {
+
+      m_pmemory = new memory();
 
    }
 
@@ -2789,11 +2823,13 @@ payload::operator ::file::path & ()
    else if (m_etype != ::e_type_path)
    {
 
-      auto ppath = __create_new < ::file::path_object >();
+      auto ppath = new ::file::path_object();
 
       ppath->assign(get_file_path());
 
-      set_element(ppath);
+      set_type(e_type_path, false);
+
+      m_ppath = ppath;
 
    }
 
@@ -2813,14 +2849,16 @@ payload::operator ::file::path() const
 string_array & payload::stra()
 {
 
-   if(m_etype != e_type_stra)
+   if(m_etype != e_type_string_array)
    {
 
       auto pstra = __new(string_array());
 
       pstra->add(*this);
 
-      set_element(pstra);
+      set_type(e_type_string_array, false);
+
+      m_pstra = pstra;
 
    }
    else if(::is_null(m_pstra))
@@ -2840,29 +2878,44 @@ string_array & payload::stra()
 int_array & payload::inta()
 {
 
-   if(m_etype != e_type_inta)
+   if (m_etype == e_type_pvar)
    {
 
-      auto pia  = __new(int_array());
+      return m_pvar->inta();
 
-      for(::i32 i = 0; i < array_get_count(); i++)
+   }
+   else if(m_etype != e_type_i32_array)
+   {
+
+      auto pia = __new(int_array());
+
+      try
       {
 
-         pia->add((::i32) at(i));
+         auto c = array_get_count();
+
+         for(::index i = 0; i < c; i++)
+         {
+
+            pia->add(at(i).i32());
+
+         }
+
+      }
+      catch(...)
+      {
 
       }
 
-      set_type(e_type_inta, false);
+      set_type(e_type_i32_array, false);
 
-      set_element(pia);
+      m_pia = pia;
 
    }
    else if (::is_null(m_pia))
    {
 
-      m_pia = __new(int_array());
-
-      ::increment_reference_count(m_pia);
+      m_pia = new int_array();
 
    }
 
@@ -2874,21 +2927,29 @@ int_array & payload::inta()
 i64_array & payload::int64a()
 {
 
-   if(m_etype != e_type_i64a)
+   if (m_etype == e_type_pvar)
    {
 
-      auto pia  = __new(i64_array());
+      return m_pvar->int64a();
 
-      for(index i = 0; i < array_get_count(); i++)
+   }
+   else if(m_etype != e_type_i64_array)
+   {
+
+      auto pia64  = __new(i64_array());
+
+      auto c = array_get_count();
+
+      for(index i = 0; i < c; i++)
       {
 
-         pia->add(at(i).i64());
+         pia64->add(at(i).i64());
 
       }
 
-      set_type(e_type_i64a, false);
+      set_type(e_type_i64_array, false);
 
-      set_element(pia);
+      m_pi64a = pia64;
 
    }
    else if(::is_null(m_pi64a))
@@ -2983,7 +3044,7 @@ class ::payload & payload::operator = (const ::payload * pvar)
 }
 
 
-var_array & payload::vara()
+payload_array & payload::vara()
 {
 
    if(m_etype == e_type_pvar)
@@ -2998,10 +3059,10 @@ var_array & payload::vara()
       return m_pprop->vara();
 
    }
-   else if(m_etype != e_type_vara)
+   else if(m_etype != e_type_payload_array)
    {
 
-      auto pvara  = __new(var_array());
+      auto pvara  = __new(payload_array());
 
       if (is_empty() || !operator bool())
       {
@@ -3019,13 +3080,15 @@ var_array & payload::vara()
 
       }
 
-      set_element(pvara);
+      set_type(e_type_payload_array, false);
+
+      m_pvara = pvara;
 
    }
    else if (::is_null(m_pvara))
    {
 
-      m_pvara = new var_array();
+      m_pvara = new payload_array();
 
    }
 
@@ -3071,7 +3134,9 @@ property_set & payload::propset()
 
       }
 
-      set_element(pset);
+      set_type(pset, false);
+
+      m_pset = pset;
 
    }
    else if (::is_null(m_pset))
@@ -3086,7 +3151,7 @@ property_set & payload::propset()
 }
 
 
-const var_array & payload::vara() const
+const payload_array & payload::vara() const
 {
 
    return ((::payload *)this)->vara();
@@ -3139,11 +3204,11 @@ string payload::implode(const char * pszGlue) const
    {
       return propset().implode(pszGlue);
    }
-   else if(get_type() == e_type_vara)
+   else if(get_type() == e_type_payload_array)
    {
       return vara().implode(pszGlue);
    }
-   else if(get_type() == e_type_stra)
+   else if(get_type() == e_type_string_array)
    {
       return stra().implode(pszGlue);
    }
@@ -3195,11 +3260,11 @@ string payload::implode(const char * pszGlue) const
 //
 //   switch(m_etype)
 //   {
-//   case e_type_inta:
+//   case e_type_i32_array:
 //      return &m_pia->element_at(i);
-//   case e_type_stra:
+//   case e_type_string_array:
 //      return &m_pstra->element_at(i);
-//   case e_type_vara:
+//   case e_type_payload_array:
 //      return &m_pvara->element_at(i);
 //   case e_type_propset:
 //      return &m_pset->element_at(i).element2();
@@ -3222,11 +3287,11 @@ string payload::implode(const char * pszGlue) const
 {
    switch(m_etype)
    {
-   case e_type_inta:
+   case e_type_i32_array:
       return &m_pia->element_at(i);
-   case e_type_stra:
+   case e_type_string_array:
       return &m_pstra->element_at(i);
-   case e_type_vara:
+   case e_type_payload_array:
       return &m_pvara->element_at(i);
    case e_type_propset:
       return m_pset->ptr_at(i);
@@ -3250,11 +3315,11 @@ bool payload::array_contains(const char * psz, index find, ::count count) const
 {
    switch(m_etype)
    {
-   case e_type_inta:
+   case e_type_i32_array:
       return inta().contains(atoi(psz), find, count);
-   case e_type_stra:
+   case e_type_string_array:
       return stra().contains(psz, find, count);
-   case e_type_vara:
+   case e_type_payload_array:
       return vara().contains(psz, find, count);
    case e_type_propset:
       return propset().contains_value(psz, find, count);
@@ -3279,11 +3344,11 @@ bool payload::array_contains_ci(const char * psz, index find, index last) const
    {
    case e_type_bool:
       return false;
-   case e_type_inta:
+   case e_type_i32_array:
       return inta().contains(atoi(psz), find, last);
-   case e_type_stra:
+   case e_type_string_array:
       return stra().contains_ci(psz, find, last);
-   case e_type_vara:
+   case e_type_payload_array:
       return vara().contains_ci(psz, find, last);
    case e_type_propset:
       return propset().contains_value_ci(psz, find, last);
@@ -3896,9 +3961,9 @@ bool payload::is_scalar() const
    {
       return true;
    }
-   else if(m_etype == e_type_stra
-           || m_etype == e_type_inta
-           || m_etype == e_type_vara
+   else if(m_etype == e_type_string_array
+           || m_etype == e_type_i32_array
+           || m_etype == e_type_payload_array
            || m_etype == e_type_propset)
    {
       return false;
@@ -4351,19 +4416,19 @@ payload::operator bool() const
       return m_pid != nullptr && ((m_pid->is_text() && ::papaya::is_true(m_pid->m_psz)) || (m_pid->is_integer() && m_pid->m_i != 0));
 
    }
-   else if (m_etype == e_type_inta)
+   else if (m_etype == e_type_i32_array)
    {
 
       return m_pia != nullptr && (m_pia->get_count() >= 2 || (m_pia->get_count() == 1 && !m_pia->element_at(0)));
 
    }
-   else if (m_etype == e_type_i64a)
+   else if (m_etype == e_type_i64_array)
    {
 
       return m_pi64a != nullptr && (m_pi64a->get_count() >= 2 || (m_pi64a->get_count() == 1 && !m_pi64a->element_at(0)));
 
    }
-   else if (m_etype == e_type_stra)
+   else if (m_etype == e_type_string_array)
    {
 
       return m_pstra != nullptr && (m_pstra->get_count() >= 2 || (m_pstra->get_count() == 1 && ::papaya::is_true(m_pstra->element_at(0))));
@@ -4400,7 +4465,7 @@ payload::operator bool() const
       return m_pprop->operator bool();
 
    }
-   else if (m_etype == e_type_vara)
+   else if (m_etype == e_type_payload_array)
    {
 
       return m_pvara != nullptr && (m_pvara->get_count() >= 2 || (m_pvara->get_count() == 1 && m_pvara->element_at(0).is_true()));
@@ -5303,9 +5368,9 @@ bool payload::is_numeric() const
    case e_type_double:
       return true;
 
-   case e_type_stra:
-   case e_type_inta:
-   case e_type_vara:
+   case e_type_string_array:
+   case e_type_i32_array:
+   case e_type_payload_array:
    case e_type_propset:
    case e_type_memory:
       return false;
@@ -5320,7 +5385,7 @@ bool payload::is_numeric() const
    case e_type_pid:
       return false; // m_pid->is_number(); // may be improved MBI
 
-   case e_type_i64a:
+   case e_type_i64_array:
       return false;
    case e_type_routine:
       return false;
@@ -5391,25 +5456,25 @@ string & payload::get_json(string & str, bool bNewLine) const
       return propset().get_json(str, bNewLine);
 
    }
-   else if (get_type() == ::e_type_stra)
+   else if (get_type() == ::e_type_string_array)
    {
 
       return stra().get_json(str, bNewLine);
 
    }
-   else if (get_type() == ::e_type_inta)
+   else if (get_type() == ::e_type_i32_array)
    {
 
       return inta().get_json(str, bNewLine);
 
    }
-   else if (get_type() == ::e_type_i64a)
+   else if (get_type() == ::e_type_i64_array)
    {
 
       return int64a().get_json(str, bNewLine);
 
    }
-   else if (get_type() == ::e_type_vara)
+   else if (get_type() == ::e_type_payload_array)
    {
 
       return vara().get_json(str, bNewLine);
@@ -5541,6 +5606,14 @@ void payload::null()
 
 ::payload & payload::operator |= (enumeration < ::file::enum_flag > eflag)
 {
+
+
+   if(m_etype == e_type_pvar)
+   {
+
+      return m_pvar->operator |=(eflag);
+
+   }
 
    auto pfile = cast < ::file::file > ();
 
@@ -5688,22 +5761,22 @@ bool payload::is_false() const
    case e_type_prop:
       return m_pprop || !*m_pprop;
    case e_type_routine:
-         return !m_routine;
+         return ::is_null(m_pmatterRoutine);
    //case e_type_process:
      //    return !m_process;
 
    // matter classes
    case e_type_element:
       return is_element_null();
-   case e_type_stra:
+   case e_type_string_array:
       return ::is_null(m_pstra) || m_pstra->is_empty();
-   case e_type_inta:
+   case e_type_i32_array:
       return ::is_null(m_pia) || m_pia->is_empty();
-   case e_type_vara:
+   case e_type_payload_array:
       return ::is_null(m_pvara) || m_pvara->is_empty();
    case e_type_propset:
       return ::is_null(m_pset) || m_pset->is_empty();
-   case e_type_i64a:
+   case e_type_i64_array:
       return ::is_null(m_pi64a) || m_pi64a->is_empty();
    case e_type_memory:
       return ::is_null(m_pmemory) || m_pmemory->is_empty();
@@ -5833,22 +5906,22 @@ bool payload::is_set_false() const
    case e_type_prop:
       return m_pprop || !*m_pprop;
    case e_type_routine:
-      return !m_routine;
+      return ::is_null(m_pmatterRoutine);
    //case type_process:
    //   return !m_process;
 
       // matter classes
    case e_type_element:
       return is_element_null();
-   case e_type_stra:
+   case e_type_string_array:
       return ::is_null(m_pstra) || m_pstra->is_empty();
-   case e_type_inta:
+   case e_type_i32_array:
       return ::is_null(m_pia) || m_pia->is_empty();
-   case e_type_vara:
+   case e_type_payload_array:
       return ::is_null(m_pvara) || m_pvara->is_empty();
    case e_type_propset:
       return ::is_null(m_pset) || m_pset->is_empty();
-   case e_type_i64a:
+   case e_type_i64_array:
       return ::is_null(m_pi64a) || m_pi64a->is_empty();
    case e_type_memory:
       return ::is_null(m_pmemory) || m_pmemory->is_empty();
@@ -5958,7 +6031,7 @@ void payload::_001Add(const string_array & straParam)
 ::payload & payload::operator = (const ::matter & o)
 {
 
-   set_element((::matter *) &o);
+   _set_element((::matter *) &o);
 
    return *this;
 
@@ -6035,42 +6108,6 @@ payload::operator ::color::color() const
 
 
 
-//::image * & payload::image()
-//{
-//
-//   if (m_etype == ::e_type_pvar)
-//   {
-//
-//      return m_pvar->image();
-//
-//   }
-//   else if (m_etype != ::e_type_path)
-//   {
-//
-//      auto ppath = __create < ::file::path_object >();
-//
-//      *ppath = get_file_path();
-//
-//      set_element(ppath);
-//
-//   }
-//
-//   return m_pimage;
-//
-//}
-
-
-//payload::operator ::image * & ()
-//{
-//
-//   return image();
-//
-//}
-
-
-
-
-
 
 
 
@@ -6126,10 +6163,10 @@ IMPL_VAR_ENUM(check);
    else if (get_type() == e_type_routine)
    {
 
-      return m_routine();
+      return this->get_routine()();
 
    }
-   else if (get_type() == e_type_vara)
+   else if (get_type() == e_type_payload_array)
    {
 
       ::extended::status result;
@@ -6175,7 +6212,7 @@ void payload::receive_response(const ::payload & payload)
    //   m_process(payload);
 
    //}
-   //else if (get_type() == e_type_vara)
+   //else if (get_type() == e_type_payload_array)
    //{
 
    //   for (auto& varFunction : this->vara())
@@ -6198,9 +6235,11 @@ void payload::receive_response(const ::payload & payload)
 ::payload& payload::operator = (const ::routine & routine)
 {
 
-   set_type(e_type_routine);
+   set_type(e_type_routine, false);
 
-   m_routine = routine;
+   m_pmatterRoutine = routine.m_p;
+
+   ::increment_reference_count(m_pmatterRoutine);
 
    return *this;
 

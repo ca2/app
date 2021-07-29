@@ -3,7 +3,7 @@
 
 
 template < class TYPE, class ARG_TYPE = const TYPE &, class ALLOCATOR = allocator::nodef < TYPE > >
-inline auto & __array_object(::array_base < TYPE, ARG_TYPE, ALLOCATOR > & a, ::index i);
+inline auto & __array_object(::array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload > & a, ::index i);
 
 
 template < typename ARRAY_TYPE, typename T >

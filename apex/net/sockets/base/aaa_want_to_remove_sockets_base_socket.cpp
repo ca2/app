@@ -2341,7 +2341,7 @@ namespace sockets
    }
 
 
-   void base_socket::OnTimeout()
+   void base_socket::on_timeout()
    {
 
       m_estatus = error_on_connection_timeout;
@@ -2349,7 +2349,7 @@ namespace sockets
    }
 
 
-   void base_socket::OnConnectTimeout()
+   void base_socket::on_connection_timeout()
    {
 
    }

@@ -42,10 +42,10 @@ inline void __exchange(::var_stream & s, ::matter & matter);
 template < typename OBJECT >
 inline void __exchange(::var_stream& s, __pointer(OBJECT)& pobject);
 
-template < class TYPE, class ARG_TYPE, class ALLOCATOR >
-inline void __exchange(::var_stream& stream, ::array_base < TYPE, ARG_TYPE, ALLOCATOR >& array);
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
+inline void __exchange(::var_stream& stream, ::array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >& array);
 
-template < class TYPE, class ARG_TYPE, class ALLOCATOR >
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
 inline void __exchange(::var_stream& s, const ::raw_array < TYPE, ARG_TYPE, ALLOCATOR >& array);
 
 template < class TYPE >

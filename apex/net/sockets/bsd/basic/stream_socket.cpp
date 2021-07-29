@@ -13,7 +13,7 @@ namespace sockets
       //,socket(h)
       //,
       m_bConnecting(false)
-      ,m_secsConnectionTimeout(5)
+      //,m_secsConnectionTimeout(5)
       ,m_bFlushBeforeClose(true)
       ,m_iMaximumConnectionRetryCount(0)
       ,m_iConnectionRetryCount(0)
@@ -31,24 +31,24 @@ namespace sockets
    }
 
 
-   void stream_socket::SetConnecting(bool x)
+   void stream_socket::set_connecting(bool bConnecting)
    {
 
-      if (x != m_bConnecting)
+      if (::is_different(bConnecting, m_bConnecting))
       {
 
-         m_bConnecting = x;
+         m_bConnecting = bConnecting;
 
-         if (x)
+         if (bConnecting)
          {
 
-            SetTimeout( GetConnectTimeout().m_i );
+            set_connection_start_time();
 
          }
          else
          {
 
-            SetTimeout( 0 );
+            set_start_time();
 
          }
 
@@ -57,7 +57,7 @@ namespace sockets
    }
 
 
-   bool stream_socket::Connecting()
+   bool stream_socket::is_connecting()
    {
 
       return m_bConnecting;
@@ -68,7 +68,7 @@ namespace sockets
    bool stream_socket::Ready()
    {
 
-      if (GetSocket() != INVALID_SOCKET && !Connecting() && !IsCloseAndDelete())
+      if (GetSocket() != INVALID_SOCKET && !is_connecting() && !IsCloseAndDelete())
       {
 
          return true;
@@ -80,18 +80,18 @@ namespace sockets
    }
 
 
-   void stream_socket::SetConnectTimeout(i32 x)
-   {
-      m_secsConnectionTimeout = x;
-   }
+   //void stream_socket::set_maximum_connection_time(i32 x)
+   //{
+   //   m_secsConnectionTimeout = x;
+   //}
 
 
-   ::secs stream_socket::GetConnectTimeout()
-   {
+   //::secs stream_socket::GetConnectTimeout()
+   //{
 
-      return m_secsConnectionTimeout;
+   //   return m_secsConnectionTimeout;
 
-   }
+   //}
 
 
    void stream_socket::SetFlushBeforeClose(bool bFlushBeforeClose)

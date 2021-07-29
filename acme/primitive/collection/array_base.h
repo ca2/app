@@ -81,7 +81,7 @@ inline CONTAINERX operator +(CONTAINERX x, const CONTAINERY & y)
 // raw_array is an array that does not call constructors or destructor in elements
 // array is an array that call only copy constructor and destructor in elements
 // array is an array that call default constructors, copy constructs and destructors in elements
-template < class TYPE, class ARG_TYPE = const TYPE &, class ALLOCATOR = allocator::nodef < TYPE > >
+template < class TYPE, class ARG_TYPE = const TYPE &, class ALLOCATOR = allocator::nodef < TYPE >, enum_type t_etypePayload = e_type_element >
 class array_base :
    public ::matter
 {
@@ -407,6 +407,8 @@ public:
 
    void this_is_a_container() {}
 
+   enum_type get_payload_type() const override { return t_etypePayload; }
+
    inline auto values(index iStart = 0, index iEnd = -1) const { return iterator(iStart, iEnd, this); }
 
 
@@ -602,7 +604,7 @@ public:
    ::count predicate_each(PRED pred, ::index iStart = 0, ::count c = -1) const
    {
 
-      return ((array_base < TYPE, ARG_TYPE, ALLOCATOR >*)this)->predicate_each(pred, iStart, c);
+      return ((array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >*)this)->predicate_each(pred, iStart, c);
 
    }
 
@@ -893,8 +895,8 @@ public:
 };
 
 
-template < class TYPE, class ARG_TYPE, class ALLOCATOR = allocator::nodef < TYPE > >
-inline TYPE& operator%(::index nIndex, const array_base < TYPE, ARG_TYPE, ALLOCATOR > & a)
+template < class TYPE, class ARG_TYPE, class ALLOCATOR = allocator::nodef < TYPE >, enum_type t_etypePayload = e_type_element >
+inline TYPE& operator%(::index nIndex, const array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload > & a)
 {
 
    return (TYPE &) (a % nIndex);

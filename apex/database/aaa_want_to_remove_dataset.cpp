@@ -566,10 +566,10 @@ namespace database
    }
 
 
-   __pointer(var_array) dataset::query_items(const char * pszQuery)
+   __pointer(payload_array) dataset::query_items(const char * pszQuery)
    {
 
-      __pointer(var_array) items;
+      __pointer(payload_array) items;
 
       if (!query_items(items, pszQuery))
       {
@@ -583,7 +583,7 @@ namespace database
    }
 
 
-   bool dataset::query_items(__pointer(var_array) & items, const char * pszQuery)
+   bool dataset::query_items(__pointer(payload_array) & items, const char * pszQuery)
    {
 
       if (!query(pszQuery))

@@ -2,9 +2,9 @@
 
 
 
-template < class TYPE, class ARG_TYPE = const TYPE &, class ALLOCATOR = ::allocator::def < TYPE > >
+template < class TYPE, class ARG_TYPE = const TYPE &, class ALLOCATOR = ::allocator::def < TYPE >, enum_type t_etypePayload = e_type_element >
 class array :
-   public ::array_base < TYPE, ARG_TYPE, ALLOCATOR >
+   public ::array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >
 {
 public:
 
@@ -12,7 +12,7 @@ public:
    typedef TYPE BASE_TYPE;
    typedef ARG_TYPE BASE_ARG_TYPE;
    typedef array < TYPE, ARG_TYPE > BASE_ARRAY;
-   typedef ::array_base < TYPE, ARG_TYPE, ALLOCATOR > ARRAY_BASE;
+   typedef ::array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload > ARRAY_BASE;
    typedef typename ARRAY_BASE::iterator iterator;
    typedef typename ARRAY_BASE::const_iterator const_iterator;
    typedef typename ARRAY_BASE::iterator_range iterator_range;
@@ -88,7 +88,7 @@ public:
    //void erase_descending_indexes(const index_array & ia); // erase indexes from ::index array lower bound to ::index array upper bound
    //::index insert_at(::index nStartIndex, array* pNewArray);
 
-   using array_base < TYPE, ARG_TYPE, ALLOCATOR > ::operator=;
+   using array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload > ::operator=;
    inline array & operator = (const array & src);
    inline array & operator = (array && a);
    inline array & move (array && a);
@@ -278,8 +278,8 @@ public:
 };
 
 
-template < class TYPE, class ARG_TYPE, class ALLOCATOR >
-bool array_base < TYPE, ARG_TYPE, ALLOCATOR > ::prepare_first_last(::index & first, ::index & last) const
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
+bool array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload > ::prepare_first_last(::index & first, ::index & last) const
 {
 
    if (first < 0)
@@ -301,8 +301,8 @@ bool array_base < TYPE, ARG_TYPE, ALLOCATOR > ::prepare_first_last(::index & fir
 }
 
 
-template < class TYPE, class ARG_TYPE, class ALLOCATOR >
-bool array_base < TYPE, ARG_TYPE, ALLOCATOR > ::prepare_first_in_count_last_out(::index & first, ::count & in_count_out_last) const
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
+bool array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload > ::prepare_first_in_count_last_out(::index & first, ::count & in_count_out_last) const
 {
 
    if (first < 0)

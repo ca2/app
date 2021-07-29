@@ -282,7 +282,7 @@ string & property::get_http_post(string & str) const
 //   return inta();
 //}
 //
-//var_array & property::vara()
+//payload_array & property::vara()
 //{
 //   return vara();
 //}
@@ -302,7 +302,7 @@ string & property::get_http_post(string & str) const
 //   return inta();
 //}
 //
-//const var_array & property::vara() const
+//const payload_array & property::vara() const
 //{
 //   return vara();
 //}
@@ -351,9 +351,9 @@ string & property::get_http_post(string & str) const
 //{
 //   switch(m_etype)
 //   {
-//   case ::e_type_stra:
+//   case ::e_type_string_array:
 //      return const_cast<property *>(this)->stra().operator [](iIndex);
-//   case ::e_type_inta:
+//   case ::e_type_i32_array:
 //      return const_cast<property *>(this)->inta().operator [](iIndex);
 //   case ::type_vara:
 //      return const_cast<property *>(this)->vara().operator [](iIndex);

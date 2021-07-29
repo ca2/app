@@ -64,9 +64,9 @@ inline ::count payload::get_count() const
    {
    case e_type_bool:
       return 1;
-   case e_type_inta:
+   case e_type_i32_array:
       return ::is_null(m_pia) ? 0 : m_pia->get_count();
-   case e_type_stra:
+   case e_type_string_array:
       return ::is_null(m_pstra) ? 0 : m_pstra->get_count();
    case type_vara:
       return ::is_null(m_pvara) ? 0 : m_pvara->get_count();
@@ -119,8 +119,8 @@ inline index payload::array_get_upper_bound() const
 inline bool payload::is_array() const
 {
 
-   if(m_etype == e_type_stra
-         || m_etype == e_type_inta
+   if(m_etype == e_type_string_array
+         || m_etype == e_type_i32_array
          || m_etype == type_vara
          || m_etype == e_type_propset)
    {

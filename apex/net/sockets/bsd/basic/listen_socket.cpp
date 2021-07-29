@@ -368,7 +368,7 @@ namespace sockets
          tmp->prepare_for_detach();
 
       }
-
+      tmp->set_start_time();
 //      auto passociation = m_psockethandler->new_association(tmp);
 
       //socket_handler()->move(passociation);

@@ -125,7 +125,7 @@ namespace mysql
    }
 
 
-   __pointer(var_array) database::query_items(const char * pszSql)
+   __pointer(payload_array) database::query_items(const char * pszSql)
    {
 
       return nullptr;

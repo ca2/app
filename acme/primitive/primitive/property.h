@@ -266,11 +266,11 @@ public:
 ////
 ////   string_array & stra();
 ////   int_array & inta();
-////   var_array & vara();
+////   payload_array & vara();
 ////   property_set & propset();
 ////   const string_array & stra() const;
 ////   const int_array & inta() const;
-////   const var_array & vara() const;
+////   const payload_array & vara() const;
 ////   const property_set & propset() const;
 ////   inline void get_string(char * psz) const;
 ////   strsize get_length() const;

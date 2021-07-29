@@ -100,8 +100,8 @@ inline stream & operator >>(stream & s, ::millis & millis)
 //inline stream & stream::operator >> (e_set_loading) { set_loading(); return *this; }
 
 
-//template < class TYPE, class ARG_TYPE, class ALLOCATOR >
-//stream & stream::operator << (const array_base < TYPE, ARG_TYPE, ALLOCATOR > & a)
+//template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
+//stream & stream::operator << (const array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload > & a)
 //{
 
 //   ::count c = a.get_count();
@@ -116,7 +116,7 @@ inline stream & operator >>(stream & s, ::millis & millis)
 
 
 //template < class TYPE, class ARG_TYPE , class ALLOCATOR >
-//stream & stream::operator >> (array_base < TYPE, ARG_TYPE, ALLOCATOR > & a)
+//stream & stream::operator >> (array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload > & a)
 //{
 
 //   ::count c = 0;
@@ -744,14 +744,14 @@ inline void __exchange_load_array(::stream & stream, ARRAY & array)
 }
 
 
-template < class TYPE, class ARG_TYPE, class ALLOCATOR >
-inline void __exchange(::stream & stream, ::array_base < TYPE, ARG_TYPE, ALLOCATOR > & array)
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
+inline void __exchange(::stream & stream, ::array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload > & array)
 {
    __exchange_array(stream, array);
 }
 
 
-template < class TYPE, class ARG_TYPE, class ALLOCATOR >
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
 inline void __exchange(::stream & stream, ::raw_array < TYPE, ARG_TYPE, ALLOCATOR > & array)
 {
    __exchange_array(stream, array);

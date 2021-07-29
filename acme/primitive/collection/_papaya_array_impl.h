@@ -147,7 +147,7 @@ namespace papaya
          {
 
          }
-         else if (payload.get_type() == ::e_type_stra)
+         else if (payload.get_type() == ::e_type_string_array)
          {
 
             i = ::papaya::array::add(array, payload.stra());
@@ -159,7 +159,7 @@ namespace papaya
             i = ::papaya::array::add(array, *payload.cast < string_array_base < Type, RawType > >());
 
          }
-         else if (payload.get_type() == ::e_type_vara)
+         else if (payload.get_type() == ::e_type_payload_array)
          {
 
             for (::index i = 0; i < payload.vara().get_count(); i++)
@@ -177,7 +177,7 @@ namespace papaya
             }
 
          }
-         else if (payload.get_type() == ::e_type_inta)
+         else if (payload.get_type() == ::e_type_i32_array)
          {
 
             for (::index i = 0; i < payload.inta().get_count(); i++)

@@ -118,6 +118,9 @@ public:
 #endif
 
 
+   virtual ::enum_type get_payload_type() const;
+
+
    virtual ::e_status initialize_matter(::matter* pmatter);
 
 

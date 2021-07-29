@@ -93,7 +93,7 @@ namespace database
       bool query_table_item(::payload& payload, const char* table, const char* item, const char* where) override;
       bool query_rows(__pointer(row_array) & prowarray, const char* pszQuery) override;
       bool query_row(__pointer(row) & prow, const char* pszQuery) override;
-      bool query_items(__pointer(var_array) & pvara, const char* pszQuery) override;
+      bool query_items(__pointer(payload_array) & pvara, const char* pszQuery) override;
       bool query_item(::payload & payload, const char* pszQuery) override;
        bool query_blob(get_memory getmemory, const char* pszQuery) override;
 

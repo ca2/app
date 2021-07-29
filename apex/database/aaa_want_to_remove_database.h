@@ -91,13 +91,13 @@ namespace database
       //virtual ::payload query(const char * pszQuery, ::count iMaxRowCount = -1, ::count iMaxColumnCount = -1);
       virtual __pointer(row_array) query_rows(const char * pszQuery);
       virtual __pointer(row) query_row(const char * pszQuery);
-      virtual __pointer(var_array) query_items(const char * pszQuery);
+      virtual __pointer(payload_array) query_items(const char * pszQuery);
       virtual ::payload query_item(const char * pszQuery);
       virtual bool memory_query_item(get_memory getmemory, const char * pszQuery);
 
       //virtual bool query_rows(__pointer(row_array) & rows, const char * pszQuery);
       //virtual bool query_row(__pointer(row) & rows, const char * pszQuery);
-      //virtual bool query_items(__pointer(var_array) & items, const char * pszQuery);
+      //virtual bool query_items(__pointer(payload_array) & items, const char * pszQuery);
       //virtual bool query_item(::payload & item, const char * pszQuery);
 
 

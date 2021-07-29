@@ -20,7 +20,7 @@ interprocess_task::~interprocess_task()
 }
 
 
-void interprocess_task::do_task(const string& strObject, const string& strMember, const var_array& vara)
+void interprocess_task::do_task(const string& strObject, const string& strMember, const payload_array& vara)
 {
 
    ::interprocess_communication::tx& txc = m_pcall->m_pinterprocessintercommunication->tx(m_pcall->m_strApp, m_idPid);

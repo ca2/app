@@ -21,6 +21,12 @@ namespace HEAP_NAMESPACE
 
    }
 
+   void on_plex_new_block(::u32 nAllocSize)
+   {
+
+
+   }
+
 
 } // namespace HEAP_NAMESPACE
 

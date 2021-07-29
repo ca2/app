@@ -79,7 +79,7 @@ public:
 };
 
 
-template < class TYPE >
+template < typename TYPE >
 class unique_array :
    protected array < TYPE >
 {

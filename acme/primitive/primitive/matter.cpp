@@ -50,7 +50,7 @@ void matter::dump(dump_context & dumpcontext) const
 }
 
 
-::enum_type matter::get_payload_type()
+::enum_type matter::get_payload_type() const
 { 
    
    return e_type_element; 

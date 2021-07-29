@@ -167,7 +167,7 @@ namespace file
 
 
 //template < class TYPE, class ARG_TYPE = const TYPE &, class ALLOCATOR = ::allocator::def < TYPE > >
-//stream & operator << (stream & s, array < TYPE, ARG_TYPE, ALLOCATOR > & a)
+//stream & operator << (stream & s, array < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload > & a)
 //{
 //
 //   s.stream_array(a);
@@ -178,7 +178,7 @@ namespace file
 
 
 //template < class TYPE, class ARG_TYPE = const TYPE &, class ALLOCATOR = ::allocator::def < TYPE > >
-//stream & operator >> (stream & s, array < TYPE, ARG_TYPE, ALLOCATOR > & a)
+//stream & operator >> (stream & s, array < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload > & a)
 //{
 //
 //   s (a);

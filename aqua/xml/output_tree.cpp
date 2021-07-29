@@ -65,7 +65,7 @@ namespace xml
    node * output_tree::export_node(const char * pcszName, ::payload payload)
 
    {
-      m_varexchange.m_pvar = &payload;
+      m_varexchange.m_ppayload = &payload;
       return export_node(pcszName, m_varexchange);
 
    }

@@ -6,7 +6,7 @@
 // array is an array that call default constructors, copy constructs and destructors in elements
 
 
-template <class TYPE, class ARG_TYPE = const TYPE &,class ALLOCATOR = ::allocator::nodef < TYPE >, enum_type t_etypePayload = e_type_element >
+template < typename TYPE, typename ARG_TYPE = const TYPE &, typename ALLOCATOR = ::allocator::nodef < TYPE >, enum_type t_etypePayload = e_type_element >
 class raw_array :
    public array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >
 {

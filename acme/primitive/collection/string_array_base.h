@@ -29,16 +29,16 @@ namespace str
 
 template < typename Type, typename RawType, enum_type t_etypePayload >
 class string_array_base :
-   public comparable_array < Type, const Type &, comparable_eq_array < Type, const Type &, t_etypePayload > >
+   public comparable_array < Type, const Type &, comparable_eq_array < Type, const Type &, array < Type, const Type&, ::allocator::def < Type >, t_etypePayload > > >
 {
 public:
 
 
-   using BASE_ARRAY = comparable_array < Type >;
-   typedef Type                           String;
-   typedef RawType                        RawString;
-   typedef string_array_base < RawType >       RawStringArray;
-   typedef typename Type::CHAR_TYPE       CHAR_TYPE;
+   using BASE_ARRAY = comparable_array < Type, const Type&, comparable_eq_array < Type, const Type&, array < Type, const Type&, ::allocator::def < Type >, t_etypePayload > > >;
+   typedef Type                                                      String;
+   typedef RawType                                                   RawString;
+   typedef string_array_base < RawType, RawType, t_etypePayload >    RawStringArray;
+   typedef typename Type::CHAR_TYPE                                  CHAR_TYPE;
 
 
    string_array_base() {}
@@ -57,7 +57,7 @@ public:
    string_array_base(Platform::Array < Platform::String ^ > ^ refstra);
 #endif
    string_array_base(CHAR_TYPE * const * ppsz, ::count c);
-   virtual ~string_array_base();
+   ~string_array_base() override;
 
 
    ::count get_size() const;
@@ -113,7 +113,7 @@ public:
    const Type* get_data() const;
    Type* get_data();
 
-   using array < Type >::add;
+   using BASE_ARRAY::add;
 
    Type & set_at_grow(::index nIndex, const Type& newElement);
 
@@ -123,7 +123,7 @@ public:
 
    void copy(const string_array_base & src);
    void copy(const i64_array & src);
-   using array < Type >::copy;
+   using BASE_ARRAY::copy;
 
 
    ::index add(::str::range_array & rangea, const RawString & str)
@@ -358,7 +358,7 @@ public:
 
    ::count erase_last_ci(const RawString & pcsz, ::index iFind = 0, ::index iLast = -1);
 
-   using array < Type >::erase_last;
+   using BASE_ARRAY::erase_last;
    ::count erase_last(const RawString & pcsz, ::index iFind = 0, ::index iLast = -1);
 
    ::count _067RemoveCi(const RawString& pcsz, ::index iFind = 0, ::index iLast = -1, ::count countMin = 0, ::count countMax = -1);
@@ -552,9 +552,9 @@ public:
 
 
 
-template < class Type, class RawType >
+template < typename Type, typename RawType, enum_type t_etypePayload >
 template < typename PRED >
-Type string_array_base < Type, RawType > ::predicate_implode(PRED pred, const Type& strSeparator,::index i,::count inCountLastOut) const
+Type string_array_base < Type, RawType, t_etypePayload > ::predicate_implode(PRED pred, const Type& strSeparator,::index i,::count inCountLastOut) const
 {
 
    Type str;
@@ -592,9 +592,9 @@ Type string_array_base < Type, RawType > ::predicate_implode(PRED pred, const Ty
 
 
 
-template < class Type, class RawType >
+template < typename Type, typename RawType, enum_type t_etypePayload >
 template < typename SWAP >
-void string_array_base < Type, RawType >::swap_sort(SWAP __swap)
+void string_array_base < Type, RawType, t_etypePayload >::swap_sort(SWAP __swap)
 {
 
    index_array stackLowerBound;
@@ -673,9 +673,9 @@ void string_array_base < Type, RawType >::swap_sort(SWAP __swap)
 }
 
 
-template < class Type, class RawType >
+template < typename Type, typename RawType, enum_type t_etypePayload >
 template < typename SWAP >
-void string_array_base < Type, RawType >::swap_sort_ci(SWAP __swap)
+void string_array_base < Type, RawType, t_etypePayload >::swap_sort_ci(SWAP __swap)
 {
    index_array stackLowerBound;
    index_array stackUpperBound;
@@ -775,27 +775,27 @@ static inline void DestructElement(wstring * pOldData)
 }
 
 
-template < class Type, class RawType >
-inline Type & string_array_base < Type, RawType >::last(::index i)
+template < typename Type, typename RawType, enum_type t_etypePayload >
+inline Type & string_array_base < Type, RawType, t_etypePayload >::last(::index i)
 {
    return this->element_at(get_upper_bound(i));
 }
 
-template < class Type, class RawType >
-inline Type string_array_base < Type, RawType >::last(::index i) const
+template < typename Type, typename RawType, enum_type t_etypePayload >
+inline Type string_array_base < Type, RawType, t_etypePayload >::last(::index i) const
 {
    return this->element_at(get_upper_bound(i));
 }
 
-template < class Type, class RawType >
-inline Type & string_array_base < Type, RawType >::first(::index i)
+template < typename Type, typename RawType, enum_type t_etypePayload >
+inline Type & string_array_base < Type, RawType, t_etypePayload >::first(::index i)
 {
    return this->element_at(get_lower_bound(i));
 }
 
 
-template < class Type, class RawType >
-inline Type string_array_base < Type, RawType >::first(::index i) const
+template < typename Type, typename RawType, enum_type t_etypePayload >
+inline Type string_array_base < Type, RawType, t_etypePayload >::first(::index i) const
 {
 
    return this->element_at(get_lower_bound(i));
@@ -803,8 +803,8 @@ inline Type string_array_base < Type, RawType >::first(::index i) const
 }
 
 
-template < class Type, class RawType >
-inline ::count string_array_base < Type, RawType >::get_size() const
+template < typename Type, typename RawType, enum_type t_etypePayload >
+inline ::count string_array_base < Type, RawType, t_etypePayload >::get_size() const
 {
 
    return this->m_nSize;
@@ -812,23 +812,23 @@ inline ::count string_array_base < Type, RawType >::get_size() const
 }
 
 
-template < class Type, class RawType >
-inline ::count string_array_base < Type, RawType >::get_count() const
+template < typename Type, typename RawType, enum_type t_etypePayload >
+inline ::count string_array_base < Type, RawType, t_etypePayload >::get_count() const
 {
 
    return this->m_nSize;
 
 }
 
-template < class Type, class RawType >
-inline ::index string_array_base < Type, RawType >::get_lower_bound(::index i) const
+template < typename Type, typename RawType, enum_type t_etypePayload >
+inline ::index string_array_base < Type, RawType, t_etypePayload >::get_lower_bound(::index i) const
 {
    return i;
 }
 
 
-template < class Type, class RawType >
-inline ::index string_array_base < Type, RawType >::get_upper_bound(::index i) const
+template < typename Type, typename RawType, enum_type t_etypePayload >
+inline ::index string_array_base < Type, RawType, t_etypePayload >::get_upper_bound(::index i) const
 {
 
    return this->length() + i;
@@ -836,8 +836,8 @@ inline ::index string_array_base < Type, RawType >::get_upper_bound(::index i) c
 }
 
 
-template < class Type, class RawType >
-inline ::index string_array_base < Type, RawType >::get_middle_index(::index i) const
+template < typename Type, typename RawType, enum_type t_etypePayload >
+inline ::index string_array_base < Type, RawType, t_etypePayload >::get_middle_index(::index i) const
 {
 
    return get_upper_bound() / 2 + i;
@@ -850,8 +850,8 @@ inline ::index string_array_base < Type, RawType >::get_middle_index(::index i) 
 
 
 
-template < class Type, class RawType >
-string_array_base < Type, RawType >::~string_array_base()
+template < typename Type, typename RawType, enum_type t_etypePayload >
+string_array_base < Type, RawType, t_etypePayload >::~string_array_base()
 {
 
    // // ASSERT_VALID(this);
@@ -861,14 +861,14 @@ string_array_base < Type, RawType >::~string_array_base()
 
 
 
-//template < class Type, class RawType >
-//::count string_array_base < Type, RawType >::add(const string_array_base < Type, RawType >& src)
+//template < typename Type, typename RawType, enum_type t_etypePayload >
+//::count string_array_base < Type, RawType, t_etypePayload >::add(const string_array_base < Type, RawType, t_etypePayload >& src)
 //{
 //
 //   if(this == &src)
 //   {
 //
-//      string_array_base < Type, RawType > thisCopy(src);
+//      string_array_base < Type, RawType, t_etypePayload > thisCopy(src);
 //
 //      return add(thisCopy);
 //
@@ -890,9 +890,9 @@ string_array_base < Type, RawType >::~string_array_base()
 //}
 
 
-template < typename Type, typename RawType >
-string_array_base < Type, RawType > &
-string_array_base < Type, RawType >::c_stra(string_array_base < Type, RawType > & stra) const
+template < typename Type, typename RawType, enum_type t_etypePayload >
+string_array_base < Type, RawType, t_etypePayload > &
+string_array_base < Type, RawType, t_etypePayload >::c_stra(string_array_base < Type, RawType, t_etypePayload > & stra) const
 {
 
    for (auto & str : *this)
@@ -906,20 +906,20 @@ string_array_base < Type, RawType >::c_stra(string_array_base < Type, RawType > 
 
 }
 
-template < typename Type, typename RawType >
-string_array_base < Type, RawType >
-string_array_base < Type, RawType >::c_stra() const
+template < typename Type, typename RawType, enum_type t_etypePayload >
+string_array_base < Type, RawType, t_etypePayload >
+string_array_base < Type, RawType, t_etypePayload >::c_stra() const
 {
 
-   string_array_base < Type, RawType > stra;
+   string_array_base < Type, RawType, t_etypePayload > stra;
 
    return c_stra(stra);
 
 }
 
 
-template < typename Type, typename RawType >
-void string_array_base < Type, RawType >::copy(const string_array_base < Type, RawType >& src)
+template < typename Type, typename RawType, enum_type t_etypePayload >
+void string_array_base < Type, RawType, t_etypePayload >::copy(const string_array_base < Type, RawType, t_etypePayload >& src)
 {
 
    if(this == &src)
@@ -936,8 +936,8 @@ void string_array_base < Type, RawType >::copy(const string_array_base < Type, R
 }
 
 
-template < typename Type, typename RawType >
-void string_array_base < Type, RawType >::copy(const i64_array & src)
+template < typename Type, typename RawType, enum_type t_etypePayload >
+void string_array_base < Type, RawType, t_etypePayload >::copy(const i64_array & src)
 {
 
    this->set_size((::count) src.m_nSize);
@@ -950,8 +950,8 @@ void string_array_base < Type, RawType >::copy(const i64_array & src)
 }
 
 
-template < typename Type, typename RawType >
-Type & string_array_base < Type, RawType >::set_at_grow(::index nIndex,const Type& newElement)
+template < typename Type, typename RawType, enum_type t_etypePayload >
+Type & string_array_base < Type, RawType, t_etypePayload >::set_at_grow(::index nIndex,const Type& newElement)
 {
    // // ASSERT_VALID(this);
    ASSERT(nIndex >= 0);
@@ -964,8 +964,8 @@ Type & string_array_base < Type, RawType >::set_at_grow(::index nIndex,const Typ
 }
 
 
-template < typename Type, typename RawType >
-::index string_array_base < Type, RawType >::_007FindLine(const RawType & strKey, ::index iStart) const
+template < typename Type, typename RawType, enum_type t_etypePayload >
+::index string_array_base < Type, RawType, t_etypePayload >::_007FindLine(const RawType & strKey, ::index iStart) const
 {
 
    for(::index i = iStart; i < get_count(); i++)
@@ -992,8 +992,8 @@ template < typename Type, typename RawType >
 }
 
 
-template < typename Type, typename RawType >
-void string_array_base < Type, RawType >::_007SetLine(const RawType & strKey, const RawType & strValue, ::index iStart)
+template < typename Type, typename RawType, enum_type t_etypePayload >
+void string_array_base < Type, RawType, t_etypePayload >::_007SetLine(const RawType & strKey, const RawType & strValue, ::index iStart)
 {
 
    ::index iKeyIndex = _007FindLine(strKey, iStart);
@@ -1016,8 +1016,8 @@ void string_array_base < Type, RawType >::_007SetLine(const RawType & strKey, co
 }
 
 
-template < typename Type, typename RawType >
-::index string_array_base < Type, RawType >::_007GetLine(RawType & strValue, const RawType & strKey, ::index iStart) const
+template < typename Type, typename RawType, enum_type t_etypePayload >
+::index string_array_base < Type, RawType, t_etypePayload >::_007GetLine(RawType & strValue, const RawType & strKey, ::index iStart) const
 {
 
    ::index iKeyIndex = _007FindLine(strKey, iStart);
@@ -1036,8 +1036,8 @@ template < typename Type, typename RawType >
 }
 
 
-template < typename Type, typename RawType >
-RawType string_array_base < Type, RawType >::_007GetLine(const RawType & strKey, ::index iStart) const
+template < typename Type, typename RawType, enum_type t_etypePayload >
+RawType string_array_base < Type, RawType, t_etypePayload >::_007GetLine(const RawType & strKey, ::index iStart) const
 {
 
    RawType strValue;
@@ -1054,8 +1054,8 @@ RawType string_array_base < Type, RawType >::_007GetLine(const RawType & strKey,
 }
 
 
-template < typename Type, typename RawType >
-::index string_array_base < Type, RawType >::_007FindSection(const RawType & strSection) const
+template < typename Type, typename RawType, enum_type t_etypePayload >
+::index string_array_base < Type, RawType, t_etypePayload >::_007FindSection(const RawType & strSection) const
 {
 
    ::index iSectionIndex = this->find_first_begins_ci(strSection);
@@ -1065,8 +1065,8 @@ template < typename Type, typename RawType >
 }
 
 
-template < typename Type, typename RawType >
-::index string_array_base < Type, RawType >::_007FindLine(const RawType & strSection, const RawType & strKey) const
+template < typename Type, typename RawType, enum_type t_etypePayload >
+::index string_array_base < Type, RawType, t_etypePayload >::_007FindLine(const RawType & strSection, const RawType & strKey) const
 {
 
    ::index iSectionIndex = this->_007FindSection(strSection);
@@ -1083,8 +1083,8 @@ template < typename Type, typename RawType >
 }
 
 
-template < typename Type, typename RawType >
-::index string_array_base < Type, RawType >::_007OpenSection(const RawType & strSection)
+template < typename Type, typename RawType, enum_type t_etypePayload >
+::index string_array_base < Type, RawType, t_etypePayload >::_007OpenSection(const RawType & strSection)
 {
 
    ::index iSectionIndex = this->_007FindSection(strSection);
@@ -1103,8 +1103,8 @@ template < typename Type, typename RawType >
 }
 
 
-template < typename Type, typename RawType >
-void string_array_base < Type, RawType >::_007SetLine(const RawType & strSection, const RawType & strKey, const RawType & strValue)
+template < typename Type, typename RawType, enum_type t_etypePayload >
+void string_array_base < Type, RawType, t_etypePayload >::_007SetLine(const RawType & strSection, const RawType & strKey, const RawType & strValue)
 {
 
    ::index iSectionIndex = this->_007OpenSection(strSection);
@@ -1123,8 +1123,8 @@ void string_array_base < Type, RawType >::_007SetLine(const RawType & strSection
 }
 
 
-template < typename Type, typename RawType >
-::index string_array_base < Type, RawType >::_007GetLine(RawType & strValue, const RawType & strSection, const RawType & strKey) const
+template < typename Type, typename RawType, enum_type t_etypePayload >
+::index string_array_base < Type, RawType, t_etypePayload >::_007GetLine(RawType & strValue, const RawType & strSection, const RawType & strKey) const
 {
 
    ::index iSectionIndex = this->_007FindSection(strSection);
@@ -1140,8 +1140,8 @@ template < typename Type, typename RawType >
 
 }
 
-template < typename Type, typename RawType >
-RawType string_array_base < Type, RawType >::_007GetLine(const RawType & strSection, const RawType & strKey) const
+template < typename Type, typename RawType, enum_type t_etypePayload >
+RawType string_array_base < Type, RawType, t_etypePayload >::_007GetLine(const RawType & strSection, const RawType & strKey) const
 {
 
    RawType strValue;
@@ -1163,8 +1163,8 @@ RawType string_array_base < Type, RawType >::_007GetLine(const RawType & strSect
 
 
 
-template < typename Type, typename RawType >
-void string_array_base < Type, RawType >::insert_empty(::index nIndex,::count nCount)
+template < typename Type, typename RawType, enum_type t_etypePayload >
+void string_array_base < Type, RawType, t_etypePayload >::insert_empty(::index nIndex,::count nCount)
 {
    // // ASSERT_VALID(this);
    ASSERT(nIndex >= 0);    // will expand to meet need
@@ -1195,8 +1195,8 @@ void string_array_base < Type, RawType >::insert_empty(::index nIndex,::count nC
    ASSERT(nIndex + nCount <= this->m_nSize);
 }
 
-template < typename Type,typename RawType >
-Type & string_array_base < Type,RawType >::insert_empty(::index nIndex)
+template < typename Type, typename RawType, enum_type t_etypePayload >
+Type & string_array_base < Type, RawType, t_etypePayload >::insert_empty(::index nIndex)
 {
 
 //    // ASSERT_VALID(this);
@@ -1236,8 +1236,8 @@ Type & string_array_base < Type,RawType >::insert_empty(::index nIndex)
 
 
 
-template < typename Type,typename RawType >
-Type & string_array_base < Type,RawType >::insert_at(::index nIndex,const Type & newElement)
+template < typename Type, typename RawType, enum_type t_etypePayload >
+Type & string_array_base < Type, RawType, t_etypePayload >::insert_at(::index nIndex,const Type & newElement)
 {
 
    return insert_empty(nIndex) = newElement;
@@ -1245,8 +1245,8 @@ Type & string_array_base < Type,RawType >::insert_at(::index nIndex,const Type &
 }
 
 
-template < typename Type, typename RawType >
-void string_array_base < Type, RawType >::insert_at(::index nIndex,const Type& newElement,::count nCount)
+template < typename Type, typename RawType, enum_type t_etypePayload >
+void string_array_base < Type, RawType, t_etypePayload >::insert_at(::index nIndex,const Type& newElement,::count nCount)
 {
 
    // make room for new elements
@@ -1263,12 +1263,12 @@ void string_array_base < Type, RawType >::insert_at(::index nIndex,const Type& n
 
 
 
-template < typename Type, typename RawType >
-void string_array_base < Type, RawType >::insert_at(::index nStartIndex,const string_array_base < Type, RawType > & NewArray)
+template < typename Type, typename RawType, enum_type t_etypePayload >
+void string_array_base < Type, RawType, t_etypePayload >::insert_at(::index nStartIndex,const string_array_base < Type, RawType, t_etypePayload > & NewArray)
 {
 //    // ASSERT_VALID(this);
    ASSERT(&NewArray != nullptr);
-   //   ASSERT_KINDOF(string_array_base < Type, RawType >, &NewArray);
+   //   ASSERT_KINDOF(string_array_base < Type, RawType, t_etypePayload >, &NewArray);
 //   ASSERT_VALID(&NewArray);
    ASSERT(nStartIndex >= 0);
 
@@ -1281,8 +1281,8 @@ void string_array_base < Type, RawType >::insert_at(::index nStartIndex,const st
 }
 
 
-//template < typename Type, typename RawType >
-//void string_array_base < Type, RawType >::dump(dump_context & dumpcontext) const
+//template < typename Type, typename RawType, enum_type t_etypePayload >
+//void string_array_base < Type, RawType, t_etypePayload >::dump(dump_context & dumpcontext) const
 //{
 //   //matter::dump(dumpcontext);
 //
@@ -1297,8 +1297,8 @@ void string_array_base < Type, RawType >::insert_at(::index nStartIndex,const st
 //}
 //
 //
-//template < typename Type, typename RawType >
-//void string_array_base < Type, RawType >::assert_valid() const
+//template < typename Type, typename RawType, enum_type t_etypePayload >
+//void string_array_base < Type, RawType, t_etypePayload >::assert_valid() const
 //{
 //
 //   matter::assert_valid();
@@ -1325,8 +1325,8 @@ void string_array_base < Type, RawType >::insert_at(::index nStartIndex,const st
 
 
 
-template < typename Type, typename RawType >
-string_array_base < Type, RawType > string_array_base < Type, RawType >::slice(::index i, ::count inCountLastOut) const
+template < typename Type, typename RawType, enum_type t_etypePayload >
+string_array_base < Type, RawType, t_etypePayload > string_array_base < Type, RawType, t_etypePayload >::slice(::index i, ::count inCountLastOut) const
 {
 
    string_array_base stra;
@@ -1348,8 +1348,8 @@ string_array_base < Type, RawType > string_array_base < Type, RawType >::slice(:
 }
 
 
-template < typename Type, typename RawType >
-string_array_base < Type, RawType > & string_array_base < Type, RawType >::operator =(const string_array_base < Type, RawType > & tokena)
+template < typename Type, typename RawType, enum_type t_etypePayload >
+string_array_base < Type, RawType, t_etypePayload > & string_array_base < Type, RawType, t_etypePayload >::operator =(const string_array_base < Type, RawType, t_etypePayload > & tokena)
 {
 
    copy(tokena);
@@ -1359,8 +1359,8 @@ string_array_base < Type, RawType > & string_array_base < Type, RawType >::opera
 }
 
 
-template < typename Type, typename RawType >
-::index string_array_base < Type, RawType >::add_new(const Type& psz,::index i)
+template < typename Type, typename RawType, enum_type t_etypePayload >
+::index string_array_base < Type, RawType, t_etypePayload >::add_new(const Type& psz,::index i)
 {
 
    if(i == -1)
@@ -1381,8 +1381,8 @@ template < typename Type, typename RawType >
 }
 
 
-template < typename Type, typename RawType >
-Type & string_array_base < Type, RawType >::new_element(::index i)
+template < typename Type, typename RawType, enum_type t_etypePayload >
+Type & string_array_base < Type, RawType, t_etypePayload >::new_element(::index i)
 {
 
    add_new(nullptr,i);
@@ -1403,8 +1403,8 @@ Type & string_array_base < Type, RawType >::new_element(::index i)
 }
 
 
-template < typename Type, typename RawType >
-Type & string_array_base < Type, RawType >::add_get(const Type & newElement)
+template < typename Type, typename RawType, enum_type t_etypePayload >
+Type & string_array_base < Type, RawType, t_etypePayload >::add_get(const Type & newElement)
 {
 
    ::index nIndex = this->m_nSize;
@@ -1414,8 +1414,8 @@ Type & string_array_base < Type, RawType >::add_get(const Type & newElement)
 }
 
 
-template < typename Type, typename RawType >
-void string_array_base < Type, RawType >::erase_duplicates()
+template < typename Type, typename RawType, enum_type t_etypePayload >
+void string_array_base < Type, RawType, t_etypePayload >::erase_duplicates()
 {
 
    for(::index i = 1; i < this->get_size();)
@@ -1439,8 +1439,8 @@ void string_array_base < Type, RawType >::erase_duplicates()
 }
 
 
-template < typename Type, typename RawType >
-void string_array_base < Type, RawType >::erase_duplicates_ci()
+template < typename Type, typename RawType, enum_type t_etypePayload >
+void string_array_base < Type, RawType, t_etypePayload >::erase_duplicates_ci()
 {
 
    for(::index i = 1; i < this->get_size();)
@@ -1464,21 +1464,21 @@ void string_array_base < Type, RawType >::erase_duplicates_ci()
 }
 
 
-template < typename Type, typename RawType >
-const Type* string_array_base < Type, RawType >::get_data() const
+template < typename Type, typename RawType, enum_type t_etypePayload >
+const Type* string_array_base < Type, RawType, t_etypePayload >::get_data() const
 {
    return (const Type*)this->m_pData;
 }
 
 
-template < typename Type, typename RawType >
-Type* string_array_base < Type, RawType >::get_data()
+template < typename Type, typename RawType, enum_type t_etypePayload >
+Type* string_array_base < Type, RawType, t_etypePayload >::get_data()
 {
    return (Type*)this->m_pData;
 }
 
 
-typedef CLASS_DECL_ACME string_array_base < string > string_array;
+//typedef CLASS_DECL_ACME string_array_base < string > string_array;
 typedef CLASS_DECL_ACME string_array_base < wstring > wstring_array;
 
 
@@ -1494,15 +1494,15 @@ public:
 };
 
 
-template < class Type, class RawType >
-string_array_base < Type, RawType > ::string_array_base(const string_array_base < Type, RawType > & array) :
-   ::comparable_array < Type >((const ::comparable_array < Type > &) array)
+template < typename Type, typename RawType, enum_type t_etypePayload >
+string_array_base < Type, RawType, t_etypePayload > ::string_array_base(const string_array_base < Type, RawType, t_etypePayload > & array) :
+   BASE_ARRAY((const BASE_ARRAY&) array)
 {
 }
 
 
-template < class Type, class RawType >
-string_array_base < Type, RawType > ::string_array_base(CHAR_TYPE* const* ppsz, ::count c)
+template < typename Type, typename RawType, enum_type t_etypePayload >
+string_array_base < Type, RawType, t_etypePayload > ::string_array_base(CHAR_TYPE* const* ppsz, ::count c)
 {
 
    this->set_size(c);
@@ -1520,8 +1520,8 @@ string_array_base < Type, RawType > ::string_array_base(CHAR_TYPE* const* ppsz, 
 #ifdef _UWP
 
 
-template < class Type, class RawType >
-string_array_base < Type, RawType > ::string_array_base(Platform::Array < Platform::String ^ > ^ refstra)
+template < typename Type, typename RawType, enum_type t_etypePayload >
+string_array_base < Type, RawType, t_etypePayload > ::string_array_base(Platform::Array < Platform::String ^ > ^ refstra)
 {
 
    for (unsigned int u = 0; u < refstra->Length; u++)
@@ -1541,8 +1541,8 @@ string_array_base < Type, RawType > ::string_array_base(Platform::Array < Platfo
 #endif
 
 
-template < class Type, class RawType >
-void string_array_base < Type, RawType > ::add_tokens(const Type& pcsz,const Type& strSeparator,bool bAddEmpty)
+template < typename Type, typename RawType, enum_type t_etypePayload >
+void string_array_base < Type, RawType, t_etypePayload > ::add_tokens(const Type& pcsz,const Type& strSeparator,bool bAddEmpty)
 
 {
    ::str::tokenizer strTokenizer(pcsz);
@@ -1569,8 +1569,8 @@ void string_array_base < Type, RawType > ::add_tokens(const Type& pcsz,const Typ
 
 
 
-template < class Type, class RawType >
-void string_array_base < Type, RawType > ::_001AddTokens(const Type& pcsz)
+template < typename Type, typename RawType, enum_type t_etypePayload >
+void string_array_base < Type, RawType, t_etypePayload > ::_001AddTokens(const Type& pcsz)
 
 {
 
@@ -1589,34 +1589,48 @@ void string_array_base < Type, RawType > ::_001AddTokens(const Type& pcsz)
 }
 
 
-template < class Type, class RawType >
-void string_array_base < Type, RawType > ::add_smallest_tokens(const Type& pcsz, const string_array_base < RawString >  & straSeparator,bool bAddEmpty,bool bWithSeparator)
-
+template < typename Type, typename RawType, enum_type t_etypePayload >
+void string_array_base < Type, RawType, t_etypePayload > ::add_smallest_tokens(const Type & pcsz, const RawStringArray & straSeparator, bool bAddEmpty, bool bWithSeparator)
 {
+
    ::str::tokenizer strTokenizer(pcsz);
 
    Type strToken;
+
    if(bAddEmpty)
    {
-      while(strTokenizer.GetNextSmallestToken(strToken,straSeparator,bWithSeparator))
+
+      while(strTokenizer.GetNextSmallestToken(strToken, straSeparator, bWithSeparator))
       {
+
          string_array_base::add(strToken);
+
       }
+
    }
    else
    {
+
       while(strTokenizer.GetNextSmallestToken(strToken,straSeparator,bWithSeparator))
       {
-         if(!strToken.is_empty())
+
+         if (!strToken.is_empty())
+         {
+
             string_array_base::add(strToken);
+
+         }
+
       }
+
    }
+
 }
 
 
 
-template < class Type, class RawType >
-void string_array_base < Type, RawType > ::add_lines(const Type & str,bool bAddEmpty)
+template < typename Type, typename RawType, enum_type t_etypePayload >
+void string_array_base < Type, RawType, t_etypePayload > ::add_lines(const Type & str,bool bAddEmpty)
 {
 
    strsize iPos = 0;
@@ -1757,8 +1771,8 @@ end:
 
 
 
-template < class Type, class RawType >
-void string_array_base < Type, RawType > ::get_format_string(Type & str,const Type& strSeparator) const
+template < typename Type, typename RawType, enum_type t_etypePayload >
+void string_array_base < Type, RawType, t_etypePayload > ::get_format_string(Type & str,const Type& strSeparator) const
 
 {
    str.Empty();
@@ -1774,8 +1788,8 @@ void string_array_base < Type, RawType > ::get_format_string(Type & str,const Ty
 }
 
 
-template < class Type, class RawType >
-::index string_array_base < Type, RawType > ::add_unique(const RawString & pcsz)
+template < typename Type, typename RawType, enum_type t_etypePayload >
+::index string_array_base < Type, RawType, t_etypePayload > ::add_unique(const RawString & pcsz)
 {
 
    auto iFind = find_first(pcsz);
@@ -1792,8 +1806,8 @@ template < class Type, class RawType >
 }
 
 
-template < class Type, class RawType >
-::count string_array_base < Type, RawType > ::add_unique(const string_array_base & stra)
+template < typename Type, typename RawType, enum_type t_etypePayload >
+::count string_array_base < Type, RawType, t_etypePayload > ::add_unique(const string_array_base & stra)
 {
 
    ::count count = 0;
@@ -1815,8 +1829,8 @@ template < class Type, class RawType >
 }
 
 
-template < class Type, class RawType >
-::index string_array_base < Type, RawType > ::add_unique_ci(const RawString & pcsz)
+template < typename Type, typename RawType, enum_type t_etypePayload >
+::index string_array_base < Type, RawType, t_etypePayload > ::add_unique_ci(const RawString & pcsz)
 
 {
 
@@ -1834,8 +1848,8 @@ template < class Type, class RawType >
 }
 
 
-template < class Type, class RawType >
-::count string_array_base < Type, RawType > ::add_unique_ci(const string_array_base & stra)
+template < typename Type, typename RawType, enum_type t_etypePayload >
+::count string_array_base < Type, RawType, t_etypePayload > ::add_unique_ci(const string_array_base & stra)
 {
 
    ::count count = 0;
@@ -1851,8 +1865,8 @@ template < class Type, class RawType >
 
 }
 
-template < class Type, class RawType >
-::index string_array_base < Type, RawType > ::find_first(const Type & pcsz, ::index iFind, ::index iLast) const
+template < typename Type, typename RawType, enum_type t_etypePayload >
+::index string_array_base < Type, RawType, t_etypePayload > ::find_first(const Type & pcsz, ::index iFind, ::index iLast) const
 {
 
    if (this->prepare_first_last(iFind, iLast))
@@ -1878,8 +1892,8 @@ template < class Type, class RawType >
 }
 
 
-template < class Type, class RawType >
-::index string_array_base < Type, RawType > ::find_first_ci(const Type& pcsz,::index iFind,::index iLast) const
+template < typename Type, typename RawType, enum_type t_etypePayload >
+::index string_array_base < Type, RawType, t_etypePayload > ::find_first_ci(const Type& pcsz,::index iFind,::index iLast) const
 {
 
    if (this->prepare_first_last(iFind, iLast))
@@ -1922,8 +1936,8 @@ template < class Type, class RawType >
 
 
 
-template < class Type, class RawType >
-::index string_array_base < Type, RawType > ::reverse_find(const Type & pcsz, ::index iFind, ::index iLast) const
+template < typename Type, typename RawType, enum_type t_etypePayload >
+::index string_array_base < Type, RawType, t_etypePayload > ::reverse_find(const Type & pcsz, ::index iFind, ::index iLast) const
 {
 
    if (this->prepare_first_last(iFind, iLast))
@@ -1947,8 +1961,8 @@ template < class Type, class RawType >
 
 }
 
-template < class Type, class RawType >
-::index string_array_base < Type, RawType > ::reverse_find_ci(const Type & pcsz, ::index iFind, ::index iLast) const
+template < typename Type, typename RawType, enum_type t_etypePayload >
+::index string_array_base < Type, RawType, t_etypePayload > ::reverse_find_ci(const Type & pcsz, ::index iFind, ::index iLast) const
 {
 
    if (this->prepare_first_last(iFind, iLast))
@@ -1977,8 +1991,8 @@ template < class Type, class RawType >
 
 
 
-template < class Type, class RawType >
-::count string_array_base < Type, RawType > ::count(const Type & pcsz, ::index iFind, ::index iLast) const
+template < typename Type, typename RawType, enum_type t_etypePayload >
+::count string_array_base < Type, RawType, t_etypePayload > ::count(const Type & pcsz, ::index iFind, ::index iLast) const
 {
 
    ::count count = 0;
@@ -2005,8 +2019,8 @@ template < class Type, class RawType >
 }
 
 
-template < class Type, class RawType >
-::count string_array_base < Type, RawType > ::count_ci(const Type& pcsz, ::index iFind, ::index iLast) const
+template < typename Type, typename RawType, enum_type t_etypePayload >
+::count string_array_base < Type, RawType, t_etypePayload > ::count_ci(const Type& pcsz, ::index iFind, ::index iLast) const
 {
 
    ::count count = 0;
@@ -2035,8 +2049,8 @@ template < class Type, class RawType >
 
 
 
-template < class Type, class RawType >
-::index string_array_base < Type, RawType > ::find_last_ci(const Type& pcsz, ::index iFind, ::index iLast) const
+template < typename Type, typename RawType, enum_type t_etypePayload >
+::index string_array_base < Type, RawType, t_etypePayload > ::find_last_ci(const Type& pcsz, ::index iFind, ::index iLast) const
 {
 
    return reverse_find_ci(pcsz, iFind, iLast);
@@ -2044,8 +2058,8 @@ template < class Type, class RawType >
 }
 
 
-template < class Type, class RawType >
-::index string_array_base < Type, RawType > ::find_last(const Type& pcsz, ::index iFind, ::index iLast) const
+template < typename Type, typename RawType, enum_type t_etypePayload >
+::index string_array_base < Type, RawType, t_etypePayload > ::find_last(const Type& pcsz, ::index iFind, ::index iLast) const
 {
 
    return reverse_find(pcsz, iFind, iLast);
@@ -2053,8 +2067,8 @@ template < class Type, class RawType >
 }
 
 
-template < class Type, class RawType >
-::index string_array_base < Type, RawType > ::_066Find(const Type& pcsz) const
+template < typename Type, typename RawType, enum_type t_etypePayload >
+::index string_array_base < Type, RawType, t_etypePayload > ::_066Find(const Type& pcsz) const
 {
 
    RawString str(pcsz);
@@ -2105,8 +2119,8 @@ template < class Type, class RawType >
 }
 
 
-template < class Type, class RawType >
-::index string_array_base < Type, RawType > ::find_first_contains(const Type & strSubstring, ::index iFind, ::index iLast, const CHAR_TYPE ** ppszBeg, const CHAR_TYPE ** ppszEnd) const
+template < typename Type, typename RawType, enum_type t_etypePayload >
+::index string_array_base < Type, RawType, t_etypePayload > ::find_first_contains(const Type & strSubstring, ::index iFind, ::index iLast, const CHAR_TYPE ** ppszBeg, const CHAR_TYPE ** ppszEnd) const
 {
 
    if (this->prepare_first_last(iFind, iLast))
@@ -2121,8 +2135,8 @@ template < class Type, class RawType >
 }
 
 
-template < class Type, class RawType >
-::index string_array_base < Type, RawType > ::_find_first_contains(const Type & strSubstring, ::index iFind, ::index iLast, const CHAR_TYPE ** ppszBeg, const CHAR_TYPE ** ppszEnd) const
+template < typename Type, typename RawType, enum_type t_etypePayload >
+::index string_array_base < Type, RawType, t_etypePayload > ::_find_first_contains(const Type & strSubstring, ::index iFind, ::index iLast, const CHAR_TYPE ** ppszBeg, const CHAR_TYPE ** ppszEnd) const
 {
 
    for (; iFind <= iLast; iFind++)
@@ -2144,8 +2158,8 @@ template < class Type, class RawType >
 
 
 
-template < class Type, class RawType >
-::index string_array_base < Type, RawType > ::find_first_contains_ci(const Type& strSubstring,::index iFind,::index iLast, const CHAR_TYPE ** ppszBeg, const CHAR_TYPE ** ppszEnd) const
+template < typename Type, typename RawType, enum_type t_etypePayload >
+::index string_array_base < Type, RawType, t_etypePayload > ::find_first_contains_ci(const Type& strSubstring,::index iFind,::index iLast, const CHAR_TYPE ** ppszBeg, const CHAR_TYPE ** ppszEnd) const
 {
 
    if (this->prepare_first_last(iFind, iLast))
@@ -2160,8 +2174,8 @@ template < class Type, class RawType >
 }
 
 
-template < class Type, class RawType >
-::index string_array_base < Type, RawType > ::_find_first_contains_ci(const Type & strSubstring, ::index iFind, ::index iLast, const CHAR_TYPE ** ppszBeg, const CHAR_TYPE ** ppszEnd) const
+template < typename Type, typename RawType, enum_type t_etypePayload >
+::index string_array_base < Type, RawType, t_etypePayload > ::_find_first_contains_ci(const Type & strSubstring, ::index iFind, ::index iLast, const CHAR_TYPE ** ppszBeg, const CHAR_TYPE ** ppszEnd) const
 {
 
    for (; iFind <= iLast; iFind++)
@@ -2181,8 +2195,8 @@ template < class Type, class RawType >
 }
 
 
-template < class Type, class RawType >
-::index string_array_base < Type, RawType > ::prefix_find_first_ci(const Type& pcszTopic,::index iFind,::index iLast) const
+template < typename Type, typename RawType, enum_type t_etypePayload >
+::index string_array_base < Type, RawType, t_etypePayload > ::prefix_find_first_ci(const Type& pcszTopic,::index iFind,::index iLast) const
 {
 
    if (this->prepare_first_last(iFind, iLast))
@@ -2207,8 +2221,8 @@ template < class Type, class RawType >
 }
 
 
-template < class Type, class RawType >
-::index string_array_base < Type, RawType > ::prefix_find_first(const Type& pcszTopic, ::index iFind, ::index iLast) const
+template < typename Type, typename RawType, enum_type t_etypePayload >
+::index string_array_base < Type, RawType, t_etypePayload > ::prefix_find_first(const Type& pcszTopic, ::index iFind, ::index iLast) const
 {
 
    if (this->prepare_first_last(iFind, iLast))
@@ -2233,8 +2247,8 @@ template < class Type, class RawType >
 }
 
 
-template < class Type, class RawType >
-::index string_array_base < Type, RawType > ::suffix_find_first_ci(const Type& pcszTopic, ::index iFind, ::index iLast) const
+template < typename Type, typename RawType, enum_type t_etypePayload >
+::index string_array_base < Type, RawType, t_etypePayload > ::suffix_find_first_ci(const Type& pcszTopic, ::index iFind, ::index iLast) const
 {
 
    if (this->prepare_first_last(iFind, iLast))
@@ -2259,8 +2273,8 @@ template < class Type, class RawType >
 }
 
 
-template < class Type, class RawType >
-::index string_array_base < Type, RawType > ::suffix_find_first(const Type& pcszTopic, ::index iFind, ::index iLast) const
+template < typename Type, typename RawType, enum_type t_etypePayload >
+::index string_array_base < Type, RawType, t_etypePayload > ::suffix_find_first(const Type& pcszTopic, ::index iFind, ::index iLast) const
 {
 
    if (this->prepare_first_last(iFind, iLast))
@@ -2285,8 +2299,8 @@ template < class Type, class RawType >
 }
 
 
-template < class Type, class RawType >
-::index string_array_base < Type, RawType > ::substring_find_first(const Type& strTopic, ::index iFind, ::index iLast, const CHAR_TYPE ** ppszBeg, const CHAR_TYPE ** ppszEnd) const
+template < typename Type, typename RawType, enum_type t_etypePayload >
+::index string_array_base < Type, RawType, t_etypePayload > ::substring_find_first(const Type& strTopic, ::index iFind, ::index iLast, const CHAR_TYPE ** ppszBeg, const CHAR_TYPE ** ppszEnd) const
 {
 
    if (this->prepare_first_last(iFind, iLast))
@@ -2320,8 +2334,8 @@ template < class Type, class RawType >
 }
 
 
-template < class Type, class RawType >
-::index string_array_base < Type, RawType > ::substring_find_first_ci(const Type & strTopic, ::index iFind, ::index iLast, const CHAR_TYPE ** ppszBeg, const CHAR_TYPE ** ppszEnd) const
+template < typename Type, typename RawType, enum_type t_etypePayload >
+::index string_array_base < Type, RawType, t_etypePayload > ::substring_find_first_ci(const Type & strTopic, ::index iFind, ::index iLast, const CHAR_TYPE ** ppszBeg, const CHAR_TYPE ** ppszEnd) const
 {
 
    if (this->prepare_first_last(iFind, iLast))
@@ -2357,8 +2371,8 @@ template < class Type, class RawType >
 
 
 
-template < class Type, class RawType >
-::index string_array_base < Type, RawType > ::find_first_suffixed_ci(const Type& strSuffix, ::index iFind, ::index iLast) const
+template < typename Type, typename RawType, enum_type t_etypePayload >
+::index string_array_base < Type, RawType, t_etypePayload > ::find_first_suffixed_ci(const Type& strSuffix, ::index iFind, ::index iLast) const
 {
 
    if (this->prepare_first_last(iFind, iLast))
@@ -2373,8 +2387,8 @@ template < class Type, class RawType >
 }
 
 
-template < class Type, class RawType >
-::index string_array_base < Type, RawType > ::find_first_suffixed(const Type & strSuffix, ::index iFind, ::index iLast) const
+template < typename Type, typename RawType, enum_type t_etypePayload >
+::index string_array_base < Type, RawType, t_etypePayload > ::find_first_suffixed(const Type & strSuffix, ::index iFind, ::index iLast) const
 {
 
    if (this->prepare_first_last(iFind, iLast))
@@ -2389,8 +2403,8 @@ template < class Type, class RawType >
 }
 
 
-template < class Type, class RawType >
-::index string_array_base < Type, RawType > ::_find_first_suffixed(const Type & strSuffix, ::index iFind, ::index iLast) const
+template < typename Type, typename RawType, enum_type t_etypePayload >
+::index string_array_base < Type, RawType, t_etypePayload > ::_find_first_suffixed(const Type & strSuffix, ::index iFind, ::index iLast) const
 {
 
    for (; iFind < iLast; iFind++)
@@ -2410,8 +2424,8 @@ template < class Type, class RawType >
 }
 
 
-template < class Type, class RawType >
-::index string_array_base < Type, RawType > ::_find_first_suffixed_ci(const Type & strSuffix, ::index iFind, ::index iLast) const
+template < typename Type, typename RawType, enum_type t_etypePayload >
+::index string_array_base < Type, RawType, t_etypePayload > ::_find_first_suffixed_ci(const Type & strSuffix, ::index iFind, ::index iLast) const
 {
 
    for (; iFind < iLast; iFind++)
@@ -2432,8 +2446,8 @@ template < class Type, class RawType >
 
 
 
-template < class Type, class RawType >
-::index string_array_base < Type, RawType > ::find_first_begins_eat(Type & strFoundAndEaten, const Type & strSuffix, ::index iFind, ::index iLast) const
+template < typename Type, typename RawType, enum_type t_etypePayload >
+::index string_array_base < Type, RawType, t_etypePayload > ::find_first_begins_eat(Type & strFoundAndEaten, const Type & strSuffix, ::index iFind, ::index iLast) const
 {
 
    iFind = find_first_begins(strSuffix, iFind, iLast);
@@ -2453,8 +2467,8 @@ template < class Type, class RawType >
 
 
 
-template < class Type,class RawType >
-::index string_array_base < Type,RawType > ::find_first_begins_eat_ci(Type & strFoundAndEaten,const Type& strPrefix, ::index iFind,::index iLast) const
+template < typename Type, typename RawType, enum_type t_etypePayload >
+::index string_array_base < Type, RawType, t_etypePayload > ::find_first_begins_eat_ci(Type & strFoundAndEaten,const Type& strPrefix, ::index iFind,::index iLast) const
 {
 
    iFind  = find_first_begins_ci(strPrefix,iFind,iLast);
@@ -2475,8 +2489,8 @@ template < class Type,class RawType >
 
 
 
-template < class Type, class RawType >
-::index string_array_base < Type, RawType > ::find_first_ends_eat(Type & strFoundAndEaten, const Type & strSuffix, ::index iFind, ::index iLast) const
+template < typename Type, typename RawType, enum_type t_etypePayload >
+::index string_array_base < Type, RawType, t_etypePayload > ::find_first_ends_eat(Type & strFoundAndEaten, const Type & strSuffix, ::index iFind, ::index iLast) const
 {
 
    iFind = find_first_ends(strSuffix, iFind, iLast);
@@ -2495,8 +2509,8 @@ template < class Type, class RawType >
 }
 
 
-template < class Type, class RawType >
-::index string_array_base < Type, RawType > ::find_first_ends_eat_ci(Type & strFoundAndEaten, const Type & strSuffix, ::index iFind, ::index iLast) const
+template < typename Type, typename RawType, enum_type t_etypePayload >
+::index string_array_base < Type, RawType, t_etypePayload > ::find_first_ends_eat_ci(Type & strFoundAndEaten, const Type & strSuffix, ::index iFind, ::index iLast) const
 {
 
    iFind = find_first_ends_ci(strSuffix, iFind, iLast);
@@ -2516,8 +2530,8 @@ template < class Type, class RawType >
 
 
 
-template < class Type, class RawType >
-::index string_array_base < Type, RawType > ::find_first_contains_eat(Type & strFoundAndEaten, const Type & strSubstring, ::index iFind, ::index iLast) const
+template < typename Type, typename RawType, enum_type t_etypePayload >
+::index string_array_base < Type, RawType, t_etypePayload > ::find_first_contains_eat(Type & strFoundAndEaten, const Type & strSubstring, ::index iFind, ::index iLast) const
 {
 
    const CHAR_TYPE * pszBeg = nullptr;
@@ -2542,8 +2556,8 @@ template < class Type, class RawType >
 }
 
 
-template < class Type, class RawType >
-::index string_array_base < Type, RawType > ::find_first_contains_eat_ci(Type & strFoundAndEaten, const Type & pcszTopic, ::index iFind, ::index iLast) const
+template < typename Type, typename RawType, enum_type t_etypePayload >
+::index string_array_base < Type, RawType, t_etypePayload > ::find_first_contains_eat_ci(Type & strFoundAndEaten, const Type & pcszTopic, ::index iFind, ::index iLast) const
 {
 
    const char * pszBeg = nullptr;
@@ -2568,8 +2582,8 @@ template < class Type, class RawType >
 }
 
 
-template < class Type, class RawType >
-::index string_array_base < Type, RawType > ::find_first_prefixed(const Type & strPrefix,::index iFind,::index iLast) const
+template < typename Type, typename RawType, enum_type t_etypePayload >
+::index string_array_base < Type, RawType, t_etypePayload > ::find_first_prefixed(const Type & strPrefix,::index iFind,::index iLast) const
 {
 
    if (this->prepare_first_last(iFind, iLast))
@@ -2584,8 +2598,8 @@ template < class Type, class RawType >
 }
 
 
-template < class Type, class RawType >
-::index string_array_base < Type, RawType > ::find_first_prefixed_ci(const Type & strPrefix, ::index iFind, ::index iLast) const
+template < typename Type, typename RawType, enum_type t_etypePayload >
+::index string_array_base < Type, RawType, t_etypePayload > ::find_first_prefixed_ci(const Type & strPrefix, ::index iFind, ::index iLast) const
 {
 
    if (this->prepare_first_last(iFind, iLast))
@@ -2600,8 +2614,8 @@ template < class Type, class RawType >
 }
 
 
-template < class Type, class RawType >
-::index string_array_base < Type, RawType > ::_find_first_prefixed(const Type & strPrefix, ::index iFind, ::index iLast) const
+template < typename Type, typename RawType, enum_type t_etypePayload >
+::index string_array_base < Type, RawType, t_etypePayload > ::_find_first_prefixed(const Type & strPrefix, ::index iFind, ::index iLast) const
 {
 
    for (; iFind <= iLast; iFind++)
@@ -2621,8 +2635,8 @@ template < class Type, class RawType >
 }
 
 
-template < class Type, class RawType >
-::index string_array_base < Type, RawType > ::_find_first_prefixed_ci(const Type & strPrefix, ::index iFind, ::index iLast) const
+template < typename Type, typename RawType, enum_type t_etypePayload >
+::index string_array_base < Type, RawType, t_etypePayload > ::_find_first_prefixed_ci(const Type & strPrefix, ::index iFind, ::index iLast) const
 {
 
    for (; iFind <= iLast; iFind++)
@@ -2641,8 +2655,8 @@ template < class Type, class RawType >
 
 }
 
-template < class Type, class RawType >
-bool string_array_base < Type, RawType > ::_067ContainsCi(const Type& pcsz, ::index iFind, ::index iLast, ::count countMin, ::count countMax) const
+template < typename Type, typename RawType, enum_type t_etypePayload >
+bool string_array_base < Type, RawType, t_etypePayload > ::_067ContainsCi(const Type& pcsz, ::index iFind, ::index iLast, ::count countMin, ::count countMax) const
 {
 
    ::count count = 0;
@@ -2658,8 +2672,8 @@ bool string_array_base < Type, RawType > ::_067ContainsCi(const Type& pcsz, ::in
 }
 
 
-template < class Type, class RawType >
-bool string_array_base < Type, RawType > ::_067Contains(const Type& pcsz, ::index iFind, ::index iLast, ::count countMin, ::count countMax) const
+template < typename Type, typename RawType, enum_type t_etypePayload >
+bool string_array_base < Type, RawType, t_etypePayload > ::_067Contains(const Type& pcsz, ::index iFind, ::index iLast, ::count countMin, ::count countMax) const
 {
 
    ::count count = 0;
@@ -2676,8 +2690,8 @@ bool string_array_base < Type, RawType > ::_067Contains(const Type& pcsz, ::inde
 }
 
 
-template < class Type, class RawType >
-bool string_array_base < Type, RawType > ::_067ContainsSubstringCi(const Type& pcsz, ::index iFind, ::index iLast, ::count countMin, ::count countMax) const
+template < typename Type, typename RawType, enum_type t_etypePayload >
+bool string_array_base < Type, RawType, t_etypePayload > ::_067ContainsSubstringCi(const Type& pcsz, ::index iFind, ::index iLast, ::count countMin, ::count countMax) const
 {
 
    ::count count = 0;
@@ -2694,8 +2708,8 @@ bool string_array_base < Type, RawType > ::_067ContainsSubstringCi(const Type& p
 }
 
 
-template < class Type, class RawType >
-bool string_array_base < Type, RawType > ::_067ContainsSubstring(const Type& pcsz, ::index iFind, ::index iLast, ::count countMin, ::count countMax) const
+template < typename Type, typename RawType, enum_type t_etypePayload >
+bool string_array_base < Type, RawType, t_etypePayload > ::_067ContainsSubstring(const Type& pcsz, ::index iFind, ::index iLast, ::count countMin, ::count countMax) const
 {
 
    ::count count = 0;
@@ -2712,8 +2726,8 @@ bool string_array_base < Type, RawType > ::_067ContainsSubstring(const Type& pcs
 }
 
 
-template < class Type, class RawType >
-::index string_array_base < Type, RawType > ::erase_first_ci(const RawString & pcsz,::index iFind,::index iLast)
+template < typename Type, typename RawType, enum_type t_etypePayload >
+::index string_array_base < Type, RawType, t_etypePayload > ::erase_first_ci(const RawString & pcsz,::index iFind,::index iLast)
 {
 
    if ((iFind = find_first_ci(pcsz, iFind, iLast)) >= 0)
@@ -2728,8 +2742,8 @@ template < class Type, class RawType >
 }
 
 
-template < class Type, class RawType >
-::index string_array_base < Type, RawType > ::erase_first(const RawString & pcsz,::index iFind,::index iLast)
+template < typename Type, typename RawType, enum_type t_etypePayload >
+::index string_array_base < Type, RawType, t_etypePayload > ::erase_first(const RawString & pcsz,::index iFind,::index iLast)
 {
 
    if ((iFind = find_first(pcsz, iFind, iLast)) >= 0)
@@ -2744,8 +2758,8 @@ template < class Type, class RawType >
 }
 
 
-template < class Type, class RawType >
-::index string_array_base < Type, RawType > ::erase_last_ci(const RawString & pcsz, ::index iFind, ::index iLast)
+template < typename Type, typename RawType, enum_type t_etypePayload >
+::index string_array_base < Type, RawType, t_etypePayload > ::erase_last_ci(const RawString & pcsz, ::index iFind, ::index iLast)
 {
 
    if ((iFind = find_last_ci(pcsz, iFind, iLast)) >= 0)
@@ -2760,8 +2774,8 @@ template < class Type, class RawType >
 }
 
 
-template < class Type, class RawType >
-::index string_array_base < Type, RawType > ::erase_last(const RawString & pcsz, ::index iFind, ::index iLast)
+template < typename Type, typename RawType, enum_type t_etypePayload >
+::index string_array_base < Type, RawType, t_etypePayload > ::erase_last(const RawString & pcsz, ::index iFind, ::index iLast)
 {
 
    if ((iFind = find_last(pcsz, iFind, iLast)) >= 0)
@@ -2777,8 +2791,8 @@ template < class Type, class RawType >
 }
 
 
-template < class Type, class RawType >
-::count string_array_base < Type, RawType > ::_067RemoveCi(const RawString& pcsz, ::index iFind, ::index iLast, ::count countMin, ::count countMax)
+template < typename Type, typename RawType, enum_type t_etypePayload >
+::count string_array_base < Type, RawType, t_etypePayload > ::_067RemoveCi(const RawString& pcsz, ::index iFind, ::index iLast, ::count countMin, ::count countMax)
 {
 
    ::count count = 0;
@@ -2800,8 +2814,8 @@ template < class Type, class RawType >
 }
 
 
-template < class Type, class RawType >
-::count string_array_base < Type, RawType > ::_067Remove(const RawString & pcsz,::index iFind,::index iLast,::count countMin,::count countMax)
+template < typename Type, typename RawType, enum_type t_etypePayload >
+::count string_array_base < Type, RawType, t_etypePayload > ::_067Remove(const RawString & pcsz,::index iFind,::index iLast,::count countMin,::count countMax)
 {
 
    ::count count = 0;
@@ -2822,8 +2836,8 @@ template < class Type, class RawType >
 }
 
 
-template < class Type, class RawType >
-::count string_array_base < Type, RawType > ::erase_ci(const RawType & pcsz, ::index iFind, ::index iLast)
+template < typename Type, typename RawType, enum_type t_etypePayload >
+::count string_array_base < Type, RawType, t_etypePayload > ::erase_ci(const RawType & pcsz, ::index iFind, ::index iLast)
 {
 
    ::count count = 0;
@@ -2840,8 +2854,8 @@ template < class Type, class RawType >
 }
 
 
-template < class Type, class RawType >
-::count string_array_base < Type, RawType > ::erase(const RawString & pcsz, ::index iFind, ::index iLast)
+template < typename Type, typename RawType, enum_type t_etypePayload >
+::count string_array_base < Type, RawType, t_etypePayload > ::erase(const RawString & pcsz, ::index iFind, ::index iLast)
 {
 
    ::count count = 0;
@@ -2859,8 +2873,8 @@ template < class Type, class RawType >
 
 
 
-template < class Type, class RawType >
-::count string_array_base < Type, RawType > ::erase_ci(const string_array_base & stra)
+template < typename Type, typename RawType, enum_type t_etypePayload >
+::count string_array_base < Type, RawType, t_etypePayload > ::erase_ci(const string_array_base & stra)
 {
 
    ::count count = 0;
@@ -2877,8 +2891,8 @@ template < class Type, class RawType >
 }
 
 
-template < class Type, class RawType >
-::count string_array_base < Type, RawType > ::erase(const string_array_base & stra)
+template < typename Type, typename RawType, enum_type t_etypePayload >
+::count string_array_base < Type, RawType, t_etypePayload > ::erase(const string_array_base & stra)
 {
 
    ::count count = 0;
@@ -2895,8 +2909,8 @@ template < class Type, class RawType >
 }
 
 
-template < class Type, class RawType >
-void string_array_base < Type, RawType > ::trim_left(const Type& pszChars)
+template < typename Type, typename RawType, enum_type t_etypePayload >
+void string_array_base < Type, RawType, t_etypePayload > ::trim_left(const Type& pszChars)
 {
    for(::index i = 0; i < this->m_nSize; i++)
    {
@@ -2905,8 +2919,8 @@ void string_array_base < Type, RawType > ::trim_left(const Type& pszChars)
 }
 
 
-template < class Type, class RawType >
-void string_array_base < Type, RawType > ::trim_right(const Type& pszChars)
+template < typename Type, typename RawType, enum_type t_etypePayload >
+void string_array_base < Type, RawType, t_etypePayload > ::trim_right(const Type& pszChars)
 {
    for(::index i = 0; i < this->m_nSize; i++)
    {
@@ -2915,8 +2929,8 @@ void string_array_base < Type, RawType > ::trim_right(const Type& pszChars)
 }
 
 
-template < class Type, class RawType >
-void string_array_base < Type, RawType > ::trim(const Type& pszChars)
+template < typename Type, typename RawType, enum_type t_etypePayload >
+void string_array_base < Type, RawType, t_etypePayload > ::trim(const Type& pszChars)
 {
    for(::index i = 0; i < this->m_nSize; i++)
    {
@@ -2926,8 +2940,8 @@ void string_array_base < Type, RawType > ::trim(const Type& pszChars)
 
 
 
-template < class Type, class RawType >
-void string_array_base < Type, RawType > ::trim_left()
+template < typename Type, typename RawType, enum_type t_etypePayload >
+void string_array_base < Type, RawType, t_etypePayload > ::trim_left()
 {
    for(::index i = 0; i < this->m_nSize; i++)
    {
@@ -2936,8 +2950,8 @@ void string_array_base < Type, RawType > ::trim_left()
 }
 
 
-template < class Type, class RawType >
-void string_array_base < Type, RawType > ::trim_right()
+template < typename Type, typename RawType, enum_type t_etypePayload >
+void string_array_base < Type, RawType, t_etypePayload > ::trim_right()
 {
    for(::index i = 0; i < this->m_nSize; i++)
    {
@@ -2946,8 +2960,8 @@ void string_array_base < Type, RawType > ::trim_right()
 }
 
 
-template < class Type, class RawType >
-void string_array_base < Type, RawType > ::trim()
+template < typename Type, typename RawType, enum_type t_etypePayload >
+void string_array_base < Type, RawType, t_etypePayload > ::trim()
 {
    for(::index i = 0; i < this->m_nSize; i++)
    {
@@ -2956,8 +2970,8 @@ void string_array_base < Type, RawType > ::trim()
 }
 
 
-template < class Type, class RawType >
-::index string_array_base < Type, RawType > ::add_normal(const Type& pcsz)
+template < typename Type, typename RawType, enum_type t_etypePayload >
+::index string_array_base < Type, RawType, t_etypePayload > ::add_normal(const Type& pcsz)
 
 {
    return string_array_base::add(pcsz);
@@ -2965,8 +2979,8 @@ template < class Type, class RawType >
 }
 
 
-template < class Type, class RawType >
-::count string_array_base < Type, RawType > ::erase_empty()
+template < typename Type, typename RawType, enum_type t_etypePayload >
+::count string_array_base < Type, RawType, t_etypePayload > ::erase_empty()
 {
 
    ::count count = 0;
@@ -2990,8 +3004,8 @@ template < class Type, class RawType >
 }
 
 
-template < class Type, class RawType >
-::count string_array_base < Type, RawType > ::erase_empty_begin()
+template < typename Type, typename RawType, enum_type t_etypePayload >
+::count string_array_base < Type, RawType, t_etypePayload > ::erase_empty_begin()
 {
 
    ::count count = 0;
@@ -3011,8 +3025,8 @@ template < class Type, class RawType >
    return count;
 }
 
-template < class Type, class RawType >
-::count string_array_base < Type, RawType > ::erase_empty_end()
+template < typename Type, typename RawType, enum_type t_etypePayload >
+::count string_array_base < Type, RawType, t_etypePayload > ::erase_empty_end()
 {
 
    ::count count = 0;
@@ -3033,8 +3047,8 @@ template < class Type, class RawType >
 }
 
 
-template < class Type, class RawType >
-::count string_array_base < Type, RawType > ::erase_empty_trimmed_begin()
+template < typename Type, typename RawType, enum_type t_etypePayload >
+::count string_array_base < Type, RawType, t_etypePayload > ::erase_empty_trimmed_begin()
 {
    ::count count = 0;
    for (::index i = 0; i < this->get_size();)
@@ -3052,8 +3066,8 @@ template < class Type, class RawType >
    return count;
 }
 
-template < class Type, class RawType >
-::count string_array_base < Type, RawType > ::erase_empty_trimmed_end()
+template < typename Type, typename RawType, enum_type t_etypePayload >
+::count string_array_base < Type, RawType, t_etypePayload > ::erase_empty_trimmed_end()
 {
    ::count count = 0;
    ::index i;
@@ -3073,15 +3087,15 @@ template < class Type, class RawType >
 }
 
 
-template < class Type, class RawType >
-string_array_base < Type, RawType >  & string_array_base < Type, RawType > ::operator =(const i64_array & ia)
+template < typename Type, typename RawType, enum_type t_etypePayload >
+string_array_base < Type, RawType, t_etypePayload >  & string_array_base < Type, RawType, t_etypePayload > ::operator =(const i64_array & ia)
 {
    copy(ia);
    return *this;
 }
 
 
-/*::index string_array_base < Type, RawType > ::CountPrefixNoCase(const Type& pcszPrefix)
+/*::index string_array_base < Type, RawType, t_etypePayload > ::CountPrefixNoCase(const Type& pcszPrefix)
 
 {
 Type str;
@@ -3112,8 +3126,8 @@ return iCount;
 }
 }*/
 
-/*void string_array_base < Type, RawType > ::ExtractPrefixNoSortNoCase(
-string_array_base < Type, RawType >  &stra,
+/*void string_array_base < Type, RawType, t_etypePayload > ::ExtractPrefixNoSortNoCase(
+string_array_base < Type, RawType, t_etypePayload >  &stra,
 const Type& pcsz,
 
 ::index iLength,
@@ -3161,7 +3175,7 @@ add(strMid);
 
 }
 
-::index string_array_base < Type, RawType > ::FindFirstNoSortNoCase(const Type& pcsz)
+::index string_array_base < Type, RawType, t_etypePayload > ::FindFirstNoSortNoCase(const Type& pcsz)
 
 {
 for(::index i = 0; i < this->get_size(); i++)
@@ -3178,8 +3192,8 @@ return -1;
 
 
 
-//template < class Type, class RawType >
-//inline stream & operator << (stream & ostream, string_array_base < Type, RawType > & a)
+//template < typename Type, typename RawType, enum_type t_etypePayload >
+//inline stream & operator << (stream & ostream, string_array_base < Type, RawType, t_etypePayload > & a)
 //{
 //
 //   return ostream.stream_array(a);
@@ -3187,8 +3201,8 @@ return -1;
 //}
 
 
-//template < class Type, class RawType >
-//inline stream & operator >> (stream & istream, string_array_base < Type, RawType > & a)
+//template < typename Type, typename RawType, enum_type t_etypePayload >
+//inline stream & operator >> (stream & istream, string_array_base < Type, RawType, t_etypePayload > & a)
 //{
 //
 //   return istream.stream_array(a);
@@ -3200,8 +3214,8 @@ return -1;
 
 
 
-template < class Type, class RawType >
-Type string_array_base < Type, RawType > ::implode(const Type& strSeparator,::index i, ::count inCountLastOut) const
+template < typename Type, typename RawType, enum_type t_etypePayload >
+Type string_array_base < Type, RawType, t_etypePayload > ::implode(const Type& strSeparator,::index i, ::count inCountLastOut) const
 {
 
    Type str;
@@ -3239,8 +3253,8 @@ Type string_array_base < Type, RawType > ::implode(const Type& strSeparator,::in
 
 
 
-template < class Type, class RawType >
-Type string_array_base < Type, RawType > ::reverse_implode(const Type& strSeparator,::index i,::count inCountLastOut) const
+template < typename Type, typename RawType, enum_type t_etypePayload >
+Type string_array_base < Type, RawType, t_etypePayload > ::reverse_implode(const Type& strSeparator,::index i,::count inCountLastOut) const
 {
 
    Type str;
@@ -3277,8 +3291,8 @@ Type string_array_base < Type, RawType > ::reverse_implode(const Type& strSepara
 }
 
 
-template < class Type, class RawType >
-string_array_base < Type, RawType >  & string_array_base < Type, RawType > ::explode(const Type & strSeparator,const Type & str)
+template < typename Type, typename RawType, enum_type t_etypePayload >
+string_array_base < Type, RawType, t_etypePayload >  & string_array_base < Type, RawType, t_etypePayload > ::explode(const Type & strSeparator,const Type & str)
 {
 
    this->erase_all();
@@ -3290,8 +3304,8 @@ string_array_base < Type, RawType >  & string_array_base < Type, RawType > ::exp
 }
 
 
-template < class Type, class RawType >
-string_array_base < Type, RawType >  & string_array_base < Type, RawType > ::_001Explode(const Type & str)
+template < typename Type, typename RawType, enum_type t_etypePayload >
+string_array_base < Type, RawType, t_etypePayload >  & string_array_base < Type, RawType, t_etypePayload > ::_001Explode(const Type & str)
 {
 
    this->erase_all();
@@ -3304,8 +3318,8 @@ string_array_base < Type, RawType >  & string_array_base < Type, RawType > ::_00
 
 
 
-template < class Type, class RawType >
-string_array_base < Type, RawType >  & string_array_base < Type, RawType > ::csstidy_explode_ws(char sep,const Type& psz)
+template < typename Type, typename RawType, enum_type t_etypePayload >
+string_array_base < Type, RawType, t_etypePayload >  & string_array_base < Type, RawType, t_etypePayload > ::csstidy_explode_ws(char sep,const Type& psz)
 {
 
    Type istring(psz);
@@ -3356,8 +3370,8 @@ string_array_base < Type, RawType >  & string_array_base < Type, RawType > ::css
 }
 
 
-template < class Type, class RawType >
-bool string_array_base < Type, RawType > ::operator == (const typename string_array_base < Type, RawType >::RawStringArray & a) const
+template < typename Type, typename RawType, enum_type t_etypePayload >
+bool string_array_base < Type, RawType, t_etypePayload > ::operator == (const typename string_array_base < Type, RawType, t_etypePayload >::RawStringArray & a) const
 {
 
    if (a.get_size() != get_size())
@@ -3384,8 +3398,8 @@ bool string_array_base < Type, RawType > ::operator == (const typename string_ar
 }
 
 
-template < class Type, class RawType >
-bool string_array_base < Type, RawType > ::operator != (const typename string_array_base < Type, RawType >::RawStringArray & a) const
+template < typename Type, typename RawType, enum_type t_etypePayload >
+bool string_array_base < Type, RawType, t_etypePayload > ::operator != (const typename string_array_base < Type, RawType, t_etypePayload >::RawStringArray & a) const
 {
 
    return !operator == (a);
@@ -3393,8 +3407,8 @@ bool string_array_base < Type, RawType > ::operator != (const typename string_ar
 }
 
 
-template < class Type, class RawType >
-void string_array_base < Type, RawType > ::replace(const Type& pszSearch,const Type& pszReplace)
+template < typename Type, typename RawType, enum_type t_etypePayload >
+void string_array_base < Type, RawType, t_etypePayload > ::replace(const Type& pszSearch,const Type& pszReplace)
 
 {
    for(::index i = 0; i < this->get_size(); i++)
@@ -3406,8 +3420,8 @@ void string_array_base < Type, RawType > ::replace(const Type& pszSearch,const T
 
 
 
-template < class Type, class RawType >
-::count string_array_base < Type, RawType > ::explode_command_line(const Type & str, address_array < char * > * argv)
+template < typename Type, typename RawType, enum_type t_etypePayload >
+::count string_array_base < Type, RawType, t_etypePayload > ::explode_command_line(const Type & str, address_array < char * > * argv)
 {
 
    Type strParse(str);
@@ -3442,8 +3456,8 @@ template < class Type, class RawType >
 
 
 
-template < class Type, class RawType >
-void string_array_base < Type, RawType > ::surround(const Type& pszPrefix,const Type& pszSuffix,::index iStart,::count inCountLastOut)
+template < typename Type, typename RawType, enum_type t_etypePayload >
+void string_array_base < Type, RawType, t_etypePayload > ::surround(const Type& pszPrefix,const Type& pszSuffix,::index iStart,::count inCountLastOut)
 {
 
    if (!this->prepare_first_in_count_last_out(iStart, inCountLastOut))
@@ -3467,8 +3481,8 @@ void string_array_base < Type, RawType > ::surround(const Type& pszPrefix,const 
 }
 
 
-template < class Type, class RawType >
-Type string_array_base < Type, RawType > ::surround_and_implode(const Type& pszSeparator,const Type& pszPrefix,const Type& pszSuffix,::index iStart,::count inCountLastOut)
+template < typename Type, typename RawType, enum_type t_etypePayload >
+Type string_array_base < Type, RawType, t_etypePayload > ::surround_and_implode(const Type& pszSeparator,const Type& pszPrefix,const Type& pszSuffix,::index iStart,::count inCountLastOut)
 {
 
    Type str;
@@ -3498,8 +3512,8 @@ Type string_array_base < Type, RawType > ::surround_and_implode(const Type& pszS
 }
 
 
-//template < class Type, class RawType >
-//string_array_base < Type, RawType >  & string_array_base < Type, RawType > ::operator -=(const string_array_base & stra)
+//template < typename Type, typename RawType, enum_type t_etypePayload >
+//string_array_base < Type, RawType, t_etypePayload >  & string_array_base < Type, RawType, t_etypePayload > ::operator -=(const string_array_base & stra)
 //{
 //
 //   erase(stra);
@@ -3509,8 +3523,8 @@ Type string_array_base < Type, RawType > ::surround_and_implode(const Type& pszS
 //}
 
 
-//template < class Type, class RawType >
-//string_array_base < Type, RawType >  & string_array_base < Type, RawType > ::operator +=(const string_array_base & stra)
+//template < typename Type, typename RawType, enum_type t_etypePayload >
+//string_array_base < Type, RawType, t_etypePayload >  & string_array_base < Type, RawType, t_etypePayload > ::operator +=(const string_array_base & stra)
 //{
 //   
 //   add(stra);
@@ -3520,19 +3534,19 @@ Type string_array_base < Type, RawType > ::surround_and_implode(const Type& pszS
 //}
 
 
-//template < class Type, class RawType >
-//string_array_base < Type, RawType >  string_array_base < Type, RawType > ::operator -(const string_array_base & straParam) const
+//template < typename Type, typename RawType, enum_type t_etypePayload >
+//string_array_base < Type, RawType, t_etypePayload >  string_array_base < Type, RawType, t_etypePayload > ::operator -(const string_array_base & straParam) const
 //{
-//   string_array_base < Type, RawType >  stra(*this);
+//   string_array_base < Type, RawType, t_etypePayload >  stra(*this);
 //   stra -= straParam;
 //   return stra;
 //}
 
 
-//template < class Type, class RawType >
-//string_array_base < Type, RawType >  string_array_base < Type, RawType > ::operator +(const string_array_base & straParam) const
+//template < typename Type, typename RawType, enum_type t_etypePayload >
+//string_array_base < Type, RawType, t_etypePayload >  string_array_base < Type, RawType, t_etypePayload > ::operator +(const string_array_base & straParam) const
 //{
-//   string_array_base < Type, RawType >  stra(*this);
+//   string_array_base < Type, RawType, t_etypePayload >  stra(*this);
 //   stra += straParam;
 //   return stra;
 //}
@@ -3542,8 +3556,8 @@ Type string_array_base < Type, RawType > ::surround_and_implode(const Type& pszS
 
 
 
-template < class Type, class RawType >
-bool string_array_base < Type, RawType > ::move_ci(const Type& pcsz,::index iIndex)
+template < typename Type, typename RawType, enum_type t_etypePayload >
+bool string_array_base < Type, RawType, t_etypePayload > ::move_ci(const Type& pcsz,::index iIndex)
 
 {
    ::index i = find_first_ci(pcsz);
@@ -3557,8 +3571,8 @@ bool string_array_base < Type, RawType > ::move_ci(const Type& pcsz,::index iInd
 }
 
 
-template < class Type, class RawType >
-bool string_array_base < Type, RawType > ::preferred(const Type& pcsz)
+template < typename Type, typename RawType, enum_type t_etypePayload >
+bool string_array_base < Type, RawType, t_etypePayload > ::preferred(const Type& pcsz)
 
 {
    return move_ci(pcsz,0);
@@ -3566,8 +3580,8 @@ bool string_array_base < Type, RawType > ::preferred(const Type& pcsz)
 }
 
 
-template < class Type, class RawType >
-::count string_array_base < Type, RawType > ::preferred(string_array_base < Type, RawType >  & stra)
+template < typename Type, typename RawType, enum_type t_etypePayload >
+::count string_array_base < Type, RawType, t_etypePayload > ::preferred(string_array_base < Type, RawType, t_etypePayload >  & stra)
 {
    ::count count = 0;
    for(::index i = stra.get_upper_bound(); i >= 0; i--)
@@ -3580,8 +3594,8 @@ template < class Type, class RawType >
 
 
 
-template < class Type, class RawType >
-Type string_array_base < Type, RawType > ::pop(::index i)
+template < typename Type, typename RawType, enum_type t_etypePayload >
+Type string_array_base < Type, RawType, t_etypePayload > ::pop(::index i)
 {
    i = get_upper_bound(i);
    Type strRet = this->element_at(i);
@@ -3590,8 +3604,8 @@ Type string_array_base < Type, RawType > ::pop(::index i)
 }
 
 
-template < class Type, class RawType >
-void string_array_base < Type, RawType > ::slice(string_array_base < Type, RawType >  & stra,::index iOffset,::count count)
+template < typename Type, typename RawType, enum_type t_etypePayload >
+void string_array_base < Type, RawType, t_etypePayload > ::slice(string_array_base < Type, RawType, t_etypePayload >  & stra,::index iOffset,::count count)
 {
 
    ::index iEnd;
@@ -3609,8 +3623,8 @@ void string_array_base < Type, RawType > ::slice(string_array_base < Type, RawTy
 }
 
 
-template < class Type, class RawType >
-void string_array_base < Type, RawType > ::erase(::index iOffset,::count count)
+template < typename Type, typename RawType, enum_type t_etypePayload >
+void string_array_base < Type, RawType, t_etypePayload > ::erase(::index iOffset,::count count)
 {
 
    for(::index i = iOffset + count - 1; i >= iOffset; i--)
@@ -3623,8 +3637,8 @@ void string_array_base < Type, RawType > ::erase(::index iOffset,::count count)
 
 
 
-template < class Type, class RawType >
-void string_array_base < Type, RawType > ::splice(const string_array_base < Type, RawType >  & stra,::index iOffset,::count count)
+template < typename Type, typename RawType, enum_type t_etypePayload >
+void string_array_base < Type, RawType, t_etypePayload > ::splice(const string_array_base < Type, RawType, t_etypePayload >  & stra,::index iOffset,::count count)
 {
 
    erase(iOffset, count);
@@ -3635,8 +3649,8 @@ void string_array_base < Type, RawType > ::splice(const string_array_base < Type
 
 
 
-template < class Type, class RawType >
-void string_array_base < Type, RawType > ::splice(const string_array_base < Type, RawType >  & stra,::index iOffset,string_array_base < Type, RawType >  & straRemoved,::count count)
+template < typename Type, typename RawType, enum_type t_etypePayload >
+void string_array_base < Type, RawType, t_etypePayload > ::splice(const string_array_base < Type, RawType, t_etypePayload >  & stra,::index iOffset,string_array_base < Type, RawType, t_etypePayload >  & straRemoved,::count count)
 {
 
    slice(straRemoved, iOffset, count);
@@ -3649,8 +3663,8 @@ void string_array_base < Type, RawType > ::splice(const string_array_base < Type
 
 
 
-template < class Type, class RawType >
-bool string_array_base < Type, RawType > ::is_empty(::count countMinimum) const
+template < typename Type, typename RawType, enum_type t_etypePayload >
+bool string_array_base < Type, RawType, t_etypePayload > ::is_empty(::count countMinimum) const
 {
 
    return this->get_size() < countMinimum;
@@ -3658,8 +3672,8 @@ bool string_array_base < Type, RawType > ::is_empty(::count countMinimum) const
 }
 
 
-template < class Type, class RawType >
-bool string_array_base < Type, RawType > ::has_elements(::count countMinimum) const
+template < typename Type, typename RawType, enum_type t_etypePayload >
+bool string_array_base < Type, RawType, t_etypePayload > ::has_elements(::count countMinimum) const
 {
 
 
@@ -3667,8 +3681,8 @@ bool string_array_base < Type, RawType > ::has_elements(::count countMinimum) co
 }
 
 
-template < class Type, class RawType >
-::count string_array_base < Type, RawType > ::begins(string_array_base < Type, RawType > & straPrefixed, const Type & strPrefix, ::index iFirst, ::index iLast)
+template < typename Type, typename RawType, enum_type t_etypePayload >
+::count string_array_base < Type, RawType, t_etypePayload > ::begins(string_array_base < Type, RawType, t_etypePayload > & straPrefixed, const Type & strPrefix, ::index iFirst, ::index iLast)
 {
 
    ::count count = 0;
@@ -3704,8 +3718,8 @@ template < class Type, class RawType >
 
 
 
-template < class Type, class RawType >
-::count string_array_base < Type, RawType > ::begins_ci(string_array_base < Type, RawType > & straPrefixed,const Type& strPrefix,::index iFirst,::index iLast)
+template < typename Type, typename RawType, enum_type t_etypePayload >
+::count string_array_base < Type, RawType, t_etypePayload > ::begins_ci(string_array_base < Type, RawType, t_etypePayload > & straPrefixed,const Type& strPrefix,::index iFirst,::index iLast)
 {
 
    ::count count = 0;
@@ -3743,8 +3757,8 @@ template < class Type, class RawType >
 
 
 
-template < class Type, class RawType >
-::count string_array_base < Type, RawType > ::begins(index_array & iaPrefixed, const Type & strPrefix, ::index iFirst, ::index iLast)
+template < typename Type, typename RawType, enum_type t_etypePayload >
+::count string_array_base < Type, RawType, t_etypePayload > ::begins(index_array & iaPrefixed, const Type & strPrefix, ::index iFirst, ::index iLast)
 {
 
    ::count count = 0;
@@ -3780,8 +3794,8 @@ template < class Type, class RawType >
 
 
 
-template < class Type, class RawType >
-::count string_array_base < Type, RawType > ::begins_ci(index_array & iaPrefixed, const Type & strPrefix, ::index iFirst, ::index iLast)
+template < typename Type, typename RawType, enum_type t_etypePayload >
+::count string_array_base < Type, RawType, t_etypePayload > ::begins_ci(index_array & iaPrefixed, const Type & strPrefix, ::index iFirst, ::index iLast)
 {
 
    ::count count = 0;
@@ -3817,8 +3831,8 @@ template < class Type, class RawType >
 
 
 
-template < class Type, class RawType >
-::count string_array_base < Type, RawType > ::ends(string_array_base < Type, RawType >& straSuffixed, const Type& strSuffix, ::index iFirst, ::index iLast)
+template < typename Type, typename RawType, enum_type t_etypePayload >
+::count string_array_base < Type, RawType, t_etypePayload > ::ends(string_array_base < Type, RawType, t_etypePayload >& straSuffixed, const Type& strSuffix, ::index iFirst, ::index iLast)
 {
 
    ::count count = 0;
@@ -3853,8 +3867,8 @@ template < class Type, class RawType >
 }
 
 
-template < class Type, class RawType >
-::count string_array_base < Type, RawType > ::ends_ci(string_array_base < Type, RawType > & straSuffixed, const Type & strSuffix, ::index iFirst, ::index iLast)
+template < typename Type, typename RawType, enum_type t_etypePayload >
+::count string_array_base < Type, RawType, t_etypePayload > ::ends_ci(string_array_base < Type, RawType, t_etypePayload > & straSuffixed, const Type & strSuffix, ::index iFirst, ::index iLast)
 {
 
    ::count count = 0;
@@ -3891,8 +3905,8 @@ template < class Type, class RawType >
 
 
 
-template < class Type, class RawType >
-::count string_array_base < Type, RawType > ::ends(index_array & iaSuffixed, const Type & strSuffix, ::index iFirst, ::index iLast)
+template < typename Type, typename RawType, enum_type t_etypePayload >
+::count string_array_base < Type, RawType, t_etypePayload > ::ends(index_array & iaSuffixed, const Type & strSuffix, ::index iFirst, ::index iLast)
 {
 
    ::count count = 0;
@@ -3928,8 +3942,8 @@ template < class Type, class RawType >
 
 
 
-template < class Type, class RawType >
-::count string_array_base < Type, RawType > ::ends_ci(index_array & iaSuffixed, const Type & strSuffix, ::index iFirst, ::index iLast)
+template < typename Type, typename RawType, enum_type t_etypePayload >
+::count string_array_base < Type, RawType, t_etypePayload > ::ends_ci(index_array & iaSuffixed, const Type & strSuffix, ::index iFirst, ::index iLast)
 {
 
    ::count count = 0;
@@ -3965,8 +3979,8 @@ template < class Type, class RawType >
 
 
 
-template < class Type, class RawType >
-::count string_array_base < Type, RawType > ::search_ci(string_array_base < Type, RawType > & stra, const Type & pcsz, ::index iFirst, ::index iLast)
+template < typename Type, typename RawType, enum_type t_etypePayload >
+::count string_array_base < Type, RawType, t_etypePayload > ::search_ci(string_array_base < Type, RawType, t_etypePayload > & stra, const Type & pcsz, ::index iFirst, ::index iLast)
 {
 
    ::count count = 0;
@@ -4001,8 +4015,8 @@ template < class Type, class RawType >
 }
 
 
-template < class Type, class RawType >
-::count string_array_base < Type, RawType > ::search(string_array_base < Type, RawType > & stra, const Type & pcsz, ::index iFirst, ::index iLast)
+template < typename Type, typename RawType, enum_type t_etypePayload >
+::count string_array_base < Type, RawType, t_etypePayload > ::search(string_array_base < Type, RawType, t_etypePayload > & stra, const Type & pcsz, ::index iFirst, ::index iLast)
 {
 
    ::count count = 0;
@@ -4036,8 +4050,8 @@ template < class Type, class RawType >
 
 }
 
-template < class Type, class RawType >
-::count string_array_base < Type, RawType > ::search(index_array & iaResult, const Type & strTopic, ::index iFirst, ::index iLast)
+template < typename Type, typename RawType, enum_type t_etypePayload >
+::count string_array_base < Type, RawType, t_etypePayload > ::search(index_array & iaResult, const Type & strTopic, ::index iFirst, ::index iLast)
 {
 
    ::count count = 0;
@@ -4073,8 +4087,8 @@ template < class Type, class RawType >
 
 
 
-template < class Type, class RawType >
-::count string_array_base < Type, RawType > ::search_ci(index_array & ia, const Type & strTopic, ::index iFirst, ::index iLast)
+template < typename Type, typename RawType, enum_type t_etypePayload >
+::count string_array_base < Type, RawType, t_etypePayload > ::search_ci(index_array & ia, const Type & strTopic, ::index iFirst, ::index iLast)
 {
 
    ::count count = 0;
@@ -4110,8 +4124,8 @@ template < class Type, class RawType >
 
 
 
-template < class Type, class RawType >
-::count string_array_base < Type, RawType > ::filter_begins(const Type & pcsz, ::index iFirst, ::index iLast)
+template < typename Type, typename RawType, enum_type t_etypePayload >
+::count string_array_base < Type, RawType, t_etypePayload > ::filter_begins(const Type & pcsz, ::index iFirst, ::index iLast)
 {
 
    ::count count = 0;
@@ -4154,8 +4168,8 @@ template < class Type, class RawType >
 }
 
 
-template < class Type, class RawType >
-::count string_array_base < Type, RawType > ::filter_begins_ci(const Type& pcsz,::index iFirst,::index iLast)
+template < typename Type, typename RawType, enum_type t_etypePayload >
+::count string_array_base < Type, RawType, t_etypePayload > ::filter_begins_ci(const Type& pcsz,::index iFirst,::index iLast)
 {
 
    ::count count = 0;
@@ -4198,9 +4212,9 @@ template < class Type, class RawType >
 }
 
 
-template < class Type,class RawType >
+template < typename Type, typename RawType, enum_type t_etypePayload >
 template < typename Pred >
-::count string_array_base < Type,RawType > ::filter(Pred pred, ::index iFirst, ::index iLast)
+::count string_array_base < Type, RawType, t_etypePayload > ::filter(Pred pred, ::index iFirst, ::index iLast)
 {
 
    ::count count = 0;
@@ -4237,9 +4251,9 @@ template < typename Pred >
 }
 
 
-template < class Type,class RawType >
+template < typename Type, typename RawType, enum_type t_etypePayload >
 template < typename Pred >
-::count string_array_base < Type,RawType > ::filter_out(Pred pred,::index iFirst,::index iLast)
+::count string_array_base < Type, RawType, t_etypePayload > ::filter_out(Pred pred,::index iFirst,::index iLast)
 {
 
    ::count count = 0;
@@ -4276,9 +4290,9 @@ template < typename Pred >
 }
 
 
-template < class Type,class RawType >
+template < typename Type, typename RawType, enum_type t_etypePayload >
 template < typename Pred, typename ArrayOut >
-::count string_array_base < Type,RawType > ::filter_out(Pred pred, ArrayOut & a, ::index iFirst,::index iLast)
+::count string_array_base < Type, RawType, t_etypePayload > ::filter_out(Pred pred, ArrayOut & a, ::index iFirst,::index iLast)
 {
 
    ::count count = 0;
@@ -4317,8 +4331,8 @@ template < typename Pred, typename ArrayOut >
 }
 
 
-template < class Type, class RawType >
-::index string_array_base < Type, RawType > ::get_random_index() const
+template < typename Type, typename RawType, enum_type t_etypePayload >
+::index string_array_base < Type, RawType, t_etypePayload > ::get_random_index() const
 {
 
    if(this->is_empty())
@@ -4333,8 +4347,8 @@ template < class Type, class RawType >
 }
 
 
-template < class Type, class RawType >
-Type & string_array_base < Type, RawType > ::random_element()
+template < typename Type, typename RawType, enum_type t_etypePayload >
+Type & string_array_base < Type, RawType, t_etypePayload > ::random_element()
 {
 
    if(this->is_empty())
@@ -4349,8 +4363,8 @@ Type & string_array_base < Type, RawType > ::random_element()
 }
 
 
-template < class Type, class RawType >
-const Type & string_array_base < Type, RawType > ::random_element() const
+template < typename Type, typename RawType, enum_type t_etypePayload >
+const Type & string_array_base < Type, RawType, t_etypePayload > ::random_element() const
 {
 
    if(this->is_empty())
@@ -4365,8 +4379,8 @@ const Type & string_array_base < Type, RawType > ::random_element() const
 }
 
 
-template < class Type, class RawType >
-Type string_array_base < Type, RawType > ::pop_random_element()
+template < typename Type, typename RawType, enum_type t_etypePayload >
+Type string_array_base < Type, RawType, t_etypePayload > ::pop_random_element()
 {
 
    if(this->is_empty())
@@ -4387,8 +4401,8 @@ Type string_array_base < Type, RawType > ::pop_random_element()
 }
 
 
-template < class Type, class RawType >
-void string_array_base < Type, RawType > ::make_lower()
+template < typename Type, typename RawType, enum_type t_etypePayload >
+void string_array_base < Type, RawType, t_etypePayload > ::make_lower()
 {
 
    for(::index i = 0; i < this->get_count(); i++)
@@ -4401,8 +4415,8 @@ void string_array_base < Type, RawType > ::make_lower()
 }
 
 
-template < class Type, class RawType >
-void string_array_base < Type, RawType > ::make_upper()
+template < typename Type, typename RawType, enum_type t_etypePayload >
+void string_array_base < Type, RawType, t_etypePayload > ::make_upper()
 {
 
    for(::index i = 0; i < this->get_count(); i++)
@@ -4419,8 +4433,8 @@ void string_array_base < Type, RawType > ::make_upper()
 
 
 
-template < class Type, class RawType >
-comparable_array < id > string_array_base < Type, RawType > ::get_comparable_ida() const
+template < typename Type, typename RawType, enum_type t_etypePayload >
+comparable_array < id > string_array_base < Type, RawType, t_etypePayload > ::get_comparable_ida() const
 {
 
    comparable_array < id > ida;
@@ -4437,8 +4451,8 @@ comparable_array < id > string_array_base < Type, RawType > ::get_comparable_ida
 
 
 
-template < class Type, class RawType >
-Type string_array_base < Type, RawType > ::encode_v16()
+template < typename Type, typename RawType, enum_type t_etypePayload >
+Type string_array_base < Type, RawType, t_etypePayload > ::encode_v16()
 {
    //Type strEncode;
    //for(::index u = 0; u < this->get_count(); u++)
@@ -4475,8 +4489,8 @@ Type string_array_base < Type, RawType > ::encode_v16()
 
 
 
-template < class Type, class RawType >
-void string_array_base < Type, RawType > ::decode_v16(const Type& psz)
+template < typename Type, typename RawType, enum_type t_etypePayload >
+void string_array_base < Type, RawType, t_etypePayload > ::decode_v16(const Type& psz)
 {
    //::index iSize = 1024;
    //char * str = nullptr;
@@ -4526,8 +4540,8 @@ void string_array_base < Type, RawType > ::decode_v16(const Type& psz)
 
 
 
-template < class Type, class RawType >
-inline ::count string_array_base < Type, RawType >::count_except(const Type& str)
+template < typename Type, typename RawType, enum_type t_etypePayload >
+inline ::count string_array_base < Type, RawType, t_etypePayload >::count_except(const Type& str)
 {
 
    ::count c = get_count();
@@ -4548,8 +4562,8 @@ inline ::count string_array_base < Type, RawType >::count_except(const Type& str
 
 }
 
-template < class Type, class RawType >
-inline ::count string_array_base < Type, RawType > ::count_except_ci(const Type& str)
+template < typename Type, typename RawType, enum_type t_etypePayload >
+inline ::count string_array_base < Type, RawType, t_etypePayload > ::count_except_ci(const Type& str)
 {
 
    ::count c = get_count();
@@ -4572,8 +4586,8 @@ inline ::count string_array_base < Type, RawType > ::count_except_ci(const Type&
 
 
 
-template < class Type, class RawType >
-::count string_array_base < Type, RawType > ::count_except(const string_array_base < Type, RawType >  & stra)
+template < typename Type, typename RawType, enum_type t_etypePayload >
+::count string_array_base < Type, RawType, t_etypePayload > ::count_except(const string_array_base < Type, RawType, t_etypePayload >  & stra)
 {
 
    ::count c = get_count();
@@ -4597,8 +4611,8 @@ template < class Type, class RawType >
 
 
 
-template < class Type, class RawType >
-::count string_array_base < Type, RawType > ::count_except_ci(const string_array_base < Type, RawType >  & stra)
+template < typename Type, typename RawType, enum_type t_etypePayload >
+::count string_array_base < Type, RawType, t_etypePayload > ::count_except_ci(const string_array_base < Type, RawType, t_etypePayload >  & stra)
 {
 
    ::count c = get_count();
@@ -4621,8 +4635,8 @@ template < class Type, class RawType >
 
 
 
-template < class Type, class RawType >
-Type & string_array_base < Type, RawType > ::get_json(Type & str, bool bNewLine) const
+template < typename Type, typename RawType, enum_type t_etypePayload >
+Type & string_array_base < Type, RawType, t_etypePayload > ::get_json(Type & str, bool bNewLine) const
 {
 
    str += "[";
@@ -4679,8 +4693,8 @@ Type & string_array_base < Type, RawType > ::get_json(Type & str, bool bNewLine)
 
 
 
-template < class Type, class RawType >
-Type string_array_base < Type, RawType > ::_008Implode(const Type& strSeparator, const Type& pcszLastSeparator, ::index iStart, ::count inCountLastOut) const
+template < typename Type, typename RawType, enum_type t_etypePayload >
+Type string_array_base < Type, RawType, t_etypePayload > ::_008Implode(const Type& strSeparator, const Type& pcszLastSeparator, ::index iStart, ::count inCountLastOut) const
 {
 
    Type str;
@@ -4723,8 +4737,8 @@ Type string_array_base < Type, RawType > ::_008Implode(const Type& strSeparator,
 
 
 
-template < class Type, class RawType >
-Type string_array_base < Type, RawType > ::_008IfImplode(const Type& strIfHasElementPrefix, const Type& strSeparator, const Type& pcszLastSeparator, bool bUseLast, ::index iStart, ::count inCountLastOut) const
+template < typename Type, typename RawType, enum_type t_etypePayload >
+Type string_array_base < Type, RawType, t_etypePayload > ::_008IfImplode(const Type& strIfHasElementPrefix, const Type& strSeparator, const Type& pcszLastSeparator, bool bUseLast, ::index iStart, ::count inCountLastOut) const
 {
 
    Type str;
@@ -4773,8 +4787,8 @@ Type string_array_base < Type, RawType > ::_008IfImplode(const Type& strIfHasEle
 }
 
 
-//template < class Type, class RawType >
-//Type string_array_base < Type, RawType > ::_008IfImplode(const Type& strIfHasElementPrefix, const Type& strSeparator, const Type& strLastSeparator, bool bUseLast, ::index iStart, ::index iEnd) const
+//template < typename Type, typename RawType, enum_type t_etypePayload >
+//Type string_array_base < Type, RawType, t_etypePayload > ::_008IfImplode(const Type& strIfHasElementPrefix, const Type& strSeparator, const Type& strLastSeparator, bool bUseLast, ::index iStart, ::index iEnd) const
 //{
 //
 //   Type str;
@@ -4788,8 +4802,8 @@ Type string_array_base < Type, RawType > ::_008IfImplode(const Type& strIfHasEle
 
 
 
-template < class Type, class RawType >
-::array < const ansichar * > string_array_base < Type, RawType > ::c_ansi_get(bool bMemoryAlloc) const
+template < typename Type, typename RawType, enum_type t_etypePayload >
+::array < const ansichar * > string_array_base < Type, RawType, t_etypePayload > ::c_ansi_get(bool bMemoryAlloc) const
 {
 
    ::array < const ansichar * > psza;
@@ -4821,8 +4835,8 @@ template < class Type, class RawType >
 }
 
 
-template < class Type, class RawType >
-::array < const widechar * > string_array_base < Type, RawType > ::c_wide_get(bool bMemoryAlloc) const
+template < typename Type, typename RawType, enum_type t_etypePayload >
+::array < const widechar * > string_array_base < Type, RawType, t_etypePayload > ::c_wide_get(bool bMemoryAlloc) const
 {
 
    ::array < const widechar * > psza;
@@ -4856,8 +4870,8 @@ template < class Type, class RawType >
 
 
 /// expect strings allocated with malloc (sic, not memory_allocate) or strdup and array allocated with malloc (sic, not memory_allocate)
-template < class Type, class RawType >
-void string_array_base < Type, RawType > ::c_add(char ** ppsz, ::count c, bool bMemoryAlloc)
+template < typename Type, typename RawType, enum_type t_etypePayload >
+void string_array_base < Type, RawType, t_etypePayload > ::c_add(char ** ppsz, ::count c, bool bMemoryAlloc)
 {
 
    for (::index i = 0; i < c; i++)
@@ -4908,8 +4922,8 @@ void string_array_base < Type, RawType > ::c_add(char ** ppsz, ::count c, bool b
 
 
 /// expect strings allocated with malloc (sic, not memory_allocate) or strdup and array allocated with malloc (sic, not memory_allocate)
-template < class Type, class RawType >
-void string_array_base < Type, RawType > ::c_add(char ** ppszParam, bool bMemoryAlloc)
+template < typename Type, typename RawType, enum_type t_etypePayload >
+void string_array_base < Type, RawType, t_etypePayload > ::c_add(char ** ppszParam, bool bMemoryAlloc)
 {
 
    auto ppsz = ppszParam;
@@ -4955,8 +4969,8 @@ void string_array_base < Type, RawType > ::c_add(char ** ppszParam, bool bMemory
 }
 
 /// expect strings allocated with malloc (sic, not memory_allocate) or wcsdup and array allocated with malloc (sic, not memory_allocate)
-template < class Type, class RawType >
-void string_array_base < Type, RawType > ::c_add(wchar_t ** ppwsz, ::count c, bool bMemoryAlloc)
+template < typename Type, typename RawType, enum_type t_etypePayload >
+void string_array_base < Type, RawType, t_etypePayload > ::c_add(wchar_t ** ppwsz, ::count c, bool bMemoryAlloc)
 {
 
    for (::index i = 0; i < c; i++)
@@ -5003,8 +5017,8 @@ void string_array_base < Type, RawType > ::c_add(wchar_t ** ppwsz, ::count c, bo
 
 
 /// expect strings allocated with malloc (sic, not memory_allocate) or wcsdup and array allocated with malloc (sic, not memory_allocate)
-template < class Type, class RawType >
-void string_array_base < Type, RawType > ::c_add(wchar_t ** ppwszParam, bool bMemoryAlloc)
+template < typename Type, typename RawType, enum_type t_etypePayload >
+void string_array_base < Type, RawType, t_etypePayload > ::c_add(wchar_t ** ppwszParam, bool bMemoryAlloc)
 {
 
    auto ppwsz = ppwszParam;
@@ -5054,8 +5068,8 @@ void string_array_base < Type, RawType > ::c_add(wchar_t ** ppwszParam, bool bMe
 }
 
 
-template < class Type, class RawType >
-void string_array_base < Type, RawType > ::sort()
+template < typename Type, typename RawType, enum_type t_etypePayload >
+void string_array_base < Type, RawType, t_etypePayload > ::sort()
 {
 
    this->predicate_sort([](Type & a, Type & b)
@@ -5066,8 +5080,8 @@ void string_array_base < Type, RawType > ::sort()
 }
 
 
-template < class Type, class RawType >
-void string_array_base < Type, RawType > ::sort_ci()
+template < typename Type, typename RawType, enum_type t_etypePayload >
+void string_array_base < Type, RawType, t_etypePayload > ::sort_ci()
 {
 
    this->predicate_sort([](Type & a, Type & b)
@@ -5078,8 +5092,8 @@ void string_array_base < Type, RawType > ::sort_ci()
 }
 
 
-template < class Type, class RawType >
-void string_array_base < Type, RawType > ::collate_sort()
+template < typename Type, typename RawType, enum_type t_etypePayload >
+void string_array_base < Type, RawType, t_etypePayload > ::collate_sort()
 {
 
    this->predicate_sort([](Type & a, Type & b)
@@ -5090,8 +5104,8 @@ void string_array_base < Type, RawType > ::collate_sort()
 }
 
 
-template < class Type, class RawType >
-void string_array_base < Type, RawType > ::collate_sort_ci()
+template < typename Type, typename RawType, enum_type t_etypePayload >
+void string_array_base < Type, RawType, t_etypePayload > ::collate_sort_ci()
 {
 
    this->predicate_sort([](Type & a, Type & b)

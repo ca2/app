@@ -28,7 +28,7 @@ public:
    //inline auto tasks() const { return m_mapTask.values(); }
 
    void add_arg(const ::payload & payload);
-   void add_args(const payload_array& vara);
+   void add_args(const payload_array& payloada);
    void set_timeout(const duration& duration);
    void set_auto_launch(bool bSet = true);
 

@@ -115,7 +115,7 @@ inline stream & operator >>(stream & s, ::millis & millis)
 //}
 
 
-//template < class TYPE, class ARG_TYPE , class ALLOCATOR >
+//template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
 //stream & stream::operator >> (array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload > & a)
 //{
 
@@ -752,21 +752,21 @@ inline void __exchange(::stream & stream, ::array_base < TYPE, ARG_TYPE, ALLOCAT
 
 
 template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
-inline void __exchange(::stream & stream, ::raw_array < TYPE, ARG_TYPE, ALLOCATOR > & array)
+inline void __exchange(::stream & stream, ::raw_array < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload > & array)
 {
    __exchange_array(stream, array);
 }
 
 
-template < class TYPE >
-inline void __exchange(::stream & stream, ::numeric_array < TYPE > & array)
+template < typename TYPE, enum_type t_etypePayload >
+inline void __exchange(::stream & stream, ::numeric_array < TYPE, t_etypePayload > & array)
 {
    __exchange_array(stream, array);
 }
 
 
-template < typename Type, typename RawType >
-inline void __exchange(::stream & stream, ::string_array_base < Type, RawType > & array)
+template < typename Type, typename RawType, enum_type t_etypePayload >
+inline void __exchange(::stream & stream, ::string_array_base < Type, RawType, t_etypePayload > & array)
 {
    __exchange_array(stream, array);
 }
@@ -791,11 +791,11 @@ inline void __exchange_array(::stream & stream, ARRAY & array)
 }
 
 
-inline var_stream::var_stream() : m_pvar(new ::payload) {}
-inline var_stream::var_stream(::payload * pvar) : m_pvar(pvar) {}
+inline var_stream::var_stream() : m_ppayload(new ::payload) {}
+inline var_stream::var_stream(::payload * pvar) : m_ppayload(pvar) {}
 
-inline ::payload & var_stream::payload() { return *m_pvar; }
-inline const ::payload & var_stream::payload() const { return *m_pvar; }
+inline ::payload & var_stream::payload() { return *m_ppayload; }
+inline const ::payload & var_stream::payload() const { return *m_ppayload; }
 
 //void var_stream::write_object(const ::id & id, ::id & idFactory, ::matter * pobject)
 //{
@@ -1118,13 +1118,13 @@ void var_stream::default_exchange(TYPE & t)
       if(is_loading())
       {
 
-         ::assign(t, *this->m_pvar);
+         ::assign(t, *this->m_ppayload);
 
       }
       else
       {
 
-         ::assign(*this->m_pvar, t);
+         ::assign(*this->m_ppayload, t);
 
       }
 
@@ -1158,7 +1158,7 @@ void var_stream::write_only(TYPE & t)
   else
   {
 
-     m_pvar->operator =(t);
+     m_ppayload->operator =(t);
 
   }
 
@@ -1171,18 +1171,18 @@ template < typename TYPE >
 inline void var_stream::var_exchange(const ::id & id, TYPE & t)
 {
 
-  ::payload * pvar = m_pvar;
+  ::payload * pvar = m_ppayload;
 
   if (id.m_etype != id::e_type_null)
   {
 
-     m_pvar = &m_pvar->operator[](id);
+     m_ppayload = &m_ppayload->operator[](id);
 
   }
 
   __exchange(*this, t);
 
-  m_pvar = pvar;
+  m_ppayload = pvar;
 
 }
 

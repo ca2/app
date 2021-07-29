@@ -2274,7 +2274,7 @@ namespace file
    class path;
 
 
-   typedef CLASS_DECL_ACME ::string_array_base<::file::path, string> patha;
+   typedef CLASS_DECL_ACME ::string_array_base < ::file::path, string, e_type_string_array > patha;
 
 
    class file;
@@ -4227,13 +4227,13 @@ namespace std
    template < class KEY,class VALUE >
    using map = ::map < KEY,const KEY &,VALUE,const VALUE & >;
 
-   template < class TYPE >
+   template < typename TYPE >
    using list = ::list< TYPE >;
 
-   template < class TYPE >
+   template < typename TYPE >
    using vector = ::array< TYPE >;
 
-   template < class TYPE >
+   template < typename TYPE >
    using set = ::set< TYPE >;
 
    using ostream = stream;

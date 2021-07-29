@@ -48,8 +48,8 @@ public:
    array(::std::initializer_list < TYPE > l);
    array(enum_create_new, ::count n);
    array(::count n, ARG_TYPE t);
-   array(array && a) noexcept : array_base< TYPE, ARG_TYPE, ALLOCATOR >(::move(a)) { }
-   virtual ~array();
+   array(array && a) noexcept : array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >(::move(a)) { }
+   ~array() override;
 
 
    inline const TYPE& get_at(::index nIndex) const;

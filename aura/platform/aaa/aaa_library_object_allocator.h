@@ -23,7 +23,7 @@ public:
 };
 
 
-template < class TYPE >
+template < typename TYPE >
 class library_object_allocator :
    virtual public library_object_allocator_base
 {

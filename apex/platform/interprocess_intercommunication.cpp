@@ -326,12 +326,12 @@ string interprocess_intercommunication::key(const string &strApp, const ::id & i
 }
 
 
-string interprocess_intercommunication::str_from_va(const payload_array & vara)
+string interprocess_intercommunication::str_from_va(const payload_array & payloada)
 {
 
    memory_stream stream;
 
-   stream << vara;
+   stream << payloada;
 
    return stream->get_primitive_memory()->to_hex();
 
@@ -391,7 +391,7 @@ void interprocess_intercommunication::on_interprocess_receive(::interprocess_com
 
    string_array stra;
 
-   payload_array vara;
+   payload_array payloada;
 
    if(iFind >= 0 && iFind <= 3)
    {
@@ -443,13 +443,13 @@ void interprocess_intercommunication::on_interprocess_receive(::interprocess_com
 
       stream.set_loading();
 
-      __io_array(stream, vara);
+      __io_array(stream, payloada);
 
    }
 
    ::payload varRet;
 
-   on_interprocess_call(varRet, strObject, strMember, vara);
+   on_interprocess_call(varRet, strObject, strMember, payloada);
 
    if(!strMember.begins_ci("reply."))
    {
@@ -511,7 +511,7 @@ __pointer(interprocess_call) interprocess_intercommunication::create_call(const 
 }
 
 
-void interprocess_intercommunication::on_interprocess_call(::payload & payload, const string & strObject, const string & strMember, payload_array & vara)
+void interprocess_intercommunication::on_interprocess_call(::payload & payload, const string & strObject, const string & strMember, payload_array & payloada)
 {
 
    if(strObject == "application")
@@ -520,11 +520,11 @@ void interprocess_intercommunication::on_interprocess_call(::payload & payload, 
       if(::str::begins_ci(strMember, "reply."))
       {
 
-         ::i64 iTask = vara[0].i64();
+         ::i64 iTask = payloada[0].i64();
 
          auto pobjectTask = get_task(iTask);
 
-         pobjectTask->m_var = vara[1];
+         pobjectTask->m_var = payloada[1];
 
          pobjectTask->m_pevReady->set_event();
 
@@ -534,19 +534,19 @@ void interprocess_intercommunication::on_interprocess_call(::payload & payload, 
 
          string strModule;
          
-         strModule = vara[0];
+         strModule = payloada[0];
 
          string strCommandLine;
 
-         strCommandLine = vara[2];
+         strCommandLine = payloada[2];
 
-         payload["continue"] = get_application()->on_additional_local_instance(payload["handled"], strModule, vara[1], strCommandLine);
+         payload["continue"] = get_application()->on_additional_local_instance(payload["handled"], strModule, payloada[1], strCommandLine);
 
       }
       else if (strMember == "on_new_instance")
       {
 
-         on_new_instance(vara[0], vara[1]);
+         on_new_instance(payloada[0], payloada[1]);
 
       }
 

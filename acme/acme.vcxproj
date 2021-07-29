@@ -2291,7 +2291,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClCompile Include="primitive\collection\string_array_base.cpp" />
     <ClCompile Include="primitive\collection\string_list.cpp" />
     <ClCompile Include="primitive\collection\string_to_string_map.cpp" />
-    <ClCompile Include="primitive\collection\var_array.cpp" />
+    <ClCompile Include="primitive\collection\payload_array.cpp" />
     <ClCompile Include="primitive\datetime\_.cpp" />
     <ClCompile Include="primitive\datetime\datetime.cpp" />
     <ClCompile Include="primitive\datetime\date_span.cpp" />
@@ -2460,7 +2460,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClInclude Include="primitive\collection\string_to_string_map.h" />
     <ClInclude Include="primitive\collection\template.h" />
     <ClInclude Include="primitive\collection\unique_array.h" />
-    <ClInclude Include="primitive\collection\var_array.h" />
+    <ClInclude Include="primitive\collection\payload_array.h" />
     <ClInclude Include="primitive\comparison\_c.h" />
     <ClInclude Include="primitive\comparison\_.h" />
     <ClInclude Include="primitive\comparison\binary.h" />

@@ -21,7 +21,7 @@ namespace file
    class path;
    class path_object;
    
-   typedef CLASS_DECL_ACME string_array_base < ::file::path, string > patha;
+   //typedef CLASS_DECL_ACME string_array_base < ::file::path, string, e_type_payload > patha;
 
    enum e_path
    {

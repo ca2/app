@@ -1235,7 +1235,7 @@ namespace color
          return operator=(payload.m_hls);
 
       }
-      else if(payload.m_etype == e_type_propset)
+      else if(payload.m_etype == e_type_property_set)
       {
 
          m_dH = payload["hue"];

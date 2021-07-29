@@ -174,7 +174,7 @@ namespace file
 
             varPropSet["FileManagerItem_flags"] = __new(flags < enum_flag >(this->element_at(i)->m_flags));
 
-            payload.vara().add(varPropSet);
+            payload.payloada().add(varPropSet);
 
          }
 

@@ -1069,7 +1069,7 @@ using image_pointer_array = __pointer_array(::image);
 //
 //#define __transport(T) ::extended::transport < T >
 //
-//template < class TYPE >
+//template < typename TYPE >
 //inline auto & __typed(TYPE & t) { return t; }
 //
 //template < class POINTER_TYPE >
@@ -1079,7 +1079,7 @@ using image_pointer_array = __pointer_array(::image);
 //inline auto & __typed(POINTER_POINTER_TYPE ** p) { return **p; }
 //
 //
-//template < class TYPE >
+//template < typename TYPE >
 //inline auto & __typed_defer_new(TYPE & t) { return t; }
 //
 //template < class POINTER_TYPE >

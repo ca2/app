@@ -64,7 +64,7 @@ public:
       float *                    m_pf;
       double                     m_d;
       double *                   m_pd;
-      payload *                      m_pvar;
+      payload *                      m_ppayload;
       time_t                     m_time;
       filetime_t                 m_filetime;
       id *                       m_pid;
@@ -340,7 +340,7 @@ inline operator ::e ## ENUMTYPE() const { return e ## ENUMTYPE(); }
    string_array &                        stra();
    int_array &                      inta();
    i64_array &                      int64a();
-   payload_array &                      vara();
+   payload_array &                      payloada();
    class duration &                 duration();
    property_set &                   propset();
    property &                       prop();
@@ -348,7 +348,7 @@ inline operator ::e ## ENUMTYPE() const { return e ## ENUMTYPE(); }
    const string_array &                  stra() const;
    const int_array &                inta() const;
    const i64_array &                int64a() const;
-   const payload_array &                vara()  const;
+   const payload_array &                payloada()  const;
    const property_set &             propset() const;
    const property &                 prop() const;
    const class duration &           duration() const;
@@ -625,7 +625,7 @@ inline operator ::e ## ENUMTYPE() const { return e ## ENUMTYPE(); }
    payload & operator = (const int_array & ia);
    payload & operator = (const string_array & stra);
    payload & operator = (const class memory & memory);
-   payload & operator = (const payload_array & vara);
+   payload & operator = (const payload_array & payloada);
    payload & operator = (const property_set & propset);
    //payload & operator = (const pair_set_interface & propset);
    //payload & operator = (const str_str_interface & propset);
@@ -1277,9 +1277,9 @@ inline void payload::set_string(const char * psz)
    {
       *m_pstr = psz;
    }
-   else if(get_type() == e_type_pvar)
+   else if(get_type() == e_type_payload_pointer)
    {
-      *m_pvar = psz;
+      *m_ppayload = psz;
    }
    else if (get_type() == e_type_prop)
    {
@@ -1300,9 +1300,9 @@ inline void payload::set_string(const string & str)
    {
       *m_pstr = str;
    }
-   else if(get_type() == e_type_pvar)
+   else if(get_type() == e_type_payload_pointer)
    {
-      *m_pvar = str;
+      *m_ppayload = str;
    }
    else if (get_type() == e_type_prop)
    {
@@ -1321,9 +1321,9 @@ inline void payload::set_string(string && str)
    {
       *m_pstr = ::move(str);
    }
-   else if(get_type() == e_type_pvar)
+   else if(get_type() == e_type_payload_pointer)
    {
-      *m_pvar = ::move(str);
+      *m_ppayload = ::move(str);
    }
    else if (get_type() == e_type_prop)
    {

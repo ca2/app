@@ -212,7 +212,6 @@ struct iterator_common :
 };
 
 
-template < typename T > class numeric_array;
 typedef CLASS_DECL_ACME numeric_array < index > index_array;
 typedef CLASS_DECL_ACME numeric_array < count > count_array;
 
@@ -226,7 +225,7 @@ namespace constructor
 {
 
 
-   template < class TYPE >
+   template < typename TYPE >
    class def
    {
    public:
@@ -250,7 +249,7 @@ namespace constructor
    };
 
 
-   template < class TYPE >
+   template < typename TYPE >
    class zero
    {
    public:
@@ -283,7 +282,7 @@ namespace constructor
    };
 
 
-   template < class TYPE >
+   template < typename TYPE >
    class nodef
    {
    public:
@@ -324,7 +323,7 @@ namespace destructor
 {
 
 
-   template < class TYPE >
+   template < typename TYPE >
    class def
    {
    public:
@@ -350,7 +349,7 @@ namespace destructor
 
 
 
-   template < class TYPE >
+   template < typename TYPE >
    class nodef
    {
    public:
@@ -375,7 +374,7 @@ namespace copier
 {
 
 
-   template < class TYPE >
+   template < typename TYPE >
    class def
    {
    public:
@@ -446,7 +445,7 @@ namespace heap
    };
 
 
-   template < class TYPE >
+   template < typename TYPE >
    class def :
       public allocator < TYPE, default_memory_allocator>
    {
@@ -454,7 +453,7 @@ namespace heap
    };
 
 
-   template < class TYPE >
+   template < typename TYPE >
    class processor_cache_oriented : // would it help for data-orientation-assumation ??!?!
       public allocator < TYPE, processor_cache_oriented_memory_allocator >
    {
@@ -463,7 +462,7 @@ namespace heap
    };
 
 
-   template < class TYPE >
+   template < typename TYPE >
    class sys :
       public allocator < TYPE, system_memory_allocator>
    {
@@ -479,7 +478,7 @@ namespace allocator
 {
 
 
-   template < class TYPE >
+   template < typename TYPE >
    class allocator
    {
    public:
@@ -538,7 +537,7 @@ namespace allocator
    };
 
 
-   template < class TYPE >
+   template < typename TYPE >
    class def
    {
 
@@ -607,7 +606,7 @@ namespace allocator
 
    };
 
-   template < class TYPE >
+   template < typename TYPE >
    class nodef
    {
 
@@ -677,7 +676,7 @@ namespace allocator
    };
 
 
-   template < class TYPE >
+   template < typename TYPE >
    class zero
    {
 
@@ -746,7 +745,7 @@ namespace allocator
 
    };
 
-   template < class TYPE >
+   template < typename TYPE >
    class sys
    {
 

@@ -31,10 +31,10 @@ void interprocess_call::add_arg(const ::payload & payload)
 }
 
 
-void interprocess_call::add_args(const payload_array& vara)
+void interprocess_call::add_args(const payload_array& payloada)
 {
 
-   ::papaya::array::add(m_varaArgs, vara);
+   ::papaya::array::add(m_varaArgs, payloada);
 
 }
 

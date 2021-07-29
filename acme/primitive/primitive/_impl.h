@@ -283,7 +283,7 @@ inline ::payload & property_set::set(const ::id & id)
 //inline property * payload::find_property(const ::id & id) const
 //{
 //
-//   if (!casts_to(e_type_propset))
+//   if (!casts_to(e_type_property_set))
 //   {
 //
 //      return nullptr;
@@ -561,10 +561,10 @@ inline string CLASS_DECL_ACME operator + (const char * psz, const ::payload & pa
 inline ::property * payload::find_property(const ::id & id) const
 {
 
-   if (m_etype == e_type_pvar)
+   if (m_etype == e_type_payload_pointer)
    {
 
-      return m_pvar->find_property(id);
+      return m_ppayload->find_property(id);
 
    }
    else if (m_etype == e_type_prop)
@@ -573,7 +573,7 @@ inline ::property * payload::find_property(const ::id & id) const
       return m_pprop->find_property(id);
 
    }
-   else if (m_etype == e_type_propset)
+   else if (m_etype == e_type_property_set)
    {
 
       return m_pset->find_property(id);
@@ -588,10 +588,10 @@ inline ::property * payload::find_property(const ::id & id) const
 inline ::index payload::property_index(const ::id & id) const
 {
 
-   if (m_etype == e_type_pvar)
+   if (m_etype == e_type_payload_pointer)
    {
 
-      return m_pvar->property_index(id);
+      return m_ppayload->property_index(id);
 
    }
    else if (m_etype == e_type_prop)
@@ -600,7 +600,7 @@ inline ::index payload::property_index(const ::id & id) const
       return m_pprop->property_index(id);
 
    }
-   else if (m_etype == e_type_propset)
+   else if (m_etype == e_type_property_set)
    {
 
       return m_pset->find_index(id);
@@ -615,10 +615,10 @@ inline ::index payload::property_index(const ::id & id) const
 inline property & payload::get_property(const ::id & id)
 {
 
-   if (m_etype == e_type_pvar)
+   if (m_etype == e_type_payload_pointer)
    {
 
-      return m_pvar->get_property(id);
+      return m_ppayload->get_property(id);
 
    }
    else if (m_etype == e_type_prop)
@@ -627,7 +627,7 @@ inline property & payload::get_property(const ::id & id)
       return m_pprop->get_property(id);
 
    }
-   else if (m_etype == e_type_propset)
+   else if (m_etype == e_type_property_set)
    {
 
       return m_pset->get(id);
@@ -1751,10 +1751,10 @@ inline i64 matter::release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
 inline payload::operator string & ()
 {
 
-   if (m_etype == ::e_type_pvar)
+   if (m_etype == ::e_type_payload_pointer)
    {
 
-      return m_pvar->operator string & ();
+      return m_ppayload->operator string & ();
 
    }
    else if (m_etype == ::e_type_prop)
@@ -1794,10 +1794,10 @@ inline payload::operator string & ()
    inline payload::operator TYPE &()                  \
    {                                         \
                                              \
-      if(m_etype == ::e_type_pvar)        \
+      if(m_etype == ::e_type_payload_pointer)        \
       {                                      \
                                              \
-         return m_pvar->operator TYPE &();   \
+         return m_ppayload->operator TYPE &();   \
                                              \
       }                                      \
       else if(m_etype == ::e_type_prop)        \
@@ -1878,10 +1878,10 @@ inline payload::operator ::memory() const
 inline payload::operator ::e_status &()
 {
 
-   if(m_etype == ::e_type_pvar)
+   if(m_etype == ::e_type_payload_pointer)
    {
 
-      return m_pvar->operator ::e_status &();
+      return m_ppayload->operator ::e_status &();
 
    }
    else if(m_etype == ::e_type_prop)
@@ -1976,10 +1976,10 @@ inline bool type::operator == (const ::id& id) const
    inline __pointer(T) payload::cast(T * pDefault)
    {
 
-      if (m_etype == e_type_pvar && m_pvar != nullptr)
+      if (m_etype == e_type_payload_pointer && m_ppayload != nullptr)
       {
 
-         return m_pvar->cast < T >(pDefault);
+         return m_ppayload->cast < T >(pDefault);
 
       }
       else if (m_etype == e_type_prop && m_pprop != nullptr)
@@ -2010,10 +2010,10 @@ inline bool type::operator == (const ::id& id) const
    inline T & payload::get_cast(T * pDefault)
    {
 
-      if (m_etype == e_type_pvar && m_pvar != nullptr)
+      if (m_etype == e_type_payload_pointer && m_ppayload != nullptr)
       {
 
-         return m_pvar->get_cast < T >(pDefault);
+         return m_ppayload->get_cast < T >(pDefault);
 
       }
 
@@ -2049,10 +2049,10 @@ inline bool type::operator == (const ::id& id) const
    inline __pointer(T) payload::cast()
    {
 
-      if (m_etype == e_type_pvar && m_pvar != nullptr)
+      if (m_etype == e_type_payload_pointer && m_ppayload != nullptr)
       {
 
-         return m_pvar->cast < T >();
+         return m_ppayload->cast < T >();
 
       }
 
@@ -2069,7 +2069,7 @@ inline bool type::operator == (const ::id& id) const
       CAST_ELEMENT(m_pstra, e_type_string_array);
       CAST_ELEMENT(m_pia, e_type_i32_array);
       CAST_ELEMENT(m_pvara, e_type_payload_array);
-      CAST_ELEMENT(m_pset, e_type_propset);
+      CAST_ELEMENT(m_pset, e_type_property_set);
       CAST_ELEMENT(m_pi64a, e_type_i64_array);
       CAST_ELEMENT(m_pmemory, e_type_memory);
       CAST_ELEMENT(m_ppath, e_type_path);
@@ -2271,7 +2271,7 @@ inline bool property_set::get_string(string& strResult, const id& idKey) const
 inline ::payload operator + (::payload payload, const ::routine & routine)
 {
 
-   if (payload.get_type() != e_type_propset)
+   if (payload.get_type() != e_type_property_set)
    {
 
       payload["message"] = payload.get_string();
@@ -2289,7 +2289,7 @@ inline ::payload operator + (::payload payload, const ::routine & routine)
 //inline ::payload operator + (::payload payload, const ::future & process)
 //{
 //
-//   if (payload.get_type() != e_type_propset)
+//   if (payload.get_type() != e_type_property_set)
 //   {
 //
 //      payload["message"] = payload.get_string();
@@ -3289,7 +3289,7 @@ inline ::file_result object::get_writer(const ::payload& varFile, const ::file::
 //  if (m_etype == ::type_pvar)
 //  {
 //
-//     return m_pvar->operator string & ();
+//     return m_ppayload->operator string & ();
 //
 //  }
 //  else if (m_etype == ::type_prop)
@@ -3332,7 +3332,7 @@ inline ::file_result object::get_writer(const ::payload& varFile, const ::file::
      if(m_etype == ::type_pvar)        \
      {                                      \
                                             \
-        return m_pvar->operator TYPE &();   \
+        return m_ppayload->operator TYPE &();   \
                                             \
      }                                      \
      else if(m_etype == ::type_prop)        \

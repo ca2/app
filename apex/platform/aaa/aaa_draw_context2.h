@@ -13,7 +13,7 @@ namespace draw2d
 namespace apex
 {
 
-   template < class TYPE >
+   template < typename TYPE >
    class simple_chain :
       virtual public object
    {

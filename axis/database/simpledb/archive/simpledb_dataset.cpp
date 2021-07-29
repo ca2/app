@@ -352,9 +352,9 @@ namespace simpledb
                   return false;
                }
                ::database::record rec;
-               rec.::payload_array::operator = (recrow.m_var.vara());
+               rec.::payload_array::operator = (recrow.m_var.payloada());
                m_resultset.m_records.add(rec);
-               recrow.m_var.vara().erase_all();
+               recrow.m_var.payloada().erase_all();
             }
          }
       }

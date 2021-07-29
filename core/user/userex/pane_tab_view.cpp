@@ -555,7 +555,7 @@ namespace userex
          //pfilemanagerdata->m_id = pimpactdata->m_id;
 
          if (has_property("filemanager_toolbar")
-               && payload("filemanager_toolbar").m_etype == ::e_type_propset)
+               && payload("filemanager_toolbar").m_etype == ::e_type_property_set)
          {
 
             auto & set = payload("filemanager_toolbar").propset();

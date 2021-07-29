@@ -16,11 +16,10 @@ namespace str
    public:
 
 
+      tokenizer();
       tokenizer(const string & strSrc);
       tokenizer(const char * pch, i32 nLength );
-
-      tokenizer();
-      virtual ~tokenizer();
+      ~tokenizer();
 
 
       bool ReadLine(string & str,
@@ -39,7 +38,7 @@ namespace str
       void Restart(string &strNew);
       bool GetNextToken(string &strToken, const char * pSeparator, bool bWithSeparator = false);
 
-      bool GetNextSmallestToken(string &strToken, const string_array & straSeparator, bool bWithSeparator = false);
+      bool GetNextSmallestToken(string &strToken, const ::string_array & straSeparator, bool bWithSeparator = false);
       // Any of separator character
       bool GetNextTokenEx(string &strToken, const char * pSeparator, bool bWithSeparator = false, bool bSkipAdjacent = false);
 

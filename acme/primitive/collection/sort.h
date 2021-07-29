@@ -688,8 +688,8 @@ namespace sort
    }
 
 
-   template <class TYPE >
-   void QuickSortAsc(numeric_array < TYPE > & a)
+   template < typename TYPE, enum_type t_etypePayload = e_type_element >
+   void QuickSortAsc(numeric_array < TYPE, t_etypePayload > & a)
    {
       index_array stackLowerBound;
       index_array stackUpperBound;
@@ -757,9 +757,11 @@ namespace sort
       }
    }
 
-   template <class TYPE >
-   void QuickSortDesc(numeric_array < TYPE > & a)
+
+   template < typename TYPE, enum_type t_etypePayload = e_type_element >
+   void QuickSortDesc(numeric_array < TYPE, t_etypePayload > & a)
    {
+
       index_array stackLowerBound;
       index_array stackUpperBound;
       iptr iLowerBound;
@@ -966,7 +968,7 @@ namespace sort
    template < class TYPE, class ARG_TYPE >
    void BubbleSortByGetSize(array < TYPE, ARG_TYPE > & a, bool bAsc = true);
 
-   template < class TYPE >
+   template < typename TYPE >
    void BubbleSortByPtrAtGetSize(
    __pointer_array(TYPE) & a,
    bool bAsc = true);
@@ -1089,7 +1091,7 @@ namespace sort
    }
 
 
-   template < class TYPE >
+   template < typename TYPE >
    void BubbleSortByPtrAtGetSize(
    __pointer_array(TYPE) & a,
    bool bAsc)
@@ -2280,8 +2282,9 @@ index array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::predicate_binary
 
 }
 
-template < typename TYPE >
-void numeric_array < TYPE >::sort(bool bAsc)
+
+template < typename TYPE, enum_type t_etypePayload = e_type_element >
+void numeric_array < TYPE, t_etypePayload >::sort(bool bAsc)
 {
 
    if (bAsc)
@@ -2298,3 +2301,6 @@ void numeric_array < TYPE >::sort(bool bAsc)
    }
 
 }
+
+
+

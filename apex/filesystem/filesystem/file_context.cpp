@@ -2626,7 +2626,7 @@ file_result file_context::get_file(const ::payload &varFile, const ::file::e_ope
          }
 
       }
-      else if (varFile.get_type() == ::e_type_propset)
+      else if (varFile.get_type() == ::e_type_property_set)
       {
 
          if (varFile.has_property("file"))
@@ -3488,7 +3488,7 @@ void set_bypass_cache_if_empty(::payload & varFile)
    if(etype != e_type_element)
    {
 
-      if(etype != e_type_propset)
+      if(etype != e_type_property_set)
       {
 
          ::file::path path = varFile.get_file_path();
@@ -3507,7 +3507,7 @@ void set_bypass_cache_if_empty(::payload & varFile)
 bool get_bypass_cache_if_empty(const ::payload & varFile)
 {
 
-   if(varFile.m_etype == e_type_propset)
+   if(varFile.m_etype == e_type_property_set)
    {
 
       if(varFile.is_true("bypass_cache_if_empty"))

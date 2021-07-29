@@ -902,7 +902,7 @@ namespace url
             }
             else
             {
-               varValue.vara().add(strQuery.Mid(iPos + strKeyEqual.get_length()));
+               varValue.payloada().add(strQuery.Mid(iPos + strKeyEqual.get_length()));
             }
             return varValue;
          }
@@ -914,7 +914,7 @@ namespace url
             }
             else
             {
-               varValue.vara().add(strQuery.Mid(iPos + strKeyEqual.get_length(), iEnd - (iPos + strKeyEqual.get_length())));
+               varValue.payloada().add(strQuery.Mid(iPos + strKeyEqual.get_length(), iEnd - (iPos + strKeyEqual.get_length())));
             }
          }
          iPos++;

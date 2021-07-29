@@ -652,10 +652,10 @@ inline __pointer(TYPE) & defer_clone(__pointer(TYPE) & p)
 }
 
 
-template < class TYPE >
+template < typename TYPE >
 inline ::i64 release(__pointer(TYPE)& pointer OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 
-template < class TYPE >
+template < typename TYPE >
 inline ::i64 __finalize(__pointer(TYPE)& pointer OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 
 template < class REFERENCE >

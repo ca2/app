@@ -137,8 +137,8 @@ namespace papaya
       }
 
 
-      template < typename Type, typename RawType >
-      ::index add(string_array_base < Type, RawType > & array, const ::payload & payload)
+      template < typename Type, typename RawType, enum_type t_etypePayload >
+      ::index add(string_array_base < Type, RawType, t_etypePayload > & array, const ::payload & payload)
       {
 
          index i = -1;
@@ -153,19 +153,19 @@ namespace papaya
             i = ::papaya::array::add(array, payload.stra());
 
          }
-         else if (payload.cast < string_array_base < Type, RawType > >() != nullptr)
+         else if (payload.cast < string_array_base < Type, RawType, t_etypePayload > >() != nullptr)
          {
 
-            i = ::papaya::array::add(array, *payload.cast < string_array_base < Type, RawType > >());
+            i = ::papaya::array::add(array, *payload.cast < string_array_base < Type, RawType, t_etypePayload > >());
 
          }
          else if (payload.get_type() == ::e_type_payload_array)
          {
 
-            for (::index i = 0; i < payload.vara().get_count(); i++)
+            for (::index i = 0; i < payload.payloada().get_count(); i++)
             {
 
-               index iItem = ::papaya::array::add(array, payload.vara()[i].get_string());
+               index iItem = ::papaya::array::add(array, payload.payloada()[i].get_string());
 
                if (i < 0)
                {
@@ -195,7 +195,7 @@ namespace papaya
             }
 
          }
-         else if (payload.get_type() == ::e_type_propset)
+         else if (payload.get_type() == ::e_type_property_set)
          {
 
             for (auto & value : payload.propset().values())
@@ -675,13 +675,13 @@ namespace papaya
       inline ::index add(::file::patha & patha, const ::file::listing & listing) { return add_array(patha, listing); }
 
 
-      template < class TYPE >
-      ::count ensure_sequence(::numeric_array < TYPE > & aParam, TYPE start, TYPE end, TYPE increment)
+      template < typename TYPE, enum_type t_etypePayload >
+      ::count ensure_sequence(::numeric_array < TYPE, t_etypePayload > & aParam, TYPE start, TYPE end, TYPE increment)
       {
 
          ::count c = 0;
 
-         ::numeric_array < TYPE > a;
+         ::numeric_array < TYPE, t_etypePayload > a;
 
          ::papaya::array::set_sequence(a, start, end, increment);
 
@@ -692,7 +692,7 @@ namespace papaya
 
             index iFind = 0;
 
-            if(::papaya::array::binary_search(a, aParam.element_at(i), iFind, &::numeric_compare < typename ::numeric_array < TYPE >::BASE_ARG_TYPE >))
+            if(::papaya::array::binary_search(a, aParam.element_at(i), iFind, &::numeric_compare < typename ::numeric_array < TYPE, t_etypePayload >::BASE_ARG_TYPE >))
             {
 
                a.erase_at(iFind);
@@ -923,8 +923,8 @@ namespace papaya
       }
 
 
-      template < class TYPE >
-      ::count append_sequence(::numeric_array < TYPE > & a, TYPE iterator,TYPE end,TYPE increment)
+      template < typename TYPE, enum_type t_etypePayload >
+      ::count append_sequence(::numeric_array < TYPE, t_etypePayload > & a, TYPE iterator,TYPE end,TYPE increment)
       {
          if(increment == 0)
          {
@@ -955,15 +955,15 @@ namespace papaya
       }
 
 
-      template < class TYPE >
-      ::count set_sequence(::numeric_array < TYPE > & a, TYPE start,TYPE end,TYPE increment)
+      template < typename TYPE, enum_type t_etypePayload >
+      ::count set_sequence(::numeric_array < TYPE, t_etypePayload > & a, TYPE start,TYPE end,TYPE increment)
       {
          a.erase_all();
          return append_sequence(a, start,end,increment);
       }
 
 
-      template <class ARRAY >
+      template < typename ARRAY >
       inline typename ARRAY::BASE_TYPE pop(ARRAY & a, index n)
       {
 
@@ -978,8 +978,8 @@ namespace papaya
       }
 
 
-      template <class ARRAY >
-      inline void pop_back(ARRAY & a,index n)
+      template < typename ARRAY >
+      inline void pop_back(ARRAY & a, index n)
       {
 
          a.erase_at(a.get_upper_bound(n));
@@ -987,7 +987,7 @@ namespace papaya
       }
 
 
-      template <class ARRAY >
+      template < typename ARRAY >
       inline index push(ARRAY & a,typename ARRAY::BASE_ARG_TYPE newElement,index n)
       {
 
@@ -996,7 +996,7 @@ namespace papaya
       }
 
 
-      template <class ARRAY >
+      template < typename ARRAY >
       inline void push_back(ARRAY & a,typename ARRAY::BASE_ARG_TYPE newElement,index n)
       {
 

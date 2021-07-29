@@ -484,7 +484,7 @@ void stream::write(const ::payload & payload)
    case e_type_string_array:
       *this << payload.stra();
       break;
-   case e_type_propset:
+   case e_type_property_set:
       *this << payload.propset();
       break;
    case e_type_id:

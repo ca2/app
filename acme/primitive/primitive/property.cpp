@@ -282,9 +282,9 @@ string & property::get_http_post(string & str) const
 //   return inta();
 //}
 //
-//payload_array & property::vara()
+//payload_array & property::payloada()
 //{
-//   return vara();
+//   return payloada();
 //}
 //
 //property_set & property::propset()
@@ -302,9 +302,9 @@ string & property::get_http_post(string & str) const
 //   return inta();
 //}
 //
-//const payload_array & property::vara() const
+//const payload_array & property::payloada() const
 //{
-//   return vara();
+//   return payloada();
 //}
 //
 //const property_set & property::propset() const
@@ -356,8 +356,8 @@ string & property::get_http_post(string & str) const
 //   case ::e_type_i32_array:
 //      return const_cast<property *>(this)->inta().operator [](iIndex);
 //   case ::type_vara:
-//      return const_cast<property *>(this)->vara().operator [](iIndex);
-//   case ::e_type_propset:
+//      return const_cast<property *>(this)->payloada().operator [](iIndex);
+//   case ::e_type_property_set:
 //      return const_cast<property *>(this)->propset().at(iIndex);
 //   default:
 //      if(const_cast<property *>(this)->get_count() == 1)

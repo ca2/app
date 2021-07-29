@@ -677,7 +677,7 @@ namespace user
    {
       UNREFERENCED_PARAMETER(bAddToMRU);
       string strPathName;
-      if (varFile.get_type() == ::e_type_propset && varFile.propset()["url"].get_string().has_char())
+      if (varFile.get_type() == ::e_type_property_set && varFile.propset()["url"].get_string().has_char())
       {
          strPathName = varFile.propset()["url"];
       }

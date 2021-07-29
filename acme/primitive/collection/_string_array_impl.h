@@ -6,8 +6,8 @@
 #include "acme/primitive/primitive/memory.h"
 
 
-template < typename Type, typename RawType >
-Type string_array_base < Type, RawType >::safe_at(::index nIndex, Type tDefault) const
+template < typename Type, typename RawType, enum_type t_etypePayload >
+Type string_array_base < Type, RawType, t_etypePayload >::safe_at(::index nIndex, Type tDefault) const
 {
 
    if (nIndex < 0 || nIndex >= this->get_size())
@@ -21,8 +21,8 @@ Type string_array_base < Type, RawType >::safe_at(::index nIndex, Type tDefault)
 
 }
 
-template < typename Type, typename RawType >
-Type string_array_base < Type, RawType >::safe_at(::index nIndex, Type tDefault)
+template < typename Type, typename RawType, enum_type t_etypePayload >
+Type string_array_base < Type, RawType, t_etypePayload >::safe_at(::index nIndex, Type tDefault)
 {
    if (nIndex < 0 || nIndex >= this->get_size())
       return tDefault;
@@ -32,16 +32,16 @@ Type string_array_base < Type, RawType >::safe_at(::index nIndex, Type tDefault)
 }
 
 
-template < typename Type, typename RawType >
-Type string_array_base < Type, RawType >::get_at(::index nIndex) const
+template < typename Type, typename RawType, enum_type t_etypePayload >
+Type string_array_base < Type, RawType, t_etypePayload >::get_at(::index nIndex) const
 {
    if (nIndex < 0 || nIndex >= this->m_nSize)
       __throw(error_index_out_of_bounds);
    return get_data()[nIndex];
 }
 
-//template < typename Type, typename RawType >
-//void string_array_base < Type, RawType >::set_at(::index nIndex, const char * newElement)
+//template < typename Type, typename RawType, enum_type t_etypePayload >
+//void string_array_base < Type, RawType, t_etypePayload >::set_at(::index nIndex, const char * newElement)
 //{
 //   if (nIndex < 0 || nIndex >= this->m_nSize)
 //      __throw(error_index_out_of_bounds);
@@ -49,8 +49,8 @@ Type string_array_base < Type, RawType >::get_at(::index nIndex) const
 //}
 //
 
-template < typename Type, typename RawType >
-void string_array_base < Type, RawType >::set_at(::index nIndex, const Type & newElement)
+template < typename Type, typename RawType, enum_type t_etypePayload >
+void string_array_base < Type, RawType, t_etypePayload >::set_at(::index nIndex, const Type & newElement)
 {
    if (nIndex < 0 || nIndex >= this->m_nSize)
       __throw(error_index_out_of_bounds);
@@ -58,8 +58,8 @@ void string_array_base < Type, RawType >::set_at(::index nIndex, const Type & ne
 }
 
 
-template < typename Type, typename RawType >
-Type & string_array_base < Type, RawType >::element_at(::index nIndex)
+template < typename Type, typename RawType, enum_type t_etypePayload >
+Type & string_array_base < Type, RawType, t_etypePayload >::element_at(::index nIndex)
 {
    if (nIndex < 0 || nIndex >= this->m_nSize)
       __throw(error_index_out_of_bounds);
@@ -67,8 +67,8 @@ Type & string_array_base < Type, RawType >::element_at(::index nIndex)
 }
 
 
-template < typename Type, typename RawType >
-const Type & string_array_base < Type, RawType >::element_at(::index nIndex) const
+template < typename Type, typename RawType, enum_type t_etypePayload >
+const Type & string_array_base < Type, RawType, t_etypePayload >::element_at(::index nIndex) const
 {
    if (nIndex < 0 || nIndex >= this->m_nSize)
       __throw(error_index_out_of_bounds);
@@ -78,8 +78,8 @@ const Type & string_array_base < Type, RawType >::element_at(::index nIndex) con
 
 
 //
-//template < typename Type, typename RawType >
-//::index string_array_base < Type, RawType >::add(const property & prop)
+//template < typename Type, typename RawType, enum_type t_etypePayload >
+//::index string_array_base < Type, RawType, t_etypePayload >::add(const property & prop)
 //{
 //
 //   return add(prop.get_value());
@@ -87,8 +87,8 @@ const Type & string_array_base < Type, RawType >::element_at(::index nIndex) con
 //}
 
 
-template < class Type, class RawType >
-string_array_base < Type, RawType >  & string_array_base < Type, RawType > ::operator = (::payload varSrc)
+template < typename Type, typename RawType, enum_type t_etypePayload >
+string_array_base < Type, RawType, t_etypePayload >  & string_array_base < Type, RawType, t_etypePayload > ::operator = (::payload varSrc)
 {
    this->erase_all();
    if (varSrc.get_type() == ::e_type_string_array)
@@ -113,8 +113,8 @@ string_array_base < Type, RawType >  & string_array_base < Type, RawType > ::ope
 
 
 
-template < typename Type, typename RawType >
-memory string_array_base < Type, RawType > ::GetFormatV004()
+template < typename Type, typename RawType, enum_type t_etypePayload >
+memory string_array_base < Type, RawType, t_etypePayload > ::GetFormatV004()
 {
 
    strsize iTotalLength = 0;
@@ -187,9 +187,9 @@ memory string_array_base < Type, RawType > ::GetFormatV004()
 }
 
 
-//template < typename Type, typename RawType >
+//template < typename Type, typename RawType, enum_type t_etypePayload >
 //template < typename TYPE >
-//inline ::index string_array_base < Type, RawType > ::add(const TYPE & type)
+//inline ::index string_array_base < Type, RawType, t_etypePayload > ::add(const TYPE & type)
 //{
 //
 //    return ::papaya::array::add(*this, type);
@@ -197,8 +197,8 @@ memory string_array_base < Type, RawType > ::GetFormatV004()
 //}
 
 
-template < typename Type, typename RawType >
-void string_array_base < Type, RawType >::get_quick_sort_ci(index_array & ia)
+template < typename Type, typename RawType, enum_type t_etypePayload >
+void string_array_base < Type, RawType, t_etypePayload >::get_quick_sort_ci(index_array & ia)
 {
    index_array stackLowerBound;
    index_array stackUpperBound;
@@ -278,8 +278,8 @@ void string_array_base < Type, RawType >::get_quick_sort_ci(index_array & ia)
 
 
 
-template < class Type, class RawType >
-inline void string_array_base < Type, RawType > ::debug_output(::index iStart, ::count inCountLastOut)
+template < typename Type, typename RawType, enum_type t_etypePayload >
+inline void string_array_base < Type, RawType, t_etypePayload > ::debug_output(::index iStart, ::count inCountLastOut)
 {
 
    ::output_debug_string(implode(STR_NEWLINE, iStart, inCountLastOut));

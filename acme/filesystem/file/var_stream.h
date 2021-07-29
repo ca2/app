@@ -46,13 +46,13 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_ety
 inline void __exchange(::var_stream& stream, ::array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >& array);
 
 template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
-inline void __exchange(::var_stream& s, const ::raw_array < TYPE, ARG_TYPE, ALLOCATOR >& array);
+inline void __exchange(::var_stream& s, const ::raw_array < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >& array);
 
-template < class TYPE >
-inline void __exchange(::var_stream& s, const ::numeric_array < TYPE >& array);
+template < typename TYPE, enum_type t_etypePayload = e_type_element >
+inline void __exchange(::var_stream& s, const ::numeric_array < TYPE, t_etypePayload >& array);
 
-template < typename Type, typename RawType >
-inline void __exchange(::var_stream& s, const ::string_array_base < Type, RawType >& array);
+template < typename Type, typename RawType, enum_type t_etypePayload >
+inline void __exchange(::var_stream& s, const ::string_array_base < Type, RawType, t_etypePayload >& array);
 
 
 template < class ARRAY >
@@ -71,7 +71,7 @@ class CLASS_DECL_ACME var_stream :
 public:
 
 
-   class ::payload *          m_pvar;
+   class ::payload *          m_ppayload;
 
 
    var_stream();

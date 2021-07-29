@@ -669,7 +669,7 @@ namespace aura
 
    //   ::function_arg function;
 
-   //   if (payload.get_type() != e_type_propset)
+   //   if (payload.get_type() != e_type_property_set)
    //   {
 
    //      strMessage = payload;

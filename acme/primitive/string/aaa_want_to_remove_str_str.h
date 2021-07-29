@@ -364,7 +364,7 @@ namespace str
    inline i64 len(const char * psz) { return (i64) strlen(psz); }
 
 
-   template < class TYPE >
+   template < typename TYPE >
    inline TYPE from_string(const char * psz);
 
 //   CLASS_DECL_ACME void format(string_format * pformat, char const &  i);
@@ -428,7 +428,7 @@ namespace str
 //
 //#endif
 
-   //template < class TYPE >
+   //template < typename TYPE >
    //void format_type(string_format * pformat,const TYPE & t)
    //{
 

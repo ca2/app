@@ -2541,7 +2541,7 @@ namespace user
          //if(data_get("restore_tab",::payload))
          //{
 
-         //   c = open_tabs(payload.vara());
+         //   c = open_tabs(payload.payloada());
 
          //}
 
@@ -3726,18 +3726,18 @@ namespace user
       if (get_data()->m_matchanyRestore.m_itema.get_count() > 0)
       {
 
-         payload_array vara;
+         payload_array payloada;
 
-         get_restore_tab(vara);
+         get_restore_tab(payloada);
 
-         //if (vara.get_size() > 0)
+         //if (payloada.get_size() > 0)
          //{
          //   TRACE(".");
          //   for (index i = 0; i < 200; i++)
          //   {
 
 
-         //data_set("restore_tab", vara);
+         //data_set("restore_tab", payloada);
          //   }
          //}
          //else
@@ -3747,7 +3747,7 @@ namespace user
          //   {
 
 
-         //      data_save("restore_tab", vara);
+         //      data_save("restore_tab", payloada);
          //   }
 
          //}
@@ -3898,7 +3898,7 @@ namespace user
 
    }
 
-   void tab::get_restore_tab(payload_array & vara)
+   void tab::get_restore_tab(payload_array & payloada)
    {
 
       ::payload varId;
@@ -3913,7 +3913,7 @@ namespace user
          if(matches_restorable_tab(varId, panea[i]->m_pplaceholder))
          {
 
-            vara.add(varId);
+            payloada.add(varId);
 
          }
 
@@ -3945,29 +3945,29 @@ namespace user
    }
 
 
-   ::count tab::open_tabs(const payload_array & vara)
+   ::count tab::open_tabs(const payload_array & payloada)
    {
 
       ::count c = 0;
 
       string_array stra;
 
-      for(i32 i = 0; i < vara.get_count(); i++)
+      for(i32 i = 0; i < payloada.get_count(); i++)
       {
 
          // ODOW : TODO : should create bergedgewrapper to open bergedge inside a window.
 
-         if(vara[i].get_type() == ::e_type_string && vara[i].get_string() == "app:bergedge")
+         if(payloada[i].get_type() == ::e_type_string && payloada[i].get_string() == "app:bergedge")
             continue;
 
-         if(vara[i].get_type() == ::e_type_string && vara[i].get_string() == "app:")
+         if(payloada[i].get_type() == ::e_type_string && payloada[i].get_string() == "app:")
             continue;
 
-         //if(stra.add_unique(vara[i]) >= 0)
+         //if(stra.add_unique(payloada[i]) >= 0)
          //{
          //create_tab_by_id(stra.last());
 
-         set_current_tab_by_id(vara[i].get_id());
+         set_current_tab_by_id(payloada[i].get_id());
 
          c++;
 

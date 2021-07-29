@@ -5,7 +5,7 @@ e_type_element = 8000,
 e_type_string_array,
 e_type_i32_array,
 type_vara,
-e_type_propset,
+e_type_property_set,
 type_int64a,
 e_type_memory,
 e_type_path,
@@ -18,7 +18,7 @@ case e_type_element:
 case e_type_string_array:
 case e_type_i32_array:
 case type_vara:
-case e_type_propset:
+case e_type_property_set:
 case e_type_memory:
 case type_int64a:
 case e_type_path:
@@ -50,7 +50,7 @@ enum_type set_element(::payload & payload, ::matter * pmatter)
    case ::e_type_payload_array:
       payload.m_pvara = dynamic_cast <payload_array*>(pmatter);
       break;
-   case ::e_type_propset:
+   case ::e_type_property_set:
       payload.m_pset = dynamic_cast <::property_set*>(pmatter);
       break;
    case ::e_type_i64_array:
@@ -88,7 +88,7 @@ void payload::_set_element(::matter* pmatter)
 
    release();
 
-   ::set_element(*this, false);
+   ::set_element(*this, pmatter);
 
    ::increment_reference_count(pmatter);
 
@@ -122,7 +122,7 @@ void payload::_set_element(::matter* pmatter)
       return ::release(m_pia);
    case e_type_payload_array:
       return ::release(m_pvara);
-   case e_type_propset:
+   case e_type_property_set:
       return ::release(m_pset);
    case e_type_i64_array:
       return ::release(m_pi64a);

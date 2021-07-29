@@ -7,82 +7,82 @@
 // array is an array that call only copy constructor and destructor in elements
 // array is an array that call default constructors, copy constructs and destructors in elements
 
-//template<class TYPE, class ARG_TYPE, class ALLOCATOR >
-//inline ::count raw_array < TYPE, ARG_TYPE, ALLOCATOR >::get_size() const
+//template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
+//inline ::count raw_array < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::get_size() const
 //{
 //   return m_nSize;
 //}
 //
-//template<class TYPE, class ARG_TYPE, class ALLOCATOR >
-//inline ::count raw_array < TYPE, ARG_TYPE, ALLOCATOR >::get_size_in_bytes() const
+//template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
+//inline ::count raw_array < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::get_size_in_bytes() const
 //{
 //   return m_nSize * sizeof(TYPE);
 //}
 //
-//template<class TYPE, class ARG_TYPE, class ALLOCATOR >
-//inline ::count raw_array < TYPE, ARG_TYPE, ALLOCATOR >::get_count() const
+//template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
+//inline ::count raw_array < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::get_count() const
 //{
 //   return this->get_size();
 //}
 //
-//template<class TYPE, class ARG_TYPE, class ALLOCATOR >
-//inline ::count raw_array < TYPE, ARG_TYPE, ALLOCATOR >::get_byte_count() const
+//template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
+//inline ::count raw_array < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::get_byte_count() const
 //{
 //   return this->get_size_in_bytes();
 //}
 //
-//template<class TYPE, class ARG_TYPE, class ALLOCATOR >
-//inline ::count raw_array < TYPE, ARG_TYPE, ALLOCATOR >::size() const
+//template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
+//inline ::count raw_array < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::size() const
 //{
 //   return this->get_size();
 //}
 //
-//template<class TYPE, class ARG_TYPE, class ALLOCATOR >
-//inline ::count raw_array < TYPE, ARG_TYPE, ALLOCATOR >::count() const
+//template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
+//inline ::count raw_array < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::count() const
 //{
 //   return this->get_count();
 //}
 //
-//template<class TYPE, class ARG_TYPE, class ALLOCATOR >
-//inline bool raw_array < TYPE, ARG_TYPE, ALLOCATOR >::is_empty(::count countMinimum) const
+//template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
+//inline bool raw_array < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::is_empty(::count countMinimum) const
 //{
 //   return m_nSize < countMinimum;
 //}
 //
-//template<class TYPE, class ARG_TYPE, class ALLOCATOR >
-//inline bool raw_array < TYPE, ARG_TYPE, ALLOCATOR >::empty(::count countMinimum) const
+//template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
+//inline bool raw_array < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::empty(::count countMinimum) const
 //{
 //   return m_nSize < countMinimum;
 //}
 //
-//template<class TYPE, class ARG_TYPE, class ALLOCATOR >
-//inline bool raw_array < TYPE, ARG_TYPE, ALLOCATOR >::has_elements(::count countMinimum) const
+//template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
+//inline bool raw_array < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::has_elements(::count countMinimum) const
 //{
 //   return m_nSize >= countMinimum;
 //}
 //
-//template<class TYPE, class ARG_TYPE, class ALLOCATOR >
-//inline ::index raw_array < TYPE, ARG_TYPE, ALLOCATOR >::get_upper_bound(::index i) const
+//template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
+//inline ::index raw_array < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::get_upper_bound(::index i) const
 //{
 //   return m_nSize + ::index;
 //}
 //
-template<class TYPE, class ARG_TYPE, class ALLOCATOR >
-inline ::count raw_array < TYPE, ARG_TYPE, ALLOCATOR >::erase_all()
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
+inline ::count raw_array < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::erase_all()
 {
    return this->allocate(0, -1);
 }
 
-template<class TYPE, class ARG_TYPE, class ALLOCATOR >
-void raw_array < TYPE, ARG_TYPE, ALLOCATOR >::
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
+void raw_array < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::
 clear()
 {
    erase_all();
 }
 
 
-template<class TYPE, class ARG_TYPE, class ALLOCATOR >
-inline void raw_array < TYPE, ARG_TYPE, ALLOCATOR >::erase_last()
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
+inline void raw_array < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::erase_last()
 {
 
    this->erase_at(this->get_upper_bound());
@@ -90,16 +90,16 @@ inline void raw_array < TYPE, ARG_TYPE, ALLOCATOR >::erase_last()
 }
 
 
-template<class TYPE, class ARG_TYPE, class ALLOCATOR >
-inline TYPE& raw_array < TYPE, ARG_TYPE, ALLOCATOR >::get_at(::index nIndex)
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
+inline TYPE& raw_array < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::get_at(::index nIndex)
 {
 
    return get_data()[nIndex];
 }
 
 
-template<class TYPE, class ARG_TYPE, class ALLOCATOR >
-inline const TYPE& raw_array < TYPE, ARG_TYPE, ALLOCATOR >::get_at(::index nIndex) const
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
+inline const TYPE& raw_array < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::get_at(::index nIndex) const
 {
 
    return get_data()[nIndex];
@@ -107,8 +107,8 @@ inline const TYPE& raw_array < TYPE, ARG_TYPE, ALLOCATOR >::get_at(::index nInde
 }
 
 
-template<class TYPE, class ARG_TYPE, class ALLOCATOR >
-inline void raw_array < TYPE, ARG_TYPE, ALLOCATOR >::set_at(::index nIndex, ARG_TYPE newElement)
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
+inline void raw_array < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::set_at(::index nIndex, ARG_TYPE newElement)
 {
 
    get_data()[nIndex] = newElement;
@@ -116,8 +116,8 @@ inline void raw_array < TYPE, ARG_TYPE, ALLOCATOR >::set_at(::index nIndex, ARG_
 }
 
 
-template<class TYPE, class ARG_TYPE, class ALLOCATOR >
-inline const TYPE* raw_array < TYPE, ARG_TYPE, ALLOCATOR >::get_data() const
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
+inline const TYPE* raw_array < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::get_data() const
 {
 
    return (const TYPE*)this->m_pData;
@@ -125,8 +125,8 @@ inline const TYPE* raw_array < TYPE, ARG_TYPE, ALLOCATOR >::get_data() const
 }
 
 
-template<class TYPE, class ARG_TYPE, class ALLOCATOR >
-inline TYPE* raw_array < TYPE, ARG_TYPE, ALLOCATOR >::get_data()
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
+inline TYPE* raw_array < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::get_data()
 {
 
    return (TYPE*)this->m_pData;
@@ -134,8 +134,8 @@ inline TYPE* raw_array < TYPE, ARG_TYPE, ALLOCATOR >::get_data()
 }
 
 
-template<class TYPE, class ARG_TYPE, class ALLOCATOR >
-inline ::index raw_array < TYPE, ARG_TYPE, ALLOCATOR >::add(ARG_TYPE newElement)
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
+inline ::index raw_array < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::add(ARG_TYPE newElement)
 {
 
    ::index nIndex = (::index_cast ) this->m_nSize;
@@ -147,8 +147,8 @@ inline ::index raw_array < TYPE, ARG_TYPE, ALLOCATOR >::add(ARG_TYPE newElement)
 }
 
 
-template<class TYPE, class ARG_TYPE, class ALLOCATOR >
-inline ::index raw_array < TYPE, ARG_TYPE, ALLOCATOR >::add(const raw_array & src)
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
+inline ::index raw_array < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::add(const raw_array & src)
 {
 
    return this->append(src);
@@ -156,8 +156,8 @@ inline ::index raw_array < TYPE, ARG_TYPE, ALLOCATOR >::add(const raw_array & sr
 }
 
 
-template<class TYPE, class ARG_TYPE, class ALLOCATOR >
-inline ::index raw_array < TYPE, ARG_TYPE, ALLOCATOR >::add_new(::count count)
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
+inline ::index raw_array < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::add_new(::count count)
 {
 
    this->allocate(this->size() + count);
@@ -167,8 +167,8 @@ inline ::index raw_array < TYPE, ARG_TYPE, ALLOCATOR >::add_new(::count count)
 }
 
 
-template<class TYPE, class ARG_TYPE, class ALLOCATOR >
-inline TYPE & raw_array < TYPE, ARG_TYPE, ALLOCATOR >::add_new()
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
+inline TYPE & raw_array < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::add_new()
 {
 
    this->allocate(this->size() + 1);
@@ -178,8 +178,8 @@ inline TYPE & raw_array < TYPE, ARG_TYPE, ALLOCATOR >::add_new()
 }
 
 
-template<class TYPE, class ARG_TYPE, class ALLOCATOR >
-inline TYPE raw_array < TYPE, ARG_TYPE, ALLOCATOR >::pop(::index n)
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
+inline TYPE raw_array < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::pop(::index n)
 {
 
    ::index i = this->get_upper_bound(n);
@@ -192,29 +192,29 @@ inline TYPE raw_array < TYPE, ARG_TYPE, ALLOCATOR >::pop(::index n)
 
 }
 
-template<class TYPE, class ARG_TYPE, class ALLOCATOR >
-inline void raw_array < TYPE, ARG_TYPE, ALLOCATOR >::pop_back(::index n)
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
+inline void raw_array < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::pop_back(::index n)
 {
 
    this->erase_at(this->get_upper_bound(n));
 
 }
 
-template<class TYPE, class ARG_TYPE, class ALLOCATOR >
-inline ::index raw_array < TYPE, ARG_TYPE, ALLOCATOR >::push(ARG_TYPE newElement, ::index n)
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
+inline ::index raw_array < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::push(ARG_TYPE newElement, ::index n)
 {
    return insert_at(this->get_upper_bound(n), newElement);
 }
 
-template<class TYPE, class ARG_TYPE, class ALLOCATOR >
-inline void raw_array < TYPE, ARG_TYPE, ALLOCATOR >::push_back(ARG_TYPE newElement, ::index n)
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
+inline void raw_array < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::push_back(ARG_TYPE newElement, ::index n)
 {
    insert_at(this->get_upper_bound(n), newElement);
 }
 
 
-//template<class TYPE, class ARG_TYPE, class ALLOCATOR >
-//inline const TYPE& raw_array < TYPE, ARG_TYPE, ALLOCATOR >::operator[](::index nIndex) const
+//template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
+//inline const TYPE& raw_array < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::operator[](::index nIndex) const
 //{
 //
 //   return this->element_at(nIndex);
@@ -222,8 +222,8 @@ inline void raw_array < TYPE, ARG_TYPE, ALLOCATOR >::push_back(ARG_TYPE newEleme
 //}
 //
 //
-//template<class TYPE, class ARG_TYPE, class ALLOCATOR >
-//inline TYPE& raw_array < TYPE, ARG_TYPE, ALLOCATOR >::operator[](::index nIndex)
+//template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
+//inline TYPE& raw_array < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::operator[](::index nIndex)
 //{
 //
 //   return this->element_at(nIndex);
@@ -231,16 +231,16 @@ inline void raw_array < TYPE, ARG_TYPE, ALLOCATOR >::push_back(ARG_TYPE newEleme
 //}
 
 
-template<class TYPE, class ARG_TYPE, class ALLOCATOR >
-inline void raw_array < TYPE, ARG_TYPE, ALLOCATOR >::__swap(::index index1, ::index index2)
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
+inline void raw_array < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::__swap(::index index1, ::index index2)
 {
    TYPE t = get_data()[index1];
    get_data()[index1] = get_data()[index2];
    get_data()[index2] = t;
 }
 
-template<class TYPE, class ARG_TYPE, class ALLOCATOR >
-inline raw_array < TYPE, ARG_TYPE, ALLOCATOR > & raw_array < TYPE, ARG_TYPE, ALLOCATOR >::operator = (const raw_array & src)
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
+inline raw_array < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload > & raw_array < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::operator = (const raw_array & src)
 {
    if(&src != this)
    {
@@ -253,8 +253,8 @@ inline raw_array < TYPE, ARG_TYPE, ALLOCATOR > & raw_array < TYPE, ARG_TYPE, ALL
 
 // out-of-line functions
 
-template<class TYPE, class ARG_TYPE, class ALLOCATOR >
-raw_array < TYPE, ARG_TYPE, ALLOCATOR >::raw_array(::matter * pobject) 
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
+raw_array < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::raw_array(::matter * pobject) 
    //:
    //::matter(pobject)
 {
@@ -262,8 +262,8 @@ raw_array < TYPE, ARG_TYPE, ALLOCATOR >::raw_array(::matter * pobject)
 }
 
 
-template<class TYPE,class ARG_TYPE,class ALLOCATOR >
-inline raw_array < TYPE,ARG_TYPE,ALLOCATOR >::raw_array(::std::initializer_list < TYPE >  l)
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
+inline raw_array < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::raw_array(::std::initializer_list < TYPE >  l)
 {
    forallref(l)
    {
@@ -273,15 +273,15 @@ inline raw_array < TYPE,ARG_TYPE,ALLOCATOR >::raw_array(::std::initializer_list 
 
 
 
-template<class TYPE, class ARG_TYPE, class ALLOCATOR >
-raw_array < TYPE, ARG_TYPE, ALLOCATOR >::raw_array(const raw_array <TYPE, ARG_TYPE, ALLOCATOR> & a)// :
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
+raw_array < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::raw_array(const raw_array <TYPE, ARG_TYPE, ALLOCATOR> & a)// :
    // matter(a.get_application())
 {
    ::array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::operator = (a);
 }
 
-template<class TYPE, class ARG_TYPE, class ALLOCATOR >
-raw_array < TYPE,ARG_TYPE,ALLOCATOR >::raw_array(raw_array <TYPE,ARG_TYPE,ALLOCATOR> && a) //:
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
+raw_array < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::raw_array(raw_array <TYPE,ARG_TYPE,ALLOCATOR> && a) //:
 //   matter(a.get_application())
 {
 
@@ -298,21 +298,21 @@ raw_array < TYPE,ARG_TYPE,ALLOCATOR >::raw_array(raw_array <TYPE,ARG_TYPE,ALLOCA
 }
 
 
-template<class TYPE, class ARG_TYPE, class ALLOCATOR >
-raw_array < TYPE, ARG_TYPE, ALLOCATOR >:: raw_array(::count n)
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
+raw_array < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >:: raw_array(::count n)
 {
    this->allocate(n);
 }
 
-template<class TYPE, class ARG_TYPE, class ALLOCATOR >
-raw_array < TYPE, ARG_TYPE, ALLOCATOR >::raw_array(ARG_TYPE t, ::count n)
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
+raw_array < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::raw_array(ARG_TYPE t, ::count n)
 {
    insert_at(0, t, n);
 }
 
 
-template<class TYPE, class ARG_TYPE, class ALLOCATOR >
-raw_array < TYPE, ARG_TYPE, ALLOCATOR >::raw_array(TYPE * ptypea, ::count n)
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
+raw_array < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::raw_array(TYPE * ptypea, ::count n)
 {
 
    this->allocate(n);
@@ -327,16 +327,16 @@ raw_array < TYPE, ARG_TYPE, ALLOCATOR >::raw_array(TYPE * ptypea, ::count n)
 }
 
 
-template<class TYPE, class ARG_TYPE, class ALLOCATOR >
-raw_array < TYPE, ARG_TYPE, ALLOCATOR >::~raw_array()
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
+raw_array < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::~raw_array()
 {
 
    this->destroy();
 
 }
 
-//template<class TYPE, class ARG_TYPE, class ALLOCATOR >
-//void raw_array < TYPE, ARG_TYPE, ALLOCATOR >::destroy()
+//template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
+//void raw_array < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::destroy()
 //{
 //   if (m_pData != nullptr)
 //   {
@@ -351,22 +351,22 @@ raw_array < TYPE, ARG_TYPE, ALLOCATOR >::~raw_array()
 //}
 
 
-//template<class TYPE, class ARG_TYPE, class ALLOCATOR >
-//::count raw_array < TYPE, ARG_TYPE, ALLOCATOR >::set_size(::count nNewSize, ::count nGrowBy)
+//template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
+//::count raw_array < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::set_size(::count nNewSize, ::count nGrowBy)
 //{
 //   return allocate(nNewSize, nGrowBy);
 //}
 //
 //
-//template<class TYPE, class ARG_TYPE, class ALLOCATOR >
-//::count raw_array < TYPE, ARG_TYPE, ALLOCATOR >::resize(::count nNewSize, ::count nGrowBy)
+//template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
+//::count raw_array < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::resize(::count nNewSize, ::count nGrowBy)
 //{
 //   return allocate(nNewSize, nGrowBy);
 //}
 //
 //
-//template<class TYPE, class ARG_TYPE, class ALLOCATOR >
-//::count raw_array < TYPE, ARG_TYPE, ALLOCATOR >::allocate_in_bytes(::count nNewSize, ::count nGrowBy)
+//template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
+//::count raw_array < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::allocate_in_bytes(::count nNewSize, ::count nGrowBy)
 //{
 //   if(nGrowBy < 0)
 //   {
@@ -378,8 +378,8 @@ raw_array < TYPE, ARG_TYPE, ALLOCATOR >::~raw_array()
 //   }
 //}
 
-//template<class TYPE, class ARG_TYPE, class ALLOCATOR >
-//::count raw_array < TYPE, ARG_TYPE, ALLOCATOR >::allocate(::count nNewSize, ::count nGrowBy)
+//template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
+//::count raw_array < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::allocate(::count nNewSize, ::count nGrowBy)
 //{
 //   ::count countOld = get_count();
 //   ASSERT_VALID(this);
@@ -493,8 +493,8 @@ raw_array < TYPE, ARG_TYPE, ALLOCATOR >::~raw_array()
 //
 
 //
-//template<class TYPE, class ARG_TYPE, class ALLOCATOR >
-//void raw_array < TYPE, ARG_TYPE, ALLOCATOR >::free_extra()
+//template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
+//void raw_array < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::free_extra()
 //{
 //   ASSERT_VALID(this);
 //
@@ -520,7 +520,7 @@ raw_array < TYPE, ARG_TYPE, ALLOCATOR >::~raw_array()
 //   }
 //}
 
-//template<class TYPE, class ARG_TYPE, class ALLOCATOR >
+//template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
 //void array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::set_at_grow(::index nIndex, ARG_TYPE newElement)
 //{
 //   //ASSERT_VALID(this);
@@ -534,15 +534,15 @@ raw_array < TYPE, ARG_TYPE, ALLOCATOR >::~raw_array()
 //   get_data()[nIndex] = newElement;
 //}
 
-template<class TYPE, class ARG_TYPE, class ALLOCATOR >
-inline TYPE raw_array < TYPE, ARG_TYPE, ALLOCATOR >::get_at_grow(::index nIndex)
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
+inline TYPE raw_array < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::get_at_grow(::index nIndex)
 {
    return element_at_grow(nIndex);
 }
 
 
-//template<class TYPE, class ARG_TYPE, class ALLOCATOR >
-//inline TYPE & raw_array < TYPE, ARG_TYPE, ALLOCATOR >::element_at_grow(::index nIndex)
+//template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
+//inline TYPE & raw_array < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::element_at_grow(::index nIndex)
 //{
 //   if (nIndex >= this->m_nSize)
 //      this->allocate(nIndex+1, -1);
@@ -550,8 +550,8 @@ inline TYPE raw_array < TYPE, ARG_TYPE, ALLOCATOR >::get_at_grow(::index nIndex)
 //}
 
 
-template<class TYPE, class ARG_TYPE, class ALLOCATOR >
-::index raw_array < TYPE, ARG_TYPE, ALLOCATOR >::insert_at(::index nIndex, ARG_TYPE newElement, ::count nCount /*=1*/)
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
+::index raw_array < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::insert_at(::index nIndex, ARG_TYPE newElement, ::count nCount /*=1*/)
 {
 
    return array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::insert_at(nIndex, newElement,nCount);
@@ -559,8 +559,8 @@ template<class TYPE, class ARG_TYPE, class ALLOCATOR >
 }
 
 
-//template<class TYPE, class ARG_TYPE, class ALLOCATOR >
-//::index raw_array < TYPE, ARG_TYPE, ALLOCATOR >::insert_at(::index nStartIndex, raw_array * pNewArray)
+//template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
+//::index raw_array < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::insert_at(::index nStartIndex, raw_array * pNewArray)
 //{
 //   ASSERT_VALID(this);
 //   ASSERT(pNewArray != nullptr);
@@ -582,8 +582,8 @@ template<class TYPE, class ARG_TYPE, class ALLOCATOR >
 //}
 
 
-//template<class TYPE, class ARG_TYPE, class ALLOCATOR >
-//void raw_array < TYPE, ARG_TYPE, ALLOCATOR >::dump(dump_context & dumpcontext) const
+//template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
+//void raw_array < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::dump(dump_context & dumpcontext) const
 //{
 //
 //   matter::dump(dumpcontext);
@@ -604,8 +604,8 @@ template<class TYPE, class ARG_TYPE, class ALLOCATOR >
 //}
 
 
-//template<class TYPE, class ARG_TYPE, class ALLOCATOR >
-//void raw_array < TYPE, ARG_TYPE, ALLOCATOR >::assert_valid() const
+//template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
+//void raw_array < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::assert_valid() const
 //{
 //
 //   matter::assert_valid();
@@ -631,8 +631,8 @@ template<class TYPE, class ARG_TYPE, class ALLOCATOR >
 //}
 
 
-//template<class TYPE, class ARG_TYPE, class ALLOCATOR >
-//typename raw_array < TYPE, ARG_TYPE, ALLOCATOR >::iterator raw_array < TYPE, ARG_TYPE, ALLOCATOR >::erase(iterator pos)
+//template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
+//typename raw_array < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::iterator raw_array < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::erase(iterator pos)
 //{
 //   if(pos.m_parray == this)
 //   {
@@ -645,8 +645,8 @@ template<class TYPE, class ARG_TYPE, class ALLOCATOR >
 //   }
 //}
 
-//template<class TYPE, class ARG_TYPE, class ALLOCATOR >
-//typename  raw_array < TYPE, ARG_TYPE, ALLOCATOR >::iterator raw_array < TYPE, ARG_TYPE, ALLOCATOR >::erase(iterator begin, iterator last)
+//template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
+//typename  raw_array < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::iterator raw_array < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::erase(iterator begin, iterator last)
 //{
 //   if(begin.m_parray == this && last.m_parray == this)
 //   {
@@ -668,8 +668,8 @@ template<class TYPE, class ARG_TYPE, class ALLOCATOR >
 //}
 //
 //
-template<class TYPE, class ARG_TYPE, class ALLOCATOR >
-::index raw_array < TYPE, ARG_TYPE, ALLOCATOR >::raw_find_first(TYPE *point, ::index find, ::index last) const
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
+::index raw_array < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::raw_find_first(TYPE *point, ::index find, ::index last) const
 {
    if(find < 0)
       find += this->get_count();
@@ -682,8 +682,8 @@ template<class TYPE, class ARG_TYPE, class ALLOCATOR >
    }
    return -1;
 }
-template<class TYPE, class ARG_TYPE, class ALLOCATOR >
-::index raw_array < TYPE, ARG_TYPE, ALLOCATOR >::find_first(ARG_TYPE t, ::index ( * pfnCompare )(ARG_TYPE, ARG_TYPE), ::index find, ::index last) const
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
+::index raw_array < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::find_first(ARG_TYPE t, ::index ( * pfnCompare )(ARG_TYPE, ARG_TYPE), ::index find, ::index last) const
 
 {
    if(find < 0)
@@ -702,13 +702,13 @@ template<class TYPE, class ARG_TYPE, class ALLOCATOR >
 
 
 
-template<class TYPE, class ARG_TYPE, class ALLOCATOR >
-raw_array < TYPE, ARG_TYPE, ALLOCATOR > & raw_array < TYPE, ARG_TYPE, ALLOCATOR >::operator += (const raw_array & a)
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
+raw_array < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload > & raw_array < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::operator += (const raw_array & a)
 {
 
    if(&a == this)
    {
-      raw_array < TYPE, ARG_TYPE, ALLOCATOR > aCopy(a);
+      raw_array < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload > aCopy(a);
       add(aCopy);
    }
    else
@@ -719,10 +719,10 @@ raw_array < TYPE, ARG_TYPE, ALLOCATOR > & raw_array < TYPE, ARG_TYPE, ALLOCATOR 
 
 }
 
-template<class TYPE, class ARG_TYPE, class ALLOCATOR >
-raw_array < TYPE, ARG_TYPE, ALLOCATOR > raw_array < TYPE, ARG_TYPE, ALLOCATOR >::operator + (const raw_array & a) const
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
+raw_array < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload > raw_array < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::operator + (const raw_array & a) const
 {
-   raw_array < TYPE, ARG_TYPE, ALLOCATOR > aNew(*this);
+   raw_array < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload > aNew(*this);
    aNew += a;
    return a;
 }
@@ -734,8 +734,8 @@ raw_array < TYPE, ARG_TYPE, ALLOCATOR > raw_array < TYPE, ARG_TYPE, ALLOCATOR >:
 
 
 
-template<class TYPE, class ARG_TYPE, class ALLOCATOR >
-inline raw_array < TYPE, ARG_TYPE, ALLOCATOR > & raw_array < TYPE, ARG_TYPE, ALLOCATOR >::operator =(raw_array && a)
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
+inline raw_array < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload > & raw_array < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::operator =(raw_array && a)
 {
 
    return move(::move(a));
@@ -746,8 +746,8 @@ inline raw_array < TYPE, ARG_TYPE, ALLOCATOR > & raw_array < TYPE, ARG_TYPE, ALL
 
 
 
-template<class TYPE, class ARG_TYPE, class ALLOCATOR >
-inline raw_array < TYPE, ARG_TYPE, ALLOCATOR > & raw_array < TYPE, ARG_TYPE, ALLOCATOR >::move(raw_array && a)
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
+inline raw_array < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload > & raw_array < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::move(raw_array && a)
 {
 
    if (&a != this)

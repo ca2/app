@@ -1190,7 +1190,7 @@ property & property_set::at(index iIndex)
 property_set& property_set::operator = (const ::payload & payload)
 {
 
-   if (payload.m_etype == e_type_propset)
+   if (payload.m_etype == e_type_property_set)
    {
 
       ::papaya::copy((property_ptra&)*this, (const property_ptra&)payload.propset());
@@ -1276,10 +1276,10 @@ property_set & property_set::merge(const property_set & set)
                   operator[](pproperty->name()) = *pproperty;
 
                }
-               else if(ppropertyThis->get_type() == ::e_type_propset)
+               else if(ppropertyThis->get_type() == ::e_type_property_set)
                {
 
-                  if(pproperty->get_type() == ::e_type_propset)
+                  if(pproperty->get_type() == ::e_type_property_set)
                   {
 
                      ppropertyThis->propset().merge(pproperty->propset());
@@ -1334,7 +1334,7 @@ property_set & property_set::merge(const property_set & set)
 
                   }
 
-                  operator[](pproperty->name()).vara().add_unique(operator[](pproperty->name()).vara());
+                  operator[](pproperty->name()).payloada().add_unique(operator[](pproperty->name()).payloada());
 
                }
 

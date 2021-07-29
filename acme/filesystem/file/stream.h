@@ -103,13 +103,13 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_ety
 inline void __exchange(::stream & s, const ::array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload > & array) { __exchange_array(s, (::array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload > &)array); }
 
 template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
-inline void __exchange(::stream & s, const ::raw_array < TYPE, ARG_TYPE, ALLOCATOR > & array) { __exchange_array(s, (::raw_array < TYPE, ARG_TYPE, ALLOCATOR > &)array); }
+inline void __exchange(::stream & s, const ::raw_array < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload > & array) { __exchange_array(s, (::raw_array < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload > &)array); }
 
-template < class TYPE >
-inline void __exchange(::stream & s, const ::numeric_array < TYPE > & array) { __exchange_array(s, (::numeric_array < TYPE > &) array); }
+template < typename TYPE, enum_type t_etypePayload = e_type_element >
+inline void __exchange(::stream & s, const ::numeric_array < TYPE, t_etypePayload > & array) { __exchange_array(s, (::numeric_array < TYPE, t_etypePayload > &) array); }
 
-template < typename Type, typename RawType >
-inline void __exchange(::stream & s, const ::string_array_base < Type, RawType > & array) { __exchange_array(s, (::string_array_base < Type, RawType > &) array); }
+template < typename Type, typename RawType, enum_type t_etypePayload >
+inline void __exchange(::stream & s, const ::string_array_base < Type, RawType, t_etypePayload > & array) { __exchange_array(s, (::string_array_base < Type, RawType, t_etypePayload > &) array); }
 
 template < typename ARRAY >
 inline void __exchange_save_array(::stream & s, ARRAY & array);
@@ -121,13 +121,13 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_ety
 inline void __exchange(::stream & s, ::array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload > & array);
 
 template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
-inline void __exchange(::stream & s, ::raw_array < TYPE, ARG_TYPE, ALLOCATOR > & array);
+inline void __exchange(::stream & s, ::raw_array < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload > & array);
 
-template < class TYPE >
-inline void __exchange(::stream & s, ::numeric_array < TYPE > & array);
+template < typename TYPE, enum_type t_etypePayload = e_type_element >
+inline void __exchange(::stream & s, ::numeric_array < TYPE, t_etypePayload > & array);
 
-template < typename Type, typename RawType >
-inline void __exchange(::stream & s, ::string_array_base < Type, RawType > & array);
+template < typename Type, typename RawType, enum_type t_etypePayload >
+inline void __exchange(::stream & s, ::string_array_base < Type, RawType, t_etypePayload > & array);
 
 
 #define FIRST_VERSION 0
@@ -279,11 +279,11 @@ public:
 //public:
 //
 //
-//   ::payload *          m_pvar;
+//   ::payload *          m_ppayload;
 //
 //
-//   var_stream() : m_pvar(nullptr) { }
-//   var_stream(::payload & payload) : m_pvar(&payload) { }
+//   var_stream() : m_ppayload(nullptr) { }
+//   var_stream(::payload & payload) : m_ppayload(&payload) { }
 //
 //   virtual stream * branch(const ::id &);
 //

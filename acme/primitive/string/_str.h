@@ -253,7 +253,7 @@ namespace str
    inline i64 len(const ansichar * psz) { return (i64) strlen(psz); }
 
 
-   template < class TYPE >
+   template < typename TYPE >
    inline TYPE from_string(const ansichar * psz);
 
 

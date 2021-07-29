@@ -955,7 +955,7 @@ pcreate->m_pcommandline->m_eventReady.SetEvent();
 
 //   ::function_arg function;
 
-//   if (payload.get_type() != e_type_propset)
+//   if (payload.get_type() != e_type_property_set)
 //   {
 
 //      strMessage = payload;
@@ -2247,7 +2247,7 @@ if (str.has_char())
 
 }
 
-data_pulse_change({ "ca2.savings", true }, nullptr);
+//data_pulse_change({ "ca2.savings", true }, nullptr);
 
 auto psystem = get_system()->m_papexsystem;
 
@@ -2389,7 +2389,7 @@ if (str.has_char())
 
 }
 
-data_pulse_change({ "ca2.savings", true }, nullptr);
+//data_pulse_change({ "ca2.savings", true }, nullptr);
 
 auto psystem = get_system()->m_papexsystem;
 

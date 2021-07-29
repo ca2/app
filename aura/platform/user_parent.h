@@ -16,7 +16,7 @@ inline ::user_parent parent(::user::primitive* pinteraction) { return pinteracti
 inline ::payload operator + (::payload payload, const ::function_arg& functionarg)
 {
 
-   if (payload.get_type() != e_type_propset)
+   if (payload.get_type() != e_type_property_set)
    {
 
       payload["message"] = payload.get_string();
@@ -32,7 +32,7 @@ inline ::payload operator + (::payload payload, const ::function_arg& functionar
 inline ::payload operator + (::payload payload, const ::user_parent& parent)
 {
 
-   if (payload.get_type() != e_type_propset)
+   if (payload.get_type() != e_type_property_set)
    {
 
       payload["message"] = payload.get_string();

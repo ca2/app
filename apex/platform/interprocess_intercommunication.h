@@ -29,7 +29,7 @@
    //   auto tasks() { return typename pid_task::dereferenced_value_iterator(nullptr, &m_mapTask); }
 
    //   void add_arg(const ::payload & payload);
-   //   void add_args(const payload_array& vara);
+   //   void add_args(const payload_array& payloada);
    //   void set_timeout(const duration& duration);
    //   void set_auto_launch(bool bSet = true);
 
@@ -66,7 +66,7 @@
    //   virtual ~task();
 
 
-   //   virtual void do_task(const string& strObject, const string& strMember, const payload_array& vara);
+   //   virtual void do_task(const string& strObject, const string& strMember, const payload_array& payloada);
 
 
    //};
@@ -129,7 +129,7 @@
 
       virtual string str_from_va(const payload_array & va);
 
-      virtual void on_interprocess_call(::payload & payload, const string & strObject, const string & strMember, payload_array & vara);
+      virtual void on_interprocess_call(::payload & payload, const string & strObject, const string & strMember, payload_array & payloada);
 
       using ::interprocess_communication::rx::receiver::on_interprocess_receive;
 

@@ -70,7 +70,7 @@ inline ::count payload::get_count() const
       return ::is_null(m_pstra) ? 0 : m_pstra->get_count();
    case type_vara:
       return ::is_null(m_pvara) ? 0 : m_pvara->get_count();
-   case e_type_propset:
+   case e_type_property_set:
       return ::is_null(m_pset) ? 0 : m_pset->get_count();
    case e_type_empty:
    case e_type_null:
@@ -122,7 +122,7 @@ inline bool payload::is_array() const
    if(m_etype == e_type_string_array
          || m_etype == e_type_i32_array
          || m_etype == type_vara
-         || m_etype == e_type_propset)
+         || m_etype == e_type_property_set)
    {
       return true;
    }

@@ -18,7 +18,7 @@ public:
    virtual ~interprocess_task();
 
 
-   virtual void do_task(const string& strObject, const string& strMember, const payload_array& vara);
+   virtual void do_task(const string& strObject, const string& strMember, const payload_array& payloada);
 
 
 };

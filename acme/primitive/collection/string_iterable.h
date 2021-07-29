@@ -200,9 +200,9 @@ typename ITERABLE::iterator string_iterable < ITERABLE >::add(const ::payload & 
    }
    else if (payload.get_type() == ::type_vara)
    {
-      for (i32 i = 0; i < payload.vara().get_count(); i++)
+      for (i32 i = 0; i < payload.payloada().get_count(); i++)
       {
-         add((Type) payload.vara()[i].get_string());
+         add((Type) payload.payloada()[i].get_string());
       }
    }
    else if (payload.get_type() == ::e_type_i32_array)
@@ -212,7 +212,7 @@ typename ITERABLE::iterator string_iterable < ITERABLE >::add(const ::payload & 
          add((Type) __str(payload.inta()[i]));
       }
    }
-   else if (payload.get_type() == ::e_type_propset)
+   else if (payload.get_type() == ::e_type_property_set)
    {
       for (auto assoc : payload.propset())
       {

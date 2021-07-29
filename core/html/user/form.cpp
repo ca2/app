@@ -495,7 +495,7 @@ void html_form::set_need_load_form_data()
    if (path.is_empty())
    {
 
-      if (varFile.get_type() == ::e_type_propset && varFile.propset()["url"].get_string().has_char())
+      if (varFile.get_type() == ::e_type_property_set && varFile.propset()["url"].get_string().has_char())
       {
 
          path = varFile.propset()["url"];

@@ -284,7 +284,7 @@ public:
 //};
 //
 //
-//template < class TYPE >
+//template < typename TYPE >
 //struct iterator_info < TYPE * >
 //{
 //   typedef random_access_iterator < TYPE * >       ITERATOR_CATEGORY;
@@ -296,7 +296,7 @@ public:
 //};
 //
 //
-//template < class TYPE >
+//template < typename TYPE >
 //struct iterator_info < const TYPE * >
 //{
 //   typedef random_access_iterator < TYPE * >       ITERATOR_CATEGORY;

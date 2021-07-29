@@ -294,7 +294,7 @@ void binary_stream::write(const ::payload & payload)
    case e_type_string_array:
       *this << *payload.m_pstra;
       break;
-   case e_type_propset:
+   case e_type_property_set:
       *this << *payload.m_pset;
       break;
    case e_type_i64_array:
@@ -986,7 +986,7 @@ void binary_stream::read_var_body(::payload & payload, enum_type etype)
 
    }
    break;
-   case e_type_propset:
+   case e_type_property_set:
    {
 
 #undef new

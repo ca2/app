@@ -18,7 +18,7 @@ namespace experience
 
 
          style();
-         virtual ~style();
+         ~style() override;
 
          virtual i64 increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override
          {

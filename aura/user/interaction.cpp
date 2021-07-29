@@ -2793,6 +2793,8 @@ namespace user
 
 #endif //__DEBUG
 
+               auto pstyle = get_style(pgraphics);
+
                _001OnNcDraw(pgraphics);
 
 
@@ -3289,6 +3291,8 @@ namespace user
 
       windowing_output_debug_string("\n_001UpdateBuffer : after set alphamode");
 
+      auto pstyle = get_style(pgraphics);
+
       if (pgraphics->m_pimage->is_ok())
       {
 
@@ -3318,11 +3322,7 @@ namespace user
          else
          {
 
-            auto psystem = m_psystem->m_paurasystem;
-
-            auto pnode = psystem->node();
-
-            if (pnode && pnode->is_app_dark_mode())
+            if (pstyle->is_dark_mode())
             {
 
                pgraphics->fill_rectangle(rectangle, argb(255, 25, 25, 25));

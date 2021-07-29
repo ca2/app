@@ -11,11 +11,17 @@ namespace user
    public:
 
 
-
+      bool        m_bDarkMode;
 
 
       style_base();
-      virtual ~style_base();
+      ~style_base() override;
+
+
+      ::e_status on_initialize_object() override; 
+
+
+      void on_subject(::subject::subject* psubject, ::subject::context* pcontext) override;
 
       //virtual __pointer(::user::menu_interaction) create_menu_button(::user::style_pointer & pstyle, menu_item * pitem) = 0;
       //virtual bool prepare_menu(::draw2d::graphics_pointer& pgraphics, ::user::menu_item * pitem) = 0;
@@ -27,7 +33,7 @@ namespace user
       //virtual void _on_style_change(::draw2d::graphics_pointer & pgraphics) override;
 
 
-
+      bool is_dark_mode() const { return m_bDarkMode; }
 
 
       virtual bool _001OnDrawMainFrameBackground(::draw2d::graphics_pointer & pgraphics,::user::frame * pframe);

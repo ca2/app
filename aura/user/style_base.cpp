@@ -9,6 +9,7 @@ namespace user
    style_base::style_base()
    {
 
+      m_bDarkMode = true;
 
    }
 
@@ -16,6 +17,46 @@ namespace user
    style_base::~style_base()
    {
 
+
+   }
+
+
+
+   ::e_status style_base::on_initialize_object()
+   {
+
+      auto estatus = ::subject::manager::on_initialize_object();
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      auto psystem = m_psystem->m_paurasystem;
+
+      auto psubject = psystem->subject(id_os_dark_mode);
+
+      psubject->add_listener(this);
+
+      return estatus;
+
+   }
+
+
+   void style_base::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+   {
+
+      if (psubject->m_id == id_os_dark_mode)
+      {
+
+         auto psystem = m_psystem;
+
+         auto pnode = psystem->node();
+
+
+      }
 
    }
 

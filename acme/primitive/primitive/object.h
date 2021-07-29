@@ -161,6 +161,7 @@ public:
 
    virtual void add_task(::object* pobjectTask);
    virtual void erase_task(::object* pobjectTask);
+   virtual void transfer_tasks_from(::task * ptask);
 
 //   virtual ::e_status destroy();
 

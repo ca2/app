@@ -8,7 +8,7 @@ extern "C" {
 
 #pragma pack(push, heap_memory, 1)
 
-#define HEAP_PADDING_SIZE 0
+#define HEAP_PADDING_SIZE 8
 
    struct heap_memory_header
    {

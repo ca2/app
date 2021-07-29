@@ -345,10 +345,32 @@ void* task::s_os_task(void* p)
       try
       {
 
-         if (::is_set(ptask->m_pobjectParentTask))
+         auto pparentTask = ptask->m_pobjectParentTask;
+
+         if (::is_set(pparentTask))
          {
 
-            ptask->m_pobjectParentTask->erase_task(ptask);
+            try
+            {
+
+               pparentTask->transfer_tasks_from(ptask);
+
+            }
+            catch (...)
+            {
+
+            }
+
+            try
+            {
+
+               pparentTask->erase_task(ptask);
+
+            }
+            catch (...)
+            {
+
+            }
 
          }
 

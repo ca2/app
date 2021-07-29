@@ -1047,6 +1047,32 @@ void object::erase_task(::object* pobjectTask)
 }
 
 
+void object::transfer_tasks_from(::task* ptask)
+{
+
+   __pointer_array(::object) objectaChildrenTask;
+
+   {
+
+      synchronous_lock synchronouslock(ptask->mutex());
+
+      objectaChildrenTask = ptask->m_objectaChildrenTask;
+
+      ptask->m_objectaChildrenTask.erase_all();
+
+   }
+
+   {
+
+      synchronous_lock synchronouslock(ptask->mutex());
+
+      m_objectaChildrenTask.add_unique(objectaChildrenTask);
+
+   }
+
+}
+
+
 bool object::check_tasks_finished()
 {
 

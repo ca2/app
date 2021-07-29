@@ -3322,7 +3322,7 @@ namespace user
          else
          {
 
-            if (is_dark_mode())
+            if (pstyle->is_dark_mode())
             {
 
                pgraphics->fill_rectangle(rectangle, argb(255, 25, 25, 25));

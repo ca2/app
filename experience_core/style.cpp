@@ -837,11 +837,7 @@ namespace experience
                if (eelement == ::user::e_element_background)
                {
 
-                  auto psystem = m_psystem;
-
-                  auto pnode = psystem->node();
-
-                  if (pnode->is_app_dark_mode())
+                  if (is_dark_mode())
                   {
 
                      return ::color::color(80, 80, 80, 127);
@@ -866,11 +862,7 @@ namespace experience
                   if (eelement == ::user::e_element_background)
                   {
 
-                     auto psystem = m_psystem;
-
-                     auto pnode = psystem->node();
-
-                     if (pnode->is_app_dark_mode())
+                     if (is_dark_mode())
                      {
 
                         return ::color::color(255, 255, 255, 127);
@@ -887,11 +879,7 @@ namespace experience
                   else if (eelement == ::user::e_element_text)
                   {
 
-                     auto psystem = m_psystem;
-
-                     auto pnode = psystem->node();
-
-                     if (pnode->is_app_dark_mode())
+                     if (is_dark_mode())
                      {
 
                         return ::color::color(80, 80, 80, 255);
@@ -913,11 +901,7 @@ namespace experience
                   if (eelement == ::user::e_element_background)
                   {
 
-                     auto psystem = m_psystem;
-
-                     auto pnode = psystem->node();
-
-                     if (pnode->is_app_dark_mode())
+                     if (is_dark_mode())
                      {
 
                         return ::color::color(80, 80, 80, 127);
@@ -934,11 +918,7 @@ namespace experience
                   else if (eelement == ::user::e_element_text)
                   {
 
-                     auto psystem = m_psystem;
-
-                     auto pnode = psystem->node();
-
-                     if (pnode->is_app_dark_mode())
+                     if (is_dark_mode())
                      {
 
                         return ::color::color(255, 255, 255, 255);
@@ -963,11 +943,7 @@ namespace experience
                if (eelement == ::user::e_element_background)
                {
 
-                  auto psystem = m_psystem;
-
-                  auto pnode = psystem->node();
-
-                  if (pnode->is_app_dark_mode())
+                  if (is_dark_mode())
                   {
 
                      return argb(180, 80, 80, 80);
@@ -1001,11 +977,7 @@ namespace experience
                else if (eelement == ::user::e_element_item_text)
                {
 
-                  auto psystem = m_psystem;
-
-                  auto pnode = psystem->node();
-
-                  if (pnode->is_app_dark_mode())
+                  if (is_dark_mode())
                   {
 
                      return __acolor(255, 230, 230, 230);
@@ -1036,11 +1008,7 @@ namespace experience
                   else
                   {
 
-                     auto psystem = m_psystem;
-
-                     auto pnode = psystem->node();
-
-                     if (pnode->is_app_dark_mode())
+                     if (is_dark_mode())
                      {
 
                         return __acolor(255, 230, 230, 230);
@@ -1073,11 +1041,7 @@ namespace experience
             //if (estate & ::user::e_state_hover)
             {
 
-               auto psystem = m_psystem;
-
-               auto pnode = psystem->node();
-
-               if (pnode->is_app_dark_mode())
+               if (is_dark_mode())
                {
 
                   return __acolor(255, 255, 255, 255);
@@ -1099,11 +1063,7 @@ namespace experience
             if (estate & ::user::e_state_hover)
             {
 
-               auto psystem = m_psystem;
-
-               auto pnode = psystem->node();
-
-               if (pnode->is_app_dark_mode())
+               if (is_dark_mode())
                {
 
                   return __acolor(255, 255, 255, 255);
@@ -1120,11 +1080,7 @@ namespace experience
             else if (estate & ::user::e_state_selected)
             {
 
-               auto psystem = m_psystem;
-
-               auto pnode = psystem->node();
-
-               if (pnode->is_app_dark_mode())
+               if (is_dark_mode())
                {
 
                   return __acolor(255, 255, 255, 255);
@@ -1141,11 +1097,7 @@ namespace experience
             else
             {
 
-               auto psystem = m_psystem;
-
-               auto pnode = psystem->node();
-
-               if (pnode->is_app_dark_mode())
+               if (is_dark_mode())
                {
 
                   return __acolor(255, 210, 210, 200);
@@ -1179,11 +1131,7 @@ namespace experience
             if (estate & ::user::e_state_new_input)
             {
 
-               auto psystem = m_psystem;
-
-               auto pnode = psystem->node();
-
-               if (pnode->is_app_dark_mode())
+               if (is_dark_mode())
                {
 
                   return __acolor(255, 130, 130, 130);
@@ -1200,11 +1148,7 @@ namespace experience
             else
             {
 
-               auto psystem = m_psystem;
-
-               auto pnode = psystem->node();
-
-               if (pnode->is_app_dark_mode())
+               if (is_dark_mode())
                {
 
                   return __acolor(255, 230, 230, 230);
@@ -1229,11 +1173,7 @@ namespace experience
                if (estate & ::user::e_state_selected)
                {
 
-                  auto psystem = m_psystem;
-
-                  auto pnode = psystem->node();
-
-                  if (pnode->is_app_dark_mode())
+                  if (is_dark_mode())
                   {
 
                      return __acolor(255, 150, 150, 150);
@@ -1250,11 +1190,7 @@ namespace experience
                else
                {
 
-                  auto psystem = m_psystem;
-
-                  auto pnode = psystem->node();
-
-                  if (pnode->is_app_dark_mode())
+                  if (is_dark_mode())
                   {
 
                      return __acolor(255, 110, 110, 110);
@@ -1276,11 +1212,7 @@ namespace experience
                if (estate & ::user::e_state_selected)
                {
 
-                  auto psystem = m_psystem;
-
-                  auto pnode = psystem->node();
-
-                  if (pnode->is_app_dark_mode())
+                  if (is_dark_mode())
                   {
 
                      return __acolor(255, 130, 130, 130);
@@ -1297,11 +1229,7 @@ namespace experience
                else
                {
 
-                  auto psystem = m_psystem;
-
-                  auto pnode = psystem->node();
-
-                  if (pnode->is_app_dark_mode())
+                  if (is_dark_mode())
                   {
 
                      return __acolor(255, 80, 80, 80);
@@ -1325,11 +1253,7 @@ namespace experience
             if (estate & ::user::e_state_new_input)
             {
 
-               auto psystem = m_psystem;
-
-               auto pnode = psystem->node();
-
-               if (pnode->is_app_dark_mode())
+               if (is_dark_mode())
                {
 
                   return __acolor(255, 130, 130, 130);
@@ -1346,11 +1270,7 @@ namespace experience
             else
             {
 
-               auto psystem = m_psystem;
-
-               auto pnode = psystem->node();
-
-               if (pnode->is_app_dark_mode())
+               if (is_dark_mode())
                {
 
                   return __acolor(255, 230, 230, 230);
@@ -1369,11 +1289,7 @@ namespace experience
         else if (eelement == ::user::e_element_background)
         {
 
-           auto psystem = m_psystem;
-
-           auto pnode = psystem->node();
-
-           if (pnode->is_app_dark_mode())
+           if (is_dark_mode())
             {
 
                if (estate & ::user::e_state_hover)
@@ -1413,11 +1329,7 @@ namespace experience
          else
          {
 
-            auto psystem = m_psystem;
-
-            auto pnode = psystem->node();
-
-            if (pnode->is_app_dark_mode())
+            if (is_dark_mode())
             {
 
                return __acolor(255, 50, 50, 50);

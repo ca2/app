@@ -955,11 +955,7 @@ namespace user
 
          ::color::color crBk;
 
-         auto psystem = get_system()->m_paurasystem;
-
-         auto pnode = psystem->node();
-
-         if (pnode && pnode->is_app_dark_mode())
+         if (is_dark_mode())
          {
 
             crBk = argb(255, 0x40, 0x40, 0x40);
@@ -980,11 +976,7 @@ namespace user
 
          ::color::color crBk;
 
-         auto psystem = get_system()->m_paurasystem;
-
-         auto pnode = psystem->node();
-
-         if (pnode && pnode->is_app_dark_mode())
+         if (is_dark_mode())
          {
 
             crBk = argb(255, 127, 127, 127);
@@ -1005,11 +997,7 @@ namespace user
 
          ::color::color crText;
 
-         auto psystem = get_system()->m_paurasystem;
-
-         auto pnode = psystem->node();
-
-         if (pnode && pnode->is_app_dark_mode())
+         if (is_dark_mode())
          {
 
             crText = argb(255, 255, 255, 255);

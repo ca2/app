@@ -55,7 +55,7 @@ namespace experience
                if (eelement == ::user::e_element_background)
                {
 
-               if (m_pnode->is_app_dark_mode())
+               if (is_dark_mode())
                   {
 
                      return __acolor(255, 0, 0, 0);
@@ -77,7 +77,7 @@ namespace experience
                if (eelement == ::user::e_element_background)
                {
 
-               if (m_pnode->is_app_dark_mode())
+               if (is_dark_mode())
                   {
 
                      //return __acolor(255, 0x20, 0x45, 0x60);
@@ -102,7 +102,7 @@ namespace experience
                if (eelement == ::user::e_element_background)
                {
 
-               if (m_pnode->is_app_dark_mode())
+               if (is_dark_mode())
                   {
 
                      return __acolor(255, 0, 0, 0);
@@ -160,7 +160,7 @@ namespace experience
             if (estate & ::user::e_state_selected)
             {
 
-                              if (m_pnode->is_app_dark_mode())
+                              if (is_dark_mode())
                {
 
                   return __acolor(255, 185, 185, 180);
@@ -178,7 +178,7 @@ namespace experience
             else
             {
 
-                              if (m_pnode->is_app_dark_mode())
+                              if (is_dark_mode())
                {
 
                   return __acolor(255, 125, 125, 120);
@@ -200,7 +200,7 @@ namespace experience
             || eelement == ::user::e_element_tab_layout_background)
          {
 
-                           if (m_pnode->is_app_dark_mode())
+                           if (is_dark_mode())
             {
 
                return __acolor(255, 0, 0, 0);
@@ -217,7 +217,7 @@ namespace experience
          else if (eelement == ::user::e_element_text)
          {
             
-                           if (m_pnode->is_app_dark_mode())
+                           if (is_dark_mode())
             {
 
 
@@ -266,7 +266,7 @@ namespace experience
             if (estate & ::user::e_state_hover)
             {
 
-                              if (m_pnode->is_app_dark_mode())
+                              if (is_dark_mode())
                {
 
                   return ::color::color(50, 120, 190, 127);
@@ -283,7 +283,7 @@ namespace experience
             else
             {
 
-                              if (m_pnode->is_app_dark_mode())
+                              if (is_dark_mode())
                {
 
                   return ::color::white;
@@ -308,7 +308,7 @@ namespace experience
                if (estate & ::user::e_state_hover)
                {
 
-               if (m_pnode->is_app_dark_mode())
+               if (is_dark_mode())
                   {
 
                      return ::color::color(100, 110, 120, 127);
@@ -325,7 +325,7 @@ namespace experience
                else
                {
 
-               if (m_pnode->is_app_dark_mode())
+               if (is_dark_mode())
                   {
 
                      return ::color::black;
@@ -347,7 +347,7 @@ namespace experience
                if (estate & ::user::e_state_hover)
                {
 
-               if (m_pnode->is_app_dark_mode())
+               if (is_dark_mode())
                   {
 
                      return ::color::color(100, 160, 220, 127);
@@ -364,7 +364,7 @@ namespace experience
                else
                {
 
-               if (m_pnode->is_app_dark_mode())
+               if (is_dark_mode())
                   {
 
                      return ::color::black;

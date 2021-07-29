@@ -10,16 +10,24 @@ extern "C" {
 
 #define HEAP_PADDING_SIZE 0
 
-   struct  heap_memory
+   struct heap_memory_header
    {
 
-      byte                    m_back;
+      short                   m_back;
       byte                    m_blockuse;
       byte                    m_align;
-      byte                    m_bytePool;
+      ::u32                   m_size;
+
+   };
+
+   struct  heap_memory : 
+      public heap_memory_header
+   {
+
 #if HEAP_PADDING_SIZE > 0
-      //struct heap_padding     m_padding;
-      char                    m_szPadding[HEAP_PADDING_SIZE];
+
+      char                    m_padding[HEAP_PADDING_SIZE];
+
 #endif
 
    };
@@ -39,7 +47,7 @@ extern "C" {
    inline static memsize heap_memory_aligned_provision_get_size(memsize size, int iAlignByteCount)
    {
 
-      return size + sizeof(struct heap_memory) + sizeof(struct heap_padding) + iAlignByteCount - 1;
+      return size + sizeof(struct heap_memory) + HEAP_PADDING_SIZE + iAlignByteCount - 1;
 
    }
 
@@ -47,7 +55,7 @@ extern "C" {
    inline static memsize heap_memory_unaligned_provision_get_size(memsize size)
    {
 
-      return size + sizeof(struct heap_memory) + sizeof(struct heap_padding);
+      return size + sizeof(struct heap_memory) + HEAP_PADDING_SIZE;
 
    }
 
@@ -65,7 +73,7 @@ extern "C" {
 
       pheap->m_align = 0;
 
-      pheap->m_size = size;
+      pheap->m_size = (::u32) size;
 
       return pmemory;
 
@@ -85,7 +93,7 @@ extern "C" {
 
       pheap->m_align = iAlignByteCount;
 
-      pheap->m_size = size;
+      pheap->m_size = (::u32) size;
 
       return pmemory;
 
@@ -127,12 +135,12 @@ extern "C" {
    inline static void heap_memory_check_padding_after(struct heap_memory * pheapmemory)
    {
 
-      struct heap_padding * ppadding = (struct heap_padding *)(((byte *)&pheapmemory->m_padding) + sizeof(struct heap_padding) + pheapmemory->m_size);
+      auto ppadding = (byte *) ((((byte *)&pheapmemory) + sizeof(heap_memory_header)) + HEAP_PADDING_SIZE + pheapmemory->m_size);
 
-      for (int i = 0; i < sizeof(struct heap_padding); i++)
+      for (int i = 0; i < HEAP_PADDING_SIZE; i++)
       {
 
-         if (ppadding->m_sz[i] != 0)
+         if (ppadding[i] != 0)
          {
 
             //            ::output_debug_string("*&!@");

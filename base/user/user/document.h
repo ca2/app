@@ -34,7 +34,7 @@ namespace user
 
 
       document();
-      virtual ~document();
+      ~document() override;
 
 
       virtual void dump(dump_context &) const override;
@@ -52,7 +52,7 @@ namespace user
 
       ::user::interaction_array get_top_level_windows();
 
-      virtual ::e_status finish_composites() override;
+      ::e_status destroy_composites() override;
 
       virtual bool contains(::user::interaction* pinteraction) const;
 
@@ -60,7 +60,7 @@ namespace user
       //virtual ::user::document* open_new_document(::aura::application* pappOnBehalfOf);
       //virtual ::user::document* open_document_file(::aura::application* pappOnBehalfOf, ::payload varFile = payload(), bool bMakeVisible = true, ::user::interaction* puiParent = nullptr, ewindowflag eflag = e_window_flag_none, ::id id = ::id());
       //virtual ::user::document* create_subdocument(::user::impact_data* pimpactdata);
-      virtual void on_request(::create* pcreate) override;
+      void on_request(::create* pcreate) override;
 
 
       virtual ::id get_topic_view_id();

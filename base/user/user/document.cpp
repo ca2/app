@@ -113,7 +113,7 @@ namespace user
    }
 
    
-   ::e_status document::finish_composites()
+   ::e_status document::destroy_composites()
    {
 
       bool bStillFinishing = false;
@@ -134,7 +134,7 @@ namespace user
 
       }
 
-      auto estatus = ::user::controller::finish_composites();
+      auto estatus = ::user::controller::destroy_composites();
 
       if (estatus == ::error_pending)
       {
@@ -1072,7 +1072,7 @@ namespace user
 
          pre_close_frame(pframe);
 
-         pframe->finish();
+         pframe->destroy();
 
       }
 

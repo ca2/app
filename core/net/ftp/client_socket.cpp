@@ -197,10 +197,12 @@ namespace ftp
          return false;
       }
 
-      m_psockethandler->add(this);
+      m_psockethandler->add2(this);
 
       return true;
+
    }
+
 
    /// Returns the connection state of the client_socket.
    bool client_socket::_is_connected()
@@ -989,7 +991,8 @@ namespace ftp
          //message_box(nullptr, strMessage);
          return false;
       }
-      m_psockethandler->add(&sckDataConnection);
+
+      m_psockethandler->add2(&sckDataConnection);
 
 
       ::u16 ushLocalSock = 0;
@@ -1109,7 +1112,7 @@ namespace ftp
          return false;
       }
 
-      m_psockethandler->add(&sckDataConnection);
+      m_psockethandler->add2(&sckDataConnection);
 
       // if resuming is activated then set offset
       if (m_fResumeIfPossible &&

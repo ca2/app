@@ -492,7 +492,7 @@ namespace axis
 
          }
 
-         data_pulse_change({ "ca2.savings", true }, nullptr);
+         //data_pulse_change({ "ca2.savings", true }, nullptr);
 
          auto psystem = m_psystem->m_paurasystem;
 
@@ -629,7 +629,7 @@ namespace axis
 
          }
 
-         data_pulse_change({ "ca2.savings", true }, nullptr);
+         // data_pulse_change({ "ca2.savings", true }, nullptr);
 
          psystem->appa_load_string_table();
 

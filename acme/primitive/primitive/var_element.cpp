@@ -37,33 +37,46 @@ if(::is_set(payload.m_pstra)) return ENUM_TYPE;
 enum_type set_element(::payload & payload, ::matter * pmatter)
 {
 
-   payload.m_etype = pmatter->get_payload_type();
-
-   switch (payload.m_etype)
+   if (::is_null(pmatter))
    {
-   case ::e_type_string_array:
-      payload.m_pstra = dynamic_cast <::string_array*>(pmatter);
-      break;
-   case ::e_type_i32_array:
-      payload.m_pia = dynamic_cast <::int_array*>(pmatter);
-      break;
-   case ::e_type_payload_array:
-      payload.m_pvara = dynamic_cast <payload_array*>(pmatter);
-      break;
-   case ::e_type_property_set:
-      payload.m_pset = dynamic_cast <::property_set*>(pmatter);
-      break;
-   case ::e_type_i64_array:
-      payload.m_pi64a = dynamic_cast <::i64_array*>(pmatter);
-      break;
-   case ::e_type_memory:
-      payload.m_pmemory = dynamic_cast <::memory*>(pmatter);
-      break;
-   case ::e_type_path:
-      payload.m_ppath = dynamic_cast <::file::path_object*>(pmatter);
-      break;
-   default:
-      payload.m_p = pmatter;
+
+      payload.m_p = nullptr;
+
+      payload.m_etype = e_type_element;
+
+   }
+   else
+   {
+
+      payload.m_etype = pmatter->get_payload_type();
+
+      switch (payload.m_etype)
+      {
+      case ::e_type_string_array:
+         payload.m_pstra = dynamic_cast <::string_array*>(pmatter);
+         break;
+      case ::e_type_i32_array:
+         payload.m_pia = dynamic_cast <::int_array*>(pmatter);
+         break;
+      case ::e_type_payload_array:
+         payload.m_pvara = dynamic_cast <payload_array*>(pmatter);
+         break;
+      case ::e_type_property_set:
+         payload.m_pset = dynamic_cast <::property_set*>(pmatter);
+         break;
+      case ::e_type_i64_array:
+         payload.m_pi64a = dynamic_cast <::i64_array*>(pmatter);
+         break;
+      case ::e_type_memory:
+         payload.m_pmemory = dynamic_cast <::memory*>(pmatter);
+         break;
+      case ::e_type_path:
+         payload.m_ppath = dynamic_cast <::file::path_object*>(pmatter);
+         break;
+      default:
+         payload.m_p = pmatter;
+      }
+
    }
 
    return payload.m_etype;

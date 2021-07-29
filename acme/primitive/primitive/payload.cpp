@@ -2770,7 +2770,7 @@ double payload::get_double(double dDefault) const
 class ::memory & payload::memory()
 {
 
-   if (m_etype != e_type_payload_pointer)
+   if (m_etype == e_type_payload_pointer)
    {
 
       return m_ppayload->memory();

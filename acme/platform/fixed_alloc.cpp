@@ -42,7 +42,7 @@ void fixed_alloc_no_sync::NewBlock()
 
    i32 nAllocSize = m_nAllocSize + 32;
    // add another block
-   ::memory_allocate_heap::plex* pNewBlock = ::memory_allocate_heap::plex::create(m_pBlocks, m_nBlockSize, nAllocSize);
+   ::main_memory_allocate_heap::plex* pNewBlock = ::main_memory_allocate_heap::plex::create(m_pBlocks, m_nBlockSize, nAllocSize);
 
    // chain them into _free list
    node* pNode = (node*)pNewBlock->data();

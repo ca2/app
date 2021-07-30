@@ -17,7 +17,7 @@ namespace sockets
       , m_bind_ok(false)
       , m_port(0)
       , m_last_size_written(-1)
-      , m_retries(retries)
+      , m_iConnectionRetryCount(retries)
       , m_b_read_ts(false)
    {
       m_iWriteFlags = 0;
@@ -429,7 +429,7 @@ namespace sockets
          }
 
          memsize n = recvfrom(GetSocket(), m_ibuf, m_ibufsz, 0, (struct sockaddr *)&sa, &sa_len);
-         i32 q = m_retries; // receive maximum 10 at one cycle
+         i32 q = m_iConnectionRetryCount; // receive maximum 10 at one cycle
          while (n > 0)
          {
             if (sa_len != sizeof(sa))
@@ -504,7 +504,7 @@ namespace sockets
          return;
       }
       memsize n = recvfrom(GetSocket(), m_ibuf, m_ibufsz, 0, (struct sockaddr *)&sa, &sa_len);
-      i32 q = m_retries;
+      i32 q = m_iConnectionRetryCount;
       while (n > 0)
       {
          if (sa_len != sizeof(sa))

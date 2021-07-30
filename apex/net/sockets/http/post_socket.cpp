@@ -109,7 +109,7 @@ namespace sockets
 
          string body;
 
-         if (m_fields.has_property("json") && m_fields["json"].get_type() == ::e_type_propset)
+         if (m_fields.has_property("json") && m_fields["json"].get_type() == ::e_type_property_set)
          {
 
             m_fields["json"].propset().get_json(body);

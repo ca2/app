@@ -4,20 +4,56 @@
 #include "apex/filesystem/fs/fs.h"
 
 
+#include "axis/net/netserver/_.h"
+
+
 #include "axis/net/netserver/_netserver.h"
 
 
 namespace dynamic_source
 {
 
-class script_instance;
-class script_manager;
 
+   class script_instance;
+   class script_manager;
+   class script;
+   class script_instance;
+   class httpd_socket;
+   class script_main;
+
+
+   typedef script_instance* (*NET_NODE_CREATE_INSTANCE_PROC)();
 
 
 } // namespace dynamic_source
 
 
+namespace webserver
+{
+
+   class simage_accepta;
+   typedef __pointer_array(simage_accepta) simage_accepta_ptr_array;
+   class match_host;
+   typedef __pointer_array(match_host) match_host_array;
+   class ui_redir;
+   class account_database;
+   class way_database;
+
+
+} // namespace netnode
+
+
+namespace netnode
+{
+
+
+   class script_manager;
+   class script_interface;
+   class script_main;
+   class script_impl;
+
+
+} // namespace netnode
 
 
 #include "exit_exception.h"
@@ -26,6 +62,9 @@ class script_manager;
 
 
 #include "apex/filesystem/file/html_file.h"
+
+
+#include "library.h"
 
 
 #include "script_interface.h"
@@ -37,9 +76,6 @@ class script_manager;
 #include "script.h"
 #include "script_cache.h"
 #include "script_compiler.h"
-
-
-//#include "library_class.h"
 
 
 #include "httpd_socket.h"

@@ -112,7 +112,9 @@ CLASS_DECL_ACME memsize file_as_memory(const char * path, void * p, memsize s);
 
 
 
-template < typename N > class numeric_array;
+template < typename N, enum_type t_etypePayload >
+class numeric_array;
+
 typedef CLASS_DECL_ACME numeric_array < u32 > u32_array;
 
 

@@ -1727,7 +1727,7 @@ namespace user
    }
 
 
-   ::e_status interaction::finish()
+   ::e_status interaction::destroy()
    {
 
       if (!m_bUserInteractionSetFinish)
@@ -1741,15 +1741,15 @@ namespace user
 
       }
 
-      return ::user::primitive::finish();
+      return ::user::primitive::destroy();
 
    }
 
 
-   void interaction::notify_on_finish(::property_object* pobject)
+   void interaction::notify_on_destroy(::property_object* pobject)
    {
 
-      ::user::primitive::notify_on_finish(pobject);
+      ::user::primitive::notify_on_destroy(pobject);
 
    }
 
@@ -2396,7 +2396,7 @@ namespace user
             try
             {
 
-               pinteraction->finish();
+               pinteraction->destroy();
 
             }
             catch (...)
@@ -2792,6 +2792,8 @@ namespace user
                auto tickStart = millis::now();
 
 #endif //__DEBUG
+
+               auto pstyle = get_style(pgraphics);
 
                _001OnNcDraw(pgraphics);
 
@@ -3289,6 +3291,8 @@ namespace user
 
       windowing_output_debug_string("\n_001UpdateBuffer : after set alphamode");
 
+      auto pstyle = get_style(pgraphics);
+
       if (pgraphics->m_pimage->is_ok())
       {
 
@@ -3318,11 +3322,7 @@ namespace user
          else
          {
 
-            auto psystem = m_psystem->m_paurasystem;
-
-            auto pnode = psystem->node();
-
-            if (pnode && pnode->is_app_dark_mode())
+            if (pstyle->is_dark_mode())
             {
 
                pgraphics->fill_rectangle(rectangle, argb(255, 25, 25, 25));
@@ -6931,10 +6931,10 @@ namespace user
 
 
 
-   ::e_status interaction::finish_composites()
+   ::e_status interaction::destroy_composites()
    {
 
-      auto estatus = ::object::finish_composites();
+      auto estatus = ::object::destroy_composites();
 
       return estatus;
 
@@ -9402,7 +9402,7 @@ namespace user
    bool interaction::call_and_set_timer(uptr uEvent, ::millis millisElapse, PFN_TIMER pfnTimer)
    {
 
-      if (m_bFinishing)
+      if (m_bDestroying)
       {
 
          return false;
@@ -9421,7 +9421,7 @@ namespace user
    bool interaction::set_timer(uptr uEvent, ::millis millisElapse, PFN_TIMER pfnTimer)
    {
 
-      if (m_bFinishing)
+      if (m_bDestroying)
       {
 
          return false;
@@ -9443,7 +9443,7 @@ namespace user
 
       }
 
-      if (m_bFinishing)
+      if (m_bDestroying)
       {
 
          return false;

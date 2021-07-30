@@ -1333,7 +1333,7 @@ namespace file
    CLASS_DECL_ACME void set_no_cache(::payload& payload)
    {
 
-      if (payload.get_type() == e_type_propset)
+      if (payload.get_type() == e_type_property_set)
       {
 
          payload["nocache"] = true;

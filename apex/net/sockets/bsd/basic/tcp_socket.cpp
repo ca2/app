@@ -318,7 +318,7 @@ namespace sockets
 //
 //      }
 
-      SetConnecting(false);
+      set_connecting(false);
       SetSocks4(false);
 
 //      if(socket_handler()->PoolEnabled())
@@ -379,7 +379,7 @@ namespace sockets
 
             paddressdepartment->convert(sockshost,GetSocks4Host());
 
-            INFO(log_this, "open",0,"Connecting to socks4 server @ " + sockshost + ":" + __str(GetSocks4Port()));
+            INFO(log_this, "open",0,"is_connecting to socks4 server @ " + sockshost + ":" + __str(GetSocks4Port()));
 
          }
 
@@ -407,7 +407,7 @@ namespace sockets
 #endif
          {
             attach(s);
-            SetConnecting(true); // this flag will control fd_set's
+            set_connecting(true); // this flag will control fd_set's
          }
          else if(Socks4() && socket_handler()->Socks4TryDirect()) // retry
          {
@@ -421,7 +421,7 @@ namespace sockets
             INFO(log_this, "connect: failed, reconnect pending",iError,bsd_socket_error(iError));
 
             attach(s);
-            SetConnecting(true); // this flag will control fd_set's
+            set_connecting(true); // this flag will control fd_set's
          }
          else
          {
@@ -442,7 +442,7 @@ namespace sockets
 
       // 'true' means connected or connecting(not yet connected)
       // 'false' means something failed
-      return true; //!Connecting();
+      return true; //!is_connecting();
    }
 
 
@@ -657,7 +657,7 @@ namespace sockets
                //   SetCloseAndDelete(true);
                //   SetFlushBeforeClose(false);
                //   SetLost();
-               //   SetShutdown(SHUT_WR);
+               //   SetShutdownStatus(SHUT_WR);
                //   //TRACE("tcp_socket::recv ssl disconnect(2)");
 
                //}
@@ -730,7 +730,7 @@ namespace sockets
                SetCloseAndDelete(true);
                SetFlushBeforeClose(false);
                SetLost();
-               SetShutdown(SHUT_WR);
+               SetShutdownStatus(SHUT_WR);
             }
 
          }
@@ -893,7 +893,7 @@ namespace sockets
 
          return;
       }
-      if(Connecting())
+      if(is_connecting())
       {
          i32 err = SoError();
 
@@ -901,7 +901,7 @@ namespace sockets
          if(!err) // ok
          {
             set(!IsDisableRead(),false);
-            SetConnecting(false);
+            set_connecting(false);
             SetCallOnConnect();
             return;
          }
@@ -913,12 +913,13 @@ namespace sockets
          // failed
          if(Socks4())
          {
-            // %! leave 'Connecting' flag set?
+            // %! leave 'is_connecting' flag set?
             OnSocks4ConnectFailed();
             return;
          }
-         if(GetConnectionRetry() == -1 ||
-               (GetConnectionRetry() && GetConnectionRetries() < GetConnectionRetry()))
+
+         if(GetMaximumConnectionRetryCount() == -1 ||
+               (GetMaximumConnectionRetryCount() && GetConnectionRetryCount() < GetMaximumConnectionRetryCount()))
          {
             // even though the connection failed at once, only retry after
             // the connection timeout.
@@ -926,7 +927,7 @@ namespace sockets
             // false it's because of a connection error - not a timeout...
             return;
          }
-         SetConnecting(false);
+         set_connecting(false);
          SetCloseAndDelete(true);
          /// \todo state reason why connect failed
          OnConnectFailed();
@@ -1180,7 +1181,7 @@ namespace sockets
 
       const u8 * buf = (const u8 *)pdata;
 
-      if(!Ready() && !Connecting())
+      if(!Ready() && !is_connecting())
       {
 
          WARN(log_this, "write",-1,"Attempt to write to a non-ready socket"); // warning
@@ -1192,11 +1193,11 @@ namespace sockets
 
 
          }
-         if (Connecting())
+         if (is_connecting())
          {
 
 
-            INFO(log_this, "write", 0, " * Connecting()");
+            INFO(log_this, "write", 0, " * is_connecting()");
 
          }
          if (IsCloseAndDelete())
@@ -1303,7 +1304,7 @@ namespace sockets
 
       if(!socket_handler()->Socks4TryDirect())
       {
-         SetConnecting(false);
+         set_connecting(false);
          SetCloseAndDelete();
          OnConnectFailed(); // just in case
       }
@@ -1359,7 +1360,7 @@ namespace sockets
 
                FATAL(log_this, "OnSocks4Read",m_socks4_cd,"socks4 server reports connect failed");
 
-               SetConnecting(false);
+               set_connecting(false);
                SetCloseAndDelete();
                OnConnectFailed();
                break;
@@ -2122,7 +2123,7 @@ namespace sockets
 
       SetNonblocking(true);
 
-      if (!Lost() && IsConnected() && !(GetShutdown() & SHUT_WR))
+      if (!Lost() && IsConnected() && !(GetShutdownStatus() & SHUT_WR))
       {
 
          if (shutdown(GetSocket(), SHUT_WR) == -1)
@@ -2320,43 +2321,54 @@ namespace sockets
    }
 
 
-
-   void tcp_socket::OnConnectTimeout()
+   void tcp_socket::on_connection_timeout()
    {
-
 
       FATAL(log_this, "connect",-1,"connect timeout");
 
       m_estatus = error_connection_timed_out;
+
       if(Socks4())
       {
+
          OnSocks4ConnectFailed();
          // retry direct connection
       }
-      else if(GetConnectionRetry() == -1 ||
-              (GetConnectionRetry() && GetConnectionRetries() < GetConnectionRetry()))
+      else if(GetMaximumConnectionRetryCount() == -1 ||
+              (GetMaximumConnectionRetryCount() && GetConnectionRetryCount() < GetMaximumConnectionRetryCount()))
       {
-         IncreaseConnectionRetries();
+
+         IncrementConnectionRetryCount();
+
          // ask socket via OnConnectRetry callback if we should continue trying
          if(OnConnectRetry())
          {
+
             SetRetryClientConnect();
+
          }
          else
          {
+
             SetCloseAndDelete(true);
+
             /// \todo state reason why connect failed
             OnConnectFailed();
+
          }
+
       }
       else
       {
+
          SetCloseAndDelete(true);
          /// \todo state reason why connect failed
          OnConnectFailed();
+
       }
-      //
-      SetConnecting(false);
+      
+      set_connecting(false);
+
    }
 
 
@@ -2365,7 +2377,7 @@ namespace sockets
    void tcp_socket::OnException()
    {
 
-      if(Connecting())
+      if(is_connecting())
       {
 
          i32 iError = this->socket_handler()->m_iSelectErrno;
@@ -2381,9 +2393,9 @@ namespace sockets
             //m_estatus = status_failed;
          }
 
-         int iGetConnectionRetry = GetConnectionRetry();
+         int iGetConnectionRetry = GetMaximumConnectionRetryCount();
 
-         int iGetConnectionRetries = GetConnectionRetries();
+         int iGetConnectionRetries = GetConnectionRetryCount();
 
          if (Socks4())
          {
@@ -2413,7 +2425,7 @@ namespace sockets
          }
          else
          {
-            SetConnecting(false); // tnx snibbe
+            set_connecting(false); // tnx snibbe
             SetCloseAndDelete();
             OnConnectFailed();
          }

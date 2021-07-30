@@ -14,7 +14,7 @@ public:
 inline ::payload operator + (::payload payload, const ::timeout& timeout)
 {
 
-   if (payload.get_type() != e_type_propset)
+   if (payload.get_type() != e_type_property_set)
    {
 
       payload["message"] = payload.get_string();

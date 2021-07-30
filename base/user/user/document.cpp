@@ -113,7 +113,7 @@ namespace user
    }
 
    
-   ::e_status document::finish_composites()
+   ::e_status document::destroy_composites()
    {
 
       bool bStillFinishing = false;
@@ -134,7 +134,7 @@ namespace user
 
       }
 
-      auto estatus = ::user::controller::finish_composites();
+      auto estatus = ::user::controller::destroy_composites();
 
       if (estatus == ::error_pending)
       {
@@ -677,7 +677,7 @@ namespace user
    {
       UNREFERENCED_PARAMETER(bAddToMRU);
       string strPathName;
-      if (varFile.get_type() == ::e_type_propset && varFile.propset()["url"].get_string().has_char())
+      if (varFile.get_type() == ::e_type_property_set && varFile.propset()["url"].get_string().has_char())
       {
          strPathName = varFile.propset()["url"];
       }
@@ -1072,7 +1072,7 @@ namespace user
 
          pre_close_frame(pframe);
 
-         pframe->finish();
+         pframe->destroy();
 
       }
 

@@ -98,8 +98,7 @@ namespace user
       virtual ::e_status init() override;
 
 
-      virtual ::e_status finish() override;
-
+      ::e_status destroy() override;
 
 
       virtual ::e_status create_windowing();

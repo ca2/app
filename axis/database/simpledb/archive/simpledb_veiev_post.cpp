@@ -120,7 +120,7 @@ bool veiev_post::write(::payload rec)
 
    ::payload ret;
 
-   ret.set_type(::e_type_propset);
+   ret.set_type(::e_type_property_set);
    ret["sender"]     = m_pdataset->fv("sender");
    ret["recipient"]  = m_pdataset->fv("recipient");
    ret["sent"]       = m_pdataset->fv("sent");
@@ -175,7 +175,7 @@ bool veiev_post::write(::payload rec)
    while(!m_pdataset->eof())
    {
 
-      payload.vara().add(current());
+      payload.payloada().add(current());
 
       m_pdataset->next();
 

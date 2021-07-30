@@ -41,7 +41,7 @@ namespace draw2d
 
 
       virtual bool create(::draw2d::graphics * pgraphics, i8 iCreate);
-      virtual void destroy();
+      ::e_status destroy() override;
 
       inline void set_modified() { m_bUpdated2 = false; }
 

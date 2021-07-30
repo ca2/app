@@ -10,3 +10,6 @@ CLASS_DECL_ACME memsize    array_memory_size(void* p);
 
 
 
+
+void array_initialize_memory_management(::memory_heap* pheap);
+

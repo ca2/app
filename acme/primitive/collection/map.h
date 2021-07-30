@@ -387,10 +387,10 @@ public:
    }
 
 
-   bool erase_item(association * passociation);
+   bool unhash(association * passociation);
 
    //removing existing (key, ?) association
-   inline bool erase_key(ARG_KEY key) { auto pitem = find_item(key);  return ::is_set(pitem) ? erase_item(pitem) : false; }
+   inline bool erase_key(ARG_KEY key) { auto passociation = find_association(key);  return ::is_set(passociation) ? erase(passociation) : false; }
 
    template < typename ITERATOR >
    inline ITERATOR erase(ITERATOR it) { return ::papaya::iterator::erase(*this, it); }
@@ -471,16 +471,22 @@ public:
       }
    }
 
-   inline association * find_item(ARG_KEY key) const { return find_association(key); }
+   //inline association * find_item(ARG_KEY key) const { return find_association(key); }
 
-   inline iterator find(ARG_KEY key) { return { find_item(key), this }; }
-   const_iterator find (ARG_KEY key) const { return { find_item(key), this }; }
+   inline iterator find(ARG_KEY key) { return { find_association(key), this }; }
+   const_iterator find (ARG_KEY key) const { return { find_association(key), this }; }
 
 
-   association * new_association(ARG_KEY key);
-   void free_association(association * passociation);
-   association * get_association_at(ARG_KEY, ::u32&, ::u32&) const;
+   association * new_association(ARG_KEY key, ::u32 nHashBucket, ::u32 nHashValue);
+   void hash(association *, ::u32 nHashBucket, ::u32 nHashValue);
+   void attach(association * passociation, ::u32 nHashBucket, ::u32 nHashValue);
+   bool erase(association * passociation);
+   void detach(association* passociation);
+   void hash(::u32& nHashBucket, ::u32& nHashValue, ARG_KEY) const;
+   association * get_association_at(ARG_KEY, ::u32& nHashBucket, ::u32& nHashValue) const;
 
+   void move(association* passociation, map * pmap = nullptr);
+   void move(map* pmap, ARG_KEY key);
 
    virtual void assert_valid() const override;
    virtual void dump(dump_context & dumpcontext) const override;
@@ -734,10 +740,10 @@ map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::map(const ::std::initializer_list 
 
    construct();
 
-   for(auto & pair_item : list)
+   for(auto & pair : list)
    {
 
-      set_at(pair_item.m_element1, pair_item.m_element2);
+      set_at(pair.m_element1, pair.m_element2);
 
    }
 
@@ -832,9 +838,74 @@ map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::~map()
    ASSERT(this->m_nCount == 0);
 }
 
+
+template < typename KEY, typename VALUE, typename ARG_KEY, typename ARG_VALUE, typename PAIR >
+void map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::attach(association * passociation, ::u32 nHashBucket, ::u32 nHashValue)
+{
+
+   //this->m_passociationFree  = this->m_passociationFree->m_pnext;
+
+//zero_pointer(passociation);
+
+   hash(passociation, nHashBucket, nHashValue);
+
+   if (this->m_passociationHead != nullptr)
+   {
+
+      this->m_passociationHead->m_pprev = passociation;
+
+   }
+
+   passociation->m_pnext = this->m_passociationHead;
+
+   this->m_passociationHead = passociation;
+
+   this->m_passociationHead->m_pprev = nullptr;
+
+   this->m_nCount++;
+
+   ASSERT(this->m_nCount > 0);  // make sure we don't overflow
+
+   //return passociation;
+
+}
+
+
+
+
+template < typename KEY, typename VALUE, typename ARG_KEY, typename ARG_VALUE, typename PAIR >
+void map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::hash(association* passociation, ::u32 nHashBucket, ::u32 nHashValue)
+{
+
+   // not precise (memleak? a watch dog can restart from the last check point... continuable tasks need...) but self-healing(self-recoverable/not-fatal)...
+   if (::is_null(this->m_hashtable.m_ppassociationHash))
+   {
+
+      InitHashTable(this->m_hashtable.GetHashTableSize());
+
+   }
+
+   ENSURE(this->m_hashtable.m_ppassociationHash);
+
+   if (this->m_hashtable.m_ppassociationHash[nHashBucket] != nullptr)
+   {
+      
+      this->m_hashtable.m_ppassociationHash[nHashBucket]->m_ppprevHash = &passociation->m_pnextHash;
+
+   }
+
+   passociation->m_pnextHash = this->m_hashtable.m_ppassociationHash[nHashBucket];
+
+   this->m_hashtable.m_ppassociationHash[nHashBucket] = passociation;
+
+   passociation->m_ppprevHash = &this->m_hashtable.m_ppassociationHash[nHashBucket];
+
+}
+
+
 template < typename KEY, typename VALUE, typename ARG_KEY, typename ARG_VALUE, typename PAIR >
 typename map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::association *
-map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::new_association(ARG_KEY key)
+map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::new_association(ARG_KEY key, ::u32 nHashBucket, ::u32 nHashValue)
 {
 
    //if(this->m_passociationFree == nullptr)
@@ -857,60 +928,56 @@ map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::new_association(ARG_KEY key)
 
    //ENSURE(this->m_passociationFree != nullptr);  // we must have something
 
-   typename map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::association * passociation =
-   new association(key);
+   auto passociation = new association(key);
 
-   //this->m_passociationFree  = this->m_passociationFree->m_pnext;
-
-   //zero_pointer(passociation);
-
-   if(this->m_passociationHead != nullptr)
-   {
-
-      this->m_passociationHead->m_pprev   = passociation;
-
-   }
-
-   passociation->m_pnext            = this->m_passociationHead;
-
-   this->m_passociationHead               = passociation;
-
-   this->m_passociationHead->m_pprev      = nullptr;
-
-   this->m_nCount++;
-
-   ASSERT(this->m_nCount > 0);  // make sure we don't overflow
+   attach(passociation, nHashBucket, nHashValue);
 
    return passociation;
 
 }
 
+
 template < typename KEY, typename VALUE, typename ARG_KEY, typename ARG_VALUE, typename PAIR >
-void map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::free_association(association * passociation)
+bool map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::erase(association * passociation)
 {
 
-   association * pnext = passociation->m_pnext;
+   detach(passociation);
 
-   if(passociation->m_pnext != nullptr)
+   delete passociation;
+
+   return true;
+
+}
+
+
+template < typename KEY, typename VALUE, typename ARG_KEY, typename ARG_VALUE, typename PAIR >
+void map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::detach(association* passociation)
+{
+
+   unhash(passociation);
+
+   association* pnext = passociation->m_pnext;
+
+   if (passociation->m_pnext != nullptr)
    {
 
       passociation->m_pnext->m_pprev = passociation->m_pprev;
 
    }
 
-   if(passociation->m_pprev != nullptr)
+   if (passociation->m_pprev != nullptr)
    {
 
       passociation->m_pprev->m_pnext = passociation->m_pnext;
 
    }
 
-   if(this->m_passociationHead == passociation)
+   if (this->m_passociationHead == passociation)
    {
 
       this->m_passociationHead = pnext;
 
-      if(this->m_passociationHead != nullptr)
+      if (this->m_passociationHead != nullptr)
       {
 
          this->m_passociationHead->m_pprev = nullptr;
@@ -919,7 +986,7 @@ void map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::free_association(association 
 
    }
 
-   delete passociation;
+   //delete passociation;
 
    //passociation->m_pnext = this->m_passociationFree;
 
@@ -936,14 +1003,23 @@ void map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::free_association(association 
 }
 
 template < typename KEY, typename VALUE, typename ARG_KEY, typename ARG_VALUE, typename PAIR >
-typename map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::association *
-map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::get_association_at(ARG_KEY key, ::u32& nHashBucket, ::u32& nHashValue) const
-// find association (or return nullptr)
+void map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::hash(::u32& nHashBucket, ::u32& nHashValue, ARG_KEY key) const
 {
 
    nHashValue = u32_hash<ARG_KEY>(key);
 
    nHashBucket = nHashValue % this->m_hashtable.GetHashTableSize();
+
+}
+
+
+template < typename KEY, typename VALUE, typename ARG_KEY, typename ARG_VALUE, typename PAIR >
+typename map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::association *
+map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::get_association_at(ARG_KEY key, ::u32& nHashBucket, ::u32& nHashValue) const
+// find association (or return nullptr)
+{
+
+   hash(nHashBucket, nHashValue, key);
 
    if(get_count() <= 0)
       return nullptr;
@@ -962,6 +1038,53 @@ map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::get_association_at(ARG_KEY key, ::
    return nullptr;
 
 }
+
+template < typename KEY, typename VALUE, typename ARG_KEY, typename ARG_VALUE, typename PAIR >
+void map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::move(map* pmap, ARG_KEY key)
+{
+
+   ::u32 uHashBucket;
+
+   ::u32 uHashValue;
+
+   auto passociation = pmap->get_association_at(key, uHashBucket, uHashValue);
+
+   pmap->detach(passociation);
+
+   attach(passociation, uHashBucket, uHashValue);
+
+}
+
+
+
+template < typename KEY, typename VALUE, typename ARG_KEY, typename ARG_VALUE, typename PAIR >
+void map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::move(association* passociation, map * pmap)
+{
+
+   if (pmap == this)
+   {
+
+      return;
+
+   }
+
+   if (::is_set(pmap))
+   {
+
+      pmap->detach(passociation);
+
+   }
+
+   ::u32 nHashBucket;
+
+   ::u32 nHashValue;
+
+   hash(nHashBucket, nHashValue, passociation->element1());
+
+   attach(passociation, nHashBucket, nHashValue);
+
+}
+
 
 template < typename KEY, typename VALUE, typename ARG_KEY, typename ARG_VALUE, typename PAIR >
 bool map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::lookup(ARG_KEY key, VALUE& rValue) const
@@ -1051,24 +1174,7 @@ typename map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::association * map < KEY, 
    if((passociation = get_association_at(key,nHashBucket,nHashValue)) == nullptr)
    {
 
-      // not precise (memleak? a watch dog can restart from the last check point... continuable tasks need...) but self-healing(self-recoverable/not-fatal)...
-      if(void_ptr_is_null(this->m_hashtable.m_ppassociationHash))
-         InitHashTable(this->m_hashtable.GetHashTableSize());
-
-      ENSURE(this->m_hashtable.m_ppassociationHash);
-
-      passociation = new_association(key);
-
-      if(this->m_hashtable.m_ppassociationHash[nHashBucket] != nullptr)
-      {
-         this->m_hashtable.m_ppassociationHash[nHashBucket]->m_ppprevHash = &passociation->m_pnextHash;
-      }
-
-      passociation->m_pnextHash        = this->m_hashtable.m_ppassociationHash[nHashBucket];
-
-      this->m_hashtable.m_ppassociationHash[nHashBucket] = passociation;
-
-      passociation->m_ppprevHash       = &this->m_hashtable.m_ppassociationHash[nHashBucket];
+      passociation = new_association(key, nHashBucket, nHashValue);
 
    }
 
@@ -1095,7 +1201,7 @@ const VALUE & map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::operator[](ARG_KEY k
 
 
 template < typename KEY, typename VALUE, typename ARG_KEY, typename ARG_VALUE, typename PAIR >
-inline bool map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::erase_item(association * passociation)
+inline bool map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::unhash(association * passociation)
 // erase - return true if erased
 {
 
@@ -1107,8 +1213,6 @@ inline bool map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::erase_item(association
    }
 
    *passociation->m_ppprevHash = passociation->m_pnextHash;
-
-   free_association(passociation);
 
    return true;
 

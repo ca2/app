@@ -35,12 +35,12 @@ namespace dynamic_source
    }
 
 
-   ::e_status script_composite::finalize()
+   ::e_status script_composite::destroy()
    {
 
-      auto estatus = script_interface::finalize();
+      auto estatus = script_interface::destroy();
 
-      __finalize_and_release(m_pinterface);
+      __destroy_and_release(m_pinterface);
 
       return estatus;
 

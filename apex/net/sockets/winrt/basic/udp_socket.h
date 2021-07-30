@@ -48,7 +48,7 @@ namespace sockets
       bool m_bind_ok; ///< Bind completed successfully
       port_t m_port; ///< Bind port number
       int m_last_size_written;
-      int m_retries;
+      int m_iConnectionRetryCount;
       bool m_b_read_ts;
 
 

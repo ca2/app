@@ -667,7 +667,7 @@ namespace mysql
    }
 
 
-   bool database::query_items(__pointer(var_array) & pvara, const char* pszSql)
+   bool database::query_items(__pointer(payload_array) & pvara, const char* pszSql)
    {
 
       MYSQL_RES* pres = _mysql_query_result(pszSql);

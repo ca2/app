@@ -5,9 +5,6 @@ namespace dynamic_source
 {
 
 
-   class script;
-
-
    class CLASS_DECL_APP_PROGRAMMING script_instance :
       virtual public script_composite
    {
@@ -17,11 +14,8 @@ namespace dynamic_source
       u32                                 m_dwCreate;
 
 
-
-
-
       script_instance();
-      virtual ~script_instance();
+      ~script_instance() override;
 
 
       virtual bool ShouldBuild();

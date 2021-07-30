@@ -1,14 +1,12 @@
 ﻿#pragma once
 
 
-
-template < class TYPE, class ARG_TYPE = const TYPE &, class ALLOCATOR = allocator::nodef < TYPE > >
-inline auto & __array_object(::array_base < TYPE, ARG_TYPE, ALLOCATOR > & a, ::index i);
+template < class TYPE, class ARG_TYPE = const TYPE &, class ALLOCATOR = allocator::nodef < TYPE >, enum_type t_etypePayload = e_type_element >
+inline auto & __array_object(::array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload > & a, ::index i);
 
 
 template < typename ARRAY_TYPE, typename T >
 inline auto & __array_object(::pointer_array_process < ARRAY_TYPE, T > & a, ::index i);
-
 
 
 namespace papaya
@@ -481,8 +479,8 @@ namespace papaya
       template < typename TYPE >
       ::stream & exchange_container_as_parent(::stream & stream, const __pointer_array(TYPE) & a);
 
-      template < typename Type, typename RawType >
-      ::index add(string_array_base < Type, RawType > & array, const Type & psz)
+      template < typename Type, typename RawType, enum_type t_etypePayload >
+      ::index add(string_array_base < Type, RawType, t_etypePayload > & array, const Type & psz)
       {
 
          auto iIndex = __index(array.m_nSize);
@@ -494,21 +492,21 @@ namespace papaya
       }
 
 
-      template < typename Type, typename RawType >
-      ::index add(string_array_base < Type, RawType > & array, const ::payload & payload);
+      template < typename Type, typename RawType, enum_type t_etypePayload >
+      ::index add(string_array_base < Type, RawType, t_etypePayload > & array, const ::payload & payload);
 
 
-      template < typename Type, typename RawType >
-      ::index unfold_add(string_array_base < Type, RawType > & array, const ::payload & payload);
+      template < typename Type, typename RawType, enum_type t_etypePayload >
+      ::index unfold_add(string_array_base < Type, RawType, t_etypePayload > & array, const ::payload & payload);
 
-      template < class TYPE >
-      ::count ensure_sequence(::numeric_array < TYPE > & a, TYPE start, TYPE end, TYPE increment = 1);
+      template < typename TYPE, enum_type t_etypePayload = e_type_element >
+      ::count ensure_sequence(::numeric_array < TYPE, t_etypePayload > & a, TYPE start, TYPE end, TYPE increment = 1);
 
-      template < class TYPE >
-      ::count append_sequence(::numeric_array < TYPE > & a, TYPE iterator, TYPE end, TYPE increment = 1);
+      template < typename TYPE, enum_type t_etypePayload = e_type_element >
+      ::count append_sequence(::numeric_array < TYPE, t_etypePayload > & a, TYPE iterator, TYPE end, TYPE increment = 1);
 
-      template < class TYPE >
-      ::count set_sequence(::numeric_array < TYPE > & a, TYPE start, TYPE end, TYPE increment = 1);
+      template < typename TYPE, enum_type t_etypePayload = e_type_element >
+      ::count set_sequence(::numeric_array < TYPE, t_etypePayload > & a, TYPE start, TYPE end, TYPE increment = 1);
 
       template<class ARRAY>
       bool binary_search(ARRAY & a,typename ARRAY::BASE_ARG_TYPE t,index & iIndex,index(* fCompare) (typename ARRAY::BASE_ARG_TYPE,typename ARRAY::BASE_ARG_TYPE));
@@ -678,29 +676,37 @@ namespace papaya
 
    } // namespace array2d
 
-   template < class TYPE >
-   ::count erase_greater_than(::numeric_array < TYPE > & a, TYPE hi);
+   
+   template < typename TYPE, enum_type t_etypePayload = e_type_element >
+   ::count erase_greater_than(::numeric_array < TYPE, t_etypePayload > & a, TYPE hi);
 
-   template < class TYPE >
-   ::count erase_greater_than_or_equal(::numeric_array < TYPE > & a, TYPE hi);
 
-   template < class TYPE >
-   ::count erase_lesser_than(::numeric_array < TYPE > & a, TYPE lo);
+   template < typename TYPE, enum_type t_etypePayload = e_type_element >
+   ::count erase_greater_than_or_equal(::numeric_array < TYPE, t_etypePayload > & a, TYPE hi);
 
-   template < class TYPE >
-   ::count erase_lesser_than_or_equal(::numeric_array < TYPE > & a, TYPE lo);
 
-   template < class TYPE >
-   ::count erase_lesser_than_or_greater_than(::numeric_array < TYPE > & a, TYPE lo, TYPE hi);
+   template < typename TYPE, enum_type t_etypePayload = e_type_element >
+   ::count erase_lesser_than(::numeric_array < TYPE, t_etypePayload > & a, TYPE lo);
 
-   template < class TYPE >
-   ::count erase_lesser_than_or_greater_than_or_equal(::numeric_array < TYPE > & a, TYPE lo, TYPE hi);
 
-   template < class TYPE >
-   ::count erase_lesser_than_or_equal_or_greater_than(::numeric_array < TYPE > & a, TYPE lo, TYPE hi);
+   template < typename TYPE, enum_type t_etypePayload = e_type_element >
+   ::count erase_lesser_than_or_equal(::numeric_array < TYPE, t_etypePayload > & a, TYPE lo);
 
-   template < class TYPE >
-   ::count erase_lesser_than_or_equal_or_greater_than_or_equal(::numeric_array < TYPE > & a, TYPE lo, TYPE hi);
+
+   template < typename TYPE, enum_type t_etypePayload = e_type_element >
+   ::count erase_lesser_than_or_greater_than(::numeric_array < TYPE, t_etypePayload > & a, TYPE lo, TYPE hi);
+
+
+   template < typename TYPE, enum_type t_etypePayload = e_type_element >
+   ::count erase_lesser_than_or_greater_than_or_equal(::numeric_array < TYPE, t_etypePayload > & a, TYPE lo, TYPE hi);
+
+
+   template < typename TYPE, enum_type t_etypePayload = e_type_element >
+   ::count erase_lesser_than_or_equal_or_greater_than(::numeric_array < TYPE, t_etypePayload > & a, TYPE lo, TYPE hi);
+
+
+   template < typename TYPE, enum_type t_etypePayload = e_type_element >
+   ::count erase_lesser_than_or_equal_or_greater_than_or_equal(::numeric_array < TYPE, t_etypePayload > & a, TYPE lo, TYPE hi);
 
 
 }   // namespace papaya

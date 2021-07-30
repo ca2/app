@@ -475,16 +475,16 @@ void stream::write(const ::payload & payload)
    case e_type_bool:
       *this << payload.m_b;
       break;
-   case e_type_inta:
+   case e_type_i32_array:
       *this << payload.inta();
       break;
    case e_type_memory:
       *this << payload.memory();
       break;
-   case e_type_stra:
+   case e_type_string_array:
       *this << payload.stra();
       break;
-   case e_type_propset:
+   case e_type_property_set:
       *this << payload.propset();
       break;
    case e_type_id:

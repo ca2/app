@@ -17,8 +17,8 @@
 //}
 
 
-template < class TYPE, class ARG_TYPE, class ALLOCATOR >
-void __io_array(stream & stream, ::array_base < TYPE, ARG_TYPE, ALLOCATOR > & array)
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
+void __io_array(stream & stream, ::array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload > & array)
 {
 
   if (stream.is_storing())
@@ -39,8 +39,8 @@ void __io_array(stream & stream, ::array_base < TYPE, ARG_TYPE, ALLOCATOR > & ar
 
 //template < typename ARRAY, typename READER >
 //inline void __load_array(ARRAY & array, READER && reader)
-template < class TYPE, class ARG_TYPE, class ALLOCATOR >
-inline stream & operator >>(stream & stream, ::array_base < TYPE, ARG_TYPE, ALLOCATOR > & array)
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
+inline stream & operator >>(stream & stream, ::array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload > & array)
 {
 
    ::count cSerialized = 0;
@@ -98,8 +98,8 @@ inline stream & operator >>(stream & stream, ::array_base < TYPE, ARG_TYPE, ALLO
 
 //template < typename ARRAY, typename WRITER >
 //inline void __save_array(ARRAY & array, WRITER && writer)
-template < class TYPE, class ARG_TYPE, class ALLOCATOR >
-inline stream & operator <<(stream & stream, const ::array_base < TYPE, ARG_TYPE, ALLOCATOR > & array)
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
+inline stream & operator <<(stream & stream, const ::array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload > & array)
 {
 
    ::count c = array.get_count();

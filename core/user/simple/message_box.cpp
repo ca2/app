@@ -32,7 +32,7 @@
 //   
 //   ::payload payload;
 //   
-//   if(varParam.get_type () != e_type_propset)
+//   if(varParam.get_type () != e_type_property_set)
 //   {
 //      
 //      payload["message"] = varParam.get_string();

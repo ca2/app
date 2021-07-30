@@ -74,10 +74,19 @@ void html_data::delete_contents()
 }
 
 
-void html_data::destroy()
+::e_status html_data::destroy()
 {
 
-   m_pcoredata->destroy();
+   auto estatus = m_pcoredata->destroy();
+
+   if (!estatus)
+   {
+
+      return estatus;
+
+   }
+
+   return estatus;
 
 }
 

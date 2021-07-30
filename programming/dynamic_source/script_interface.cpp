@@ -10,9 +10,9 @@ namespace dynamic_source
    script_interface::script_interface()
    {
 
-      m_posdataNetnodeScriptImpl = nullptr;
+      m_pnetnodescriptimpl = nullptr;
 
-      m_posdataNetnodeScriptInterface = nullptr;
+      m_pnetnodescriptinterface = nullptr;
 
       m_iDebug             = 0;
 
@@ -74,16 +74,30 @@ namespace dynamic_source
    }
 
 
-   ::e_status script_interface::finalize()
+   //::e_status script_interface::finalize()
+   //{
+
+   //   auto estatus = ::html::file::finalize();
+
+   //   m_pmain.release(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
+   //   m_pinstanceParent2.release(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
+   //   m_pscript2.release(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
+
+   //   return estatus;
+
+   //}
+
+   ::e_status script_interface::destroy()
    {
 
-      auto estatus = ::html::file::finalize();
+      auto estatus = ::html::file::destroy();
 
       m_pmain.release(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
       m_pinstanceParent2.release(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
       m_pscript2.release(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
 
       return estatus;
+
 
    }
 
@@ -239,7 +253,7 @@ namespace dynamic_source
       catch (const ::dynamic_source::exit_exception & e)
       {
 
-         finalize();
+         destroy();
 
          throw e;
 

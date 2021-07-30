@@ -59,7 +59,7 @@ public:
    ::html::element* get_element_by_id(id id);
 
    void delete_contents();
-   void destroy();
+   ::e_status destroy() override;
    void delete_implementation();
 
    virtual bool contains(__pointer(::user::interaction) pinteraction);

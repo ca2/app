@@ -19,7 +19,7 @@ public:
 
    //virtual ::e_status set_finish_composites(::property_object* pcontextobjectRootFinishingInitiator) override;
 
-   virtual ::e_status finish_composites() override;
+   ::e_status destroy_composites() override;
 
 
    virtual ::image_result get_image(const ::payload & varFile, bool bCache = true, bool bSync = true);

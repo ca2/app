@@ -92,7 +92,7 @@ public:
    ~property() { on_property_destruct(); }
 
 
-   void* operator new(size_t size, const char * /* pszFileName */, int /* nLine */)
+   void* operator new(size_t size)
    {
 
       return property_memory_allocate(size);
@@ -100,7 +100,7 @@ public:
    }
 
 
-   void* operator new(size_t size)
+   void* operator new(size_t size, const char* /* pszFileName */, int /* nLine */)
    {
 
       return property_memory_allocate(size);
@@ -266,11 +266,11 @@ public:
 ////
 ////   string_array & stra();
 ////   int_array & inta();
-////   var_array & vara();
+////   payload_array & payloada();
 ////   property_set & propset();
 ////   const string_array & stra() const;
 ////   const int_array & inta() const;
-////   const var_array & vara() const;
+////   const payload_array & payloada() const;
 ////   const property_set & propset() const;
 ////   inline void get_string(char * psz) const;
 ////   strsize get_length() const;
@@ -292,7 +292,7 @@ public:
 ////
 ////   inline ::payload operator()(::index iIndex) const { return find_property(::id(iIndex)); }
 ////
-////   inline bool has_property(const ::id & id) const { return m_etype == e_type_propset ? has_property(id) : false; }
+////   inline bool has_property(const ::id & id) const { return m_etype == e_type_property_set ? has_property(id) : false; }
 ////
 ////   inline property & operator[](const id & id) { return get_property(id); }
 ////   inline ::payload operator[](const id & id) const { return find_property(id); }

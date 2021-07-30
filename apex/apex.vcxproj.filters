@@ -1223,6 +1223,9 @@
     <ClInclude Include="platform\application_exit.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
+    <ClInclude Include="net\sockets\base\socket_thread.h">
+      <Filter>Header Files\net\sockets\base</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="filesystem\file\set.cpp">
@@ -1818,6 +1821,9 @@
     </ClCompile>
     <ClCompile Include="platform\application_exit.cpp">
       <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="net\sockets\base\socket_thread.cpp">
+      <Filter>Source Files\net\sockets\base</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

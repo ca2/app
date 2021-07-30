@@ -20,8 +20,8 @@
 
 
 
-template < class Type, class RawType >
-inline stream & operator << (stream & ostream, const string_array_base < Type, RawType > & a)
+template < typename Type, typename RawType, enum_type t_etypePayload >
+inline stream & operator << (stream & ostream, const string_array_base < Type, RawType, t_etypePayload > & a)
 {
    ostream.write(a->get_count());
    for (i32 i = 0; i < a->get_size(); i++)
@@ -32,8 +32,8 @@ inline stream & operator << (stream & ostream, const string_array_base < Type, R
 }
 
 
-template < class Type, class RawType >
-inline stream &  operator >>(stream & istream, string_array_base < Type, RawType > & a)
+template < typename Type, typename RawType, enum_type t_etypePayload >
+inline stream &  operator >>(stream & istream, string_array_base < Type, RawType, t_etypePayload > & a)
 {
 
    if (istream.fail())

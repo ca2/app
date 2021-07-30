@@ -520,7 +520,7 @@ void text_stream::write(const void * psz, strsize s)
 //
 //   ::__exchange(s, t);
 //
-//   strJson = s.m_pvar->get_json();
+//   strJson = s.m_ppayload->get_json();
 //
 //   string_write(strJson);
 //
@@ -536,7 +536,7 @@ void text_stream::write(const void * psz, strsize s)
 //
 //   string_read(strJson);
 //
-//   s.m_pvar->parse_json(strJson);
+//   s.m_ppayload->parse_json(strJson);
 //
 //   s.set_loading();
 //

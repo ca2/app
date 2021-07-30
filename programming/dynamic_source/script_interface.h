@@ -5,22 +5,14 @@ namespace dynamic_source
 {
 
 
-   class script;
-   class script_manager;
-
-
-   class httpd_socket;
-   class script_main;
-
-
    class CLASS_DECL_APP_PROGRAMMING script_interface :
       virtual public ::html::file
    {
    public:
 
 
-      void *                              m_posdataNetnodeScriptInterface;
-      void *                              m_posdataNetnodeScriptImpl;
+      ::netnode::script_interface *       m_pnetnodescriptinterface;
+      ::netnode::script_impl *            m_pnetnodescriptimpl;
 
       string                              m_strNote;
 
@@ -31,23 +23,23 @@ namespace dynamic_source
 
       i32                                 m_iDebug;
 
-      ::payload                                 m_varRet;
+      ::payload                           m_varRet;
 
       string                              m_strDebugRequestUri;
       string                              m_strDebugThisScript;
 
 
       script_interface();
-      virtual ~script_interface();
+      ~script_interface() override;
 
       virtual const char* debug_note() const override;
 
       virtual ::e_status initialize(::object * pobject) override;
       virtual ::e_status init1();
 
-      virtual ::e_status finalize() override;
+      //::e_status finalize() override;
 
-
+      ::e_status destroy() override;
       virtual ::e_status     run() override;
 
 

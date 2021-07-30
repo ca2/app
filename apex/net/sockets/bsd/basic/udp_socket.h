@@ -48,7 +48,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
          bool m_bind_ok; ///< Bind completed successfully
          port_t m_port; ///< Bind port number
          memsize m_last_size_written;
-         i32 m_retries;
+         i32 m_iConnectionRetryCount;
          bool m_b_read_ts;
 
 

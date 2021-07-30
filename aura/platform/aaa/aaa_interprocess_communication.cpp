@@ -24,12 +24,12 @@ namespace aura
    }
 
 
-   void interprocess_communication::task::do_task(const string & strObject, const string & strMember, const var_array & vara)
+   void interprocess_communication::task::do_task(const string & strObject, const string & strMember, const payload_array & payloada)
    {
 
       ::aura::ipc::tx & txc = m_pcall->m_pinterprocessintercommunication->tx(m_pcall->m_strApp, m_idPid);
 
-      string strVara = m_pcall->m_pinterprocessintercommunication->str_from_va(vara);
+      string strVara = m_pcall->m_pinterprocessintercommunication->str_from_va(payloada);
 
       m_iTask = atomic_increment(&m_pcall->m_pinterprocessintercommunication->m_iTaskSeed);
 
@@ -91,10 +91,10 @@ namespace aura
    }
 
 
-   void interprocess_communication::call::add_args(const var_array & vara)
+   void interprocess_communication::call::add_args(const payload_array & payloada)
    {
 
-      ::papaya::array::add(m_varaArgs, vara);
+      ::papaya::array::add(m_varaArgs, payloada);
 
    }
 
@@ -523,12 +523,12 @@ started:
    }
 
 
-   string interprocess_communication::str_from_va(const var_array & vara)
+   string interprocess_communication::str_from_va(const payload_array & payloada)
    {
 
       memory_stream stream;
 
-      stream << vara;
+      stream << payloada;
 
       return stream->get_primitive_memory()->to_hex();
 
@@ -588,7 +588,7 @@ started:
 
       string_array stra;
 
-      var_array vara;
+      payload_array payloada;
 
       if(iFind >= 0 && iFind <= 3)
       {
@@ -640,13 +640,13 @@ started:
 
          stream.set_loading();
 
-         __io_array(stream, vara);
+         __io_array(stream, payloada);
 
       }
 
       ::payload varRet;
 
-      on_interprocess_call(varRet, strObject, strMember, vara);
+      on_interprocess_call(varRet, strObject, strMember, payloada);
 
       if(!strMember.begins_ci("reply."))
       {
@@ -708,7 +708,7 @@ started:
    }
 
 
-   void interprocess_communication::on_interprocess_call(::payload & payload, const string & strObject, const string & strMember, var_array & vara)
+   void interprocess_communication::on_interprocess_call(::payload & payload, const string & strObject, const string & strMember, payload_array & payloada)
    {
 
       if(strObject == "application")
@@ -717,11 +717,11 @@ started:
          if(::str::begins_ci(strMember, "reply."))
          {
 
-            ::i64 iTask = vara[0].i64();
+            ::i64 iTask = payloada[0].i64();
 
             auto pobjectTask = get_task(iTask);
 
-            pobjectTask->m_var = vara[1];
+            pobjectTask->m_var = payloada[1];
 
             pobjectTask->m_pevReady->set_event();
 
@@ -729,13 +729,13 @@ started:
          else if(strMember == "on_additional_local_instance")
          {
 
-            payload["continue"] = papplication->on_additional_local_instance(payload["handled"], vara[0], vara[1], vara[2]);
+            payload["continue"] = papplication->on_additional_local_instance(payload["handled"], payloada[0], payloada[1], payloada[2]);
 
          }
          else if (strMember == "on_new_instance")
          {
 
-            on_new_instance(vara[0], vara[1]);
+            on_new_instance(payloada[0], payloada[1]);
 
          }
 

@@ -1,23 +1,26 @@
 #pragma once
 
 
-class CLASS_DECL_ACME var_array :
-   public array < ::payload >
+class CLASS_DECL_ACME payload_array :
+   public array < ::payload, const ::payload &, ::allocator::def < ::payload >, e_type_payload_array >
 {
 public:
 
 
-   var_array();
-   var_array(const std::initializer_list < ::payload > & varlist);
-   var_array(const string_array & stra);
-   var_array(const int_array & inta);
-   var_array(const ::property_set & propset);
-   var_array(const var_array & vara);
-   virtual ~var_array();
+   using BASE_ARRAY = array < ::payload, const ::payload&, ::allocator::def < ::payload >, e_type_payload_array >;
+
+
+   payload_array();
+   payload_array(const std::initializer_list < ::payload > & varlist);
+   payload_array(const string_array & stra);
+   payload_array(const int_array & inta);
+   payload_array(const ::property_set & propset);
+   payload_array(const payload_array & payloada);
+   ~payload_array() override;
 
 
    index add(const ::payload & payload);
-   index add(const var_array & vara);
+   index add(const payload_array & payloada);
    index add(const std::initializer_list < ::payload > & list)
    {
 
@@ -48,7 +51,7 @@ public:
    inline index add(i64 i) { return add((const ::payload &) i); }
    inline index add(u64 u) { return add((const ::payload &) u); }
 
-   ::count add_unique(const var_array & vara);
+   ::count add_unique(const payload_array & payloada);
 
    string implode(const char * pszGlue) const;
 
@@ -75,21 +78,21 @@ public:
 
    ::count erase(const ::payload & payload, index find = 0, index last = -1, ::count countMin = 0, ::count countMax = -1);
 
-   ::count erase(const var_array & vara);
+   ::count erase(const payload_array & payloada);
 
-   var_array & operator -=(::payload payload);
-   var_array & operator -=(var_array vara);
-   var_array operator -(::payload payload) const;
-   var_array operator -(var_array vara) const;
-   var_array & operator +=(::payload payload);
-   var_array & operator +=(var_array vara);
-   var_array operator +(::payload payload) const;
-   var_array operator +(var_array vara) const;
+   payload_array & operator -=(const ::payload & payload);
+   payload_array & operator -=(const payload_array & payloada);
+   payload_array operator -(const ::payload & payload) const;
+   payload_array operator -(const payload_array & payloada) const;
+   payload_array & operator +=(const ::payload & payload);
+   payload_array & operator +=(const payload_array & payloada);
+   payload_array operator +(const ::payload & payload) const;
+   payload_array operator +(const payload_array & payloada) const;
 
-   var_array & operator = (const string_array & stra);
-   var_array & operator = (const int_array & inta);
-   var_array & operator = (const ::property_set & propset);
-   var_array & operator = (const var_array & vara);
+   payload_array & operator = (const string_array & stra);
+   payload_array & operator = (const int_array & inta);
+   payload_array & operator = (const ::property_set & propset);
+   payload_array & operator = (const payload_array & payloada);
 
 
    void parse_json(const char * & pszJson);
@@ -101,18 +104,18 @@ public:
    string & get_json(string & str, bool bNewLine = true) const;
 
 
-   var_array array()
+   payload_array array()
    {
 
-      return var_array();
+      return payload_array();
 
    }
 
    template < typename... VARS >
-   var_array array(VARS&... vars)
+   payload_array array(VARS&... vars)
    {
 
-      var_array va;
+      payload_array va;
       return va.array(vars...);
 
    }
@@ -128,7 +131,7 @@ CLASS_DECL_ACME void var_array_skip_json(const char *& pszJson);
 CLASS_DECL_ACME void var_array_skip_json(const char *& pszJson, const char * pszEnd);
 
 
-inline ::payload var_array::value_at(::index i) const
+inline ::payload payload_array::value_at(::index i) const
 {
 
    if (i < 0 || i >= this->get_count())
@@ -148,10 +151,10 @@ namespace papaya
 
 
    template < typename... VARS >
-   ::var_array array_merge(VARS&... vars)
+   ::payload_array array_merge(VARS&... vars)
    {
 
-      return ::var_array().array(vars...);
+      return ::payload_array().array(vars...);
 
 
    }

@@ -46,7 +46,7 @@ public:
 
    auto natural_add_ref() { return m_countReference++; }
 
-   auto natural_dec_ref() { return m_countReference--; }
+   auto natural_dec_ref() { return --m_countReference; }
 
    inline static ::memsize natural_offset() { meta_data metadata; return (((byte*)&metadata.m_endofmetadata - (byte*)&metadata) + NATURAL_METADATA_ALIGN - 1) & (~(NATURAL_METADATA_ALIGN - 1)); }
 

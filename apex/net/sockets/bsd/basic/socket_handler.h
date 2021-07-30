@@ -17,8 +17,8 @@ namespace sockets
 
       __pointer(::apex::log)     m_splogger; ///< Registered log class, or nullptr
 
-      socket_map                 m_sockets; ///< Active sockets map
-      socket_map                 m_add; ///< Sockets to be added to sockets map
+      socket_map                 m_socketmap; ///< Active sockets map
+      socket_map                 m_socketmapAdd; ///< Sockets to be added to sockets map
       socket_pointer_list        m_delete; ///< Sockets to be deleted (failed when add)
       bool                       m_b_use_mutex; ///< ::mutex correctly initialized
       SOCKET                     m_maxsock; ///< Highest file descriptor + 1 in active sockets list
@@ -33,13 +33,13 @@ namespace sockets
       time_t                     m_tlast; ///< timeout control
 
       // state lists
-      socket_list                m_fds; ///< Active file descriptor list
-      socket_list                m_fds_erase; ///< File descriptors that are to be erased from m_sockets
-      socket_list                m_fds_callonconnect; ///< checklist CallOnConnect
-      socket_list                m_fds_detach; ///< checklist detach
-      socket_list                m_fds_timeout; ///< checklist timeout
-      socket_list                m_fds_retry; ///< checklist retry client connect
-      socket_list                m_fds_close; ///< checklist close and delete
+      socket_list                m_socketlist; ///< Active file descriptor list
+      socket_list                m_socketlistErase; ///< File descriptors that are to be erased from m_sockets
+      socket_list                m_socketlistCallOnConnect; ///< checklist CallOnConnect
+      socket_list                m_socketlistDetach; ///< checklist detach
+      socket_list                m_socketlistTimeout; ///< checklist timeout
+      socket_list                m_socketlistRetryClientConnect; ///< checklist retry client connect
+      socket_list                m_socketlistClose; ///< checklist close and delete
       in_addr                    m_socks4_host; ///< Socks4 server host ip
       port_t                     m_socks4_port; ///< Socks4 server port number
       string                     m_socks4_userid; ///< Socks4 userid
@@ -48,16 +48,19 @@ namespace sockets
       //::task_pointer        m_resolver; ///< Resolver thread pointer
       //port_t                     m_resolver_port; ///< Resolver listen port
       //socket_flag_map            m_resolve_q; ///< resolve queue
-      bool                       m_b_enable_pool; ///< Connection pool enabled if true
+      bool                       m_bEnablePool; ///< Connection pool enabled if true
       i32                        m_next_trigger_id; ///< Unique trigger id counter
       socket_map                 m_trigger_src; ///< mapping trigger id to source base_socket
       socket_socket_flag_map     m_trigger_dst; ///< mapping trigger id to destination sockets
-      bool                       m_slave; ///< Indicates that this is a base_socket_handler run in socket_thread
+      //bool                       m_slave; ///< Indicates that this is a base_socket_handler run in socket_thread
 
 
       socket_handler(::apex::log * plogger = nullptr);
-      virtual ~socket_handler();
+      ~socket_handler() override;
 
+
+      i64 increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override;
+      i64 decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override;
 
       void cleanup_handler();
 
@@ -69,7 +72,12 @@ namespace sockets
       //resolv_server * resolver();
 
       /** add base_socket instance to base_socket map. Removal is always automatic. */
-      virtual void add(base_socket *) override;
+      void restart_socket(SOCKET socket) override;
+
+      void add2(const socket_pointer & psocket) override;
+      void move2(socket_pointer && psocket) override;
+      void move(socket_map::association* passociation, socket_map* psocketmap = nullptr) override;
+      //void _move(socket_map::association* passociation, socket_map* psocketmap) override;
 
       virtual bool contains(base_socket *) override;
 
@@ -99,7 +107,12 @@ namespace sockets
       bool OkToAccept(base_socket *point_i32) override;
 
       /** Called by base_socket when a base_socket changes state. */
-      void AddList(SOCKET s,list_t which_one,bool add) override;
+      socket_list& socketlist_get(enum_list elist) override;
+      void socketlist_modify(SOCKET s, enum_list elist, bool bAdd) override;
+      void socketlist_add(SOCKET s, enum_list elist) override;
+      void socketlist_erase(SOCKET s, enum_list elist) override;
+
+      void erase_socket(SOCKET s);
 
       // Connection pool
       /** find available open connection (used by connection pool). */
@@ -170,9 +183,9 @@ namespace sockets
       void Trigger(i32 id, base_socket::trigger_data & data, bool erase = true) override;
 
       /** Indicates that the handler runs under socket_thread. */
-      void SetSlave(bool x = true) override;
+      //void SetSlave(bool x = true) override;
       /** Indicates that the handler runs under socket_thread. */
-      bool IsSlave() override;
+      //bool IsSlave() override;
 
       /** Sanity check of those accursed lists. */
       void CheckSanity();

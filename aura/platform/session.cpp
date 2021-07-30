@@ -1529,16 +1529,12 @@ namespace aura
    //}
 
 
-
-
-   ::e_status session::finish()
+   ::e_status session::destroy()
    {
 
-      return ::aqua::session::finish();
+      return ::aqua::session::destroy();
 
    }
-
-
 
 
    bool session::is_key_pressed(::user::enum_key ekey)
@@ -2429,11 +2425,7 @@ namespace aura
 
          ::color::color crBk;
 
-         auto psystem = get_system()->m_paurasystem;
-
-         auto pnode = psystem->node();
-
-         if (pnode && pnode->is_app_dark_mode())
+         if (is_dark_mode())
          {
 
             crBk = argb(255, 0x40, 0x40, 0x40);
@@ -2454,11 +2446,7 @@ namespace aura
 
          ::color::color crBk;
 
-         auto psystem = get_system()->m_paurasystem;
-
-         auto pnode = psystem->node();
-
-         if (pnode && pnode->is_app_dark_mode())
+         if (is_dark_mode())
          {
 
             crBk = argb(255, 127, 127, 127);
@@ -2479,11 +2467,7 @@ namespace aura
 
          ::color::color crText;
 
-         auto psystem = get_system()->m_paurasystem;
-
-         auto pnode = psystem->node();
-
-         if (pnode && pnode->is_app_dark_mode())
+         if (is_dark_mode())
          {
 
             crText = argb(255, 255, 255, 255);

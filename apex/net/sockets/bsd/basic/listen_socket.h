@@ -191,14 +191,12 @@ namespace sockets
 
             pbasesocket = m_creator->new_listen_socket();
 
-            m_psocket = pbasesocket.cast < LISTENER > ();
+            m_psocket = dynamic_cast < LISTENER * > (pbasesocket.m_p);
 
             if (m_psocket == nullptr)
             {
 
-               pbasesocket->release();
-
-               pbasesocket = nullptr;
+               pbasesocket.release();
 
             }
 
@@ -210,14 +208,12 @@ namespace sockets
 
             pbasesocket = __new(LISTENER());
 
-            //pbasesocket->m_psockethandler = socket_handler();
-
-            m_psocket = pbasesocket.cast < LISTENER >();
+            m_psocket = dynamic_cast < LISTENER * >(pbasesocket.m_p);
 
             if (pbasesocket == nullptr)
             {
 
-               m_psocket->release();
+               pbasesocket.release();
 
                m_psocket = nullptr;
 

@@ -9,4 +9,3 @@ CLASS_DECL_ACME void       string_memory_free(void* p);
 CLASS_DECL_ACME memsize    string_memory_size(void* p);
 
 
-

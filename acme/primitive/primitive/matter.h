@@ -43,7 +43,7 @@ public:
          bool        m_bTaskReadyToQuit : 1;
          bool        m_bHeapAllocated : 1;
          bool        m_bSetFinish : 1;
-         bool        m_bFinishing : 1;
+         bool        m_bDestroying : 1;
          bool        m_bProcessed : 1;
          bool        m_bTaskStarted : 1;
          bool        m_bTaskTerminated : 1;
@@ -118,6 +118,9 @@ public:
 #endif
 
 
+   virtual ::enum_type get_payload_type() const;
+
+
    virtual ::e_status initialize_matter(::matter* pmatter);
 
 
@@ -155,7 +158,7 @@ public:
    virtual void task_erase(::task* pthread);
 
 
-   virtual void notify_on_finish(::property_object * pobject);
+   virtual void notify_on_destroy(::property_object * pobject);
 
 
    virtual void kick_idle();
@@ -254,13 +257,13 @@ public:
    virtual ::e_status on_finish();
    //virtual ::e_status set_finish(::property_object * pcontextobjectFinish);
    //virtual ::e_status set_finish();
-   virtual ::e_status finish_composites();
 
 
    // returns success when object is ready to have finalize called
    // returns error_pending if any child or ascendant is still active
    //virtual ::e_status finish(::property_object * pcontextobjectFinish = nullptr);
-   virtual ::e_status finish();
+   virtual ::e_status destroy();
+   virtual ::e_status destroy_composites();
 
 
    virtual void post_quit();

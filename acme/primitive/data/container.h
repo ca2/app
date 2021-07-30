@@ -60,7 +60,7 @@ namespace data
       }
 
 
-      template < class TYPE >
+      template < typename TYPE >
       bool replace_data(const ::id & id, TYPE * pdata)
       {
 

@@ -429,8 +429,8 @@ void * plex_heap_alloc_array::_realloc(void * p, memsize size, memsize sizeOld, 
 
          memsize newSize = size - heap_memory_aligned_provision_get_size(0, ALIGN_BYTE_COUNT);
 
-         ::memcpy_dup(heap_memory_aligned(pNew,newSize,0, ALIGN_BYTE_COUNT),
-                heap_memory_aligned(p,oldSize,0, ALIGN_BYTE_COUNT),
+         ::memcpy_dup(heap_memory_aligned(pNew,newSize,0, ALIGN_BYTE_COUNT, HEAP_ENUMERATE),
+                heap_memory_aligned(p,oldSize,0, ALIGN_BYTE_COUNT, HEAP_ENUMERATE),
                 minimum(oldSize, newSize));
 
       }
@@ -586,6 +586,13 @@ plex_heap_alloc * plex_heap_alloc_array::find(memsize nAllocSize)
 
       if (nAllocSize <= palloc->m_iAllocSize)
       {
+
+         if (palloc->m_iAllocSize == 16384)
+         {
+
+            ::output_debug_string(".");
+
+         }
 
          return m_pData[i];
 
@@ -874,6 +881,8 @@ void plex_heap_alloc_sync::NewBlock()
    critical_section_lock synchronouslock(&m_criticalsection);
 
    ::u32 nAllocSize = m_nAllocSize;
+
+   ::HEAP_NAMESPACE::on_plex_new_block(nAllocSize);
 
    plex_heap * pnewblock = plex_heap::create(m_pBlocks, m_nBlockSize, nAllocSize);
 

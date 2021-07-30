@@ -1155,7 +1155,7 @@ inline stream & operator >> (stream & s, ::datetime::time & time);
 //}
 
 
-//template < class TYPE >
+//template < typename TYPE >
 //inline i64 release(__pointer(TYPE) & pointer OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS)
 //{
 //

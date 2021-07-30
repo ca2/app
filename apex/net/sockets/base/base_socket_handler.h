@@ -34,14 +34,14 @@ namespace sockets
 {
 
 
-   typedef enum
+   enum enum_list
    {
-      LIST_CALLONCONNECT = 0,
-      LIST_DETACH,
-      LIST_TIMEOUT,
-      LIST_RETRY,
-      LIST_CLOSE
-   } list_t;
+      e_list_call_on_connect,
+      e_list_detach,
+      e_list_timeout,
+      e_list_retry_client_connect,
+      e_list_close
+   };
 
 
    /** socket container class, event generator.
@@ -63,7 +63,7 @@ namespace sockets
 
          
          pool_socket(base_socket * src);
-         virtual ~pool_socket();
+         ~pool_socket() override;
 
          
          void OnRead();
@@ -92,7 +92,11 @@ namespace sockets
       // socket stuff
       // -------------------------------------------------------------------------
       /** add socket instance to socket ::map. Removal is always automatic. */
-      virtual void add(base_socket *) = 0;
+      virtual void add2(const socket_pointer& psocket) = 0;
+      virtual void move2(socket_pointer && psocket) = 0;
+      virtual void move(socket_map::association * passociation, socket_map * psocketmap = nullptr) = 0;
+      virtual void restart_socket(SOCKET socket) = 0;
+      //virtual socket_map::association* new_association(socket_pointer && psocket) = 0;
    private:
       /** erase socket from socket ::map, used by socket class. */
       virtual void erase(base_socket *) = 0;
@@ -123,7 +127,12 @@ namespace sockets
       virtual bool OkToAccept(base_socket *point_i32) = 0;
 
       /** Called by socket when a socket changes state. */
-      virtual void AddList(SOCKET s,list_t which_one,bool add) = 0;
+      virtual socket_list& socketlist_get(enum_list elist) = 0;
+      virtual void socketlist_modify(SOCKET s, enum_list elist, bool bAdd) = 0;
+      virtual void socketlist_add(SOCKET s, enum_list elist) = 0;
+      virtual void socketlist_erase(SOCKET s, enum_list elist) = 0;
+
+      virtual void erase_socket(SOCKET s) = 0;
       // -------------------------------------------------------------------------
       // Connection pool
       // -------------------------------------------------------------------------
@@ -199,9 +208,9 @@ namespace sockets
       Leave them in place if 'false' - if a trigger should be called many times */
       virtual void Trigger(int id, base_socket::trigger_data & data, bool erase = true) = 0;
       /** Indicates that the handler runs under socket_thread. */
-      virtual void SetSlave(bool x = true) = 0;
+      //virtual void SetSlave(bool x = true) = 0;
       /** Indicates that the handler runs under socket_thread. */
-      virtual bool IsSlave() = 0;
+      //virtual bool IsSlave() = 0;
 
       //virtual void __tracef(e_trace_category ecategory, enum_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, base_socket * psocket, const string & strContext, i32 err, const string & strMessage);
 

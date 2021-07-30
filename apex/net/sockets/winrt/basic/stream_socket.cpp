@@ -11,13 +11,13 @@ namespace sockets
       base_socket(h),
       socket(h)
       ,m_bConnecting(false)
-      ,m_connect_timeout(5)
-      ,m_flush_before_close(true)
-      ,m_connection_retry(0)
-      ,m_retries(0)
-      ,m_call_on_connect(false)
-      ,m_b_retry_connect(false)
-      ,m_shutdown(0)
+      ,m_secsConnectionTimeout(5)
+      ,m_bFlushBeforeClose(true)
+      ,m_iMaximumConnectionRetryCount(0)
+      ,m_iConnectionRetryCount(0)
+      ,m_bCallOnConnect(false)
+      ,m_bRetryClientConnect(false)
+      ,m_iShutdownStatus(0)
    {
       
    }
@@ -29,7 +29,7 @@ namespace sockets
    }
 
 
-   void stream_socket::SetConnecting(bool x)
+   void stream_socket::set_connecting(bool x)
    {
       
       if (x != m_bConnecting)
@@ -55,7 +55,7 @@ namespace sockets
    }
 
 
-   bool stream_socket::Connecting()
+   bool stream_socket::is_connecting()
    {
       
       return m_bConnecting;
@@ -66,7 +66,7 @@ namespace sockets
    bool stream_socket::Ready()
    {
       
-      if (GetSocket() != INVALID_SOCKET && !Connecting() && !IsCloseAndDelete())
+      if (GetSocket() != INVALID_SOCKET && !is_connecting() && !IsCloseAndDelete())
       {
 
          return true;
@@ -80,81 +80,81 @@ namespace sockets
 
    void stream_socket::SetConnectTimeout(int x)
    {
-      m_connect_timeout = x;
+      m_secsConnectionTimeout = x;
    }
 
 
    int stream_socket::GetConnectTimeout()
    {
-      return m_connect_timeout;
+      return m_secsConnectionTimeout;
    }
 
 
    void stream_socket::SetFlushBeforeClose(bool x)
    {
-      m_flush_before_close = x;
+      m_bFlushBeforeClose = x;
    }
 
 
    bool stream_socket::GetFlushBeforeClose()
    {
-      return m_flush_before_close;
+      return m_bFlushBeforeClose;
    }
 
 
    int stream_socket::GetConnectionRetry()
    {
-      return m_connection_retry;
+      return m_iMaximumConnectionRetryCount;
    }
 
 
    void stream_socket::SetConnectionRetry(int x)
    {
-      m_connection_retry = x;
+      m_iMaximumConnectionRetryCount = x;
    }
 
 
-   int stream_socket::GetConnectionRetries()
+   int stream_socket::GetConnectionRetryCount()
    {
-      return m_retries;
+      return m_iConnectionRetryCount;
    }
 
 
    void stream_socket::IncreaseConnectionRetries()
    {
-      m_retries++;
+      m_iConnectionRetryCount++;
    }
 
 
    void stream_socket::ResetConnectionRetries()
    {
-      m_retries = 0;
+      m_iConnectionRetryCount = 0;
    }
 
 
    void stream_socket::SetCallOnConnect(bool x)
    {
       socket_handler()->AddList(GetSocket(), LIST_CALLONCONNECT, x);
-      m_call_on_connect = x;
+      m_bCallOnConnect = x;
    }
 
 
    bool stream_socket::CallOnConnect()
    {
-      return m_call_on_connect;
+      return m_bCallOnConnect;
    }
 
 
    void stream_socket::SetRetryClientConnect(bool x)
    {
       socket_handler()->AddList(GetSocket(), LIST_RETRY, x);
-      m_b_retry_connect = x;
+      m_bRetryClientConnect = x;
    }
 
 
    bool stream_socket::RetryClientConnect()
    {
-      return m_b_retry_connect;
+      return m_bRetryClientConnect;
    }
 
 
@@ -162,13 +162,13 @@ namespace sockets
 
    void stream_socket::SetShutdown(int x)
    {
-      m_shutdown = x;
+      m_iShutdownStatus = x;
    }
 
 
    int stream_socket::GetShutdown()
    {
-      return m_shutdown;
+      return m_iShutdownStatus;
    }
 
    /** Returns IPPROTO_TCP or IPPROTO_SCTP */

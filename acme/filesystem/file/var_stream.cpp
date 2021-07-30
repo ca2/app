@@ -3,8 +3,8 @@
 var_stream::~var_stream()
 {
 
-   //if (m_bOwn) ::acme::del(m_pvar);
-   ::acme::del(m_pvar);
+   //if (m_bOwn) ::acme::del(m_ppayload);
+   ::acme::del(m_ppayload);
 
 }
 
@@ -269,7 +269,7 @@ void var_stream::read(block & block)
 
    }
 
-   if (m_pvar->m_etype != e_type_memory || ::is_null(m_pvar->m_pmemory))
+   if (m_ppayload->m_etype != e_type_memory || ::is_null(m_ppayload->m_pmemory))
    {
 
       set_fail_bit();
@@ -278,9 +278,9 @@ void var_stream::read(block & block)
 
    }
 
-   if (block.get_size() != m_pvar->m_pmemory->get_size()
+   if (block.get_size() != m_ppayload->m_pmemory->get_size()
       || block.get_data() == nullptr
-      || m_pvar->m_pmemory->get_data() == nullptr)
+      || m_ppayload->m_pmemory->get_data() == nullptr)
    {
 
       set_fail_bit();
@@ -289,7 +289,7 @@ void var_stream::read(block & block)
 
    }
 
-   ::memcpy(block.get_data(), m_pvar->m_pmemory->get_data(), block.get_size());
+   ::memcpy(block.get_data(), m_ppayload->m_pmemory->get_data(), block.get_size());
 
 }
 
@@ -297,7 +297,7 @@ void var_stream::read(block & block)
 void var_stream::write(const block & block)
 {
 
-   *m_pvar = block;
+   *m_ppayload = block;
 
 }
 

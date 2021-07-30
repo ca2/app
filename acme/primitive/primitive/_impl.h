@@ -283,7 +283,7 @@ inline ::payload & property_set::set(const ::id & id)
 //inline property * payload::find_property(const ::id & id) const
 //{
 //
-//   if (!casts_to(e_type_propset))
+//   if (!casts_to(e_type_property_set))
 //   {
 //
 //      return nullptr;
@@ -561,10 +561,10 @@ inline string CLASS_DECL_ACME operator + (const char * psz, const ::payload & pa
 inline ::property * payload::find_property(const ::id & id) const
 {
 
-   if (m_etype == e_type_pvar)
+   if (m_etype == e_type_payload_pointer)
    {
 
-      return m_pvar->find_property(id);
+      return m_ppayload->find_property(id);
 
    }
    else if (m_etype == e_type_prop)
@@ -573,7 +573,7 @@ inline ::property * payload::find_property(const ::id & id) const
       return m_pprop->find_property(id);
 
    }
-   else if (m_etype == e_type_propset)
+   else if (m_etype == e_type_property_set)
    {
 
       return m_pset->find_property(id);
@@ -588,10 +588,10 @@ inline ::property * payload::find_property(const ::id & id) const
 inline ::index payload::property_index(const ::id & id) const
 {
 
-   if (m_etype == e_type_pvar)
+   if (m_etype == e_type_payload_pointer)
    {
 
-      return m_pvar->property_index(id);
+      return m_ppayload->property_index(id);
 
    }
    else if (m_etype == e_type_prop)
@@ -600,7 +600,7 @@ inline ::index payload::property_index(const ::id & id) const
       return m_pprop->property_index(id);
 
    }
-   else if (m_etype == e_type_propset)
+   else if (m_etype == e_type_property_set)
    {
 
       return m_pset->find_index(id);
@@ -615,10 +615,10 @@ inline ::index payload::property_index(const ::id & id) const
 inline property & payload::get_property(const ::id & id)
 {
 
-   if (m_etype == e_type_pvar)
+   if (m_etype == e_type_payload_pointer)
    {
 
-      return m_pvar->get_property(id);
+      return m_ppayload->get_property(id);
 
    }
    else if (m_etype == e_type_prop)
@@ -627,7 +627,7 @@ inline property & payload::get_property(const ::id & id)
       return m_pprop->get_property(id);
 
    }
-   else if (m_etype == e_type_propset)
+   else if (m_etype == e_type_property_set)
    {
 
       return m_pset->get(id);
@@ -1701,7 +1701,7 @@ inline i64 matter::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAME
 inline i64 matter::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
 {
 
-   return m_countReference--;
+   return --m_countReference;
 
 }
 
@@ -1751,10 +1751,10 @@ inline i64 matter::release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
 inline payload::operator string & ()
 {
 
-   if (m_etype == ::e_type_pvar)
+   if (m_etype == ::e_type_payload_pointer)
    {
 
-      return m_pvar->operator string & ();
+      return m_ppayload->operator string & ();
 
    }
    else if (m_etype == ::e_type_prop)
@@ -1794,10 +1794,10 @@ inline payload::operator string & ()
    inline payload::operator TYPE &()                  \
    {                                         \
                                              \
-      if(m_etype == ::e_type_pvar)        \
+      if(m_etype == ::e_type_payload_pointer)        \
       {                                      \
                                              \
-         return m_pvar->operator TYPE &();   \
+         return m_ppayload->operator TYPE &();   \
                                              \
       }                                      \
       else if(m_etype == ::e_type_prop)        \
@@ -1855,99 +1855,6 @@ IMPL_VAR_REF3(double, d);
 
 #undef IMPL_VAR_REF
 
-//
-//template < typename TYPE >
-//inline ::e_status matter::__construct(::task_pointer & p, void (TYPE:: * pfn)(), e_priority epriority)
-//{
-//
-//   p = fork(pfn, epriority);
-//
-//   if (!p)
-//   {
-//
-//      return error_failed;
-//
-//   }
-//
-//   return p->m_estatus;
-//
-//}
-//
-//
-//template < typename TYPE >
-//inline ::e_status matter::__construct_below_normal(::task_pointer & p, void (TYPE:: * pfn)())
-//{
-//
-//   return __construct(p, pfn, priority_below_normal);
-//
-//}
-//
-//
-//template < typename TYPE >
-//inline ::task_pointer matter::__start_thread(const ::id & id, void(TYPE:: * pfn)(), e_priority epriority)
-//{
-//
-//   auto pfork = fork(pfn, epriority);
-//
-//   get_property_set()[__id(thread)][id] = pfork;
-//
-//   return pfork;
-//
-//}
-
-//
-//inline ::payload & payload::operator = (::memory * pmemory)
-//{
-//
-//   set_element(pmemory);
-//
-//   return *this;
-//
-//}
-
-
-
-
-//template < typename HANDLER, typename TYPE >
-//void matter::start_traits(__pointer(HANDLER) phandler, __pointer(TYPE) ptype)
-//{
-//
-//   fork([phandler, ptype]()
-//      {
-//
-//         for(index i = 0; i < ptype->m_ptraits->m_piaTraits->get_count(); i++)
-//         {
-//
-//            auto iTrait = ptype->m_ptraits->m_piaTraits->element_at(i);
-//
-//            auto estatus = phandler->trait(ptype, iTrait);
-//
-//            ptype->m_ptraits->m_pestatusa->set_at_grow(i, estatus);
-//
-//            if (::failed(estatus))
-//            {
-//
-//               return;
-//
-//            }
-//
-//         }
-//
-//      });
-//
-//
-//
-//
-//}
-
-
-//template < typename PRED >
-//inline void matter::add_predicate(runnable_array & array, PRED pred)
-//{
-//   array.add(__new(predicate_holder<PRED>(pred)));
-//}
-
-
 
 inline payload::operator ::memory & ()
 {
@@ -1971,10 +1878,10 @@ inline payload::operator ::memory() const
 inline payload::operator ::e_status &()
 {
 
-   if(m_etype == ::e_type_pvar)
+   if(m_etype == ::e_type_payload_pointer)
    {
 
-      return m_pvar->operator ::e_status &();
+      return m_ppayload->operator ::e_status &();
 
    }
    else if(m_etype == ::e_type_prop)
@@ -2069,10 +1976,10 @@ inline bool type::operator == (const ::id& id) const
    inline __pointer(T) payload::cast(T * pDefault)
    {
 
-      if (m_etype == e_type_pvar && m_pvar != nullptr)
+      if (m_etype == e_type_payload_pointer && m_ppayload != nullptr)
       {
 
-         return m_pvar->cast < T >(pDefault);
+         return m_ppayload->cast < T >(pDefault);
 
       }
       else if (m_etype == e_type_prop && m_pprop != nullptr)
@@ -2103,10 +2010,10 @@ inline bool type::operator == (const ::id& id) const
    inline T & payload::get_cast(T * pDefault)
    {
 
-      if (m_etype == e_type_pvar && m_pvar != nullptr)
+      if (m_etype == e_type_payload_pointer && m_ppayload != nullptr)
       {
 
-         return m_pvar->get_cast < T >(pDefault);
+         return m_ppayload->get_cast < T >(pDefault);
 
       }
 
@@ -2142,10 +2049,10 @@ inline bool type::operator == (const ::id& id) const
    inline __pointer(T) payload::cast()
    {
 
-      if (m_etype == e_type_pvar && m_pvar != nullptr)
+      if (m_etype == e_type_payload_pointer && m_ppayload != nullptr)
       {
 
-         return m_pvar->cast < T >();
+         return m_ppayload->cast < T >();
 
       }
 
@@ -2159,11 +2066,11 @@ inline bool type::operator == (const ::id& id) const
 #define CAST_ELEMENT(P, ENUM_TYPE) \
       if(m_etype == ENUM_TYPE) { return dynamic_cast < T * >(P); }
       CAST_ELEMENT(m_p, e_type_element);
-      CAST_ELEMENT(m_pstra, e_type_stra);
-      CAST_ELEMENT(m_pia, e_type_inta);
-      CAST_ELEMENT(m_pvara, e_type_vara);
-      CAST_ELEMENT(m_pset, e_type_propset);
-      CAST_ELEMENT(m_pi64a, e_type_i64a);
+      CAST_ELEMENT(m_pstra, e_type_string_array);
+      CAST_ELEMENT(m_pia, e_type_i32_array);
+      CAST_ELEMENT(m_pvara, e_type_payload_array);
+      CAST_ELEMENT(m_pset, e_type_property_set);
+      CAST_ELEMENT(m_pi64a, e_type_i64_array);
       CAST_ELEMENT(m_pmemory, e_type_memory);
       CAST_ELEMENT(m_ppath, e_type_path);
       //CAST_ELEMENT(m_pimage, type_image);
@@ -2364,7 +2271,7 @@ inline bool property_set::get_string(string& strResult, const id& idKey) const
 inline ::payload operator + (::payload payload, const ::routine & routine)
 {
 
-   if (payload.get_type() != e_type_propset)
+   if (payload.get_type() != e_type_property_set)
    {
 
       payload["message"] = payload.get_string();
@@ -2382,7 +2289,7 @@ inline ::payload operator + (::payload payload, const ::routine & routine)
 //inline ::payload operator + (::payload payload, const ::future & process)
 //{
 //
-//   if (payload.get_type() != e_type_propset)
+//   if (payload.get_type() != e_type_property_set)
 //   {
 //
 //      payload["message"] = payload.get_string();
@@ -3382,7 +3289,7 @@ inline ::file_result object::get_writer(const ::payload& varFile, const ::file::
 //  if (m_etype == ::type_pvar)
 //  {
 //
-//     return m_pvar->operator string & ();
+//     return m_ppayload->operator string & ();
 //
 //  }
 //  else if (m_etype == ::type_prop)
@@ -3425,7 +3332,7 @@ inline ::file_result object::get_writer(const ::payload& varFile, const ::file::
      if(m_etype == ::type_pvar)        \
      {                                      \
                                             \
-        return m_pvar->operator TYPE &();   \
+        return m_ppayload->operator TYPE &();   \
                                             \
      }                                      \
      else if(m_etype == ::type_prop)        \
@@ -3523,53 +3430,6 @@ inline ::task_pointer object::defer_branch(const ::id& id, void(TYPE::* pfn)(), 
 
 }
 
-//
-//inline ::payload & payload::operator = (::memory * pmemory)
-//{
-//
-//   set_element(pmemory);
-//
-//   return *this;
-//
-//}
-
-
-
-
-//template < typename HANDLER, typename TYPE >
-//void object::start_traits(__pointer(HANDLER) phandler, __pointer(TYPE) ptype)
-//{
-//
-//  fork([phandler, ptype]()
-//     {
-//
-//        for(index i = 0; i < ptype->m_ptraits->m_piaTraits->get_count(); i++)
-//        {
-//
-//           auto iTrait = ptype->m_ptraits->m_piaTraits->element_at(i);
-//
-//           auto estatus = phandler->trait(ptype, iTrait);
-//
-//           ptype->m_ptraits->m_pestatusa->set_at_grow(i, estatus);
-//
-//           if (::failed(estatus))
-//           {
-//
-//              return;
-//
-//           }
-//
-//        }
-//
-//     });
-//
-//
-//
-//
-//}
-//
-//
-
 
 template < typename PRED >
 inline void add_routine(::routine_array& routinea, PRED pred)
@@ -3578,363 +3438,6 @@ inline void add_routine(::routine_array& routinea, PRED pred)
    routinea.add(__routine(pred));
 
 }
-
-
-
-//template < typename PRED >
-//inline void add_process(::future_array & processa, PRED pred)
-//{
-//
-//    processa.add(__process(pred));
-//   
-//}
-
-
-//inline payload::operator ::memory & ()
-//{
-//
-//  return this->memory();
-//
-//}
-//
-//
-//inline payload::operator ::memory() const
-//{
-//
-//  return this->memory();
-//
-//}
-//
-//
-//
-//
-//
-//inline payload::operator ::e_status &()
-//{
-//
-//  if(m_etype == ::type_pvar)
-//  {
-//
-//     return m_pvar->operator ::e_status &();
-//
-//  }
-//  else if(m_etype == ::type_prop)
-//  {
-//
-//     return m_pprop->operator ::e_status &();
-//
-//  }
-//  else if(m_etype == ::type_enum_status)
-//  {
-//
-//     return m_estatus;
-//
-//  }
-//  else
-//  {
-//
-//     set_type(::type_enum_status, true);
-//
-//     return m_estatus;
-//
-//  }
-//
-//}
-//
-//
-//
-//inline bool type::operator == (const ::id& id) const
-//{
-//
-//  return m_strName == id.to_string();
-//
-//}
-//
-//
-//
-//
-//template < typename TYPE_CHAR >
-//inline string_base < TYPE_CHAR >::string_base(const ::payload & payload) :
-//  string_base(payload.to_string())
-//{
-//
-//
-//}
-//
-//
-//template < typename TYPE_CHAR >
-//inline string_base < TYPE_CHAR >::string_base(const property& property) :
-//  string_base(property.to_string())
-//{
-//
-//
-//}
-//
-//
-//
-//template < typename TYPE_CHAR >
-//inline string_base < TYPE_CHAR >::string_base(const id& id) :
-//  string_base(id.to_string())
-//{
-//
-//
-//}
-//
-//
-//
-//
-//
-//  template < class T >
-//  inline __pointer(T) payload::cast(T * pDefault)
-//  {
-//
-//     if (m_etype == type_pvar && m_pvar != nullptr)
-//     {
-//
-//        return m_pvar->cast < T >(pDefault);
-//
-//     }
-//     else if (m_etype == type_prop && m_pprop != nullptr)
-//     {
-//
-//        return m_pprop->cast < T >(pDefault);
-//
-//     }
-//
-//     auto p = cast < T >();
-//
-//     if (!p)
-//     {
-//
-//        return pDefault;
-//
-//     }
-//
-//     return p;
-//
-//  }
-//
-//
-//
-//
-//
-//     template < class T >
-//  inline T & payload::get_cast(T * pDefault)
-//  {
-//
-//     if (m_etype == type_pvar && m_pvar != nullptr)
-//     {
-//
-//        return m_pvar->get_cast < T >(pDefault);
-//
-//     }
-//
-//     if (m_etype == type_prop && m_pprop != nullptr)
-//     {
-//
-//        return m_pprop->get_cast <T>(pDefault);
-//
-//     }
-//
-//     if (m_etype != e_type_element)
-//     {
-//
-//        return defer_create_type < T >(pDefault);
-//
-//     }
-//
-//     auto p = cast < T >();
-//
-//     if (!p)
-//     {
-//
-//        return defer_create_type < T >(pDefault);
-//
-//     }
-//
-//     return *p;
-//
-//  }
-//
-//
-//
-//     template < class T >
-//  inline __pointer(T) payload::cast()
-//  {
-//
-//     if(m_etype == type_pvar && m_pvar != nullptr)
-//        return m_pvar->cast < T >();
-//     if (m_etype == type_prop && m_pprop != nullptr)
-//        return m_pprop->cast < T >();
-//
-//#define CAST_ELEMENT(P, ENUM_TYPE) \
-//if(m_etype == ENUM_TYPE) { return dynamic_cast < T * >(P); }
-//     CAST_ELEMENT(m_p, e_type_element);
-//     CAST_ELEMENT(m_pstra, e_type_stra);
-//     CAST_ELEMENT(m_pia, e_type_inta);
-//     CAST_ELEMENT(m_pvara, type_vara);
-//     CAST_ELEMENT(m_pset, e_type_propset);
-//     CAST_ELEMENT(m_pi64a, e_type_i64a);
-//     CAST_ELEMENT(m_pmemory, e_type_memory);
-//     CAST_ELEMENT(m_ppath, e_type_path);
-//     CAST_ELEMENT(m_pimage, type_image);
-//     return nullptr;
-//#undef CAST_ELEMENT
-//
-//  }
-//
-
-
-//template < typename PRED >
-//void routine::pred(PRED pred)
-//{
-//
-//  m_pobjectTask = __task_procedure(pred);
-//
-//}
-//
-//template < typename PRED >
-//inline void callback::pred(PRED pred)
-//{
-//
-//  m_pobjectTask = __task_callback(pred);
-//
-//}
-//
-
-
-//template < typename TYPE >
-//inline __pointer(TYPE) material_object::cast(const ::id& id)
-//{
-//
-//   return payload(id).cast < TYPE>();
-//
-//}
-
-
-//
-//template < typename T >
-//inline __pointer(T) payload::pointer() const
-//{
-//
-//  auto pproperty = find_pointer < T >();
-//
-//  if(!pproperty)
-//  {
-//
-//     return nullptr;
-//
-//  }
-//
-//  return pproperty->template cast < T > ();
-//
-//}
-
-//
-//inline ::payload __visible(::payload varOptions, bool bVisible)
-//{
-//
-//  varOptions["visible"] = bVisible;
-//
-//  return varOptions;
-//
-//}
-
-
-//inline void callback::receive_response(const ::payload & payload) const
-//{
-//
-//  if (!m_pobjectTask)
-//  {
-//
-//     return;
-//
-//  }
-//
-//  return m_pobjectTask->receive_response(payload);
-//
-//}
-
-
-//template < typename TYPE >
-//inline ::e_status object::__construct_new(__pointer(TYPE)& pobject)
-//{
-//
-//  ::e_status estatus = ::__construct_new(pobject);
-//
-//  if (!estatus)
-//  {
-//
-//     return estatus;
-//
-//  }
-//
-//  estatus = pobject->initialize(this);
-//
-//  if (!estatus)
-//  {
-//
-//     return estatus;
-//
-//  }
-//
-//  return estatus;
-//
-//}
-
-
-//template < typename PRED >
-//routine::routine(const ::id& id, PRED pred, ::matter* pobjectHold) : function_base(id, __new(__λprocedure < PRED >(pred, pobjectHold))) { }
-//template < typename PRED >
-//routine::routine(PRED pred, ::matter* pobjectHold) : routine(::id(), pred, pobjectHold) { }
-
-
-////namespace user
-////{
-//
-//
-//  inline message_box::message_box(const ::payload & payload)
-//  {
-//
-//     if (payload.get_type() == e_type_string)
-//     {
-//
-//        m_strMessage = payload;
-//
-//     }
-//     else if (payload.has_property("message") && payload["message"].has_char())
-//     {
-//
-//        m_strMessage = payload["message"];
-//
-//     }
-//     else if (payload.has_property("format") && payload["format"].has_char())
-//     {
-//
-//        m_strMessage = payload.propset().format(payload["format"]);
-//
-//     }
-//
-//     m_puserprimitive = __user_primitive(payload["parent"].cast < ::layered >());
-//     m_strTitle = payload["title"];
-//     m_emessagebox = (const ::e_message_box &) payload["flags"].i64();
-//
-//     //if (m_puserprimitive)
-//     //{
-//
-//     //   //m_oswindow = m_puserinteractionParent->get_safe_handle();
-//
-//     //}
-//
-//  }
-//
-//
-////} // namespace user
-////
-////
-////
-
-//#include "property_set_papaya.h"
 
 
 
@@ -3957,26 +3460,6 @@ inline ::e_status object::defer_branch(::task_pointer& pthread, const ::routine&
 }
 
 
-//inline ::application* object::application()
-//{ 
-//   
-//   return m_papplication->layer(LAYERED_APEX); 
-//
-//}
-
-
-
-//
-//template < typename PRED >
-//inline auto ::object::new_predicate_task(PRED pred)
-//{
-//
-//   return ::new_predicate_task(this, pred);
-//
-//}
-
-
-
 
 
 template < typename PRED >
@@ -3988,12 +3471,6 @@ inline ::task_pointer object::predicate_run(bool bSync, PRED pred)
 }
 
 
-//inline class ::system* object::get_system() const
-//{
-//
-//   return m_psystem ? dynamic_cast <::apex::system*>((class ::system*)m_psystem) : nullptr;
-//
-//}
 
 
 template < typename PREDICATE >

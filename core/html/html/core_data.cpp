@@ -203,7 +203,7 @@ namespace html
    }
 
 
-   void core_data::destroy()
+   ::e_status core_data::destroy()
    {
 
       m_focusptra.erase_all();
@@ -220,6 +220,8 @@ namespace html
       m_bImplemented = false;
 
       m_bLaidout = false;
+
+      return ::success;
 
    }
 

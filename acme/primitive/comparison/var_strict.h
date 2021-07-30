@@ -10,7 +10,7 @@ namespace comparison
    public:
 
 
-      const ::payload * m_pvar;
+      const ::payload * m_ppayload;
 
 
       var_strict(const ::payload & payload);

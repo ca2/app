@@ -1259,6 +1259,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="memory\memory_allocate.cpp" />
+    <ClCompile Include="memory\memory_management.cpp" />
     <ClCompile Include="memory\os_alloc\bounds_check.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_basis|Win32'">true</ExcludedFromBuild>
@@ -1308,6 +1309,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="memory\property_memory_allocate.cpp" />
+    <ClCompile Include="memory\secondary_memory_allocate.cpp" />
     <ClCompile Include="memory\string_memory_allocate.cpp" />
     <ClCompile Include="net\top_level_domain_list.cpp" />
     <ClCompile Include="net\url.cpp" />
@@ -1821,7 +1823,10 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClInclude Include="inline\_app_impl1.h" />
     <ClInclude Include="inline\_console_old.h" />
     <ClInclude Include="inline\_new_impl.h" />
+    <ClInclude Include="memory\memory_management.h" />
     <ClInclude Include="memory\property_memory_allocate.h" />
+    <ClInclude Include="memory\secondary_memory_allocate.h" />
+    <ClInclude Include="memory\_.h" />
     <ClInclude Include="memory\__aligned_memory_allocate.h" />
     <ClInclude Include="memory\counter.h" />
     <ClInclude Include="memory\memory_allocate.h" />
@@ -2289,7 +2294,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClCompile Include="primitive\collection\string_array_base.cpp" />
     <ClCompile Include="primitive\collection\string_list.cpp" />
     <ClCompile Include="primitive\collection\string_to_string_map.cpp" />
-    <ClCompile Include="primitive\collection\var_array.cpp" />
+    <ClCompile Include="primitive\collection\payload_array.cpp" />
     <ClCompile Include="primitive\datetime\_.cpp" />
     <ClCompile Include="primitive\datetime\datetime.cpp" />
     <ClCompile Include="primitive\datetime\date_span.cpp" />
@@ -2458,7 +2463,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClInclude Include="primitive\collection\string_to_string_map.h" />
     <ClInclude Include="primitive\collection\template.h" />
     <ClInclude Include="primitive\collection\unique_array.h" />
-    <ClInclude Include="primitive\collection\var_array.h" />
+    <ClInclude Include="primitive\collection\payload_array.h" />
     <ClInclude Include="primitive\comparison\_c.h" />
     <ClInclude Include="primitive\comparison\_.h" />
     <ClInclude Include="primitive\comparison\binary.h" />

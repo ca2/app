@@ -5,13 +5,6 @@ namespace dynamic_source
 {
 
 
-   class script;
-   class script_instance;
-   class script_manager;
-
-   typedef   script_instance * (*NET_NODE_CREATE_INSTANCE_PROC)();
-
-
    class CLASS_DECL_APP_PROGRAMMING script :
       virtual public ::object
    {

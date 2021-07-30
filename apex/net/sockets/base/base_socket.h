@@ -1,17 +1,10 @@
+// Moved by camilo on 2021-07-26 02:20 BRT <3ThomasBorregaardS�rensen!!
 #pragma once
 
 
 namespace sockets
 {
 
-
-   class base_socket_handler;
-
-   class base_socket;
-
-   using socket_pointer = __pointer(base_socket);
-
-   class socket_handler;
 
    /** \defgroup basic Basic sockets */
    /** base_socket base class.
@@ -31,42 +24,6 @@ namespace sockets
       friend class base_socket_handler;
 
 
-      /** Detached base_socket run thread.
-      \ingroup internal */
-      class CLASS_DECL_APEX socket_thread:
-         virtual public ::thread
-      {
-      public:
-
-
-         __composite(socket_handler)    m_phandler;
-         __reference(base_socket)       m_psocket;
-
-
-         socket_thread();
-         virtual ~socket_thread();
-
-
-         virtual ::e_status initialize_socket_thread(base_socket * psocket);
-
-         virtual ::e_status init_thread() override;
-
-         virtual void term_thread() override;
-
-         base_socket * get_socket() const { return m_psocket; }
-
-         virtual ::e_status     run() override;
-
-#ifdef DEBUG
-
-         virtual ::i64 increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override;
-
-         virtual ::i64 decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override;
-
-#endif
-
-
-      };
 
 
       /** Data pass class from source to destination. */
@@ -116,10 +73,12 @@ namespace sockets
       time_t                  m_timeClose; ///< time in seconds when ordered to close
       int                     m_iBindPort;
       bool                    m_bDelete; ///< Delete by handler flag
-      bool                    m_bClose; ///< close and delete flag
+      bool                    m_bCloseAndDelete; ///< close and delete flag
       base_socket *           m_psocketParent; ///< Pointer to listen_socket class, valid for incoming sockets
-      time_t                  m_timeTimeoutStart; ///< Set by SetTimeout
-      time_t                  m_timeTimeoutLimit; ///< Defined by SetTimeout
+      time_t                  m_timeConnectionStart; ///< Set by SetTimeout
+      time_t                  m_timeConnectionMaximum; ///< Defined by SetTimeout
+      time_t                  m_timeStart; ///< Set by SetTimeout
+      time_t                  m_timeMaximum; ///< Defined by SetTimeout
       bool                    m_bNonBlocking;
       //    unsigned long           m_flags; ///< boolean flags, replacing old 'bool' members
 
@@ -144,10 +103,10 @@ namespace sockets
       port_t                           m_socks4_port; ///< socks4 server port number
       string                           m_socks4_userid; ///< socks4 server usedid
 
-      bool                             m_detach; ///< base_socket ordered to detach flag
-      bool                             m_detached; ///< base_socket has been detached
-      __composite(socket_thread)       m_psocketthread; ///< detach base_socket thread class pointer
-      __pointer(base_socket_handler)   m_phandlerSlave; ///< Actual sockethandler while detached
+      bool                             m_bDetach; ///< base_socket ordered to detach flag
+      bool                             m_bDetached; ///< base_socket has been detached
+      __pointer(socket_thread)         m_psocketthread; ///< detach base_socket thread class pointer
+      //__pointer(base_socket_handler)   m_phandlerSlave; ///< Actual sockethandler while detached
 
 
       // LineProtocol
@@ -308,10 +267,16 @@ namespace sockets
       // LIST_TIMEOUT
 
       /** enable timeout control. 0=disable timeout check. */
-      void SetTimeout(time_t secs);
+      virtual void set_connection_start_time();
+
+      virtual void set_maximum_connection_time(time_t secs);
+
+      virtual void set_start_time();
+
+      virtual void set_maximum_time(time_t secs);
 
       /** Check timeout. \return true if time limit reached */
-      bool time_out(time_t tnow);
+      bool has_timed_out();
 
       /** Used by listen_socket. ipv4 and ipv6 */
       void SetRemoteHostname(const ::net::address & address);
@@ -360,9 +325,9 @@ namespace sockets
       /** tcp_socket: When a disconnect has been detected (recv/SSL_read returns 0 bytes). */
       virtual void OnDisconnect();
       /** time_out callback. */
-      virtual void OnTimeout();
+      virtual void on_timeout();
       /** Connection timeout. */
-      virtual void OnConnectTimeout();
+      virtual void on_connection_timeout();
       //@}
 
       /** \name base_socket mode flags, set/reset */
@@ -724,11 +689,11 @@ namespace sockets
       const bool IsDetached() const;
       /** Order this base_socket to start its own thread and call OnDetached
       when ready for operation. */
-      bool detach();
+      bool prepare_for_detach();
       /** Store the slave sockethandler pointer. */
       void SetSlaveHandler(base_socket_handler *);
       /** create new thread for this base_socket to run detached in. */
-      void DetachSocket();
+      void DetachSocket(socket_map::association * passociation, socket_map * psocketmap);
       //@}
 
 
@@ -770,10 +735,6 @@ namespace sockets
 
    };
 
-
-   __declare_map(socket_flag_map, socket_flag, base_socket *, m_pbasesocket, bool, m_bFlag);
-   __declare_map(socket_socket_flag_map, socket_socket_flag, SOCKET, m_socket, socket_flag_map, m_pmap);
-   __declare_map(socket_map, socket_pointer_pair, SOCKET, m_socket, socket_pointer, m_psocket);
 
 
    typedef comparable_list < socket_pointer > socket_pointer_list;

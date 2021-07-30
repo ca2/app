@@ -20,12 +20,12 @@ interprocess_task::~interprocess_task()
 }
 
 
-void interprocess_task::do_task(const string& strObject, const string& strMember, const var_array& vara)
+void interprocess_task::do_task(const string& strObject, const string& strMember, const payload_array& payloada)
 {
 
    ::interprocess_communication::tx& txc = m_pcall->m_pinterprocessintercommunication->tx(m_pcall->m_strApp, m_idPid);
 
-   string strVara = m_pcall->m_pinterprocessintercommunication->str_from_va(vara);
+   string strVara = m_pcall->m_pinterprocessintercommunication->str_from_va(payloada);
 
    m_iTask = atomic_increment(&m_pcall->m_pinterprocessintercommunication->m_iTaskSeed);
 

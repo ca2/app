@@ -14,24 +14,25 @@ namespace sockets
 
 
       bool m_bConnecting; ///< Flag indicating connection in progress
-      i32 m_connect_timeout; ///< Connection timeout (seconds)
-      bool m_flush_before_close; ///< Send all data before closing (default true)
-      i32 m_connection_retry; ///< Maximum connection retries (tcp)
-      i32 m_retries; ///< Actual number of connection retries (tcp)
-      bool m_call_on_connect; ///< OnConnect will be called next base_socket_handler cycle if true
-      bool m_b_retry_connect; ///< Try another connection attempt next base_socket_handler cycle
-      i32 m_shutdown; ///< Shutdown status
+      //::secs m_secsConnectionTimeout; ///< Connection timeout (seconds)
+      bool m_bFlushBeforeClose; ///< Send all data before closing (default true)
+      i32 m_iMaximumConnectionRetryCount; ///< Maximum connection retries (tcp)
+      i32 m_iConnectionRetryCount; ///< Actual number of connection retries (tcp)
+      bool m_bCallOnConnect; ///< OnConnect will be called next base_socket_handler cycle if true
+      bool m_bRetryClientConnect; ///< Try another connection attempt next base_socket_handler cycle
+      i32 m_iShutdownStatus; ///< Shutdown status
+
 
       stream_socket();
-      virtual ~stream_socket();
+      ~stream_socket() override;
 
 
       /** socket should Check Connect on next write event from select(). */
-      void SetConnecting(bool = true);
+      void set_connecting(bool bSet = true);
 
       /** Check connecting flag.
       \return true if the socket is still trying to connect */
-      bool Connecting();
+      bool is_connecting() override;
 
       /** Returns true when socket file descriptor is valid,
       socket connection is established, and socket is not about to
@@ -40,11 +41,11 @@ namespace sockets
 
       /** set timeout to use for connection attempt.
       \lparam x time_out in seconds */
-      void SetConnectTimeout(i32 x);
+      //void set_maximum_connection_time(i32 x);
 
       /** Return number of seconds to wait for a connection.
       \return Connection timeout (seconds) */
-      i32 GetConnectTimeout();
+      //::secs GetConnectTimeout();
 
       /** set flush before close to make a tcp socket completely is_empty its
       output buffer before closing the connection. */
@@ -58,21 +59,21 @@ namespace sockets
       n = 0 - no retry
       n > 0 - number of retries
       n = -1 - unlimited retries */
-      void SetConnectionRetry(i32 n);
+      void SetMaximumConnectionRetryCount(i32 n);
 
       /** get number of maximum connection retries (tcp only). */
-      i32 GetConnectionRetry();
+      i32 GetMaximumConnectionRetryCount();
 
       /** Increase number of actual connection retries (tcp only). */
-      void IncreaseConnectionRetries();
+      void IncrementConnectionRetryCount();
 
       /** get number of actual connection retries (tcp only). */
-      i32 GetConnectionRetries();
+      i32 GetConnectionRetryCount();
 
       /** Reset actual connection retries (tcp only). */
-      void ResetConnectionRetries();
+      void ResetConnectionRetryCount();
 
-      // LIST_CALLONCONNECT
+      // e_list_call_on_connect
 
       /** Instruct socket to call OnConnect callback next sockethandler cycle. */
       void SetCallOnConnect(bool x = true);
@@ -81,7 +82,7 @@ namespace sockets
       \return true if OnConnect() should be called a.s.a.point_i32 */
       bool CallOnConnect();
 
-      // LIST_RETRY
+      // e_list_retry
 
       /** set flag to initiate a connection attempt after a connection timeout. */
       void SetRetryClientConnect(bool x = true);
@@ -92,10 +93,10 @@ namespace sockets
 
 
       /** set shutdown status. */
-      void SetShutdown(i32);
+      void SetShutdownStatus(i32);
 
       /** get shutdown status. */
-      i32 GetShutdown();
+      i32 GetShutdownStatus();
 
       /** Returns IPPROTO_TCP or IPPROTO_SCTP */
       virtual i32 Protocol();

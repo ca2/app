@@ -2234,7 +2234,7 @@
     <ClInclude Include="primitive\collection\unique_array.h">
       <Filter>Header Files\primitive\collection</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\collection\var_array.h">
+    <ClInclude Include="primitive\collection\payload_array.h">
       <Filter>Header Files\primitive\collection</Filter>
     </ClInclude>
     <ClInclude Include="primitive\primitive\osdata_array.h">
@@ -2768,6 +2768,15 @@
     <ClInclude Include="memory\array_memory_allocate.h">
       <Filter>Header Files\memory</Filter>
     </ClInclude>
+    <ClInclude Include="memory\secondary_memory_allocate.h">
+      <Filter>Header Files\memory</Filter>
+    </ClInclude>
+    <ClInclude Include="memory\memory_management.h">
+      <Filter>Header Files\memory</Filter>
+    </ClInclude>
+    <ClInclude Include="memory\_.h">
+      <Filter>Header Files\memory</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="primitive\primitive\application_bias.cpp">
@@ -3055,7 +3064,7 @@
     <ClCompile Include="primitive\collection\stringl.cpp">
       <Filter>Source Files\primitive\collection</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\collection\var_array.cpp">
+    <ClCompile Include="primitive\collection\payload_array.cpp">
       <Filter>Source Files\primitive\collection</Filter>
     </ClCompile>
     <ClCompile Include="primitive\primitive\_.cpp">
@@ -3953,6 +3962,12 @@
       <Filter>Source Files\memory</Filter>
     </ClCompile>
     <ClCompile Include="memory\array_memory_allocate.cpp">
+      <Filter>Source Files\memory</Filter>
+    </ClCompile>
+    <ClCompile Include="memory\secondary_memory_allocate.cpp">
+      <Filter>Source Files\memory</Filter>
+    </ClCompile>
+    <ClCompile Include="memory\memory_management.cpp">
       <Filter>Source Files\memory</Filter>
     </ClCompile>
   </ItemGroup>

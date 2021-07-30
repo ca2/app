@@ -136,7 +136,7 @@ namespace interprocess_communication
 
 
       virtual bool create(const char * pszChannel);
-      virtual bool destroy();
+      ::e_status destroy() override;
 
 
       virtual void * on_interprocess_receive(rx * prx,const char * pszMessage);

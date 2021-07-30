@@ -59,7 +59,7 @@ namespace sockets
       int open(::net::address&);
 
       /** Connect timeout callback. */
-      void OnConnectTimeout();
+      void on_connection_timeout();
    #ifdef _WIN32
       /** Connection failed reported as exception on win32 */
       void OnException();

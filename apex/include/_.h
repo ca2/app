@@ -460,7 +460,7 @@ class ptra;
 class factory_item_base;
 class fixed_alloc_no_sync;
 class critical_section;
-class var_array;
+class payload_array;
 class thread;
 class channel;
 class critical_section;

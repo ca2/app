@@ -93,13 +93,13 @@ namespace user
 
 
          thread(shell * pshell);
-         virtual ~thread();
+         ~thread() override;
 
-         virtual ::e_status init_thread() override;
+         ::e_status init_thread() override;
 
-         virtual ::e_status run() override;
+         ::e_status run() override;
 
-         virtual ::e_status finish() override;
+         ::e_status destroy() override;
 
 
       };
@@ -198,7 +198,7 @@ namespace user
       virtual i32 add_icon_path(::file::path path, const ::color::color& colorBackground, int iImage);
 
 
-      virtual ::e_status finish() override;
+      ::e_status destroy() override;
 
 
    };

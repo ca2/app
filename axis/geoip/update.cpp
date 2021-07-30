@@ -327,7 +327,7 @@ i16 GeoIP_update_database (char * license_key, i32 verbose, void (*f)( char * ))
 //   sa.sin_family = AF_INET;
 //
 //   if (verbose == 1){
-//      GeoIP_printf(f,"Connecting to MaxMind GeoIP Update server\n");
+//      GeoIP_printf(f,"is_connecting to MaxMind GeoIP Update server\n");
 //      GeoIP_printf(f, "via Host or Proxy Server: %s:%d\n", hostlist->h_name, GeoIPHTTPPort);
 //   }
 //
@@ -580,7 +580,7 @@ i16 GeoIP_update_database_general (::object * pobject, char * user_id,char * lic
 //   sa.sin_family = AF_INET;
 //
 //   if (verbose == 1) {
-//      GeoIP_printf(f,"Connecting to MaxMind GeoIP server\n");
+//      GeoIP_printf(f,"is_connecting to MaxMind GeoIP server\n");
 //      GeoIP_printf(f, "via Host or Proxy Server: %s:%d\n", hostlist->h_name, GeoIPHTTPPort);
 //   }
 //
@@ -663,7 +663,7 @@ i16 GeoIP_update_database_general (::object * pobject, char * user_id,char * lic
 //      sa.sin_family = AF_INET;
 //
 //      if (verbose == 1)
-//         GeoIP_printf(f,"Connecting to MaxMind GeoIP Update server\n");
+//         GeoIP_printf(f,"is_connecting to MaxMind GeoIP Update server\n");
 //
 //      /* Download gzip file */
 //      if (connect(sock, (struct sockaddr *)&sa, sizeof(struct sockaddr))< 0) {

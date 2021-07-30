@@ -1,29 +1,55 @@
 #include "framework.h"
 #include "acme/operating_system.h"
 #include "static_start.h"
+#include "static_start_internal.h"
 //#include "acme/memory/plex_heap1.h"
 //#include "acme/memory/plex_heap_impl1.h"
 #include "acme/primitive/primitive/malloc.h"
 #include "acme/astr.h"
 #include "acme/platform/simple_log.h"
-#include "static_start_internal.h"
-
-namespace memory_allocate_heap
-{
-
-   void initialize();
-   void finalize();
-
-}
 
 
-namespace string_memory_allocate_heap
-{
+void initialize_memory_management();
+void finalize_memory_management();
 
-   void initialize();
-   void finalize();
 
-}
+//namespace main_memory_allocate_heap
+//{
+//
+//
+//   void initialize();
+//
+//   void finalize();
+//
+//
+//} // namespace main_memory_allocate_heap
+//
+//
+//namespace string_memory_allocate_heap
+//{
+//
+//   void initialize();
+//   void finalize();
+//
+//} // namespace string_memory_allocate_heap
+//
+//namespace property_memory_allocate_heap
+//{
+//
+//   void initialize();
+//   void finalize();
+//
+//} // namespace property_memory_allocate_heap
+//
+//namespace array_memory_allocate_heap
+//{
+//
+//   void initialize();
+//   void finalize();
+//
+//} // namespace array_memory_allocate_heap
+
+
 #ifdef WINDOWS
 
 LARGE_INTEGER g_largeintegerFrequency;
@@ -235,9 +261,9 @@ namespace acme
 
    //::map < ::id, const ::id&, ::id, const ::id& >* g_pmapRTL;
 
-   plex_heap_alloc_array* g_pheap;
+   //plex_heap_alloc_array* g_pheap;
 
-   critical_section* g_pmutexSystemHeap;
+   // critical_section* g_pmutexSystemHeap;
 
 #if defined(WINDOWS)
 
@@ -403,9 +429,9 @@ namespace acme
 
       //string_map < __pointer(::acme::library) > * g_pmapLibCall;
 
-      g_pheap = nullptr;
+      ///g_pheap = nullptr;
 
-      g_pmutexSystemHeap = nullptr;
+      //g_pmutexSystemHeap = nullptr;
 
       //::mutex * g_pmutexThreadOn;
 
@@ -496,6 +522,8 @@ namespace acme
    static_start::static_start()
    {
 
+      initialize_memory_management();
+
       static natural_meta_data < string_meta_data < ansichar > > s_ansistringNil;
 
       static natural_meta_data < string_meta_data < wd16char > > s_wd16stringNil;
@@ -579,8 +607,10 @@ namespace acme
 
 #ifndef __MCRTDBG
 
-      ::memory_allocate_heap::initialize();
-      ::string_memory_allocate_heap::initialize();
+      //::main_memory_allocate_heap::initialize();
+      //::string_memory_allocate_heap::initialize();
+      //::property_memory_allocate_heap::initialize();
+      //::array_memory_allocate_heap::initialize();
 
 
 #endif
@@ -639,7 +669,7 @@ namespace acme
 
       //g_pmapThreadOn = new ::map < itask_t, itask_t, itask_t, itask_t >;
 
-      g_pmutexSystemHeap = new critical_section();
+      //g_pmutexSystemHeap = new critical_section();
 
 #if MEMDLEAK
 
@@ -945,7 +975,7 @@ namespace acme
 
 #endif
 
-      ::acme::del(g_pmutexSystemHeap);
+      //::acme::del(g_pmutexSystemHeap);
 
       //::acme::del(g_pmutexThreadOn);
 
@@ -993,11 +1023,17 @@ namespace acme
 
 #if !defined(__MCRTDBG) && !MEMDLEAK
 
-      auto pheap = g_pheap;
+      //auto pheap = g_pheap;
 
-      g_pheap = nullptr;
+      //g_pheap = nullptr;
 
-      ::acme::del(pheap);
+      //::acme::del(pheap);
+
+      finalize_memory_management();
+      //::array_memory_allocate_heap::finalize();
+      //::property_memory_allocate_heap::finalize();
+      //::string_memory_allocate_heap::finalize();
+      //::main_memory_allocate_heap::finalize();
 
 #endif
 

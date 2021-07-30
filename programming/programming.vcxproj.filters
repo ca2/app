@@ -74,6 +74,9 @@
     <ClInclude Include="dynamic_source\script_manager.h">
       <Filter>Header Files\dynamic_source</Filter>
     </ClInclude>
+    <ClInclude Include="dynamic_source\library.h">
+      <Filter>Header Files\dynamic_source</Filter>
+    </ClInclude>
     <ClInclude Include="dynamic_source\session.h">
       <Filter>Header Files\dynamic_source</Filter>
     </ClInclude>
@@ -120,6 +123,9 @@
     </ClCompile>
     <ClCompile Include="_.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="dynamic_source\library.cpp">
+      <Filter>Source Files\dynamic_source</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

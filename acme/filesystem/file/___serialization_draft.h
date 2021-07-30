@@ -317,23 +317,23 @@ class exchanger
            stream
            {
 
-           read(id, i8)i8 = m_pvar->operator[](id);
-           read(id, i16) i16 = m_pvar->operator[](id);
-           read(id, i32) i32 = m_pvar->operator[](id);
-           read(id, i64) i64 = m_pvar->operator[](id);
-           read(id, u8) u8 = m_pvar->operator[](id);
-           read(id, u16) u16 = m_pvar->operator[](id);
-           read(id, u32) u32 = m_pvar->operator[](id);
-           read(id, u64) u64 = m_pvar->operator[](id);
+           read(id, i8)i8 = m_ppayload->operator[](id);
+           read(id, i16) i16 = m_ppayload->operator[](id);
+           read(id, i32) i32 = m_ppayload->operator[](id);
+           read(id, i64) i64 = m_ppayload->operator[](id);
+           read(id, u8) u8 = m_ppayload->operator[](id);
+           read(id, u16) u16 = m_ppayload->operator[](id);
+           read(id, u32) u32 = m_ppayload->operator[](id);
+           read(id, u64) u64 = m_ppayload->operator[](id);
 
-           read(i8) i8 = *m_pvar
-           read(i16) i16 = *m_pvar
-           read(i32) i32 = *m_pvar
-           read(i64) i64 = *m_pvar
-           read(u8) u8 = *m_pvar
-           read(u16) u16 = *m_pvar
-           read(u32) u32 = *m_pvar
-           read(u64) u64 = *m_pvar
+           read(i8) i8 = *m_ppayload
+           read(i16) i16 = *m_ppayload
+           read(i32) i32 = *m_ppayload
+           read(i64) i64 = *m_ppayload
+           read(u8) u8 = *m_ppayload
+           read(u16) u16 = *m_ppayload
+           read(u32) u32 = *m_ppayload
+           read(u64) u64 = *m_ppayload
 
            write(id, i8) write(i8)
            write(id, i16) write(i16)

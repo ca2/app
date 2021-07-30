@@ -19,7 +19,7 @@ namespace database
       key                     m_datakey;
       ::subject::subject *    m_pupdate;
       bool                    m_bOk;
-      ::payload *               m_pvar;
+      ::payload *               m_ppayload;
 
 
       change_event();

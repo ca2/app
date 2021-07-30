@@ -4,6 +4,7 @@
 enum enum_method : ::i32;
 enum enum_future : ::i32;
 
+
 namespace user
 {
 
@@ -158,13 +159,11 @@ public:
    virtual ::e_status set_finish() override;
    virtual ::e_status finalize() override;
 
-   virtual void add_child_task(::object* pobjectTask);
+   virtual void add_task(::object* pobjectTask);
+   virtual void erase_task(::object* pobjectTask);
+   virtual void transfer_tasks_from(::task * ptask);
 
-   virtual bool check_children_task();
-
-   virtual ::e_status finish_children();
-
-   virtual ::e_status finish();
+//   virtual ::e_status destroy();
 
    //virtual ::e_status set_finish();
 
@@ -184,11 +183,17 @@ public:
    //virtual ::e_status finish(::property_object* pcontextobjectRootFinishingInitiator = nullptr) override;
    //virtual ::e_status set_finish(::property_object* pcontextobjectRootFinishingInitiator) override;
    //virtual ::e_status set_finish_composites(::property_object* pcontextobjectRootFinishingInitiator) override;
-   virtual ::e_status on_finish() override;
+   //virtual ::e_status on_finish() override;
 
-   virtual ::e_status set_finish_composites();
+   virtual bool check_tasks_finished();
 
-   virtual ::e_status finish_composites() override;
+   ::e_status destroy() override;
+
+   virtual ::e_status destroy_tasks();
+
+   ::e_status destroy_composites() override;
+
+   ::e_status release_references();
 
 
 

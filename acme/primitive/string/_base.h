@@ -1,5 +1,6 @@
 #pragma once
 
+
 template < typename CHAR_TYPE >
 class string_iterator
 {

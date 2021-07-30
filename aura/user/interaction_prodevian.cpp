@@ -103,7 +103,7 @@ namespace user
       m_routineUpdateScreen = __routine([this]()
          {
 
-            if (!m_bFinishing && !m_bSetFinish)
+            if (!m_bDestroying && !m_bSetFinish)
             {
 
                update_screen();
@@ -187,9 +187,9 @@ namespace user
 
       }
 
-      m_puserinteraction->m_pthreadUserInteraction->add_child_task(this);
+      m_puserinteraction->m_pthreadUserInteraction->add_task(this);
 
-      add_child_task(m_puserinteraction);
+      add_task(m_puserinteraction);
 
       while (task_get_run())
       {
@@ -1090,9 +1090,9 @@ bool prodevian::prodevian_iteration()
 
          }
 
-         if (m_puserinteraction->m_bFinishing
+         if (m_puserinteraction->m_bDestroying
             || m_puserinteraction->m_bSetFinish
-            || m_pimpl->m_bFinishing
+            || m_pimpl->m_bDestroying
             || m_pimpl->m_bSetFinish)
          {
 

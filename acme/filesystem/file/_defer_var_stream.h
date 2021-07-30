@@ -2,8 +2,8 @@
 
 
 
-template < class TYPE, class ARG_TYPE, class ALLOCATOR >
-inline void __exchange(::var_stream& stream, ::array_base < TYPE, ARG_TYPE, ALLOCATOR >& array)
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
+inline void __exchange(::var_stream& stream, ::array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >& array)
 {
 
    __exchange_array(stream, array);
@@ -11,8 +11,8 @@ inline void __exchange(::var_stream& stream, ::array_base < TYPE, ARG_TYPE, ALLO
 }
 
 
-template < class TYPE, class ARG_TYPE, class ALLOCATOR >
-inline void __exchange(::var_stream& stream, ::raw_array < TYPE, ARG_TYPE, ALLOCATOR >& array)
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
+inline void __exchange(::var_stream& stream, ::raw_array < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >& array)
 {
 
    __exchange_array(stream, array);
@@ -20,8 +20,8 @@ inline void __exchange(::var_stream& stream, ::raw_array < TYPE, ARG_TYPE, ALLOC
 }
 
 
-template < class TYPE >
-inline void __exchange(::var_stream& stream, ::numeric_array < TYPE >& array)
+template < typename TYPE, enum_type t_etypePayload >
+inline void __exchange(::var_stream& stream, ::numeric_array < TYPE, t_etypePayload >& array)
 {
 
    __exchange_array(stream, array);
@@ -29,8 +29,8 @@ inline void __exchange(::var_stream& stream, ::numeric_array < TYPE >& array)
 }
 
 
-template < typename Type, typename RawType >
-inline void __exchange(::var_stream& stream, ::string_array_base < Type, RawType >& array)
+template < typename Type, typename RawType, enum_type t_etypePayload >
+inline void __exchange(::var_stream& stream, ::string_array_base < Type, RawType, t_etypePayload >& array)
 {
 
    __exchange_array(stream, array);

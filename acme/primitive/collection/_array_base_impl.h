@@ -1,8 +1,8 @@
 
 
 
-template < class TYPE, class ARG_TYPE, class ALLOCATOR >
-array_base < TYPE, ARG_TYPE, ALLOCATOR >::array_base()
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
+array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::array_base()
 {
 
    m_nGrowBy = 0;
@@ -15,8 +15,8 @@ array_base < TYPE, ARG_TYPE, ALLOCATOR >::array_base()
 
 
 
-template < class TYPE, class ARG_TYPE, class ALLOCATOR >
-array_base < TYPE, ARG_TYPE, ALLOCATOR >::~array_base ()
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
+array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::~array_base ()
 {
 
    if (m_pData != nullptr)
@@ -29,8 +29,8 @@ array_base < TYPE, ARG_TYPE, ALLOCATOR >::~array_base ()
 }
 
 
-template < class TYPE, class ARG_TYPE, class ALLOCATOR >
-::count array_base < TYPE, ARG_TYPE, ALLOCATOR >::resize(::count nNewSize, ::count nGrowBy)
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
+::count array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::resize(::count nNewSize, ::count nGrowBy)
 {
 
    return allocate(nNewSize,nGrowBy);
@@ -38,8 +38,8 @@ template < class TYPE, class ARG_TYPE, class ALLOCATOR >
 }
 
 
-template < class TYPE, class ARG_TYPE, class ALLOCATOR >
-::count array_base < TYPE, ARG_TYPE, ALLOCATOR >::allocate_in_bytes(::count nNewSize,::count nGrowBy)
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
+::count array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::allocate_in_bytes(::count nNewSize,::count nGrowBy)
 {
 
    if(nGrowBy < 0)
@@ -58,8 +58,8 @@ template < class TYPE, class ARG_TYPE, class ALLOCATOR >
 }
 
 
-template < class TYPE, class ARG_TYPE, class ALLOCATOR >
-::index array_base < TYPE, ARG_TYPE, ALLOCATOR >::erase_at(::index nIndex,::count nCount)
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
+::index array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::erase_at(::index nIndex,::count nCount)
 {
 
    //ASSERT_VALID(this);
@@ -89,8 +89,8 @@ template < class TYPE, class ARG_TYPE, class ALLOCATOR >
 }
 
 
-template < class TYPE, class ARG_TYPE, class ALLOCATOR >
-::index array_base < TYPE, ARG_TYPE, ALLOCATOR >::erase_item(TYPE * p)
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
+::index array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::erase_item(TYPE * p)
 {
 
    return erase_at(p - m_pData);
@@ -99,8 +99,8 @@ template < class TYPE, class ARG_TYPE, class ALLOCATOR >
 
 
 
-template < class TYPE, class ARG_TYPE, class ALLOCATOR >
-void array_base < TYPE, ARG_TYPE, ALLOCATOR >::free_extra()
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
+void array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::free_extra()
 {
 
    if(m_nSize != m_nMaxSize)
@@ -119,37 +119,50 @@ void array_base < TYPE, ARG_TYPE, ALLOCATOR >::free_extra()
          {
             if (::get_task()->m_strFile.has_char())
             {
-               pNewData = (TYPE *)ALLOCATOR::alloc(m_nSize * sizeof(TYPE), ::get_task()->m_strFile, ::get_task()->m_iLine);
+               pNewData = ALLOCATOR::alloc(m_nSize, ::get_task()->m_strFile, ::get_task()->m_iLine);
             }
             else
             {
-               pNewData = (TYPE *)ALLOCATOR::alloc(m_nSize * sizeof(TYPE), __FILE__, __LINE__);
+               pNewData = ALLOCATOR::alloc(m_nSize, __FILE__, __LINE__);
             }
          }
          else
          {
-            pNewData = (TYPE *)ALLOCATOR::alloc(m_nSize * sizeof(TYPE), __FILE__, __LINE__);
+            pNewData = ALLOCATOR::alloc(m_nSize, __FILE__, __LINE__);
          }
 #else
+
          if (::get_task()->m_strDebug.has_char())
          {
-            pNewData = (TYPE *)ALLOCATOR::alloc(m_nSize * sizeof(TYPE), ::get_task()->m_strDebug, 0);
+
+            pNewData = ALLOCATOR::alloc(m_nSize, ::get_task()->m_strDebug, 0);
+
          }
          else
          {
-            pNewData = (TYPE *)ALLOCATOR::alloc(m_nSize * sizeof(TYPE), __FILE__, __LINE__);
+
+            pNewData = ALLOCATOR::alloc(m_nSize, __FILE__, __LINE__);
+
          }
+
 #endif
+
 #else
-         pNewData = (TYPE *)ALLOCATOR::alloc((::count) (m_nSize * sizeof(TYPE)));
+
+         pNewData = ALLOCATOR::alloc(m_nSize);
+
 #endif      // copy new data from old
+
          // copy new data from old
          ::acme::memcpy_s(pNewData, (size_t)m_nSize * sizeof(TYPE),m_pData, (size_t)m_nSize * sizeof(TYPE));
+
       }
 
       // get rid of old stuff (note: no destructors called)
       ALLOCATOR::_free(m_pData);
+
       m_pData = pNewData;
+
       m_nMaxSize = m_nSize;
 
    }
@@ -158,9 +171,11 @@ void array_base < TYPE, ARG_TYPE, ALLOCATOR >::free_extra()
 
 
 
-template < class TYPE, class ARG_TYPE, class ALLOCATOR >
-void array_base < TYPE, ARG_TYPE, ALLOCATOR >::destroy()
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
+::e_status array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::destroy()
 {
+
+   auto estatus = ::matter::destroy();
 
    if(m_pData != nullptr)
    {
@@ -175,11 +190,13 @@ void array_base < TYPE, ARG_TYPE, ALLOCATOR >::destroy()
 
    }
 
+   return estatus;
+
 }
 
 
-template < class TYPE, class ARG_TYPE, class ALLOCATOR >
-::index array_base < TYPE, ARG_TYPE, ALLOCATOR >::insert_at(::index nIndex,const TYPE & newElement,::count nCount /*=1*/)
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
+::index array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::insert_at(::index nIndex,const TYPE & newElement,::count nCount /*=1*/)
 {
 
    ::index nIndexParam = make_room_at(nIndex, nCount);
@@ -197,8 +214,8 @@ template < class TYPE, class ARG_TYPE, class ALLOCATOR >
 
 }
 
-template < class TYPE, class ARG_TYPE, class ALLOCATOR >
-::index array_base < TYPE, ARG_TYPE, ALLOCATOR >::make_room_at(::index nIndex, ::count nCount /*=1*/)
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
+::index array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::make_room_at(::index nIndex, ::count nCount /*=1*/)
 {
 
    ASSERT(nIndex >= 0);    // will expand to meet need
@@ -242,8 +259,8 @@ template < class TYPE, class ARG_TYPE, class ALLOCATOR >
 
 
 
-template < class TYPE, class ARG_TYPE, class ALLOCATOR >
-::count array_base < TYPE, ARG_TYPE, ALLOCATOR >::append(const array_base < TYPE, ARG_TYPE, ALLOCATOR > & src)
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
+::count array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::append(const array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload > & src)
 {
 
    ::count nOldSize = m_nSize;
@@ -259,8 +276,8 @@ template < class TYPE, class ARG_TYPE, class ALLOCATOR >
 }
 
 
-template < class TYPE, class ARG_TYPE, class ALLOCATOR >
-void array_base < TYPE, ARG_TYPE, ALLOCATOR >::copy(const array_base < TYPE, ARG_TYPE, ALLOCATOR > & src)
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
+void array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::copy(const array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload > & src)
 {
 
    if(this == &src)
@@ -284,8 +301,8 @@ void array_base < TYPE, ARG_TYPE, ALLOCATOR >::copy(const array_base < TYPE, ARG
 // the ::index raw_array by sorting it and returning
 // only the indexes that could be erased
 // without indexes duplicates
-template < class TYPE, class ARG_TYPE, class ALLOCATOR >
-void array_base < TYPE, ARG_TYPE, ALLOCATOR >::_001RemoveIndexes(index_array & ia)
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
+void array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::_001RemoveIndexes(index_array & ia)
 {
 
    // sort
@@ -329,8 +346,8 @@ void array_base < TYPE, ARG_TYPE, ALLOCATOR >::_001RemoveIndexes(index_array & i
 }
 
 
-template < class TYPE, class ARG_TYPE, class ALLOCATOR >
-void array_base < TYPE, ARG_TYPE, ALLOCATOR >::erase_indexes(const index_array & ia)
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
+void array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::erase_indexes(const index_array & ia)
 {
 
 
@@ -345,8 +362,8 @@ void array_base < TYPE, ARG_TYPE, ALLOCATOR >::erase_indexes(const index_array &
 }
 
 
-template < class TYPE, class ARG_TYPE, class ALLOCATOR >
-void array_base < TYPE, ARG_TYPE, ALLOCATOR >::erase_descending_indexes(const index_array & ia)
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
+void array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::erase_descending_indexes(const index_array & ia)
 {
 
    for(::index i = 0; i < ia.get_count(); i++)
@@ -360,8 +377,8 @@ void array_base < TYPE, ARG_TYPE, ALLOCATOR >::erase_descending_indexes(const in
 
 
 
-template < class TYPE, class ARG_TYPE, class ALLOCATOR >
-::index array_base < TYPE, ARG_TYPE, ALLOCATOR >::insert_at(::index nIndex,array_base < TYPE, ARG_TYPE, ALLOCATOR > * pNewArray)
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
+::index array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::insert_at(::index nIndex,array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload > * pNewArray)
 {
 
    ASSERT(pNewArray != nullptr);
@@ -421,8 +438,8 @@ template < class TYPE, class ARG_TYPE, class ALLOCATOR >
 }
 
 
-template < class TYPE, class ARG_TYPE, class ALLOCATOR >
-TYPE array_base < TYPE, ARG_TYPE, ALLOCATOR >::pick_at(::index nIndex)
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
+TYPE array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::pick_at(::index nIndex)
 {
 
    ::count nCount = 1;
@@ -456,8 +473,8 @@ TYPE array_base < TYPE, ARG_TYPE, ALLOCATOR >::pick_at(::index nIndex)
 }
 
 
-template < class TYPE, class ARG_TYPE, class ALLOCATOR >
-array_base < TYPE, ARG_TYPE, ALLOCATOR > array_base < TYPE, ARG_TYPE, ALLOCATOR >::pick_at(::index nIndex, ::count nCount)
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
+array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload > array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::pick_at(::index nIndex, ::count nCount)
 {
 
    //ASSERT_VALID(this);
@@ -473,7 +490,7 @@ array_base < TYPE, ARG_TYPE, ALLOCATOR > array_base < TYPE, ARG_TYPE, ALLOCATOR 
 
    ::count nMoveCount = m_nSize - (nUpperBound);
 
-   array_base < TYPE, ARG_TYPE, ALLOCATOR > a(m_pData + nIndex, (size_t)nMoveCount);
+   array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload > a(m_pData + nIndex, (size_t)nMoveCount);
 
    ALLOCATOR::destruct_count(m_pData + nIndex, nCount OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS);
 
@@ -491,8 +508,8 @@ array_base < TYPE, ARG_TYPE, ALLOCATOR > array_base < TYPE, ARG_TYPE, ALLOCATOR 
 }
 
 
-template < class TYPE, class ARG_TYPE, class ALLOCATOR >
-::count array_base < TYPE, ARG_TYPE, ALLOCATOR >::set_raw_size(::count nNewSize,::count nGrowBy)
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
+::count array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::set_raw_size(::count nNewSize,::count nGrowBy)
 {
 
    ::count countOld = get_count();
@@ -507,12 +524,17 @@ template < class TYPE, class ARG_TYPE, class ALLOCATOR >
 
    if(nNewSize == 0)
    {
+
       // shrink to nothing
       if(m_pData != nullptr)
       {
+
          ALLOCATOR::_free(m_pData);
+
          m_pData = nullptr;
+
       }
+
       m_nSize = m_nMaxSize = 0;
    }
    else if (m_pData == nullptr)
@@ -529,32 +551,51 @@ template < class TYPE, class ARG_TYPE, class ALLOCATOR >
       if (::get_task() != nullptr)
       {
 #if defined(MEMDLEAK)
+
          if (::get_task()->m_strFile.has_char())
          {
-            m_pData = (TYPE *)ALLOCATOR::alloc(nAllocSize * sizeof(TYPE), ::get_task()->m_strFile, 0);
+
+            m_pData = ALLOCATOR::alloc(nAllocSize, ::get_task()->m_strFile, 0);
+
          }
          else
          {
-            m_pData = (TYPE *)ALLOCATOR::alloc(nAllocSize * sizeof(TYPE), __FILE__, __LINE__);
+
+            m_pData = ALLOCATOR::alloc(nAllocSize, __FILE__, __LINE__);
+
          }
+
 #else
+
          if (::get_task()->m_strDebug.has_char())
          {
-            m_pData = (TYPE *)ALLOCATOR::alloc(nAllocSize * sizeof(TYPE), ::get_task()->m_strDebug, ::get_task()->m_iLine);
+
+            m_pData = ALLOCATOR::alloc(nAllocSize, ::get_task()->m_strDebug, ::get_task()->m_iLine);
+
          }
          else
          {
-            m_pData = (TYPE *)ALLOCATOR::alloc(nAllocSize * sizeof(TYPE), __FILE__, __LINE__);
+
+            m_pData = ALLOCATOR::alloc(nAllocSize, __FILE__, __LINE__);
+
          }
+
 #endif
+
       }
       else
       {
-         m_pData = (TYPE *)ALLOCATOR::alloc(nAllocSize * sizeof(TYPE), __FILE__, __LINE__);
+
+         m_pData = ALLOCATOR::alloc(nAllocSize, __FILE__, __LINE__);
+
       }
+
 #else
-      m_pData = (TYPE *)ALLOCATOR::alloc(nAllocSize * sizeof(TYPE));
+
+      m_pData = ALLOCATOR::alloc(nAllocSize);
+
 #endif
+
       m_nSize = nNewSize;
       m_nMaxSize = nAllocSize;
    }
@@ -590,42 +631,66 @@ template < class TYPE, class ARG_TYPE, class ALLOCATOR >
       TYPE * pNewData;
 #if defined(__MCRTDBG) || MEMDLEAK
 #ifdef __MCRTDBG
+
       if (::get_task() != nullptr)
       {
+
          if (::get_task()->m_strFile.has_char())
          {
-            pNewData = (TYPE *)ALLOCATOR::alloc(nNewMax * sizeof(TYPE), ::get_task()->m_strFile, ::get_task()->m_iLine);
+
+            pNewData = ALLOCATOR::alloc(nNewMax, ::get_task()->m_strFile, ::get_task()->m_iLine);
+
          }
          else
          {
-            pNewData = (TYPE *)ALLOCATOR::alloc(nNewMax * sizeof(TYPE), __FILE__, __LINE__);
+
+            pNewData = ALLOCATOR::alloc(nNewMax, __FILE__, __LINE__);
+
          }
+
       }
       else
       {
-         pNewData = (TYPE *)ALLOCATOR::alloc(nNewMax * sizeof(TYPE), __FILE__, __LINE__);
+
+         pNewData = ALLOCATOR::alloc(nNewMax, __FILE__, __LINE__);
+
       }
+
 #else
+
       if (::get_task()->m_strDebug.has_char())
       {
-         pNewData = (TYPE *)ALLOCATOR::alloc(nNewMax * sizeof(TYPE), ::get_task()->m_strDebug, ::get_task()->m_iLine);
+
+         pNewData = ALLOCATOR::alloc(nNewMax, ::get_task()->m_strDebug, ::get_task()->m_iLine);
+
       }
       else
       {
-         pNewData = (TYPE *)ALLOCATOR::alloc(nNewMax * sizeof(TYPE), __FILE__, __LINE__);
+
+         pNewData = ALLOCATOR::alloc(nNewMax, __FILE__, __LINE__);
+
       }
+
 #endif
+
 #else
-      pNewData = (TYPE *)ALLOCATOR::alloc(nNewMax * sizeof(TYPE));
+
+      pNewData = ALLOCATOR::alloc(nNewMax);
+
 #endif      // copy new data from old
+
       ::acme::memcpy_s(pNewData,(size_t)nNewMax * sizeof(TYPE),m_pData,(size_t)m_nSize * sizeof(TYPE));
 
       ///for(i32 i = 0; i < nNewSize - m_nSize; i++)
       // get rid of old stuff (note: no destructors called)
       ALLOCATOR::_free(m_pData);
+
       m_pData = pNewData;
+
       m_nSize = nNewSize;
+
       m_nMaxSize = nNewMax;
+
    }
 
    return countOld;
@@ -633,8 +698,8 @@ template < class TYPE, class ARG_TYPE, class ALLOCATOR >
 }
 
 
-template < class TYPE, class ARG_TYPE, class ALLOCATOR >
-::count array_base < TYPE, ARG_TYPE, ALLOCATOR >::allocate(::count nNewSize,::count nGrowBy)
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
+::count array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::allocate(::count nNewSize,::count nGrowBy)
 {
 
    ::count countOld = get_count();
@@ -739,7 +804,6 @@ template < class TYPE, class ARG_TYPE, class ALLOCATOR >
 
       }
 
-
 #else
 
       m_pData = ALLOCATOR::alloc(nAllocSize);
@@ -830,13 +894,13 @@ template < class TYPE, class ARG_TYPE, class ALLOCATOR >
          if(::get_task()->m_strFile.has_char())
          {
 
-            pNewData = ALLOCATOR::alloc(nNewMax * sizeof(TYPE), ::get_task()->m_strFile,::get_task()->m_iLine);
+            pNewData = ALLOCATOR::alloc(nNewMax, ::get_task()->m_strFile,::get_task()->m_iLine);
 
          }
          else
          {
 
-            pNewData = ALLOCATOR::alloc(nNewMax * sizeof(TYPE), __FILE__, __LINE__);
+            pNewData = ALLOCATOR::alloc(nNewMax, __FILE__, __LINE__);
 
          }
 
@@ -845,13 +909,13 @@ template < class TYPE, class ARG_TYPE, class ALLOCATOR >
          if (::get_task()->m_strDebug.has_char())
          {
 
-            pNewData = ALLOCATOR::alloc(nNewMax * sizeof(TYPE), "thread://" + demangle(typeid(*::get_task()).name()) + ", " + ::get_task()->m_strDebug + ", " + string(__FILE__), __LINE__);
+            pNewData = ALLOCATOR::alloc(nNewMax, "thread://" + demangle(typeid(*::get_task()).name()) + ", " + ::get_task()->m_strDebug + ", " + string(__FILE__), __LINE__);
 
          }
          else
          {
 
-            pNewData = ALLOCATOR::alloc(nNewMax * sizeof(TYPE), "thread://" + demangle(typeid(*::get_task()).name()) + ", " + string(__FILE__), __LINE__);
+            pNewData = ALLOCATOR::alloc(nNewMax, "thread://" + demangle(typeid(*::get_task()).name()) + ", " + string(__FILE__), __LINE__);
 
          }
 
@@ -861,14 +925,14 @@ template < class TYPE, class ARG_TYPE, class ALLOCATOR >
       else
       {
 
-         pNewData = ALLOCATOR::alloc(nNewMax * sizeof(TYPE), __FILE__, __LINE__);
+         pNewData = ALLOCATOR::alloc(nNewMax, __FILE__, __LINE__);
 
       }
 
 
 #else
 
-      TYPE* pNewData = (TYPE *)ALLOCATOR::alloc(nNewMax * sizeof(TYPE));
+      TYPE* pNewData = ALLOCATOR::alloc(nNewMax);
 
 #endif
 
@@ -902,8 +966,8 @@ template < class TYPE, class ARG_TYPE, class ALLOCATOR >
 
 
 
-template < class TYPE, class ARG_TYPE, class ALLOCATOR >
-void array_base < TYPE, ARG_TYPE, ALLOCATOR >::on_after_read()
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
+void array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::on_after_read()
 {
 
 
@@ -913,8 +977,8 @@ void array_base < TYPE, ARG_TYPE, ALLOCATOR >::on_after_read()
 
 
 
-template < class TYPE, class ARG_TYPE, class ALLOCATOR >
-inline void array_base < TYPE, ARG_TYPE, ALLOCATOR > ::set_at_grow(::index nIndex, ARG_TYPE newElement, ::count nGrowBy)
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
+inline void array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload > ::set_at_grow(::index nIndex, ARG_TYPE newElement, ::count nGrowBy)
 {
 
    ASSERT(nIndex >= 0);
@@ -931,8 +995,8 @@ inline void array_base < TYPE, ARG_TYPE, ALLOCATOR > ::set_at_grow(::index nInde
 }
 
 
-template < class TYPE, class ARG_TYPE, class ALLOCATOR >
-inline TYPE & array_base < TYPE, ARG_TYPE, ALLOCATOR > ::element_at_grow(::index nIndex, ::count nGrowBy)
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
+inline TYPE & array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload > ::element_at_grow(::index nIndex, ::count nGrowBy)
 {
 
    ASSERT(nIndex >= 0);
@@ -949,6 +1013,6 @@ inline TYPE & array_base < TYPE, ARG_TYPE, ALLOCATOR > ::element_at_grow(::index
 }
 
 
-template < class TYPE, class ARG_TYPE, class ALLOCATOR >
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
    template < typename ITERATOR >
-   inline void array_base < TYPE, ARG_TYPE, ALLOCATOR > ::erase(const ITERATOR & begin, const ITERATOR & last) { ::erase(*this, begin, last); }
+   inline void array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload > ::erase(const ITERATOR & begin, const ITERATOR & last) { ::erase(*this, begin, last); }

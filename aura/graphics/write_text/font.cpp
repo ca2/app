@@ -849,7 +849,7 @@ namespace write_text
 //
 //   }
 
-   void font::destroy()
+   ::e_status font::destroy()
    {
 
       for (auto & text : m_mapText.values())
@@ -859,7 +859,10 @@ namespace write_text
 
       }
 
+      return ::success;
+
    }
+
 
    bool font::get_text_metric(::draw2d::graphics * pgraphics, text_metric & tm)
    {

@@ -56,7 +56,7 @@ public:
    const char * get_task_tag() override;
 
    
-   void add_child_task(::object* pobjectTask) override;
+   void add_task(::object* pobjectTask) override;
 
    virtual bool is_current_task() const;
    //virtual object * calc_parent_thread();
@@ -138,7 +138,7 @@ public:
    virtual bool task_active() const;
    virtual bool is_running() const override;
 
-   bool check_children_task() override;
+   bool check_tasks_finished() override;
 
    virtual void update_task_ready_to_quit();
 

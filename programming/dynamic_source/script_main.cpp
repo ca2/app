@@ -9,7 +9,7 @@ namespace dynamic_source
    script_main::script_main()
    {
 
-      m_posdataNetnodeScriptMain = nullptr;
+      m_pnetnodescriptmain = nullptr;
 
       __note_assign(m_pmain, this, OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS_NOTE("this is annotation"));
 
@@ -62,12 +62,13 @@ namespace dynamic_source
    }
 
 
-   ::e_status script_main::finalize()
+   ::e_status script_main::destroy()
    {
          
-      auto estatus = script_interface::finalize();
+      auto estatus = script_interface::destroy();
 
-      __named_release(m_pmain);
+      m_psocket2.release();
+      m_pmanager2.release();
 
       return estatus;
 

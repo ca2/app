@@ -1,29 +1,35 @@
 #pragma once
 
 
-#if defined(__cplusplus)
-extern "C" {
-#endif
-
+//#if defined(__cplusplus)
+//extern "C" {
+//#endif
+//
 
 #pragma pack(push, heap_memory, 1)
 
-   struct heap_padding
+#define HEAP_PADDING_SIZE 8
+
+   struct heap_memory_header
    {
 
-      char m_sz[16];
+      byte                    m_back;
+      enum_memory_heap        m_ememoryheap;
+      byte                    m_blockuse;
+      byte                    m_align;
+      ::u32                   m_size;
 
    };
 
-   struct  heap_memory
+   struct  heap_memory : 
+      public heap_memory_header
    {
 
+#if HEAP_PADDING_SIZE > 0
 
-      short                   m_back;
-      byte                    m_blockuse;
-      byte                    m_align;
-      memsize                 m_size;
-      struct heap_padding     m_padding;
+      byte                    m_padding[HEAP_PADDING_SIZE];
+
+#endif
 
    };
 
@@ -42,7 +48,7 @@ extern "C" {
    inline static memsize heap_memory_aligned_provision_get_size(memsize size, int iAlignByteCount)
    {
 
-      return size + sizeof(struct heap_memory) + sizeof(struct heap_padding) + iAlignByteCount - 1;
+      return size + sizeof(struct heap_memory) + HEAP_PADDING_SIZE + iAlignByteCount - 1;
 
    }
 
@@ -50,45 +56,49 @@ extern "C" {
    inline static memsize heap_memory_unaligned_provision_get_size(memsize size)
    {
 
-      return size + sizeof(struct heap_memory) + sizeof(struct heap_padding);
+      return size + sizeof(struct heap_memory) + HEAP_PADDING_SIZE;
 
    }
 
 
-   inline static void * heap_memory_unaligned(void * pusermessage, memsize size, i32 blockuse)
+   inline static void * heap_memory_unaligned(void * p, memsize size, i32 blockuse, enum_memory_heap ememoryheap)
    {
 
-      void * pmemory = (void *)((iptr)pusermessage + sizeof(struct heap_memory));
+      void * pmemory = (void *)((iptr)p + sizeof(struct heap_memory));
 
       struct heap_memory * pheap = heap_memory_get(pmemory);
 
-      pheap->m_back = (i32)(((iptr)pmemory) - ((iptr)pusermessage));
+      pheap->m_back = (i32)(((iptr)pmemory) - ((iptr)p));
 
       pheap->m_blockuse = blockuse;
 
       pheap->m_align = 0;
 
-      pheap->m_size = size;
+      pheap->m_size = (::u32) size;
+
+      pheap->m_ememoryheap = ememoryheap;
 
       return pmemory;
 
    }
 
 
-   inline static void * heap_memory_aligned(void * pusermessage, memsize size, i32 blockuse, int iAlignByteCount)
+   inline static void * heap_memory_aligned(void * p, memsize size, i32 blockuse, int iAlignByteCount, enum_memory_heap ememoryheap)
    {
 
-      void * pmemory = (void *)((((iptr)pusermessage) + sizeof(struct heap_memory) + iAlignByteCount - 1) & ((~((iptr)iAlignByteCount - 1))));
+      void * pmemory = (void *)((((iptr)p) + sizeof(struct heap_memory) + iAlignByteCount - 1) & ((~((iptr)iAlignByteCount - 1))));
 
       struct heap_memory * pheap = heap_memory_get(pmemory);
 
-      pheap->m_back = (i32)(((iptr)pmemory) - ((iptr)pusermessage));
+      pheap->m_back = (i32)(((iptr)pmemory) - ((iptr)p));
 
       pheap->m_blockuse = blockuse;
 
       pheap->m_align = iAlignByteCount;
 
-      pheap->m_size = size;
+      pheap->m_size = (::u32) size;
+
+      pheap->m_ememoryheap = ememoryheap;
 
       return pmemory;
 
@@ -127,24 +137,7 @@ extern "C" {
    }
 
 
-   inline static void heap_memory_check_padding_after(struct heap_memory * pheapmemory)
-   {
-
-      struct heap_padding * ppadding = (struct heap_padding *)(((byte *)&pheapmemory->m_padding) + sizeof(struct heap_padding) + pheapmemory->m_size);
-
-      for (int i = 0; i < sizeof(struct heap_padding); i++)
-      {
-
-         if (ppadding->m_sz[i] != 0)
-         {
-
-            //            ::output_debug_string("*&!@");
-
-         }
-
-      }
-
-   }
+   void heap_memory_check_padding_after(struct heap_memory* pheapmemory);
 
 
    typedef void * MEMORY_ALLOC(memsize s);
@@ -199,9 +192,9 @@ extern "C" {
 
 
 
-
-#if defined(__cplusplus)
-} // extern "C"
-#endif
+//
+//#if defined(__cplusplus)
+//} // extern "C"
+//#endif
 
 

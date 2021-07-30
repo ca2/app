@@ -641,7 +641,7 @@ inline i64 release(__composite(COMPOSITE) & pcomposite OBJECT_REFERENCE_COUNT_DE
 }
 
 
-template < class TYPE >
+template < typename TYPE >
 inline i64 release(__pointer(TYPE) & pointer OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
 {
 
@@ -650,7 +650,7 @@ inline i64 release(__pointer(TYPE) & pointer OBJECT_REFERENCE_COUNT_DEBUG_COMMA_
 }
 
 
-template < class TYPE >
+template < typename TYPE >
 inline i64 __finalize(__pointer(TYPE)& pointer OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
 {
    

@@ -22,6 +22,7 @@ namespace sockets
 {
 
 
+   ::interlocked_count g_interlockedcountSocketHandler;
 
 
    //socket_handler::socket_handler(::object * pobject, ::apex::log *plogger) :
@@ -36,9 +37,9 @@ namespace sockets
       , m_socks4_port(0)
       , m_bTryDirect(false)
       //, m_resolv_id(0)
-      , m_b_enable_pool(false)
+      , m_bEnablePool(false)
       , m_next_trigger_id(0)
-      , m_slave(false)
+      //, m_slave(false)
    {
       defer_create_mutex();
       __zero(m_socks4_host);
@@ -52,6 +53,10 @@ namespace sockets
       m_countW = 0;
       m_countE = 0;
 
+      g_interlockedcountSocketHandler++;
+
+      ::output_debug_string("----socket_handler (count=" + __str(g_interlockedcountSocketHandler.operator long long()) + ")\n");
+
    }
 
 
@@ -59,6 +64,25 @@ namespace sockets
    {
 
       cleanup_handler();
+
+      g_interlockedcountSocketHandler--;
+
+   }
+
+
+
+   i64 socket_handler::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS)
+   {
+
+      return ::object::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+
+   }
+
+
+   i64 socket_handler::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS)
+   {
+
+      return ::object::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
 
    }
 
@@ -75,7 +99,7 @@ namespace sockets
 
       {
 
-         auto ppair = m_sockets.get_start();
+         auto ppair = m_socketmap.get_start();
 
          while (ppair != nullptr)
          {
@@ -94,7 +118,7 @@ namespace sockets
 
                }
 
-               if (m_slave)
+               //if (m_slave)
                {
 
                   ppair->element2().release();
@@ -103,13 +127,13 @@ namespace sockets
 
             }
 
-            ppair = m_sockets.get_next(ppair);
+            ppair = m_socketmap.get_next(ppair);
 
          }
 
       }
 
-      m_sockets.erase_all();
+      m_socketmap.erase_all();
 
       //m_resolver.release();
 
@@ -139,35 +163,59 @@ namespace sockets
 //   }
 
 
-   void socket_handler::SetSlave(bool x)
+   //void socket_handler::SetSlave(bool x)
+   //{
+
+   //   m_slave = x;
+
+   //}
+
+
+   //bool socket_handler::IsSlave()
+   //{
+
+   //   return m_slave;
+
+   //}
+   
+
+   void socket_handler::add2(const socket_pointer & psocket)
    {
 
-      m_slave = x;
+      auto passociation = m_socketmapAdd.get_association(psocket->GetSocket());
+
+      passociation->m_psocket = psocket;
+
+      move(passociation, &m_socketmapAdd);
+
+   }
+
+   
+   void socket_handler::move2(socket_pointer && psocket)
+   {
+
+      auto passociation = m_socketmapAdd.get_association(psocket->GetSocket());
+
+      passociation->m_psocket = ::move(psocket);
+
+      move(passociation, &m_socketmapAdd);
 
    }
 
 
-   bool socket_handler::IsSlave()
+   void socket_handler::move(socket_map::association* passociation, socket_map* psocketmap)
    {
 
-      return m_slave;
+      socket* psocket = dynamic_cast <socket*> (passociation->m_psocket.m_p);
 
-   }
+      //if (psocket->m_psockethandler.is_set())
+      //{
 
+      //   WARN(psocket, "add", -1, "socket is already being handled by another handler");
 
-   void socket_handler::add(base_socket * pbasesocket)
-   {
+      //   return;
 
-      socket * psocket = dynamic_cast < socket * > (pbasesocket);
-
-      if (psocket->m_psockethandler.is_set())
-      {
-
-         WARN(psocket, "add", -1, "socket is already being handled by another handler");
-
-         return;
-
-      }
+      //}
 
       if (psocket->GetSocket() == INVALID_SOCKET)
       {
@@ -185,30 +233,88 @@ namespace sockets
 
       }
 
-      socket_pointer plookup;
+      //socket_pointer plookup;
 
-      if (m_add.lookup(psocket->GetSocket(), plookup))
+      //if (m_socketmapAdd.lookup(psocket->GetSocket(), plookup))
+      //{
+
+      //   INFO(psocket, "add", (i32)psocket->GetSocket(), "Attempt to add socket already in add queue");
+
+      //   //m_delete.add_tail(psocket);
+      //   return;
+
+      //}
+
+      if (psocket->is_connecting())
       {
 
-         INFO(psocket, "add", (i32)psocket->GetSocket(), "Attempt to add socket already in add queue");
+         if (psocket->m_timeConnectionMaximum > 0)
+         {
 
-         //m_delete.add_tail(psocket);
-         return;
+            socketlist_add(psocket->GetSocket(), e_list_timeout);
+
+         }
+
+      }
+      else
+      {
+
+         if (psocket->m_timeMaximum > 0)
+         {
+
+            socketlist_add(psocket->GetSocket(), e_list_timeout);
+
+         }
 
       }
 
-      m_add[psocket->GetSocket()] = psocket;
-
-      if(psocket->m_timeTimeoutLimit > 0)
+      if (psocket->IsDetach())
       {
 
-         AddList(psocket->GetSocket(), LIST_TIMEOUT, true);
+         socketlist_add(psocket->GetSocket(), e_list_detach);
 
       }
 
       psocket->m_psockethandler = this;
 
       psocket->m_estatus = ::success;
+
+      m_socketmapAdd.move(passociation, psocketmap);
+
+   }
+
+
+   void socket_handler::restart_socket(SOCKET socket)
+   {
+
+      auto passociation = m_socketmap.find_association(socket);
+
+      if (passociation->m_psocket->is_connecting())
+      {
+
+         if (passociation->m_psocket->m_timeConnectionMaximum > 0)
+         {
+
+            socketlist_add(passociation->m_psocket->GetSocket(), e_list_timeout);
+
+         }
+
+      }
+      else
+      {
+
+         if (passociation->m_psocket->m_timeMaximum > 0)
+         {
+
+            socketlist_add(passociation->m_psocket->GetSocket(), e_list_timeout);
+
+         }
+
+      }
+
+      passociation->m_psocket->m_estatus = ::success;
+
+      m_socketmapAdd.move(passociation, &m_socketmap);
 
    }
 
@@ -296,12 +402,13 @@ namespace sockets
    i32 socket_handler::select()
    {
 
-      if (m_fds_callonconnect.get_size() ||
-            (!m_slave && m_fds_detach.get_size()) ||
-            m_fds_timeout.get_size() ||
-            m_fds_retry.get_size() ||
-            m_fds_close.get_size() ||
-            m_fds_erase.get_size())
+      if (m_socketlistCallOnConnect.get_size() ||
+            //(!m_slave && m_socketlistDetach.get_size()) ||
+            m_socketlistDetach.get_size() ||
+            m_socketlistTimeout.get_size() ||
+            m_socketlistRetryClientConnect.get_size() ||
+            m_socketlistClose.get_size() ||
+            m_socketlistErase.get_size())
       {
          return select(0, 200000);
       }
@@ -316,14 +423,14 @@ namespace sockets
 
       socket_pointer psocket = pbasesocket;
 
-      if (::contains_value(m_sockets, psocket))
+      if (::contains_value(m_socketmap, psocket))
       {
 
          return true;
 
       }
 
-      if (::contains_value(m_add, psocket))
+      if (::contains_value(m_socketmapAdd, psocket))
       {
 
          return true;
@@ -346,21 +453,23 @@ namespace sockets
    {
 
       // check CallOnConnect - EVENT
-      if (m_fds_callonconnect.get_size())
+      if (m_socketlistCallOnConnect.get_size())
       {
-         socket_list tmp = m_fds_callonconnect;
+         socket_list tmp = m_socketlistCallOnConnect;
          auto pnode = tmp.get_head();
          for (; pnode != nullptr; pnode = pnode->m_pnext)
          {
             SOCKET socket = pnode->m_value;
             socket_pointer psocket;
-            if (!m_sockets.lookup(socket, psocket)) // not found
+            if (!m_socketmap.lookup(socket, psocket)) // not found
             {
 
                WARN(this, "GetSocket/handler/4", (i32)socket, "Did not find expected socket using file descriptor(4)");
 
-               AddList(psocket->GetSocket(), LIST_CALLONCONNECT, false);
+               socketlist_erase(psocket->GetSocket(), e_list_call_on_connect);
+
             }
+
             if (psocket != nullptr)
             {
                tcp_socket * ptcpsocket = psocket.cast < tcp_socket >();
@@ -394,16 +503,23 @@ namespace sockets
                         }
                      }
                      ptcpsocket->SetCallOnConnect(false);
-                     AddList(psocket->GetSocket(), LIST_CALLONCONNECT, false);
+
+                     socketlist_erase(psocket->GetSocket(), e_list_call_on_connect);
+
                   }
+
                }
+
             }
+
          }
+
          return true;
+
       }
 
-
       return false;
+
    }
 
 
@@ -415,12 +531,12 @@ namespace sockets
          try
          {
 
-            m_sockets.values().each([](auto & psocket)
-               {
+            m_socketmap.values().each([](auto & psocket)
+            {
 
-                  psocket->on_select_idle();
+               psocket->on_select_idle();
 
-               });
+            });
 
          }
          catch (...)
@@ -434,84 +550,94 @@ namespace sockets
 
 start_processing_adding:
 
-      auto p = m_add.begin();
+      auto passociationAdd = m_socketmapAdd.get_start();
 
-      if (p)
+      if (passociationAdd)
       {
 
-         if (m_sockets.get_size() >= FD_SETSIZE)
+         if (m_socketmap.get_size() >= FD_SETSIZE)
          {
 
-
-            WARN(this, "Select", (i32)m_sockets.get_size(), "FD_SETSIZE reached");
-
+            WARN(this, "Select", (i32)m_socketmap.get_size(), "FD_SETSIZE reached");
 
             goto end_processing_adding;
 
          }
 
-         SOCKET socket = p->m_socket;
+         SOCKET socket = passociationAdd->m_socket;
 
-         auto & psocket = p->m_psocket;
+         auto & psocket = passociationAdd->m_psocket;
 
-         if (m_sockets.has(psocket->GetSocket()))
+         if (m_socketmap.has(socket))
          {
 
-            FATAL(psocket, "add", (i32)psocket->GetSocket(), "Attempt to add socket already in controlled queue");
+            WARN(psocket, "add", (i32)psocket->GetSocket(), "Attempt to add socket already in controlled queue");
 
-            m_add.erase_key(socket);
+            m_socketmapAdd.erase(passociationAdd);
 
             goto start_processing_adding;
 
          }
 
-         if (!psocket->IsCloseAndDelete())
+         if (psocket->IsCloseAndDelete())
          {
 
-            auto pstreamsocket = psocket.cast < stream_socket >();
+            WARN(psocket, "add", (i32)psocket->GetSocket(), "Trying to add socket with SetCloseAndDelete() true");
 
-            if (pstreamsocket && pstreamsocket->Connecting()) // 'open' called before adding socket
-            {
+            m_socketlist.add_tail(socket);
 
-               set(socket, true, true);
+            m_socketmap.move(passociationAdd, &m_socketmapAdd);
 
-            }
-            else
-            {
+            socketlist_add(socket, e_list_close);
 
-               auto ptcpsocket = psocket.cast < tcp_socket >();
+            goto start_processing_adding;
 
-               bool bWrite = ptcpsocket ? ptcpsocket->GetOutputLength() != 0 || ptcpsocket->CallOnConnect() : false;
+         }
 
-               bool bRead = ptcpsocket ? !ptcpsocket->IsDisableRead() : true;
+         auto pstreamsocket = dynamic_cast < stream_socket * > (psocket.m_p);
 
-               set(socket, bRead, bWrite);
+         if (::is_set(pstreamsocket) && pstreamsocket->is_connecting()) // 'open' called before adding socket
+         {
 
-            }
-
-            m_maxsock = (socket + 1 > m_maxsock) ? socket + 1 : m_maxsock;
+            set(socket, true, true);
 
          }
          else
          {
 
-            WARN(psocket, "add", (i32)psocket->GetSocket(), "Trying to add socket with SetCloseAndDelete() true");
+            auto ptcpsocket = dynamic_cast < tcp_socket * > (psocket.m_p);
+
+            bool bWrite = ::is_set(ptcpsocket) ? ptcpsocket->GetOutputLength() != 0 || ptcpsocket->CallOnConnect() : false;
+
+            bool bRead = ::is_set(ptcpsocket) ? !ptcpsocket->IsDisableRead() : true;
+
+            set(socket, bRead, bWrite);
 
          }
 
-         // only add to m_fds (process fd_set events) if
+         m_maxsock = (socket + 1 > m_maxsock) ? socket + 1 : m_maxsock;
+
+         // only add to m_socketlist (process fd_set events) if
          //  slave handler and detached/detaching socket
          //  master handler and non-detached socket
-         if (!(m_slave ^ psocket->IsDetach()))
+         //if (!(m_slave ^ psocket->IsDetach()))
+         //if (!(m_slave ^ psocket->IsDetach()))
+         //{
+
+           // m_socketlist.add_tail(socket);
+
+         //}
+
+         m_socketlist.add_tail(socket);
+
+         m_socketmap.move(passociationAdd, &m_socketmapAdd);
+
+         if (passociationAdd->m_psocket->IsDetach())
          {
 
-            m_fds.add_tail(socket);
+            passociationAdd->m_psocket->OnDetached();
 
          }
-
-         m_sockets[socket] = psocket;
-
-         m_add.erase_key(socket);
 
          goto start_processing_adding;
 
@@ -548,6 +674,10 @@ end_processing_adding:
       else
       {
 
+         //debug_print(" m_socketmap : %d\n", m_socketmap.size());
+         //debug_print(" m_socketmapAdd     : %d\n", m_socketmapAdd.size());
+         //debug_print(" m_delete  : %d\n", m_delete.size());
+
          if (m_b_use_mutex)
          {
 
@@ -571,7 +701,7 @@ end_processing_adding:
 
       }
 
-      tick2= ::millis::now();
+      tick2 = ::millis::now();
 
       if (n < 0)
       {
@@ -588,16 +718,19 @@ end_processing_adding:
          if (m_maxsock > 0 && (m_iSelectErrno != m_iPreviousError || tickNow - m_millisLastError > 5000))
          {
 
-
             INFO(log_this, "select", m_iSelectErrno, bsd_socket_error(m_iSelectErrno));
 
-
             i32 iError = m_iSelectErrno;
+
 #ifdef LINUX
+
             TRACE("m_maxsock: %d\n", m_maxsock);
             TRACE("sockets::socket_handler select error : %s (%d)", strerror(Errno), Errno);
+
 #else
+
             TRACE("sockets::socket_handler select error : %s (%d)", get_system_error_message(iError).c_str(), iError);
+
 #endif
 
             if (iError == 10022)
@@ -608,40 +741,57 @@ end_processing_adding:
             }
 
             // test bad fd
-            for (SOCKET i = 0; i < m_maxsock; i++)
+            for (SOCKET socket = 0; socket < m_maxsock; socket++)
             {
-               bool t = false;
+
+               bool bAnySet = false;
+
                FD_ZERO(&rfds);
                FD_ZERO(&wfds);
                FD_ZERO(&efds);
-               if (FD_ISSET(i, &m_rfds))
+
+               if (FD_ISSET(socket, &m_rfds))
                {
-                  FD_SET(i, &rfds);
-                  t = true;
-               }
-               if (FD_ISSET(i, &m_wfds))
-               {
-                  FD_SET(i, &wfds);
-                  t = true;
-               }
-               if (FD_ISSET(i, &m_efds))
-               {
-                  FD_SET(i, &efds);
-                  t = true;
+
+                  FD_SET(socket, &rfds);
+
+                  bAnySet = true;
+
                }
 
-               socket_pointer psocket;
-
-               if (t && m_sockets.lookup(i, psocket))
+               if (FD_ISSET(socket, &m_wfds))
                {
 
-                  TRACE("Bad fd in fd_set: %d\n", i);
+                  FD_SET(socket, &wfds);
 
-                  TRACE("Deleting and removing socket: %d\n", i);
+                  bAnySet = true;
 
-                  psocket->SetCloseAndDelete();
+               }
 
-                  m_sockets.erase_key(i);
+               if (FD_ISSET(socket, &m_efds))
+               {
+
+                  FD_SET(socket, &efds);
+
+                  bAnySet = true;
+
+               }
+
+               if (bAnySet)
+               {
+
+                  auto ppairSocket = m_socketmap.plookup(socket);
+
+                  if (::is_set(ppairSocket) && ::is_set(ppairSocket->m_psocket))
+                  {
+
+                     TRACE("Bad fd in fd_set: %d\n", socket);
+
+                     TRACE("Deleting and removing socket: %d\n", socket);
+
+                     ppairSocket->m_psocket->SetCloseAndDelete();
+
+                  }
 
                }
 
@@ -649,8 +799,8 @@ end_processing_adding:
 
          }
 
-         /// \no more todo rebuild fd_set's from active sockets list (m_sockets) here
-         /// done : http://jbmon.googlecode.com/svn/trunk/sockets/SocketHandler.cpp : rebuild fd_set's from active sockets list (m_sockets) here
+         /// \no more todo rebuild fd_set's from active sockets list (m_socketmap) here
+         /// done : http://jbmon.googlecode.com/svn/trunk/sockets/SocketHandler.cpp : rebuild fd_set's from active sockets list (m_socketmap) here
          {
 
             FD_ZERO(&rfds);
@@ -661,7 +811,7 @@ end_processing_adding:
             ::count countW = 0;
             ::count countE = 0;
 
-            auto it = m_sockets.begin();
+            auto it = m_socketmap.begin();
 
             for(; it; it++)
             {
@@ -693,7 +843,7 @@ end_processing_adding:
 
                         ERR(it->m_psocket, "Select", (i32)it->m_socket, "Bad fd in fd_set (2)"); // , LOG_LEVEL_ERROR);
 
-                        m_fds_erase.push_back(it->m_socket);
+                        m_socketlistErase.push_back(it->m_socket);
 
                      }
                      else
@@ -741,7 +891,7 @@ end_processing_adding:
 
                            ERR(it->m_psocket, "Select", (i32)it->m_socket, "No fd in fd_set"); // , LOG_LEVEL_ERROR);
 
-                           m_fds_erase.push_back(it->m_socket);
+                           m_socketlistErase.push_back(it->m_socket);
 
                         }
 
@@ -755,7 +905,7 @@ end_processing_adding:
 
                      ERR(it->m_psocket, "Select", (i32)it->m_socket, "Bad fd in fd_set (3)"); // , LOG_LEVEL_ERROR);
 
-                     m_fds_erase.push_back(it->m_socket);
+                     m_socketlistErase.push_back(it->m_socket);
 
                   }
 
@@ -767,7 +917,7 @@ end_processing_adding:
 
                   ERR(it->m_psocket, "Select", (i32)it->m_socket, "Bad fd in fd_set (3)"); // , LOG_LEVEL_ERROR);
 
-                  m_fds_erase.push_back(it->m_socket);
+                  m_socketlistErase.push_back(it->m_socket);
 
                }
 
@@ -797,25 +947,35 @@ end_processing_adding:
       else // n > 0
       {
 
-         auto pos = m_fds.begin();
+         auto pos = m_socketlist.begin();
 
          for (; pos && n; pos++)
          {
+            
             SOCKET socket = *pos;
+
             if (FD_ISSET(socket, &rfds))
             {
-               socket_pointer psocket;
-               if (m_sockets.lookup(socket, psocket)) // found
+               
+               auto ppairSocket = m_socketmap.plookup(socket);
+
+               if (::is_set(ppairSocket) && ::is_set(ppairSocket->m_psocket)) // found
                {
+
                   // new SSL negotiate method
-                  if (psocket->IsSSLNegotiate())
+                  if (ppairSocket->m_psocket->IsSSLNegotiate())
                   {
-                     psocket->SSLNegotiate();
+                     
+                     ppairSocket->m_psocket->SSLNegotiate();
+
                   }
                   else
                   {
-                     psocket->OnRead();
+                     
+                     ppairSocket->m_psocket->OnRead();
+
                   }
+
                }
                else
                {
@@ -823,22 +983,33 @@ end_processing_adding:
                   WARN(this, "GetSocket/handler/1", (i32)socket, "Did not find expected socket using file descriptor(1)");
 
                }
+
                n--;
+
             }
+
             if (FD_ISSET(socket, &wfds))
             {
-               socket_pointer psocket;
-               if (m_sockets.lookup(socket, psocket)) // found
+               
+               auto ppairSocket = m_socketmap.plookup(socket);
+
+               if (::is_set(ppairSocket) && ::is_set(ppairSocket->m_psocket)) // found
                {
+
                   // new SSL negotiate method
-                  if (psocket->IsSSLNegotiate())
+                  if (ppairSocket->m_psocket->IsSSLNegotiate())
                   {
-                     psocket->SSLNegotiate();
+
+                     ppairSocket->m_psocket->SSLNegotiate();
+
                   }
                   else
                   {
-                     psocket->OnWrite();
+
+                     ppairSocket->m_psocket->OnWrite();
+
                   }
+
                }
                else
                {
@@ -846,29 +1017,51 @@ end_processing_adding:
                   WARN(this, "GetSocket/handler/2", (i32)socket, "Did not find expected socket using file descriptor(2)");
 
                }
+
                n--;
+
             }
+
             if (FD_ISSET(socket, &efds))
             {
-               socket_pointer psocket;
-               if (m_sockets.lookup(socket, psocket)) // found
+
+               auto ppairSocket = m_socketmap.plookup(socket);
+
+               if (::is_set(ppairSocket) && ::is_set(ppairSocket->m_psocket)) // found
                {
+                  
                   // Out-Of-Band data
                   // recv with MSG_OOB
-                  time_t tnow = time(nullptr);
-                  if (psocket->time_out(tnow))
+                  //time_t tnow = time(nullptr);
+
+                  if (ppairSocket->m_psocket->has_timed_out())
                   {
-                     __pointer(stream_socket) pstreamsocket = (psocket);
-                     if (pstreamsocket != nullptr && pstreamsocket->Connecting())
-                        psocket->OnConnectTimeout();
+                  
+                     if (ppairSocket->m_psocket->is_connecting())
+                     {
+
+                        WARN(this, "GetSocket/handler/3", (i32)socket, "stream_socket on_connection_timeout (3)");
+
+                        ppairSocket->m_psocket->on_connection_timeout();
+
+                     }
                      else
-                        psocket->OnTimeout();
-                     psocket->SetTimeout(0);
+                     {
+
+                        WARN(this, "GetSocket/handler/3", (i32)socket, "socket on_timeout (3)");
+
+                        ppairSocket->m_psocket->on_timeout();
+
+                     }
+
                   }
                   else
                   {
-                     psocket->OnException();
+
+                     ppairSocket->m_psocket->OnException();
+
                   }
+
                }
                else
                {
@@ -876,10 +1069,15 @@ end_processing_adding:
                   WARN(this, "GetSocket/handler/3", (i32)socket, "Did not find expected socket using file descripto(3)r");
 
                }
+
                n--;
+
             }
-         } // m_fds loop
+
+         } // m_socketlist loop
+
          m_iPreviousError = -1;
+
       } // if (n > 0)
 
       call_on_connect();
@@ -887,12 +1085,13 @@ end_processing_adding:
       bool check_max_fd = false;
 
       // check detach of socket if master handler - EVENT
-      if (!m_slave && m_fds_detach.get_size())
+      //if (!m_slave && m_socketlistDetach.get_size())
+      if(m_socketlistDetach.has_element())
       {
 
-         auto pos = m_fds_detach.begin();
+         auto pos = m_socketlistDetach.begin();
 
-         socket_pointer psocket;
+         //socket_map::pair * ppairSocket = nullptr;
 
          bool bRemove = false;
 
@@ -904,18 +1103,21 @@ end_processing_adding:
             if (bRemove)
             {
 
-               m_fds_detach.erase(socket);
+               m_socketlistDetach.erase(socket);
 
             }
 
             bRemove = false;
 
             socket = *pos;
+            
+            auto ppairSocket = m_socketmap.plookup(socket);
 
-            if (m_sockets.lookup(socket, psocket) && psocket)
+            if (::is_set(ppairSocket) && ::is_set(ppairSocket->m_psocket))
             {
 
-               if (psocket->IsDetach())
+               if (ppairSocket->m_psocket->IsDetach()
+                  && !ppairSocket->m_psocket->IsDetached())
                {
 
                   if (socket != INVALID_SOCKET)
@@ -928,7 +1130,7 @@ end_processing_adding:
                      try
                      {
 
-                        psocket->DetachSocket();
+                        ppairSocket->m_psocket->DetachSocket(ppairSocket, &m_socketmap);
 
                      }
                      catch (...)
@@ -936,13 +1138,15 @@ end_processing_adding:
 
                      }
 
-                     // Adding the file descriptor to m_fds_erase will now also erase the
+                     // Adding the file descriptor to m_socketlistErase will now also erase the
                      // socket from the detach queue - tnx knightmad
-                     m_fds_erase.add_tail(socket);
+                     //m_socketlistErase.add_tail(socket);
 
-                     m_fds.erase(socket);
+                     //m_socketlist.erase(socket);
 
-                     m_sockets.erase_key(socket);
+                     //m_socketmap.erase_key(socket);
+
+                     erase_socket(socket);
 
                      bRemove = true;
 
@@ -958,75 +1162,111 @@ end_processing_adding:
 
       }
 
-      // check Connecting - connection timeout - conditional event
-      if (m_fds_timeout.get_size())
+      // check is_connecting - connection timeout - conditional event
+      if (m_socketlistTimeout.get_size())
       {
+         
          time_t tnow = time(nullptr);
+
          if (tnow != m_tlast)
          {
-            socket_list tmp = m_fds_timeout;
-            //TRACE("Checking %d socket(s) for timeout\n", tmp.get_size());
+
+            restartSocketListTimeout:
+
+            socket_list tmp = m_socketlistTimeout;
+
             auto it = tmp.begin();
+
             for (; it; it++)
             {
 
-               socket_pointer psocket;
-
                SOCKET socket = *it;
 
-               if (!m_sockets.lookup(socket, psocket)) // not found
+               auto ppairSocket = m_socketmap.plookup(socket);
+
+               if (::is_null(ppairSocket) || ::is_null(ppairSocket->m_psocket)) // not found
                {
 
-                  if (!m_add.lookup(socket, psocket))
+                  ppairSocket = m_socketmapAdd.plookup(socket);
+
+                  if (::is_null(ppairSocket) || ::is_null(ppairSocket->m_psocket))
                   {
 
-                     WARN(this, "GetSocket/handler/6", (i32)socket, "Did not find expected socket using file descriptor(6)");
+                     WARN(this, "GetSocket/handler/6", (i32)socket, "Did not find expected socket using file descriptor(f)");
 
-                     AddList(socket, LIST_TIMEOUT, false);
+                     m_socketlistTimeout.erase(socket);
+
+                     goto restartSocketListTimeout;
+
                   }
+
+                  continue;
+
                }
-               if (psocket)
+               
+               if (::is_set(ppairSocket) || ::is_set(ppairSocket->m_psocket))
                {
-                  if (psocket->time_out(tnow))
+
+                  if (ppairSocket->m_psocket->has_timed_out())
                   {
-                     __pointer(stream_socket) pstreamsocket = psocket;
-                     if (pstreamsocket && pstreamsocket->Connecting())
-                        psocket->OnConnectTimeout();
+
+                     if (ppairSocket->m_psocket->is_connecting())
+                     {
+
+                        WARN(this, "GetSocket/handler/7", (i32)socket, "stream_socket on_connection_timeout (g)");
+
+                        ppairSocket->m_psocket->on_connection_timeout();
+
+                     }
                      else
-                        psocket->OnTimeout();
-                     psocket->SetTimeout(0);
+                     {
+
+                        WARN(this, "GetSocket/handler/7", (i32)socket, "socket on_timeout (g)");
+
+                        ppairSocket->m_psocket->on_timeout();
+
+                     }
+
+                     ppairSocket->m_psocket->SetCloseAndDelete();
+
                   }
+
                }
+
             }
+
             m_tlast = tnow;
-         } // tnow != tlast
+
+         }
+
       }
+
       // check retry client connect - EVENT
-      if (m_fds_retry.get_size())
+      if (m_socketlistRetryClientConnect.get_size())
       {
 
-         socket_list tmp = m_fds_retry;
+         socket_list tmp = m_socketlistRetryClientConnect;
 
          auto socket = tmp.begin();
 
          for (; socket; socket++)
          {
 
-            socket_pointer psocket;
+            auto ppairSocket = m_socketmap.plookup(*socket);
 
-            if (m_sockets.lookup(*socket, psocket))
+            if (::is_null(ppairSocket) || ::is_null(ppairSocket->m_psocket))
             {
 
-               WARN(this, "GetSocket/handler/7", (i32)socket, "Did not find expected socket using file descriptor(7)");
+               WARN(this, "GetSocket/handler/7", (i32)socket, "Did not find expected socket using file descriptor(g)");
 
             }
 
-            if (psocket)
+            if (::is_set(ppairSocket) && ::is_set(ppairSocket->m_psocket))
             {
 
-               __pointer(tcp_socket)ptcpsocket = psocket;
+               auto ptcpsocket = dynamic_cast < tcp_socket * > (ppairSocket->m_psocket.m_p);
 
-               if (ptcpsocket != nullptr)
+               if (::is_set(ptcpsocket))
                {
 
                   if (ptcpsocket->RetryClientConnect())
@@ -1038,9 +1278,9 @@ end_processing_adding:
 
                      //TRACE("close() before retry client connect\n");
 
-                     psocket->close(); // erases from m_fds_retry
+                     ptcpsocket->close(); // erases from m_socketlistRetryClientConnect
 
-                     ::net::address ad = psocket->GetClientRemoteAddress();
+                     ::net::address ad = ptcpsocket->GetClientRemoteAddress();
 
                      if (ad.is_valid())
                      {
@@ -1051,13 +1291,13 @@ end_processing_adding:
                      else
                      {
 
-                        ERR(psocket, "RetryClientConnect", 0, "no address");
+                        ERR(ptcpsocket, "RetryClientConnect", 0, "no address");
 
                      }
 
-                     add(psocket);
+                     move(ppairSocket, &m_socketmap);
 
-                     m_fds_erase.add_tail(nn);
+                     m_socketlistErase.add_tail(nn);
 
                   }
 
@@ -1070,10 +1310,10 @@ end_processing_adding:
       }
 
       // check close and delete - conditional event
-      if (m_fds_close.get_size() > 0)
+      if (m_socketlistClose.get_size() > 0)
       {
 
-         socket_list socketlist = m_fds_close;
+         socket_list socketlist = m_socketlistClose;
 
          auto psocketlist = socketlist.begin();
 
@@ -1082,30 +1322,48 @@ end_processing_adding:
 
             SOCKET socket = *psocketlist;
 
-            socket_pointer psocket;
+            socket_map* psocketmap = nullptr;
 
-            if (!m_sockets.lookup(socket, psocket)) // not found
+            auto ppairSocket = m_socketmap.plookup(socket);
+
+            if (::is_null(ppairSocket) || ::is_null(ppairSocket->m_psocket)) // not found
             {
 
-               if (!m_add.lookup(socket, psocket))
+               ppairSocket = m_socketmapAdd.plookup(socket);
+
+               if (::is_null(ppairSocket) || ::is_null(ppairSocket->m_psocket))
                {
 
-                  WARN(psocket, "GetSocket/handler/8", (i32)socket, "Did not find expected socket using file descriptor(8)");
+                  WARN(nullptr, "GetSocket/handler/8", (i32)socket, "Did not find expected socket using file descriptor(8)");
+
+               }
+               else
+               {
+
+                  psocketmap = &m_socketmapAdd;
 
                }
 
             }
-
-            if (psocket)
+            else
             {
+
+               psocketmap = &m_socketmap;
+
+            }
+
+            if (::is_set(ppairSocket) && ::is_set(ppairSocket->m_psocket))
+            {
+
+               auto psocket = ppairSocket->m_psocket.m_p;
 
                if (psocket->IsCloseAndDelete())
                {
 
-                  __pointer(tcp_socket) ptcpsocket = psocket;
+                  auto ptcpsocket = dynamic_cast <tcp_socket*> (ppairSocket->m_psocket.m_p);
 
                   // new graceful ptcpsocket - flush and close timeout 5s
-                  if (ptcpsocket && psocket->IsConnected() && ptcpsocket->GetFlushBeforeClose() &&
+                  if (::is_set(ptcpsocket) && psocket->IsConnected() && ptcpsocket->GetFlushBeforeClose() &&
                         !ptcpsocket->IsSSL() && psocket->TimeSinceClose() < 5)
                   {
 
@@ -1113,44 +1371,44 @@ end_processing_adding:
                      if (ptcpsocket->GetOutputLength())
                      {
 
-                        INFO(psocket, "Closing", (i32)ptcpsocket->GetOutputLength(), "Sending all data before closing");
+                        INFO(ptcpsocket, "Closing", (i32)ptcpsocket->GetOutputLength(), "Sending all data before closing");
 
                      }
                      else // shutdown write when output buffer is is_empty
-                        if (!(ptcpsocket->GetShutdown() & SHUT_WR))
+                        if (!(ptcpsocket->GetShutdownStatus() & SHUT_WR))
                      {
 
-                        if (psocket->m_socket != INVALID_SOCKET && shutdown(psocket->m_socket, SHUT_WR) == -1)
+                        if (ptcpsocket->m_socket != INVALID_SOCKET && shutdown(psocket->m_socket, SHUT_WR) == -1)
                         {
 
-                           ERR(psocket, "graceful shutdown", Errno, bsd_socket_error(Errno));
+                           ERR(ptcpsocket, "graceful shutdown", Errno, bsd_socket_error(Errno));
 
                         }
 
-                        ptcpsocket->SetShutdown(SHUT_WR);
+                        ptcpsocket->SetShutdownStatus(SHUT_WR);
 
                      }
 
                   }
-                  else if (ptcpsocket && psocket->IsConnected() && ptcpsocket->Reconnect())
+                  else if (::is_set(ptcpsocket) && psocket->IsConnected() && ptcpsocket->Reconnect())
                   {
 
                      //SOCKET nn = *it; //(*it3).element1();
                      //TRACE(" close(2) fd %d\n", socket);
 
-                     psocket->SetCloseAndDelete(false);
+                     ptcpsocket->SetCloseAndDelete(false);
 
                      ptcpsocket->SetIsReconnect();
 
-                     psocket->SetConnected(false);
+                     ptcpsocket->SetConnected(false);
 
                      //TRACE("close() before reconnect\n");
 
-                     psocket->close(); // dispose of old file descriptor (open creates a new)
+                     ptcpsocket->close(); // dispose of old file descriptor (open creates a new)
 
-                     psocket->OnDisconnect();
+                     ptcpsocket->OnDisconnect();
 
-                     ::net::address ad = psocket->GetClientRemoteAddress();
+                     ::net::address ad = ptcpsocket->GetClientRemoteAddress();
 
                      if (ad.is_valid())
                      {
@@ -1161,15 +1419,15 @@ end_processing_adding:
                      else
                      {
 
-                        ERR(psocket, "Reconnect", 0, "no address");
+                        ERR(ptcpsocket, "Reconnect", 0, "no address");
 
                      }
 
-                     ptcpsocket->ResetConnectionRetries();
+                     ptcpsocket->ResetConnectionRetryCount();
 
-                     add(psocket);
+                     move(ppairSocket, psocketmap);
 
-                     m_fds_erase.add_tail(psocket->m_socket);
+                     m_socketlistErase.add_tail(ptcpsocket->m_socket);
 
                   }
                   else
@@ -1177,7 +1435,7 @@ end_processing_adding:
 
                      //TRACE(" close(3) fd %d GetSocket() %d\n", socket, point_i32 -> GetSocket());
 
-                     if (ptcpsocket && psocket->IsConnected() && ptcpsocket->GetOutputLength())
+                     if (psocket && psocket->IsConnected() && ptcpsocket->GetOutputLength())
                      {
 
                         WARN(psocket, "Closing", (i32)ptcpsocket->GetOutputLength(), "Closing socket while data still left to send");
@@ -1191,7 +1449,7 @@ end_processing_adding:
 
                         synchronous_lock synchronouslock(&psystem->sockets().m_mutexPool);
 
-                        __pointer(pool_socket) ppoolsocket = __new(pool_socket(psocket));
+                        auto ppoolsocket = __new(pool_socket(psocket));
 
                         ppoolsocket->m_psockethandler = this;
 
@@ -1199,19 +1457,19 @@ end_processing_adding:
 
                         psystem->sockets().m_pool.set_at(ppoolsocket->m_socket, ppoolsocket);
 
-                        ppoolsocket->SetCloseAndDelete(false); // added - erase from m_fds_close
+                        ppoolsocket->SetCloseAndDelete(false); // added - erase from m_socketlistClose
 
-                        //point_i32 -> SetCloseAndDelete(false); // added - erase from m_fds_close
-
-                     }
-                     else if (psocket.cast < http_session >() != nullptr && !psocket->Lost())
-                     {
-
-                        psocket->SetCloseAndDelete(false);
-
-                        continue;
+                        //point_i32 -> SetCloseAndDelete(false); // added - erase from m_socketlistClose
 
                      }
+                     //else if (psocket.cast < http_session >() != nullptr && !psocket->Lost())
+                     //{
+
+                     //   psocket->SetCloseAndDelete(false);
+
+                     //   continue;
+
+                     //}
                      else if(psocket->GetSocket() != INVALID_SOCKET)
                      {
 
@@ -1238,48 +1496,34 @@ end_processing_adding:
 
             }
 
-            m_fds_erase.add_tail(socket);
+            m_socketlistErase.add_tail(socket);
 
          }
 
       }
 
       // check erased sockets
-      while (m_fds_erase.get_size())
+      while (m_socketlistErase.get_size())
       {
 
-         SOCKET socket = m_fds_erase.pick_head();
+         SOCKET socket = m_socketlistErase.pick_head();
 
-         m_fds_detach.erase(socket);
+         erase_socket(socket);
 
-         m_fds.erase(socket);
+         auto ppairSocket = m_socketmap.plookup(socket);
 
-         m_fds_close.erase(socket);
-
-         socket_pointer psocket;
-
-         if (m_sockets.lookup(socket, psocket))
+         if (::is_set(ppairSocket) && ::is_set(ppairSocket->m_psocket))
          {
 
-            if (psocket.cast < pool_socket >() == nullptr)
-            {
+            ppairSocket->m_psocket->m_psockethandler.release();
 
-               m_sockets.erase_key(socket);
+            //ppairSocket->m_psocket->m_phandlerSlave.release();
 
-            }
-            else
-            {
+            m_socketmap.erase_key(socket);
 
-               m_delete.erase(psocket);
+            m_delete.erase(ppairSocket->m_psocket);
 
-            }
-
-            if (m_add[socket].cast < pool_socket >() == nullptr)
-            {
-
-               m_add.erase_key(socket);
-
-            }
+            m_socketmapAdd.erase_key(socket);
 
          }
 
@@ -1291,19 +1535,20 @@ end_processing_adding:
       if (check_max_fd)
       {
 
-         m_maxsock = m_fds.maximum(0) + 1;
+         m_maxsock = m_socketlist.maximum(0) + 1;
 
       }
 
       // erase add's that fizzed
-      while (m_delete.get_size() > 0)
+      while (m_delete.has_element())
       {
 
-         __pointer(socket) psocket = m_delete.pick_head();
+         auto psocket = m_delete.pick_head().m_p;
 
          psocket->OnDelete();
 
-         if (psocket->DeleteByHandler() && !(m_slave ^ psocket->IsDetached()))
+         //if (psocket->DeleteByHandler() && !(m_slave ^ psocket->IsDetached()))
+         if (psocket->DeleteByHandler() && psocket->IsDetached())
          {
 
             psocket->SetErasedByHandler();
@@ -1376,7 +1621,7 @@ end_processing_adding:
    bool socket_handler::Valid(base_socket * pIsValid)
    {
 
-      auto p = m_sockets.begin();
+      auto p = m_socketmap.begin();
 
       for(; p; p++)
       {
@@ -1406,14 +1651,14 @@ end_processing_adding:
    ::count socket_handler::get_count()
    {
       /*
-      debug_print(" m_sockets : %d\n", m_sockets.size());
-      debug_print(" m_add     : %d\n", m_add.size());
+      debug_print(" m_socketmap : %d\n", m_socketmap.size());
+      debug_print(" m_socketmapAdd     : %d\n", m_socketmapAdd.size());
       debug_print(" m_delete  : %d\n", m_delete.size());
       */
 
-      ::count iSockets = m_sockets.get_size();
+      ::count iSockets = m_socketmap.get_size();
 
-      ::count iAdd = m_add.get_size();
+      ::count iAdd = m_socketmapAdd.get_size();
 
       ::count iDelete = m_delete.get_size();
 
@@ -1717,14 +1962,14 @@ end_processing_adding:
 
    void socket_handler::EnablePool(bool x)
    {
-      m_b_enable_pool = x;
+      m_bEnablePool = x;
    }
 
 
    bool socket_handler::PoolEnabled()
    {
 
-      return m_b_enable_pool;
+      return m_bEnablePool;
 
    }
 
@@ -1746,7 +1991,7 @@ end_processing_adding:
 
       }
 
-      if(::erase_value(m_sockets, psocketRemove))
+      if(::erase_value(m_socketmap, psocketRemove))
       {
 
          WARN(psocketRemove, "erase", -1, "socket destructor called while still in use");
@@ -1755,7 +2000,7 @@ end_processing_adding:
 
       }
 
-      if (::erase_value(m_add, psocketRemove))
+      if (::erase_value(m_socketmapAdd, psocketRemove))
       {
 
          WARN(psocketRemove, "erase", -2, "socket destructor called while still in use");
@@ -1779,13 +2024,13 @@ end_processing_adding:
    void socket_handler::CheckSanity()
    {
 
-      CheckList(m_fds, "active sockets"); // active sockets
-      CheckList(m_fds_erase, "sockets to be erased"); // should always be is_empty anyway
-      CheckList(m_fds_callonconnect, "checklist CallOnConnect");
-      CheckList(m_fds_detach, "checklist detach");
-      CheckList(m_fds_timeout, "checklist time_out");
-      CheckList(m_fds_retry, "checklist retry client connect");
-      CheckList(m_fds_close, "checklist close and delete");
+      CheckList(m_socketlist, "active sockets"); // active sockets
+      CheckList(m_socketlistErase, "sockets to be erased"); // should always be is_empty anyway
+      CheckList(m_socketlistCallOnConnect, "checklist CallOnConnect");
+      CheckList(m_socketlistDetach, "checklist detach");
+      CheckList(m_socketlistTimeout, "checklist time_out");
+      CheckList(m_socketlistRetryClientConnect, "checklist retry client connect");
+      CheckList(m_socketlistClose, "checklist close and delete");
 
    }
 
@@ -1798,14 +2043,14 @@ end_processing_adding:
       for(; (bool) p ; p++)
       {
 
-         if (m_sockets.has(*p))
+         if (m_socketmap.has(*p))
          {
 
             continue;
 
          }
 
-         if (m_add.has(*p))
+         if (m_socketmapAdd.has(*p))
          {
 
             continue;
@@ -1823,43 +2068,133 @@ end_processing_adding:
 
    }
 
-
-   void socket_handler::AddList(SOCKET s, list_t which_one, bool add)
+   socket_list& socket_handler::socketlist_get(enum_list elist)
    {
+
+      switch (elist)
+      {
+      case e_list_call_on_connect:
+         return m_socketlistCallOnConnect;
+      case e_list_detach:
+         return m_socketlistDetach;
+      case e_list_timeout:
+         return m_socketlistTimeout;
+      case  e_list_retry_client_connect:
+         return m_socketlistRetryClientConnect;
+      case e_list_close:
+         return m_socketlistClose;
+      default:
+         return m_socketlistClose;
+      }
+
+   }
+
+
+   void socket_handler::socketlist_modify(SOCKET s, enum_list elist, bool bAdd)
+   {
+
+      if (bAdd)
+      {
+
+         socketlist_add(s, elist);
+
+      }
+      else
+      {
+
+         socketlist_erase(s, elist);
+
+      }
+
+   }
+
+
+   void socket_handler::socketlist_add(SOCKET s, enum_list elist)
+   {
+
       if (s == INVALID_SOCKET)
       {
          TRACE("AddList:  invalid_socket\n");
          return;
       }
-      socket_list& ref =
-      (which_one == LIST_CALLONCONNECT) ? m_fds_callonconnect :
-      (which_one == LIST_DETACH) ? m_fds_detach :
-      (which_one == LIST_TIMEOUT) ? m_fds_timeout :
-      (which_one == LIST_RETRY) ? m_fds_retry :
-      (which_one == LIST_CLOSE) ? m_fds_close : m_fds_close;
-      if (add)
-      {
-         /*         TRACE("AddList;  %5d: %s: %s\n", s, (which_one == LIST_CALLONCONNECT) ? "CallOnConnect" :
-                     (which_one == LIST_DETACH) ? "detach" :
-                     (which_one == LIST_TIMEOUT) ? "time_out" :
-                     (which_one == LIST_RETRY) ? "Retry" :
-                     (which_one == LIST_CLOSE) ? "close" : "<undef>",
-                     add ? "add" : "erase");*/
-      }
-      if (add)
-      {
-         ref.add_tail_unique(s);
-         if (which_one == LIST_CLOSE)
-         {
 
-            //INFO(output_debug_string("list_close");
-         }
-         return;
-      }
+      auto& socketlist = socketlist_get(elist);
+
+      //if (add)
+      //{
+      //   /*         TRACE("AddList;  %5d: %s: %s\n", s, (which_one == e_list_call_on_connect) ? "CallOnConnect" :
+      //               (which_one == e_list_detach) ? "detach" :
+      //               (which_one == e_list_timeout) ? "time_out" :
+      //               (which_one == e_list_retry) ? "Retry" :
+      //               (which_one == e_list_close) ? "close" : "<undef>",
+      //               add ? "add" : "erase");*/
+      //}
+      //if (add)
+      //{
+      socketlist.add_tail_unique(s);
+         //if (which_one == e_list_close)
+         //{
+
+         //   //INFO(output_debug_string("list_close");
+         //}
+         //return;
+      //}
       // erase
-      ref.erase(s);
+      //ref.erase(s);
       //TRACE("/AddList\n");
    }
+
+
+   void socket_handler::socketlist_erase(SOCKET s, enum_list elist)
+   {
+
+      if (s == INVALID_SOCKET)
+      {
+         TRACE("AddList:  invalid_socket\n");
+         return;
+      }
+
+      auto& socketlist = socketlist_get(elist);
+
+         //if (add)
+         //{
+         //   /*         TRACE("AddList;  %5d: %s: %s\n", s, (which_one == e_list_call_on_connect) ? "CallOnConnect" :
+         //               (which_one == e_list_detach) ? "detach" :
+         //               (which_one == e_list_timeout) ? "time_out" :
+         //               (which_one == e_list_retry) ? "Retry" :
+         //               (which_one == e_list_close) ? "close" : "<undef>",
+         //               add ? "add" : "erase");*/
+         //}
+         //if (add)
+         //{
+      socketlist.erase(s);
+      //if (which_one == e_list_close)
+      //{
+
+      //   //INFO(output_debug_string("list_close");
+      //}
+      //return;
+   //}
+   // erase
+   //ref.erase(s);
+   //TRACE("/AddList\n");
+   }
+
+
+   void socket_handler::erase_socket(SOCKET s)
+   {
+
+      set(s, false, false, false); // erase from fd_set's
+
+      m_socketlistCallOnConnect.erase(s);
+      m_socketlistDetach.erase(s);
+      m_socketlistTimeout.erase(s);
+      m_socketlistRetryClientConnect.erase(s);
+      m_socketlistClose.erase(s);
+
+
+   }
+
 
 
    i32 socket_handler::TriggerID(base_socket * src)

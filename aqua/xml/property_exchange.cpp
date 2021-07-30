@@ -37,7 +37,7 @@ namespace xml
       for(auto & pproperty : *m_ppropertyset)
       {
 
-         varexchange.m_pvar = pproperty;
+         varexchange.m_ppayload = pproperty;
 
          xmlot.export_node(pproperty->m_id, varexchange);
 
@@ -57,7 +57,7 @@ namespace xml
       for(auto & pproperty : *m_ppropertyset)
       {
 
-         varexchange.m_pvar = pproperty;
+         varexchange.m_ppayload = pproperty;
 
          xmlit.import_node(pproperty->m_id, varexchange);
 

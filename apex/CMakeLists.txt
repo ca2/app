@@ -214,6 +214,8 @@ list(APPEND apex_source
    net/sockets/base/base_socket.h
    net/sockets/base/base_socket_handler.cpp
    net/sockets/base/base_socket_handler.h
+   net/sockets/base/socket_thread.cpp
+   net/sockets/base/socket_thread.h
    net/sockets/bsd/basic/_.h
    net/sockets/bsd/basic/basic_net.cpp
    net/sockets/bsd/basic/listen_socket.cpp

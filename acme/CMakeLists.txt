@@ -114,11 +114,15 @@ list(APPEND library_source
    #memory/heap.cpp
    memory/memory_allocate.cpp
    memory/memory_allocate.h
+   memory/memory_management.cpp
+   memory/memory_management.h
    memory/new.cpp
    #memory/plex.cpp
    #memory/plex_heap.cpp
    memory/property_memory_allocate.cpp
    memory/property_memory_allocate.h
+   memory/secondary_memory_allocate.cpp
+   memory/secondary_memory_allocate.h
    memory/string_memory_allocate.cpp
    memory/string_memory_allocate.h
    memory/string_memory_allocator.h
@@ -262,7 +266,7 @@ list(APPEND library_source
    primitive/collection/string_to_string_map.cpp
    primitive/collection/stringa.cpp
    primitive/collection/stringl.cpp
-   primitive/collection/var_array.cpp
+   primitive/collection/payload_array.cpp
    primitive/comparison/var_strict.cpp
    primitive/data/_.h
    primitive/data/_data.h
@@ -1019,7 +1023,7 @@ list(APPEND library_source
    primitive/collection/stringl.h
    primitive/collection/template.h
    primitive/collection/unique_array.h
-   primitive/collection/var_array.h
+   primitive/collection/payload_array.h
    primitive/comparison/_.h
    primitive/comparison/_c.h
    primitive/comparison/binary.h

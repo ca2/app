@@ -28,10 +28,19 @@ namespace draw2d_cairo
    }
 
 
-   void path::destroy()
+   ::e_status path::destroy()
    {
 
-      ::draw2d::path::destroy();
+      auto estatus = ::draw2d::path::destroy();
+
+      if(!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return estatus;
 
    }
 

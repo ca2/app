@@ -67,7 +67,7 @@ namespace draw2d_cairo
    }
 
 
-   void font::destroy()
+   ::e_status font::destroy()
    {
 
       synchronous_lock ml(cairo_mutex());
@@ -118,7 +118,7 @@ namespace draw2d_cairo
 
 #endif
 
-      //return true;
+      return ::success;
 
    }
 

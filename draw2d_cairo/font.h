@@ -35,14 +35,14 @@ namespace draw2d_cairo
 
 
       font();
-      virtual ~font();
+      ~font() override;
 
 
-      virtual bool create(::draw2d::graphics * pgraphics, i8 iCreate) override;
-      virtual void destroy() override;
+      bool create(::draw2d::graphics * pgraphics, i8 iCreate) override;
+      ::e_status destroy() override;
 
 
-      virtual void dump(dump_context & dumpcontext) const override;
+      void dump(dump_context & dumpcontext) const override;
 
       virtual ::enum_character_set calculate_character_set(::draw2d::graphics * pgraphics) override;
 

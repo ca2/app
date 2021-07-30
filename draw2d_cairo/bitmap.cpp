@@ -407,7 +407,7 @@ namespace draw2d_cairo
    }
 
 
-   void bitmap::destroy()
+   ::e_status bitmap::destroy()
    {
 
       synchronous_lock ml(cairo_mutex());
@@ -415,7 +415,7 @@ namespace draw2d_cairo
       if (m_psurface == nullptr)
       {
 
-         return;
+         return ::success_none;
 
       }
 
@@ -424,6 +424,8 @@ namespace draw2d_cairo
       m_psurface = nullptr;
 
       ::draw2d::bitmap::destroy();
+
+      return ::success;
 
    }
 

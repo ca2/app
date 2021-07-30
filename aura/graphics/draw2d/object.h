@@ -19,11 +19,11 @@ namespace draw2d
 
 
       object();
-      virtual ~object();
+      ~object() override;
 
 
-      virtual void assert_valid() const;
-      virtual void dump(dump_context & dumpcontext) const;
+      void assert_valid() const override;
+      void dump(dump_context & dumpcontext) const override;
 
       
       //inline ::aura::application* get_application();
@@ -99,7 +99,6 @@ namespace draw2d
 
 
 } // namespace draw2d
-
 
 
 

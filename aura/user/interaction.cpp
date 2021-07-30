@@ -61,6 +61,8 @@ namespace user
 
       //m_bSimpleUIDefaultMouseHandlingMouseCaptureOnLeftButtonDown = false;
 
+      m_bUserInteractionHost = false;
+
       m_bMouseHoverOnCapture = false;
 
       m_bCompositedFrameWindow = true;
@@ -11395,9 +11397,10 @@ restart:
 
       }
 
-      auto psession = get_session();
+      //auto psession = get_session();
 
-      if(::is_set(psession) && m_puserinteractionParent == psession->get_user_interaction_host())
+      //if(::is_set(psession) && m_puserinteractionParent == psession->get_user_interaction_host())
+      if(m_bUserInteractionHost)
       {
 
          return (::user::interaction *) this;

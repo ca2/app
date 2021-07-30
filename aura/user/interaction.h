@@ -146,6 +146,7 @@ namespace user
       bool                                         m_bLockSketchToDesign : 1;
       bool                                         m_bParentScrollX : 1;
       bool                                         m_bParentScrollY : 1;
+      bool                                         m_bUserInteractionHost : 1;
 
 
 

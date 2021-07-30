@@ -535,10 +535,19 @@ namespace draw2d_cairo
    }
 
 
-   void region::destroy()
+   ::e_status region::destroy()
    {
 
-      ::draw2d::region::destroy();
+      auto estatus = ::draw2d::region::destroy();
+
+      if(!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return estatus;
 
    }
 

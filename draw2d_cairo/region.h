@@ -17,11 +17,11 @@ namespace draw2d_cairo
 
 
       region();
-      virtual ~region();
+      ~region() override;
 
 
       virtual bool create(::draw2d::graphics * pgraphics);
-      virtual void destroy();
+      ::e_status destroy() override;
 
 
       bool mask_fill(cairo_t * pdc);

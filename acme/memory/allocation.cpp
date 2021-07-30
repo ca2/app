@@ -180,3 +180,37 @@ void operator delete(void * ptr, std::align_val_t) noexcept
 
 
 #endif // CPP17
+
+
+
+void heap_memory_check_padding_after(struct heap_memory* pheapmemory)
+{
+
+   byte* pbyte = (byte*)pheapmemory;
+
+   int iStructSize = sizeof(heap_memory);
+
+   // Heap Memory
+   // 1 byte + 1 byte + 1 byte + 1 byte + 4 bytes
+   // 8 bytes + padding
+   // 16 bytes?
+
+   ::u32 iSize = pheapmemory->m_size;
+
+   auto ppaddingAfter = pbyte + iStructSize + iSize;
+
+   for (int i = 0; i < HEAP_PADDING_SIZE; i++)
+   {
+
+      if (ppaddingAfter[i] != 0)
+      {
+
+         //            ::output_debug_string("*&!@");
+
+      }
+
+   }
+
+}
+
+

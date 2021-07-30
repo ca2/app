@@ -1,12 +1,18 @@
 //Created by camilo on 2021-07-24 14:00 BRT <3ThomasBorregaardSørensen!!
 
 
-#define __HEAP_NAMESPACE_PREFIX(name) __PREFIX_UNDERSCORE(HEAP_NAMESPACE_PREFIX,name)
-#define HEAP_NAMESPACE __HEAP_NAMESPACE_PREFIX(memory_allocate_heap)
 
+#include "memory_management.h"
+
+
+#define __HEAP_NAMESPACE_PREFIX(name) __PREFIX_UNDERSCORE(HEAP_NAMESPACE_PREFIX,name)
+#define __HEAP_NAMESPACE_SUFFIX(name) __PREFIX_UNDERSCORE(name,HEAP_NAMESPACE_PREFIX)
+#define HEAP_NAMESPACE __HEAP_NAMESPACE_PREFIX(memory_allocate_heap)
+#define HEAP_ENUMERATE __HEAP_NAMESPACE_SUFFIX(e_memory_heap)
 
 namespace HEAP_NAMESPACE
 {
+
 
 
    #include "__aligned_memory_allocate.h"

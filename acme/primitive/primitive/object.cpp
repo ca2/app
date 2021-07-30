@@ -1064,9 +1064,25 @@ void object::transfer_tasks_from(::task* ptask)
 
    {
 
-      synchronous_lock synchronouslock(ptask->mutex());
+      synchronous_lock synchronouslock(mutex());
 
       m_objectaChildrenTask.add_unique(objectaChildrenTask);
+
+      for (auto& p : objectaChildrenTask)
+      {
+
+         try
+         {
+
+            p->m_pobjectParentTask = this;
+
+         }
+         catch (...)
+         {
+
+         }
+
+      }
 
    }
 

@@ -5,7 +5,7 @@
 string get_system_error_message(u32 dwError)
 {
    wstring wstr;
-   unichar* p = wstr.get_string_buffer(64 * 1024 / sizeof(unichar));
+   WCHAR * p = wstr.get_string_buffer(16 * 1024 / sizeof(unichar));
    ::u32 dw = FormatMessageW(
       FORMAT_MESSAGE_FROM_SYSTEM,
       nullptr,

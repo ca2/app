@@ -119,37 +119,50 @@ void array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::free_extra()
          {
             if (::get_task()->m_strFile.has_char())
             {
-               pNewData = (TYPE *)ALLOCATOR::alloc(m_nSize * sizeof(TYPE), ::get_task()->m_strFile, ::get_task()->m_iLine);
+               pNewData = ALLOCATOR::alloc(m_nSize, ::get_task()->m_strFile, ::get_task()->m_iLine);
             }
             else
             {
-               pNewData = (TYPE *)ALLOCATOR::alloc(m_nSize * sizeof(TYPE), __FILE__, __LINE__);
+               pNewData = ALLOCATOR::alloc(m_nSize, __FILE__, __LINE__);
             }
          }
          else
          {
-            pNewData = (TYPE *)ALLOCATOR::alloc(m_nSize * sizeof(TYPE), __FILE__, __LINE__);
+            pNewData = ALLOCATOR::alloc(m_nSize, __FILE__, __LINE__);
          }
 #else
+
          if (::get_task()->m_strDebug.has_char())
          {
-            pNewData = (TYPE *)ALLOCATOR::alloc(m_nSize * sizeof(TYPE), ::get_task()->m_strDebug, 0);
+
+            pNewData = ALLOCATOR::alloc(m_nSize, ::get_task()->m_strDebug, 0);
+
          }
          else
          {
-            pNewData = (TYPE *)ALLOCATOR::alloc(m_nSize * sizeof(TYPE), __FILE__, __LINE__);
+
+            pNewData = ALLOCATOR::alloc(m_nSize, __FILE__, __LINE__);
+
          }
+
 #endif
+
 #else
-         pNewData = (TYPE *)ALLOCATOR::alloc((::count) (m_nSize * sizeof(TYPE)));
+
+         pNewData = ALLOCATOR::alloc(m_nSize);
+
 #endif      // copy new data from old
+
          // copy new data from old
          ::acme::memcpy_s(pNewData, (size_t)m_nSize * sizeof(TYPE),m_pData, (size_t)m_nSize * sizeof(TYPE));
+
       }
 
       // get rid of old stuff (note: no destructors called)
       ALLOCATOR::_free(m_pData);
+
       m_pData = pNewData;
+
       m_nMaxSize = m_nSize;
 
    }
@@ -511,12 +524,17 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_ety
 
    if(nNewSize == 0)
    {
+
       // shrink to nothing
       if(m_pData != nullptr)
       {
+
          ALLOCATOR::_free(m_pData);
+
          m_pData = nullptr;
+
       }
+
       m_nSize = m_nMaxSize = 0;
    }
    else if (m_pData == nullptr)
@@ -533,32 +551,51 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_ety
       if (::get_task() != nullptr)
       {
 #if defined(MEMDLEAK)
+
          if (::get_task()->m_strFile.has_char())
          {
-            m_pData = (TYPE *)ALLOCATOR::alloc(nAllocSize * sizeof(TYPE), ::get_task()->m_strFile, 0);
+
+            m_pData = ALLOCATOR::alloc(nAllocSize, ::get_task()->m_strFile, 0);
+
          }
          else
          {
-            m_pData = (TYPE *)ALLOCATOR::alloc(nAllocSize * sizeof(TYPE), __FILE__, __LINE__);
+
+            m_pData = ALLOCATOR::alloc(nAllocSize, __FILE__, __LINE__);
+
          }
+
 #else
+
          if (::get_task()->m_strDebug.has_char())
          {
-            m_pData = (TYPE *)ALLOCATOR::alloc(nAllocSize * sizeof(TYPE), ::get_task()->m_strDebug, ::get_task()->m_iLine);
+
+            m_pData = ALLOCATOR::alloc(nAllocSize, ::get_task()->m_strDebug, ::get_task()->m_iLine);
+
          }
          else
          {
-            m_pData = (TYPE *)ALLOCATOR::alloc(nAllocSize * sizeof(TYPE), __FILE__, __LINE__);
+
+            m_pData = ALLOCATOR::alloc(nAllocSize, __FILE__, __LINE__);
+
          }
+
 #endif
+
       }
       else
       {
-         m_pData = (TYPE *)ALLOCATOR::alloc(nAllocSize * sizeof(TYPE), __FILE__, __LINE__);
+
+         m_pData = ALLOCATOR::alloc(nAllocSize, __FILE__, __LINE__);
+
       }
+
 #else
-      m_pData = (TYPE *)ALLOCATOR::alloc(nAllocSize * sizeof(TYPE));
+
+      m_pData = ALLOCATOR::alloc(nAllocSize);
+
 #endif
+
       m_nSize = nNewSize;
       m_nMaxSize = nAllocSize;
    }
@@ -594,42 +631,66 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_ety
       TYPE * pNewData;
 #if defined(__MCRTDBG) || MEMDLEAK
 #ifdef __MCRTDBG
+
       if (::get_task() != nullptr)
       {
+
          if (::get_task()->m_strFile.has_char())
          {
-            pNewData = (TYPE *)ALLOCATOR::alloc(nNewMax * sizeof(TYPE), ::get_task()->m_strFile, ::get_task()->m_iLine);
+
+            pNewData = ALLOCATOR::alloc(nNewMax, ::get_task()->m_strFile, ::get_task()->m_iLine);
+
          }
          else
          {
-            pNewData = (TYPE *)ALLOCATOR::alloc(nNewMax * sizeof(TYPE), __FILE__, __LINE__);
+
+            pNewData = ALLOCATOR::alloc(nNewMax, __FILE__, __LINE__);
+
          }
+
       }
       else
       {
-         pNewData = (TYPE *)ALLOCATOR::alloc(nNewMax * sizeof(TYPE), __FILE__, __LINE__);
+
+         pNewData = ALLOCATOR::alloc(nNewMax, __FILE__, __LINE__);
+
       }
+
 #else
+
       if (::get_task()->m_strDebug.has_char())
       {
-         pNewData = (TYPE *)ALLOCATOR::alloc(nNewMax * sizeof(TYPE), ::get_task()->m_strDebug, ::get_task()->m_iLine);
+
+         pNewData = ALLOCATOR::alloc(nNewMax, ::get_task()->m_strDebug, ::get_task()->m_iLine);
+
       }
       else
       {
-         pNewData = (TYPE *)ALLOCATOR::alloc(nNewMax * sizeof(TYPE), __FILE__, __LINE__);
+
+         pNewData = ALLOCATOR::alloc(nNewMax, __FILE__, __LINE__);
+
       }
+
 #endif
+
 #else
-      pNewData = (TYPE *)ALLOCATOR::alloc(nNewMax * sizeof(TYPE));
+
+      pNewData = ALLOCATOR::alloc(nNewMax);
+
 #endif      // copy new data from old
+
       ::acme::memcpy_s(pNewData,(size_t)nNewMax * sizeof(TYPE),m_pData,(size_t)m_nSize * sizeof(TYPE));
 
       ///for(i32 i = 0; i < nNewSize - m_nSize; i++)
       // get rid of old stuff (note: no destructors called)
       ALLOCATOR::_free(m_pData);
+
       m_pData = pNewData;
+
       m_nSize = nNewSize;
+
       m_nMaxSize = nNewMax;
+
    }
 
    return countOld;
@@ -743,7 +804,6 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_ety
 
       }
 
-
 #else
 
       m_pData = ALLOCATOR::alloc(nAllocSize);
@@ -834,13 +894,13 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_ety
          if(::get_task()->m_strFile.has_char())
          {
 
-            pNewData = ALLOCATOR::alloc(nNewMax * sizeof(TYPE), ::get_task()->m_strFile,::get_task()->m_iLine);
+            pNewData = ALLOCATOR::alloc(nNewMax, ::get_task()->m_strFile,::get_task()->m_iLine);
 
          }
          else
          {
 
-            pNewData = ALLOCATOR::alloc(nNewMax * sizeof(TYPE), __FILE__, __LINE__);
+            pNewData = ALLOCATOR::alloc(nNewMax, __FILE__, __LINE__);
 
          }
 
@@ -849,13 +909,13 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_ety
          if (::get_task()->m_strDebug.has_char())
          {
 
-            pNewData = ALLOCATOR::alloc(nNewMax * sizeof(TYPE), "thread://" + demangle(typeid(*::get_task()).name()) + ", " + ::get_task()->m_strDebug + ", " + string(__FILE__), __LINE__);
+            pNewData = ALLOCATOR::alloc(nNewMax, "thread://" + demangle(typeid(*::get_task()).name()) + ", " + ::get_task()->m_strDebug + ", " + string(__FILE__), __LINE__);
 
          }
          else
          {
 
-            pNewData = ALLOCATOR::alloc(nNewMax * sizeof(TYPE), "thread://" + demangle(typeid(*::get_task()).name()) + ", " + string(__FILE__), __LINE__);
+            pNewData = ALLOCATOR::alloc(nNewMax, "thread://" + demangle(typeid(*::get_task()).name()) + ", " + string(__FILE__), __LINE__);
 
          }
 
@@ -865,14 +925,14 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_ety
       else
       {
 
-         pNewData = ALLOCATOR::alloc(nNewMax * sizeof(TYPE), __FILE__, __LINE__);
+         pNewData = ALLOCATOR::alloc(nNewMax, __FILE__, __LINE__);
 
       }
 
 
 #else
 
-      TYPE* pNewData = (TYPE *)ALLOCATOR::alloc(nNewMax * sizeof(TYPE));
+      TYPE* pNewData = ALLOCATOR::alloc(nNewMax);
 
 #endif
 

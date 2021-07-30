@@ -1701,7 +1701,7 @@ inline i64 matter::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAME
 inline i64 matter::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
 {
 
-   return m_countReference--;
+   return --m_countReference;
 
 }
 

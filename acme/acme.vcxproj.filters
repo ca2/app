@@ -2771,6 +2771,12 @@
     <ClInclude Include="memory\secondary_memory_allocate.h">
       <Filter>Header Files\memory</Filter>
     </ClInclude>
+    <ClInclude Include="memory\memory_management.h">
+      <Filter>Header Files\memory</Filter>
+    </ClInclude>
+    <ClInclude Include="memory\_.h">
+      <Filter>Header Files\memory</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="primitive\primitive\application_bias.cpp">
@@ -3959,6 +3965,9 @@
       <Filter>Source Files\memory</Filter>
     </ClCompile>
     <ClCompile Include="memory\secondary_memory_allocate.cpp">
+      <Filter>Source Files\memory</Filter>
+    </ClCompile>
+    <ClCompile Include="memory\memory_management.cpp">
       <Filter>Source Files\memory</Filter>
     </ClCompile>
   </ItemGroup>

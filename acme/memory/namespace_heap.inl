@@ -73,4 +73,14 @@ CLASS_DECL_ACME memsize __HEAP_NAMESPACE_PREFIX(memory_size_debug)(void* p, i32 
 }
 
 
+void __HEAP_NAMESPACE_PREFIX(initialize_memory_management)(::memory_heap * pheap)
+{
+
+   pheap->m_pfnMemoryReallocate = &__HEAP_NAMESPACE_PREFIX(memory_reallocate);
+   pheap->m_pfnMemoryFree = &__HEAP_NAMESPACE_PREFIX(memory_free);
+
+}
+
+
+
 

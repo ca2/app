@@ -1259,6 +1259,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="memory\memory_allocate.cpp" />
+    <ClCompile Include="memory\memory_management.cpp" />
     <ClCompile Include="memory\os_alloc\bounds_check.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_basis|Win32'">true</ExcludedFromBuild>
@@ -1822,8 +1823,10 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClInclude Include="inline\_app_impl1.h" />
     <ClInclude Include="inline\_console_old.h" />
     <ClInclude Include="inline\_new_impl.h" />
+    <ClInclude Include="memory\memory_management.h" />
     <ClInclude Include="memory\property_memory_allocate.h" />
     <ClInclude Include="memory\secondary_memory_allocate.h" />
+    <ClInclude Include="memory\_.h" />
     <ClInclude Include="memory\__aligned_memory_allocate.h" />
     <ClInclude Include="memory\counter.h" />
     <ClInclude Include="memory\memory_allocate.h" />

@@ -163,7 +163,7 @@ public:
    virtual void erase_task(::object* pobjectTask);
    virtual void transfer_tasks_from(::task * ptask);
 
-//   virtual ::e_status destroy();
+//   ::e_status destroy() override;
 
    //virtual ::e_status set_finish();
 
@@ -178,7 +178,7 @@ public:
    virtual ::e_status post(const ::routine& routine);
 
 
-   //virtual ::e_status destroy();
+   //::e_status destroy() override;
 
    //virtual ::e_status finish(::property_object* pcontextobjectRootFinishingInitiator = nullptr) override;
    //virtual ::e_status set_finish(::property_object* pcontextobjectRootFinishingInitiator) override;

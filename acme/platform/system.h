@@ -212,7 +212,7 @@ public:
 
    virtual ::e_status system_main();
    //virtual ::e_status run_system();
-   virtual ::e_status main();
+   ::e_status main() override;
 
    virtual ::e_status end();
 

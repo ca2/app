@@ -708,7 +708,7 @@
 
       //virtual ::e_status request_exit_application();
       //virtual ::e_status can_exit_application();
-      virtual ::e_status exit_application();
+      ::e_status exit_application() override;
 
 
       //virtual void _001FranceExit();

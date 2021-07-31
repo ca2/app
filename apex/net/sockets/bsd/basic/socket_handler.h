@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 #include "apex/net/sockets/base/base_socket_handler.h"
 
@@ -112,7 +112,7 @@ namespace sockets
       void socketlist_add(SOCKET s, enum_list elist) override;
       void socketlist_erase(SOCKET s, enum_list elist) override;
 
-      void erase_socket(SOCKET s);
+      void erase_socket(SOCKET s) override;
 
       // Connection pool
       /** find available open connection (used by connection pool). */

@@ -18,7 +18,7 @@ namespace draw2d_cairo
 
 
       virtual bool create(::draw2d::graphics * pgraphics);
-      virtual ::e_status destroy();
+      ::e_status destroy() override;
 
 
       virtual void dump(dump_context & dumpcontext) const;

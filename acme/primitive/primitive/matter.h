@@ -190,7 +190,7 @@ public:
    
    virtual ::e_status initialize(::object * pobject);
    virtual ::e_status set_finish();
-   //virtual ::e_status destroy();
+   //::e_status destroy() override;
 
    virtual void on_set_finish();
 
@@ -264,7 +264,7 @@ public:
    // returns success when object is ready to have destroy called
    // returns error_pending if any child or ascendant is still active
    //virtual ::e_status finish(::property_object * pcontextobjectFinish = nullptr);
-   virtual ::e_status destroy();
+   virtual     ::e_status     destroy()     ;
    virtual ::e_status destroy_composites();
 
 

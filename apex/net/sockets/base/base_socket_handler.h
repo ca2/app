@@ -1,4 +1,4 @@
-﻿/** \file base_socket_handler.h
+/** \file base_socket_handler.h
 **   \date  2004-02-13
 **   \author grymse@alhem.net
 **/
@@ -66,8 +66,8 @@ namespace sockets
          ~pool_socket() override;
 
          
-         void OnRead();
-         void OnOptions(int, int, int, SOCKET);
+         void OnRead() override;
+         void OnOptions(int, int, int, SOCKET) override;
 
 
       };

@@ -1029,7 +1029,6 @@ namespace acme
 
       //::acme::del(pheap);
 
-      finalize_memory_management();
       //::array_memory_allocate_heap::destroy();
       //::property_memory_allocate_heap::destroy();
       //::string_memory_allocate_heap::destroy();
@@ -1080,6 +1079,8 @@ namespace acme
 #else
       freelocale(g_localeC);
 #endif
+      
+      finalize_memory_management();
 
    }
 

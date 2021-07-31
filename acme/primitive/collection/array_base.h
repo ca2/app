@@ -502,7 +502,7 @@ public:
    ::count resize(::count nNewSize, ::count nGrowBy = -1); // does not call default constructors on new items/elements
 
    void free_extra();
-   virtual ::e_status destroy();
+   ::e_status destroy() override;
 
    inline void __swap(::index index1, ::index index2);
    inline void __swap(iterator index1, iterator index2);

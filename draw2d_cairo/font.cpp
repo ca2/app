@@ -67,7 +67,51 @@ namespace draw2d_cairo
    }
 
 
-   void font::destroy()
+   ::e_status font::destroy_os_data()
+   {
+
+//#if defined(USE_PANGO)
+//
+//      // this structure stores a description of the style of font you'd most like
+//      PangoFontDescription* m_pdesc;
+//
+//#else
+//
+//      FT_Face                    m_ft;
+//      cairo_user_data_key_t      m_keyDone;
+//      cairo_scaled_font_t* m_pfont;
+//
+//#endif
+//
+//      cairo_font_face_t* m_pfontface;
+//      bool                       m_bToyQuotedFontSelection;
+
+#if defined(USE_PANGO)
+
+      if (m_pdesc == nullptr)
+      {
+
+         pango_font_description_free(m_pdesc);
+
+      }
+
+#else
+
+      if (::is_set(m_pfontface))
+      {
+
+         cairo_font_face_destroy(m_pfontface);
+
+      }
+
+#endif
+
+      return ::success;
+
+   }
+
+
+   ::e_status font::destroy()
    {
 
       synchronous_lock ml(cairo_mutex());
@@ -98,27 +142,11 @@ namespace draw2d_cairo
 
       }
 
-#if defined(USE_PANGO)
+      destroy_os_data();
 
-      if(m_pdesc == nullptr)
-      {
+      ::write_text::font::destroy();
 
-         pango_font_description_free(m_pdesc);
-
-      }
-
-#else
-
-      if (::is_set(m_pfontface))
-      {
-
-         cairo_font_face_destroy(m_pfontface);
-
-      }
-
-#endif
-
-      //return true;
+      return ::success;
 
    }
 

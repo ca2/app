@@ -716,7 +716,7 @@ namespace apex
    //}
 
 
-   ::e_status log::finalize()
+   ::e_status log::destroy()
    {
 
       synchronous_lock synchronouslock(mutex());
@@ -724,7 +724,7 @@ namespace apex
       if (m_bInitialized)
       {
 
-         ::object::finalize();
+         ::object::destroy();
 
          if (m_pfile)
          {

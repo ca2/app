@@ -247,7 +247,7 @@ namespace base
    }
 
 
-   ::e_status user::finalize()
+   ::e_status user::destroy()
    {
 
       for (auto& style : m_mapUserStyle.values())
@@ -259,7 +259,7 @@ namespace base
 
       m_mapUserStyle.erase_all();
 
-      auto estatus = ::axis::user::finalize();
+      auto estatus = ::axis::user::destroy();
 
       return estatus;
 

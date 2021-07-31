@@ -2047,7 +2047,7 @@ ret:
          if (m_pcopydesk.is_set())
          {
 
-            m_pcopydesk->finalize();
+            m_pcopydesk->destroy();
 
             __release(m_pcopydesk);
 
@@ -2602,14 +2602,14 @@ namespace aura
    //}
 
 
-   ::e_status session::finalize()
-   {
+   //::e_status session::destroy()
+   //{
 
-      auto estatus = ::apex::session::finalize();
+   //   auto estatus = ::apex::session::destroy();
 
-      return estatus;
+   //   return estatus;
 
-   }
+   //}
 
 
    __namespace_session_factory(session);

@@ -14,11 +14,11 @@ namespace draw2d_cairo
 
 
       pen();
-      virtual ~pen();
+      ~pen() override;
 
 
       virtual bool create(::draw2d::graphics * pgraphics);
-      virtual void destroy();
+      virtual ::e_status destroy();
 
 
       virtual void dump(dump_context & dumpcontext) const;

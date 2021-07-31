@@ -44,7 +44,7 @@ namespace windowing
       ::e_status set_cursor_set_system_default();
 
 
-      virtual ::e_status finalize() override;
+      virtual ::e_status destroy() override;
 
 
    };
@@ -94,7 +94,7 @@ namespace windowing
 //      ::count set_cursor_set_system_default();
 //
 //
-//      virtual ::e_status finalize() override;
+//      virtual ::e_status destroy() override;
 //
 //
 //   };

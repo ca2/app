@@ -28,7 +28,7 @@ public:
 
    static inline ::mutex * channel_mutex() { return s_pmutexChannel; }
 
-   virtual ::e_status finalize() override;
+   virtual ::e_status destroy() override;
 
    virtual void erase_receiver(::object * preceiver);
 

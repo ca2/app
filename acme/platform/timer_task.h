@@ -66,7 +66,9 @@ public:
 
    virtual bool on_timer();
 
-   virtual ::e_status finalize() override;
+   //virtual ::e_status destroy() override;
+
+   ::e_status destroy() override;
 
    //bool impl_start();
    //bool impl_restart();
@@ -77,9 +79,6 @@ public:
 
 
    virtual bool task_active() const override;
-
-
-   
 
 
 };

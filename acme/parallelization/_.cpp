@@ -140,7 +140,7 @@ namespace parallelization
    //      try
    //      {
 
-   //         pair.element1()->finalize();
+   //         pair.element1()->destroy();
 
    //      }
    //      catch (...)
@@ -316,7 +316,7 @@ namespace parallelization
    //   try
    //   {
 
-   //      pthread->finalize();
+   //      pthread->destroy();
 
    //   }
    //   catch (...)
@@ -356,7 +356,7 @@ namespace parallelization
    //   try
    //   {
 
-   //      pthread->finalize();
+   //      pthread->destroy();
 
    //   }
    //   catch (...)

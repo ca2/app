@@ -46,7 +46,7 @@ namespace sockets
 
       virtual ::e_status initialize(::object * pobject) override;
 
-      virtual ::e_status finalize() override;
+      virtual ::e_status destroy() override;
 
       virtual string get_http_post_boundary();
 

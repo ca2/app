@@ -228,7 +228,7 @@ void object::to_string(const class string_exchange & str) const
 
          synchronouslock.unlock();
 
-         pmatter->finalize();
+         pmatter->destroy();
 
          synchronouslock.lock();
 
@@ -570,7 +570,7 @@ void object::child_post_quit(const char * pszTag)
 
       }
 
-      pmatter->finalize();
+      pmatter->destroy();
 
    }
    catch (...)
@@ -596,7 +596,7 @@ void object::child_post_quit_and_wait(const char * pszTag, const duration & dura
 
       }
 
-      pmatter->finalize();
+      pmatter->destroy();
 
       string strTag(pszTag);
 
@@ -840,17 +840,17 @@ void object::on_finalize()
 }
 
 
-::e_status object::finalize()
+::e_status object::destroy()
 {
 
    //if (m_pmeta)
    //{
 
-   //   m_pmeta->finalize(this);
+   //   m_pmeta->destroy(this);
 
    //}
 
-   manager::finalize();
+   manager::destroy();
 
 #if OBJECT_TYPE_COUNTER
 
@@ -880,14 +880,14 @@ void object::on_finalize()
    if(string(m_id).contains("::rx"))
    {
 
-      output_debug_string("::rx finalize");
+      output_debug_string("::rx destroy");
 
    }
 
    if(string(m_id).contains("::interprocess_intercommunication"))
    {
 
-      output_debug_string("::interprocess_intercommunication finalize");
+      output_debug_string("::interprocess_intercommunication destroy");
 
    }
 
@@ -901,7 +901,7 @@ void object::on_finish()
 
    manager::on_finish();
 
-   finalize();
+   destroy();
 
 //   synchronous_lock synchronouslock(mutex());
 
@@ -942,7 +942,7 @@ void object::on_finish()
 void object::delete_this()
 {
 
-   finalize();
+   destroy();
 
    object::delete_this();
 
@@ -1451,17 +1451,17 @@ bool object::__is_child_task(::task * ptask) const
 //
 // ->at simple objects (from finish point_i32 of view)...
 // ->for objects that doesn't have custom finalization
-// finish calls set_finish and finalize.
+// finish calls set_finish and destroy.
 //
 // ->for complex objects (from finish point_i32 of view)...
 // ->for objects that have custom finalization
-// finish wouldn't call *finalize*,
+// finish wouldn't call *destroy*,
 // but only set_finish or custom set_finish.
-// "Otherwise, *finalize* could release references (that could be deleted)
-// and would be still used during the ideal finalize(-action)."
+// "Otherwise, *destroy* could release references (that could be deleted)
+// and would be still used during the ideal destroy(-action)."
 // So a flag/timer/message that indicates that things should be destroyed/closed/finalized
 // should be enough (which triggers the full finalization that would end up calling
-// the "final" finalize).
+// the "final" destroy).
 ::e_status object::finish(::property_object * pcontextobjectFinish)
 {
 

@@ -112,7 +112,7 @@ namespace acme
 
       m_map.erase_key(uEvent);
 
-      ptimer->finalize();
+      ptimer->destroy();
 
       return true;
 
@@ -207,14 +207,14 @@ namespace acme
    }
 
 
-   ::e_status timer_array::finalize()
+   ::e_status timer_array::destroy()
    {
 
       m_bOk = false;
 
       delete_all_timers();
 
-      ::timer_callback::finalize();
+      ::timer_callback::destroy();
 
       return ::success;
 

@@ -32,6 +32,7 @@ namespace user
 
       //virtual void _on_style_change(::draw2d::graphics_pointer & pgraphics) override;
 
+      virtual void on_change_dark_mode();
 
       bool is_dark_mode() const { return m_bDarkMode; }
 

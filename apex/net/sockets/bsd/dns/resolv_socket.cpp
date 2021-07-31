@@ -131,7 +131,7 @@ namespace sockets
    }
 
 
-   ::e_status resolv_socket::finalize()
+   ::e_status resolv_socket::destroy()
    {
 
       m_psystem.release();

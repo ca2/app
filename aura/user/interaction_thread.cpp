@@ -1053,15 +1053,15 @@ namespace user
    }
 
 
+   //::e_status thread::destroy()
+   //{
+
+   //   return ::thread::destroy();
+
+   //}
+
+
    ::e_status thread::destroy()
-   {
-
-      return ::thread::destroy();
-
-   }
-
-
-   ::e_status thread::finalize()
    {
 
       synchronous_lock synchronouslock(mutex());
@@ -1095,7 +1095,7 @@ namespace user
 
          }
 
-         ::thread::finalize();
+         ::thread::destroy();
 
       }
 

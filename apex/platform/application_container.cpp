@@ -202,7 +202,7 @@ void application_container::erase_application(::application * papp)
 
 
 
-   finalize();
+   destroy();
 
    return ::success;
 

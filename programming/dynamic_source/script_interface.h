@@ -37,7 +37,7 @@ namespace dynamic_source
       virtual ::e_status initialize(::object * pobject) override;
       virtual ::e_status init1();
 
-      //::e_status finalize() override;
+      //::e_status destroy() override;
 
       ::e_status destroy() override;
       virtual ::e_status     run() override;

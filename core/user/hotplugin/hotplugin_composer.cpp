@@ -523,7 +523,7 @@ namespace hotplugin
       if(m_pcomposersystem != nullptr)
       {
 
-         m_pcomposersystem->finalize();
+         m_pcomposersystem->destroy();
 
          m_pcomposersystem = nullptr;
 

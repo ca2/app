@@ -264,7 +264,7 @@ bool timer_task::task_active() const
 
 
 
-::e_status timer_task::finalize()
+::e_status timer_task::destroy()
 {
 
    {
@@ -291,9 +291,9 @@ bool timer_task::task_active() const
 
    }
 
-   ::timer::finalize();
+   ::timer::destroy();
 
-   ::task::finalize();
+   ::task::destroy();
 
    return ::success;
 

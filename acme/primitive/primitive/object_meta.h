@@ -20,7 +20,7 @@ public:
 
    inline const char * topic_text() const { return m_strTopicText; }
 
-   //void finalize(::object* pReferer);
+   //void destroy(::object* pReferer);
 
 
    //::index task_add(::object * pReferer, ::task* ptask);

@@ -228,7 +228,7 @@ namespace draw2d_cairo
    }
 
 
-   bool image::destroy ()
+   ::e_status image::destroy()
    {
 
       ::image::destroy();
@@ -237,7 +237,7 @@ namespace draw2d_cairo
 
       m_pgraphics.release();
 
-      return true;
+      return ::success;
 
    }
 

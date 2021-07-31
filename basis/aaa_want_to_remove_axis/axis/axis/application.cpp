@@ -926,7 +926,7 @@ m_millisHeartBeat.Now();
          try
          {
 
-            m_psimpledb->finalize();
+            m_psimpledb->destroy();
 
          }
          catch (...)

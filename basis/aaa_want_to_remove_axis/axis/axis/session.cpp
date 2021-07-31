@@ -410,7 +410,7 @@ namespace axis
          if (m_puserpresence.is_set())
          {
 
-            m_puserpresence->finalize();
+            m_puserpresence->destroy();
 
             m_puserpresence.release();
 
@@ -517,7 +517,7 @@ namespace axis
          if(m_pcopydesk.is_set())
          {
 
-            m_pcopydesk->finalize();
+            m_pcopydesk->destroy();
 
             m_pcopydesk.release();
 

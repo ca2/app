@@ -915,7 +915,7 @@ namespace apex
 
       on_term_thread();
 
-      ::parallelization::finalize();
+      ::parallelization::destroy();
 
       //__node_apex_pre_term();
 

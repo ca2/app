@@ -11,7 +11,7 @@ namespace draw2d_cairo
 
       m_pthis = this;
 
-      m_pdc = nullptr;
+      m_pcairo = nullptr;
 
       m_psurface = nullptr;
 
@@ -69,12 +69,12 @@ namespace draw2d_cairo
 
       synchronous_lock ml(cairo_mutex());
 
-      if(m_pdc != nullptr)
+      if(m_pcairo != nullptr)
       {
 
-         cairo_destroy(m_pdc);
+         cairo_destroy(m_pcairo);
 
-         m_pdc = nullptr;
+         m_pcairo = nullptr;
 
       }
 
@@ -100,31 +100,31 @@ namespace draw2d_cairo
 
       }
 
-      m_pdc = cairo_create(m_psurface);
+      m_pcairo = cairo_create(m_psurface);
 
-      cairo_set_antialias(m_pdc, CAIRO_ANTIALIAS_BEST);
+      cairo_set_antialias(m_pcairo, CAIRO_ANTIALIAS_BEST);
 
       int x = m_rectBoundingBoxInternal.left;
 
       int y = m_rectBoundingBoxInternal.top;
 
-      cairo_translate(m_pdc, -x, -y);
+      cairo_translate(m_pcairo, -x, -y);
 
-      cairo_push_group(m_pdc);
+      cairo_push_group(m_pcairo);
 
-      _mask(m_pdc);
+      _mask(m_pcairo);
 
-      cairo_pop_group_to_source(m_pdc);
+      cairo_pop_group_to_source(m_pcairo);
 
-      cairo_rectangle(m_pdc, 0, 0, m_rectBoundingBoxInternal.width(), m_rectBoundingBoxInternal.height());
+      cairo_rectangle(m_pcairo, 0, 0, m_rectBoundingBoxInternal.width(), m_rectBoundingBoxInternal.height());
 
-      cairo_fill(m_pdc);
+      cairo_fill(m_pcairo);
 
       cairo_mask_surface(pgraphics, m_psurface, m_rectBoundingBoxInternal.left, m_rectBoundingBoxInternal.top);
 
-      cairo_destroy(m_pdc);
+      cairo_destroy(m_pcairo);
 
-      m_pdc = nullptr;
+      m_pcairo = nullptr;
 
       cairo_surface_destroy(m_psurface);
 
@@ -385,12 +385,12 @@ namespace draw2d_cairo
 
       synchronous_lock ml(cairo_mutex());
 
-      if(m_pdc != nullptr)
+      if(m_pcairo != nullptr)
       {
 
-         cairo_destroy(m_pdc);
+         cairo_destroy(m_pcairo);
 
-         m_pdc = nullptr;
+         m_pcairo = nullptr;
 
       }
 
@@ -535,10 +535,48 @@ namespace draw2d_cairo
    }
 
 
-   void region::destroy()
+   ::e_status region::destroy_os_data()
    {
 
-      ::draw2d::region::destroy();
+      if (m_psurface != nullptr)
+      {
+
+         cairo_surface_destroy(m_psurface);
+
+         m_psurface = nullptr;
+
+      }
+
+      if (m_pcairo != nullptr)
+      {
+
+         cairo_destroy(m_pcairo);
+
+         m_pcairo = nullptr;
+
+      }
+
+      return ::success;
+
+
+
+
+   }
+
+
+   ::e_status region::destroy()
+   {
+
+      auto estatus = ::draw2d::region::destroy();
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return estatus;
 
    }
 

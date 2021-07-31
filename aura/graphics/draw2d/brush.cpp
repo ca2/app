@@ -39,7 +39,7 @@ namespace draw2d
 //#endif
 
 
-   ::e_status brush::finalize()
+   ::e_status brush::destroy()
    {
 
       if (m_pimage)

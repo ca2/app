@@ -42,7 +42,7 @@ namespace draw2d
 
       virtual ::e_status term() override;
 
-      virtual ::e_status finalize() override;
+      virtual ::e_status destroy() override;
 
 
       __pointer(save_image) new_save_image(const ::payload& varFile, const ::payload& varOptions);

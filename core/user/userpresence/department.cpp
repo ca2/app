@@ -57,7 +57,7 @@ namespace userpresence
    }
 
 
-   ::e_status department::finalize()
+   ::e_status department::destroy()
    {
 
       defer_finalize_user_presence();

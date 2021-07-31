@@ -26,10 +26,13 @@ public:
    timer();
    timer(uptr uEvent);
    timer(enum_timer etimer);
-   virtual ~timer();
+   ~timer() override;
 
 
-   virtual ::e_status finalize() override;
+   //virtual ::e_status destroy() override;
+
+
+   ::e_status destroy() override;
 
 
    const char* debug_note() const override;

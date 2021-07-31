@@ -155,7 +155,7 @@ public:
    inline ::e_status save_to_file(const ::payload& varFile, const ::matter* pobject);
 
 
-   virtual ::e_status finalize() override;
+   virtual ::e_status destroy() override;
 
 
 };

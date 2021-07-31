@@ -21,7 +21,7 @@ namespace graphics
 
 
       virtual ::e_status initialize_graphics_graphics(::user::interaction_impl * pimpl);
-      virtual ::e_status finalize();
+      virtual ::e_status destroy();
 
       virtual void destroy_buffer();
 

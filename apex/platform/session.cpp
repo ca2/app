@@ -841,7 +841,7 @@ namespace apex
 
                   papp->do_install();
 
-                  psystem->finalize();
+                  psystem->destroy();
 
                }
                else
@@ -2189,12 +2189,12 @@ namespace apex
 
 
 
-   ::e_status session::finalize()
+   ::e_status session::destroy()
    {
 
       ::application_container::m_applicationa.erase_all();
 
-      ::apex::context::finalize();
+      ::apex::context::destroy();
 
       return success;
 

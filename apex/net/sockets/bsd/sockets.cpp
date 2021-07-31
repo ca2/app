@@ -106,10 +106,10 @@ namespace sockets
    }
 
 
-   ::e_status sockets::finalize()
+   ::e_status sockets::destroy()
    {
 
-      sockets_base::finalize();
+      sockets_base::destroy();
 
       bool bOk = true;
 
@@ -175,7 +175,7 @@ namespace sockets
          try
          {
 
-            m_pnet->finalize();
+            m_pnet->destroy();
 
          }
          catch (...)

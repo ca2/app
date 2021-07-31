@@ -206,7 +206,7 @@ namespace draw2d
 
             m_papi->close();
 
-            m_papi->finalize();
+            m_papi->destroy();
 
          }
 
@@ -225,12 +225,12 @@ namespace draw2d
    }
 
 
-   ::e_status draw2d::finalize()
+   ::e_status draw2d::destroy()
    {
 
       m_papi.release();
 
-      auto estatus = ::acme::department::finalize();
+      auto estatus = ::acme::department::destroy();
 
       return estatus;
 
@@ -1486,7 +1486,7 @@ breakFilter2:
       //output_debug_string("No write_text pluging available!!.");
       return error_failed;
 
-      //finalize:
+      //destroy:
 
       //   PFN_factory_exchange pfn_factory_exchange = plibrary->get < PFN_factory_exchange >("write_text_factory_exchange");
 

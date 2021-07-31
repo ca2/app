@@ -405,7 +405,7 @@
       virtual ::file::path local_application_home_path();
 
 
-      virtual ::e_status finalize() override;
+      //virtual ::e_status destroy() override;
 
 
       //virtual void release_parents() override;

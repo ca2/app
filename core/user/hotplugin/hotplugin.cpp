@@ -169,7 +169,7 @@ namespace hotplugin
          if(g_paurasystem != nullptr)
          {
 
-            g_paurasystem->finalize();
+            g_paurasystem->destroy();
 
             g_paurasystem = nullptr;
 

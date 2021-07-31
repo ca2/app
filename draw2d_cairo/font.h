@@ -35,11 +35,12 @@ namespace draw2d_cairo
 
 
       font();
-      virtual ~font();
+      ~font() override;
 
 
       virtual bool create(::draw2d::graphics * pgraphics, i8 iCreate) override;
-      virtual void destroy() override;
+      ::e_status destroy() override;
+      ::e_status destroy_os_data() override;
 
 
       virtual void dump(dump_context & dumpcontext) const override;

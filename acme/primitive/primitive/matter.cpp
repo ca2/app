@@ -95,14 +95,14 @@ void matter::dump(dump_context & dumpcontext) const
 //}
 
 
-::e_status matter::on_finish()
-{
-
-   auto estatus = finalize();
-
-   return estatus;
-
-}
+//::e_status matter::on_finish()
+//{
+//
+//   auto estatus = destroy();
+//
+//   return estatus;
+//
+//}
 
 
 //::e_status matter::set_finish_composites(::property_object * pcontextobjectFinish)
@@ -131,29 +131,32 @@ void matter::dump(dump_context & dumpcontext) const
 ::e_status matter::destroy()
 {
 
-   auto estatus = set_finish();
+   //auto estatus = set_finish();
 
-   if (estatus == error_pending)
-   {
+   //if (estatus == error_pending)
+   //{
 
-      //m_psystem->add_pending_finish(this);
+   //   //m_psystem->add_pending_finish(this);
 
-      return estatus;
+   //   return estatus;
 
-   }
+   //}
 
-   estatus = on_finish();
+   ////estatus = on_finish();
 
-   if (estatus == error_pending)
-   {
+   ////if (estatus == error_pending)
+   ////{
 
-      //m_psystem->add_pending_finish(this);
+   ////   //m_psystem->add_pending_finish(this);
 
-      return estatus;
+   ////   return estatus;
 
-   }
+   ////}
 
-   return estatus;
+   //return estatus;
+
+   return ::success;
+
 
 }
 
@@ -171,17 +174,35 @@ void matter::post_quit()
 
    set_finish_bit();
 
-   finalize();
+   //destroy();
+
+   try
+   {
+
+      on_set_finish();
+
+   }
+   catch (...)
+   {
+
+   }
 
    return ::success;
 
 }
 
 
-::e_status matter::finalize()
+//::e_status matter::destroy()
+//{
+//
+//   return ::success;
+//
+//}
+
+
+void matter::on_set_finish()
 {
 
-   return ::success;
 
 }
 

@@ -260,7 +260,7 @@ namespace user
       //bool attach(::windowing::window * pwindow_New) override;
       //oswindow detach() override;
 
-      virtual ::e_status finalize() override;
+      virtual ::e_status destroy() override;
 
       virtual void route_command_message(::message::command * pcommand) override;
 

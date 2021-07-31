@@ -58,7 +58,7 @@ namespace apex
 
       string command_line_text() const;
 
-      virtual ::e_status finalize() override;
+      virtual ::e_status destroy() override;
 
       //virtual ::task_pool* taskpool() override;
 
@@ -190,7 +190,7 @@ namespace apex
       inline ::e_status save_to_file(const ::payload& varFile, const ::matter* pobject);
 
 
-      //virtual ::e_status finalize() override;
+      //virtual ::e_status destroy() override;
 
       file_result get_file(const ::payload& varFile, const ::file::e_open& eopen) override;
 

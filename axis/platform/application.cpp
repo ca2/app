@@ -1540,7 +1540,7 @@ namespace axis
          try
          {
 
-            m_psimpledb->finalize();
+            m_psimpledb->destroy();
 
          }
          catch (...)
@@ -2093,7 +2093,7 @@ namespace axis
    //      try
    //      {
 
-   //         m_psimpledb->finalize();
+   //         m_psimpledb->destroy();
 
    //      }
    //      catch (...)

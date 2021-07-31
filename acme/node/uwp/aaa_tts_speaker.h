@@ -38,7 +38,7 @@ namespace uwp
 
          virtual bool initialize(string strLang);
          virtual bool initialize_translator(string strLang);
-         virtual bool finalize(string strLang);
+         virtual bool destroy(string strLang);
          virtual bool finalize_translator(string strLang);
 
          //--------------------------------------------------------------------

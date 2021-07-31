@@ -109,14 +109,14 @@ namespace datetime
    }
 
 
-   ::e_status department::finalize()
+   ::e_status department::destroy()
    {
 
       m_pinternational.release();
 
       m_pstr.release();
 
-      ::acme::department::finalize();
+      ::acme::department::destroy();
 
       return ::success;
 

@@ -46,8 +46,8 @@ class CLASS_DECL_ACME object :
 protected:
 
 
-   ::object *                                            m_pobjectParentTask;
-   __pointer_array(::object)                        m_objectaChildrenTask;
+   __pointer(::object)                              m_pobjectParentTask;
+   __pointer(__pointer_array(::object))             m_pobjectaChildrenTask;
 
 
 public:
@@ -157,7 +157,7 @@ public:
    
    virtual ::e_status initialize(::object * pobject) override;
    virtual ::e_status set_finish() override;
-   virtual ::e_status finalize() override;
+   //virtual ::e_status destroy() override;
 
    virtual void add_task(::object* pobjectTask);
    virtual void erase_task(::object* pobjectTask);
@@ -178,7 +178,7 @@ public:
    virtual ::e_status post(const ::routine& routine);
 
 
-   //virtual ::e_status finalize();
+   //virtual ::e_status destroy();
 
    //virtual ::e_status finish(::property_object* pcontextobjectRootFinishingInitiator = nullptr) override;
    //virtual ::e_status set_finish(::property_object* pcontextobjectRootFinishingInitiator) override;
@@ -421,7 +421,7 @@ public:
 
    virtual bool __is_composite(::matter* pobject) const;
 
-   virtual bool __is_child_task(::task* ptask) const;
+   virtual bool __is_child_task(::object * pobject) const;
 
    //virtual void on_finalize();
 
@@ -754,7 +754,7 @@ public:
    //void save_to(const ::payload& varFile, BASE_TYPE* pobject);
 
    //virtual ::e_status initialize(::object * pobject) override;
-   //virtual ::e_status finalize() override;
+   //virtual ::e_status destroy() override;
 
    //inline const char* topic_text();
 

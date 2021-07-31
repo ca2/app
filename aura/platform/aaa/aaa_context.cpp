@@ -1081,10 +1081,10 @@ void context::add_matter_locator(::aura::application * papp)
 }
 
 
-::e_status context::finalize()
+::e_status context::destroy()
 {
 
-   ::object::finalize();
+   ::object::destroy();
 
    m_papplication.release();
 

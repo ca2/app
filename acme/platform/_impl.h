@@ -656,7 +656,7 @@ inline i64 __finalize(__pointer(TYPE)& pointer OBJECT_REFERENCE_COUNT_DEBUG_COMM
    
    if (!pointer) return -1;
    
-   pointer->finalize();
+   pointer->destroy();
    
    return release(pointer.m_p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
 

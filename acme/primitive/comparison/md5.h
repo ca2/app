@@ -91,7 +91,7 @@
 //
 //		void	            initialize();
 //		void	            update(const void * pdata, size_t nInputLen);
-//		void	            finalize();
+//		void	            destroy();
 //		const unsigned char *   
 //                        digest();
 //		string			   to_string();

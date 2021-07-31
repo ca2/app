@@ -1522,7 +1522,7 @@ namespace experience
       //if(!is_frame_experience_enabled())
       //{
 
-      //   ptimer->finalize();
+      //   ptimer->destroy();
 
       //   return;
 
@@ -1534,7 +1534,7 @@ namespace experience
       //   if(!m_pframe->_001OnTimer((::u32) ptimer->m_uEvent))
       //   {
 
-      //      ptimer->finalize();
+      //      ptimer->destroy();
 
       //   }
 

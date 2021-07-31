@@ -488,10 +488,10 @@ namespace linux
    }
 
 
-   ::e_status copydesk::finalize()
+   ::e_status copydesk::destroy()
    {
 
-      ::user::copydesk::finalize();
+      ::user::copydesk::destroy();
 
    }
 

@@ -17,7 +17,7 @@ namespace str
          // most simple use:
          // 1. allocate locale_schema.
          // 2. add locale variants in order of importance, most acceptable first
-         // 3. finalize locale_schema
+         // 3. destroy locale_schema
          // m_straLocale and m_straStyle will have the locale/styles
 
          bool                       m_bSchemaOnly;

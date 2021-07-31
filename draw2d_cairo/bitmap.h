@@ -17,7 +17,7 @@ namespace draw2d_cairo
 
 
       bitmap();
-      virtual ~bitmap();
+      ~bitmap() override;
 
 
       bool LoadBitmap(const char * lpszResourceName);
@@ -48,7 +48,8 @@ namespace draw2d_cairo
       virtual bool attach(void * posdata);
 
 
-      virtual void destroy();
+      ::e_status destroy() override;
+      ::e_status destroy_os_data() override;
 
 
 

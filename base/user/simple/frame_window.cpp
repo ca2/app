@@ -520,7 +520,7 @@ void simple_frame_window::on_message_destroy(::message::message * pmessage)
    if (m_ptaskpool)
    {
 
-      m_ptaskpool->finalize();
+      m_ptaskpool->destroy();
 
       m_ptaskpool.release();
 

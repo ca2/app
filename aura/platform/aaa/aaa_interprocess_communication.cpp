@@ -306,12 +306,12 @@ namespace aura
    }
 
 
-   ::e_status interprocess_communication::finalize()
+   ::e_status interprocess_communication::destroy()
    {
 
-      ::object::finalize();
+      ::object::destroy();
 
-      m_prx->finalize();
+      m_prx->destroy();
 
    }
 

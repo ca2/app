@@ -127,7 +127,7 @@
 //      try
 //      {
 //
-//         finalize();
+//         destroy();
 //
 //      }
 //      catch(...)

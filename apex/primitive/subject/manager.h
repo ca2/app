@@ -58,7 +58,7 @@ namespace subject
       //static handler_pointer fork_handler(const ::id &id, ::matter *pmatter = nullptr);
       //subject_pointer subject(const ::id &id, ::matter *pmatter = nullptr);
 
-      virtual ::e_status finalize() override;
+      ::e_status destroy() override;
 
       //virtual void source_add(::matter* pmatter);
       //virtual void source_erase(::matter* pmatter);

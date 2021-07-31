@@ -46,7 +46,7 @@ public:
    //::e_status destroy() override;
 
 
-   virtual ::e_status on_finish() override;
+   //virtual ::e_status on_finish() override;
    
 
    template < typename TYPE >

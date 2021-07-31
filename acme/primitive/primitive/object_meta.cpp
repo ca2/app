@@ -7,7 +7,7 @@
 //}
 
 
-//void object_meta::finalize(::object * pReferer)
+//void object_meta::destroy(::object * pReferer)
 //{
 //
 //   for (auto& ptask : m_taska)

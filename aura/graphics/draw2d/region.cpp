@@ -35,7 +35,7 @@ namespace draw2d
    }
 
 
-   ::e_status region::finalize()
+   ::e_status region::destroy()
    {
 
       ::acme::adel(m_lppoints);

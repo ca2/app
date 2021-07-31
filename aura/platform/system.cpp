@@ -1331,7 +1331,7 @@ namespace aura
       //output_debug_string("No draw2d pluging available!!.");
       return error_failed;
 
-   //finalize:
+   //destroy:
 
    //   PFN_factory_exchange pfn_factory_exchange = plibrary->get < PFN_factory_exchange >("draw2d_factory_exchange");
 
@@ -1463,7 +1463,7 @@ namespace aura
 
       return false;
 
-//   finalize:
+//   destroy:
 //
 //      PFN_factory_exchange pfn_factory_exchange = plibrary->get < PFN_factory_exchange >("imaging_factory_exchange");
 //
@@ -6975,15 +6975,15 @@ namespace aura
    //}
 
 
-   ::e_status system::finalize()
+   ::e_status system::destroy()
    {
 
-      auto estatus = ::aqua::system::finalize();
+      auto estatus = ::aqua::system::destroy();
 
       if (m_pdraw2d)
       {
 
-         m_pdraw2d->finalize();
+         m_pdraw2d->destroy();
 
          m_pdraw2d.release();
 

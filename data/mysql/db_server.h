@@ -69,7 +69,7 @@ public:
 
    virtual bool initialize_user(mysql::database * pmysqldbUser, const char * pszUser);
    virtual bool initialize();
-   virtual bool finalize();
+   virtual bool destroy();
 
    bool create_message_queue();
    bool destroy_message_queue();

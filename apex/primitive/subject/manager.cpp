@@ -288,10 +288,10 @@ namespace subject
 //   }
 
 
-   ::e_status manager::finalize()
+   ::e_status manager::destroy()
    {
 
-      property_object::finalize();
+      property_object::destroy();
 
       m_pmapSubject.release();
 

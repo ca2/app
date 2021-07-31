@@ -1844,7 +1844,7 @@ namespace user
    void primitive::post_non_client_destroy()
    {
 
-      finalize();
+      destroy();
 
    }
 

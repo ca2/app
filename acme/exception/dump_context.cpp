@@ -89,14 +89,14 @@ dump_context::~dump_context()
 }
 
 
-::e_status dump_context::finalize()
-{
-
-   auto estatus = text_stream::finalize();
-
-   return estatus;
-
-}
+//::e_status dump_context::destroy()
+//{
+//
+//   auto estatus = text_stream::destroy();
+//
+//   return estatus;
+//
+//}
 
 
 void dump_context::flush()

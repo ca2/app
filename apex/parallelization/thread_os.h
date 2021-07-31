@@ -96,7 +96,7 @@ namespace parallelization
 //
 //
    CLASS_DECL_APEX void initialize();
-   CLASS_DECL_APEX ::e_status finalize();
+   CLASS_DECL_APEX ::e_status destroy();
 //
 //   //CLASS_DECL_APEX bool thread_registered(::thread * pthread);
 //   //CLASS_DECL_APEX bool thread_id_registered(itask_t id);

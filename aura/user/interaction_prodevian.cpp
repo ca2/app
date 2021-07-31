@@ -233,15 +233,20 @@ namespace user
 
       }
 
-      if (!(m_puserinteraction->m_ewindowflag & e_window_flag_is_window))
+      if (m_puserinteraction)
       {
 
-         if (!m_pimpl->m_bDestroying)
+         if (!(m_puserinteraction->m_ewindowflag & e_window_flag_is_window))
          {
 
-            m_pimpl->m_bDestroying = true;
+            if (!m_pimpl->m_bDestroying)
+            {
 
-            m_puserinteraction->post_message(e_message_destroy_window);
+               m_pimpl->m_bDestroying = true;
+
+               m_puserinteraction->post_message(e_message_destroy_window);
+
+            }
 
          }
 
@@ -294,7 +299,7 @@ void prodevian::term_thread()
    if (m_routineUpdateScreen)
    {
 
-      m_routineUpdateScreen->finalize();
+      m_routineUpdateScreen->destroy();
 
    }
 
@@ -303,7 +308,7 @@ void prodevian::term_thread()
    if (m_routineWindowShow)
    {
 
-      m_routineWindowShow->finalize();
+      m_routineWindowShow->destroy();
 
    }
 
@@ -312,7 +317,7 @@ void prodevian::term_thread()
 }
 
 
-::e_status prodevian::finalize()
+::e_status prodevian::destroy()
 {
 
    m_evUpdateScreen.SetEvent();
@@ -323,7 +328,7 @@ void prodevian::term_thread()
 
    m_synchronizationa.clear();
    
-   auto estatus = ::thread::finalize();
+   auto estatus = ::thread::destroy();
 
    return estatus;
 

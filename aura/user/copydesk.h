@@ -37,7 +37,7 @@ namespace user
 
 
       virtual ::e_status initialize(::object * pobject) override;
-      virtual ::e_status finalize() override;
+      virtual ::e_status destroy() override;
 
       /// pass nullptr to ppatha to probe if there is at least one existing
       /// directory or file in str parsed as multiline.

@@ -129,7 +129,7 @@ void apex_application_open(GApplication * application, GFile ** files, gint n_fi
 void apex_application_finalize (GObject *object)
 {
 
-   G_OBJECT_CLASS (apex_application_parent_class)->finalize (object);
+   G_OBJECT_CLASS (apex_application_parent_class)->destroy (object);
 
 }
 
@@ -171,7 +171,7 @@ void apex_application_class_init (BloatPadClass * pclass)
 
    papplicationclass->run_mainloop         = apex_application_run_mainloop;
 
-   pobjectclass->finalize                  = apex_application_finalize;
+   pobjectclass->destroy                  = apex_application_finalize;
 
 }
 

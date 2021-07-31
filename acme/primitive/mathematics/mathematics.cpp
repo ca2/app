@@ -311,10 +311,10 @@ namespace mathematics
    }
 
 
-   ::e_status mathematics::finalize()
+   ::e_status mathematics::destroy()
    {
 
-      //::acme::department::finalize();
+      //::acme::department::destroy();
 
       return ::success;
 

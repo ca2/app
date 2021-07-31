@@ -34,10 +34,10 @@ namespace geometry
    //}
 
 
-   ::e_status geometry::finalize()
+   ::e_status geometry::destroy()
    {
 
-      ::matter::finalize();
+      ::matter::destroy();
 
       return ::success;
 

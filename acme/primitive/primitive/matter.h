@@ -40,7 +40,7 @@ public:
       struct
       {
 
-         bool        m_bTaskReadyToQuit : 1;
+         //bool        m_bTaskPending : 1;
          bool        m_bHeapAllocated : 1;
          bool        m_bSetFinish : 1;
          bool        m_bDestroying : 1;
@@ -190,7 +190,9 @@ public:
    
    virtual ::e_status initialize(::object * pobject);
    virtual ::e_status set_finish();
-   virtual ::e_status finalize();
+   //virtual ::e_status destroy();
+
+   virtual void on_set_finish();
 
 
    virtual ::e_status set_library_name(const char* pszLibraryName);
@@ -254,12 +256,12 @@ public:
    inline bool finish_bit() const { return m_bSetFinish; }
 
 
-   virtual ::e_status on_finish();
+   //virtual ::e_status on_finish();
    //virtual ::e_status set_finish(::property_object * pcontextobjectFinish);
    //virtual ::e_status set_finish();
 
 
-   // returns success when object is ready to have finalize called
+   // returns success when object is ready to have destroy called
    // returns error_pending if any child or ascendant is still active
    //virtual ::e_status finish(::property_object * pcontextobjectFinish = nullptr);
    virtual ::e_status destroy();

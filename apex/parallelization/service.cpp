@@ -124,7 +124,7 @@ void service::set_arguments(int argc, wchar_t** argv)
 //
 //   }
 //
-//   get_application()->finalize();
+//   get_application()->destroy();
 //
 //   estatus = __thread_term();
 //

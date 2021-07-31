@@ -276,10 +276,10 @@ namespace aura
    }
 */
 
-   ::e_status application::finalize()
+   ::e_status application::destroy()
    {
 
-      auto estatus = ::application::finalize();
+      auto estatus = ::application::destroy();
 
       return estatus;
 
@@ -3085,7 +3085,7 @@ retry_license:
    //  localeschema.add_locale_variant(__id(en), strSchema);
 
 
-   //  localeschema.finalize();
+   //  localeschema.destroy();
 
 
    //}
@@ -3162,7 +3162,7 @@ retry_license:
 
    //  }
 
-   //  localeschema.finalize();
+   //  localeschema.destroy();
 
 
    //}

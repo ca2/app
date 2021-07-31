@@ -120,7 +120,7 @@ namespace draw2d
          if (this->m_osdata[0])
          {
 
-            pthis->destroy();
+            pthis->destroy_os_data();
 
             pthis->clear_os_data();
 
@@ -138,6 +138,14 @@ namespace draw2d
    }
 
 
+   ::e_status object::destroy_os_data()
+   {
+
+      return ::success;
+
+   }
+
+
    bool object::create(::draw2d::graphics * pgraphics, i8 iCreate)
    {
 
@@ -148,6 +156,8 @@ namespace draw2d
 
    ::e_status object::destroy()
    {
+
+      destroy_os_data();
 
       return ::success;
 

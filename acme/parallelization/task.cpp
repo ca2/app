@@ -18,12 +18,14 @@ CLASS_DECL_ACME void clear_message_queue(itask_t idthread);
 task::task()
 {
 
-   m_pobjectParentTask = ::get_task();
+   //m_bTaskPending = true;
 
-   if (m_pobjectParentTask)
+   auto pobjectParentTask = ::get_task();
+
+   if (pobjectParentTask)
    {
 
-      m_pobjectParentTask->add_task(this);
+      pobjectParentTask->add_task(this);
 
    }
 
@@ -347,6 +349,8 @@ void* task::s_os_task(void* p)
 
          auto pparentTask = ptask->m_pobjectParentTask;
 
+         ptask->m_pobjectParentTask.release();
+
          if (::is_set(pparentTask))
          {
 
@@ -550,16 +554,16 @@ void task::init_task()
 void task::term_task()
 {
 
-   try
-   {
+   //try
+   //{
 
-      finalize();
+   //   destroy();
 
-   }
-   catch (...)
-   {
+   //}
+   //catch (...)
+   //{
 
-   }
+   //}
 
    synchronous_lock synchronouslock(mutex());
 

@@ -11,17 +11,18 @@ namespace draw2d_cairo
    public:
 
 
-      cairo_t *               m_pdc;
-      cairo_surface_t *       m_psurface;
-      ::rectangle_i32                  m_rectBoundingBoxInternal;
+      cairo_t *                  m_pcairo;
+      cairo_surface_t *          m_psurface;
+      ::rectangle_i32            m_rectBoundingBoxInternal;
 
 
       region();
-      virtual ~region();
+      ~region() override;
 
 
       virtual bool create(::draw2d::graphics * pgraphics);
-      virtual void destroy();
+      ::e_status destroy() override;
+      ::e_status destroy_os_data() override;
 
 
       bool mask_fill(cairo_t * pdc);

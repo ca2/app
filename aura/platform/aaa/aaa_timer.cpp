@@ -240,7 +240,7 @@ void timer::call_on_timer()
 //
 //         }
 
-         //finalize();
+         //destroy();
 
          //impl_term();
 
@@ -318,7 +318,7 @@ void timer::term_thread()
 
 }
 
-//::e_status timer::finalize()
+//::e_status timer::destroy()
 //{
 //
 //
@@ -374,7 +374,7 @@ void timer::term_thread()
 ////
 ////      }
 //
-//   ::thread::finalize();
+//   ::thread::destroy();
 //
 //
 //   }

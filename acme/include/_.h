@@ -1030,7 +1030,7 @@ void __destroy_and_release(__pointer(T) & p)
       try
       {
 
-         p->finalize();
+         p->destroy();
 
       }
       catch (...)

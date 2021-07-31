@@ -128,7 +128,7 @@ namespace sockets
 
       virtual bool gudo_get();
 
-      virtual ::e_status finalize();
+      virtual ::e_status destroy();
 
       /*
       * Encode string per RFC1738 URL encoding rules

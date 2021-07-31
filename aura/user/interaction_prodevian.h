@@ -104,7 +104,7 @@ namespace user
 
       virtual void term_thread() override;
 
-      virtual ::e_status finalize() override;
+      virtual ::e_status destroy() override;
 
       virtual ::e_status run() override;
 

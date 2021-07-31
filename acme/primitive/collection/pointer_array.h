@@ -879,7 +879,7 @@ public:
 
    }
 
-   ::e_status finalize_all()
+   ::e_status destroy_all()
    {
 
       ::e_status estatus = ::success;
@@ -887,7 +887,7 @@ public:
       for (auto& p : *this)
       {
 
-         auto estatusItem = p->finalize();
+         auto estatusItem = p->destroy();
 
          if (!estatusItem)
          {

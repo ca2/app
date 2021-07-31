@@ -587,8 +587,12 @@ namespace user
 
       virtual string get_display_tag();
 
-      virtual ::e_status finalize() override;
-      virtual void delete_this() override;
+
+      void on_set_finish() override;
+
+
+      ::e_status destroy() override;
+      void delete_this() override;
 
 
       virtual void display_system_minimize();
@@ -1017,7 +1021,7 @@ namespace user
 
       virtual void destroy_window() override;
 
-      virtual ::e_status on_finish() override;
+      //virtual ::e_status on_finish() override;
 
       //virtual ::e_status set_finish_composites(::property_object* pcontextobjectFinish) override;
 
@@ -1025,11 +1029,11 @@ namespace user
 
       ::e_status destroy_composites() override;
 
-      ::e_status destroy() override;
+      //::e_status destroy() override;
 
       void notify_on_destroy(::property_object* pcontextobjectFinish) override;
 
-      //virtual ::e_status finalize() override;
+      //virtual ::e_status destroy() override;
 
 
 //#ifdef WINDOWS

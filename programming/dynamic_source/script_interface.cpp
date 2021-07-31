@@ -74,10 +74,10 @@ namespace dynamic_source
    }
 
 
-   //::e_status script_interface::finalize()
+   //::e_status script_interface::destroy()
    //{
 
-   //   auto estatus = ::html::file::finalize();
+   //   auto estatus = ::html::file::destroy();
 
    //   m_pmain.release(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
    //   m_pinstanceParent2.release(OBJECT_REFERENCE_COUNT_DEBUG_THIS);

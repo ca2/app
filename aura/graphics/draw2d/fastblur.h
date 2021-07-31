@@ -297,7 +297,7 @@ namespace draw2d
       fastblur();
       ~fastblur();
 
-
+      using ::object::initialize;
       bool initialize(i32 cx, i32 cy, i32 iRadius);
       bool initialize(::size_i32 sz, i32 iRadius);
 

@@ -377,7 +377,7 @@ namespace apex
       //virtual void term3() override;
       //virtual bool finalize_filemanager();
 
-      virtual ::e_status finalize() override;
+      virtual ::e_status destroy() override;
 
       //template < typename VIEW >
       //__pointer(::user::document)   create_form(__pointer(::user::interaction) puserinteractionParent = nullptr, ::payload payload = payload(::e_type_empty_argument), ::payload varArgs = payload(::e_type_empty_argument));

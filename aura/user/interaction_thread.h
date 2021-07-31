@@ -98,7 +98,7 @@ namespace user
 
       ::e_status destroy() override;
 
-      ::e_status finalize() override;
+      //::e_status destroy() override;
 
       bool task_get_run() const override;
 

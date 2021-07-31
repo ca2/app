@@ -1573,7 +1573,7 @@ namespace user
 
          m_pgraphics->destroy_buffer();
 
-         m_pgraphics->finalize();
+         m_pgraphics->destroy();
 
       }
 
@@ -1722,7 +1722,7 @@ namespace user
          if (m_pprodevian && m_pprodevian->task_active())
          {
 
-            m_pprodevian->destroy();
+            m_pprodevian->set_finish();
 
          }
          else
@@ -4446,10 +4446,10 @@ namespace user
    //}
 
 
-   ::e_status interaction_impl::finalize()
+   ::e_status interaction_impl::destroy()
    {
 
-      return ::user::primitive::finalize();
+      return ::user::primitive::destroy();
 
    }
 

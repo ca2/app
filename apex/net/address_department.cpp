@@ -100,10 +100,10 @@ namespace net
    }
 
 
-   ::e_status address_department::finalize()
+   ::e_status address_department::destroy()
    {
 
-      ::object::finalize();
+      ::object::destroy();
 
       if (m_bInitialized)
       {

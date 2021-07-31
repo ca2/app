@@ -44,12 +44,14 @@ timer::~timer()
 }
 
 
-::e_status timer::finalize()
+::e_status timer::destroy()
 {
 
    m_ptimercallback.release(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
 
-   return ::success;
+   auto estatus = ::matter::destroy();
+
+   return estatus;
 
 }
 

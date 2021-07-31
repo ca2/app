@@ -88,6 +88,8 @@ namespace user
 
       }
 
+      style_base::on_subject(psubject, pcontext);
+
    }
 
 

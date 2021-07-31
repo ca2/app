@@ -11,7 +11,6 @@ namespace draw2d_cairo
    public:
 
 
-
       brush();
       ~brush() override;
 
@@ -27,4 +26,6 @@ namespace draw2d_cairo
 
 
 } // namespace draw2d_cairo
+
+
 

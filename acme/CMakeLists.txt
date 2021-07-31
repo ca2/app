@@ -108,11 +108,24 @@ list(APPEND library_source
    memory/allocate_system_heap.cpp
    memory/allocate_x86_cache_oriented.cpp
    memory/allocation.cpp
+   memory/array_memory_allocate.cpp
+   memory/array_memory_allocate.h
    memory/counter.cpp
-   memory/heap.cpp
+   #memory/heap.cpp
+   memory/memory_allocate.cpp
+   memory/memory_allocate.h
+   memory/memory_management.cpp
+   memory/memory_management.h
    memory/new.cpp
-   memory/plex.cpp
-   memory/plex_heap.cpp
+   #memory/plex.cpp
+   #memory/plex_heap.cpp
+   memory/property_memory_allocate.cpp
+   memory/property_memory_allocate.h
+   memory/secondary_memory_allocate.cpp
+   memory/secondary_memory_allocate.h
+   memory/string_memory_allocate.cpp
+   memory/string_memory_allocate.h
+   memory/string_memory_allocator.h
    net/top_level_domain_list.cpp
    net/url.cpp
    net/url.h
@@ -201,8 +214,6 @@ list(APPEND library_source
    platform/net.cpp
    platform/node.cpp
    platform/node.h
-   platform/obj_ref_dbg.cpp
-   platform/obj_typ_ctr.cpp
    platform/printf.cpp
    platform/predicate_holder.cpp
    platform/predicate_holder.h
@@ -255,7 +266,7 @@ list(APPEND library_source
    primitive/collection/string_to_string_map.cpp
    primitive/collection/stringa.cpp
    primitive/collection/stringl.cpp
-   primitive/collection/var_array.cpp
+   primitive/collection/payload_array.cpp
    primitive/comparison/var_strict.cpp
    primitive/data/_.h
    primitive/data/_data.h
@@ -653,9 +664,9 @@ list(APPEND library_source
    memory/memory_allocator.h
    memory/new.h
    memory/os_alloc.h
-   memory/plex.h
-   memory/plex_heap1.h
-   memory/plex_heap_impl1.h
+   #memory/plex.h
+   #memory/plex_heap1.h
+   #memory/plex_heap_impl1.h
    node/_.h
    node/_node2.h
    node/android/Kerr/LocalMemory.h
@@ -894,9 +905,11 @@ list(APPEND library_source
    platform/nano_timer.h
    platform/net.h
    platform/number.h
-   platform/obj_ref_dbg.h
-   platform/obj_ref_dbg_impl.h
-   platform/obj_typ_ctr.h
+   platform/object_reference_count_debug.cpp
+   platform/object_reference_count_debug.h
+   platform/object_reference_count_debug_impl.h
+   platform/object_type_counter.cpp
+   platform/object_type_counter.h
    platform/printf.h
    platform/profiler.h
    #platform/regex.h
@@ -1010,7 +1023,7 @@ list(APPEND library_source
    primitive/collection/stringl.h
    primitive/collection/template.h
    primitive/collection/unique_array.h
-   primitive/collection/var_array.h
+   primitive/collection/payload_array.h
    primitive/comparison/_.h
    primitive/comparison/_c.h
    primitive/comparison/binary.h

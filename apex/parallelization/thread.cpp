@@ -1470,7 +1470,7 @@ bool thread::post_quit_message(int nExitCode)
    
 #else
    
-   finish();
+   destroy();
    
 #endif
 

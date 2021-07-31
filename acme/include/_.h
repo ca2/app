@@ -1020,29 +1020,6 @@ CLASS_DECL_ACME ::e_priority get_os_class_scheduling_priority(i32 iCa2Priority);
 class matter;
 
 
-template<typename T>
-void __destroy_and_release(__pointer(T) & p)
-{
-
-   if (::is_set(p))
-   {
-
-      try
-      {
-
-         p->destroy();
-
-      }
-      catch (...)
-      {
-
-      }
-
-      p.release();
-
-   }
-
-}
 
 
 CLASS_DECL_ACME void release_on_end(::matter *pmatter);
@@ -3008,6 +2985,31 @@ using wparam = c_number<iptr>;
 //   class result;
 //
 //} // namespace status
+
+template<typename T>
+void __destroy_and_release(__pointer(T) & p)
+{
+
+   if (::is_set(p))
+   {
+
+      try
+      {
+
+         p->finalize();
+
+      }
+      catch (...)
+      {
+
+      }
+
+      p.release();
+
+   }
+
+}
+
 
 
 namespace message

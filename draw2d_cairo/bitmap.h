@@ -13,7 +13,7 @@ namespace draw2d_cairo
 
       cairo_surface_t *       m_psurface;
       memory                  m_mem;
-      ::size_i32                  m_size;
+      ::size_i32              m_size;
 
 
       bitmap();
@@ -57,5 +57,6 @@ namespace draw2d_cairo
 
 
 } // namespace draw2d_cairo
+
 
 

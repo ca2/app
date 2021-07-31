@@ -284,20 +284,22 @@ namespace sockets
          plistensocket-> Bind("127.0.0.1", 0);
          m_port = plistensocket-> GetPort();
 
-         socket_handler::add(plistensocket);
+         socket_handler::add2(plistensocket);
 
          m_ptcpsocket = __new(tcp_socket());
          m_ptcpsocket -> SetDeleteByHandler();
-         m_ptcpsocket -> SetConnectTimeout(5);
-         m_ptcpsocket -> SetConnectionRetry(-1);
+         m_ptcpsocket -> set_maximum_connection_time(5);
+         m_ptcpsocket -> SetRetryClientConnect(-1);
 #ifdef ENABLE_RECONNECT
          m_ptcpsocket -> SetReconnect(true);
 #endif
          m_ptcpsocket -> open(::net::address("127.0.0.1", m_port));
-         socket_handler::add(m_ptcpsocket);
+
+         socket_handler::add2(m_ptcpsocket);
+
       }
 
-      socket_handler::add( psocket );
+      socket_handler::add2( psocket );
 
    }
 

@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "acme/operating_system.h"
 
 
@@ -1255,7 +1255,12 @@ bool mutex::lock()
 
       int iError = pthread_mutex_unlock(&m_mutex);
 
-      ASSERT(iError == 0);
+      if(iError != 0)
+      {
+       
+         return false;
+         
+      }
 
       return true;
 
@@ -1464,7 +1469,12 @@ bool mutex::unlock()
 
       int iError = pthread_mutex_unlock(&m_mutex);
 
-      ASSERT(iError == 0);
+      if(iError != 0)
+      {
+         
+         return false;
+         
+      }
 
       return true;
 

@@ -826,11 +826,11 @@ bool task::has_message() const
 
    m_bIsRunning = true;
 
+   m_bTaskStarted = true;
+
 #ifdef WINDOWS
 
    DWORD dwThread = 0;
-
-   m_bTaskStarted = true;
 
    m_htask = ::CreateThread(PARAM_SEC_ATTRS, nStackSize, (LPTHREAD_START_ROUTINE) &::task::s_os_task, (LPVOID)(task*)this, uCreateFlags, &dwThread);
 

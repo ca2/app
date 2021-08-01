@@ -50,11 +50,16 @@ namespace user
    void style_base::on_change_dark_mode()
    {
 
-      auto psystem = m_psystem;
+      m_psystem->post(__routine([this]()
+      {
 
-      auto pnode = psystem->node();
+         auto psystem = m_psystem;
 
-      m_bDarkMode = pnode->is_app_dark_mode();
+         auto pnode = psystem->node();
+         
+         m_bDarkMode = pnode->is_app_dark_mode();
+         
+      }));
 
    }
 

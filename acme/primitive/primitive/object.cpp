@@ -1157,6 +1157,8 @@ bool object::check_tasks_finished()
       {
 
          auto ptaskChild = m_pobjectaChildrenTask->element_at(iChildTask);
+         
+         string strType = ptaskChild->type_c_str();
 
          lock.unlock();
 
@@ -1170,6 +1172,8 @@ bool object::check_tasks_finished()
       {
 
          auto ptaskChild = m_pobjectaChildrenTask->element_at(iChildTask);
+
+         string strType = ptaskChild->type_c_str();
 
          if (ptaskChild->m_bTaskTerminated || !ptaskChild->m_bTaskStarted)
          {

@@ -11,9 +11,8 @@ namespace draw2d
    public:
 
 
-
       palette();
-      virtual ~palette();
+      ~palette() override;
 
 
       //virtual bool CreatePalette(LPLOGPALETTE pLogPalette);
@@ -33,7 +32,7 @@ namespace draw2d
 
       //virtual void AnimatePalette(::u32 nStartIndex, ::u32 nNumEntries, LPPALETTEENTRY pPaletteColors);
 
-      //virtual ::u32 GetNearestPaletteIndex(::color::color crColor) const;
+      virtual ::u32 GetNearestPaletteIndex(const ::color::color & color) const;
       //virtual bool ResizePalette(::u32 nNumEntries);
 
 

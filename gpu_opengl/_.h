@@ -82,9 +82,12 @@
 
 
 //#include <OpenGL/gl.h>
+//#include <OpenGL/gl3.h>
+//#include <OpenGL/CGLTypes.h>
+//#include <OpenGL/glu.h>
 #include <OpenGL/gl3.h>
-#include <OpenGL/CGLTypes.h>
-#include <OpenGL/glu.h>
+#include <OpenGL/glext.h>
+//#include <OpenGL/gl.h>
 
 
 #else

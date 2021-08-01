@@ -74,14 +74,16 @@ namespace draw2d
 //   }
 
 
-//   ::u32 palette::GetNearestPaletteIndex(::color::color crColor) const
-//   {
-//
-//      UNREFERENCED_PARAMETER(crColor);
-//      ::exception::throw_interface_only();
-//      return 0;
-//
-//   }
+   ::u32 palette::GetNearestPaletteIndex(const ::color::color & color) const
+   {
+
+      UNREFERENCED_PARAMETER(color);
+      
+      ::exception::throw_interface_only();
+      
+      return 0;
+
+   }
 
 
 //   bool palette::ResizePalette(::u32 nNumEntries)

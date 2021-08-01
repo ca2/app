@@ -13524,14 +13524,14 @@ restart:
 
       __pointer(::message::show_window) pshowwindow(pmessage);
       
-      string strType = type_c_str();
-      
-      if(strType.contains("main_frame"))
-      {
-      
-         output_debug_string("main_frame interaction::on_message_show_window\n");
-         
-      }
+//      string strType = type_c_str();
+//      
+//      if(strType.contains("main_frame"))
+//      {
+//      
+//         output_debug_string("main_frame interaction::on_message_show_window\n");
+//         
+//      }
       
 //SW_OTHERUNZOOM
 //4

@@ -918,7 +918,7 @@ void simple_frame_window::on_message_create(::message::message * pmessage)
       if (m_bDefaultNotifyIcon)
       {
 
-         auto psystem = m_psystem->m_papexsystem;
+         //auto psystem = m_psystem->m_papexsystem;
 
          __defer_construct(m_pnotifyicon);
 

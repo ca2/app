@@ -3964,7 +3964,7 @@ int_bool thread::get_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilter
 
    int iRet;
 
-   while((iRet = pmq->get_message(pMsg, oswindow, wMsgFilterMin, wMsgFilterMax)) != 0)
+   while((iRet = pmq->get_message(pMsg, oswindow, wMsgFilterMin, wMsgFilterMax, duration)) != 0)
    {
 
       if (iRet > 0)

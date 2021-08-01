@@ -1756,6 +1756,11 @@ namespace user
          output_debug_string("main_frame user::interaction_impl::destroy_window");
 
       }
+      
+      m_puserinteraction->m_bDestroying = true;
+      
+      
+      m_puserinteraction->m_ewindowflag -= e_window_flag_window_created;
 
       //::destroy_window(get_handle());
 
@@ -2702,6 +2707,13 @@ namespace user
       auto pthread = puserinteraction->m_pthreadUserInteraction;
 
       auto pmessagequeue = pthread->get_message_queue();
+      
+      if(::is_null(pmessagequeue))
+      {
+         
+         return error_failed;
+         
+      }
 
       auto estatus = pmessagequeue->post_message(message);
 
@@ -3618,6 +3630,8 @@ namespace user
       }
       else
       {
+         
+         INFO("user::interaction_impl::on_message_show_window bShow = false");
 
          {
 

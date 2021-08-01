@@ -898,31 +898,31 @@ namespace user
 
             }
 
-            if (m_bSetFinish)
-            {
-
-               if (!bWindowSetFinish)
-               {
-
-                  bWindowSetFinish = true;
-
-                  if (m_pimpl)
-                  {
-
-                     auto puserinteraction = m_pimpl->m_puserinteraction;
-
-                     if (puserinteraction)
-                     {
-
-                        puserinteraction->destroy_window();
-
-                     }
-
-                  }
-
-               }
-
-            }
+//            if (m_bSetFinish)
+//            {
+//
+//               if (!bWindowSetFinish)
+//               {
+//
+//                  bWindowSetFinish = true;
+//
+//                  if (m_pimpl)
+//                  {
+//
+//                     auto puserinteraction = m_pimpl->m_puserinteraction;
+//
+//                     if (puserinteraction)
+//                     {
+//
+//                        puserinteraction->destroy_window();
+//
+//                     }
+//
+//                  }
+//
+//               }
+//
+//            }
 
          }
 
@@ -1031,12 +1031,12 @@ namespace user
    bool thread::task_get_run() const
    {
 
-      if (m_pimpl)
-      {
-
-         return true;
-
-      }
+//      if (m_pimpl)
+//      {
+//
+//         return true;
+//
+//      }
 
       return ::thread::task_get_run();
 

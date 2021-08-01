@@ -130,7 +130,6 @@
 		9A201C15247733DC00A31CBF /* window.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A247DA62452C47F00F23D28 /* window.cpp */; };
 		9A201C16247733DC00A31CBF /* windowing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A247DBD2452C47F00F23D28 /* windowing.cpp */; };
 		9A201C38247733DC00A31CBF /* _application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A247D992452C47F00F23D28 /* _application.cpp */; };
-		9A201C39247733DC00A31CBF /* argcargv.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A247E8D2452C47F00F23D28 /* argcargv.cpp */; };
 		9A201C3F247733DC00A31CBF /* http.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A247E6A2452C47F00F23D28 /* http.cpp */; };
 		9A201C43247733DC00A31CBF /* thread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A247D1B2452C47E00F23D28 /* thread.cpp */; };
 		9A201C45247733DC00A31CBF /* windowing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A247F532452C48000F23D28 /* windowing.cpp */; };
@@ -226,7 +225,6 @@
 		9A2484312452C48A00F23D28 /* os_windowing2.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A247E2D2452C47F00F23D28 /* os_windowing2.h */; };
 		9A2484632452C48A00F23D28 /* windowing.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A247E602452C47F00F23D28 /* windowing.h */; };
 		9A24846C2452C48B00F23D28 /* http.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A247E6A2452C47F00F23D28 /* http.cpp */; };
-		9A24848D2452C48B00F23D28 /* argcargv.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A247E8D2452C47F00F23D28 /* argcargv.cpp */; };
 		9A24848E2452C48B00F23D28 /* graphics.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A247E8E2452C47F00F23D28 /* graphics.h */; };
 		9A24854D2452C48D00F23D28 /* windowing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A247F532452C48000F23D28 /* windowing.cpp */; };
 		9A24854F2452C48D00F23D28 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A247F552452C48000F23D28 /* _.h */; };
@@ -603,9 +601,7 @@
 		9AC2CE942653452D00CC8096 /* image_drawer.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC2CE862653452800CC8096 /* image_drawer.h */; };
 		9AC2CE952653452D00CC8096 /* device_lock.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AC2CE872653452800CC8096 /* device_lock.cpp */; };
 		9AC2CE962653452D00CC8096 /* image_source.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC2CE882653452800CC8096 /* image_source.h */; };
-		9AC2CE972653452D00CC8096 /* ttf_util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AC2CE892653452800CC8096 /* ttf_util.cpp */; };
 		9AC2CE982653452D00CC8096 /* color_filter.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC2CE8A2653452900CC8096 /* color_filter.h */; };
-		9AC2CE992653452D00CC8096 /* ttf_util.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC2CE8B2653452900CC8096 /* ttf_util.h */; };
 		9AC2CE9A2653452D00CC8096 /* device_lock.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC2CE8C2653452900CC8096 /* device_lock.h */; };
 		9AC2CE9B2653452D00CC8096 /* image_drawing.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC2CE8D2653452900CC8096 /* image_drawing.h */; };
 		9AC2CE9C2653452D00CC8096 /* graphics_call.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC2CE8E2653452A00CC8096 /* graphics_call.h */; };
@@ -936,7 +932,6 @@
 		9A247E2D2452C47F00F23D28 /* os_windowing2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = os_windowing2.h; sourceTree = "<group>"; };
 		9A247E602452C47F00F23D28 /* windowing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = windowing.h; sourceTree = "<group>"; };
 		9A247E6A2452C47F00F23D28 /* http.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = http.cpp; sourceTree = "<group>"; };
-		9A247E8D2452C47F00F23D28 /* argcargv.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = argcargv.cpp; sourceTree = "<group>"; };
 		9A247E8E2452C47F00F23D28 /* graphics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = graphics.h; sourceTree = "<group>"; };
 		9A247F532452C48000F23D28 /* windowing.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = windowing.cpp; sourceTree = "<group>"; };
 		9A247F552452C48000F23D28 /* _.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
@@ -1326,9 +1321,7 @@
 		9AC2CE862653452800CC8096 /* image_drawer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = image_drawer.h; sourceTree = "<group>"; };
 		9AC2CE872653452800CC8096 /* device_lock.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = device_lock.cpp; sourceTree = "<group>"; };
 		9AC2CE882653452800CC8096 /* image_source.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = image_source.h; sourceTree = "<group>"; };
-		9AC2CE892653452800CC8096 /* ttf_util.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ttf_util.cpp; sourceTree = "<group>"; };
 		9AC2CE8A2653452900CC8096 /* color_filter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = color_filter.h; sourceTree = "<group>"; };
-		9AC2CE8B2653452900CC8096 /* ttf_util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ttf_util.h; sourceTree = "<group>"; };
 		9AC2CE8C2653452900CC8096 /* device_lock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = device_lock.h; sourceTree = "<group>"; };
 		9AC2CE8D2653452900CC8096 /* image_drawing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = image_drawing.h; sourceTree = "<group>"; };
 		9AC2CE8E2653452A00CC8096 /* graphics_call.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = graphics_call.h; sourceTree = "<group>"; };
@@ -1588,7 +1581,6 @@
 				9A247D502452C47E00F23D28 /* _application.h */,
 				9A247D5D2452C47E00F23D28 /* _c.h */,
 				9A247D192452C47E00F23D28 /* _impl.h */,
-				9A247E8D2452C47F00F23D28 /* argcargv.cpp */,
 				9A247DCA2452C47F00F23D28 /* aaa_chronometer.cpp */,
 				9A247D572452C47E00F23D28 /* chronometer.h */,
 				9A247D5F2452C47E00F23D28 /* cross.h */,
@@ -2058,8 +2050,6 @@
 				9A3764312409BF00002D15D3 /* region.h */,
 				9AC2CE912653452A00CC8096 /* task_tool.cpp */,
 				9AC2CE922653452D00CC8096 /* task_tool.h */,
-				9AC2CE892653452800CC8096 /* ttf_util.cpp */,
-				9AC2CE8B2653452900CC8096 /* ttf_util.h */,
 				9A37645D2409BF06002D15D3 /* water_routine.h */,
 			);
 			path = draw2d;
@@ -2743,7 +2733,6 @@
 				9A41734120004E7A0056265A /* sha.h in Headers */,
 				9A41730820004E7A0056265A /* aes.h in Headers */,
 				9A41731420004E7A0056265A /* cms.h in Headers */,
-				9AC2CE992653452D00CC8096 /* ttf_util.h in Headers */,
 				9A24833E2452C48700F23D28 /* os.h in Headers */,
 				9A3764DF2409BF0C002D15D3 /* pixmap.h in Headers */,
 				9A5C953C247265A200107FDE /* file_raw.h in Headers */,
@@ -3181,7 +3170,6 @@
 				9A201C15247733DC00A31CBF /* window.cpp in Sources */,
 				9A201C16247733DC00A31CBF /* windowing.cpp in Sources */,
 				9A201C38247733DC00A31CBF /* _application.cpp in Sources */,
-				9A201C39247733DC00A31CBF /* argcargv.cpp in Sources */,
 				9A201C3F247733DC00A31CBF /* http.cpp in Sources */,
 				9A201C43247733DC00A31CBF /* thread.cpp in Sources */,
 				9A201C45247733DC00A31CBF /* windowing.cpp in Sources */,
@@ -3249,7 +3237,6 @@
 				9AC2CEE72653455600CC8096 /* icon.cpp in Sources */,
 				9AC31C9524853D7400F18145 /* keyboard.cpp in Sources */,
 				9A24832A2452C48700F23D28 /* thread.cpp in Sources */,
-				9A24848D2452C48B00F23D28 /* argcargv.cpp in Sources */,
 				9A2486812452C49000F23D28 /* system.cpp in Sources */,
 				9AD1173E24F5147900177261 /* box.cpp in Sources */,
 				9AC2CEF22653455600CC8096 /* windowing.cpp in Sources */,
@@ -3382,7 +3369,6 @@
 				9A2489E32453417F00F23D28 /* _.cpp in Sources */,
 				9A3764C12409BF0C002D15D3 /* object.cpp in Sources */,
 				9A4E5D762519428C00CC6817 /* application_system_run.cpp in Sources */,
-				9AC2CE972653452D00CC8096 /* ttf_util.cpp in Sources */,
 				9A3764A72409BF0C002D15D3 /* image_frame.cpp in Sources */,
 				9AD1170224F5147800177261 /* control_event.cpp in Sources */,
 				9A2486F52452C49200F23D28 /* application.cpp in Sources */,
@@ -3661,7 +3647,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(WorkspaceDir)/archive",
-					"$(WorkspaceDir)/archive/storage-$(PLATFORM_MODIFIER)/library/x64/$(CONFIGURATION)",
+					"$(WorkspaceDir)/archive/storage-$(PLATFORM_MODIFIER)/library/$(ARCHS)/$(CONFIGURATION)",
 					"$(WorkspaceDir)/time/$(PLATFORM_MODIFIER)",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.9;

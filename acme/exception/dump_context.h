@@ -8,10 +8,10 @@ public:
 
    
    dump_context(::file::file * pfile = nullptr);
-   virtual ~dump_context();
+   ~dump_context() override;
 
 
-   virtual ::e_status finalize() override;
+   //virtual ::e_status destroy() override;
 
 
    i32 GetDepth() const;      // 0 => this matter, 1 => children objects

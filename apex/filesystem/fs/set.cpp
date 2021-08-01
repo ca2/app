@@ -34,13 +34,13 @@ namespace fs
    }
 
 
-   ::e_status set::finalize()
+   ::e_status set::destroy()
    {
 
       for (auto& pdata : m_spafsdata)
       {
 
-         pdata->finalize();
+         pdata->destroy();
 
 
       }
@@ -48,7 +48,7 @@ namespace fs
       for (auto& pdata : m_fsdatamap.values())
       {
 
-         pdata->finalize();
+         pdata->destroy();
 
       }
 
@@ -56,7 +56,7 @@ namespace fs
 
       m_fsdatamap.erase_all();
       
-      ::fs::data::finalize();
+      ::fs::data::destroy();
 
       return ::success;
 

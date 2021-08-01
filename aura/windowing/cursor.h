@@ -23,7 +23,7 @@ namespace windowing
 
 
       cursor();
-      virtual ~cursor();
+      ~cursor() override;
 
 
       virtual ::e_status set_cursor(enum_cursor ecursor);

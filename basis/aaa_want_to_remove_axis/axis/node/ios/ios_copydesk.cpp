@@ -128,12 +128,12 @@ namespace ios
    }
 
 
-   bool copydesk::finalize()
+   bool copydesk::destroy()
    {
 
       bool bOk;
 
-      bOk = ::user::copydesk::finalize();
+      bOk = ::user::copydesk::destroy();
 
 //      if(window_pointer::is_set() && window_pointer::m_p->is_window())
 //      {

@@ -71,11 +71,16 @@ namespace opengl
 
       }
 
-      glDrawPixels(
-         m_pimage->m_size.cx, m_pimage->m_size.cy,
-         GL_BGRA, 
-         GL_UNSIGNED_BYTE,
-         m_pimage->m_pcolorrefRaw);
+//      glDrawPixels(
+//         m_pimage->m_size.cx, m_pimage->m_size.cy,
+//         GL_BGRA,
+//         GL_UNSIGNED_BYTE,
+//         m_pimage->m_pcolorrefRaw);
+      
+      glTexImage2D(GL_TEXTURE_2D, 0, 0, 0,
+                   m_pimage->m_size.cx, m_pimage->m_size.cy,
+                   GL_RGBA, GL_UNSIGNED_BYTE,
+                   m_pimage->m_pcolorrefRaw);
 
    }
 

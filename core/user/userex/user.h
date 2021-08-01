@@ -138,7 +138,7 @@ namespace core
 
 
 
-      virtual ::e_status finalize() override;
+      virtual ::e_status destroy() override;
 
 
       //virtual __pointer(::user::menu_interaction) create_menu_button(::user::style* pstyle, ::user::menu_item* pitem) override;

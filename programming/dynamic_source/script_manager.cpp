@@ -447,7 +447,7 @@ namespace dynamic_source
 
       //auto pinst2 = pinstance.m_p;
 
-      //pinst2->finalize();
+      //pinst2->destroy();
 
       //if (pinst2->m_countReference > 2)
       //{
@@ -488,7 +488,7 @@ namespace dynamic_source
 
       //auto pmain2 = pmain.m_p;
 
-      //pmain2->finalize();
+      //pmain2->destroy();
 
       //if (pmain2->m_countReference > 0)
       //{
@@ -699,7 +699,7 @@ namespace dynamic_source
 
  /*     auto pimpl2 = pimpl.m_p;
 
-      pimpl->finalize();*/
+      pimpl->destroy();*/
 
       //if (pimpl2->m_countReference > 1)
       //{

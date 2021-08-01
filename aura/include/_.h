@@ -529,7 +529,7 @@ CLASS_DECL_AURA void aura_ref();
 //   if (p)
 //   {
 //
-//      p->finalize();
+//      p->destroy();
 //
 //      p.release();
 //

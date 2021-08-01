@@ -41,7 +41,7 @@ namespace simpledb
 
 
       virtual ::e_status initialize_simpledb_server(::object * pobject, const char * pszDatabase);
-      virtual ::e_status finalize() override;
+      virtual ::e_status destroy() override;
 
 
       virtual bool initialize_user(::database::database * pdatabaseUser, const char * pszUser);

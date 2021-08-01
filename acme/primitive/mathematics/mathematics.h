@@ -50,7 +50,7 @@ namespace mathematics
 
 
       virtual ::e_status initialize(::object * pobject) override;
-      virtual ::e_status finalize() override;
+      virtual ::e_status destroy() override;
 
 
       i32 LinearMap(i32 iMin, i32 iMax, i32 iValue, i32 iValueMin, i32 iValueMax);

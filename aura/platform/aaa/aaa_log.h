@@ -52,7 +52,7 @@ namespace aura
 
       virtual ::e_status initialize_aura_log(enum_trace_level etracelevelMin, const ::id & id);
       //virtual bool initialize(id id);
-      virtual ::e_status finalize() override;
+      virtual ::e_status destroy() override;
 
       virtual bool process_init();
 

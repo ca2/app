@@ -705,7 +705,7 @@ skip_further_possible_recursive_impossible_logging_in_file:
    //}
 
 
-   ::e_status log::finalize()
+   ::e_status log::destroy()
    {
 
       synchronous_lock synchronouslock(mutex());
@@ -717,7 +717,7 @@ skip_further_possible_recursive_impossible_logging_in_file:
 
       }
 
-      ::object::finalize();
+      ::object::destroy();
 
       if (m_pfile)
       {

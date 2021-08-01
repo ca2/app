@@ -82,12 +82,12 @@ namespace aura
    }
 
 
-   ::e_status context_thread::finalize()
+   ::e_status context_thread::destroy()
    {
 
-      ::thread::finalize();
+      ::thread::destroy();
 
-      ::context::finalize();
+      ::context::destroy();
 
    }
 

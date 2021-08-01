@@ -25,7 +25,7 @@ namespace parallelization
    }
 
 
-   CLASS_DECL_APEX ::e_status finalize()
+   CLASS_DECL_APEX ::e_status destroy()
    {
 
       __node_term_multithreading();
@@ -293,7 +293,7 @@ namespace parallelization
 //      try
 //      {
 //
-//         pthread->finalize();
+//         pthread->destroy();
 //
 //      }
 //      catch (...)

@@ -37,7 +37,7 @@ namespace simpledb
       if (m_pdatabaseLocal.is_set())
       {
 
-         finalize();
+         destroy();
 
       }
 
@@ -229,7 +229,7 @@ namespace simpledb
    }
 
 
-   ::e_status server::finalize()
+   ::e_status server::destroy()
    {
 
       m_bWorking = false;
@@ -243,7 +243,7 @@ namespace simpledb
 
       m_pdatabaseLocal.release();
 
-      auto estatus = ::database::server::finalize();
+      auto estatus = ::database::server::destroy();
 
       return estatus;
 

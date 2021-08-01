@@ -46,10 +46,10 @@ namespace user
    }
 
 
-   ::e_status copydesk::finalize()
+   ::e_status copydesk::destroy()
    {
 
-      auto estatus = ::object::finalize();
+      auto estatus = ::object::destroy();
 
       return estatus;
 

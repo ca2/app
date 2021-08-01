@@ -2016,7 +2016,7 @@ namespace user
 
       }
 
-      auto ptabpane = get_tab(iIndex);
+      ///auto ptabpane = get_tab(iIndex);
 
       if(eelement == e_element_border)
       {

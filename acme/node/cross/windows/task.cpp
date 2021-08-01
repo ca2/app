@@ -263,7 +263,7 @@ void task::term_task()
    try
    {
 
-      finalize();
+      destroy();
 
    }
    catch (...)

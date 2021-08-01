@@ -92,15 +92,15 @@ interprocess_intercommunication::~interprocess_intercommunication()
 }
 
 
-::e_status interprocess_intercommunication::finalize()
+::e_status interprocess_intercommunication::destroy()
 {
 
-   ::object::finalize();
+   ::object::destroy();
 
    if(m_prx)
    {
 
-      m_prx->finalize();
+      m_prx->destroy();
 
    }
 

@@ -39,10 +39,10 @@ namespace sockets
    }
 
 
-   ::e_status sockets_base::finalize()
+   ::e_status sockets_base::destroy()
    {
 
-      ::object::finalize();
+      ::object::destroy();
 
       return ::success;
 

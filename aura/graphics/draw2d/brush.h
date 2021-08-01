@@ -38,7 +38,7 @@ namespace draw2d
       virtual ~brush();
 
 
-      virtual ::e_status finalize() override;
+      virtual ::e_status destroy() override;
 
       virtual void dump(dump_context & dumpcontext) const override;
 

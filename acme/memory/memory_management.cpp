@@ -1,4 +1,4 @@
-//Created by camilo on 2021-07-29 18:23 BRT <3ThomasBorregaardSørensen!!
+//Created by camilo on 2021-07-29 18:23 BRT <3ThomasBorregaardSï¿½rensen!!
 #include "framework.h"
 #include "memory_management.h"
 #include "memory_allocate.h"
@@ -22,7 +22,7 @@ todo(string)
    namespace  __PREFIX_UNDERSCORE(name, memory_allocate_heap) \
 { \
    void initialize(); \
-void finalize(); \
+   void finalize(); \
 } \
    void __PREFIX_UNDERSCORE(name, initialize_memory_management)(memory_heap * pmemoryheap)
 

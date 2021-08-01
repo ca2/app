@@ -137,7 +137,7 @@ void application_container::request_exit()
 
          }
 
-         finalize();
+         destroy();
 
       });
 

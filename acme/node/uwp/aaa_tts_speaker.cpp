@@ -53,7 +53,7 @@ namespace uwp
       bool speaker::initialize(string strLang)
       {
 
-         finalize(strLang);
+         destroy(strLang);
 
          //
          // Create text to speech engine
@@ -109,7 +109,7 @@ namespace uwp
 
       }
 
-      bool speaker::finalize(string strLang)
+      bool speaker::destroy(string strLang)
       {
 
          if(m_synth[strLang] != nullptr)
@@ -256,7 +256,7 @@ namespace uwp
          if (m_tts[strLang])
          {
 
-            finalize(strLang);
+            destroy(strLang);
 
          }
          else

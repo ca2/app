@@ -72,12 +72,12 @@ namespace mysql
    }
 
 
-   ::e_status database::finalize()
+   ::e_status database::destroy()
    {
 
       close_mysql_database();
 
-      auto estatus = ::database::database::finalize();
+      auto estatus = ::database::database::destroy();
 
       return estatus;
 

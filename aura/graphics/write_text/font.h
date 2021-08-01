@@ -108,7 +108,9 @@ namespace write_text
       font(const font & font);
       ~font() override;
 
-      virtual void dump(dump_context & dumpcontext) const override;
+
+      void dump(dump_context & dumpcontext) const override;
+
 
       virtual bool create_pixel_font(
       const char * pszFacename,

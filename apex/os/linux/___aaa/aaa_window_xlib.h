@@ -28,7 +28,7 @@ namespace xlib
 
 
       virtual ::e_status initialize_graphics_graphics(::user::interaction_impl * pimpl) override;
-      virtual ::e_status finalize() override;
+      virtual ::e_status destroy() override;
 
 
       virtual bool create_os_buffer(const ::size & size, int iStride = -1);

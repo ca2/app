@@ -11,13 +11,12 @@ namespace draw2d_cairo
    public:
 
 
-
       brush();
-      virtual ~brush();
+      ~brush() override;
 
 
-      virtual bool create(::draw2d::graphics * pgraphics);
-      virtual void destroy();
+      bool create(::draw2d::graphics * pgraphics);
+      ::e_status destroy() override;
 
 
       virtual void dump(dump_context & dumpcontext) const;
@@ -27,4 +26,6 @@ namespace draw2d_cairo
 
 
 } // namespace draw2d_cairo
+
+
 

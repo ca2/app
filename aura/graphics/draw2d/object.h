@@ -19,11 +19,11 @@ namespace draw2d
 
 
       object();
-      virtual ~object();
+      ~object() override;
 
 
-      virtual void assert_valid() const;
-      virtual void dump(dump_context & dumpcontext) const;
+      void assert_valid() const override;
+      void dump(dump_context & dumpcontext) const override;
 
       
       //inline ::aura::application* get_application();
@@ -38,7 +38,7 @@ namespace draw2d
 
 
       virtual void defer_update(::draw2d::graphics * pgraphics, ::i8 i) const;
-
+      virtual ::e_status destroy_os_data();
 
       virtual bool create(::draw2d::graphics * pgraphics, i8 iCreate);
       ::e_status destroy() override;
@@ -99,7 +99,6 @@ namespace draw2d
 
 
 } // namespace draw2d
-
 
 
 

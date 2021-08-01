@@ -520,7 +520,7 @@ void simple_frame_window::on_message_destroy(::message::message * pmessage)
    if (m_ptaskpool)
    {
 
-      m_ptaskpool->finalize();
+      m_ptaskpool->destroy();
 
       m_ptaskpool.release();
 
@@ -918,7 +918,7 @@ void simple_frame_window::on_message_create(::message::message * pmessage)
       if (m_bDefaultNotifyIcon)
       {
 
-         auto psystem = m_psystem->m_papexsystem;
+         //auto psystem = m_psystem->m_papexsystem;
 
          __defer_construct(m_pnotifyicon);
 

@@ -341,12 +341,12 @@ pnode->set_application_menu(m_papplicationmenu, this);
 }
 
 
-::e_status application::finalize()
+::e_status application::destroy()
 {
 
    __unbind(this, m_puserlanguagemap OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS);
 
-   auto estatus = ::apex::context::finalize();
+   auto estatus = ::apex::context::destroy();
 
    return estatus;
 
@@ -4820,7 +4820,7 @@ localeschema.add_locale_variant(get_locale(), strSchema);
 localeschema.add_locale_variant(__id(std), strSchema);
 localeschema.add_locale_variant(__id(en), strSchema);
 
-localeschema.finalize();
+localeschema.destroy();
 
 }
 
@@ -4896,7 +4896,7 @@ localeschema.add_locale_variant(__id(en), straSchema[iSchema]);
 
 }
 
-localeschema.finalize();
+localeschema.destroy();
 
 }
 
@@ -6277,7 +6277,7 @@ Windows::UI::ViewManagement::ApplicationView::GetForCurrentView()->TryConsolidat
 
 #else
 
-destroy();
+set_finish();
 
 #endif
 
@@ -6401,21 +6401,21 @@ string strType = type_name();
 }
 
 
-::e_status application::destroy()
-{
-
-   auto estatus = ::apex::context::destroy();
-
-   if (!estatus)
-   {
-
-      return estatus;
-
-   }
-
-   return estatus;
-
-}
+//::e_status application::destroy()
+//{
+//
+//   auto estatus = ::apex::context::destroy();
+//
+//   if (!estatus)
+//   {
+//
+//      return estatus;
+//
+//   }
+//
+//   return estatus;
+//
+//}
 
 
 //::e_status application::init_application()

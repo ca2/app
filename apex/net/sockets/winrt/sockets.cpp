@@ -116,7 +116,7 @@ namespace sockets
    //}
 
 
-   ::e_status sockets::finalize()
+   ::e_status sockets::destroy()
    {
 
       //bool bOk = true;

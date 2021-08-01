@@ -23,7 +23,7 @@ namespace graphics
 
       //destroy_();
 
-      finalize();
+      destroy();
 
    }
 
@@ -34,7 +34,7 @@ namespace graphics
       try
       {
 
-         finalize();
+         destroy();
 
       }
       catch (...)
@@ -60,12 +60,12 @@ namespace graphics
    }
 
 
-   ::e_status graphics::finalize()
+   ::e_status graphics::destroy()
    {
 
       destroy_buffer();
 
-      auto estatus = object::finalize();
+      auto estatus = object::destroy();
 
       return estatus;
 

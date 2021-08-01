@@ -74,7 +74,7 @@ namespace base
 
       virtual ::e_status initialize1_experience();
 
-      virtual ::e_status finalize() override;
+      virtual ::e_status destroy() override;
 
       virtual void SendMessageToWindows(const ::id & id, wparam wParam, lparam lParam) override;
 

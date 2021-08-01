@@ -18,19 +18,19 @@
 //   }
 //
 //
-//   ::e_status cursor_set::finalize()
+//   ::e_status cursor_set::destroy()
 //   {
 //
 //      for (auto& pcursor : m_cursormap.values())
 //      {
 //
-//         pcursor->finalize();
+//         pcursor->destroy();
 //
 //      }
 //
 //      m_cursormap.erase_all();
 //
-//      ::matter::finalize();
+//      ::matter::destroy();
 //
 //   }
 //

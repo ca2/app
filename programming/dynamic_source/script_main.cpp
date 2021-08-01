@@ -86,7 +86,7 @@ namespace dynamic_source
    bool script_main::main_finalize()
    {
 
-      finalize();
+      destroy();
 
       return true;
 

@@ -405,7 +405,7 @@
       virtual ::file::path local_application_home_path();
 
 
-      virtual ::e_status finalize() override;
+      //virtual ::e_status destroy() override;
 
 
       //virtual void release_parents() override;
@@ -708,7 +708,7 @@
 
       //virtual ::e_status request_exit_application();
       //virtual ::e_status can_exit_application();
-      virtual ::e_status exit_application();
+      ::e_status exit_application() override;
 
 
       //virtual void _001FranceExit();

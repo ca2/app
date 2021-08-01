@@ -28,18 +28,50 @@
 #include <mach/mach.h>
 #endif
 
+struct mach_calendar_clock
+{
+   clock_serv_t m_clockserv;
+   mach_timespec_t m_machtimespec;
+
+   mach_calendar_clock()
+   {
+      
+      host_get_clock_service(mach_host_self(), CALENDAR_CLOCK, &m_clockserv);
+
+      
+   }
+   
+   ~mach_calendar_clock()
+   {
+
+   mach_port_deallocate(mach_task_self(), m_clockserv);
+      
+   }
+   
+   
+   void get_time(struct timespec * pts)
+   {
+      
+      clock_get_time(m_clockserv, &m_machtimespec);
+      pts->tv_sec = m_machtimespec.tv_sec;
+      pts->tv_nsec = m_machtimespec.tv_nsec;
+
+      
+   }
+
+   
+} g_machcalendarclock;
+
 void clock_getrealtime(struct timespec * pts)
 {
 
 #ifdef __MACH__ // OS X does not have clock_gettime, use clock_get_time
 
-   clock_serv_t cclock;
-   mach_timespec_t mts;
-   host_get_clock_service(mach_host_self(), CALENDAR_CLOCK, &cclock);
-   clock_get_time(cclock, &mts);
-   mach_port_deallocate(mach_task_self(), cclock);
-   pts->tv_sec = mts.tv_sec;
-   pts->tv_nsec = mts.tv_nsec;
+//   struct timeval timeval;
+//   gettimeofday(&timeval, nullptr);
+//   pts->tv_sec = timeval.tv_sec;
+//   pts->tv_nsec = timeval.tv_usec * 1000;
+   g_machcalendarclock.get_time(pts);
 
 #else
 
@@ -643,6 +675,8 @@ synchronization_result event::wait (const duration & durationTimeout)
       else
       {
          timespec abstime;
+         
+         timespec timeNow;
 
          ((duration & ) durationTimeout).normalize();
 
@@ -669,8 +703,23 @@ synchronization_result event::wait (const duration & durationTimeout)
 
          while(!m_bSignaled && iSignal == m_iSignalId)
          {
+            
+            clock_getrealtime(&timeNow);
+            ::i32 error;
+            if(timeNow.tv_sec > abstime.tv_sec||
+               (timeNow.tv_sec == abstime.tv_sec &&
+                timeNow.tv_nsec > abstime.tv_nsec))
+               {
+               
+               error = ETIMEDOUT;
+               
+            }
+               else
+               {
 
-            i32 error = pthread_cond_timedwait((pthread_cond_t *) m_pcond, (pthread_mutex_t *) m_mutex, &abstime);
+            error = pthread_cond_timedwait((pthread_cond_t *) m_pcond, (pthread_mutex_t *) m_mutex, &abstime);
+               
+            }
 
             if(error == EBUSY || error == ETIMEDOUT)
             {

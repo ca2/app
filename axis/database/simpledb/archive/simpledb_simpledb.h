@@ -34,7 +34,7 @@ namespace simpledb
 
       virtual bool init2();
       virtual bool initialize();
-      virtual bool finalize();
+      virtual bool destroy();
 
       virtual ::database::server * get_data_server();
       virtual db_server & db();

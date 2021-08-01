@@ -48,7 +48,7 @@ namespace apex
       ::e_status initialize_log(enum_trace_level etracelevelMin, const ::id & id) override;
 
       //virtual bool initialize(id id);
-      ::e_status finalize() override;
+      ::e_status destroy() override;
 
       ::e_status process_init() override;
 

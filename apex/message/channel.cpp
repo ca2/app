@@ -260,13 +260,13 @@ void channel::channel_common_construct()
 }
 
 
-::e_status channel::finalize()
+::e_status channel::destroy()
 {
 
    if (m_pchannel && m_pchannel != this)
    {
 
-      m_pchannel->finalize();
+      m_pchannel->destroy();
 
    }
 
@@ -281,7 +281,7 @@ void channel::channel_common_construct()
    for (auto& procedurea : m_routinemap.values())
    {
 
-      procedurea.finalize();
+      procedurea.destroy();
 
       procedurea.erase_all();
 
@@ -289,7 +289,7 @@ void channel::channel_common_construct()
 
    m_routinemap.erase_all();
 
-   ::object::finalize();
+   ::object::destroy();
 
    return ::success;
 

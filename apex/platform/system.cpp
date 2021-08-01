@@ -2375,7 +2375,7 @@ namespace apex
          if (m_pmachineeventcentral)
          {
 
-            m_pmachineeventcentral->finalize();
+            m_pmachineeventcentral->destroy();
 
          }
 
@@ -4127,7 +4127,7 @@ namespace apex
       if (pdata->m_fixed.m_bRequestCloseApplication)
       {
 
-         finalize();
+         destroy();
 
       }
 
@@ -5574,18 +5574,18 @@ namespace apex
 //   }
 
 
-   ::e_status system::finalize()
+   ::e_status system::destroy()
    {
 
-      auto estatus = ::thread::finalize();
+      auto estatus = ::thread::destroy();
 
-      ::app_core::finalize();
+      ::app_core::destroy();
 
-      ::apex::context::finalize();
+      ::apex::context::destroy();
 
 #ifdef WINDOWS_DESKTOP
 
-      ::exception::translator::finalize();
+      ::exception::translator::destroy();
 
 #endif
 
@@ -5595,7 +5595,7 @@ namespace apex
          if (plibrary)
          {
 
-            plibrary->finalize();
+            plibrary->destroy();
 
          }
 

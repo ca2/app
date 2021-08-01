@@ -23,10 +23,10 @@
             }
 
 
-            ::e_status frame_013::finalize()
+            ::e_status frame_013::destroy()
             {
 
-               auto estatus = frame_008::finalize();
+               auto estatus = frame_008::destroy();
 
                return estatus;
 

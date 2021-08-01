@@ -79,21 +79,9 @@ namespace windowing
       if (m_pcursormanager)
       {
 
-         m_pcursormanager->finalize();
+         m_pcursormanager->destroy();
 
       }
-
-   }
-
-
-   ::e_status windowing::finalize()
-   {
-
-      m_pcursormanager.release();
-
-      auto estatus = ::acme::department::finalize();
-
-      return estatus;
 
    }
 
@@ -101,18 +89,30 @@ namespace windowing
    ::e_status windowing::destroy()
    {
 
+      m_pcursormanager.release();
+
       auto estatus = ::acme::department::destroy();
-
-      if (!estatus)
-      {
-
-         return estatus;
-
-      }
 
       return estatus;
 
    }
+
+
+   //::e_status windowing::destroy()
+   //{
+
+   //   auto estatus = ::acme::department::destroy();
+
+   //   if (!estatus)
+   //   {
+
+   //      return estatus;
+
+   //   }
+
+   //   return estatus;
+
+   //}
 
 
    ::e_status windowing::start()

@@ -71,7 +71,7 @@ namespace sockets
    }
 
 
-   ::e_status net::finalize()
+   ::e_status net::destroy()
    {
 
       //return true;

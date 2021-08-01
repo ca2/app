@@ -116,7 +116,7 @@ bool db_server::initialize()
 }
 
 
-bool db_server::finalize()
+bool db_server::destroy()
 {
 
    m_bWorking = false;

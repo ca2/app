@@ -357,9 +357,9 @@ namespace apex
       //virtual bool initialize_application() override;
 
       //virtual i32 exit_instance();
-      //virtual bool finalize();
+      //virtual bool destroy();
 
-      virtual ::e_status finalize() override;
+      virtual ::e_status destroy() override;
 
 
 

@@ -77,7 +77,7 @@ namespace axis
       //virtual bool initialize_application() override;
 
       //virtual i32 exit_instance();
-      //virtual bool finalize();
+      //virtual bool destroy();
 
 
 

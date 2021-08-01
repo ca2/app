@@ -2312,6 +2312,26 @@ namespace draw2d
    }
 
 
+   ::e_status graphics::destroy()
+   {
+      
+      auto estatusOsData = destroy_os_data();
+      
+      auto estatusDestroy = ::aura::simple_chain < ::aura::draw_context >::destroy();
+      
+      return estatusOsData && estatusDestroy;
+      
+   }
+
+   
+   ::e_status graphics::destroy_os_data()
+   {
+      
+      return ::success;
+      
+   }
+
+
    bool graphics::DeleteDC()
    {
 

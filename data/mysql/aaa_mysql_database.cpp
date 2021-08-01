@@ -39,12 +39,12 @@ namespace mysql
    }
 
 
-   ::e_status database::finalize()
+   ::e_status database::destroy()
    {
 
       close_mysql_database();
 
-      ::database::database::finalize();
+      ::database::database::destroy();
 
    }
 

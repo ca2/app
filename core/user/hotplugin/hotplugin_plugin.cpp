@@ -104,12 +104,12 @@ namespace hotplugin
    }
 
 
-   ::e_status plugin::finalize()
+   ::e_status plugin::destroy()
    {
 
-      ::user::interaction::finalize();
+      ::user::interaction::destroy();
 
-      ::base::session::finalize();
+      ::base::session::destroy();
 
    }
 
@@ -300,7 +300,7 @@ namespace hotplugin
 
       plugin_message_handler(e_message_close,0,0,false);
 
-      finalize();
+      destroy();
 
       return true;
 

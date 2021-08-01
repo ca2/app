@@ -256,6 +256,9 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
    {
 
       ::acme::idpool::term();
+      
+      
+      m_pnode->os_post_quit();
 
    }
 

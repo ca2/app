@@ -55,7 +55,7 @@ namespace sockets
 
       g_interlockedcountSocketHandler++;
 
-      ::output_debug_string("----socket_handler (count=" + __str(g_interlockedcountSocketHandler.operator long long()) + ")\n");
+      ::output_debug_string("----socket_handler (count=" + __str(g_interlockedcountSocketHandler.operator ::i64()) + ")\n");
 
    }
 

@@ -1351,7 +1351,7 @@ namespace user
          }
 
          //DestroyWindow();
-         destroy();
+         set_finish();
 
       }
 

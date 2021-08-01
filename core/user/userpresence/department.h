@@ -22,7 +22,7 @@ namespace userpresence
 
 
       virtual ::e_status initialize(::object * pobject) override;
-      virtual ::e_status finalize() override;
+      virtual ::e_status destroy() override;
 
 
       virtual bool defer_initialize_user_presence();

@@ -16,7 +16,7 @@ namespace ios
 
 
       virtual bool initialize();
-      virtual bool finalize();
+      virtual bool destroy();
 
       virtual void _set_filea(const ::file::patha & patha);
 

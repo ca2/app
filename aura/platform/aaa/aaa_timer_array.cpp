@@ -220,14 +220,14 @@ namespace aura
    }
 
 
-   ::e_status timer_array::finalize()
+   ::e_status timer_array::destroy()
    {
 
       m_bOk = false;
 
       delete_all_timers();
 
-      ::timer_callback::finalize();
+      ::timer_callback::destroy();
 
    }
 
@@ -272,7 +272,7 @@ namespace aura
 
       }
 
-      //finalize();
+      //destroy();
 
       {
 

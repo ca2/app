@@ -2,7 +2,7 @@
 
 
 class CLASS_DECL_ACME timer_task :
-   public timer,
+   virtual public timer,
    virtual public task
 {
 public:
@@ -42,7 +42,7 @@ public:
 
 
    timer_task();
-   virtual ~timer_task();
+   ~timer_task() override;
 
 
 #ifdef DEBUG
@@ -66,7 +66,9 @@ public:
 
    virtual bool on_timer();
 
-   virtual ::e_status finalize() override;
+   //virtual ::e_status destroy() override;
+
+   virtual ::e_status destroy() override;
 
    //bool impl_start();
    //bool impl_restart();
@@ -77,9 +79,6 @@ public:
 
 
    virtual bool task_active() const override;
-
-
-   
 
 
 };

@@ -40,7 +40,26 @@ namespace user
 
       psubject->add_listener(this);
 
+      on_change_dark_mode();
+
       return estatus;
+
+   }
+
+
+   void style_base::on_change_dark_mode()
+   {
+
+      m_psystem->post(__routine([this]()
+      {
+
+         auto psystem = m_psystem;
+
+         auto pnode = psystem->node();
+         
+         m_bDarkMode = pnode->is_app_dark_mode();
+         
+      }));
 
    }
 
@@ -51,10 +70,7 @@ namespace user
       if (psubject->m_id == id_os_dark_mode)
       {
 
-         auto psystem = m_psystem;
-
-         auto pnode = psystem->node();
-
+         on_change_dark_mode();
 
       }
 

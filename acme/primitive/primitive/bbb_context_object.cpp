@@ -239,7 +239,7 @@ void object::process_exit_status(const ::e_status& estatus)
    }
 
 
-    ::e_status object::finalize()
+    ::e_status object::destroy()
     {
 
 

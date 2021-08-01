@@ -172,7 +172,7 @@ namespace draw2d_cairo
 
             m_papi->close();
 
-            m_papi->finalize();
+            m_papi->destroy();
 
          }
 
@@ -191,12 +191,12 @@ namespace draw2d_cairo
    }
 
 
-   ::e_status draw2d::finalize()
+   ::e_status draw2d::destroy()
    {
 
       m_papi.release();
 
-      auto estatus = ::draw2d::draw2d::finalize();
+      auto estatus = ::draw2d::draw2d::destroy();
 
       return estatus;
 
@@ -1345,7 +1345,7 @@ namespace draw2d_cairo
 //      //output_debug_string("No write_text pluging available!!.");
 //      return error_failed;
 //
-//      //finalize:
+//      //destroy:
 //
 //      //   PFN_factory_exchange pfn_factory_exchange = plibrary->get < PFN_factory_exchange >("write_text_factory_exchange");
 //

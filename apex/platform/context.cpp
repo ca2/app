@@ -1141,10 +1141,10 @@ namespace apex
    }
 
 
-//   ::e_status context::finalize()
+//   ::e_status context::destroy()
 //   {
 //
-//      auto estatus = ::object::finalize();
+//      auto estatus = ::object::destroy();
 //
 //      return estatus;
 //
@@ -1226,12 +1226,12 @@ namespace apex
    }
 
 
-   ::e_status context::finalize()
+   ::e_status context::destroy()
    {
 
-      ::thread::finalize();
+      ::thread::destroy();
 
-      ::acme::context::finalize();
+      ::acme::context::destroy();
 
       return success;
 

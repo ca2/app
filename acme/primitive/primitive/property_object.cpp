@@ -88,54 +88,54 @@ void property_object::notify_on_destroy(::property_object * pcontextobjectFinish
 //}
 
 
-::e_status property_object::on_finish()
-{
-
-   auto estatus = material_object::on_finish();
-
-   return estatus;
-
-   //synchronous_lock synchronouslock(mutex());
-
-   //if (m_pnotifya)
-   //{
-
-   //   auto pnotifya = m_pnotifya;
-
-   //   restart_notifya_loop:
-
-   //   for (auto pmatter : *pnotifya)
-   //   {
-
-   //      if (pmatter && pmatter->m_bFinishing)
-   //      {
-
-   //         synchronouslock.unlock();
-
-   //         sleep(10_ms);
-
-   //         auto estatus = pmatter->finish();
-
-   //         if (estatus == ::success)
-   //         {
-
-   //            synchronouslock.lock();
-
-   //            pnotifya->erase(pmatter);
-
-   //            goto restart_notifya_loop;
-
-   //         }
-
-   //         synchronouslock.lock();
-
-   //      }
-
-   //   }
-
-   //}
-   
-}
+//::e_status property_object::on_finish()
+//{
+//
+//   auto estatus = material_object::on_finish();
+//
+//   return estatus;
+//
+//   //synchronous_lock synchronouslock(mutex());
+//
+//   //if (m_pnotifya)
+//   //{
+//
+//   //   auto pnotifya = m_pnotifya;
+//
+//   //   restart_notifya_loop:
+//
+//   //   for (auto pmatter : *pnotifya)
+//   //   {
+//
+//   //      if (pmatter && pmatter->m_bFinishing)
+//   //      {
+//
+//   //         synchronouslock.unlock();
+//
+//   //         sleep(10_ms);
+//
+//   //         auto estatus = pmatter->finish();
+//
+//   //         if (estatus == ::success)
+//   //         {
+//
+//   //            synchronouslock.lock();
+//
+//   //            pnotifya->erase(pmatter);
+//
+//   //            goto restart_notifya_loop;
+//
+//   //         }
+//
+//   //         synchronouslock.lock();
+//
+//   //      }
+//
+//   //   }
+//
+//   //}
+//   
+//}
 
 
 ::object * property_object::source_channel()

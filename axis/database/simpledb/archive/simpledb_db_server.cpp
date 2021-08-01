@@ -28,7 +28,7 @@ db_server::~db_server()
 
    close();
 
-   finalize();
+   destroy();
 
 }
 
@@ -181,7 +181,7 @@ bool db_server::initialize()
 }
 
 
-bool db_server::finalize()
+bool db_server::destroy()
 {
 
    m_bWorking = false;

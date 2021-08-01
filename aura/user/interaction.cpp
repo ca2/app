@@ -57,9 +57,13 @@ namespace user
    void interaction::user_interaction_common_construct()
    {
 
+      //m_bTaskPending = true;
+
       m_bEdgeGestureDisableTouchWhenFullscreen = true;
 
       //m_bSimpleUIDefaultMouseHandlingMouseCaptureOnLeftButtonDown = false;
+
+      m_bUserInteractionHost = false;
 
       m_bMouseHoverOnCapture = false;
 
@@ -1727,7 +1731,7 @@ namespace user
    }
 
 
-   ::e_status interaction::destroy()
+   void interaction::on_set_finish()
    {
 
       if (!m_bUserInteractionSetFinish)
@@ -1737,11 +1741,13 @@ namespace user
 
          start_destroying_window();
 
-         return error_pending;
+         return;
+
+         //return error_pending;
 
       }
 
-      return ::user::primitive::destroy();
+      ::user::primitive::on_set_finish();
 
    }
 
@@ -6903,30 +6909,30 @@ namespace user
    //}
 
 
-   ::e_status interaction::on_finish()
-   {
+   //::e_status interaction::on_finish()
+   //{
 
-      if (m_ewindowflag & e_window_flag_is_window)
-      {
+   //   if (m_ewindowflag & e_window_flag_is_window)
+   //   {
 
-         start_destroying_window();
+   //      start_destroying_window();
 
-         return error_pending;
+   //      return error_pending;
 
-      }
+   //   }
 
-      if (m_pthreadUserInteraction && m_pthreadUserInteraction->is_running())
-      {
+   //   if (m_pthreadUserInteraction && m_pthreadUserInteraction->is_running())
+   //   {
 
-         return error_pending;
+   //      return error_pending;
 
-      }
+   //   }
 
-      auto estatus = ::object::on_finish();
+   //   auto estatus = ::object::on_finish();
 
-      return estatus;
+   //   return estatus;
 
-   }
+   //}
 
 
 
@@ -7006,7 +7012,7 @@ namespace user
    //::e_status interaction::on_finish()
    //{
 
-   //   auto estatus = finalize();
+   //   auto estatus = destroy();
 
    //   if (estatus == error_pending)
    //   {
@@ -7072,39 +7078,39 @@ namespace user
    }
 
 
-   ::e_status interaction::finalize()
+   ::e_status interaction::destroy()
    {
 
-      ::user::primitive::finalize();
+      ::user::primitive::destroy();
 
       if (m_pimpl.is_set())
       {
 
-         m_pimpl->finalize();
+         m_pimpl->destroy();
 
       }
 
       // ownership
-      m_pusersystem && m_pusersystem->finalize();
-      m_playout && m_playout->finalize();
-      m_pshapeaClip && m_pshapeaClip->finalize();
-      m_pdragmove && m_pdragmove->finalize();
-      m_pgraphicscalla && m_pgraphicscalla->finalize();
-      m_pdrawcontext && m_pdrawcontext->finalize();
-      m_puserinteractionCustomWindowProc && m_puserinteractionCustomWindowProc->finalize();
-      m_puiLabel && m_puiLabel->finalize();
-      m_useritema.finalize_all();
-      m_pform && m_pform->finalize();
-      m_palphasource && m_palphasource->finalize();
-      m_pdrawableBackground && m_pdrawableBackground->finalize();
-      m_pimpl && m_pimpl->finalize();
-      m_pimpl2 && m_pimpl2->finalize();
-      m_puserinteractionpointeraOwned && m_puserinteractionpointeraOwned->finalize();
-      m_puserinteractionpointeraChild && m_puserinteractionpointeraChild->finalize();
-      m_pthreadUserInteraction && m_pthreadUserInteraction->finalize();
-      m_ptooltip && m_ptooltip->finalize();
-      m_pmenuitem && m_pmenuitem->finalize();
-      m_menua.finalize_all();
+      m_pusersystem && m_pusersystem->destroy();
+      m_playout && m_playout->destroy();
+      m_pshapeaClip && m_pshapeaClip->destroy();
+      m_pdragmove && m_pdragmove->destroy();
+      m_pgraphicscalla && m_pgraphicscalla->destroy();
+      m_pdrawcontext && m_pdrawcontext->destroy();
+      m_puserinteractionCustomWindowProc && m_puserinteractionCustomWindowProc->destroy();
+      m_puiLabel && m_puiLabel->destroy();
+      m_useritema.destroy_all();
+      m_pform && m_pform->destroy();
+      m_palphasource && m_palphasource->destroy();
+      m_pdrawableBackground && m_pdrawableBackground->destroy();
+      m_pimpl && m_pimpl->destroy();
+      m_pimpl2 && m_pimpl2->destroy();
+      m_puserinteractionpointeraOwned && m_puserinteractionpointeraOwned->destroy();
+      m_puserinteractionpointeraChild && m_puserinteractionpointeraChild->destroy();
+      m_pthreadUserInteraction && m_pthreadUserInteraction->destroy();
+      m_ptooltip && m_ptooltip->destroy();
+      m_pmenuitem && m_pmenuitem->destroy();
+      m_menua.destroy_all();
 
       // ownership
       m_pusersystem.release();
@@ -7208,7 +7214,7 @@ namespace user
 
       }
 
-      ::channel::on_finish();
+      ///::channel::on_finish();
 
       ::user::primitive::post_non_client_destroy();
 
@@ -11395,9 +11401,10 @@ restart:
 
       }
 
-      auto psession = get_session();
+      //auto psession = get_session();
 
-      if(::is_set(psession) && m_puserinteractionParent == psession->get_user_interaction_host())
+      //if(::is_set(psession) && m_puserinteractionParent == psession->get_user_interaction_host())
+      if(m_bUserInteractionHost)
       {
 
          return (::user::interaction *) this;
@@ -13517,14 +13524,14 @@ restart:
 
       __pointer(::message::show_window) pshowwindow(pmessage);
       
-      string strType = type_c_str();
-      
-      if(strType.contains("main_frame"))
-      {
-      
-         output_debug_string("main_frame interaction::on_message_show_window\n");
-         
-      }
+//      string strType = type_c_str();
+//      
+//      if(strType.contains("main_frame"))
+//      {
+//      
+//         output_debug_string("main_frame interaction::on_message_show_window\n");
+//         
+//      }
       
 //SW_OTHERUNZOOM
 //4
@@ -16392,7 +16399,7 @@ restart:
    }
 
 
-   //::e_status interaction::finalize()
+   //::e_status interaction::destroy()
    //{
 
    //   start_destroying_window();

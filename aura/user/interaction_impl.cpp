@@ -1573,7 +1573,7 @@ namespace user
 
          m_pgraphics->destroy_buffer();
 
-         m_pgraphics->finalize();
+         m_pgraphics->destroy();
 
       }
 
@@ -1722,7 +1722,7 @@ namespace user
          if (m_pprodevian && m_pprodevian->task_active())
          {
 
-            m_pprodevian->destroy();
+            m_pprodevian->set_finish();
 
          }
          else
@@ -1756,6 +1756,11 @@ namespace user
          output_debug_string("main_frame user::interaction_impl::destroy_window");
 
       }
+      
+      m_puserinteraction->m_bDestroying = true;
+      
+      
+      m_puserinteraction->m_ewindowflag -= e_window_flag_window_created;
 
       //::destroy_window(get_handle());
 
@@ -2702,6 +2707,13 @@ namespace user
       auto pthread = puserinteraction->m_pthreadUserInteraction;
 
       auto pmessagequeue = pthread->get_message_queue();
+      
+      if(::is_null(pmessagequeue))
+      {
+         
+         return error_failed;
+         
+      }
 
       auto estatus = pmessagequeue->post_message(message);
 
@@ -3618,6 +3630,8 @@ namespace user
       }
       else
       {
+         
+         INFO("user::interaction_impl::on_message_show_window bShow = false");
 
          {
 
@@ -4446,10 +4460,10 @@ namespace user
    //}
 
 
-   ::e_status interaction_impl::finalize()
+   ::e_status interaction_impl::destroy()
    {
 
-      return ::user::primitive::finalize();
+      return ::user::primitive::destroy();
 
    }
 

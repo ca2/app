@@ -147,7 +147,7 @@ public:
    //virtual ::e_status set_finish_composites(::property_object* ppropertyobjectFinish) override;
 
 
-   void update_task_ready_to_quit() override;
+   //void update_task_ready_to_quit() override;
 
 
    void add_waiting_event(event * pevent);
@@ -389,12 +389,12 @@ public:
 
    virtual bool task_get_run() const override;
    //virtual bool set_run();
-   virtual ::e_status finalize() override;
+   //virtual ::e_status destroy() override;
    //virtual bool is_set_finish() const;
    //virtual void finish() override;
    virtual void kick_idle() override;
    virtual void post_quit() override;
-   virtual ::e_status on_finish() override;
+   //virtual ::e_status on_finish() override;
 
 
    virtual bool post_quit_message(int nExitCode);

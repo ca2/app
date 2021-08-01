@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 namespace sockets
@@ -37,7 +37,7 @@ namespace sockets
       /** Returns true when socket file descriptor is valid,
       socket connection is established, and socket is not about to
       be closed. */
-      bool Ready();
+      bool Ready() override;
 
       /** set timeout to use for connection attempt.
       \lparam x time_out in seconds */

@@ -15,12 +15,12 @@ bool text_stream::is_stream_null()
 }
 
 
-::e_status text_stream::finalize()
+::e_status text_stream::destroy()
 {
 
    m_p.release();
 
-   auto estatus = stream::finalize();
+   auto estatus = stream::destroy();
 
    return estatus;
 

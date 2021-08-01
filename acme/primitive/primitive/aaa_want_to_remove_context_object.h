@@ -27,7 +27,7 @@ struct CLASS_DECL_ACME matter :
 
 
    virtual ::e_status     initialize(::matter * pobject) override;
-   virtual ::e_status     finalize() override;
+   virtual ::e_status     destroy() override;
 
 
    virtual void defer_create_mutex();
@@ -142,7 +142,7 @@ struct CLASS_DECL_ACME matter :
 
    //virtual stream & call_read(const ::stream & stream) { return read((::stream &)(stream)); }
 
-   //virtual ::e_status finalize();
+   //::e_status destroy() override;
 
    //virtual void call();
 

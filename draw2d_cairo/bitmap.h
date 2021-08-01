@@ -13,11 +13,11 @@ namespace draw2d_cairo
 
       cairo_surface_t *       m_psurface;
       memory                  m_mem;
-      ::size_i32                  m_size;
+      ::size_i32              m_size;
 
 
       bitmap();
-      virtual ~bitmap();
+      ~bitmap() override;
 
 
       bool LoadBitmap(const char * lpszResourceName);
@@ -48,7 +48,8 @@ namespace draw2d_cairo
       virtual bool attach(void * posdata);
 
 
-      virtual void destroy();
+      ::e_status destroy() override;
+      ::e_status destroy_os_data() override;
 
 
 
@@ -56,5 +57,6 @@ namespace draw2d_cairo
 
 
 } // namespace draw2d_cairo
+
 
 

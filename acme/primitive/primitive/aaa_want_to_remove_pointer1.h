@@ -318,7 +318,7 @@ inline void destruct(T * p)
 }
 
 
-// finalize solves this.
+// destroy solves this.
 
 template < class T >
 class guard_pointer :

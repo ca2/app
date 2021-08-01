@@ -987,7 +987,7 @@ namespace aura
 
       on_term_thread();
 
-      ::parallelization::finalize();
+      ::parallelization::destroy();
 
       __node_aura_pre_term();
 

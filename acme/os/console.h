@@ -74,20 +74,20 @@ namespace console
 
 
       console_client();
-      virtual ~console_client();
+      ~console_client() override;
 
 
       virtual console * get_console();
       string_stream & cout() override;
 
 
-      virtual void redirect_io();
-      virtual void SetWindowSize(int iHeight, int iWidth);
-      virtual void SetCursorVisibility(bool show);
-      virtual void SetCursorPosition(int y, int x);
-      virtual void SetTextColor(int color);
-      virtual void SetScreenColor(enum_dos_color edoscolor, int iLineStart = 0, int iLineCount = -1);
-      virtual void write(const char * psz);
+      virtual void redirect_io() override;
+      virtual void SetWindowSize(int iHeight, int iWidth) override;
+      virtual void SetCursorVisibility(bool show) override;
+      virtual void SetCursorPosition(int y, int x) override;
+      virtual void SetTextColor(int color) override;
+      virtual void SetScreenColor(enum_dos_color edoscolor, int iLineStart = 0, int iLineCount = -1) override;
+      virtual void write(const char * psz) override;
 
 
    };

@@ -43,7 +43,7 @@ namespace sockets
       ~resolv_socket();
 
       virtual ::e_status initialize(::object * pobject) override;
-      virtual ::e_status finalize() override;
+      virtual ::e_status destroy() override;
 
       void OnAccept() override { m_bServer = true; }
       void OnLine(const string & line) override;

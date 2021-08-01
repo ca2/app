@@ -41,7 +41,7 @@ namespace sockets
 
 
       virtual ::e_status initialize(::object * pobject) override;
-      virtual ::e_status finalize() override;
+      virtual ::e_status destroy() override;
 
 //      virtual void http_config_proxy(const char * pszUrl, http_tunnel * psocket);
 

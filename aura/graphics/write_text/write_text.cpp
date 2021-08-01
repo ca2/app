@@ -58,7 +58,7 @@ namespace write_text
          if (m_pfonts)
          {
 
-            m_pfonts->finalize();
+            m_pfonts->destroy();
 
          }
 
@@ -75,12 +75,12 @@ namespace write_text
    }
 
 
-   ::e_status write_text::finalize()
+   ::e_status write_text::destroy()
    {
 
       m_pfonts.release();
 
-      auto estatus = ::acme::department::finalize();
+      auto estatus = ::acme::department::destroy();
 
       return estatus;
 

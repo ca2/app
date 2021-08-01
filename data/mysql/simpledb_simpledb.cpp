@@ -66,7 +66,7 @@ namespace simpledb
 
       try
       {
-         m_pserver->finalize();
+         m_pserver->destroy();
       }
       catch(...)
       {
@@ -160,12 +160,12 @@ namespace simpledb
    }
 
 
-   bool simpledb::finalize()
+   bool simpledb::destroy()
    {
 
       try
       {
-       //  ::database::database::finalize();
+       //  ::database::database::destroy();
       }
       catch(...)
       {

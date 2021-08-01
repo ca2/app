@@ -113,7 +113,7 @@ namespace datetime
 
 
       virtual ::e_status initialize(::object * pobject) override;
-      virtual ::e_status finalize() override;
+      ::e_status destroy() override;
 
       i32 get_month_day_count(i32 year,i32 month);
       i32 get_weekday(i32 year,i32 month,i32 day);

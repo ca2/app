@@ -62,9 +62,11 @@ public:
    {
 
    }
-   virtual ~text_stream();
+   ~text_stream() override;
 
-   virtual ::e_status finalize() override;
+   //virtual ::e_status destroy() override;
+
+   ::e_status destroy() override;
 
    virtual void to_string(const string_exchange & str) const override;
 

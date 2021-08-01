@@ -143,10 +143,10 @@ namespace user
    }
 
 
-   ::e_status primitive_impl::finalize()
+   ::e_status primitive_impl::destroy()
    {
 
-      ::user::primitive::finalize();
+      ::user::primitive::destroy();
 
       auto estatus = m_puserinteraction.release();
 
@@ -1460,7 +1460,7 @@ namespace user
 
       }
 
-      ::channel::on_finish();
+      //::channel::on_finish();
 
       if (!m_bDestroyImplOnly && m_puserinteraction)
       {
@@ -1542,7 +1542,7 @@ namespace user
       //   if (m_ptimerarray)
       //   {
 
-      //      m_ptimerarray->finalize();
+      //      m_ptimerarray->destroy();
 
       //      m_ptimerarray.release(OBJECT_REFERENCE_COUNT_DEBUG_THIS_NOTE(""));
 

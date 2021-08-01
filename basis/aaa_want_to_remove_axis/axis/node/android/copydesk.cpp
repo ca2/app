@@ -50,12 +50,12 @@ namespace android
    }
 
 
-   bool copydesk::finalize()
+   bool copydesk::destroy()
    {
 
       bool bOk;
 
-      bOk = ::user::copydesk::finalize();
+      bOk = ::user::copydesk::destroy();
 
 //      if(::user::interaction_impl *::is_set() && ::user::interaction_impl *::m_p->is_window())
       {

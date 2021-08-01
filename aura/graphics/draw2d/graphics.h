@@ -75,11 +75,17 @@ namespace draw2d
 
 
       graphics();
-      virtual ~graphics();
+      ~graphics() override;
 
 
-      virtual void assert_valid() const override;
-      virtual void dump(dump_context & dumpcontext) const override;
+      void assert_valid() const override;
+      void dump(dump_context & dumpcontext) const override;
+      
+      
+      ::e_status destroy() override;
+      virtual ::e_status destroy_os_data();
+      
+      
 
       inline operator ::user::style & ()
       {

@@ -2283,7 +2283,7 @@ index array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::predicate_binary
 }
 
 
-template < typename TYPE, enum_type t_etypePayload = e_type_element >
+template < typename TYPE, enum_type t_etypePayload >
 void numeric_array < TYPE, t_etypePayload >::sort(bool bAsc)
 {
 

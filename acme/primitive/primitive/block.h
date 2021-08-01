@@ -9,6 +9,21 @@ struct CLASS_DECL_ACME BLOCK
 
 };
 
+template <std::size_t N>
+struct ____array_count
+{
+    typedef char type[N];
+};
+
+template <typename T, std::size_t Size>
+typename ____array_count<Size>::type& ___array_count(T(&)[Size]);
+
+template <typename TYPE >
+const TYPE * __memory_address_of(const TYPE a[]) { return (TYPE *)a; }
+
+template <typename TYPE >
+const TYPE * __memory_address_of(const TYPE & a) { return &a; }
+
 
 struct CLASS_DECL_ACME block :
    public BLOCK
@@ -16,7 +31,7 @@ struct CLASS_DECL_ACME block :
 
    block(enum_no_initialize) {}
    template < typename TYPE >
-   block(const TYPE typea[]) { m_pdata = (byte*)typea; m_iSize = sizeof(typea); }
+   block(TYPE type) { m_pdata = (byte *) __memory_address_of(type); m_iSize = sizeof(type); }
    block(const void * pdata = nullptr, i64 iSize = 0) { m_pdata = (byte *) pdata; m_iSize = iSize; }
    block(const memory_base & memory);
    block(const memory_base * pmemory);
@@ -25,8 +40,8 @@ struct CLASS_DECL_ACME block :
    block(const string & str) : ::block(str.c_str(), str.get_length()) {}
    block(const string & str, ::strsize s) : ::block((const void *)str.c_str(), (::i64)( s >= 0 ? s : str.get_length() + s + 1)) {}
    block(const char * psz, ::strsize s = -1) : ::block((const void *)psz, (::i64) (s >= 0 ? s : strlen(psz) + s + 1)) {}
-   template < primitive_integral INTEGRAL >
-   block(const INTEGRAL & integral) : ::block((const void*)&integral, sizeof(integral)) {}
+//   template < primitive_integral INTEGRAL >
+//   block(const INTEGRAL & integral) : ::block((const void*)&integral, sizeof(integral)) {}
 
 
    block & operator = (const block & block) { if (this != &block) { m_pdata = block.m_pdata; m_iSize = block.m_iSize; } return *this; }

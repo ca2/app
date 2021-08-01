@@ -108,7 +108,7 @@ public:
    void save_to(const ::payload & varFile, BASE_TYPE * pobject);
 
    virtual ::e_status initialize(::object * pobject) override;
-   virtual ::e_status finalize() override;
+   virtual ::e_status destroy() override;
 
    inline const char * topic_text();
 
@@ -701,7 +701,7 @@ public:
    void save_to(const ::payload& varFile, BASE_TYPE* pobject);
 
    virtual ::e_status initialize(::object * pobject) override;
-   virtual ::e_status finalize() override;
+   virtual ::e_status destroy() override;
 
    inline const char* topic_text();
 

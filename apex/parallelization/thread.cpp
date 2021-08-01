@@ -326,7 +326,7 @@ void thread::term_thread()
 
    }
 
-   channel::on_finish();
+//   channel::on_finish();
 
    term_task();
 
@@ -1442,23 +1442,23 @@ void thread::post_quit()
 }
 
 
-::e_status thread::on_finish()
-{
-
-   post_quit();
-
-   auto estatus = ::channel::on_finish();
-
-   if (!estatus)
-   {
-
-      return estatus;
-
-   }
-
-   return estatus;
-
-}
+//::e_status thread::on_finish()
+//{
+//
+//   post_quit();
+//
+//   auto estatus = ::channel::on_finish();
+//
+//   if (!estatus)
+//   {
+//
+//      return estatus;
+//
+//   }
+//
+//   return estatus;
+//
+//}
 
 
 bool thread::post_quit_message(int nExitCode)
@@ -1470,7 +1470,7 @@ bool thread::post_quit_message(int nExitCode)
    
 #else
    
-   finish();
+   destroy();
    
 #endif
 
@@ -1599,7 +1599,7 @@ void thread::task_erase(::task * ptask)
 }
 
 
-::e_status thread::finalize()
+::e_status thread::destroy()
 {
 
    call_routine(DESTROY_ROUTINE);
@@ -1684,7 +1684,7 @@ void thread::task_erase(::task * ptask)
 
    }
 
-   ::channel::finalize();
+   ::channel::destroy();
 
    auto pobject = this;
 
@@ -1732,17 +1732,13 @@ bool thread::task_get_run() const
 
       }
 
-      //auto bSetFinish = m_bSetFinish || m_bReadyToFinish;
-
-      auto bSetFinish = m_bTaskReadyToQuit;
-
-      return !bSetFinish;
+      return !m_bSetFinish;
 
    }
    else
    {
 
-      auto bSetFinish = m_bSetFinish || m_bTaskReadyToQuit;
+      auto bSetFinish = m_bSetFinish;
 
       auto bDestroying = m_bDestroying;
 
@@ -3710,44 +3706,44 @@ int_bool thread::peek_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilte
 //}
 
 
-void thread::update_task_ready_to_quit()
-{
-
-   ::e_status estatus = ::success;
-
-   synchronous_lock synchronouslock(mutex());
-
-   string strTypeName = type_name();
-
-   bool bReadyToQuit = true;
-
-   if (m_pcompositea)
-   {
-
-      for (auto& pmatter : *m_pcompositea)
-      {
-
-         if (!pmatter->m_bTaskReadyToQuit)
-         {
-
-            bReadyToQuit = false;
-
-         }
-
-      }
-
-   }
-
-   if (bReadyToQuit)
-   {
-
-      m_bTaskReadyToQuit = true;
-
-   }
-
-   //return estatus;
-
-}
+//void thread::update_task_ready_to_quit()
+//{
+//
+//   ::e_status estatus = ::success;
+//
+//   synchronous_lock synchronouslock(mutex());
+//
+//   string strTypeName = type_name();
+//
+//   bool bReadyToQuit = true;
+//
+//   if (m_pcompositea)
+//   {
+//
+//      for (auto& pmatter : *m_pcompositea)
+//      {
+//
+//         if (pmatter->m_bTaskPending)
+//         {
+//
+//            bReadyToQuit = false;
+//
+//         }
+//
+//      }
+//
+//   }
+//
+//   if (bReadyToQuit)
+//   {
+//
+//      m_bTaskPending = false;
+//
+//   }
+//
+//   //return estatus;
+//
+//}
 
 
 //::e_status thread::set_finish_composites(::property_object * pcontextobjectFinish)
@@ -3968,7 +3964,7 @@ int_bool thread::get_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilter
 
    int iRet;
 
-   while((iRet = pmq->get_message(pMsg, oswindow, wMsgFilterMin, wMsgFilterMax)) != 0)
+   while((iRet = pmq->get_message(pMsg, oswindow, wMsgFilterMin, wMsgFilterMax, duration)) != 0)
    {
 
       if (iRet > 0)
@@ -4901,34 +4897,34 @@ void thread::delete_this()
 
 
 
-::e_status thread::destroy()
-{
-
-   auto estatus = set_finish();
-
-   if (!estatus)
-   {
-
-      return estatus;
-
-   }
-
-   if (::get_task() == this)
-   {
-
-      return ::success;
-
-   }
-
-//   while (check_children_task())
+//::e_status thread::destroy()
+//{
+//
+//   auto estatus = set_finish();
+//
+//   if (!estatus)
 //   {
 //
-//      sleep(100_ms);
-//
-//      kick_idle();
+//      return estatus;
 //
 //   }
-
-   return ::success;
-
-}
+//
+//   if (::get_task() == this)
+//   {
+//
+//      return ::success;
+//
+//   }
+//
+////   while (check_children_task())
+////   {
+////
+////      sleep(100_ms);
+////
+////      kick_idle();
+////
+////   }
+//
+//   return ::success;
+//
+//}

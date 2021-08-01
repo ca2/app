@@ -46,19 +46,19 @@ namespace windowing
    }
 
 
-   ::e_status cursor_manager::finalize()
+   ::e_status cursor_manager::destroy()
    {
 
       for (auto & pcursor : m_cursormap.values())
       {
 
-         pcursor->finalize();
+         pcursor->destroy();
 
       }
 
       m_cursormap.erase_all();
 
-      auto estatus = ::matter::finalize();
+      auto estatus = ::matter::destroy();
 
       return estatus;
 

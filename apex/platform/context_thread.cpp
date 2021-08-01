@@ -81,12 +81,12 @@
 //   }
 //
 //
-//   ::e_status context_thread::finalize()
+//   ::e_status context_thread::destroy()
 //   {
 //
-//      ::thread::finalize();
+//      ::thread::destroy();
 //
-//      ::apex::context::finalize();
+//      ::apex::context::destroy();
 //
 //      return success;
 //

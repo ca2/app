@@ -76,7 +76,7 @@ namespace user
       virtual void on_reposition() override;
       virtual void on_show_window() override;
 
-      virtual ::e_status finalize() override;
+      virtual ::e_status destroy() override;
 
       virtual void window_show_change_visibility(::e_display edisplay, ::e_activation eactivation);
 

@@ -5,6 +5,9 @@
 #include "apex/_defer.h"
 #include "acme/inline/implement.h"
 
+
+CLASS_DECL_ACME void set_main_thread();
+
 //#ifndef NO_DRAW2D
 //#ifdef WINDOWS
 //

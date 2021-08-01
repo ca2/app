@@ -19,7 +19,7 @@ namespace draw2d_cairo
 
 
       image();
-      virtual ~image();
+      ~image() override;
 
 
       virtual bool map(bool bApplyAlphaTransform = true) override;
@@ -37,7 +37,7 @@ namespace draw2d_cairo
 
       virtual ::e_status create(const ::size_i32 & size, ::eobject eobjectCreate = OK, int iGoodStride = -1, bool bPreserve = false) override;
       virtual ::e_status create(::draw2d::graphics * pgraphics) override;
-      virtual bool destroy() override;
+      virtual ::e_status destroy() override;
 
 
       virtual bool on_host_read_pixels(const ::pixmap * ppixmap) override;

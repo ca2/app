@@ -96,10 +96,10 @@ namespace sockets
    }
 
 
-   ::e_status net::finalize()
+   ::e_status net::destroy()
    {
 
-      ::object::finalize();
+      ::object::destroy();
 
       if (m_bInitialized)
       {

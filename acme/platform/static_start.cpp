@@ -19,7 +19,7 @@ void finalize_memory_management();
 //
 //   void initialize();
 //
-//   void finalize();
+//   void destroy();
 //
 //
 //} // namespace main_memory_allocate_heap
@@ -29,7 +29,7 @@ void finalize_memory_management();
 //{
 //
 //   void initialize();
-//   void finalize();
+//   void destroy();
 //
 //} // namespace string_memory_allocate_heap
 //
@@ -37,7 +37,7 @@ void finalize_memory_management();
 //{
 //
 //   void initialize();
-//   void finalize();
+//   void destroy();
 //
 //} // namespace property_memory_allocate_heap
 //
@@ -45,7 +45,7 @@ void finalize_memory_management();
 //{
 //
 //   void initialize();
-//   void finalize();
+//   void destroy();
 //
 //} // namespace array_memory_allocate_heap
 
@@ -1029,11 +1029,10 @@ namespace acme
 
       //::acme::del(pheap);
 
-      finalize_memory_management();
-      //::array_memory_allocate_heap::finalize();
-      //::property_memory_allocate_heap::finalize();
-      //::string_memory_allocate_heap::finalize();
-      //::main_memory_allocate_heap::finalize();
+      //::array_memory_allocate_heap::destroy();
+      //::property_memory_allocate_heap::destroy();
+      //::string_memory_allocate_heap::destroy();
+      //::main_memory_allocate_heap::destroy();
 
 #endif
 
@@ -1080,6 +1079,8 @@ namespace acme
 #else
       freelocale(g_localeC);
 #endif
+      
+      finalize_memory_management();
 
    }
 

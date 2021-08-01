@@ -430,7 +430,7 @@ namespace core
    }
 
 
-   ::e_status user::finalize()
+   ::e_status user::destroy()
    {
 
       try

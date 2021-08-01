@@ -66,8 +66,8 @@ namespace xml
 //using property = payload;
 
 
-void on_property_construct();
-void on_property_destruct();
+void on_property_construct(property * pproperty);
+void on_property_destruct(property * pproperty);
 
 
 class CLASS_DECL_ACME property : public ::payload
@@ -84,12 +84,12 @@ public:
    ::id              m_id;
 
 
-   property() { on_property_construct(); }
-   property(const ::id& id) : m_id(id) { on_property_construct(); }
-   property(const ::id& id, const ::payload& varValue) : m_id(id), ::payload(varValue) { on_property_construct(); }
-   property(const ::property& property) : m_id(property.m_id), ::payload(property) { on_property_construct(); }
-   property(::property&& property) : m_id(::move(property.m_id)), ::payload(::move(property)) { on_property_construct(); }
-   ~property() { on_property_destruct(); }
+   property() { on_property_construct(this); }
+   property(const ::id& id) : m_id(id) { on_property_construct(this); }
+   property(const ::id& id, const ::payload& varValue) : m_id(id), ::payload(varValue) { on_property_construct(this); }
+   property(const ::property& property) : m_id(property.m_id), ::payload(property) { on_property_construct(this); }
+   property(::property&& property) : m_id(::move(property.m_id)), ::payload(::move(property)) { on_property_construct(this); }
+   ~property() { on_property_destruct(this); }
 
 
    void* operator new(size_t size)

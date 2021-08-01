@@ -1841,23 +1841,60 @@ void on_property_destruct2()
 
 }
 
+critical_section g_criticalsectionProperty;
+ptr_array < property > g_propertya;
 
-void on_property_construct()
+
+void on_property_construct(property * pproperty)
 {
 
    g_interlockedcountProperty++;
 
+   output_debug_string("prop" + __str(g_interlockedcountProperty.operator i64()) + "\n");
+
    on_property_construct2();
+
+   critical_section_lock l(&g_criticalsectionProperty);
+
+   g_propertya.add(pproperty);
 
 }
 
-
-void on_property_destruct()
+void on_property_destruct(property* pproperty)
 {
 
    g_interlockedcountProperty--;
 
    on_property_destruct2();
+
+   critical_section_lock l(&g_criticalsectionProperty);
+
+   g_propertya.erase_first(pproperty);
+
+   if (g_propertya.get_size() % 100 == 0)
+   {
+
+      output_debug_string("PROPS("+__str(g_propertya.get_size())+")\n");
+
+      int iCount = 250;
+
+      for (auto p : g_propertya)
+      {
+
+         output_debug_string("prop(\"" + p->m_id.to_string() + "\")=\""+p->to_string()+"\";\n");
+
+         iCount--;
+
+         if (iCount <= 0)
+         {
+
+            break;
+
+         }
+
+      }
+
+   }
 
 }
 

@@ -1552,17 +1552,19 @@ namespace url
 
 #ifdef WINDOWS
 
-      wstring wstr(psz);
+      wstring wstrSource(psz);
 
-      int iSize = IdnToUnicode(IDN_RAW_PUNYCODE, wstr, (int)wstr.get_length(), nullptr, 0);
+      int iSize = IdnToUnicode(IDN_RAW_PUNYCODE, wstrSource, (int)wstrSource.get_length(), nullptr, 0);
 
-      WCHAR * pwsz = new WCHAR[iSize + 1];
+      wstring wstrTarget;
 
-      IdnToUnicode(IDN_RAW_PUNYCODE, wstr, (int) wstr.get_length(), pwsz, iSize + 1);
+      auto pwsz = wstrTarget.get_string_buffer(iSize);
 
-      string str = pwsz;
+      IdnToUnicode(IDN_RAW_PUNYCODE, pwsz, iSize, pwsz, iSize);
 
-      delete pwsz;
+      wstrTarget.release_string_buffer(iSize);
+
+      string str = wstrTarget;
 
       return str;
 

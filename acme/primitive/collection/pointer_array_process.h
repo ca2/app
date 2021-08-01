@@ -1,7 +1,7 @@
 ﻿#pragma once
 
 
-template < typename POINTER_ARRAY_PROCESS, typename T >
+template < typename POINTER_ARRAY_PROCESS, typename TYPE >
 class pointer_array_process :
    public POINTER_ARRAY_PROCESS
 {
@@ -76,7 +76,7 @@ public:
 
    }
 
-   T& first_ref(::index n = 0) const
+   TYPE& first_ref(::index n = 0) const
    {
 
       return *this->first(n);
@@ -84,7 +84,7 @@ public:
    }
 
 
-   T& first_ref(::index n = 0)
+   TYPE& first_ref(::index n = 0)
    {
 
       return *this->first(n);
@@ -93,7 +93,7 @@ public:
 
 
 
-   T& last_ref(::index n = -1) const
+   TYPE& last_ref(::index n = -1) const
    {
 
       return *this->last(n);
@@ -101,7 +101,7 @@ public:
    }
 
 
-   T& last_ref(::index n = -1)
+   TYPE& last_ref(::index n = -1)
    {
 
       return *this->last(n);

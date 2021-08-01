@@ -94,6 +94,8 @@ namespace dynamic_source
 
       m_strSeed = "system/seed";
 
+      m_secsSessionExpiration = 60_s;
+
    }
 
 
@@ -134,6 +136,30 @@ namespace dynamic_source
          return estatus;
 
       }
+      fork([this]()
+         {
+
+            while (::task_get_run())
+            {
+
+               try
+               {
+
+                  defer_clean_session();
+
+               }
+               catch (...)
+               {
+
+
+               }
+
+               ::sleep(20_s);
+
+            }
+
+         });
+
       return estatus;
 
    }
@@ -1121,7 +1147,7 @@ namespace dynamic_source
          if (::datetime::time::get_current_time() < ppair->element2()->m_timeExpiry)
          {
 
-            ppair->element2()->m_timeExpiry = ::datetime::time::get_current_time() + minutes(9);
+            ppair->element2()->m_timeExpiry = ::datetime::time::get_current_time() + m_secsSessionExpiration;
 
             return ppair->element2();
 
@@ -1143,7 +1169,7 @@ namespace dynamic_source
 
       psession->initialize_dynamic_source_session(pszId, this);
 
-      psession->m_timeExpiry = ::datetime::time::get_current_time() + minutes(9);
+      psession->m_timeExpiry = ::datetime::time::get_current_time() + m_secsSessionExpiration;
 
       m_mapSession.set_at(pszId, psession);
 
@@ -1157,9 +1183,9 @@ namespace dynamic_source
       
       single_lock synchronouslock(&m_mutexSession, true);
       
-      ::datetime::time time;
+      ::datetime::time timeNow;
       
-      time = ::datetime::time::get_current_time();
+      timeNow = ::datetime::time::get_current_time();
       
       auto passoc = m_mapSession.get_start();
       
@@ -1179,7 +1205,7 @@ namespace dynamic_source
          else if(passoc->element2()->get_ref_count() <= 1)
          {
 
-            if(passoc->element2()->m_timeExpiry < time)
+            if(timeNow > passoc->element2()->m_timeExpiry)
             {
 
                m_mapSession.erase_item(passoc);

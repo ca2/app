@@ -393,6 +393,13 @@ void object::dev_log(string strMessage) const
 
 void object::call_routine(const ::id& id)
 {
+
+   if (::is_null(m_pmapPropertyRoutine))
+   {
+
+      return;
+
+   }
    
    auto & routinea = this->routine_array(id);
 

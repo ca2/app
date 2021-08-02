@@ -1375,7 +1375,7 @@ public:
 //} // namespace papaya
 
 
-inline string CLASS_DECL_ACME operator + (const char * psz, const payload & payload);
+//inline string CLASS_DECL_ACME operator + (const char * psz, const payload & payload);
 
 class CLASS_DECL_ACME pack :
    public payload

@@ -119,24 +119,24 @@ namespace hex
 //}
 
 
-template < typename TYPE_CHAR >
-template < typename TYPE >
-inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::operator=(const TYPE & t)
-{
+//template < typename TYPE_CHAR >
+//template < typename TYPE >
+//inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::operator=(const TYPE & t)
+//{
+//
+//   return operator = (__str(t));
+//
+//}
 
-   return operator = (__str(t));
 
-}
-
-
-template < typename TYPE_CHAR >
-template < typename TYPE >
-inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::operator+=(const TYPE & t)
-{
-
-   return operator += (__str(t));
-
-}
+//template < typename TYPE_CHAR >
+//template < typename TYPE >
+//inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::operator+=(const TYPE & t)
+//{
+//
+//   return operator += (__str(t));
+//
+//}
 
 
 template < typename TYPE_CHAR, typename TYPE >

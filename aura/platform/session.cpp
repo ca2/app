@@ -1537,92 +1537,96 @@ namespace aura
    }
 
 
-   bool session::is_key_pressed(::user::enum_key ekey)
-   {
-
-      if (m_pmapKeyPressed == nullptr)
-      {
-
-         m_pmapKeyPressed = new ::map < ::user::enum_key, bool >;
-
-      }
-
-      bool bPressed = false;
-      if (ekey == ::user::e_key_shift)
-      {
-         m_pmapKeyPressed->lookup(::user::e_key_shift, bPressed);
-         if (bPressed)
-            goto ret;
-         m_pmapKeyPressed->lookup(::user::e_key_left_shift, bPressed);
-         if (bPressed)
-            goto ret;
-         m_pmapKeyPressed->lookup(::user::e_key_right_shift, bPressed);
-         if (bPressed)
-            goto ret;
-      }
-      else if (ekey == ::user::e_key_command)
-      {
-         m_pmapKeyPressed->lookup(::user::e_key_command, bPressed);
-         if (bPressed)
-            goto ret;
-         m_pmapKeyPressed->lookup(::user::e_key_left_command, bPressed);
-         if (bPressed)
-            goto ret;
-         m_pmapKeyPressed->lookup(::user::e_key_right_command, bPressed);
-         if (bPressed)
-            goto ret;
-      }
-      else if (ekey == ::user::e_key_control)
-      {
-         m_pmapKeyPressed->lookup(::user::e_key_control, bPressed);
-         if (bPressed)
-            goto ret;
-         m_pmapKeyPressed->lookup(::user::e_key_left_control, bPressed);
-         if (bPressed)
-            goto ret;
-         m_pmapKeyPressed->lookup(::user::e_key_right_control, bPressed);
-         if (bPressed)
-            goto ret;
-      }
-      else if (ekey == ::user::e_key_alt)
-      {
-         m_pmapKeyPressed->lookup(::user::e_key_alt, bPressed);
-         if (bPressed)
-            goto ret;
-         m_pmapKeyPressed->lookup(::user::e_key_left_alt, bPressed);
-         if (bPressed)
-            goto ret;
-         m_pmapKeyPressed->lookup(::user::e_key_right_alt, bPressed);
-         if (bPressed)
-            goto ret;
-      }
-      else
-      {
-
-         m_pmapKeyPressed->lookup(ekey, bPressed);
-
-      }
-
-ret:
-
-      return bPressed;
-
-   }
-
-
-   void session::set_key_pressed(::user::enum_key ekey, bool bPressed)
-   {
-
-      if (m_pmapKeyPressed == nullptr)
-      {
-
-         m_pmapKeyPressed = new ::map < ::user::enum_key, bool >;
-
-      }
-
-      (*m_pmapKeyPressed)[ekey] = bPressed;
-
-   }
+//   bool session::is_key_pressed(::user::enum_key ekey)
+//   {
+//
+//      synchronous_lock synchronouslock(mutex());
+//
+//      if (m_pmapKeyPressed == nullptr)
+//      {
+//
+//         m_pmapKeyPressed = new ::map < ::user::enum_key, bool >;
+//
+//      }
+//
+//      bool bPressed = false;
+//      if (ekey == ::user::e_key_shift)
+//      {
+//         m_pmapKeyPressed->lookup(::user::e_key_shift, bPressed);
+//         if (bPressed)
+//            goto ret;
+//         m_pmapKeyPressed->lookup(::user::e_key_left_shift, bPressed);
+//         if (bPressed)
+//            goto ret;
+//         m_pmapKeyPressed->lookup(::user::e_key_right_shift, bPressed);
+//         if (bPressed)
+//            goto ret;
+//      }
+//      else if (ekey == ::user::e_key_command)
+//      {
+//         m_pmapKeyPressed->lookup(::user::e_key_command, bPressed);
+//         if (bPressed)
+//            goto ret;
+//         m_pmapKeyPressed->lookup(::user::e_key_left_command, bPressed);
+//         if (bPressed)
+//            goto ret;
+//         m_pmapKeyPressed->lookup(::user::e_key_right_command, bPressed);
+//         if (bPressed)
+//            goto ret;
+//      }
+//      else if (ekey == ::user::e_key_control)
+//      {
+//         m_pmapKeyPressed->lookup(::user::e_key_control, bPressed);
+//         if (bPressed)
+//            goto ret;
+//         m_pmapKeyPressed->lookup(::user::e_key_left_control, bPressed);
+//         if (bPressed)
+//            goto ret;
+//         m_pmapKeyPressed->lookup(::user::e_key_right_control, bPressed);
+//         if (bPressed)
+//            goto ret;
+//      }
+//      else if (ekey == ::user::e_key_alt)
+//      {
+//         m_pmapKeyPressed->lookup(::user::e_key_alt, bPressed);
+//         if (bPressed)
+//            goto ret;
+//         m_pmapKeyPressed->lookup(::user::e_key_left_alt, bPressed);
+//         if (bPressed)
+//            goto ret;
+//         m_pmapKeyPressed->lookup(::user::e_key_right_alt, bPressed);
+//         if (bPressed)
+//            goto ret;
+//      }
+//      else
+//      {
+//
+//         m_pmapKeyPressed->lookup(ekey, bPressed);
+//
+//      }
+//
+//ret:
+//
+//      return bPressed;
+//
+//   }
+//
+//
+//   void session::set_key_pressed(::user::enum_key ekey, bool bPressed)
+//   {
+//
+//      synchronous_lock synchronouslock(mutex());
+//
+//      if (m_pmapKeyPressed == nullptr)
+//      {
+//
+//         m_pmapKeyPressed = new ::map < ::user::enum_key, bool >;
+//
+//      }
+//
+//      (*m_pmapKeyPressed)[ekey] = bPressed;
+//
+//   }
 
 
    void session::set_bound_ui(::id idView, ::user::interaction * pinteraction)

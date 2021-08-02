@@ -31,9 +31,9 @@ using wstring = u32string;
 
 #endif
 
-inline wstring operator + (const wstring & wstr1, const wstring & wstr2);
-inline wstring operator + (const wstring & str, const unichar * psz);
-inline wstring operator + (const unichar * psz, const wstring & str);
+//inline wstring operator + (const wstring & wstr1, const wstring & wstr2);
+//inline wstring operator + (const wstring & str, const unichar * psz);
+//inline wstring operator + (const unichar * psz, const wstring & str);
 
 
 CLASS_DECL_ACME wstring gen_utf8_to_16(const char * psz);

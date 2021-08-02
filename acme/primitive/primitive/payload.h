@@ -96,12 +96,12 @@ public:
       ::file::path_object *      m_ppath;
       ::matter *                 m_pmatterRoutine;
       ::i64                      m_all[2];
-
+      string                     m_str;
 
    };
 
 
-   string                        m_str;
+   
 
 
    inline payload();

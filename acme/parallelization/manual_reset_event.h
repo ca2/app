@@ -27,7 +27,7 @@ public:
 
 
    manual_reset_event(char * sz = nullptr, bool bInitiallyOwn = false);
-
+   ~manual_reset_event() override;
 
    void reuse() { ResetEvent(); }
 

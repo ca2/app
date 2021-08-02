@@ -215,7 +215,14 @@ public:
          if (::is_set(pNew))
          {
 
-            pNew->natural_add_ref();
+            auto i = pNew->natural_add_ref();
+
+            if (i <= 0)
+            {
+
+               output_debug_string("");
+
+            }
 
          }
 

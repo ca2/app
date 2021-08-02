@@ -152,7 +152,7 @@ public:
    }
 
 
-   inline ::index add_item(T * p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS)
+   inline ::index add_item(const __pointer(T) & p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS)
    {
 
       ::index nIndex = this->m_nSize;

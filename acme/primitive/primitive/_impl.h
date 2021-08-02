@@ -524,13 +524,15 @@ inline property_set ca_property_set()
 
 }
 
-
-inline string CLASS_DECL_ACME operator + (const char * psz, const ::id & id)
-{
-
-   return __str(psz) + id.to_string();
-
-}
+//template < typename STRINGABLE >
+//inline string operator + (const char * psz, const STRINGABLE& stringable)
+//{
+//
+//   string strRight(stringable);
+//
+//   return __str(psz) + strRight;
+//
+//}
 
 
 /// END property_set

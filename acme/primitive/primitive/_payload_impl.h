@@ -6,7 +6,7 @@ inline payload::payload()
 {
 
    m_etype = e_type_new;
-   clear_data();
+   //clear_data();
 
 }
 
@@ -14,8 +14,8 @@ inline payload::payload()
 inline payload::payload(enum_type etype)
 {
 
-   m_etype = etype;
-   clear_data();
+   set_type(etype, false);
+   //clear_data();
 
 }
 

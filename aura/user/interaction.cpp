@@ -2724,10 +2724,14 @@ namespace user
 
          ::user::interaction * pinteraction = this;
 
+         synchronous_lock synchronouslock(mutex());
+
          if(!m_pshapeaClip)
          {
 
-            __construct_new(m_pshapeaClip);
+            synchronouslock.unlock();
+
+            auto pshapeaClip = __create_new < shape_array >();
 
             ::rectangle_i32 rectIntersect;
 
@@ -2740,13 +2744,17 @@ namespace user
 
                host_to_client(rectangleClient);
 
-               m_pshapeaClip->add_item(__new(rectangle_shape(::rectangle_f64(rectangleClient))));
+               pshapeaClip->add_item(__new(rectangle_shape(::rectangle_f64(rectangleClient))));
 
-               m_pshapeaClip->add_item(__new(intersect_clip_shape()));
+               pshapeaClip->add_item(__new(intersect_clip_shape()));
 
                pinteraction = pinteraction->get_parent();
 
             }
+
+            synchronouslock.lock();
+
+            m_pshapeaClip = pshapeaClip;
 
          }
 

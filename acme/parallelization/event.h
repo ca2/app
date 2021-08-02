@@ -36,7 +36,7 @@ public:
 
    event(char * sz = nullptr,bool bInitiallyOwn = false, bool bManualReset = false, const char * pszNAme = nullptr ARG_SEC_ATTRS_DEF);
 
-   virtual ~event();
+   ~event() override;
 
    // using event_base::lock;
    virtual bool lock(const duration & durationTimeout = duration::infinite());

@@ -438,9 +438,18 @@ bool payload::convert(const ::payload & payload)
    if (m_etype == payload.m_etype)
    {
 
-      memcpy(&m_all, &payload.m_all, sizeof(m_all));
+      if (m_etype == e_type_string)
+      {
 
-      m_str = payload.m_str;
+         m_str = payload.m_str;
+
+      }
+      else
+      {
+
+         memcpy(&m_all, &payload.m_all, sizeof(m_all));
+
+      }
 
    }
    else if(m_etype == e_type_i8)
@@ -525,8 +534,12 @@ class ::payload & payload::operator ++(::i32)
       }
       break;
    case e_type_string:
+   {
+      auto i = atoi(m_str) + 1;
       set_type(e_type_i32);
-      m_i32 = atoi(m_str) + 1;
+      m_i32 = i;
+
+   }
       break;
    case e_type_double:
       m_d += 1.0;
@@ -618,7 +631,7 @@ void payload::set_type(enum_type etype, bool bConvert)
             m_d = get_double();
             break;
          case e_type_string:
-            m_str = get_string();
+            m_str = ::move(get_string());
             break;
          case e_type_id:
             m_id = get_id();
@@ -628,6 +641,16 @@ void payload::set_type(enum_type etype, bool bConvert)
             break;
 
          }
+
+      }
+      else if (etype == e_type_string)
+      {
+
+#undef new
+
+         ::new(&m_str) ::string();
+
+#define new ACME_NEW
 
       }
 
@@ -1201,7 +1224,7 @@ class ::payload & payload::operator = (const class ::payload & payload)
             break;
          default:
             memcpy(m_all, payload.m_all, sizeof(m_all));
-            m_str = payload.m_str;
+            //m_str = payload.m_str;
             break;
          }
       }

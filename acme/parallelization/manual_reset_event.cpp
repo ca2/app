@@ -16,5 +16,11 @@ manual_reset_event::manual_reset_event(char * sz, bool bInitiallyOwn) :
 
 }
 
+manual_reset_event::~manual_reset_event()
+{
+
+
+}
+
 
 

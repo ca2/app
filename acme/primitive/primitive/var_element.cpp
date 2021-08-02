@@ -111,43 +111,56 @@ void payload::_set_element(::matter* pmatter)
 ::i64 payload::release()
 {
 
-   if (!is_element())
+   if (m_etype == e_type_string)
    {
 
-      return -1;
+      m_str.~string();
+
+      return 0;
+
+   }
+   else
+   {
+
+      if (is_element())
+      {
+
+         if (::is_null(m_p))
+         {
+
+            return -1;
+
+         }
+
+         switch (m_etype)
+         {
+         case e_type_element:
+            return ::release(m_p);
+         case e_type_string_array:
+            return ::release(m_pstra);
+         case e_type_i32_array:
+            return ::release(m_pia);
+         case e_type_payload_array:
+            return ::release(m_pvara);
+         case e_type_property_set:
+            return ::release(m_pset);
+         case e_type_i64_array:
+            return ::release(m_pi64a);
+         case e_type_memory:
+            return ::release(m_pmemory);
+         case e_type_path:
+            return ::release(m_ppath);
+         case e_type_routine:
+            return ::release(m_pmatterRoutine);
+         default:
+            return -1;
+         };
+
+      }
 
    }
 
-   if (::is_null(m_p))
-   {
-
-      return -1;
-
-   }
-
-   switch (m_etype)
-   {
-   case e_type_element:
-      return ::release(m_p);
-   case e_type_string_array:
-      return ::release(m_pstra);
-   case e_type_i32_array:
-      return ::release(m_pia);
-   case e_type_payload_array:
-      return ::release(m_pvara);
-   case e_type_property_set:
-      return ::release(m_pset);
-   case e_type_i64_array:
-      return ::release(m_pi64a);
-   case e_type_memory:
-      return ::release(m_pmemory);
-   case e_type_path:
-      return ::release(m_ppath);
-   case e_type_routine:
-      return ::release(m_pmatterRoutine);
-   default:
-      return -1;
-   };
+   return 0;
 
 }
 

@@ -1505,12 +1505,12 @@ string & property::get_http_post(string & str) const
 //}
 //
 //
-string operator + (const char * psz, const property & prop)
-{
-
-   return string(psz) + (const ::payload &)prop;
-
-}
+//string operator + (const char * psz, const property & prop)
+//{
+//
+//   return string(psz) + (const ::payload &)prop;
+//
+//}
 
 
 

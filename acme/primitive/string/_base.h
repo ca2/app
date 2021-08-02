@@ -202,12 +202,11 @@ public:
    template < typename TYPE >
    inline string_base operator +(const TYPE & t) const;
 
-   //template < typename TYPE >
-   //inline string_base & operator /=(const TYPE & t)
-   inline string_base& operator /=(string_base strRight)
+   template < typename TYPE >
+   inline string_base & operator /=(const TYPE & t)
    {
 
-      //string_base strRight(t);
+      string_base strRight(t);
 
       trim_right(string_base("\\/"));
 
@@ -218,9 +217,11 @@ public:
    }
 
 
-   //template < typename TYPE >
-   inline string_base operator /(const string_base & strRight) const
+   template < typename TYPE >
+   inline string_base operator /(const TYPE & t) const
    {
+
+      string_base strRight(t);
 
       string str(*this);
 
@@ -1034,12 +1035,22 @@ public:
 
 
 
-inline string CLASS_DECL_ACME operator + (const char * psz, const ::string & str);
-inline string CLASS_DECL_ACME operator + (ansichar ansich, const ::string & str);
-inline string CLASS_DECL_ACME operator + (wd16char wd16ch, const ::string & str);
-inline string CLASS_DECL_ACME operator + (wd16char wd32ch, const ::string & str);
+//inline string CLASS_DECL_ACME operator + (const char * psz, const ::string & str);
+//inline string CLASS_DECL_ACME operator + (ansichar ansich, const ::string & str);
+//inline string CLASS_DECL_ACME operator + (wd16char wd16ch, const ::string & str);
+//inline string CLASS_DECL_ACME operator + (wd16char wd32ch, const ::string & str);
 
 inline const ansichar* __c_str(const string& str) { return str.c_str(); }
+
+
+template < typename STRINGABLE >
+inline ::ansistring operator+(const char* pszLeft, const STRINGABLE& stringableRight);
+
+template < typename WSTRINGABLE >
+inline ::wstring operator+(const widechar* pszLeft, const WSTRINGABLE& wstringableRight);
+
+
+
 
 
 

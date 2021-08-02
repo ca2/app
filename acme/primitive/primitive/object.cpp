@@ -1855,7 +1855,7 @@ void object::task_erase(::task* ptask)
       {
 
 
-         __pointer(manual_reset_event) spev;
+         __pointer(manual_reset_event) pevent;
 
          {
 
@@ -1870,7 +1870,7 @@ void object::task_erase(::task* ptask)
 
             }
 
-            spev = ptask->m_pevSleep;
+            pevent = ptask->m_pevSleep;
 
          }
 
@@ -1895,10 +1895,12 @@ void object::task_erase(::task* ptask)
 
          //}
 
-         if (spev.is_set())
+         if (::is_set(pevent))
          {
 
-            ptask->m_pevSleep->wait(duration);
+            pevent->wait(duration);
+
+            pevent.release();
 
             return ::task_get_run();
 

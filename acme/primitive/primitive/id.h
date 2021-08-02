@@ -1044,7 +1044,7 @@ inline uptr uptr_hash< id>(id key)
 }
 
 
-inline string CLASS_DECL_ACME operator + (const char * psz, const ::id & id);
+//inline string CLASS_DECL_ACME operator + (const char * psz, const ::id & id);
 
 
 namespace acme

@@ -114,55 +114,70 @@ inline string_base < TYPE_CHAR > operator+(const string_base < TYPE_CHAR > & str
 
 }
 
-
-inline ::ansistring operator+(const char * psz1, const ::ansistring & str2)
+template < typename STRINGABLE >
+inline ::ansistring operator+(const char * pszLeft, const STRINGABLE & stringableRight)
 {
 
-   ::ansistring str;
+   ::ansistring strLeft(pszLeft);
 
-   return string_concatenate < ::ansistring >(str, psz1, str::string_safe_length(psz1), str2, str2.get_length());
+   ::ansistring strRight(stringableRight);
+
+   return strLeft + strRight;
 
 }
 
 
-inline ::ansistring CLASS_DECL_ACME operator + (ansichar ansich, const ::ansistring & str2)
+//inline ::ansistring CLASS_DECL_ACME operator + (ansichar ansich, const ::ansistring & str2)
+//{
+//
+//   ::ansistring str;
+//
+//   return string_concatenate < ::ansistring >(str, &ansich, sizeof(ansich), str2, str2.get_length());
+//
+//}
+//
+//
+//inline ::ansistring CLASS_DECL_ACME operator + (wd16char wd16ch, const ::ansistring & str)
+//{
+//
+//   ::ansistring str1(wd16ch);
+//
+//   return str1 + str;
+//
+//}
+//
+//
+//inline ::ansistring CLASS_DECL_ACME operator + (wd32char wd32ch, const ::ansistring & str)
+//{
+//
+//   ::ansistring str1(wd32ch);
+//
+//   return str1 + str;
+//
+//}
+
+
+template < typename WSTRINGABLE >
+inline ::wstring operator+(const widechar* pszLeft, const WSTRINGABLE& wstringableRight)
 {
 
-   ::ansistring str;
+   ::wstring wstrLeft(pszLeft);
 
-   return string_concatenate < ::ansistring >(str, &ansich, sizeof(ansich), str2, str2.get_length());
+   ::wstring wstrRight(wstringableRight);
+
+   return wstrLeft + wstrRight;
 
 }
 
 
-inline ::ansistring CLASS_DECL_ACME operator + (wd16char wd16ch, const ::ansistring & str)
-{
-
-   ::ansistring str1(wd16ch);
-
-   return str1 + str;
-
-}
-
-
-inline ::ansistring CLASS_DECL_ACME operator + (wd32char wd32ch, const ::ansistring & str)
-{
-
-   ::ansistring str1(wd32ch);
-
-   return str1 + str;
-
-}
-
-
-inline wstring operator+(const widechar * pwsz1, const wstring & wstr2)
-{
-
-   wstring wstr;
-
-   return string_concatenate < wstring >(wstr, pwsz1, str::string_safe_length(pwsz1), wstr2, wstr2.get_length());
-
-}
+//inline wstring operator+(const widechar * pwsz1, const wstring & wstr2)
+//{
+//
+//   wstring wstr;
+//
+//   return string_concatenate < wstring >(wstr, pwsz1, str::string_safe_length(pwsz1), wstr2, wstr2.get_length());
+//
+//}
 
 
 template < >

@@ -29,8 +29,8 @@ public:
    operator ::i64() const { return *m_plong; }
 
 
-   interlocked_i64 & operator++();
-   interlocked_i64 & operator--();
+   ::i64 operator++();
+   ::i64 operator--();
    ::i64 operator++(int);
    ::i64 operator--(int);
 
@@ -143,22 +143,18 @@ inline ::i32 interlocked_i32::operator--(int)
 
 
 
-inline interlocked_i64 & interlocked_i64::operator++()
+inline ::i64 interlocked_i64::operator++()
 {
 
-   atomic_increment(m_plong);
-
-   return *this;
+   return atomic_increment(m_plong);
 
 }
 
 
-inline interlocked_i64 & interlocked_i64::operator--()
+inline ::i64 interlocked_i64::operator--()
 {
 
-   atomic_decrement(m_plong);
-
-   return *this;
+   return atomic_decrement(m_plong);
 
 }
 

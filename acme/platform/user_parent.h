@@ -13,35 +13,35 @@ public:
 inline ::user_parent parent(::user::primitive* pinteraction) { return pinteraction; }
 
 
-inline ::payload operator + (::payload payload, const ::function_arg& functionarg)
-{
+//inline ::payload operator + (::payload payload, const ::function_arg& functionarg)
+//{
+//
+//   if (payload.get_type() != e_type_property_set)
+//   {
+//
+//      payload["message"] = payload.get_string();
+//
+//   }
+//
+//   payload["function_arg"] = functionarg;
+//
+//   return ::payload;
+//
+//}
 
-   if (payload.get_type() != e_type_property_set)
-   {
-
-      payload["message"] = payload.get_string();
-
-   }
-
-   payload["function_arg"] = functionarg;
-
-   return ::payload;
-
-}
-
-inline ::payload operator + (::payload payload, const ::user_parent& parent)
-{
-
-   if (payload.get_type() != e_type_property_set)
-   {
-
-      payload["message"] = payload.get_string();
-
-   }
-
-   payload["parent"] = parent.m_puserinteraction;
-
-   return ::payload;
-
-}
+//inline ::payload operator + (::payload payload, const ::user_parent& parent)
+//{
+//
+//   if (payload.get_type() != e_type_property_set)
+//   {
+//
+//      payload["message"] = payload.get_string();
+//
+//   }
+//
+//   payload["parent"] = parent.m_puserinteraction;
+//
+//   return ::payload;
+//
+//}
 

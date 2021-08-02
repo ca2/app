@@ -2735,6 +2735,8 @@ namespace user
 
             ::rectangle_i32 rectIntersect;
 
+            ::index i = 0;
+
             while (pinteraction != nullptr)
             {
 
@@ -2746,7 +2748,11 @@ namespace user
 
                pshapeaClip->add_item(__new(rectangle_shape(::rectangle_f64(rectangleClient))));
 
+               i++;
+
                pshapeaClip->add_item(__new(intersect_clip_shape()));
+
+               i++;
 
                pinteraction = pinteraction->get_parent();
 

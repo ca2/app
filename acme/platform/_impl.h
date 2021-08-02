@@ -22,11 +22,11 @@ inline block::block(const memory_base * pmemory) :
 }
 
 
-inline fork_block::fork_block(const memory_base & memory) :
-   fork_block(memory.get_data(), memory.get_size())
-{
-
-}
+//inline fork_block::fork_block(const memory_base & memory) :
+//   fork_block(memory.get_data(), memory.get_size())
+//{
+//
+//}
 
 
 template < typename BLOCK_TYPE >

@@ -6,13 +6,15 @@ namespace simpledb
 
 
    class CLASS_DECL_AXIS queue_item :
-      virtual public object
+      virtual public ::matter
    {
    public:
 
-      string            m_strKey;
-      millis              m_tick;
-      fork_block        m_block;
+
+      string               m_strKey;
+      millis               m_tick;
+      memory               m_memory;
+
 
    };
 

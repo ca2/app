@@ -36,7 +36,7 @@ namespace simpledb
 
          m_tick = item.m_tick;
 
-         m_block = item.m_block;
+         m_memory = item.m_memory;
 
       }
 
@@ -53,7 +53,7 @@ namespace simpledb
 
          m_tick = item.m_tick;
 
-         m_block = ::move(item.m_block);
+         m_memory = ::move(item.m_memory);
 
       }
 

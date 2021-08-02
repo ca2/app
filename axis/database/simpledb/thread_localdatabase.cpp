@@ -10,6 +10,8 @@ namespace simpledb
    thread_localdatabase::thread_localdatabase()
    {
 
+      defer_create_mutex();
+
    }
 
 
@@ -22,6 +24,12 @@ namespace simpledb
    ::e_status thread_localdatabase::run()
    {
 
+      auto pstorage = m_pstorage;
+
+      auto pserver = m_pstorage->m_pserver;
+
+      auto pdatabase = pserver->get_local_database();
+
       single_lock synchronouslock(mutex());
 
       try
@@ -33,14 +41,12 @@ namespace simpledb
             try
             {
 
-
                if (get_application() == nullptr)
                {
 
                   break;
 
                }
-
 
             }
             catch (...)
@@ -57,7 +63,7 @@ namespace simpledb
 
                synchronouslock.unlock();
 
-               sleep(300_ms);
+               ::sleep(300_ms);
 
                continue;
 
@@ -96,43 +102,37 @@ namespace simpledb
 
             synchronouslock.unlock();
 
-            auto pstorage = m_pstorage;
-
-            auto pserver = m_pstorage->m_pserver;
-
-            auto pdatabase = pserver->get_local_database();
-
-            auto estatus = pdatabase->set_id_blob(pitem->m_strKey, pitem->m_block);
+            //auto estatus = pdatabase->set_id_blob(pitem->m_strKey, pitem->m_block);
 
             try
             {
 
-               string strKey(pitem->m_strKey);
+               //string strKey(pitem->m_strKey);
 
-               string strBase64(pitem->m_block.to_base64());
+               ///string strBase64(pitem->m_block.to_base64());
 
-               property_set set;
+               //property_set set;
 
-               auto pstorage = m_pstorage;
+               //auto pstorage = m_pstorage;
 
-               auto pserver = m_pstorage->m_pserver;
+               //auto pserver = m_pstorage->m_pserver;
 
-               auto pdatabase = pserver->get_local_database();
+               //auto pdatabase = pserver->get_local_database();
 
-               if (!pdatabase)
-               {
+               //if (!pdatabase)
+               //{
 
-                  return ::success;
+               //   return ::success;
 
-               }
+               //}
 
-               string strSql;
+               //string strSql;
 
-               string str;
+               //string str;
 
-               synchronous_lock slDatabase(pdatabase->mutex());
+               //synchronous_lock slDatabase(pdatabase->mutex());
 
-               pdatabase->set_id_blob(pitem->m_strKey, pitem->m_block);
+               pdatabase->set_id_blob(pitem->m_strKey, pitem->m_memory);
 
 //               {
 //
@@ -233,7 +233,7 @@ namespace simpledb
       auto pitem(__new(queue_item));
 
       pitem->m_strKey = pszKey;
-      pitem->m_block = block;
+      pitem->m_memory = block;
 
       m_itema.add(pitem);
 

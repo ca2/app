@@ -100,7 +100,7 @@ namespace simpledb
 
                string strKey(pitem->m_strKey);
 
-               string strBase64(pitem->m_block.to_base64());
+               string strBase64(pitem->m_memory.to_base64());
 
                property_set set;
 
@@ -170,7 +170,7 @@ namespace simpledb
 
       pitem->m_strKey = pszKey;
 
-      pitem->m_block = block;
+      pitem->m_memory = block;
 
       m_itema.add(pitem);
 

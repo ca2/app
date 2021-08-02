@@ -95,32 +95,33 @@ namespace acme
 }
 
 
-struct CLASS_DECL_ACME fork_block :
-   public block
-{
-
-   fork_block(void * pdata = nullptr, memsize iSize = 0) : block(memory_allocate(iSize), iSize) { memcpy_dup(m_pdata, pdata, (size_t) iSize); }
-   fork_block(const block & block) : fork_block(block.get_data(), block.get_size()) {}
-   fork_block(block && block) : fork_block(block.get_data(), block.get_size()) { block.m_pdata = NULL; block.m_iSize = 0; }
-   fork_block(const memory_base & memory);
-   ~fork_block() { destroy(); }
-
-   fork_block & from_base64(const char * psz, strsize iSize);
-
-   void destroy();
-
-   fork_block & operator = (const block & block);
-
-   fork_block & operator = (const fork_block & block);
-
-
-   void assign(const void * pdata, i64 iSize);
-
-
-   fork_block & operator = (block && block);
-
-
-};
+//struct CLASS_DECL_ACME fork_block :
+//   public block
+//{
+//
+//   fork_block() { }
+//   fork_block(void * pdata, memsize iSize) : block(memory_allocate(iSize), iSize) { memcpy_dup(m_pdata, pdata, (size_t) iSize); }
+//   fork_block(const block & block) : fork_block(block.get_data(), block.get_size()) {}
+//   fork_block(block && block) : fork_block(block.get_data(), block.get_size()) { block.m_pdata = NULL; block.m_iSize = 0; }
+//   fork_block(const memory_base & memory);
+//   ~fork_block() { destroy(); }
+//
+//   fork_block & from_base64(const char * psz, strsize iSize);
+//
+//   void destroy();
+//
+//   fork_block & operator = (const block & block);
+//
+//   fork_block & operator = (const fork_block & block);
+//
+//
+//   void assign(const void * pdata, i64 iSize);
+//
+//
+//   fork_block & operator = (block && block);
+//
+//
+//};
 
 
 namespace hex

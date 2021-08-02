@@ -10,8 +10,8 @@ namespace simpledb
    public:
 
 
-      millis              m_tick;
-      fork_block        m_block;
+      millis               m_tick;
+      memory               m_memory;
 
       item();
       item(const item & item);

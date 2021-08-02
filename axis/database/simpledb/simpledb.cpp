@@ -138,7 +138,7 @@ namespace simpledb
          if (ppair != nullptr)
          {
 
-            return getmemory.get(ppair->element2().m_block);
+            return getmemory.get(ppair->element2().m_memory);
 
          }
 
@@ -161,7 +161,7 @@ namespace simpledb
 
             stritem.m_tick.Now();
 
-            stritem.m_block.assign(getmemory.get_data(), getmemory.get_size());
+            stritem.m_memory.assign(getmemory.get_data(), getmemory.get_size());
 
             pstorage->m_map[strKey] = stritem;
 
@@ -188,7 +188,7 @@ namespace simpledb
          if (ppair != nullptr && ppair->element2().m_tick.elapsed() < m_durationRemoteTimeout)
          {
 
-            return getmemory.get(ppair->element2().m_block);
+            return getmemory.get(ppair->element2().m_memory);
 
          }
 
@@ -251,7 +251,7 @@ namespace simpledb
 
                stritem.m_tick.Now();
 
-               stritem.m_block.from_base64(strValue, strValue.get_length());
+               stritem.m_memory.from_base64(strValue, strValue.get_length());
 
                synchronouslock.lock();
 
@@ -260,13 +260,13 @@ namespace simpledb
                if (::is_set(getmemory.m_pmemory))
                {
 
-                  getmemory.m_pmemory->assign(stritem.m_block.get_data(), stritem.m_block.get_size());
+                  getmemory.m_pmemory->assign(stritem.m_memory.get_data(), stritem.m_memory.get_size());
 
                }
                else
                {
 
-                  getmemory.m_block = stritem.m_block;
+                  getmemory.m_block = stritem.m_memory;
 
                }
 
@@ -356,7 +356,7 @@ namespace simpledb
 
             synchronous_lock synchronouslock(mutex());
 
-            if (pitem->element2().m_block == block)
+            if (pitem->element2().m_memory == block)
             {
 
                return true;
@@ -386,7 +386,7 @@ namespace simpledb
 
          stritem.m_tick.Now();
 
-         stritem.m_block = block;
+         stritem.m_memory = block;
 
          synchronous_lock synchronouslock(mutex());
 
@@ -415,7 +415,7 @@ namespace simpledb
 
          stritem.m_tick.Now();
 
-         stritem.m_block = block;
+         stritem.m_memory = block;
 
          synchronous_lock synchronouslock(mutex());
 

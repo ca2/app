@@ -21,7 +21,7 @@ namespace dynamic_source
       ~session() override;
 
       virtual i64 increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS);
-      virtual i64 release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS);
+      virtual i64 decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS);
 
       virtual ::e_status initialize_dynamic_source_session(const string& strId, ::dynamic_source::script_manager* pmanager);
 

@@ -62,7 +62,7 @@ namespace dynamic_source
 
    }
 
-   i64 session::release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
+   i64 session::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
    {
 
       return object::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);

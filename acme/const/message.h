@@ -239,7 +239,7 @@ e_message_queue_sentinel =    0x0379,
    e_message_erase_application,
    e_message_erase_session,
    e_message_switch,
-
+   e_message_control_event,
 
 
    e_message_backview,

@@ -1483,6 +1483,7 @@ namespace user
          MESSAGE_LINK(e_message_non_client_calcsize, pchannel, this, &interaction::on_message_non_client_calculate_size);
          MESSAGE_LINK(e_message_show_window, pchannel, this, &interaction::on_message_show_window);
          MESSAGE_LINK(e_message_display_change, pchannel, this, &interaction::on_message_display_change);
+         MESSAGE_LINK(e_message_control_event, pchannel, this, &interaction::on_message_control_event);
          MESSAGE_LINK(e_message_left_button_down, pchannel, this, &::user::interaction::on_message_left_button_down);
          //MESSAGE_LINK(e_message_set_cursor, pchannel, this, &::user::interaction::on_message_set_cursor);
 
@@ -4231,6 +4232,28 @@ namespace user
    {
 
       _001InitialFramePosition();
+
+   }
+
+
+   void interaction::on_message_control_event(::message::message* pmessage)
+   {
+
+      __pointer(::user::control_event) pevent(pmessage->m_lparam);
+
+      if(!pevent)
+      { 
+      
+         return;
+      
+      }
+
+      if (pmessage->m_wparam == 0)
+      {
+
+         route_control_event(pevent);
+
+      }
 
    }
 

@@ -544,13 +544,13 @@ inline __pointer(::handle::ini) operator ""_pini(const char * psz, size_t s)
 }
 
 
-inline string CLASS_DECL_ACME operator + (const char * psz, const ::payload & payload)
-{
-
-   return __str(psz) + payload.get_string();
-
-}
-
+//inline string CLASS_DECL_ACME operator + (const char * psz, const ::payload & payload)
+//{
+//
+//   return __str(psz) + payload.get_string();
+//
+//}
+//
 
 //inline class ::payload & payload::operator -= (const class property & property) { operator -=(property);  return *this; }
 //inline class ::payload & payload::operator += (const class property & property) { operator +=(property);  return *this; }

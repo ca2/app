@@ -1105,6 +1105,8 @@ namespace apex
    bool session::is_key_pressed(::user::enum_key ekey)
    {
 
+      synchronous_lock synchronouslock(mutex());
+
       if (m_pmapKeyPressed == nullptr)
       {
 
@@ -1177,6 +1179,8 @@ ret:
 
    void session::set_key_pressed(::user::enum_key ekey, bool bPressed)
    {
+
+      synchronous_lock synchronouslock(mutex());
 
       if (m_pmapKeyPressed == nullptr)
       {

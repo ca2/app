@@ -28,7 +28,7 @@ namespace user
    keyboard::keyboard()
    {
 
-
+      defer_create_mutex();
 
    }
 
@@ -157,7 +157,6 @@ namespace user
       SET_ENUM_TEXT(e_key_f11);
       SET_ENUM_TEXT(e_key_f12);
 
-
       return ::success;
 
 //      string strFile;
@@ -262,6 +261,8 @@ namespace user
 
    bool keyboard::load_os_layout(const ::file::path & pszPath)
    {
+
+      synchronous_lock synchronouslock(mutex());
 
       //i32 iCode;
 
@@ -770,6 +771,8 @@ namespace user
 
    void keyboard::translate_os_key_message(key * pkey)
    {
+
+      synchronous_lock synchronouslock(mutex());
 
       if(pkey->m_ekey == ::user::e_key_refer_to_text_member
          && pkey->m_strText.has_char())

@@ -209,9 +209,9 @@ namespace aura
 
       //::aura::application * application_get(const char * pszAppId, bool bCreate, bool bSynch, ::create * pcreate) override;
 
-      virtual bool is_key_pressed(::user::enum_key ekey) override;
+      //virtual bool is_key_pressed(::user::enum_key ekey) override;
 
-      virtual void set_key_pressed(::user::enum_key ekey, bool bPressed) override;
+      //virtual void set_key_pressed(::user::enum_key ekey, bool bPressed) override;
 
       //virtual ::user::primitive * get_active_ui() override;
 

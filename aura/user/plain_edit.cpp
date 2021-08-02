@@ -6151,18 +6151,18 @@ finished_update:
       if(has_control_event_handler())
       {
 
-         ::user::control_event ev;
+         auto pevent = __new(::user::control_event);
 
-         ev.m_puserinteraction = this;
+         pevent->m_puserinteraction = this;
 
-         ev.m_id = m_id;
+         pevent->m_id = m_id;
 
-         ev.m_eevent = ::user::e_event_after_change_text;
+         pevent->m_eevent = ::user::e_event_after_change_text;
 
-         ev.m_actioncontext = context;
+         pevent->m_actioncontext = context;
 
-         route_control_event(&ev);
-            
+         post_object(e_message_control_event, 0, pevent);
+
       }
 
    }

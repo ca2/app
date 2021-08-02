@@ -1283,6 +1283,7 @@ namespace user
       DECLARE_MESSAGE_HANDLER(on_message_need_load_form_data);
       DECLARE_MESSAGE_HANDLER(on_message_need_save_form_data);
       DECLARE_MESSAGE_HANDLER(on_message_display_change);
+      DECLARE_MESSAGE_HANDLER(on_message_control_event);
 
 
       //virtual DECLARE_MESSAGE_HANDLER(_002OnLButtonDown);

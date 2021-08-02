@@ -177,9 +177,9 @@ public:
    ::count erase_empty_trimmed_begin();
    ::index add_normal(const Type& pcsz);
 
-   void trim_right(const Type& pszChars);
-   void trim_left(const Type& pszChars);
-   void trim(const Type& pszChars);
+   void trim_right(const CHAR_TYPE * pszChars);
+   void trim_left(const CHAR_TYPE* pszChars);
+   void trim(const CHAR_TYPE* pszChars);
    void trim_right();
    void trim_left();
    void trim();
@@ -2910,7 +2910,7 @@ template < typename Type, typename RawType, enum_type t_etypePayload >
 
 
 template < typename Type, typename RawType, enum_type t_etypePayload >
-void string_array_base < Type, RawType, t_etypePayload > ::trim_left(const Type& pszChars)
+void string_array_base < Type, RawType, t_etypePayload > ::trim_left(const CHAR_TYPE* pszChars)
 {
    for(::index i = 0; i < this->m_nSize; i++)
    {
@@ -2920,7 +2920,7 @@ void string_array_base < Type, RawType, t_etypePayload > ::trim_left(const Type&
 
 
 template < typename Type, typename RawType, enum_type t_etypePayload >
-void string_array_base < Type, RawType, t_etypePayload > ::trim_right(const Type& pszChars)
+void string_array_base < Type, RawType, t_etypePayload > ::trim_right(const CHAR_TYPE* pszChars)
 {
    for(::index i = 0; i < this->m_nSize; i++)
    {
@@ -2930,7 +2930,7 @@ void string_array_base < Type, RawType, t_etypePayload > ::trim_right(const Type
 
 
 template < typename Type, typename RawType, enum_type t_etypePayload >
-void string_array_base < Type, RawType, t_etypePayload > ::trim(const Type& pszChars)
+void string_array_base < Type, RawType, t_etypePayload > ::trim(const CHAR_TYPE* pszChars)
 {
    for(::index i = 0; i < this->m_nSize; i++)
    {

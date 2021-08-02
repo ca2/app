@@ -2351,8 +2351,9 @@ string_base < TYPE_CHAR >& string_base < TYPE_CHAR >::trim_right(CHAR_TYPE chTar
 
 // erase all trailing occurrences of any of the characters in string_base < TYPE_CHAR > 'pszTargets'
 template < typename TYPE_CHAR >
-template < pointer_castable < TYPE_CHAR > PCHAR>
-string_base < TYPE_CHAR >& string_base < TYPE_CHAR >::trim_right(PCHAR szTargets)
+string_base < TYPE_CHAR >& string_base < TYPE_CHAR >::trim_right(const CHAR_TYPE * szTargets)
+//template < pointer_castable < TYPE_CHAR > PCHAR>
+//string_base < TYPE_CHAR >& string_base < TYPE_CHAR >::trim_right(PCHAR szTargets)
 {
 
    const CHAR_TYPE * pszTargets = szTargets;
@@ -2426,8 +2427,9 @@ string_base < TYPE_CHAR >& string_base < TYPE_CHAR >::trim_left(CHAR_TYPE chTarg
 
 // erase all leading occurrences of any of the characters in string_base < TYPE_CHAR > 'pszTargets'
 template < typename TYPE_CHAR >
-template < pointer_castable < TYPE_CHAR > PCHAR >
-string_base < TYPE_CHAR >& string_base < TYPE_CHAR >::trim_left(PCHAR szTargets)
+string_base < TYPE_CHAR >& string_base < TYPE_CHAR >::trim_left(const CHAR_TYPE * szTargets)
+//template < pointer_castable < TYPE_CHAR > PCHAR >
+//string_base < TYPE_CHAR >& string_base < TYPE_CHAR >::trim_left(PCHAR szTargets)
 {
 
    const CHAR_TYPE * pszTargets = szTargets;
@@ -3424,215 +3426,225 @@ inline strsize string_base < TYPE_CHAR >::unichar_count() const
 }
 
 
+//template < typename TYPE_CHAR >
+//inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::operator = (const natural_ansistring & ansistrSrc)
+//{
+//
+//   return ::str::assign(*this, ansistrSrc);
+//
+//}
+
+
+//template < typename TYPE_CHAR >
+//inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::operator=(const natural_wd16string & wd16strSrc)
+//{
+//
+//   return ::str::assign(*this, wd16strSrc);
+//
+//}
+
+
+//template < typename TYPE_CHAR >
+//inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::operator=(const natural_wd32string & wd32strSrc)
+//{
+//
+//   return ::str::assign(*this, wd32strSrc.m_pdata);
+//
+//}
+
+
 template < typename TYPE_CHAR >
-inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::operator = (const natural_ansistring & ansistrSrc)
+inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::operator = (const string_base & str)
 {
 
-   return ::str::assign(*this, ansistrSrc);
+   return assign(str);
+
+   //return *this;
 
 }
 
 
+//template < typename TYPE_CHAR >
+//inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::operator=(const wd16string & wd16str)
+//{
+//
+//   return ::str::assign(*this, wd16str.c_str());
+//
+//}
+
+
+//template < typename TYPE_CHAR >
+//inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::operator=(const wd32string & wd32str)
+//{
+//
+//   return ::str::assign(*this, wd32str.c_str());
+//
+//}
+
+
+//template < typename TYPE_CHAR >
+//inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::operator=(const ansichar * pansichar)
+//{
+//
+//   return ::str::assign(*this, pansichar);
+//
+//}
+//
+//
+//template < typename TYPE_CHAR >
+//inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::operator=(const wd16char * pwd16char)
+//{
+//
+//   return ::str::assign(*this, pwd16char);
+//
+//}
+//
+//
+//template < typename TYPE_CHAR >
+//inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::operator=(const wd32char * pwd32char)
+//{
+//
+//   return ::str::assign(*this, pwd32char);
+//
+//}
+//
+//
+//template < typename TYPE_CHAR >
+//inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::operator=(ansichar ansich)
+//{
+//
+//   return ::str::assign(*this, ansich);
+//
+//}
+//
+//
+//template < typename TYPE_CHAR >
+//inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::operator=(wd16char wd16ch)
+//{
+//
+//   return ::str::assign(*this, wd16ch);
+//
+//}
+//
+//
+//template < typename TYPE_CHAR >
+//inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::operator=(wd32char wd32ch)
+//{
+//
+//   return ::str::assign(*this, wd32ch);
+//
+//}
+//
+//
+//template < typename TYPE_CHAR >
+//template < int t_nSize >
+//inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::operator =(const static_string<CHAR_TYPE, t_nSize > & ansistrSrc)
+//{
+//
+//   assign(ansistrSrc);
+//
+//   return *this;
+//
+//}
+
 template < typename TYPE_CHAR >
-inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::operator=(const natural_wd16string & wd16strSrc)
+inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::operator+=(const string_base & str)
 {
 
-   return ::str::assign(*this, wd16strSrc);
+   return append(str);
 
 }
 
 
-template < typename TYPE_CHAR >
-inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::operator=(const natural_wd32string & wd32strSrc)
-{
-
-   return ::str::assign(*this, wd32strSrc.m_pdata);
-
-}
-
-
-template < typename TYPE_CHAR >
-inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::operator = (const ansistring & ansistr)
-{
-
-   return ::str::assign(*this, ansistr.c_str());
-
-}
-
-
-template < typename TYPE_CHAR >
-inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::operator=(const wd16string & wd16str)
-{
-
-   return ::str::assign(*this, wd16str.c_str());
-
-}
-
-
-template < typename TYPE_CHAR >
-inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::operator=(const wd32string & wd32str)
-{
-
-   return ::str::assign(*this, wd32str.c_str());
-
-}
-
-
-template < typename TYPE_CHAR >
-inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::operator=(const ansichar * pansichar)
-{
-
-   return ::str::assign(*this, pansichar);
-
-}
-
-
-template < typename TYPE_CHAR >
-inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::operator=(const wd16char * pwd16char)
-{
-
-   return ::str::assign(*this, pwd16char);
-
-}
-
-
-template < typename TYPE_CHAR >
-inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::operator=(const wd32char * pwd32char)
-{
-
-   return ::str::assign(*this, pwd32char);
-
-}
-
-
-template < typename TYPE_CHAR >
-inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::operator=(ansichar ansich)
-{
-
-   return ::str::assign(*this, ansich);
-
-}
-
-
-template < typename TYPE_CHAR >
-inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::operator=(wd16char wd16ch)
-{
-
-   return ::str::assign(*this, wd16ch);
-
-}
-
-
-template < typename TYPE_CHAR >
-inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::operator=(wd32char wd32ch)
-{
-
-   return ::str::assign(*this, wd32ch);
-
-}
-
-
-template < typename TYPE_CHAR >
-template < int t_nSize >
-inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::operator =(const static_string<CHAR_TYPE, t_nSize > & ansistrSrc)
-{
-
-   assign(ansistrSrc);
-
-   return *this;
-
-}
-
-
-template < typename TYPE_CHAR >
-inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::operator+=(const ansistring & ansistrSrc)
-{
-
-   return append(ansistrSrc);
-
-}
-
-
-template < typename TYPE_CHAR >
-inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::operator+=(const wd16string & wd16strSrc)
-{
-
-   return append(wd16strSrc);
-
-}
-
-
-template < typename TYPE_CHAR >
-inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::operator+=(const wd32string & wd32strSrc)
-{
-
-   return append(wd32strSrc);
-
-}
-
-
-template < typename TYPE_CHAR >
-inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::operator+=(const ansichar * pszSrc)
-{
-
-   return append(pszSrc);
-
-}
-
-
-template < typename TYPE_CHAR >
-inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::operator+=(const wd16char * pszSrc)
-{
-
-   return append(pszSrc);
-
-}
-
-
-template < typename TYPE_CHAR >
-inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::operator+=(const wd32char * pszSrc)
-{
-
-   return append(pszSrc);
-
-}
-
-
-template < typename TYPE_CHAR >
-inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::operator+=(ansichar ansich)
-{
-
-   return append(ansich);
-
-}
-
-
-template < typename TYPE_CHAR >
-inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::operator+=(wd16char wd16ch)
-{
-
-   return append(wd16ch);
-
-}
-
-
-template < typename TYPE_CHAR >
-inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::operator+=(wd32char wd32ch)
-{
-
-   return append(wd32ch);
-
-}
-
-
-template < typename TYPE_CHAR >
-template < int t_nSize >
-inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::operator+=(const static_string<CHAR_TYPE, t_nSize > & ansistrSrc)
-{
-
-   return append(ansistrSrc);
-
-}
+//template < typename TYPE_CHAR >
+//inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::operator+=(const ansistring & ansistrSrc)
+//{
+//
+//   return append(ansistrSrc);
+//
+//}
+
+
+//template < typename TYPE_CHAR >
+//inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::operator+=(const wd16string & wd16strSrc)
+//{
+//
+//   return append(wd16strSrc);
+//
+//}
+
+
+//template < typename TYPE_CHAR >
+//inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::operator+=(const wd32string & wd32strSrc)
+//{
+//
+//   return append(wd32strSrc);
+//
+//}
+
+
+//template < typename TYPE_CHAR >
+//inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::operator+=(const ansichar * pszSrc)
+//{
+//
+//   return append(pszSrc);
+//
+//}
+
+
+//template < typename TYPE_CHAR >
+//inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::operator+=(const wd16char * pszSrc)
+//{
+//
+//   return append(pszSrc);
+//
+//}
+
+
+//template < typename TYPE_CHAR >
+//inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::operator+=(const wd32char * pszSrc)
+//{
+//
+//   return append(pszSrc);
+//
+//}
+
+
+//template < typename TYPE_CHAR >
+//inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::operator+=(ansichar ansich)
+//{
+//
+//   return append(ansich);
+//
+//}
+
+
+//template < typename TYPE_CHAR >
+//inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::operator+=(wd16char wd16ch)
+//{
+//
+//   return append(wd16ch);
+//
+//}
+
+
+//template < typename TYPE_CHAR >
+//inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::operator+=(wd32char wd32ch)
+//{
+//
+//   return append(wd32ch);
+//
+//}
+
+
+//template < typename TYPE_CHAR >
+//template < int t_nSize >
+//inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::operator+=(const static_string<CHAR_TYPE, t_nSize > & ansistrSrc)
+//{
+//
+//   return append(ansistrSrc);
+//
+//}
 
 
 template < typename TYPE_CHAR >
@@ -3648,7 +3660,6 @@ inline string_base < TYPE_CHAR > string_base < TYPE_CHAR >::operator +(ansichar 
    return ansistr;
 
 }
-
 
 
 template < typename TYPE_CHAR >
@@ -3690,7 +3701,6 @@ inline string_base < TYPE_CHAR > string_base < TYPE_CHAR >::operator +(const ans
 }
 
 
-
 template < typename TYPE_CHAR >
 inline string_base < TYPE_CHAR > string_base < TYPE_CHAR >::operator +(const wd16char * pwsz) const
 {
@@ -3717,6 +3727,19 @@ inline string_base < TYPE_CHAR > string_base < TYPE_CHAR >::operator +(const wd3
 }
 
 
+//template < typename TYPE_CHAR >
+//inline string_base < TYPE_CHAR > string_base < TYPE_CHAR >::operator +(const string_base & strAddUp) const
+//{
+//
+//   string_base < TYPE_CHAR > ansistr(*this);
+//
+//   ansistr += strAddUp;
+//
+//   return ansistr;
+//
+//}
+
+
 template < typename TYPE_CHAR >
 inline string_base < TYPE_CHAR > string_base < TYPE_CHAR >::operator +(const ansistring & strAddUp) const
 {
@@ -3728,7 +3751,6 @@ inline string_base < TYPE_CHAR > string_base < TYPE_CHAR >::operator +(const ans
    return ansistr;
 
 }
-
 
 
 template < typename TYPE_CHAR >
@@ -3758,31 +3780,42 @@ inline string_base < TYPE_CHAR > string_base < TYPE_CHAR >::operator +(const wd3
 
 
 template < typename TYPE_CHAR >
-inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::assign(const ansistring & strSrc)
+inline string_base < TYPE_CHAR >& string_base < TYPE_CHAR >::assign(const string_base & str)
 {
 
-   return ::str::assign(*this, strSrc.c_str());
+   this->assign_natural_meta_data(str.metadata());
+
+   return *this;
 
 }
 
 
-template < typename TYPE_CHAR >
-inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::assign(const wd16string & strSrc)
-{
-
-   return ::str::assign(*this, strSrc.c_str());
-
-}
-
-
-template < typename TYPE_CHAR >
-inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::assign(const wd32string & strSrc)
-{
-
-   return ::str::assign(*this, strSrc.c_str());
-
-}
-
+//template < typename TYPE_CHAR >
+//inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::assign(const ansistring & strSrc)
+//{
+//
+//   return ::str::assign(*this, strSrc.c_str());
+//
+//}
+//
+//
+//template < typename TYPE_CHAR >
+//inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::assign(const wd16string & strSrc)
+//{
+//
+//   return ::str::assign(*this, strSrc.c_str());
+//
+//}
+//
+//
+//template < typename TYPE_CHAR >
+//inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::assign(const wd32string & strSrc)
+//{
+//
+//   return ::str::assign(*this, strSrc.c_str());
+//
+//}
+//
 
 template < typename TYPE_CHAR >
 inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::assign(const ansistring & ansistrSrc, strsize pos, strsize count)
@@ -3792,7 +3825,7 @@ inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::assign(const ansis
 
 }
 
-
+//
 template < typename TYPE_CHAR >
 inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::assign(const wd16string & widestrSrc, strsize pos, strsize count)
 {
@@ -3810,15 +3843,15 @@ inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::assign(const wd32s
 
 }
 
-
-template < typename TYPE_CHAR >
-inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::assign(const ansichar * pszSrc)
-{
-
-   return ::str::assign(*this, pszSrc);
-
-}
-
+//
+//template < typename TYPE_CHAR >
+//inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::assign(const ansichar * pszSrc)
+//{
+//
+//   return ::str::assign(*this, pszSrc);
+//
+//}
+//
 
 template < typename TYPE_CHAR >
 inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::assign(const ansichar * pszSrc, strsize len)
@@ -3829,14 +3862,14 @@ inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::assign(const ansic
 }
 
 
-template < typename TYPE_CHAR >
-inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::assign(const wd16char * pwd16sz)
-{
-
-   return ::str::assign(*this, pwd16sz);
-
-}
-
+//template < typename TYPE_CHAR >
+//inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::assign(const wd16char * pwd16sz)
+//{
+//
+//   return ::str::assign(*this, pwd16sz);
+//
+//}
+//
 
 template < typename TYPE_CHAR >
 inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::assign(const wd16char * pwd16sz, strsize len)
@@ -3847,13 +3880,13 @@ inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::assign(const wd16c
 }
 
 
-template < typename TYPE_CHAR >
-inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::assign(const wd32char * pwd32sz)
-{
-
-   return ::str::assign(*this, pwd32sz);
-
-}
+//template < typename TYPE_CHAR >
+//inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::assign(const wd32char * pwd32sz)
+//{
+//
+//   return ::str::assign(*this, pwd32sz);
+//
+//}
 
 
 template < typename TYPE_CHAR >
@@ -3865,31 +3898,31 @@ inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::assign(const wd32c
 }
 
 
-template < typename TYPE_CHAR >
-inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::assign(ansichar ansich)
-{
-
-   return ::str::assign(*this, &ansich, 1);
-
-}
-
-
-template < typename TYPE_CHAR >
-inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::assign(wd16char wd16ch)
-{
-
-   return ::str::assign(*this, &wd16ch, 1);
-
-}
-
-
-template < typename TYPE_CHAR >
-inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::assign(wd32char wd32ch)
-{
-
-   return ::str::assign(*this, &wd32ch, 1);
-
-}
+//template < typename TYPE_CHAR >
+//inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::assign(ansichar ansich)
+//{
+//
+//   return ::str::assign(*this, &ansich, 1);
+//
+//}
+//
+//
+//template < typename TYPE_CHAR >
+//inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::assign(wd16char wd16ch)
+//{
+//
+//   return ::str::assign(*this, &wd16ch, 1);
+//
+//}
+//
+//
+//template < typename TYPE_CHAR >
+//inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::assign(wd32char wd32ch)
+//{
+//
+//   return ::str::assign(*this, &wd32ch, 1);
+//
+//}
 
 
 template < typename TYPE_CHAR >
@@ -4015,68 +4048,68 @@ inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::assign(wd32char wd
 }
 
 
+//template < typename TYPE_CHAR >
+//template < int t_nSize >
+//inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::assign(const static_string<CHAR_TYPE, t_nSize > & ansistrSrc)
+//{
+//
+//   return assign(ansistrSrc.c_str(), ansistrSrc.length());
+//
+//}
+//
+
 template < typename TYPE_CHAR >
-template < int t_nSize >
-inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::assign(const static_string<CHAR_TYPE, t_nSize > & ansistrSrc)
+inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::append(const string_base & str)
 {
 
-   return assign(ansistrSrc.c_str(), ansistrSrc.length());
+   return append(str.m_pdata, str.get_length());
 
 }
 
 
-template < typename TYPE_CHAR >
-inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::append(const ansistring & ansistrSrc)
-{
-
-   return append(ansistrSrc.m_pdata, ansistrSrc.get_length());
-
-}
-
-
-template < typename TYPE_CHAR >
-inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::append(const wd16string & wd16strSrc)
-{
-
-   return append(wd16strSrc.m_pdata, wd16strSrc.get_length());
-
-}
-
-
-template < typename TYPE_CHAR >
-inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::append(const wd32string & wd32strSrc)
-{
-
-   return append(wd32strSrc.m_pdata, wd32strSrc.get_length());
-
-}
+//template < typename TYPE_CHAR >
+//inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::append(const wd16string & wd16strSrc)
+//{
+//
+//   return append(wd16strSrc.m_pdata, wd16strSrc.get_length());
+//
+//}
+//
+//
+//template < typename TYPE_CHAR >
+//inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::append(const wd32string & wd32strSrc)
+//{
+//
+//   return append(wd32strSrc.m_pdata, wd32strSrc.get_length());
+//
+//}
 
 
-template < typename TYPE_CHAR >
-inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::append(const ansichar * pszSrc)
-{
+//template < typename TYPE_CHAR >
+//inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::append(const ansichar * pszSrc)
+//{
+//
+//   return append(pszSrc, ::str::string_safe_length(pszSrc));
+//
+//}
+//
+//
+//template < typename TYPE_CHAR >
+//inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::append(const wd16char * pwszSrc)
+//{
+//
+//   return append(pwszSrc, ::str::string_safe_length(pwszSrc));
+//
+//}
+//
 
-   return append(pszSrc, ::str::string_safe_length(pszSrc));
-
-}
-
-
-template < typename TYPE_CHAR >
-inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::append(const wd16char * pwszSrc)
-{
-
-   return append(pwszSrc, ::str::string_safe_length(pwszSrc));
-
-}
-
-
-template < typename TYPE_CHAR >
-inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::append(const wd32char * pwszSrc)
-{
-
-   return append(pwszSrc, ::str::string_safe_length(pwszSrc));
-
-}
+//template < typename TYPE_CHAR >
+//inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::append(const wd32char * pwszSrc)
+//{
+//
+//   return append(pwszSrc, ::str::string_safe_length(pwszSrc));
+//
+//}
 
 
 template < typename TYPE_CHAR >
@@ -4152,7 +4185,7 @@ inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::append(const wd32c
 
 
 template < typename TYPE_CHAR >
-inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::append(ansichar ch)
+inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::append_character(ansichar ch)
 {
 
    return append(&ch, 1);
@@ -4161,7 +4194,7 @@ inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::append(ansichar ch
 
 
 template < typename TYPE_CHAR >
-inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::append(wd16char wch)
+inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::append_character(wd16char wch)
 {
 
    return append(&wch, 1);
@@ -4170,7 +4203,7 @@ inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::append(wd16char wc
 
 
 template < typename TYPE_CHAR >
-inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::append(wd32char wch)
+inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::append_character(wd32char wch)
 {
 
    return append(&wch, 1);
@@ -4251,14 +4284,14 @@ inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::append(strsize len
 
 
 
-template < typename TYPE_CHAR >
-template < typename STATIC_TYPE_CHAR, int t_nSize >
-inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::append(const static_string<STATIC_TYPE_CHAR, t_nSize > & ansistrSrc)
-{
-
-   return append(ansistrSrc.c_str(), ansistrSrc.length());
-
-}
+//template < typename TYPE_CHAR >
+//template < typename STATIC_TYPE_CHAR, int t_nSize >
+//inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::append(const static_string<STATIC_TYPE_CHAR, t_nSize > & ansistrSrc)
+//{
+//
+//   return append(ansistrSrc.c_str(), ansistrSrc.length());
+//
+//}
 
 
 template < typename TYPE_CHAR >

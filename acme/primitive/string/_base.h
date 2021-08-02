@@ -136,51 +136,55 @@ public:
    auto to_string_base() const { return *this; }
    const auto & to_string_base() { return *this; }
 
-   string_base & operator = (const ansichar * pansichar);
-   string_base & operator = (const wd16char * pwd16char);
-   string_base & operator = (const wd32char * pwd32char);
-   string_base & operator = (const natural_ansistring & ansistr);
-   string_base & operator = (const natural_wd16string & wd16str);
-   string_base & operator = (const natural_wd32string & wd32str);
-   string_base & operator = (const ansistring & ansistr);
-   string_base & operator = (const wd16string & wd16str);
-   string_base & operator = (const wd32string & wd32str);
-   string_base & operator = (ansichar ansich);
-   string_base & operator = (wd16char wd16ch);
-   string_base & operator = (wd32char wd32ch);
-#ifdef WINDOWS
-   string_base & operator = (const USHORT * pshSrc) { return operator=((const wd16char *)pshSrc); }
-#endif
-#ifdef _UWP
-   string_base& operator = (String^& str) { return operator=(str->Begin()); }
-#endif
+   //string_base & operator = (const ansichar * pansichar);
+   //string_base & operator = (const wd16char * pwd16char);
+   //string_base & operator = (const wd32char * pwd32char);
+   //string_base & operator = (const natural_ansistring & ansistr);
+   //string_base & operator = (const natural_wd16string & wd16str);
+   //string_base & operator = (const natural_wd32string & wd32str);
+   //string_base & operator = (const ansistring & ansistr);
+   //string_base & operator = (const wd16string & wd16str);
+   //string_base & operator = (const wd32string & wd32str);
+   string_base & operator = (const string_base & str);
+//   string_base & operator = (ansichar ansich);
+//   string_base & operator = (wd16char wd16ch);
+//   string_base & operator = (wd32char wd32ch);
+//#ifdef WINDOWS
+  // string_base & operator = (const USHORT * pshSrc) { return operator=((const wd16char *)pshSrc); }
+//#endif
+//#ifdef _UWP
+  // string_base& operator = (String^& str) { return operator=(str->Begin()); }
+//#endif
 
-   template < int t_nSize >
-   inline string_base & operator=(const static_string<CHAR_TYPE, t_nSize > & ansistrSrc);
+//   template < int t_nSize >
+  // inline string_base & operator=(const static_string<CHAR_TYPE, t_nSize > & ansistrSrc);
 
-   template < typename TYPE >
-   inline string_base & operator=(const TYPE & t);
+   //template < typename TYPE >
+   //inline string_base & operator=(const TYPE & t);
 
 
-   string_base & operator += (const ansichar * pszSrc);
-   string_base & operator += (const wd16char * pszSrc);
-   string_base & operator += (const wd32char * pszSrc);
-   string_base & operator += (const ansistring & ansistr);
-   string_base & operator += (const wd16string & wd16str);
-   string_base & operator += (const wd32string & wd32str);
-   string_base & operator += (ansichar ansich);
-   string_base & operator += (wd16char wd16ch);
-   string_base & operator += (wd32char wd32ch);
-#ifdef WINDOWS
-   string_base & operator += (const USHORT * pshSrc) { return operator=((const wd16char *)pshSrc); }
-#endif
+   string_base& operator += (const string_base& ansistr);
 
-   template < int t_nSize >
-   inline string_base & operator +=(const static_string<CHAR_TYPE, t_nSize > & ansistrSrc);
 
-   template < typename TYPE >
-   inline string_base & operator +=(const TYPE & t);
-
+//   string_base & operator += (const ansichar * pszSrc);
+//   string_base & operator += (const wd16char * pszSrc);
+//   string_base & operator += (const wd32char * pszSrc);
+//   string_base & operator += (const ansistring & ansistr);
+//   string_base & operator += (const wd16string & wd16str);
+//   string_base & operator += (const wd32string & wd32str);
+//   string_base & operator += (ansichar ansich);
+//   string_base & operator += (wd16char wd16ch);
+//   string_base & operator += (wd32char wd32ch);
+//#ifdef WINDOWS
+//   string_base & operator += (const USHORT * pshSrc) { return operator=((const wd16char *)pshSrc); }
+//#endif
+//
+//   template < int t_nSize >
+//   inline string_base & operator +=(const static_string<CHAR_TYPE, t_nSize > & ansistrSrc);
+//
+//   template < typename TYPE >
+//   inline string_base & operator +=(const TYPE & t);
+//
 
    string_base operator + (const ansichar * pszSrc) const;
    string_base operator + (const wd16char * pszSrc) const;
@@ -195,52 +199,54 @@ public:
    string_base operator + (const USHORT * pshSrc) const { return operator +((const wd16char *)pshSrc); }
 #endif
 
-   //template < typename TYPE >
-   //inline string_base operator +(const TYPE & t) const;
-
    template < typename TYPE >
-   inline string_base & operator /=(const TYPE & t)
+   inline string_base operator +(const TYPE & t) const;
+
+   //template < typename TYPE >
+   //inline string_base & operator /=(const TYPE & t)
+   inline string_base& operator /=(string_base strRight)
    {
 
-      string_base strRight(t);
+      //string_base strRight(t);
 
-      trim_right("\\/");
+      trim_right(string_base("\\/"));
 
-      strRight.trim_left("\\/");
+      strRight.trim_left(string_base("\\/"));
 
       return this->operator += ("/" + strRight);
 
    }
 
 
-   template < typename TYPE >
-   inline string_base operator /(const TYPE & t) const
+   //template < typename TYPE >
+   inline string_base operator /(const string_base & strRight) const
    {
 
       string str(*this);
 
-      str /= t;
+      str /= strRight;
 
       return str;
 
    }
 
 
-   inline string_base & assign(const ansistring & ansistr);
-   inline string_base & assign(const ansistring & ansistr, strsize pos, strsize n);
-   inline string_base & assign(const wd16string & wd16str);
-   inline string_base & assign(const wd16string & wd16str, strsize pos, strsize n);
-   inline string_base & assign(const wd32string & wd32str);
-   inline string_base & assign(const wd32string & wd32str, strsize pos, strsize n);
-   inline string_base & assign(const ansichar * pansiszSrc);
-   inline string_base & assign(const ansichar * pansiszSrc, strsize len);
-   inline string_base & assign(const wd16char * pwd16szSrc);
-   inline string_base & assign(const wd16char * pwd16szSrc, strsize len);
-   inline string_base & assign(const wd32char * pwd32szSrc);
-   inline string_base & assign(const wd32char * pwd32szSrc, strsize len);
-   inline string_base & assign(ansichar ansich);
-   inline string_base & assign(wd16char wd16ch);
-   inline string_base & assign(wd32char wd32ch);
+   inline string_base& assign(const string_base & str);
+   //inline string_base & assign(const ansistring & ansistr);
+   //inline string_base & assign(const wd16string & wd16str);
+   //inline string_base & assign(const wd32string & wd32str);
+   //inline string_base & assign(const ansichar * pansiszSrc);
+   //inline string_base & assign(const wd16char * pwd16szSrc);
+   //inline string_base & assign(const wd32char * pwd32szSrc);
+   //inline string_base & assign(ansichar ansich);
+   //inline string_base & assign(wd16char wd16ch);
+   //inline string_base & assign(wd32char wd32ch);
+   inline string_base& assign(const ansistring& ansistr, strsize pos, strsize n);
+   inline string_base& assign(const wd16string& wd16str, strsize pos, strsize n);
+   inline string_base& assign(const wd32string& wd32str, strsize pos, strsize n);
+   inline string_base& assign(const ansichar* pansiszSrc, strsize len);
+   inline string_base& assign(const wd16char* pwd16szSrc, strsize len);
+   inline string_base& assign(const wd32char* pwd32szSrc, strsize len);
    inline string_base & assign(ansichar ansich, strsize repeat);
    inline string_base & assign(wd16char wd16ch, strsize repeat);
    inline string_base & assign(wd32char wd32ch, strsize repeat);
@@ -248,29 +254,30 @@ public:
    template <class InputIterator>
    inline string_base & assign(InputIterator first, InputIterator last);
 
-   template < int t_nSize >
-   inline string_base & assign(const static_string<CHAR_TYPE, t_nSize > & ansistrSrc);
+   //template < int t_nSize >
+   //inline string_base & assign(const static_string<CHAR_TYPE, t_nSize > & ansistrSrc);
 
    inline string_base & append(strsize len, CHAR_TYPE ch);
 
+   inline string_base& append_character(wd32char wch);
+   inline string_base & append_character(ansichar ch);
+   inline string_base& append_character(wd16char wch);
 
-   inline string_base & append(ansichar ch);
-   inline string_base & append(const ansichar * pszSrc);
+   inline string_base& append(const string_base & str);
+   //inline string_base & append(const ansichar * pszSrc);
    inline string_base & append(const ansichar * pszSrc, strsize nLength);
-   inline string_base & append(const ansistring & ansistrSrc);
+   //inline string_base & append(const ansistring & ansistrSrc);
 
-   inline string_base & append(wd16char wch);
-   inline string_base & append(const wd16char * pszSrc);
+   //inline string_base & append(const wd16char * pszSrc);
    inline string_base & append(const wd16char * pszSrc, strsize nLength);
-   inline string_base & append(const wd16string & ansistrSrc);
+   //inline string_base & append(const wd16string & ansistrSrc);
 
-   inline string_base & append(wd32char wch);
-   inline string_base & append(const wd32char * pszSrc);
+   //inline string_base & append(const wd32char * pszSrc);
    inline string_base & append(const wd32char * pszSrc, strsize nLength);
-   inline string_base & append(const wd32string & ansistrSrc);
+   //inline string_base & append(const wd32string & ansistrSrc);
 
-   template < typename STATIC_TYPE_CHAR, int t_nSize >
-   inline string_base& append(const static_string<STATIC_TYPE_CHAR, t_nSize > & ansistrSrc);
+   //template < typename STATIC_TYPE_CHAR, int t_nSize >
+   //inline string_base& append(const static_string<STATIC_TYPE_CHAR, t_nSize > & ansistrSrc);
 
 
 
@@ -805,15 +812,17 @@ public:
    string_base& trim_right(CHAR_TYPE chTarget);
 
    // erase all trailing occurrences of any of the characters in string_base 'pszTargets'
-   template < pointer_castable < TYPE_CHAR > PCHAR >
-   string_base & trim_right(PCHAR pcharTargets);
+   ///template < pointer_castable < TYPE_CHAR > PCHAR >
+   //string_base & trim_right(PCHAR pcharTargets);
+   string_base& trim_right(const CHAR_TYPE * pcharTargets);
 
    // erase all leading occurrences of character 'chTarget'
    string_base& trim_left(CHAR_TYPE chTarget);
 
    // erase all leading occurrences of any of the characters in string_base 'pszTargets'
-   template < pointer_castable < TYPE_CHAR > PCHAR >
-   string_base& trim_left(PCHAR pchTargets);
+   //template < pointer_castable < TYPE_CHAR > PCHAR >
+   //string_base& trim_left(PCHAR pchTargets);
+   string_base& trim_left(const CHAR_TYPE * pchTargets);
 
 
    // erase all trailing whitespace

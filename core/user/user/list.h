@@ -116,7 +116,7 @@ namespace user
       void _001OnSort(index iSubItem) override;
       virtual void _001OnListHeaderItemClick(index iHeaderItem);
       virtual void _001OnListHeaderItemDblClk(index iHeaderItem);
-      void Filter1(string & str) override;
+      void Filter1(const string & str) override;
       bool Filter1Step() override;
 
 

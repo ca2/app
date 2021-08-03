@@ -295,7 +295,7 @@ namespace user
       virtual void _001OnSort(index iSubItem);
       virtual void _001OnMeshHeaderItemClick(index iHeaderItem);
       virtual void _001OnMeshHeaderItemDblClk(index iHeaderItem);
-      virtual void Filter1(string & str);
+      virtual void Filter1(const string & str);
       virtual bool Filter1Step();
 
 

@@ -6318,7 +6318,7 @@ namespace user
    }
 
 
-   void list::Filter1(string & strFilter)
+   void list::Filter1(const string & strFilter)
    {
 
       if (m_eview == impact_icon)

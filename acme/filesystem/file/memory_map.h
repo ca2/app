@@ -37,7 +37,7 @@ namespace file
 
       virtual string get_path();
 
-      virtual string calculate_path_from_name(const string & strName);
+      virtual string calculate_path_from_name(const ::string & strName);
 
 
    };

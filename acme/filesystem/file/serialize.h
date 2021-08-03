@@ -94,10 +94,10 @@ enum e_set_version
 //   virtual stream & write(const SIZE_I32 * psize) ;
 //   virtual stream & write (const RECTANGLE_I32 * prectangle) ;
 //   virtual stream & write (const char * psz) override;
-//   virtual stream & write (const string & str) override;
+//   virtual stream & write (const ::string & str) override;
 //
 //   virtual void write_from_hex(const char * psz, strsize iLen = -1);
-//   virtual void write_from_hex(const string & str);
+//   virtual void write_from_hex(const ::string & str);
 //
 //};
 

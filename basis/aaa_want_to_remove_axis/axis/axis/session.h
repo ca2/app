@@ -86,7 +86,7 @@ namespace axis
 
       virtual bool on_create_frame_window() override;
 
-      //virtual string account_get_user_sessid(const string & str) override;
+      //virtual string account_get_user_sessid(const ::string & str) override;
 
       virtual void translate_os_key_message(::user::key * pkey) override;
 

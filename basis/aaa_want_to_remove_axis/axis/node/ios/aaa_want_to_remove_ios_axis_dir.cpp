@@ -66,7 +66,7 @@ namespace ios
 
       }
 
-      //   bool dir::is(const string & strPath, ::aura::application * papp)
+      //   bool dir::is(const ::string & strPath, ::aura::application * papp)
       //   {
       //
       //      if(::linux::dir::is(strPath,papp))

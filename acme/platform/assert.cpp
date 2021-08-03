@@ -46,7 +46,7 @@ namespace acme
 //      const ::e_message_box &     m_emessagebox;
 //
 //
-//      os_message_box(const string & strText, const string & strTitle, const ::e_message_box & emessagebox) :
+//      os_message_box(const ::string & strText, const ::string & strTitle, const ::e_message_box & emessagebox) :
 //         m_strText(strText),
 //         m_strTitle(strTitle),
 //         m_emessagebox(emessagebox)

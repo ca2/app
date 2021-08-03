@@ -35,7 +35,7 @@ namespace str
    inline bool begins_ci(const TYPE & str, FED & strFed, const PREFIX & strPrefix);
 
    // case insensitive, ignore white space - only in searched string
-   bool CLASS_DECL_ACME begins_ci_iws(const string & str, const string & strPrefix);
+   bool CLASS_DECL_ACME begins_ci_iws(const ::string & str, const ::string & strPrefix);
    bool CLASS_DECL_ACME begins_ci_iws(const wstring & wstr, const wstring & wstrPrefix);
 
    template < typename TYPE, typename PREFIX >

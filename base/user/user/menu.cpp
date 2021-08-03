@@ -208,7 +208,7 @@ namespace user
 
       m_bCloseButton = pnode->attribute("close_button").is_empty() ||
 
-                       (bool)pnode->attribute("close_button");
+                       (bool)pnode->attribute("close_button").is_true();
 
 
       m_pmenuitem->m_pmenu = this;
@@ -233,7 +233,7 @@ namespace user
 
       auto papplication = get_application();
 
-      auto strXml = papplication->as_string(varXml.get_string());
+      auto strXml = papplication->as_string(varXml.string());
 
       if (strXml.is_empty())
       {

@@ -174,7 +174,9 @@ namespace user
 
          m_ealignNewLine = set["align"].e< ::enum_align>();
          m_str = set["text"];
-         ::index iFormatIndex = set["format_index"];
+         ::index iFormatIndex;
+
+         set["format_index"].as(iFormatIndex);
          if (iFormatIndex >= 0 && iFormatIndex < m_pdata->m_pformata->get_count())
          {
             m_pformat = m_pdata->m_pformata->element_at(iFormatIndex);

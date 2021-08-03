@@ -708,7 +708,7 @@ namespace file
    }
 
    
-   void edit_file::change_insert_item_data(class insert_item * pinsertitem, const string & str)
+   void edit_file::change_insert_item_data(class insert_item * pinsertitem, const ::string & str)
    {
 
       memsize iOldLen = pinsertitem->m_memstorage.get_size();
@@ -720,7 +720,7 @@ namespace file
    }
 
 
-   void edit_file::append_insert_item_data(class insert_item * pinsertitem, const string & str)
+   void edit_file::append_insert_item_data(class insert_item * pinsertitem, const ::string & str)
    {
 
       memsize iOldLen = pinsertitem->m_memstorage.get_size();

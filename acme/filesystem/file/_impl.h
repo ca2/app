@@ -41,7 +41,7 @@ inline void __object_string_exchange(::stream & s, TYPE & t)
 }
 
 
-inline void __string_exchange(stream & s, ::payload & payload) { s.default_exchange(payload.get_ref_string()); }
+inline void __string_exchange(stream & s, ::payload & payload) { s.default_exchange(payload.as_string()); }
 
 template < typename BLOCK_TYPE >
 inline void __exchange(stream & s, memory_template < BLOCK_TYPE > & memorytemplate)
@@ -396,9 +396,9 @@ inline stream & operator >>(stream & s, __pointer_array(TYPE) & a)
 //inline void stream::prop_read_start(::property_set & set)
 //{
 //
-//   m_pset = &set;
+//   m_ppropertyset = &set;
 //
-//   m_pset->read(*this);
+//   m_ppropertyset->read(*this);
 //
 //}
 //
@@ -406,9 +406,9 @@ inline stream & operator >>(stream & s, __pointer_array(TYPE) & a)
 //inline void stream::prop_write_end()
 //{
 //
-//   m_pset->write(*this);
+//   m_ppropertyset->write(*this);
 //
-//   m_pset = nullptr;
+//   m_ppropertyset = nullptr;
 //
 //}
 

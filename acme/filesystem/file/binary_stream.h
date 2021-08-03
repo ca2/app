@@ -250,7 +250,7 @@ public:
    virtual void write(const id & id) override;
    virtual void write(const ::payload & payload) override;
    virtual void write(const property & property) override;
-   virtual void write(const string & str) override;
+   virtual void write(const ::string & str) override;
    virtual void write(const matter * pobject) override;
    virtual void write(const matter& matter) override;
    virtual void write(const property_set& set) override;
@@ -318,17 +318,17 @@ public:
    //virtual void write_file(const ::file::path & path, const ::matter & matter);
    //virtual void read_file(const ::file::path & path, ::matter & matter);
 
-   //virtual void write_link(const string & strLink, __pointer(::matter) & matter);
-   //virtual void read_link(const string & strLink, __pointer(::matter) & matter);
+   //virtual void write_link(const ::string & strLink, __pointer(::matter) & matter);
+   //virtual void read_link(const ::string & strLink, __pointer(::matter) & matter);
 
-   //virtual void write_link(const ::matter * preference, const string & strLink, bool bReadOnly, ::matter * pobjectSaveOptions = nullptr);
+   //virtual void write_link(const ::matter * preference, const ::string & strLink, bool bReadOnly, ::matter * pobjectSaveOptions = nullptr);
 
    //virtual bool write_link(const ::matter * preference) override;
    //virtual void read_link(::matter * preference) override;
 
 
    //virtual bool get_object_link(const ::matter * preference, string & strLink, bool & bReadOnly) override;
-   //virtual void set_object_link(const ::matter * preference, const string & strLink, bool bReadOnly) override;
+   //virtual void set_object_link(const ::matter * preference, const ::string & strLink, bool bReadOnly) override;
 
 
    //virtual ::file::path get_link_path(string strLink);

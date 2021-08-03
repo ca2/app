@@ -66,15 +66,15 @@ namespace str
    string CLASS_DECL_ACME equals_get(const char * psz1, const char * psz2, const char * pszGetOnEqual, const char * pszGetOnDifferent = nullptr);
    string CLASS_DECL_ACME equals_ci_get(const char * psz1, const char * psz2, const char * pszGetOnEqual, const char * pszGetOnDifferent = nullptr);
 
-   inline bool begins(const char * psz,string & strFed, const string & strPrefix);
-   inline bool begins(const string & str,string & strFed,const string & strPrefix);
-   inline bool begins(const id & id,string & strFed,const string & strPrefix);
+   inline bool begins(const char * psz,string & strFed, const ::string & strPrefix);
+   inline bool begins(const ::string & str,string & strFed,const ::string & strPrefix);
+   inline bool begins(const id & id,string & strFed,const ::string & strPrefix);
 
-   inline bool begins(const char * psz, const string & strPrefix);
-   inline bool begins(const string & str, const string & strPrefix);
-   inline bool begins(const id & id, const string & strPrefix);
-   inline bool begins_with(const char * psz, const string & strPrefix);
-   inline bool begins_with(const string & str, const string & strPrefix);
+   inline bool begins(const char * psz, const ::string & strPrefix);
+   inline bool begins(const ::string & str, const ::string & strPrefix);
+   inline bool begins(const id & id, const ::string & strPrefix);
+   inline bool begins_with(const char * psz, const ::string & strPrefix);
+   inline bool begins_with(const ::string & str, const ::string & strPrefix);
 
 
    void CLASS_DECL_ACME begin(wstring & wstr, const unichar * pcszPrefix);
@@ -95,7 +95,7 @@ namespace str
    // case insensitive, ignore white space - only in searched string
    bool CLASS_DECL_ACME begins_ci_iws(const char * psz, const char * pcszPrefix);
 
-   bool CLASS_DECL_ACME begins_ci_iws(const string & str, const char * pcszPrefix);
+   bool CLASS_DECL_ACME begins_ci_iws(const ::string & str, const char * pcszPrefix);
 
 
 
@@ -114,17 +114,17 @@ namespace str
    bool CLASS_DECL_ACME eat_before_let_separator(string & strBefore, string strSeparator, string & str, bool bEatEverythingIfNotFound = false);
 
 
-   inline bool begins_eat(string & str, const string & strPrefix);
+   inline bool begins_eat(string & str, const ::string & strPrefix);
    bool CLASS_DECL_ACME begins_eat_ci(string & str, const char * pcszPrefix); // case insensitive
 
    bool CLASS_DECL_ACME begins_eat_ci(string & str, const char * pcszPrefix, const char * pszSeparator); // case insensitive
 
-   inline bool begins_eat(::payload & payload,const string & strPrefix);
+   inline bool begins_eat(::payload & payload,const ::string & strPrefix);
    bool CLASS_DECL_ACME begins_eat_ci(::payload & payload, const char * pcszPrefix); // case insensitive
 
    bool CLASS_DECL_ACME begins_eat_ci(::payload & payload, const char * pcszPrefix, const char * pszSeparator); // case insensitive
 
-   inline bool begins_eat(property & property, const string & strPrefix);
+   inline bool begins_eat(property & property, const ::string & strPrefix);
    bool CLASS_DECL_ACME begins_eat_ci(property & property, const char * pcszPrefix); // case insensitive
 
    bool CLASS_DECL_ACME begins_eat_ci(property & property, const char * pcszPrefix, const char * pszSeparator); // case insensitive
@@ -137,7 +137,7 @@ namespace str
 
    bool CLASS_DECL_ACME ends_ci(const char * pcsz, const char * lpcszSuffix);
 
-   bool CLASS_DECL_ACME ends_ci(const string & str, const char * pcszSuffix);
+   bool CLASS_DECL_ACME ends_ci(const ::string & str, const char * pcszSuffix);
 
    bool CLASS_DECL_ACME ends_ci(const ::payload & payload, const char * pcszSuffix);
 
@@ -155,18 +155,18 @@ namespace str
 
    string CLASS_DECL_ACME random_replace(::matter * pobject, const string_array & straReplacement, const string_array & straSearch, const char * psz);
 
-   strsize CLASS_DECL_ACME find_first(const string_array & straSearch, index & iFound, const string & str, index iStart = 0);
+   strsize CLASS_DECL_ACME find_first(const string_array & straSearch, index & iFound, const ::string & str, index iStart = 0);
 
-   strsize CLASS_DECL_ACME find_ci(const string & strFind, const string & str, strsize iStart = 0);
-   strsize CLASS_DECL_ACME find_ci(const string & strFind, const char   * psz, strsize iStart = 0);
-   strsize CLASS_DECL_ACME find_ci(const char   * pszFind, const string & str, strsize iStart = 0);
+   strsize CLASS_DECL_ACME find_ci(const ::string & strFind, const ::string & str, strsize iStart = 0);
+   strsize CLASS_DECL_ACME find_ci(const ::string & strFind, const char   * psz, strsize iStart = 0);
+   strsize CLASS_DECL_ACME find_ci(const char   * pszFind, const ::string & str, strsize iStart = 0);
    strsize CLASS_DECL_ACME find_ci(const char   * pszFind, const char   * psz, strsize iStart = 0);
 
    strsize CLASS_DECL_ACME utf8_find(const char   * pszFind, const char   * psz, strsize iStart = 0);
 
 
-   strsize CLASS_DECL_ACME find_ci(const char   * pszFind,const string & str,strsize iStart, strsize iLast);
-   strsize CLASS_DECL_ACME find_file_extension(const char * pszExtension,const string & str,strsize iStart = 0, strsize iLast = -1);
+   strsize CLASS_DECL_ACME find_ci(const char   * pszFind,const ::string & str,strsize iStart, strsize iLast);
+   strsize CLASS_DECL_ACME find_file_extension(const char * pszExtension,const ::string & str,strsize iStart = 0, strsize iLast = -1);
 
    strsize CLASS_DECL_ACME find_ww(const char * pszFind, const char * psz, strsize iStart = 0);
    strsize CLASS_DECL_ACME find_wwci(const char * pszFind, const char * psz, strsize iStart = 0);
@@ -239,9 +239,9 @@ namespace str
 
    //CLASS_DECL_ACME string l2string(long l); // please use itoa
    //CLASS_DECL_ACME string bigint2string(u64 l); // please use itoa
-   CLASS_DECL_ACME i64         to_i64(const string & str) ;
+   CLASS_DECL_ACME i64         to_i64(const ::string & str) ;
    CLASS_DECL_ACME i64         to_i64(const char * psz) ;
-   CLASS_DECL_ACME u64        to_u64(const string & str) ;
+   CLASS_DECL_ACME u64        to_u64(const ::string & str) ;
    CLASS_DECL_ACME u64        to_u64(const char * psz) ;
 
    /** \file Utility.cpp
@@ -301,7 +301,7 @@ namespace str
 
    //inline CLASS_DECL_ACME string   i64toa(i64 i);
 
-   //CLASS_DECL_ACME  string         ansi_zero_pad(const string & strSrc,int iPad);
+   //CLASS_DECL_ACME  string         ansi_zero_pad(const ::string & strSrc,int iPad);
    CLASS_DECL_ACME  i32        get_escaped_char(const char * str, strsize pos, strsize &retPos);
    CLASS_DECL_ACME  bool           get_curly_content(const char * psz, string & str);
    CLASS_DECL_ACME  bool           is_simple_natural(const char * psz, strsize iCount = -1);
@@ -407,7 +407,7 @@ namespace str
 //
 //   CLASS_DECL_ACME void format(string_format * pformat, const char * const & psz);
 //
-//   CLASS_DECL_ACME void format(string_format * pformat, const string & str);
+//   CLASS_DECL_ACME void format(string_format * pformat, const ::string & str);
 //
 //   CLASS_DECL_ACME void format(string_format * pformat, const lparam & lparam);
 
@@ -436,7 +436,7 @@ namespace str
 
    //}
 
-   CLASS_DECL_ACME bool simple_escaped(const string & str,strsize pos);
+   CLASS_DECL_ACME bool simple_escaped(const ::string & str,strsize pos);
 
 //#ifdef WINDOWS
 //
@@ -445,7 +445,7 @@ namespace str
 //#endif
 
 
-   //inline bool begins(const id & id, const string & strPrefix) { return begins(id.m_psz, strPrefix); }
+   //inline bool begins(const id & id, const ::string & strPrefix) { return begins(id.m_psz, strPrefix); }
 
    inline int get_utf8_char_length(const char * psz)
    {
@@ -585,7 +585,7 @@ namespace str
 
 
 template < typename T >
-inline c_number < T > & c_number < T >::from(const string & str)
+inline c_number < T > & c_number < T >::from(const ::string & str)
 {
 
    ::str::to(m_number, str);
@@ -599,7 +599,7 @@ inline c_number < T > & c_number < T >::from(const string & str)
 
 
 
-CLASS_DECL_ACME string normalize_wildcard_criteria(const string & strPattern);
+CLASS_DECL_ACME string normalize_wildcard_criteria(const ::string & strPattern);
 
 
 

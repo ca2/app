@@ -38,11 +38,11 @@ public:
    union
    {
 
-      void *                     m_pvoid;
+      void * m_pvoid;
       para_return                m_parareturn;
       id                         m_id;
       bool                       m_b;
-      bool *                     m_pb;
+      bool * m_pb;
       ::i8                       m_i8;
       ::u8                       m_u8;
       ::i16                      m_i16;
@@ -51,34 +51,34 @@ public:
       ::u32                      m_u32;
       ::i64                      m_i64;
       ::u64                      m_u64;
-      ::i8 *                     m_pi8;
-      ::u8 *                     m_pu8;
-      ::i16 *                    m_pi16;
-      ::u16 *                    m_pu16;
-      ::i32 *                    m_pi32;
-      ::u32 *                    m_pu32;
-      ::i64 *                    m_pi64;
-      ::u64 *                    m_pu64;
-      string *                   m_pstr;
-      float                      m_f;
-      float *                    m_pf;
-      double                     m_d;
-      double *                   m_pd;
-      payload *                      m_ppayload;
-      time_t                     m_time;
+      ::i8 * m_pi8;
+      ::u8 * m_pu8;
+      ::i16 * m_pi16;
+      ::u16 * m_pu16;
+      ::i32 * m_pi32;
+      ::u32 * m_pu32;
+      ::i64 * m_pi64;
+      ::u64 * m_pu64;
+      ::string * m_pstr;
+      ::f32                      m_f32;
+      ::f32 * m_pf32;
+      ::f64                     m_f64;
+      ::f64 * m_pf64;
+      payload * m_ppayload;
+      ::datetime::time           m_time;
       filetime_t                 m_filetime;
-      id *                       m_pid;
-      property *                 m_pprop;
+      id * m_pid;
+      ::property * m_pproperty;
       class secs                 m_secs;
-      class secs *               m_psecs;
+      class secs * m_psecs;
       class millis               m_millis;
-      class millis *             m_pmillis;
+      class millis * m_pmillis;
       class micros               m_micros;
-      class micros *             m_pmicros;
+      class micros * m_pmicros;
       class nanos                m_nanos;
-      class nanos *              m_pnanos;
+      class nanos * m_pnanos;
       class duration             m_duration;
-      class duration *           m_pduration;
+      class duration * m_pduration;
       ::e_status                 m_estatus;
       ::enum_command             m_ecommand;
       ::enum_check               m_echeck;
@@ -86,22 +86,22 @@ public:
       ::color::hls               m_hls;
 
 
-      ::matter *                 m_p;
-      ::string_array *           m_pstra;
-      ::int_array *              m_pia;
-      ::payload_array *              m_pvara;
-      ::property_set *           m_pset;
-      ::i64_array *              m_pi64a;
-      ::memory *                 m_pmemory;
-      ::file::path_object *      m_ppath;
-      ::matter *                 m_pmatterRoutine;
+      ::matter * m_p;
+      ::string_array * m_pstra;
+      ::int_array * m_pia;
+      ::payload_array * m_ppayloada;
+      ::property_set * m_ppropertyset;
+      ::i64_array * m_pi64a;
+      ::memory * m_pmemory;
+      ::file::path_object * m_ppath;
+      ::matter * m_pmatterRoutine;
       ::i64                      m_all[2];
-      string                     m_str;
+      ::string                     m_str;
 
    };
 
 
-   
+
 
 
    inline payload();
@@ -124,14 +124,14 @@ public:
    payload(float f);
    payload(double d);
    payload(const char * psz);
-   payload(const string & str);
+   payload(const ::string & str);
    payload(const type & type);
    payload(const id & id);
    payload(bool * pb);
    payload(const ::datetime::time & time);
    payload(const ::color::color & color);
    payload(const ::color::hls & hls);
-   payload(string * pstr);
+   payload(::string * pstr);
    payload(payload * pvar);
    payload(const payload * pvar);
    payload(property * pproperty);
@@ -139,7 +139,7 @@ public:
    payload(const ::matter & matter);
    //payload(::image * pimage);
    payload(const ::file::path & path);
-   payload(const string_array & payload);
+   payload(const ::string_array & payload);
    payload(const int_array & payload);
    payload(const payload_array & payload);
    payload(const property_set & set);
@@ -223,7 +223,7 @@ public:
 
 
    template < typename T >
-   void set_pointer(const __pointer(T)& p)
+   void set_pointer(const __pointer(T) & p)
    {
 
       operator[](__type_str(T)) = p;
@@ -254,7 +254,7 @@ public:
    ::i64 release();
 
    void _set_matter(::matter * pmatter);
-   void _set_element(::matter* pmatter);
+   void _set_element(::matter * pmatter);
 
    bool is_element() const { return m_etype >= e_type_element && m_etype < e_type_last_element; }
 
@@ -275,7 +275,7 @@ public:
 
 
    bool                             get_bool(bool bDefault = false)     const;
-   ::i32                          i32(::i32 iDefault = 0)  const;
+   //::i32                          i32(::i32 iDefault = 0)  const;
 
    template < typename ENUM >
    ENUM                             e(ENUM edefault = enum_default < ENUM >())  const { return (ENUM)i64(edefault); }
@@ -283,75 +283,100 @@ public:
 #define DECL_VAR_FLAG(ENUMTYPE) \
 inline payload(::enum_ ## ENUMTYPE e ## ENUMTYPE) { m_etype = ::e_type_enum_ ## ENUMTYPE; m_e ## ENUMTYPE = e ## ENUMTYPE; } \
 inline ::enum_ ## ENUMTYPE e ## ENUMTYPE(::enum_ ## ENUMTYPE e ## ENUMTYPE ## Default = enum_default < ::enum_ ## ENUMTYPE >()) const { return e < ::enum_ ## ENUMTYPE >(e ## ENUMTYPE ## Default); } \
-::enum_ ## ENUMTYPE & e ## ENUMTYPE ();         \
+::enum_ ## ENUMTYPE & as_e ## ENUMTYPE ();         \
 inline payload & operator = (::enum_ ## ENUMTYPE e ## ENUMTYPE) { release(); if(m_etype != ::e_type_enum_ ## ENUMTYPE) m_etype = ::e_type_enum_ ## ENUMTYPE; m_e ## ENUMTYPE = e ## ENUMTYPE; return *this; } \
 inline bool operator == (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return m_etype == ::e_type_enum_ ## ENUMTYPE && m_e ## ENUMTYPE == e ## ENUMTYPE; } \
-inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !operator ==(e ## ENUMTYPE); } \
-inline operator ::enum_ ## ENUMTYPE() const { return e ## ENUMTYPE(); } \
-inline operator ::enum_ ## ENUMTYPE & () { return e ## ENUMTYPE(); } \
-inline operator ::e ## ENUMTYPE() const { return e ## ENUMTYPE(); }
+inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !operator ==(e ## ENUMTYPE); }
+//inline operator ::enum_ ## ENUMTYPE() const { return e ## ENUMTYPE(); }
+//inline ::enum_ ## ENUMTYPE & operator as_e ## ENUMTYPE  () { return e ## ENUMTYPE(); }
+//inline ::e ## ENUMTYPE e ## ENUMTYPE() const { return e ## ENUMTYPE(); }
    //DECL_VAR_FLAG(status);
    //DECL_VAR_FLAG(command);
    //DECL_VAR_FLAG(check);
 #undef DECL_VAR_FLAG
-   #define DECL_VAR_ENUM(ENUMTYPE) \
+#define DECL_VAR_ENUM(ENUMTYPE) \
    inline payload(::enum_ ## ENUMTYPE e ## ENUMTYPE) { m_etype = ::e_type_enum_ ## ENUMTYPE; m_e ## ENUMTYPE = e ## ENUMTYPE; } \
    inline ::enum_ ## ENUMTYPE e ## ENUMTYPE(::enum_ ## ENUMTYPE e ## ENUMTYPE ## Default = enum_default < ::enum_ ## ENUMTYPE >()) const { return e < ::enum_ ## ENUMTYPE >(e ## ENUMTYPE ## Default); } \
-   ::enum_ ## ENUMTYPE & e ## ENUMTYPE ();         \
+   ::enum_ ## ENUMTYPE & as_e ## ENUMTYPE ();         \
    inline payload & operator = (::enum_ ## ENUMTYPE e ## ENUMTYPE) { release(); if(m_etype != ::e_type_enum_ ## ENUMTYPE) m_etype = ::e_type_enum_ ## ENUMTYPE; m_e ## ENUMTYPE = e ## ENUMTYPE; return *this; } \
    inline bool operator == (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return m_etype == ::e_type_enum_ ## ENUMTYPE && m_e ## ENUMTYPE == e ## ENUMTYPE; } \
-   inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !operator ==(e ## ENUMTYPE); } \
-   inline operator ::enum_ ## ENUMTYPE() const { return e ## ENUMTYPE(); } \
-   inline operator ::enum_ ## ENUMTYPE & () { return e ## ENUMTYPE(); }
-      DECL_VAR_ENUM(status);
-      DECL_VAR_ENUM(command);
-      DECL_VAR_ENUM(check);
-   #undef DECL_VAR_ENUM
+   inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !operator ==(e ## ENUMTYPE); }
+   //inline operator ::enum_ ## ENUMTYPE() const { return e ## ENUMTYPE(); }
+   //inline operator ::enum_ ## ENUMTYPE & () { return e ## ENUMTYPE(); }
+   DECL_VAR_ENUM(status);
+   DECL_VAR_ENUM(command);
+   DECL_VAR_ENUM(check);
+#undef DECL_VAR_ENUM
 
-   ::u32                            u32(::u32 uiDefault = 0)  const;
-   ::i64                            i64(::i64 iDefault = 0)  const;
-   inline ::secs                    secs()  const { return duration().secs(); }
-   inline ::secs &                  secs() { if (get_type() != e_type_secs)set_type(e_type_secs); return m_secs; }
-   inline ::millis                  millis()  const { return duration().millis(); }
-   inline ::millis &                millis() { if (get_type() != e_type_millis)set_type(e_type_millis); return m_millis; }
-   inline ::micros                  micros()  const { return duration().micros(); }
-   inline ::micros &                micros() { if (get_type() != e_type_micros)set_type(e_type_micros); return m_micros; }
-   inline ::nanos                   nanos()  const { return duration().nanos(); }
-   inline ::nanos &                 nanos() { if (get_type() != e_type_nanos)set_type(e_type_nanos); return m_nanos; }
-   ::u64                            u64(::u64 uiDefault = 0)  const;
-   inline ::iptr                    iptr(iptr iDefault = 0)  const;
-   inline ::uptr                    uptr(uptr uiDefault = 0)  const;
-   float                            get_float(float fDefault = 0.f)   const;
-   double                           get_double(double dDefault = 0.0)   const;
-   ::color::color                   color(const ::color::color & colorDefault = ::color::color())  const;
-   ::color::hls                     hls(const ::color::hls & hlsDefault = ::color::hls())  const;
-   ::routine               get_routine() const;
    //::future               get_process() const;
-   string                           to_r_string() const;
-   string                           get_string(const char * pszOnNull = nullptr) const;
-   string &                         get_ref_string(const char * pszOnNull = nullptr);
-   const string &                   get_ref_string(const char * pszOnNull = nullptr) const;
-   string &                         to_string(string & str) const;
-   string                           to_string() const;
-   string                           to_string_base() const { return to_string(); }
-   id                               get_id(const char * pszOnNull = nullptr)   const;
-   id &                             get_ref_id(const char * pszOnNull = nullptr);
-   class memory &                   memory();
-   string_array &                        stra();
-   int_array &                      inta();
-   i64_array &                      int64a();
-   payload_array &                      payloada();
-   class duration &                 duration();
-   property_set &                   propset();
-   property &                       prop();
-   ::memory                         memory() const;
-   const string_array &                  stra() const;
-   const int_array &                inta() const;
-   const i64_array &                int64a() const;
-   const payload_array &                payloada()  const;
-   const property_set &             propset() const;
-   const property &                 prop() const;
-   const class duration &           duration() const;
+   //::string                           to_r_::string() const;
+   //::string &                         get_ref_::string(const char * pszOnNull = nullptr);
+   //const ::string &                   get_ref_::string(const char * pszOnNull = nullptr) const;
+
+   inline ::secs & as_secs() { if (get_type() != e_type_secs)set_type(e_type_secs); return m_secs; }
+   inline ::millis & as_millis() { if (get_type() != e_type_millis)set_type(e_type_millis); return m_millis; }
+   inline ::micros & as_micros() { if (get_type() != e_type_micros)set_type(e_type_micros); return m_micros; }
+   inline ::nanos & as_nanos() { if (get_type() != e_type_nanos)set_type(e_type_nanos); return m_nanos; }
+
+
+   ::string & as_string(::string & str);
+   id & as_id(const char * pszOnNull = nullptr);
+
+   class memory & as_memory();
+
+   ::string_array & as_stra();
+   int_array & as_ia();
+   i64_array & as_i64a();
+   payload_array & as_payloada();
+   class duration & as_duration();
+   property_set & as_propset();
+   property & as_property();
+
+
+   inline ::secs secs()  const { return duration().secs(); }
+   inline ::millis millis()  const { return duration().millis(); }
+   inline ::micros micros()  const { return duration().micros(); }
+   inline ::nanos nanos()  const { return duration().nanos(); }
+
+
+#if defined(__APPLE__) || defined(ANDROID) || defined(RASPBIAN) || defined(WINDOWS)
+   long get_long(long lDefault = 0) const;
+   unsigned long get_unsigned_long(unsigned long ulDefault = 0) const;
+#endif
+
+   ::i8 i8(::i8 iDefault = 0) const;
+   ::u8 u8(::u8 uDefault = 0) const;
+   ::i16 i16(::i16 iDefault = 0) const;
+   ::u16 u16(::u16 uDefault = 0) const;
+   ::i32 i32(::i32 iDefault = 0)  const;
+   ::u32 u32(::u32 uiDefault = 0)  const;
+   ::i64 i64(::i64 iDefault = 0)  const;
+   ::u64 u64(::u64 uiDefault = 0)  const;
+   ::f32 f32(::f32 fDefault = 0) const;
+   ::f64 f64(::f64 fDefault = 0) const;
+   inline ::iptr iptr(iptr iDefault = 0)  const;
+   inline ::uptr uptr(uptr uiDefault = 0)  const;
+   ::color::color color(const ::color::color & colorDefault = ::color::color())  const;
+   ::color::hls hls(const ::color::hls & hlsDefault = ::color::hls())  const;
+
+
+   ::routine               get_routine() const;
+
+
+   ::string string(const char * pszOnNull = nullptr) const;
+   ::string to_string() const;
+   ::string to_recursive_string() const;
+   id get_id(const char * pszOnNull = nullptr)   const;
+
+   ::memory memory() const;
+   ::string_array stra() const;
+   ::int_array ia() const;
+   ::i64_array i64a() const;
+   ::payload_array payloada()  const;
+   ::property_set propset() const;
+   ::duration duration() const;
+   ::property property() const;
+
 
    bool is_scalar() const;
    inline bool is_array() const;
@@ -375,11 +400,11 @@ inline operator ::e ## ENUMTYPE() const { return e ## ENUMTYPE(); }
    ::comparison::var_strict strictly_compare() const;
 
    void           set_string(const char * psz);
-   void           set_string(const string & str);
-   void           set_string(string && str);
+   void           set_string(const ::string & str);
+   void           set_string(::string && str);
    void           set_id(const id & id);
    void unset();
-   void unset(const string & strPropertySetKey);
+   void unset(const ::string & strPropertySetKey);
 
    bool is_set() const;
    bool is_new() const;
@@ -401,6 +426,12 @@ inline operator ::e ## ENUMTYPE() const { return e ## ENUMTYPE(); }
    bool has_property(const ::id & id) const;
    bool is_property_true(const ::id & id) const;
    bool is_property_false(const ::id & id) const;
+
+
+   bool begins(const ::string & strPrefix) const { return to_string().begins(strPrefix); }
+   bool ends(const ::string & strSuffix) const { return to_string().ends(strSuffix); }
+   bool begins_ci(const ::string & strPrefix) const { return to_string().begins_ci(strPrefix); }
+   bool ends_ci(const ::string & strSuffix) const { return to_string().ends_ci(strSuffix); }
 
    payload get_topic(const ::id & id) const;
    //payload defer_get(const ::id & id) const;
@@ -432,68 +463,67 @@ inline operator ::e ## ENUMTYPE() const { return e ## ENUMTYPE(); }
 
    }
 
-   operator bool() const;
-
-#if defined(__APPLE__) || defined(ANDROID) || defined(RASPBIAN) || defined(WINDOWS)
-   operator long() const;
-   operator unsigned long() const;
-#endif
-   operator ::i8() const;
-   operator ::u8() const;
-   operator ::i16() const;
-   operator ::u16() const;
-   operator ::i32() const;
-   operator ::u32() const;
-   operator ::i64() const;
-   operator ::u64() const;
-   operator float() const;
-   operator double() const;
-   operator ::e_status() const;
-   operator class secs() const;
-   operator class millis() const;
-   operator class micros() const;
-   operator class nanos() const;
-   operator class duration() const;
-   operator ::filetime() const;
-   operator ::datetime::time() const;
-   operator ::color::color() const;
-   operator ::color::hls() const;
-   operator block () const;
-   operator block ();
+   //bool get_bool() const;
+   //::i32 i32() const;
+   //::u32 u32() const;
+   //::i64 i64() const;
+   //::u64 u64() const;
+   //::e_status estatus() const;
+   //class secs secs() const;
+   //class millis millis() const;
+   //class micros micros() const;
+   //class nanos nanos() const;
+   //class duration duration() const;
+   ::filetime filetime() const;
+   ::datetime::time datetime_time() const;
+   ::color::color color() const;
+   ::color::hls color_hls() const;
+   block block() const;
+   //operator block ();
    //operator class millis() const;
 
-   operator const char * () const;
-   operator string & ();
+
+   ::string & as_string(const char * pszOnNull = nullptr);
+   operator ::string() const;
 
 
-   operator ::memory & ();
+   //::memory & as_memory();
    operator ::memory() const;
 
-   operator ::file::path & ();
-   operator ::file::path () const;
+   ::file::path & as_file_path();
+   operator ::file::path() const;
 
    //operator ::image * & ();
 
+   ::filetime & as_filetime();
+   ::datetime::time & as_datetime_time();
+   ::color::color & as_color();
+   ::color::hls & as_color_hls();
 
-   inline operator bool &();
+   template < typename TYPE >
+   inline TYPE & as(TYPE & t);
+
+
+
+   bool & as_bool();
 #if defined(__APPLE__) || defined(ANDROID) || defined(RASPBIAN) || defined(WINDOWS)
-   operator long &();
-   operator unsigned long & ();
+   long & as_long();
+   unsigned long & as_unsigned_long();
 #endif
-   inline operator ::i8 & ();
-   inline operator ::u8 & ();
-   inline operator ::i16 & () ;
-   inline operator ::u16 & () ;
-   inline operator ::i32 & () ;
-   inline operator ::u32 & () ;
-   inline operator ::i64 & () ;
-   inline operator ::u64 & () ;
-   inline operator float & ();
-   inline operator double & ();
+   ::i8 &  as_i8();
+   ::u8 &  as_u8();
+   ::i16 & as_i16();
+   ::u16 & as_u16();
+   ::i32 & as_i32();
+   ::u32 & as_u32();
+   ::i64 & as_i64();
+   ::u64 & as_u64();
+   ::f32 & as_f32();
+   ::f64 & as_f64();
 
-   inline operator ::e_status & ();
+   //::e_status & as_estatus();
 
-   void get_string(char * psz) const;
+   //void get_string(char * psz) const;
 
    strsize get_length() const;
 
@@ -612,37 +642,37 @@ inline operator ::e ## ENUMTYPE() const { return e ## ENUMTYPE(); }
    payload & operator = (const ::color::color & color);
    payload & operator = (const ::color::hls & color);
    inline payload & operator = (const char * psz);
-   inline payload & operator = (const string & str);
-   inline payload & operator = (string && str);
-   payload & operator = (string * pstr);
-   payload & operator = (payload * pvar);
-   payload & operator = (const payload * pvar);
-   payload & operator = (const widechar * pcsz);
+   inline payload & operator = (const ::string & str);
+   inline payload & operator = (::string && str);
+   payload & operator = (::string * pstr);
+   payload & operator = (::payload * pvar);
+   payload & operator = (const ::payload * pvar);
+   payload & operator = (const ::widechar * pcsz);
 
-   payload & operator = (const property & prop);
-   payload & operator = (const property * pproperty);
-   payload & operator = (const payload & payload);
-   payload & operator = (const int_array & ia);
-   payload & operator = (const string_array & stra);
-   payload & operator = (const class memory & memory);
-   payload & operator = (const payload_array & payloada);
-   payload & operator = (const property_set & propset);
+   payload & operator = (const ::property & prop);
+   payload & operator = (const ::property * pproperty);
+   payload & operator = (const ::payload & payload);
+   payload & operator = (const ::int_array & ia);
+   payload & operator = (const ::string_array & stra);
+   payload & operator = (const ::memory & memory);
+   payload & operator = (const ::payload_array & payloada);
+   payload & operator = (const ::property_set & propset);
    //payload & operator = (const pair_set_interface & propset);
    //payload & operator = (const str_str_interface & propset);
-//   payload & operator = (const string_composite & reference);
-   payload & operator = (const id & id);
-   payload & operator = (id * pid);
-   payload & operator = (const class secs & secs);
-   payload & operator = (class secs * pduration);
-   payload & operator = (const class millis & millis);
-   payload & operator = (class millis * pmillis);
-   payload & operator = (const class micros & micros);
-   payload & operator = (class micros * pmicros);
-   payload & operator = (const class nanos & nanos);
-   payload & operator = (class nanos * pnanos);
-   payload & operator = (const class duration & duration);
-   payload & operator = (class duration * pduration);
-   payload & operator = (const block & block);
+//   payload & operator = (const ::string_composite & reference);
+   payload & operator = (const ::id & id);
+   payload & operator = (::id * pid);
+   payload & operator = (const ::secs & secs);
+   payload & operator = (class ::secs * pduration);
+   payload & operator = (const ::millis & millis);
+   payload & operator = (class ::millis * pmillis);
+   payload & operator = (const ::micros & micros);
+   payload & operator = (class ::micros * pmicros);
+   payload & operator = (const ::nanos & nanos);
+   payload & operator = (class ::nanos * pnanos);
+   payload & operator = (const ::duration & duration);
+   payload & operator = (class ::duration * pduration);
+   payload & operator = (const ::block & block);
 
    template < class T >
    void get_array(T & dsta) const
@@ -757,26 +787,26 @@ inline operator ::e ## ENUMTYPE() const { return e ## ENUMTYPE(); }
 
    bool strictly_equal(const payload & payload) const;
    bool strictly_equal(const char * psz) const;
-   bool strictly_equal(const string & str) const;
+   bool strictly_equal(const ::string & str) const;
    bool strictly_equal(double d) const;
    bool strictly_equal(::i32 i) const;
    bool strictly_equal(bool b) const;
 
    bool strictly_different(const payload & payload) const;
    bool strictly_different(const char * psz) const;
-   bool strictly_different(const string & str) const;
+   bool strictly_different(const ::string & str) const;
    bool strictly_different(double d) const;
    bool strictly_different(::i32 i) const;
    bool strictly_different(bool b) const;
 
    //friend bool CLASS_DECL_ACME strict_equal(const char * psz,const payload & payload);
-   //friend bool CLASS_DECL_ACME strict_equal(const string & str,const payload & payload);
+   //friend bool CLASS_DECL_ACME strict_equal(const ::string & str,const payload & payload);
    //friend bool CLASS_DECL_ACME strict_equal(double d,const payload & payload);
    //friend bool CLASS_DECL_ACME strict_equal(::i32 i,const payload & payload);
    //friend bool CLASS_DECL_ACME strict_equal(bool b,const payload & payload);
 
    //friend bool CLASS_DECL_ACME strict_different(const char * psz,const payload & payload);
-   //friend bool CLASS_DECL_ACME strict_different(const string & str,const payload & payload);
+   //friend bool CLASS_DECL_ACME strict_different(const ::string & str,const payload & payload);
    //friend bool CLASS_DECL_ACME strict_different(double d,const payload & payload);
    //friend bool CLASS_DECL_ACME strict_different(::i32 i,const payload & payload);
    //friend bool CLASS_DECL_ACME strict_different(bool b,const payload & payload);
@@ -789,42 +819,42 @@ inline operator ::e ## ENUMTYPE() const { return e ## ENUMTYPE(); }
 
    bool operator == (const payload & payload) const;
    bool operator == (const char * psz) const;
-   bool operator == (const string & str) const;
+   bool operator == (const ::string & str) const;
    bool operator == (::i64 i) const;
    bool operator == (::i32 i) const;
    bool operator == (bool b) const;
 
    bool operator != (const payload & payload) const;
    bool operator != (const char * psz) const;
-   bool operator != (const string & str) const;
+   bool operator != (const ::string & str) const;
    bool operator != (::i64 i) const;
    bool operator != (::i32 i) const;
    bool operator != (bool b) const;
 
    bool operator < (const payload & payload) const;
    bool operator < (const char * psz) const;
-   bool operator < (const string & str) const;
+   bool operator < (const ::string & str) const;
    bool operator < (::i64 i) const;
    bool operator < (::i32 i) const;
    bool operator < (bool b) const;
 
    bool operator <= (const payload & payload) const;
    bool operator <= (const char * psz) const;
-   bool operator <= (const string & str) const;
+   bool operator <= (const ::string & str) const;
    bool operator <= (::i64 i) const;
    bool operator <= (::i32 i) const;
    bool operator <= (bool b) const;
 
    bool operator >= (const payload & payload) const;
    bool operator >= (const char * psz) const;
-   bool operator >= (const string & str) const;
+   bool operator >= (const ::string & str) const;
    bool operator >= (::i64 i) const;
    bool operator >= (::i32 i) const;
    bool operator >= (bool b) const;
 
    bool operator > (const payload & payload) const;
    bool operator > (const char * psz) const;
-   bool operator > (const string & str) const;
+   bool operator > (const ::string & str) const;
    bool operator > (::i64 i) const;
    bool operator > (::i32 i) const;
    bool operator > (bool b) const;
@@ -843,7 +873,7 @@ inline operator ::e ## ENUMTYPE() const { return e ## ENUMTYPE(); }
 
    //void exchange_from(const ::matter & matter) { propset().exchange(matter); }
 
-   string implode(const char * pszGlue) const;
+   ::string implode(const char * pszGlue) const;
    payload explode(const char * pszGlue,bool bAddEmpty = true) const;
 
    payload first() const;
@@ -853,93 +883,93 @@ inline operator ::e ## ENUMTYPE() const { return e ## ENUMTYPE(); }
    inline ::count get_count() const;
 
 
-   inline property & operator[] (const id & id) { return get_property(id); }
-   inline payload operator[] (const id & id) const { return find_property(id); }
+   inline ::property & operator[] (const id & id) { return get_property(id); }
+   inline ::payload operator[] (const id & id) const { return find_property(id); }
 
-   inline property & operator[] (const char * psz) { return get_property(::id(psz)); }
-   inline payload operator[] (const char * psz) const { return find_property(::id(psz)); }
+   inline ::property & operator[] (const char * psz) { return get_property(::id(psz)); }
+   inline ::payload operator[] (const char * psz) const { return find_property(::id(psz)); }
 
-   inline property & operator[] (const string & str) { return get_property(::id(str)); }
-   inline payload operator[] (const string & str) const { return find_property(::id(str)); }
+   inline ::property & operator[] (const ::string & str) { return get_property(::id(str)); }
+   inline ::payload operator[] (const ::string & str) const { return find_property(::id(str)); }
 
-   inline property & operator[] (::index i) { return get_property(::id(i)); }
-   inline payload operator[] (::index i) const { return find_property(::id(i)); }
+   inline ::property & operator[] (::index i) { return get_property(::id(i)); }
+   inline ::payload operator[] (::index i) const { return find_property(::id(i)); }
 
 #if OSBIT == 64
 
-   inline property & operator[] (::i32 i) { return get_property(::id(i)); }
-   inline payload operator[] (::i32 i) const { return find_property(::id(i)); }
+   inline ::property & operator[] (::i32 i) { return get_property(::id(i)); }
+   inline ::payload operator[] (::i32 i) const { return find_property(::id(i)); }
 
 #endif
 
    inline ::index property_index(const ::id & id) const;
    inline ::property * find_property(const ::id & id) const;
 
-   inline property & get_property(const ::id & id);
+   inline ::property & get_property(const ::id & id);
 
-   payload at(index i);
-   inline payload at(index i) const { return ((payload *)this)->at(i); }
+   ::payload at(index i);
+   inline ::payload at(index i) const { return ((::payload *)this)->at(i); }
 
    inline ::count array_get_count() const;
-   inline index array_get_upper_bound() const;
-   bool array_contains(const char * psz,index find = 0,::count count = -1) const;
-   bool array_contains_ci(const char * psz,index find = 0,::count count = -1) const;
+   inline ::index array_get_upper_bound() const;
+   bool array_contains(const char * psz,::index find = 0,::count count = -1) const;
+   bool array_contains_ci(const char * psz,::index find = 0,::count count = -1) const;
    bool array_is_empty() const { return array_get_count() <= 0; }
 
-   payload equals_ci_get(const char * pszCompare,payload varOnEqual,payload varOnDifferent) const;
-   payload equals_ci_get(const char * pszCompare,payload varOnEqual) const;
+   ::payload equals_ci_get(const char * pszCompare,::payload varOnEqual,payload varOnDifferent) const;
+   ::payload equals_ci_get(const char * pszCompare,::payload varOnEqual) const;
 
    template < primitive_integral INTEGRAL >
-   payload operator - (INTEGRAL i) const;
+   ::payload operator - (INTEGRAL i) const;
    template < primitive_floating FLOATING >
-   payload operator - (FLOATING f) const;
-
-
-   template < primitive_integral INTEGRAL >
-   payload operator + (INTEGRAL i) const;
-   template < primitive_floating FLOATING >
-   payload operator + (FLOATING f) const;
-
-   payload operator + (const string & str) const;
-   inline payload operator + (const char * psz) const { return *this + string(psz); }
-
-   template < primitive_integral INTEGRAL >
-   payload operator / (INTEGRAL i) const;
-   template < primitive_floating FLOATING >
-   payload operator / (FLOATING f) const;
-
-   template < primitive_integral INTEGRAL >
-   payload operator * (INTEGRAL i) const;
-   template < primitive_floating FLOATING >
-   payload operator * (FLOATING d) const;
-
-   ::i32 str_compare(const property & prop) const;
-
+   ::payload operator - (FLOATING f) const;
 
 
    template < primitive_integral INTEGRAL >
-   payload & operator -= (INTEGRAL i);
+   ::payload operator + (INTEGRAL i) const;
    template < primitive_floating FLOATING >
-   payload & operator -= (FLOATING f);
+   ::payload operator + (FLOATING f) const;
+
+   ::payload operator + (const ::string & str) const;
+   inline ::payload operator + (const char * psz) const;
+
+   template < primitive_integral INTEGRAL >
+   ::payload operator / (INTEGRAL i) const;
+   template < primitive_floating FLOATING >
+   ::payload operator / (FLOATING f) const;
+
+   template < primitive_integral INTEGRAL >
+   ::payload operator * (INTEGRAL i) const;
+   template < primitive_floating FLOATING >
+   ::payload operator * (FLOATING d) const;
+
+   ::i32 str_compare(const ::property & prop) const;
+
 
 
    template < primitive_integral INTEGRAL >
-   payload & operator += (INTEGRAL i);
+   ::payload & operator -= (INTEGRAL i);
    template < primitive_floating FLOATING >
-   payload & operator += (FLOATING f);
+   ::payload & operator -= (FLOATING f);
 
-   payload & operator += (const string & str);
-   inline payload & operator += (const char * psz) { return *this += string(psz); }
 
    template < primitive_integral INTEGRAL >
-   payload & operator /= (INTEGRAL i);
+   ::payload & operator += (INTEGRAL i);
    template < primitive_floating FLOATING >
-   payload & operator /= (FLOATING f);
+   ::payload & operator += (FLOATING f);
+
+   ::payload & operator += (const ::string & str);
+   inline ::payload & operator += (const char * psz) { return *this += ::string(psz); }
 
    template < primitive_integral INTEGRAL >
-   payload & operator *= (INTEGRAL i);
+   ::payload & operator /= (INTEGRAL i);
    template < primitive_floating FLOATING >
-   payload & operator *= (FLOATING d);
+   ::payload & operator /= (FLOATING f);
+
+   template < primitive_integral INTEGRAL >
+   ::payload & operator *= (INTEGRAL i);
+   template < primitive_floating FLOATING >
+   ::payload & operator *= (FLOATING d);
 
 
    void consume_number(const char * & psz);
@@ -948,15 +978,15 @@ inline operator ::e ## ENUMTYPE() const { return e ## ENUMTYPE(); }
    void consume_identifier(const char * & psz,const char * pszEnd);
    void parse_json(const char * & pszJson);
    void parse_json(const char * & pszJson, const char * pszEnd);
-   const char * parse_json(const string & strJson);
+   const char * parse_json(const ::string & strJson);
    ::enum_type find_json_child(const char * & pszJson, const payload & payload);
    ::enum_type find_json_child(const char * & pszJson, const char * pszEnd, const payload & payload);
    ::enum_type find_json_id(const char * & pszJson, const char * pszEnd, const payload & payload);
    bool parse_json_step(const char * & pszJson);
    bool parse_json_step(const char * & pszJson, const char * pszEnd);
 
-   string & get_json(string & str, bool bNewLine = true) const;
-   string get_json(bool bNewLine = true) const;
+   ::string & get_json(::string & str, bool bNewLine = true) const;
+   ::string get_json(bool bNewLine = true) const;
 
 
 
@@ -967,7 +997,7 @@ inline operator ::e ## ENUMTYPE() const { return e ## ENUMTYPE(); }
 
    ::file::path get_file_path() const;
 
-   void _001Add(const string_array & stra);
+   void _001Add(const ::string_array & stra);
 
 
    ::extended::status run();
@@ -980,14 +1010,122 @@ inline operator ::e ## ENUMTYPE() const { return e ## ENUMTYPE(); }
 };
 
 
+
+class CLASS_DECL_ACME payload_reference
+{
+public:
+
+   payload & m_payload;
+
+   payload_reference(payload & payload) :
+      m_payload(payload)
+   {
+
+   }
+
+   operator enum_check & () { return m_payload.as_echeck(); }
+
+   operator bool & () { return m_payload.as_bool(); }
+   operator i8 & () { return m_payload.as_i8(); }
+   operator u8 & () { return m_payload.as_u8(); }
+   operator i16 & () { return m_payload.as_i16(); }
+   operator u16 & () { return m_payload.as_u16(); }
+   operator i32 & () { return m_payload.as_i32(); }
+   operator u32 & () { return m_payload.as_u32(); }
+   operator i64 & () { return m_payload.as_i64(); }
+   operator u64 & () { return m_payload.as_u64(); }
+
+   operator f32 & () { return m_payload.as_f32(); }
+   operator f64 & () { return m_payload.as_f64(); }
+
+
+   operator secs & () { return m_payload.as_secs(); }
+   operator millis & () { return m_payload.as_millis(); }
+   operator micros & () { return m_payload.as_micros(); }
+   operator nanos & () { return m_payload.as_nanos(); }
+
+   operator duration & () { return m_payload.as_duration(); }
+   operator datetime::time & () { return m_payload.as_datetime_time(); }
+
+
+   operator string & () { return m_payload.as_string(); }
+   operator property & () { return m_payload.as_property(); }
+
+
+   operator int_array & () { return m_payload.as_ia(); }
+   operator i64_array & () { return m_payload.as_i64a(); }
+   operator string_array & () { return m_payload.as_stra(); }
+   operator payload_array & () { return m_payload.as_payloada(); }
+   operator property_set & () { return m_payload.as_propset(); }
+
+
+};
+
+
+
+
+
+class CLASS_DECL_ACME payload_cast
+{
+public:
+
+   const payload & m_payload;
+
+   payload_cast(const ::payload & payload) :
+      m_payload(payload)
+   {
+
+   }
+
+
+   operator enum_check () const { return m_payload.echeck(); }
+
+   operator bool () const { return m_payload.get_bool(); }
+   operator i8 ()const { return m_payload.i8(); }
+   operator u8 ()const { return m_payload.u8(); }
+   operator i16 () const { return m_payload.i16(); }
+   operator u16 ()const { return m_payload.u16(); }
+   operator i32 () const { return m_payload.i32(); }
+   operator u32 ()const { return m_payload.u32(); }
+   operator i64 () const { return m_payload.i64(); }
+   operator u64 ()const { return m_payload.u64(); }
+
+   operator f32 () const { return m_payload.f32(); }
+   operator f64 ()const { return m_payload.f64(); }
+
+   operator secs ()const { return m_payload.secs(); }
+   operator millis ()const { return m_payload.millis(); }
+   operator micros () const { return m_payload.micros(); }
+   operator nanos ()const { return m_payload.nanos(); }
+
+   operator duration ()const { return m_payload.duration(); }
+   operator datetime::time ()const { return m_payload.datetime_time(); }
+
+
+   operator string ()const { return m_payload.string(); }
+   //operator property ()const { return m_payload.property(); }
+
+
+   operator int_array ()const { return m_payload.ia(); }
+   operator i64_array ()const { return m_payload.i64a(); }
+   operator string_array ()const { return m_payload.stra(); }
+   inline operator payload_array () const;
+   inline operator property_set () const;
+
+
+};
+
+
+
+
 namespace str
 {
 
 
-   inline CLASS_DECL_ACME void from(string & str, const payload & payload)
+   inline CLASS_DECL_ACME void from(::string & str, const payload & payload)
    {
 
-      str = payload.get_string();
+      str = payload;
 
    }
 
@@ -1003,10 +1141,6 @@ CLASS_DECL_ACME void var_skip_json(const char *& pszJson);
 CLASS_DECL_ACME void var_skip_json(const char *& pszJson, const char * pszEnd);
 
 
-inline bool payload::get_bool(bool bDefault) const
-{
-   return is_true(bDefault);
-}
 
 
 //#if defined(__APPLE__) || defined(ANDROID) || defined(RASPBIAN) || defined(WINDOWS)
@@ -1036,126 +1170,126 @@ inline bool payload::get_bool(bool bDefault) const
 
 
 // returns 0 for unknown conversions
-inline payload::operator ::i8() const
-{
-   return i8();
-}
+//inline payload::operator ::i8() const
+//{
+//   return i8();
+//}
 
 // returns 0 for unknown conversions
-inline payload::operator ::u8() const
-{
-   return u8();
-}
-
-
-// returns 0 for unknown conversions
-inline payload::operator ::i16() const
-{
-   return i16();
-}
-
-// returns 0 for unknown conversions
-inline payload::operator ::u16() const
-{
-   return u16();
-}
-
+//inline payload::operator ::u8() const
+//{
+//   return u8();
+//}
 
 
 // returns 0 for unknown conversions
-inline payload::operator ::i32() const
-{
-   return i32();
-}
+//inline payload::operator ::i16() const
+//{
+//   return i16();
+//}
 
 // returns 0 for unknown conversions
-inline payload::operator ::u32() const
-{
-   return u32();
-}
+//inline payload::operator ::u16() const
+//{
+//   return u16();
+//}
+
+
+
+// returns 0 for unknown conversions
+//inline payload::operator ::i32() const
+//{
+//   return i32();
+//}
+
+// returns 0 for unknown conversions
+//inline payload::operator ::u32() const
+//{
+//   return u32();
+//}
 
 
 // returns 0 for unknown conversions
-inline payload::operator ::i64() const
-{
-   return i64();
-}
+//inline payload::operator ::i64() const
+//{
+//   return i64();
+//}
 
 // returns 0 for unknown conversions
-inline payload::operator ::u64() const
-{
-   return u64();
-}
+//inline payload::operator ::u64() const
+//{
+//   return u64();
+//}
 
 
 
 
 
 // returns 0.0 for unknown conversions?
-inline payload::operator float() const
-{
-
-   return get_float();
-
-}
-
-
-// returns 0.0 for unknown conversions?
-inline payload::operator double() const
-{
-
-   return get_double();
-
-}
+//inline payload::operator float() const
+//{
+//
+//   return get_float();
+//
+//}
 
 
 // returns 0.0 for unknown conversions?
-inline payload::operator ::e_status() const
-{
-
-   return estatus();
-
-}
-
-
-inline payload::operator class duration() const
-{
-
-   return duration();
-
-}
+//inline payload::operator double() const
+//{
+//
+//   return get_double();
+//
+//}
 
 
-inline payload::operator class secs() const
-{
-
-   return secs();
-
-}
-
-
-inline payload::operator class millis() const
-{
-
-   return millis();
-
-}
+// returns 0.0 for unknown conversions?
+//inline payload::operator ::e_status() const
+//{
+//
+//   return estatus();
+//
+//}
 
 
-inline payload::operator class micros() const
-{
+//inline payload::operator class duration() const
+//{
+//
+//   return duration();
+//
+//}
+//
+//
+//inline payload::operator class secs() const
+//{
+//
+//   return secs();
+//
+//}
 
-   return micros();
 
-}
-
-
-inline payload::operator class nanos() const
-{
-
-   return nanos();
-
-}
+//inline payload::operator class millis() const
+//{
+//
+//   return millis();
+//
+//}
+//
+//
+//inline payload::operator class micros() const
+//{
+//
+//   return micros();
+//
+//}
+//
+//
+//inline payload::operator class nanos() const
+//{
+//
+//   return nanos();
+//
+//}
 
 
 inline iptr payload::iptr(::iptr iDefault) const
@@ -1226,17 +1360,17 @@ inline payload::operator long() const
 #endif
 
 
-inline string & payload::to_string(string & str) const
+inline ::string & payload::as_string(::string & str)
 {
 
-   return str = get_string();
+   return str = this->string();
 
 }
 
-inline string payload::to_string() const
+inline ::string payload::to_string() const
 {
 
-   return get_string();
+   return this->string();
 
 }
 
@@ -1251,7 +1385,7 @@ inline class payload & payload::operator = (const char * psz)
 }
 
 
-inline class payload & payload::operator = (const string & str)
+inline class payload & payload::operator = (const ::string & str)
 {
 
    set_string(str);
@@ -1261,7 +1395,7 @@ inline class payload & payload::operator = (const string & str)
 }
 
 
-inline class payload & payload::operator = (string && str)
+inline class payload & payload::operator = (::string && str)
 {
 
    set_string(::move(str));
@@ -1273,109 +1407,81 @@ inline class payload & payload::operator = (string && str)
 
 inline void payload::set_string(const char * psz)
 {
+
    if(get_type() == e_type_pstring)
    {
+
       *m_pstr = psz;
+
    }
    else if(get_type() == e_type_payload_pointer)
    {
+
       *m_ppayload = psz;
+
    }
-   else if (get_type() == e_type_prop)
+   else if (get_type() == e_type_property)
    {
-      ((payload &) *m_pprop) = psz;
+
+      ((payload &) *m_pproperty) = psz;
+
    }
    else
    {
+
       set_type(e_type_string,false);
+
       m_str = psz;
+
    }
+
 }
 
 
-inline void payload::set_string(const string & str)
+inline void payload::set_string(const ::string & str)
 {
 
    if(get_type() == e_type_pstring)
    {
+
       *m_pstr = str;
+
    }
    else if(get_type() == e_type_payload_pointer)
    {
+
       *m_ppayload = str;
+
    }
-   else if (get_type() == e_type_prop)
+   else if (get_type() == e_type_property)
    {
-      ((payload&)*m_pprop) = str;
+
+      ((payload&)*m_pproperty) = str;
+
    }
    else
    {
+
       set_type(e_type_string,false);
+
       m_str = str;
-   }
-}
 
-inline void payload::set_string(string && str)
-{
-   if(get_type() == e_type_pstring)
-   {
-      *m_pstr = ::move(str);
    }
-   else if(get_type() == e_type_payload_pointer)
-   {
-      *m_ppayload = ::move(str);
-   }
-   else if (get_type() == e_type_prop)
-   {
-      ((payload&)*m_pprop) = ::move(str);
-   }
-   else
-   {
-      set_type(e_type_string,false);
-      m_str = ::move(str);
-   }
+
 }
 
 
-class CLASS_DECL_ACME ovar :
+
+
+class CLASS_DECL_ACME payload_object :
    virtual public matter
 {
 public:
 
-   payload m_var;
+   payload m_payload;
 
 };
 
-
-//namespace papaya
-//{
-//
-//
-//   class CLASS_DECL_ACME topic :
-//      public payload
-//   {
-//   public:
-//
-//      using payloadpayload;
-//
-//      operator string & ()
-//      {
-//
-//         auto & str = payload::operator string & ();
-//
-//         set_type(e_type_string, false);
-//
-//         return str;
-//
-//      }
-//
-//   };
-//
-//
-//} // namespace papaya
-
-
-//inline string CLASS_DECL_ACME operator + (const char * psz, const payload & payload);
 
 class CLASS_DECL_ACME pack :
    public payload
@@ -1466,56 +1572,56 @@ inline ::payload payload::operator * (FLOATING f) const
 template < primitive_integral INTEGRAL, payload_class PAYLOAD >
 inline ::payload operator - (INTEGRAL i, const PAYLOAD & payload)
 {
-   return i - ((INTEGRAL)payload);
+   return i - ((INTEGRAL)payload_cast(payload));
 }
 
 
 template < primitive_floating FLOATING, payload_class PAYLOAD >
 inline ::payload operator - (FLOATING i, const PAYLOAD & payload)
 {
-   return i - ((FLOATING)payload);
+   return i - ((FLOATING)payload_cast(payload));
 }
 
 
 template < primitive_integral INTEGRAL, payload_class PAYLOAD >
 inline ::payload operator + (INTEGRAL i, const PAYLOAD & payload)
 {
-   return i +((INTEGRAL)payload);
+   return i +((INTEGRAL)payload_cast(payload));
 }
 
 
 template < primitive_floating FLOATING, payload_class PAYLOAD >
 inline ::payload operator + (FLOATING i, const PAYLOAD & payload)
 {
-   return i + ((FLOATING)payload);
+   return i + ((FLOATING)payload_cast(payload));
 }
 
 
 template < primitive_integral INTEGRAL, payload_class PAYLOAD >
 inline ::payload operator / (INTEGRAL i, const PAYLOAD & payload)
 {
-   return i / ((INTEGRAL)payload);
+   return i / ((INTEGRAL)payload_cast(payload));
 }
 
 
 template < primitive_floating FLOATING, payload_class PAYLOAD >
 inline ::payload operator / (FLOATING i, const PAYLOAD & payload)
 {
-   return i / ((FLOATING)payload);
+   return i / ((FLOATING)payload_cast(payload));
 }
 
 
 template < primitive_integral INTEGRAL, payload_class PAYLOAD >
 inline ::payload operator * (INTEGRAL i, const PAYLOAD & payload)
 {
-   return i * ((INTEGRAL)payload);
+   return i * ((INTEGRAL)payload_cast(payload));
 }
 
 
 template < primitive_floating FLOATING, payload_class PAYLOAD >
 inline ::payload operator * (FLOATING i, const PAYLOAD & payload)
 {
-   return i * ((FLOATING)payload);
+   return i * ((FLOATING)payload_cast(payload));
 }
 
 
@@ -1523,56 +1629,56 @@ inline ::payload operator * (FLOATING i, const PAYLOAD & payload)
 template < primitive_integral INTEGRAL >
 inline ::payload & payload::operator -= (INTEGRAL i) 
 {
-   return *this = ((INTEGRAL)*this) - i;
+   return *this = ((INTEGRAL)payload_cast(*this)) - i;
 }
 
 
 template < primitive_floating FLOATING >
 inline ::payload & payload::operator -= (FLOATING f)
 {
-   return *this = ((FLOATING)*this) - f;
+   return *this = ((FLOATING)payload_cast(*this)) - f;
 }
 
 
 template < primitive_integral INTEGRAL >
 inline ::payload & payload::operator += (INTEGRAL i)
 {
-   return *this = ((INTEGRAL)*this) + i;
+   return *this = ((INTEGRAL)(payload_cast(*this))) + i;
 }
 
 
 template < primitive_floating FLOATING >
 inline ::payload & payload::operator += (FLOATING f)
 {
-   return *this = ((FLOATING)*this) + f;
+   return *this = ((FLOATING) payload_cast(*this)) + f;
 }
 
 
 template < primitive_integral INTEGRAL >
 inline ::payload & payload::operator /= (INTEGRAL i)
 {
-   return *this = ((INTEGRAL)*this) / i;
+   return *this = ((INTEGRAL)payload_cast(*this)) / i;
 }
 
 
 template < primitive_floating FLOATING >
 inline ::payload & payload::operator /= (FLOATING f)
 {
-   return *this = ((FLOATING)*this) / f;
+   return *this = ((FLOATING)payload_cast(*this)) / f;
 }
 
 
 template < primitive_integral INTEGRAL >
 inline ::payload & payload::operator *= (INTEGRAL i)
 {
-   return *this = ((INTEGRAL)*this) * i;
+   return *this = ((INTEGRAL)payload_cast(*this)) * i;
 }
 
 
 template < primitive_floating FLOATING >
 inline ::payload & payload::operator *= (FLOATING f)
 {
-   return *this = ((FLOATING)*this) * f;
+   return *this = ((FLOATING)payload_cast(*this)) * f;
 }
 
 
@@ -1584,7 +1690,7 @@ inline ::payload & payload::operator *= (FLOATING f)
 template < payload_class PAYLOAD >
 inline bool strictly_equal(const char * psz, const PAYLOAD & payload);
 template < payload_class PAYLOAD >
-inline bool strictly_equal(const string & str, const PAYLOAD & payload);
+inline bool strictly_equal(const ::string & str, const PAYLOAD & payload);
 template < payload_class PAYLOAD >
 inline bool strictly_equal(double d, const PAYLOAD & payload);
 template < payload_class PAYLOAD >
@@ -1596,7 +1702,7 @@ inline bool strictly_equal(bool b, const PAYLOAD & payload);
 template < payload_class PAYLOAD >
 inline bool strictly_different(const char * psz, const PAYLOAD & payload);
 template < payload_class PAYLOAD >
-inline bool strictly_different(const string & str, const PAYLOAD & payload);
+inline bool strictly_different(const ::string & str, const PAYLOAD & payload);
 template < payload_class PAYLOAD >
 inline bool strictly_different(double d, const PAYLOAD & payload);
 template < payload_class PAYLOAD >
@@ -1604,4 +1710,18 @@ inline bool strictly_different(::i32 i, const PAYLOAD & payload);
 template < payload_class PAYLOAD >
 inline bool strictly_different(bool b, const PAYLOAD & payload);
 
+//#define __reference(payload) ::payload_reference(payload)
+
+
+
+
+
+
+template < typename TYPE >
+TYPE & payload::as(TYPE & t)
+{
+
+   return t = payload_reference(*this);
+
+}
 

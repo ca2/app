@@ -335,13 +335,13 @@ namespace draw2d_cairo
 
       // Text Functions
       //virtual bool text_out(double x, double y, const char * lpszString, strsize nCount) override;
-      //virtual bool text_out(double x, double y, const string & str) override;
+      //virtual bool text_out(double x, double y, const ::string & str) override;
       virtual ::e_status TextOutRaw(double x, double y, const block & block) override;
-      ///virtual bool text_out(double x, double y, const string & str) override;
+      ///virtual bool text_out(double x, double y, const ::string & str) override;
       //virtual bool ExtTextOut(double x, double y, ::u32 nOptions, const ::rectangle_f64 & rectangle_f64, const char * lpszString, strsize nCount, int * lpDxWidths) override;
-      //virtual bool ExtTextOut(double x, double y, ::u32 nOptions, const ::rectangle_f64 & rectangle_f64, const string & str, int * lpDxWidths) override;
+      //virtual bool ExtTextOut(double x, double y, ::u32 nOptions, const ::rectangle_f64 & rectangle_f64, const ::string & str, int * lpDxWidths) override;
 //      virtual size_f64 TabbedTextOut(double x, double y, const char * lpszString, strsize nCount, count nTabPositions, int * lpnTabStopPositions, i32 nTabOrigin) override;
-//      virtual size_f64 TabbedTextOut(double x, double y, const string & str, count nTabPositions, int * lpnTabStopPositions, i32 nTabOrigin) override;
+//      virtual size_f64 TabbedTextOut(double x, double y, const ::string & str, count nTabPositions, int * lpnTabStopPositions, i32 nTabOrigin) override;
 
 #if defined(USE_PANGO)
       //virtual bool internal_draw_text_cairo(const block & block, const ::rectangle_f64 & rectangle_f64, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none, PFN_CAIRO_TEXT pfnText = nullptr);
@@ -351,11 +351,11 @@ namespace draw2d_cairo
       virtual bool internal_draw_text(const block & block, const ::rectangle_f64 & rectangle_f64, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none, PFN_CAIRO_TEXT pfnTtext = nullptr);
 #endif
       //virtual bool draw_text(const char * lpszString, strsize nCount, const ::rectangle_f64 & rectangle_f64, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none) override;
-      virtual bool draw_text(const string & str, const ::rectangle_f64 & rectangle_f64, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none) override;
+      virtual bool draw_text(const ::string & str, const ::rectangle_f64 & rectangle_f64, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none) override;
 
       //virtual bool draw_text_ex(char * lpszString, strsize nCount, const ::rectangle_f64 & rectangle_f64, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none, LPDRAWTEXTPARAMS lpDTParams);
-      //virtual bool draw_text_ex(const string & str, const ::rectangle_f64 & rectangle_f64, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none, LPDRAWTEXTPARAMS lpDTParams = nullptr) override;
-      virtual bool draw_text_ex(const string & str, const ::rectangle_f64 & rectangle_f64, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none) override;
+      //virtual bool draw_text_ex(const ::string & str, const ::rectangle_f64 & rectangle_f64, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none, LPDRAWTEXTPARAMS lpDTParams = nullptr) override;
+      virtual bool draw_text_ex(const ::string & str, const ::rectangle_f64 & rectangle_f64, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none) override;
 
       size_f64 get_text_extent(const char * lpszString, strsize nCount, strsize iIndex) override;
       size_f64 get_text_extent(const char * lpszString, strsize nCount) override;
@@ -363,13 +363,13 @@ namespace draw2d_cairo
       bool _GetTextExtent(size_f64 & size_f64, const char * lpszString, strsize nCount, strsize iIndex);
       bool get_text_extent(size_f64 & size_f64, const char * lpszString, strsize nCount, strsize iIndex) override;
       bool get_text_extent(size_f64 & size_f64, const char * lpszString, strsize nCount) override;
-      bool get_text_extent(size_f64 & size_f64, const string & str) override;
+      bool get_text_extent(size_f64 & size_f64, const ::string & str) override;
       size_f64 GetOutputTextExtent(const char * lpszString, strsize nCount) override;
-      size_f64 GetOutputTextExtent(const string & str) override;
+      size_f64 GetOutputTextExtent(const ::string & str) override;
       //size_f64 GetTabbedTextExtent(const char * lpszString, strsize nCount, count nTabPositions, int * lpnTabStopPositions) override;
-      //size_f64 GetTabbedTextExtent(const string & str, count nTabPositions, int * lpnTabStopPositions) override;
+      //size_f64 GetTabbedTextExtent(const ::string & str, count nTabPositions, int * lpnTabStopPositions) override;
       size_f64 GetOutputTabbedTextExtent(const char * lpszString, strsize nCount, count nTabPositions, int * lpnTabStopPositions) override;
-      size_f64 GetOutputTabbedTextExtent(const string & str, count nTabPositions, int * lpnTabStopPositions) override;
+      size_f64 GetOutputTabbedTextExtent(const ::string & str, count nTabPositions, int * lpnTabStopPositions) override;
       //virtual bool GrayString(::draw2d::brush* pBrush, bool (CALLBACK* lpfnOutput)(HDC, LPARAM, i32), LPARAM lpData, i32 nCount, double x, double y, double nWidth, double nHeight) override;
       ::u32 GetTextAlign() override;
       ::u32 SetTextAlign(::u32 nFlags) override;
@@ -560,7 +560,7 @@ namespace draw2d_cairo
 
       //virtual void enum_fonts(::write_text::font_enumeration_item_array & itema) override;
 
-      //virtual ::file::path get_font_path(const string & strName, int iWeight, bool bItalic) override;
+      //virtual ::file::path get_font_path(const ::string & strName, int iWeight, bool bItalic) override;
 
 
       FT_Face ftface(const char* pszFontName, int iWeight, bool bItalic);

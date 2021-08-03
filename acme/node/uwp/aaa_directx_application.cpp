@@ -687,7 +687,7 @@ namespace uwp
    }
 
 
-   directx_application_source::directx_application_source(class ::system * paxissystem, const string & strId)
+   directx_application_source::directx_application_source(class ::system * paxissystem, const ::string & strId)
    {
 
       m_psystem     = paxissystem;
@@ -705,7 +705,7 @@ namespace uwp
    }
 
 
-   directx_application_source ^ new_directx_application_source(class ::system * paurasystem, const string & strId)
+   directx_application_source ^ new_directx_application_source(class ::system * paurasystem, const ::string & strId)
    {
 
       string str = strId;

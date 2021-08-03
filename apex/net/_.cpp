@@ -459,7 +459,7 @@ namespace str
    }
 
 
-   CLASS_DECL_APEX void to(sockaddr_in & addr, const string & str)
+   CLASS_DECL_APEX void to(sockaddr_in & addr, const ::string & str)
    {
 
       return to(addr.sin_addr, str);
@@ -467,7 +467,7 @@ namespace str
    }
 
 
-   CLASS_DECL_APEX void to(sockaddr_in6 & addr, const string & str)
+   CLASS_DECL_APEX void to(sockaddr_in6 & addr, const ::string & str)
    {
 
       return to(addr.sin6_addr, str);
@@ -738,7 +738,7 @@ CLASS_DECL_APEX string c_gethostbyname(const char * hostname)
 
 
 
-string get_file_extension_mime_type(const string & strExtension)
+string get_file_extension_mime_type(const ::string & strExtension)
 {
 
    if(strExtension == "iso")

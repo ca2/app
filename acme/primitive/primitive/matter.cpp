@@ -977,13 +977,13 @@ stream& matter::read(stream& s)
 }
 
 
-void matter::to_string(const class string_exchange & str) const
-{
-
-   str = type_c_str();
-
-}
-
+//void matter::to_string(const class string_exchange & str) const
+//{
+//
+//   str = type_c_str();
+//
+//}
+//
 
 void matter::subject_handler(::subject::subject * psubject)
 {

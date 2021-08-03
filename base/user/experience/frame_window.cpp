@@ -214,38 +214,38 @@ namespace experience
    }
 
 
-   __pointer(::experience::experience) frame_window::create_experience(const char* pszExperienceLibrary)
+   __pointer(::experience::experience) frame_window::create_experience(const ::string & strExperienceLibrary)
    {
 
       auto psession = get_session();
 
       auto puser = psession->user();
 
-      return puser->experience()->create_experience2(this, pszExperienceLibrary);
+      return puser->experience()->create_experience2(this, strExperienceLibrary);
 
    }
 
 
-   __pointer(::experience::experience) frame_window::get_experience(const char* pszExperienceLibrary)
+   __pointer(::experience::experience) frame_window::get_experience(const ::string & strExperienceLibrary)
    {
 
       auto psession = get_session();
 
       auto puser = psession->user();
 
-      return puser->experience()->get_experience2(this, pszExperienceLibrary);
+      return puser->experience()->get_experience2(this, strExperienceLibrary);
 
    }
 
 
-   __pointer(::experience::frame) frame_window::get_frame_experience(const char* pszExperienceLibrary, const char* pszFrame, const char* pszStyle)
+   __pointer(::experience::frame) frame_window::get_frame_experience(const ::string & strExperienceLibrary, const ::string & strFrame, const ::string & strStyle)
    {
 
       auto psession = get_session();
 
       auto puser = psession->user();
 
-      auto pframe = puser->experience()->experience_get_frame2(this, pszExperienceLibrary, pszFrame);
+      auto pframe = puser->experience()->experience_get_frame2(this, strExperienceLibrary, strFrame);
 
       pframe->m_pframewindow = this;
 
@@ -253,7 +253,7 @@ namespace experience
 
       psubject->add_listener(pframe);
 
-      set_user_style(pszStyle);
+      set_user_style(strStyle);
 
       auto pframewindow = this;
 

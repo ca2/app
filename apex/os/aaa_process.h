@@ -75,7 +75,7 @@
 //CLASS_DECL_APEX bool is_shared_library_busy(const string_array & stra);
 //
 //
-//CLASS_DECL_APEX bool launch_application(::object * pobject, const string & strAppId, const string & strParams, int iBitCount);
+//CLASS_DECL_APEX bool launch_application(::object * pobject, const ::string & strAppId, const ::string & strParams, int iBitCount);
 //
 //
 //

@@ -9,7 +9,7 @@ namespace user
 {
 
 
-   //message_box::message_box(const string & strMessageParam, const string & strTitle, const ::e_message_box & emessagebox) :
+   //message_box::message_box(const ::string & strMessageParam, const ::string & strTitle, const ::e_message_box & emessagebox) :
    message_box::message_box() :
       m_strFontName("serif"),
       m_size(100, 40),

@@ -75,7 +75,7 @@ namespace file
 //
 //   }
 
-   path::path(const string & str, e_path epath, int iDir, bool bNormalizePath, i64 iSize) :
+   path::path(const ::string & str, e_path epath, int iDir, bool bNormalizePath, i64 iSize) :
       string(str)
    {
 
@@ -438,7 +438,7 @@ namespace file
 
    }
 
-   path & path::operator += (const string & strParam)
+   path & path::operator += (const ::string & strParam)
    {
 
       string str = strParam;
@@ -507,7 +507,7 @@ namespace file
    }
 
 
-   path path::operator / (const string & str) const
+   path path::operator / (const ::string & str) const
    {
 
       return operator /(::file::path(str));
@@ -561,7 +561,7 @@ namespace file
 
    }
 
-   path & path::operator /= (const string & str)
+   path & path::operator /= (const ::string & str)
    {
 
       return operator /=(::file::path(str));
@@ -654,7 +654,7 @@ namespace file
    }
 
 
-   path & path::operator = (const string & str)
+   path & path::operator = (const ::string & str)
    {
 
       *((path_meta*)this) = path_meta();
@@ -676,7 +676,7 @@ namespace file
    }
 
 
-   path path::operator + (const string & str) const
+   path path::operator + (const ::string & str) const
    {
 
       return ::file::path((const string &)*this + (m_iDir > 0 ? sepsz() : "" ) + string((const string &)str),m_epath);
@@ -720,10 +720,12 @@ namespace file
    path & path::operator = (const widechar * psz) { return operator = (wstring(psz)); }
    path & path::operator += (const widechar * psz) { return operator += (wstring(psz)); }
 
-   void path::to_string(string & str) const
-   {
-      str = *this;
-   }
+   //void path::to_string(string & str) const
+   //{
+   //   
+   //   str = *this;
+
+   //}
 
    path path::operator * (const path & path) const
    {
@@ -732,7 +734,7 @@ namespace file
 
    }
 
-   path path::operator * (const string & str) const { return operator * (::file::path(str)); }
+   path path::operator * (const ::string & str) const { return operator * (::file::path(str)); }
    path path::operator * (const char * psz) const { return operator * (::file::path(psz)); }
 
    path & path::operator *= (const path & path)
@@ -749,7 +751,7 @@ namespace file
 
    }
 
-   path & path::operator *= (const string & str) { return operator *= (::file::path(str)); }
+   path & path::operator *= (const ::string & str) { return operator *= (::file::path(str)); }
    path & path::operator *= (const char * psz) { return operator *= (::file::path(psz)); }
 
 
@@ -829,7 +831,7 @@ namespace file
 
 
 
-   e_path get_path_type(const string & str, e_path epathForce)
+   e_path get_path_type(const ::string & str, e_path epathForce)
    {
 
       if(epathForce != path_none)

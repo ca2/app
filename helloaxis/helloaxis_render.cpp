@@ -1209,7 +1209,7 @@ namespace helloaxis
       //return false;
    }
 
-   void render::helloaura_fast_render(const string & strHelloAXIS)
+   void render::helloaura_fast_render(const ::string & strHelloAXIS)
    {
 
 

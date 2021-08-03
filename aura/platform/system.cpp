@@ -269,7 +269,7 @@ namespace aura
    }
 
 
-   void system::locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const string & strLocale, const string & strSchema)
+   void system::locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::string & strLocale, const ::string & strSchema)
    {
 
 
@@ -2672,7 +2672,7 @@ namespace aura
    //}
 
 
-   //string system::crypto_md5_text(const string & str)
+   //string system::crypto_md5_text(const ::string & str)
    //{
 
    //   ::exception::throw_not_implemented();
@@ -3072,7 +3072,7 @@ namespace aura
 
 
 
-   //string system::url_encode(const string & str)
+   //string system::url_encode(const ::string & str)
    //{
 
    //   //__throw(error_interface_only);
@@ -3803,7 +3803,7 @@ namespace aura
 //
 //   }
 
-   ::image_pointer system::matter_cache_image(::object * pobject, const string & strMatter)
+   ::image_pointer system::matter_cache_image(::object * pobject, const ::string & strMatter)
    {
 
       string str(strMatter);
@@ -3872,7 +3872,7 @@ namespace aura
    }
 
 
-   ::image_pointer system::matter_image(::object * pobject, const string & strMatter, bool bCache, bool bSync)
+   ::image_pointer system::matter_image(::object * pobject, const ::string & strMatter, bool bCache, bool bSync)
    {
 
       string str(strMatter);
@@ -5058,7 +5058,7 @@ namespace aura
 
 
 
-   string system::crypto_md5_text(const string & str)
+   string system::crypto_md5_text(const ::string & str)
    {
 
       return crypto()->md5(str);
@@ -5144,7 +5144,7 @@ namespace aura
    //}
 
 
-   string system::url_encode(const string & str)
+   string system::url_encode(const ::string & str)
    {
 
       return m_purldepartment->url_encode(str);
@@ -5933,7 +5933,7 @@ namespace aura
    //   set_enum_name(::type_::u32     , "ulong");
    //   set_enum_name(::e_type_element       , "ca2");
    //   set_enum_name(::e_type_bool      , "bool");
-   //   set_enum_name(::e_type_double    , "double");*/
+   //   set_enum_name(::e_type_f64    , "double");*/
 
    //   //if (!::aura::application::init_application())
    //   //{

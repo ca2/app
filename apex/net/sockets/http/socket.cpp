@@ -425,7 +425,7 @@ namespace sockets
       
       string strLine;
       
-      strLine = m_response.attr(__id(http_version)).get_string() + " " + m_response.attr(__id(http_status_code)) + " " + m_response.attr(__id(http_status));
+      strLine = m_response.attr(__id(http_version)).string() + " " + m_response.attr(__id(http_status_code)) + " " + m_response.attr(__id(http_status));
 
       msg = strLine + "\r\n";
       
@@ -467,7 +467,7 @@ namespace sockets
 
          string strKey = pproperty->name();
 
-         string_array & straValue = pproperty->stra();
+         string_array & straValue = pproperty->as_stra();
 
          if (!http_filter_response_header(strKey, straValue))
          {
@@ -567,9 +567,9 @@ namespace sockets
 
       string strLine;
 
-      msg = m_request.attr("http_method").get_string() + " " + m_request.attr("request_uri").get_string() + " " + m_request.attr("http_version").get_string() + "\r\n";
+      msg = m_request.attr("http_method").string() + " " + m_request.attr("request_uri").string() + " " + m_request.attr("http_version").string() + "\r\n";
 
-      if (m_request.m_propertysetHeader[__id(host)].get_string().has_char())
+      if (m_request.m_propertysetHeader[__id(host)].string().has_char())
       {
 
          strLine = "Host: " + m_request.m_propertysetHeader[__id(host)];
@@ -591,7 +591,7 @@ namespace sockets
       for(auto & pproperty : m_request.m_propertysetHeader)
       {
 
-         string strValue = pproperty->get_string();
+         string strValue = pproperty->string();
 
          if (pproperty->name() == __id(content_type))
          {
@@ -746,7 +746,7 @@ namespace sockets
       if(IsRequest())
       {
 
-         m_body_size_left = atol(m_request.header(__id(content_length)));
+         m_request.header(__id(content_length)).as(m_body_size_left);
 
          m_body_size_downloaded = 0;
 
@@ -755,7 +755,7 @@ namespace sockets
       if(IsResponse())
       {
 
-         m_body_size_left = atol(m_response.header(__id(content_length)));
+         m_response.header(__id(content_length)).as(m_body_size_left);
 
          m_body_size_downloaded = 0;
 

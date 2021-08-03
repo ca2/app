@@ -688,7 +688,7 @@ namespace android
    }
 
 
-   //bool dir_context::is(const string & strPath)
+   //bool dir_context::is(const ::string & strPath)
    //{
 
    //   if(::file::system_dir::is(strPath))
@@ -861,7 +861,7 @@ namespace android
    }
 
 
-   ::file::path dir_context::time_log(const string & strId)
+   ::file::path dir_context::time_log(const ::string & strId)
    {
 
       return appdata() / "log";

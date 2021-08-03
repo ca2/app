@@ -35,9 +35,39 @@ namespace html
       return *this;
    }
 
+   ::color::color style::parse_color(const ::string & str)
+   {
+
+      return _parse_color(str);
+
+   }
 
 
-   ::color::color style::parse_color(const char * psz)
+   float style::parse_dimension(const ::string & str)
+   {
+
+      return _parse_dimension(str);
+
+   }
+
+
+   bool style::parse_border_width(const ::string & str, float & f)
+   {
+
+      return _parse_border_width(str, f);
+
+   }
+
+
+   bool style::parse_border_color(const ::string & str, ::color::color & color)
+   {
+
+      return _parse_border_color(str, color);
+
+   }
+
+
+   ::color::color style::_parse_color(const char * psz)
    {
 
       ::color::color color;
@@ -49,7 +79,7 @@ namespace html
    }
 
 
-   bool style::get_dimension(bool bParent, id idName, const string & strSubClass, html_data * pdata, ::html::element* pelement, float & f)
+   bool style::get_dimension(bool bParent, id idName, const ::string & strSubClass, html_data * pdata, ::html::element* pelement, float & f)
    {
 
       f = 0.f;
@@ -91,14 +121,14 @@ namespace html
 
       }
 
-      f = parse_dimension(m_propertyset[idName]);
+      f = parse_dimension(m_propertyset[idName].to_string());
 
       return true;
 
    }
 
 
-   bool style::get_surround_box(id idName, const string & strSubClass, html_data * pdata, ::html::element * pelement, ::rectangle_f32 & rectangle)
+   bool style::get_surround_box(id idName, const ::string & strSubClass, html_data * pdata, ::html::element * pelement, ::rectangle_f32 & rectangle)
    {
 
       e_tag etag = pelement->m_etag;
@@ -166,7 +196,7 @@ namespace html
       if(pstyle != nullptr)
       {
 
-         f = parse_dimension(pstyle->m_propertyset[idName]);
+         f = parse_dimension(pstyle->m_propertyset[idName].to_string());
 
       }
 
@@ -178,7 +208,7 @@ namespace html
          if(pstyleCur == pstyleLeft && if_then(pstyleLeft == pstyle, iLeft > i))
          {
 
-            rectangle.left = parse_dimension(pstyleLeft->m_propertyset[iLeft].get_string());
+            rectangle.left = parse_dimension(pstyleLeft->m_propertyset[iLeft].string());
 
          }
          else
@@ -198,7 +228,7 @@ namespace html
          if(pstyleCur == pstyleTop && if_then(pstyleTop == pstyle, iTop > i))
          {
 
-            rectangle.top =  parse_dimension(pstyleTop->m_propertyset[iTop].get_string());
+            rectangle.top =  parse_dimension(pstyleTop->m_propertyset[iTop].string());
 
          }
          else
@@ -218,7 +248,7 @@ namespace html
          if(pstyleCur == pstyleRight && if_then(pstyleRight == pstyle, iRight > i))
          {
 
-            rectangle.right =  parse_dimension(pstyleRight->m_propertyset[iRight].get_string());
+            rectangle.right =  parse_dimension(pstyleRight->m_propertyset[iRight].string());
 
          }
          else
@@ -238,7 +268,7 @@ namespace html
          if(pstyleCur == pstyleBottom && if_then(pstyleBottom == pstyle, iBottom > i))
          {
 
-            rectangle.bottom =  parse_dimension(pstyleBottom->m_propertyset[iBottom].get_string());
+            rectangle.bottom =  parse_dimension(pstyleBottom->m_propertyset[iBottom].string());
 
          }
          else
@@ -255,7 +285,7 @@ namespace html
    }
 
 
-   bool style::get_border_box(id idName, const string & strSubClass, html_data * pdata, ::html::element* pelement, border & rectangle)
+   bool style::get_border_box(id idName, const ::string & strSubClass, html_data * pdata, ::html::element* pelement, border & rectangle)
    {
 
       e_tag etag = pelement->m_etag;
@@ -399,35 +429,35 @@ namespace html
       varCur            = var1;
       pdata->m_pcoredata->m_stylesheeta.greater(pstyleCur, iCur, varCur, pstyleCur, iCur, varCur, pstyleLeft, iLeft, fLeft);
       pdata->m_pcoredata->m_stylesheeta.greater(pstyleCur, iCur, varCur, pstyleCur, iCur, varCur, pstyleLeftW, iLeftW, fLeftW);
-      rectangle.left          = (float) (double) varCur.get_double();
+      rectangle.left          = (float) (double) varCur.f64();
 
       pstyleCur         = pstyle1;
       iCur              = i1;
       varCur            = var1;
       pdata->m_pcoredata->m_stylesheeta.greater(pstyleCur, iCur, varCur, pstyleCur, iCur, varCur, pstyleTop, iTop, fTop);
       pdata->m_pcoredata->m_stylesheeta.greater(pstyleCur, iCur, varCur, pstyleCur, iCur, varCur, pstyleTopW, iTopW, fTopW);
-      rectangle.top           = (float) (double) varCur.get_double();
+      rectangle.top           = (float) (double) varCur.f64();
 
       pstyleCur         = pstyle1;
       iCur              = i1;
       varCur            = var1;
       pdata->m_pcoredata->m_stylesheeta.greater(pstyleCur, iCur, varCur, pstyleCur, iCur, varCur, pstyleRight, iRight, fRight);
       pdata->m_pcoredata->m_stylesheeta.greater(pstyleCur, iCur, varCur, pstyleCur, iCur, varCur, pstyleRightW, iRightW, fRightW);
-      rectangle.right         = (float) (double) varCur.get_double();
+      rectangle.right         = (float) (double) varCur.f64();
 
       pstyleCur         = pstyle1;
       iCur              = i1;
       varCur            = var1;
       pdata->m_pcoredata->m_stylesheeta.greater(pstyleCur, iCur, varCur, pstyleCur, iCur, varCur, pstyleBottom, iBottom, fBottom);
       pdata->m_pcoredata->m_stylesheeta.greater(pstyleCur, iCur, varCur, pstyleCur, iCur, varCur, pstyleBottomW, iBottomW, fBottomW);
-      rectangle.bottom        = (float) (double) varCur.get_double();
+      rectangle.bottom        = (float) (double) varCur.f64();
 
       return true;
 
    }
 
 
-   bool style::get_border_color(id idName, const string & strSubClass, html_data * pdata, ::html::element * pelement, border & rectangle)
+   bool style::get_border_color(id idName, const ::string & strSubClass, html_data * pdata, ::html::element * pelement, border & rectangle)
    {
 
       e_tag etag = pelement->m_etag;
@@ -572,35 +602,35 @@ namespace html
       varCur            = var1;
       pdata->m_pcoredata->m_stylesheeta.greater(pstyleCur, iCur, varCur, pstyleCur, iCur, varCur, pstyleLeft, iLeft, (u32 &) crLeft);
       pdata->m_pcoredata->m_stylesheeta.greater(pstyleCur, iCur, varCur, pstyleCur, iCur, varCur, pstyleLeftW, iLeftW, (u32 &) crLeftW);
-      rectangle.crLeft        = (u32) varCur;
+      rectangle.crLeft        = (u32) varCur.u32();
 
       pstyleCur         = pstyle1;
       iCur              = i1;
       varCur            = var1;
       pdata->m_pcoredata->m_stylesheeta.greater(pstyleCur, iCur, varCur, pstyleCur, iCur, varCur, pstyleTop, iTop, (u32 &) crTop);
       pdata->m_pcoredata->m_stylesheeta.greater(pstyleCur, iCur, varCur, pstyleCur, iCur, varCur, pstyleTopW, iTopW, (u32 &) crTopW);
-      rectangle.crTop         = (u32) varCur;
+      rectangle.crTop         = (u32) varCur.u32();
 
       pstyleCur         = pstyle1;
       iCur              = i1;
       varCur            = var1;
       pdata->m_pcoredata->m_stylesheeta.greater(pstyleCur, iCur, varCur, pstyleCur, iCur, varCur, pstyleRight, iRight, (u32 &) crRight);
       pdata->m_pcoredata->m_stylesheeta.greater(pstyleCur, iCur, varCur, pstyleCur, iCur, varCur, pstyleRightW, iRightW, (u32 &) crRightW);
-      rectangle.crRight       = (u32) varCur;
+      rectangle.crRight       = (u32) varCur.u32();
 
       pstyleCur         = pstyle1;
       iCur              = i1;
       varCur            = var1;
       pdata->m_pcoredata->m_stylesheeta.greater(pstyleCur, iCur, varCur, pstyleCur, iCur, varCur, pstyleBottom, iBottom, (u32 &) crBottom);
       pdata->m_pcoredata->m_stylesheeta.greater(pstyleCur, iCur, varCur, pstyleCur, iCur, varCur, pstyleBottomW, iBottomW, (u32 &) crBottomW);
-      rectangle.crBottom      = (u32) varCur;
+      rectangle.crBottom      = (u32) varCur.u32();
 
       return true;
 
    }
 
 
-   bool style::get_color(id idName, const string & strSubClass, html_data * pdata, const ::html::element * pelement, ::color::color & color32)
+   bool style::get_color(id idName, const ::string & strSubClass, html_data * pdata, const ::html::element * pelement, ::color::color & color32)
    {
 
       e_tag etag = pelement->m_etag;
@@ -632,7 +662,7 @@ namespace html
    }
 
 
-   bool style::get_text(id idName, const string & strSubClass, html_data * pdata, const ::html::element * pelement, string & str)
+   bool style::get_text(id idName, const ::string & strSubClass, html_data * pdata, const ::html::element * pelement, string & str)
    {
 
       e_tag etag = pelement->m_etag;
@@ -805,7 +835,7 @@ namespace html
    }
 
 
-   bool style::get_alpha(const string & strSubClass, html_data * pdata, const ::html::element * pelement, double & d)
+   bool style::get_alpha(const ::string & strSubClass, html_data * pdata, const ::html::element * pelement, double & d)
    {
 
       const char* idName = "opacity";
@@ -826,7 +856,7 @@ namespace html
 
       }
 
-      d = m_propertyset["opacity"];
+      m_propertyset["opacity"].as(d);
 
       return true;
 
@@ -876,7 +906,7 @@ namespace html
    }
 
 
-   bool style::matches(e_tag etag, const string & strClass, const string & strSubClass, id idName)
+   bool style::matches(e_tag etag, const ::string & strClass, const ::string & strSubClass, id idName)
    {
 
       if(etag != tag_none && m_etag != tag_none)
@@ -895,7 +925,7 @@ namespace html
    }
 
 
-   bool style::matches_border_width(e_tag etag, const string & strClass, const string & strSubClass, id idName, float & f)
+   bool style::matches_border_width(e_tag etag, const ::string & strClass, const ::string & strSubClass, id idName, float & f)
    {
       if(etag != tag_none && m_etag != tag_none)
          if(m_etag != etag)
@@ -911,13 +941,13 @@ namespace html
       index i = m_propertyset.find_index(idName);
       if(i < 0)
          return false;
-      if(!parse_border_width(m_propertyset[i].get_string(),f))
+      if(!parse_border_width(m_propertyset[i].string(),f))
          return false;
       return true;
    }
 
 
-   bool style::matches_border_color(e_tag etag, const string & strClass, const string & strSubClass, id idName, ::color::color & color32)
+   bool style::matches_border_color(e_tag etag, const ::string & strClass, const ::string & strSubClass, id idName, ::color::color & color32)
    {
 
       if (etag != tag_none && m_etag != tag_none)
@@ -972,7 +1002,7 @@ namespace html
 
       }
 
-      if (!parse_border_color(m_propertyset[i].get_string(), color32))
+      if (!parse_border_color(m_propertyset[i].string(), color32))
       {
 
          return false;
@@ -983,10 +1013,10 @@ namespace html
    }
 
 
-   float style::parse_dimension(const char * psz)
+   float style::_parse_dimension(const char * pszParam)
    {
 
-      string str(psz);
+      string str(pszParam);
 
       str.trim();
       if(::str::ends_eat_ci(str, "px"))
@@ -1006,18 +1036,27 @@ namespace html
 
    }
 
-   bool style::parse_border_width(const char * psz, float & f)
+
+   bool style::_parse_border_width(const char * psz, float & f)
    {
 
-      if(psz == nullptr)
+      if (::is_null(psz))
+      {
+       
          return false;
+
+      }
 
       string str(psz);
 
       str.trim();
 
-      if(str.is_empty())
+      if (str.is_empty())
+      {
+
          return false;
+
+      }
 
       // todo ::str::find_cssci would find thick between spaces but not concatenated
       if(str.find_ci("thick") >= 0)
@@ -1151,10 +1190,10 @@ namespace html
       return true;
    }
 
-   bool style::parse_border_color(const char * pszParam, ::color::color & color32)
+   bool style::_parse_border_color(const char * pszParam, ::color::color & color32)
    {
 
-      if(pszParam == nullptr)
+      if(::is_null(pszParam))
          return false;
 
       string str(pszParam);
@@ -1195,7 +1234,7 @@ namespace html
       if(iFindColor < 0)
          return false;
 
-      const char * psz = &str[iFindColor];
+      const char * psz = &pszParam[iFindColor];
       const char * pszStart = psz;
       if(iFindRgb >= 0)
       {

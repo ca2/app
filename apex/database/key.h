@@ -122,7 +122,7 @@ namespace database
       }
 
 
-      key & operator +=(const string & strDataKey)
+      key & operator +=(const ::string & strDataKey)
       {
 
          if (m_strDataKey.is_empty())
@@ -143,7 +143,7 @@ namespace database
       }
 
 
-      key operator + (const string & strDataKey) const
+      key operator + (const ::string & strDataKey) const
       {
 
          ::database::key keyAdd(*this);

@@ -356,36 +356,36 @@ namespace draw2d_opengl
 
       // Text Functions
       //virtual bool TextOut(i32 x, i32 y, const char * lpszString, strsize nCount);
-      //virtual bool TextOut(i32 x, i32 y, const string & str);
+      //virtual bool TextOut(i32 x, i32 y, const ::string & str);
       //virtual bool TextOut(double x, double y, const char * lpszString, strsize nCount);
-      //virtual bool TextOut(double x, double y, const string & str);
+      //virtual bool TextOut(double x, double y, const ::string & str);
       //virtual bool ExtTextOut(i32 x, i32 y, ::u32 nOptions, const RECTANGLE_I32 &  rectangle, const char * lpszString,strsize nCount, LPINT lpDxWidths);
-      //virtual bool ExtTextOut(i32 x, i32 y, ::u32 nOptions, const RECTANGLE_I32 &  rectangle, const string & str, LPINT lpDxWidths);
+      //virtual bool ExtTextOut(i32 x, i32 y, ::u32 nOptions, const RECTANGLE_I32 &  rectangle, const ::string & str, LPINT lpDxWidths);
       //virtual size_i32 TabbedTextOut(i32 x, i32 y, const char * lpszString, strsize nCount,count nTabPositions, LPINT lpnTabStopPositions, i32 nTabOrigin);
-      //virtual size_i32 TabbedTextOut(i32 x, i32 y, const string & str,count nTabPositions, LPINT lpnTabStopPositions, i32 nTabOrigin);
+      //virtual size_i32 TabbedTextOut(i32 x, i32 y, const ::string & str,count nTabPositions, LPINT lpnTabStopPositions, i32 nTabOrigin);
 
       virtual bool text_out(double x, double y, const char* lpszString, strsize nCount) override;
 
-      virtual bool draw_text(const string & str,const ::rectangle_i32 & rectangle, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none);
+      virtual bool draw_text(const ::string & str,const ::rectangle_i32 & rectangle, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none);
 
-      virtual bool draw_text_ex(const string & str,const ::rectangle_i32 & rectangle, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none,LPDRAWTEXTPARAMS lpDTParams = nullptr);
+      virtual bool draw_text_ex(const ::string & str,const ::rectangle_i32 & rectangle, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none,LPDRAWTEXTPARAMS lpDTParams = nullptr);
 
-      virtual bool draw_text(const string & str,const ::rectangle_f64 & rectangle, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none);
+      virtual bool draw_text(const ::string & str,const ::rectangle_f64 & rectangle, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none);
 
-      virtual bool draw_text_ex(const string & str,const ::rectangle_f64 & rectangle, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none,LPDRAWTEXTPARAMS lpDTParams = nullptr);
+      virtual bool draw_text_ex(const ::string & str,const ::rectangle_f64 & rectangle, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none,LPDRAWTEXTPARAMS lpDTParams = nullptr);
 
       virtual size_f64 get_text_extent(const char * lpszString, strsize nCount, strsize iIndex) override;
       virtual size_f64 get_text_extent(const char * lpszString, strsize nCount) override;
-      virtual size_f64 get_text_extent(const string & str) override;
+      virtual size_f64 get_text_extent(const ::string & str) override;
       virtual bool get_text_extent(size_f64 & size, const char * lpszString, strsize nCount, strsize iIndex);
       virtual bool get_text_extent(size_f64 & size, const char * lpszString, strsize nCount);
-      virtual bool get_text_extent(size_f64 & size, const string & str);
+      virtual bool get_text_extent(size_f64 & size, const ::string & str);
       virtual size_i32 GetOutputTextExtent(const char * lpszString, strsize nCount);
-      virtual size_i32 GetOutputTextExtent(const string & str);
+      virtual size_i32 GetOutputTextExtent(const ::string & str);
       virtual size_i32 GetTabbedTextExtent(const char * lpszString, strsize nCount,count nTabPositions, LPINT lpnTabStopPositions);
-      virtual size_i32 GetTabbedTextExtent(const string & str,count nTabPositions, LPINT lpnTabStopPositions);
+      virtual size_i32 GetTabbedTextExtent(const ::string & str,count nTabPositions, LPINT lpnTabStopPositions);
       virtual size_i32 GetOutputTabbedTextExtent(const char * lpszString, strsize nCount,count nTabPositions, LPINT lpnTabStopPositions);
-      virtual size_i32 GetOutputTabbedTextExtent(const string & str,count nTabPositions, LPINT lpnTabStopPositions);
+      virtual size_i32 GetOutputTabbedTextExtent(const ::string & str,count nTabPositions, LPINT lpnTabStopPositions);
       virtual bool GrayString(::draw2d::brush* pBrush, bool (CALLBACK* lpfnOutput)(HDC, LPARAM, i32), LPARAM lpData, i32 nCount, i32 x, i32 y, i32 nWidth, i32 nHeight);
       virtual ::u32 GetTextAlign();
       virtual ::u32 SetTextAlign(::u32 nFlags);

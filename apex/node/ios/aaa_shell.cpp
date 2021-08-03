@@ -1733,7 +1733,7 @@ namespace ios
 //   }
 
 
-//   i32 ios::get_image(oswindow oswindow, const string & strPath, e_file_attribute eattribute, e_icon eicon, color32_t crBk)
+//   i32 ios::get_image(oswindow oswindow, const ::string & strPath, e_file_attribute eattribute, e_icon eicon, color32_t crBk)
 //   {
 //
 //      i32 iImage = 0x80000000;
@@ -1801,7 +1801,7 @@ namespace ios
 //   }
 //
 //
-//   i32 ios::get_image_foo(oswindow oswindow, const string & strExtension, e_file_attribute eattribute, e_icon eicon, color32_t crBk)
+//   i32 ios::get_image_foo(oswindow oswindow, const ::string & strExtension, e_file_attribute eattribute, e_icon eicon, color32_t crBk)
 //   {
 //
 //      i32 iImage = 0x80000000;

@@ -93,7 +93,7 @@ namespace filemanager
 
             }
 
-            m_iParentFolder = pxmldocument->root()->attribute("id");
+            pxmldocument->root()->attribute("id").as(m_iParentFolder);
 
             __pointer(::data::tree_item) ptreeitemParent;
 
@@ -128,9 +128,9 @@ namespace filemanager
             for(i32 i = 0 ; i < pnodeFolder->get_children_count(); i++)
             {
 
-               __pointer(::xml::node) pnodeItem = pnodeFolder->child_at(i);
+               auto pnodeItem = pnodeFolder->child_at(i);
 
-               ::index iFolder = pnodeItem->attribute("id");
+               auto iFolder = pnodeItem->attribute("id").iptr();
 
                index iNewItem = m_foldera.find_absolute(iFolder);
 

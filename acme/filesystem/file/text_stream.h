@@ -68,7 +68,7 @@ public:
 
    ::e_status destroy() override;
 
-   virtual void to_string(const string_exchange & str) const override;
+   string to_string() const override;
 
    template < typename TYPE >
    void number_read(TYPE & t)
@@ -200,8 +200,8 @@ public:
    //virtual void json_write(const ::matter & matter);
 
 
-   virtual void raw_print(const string & str);
-   virtual void print_number(const string & str);
+   virtual void raw_print(const ::string & str);
+   virtual void print_number(const ::string & str);
 
    virtual ::string get_location() const;
 

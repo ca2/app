@@ -22,7 +22,7 @@ namespace regular_expression_pcre2
 
       //create_context(int iSizeData);
 
-      virtual ::regular_expression_pointer compile(const string & str) override;
+      virtual ::regular_expression_pointer compile(const ::string & str) override;
 
 
 //      protected:

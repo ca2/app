@@ -763,7 +763,7 @@ file_pointer context::friendly_get_file(::payload varFile, ::u32 nOpenFlags)
 }
 
 
-string context::http_get(const string & strUrl, ::property_set & set)
+string context::http_get(const ::string & strUrl, ::property_set & set)
 {
 
    UNREFERENCED_PARAMETER(strUrl);
@@ -843,7 +843,7 @@ string context::get_schema()
 }
 
 
-void context::locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const string & strLocale, const string & strSchema)
+void context::locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::string & strLocale, const ::string & strSchema)
 {
 
    if (get_application())

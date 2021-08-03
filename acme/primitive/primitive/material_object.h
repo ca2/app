@@ -18,10 +18,10 @@ public:
       matter(::move(object)),
       m_id(::move(object.m_id))
    {  }
-   virtual ~material_object();
+   ~material_object() override;
 
 
-
+   virtual ::string to_string() const;
 
    template < typename TYPE >
    inline __pointer(TYPE) cast() { return this; }

@@ -779,7 +779,7 @@ namespace graphics
    }
 
 
-   void console::to_string(const string_exchange & str) const
+   string console::to_string() const
    {
 
       __throw(error_not_implemented);

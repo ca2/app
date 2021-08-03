@@ -107,7 +107,7 @@ critical_section * g_pcsDemangle = nullptr;
 //}
 //
 //
-//type::type(const string & strName, const string & strFriendlyName)
+//type::type(const ::string & strName, const ::string & strFriendlyName)
 //{
 //
 //   m_pfactoryitem = nullptr;
@@ -176,7 +176,7 @@ critical_section * g_pcsDemangle = nullptr;
 //}
 //
 //
-//bool type::operator == (const string & strName) const
+//bool type::operator == (const ::string & strName) const
 //{
 //
 //   return m_id == strName;
@@ -216,7 +216,7 @@ critical_section * g_pcsDemangle = nullptr;
 //}
 //
 //
-//bool type::operator != (const string & strName) const
+//bool type::operator != (const ::string & strName) const
 //{
 //
 //   return m_id != strName;

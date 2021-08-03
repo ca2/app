@@ -1429,7 +1429,7 @@ namespace html
    }
 
 
-   void element::_001SetText(const string & str, const ::action_context & context)
+   void element::_001SetText(const ::string & str, const ::action_context & context)
    {
 
       if (m_pbase->get_type() == base::type_tag)
@@ -1646,7 +1646,7 @@ namespace html
 
             str += "\"";
 
-            str += pproperty->get_string();
+            str += pproperty->string();
 
             str += "\"";
 

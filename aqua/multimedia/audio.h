@@ -25,10 +25,10 @@ namespace aqua
 
       virtual __pointer(::tts::speaker) create_tts_speaker();
 
-      virtual void speak(const string & strText);
-      virtual void speak(const string & strLang, const string & strText, bool bSynch);
-      virtual void trans_speak(const string & strLang, const string & strText, bool bSynch);
-      virtual void google_speak(const string & strLang, const string & strText, bool bSynch);
+      virtual void speak(const ::string & strText);
+      virtual void speak(const ::string & strLang, const ::string & strText, bool bSynch);
+      virtual void trans_speak(const ::string & strLang, const ::string & strText, bool bSynch);
+      virtual void google_speak(const ::string & strLang, const ::string & strText, bool bSynch);
 
 
       virtual ::file_pointer get_rtp_file(const ::payload & varFile);

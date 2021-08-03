@@ -18,7 +18,7 @@ namespace apex
       __pointer(::application_container)  m_pcontainer;
 
 
-      assert_running_task(::application_container * pcontainer,const string & strAppId, const string & strLocale, const string & strSchema);
+      assert_running_task(::application_container * pcontainer,const ::string & strAppId, const ::string & strLocale, const ::string & strSchema);
       virtual ~assert_running_task();
 
 

@@ -568,7 +568,7 @@ string _001OnlyAlnumNonVowelString(const char * psz)
 }
 
 
-string _001CompactString(const string & str, int iSkip, int iSkipBegin = 0)
+string _001CompactString(const ::string & str, int iSkip, int iSkipBegin = 0)
 {
 
    string strCompact;

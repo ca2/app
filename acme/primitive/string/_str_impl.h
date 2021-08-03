@@ -612,9 +612,22 @@ inline void to(long  & l, i32 iBase, const ansichar * psz)
    inline void from(string & str, const TYPE & t)
    {
 
-      t.to_string(str);
+      str = t.to_string();
 
    }
+
+   //inline void from(string & str, const matter & t)
+   //{
+
+   //   auto len = t.sz_len();
+
+   //   auto psz = str.get_string_buffer(len);
+
+   //   t.to_sz(psz, len);
+
+   //   str.release_string_buffer(len);
+
+   //}
 
 
 #ifdef _UWP
@@ -680,7 +693,7 @@ inline void to(long  & l, i32 iBase, const ansichar * psz)
 
    CLASS_DECL_ACME void from(string & str, const ::text_stream & strstream);
 
-   inline string _001Concat(const string & str1, const string & strMid, const string & str2)
+   inline string _001Concat(const ::string & str1, const ::string & strMid, const ::string & str2)
    {
 
       if (str1.is_empty())

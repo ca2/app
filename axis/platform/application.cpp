@@ -290,7 +290,7 @@ namespace axis
 //
 //
 
-//   string CLASS_DECL_AXIS application::get_cred(const string & strRequestUrl, const ::rectangle_i32 & rectangle, string & strUsername, string & strPassword, string strToken, string strTitle, bool bInteractive)
+//   string CLASS_DECL_AXIS application::get_cred(const ::string & strRequestUrl, const ::rectangle_i32 & rectangle, string & strUsername, string & strPassword, string strToken, string strTitle, bool bInteractive)
 // {
 
 //  __throw(error_not_implemented);

@@ -122,7 +122,7 @@ namespace helloaxis
       ::image_pointer & image23(string strDib) override;
 
       virtual bool in_anime() override;
-      virtual void helloaura_fast_render(const string & strHelloAxis) override;
+      virtual void helloaura_fast_render(const ::string & strHelloAxis) override;
 
 
    };

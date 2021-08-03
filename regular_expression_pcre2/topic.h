@@ -22,7 +22,7 @@ namespace regular_expression_pcre2
       topic();
       virtual ~topic();
 
-      ::e_status create(const string & str) override;
+      ::e_status create(const ::string & str) override;
 
 
       ::count get_count() const override;
@@ -31,7 +31,7 @@ namespace regular_expression_pcre2
 
       void _get_range_array() override;
 
-      //virtual bool replace(string & strFind, const string & strReplace, string & strResult) override;
+      //virtual bool replace(string & strFind, const ::string & strReplace, string & strResult) override;
 
 
    };

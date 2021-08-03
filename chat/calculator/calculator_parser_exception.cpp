@@ -4,7 +4,7 @@
 thread_int_ptr < iptr > t_iAvoidNumericParserException;
 
 
-numeric_parser_exception::numeric_parser_exception(::object * pobject,const string & strMessage):
+numeric_parser_exception::numeric_parser_exception(::object * pobject,const ::string & strMessage):
 ::object(pobject),
 ::call_stack(this),
 ::exception::exception(),
@@ -26,7 +26,7 @@ CLASS_DECL_CA2_MATH bool get_avoid_numeric_parser_exception()
 
 }
 
-CLASS_DECL_CA2_MATH bool throw_numeric_parser_exception(const string & strMessage)
+CLASS_DECL_CA2_MATH bool throw_numeric_parser_exception(const ::string & strMessage)
 {
 
    if(get_avoid_numeric_parser_exception())

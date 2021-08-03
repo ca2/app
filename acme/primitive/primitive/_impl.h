@@ -121,7 +121,7 @@ inline stream & operator >> (stream & stream, type & type)
 }
 
 
-inline bool get_memory::get_base64(const string & str)
+inline bool get_memory::get_base64(const ::string & str)
 {
 
    if (::is_set(m_pmemory))
@@ -248,10 +248,10 @@ inline ::payload property_set::operator()(const ::id & id, const ::payload & var
 }
 
 
-inline ::payload property_set::topic(const id & id)
+inline ::payload & property_set::topic(const id & id)
 {
 
-   return &set(id);
+   return set(id);
 
 }
 
@@ -311,7 +311,7 @@ inline string  id::operator +(const char * psz) const
 }
 
 
-inline string  id::operator +(const string & str) const
+inline string  id::operator +(const ::string & str) const
 {
 
    return to_string() +str;
@@ -569,16 +569,16 @@ inline ::property * payload::find_property(const ::id & id) const
       return m_ppayload->find_property(id);
 
    }
-   else if (m_etype == e_type_prop)
+   else if (m_etype == e_type_property)
    {
 
-      return m_pprop->find_property(id);
+      return m_pproperty->find_property(id);
 
    }
    else if (m_etype == e_type_property_set)
    {
 
-      return m_pset->find_property(id);
+      return m_ppropertyset->find_property(id);
 
    }
 
@@ -596,16 +596,16 @@ inline ::index payload::property_index(const ::id & id) const
       return m_ppayload->property_index(id);
 
    }
-   else if (m_etype == e_type_prop)
+   else if (m_etype == e_type_property)
    {
 
-      return m_pprop->property_index(id);
+      return m_pproperty->property_index(id);
 
    }
    else if (m_etype == e_type_property_set)
    {
 
-      return m_pset->find_index(id);
+      return m_ppropertyset->find_index(id);
 
    }
 
@@ -623,16 +623,16 @@ inline property & payload::get_property(const ::id & id)
       return m_ppayload->get_property(id);
 
    }
-   else if (m_etype == e_type_prop)
+   else if (m_etype == e_type_property)
    {
 
-      return m_pprop->get_property(id);
+      return m_pproperty->get_property(id);
 
    }
    else if (m_etype == e_type_property_set)
    {
 
-      return m_pset->get(id);
+      return m_ppropertyset->get(id);
 
    }
 
@@ -641,7 +641,7 @@ inline property & payload::get_property(const ::id & id)
 }
 
 
-inline bool id::begins(const string & strPrefix) const
+inline bool id::begins(const ::string & strPrefix) const
 {
 
    if (strPrefix.is_empty())
@@ -683,7 +683,7 @@ inline bool id::begins(const string & strPrefix) const
 }
 
 
-inline bool id::begins_ci(const string & strPrefix) const
+inline bool id::begins_ci(const ::string & strPrefix) const
 {
 
    if (strPrefix.is_empty())
@@ -1750,39 +1750,39 @@ inline i64 matter::release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
 //}
 //
 
-inline payload::operator string & ()
-{
-
-   if (m_etype == ::e_type_payload_pointer)
-   {
-
-      return m_ppayload->operator string & ();
-
-   }
-   else if (m_etype == ::e_type_prop)
-   {
-
-      return m_pprop->operator string & ();
-
-   }
-   else if (m_etype == ::e_type_pstring)
-   {
-
-      return *m_pstr;
-
-   }
-   else if (m_etype != ::e_type_string)
-   {
-
-      m_str = get_string();
-
-      set_type(e_type_string, false);
-
-   }
-
-   return m_str;
-
-}
+//inline string &  payload::as_string ()
+//{
+//
+//   if (m_etype == ::e_type_payload_pointer)
+//   {
+//
+//      return m_ppayload->as_string();
+//
+//   }
+//   else if (m_etype == ::e_type_property)
+//   {
+//
+//      return m_pproperty->as_string();
+//
+//   }
+//   else if (m_etype == ::e_type_pstring)
+//   {
+//
+//      return *m_pstr;
+//
+//   }
+//   else if (m_etype != ::e_type_string)
+//   {
+//
+//      m_str = this->string();
+//
+//      set_type(e_type_string, false);
+//
+//   }
+//
+//   return m_str;
+//
+//}
 
 
 //inline payload::operator string() const
@@ -1792,29 +1792,29 @@ inline payload::operator string & ()
 //
 //}
 
-#define IMPL_VAR_REF(TYPE, VAR, ENUM)        \
-   inline payload::operator TYPE &()                  \
+#define IMPL_VAR_REF(TYPE, VAR, NAME)        \
+   inline TYPE & payload::as_ ## NAME()      \
    {                                         \
                                              \
       if(m_etype == ::e_type_payload_pointer)        \
       {                                      \
                                              \
-         return m_ppayload->operator TYPE &();   \
+         return m_ppayload->as_ ## NAME();   \
                                              \
       }                                      \
-      else if(m_etype == ::e_type_prop)        \
+      else if(m_etype == ::e_type_property)        \
       {                                      \
                                              \
-         return m_pprop->operator TYPE &();   \
+         return m_pproperty->as_ ## NAME();   \
                                              \
       }                                      \
-      else if(m_etype == ::e_type_p ## ENUM)        \
+      else if(m_etype == ::e_type_p ## NAME)        \
       {                                      \
                                              \
          return *m_p ## VAR;                 \
                                              \
       }                                      \
-      else if(m_etype == ::e_type_ ## ENUM)    \
+      else if(m_etype == ::e_type_ ## NAME)    \
       {                                      \
                                              \
          return m_ ## VAR;                   \
@@ -1823,7 +1823,7 @@ inline payload::operator string & ()
       else                                   \
       {                                      \
                                              \
-         set_type(::e_type_ ## ENUM, true);   \
+         set_type(::e_type_ ## NAME, true);   \
                                              \
          return m_ ## VAR;                   \
                                              \
@@ -1831,40 +1831,40 @@ inline payload::operator string & ()
                                              \
    }
 
+//
+////#define IMPL_VAR_REF1(TYPE, VAR) IMPL_VAR_REF(TYPE, VAR, TYPE)
+//IMPL_VAR_REF(bool, b, bool);
+////#undef IMPL_VAR_REF1
+////
+//
+//#define IMPL_VAR_REF2(TYPE, VAR) IMPL_VAR_REF(TYPE, VAR, VAR)
+//IMPL_VAR_REF2(::i8, i8);
+//IMPL_VAR_REF2(::u8, u8);
+//IMPL_VAR_REF2(::i16, i16);
+//IMPL_VAR_REF2(::u16, u16);
+//IMPL_VAR_REF2(::i32, i32);
+//IMPL_VAR_REF2(::u32, u32);
+//IMPL_VAR_REF2(::i64, i64);
+//IMPL_VAR_REF2(::u64, u64);
+//#undef IMPL_VAR_REF2
 
-#define IMPL_VAR_REF1(TYPE, VAR) IMPL_VAR_REF(TYPE, VAR, TYPE)
-IMPL_VAR_REF1(bool, b);
-#undef IMPL_VAR_REF1
 
-
-#define IMPL_VAR_REF2(TYPE, VAR) IMPL_VAR_REF(TYPE, VAR, VAR)
-IMPL_VAR_REF2(::i8, i8);
-IMPL_VAR_REF2(::u8, u8);
-IMPL_VAR_REF2(::i16, i16);
-IMPL_VAR_REF2(::u16, u16);
-IMPL_VAR_REF2(::i32, i32);
-IMPL_VAR_REF2(::u32, u32);
-IMPL_VAR_REF2(::i64, i64);
-IMPL_VAR_REF2(::u64, u64);
-#undef IMPL_VAR_REF2
-
-
-#define IMPL_VAR_REF3(TYPE, VAR) IMPL_VAR_REF(TYPE, VAR, TYPE)
-IMPL_VAR_REF3(float, f);
-IMPL_VAR_REF3(double, d);
-#undef IMPL_VAR_REF3
+//#define IMPL_VAR_REF3(TYPE, VAR) IMPL_VAR_REF(TYPE, VAR, TYPE)
+//IMPL_VAR_REF3(::f32, f32);
+//IMPL_VAR_REF3(::f64, f64);
+//#undef IMPL_VAR_REF3
 
 
 #undef IMPL_VAR_REF
 
-
-inline payload::operator ::memory & ()
-{
-
-   return this->memory();
-
-}
-
+//
+//inline ::memory & payload::as_memory()
+//{
+//
+//   return this->mem();
+//
+//}
+//
 
 inline payload::operator ::memory() const
 {
@@ -1874,40 +1874,37 @@ inline payload::operator ::memory() const
 }
 
 
-
-
-
-inline payload::operator ::e_status &()
-{
-
-   if(m_etype == ::e_type_payload_pointer)
-   {
-
-      return m_ppayload->operator ::e_status &();
-
-   }
-   else if(m_etype == ::e_type_prop)
-   {
-
-      return m_pprop->operator ::e_status &();
-
-   }
-   else if(m_etype == ::e_type_enum_status)
-   {
-
-      return m_estatus;
-
-   }
-   else
-   {
-
-      set_type(::e_type_enum_status, true);
-
-      return m_estatus;
-
-   }
-
-}
+//inline ::e_status & payload::as_estatus()
+//{
+//
+//   if(m_etype == ::e_type_payload_pointer)
+//   {
+//
+//      return m_ppayload->as_estatus();
+//
+//   }
+//   else if(m_etype == ::e_type_property)
+//   {
+//
+//      return m_pproperty->as_estatus();
+//
+//   }
+//   else if(m_etype == ::e_type_enum_status)
+//   {
+//
+//      return m_estatus;
+//
+//   }
+//   else
+//   {
+//
+//      set_type(::e_type_enum_status, true);
+//
+//      return m_estatus;
+//
+//   }
+//
+//}
 
 
 
@@ -1984,10 +1981,10 @@ inline bool type::operator == (const ::id& id) const
          return m_ppayload->cast < T >(pDefault);
 
       }
-      else if (m_etype == e_type_prop && m_pprop != nullptr)
+      else if (m_etype == e_type_property && m_pproperty != nullptr)
       {
 
-         return m_pprop->cast < T >(pDefault);
+         return m_pproperty->cast < T >(pDefault);
 
       }
 
@@ -2019,10 +2016,10 @@ inline bool type::operator == (const ::id& id) const
 
       }
 
-      if (m_etype == e_type_prop && m_pprop != nullptr)
+      if (m_etype == e_type_property && m_pproperty != nullptr)
       {
 
-         return m_pprop->get_cast <T>(pDefault);
+         return m_pproperty->get_cast <T>(pDefault);
 
       }
 
@@ -2058,26 +2055,38 @@ inline bool type::operator == (const ::id& id) const
 
       }
 
-      if (m_etype == e_type_prop && m_pprop != nullptr)
+      if (m_etype == e_type_property && m_pproperty != nullptr)
       {
 
-         return m_pprop->cast < T >();
+         return m_pproperty->cast < T >();
 
       }
 
-#define CAST_ELEMENT(P, ENUM_TYPE) \
-      if(m_etype == ENUM_TYPE) { return dynamic_cast < T * >(P); }
-      CAST_ELEMENT(m_p, e_type_element);
-      CAST_ELEMENT(m_pstra, e_type_string_array);
-      CAST_ELEMENT(m_pia, e_type_i32_array);
-      CAST_ELEMENT(m_pvara, e_type_payload_array);
-      CAST_ELEMENT(m_pset, e_type_property_set);
-      CAST_ELEMENT(m_pi64a, e_type_i64_array);
-      CAST_ELEMENT(m_pmemory, e_type_memory);
-      CAST_ELEMENT(m_ppath, e_type_path);
-      //CAST_ELEMENT(m_pimage, type_image);
+      switch (m_etype)
+      {
+      case e_type_element:
+         return m_p;
+      case e_type_string_array:
+         return m_pstra;
+      case e_type_i32_array:
+         return m_pia;
+      case e_type_payload_array:
+         return m_ppayloada;
+      case e_type_property_set:
+         return m_ppropertyset;
+      case e_type_i64_array:
+         return m_pi64a;
+      case e_type_memory:
+         return m_pmemory;
+      case e_type_path:
+         return m_ppath;
+      case e_type_routine:
+         return m_pmatterRoutine;
+      default:
+         break;
+      }
+
       return nullptr;
-#undef CAST_ELEMENT
 
    }
 
@@ -2253,7 +2262,7 @@ inline bool property_set::get_string(string& strResult, const id& idKey) const
 
    }
 
-   strResult = pproperty->get_string();
+   strResult = *pproperty;
 
    return true;
 
@@ -2276,7 +2285,7 @@ inline ::payload operator + (::payload payload, const ::routine & routine)
    if (payload.get_type() != e_type_property_set)
    {
 
-      payload["message"] = payload.get_string();
+      payload["message"] = payload;
 
    }
 
@@ -2285,7 +2294,6 @@ inline ::payload operator + (::payload payload, const ::routine & routine)
    return payload;
 
 }
-
 
 
 //inline ::payload operator + (::payload payload, const ::future & process)
@@ -2303,7 +2311,6 @@ inline ::payload operator + (::payload payload, const ::routine & routine)
 //   return payload;
 //
 //}
-
 
 
 #if OBJECT_REFERENCE_COUNT_DEBUG
@@ -3297,7 +3304,7 @@ inline ::file_result object::get_writer(const ::payload& varFile, const ::file::
 //  else if (m_etype == ::type_prop)
 //  {
 //
-//     return m_pprop->operator string & ();
+//     return m_pproperty->operator string & ();
 //
 //  }
 //  else if (m_etype == ::e_type_pstring)
@@ -3340,7 +3347,7 @@ inline ::file_result object::get_writer(const ::payload& varFile, const ::file::
      else if(m_etype == ::type_prop)        \
      {                                      \
                                             \
-        return m_pprop->operator TYPE &();   \
+        return m_pproperty->operator TYPE &();   \
                                             \
      }                                      \
      else if(m_etype == ::type_p ## ENUM)        \
@@ -3775,5 +3782,124 @@ inline ::index memory_base::reverse_find_index_of_byte_not_in_block(const ::bloc
 
 }
 
+
+inline void assign(bool & b, const payload & payload)
+{ 
+   
+   b = payload.get_bool(); 
+
+}
+
+
+inline void assign(long & l, const payload & payload)
+{
+
+   l = payload.get_long();
+
+}
+
+
+inline void assign(unsigned long & ul, const payload & payload)
+{
+
+   ul = payload.get_unsigned_long();
+
+}
+
+
+inline void assign(::i8 & i, const payload & payload)
+{
+
+   i = payload.i8();
+
+}
+
+
+inline void assign(::u8 & u, const payload & payload)
+{
+
+   u = payload.u8();
+
+}
+
+
+inline void assign(::i16 & i, const payload & payload)
+{
+
+   i = payload.i16();
+
+}
+
+
+inline void assign(::u16 & u, const payload & payload)
+{
+
+   u = payload.u16();
+
+}
+
+
+inline void assign(::i32 & i, const payload & payload)
+{
+
+   i = payload.i32();
+
+}
+
+
+inline void assign(::u32 & u, const payload & payload)
+{
+
+   u = payload.u32();
+
+}
+
+
+inline void assign(::i64 & i, const payload & payload)
+{
+
+   i = payload.i64();
+
+}
+
+
+inline void assign(::u64 & u, const payload & payload)
+{
+
+   u = payload.u64();
+
+}
+
+
+inline void assign(::f32 & f, const payload & payload)
+{
+
+   f = payload.f32();
+
+}
+
+
+inline void assign(::f64 & f, const payload & payload)
+{
+
+   f = payload.f64();
+
+}
+
+
+inline payload_cast::operator payload_array () const
+{
+   
+   return m_payload.payloada(); 
+
+}
+
+
+inline payload_cast::operator property_set () const
+{
+
+   return m_payload.propset(); 
+
+}
 
 

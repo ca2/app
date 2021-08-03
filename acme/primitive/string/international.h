@@ -45,7 +45,7 @@ namespace str
 
       CLASS_DECL_ACME wstring MultiByteToUnicode(::u32 uCodePage, const char * pcsz, strsize nCount);
 
-      CLASS_DECL_ACME wstring MultiByteToUnicode(::u32 uCodePage, const string & str);
+      CLASS_DECL_ACME wstring MultiByteToUnicode(::u32 uCodePage, const ::string & str);
       strsize  CLASS_DECL_ACME MultiByteToUnicodeCount(::u32 uCodePage, const char * pcsz);
 
       strsize  CLASS_DECL_ACME MultiByteToUnicodeCount(::u32 uCodePage, const char * pcsz, strsize iCount);
@@ -76,7 +76,7 @@ namespace str
 
       bool CLASS_DECL_ACME unicode_to_utf8(string & str, const wchar_t * pcsz);
 
-      CLASS_DECL_ACME wstring utf8_to_unicode(const string & str);
+      CLASS_DECL_ACME wstring utf8_to_unicode(const ::string & str);
       CLASS_DECL_ACME wstring utf8_to_unicode(const char * pcsz, strsize iCount);
 
       bool CLASS_DECL_ACME unicode_to_utf8(string & str, const widechar * pcsz, strsize iCount);
@@ -90,7 +90,7 @@ namespace str
 
       CLASS_DECL_ACME strsize utf8_to_unicode_count(const char * pcsz, strsize count = -1);
 
-      CLASS_DECL_ACME strsize utf8_to_unicode_count(const string & str);
+      CLASS_DECL_ACME strsize utf8_to_unicode_count(const ::string & str);
 
       CLASS_DECL_ACME bool multibyte_to_utf8(::u32 uCodePageSrc, string & str, const char * pcsz);
 

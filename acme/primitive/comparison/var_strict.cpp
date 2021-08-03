@@ -31,7 +31,7 @@ namespace comparison
       return m_ppayload->strictly_equal(psz);
    }
 
-   bool var_strict::operator == (const string & str) const
+   bool var_strict::operator == (const ::string & str) const
    {
       return m_ppayload->strictly_equal(str);
    }
@@ -61,7 +61,7 @@ namespace comparison
       return m_ppayload->strictly_different(psz);
    }
 
-   bool var_strict::operator != (const string & str) const
+   bool var_strict::operator != (const ::string & str) const
    {
       return m_ppayload->strictly_different(str);
    }
@@ -86,7 +86,7 @@ namespace comparison
       return strictly_equal(psz, *payload.m_ppayload);
    }
 
-   bool operator == (const string & str, const var_strict & payload)
+   bool operator == (const ::string & str, const var_strict & payload)
    {
       return strictly_equal(str, *payload.m_ppayload);
    }
@@ -111,7 +111,7 @@ namespace comparison
       return strictly_different(psz, *payload.m_ppayload);
    }
 
-   bool operator != (const string & str, const var_strict & payload)
+   bool operator != (const ::string & str, const var_strict & payload)
    {
       return strictly_different(str, *payload.m_ppayload);
    }

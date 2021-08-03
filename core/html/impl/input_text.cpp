@@ -13,7 +13,7 @@ namespace html
    {
 
 
-      input_text::input_text(const string & strType, const string & strUnit) 
+      input_text::input_text(const ::string & strType, const ::string & strUnit) 
       {
 
          m_iFont = -1;

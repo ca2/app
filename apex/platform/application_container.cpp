@@ -409,7 +409,7 @@ void application_container::on_instantiate_application(::application* papp)
 }
 
 
-__pointer(::application) application_container::assert_running(const char * pszAppId, const string & strLocale, const string & strSchema)
+__pointer(::application) application_container::assert_running(const char * pszAppId, const ::string & strLocale, const ::string & strSchema)
 {
 
   __pointer(::application) papp;
@@ -438,7 +438,7 @@ __pointer(::application) application_container::assert_running(const char * pszA
 
 
 
-__pointer(::application) application_container::start_application(const char * pszAppId, ::create * pcreate, const string & strLocale, const string & strSchema)
+__pointer(::application) application_container::start_application(const char * pszAppId, ::create * pcreate, const ::string & strLocale, const ::string & strSchema)
 {
 
    string strApp(pszAppId);

@@ -1000,7 +1000,7 @@ namespace user
    }
 
 
-   ::user::interaction * primitive::get_child_by_name(const string & strName, ::index iItem, i32 iLevel)
+   ::user::interaction * primitive::get_child_by_name(const ::string & strName, ::index iItem, i32 iLevel)
    {
 
       ::exception::throw_interface_only();
@@ -4499,14 +4499,14 @@ namespace user
    }
 
 
-   void primitive::InputConnectionCommitText(const string & str, strsize iNewCursorPosition)
+   void primitive::InputConnectionCommitText(const ::string & str, strsize iNewCursorPosition)
    {
 
 
    }
 
 
-   void primitive::InputConnectionSetComposingText(const string & str, strsize iNewCursorPosition)
+   void primitive::InputConnectionSetComposingText(const ::string & str, strsize iNewCursorPosition)
    {
 
 

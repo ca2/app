@@ -328,7 +328,7 @@ namespace axis
 
 
 
-   string system::crypto_md5_text(const string & str)
+   string system::crypto_md5_text(const ::string & str)
    {
 
       return crypto().md5(str);
@@ -447,7 +447,7 @@ namespace axis
    //}
 
 
-   string system::url_encode(const string & str)
+   string system::url_encode(const ::string & str)
    {
 
       return m_purldepartment->url_encode(str);

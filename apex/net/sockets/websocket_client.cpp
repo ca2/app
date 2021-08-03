@@ -374,7 +374,7 @@ namespace sockets
    }
 
 
-   websocket_client::websocket_client(const string & url_in, const string & strProtocol) :
+   websocket_client::websocket_client(const string & url_in, const ::string & strProtocol) :
       //::object(&h),
       //base_socket(h),
       //socket(h),
@@ -638,7 +638,9 @@ namespace sockets
    void websocket_client::OnHeaderComplete()
    {
 
-      int iHttpStatusCode = outattr(__id(http_status_code));
+      int iHttpStatusCode;
+
+      outattr(__id(http_status_code)).as(iHttpStatusCode);
 
       string strStatus;
       

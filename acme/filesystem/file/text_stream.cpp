@@ -27,10 +27,10 @@ bool text_stream::is_stream_null()
 }
 
 
-void text_stream::to_string(const class string_exchange & str) const
+string text_stream::to_string() const
 {
    
-   m_p->to_string(str);
+   return m_p->to_string();
    
 }
 
@@ -130,7 +130,7 @@ void text_stream::write(unichar wch)
 #endif
 
 
-void text_stream::print_number(const string & str)
+void text_stream::print_number(const ::string & str)
 {
 
    auto estrflag = this->m_estrflag;
@@ -291,7 +291,7 @@ void text_stream::write(const property_set& set)
 
 }
 
-void text_stream::raw_print(const string & str)
+void text_stream::raw_print(const ::string & str)
 {
 
    write(str.c_str(), str.size());

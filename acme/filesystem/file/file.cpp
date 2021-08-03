@@ -563,7 +563,7 @@ namespace file
 
       };
 
-      m.to_string(str);
+      str = m.as_utf8();
 
       int iNew = get_character();
 
@@ -667,14 +667,14 @@ namespace file
 
       full_read(memory);
 
-      memory.to_string(str);
+      str = memory.to_string();
 
       return true;
 
    }
 
 
-   void file::print(const string & str)
+   void file::print(const ::string & str)
    {
 
       write(str);
@@ -682,7 +682,7 @@ namespace file
    }
 
 
-   void file::println(const string & str)
+   void file::println(const ::string & str)
    {
 
       print(str);
@@ -718,7 +718,7 @@ namespace file
    }
 
 
-   void file::write(const string & str)
+   void file::write(const ::string & str)
    {
 
       write(str,  str.get_length());
@@ -1246,7 +1246,7 @@ namespace file
       ::exception::throw_interface_only();
    }
 
-   void file::write (const string & str)
+   void file::write (const ::string & str)
    {
       UNREFERENCED_PARAMETER(str);
       ::exception::throw_interface_only();
@@ -1292,16 +1292,20 @@ namespace file
     }
 
 
-   void file::to_string(const class string_exchange & str) const
+   string file::to_string() const
    {
+
+      string str;
 
       auto pfile = (file *)this;
 
       auto position = pfile->get_position();
 
-      pfile->full_read_string(*str.m_pstr);
+      pfile->full_read_string(str);
 
       pfile->set_position(position);
+
+      return str;
 
    }
 
@@ -1342,7 +1346,7 @@ namespace file
       else
       {
 
-         payload.operator path &() |= ::file::e_flag_bypass_cache;
+         payload.as_file_path() |= ::file::e_flag_bypass_cache;
 
       }
 

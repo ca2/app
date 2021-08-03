@@ -116,10 +116,10 @@ namespace sockets
 
             TRACE("JSON BODY:\n%s\n\n", body.c_str());
 
-            if (inheader(__id(content_type)).get_string().find_ci("application/json") < 0)
+            if (inheader(__id(content_type)).string().find_ci("application/json") < 0)
             {
 
-               inheader(__id(content_type)) = "application/json" + ::str::has_char(inheader(__id(content_type)).get_string(), "; ");
+               inheader(__id(content_type)) = "application/json" + ::str::has_char(inheader(__id(content_type)).string(), "; ");
 
             }
 
@@ -132,9 +132,9 @@ namespace sockets
             //::xml::node * pnode = m_fields["xml"].cast < ::xml::node >();
             //body = pnode->get_xml();
             //body.trim();
-            //if(inheader(__id(content_type)).get_string().find_ci("application/xml") < 0)
+            //if(inheader(__id(content_type)).string().find_ci("application/xml") < 0)
             //{
-            //   inheader(__id(content_type)) = "application/xml; " + inheader(__id(content_type)).get_string();
+            //   inheader(__id(content_type)) = "application/xml; " + inheader(__id(content_type)).string();
             //}
 
          }
@@ -143,10 +143,10 @@ namespace sockets
 
             m_fields.get_http_post(body);
 
-            if(inheader(__id(content_type)).get_string().find_ci("application/x-www-form-urlencoded") < 0)
+            if(inheader(__id(content_type)).string().find_ci("application/x-www-form-urlencoded") < 0)
             {
 
-               inheader(__id(content_type)) = "application/x-www-form-urlencoded" + ::str::has_char(inheader(__id(content_type)).get_string(),"; ");
+               inheader(__id(content_type)) = "application/x-www-form-urlencoded" + ::str::has_char(inheader(__id(content_type)).string(),"; ");
 
             }
 
@@ -186,7 +186,7 @@ namespace sockets
 
          string strUserAgent = MyUseragent();
 
-         if(!(bool)m_request.attr("minimal_headers"))
+         if(m_request.attr("minimal_headers").is_false())
          {
 
             inheader(__id(user_agent)) = "ca2_netnode";
@@ -263,7 +263,7 @@ namespace sockets
 
             strFields += "--" + m_boundary + "\r\nContent-Disposition: form-data; name=\"" + id.to_string() + "\"\r\n\r\n";
 
-            string value = payload.get_string();
+            string value = payload.string();
 
             strFields += value + "\r\n";
 
@@ -386,11 +386,11 @@ namespace sockets
          //   id & id = property.element1();
          //   ::payload & payload = property.element2();
          //   tmp += "--" + m_boundary + "\r\nContent-Disposition: form-data; name=\"" + id.to_string() + "\"\r\n\r\n";
-         //   string value = payload.get_string();
+         //   string value = payload.string();
          //   tmp += value + "\r\n";
          //   //for(int j = 0; j < payload.get_count(); j++)
          //   //{
-         //     // string value = payload[j].get_string();
+         //     // string value = payload[j].string();
          //      //tmp += value + "\r\n";
          //   //}
          //}

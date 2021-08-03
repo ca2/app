@@ -718,7 +718,7 @@ namespace crypto
 
       i32 plainlen = decrypt(storageDecrypt, storageEncrypt, storageKey);
 
-      storageDecrypt.to_string(strDecrypt);
+      strDecrypt = storageDecrypt.to_string();
 
       return plainlen;
 
@@ -1705,7 +1705,7 @@ namespace crypto
 
       string str;
 
-      memory.to_string(str);
+      str = memory.to_string();
 
       return str;
 

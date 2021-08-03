@@ -20,7 +20,7 @@ public:
    ::e_status                                         m_estatus;
    __pointer(::id_map < ::routine_array >)         m_pmapPropertyRoutine;
    __pointer(::i64_array)                          m_pia;
-   __pointer(property_set)                            m_pset;
+   __pointer(property_set)                            m_ppropertyset;
 
 
    property_object() { }
@@ -30,7 +30,7 @@ public:
       material_object(::move(object)),
       m_pia(::move(object.m_pia)),
       m_estatus(object.m_estatus),
-      m_pset(::move(object.m_pset))
+      m_ppropertyset(::move(object.m_ppropertyset))
       {  }
    ~property_object() override;
 
@@ -134,7 +134,7 @@ public:
 //   template < typename TYPE >
 //   inline void get(const ::id & id, TYPE & t);
 
-   inline ::payload topic(const ::id & id);
+   inline ::payload & topic(const ::id & id);
 
    inline property * find_property(const ::id & id) const;
 
@@ -186,9 +186,9 @@ public:
    virtual linked_property parent_lookup_property(const id & id) const;
 
    virtual void property_set_replace(string & str) const;
-   virtual string property_set_evaluate(const string & str) const;
-   virtual string property_set_get_evaluation(const string & str) const;
-   virtual string property_set_get_string(const string & str) const;
+   virtual string property_set_evaluate(const ::string & str) const;
+   virtual string property_set_get_evaluation(const ::string & str) const;
+   virtual string property_set_get_string(const ::string & str) const;
    virtual bool property_set_get_string(string & strResult, const string& str) const;
    virtual bool property_set_get_evaluation(string & strResult, const string& str) const;
 

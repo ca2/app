@@ -1352,7 +1352,7 @@ namespace helloworld
       return false;
    }
 
-   void render::helloworld_fast_render(const string & strHelloWorld)
+   void render::helloworld_fast_render(const ::string & strHelloWorld)
    {
 
       if (m_cx <= 0 || m_cy <= 0)

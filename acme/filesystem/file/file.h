@@ -83,7 +83,7 @@ namespace file
 
       virtual ::filesize get_left() const;
 
-      virtual void to_string(const string_exchange & str) const override;
+      string to_string() const override;
 
       virtual void as_memory(memory_base & memory) const;
 
@@ -130,8 +130,8 @@ namespace file
       virtual bool full_read(memory_base & memory);
       virtual bool full_read_string(string & str);
 
-      virtual void print(const string & str);
-      virtual void println(const string & str);
+      virtual void print(const ::string & str);
+      virtual void println(const ::string & str);
       virtual void printf(const char * format, ...);
 
       virtual void write(const string &);

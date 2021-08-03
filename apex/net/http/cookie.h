@@ -25,7 +25,7 @@ namespace http
 
       cookie();
       cookie(const cookie & cookie);
-      virtual ~cookie();
+      ~cookie() override;
 
 
       string get_cookie_string();
@@ -50,15 +50,15 @@ namespace http
       }
 
 
-      virtual void to_string(const string_exchange & str) const override;
+      virtual string to_string() const override;
 
 
-      inline string to_string() const
-      {
+      //inline string to_string() const
+      //{
 
-         return m_varValue.to_string();
+      //   return m_varValue.to_string();
 
-      }
+      //}
 
 
       operator property() const

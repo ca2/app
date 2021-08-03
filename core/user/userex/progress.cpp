@@ -65,7 +65,7 @@ namespace userex
          
          auto puser = psession->m_puser->m_pcoreuser;
 
-         m_pdocument = puser->m_ptemplateProgress2->open_document_file(get_application(), ::e_type_null, __visible(false));
+         m_pdocument = puser->m_ptemplateProgress2->open_document_file(get_application(), ::e_type_null, __visible(false).is_true());
 
          m_pview = m_pdocument->get_typed_view<::userex::progress_view>();
 

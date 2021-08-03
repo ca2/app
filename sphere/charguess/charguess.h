@@ -4,7 +4,7 @@
 #include "charguess_c.h"
 
 
-CLASS_DECL_SPHERE const char * GuessChardet(charguess_det p, const string & str);
+CLASS_DECL_SPHERE const char * GuessChardet(charguess_det p, const ::string & str);
 
 
 class CLASS_DECL_SPHERE charguess
@@ -18,7 +18,7 @@ class CLASS_DECL_SPHERE charguess
       {
          m_pdet = CharGuessInit();
       }
-      charguess(const string & str)
+      charguess(const ::string & str)
       {
          m_pdet = CharGuessInit();
          det(str);
@@ -29,14 +29,14 @@ class CLASS_DECL_SPHERE charguess
       }
 
 
-      string det(const string & str)
+      string det(const ::string & str)
       {
          return m_strDet = GuessChardet(m_pdet,str);
       }
 
       u32 operator () (void) { return get_code_page(m_strDet); }
 
-      static u32 get_code_page(const string & strDet);
+      static u32 get_code_page(const ::string & strDet);
 
 };
 

@@ -54,8 +54,8 @@ CLASS_DECL_ACME wstring gen_utf8_to_16(const char * psz);
 //   using wstring::string_base;
 //   wstring() {}
 //   wstring(for_moving) {};
-//   inline wstring(const string & str);
-//   inline wstring(const string & str);
+//   inline wstring(const ::string & str);
+//   inline wstring(const ::string & str);
 //   inline wstring(const char * pszSrc);
 //   inline wstring(const char * pszSrc, strsize len);
 //   inline wstring(const char ch);
@@ -74,7 +74,7 @@ CLASS_DECL_ACME wstring gen_utf8_to_16(const char * psz);
 //
 //   using wstring::operator =;
 //   wstring & operator = (const char * psz);
-//   wstring & operator = (const string & str);
+//   wstring & operator = (const ::string & str);
 //
 //   template < typename TYPE >
 //   inline wstring & operator =(const tostring < TYPE > & o);

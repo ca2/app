@@ -2102,7 +2102,7 @@ namespace filemanager
 
             FilterBegin();
 
-            Filter1(psubject->payload(id_filter));
+            Filter1(psubject->payload(id_filter).as_string());
 
          }
 

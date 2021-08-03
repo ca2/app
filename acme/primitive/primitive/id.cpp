@@ -26,7 +26,7 @@
 //}
 //#endif
 
-//id::id(const string & str)
+//id::id(const ::string & str)
 //{
 //   m_all ={};
 //
@@ -55,7 +55,7 @@ id & id::operator = (const char * psz)
    return *this;
 }
 
-id & id::operator = (const string & str)
+id & id::operator = (const ::string & str)
 {
    operator = (::acme::id(str));
    return *this;

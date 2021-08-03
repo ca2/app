@@ -34,7 +34,7 @@ namespace user
 
       virtual ::e_status open_document(const ::payload & varFile) override;
       
-      virtual ::e_status open_html(const string & str) override;
+      virtual ::e_status open_html(const ::string & str) override;
 
       virtual bool Navigate(const char* pszUrl);
 

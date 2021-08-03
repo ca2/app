@@ -55,7 +55,7 @@ context_image::~context_image()
    return load_image(
       varFile,
       varOptions.is_true("cache", true),
-      varOptions["create_helper_maps"]);
+      varOptions.is_true("create_helper_maps", false));
 
 }
 
@@ -102,7 +102,7 @@ context_image::~context_image()
 }
 
 
-::image_result context_image::matter_image(const string & strMatter, bool bCache, bool bSync)
+::image_result context_image::matter_image(const ::string & strMatter, bool bCache, bool bSync)
 {
 
    image_pointer pimage;
@@ -190,7 +190,7 @@ context_image::~context_image()
 }
 
 
-::image_result context_image::load_matter_image(const string & strMatter, bool bCache, bool bSync, bool bCreateHelperMaps)
+::image_result context_image::load_matter_image(const ::string & strMatter, bool bCache, bool bSync, bool bCreateHelperMaps)
 {
 
    image_pointer pimage;
@@ -290,7 +290,7 @@ context_image::~context_image()
 }
 
 
-::image_result context_image::load_thumbnail(const string & strPath)
+::image_result context_image::load_thumbnail(const ::string & strPath)
 {
 
    image_pointer pimage;
@@ -354,7 +354,7 @@ context_image::~context_image()
 }
 
 
-::e_status context_image::_matter_image(image * pimage, const string & strMatter, bool bSync)
+::e_status context_image::_matter_image(image * pimage, const ::string & strMatter, bool bSync)
 {
 
    if (bSync)
@@ -386,7 +386,7 @@ context_image::~context_image()
 }
 
 
-::e_status context_image::_load_matter_image(image * pimage, const string & strMatter, bool bSync, bool bCreateHelperMaps)
+::e_status context_image::_load_matter_image(image * pimage, const ::string & strMatter, bool bSync, bool bCreateHelperMaps)
 {
 
    auto pcontext = get_context();
@@ -481,7 +481,9 @@ context_image::~context_image()
 ::e_status context_image::_load_thumbnail(image * pimage, const ::payload & varFile)
 {
 
-   if (!pimage->create_thumbnail(varFile))
+   ::file::path path = varFile.get_file_path();
+
+   if (!pimage->create_thumbnail(path))
    {
 
       pimage->set_nok();

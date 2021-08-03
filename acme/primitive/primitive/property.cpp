@@ -60,7 +60,7 @@ void prop_id_debug(::matter * pobject);
 //}
 //
 //
-//::payload property::operator + (const string & str) const
+//::payload property::operator + (const ::string & str) const
 //{
 //
 //   return get_value() + payload(str);
@@ -185,7 +185,7 @@ void prop_id_debug(::matter * pobject);
 //   return implode(pszGlue);
 //}
 //
-//void property::parse_json(const string & str)
+//void property::parse_json(const ::string & str)
 //{
 //   const char * pszJson = str;
 //   parse_json(pszJson, str.get_length());
@@ -258,14 +258,14 @@ void property_skip_json_value(const char *& pszJson, const char * pszEnd)
 }
 
 
-string & property::get_http_post(string & str) const
+string & property::get_http_post(::string & str) const
 {
 
    str += m_id.str();
 
    str += "=";
 
-   str += url_encode(get_string());
+   str += url_encode(this->string());
 
    return str;
 
@@ -342,9 +342,9 @@ string & property::get_http_post(string & str) const
 //   return get_length();
 //}
 //
-//void property::get_string(char * psz) const
+//void property::string(char * psz) const
 //{
-//   get_string(psz);
+//   string(psz);
 //}
 //
 //::payload property::element_at(index iIndex) const
@@ -453,9 +453,11 @@ string & property::get_http_post(string & str) const
 //}
 //
 
-::i32 payload::str_compare(const property & prop) const
+::i32 payload::str_compare(const ::property & property) const
 {
-   return get_string().compare(prop.get_string());
+
+   return string().compare(property.string());
+
 }
 
 //
@@ -474,7 +476,7 @@ string & property::get_http_post(string & str) const
 //   return strict_equal(psz);
 //}
 //
-//bool property::strict_equal(const string & str) const
+//bool property::strict_equal(const ::string & str) const
 //{
 //   return strict_equal(str);
 //}
@@ -510,7 +512,7 @@ string & property::get_http_post(string & str) const
 //   return strict_different(psz);
 //}
 //
-//bool property::strict_different(const string & str) const
+//bool property::strict_different(const ::string & str) const
 //{
 //   return strict_different(str);
 //}
@@ -546,7 +548,7 @@ string & property::get_http_post(string & str) const
 //   return get_value() == psz;
 //}
 //
-//bool property::operator == (const string & str) const
+//bool property::operator == (const ::string & str) const
 //{
 //   return get_value() == str;
 //}
@@ -577,7 +579,7 @@ string & property::get_http_post(string & str) const
 //   return get_value() != psz;
 //}
 //
-//bool property::operator != (const string & str) const
+//bool property::operator != (const ::string & str) const
 //{
 //   return get_value() != str;
 //}
@@ -630,7 +632,7 @@ string & property::get_http_post(string & str) const
 //   return get_value() < psz;
 //}
 //
-//bool property::operator < (const string & str) const
+//bool property::operator < (const ::string & str) const
 //{
 //   return get_value() < str;
 //}
@@ -684,7 +686,7 @@ string & property::get_http_post(string & str) const
 //   return get_value() <= psz;
 //}
 //
-//bool property::operator <= (const string & str) const
+//bool property::operator <= (const ::string & str) const
 //{
 //   return get_value() <= str;
 //}
@@ -737,7 +739,7 @@ string & property::get_http_post(string & str) const
 //   return get_value() >= psz;
 //}
 //
-//bool property::operator >= (const string & str) const
+//bool property::operator >= (const ::string & str) const
 //{
 //   return get_value() >= str;
 //}
@@ -790,7 +792,7 @@ string & property::get_http_post(string & str) const
 //   return get_value() > psz;
 //}
 //
-//bool property::operator > (const string & str) const
+//bool property::operator > (const ::string & str) const
 //{
 //   return get_value() > str;
 //}
@@ -1223,7 +1225,7 @@ string & property::get_http_post(string & str) const
 //   return *this;
 //}
 //
-//property & property::operator += (const string & str)
+//property & property::operator += (const ::string & str)
 //{
 //   operator=(*this + str);
 //   return *this;
@@ -1448,9 +1450,9 @@ string & property::get_http_post(string & str) const
 //  str += opt->m_chQuote;
 //  string strValue;
 //  if(opt->m_bReferenceValue && opt->m_pentities)
-//     strValue = opt->m_pentities->entity_to_ref(get_string());
+//     strValue = opt->m_pentities->entity_to_ref(string());
 //  else
-//     strValue = get_string();
+//     strValue = string();
 //
 //  strValue.replace("\\", "\\\\"); // should be first
 //  strValue.replace("\n", "\\n");
@@ -1497,7 +1499,7 @@ string & property::get_http_post(string & str) const
 //
 //
 //
-//string  operator + (const string & str, const property & prop)
+//string  operator + (const ::string & str, const property & prop)
 //{
 //
 //   return str +  (const ::payload &) prop;

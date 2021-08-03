@@ -64,7 +64,7 @@ extern ::app_core * g_pappcore;
 
 //#ifdef WINDOWS_DESKTOP
 //
-//CLASS_DECL_ACME void windows_install_crash_dump_reporting(const string & strModuleNameWithTheExeExtension);
+//CLASS_DECL_ACME void windows_install_crash_dump_reporting(const ::string & strModuleNameWithTheExeExtension);
 //
 //#endif
 
@@ -1491,7 +1491,7 @@ void application::_001CloseApplication()
 //
 //
 
-//   string CLASS_DECL_APEX application::get_cred(const string & strRequestUrl, const ::rectangle_i32 & rectangle, string & strUsername, string & strPassword, string strToken, string strTitle, bool bInteractive)
+//   string CLASS_DECL_APEX application::get_cred(const ::string & strRequestUrl, const ::rectangle_i32 & rectangle, string & strUsername, string & strPassword, string strToken, string strTitle, bool bInteractive)
 // {
 
 //  __throw(error_not_implemented);
@@ -4357,14 +4357,14 @@ for(auto & pair : pcall->m_mapTask)
    if(bContinue && pobjectTask->has_property("continue"))
    {
 
-      bContinue = pobjectTask->m_var["continue"];
+      bContinue = pobjectTask->m_var["continue"].is_true();
 
    }
 
    if(!bHandled && pobjectTask->has_property("handled"))
    {
 
-      bHandled = pobjectTask->m_var["handled"];
+      bHandled = pobjectTask->m_var["handled"].is_true();
 
    }
 
@@ -4720,7 +4720,7 @@ return ::str::_001Concat(get_locale(), "/", get_schema());
 }
 
 
-string application::get_locale_schema_dir(const string & strLocale)
+string application::get_locale_schema_dir(const ::string & strLocale)
 {
 
 return ::str::_001Concat(strLocale.is_empty() ? get_locale() : strLocale, "/", get_schema());
@@ -4728,7 +4728,7 @@ return ::str::_001Concat(strLocale.is_empty() ? get_locale() : strLocale, "/", g
 }
 
 
-void application::matter_locator_locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const string & strLocale, const string & strSchema)
+void application::matter_locator_locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::string & strLocale, const ::string & strSchema)
 {
 
 if (strLocale.is_empty() || strSchema.is_empty())
@@ -4750,7 +4750,7 @@ stra.add_unique(::file::path(strMatterLocator) / strLs);
 }
 
 
-void application::locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const string & strLocale, const string & strSchema)
+void application::locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::string & strLocale, const ::string & strSchema)
 {
 
    if (straMatterLocator.has_elements())
@@ -4791,7 +4791,7 @@ void application::locale_schema_matter(string_array & stra, const string_array &
 }
 
 
-string application::get_locale_schema_dir(const string & strLocale, const string & strSchema)
+string application::get_locale_schema_dir(const ::string & strLocale, const ::string & strSchema)
 {
 
 return ::str::_001Concat(strLocale, "/", strSchema);
@@ -5181,7 +5181,7 @@ return false;
 
 
 
-void application::install_trace(const string & str)
+void application::install_trace(const ::string & str)
 {
 
 synchronous_lock synchronouslock(mutex());
@@ -7501,7 +7501,7 @@ return -1;
 //}
 
 
-//string application::http_get(const string & strUrl, ::property_set & set)
+//string application::http_get(const ::string & strUrl, ::property_set & set)
 //{
 
 //   return http().get(strUrl, set);
@@ -10294,7 +10294,7 @@ string application::as_string(const ::payload & payload)
 
    }
 
-   return payload.get_string();
+   return payload.string();
 
 }
 

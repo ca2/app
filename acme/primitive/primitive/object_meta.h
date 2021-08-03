@@ -16,7 +16,7 @@ public:
    ~object_meta();
 
 
-   inline void set_topic_text(const string & strTopicText) { m_strTopicText = strTopicText; }
+   inline void set_topic_text(const ::string & strTopicText) { m_strTopicText = strTopicText; }
 
    inline const char * topic_text() const { return m_strTopicText; }
 

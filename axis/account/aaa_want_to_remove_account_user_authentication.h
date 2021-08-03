@@ -12,7 +12,7 @@ public:
    bool expired();
    bool valid();
 
-   string_timeout & operator = (const string & str);
+   string_timeout & operator = (const ::string & str);
 
    operator const string & () const
    {
@@ -47,7 +47,7 @@ bool string_timeout < t_iTimeout >::valid()
 }
 
 template < int t_iTimeout >
-string_timeout< t_iTimeout > & string_timeout < t_iTimeout >::operator = (const string & str)
+string_timeout< t_iTimeout > & string_timeout < t_iTimeout >::operator = (const ::string & str)
 {
 
    m_str = str;

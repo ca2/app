@@ -1050,7 +1050,7 @@ namespace color
                str.trim();
                ::payload a;
                a.stra().explode(",", str);
-               int_array & ia = a.inta();
+               auto & ia = a.as_ia();
                if (ia.get_count() == 3)
                {
                   set_COLORREF(argb(255, ia[0], ia[1], ia[2]));
@@ -1216,10 +1216,10 @@ namespace color
    ::color::color & color::operator =(const ::payload & payload)
    {
 
-      red = payload["red"];
-      green = payload["green"];
-      blue = payload["blue"];
-      alpha = payload["alpha"];
+      red = payload["red"].u8();
+      green = payload["green"].u8();
+      blue = payload["blue"].u8();
+      alpha = payload["alpha"].u8();
 
       return *this;
 
@@ -1238,9 +1238,9 @@ namespace color
       else if(payload.m_etype == e_type_property_set)
       {
 
-         m_dH = payload["hue"];
-         m_dL = payload["lightness"];
-         m_dS = payload["saturation"];
+         m_dH = payload["hue"].f64();
+         m_dL = payload["lightness"].f64();
+         m_dS = payload["saturation"].f64();
 
       }
 

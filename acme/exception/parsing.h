@@ -16,7 +16,7 @@ public:
 
 CLASS_DECL_ACME bool get_avoid_parsing_exception();
 CLASS_DECL_ACME void set_avoid_parsing_exception(bool bSet);
-CLASS_DECL_ACME bool throw_parsing_exception(const string & strMessage);
+CLASS_DECL_ACME bool throw_parsing_exception(const ::string & strMessage);
 
 
 class CLASS_DECL_ACME avoid_parsing_exception
@@ -46,4 +46,4 @@ public:
 };
 
 
-CLASS_DECL_ACME bool throw_json_parsing_exception(const string & strMessage);
+CLASS_DECL_ACME bool throw_json_parsing_exception(const ::string & strMessage);

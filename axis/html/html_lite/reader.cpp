@@ -314,7 +314,7 @@ LEndParse:
 * @since 1.0
 * @author Gurmeet S. Kochar
 */
-strsize lite_html_reader::read_form_document(const string & str)
+strsize lite_html_reader::read_form_document(const ::string & str)
 {
 
    m_strBuffer    = str;

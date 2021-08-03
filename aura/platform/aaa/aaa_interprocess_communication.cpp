@@ -24,7 +24,7 @@ namespace aura
    }
 
 
-   void interprocess_communication::task::do_task(const string & strObject, const string & strMember, const payload_array & payloada)
+   void interprocess_communication::task::do_task(const ::string & strObject, const ::string & strMember, const payload_array & payloada)
    {
 
       ::aura::ipc::tx & txc = m_pcall->m_pinterprocessintercommunication->tx(m_pcall->m_strApp, m_idPid);
@@ -63,7 +63,7 @@ namespace aura
    }
 
 
-   interprocess_communication::call::call(interprocess_communication * pipi, const string & strApp, const string & strObject, const string & strMember) :
+   interprocess_communication::call::call(interprocess_communication * pipi, const ::string & strApp, const ::string & strObject, const ::string & strMember) :
       ::object(pipi),
       m_pinterprocessintercommunication(pipi),
       m_strApp(strApp),
@@ -219,7 +219,7 @@ namespace aura
    }
 
 
-   interprocess_communication::interprocess_communication(const string & strApp) :
+   interprocess_communication::interprocess_communication(const ::string & strApp) :
       m_strApp(strApp)
    {
 
@@ -317,7 +317,7 @@ namespace aura
 
 
 
-   bool interprocess_communication::start(const string & strApp)
+   bool interprocess_communication::start(const ::string & strApp)
    {
 
       synchronous_lock sl1(mutex());
@@ -408,7 +408,7 @@ started:
    }
 
 
-   bool interprocess_communication::connect(const string & strApp, const ::id & idPid)
+   bool interprocess_communication::connect(const ::string & strApp, const ::id & idPid)
    {
 
       string strKey = strApp + ":" + __str(idPid);
@@ -436,7 +436,7 @@ started:
    }
 
 
-   ::aura::ipc::tx & interprocess_communication::tx(const string & strApp, const ::id & iPid)
+   ::aura::ipc::tx & interprocess_communication::tx(const ::string & strApp, const ::id & iPid)
    {
 
       string strKey = strApp + ":" + __str(iPid);
@@ -692,7 +692,7 @@ started:
    }
 
 
-   __pointer(class interprocess_communication::call) interprocess_communication::create_call(const string & strApp, const string & strObject, const string & strMember)
+   __pointer(class interprocess_communication::call) interprocess_communication::create_call(const ::string & strApp, const ::string & strObject, const ::string & strMember)
    {
 
       return __new(class call(this, strApp, strObject, strMember));
@@ -700,7 +700,7 @@ started:
    }
 
 
-   __pointer(class interprocess_communication::call) interprocess_communication::create_call(const string & strObject, const string & strMember)
+   __pointer(class interprocess_communication::call) interprocess_communication::create_call(const ::string & strObject, const ::string & strMember)
    {
 
       return create_call(m_strApp, strObject, strMember);
@@ -708,7 +708,7 @@ started:
    }
 
 
-   void interprocess_communication::on_interprocess_call(::payload & payload, const string & strObject, const string & strMember, payload_array & payloada)
+   void interprocess_communication::on_interprocess_call(::payload & payload, const ::string & strObject, const ::string & strMember, payload_array & payloada)
    {
 
       if(strObject == "application")
@@ -744,7 +744,7 @@ started:
    }
 
 
-   void interprocess_communication::on_new_instance(const string & strModule, const ::id & idPid)
+   void interprocess_communication::on_new_instance(const ::string & strModule, const ::id & idPid)
    {
 
       defer_add_module(strModule, idPid);
@@ -754,7 +754,7 @@ started:
    }
 
 
-   id_array interprocess_communication::get_pid(const string & strApp)
+   id_array interprocess_communication::get_pid(const ::string & strApp)
    {
 
       id_array idaPid;
@@ -858,7 +858,7 @@ repeat:
    }
 
 
-   void interprocess_communication::defer_add_module(const string & strModule, const ::id & idPid)
+   void interprocess_communication::defer_add_module(const ::string & strModule, const ::id & idPid)
    {
 
 #ifndef _UWP

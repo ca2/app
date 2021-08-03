@@ -63,8 +63,8 @@ namespace net
       address();
       address(const address& address);
       address(i32 family, port_t port = 0);
-      address(const string & strAddress, port_t port = 0);
-      address(::object * pobject, const string & strAddress, const string & strServiceName);
+      address(const ::string & strAddress, port_t port = 0);
+      address(::object * pobject, const ::string & strAddress, const ::string & strServiceName);
 #if defined(BSD_STYLE_SOCKETS)
       address(const in_addr & a, port_t port = 0);
       address(const in6_addr & a, port_t port = 0);
@@ -112,7 +112,7 @@ namespace net
 
 #endif
 
-      void from_string(const string & strAddress);
+      void from_string(const ::string & strAddress);
       string to_string() const;
 
 #ifdef BSD_STYLE_SOCKETS

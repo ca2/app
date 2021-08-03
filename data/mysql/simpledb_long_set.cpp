@@ -86,7 +86,7 @@ public:
 
 
    ::mutex                                                    m_mutex;
-   db_long_set *                                            m_pset;
+   db_long_set *                                            m_ppropertyset;
    sockets::socket_handler                                  m_handler;
    sockets::http_session *                                  m_phttpsession;
 
@@ -316,7 +316,7 @@ bool db_long_set::save(const char * lpKey, i64 lValue)
       {
 
          m_pcore->m_pqueue = new db_long_sync_queue(this);
-         m_pcore->m_pqueue->m_pset = this;
+         m_pcore->m_pqueue->m_ppropertyset = this;
          m_pcore->m_pqueue->begin();
 
       }

@@ -31,9 +31,11 @@ namespace url
    }
 
 
-   string department::get_protocol(const char * psz)
+   string department::get_protocol(const ::string & strParam)
    {
-      string str(psz);
+
+      string str(strParam);
+
       index iPos = str.find(":");
       if(iPos == -1)
          return "";
@@ -41,12 +43,14 @@ namespace url
    }
 
 
-   string department::get_root(const char * psz)
+   string department::get_root(const ::string & strParam)
    {
-      string str(psz);
+      
+      string str(strParam);
+
       index iPos = str.find(":");
       if(iPos == -1)
-         return psz;
+         return strParam;
       iPos++;
       while(iPos < str.get_length() && str[iPos] == '/')
       {
@@ -60,10 +64,11 @@ namespace url
          return str.Mid(iStart, iEnd - iStart);
    }
 
-   string department::get_server(const char * psz)
+
+   string department::get_server(const ::string & strParam)
    {
 
-      string strRoot = get_root(psz);
+      string strRoot = get_root(strParam);
 
       strsize iPos = strRoot.find(":");
 
@@ -74,10 +79,11 @@ namespace url
 
    }
 
-   i32 department::get_port(const char * psz, i32 iDefault)
+
+   i32 department::get_port(const ::string & strParam, i32 iDefault)
    {
 
-      string strRoot = get_root(psz);
+      string strRoot = get_root(strParam);
 
       strsize iPos = strRoot.find(":");
 
@@ -87,14 +93,26 @@ namespace url
          if(iDefault == -1)
          {
 
-            string strProtocol = get_protocol(psz);
+            string strProtocol = get_protocol(strParam);
 
-            if(strProtocol == "http")
+            if (strProtocol == "http")
+            {
+
                return 80;
-            else if(strProtocol == "https")
+
+            }
+            else if (strProtocol == "https")
+            {
+
                return 443;
-            else if(strProtocol == "ftp")
+
+            }
+            else if (strProtocol == "ftp")
+            {
+
                return 21;
+
+            }
 
          }
 
@@ -106,172 +124,235 @@ namespace url
 
    }
 
-   string department::get_object(const char * psz)
+
+   string department::get_object(const ::string & strParam)
    {
 
-      string str(psz);
+      string str(strParam);
 
       strsize iPos = str.find("://");
 
-      if(iPos < 0)
-         return psz;
+      if (iPos < 0)
+      {
+
+         return strParam;
+
+      }
 
       iPos += 3;
 
       strsize iStart = str.find("/", iPos);
 
-      if(iStart < 0)
+      if (iStart < 0)
+      {
+
          return "/";
+
+      }
       else
+      {
+
          return str.Mid(iStart);
 
+      }
+
    }
 
-   string department::object_get_script(const char * psz) // page
+
+   string department::object_get_script(const ::string & strParam) // page
    {
 
-      string str(psz);
+      string str(strParam);
 
       strsize iFind = str.find('?');
 
-      if(iFind < 0)
+      if (iFind < 0)
+      {
+
          return url_decode(str);
+
+      }
       else
+      {
+
          return url_decode(str.Left(iFind));
 
+      }
+
    }
 
-   string department::object_get_query(const char * psz) // id=1
+
+   string department::object_get_query(const ::string & strParam) // id=1
    {
 
-      string str(psz);
+      string str(strParam);
 
       strsize iFind = str.find('?');
 
-      if(iFind < 0)
+      if (iFind < 0)
+      {
+
          return "";
+
+      }
       else
+      {
+
          return str.Mid(iFind + 1);
 
-   }
-
-   string department::object_set(const char * pszObject, const char * pszKey, ::payload payload)
-   {
-
-      string strQuery = object_get_query(pszObject);
-
-      return object_get_script(pszObject) + ::str::has_char(query_set(strQuery, pszKey, payload), "?");
+      }
 
    }
 
 
-   string department::get_script(const char * psz) // page
+   string department::object_set(const ::string & strObject, const ::string & strKeyParam, ::payload payload)
    {
 
-      return object_get_script(get_object(psz));
+      string strQuery = object_get_query(strObject);
+
+      return object_get_script(strObject) + ::str::has_char(query_set(strQuery, strKeyParam, payload), "?");
 
    }
 
-   string department::get_query(const char * psz) // id=1
+
+   string department::get_script(const ::string & strParam) // page
    {
 
-      return object_get_query(get_object(psz));
+      return object_get_script(get_object(strParam));
 
    }
 
-   string department::object(const char * pszScript, const char * pszQuery)
+
+   string department::get_query(const ::string & strParam) // id=1
    {
 
-      string strScript(pszScript);
+      return object_get_query(get_object(strParam));
 
-      string strQuery(pszQuery);
+   }
 
-      if(strQuery.has_char())
+
+   string department::object(const ::string & strScriptParam, const ::string & strQueryParam)
+   {
+
+      string strScript(strScriptParam);
+
+      string strQuery(strQueryParam);
+
+      if (strQuery.has_char())
+      {
+
          return strScript + "?" + strQuery;
+
+      }
       else
+      {
+
          return strScript;
 
+      }
+
    }
 
 
-   string department::path(const char * psz1, const char * psz2)
+   string department::path(const ::string & str1Param, const ::string & str2Param)
    {
 
-      if(psz2 == nullptr)
-         return psz1;
+      if (str2Param.is_empty())
+      {
 
-      string str1(psz1);
+         return str1Param;
 
-      string str2(psz2);
+      }
 
-      if(str1.Right(1) == "/")
+      string str1(str1Param);
+
+      string str2(str2Param);
+
+      if (str1.Right(1) == "/")
+      {
+
          str1 = str1.Left(str1.get_length() - 1);
 
-      if(str2.Left(1) == "/")
+      }
+
+      if (str2.Left(1) == "/")
+      {
+
          str2 = str2.Right(str2.get_length() - 1);
+
+      }
 
       return str1 + "/" + str2;
 
    }
 
-   string department::path(const char * psz1, const char * psz2, const char * psz3)
+
+   string department::path(const ::string & str1, const ::string & str2, const ::string & str3)
    {
 
-      return path(path(psz1, psz2), psz3);
+      return path(path(str1, str2), str3);
 
    }
 
-   string department::name(const char * psz)
+
+   string department::name(const ::string & strParam)
    {
 
-      string str(psz);
+      string str(strParam);
 
       strsize iQueryStart = str.find('?');
 
-      if(iQueryStart < 0)
+      if (iQueryStart < 0)
+      {
+
          iQueryStart = str.get_length();
+
+      }
 
       str = str.Left(iQueryStart);
 
       strsize iLastSlash = str.reverse_find('/');
 
-      if(iLastSlash < 0)
+      if (iLastSlash < 0)
+      {
+         
          return "";
-      else
-         return str.Left(iLastSlash);
+
+      }
+
+      return str.Left(iLastSlash);
 
    }
 
 
-   string department::url_encode(const char * psz)
+   string department::url_encode(const ::string & strParam)
    {
 
-      return ::url_encode(psz);
+      return ::url_encode(strParam);
 
    }
 
 
-   string department::url_decode(const char * psz)
+   string department::url_decode(const ::string & strParam)
    {
 
-      return ::url_decode(psz);
+      return ::url_decode(strParam);
 
    }
 
 
-   string department::url_decode(const char * pszUrl, strsize iLen)
-
+   string department::url_decode(const ::string & strUrl, strsize iLen)
    {
 
-      return ::url_decode(pszUrl,iLen);
-
+      return ::url_decode(strUrl,iLen);
 
    }
 
-   string department::query_append(const char * pszUrl, const char * pszQuery)
+
+   string department::query_append(const ::string & strUrlParam, const ::string & strQuery)
    {
 
-      string strUrl(pszUrl);
+      string strUrl(strUrlParam);
 
       strsize iStart = strUrl.find("://");
 
@@ -288,6 +369,7 @@ namespace url
             iStart = 0;
 
          }
+
       }
       else
       {
@@ -299,23 +381,23 @@ namespace url
       if(strUrl.find("?", iStart) > 0)
       {
 
-         return strUrl + "&" + pszQuery;
+         return strUrl + "&" + strQuery;
 
       }
       else
       {
 
-         return strUrl + "?" + pszQuery;
+         return strUrl + "?" + strQuery;
 
       }
 
    }
 
 
-   bool department::is_url(const char * pszCandidate)
+   bool department::is_url(const ::string & strCandidateParam)
    {
 
-      string strCandidate(pszCandidate);
+      string strCandidate(strCandidateParam);
 
       strsize iLen = strCandidate.get_length();
 
@@ -347,33 +429,33 @@ namespace url
    }
 
 
-   ::payload & department::var_set(::payload & varUrl, const char * pszKey, ::payload payload)
+   ::payload & department::var_set(::payload & varUrl, const ::string & strKeyParam, ::payload payload)
    {
 
-      return varUrl = set_key(varUrl, pszKey, payload);
+      return varUrl = set_key(varUrl, strKeyParam, payload);
 
    }
 
 
-   property & department::property_set(property & propUrl, const char * pszKey, ::payload payload)
+   property & department::property_set(property & propUrl, const ::string & strKeyParam, ::payload payload)
    {
 
-      propUrl = set_key(propUrl, pszKey, payload);
+      propUrl = set_key(propUrl, strKeyParam, payload);
 
       return propUrl;
 
    }
 
 
-   string department::string_set(string & strUrl, const char * pszKey, ::payload payload)
+   string department::string_set(string & strUrl, const ::string & strKeyParam, ::payload payload)
    {
 
-      return strUrl = set_key(strUrl, pszKey, payload);
+      return strUrl = set_key(strUrl, strKeyParam, payload);
 
    }
 
 
-   string department::string_set_if_not_empty(string& strUrl, const char* pszKey, ::payload payload)
+   string department::string_set_if_not_empty(string& strUrl, const ::string & strKey, ::payload payload)
    {
 
       if (payload.is_empty())
@@ -383,67 +465,70 @@ namespace url
 
       }
 
-      return string_set(strUrl, pszKey, payload);
-
-   }
-
-   string department::set_key(const char * pszUrl, const char * pszKey, ::payload payload)
-   {
-
-      string strUrl(pszUrl);
-
-      strsize iPos = strUrl.find("?");
-
-      if(iPos < 0)
-         iPos = strUrl.get_length();
-
-      return strUrl.Left(iPos)
-             + "?" +
-             query_set(strUrl.Mid(iPos + 1), pszKey, payload);
-
-   }
-
-   void department::set_key(string & strUrl, const char * pszUrl, const char * pszKey, ::payload payload)
-   {
-
-      strUrl = pszUrl;
-
-      strsize iPos = strUrl.find('?');
-
-      if(iPos < 0)
-         iPos = strUrl.get_length();
-
-      strUrl = strUrl.Left(iPos) + "?" + query_set(strUrl.Mid(iPos + 1), pszKey, payload);
+      return string_set(strUrl, strKey, payload);
 
    }
 
 
-   void department::set_param(string & strUrlParam, const char * pszKey, const char * strParam)
+   string department::set_key(const ::string & strUrlParam, const ::string & strKeyParam, ::payload payload)
    {
 
       string strUrl(strUrlParam);
 
-      set_param(strUrlParam, strUrl, pszKey, strParam);
+      strsize iPos = strUrl.find("?");
+
+      if (iPos < 0)
+      {
+
+         iPos = strUrl.get_length();
+
+      }
+
+      return strUrl.Left(iPos)
+             + "?" +
+             query_set(strUrl.Mid(iPos + 1), strKeyParam, payload);
 
    }
 
 
-   void department::set_param(string & strUrl, const char * pszUrl, const char * pszKey, const char * strParam)
+   void department::set_key(string & strUrl, const ::string & strUrlParam, const ::string & strKeyParam, ::payload payload)
    {
 
-      const char * pszQuery = strchr(pszUrl, '?');
+      strUrl = strUrlParam;
 
-      if (::is_null(strParam))
+      strsize iPos = strUrl.find('?');
+
+      if (iPos < 0)
       {
 
-         strParam = "";
+         iPos = strUrl.get_length();
 
       }
 
-      string strKey = url_encode(pszKey);
+      strUrl = strUrl.Left(iPos) + "?" + query_set(strUrl.Mid(iPos + 1), strKeyParam, payload);
+
+   }
+
+
+   void department::set_param(string & strUrlParam, const ::string & strKeyParam, const ::string & strParam)
+   {
+
+      string strUrl(strUrlParam);
+
+      set_param(strUrlParam, strUrl, strKeyParam, strParam);
+
+   }
+
+
+   void department::set_param(string & strUrl, const ::string & strUrlParam, const ::string & strKeyParam, const ::string & strParam)
+   {
+
+      const char * pszQuery = strchr(strUrlParam, '?');
+
+      string strKey = url_encode(strKeyParam);
       string strValue = url_encode(strParam);
 
-      strsize iLenUrl = strlen(pszUrl);
+      strsize iLenUrl = strlen(strUrlParam);
       strsize iLenKey = strKey.length();
 
       string str;
@@ -452,7 +537,7 @@ namespace url
 
       if(pszQuery == nullptr)
       {
-         strcpy(psz, pszUrl);
+         strcpy(psz, strUrlParam);
          psz[iLenUrl] = '?';
          strcpy(&psz[iLenUrl + 1], strKey);
          psz[iLenUrl + 1 + iLenKey] = '=';
@@ -461,9 +546,9 @@ namespace url
       }
       else
       {
-         strsize iFinalLen = pszQuery - pszUrl;
+         strsize iFinalLen = pszQuery - strUrlParam;
 //         i32 iPos = 0;
-         ansi_count_copy(psz, pszUrl, iFinalLen);
+         ansi_count_copy(psz, strUrlParam, iFinalLen);
          psz[iFinalLen] = '?';
          iFinalLen++;
          pszQuery++;
@@ -474,7 +559,7 @@ namespace url
          while(true)
          {
             pszQueryEnd = strchr(pszQuery + 1, '&');
-            if(ansi_count_compare(pszQuery, pszKey, iLenKey) == 0 && pszQuery[iLenKey] == '=')
+            if(ansi_count_compare(pszQuery, strKeyParam, iLenKey) == 0 && pszQuery[iLenKey] == '=')
             {
                if(!bRemove)
                {
@@ -503,8 +588,8 @@ namespace url
                }
                if(pszQueryEnd == nullptr)
                {
-                  ansi_count_copy(&psz[iFinalLen], pszQuery, iLenUrl - (pszQuery - pszUrl));
-                  iFinalLen += iLenUrl - (pszQuery - pszUrl);
+                  ansi_count_copy(&psz[iFinalLen], pszQuery, iLenUrl - (pszQuery - strUrlParam));
+                  iFinalLen += iLenUrl - (pszQuery - strUrlParam);
                   bAlreadyInsertedFirstParam = true;
                   break;
                }
@@ -547,72 +632,72 @@ namespace url
 
    }
 
-   ::payload & department::var_erase(::payload & varUrl, const char * pszKey)
+   ::payload & department::var_erase(::payload & varUrl, const ::string & strKeyParam)
    {
 
-      return varUrl = erase_key(varUrl, pszKey);
+      return varUrl = erase_key(varUrl, strKeyParam);
 
    }
 
-   property & department::property_erase(property & propUrl, const char * pszKey)
+   property & department::property_erase(property & propUrl, const ::string & strKeyParam)
    {
 
-      propUrl = erase_key(propUrl, pszKey);
+      propUrl = erase_key(propUrl, strKeyParam);
 
       return propUrl;
 
    }
 
-   string department::string_erase(string & strUrl, const char * pszKey)
+   string department::string_erase(string & strUrl, const ::string & strKeyParam)
    {
 
-      return strUrl = erase_key(strUrl, pszKey);
+      return strUrl = erase_key(strUrl, strKeyParam);
 
    }
 
-   string department::erase_key(const char * pszUrl, const char * pszKey)
+   string department::erase_key(const ::string & strUrlParam, const ::string & strKeyParam)
    {
 
-      string strUrl(pszUrl);
+      string strUrl(strUrlParam);
 
       strsize iPos = strUrl.find("?");
 
       if(iPos < 0)
          return strUrl;
 
-      return strUrl.Left(iPos) + ::str::has_char(query_erase(strUrl.Mid(iPos + 1), pszKey), "?");
+      return strUrl.Left(iPos) + ::str::has_char(query_erase(strUrl.Mid(iPos + 1), strKeyParam), "?");
 
    }
 
-   ::payload department::get_var(const char * pszUrl, const char * pszKey)
+   ::payload department::get_var(const ::string & strUrlParam, const ::string & strKeyParam)
    {
 
-      string strUrl(pszUrl);
+      string strUrl(strUrlParam);
 
       strsize iPos = strUrl.find('?');
 
       if(iPos < 0)
          return payload(::e_type_empty);
       else
-         return query_get_var(strUrl.Mid(iPos + 1), pszKey);
+         return query_get_var(strUrl.Mid(iPos + 1), strKeyParam);
 
    }
 
-   string department::get_param(const char * pszUrl, const char * pszKey)
+   string department::get_param(const ::string & strUrlParam, const ::string & strKeyParam)
    {
 
-      string strUrl(pszUrl);
+      string strUrl(strUrlParam);
 
       strsize iPos = strUrl.find('?');
 
       if(iPos < 0)
          return payload(::e_type_empty);
       else
-         return url_decode(query_get_param(strUrl.Mid(iPos + 1), pszKey));
+         return url_decode(query_get_param(strUrl.Mid(iPos + 1), strKeyParam));
 
    }
 
-   bool department::get_param(string & strValue, const string & strUrl, const string & strKey)
+   bool department::get_param(string & strValue, const ::string & strUrl, const ::string & strKey)
    {
 
       strsize iPos = strUrl.find('?');
@@ -624,7 +709,7 @@ namespace url
 
    }
 
-   bool department::has_param(const string & strUrl, const string & strKey)
+   bool department::has_param(const ::string & strUrl, const ::string & strKey)
    {
 
       strsize iPos = strUrl.find('?');
@@ -636,7 +721,7 @@ namespace url
 
    }
 
-   bool department::param_has_char(const string & strUrl, const string & strKey)
+   bool department::param_has_char(const ::string & strUrl, const ::string & strKey)
    {
 
       strsize iPos = strUrl.find('?');
@@ -647,7 +732,8 @@ namespace url
          return query_param_has_char(strUrl.Mid(iPos + 1), strKey);
    }
 
-   bool department::has_param_replace(string & strUrl, const char * strKey, const char * strValue)
+
+   bool department::has_param_replace(string & strUrl, const ::string & strKeyParam, const ::string & strValueParam)
    {
 
       strsize iPos = strUrl.find('?');
@@ -659,33 +745,36 @@ namespace url
 
          string strQuery = strUrl.Mid(iPos + 1);
 
-         if(!query_has_param_replace(strQuery, strKey, strValue))
+         if(!query_has_param_replace(strQuery, strKeyParam, strValueParam))
             return false;
 
          strUrl = strUrl.Left(iPos + 1) + strQuery;
 
          return true;
+
       }
+
    }
 
-   string department::query_set(const char * pszQuery, const char * pszKey, ::payload payload)
+
+   string department::query_set(const ::string & strQueryParam, const ::string & strKeyParam, ::payload payload)
    {
 
-      string strQuery(pszQuery);
+      string strQuery(strQueryParam);
 
-      string strKey(url_encode(pszKey));
+      string strKey(url_encode(strKeyParam));
 
       string strKeyEqual = strKey + "=";
 
       string strAndKeyEqual = "&" + strKeyEqual;
 
-      string strKey2(url_encode(pszKey));
+      string strKey2(url_encode(strKeyParam));
 
       string strKeyEqual2 = strKey + "=";
 
       string strAndKeyEqual2 = "&" + strKeyEqual;
 
-      string strValue = url_encode(payload.get_string());
+      string strValue = url_encode(payload.string());
 
       if(::str::begins(strQuery, strKeyEqual))
       {
@@ -751,12 +840,13 @@ namespace url
 
    }
 
-   string department::query_set_param(const char * pszQuery, const char * pszKey, const string & strParam)
+
+   string department::query_set_param(const ::string & strQueryParam, const ::string & strKeyParam, const ::string & strParam)
    {
 
-      string strQuery(pszQuery);
+      string strQuery(strQueryParam);
 
-      string strKey(pszKey);
+      string strKey(strKeyParam);
 
       string strKeyEqual = strKey + "=";
 
@@ -799,14 +889,14 @@ namespace url
 
    }
 
-   string department::query_erase(const char * pszQuery, const char * pszKey)
+   string department::query_erase(const ::string & strQueryParam, const ::string & strKeyParam)
    {
 
       ::property_set set;
 
-      set.parse_url_query(pszQuery);
+      set.parse_url_query(strQueryParam);
 
-      set.erase_by_name(pszKey);
+      set.erase_by_name(strKeyParam);
 
       string str;
 
@@ -816,14 +906,14 @@ namespace url
 
    }
 
-   string department::__query_erase(const char * pszQuery, const char * pszAndKeyEqual)
+   string department::__query_erase(const ::string & strQueryParam, const ::string & strAndKeyEqual)
    {
 
-      string strQuery(pszQuery);
+      string strQuery(strQueryParam);
 
       while(true)
       {
-         strsize iFind = strQuery.find(pszAndKeyEqual);
+         strsize iFind = strQuery.find(strAndKeyEqual);
          if(iFind < 0)
             break;
          strsize iNextParam = strQuery.find("&", iFind + 1);
@@ -841,12 +931,12 @@ namespace url
 
    }
 
-   string department::query_erase(const char * pszQuery, string_array & straKey)
+   string department::query_erase(const ::string & strQueryParam, string_array & straKey)
    {
 
       ::property_set set;
 
-      set.parse_url_query(pszQuery);
+      set.parse_url_query(strQueryParam);
 
       set.erase_by_name(straKey);
 
@@ -859,12 +949,12 @@ namespace url
    }
 
 
-   ::payload department::query_get_var(const char * pszQuery, const char * pszKey)
+   ::payload department::query_get_var(const ::string & strQueryParam, const ::string & strKeyParam)
    {
 
-      string strQuery(pszQuery);
+      string strQuery(strQueryParam);
 
-      string strKey(pszKey);
+      string strKey(strKeyParam);
 
       string strKeyEqual = strKey + "=";
 
@@ -925,7 +1015,7 @@ namespace url
 
    }
 
-   string department::query_get_param(const string & strQuery, const string & strKey)
+   string department::query_get_param(const ::string & strQuery, const ::string & strKey)
    {
 
       string strValue;
@@ -937,7 +1027,7 @@ namespace url
 
    }
 
-   bool department::query_get_param(string & strValue, const string & strQuery, const string & strKey)
+   bool department::query_get_param(string & strValue, const ::string & strQuery, const ::string & strKey)
    {
 
       strsize iCmp = strQuery.length() - strKey.length();
@@ -1001,7 +1091,7 @@ namespace url
 
    }
 
-   bool department::query_has_param(const string & strQuery, const string & strKey)
+   bool department::query_has_param(const ::string & strQuery, const ::string & strKey)
    {
 
       strsize iCmp = strQuery.length() - strKey.length();
@@ -1044,7 +1134,7 @@ namespace url
       return false;
    }
 
-   bool department::query_param_has_char(const string & strQuery, const string & strKey)
+   bool department::query_param_has_char(const ::string & strQuery, const ::string & strKey)
    {
 
       strsize iCmp = strQuery.length() - strKey.length();
@@ -1105,7 +1195,7 @@ namespace url
 
    }
 
-   bool department::query_has_param_replace(string & strQuery, const string & strKey, const string & strValue)
+   bool department::query_has_param_replace(string & strQuery, const ::string & strKey, const ::string & strValue)
    {
 
       strsize iCmp = strQuery.length() - strKey.length();
@@ -1436,24 +1526,25 @@ namespace url
 
 
 
-   string department::set_script(const char * pszUrl, const char * pszScript)
+   string department::set_script(const ::string & strUrl, const ::string & strScript)
    {
 
-      return get_protocol(pszUrl) + "://" + get_root(pszUrl) + string(pszScript) + ::str::has_char(get_query(pszUrl), "?");
+      return get_protocol(strUrl) + "://" + get_root(strUrl) + string(strScript) + ::str::has_char(get_query(strUrl), "?");
 
    }
 
-   string department::override_if_empty(const char * pszDst, const char * pszSrc, bool bOverrideQuery)
+
+   string department::override_if_empty(const ::string & strDst, const ::string & strSrc, bool bOverrideQuery)
    {
 
-      string strProtocol = get_protocol(pszDst);
-      string strProtocolOver = get_protocol(pszSrc);
-      string strRoot = get_root(pszDst);
-      string strRootOver = get_root(pszSrc);
-      string strScript = get_script(pszDst);
-      string strScriptOver = get_script(pszSrc);
-      string strQuery = get_query(pszDst);
-      string strQueryOver = get_query(pszSrc);
+      string strProtocol = get_protocol(strDst);
+      string strProtocolOver = get_protocol(strSrc);
+      string strRoot = get_root(strDst);
+      string strRootOver = get_root(strSrc);
+      string strScript = get_script(strDst);
+      string strScriptOver = get_script(strSrc);
+      string strQuery = get_query(strDst);
+      string strQueryOver = get_query(strSrc);
 
       if(strProtocol.is_empty())
          strProtocol = strProtocolOver;
@@ -1471,20 +1562,21 @@ namespace url
          strScript = "/" + strScript;
 
       return strProtocol + "://" + strRoot + strScript + ::str::has_char(strQuery, "?");
+
    }
 
 
-   string department::override_if_set_at_source(const char * pszDst, const char * pszSrc)
+   string department::override_if_set_at_source(const ::string & strDst, const ::string & strSrc)
    {
 
-      string strProtocol = get_protocol(pszDst);
-      string strProtocolOver = get_protocol(pszSrc);
-      string strRoot = get_root(pszDst);
-      string strRootOver = get_root(pszSrc);
-      string strScript = get_script(pszDst);
-      string strScriptOver = get_script(pszSrc);
-      string strQuery = get_query(pszDst);
-      string strQueryOver = get_query(pszSrc);
+      string strProtocol = get_protocol(strDst);
+      string strProtocolOver = get_protocol(strSrc);
+      string strRoot = get_root(strDst);
+      string strRootOver = get_root(strSrc);
+      string strScript = get_script(strDst);
+      string strScriptOver = get_script(strSrc);
+      string strQuery = get_query(strDst);
+      string strQueryOver = get_query(strSrc);
 
       if(strProtocolOver.has_char())
          strProtocol = strProtocolOver;
@@ -1505,24 +1597,26 @@ namespace url
    }
 
 
-   string department::to_punycode(const char * psz)
+   string department::to_punycode(const ::string & str)
    {
 
 #ifdef WINDOWS
 
-      wstring wstr(psz);
+      wstring wstr(str);
 
       int iSize = IdnToAscii(IDN_RAW_PUNYCODE, wstr, (int) wstr.get_length(), nullptr, 0);
 
-      WCHAR * pwsz = new WCHAR[iSize + 1];
+      wstring wstrTarget;
 
-      IdnToAscii(IDN_RAW_PUNYCODE, wstr, (int) wstr.get_length(), pwsz, iSize + 1);
+      WCHAR * pwszTarget = wstrTarget.get_string_buffer(iSize);
 
-      string str = pwsz;
+      IdnToAscii(IDN_RAW_PUNYCODE, wstr, (int) wstr.get_length(), pwszTarget, iSize);
 
-      delete pwsz;
+      wstrTarget.release_string_buffer();
 
-      return str;
+      string strTarget = wstrTarget;
+
+      return strTarget;
 
 #else
 
@@ -1547,29 +1641,28 @@ namespace url
 
    }
 
-   string department::from_punycode(const char * psz)
+   string department::from_punycode(const ::string & str)
    {
 
 #ifdef WINDOWS
 
-      wstring wstrSource(psz);
+      wstring wstrSource(str);
 
       int iSize = IdnToUnicode(IDN_RAW_PUNYCODE, wstrSource, (int)wstrSource.get_length(), nullptr, 0);
 
       wstring wstrTarget;
 
-      auto pwsz = wstrTarget.get_string_buffer(iSize);
+      auto pwszTarget = wstrTarget.get_string_buffer(iSize);
 
-      IdnToUnicode(IDN_RAW_PUNYCODE, pwsz, iSize, pwsz, iSize);
+      IdnToUnicode(IDN_RAW_PUNYCODE, wstrSource, (int)wstrSource.get_length(), pwszTarget, iSize);
 
       wstrTarget.release_string_buffer(iSize);
 
-      string str = wstrTarget;
+      string strTarget = wstrTarget;
 
-      return str;
+      return strTarget;
 
 #else
-
 
       if(psz == nullptr || *psz == '\0')
          return "";

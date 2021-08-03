@@ -63,7 +63,7 @@ namespace uwp
       virtual ::e_status start_service() override;
       virtual ::e_status stop_service() override;
 
-      virtual bool resolve_link(string & strTarget, string & strFolder, string & strParams, const string & strSource, ::user::primitive * puiMessageParentOptional = nullptr);
+      virtual bool resolve_link(string & strTarget, string & strFolder, string & strParams, const ::string & strSource, ::user::primitive * puiMessageParentOptional = nullptr);
 
       virtual DECLSPEC_NO_RETURN void raise_exception(u32 dwExceptionCode, u32 dwExceptionFlags = EXCEPTION_NONCONTINUABLE) override;
 

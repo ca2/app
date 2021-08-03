@@ -901,7 +901,7 @@ break_click:;
 
          item.m_iSubItem = pinteraction->m_iSubItem;
 
-         item.m_strText = payload.get_string();
+         item.m_strText = payload.string();
 
          _001SetItemText(&item);
 

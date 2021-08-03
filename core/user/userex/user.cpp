@@ -1014,7 +1014,7 @@ namespace core
 
       }
 
-      if (payload.get_type() == ::e_type_property_set && payload.has_property("hold") && !(bool)payload["hold"])
+      if (payload.get_type() == ::e_type_property_set && payload.has_property("hold") && payload["hold"].is_false())
       {
 
          pcreate->m_bHold = false;
@@ -1098,7 +1098,7 @@ namespace core
 
       }
 
-      if (payload.get_type() == ::e_type_property_set && payload.has_property("hold") && !(bool)payload["hold"])
+      if (payload.get_type() == ::e_type_property_set && payload.has_property("hold") && payload["hold"].is_false())
       {
 
          pcreate->m_bHold = false;
@@ -1187,7 +1187,7 @@ namespace core
 
       }
 
-      if (payload.get_type() == ::e_type_property_set && payload.has_property("hold") && !(bool)payload["hold"])
+      if (payload.get_type() == ::e_type_property_set && payload.has_property("hold") && payload["hold"].is_false())
       {
 
          pcreate->m_bHold = false;

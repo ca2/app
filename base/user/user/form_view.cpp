@@ -180,7 +180,7 @@ namespace user
    }
 
 
-   ::e_status form_view::open_html(const string & str)
+   ::e_status form_view::open_html(const ::string & str)
    {
 
       synchronous_lock synchronouslock(mutex());

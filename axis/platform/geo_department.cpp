@@ -133,21 +133,23 @@ namespace geo
 
                v.parse_json(pszJson);
 
-               string strLine = v["name"].get_string() + ", " + v["country"].get_string();
+               string strLine = v["name"].string() + ", " + v["country"].string();
 
                m_straCity.add(strLine);
 
                m_straCityLo.add(strLine.lowered());
 
-               i64 iId = v["_id"];
+               i64 iId;
+
+               v["_id"].as(iId);
 
                m_iaIds.add(iId);
 
-               double dLon = v["coord"]["lon"];
+               double dLon = v["coord"]["lon"].f64();
 
                m_daLon.add(dLon);
 
-               double dLat = v["coord"]["lat"];
+               double dLat = v["coord"]["lat"].f64();
 
                m_daLat.add(dLat);
 
@@ -624,9 +626,9 @@ namespace geo
 
             v.parse_json(pszJson);
 
-            str = v["abbreviation"].get_string().lowered();
+            str = v["abbreviation"].string().lowered();
 
-            dZone = v["gmtOffset"].get_double() / 3600.0;
+            dZone = v["gmtOffset"].f64() / 3600.0;
 
          }
          catch (...)

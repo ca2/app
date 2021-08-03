@@ -29,7 +29,7 @@ CLASS_DECL_APEX string c_inet_ntop(i32 af, const void * src);
 
 CLASS_DECL_APEX string c_gethostbyname(const char * hostname);
 
-CLASS_DECL_APEX string get_file_extension_mime_type(const string & strExtension);
+CLASS_DECL_APEX string get_file_extension_mime_type(const ::string & strExtension);
 
 
 #include "byte_order.h"

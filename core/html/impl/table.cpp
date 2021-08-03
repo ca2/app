@@ -97,7 +97,9 @@ namespace html
       float table::calc_width()
       {
 
-         string strWidth = m_pelemental->m_pstyle->m_propertyset["width"].get_string();
+         string strWidth;
+
+         m_pelemental->m_pstyle->m_propertyset["width"].as(strWidth);
 
          strWidth.trim();
 

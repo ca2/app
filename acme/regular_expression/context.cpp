@@ -24,7 +24,7 @@ namespace regular_expression
    }
 
 
-   ::regular_expression_pointer context::compile(const string & str)
+   ::regular_expression_pointer context::compile(const ::string & str)
    {
 
       __throw(error_interface_only);

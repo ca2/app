@@ -93,7 +93,7 @@ inline auto get_normal_dimension(enum_orientation eorientation, X x, Y y)
 
 
 template < typename UNIT_TYPE >
-inline UNIT_TYPE __conv(const string & str)
+inline UNIT_TYPE __conv(const ::string & str)
 {
 
    return (UNIT_TYPE) str;
@@ -102,7 +102,7 @@ inline UNIT_TYPE __conv(const string & str)
 
 
 template <  >
-inline ::i32 __conv<::i32>(const string & str)
+inline ::i32 __conv<::i32>(const ::string & str)
 {
 
    return (::i32) ::atoi(str);
@@ -111,7 +111,7 @@ inline ::i32 __conv<::i32>(const string & str)
 
 
 template <  >
-inline i64 __conv<i64>(const string & str)
+inline i64 __conv<i64>(const ::string & str)
 {
 
    return (::i32) ::atoi(str);
@@ -120,7 +120,7 @@ inline i64 __conv<i64>(const string & str)
 
 
 template <  >
-inline double __conv<double>(const string & str)
+inline double __conv<double>(const ::string & str)
 {
 
    return (::i32) ::atoi(str);

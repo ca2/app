@@ -37,7 +37,7 @@ namespace papaya
    }
 
 
-   inline bool is_false(const string & str)
+   inline bool is_false(const ::string & str)
    {
 
       return str.is_empty() || str.compare_ci("false") == 0 || str.compare_ci("no") == 0;
@@ -45,7 +45,7 @@ namespace papaya
    }
 
 
-   inline bool is_true(const string & str)
+   inline bool is_true(const ::string & str)
    {
 
       return !is_false(str);
@@ -53,7 +53,7 @@ namespace papaya
    }
 
 
-   inline bool is_set_false(const string & str)
+   inline bool is_set_false(const ::string & str)
    {
 
       return str.compare_ci("false") == 0 || str.compare_ci("no") == 0;
@@ -61,7 +61,7 @@ namespace papaya
    }
 
 
-   inline bool is_set_true(const string & str)
+   inline bool is_set_true(const ::string & str)
    {
 
       return str.compare_ci("true") == 0 || str.compare_ci("yes") == 0;

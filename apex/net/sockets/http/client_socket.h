@@ -21,7 +21,7 @@ namespace sockets
 
 
    CLASS_DECL_APEX string http_method_string(e_http_method emethod);
-   CLASS_DECL_APEX e_http_method string_http_method(const string & str);
+   CLASS_DECL_APEX e_http_method string_http_method(const ::string & str);
 
 
    /** get http response to file or memory.

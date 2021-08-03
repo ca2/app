@@ -94,7 +94,7 @@ class CLASS_DECL_AURA db_str_sync_queue:
 public:
 
    ::mutex                                              m_mutex;
-   db_str_set *                                       m_pset;
+   db_str_set *                                       m_ppropertyset;
    sockets::socket_handler                            m_handler;
    sockets::http_session *                            m_phttpsession;
 
@@ -217,7 +217,7 @@ repeat:;
    catch(...)
    {
    }
-   m_pset->m_pcore->m_pqueue = nullptr;
+   m_ppropertyset->m_pcore->m_pqueue = nullptr;
    return 0;
 }
 
@@ -453,7 +453,7 @@ bool db_str_set::save(const char * lpKey, const char * lpcsz)
       {
 
          m_pcore->m_pqueue = new db_str_sync_queue(this);
-         m_pcore->m_pqueue->m_pset = this;
+         m_pcore->m_pqueue->m_ppropertyset = this;
          m_pcore->m_pqueue->begin();
 
       }

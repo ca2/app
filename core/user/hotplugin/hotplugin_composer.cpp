@@ -318,7 +318,7 @@ namespace hotplugin
    }
 
 
-   bool composer::open_link(const string & strLink,const string & pszTarget)
+   bool composer::open_link(const ::string & strLink,const string & pszTarget)
    {
 
       m_strOpenUrl = strLink;
@@ -332,7 +332,7 @@ namespace hotplugin
    }
 
 
-   bool composer::_open_link(const string & strLink,const string & pszTarget)
+   bool composer::_open_link(const ::string & strLink,const string & pszTarget)
    {
 
       return true;

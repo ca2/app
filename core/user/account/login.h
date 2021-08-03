@@ -55,7 +55,7 @@ namespace account
 
       
 
-      void defer_translate(const string & strUser, const string & strPass, const string & strOpen);
+      void defer_translate(const ::string & strUser, const ::string & strPass, const ::string & strOpen);
 
       virtual void on_layout(::draw2d::graphics_pointer & pgraphics) override;
 

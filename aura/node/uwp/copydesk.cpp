@@ -142,7 +142,7 @@ namespace uwp
    }
 
 
-   bool copydesk::_set_plain_text(const string & str)
+   bool copydesk::_set_plain_text(const ::string & str)
    {
 
       auto package = ref new ::Windows::ApplicationModel::DataTransfer::DataPackage;

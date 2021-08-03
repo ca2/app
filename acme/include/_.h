@@ -1374,6 +1374,22 @@ template<typename LEFT, typename RIGHT>
 inline void assign(LEFT &l, const RIGHT &r) { l = r; }
 
 
+class payload;
+
+
+inline void assign(long & l, const ::payload & r);
+inline void assign(unsigned long & l, const ::payload & r);
+
+
+inline void assign(bool & l, const ::payload & r);
+inline void assign(::i8 & i8, const ::payload & r);
+inline void assign(::u8 & u8, const ::payload & r);
+inline void assign(::i16 & i16, const ::payload & r);
+inline void assign(::u16 & u16, const ::payload & r);
+inline void assign(::i32 & i32, const ::payload & r);
+inline void assign(::u32 & u32, const ::payload & r);
+inline void assign(::i64 & i64, const ::payload & r);
+inline void assign(::u64 & u64, const ::payload & r);
 
 
 //template < typename, typename >
@@ -1457,6 +1473,8 @@ using wstring = string_base < widechar >;
 inline const ansichar *__c_str(const string &str);
 
 
+
+
 template < typename T >
 concept has_to_string = requires(T t)
 {
@@ -1498,7 +1516,7 @@ inline u32 u32_hash(ARG_KEY key) { return (u32) (uptr_hash<ARG_KEY>(key)); }
 
 //CLASS_DECL_ACME void __set_get_text(__PFN_GET_TEXT pgettext);
 
-CLASS_DECL_ACME string __get_text(const string & str);
+CLASS_DECL_ACME string __get_text(const ::string & str);
 
 
 

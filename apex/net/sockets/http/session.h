@@ -49,7 +49,7 @@ namespace sockets
 
       using http_client_socket::request;
 
-      virtual void request(const string & strMethod, const string & pszRequest);
+      virtual void request(const ::string & strMethod, const string & pszRequest);
       virtual void request(e_http_method emethod, const string & pszRequest);
 
 

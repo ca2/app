@@ -94,7 +94,7 @@ public:
    }
 
 
-   inline void __cdecl operator()(e_log elog, const string & strContext, i32 iError, const string & strMessage) const
+   inline void __cdecl operator()(e_log elog, const ::string & strContext, i32 iError, const ::string & strMessage) const
    {
 
       ::__tracef(m_pobject, e_trace_level_none, m_pszFunction, m_pszFile, m_iLine, "%d %d %s", strContext.c_str(), iError, strMessage.c_str());
@@ -102,7 +102,7 @@ public:
    }
 
 
-   inline void __cdecl operator()(::object * pobject, const string & strContext, i32 iError, const string & strMessage) const
+   inline void __cdecl operator()(::object * pobject, const ::string & strContext, i32 iError, const ::string & strMessage) const
    {
 
       ::__tracef(pobject, e_trace_level_none, m_pszFunction, m_pszFile, m_iLine, "%d %d %s", strContext.c_str(), iError, strMessage.c_str());
@@ -172,7 +172,7 @@ public:
    }
 
 
-   inline void operator()(e_log elog, const string & strContext, i32 iError, const string & strMessage) const
+   inline void operator()(e_log elog, const ::string & strContext, i32 iError, const ::string & strMessage) const
    {
 
       if (iError == 0)
@@ -191,7 +191,7 @@ public:
    }
 
 
-   inline void operator()(::object * pobject, const string & strContext, i32 iError, const string & strMessage) const
+   inline void operator()(::object * pobject, const ::string & strContext, i32 iError, const ::string & strMessage) const
    {
 
       ::__tracef(pobject, m_elevel, m_pszFunction, m_pszFile, m_iLine, "%d %d %s", strContext.c_str(), iError, strMessage.c_str());

@@ -21,7 +21,7 @@ public:
       m_number = number;
    }
 
-   inline c_number(const string & str)
+   inline c_number(const ::string & str)
    {
       from(str);
    }
@@ -36,7 +36,7 @@ public:
       return m_number;
    }
 
-   inline c_number < T > & from(const string & str);
+   inline c_number < T > & from(const ::string & str);
 
    /*   bool operator == (const c_number & n) const;
       bool operator > (const c_number & n) const;

@@ -28,7 +28,7 @@
 //
 //
 //
-//   void stream::write (const string & str)
+//   void stream::write (const ::string & str)
 //   {
 //
 //      write((const char *) str);

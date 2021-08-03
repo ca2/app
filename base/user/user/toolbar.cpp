@@ -1776,11 +1776,11 @@ return { 0,0 };
 
             auto pattribute = pchild->find_attribute("id");
 
-            item->m_id = pattribute->get_string();
+            item->m_id = pattribute->string();
 
             item->m_str = pchild->get_value();
 
-            if(pchild->attribute("image").get_string().has_char())
+            if(pchild->attribute("image").has_char())
             {
 
                auto pcontext = m_pcontext->m_pauracontext;
@@ -1791,10 +1791,10 @@ return { 0,0 };
 
             }
 
-            if(pchild->attribute("enable_if_has_command_handler").get_string().has_char())
+            if(pchild->attribute("enable_if_has_command_handler").has_char())
             {
 
-               item->m_bEnableIfHasCommandHandler = pchild->attribute("enable_if_has_command_handler").get_string().compare_ci("true") == 0;
+               item->m_bEnableIfHasCommandHandler = pchild->attribute("enable_if_has_command_handler").string().compare_ci("true") == 0;
 
             }
 

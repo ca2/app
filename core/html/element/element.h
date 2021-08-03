@@ -58,7 +58,7 @@ namespace html
 
 
 
-      virtual void _001SetText(const string & str, const ::action_context & action_context) override;
+      virtual void _001SetText(const ::string & str, const ::action_context & action_context) override;
 
       DECLARE_MESSAGE_HANDLER(OnLButtonDown);
       DECLARE_MESSAGE_HANDLER(OnMouseMove);

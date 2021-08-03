@@ -383,7 +383,7 @@ namespace net
    }
 
 
-   //bool address_department::convert(struct in6_addr& l, const string & str, i32 ai_flags)
+   //bool address_department::convert(struct in6_addr& l, const ::string & str, i32 ai_flags)
    //{
 
 

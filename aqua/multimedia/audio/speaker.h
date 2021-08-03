@@ -24,11 +24,11 @@ namespace tts
       virtual ~speaker();
 
 
-      virtual bool speak(const string & strText);
+      virtual bool speak(const ::string & strText);
 
-      virtual bool speak(const string & strLang, const string & strText, bool bSynch = false);
+      virtual bool speak(const ::string & strLang, const ::string & strText, bool bSynch = false);
 
-      virtual bool speak(const string & strAttributes, const string & strLang, const string & strText, bool bSynch = false);
+      virtual bool speak(const ::string & strAttributes, const ::string & strLang, const ::string & strText, bool bSynch = false);
 
       virtual bool stop(string strLang);
 

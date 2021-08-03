@@ -402,7 +402,7 @@ namespace user
 
       virtual void OnLinkClick(const char * psz,const char * pszTarget = nullptr);
 
-      virtual ::user::interaction * get_child_by_name(const string & strName, ::index iItem = -1, i32 iLevel = -1);
+      virtual ::user::interaction * get_child_by_name(const ::string & strName, ::index iItem = -1, i32 iLevel = -1);
       virtual ::user::interaction * get_child_by_id(const ::id & id, ::index iItem = -1, i32 iLevel = -1);
 
 
@@ -721,8 +721,8 @@ namespace user
 
       virtual void InputConnectionBeginBatchEdit();
       virtual void InputConnectionEndBatchEdit();
-      virtual void InputConnectionCommitText(const string & str, strsize iNewCursorPosition);
-      virtual void InputConnectionSetComposingText(const string & str, strsize iNewCursorPosition);
+      virtual void InputConnectionCommitText(const ::string & str, strsize iNewCursorPosition);
+      virtual void InputConnectionSetComposingText(const ::string & str, strsize iNewCursorPosition);
       virtual void InputConnectionSetComposingRegion(strsize iStart, strsize iEnd);
       virtual void InputConnectionSetSelection(strsize iStart, strsize iEnd);
       virtual void InputConnectionFinishComposingText();
@@ -745,7 +745,7 @@ namespace user
       //virtual void set_window_text(const char * pszString);
 
       //virtual void _001SetCheck(enum_check echeck, const ::action_context & action_context);
-      //virtual void _001SetText(const string & strText, const ::action_context & action_context);
+      //virtual void _001SetText(const ::string & strText, const ::action_context & action_context);
 
       virtual ::user::primitive * first_child_user_primitive();
       virtual ::user::primitive * top_user_primitive();

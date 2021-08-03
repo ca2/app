@@ -28,6 +28,13 @@ material_object::~material_object()
 //}
 
 
+::string material_object::to_string() const
+{
+
+   return type_c_str();
+
+}
+
 
 // <3TBS_!! handle -> command_handler <3TBS_(I need to suck you)!!
 ::e_status material_object::command_handler(const ::id & id)

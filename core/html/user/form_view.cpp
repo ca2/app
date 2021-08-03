@@ -109,9 +109,9 @@ bool html_form_view::Navigate(const char * pszUrl)
    return true;
 }
 
-void html_form_view::on_document_complete(const char * pszUrl)
+void html_form_view::on_document_complete(const ::string & strUrl)
 {
-   UNREFERENCED_PARAMETER(pszUrl);
+   UNREFERENCED_PARAMETER(strUrl);
 }
 
 

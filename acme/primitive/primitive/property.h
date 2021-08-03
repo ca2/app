@@ -16,7 +16,7 @@ namespace xml
 
 } // namespace xml
 
-//string CLASS_DECL_ACME operator + (const char * psz, const property & prop);
+//::string CLASS_DECL_ACME operator + (const char * psz, const property & prop);
 //
 //::payload CLASS_DECL_ACME operator - (i32 i, const property & prop);
 //::payload CLASS_DECL_ACME operator - (u32 user, const property & prop);
@@ -149,7 +149,7 @@ public:
    }
 
 
-   //inline property operator + (const string & str) const { return property(m_id, to_string() + str); }
+   //inline property operator + (const ::string & str) const { return property(m_id, to_string() + str); }
    //inline property operator + (const char * psz) const { return property(m_id, to_string() + psz); }
 //   inline property operator + (const property & prop) const { return property(m_id, (const ::payload &) *this + (const ::payload &) prop); }
 
@@ -234,7 +234,8 @@ public:
 ////
 ////   const char * c_str() const { return get_ref_string().c_str(); }
 ////
-  inline string & get_json(string & str, bool bNewLine = true) const
+  
+   inline ::string & get_json(::string & str, bool bNewLine = true) const
    {
 
       str += "\"";
@@ -251,18 +252,18 @@ public:
 
    }
 
-  string get_json(bool bNewLine = true) const
+  ::string get_json(bool bNewLine = true) const
   {
 
-     string str;
+     ::string str;
 
      return get_json(str, bNewLine);
 
   }
 
 ////
-      string & get_http_post(string & str) const;
-      string get_http_post() const { string str; return get_http_post(str); }
+      ::string & get_http_post(::string & str) const;
+      ::string get_http_post() const { ::string str; return get_http_post(str); }
 ////
 ////   string_array & stra();
 ////   int_array & inta();
@@ -275,7 +276,7 @@ public:
 ////   inline void get_string(char * psz) const;
 ////   strsize get_length() const;
 ////
-   //string get_xml(::xml::disp_option * opt = ((::xml::disp_option *) 1));
+   //::string get_xml(::xml::disp_option * opt = ((::xml::disp_option *) 1));
 ////
 ////   inline bool has_char() const { return has_char(); }
 ////
@@ -288,7 +289,7 @@ public:
 ////
 ////   inline ::payload operator()(const char * pszName) const { return find_property(::id(pszName)); }
 ////
-////   inline ::payload operator()(const string & strName) const { return find_property(::id(strName)); }
+////   inline ::payload operator()(const ::string & strName) const { return find_property(::id(strName)); }
 ////
 ////   inline ::payload operator()(::index iIndex) const { return find_property(::id(iIndex)); }
 ////
@@ -300,8 +301,8 @@ public:
 ////   inline property & operator[](const char * pszName) { return get_property(::id(pszName)); }
 ////   inline ::payload operator[](const char * pszName) const { return find_property(::id(pszName)); }
 ////
-////   inline property & operator[](const string & strName) { return get_property(::id(strName)); }
-////   inline ::payload operator[](const string & strName) const { return find_property(::id(strName)); }
+////   inline property & operator[](const ::string & strName) { return get_property(::id(strName)); }
+////   inline ::payload operator[](const ::string & strName) const { return find_property(::id(strName)); }
 ////
 ////   inline property & operator[](::index iIndex) { return get_property(::id(iIndex)); }
 ////   inline ::payload operator[](::index iIndex) const { return find_property(::id(iIndex)); }
@@ -394,22 +395,22 @@ public:
 ////      return get_double();
 ////   }
 ////
-////   string get_string() const
+////   ::string get_string() const
 ////   {
 ////      return get_string();
 ////   }
 ////
-////   string & to_string(string & str) const
+////   ::string & to_string(::string & str) const
 ////   {
 ////      return str = get_string();
 ////   }
 ////
-////   string to_string() const
+////   ::string to_string() const
 ////   {
 ////      return get_string();
 ////   }
 ////
-////   string to_string_base() const
+////   ::string to_string_base() const
 ////   {
 ////      return get_string();
 ////   }
@@ -445,7 +446,7 @@ public:
 ////      return *this;
 ////   }
 ////
-////   property & operator =(const string & str)
+////   property & operator =(const ::string & str)
 ////   {
 ////      m_var = str;
 ////      return *this;
@@ -463,7 +464,7 @@ public:
 ////      return *this;
 ////   }
 ////
-////   property & operator =(string && str)
+////   property & operator =(::string && str)
 ////   {
 ////      m_var = ::move(str);
 ////      return *this;
@@ -606,7 +607,7 @@ public:
 ////      if(this != &prop)
 ////      {
 ////         release();
-////         m_str.~string();
+////         m_str.~::string();
 ////         m_id.m_all = prop.m_id.m_all;
 ////         ::memcpy_dup(&m_var, &prop, sizeof(payload));
 ////         ::memset(&prop, 0, sizeof(payload));
@@ -661,9 +662,9 @@ public:
 ////      return operator const char *();
 ////   }
 ////
-////   operator string & ()
+////   operator ::string & ()
 ////   {
-////      return operator string &();
+////      return operator ::string &();
 ////   }
 ////
 ////   operator ::file::path & ()
@@ -720,7 +721,7 @@ public:
 ////   bool is_empty() const;
 ////   bool is_true() const;
 ////
-////   inline string implode(const char * pszGlue) const;
+////   inline ::string implode(const char * pszGlue) const;
 ////
 ////   ::payload element_at(index iIndex) const;
 ////   ::payload at(index iIndex) const;
@@ -734,7 +735,7 @@ public:
 ////   bool strict_equal(const property & prop) const;
 ////   bool strict_equal(const ::payload & payload) const;
 ////   bool strict_equal(const char * psz) const;
-////   bool strict_equal(const string & str) const;
+////   bool strict_equal(const ::string & str) const;
 ////   bool strict_equal(double d) const;
 ////   bool strict_equal(::i32 i) const;
 ////   bool strict_equal(bool b) const;
@@ -742,7 +743,7 @@ public:
 ////   bool strict_different(const property & prop) const;
 ////   bool strict_different(const ::payload & payload) const;
 ////   bool strict_different(const char * psz) const;
-////   bool strict_different(const string & str) const;
+////   bool strict_different(const ::string & str) const;
 ////   bool strict_different(double d) const;
 ////   bool strict_different(::i32 i) const;
 ////   bool strict_different(bool b) const;
@@ -750,42 +751,42 @@ public:
 ////   bool operator == (const property & prop) const;
 ////   bool operator == (const ::payload & payload) const;
 ////   bool operator == (const char * psz) const;
-////   bool operator == (const string & str) const;
+////   bool operator == (const ::string & str) const;
 ////   bool operator == (::i32 i) const;
 ////   bool operator == (bool b) const;
 ////
 ////   bool operator != (const property & prop) const;
 ////   bool operator != (const ::payload & payload) const;
 ////   bool operator != (const char * psz) const;
-////   bool operator != (const string & str) const;
+////   bool operator != (const ::string & str) const;
 ////   bool operator != (::i32 i) const;
 ////   bool operator != (bool b) const;
 ////
 ////   bool operator < (const property & prop) const;
 ////   bool operator < (const ::payload & payload) const;
 ////   bool operator < (const char * psz) const;
-////   bool operator < (const string & str) const;
+////   bool operator < (const ::string & str) const;
 ////   bool operator < (::i32 i) const;
 ////   bool operator < (bool b) const;
 ////
 ////   bool operator <= (const property & prop) const;
 ////   bool operator <= (const ::payload & payload) const;
 ////   bool operator <= (const char * psz) const;
-////   bool operator <= (const string & str) const;
+////   bool operator <= (const ::string & str) const;
 ////   bool operator <= (::i32 i) const;
 ////   bool operator <= (bool b) const;
 ////
 ////   bool operator >= (const property & prop) const;
 ////   bool operator >= (const ::payload & payload) const;
 ////   bool operator >= (const char * psz) const;
-////   bool operator >= (const string & str) const;
+////   bool operator >= (const ::string & str) const;
 ////   bool operator >= (::i32 i) const;
 ////   bool operator >= (bool b) const;
 ////
 ////   bool operator > (const property & prop) const;
 ////   bool operator > (const ::payload & payload) const;
 ////   bool operator > (const char * psz) const;
-////   bool operator > (const string & str) const;
+////   bool operator > (const ::string & str) const;
 ////   bool operator > (::i32 i) const;
 ////   bool operator > (bool b) const;
 ////
@@ -797,7 +798,7 @@ public:
 ////   bool operator > (::i64 i) const;
 ////
 ////   ::payload operator + (const char * psz) const;
-////   ::payload operator + (const string & str) const;
+////   ::payload operator + (const ::string & str) const;
 ////
 ////   ::payload operator - (::i32 i) const;
 ////   ::payload operator - (::u32 user) const;
@@ -843,7 +844,7 @@ public:
 ////   property & operator += (const ::payload & payload);
 ////   property & operator += (const property & prop);
 ////   property & operator += (const char * psz);
-////   property & operator += (const string & str);
+////   property & operator += (const ::string & str);
 ////
 ////   property & operator /= (::i32 i);
 ////   property & operator /= (::u32 user);
@@ -862,7 +863,7 @@ public:
 ////   property & operator *= (const property & prop);
 ////
 ////
-////   void parse_json(const string & str);
+////   void parse_json(const ::string & str);
 ////   void parse_json(const char * & pszJson,strsize length);
 ////   void parse_json(const char * & pszJson,const char * pszEnd);
 ////
@@ -894,7 +895,7 @@ using property_ptra = auto_ptr_array < ::property >;
 //using property_map = map < ::id, const ::id &, payload, const ::payload &, ::property >;
 
 
-//inline bool operator == (const string & str, const property & prop)
+//inline bool operator == (const ::string & str, const property & prop)
 //{
 //
 //   return str == prop.get_string();

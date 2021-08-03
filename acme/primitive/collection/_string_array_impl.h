@@ -97,20 +97,25 @@ string_array_base < Type, RawType, t_etypePayload >  & string_array_base < Type,
    }
    else
    {
+      
       if (varSrc.get_count() == 1)
       {
-         add((Type)varSrc.get_string());
+         
+         add((Type)varSrc.string());
+
       }
       else if (varSrc.get_count() > 1)
       {
+
          varSrc.get_array(*this);
+
       }
+
    }
+
    return *this;
+
 }
-
-
-
 
 
 template < typename Type, typename RawType, enum_type t_etypePayload >

@@ -12,17 +12,17 @@ inline property_object::property_object(const property_object & object) :
       material_object(object),
       m_pia(__new(::i64_array(*object.m_pia))),
       m_estatus(object.m_estatus),
-      m_pset(__new(::property_set(*object.m_pset)))
+      m_ppropertyset(__new(::property_set(*object.m_ppropertyset)))
 {
 
 }
 
 
-inline bool property_object::has_property(const id & id) const { return m_pset && m_pset->has_property(id); }
-inline property * property_object::lookup_property(const id& id) const { return m_pset ? m_pset->find(id) : nullptr; }
-inline bool property_object::erase_key(const id & id) { return m_pset && m_pset->erase_by_name(id); }
-inline property_set & property_object::get_property_set() { defer_propset(); return *m_pset; }
-inline const property_set & property_object::get_property_set() const { ((property_object *)this)->defer_propset(); return *m_pset; }
+inline bool property_object::has_property(const id & id) const { return m_ppropertyset && m_ppropertyset->has_property(id); }
+inline property * property_object::lookup_property(const id& id) const { return m_ppropertyset ? m_ppropertyset->find(id) : nullptr; }
+inline bool property_object::erase_key(const id & id) { return m_ppropertyset && m_ppropertyset->erase_by_name(id); }
+inline property_set & property_object::get_property_set() { defer_propset(); return *m_ppropertyset; }
+inline const property_set & property_object::get_property_set() const { ((property_object *)this)->defer_propset(); return *m_ppropertyset; }
 
 
 inline ::i64_array& property_object::idarray() const { if (!m_pia) ((property_object*)this)->m_pia.create_new(); return *m_pia; }
@@ -37,32 +37,32 @@ inline bool property_object::contains(const property_set & set) const
 
   }
 
-  if (m_pset.is_null())
+  if (m_ppropertyset.is_null())
   {
 
      return false;
 
   }
 
-  return m_pset->contains(set);
+  return m_ppropertyset->contains(set);
 
 }
 
-inline void property_object::defer_propset() { if (!m_pset) ::__construct_new(m_pset); }
+inline void property_object::defer_propset() { if (!m_ppropertyset) ::__construct_new(m_ppropertyset); }
 
 
 
 inline property * property_object::find_property(const id & id) const
 {
 
-   if (!m_pset)
+   if (!m_ppropertyset)
    {
 
       return nullptr;
 
    }
 
-   return m_pset->find(id);
+   return m_ppropertyset->find(id);
 
 }
 
@@ -70,14 +70,14 @@ inline property * property_object::find_property(const id & id) const
 inline string property_object::find_string(const ::id & id, const ansichar * pszDefault) const
 {
 
-   if (!m_pset)
+   if (!m_ppropertyset)
    {
 
       return pszDefault;
 
    }
 
-   auto pproperty = m_pset->find(id);
+   auto pproperty = m_ppropertyset->find(id);
 
    if (!pproperty)
    {
@@ -86,7 +86,7 @@ inline string property_object::find_string(const ::id & id, const ansichar * psz
 
    }
 
-   return pproperty->get_string(pszDefault);
+   return pproperty->string(pszDefault);
 
 }
 
@@ -94,14 +94,14 @@ inline string property_object::find_string(const ::id & id, const ansichar * psz
 inline ::i32 property_object::find_i32(const ::id & id, ::i32 iDefault) const
 {
 
-   if (!m_pset)
+   if (!m_ppropertyset)
    {
 
       return iDefault;
 
    }
 
-   auto pproperty = m_pset->find(id);
+   auto pproperty = m_ppropertyset->find(id);
 
    if (!pproperty)
    {
@@ -118,14 +118,14 @@ inline ::i32 property_object::find_i32(const ::id & id, ::i32 iDefault) const
 inline ::u32 property_object::find_u32(const ::id & id, ::u32 iDefault) const
 {
 
-   if (!m_pset)
+   if (!m_ppropertyset)
    {
 
       return iDefault;
 
    }
 
-   auto pproperty = m_pset->find(id);
+   auto pproperty = m_ppropertyset->find(id);
 
    if (!pproperty)
    {
@@ -177,7 +177,7 @@ inline ::payload & property_object::payload(const id & id)
 inline bool property_object::is_true(const ::id & id) const
 {
 
-   return m_pset && payload(id).is_true();
+   return m_ppropertyset && payload(id).is_true();
 
 }
 
@@ -271,7 +271,7 @@ inline ::payload & property_object::get_object(const ::id & id)
 
 
 
-inline ::payload property_object::topic(const ::id& id)
+inline ::payload & property_object::topic(const ::id& id)
 {
 
    auto property = fetch_property(id);
@@ -283,7 +283,7 @@ inline ::payload property_object::topic(const ::id& id)
 
    }
 
-   return property.m_pproperty;
+   return *property.m_pproperty;
 
 }
 

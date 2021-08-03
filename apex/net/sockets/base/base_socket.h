@@ -524,7 +524,7 @@ namespace sockets
       // TCP options in tcp_socket.h/tcp_socket.cpp
 
 
-      virtual void to_string(const class string_exchange & str) const override;
+      string to_string() const override;
 
 
       virtual void attach(SOCKET s);
@@ -723,7 +723,7 @@ namespace sockets
       virtual ::e_status step() override;
 
       //virtual void __tracef(object * pobject, enum_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * pszFormat, ...);
-      //virtual void __tracef(object * pobject, enum_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, e_log elog, const string & strContext, i32 err, const string & strMessage);
+      //virtual void __tracef(object * pobject, enum_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, e_log elog, const ::string & strContext, i32 err, const ::string & strMessage);
 
       virtual string get_short_description();
 

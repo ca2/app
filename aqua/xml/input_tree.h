@@ -20,7 +20,7 @@ namespace xml
 
 
       input_tree();
-      input_tree(const string & strXml);
+      input_tree(const ::string & strXml);
       input_tree(tree_schema * pschema);
       virtual ~input_tree();
 

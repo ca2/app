@@ -28,7 +28,7 @@ public:
    virtual __pointer(::application) instantiate_application(const char * pszAppId, ::create * pcreate);
    virtual __pointer(::application) create_application(const char * pszAppId, bool bSynch, ::create * pcreate);
    virtual __pointer(::application) create_platform(::apex::session * psession);
-   virtual __pointer(::application) start_application(const char * pszAppId, ::create * pcreate, const string & strLocale, const string & strSchema);
+   virtual __pointer(::application) start_application(const char * pszAppId, ::create * pcreate, const ::string & strLocale, const ::string & strSchema);
 
 
    virtual ::e_status exit_application();
@@ -42,7 +42,7 @@ public:
    virtual void erase_application(::application * papp);
 
 
-   __pointer(::application) assert_running(const char * pszAppId, const string & strLocale, const string & strSchema);
+   __pointer(::application) assert_running(const char * pszAppId, const ::string & strLocale, const ::string & strSchema);
 
 
    virtual void on_instantiate_application(::application* papp);

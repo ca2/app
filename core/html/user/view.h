@@ -29,7 +29,7 @@ public:
    bool Refresh2(i32 i);
    virtual bool Navigate(const char * pszUrl) override;
 
-   virtual void on_document_complete(const char * pszUrl);
+   virtual void on_document_complete(const ::string & strUrl);
 
 
    virtual void install_message_routing(::channel * pchannel) override;

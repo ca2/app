@@ -84,7 +84,7 @@ namespace http
       //virtual void clean_proxy_auth(::account::user * puser);
 
 
-      virtual bool open(__pointer(::sockets::http_session) & psession, const char * pszHost, const char * pszProtocol, property_set & set, const char * pszVersion);
+      virtual bool open(__pointer(::sockets::http_session) & psession, const ::string & strHost, const ::string & strProtocol, property_set & set, const ::string & strVersion);
 
 
       virtual bool request(__pointer(::sockets::http_session) & spsession, const char * pszUrl, property_set & set);

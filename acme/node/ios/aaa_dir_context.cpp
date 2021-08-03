@@ -328,7 +328,7 @@ namespace ios
    //      }
    //   }
    //
-   //   string dir::name(const string & str)
+   //   string dir::name(const ::string & str)
    //   {
    //
    //      strsize iLast = str.get_length() - 1;
@@ -460,7 +460,7 @@ namespace ios
    }
 
 
-   ::file::path dir_context::time_square(const string & strPrefix,const string & strSuffix)
+   ::file::path dir_context::time_square(const ::string & strPrefix,const ::string & strSuffix)
    {
 
       UNREFERENCED_PARAMETER(strPrefix);

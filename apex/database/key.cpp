@@ -24,13 +24,13 @@ namespace database
          if (payload.get_type() == e_type_bool)
          {
 
-            m_bLocalData = (bool)(payload);
+            m_bLocalData = payload.get_bool();
 
          }
          else
          {
 
-            m_strDataKey = payload.get_string();
+            m_strDataKey = payload.string();
 
          }
 

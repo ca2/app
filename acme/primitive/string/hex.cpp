@@ -59,7 +59,7 @@ namespace hex
       return num;
    }
 
-   u32 to_u32(const string & str)
+   u32 to_u32(const ::string & str)
    {
       u32 r = 0;
       for (i32 i = 0; i < str.get_length(); i++)
@@ -69,7 +69,7 @@ namespace hex
       return r;
    }
 
-   u64 to_u64(const string & str)
+   u64 to_u64(const ::string & str)
    {
       u64 r = 0;
       for(i32 i = 0; i < str.get_length(); i++)

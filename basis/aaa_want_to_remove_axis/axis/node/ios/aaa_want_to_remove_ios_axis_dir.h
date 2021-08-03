@@ -28,8 +28,8 @@ namespace ios
          //      virtual bool  has_subdir(::aura::application *   papp, const char * pcsz);
          //      virtual void  ls_file(::aura::application *   papp, const char * pcsz, string_array * pstraPath = nullptr, string_array * pstraTitle = nullptr);
          //      virtual bool  is(const char * pcsz, ::aura::application *   papp);
-         //      virtual bool  is(const string & str, ::aura::application *   papp);
-         //      virtual bool  name_is(const string & str, ::aura::application *   papp);
+         //      virtual bool  is(const ::string & str, ::aura::application *   papp);
+         //      virtual bool  name_is(const ::string & str, ::aura::application *   papp);
          //      virtual bool  is_inside(const char * lpcszDir, const char * lpcszPath, ::aura::application *   papp);
          //      virtual bool  is_inside_time(const char * pcsz, ::aura::application *   papp);
          //      virtual void root_ones(string_array & stra, string_array & straTitle, ::aura::application *   papp);
@@ -38,7 +38,7 @@ namespace ios
          //
          //
          //      virtual string name(const char * pcsz);
-         //      virtual string name(const string & str);
+         //      virtual string name(const ::string & str);
          //
          //      virtual string warehouse(const char * pcsz = nullptr, const char * lpcsz2 = nullptr);
          //      virtual string time(const char * pcsz = nullptr, const char * lpcsz2 = nullptr);
@@ -49,10 +49,10 @@ namespace ios
          //      // stage in ccwarehouse spalib
          //      virtual string matter(const char * pcsz, const char * lpcsz2 = nullptr);
          //      virtual string matter();
-         //      virtual string matter(const string & str);
-         //      virtual string matter(const string & str, const string & str2);
-         //      virtual string matter(const char * pcsz, const string & str2);
-         //      virtual string matter(const string & str, const char * lpcsz2);
+         //      virtual string matter(const ::string & str);
+         //      virtual string matter(const ::string & str, const ::string & str2);
+         //      virtual string matter(const char * pcsz, const ::string & str2);
+         //      virtual string matter(const ::string & str, const char * lpcsz2);
          //
          //      virtual string module(const char * pcsz = nullptr, const char * lpcsz2 = nullptr);
          //      virtual string ca2module(const char * pcsz = nullptr, const char * lpcsz2 = nullptr);
@@ -102,7 +102,7 @@ namespace ios
 
 
          //virtual string name(const char * pcsz);
-         //virtual string name(const string & str);
+         //virtual string name(const ::string & str);
 
          //virtual string time(const char * pcsz = nullptr,const char * lpcsz2 = nullptr);
          //virtual string stage(const char * pcsz = nullptr,const char * lpcsz2 = nullptr);
@@ -112,10 +112,10 @@ namespace ios
          //// stage in ca2os spalib
          //virtual string matter(const char * pcsz,const char * lpcsz2 = nullptr);
          //virtual string matter();
-         //virtual string matter(const string & str);
-         //virtual string matter(const string & str,const string & str2);
-         //virtual string matter(const char * pcsz,const string & str2);
-         //virtual string matter(const string & str,const char * lpcsz2);
+         //virtual string matter(const ::string & str);
+         //virtual string matter(const ::string & str,const ::string & str2);
+         //virtual string matter(const char * pcsz,const ::string & str2);
+         //virtual string matter(const ::string & str,const char * lpcsz2);
 
          //virtual string module(const char * pcsz = nullptr,const char * lpcsz2 = nullptr);
          //virtual string ca2module(const char * pcsz = nullptr,const char * lpcsz2 = nullptr);
@@ -127,7 +127,7 @@ namespace ios
 
          //virtual string appdata(const char * pcsz = nullptr,const char * lpcsz2 = nullptr);
          //virtual string commonappdata(const char * pcsz = nullptr,const char * lpcsz2 = nullptr);
-         //virtual string element_commonappdata(const string & strElement,const char * pcsz = nullptr,const char * lpcsz2 = nullptr);
+         //virtual string element_commonappdata(const ::string & strElement,const char * pcsz = nullptr,const char * lpcsz2 = nullptr);
 
          //virtual string usersystemappdata(::object * pobject,const char * lpcszPrefix,const char * pcsz = nullptr,const char * lpcsz2 = nullptr);
          //virtual string userappdata(::object * pobject,const char * pcsz = nullptr,const char * lpcsz2 = nullptr);

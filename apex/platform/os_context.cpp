@@ -305,7 +305,7 @@
    }
 
 
-   bool os_context::enable_service(const string & strServiceName,const string & strDisplayName,const string & strCommand,const string & strUser,const string & strPass)
+   bool os_context::enable_service(const ::string & strServiceName,const ::string & strDisplayName,const ::string & strCommand,const ::string & strUser,const ::string & strPass)
    {
 
 
@@ -318,7 +318,7 @@
    }
 
 
-   bool os_context::disable_service(const string & strServiceName)
+   bool os_context::disable_service(const ::string & strServiceName)
    {
 
 
@@ -331,7 +331,7 @@
    }
 
 
-   bool os_context::start_service(const string & strServiceName)
+   bool os_context::start_service(const ::string & strServiceName)
    {
 
 
@@ -344,7 +344,7 @@
    }
 
 
-   bool os_context::stop_service(const string & strServiceName)
+   bool os_context::stop_service(const ::string & strServiceName)
    {
 
 
@@ -385,7 +385,7 @@
    }
 
 
-   bool os_context::resolve_link(::file::path & path, const string & strSource, string * pstrDirectory, string * pstrParams)
+   bool os_context::resolve_link(::file::path & path, const ::string & strSource, string * pstrDirectory, string * pstrParams)
    {
 
       if(::str::ends_ci(strSource, ".desktop"))
@@ -612,7 +612,7 @@
    }
 
 
-   ::file::path os_context::get_app_path(const string & strApp)
+   ::file::path os_context::get_app_path(const ::string & strApp)
    {
 
       return strApp;

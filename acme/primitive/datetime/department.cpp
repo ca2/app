@@ -10,7 +10,7 @@ namespace datetime
 {
 
 
-   ::datetime::time department::from_local(const ::text::context* pcontext, const string & str)
+   ::datetime::time department::from_local(const ::text::context* pcontext, const ::string & str)
    {
 
       int iPathCount;
@@ -1328,9 +1328,9 @@ namespace datetime
                || bUTC)
             {
                struct tm atm;
-               atm.tm_sec = set["second"];
-               atm.tm_min = set["minute"];
-               atm.tm_hour = set["hour"];
+               atm.tm_sec = set["second"].i32();
+               atm.tm_min = set["minute"].i32();
+               atm.tm_hour = set["hour"].i32();
                atm.tm_mday = set["day"].i32();
                atm.tm_mon = set["month"].i32() - 1;        // tm_mon is 0 based
                atm.tm_year = set["year"].i32() - 1900;     // tm_year is 1900 based
@@ -1347,12 +1347,12 @@ namespace datetime
             else
             {
                time = ::datetime::time(
-                  set["year"],
-                  set["month"],
-                  set["day"],
-                  set["hour"],
-                  set["minute"],
-                  set["second"]);
+                  set["year"].i32(),
+                  set["month"].i32(),
+                  set["day"].i32(),
+                  set["hour"].i32(),
+                  set["minute"].i32(),
+                  set["second"].i32());
             }
             iStart = 20;
          }
@@ -1372,12 +1372,12 @@ namespace datetime
             pdatetime->international().parse_str(str, set);
 
             time = ::datetime::time(
-               set["year"],
-               set["month"],
-               set["day"],
-               set["hour"],
-               set["minute"],
-               set["second"]);
+               set["year"].i32(),
+               set["month"].i32(),
+               set["day"].i32(),
+               set["hour"].i32(),
+               set["minute"].i32(),
+               set["second"].i32());
             iStart = 11;
          }
       }
@@ -1391,12 +1391,12 @@ namespace datetime
             parse_br_str(str, set);
 
             time = ::datetime::time(
-               set["year"],
-               set["month"],
-               set["day"],
-               set["hour"],
-               set["minute"],
-               set["second"]);
+               set["year"].i32(),
+               set["month"].i32(),
+               set["day"].i32(),
+               set["hour"].i32(),
+               set["minute"].i32(),
+               set["second"].i32());
             iStart = 11;
          }
       }

@@ -61,7 +61,7 @@ namespace user
    }
 
 
-   void menu_command::_001SetText(const string & strText, const ::action_context & context)
+   void menu_command::_001SetText(const ::string & strText, const ::action_context & context)
    {
 
       if (m_puiOther != nullptr)

@@ -72,17 +72,17 @@ public:
    //command_line & operator = (const command_line & commandline);
 
 
-   virtual void ParseParam(const string & strParam,bool bFlag,bool bLast);
-   virtual void ParseParamFlag(const string & strParam);
-   virtual void ParseParamNotFlag(const string & strParam);
+   virtual void ParseParam(const ::string & strParam,bool bFlag,bool bLast);
+   virtual void ParseParamFlag(const ::string & strParam);
+   virtual void ParseParamNotFlag(const ::string & strParam);
    virtual void ParseLast(bool bLast);
 
 
-   virtual void _001ParseCommandLine(const string & strCommandLine);
-   virtual void _001ParseCommandLineUri(const string & strCommandLine);
+   virtual void _001ParseCommandLine(const ::string & strCommandLine);
+   virtual void _001ParseCommandLineUri(const ::string & strCommandLine);
 
-   virtual void _001ParseCommandFork(const string & strCommandFork);
-   virtual void _001ParseCommandForkUri(const string & strCommandFork);
+   virtual void _001ParseCommandFork(const ::string & strCommandFork);
+   virtual void _001ParseCommandForkUri(const ::string & strCommandFork);
 
 
 };

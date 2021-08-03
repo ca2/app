@@ -53,7 +53,7 @@ namespace windows
 
 
 
-///         virtual i32 get_extension_image(const string & strExtension, e_file_attribute eattribute, e_icon eicon, ::color::color crBk = 0) override;
+///         virtual i32 get_extension_image(const ::string & strExtension, e_file_attribute eattribute, e_icon eicon, ::color::color crBk = 0) override;
 
       i32 add_icon(int iSize, HICON hicon, ::color::color crBk, int iImage);
 

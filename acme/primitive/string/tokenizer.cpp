@@ -24,7 +24,7 @@ namespace str
       Restart();
    }
 
-   tokenizer::tokenizer(const string & strSrc) :
+   tokenizer::tokenizer(const ::string & strSrc) :
       string(strSrc)
    {
       Restart();

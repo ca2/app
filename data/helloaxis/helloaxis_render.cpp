@@ -1376,7 +1376,7 @@ auto m_tick23 = ::millis::now();
       return false;
    }
 
-   void render::helloaxis_fast_render(const string & strHelloAxis)
+   void render::helloaxis_fast_render(const ::string & strHelloAxis)
    {
 
       if (m_cx <= 0 || m_cy <= 0)

@@ -521,7 +521,7 @@ void property_set::_008Add(const char * pszKey, const char * pszValue)
    while(i  < straKey.get_upper_bound())
    {
 
-      pset = &(*pset)[straKey[i]].propset();
+      pset = &(*pset)[straKey[i]].as_propset();
 
       i++;
 
@@ -722,7 +722,7 @@ void property_set_skip_json(const char *& pszJson, const char * pszEnd)
 }
 
 
-void property_set::parse_ini(const string & strIni)
+void property_set::parse_ini(const ::string & strIni)
 {
 
    string_array stra;
@@ -748,7 +748,7 @@ void property_set::parse_ini(const string & strIni)
 
          strLine.trim_right("]");
 
-         pset = &operator[](strLine).propset();
+         pset = &operator[](strLine).as_propset();
 
       }
       else
@@ -776,7 +776,7 @@ void property_set::parse_ini(const string & strIni)
 }
 
 
-void property_set::parse_json(const string & strJson)
+void property_set::parse_json(const ::string & strJson)
 {
 
 #ifdef LINUX
@@ -1000,7 +1000,7 @@ void property_set::parse_http_headers(const char * pszHeaders)
 
 }
 
-string property_set::_001Replace(const string & str) const
+string property_set::_001Replace(const ::string & str) const
 {
 
    return ::papaya::property_set::evaluate(*this, str);
@@ -1033,7 +1033,7 @@ string property_set::_001Replace(const string & str) const
 
 //
 //
-//string property_set::eval(const string & strParam)
+//string property_set::eval(const ::string & strParam)
 //{
 //
 //   return property_ptra::eval(strParam);
@@ -1041,7 +1041,7 @@ string property_set::_001Replace(const string & str) const
 //}
 //
 //
-//string property_set::gen_eval(const string & str)
+//string property_set::gen_eval(const ::string & str)
 //{
 //
 //   ASSERT(str[0] == '$' && str.length() >= 2);
@@ -1077,7 +1077,7 @@ string property_set::implode(const char * pszGlue) const
    if(p)
    {
 
-      str = p->get_string();
+      str = p->string();
 
       p++;
 
@@ -1088,7 +1088,7 @@ string property_set::implode(const char * pszGlue) const
 
       str += pszGlue;
 
-      str += p->get_string();
+      str += p->string();
 
    }
 
@@ -1103,7 +1103,7 @@ string property_set::implode(const char * pszGlue) const
 //   for(const_iterator it = begin(); it != end(); it++)
 //   {
 //
-//      if(it->get_string() == psz)
+//      if(it->string() == psz)
 //      {
 //
 //         return (property *) &it->m_var;
@@ -1123,7 +1123,7 @@ string property_set::implode(const char * pszGlue) const
 //   for(const_iterator it = begin(); it != end(); it++)
 //   {
 //
-//      if(it->get_string().compare_ci(psz) == 0)
+//      if(it->string().compare_ci(psz) == 0)
 //      {
 //
 //         return (property *) &it->m_var;
@@ -1196,12 +1196,12 @@ property_set& property_set::operator = (const ::payload & payload)
       ::papaya::copy((property_ptra&)*this, (const property_ptra&)payload.propset());
 
    }
-   else if (payload.m_etype == e_type_prop)
+   else if (payload.m_etype == e_type_property)
    {
 
       erase_all();
 
-      set_at(payload.m_pprop->m_id, *payload.m_pprop);
+      set_at(payload.m_pproperty->m_id, *payload.m_pproperty);
 
    }
    else
@@ -1738,7 +1738,7 @@ string property_set::get_command_line(const string_array & straKeys) const
 
       str += "=";
 
-      strItem = pproperty->get_string();
+      strItem = pproperty->string();
 
       if(strItem.find(" ") >= 0 || strItem.find("\'") >= 0)
       {
@@ -1819,7 +1819,7 @@ string property_set::get_command_line() const
 
       str += "=";
 
-      strItem = pproperty->get_string();
+      strItem = pproperty->string();
 
       if(strItem.find(" ") >= 0 || strItem.find("\'") >= 0)
       {
@@ -1855,7 +1855,7 @@ namespace handle
 {
 
 
-   ini::ini(const string & str)
+   ini::ini(const ::string & str)
    {
 
       parse_ini(str);

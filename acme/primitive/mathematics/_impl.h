@@ -4,7 +4,7 @@
 
 
 template < typename T >
-inline c_number < T > & c_number < T >::from(const string & str)
+inline c_number < T > & c_number < T >::from(const ::string & str)
 {
 
    ::str::to(m_number, str);

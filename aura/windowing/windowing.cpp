@@ -332,7 +332,7 @@ namespace windowing
    }
 
 
-   // int windowing::message_box(const string & str, const string & strTitle, const ::e_message_box & emessagebox)
+   // int windowing::message_box(const ::string & str, const ::string & strTitle, const ::e_message_box & emessagebox)
    //{
 
    //    __throw(error_interface_only);

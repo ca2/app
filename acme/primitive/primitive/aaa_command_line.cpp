@@ -9,7 +9,7 @@ command_line::command_line()
 }
 
 
-command_line::command_line(const string & strCommandLine)
+command_line::command_line(const ::string & strCommandLine)
 {
 
    common_construct();
@@ -35,7 +35,7 @@ command_line::~command_line()
 }
 
 
-void command_line::ParseParam(const string & strParam,bool bFlag,bool bLast)
+void command_line::ParseParam(const ::string & strParam,bool bFlag,bool bLast)
 {
 
    if(bFlag)
@@ -56,7 +56,7 @@ void command_line::ParseParam(const string & strParam,bool bFlag,bool bLast)
 }
 
 
-void command_line::ParseParamFlag(const string & strParam)
+void command_line::ParseParamFlag(const ::string & strParam)
 {
    // OLE command switches are case insensitive, while
    // shell command switches are case sensitive
@@ -105,7 +105,7 @@ void command_line::ParseParamFlag(const string & strParam)
 }
 
 
-void command_line::ParseParamNotFlag(const string & strParam)
+void command_line::ParseParamNotFlag(const ::string & strParam)
 {
 
    if(m_varFile.is_empty())
@@ -169,7 +169,7 @@ void command_line::ParseLast(bool bLast)
 //}
 
 
-void command_line::_001ParseCommandLine(const string & strCommandLine)
+void command_line::_001ParseCommandLine(const ::string & strCommandLine)
 {
 
    m_strCommandLine = strCommandLine;
@@ -255,7 +255,7 @@ void command_line::_001ParseCommandLine(const string & strCommandLine)
 }
 
 
-void command_line::_001ParseCommandLineUri(const string & strCommandLine)
+void command_line::_001ParseCommandLineUri(const ::string & strCommandLine)
 {
 
    m_strCommandLine = strCommandLine;
@@ -264,7 +264,7 @@ void command_line::_001ParseCommandLineUri(const string & strCommandLine)
 
 }
 
-void command_line::_001ParseCommandFork(const string & strCommandFork)
+void command_line::_001ParseCommandFork(const ::string & strCommandFork)
 {
 
    m_strCommandLine = strCommandFork;
@@ -341,7 +341,7 @@ void command_line::_001ParseCommandFork(const string & strCommandFork)
 
 
 
-void command_line::_001ParseCommandForkUri(const string & strCommandFork)
+void command_line::_001ParseCommandForkUri(const ::string & strCommandFork)
 {
 
    string strQuery(strCommandFork);

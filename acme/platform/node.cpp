@@ -356,7 +356,7 @@ namespace acme
    }
 
 
-   string node::app_id_to_app_name(const string & strAppId)
+   string node::app_id_to_app_name(const ::string & strAppId)
    {
 
       string strName;
@@ -384,7 +384,7 @@ namespace acme
    }
 
 
-   string node::app_id_to_executable_name(const string & strAppId)
+   string node::app_id_to_executable_name(const ::string & strAppId)
    {
       
       string strName = app_id_to_app_name(strAppId);
@@ -464,7 +464,7 @@ namespace acme
 
 
 
-   ::file::path node::get_last_run_application_path_file(const string & strAppIdParam)
+   ::file::path node::get_last_run_application_path_file(const ::string & strAppIdParam)
    {
 
       string strAppId = strAppIdParam;
@@ -499,7 +499,7 @@ namespace acme
    }
 
 
-   ::file::path node::get_last_run_application_path(const string & strAppId)
+   ::file::path node::get_last_run_application_path(const ::string & strAppId)
    {
 
       ::file::path pathFile = get_last_run_application_path_file(strAppId);
@@ -511,7 +511,7 @@ namespace acme
    }
 
 
-   ::e_status node::set_last_run_application_path(const string & strAppId)
+   ::e_status node::set_last_run_application_path(const ::string & strAppId)
    {
 
       ::file::path path = m_psystem->m_pacmepath->app_module();

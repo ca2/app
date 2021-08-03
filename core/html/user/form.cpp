@@ -495,7 +495,7 @@ void html_form::set_need_load_form_data()
    if (path.is_empty())
    {
 
-      if (varFile.get_type() == ::e_type_property_set && varFile.propset()["url"].get_string().has_char())
+      if (varFile.get_type() == ::e_type_property_set && varFile.propset()["url"].has_char())
       {
 
          path = varFile.propset()["url"];
@@ -570,7 +570,7 @@ void html_form::_001GetText(string & str) const
 }
 
 
-void html_form::_001SetText(const string & str, const ::action_context & context)
+void html_form::_001SetText(const ::string & str, const ::action_context & context)
 {
 
    auto psession = get_session();
@@ -762,7 +762,7 @@ void html_form::set_edit_mode(bool bSet)
 }
 
 
-bool html_form::load_html(const string & str)
+bool html_form::load_html(const ::string & str)
 {
 
    get_html_data()->load(str);

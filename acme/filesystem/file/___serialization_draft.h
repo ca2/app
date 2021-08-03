@@ -46,7 +46,7 @@ public:
    virtual void read(string & i) {}
 
    virtual void write(const i8 & i) {}
-   virtual void write(const string & str) {}
+   virtual void write(const ::string & str) {}
 
    template < typename TYPE >
    void default_exchange(TYPE & t) { is_loading() ? read(t) : write(t); }
@@ -99,7 +99,7 @@ public:
    virtual void read(string & i) {}
 
    virtual void write(const i8 & i) {}
-   virtual void write(const string & str) {}
+   virtual void write(const ::string & str) {}
 
    template < typename TYPE >
    void default_exchange(const ::id & id, TYPE & t) { is_loading() ? t = operator[id] : operator[id] = t; }

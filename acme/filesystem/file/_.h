@@ -140,12 +140,12 @@ CLASS_DECL_ACME string file_extension_dup(const char * path);
 CLASS_DECL_ACME string get_temp_file_name_dup(const char * lpszName,const char * pszExtension);
 CLASS_DECL_ACME string file_final_extension_dup(const char * path);
 CLASS_DECL_ACME string url_dir_name_for_relative(const char * pszPath);
-CLASS_DECL_ACME string solve_relative(const string & str, bool * pbUrl = nullptr);
+CLASS_DECL_ACME string solve_relative(const ::string & str, bool * pbUrl = nullptr);
 CLASS_DECL_ACME bool solve_relative_inline(string & str, bool & bUrl, bool & bOnlyNativeFileSep, strsize * iaSlash, int * piSlashCount); // returns true if original string had trailing slash
 CLASS_DECL_ACME string defer_solve_relative(const char * pszRelative,const char * pszCurrent);
-CLASS_DECL_ACME bool file_append(const string & strFile, const block & block);
-CLASS_DECL_ACME bool file_append_wait(const string & strFile, const block & block, const ::duration & duration = ::duration::infinite());
-//CLASS_DECL_ACME bool file_append_wait(const string & strFile, const char * psz, strsize s, const ::millis & millisTimeout = ::millis::infinite());
+CLASS_DECL_ACME bool file_append(const ::string & strFile, const block & block);
+CLASS_DECL_ACME bool file_append_wait(const ::string & strFile, const block & block, const ::duration & duration = ::duration::infinite());
+//CLASS_DECL_ACME bool file_append_wait(const ::string & strFile, const char * psz, strsize s, const ::millis & millisTimeout = ::millis::infinite());
 
 CLASS_DECL_ACME bool write_memory_to_file(FILE * file, const void * pdata, memsize nCount, memsize * puiWritten);
 

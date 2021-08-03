@@ -177,7 +177,7 @@ namespace sockets
    }
 
 
-   http_client_socket::http_client_socket(const string & strUrlParam) //:
+   http_client_socket::http_client_socket(const ::string & strUrlParam) //:
       //::object(&h),
       //base_socket(h),
       //socket(h),
@@ -711,7 +711,7 @@ namespace sockets
    }
 
 
-   CLASS_DECL_APEX e_http_method string_http_method(const string & str)
+   CLASS_DECL_APEX e_http_method string_http_method(const ::string & str)
    {
 
       string strMethod(str);

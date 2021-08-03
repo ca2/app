@@ -1252,7 +1252,7 @@
 //}
 //
 //
-//bool cregexp::find(string & strMatch, const string & str, index iSubString, strsize  * piStart, strsize  * piEnd)
+//bool cregexp::find(string & strMatch, const ::string & str, index iSubString, strsize  * piStart, strsize  * piEnd)
 //{
 //
 //   strsize iStart = piStart == nullptr ? 0 : *piStart;
@@ -1282,7 +1282,7 @@
 //
 //
 //
-//bool cregexp::find(const string & str, index iSubString, strsize  * piStart, strsize  * piEnd)
+//bool cregexp::find(const ::string & str, index iSubString, strsize  * piStart, strsize  * piEnd)
 //{
 //
 //   string strSubject;
@@ -1347,7 +1347,7 @@
 //
 //
 //
-//bool cregexp::split(string_array & stra, index_array & iaStart, index_array & iaEnd,  const string & str, int iLimit, bool bAddEmpty, bool bWithSeparator)
+//bool cregexp::split(string_array & stra, index_array & iaStart, index_array & iaEnd,  const ::string & str, int iLimit, bool bAddEmpty, bool bWithSeparator)
 //{
 //
 //   strsize iStart = 0;
@@ -1395,7 +1395,7 @@
 //}
 //
 //
-//bool cregexp::split(string_array & stra, const string & str, int iLimit, bool bAddEmpty, bool bWithSeparator)
+//bool cregexp::split(string_array & stra, const ::string & str, int iLimit, bool bAddEmpty, bool bWithSeparator)
 //{
 //
 //
@@ -1463,7 +1463,7 @@
 //
 //
 //
-//bool cregexp::replace(string & str, const string & strTopicParam, index iSubString, const string & strReplace, strsize start, strsize end)
+//bool cregexp::replace(string & str, const ::string & strTopicParam, index iSubString, const ::string & strReplace, strsize start, strsize end)
 //{
 //
 //   str = strTopicParam;
@@ -1472,7 +1472,7 @@
 //
 //}
 //
-//bool cregexp::replace(string & str, index iSubString, const string & strReplace, strsize start, strsize end)
+//bool cregexp::replace(string & str, index iSubString, const ::string & strReplace, strsize start, strsize end)
 //{
 //   string strTopic(str.Left(end));
 //   strsize iSubstLen = strReplace.length();

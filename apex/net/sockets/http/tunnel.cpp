@@ -86,7 +86,7 @@ namespace sockets
    }
 
 
-   void http_tunnel::OnLine(const string & strParam)
+   void http_tunnel::OnLine(const ::string & strParam)
    {
 
       if (m_bOk || m_bDirect)
@@ -191,7 +191,7 @@ namespace sockets
    void http_tunnel::OnFirst()
    {
    }
-   void http_tunnel::OnHeader(id key, const string & strValue)
+   void http_tunnel::OnHeader(id key, const ::string & strValue)
    {
       inheader(key) = strValue;
    }

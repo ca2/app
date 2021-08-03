@@ -86,7 +86,7 @@
 //         }
 //
 //
-//         bool operator == (const string & str) const
+//         bool operator == (const ::string & str) const
 //         {
 //
 //            return is_text() && str.compare(m_psz) == 0;

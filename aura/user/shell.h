@@ -57,13 +57,13 @@ namespace user
 
          image_key();
          image_key(const image_key & imagekey);
-         image_key(const string & strPath, const string & strShellThemePrefix, e_file_attribute eattribute, e_icon eicon, ::color::color crBk = 0);
+         image_key(const ::string & strPath, const ::string & strShellThemePrefix, e_file_attribute eattribute, e_icon eicon, ::color::color crBk = 0);
          virtual ~image_key();
 
 
          bool operator == (const image_key & key) const;
-         void set_path(const string & strPath, bool bSetExtension = true);
-         void set_extension(const string & strPath);
+         void set_path(const ::string & strPath, bool bSetExtension = true);
+         void set_extension(const ::string & strPath);
 
 
       };
@@ -169,9 +169,9 @@ namespace user
       virtual void on_add_default_file_image();
 
 
-      virtual i32 get_file_extension_image(const string & strExtension, e_file_attribute eattribute, e_icon eicon, ::color::color crBk = 0);
-      virtual i32 get_file_image(const string & strPath, e_file_attribute eattribute, e_icon eicon, ::color::color crBk = 0);
-      virtual i32 create_file_icon_image(const string & strPath, e_file_attribute eattribute, e_icon eicon, string strIcoLocation);
+      virtual i32 get_file_extension_image(const ::string & strExtension, e_file_attribute eattribute, e_icon eicon, ::color::color crBk = 0);
+      virtual i32 get_file_image(const ::string & strPath, e_file_attribute eattribute, e_icon eicon, ::color::color crBk = 0);
+      virtual i32 create_file_icon_image(const ::string & strPath, e_file_attribute eattribute, e_icon eicon, string strIcoLocation);
 
 
 

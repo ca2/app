@@ -18,10 +18,10 @@ property & operator << (property & property, const RECTANGLE_F64 & rectangle)
 property & operator >> (property & property, RECTANGLE_F64 & rectangle)
 {
 
-   rectangle.left = property["left"];
-   rectangle.top = property["top"];
-   rectangle.right = property["right"];
-   rectangle.bottom = property["bottom"];
+   property["left"].as(rectangle.left);
+   rectangle.top = property["top"].f64();
+   rectangle.right = property["right"].f64();
+   rectangle.bottom = property["bottom"].f64();
 
    return property;
 

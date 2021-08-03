@@ -38,7 +38,7 @@ namespace hotplugin
    }
 
 
-   bool host::open_link(const string & strLink,const string & strTarget)
+   bool host::open_link(const ::string & strLink,const ::string & strTarget)
    {
 
       if(m_pbasecomposer != nullptr)

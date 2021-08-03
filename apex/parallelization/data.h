@@ -122,7 +122,7 @@ inline bool thread_is_set(const ::id & id)
 
    }
 
-   if (is_null(::get_task()->m_pset))
+   if (is_null(::get_task()->m_ppropertyset))
    {
 
       return false;
@@ -136,7 +136,7 @@ inline bool thread_is_set(const ::id & id)
 
    }
 
-   return ::get_task()->payload(id);
+   return (payload_cast) ::get_task()->payload(id);
 
 }
 

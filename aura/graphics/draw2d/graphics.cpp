@@ -13,7 +13,7 @@ namespace draw2d
 {
 
 
-   bool word_break(::draw2d::graphics * pgraphics, const string & strSource, const rectangle_i32 & rectParam, string &str1, string & str2, int iEll);
+   bool word_break(::draw2d::graphics * pgraphics, const ::string & strSource, const rectangle_i32 & rectParam, string &str1, string & str2, int iEll);
 
 
    strsize _EncodeV033(string & str);
@@ -1445,7 +1445,7 @@ namespace draw2d
    //}
 
 
-   //bool graphics::text_out(double x, double y, const string & str)
+   //bool graphics::text_out(double x, double y, const ::string & str)
    //{
 
    //   return text_out((double) x, (double) y, str);
@@ -1565,7 +1565,7 @@ namespace draw2d
    }
 
 
-   bool graphics::ExtTextOut(double x, double y, ::u32 nOptions, const ::rectangle_f64 & rectangle, const string & str, i32 * pDxWidths)
+   bool graphics::ExtTextOut(double x, double y, ::u32 nOptions, const ::rectangle_f64 & rectangle, const ::string & str, i32 * pDxWidths)
    {
 
       UNREFERENCED_PARAMETER(x);
@@ -1596,7 +1596,7 @@ namespace draw2d
    }
 
 
-   size_f64 graphics::TabbedTextOut(double x, double y, const string & str, count nTabPositions, i32 * pnTabStopPositions, int nTabOrigin)
+   size_f64 graphics::TabbedTextOut(double x, double y, const ::string & str, count nTabPositions, i32 * pnTabStopPositions, int nTabOrigin)
    {
 
       UNREFERENCED_PARAMETER(x);
@@ -1624,7 +1624,7 @@ namespace draw2d
    }
 
 
-   size_f64 graphics::GetTabbedTextExtent(const string & str, count nTabPositions, i32 * pnTabStopPositions)
+   size_f64 graphics::GetTabbedTextExtent(const ::string & str, count nTabPositions, i32 * pnTabStopPositions)
    {
 
       UNREFERENCED_PARAMETER(str);
@@ -1649,7 +1649,7 @@ namespace draw2d
    }
 
 
-   size_f64 graphics::GetOutputTabbedTextExtent(const string & str, count nTabPositions, i32 * pnTabStopPositions)
+   size_f64 graphics::GetOutputTabbedTextExtent(const ::string & str, count nTabPositions, i32 * pnTabStopPositions)
    {
 
       UNREFERENCED_PARAMETER(str);
@@ -3190,7 +3190,7 @@ namespace draw2d
    }
 
 
-   ::count graphics::get_character_extent(double_array & daLeft, double_array & daRight, const string & str, strsize iStart, strsize iCount)
+   ::count graphics::get_character_extent(double_array & daLeft, double_array & daRight, const ::string & str, strsize iStart, strsize iCount)
    {
 
       daLeft.erase_all();
@@ -3367,7 +3367,7 @@ namespace draw2d
    }
 
 
-   bool graphics::get_text_extent(size_f64 & size, const string & str)
+   bool graphics::get_text_extent(size_f64 & size, const ::string & str)
    {
 
       ::size_f64 sz = get_text_extent(str);
@@ -3391,7 +3391,7 @@ namespace draw2d
    }
 
 
-   size_f64 graphics::GetOutputTextExtent(const string & str)
+   size_f64 graphics::GetOutputTextExtent(const ::string & str)
    {
 
       UNREFERENCED_PARAMETER(str);
@@ -3401,7 +3401,7 @@ namespace draw2d
    }
 
 
-   bool graphics::draw_text(const string & str, const rectangle_f64 & rectParam, const ::e_align & ealign, const ::e_draw_text & edrawtext)
+   bool graphics::draw_text(const ::string & str, const rectangle_f64 & rectParam, const ::e_align & ealign, const ::e_draw_text & edrawtext)
    {
 
       ::rectangle_f64 rectangle(rectParam);
@@ -3411,7 +3411,7 @@ namespace draw2d
    }
 
 
-   //bool graphics::draw_text(const string & strParam, const ::rectangle_f64 & rectParam, const ::e_align & ealign, const ::e_draw_text & edrawtext)
+   //bool graphics::draw_text(const ::string & strParam, const ::rectangle_f64 & rectParam, const ::e_align & ealign, const ::e_draw_text & edrawtext)
    //{
 
    //   ::rectangle_f64 rectangle(rectParam);
@@ -3421,7 +3421,7 @@ namespace draw2d
    //}
 
 
-   bool graphics::_001DrawText(const string & strParam, ::rectangle_f64 & rectParam, const ::e_align & ealign, const ::e_draw_text & edrawtext, bool bMeasure)
+   bool graphics::_001DrawText(const ::string & strParam, ::rectangle_f64 & rectParam, const ::e_align & ealign, const ::e_draw_text & edrawtext, bool bMeasure)
    {
 
       string str(strParam);
@@ -3525,7 +3525,7 @@ namespace draw2d
 #ifndef _UWP
 
 
-   bool graphics::draw_text_ex(const string & str, const rectangle_f64 & rectangle, const ::e_align & ealign, const ::e_draw_text & edrawtext)
+   bool graphics::draw_text_ex(const ::string & str, const rectangle_f64 & rectangle, const ::e_align & ealign, const ::e_draw_text & edrawtext)
    {
 
       UNREFERENCED_PARAMETER(str);
@@ -4273,7 +4273,7 @@ namespace draw2d
    }
 
 
-   bool word_break(::draw2d::graphics * pgraphics, const string & strSource, const rectangle_i32 & rectParam, string &str1, string & str2, int iEll)
+   bool word_break(::draw2d::graphics * pgraphics, const ::string & strSource, const rectangle_i32 & rectParam, string &str1, string & str2, int iEll)
    {
 
       ::rectangle_f64 rectangle(rectParam);
@@ -4860,7 +4860,7 @@ namespace draw2d
    }
 
 
-   ::file::path graphics::get_font_path(const string & strName, int iWeight, bool bItalic)
+   ::file::path graphics::get_font_path(const ::string & strName, int iWeight, bool bItalic)
    {
 
       critical_section_lock synchronouslock(::aura::g_pcsFont);

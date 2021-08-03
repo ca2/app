@@ -115,7 +115,7 @@ inline bool myspace(char ch)
    strPath.ReleaseBuffer(end1 - beg1 + 1 + end2 - beg2 + 1 + 1); \
 }
 
-//::file::path dir_context::simple_path(const string & strFolder, const string & strRelative)
+//::file::path dir_context::simple_path(const ::string & strFolder, const ::string & strRelative)
 //{
 
 //   if(strRelative.is_empty())
@@ -187,7 +187,7 @@ inline bool myspace(char ch)
 //   return strPath;
 //}
 
-//::file::path dir_context::simple_path(const string & strFolder, const string & strRelative, const string & str2)
+//::file::path dir_context::simple_path(const ::string & strFolder, const ::string & strRelative, const ::string & str2)
 //{
 
 //   if(strRelative.is_empty())
@@ -1457,7 +1457,7 @@ bool dir_context::rm(const ::file::path & path, bool bRecursive)
 }
 
 
-::file::path dir_context::locale_schema_matter(const string & strLocale, const string & strSchema, const ::file::path & pathRoot, const ::file::path & pathDomain)
+::file::path dir_context::locale_schema_matter(const ::string & strLocale, const ::string & strSchema, const ::file::path & pathRoot, const ::file::path & pathDomain)
 {
 
    string strHint = pathRoot / "_matter" / pathDomain / get_application()->get_locale_schema_dir(strLocale, strSchema);
@@ -2145,7 +2145,7 @@ ret:
 }
 
 
-::file::path dir_context::appdata(const string & strAppId)
+::file::path dir_context::appdata(const ::string & strAppId)
 {
 
    if (strAppId.is_empty())
@@ -2192,7 +2192,7 @@ ret:
 
 }
 
-::file::path dir_context::element_commonappdata(const string & strElement)
+::file::path dir_context::element_commonappdata(const ::string & strElement)
 {
 
    string strRelative;
@@ -2503,7 +2503,7 @@ bool dir_context::is_inside(const ::file::path & pszDir, const ::file::path & ps
 }
 
 
-//string_array dir_context::locale_schema_matter(string & strLocale, const string & strStyle)
+//string_array dir_context::locale_schema_matter(string & strLocale, const ::string & strStyle)
 //{
 
 //   return psystem->m_spdir->locale_schema_matter(get_application(), strLocale, strStyle);
@@ -2511,7 +2511,7 @@ bool dir_context::is_inside(const ::file::path & pszDir, const ::file::path & ps
 //}
 
 
-//string_array dir_context::locale_schema_matter(string & strLocale, const string & strStyle, const string & pathRoot, const ::file::path & pathDomain)
+//string_array dir_context::locale_schema_matter(string & strLocale, const ::string & strStyle, const string & pathRoot, const ::file::path & pathDomain)
 //{
 
 //   return psystem->m_spdir->locale_schema_matter(get_application(), strLocale, strStyle, pathRoot, pathDomain);

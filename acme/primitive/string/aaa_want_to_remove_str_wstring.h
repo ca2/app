@@ -325,7 +325,7 @@ public:
    wstring & replace(::index iStart,::count c, const unichar * psz);
 
 
-   wstring & operator = (const string & str);
+   wstring & operator = (const ::string & str);
 
    void assign(const unichar * pwsz);
    void assign(const char * psz);

@@ -115,7 +115,7 @@
 //
 //   }
 //
-//   if (is_null(::get_task()->m_pset))
+//   if (is_null(::get_task()->m_ppropertyset))
 //   {
 //
 //      return false;

@@ -253,7 +253,7 @@ namespace dynamic_source
    }
 
 
-   __pointer(script_instance) script_manager::get(const string & strName)
+   __pointer(script_instance) script_manager::get(const ::string & strName)
    {
 
       __pointer(script) pscript;
@@ -263,7 +263,7 @@ namespace dynamic_source
    }
 
 
-   __pointer(script_instance) script_manager::get(const string & strName, __pointer(script) & pscript)
+   __pointer(script_instance) script_manager::get(const ::string & strName, __pointer(script) & pscript)
    {
 
       return m_pcache->create_instance(strName, pscript);
@@ -538,7 +538,7 @@ namespace dynamic_source
    }
 
 
-   ::payload script_manager::get_output_internal(::dynamic_source::script_interface * pinstanceParent, const string & strNameParam)
+   ::payload script_manager::get_output_internal(::dynamic_source::script_interface * pinstanceParent, const ::string & strNameParam)
    {
 
       string strName = ::str::get_word(strNameParam, "?");
@@ -933,7 +933,7 @@ namespace dynamic_source
 
    }
 
-   bool script_manager::include_matches_file_exists(const string & strPath)
+   bool script_manager::include_matches_file_exists(const ::string & strPath)
    {
 
       auto pcontext = get_context();
@@ -957,13 +957,13 @@ namespace dynamic_source
 
 
 
-   void script_manager::set_include_matches_file_exists(const string & strPath, bool bFileExists)
+   void script_manager::set_include_matches_file_exists(const ::string & strPath, bool bFileExists)
    {
       single_lock synchronouslock(&m_mutexIncludeMatches, true);
       m_mapIncludeMatchesFileExists.set_at(strPath, bFileExists);
    }
 
-   bool script_manager::include_matches_is_dir(const string & strPath)
+   bool script_manager::include_matches_is_dir(const ::string & strPath)
    {
       single_lock synchronouslock(&m_mutexIncludeMatches, true);
       string_map < bool >::pair * ppair = m_mapIncludeMatchesIsDir.plookup(strPath);
@@ -980,7 +980,7 @@ namespace dynamic_source
          return bIsDir;
    }
 
-   bool script_manager::include_has_script(const string & strPath)
+   bool script_manager::include_has_script(const ::string & strPath)
    {
 
       if(strPath.is_empty())
@@ -1009,13 +1009,13 @@ namespace dynamic_source
    }
 
 
-   string script_manager::include_expand_md5(const string & strPath)
+   string script_manager::include_expand_md5(const ::string & strPath)
    {
       single_lock synchronouslock(&m_mutexIncludeExpandMd5, true);
       return m_mapIncludeExpandMd5[strPath];
    }
 
-   void script_manager::set_include_expand_md5(const string & strPath, const string & strMd5)
+   void script_manager::set_include_expand_md5(const ::string & strPath, const ::string & strMd5)
    {
       single_lock synchronouslock(&m_mutexIncludeExpandMd5, true);
       m_mapIncludeExpandMd5[strPath] = strMd5;
@@ -1293,7 +1293,7 @@ namespace dynamic_source
    {
    }
 
-   void script_manager::register_plugin(const string & strHost, const string & strScript, const string & strName, script * pscript)
+   void script_manager::register_plugin(const ::string & strHost, const ::string & strScript, const ::string & strName, script * pscript)
    {
 
       plugin_map_item item;
@@ -1660,7 +1660,7 @@ namespace dynamic_source
    }
 
 
-   ::file::path script_manager::get_script_path(const ::file::path & strName, const string & strModifier)
+   ::file::path script_manager::get_script_path(const ::file::path & strName, const ::string & strModifier)
    {
 
       ::file::path strTransformName = strName;

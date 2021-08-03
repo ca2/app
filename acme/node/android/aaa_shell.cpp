@@ -1576,7 +1576,7 @@ namespace android
 
 
 
-   i32 shell::get_file_extension_image(const string & strExtension, e_file_attribute eattribute, e_icon eicon, color32_t crBk)
+   i32 shell::get_file_extension_image(const ::string & strExtension, e_file_attribute eattribute, e_icon eicon, color32_t crBk)
    {
 
       i32 iImage = 0x80000000;

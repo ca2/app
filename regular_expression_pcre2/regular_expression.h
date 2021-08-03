@@ -23,7 +23,7 @@ namespace regular_expression_pcre2
       ::e_status create(const string& str) override;
 
 
-      __pointer(::regular_expression::topic) create_topic(const string & str) override;
+      __pointer(::regular_expression::topic) create_topic(const ::string & str) override;
 
 
       bool replace(string& str, const string& strPrefix, string& strRet) override;

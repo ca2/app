@@ -200,7 +200,7 @@ CLASS_DECL_ACME void * __node_library_raw_get(void * plibrary,const char * pszEn
 #define LIBCALL(library, entry)  (get_system()->lib(#library)->get<decltype(&entry)>(#entry))
 
 
-CLASS_DECL_ACME ::file::path libfilename(const string & str);
+CLASS_DECL_ACME ::file::path libfilename(const ::string & str);
 
 
 

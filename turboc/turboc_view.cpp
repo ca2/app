@@ -400,7 +400,7 @@ namespace turboc
 
    }
 
-   void view::turboc_fast_render(const string & strHelloMultiverse)
+   void view::turboc_fast_render(const ::string & strHelloMultiverse)
    {
 
       if(m_cx <= 0 || m_cy <= 0)

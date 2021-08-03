@@ -216,7 +216,7 @@ namespace net
    }
 
 
-   address::address(::object * pobject, const string & host, const string & strService)
+   address::address(::object * pobject, const string & host, const ::string & strService)
    {
 
 #ifdef BSD_STYLE_SOCKETS
@@ -483,7 +483,7 @@ namespace net
 #endif
 
 
-   void address::from_string(const string & strAddress)
+   void address::from_string(const ::string & strAddress)
    {
 
 #if defined(BSD_STYLE_SOCKETS)

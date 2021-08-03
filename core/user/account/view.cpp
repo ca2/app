@@ -89,7 +89,7 @@ namespace account
    }
 
 
-   void view::defer_translate(const string & strUser, const string & strPass, const string & strOpen)
+   void view::defer_translate(const ::string & strUser, const ::string & strPass, const ::string & strOpen)
    {
 
       if (strUser.has_char())

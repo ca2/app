@@ -1032,7 +1032,7 @@ bool file_context::put_contents_utf8(const ::payload &varFile, const char *pcszC
 
          }
 
-         if (!::file_copy_dup(varTarget, varSource, !bFailIfExists))
+         if (!::file_copy_dup(varTarget.get_file_path(), varSource.get_file_path(), !bFailIfExists))
          {
 
             return ::error_failed;
@@ -3046,7 +3046,7 @@ bool file_context::is_file_or_dir(const ::file::path &pszPath, ::file::enum_type
 }
 
 
-/*  bool file_context::exists(const string & strPath)
+/*  bool file_context::exists(const ::string & strPath)
    {
 
       return psystem->m_spfile->exists(strPath, get_application());
@@ -3056,7 +3056,7 @@ bool file_context::is_file_or_dir(const ::file::path &pszPath, ::file::enum_type
    bool file_context::exists(const ::payload & payload)
    {
 
-      const string & strPath = payload.get_string();
+      const ::string & strPath = payload.get_string();
 
 
       return psystem->m_spfile->exists(strPath, get_application());
@@ -3072,7 +3072,7 @@ bool file_context::is_file_or_dir(const ::file::path &pszPath, ::file::enum_type
 //}
 
 
-//::payload file_context::length(const string & strPath)
+//::payload file_context::length(const ::string & strPath)
 //{
 
 

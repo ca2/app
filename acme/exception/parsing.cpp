@@ -37,7 +37,7 @@ CLASS_DECL_ACME void set_avoid_parsing_exception(bool bSet)
 }
 
 
-CLASS_DECL_ACME bool throw_parsing_exception(const string & strMessage)
+CLASS_DECL_ACME bool throw_parsing_exception(const ::string & strMessage)
 {
 
    if (get_avoid_parsing_exception())
@@ -90,7 +90,7 @@ json_parsing_exception::~json_parsing_exception()
 
 
 
-CLASS_DECL_ACME bool throw_json_parsing_exception(const string & strMessage)
+CLASS_DECL_ACME bool throw_json_parsing_exception(const ::string & strMessage)
 {
 
    if (get_avoid_parsing_exception())

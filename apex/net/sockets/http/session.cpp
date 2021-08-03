@@ -56,7 +56,7 @@ namespace sockets
    }
 
 
-   void http_session::request(const string & strMethod, const string & strRequest)
+   void http_session::request(const ::string & strMethod, const ::string & strRequest)
    {
 
       request(string_http_method(strMethod), strRequest);
@@ -64,7 +64,7 @@ namespace sockets
    }
 
 
-   void http_session::request(e_http_method emethod, const string & strRequest)
+   void http_session::request(e_http_method emethod, const ::string & strRequest)
    {
 
       m_emethod                     = emethod;

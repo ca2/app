@@ -129,7 +129,7 @@ CLASS_DECL_ACME bool next_csv(string & str, const char * & psz)
 
 
 
-void add_csv(string_array & stra, const string & str)
+void add_csv(string_array & stra, const ::string & str)
 {
 
    const char * psz = str;

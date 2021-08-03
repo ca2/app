@@ -380,7 +380,7 @@ namespace apex
       virtual bool is_system() const override;
 
 
-      virtual string crypto_md5_text(const string & str);
+      virtual string crypto_md5_text(const ::string & str);
 
 
       //virtual ::e_status start() override;
@@ -442,10 +442,10 @@ namespace apex
       //virtual u32 crc32(u32 dwPrevious, const char * psz);
 
 
-      virtual string url_encode(const string & str);
+      virtual string url_encode(const ::string & str);
 
 
-      virtual void locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const string & strLocale, const string & strSchema) override;
+      virtual void locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::string & strLocale, const ::string & strSchema) override;
       virtual string get_locale_schema_dir() override;
 
 
@@ -520,7 +520,7 @@ namespace apex
 
       //__pointer(::account::user_set)                userset();
 
-      //virtual string url_encode(const string & str);
+      //virtual string url_encode(const ::string & str);
 
       virtual void on_allocation_error(const ::string & strName, ::object * pobjectSometimes);
 
@@ -671,7 +671,7 @@ namespace apex
       virtual ::count get_application_count();
 
 
-      //virtual string crypto_md5_text(const string & str);
+      //virtual string crypto_md5_text(const ::string & str);
 
       //inline class ::http::system                  & http()
       //{
@@ -909,7 +909,7 @@ namespace apex
 
 
 
-      //      u32 guess_code_page(const string & str);
+      //      u32 guess_code_page(const ::string & str);
 
 #ifdef _UWP
 

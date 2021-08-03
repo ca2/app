@@ -52,13 +52,13 @@ public:
    virtual string get_schema();
 
 
-   virtual void locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const string & strLocale, const string & strSchema);
+   virtual void locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::string & strLocale, const ::string & strSchema);
    virtual string get_locale_schema_dir();
 
 
 
    virtual bool http_download(const char * pszUrl, const char * pszFile);
-   virtual string http_get(const string & strUrl, ::property_set & set);
+   virtual string http_get(const ::string & strUrl, ::property_set & set);
    virtual string http_get(const char * pszUrl);
 
    string get_latest_build_number(const char * pszConfiguration, const char * pszAppId);
@@ -105,19 +105,19 @@ public:
 
 
    virtual ::image_result get_image(const ::payload & varFile, bool bCache = true, bool bSync = true);
-   virtual ::image_result matter_image(const string & strMatter, bool bCache = true, bool bSync = true);
+   virtual ::image_result matter_image(const ::string & strMatter, bool bCache = true, bool bSync = true);
 
    virtual ::image_result load_image(const ::payload & varFile, bool bCache = true, bool bSync = true, bool bCreateHelperMaps = false) override;
-   virtual ::image_result load_matter_image(const string & strMatter, bool bCache = true, bool bSync = true, bool bCreateHelperMaps = false);
+   virtual ::image_result load_matter_image(const ::string & strMatter, bool bCache = true, bool bSync = true, bool bCreateHelperMaps = false);
    virtual ::image_result load_matter_icon(string_array & straMatter, string strIcon) override;
    virtual ::image_result load_thumbnail(const ::payload & varFile, int w, int h) override;
-   virtual ::image_result load_thumbnail(const string & strPath);
+   virtual ::image_result load_thumbnail(const ::string & strPath);
    virtual ::image_result load_dib(const ::file::path & pathDib) override;
    virtual ::icon_result load_icon(const ::payload & varFile);
 
 
    virtual ::e_status _get_image(image * pimage, const ::payload & varFile, bool bSync = true);
-   virtual ::e_status _matter_image(image * pimage, const string & strMatter, bool bSync = true);
+   virtual ::e_status _matter_image(image * pimage, const ::string & strMatter, bool bSync = true);
 
 
    virtual ::e_status _load_image(image * pimage, const ::payload & varFile, bool bSync = true, bool bCreateHelperMaps = false);

@@ -78,7 +78,7 @@ namespace user
       virtual void OnActivateFrame(enum_activate eactivate,  __pointer(::user::frame_window) pFrameWnd);
 
 
-      virtual void set_impact_title(const string & strImpactTitle);
+      virtual void set_impact_title(const ::string & strImpactTitle);
       virtual string get_impact_title() const;
 
       __pointer(::user::interaction) create_view(const ::type & type, ::user::document * pdocument = nullptr, ::user::interaction * puserinteractionParent = nullptr, const ::id & id = ::id(), ::user::interaction * pviewLast = nullptr, ::user::impact_data * pdata = nullptr);

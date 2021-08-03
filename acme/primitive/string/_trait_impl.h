@@ -822,7 +822,7 @@ namespace str
    inline ansistring & assign(ansistring & ansistrDst, const ::payload & payload)
    {
 
-      ansistrDst.assign(payload.get_string());
+      ansistrDst.assign(payload);
 
       return ansistrDst;
 
@@ -832,16 +832,17 @@ namespace str
    inline wd16string & assign(wd16string & widestrDst, const property & property)
    {
 
-      widestrDst.assign(property.get_string());
+      widestrDst.assign(property.string());
 
       return widestrDst;
 
    }
 
+
    inline wd32string& assign(wd32string& widestrDst, const property& property)
    {
 
-      widestrDst.assign(property.get_string());
+      widestrDst.assign(property.string());
 
       return widestrDst;
 
@@ -851,7 +852,7 @@ namespace str
    inline ansistring & assign(ansistring & ansistrDst, const property & property)
    {
 
-      ansistrDst.assign(property.get_string());
+      ansistrDst.assign(property.string());
 
       return ansistrDst;
 
@@ -861,16 +862,17 @@ namespace str
    inline wd16string & assign(wd16string & widestrDst, const ::payload & payload)
    {
 
-      widestrDst.assign(payload.get_string());
+      widestrDst.assign(payload.string());
 
       return widestrDst;
 
    }
 
+
    inline wd32string& assign(wd32string& widestrDst, const ::payload & payload)
    {
 
-      widestrDst.assign(payload.get_string());
+      widestrDst.assign(payload.string());
 
       return widestrDst;
 

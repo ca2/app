@@ -41,7 +41,7 @@
 //   psz[0] = '\0';
 //}
 //
-//void const_empty_string::set_string(const string & str, const ::action_context & context)
+//void const_empty_string::set_string(const ::string & str, const ::action_context & context)
 //{
 //   UNREFERENCED_PARAMETER(str);
 //   UNREFERENCED_PARAMETER(context);

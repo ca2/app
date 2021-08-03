@@ -49,7 +49,7 @@ namespace ios
       
       virtual ::file::path module() override;
       virtual ::file::path ca2module() override;
-      virtual ::file::path time_square(const string & strPrefix = nullptr, const string & strSuffix = nullptr);
+      virtual ::file::path time_square(const ::string & strPrefix = nullptr, const ::string & strSuffix = nullptr);
       virtual ::file::path time_log();
       
       
@@ -57,7 +57,7 @@ namespace ios
       
       
       
-      virtual ::file::path appdata(const string & strAppId = "") override;
+      virtual ::file::path appdata(const ::string & strAppId = "") override;
       virtual ::file::path commonappdata_root() override;
       
 //      virtual ::file::path usersystemappdata(::object * pobject, const char * lpcszPrefix);

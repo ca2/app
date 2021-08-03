@@ -101,7 +101,7 @@
 ////      if >= 0xff characters: 0xff, len:::u16, char chars
 ////      if >= 0xfffe characters: 0xff, 0xffff, len:u32, TCHARs
 //
-//stream & stream::write(const string & string)
+//stream & stream::write(const ::string & string)
 //{
 //
 //   ::i64 s = string.get_length();
@@ -269,7 +269,7 @@
 //}
 //
 //
-//void stream::write_from_hex(const string & str)
+//void stream::write_from_hex(const ::string & str)
 //{
 //
 //   stream::write_from_hex(str);

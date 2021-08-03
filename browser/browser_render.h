@@ -136,7 +136,7 @@ namespace browser
       virtual void defer_update_slide_show();
 
       virtual bool in_anime();
-      virtual void browser_fast_render(const string & strHelloBrowser);
+      virtual void browser_fast_render(const ::string & strHelloBrowser);
 
    };
 

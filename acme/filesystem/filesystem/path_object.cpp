@@ -82,12 +82,12 @@ namespace file
    }
 
 
-   void path_object::to_string(const class string_exchange & str) const
-   {
+   //string path_object::to_string() const
+   //{
 
-      str = (const string&)*this;
+   //   return (::string) *this;
 
-   }
+   //}
 
 
 } // namespace file

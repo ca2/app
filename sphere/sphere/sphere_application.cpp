@@ -94,7 +94,7 @@ namespace sphere
 
 
 
-   u32 application::guess_code_page(const string & str)
+   u32 application::guess_code_page(const ::string & str)
    {
 
       return charguess(str)();

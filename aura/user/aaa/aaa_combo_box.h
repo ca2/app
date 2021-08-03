@@ -76,18 +76,18 @@ namespace user
 
       virtual void set_current_item_by_data(uptr u, const ::action_context & action_context);
       
-      virtual void set_current_item_by_string_value(const string & strValue, const ::action_context & action_context);
+      virtual void set_current_item_by_string_value(const ::string & strValue, const ::action_context & action_context);
       
       virtual string get_current_item_string_value();
 
 
 
       virtual void _001GetText(string & str) const override;
-      virtual void _001SetText(const string & str, const ::action_context & action_context) override;
+      virtual void _001SetText(const ::string & str, const ::action_context & action_context) override;
 
 
       virtual bool _001GetListText(index iSel, string & str) const;
-      virtual index _001FindListText(const string & str) const;
+      virtual index _001FindListText(const ::string & str) const;
       virtual count _001GetListCount() const;
 
       virtual bool create_control(class control_descriptor * pdescriptor) override;

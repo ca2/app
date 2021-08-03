@@ -198,7 +198,7 @@ namespace userex
       if (pdocTab == nullptr)
       {
 
-         pdocTab = m_ptemplateTab->open_document_file(get_application(), ::e_type_null, __visible(false), this);
+         pdocTab = m_ptemplateTab->open_document_file(get_application(), ::e_type_null, __visible(false).is_true(), this);
 
       }
 
@@ -631,7 +631,7 @@ namespace userex
          else
          {
 
-            pdocument = pimpactsystem->open_document_file(get_application(), e_type_empty, __visible(true), this, m_bWfiUpDownTarget ? e_window_flag_updown : e_window_flag_none, id);
+            pdocument = pimpactsystem->open_document_file(get_application(), e_type_empty, __visible(true).is_true(), this, m_bWfiUpDownTarget ? e_window_flag_updown : e_window_flag_none, id);
 
          }
 

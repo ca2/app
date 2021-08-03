@@ -13,6 +13,6 @@ CLASS_DECL_ACME int is_dir(const char * path1);
 
 #ifdef __cplusplus
 
-string file_first_line_dup(const string & strPath);
+string file_first_line_dup(const ::string & strPath);
 
 #endif

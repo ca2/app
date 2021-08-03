@@ -35,7 +35,7 @@ namespace userex
          
       }
 
-      m_millisDelay = *fetch_property("message_box_timeout_ms");
+      m_millisDelay = fetch_property("message_box_timeout_ms")->millis();
       
       wait_message_dialog::on_show(pszMatter);
       

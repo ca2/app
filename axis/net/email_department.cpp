@@ -62,7 +62,7 @@ namespace net
    }
 
 
-   bool email_department::syntax_is_valid(const string & strEmailAddress)
+   bool email_department::syntax_is_valid(const ::string & strEmailAddress)
    {
 
       auto iAt = strEmailAddress.find('@');

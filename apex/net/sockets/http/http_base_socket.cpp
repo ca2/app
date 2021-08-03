@@ -66,7 +66,7 @@ namespace sockets
    void http_base_socket::OnHeaderComplete()
    {
 
-      string strProtocol = m_request.attr("http_protocol").get_string().c_str();
+      string strProtocol = m_request.attr("http_protocol").string().c_str();
 
       string strHost;
       
@@ -85,7 +85,7 @@ namespace sockets
 
       }
 
-      string strRequestUri = m_request.attr("request_uri").get_string();
+      string strRequestUri = m_request.attr("request_uri").string();
 
       http_socket::OnHeaderComplete();
 
@@ -105,7 +105,7 @@ namespace sockets
 
       }
 
-      if(m_request.attr("request_uri").get_string().find("/passthrough/") >= 0)
+      if(m_request.attr("request_uri").string().find("/passthrough/") >= 0)
       {
          
          TRACE("Passthrough");
@@ -135,7 +135,7 @@ namespace sockets
       if(m_request.headers().has_property(__id(accept_language)))
       {
 
-         TRACE("accept-language: %s", m_request.header(__id(accept_language)).get_string().c_str());
+         TRACE("accept-language: %s", m_request.header(__id(accept_language)).string().c_str());
 
       }
 
@@ -167,11 +167,11 @@ namespace sockets
       // parse form data / query_string and cookie header if available
       m_request.ParseBody();
 
-      //TRACE("http version: %s\n", m_request.attr("http_version").get_string());
-      //TRACE("connection: %s\n", m_request.header("connection").get_string());
+      //TRACE("http version: %s\n", m_request.attr("http_version").string());
+      //TRACE("connection: %s\n", m_request.header("connection").string());
       //TRACE("keepalive: %s\n", m_b_keepalive ? "true" : "false");
-      /*   if(::str::ends(m_request.attr("http_version").get_string(), "/1.1")
-            && m_request.header("connection").get_string().compare_ci("close") != 0)
+      /*   if(::str::ends(m_request.attr("http_version").string(), "/1.1")
+            && m_request.header("connection").string().compare_ci("close") != 0)
          {
             m_b_keepalive = true;
          TRACE(" ***    keepalive: true\n");
@@ -195,8 +195,8 @@ namespace sockets
 
       //TRACE0("http_base_socket::Respond");
 
-      if(outheader(__id(content_type)).get_string().find("text") >= 0
-            || outheader(__id(content_type)).get_string().find("javascript") >= 0)
+      if(outheader(__id(content_type)).string().find("text") >= 0
+            || outheader(__id(content_type)).string().find("javascript") >= 0)
       {
 
          on_compress();
@@ -321,10 +321,10 @@ namespace sockets
    void http_base_socket::on_compress()
    {
 
-      if(inheader("accept-encoding").get_string().find("gzip") >= 0)
+      if(inheader("accept-encoding").string().find("gzip") >= 0)
       {
 
-         string str = outheader(__id(content_type)).get_string();
+         string str = outheader(__id(content_type)).string();
 
          if (str.find_ci("text") >= 0 || str.find_ci("javascript") >= 0)
          {
@@ -387,7 +387,7 @@ namespace sockets
       {
          outheader(__id(content_type)) = "text/plain";
       }
-      else if (outheader(__id(content_type)).get_string().has_char())
+      else if (outheader(__id(content_type)).string().has_char())
       {
       }
       else if (strContentType.has_char() && strContentType.compare_ci("unknown") != 0)

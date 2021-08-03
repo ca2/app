@@ -25,7 +25,7 @@ extern "C"
 //#ifdef WINDOWS_DESKTOP
 //
 //
-//CLASS_DECL_ACME void windows_install_crash_dump_reporting(const string & strModuleNameWithTheExeExtension);
+//CLASS_DECL_ACME void windows_install_crash_dump_reporting(const ::string & strModuleNameWithTheExeExtension);
 //
 //
 //#endif
@@ -1217,7 +1217,7 @@ namespace aura
 //
 //
 
-//   string CLASS_DECL_AURA application::get_cred(const string & strRequestUrl, const ::rectangle_i32 & rectangle, string & strUsername, string & strPassword, string strToken, string strTitle, bool bInteractive)
+//   string CLASS_DECL_AURA application::get_cred(const ::string & strRequestUrl, const ::rectangle_i32 & rectangle, string & strUsername, string & strPassword, string strToken, string strTitle, bool bInteractive)
 // {
 
 //  __throw(error_not_implemented);
@@ -2986,7 +2986,7 @@ retry_license:
    //}
 
 
-   //string application::get_locale_schema_dir(const string & strLocale)
+   //string application::get_locale_schema_dir(const ::string & strLocale)
    //{
 
    //   return ::str::_001Concat(strLocale.is_empty() ? get_locale() : strLocale, "/", get_schema());
@@ -2994,7 +2994,7 @@ retry_license:
    //}
 
 
-   //void application::matter_locator_locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const string & strLocale, const string & strSchema)
+   //void application::matter_locator_locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::string & strLocale, const ::string & strSchema)
    //{
 
    //   if (strLocale.is_empty() || strSchema.is_empty())
@@ -3016,7 +3016,7 @@ retry_license:
    //}
 
 
-   //void application::locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const string & strLocale, const string & strSchema)
+   //void application::locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::string & strLocale, const ::string & strSchema)
    //{
 
    //  if (straMatterLocator.has_elements())
@@ -3055,7 +3055,7 @@ retry_license:
    //}
 
 
-   //string application::get_locale_schema_dir(const string & strLocale, const string & strSchema)
+   //string application::get_locale_schema_dir(const ::string & strLocale, const ::string & strSchema)
    //{
 
    //  return ::str::_001Concat(strLocale, "/", strSchema);
@@ -3453,7 +3453,7 @@ retry_license:
 
 
 
-   //void application::install_trace(const string & str)
+   //void application::install_trace(const ::string & str)
    //{
 
    //   synchronous_lock synchronouslock(mutex());
@@ -5693,7 +5693,7 @@ retry_license:
       //}
 
 
-      //string application::http_get(const string & strUrl, ::property_set & set)
+      //string application::http_get(const ::string & strUrl, ::property_set & set)
       //{
 
       //   return http().get(strUrl, set);
@@ -8772,7 +8772,7 @@ namespace aura
 
 
 
-   /*string application::get_cred(const string & strRequestUrlParam,const ::rectangle_i32 & rectangle,string & strUsername,string & strPassword,string strToken,string strTitle,bool bInteractive)
+   /*string application::get_cred(const ::string & strRequestUrlParam,const ::rectangle_i32 & rectangle,string & strUsername,string & strPassword,string strToken,string strTitle,bool bInteractive)
    {
 
       string str = ::account::get_cred(this,strUsername,strPassword,strToken);

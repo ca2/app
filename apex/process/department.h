@@ -31,7 +31,7 @@ namespace process
          process_thread();
 
 
-         virtual void construct_process_thread(const string & strCmdLine, const ::duration & dur, bool * pbPotentialTimeout = nullptr, string * pstrRead = nullptr, bool bElevated = false);
+         virtual void construct_process_thread(const ::string & strCmdLine, const ::duration & dur, bool * pbPotentialTimeout = nullptr, string * pstrRead = nullptr, bool bElevated = false);
 
          virtual ::e_status     run() override;
 
@@ -63,7 +63,7 @@ namespace process
          virtual ~process_processor();
          
          
-         ::e_status process(const string & strCmdLine, const ::duration & dur, bool * pbPotentialTimeout = nullptr, string * pstrRead = nullptr, bool bElevated = false);
+         ::e_status process(const ::string & strCmdLine, const ::duration & dur, bool * pbPotentialTimeout = nullptr, string * pstrRead = nullptr, bool bElevated = false);
          
 
       };

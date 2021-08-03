@@ -37,7 +37,7 @@ create::create()
 
          }
          
-         estatus = m_pcommandline->initialize_command_line(arg.get_string());
+         estatus = m_pcommandline->initialize_command_line(arg.string());
 
          if (!estatus)
          {

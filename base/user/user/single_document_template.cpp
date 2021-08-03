@@ -204,7 +204,7 @@ namespace user
       if (pcreate->m_pcommandline)
       {
 
-         bMakeVisible = pcreate->m_pcommandline->m_varQuery["make_visible_boolean"] || pcreate->m_bMakeVisible;
+         bMakeVisible = pcreate->m_pcommandline->m_varQuery["make_visible_boolean"].get_bool() || pcreate->m_bMakeVisible;
 
       }
 

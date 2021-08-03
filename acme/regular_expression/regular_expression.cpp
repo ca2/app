@@ -82,7 +82,7 @@ namespace regular_expression
 
 
 
-   __pointer(topic) regular_expression::create_topic(const string & str)
+   __pointer(topic) regular_expression::create_topic(const ::string & str)
    {
 
       return nullptr;
@@ -91,7 +91,7 @@ namespace regular_expression
 
 
 
-//   ::count regular_expression::matches(string_array & stra, const string & str)
+//   ::count regular_expression::matches(string_array & stra, const ::string & str)
 //   {
 //
 //      auto prangeaMatches = matches_ranges(str);
@@ -110,7 +110,7 @@ namespace regular_expression
 //   }
 
 
-   //index regex::match(string_array & stra, const string & strParam, strsize iSize)
+   //index regex::match(string_array & stra, const ::string & strParam, strsize iSize)
    //{
    //
    //   stra.erase_all();
@@ -140,7 +140,7 @@ namespace regular_expression
    //}
    //
    //
-   bool regular_expression::replace(string & strFind, const string & strReplace, string & strResult)
+   bool regular_expression::replace(string & strFind, const ::string & strReplace, string & strResult)
    {
 
       return false;

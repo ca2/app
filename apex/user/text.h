@@ -16,7 +16,7 @@ namespace user
 
 
       text();
-      virtual ~text();
+      ~text() override;
 
 
       virtual void _001GetText(string & str) const;
@@ -27,7 +27,7 @@ namespace user
       virtual void _001GetText(string & str, index iBeg, index iEnd) const;
 
 
-      virtual void _001SetText(const string & str, const ::action_context & action_context);
+      virtual void _001SetText(const ::string & str, const ::action_context & action_context);
       virtual void _001SetText(const char * psz, strsize len, const ::action_context & action_context);
 
 
@@ -51,9 +51,9 @@ namespace user
       virtual void insert_text(string str, bool bForceNewStep, const ::action_context& context);
 
 
-      inline string strtext() const { return m_propertyText->get_string(); }
-      inline string & strtext() { return m_propertyText->operator string &(); }
-      inline string as_string() const { return m_propertyText->get_string(); }
+      inline string strtext() const { return m_propertyText->string(); }
+      inline string & as_strtext() { return m_propertyText->as_string(); }
+      //inline string as_string() const { return m_propertyText->get_string(); }
 
       
       virtual bool edit_undo();

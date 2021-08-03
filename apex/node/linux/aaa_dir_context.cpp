@@ -433,7 +433,7 @@ namespace linux
    }
 
 
-   ::file::path dir_context::element_commonappdata(const string & strElement)
+   ::file::path dir_context::element_commonappdata(const ::string & strElement)
    {
 
       return ::file::path(strElement) / "commonappdata";

@@ -84,7 +84,7 @@ namespace papaya
    {
 
 
-      inline string get_string(const ::property_object & object, const string & strKey);
+      inline string get_string(const ::property_object & object, const ::string & strKey);
 
       // ::property_set set;
       //
@@ -94,7 +94,7 @@ namespace papaya
       //
       // real-ization: "SELECT field1, field2, field3 FROM table1 WHERE table1.field5 = 'searching value'"
       template < typename PROPERTY_SOURCE >
-      string evaluate(const PROPERTY_SOURCE & set, const string & strSource)
+      string evaluate(const PROPERTY_SOURCE & set, const ::string & strSource)
       {
 
          string str(strSource);

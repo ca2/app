@@ -102,10 +102,10 @@ namespace datetime
       i32 GetGmtSecond() const noexcept;
       i32 GetGmtDayOfWeek() const noexcept;
 
-      string Format(string & str, const string & strFormat) const;
-      string FormatGmt(string & str, const string & strFormat) const;
-      string Format(const string & strFormat);
-      string FormatGmt(const string & strFormat);
+      string Format(string & str, const ::string & strFormat) const;
+      string FormatGmt(string & str, const ::string & strFormat) const;
+      string Format(const ::string & strFormat);
+      string FormatGmt(const ::string & strFormat);
 
       time get_sunday() const;
 

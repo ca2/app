@@ -6,7 +6,7 @@ struct CLASS_DECL_ACME matter :
 {
 
    
-   __pointer(property_set)    m_pset;
+   __pointer(property_set)    m_ppropertyset;
 
 
    matter() { }

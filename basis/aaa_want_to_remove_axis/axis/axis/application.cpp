@@ -1581,7 +1581,7 @@ m_millisHeartBeat.Now();
    //}
 
 
-   //string application::http_get(const string & strUrl, ::property_set & set)
+   //string application::http_get(const ::string & strUrl, ::property_set & set)
    //{
 
    //   return http().get(strUrl, set);

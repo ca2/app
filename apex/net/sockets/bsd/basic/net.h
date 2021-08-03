@@ -143,12 +143,12 @@ namespace sockets
       */
       string rfc1738_decode(const string & src);
 
-      bool isipv4(const string & str);
+      bool isipv4(const ::string & str);
 
-      bool isipv6(const string & str);
+      bool isipv6(const ::string & str);
 
-      //bool convert(struct ::in_addr& l, const string & str, i32 ai_flags = 0);
-      //bool convert(struct ::in6_addr& l, const string & str, i32 ai_flags = 0);
+      //bool convert(struct ::in_addr& l, const ::string & str, i32 ai_flags = 0);
+      //bool convert(struct ::in6_addr& l, const ::string & str, i32 ai_flags = 0);
       //bool convert(string & str, const struct ::in_addr& ip);
       //bool convert(string & str, const struct ::in6_addr& ip, bool mixed = false);
 
@@ -179,7 +179,7 @@ namespace sockets
 
       bool u2service(const string & name, i32& service, i32 ai_flags);
 
-      i32 service_port(const string & str, i32 flags = 0);
+      i32 service_port(const ::string & str, i32 flags = 0);
 
       //string  service_name(i32 iPort, i32 flags = 0);
 

@@ -177,13 +177,15 @@ inline void __copy(payload * ppayload, const DWORD * pdw)
 inline void __copy(long * plong, const payload * ppayload)
 {
 
-   *plong = (long)(i32)*ppayload;
+   *plong = (long) ppayload->i64();
 
 }
+
+
 inline void __copy(DWORD * pdw, const payload * ppayload)
 {
 
-   *pdw = (DWORD)(u32)*ppayload;
+   *pdw = ppayload->u32();
 
 }
 
@@ -217,10 +219,10 @@ inline filetime __filetime(const FILETIME & filetime) { return make64_from32(fil
 CLASS_DECL_ACME bool is_valid_FILETIME(const FILETIME & ft) noexcept;
 
 
-CLASS_DECL_ACME BSTR AllocSysString(const string & str);
+CLASS_DECL_ACME BSTR AllocSysString(const ::string & str);
 
 
-CLASS_DECL_ACME BSTR SetSysString(BSTR * pbstr, const string & str);
+CLASS_DECL_ACME BSTR SetSysString(BSTR * pbstr, const ::string & str);
 
 
 CLASS_DECL_ACME int_bool read_resource_as_file(const char * pszFile, HINSTANCE hinst, ::u32 nID, LPCTSTR pcszType);

@@ -7,7 +7,7 @@
 BOOL ExtractResourceIcon_EnumNamesFunc(HMODULE hModule, const widechar * pType, LPWSTR lpName, LONG_PTR lParam);
 
 
-CLASS_DECL_ACME HICON ExtractResourceIcon(const string & strPath, int& cx, int& cy, int iIcon);
+CLASS_DECL_ACME HICON ExtractResourceIcon(const ::string & strPath, int& cx, int& cy, int iIcon);
 
 
 struct extract_resource_icon
@@ -80,7 +80,7 @@ typedef struct
 BOOL ExtractResourceIcon_EnumNamesFunc(HMODULE hModule, const widechar * pType, LPWSTR lpName, LONG_PTR lParam);
 
 
-CLASS_DECL_ACME HICON ExtractResourceIcon(const string & strPath, int& cx, int& cy, int iIcon)
+CLASS_DECL_ACME HICON ExtractResourceIcon(const ::string & strPath, int& cx, int& cy, int iIcon)
 {
 
    HMODULE hLib = nullptr;

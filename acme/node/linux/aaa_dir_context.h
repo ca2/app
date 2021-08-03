@@ -55,11 +55,11 @@ namespace linux
       //  virtual string matter(const char * pcsz, const char * lpcsz2 = nullptr);
 
       //virtual ::file::path install();
-//      virtual string matter(const string & str);
-//      virtual string matter(const string & str, const string & str2);
-//      virtual string matter(const char * pcsz, const string & str2);
+//      virtual string matter(const ::string & str);
+//      virtual string matter(const ::string & str, const ::string & str2);
+//      virtual string matter(const char * pcsz, const ::string & str2);
 
-//      virtual string matter(const string & str, const char * pcsz2);
+//      virtual string matter(const ::string & str, const char * pcsz2);
 
 
 //      virtual ::file::path module();
@@ -72,7 +72,7 @@ namespace linux
 
       virtual ::file::path appdata() override;
       virtual ::file::path commonappdata() override;
-      virtual ::file::path element_commonappdata(const string & strElement) override;
+      virtual ::file::path element_commonappdata(const ::string & strElement) override;
 
 //      virtual ::file::path usersystemappdata(const string & pcszPrefix);
 

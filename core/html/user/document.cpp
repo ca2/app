@@ -407,7 +407,7 @@ bool html_document::open_document(const ::payload & varFile)
 }
 
 
-bool html_document::load_html(const string & str)
+bool html_document::load_html(const ::string & str)
 {
 
    get_html_data()->load(str);

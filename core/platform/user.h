@@ -255,7 +255,7 @@
 //
 //
 //      virtual bool update_appmatter(::sockets::socket_handler & handler, __pointer(::sockets::http_session) & psession, const ::file::path & pszRoot, const string & pszRelative);
-//      virtual bool update_appmatter(::sockets::socket_handler & handler, __pointer(::sockets::http_session) & psession, const ::file::path & pszRoot, const string & pszRelative, const string & strLocale, const string & strStyle);
+//      virtual bool update_appmatter(::sockets::socket_handler & handler, __pointer(::sockets::http_session) & psession, const ::file::path & pszRoot, const string & pszRelative, const ::string & strLocale, const ::string & strStyle);
 //
 //
 //      //virtual void SetCurrentHandles() override;
@@ -354,7 +354,7 @@
 //
 //      //virtual ::html::html * create_html();
 //
-//      //virtual string http_get(const string & strUrl, ::property_set & set) override;
+//      //virtual string http_get(const ::string & strUrl, ::property_set & set) override;
 //
 //      //virtual bool compress_ungz(const ::stream & os, const ::stream & is) override;
 //
@@ -371,7 +371,7 @@
 //      //virtual ~application();
 //
 //
-//      //virtual void locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const string & strLocale, const string & strSchema);
+//      //virtual void locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::string & strLocale, const ::string & strSchema);
 //      //virtual string get_locale_schema_dir();
 //
 //
@@ -675,10 +675,10 @@
 //      // name by Mummi (Japanese -> Guddo : from English : Good, ca2 interpretation : Goods).
 //      // get/set serializables to user directory
 //      template < typename TYPE >
-//      bool gudo_get(const string & strKey, TYPE & t);
+//      bool gudo_get(const ::string & strKey, TYPE & t);
 //
 //      template < typename TYPE >
-//      bool gudo_set(const string & strKey, const TYPE & t);
+//      bool gudo_set(const ::string & strKey, const TYPE & t);
 //
 //
 //      //virtual bool assert_user_logged_in();
@@ -697,11 +697,11 @@
 //
 //      //virtual void on_update_matter_locator() override;
 //
-//      virtual void locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const string & strLocale, const string & strSchema) override;
-//      virtual void matter_locator_locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const string & strLocale, const string & strSchema);
+//      virtual void locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::string & strLocale, const ::string & strSchema) override;
+//      virtual void matter_locator_locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::string & strLocale, const ::string & strSchema);
 //
-//      virtual string get_locale_schema_dir(const string & strLocale, const string & strSchema);
-//      virtual string get_locale_schema_dir(const string & strLocale);
+//      virtual string get_locale_schema_dir(const ::string & strLocale, const ::string & strSchema);
+//      virtual string get_locale_schema_dir(const ::string & strLocale);
 //      virtual string get_locale_schema_dir() override;
 //
 //      virtual void set_locale(const string & pcsz, const ::action_context & action_context);
@@ -778,7 +778,7 @@
 //      virtual string get_app_id(string wstr);
 //
 //
-//      virtual void install_trace(const string & str);
+//      virtual void install_trace(const ::string & str);
 //      virtual void install_trace(double dRate);
 //      virtual bool register_spa_file_type();
 //

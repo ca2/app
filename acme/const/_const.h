@@ -179,9 +179,9 @@ enum enum_type
    e_type_pu64,
 
    // floating point_i32
-   e_type_float = 2000,
+   e_type_f32 = 2000,
    e_type_pfloat,
-   e_type_double,
+   e_type_f64,
    e_type_pdouble,
 
    // simple classes
@@ -202,7 +202,7 @@ enum enum_type
    e_type_pid,
    e_type_time,
    e_type_filetime,
-   e_type_prop,
+   e_type_property,
    e_type_payload_pointer,
    e_type_color,
    e_type_hls,

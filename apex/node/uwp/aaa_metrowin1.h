@@ -46,7 +46,7 @@ typedef void (__MSG_CALL ::thread::*__PMSGT)();
 
 
 
-CLASS_DECL_APEX ::i32 delete_registry_tree_helper(HKEY hParentKey, const string & strKeyName);
+CLASS_DECL_APEX ::i32 delete_registry_tree_helper(HKEY hParentKey, const ::string & strKeyName);
 
 
 

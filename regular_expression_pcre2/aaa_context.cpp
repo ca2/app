@@ -17,7 +17,7 @@ namespace regular_expression_pcre2
    }
 
 
-   ::regular_expression_pointer context::compile(const string & str)
+   ::regular_expression_pointer context::compile(const ::string & str)
    {
 
       return pcre_code::compile(this, str);

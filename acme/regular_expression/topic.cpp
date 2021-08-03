@@ -68,7 +68,7 @@ namespace regular_expression
    }
 
 
-   ::e_status topic::create(const string & str)
+   ::e_status topic::create(const ::string & str)
    {
 
       return ::success;
@@ -76,7 +76,7 @@ namespace regular_expression
    }
 
 
-//   ::count topic::matches(string_array & stra, const string & str)
+//   ::count topic::matches(string_array & stra, const ::string & str)
 //   {
 //
 //      auto prangeaMatches = matches_ranges(str);

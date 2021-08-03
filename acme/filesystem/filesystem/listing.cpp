@@ -51,7 +51,7 @@ namespace file
 
 
 
-CLASS_DECL_ACME bool matches_wildcard_criteria(const string_array & straCriteria, const string & strValue)
+CLASS_DECL_ACME bool matches_wildcard_criteria(const string_array & straCriteria, const ::string & strValue)
 {
 
    if (straCriteria.is_empty())
@@ -78,7 +78,7 @@ CLASS_DECL_ACME bool matches_wildcard_criteria(const string_array & straCriteria
 }
 
 
-CLASS_DECL_ACME bool matches_wildcard_criteria_ci(const string_array & straCriteria, const string & strValue)
+CLASS_DECL_ACME bool matches_wildcard_criteria_ci(const string_array & straCriteria, const ::string & strValue)
 {
 
    if (straCriteria.is_empty())
@@ -114,7 +114,7 @@ CLASS_DECL_ACME bool matches_wildcard_criteria_ci(const string_array & straCrite
 
 
 
-CLASS_DECL_ACME string normalize_wildcard_criteria(const string & strPattern)
+CLASS_DECL_ACME string normalize_wildcard_criteria(const ::string & strPattern)
 {
 
    if (strPattern.is_empty() || strPattern == "*.*")

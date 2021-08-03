@@ -20,7 +20,7 @@ public:
 void ns_main_async(dispatch_block_t block);
 
 
-strsize str_begins_common(const string & str1, const string & str2)
+strsize str_begins_common(const ::string & str1, const ::string & str2)
 {
 
    strsize i = 0;
@@ -69,7 +69,7 @@ strsize str_begins_eat_common(string & str1, string & str2, string & str)
 }
 
 
-strsize str_ends_common(const string & str1, const string & str2)
+strsize str_ends_common(const ::string & str1, const ::string & str2)
 {
 
    strsize i = 0;

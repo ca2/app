@@ -149,7 +149,7 @@ namespace uwp
       // Speaks some text.
       // (The input text must not be empty.)
       //--------------------------------------------------------------------
-      bool speaker::speak(const string & strLang, const string & text, bool bSync)
+      bool speaker::speak(const ::string & strLang, const string & text, bool bSync)
       {
 
          //

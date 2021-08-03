@@ -22,7 +22,7 @@ namespace uwp
       virtual bool _get_filea(::file::patha & stra, e_op & eop) override;
       virtual bool _has_filea() override;
 
-      virtual bool _set_plain_text(const string & str) override;
+      virtual bool _set_plain_text(const ::string & str) override;
       virtual bool _get_plain_text(string & str) override;
       virtual bool _has_plain_text() override;
 

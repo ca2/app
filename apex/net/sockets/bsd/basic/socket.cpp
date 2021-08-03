@@ -118,7 +118,7 @@ namespace sockets
    }
 
 
-   SOCKET socket::CreateSocket(i32 af, i32 iType, const string & strProtocol)
+   SOCKET socket::CreateSocket(i32 af, i32 iType, const ::string & strProtocol)
    {
 
       SOCKET s;

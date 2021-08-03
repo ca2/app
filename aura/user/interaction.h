@@ -1313,7 +1313,7 @@ namespace user
       virtual void pre_translate_message(::message::message* pmessage) override;
 
 
-      ::user::interaction * get_child_by_name(const string & strName, ::index iItem = -1, i32 iLevel = -1) override;
+      ::user::interaction * get_child_by_name(const ::string & strName, ::index iItem = -1, i32 iLevel = -1) override;
       ::user::interaction * get_child_by_id(const id & id, ::index iItem = -1, i32 iLevel = -1) override;
       ::user::interaction * child_from_point(const ::point_i32 & point);
 

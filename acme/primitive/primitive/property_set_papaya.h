@@ -19,15 +19,15 @@ namespace papaya
       inline bool get_evaluation(string & strResult, const ::property_set & set, string & strExpression);
 
 
-      inline string get_string(const ::property_set & set, const string & strKey)
+      inline string get_string(const ::property_set & set, const ::string & strKey)
       {
 
-         return set[strKey].get_string();
+         return set[strKey];
 
       }
 
 
-      //inline string get_string(const ::matter & matter, const string & strKey)
+      //inline string get_string(const ::matter & matter, const ::string & strKey)
       //{
 
       //   return matter.property_set_get_string(strKey);
@@ -43,7 +43,7 @@ namespace papaya
       }
 
 
-      inline bool get_evaluation(string & strResult, const ::property_set & set, const string & strExpression)
+      inline bool get_evaluation(string & strResult, const ::property_set & set, const ::string & strExpression)
       {
 
          auto pproperty = set.find_property(strExpression);
@@ -55,7 +55,7 @@ namespace papaya
 
          }
 
-         strResult = pproperty->get_string();
+         strResult = *pproperty;
 
          return true;
 
@@ -89,7 +89,7 @@ namespace papaya
    {
 
 
-      //inline string get_string(const ::property_set & set, const string & strKey)
+      //inline string get_string(const ::property_set & set, const ::string & strKey)
       //{
 
       //   return set[strKey].get_string();
@@ -97,7 +97,7 @@ namespace papaya
       //}
 
 
-      inline string get_string(const ::property_object & object, const string & strKey)
+      inline string get_string(const ::property_object & object, const ::string & strKey)
       {
 
          return object.property_set_get_string(strKey);
@@ -139,7 +139,7 @@ namespace papaya
 
 
 
-      //inline bool get_evaluation(string & strResult, const ::property_set & set, const string & strExpression)
+      //inline bool get_evaluation(string & strResult, const ::property_set & set, const ::string & strExpression)
       //{
 
       //   auto pproperty = set.find_property(strExpression);
@@ -158,7 +158,7 @@ namespace papaya
       //}
 
 
-      inline string get_evaluation(const ::property_object & object, const string & strExpression)
+      inline string get_evaluation(const ::property_object & object, const ::string & strExpression)
       {
 
          return object.property_set_get_evaluation(strExpression);
@@ -174,7 +174,7 @@ namespace papaya
       ////
       //// real-ization: "SELECT field1, field2, field3 FROM table1 WHERE table1.field5 = 'searching value'"
       //template < typename PROPERTY_SOURCE >
-      //string evaluate(const PROPERTY_SOURCE & set, const string & strSource)
+      //string evaluate(const PROPERTY_SOURCE & set, const ::string & strSource)
       //{
 
       //   string str(strSource);

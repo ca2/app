@@ -151,10 +151,10 @@ bool html_view::Navigate(const char * pszUrl)
 }
 
 
-void html_view::on_document_complete(const char * pszUrl)
+void html_view::on_document_complete(const ::string & strUrl)
 {
 
-   UNREFERENCED_PARAMETER(pszUrl);
+   UNREFERENCED_PARAMETER(strUrl);
 
 }
 

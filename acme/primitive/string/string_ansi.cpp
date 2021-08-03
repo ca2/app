@@ -719,7 +719,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //}
 //#define new ACME_NEW
 //
-////string::string(const string & strSrc,strsize -1,strsize len) :
+////string::string(const ::string & strSrc,strsize -1,strsize len) :
 ////   string(strSrc.Mid(-1,len),str::GetDefaultManager())
 ////{
 ////}
@@ -755,7 +755,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //   //      }
 //}
 //
-///*string::string(const string & str ) :
+///*string::string(const ::string & str ) :
 //   string( str::GetDefaultManager() )
 //   {
 //
@@ -929,7 +929,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //   return *this;
 //}
 //
-//string& string::operator=(const string & str)
+//string& string::operator=(const ::string & str)
 //{
 //   string::operator=((const string &) str);
 //
@@ -1086,12 +1086,12 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //   return pstringmanager->Clone();
 //}
 //
-//string & string::assign(const string & str)
+//string & string::assign(const ::string & str)
 //{
 //   return operator = (str);
 //}
 //
-//string & string::assign(const string & str,strsize pos,strsize n)
+//string & string::assign(const ::string & str,strsize pos,strsize n)
 //{
 //   return operator = (str.substr(pos,n));
 //}
@@ -1256,7 +1256,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //}
 //
 //
-//bool string::contains(const string & str,strsize iStart,strsize nCount) const
+//bool string::contains(const ::string & str,strsize iStart,strsize nCount) const
 //{
 //
 //   return find(str,iStart,nCount) >= 0;
@@ -1335,7 +1335,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //}
 //
 //
-//bool string::contains_ci(const string & str,strsize iStart,strsize nCount) const
+//bool string::contains_ci(const ::string & str,strsize iStart,strsize nCount) const
 //{
 //
 //   return find_ci(str,iStart,nCount) >= 0;
@@ -1407,7 +1407,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //}
 //
 //
-//bool string::contains_wci(const string & str,strsize iStart,strsize nCount) const
+//bool string::contains_wci(const ::string & str,strsize iStart,strsize nCount) const
 //{
 //
 //   return find_wci(str,iStart,nCount) >= 0;
@@ -2269,7 +2269,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //   return FindOneOf(pszCharSet,iStart,n);
 //}
 //
-//strsize string::find_first_of(const string & strCharSet,strsize pos) const RELEASENOTHROW
+//strsize string::find_first_of(const ::string & strCharSet,strsize pos) const RELEASENOTHROW
 //{
 //   return FindOneOf(strCharSet,pos,strCharSet.get_length());
 //}
@@ -2368,7 +2368,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //   return pos;
 //}
 //
-//strsize string::find_last_of(const string & strCharSet,strsize pos) const RELEASENOTHROW
+//strsize string::find_last_of(const ::string & strCharSet,strsize pos) const RELEASENOTHROW
 //{
 //   return find_last_of(strCharSet,pos,strCharSet.get_length());
 //}
@@ -2417,7 +2417,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //   return pos;
 //}
 //
-//strsize string::find_last_not_of(const string & strCharSet,strsize pos) const RELEASENOTHROW
+//strsize string::find_last_not_of(const ::string & strCharSet,strsize pos) const RELEASENOTHROW
 //{
 //   return find_last_not_of(strCharSet,pos,strCharSet.get_length());
 //}

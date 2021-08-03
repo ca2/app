@@ -414,7 +414,7 @@ namespace uwp
    }
 
 
-   ::file::path dir_context::time_square(const string & strPrefix, const string & strSuffix)
+   ::file::path dir_context::time_square(const ::string & strPrefix, const ::string & strSuffix)
    {
 
       UNREFERENCED_PARAMETER(strPrefix);
@@ -642,7 +642,7 @@ try1:;
    }
 
 
-   //::file::path dir_context::usersystemappdata(const string & strPrefix)
+   //::file::path dir_context::usersystemappdata(const ::string & strPrefix)
    //{
 
    //   UNREFERENCED_PARAMETER(pobject);
@@ -703,7 +703,7 @@ try1:;
    //}
 
 
-   //::file::path dir_context::default_userfolder(const string & strPrefix,const string & strLogin)
+   //::file::path dir_context::default_userfolder(const ::string & strPrefix,const ::string & strLogin)
    //{
 
    //   return userfolder(pobject) / strPrefix / strLogin;

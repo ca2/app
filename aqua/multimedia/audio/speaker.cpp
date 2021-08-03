@@ -16,7 +16,7 @@ namespace tts
    }
 
 
-   bool speaker::speak(const string & strText)
+   bool speaker::speak(const ::string & strText)
    {
 
       if (m_pspeakerFallback.is_null())
@@ -31,7 +31,7 @@ namespace tts
    }
 
 
-   bool speaker::speak(const string & strLang, const string & strText, bool bSynch)
+   bool speaker::speak(const ::string & strLang, const ::string & strText, bool bSynch)
    {
 
       if (m_pspeakerFallback.is_null())
@@ -46,7 +46,7 @@ namespace tts
    }
 
 
-   bool speaker::speak(const string & strAttributes, const string & strLang, const string & strText, bool bSynch)
+   bool speaker::speak(const ::string & strAttributes, const ::string & strLang, const ::string & strText, bool bSynch)
    {
 
       if (m_pspeakerFallback.is_null())

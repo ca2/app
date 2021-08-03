@@ -26,7 +26,7 @@ memory_container::memory_container(::payload & payload)
 
    //m_pvppa = nullptr;
 
-   m_pmemory = &payload.memory();
+   m_pmemory = &payload.as_memory();
 
 }
 
@@ -413,7 +413,7 @@ virtual_memory *  memory_container::get_virtual_memory()
 //#endif
 
 
-void memory_container::str(const string & str)
+void memory_container::str(const ::string & str)
 {
 
    set_size(str.get_length());

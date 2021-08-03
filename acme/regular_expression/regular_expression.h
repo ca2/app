@@ -31,28 +31,28 @@ namespace regular_expression
 
       //virtual ::count calculate_range_count();
 
-      virtual __pointer(topic) create_topic(const string & str);
+      virtual __pointer(topic) create_topic(const ::string & str);
 
 
-      //virtual bool matches(const string & str) = 0;
+      //virtual bool matches(const ::string & str) = 0;
 
 //      virtual bool matches(const char * psz, strsize len) = 0;
 //
-//      virtual ::count match_count(const string & str) = 0;
+//      virtual ::count match_count(const ::string & str) = 0;
 //
 //      virtual ::count match_count(const char * psz, strsize len) = 0;
 //
 //      virtual __pointer(::str::range_array)
 //
-//      matches_ranges(const string & str) = 0;
+//      matches_ranges(const ::string & str) = 0;
 //
 //      virtual __pointer(::str::range_array)
 //
 //      matches_ranges(const char * psz, strsize len) = 0;
 //
-//      virtual bool replace(string & str, const string & strPrefix, string & strRet) = 0;
+//      virtual bool replace(string & str, const ::string & strPrefix, string & strRet) = 0;
 //
-//      virtual ::count matches(string_array & stra, const string & str);
+//      virtual ::count matches(string_array & stra, const ::string & str);
 
       //virtual ::count match(string_array & stra, const string & pcsz, strsize iSize);
 
@@ -66,7 +66,7 @@ namespace regular_expression
 
       //virtual bool replace(string& str, const string& strPrefix, string& strRet, regex_context* pcreContext = nullptr) = 0;
 
-      virtual bool replace(string & strFind, const string & strReplace, string & strResult);
+      virtual bool replace(string & strFind, const ::string & strReplace, string & strResult);
 
    };
 

@@ -327,7 +327,7 @@ __pointer(::aura::application) application_container::create_platform(::aura::se
 
 
 
-__pointer(::aura::application) application_container::assert_running(const char * pszAppId, const string & strLocale, const string & strSchema)
+__pointer(::aura::application) application_container::assert_running(const char * pszAppId, const ::string & strLocale, const ::string & strSchema)
 {
 
   __pointer(::aura::application) papp;
@@ -356,7 +356,7 @@ __pointer(::aura::application) application_container::assert_running(const char 
 
 
 
-__pointer(::aura::application) application_container::start_application(const char * pszAppId, ::create * pcreate, const string & strLocale, const string & strSchema)
+__pointer(::aura::application) application_container::start_application(const char * pszAppId, ::create * pcreate, const ::string & strLocale, const ::string & strSchema)
 {
 
    string strApp(pszAppId);

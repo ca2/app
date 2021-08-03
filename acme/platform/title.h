@@ -6,7 +6,7 @@ class title :
 {
 public:
 
-   title(const string & str) : string(str) {}
+   title(const ::string & str) : string(str) {}
 
 };
 

@@ -137,7 +137,7 @@ namespace experience
 
       auto psystem = m_psystem->m_pbasesystem;
 
-      auto strExperience = psystem->payload("experience").get_string();
+      auto strExperience = psystem->payload("experience").string();
 
       if (strExperience.has_char())
       {

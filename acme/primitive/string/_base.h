@@ -1052,5 +1052,33 @@ inline ::wstring operator+(const widechar* pszLeft, const WSTRINGABLE& wstringab
 
 
 
+inline ::ansistring operator + (ansichar ch, const ::ansistring & strRight)
+{
 
+   ansistring str(&ch, 1);
+
+   return str + strRight;
+
+}
+
+
+inline ::wd16string operator + (wd16char wch, const ::wd16string & wstrRight)
+{
+
+   wd16string wstr(&wch, 1);
+
+   return wstr + wstrRight;
+
+}
+
+
+
+inline ::wd32string operator + (wd32char wch, const ::wd32string & wstrRight)
+{
+
+   wd32string wstr(&wch, 1);
+
+   return wstr + wstrRight;
+
+}
 

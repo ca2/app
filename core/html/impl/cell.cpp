@@ -86,14 +86,14 @@ namespace html
          if (!m_pelemental->m_propertyset.is_new_or_null("colspan"))
          {
 
-            m_iColSpan = m_pelemental->m_propertyset["colspan"];
+            m_pelemental->m_propertyset["colspan"].as(m_iColSpan);
 
          }
 
          if (!m_pelemental->m_propertyset.is_new_or_null("rowspan"))
          {
 
-            m_iRowSpan = m_pelemental->m_propertyset["rowspan"];
+            m_pelemental->m_propertyset["rowspan"].as(m_iRowSpan);
 
          }
 

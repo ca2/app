@@ -136,7 +136,7 @@ public:
    template < primitive_natural NATURAL >
    id(NATURAL n);
    id(const ::lparam & lparam);
-   id(const string & str);
+   id(const ::string & str);
    id(const ::payload & payload);
    id(const type & type);
    id(::id && id) { m_all = id.m_all; id.m_all = {}; }
@@ -227,13 +227,13 @@ public:
    inline bool operator >= (const char * psz) const;
 
 
-   inline int compare(const string & str) const;
-   inline bool operator == (const string & str) const;
-   inline bool operator != (const string & str) const;
-   inline bool operator < (const string & str) const;
-   inline bool operator <= (const string & str) const;
-   inline bool operator > (const string & str) const;
-   inline bool operator >= (const string & str) const;
+   inline int compare(const ::string & str) const;
+   inline bool operator == (const ::string & str) const;
+   inline bool operator != (const ::string & str) const;
+   inline bool operator < (const ::string & str) const;
+   inline bool operator <= (const ::string & str) const;
+   inline bool operator > (const ::string & str) const;
+   inline bool operator >= (const ::string & str) const;
 
 
    template < primitive_integral INTEGRAL >
@@ -274,7 +274,7 @@ public:
    id & operator = (const property & prop);
    id & operator = (const id & id);
    id & operator = (const char * psz);
-   id & operator = (const string & str);
+   id & operator = (const ::string & str);
    template < primitive_integer INTEGER >
    id & operator = (INTEGER i);
    template < primitive_natural NATURAL >
@@ -312,8 +312,8 @@ public:
    inline iptr compare_ci(const char * psz) const;
 
 
-   inline bool begins(const string & strPrefix) const;
-   inline bool begins_ci(const string & strPrefix) const;
+   inline bool begins(const ::string & strPrefix) const;
+   inline bool begins_ci(const ::string & strPrefix) const;
 
 
    inline bool is_text() const { return m_etype >= e_type_text; }
@@ -324,7 +324,7 @@ public:
 
    inline id operator +(const id & id) const;
    inline string operator +(const char * psz) const;
-   inline string operator +(const string & str) const;
+   inline string operator +(const ::string & str) const;
 
 
 };
@@ -545,7 +545,7 @@ inline id & id::operator = (const id & id)
 }
 
 
-inline int id::compare(const string & str) const
+inline int id::compare(const ::string & str) const
 {
 
    return __COMPARE_SQUARE(primitive_type() - e_type_text, ansi_compare(m_psz, str.c_str()));
@@ -553,7 +553,7 @@ inline int id::compare(const string & str) const
 }
 
 
-inline bool id::operator == (const string & str) const
+inline bool id::operator == (const ::string & str) const
 {
 
    return compare(str) == 0;
@@ -561,7 +561,7 @@ inline bool id::operator == (const string & str) const
 }
 
 
-inline bool id::operator != (const string & str) const
+inline bool id::operator != (const ::string & str) const
 {
 
    return compare(str) != 0;
@@ -569,7 +569,7 @@ inline bool id::operator != (const string & str) const
 }
 
 
-inline bool id::operator < (const string & str) const
+inline bool id::operator < (const ::string & str) const
 {
 
    return compare(str) < 0;
@@ -577,7 +577,7 @@ inline bool id::operator < (const string & str) const
 }
 
 
-inline bool id::operator <= (const string & str) const
+inline bool id::operator <= (const ::string & str) const
 {
 
    return compare(str) <= 0;
@@ -585,7 +585,7 @@ inline bool id::operator <= (const string & str) const
 }
 
 
-inline bool id::operator > (const string & str) const
+inline bool id::operator > (const ::string & str) const
 {
 
    return compare(str) > 0;
@@ -593,7 +593,7 @@ inline bool id::operator > (const string & str) const
 }
 
 
-inline bool id::operator >= (const string & str) const
+inline bool id::operator >= (const ::string & str) const
 {
 
    return compare(str) >= 0;

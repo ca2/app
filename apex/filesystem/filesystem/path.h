@@ -9,7 +9,7 @@ namespace file
 }
 
 
-inline bool is_url_dup(const string & strCandidate);
+inline bool is_url_dup(const ::string & strCandidate);
 
 
 CLASS_DECL_APEX bool __node_further_file_is_equal(const ::file::path & path1, const ::file::path & path2);
@@ -31,7 +31,7 @@ namespace file
       path_data
    };
 
-   CLASS_DECL_APEX e_path get_path_type(const string & str, e_path epathForce = path_none);
+   CLASS_DECL_APEX e_path get_path_type(const ::string & str, e_path epathForce = path_none);
 
    struct CLASS_DECL_APEX path_meta :
       public enumeration < ::file::enum_flag >
@@ -111,7 +111,7 @@ namespace file
       path() { m_epath = path_file; }
       path(nullptr_t) {}
       path(e_path epath) { m_epath = epath; }
-      path(const string & str, e_path epath = path_none, int iDir = -1, bool bNormalize = true, i64 iSize = -1);
+      path(const ::string & str, e_path epath = path_none, int iDir = -1, bool bNormalize = true, i64 iSize = -1);
       path(const path& path);
       path(const path_object& path);
 
@@ -147,7 +147,7 @@ namespace file
 
       path & operator = (const ::file::path & path);
 
-      path & operator = (const string & str);
+      path & operator = (const ::string & str);
 
       bool is_equal_full(const path & path) const
       {
@@ -195,7 +195,7 @@ namespace file
 
       }
 
-      bool operator == (const string & str) const
+      bool operator == (const ::string & str) const
       {
 
          return operator == (path(str));
@@ -219,7 +219,7 @@ namespace file
       }
 
 
-      bool operator != (const string & str) const
+      bool operator != (const ::string & str) const
       {
 
          return operator != (path(str));
@@ -235,20 +235,20 @@ namespace file
       }
       //      bool operator == (const path & path) const;
 
-      //      bool operator == (const string & str) const;
+      //      bool operator == (const ::string & str) const;
       //      bool operator == (const char * psz) const;
       bool operator == (const ::payload & payload) const;
 
       //      bool operator != (const path & path) const;
 
-      //      bool operator != (const string & str) const;
+      //      bool operator != (const ::string & str) const;
       //      bool operator != (const char * psz) const;
       bool operator != (const ::payload & payload) const;
 
       path operator + (const path & path) const;
 
 
-      path operator + (const string & str) const;
+      path operator + (const ::string & str) const;
 
       path operator + (const char * psz) const;
       path operator + (const ::payload & payload) const;
@@ -256,16 +256,16 @@ namespace file
       path operator + (const id & id) const;
 
       path & operator += (const path & path);
-      path & operator += (const string & str);
+      path & operator += (const ::string & str);
       path operator / (const path & path) const;
-      path operator / (const string & str) const;
+      path operator / (const ::string & str) const;
       path operator / (const char * psz) const;
       path operator / (const ::payload & payload) const;
       path operator / (const property & property) const;
       patha operator / (const string_array & path) const;
 
       path & operator /= (const path & path);
-      path & operator /= (const string & str);
+      path & operator /= (const ::string & str);
       path & operator /= (const char * psz);
 
 
@@ -275,13 +275,13 @@ namespace file
 
 
 
-      //::file::path & file_cat(const string & str) { return *this + str; }
+      //::file::path & file_cat(const ::string & str) { return *this + str; }
 
-      //::file::path & operator | (const string & str) { return file_cat(str); } // what is good here is the operator precedence
+      //::file::path & operator | (const ::string & str) { return file_cat(str); } // what is good here is the operator precedence
 
-      //string arg(const string & str) const { return ((const string &)*this) + str; }
+      //string arg(const ::string & str) const { return ((const string &)*this) + str; }
 
-      //string operator << (const string & str) const { return arg(str); }
+      //string operator << (const ::string & str) const { return arg(str); }
 
       path & operator = (const char * psz);
       path & operator += (const char * psz);
@@ -307,18 +307,18 @@ namespace file
       void to_string(string & str) const;
 
       path sibling(const path & path) const;
-      path sibling(const string & str) const;
+      path sibling(const ::string & str) const;
       path sibling(const char * psz) const;
 
       path operator * (const path & path) const;
 
-      path operator * (const string & str) const;
+      path operator * (const ::string & str) const;
       path operator * (const char * psz) const;
       path operator * (const property & property) const;
 
       path & operator *= (const path & path);
 
-      path & operator *= (const string & str);
+      path & operator *= (const ::string & str);
       path & operator *= (const char * psz);
       path & operator *= (const property & property);
 
@@ -362,7 +362,7 @@ namespace file
    };
 
 
-   CLASS_DECL_APEX e_path get_path_type(const string & str, e_path epathForce);
+   CLASS_DECL_APEX e_path get_path_type(const ::string & str, e_path epathForce);
 
 
    inline char path_sep(e_path epath)

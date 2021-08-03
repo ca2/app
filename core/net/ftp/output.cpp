@@ -71,7 +71,7 @@ namespace ftp
 
    }
 
-   void output::WriteLine(const string & strLine, const string &  strStatus)
+   void output::WriteLine(const ::string & strLine, const string &  strStatus)
    {
 
       TRACE("%s: %s", strStatus.c_str(), strLine.c_str());

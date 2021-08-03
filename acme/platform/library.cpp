@@ -1070,28 +1070,28 @@ namespace acme
 
 #if defined(LINUX)
 
-::file::path libfilename(const string & str)
+::file::path libfilename(const ::string & str)
 {
    return "lib" + str + ".so";
 }
 
 #elif defined(ANDROID)
 
-::file::path libfilename(const string & str)
+::file::path libfilename(const ::string & str)
 {
    return "lib" + str + ".so";
 }
 
 #elif defined(WINDOWS)
 
-::file::path libfilename(const string & str)
+::file::path libfilename(const ::string & str)
 {
    return str + ".dll";
 }
 
 #elif defined(__APPLE__)
 
-::file::path libfilename(const string & str)
+::file::path libfilename(const ::string & str)
 {
    return "lib" + str + ".dylib";
 }

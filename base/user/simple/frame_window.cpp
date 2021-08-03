@@ -1641,7 +1641,7 @@ void simple_frame_window::on_message_close(::message::message * pmessage)
 
    }
 
-   if ((bool)m_varFrame["hide_on_close"])
+   if (m_varFrame["hide_on_close"].is_true())
    {
 
       display(e_display_none);

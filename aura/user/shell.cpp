@@ -39,7 +39,7 @@ namespace user
    }
 
 
-   shell::image_key::image_key(const string & strPath, const string & strShellThemePrefix, e_file_attribute eattribute, e_icon eicon, ::color::color crBk)
+   shell::image_key::image_key(const ::string & strPath, const ::string & strShellThemePrefix, e_file_attribute eattribute, e_icon eicon, ::color::color crBk)
    {
 
       if (colorref_get_a_value(crBk) != 255)
@@ -73,7 +73,7 @@ namespace user
    }
 
 
-   void shell::image_key::set_path(const string & strPath, bool bSetExtension)
+   void shell::image_key::set_path(const ::string & strPath, bool bSetExtension)
    {
 
       m_strPath = strPath;
@@ -95,7 +95,7 @@ namespace user
    }
 
 
-   void shell::image_key::set_extension(const string & strPath)
+   void shell::image_key::set_extension(const ::string & strPath)
    {
 
       strsize iFind1 = strPath.rfind('/');
@@ -554,7 +554,7 @@ namespace user
    }
 
 
-   i32 shell::get_file_image(const string & strPath, e_file_attribute eattribute, e_icon eicon, ::color::color crBk)
+   i32 shell::get_file_image(const ::string & strPath, e_file_attribute eattribute, e_icon eicon, ::color::color crBk)
    {
 
       synchronous_lock synchronouslock(mutex());
@@ -566,7 +566,7 @@ namespace user
    }
 
 
-   i32 shell::get_file_extension_image(const string & strExtension, e_file_attribute eattribute, e_icon eicon, ::color::color crBk)
+   i32 shell::get_file_extension_image(const ::string & strExtension, e_file_attribute eattribute, e_icon eicon, ::color::color crBk)
    {
 
       //i32 iImage = 0x80000000;
@@ -764,7 +764,7 @@ namespace user
    }
 
 
-   i32 shell::create_file_icon_image(const string & strPath, e_file_attribute eattribute, e_icon eicon, string strIcoLocation)
+   i32 shell::create_file_icon_image(const ::string & strPath, e_file_attribute eattribute, e_icon eicon, string strIcoLocation)
    {
 
       image_key imagekey(strPath, m_strShellThemePrefix, eattribute, eicon);

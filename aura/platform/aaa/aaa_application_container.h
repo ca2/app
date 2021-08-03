@@ -28,7 +28,7 @@ public:
    virtual __pointer(::aura::application) instantiate_application(const char * pszAppId, ::create * pcreate);
    virtual __pointer(::aura::application) create_application(const char * pszAppId, bool bSynch, ::create * pcreate);
    virtual __pointer(::aura::application) create_platform(::aura::session * psession);
-   virtual __pointer(::aura::application) start_application(const char * pszAppId, ::create * pcreate, const string & strLocale, const string & strSchema);
+   virtual __pointer(::aura::application) start_application(const char * pszAppId, ::create * pcreate, const ::string & strLocale, const ::string & strSchema);
 
    virtual void request_exit();
 
@@ -40,7 +40,7 @@ public:
    virtual void app_erase(::aura::application * papp);
 
 
-   __pointer(::aura::application) assert_running(const char * pszAppId, const string & strLocale, const string & strSchema);
+   __pointer(::aura::application) assert_running(const char * pszAppId, const ::string & strLocale, const ::string & strSchema);
 
 
 };

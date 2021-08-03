@@ -23,7 +23,7 @@ namespace str
 {
 
    template < typename FORMATABLE >
-   inline string printf(const string & strFormat, const FORMATABLE & f)
+   inline string printf(const ::string & strFormat, const FORMATABLE & f)
    {
 
       string str;
@@ -96,7 +96,7 @@ public:
 
    virtual bool set_rate(double dRate, int iFlags);
 
-   string Format(const string & strFormat);
+   string Format(const ::string & strFormat);
 
    string to_string() { return Format(m_strFormat); }
 
@@ -122,7 +122,7 @@ class  scalar :
 public:
 
 
-   scalar(scalar_source < SCALAR > * psource = nullptr,e_scalar escalar = scalar_none,const string & strFormat = ::get_default_scalar_format< SCALAR>());
+   scalar(scalar_source < SCALAR > * psource = nullptr,e_scalar escalar = scalar_none,const ::string & strFormat = ::get_default_scalar_format< SCALAR>());
 
 
    scalar_source < SCALAR > *    m_psource;
@@ -147,7 +147,7 @@ public:
 
    scalar & operator = (SCALAR dValue) { set(dValue); return *this; }
 
-   virtual string printf(const string & strFormat);
+   virtual string printf(const ::string & strFormat);
 
    void increment(SCALAR iValue = ::numeric_info<SCALAR>::unitary()) { set(get() + iValue); }
    void decrement(SCALAR iValue = ::numeric_info<SCALAR>::unitary()) { set(get() - iValue); }
@@ -415,7 +415,7 @@ bool scalar_source < SCALAR > ::set_rate(e_scalar escalar,double dValue,int iFla
 
 
 template < typename SCALAR >
-scalar < SCALAR > ::scalar(scalar_source<SCALAR> * psource,e_scalar escalar,const string & strFormat)
+scalar < SCALAR > ::scalar(scalar_source<SCALAR> * psource,e_scalar escalar,const ::string & strFormat)
 {
 
    m_psource = psource;
@@ -507,7 +507,7 @@ SCALAR scalar < SCALAR > ::maximum()
 
 
 template < typename SCALAR >
-string scalar < SCALAR > ::printf(const string & strFormat)
+string scalar < SCALAR > ::printf(const ::string & strFormat)
 {
 
    return ::str::printf(strFormat,get());

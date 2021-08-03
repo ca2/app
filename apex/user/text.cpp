@@ -33,7 +33,7 @@ namespace user
    }
 
 
-   void text::_001SetText(const string & str, const ::action_context & context)
+   void text::_001SetText(const ::string & str, const ::action_context & context)
    {
 
       strtext() = str;

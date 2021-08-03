@@ -35,7 +35,7 @@ extern "C" charguess_det CharGuessInit()
 
 }
 
-const char* GuessChardet(charguess_det p,const string & str)
+const char* GuessChardet(charguess_det p,const ::string & str)
 {
 
    nsUniversalDetector* det = (nsUniversalDetector*) p;
@@ -76,7 +76,7 @@ extern "C" void CharGuessDestroy(charguess_det p)
 
 
 
-u32 charguess::get_code_page(const string & str)
+u32 charguess::get_code_page(const ::string & str)
 {
    if(str.is_empty())
    {

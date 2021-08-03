@@ -968,16 +968,16 @@ void object::copy_from(const object & o)
 
    m_psystem = o.m_psystem;
 
-   if (!o.m_pset)
+   if (!o.m_ppropertyset)
    {
 
-      m_pset.release(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
+      m_ppropertyset.release(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
 
    }
    else
    {
 
-      m_pset = __new(property_set(*o.m_pset));
+      m_ppropertyset = __new(property_set(*o.m_ppropertyset));
 
    }
 
@@ -2069,14 +2069,14 @@ __pointer(::matter) object::running(const char * pszTag) const
 //
 //   }
 //
-//   if (!pobject->m_pset)
+//   if (!pobject->m_ppropertyset)
 //   {
 //
 //      return ::error_failed;
 //
 //   }
 //
-//   auto pproperty = pobject->m_pset->find(id);
+//   auto pproperty = pobject->m_ppropertyset->find(id);
 //
 //   if (!pproperty)
 //   {

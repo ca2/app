@@ -110,7 +110,7 @@ interprocess_intercommunication::~interprocess_intercommunication()
 
 
 
-bool interprocess_intercommunication::start(const string & strApp)
+bool interprocess_intercommunication::start(const ::string & strApp)
 {
 
    synchronous_lock sl1(mutex());
@@ -211,7 +211,7 @@ started:
 }
 
 
-bool interprocess_intercommunication::connect(const string & strApp, const ::id & idPid)
+bool interprocess_intercommunication::connect(const ::string & strApp, const ::id & idPid)
 {
 
    string strKey = strApp + ":" + __str(idPid);
@@ -239,7 +239,7 @@ bool interprocess_intercommunication::connect(const string & strApp, const ::id 
 }
 
 
-::interprocess_communication::tx & interprocess_intercommunication::tx(const string & strApp, const ::id & iPid)
+::interprocess_communication::tx & interprocess_intercommunication::tx(const ::string & strApp, const ::id & iPid)
 {
 
    string strKey = strApp + ":" + __str(iPid);
@@ -495,7 +495,7 @@ __pointer(interprocess_task) interprocess_intercommunication::get_task(i64 iTask
 }
 
 
-__pointer(interprocess_call) interprocess_intercommunication::create_call(const string & strApp, const string & strObject, const string & strMember)
+__pointer(interprocess_call) interprocess_intercommunication::create_call(const ::string & strApp, const ::string & strObject, const ::string & strMember)
 {
 
    return __new(interprocess_call(this, strApp, strObject, strMember));
@@ -503,7 +503,7 @@ __pointer(interprocess_call) interprocess_intercommunication::create_call(const 
 }
 
 
-__pointer(interprocess_call) interprocess_intercommunication::create_call(const string & strObject, const string & strMember)
+__pointer(interprocess_call) interprocess_intercommunication::create_call(const ::string & strObject, const ::string & strMember)
 {
 
    return create_call(m_strApp, strObject, strMember);
@@ -511,7 +511,7 @@ __pointer(interprocess_call) interprocess_intercommunication::create_call(const 
 }
 
 
-void interprocess_intercommunication::on_interprocess_call(::payload & payload, const string & strObject, const string & strMember, payload_array & payloada)
+void interprocess_intercommunication::on_interprocess_call(::payload & payload, const ::string & strObject, const ::string & strMember, payload_array & payloada)
 {
 
    if(strObject == "application")
@@ -540,7 +540,13 @@ void interprocess_intercommunication::on_interprocess_call(::payload & payload, 
 
          strCommandLine = payloada[2];
 
-         payload["continue"] = get_application()->on_additional_local_instance(payload["handled"], strModule, payloada[1], strCommandLine);
+         auto papplication = get_application();
+
+         payload["continue"] = papplication->on_additional_local_instance(
+            payload["handled"].as_bool(),
+            strModule, 
+            payloada[1].i32(), 
+            strCommandLine);
 
       }
       else if (strMember == "on_new_instance")
@@ -555,7 +561,7 @@ void interprocess_intercommunication::on_interprocess_call(::payload & payload, 
 }
 
 
-void interprocess_intercommunication::on_new_instance(const string & strModule, const ::id & idPid)
+void interprocess_intercommunication::on_new_instance(const ::string & strModule, const ::id & idPid)
 {
 
    defer_add_module(strModule, idPid);
@@ -565,7 +571,7 @@ void interprocess_intercommunication::on_new_instance(const string & strModule, 
 }
 
 
-id_array interprocess_intercommunication::get_pid(const string & strApp)
+id_array interprocess_intercommunication::get_pid(const ::string & strApp)
 {
 
    id_array idaPid;
@@ -677,7 +683,7 @@ repeat:
 }
 
 
-void interprocess_intercommunication::defer_add_module(const string & strModule, const ::id & idPid)
+void interprocess_intercommunication::defer_add_module(const ::string & strModule, const ::id & idPid)
 {
    
    auto psystem = m_psystem;

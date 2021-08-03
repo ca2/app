@@ -122,7 +122,7 @@ namespace http
 
       ::http::message message;
 
-      message.m_pset = &set;
+      message.m_ppropertyset = &set;
 
       message.m_strUrl = pszUrl;
 
@@ -147,7 +147,7 @@ namespace http
 
       }
 
-      return set["get_response"].get_string();
+      return set["get_response"].string();
 
    }
 
@@ -159,7 +159,7 @@ namespace http
 
       set["bool_result"] = get(pszUrl, process_set(set, pszUrl));
 
-      str = set["get_response"].get_string();
+      str = set["get_response"].string();
 
       return set["get_status"].estatus();
 
@@ -1092,16 +1092,16 @@ namespace http
    //}
 
 
-   bool context::open(__pointer(::sockets::http_session) & psession, const char * pszHost, const char * pszProtocol, property_set & set, const char * pszVersion)
+   bool context::open(__pointer(::sockets::http_session) & psession, const ::string & strHost, const ::string & strProtocolParam, property_set & set, const string &strVersionParam)
    {
 
       auto tickTimeProfile1 = ::millis::now();
 
-      UNREFERENCED_PARAMETER(pszVersion);
+      string strVersion(strVersionParam);
 
-      string strServer = pszHost;
+      string strServer = strHost;
 
-      string strProtocol = pszProtocol;
+      string strProtocol = strProtocolParam;
 
       __pointer(::application) papp = set["app"].cast < ::application >();
 
@@ -1120,10 +1120,10 @@ namespace http
 
       }
 
-      if (pszVersion == nullptr || pszVersion[0] == '\0')
+      if (strVersion.is_empty())
       {
 
-         pszVersion = "HTTP/1.1";
+         strVersion = "HTTP/1.1";
 
       }
 
@@ -1158,7 +1158,7 @@ namespace http
 
       string strSessId;
 
-      psession = __new(::sockets::http_session(strProtocol, pszHost));
+      psession = __new(::sockets::http_session(strProtocol, strHost));
 
       /*__pointer(::account::user) puser;
 
@@ -1218,7 +1218,7 @@ namespace http
       if (set.has_property("try"))
       {
 
-         iTryCount = set["try"];
+         set["try"].as(iTryCount);
 
          if (iTryCount > 5)
          {
@@ -1348,7 +1348,7 @@ namespace http
 
          psession->inheaders() = set["headers"].propset();
 
-         if (set.has_property("minimal_headers") && (bool)set["minimal_headers"])
+         if (set.has_property("minimal_headers") && set["minimal_headers"].is_true())
          {
 
             psession->m_request.attrs()["minimal_headers"] = true;
@@ -1389,7 +1389,7 @@ namespace http
 
          //}
 
-         if (set.has_property(__id(cookie)) && set[__id(cookie)].get_string().has_char())
+         if (set.has_property(__id(cookie)) && set[__id(cookie)].string().has_char())
          {
 
             psession->request().header(__id(cookie)) = set[__id(cookie)];
@@ -1557,7 +1557,9 @@ namespace http
 
          set[__id(cookie)] = strCookie;
 
-         i32 iStatusCode = psession->outattr("http_status_code");
+         i32 iStatusCode;
+
+         psession->outattr("http_status_code").as(iStatusCode);
 
          if (set.has_property("cancel") && set["cancel"].get_bool())
          {
@@ -1773,7 +1775,7 @@ namespace http
       if (set.has_property("try"))
       {
 
-         iTryCount = set["try"];
+         set["try"].as(iTryCount);
 
          if (iTryCount > 5)
          {
@@ -1860,7 +1862,9 @@ namespace http
          if (strSessId.has_char())
          {
 
-            set[__id(cookie)] = ::str::has_char(set[__id(cookie)], "", "; ") + "sessid=" + strSessId;
+            string strCookie = set[__id(cookie)];
+
+            set[__id(cookie)] = ::str::has_char(strCookie, "", "; ") + "sessid=" + strSessId;
 
          }
 
@@ -1957,7 +1961,7 @@ namespace http
 
       psocket->m_bEnablePool = psockethandler->PoolEnabled();
 
-      if ((bool)set["disable_common_name_cert_check"])
+      if (set["disable_common_name_cert_check"].is_true())
       {
 
          psocket->enable_cert_common_name_check(false);
@@ -1994,21 +1998,21 @@ namespace http
 
       }
 
-      if (set.has_property("minimal_headers") && (bool)set["minimal_headers"])
+      if (set.has_property("minimal_headers") && set["minimal_headers"].is_true())
       {
 
          psocket->m_request.attrs()["minimal_headers"] = true;
 
       }
 
-      if (set.has_property("only_headers") && (bool)set["only_headers"])
+      if (set.has_property("only_headers") && set["only_headers"].is_true())
       {
 
          psocket->m_bOnlyHeaders = true;
 
       }
 
-      if (set.has_property("noclose") && !(bool)set["noclose"])
+      if (set.has_property("noclose") && set["noclose"].is_false())
       {
 
          psocket->m_bNoClose = false;
@@ -2050,7 +2054,7 @@ namespace http
 
       //}
 
-      if (set.has_property(__id(cookie)) && set[__id(cookie)].get_string().has_char())
+      if (set.has_property(__id(cookie)) && set[__id(cookie)].string().has_char())
       {
 
          psocket->request().header(__id(cookie)) = set[__id(cookie)];
@@ -2073,7 +2077,7 @@ namespace http
 
       auto tick1 = ::millis::now();
 
-      bool bConfigProxy = !set.has_property("no_proxy_config") || !(bool)set["no_proxy_config"];
+      bool bConfigProxy = !set.has_property("no_proxy_config") || set["no_proxy_config"].is_false();
 
       millis tickTotalTimeout = set["timeout"].i64();
 
@@ -2106,7 +2110,7 @@ namespace http
       if (set.has_property("proxy"))
       {
 
-         straProxy.explode(":", set["proxy"].get_string());
+         straProxy.explode(":", set["proxy"].string());
 
          if (straProxy.get_count() != 2 || !psocket->proxy_open(straProxy[0], atoi(straProxy[1])))
          {
@@ -2141,7 +2145,7 @@ namespace http
 
       //::apex::live_signal keeplive;
 
-      if ((bool)set["noloop"])
+      if (set["noloop"].is_true())
       {
 
          return true;
@@ -2314,7 +2318,9 @@ namespace http
 
       ::e_status     estatus = error_failed;
 
-      i32 iStatusCode = psocket->outattr("http_status_code");
+      i32 iStatusCode;
+
+      psocket->outattr("http_status_code").as(iStatusCode);
 
       set["http_status_code"] = iStatusCode;
 
@@ -2557,7 +2563,7 @@ namespace http
 
       }
 
-      pmessage->get_property_set() = process_set(*pmessage->m_pset, pmessageMessage->m_strUrl);
+      pmessage->get_property_set() = process_set(*pmessage->m_ppropertyset, pmessageMessage->m_strUrl);
 
       auto phandler = __create_new < ::sockets::socket_handler >();
 
@@ -2608,7 +2614,9 @@ namespace http
 
       pmessageMessage->m_setHeaders = psocket->outheaders();
 
-      i32 iStatusCode = psocket->outattr("http_status_code");
+      i32 iStatusCode;
+
+      psocket->outattr("http_status_code").as(iStatusCode);
 
       pmessage->m_bRet = iStatusCode == 200;
 
@@ -2751,7 +2759,7 @@ namespace http
 
          }
 
-         iStatusCode = psocket->outattr("http_status_code");
+         psocket->outattr("http_status_code").as(iStatusCode);
 
          synchronouslock.lock();
 
@@ -2819,7 +2827,9 @@ namespace http
 
       }
 
-      i32 iStatusCode = psocket->outattr("http_status_code");
+      i32 iStatusCode;
+
+      psocket->outattr("http_status_code").as(iStatusCode);
 
       if (iStatusCode == 200)
       {
@@ -2974,7 +2984,7 @@ namespace http
 
       set["noclose"] = false;
 
-      return get(pszUrl, set);
+      return get(pszUrl, set).is_true();
 
    }
 
@@ -2984,7 +2994,7 @@ namespace http
 
       set[__id(http_method)] = pszMethod;
 
-      return get(pszUrl, set);
+      return get(pszUrl, set).is_true();
 
    }
 

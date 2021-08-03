@@ -18,7 +18,7 @@ namespace ftp
       virtual void OnSendCommand(const command& strComamnd, const string_array& straArguments);
       virtual void OnResponse(const reply & Reply);
 
-      virtual void WriteLine(const string & cszLine, const string & strStatus);
+      virtual void WriteLine(const string & cszLine, const ::string & strStatus);
 
    };
 

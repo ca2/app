@@ -84,9 +84,9 @@ namespace hotplugin
       virtual bool windows_on_paint(::draw2d::graphics_pointer & pgraphics);
 
 
-      virtual bool      open_link(const string & strLink,const string & pszTarget);
+      virtual bool      open_link(const ::string & strLink,const string & pszTarget);
 
-      virtual bool      _open_link(const string & strLink,const string & pszTarget);
+      virtual bool      _open_link(const ::string & strLink,const string & pszTarget);
 
       virtual bool is_active();
 

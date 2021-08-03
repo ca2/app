@@ -232,7 +232,7 @@ namespace sockets
       return false;
    }
 
-   /*   SOCKET base_socket::CreateSocket(int af,int iType, const string & strProtocol)
+   /*   SOCKET base_socket::CreateSocket(int af,int iType, const ::string & strProtocol)
    {
    struct protoent *point = nullptr;
    SOCKET s;
@@ -811,7 +811,7 @@ namespace sockets
    }
 
 
-   void base_socket::SetSocketProtocol(const string & strProtocol)
+   void base_socket::SetSocketProtocol(const ::string & strProtocol)
    {
       m_strSocketProtocol = strProtocol;
    }
@@ -2569,10 +2569,10 @@ namespace sockets
    }
 
 
-   void base_socket::to_string(const class string_exchange & str) const
+   string base_socket::to_string() const
    {
 
-      ::object::to_string(str);
+      return ::object::to_string();
 
    }
 

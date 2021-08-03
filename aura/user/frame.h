@@ -136,7 +136,7 @@ namespace user
       virtual ::color::color get_moveable_border_color();
 
       virtual void set_user_style(enum_style estyle);
-      virtual void set_user_style(const char * pszStyle);
+      virtual void set_user_style(const ::string & strStyle);
       virtual void on_user_style_change();
 
 
@@ -151,7 +151,7 @@ namespace user
 
       virtual ::color::color get_border_main_body_color();
 
-      ::e_status add_menu_item(const string & strPath, const string & strText, const string & strId);
+      ::e_status add_menu_item(const ::string & strPath, const ::string & strText, const ::string & strId);
 
 
       virtual ::user::interaction * get_active_view() const;

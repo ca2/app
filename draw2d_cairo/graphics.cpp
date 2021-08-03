@@ -1721,7 +1721,7 @@ bool graphics::_stretch_raw(const ::rectangle_f64 & rectDst, ::image * pimage, c
 //// COLOR_DEST = SRC_ALPHA * BLEND_ALPHA * COLOR_SRC  + (1 - SRC_ALPHA * BLEND_ALPHA) * COLOR_DST
 
 //
-//bool graphics::text_out(double x, double y, const string & str)
+//bool graphics::text_out(double x, double y, const ::string & str)
 //{
 //
 //    return ::draw2d::graphics::text_out(double(x), double(y), str);
@@ -1749,7 +1749,7 @@ bool graphics::_stretch_raw(const ::rectangle_f64 & rectDst, ::image * pimage, c
 //}
 //
 //
-//size_f64 graphics::TabbedTextOut(double x, double y, const string & str, count nTabPositions, int * lpnTabStopPositions, i32 nTabOrigin)
+//size_f64 graphics::TabbedTextOut(double x, double y, const ::string & str, count nTabPositions, int * lpnTabStopPositions, i32 nTabOrigin)
 //{
 //
 //    ::exception::throw_not_implemented();
@@ -1769,7 +1769,7 @@ bool graphics::_stretch_raw(const ::rectangle_f64 & rectDst, ::image * pimage, c
 //}
 //
 //
-//size_f64 graphics::GetTabbedTextExtent(const string & str, count nTabPositions, int * lpnTabStopPositions)
+//size_f64 graphics::GetTabbedTextExtent(const ::string & str, count nTabPositions, int * lpnTabStopPositions)
 //{
 //
 //    ::exception::throw_not_implemented();
@@ -1789,7 +1789,7 @@ size_f64 graphics::GetOutputTabbedTextExtent(const char * lpszString, strsize nC
 }
 
 
-size_f64 graphics::GetOutputTabbedTextExtent(const string & str, count nTabPositions, int * lpnTabStopPositions)
+size_f64 graphics::GetOutputTabbedTextExtent(const ::string & str, count nTabPositions, int * lpnTabStopPositions)
 {
 
     ::exception::throw_not_implemented();
@@ -3579,7 +3579,7 @@ void graphics::DPtoLP(::size_f64 * psize)
 #if defined(USE_PANGO)
 
 
-bool graphics::draw_text(const string & strParam, const ::rectangle_f64 & rectParam, const ::e_align & ealign, const ::e_draw_text & edrawtext)
+bool graphics::draw_text(const ::string & strParam, const ::rectangle_f64 & rectParam, const ::e_align & ealign, const ::e_draw_text & edrawtext)
 {
 
     synchronous_lock ml(cairo_mutex());
@@ -3731,7 +3731,7 @@ bool graphics::internal_draw_text_pango(const block & block, const ::rectangle_f
 #else
 
 
-bool graphics::draw_text(const string & strParam, const ::rectangle_f64 & rectangle, const ::e_align & ealign, const ::e_draw_text & edrawtext)
+bool graphics::draw_text(const ::string & strParam, const ::rectangle_f64 & rectangle, const ::e_align & ealign, const ::e_draw_text & edrawtext)
 {
 
     return internal_draw_text(strParam, rectangle, ealign, edrawtext, &cairo_show_text);
@@ -3903,7 +3903,7 @@ bool graphics::internal_draw_text(const ::block & block, const ::rectangle_f64 &
 #endif
 
 
-bool graphics::draw_text_ex(const string & str, const ::rectangle_f64 & rectangle, const ::e_align & ealign, const ::e_draw_text & edrawtext)
+bool graphics::draw_text_ex(const ::string & str, const ::rectangle_f64 & rectangle, const ::e_align & ealign, const ::e_draw_text & edrawtext)
 {
 
     ::exception::throw_not_implemented();
@@ -3956,7 +3956,7 @@ size_f64 graphics::GetOutputTextExtent(const char * lpszString, strsize nCount)
 }
 
 
-size_f64 graphics::GetOutputTextExtent(const string & str)
+size_f64 graphics::GetOutputTextExtent(const ::string & str)
 {
 
     ::exception::throw_not_implemented();
@@ -4226,7 +4226,7 @@ bool graphics::get_text_extent(size_f64 & size_f64, const char * lpszString, str
 }
 
 
-bool graphics::get_text_extent(size_f64 & size_f64, const string & str)
+bool graphics::get_text_extent(size_f64 & size_f64, const ::string & str)
 {
 
     return get_text_extent(size_f64, str, str.get_length());
@@ -5974,7 +5974,7 @@ bool graphics::flush()
 //#endif
 //
 //
-//::file::path graphics::get_font_path(const string & str, int iWeight, bool bItalic)
+//::file::path graphics::get_font_path(const ::string & str, int iWeight, bool bItalic)
 //{
 //
 //#ifdef LINUX

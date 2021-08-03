@@ -135,7 +135,7 @@ namespace axis
 
 
       virtual bool update_appmatter(::sockets::socket_handler & handler, __pointer(::sockets::http_session) & psession, const ::file::path & pszRoot, const string & pszRelative);
-      virtual bool update_appmatter(::sockets::socket_handler & handler, __pointer(::sockets::http_session) & psession, const ::file::path & pszRoot, const string & pszRelative, const string & strLocale, const string & strStyle);
+      virtual bool update_appmatter(::sockets::socket_handler & handler, __pointer(::sockets::http_session) & psession, const ::file::path & pszRoot, const string & pszRelative, const ::string & strLocale, const ::string & strStyle);
 
 
       virtual void SetCurrentHandles() override;
@@ -232,7 +232,7 @@ namespace axis
 
       //virtual ::html::html * create_html();
 
-      //virtual string http_get(const string & strUrl, ::property_set & set) override;
+      //virtual string http_get(const ::string & strUrl, ::property_set & set) override;
 
       //virtual bool compress_ungz(const ::stream & os, const ::stream & is) override;
 

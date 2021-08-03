@@ -185,7 +185,7 @@ public:
    }
 
 
-   inline bool get_base64(const string & str);
+   inline bool get_base64(const ::string & str);
    inline bool get(const void * pdata, memsize s)
    {
 

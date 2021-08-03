@@ -30,7 +30,7 @@ namespace aura
       return get_id_space()(psz);
    }
 
-   inline id system::id(const string & str)
+   inline id system::id(const ::string & str)
    {
       return get_id_space()(str);
    }
@@ -65,7 +65,7 @@ inline id::id(const char * psz)
 }
 
 
-inline id::id(const string & str)
+inline id::id(const ::string & str)
 {
 
    m_all = {};

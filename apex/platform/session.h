@@ -209,7 +209,7 @@ namespace apex
 
       //virtual bool on_create_frame_window();
 
-      //virtual string account_get_user_sessid(const string & str) override;
+      //virtual string account_get_user_sessid(const ::string & str) override;
 
       // apex commented
       //virtual void translate_os_key_message(::user::key * pkey);
@@ -225,7 +225,7 @@ namespace apex
       //virtual ::user::style * get_user_style() const;
 
 
-      virtual void locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const string & strLocale, const string & strSchema) override;
+      virtual void locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::string & strLocale, const ::string & strSchema) override;
       virtual string get_locale_schema_dir() override;
 
 

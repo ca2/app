@@ -488,7 +488,7 @@ bool scalar_base::set_rate(double dValue, int iFlags)
 }
 
 
-string scalar_base::Format(const string & strFormat)
+string scalar_base::Format(const ::string & strFormat)
 {
 
    UNREFERENCED_PARAMETER(strFormat);
@@ -501,7 +501,7 @@ string scalar_base::Format(const string & strFormat)
 //
 //
 //
-//double_scalar::double_scalar(double_scalar_source * psource, e_scalar escalar, const string & strFormat)
+//double_scalar::double_scalar(double_scalar_source * psource, e_scalar escalar, const ::string & strFormat)
 //{
 //
 //   m_psource = psource;
@@ -587,7 +587,7 @@ string scalar_base::Format(const string & strFormat)
 //
 //}
 //
-//string double_scalar::Format(const string & strFormat)
+//string double_scalar::Format(const ::string & strFormat)
 //{
 //
 //   string str;
@@ -598,7 +598,7 @@ string scalar_base::Format(const string & strFormat)
 //
 //}
 //
-//int_scalar::int_scalar(int_scalar_source * psource, e_scalar escalar, const string & strFormat)
+//int_scalar::int_scalar(int_scalar_source * psource, e_scalar escalar, const ::string & strFormat)
 //{
 //
 //   m_psource = psource;
@@ -689,7 +689,7 @@ string scalar_base::Format(const string & strFormat)
 //
 //
 //
-//string int_scalar::Format(const string & strFormat)
+//string int_scalar::Format(const ::string & strFormat)
 //{
 //
 //   string str;

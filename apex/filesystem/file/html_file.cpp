@@ -26,7 +26,7 @@ namespace html
    }
 
 
-   void file::print(const string & str)
+   void file::print(const ::string & str)
    {
 
       raw_print(str);
@@ -34,7 +34,7 @@ namespace html
    }
 
 
-   void file::raw_print(const string & str)
+   void file::raw_print(const ::string & str)
    {
 
       print(str);

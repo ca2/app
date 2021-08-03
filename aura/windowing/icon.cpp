@@ -47,7 +47,7 @@ namespace windowing
    }
 
 
-   ::e_status icon::load_file(const string & strPath)
+   ::e_status icon::load_file(const ::string & strPath)
    {
 
       __throw(error_interface_only);
@@ -57,7 +57,7 @@ namespace windowing
    }
 
 
-   ::e_status icon::load_matter(const string & strMatter)
+   ::e_status icon::load_matter(const ::string & strMatter)
    {
 
       auto pcontext = get_context();
@@ -76,7 +76,7 @@ namespace windowing
    }
 
 
-   ::e_status icon::load_app_tray_icon(const string & strTrayIconName)
+   ::e_status icon::load_app_tray_icon(const ::string & strTrayIconName)
    {
 
         m_strTrayIconName = strTrayIconName;

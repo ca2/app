@@ -20,7 +20,7 @@
 //}
 //
 //
-//inline id::id(const string & str)
+//inline id::id(const ::string & str)
 //{
 //
 //   m_all = {};

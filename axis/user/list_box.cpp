@@ -151,7 +151,7 @@ namespace user
    {
 
 
-      //index combo_box::_001FindListText(const string & str) const
+      //index combo_box::_001FindListText(const ::string & str) const
       //{
 
       //   ::count ca = _001GetListCount();

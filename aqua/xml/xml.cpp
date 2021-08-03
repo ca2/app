@@ -151,9 +151,9 @@ namespace xml
          str += opt->m_chQuote;
          string strValue;
          if (opt->m_bReferenceValue && opt->m_pentities)
-            strValue = opt->m_pentities->entity_to_ref(prop.get_string());
+            strValue = opt->m_pentities->entity_to_ref(prop.string());
          else
-            strValue = prop.get_string();
+            strValue = prop.string();
 
          strValue.replace("\\", "\\\\"); // should be first
          strValue.replace("\n", "\\n");

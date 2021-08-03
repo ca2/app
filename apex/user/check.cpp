@@ -41,9 +41,9 @@ namespace user
       if(echeck != this->get_echeck())
       {
 
-         auto pcheck = &m_propertyCheck->echeck();
+         auto pcheck = &m_propertyCheck->as_echeck();
 
-         m_propertyCheck->echeck() = echeck;
+         m_propertyCheck->as_echeck() = echeck;
 
          auto psubject = get_application()->subject(m_propertyCheck->m_id);
 

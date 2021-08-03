@@ -83,10 +83,10 @@ i64 object::release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
 //}
 
 
-void object::to_string(const class string_exchange& str) const
+string object::to_string() const
 {
 
-   str = string(type_name()) + " (0x" + ::hex::lower_from((uptr)this) + ")";
+   return string(type_name()) + " (0x" + ::hex::lower_from((uptr)this) + ")";
 
 }
 
@@ -2146,14 +2146,14 @@ __pointer(::matter) object::running(const char* pszTag) const
 //
 //   }
 //
-//   if (!pobject->m_pset)
+//   if (!pobject->m_ppropertyset)
 //   {
 //
 //      return ::error_failed;
 //
 //   }
 //
-//   auto pproperty = pobject->m_pset->find(id);
+//   auto pproperty = pobject->m_ppropertyset->find(id);
 //
 //   if (!pproperty)
 //   {
@@ -2904,7 +2904,7 @@ matter* object::get_taskpool_container()
 //::image_result create_image(const ::size_i32 & size, ::eobject eobjectCreate = OK, int iGoodStride = -1, bool bPreserve = false);
 
 //::image_result get_image(const ::payload & varFile, bool bCache = true, bool bSync = true);
-//::image_result matter_image(const string & strMatter, bool bCache = true, bool bSync = true);
+//::image_result matter_image(const ::string & strMatter, bool bCache = true, bool bSync = true);
 
 //template < typename BASE_TYPE >
 //inline __transport(BASE_TYPE) __create();

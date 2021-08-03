@@ -124,7 +124,7 @@ namespace hellobase
       //::image_pointer & image23(string strDib) override;
 
       //virtual bool in_anime() override;
-      //virtual void helloaura_fast_render(const string & strHelloBase) override;
+      //virtual void helloaura_fast_render(const ::string & strHelloBase) override;
 
 
    };

@@ -33,7 +33,7 @@ public:
       m_varThread(thread_property(id))
    {
 
-      if ((bool) m_varThread)
+      if (m_varThread.get_bool())
       {
 
          m_bChanged = false;

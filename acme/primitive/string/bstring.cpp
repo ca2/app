@@ -474,7 +474,7 @@
 //
 //}
 //
-//bstring & bstring::operator += (const string & str)
+//bstring & bstring::operator += (const ::string & str)
 //{
 //
 //   allocate_add_up(str.length());

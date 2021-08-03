@@ -154,7 +154,7 @@ namespace windows
 
 
 
-CLASS_DECL_CORE ::i32 delete_registry_tree_helper(HKEY hParentKey,const string & strKeyName);
+CLASS_DECL_CORE ::i32 delete_registry_tree_helper(HKEY hParentKey,const ::string & strKeyName);
 
 
 CLASS_DECL_CORE __pointer(::aura::application) __get_app();

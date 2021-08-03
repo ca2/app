@@ -861,7 +861,7 @@ inline stream & operator >> (stream & s, ::datetime::time & time);
 //
 //
 //   template < typename TYPE >
-//   bool application::gudo_get(const string & strKey, TYPE & obj)
+//   bool application::gudo_get(const ::string & strKey, TYPE & obj)
 //   {
 //
 //      ::file::path strPath(strKey);
@@ -904,7 +904,7 @@ inline stream & operator >> (stream & s, ::datetime::time & time);
 //
 //
 //   template < typename TYPE >
-//   bool application::gudo_set(const string & strKey, const TYPE & obj)
+//   bool application::gudo_set(const ::string & strKey, const TYPE & obj)
 //   {
 //
 //      string strPath(strKey);

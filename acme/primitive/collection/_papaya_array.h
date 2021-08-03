@@ -599,7 +599,7 @@ namespace papaya
       inline ::index add(string_array & stra, const ::property & property);
       inline ::index add(string_array & stra, const ::property_set & propertyset);
 
-      inline ::index add(::file::patha & patha, const string & str);
+      inline ::index add(::file::patha & patha, const ::string & str);
 
 
 

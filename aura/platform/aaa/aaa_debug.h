@@ -271,8 +271,8 @@
 ////
 ////
 ////
-////   //virtual void sockets_trace(::sockets::base_socket_handler * phandler, ::sockets::base_socket * psocket, enum_trace_level elevel, const string & strContext, i32 iError, const string & strContext) override;
-////   //virtual void sockets_trace(::sockets::base_socket_handler * phandler, ::sockets::base_socket * psocket, enum_trace_level elevel, const string & strContext, i32 iError, const string & strContext) override;
+////   //virtual void sockets_trace(::sockets::base_socket_handler * phandler, ::sockets::base_socket * psocket, enum_trace_level elevel, const ::string & strContext, i32 iError, const ::string & strContext) override;
+////   //virtual void sockets_trace(::sockets::base_socket_handler * phandler, ::sockets::base_socket * psocket, enum_trace_level elevel, const ::string & strContext, i32 iError, const ::string & strContext) override;
 ////
 ////
 ////};

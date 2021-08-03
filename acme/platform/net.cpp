@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-CLASS_DECL_ACME string url_decode(const string & strParam)
+CLASS_DECL_ACME string url_decode(const ::string & strParam)
 {
 
    string str(strParam);

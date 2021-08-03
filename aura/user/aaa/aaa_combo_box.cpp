@@ -405,7 +405,7 @@ namespace user
    }
 
 
-   void combo_box::_001SetText(const string & str, const ::action_context & context)
+   void combo_box::_001SetText(const ::string & str, const ::action_context & context)
    {
 
       if(m_bEdit)
@@ -1454,11 +1454,11 @@ namespace user
    }
 
 
-   index combo_box::_001FindListText(const string & str) const
+   index combo_box::_001FindListText(const ::string & str) const
    {
 
 
-      //index combo_box::_001FindListText(const string & str) const
+      //index combo_box::_001FindListText(const ::string & str) const
       //{
 
       //   ::count ca = _001GetListCount();
@@ -1530,7 +1530,7 @@ namespace user
    }
 
 
-   index combo_box::AddString(const char * pszString,const string & strValue)
+   index combo_box::AddString(const char * pszString,const ::string & strValue)
 
    {
 
@@ -1564,7 +1564,7 @@ namespace user
    }
 
 
-   void combo_box::set_current_item_by_string_value(const string & strValue, const ::action_context & context)
+   void combo_box::set_current_item_by_string_value(const ::string & strValue, const ::action_context & context)
    {
 
       index iSel = m_straValue.find_first(strValue);

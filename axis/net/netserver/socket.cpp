@@ -64,7 +64,7 @@ namespace netserver
 
       outattr(__id(http_version)) = "HTTP/1.1";
 
-      if (::str::begins(outheader(__id(content_type)), "image/"))
+      if (outheader(__id(content_type)).begins("image/"))
       {
 
          m_bSetCookie = false;
@@ -90,7 +90,7 @@ namespace netserver
    void socket::OnExecute()
    {
 
-      string strUrl = m_request.attr("http_protocol").get_string() + "://" + m_request.header("host").get_string() + m_request.attr("request_uri").get_string();
+      string strUrl = m_request.attr("http_protocol").string() + "://" + m_request.header("host").string() + m_request.attr("request_uri").string();
 
       auto tickExecuteBeg = ::millis::now();
 
@@ -162,7 +162,7 @@ namespace netserver
 
       pointer_array < int_array > rangea;
 
-      if (strlen(inheader("range")) > 0)
+      if (inheader("range").has_char())
       {
          
          string_array straItem;

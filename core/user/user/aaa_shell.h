@@ -165,9 +165,9 @@ namespace user
       virtual void on_add_default_file_image();
 
 
-      virtual i32 get_file_extension_image(const string & strExtension, e_file_attribute eattribute, e_icon eicon, ::color::color crBk = 0);
-      virtual i32 get_file_image(const string & strPath, e_file_attribute eattribute, e_icon eicon, ::color::color crBk = 0);
-      virtual i32 create_file_icon_image(const string & strPath, e_file_attribute eattribute, e_icon eicon, string strIcoLocation);
+      virtual i32 get_file_extension_image(const ::string & strExtension, e_file_attribute eattribute, e_icon eicon, ::color::color crBk = 0);
+      virtual i32 get_file_image(const ::string & strPath, e_file_attribute eattribute, e_icon eicon, ::color::color crBk = 0);
+      virtual i32 create_file_icon_image(const ::string & strPath, e_file_attribute eattribute, e_icon eicon, string strIcoLocation);
 
 
 

@@ -6,7 +6,7 @@ namespace xml
 {
 
 
-   input_tree::input_tree(const string & strXml)
+   input_tree::input_tree(const ::string & strXml)
    {
 
       m_pdocument = __new(::xml::document);

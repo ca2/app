@@ -38,7 +38,7 @@ namespace aqua
    }
 
 
-   void audio::speak(const string & strText)
+   void audio::speak(const ::string & strText)
    {
 
       __throw(error_interface_only);
@@ -46,7 +46,7 @@ namespace aqua
    }
 
 
-   void audio::speak(const string & strLang, const string & strText, bool bSynch)
+   void audio::speak(const ::string & strLang, const ::string & strText, bool bSynch)
    {
 
       __throw(error_interface_only);
@@ -54,7 +54,7 @@ namespace aqua
    }
 
 
-   void audio::trans_speak(const string & strLang, const string & strText, bool bSynch)
+   void audio::trans_speak(const ::string & strLang, const ::string & strText, bool bSynch)
    {
 
       __throw(error_interface_only);
@@ -62,7 +62,7 @@ namespace aqua
    }
 
 
-   void audio::google_speak(const string & strLang, const string & strText, bool bSynch)
+   void audio::google_speak(const ::string & strLang, const ::string & strText, bool bSynch)
    {
 
       __throw(error_interface_only);

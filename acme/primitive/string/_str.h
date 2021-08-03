@@ -49,7 +49,7 @@ namespace str
 
    void CLASS_DECL_ACME copy(string & str, const ansichar * pcsz, i32 iCount);
 
-   inline string _001Concat(const string & str1, const string & strMid, const string & str2);
+   inline string _001Concat(const ::string & str1, const ::string & strMid, const ::string & str2);
 
    string CLASS_DECL_ACME replace(const ansichar * pszFind, const ansichar * pszReplace, const ansichar * psz, strsize iStart = 0);
    string CLASS_DECL_ACME replace_ci(const ansichar * pszFind, const ansichar * pszReplace, const ansichar * psz, strsize iStart = 0);
@@ -59,18 +59,18 @@ namespace str
 
    string CLASS_DECL_ACME random_replace(::matter * pobject, const string_array & straReplacement, const string_array & straSearch, const ansichar * psz);
 
-   strsize CLASS_DECL_ACME find_first(const string_array & straSearch, index & iFound, const string & str, index iStart = 0);
+   strsize CLASS_DECL_ACME find_first(const string_array & straSearch, index & iFound, const ::string & str, index iStart = 0);
 
-   strsize CLASS_DECL_ACME find_ci(const string & strFind, const string & str, strsize iStart = 0);
-   strsize CLASS_DECL_ACME find_ci(const string & strFind, const ansichar   * psz, strsize iStart = 0);
-   strsize CLASS_DECL_ACME find_ci(const ansichar   * pszFind, const string & str, strsize iStart = 0);
+   strsize CLASS_DECL_ACME find_ci(const ::string & strFind, const ::string & str, strsize iStart = 0);
+   strsize CLASS_DECL_ACME find_ci(const ::string & strFind, const ansichar   * psz, strsize iStart = 0);
+   strsize CLASS_DECL_ACME find_ci(const ansichar   * pszFind, const ::string & str, strsize iStart = 0);
    strsize CLASS_DECL_ACME find_ci(const ansichar   * pszFind, const ansichar   * psz, strsize iStart = 0);
 
    strsize CLASS_DECL_ACME utf8_find(const ansichar   * pszFind, const ansichar   * psz, strsize iStart = 0);
 
 
-   strsize CLASS_DECL_ACME find_ci(const ansichar   * pszFind,const string & str,strsize iStart, strsize iLast);
-   strsize CLASS_DECL_ACME find_file_extension(const ansichar * pszExtension,const string & str,strsize iStart = 0, strsize iLast = -1);
+   strsize CLASS_DECL_ACME find_ci(const ansichar   * pszFind,const ::string & str,strsize iStart, strsize iLast);
+   strsize CLASS_DECL_ACME find_file_extension(const ansichar * pszExtension,const ::string & str,strsize iStart = 0, strsize iLast = -1);
 
    strsize CLASS_DECL_ACME find_ww(const ansichar * pszFind, const ansichar * psz, strsize iStart = 0);
    strsize CLASS_DECL_ACME find_wwci(const ansichar * pszFind, const ansichar * psz, strsize iStart = 0);
@@ -178,9 +178,9 @@ namespace str
    CLASS_DECL_ACME  u32          to_u32(const ansichar * psz);
 
 
-   CLASS_DECL_ACME i64           to_i64(const string & str) ;
+   CLASS_DECL_ACME i64           to_i64(const ::string & str) ;
    CLASS_DECL_ACME i64           to_i64(const ansichar * psz) ;
-   CLASS_DECL_ACME u64           to_u64(const string & str) ;
+   CLASS_DECL_ACME u64           to_u64(const ::string & str) ;
    CLASS_DECL_ACME u64           to_u64(const ansichar * psz) ;
 
 
@@ -192,7 +192,7 @@ namespace str
 
 
    CLASS_DECL_ACME  string &       zero_pad(string & str, strsize iPad);
-   CLASS_DECL_ACME  string         zero_padded(const string & str, strsize iPad);
+   CLASS_DECL_ACME  string         zero_padded(const ::string & str, strsize iPad);
    CLASS_DECL_ACME  i32            get_escaped_char(const ansichar * str, strsize pos, strsize &retPos);
    CLASS_DECL_ACME  bool           get_curly_content(const ansichar * psz, string & str);
    CLASS_DECL_ACME  bool           is_simple_natural(const ansichar * psz, strsize iCount = -1);
@@ -257,7 +257,7 @@ namespace str
    inline TYPE from_string(const ansichar * psz);
 
 
-   CLASS_DECL_ACME bool simple_escaped(const string & str,strsize pos);
+   CLASS_DECL_ACME bool simple_escaped(const ::string & str,strsize pos);
 
 
    inline int get_utf8_char_length(const ansichar * psz)
@@ -404,7 +404,7 @@ namespace str
 
 
 
-CLASS_DECL_ACME string normalize_wildcard_criteria(const string & strPattern);
+CLASS_DECL_ACME string normalize_wildcard_criteria(const ::string & strPattern);
 
 
 

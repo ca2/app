@@ -136,7 +136,7 @@ namespace process
    }
 
 
-   void department::process_thread::construct_process_thread(const string & strCmdLine, const ::duration & dur, bool * pbPotentialTimeout, string * pstrRead, bool bElevated)
+   void department::process_thread::construct_process_thread(const ::string & strCmdLine, const ::duration & dur, bool * pbPotentialTimeout, string * pstrRead, bool bElevated)
    {
 
       //initialize(pobjectParent);
@@ -357,7 +357,7 @@ namespace process
    }
 
 
-   ::e_status department::process_processor::process(const string & strCmdLine,const duration & dur,bool * pbPotentialTimeout,string * pstrRead,bool bElevated)
+   ::e_status department::process_processor::process(const ::string & strCmdLine,const duration & dur,bool * pbPotentialTimeout,string * pstrRead,bool bElevated)
    {
 
       m_pbPotentialTimeout = pbPotentialTimeout;

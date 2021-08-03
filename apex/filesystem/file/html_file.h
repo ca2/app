@@ -25,9 +25,9 @@ namespace html
 
       virtual const ::text::context * textcontext();
 
-      virtual void print(const string & str);
+      virtual void print(const ::string & str);
 
-      virtual void raw_print(const string & str);
+      virtual void raw_print(const ::string & str);
 
 
 #ifndef VARIADIC_TEMPLATE_FORMAT

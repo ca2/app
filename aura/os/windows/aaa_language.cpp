@@ -13,7 +13,7 @@ namespace windows
    //   LANGID m_langid;
    //   string m_strIso;
 
-   //   langid_iso(LANGID langid, const string & strIso);
+   //   langid_iso(LANGID langid, const ::string & strIso);
 
    //};
 

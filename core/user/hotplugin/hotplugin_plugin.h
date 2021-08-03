@@ -65,7 +65,7 @@ namespace hotplugin
       virtual void install_message_routing(::channel * pchannel) override;
 
       // host should implement
-      virtual bool         open_link(const string & strLink,const string & pszTarget);
+      virtual bool         open_link(const ::string & strLink,const string & pszTarget);
       virtual bool         reload_plugin();
 
       virtual void delete_this() override;

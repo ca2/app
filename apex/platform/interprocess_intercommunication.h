@@ -107,39 +107,39 @@
       virtual ~interprocess_intercommunication();
 
 
-      virtual ::e_status initialize_interprocess_communication(::object * pobject, const string & strApp);
+      virtual ::e_status initialize_interprocess_communication(::object * pobject, const ::string & strApp);
 
       virtual ::e_status destroy() override;
 
-      virtual void defer_add_module(const string & strModule, const ::id & idPid);
+      virtual void defer_add_module(const ::string & strModule, const ::id & idPid);
 
       virtual __pointer(interprocess_task) create_task(interprocess_call * pcall, const ::id & idPid);
 
       virtual __pointer(interprocess_task) get_task(i64 iTask);
 
-      virtual __pointer(interprocess_call) create_call(const string & strApp, const string & strObject, const string & strMember);
+      virtual __pointer(interprocess_call) create_call(const ::string & strApp, const ::string & strObject, const ::string & strMember);
 
-      virtual __pointer(interprocess_call) create_call(const string & strObject, const string & strMember);
+      virtual __pointer(interprocess_call) create_call(const ::string & strObject, const ::string & strMember);
 
-      virtual ::interprocess_communication::tx & tx(const string & strApp, const ::id & idPid);
+      virtual ::interprocess_communication::tx & tx(const ::string & strApp, const ::id & idPid);
 
-      virtual id_array get_pid(const string & strApp);
+      virtual id_array get_pid(const ::string & strApp);
 
       virtual string key(const string &strApp, const ::id & idPid);
 
       virtual string str_from_va(const payload_array & va);
 
-      virtual void on_interprocess_call(::payload & payload, const string & strObject, const string & strMember, payload_array & payloada);
+      virtual void on_interprocess_call(::payload & payload, const ::string & strObject, const ::string & strMember, payload_array & payloada);
 
       using ::interprocess_communication::rx::receiver::on_interprocess_receive;
 
       virtual void on_interprocess_receive(::interprocess_communication::rx * prx, const char * pszMessage) override;
 
-      virtual bool start(const string & strApp);
+      virtual bool start(const ::string & strApp);
 
-      virtual bool connect(const string & strApp, const ::id & idPid);
+      virtual bool connect(const ::string & strApp, const ::id & idPid);
 
-      virtual void on_new_instance(const string & strModule, const ::id & idPid);
+      virtual void on_new_instance(const ::string & strModule, const ::id & idPid);
 
 
    };

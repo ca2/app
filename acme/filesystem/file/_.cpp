@@ -70,7 +70,7 @@ string url_dir_name_for_relative(const char * pszPath)
 }
 
 
-CLASS_DECL_ACME string solve_relative(const string & strParam, bool * pbUrl)
+CLASS_DECL_ACME string solve_relative(const ::string & strParam, bool * pbUrl)
 {
 
    string str(strParam);
@@ -661,7 +661,7 @@ bool write_memory_to_file(FILE * file,const void * pdata,memsize nCount,memsize 
 }
 
 
-CLASS_DECL_ACME bool file_append_wait(const string & strFile, const block & block, const ::duration & duration)
+CLASS_DECL_ACME bool file_append_wait(const ::string & strFile, const block & block, const ::duration & duration)
 {
 
    ::dir::mk(::dir::name(strFile));
@@ -715,7 +715,7 @@ CLASS_DECL_ACME bool file_append_wait(const string & strFile, const block & bloc
 }
 
 
-//bool file_append_wait(const string & strFile, const string & str, ::u32 tickTimeout)
+//bool file_append_wait(const ::string & strFile, const ::string & str, ::u32 tickTimeout)
 //{
 //
 //   return file_append_wait(strFile, str, str.get_length(), tickTimeout);
@@ -723,7 +723,7 @@ CLASS_DECL_ACME bool file_append_wait(const string & strFile, const block & bloc
 //}
 
 
-CLASS_DECL_ACME bool file_append(const string & strFile, const block & block)
+CLASS_DECL_ACME bool file_append(const ::string & strFile, const block & block)
 {
 
    return file_append_wait(strFile, block, 0);

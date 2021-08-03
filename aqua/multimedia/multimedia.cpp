@@ -61,7 +61,7 @@ namespace aqua
    }
 
 
-   string multimedia::get_media_call_title(const string & str)
+   string multimedia::get_media_call_title(const ::string & str)
    {
 
       return str;

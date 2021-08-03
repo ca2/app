@@ -140,7 +140,7 @@ namespace helloworld
       //::image_pointer & image23(string strDib);
 
       //virtual bool in_anime();
-      //virtual void helloaura_fast_render(const string & strHelloWorld);
+      //virtual void helloaura_fast_render(const ::string & strHelloWorld);
 
 
 //      virtual string get_helloaura() override;

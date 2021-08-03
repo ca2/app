@@ -47,7 +47,7 @@
 //
 //
 //
-//bool cregexp_util::find(string & strMatch, const string & str, const string & strExp, index iSubString, strsize  * piStart, strsize  * piEnd)
+//bool cregexp_util::find(string & strMatch, const ::string & str, const ::string & strExp, index iSubString, strsize  * piStart, strsize  * piEnd)
 //{
 //
 //   __pointer(cregexp) pre = CompileExpression(strExp, false);
@@ -63,7 +63,7 @@
 //}
 //
 //
-//bool cregexp_util::find(const string & str, const string & strExp, index iSubString, strsize  * piStart, strsize  * piEnd)
+//bool cregexp_util::find(const ::string & str, const ::string & strExp, index iSubString, strsize  * piStart, strsize  * piEnd)
 //{
 //
 //   __pointer(cregexp) pre = CompileExpression(strExp, false);
@@ -91,7 +91,7 @@
 //}
 //
 //
-//bool cregexp_util::split(string_array & stra, index_array & iaStart, index_array & iaEnd,  const string & str, const string & strExp, int iLimit, bool bAddEmpty, bool bWithSeparator)
+//bool cregexp_util::split(string_array & stra, index_array & iaStart, index_array & iaEnd,  const ::string & str, const ::string & strExp, int iLimit, bool bAddEmpty, bool bWithSeparator)
 //{
 //
 //   __pointer(cregexp) pre = CompileExpression(strExp, false);
@@ -106,7 +106,7 @@
 //
 //}
 //
-//bool    cregexp_util::split(string_array & stra, const string & str, const string & strExp, int iLimit, bool bAddEmpty, bool bWithSeparator)
+//bool    cregexp_util::split(string_array & stra, const ::string & str, const ::string & strExp, int iLimit, bool bAddEmpty, bool bWithSeparator)
 //{
 //
 //   __pointer(cregexp) pre = CompileExpression(strExp, false);
@@ -133,7 +133,7 @@
 //// 'true' if successfull.
 ////
 /////////////////////////////////////////////////////////////////////////////////
-//bool cregexp_util::add_tokens(string_array & stra, const string & pszSubject, const string & strExp, index iSubString /* =0 */)
+//bool cregexp_util::add_tokens(string_array & stra, const string & pszSubject, const ::string & strExp, index iSubString /* =0 */)
 //
 //{
 //
@@ -182,7 +182,7 @@
 //}
 //
 //
-//bool cregexp_util::match(const string & psz, const string & strExp)
+//bool cregexp_util::match(const string & psz, const ::string & strExp)
 //
 //{
 //
@@ -217,7 +217,7 @@
 //
 //}
 //
-//bool cregexp_util::replace(string & str, const string & strTopicParam, const string & strExp, index iSubString, const string & strReplace, strsize start, strsize end)
+//bool cregexp_util::replace(string & str, const ::string & strTopicParam, const ::string & strExp, index iSubString, const ::string & strReplace, strsize start, strsize end)
 //{
 //
 //   __pointer(cregexp) re;
@@ -228,7 +228,7 @@
 //
 //}
 //
-//bool cregexp_util::replace(string & str, const string & strExp, index iSubString, const string & strReplace, strsize start, strsize end)
+//bool cregexp_util::replace(string & str, const ::string & strExp, index iSubString, const ::string & strReplace, strsize start, strsize end)
 //{
 //
 //   __pointer(cregexp) re;

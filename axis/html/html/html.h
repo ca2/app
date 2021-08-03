@@ -30,7 +30,7 @@ namespace html
       string htmlpre(const char * psz);
       i32 resolve_entity(const char * pszEntity,string & strChar);
 
-      string resolve_entities(const string & str);
+      string resolve_entities(const ::string & str);
 
 
       e_tag tag_name_to_id(id idTag);

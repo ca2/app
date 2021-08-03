@@ -90,10 +90,10 @@
       virtual ::file::path module();
       virtual ::file::path ca2module();
       virtual ::file::path time_square();
-      virtual ::file::path time_log(const string & strId);
+      virtual ::file::path time_log(const ::string & strId);
 
 
-      virtual ::file::path locale_schema_matter(const string & strLocale, const string & strSchema, const ::file::path & pathRoot, const ::file::path & pathDomain);
+      virtual ::file::path locale_schema_matter(const ::string & strLocale, const ::string & strSchema, const ::file::path & pathRoot, const ::file::path & pathDomain);
       virtual ::file::path matter(const ::file::path & path, bool bDir, const ::file::path & pathRoot, const ::file::path & pathDomain);
 
       virtual ::file::path matter(const ::file::patha & patha, bool bDir = false);
@@ -113,10 +113,10 @@
       virtual ::file::path trash_that_is_not_trash(const ::file::path & psz);
 
       virtual ::file::path cache();
-      virtual ::file::path appdata(const string & strAppId = "");
+      virtual ::file::path appdata(const ::string & strAppId = "");
       virtual ::file::path commonappdata_root();
       virtual ::file::path commonappdata();
-      virtual ::file::path element_commonappdata(const string & strElement);
+      virtual ::file::path element_commonappdata(const ::string & strElement);
 
       virtual ::file::path userquicklaunch();
       virtual ::file::path userprograms();
@@ -145,8 +145,8 @@
       virtual ::file::path standalone();
 
 
-      //virtual string_array locale_schema_matter(string & strLocale, const string & strStyle);
-      //virtual string_array locale_schema_matter(string & strLocale, const string & strStyle, const string & pathRoot, const ::file::path & pathDomain);
+      //virtual string_array locale_schema_matter(string & strLocale, const ::string & strStyle);
+      //virtual string_array locale_schema_matter(string & strLocale, const ::string & strStyle, const string & pathRoot, const ::file::path & pathDomain);
       //virtual string matter(const ::file::patha & patha, bool bDir);
       //virtual string matter(const ::file::path & path, bool bDir );
 
@@ -180,7 +180,7 @@
 
       //virtual bool  is(const ::file::path & pcsz);
 
-      //virtual bool  is(const string & str);
+      //virtual bool  is(const ::string & str);
       //virtual bool  is(const ::payload & payload);
       //virtual bool  is_inside(const ::file::path & pcszDir, const ::file::path & lpcszPath);
 

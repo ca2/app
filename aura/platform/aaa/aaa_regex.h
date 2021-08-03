@@ -8,7 +8,7 @@ public:
 
 
 
-   virtual bool matches(const string & str) = 0;
+   virtual bool matches(const ::string & str) = 0;
 
    virtual bool matches(const char * psz, strsize len) = 0;
 
@@ -22,7 +22,7 @@ public:
 
    virtual bool replace(string& str, const string& strPrefix, string& strRet) = 0;
 
-   virtual ::count matches(string_array & stra, const string & str);
+   virtual ::count matches(string_array & stra, const ::string & str);
 
    //virtual ::count match(string_array & stra, const string & pcsz, strsize iSize);
 

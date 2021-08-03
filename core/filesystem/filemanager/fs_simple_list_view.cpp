@@ -713,7 +713,7 @@ namespace filemanager
 
             }
 
-            m_iParentFolder = pxmldocument->root()->attribute("id");
+            pxmldocument->root()->attribute("id").as(m_iParentFolder);
 
             auto pnodeFolder = pxmldocument->root()->get_child("folder");
 
@@ -733,8 +733,8 @@ namespace filemanager
                {
 
                   item.m_iParent = m_iParentFolder;
-                  item.m_iFolder = pnodeItem->attribute("id");
-                  item.m_strTitle = pnodeItem->attribute("name");
+                  pnodeItem->attribute("id").as(item.m_iFolder);
+                  pnodeItem->attribute("name").as(item.m_strTitle);
 
                   /*            if(wstrType == "normal")
                               {

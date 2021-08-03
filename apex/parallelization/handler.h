@@ -18,7 +18,7 @@ public:
    string                           m_strThreadName;
 
 
-   handler_manager(const string & strThreadName, bool bSingleThread, int iAliveCount = -1);
+   handler_manager(const ::string & strThreadName, bool bSingleThread, int iAliveCount = -1);
    ~handler_manager() override;
 
 

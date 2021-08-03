@@ -36,7 +36,7 @@ public:
 
    //comptr < IShellFolder> _017GetParentShellFolder(LPITEMIDLIST piidlChild);
 
-   //comptr < IShellFolder> _017GetShellFolder(const string & str, LPITEMIDLIST piidlChild);
+   //comptr < IShellFolder> _017GetShellFolder(const ::string & str, LPITEMIDLIST piidlChild);
 
    comptr < IShellFolder> get_shell_folder() const;
 

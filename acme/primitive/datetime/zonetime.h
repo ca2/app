@@ -37,8 +37,8 @@ namespace datetime
       i64 GetZoneDaySig() const noexcept;
 
 
-      string FormatZone(string & str, const string & strFormat) const;
-      string FormatZone(const string & strFormat);
+      string FormatZone(string & str, const ::string & strFormat) const;
+      string FormatZone(const ::string & strFormat);
 
       
    };

@@ -69,13 +69,13 @@
 
       virtual ::e_status stop_service();
 
-      virtual bool create_service(const string & strServiceName, const string & strDisplayName, const string & strCommand, const string & strUser = "", const string & strPass = "");
+      virtual bool create_service(const ::string & strServiceName, const ::string & strDisplayName, const ::string & strCommand, const ::string & strUser = "", const ::string & strPass = "");
 
-      virtual bool erase_service(const string & strServiceName);
+      virtual bool erase_service(const ::string & strServiceName);
 
-      virtual bool start_service(const string & strServiceName);
+      virtual bool start_service(const ::string & strServiceName);
 
-      virtual bool stop_service(const string & strServiceName);
+      virtual bool stop_service(const ::string & strServiceName);
 
 #ifdef WINDOWS
       virtual DECLSPEC_NO_RETURN void raise_exception(u32 dwExceptionCode, u32 dwExceptionFlags = EXCEPTION_NONCONTINUABLE);
@@ -86,7 +86,7 @@
       virtual void set_file_status(const char * pszFileName, const ::file::file_status& status);
 
 
-      virtual bool resolve_link(::file::path & path, const string & strSource, string * pstrDirectory = nullptr, string * pstrParams = nullptr, ::user::primitive * puiMessageParentOptional = nullptr);
+      virtual bool resolve_link(::file::path & path, const ::string & strSource, string * pstrDirectory = nullptr, string * pstrParams = nullptr, ::user::primitive * puiMessageParentOptional = nullptr);
 
       virtual bool initialize_wallpaper_fileset(::file::set* pfileset, bool bAddSearch);
 
@@ -104,7 +104,7 @@
 
       virtual bool is_user_auto_start(string strId);
 
-      virtual ::file::path get_app_path(const string & strApp);
+      virtual ::file::path get_app_path(const ::string & strApp);
 
       virtual void on_process_command(::create * pcommand);
 

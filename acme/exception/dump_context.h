@@ -27,7 +27,7 @@ public:
 
 #endif
 
-   void write(const string & str) override ;
+   void write(const ::string & str) override ;
    void write(const void * p);
           
    void write(const ::matter * pobject) override;

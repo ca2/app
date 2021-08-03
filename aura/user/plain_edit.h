@@ -224,7 +224,7 @@ namespace user
       //bool                              m_bActionHover;
       array < double_array >              m_daExtent;
       ::file::insert_item *               m_pinsert;
-      plain_text_set_sel_command *        m_psetsel;
+      plain_text_set_sel_command *        m_ppropertysetsel;
       bool                                m_bParseDataPacks;
       bool                                m_bLastCaret;
 
@@ -256,8 +256,8 @@ namespace user
 
       virtual void InputConnectionBeginBatchEdit() override;
       virtual void InputConnectionEndBatchEdit() override;
-      virtual void InputConnectionCommitText(const string & str, strsize iNewCursorPosition) override;
-      virtual void InputConnectionSetComposingText(const string & str, strsize iNewCursorPosition) override;
+      virtual void InputConnectionCommitText(const ::string & str, strsize iNewCursorPosition) override;
+      virtual void InputConnectionSetComposingText(const ::string & str, strsize iNewCursorPosition) override;
       virtual void InputConnectionSetComposingRegion(strsize iStart, strsize iEnd) override;
       virtual void InputConnectionSetSelection(strsize iStart, strsize iEnd) override;
       virtual void InputConnectionFinishComposingText() override;
@@ -338,7 +338,7 @@ namespace user
       virtual void clipboard_copy();
       virtual void clipboard_paste();
 
-      virtual bool get_line_color(::color::color & crOverride, const string & strLine);
+      virtual bool get_line_color(::color::color & crOverride, const ::string & strLine);
 
       virtual void pre_translate_message(::message::message * pmessage) override;
 
@@ -386,7 +386,7 @@ namespace user
 
       void _001GetViewSel(strsize &iSelStart, strsize &iSelEnd) const override;
 
-      void _001SetText(const string & str, const ::action_context & action_context) override;
+      void _001SetText(const ::string & str, const ::action_context & action_context) override;
       void _001SetSelText(const char * psz, const ::action_context & action_context) override;
       void _001SetSelEnd(strsize iSelEnd) override;
       void _set_sel_end(::draw2d::graphics_pointer& pgraphics, strsize iSelEnd);

@@ -191,8 +191,8 @@ namespace write_text
 #ifdef WINDOWS
       font_enumeration_item(const widechar* pwideszName);
 #endif
-      font_enumeration_item(const string & strName);
-      font_enumeration_item(const string & strFile, const string & strName);
+      font_enumeration_item(const ::string & strName);
+      font_enumeration_item(const ::string & strFile, const ::string & strName);
       virtual ~font_enumeration_item();
 
 

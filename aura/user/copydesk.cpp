@@ -56,7 +56,7 @@ namespace user
    }
 
 
-   bool copydesk::string_to_filea(::file::patha  * ppatha, const string & str)
+   bool copydesk::string_to_filea(::file::patha  * ppatha, const ::string & str)
    {
 
       string_array stra;
@@ -167,7 +167,7 @@ namespace user
    }
 
 
-   bool copydesk::set_plain_text(const string & str, bool bForceSetIfEmpty)
+   bool copydesk::set_plain_text(const ::string & str, bool bForceSetIfEmpty)
    {
 
       if(str.is_empty() && !bForceSetIfEmpty)
@@ -548,7 +548,7 @@ namespace user
    }
 
 
-   bool copydesk::_set_plain_text(const string & str)
+   bool copydesk::_set_plain_text(const ::string & str)
    {
 
       UNREFERENCED_PARAMETER(str);

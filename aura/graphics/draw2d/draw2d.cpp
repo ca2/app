@@ -264,11 +264,11 @@ namespace draw2d
 
       }
 
-      if (varOptions["quality"].get_type() == e_type_double
-         || varOptions["quality"].get_type() == e_type_float)
+      if (varOptions["quality"].get_type() == e_type_f64
+         || varOptions["quality"].get_type() == e_type_f32)
       {
 
-         psaveimage->m_iQuality = (int)(varOptions["quality"].get_double() * 100.0);
+         psaveimage->m_iQuality = (int)(varOptions["quality"].f64() * 100.0);
 
       }
       else
@@ -285,7 +285,7 @@ namespace draw2d
 
       }
 
-      psaveimage->m_iDpi = varOptions["dpi"];
+      varOptions["dpi"].as(psaveimage->m_iDpi);
 
       if (psaveimage->m_iDpi == 0)
       {

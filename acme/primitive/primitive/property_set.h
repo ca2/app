@@ -33,9 +33,9 @@ public:
 
    inline ::payload operator()(const id & id, const ::payload & varDefault = ::error_not_found) const;
 
-   string _001Replace(const string & str) const;
+   string _001Replace(const ::string & str) const;
 
-   inline string format(const string & str) const { return _001Replace(str); }
+   inline string format(const ::string & str) const { return _001Replace(str); }
 
    inline property & operator[](const id & id) { return get(id); }
    inline const property & operator[](const id & id) const { return *find(id); }
@@ -43,8 +43,8 @@ public:
    inline property & operator[](const char * pszName) { return operator [](::id(pszName)); }
    inline const property & operator[](const char * pszName) const { return operator [](::id(pszName)); }
 
-   inline property & operator[](const string & strName) { return operator [](::id(strName)); }
-   inline const property & operator[](const string & strName) const { return operator [](::id(strName)); }
+   inline property & operator[](const ::string & strName) { return operator [](::id(strName)); }
+   inline const property & operator[](const ::string & strName) const { return operator [](::id(strName)); }
 
    inline property & operator[](::index iIndex) { return operator [](::id(iIndex)); }
    inline const property & operator[](::index iIndex) const { return operator [](::id(iIndex)); }
@@ -59,7 +59,7 @@ public:
 
 #endif
 
-   inline ::payload topic(const id & id);
+   inline ::payload & topic(const id & id);
 
    ::payload & set(const id & id);
 
@@ -254,17 +254,17 @@ public:
 
    void clear();
 
-   //virtual string eval(const string & str);
+   //virtual string eval(const ::string & str);
 
-   //virtual string gen_eval(const string & str);
+   //virtual string gen_eval(const ::string & str);
 
-   //virtual string gen_string(const string & str);
+   //virtual string gen_string(const ::string & str);
 
-   void parse_ini(const string & strIni);
+   void parse_ini(const ::string & strIni);
    //void parse_ini_file(const ::file::path& path);
    //void parse_ini_folder(const ::file::path& path);
 
-   void parse_json(const string & strJson);
+   void parse_json(const ::string & strJson);
    void parse_json(const char * & pszJson);
    void parse_json(const char * & pszJson, const char * pszEnd);
    void parse_url_query(const char * pszUrl);
@@ -344,7 +344,7 @@ namespace handle
 
 
       ini() {}
-      ini(const string & str);
+      ini(const ::string & str);
       ini(::file::file * pfile);
       ini(const ::property_set & set) : ::property_set(set) {}
       ini(::property_set && set) : ::property_set(::move(set)) {}

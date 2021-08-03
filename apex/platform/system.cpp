@@ -687,7 +687,7 @@ namespace apex
    //}
 
 
-   void system::locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const string & strLocale, const string & strSchema)
+   void system::locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::string & strLocale, const ::string & strSchema)
    {
 
 
@@ -3159,7 +3159,7 @@ namespace apex
    }
 
 
-   //string system::crypto_md5_text(const string & str)
+   //string system::crypto_md5_text(const ::string & str)
    //{
 
    //   ::exception::throw_not_implemented();
@@ -3572,7 +3572,7 @@ namespace apex
 
 
 
-   //string system::url_encode(const string & str)
+   //string system::url_encode(const ::string & str)
    //{
 
    //   //__throw(error_interface_only);
@@ -4875,7 +4875,7 @@ namespace apex
    }
 
 
-   string system::crypto_md5_text(const string & str)
+   string system::crypto_md5_text(const ::string & str)
    {
 
       auto psystem = m_psystem->m_papexsystem;
@@ -4887,7 +4887,7 @@ namespace apex
    }
 
 
-   string system::url_encode(const string & str)
+   string system::url_encode(const ::string & str)
    {
 
       return m_purldepartment->url_encode(str);

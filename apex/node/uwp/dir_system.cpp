@@ -125,7 +125,7 @@ namespace uwp
    //}
 
 
-   //::file::path dir_system::usersystemappdata(::object * pobject, const string & strPrefix)
+   //::file::path dir_system::usersystemappdata(::object * pobject, const ::string & strPrefix)
    //{
 
    //   UNREFERENCED_PARAMETER(pobject);
@@ -186,7 +186,7 @@ namespace uwp
    //}
 
 
-   //::file::path dir_system::default_userfolder(::object * pobject,const string & strPrefix,const string & strLogin)
+   //::file::path dir_system::default_userfolder(::object * pobject,const ::string & strPrefix,const ::string & strLogin)
    //{
 
    //   return userfolder(pobject) / strPrefix / strLogin;

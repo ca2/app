@@ -225,7 +225,7 @@ zonetime::zonetime(time_t zonetime, int iZoneOffset) noexcept :
    }
 
 
-   string zonetime::FormatZone(string & str, const string & strFormat) const
+   string zonetime::FormatZone(string & str, const ::string & strFormat) const
    {
 
       str = strFormat;
@@ -270,7 +270,7 @@ zonetime::zonetime(time_t zonetime, int iZoneOffset) noexcept :
    }
 
 
-   string zonetime::FormatZone(const string & strFormat)
+   string zonetime::FormatZone(const ::string & strFormat)
    {
    
       string str;

@@ -994,7 +994,7 @@ namespace ios
 //      }
 //
 //
-//      bool file_system::exists(const string & strPath, ::aura::application *  papp)
+//      bool file_system::exists(const ::string & strPath, ::aura::application *  papp)
 //      {
 //
 //         if(::str::begins_ci_iws(strPath, "uifs://"))

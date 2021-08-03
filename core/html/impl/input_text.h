@@ -22,7 +22,7 @@ namespace html
          __pointer(::user::plain_edit) m_pedit;
 
 
-         input_text(const string & strType = "",const string & strUnit = "");
+         input_text(const ::string & strType = "",const ::string & strUnit = "");
          virtual ~input_text();
 
 

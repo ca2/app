@@ -53,9 +53,9 @@ namespace str
       strsize  m_iLen;
 
       parse();
-      parse(const string & str):parse((const char *) str, str.get_length()) {}
-      parse(const string & str,const string & splits):parse((const char *)str,str.get_length(),splits) {}
-      parse(const string & str,const string & splits,i16 nospace):parse((const char *)str,str.get_length(),splits,nospace) {}
+      parse(const ::string & str):parse((const char *) str, str.get_length()) {}
+      parse(const ::string & str,const string & splits):parse((const char *)str,str.get_length(),splits) {}
+      parse(const ::string & str,const string & splits,i16 nospace):parse((const char *)str,str.get_length(),splits,nospace) {}
       parse(const char * psz, strsize iLen);
       parse(const char * psz, strsize iLen,const string &);
       parse(const char * psz, strsize iLen,const string &,i16);

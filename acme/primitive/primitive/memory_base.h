@@ -78,7 +78,7 @@ MUTABLE * __mutable(const MUTABLE * pmutable) { return (MUTABLE *)pmutable; }
 
 
 class CLASS_DECL_ACME memory_base :
-   virtual public ::matter
+   virtual public ::material_object
 {
 public:
 
@@ -103,7 +103,7 @@ public:
    memory_base() {}
    memory_base(const memory_base & base) : m_memory(base.m_memory) {}
    memory_base(memory_base && base) : m_memory(base.m_memory) { __zero(base.m_memory); }
-   virtual ~memory_base();
+   ~memory_base() override;
 
 
    virtual string as_utf8() const;
@@ -111,8 +111,8 @@ public:
    virtual char * c_str();
    virtual bool begins(const char * psz, strsize iCount = -1) const;
    virtual bool begins_ci(const char * psz, strsize iCount = -1) const;
-   virtual bool begins(const string & str, strsize iCount = -1) const;
-   virtual bool begins_ci(const string & str, strsize iCount = -1) const;
+   virtual bool begins(const ::string & str, strsize iCount = -1) const;
+   virtual bool begins_ci(const ::string & str, strsize iCount = -1) const;
 
    //virtual byte * detach_primitive_memory();
    //virtual byte * detach_virtual_memory();
@@ -189,15 +189,15 @@ public:
 
    void from_string(const widechar * pwsz);
    void from_string(const char * psz);
-   void from_string(const string & str);
+   void from_string(const ::string & str);
    void from_string(const ::payload & payload);
    void append_from_string(const widechar * pwsz);
    void append_from_string(const char * psz);
-   void append_from_string(const string & str);
+   void append_from_string(const ::string & str);
    void append_from_string(const ::payload & payload);
    void append_byte(byte b){ append(&b, 1);}
    //void to_string(string & str, memsize iStart = 0, memsize uiSize = -1) const;
-   virtual void to_string(const string_exchange & str) const override;
+   string to_string() const override;
    string to_string(memsize iStart, memsize uiSize = -1) const;
 
    void delete_begin(memsize iSize);

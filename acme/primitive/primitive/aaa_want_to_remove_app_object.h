@@ -109,9 +109,9 @@ public:
 
 
    virtual void property_set_replace(string & str) const;
-   virtual string property_set_evaluate(const string & str) const;
-   virtual string property_set_get_evaluation(const string & str) const;
-   virtual string property_set_get_string(const string & str) const;
+   virtual string property_set_evaluate(const ::string & str) const;
+   virtual string property_set_get_evaluation(const ::string & str) const;
+   virtual string property_set_get_string(const ::string & str) const;
 
 
    virtual id translate_property_id(const ::id& id);

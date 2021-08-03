@@ -18,7 +18,7 @@ namespace regular_expression_pcre2
    }
 
 
-   __pointer(code) code::compile(pcre_context * m_pcreContext, const string & str)
+   __pointer(code) code::compile(pcre_context * m_pcreContext, const ::string & str)
    {
 
       __pointer(pcre_context_impl) pimpl = m_pcreContext;

@@ -203,7 +203,7 @@ namespace userfs
                if (path.m_iSize < 0)
                {
 
-                  path.m_iSize = pcontext->m_papexcontext->file().length(path);
+                  pcontext->m_papexcontext->file().length(path).as(path.m_iSize);
 
                }
 

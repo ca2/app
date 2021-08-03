@@ -92,7 +92,9 @@ namespace usernet
          
          string strProxy(doc.root()->attribute("server"));
 
-         i32 iProxyPort = doc.root()->attribute("port");
+         i32 iProxyPort;
+
+         doc.root()->attribute("port").as(iProxyPort);
          
          auto pinteraction = m_pview->get_child_by_name("server");
          

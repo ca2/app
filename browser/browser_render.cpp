@@ -1308,7 +1308,7 @@ namespace browser
    }
 
 
-   void render::browser_fast_render(const string & strHelloBrowser)
+   void render::browser_fast_render(const ::string & strHelloBrowser)
    {
 
       if (m_cx <= 0 || m_cy <= 0)

@@ -4,7 +4,7 @@
 #include "aura/os/_application.h"
 
 
-CLASS_DECL_CORE i32 main_uwp(Array < String^ >^ stra, const string & strCommandLine)
+CLASS_DECL_CORE i32 main_uwp(Array < String^ >^ stra, const ::string & strCommandLine)
 {
 
    //int iStatus = -1;

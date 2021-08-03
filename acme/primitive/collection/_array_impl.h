@@ -809,7 +809,7 @@ inline array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload > & array_base < T
    for(::index i = 0; i < c; i++)
    {
 
-      add((ARG_TYPE)a.this_var()->at(i));
+      add((ARG_TYPE)(payload_cast)a.this_var()->at(i));
 
    }
 

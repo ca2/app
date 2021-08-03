@@ -454,7 +454,7 @@ namespace datetime
    }
 
 
-   string time::Format(string & str, const string & strFormat) const
+   string time::Format(string & str, const ::string & strFormat) const
    {
 
 #if defined(LINUX) || defined(ANDROID) || defined(SOLARIS)
@@ -541,7 +541,7 @@ namespace datetime
    }
 
 
-   string time::FormatGmt(string & str, const string & strFormat) const
+   string time::FormatGmt(string & str, const ::string & strFormat) const
    {
 
       char szBuffer[maxTimeBufferSize];
@@ -843,7 +843,7 @@ namespace datetime
 {
 
 
-   string time::Format(const string & strFormat)
+   string time::Format(const ::string & strFormat)
    {
       string str;
       Format(str, strFormat);
@@ -851,7 +851,7 @@ namespace datetime
    }
 
 
-   string time::FormatGmt(const string & strFormat)
+   string time::FormatGmt(const ::string & strFormat)
    {
       string str;
       FormatGmt(str, strFormat);

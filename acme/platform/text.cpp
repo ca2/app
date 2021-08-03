@@ -18,7 +18,7 @@ CLASS_DECL_ACME string null_get_text(string str)
 //
 //}
 
-//CLASS_DECL_ACME string __get_text(const string & str)
+//CLASS_DECL_ACME string __get_text(const ::string & str)
 //{
 //
 //   return g_pgettext(str);

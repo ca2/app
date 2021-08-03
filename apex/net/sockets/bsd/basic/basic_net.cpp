@@ -173,7 +173,7 @@ namespace sockets
    } // rfc1738_decode
 
 
-   bool net::isipv4(const string & str)
+   bool net::isipv4(const ::string & str)
    {
       i32 dots = 0;
       // %! ignore :port?
@@ -190,7 +190,7 @@ namespace sockets
    }
 
 
-   bool net::isipv6(const string & str)
+   bool net::isipv6(const ::string & str)
    {
       if(str.is_empty())
          return false;
@@ -233,7 +233,7 @@ namespace sockets
       return true;
    }
 
-//   bool net::convert(in_addr & l, const string & str, i32 ai_flags)
+//   bool net::convert(in_addr & l, const ::string & str, i32 ai_flags)
 //   {
 //
 //      if(str.is_empty())
@@ -379,7 +379,7 @@ namespace sockets
 //}
 //
 
-//bool net::convert(struct in6_addr& l, const string & str, i32 ai_flags)
+//bool net::convert(struct in6_addr& l, const ::string & str, i32 ai_flags)
 //{
 
 
@@ -1095,7 +1095,7 @@ bool net::u2service(const string & name, i32& service, i32 ai_flags)
 }
 
 
-i32 net::service_port(const string & str, i32 flags)
+i32 net::service_port(const ::string & str, i32 flags)
 {
 
    if(::str::is_simple_natural(str))

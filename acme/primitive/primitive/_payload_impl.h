@@ -14,6 +14,8 @@ inline payload::payload()
 inline payload::payload(enum_type etype)
 {
 
+   m_etype = e_type_null;
+
    set_type(etype, false);
    //clear_data();
 
@@ -69,9 +71,9 @@ inline ::count payload::get_count() const
    case e_type_string_array:
       return ::is_null(m_pstra) ? 0 : m_pstra->get_count();
    case e_type_payload_array:
-      return ::is_null(m_pvara) ? 0 : m_pvara->get_count();
+      return ::is_null(m_ppayloada) ? 0 : m_ppayloada->get_count();
    case e_type_property_set:
-      return ::is_null(m_pset) ? 0 : m_pset->get_count();
+      return ::is_null(m_ppropertyset) ? 0 : m_ppropertyset->get_count();
    case e_type_empty:
    case e_type_null:
    case e_type_new:
@@ -126,9 +128,9 @@ inline bool payload::is_array() const
    {
       return true;
    }
-   else if (m_etype == e_type_prop)
+   else if (m_etype == e_type_property)
    {
-      return prop().is_array();
+      return this->property().is_array();
    }
    else if (m_etype == e_type_element)
    {
@@ -145,7 +147,7 @@ inline bool payload::is_array() const
 inline bool operator == (const string& str, const ::payload & payload)
 {
 
-   return str == payload.get_string();
+   return str == payload.string();
 
 }
 
@@ -169,7 +171,7 @@ inline id& id::operator = (const ::payload & payload)
    }
    else
    {
-      return operator = (payload.get_string());
+      return operator = (payload.string());
    }
 
 }
@@ -200,31 +202,47 @@ inline ::payload payload::operator - (const PAYLOAD & payload2) const
 
    if (m_etype == ::e_type_i32_array)
    {
+
       if (payload2.m_etype == ::e_type_i32_array)
       {
-         payload = inta() - payload2.inta();
+
+         payload = ia() - payload2.ia();
+
       }
       else
       {
+
          payload = *this;
-         payload.inta().erase(payload2.i32());
+
+         payload.ia().erase(payload2.i32());
+
       }
+
    }
    else if (m_etype == ::e_type_string_array)
    {
+
       if (payload2.m_etype == ::e_type_string_array)
       {
+         
          payload = stra() - payload2.stra();
+
       }
       else if (payload2.is_array())
       {
+
          payload = stra() - payload2.stra();
+
       }
       else
       {
+
          payload = *this;
-         payload.stra().erase(payload2.get_string());
+
+         payload.stra().erase(payload2.string());
+
       }
+
    }
    else if (m_etype == ::e_type_payload_array)
    {
@@ -240,7 +258,7 @@ inline ::payload payload::operator - (const PAYLOAD & payload2) const
    }
    else if (is_double() || payload2.is_double())
    {
-      payload = get_double() - payload2.get_double();
+      payload = f64() - payload2.f64();
    }
    else if (is_integer() || payload2.is_integer())
    {
@@ -252,7 +270,7 @@ inline ::payload payload::operator - (const PAYLOAD & payload2) const
    }
    else
    {
-      payload = atoi(get_string()) - atoi(payload2.get_string());
+      payload = atoi(string()) - atoi(payload2.string());
    }
    return payload;
 }
@@ -265,23 +283,35 @@ inline ::payload payload::operator + (const PAYLOAD & payload2) const
 
    if (m_etype == ::e_type_i32_array || m_etype == ::e_type_i32_array)
    {
+
       if (m_etype == ::e_type_i32_array)
       {
+
          if (payload2.m_etype == ::e_type_i32_array)
          {
-            payload = inta() + payload2.inta();
+
+            payload = ia() + payload2.ia();
+
          }
          else
          {
+
             payload = *this;
-            payload.inta().add(payload2.i32());
+
+            payload.ia().add(payload2.i32());
+
          }
+
       }
       else
       {
+
          payload = payload2;
-         payload.inta().add(i32());
+
+         payload.ia().add(i32());
+
       }
+
    }
    else if (m_etype == ::e_type_string_array || payload2.m_etype == ::e_type_string_array)
    {
@@ -300,7 +330,7 @@ inline ::payload payload::operator + (const PAYLOAD & payload2) const
 
             payload = *this;
 
-            payload.stra().add(payload2.get_string());
+            payload.stra().add(payload2.string());
 
          }
 
@@ -310,7 +340,7 @@ inline ::payload payload::operator + (const PAYLOAD & payload2) const
 
          payload = payload2;
 
-         payload.stra().add(get_string());
+         payload.stra().add(string());
 
       }
 
@@ -350,7 +380,7 @@ inline ::payload payload::operator + (const PAYLOAD & payload2) const
    else if ((is_double() && payload2.is_number()) || (is_number() && payload2.is_double()))
    {
 
-      payload = get_double() + payload2.get_double();
+      payload = f64() + payload2.f64();
 
    }
    else if (is_integer() && payload2.is_integer())
@@ -368,7 +398,7 @@ inline ::payload payload::operator + (const PAYLOAD & payload2) const
    else
    {
 
-      payload = get_string() + payload2.get_string();
+      payload = string() + payload2.string();
 
    }
 
@@ -391,12 +421,12 @@ inline ::payload payload::operator / (const PAYLOAD & payload2) const
       if (payload2.m_etype == ::e_type_i32_array)
       {
          payload = *this;
-         payload.inta().intersect(payload2.inta());
+         payload.ia().intersect(payload2.ia());
       }
       else
       {
          payload = *this;
-         payload.inta().divide(payload2.i32());
+         payload.ia().divide(payload2.i32());
       }
    }
    else if (m_etype == ::e_type_string_array)
@@ -408,7 +438,7 @@ inline ::payload payload::operator / (const PAYLOAD & payload2) const
       else
       {
          payload = *this;
-         payload.stra().erase(payload2.get_string());
+         payload.stra().erase(payload2.string());
       }
    }
    else if (m_etype == ::e_type_payload_array)
@@ -425,7 +455,7 @@ inline ::payload payload::operator / (const PAYLOAD & payload2) const
    }
    else if (is_double() || payload2.is_double())
    {
-      payload = get_double() / payload2.get_double();
+      payload = f64() / payload2.f64();
    }
    else if (is_integer() || payload2.is_integer())
    {
@@ -437,7 +467,7 @@ inline ::payload payload::operator / (const PAYLOAD & payload2) const
    }
    else
    {
-      payload = atoi(get_string()) / atoi(payload2.get_string());
+      payload = atoi(string()) / atoi(payload2.string());
    }
    return payload;
 }
@@ -453,7 +483,7 @@ inline ::payload payload:: operator * (const PAYLOAD & payload2) const
    if (m_etype == ::e_type_i32_array || m_etype == ::e_type_i32_array)
    {
 
-      ::papaya::array::intersection(payload.inta(), inta(), payload2.inta());
+      ::papaya::array::intersection(payload.ia(), ia(), payload2.ia());
 
    }
    else if (m_etype == ::e_type_string_array || payload2.m_etype == ::e_type_string_array)
@@ -471,7 +501,7 @@ inline ::payload payload:: operator * (const PAYLOAD & payload2) const
    else if (is_double() || payload2.is_double())
    {
 
-      payload = get_double() * payload2.get_double();
+      payload = f64() * payload2.f64();
 
    }
    else if (is_integer() || payload2.is_integer())
@@ -559,14 +589,14 @@ inline bool strictly_equal(const char * psz, const class ::payload & payload)
    return payload.m_etype == ::e_type_string && psz == payload.m_str;
 }
 
-inline bool strictly_equal(const string & str, const class ::payload & payload)
+inline bool strictly_equal(const ::string & str, const class ::payload & payload)
 {
    return payload.m_etype == ::e_type_string && str == payload.m_str;
 }
 
 inline bool strictly_equal(double d, const class ::payload & payload)
 {
-   return payload.m_etype == ::e_type_double && d == payload.m_d;
+   return payload.m_etype == ::e_type_f64 && d == payload.m_f64;
 }
 
 inline bool strictly_equal(::i32 i, const class ::payload & payload)
@@ -584,7 +614,7 @@ inline bool strictly_different(const char * psz, const class ::payload & payload
    return !strictly_equal(psz, payload);
 }
 
-inline bool strictly_different(const string & str, const class ::payload & payload)
+inline bool strictly_different(const ::string & str, const class ::payload & payload)
 {
    return !strictly_equal(str, payload);
 }

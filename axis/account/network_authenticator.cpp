@@ -352,7 +352,7 @@ namespace account
          if(::failed(set["get_status"]))
          {
 
-            return set["get_status"];
+            return set["get_status"].estatus();
 
          }
 

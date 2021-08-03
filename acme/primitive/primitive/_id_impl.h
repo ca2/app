@@ -6,7 +6,7 @@ namespace acme
 
    inline ::id id(const class ::payload& payload)
    {
-      return ::id((const char*)(class ::payload &) payload);
+      return ::id((::string)(class ::payload &) payload);
    }
 
    inline ::id id(const property& prop)
@@ -80,7 +80,7 @@ namespace acme
 //      return get_id_space()(psz);
 //   }
 //
-//   inline id system::id(const string & str)
+//   inline id system::id(const ::string & str)
 //   {
 //      return get_id_space()(str);
 //   }

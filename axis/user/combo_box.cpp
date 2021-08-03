@@ -430,7 +430,7 @@ namespace user
    }
 
 
-   void combo_box::_001SetText(const string & str, const ::action_context & context)
+   void combo_box::_001SetText(const ::string & str, const ::action_context & context)
    {
 
       //if(m_bEdit)
@@ -1475,12 +1475,12 @@ namespace user
    }
 
 
-   index combo_box::_001FindListText(const string & str) const
+   index combo_box::_001FindListText(const ::string & str) const
    {
 
       return m_plistbox->_001FindListText(str);
 
-      //index combo_box::_001FindListText(const string & str) const
+      //index combo_box::_001FindListText(const ::string & str) const
       //{
 
       //   ::count ca = _001GetListCount();
@@ -1547,7 +1547,7 @@ namespace user
    }
 
 
-   index combo_box::add_string(const char * pszString,const string & strValue)
+   index combo_box::add_string(const char * pszString,const ::string & strValue)
    {
 
       ASSERT(m_edatamode == data_mode_string);
@@ -1584,7 +1584,7 @@ namespace user
    }
 
 
-   void combo_box::set_current_item_by_string_value(const string & strValue, const ::action_context & actioncontext)
+   void combo_box::set_current_item_by_string_value(const ::string & strValue, const ::action_context & actioncontext)
    {
 
       m_plistbox->set_current_item_by_string_value(strValue, actioncontext);

@@ -43,7 +43,7 @@ namespace uwp
       //virtual bool  ls_dir(const char * pcsz,string_array * pstraPath = nullptr,string_array * pstraTitle = nullptr);
       //virtual bool  ls_file(const char * pcsz,string_array * pstraPath = nullptr,string_array * pstraTitle = nullptr);
       virtual bool  is_impl(const ::file::path & path) override;
-      //virtual bool  is(const string & str);
+      //virtual bool  is(const ::string & str);
       virtual bool  name_is(const ::file::path & str);
       virtual bool  has_subdir( const ::file::path & path);
       virtual bool  is_inside(const ::file::path & pathDir, const ::file::path & path);
@@ -54,7 +54,7 @@ namespace uwp
 
 
       //virtual string name(const char * pcsz);
-      //virtual string name(const string & str);
+      //virtual string name(const ::string & str);
 
       ::file::path userfolder();
 
@@ -72,20 +72,20 @@ namespace uwp
       virtual ::file::path time_square();
       virtual ::file::path time_log();
 
-      ::file::path time_square( const string & strPrefix, const string & strSuffix);
+      ::file::path time_square( const ::string & strPrefix, const ::string & strSuffix);
 
       virtual ::file::path trash_that_is_not_trash(const ::file::path & path);
 
       virtual ::file::path appdata();
 
-      //virtual ::file::path usersystemappdata(const string & strPrefix);
+      //virtual ::file::path usersystemappdata(const ::string & strPrefix);
       //virtual ::file::path userappdata();
       //virtual ::file::path userdata();
       ////virtual ::file::path userfolder();
       //virtual ::file::path default_os_user_path_prefix();
-      //virtual ::file::path default_userappdata(const string & strPrefix,const string & strLogin);
-      //virtual ::file::path default_userdata(const string & strPrefix,const string & strLogin);
-      //virtual ::file::path default_userfolder(const string & strPrefix,const string & strLogin);
+      //virtual ::file::path default_userappdata(const ::string & strPrefix,const ::string & strLogin);
+      //virtual ::file::path default_userdata(const ::string & strPrefix,const ::string & strLogin);
+      //virtual ::file::path default_userfolder(const ::string & strPrefix,const ::string & strLogin);
       virtual ::file::path userquicklaunch();
       virtual ::file::path userprograms();
 

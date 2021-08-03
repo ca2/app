@@ -264,7 +264,7 @@ namespace str
          return push;
       }
 
-      wstring MultiByteToUnicode(::u32 uCodePage, const string & str)
+      wstring MultiByteToUnicode(::u32 uCodePage, const ::string & str)
       {
          //if(uCodePage == CP_UTF8)
          {
@@ -543,7 +543,7 @@ namespace str
       }
 
 
-      wstring utf8_to_unicode(const string & str)
+      wstring utf8_to_unicode(const ::string & str)
       {
 
          return MultiByteToUnicode(CodePageUtf8, str);
@@ -567,7 +567,7 @@ namespace str
       }
 
 
-      strsize utf8_to_unicode_count(const string & str)
+      strsize utf8_to_unicode_count(const ::string & str)
       {
 
          return MultiByteToUnicodeCount(CodePageUtf8, str, (strsize) str.get_length());

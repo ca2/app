@@ -142,7 +142,7 @@ namespace uwp
       string               m_strId;
 
 
-      directx_application_source(::aura::system * paxissystem,const string & strId);
+      directx_application_source(::aura::system * paxissystem,const ::string & strId);
 
    public:
 
@@ -151,7 +151,7 @@ namespace uwp
    };
 
 
-   CLASS_DECL_AURA directx_application_source ^ new_directx_application_source(::aura::system * psystem, const string & str);
+   CLASS_DECL_AURA directx_application_source ^ new_directx_application_source(::aura::system * psystem, const ::string & str);
 
 
 } // namespace uwp

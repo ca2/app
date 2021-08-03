@@ -114,7 +114,7 @@ string payload_array::implode(const char * pszGlue) const
 
       }
 
-      str += this->element_at(i).get_string();
+      str += this->element_at(i).string();
 
    }
 
@@ -143,7 +143,7 @@ index payload_array::find_first(const char * psz, index find, index last) const
    for(; find < this->get_count(); find++)
    {
 
-      if (this->element_at(find).get_string() == psz)
+      if (this->element_at(find).string() == psz)
       {
 
          return find;
@@ -177,7 +177,7 @@ index payload_array::find_first_ci(const char * psz, index find, index last) con
    for(; find < this->get_count(); find++)
    {
 
-      if (this->element_at(find).get_string().compare_ci(psz) == 0)
+      if (this->element_at(find).string().compare_ci(psz) == 0)
       {
 
          return find;

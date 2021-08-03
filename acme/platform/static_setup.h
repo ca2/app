@@ -36,7 +36,7 @@ public:
 
    const char *                  m_pszName;
    enum_flag                        m_eflag;
-   static_setup*                 m_psetupNext;
+   static_setup*                 m_ppropertysetupNext;
 
 
    static static_setup *         s_psetupList;

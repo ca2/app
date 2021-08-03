@@ -175,7 +175,7 @@ namespace http
    memsize transaction::ContentLength()
    {
    
-      return atol(header(__id(content_length)));
+      return header(__id(content_length)).iptr();
 
    }
 

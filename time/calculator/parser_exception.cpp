@@ -3,7 +3,7 @@
 
 
 
-//datetime_parser_exception::datetime_parser_exception(const string & strMessage):
+//datetime_parser_exception::datetime_parser_exception(const ::string & strMessage):
 //::exception::exception(strMessage)
 //{
 //
@@ -22,7 +22,7 @@ CLASS_DECL_CA2_TIME bool get_avoid_datetime_parser_exception()
 
 }
 
-CLASS_DECL_CA2_TIME bool throw_datetime_parser_exception(const string & strMessage)
+CLASS_DECL_CA2_TIME bool throw_datetime_parser_exception(const ::string & strMessage)
 {
 
    if (get_avoid_datetime_parser_exception())

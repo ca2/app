@@ -190,7 +190,7 @@ _AFXMT_INLINE int_bool critical_section::Unlock()
 //
 //   }
 //
-//   void set_error_message(const string & strErrorMessage)
+//   void set_error_message(const ::string & strErrorMessage)
 //   {
 //
 //      m_strErrorMessage = strErrorMessage;

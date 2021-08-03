@@ -527,9 +527,9 @@ namespace filemanager
             else
             {
 
-               m_dSize += (u32)varLen;
+               m_dSize += varLen.u32();
 
-               m_daSize.add((double)(u32)varLen);
+               m_daSize.add((double)varLen.u32());
 
                m_daRead.add(0.0);
 

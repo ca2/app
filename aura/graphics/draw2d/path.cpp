@@ -780,7 +780,7 @@ namespace draw2d
    }
 
 
-   bool path::add_text_out(const ::point_f64 & point, const string & strText,::write_text::font_pointer pfont)
+   bool path::add_text_out(const ::point_f64 & point, const ::string & strText,::write_text::font_pointer pfont)
    {
 
       auto ptextout = __new(::write_text::text_out_shape);

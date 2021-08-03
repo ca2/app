@@ -192,7 +192,7 @@
 //   bstring & operator += (const char * psz);
 //
 //
-//   bstring & operator += (const string & str);
+//   bstring & operator += (const ::string & str);
 //
 //
 //   bstring & operator += (const bstring & bstr);

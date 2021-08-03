@@ -279,14 +279,14 @@ void binary_stream::write(const ::payload & payload)
    case e_type_pu64:
       *this << *payload.m_pu64;
       break;
-   case e_type_double:
-      *this << payload.m_d;
+   case e_type_f64:
+      *this << payload.m_f64;
       break;
    case e_type_bool:
       *this << payload.m_b;
       break;
    case e_type_i32_array:
-      *this << payload.inta();
+      *this << payload.ia();
       break;
    case e_type_memory:
       *this << *payload.m_pmemory;
@@ -295,7 +295,7 @@ void binary_stream::write(const ::payload & payload)
       *this << *payload.m_pstra;
       break;
    case e_type_property_set:
-      *this << *payload.m_pset;
+      *this << *payload.m_ppropertyset;
       break;
    case e_type_i64_array:
       *this << *payload.m_pi64a;
@@ -389,7 +389,7 @@ void binary_stream::write(const ansichar * psz)
 }
 
 
-void binary_stream::write(const string & str)
+void binary_stream::write(const ::string & str)
 {
 
    write_buffer_length(str.get_length());
@@ -567,7 +567,7 @@ void binary_stream::read(id & id)
 //}
 
 
-//void binary_stream::write_link(const string & strLink, const ::matter & matter)
+//void binary_stream::write_link(const ::string & strLink, const ::matter & matter)
 //{
 //
 //   ::file::path path = get_link_path(matter);
@@ -599,7 +599,7 @@ void binary_stream::read(id & id)
 //}
 //
 //
-//void binary_stream::read_link(const string & strLink, ::matter & matter)
+//void binary_stream::read_link(const ::string & strLink, ::matter & matter)
 //{
 //
 //   ::file::path path = get_link_path(strLink);
@@ -639,7 +639,7 @@ void binary_stream::read(id & id)
 //}
 //
 //
-//void binary_stream::set_object_link(const ::matter & matter, const string & strLink, bool bReadOnly)
+//void binary_stream::set_object_link(const ::matter & matter, const ::string & strLink, bool bReadOnly)
 //{
 //
 //}
@@ -664,7 +664,7 @@ void binary_stream::read(id & id)
 //}
 //
 //
-//void binary_stream::write_link(const ::matter & matter, const string & strLink, bool bReadOnly)
+//void binary_stream::write_link(const ::matter & matter, const ::string & strLink, bool bReadOnly)
 //{
 //
 //   write(bReadOnly);
@@ -736,7 +736,7 @@ void binary_stream::read(id & id)
 //}
 
 
-//void binary_stream::set_object_link(const ::matter * preference, const string & strLink, bool bReadOnly)
+//void binary_stream::set_object_link(const ::matter * preference, const ::string & strLink, bool bReadOnly)
 //{
 //
 //}
@@ -763,7 +763,7 @@ void binary_stream::read(id & id)
 //}
 
 
-//void binary_stream::write_link(const ::matter * preference, const string & strLink, bool bReadOnly, ::matter * pobjectSaveOptions)
+//void binary_stream::write_link(const ::matter * preference, const ::string & strLink, bool bReadOnly, ::matter * pobjectSaveOptions)
 //{
 //
 //   write(bReadOnly);
@@ -947,42 +947,42 @@ void binary_stream::read_var_body(::payload & payload, enum_type etype)
 
    }
    break;
-   case e_type_double:
+   case e_type_f64:
    {
 
-      payload.set_type(::e_type_double, false);
+      payload.set_type(::e_type_f64, false);
 
-      *this >> payload.m_d;
+      *this >> payload.m_f64;
 
    }
    break;
-   case e_type_float:
+   case e_type_f32:
    {
 
-      payload.set_type(::e_type_float, false);
+      payload.set_type(::e_type_f32, false);
 
-      *this >> payload.m_d;
+      *this >> payload.m_f64;
 
    }
    break;
    case e_type_i32_array:
    {
 
-      __exchange_load_array(*this, payload.inta());
+      __exchange_load_array(*this, payload.as_ia());
 
    }
    break;
    case e_type_memory:
    {
 
-      *this >> payload.memory();
+      *this >> payload.as_memory();
 
    }
    break;
    case e_type_string_array:
    {
 
-      __exchange_load_array(*this, payload.stra());
+      __exchange_load_array(*this, payload.as_stra());
 
    }
    break;
@@ -991,7 +991,7 @@ void binary_stream::read_var_body(::payload & payload, enum_type etype)
 
 #undef new
 
-      __exchange_load_array(*this, payload.propset());
+      __exchange_load_array(*this, payload.as_propset());
 
 #define new ACME_NEW
 

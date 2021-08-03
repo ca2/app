@@ -169,7 +169,7 @@ namespace str
    inline bool begins_eat(::payload & payload, const PREFIX& strPrefix)
    {
 
-      string str = payload.get_string();
+      string str = payload.string();
 
       if (!begins_eat(str, strPrefix))
       {
@@ -189,7 +189,7 @@ namespace str
    inline bool begins_eat_ci(::payload & payload, const PREFIX& strPrefix)
    {
 
-      string str = payload.get_string();
+      string str = payload.string();
 
       if (!begins_eat_ci(str, strPrefix))
       {
@@ -225,31 +225,28 @@ namespace str
 
 
    template < typename TYPE, typename SUFFIX >
-   inline bool ends(const TYPE & strTopic, const SUFFIX & strSuffix)
+   inline bool ends(const TYPE & topic, const SUFFIX & suffix)
    {
 
-      auto len = ::str::string_safe_length(strSuffix);
+      string strTopic(topic);
 
-      auto end = ::str::string_safe_length(strTopic) - len;
+      string strSuffix(suffix);
 
-      auto strEnd = __string_base(strTopic);
+      return strTopic.ends(strSuffix);
 
-      auto pszEnd = strEnd.c_str() + end;
+      //auto len = ::str::string_safe_length(strSuffix);
 
-      auto strSuf = __string_base(strSuffix);
+      //auto end = ::str::string_safe_length(strTopic) - len;
 
-      auto pszSuf = strSuf.c_str();
+      //auto strEnd = __string_base(strTopic);
 
-      return !::str::string_n_compare(pszEnd, pszSuf, len);
+      //auto pszEnd = strEnd.c_str() + end;
 
-   }
+      //auto strSuf = __string_base(strSuffix);
 
+      //auto pszSuf = strSuf.c_str();
 
-   template < typename SUFFIX >
-   inline bool ends(const ::id & id, const SUFFIX & strSuffix)
-   {
-
-      return ends(string(id), strSuffix);
+      //return !::str::string_n_compare(pszEnd, pszSuf, len);
 
    }
 

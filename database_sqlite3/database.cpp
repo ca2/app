@@ -330,7 +330,7 @@ namespace sqlite
    bool database::memory_query_item(get_memory getmemory, const char * psz)
    {
 
-      return ::payload();
+      return false;
 
    }
 
@@ -465,7 +465,7 @@ namespace sqlite
 
    }
 
-   string database::add_error_message(const string & str)
+   string database::add_error_message(const ::string & str)
    {
 
       m_strError += str;
@@ -620,7 +620,7 @@ namespace sqlite
    }
 
 
-   //void database::create_long_set(const string & strTable)
+   //void database::create_long_set(const ::string & strTable)
    //{
 
    //   synchronous_lock synchronouslock(mutex());
@@ -649,7 +649,7 @@ namespace sqlite
    //}
 
 
-   //void database::create_string_set(const string & strTable)
+   //void database::create_string_set(const ::string & strTable)
    //{
 
    //   synchronous_lock synchronouslock(mutex());

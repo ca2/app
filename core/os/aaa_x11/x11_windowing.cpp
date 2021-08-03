@@ -50,8 +50,8 @@ public:
    //Colormap        m_colormap;
 
 
-   simple_ui_display(const string & strLine, const string & strTitle);
-   simple_ui_display(const string_array & straLines, const string & strTitle);
+   simple_ui_display(const ::string & strLine, const ::string & strTitle);
+   simple_ui_display(const string_array & straLines, const ::string & strTitle);
 
    GC create_gc();
 
@@ -64,7 +64,7 @@ public:
 };
 
 
-simple_ui_display::simple_ui_display(const string & strLine, const string & strTitle) :
+simple_ui_display::simple_ui_display(const ::string & strLine, const ::string & strTitle) :
 m_strTitle(strTitle),
 m_strFontName("serif"),
 m_size(600, 400)
@@ -75,7 +75,7 @@ m_size(600, 400)
 }
 
 
-simple_ui_display::simple_ui_display(const string_array & straLines, const string & strTitle) :
+simple_ui_display::simple_ui_display(const string_array & straLines, const ::string & strTitle) :
 m_strTitle(strTitle),
 m_strFontName("serif"),
 m_size(600, 400)
@@ -86,7 +86,7 @@ m_size(600, 400)
 }
 
 
-int display_line(const string & str, const string & strTitle)
+int display_line(const ::string & str, const ::string & strTitle)
 {
 
    simple_ui_display display(str, strTitle);
@@ -95,7 +95,7 @@ int display_line(const string & str, const string & strTitle)
 
 }
 
-int display_lines(const string_array & stra, const string & strTitle)
+int display_lines(const string_array & stra, const ::string & strTitle)
 {
 
    simple_ui_display display(stra, strTitle);
@@ -104,7 +104,7 @@ int display_lines(const string_array & stra, const string & strTitle)
 
 }
 
-//void line_array_display::show(const string & str, const string & strTitle)
+//void line_array_display::show(const ::string & str, const ::string & strTitle)
 //{
 //
 //   Display *d;

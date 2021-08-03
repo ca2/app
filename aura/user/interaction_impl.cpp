@@ -2711,7 +2711,7 @@ namespace user
       if(::is_null(pmessagequeue))
       {
          
-         return error_failed;
+         return false;
          
       }
 

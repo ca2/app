@@ -195,7 +195,7 @@ namespace str
 
    }
 
-   bool begins(const string & str, const char * pcszPrefix)
+   bool begins(const ::string & str, const char * pcszPrefix)
 
    {
       if(str.is_empty())
@@ -237,7 +237,7 @@ namespace str
       return false;
    }
 
-   bool begins_with(const string & str, const char * pcszPrefix)
+   bool begins_with(const ::string & str, const char * pcszPrefix)
 
    {
       return begins(str, pcszPrefix);
@@ -414,7 +414,7 @@ namespace str
    }
 
 
-   bool begins_ci_iws(const string & str, const char * pcszPrefix)
+   bool begins_ci_iws(const ::string & str, const char * pcszPrefix)
 
    {
       return begins_ci_iws(str.c_str(), pcszPrefix);
@@ -746,7 +746,7 @@ namespace str
    //}
 
 
-//   bool ends_ci(const string & str, const char * pcszSuffix)
+//   bool ends_ci(const ::string & str, const char * pcszSuffix)
 //
 //   {
 //      if(str.is_empty())
@@ -837,7 +837,7 @@ namespace str
    }
 
 
-   index  find_first(const string_array & straSearch, index & iFound, const string & str, index iStart)
+   index  find_first(const string_array & straSearch, index & iFound, const ::string & str, index iStart)
    {
 
       index iFind = -1;
@@ -1047,7 +1047,7 @@ namespace str
    }
 
 
-   index find_ci(const string & strFind, const string & str, index iStart)
+   index find_ci(const ::string & strFind, const ::string & str, index iStart)
    {
 
       if(strFind.get_length() > (str.get_length() - iStart))
@@ -1071,7 +1071,7 @@ namespace str
    }
 
 
-   index find_ci(const string & strFind, const char * psz, index iStart)
+   index find_ci(const ::string & strFind, const char * psz, index iStart)
    {
 
       ::count iFindLen = strFind.get_length();
@@ -1149,7 +1149,7 @@ namespace str
    }
 
 
-   index find_ci(const char * pszFind, const string & str, index iStart)
+   index find_ci(const char * pszFind, const ::string & str, index iStart)
    {
 
       ::count iFindLen = strlen(pszFind);
@@ -1219,7 +1219,7 @@ namespace str
    }
 
 
-   index find_ci(const char * pszFind,const string & str,index iStart, index iLast)
+   index find_ci(const char * pszFind,const ::string & str,index iStart, index iLast)
    {
 
       ::count iFindLen = strlen(pszFind);
@@ -1287,7 +1287,7 @@ namespace str
 
 
 
-   index find_file_extension(const char * pszFind,const string & str,index iStart, index iLast)
+   index find_file_extension(const char * pszFind,const ::string & str,index iStart, index iLast)
    {
 
       if(pszFind == nullptr || pszFind[0] == '\0') // do not search for empty Extensions
@@ -4020,7 +4020,7 @@ skip:
       return (u32) ansi_to_i64(psz);
    }
 
-   i64 to_i64(const string & str)
+   i64 to_i64(const ::string & str)
    {
 
       i32 i = 0;
@@ -4071,7 +4071,7 @@ skip:
 
    }
 
-   u64 to_u64(const string & str)
+   u64 to_u64(const ::string & str)
    {
 
       i32 i = 0;
@@ -4428,7 +4428,7 @@ skip:
    **/
 
 
-   bool simple_escaped(const string & str, strsize pos)
+   bool simple_escaped(const ::string & str, strsize pos)
    {
 
       if(pos == 0)
@@ -4894,7 +4894,7 @@ namespace str
    }
 
 
-   CLASS_DECL_ACME string zero_padded(const string & strSrc, strsize lenPad)
+   CLASS_DECL_ACME string zero_padded(const ::string & strSrc, strsize lenPad)
    {
 
       string str(strSrc);
@@ -4917,7 +4917,7 @@ namespace str
    void from(string & str, const ::string_stream & strstream)
    {
 
-      strstream.to_string(str);
+      str = strstream.to_string();
 
    }
 
@@ -4925,7 +4925,7 @@ namespace str
    void from(string & str, const ::text_stream & strstream)
    {
 
-      strstream.to_string(str);
+      str = strstream.to_string();
 
    }
 

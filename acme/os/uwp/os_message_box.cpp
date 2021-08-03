@@ -194,7 +194,7 @@ public:
    virtual ~message_box_w();
 
 
-   ::e_status show(const ::string & strText, const string & strCaption, const ::e_message_box & emessagebox, const ::future & process);
+   ::e_status show(const ::string & strText, const ::string & strCaption, const ::e_message_box & emessagebox, const ::future & process);
 
 
 };
@@ -306,7 +306,7 @@ message_box_callback::message_box_callback(::message_box_w * pmessageboxw)
 //virtual ~message_box_w();
 
 
-::e_status message_box_w::show(const ::string & strText, const string & strCaption, const ::e_message_box & emessagebox, const ::future & process)
+::e_status message_box_w::show(const ::string & strText, const ::string & strCaption, const ::e_message_box & emessagebox, const ::future & process)
 {
 
    wstring wstrMessage(strText);

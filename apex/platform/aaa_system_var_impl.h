@@ -69,9 +69,9 @@
 //   case e_type_string_array:
 //      return ::is_null(m_pstra) ? 0 : m_pstra->get_count();
 //   case type_vara:
-//      return ::is_null(m_pvara) ? 0 : m_pvara->get_count();
+//      return ::is_null(m_ppayloada) ? 0 : m_ppayloada->get_count();
 //   case e_type_property_set:
-//      return ::is_null(m_pset) ? 0 : m_pset->get_count();
+//      return ::is_null(m_ppropertyset) ? 0 : m_ppropertyset->get_count();
 //   case e_type_empty:
 //   case e_type_null:
 //   case e_type_new:
@@ -142,7 +142,7 @@
 //
 //
 //
-//inline bool CLASS_DECL_APEX operator == (const string & str, const ::payload & payload)
+//inline bool CLASS_DECL_APEX operator == (const ::string & str, const ::payload & payload)
 //{
 //
 //   return str == payload.get_string();

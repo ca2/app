@@ -104,7 +104,7 @@ CLASS_DECL_ACME ::Windows::Storage::StorageFolder ^ winrt_folder(string & strPat
 }
 
 
-CLASS_DECL_ACME ::Windows::Storage::StorageFolder ^ winrt_get_folder(const string & strFolder, string & strPrefix)
+CLASS_DECL_ACME ::Windows::Storage::StorageFolder ^ winrt_get_folder(const ::string & strFolder, string & strPrefix)
 {
 
    string strPath = strFolder;
@@ -136,7 +136,7 @@ CLASS_DECL_ACME ::Windows::Storage::StorageFolder ^ winrt_get_folder(const strin
 }
 
 
-CLASS_DECL_ACME::Windows::Storage::StorageFolder ^ winrt_get_folder(const string & strFolder)
+CLASS_DECL_ACME::Windows::Storage::StorageFolder ^ winrt_get_folder(const ::string & strFolder)
 {
 
    string strPrefix;
@@ -146,7 +146,7 @@ CLASS_DECL_ACME::Windows::Storage::StorageFolder ^ winrt_get_folder(const string
 }
 
 
-CLASS_DECL_ACME ::Windows::Storage::StorageFolder ^ winrt_get_folder(const string & strFolder, string & strPrefix, string & strRelative)
+CLASS_DECL_ACME ::Windows::Storage::StorageFolder ^ winrt_get_folder(const ::string & strFolder, string & strPrefix, string & strRelative)
 {
 
    string strPath = strFolder;

@@ -1755,7 +1755,7 @@ namespace draw2d_opengl
    }
 
 
-   size_i32 graphics::GetTabbedTextExtent(const string & str, count nTabPositions, LPINT lpnTabStopPositions)
+   size_i32 graphics::GetTabbedTextExtent(const ::string & str, count nTabPositions, LPINT lpnTabStopPositions)
    {
 
       // ASSERT(m_hdc != nullptr);
@@ -1776,7 +1776,7 @@ namespace draw2d_opengl
    }
 
 
-   size_i32 graphics::GetOutputTabbedTextExtent(const string & str, count nTabPositions, LPINT lpnTabStopPositions)
+   size_i32 graphics::GetOutputTabbedTextExtent(const ::string & str, count nTabPositions, LPINT lpnTabStopPositions)
    {
 
       // ASSERT(m_hdc != nullptr);
@@ -4459,7 +4459,7 @@ namespace draw2d_opengl
    }
 
 
-   bool graphics::draw_text(const string & str,const ::rectangle_i32 & rectParam, const ::e_align & ealign, const ::e_draw_text & edrawtext)
+   bool graphics::draw_text(const ::string & str,const ::rectangle_i32 & rectParam, const ::e_align & ealign, const ::e_draw_text & edrawtext)
    {
 
       ::rectangle_f64 rectangle;
@@ -4471,7 +4471,7 @@ namespace draw2d_opengl
    }
 
 
-   bool graphics::draw_text(const string & str, const ::rectangle_f64 & rectParam, const ::e_align & ealign, const ::e_draw_text & edrawtext)
+   bool graphics::draw_text(const ::string & str, const ::rectangle_f64 & rectParam, const ::e_align & ealign, const ::e_draw_text & edrawtext)
    {
 
       //try
@@ -4590,7 +4590,7 @@ namespace draw2d_opengl
    }
 
 
-   bool graphics::draw_text_ex(const string & str, const ::rectangle_i32 & rectParam, const ::e_align & ealign, const ::e_draw_text & edrawtext, LPDRAWTEXTPARAMS lpDTParams)
+   bool graphics::draw_text_ex(const ::string & str, const ::rectangle_i32 & rectParam, const ::e_align & ealign, const ::e_draw_text & edrawtext, LPDRAWTEXTPARAMS lpDTParams)
    {
 
       // ASSERT(m_hdc != nullptr);
@@ -4608,7 +4608,7 @@ namespace draw2d_opengl
 
 
 
-   bool graphics::draw_text_ex(const string & str,const ::rectangle_f64 & rectParam, const ::e_align & ealign, const ::e_draw_text & edrawtext,LPDRAWTEXTPARAMS lpDTParams)
+   bool graphics::draw_text_ex(const ::string & str,const ::rectangle_f64 & rectParam, const ::e_align & ealign, const ::e_draw_text & edrawtext,LPDRAWTEXTPARAMS lpDTParams)
    {
 
       return ::draw2d::graphics::draw_text_ex(str,rectParam,ealign, edrawtext,lpDTParams);
@@ -4677,7 +4677,7 @@ namespace draw2d_opengl
    }
 
 
-   size_f64 graphics::get_text_extent(const string & str)
+   size_f64 graphics::get_text_extent(const ::string & str)
    {
 
       ::size_f64 size;
@@ -4702,7 +4702,7 @@ namespace draw2d_opengl
    }
 
 
-   size_i32 graphics::GetOutputTextExtent(const string & str)
+   size_i32 graphics::GetOutputTextExtent(const ::string & str)
    {
 
       // ASSERT(m_hdc != nullptr);
@@ -4828,7 +4828,7 @@ namespace draw2d_opengl
    }
 
 
-   bool graphics::get_text_extent(size_f64 & size, const string & str)
+   bool graphics::get_text_extent(size_f64 & size, const ::string & str)
    {
 
       //// ASSERT(m_hdc != nullptr);

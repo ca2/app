@@ -140,19 +140,19 @@ namespace apex
 
 
       //virtual ::image_result get_image(const ::payload & varFile, bool bCache = true, bool bSync = true);
-      //virtual ::image_result matter_image(const string & strMatter, bool bCache = true, bool bSync = true);
+      //virtual ::image_result matter_image(const ::string & strMatter, bool bCache = true, bool bSync = true);
 
       //virtual ::image_result load_image(const ::payload & varFile, bool bCache = true, bool bSync = true, bool bCreateHelperMaps = false) override;
-      //virtual ::image_result load_matter_image(const string & strMatter, bool bCache = true, bool bSync = true, bool bCreateHelperMaps = false);
+      //virtual ::image_result load_matter_image(const ::string & strMatter, bool bCache = true, bool bSync = true, bool bCreateHelperMaps = false);
       //virtual ::image_result load_matter_icon(string_array & straMatter, string strIcon) override;
       //virtual ::image_result load_thumbnail(const ::payload & varFile, int w, int h) override;
-      //virtual ::image_result load_thumbnail(const string & strPath);
+      //virtual ::image_result load_thumbnail(const ::string & strPath);
       //virtual ::image_result load_dib(const ::file::path & pathDib) override;
       //virtual ::icon_result load_icon(const ::payload & varFile);
 
 
       //virtual ::e_status _get_image(image * pimage, const ::payload & varFile, bool bSync = true);
-      //virtual ::e_status _matter_image(image * pimage, const string & strMatter, bool bSync = true);
+      //virtual ::e_status _matter_image(image * pimage, const ::string & strMatter, bool bSync = true);
 
 
       //virtual ::e_status _load_image(image * pimage, const ::payload & varFile, bool bSync = true, bool bCreateHelperMaps = false);

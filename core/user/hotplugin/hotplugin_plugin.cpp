@@ -79,7 +79,7 @@ namespace hotplugin
    }
 
 
-   bool plugin::open_link(const string & strLink,const string & strTarget)
+   bool plugin::open_link(const ::string & strLink,const ::string & strTarget)
    {
 
       if(m_phost != nullptr)

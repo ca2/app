@@ -20,7 +20,7 @@
 }
 
 
-//index regex::match(string_array & stra, const string & strParam, strsize iSize)
+//index regex::match(string_array & stra, const ::string & strParam, strsize iSize)
 //{
 //
 //   stra.erase_all();

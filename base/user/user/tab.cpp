@@ -3873,7 +3873,7 @@ namespace user
 
       ::match::any & matchany = get_data()->m_matchanyRestore;
 
-      if (pholder != nullptr && (bool) pholder->payload("void_restore"))
+      if (pholder != nullptr && pholder->payload("void_restore").is_true())
       {
 
          return false;
@@ -3957,10 +3957,10 @@ namespace user
 
          // ODOW : TODO : should create bergedgewrapper to open bergedge inside a window.
 
-         if(payloada[i].get_type() == ::e_type_string && payloada[i].get_string() == "app:bergedge")
+         if(payloada[i].get_type() == ::e_type_string && payloada[i].string() == "app:bergedge")
             continue;
 
-         if(payloada[i].get_type() == ::e_type_string && payloada[i].get_string() == "app:")
+         if(payloada[i].get_type() == ::e_type_string && payloada[i].string() == "app:")
             continue;
 
          //if(stra.add_unique(payloada[i]) >= 0)

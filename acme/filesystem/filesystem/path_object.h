@@ -6,7 +6,7 @@ namespace file
 
 
    class CLASS_DECL_ACME path_object :
-      virtual public matter,
+      virtual public material_object,
       virtual public path
    {
    public:
@@ -23,8 +23,7 @@ namespace file
 
       virtual strsize sz_len() const override;
       virtual void to_sz(char* sz, strsize size) const override;
-      virtual void to_string(const string_exchange& string) const override;
-
+      
       using matter::set;
       using matter::has;
 

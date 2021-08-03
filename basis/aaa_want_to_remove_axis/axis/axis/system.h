@@ -63,7 +63,7 @@ namespace axis
       virtual bool is_system() const override;
 
 
-      virtual string crypto_md5_text(const string & str) override;
+      virtual string crypto_md5_text(const ::string & str) override;
 
 
       virtual ::e_status create_html();
@@ -122,7 +122,7 @@ namespace axis
       //virtual u32 crc32(u32 dwPrevious, const char * psz);
 
 
-      virtual string url_encode(const string & str) override;
+      virtual string url_encode(const ::string & str) override;
 
    };
 

@@ -97,7 +97,7 @@ namespace turboc
 
       virtual void turboc_render();
 /*      virtual void turboc_render(::image * pimage);
-      virtual void turboc_fast_render(const string & strHelloMultiverse);
+      virtual void turboc_fast_render(const ::string & strHelloMultiverse);
       virtual void turboc_draw();
       virtual void full_render();
 

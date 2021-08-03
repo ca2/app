@@ -402,7 +402,7 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
    }
 
 
-   string system::__get_text(const string & str)
+   string system::__get_text(const ::string & str)
    {
 
       return str;

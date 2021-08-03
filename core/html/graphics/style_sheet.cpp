@@ -118,7 +118,7 @@ namespace html
    }
 
 
-   style * style_sheet::rfind(e_tag etag, const string & strClass, const string & strSubClass, id idName)
+   style * style_sheet::rfind(e_tag etag, const ::string & strClass, const ::string & strSubClass, id idName)
    {
 
       for(index i = m_stylea.get_upper_bound(); i >= 0; i--)
@@ -135,7 +135,7 @@ namespace html
 
    }
 
-   const style * style_sheet::rfind(e_tag etag, const string & strClass, const string & strSubClass, id idName) const
+   const style * style_sheet::rfind(e_tag etag, const ::string & strClass, const ::string & strSubClass, id idName) const
    {
 
       return ((style_sheet *) this)->rfind(etag, strClass, strSubClass, idName);
@@ -143,7 +143,7 @@ namespace html
    }
 
 
-   style * style_sheet::rfind_border_width(e_tag etag, const string & strClass, const string & strSubClass, id idName, float & f)
+   style * style_sheet::rfind_border_width(e_tag etag, const ::string & strClass, const ::string & strSubClass, id idName, float & f)
    {
 
       for(index i = m_stylea.get_upper_bound(); i >= 0; i--)
@@ -161,7 +161,7 @@ namespace html
    }
 
 
-   const style * style_sheet::rfind_border_width(e_tag etag, const string & strClass, const string & strSubClass, id idName, float & f) const
+   const style * style_sheet::rfind_border_width(e_tag etag, const ::string & strClass, const ::string & strSubClass, id idName, float & f) const
    {
 
       return ((style_sheet *) this)->rfind_border_width(etag, strClass, strSubClass, idName, f);
@@ -169,7 +169,7 @@ namespace html
    }
 
 
-   style * style_sheet::rfind_border_color(e_tag etag, const string & strClass, const string & strSubClass, id idName, ::color::color & color32)
+   style * style_sheet::rfind_border_color(e_tag etag, const ::string & strClass, const ::string & strSubClass, id idName, ::color::color & color32)
    {
 
       for(index i = m_stylea.get_upper_bound(); i >= 0; i--)
@@ -187,7 +187,7 @@ namespace html
    }
 
 
-   const style * style_sheet::rfind_border_color(e_tag etag, const string & strClass, const string & strSubClass, id idName, ::color::color & color32) const
+   const style * style_sheet::rfind_border_color(e_tag etag, const ::string & strClass, const ::string & strSubClass, id idName, ::color::color & color32) const
    {
 
       return ((style_sheet *) this)->rfind_border_color(etag, strClass, strSubClass, idName, color32);

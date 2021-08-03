@@ -163,7 +163,7 @@ CLASS_DECL_ACME bool safe_free_memory(void * ptype)
 }
 
 
-//CLASS_DECL_ACME __pointer(alloc_interface) & get_factory2(const string & strName)
+//CLASS_DECL_ACME __pointer(alloc_interface) & get_factory2(const ::string & strName)
 //{
 //
 //   string_array stra;

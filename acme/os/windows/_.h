@@ -45,12 +45,12 @@ class memory;
 
 
 
-inline payload::operator long() const
-{
-
-   return i32();
-
-}
+//inline payload::operator long() const
+//{
+//
+//   return i32();
+//
+//}
 //
 //inline payload & payload::operator = (LPDWORD pinteraction)
 //{

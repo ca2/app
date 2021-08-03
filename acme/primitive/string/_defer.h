@@ -35,11 +35,11 @@
 
 
 //template < typename TYPE >
-//inline CLASS_DECL_ACME string operator + (const string & str, const tostring < TYPE > & tostring) { return str + __str(tostring); }
+//inline CLASS_DECL_ACME string operator + (const ::string & str, const tostring < TYPE > & tostring) { return str + __str(tostring); }
 
 
 //template < typename TYPE >
-//inline CLASS_DECL_ACME string operator + (const tostring < TYPE > & tostring, const string & str) { return __str(tostring) + str; }
+//inline CLASS_DECL_ACME string operator + (const tostring < TYPE > & tostring, const ::string & str) { return __str(tostring) + str; }
 
 
 //template < typename TYPE >

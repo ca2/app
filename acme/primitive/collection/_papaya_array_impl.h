@@ -165,7 +165,7 @@ namespace papaya
             for (::index i = 0; i < payload.payloada().get_count(); i++)
             {
 
-               index iItem = ::papaya::array::add(array, payload.payloada()[i].get_string());
+               index iItem = ::papaya::array::add(array, payload.payloada()[i].string());
 
                if (i < 0)
                {
@@ -180,10 +180,12 @@ namespace papaya
          else if (payload.get_type() == ::e_type_i32_array)
          {
 
-            for (::index i = 0; i < payload.inta().get_count(); i++)
+            auto ia = payload.ia();
+
+            for (::index i = 0; i < ia.get_count(); i++)
             {
 
-               auto iItem = ::papaya::array::add(array, __str(payload.inta()[i]));
+               auto iItem = ::papaya::array::add(array, __str(ia[i]));
 
                if (i < 0)
                {
@@ -201,7 +203,7 @@ namespace papaya
             for (auto & value : payload.propset().values())
             {
 
-               auto iItem = ::papaya::array::add(array, value.get_string());
+               auto iItem = ::papaya::array::add(array, value.string());
 
                if (i < 0)
                {
@@ -215,7 +217,7 @@ namespace papaya
          }
          else
          {
-            i = ::papaya::array::add(array, payload.get_string());
+            i = ::papaya::array::add(array, payload.string());
 
          }
 
@@ -621,7 +623,7 @@ namespace papaya
          else
          {
 
-            iInsert = stra.add_item(payload.get_string());
+            iInsert = stra.add_item(payload);
 
          }
 
@@ -646,7 +648,7 @@ namespace papaya
          for (::index i = 0; i < c; i++)
          {
 
-            auto iItem = stra.add_item(propertyset.element_at(i)->get_string());
+            auto iItem = stra.add_item(*propertyset.element_at(i));
 
             if (iInsert < 0)
             {

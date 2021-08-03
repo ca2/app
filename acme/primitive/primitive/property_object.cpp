@@ -38,7 +38,7 @@ property_object::~property_object()
 
    m_pia.release(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
 
-   m_pset.release(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
+   m_ppropertyset.release(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
 
    return ::success;
 
@@ -159,12 +159,14 @@ class debug_test_reference :
 {
 public:
 
+
    bool & m_bTest1;
    ::string & m_strText1;
 
+
    debug_test_reference() :
-      m_bTest1(topic("bTest1")),
-      m_strText1(topic("strTest1"))
+      m_bTest1(payload_reference(topic("bTest1"))),
+      m_strText1(payload_reference(topic("strTest1")))
    {
 
    }
@@ -565,7 +567,7 @@ id property_object::translate_property_id(const ::id & id)
 //}
 
 
-string property_object::property_set_evaluate(const string & str) const
+string property_object::property_set_evaluate(const ::string & str) const
 {
 
    return ::papaya::property_set::evaluate(*this, str);
@@ -573,7 +575,7 @@ string property_object::property_set_evaluate(const string & str) const
 }
 
 
-string property_object::property_set_get_evaluation(const string & str) const
+string property_object::property_set_get_evaluation(const ::string & str) const
 {
 
    return property_set_get_string(str.c_str() + 1);
@@ -588,7 +590,7 @@ bool property_object::property_set_get_evaluation(string & strResult, const stri
 
 }
 
-string property_object::property_set_get_string(const string & str) const
+string property_object::property_set_get_string(const ::string & str) const
 {
 
    auto pproperty = on_fetch_property(str);
@@ -600,7 +602,7 @@ string property_object::property_set_get_string(const string & str) const
 
    }
 
-   return pproperty->get_string();
+   return pproperty->string();
 
 }
 
@@ -616,7 +618,7 @@ bool property_object::property_set_get_string(string & strResult, const string& 
 
    }
 
-   strResult = pproperty->get_string();
+   strResult = pproperty->string();
 
    return true;
 
@@ -677,7 +679,7 @@ void property_object::on_property_changed(property* pproperty, const action_cont
 }
 
 //
-//string property_object::property_set_get_evaluation(const string & str) const
+//string property_object::property_set_get_evaluation(const ::string & str) const
 //{
 //
 //   return property_set_get_string(str.c_str() + 1);
@@ -685,7 +687,7 @@ void property_object::on_property_changed(property* pproperty, const action_cont
 //}
 //
 //
-//string property_object::property_set_evaluate(const string & strParam) const
+//string property_object::property_set_evaluate(const ::string & strParam) const
 //{
 //
 //   return ::lemon::property_set::evaluate(*this, strParam);
@@ -694,7 +696,7 @@ void property_object::on_property_changed(property* pproperty, const action_cont
 //
 //
 //
-//string property_object::property_set_get_string(const string & str) const
+//string property_object::property_set_get_string(const ::string & str) const
 //{
 //
 //   auto pproperty = on_fetch_property(str);
@@ -706,7 +708,7 @@ void property_object::on_property_changed(property* pproperty, const action_cont
 //
 //   }
 //
-//   return pproperty->get_string();
+//   return pproperty->string();
 //
 //}
 
@@ -721,7 +723,7 @@ string property_object::get_text(const ::payload & payload, const ::id & id)
 
    }
 
-   return payload.get_string();
+   return payload.string();
 
 }
 

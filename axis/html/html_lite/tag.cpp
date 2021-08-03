@@ -57,7 +57,7 @@ lite_html_tag::~lite_html_tag()
  * @since 1.0
  * @author Gurmeet S. Kochar
  */
-::u32 lite_html_tag::parseFromStr(::lite_html_reader * preader, const string & strString, strsize iPos,
+::u32 lite_html_tag::parseFromStr(::lite_html_reader * preader, const ::string & strString, strsize iPos,
                                  bool &bIsOpeningTag,
                                  bool &bIsClosingTag,
                                  bool bParseAttrib /* = true */)

@@ -262,11 +262,11 @@ public:
 //public:
 //
 //
-//   property_set * m_pset;
+//   property_set * m_ppropertyset;
 //
 //
-//   property_set_stream() : m_pset(nullptr) { }
-//   property_set_stream(property_set & set) : m_pset(&set) { }
+//   property_set_stream() : m_ppropertyset(nullptr) { }
+//   property_set_stream(property_set & set) : m_ppropertyset(&set) { }
 //
 //   virtual stream * branch(const ::id & id);
 //
@@ -493,7 +493,7 @@ public:
    virtual void write(const id & id);
    virtual void write(const ::payload & payload);
    virtual void write(const property & property);
-   virtual void write(const string & str) ;
+   virtual void write(const ::string & str) ;
    virtual void write(const ::matter * pobject);
    virtual void write(const ::matter & matter);
    virtual void write(const property_set & set);
@@ -606,17 +606,17 @@ public:
    //virtual void write_file(const ::file::path & path, const ::matter & matter);
    //virtual void read_file(const ::file::path & path, ::matter & matter);
 
-   //virtual void write_link(const string & strLink, __pointer(::matter) & matter);
-   //virtual void read_link(const string & strLink, __pointer(::matter) & matter);
+   //virtual void write_link(const ::string & strLink, __pointer(::matter) & matter);
+   //virtual void read_link(const ::string & strLink, __pointer(::matter) & matter);
 
-   //virtual void write_link(const ::matter * preference, const string & strLink, bool bReadOnly, ::matter * pobjectSaveOptions = nullptr);
+   //virtual void write_link(const ::matter * preference, const ::string & strLink, bool bReadOnly, ::matter * pobjectSaveOptions = nullptr);
 
    //virtual bool write_link(const ::matter * preference);
    //virtual void read_link(::matter * preference);
 
 
    //virtual bool get_object_link(const ::matter * preference, string & strLink, bool & bReadOnly);
-   //virtual void set_object_link(const ::matter * preference, const string & strLink, bool bReadOnly);
+   //virtual void set_object_link(const ::matter * preference, const ::string & strLink, bool bReadOnly);
 
 
    //virtual ::file::path get_link_path(string strLink);
@@ -795,7 +795,7 @@ namespace std
 //
 //inline stream & operator << (stream & s, const ::file::path & path);
 //
-//inline stream & operator << (stream & s, const string & str) { s.write(str); return s; }
+//inline stream & operator << (stream & s, const ::string & str) { s.write(str); return s; }
 //
 //inline stream & operator << (stream & s, e_set_storing) { s->set_storing(); s; }
 //

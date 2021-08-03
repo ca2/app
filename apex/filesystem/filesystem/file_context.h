@@ -55,9 +55,9 @@ public:
    virtual ::file::path ca2module();
 
    
-   ::file::path time(const ::file::path & pathBasePath, i32 iDepth = 0, const string & strPrefix = nullptr, const string & strSuffix = nullptr, bool bTryDelete = false);
-   ::file::path time_square(const string & strPrefix = nullptr, const string & strSuffix = nullptr);
-   ::file::path time_log(const string & str);
+   ::file::path time(const ::file::path & pathBasePath, i32 iDepth = 0, const ::string & strPrefix = nullptr, const ::string & strSuffix = nullptr, bool bTryDelete = false);
+   ::file::path time_square(const ::string & strPrefix = nullptr, const ::string & strSuffix = nullptr);
+   ::file::path time_log(const ::string & str);
 
 
    virtual file_pointer time_square_file(const string & pszPrefix = nullptr, const string & pszSuffix = nullptr);
@@ -195,11 +195,11 @@ public:
    //virtual string nessie(::file::file * pfile);
    virtual string nessie(const ::payload & varFile);
 
-   virtual bool resolve_link(::file::path & pathTarget, const string & strSource, string * pstrDirectory = nullptr, string * pstrParams = nullptr);
+   virtual bool resolve_link(::file::path & pathTarget, const ::string & strSource, string * pstrDirectory = nullptr, string * pstrParams = nullptr);
 
    virtual bool is_link(string strPath);
 
-   virtual bool get_last_write_time(filetime_t * pfiletime, const string & strFilename);
+   virtual bool get_last_write_time(filetime_t * pfiletime, const ::string & strFilename);
 
    //virtual void dtf(const ::file::path & pszFile, const ::file::path & pszDir);
 

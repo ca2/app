@@ -809,7 +809,7 @@ namespace apex
    }
 
 
-   string context::http_get(const string & strUrl, ::property_set & set)
+   string context::http_get(const ::string & strUrl, ::property_set & set)
    {
 
       UNREFERENCED_PARAMETER(strUrl);
@@ -889,7 +889,7 @@ namespace apex
    }
 
 
-   void context::locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const string & strLocale, const string & strSchema)
+   void context::locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::string & strLocale, const ::string & strSchema)
    {
 
       if (get_application())

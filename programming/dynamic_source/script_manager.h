@@ -147,19 +147,19 @@ namespace dynamic_source
       virtual ::e_status init1();
 
 
-      virtual bool include_matches_file_exists(const string & strPath);
-      void set_include_matches_file_exists(const string & strPath, bool bFileExists);
-      bool include_matches_is_dir(const string & strPath);
-      bool include_has_script(const string & strPath);
-      string include_expand_md5(const string & strPath);
-      void set_include_expand_md5(const string & strPath, const string & strMd5);
+      virtual bool include_matches_file_exists(const ::string & strPath);
+      void set_include_matches_file_exists(const ::string & strPath, bool bFileExists);
+      bool include_matches_is_dir(const ::string & strPath);
+      bool include_has_script(const ::string & strPath);
+      string include_expand_md5(const ::string & strPath);
+      void set_include_expand_md5(const ::string & strPath, const ::string & strMd5);
 
       __pointer(::dynamic_source::session) get_session(const char * pszId);
 
-      __pointer(script_instance) get(const string & strNafme);
-      __pointer(script_instance) get(const string & strName, __pointer(script) & pscript);
+      __pointer(script_instance) get(const ::string & strNafme);
+      __pointer(script_instance) get(const ::string & strName, __pointer(script) & pscript);
       virtual void handle(::dynamic_source::httpd_socket * psocket);
-      ::payload get_output_internal(::dynamic_source::script_interface * pinstanceParent, const string & strName);
+      ::payload get_output_internal(::dynamic_source::script_interface * pinstanceParent, const ::string & strName);
       void run(const char * lpcszName);
 
       void LoadEnv();
@@ -184,7 +184,7 @@ namespace dynamic_source
 
       virtual void on_load_env();
 
-      virtual void register_plugin(const string & strHost, const string & strScript, const string & strName, script * pscript);
+      virtual void register_plugin(const ::string & strHost, const ::string & strScript, const ::string & strName, script * pscript);
 
 
       virtual string get_root_plugin();
@@ -207,7 +207,7 @@ namespace dynamic_source
 
       virtual bool should_build(const ::file::path & strScript);
 
-      virtual ::file::path get_script_path(const ::file::path & strName, const string & strModifier);
+      virtual ::file::path get_script_path(const ::file::path & strName, const ::string & strModifier);
 
    };
 

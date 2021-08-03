@@ -677,7 +677,7 @@ namespace html
 
       bool bHtml = false;
 
-      strHtml = payload.get_string();
+      strHtml = payload.string();
 
       if (strHtml.Left(2048).trimmed().contains_ci("<html"))
       {
@@ -715,7 +715,7 @@ namespace html
       if(varDisplay.is_empty())
          return tag_to_display(e_tag);
 
-      string strDisplay = varDisplay.get_string();
+      string strDisplay = varDisplay.string();
 
       if(strDisplay.has_char())
       {

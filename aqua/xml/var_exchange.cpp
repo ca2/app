@@ -32,7 +32,7 @@ namespace xml
 
       pnode->set_attribute("type", m_ppayload->get_type());
 
-      pnode->set_value(m_ppayload->get_string());
+      pnode->set_value(m_ppayload->string());
 
    }
 
@@ -50,7 +50,9 @@ namespace xml
          return;
       }
       
-      i32 i = pnode->attribute("type");
+      i32 i;
+
+      pnode->attribute("type").as(i);
       
       m_ppayload->m_etype = (::enum_type) i;
 

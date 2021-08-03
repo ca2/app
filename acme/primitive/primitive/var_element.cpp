@@ -59,10 +59,10 @@ enum_type set_element(::payload & payload, ::matter * pmatter)
          payload.m_pia = dynamic_cast <::int_array*>(pmatter);
          break;
       case ::e_type_payload_array:
-         payload.m_pvara = dynamic_cast <payload_array*>(pmatter);
+         payload.m_ppayloada = dynamic_cast <payload_array*>(pmatter);
          break;
       case ::e_type_property_set:
-         payload.m_pset = dynamic_cast <::property_set*>(pmatter);
+         payload.m_ppropertyset = dynamic_cast <::property_set*>(pmatter);
          break;
       case ::e_type_i64_array:
          payload.m_pi64a = dynamic_cast <::i64_array*>(pmatter);
@@ -114,7 +114,7 @@ void payload::_set_element(::matter* pmatter)
    if (m_etype == e_type_string)
    {
 
-      m_str.~string();
+      m_str.::string::~string();
 
       return 0;
 
@@ -141,9 +141,9 @@ void payload::_set_element(::matter* pmatter)
          case e_type_i32_array:
             return ::release(m_pia);
          case e_type_payload_array:
-            return ::release(m_pvara);
+            return ::release(m_ppayloada);
          case e_type_property_set:
-            return ::release(m_pset);
+            return ::release(m_ppropertyset);
          case e_type_i64_array:
             return ::release(m_pi64a);
          case e_type_memory:

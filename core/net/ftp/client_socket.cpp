@@ -1409,7 +1409,7 @@ auto tickStart = ::millis::now();
       return fRet;
    }
 
-   void client_socket::OnLine(const string & strLine)
+   void client_socket::OnLine(const ::string & strLine)
    {
 
       single_lock synchronouslock(mutex());

@@ -817,7 +817,7 @@ bool memory_base::begins_ci(const char * psz, strsize iCount) const
 }
 
 
-bool memory_base::begins(const string & str, strsize iCount) const
+bool memory_base::begins(const ::string & str, strsize iCount) const
 {
 
    if (iCount < 0)
@@ -839,7 +839,7 @@ bool memory_base::begins(const string & str, strsize iCount) const
 }
 
 
-bool memory_base::begins_ci(const string & str, strsize iCount) const
+bool memory_base::begins_ci(const ::string & str, strsize iCount) const
 {
 
    if (iCount < 0)
@@ -1252,7 +1252,7 @@ void memory_base::from_string(const char * psz)
 }
 
 
-void memory_base::from_string(const string & str)
+void memory_base::from_string(const ::string & str)
 {
 
    set_size(str.length());
@@ -1265,7 +1265,7 @@ void memory_base::from_string(const string & str)
 void memory_base::from_string(const ::payload & payload)
 {
 
-   from_string((const string &)payload.get_string());
+   from_string((const string &)payload.string());
 
 }
 
@@ -1292,7 +1292,7 @@ void memory_base::append_from_string(const char * psz)
 }
 
 
-void memory_base::append_from_string(const string & str)
+void memory_base::append_from_string(const ::string & str)
 {
 
 
@@ -1310,15 +1310,15 @@ void memory_base::append_from_string(const string & str)
 void memory_base::append_from_string(const ::payload & payload)
 {
 
-   append_from_string((const string &)payload.get_string());
+   append_from_string((const string &)payload.string());
 
 }
 
 
-void memory_base::to_string(const class string_exchange & str) const
+string memory_base::to_string() const
 {
 
-   str = to_string(0);
+   return to_string(0);
 
 }
 

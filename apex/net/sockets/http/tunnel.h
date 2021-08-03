@@ -52,7 +52,7 @@ namespace sockets
 
       void OnConnect() override;
 
-      void OnLine(const string & strParam) override;
+      void OnLine(const ::string & strParam) override;
 
       virtual ::e_status step() override;
 

@@ -632,7 +632,7 @@ namespace filemanager
 
       auto pcontext = m_pcontext->m_pauracontext;
 
-      m_path = filemanager_project_entry(strManagerId, varFile.get_string(), pcontext);
+      m_path = filemanager_project_entry(strManagerId, varFile.string(), pcontext);
 
       defer_check_manager_id(strManagerId);
 

@@ -98,9 +98,9 @@ namespace crypto
 
       virtual __pointer(rsa) generate_rsa_key();
 
-      virtual __pointer(rsa) read_priv_pem(const string & strFile);
+      virtual __pointer(rsa) read_priv_pem(const ::string & strFile);
 
-      virtual __pointer(rsa) read_pub_pem(const string & strFile);
+      virtual __pointer(rsa) read_pub_pem(const ::string & strFile);
 
 
       virtual void err_load_rsa_strings();
@@ -119,7 +119,7 @@ namespace crypto
       virtual string txt_encrypt(const char * psz,rsa * prsa);
       virtual string txt_decrypt(const char * psz,rsa * prsa);
 
-      virtual void np_make_zigbert_rsa(const string & strDir, const string & strSignerPath, const string & strKeyPath, const string & strOthersPath, const string & strSignature);
+      virtual void np_make_zigbert_rsa(const ::string & strDir, const ::string & strSignerPath, const ::string & strKeyPath, const ::string & strOthersPath, const ::string & strSignature);
 
 
    };

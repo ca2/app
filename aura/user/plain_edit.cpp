@@ -178,7 +178,7 @@ namespace user
 
       //m_pcontrolstyle = new plain_edit_internal();
 
-      m_psetsel = nullptr;
+      m_ppropertysetsel = nullptr;
 
       m_pinsert = nullptr;
 
@@ -914,7 +914,7 @@ namespace user
       if(m_propertyText && !m_propertyText->is_empty())
       {
 
-         _001SetText(m_propertyText->get_string(), ::e_source_initialize);
+         _001SetText(m_propertyText->string(), ::e_source_initialize);
 
       }
 
@@ -5155,8 +5155,8 @@ finished_update:
 
                m_ptree->m_iSelEnd = i1;
                m_ptree->m_iSelBeg = m_ptree->m_iSelEnd;
-               m_psetsel->m_iSelEnd = m_ptree->m_iSelEnd;
-               m_psetsel->m_iSelBeg = m_ptree->m_iSelEnd;
+               m_ppropertysetsel->m_iSelEnd = m_ptree->m_iSelEnd;
+               m_ppropertysetsel->m_iSelBeg = m_ptree->m_iSelEnd;
 
                bool bFullUpdate = false;
 
@@ -5227,8 +5227,8 @@ finished_update:
 
                m_ptree->m_iSelEnd = i1;
                m_ptree->m_iSelBeg = m_ptree->m_iSelEnd;
-               m_psetsel->m_iSelEnd = m_ptree->m_iSelEnd;
-               m_psetsel->m_iSelBeg = m_ptree->m_iSelEnd;
+               m_ppropertysetsel->m_iSelEnd = m_ptree->m_iSelEnd;
+               m_ppropertysetsel->m_iSelBeg = m_ptree->m_iSelEnd;
 
                bool bFullUpdate = false;
 
@@ -5320,7 +5320,7 @@ finished_update:
 
 
 
-   void plain_edit::InputConnectionCommitText(const string & strText, strsize iNewCursorPosition)
+   void plain_edit::InputConnectionCommitText(const ::string & strText, strsize iNewCursorPosition)
    {
 
       InputConnectionSetComposingText(strText, iNewCursorPosition);
@@ -5330,7 +5330,7 @@ finished_update:
    }
 
 
-   void plain_edit::InputConnectionSetComposingText(const string & strText, strsize iNewCursorPosition)
+   void plain_edit::InputConnectionSetComposingText(const ::string & strText, strsize iNewCursorPosition)
    {
 
       bool bAlreadyComposing = m_pitemComposing
@@ -5397,8 +5397,8 @@ finished_update:
 
       //m_ptree->m_iSelEnd = iAfterComposingPosition;
       //m_ptree->m_iSelBeg = iAfterComposingPosition;
-      //m_psetsel->m_iSelEnd = iAfterComposingPosition;
-      //m_psetsel->m_iSelBeg = iAfterComposingPosition;
+      //m_ppropertysetsel->m_iSelEnd = iAfterComposingPosition;
+      //m_ppropertysetsel->m_iSelBeg = iAfterComposingPosition;
 
       if (bAlreadyComposing)
       {
@@ -5516,7 +5516,7 @@ finished_update:
 
       psetsel->m_iSelEnd = m_ptree->m_iSelEnd;
 
-      m_psetsel = psetsel;
+      m_ppropertysetsel = psetsel;
 
       MacroBegin();
       MacroRecord(psetsel);
@@ -6032,7 +6032,7 @@ finished_update:
 
 
 
-   void plain_edit::_001SetText(const string & strParam, const ::action_context & context)
+   void plain_edit::_001SetText(const ::string & strParam, const ::action_context & context)
    {
 
       string str(strParam);
@@ -6124,7 +6124,7 @@ finished_update:
          if(::is_set(m_propertyText))
          {
 
-            plain_edit_get_text(strtext());
+            plain_edit_get_text(m_propertyText.m_pproperty->as_string());
 
             auto papplication = get_application();
 
@@ -6193,7 +6193,7 @@ finished_update:
    }
 
 
-   bool plain_edit::get_line_color(::color::color & color32, const string & strLine)
+   bool plain_edit::get_line_color(::color::color & color32, const ::string & strLine)
    {
 
       return false;
@@ -6773,8 +6773,8 @@ finished_update:
          }
          m_ptree->m_iSelEnd += strText.get_length();
          m_ptree->m_iSelBeg = m_ptree->m_iSelEnd;
-         m_psetsel->m_iSelEnd = m_ptree->m_iSelEnd;
-         m_psetsel->m_iSelBeg = m_ptree->m_iSelEnd;
+         m_ppropertysetsel->m_iSelEnd = m_ptree->m_iSelEnd;
+         m_ppropertysetsel->m_iSelBeg = m_ptree->m_iSelEnd;
 
       }
       else
@@ -6840,7 +6840,7 @@ finished_update:
 
          psetsel->m_iSelEnd = m_ptree->m_iSelEnd;
 
-         m_psetsel = psetsel;
+         m_ppropertysetsel = psetsel;
 
          MacroBegin();
          MacroRecord(psetsel);

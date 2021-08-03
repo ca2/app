@@ -1,7 +1,7 @@
 #pragma once
 
 
-inline bool is_url_dup(const string & strCandidate)
+inline bool is_url_dup(const ::string & strCandidate)
 {
 
    return ::url::is_url(strCandidate);

@@ -37,8 +37,8 @@ struct CLASS_DECL_ACME block :
    block(const memory_base * pmemory);
    block(const block & block) : ::block(block.m_pdata, block.m_iSize) {}
    block(const id & id) : ::block(id.is_text() ? id.m_pszId : nullptr, id.is_text() ? strlen(id.m_pszId) : 0) {}
-   block(const string & str) : ::block(str.c_str(), str.get_length()) {}
-   block(const string & str, ::strsize s) : ::block((const void *)str.c_str(), (::i64)( s >= 0 ? s : str.get_length() + s + 1)) {}
+   block(const ::string & str) : ::block(str.c_str(), str.get_length()) {}
+   block(const ::string & str, ::strsize s) : ::block((const void *)str.c_str(), (::i64)( s >= 0 ? s : str.get_length() + s + 1)) {}
    block(const char * psz, ::strsize s = -1) : ::block((const void *)psz, (::i64) (s >= 0 ? s : strlen(psz) + s + 1)) {}
 //   template < primitive_integral INTEGRAL >
 //   block(const INTEGRAL & integral) : ::block((const void*)&integral, sizeof(integral)) {}

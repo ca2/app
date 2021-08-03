@@ -1352,7 +1352,7 @@ namespace hellobase
    //   return false;
    //}
 
-   //void render::helloaura_fast_render(const string & strHelloBase)
+   //void render::helloaura_fast_render(const ::string & strHelloBase)
    //{
 
    //   if (m_cx <= 0 || m_cy <= 0)

@@ -13,7 +13,7 @@ string_file::string_file()
 }
 
    
-string_file::string_file(const string & str)
+string_file::string_file(const ::string & str)
 {
 
    m_iPos = 0;
@@ -104,10 +104,10 @@ filesize string_file::get_position() const
 }
 
 
-void string_file::to_string(const class string_exchange & str) const
+string string_file::to_string() const
 {
 
-   str = m_str;
+   return m_str;
 
 }
 

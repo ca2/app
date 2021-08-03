@@ -39,7 +39,7 @@ public:
 
    }
 
-   inline index add(const string & str) { return add((const ::payload &) str); }
+   inline index add(const ::string & str) { return add((const ::payload &) str); }
    inline index add(const char * psz) { return add((const string &) psz); }
 
    inline index add(i8 i) { return add((const ::payload &) i); }

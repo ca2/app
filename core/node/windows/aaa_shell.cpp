@@ -8,7 +8,7 @@
 
 
 
-CLASS_DECL_AURA HICON ExtractResourceIcon(const string & strPath, int& cx, int& cy, int iIcon);
+CLASS_DECL_AURA HICON ExtractResourceIcon(const ::string & strPath, int& cx, int& cy, int iIcon);
 
 
 namespace windows

@@ -469,14 +469,14 @@ void stream::write(const ::payload & payload)
    case e_type_pu64:
       *this << *payload.m_pu64;
       break;
-   case e_type_double:
-      *this << payload.m_d;
+   case e_type_f64:
+      *this << payload.m_f64;
       break;
    case e_type_bool:
       *this << payload.m_b;
       break;
    case e_type_i32_array:
-      *this << payload.inta();
+      *this << payload.ia();
       break;
    case e_type_memory:
       *this << payload.memory();
@@ -530,7 +530,7 @@ void stream::write(const ansichar * psz)
 }
 
 
-void stream::write(const string & str)
+void stream::write(const ::string & str)
 {
 
    write_buffer_length(str.get_length());
@@ -600,7 +600,7 @@ void stream::write(const memory_base & m)
 //}
 //
 //
-//void stream::set_object_link(const ::matter * preference, const string & strLink, bool bReadOnly)
+//void stream::set_object_link(const ::matter * preference, const ::string & strLink, bool bReadOnly)
 //{
 //
 //}
@@ -627,7 +627,7 @@ void stream::write(const memory_base & m)
 //}
 
 
-//void stream::write_link(const ::matter * preference, const string & strLink, bool bReadOnly, ::matter * pobjectSaveOptions)
+//void stream::write_link(const ::matter * preference, const ::string & strLink, bool bReadOnly, ::matter * pobjectSaveOptions)
 //{
 //
 //   write(bReadOnly);

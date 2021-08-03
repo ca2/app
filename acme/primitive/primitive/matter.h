@@ -340,7 +340,7 @@ public:
    virtual stream& read(::stream& stream);
 
 
-   virtual void to_string(const string_exchange & str) const;
+   //virtual void to_string(string_exchange & str) const;
    virtual strsize sz_len() const;
    virtual void to_sz(char* sz, strsize len) const;
 

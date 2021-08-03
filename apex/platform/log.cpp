@@ -698,11 +698,11 @@ namespace apex
       if (::is_ref_set(log))
       {
 
-         m_bLogThreadName = log["threadname"];
+         m_bLogThreadName = log["threadname"].is_true();
 
-         m_bLogFileName = log["filename"];
+         m_bLogFileName = log["filename"].is_true();
 
-         m_bLogFunctionName = log["functionname"];
+         m_bLogFunctionName = log["functionname"].is_true();
 
       }
 

@@ -472,7 +472,7 @@ void task_group::select_tool(task_tool* ptool)
 //bool predicate_set::add_predicate(::predicate_holder_base * ppred)
 //{
 //
-//   ppred->m_pset = this;
+//   ppred->m_ppropertyset = this;
 //
 //   add(ppred);
 //

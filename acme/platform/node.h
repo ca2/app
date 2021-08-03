@@ -130,8 +130,8 @@ namespace acme
 
       
       
-      virtual string app_id_to_app_name(const string & strAppId);
-      virtual string app_id_to_executable_name(const string & strAppId);
+      virtual string app_id_to_app_name(const ::string & strAppId);
+      virtual string app_id_to_executable_name(const ::string & strAppId);
 
 
       virtual bool is_application_installed(const ::file::path& pathExe, string strAppId, string& strBuild, const char* pszPlatform, const char* pszConfiguration, const char* pszLocale, const char* pszSchema);
@@ -142,8 +142,8 @@ namespace acme
       virtual ::file::path get_application_path(string strAppId, const char* pszPlatform, const char* pszConfiguration);
 
 
-      virtual ::file::path get_last_run_application_path_file(const string & strAppId);
-      virtual ::file::path get_last_run_application_path(const string & strAppId);
+      virtual ::file::path get_last_run_application_path_file(const ::string & strAppId);
+      virtual ::file::path get_last_run_application_path(const ::string & strAppId);
       virtual ::e_status  set_last_run_application_path(const string& strAppId);
 
 

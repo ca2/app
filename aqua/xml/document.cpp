@@ -65,14 +65,14 @@ namespace xml
 
       string str;
 
-      memory.to_string(str);
+      str = memory.to_string();
 
       return load(str);
 
    }
 
 
-   void document::create_root(const string & strName)
+   void document::create_root(const ::string & strName)
    {
 
       create_root();
@@ -125,7 +125,7 @@ namespace xml
 
 
 
-   void document::set_name(const string & strName)
+   void document::set_name(const ::string & strName)
    {
 
       ensure_root();

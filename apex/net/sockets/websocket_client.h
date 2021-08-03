@@ -49,7 +49,7 @@ namespace sockets
 
 
       websocket_client();
-      websocket_client(const string & url, const string & strProtocol);
+      websocket_client(const string & url, const ::string & strProtocol);
       //websocket_client(const string & host, port_t port, const string & url);
       virtual ~websocket_client();
 

@@ -614,7 +614,7 @@ namespace axis
 
 
 
-//   string session::account_get_user_sessid(const string & str)
+//   string session::account_get_user_sessid(const ::string & str)
 //   {
 //
 //      return interactive_get_user()->get_sessid(str);

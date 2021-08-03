@@ -79,7 +79,7 @@ namespace user
       int                              m_iResult;
 
 
-      //message_box(const string & strMessage, const string & strTitle, const ::e_message_box & emessagebox);
+      //message_box(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox);
       message_box();
       virtual ~message_box();
 

@@ -41,7 +41,7 @@ static_setup::static_setup(::static_setup::enum_flag eflag, const char * pszName
 void static_setup::construct()
 {
 
-   m_psetupNext = s_psetupList;
+   m_ppropertysetupNext = s_psetupList;
 
    s_psetupList = this;
 
@@ -64,7 +64,7 @@ static_setup* static_setup::get_first(::static_setup::enum_flag eflag, const cha
 
       }
 
-      psetup = psetup->m_psetupNext;
+      psetup = psetup->m_ppropertysetupNext;
 
    }
 

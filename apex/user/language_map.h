@@ -55,7 +55,7 @@ namespace user
       //virtual bool _load_text(string strLang);
       //virtual string _get_text(string strLang, string str);
 
-      string __get_text(const string & strId);
+      string __get_text(const ::string & strId);
 
 
    };

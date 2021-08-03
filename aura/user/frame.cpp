@@ -115,7 +115,7 @@ namespace user
    }
 
 
-   ::e_status frame::add_menu_item(const string & strPath, const string & strText, const string & strId)
+   ::e_status frame::add_menu_item(const ::string & strPath, const ::string & strText, const ::string & strId)
    {
 
       m_straMenuParent.add(strPath);
@@ -355,10 +355,8 @@ namespace user
    }
 
 
-   void frame::set_user_style(const char * pszStyle)
+   void frame::set_user_style(const ::string & strStyle)
    {
-
-      string strStyle(pszStyle);
 
       m_strStyle = strStyle;
 

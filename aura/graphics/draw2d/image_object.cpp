@@ -9,7 +9,7 @@
 //}
 //
 //
-//::image_result object::matter_image(const string & strMatter, bool bCache, bool bSync)
+//::image_result object::matter_image(const ::string & strMatter, bool bCache, bool bSync)
 //{
 //
 //   return psystem->matter_image(this, strMatter, bCache, bSync);

@@ -8829,8 +8829,8 @@ save_image::save_image()
 //
 //   }
 //
-//   if (varOptions["quality"].get_type() == e_type_double
-//      || varOptions["quality"].get_type() == e_type_float)
+//   if (varOptions["quality"].get_type() == e_type_f64
+//      || varOptions["quality"].get_type() == e_type_f32)
 //   {
 //
 //      m_iQuality = (int) (varOptions["quality"].get_double() * 100.0);

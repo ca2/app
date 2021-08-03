@@ -59,7 +59,7 @@ namespace account
    }
 
 
-   void login::defer_translate(const string & strUser,const string & strPass,const string & strOpen)
+   void login::defer_translate(const ::string & strUser,const ::string & strPass,const ::string & strOpen)
    {
 
       if (strUser.has_char())

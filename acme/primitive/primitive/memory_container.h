@@ -51,9 +51,9 @@ public:
 
    void from_string(const widechar * pwsz);
    void from_string(const char * psz);
-   void from_string(const string & str);
+   void from_string(const ::string & str);
    void from_string(const ::payload & str);
-   virtual void to_string(const string_exchange & str) const override;
+   virtual string to_string() const override;
 
    void read(memory_base *pmemorystorage);
 
@@ -84,7 +84,7 @@ public:
 
 
    string str() const;
-   void str(const string & str);
+   void str(const ::string & str);
 
 
 };
@@ -151,7 +151,7 @@ inline void memory_container ::from_string(const char * psz)
 
 }
 
-inline void memory_container ::from_string(const string & str)
+inline void memory_container ::from_string(const ::string & str)
 {
 
    if(m_pmemory.is_null())
@@ -172,15 +172,17 @@ inline void memory_container ::from_string(const ::payload & payload)
 }
 
 
-inline void memory_container::to_string(const string_exchange & str) const
+inline string memory_container::to_string() const
 {
 
-   if (m_pmemory)
+   if (!m_pmemory)
    {
 
-      m_pmemory->to_string(str);
+      return "";
 
    }
+
+   return m_pmemory->to_string();
 
 }
 

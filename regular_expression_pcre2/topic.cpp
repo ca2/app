@@ -32,7 +32,7 @@ namespace regular_expression_pcre2
    }
 
 
-   ::e_status topic::create(const string & str)
+   ::e_status topic::create(const ::string & str)
    {
 
       m_str = str;

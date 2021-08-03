@@ -52,7 +52,7 @@ namespace user
 
 
 
-///         virtual i32 get_extension_image(oswindow oswindow, const string & strExtension, e_file_attribute eattribute, e_icon eicon, color32_t crBk = 0) override;
+///         virtual i32 get_extension_image(oswindow oswindow, const ::string & strExtension, e_file_attribute eattribute, e_icon eicon, color32_t crBk = 0) override;
 
          i32 add_icon(int iSize, HICON hicon, color32_t crBk, int iImage);
 

@@ -17,7 +17,7 @@ namespace str
 
 
       tokenizer();
-      tokenizer(const string & strSrc);
+      tokenizer(const ::string & strSrc);
       tokenizer(const char * pch, i32 nLength );
       ~tokenizer();
 

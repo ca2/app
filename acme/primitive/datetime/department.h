@@ -122,7 +122,7 @@ namespace datetime
       i64 strtotime(const ::text::context * pcontext,const char * psz,i32 iPath,i32 & iPathCount);
       i64 gmt_strtotime(const ::text::context * pcontext,const char * psz,i32 iPath,i32 & iPathCount);
 
-      ::datetime::time from_local(const ::text::context* pcontext, const string & str);
+      ::datetime::time from_local(const ::text::context* pcontext, const ::string & str);
       ::datetime::time from_gmt(const ::text::context* pcontext, const string& str);
 
       // 1 - domingo

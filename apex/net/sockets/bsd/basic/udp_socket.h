@@ -87,7 +87,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
          \lparam port Port number
          \lparam range Port range
          \return 0 if bind succeeded */
-         i32 Bind(const string & strHost, port_t & port, i32 range = 1);
+         i32 Bind(const ::string & strHost, port_t & port, i32 range = 1);
          /** To receive data on a specific interface:port, use this.
          \lparam a Ip address
          \lparam port Port number

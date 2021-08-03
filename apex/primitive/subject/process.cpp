@@ -19,7 +19,7 @@
 //   else if (payload.get_type() == ::type_prop)
 //   {
 //
-//      operator = (*payload.m_pprop);
+//      operator = (*payload.m_pproperty);
 //
 //   }
 //   else

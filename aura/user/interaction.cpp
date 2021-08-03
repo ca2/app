@@ -5105,7 +5105,7 @@ namespace user
    }
 
 
-   ::user::interaction * interaction::get_child_by_name(const string & strName, ::index iItem, i32 iLevel)
+   ::user::interaction * interaction::get_child_by_name(const ::string & strName, ::index iItem, i32 iLevel)
    {
 
       __pointer(interaction) pinteraction = top_child();
@@ -14094,7 +14094,7 @@ restart:
    }
 
 
-   bool interaction::show_tooltip(const string & str, bool bError)
+   bool interaction::show_tooltip(const ::string & str, bool bError)
    {
 
 //

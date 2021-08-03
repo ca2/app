@@ -81,7 +81,7 @@ public:
    // parses tag information from the given string
    ::u32 parseFromStr(
       lite_html_reader * preader,
-      const string & strString, 
+      const ::string & strString, 
       strsize iPos,
       bool &bIsOpeningTag, 
       bool &bIsClosingTag, 

@@ -39,7 +39,7 @@ namespace dynamic_source
    }
 
 
-   __pointer(ds_script) script_cache::create_new_ds_script(const string & strName)
+   __pointer(ds_script) script_cache::create_new_ds_script(const ::string & strName)
    {
 
       auto pscript = __create_new< ds_script >();

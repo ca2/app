@@ -262,7 +262,7 @@ public:
 
 // Operations
    // parses an HTML document from the specified string
-   strsize read_form_document(const string & str);
+   strsize read_form_document(const ::string & str);
 
 // Helpers
    /** Parsing Helpers */

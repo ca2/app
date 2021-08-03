@@ -799,7 +799,7 @@ namespace user
 
       virtual void enable(bool bOn);
       virtual void _001SetCheck(::enum_check echeck, const ::action_context & context) override;
-      virtual void _001SetText(const string & strText, const ::action_context & context) override;
+      virtual void _001SetText(const ::string & strText, const ::action_context & context) override;
 
       virtual void delete_this() override;
 
@@ -862,7 +862,7 @@ namespace user
 
    }
 
-   void status_command::_001SetText(const string & strText, const ::action_context & context)
+   void status_command::_001SetText(const ::string & strText, const ::action_context & context)
    {
 
       __pointer(status_bar) pStatusBar = m_puiOther;

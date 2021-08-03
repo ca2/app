@@ -258,7 +258,7 @@ namespace aura
 
 
       virtual bool update_appmatter(__pointer(::sockets::http_session) & psession, const ::file::path & pszRoot, const string & pszRelative) override;
-      virtual bool update_appmatter(__pointer(::sockets::http_session) & psession, const ::file::path & pszRoot, const string & pszRelative, const string & strLocale, const string & strStyle) override;
+      virtual bool update_appmatter(__pointer(::sockets::http_session) & psession, const ::file::path & pszRoot, const string & pszRelative, const ::string & strLocale, const ::string & strStyle) override;
 
 
       //virtual void SetCurrentHandles() override;
@@ -359,7 +359,7 @@ namespace aura
 
       //virtual ::html::html * create_html();
 
-      //virtual string http_get(const string & strUrl, ::property_set & set) override;
+      //virtual string http_get(const ::string & strUrl, ::property_set & set) override;
 
       //virtual bool compress_ungz(const ::stream & os, const ::stream & is) override;
 
@@ -376,7 +376,7 @@ namespace aura
       //virtual ~application();
 
 
-      //virtual void locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const string & strLocale, const string & strSchema);
+      //virtual void locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::string & strLocale, const ::string & strSchema);
       //virtual string get_locale_schema_dir();
 
 
@@ -680,10 +680,10 @@ namespace aura
       //// name by Mummi (Japanese -> Guddo : from English : Good, ca2 interpretation : Goods).
       //// get/set serializables to user directory
       //template < typename TYPE >
-      //bool gudo_get(const string & strKey, TYPE & t);
+      //bool gudo_get(const ::string & strKey, TYPE & t);
 
       //template < typename TYPE >
-      //bool gudo_set(const string & strKey, const TYPE & t);
+      //bool gudo_set(const ::string & strKey, const TYPE & t);
 
 
       //virtual bool assert_user_logged_in();
@@ -702,11 +702,11 @@ namespace aura
 
       //virtual void on_update_matter_locator() override;
 
-      //virtual void locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const string & strLocale, const string & strSchema) override;
-      //virtual void matter_locator_locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const string & strLocale, const string & strSchema) override;
+      //virtual void locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::string & strLocale, const ::string & strSchema) override;
+      //virtual void matter_locator_locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::string & strLocale, const ::string & strSchema) override;
 
-      //virtual string get_locale_schema_dir(const string & strLocale, const string & strSchema) override;
-      //virtual string get_locale_schema_dir(const string & strLocale) override;
+      //virtual string get_locale_schema_dir(const ::string & strLocale, const ::string & strSchema) override;
+      //virtual string get_locale_schema_dir(const ::string & strLocale) override;
       //virtual string get_locale_schema_dir() override;
 
       //virtual void set_locale(const string & pcsz, const ::action_context & action_context) override;
@@ -783,7 +783,7 @@ namespace aura
       //virtual string get_app_id(string wstr) override;
 
 
-      //virtual void install_trace(const string & str) override;
+      //virtual void install_trace(const ::string & str) override;
       //virtual void install_trace(double dRate) override;
       //virtual bool register_spa_file_type() override;
 

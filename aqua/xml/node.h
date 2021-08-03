@@ -45,8 +45,8 @@ namespace xml
       inline const __pointer(::xml::document) get_document() const { return m_pdocument; }
 
 
-      virtual void set_name(const string & strName);
-      virtual void set_value(const string & strValue);
+      virtual void set_name(const ::string & strName);
+      virtual void set_value(const ::string & strValue);
 
       virtual void get_name(string & strName) const { strName = m_strName; }
       virtual void get_value(string & strValue) const { strValue = m_strValue; }

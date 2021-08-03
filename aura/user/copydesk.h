@@ -43,13 +43,13 @@ namespace user
       /// directory or file in str parsed as multiline.
       /// Pass a valid pointer at ppatha, to retrive all existing
       ///
-      virtual bool string_to_filea(::file::patha * ppatha, const string & str);
+      virtual bool string_to_filea(::file::patha * ppatha, const ::string & str);
 
       virtual bool set_filea(const ::file::patha & stra, e_op eop);
       virtual bool get_filea(::file::patha & stra, e_op & eop);
       virtual bool has_filea();
 
-      virtual bool set_plain_text(const string & str, bool bForceSetIfEmpty = false);
+      virtual bool set_plain_text(const ::string & str, bool bForceSetIfEmpty = false);
       virtual bool get_plain_text(string & str, enum_flag eflag = e_flag_none);
       virtual bool has_plain_text();
 
@@ -62,7 +62,7 @@ namespace user
       virtual bool _get_filea(::file::patha & stra, e_op & eop);
       virtual bool _has_filea();
 
-      virtual bool _set_plain_text(const string & str);
+      virtual bool _set_plain_text(const ::string & str);
       virtual bool _get_plain_text(string & str);
       virtual bool _has_plain_text();
 

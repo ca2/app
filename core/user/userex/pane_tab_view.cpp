@@ -466,7 +466,7 @@ namespace userex
 
          auto ptemplate = puser->m_mapimpactsystem[FONTSEL_IMPACT];
 
-         auto pdocument = ptemplate->open_document_file(get_application(), ::e_type_null, __visible(true), pimpactdata->m_pplaceholder);
+         auto pdocument = ptemplate->open_document_file(get_application(), ::e_type_null, __visible(true).is_true(), pimpactdata->m_pplaceholder);
 
          m_pfontview = pdocument->get_typed_view < font_view >();
 
@@ -503,7 +503,7 @@ namespace userex
 
          auto pimpactsystem = puser->m_mapimpactsystem[COLORSEL_IMPACT];
 
-         auto pdocument = pimpactsystem->open_document_file(get_application(), ::e_type_null, __visible(false), pimpactdata->m_pplaceholder);
+         auto pdocument = pimpactsystem->open_document_file(get_application(), ::e_type_null, __visible(false).is_true(), pimpactdata->m_pplaceholder);
 
          m_pcolorview = pdocument->get_typed_view < color_view >();
 
@@ -558,7 +558,7 @@ namespace userex
                && payload("filemanager_toolbar").m_etype == ::e_type_property_set)
          {
 
-            auto & set = payload("filemanager_toolbar").propset();
+            auto & set = payload("filemanager_toolbar").as_propset();
 
             if (set[::userfs::mode_normal].is_set())
                pfilemanagerdata->m_setToolbar[::userfs::mode_normal] = set[::userfs::mode_normal];

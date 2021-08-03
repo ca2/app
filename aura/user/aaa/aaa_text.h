@@ -26,7 +26,7 @@ namespace user
       virtual void _001GetText(string & str, index iBeg, index iEnd) const;
 
 
-      virtual void _001SetText(const string & str, const ::action_context & action_context);
+      virtual void _001SetText(const ::string & str, const ::action_context & action_context);
       virtual void _001SetText(const char * psz, strsize len, const ::action_context & action_context);
 
 

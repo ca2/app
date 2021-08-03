@@ -24,9 +24,9 @@
 
 
       string_file();
-      string_file(const string & str);
+      string_file(const ::string & str);
       string_file(const string_file & str);
-      virtual ~string_file();
+      ~string_file() override;
 
 
       //using ::file::file::read;
@@ -71,7 +71,7 @@
 
       void set(const char * psz,strsize len);
 
-      void set(const string & str)
+      void set(const ::string & str)
       {
          set(str, str.length());
       }
@@ -79,7 +79,7 @@
 
       void append(const char * psz,strsize len);
 
-      void append(const string & str)
+      void append(const ::string & str)
       {
          append(str, str.length());
       }
@@ -102,16 +102,16 @@
       }
 
 
-      virtual void to_string(const string_exchange & str) const override;
+      string to_string() const override;
 
 
-      string_file & operator += (const string & str)
+      string_file & operator += (const ::string & str)
       {
          append(str);
          return *this;
       }
 
-      string_file & operator = (const string & str)
+      string_file & operator = (const ::string & str)
       {
          set(str);
          return *this;

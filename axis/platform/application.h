@@ -126,11 +126,11 @@ namespace axis
 
       //virtual void on_update_matter_locator() override;
 
-      //virtual void locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const string & strLocale, const string & strSchema) override;
-      //virtual void matter_locator_locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const string & strLocale, const string & strSchema);
+      //virtual void locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::string & strLocale, const ::string & strSchema) override;
+      //virtual void matter_locator_locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::string & strLocale, const ::string & strSchema);
 
-      //virtual string get_locale_schema_dir(const string & strLocale, const string & strSchema);
-      //virtual string get_locale_schema_dir(const string & strLocale);
+      //virtual string get_locale_schema_dir(const ::string & strLocale, const ::string & strSchema);
+      //virtual string get_locale_schema_dir(const ::string & strLocale);
       //virtual string get_locale_schema_dir() override;
 
       //virtual void set_locale(const string & pcsz, const ::action_context & action_context);

@@ -357,7 +357,7 @@ namespace aura
       //virtual bool is_system() const override;
 
 
-      virtual string crypto_md5_text(const string & str) override;
+      virtual string crypto_md5_text(const ::string & str) override;
 
 
       virtual __pointer(::extended::future < ::conversation >) _message_box(::object * pobject, const char * pszMessage, const char * pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok) override;
@@ -416,10 +416,10 @@ namespace aura
       //virtual u32 crc32(u32 dwPrevious, const char * psz);
 
 
-      virtual string url_encode(const string & str) override;
+      virtual string url_encode(const ::string & str) override;
 
 
-      virtual void locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const string & strLocale, const string & strSchema) override;
+      virtual void locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::string & strLocale, const ::string & strSchema) override;
       virtual string get_locale_schema_dir() override;
 
 
@@ -504,7 +504,7 @@ namespace aura
       //::datetime::department                 & datetime();
 
 
-      //virtual string url_encode(const string & str);
+      //virtual string url_encode(const ::string & str);
 
       virtual void on_allocation_error(const ::string & strName, ::object * pobjectSometimes) override;
 
@@ -572,7 +572,7 @@ namespace aura
       ::image_pointer matter_cache_image(::object * pobject, const ::string & strMatter);
 
       ::image_pointer get_image(::object * pobject, const ::payload & varFile, bool bCache = true, bool bSync = false);
-      ::image_pointer matter_image(::object * pobject, const string & strMatter, bool bCache = true, bool bSync = false);
+      ::image_pointer matter_image(::object * pobject, const ::string & strMatter, bool bCache = true, bool bSync = false);
 
       //virtual bool on_get_thread_name(string& strThreadName) override;
 
@@ -636,7 +636,7 @@ namespace aura
 
   /*    static inline ::id id(const ::std::type_info & info);
       static inline ::id id(const char * psz);
-      static inline ::id id(const string & str);
+      static inline ::id id(const ::string & str);
       static inline ::id id(i64 i);
       static inline ::id_space & id();
       inline ::id id(const ::payload & payload);
@@ -669,7 +669,7 @@ namespace aura
   /*    virtual ::count get_application_count() override;
 */
 
-      //virtual string crypto_md5_text(const string & str);
+      //virtual string crypto_md5_text(const ::string & str);
 
       //inline class ::http::system                  & http()
       //{
@@ -884,7 +884,7 @@ namespace aura
 
 
 
-      //      u32 guess_code_page(const string & str);
+      //      u32 guess_code_page(const ::string & str);
 
 #ifdef _UWP
 

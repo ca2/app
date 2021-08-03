@@ -11,7 +11,7 @@ namespace simpledb
    public:
 
 
-      __pointer(::database::dataset)         m_pset;
+      __pointer(::database::dataset)         m_ppropertyset;
       ::duration                             m_durationRemoteTimeout;
 
 

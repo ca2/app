@@ -25,7 +25,7 @@ namespace regular_expression
       virtual ~topic();
 
 
-      virtual ::e_status create(const string & strExpression);
+      virtual ::e_status create(const ::string & strExpression);
 
 
       virtual ::count get_count() const;
@@ -45,21 +45,21 @@ namespace regular_expression
 
       //virtual bool matches(const char * psz, strsize len) = 0;
 
-      //virtual ::count match_count(const string & str) = 0;
+      //virtual ::count match_count(const ::string & str) = 0;
 
       //virtual ::count match_count(const char * psz, strsize len) = 0;
 
       //virtual __pointer(::str::range_array)
 
-      //matches_ranges(const string & str) = 0;
+      //matches_ranges(const ::string & str) = 0;
 
       //virtual __pointer(::str::range_array)
 
       //matches_ranges(const char * psz, strsize len) = 0;
 
-      //virtual bool replace(string & strFind, const string & strReplace, string & strResult);
+      //virtual bool replace(string & strFind, const ::string & strReplace, string & strResult);
 
-      //virtual ::count matches(string_array & stra, const string & str);
+      //virtual ::count matches(string_array & stra, const ::string & str);
 
 
    };

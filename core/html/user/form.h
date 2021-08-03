@@ -33,7 +33,7 @@ public:
    virtual string get_path() override;
 
    virtual ::e_status open_document(const ::payload & varFile) override;
-   virtual ::e_status open_html(const string & str) override;
+   virtual ::e_status open_html(const ::string & str) override;
 
 
    ::html_data * get_html_data();
@@ -56,7 +56,7 @@ public:
 
 
    virtual void _001GetText(string & str) const override;
-   virtual void _001SetText(const string & str, const ::action_context & action_context) override;
+   virtual void _001SetText(const ::string & str, const ::action_context & action_context) override;
 
 
    virtual void GetClientBox(::rectangle_f32 & box);
@@ -69,7 +69,7 @@ public:
 
    virtual bool get_edit_mode();
    virtual void set_edit_mode(bool bSet = true);
-   virtual bool load_html(const string & str);
+   virtual bool load_html(const ::string & str);
    
    virtual void soft_reload() override;
 

@@ -72,7 +72,7 @@ namespace xml
       //m_strName   = node.m_strName;
       //m_strValue  = node.m_strValue;
       //m_nodea     = node.m_nodea;
-      //m_pset      = __new(property_node.m_attra;
+      //m_ppropertyset      = __new(property_node.m_attra;
 
       return *this;
 
@@ -408,7 +408,7 @@ namespace xml
             // XML Attr Name
             _SetString(xml, pszEnd, &strName);
 
-            //m_pset.defer_create_new();
+            //m_ppropertyset.defer_create_new();
 
             // add new attr
             auto & property = m_set.get(strName);
@@ -483,7 +483,7 @@ namespace xml
                      if( pparseinfo->m_bEntityValue && pparseinfo->m_pentities )
                      {
 
-                        property = pparseinfo->m_pentities->ref_to_entity(property.get_string());
+                        property = pparseinfo->m_pentities->ref_to_entity(property.string());
 
                      }
 
@@ -662,7 +662,7 @@ namespace xml
                      if (pparseinfo->m_bEntityValue && pparseinfo->m_pentities)
                      {
 
-                        property = pparseinfo->m_pentities->ref_to_entity(property.get_string());
+                        property = pparseinfo->m_pentities->ref_to_entity(property.string());
 
                      }
                      if( quote == '"' || quote == '\'' )
@@ -1655,7 +1655,7 @@ namespace xml
       string str;
       while(pnode != nullptr && pnode != this)
       {
-         str = pnode->attribute(pszAttr).get_string() + ::str::has_char(str, "/");
+         str = pnode->attribute(pszAttr).string() + ::str::has_char(str, "/");
          pnode = pnode->m_pnodeParent->get_xml_node();
       }
       if(pnode == nullptr)
@@ -1800,7 +1800,7 @@ namespace xml
       
       property * attr = GetChildAttr( lpszName, attrname );
 
-      return attr ? attr->get_string() : string("");
+      return attr ? attr->string() : string("");
 
    }
 
@@ -2487,7 +2487,7 @@ namespace xml
 
       m_nodea.erase_all();
 
-      //m_pset.release();
+      //m_ppropertyset.release();
 
    }
 
@@ -2557,7 +2557,9 @@ namespace xml
 
       }
 
-      ::count iColCount = attribute("column_count");
+      ::count iColCount;
+
+      attribute("column_count").as(iColCount);
 
       if(m_nodea.get_count() == 0 ||  iColCount <= 0)
       {
@@ -2577,9 +2579,9 @@ namespace xml
       for(::index iCol = 0; iCol < iColCount; iCol++)
       {
 
-         __pointer(::xml::node) pcol = pheader->m_nodea.element_at(iCol);
+         auto pcol = pheader->m_nodea.element_at(iCol);
 
-         str2a[iCol].set_size(pcol->attribute("row_count"));
+         str2a[iCol].set_size(pcol->attribute("row_count").i32());
 
       }
 
@@ -2634,7 +2636,7 @@ namespace xml
 
    
 
-   void node::set_name(const string & strName)
+   void node::set_name(const ::string & strName)
    {
 
       m_strName = strName;
@@ -2653,7 +2655,7 @@ namespace xml
 
    }
 
-   void node::set_value(const string & strValue)
+   void node::set_value(const ::string & strValue)
    {
 
       m_strValue = strValue;

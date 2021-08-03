@@ -589,7 +589,7 @@ void dump_context::write(const unichar * psz)
 #endif
 
 
-void dump_context::write(const string & str)
+void dump_context::write(const ::string & str)
 {
 
    return write((const char *) str.c_str());

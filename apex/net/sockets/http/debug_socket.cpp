@@ -67,7 +67,7 @@ namespace sockets
                "<input type='text' name='text' value='test text'><br>"
                "<input type='submit' name='submit' value=' OK '></form>");
       print(   "<pre style='background: #e0e0e0'>");
-      print(m_request.attr(__id(http_method)).get_string() + " " + m_request.attr(__id(request_uri)) + " " + m_request.attr(__id(http_version)) + "\n");
+      print(m_request.attr(__id(http_method)).string() + " " + m_request.attr(__id(request_uri)) + " " + m_request.attr(__id(http_version)) + "\n");
    }
 
 

@@ -385,7 +385,7 @@ void object::process_exit_status(const ::e_status& estatus)
    //::image_result create_image(const ::size_i32 & size, ::eobject eobjectCreate = OK, int iGoodStride = -1, bool bPreserve = false);
 
    //::image_result get_image(const ::payload & varFile, bool bCache = true, bool bSync = true);
-   //::image_result matter_image(const string & strMatter, bool bCache = true, bool bSync = true);
+   //::image_result matter_image(const ::string & strMatter, bool bCache = true, bool bSync = true);
 
    //template < typename BASE_TYPE >
    //inline __transport(BASE_TYPE) __create();

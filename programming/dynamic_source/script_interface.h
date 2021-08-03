@@ -68,8 +68,8 @@ namespace dynamic_source
       script_manager* manager();
 
 
-      virtual void set_session_value(id id, ::payload value);
-      virtual ::payload get_session_value(id id);
+      virtual void set_session_value(const ::id & id, ::payload value);
+      virtual ::payload get_session_value(const ::id & id);
       virtual string session_id(const char * pszId = nullptr);
 
       
@@ -84,25 +84,25 @@ namespace dynamic_source
 
 
       virtual void print_r(::payload payload);
-      property& request(id idKey);
+      property& request(const ::id & id);
       property_set& geta();
       property_set& posta();
       http::cookies& cookies();
       property_set& requesta();
 
-      property& inheader(id id);
-      property& outheader(id id);
+      property& inheader(const ::id & id);
+      property& outheader(const ::id & id);
 
-      property& inattr(id id);
-      property& outattr(id id);
+      property& inattr(const ::id & id);
+      property& outattr(const ::id & id);
 
-      virtual string& gstr(id id);
-      virtual property& gprop(id id);
+      virtual string& gstr(const ::id & id);
+      virtual property& gprop(const ::id & id);
 
-      inline property& get(id idKey);
-      inline property& post(id idKey);
-      inline http::cookie& get_cookie(id idKey);
-      inline http::cookie& set_cookie(id idKey);
+      inline property& get(const ::id & id);
+      inline property& post(const ::id & id);
+      inline http::cookie& get_cookie(const ::id & id);
+      inline http::cookie& set_cookie(const ::id & id);
 
       void uri_set_var(string& strUrl, const char* pszUrl, const char* pszKey, ::payload payload);
       void uri_set_param(string& strUrl, const char* pszUrl, const char* pszKey, const string& strParam);

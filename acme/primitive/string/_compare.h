@@ -22,14 +22,14 @@ namespace str
    template < typename TYPE1, typename TYPE2 >
    inline TYPE1 equals_ci_get(const TYPE1 & str1, const TYPE2 & str2, const TYPE1 & strOnEqual, const TYPE1 & strOnDifferent = nullptr);
 
-   template < typename TYPE, typename PREFIX >
-   inline bool begins(const TYPE & str, const PREFIX & strPrefix);
+   template < const_c_string TOPIC_STRING, const_c_string PREFIX_STRING >
+   inline bool begins(TOPIC_STRING topic, PREFIX_STRING prefix);
+
+   template < const_c_string TOPIC_STRING, const_c_string PREFIX_STRING >
+   inline bool begins_ci(TOPIC_STRING topic, PREFIX_STRING prefix);
 
    template < typename TYPE, typename FED, typename PREFIX >
    inline bool begins(const TYPE & str, FED & strFed, const PREFIX & strPrefix);
-
-   template < typename TYPE, typename PREFIX >
-   inline bool begins_ci(const TYPE & str, const PREFIX & strPrefix);
 
    template < typename TYPE, typename FED, typename PREFIX >
    inline bool begins_ci(const TYPE & str, FED & strFed, const PREFIX & strPrefix);
@@ -59,11 +59,11 @@ namespace str
    bool CLASS_DECL_ACME while_begins_with_chars_eat(string & str, const char * pcszChars);
    bool CLASS_DECL_ACME while_begins_with_chars_eat_ci(string & str, const char * pcszChars);
 
-   template < typename TYPE, typename SUFFIX >
-   inline bool ends(const TYPE & str, const SUFFIX & strSuffix);
-   
-   template < typename TYPE, typename SUFFIX >
-   inline bool ends_ci(const TYPE & str, const SUFFIX & strSuffix);
+   template < const_c_string TOPIC_STRING, const_c_string SUFFIX_STRING >
+   inline bool ends(TOPIC_STRING topic, SUFFIX_STRING suffix);
+
+   template < const_c_string TOPIC_STRING, const_c_string SUFFIX_STRING >
+   inline bool ends_ci(TOPIC_STRING topic, SUFFIX_STRING suffix);
 
    template < typename TYPE, typename SUFFIX >
    inline bool ends_eat(TYPE & str, const SUFFIX & strSuffix);

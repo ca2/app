@@ -3967,7 +3967,7 @@ namespace user
          //{
          //create_tab_by_id(stra.last());
 
-         set_current_tab_by_id(payloada[i].get_id());
+         set_current_tab_by_id(payloada[i].id());
 
          c++;
 

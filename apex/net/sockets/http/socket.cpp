@@ -272,7 +272,7 @@ namespace sockets
             m_request.m_strRequestUri = purl->url_decode(strScript) + ::str::has_char(strQuery, "?");
             m_request.attr(__id(request_uri)) = m_request.m_strRequestUri;
             m_request.attr(__id(http_version)) = pa.getword();
-            m_b_http_1_1 = ::str::ends(m_request.attr(__id(http_version)), "/1.1");
+            m_b_http_1_1 = ::str::ends(m_request.attr(__id(http_version)).string(), "/1.1");
             m_b_keepalive = m_b_http_1_1;
             m_bRequest     = true;
             m_bResponse    = false;

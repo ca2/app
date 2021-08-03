@@ -320,7 +320,7 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
 
 
    ::string & as_string(::string & str);
-   id & as_id(const char * pszOnNull = nullptr);
+   ::id & as_id(const ::id & idDefault = nullptr);
 
    class memory & as_memory();
 
@@ -366,7 +366,7 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
    ::string string(const char * pszOnNull = nullptr) const;
    ::string to_string() const;
    ::string to_recursive_string() const;
-   id get_id(const char * pszOnNull = nullptr)   const;
+   ::id id(const ::id & idDefault = nullptr)   const;
 
    ::memory memory() const;
    ::string_array stra() const;
@@ -402,7 +402,7 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
    void           set_string(const char * psz);
    void           set_string(const ::string & str);
    void           set_string(::string && str);
-   void           set_id(const id & id);
+   void           set_id(const ::id & id);
    void unset();
    void unset(const ::string & strPropertySetKey);
 
@@ -883,8 +883,8 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
    inline ::count get_count() const;
 
 
-   inline ::property & operator[] (const id & id) { return get_property(id); }
-   inline ::payload operator[] (const id & id) const { return find_property(id); }
+   inline ::property & operator[] (const ::id & id) { return get_property(id); }
+   inline ::payload operator[] (const ::id & id) const { return find_property(id); }
 
    inline ::property & operator[] (const char * psz) { return get_property(::id(psz)); }
    inline ::payload operator[] (const char * psz) const { return find_property(::id(psz)); }
@@ -1057,6 +1057,7 @@ public:
    operator string_array & () { return m_payload.as_stra(); }
    operator payload_array & () { return m_payload.as_payloada(); }
    operator property_set & () { return m_payload.as_propset(); }
+   operator ::file::path & () { return m_payload.as_file_path(); }
 
 
 };
@@ -1111,6 +1112,7 @@ public:
    operator string_array ()const { return m_payload.stra(); }
    inline operator payload_array () const;
    inline operator property_set () const;
+   inline operator ::file::path () const;
 
 
 };

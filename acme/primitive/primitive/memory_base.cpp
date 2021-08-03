@@ -1944,7 +1944,7 @@ byte* memory_base::find_line_prefix(const ::block& blockPrefix, ::index iStart)
 
    }
 
-   auto iFindEol = find_index('\n', iStart);
+   auto iFindEol = find_index(__block('\n'), iStart);
 
    if (iFindEol < 0)
    {

@@ -71,29 +71,76 @@ namespace str
    }
 
 
-   template < typename TYPE, typename PREFIX >
-   inline bool begins(const TYPE & str, const PREFIX & strPrefix)
+   template < const_c_string TOPIC_STRING, const_c_string PREFIX_STRING >
+   inline bool begins(TOPIC_STRING topic_string, PREFIX_STRING prefix_string)
    {
+      
+      using topic_type = typename base_const_c_string < TOPIC_STRING >::type;
 
-      return !::str::string_n_compare(str, strPrefix, ::str::string_safe_length(strPrefix));
+      using prefix_type = typename base_const_c_string < PREFIX_STRING >::type;
 
-   }
+      static_assert(::std::same_as < topic_type, prefix_type >);
 
+      auto prefix = (prefix_type) prefix_string;
 
-   template < typename TYPE, typename FED, typename PREFIX >
-   inline bool begins(const TYPE & str, FED & strFed, const PREFIX & strPrefix)
-   {
+      auto prefix_length = ::str::string_safe_length(prefix);
 
-      if (!begins(str, strPrefix))
+      if (prefix_length <= 0)
+      {
+
+         return true;
+
+      }
+
+      auto topic = (topic_type) topic_string;
+
+      auto topic_length = ::str::string_safe_length(topic);
+
+      if (topic_length < prefix_length)
       {
 
          return false;
 
       }
 
-      strFed = strPrefix;
+      return !::str::string_n_compare(topic, prefix, prefix_length);
 
-      return true;
+   }
+
+
+   template < const_c_string TOPIC_STRING, const_c_string PREFIX_STRING >
+   inline bool begins_ci(TOPIC_STRING topic_string, PREFIX_STRING prefix_string)
+   {
+
+      using topic_type = typename base_const_c_string < TOPIC_STRING >::type;
+
+      using prefix_type = typename base_const_c_string < PREFIX_STRING >::type;
+
+      static_assert(::std::same_as < topic_type, prefix_type >);
+
+      auto prefix = (prefix_type)prefix_string;
+
+      auto prefix_length = ::str::string_safe_length(prefix);
+
+      if (prefix_length <= 0)
+      {
+
+         return true;
+
+      }
+
+      auto topic = (topic_type)topic_string;
+
+      auto topic_length = ::str::string_safe_length(topic);
+
+      if (topic_length < prefix_length)
+      {
+
+         return false;
+
+      }
+
+      return !::str::string_n_compare_ci(topic, prefix, prefix_length);
 
    }
 
@@ -224,79 +271,87 @@ namespace str
    }
 
 
-   template < typename TYPE, typename SUFFIX >
-   inline bool ends(const TYPE & topic, const SUFFIX & suffix)
+   template < const_c_string TOPIC_STRING, const_c_string SUFFIX_STRING >
+   inline bool ends(TOPIC_STRING topic_string, SUFFIX_STRING suffix_string)
    {
 
-      string strTopic(topic);
+      using topic_type = typename base_const_c_string < TOPIC_STRING >::type;
 
-      string strSuffix(suffix);
+      using suffix_type = typename base_const_c_string < SUFFIX_STRING >::type;
 
-      return strTopic.ends(strSuffix);
+      static_assert(::std::same_as < topic_type, suffix_type >);
 
-      //auto len = ::str::string_safe_length(strSuffix);
+      auto suffix = (suffix_type) suffix_string;
 
-      //auto end = ::str::string_safe_length(strTopic) - len;
+      auto suffix_length = ::str::string_safe_length(suffix);
 
-      //auto strEnd = __string_base(strTopic);
+      if (suffix_length <= 0)
+      {
 
-      //auto pszEnd = strEnd.c_str() + end;
+         return true;
 
-      //auto strSuf = __string_base(strSuffix);
+      }
 
-      //auto pszSuf = strSuf.c_str();
+      auto topic = (topic_type) topic_string;
 
-      //return !::str::string_n_compare(pszEnd, pszSuf, len);
+      auto topic_length = ::str::string_safe_length(topic);
+
+      if (topic_length < suffix_length)
+      {
+
+         return false;
+
+      }
+
+      auto end_index = (topic_length - suffix_length);
+
+      auto end = topic + end_index;
+
+      return !::str::string_n_compare(end, suffix, suffix_length);
 
    }
 
 
-   // one sample overload to show some mercy to broeginneersen
-   inline bool ends(const ansichar * pszTopic, const ansichar * pszSuffix)
+   template < const_c_string TOPIC_STRING, const_c_string SUFFIX_STRING >
+   inline bool ends_ci(TOPIC_STRING topic_string, SUFFIX_STRING suffix_string)
    {
 
-      auto len = ::str::string_safe_length(pszSuffix);
+      using topic_type = typename base_const_c_string < TOPIC_STRING >::type;
 
-      auto end = ::str::string_safe_length(pszTopic) - len;
+      using suffix_type = typename base_const_c_string < SUFFIX_STRING >::type;
 
-      return !::str::string_n_compare(pszTopic + end, pszSuffix, len);
+      static_assert(::std::same_as < topic_type, suffix_type >);
+
+      auto suffix = (suffix_type)suffix_string;
+
+      auto suffix_length = ::str::string_safe_length(suffix);
+
+      if (suffix_length <= 0)
+      {
+
+         return true;
+
+      }
+
+      auto topic = (topic_type)topic_string;
+
+      auto topic_length = ::str::string_safe_length(topic);
+
+      if (topic_length < suffix_length)
+      {
+
+         return false;
+
+      }
+
+      auto end_index = (topic_length - suffix_length);
+
+      auto end = topic + end_index;
+
+      return !::str::string_n_compare_ci(end, suffix, suffix_length);
 
    }
 
-   template < typename TYPE, typename SUFFIX >
-   inline bool ends_ci(const TYPE & str, const SUFFIX & strSuffix)
-   {
-
-      using CHAR_TYPE = typename get_char_type < TYPE >::CHAR_TYPE;
-
-      auto len = ::str::string_safe_length(strSuffix);
-
-      auto end = ::str::string_safe_length(str) - len;
-
-      return !::str::string_n_compare_ci(&((const CHAR_TYPE *)str)[end], strSuffix, len);
-
-   }
-
-
-   template < typename SUFFIX >
-   inline bool ends_ci(const ::id & id, const SUFFIX & strSuffix)
-   {
-
-      return ends_ci(string(id), strSuffix);
-
-   }
-
-
-   inline bool ends_ci(const ansichar * pszTopic, const ansichar * pszSuffix)
-   {
-
-      auto len = ::str::string_safe_length(pszSuffix);
-
-      auto end = ::str::string_safe_length(pszTopic) - len;
-
-      return !::str::string_n_compare_ci(pszTopic + end, pszSuffix, len);
-
-   }
 
 
    template < typename TYPE, typename SUFFIX >

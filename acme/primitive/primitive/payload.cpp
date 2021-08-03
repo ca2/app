@@ -373,7 +373,7 @@ payload::payload(const ::property * pproperty)
 }
 
 
-payload::payload(const id & id)
+payload::payload(const ::id & id)
 {
 
    m_etype = e_type_new;
@@ -616,26 +616,38 @@ void payload::set_type(enum_type etype, bool bConvert)
 
          switch (etype)
          {
+         case e_type_i8:
+            m_i32 = this->i8();
+            break;
+         case e_type_u8:
+            m_u32 = this->u8();
+            break;
+         case e_type_i16:
+            m_i32 = this->i16();
+            break;
+         case e_type_u16:
+            m_u32 = this->u16();
+            break;
          case e_type_i32:
-            m_i32 = i32();
+            m_i32 = this->i32();
             break;
          case e_type_u32:
-            m_u32 = u32();
+            m_u32 = this->u32();
             break;
          case e_type_i64:
-            m_i64 = i64();
+            m_i64 = this->i64();
             break;
          case e_type_u64:
-            m_u64 = u64();
+            m_u64 = this->u64();
             break;
          case e_type_f64:
-            m_f64 = f64();
+            m_f64 = this->f64();
             break;
          case e_type_string:
-            m_str = ::move(string());
+            m_str = ::move(this->string());
             break;
          case e_type_id:
-            m_id = get_id();
+            m_id = ::move(this->id());
             break;
          default:
             ::set_last_status(error_conversion_not_a_number);
@@ -725,61 +737,95 @@ bool payload::failed() const
 }
 
 
-void payload::set_id(const id & id)
+void payload::set_id(const ::id & id)
 {
+
    if(get_type() == e_type_pid)
    {
+
       *m_pid = id;
+
    }
    else if(get_type() == e_type_payload_pointer)
    {
+
       *m_ppayload = id;
+
    }
    else if (get_type() == e_type_property)
    {
+
       *m_pproperty = id;
+
    }
    else
    {
+
       set_type(e_type_id, false);
+
       m_id = id;
+
    }
+
 }
+
 
 class ::payload & payload::operator = (para_return & eret)
 {
+
    set_type(e_type_parareturn, false);
+
    m_parareturn = eret;
+
    return *this;
+
 }
+
 
 class ::payload & payload::operator = (bool b)
 {
+
    if(get_type() == e_type_pbool)
    {
+
       *m_pb = b;
+
    }
    else if(get_type() == e_type_payload_pointer)
    {
+
       *m_ppayload = b;
+
    }
    else if (get_type() == e_type_property)
    {
+
       *m_pproperty = b;
+
    }
    else
    {
+
       set_type(e_type_bool, false);
+
       m_b = b;
+
    }
+
    return *this;
+
 }
+
 
 class ::payload & payload::operator = (bool * pb)
 {
+
    set_type(e_type_pbool, false);
+
    m_pb = pb;
+
    return *this;
+
 }
 
 
@@ -1046,18 +1092,16 @@ class ::payload & payload::operator = (::string * pstr)
 }
 
 
-class ::payload & payload::operator = (id * pid)
+class ::payload & payload::operator = (::id * pid)
 {
-   set_type(e_type_pid, false);
-   m_pid = pid;
-   return *this;
-}
 
-//class ::payload & payload::operator = (const char * psz)
-//{
-//   set_string(psz);
-//   return *this;
-//}
+   set_type(e_type_pid, false);
+
+   m_pid = pid;
+
+   return *this;
+
+}
 
 
 class ::payload & payload::operator = (const widechar * pcsz)
@@ -1317,7 +1361,7 @@ class ::payload & payload::operator = (const property_set & propsetParam)
 }
 
 
-class ::payload & payload::operator = (const id & id)
+class ::payload & payload::operator = (const ::id & id)
 {
 
    set_id(id);
@@ -2269,47 +2313,96 @@ string & payload::as_string(const char * pszOnNull)
 //}
 
 
-id payload::get_id(const char * pszOnNull) const
+::id payload::id(const ::id & idDefault) const
 {
+
    if(m_etype == e_type_payload_pointer)
    {
-      return m_ppayload->get_id(pszOnNull);
+
+      return m_ppayload->id(idDefault);
+
    }
    else if (m_etype == e_type_property)
    {
-      return m_pproperty->get_id(pszOnNull);
+
+      return m_pproperty->id(idDefault);
+
    }
    else if(m_etype == e_type_pid)
    {
+
       return *m_pid;
+
    }
    else if(m_etype != e_type_id)
    {
 
       ::id id;
 
-      if(m_etype == ::e_type_null)
+      if (m_etype == ::e_type_i8)
       {
-         id = pszOnNull;
+
+         id = (::index) m_i8;
+
+      }
+      else if (m_etype == ::e_type_u8)
+      {
+
+         id = (::index)m_u8;
+
+      }
+      else if (m_etype == ::e_type_i16)
+      {
+
+         id = (::index)m_i8;
+
+      }
+      else if (m_etype == ::e_type_u16)
+      {
+
+         id = (::index)m_u8;
+
       }
       else if(m_etype == ::e_type_i32)
       {
+         
          id = m_i32;
+
+      }
+      else if (m_etype == ::e_type_u32)
+      {
+
+         id = (::index) m_u32;
+
       }
       else if(m_etype == ::e_type_i64)
       {
+
          id = (::index) m_i64;
+
       }
-      else if(m_etype == ::e_type_u32)
+      else if(m_etype == ::e_type_u64)
       {
-         id = (::index) m_u32;
+
+         id = (::index) m_u64;
+
+      }
+      else if (m_etype == ::e_type_f32)
+      {
+
+         ::string str;
+
+         str.Format("%f", m_f32);
+
+         id = str;
+
       }
       else if(m_etype == ::e_type_f64)
       {
 
          ::string str;
 
-         str.Format("%f32", m_f64);
+         str.Format("%f", m_f64);
 
          id = str;
 
@@ -2326,6 +2419,12 @@ id payload::get_id(const char * pszOnNull) const
          id = *m_pstr;
 
       }
+      else
+      {
+
+         id = idDefault;
+
+      }
 
       return id;
 
@@ -2340,20 +2439,19 @@ id payload::get_id(const char * pszOnNull) const
 }
 
 
-
-id & payload::as_id(const char * pszOnNull)
+::id & payload::as_id(const ::id & idDefault)
 {
 
    if(m_etype == e_type_payload_pointer)
    {
 
-      return m_ppayload->as_id(pszOnNull);
+      return m_ppayload->as_id(idDefault);
 
    }
    else if (m_etype == e_type_property)
    {
 
-      return m_pproperty->as_id(pszOnNull);
+      return m_pproperty->as_id(idDefault);
 
    }
    else if(m_etype == e_type_pid)
@@ -2365,9 +2463,11 @@ id & payload::as_id(const char * pszOnNull)
    else
    {
 
-      m_id = get_id();
+      auto id = this->id(idDefault);
 
       set_type(e_type_id, false);
+
+      m_id = ::move(id);
 
       return m_id;
 
@@ -5991,7 +6091,7 @@ void payload::parse_json(const char *& pszJson, const char * pszEnd)
    if (*pszJson == '{')
    {
 
-      propset().parse_json(pszJson, pszEnd);
+      as_propset().parse_json(pszJson, pszEnd);
 
    }
    else if (*pszJson == '\"')
@@ -6044,7 +6144,7 @@ void payload::parse_json(const char *& pszJson, const char * pszEnd)
    else if (*pszJson == '[')
    {
 
-      payloada().parse_json(pszJson, pszEnd);
+      as_payloada().parse_json(pszJson, pszEnd);
 
    }
    else if (*pszJson == ']')

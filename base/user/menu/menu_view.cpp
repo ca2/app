@@ -106,7 +106,7 @@ namespace user
             if (pnodeItem != nullptr)
             {
 
-               idCommand = pnodeItem->attribute("id").get_id();
+               idCommand = pnodeItem->attribute("id").id();
 
             }
 
@@ -522,13 +522,13 @@ namespace user
                   pgraphics->move_to(rectangle.left + 1, rectangle.top);
                   pgraphics->line_to(rectangle.left + 1, rectangle.bottom - 1);
 
-                  pimage1 = m_pimageMap[pnodeItem->attribute("id")];
+                  pimage1 = m_pimageMap[pnodeItem->attribute("id").id()];
 
                }
                else
                {
 
-                  pimage1 = m_pimageMapGray[pnodeItem->attribute("id")];
+                  pimage1 = m_pimageMapGray[pnodeItem->attribute("id").id()];
 
                }
 
@@ -694,7 +694,7 @@ namespace user
             if (pimage1)
             {
 
-               m_pimageMap[pnode->child_at(iCommand)->attribute("id")] = pimage1;
+               m_pimageMap[pnode->child_at(iCommand)->attribute("id").id()] = pimage1;
 
                ::image_pointer pimageGray;
 
@@ -704,7 +704,7 @@ namespace user
 
                pimageGray->saturation(0.0);
 
-               m_pimageMapGray[pnode->child_at(iCommand)->attribute("id")] = pimageGray;
+               m_pimageMapGray[pnode->child_at(iCommand)->attribute("id").id()] = pimageGray;
 
             }
 

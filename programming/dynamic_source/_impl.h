@@ -122,7 +122,7 @@ namespace dynamic_source
    inline string& script_interface::gstr(id id)
    {
 
-      return gprop(id).get_ref_string();
+      return gprop(id).as_string();
 
    }
 

@@ -30,9 +30,7 @@ struct CLASS_DECL_ACME block :
 {
 
    block(enum_no_initialize) {}
-   template < typename TYPE >
-   block(TYPE type) { m_pdata = (byte *) __memory_address_of(type); m_iSize = sizeof(type); }
-   block(const void * pdata = nullptr, i64 iSize = 0) { m_pdata = (byte *) pdata; m_iSize = iSize; }
+   block(const void * pdata = nullptr, memsize iSize = 0) { m_pdata = (byte *) pdata; m_iSize = iSize; }
    block(const memory_base & memory);
    block(const memory_base * pmemory);
    block(const block & block) : ::block(block.m_pdata, block.m_iSize) {}
@@ -144,5 +142,15 @@ namespace hex
 
 
 } // namespace hex
+
+
+template < typename TYPE >
+inline ::block __block(TYPE type) 
+{ 
+   
+   return { (void *)__memory_address_of(type), (memsize) sizeof(type) };
+
+}
+
 
 

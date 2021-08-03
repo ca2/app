@@ -3790,6 +3790,12 @@ inline void assign(bool & b, const payload & payload)
 
 }
 
+inline void assign(::block & block, const ::payload & r)
+{
+
+   block.operator=(r.block());
+
+}
 
 inline void assign(long & l, const payload & payload)
 {

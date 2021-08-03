@@ -308,6 +308,9 @@ namespace desktop_environment_xfce
 } // namespace desktop_environment_xfce
 
 
+typedef char ansichar;
+
+
 #define ___STR(s) #s
 #define __STR(s) ___STR(s)
 #define __IDENTIFIER(identifier) identifier
@@ -490,12 +493,65 @@ concept primitive_floating = std::is_floating_point < T >::value;
 template < typename T >
 concept primitive_number = std::is_integral < T >::value || std::is_enum < T >::value || std::is_floating_point < T >::value;
 
+template < typename T >
+concept primitive_character = 
+   std::same_as < T, ::ansichar > || 
+   std::same_as < T, ::wd16char > ||
+   std::same_as < T, ::wd32char >;
 
 template < typename FROM, typename TO_POINTER >
 concept pointer_castable =
 ::std::is_convertible < FROM, TO_POINTER * >::value ||
 ::std::is_convertible < FROM, const TO_POINTER * >::value ||
 ::std::is_convertible < FROM, __pointer(TO_POINTER) >::value;
+
+template < typename T >
+concept const_c_string =
+std::is_convertible < T, const ::ansichar * >::value ||
+std::is_convertible < T, const ::wd16char * >::value ||
+std::is_convertible < T, const ::wd32char * >::value;
+
+
+template < bool B, class TRUE_TYPE = void, class ELSE_TYPE = void >
+struct if_else {};
+
+template < class TRUE_TYPE, class ELSE_TYPE >
+struct if_else < true, TRUE_TYPE, ELSE_TYPE > { using type = TRUE_TYPE; };
+
+template < class TRUE_TYPE, class ELSE_TYPE >
+struct if_else < false, TRUE_TYPE, ELSE_TYPE > { using type = ELSE_TYPE; };
+
+template < typename T >
+struct base_const_c_string
+{
+
+   using type =
+      typename if_else <
+      std::is_convertible < T, const ansichar * >::value,
+      const ansichar *,
+      typename if_else <
+      std::is_convertible < T, const wd16char * >::value,
+      const wd16char *,
+      typename if_else <
+      std::is_convertible < T, const wd32char * >::value,
+      const wd32char *,
+      void *
+      >::type
+      >::type
+      >::type;
+
+};
+
+template < typename T >
+concept non_const_c_string =
+std::is_convertible < T, ::ansichar * >::value ||
+std::is_convertible < T, ::wd16char * >::value ||
+std::is_convertible < T, ::wd32char * >::value;
+
+template < typename T >
+concept c_string =
+const_c_string < T > ||
+non_const_c_string < T >;
 
 template < typename DERIVED, typename BASE >
 concept is_derived_from =
@@ -580,7 +636,6 @@ inline bool __is_zero(const NON_POINTER & t);
 #define __EVALUATE_MACRO(name) name
 
 
-typedef char ansichar;
 
 
 
@@ -1375,7 +1430,9 @@ inline void assign(LEFT &l, const RIGHT &r) { l = r; }
 
 
 class payload;
+struct block;
 
+inline void assign(::block & block, const ::payload & r);
 
 inline void assign(long & l, const ::payload & r);
 inline void assign(unsigned long & l, const ::payload & r);

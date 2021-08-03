@@ -20,7 +20,7 @@ namespace multimedia
 
 
       decoder();
-      virtual ~decoder();
+      ~decoder() override;
 
 
       virtual ::e_status      multimedia_open(::file::file * pfile);

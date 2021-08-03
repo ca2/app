@@ -4514,16 +4514,20 @@ namespace user
    }
 
 
-   void mesh::Filter1(string & strFilter)
+   void mesh::Filter1(const string & strFilter)
    {
 
       if(m_eview == impact_icon)
       {
+
          m_piaFilterIcon->erase_all();
+
       }
       else
       {
+
          m_piaFilterMesh->erase_all();
+
       }
 
       string_array stra;

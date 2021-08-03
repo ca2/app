@@ -636,7 +636,7 @@ inline property & payload::get_property(const ::id & id)
 
    }
 
-   return propset().get(id);
+   return as_propset()[id];
 
 }
 

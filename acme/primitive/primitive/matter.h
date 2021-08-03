@@ -50,6 +50,7 @@ public:
          bool        m_bCheckingChildrenTask : 1;
          bool        m_bCheckChildrenTaskPostQuit : 1;
          bool        m_bTaskReady : 1;
+         bool        m_bDataStruct : 1;
 
       };
 

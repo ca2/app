@@ -1193,7 +1193,30 @@ property_set& property_set::operator = (const ::payload & payload)
    if (payload.m_etype == e_type_property_set)
    {
 
-      ::papaya::copy((property_ptra&)*this, (const property_ptra&)payload.propset());
+      if (m_bDataStruct)
+      {
+
+         for (auto & pproperty : *this)
+         {
+
+            auto ppropertySource = payload.m_ppropertyset->find(pproperty->m_id);
+
+            if (::is_set(ppropertySource))
+            {
+
+               ((::payload &)*pproperty) = ((const ::payload &)*ppropertySource);
+
+            }
+
+         }
+
+      }
+      else
+      {
+
+         ::papaya::copy((property_ptra &)*this, (const property_ptra &)payload.m_ppropertyset);
+
+      }
 
    }
    else if (payload.m_etype == e_type_property)

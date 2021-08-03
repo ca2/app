@@ -916,7 +916,7 @@ namespace dynamic_source
 
             }
 
-            ostreamError.to_string(pscript->m_strError);
+            pscript->m_strError = ostreamError.to_string();
 
             return;
 
@@ -1061,7 +1061,7 @@ namespace dynamic_source
 
             }
 
-            pscript->m_pfileError->to_string(pscript->m_strError);
+            pscript->m_strError = pscript->m_pfileError->to_string();
 
             pscript->m_strError.trim();
 
@@ -1401,7 +1401,7 @@ namespace dynamic_source
       for (auto & pproperty : setEnvironment)
       {
 
-         SetEnvironmentVariableW(wstring(pproperty->m_id), wstring(pproperty->get_string()));
+         SetEnvironmentVariableW(wstring(pproperty->m_id), wstring(pproperty->string()));
 
       }
 
@@ -2989,7 +2989,7 @@ ch_else:
 
                string strScriptError;
 
-               pdsscript->m_pfileError->to_string(strScriptError);
+               strScriptError = pdsscript->m_pfileError->to_string();
 
                m_pmanager->m_strPersistentError += strScriptError;
 

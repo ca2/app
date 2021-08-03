@@ -239,7 +239,7 @@ public:
 
       }
 
-      t = *pproperty;
+      t = (TYPE &) payload_reference(*pproperty);
 
       return true;
 

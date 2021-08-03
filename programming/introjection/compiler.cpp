@@ -409,7 +409,7 @@ namespace introjection
 
       ::payload payload = psystem->process().get_output(strCommandLine);
 
-      TRACE("%s", payload.get_string().c_str());
+      TRACE("%s", payload.string().c_str());
 
 #endif
 
@@ -513,9 +513,9 @@ namespace introjection
       for (auto & pproperty : setEnvironment)
       {
 
-         TRACE("%s : %s", pproperty->m_id.to_string().c_str(), pproperty->get_string().c_str());
+         TRACE("%s : %s", pproperty->m_id.to_string().c_str(), pproperty->string().c_str());
 
-         SetEnvironmentVariableW(wstring(pproperty->m_id), wstring(pproperty->get_string()));
+         SetEnvironmentVariableW(wstring(pproperty->m_id), wstring(pproperty->string()));
 
       }
 

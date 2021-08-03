@@ -194,20 +194,20 @@ namespace dynamic_source
    //}
 
 
-   void script_interface::set_session_value(id, ::payload)
+   void script_interface::set_session_value(const ::id & id, ::payload)
    {
 
    }
 
 
-   ::payload script_interface::get_session_value(id)
+   ::payload script_interface::get_session_value(const ::id & id)
    {
 
       return ::payload(::e_type_new);
 
    }
 
-   string script_interface::session_id(const char *)
+   ::id script_interface::session_id(const ::id & id)
    {
 
       return "";
@@ -225,7 +225,7 @@ namespace dynamic_source
    void script_interface::print_r(::payload payload)
    {
 
-      print(payload.to_r_string());
+      print(payload.string());
 
    }
 

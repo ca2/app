@@ -5,7 +5,7 @@ namespace dynamic_source
 {
 
 
-   inline property& script_interface::get(id id)
+   inline property& script_interface::get(const ::id & id)
    {
 
       return netnodesocket()->request().form().get()[id];
@@ -13,7 +13,7 @@ namespace dynamic_source
    }
 
 
-   inline property& script_interface::post(id id)
+   inline property& script_interface::post(const ::id & id)
    {
 
       return netnodesocket()->request().form().post()[id];
@@ -21,7 +21,7 @@ namespace dynamic_source
    }
 
 
-   inline http::cookie& script_interface::get_cookie(id id)
+   inline http::cookie& script_interface::get_cookie(const ::id & id)
    {
 
       return netnodesocket()->request().cookies().cookie(id);
@@ -29,7 +29,7 @@ namespace dynamic_source
    }
 
 
-   inline http::cookie& script_interface::set_cookie(id id)
+   inline http::cookie& script_interface::set_cookie(const ::id & id)
    {
 
       return netnodesocket()->response().cookies().cookie(id);
@@ -37,7 +37,7 @@ namespace dynamic_source
    }
 
 
-   inline property& script_interface::request(id id)
+   inline property& script_interface::request(const ::id & id)
    {
 
       return netnodesocket()->request().form().request()[id];
@@ -85,7 +85,7 @@ namespace dynamic_source
    }
 
 
-   inline property& script_interface::inheader(id id)
+   inline property& script_interface::inheader(const ::id & id)
    {
 
       return netnodesocket()->inheader(id);
@@ -93,7 +93,7 @@ namespace dynamic_source
    }
 
 
-   inline property& script_interface::outheader(id id)
+   inline property& script_interface::outheader(const ::id & id)
    {
 
       return netnodesocket()->outheader(id);
@@ -101,7 +101,7 @@ namespace dynamic_source
    }
 
 
-   inline property& script_interface::inattr(id id)
+   inline property& script_interface::inattr(const ::id & id)
    {
 
       return netnodesocket()->inattr(id);
@@ -109,7 +109,7 @@ namespace dynamic_source
    }
 
 
-   inline property& script_interface::outattr(id id)
+   inline property& script_interface::outattr(const ::id & id)
    {
 
       return netnodesocket()->outattr(id);
@@ -119,7 +119,7 @@ namespace dynamic_source
 
 
 
-   inline string& script_interface::gstr(id id)
+   inline string& script_interface::gstr(const ::id & id)
    {
 
       return gprop(id).as_string();
@@ -201,7 +201,7 @@ namespace dynamic_source
    }
 
 
-   inline property& script_interface::gprop(id id)
+   inline property& script_interface::gprop(const ::id & id)
    {
 
       auto& set = m_pmain->get_property_set();

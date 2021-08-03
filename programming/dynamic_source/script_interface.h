@@ -70,7 +70,7 @@ namespace dynamic_source
 
       virtual void set_session_value(const ::id & id, ::payload value);
       virtual ::payload get_session_value(const ::id & id);
-      virtual string session_id(const char * pszId = nullptr);
+      virtual ::id session_id(const ::id & id = nullptr);
 
       
       ::payload call_run();

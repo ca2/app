@@ -26,7 +26,7 @@ namespace aura
    }
 
 
-   string sound_track_player::sound_path(const char* psz)
+   string sound_track_player::sound_path(const ::string & str)
    {
 
       return "";
@@ -34,7 +34,7 @@ namespace aura
    }
 
 
-   file_pointer sound_track_player::sound_file(const char* psz)
+   file_pointer sound_track_player::sound_file(const ::string & psz)
    {
 
 
@@ -43,7 +43,7 @@ namespace aura
    }
 
 
-   __pointer(::object) sound_track_player::sound_plugin(const char* psz, bool bForceCreate, bool bLoop)
+   __pointer(::object) sound_track_player::sound_plugin(const ::string & psz, bool bForceCreate, bool bLoop)
    {
 
       return nullptr;
@@ -58,7 +58,7 @@ namespace aura
    }
 
 
-   void sound_track_player::mix(const char* psz)
+   void sound_track_player::mix(const ::string & psz)
    {
 
 

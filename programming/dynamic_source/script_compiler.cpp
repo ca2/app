@@ -2906,8 +2906,12 @@ ch_else:
       return false;
    }
 
-   const char * script_compiler::next_nonspace(const ::string & psz)
+
+   const char * script_compiler::next_nonspace(const ::string & strParam)
    {
+
+      const char * psz = strParam;
+
       while(*psz != '\0' && isspace(*psz))
       {
          psz++;

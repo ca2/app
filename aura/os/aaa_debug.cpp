@@ -1,10 +1,10 @@
 #include "framework.h"
 
 
-CLASS_DECL_AURA void __simple_tracev(e_trace_category ecategory, enum_trace_level elevel, const ::string & pszFunction, const ::string & pszFile, i32 iLine, const ::string & pszFormat, va_list args);
-CLASS_DECL_AURA void __simple_tracea(e_trace_category ecategory, enum_trace_level elevel, const ::string & pszFunction, const ::string &pszFileName, i32 iLine, const ::string & psz);
-CLASS_DECL_AURA void __simple_tracev(matter * pobject, enum_trace_level elevel, const ::string & pszFunction, const ::string & pszFile, i32 iLine, const ::string & pszFormat, va_list args);
-CLASS_DECL_AURA void __simple_tracea(matter * pobject, enum_trace_level elevel, const ::string & pszFunction, const ::string &pszFileName, i32 iLine, const ::string & psz);
+CLASS_DECL_AURA void __simple_tracev(e_trace_category ecategory, enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, va_list args);
+CLASS_DECL_AURA void __simple_tracea(e_trace_category ecategory, enum_trace_level elevel, const char * pszFunction, const char *pszFileName, i32 iLine, const char * psz);
+CLASS_DECL_AURA void __simple_tracev(matter * pobject, enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, va_list args);
+CLASS_DECL_AURA void __simple_tracea(matter * pobject, enum_trace_level elevel, const char * pszFunction, const char *pszFileName, i32 iLine, const char * psz);
 
 
 
@@ -28,7 +28,7 @@ CLASS_DECL_AURA void __simple_tracea(matter * pobject, enum_trace_level elevel, 
 
 #ifndef ANDROID
 
-void os_trace(enum_trace_level elevel, const ::string & pszTag, const ::string & psz)
+void os_trace(enum_trace_level elevel, const char * pszTag, const char * psz)
 {
 
    string strMessage;
@@ -49,7 +49,7 @@ void os_trace(enum_trace_level elevel, const ::string & pszTag, const ::string &
 
 
 
-void simple_debug_print(const ::string & psz)
+void simple_debug_print(const char * psz)
 {
 
    os_trace(e_trace_level_information, "simple_debug_string", psz);
@@ -61,7 +61,7 @@ void simple_debug_print(const ::string & psz)
 
 
 
-CLASS_DECL_AURA void __tracea(::matter * pobject, enum_trace_level elevel, const ::string & pszFunction, const ::string & pszFile, i32 iLine, const ::string & psz)
+CLASS_DECL_AURA void __tracea(::matter * pobject, enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz)
 {
 
    if (::is_null(::get_context_system()))
@@ -77,7 +77,7 @@ CLASS_DECL_AURA void __tracea(::matter * pobject, enum_trace_level elevel, const
 
 }
 
-CLASS_DECL_AURA void __tracef(::matter * pobject, enum_trace_level elevel, const ::string & pszFunction, const ::string & pszFile, i32 iLine, const ::string & pszFormat, ...)
+CLASS_DECL_AURA void __tracef(::matter * pobject, enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, ...)
 {
 
    va_list list;
@@ -100,7 +100,7 @@ CLASS_DECL_AURA void __tracef(::matter * pobject, enum_trace_level elevel, const
 }
 
 
-CLASS_DECL_AURA void __tracev(::matter * pobject, enum_trace_level elevel, const ::string & pszFunction, const ::string & pszFile, i32 iLine, const ::string & pszFormat, va_list args)
+CLASS_DECL_AURA void __tracev(::matter * pobject, enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, va_list args)
 {
 
    if (::is_null(::get_context_system()))

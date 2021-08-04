@@ -15,8 +15,8 @@ string get_error_message(::u32 dwError);
 #define MAC_THREAD(pthread) (dynamic_cast < ::mac::thread * > (dynamic_cast < ::thread * >(pthread)))
 
 
-CLASS_DECL_AURA void __trace_message(const ::string & lpszPrefix, ::message::message * pmessage);
-CLASS_DECL_AURA void __trace_message(const ::string & lpszPrefix, MESSAGE * lpmsg);
+CLASS_DECL_AURA void __trace_message(const char * pszPrefix, ::message::message * pmessage);
+CLASS_DECL_AURA void __trace_message(const char * pszPrefix, MESSAGE * lpmsg);
 int_bool mq_peek_message(MESSAGE * lpMsg,oswindow hWnd,::u32 wMsgFilterMin,::u32 wMsgFilterMax,::u32 wRemoveMsg);
 int_bool mq_get_message(MESSAGE * lpMsg,oswindow hWnd,::u32 wMsgFilterMin,::u32 wMsgFilterMax);
 i32 CLASS_DECL_AURA __mac_main(i32 argc, char * argv[]);

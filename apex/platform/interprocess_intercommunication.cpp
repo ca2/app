@@ -338,7 +338,7 @@ string interprocess_intercommunication::str_from_va(const payload_array & payloa
 }
 
 
-void interprocess_intercommunication::on_interprocess_receive(::interprocess_communication::rx * prx, const char * pszMessage)
+void interprocess_intercommunication::on_interprocess_receive(::interprocess_communication::rx * prx, const ::string & pszMessage)
 {
 
    string str(pszMessage);

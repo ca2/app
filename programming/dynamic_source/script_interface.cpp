@@ -505,6 +505,19 @@ namespace dynamic_source
 
 #endif
 
+      void script_interface::dprint_recursive(const ::payload & payload)
+      {
+
+         if (m_pmain != nullptr && m_pmain->m_iDebug > 0)
+         {
+
+            print_r(payload);
+
+         }
+
+      }
+
+
 
 } // namespace dynamic_source
 

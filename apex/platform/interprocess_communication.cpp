@@ -27,7 +27,7 @@ namespace interprocess_communication
    }
 
 
-   void rx::receiver::on_interprocess_receive(rx * prx, const char * pszMessage)
+   void rx::receiver::on_interprocess_receive(rx * prx, const ::string & pszMessage)
    {
 
    }
@@ -63,7 +63,7 @@ namespace interprocess_communication
 
 
    // calls restart if confirm_tx failed
-   bool interprocess_communication::ensure_tx(const char * pszMessage, duration durationTimeout)
+   bool interprocess_communication::ensure_tx(const ::string & pszMessage, duration durationTimeout)
    {
 
       if(!m_ptx->send(pszMessage, durationTimeout))
@@ -149,7 +149,7 @@ namespace interprocess_communication
 
 
 
-      bool tx::open(const char * pszKey, launcher * plauncher)
+      bool tx::open(const ::string & pszKey, launcher * plauncher)
       {
 
          return true;
@@ -176,7 +176,7 @@ namespace interprocess_communication
       }
 
 
-      bool tx::send(const char * pszMessage, duration durationTimeout)
+      bool tx::send(const ::string & pszMessage, duration durationTimeout)
       {
 
          if (!is_tx_ok())
@@ -224,7 +224,7 @@ namespace interprocess_communication
 
 
 
-      bool rx::create(const char * pszKey)
+      bool rx::create(const ::string & pszKey)
       {
 
 
@@ -294,7 +294,7 @@ namespace interprocess_communication
       }
 
 
-      //void rx::receiver::on_interprocess_receive(rx * prx, const char * pszMessage)
+      //void rx::receiver::on_interprocess_receive(rx * prx, const ::string & pszMessage)
       //{
 
 
@@ -316,7 +316,7 @@ namespace interprocess_communication
       //}
 
 
-      void * rx::on_interprocess_receive(rx * prx, const char * pszMessage)
+      void * rx::on_interprocess_receive(rx * prx, const ::string & pszMessage)
       {
 
          string strMessage(pszMessage);
@@ -463,7 +463,7 @@ namespace interprocess_communication
       //      else if (pcds->dwData == 0x80000000)
       //      {
 
-      //         string strMessage((const char *)pcds->lpData, pcds->cbData);
+      //         string strMessage((const ::string &)pcds->lpData, pcds->cbData);
 
       //         on_interprocess_receive(this, strMessage.c_str());
 
@@ -528,7 +528,7 @@ namespace interprocess_communication
 
 #ifdef WINDOWS
 
-      bool interprocess_communication::open_ab(const char * pszKey, const char * pszModule, launcher * plauncher)
+      bool interprocess_communication::open_ab(const ::string & pszKey, const ::string & pszModule, launcher * plauncher)
       {
 
          m_strChannel = pszKey;
@@ -562,7 +562,7 @@ namespace interprocess_communication
       }
 
 
-      bool interprocess_communication::open_ba(const char * pszKey, const char * pszModule, launcher * plauncher)
+      bool interprocess_communication::open_ba(const ::string & pszKey, const ::string & pszModule, launcher * plauncher)
       {
 
          m_strChannel = pszKey;
@@ -599,7 +599,7 @@ namespace interprocess_communication
 #else
 
 
-      bool interprocess_communication::open_ab(const char * pszKey, launcher * plauncher)
+      bool interprocess_communication::open_ab(const ::string & pszKey, launcher * plauncher)
       {
 
          m_strChannel = pszKey;
@@ -633,7 +633,7 @@ namespace interprocess_communication
       }
 
 
-      bool interprocess_communication::open_ba(const char * pszKey, launcher * plauncher)
+      bool interprocess_communication::open_ba(const ::string & pszKey, launcher * plauncher)
       {
 
          m_strChannel = pszKey;

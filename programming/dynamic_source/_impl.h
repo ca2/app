@@ -188,18 +188,6 @@ namespace dynamic_source
    }
 
 
-   inline void script_interface::dprint_r(::payload payload)
-   {
-
-      if (m_pmain != nullptr && m_pmain->m_iDebug > 0)
-      {
-
-         print_r(payload);
-
-      }
-
-   }
-
 
    inline property& script_interface::gprop(const ::id & id)
    {

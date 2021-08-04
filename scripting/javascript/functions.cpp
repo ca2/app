@@ -86,8 +86,9 @@ void scMyIpAddress(CScriptVar *pvar, void *data);
 //}
 
 
-bool is_only_digits(const ::string & psz)
+bool is_only_digits(const ::string & strParam)
 {
+   const char * psz = strParam;
    if(psz == nullptr || *psz == '\0')
       return false;
    while(true)

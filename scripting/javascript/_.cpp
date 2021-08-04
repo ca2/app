@@ -248,8 +248,11 @@ bool isAlpha(char ch)
    return ((ch>='a') && (ch<='z')) || ((ch>='A') && (ch<='Z')) || ch=='_';
 }
 
-bool isIDString(const ::string &s)
+bool isIDString(const ::string &strParam)
 {
+
+   auto s = strParam.c_str();
+
    if (!isAlpha(*s))
       return false;
    while (*s)

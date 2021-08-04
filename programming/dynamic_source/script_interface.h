@@ -44,8 +44,8 @@ namespace dynamic_source
 
 
       virtual void dinit();
-      virtual void dprint(const ::string &) override;
-      inline void dprint_r(::payload payload);
+      virtual void dprint(const ::string &);
+      virtual void dprint_recursive(const ::payload & payload);
 
 
       property_set& inattra();

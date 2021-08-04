@@ -34,7 +34,7 @@ namespace aqua
       virtual ::file_pointer get_rtp_file(const ::payload & varFile);
 
 
-      virtual LPFN_NEW_MULTIMEDIA_DECODER get_multimedia_decoder_factory(const char * pszTitle);
+      virtual LPFN_NEW_MULTIMEDIA_DECODER get_multimedia_decoder_factory(const ::string & pszTitle);
 
 
       virtual LPWAVEOUT waveout_open(int iChannel, LPAUDIOFORMAT pformat, LPWAVEOUT_CALLBACK pcallback);

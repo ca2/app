@@ -263,7 +263,7 @@ namespace imaging_freeimage
 
       //m_pcontext->m_papexcontext->file().non_empty_memory(varFile, *pmemory);
 
-      const char * psz = (const ::string &)pmemory->get_data();
+      const char * psz = (const char *)pmemory->get_data();
 
       if (::is_null(psz))
       {

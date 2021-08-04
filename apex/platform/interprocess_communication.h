@@ -61,7 +61,7 @@ namespace interprocess_communication
 
 
       base();
-      virtual ~base();
+      ~base() override;
 
 
    };
@@ -74,19 +74,19 @@ namespace interprocess_communication
 
 
       tx();
-      virtual ~tx();
+      ~tx() override;
 
 
 
 #if defined(_UWP)
-      virtual bool open(const char * pszChannel);
+      virtual bool open(const ::string & pszChannel);
 #else
-      virtual bool open(const char * pszChannel, ::launcher * plauncher = nullptr);
+      virtual bool open(const ::string & pszChannel, ::launcher * plauncher = nullptr);
 #endif
       virtual bool close();
 
 
-      virtual bool send(const char * pszMessage, duration durationTimeout);
+      virtual bool send(const ::string & pszMessage, duration durationTimeout);
       virtual bool send(int message,void * pdata,int len, duration durationTimeout);
 
 
@@ -110,7 +110,7 @@ namespace interprocess_communication
       public:
 
 
-         virtual void on_interprocess_receive(rx * prx,const char * pszMessage);
+         virtual void on_interprocess_receive(rx * prx,const ::string & pszMessage);
          virtual void on_interprocess_receive(rx * prx,int message,void * pdata,memsize len);
          virtual void on_interprocess_post(rx * prx, i64 a, i64 b);
 
@@ -132,14 +132,14 @@ namespace interprocess_communication
 
 
       rx();
-      virtual ~rx();
+      ~rx() override;
 
 
-      virtual bool create(const char * pszChannel);
+      virtual bool create(const ::string & pszChannel);
       ::e_status destroy() override;
 
 
-      virtual void * on_interprocess_receive(rx * prx,const char * pszMessage);
+      virtual void * on_interprocess_receive(rx * prx,const ::string & pszMessage);
       virtual void * on_interprocess_receive(rx * prx,int message,void * pdata,memsize len);
       virtual void * on_interprocess_post(rx * prx, i64 a, i64 b);
 
@@ -177,20 +177,20 @@ namespace interprocess_communication
       virtual ~interprocess_communication();
 
 #if defined(_UWP)
-      virtual bool open_ab(const char * pszChannel, const char * pszModule);
-      virtual bool open_ba(const char * pszChannel, const char * pszModule);
+      virtual bool open_ab(const ::string & pszChannel, const ::string & pszModule);
+      virtual bool open_ba(const ::string & pszChannel, const ::string & pszModule);
 #elif defined(WINDOWS)
-      virtual bool open_ab(const char * pszChannel,const char * pszModule,launcher * plauncher = nullptr);
-      virtual bool open_ba(const char * pszChannel,const char * pszModule,launcher * plauncher = nullptr);
+      virtual bool open_ab(const ::string & pszChannel,const ::string & pszModule,launcher * plauncher = nullptr);
+      virtual bool open_ba(const ::string & pszChannel,const ::string & pszModule,launcher * plauncher = nullptr);
 #else
-      virtual bool open_ab(const char * pszChannel, launcher * plauncher = nullptr);
-      virtual bool open_ba(const char * pszChannel, launcher * plauncher = nullptr);
+      virtual bool open_ab(const ::string & pszChannel, launcher * plauncher = nullptr);
+      virtual bool open_ba(const ::string & pszChannel, launcher * plauncher = nullptr);
 #endif
       virtual bool close();
 
       virtual void restart_apex_ipc();
 
-      virtual bool ensure_tx(const char * pszMessage, duration durationTimeout = one_hour());
+      virtual bool ensure_tx(const ::string & pszMessage, duration durationTimeout = one_hour());
       virtual bool ensure_tx(int message, void * pdata, int len, duration durationTimeout = one_hour());
 
 

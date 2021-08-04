@@ -12,18 +12,18 @@ namespace aura
 
 
       sound_track_player();
-      virtual ~sound_track_player();
+      ~sound_track_player() override;
 
 
       virtual ::e_status defer_start(::wave::e_purpose epurpose);
 
-      virtual __pointer(::object) sound_plugin(const char*, bool bForceCreate = false, bool bLoop = false);
+      virtual __pointer(::object) sound_plugin(const ::string &, bool bForceCreate = false, bool bLoop = false);
 
-      virtual file_pointer sound_file(const char*);
+      virtual file_pointer sound_file(const ::string &);
 
-      virtual string sound_path(const char*);
+      virtual string sound_path(const ::string &);
 
-      virtual void mix(const char*);
+      virtual void mix(const ::string &);
 
       virtual void mix(::audio::plugin* pplugin);
 

@@ -104,12 +104,12 @@
    public:
 
       interprocess_intercommunication();
-      virtual ~interprocess_intercommunication();
+      ~interprocess_intercommunication() override;
 
 
       virtual ::e_status initialize_interprocess_communication(::object * pobject, const ::string & strApp);
 
-      virtual ::e_status destroy() override;
+      ::e_status destroy() override;
 
       virtual void defer_add_module(const ::string & strModule, const ::id & idPid);
 
@@ -133,7 +133,7 @@
 
       using ::interprocess_communication::rx::receiver::on_interprocess_receive;
 
-      virtual void on_interprocess_receive(::interprocess_communication::rx * prx, const char * pszMessage) override;
+      void on_interprocess_receive(::interprocess_communication::rx * prx, const ::string & pszMessage) override;
 
       virtual bool start(const ::string & strApp);
 

@@ -70,7 +70,7 @@ namespace aqua
    }
 
 
-   LPFN_NEW_MULTIMEDIA_DECODER audio::get_multimedia_decoder_factory(const char * pszTitle)
+   LPFN_NEW_MULTIMEDIA_DECODER audio::get_multimedia_decoder_factory(const ::string & strTitle)
    {
    
       return nullptr;

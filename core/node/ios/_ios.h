@@ -13,7 +13,7 @@
 //
 //   ::plane::system *    m_psystem;
 //
-//   plane_system(const ::string & pszId);
+//   plane_system(const char * pszId);
 //
 //   UIWindow * init_part_2ex(CGRect rectangle_i32);
 //
@@ -24,7 +24,7 @@
 
 string get_error_message(::u32 dwError);
 
-::aura::application *     ios_instantiate_application(::aura::application * pappSystem, const ::string & pszId);
+::aura::application *     ios_instantiate_application(::aura::application * pappSystem, const char * pszId);
 
 
 #define NULL_REF(class) (*((class *) nullptr))
@@ -32,8 +32,8 @@ string get_error_message(::u32 dwError);
 #define IOS_THREAD(pthread) (dynamic_cast < ::ios::thread * > (dynamic_cast < ::thread * >(pthread)))
 
 
-CLASS_DECL_CORE void __trace_message(const ::string & lpszPrefix, ::message::message * pmessage);
-CLASS_DECL_CORE void __trace_message(const ::string & lpszPrefix, MESSAGE * lpmsg);
+CLASS_DECL_CORE void __trace_message(const char * lpszPrefix, ::message::message * pmessage);
+CLASS_DECL_CORE void __trace_message(const char * lpszPrefix, MESSAGE * lpmsg);
 
 #include "implementation.h"
 #include "dir_system.h"
@@ -80,9 +80,9 @@ CLASS_DECL_CORE void __trace_message(const ::string & lpszPrefix, MESSAGE * lpms
 i32 CLASS_DECL_CORE __ios_main(i32 argc, char * argv[]);
 
 
-CLASS_DECL_CORE void vfxThrowFileException(::object * pobject, const ::e_status & estatus, ::i32 lOsError, const ::string & lpszFileName = nullptr);
+CLASS_DECL_CORE void vfxThrowFileException(::object * pobject, const ::e_status & estatus, ::i32 lOsError, const char * lpszFileName = nullptr);
 
-CLASS_DECL_CORE ::file::exception * get_FileException(::object * pobject, const ::e_status & estatus, ::i32 lOsError, const ::string & lpszFileName = nullptr);
+CLASS_DECL_CORE ::file::exception * get_FileException(::object * pobject, const ::e_status & estatus, ::i32 lOsError, const char * lpszFileName = nullptr);
 
 
 

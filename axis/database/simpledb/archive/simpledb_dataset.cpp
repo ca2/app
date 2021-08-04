@@ -228,7 +228,7 @@ namespace simpledb
      return 0;  */
 
 
-   bool dataset::sql_do_select(const ::string & & pszSql)
+   bool dataset::sql_do_select(const char * & pszSql)
    {
       string_array straField;
 
@@ -363,7 +363,7 @@ namespace simpledb
 
    }
 
-   bool dataset::sql_do_insert(const ::string & & pszSql)
+   bool dataset::sql_do_insert(const char * & pszSql)
    {
 
       try
@@ -441,7 +441,7 @@ namespace simpledb
 
    }
 
-   string dataset::consume_quoted_value(const ::string & & pszXml)
+   string dataset::consume_quoted_value(const char * & pszXml)
    {
       const char * psz = pszXml;
       string qc = ::str::get_utf8_char(psz);
@@ -468,7 +468,7 @@ namespace simpledb
       return str;
    }
 
-   string dataset::sql_consume_value(const ::string & & pszSql)
+   string dataset::sql_consume_value(const char * & pszSql)
    {
       ::str::consume_spaces(pszSql, 0);
       string str = consume_quoted_value(pszSql);
@@ -476,7 +476,7 @@ namespace simpledb
       return str;
    }
 
-   string dataset::sql_consume_keyword(const ::string & & pszSql)
+   string dataset::sql_consume_keyword(const char * & pszSql)
    {
       ::str::consume_spaces(pszSql, 0);
       string str = ::str::consume_nc_name(pszSql);
@@ -484,19 +484,19 @@ namespace simpledb
       return str;
    }
 
-   string dataset::sql_consume_field(const ::string & & pszSql)
+   string dataset::sql_consume_field(const char * & pszSql)
    {
       ::str::consume_spaces(pszSql, 0);
       return ::str::consume_nc_name(pszSql);
    }
 
-   string dataset::sql_consume_table(const ::string & & pszSql)
+   string dataset::sql_consume_table(const char * & pszSql)
    {
       ::str::consume_spaces(pszSql, 0);
       return ::str::consume_nc_name(pszSql);
    }
 
-   string dataset::sql_consume_join_on(const ::string & & pszSql)
+   string dataset::sql_consume_join_on(const char * & pszSql)
    {
       UNREFERENCED_PARAMETER(pszSql);
       return "";

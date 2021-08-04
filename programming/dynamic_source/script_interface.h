@@ -51,7 +51,7 @@ namespace dynamic_source
       property_set& inattra();
 
 
-      virtual property & get(const ::string & pszKey);
+      //virtual property & get(const ::string & pszKey);
 
 
 

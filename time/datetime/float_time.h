@@ -1036,8 +1036,10 @@ inline float_time::float_time(const FILETIME& filetimeSrc) RELEASENOTHROW :
    }
 
 #ifndef APPLEOS
-   inline bool float_time::ParseDateTime(const ::string & lpszDate, ::u32 dwFlags, LCID lcid) RELEASENOTHROW
+   inline bool float_time::ParseDateTime(const ::string & strDate, ::u32 dwFlags, LCID lcid) RELEASENOTHROW
    {
+
+      const char * lpszDate = strDate;
 
       const char * pszDate = (lpszDate == NULL) ? "" : lpszDate;
 

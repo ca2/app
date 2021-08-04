@@ -122,10 +122,10 @@ namespace dynamic_source
    //}
 
 
-   property & script_interface::get(const ::string & pszKey)
-   {
-      return netnodesocket()->m_request.form().get()[pszKey];
-   }
+   //property & script_interface::get(const ::string & pszKey)
+   //{
+   //   return netnodesocket()->m_request.form().get()[pszKey];
+   //}
 
 
 

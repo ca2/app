@@ -88,26 +88,30 @@ const Type & string_array_base < Type, RawType, t_etypePayload >::element_at(::i
 
 
 template < typename Type, typename RawType, enum_type t_etypePayload >
-string_array_base < Type, RawType, t_etypePayload >  & string_array_base < Type, RawType, t_etypePayload > ::operator = (::payload varSrc)
+string_array_base < Type, RawType, t_etypePayload >  & string_array_base < Type, RawType, t_etypePayload > ::operator = (const ::payload & payload)
 {
+
    this->erase_all();
-   if (varSrc.get_type() == ::e_type_string_array)
+
+   if (payload.get_type() == ::e_type_string_array)
    {
-      varSrc.get_array(*this);
+
+      payload.get_array(*this);
+
    }
    else
    {
       
-      if (varSrc.get_count() == 1)
+      if (payload.get_count() == 1)
       {
          
-         add((Type)varSrc.string());
+         add((Type)payload.string());
 
       }
-      else if (varSrc.get_count() > 1)
+      else if (payload.get_count() > 1)
       {
 
-         varSrc.get_array(*this);
+         payload.get_array(*this);
 
       }
 

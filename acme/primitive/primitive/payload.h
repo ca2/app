@@ -664,14 +664,22 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
    payload & operator = (class ::duration * pduration);
    payload & operator = (const ::block & block);
 
-   template < class T >
-   void get_array(T & dsta) const
+   template < class ARRAY >
+   void get_array(ARRAY & array) const
    {
 
-      for(int i = 0; i < array_get_count(); i++)
+      auto count = this->array_get_count();
+
+      for(int i = 0; i < count; i++)
       {
 
-         dsta.add((typename T::BASE_TYPE) at(i));
+         ::payload payloadItem = at(i);
+
+         typename ARRAY::BASE_TYPE typeNewItem;
+
+         ::assign(typeNewItem, payloadItem);
+
+         array.add(typeNewItem);
 
       }
 

@@ -1520,14 +1520,6 @@ class ::payload & payload::operator = (::duration * pduration)
 }
 
 
-payload::operator ::string() const
-{
-
-   return this->string();
-
-}
-
-
 bool payload::casts_to(::enum_type etype) const
 {
 

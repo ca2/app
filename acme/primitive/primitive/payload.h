@@ -463,37 +463,36 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
 
    }
 
-   //bool get_bool() const;
-   //::i32 i32() const;
-   //::u32 u32() const;
-   //::i64 i64() const;
-   //::u64 u64() const;
-   //::e_status estatus() const;
-   //class secs secs() const;
-   //class millis millis() const;
-   //class micros micros() const;
-   //class nanos nanos() const;
-   //class duration duration() const;
+
+   operator bool() const;
+
+   operator ::i8() const;
+   operator ::u8() const;
+   operator ::i16() const;
+   operator ::u16() const;
+   operator ::i32() const;
+   operator ::u32() const;
+   operator ::i64() const;
+   operator ::u64() const;
+   operator ::f32() const;
+   operator ::f64() const;
+   operator ::string() const;
+   operator ::memory() const;
+   operator ::file::path() const;
+
+
    ::filetime filetime() const;
    ::datetime::time datetime_time() const;
    ::color::color color() const;
    ::color::hls color_hls() const;
    block block() const;
-   //operator block ();
-   //operator class millis() const;
 
 
    ::string & as_string(const char * pszOnNull = nullptr);
-   operator ::string() const;
 
-
-   //::memory & as_memory();
-   operator ::memory() const;
 
    ::file::path & as_file_path();
-   operator ::file::path() const;
 
-   //operator ::image * & ();
 
    ::filetime & as_filetime();
    ::datetime::time & as_datetime_time();
@@ -521,9 +520,6 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
    ::f32 & as_f32();
    ::f64 & as_f64();
 
-   //::e_status & as_estatus();
-
-   //void get_string(char * psz) const;
 
    strsize get_length() const;
 
@@ -538,7 +534,6 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
    }
 
    payload& operator = (const ::routine & routine);
-   //payload& operator = (const ::future & process);
 
    inline payload & operator = (nullptr_t) { set_type(e_type_null, false); return *this; }
 
@@ -615,8 +610,6 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
       return operator =(estatus.m_estatus);
    }
 
-   //inline payload & operator = (::image * pimage);
-
 
    payload & operator = (para_return & eret);
    payload & operator = (bool b);
@@ -657,9 +650,6 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
    payload & operator = (const ::memory & memory);
    payload & operator = (const ::payload_array & payloada);
    payload & operator = (const ::property_set & propset);
-   //payload & operator = (const pair_set_interface & propset);
-   //payload & operator = (const str_str_interface & propset);
-//   payload & operator = (const ::string_composite & reference);
    payload & operator = (const ::id & id);
    payload & operator = (::id * pid);
    payload & operator = (const ::secs & secs);
@@ -859,19 +849,6 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
    bool operator > (::i32 i) const;
    bool operator > (bool b) const;
 
-   //payload & io(::stream & stream);
-
-   //inline payload & io(::stream& stream) const
-   //{
-     // stream.set_storing();
-      //return ((payload &)*this).io(stream);
-
-   //}
-
-   //template < typename TYPE >
-   //void exchange_from(const TYPE & t) { operator =(t); }
-
-   //void exchange_from(const ::matter & matter) { propset().exchange(matter); }
 
    ::string implode(const char * pszGlue) const;
    payload explode(const char * pszGlue,bool bAddEmpty = true) const;
